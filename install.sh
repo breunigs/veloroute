@@ -5,6 +5,9 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi
 
+apt-get update -qq
+apt-get install -qq --yes brotli gdal-bin
+
 cd $(dirname $0)
 
 sudo -u www-data crontab -l | grep "veloroute"
@@ -13,5 +16,5 @@ if [ $? -ne 0 ]; then
 fi
 
 ln -s "$(pwd)/nginx-veloroute" /etc/nginx/sites-enabled/veloroute
-systemctl reload nginx
 
+exec ./deploy.sh

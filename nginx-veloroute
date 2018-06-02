@@ -2,7 +2,7 @@ server {
   listen 80;
   listen [2a03:4000:15:155::4003]:80 ipv6only=on deferred;
   server_name veloroute.breunig.xyz;
-  return 301 https://rainy.breunig.xyz$request_uri;
+  return 301 https://veloroute.breunig.xyz$request_uri;
 }
 
 server {
