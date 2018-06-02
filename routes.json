@@ -1,0 +1,17 @@
+{
+  "1":  { "relation_id": 194843,  "color": "rgba(125, 139,  47, 0.8)" },
+  "2":  { "relation_id": 194841,  "color": "rgba(178,  33,  29, 0.8)" },
+  "3":  { "relation_id": 194840,  "color": "rgba(232,  67,  11, 0.8)" },
+  "4":  { "relation_id": 191882,  "color": "rgba(  0, 138, 167, 0.8)" },
+  "5":  { "relation_id": 226032,  "color": "rgba(  7, 138,  61, 0.8)" },
+  "5b": { "relation_id": 3440789, "color": "rgba(  7, 138,  61, 0.8)", "_comment": "Ast nach Barmbek, aus irgendeinem Grund ist das eine extra Relation" },
+  "6":  { "relation_id": 227477,  "color": "rgba( 42,  50, 131, 0.8)" },
+  "7":  { "relation_id": 228035,  "color": "rgba(151, 186,  34, 0.8)" },
+  "8":  { "relation_id": 229623,  "color": "rgba(226,   6,  18, 0.8)" },
+  "9":  { "relation_id": 229823,  "color": "rgba(157,  41,  40, 0.8)" },
+  "10": { "relation_id": 231965,  "color": "rgba( 85,  41, 118, 0.8)" },
+  "11": { "relation_id": 233959,  "color": "rgba(  0, 160, 226, 0.8)" },
+  "12": { "relation_id": 2238410, "color": "rgba(237, 103,   6, 0.8)" },
+  "13": { "relation_id": 2238764, "color": "rgba(242, 136,   1, 0.8)", "_comment": "Innere Ringroute" },
+  "14": { "relation_id":       0, "color": "rgba(253, 184,   1, 0.8)", "_comment": "Äußere Ringroute" }
+}
