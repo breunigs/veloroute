@@ -2,7 +2,31 @@ body {
     padding: 0;
     margin: 0;
 }
+
 html, body, #map {
     height: 100%;
     width: 100%;
+}
+
+.route-icon {
+  margin-left: -0.85em;
+  margin-top: -0.85em;
+  width: 1.7em;
+  height: 1.7em;
+}
+
+.route-icon div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #fff;
+  border: 0.1em solid white;
+  text-align: center;
+  line-height: 1.7em;
+  vertical-align: middle;
+  font-weight: bold;
+  text-shadow: -0.05em  0.05em 0  rgba(0,0,0,0.2),
+                0.05em  0.05em 0  rgba(0,0,0,0.2),
+                0.05em -0.05em 0  rgba(0,0,0,0.2),
+               -0.05em  -0.05em 0 rgba(0,0,0,0.2);
 }

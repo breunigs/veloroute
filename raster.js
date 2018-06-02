@@ -6,6 +6,45 @@ var hash = L.hash(map);
 var foregroundRoute = 1;
 
 map.createPane("backgrounds");
+map.createPane("marker").style.zIndex = 652;
+
+// Adds marker with the given label and color exactly at the given coordinate.
+function addMarker(route, coord, color) {
+  var icon = L.divIcon({
+     className: 'route-icon',
+     iconSize: null,
+     html: '<div style="background:'+color+'">'+route+'</div>'
+   });
+
+  // let pos = new L.LatLng(coord[0], coord[1]);
+  L.marker(coord, {icon: icon, pane: "marker"}).addTo(map);
+}
+
+// addSnappedMarker takes the given coord and finds the closest start/end of the
+// jsonResponse multilinestring GeoJSON. It then adds a marker to that endpoint.
+function addSnappedMarker(route, jsonResponse, coord, color) {
+  let lines = jsonResponse.features[0].geometry.coordinates;
+  let ref = L.latLng(coord);
+
+  let best = [coord, Number.MAX_VALUE];
+
+  lines.forEach(line => {
+    best = giveCloser(ref, best, line[0]);
+    best = giveCloser(ref, best, line[line.length - 1]);
+    console.log(best[1])
+  });
+  addMarker(route, best[0], color)
+}
+
+// giveCloser checks if the given GeoJSON coordinate is closer to the reference
+// point. If so, it returns a new "best".
+function giveCloser(ref, best, lineCoord) {
+  let newCoord = [lineCoord[1], lineCoord[0]]
+  let newDist = ref.distanceTo(newCoord);
+  if(newDist < best[1]) return [newCoord, newDist];
+  return best;
+}
+
 
 function bringRouteToForeground(route) {
   setRouteZIndex(foregroundRoute, 650);
@@ -17,7 +56,7 @@ function setRouteZIndex(route, zIndex) {
   map.getPane("route" + route).style.zIndex = zIndex;
 }
 
-function getRoute(route, options) {
+function getRoute(route, details) {
   map.createPane("route" + route);
 
   fetch("geo/route" + route + ".geojson")
@@ -30,7 +69,7 @@ function getRoute(route, options) {
       }).addTo(map);
 
       L.geoJSON(jsonResponse, {
-        style: {weight: 3, color: options.color, opacity: 0.8},
+        style: {weight: 3, color: details.color, opacity: 0.8},
         pane: "route" + route,
         onEachFeature: function(feature, layer) {
           layer.on("click", () => { bringRouteToForeground(route) })
@@ -38,6 +77,10 @@ function getRoute(route, options) {
           // layer.bindPopup("lol");
         }
       }).addTo(map);
+
+      if(details.markers && details.markers[0][0]) {
+        details.markers.forEach(coord => addSnappedMarker(route, jsonResponse, coord, details.color))
+      }
     });
 }
 
