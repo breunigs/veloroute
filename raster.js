@@ -10,14 +10,24 @@ var zIndexOffsetIcons = 2;
 map.createPane("backgrounds");
 map.createPane("marker").style.zIndex = zIndexBase + zIndexOffsetIcons;
 
-// Adds marker with the given label and color exactly at the given coordinate.
+// adds marker near Rathausmarkt where all routes originate from
+function addCenterMarker() {
+  var icon = L.divIcon({
+     className: 'route-icon',
+     iconSize: null,
+     html: '<div style="background:#bbb">★</div>'
+   });
+  L.marker([53.55053, 9.99421], {icon: icon, pane: "marker"}).addTo(map)
+}
+
+// Adds a route marker with the given label and color exactly at the given coordinate.
 function addMarker(route, coord, color) {
   var icon = L.divIcon({
      className: 'route-icon route-icon' + route,
      iconSize: null,
      html: '<div style="background:'+color+'">'+route+'</div>'
    });
-  let x = L.marker(coord, {icon: icon, pane: "marker"})
+  L.marker(coord, {icon: icon, pane: "marker"})
     .addTo(map)
     .on('click', () => bringRouteToForeground(route));
 }
@@ -99,3 +109,5 @@ fetch("routes.json")
       getRoute(route, details)
     })
   });
+
+addCenterMarker();
