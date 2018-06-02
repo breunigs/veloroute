@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $EUID -ne 0 ]; then
+if [ $(id -u) -ne 0 ]; then
   echo "Must be root"
   exit 1
 fi
