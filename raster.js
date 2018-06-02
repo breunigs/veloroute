@@ -3,21 +3,23 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHVia
 var map = L.mapbox.map('map', 'mapbox.emerald')
     .setView([53.5778, 10.0188], 11);
 var hash = L.hash(map);
-var foregroundRoute = 1;
+var foregroundRoute = null;
+var zIndexBase = 650;
+var zIndexOffsetIcons = 2;
 
 map.createPane("backgrounds");
-map.createPane("marker").style.zIndex = 652;
+map.createPane("marker").style.zIndex = zIndexBase + zIndexOffsetIcons;
 
 // Adds marker with the given label and color exactly at the given coordinate.
 function addMarker(route, coord, color) {
   var icon = L.divIcon({
-     className: 'route-icon',
+     className: 'route-icon route-icon' + route,
      iconSize: null,
      html: '<div style="background:'+color+'">'+route+'</div>'
    });
-
-  // let pos = new L.LatLng(coord[0], coord[1]);
-  L.marker(coord, {icon: icon, pane: "marker"}).addTo(map);
+  let x = L.marker(coord, {icon: icon, pane: "marker"})
+    .addTo(map)
+    .on('click', () => bringRouteToForeground(route));
 }
 
 // addSnappedMarker takes the given coord and finds the closest start/end of the
@@ -31,7 +33,6 @@ function addSnappedMarker(route, jsonResponse, coord, color) {
   lines.forEach(line => {
     best = giveCloser(ref, best, line[0]);
     best = giveCloser(ref, best, line[line.length - 1]);
-    console.log(best[1])
   });
   addMarker(route, best[0], color)
 }
@@ -45,19 +46,28 @@ function giveCloser(ref, best, lineCoord) {
   return best;
 }
 
-
+// Increases the zIndex for the given route. If there was a previously focused
+// route, its zIndex will be reset.
 function bringRouteToForeground(route) {
-  setRouteZIndex(foregroundRoute, 650);
+  if(route == foregroundRoute) return;
+  setRouteZIndex(foregroundRoute, 0);
   foregroundRoute = route;
-  setRouteZIndex(route, 651);
+  setRouteZIndex(route, 1);
 }
 
-function setRouteZIndex(route, zIndex) {
-  map.getPane("route" + route).style.zIndex = zIndex;
+// sets the zIndex for both route and its icons to adhere to the offset. Pass 0
+// to reset to default values.
+function setRouteZIndex(route, zOffset) {
+  if(!route) return;
+  map.getPane("route" + route).style.zIndex = zIndexBase + zOffset;
+  document.querySelectorAll(".route-icon" + route).forEach(elem => {
+    elem.style.zIndex = zIndexBase + zOffset + zIndexOffsetIcons;
+  })
 }
 
 function getRoute(route, details) {
-  map.createPane("route" + route);
+  let pane = map.createPane("route" + route)
+  pane.addEventListener("click", () => bringRouteToForeground(route));
 
   fetch("geo/route" + route + ".geojson")
     .then(response => response.json())
@@ -72,9 +82,7 @@ function getRoute(route, details) {
         style: {weight: 3, color: details.color, opacity: 0.8},
         pane: "route" + route,
         onEachFeature: function(feature, layer) {
-          layer.on("click", () => { bringRouteToForeground(route) })
-          // layer.click
-          // layer.bindPopup("lol");
+          // layer.on("click", () => {  })
         }
       }).addTo(map);
 
