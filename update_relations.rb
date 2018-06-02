@@ -29,7 +29,7 @@ end
 
 def convert(route)
   return unless File.exist?(xml_name(route))
-  cmd = "OSM_CONFIG_FILE=./osmconf.ini SIGNIFICANT_FIGURES=1 ogr2ogr -f GeoJSON"
+  cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=7 -f GeoJSON"
   `#{cmd} "#{geo_route_name(route)}" "#{xml_name(route)}" multilinestrings 2>&1`
   `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
   `brotli --best "#{geo_route_name(route)}" "#{geo_details_name(route)}"`

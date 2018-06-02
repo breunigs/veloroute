@@ -1,29 +1,40 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 // var map = L.mapbox.map('map', 'mapbox.light')
-var map = L.mapbox.map('map', 'mapbox.light')
+var map = L.mapbox.map('map', 'mapbox.emerald')
     .setView([53.5778, 10.0188], 11);
+var hash = L.hash(map);
+var foregroundRoute = 1;
 
-// var baseLayers = {
-//   "Emerald": L.mapbox.tileLayer('maxmeles.emerald'),
-//   "Light": L.mapbox.tileLayer('maxmeles.light'),
-// };
+map.createPane("backgrounds");
 
-// var overlays = {
-//   // "Marker": marker,
-//   // "Roads": roadsLayer
-// };
+function bringRouteToForeground(route) {
+  setRouteZIndex(foregroundRoute, 650);
+  foregroundRoute = route;
+  setRouteZIndex(route, 651);
+}
 
-// L.control.layers(baseLayers, overlays).addTo(map);
+function setRouteZIndex(route, zIndex) {
+  map.getPane("route" + route).style.zIndex = zIndex;
+}
 
-function getRoute(num, options) {
-  fetch("geo/route" + num + ".geojson")
+function getRoute(route, options) {
+  map.createPane("route" + route);
+
+  fetch("geo/route" + route + ".geojson")
     .then(response => response.json())
     .then(jsonResponse => {
       L.geoJSON(jsonResponse, {
-        style: function(feature) {
-          return {color: options.color};
-        },
+        style: {weight: 5, color: "#fff", opacity: 0.7},
+        interactive: false,
+        pane: "backgrounds"
+      }).addTo(map);
+
+      L.geoJSON(jsonResponse, {
+        style: {weight: 3, color: options.color, opacity: 0.8},
+        pane: "route" + route,
         onEachFeature: function(feature, layer) {
+          layer.on("click", () => { bringRouteToForeground(route) })
+          // layer.click
           // layer.bindPopup("lol");
         }
       }).addTo(map);
