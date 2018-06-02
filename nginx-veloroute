@@ -1,0 +1,21 @@
+server {
+  listen 80;
+  listen [2a03:4000:15:155::4003]:80 ipv6only=on deferred;
+  server_name veloroute.breunig.xyz;
+  return 301 https://rainy.breunig.xyz$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [2a03:4000:15:155::4003]:443 ipv6only=on ssl http2 deferred;
+  
+  server_name veloroute.breunig.xyz;
+  include ssl.conf;
+
+  access_log /var/log/nginx/veloroute.breunig.xyz.log;
+  root       /srv/veloroute;
+  index      index.html;
+
+  brotli_static on;
+  gzip_static on;
+}
