@@ -13,9 +13,9 @@ map.createPane("marker").style.zIndex = zIndexBase + zIndexOffsetIcons;
 // adds marker near Rathausmarkt where all routes originate from
 function addCenterMarker() {
   var icon = L.divIcon({
-     className: 'route-icon',
+     className: 'route-icon route-icon0',
      iconSize: null,
-     html: '<div style="background:#bbb">★</div>'
+     html: '★'
    });
   L.marker([53.55053, 9.99421], {icon: icon, pane: "marker"}).addTo(map)
 }
@@ -25,7 +25,7 @@ function addMarker(route, coord, color) {
   var icon = L.divIcon({
      className: 'route-icon route-icon' + route,
      iconSize: null,
-     html: '<div style="background:'+color+'">'+route+'</div>'
+     html: route
    });
   L.marker(coord, {icon: icon, pane: "marker"})
     .addTo(map)
@@ -102,12 +102,21 @@ function getRoute(route, details) {
     });
 }
 
+function setRouteColors(jsonResponse) {
+  Object.entries(jsonResponse).forEach(([route, details]) => {
+    let selector = ".route-icon" + route + ", .icon" + route;
+    let rules = "background: " + details.color + ";"
+    document.styleSheets[0].insertRule(selector + " { " + rules + " }")
+  })
+}
+
 fetch("routes.json")
   .then(response => response.json())
   .then(jsonResponse => {
     Object.entries(jsonResponse).forEach(([route, details]) => {
       getRoute(route, details)
     })
+    setRouteColors(jsonResponse);
   });
 
 addCenterMarker();

@@ -1,11 +1,27 @@
-body {
-    padding: 0;
-    margin: 0;
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
-html, body, #map {
-    height: 100%;
-    width: 100%;
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: Verdana, sans;
+}
+
+#map {
+  height: 100%;
+  width: calc(100% - 25rem);
+}
+
+#sidebar {
+  height: 100%;
+  width: 25rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-y: scroll;
 }
 
 .route-icon {
@@ -13,20 +29,42 @@ html, body, #map {
   margin-top: -0.85em;
   width: 1.7em;
   height: 1.7em;
+  line-height: 1.7em;
+  font-weight: bold;
 }
 
-.route-icon div {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+span.icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  line-height: 1.5em;
+  margin-top: -0.35em;
+  margin-bottom: -0.15em;
+  font-size: 90%;
+  font-weight: normal;
+}
+
+.route-icon, span.icon {
   color: #fff;
+  border-radius: 50%;
   border: 0.1em solid white;
   text-align: center;
-  line-height: 1.7em;
   vertical-align: middle;
-  font-weight: bold;
   text-shadow: -0.05em  0.05em 0  rgba(0,0,0,0.2),
                 0.05em  0.05em 0  rgba(0,0,0,0.2),
                 0.05em -0.05em 0  rgba(0,0,0,0.2),
                -0.05em  -0.05em 0 rgba(0,0,0,0.2);
+}
+
+/* icon1 to 14 colors are set through JS reading routes.js. TODO: set through build step; */
+.icon0, .route-icon0 {
+  background: #bbb;
+}
+
+.cols {
+  display: flex;
+}
+
+.cols ol {
+
 }
