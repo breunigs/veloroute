@@ -4,8 +4,8 @@ mly.apiKey = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
 mly.startPicture = '0tLKnBXrvuSJ3U0toI7vYw';
 mly.apiHost = 'https://a.mapillary.com/v3/'; // TODO: can this be extracted from `Mapillary`?
 mly.allowedUsernames='breunigs'
-mly.indicatorColor = '#0f0';
-mly.ownPositionColor = '#00f';
+mly.indicatorColor = '#000';
+mly.ownPositionColor = '#000';
 mly.viewer = new Mapillary.Viewer(
   'mly',
   mly.apiKey,
@@ -14,7 +14,8 @@ mly.viewer = new Mapillary.Viewer(
     baseImageSize: Mapillary.ImageSize.Size320,
     component: {
       marker: { visibleBBoxSize: 100 },
-      cover: false,
+      cache: false,
+      cover: true,
       attribution: false,
       zoom: false,
       bearing: false,
@@ -24,14 +25,14 @@ mly.viewer = new Mapillary.Viewer(
   }
 );
 mly.indicator = {
-  mapLine: L.polyline([[0, 0], [0, 0]], { color: mly.indicatorColor, weight: 1, id: "indicator-id-line" }),
-  mapMarker: L.circleMarker([0, 0], { radius: 5, color: mly.indicatorColor, id: "indicator-id-circle" }),
+  mapLine: L.polyline([[0, 0], [0, 0]], { color: mly.indicatorColor, weight: 0}),
   viewerMarker: null,
 }
+mly.mapOwnPositionMarkerSize = 5;
+mly.mapOwnPositionMarker = L.circleMarker([0, 0], { radius: mly.mapOwnPositionMarkerSize, color: mly.ownPositionColor }),
 
 // setup
 mly.viewer.setFilter(["in", "username", mly.allowedUsernames]); // doesn't work for "moveCloseTo"
-mly.mapOwnPositionMarker = L.circleMarker([0, 0], { radius: 7, color: mly.ownPositionColor }),
 mly.viewerMarkerComponent = mly.viewer.getComponent('marker');
 
 mly.removeOwnPosition = function() {
@@ -41,7 +42,6 @@ mly.removeOwnPosition = function() {
 
 mly.removeIndicators = function() {
   map.removeLayer(mly.indicator.mapLine);
-  map.removeLayer(mly.indicator.mapMarker);
   if (mly.indicator.viewerMarker) {
     mly.viewerMarkerComponent.remove([mly.indicator.viewerMarker.id]);
     mly.indicator.viewerMarker = null;
@@ -55,6 +55,16 @@ mly.apiCall = function(path, params) {
 }
 
 mly.goto = function(coord) {
+  if(!mly.viewer.isNavigable) {
+    console.log("Mapillary not yet loaded, delaying jump until it is");
+    mly.viewer.on(Mapillary.Viewer.navigablechanged, function() {
+      console.log("Mapillary has loaded, going to coord now.");
+      mly.goto(coord)
+    });
+    document.querySelector("#mly .CoverButton").click();
+    return;
+  }
+
   mly.mapOwnPositionMarker.setLatLng(coord);
   map.setView(coord);
 
@@ -67,7 +77,7 @@ mly.goto = function(coord) {
         return;
       }
       let imageKey = img.properties.key;
-      mly.viewer.moveToKey(imageKey);
+      if(mly.viewer.isNavigable) mly.viewer.moveToKey(imageKey);
     });
 }
 
@@ -96,13 +106,22 @@ mly.viewer.on(Mapillary.Viewer.mousemove, (event) => {
   const posLatLng = mly.mapOwnPositionMarker.getLatLng();
   const lineString = [
     [posLatLng.lat, posLatLng.lng],
-    [latLon.lat, latLon.lon],
+    [ // ensure we point in the direction, but always long enough so that we can
+      // draw an arrow indicator
+        posLatLng.lat + 100 * (latLon.lat - posLatLng.lat),
+        posLatLng.lng + 100 * (latLon.lon - posLatLng.lng),
+    ],
   ];
   mly.indicator.mapLine.setLatLngs(lineString);
-  mly.indicator.mapMarker.setLatLng([latLon.lat, latLon.lon]);
+
+
   if (!map.hasLayer(mly.indicator.mapLine)) {
     mly.indicator.mapLine.addTo(map);
-    mly.indicator.mapMarker.addTo(map);
+    mly.indicator.mapLine.setText('\u25BA', {
+      repeat: false,
+      offset: 4,
+      attributes: {fill: mly.indicatorColor, dx: mly.mapOwnPositionMarkerSize + 1}
+    });
   }
 
   // update viewer indicator

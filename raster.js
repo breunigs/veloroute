@@ -4,10 +4,10 @@ var map = L.mapbox.map('map', 'mapbox.emerald')
     .setView([53.5778, 10.0188], 11);
 var hash = L.hash(map);
 var foregroundRoute = null;
-var zIndexBase = 650;
-var zIndexOffsetIcons = 2;
+const zIndexBase = 650;
+const zIndexOffsetIcons = 2;
+const zIndexOffsetBackground = -2;
 
-map.createPane("backgrounds");
 map.createPane("marker").style.zIndex = zIndexBase + zIndexOffsetIcons;
 
 // adds marker near Rathausmarkt where all routes originate from
@@ -75,21 +75,32 @@ function setRouteZIndex(route, zOffset) {
   })
 }
 
+function createRoutePane(route, clickHandler) {
+  const bgPane = map.createPane("bg-route" + route);
+  bgPane.style.zIndex = zIndexBase + zIndexOffsetBackground;
+  bgPane.addEventListener("click", clickHandler);
+
+  const pane = map.createPane("route" + route);
+  pane.addEventListener("click", clickHandler);
+  pane.style.zIndex = zIndexBase;
+  return "route" + route;
+}
+
 function getRoute(route, details) {
-  let pane = map.createPane("route" + route)
-  pane.addEventListener("click", (evt) => {
+  const clickHandler = (evt) => {
     bringRouteToForeground(route);
     let coord = map.mouseEventToLatLng(evt);
-    mly.goto(coord);
-  });
+    if(typeof mly !== "undefined") mly.goto(coord);
+  }
+
+  createRoutePane(route, clickHandler);
 
   fetch("geo/route" + route + ".geojson")
     .then(response => response.json())
     .then(jsonResponse => {
-      let bg = L.geoJSON(jsonResponse, {
+      L.geoJSON(jsonResponse, {
         style: {weight: 5, color: "#fff", opacity: 0.7},
-        interactive: false,
-        pane: "backgrounds"
+        pane: "bg-route" + route
       }).addTo(map);
 
       L.geoJSON(jsonResponse, {

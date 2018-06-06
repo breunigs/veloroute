@@ -74,3 +74,7 @@ span.icon {
   width: 100%;
   height: 20em;
 }
+
+.leaflet-overlay-pane {
+  z-index: 656 !important; /* above the ones for the routes and the route markers */
+}
