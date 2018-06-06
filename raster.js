@@ -77,12 +77,16 @@ function setRouteZIndex(route, zOffset) {
 
 function getRoute(route, details) {
   let pane = map.createPane("route" + route)
-  pane.addEventListener("click", () => bringRouteToForeground(route));
+  pane.addEventListener("click", (evt) => {
+    bringRouteToForeground(route);
+    let coord = map.mouseEventToLatLng(evt);
+    mly.goto(coord);
+  });
 
   fetch("geo/route" + route + ".geojson")
     .then(response => response.json())
     .then(jsonResponse => {
-      L.geoJSON(jsonResponse, {
+      let bg = L.geoJSON(jsonResponse, {
         style: {weight: 5, color: "#fff", opacity: 0.7},
         interactive: false,
         pane: "backgrounds"

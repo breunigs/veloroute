@@ -66,5 +66,11 @@ span.icon {
 }
 
 .cols ol {
+  list-style-position: inside;
+  padding: 0 1em;
+}
 
+.mapillary {
+  width: 100%;
+  height: 20em;
 }
