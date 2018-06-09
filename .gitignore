@@ -1,3 +1,5 @@
 geo/
 *.gz
 *.br
+*.css
+*.css.map

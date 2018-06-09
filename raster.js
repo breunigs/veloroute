@@ -145,6 +145,15 @@ function toggleMapMly() {
   toggleMapIsMain = !toggleMapIsMain;
 }
 
+function routeIconClick(evt) {
+  let route = evt.target.innerText;
+  bringRouteToForeground(route);
+}
+
+for (let link of document.querySelectorAll("a.icon")) {
+  link.addEventListener("click", routeIconClick)
+}
+
 fetch("routes.json")
   .then(response => response.json())
   .then(jsonResponse => {

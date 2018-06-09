@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 apt-get update -qq
-apt-get install -qq --yes brotli gdal-bin
+apt-get install -qq --yes brotli gdal-bin sassc
 
 cd $(dirname $0)
 

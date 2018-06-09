@@ -1,0 +1,181 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: Verdana, sans;
+}
+
+#main {
+  height: 100%;
+  width: 70%;
+}
+
+#sidebar {
+  height: 100%;
+  width: 30%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#bottomright {
+  width: 100%;
+  height: 25em;
+  margin-top: auto;
+}
+
+.route-icon {
+  margin-left: -0.85em;
+  margin-top: -0.85em;
+  width: 1.7em;
+  height: 1.7em;
+  line-height: 1.7em;
+  font-weight: bold;
+}
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  line-height: 1.5em;
+  margin-top: -0.35em;
+  margin-bottom: -0.15em;
+  font-size: 90%;
+  font-weight: normal;
+  color: #fff;
+  text-decoration: none;
+  cursor: default;
+}
+
+a.icon:hover {
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.route-icon, .icon {
+  color: #fff;
+  border-radius: 50%;
+  border: 0.1em solid white;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: -0.05em  0.05em 0  rgba(0,0,0,0.2),
+                0.05em  0.05em 0  rgba(0,0,0,0.2),
+                0.05em -0.05em 0  rgba(0,0,0,0.2),
+               -0.05em  -0.05em 0 rgba(0,0,0,0.2);
+}
+
+/* icon1 to 14 colors are set through JS reading routes.js. TODO: set through build step; */
+.icon0, .route-icon0 {
+  background: #bbb;
+}
+
+.cols {
+  display: flex;
+}
+
+.cols ol {
+  list-style-position: inside;
+  padding: 0 1em;
+}
+
+
+.leaflet-overlay-pane {
+  z-index: 656 !important; /* above the ones for the routes and the route markers */
+}
+
+#map, .mapillary {
+  width: 100%;
+  height:100%;
+}
+
+#toggle {
+  background: #ddd;
+  border-top-right-radius: 0.1em;
+  vertical-align: middle;
+  line-height: 2em;
+  height: 2em;
+  padding: 0.1em 0.4em;
+  display: block;
+  margin-top: -2.2em;
+  width: 4.5em;
+}
+
+a {
+  color: #0366D6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#sidebar > div:not(#bottomright) {
+  padding: 0 1em;
+}
+
+table.routing {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout:fixed;
+
+  tr,td,th {
+    padding: 0;
+  }
+
+  td {
+    height: 1.2em;
+    white-space: nowrap;
+  }
+
+  td:first-child {
+    text-align: right;
+  }
+
+  td.i {
+    background-size: 1.2em 1.3em, 1.2em 1.3em;
+    background-repeat: no-repeat, no-repeat;
+    background-position: 1em;
+    width: 3em;
+    text-align: center;
+
+    .icon {
+      margin-left: 0.15em;
+      font-size: 120%;
+    }
+  }
+
+  td.line {
+    background-image: url(routing/BSicon_STR.svg), url(routing/BSicon_STR.svg);
+  }
+
+  td.conn {
+    background-image: url(routing/ABZgr.svg), url(routing/BSicon_STR.svg);
+  }
+
+  td.dual {
+    background-position: 0.4em, 1.6em;
+  }
+
+  td.right {
+    background-position: -10em, 1.6em;
+  }
+
+  td.left {
+    background-position: 1.6em, 10em;
+  }
+
+  td.fork {
+    background-image: url(routing/BSicon_BS2_l.svg), url(routing/BSicon_BS2_r.svg);
+  }
+}
