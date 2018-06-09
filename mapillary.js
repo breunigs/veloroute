@@ -1,7 +1,7 @@
 var mly = {}
 
 mly.apiKey = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
-mly.startPicture = '0tLKnBXrvuSJ3U0toI7vYw';
+mly.startPicture = 'c4B6txFX6Xgza8iWNFzSYw'; // Rathausmarkt
 mly.apiHost = 'https://a.mapillary.com/v3/'; // TODO: can this be extracted from `Mapillary`?
 mly.allowedUsernames='breunigs'
 mly.indicatorColor = '#000';
@@ -87,11 +87,11 @@ mly.viewer.on(Mapillary.Viewer.nodechanged, (node) => {
   let latLon = [node.latLon.lat, node.latLon.lon];
   // original value as given by the GPS
   // let originalLatLon = [node.originalLatLon.lat, node.originalLatLon.lon];
-
   mly.mapOwnPositionMarker.setLatLng(latLon);
   if (!map.hasLayer(mly.mapOwnPositionMarker)) {
     mly.mapOwnPositionMarker.addTo(map);
   }
+  map.setView(latLon);
 });
 
 // Whenever the mouse is moved on the viewer, draw indicators on both map and
@@ -134,3 +134,5 @@ mly.viewer.on(Mapillary.Viewer.mousemove, (event) => {
 });
 
 mly.viewer.on(Mapillary.Viewer.mouseout, mly.removeIndicators);
+mly.viewer.on(Mapillary.Viewer.navigablechanged, () => mly.viewer.resize());
+window.addEventListener("resize", () => mly.viewer.resize());

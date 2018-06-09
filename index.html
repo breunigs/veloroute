@@ -23,7 +23,9 @@
   <script src="mapillary.js" defer></script>
 </head>
 <body>
-  <div id="map"></div>
+  <div id="main">
+    <div id="map"></div>
+  </div>
   <div id="sidebar">
     <div id="default">
       <h1>Velorouten Hamburg</h1>
@@ -56,7 +58,10 @@
       </ol>
     </div>
 
-    <div id="mly" class="mapillary"></div>
+    <div id="bottomright">
+      <a href="#" id="toggle">⤡ toggle</a>
+      <div id="mly" class="mapillary"></div>
+    </div>
   </div>
 </body>
 </html>

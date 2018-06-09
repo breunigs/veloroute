@@ -1,12 +1,19 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 // var map = L.mapbox.map('map', 'mapbox.light')
-var map = L.mapbox.map('map', 'mapbox.emerald')
+const map = L.mapbox.map('map', 'mapbox.emerald')
     .setView([53.5778, 10.0188], 11);
-var hash = L.hash(map);
-var foregroundRoute = null;
+const hash = L.hash(map);
 const zIndexBase = 650;
 const zIndexOffsetIcons = 2;
 const zIndexOffsetBackground = -2;
+
+const elemMain = document.getElementById("main");
+const elemBr = document.getElementById("bottomright");
+const elemMap = document.getElementById("map");
+const elemMly = document.getElementById("mly");
+
+let foregroundRoute = null;
+let toggleMapIsMain = true;
 
 map.createPane("marker").style.zIndex = zIndexBase + zIndexOffsetIcons;
 
@@ -125,6 +132,19 @@ function setRouteColors(jsonResponse) {
   })
 }
 
+function toggleMapMly() {
+  if(toggleMapIsMain) {
+    elemBr.appendChild(elemMap);
+    elemMain.appendChild(elemMly);
+  } else {
+    elemBr.appendChild(elemMly);
+    elemMain.appendChild(elemMap);
+  }
+  if(mly.viewer.isNavigable) mly.viewer.resize();
+  map.invalidateSize();
+  toggleMapIsMain = !toggleMapIsMain;
+}
+
 fetch("routes.json")
   .then(response => response.json())
   .then(jsonResponse => {
@@ -135,3 +155,4 @@ fetch("routes.json")
   });
 
 addCenterMarker();
+document.getElementById("toggle").onclick = toggleMapMly;

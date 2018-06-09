@@ -10,18 +10,27 @@ body {
   font-family: Verdana, sans;
 }
 
-#map {
+#main {
   height: 100%;
-  width: calc(100% - 25rem);
+  width: 70%;
 }
 
 #sidebar {
   height: 100%;
-  width: 25rem;
+  width: 30%;
   position: absolute;
   top: 0;
   right: 0;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#bottomright {
+  width: 100%;
+  height: 25em;
+  margin-top: auto;zxcthun
 }
 
 .route-icon {
@@ -70,11 +79,37 @@ span.icon {
   padding: 0 1em;
 }
 
-.mapillary {
-  width: 100%;
-  height: 20em;
-}
 
 .leaflet-overlay-pane {
   z-index: 656 !important; /* above the ones for the routes and the route markers */
+}
+
+#map, .mapillary {
+  width: 100%;
+  height:100%;
+}
+
+#toggle {
+  background: #ddd;
+  border-top-right-radius: 0.1em;
+  vertical-align: middle;
+  line-height: 2em;
+  height: 2em;
+  padding: 0.1em 0.4em;
+  display: block;
+  margin-top: -2.2em;
+  width: 4.5em;
+}
+
+a {
+  color: #0366D6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#sidebar > div:not(#bottomright) {
+  padding: 0 1em;
 }
