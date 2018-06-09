@@ -128,6 +128,7 @@ table.routing {
   border-collapse: collapse;
   border-spacing: 0;
   table-layout:fixed;
+  width: 100%;
 
   tr,td,th {
     padding: 0;
@@ -140,10 +141,15 @@ table.routing {
 
   td:first-child {
     text-align: right;
+    width: calc(50% - 3em/2)
+  }
+
+  td:last-child {
+    width: calc(50% - 3em/2)
   }
 
   td.i {
-    background-size: 1.2em 1.3em, 1.2em 1.3em;
+    background-size: 1.2em 100%, 1.2em 100%;
     background-repeat: no-repeat, no-repeat;
     background-position: 1em;
     width: 3em;
@@ -155,27 +161,25 @@ table.routing {
     }
   }
 
-  td.line {
-    background-image: url(routing/BSicon_STR.svg), url(routing/BSicon_STR.svg);
-  }
-
-  td.conn {
-    background-image: url(routing/ABZgr.svg), url(routing/BSicon_STR.svg);
-  }
-
   td.dual {
-    background-position: 0.4em, 1.6em;
+    background-position: 0.4em 0, 1.59em 0; /* work around rounding errors */
   }
 
   td.right {
-    background-position: -10em, 1.6em;
+    background-position: -10em, 1.59em;
   }
 
   td.left {
     background-position: 1.6em, 10em;
   }
 
-  td.fork {
-    background-image: url(routing/BSicon_BS2_l.svg), url(routing/BSicon_BS2_r.svg);
+  td.dir {
+    opacity: 0.3;
   }
 }
+
+.desc {
+  display: none;
+}
+
+@import 'geo/route-icon';

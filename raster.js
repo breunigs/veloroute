@@ -67,8 +67,16 @@ function giveCloser(ref, best, lineCoord) {
 // route, its zIndex will be reset.
 function bringRouteToForeground(route) {
   if(route == foregroundRoute) return;
+  const elemNew = document.getElementById("desc" + route);
+  const elemOld = document.getElementById("desc" + foregroundRoute);
+  console.log(elemNew);
+  console.log(elemOld);
+  // demote old
+  if(elemOld) elemOld.style.display = "none";
   setRouteZIndex(foregroundRoute, 0);
+  // promote new
   foregroundRoute = route;
+  if(elemNew) elemNew.style.display = "block";
   setRouteZIndex(route, 1);
 }
 
@@ -164,4 +172,5 @@ fetch("routes.json")
   });
 
 addCenterMarker();
+bringRouteToForeground(1);
 document.getElementById("toggle").onclick = toggleMapMly;

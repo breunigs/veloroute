@@ -7,6 +7,7 @@
 require "open-uri"
 require "json"
 require "fileutils"
+require "base64"
 
 def xml_name(route)
   "geo_tmp/route#{route}.xml.osm"
@@ -18,6 +19,10 @@ end
 
 def geo_details_name(route)
   "geo_tmp/details#{route}.geojson"
+end
+
+def scss_name
+  "geo_tmp/route-icon.scss"
 end
 
 def download(route, relation_id)
@@ -36,15 +41,30 @@ def convert(route)
   `gzip -k --best "#{geo_route_name(route)}" "#{geo_details_name(route)}"`
 end
 
+def build_icon_scss(route, color)
+  scss = ROUTE_ICONS.dup.gsub("__REPLACE_ROUTE__", route)
+    .gsub(/url\(([^)]+\.svg)\)/) do
+      b64icon = Base64.strict_encode64(File.read($1).strip.gsub("#000", color))
+      'url("data:image/svg+xml;base64,' << b64icon << '")'
+    end
+  SCSS_MUTEX.synchronize do
+    File.open(scss_name, "a") { |f| f.puts scss }
+  end
+end
+
 def update!
   routes = JSON.parse(File.read("routes.json"))
   routes.map do |route, details|
     Thread.new do
       download(route, details["relation_id"])
       convert(route)
+      build_icon_scss(route, details["color"])
     end
   end.each(&:join)
 end
+
+ROUTE_ICONS = File.read("route-icon.scss.tmpl").freeze
+SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
 FileUtils.rm_rf("geo_tmp")
