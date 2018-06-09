@@ -69,8 +69,6 @@ function bringRouteToForeground(route) {
   if(route == foregroundRoute) return;
   const elemNew = document.getElementById("desc" + route);
   const elemOld = document.getElementById("desc" + foregroundRoute);
-  console.log(elemNew);
-  console.log(elemOld);
   // demote old
   if(elemOld) elemOld.style.display = "none";
   setRouteZIndex(foregroundRoute, 0);
@@ -83,8 +81,9 @@ function bringRouteToForeground(route) {
 // sets the zIndex for both route and its icons to adhere to the offset. Pass 0
 // to reset to default values.
 function setRouteZIndex(route, zOffset) {
-  if(!route) return;
-  map.getPane("route" + route).style.zIndex = zIndexBase + zOffset;
+  if(!route || !map) return;
+  const mapPane = map.getPane("route" + route);
+  if(mapPane) mapPane.style.zIndex = zIndexBase + zOffset;
   document.querySelectorAll(".route-icon" + route).forEach(elem => {
     elem.style.zIndex = zIndexBase + zOffset + zIndexOffsetIcons;
   })
