@@ -120,9 +120,6 @@ function getRoute(route, details) {
       L.geoJSON(jsonResponse, {
         style: {weight: 3, color: details.color, opacity: 0.8},
         pane: "route" + route,
-        onEachFeature: function(feature, layer) {
-          // layer.on("click", () => {  })
-        }
       }).addTo(map);
 
       if(details.markers && details.markers[0][0]) {
@@ -157,8 +154,35 @@ function routeIconClick(evt) {
   bringRouteToForeground(route);
 }
 
-for (let link of document.querySelectorAll("a.icon")) {
-  link.addEventListener("click", routeIconClick)
+
+function zoomToName(name) {
+  const url = "https://nominatim.openstreetmap.org/search/";
+  const params = "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1";
+
+  fetch(url + encodeURIComponent(name) + params)
+    .then(response => response.json())
+    .then(jsonResponse => {
+      console.log(jsonResponse)
+      const bbox = jsonResponse[0].boundingbox;
+      map.fitBounds([[bbox[0], bbox[2]], [bbox[1], bbox[3]]], {maxZoom: 16});
+    });
+}
+
+function getTopLevelText(node) {
+  let child = node.firstChild;
+  let text = "";
+  while (child) {
+    if (child.nodeType == Node.TEXT_NODE) text += child.data;
+    child = child.nextSibling;
+  }
+  return text == "" ? null : text;
+}
+
+function getAndZoomToName(evt) {
+  if(evt.target.nodeName !== "A") return;
+  // const text = getTopLevelText(evt.target);
+  // if(text) zoomToName(text);
+  zoomToName(evt.target.innerText);
 }
 
 fetch("routes.json")
@@ -173,3 +197,9 @@ fetch("routes.json")
 addCenterMarker();
 bringRouteToForeground(1);
 document.getElementById("toggle").onclick = toggleMapMly;
+for (let link of document.querySelectorAll("a.icon")) {
+  link.addEventListener("click", routeIconClick)
+}
+for (let link of document.querySelectorAll("table.routing")) {
+  link.addEventListener("click", getAndZoomToName)
+}

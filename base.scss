@@ -51,7 +51,7 @@ body {
   margin-bottom: -0.15em;
   font-size: 90%;
   font-weight: normal;
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
   cursor: default;
 }
@@ -129,6 +129,10 @@ table.routing {
   border-spacing: 0;
   table-layout:fixed;
   width: 100%;
+
+  a {
+    color: #000;
+  }
 
   tr,td,th {
     padding: 0;
