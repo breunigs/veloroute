@@ -9,13 +9,13 @@ mly.ownPositionColor = '#000';
 mly.viewer = new Mapillary.Viewer(
   'mly',
   mly.apiKey,
-  mly.startPicture,
+  null,
   {
     baseImageSize: Mapillary.ImageSize.Size320,
     component: {
       marker: { visibleBBoxSize: 100 },
       cache: false,
-      cover: true,
+      cover: false,
       attribution: false,
       zoom: false,
       bearing: false,
@@ -29,7 +29,8 @@ mly.indicator = {
   viewerMarker: null,
 }
 mly.mapOwnPositionMarkerSize = 5;
-mly.mapOwnPositionMarker = L.circleMarker([0, 0], { radius: mly.mapOwnPositionMarkerSize, color: mly.ownPositionColor }),
+mly.mapOwnPositionMarker = L.circleMarker([0, 0], { radius: mly.mapOwnPositionMarkerSize, color: mly.ownPositionColor });
+mly.isFirstNodeChange = true;
 
 // setup
 mly.viewer.setFilter(["in", "username", mly.allowedUsernames]); // doesn't work for "moveCloseTo"
@@ -54,35 +55,34 @@ mly.apiCall = function(path, params) {
     .then(response => response.json());
 }
 
+mly.moveToKey = function(imageKey) {
+  if(mly.viewer.isNavigable) return mly.viewer.moveToKey(imageKey);
+
+  console.log("Mapillary not yet loaded, delaying jump until it is");
+  mly.viewer.on(Mapillary.Viewer.navigablechanged, function() {
+    console.log("Mapillary loaded, jumping now");
+    mly.viewer.moveToKey(imageKey);
+  });
+  mly.viewer.deactivateCover();
+}
+
 mly.goto = function(coord) {
-  if(!mly.viewer.isNavigable) {
-    console.log("Mapillary not yet loaded, delaying jump until it is");
-    mly.viewer.on(Mapillary.Viewer.navigablechanged, function() {
-      console.log("Mapillary has loaded, going to coord now.");
-      mly.goto(coord)
-    });
-    document.querySelector("#mly .CoverButton").click();
-    return;
-  }
-
-  mly.mapOwnPositionMarker.setLatLng(coord);
-  map.setView(coord);
-
   mly.apiCall("images", {closeto: `${coord.lng},${coord.lat}`, per_page: 1, usernames: mly.allowedUsernames})
     .then(jsonResponse => {
       let img = jsonResponse.features[0];
       if(!img) {
         console.warn(`Could not find image within 100m of lat=${coord.lat} lng=${coord.lng}`);
-        mly.removeOwnPosition();
+        // mly.removeOwnPosition();
         return;
       }
-      let imageKey = img.properties.key;
-      if(mly.viewer.isNavigable) mly.viewer.moveToKey(imageKey);
+      mly.moveToKey(img.properties.key);
+      mly.mapOwnPositionMarker.setLatLng(coord);
     });
 }
 
 // Whenever the image in the viewer changes, update our position on the map
 mly.viewer.on(Mapillary.Viewer.nodechanged, (node) => {
+  console.log("Reacting to new Mapillary Image: ", node.key);
   // this is the corrected value from Mapillary
   let latLon = [node.latLon.lat, node.latLon.lon];
   // original value as given by the GPS
@@ -90,6 +90,13 @@ mly.viewer.on(Mapillary.Viewer.nodechanged, (node) => {
   mly.mapOwnPositionMarker.setLatLng(latLon);
   if (!map.hasLayer(mly.mapOwnPositionMarker)) {
     mly.mapOwnPositionMarker.addTo(map);
+  }
+  mly.startPicture = node.key;
+
+  // avoid changing the map on page load
+  if(mly.isFirstNodeChange) {
+    mly.isFirstNodeChange = false;
+    return;
   }
   map.setView(latLon);
 });
@@ -134,5 +141,5 @@ mly.viewer.on(Mapillary.Viewer.mousemove, (event) => {
 });
 
 mly.viewer.on(Mapillary.Viewer.mouseout, mly.removeIndicators);
-mly.viewer.on(Mapillary.Viewer.navigablechanged, () => mly.viewer.resize());
+mly.viewer.on(Mapillary.Viewer.navigablechanged, mly.viewer.resize);
 window.addEventListener("resize", () => mly.viewer.resize());

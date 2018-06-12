@@ -2,7 +2,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHVia
 // var map = L.mapbox.map('map', 'mapbox.light')
 const map = L.mapbox.map('map', 'mapbox.emerald')
     .setView([53.5778, 10.0188], 11);
-const hash = L.hash(map);
 const zIndexBase = 650;
 const zIndexOffsetIcons = 2;
 const zIndexOffsetBackground = -2;
