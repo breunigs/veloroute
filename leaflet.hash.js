@@ -1,6 +1,8 @@
 // LICENSE: MIT
 
 (function(window) {
+  const defaultPicture = 'c4B6txFX6Xgza8iWNFzSYw'; // Rathausmarkt
+
   var HAS_HASHCHANGE = (function() {
     var doc_mode = window.documentMode;
     return ('onhashchange' in window) &&
@@ -21,7 +23,7 @@
     }
     var args = hash.split("/");
     if (args.length != 4) {
-      mly.moveToKey(mly.startPicture);
+      mly.moveToKey(defaultPicture);
       return false;
     }
 
@@ -32,10 +34,8 @@
 
     if(img && img != "") {
       mly.moveToKey(img);
-      // let url = `${location.origin}?img=${node.key}${location.hash}`;
-      // history.replaceState(null, document.title, url);
     } else {
-      mly.moveToKey(mly.startPicture);
+      mly.moveToKey(defaultPicture);
     }
 
 
@@ -57,7 +57,7 @@
     return "#" + [zoom,
       center.lat.toFixed(precision),
       center.lng.toFixed(precision),
-      mly.startPicture,
+      mly.currentPicture || defaultPicture,
     ].join("/");
   },
 

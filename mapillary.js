@@ -1,7 +1,7 @@
 var mly = {}
 
 mly.apiKey = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
-mly.startPicture = 'c4B6txFX6Xgza8iWNFzSYw'; // Rathausmarkt
+mly.currentPicture = null;
 mly.apiHost = 'https://a.mapillary.com/v3/'; // TODO: can this be extracted from `Mapillary`?
 mly.allowedUsernames='breunigs'
 mly.indicatorColor = '#000';
@@ -91,7 +91,7 @@ mly.viewer.on(Mapillary.Viewer.nodechanged, (node) => {
   if (!map.hasLayer(mly.mapOwnPositionMarker)) {
     mly.mapOwnPositionMarker.addTo(map);
   }
-  mly.startPicture = node.key;
+  mly.currentPicture = node.key;
 
   // avoid changing the map on page load
   if(mly.isFirstNodeChange) {
