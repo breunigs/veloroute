@@ -12,16 +12,12 @@
   <script src="leaflet.textpath.js"></script>
   <script src="raster.js" defer></script>
 
-<!--   <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css" rel="stylesheet" />
-  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js"></script>
-  <script src="vector.js" defer></script>
- -->
-
   <link href='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.css' rel='stylesheet' />
   <script src='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.js'></script>
   <script src="mapillary.js" defer></script>
 
   <script src="leaflet.hash.js" defer></script>
+  <script src="quality.js" defer></script>
 </head>
 <body>
   <div id="main">
@@ -64,8 +60,12 @@
       </table>
     </div>
 
+    <pre id="tags">
+    </pre>
+
     <div id="bottomright">
       <a id="toggle">⤡ toggle</a>
+      <a id="quality">⏻ quality</a>
       <div id="mly" class="mapillary"></div>
     </div>
   </div>

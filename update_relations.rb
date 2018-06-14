@@ -2,7 +2,7 @@
 
 # required: /usr/bin/ogr2ogr from package gdal-bin
 #           /usr/bin/brotli from package brotli
-# sudo apt install gdal-bin brotli
+# sudo apt install gdal-bin brotli jq
 
 require "open-uri"
 require "json"
@@ -35,10 +35,12 @@ end
 def convert(route)
   return unless File.exist?(xml_name(route))
   cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=7 -f GeoJSON"
-  `#{cmd} "#{geo_route_name(route)}" "#{xml_name(route)}" multilinestrings 2>&1`
+  `#{cmd} "#{geo_route_name(route)}.tmp" "#{xml_name(route)}" multilinestrings 2>&1`
   `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
-  `brotli --best "#{geo_route_name(route)}" "#{geo_details_name(route)}"`
-  `gzip -k --best "#{geo_route_name(route)}" "#{geo_details_name(route)}"`
+  `jq -c . "#{geo_route_name(route)}.tmp" > "#{geo_route_name(route)}"`
+  `brotli --best "#{geo_route_name(route)}"`
+  `gzip -k --best "#{geo_route_name(route)}"`
+  File.delete(geo_route_name(route) << ".tmp")
 end
 
 def build_icon_scss(route, color)
@@ -52,8 +54,7 @@ def build_icon_scss(route, color)
   end
 end
 
-def update!
-  routes = JSON.parse(File.read("routes.json"))
+def update!(routes)
   routes.map do |route, details|
     Thread.new do
       download(route, details["relation_id"])
@@ -63,6 +64,24 @@ def update!
   end.each(&:join)
 end
 
+def combine_details!(routes)
+  features = []
+  routes.keys.each do |route|
+    json = JSON.parse(File.read(geo_details_name(route)))
+    features += json["features"].map do |feat|
+      next if feat.dig("geometry", "type") != "LineString"
+      {
+        tags: feat.dig("properties"),
+        geometry: feat.dig("geometry", "coordinates")
+      }
+    end.compact
+  end
+  filename = "geo_tmp/quality.json"
+  File.write(filename, features.to_json)
+  `brotli --best "#{filename}"`
+  `gzip -k --best "#{filename}"`
+end
+
 ROUTE_ICONS = File.read("route-icon.scss.tmpl").freeze
 SCSS_MUTEX = Mutex.new
 
@@ -70,7 +89,9 @@ SCSS_MUTEX = Mutex.new
 FileUtils.rm_rf("geo_tmp")
 FileUtils.mkdir_p "geo_tmp"
 
-update!
+routes = JSON.parse(File.read("routes.json"))
+update!(routes)
+combine_details!(routes)
 
 # swap old for new
 FileUtils.mv "geo", "geo_old" if Dir.exist?("geo")

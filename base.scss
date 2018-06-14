@@ -98,7 +98,7 @@ a.icon:hover {
   height:100%;
 }
 
-#toggle {
+#toggle, #quality {
   background: #ddd;
   border-top-right-radius: 0.1em;
   vertical-align: middle;
@@ -107,7 +107,12 @@ a.icon:hover {
   padding: 0.1em 0.4em;
   display: block;
   margin-top: -2.2em;
-  width: 4.5em;
+  width: 5em;
+  text-align: center;
+}
+
+#quality {
+  float: right;
 }
 
 a {
