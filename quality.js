@@ -36,6 +36,8 @@ const quality = (function(map, index) {
       prefix = "cycleway_right_";
     } else if (tags.cycleway_left) {
       prefix = "cycleway_left_";
+    } else if (tags.cycleway) {
+      prefix = "cycleway_";
     }
     let min = 0;
 
