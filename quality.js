@@ -44,7 +44,9 @@ const quality = (function(map, index) {
 
     let value = tags[prefix + tag];
     // allow fallback for certain tag/value combinations
-    if(kind == "lane" || tag == "lit") value = value || tags[tag];
+    let isCombinedFootCycleWay = kind == "track" && tags.highway == "footway";
+    let isOnStreet = kind == "lane";
+    if(isCombinedFootCycleWay || isOnStreet || tag == "lit") value = value || tags[tag];
     return value;
   }
 
