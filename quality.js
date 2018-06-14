@@ -27,32 +27,40 @@ const quality = (function(map, index) {
     "#AA001B"  // bad
   ]
 
-  function gradeTags(tags, verbose) {
-    if(verbose) console.debug(`OSM Way=${tags.osm_id}`);
-
-    let marks = [];
+  function getValue(tags, tag) {
     let prefix = "";
+    let kind = "?";
+    // for streets with both cycleway:right and cycleway:left we should probably build an average
     if(tags.cycleway_right) {
+      kind = tags.cycleway_right;
       prefix = "cycleway_right_";
     } else if (tags.cycleway_left) {
+      kind = tags.cycleway_left;
       prefix = "cycleway_left_";
     } else if (tags.cycleway) {
+      kind = tags.cycleway;
       prefix = "cycleway_";
     }
+
+    let value = tags[prefix + tag];
+    // allow fallback for certain tag/value combinations
+    if(kind == "lane" || tag == "lit") value = value || tags[tag];
+    return value;
+  }
+
+  function gradeTags(tags) {
     let min = 0;
 
-    let width = tags[prefix + "width"];
+    let width = getValue(tags, "width");
     if(width && width < 1.5) min = Math.max(min, 2);
+    if(getValue(tags, "lit") == "no") min = Math.max(min, 2);
 
-    let lit = tags[prefix + "lit"] || tags["lit"];
-    if(lit == "no") min = Math.max(min, 2);
-
-    switch(tags[prefix + "smoothness"]) {
+    switch(getValue(tags, "smoothness")) {
       case "excellent":    return Math.max(min, 1);
       case "good":         return Math.max(min, 2);
       case "intermediate": return Math.max(min, 3);
       default:
-        switch(tags[prefix + "surface"]) {
+        switch(getValue(tags, "surface")) {
           case "asphalt":       return Math.max(min, 1);
           case "paving_stones": return Math.max(min, 2);
           case "cobblestone":   return Math.max(min, 3);
@@ -78,10 +86,7 @@ const quality = (function(map, index) {
         const geom = line.geometry.map(([lon, lat]) => [lat, lon]);
         const grade = gradeTags(line.tags);
         L.polyline(geom, {color: toColor(grade), pane: "quality"})
-          .on("mouseover", () => {
-            gradeTags(line.tags, true);
-            showTags(line.tags);
-          })
+          .on("mouseover", () => showTags(line.tags) )
           .addTo(map);
       });
     });
