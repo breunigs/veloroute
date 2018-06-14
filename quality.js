@@ -3,6 +3,23 @@ const quality = (function(map, index) {
   const pane = map.createPane("quality");
   pane.style.zIndex = index;
 
+  // horrible hack to allow to "click through" to the route layers
+  L.DomEvent.on(pane, 'click', function(e) {
+    pane.style.display = 'none';
+
+    var ev = new MouseEvent(e.type, e)
+    target = document.elementFromPoint(e.clientX, e.clientY);
+
+    if (target && target !== pane) {
+        stopped = !target.dispatchEvent(ev);
+        if (stopped || ev._stopped) {
+          L.DomEvent.stop(e);
+        }
+    }
+
+    pane.style.display = 'block';
+  });
+
   const colors = [
     "#457FEE", // missing tags
     "#0B7A28", // good
