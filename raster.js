@@ -35,7 +35,10 @@ function addMarker(route, coord, color) {
    });
   L.marker(coord, {icon: icon, pane: "marker"})
     .addTo(map)
-    .on('click', () => bringRouteToForeground(route));
+    .on('click', (evt) => {
+      bringRouteToForeground(route)
+      if(typeof mly !== "undefined") mly.goto(evt.latlng);
+    });
 }
 
 // addSnappedMarker takes the given coord and finds the closest start/end of the
