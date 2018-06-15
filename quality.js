@@ -39,10 +39,10 @@ const quality = (function(map, index) {
       prefix = "cycleway_left_";
     } else if (tags.cycleway) {
       kind = tags.cycleway;
-      prefix = "cycleway_";
+      prefix = "cycleway_"; // i.e. no additional prefix to check
     }
 
-    let value = tags[prefix + tag];
+    let value = tags[prefix + tag] || tags["cycleway_both_" + tag] || tags["cycleway_" + tag];
     // allow fallback for certain tag/value combinations
     let isCombinedFootCycleWay = kind == "track" && tags.highway == "footway";
     let isOnStreet = kind == "lane" || kind == "opposite";
