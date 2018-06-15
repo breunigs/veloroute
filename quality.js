@@ -45,29 +45,37 @@ const quality = (function(map, index) {
     let value = tags[prefix + tag] || tags["cycleway_both_" + tag] || tags["cycleway_" + tag];
     // allow fallback for certain tag/value combinations
     let isCombinedFootCycleWay = kind == "track" && tags.highway == "footway";
-    let isOnStreet = kind == "lane" || kind == "opposite" || kind == "opposite_lane" || prefix == "";
+    let isOnStreet = kind == "lane" || kind == "opposite" || kind == "opposite_lane" || kind == "no";
     if(isCombinedFootCycleWay || isOnStreet || tag == "lit") value = value || tags[tag];
     return value;
   }
 
-  function gradeTags(tags) {
+  function gradeTags(tags, verbose) {
     let min = 0;
 
     let width = getValue(tags, "width");
-    if(width && width < 1.5) min = Math.max(min, 2);
-    if(getValue(tags, "lit") == "no") min = Math.max(min, 2);
+    if(width && width < 1.5) {
+      if(verbose) console.debug("width too small, demoting")
+      min = Math.max(min, 2);
+    }
+    if(getValue(tags, "lit") == "no") {
+      if(verbose) console.debug("not lit, demoting")
+      min = Math.max(min, 2);
+    }
 
     switch(getValue(tags, "smoothness")) {
       case "excellent":    return Math.max(min, 1);
       case "good":         return Math.max(min, 2);
       case "intermediate": return Math.max(min, 3);
       default:
+        if(verbose) console.debug("no smoothness, guessing from surface tag")
         switch(getValue(tags, "surface")) {
           case "asphalt":       return Math.max(min, 1);
           case "paving_stones": return Math.max(min, 2);
           case "cobblestone":   return Math.max(min, 3);
           case "sett":          return Math.max(min, 3);
           default:
+            if(verbose) console.debug("unknown surface")
             return 0;
         }
     }
@@ -79,6 +87,7 @@ const quality = (function(map, index) {
 
   function showTags(tags) {
     pre.innerText = JSON.stringify(tags, null, 2);
+    pre.innerText += `\n(grade: ${gradeTags(tags, true)})`;
   }
 
   fetch("geo/quality.json")
