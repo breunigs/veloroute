@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -62,20 +63,21 @@ a.icon:hover {
   cursor: pointer;
 }
 
-.route-icon, .icon {
+.route-icon,
+.icon {
   color: #fff;
   border-radius: 50%;
   border: 0.1em solid white;
   text-align: center;
   vertical-align: middle;
-  text-shadow: -0.05em  0.05em 0  rgba(0,0,0,0.2),
-                0.05em  0.05em 0  rgba(0,0,0,0.2),
-                0.05em -0.05em 0  rgba(0,0,0,0.2),
-               -0.05em  -0.05em 0 rgba(0,0,0,0.2);
+  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
+    0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
+    -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 }
 
 /* icon1 to 14 colors are set through JS reading routes.js. TODO: set through build step; */
-.icon0, .route-icon0 {
+.icon0,
+.route-icon0 {
   background: #bbb;
 }
 
@@ -88,17 +90,18 @@ a.icon:hover {
   padding: 0 1em;
 }
 
-
 .leaflet-overlay-pane {
   z-index: 656 !important; /* above the ones for the routes and the route markers */
 }
 
-#map, .mapillary {
+#map,
+.mapillary {
   width: 100%;
-  height:100%;
+  height: 100%;
 }
 
-#toggle, #quality {
+#toggle,
+#quality {
   background: #ddd;
   border-top-right-radius: 0.1em;
   vertical-align: middle;
@@ -116,7 +119,7 @@ a.icon:hover {
 }
 
 a {
-  color: #0366D6;
+  color: #0366d6;
   text-decoration: none;
   cursor: pointer;
 }
@@ -132,14 +135,16 @@ a:hover {
 table.routing {
   border-collapse: collapse;
   border-spacing: 0;
-  table-layout:fixed;
+  table-layout: fixed;
   width: 100%;
 
   a {
     color: #000;
   }
 
-  tr,td,th {
+  tr,
+  td,
+  th {
     padding: 0;
   }
 
@@ -150,11 +155,9 @@ table.routing {
 
   td:first-child {
     text-align: right;
-    width: calc(50% - 3em/2)
   }
 
   td:last-child {
-    width: calc(50% - 3em/2)
   }
 
   td.i {
@@ -191,4 +194,4 @@ table.routing {
   display: none;
 }
 
-@import 'geo/route-icon';
+@import "geo/route-icon";
