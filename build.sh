@@ -12,6 +12,7 @@ img=$(docker create veloroute)
 docker cp $img:/artifacts/ build_new
 docker rm $img&
 
+mkdir -p build/
 rm -rf build/*
 mv build_new/* build/
 
