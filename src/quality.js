@@ -1,37 +1,37 @@
-const quality = (function(map, index) {
+const quality = function(map, index) {
   const pre = document.querySelector("pre#tags");
   const pane = map.createPane("quality");
   pane.style.zIndex = index;
 
   // horrible hack to allow to "click through" to the route layers
-  L.DomEvent.on(pane, 'click', function(e) {
-    pane.style.display = 'none';
+  L.DomEvent.on(pane, "click", function(e) {
+    pane.style.display = "none";
 
-    var ev = new MouseEvent(e.type, e)
+    var ev = new MouseEvent(e.type, e);
     target = document.elementFromPoint(e.clientX, e.clientY);
 
     if (target && target !== pane) {
-        stopped = !target.dispatchEvent(ev);
-        if (stopped || ev._stopped) {
-          L.DomEvent.stop(e);
-        }
+      stopped = !target.dispatchEvent(ev);
+      if (stopped || ev._stopped) {
+        L.DomEvent.stop(e);
+      }
     }
 
-    pane.style.display = 'block';
+    pane.style.display = "block";
   });
 
   const colors = [
     "#457FEE", // missing tags
     "#0B7A28", // good
     "#E5D22B", // avg
-    "#AA001B"  // bad
-  ]
+    "#AA001B" // bad
+  ];
 
   function getValue(tags, tag) {
     let prefix = "";
     let kind = "?";
     // for streets with both cycleway:right and cycleway:left we should probably build an average
-    if(tags.cycleway_right) {
+    if (tags.cycleway_right) {
       kind = tags.cycleway_right;
       prefix = "cycleway_right_";
     } else if (tags.cycleway_left) {
@@ -42,11 +42,22 @@ const quality = (function(map, index) {
       prefix = "cycleway_"; // i.e. no additional prefix to check
     }
 
-    let value = tags[prefix + tag] || tags["cycleway_both_" + tag] || tags["cycleway_" + tag];
+    let value =
+      tags[prefix + tag] ||
+      tags["cycleway_both_" + tag] ||
+      tags["cycleway_" + tag];
     // allow fallback for certain tag/value combinations
     let isCombinedFootCycleWay = kind == "track" && tags.highway == "footway";
-    let isOnStreet = kind == "lane" || kind == "opposite" || kind == "opposite_lane" || kind == "share_busway" || kind == "street" || kind == "no" || kind == "none";
-    if(isCombinedFootCycleWay || isOnStreet || tag == "lit") value = value || tags[tag];
+    let isOnStreet =
+      kind == "lane" ||
+      kind == "opposite" ||
+      kind == "opposite_lane" ||
+      kind == "share_busway" ||
+      kind == "street" ||
+      kind == "no" ||
+      kind == "none";
+    if (isCombinedFootCycleWay || isOnStreet || tag == "lit")
+      value = value || tags[tag];
     return value;
   }
 
@@ -54,28 +65,35 @@ const quality = (function(map, index) {
     let min = 0;
 
     let width = getValue(tags, "width");
-    if(width && width < 1.5) {
-      if(verbose) console.debug("width too small, demoting")
+    if (width && width < 1.5) {
+      if (verbose) console.debug("width too small, demoting");
       min = Math.max(min, 2);
     }
-    if(getValue(tags, "lit") == "no") {
-      if(verbose) console.debug("not lit, demoting")
+    if (getValue(tags, "lit") == "no") {
+      if (verbose) console.debug("not lit, demoting");
       min = Math.max(min, 2);
     }
 
-    switch(getValue(tags, "smoothness")) {
-      case "excellent":    return Math.max(min, 1);
-      case "good":         return Math.max(min, 2);
-      case "intermediate": return Math.max(min, 3);
+    switch (getValue(tags, "smoothness")) {
+      case "excellent":
+        return Math.max(min, 1);
+      case "good":
+        return Math.max(min, 2);
+      case "intermediate":
+        return Math.max(min, 3);
       default:
-        if(verbose) console.debug("no smoothness, guessing from surface tag")
-        switch(getValue(tags, "surface")) {
-          case "asphalt":       return Math.max(min, 1);
-          case "paving_stones": return Math.max(min, 2);
-          case "cobblestone":   return Math.max(min, 3);
-          case "sett":          return Math.max(min, 3);
+        if (verbose) console.debug("no smoothness, guessing from surface tag");
+        switch (getValue(tags, "surface")) {
+          case "asphalt":
+            return Math.max(min, 1);
+          case "paving_stones":
+            return Math.max(min, 2);
+          case "cobblestone":
+            return Math.max(min, 3);
+          case "sett":
+            return Math.max(min, 3);
           default:
-            if(verbose) console.debug("unknown surface")
+            if (verbose) console.debug("unknown surface");
             return 0;
         }
     }
@@ -96,19 +114,20 @@ const quality = (function(map, index) {
       Object.entries(jsonResponse).forEach(([_index, line]) => {
         const geom = line.geometry.map(([lon, lat]) => [lat, lon]);
         const grade = gradeTags(line.tags);
-        L.polyline(geom, {color: toColor(grade), pane: "quality"})
-          .on("mouseover", () => showTags(line.tags) )
+        L.polyline(geom, { color: toColor(grade), pane: "quality" })
+          .on("mouseover", () => showTags(line.tags))
           .addTo(map);
       });
     });
-});
+};
 
 document.getElementById("quality").onclick = function() {
   const pane = map.getPane("quality");
-  if(!pane) return quality(map, zIndexBase + 10);
+  if (!pane) return quality(map, zIndexBase + 10);
 
   const mode = pane.style.display == "none" ? "block" : "none";
   pane.style.display = mode;
   document.querySelector("pre#tags").style.display = mode;
 };
 
+export const qualityExport = "qualityExport";

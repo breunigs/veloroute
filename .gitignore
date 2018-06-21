@@ -1,4 +1,7 @@
 geo/
+node_modules
+bundle.js
+index.html
 *.gz
 *.br
 *.css
