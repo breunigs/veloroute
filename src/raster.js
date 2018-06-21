@@ -1,4 +1,5 @@
 import { mapillary as mly } from "./mapillary";
+import routes from "../routes.json";
 
 L.mapbox.accessToken =
   "pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA";
@@ -193,23 +194,19 @@ function getAndZoomToName(evt) {
   zoomToName(evt.target.innerText);
 }
 
-fetch("routes.json")
-  .then(response => response.json())
-  .then(jsonResponse => {
-    Object.entries(jsonResponse).forEach(([route, details]) => {
-      getRoute(route, details);
-    });
-    setRouteColors(jsonResponse);
+export function init() {
+  Object.entries(routes).forEach(([route, details]) => {
+    getRoute(route, details);
   });
+  setRouteColors(routes);
 
-addCenterMarker();
-bringRouteToForeground(1);
-document.getElementById("toggle").onclick = toggleMapMly;
-for (let link of document.querySelectorAll("a.icon")) {
-  link.addEventListener("click", routeIconClick);
+  addCenterMarker();
+  bringRouteToForeground(1);
+  document.getElementById("toggle").onclick = toggleMapMly;
+  for (let link of document.querySelectorAll("a.icon")) {
+    link.addEventListener("click", routeIconClick);
+  }
+  for (let link of document.querySelectorAll("table.routing")) {
+    link.addEventListener("click", getAndZoomToName);
+  }
 }
-for (let link of document.querySelectorAll("table.routing")) {
-  link.addEventListener("click", getAndZoomToName);
-}
-
-export const raster = "raster";
