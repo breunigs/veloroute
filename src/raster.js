@@ -165,6 +165,9 @@ function routeIconClick(evt) {
 }
 
 function zoomToName(name) {
+  // do not zoom if user clicked on route icon
+  if(name.match("^[0-9]+$")) return;
+
   const url = "https://nominatim.openstreetmap.org/search/";
   const params =
     "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1";
