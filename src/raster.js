@@ -1,5 +1,14 @@
 import { mapillary as mly } from "./mapillary";
 import routes from "../routes.json";
+import {
+  zIndexBase,
+  zIndexOffsetIcons,
+  zIndexOffsetBackground,
+  elemMain,
+  elemBr,
+  elemMap,
+  elemMly
+} from "./config";
 
 L.mapbox.accessToken =
   "pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA";
@@ -7,14 +16,6 @@ L.mapbox.accessToken =
 export const map = L.mapbox
   .map("map", "mapbox.emerald")
   .setView([53.5778, 10.0188], 11);
-const zIndexBase = 650;
-const zIndexOffsetIcons = 2;
-const zIndexOffsetBackground = -2;
-
-const elemMain = document.getElementById("main");
-const elemBr = document.getElementById("bottomright");
-const elemMap = document.getElementById("map");
-const elemMly = document.getElementById("mly");
 
 let foregroundRoute = null;
 let toggleMapIsMain = true;

@@ -1,3 +1,6 @@
+import { map } from "./raster";
+import { zIndexBase } from "./config";
+
 const quality = function(map, index) {
   const pre = document.querySelector("pre#tags");
   const pane = map.createPane("quality");
@@ -122,6 +125,8 @@ const quality = function(map, index) {
 };
 
 document.getElementById("quality").onclick = function() {
+  console.log(map);
+
   const pane = map.getPane("quality");
   if (!pane) return quality(map, zIndexBase + 10);
 
