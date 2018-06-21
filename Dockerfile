@@ -1,4 +1,22 @@
 ##############################################################
+# copy fresh data from OSM                                   #
+##############################################################
+
+FROM debian:unstable-slim as geodata
+RUN \
+  apt-get -qq update && \
+  apt-get -yq install --no-install-recommends \
+    gdal-bin \
+    jq \
+    ruby ruby-json
+
+
+WORKDIR /app
+
+COPY routes.json routes/ /app/
+RUN /app/update_relations.rb
+
+##############################################################
 # Build the frontend                                         #
 ##############################################################
 
@@ -24,26 +42,8 @@ RUN yarn install
 ENV PATH="/app/node_modules/.bin:${PATH}"
 
 COPY . /app
+COPY --from=geodata /app/geo geo/
 RUN webpack --output-path /bundled/
-
-
-##############################################################
-# copy fresh data from OSM                                   #
-##############################################################
-
-FROM debian:unstable-slim as geodata
-RUN \
-  apt-get -qq update && \
-  apt-get -yq install --no-install-recommends \
-    gdal-bin \
-    jq \
-    ruby ruby-json
-
-
-WORKDIR /app
-
-COPY . /app
-RUN /app/update_relations.rb
 
 
 ##############################################################
@@ -57,10 +57,14 @@ RUN \
 
 WORKDIR /artifacts
 
+ARG COMPRESS
+
 COPY --from=webpack /bundled .
 COPY --from=geodata /app/geo geo/
 
 RUN \
-  FILES=$(find . -type f) && \
-  brotli -f --best $FILES && \
-  gzip -f -k --best $FILES
+  if [ "$COMPRESS" = "yes" ]; then \
+    FILES=$(find . -type f) && \
+    brotli -f --best $FILES && \
+    gzip -f -k --best $FILES ; \
+  fi

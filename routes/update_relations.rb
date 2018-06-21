@@ -77,7 +77,7 @@ def combine_details!(routes)
   File.write(filename, features.to_json)
 end
 
-ROUTE_ICONS = File.read("route-icon.scss.tmpl").freeze
+ROUTE_ICONS = File.read("icon.scss.tmpl").freeze
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir

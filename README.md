@@ -14,6 +14,9 @@ The quickest way to a working copy is to run
 
 ```bash
 ./build.sh
+
+# or skipping brotli/gzip static compression
+COMPRESS=no ./build.sh
 ```
 
 and have all artifacts be statically compiled into `build/`, which can then be served a webserver of your choice.
