@@ -145,8 +145,6 @@ import { mapillary as mly } from "./mapillary";
       isListening: false,
       hashChangeInterval: null,
       startListening: function() {
-        console.log(this, this.map, this.map);
-
         this.map.on("moveend", this.onMapMove, this);
 
         if (HAS_HASHCHANGE) {

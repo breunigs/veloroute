@@ -172,7 +172,6 @@ function zoomToName(name) {
   fetch(url + encodeURIComponent(name) + params)
     .then(response => response.json())
     .then(jsonResponse => {
-      console.log(jsonResponse);
       const bbox = jsonResponse[0].boundingbox;
       map.fitBounds([[bbox[0], bbox[2]], [bbox[1], bbox[3]]], { maxZoom: 16 });
     });

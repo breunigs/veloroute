@@ -8,5 +8,3 @@ import { qualityExport } from "./quality";
 
 initRaster();
 const hash = L.hash(map);
-
-console.log(leafletHash, leafletTextPath, mapillary, qualityExport);
