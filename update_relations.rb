@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
 # required: /usr/bin/ogr2ogr from package gdal-bin
-#           /usr/bin/brotli from package brotli
-# sudo apt install gdal-bin brotli jq
+# sudo apt install gdal-bin jq
 
 require "open-uri"
 require "json"
@@ -38,8 +37,6 @@ def convert(route)
   `#{cmd} "#{geo_route_name(route)}.tmp" "#{xml_name(route)}" multilinestrings 2>&1`
   `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
   `jq -c . "#{geo_route_name(route)}.tmp" > "#{geo_route_name(route)}"`
-  `brotli --best "#{geo_route_name(route)}"`
-  `gzip -k --best "#{geo_route_name(route)}"`
   File.delete(geo_route_name(route) << ".tmp")
 end
 
@@ -78,8 +75,6 @@ def combine_details!(routes)
   end
   filename = "geo_tmp/quality.json"
   File.write(filename, features.to_json)
-  `brotli --best "#{filename}"`
-  `gzip -k --best "#{filename}"`
 end
 
 ROUTE_ICONS = File.read("route-icon.scss.tmpl").freeze
