@@ -2,8 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-  devtool: "cheap-eval-source-map",
+module.exports = env => ({
+  devtool: env ? "source-map" : "cheap-eval-source-map",
   mode: "development",
   entry: "./src/index.js",
   output: {
@@ -39,4 +39,4 @@ module.exports = {
       hash: true
     })
   ]
-};
+});
