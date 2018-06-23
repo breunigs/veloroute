@@ -88,12 +88,15 @@ const quality = function(map, index) {
         if (verbose) console.debug("no smoothness, guessing from surface tag");
         switch (getValue(tags, "surface")) {
           case "asphalt":
+          case "concrete":
+          case "metal":
             return Math.max(min, 1);
           case "paving_stones":
+          case "fine_gravel":
             return Math.max(min, 2);
           case "cobblestone":
-            return Math.max(min, 3);
           case "sett":
+          case "gravel":
             return Math.max(min, 3);
           default:
             if (verbose) console.debug("unknown surface");
