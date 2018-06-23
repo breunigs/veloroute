@@ -20,20 +20,7 @@ RUN /app/update_relations.rb
 # Build the frontend                                         #
 ##############################################################
 
-FROM debian:unstable-slim as webpack
-RUN \
-  apt-get -qq update && \
-  apt-get -yq install --no-install-recommends gnupg && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
-
-RUN apt-key adv --keyserver eu.pool.sks-keyservers.net --recv 9D41F3C3
-
-RUN \
-  echo "deb http://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list && \
-  apt-get -qq update && \
-  apt-get -yq install \
-    yarn nodejs curl
+FROM node:slim as webpack
 
 WORKDIR /app
 

@@ -13,5 +13,5 @@
   "11": { "relation_id": 233959,  "color": "#00a0e2", "markers": [[53.45705, 9.94492], [53.52167, 10.01471]], "_comment": "Last check: 2018-06-23" },
   "12": { "relation_id": 2238410, "color": "#ed6706", "markers": [[53.54900, 9.93626]] },
   "13": { "relation_id": 2238764, "color": "#f28801", "markers": [[53.55033, 9.93620], [53.55557, 10.04046]], "_comment": "Innere Ringroute" },
-  "14": { "relation_id": 8349004, "color": "#fdb801", "markers": [[53.55818, 9.88207], [53.53746, 10.10794]], "_comment": "Äußere Ringroute" },
+  "14": { "relation_id": 8349004, "color": "#fdb801", "markers": [[53.55818, 9.88207], [53.53746, 10.10794]], "_comment": "Äußere Ringroute" }
 }
