@@ -2,7 +2,7 @@
   "1":  { "relation_id": 194843,  "color": "#7d8b2f", "markers": [[53.58653, 9.73927], [53.59062, 9.85307]] },
   "2":  { "relation_id": 194841,  "color": "#b2211d", "markers": [[53.60570, 9.89895]] },
   "3":  { "relation_id": 194840,  "color": "#e8430b", "markers": [[53.64035, 9.95038]] },
-  "4":  { "relation_id": 191882,  "color": "#008aa7", "markers": [[53.67918, 10.00040]] },
+  "4":  { "relation_id": 191882,  "color": "#008aa7", "markers": [[53.67918, 10.00040]], "_comment": "Last check: 2018-07-01" },
   "5":  { "relation_id": 226032,  "color": "#078a3d", "markers": [[53.70749, 10.10978]] },
   "5b": { "relation_id": 3440789, "color": "#078a3d", "markers": [[53.61524, 10.01796]], "_comment": "Ast nach Barmbek, aus irgendeinem Grund ist das eine extra Relation" },
   "6":  { "relation_id": 227477,  "color": "#2a3283", "markers": [[53.65005, 10.16322]] },

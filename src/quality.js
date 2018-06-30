@@ -34,13 +34,13 @@ const quality = function(map, index) {
     let prefix = "";
     let kind = "?";
     // for streets with both cycleway:right and cycleway:left we should probably build an average
-    if (tags.cycleway_right) {
+    if (tags.cycleway_right && tags["cycleway_right"] != "use_sidepath") {
       kind = tags.cycleway_right;
       prefix = "cycleway_right_";
-    } else if (tags.cycleway_left) {
+    } else if (tags.cycleway_left && tags["cycleway_left"] != "use_sidepath") {
       kind = tags.cycleway_left;
       prefix = "cycleway_left_";
-    } else if (tags.cycleway) {
+    } else if (tags.cycleway && tags["cycleway"] != "use_sidepath") {
       kind = tags.cycleway;
       prefix = "cycleway_"; // i.e. no additional prefix to check
     }
