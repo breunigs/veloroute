@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>Velorouten Hamburg</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <link href="base.css" rel="stylesheet" />
+
+  <link href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"></script>
+
+
+  <link href='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.css' rel='stylesheet' />
+  <script src='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.js'></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="map"></div>
+  </div>
+  <div id="sidebar">
+    <div id="default">
+      <h2>Velorouten Hamburg</h2>
+    </div>
+
+    <%- partial('./routes/geo/path_render.html') -%>
+
+    <pre id="tags">
+    </pre>
+
+    <div id="bottomright">
+      <a id="toggle">⤡ toggle</a>
+      <a id="quality">⏻ quality</a>
+      <div id="mly" class="mapillary"></div>
+    </div>
+  </div>
+</body>
+
+</html>

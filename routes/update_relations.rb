@@ -28,8 +28,8 @@ def geo_details_name(route)
   "geo_tmp/details#{route}.geojson"
 end
 
-def scss_name
-  "geo_tmp/route-icon.scss"
+def html_name
+  "geo_tmp/path_render.html"
 end
 
 def download(route, relation_id)
@@ -48,23 +48,11 @@ def convert(route)
   File.delete(geo_route_name(route) << ".tmp")
 end
 
-def build_icon_scss(route, color)
-  scss = ROUTE_ICONS.dup.gsub("__REPLACE_ROUTE__", route)
-    .gsub(/url\(([^)]+\.svg)\)/) do
-      b64icon = Base64.strict_encode64(File.read($1).strip.gsub("#000", color))
-      'url("data:image/svg+xml;base64,' << b64icon << '")'
-    end
-  SCSS_MUTEX.synchronize do
-    File.open(scss_name, "a") { |f| f.puts scss }
-  end
-end
-
 def update!(routes)
   routes.map do |route, details|
     Thread.new do
       download(route, details["relation_id"])
       convert(route)
-      build_icon_scss(route, details["color"])
     end
   end.each(&:join)
 end
@@ -121,9 +109,12 @@ def render_route!(routes)
     end
   end
 
-  routes.each do |route|
+  routes.map do |route|
     svg = route.to_svg(place2route)
     File.write(geo_icon_name(route.name), svg)
+
+    html = route.to_html(place2route)
+    open(html_name, 'a') { |f| f << html }
   end
 end
 

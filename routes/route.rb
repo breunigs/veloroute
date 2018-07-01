@@ -9,7 +9,7 @@ require_relative "svg_pather"
 class Route
   def initialize(name, parsed_json)
     @name = name
-    @parsed_json = parsed_json
+    @parsed_json = parsed_json.freeze
     raise "only supports up to two route arms" if route_count > 2
   end
 
@@ -26,11 +26,11 @@ class Route
   def markers
     parsed_json["markers"].map do |mark|
       {lat: mark[0], lon: mark[1]}
-    end
+    end.freeze
   end
 
   def places
-    @parsed_json["places"].flatten.uniq.reject { |stop| is_dir?(stop) }
+    @parsed_json["places"].flatten.uniq.reject { |stop| is_dir?(stop) }.freeze
   end
 
   def main_route
@@ -47,6 +47,10 @@ class Route
 
   def route_count
     @parsed_json["places"].size
+  end
+
+  def route_max_length
+    @parsed_json["places"].map(&:size).max
   end
 
   def route_array
@@ -82,6 +86,38 @@ class Route
     svg.to_s
   end
 
+  def to_html(place2route = {})
+    html = <<~EOF
+    <div id="desc#{name}" class="desc">
+      <table class="routing">
+        <tr>
+          <td></td>
+          <td rowspan="#{route_max_length}" class="bg#{name}"><span class="icon icon#{name}">#{name}</span></td>
+          <td></td>
+        </tr>
+    EOF
+
+    route_array.each.with_index do |row, idx|
+      right, left = *row # switch order
+
+      left_conns = get_conn(place2route, left).map(&:to_html_icon).sort.join(" ")
+      right_conns = get_conn(place2route, right).map(&:to_html_icon).sort.join(" ")
+
+      html << <<~EOF
+        <tr>
+          <td #{is_dir?(left) ? %|class="dir"| : ""}>#{left_conns} #{left}</td>
+          <td #{is_dir?(right) ? %|class="dir"| : ""}>#{right} #{right_conns}</td>
+        </tr>
+      EOF
+    end
+    html << "</table></div>\n\n"
+    html
+  end
+
+  def to_html_icon
+    %|<a class="icon icon#{name}">#{name}</a>|
+  end
+
   def &(other_route)
     places & other_route.places
   end
@@ -96,10 +132,15 @@ class Route
 
   private
 
+  def get_conn(place2route, place)
+    return [] unless place
+    candidates = place2route[place] || []
+    candidates.select { |route| route != self }
+  end
+
   def has_conn?(place2route, place)
     return false unless place
-    candidates = place2route[place] || []
-    candidates.any? { |route| route != self }
+    get_conn(place2route, place).any?
   end
 
   def render_svg_part(svg, place2route, pos, dir, name, next_name)
