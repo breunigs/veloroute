@@ -9,6 +9,9 @@ require "fileutils"
 require "base64"
 require_relative "route"
 
+Dir.chdir(__dir__)
+ROUTE_ICONS = File.read("icon.scss.tmpl").freeze
+
 def xml_name(route)
   "geo_tmp/route#{route}.xml.osm"
 end
@@ -132,11 +135,11 @@ FileUtils.mkdir_p "geo_tmp"
 
 routes = JSON.parse(File.read("../routes.json"))
 threads = []
-# threads << Thread.new do
-#   update!(routes)
-#   combine_details!(routes)
-# end
-# threads << Thread.new { resolve_names!(routes) }
+threads << Thread.new do
+  update!(routes)
+  combine_details!(routes)
+end
+threads << Thread.new { resolve_names!(routes) }
 threads << Thread.new { render_route!(routes) }
 threads.each(&:join)
 

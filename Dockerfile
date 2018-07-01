@@ -30,7 +30,7 @@ RUN yarn install
 ENV PATH="/app/node_modules/.bin:${PATH}"
 
 COPY . /app
-COPY --from=geodata /app/geo geo/
+COPY --from=geodata /app/routes/geo routes/geo/
 RUN webpack --output-path /bundled/
 
 
@@ -48,7 +48,7 @@ WORKDIR /artifacts
 ARG COMPRESS
 
 COPY --from=webpack /bundled .
-COPY --from=geodata /app/geo geo/
+COPY --from=geodata /app/routes/geo routes/geo/
 
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
