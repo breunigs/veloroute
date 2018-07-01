@@ -13,8 +13,9 @@ RUN \
 
 WORKDIR /app
 
-COPY routes.json routes/ /app/
-RUN /app/update_relations.rb
+COPY routes.json /app/
+COPY routes/ /app/routes/
+RUN /app/routes/update_relations.rb
 
 ##############################################################
 # Build the frontend                                         #
