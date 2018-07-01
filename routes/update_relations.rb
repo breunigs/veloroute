@@ -7,6 +7,7 @@ require "open-uri"
 require "json"
 require "fileutils"
 require "base64"
+require_relative "route"
 
 def xml_name(route)
   "geo_tmp/route#{route}.xml.osm"
@@ -14,6 +15,10 @@ end
 
 def geo_route_name(route)
   "geo_tmp/route#{route}.geojson"
+end
+
+def geo_icon_name(route)
+  "geo_tmp/route#{route}.svg"
 end
 
 def geo_details_name(route)
@@ -102,57 +107,23 @@ def resolve_names!(routes)
 end
 
 def render_route!(routes)
+  routes = routes.map { |route, details| Route.new(route, details) }
+
+  # build route connection lookup
   place2route = {}
-  routes.each do |route, details|
-    details["places"].flatten.uniq.each do |place|
+  routes.each do |route|
+    route.places.each do |place|
       place2route[place] ||= []
-      next if place.start_with?("(") # ignore directional places
       place2route[place] << route
     end
   end
 
-  routes.each do |route, details|
-    render = []
-    places = details["places"]
-    places[0].each.with_index do |r1, idx|
-      render[idx] ||= {}
-      render[idx][:r1] = r1
-      render[idx][:l1] = place2route[r1] - [route]
-    end
-    places[1].each.with_index do |r2, idx|
-      next if render[idx][:r1] == r2
-      render[idx][:r2] = r2
-      render[idx][:l2] = place2route[r2] - [route]
-    end if places[1]
-
-    puts "Route #{route}"
-    had_2nd_route = false
-    render.each do |line|
-      if line[:r2]
-        print line[:r2]
-        if line[:l2].size.between?(1, 5)
-          print line[:l2].join(" ")
-          print " ┫"
-        else
-          print " ┃"
-        end
-        had_2nd_route = true
-      elsif had_2nd_route
-        print " \t"
-      end
-
-      print "┃ "
-      print line[:r1]
-      print "  "
-      print line[:l1].join(" ") if line[:l1 ].size < 5
-      puts
-    end
-
-    # pp render
+  routes.each do |route|
+    svg = route.to_svg(place2route)
+    File.write(geo_icon_name(route.name), svg)
   end
 end
 
-ROUTE_ICONS = File.read("icon.scss.tmpl").freeze
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
