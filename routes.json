@@ -1,5 +1,5 @@
 {
-  "1":  { "relation_id": 194843,  "color": "#7d8b2f", "markers": [[53.58653, 9.73927], [53.59062, 9.85307]] },
+  "1":  { "relation_id": 194843,  "color": "#7d8b2f", "markers": [[53.58653, 9.73927], [53.59062, 9.85307]], "_comment": "Last check: 2018-07-01" },
   "2":  { "relation_id": 194841,  "color": "#b2211d", "markers": [[53.60570, 9.89895]] },
   "3":  { "relation_id": 194840,  "color": "#e8430b", "markers": [[53.64035, 9.95038]] },
   "4":  { "relation_id": 191882,  "color": "#008aa7", "markers": [[53.67918, 10.00040]], "_comment": "Last check: 2018-07-01" },

@@ -30,20 +30,39 @@ const quality = function(map, index) {
     "#AA001B" // bad
   ];
 
-  function getValue(tags, tag) {
+  function pathOnStreet(kind) {
+    let isOnStreet =
+      kind == "crossing" ||
+      kind == "lane" ||
+      kind == "no" ||
+      kind == "none" ||
+      kind == "opposite" ||
+      kind == "opposite_lane" ||
+      kind == "share_busway" ||
+      kind == "shared_lane" ||
+      kind == "street";
+    return isOnStreet;
+  }
+
+  function determineKindOfCycleway(tags) {
     let prefix = "";
     let kind = "?";
     // for streets with both cycleway:right and cycleway:left we should probably build an average
-    if (tags.cycleway_right && tags["cycleway_right"] != "use_sidepath") {
+    if (tags.cycleway_right && tags.cycleway_right != "use_sidepath") {
       kind = tags.cycleway_right;
       prefix = "cycleway_right_";
-    } else if (tags.cycleway_left && tags["cycleway_left"] != "use_sidepath") {
+    } else if (tags.cycleway_left && tags.cycleway_left != "use_sidepath") {
       kind = tags.cycleway_left;
       prefix = "cycleway_left_";
-    } else if (tags.cycleway && tags["cycleway"] != "use_sidepath") {
+    } else if (tags.cycleway && tags.cycleway != "use_sidepath") {
       kind = tags.cycleway;
       prefix = "cycleway_"; // i.e. no additional prefix to check
     }
+    return [kind, prefix];
+  }
+
+  function getValue(tags, tag) {
+    let [kind, prefix] = determineKindOfCycleway(tags);
 
     let value =
       tags[prefix + tag] ||
@@ -51,15 +70,7 @@ const quality = function(map, index) {
       tags["cycleway_" + tag];
     // allow fallback for certain tag/value combinations
     let isCombinedFootCycleWay = kind == "track" && tags.highway == "footway";
-    let isOnStreet =
-      kind == "lane" ||
-      kind == "opposite" ||
-      kind == "opposite_lane" ||
-      kind == "share_busway" ||
-      kind == "street" ||
-      kind == "no" ||
-      kind == "none";
-    if (isCombinedFootCycleWay || isOnStreet || tag == "lit")
+    if (isCombinedFootCycleWay || pathOnStreet(kind) || tag == "lit")
       value = value || tags[tag];
     return value;
   }
@@ -76,6 +87,11 @@ const quality = function(map, index) {
       if (verbose) console.debug("not lit, demoting");
       min = Math.max(min, 2);
     }
+    if (tags.maxspeed > 30 && pathOnStreet(determineKindOfCycleway(tags))) {
+      if (verbose) console.debug("maxspeed > 30 and have to cycle on street, demoting");
+      min = Math.max(min, 3);
+    }
+
 
     switch (getValue(tags, "smoothness")) {
       case "excellent":
@@ -86,20 +102,21 @@ const quality = function(map, index) {
         return Math.max(min, 3);
       default:
         if (verbose) console.debug("no smoothness, guessing from surface tag");
-        switch (getValue(tags, "surface")) {
+        let surface = getValue(tags, "surface");
+        switch (surface) {
           case "asphalt":
           case "concrete":
           case "metal":
             return Math.max(min, 1);
           case "paving_stones":
-          case "fine_gravel":
             return Math.max(min, 2);
+          case "fine_gravel":
           case "cobblestone":
           case "sett":
           case "gravel":
             return Math.max(min, 3);
           default:
-            if (verbose) console.debug("unknown surface");
+            if (verbose) console.debug(`unknown surface: '${surface}'`);
             return 0;
         }
     }
