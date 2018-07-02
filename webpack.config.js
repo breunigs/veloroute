@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const fs  = require('fs');
 
 module.exports = {
   devtool: "cheap-eval-source-map",
@@ -22,6 +21,14 @@ module.exports = {
           "postcss-loader",
           "sass-loader"
         ]
+      },
+      {
+        test: /\.html$/,
+        loader: "underscore-template-loader",
+        query: {
+          root: "myapp",
+          parseDynamicRoutes: true
+        }
       }
     ]
   },
@@ -35,13 +42,9 @@ module.exports = {
       filename: "base.css"
     }),
     new HtmlWebpackPlugin({
-      template: "main.ejs",
-      // template: '!!ejs-compiled-loader!main.html',
+      template: "main.html",
       minify: true,
-      hash: true,
-      // snippets: {
-      //   pathRender: fs.readFileSync('routes/geo/path_render.html', 'utf8')
-      // }
+      hash: true
     })
   ]
 };
