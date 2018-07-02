@@ -10,7 +10,6 @@ require "base64"
 require_relative "route"
 
 Dir.chdir(__dir__)
-ROUTE_ICONS = File.read("icon.scss.tmpl").freeze
 
 def xml_name(route)
   "geo_tmp/route#{route}.xml.osm"
