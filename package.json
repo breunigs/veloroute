@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "serve": "http-server",
-    "build": "webpack -p",
+    "build": "webpack -p --env prod",
     "start:dev": "webpack-dev-server"
   },
   "devDependencies": {
