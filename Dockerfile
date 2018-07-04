@@ -8,13 +8,20 @@ RUN \
   apt-get -yq install --no-install-recommends \
     gdal-bin \
     jq \
-    ruby ruby-json
-
+    ruby ruby-json ruby-bundler
 
 WORKDIR /app
 
+COPY Gemfile Gemfile.lock /app/
+RUN bundle install
+
 COPY routes.json /app/
 COPY routes/ /app/routes/
+COPY spec/ /app/spec/
+
+ARG TEST
+RUN if [ "$TEST" = "yes" ]; then bundle exec rspec; fi
+
 RUN /app/routes/update_relations.rb
 
 ##############################################################
@@ -45,11 +52,10 @@ RUN \
 
 WORKDIR /artifacts
 
-ARG COMPRESS
-
 COPY --from=webpack /bundled .
 COPY --from=geodata /app/routes/geo routes/geo/
 
+ARG COMPRESS
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
     FILES=$(find . -type f) && \
