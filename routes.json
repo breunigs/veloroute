@@ -1,5 +1,6 @@
 {
   "1": {
+    "_comment": "Last check: 2018-07-01",
     "relation_id": 194843,
     "color": "#7d8b2f",
     "markers": [[53.58653, 9.73927], [53.59062, 9.85307]],
@@ -25,6 +26,7 @@
     ]
   },
   "4":  {
+    "_comment": "Last check: 2018-07-01",
     "relation_id": 191882,
     "color": "#008aa7",
     "markers": [[53.67918, 10.00040]],
@@ -77,6 +79,7 @@
     ]
   },
   "9":  {
+    "_comment": "Last check: 2018-07-03",
     "relation_id": 229823,
     "color": "#9d2928",
     "markers": [[53.48922, 10.20695]],
