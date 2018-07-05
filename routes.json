@@ -1,17 +1,135 @@
 {
-  "1":  { "relation_id": 194843,  "color": "#7d8b2f", "markers": [[53.58653, 9.73927], [53.59062, 9.85307]], "_comment": "Last check: 2018-07-01" },
-  "2":  { "relation_id": 194841,  "color": "#b2211d", "markers": [[53.60570, 9.89895]] },
-  "3":  { "relation_id": 194840,  "color": "#e8430b", "markers": [[53.64035, 9.95038]] },
-  "4":  { "relation_id": 191882,  "color": "#008aa7", "markers": [[53.67918, 10.00040]], "_comment": "Last check: 2018-07-01" },
-  "5":  { "relation_id": 226032,  "color": "#078a3d", "markers": [[53.70749, 10.10978]] },
-  "5b": { "relation_id": 3440789, "color": "#078a3d", "markers": [[53.61524, 10.01796]], "_comment": "Ast nach Barmbek, aus irgendeinem Grund ist das eine extra Relation" },
-  "6":  { "relation_id": 227477,  "color": "#2a3283", "markers": [[53.65005, 10.16322]] },
-  "7":  { "relation_id": 228035,  "color": "#97ba22", "markers": [[53.60497, 10.15531], [53.57499, 10.13454]] },
-  "8":  { "relation_id": 229623,  "color": "#e20612", "markers": [[53.52821, 10.14991], [53.48922, 10.20695]] },
-  "9":  { "relation_id": 229823,  "color": "#9d2928", "markers": [[53.48922, 10.20695]] },
-  "10": { "relation_id": 231965,  "color": "#552976", "markers": [[53.47415, 9.85377]] },
-  "11": { "relation_id": 233959,  "color": "#00a0e2", "markers": [[53.45705, 9.94492], [53.52167, 10.01471]], "_comment": "Last check: 2018-06-23" },
-  "12": { "relation_id": 2238410, "color": "#ed6706", "markers": [[53.54900, 9.93626]] },
-  "13": { "relation_id": 2238764, "color": "#f28801", "markers": [[53.55033, 9.93620], [53.55557, 10.04046]], "_comment": "Innere Ringroute" },
-  "14": { "relation_id": 8349004, "color": "#fdb801", "markers": [[53.55818, 9.88207], [53.53746, 10.10794]], "_comment": "Äußere Ringroute" }
+  "1": {
+    "_comment": "Last check: 2018-07-01",
+    "relation_id": 194843,
+    "color": "#7d8b2f",
+    "markers": [[53.58653, 9.73927], [53.59062, 9.85307]],
+    "places": [
+      ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Klein Flottbek", "Nienstedten", "Blankenese", "Sülldorf", "Rissen", "(Wedel)"],
+      ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Groß Flottbek", "Osdorf", "Osdorfer Born", "(Schenefeld)"]
+    ]
+  },
+  "2":  {
+    "relation_id": 194841,
+    "color": "#b2211d",
+    "markers": [[53.60570, 9.89895]],
+    "places": [
+      ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "Halstenbek"]
+    ]
+  },
+  "3":  {
+    "relation_id": 194840,
+    "color": "#e8430b",
+    "markers": [[53.64035, 9.95038]],
+    "places": [
+      ["Rathaus", "Gänsemarkt", "Bahnhof Dammtor", "Rotherbaum", "Hoheluft", "Lokstedt", "Niendorf Markt", "Niendorf Nord"]
+    ]
+  },
+  "4":  {
+    "_comment": "Last check: 2018-07-01",
+    "relation_id": 191882,
+    "color": "#008aa7",
+    "markers": [[53.67918, 10.00040]],
+    "places": [
+      ["Rathaus", "Harvestehude", "Winterhude", "Sporthalle Hamburg", "Alsterdorf", "Flughafen", "Fuhlsbüttel", "Langenhorn", "Langenhorn Nord", "Ochsenzoll", "(Norderstedt)"]
+    ],
+    "_comment": "Last check: 2018-06-30"
+  },
+  "5":  {
+    "relation_id": 226032,
+    "color": "#078a3d",
+    "markers": [[53.70749, 10.10978]],
+    "places": [
+      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"]
+    ]
+  },
+  "5b": {
+    "relation_id": 3440789,
+    "color": "#078a3d",
+    "markers": [[53.61524, 10.01796]],
+    "_comment": "Ast nach Barmbek, aus irgendeinem Grund ist das eine extra Relation",
+    "places": [
+      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Stadtpark", "City Nord", "Flughafen"]
+    ]
+  },
+  "6":  {
+    "relation_id": 227477,
+    "color": "#2a3283",
+    "markers": [[53.65005, 10.16322]],
+    "places": [
+      ["Rathaus", "St. Georg", "Uhlenhorst", "Hohenfelde", "Auenviertel", "Friedrichsberg", "Dulsberg", "Wandsbek-Gartenstadt", "Trabrennbahn Farmsen", "Farmsen", "Berne", "Volksdorf", "(Ahrensburg)"]
+    ]
+  },
+  "7":  {
+    "relation_id": 228035,
+    "color": "#97ba22",
+    "markers": [[53.60497, 10.15531], [53.57499, 10.13454]],
+    "places": [
+      ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Tonndorf", "Rahlstedt"],
+      ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Jenfeld", "(Barsbüttel)"]
+    ]
+  },
+  "8":  {
+    "relation_id": 229623,
+    "color": "#e20612",
+    "markers": [[53.52821, 10.14991], [53.48922, 10.20695]],
+    "places": [
+      ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Boberg", "Lohbrügge", "Bergedorf", "(Wentorf)", "(Reinbek)"],
+      ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Mümmelmannsberg"]
+    ]
+  },
+  "9":  {
+    "_comment": "Last check: 2018-07-03",
+    "relation_id": 229823,
+    "color": "#9d2928",
+    "markers": [[53.48922, 10.20695]],
+    "places": [
+      ["Rathaus", "Hauptbahnhof", "Hammerbrook", "Rothenburgsort", "Billbrook", "Billwerder-Moorfleet", "Mittlerer Landweg", "Neuallermöhe", "Nettelnburg", "Bergedorf", "(Wentorf)", "(Reinbek)"]
+    ]
+  },
+  "10": {
+    "relation_id": 231965,
+    "color": "#552976",
+    "markers": [[53.47415, 9.85377]],
+    "places": [
+      ["Rathaus", "HafenCity", "Veddel", "Kirchdorf", "Alte Harburger Elbbrücke", "Binnenhafen", "Neuwiedenthal", "Neugraben", "Fischbek", "(Neu Wulmstorf)"]
+    ]
+  },
+  "11": {
+    "relation_id": 233959,
+    "color": "#00a0e2",
+    "markers": [[53.45705, 9.94492], [53.52167, 10.01471]],
+    "_comment": "Last check: 2018-06-23",
+    "places": [
+      ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Bahnhof Harburg", "Harburg", "TUHH", "Heimfeld", "Eißendorf", "(Rosengarten)"],
+      ["Rathaus","Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Veddel","(Seevetal)"]
+    ]
+  },
+  "12": {
+    "relation_id": 2238410,
+    "color": "#ed6706",
+    "markers": [[53.54900, 9.93626]],
+    "places": [
+      ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Fischmarkt", "Altona"]
+    ]
+  },
+  "13": {
+    "relation_id": 2238764,
+    "color": "#f28801",
+    "markers": [[53.55033, 9.93620], [53.55557, 10.04046]],
+    "_comment": "Innere Ringroute",
+    "places": [
+      ["Altona", "Eimsbüttel", "Hoheluft", "Eppendorf", "Winterhude", "Mühlenkamp", "Barmbek-Süd", "Auenviertel", "Eilbek", "Borgfelde"]
+    ]
+  },
+  "14": {
+    "relation_id": 8349004,
+    "color": "#fdb801",
+    "markers": [[53.55818, 9.88207], [53.53746, 10.10794]],
+    "_comment": "Äußere Ringroute",
+    "places": [
+      ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "Jenfeld", "Öjendorfer Park", "Billstedt"],
+      ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "(Barsbüttel)"]
+    ]
+  }
 }

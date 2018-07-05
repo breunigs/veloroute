@@ -5,7 +5,8 @@ cd "$(dirname "$0")"
 set -ex
 
 docker build \
-  --build-arg "COMPRESS=${COMPRESS:-yes}" \
+  --build-arg "COMPRESS=${COMPRESS:-no}" \
+  --build-arg "TEST=${TEST:-no}" \
   -t veloroute:latest .
 
 img=$(docker create veloroute)

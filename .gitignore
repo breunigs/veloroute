@@ -1,4 +1,5 @@
-geo/
+build/
+routes/geo/
 node_modules
 bundle.js
 index.html

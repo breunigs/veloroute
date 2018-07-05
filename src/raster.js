@@ -1,5 +1,6 @@
 import { mapillary as mly } from "./mapillary";
 import routes from "../routes.json";
+import places from "../routes/geo/places.json";
 import {
   zIndexBase,
   zIndexOffsetIcons,
@@ -117,7 +118,7 @@ function getRoute(route, details) {
 
   createRoutePane(route, clickHandler);
 
-  fetch("geo/route" + route + ".geojson")
+  fetch("routes/geo/route" + route + ".geojson")
     .then(response => response.json())
     .then(jsonResponse => {
       L.geoJSON(jsonResponse, {
@@ -167,17 +168,9 @@ function routeIconClick(evt) {
 function zoomToName(name) {
   // do not zoom if user clicked on route icon
   if(name.match("^[0-9]+$")) return;
-
-  const url = "https://nominatim.openstreetmap.org/search/";
-  const params =
-    "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1";
-
-  fetch(url + encodeURIComponent(name) + params)
-    .then(response => response.json())
-    .then(jsonResponse => {
-      const bbox = jsonResponse[0].boundingbox;
-      map.fitBounds([[bbox[0], bbox[2]], [bbox[1], bbox[3]]], { maxZoom: 16 });
-    });
+  let bbox = places[name];
+  if(!bbox) return alert("Ort wurde leider nicht gefunden. Das hätte schon beim Erstellen der Seite auffallen sollen. Bitte mach einen Bugreport!");
+  map.fitBounds([[bbox[0], bbox[2]], [bbox[1], bbox[3]]], { maxZoom: 16 });
 }
 
 function getTopLevelText(node) {

@@ -148,9 +148,26 @@ table.routing {
     padding: 0;
   }
 
+  // this will control the size of the abstract route rendering, since it needs
+  // to match in cell height for the different sub-icons to line up.
+  $table-cell-height: 20px;
+
   td {
-    height: 1.2em;
+    height: $table-cell-height;
     white-space: nowrap;
+  }
+
+  // i.e. center column that displays the route
+  tr:first-child td:nth-child(2) {
+    // image will be set through HTML
+    background: center bottom / (2*$table-cell-height) no-repeat;
+    width: 1.25*2*$table-cell-height;
+    vertical-align: top;
+    text-align: center;
+
+    .icon {
+      font-size: 120%;
+    }
   }
 
   td:first-child {
@@ -158,31 +175,6 @@ table.routing {
   }
 
   td:last-child {
-  }
-
-  td.i {
-    background-size: 1.2em 100%, 1.2em 100%;
-    background-repeat: no-repeat, no-repeat;
-    background-position: 1em;
-    width: 3em;
-    text-align: center;
-
-    .icon {
-      margin-left: 0.15em;
-      font-size: 120%;
-    }
-  }
-
-  td.dual {
-    background-position: 0.4em 0, 1.59em 0; /* work around rounding errors */
-  }
-
-  td.right {
-    background-position: -10em, 1.59em;
-  }
-
-  td.left {
-    background-position: 1.6em, 10em;
   }
 
   td.dir {
@@ -193,5 +185,3 @@ table.routing {
 .desc {
   display: none;
 }
-
-@import "geo/route-icon";

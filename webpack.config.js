@@ -21,6 +21,14 @@ module.exports = env => ({
           "postcss-loader",
           "sass-loader"
         ]
+      },
+      {
+        test: /\.html$/,
+        loader: "underscore-template-loader",
+        query: {
+          root: "myapp",
+          parseDynamicRoutes: true
+        }
       }
     ]
   },
