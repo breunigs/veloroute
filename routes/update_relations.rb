@@ -32,7 +32,9 @@ def html_name
 end
 
 def download(route, relation_id)
-  xml = open("https://www.openstreetmap.org/api/0.6/relation/#{relation_id}/full")
+  url = "https://www.openstreetmap.org/api/0.6/relation/#{relation_id}/full"
+  puts "Querying: #{url}"
+  xml = open(url)
   IO.copy_stream(xml, xml_name(route))
 rescue OpenURI::HTTPError
   puts "Skipping route #{route}, couldn't download XML"
@@ -78,20 +80,17 @@ def resolve_names!(routes)
   results = {}
 
   places.map do |place|
-    Thread.new do
-      url = "https://nominatim.openstreetmap.org/search/"
-      url << URI.escape(place)
-      url << "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1"
+    url = "https://nominatim.openstreetmap.org/search/"
+    url << URI.escape(place)
+    url << "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1"
+    puts "Querying: #{url}"
 
-      resp = JSON.parse(open(url).string)
-      bbox = resp.dig(0, "boundingbox")&.map(&:to_f)
-      warn "No entry found for #{place}" if not bbox
+    resp = JSON.parse(open(url).string)
+    bbox = resp.dig(0, "boundingbox")&.map(&:to_f)
+    warn "No entry found for #{place}" if not bbox
 
-      lock.synchronize do
-        results[place] = bbox
-      end
-    end
-  end.each(&:join)
+    results[place] = bbox
+  end
 
   File.write("geo_tmp/places.json", results.to_json)
 end
