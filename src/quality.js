@@ -40,6 +40,7 @@ const quality = function(map, index) {
       kind == "opposite_lane" ||
       kind == "share_busway" ||
       kind == "shared_lane" ||
+      kind == "sidepath" ||
       kind == "street";
     return isOnStreet;
   }
@@ -54,6 +55,10 @@ const quality = function(map, index) {
     } else if (tags.cycleway_left && tags.cycleway_left != "use_sidepath") {
       kind = tags.cycleway_left;
       prefix = "cycleway_left_";
+    } else if (tags.cycleway_both) {
+      kind = tags.cycleway_both;
+      // TODO: we should return an array of possible tags instead of simply guessing
+      prefix = "cycleway_right_";
     } else if (tags.cycleway && tags.cycleway != "use_sidepath") {
       kind = tags.cycleway;
       prefix = "cycleway_"; // i.e. no additional prefix to check
