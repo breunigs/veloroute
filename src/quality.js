@@ -74,7 +74,6 @@ const quality = function(map, index) {
       kind == "no" ||
       kind == "none" ||
       kind == "opposite" ||
-      kind == "shared_lane" ||
       kind == "sidepath" ||
       kind == "street";
     return sharedWithCar;
