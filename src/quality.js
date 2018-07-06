@@ -131,7 +131,7 @@ const quality = function(map, index) {
     pre.innerText += `\n(grade: ${gradeTags(tags, true)})`;
   }
 
-  fetch("geo/quality.json")
+  fetch("routes/geo/quality.json")
     .then(response => response.json())
     .then(jsonResponse => {
       Object.entries(jsonResponse).forEach(([_index, line]) => {
