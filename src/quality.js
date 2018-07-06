@@ -32,6 +32,7 @@ const quality = function(map, index) {
 
   function pathOnStreet(kind) {
     let isOnStreet =
+      kind == "?" || // i.e. we don't know what kind of cycleway it is
       kind == "crossing" ||
       kind == "lane" ||
       kind == "no" ||
@@ -66,6 +67,19 @@ const quality = function(map, index) {
     return [kind, prefix];
   }
 
+  function pathNotSegregatedFromCars(tags) {
+    let [kind, prefix] = determineKindOfCycleway(tags);
+    let sharedWithCar =
+      kind == "?" || // i.e. we don't know what kind of cycleway it is
+      kind == "no" ||
+      kind == "none" ||
+      kind == "opposite" ||
+      kind == "shared_lane" ||
+      kind == "sidepath" ||
+      kind == "street";
+    return sharedWithCar;
+  }
+
   function getValue(tags, tag) {
     let [kind, prefix] = determineKindOfCycleway(tags);
 
@@ -92,7 +106,7 @@ const quality = function(map, index) {
       if (verbose) console.debug("not lit, demoting");
       min = Math.max(min, 2);
     }
-    if (tags.maxspeed > 30 && pathOnStreet(determineKindOfCycleway(tags))) {
+    if (tags.maxspeed > 30 && pathNotSegregatedFromCars(tags)) {
       if (verbose) console.debug("maxspeed > 30 and have to cycle on street, demoting");
       min = Math.max(min, 3);
     }
