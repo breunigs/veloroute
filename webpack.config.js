@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = env => ({
-  devtool: env ? "source-map" : "cheap-eval-source-map",
+  devtool: "source-map", //env ? "source-map" : "cheap-eval-source-map",
   mode: "development",
   entry: "./src/index.js",
   output: {
@@ -33,9 +33,17 @@ module.exports = env => ({
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    port: 9000
+    contentBase: path.join(__dirname, "build"),
+    compress: false,
+    port: 9000,
+    headers: {
+      "Content-Security-Policy": [
+        "worker-src blob:",
+        "child-src blob:",
+        "img-src data: blob: http: https:",
+        "connect-src 'self' https: wss: http: ws:"
+      ].join(" ; ")
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({

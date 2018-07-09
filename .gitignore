@@ -7,3 +7,5 @@ index.html
 *.br
 *.css
 *.map
+npm-debug.log
+yarn-error.log

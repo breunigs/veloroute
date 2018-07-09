@@ -40,22 +40,60 @@ rescue OpenURI::HTTPError
   puts "Skipping route #{route}, couldn't download XML"
 end
 
+def glue(arr1, arr2)
+  (arr1 + arr2[1..-1]).freeze
+end
+
+def gluable?(arr1, arr2)
+  arr1.last == arr2.first
+end
+
+def naive_join(coords)
+  concat = [coords.first.freeze]
+  coords[1..-1].each do |line|
+    prev = concat.last
+    linerev = line.reverse
+
+    if gluable?(prev, line)
+      concat[-1] = glue(prev, line)
+    elsif gluable?(line, prev)
+      concat[-1] = glue(line, prev)
+    elsif gluable?(prev, linerev)
+      concat[-1] = glue(prev, linerev)
+    elsif gluable?(linerev, prev)
+      concat[-1] = glue(linerev, prev)
+    else
+      concat << line.freeze
+    end
+  end
+  concat
+end
+
+MINIMAL_HEADER = %|{"type":"Feature","properties":{},"geometry":{"type":"MultiLineString","coordinates":|.freeze
+MINIMAL_FOOTER = %|}}|.freeze
+def simplify(geojson)
+  parsed = JSON.parse(geojson)
+  coords = parsed["features"][0]["geometry"]["coordinates"].freeze
+  MINIMAL_HEADER + naive_join(coords).to_json + MINIMAL_FOOTER
+end
+
 def convert(route)
   return unless File.exist?(xml_name(route))
-  cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=7 -f GeoJSON"
-  `#{cmd} "#{geo_route_name(route)}.tmp" "#{xml_name(route)}" multilinestrings 2>&1`
+  cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=6 -f GeoJSON"
+
+  # extract relation as a single MultiLineString, then concat as much as possible
+  mutlilinestring = `#{cmd} /vsistdout/ "#{xml_name(route)}" multilinestrings 2>/dev/null`
+  File.write(geo_route_name(route), simplify(mutlilinestring))
+
+  # extract all OSM ways separately, including most of their features
   `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
-  `jq -c . "#{geo_route_name(route)}.tmp" > "#{geo_route_name(route)}"`
-  File.delete(geo_route_name(route) << ".tmp")
 end
 
 def update!(routes)
   routes.map do |route, details|
-    Thread.new do
-      download(route, details["relation_id"])
-      convert(route)
-    end
-  end.each(&:join)
+    download(route, details["relation_id"])
+    convert(route)
+  end
 end
 
 def combine_details!(routes)
