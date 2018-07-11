@@ -13,7 +13,7 @@ export const map = new mapboxgl.Map({
     center: rathausmarktCoord,
     zoom: 10,
     maxZoom: 20,
-    style: 'mapbox://styles/mapbox/light-v9',
+    style: 'mapbox://styles/breunigs/cjjhfyliv5v202rl6cfxsh458',
     pitchWithRotate: false,
     dragRotate: false,
 });
@@ -40,7 +40,7 @@ const renderRoute = (entry) => {
       'line-width': 3,
       'line-color': details.color,
     },
-  });
+  }, "waterway-label");
 };
 
 map.on('style.load', () => {
