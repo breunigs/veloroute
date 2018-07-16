@@ -1,6 +1,7 @@
 require "open-uri"
 require "nokogiri"
 require "json"
+require_relative "joiner"
 
 class Relation
 
@@ -8,9 +9,27 @@ class Relation
 
   COORDINATE_PRECISION = 6
 
-  def initialize(id, xml = nil)
+  def self.build_collision_lookup(relations)
+    collisions = Hash.new{|h,k| h[k] = [] }
+
+    relations.each do |relation|
+      relation.ways.each do |way|
+        collisions[way[:id]] << relation.id
+      end
+    end
+
+    collisions.delete_if { |_key, coll| coll.size <= 1 }
+  end
+
+  attr_reader :id
+
+  def initialize(id)
     @id = id
-    @xml = ::Nokogiri::HTML(xml) if xml
+    @xml_thread = Thread.new do
+      x = ::Nokogiri::HTML(open(url))
+      puts "XML loaded: #{url}"
+      x
+    end
   end
 
   def url
@@ -18,7 +37,7 @@ class Relation
   end
 
   def ways
-    xml.xpath('//way').map do |way|
+    @ways ||= xml.xpath('//way').map do |way|
       {
         id: way.attr(:id),
         coords: coords(way),
@@ -38,20 +57,39 @@ class Relation
     end
   end
 
-  def to_geojson
-    oneways = to_coord_array(ways.select { |way| way[:oneway] })
-    bothways = to_coord_array(ways.select { |way| !way[:oneway] })
+  def to_geojson(collisions = {})
+    features = []
 
-    oneways = to_geojson_feature(oneways, oneway: true, pattern: '▶')
-    bothways = to_geojson_feature(bothways)
+    # handle collisions
+    groups = Hash.new{|h,k| h[k] = [] }
+    ways.each do |way|
+      coll = collisions[way[:id]]
+      groups[compare(id, coll)] << way
+    end
+
+    # handle one ways
+    groups.each do |offset, ways|
+      oneways, bothways = *ways.partition { |way| way[:oneway] }
+
+      features << to_geojson_feature(to_coord_array(oneways), offset: offset, oneway: true, pattern: '▶')
+      features << to_geojson_feature(to_coord_array(bothways), offset: offset)
+    end
 
     {
       type: "FeatureCollection",
-      features: [oneways, bothways]
+      features: features
     }.to_json
   end
 
   private
+
+  def compare(our_id, all_ids)
+    return 0 if all_ids.nil? || all_ids.size >= 4
+    offset = 0
+    offset = -1 if all_ids.min == our_id
+    offset = 1 if all_ids.max == our_id
+    offset
+  end
 
   def to_geojson_feature(arrOfCords, **properties)
     {
@@ -74,24 +112,12 @@ class Relation
 
   def to_coord_array(ways)
     concatted = []
-    ways.each do |way|
-      prev_end = concatted.last&.last
-      new_start = way[:coords].first
-      if prev_end == new_start
-        concatted[-1] = concatted.last + way[:coords][1..-1]
-      else
-        concatted << way[:coords]
-      end
-    end
-    concatted
+    arrOfCoords = ways.map { |w| w[:coords] }.freeze
+    Joiner.join(arrOfCoords)
   end
 
   def xml
-    @xml ||= begin
-      x = ::Nokogiri::HTML(open(url))
-      puts "XML loaded: #{url}"
-      x
-    end
+    @xml ||= @xml_thread.value
   end
 
   def role(way)

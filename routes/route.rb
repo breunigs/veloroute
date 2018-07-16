@@ -5,6 +5,8 @@
 # File.write("icon/wtf.svg", route.to_svg)
 
 require_relative "svg_pather"
+require_relative "relation"
+
 
 class Route
   def initialize(name, parsed_json)
@@ -14,6 +16,10 @@ class Route
   end
 
   attr_reader :name
+
+  def relation
+    @relation ||= Relation.new(relation_id)
+  end
 
   def relation_id
     @parsed_json["relation_id"]

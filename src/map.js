@@ -4,12 +4,31 @@ import routes from "../routes.json";
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
 const rathausmarktCoord = [53.550974, 9.993148];
 
-// these two are below each other in the mapstyle. With this trick, the background
-// will not be drawn over the actual routes.
-const layerPosRoutes = "waterway-label";
-const layerPosRoutesCasing = "housenum-label";
-
 const routeLineWidth = 3;
+const routeWidthStops = [
+  [0, routeLineWidth],
+  [16, routeLineWidth*2],
+  [19, routeLineWidth*4]
+];
+const routeWidthCasingStops = [
+  [0, routeLineWidth+2],
+  [16, routeLineWidth*2+2],
+  [19, routeLineWidth*4+2]
+];
+const collisionOffsets = [
+  [{zoom:  0, value: -1}, 0],
+  [{zoom:  0, value:  0}, 0],
+  [{zoom:  0, value:  1}, 0],
+  [{zoom: 14, value: -1}, -1],
+  [{zoom: 14, value:  0}, 0],
+  [{zoom: 14, value:  1}, +1],
+  [{zoom: 17, value: -1}, -routeLineWidth],
+  [{zoom: 17, value:  0}, 0],
+  [{zoom: 17, value:  1}, +routeLineWidth],
+  [{zoom: 22, value: -1}, -2*routeLineWidth],
+  [{zoom: 22, value:  0}, 0],
+  [{zoom: 22, value:  1}, +2*routeLineWidth],
+];
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 
@@ -30,7 +49,7 @@ const addRouteSource = (route) => {
   map.addSource(`source-${route}`, {
     type: 'geojson',
     data: `/routes/geo/route${route}.geojson`,
-    tolerance: 1 // default 0.375
+    tolerance: 0.6 // default 0.375
   });
 }
 
@@ -41,22 +60,22 @@ const renderRoute = (entry) => {
     source: `source-${route}`,
     type: 'line',
     layout: {
-      "line-join": "round",
       "line-cap": "round"
     },
     paint: {
       "line-width": {
-        "type": "exponential",
-        "base": routeLineWidth,
-        "stops": [
-          [0, routeLineWidth],
-          [16, routeLineWidth*2],
-          [19, routeLineWidth*4]
-        ]
+        type: "exponential",
+        base: 3,
+        stops: routeWidthStops,
       },
       'line-color': details.color,
+      'line-offset': {
+        type: "exponential",
+        property: "offset",
+        stops: collisionOffsets
+      }
     },
-  }, layerPosRoutes);
+  }, 'route-itself');
 
   map.addLayer({
     "id": `layer-${route}-symbols`,
@@ -73,7 +92,6 @@ const renderRoute = (entry) => {
       "text-field": '{pattern}',
       "text-size": {
         "type": "exponential",
-        "base": 9,
         "stops": [
           [0, 9],
           [16, 12],
@@ -85,21 +103,29 @@ const renderRoute = (entry) => {
       "text-opacity": 0.9,
       'text-color': '#fff'
     },
-  }, layerPosRoutes);
+  }, 'route-arrows');
 
   map.addLayer({
     id: `layer-${route}-casing`,
     source: `source-${route}`,
     type: 'line',
     layout: {
-      "line-join": "round",
       "line-cap": "round"
     },
     paint: {
-      'line-width': routeLineWidth + 2,
+      'line-width': {
+        type: "exponential",
+        base: 3,
+        stops: routeWidthCasingStops
+      },
       'line-color': '#fff',
+      'line-offset': {
+        type: "exponential",
+        property: "offset",
+        stops: collisionOffsets
+      }
     },
-  }, layerPosRoutesCasing);
+  }, 'route-casing');
 };
 
 
