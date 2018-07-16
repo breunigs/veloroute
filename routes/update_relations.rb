@@ -8,6 +8,7 @@ require "json"
 require "fileutils"
 require "base64"
 require_relative "route"
+require_relative "relation"
 
 Dir.chdir(__dir__)
 
@@ -82,8 +83,8 @@ def convert(route)
   cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=6 -f GeoJSON"
 
   # extract relation as a single MultiLineString, then concat as much as possible
-  mutlilinestring = `#{cmd} /vsistdout/ "#{xml_name(route)}" multilinestrings 2>/dev/null`
-  File.write(geo_route_name(route), simplify(mutlilinestring))
+  rel = Relation.new(nil, File.read(xml_name(route)))
+  File.write(geo_route_name(route), rel.to_geojson)
 
   # extract all OSM ways separately, including most of their features
   `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
