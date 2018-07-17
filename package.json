@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack -p --env prod",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server --env dev"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.3",
