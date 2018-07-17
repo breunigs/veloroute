@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl';
-import routes from "../routes.json";
 
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
 const rathausmarktCoord = [9.993148, 53.550974];
@@ -139,6 +138,8 @@ const renderRoutes = () => {
   }, 'route-casing');
 };
 
+let hoverTimeout = null;
+let hoverRoute = null;
 
 map.on('style.load', () => {
   addRouteSource();
@@ -147,9 +148,15 @@ map.on('style.load', () => {
   map.on('mousemove', (e) => {
     var routes = map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
     map.getCanvas().style.cursor = routes.length ? 'pointer' : '';
-    if(!routes.length) return;
-    moveListeners.forEach(function(f) {
-      f(routes[0].properties);
-    });
+
+    if(!routes.length) return clearTimeout(hoverTimeout);
+    if(routes[0].properties.name != hoverRoute) clearTimeout(hoverTimeout);
+    hoverRoute = routes[0].properties.name;
+
+    hoverTimeout = setTimeout(() => {
+      moveListeners.forEach(function(f) {
+        f(routes[0].properties);
+      });
+    }, 100);
   });
 });

@@ -14,17 +14,9 @@ require_relative "geojson"
 
 Dir.chdir(__dir__)
 
-def geo_route_name(route)
-  "geo_tmp/route#{route.name}.geojson"
-end
-
-def geo_icon_name(route)
-  "geo_tmp/route#{route}.svg"
-end
-
-def html_name
-  "geo_tmp/path_render.html"
-end
+REPLACE_NAMES = {
+  'Hafen' => 'Reiherdamm'
+}
 
 def update!(routes)
   collisions = Relation.build_collision_lookup(routes.map(&:relation))
@@ -38,21 +30,29 @@ end
 
 def resolve_names!(routes)
   places = routes.flat_map(&:places).uniq
-  lock = Mutex.new
-  results = {}
 
-  Parallel.map(places, in_processes: 3) do |place|
+  results = Parallel.map(places, in_processes: 3) do |place|
     url = "https://nominatim.openstreetmap.org/search/"
-    url << URI.escape(place)
-    url << "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1"
+    url << URI.escape(REPLACE_NAMES[place] || place)
+    url << "?format=json&viewbox=9.5732117,53.3825092,10.3,53.7&bounded=1&limit=5"
     puts "Querying: #{url}"
 
     resp = JSON.parse(open(url).string)
-    bbox = resp.dig(0, "boundingbox")&.map(&:to_f)
-    warn "No entry found for #{place}" if not bbox
+    importance = resp.map { |e| e["importance"] }.max
 
-    results[place] = bbox
-  end
+    # combine bboxes with the same importance
+    important_results = resp.take_while { |e| e["importance"] == importance }
+    bboxes = important_results.map { |e| e["boundingbox"].map(&:to_f) }
+    bbox_0 = bboxes.map { |bbox| bbox[0] }.min
+    bbox_1 = bboxes.map { |bbox| bbox[1] }.max
+    bbox_2 = bboxes.map { |bbox| bbox[2] }.min
+    bbox_3 = bboxes.map { |bbox| bbox[3] }.max
+
+    # switch order to MapboxGL one
+    bbox = [bbox_2, bbox_0, bbox_3, bbox_1]
+
+    [place, bbox]
+  end.to_h
 
   File.write("geo_tmp/places.json", results.to_json)
 end
@@ -69,10 +69,11 @@ def render_route!(routes)
 
   routes.map do |route|
     svg = route.to_svg(place2route)
-    File.write(geo_icon_name(route.name), svg)
+    File.write("geo_tmp/route#{route.name}.svg", svg)
 
     html = route.to_html(place2route)
-    open(html_name, 'a') { |f| f << html }
+    open('geo_tmp/path_render.html', 'a') { |f| f << html }
+    open('geo_tmp/icons.css', 'a') { |f| f << route.to_css }
   end
 end
 

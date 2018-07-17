@@ -151,6 +151,14 @@ class Route
     %|<a class="icon icon#{name}">#{name}</a>|
   end
 
+  def to_css
+    <<~CSS
+      .icon#{name}, .route-icon#{name} {
+        background: #{color};
+      }
+    CSS
+  end
+
   def to_geojson(collisions)
     geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
     geojson.to_geojson

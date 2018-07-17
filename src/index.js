@@ -1,6 +1,7 @@
 import "../base.scss";
 
-import { addMoveListener } from "./map"
+import { map, addMoveListener } from "./map";
+import places from '../routes/geo/places.json';
 // import { leafletTextPath } from "./leaflet.textpath";
 // import { map, init as initRaster } from "./raster";
 // import { mapillary } from "./mapillary";
@@ -16,3 +17,10 @@ addMoveListener((route) => {
   }
   document.getElementById(`desc${route.name}`).style.display = 'block';
 });
+
+for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
+  el.addEventListener('click', evt => {
+    const placeName = evt.target.textContent;
+    map.fitBounds(places[placeName], {maxZoom: 14.5});
+  });
+}

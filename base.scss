@@ -75,11 +75,12 @@ a.icon:hover {
     -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 }
 
-/* icon1 to 14 colors are set through JS reading routes.js. TODO: set through build step; */
+/* icon1 to 14 colors are generated through Ruby build script */
 .icon0,
 .route-icon0 {
   background: #bbb;
 }
+@import 'routes/geo/icons';
 
 .cols {
   display: flex;
