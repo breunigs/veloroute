@@ -15,7 +15,9 @@ require_relative "geojson"
 Dir.chdir(__dir__)
 
 REPLACE_NAMES = {
-  'Hafen' => 'Reiherdamm'
+  'Hafen' => 'Reiherdamm',
+  'Altona' => 'Altona-Altstadt',
+  'Langenhorn' => 'Langenhorn Markt',
 }
 
 def update!(routes)
@@ -28,13 +30,19 @@ def update!(routes)
   File.write("geo_tmp/routes.geojson", GeoJSON.join(geojsons).to_json)
 end
 
-def resolve_names!(routes)
-  places = routes.flat_map(&:places).uniq
+def place_to_nominatim_query(place)
+  search_name = REPLACE_NAMES[place] || place
+  return search_name.gsub(/[()]/, '') if search_name.include?('(')
+  search_name + ' Hamburg'
+end
 
-  results = Parallel.map(places, in_processes: 3) do |place|
+def resolve_names!(routes)
+  places = routes.flat_map(&:places_with_dir).uniq
+
+  results = Parallel.map(places, in_processes: 4) do |place|
     url = "https://nominatim.openstreetmap.org/search/"
-    url << URI.escape(REPLACE_NAMES[place] || place)
-    url << "?format=json&viewbox=9.5732117,53.3825092,10.3,53.7&bounded=1&limit=5"
+    url << URI.escape(place_to_nominatim_query(place))
+    url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
     puts "Querying: #{url}"
 
     resp = JSON.parse(open(url).string)

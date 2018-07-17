@@ -37,7 +37,11 @@ class Route
   end
 
   def places
-    @parsed_json["places"].flatten.uniq.reject { |stop| is_dir?(stop) }.freeze
+    places_with_dir.reject { |stop| is_dir?(stop) }.freeze
+  end
+
+  def places_with_dir
+    @parsed_json["places"].flatten.uniq.freeze
   end
 
   def main_route
