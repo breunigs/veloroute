@@ -1,13 +1,10 @@
 require "open-uri"
 require "nokogiri"
 require "json"
-require_relative "joiner"
 
 class Relation
-
   INTERESTING_KEYS = %w[cycleway cycleway:both cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:right cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway lit maxspeed oneway smoothness surface width].freeze
 
-  COORDINATE_PRECISION = 6
 
   def self.build_collision_lookup(relations)
     collisions = Hash.new{|h,k| h[k] = [] }
@@ -57,64 +54,7 @@ class Relation
     end
   end
 
-  def to_geojson(collisions = {})
-    features = []
-
-    # handle collisions
-    groups = Hash.new{|h,k| h[k] = [] }
-    ways.each do |way|
-      coll = collisions[way[:id]]
-      groups[compare(id, coll)] << way
-    end
-
-    # handle one ways
-    groups.each do |offset, ways|
-      oneways, bothways = *ways.partition { |way| way[:oneway] }
-
-      features << to_geojson_feature(to_coord_array(oneways), offset: offset, oneway: true, pattern: '▶')
-      features << to_geojson_feature(to_coord_array(bothways), offset: offset)
-    end
-
-    {
-      type: "FeatureCollection",
-      features: features
-    }.to_json
-  end
-
   private
-
-  def compare(our_id, all_ids)
-    return 0 if all_ids.nil? || all_ids.size >= 4
-    offset = 0
-    offset = -1 if all_ids.min == our_id
-    offset = 1 if all_ids.max == our_id
-    offset
-  end
-
-  def to_geojson_feature(arrOfCords, **properties)
-    {
-      type: "Feature",
-      properties: properties,
-      geometry: {
-        type: "MultiLineString",
-        coordinates: round_coords(arrOfCords)
-      }
-    }
-  end
-
-  def round_coords(arrOfCords)
-    arrOfCords.map do |coords|
-      coords.map do |coord|
-        coord.map { |cc| cc.round(COORDINATE_PRECISION) }
-      end
-    end
-  end
-
-  def to_coord_array(ways)
-    concatted = []
-    arrOfCoords = ways.map { |w| w[:coords] }.freeze
-    Joiner.join(arrOfCoords)
-  end
 
   def xml
     @xml ||= @xml_thread.value

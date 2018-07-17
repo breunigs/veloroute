@@ -6,6 +6,7 @@
 
 require_relative "svg_pather"
 require_relative "relation"
+require_relative "geojson"
 
 
 class Route
@@ -148,6 +149,11 @@ class Route
 
   def to_html_icon
     %|<a class="icon icon#{name}">#{name}</a>|
+  end
+
+  def to_geojson(collisions)
+    geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
+    geojson.to_geojson
   end
 
   def &(other_route)

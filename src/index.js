@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map } from "./map"
+import { addMoveListener } from "./map"
 // import { leafletTextPath } from "./leaflet.textpath";
 // import { map, init as initRaster } from "./raster";
 // import { mapillary } from "./mapillary";
@@ -10,3 +10,9 @@ import { map } from "./map"
 // initRaster();
 // const hash = L.hash(map);
 
+addMoveListener((route) => {
+  for(let el of document.querySelectorAll(".desc")) {
+    el.style.display = 'none';
+  }
+  document.getElementById(`desc${route.name}`).style.display = 'block';
+});

@@ -2,7 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import routes from "../routes.json";
 
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
-const rathausmarktCoord = [53.550974, 9.993148];
+const rathausmarktCoord = [9.993148, 53.550974];
 
 const routeLineWidth = 3;
 const routeWidthStops = [
@@ -45,19 +45,30 @@ export const map = new mapboxgl.Map({
     dragRotate: false,
 });
 
-const addRouteSource = (route) => {
-  map.addSource(`source-${route}`, {
+let moveListeners = [];
+const addMoveListener = (f) => {
+  moveListeners.push(f);
+}
+
+let clickListeners = [];
+const addClickListener = (f) => {
+  clickListeners.push(f);
+}
+
+export { addMoveListener, addClickListener };
+
+const addRouteSource = () => {
+  map.addSource(`source-routes`, {
     type: 'geojson',
-    data: `/routes/geo/route${route}.geojson`,
+    data: `/routes/geo/routes.geojson`,
     tolerance: 0.6 // default 0.375
   });
 }
 
-const renderRoute = (entry) => {
-  const [route, details] = entry;
+const renderRoutes = () => {
   map.addLayer({
-    id: `layer-${route}`,
-    source: `source-${route}`,
+    id: `layer-routes`,
+    source: `source-routes`,
     type: 'line',
     layout: {
       "line-cap": "round"
@@ -68,7 +79,7 @@ const renderRoute = (entry) => {
         base: 3,
         stops: routeWidthStops,
       },
-      'line-color': details.color,
+      'line-color': { "type": "identity", "property": "color" },
       'line-offset': {
         type: "exponential",
         property: "offset",
@@ -78,9 +89,9 @@ const renderRoute = (entry) => {
   }, 'route-itself');
 
   map.addLayer({
-    "id": `layer-${route}-symbols`,
+    "id": 'layer-routes-arrows',
     "type": "symbol",
-    "source": `source-${route}`,
+    "source": 'source-routes',
     "minzoom": 13.5,
     "layout": {
       "symbol-placement": "line",
@@ -106,8 +117,8 @@ const renderRoute = (entry) => {
   }, 'route-arrows');
 
   map.addLayer({
-    id: `layer-${route}-casing`,
-    source: `source-${route}`,
+    id: `layer-routes-casing`,
+    source: `source-routes`,
     type: 'line',
     layout: {
       "line-cap": "round"
@@ -130,7 +141,15 @@ const renderRoute = (entry) => {
 
 
 map.on('style.load', () => {
-  Object.keys(routes).forEach(addRouteSource);
-  Object.entries(routes).forEach(renderRoute);
-});
+  addRouteSource();
+  renderRoutes();
 
+  map.on('mousemove', (e) => {
+    var routes = map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
+    map.getCanvas().style.cursor = routes.length ? 'pointer' : '';
+    if(!routes.length) return;
+    moveListeners.forEach(function(f) {
+      f(routes[0].properties);
+    });
+  });
+});

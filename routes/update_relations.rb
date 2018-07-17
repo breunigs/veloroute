@@ -7,8 +7,10 @@ require "open-uri"
 require "json"
 require "fileutils"
 require "base64"
+require "parallel"
 require_relative "route"
 require_relative "relation"
+require_relative "geojson"
 
 Dir.chdir(__dir__)
 
@@ -27,9 +29,11 @@ end
 def update!(routes)
   collisions = Relation.build_collision_lookup(routes.map(&:relation))
 
-  routes.each do |route|
-    File.write(geo_route_name(route), route.relation.to_geojson(collisions))
+  geojsons = routes.flat_map do |route|
+    route.to_geojson(collisions)
   end
+
+  File.write("geo_tmp/routes.geojson", GeoJSON.join(geojsons).to_json)
 end
 
 def resolve_names!(routes)
@@ -37,7 +41,7 @@ def resolve_names!(routes)
   lock = Mutex.new
   results = {}
 
-  places.map do |place|
+  Parallel.map(places, in_processes: 3) do |place|
     url = "https://nominatim.openstreetmap.org/search/"
     url << URI.escape(place)
     url << "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1"
