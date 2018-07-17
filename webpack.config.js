@@ -1,9 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = env => ({
-  devtool: "source-map", //env ? "source-map" : "cheap-eval-source-map",
+  devtool: "source-map",
   mode: "development",
   entry: "./src/index.js",
   output: {
@@ -11,6 +13,9 @@ module.exports = env => ({
     filename: "bundle.js"
   },
   module: {
+    // needed due to incompatibility with minify. Might work with mapbox-gl 0.47.0+
+    // See https://github.com/mapbox/mapbox-gl-js/issues/4359
+    noParse: /(mapbox-gl)\.js$/,
     rules: [
       {
         test: /\.scss$/,
@@ -51,8 +56,17 @@ module.exports = env => ({
     }),
     new HtmlWebpackPlugin({
       template: "main.html",
-      minify: true,
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      },
       hash: true
+    }),
+    new OptimizeCSSAssetsPlugin({}),
+    new UglifyJsPlugin({
+      extractComments: true,
+      parallel: true,
+      sourceMap: true,
     })
-  ]
+  ],
 });
