@@ -138,6 +138,10 @@ const renderRoutes = () => {
   }, 'route-casing');
 };
 
+const routesFromEvt = (e) => {
+  return map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
+};
+
 let hoverTimeout = null;
 let hoverRoute = null;
 
@@ -146,7 +150,7 @@ map.on('style.load', () => {
   renderRoutes();
 
   map.on('mousemove', (e) => {
-    var routes = map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
+    var routes = routesFromEvt(e);
     map.getCanvas().style.cursor = routes.length ? 'pointer' : '';
 
     if(!routes.length) return clearTimeout(hoverTimeout);
@@ -158,5 +162,13 @@ map.on('style.load', () => {
         f(routes[0].properties);
       });
     }, 100);
+  });
+
+  map.on('click', (e) => {
+    clearTimeout(hoverTimeout);
+    var routes = routesFromEvt(e);
+    clickListeners.forEach(function(f) {
+      f(routes[0].properties);
+    });
   });
 });
