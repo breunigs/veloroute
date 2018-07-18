@@ -43,15 +43,6 @@
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"]
     ]
   },
-  "5b": {
-    "relation_id": 3440789,
-    "color": "#078a3d",
-    "markers": [[53.61524, 10.01796]],
-    "_comment": "Ast nach Barmbek, aus irgendeinem Grund ist das eine extra Relation",
-    "places": [
-      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Stadtpark", "City Nord", "Flughafen"]
-    ]
-  },
   "6":  {
     "relation_id": 227477,
     "color": "#2a3283",
