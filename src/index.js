@@ -11,11 +11,11 @@ import places from '../routes/geo/places.json';
 // initRaster();
 // const hash = L.hash(map);
 
-const showRoute = (route) => {
+const showRoute = (routeName) => {
   for(let el of document.querySelectorAll(".desc")) {
     el.style.display = 'none';
   }
-  document.getElementById(`desc${route.name}`).style.display = 'block';
+  document.getElementById(`desc${routeName}`).style.display = 'block';
 };
 
 addMoveListener(showRoute);
@@ -31,6 +31,6 @@ for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
 for(let el of document.querySelectorAll(".routing td a.icon")) {
   el.addEventListener('click', evt => {
     const routeName = evt.target.textContent;
-    showRoute({name: routeName});
+    showRoute(routeName);
   });
 }

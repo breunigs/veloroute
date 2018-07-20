@@ -3,7 +3,7 @@
     "_comment": "Last check: 2018-07-01",
     "relation_id": 194843,
     "color": "#7d8b2f",
-    "markers": [[53.58653, 9.73927], [53.59062, 9.85307]],
+    "markers": [[9.73927, 53.58653], [9.85307, 53.59062]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Klein Flottbek", "Nienstedten", "Blankenese", "Sülldorf", "Rissen", "(Wedel)"],
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Groß Flottbek", "Osdorf", "Osdorfer Born", "(Schenefeld)"]
@@ -12,7 +12,7 @@
   "2":  {
     "relation_id": 194841,
     "color": "#b2211d",
-    "markers": [[53.60570, 9.89895]],
+    "markers": [[9.89895, 53.60570]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "Halstenbek"]
     ]
@@ -20,7 +20,7 @@
   "3":  {
     "relation_id": 194840,
     "color": "#e8430b",
-    "markers": [[53.64035, 9.95038]],
+    "markers": [[9.95038, 53.64035]],
     "places": [
       ["Rathaus", "Gänsemarkt", "Bahnhof Dammtor", "Rotherbaum", "Hoheluft", "Lokstedt", "Niendorf Markt", "Niendorf Nord"]
     ]
@@ -29,7 +29,7 @@
     "_comment": "Last check: 2018-07-01",
     "relation_id": 191882,
     "color": "#008aa7",
-    "markers": [[53.67918, 10.00040]],
+    "markers": [[10.00040, 53.67918]],
     "places": [
       ["Rathaus", "Harvestehude", "Winterhude", "Sporthalle Hamburg", "Alsterdorf", "Flughafen", "Fuhlsbüttel", "Langenhorn", "Langenhorn Nord", "Ochsenzoll", "(Norderstedt)"]
     ],
@@ -38,7 +38,7 @@
   "5":  {
     "relation_id": 226032,
     "color": "#078a3d",
-    "markers": [[53.70749, 10.10978]],
+    "markers": [[10.10978, 53.70749], [10.01796, 53.61524]],
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"]
     ]
@@ -46,7 +46,7 @@
   "6":  {
     "relation_id": 227477,
     "color": "#2a3283",
-    "markers": [[53.65005, 10.16322]],
+    "markers": [[10.16322, 53.65005]],
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Hohenfelde", "Auenviertel", "Friedrichsberg", "Dulsberg", "Wandsbek-Gartenstadt", "Trabrennbahn Farmsen", "Farmsen", "Berne", "Volksdorf", "(Ahrensburg)"]
     ]
@@ -54,7 +54,7 @@
   "7":  {
     "relation_id": 228035,
     "color": "#97ba22",
-    "markers": [[53.60497, 10.15531], [53.57499, 10.13454]],
+    "markers": [[10.15531, 53.60497], [10.13454, 53.57499]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Tonndorf", "Rahlstedt"],
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Jenfeld", "(Barsbüttel)"]
@@ -63,7 +63,7 @@
   "8":  {
     "relation_id": 229623,
     "color": "#e20612",
-    "markers": [[53.52821, 10.14991], [53.48922, 10.20695]],
+    "markers": [[10.14991, 53.52821], [10.2076112, 53.4893964]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Boberg", "Lohbrügge", "Bergedorf", "(Wentorf)", "(Reinbek)"],
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Mümmelmannsberg"]
@@ -73,7 +73,7 @@
     "_comment": "Last check: 2018-07-03",
     "relation_id": 229823,
     "color": "#9d2928",
-    "markers": [[53.48922, 10.20695]],
+    "markers": [[10.2062839, 53.4889386]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Hammerbrook", "Rothenburgsort", "Billbrook", "Billwerder-Moorfleet", "Mittlerer Landweg", "Neuallermöhe", "Nettelnburg", "Bergedorf", "(Wentorf)", "(Reinbek)"]
     ]
@@ -81,7 +81,7 @@
   "10": {
     "relation_id": 231965,
     "color": "#552976",
-    "markers": [[53.47415, 9.85377]],
+    "markers": [[9.85377, 53.47415]],
     "places": [
       ["Rathaus", "HafenCity", "Veddel", "Kirchdorf", "Alte Harburger Elbbrücke", "Binnenhafen", "Neuwiedenthal", "Neugraben", "Fischbek", "(Neu Wulmstorf)"]
     ]
@@ -89,7 +89,7 @@
   "11": {
     "relation_id": 233959,
     "color": "#00a0e2",
-    "markers": [[53.45705, 9.94492], [53.52167, 10.01471]],
+    "markers": [[9.94492, 53.45705], [10.01471, 53.52167]],
     "_comment": "Last check: 2018-06-23",
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Bahnhof Harburg", "Harburg", "TUHH", "Heimfeld", "Eißendorf", "(Rosengarten)"],
@@ -99,7 +99,7 @@
   "12": {
     "relation_id": 2238410,
     "color": "#ed6706",
-    "markers": [[53.54900, 9.93626]],
+    "markers": [[9.9643668, 53.5464822]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Fischmarkt", "Altona"]
     ]
@@ -107,7 +107,7 @@
   "13": {
     "relation_id": 2238764,
     "color": "#f28801",
-    "markers": [[53.55033, 9.93620], [53.55557, 10.04046]],
+    "markers": [[9.9407869, 53.5564436], [10.04046, 53.55557]],
     "_comment": "Innere Ringroute",
     "places": [
       ["Altona", "Eimsbüttel", "Hoheluft", "Eppendorf", "Winterhude", "Mühlenkamp", "Barmbek-Süd", "Auenviertel", "Eilbek", "Borgfelde"]
@@ -116,7 +116,7 @@
   "14": {
     "relation_id": 8349004,
     "color": "#fdb801",
-    "markers": [[53.55818, 9.88207], [53.53746, 10.10794]],
+    "markers": [[9.88207, 53.55818], [10.10794, 53.53746], [10.052352, 53.6464426]],
     "_comment": "Äußere Ringroute",
     "places": [
       ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "Jenfeld", "Öjendorfer Park", "Billstedt"],

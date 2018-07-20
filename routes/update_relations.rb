@@ -3,14 +3,14 @@
 # required: /usr/bin/ogr2ogr from package gdal-bin
 # sudo apt install gdal-bin jq
 
-require "open-uri"
-require "json"
-require "fileutils"
 require "base64"
+require "fileutils"
+require "json"
+require "open-uri"
 require "parallel"
-require_relative "route"
-require_relative "relation"
 require_relative "geojson"
+require_relative "relation"
+require_relative "route"
 
 Dir.chdir(__dir__)
 
@@ -26,8 +26,10 @@ def update!(routes)
   geojsons = routes.flat_map do |route|
     route.to_geojson(collisions)
   end
-
   File.write("geo_tmp/routes.geojson", GeoJSON.join(geojsons).to_json)
+
+  markers = routes.flat_map(&:named_markers)
+  File.write("geo_tmp/markers.json", markers.to_json)
 end
 
 def place_to_nominatim_query(place)

@@ -4,9 +4,10 @@
 # route = Route.new("1", routes["1"])
 # File.write("icon/wtf.svg", route.to_svg)
 
-require_relative "svg_pather"
-require_relative "relation"
 require_relative "geojson"
+require_relative "markers"
+require_relative "relation"
+require_relative "svg_pather"
 
 
 class Route
@@ -31,9 +32,12 @@ class Route
   end
 
   def markers
-    parsed_json["markers"].map do |mark|
-      {lat: mark[0], lon: mark[1]}
-    end.freeze
+    m = Markers.new(markers: @parsed_json["markers"].freeze, relation: relation)
+    m.snapped
+  end
+
+  def named_markers
+    markers.map { |m| m << name }
   end
 
   def places

@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import markers from '../routes/geo/markers.json';
 
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
 const rathausmarktCoord = [9.993148, 53.550974];
@@ -142,33 +143,59 @@ const routesFromEvt = (e) => {
   return map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
 };
 
+const renderIcons = () => {
+  markers.forEach(function(marker) {
+    const [lon, lat, name] = marker;
+    let el = document.createElement('div');
+    el.className = `icon icon${name}`;
+    el.innerText = name;
+    el.addEventListener("mousemove", (e) => {
+      e.stopPropagation();
+      handleRouteHover(name)
+    });
+    el.addEventListener("click", () => handleRouteClick(name));
+
+    // keep size in sync with base.scss!
+    new mapboxgl.Marker(el, {offset: [0, 5]})
+      .setLngLat([lon, lat])
+      .addTo(map);
+  });
+};
+
+const getName = (evtOrName) => {
+  if(typeof evtOrName === "string") return evtOrName;
+  const routes = routesFromEvt(evtOrName);
+  return routes.length ? routes[0].properties.name : null;
+}
+
+const handleRouteHover = (evtOrName) => {
+  const name = getName(evtOrName);
+  map.getCanvas().style.cursor = name ? 'pointer' : '';
+
+  if(!name) return clearTimeout(hoverTimeout);
+
+  if(name != hoverRoute) clearTimeout(hoverTimeout);
+  hoverRoute = name;
+
+  hoverTimeout = setTimeout(() => {
+    moveListeners.forEach((f) => f(name));
+  }, 200);
+}
+
+const handleRouteClick = (evtOrName) => {
+  clearTimeout(hoverTimeout);
+  const name = getName(evtOrName);
+  if(name) clickListeners.forEach((f) => f(name));
+}
+
 let hoverTimeout = null;
 let hoverRoute = null;
 
 map.on('style.load', () => {
   addRouteSource();
   renderRoutes();
+  renderIcons();
 
-  map.on('mousemove', (e) => {
-    var routes = routesFromEvt(e);
-    map.getCanvas().style.cursor = routes.length ? 'pointer' : '';
-
-    if(!routes.length) return clearTimeout(hoverTimeout);
-    if(routes[0].properties.name != hoverRoute) clearTimeout(hoverTimeout);
-    hoverRoute = routes[0].properties.name;
-
-    hoverTimeout = setTimeout(() => {
-      moveListeners.forEach(function(f) {
-        f(routes[0].properties);
-      });
-    }, 100);
-  });
-
-  map.on('click', (e) => {
-    clearTimeout(hoverTimeout);
-    var routes = routesFromEvt(e);
-    clickListeners.forEach(function(f) {
-      f(routes[0].properties);
-    });
-  });
+  map.on('mousemove', handleRouteHover);
+  map.on('click', handleRouteClick);
 });
