@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import markers from '../routes/geo/markers.json';
+import { readFromHash } from './state';
 
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
 const rathausmarktCoord = [9.993148, 53.550974];
@@ -32,12 +33,13 @@ const collisionOffsets = [
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 
+const inital = readFromHash();
+
 export const map = new mapboxgl.Map({
     container: 'map',
-    hash: true, // TODO add mapillary image?
     maxBounds: hamburgBounds,
-    center: rathausmarktCoord,
-    zoom: 10,
+    center: [inital.lon, inital.lat],
+    zoom: inital.zoom,
     minZoom: 10,
     maxZoom: 19,
     style: 'mapbox://styles/breunigs/cjjhfyliv5v202rl6cfxsh458',
@@ -46,13 +48,13 @@ export const map = new mapboxgl.Map({
 });
 
 let moveListeners = [];
-const addMoveListener = (f) => {
-  moveListeners.push(f);
+const addMoveListener = (...funcs) => {
+  funcs.forEach(f => moveListeners.push(f));
 }
 
 let clickListeners = [];
-const addClickListener = (f) => {
-  clickListeners.push(f);
+const addClickListener = (...funcs) => {
+  funcs.forEach(f => clickListeners.push(f));
 }
 
 export { addMoveListener, addClickListener };

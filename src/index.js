@@ -1,25 +1,16 @@
 import "../base.scss";
 
 import { map, addMoveListener, addClickListener } from "./map";
+import { mlyViewer } from "./images";
+import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
-// import { leafletTextPath } from "./leaflet.textpath";
-// import { map, init as initRaster } from "./raster";
-// import { mapillary } from "./mapillary";
-// import { leafletHash } from "./leaflet.hash";
-// import { qualityExport } from "./quality";
+import State from "./state";
 
-// initRaster();
-// const hash = L.hash(map);
+const state = new State(map, mlyViewer, showRoute);
 
-const showRoute = (routeName) => {
-  for(let el of document.querySelectorAll(".desc")) {
-    el.style.display = 'none';
-  }
-  document.getElementById(`desc${routeName}`).style.display = 'block';
-};
+addMoveListener(showRoute, state.routeSetter());
+addClickListener(showRoute, state.routeSetter());
 
-addMoveListener(showRoute);
-addClickListener(showRoute);
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
   el.addEventListener('click', evt => {
@@ -34,3 +25,5 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
     showRoute(routeName);
   });
 }
+
+state.restore();
