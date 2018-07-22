@@ -57,7 +57,6 @@ const addClickListener = (...funcs) => {
   funcs.forEach(f => clickListeners.push(f));
 }
 
-export { addMoveListener, addClickListener };
 
 const addRouteSource = () => {
   map.addSource(`source-routes`, {
@@ -164,6 +163,60 @@ const renderIcons = () => {
   });
 };
 
+const genDiv = (id) => {
+  const el = document.createElement('div');
+  if(id) el.id = id;
+  return el;
+}
+
+let indicator = null
+const renderIndicator = (lon, lat, bearing) => {
+  const lngLat = new mapboxgl.LngLat(lon, lat);
+
+  if(!indicator) {
+    const rotated = genDiv('indicator-rotate');
+    rotated.appendChild(genDiv('indicator-dir'));
+    rotated.appendChild(genDiv('indicator-loc'));
+    const el = genDiv('indicator');
+    el.appendChild(rotated);
+    indicator = new mapboxgl.Marker(el)
+      .setLngLat(lngLat)
+      .addTo(map);
+  }
+
+  document.getElementById('indicator-rotate').style.transform = `rotate(${bearing}deg)`;
+  indicator.setLngLat(lngLat);
+
+  moveTo(lngLat);
+}
+
+const moveTo = (lngLat) => {
+  const indiRect = indicator.getElement().getBoundingClientRect();
+  const indiPos = {
+    x: indiRect.left + indiRect.width / 2,
+    y: indiRect.top + indiRect.height / 2
+  };
+
+  const mapRect = document.getElementById('map').getBoundingClientRect();
+  const padding = 10;
+
+  const cmp = (padding) => {
+    return indiPos.y <= mapRect.top    + padding
+        || indiPos.y >= mapRect.bottom - padding
+        || indiPos.x <= mapRect.left   + padding
+        || indiPos.x >= mapRect.right  - padding;
+  }
+
+  // add padding in pixels around the viewport
+  const outsideViewport = cmp(10);
+  const veryFarOutside = cmp(-200);
+  if(outsideViewport && veryFarOutside) {
+    map.flyTo({center: lngLat});
+  } else if (outsideViewport) {
+    map.panTo(lngLat);
+  }
+}
+
 const getName = (evtOrName) => {
   if(typeof evtOrName === "string") return evtOrName;
   const routes = routesFromEvt(evtOrName);
@@ -201,3 +254,5 @@ map.on('style.load', () => {
   map.on('mousemove', handleRouteHover);
   map.on('click', handleRouteClick);
 });
+
+export { addMoveListener, addClickListener, renderIndicator };

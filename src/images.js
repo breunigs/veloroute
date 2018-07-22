@@ -19,4 +19,13 @@ const viewer = new Viewer("mly", API_KEY, readFromHash().image, {
 
 window.addEventListener("resize", () => viewer.resize());
 
-export { viewer as mlyViewer };
+let indicatorListeners = [];
+const addIndicatorListener = (...funcs) => {
+  funcs.forEach(f => indicatorListeners.push(f));
+}
+
+viewer.on(Viewer.nodechanged, function (node) {
+  indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
+});
+
+export { viewer as mlyViewer, addIndicatorListener };

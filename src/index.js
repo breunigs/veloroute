@@ -1,15 +1,16 @@
 import "../base.scss";
 
-import { map, addMoveListener, addClickListener } from "./map";
-import { mlyViewer } from "./images";
+import { map, addMoveListener, addClickListener, renderIndicator } from "./map";
+import { mlyViewer, addIndicatorListener } from "./images";
 import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
 
-const state = new State(map, mlyViewer, showRoute);
+const state = new State(map);
 
 addMoveListener(showRoute, state.routeSetter());
 addClickListener(showRoute, state.routeSetter());
+addIndicatorListener(renderIndicator, state.imageSetter());
 
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
@@ -26,4 +27,4 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
   });
 }
 
-state.restore();
+showRoute(state.selectedRoute());

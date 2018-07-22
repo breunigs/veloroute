@@ -8,25 +8,6 @@ const START_ZOOM = 10;
 const START_IMAGE = 'c4B6txFX6Xgza8iWNFzSYw';
 const START_ROUTE = null;
 
-  // console.log("Reacting to new Mapillary Image: ", node.key);
-  // // this is the corrected value from Mapillary
-  // let latLon = [node.latLon.lat, node.latLon.lon];
-  // // original value as given by the GPS
-  // // let originalLatLon = [node.originalLatLon.lat, node.originalLatLon.lon];
-  // mly.mapOwnPositionMarker.setLatLng(latLon);
-  // if (!map.hasLayer(mly.mapOwnPositionMarker)) {
-  //   mly.mapOwnPositionMarker.addTo(map);
-  // }
-  // mly.currentPicture = node.key;
-
-  // // avoid changing the map on page load
-  // if (mly.isFirstNodeChange) {
-  //   mly.isFirstNodeChange = false;
-  //   return;
-  // }
-  // map.setView(latLon);
-// });
-
 const readFromHash = () => {
   const s = window.location.hash.replace('#', '').split('/');
   return {
@@ -39,19 +20,20 @@ const readFromHash = () => {
 }
 
 class State {
-  constructor(map, mlyViewer, routeShower) {
+  constructor(map) {
     this._status = readFromHash();
     console.debug("initial status", this._status);
 
     this._map = map;
-    this._viewer = mlyViewer;
-    this._routeShower = routeShower;
-
     map.on('moveend', this._setMapPosition.bind(this));
-    mlyViewer.on(Viewer.nodechanged, this._setCurrentImage.bind(this));
+
     window.addEventListener('hashchange',  () => {
       this._status = readFromHash();
     });
+  }
+
+  selectedRoute() {
+    return this._status.route;
   }
 
   _setMapPosition() {
@@ -71,8 +53,8 @@ class State {
     this._slowUpdateHash();
   }
 
-  _setCurrentImage(node) {
-    console.log(node);
+  _setCurrentImage(_lon, _lat, _bearing, key) {
+    this._status.image = key;
     this._slowUpdateHash();
   }
 
@@ -80,6 +62,10 @@ class State {
     if(!routeName) return;
     this._status.route = routeName;
     this._slowUpdateHash();
+  }
+
+  imageSetter() {
+    return this._setCurrentImage.bind(this);
   }
 
   routeSetter() {
@@ -101,14 +87,6 @@ class State {
 
   _updateHash() {
     window.history.replaceState(window.history.state, '', this._hashString());
-  }
-
-  restore() {
-    this._map.jumpTo({
-      center: [this._status.lon, this._status.lat],
-      zoom: this._status.zoom
-    });
-    if(this._status.route) this._routeShower(this._status.route);
   }
 }
 
