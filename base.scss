@@ -8,27 +8,69 @@ body {
   padding: 0;
   margin: 0;
   background: #fff;
-  font-family: Verdana, sans;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.1em;
 }
 
+$sidebar-min-width: 19em;
 #main {
   height: 100%;
+  max-width: calc(100% - $sidebar-min-width);
   width: 70%;
 }
 
 #sidebar {
-  height: 100%;
-  width: 30%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  overflow-y: scroll;
+  background: #F8F8F8;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  min-width: $sidebar-min-width;
   overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
 }
 
-#bottomright {
+#header {
+  text-align: center;
+  background: #333;
+  color: #fff;
+  height: 3.5em;
+}
+
+#controls {
+  background: #333;
+  display: flex;
+  flex-direction: row;
+  height: 1.5em;
+  line-height: 1.5em;
+  overflow: hidden;
+
+  @import "range";
+
+  input[type=button] {
+    font-size: 1em;
+    background: none;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0;
+    border-radius: 0.1em;
+
+    &:hover {
+      background: #666;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+#images {
   width: 100%;
   height: 25em;
   margin-top: auto;
@@ -121,10 +163,6 @@ a.icon:hover {
   text-align: center;
 }
 
-#quality {
-  float: right;
-}
-
 a {
   color: #0366d6;
   text-decoration: none;
@@ -133,10 +171,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-#sidebar > div:not(#bottomright) {
-  padding: 0 1em;
 }
 
 table.routing {

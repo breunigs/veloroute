@@ -140,25 +140,25 @@ const renderRoutes = () => {
   }, 'route-casing');
 };
 
-const routesFromEvt = (e) => {
-  return map.queryRenderedFeatures(e.point, { layers: ['layer-routes-casing'] });
-};
-
 const renderIcons = () => {
   markers.forEach(function(marker) {
     const [lon, lat, name] = marker;
+    const lngLat = new mapboxgl.LngLat(lon, lat);
+    const point = map.project(lngLat);
+    const eventData = {point: point, lngLat: lngLat};
+
     let el = document.createElement('div');
     el.className = `icon icon${name}`;
     el.innerText = name;
     el.addEventListener("mousemove", (e) => {
       e.stopPropagation();
-      handleRouteHover(name)
+      map.fire("mousemove", eventData);
     });
-    el.addEventListener("click", () => handleRouteClick(name));
+    el.addEventListener("click", () => map.fire("click", eventData));
 
     // keep size in sync with base.scss!
     new mapboxgl.Marker(el, {offset: [0, 5]})
-      .setLngLat([lon, lat])
+      .setLngLat(lngLat)
       .addTo(map);
   });
 };
@@ -217,30 +217,30 @@ const moveTo = (lngLat) => {
   }
 }
 
-const getName = (evtOrName) => {
-  if(typeof evtOrName === "string") return evtOrName;
-  const routes = routesFromEvt(evtOrName);
-  return routes.length ? routes[0].properties.name : null;
+const getHighlightedRoute = (evt) => {
+  const routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes-casing'] });
+  return routes.length ? routes[0] : null;
 }
 
-const handleRouteHover = (evtOrName) => {
-  const name = getName(evtOrName);
-  map.getCanvas().style.cursor = name ? 'pointer' : '';
+const handleRouteHover = (evt) => {
+  const route = getHighlightedRoute(evt);
+  map.getCanvas().style.cursor = route ? 'pointer' : '';
 
-  if(!name) return clearTimeout(hoverTimeout);
+  if(!route) return clearTimeout(hoverTimeout);
+  const name = route.properties.name;
 
   if(name != hoverRoute) clearTimeout(hoverTimeout);
   hoverRoute = name;
 
   hoverTimeout = setTimeout(() => {
-    moveListeners.forEach((f) => f(name));
+    moveListeners.forEach((f) => f(name, evt.lngLat));
   }, 200);
 }
 
-const handleRouteClick = (evtOrName) => {
+const handleRouteClick = (evt) => {
   clearTimeout(hoverTimeout);
-  const name = getName(evtOrName);
-  if(name) clickListeners.forEach((f) => f(name));
+  const route = getHighlightedRoute(evt);
+  if(route) clickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
 }
 
 let hoverTimeout = null;

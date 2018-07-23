@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-# required: /usr/bin/ogr2ogr from package gdal-bin
-# sudo apt install gdal-bin jq
-
 require "base64"
 require "fileutils"
 require "json"
-require "open-uri"
 require "parallel"
+require "webcache"
+
+CACHE = WebCache.new.tap { |c| c.life = 24*60*60 }
+
 require_relative "geojson"
 require_relative "relation"
 require_relative "route"
@@ -20,7 +20,7 @@ REPLACE_NAMES = {
   'Langenhorn' => 'Langenhorn Markt',
 }
 
-def update!(routes)
+def build_map_geojsons(routes)
   collisions = Relation.build_collision_lookup(routes.map(&:relation))
 
   geojsons = routes.flat_map do |route|
@@ -38,7 +38,7 @@ def place_to_nominatim_query(place)
   search_name + ' Hamburg'
 end
 
-def resolve_names!(routes)
+def resolve_names(routes)
   places = routes.flat_map(&:places_with_dir).uniq
 
   results = Parallel.map(places, in_processes: 4) do |place|
@@ -47,7 +47,7 @@ def resolve_names!(routes)
     url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
     puts "Querying: #{url}"
 
-    resp = JSON.parse(open(url).string)
+    resp = JSON.parse(CACHE.get(url).to_s)
     importance = resp.map { |e| e["importance"] }.max
 
     # combine bboxes with the same importance
@@ -67,7 +67,7 @@ def resolve_names!(routes)
   File.write("geo_tmp/places.json", results.to_json)
 end
 
-def render_route!(routes)
+def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
   routes.each do |route|
@@ -87,6 +87,13 @@ def render_route!(routes)
   end
 end
 
+def build_image_lists(routes)
+  images = routes.map do |route|
+    [route.name, route.to_image_export]
+  end.to_h.to_json
+  File.write("geo_tmp/images.json", images)
+end
+
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
@@ -97,9 +104,10 @@ routes = JSON.parse(File.read("../routes.json"))
 routes = routes.map { |route, details| Route.new(route, details) }
 
 threads = []
-threads << Thread.new { update!(routes) }
-threads << Thread.new { resolve_names!(routes) }
-threads << Thread.new { render_route!(routes) }
+threads << Thread.new { build_map_geojsons(routes) }
+threads << Thread.new { resolve_names(routes) }
+threads << Thread.new { render_abstract_routes(routes) }
+threads << Thread.new { build_image_lists(routes) }
 threads.each(&:join)
 
 # swap old for new

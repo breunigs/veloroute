@@ -22,6 +22,14 @@ class GeoJSON
     }
   end
 
+  def self.round_coords(arrOfCords)
+    arrOfCords.map do |coords|
+      coords.map do |coord|
+        coord.map { |cc| cc.round(COORDINATE_PRECISION) }
+      end
+    end
+  end
+
   def initialize(route:, relation:, collisions: {})
     @route = route
     @relation = relation
@@ -66,7 +74,7 @@ class GeoJSON
       properties: {color: route.color, name: route.name}.merge(properties),
       geometry: {
         type: "MultiLineString",
-        coordinates: round_coords(arrOfCords)
+        coordinates: self.class.round_coords(arrOfCords)
       }
     }
   end
@@ -75,13 +83,5 @@ class GeoJSON
     concatted = []
     arrOfCoords = ways.map { |w| w[:coords] }.freeze
     Joiner.join(arrOfCoords)
-  end
-
-  def round_coords(arrOfCords)
-    arrOfCords.map do |coords|
-      coords.map do |coord|
-        coord.map { |cc| cc.round(COORDINATE_PRECISION) }
-      end
-    end
   end
 end

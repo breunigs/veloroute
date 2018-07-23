@@ -1,15 +1,15 @@
 import "../base.scss";
 
 import { map, addMoveListener, addClickListener, renderIndicator } from "./map";
-import { mlyViewer, addIndicatorListener } from "./images";
+import { mlyViewer, addIndicatorListener, showCloseImage } from "./images";
 import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
 
 const state = new State(map);
 
-addMoveListener(showRoute, state.routeSetter());
-addClickListener(showRoute, state.routeSetter());
+// addMoveListener(showRoute, state.routeSetter());
+addClickListener(showRoute, showCloseImage, state.routeSetter());
 addIndicatorListener(renderIndicator, state.imageSetter());
 
 

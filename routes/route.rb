@@ -5,6 +5,7 @@
 # File.write("icon/wtf.svg", route.to_svg)
 
 require_relative "geojson"
+require_relative "mapillary"
 require_relative "markers"
 require_relative "relation"
 require_relative "svg_pather"
@@ -73,6 +74,18 @@ class Route
     main_route.zip(secondary_route).map do |row|
       row.first == row.last ? [row.first, nil] : row
     end
+  end
+
+  def stitched_sequences
+    @stitched_sequences ||= @parsed_json["images"]&.map do |name, data|
+      [name, Mapillary::StitchedSequence.new(data)]
+    end.to_h || {}
+  end
+
+  def to_image_export
+    stitched_sequences.map do |name, ss|
+      [name, ss.to_json_export]
+    end.to_h
   end
 
   def to_svg(place2route = {})

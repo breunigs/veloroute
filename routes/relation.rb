@@ -1,6 +1,8 @@
-require "open-uri"
 require "nokogiri"
 require "json"
+require "webcache"
+
+CACHE ||= WebCache.new
 
 class Relation
   INTERESTING_KEYS = %w[cycleway cycleway:both cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:right cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway lit maxspeed oneway smoothness surface width].freeze
@@ -23,7 +25,7 @@ class Relation
   def initialize(id)
     @id = id
     @xml_thread = Thread.new do
-      x = ::Nokogiri::HTML(open(url))
+      x = ::Nokogiri::HTML(CACHE.get(url).to_s)
       puts "XML loaded: #{url}"
       x
     end
