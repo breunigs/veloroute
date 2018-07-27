@@ -125,7 +125,6 @@ const changeDirection = () => {
   const idx = images().keys.indexOf(status.image);
   const loc = images().loc[idx];
   const lngLat = {lng: loc[0], lat: loc[1]};
-  status.direction = status.direction === "outward" ? "inward" : "outward";
   showCloseImage(status.routeName, lngLat, true);
 }
 
@@ -143,6 +142,9 @@ const playShowNextImage = () => {
 
 const stopPlayback = () => {
   clearTimeout(playTimeout);
+  // prevent Mapillary from showing the next image, in case it is currently
+  // loading one
+  viewer.moveToKey(status.image);
   playTimeout = null;
   playstop.value = '▶';
 }
@@ -154,30 +156,49 @@ const handlePlayStop = () => {
 }
 
 const cutOffDist = 0.0001;
-const showCloseImage = (routeName, lngLat, isOneway) => {
-  stopPlayback();
-  status.routeName = routeName;
+const closestImageIndex = (images, lngLat) => {
   let distSoFar = Infinity;
   let candidateIdx = null;
-  let candidateBranch = null;
-  outer:
+
+  for(const idx in images.loc) {
+    const img = images.loc[idx];
+    const newDist = distEuklid(lngLat.lng, lngLat.lat, img[0], img[1]);
+    if(newDist >= distSoFar) continue;
+    distSoFar = newDist;
+    candidateIdx = idx;
+    if(distSoFar <= cutOffDist) break;
+  }
+  return { idx: candidateIdx, dist: distSoFar };
+}
+
+const showCloseImage = (routeName, lngLat, ignoreCurrent) => {
+  stopPlayback();
+  status.routeName = routeName;
+
+  const current = `${status.direction}_${status.branch}`;
+  let distances = {};
+
   for(const branch in route()) {
-    // try to keep direction if feasible
-    if(!isOneway && branch.indexOf(status.direction) === -1) continue;
-    console.debug(`Searching for close image in ${branch}`);
-    const images = route()[branch];
-    for(const idx in images.loc) {
-      const img = images.loc[idx];
-      const newDist = distEuklid(lngLat.lng, lngLat.lat, img[0], img[1]);
-      if(newDist >= distSoFar) continue;
-      distSoFar = newDist;
-      candidateIdx = idx;
-      candidateBranch = branch;
-      if(distSoFar <= cutOffDist) break outer;
-    }
+    if(ignoreCurrent && branch === current) continue;
+    distances[branch] = closestImageIndex(route()[branch], lngLat);
   }
 
-  setActiveRoute(routeName, candidateBranch, candidateIdx);
+  console.debug("Candidates for close images: ", distances)
+
+  if(current in distances && distances[current].dist <= cutOffDist)
+    return setActiveRoute(routeName, current, distances[current].idx);
+
+  let closestBranch = null;
+  let closestIdx = null;
+  let distSoFar = Infinity;
+  for(const branch in distances) {
+    if(distances[branch].dist >= distSoFar) continue;
+    closestBranch = branch;
+    closestIdx = distances[branch].idx;
+    distSoFar = distances[branch].dist;
+  }
+
+  return setActiveRoute(routeName, closestBranch, closestIdx);
 }
 
 
