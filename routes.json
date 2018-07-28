@@ -68,8 +68,27 @@
     "color": "#b2211d",
     "markers": [[9.89895, 53.60570]],
     "places": [
-      ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "Halstenbek"]
-    ]
+      ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "(Halstenbek)"]
+    ],
+    "images": {
+      "outward_eidelstedt": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "lDvARJd-fbwgbl3VbrKerQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "FoJQv1t0uHdv-Sh6e3JM-g", "to": "71-Xy3UCJcTHlWPjUHuTmw" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
+        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "F9zbbJBqRwFbl4PmlVEl1w", "note": "missing images start here" },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "GOgyoFzOY0jZ9vK9RDJtPQ", "to": "kTZdGlb8Mrqlb5N3xCShmw" },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "JMECTW_Mdy5ObEnukwtTtw", "to": "QXKbBN-9komlDR482q0LXQ" }
+      ],
+      "inward_eidelstedt": [
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "yZF9kvnEWqg1T3Xq2NLkCg", "to": "h510f55JCMpDQSyTp9_STg", "note": "Missing images before here. Missing images after here." },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "mGODrJxPv1dzUrjBxIRzmw", "to": "mMUTH-weEEFPcOPJXhpTRw" },
+        { "seq": "Pf1WuB8qRmydht23hyMv7w", "from": "1QYwwAlKpZajZvSYYzaAXg", "to": "1QYwwAlKpZajZvSYYzaAXg" },
+        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "YI-OAazchzgiH3OMo2kaQw", "to": "bJkOnxBhKmBotcLBJDjhCA" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "y6p9J2O71kdMPg0iI9AWAA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ItL0COdKIGtqoSWXW-sh3g", "to": "EwLt6SQvOJqNCeMHUOGTRg" }
+      ]
+    }
   },
   "3":  {
     "relation_id": 194840,
@@ -77,7 +96,25 @@
     "markers": [[9.95038, 53.64035]],
     "places": [
       ["Rathaus", "Gänsemarkt", "Bahnhof Dammtor", "Rotherbaum", "Hoheluft", "Lokstedt", "Niendorf Markt", "Niendorf Nord"]
-    ]
+    ],
+    "images": {
+      "outward_niendorf": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "4z9G8fDJsUrlBTqkv3TrYg", "to": "sKyuI4EICdEMSLdaR5cN3A"},
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "qGBZO9DWJpk2Bh58WfXW3g", "to": "my0TtM5rtzDwPR2ZjM03Xg"},
+        { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "2CetLYdoeFCN6rKfq95wXg", "to": "fOTK75tSbG9KJPM8t-qn2Q"},
+        { "seq": "ZcXeMcsrDTbyzj3uTABD9A", "from": "mZ5P4TSlmnp_-_BkoRu7wQ", "to": "BVBcPNVwMgVxYTBZO-TBig"},
+        { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "Tim482UEEE--fuSAMArihw", "to": "zXquw55F0T8-dLHxfFYdWQ"}
+      ],
+      "inward_niendorf": [
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "AxG-1fliz1Qv1Z6Yn8CZBg", "to": "5H5M2Mt3RxZ47pV5hCN2vQ"},
+        { "seq": "nQUpYstYNOy0ryHBblhVlQ", "from": "VII9jUcwLd-72iSTXQUnBQ", "to": "A5btE19E5rQRJHB4ldGvwA"},
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "UW2fBwrRtjUqIbVbCx7Vtg", "note": "missing img after: https://www.komoot.de/tour/40332412"},
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "j7XuEo5sjhxBJ6-7HepNng", "to": "6ghcIpCg4gPU7mxN44aQYQ"},
+        { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "nzlrV75tuzXOQaxDsVWcRw", "to": "U_XX5YBjrcGb83ZZ08wg5w"},
+        { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "QE-ZuE6MEhIn9HGSaYVB3A", "to": "3qUzCXxmF7kATAJppzmMCA"},
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "cVsGgvzUmnFYGyntVtlhEQ", "to": "iRql1hCMZkGYu-AMQMqGqw"}
+      ]
+    }
   },
   "4":  {
     "_comment": "Last check: 2018-07-01",
