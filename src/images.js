@@ -25,6 +25,7 @@ const images = () => {
   return r ? r[`${status.direction}_${status.branch}`] : null;
 }
 
+let alertShown = false;
 const handleSliderMove = (avoidListenerUpdates) => {
   console.debug("Reacting to slider move. Current status: ", status);
   const pos = slider.value;
@@ -35,7 +36,10 @@ const handleSliderMove = (avoidListenerUpdates) => {
     prev.disabled = true;
     next.disabled = true;
     playstop.disabled = true;
-    alert("Tut mir leid, für diesen Teil gibt es noch keine Bilder.")
+    if(!alertShown) {
+      alert("Für diesen Teil sind noch keine Bilder eingepflegt. Bitte noch etwas Geduld.\n\nDiese Nachricht wird nicht nochmal angezeigt.")
+      alertShown = true;
+    }
     return;
   }
 
