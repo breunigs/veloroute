@@ -18,15 +18,45 @@
   </div>
   <div id="sidebar">
     <div id="header">
-      <h2>Velorouten Hamburg</h2>
+      <h2>veloroute.hamburg</h2>
     </div>
 
     <div id="routes">
+      <div id="info">
+        <h3>Einleitung</h3>
+        <ul>
+          <li>Klicke auf eine Route um anzufangen</li>
+          <li>Mach Dich mit der Route vertraut</li>
+          <li>Fahr Rad!</li>
+        </ul>
+
+        <h3>Helfen</h3>
+        <ul>
+          <li>Melde (abgeschlossene) Umbauten</li>
+          <li>Mach aktuelle Bilder mit <a href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid. Siehe auch: <a href="https://www.komoot.de/user/100869689884/tours?sport=all&type=planned&order=date&descending=true&search=Fehlst%C3%BCck">Bekannte Fehlstellen</a>.</li>
+          <li>Verbessere die <a href="https://learnosm.org/de/beginner/">OpenStreetMap</a></li>
+        </ul>
+
+        <h3>Kontakt</h3>
+        <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br/><a href="mailto:stefan-veloroute@breunig.xyz">stefan-veloroute@breunig.xyz</a></p>
+
+        <h3>Hintergrund</h3>
+        <p>Hamburg baut aktuell die Radwege aus, <a href="https://www.hamburg.de/radverkehr/300372/velorouten/">stellt aber nur grobe Infos bereit</a>. Da die Schilder noch fehlen, ist dies gerade an Kreuzungen schwierig. Diese Seite ist ein Versuch neuen Radlern in Hamburg einen Einstieg zu bieten.</p>
+
+        <p>Nebenbei kann auch der Ausbaustatus der Velorouten beurteilt werden. Beachte, das die Einschätzung automatisch erfolgt und ggf. falsch ist.</p>
+
+        <p>Die Daten werden in der OpenStreetMap gepflegt, d.h. auch die meisten „Outdoor Navis“ sollten die Velorouten kennen. Der <a href="https://github.com/breunigs/veloroute">Quelltext liegt auf GitHub</a>.</p>
+
+        <small>
+          <a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a>
+        </small>
+      </div>
+
       @require('routes/geo/path_render.html')
     </div>
 
     <div id="images">
-      <div id="controls">
+      <div id="controls" class="hidden">
         <input type="button" id="swap" value="⇱" title="Bild / Karte vergrößern">
         <input type="button" id="playstop" value="▶" title="Abspielen / Pause">
         <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">

@@ -8,6 +8,7 @@ const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 const direction = document.getElementById("direction");
 const playstop = document.getElementById("playstop");
+const controls = document.getElementById("controls");
 
 let status = {
   routeName: readFromHash().route,
@@ -69,6 +70,7 @@ const setActiveRoute = (routeName, branch, imgIndex) => {
     slider.value = 0;
     slider.disabled = true;
     handleSliderMove();
+    controls.classList.add("hidden");
     return;
   }
 
@@ -87,6 +89,7 @@ const setActiveRoute = (routeName, branch, imgIndex) => {
   slider.disabled = false;
   slider.setAttribute("max", images().keys.length - 1);
   slider.value = imgIndex || 0;
+  controls.classList.remove("hidden");
   handleSliderMove();
 }
 
@@ -100,9 +103,8 @@ const restoreBranch = () => {
 restoreBranch();
 
 const viewer = new Viewer("mly", API_KEY, status.image, {
-  // baseImageSize: ImageSize.Size320,
   component: {
-    attribution: false,
+    attribution: true,
     bearing: false,
     cache: {
       depth: {
@@ -120,8 +122,6 @@ const viewer = new Viewer("mly", API_KEY, status.image, {
     zoom: false,
   }
 });
-console.log(viewer)
-
 
 let indicatorListeners = [];
 const addIndicatorListener = (...funcs) => {
@@ -164,6 +164,13 @@ const handlePlayStop = () => {
   playShowNextImage();
 }
 
+const handleEsc = (evt) => {
+  evt = evt || window.event;
+  let isEscape = "key" in evt && (evt.key == "Escape" || evt.key == "Esc");
+  isEscape = isEscape || evt.keyCode == 27;
+  if(isEscape) stopPlayback();
+}
+
 const cutOffDist = 0.0001;
 const closestImageIndex = (images, lngLat) => {
   let distSoFar = Infinity;
@@ -180,9 +187,16 @@ const closestImageIndex = (images, lngLat) => {
   return { idx: candidateIdx, dist: distSoFar };
 }
 
+let prevLngLat = null;
 const showCloseImage = (routeName, lngLat, ignoreCurrent) => {
   stopPlayback();
   status.routeName = routeName;
+
+  if(prevLngLat && prevLngLat.lng === lngLat.lng && prevLngLat.lat === lngLat.lat) {
+    console.debug("Previous lngLat the same as current, attempting to switch direction instead.");
+    return changeDirection();
+  }
+  prevLngLat = lngLat;
 
   const current = `${status.direction}_${status.branch}`;
   let distances = {};
@@ -258,5 +272,7 @@ prev.addEventListener("click", () => { stopPlayback(); stepSlider(-1) });
 direction.addEventListener("click", changeDirection);
 slider.addEventListener("input", () => handleSliderMove(false));
 playstop.addEventListener("click", handlePlayStop);
+document.addEventListener("keydown", handleEsc);
+
 
 export { viewer as mlyViewer, addIndicatorListener, showCloseImage };

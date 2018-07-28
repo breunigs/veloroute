@@ -47,11 +47,6 @@ export const map = new mapboxgl.Map({
     dragRotate: false,
 });
 
-let moveListeners = [];
-const addMoveListener = (...funcs) => {
-  funcs.forEach(f => moveListeners.push(f));
-}
-
 let clickListeners = [];
 const addClickListener = (...funcs) => {
   funcs.forEach(f => clickListeners.push(f));
@@ -145,16 +140,14 @@ const renderIcons = () => {
     const [lon, lat, name] = marker;
     const lngLat = new mapboxgl.LngLat(lon, lat);
     const point = map.project(lngLat);
-    const eventData = {point: point, lngLat: lngLat};
 
     let el = document.createElement('div');
     el.className = `icon icon${name}`;
     el.innerText = name;
-    el.addEventListener("mousemove", (e) => {
-      e.stopPropagation();
-      map.fire("mousemove", eventData);
+    el.addEventListener("click", (e) => {
+      const eventData = {point: point, lngLat: lngLat, originalEvent: e};
+      map.fire("click", eventData)
     });
-    el.addEventListener("click", () => map.fire("click", eventData));
 
     // keep size in sync with base.scss!
     new mapboxgl.Marker(el, {offset: [0, 5]})
@@ -225,26 +218,12 @@ const getHighlightedRoute = (evt) => {
 const handleRouteHover = (evt) => {
   const route = getHighlightedRoute(evt);
   map.getCanvas().style.cursor = route ? 'pointer' : '';
-
-  if(!route) return clearTimeout(hoverTimeout);
-  const name = route.properties.name;
-
-  if(name != hoverRoute) clearTimeout(hoverTimeout);
-  hoverRoute = name;
-
-  hoverTimeout = setTimeout(() => {
-    moveListeners.forEach((f) => f(name, evt.lngLat));
-  }, 200);
 }
 
 const handleRouteClick = (evt) => {
-  clearTimeout(hoverTimeout);
   const route = getHighlightedRoute(evt);
   if(route) clickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
 }
-
-let hoverTimeout = null;
-let hoverRoute = null;
 
 map.on('style.load', () => {
   addRouteSource();
@@ -255,4 +234,4 @@ map.on('style.load', () => {
   map.on('click', handleRouteClick);
 });
 
-export { addMoveListener, addClickListener, renderIndicator };
+export { addClickListener, renderIndicator };

@@ -72,6 +72,11 @@ class State {
     return this._setCurrentRoute.bind(this);
   }
 
+  resetRoute() {
+    this._status.route = null;
+    this._slowUpdateHash();
+  }
+
   _slowUpdateHash() {
     if(updateTimer) return;
     updateTimer = setTimeout(() => {
