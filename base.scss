@@ -103,6 +103,12 @@ $control-size: 2em;
     &:hover {
       background: #666;
     }
+
+    &:disabled {
+      color: #888;
+      background: transparent;
+      cursor: default;
+    }
   }
 }
 

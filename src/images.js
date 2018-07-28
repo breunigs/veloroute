@@ -42,15 +42,13 @@ const handleSliderMove = (avoidListenerUpdates) => {
   const key = i.keys[pos];
   const loc = i.loc[pos];
 
-  // console.debug("Reacting to slider move: ", pos, " of ", images().keys.length, key, loc);
+  prev.disabled = pos == 0;
+  next.disabled = pos == i.keys.length-1;
+  playstop.disabled = pos == i.keys.length-1;
 
   if(status.image === key) return;
   status.image = key;
   triggerImageUpdate();
-
-  prev.disabled = pos == 0;
-  next.disabled = pos == i.keys.length-1;
-  playstop.disabled = pos == i.keys.length-1;
 
   if(!avoidListenerUpdates) {
     // the data available here is the raw input data, not the corrected ones from
