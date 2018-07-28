@@ -139,14 +139,12 @@ const renderIcons = () => {
   markers.forEach(function(marker) {
     const [lon, lat, name] = marker;
     const lngLat = new mapboxgl.LngLat(lon, lat);
-    const point = map.project(lngLat);
 
     let el = document.createElement('div');
     el.className = `icon icon${name}`;
     el.innerText = name;
     el.addEventListener("click", (e) => {
-      const eventData = {point: point, lngLat: lngLat, originalEvent: e};
-      map.fire("click", eventData)
+      clickListeners.forEach((f) => f(name, lngLat));
     });
 
     // keep size in sync with base.scss!
