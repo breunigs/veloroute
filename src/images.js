@@ -100,18 +100,27 @@ const restoreBranch = () => {
 restoreBranch();
 
 const viewer = new Viewer("mly", API_KEY, status.image, {
-  baseImageSize: ImageSize.Size320,
+  // baseImageSize: ImageSize.Size320,
   component: {
-    marker: false,
-    cache: false,
-    cover: false,
-    attribution: true,
-    zoom: false,
+    attribution: false,
     bearing: false,
+    cache: {
+      depth: {
+        pano: 0,
+        sequence: 4,
+        step: 0,
+        turn: 0
+      }
+    },
+    cover: false,
+    direction: false,
+    keyboard: false,
+    marker: false,
     sequence: false,
-    direction: false
+    zoom: false,
   }
 });
+console.log(viewer)
 
 
 let indicatorListeners = [];
@@ -137,7 +146,7 @@ let playTimeout = null;
 const playShowNextImage = () => {
   if(!updateInProgress) stepSlider(+1);
   if(slider.disabled) return;
-  playTimeout = setTimeout(playShowNextImage, 600);
+  playTimeout = setTimeout(playShowNextImage, 500);
 }
 
 const stopPlayback = () => {

@@ -28,3 +28,19 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
 }
 
 showRoute(state.selectedRoute());
+
+const swap = document.getElementById("swap");
+const swap1 = document.getElementById("swap1");
+const swap2 = document.getElementById("swap2");
+swap.addEventListener("click", () => {
+  const ch1 = swap1.childNodes[0];
+  const ch2 = swap2.childNodes[0];
+  console.log("swapping", ch1, ch2)
+
+  swap1.appendChild(ch2);
+  swap2.appendChild(ch1);
+
+  if (mlyViewer.isNavigable) mlyViewer.resize();
+  map.invalidateSize();
+});
+

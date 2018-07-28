@@ -14,7 +14,7 @@
 
 <body>
   <div id="main">
-    <div id="map"></div>
+    <div id="swap1"><div id="map"></div></div>
   </div>
   <div id="sidebar">
     <div id="header">
@@ -27,13 +27,14 @@
 
     <div id="images">
       <div id="controls">
+        <input type="button" id="swap" value="⇱" title="Bild / Karte vergrößern">
         <input type="button" id="playstop" value="▶" title="Abspielen / Pause">
         <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">
         <input type="button" id="prev" value="〈" title="Vorheriges Bild">
         <input type="button" id="next" value="〉" title="Nächstes Bild">
         <input type="button" id="direction" value="⇆" title="Fahrtrichtung ändern">
       </div>
-      <div id="mly" class="mapillary"></div>
+      <div id="swap2"><div id="mly" class="mapillary"></div></div>
     </div>
   </div>
 </body>

@@ -39,12 +39,13 @@ $sidebar-min-width: 19em;
   height: 3.5em;
 }
 
+$control-size: 2em;
 #controls {
   background: #333;
   display: flex;
   flex-direction: row;
-  height: 1.5em;
-  line-height: 1.5em;
+  height: $control-size;
+  line-height: $control-size;
   overflow: hidden;
 
   @import "range";
@@ -55,17 +56,13 @@ $sidebar-min-width: 19em;
     border: 0;
     color: #fff;
     cursor: pointer;
-    width: 1.5em;
-    height: 1.5em;
+    width: $control-size;
+    height: $control-size;
     padding: 0;
     border-radius: 0.1em;
 
     &:hover {
       background: #666;
-    }
-
-    &:focus {
-      outline: none;
     }
   }
 }
@@ -130,37 +127,9 @@ a.icon:hover {
 }
 @import 'routes/geo/icons';
 
-.cols {
-  display: flex;
-}
-
-.cols ol {
-  list-style-position: inside;
-  padding: 0 1em;
-}
-
-.leaflet-overlay-pane {
-  z-index: 656 !important; /* above the ones for the routes and the route markers */
-}
-
-#map,
-.mapillary {
+#map, #mly, #swap1, #swap2 {
   width: 100%;
   height: 100%;
-}
-
-#toggle,
-#quality {
-  background: #ddd;
-  border-top-right-radius: 0.1em;
-  vertical-align: middle;
-  line-height: 2em;
-  height: 2em;
-  padding: 0.1em 0.4em;
-  display: block;
-  margin-top: -2.2em;
-  width: 5em;
-  text-align: center;
 }
 
 a {
