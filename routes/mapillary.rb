@@ -1,8 +1,7 @@
 require "json"
-require "webcache"
 require_relative "geojson"
+require_relative "web"
 
-CACHE ||= WebCache.new
 
 module Mapillary
   API_URL = "https://a.mapillary.com/v3"
@@ -45,8 +44,7 @@ module Mapillary
 
     def prefetch
       sequences.map(&:url).uniq.each do |url|
-        puts "Querying: #{url}"
-        CACHE.get(url)
+        get(url)
       end
     end
 
@@ -173,15 +171,5 @@ module Mapillary
         {bearings: c_bearings, coords: c_coords}
       end
     end
-
-
-    def get(url)
-      puts "Querying: #{url}"
-      JSON.parse(CACHE.get(url).to_s)
-    rescue JSON::ParserError => e
-      warn "URL #{url} failed to parse: #{e}"
-      raise e
-    end
-
   end
 end

@@ -4,13 +4,11 @@ require "base64"
 require "fileutils"
 require "json"
 require "parallel"
-require "webcache"
-
-CACHE = WebCache.new.tap { |c| c.life = 24*60*60 }
 
 require_relative "geojson"
 require_relative "relation"
 require_relative "route"
+require_relative "web"
 
 Dir.chdir(__dir__)
 
@@ -45,9 +43,8 @@ def resolve_names(routes)
     url = "https://nominatim.openstreetmap.org/search/"
     url << URI.escape(place_to_nominatim_query(place))
     url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
-    puts "Querying: #{url}"
 
-    resp = JSON.parse(CACHE.get(url).to_s)
+    resp = get(url)
     importance = resp.map { |e| e["importance"] }.max
 
     # combine bboxes with the same importance
