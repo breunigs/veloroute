@@ -63,7 +63,12 @@ class Relation
   end
 
   def role(way)
-    xml.at_xpath("//relation/member[@ref=#{way.attr(:id)}]/@role").to_s
+    @roles ||= begin
+      xml.xpath('//relation/member').map do |member|
+        [member.attr('ref'), member.attr('role')]
+      end.to_h
+    end
+    @roles[way.attr('id')]
   end
 
   def reversed?(way)
