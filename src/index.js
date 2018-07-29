@@ -35,8 +35,9 @@ const swapBtn = document.getElementById("swap");
 const main = document.getElementById("main");
 const side = document.getElementById("side");
 const swap = () => {
-  const ch1 = main.childNodes[0];
-  const ch2 = side.childNodes[0];
+  // avoid grabbing textNodes
+  const ch1 = main.querySelector('div');
+  const ch2 = side.querySelector('div');
   main.appendChild(ch2);
   side.appendChild(ch1);
   invalidate();
