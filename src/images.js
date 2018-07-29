@@ -157,12 +157,12 @@ const stopPlayback = () => {
   // loading one
   viewer.moveToKey(status.image);
   playTimeout = null;
-  playstop.value = '▶';
+  playstop.textContent = '▶';
 }
 
 const handlePlayStop = () => {
   if(playTimeout != null) return stopPlayback();
-  playstop.value = '■';
+  playstop.textContent = '■';
   playShowNextImage();
 }
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset=utf-8 />
   <title>Velorouten Hamburg</title>
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width" />
 
   <link href="base.css" rel="stylesheet" />
   <link rel="stylesheet" integrity="sha384-r+py76P1N9OKDLtJqgMsRj0/GhOKDdopdb6tlfKGPyEQZV469EhEY3cXKMsdGhQi" crossorigin="anonymous" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css">
@@ -14,7 +14,7 @@
 
 <body>
   <div id="main">
-    <div id="swap1"><div id="map"></div></div>
+    <div id="map"></div>
   </div>
   <div id="sidebar">
     <div id="header">
@@ -25,7 +25,10 @@
       <div id="info">
         <h3>Einleitung</h3>
         <ul>
-          <li>Klicke auf eine Route um anzufangen</li>
+          <li>
+            <span class="only-mobile"><a href="#map">Klicke auf eine Route um anzufangen</a></span>
+            <span class="not-mobile">Klicke auf eine Route um anzufangen</span>
+          </li>
           <li>Mach Dich mit der Route vertraut</li>
           <li>Fahr Rad!</li>
         </ul>
@@ -55,16 +58,17 @@
       @require('routes/geo/path_render.html')
     </div>
 
-    <div id="images">
-      <div id="controls" class="hidden">
-        <input type="button" id="swap" value="⇱" title="Bild / Karte vergrößern">
-        <input type="button" id="playstop" value="▶" title="Abspielen / Pause">
-        <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">
-        <input type="button" id="prev" value="〈" title="Vorheriges Bild">
-        <input type="button" id="next" value="〉" title="Nächstes Bild">
-        <input type="button" id="direction" value="⇆" title="Fahrtrichtung ändern">
-      </div>
-      <div id="swap2"><div id="mly" class="mapillary"></div></div>
+    <div id="controls" class="hidden">
+      <a id="swap" title="Bild / Karte vergrößern">⇱</a>
+      <a id="playstop" title="Abspielen / Pause">▶</a>
+      <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">
+      <a id="prev" title="Vorheriges Bild">〈</a>
+      <a id="next" title="Nächstes Bild">〉</a>
+      <a id="direction" title="Fahrtrichtung ändern">⇆</a>
+    </div>
+
+    <div id="side">
+      <div id="mly" class="mapillary"></div>
     </div>
   </div>
 </body>

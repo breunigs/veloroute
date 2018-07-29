@@ -32,13 +32,13 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
 showRoute(state.selectedRoute());
 
 const swapBtn = document.getElementById("swap");
-const swap1 = document.getElementById("swap1");
-const swap2 = document.getElementById("swap2");
+const main = document.getElementById("main");
+const side = document.getElementById("side");
 const swap = () => {
-  const ch1 = swap1.childNodes[0];
-  const ch2 = swap2.childNodes[0];
-  swap1.appendChild(ch2);
-  swap2.appendChild(ch1);
+  const ch1 = main.childNodes[0];
+  const ch2 = side.childNodes[0];
+  main.appendChild(ch2);
+  side.appendChild(ch1);
   invalidate();
 }
 swapBtn.addEventListener("click", swap);
@@ -47,17 +47,3 @@ document.querySelector("#header h2").addEventListener("click", () => {
   showRoute()
   state.resetRoute();
 });
-
-const main = document.getElementById("main");
-const cellPhoneWorkaround = async function() {
-  const hidden = main.offsetParent === null;
-  if(!hidden) return;
-  // The main view is hidden, which means the width is too small to display
-  // everything. Swap map and image on initial load, which seems to make more
-  // sense.
-  swap();
-  // Exchange swap icon, hopefully this makes more sense as "replace" instead of
-  // "switch positions"
-  swapBtn.value = '📷/🗺';
-}
-cellPhoneWorkaround();

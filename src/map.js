@@ -46,6 +46,7 @@ export const map = new mapboxgl.Map({
     pitchWithRotate: false,
     dragRotate: false,
 });
+map.touchZoomRotate.disableRotation();
 
 let clickListeners = [];
 const addClickListener = (...funcs) => {
