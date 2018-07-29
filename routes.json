@@ -126,6 +126,36 @@
     "places": [
       ["Rathaus", "Harvestehude", "Winterhude", "Sporthalle Hamburg", "Alsterdorf", "Flughafen", "Fuhlsbüttel", "Langenhorn", "Langenhorn Nord", "Ochsenzoll", "(Norderstedt)"]
     ],
+    "images": {
+      "outward_ochsenzoll": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "OLrx_Uj_u1NXnQh1FdvNeg"},
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "weGwryFjeEWgyAPJBDY4GA", "to": "qGBZO9DWJpk2Bh58WfXW3g"},
+        { "seq": "zn4A2XqoQOeOiguK0BVe5A", "from": "BbpplQ_QVt297S1YSNfWhA", "to": "epQdZVhRH8iwgj0qmA1cUg"},
+        { "seq": "q02Dkwt6gwy46AFycr-6Hw", "from": "FPopDOerMW-jS2lVi-TBXQ", "to": "GMb0VUKdBJI_LXxV6jHTmw"},
+        { "seq": "HBTtRRigC1zsU-BlJ2TybQ", "from": "j1oQ0FYz2GAyc1T8KKoO8A", "to": "6Fjo-es-Y6MfaLJQ80YEmw"},
+        { "seq": "q02Dkwt6gwy46AFycr-6Hw", "from": "VD9RHlhTb_RvenswGLhfaw", "to": "U_Qb53krQHfuXoPIzpTjrg"},
+        { "seq": "HBTtRRigC1zsU-BlJ2TybQ", "from": "rOWu8xfJvtt1cx-PG7gQXg", "to": "UsKOss5u3cGlucVs2Zgdfw"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "9uQbifNGamki352Jv4dXdw", "to": "Qeyr6b-8ZO9O6cer26tL0A"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "x8493hKyWHCjoagTqt-gkw", "to": "6TIYVKnO01As_zGDmWHH4Q"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "epAqhG6C5c3u0ua7nmNQAQ", "to": "vXJGJjRbaNqIjBXhNj9xKw", "_note": "Pictures missing after: https://www.komoot.de/tour/40477053"},
+        { "seq": "RRgmSMqHsQoVHs_c6cWHmA", "from": "Pel6E6luoy0XKOLCPWDDng", "to": "eTzi6G_6InAfx8Y6V4CNHg"},
+        { "seq": "l3x9GNE3cLTxLOjGB6Bw6g", "from": "Oavuj2uxH677KhCAzJE7ZA", "to": "oMJ-zEAO0UrnrxGgwW2ZiQ"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "dXQdjXQHjWKNLTWkzV7u7A", "to": "Y92NwZQr58NUGg5BUizJ2w"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "dXQdjXQHjWKNLTWkzV7u7A", "to": "Y92NwZQr58NUGg5BUizJ2w"},
+        { "seq": "l3x9GNE3cLTxLOjGB6Bw6g", "from": "Ac5KF2rL9tc01LpZ6_QBww", "to": "xJaeJvFibDirfZJFVP1CsA"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "9dSfjcmGtGKTW1Lv3Ji1eg", "to": "sD22nI_qox4tnEy6nvvXlA"}
+      ],
+      "inward_ochsenzoll": [
+        { "seq": "v3ruzvpbbTt9UELvi1enTQ", "from": "tFKHvc8mvFs_ktsJ7LDZxg", "to": "WfWvFEslPTOkAmXzvZB5ug"},
+        { "seq": "7Q-SJGgixBCJTqBWx47fmA", "from": "Rme10xSeLqkTSXWX8TCY1Q", "to": "7cIbUiPxQtSF46rC3rv-8Q"},
+        { "seq": "v3ruzvpbbTt9UELvi1enTQ", "from": "dxBmYE54dpIK3gr1deKPAA", "to": "L4i5xRfQGjdDFWtcjKHKtA", "note": "Missing images after: https://www.komoot.de/tour/40477180"},
+        { "seq": "7Q-SJGgixBCJTqBWx47fmA", "from": "txK05hciuE7ap-B8MXlWrA", "to": "46B8vMd1hTOOcc4keHRLRw"},
+        { "seq": "BzB-n8OAbwlbYTrECcAjYA", "from": "lmRgqZf0G67CPJ1fel7UJA", "to": "dnmFk72GtkhNDjiBMqHbXw"},
+        { "seq": "Z_1nFBleernBVgQyhLfL2g", "from": "TSpDC4ZZ5ppZF_vFFORKGw", "to": "n40ZBhuEEWngWVsh1P21qQ"},
+        { "seq": "8wEcQDUPgNLaZvlPBvAxqg", "from": "h7kBl6R6-7mxsnR4KuaWKw", "to": "C1NWf5T72z9ZfAfVnz7jew"},
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Ghj_euVtNf53iO797yc5uw", "to": "iRql1hCMZkGYu-AMQMqGqw"}
+      ]
+    },
     "_comment": "Last check: 2018-06-30"
   },
   "5":  {
