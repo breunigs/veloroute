@@ -88,10 +88,13 @@ def render_abstract_routes(routes)
 end
 
 def build_image_lists(routes)
+  debug = []
   images = routes.map do |route|
+    debug << route.to_image_debug
     [route.name, route.to_image_export]
-  end.to_h.to_json
-  File.write("geo_tmp/images.json", images)
+  end.to_h
+  File.write("geo_tmp/images.json", images.to_json)
+  File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 
 SCSS_MUTEX = Mutex.new

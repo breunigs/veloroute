@@ -88,6 +88,10 @@ class Route
     end.to_h
   end
 
+  def to_image_debug
+    GeoJSON.join(stitched_sequences.values.map(&:to_geojson))
+  end
+
   def to_svg(place2route = {})
     svg = SVGPather.new(color)
     dual = false

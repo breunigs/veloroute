@@ -6,6 +6,8 @@ class GeoJSON
   def self.join(geojsons)
     features = geojsons.flat_map do |geojson|
       case geojson[:type]
+      when "Feature"
+        geojson
       when "FeatureCollection"
         geojson[:features]
       else raise "Cannot join, unknown GeoJSON type: #{geojson[:type]}"

@@ -17,14 +17,7 @@ module Mapillary
     attr_reader :list
 
     def to_geojson
-      {
-        type: "Feature",
-        properties: {sequence_ids: [sequences.map(&:id)]},
-        geometry: {
-          type: "MultiLineString",
-          coordinates: sequences.map(&:coords)
-        }
-      }
+      GeoJSON.join(sequences.map(&:to_geojson).compact)
     end
 
     def to_json_export
@@ -88,6 +81,19 @@ module Mapillary
     end
 
     def to_geojson
+      features = [line_as_geojson, first_marker, last_marker].compact
+      return nil if features.empty?
+      GeoJSON.to_feature_collection(features)
+    end
+
+    def url
+      "#{API_URL}/sequences/#{id}?client_id=#{API_KEY}"
+    end
+
+    private
+
+    def line_as_geojson
+      return nil if coords.size <= 1
       {
         type: "Feature",
         properties: {sequence_id: id},
@@ -98,11 +104,31 @@ module Mapillary
       }
     end
 
-    def url
-      "#{API_URL}/sequences/#{id}?client_id=#{API_KEY}"
+    def first_marker
+      return nil if coords.empty?
+      marker_as_geojson(first_index)
     end
 
-    private
+    def last_marker
+      return nil if coords.size <= 1
+      marker_as_geojson(last_index)
+    end
+
+    def marker_as_geojson(index)
+     {
+        type: "Feature",
+        properties: {
+          sequence_id: id,
+          index_in_seq: index,
+          image_key: all_images[index],
+          url: "https://www.mapillary.com/app/?pKey=#{all_images[index]}"
+        },
+        geometry: {
+          type: "Point",
+          coordinates: all_coords[index]
+        }
+      }
+    end
 
     def all_images
       data.dig("properties", "coordinateProperties", "image_keys")
@@ -126,6 +152,9 @@ module Mapillary
 
     def data
       @data ||= JSON.parse(CACHE.get(url).to_s)
+    rescue JSON::ParserError => e
+      warn "URL #{url} failed to parse: #{e}"
+      raise e
     end
   end
 end
