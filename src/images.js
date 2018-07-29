@@ -54,11 +54,10 @@ const handleSliderMove = (avoidListenerUpdates) => {
   status.image = key;
   triggerImageUpdate();
 
+  // The data here is the corrected "Structure From Motion" data, but it doesn't
+  // take image-to-image transitions into account. Therefore, only update it
+  // when immediate feedback is required, e.g. when the slider is being dragged.
   if(!avoidListenerUpdates) {
-    // the data available here is the raw input data, not the corrected ones from
-    // the "structure from motion" process. In other words, it's less accurate. We
-    // still need to use it when immediate user feedback is desirable, e.g. when
-    // dragging the slider. Avoid it otherwise, because it makes the marker jiggle.
     indicatorListeners.forEach((f) => f(loc[0], loc[1], loc[2], key));
   }
 }

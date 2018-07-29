@@ -73,11 +73,11 @@ module Mapillary
     end
 
     def bearings
-      all_bearings[first_index..last_index]
+      corrected_data[:bearings]
     end
 
     def coords
-      GeoJSON.round_coords([all_coords[first_index..last_index]]).first
+      GeoJSON.round_coords([corrected_data[:coords]]).first
     end
 
     def to_geojson
@@ -151,10 +151,37 @@ module Mapillary
     end
 
     def data
-      @data ||= JSON.parse(CACHE.get(url).to_s)
+      @data ||= get(url)
+    end
+
+    def corrected_data
+      @corrected_data ||= begin
+        c_bearings = []
+        c_coords = []
+
+        image_keys.each_slice(100) do |img_keys|
+          paths = %|[["imageByKey",#{img_keys.to_json},["cca","cl"]]]|
+          private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{URI.escape(paths, %|[],":|)}&method=get|
+          res = get(private_api_url)
+          img_keys.each do |key|
+            corr = res.dig("jsonGraph", "imageByKey", key)
+            c_bearings << corr.dig("cca", "value")
+            c_coords << [corr.dig("cl", "value", "lon"), corr.dig("cl", "value", "lat")]
+          end
+        end
+
+        {bearings: c_bearings, coords: c_coords}
+      end
+    end
+
+
+    def get(url)
+      puts "Querying: #{url}"
+      JSON.parse(CACHE.get(url).to_s)
     rescue JSON::ParserError => e
       warn "URL #{url} failed to parse: #{e}"
       raise e
     end
+
   end
 end
