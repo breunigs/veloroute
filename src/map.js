@@ -210,7 +210,14 @@ const moveTo = (lngLat) => {
 }
 
 const getHighlightedRoute = (evt) => {
-  const routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes-casing'] });
+  let routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes-casing'] });
+  // be more lenient with click targets on touch devices
+  if(evt.type === "click" && !routes.length && 'ontouchstart' in window) {
+    console.debug(evt.originalEvent)
+    const sw = [evt.point.x - 10, evt.point.y + 10];
+    const ne = [evt.point.x + 10, evt.point.y - 10];
+    routes = map.queryRenderedFeatures([sw, ne], { layers: ['layer-routes-casing'] });
+  }
   return routes.length ? routes[0] : null;
 }
 
