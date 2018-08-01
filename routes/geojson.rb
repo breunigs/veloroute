@@ -27,9 +27,13 @@ class GeoJSON
   def self.round_coords(arrOfCords)
     arrOfCords.map do |coords|
       coords.map do |coord|
-        coord.map { |cc| cc.round(COORDINATE_PRECISION) }
+        self.round_coord(coord)
       end
     end
+  end
+
+  def self.round_coord(coord)
+    coord.map { |cc| cc.round(COORDINATE_PRECISION) }
   end
 
   def initialize(route:, relation:, collisions: {})

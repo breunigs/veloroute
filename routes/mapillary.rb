@@ -10,7 +10,6 @@ module Mapillary
   class StitchedSequence
     def initialize(list)
       @list = list
-      prefetch
     end
 
     attr_reader :list
@@ -31,8 +30,6 @@ module Mapillary
     end
 
     def bearings
-      # XXX: these are not the corrected/auto-determined angles, so slightly
-      # less accurate
       sequences.flat_map(&:bearings).map { |angle| angle.round }
     end
 
@@ -41,12 +38,6 @@ module Mapillary
     end
 
     private
-
-    def prefetch
-      sequences.map(&:url).uniq.each do |url|
-        get(url)
-      end
-    end
 
     def sequences
       @sequences ||= begin
@@ -62,20 +53,22 @@ module Mapillary
       @id = sequence_id
       @from = from
       @to =  to
+
+      fetch_image_keys
     end
 
     attr_reader :id, :from, :to
 
     def image_keys
-      all_images[first_index..last_index]
+      corrected_data.map { |d| d[:key] }
     end
 
     def bearings
-      corrected_data[:bearings]
+      corrected_data.map { |d| d[:bearing] }
     end
 
     def coords
-      GeoJSON.round_coords([corrected_data[:coords]]).first
+      corrected_data.map { |d| GeoJSON.round_coord(d[:lonLat]) }
     end
 
     def to_geojson
@@ -84,14 +77,20 @@ module Mapillary
       GeoJSON.to_feature_collection(features)
     end
 
-    def url
+    def public_url
       "#{API_URL}/sequences/#{id}?client_id=#{API_KEY}"
     end
 
     private
 
+    def query_private_api(query)
+      escaped = URI.escape(query, %|[],":|)
+      private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{escaped}&method=get|
+      get(private_api_url)
+    end
+
     def line_as_geojson
-      return nil if coords.size <= 1
+      return nil if corrected_data.size <= 1
       {
         type: "Feature",
         properties: {sequence_id: id},
@@ -103,73 +102,63 @@ module Mapillary
     end
 
     def first_marker
-      return nil if coords.empty?
-      marker_as_geojson(first_index)
+      return nil if corrected_data.empty?
+      marker_as_geojson(:first)
     end
 
     def last_marker
-      return nil if coords.size <= 1
-      marker_as_geojson(last_index)
+      return nil if corrected_data.size <= 1
+      marker_as_geojson(:last)
     end
 
-    def marker_as_geojson(index)
+    def marker_as_geojson(which)
      {
         type: "Feature",
         properties: {
           sequence_id: id,
-          index_in_seq: index,
-          image_key: all_images[index],
-          url: "https://www.mapillary.com/app/?pKey=#{all_images[index]}"
+          image_key: image_keys.public_send(which),
+          url: "https://www.mapillary.com/app/?pKey=#{image_keys.public_send(which)}"
         },
         geometry: {
           type: "Point",
-          coordinates: all_coords[index]
+          coordinates: coords.public_send(which)
         }
       }
     end
 
-    def all_images
-      data.dig("properties", "coordinateProperties", "image_keys")
-    end
-
-    def all_bearings
-      data.dig("properties", "coordinateProperties", "cas")
-    end
-
-    def all_coords
-      data.dig("geometry", "coordinates")
-    end
-
-    def first_index
-      all_images.index(from)
-    end
-
-    def last_index
-      all_images.index(to)
-    end
-
-    def data
-      @data ||= get(url)
-    end
+    attr_reader :all_image_keys
 
     def corrected_data
       @corrected_data ||= begin
-        c_bearings = []
-        c_coords = []
+        image_keys_in_range.each_slice(100).flat_map do |img_keys|
+          res = query_private_api(%|[["imageByKey",#{img_keys.to_json},["cca","cl"]]]|)
+          img_keys.map do |key|
+            entry = res.dig("jsonGraph", "imageByKey", key)
+            bearing = entry.dig("cca", "value")
+            lonLat = [entry.dig("cl", "value", "lon"), entry.dig("cl", "value", "lat")]
 
-        image_keys.each_slice(100) do |img_keys|
-          paths = %|[["imageByKey",#{img_keys.to_json},["cca","cl"]]]|
-          private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{URI.escape(paths, %|[],":|)}&method=get|
-          res = get(private_api_url)
-          img_keys.each do |key|
-            corr = res.dig("jsonGraph", "imageByKey", key)
-            c_bearings << corr.dig("cca", "value")
-            c_coords << [corr.dig("cl", "value", "lon"), corr.dig("cl", "value", "lat")]
+            # most likely the image has been deleted in the meantime, but their cache is stale
+            next if bearing.nil? || lonLat.any?(&:nil?)
+
+            {key: key, bearing: bearing, lonLat: lonLat}
           end
-        end
-
-        {bearings: c_bearings, coords: c_coords}
+        end.compact
       end
+    end
+
+    def image_keys_in_range
+      all_image_keys[all_image_keys.index(from)..all_image_keys.index(to)]
+    end
+
+    def fetch_image_keys
+      data = get(public_url)
+      @all_image_keys = data.dig("properties", "coordinateProperties", "image_keys")
+    rescue JSON::ParserError => e
+      raise e unless e.message.downcase.include?("not found")
+      # public API lags behind the private API for some days sometimes
+      puts "…falling back to private API"
+      res = query_private_api(%|[["sequenceByKey","#{id}",["keys"]]]|)
+      @all_image_keys = res.dig("jsonGraph", "sequenceByKey", id, "keys", "value")
     end
   end
 end
