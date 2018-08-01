@@ -218,7 +218,7 @@ table.routing {
   }
 
   tr:first-child {
-    background: linear-gradient(to bottom, #333, #333 0.5em, transparent 0.5em);
+    background: linear-gradient(to bottom, #333, #333 0.5em, transparent 0.5em) no-repeat;
   }
 
   $main-route-icon-size: 1.5em;
@@ -231,7 +231,7 @@ table.routing {
     width: 1.25*2*$table-cell-height;
     vertical-align: top;
     text-align: center;
-    padding-top: 0.4em;
+    padding-top: 0.42em;
 
     .icon {
       font-size: 120%;
