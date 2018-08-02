@@ -165,7 +165,54 @@
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"],
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Stadtpark", "City Nord", "Flughafen"]
-    ]
+    ],
+    "images": {
+      "outward_duvenstedt": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw" },
+        { "seq": "pVdn-iwU-fH-KKjJIkSbkQ", "from": "gttdCpzjX62HyxcFrIEzHA", "to": "9vpiikinMx4dMBSGLnLocQ" },
+        { "seq": "imr4yHfB7KbEpJO-3ExazA", "from": "YuDsL9xT7GM4bNh7ac1b9w", "to": "QEvfOwIFAxKrKdl4NUxyfQ" },
+        { "seq": "cmPm26bD3lotlAqX9sUN7Q", "from": "EiY77KzKalOpOTHD2kpP-Q", "to": "_IkjMFBzLXo89xoYTf851g" },
+        { "seq": "YX9ImYR98N-kguqBimIaZA", "from": "ZNV72o_QloLmRXQ7PFm0qw", "to": "EIZn6DCBKN_JSGy9gzcJ0A" },
+        { "seq": "aIG_UkA53AczAp6Qs3bbUA", "from": "YbojjTwseIDLciJsTqmBhg", "to": "XOE-psHMjiP2sENRE5sEew" }
+      ],
+      "inward_duvenstedt": [
+        { "seq": "aIG_UkA53AczAp6Qs3bbUA", "from": "xlCgDdu0Vv_t1amghtzgHw", "to": "ZiBJ88JpH__C-pIVFa4GkA" },
+        { "seq": "Jp7zWZb_M3Gnqm6P1p3J4A", "from": "W_FNJCLrO6H1GjEpy1IT8A", "to": "uwZ8ociQePa6pFx4O-RpgQ" },
+        { "seq": "eHO_N2D67rAI_EXtJN_zaQ", "from": "A_OgZG9bUjcRRr0ZifVBhg", "to": "CHaziU5W2ZfjCBDp1tawUQ", "note": "Missing images after: https://www.komoot.de/tour/40995032"  },
+        { "seq": "MDY6R1BJUSOWceZoAFIS2Q", "from": "pjODz0emZG2yy3o8Ag-9lw", "to": "lMJl6vsMhNiu4mBq4gkyXQ", "note": "Missing images after: https://www.komoot.de/tour/40995333" },
+        { "seq": "MDY6R1BJUSOWceZoAFIS2Q", "from": "zqx_nCgc3r3e71GvOjXBNw", "to": "XXWHtVHQ5u3ck9LNoNgHRg" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "q3kGy8BpVqSr4-mpYd0d0A", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
+      ],
+      "outward_flughafen": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw" },
+        { "seq": "pVdn-iwU-fH-KKjJIkSbkQ", "from": "gttdCpzjX62HyxcFrIEzHA", "to": "9vpiikinMx4dMBSGLnLocQ" },
+        { "seq": "imr4yHfB7KbEpJO-3ExazA", "from": "YuDsL9xT7GM4bNh7ac1b9w", "to": "l1aOgfZGxnbLYJrKP-cTtg" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "dLR5Oy4SAIqLekC-lFyxaA", "to": "ksJACwMsJ0rcm_2T0W7E7A" },
+        { "seq": "czGmFfeuBoNVk4fw9vMMNw", "from": "AaxQvt1V_cYuoZABHcTW8w", "to": "e1lPkU93YVpGvp6y_Vyhkg" },
+        { "seq": "M3Pzt9S8-IsM_kAhprHmww", "from": "Fekux7mu3ZE_P19EFMnV-Q", "to": "Qh_tJg992lEuaiJG2FYkZQ" },
+        { "seq": "h8pGesjCfKCZfMczUlPQxg", "from": "2fIjJCk9GAb4gkN-3I1CPQ", "to": "e_fvQUsLmASKIu5jaUMavw" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "oDuw38zpymuwOtSUeBHKMQ", "to": "d-H5uUo_Nylim01gRf0cCg" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "jg_mgk-_xmxOhavS6bLCTw", "to": "pbLyoko4LVPA_VTE8odEQw", "note": "Missing images: https://www.komoot.de/tour/40997545" },
+        { "seq": "nHp9Zc-hVDbtAKgkEm-6IA", "from": "PhkPdfqD9G1umUaKzFevEQ", "to": "9w-A64mkpO7b4HoTZLQuNQ" },
+        { "seq": "Q2JHzXixEzA8Hts8gLCBSA", "from": "0tKV4kSt6BUQ2RYsKVORkg", "to": "DwFxSqL7udjEVdcr7jv6nw" }
+      ],
+      "inward_flughafen": [
+        { "seq": "Q2JHzXixEzA8Hts8gLCBSA", "from": "_wgm0OzuwT_I2UFEdPmXJw", "to": "HCc4R_5eFecYPoq3oQt3GA" },
+        { "seq": "pcq_df1uGhjER7WMDk0hOQ", "from": "EFwCB6v7yoa_k2gfOjVibg", "to": "sGqKbMOkO6suwUGFNWjvAg", "note": "could use some better images: https://www.komoot.de/tour/40997647" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "5qhblFBEjkOhI2jYR-AE8Q", "to": "46w7yuJzKFYabqDv1D5I4A" },
+        { "seq": "U9vAxJCszy2yo3UtgHrL_g", "from": "Mr0Uo7AfHa4c1Ejh-2Wj-A", "to": "IJUEUAOpXmXQLiXgtYQSuA" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "WCH4DcLq2bMUrFSZDYPgnA", "to": "454SO8QTZAM8p_FInl1EbQ" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "kzqzdSq73aRd7JNaIEWR4A", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
+      ]
+    }
   },
   "6":  {
     "relation_id": 227477,
@@ -173,7 +220,15 @@
     "markers": [[10.16322, 53.65005]],
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Hohenfelde", "Auenviertel", "Friedrichsberg", "Dulsberg", "Wandsbek-Gartenstadt", "Trabrennbahn Farmsen", "Farmsen", "Berne", "Volksdorf", "(Ahrensburg)"]
-    ]
+    ],
+    "images": {
+      "outward_duvenstedt": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw", "XXX": "continues!" }
+      ]
+    }
   },
   "7":  {
     "relation_id": 228035,
