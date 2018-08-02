@@ -147,7 +147,11 @@ module Mapillary
     end
 
     def image_keys_in_range
-      all_image_keys[all_image_keys.index(from)..all_image_keys.index(to)]
+      from_idx = all_image_keys.index(from)
+      to_idx = all_image_keys.index(to)
+      raise "Sequence #{id} does not contain starting image #{from}" if from_idx.nil?
+      raise "Sequence #{id} does not contain ending image #{to}" if to_idx.nil?
+      all_image_keys[from_idx..to_idx]
     end
 
     def fetch_image_keys
