@@ -226,7 +226,30 @@
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
         { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
         { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
-        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw", "XXX": "continues!" }
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "rA4J4dzu1M3EYFAKxRCk0g" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "_uHDcbtFG33seRzEw3z5Iw", "to": "H3mexjWJWdQe5YyvLEGX3g" },
+        { "seq": "MNjdBstIzbtahxH53P5DYg", "from": "2GXbx5yVipSf-xGNMyONZw", "to": "WYxHRow_Kwq3xAiRvYBKpw" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "7Bd0EdnUWaIddJCrCE8tWA", "to": "sEgwcbm_hD3SGgWWWbn5ng" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "5x1it4FUK7vRgtCucG4uSQ", "to": "ApSxcDNLhafbdegsffAP5g" },
+        { "seq": "9iny5MTI-xa1MiMmDy3oKA", "from": "oIcZpx_Purs5k-DFIN0t5Q", "to": "xNMdi9ng-zMCgGWJnKOFJA", "note": "check if routing works differently: https://www.komoot.de/tour/41096188" },
+        { "seq": "2AA9-fzSR7kMgzhf4ltJ3A", "from": "RVSzbz2futudvi8lcQdq7Q", "to": "GXRXHfkKOeqQurT5XNSJeA" },
+        { "seq": "fOV2ypoiARnWSAaZg4y3XA", "from": "I2_efhjnPu-iO3yZXFVxSA", "to": "mmW-XuM9O3zLwirV7g_Z8w" },
+        { "seq": "ZFcTeF628eN9J77WDkKhBw", "from": "P1an88XiCAqluhldqicTgA", "to": "Vxsa3BINCNQqIoelYz9UMw" },
+        { "seq": "qxspNEzcIu2xxlzDUnf0lA", "from": "9qQffAttJv4qWqRTdFcBrA", "to": "Ifenu1zytihZ_quJkGqBSg" }
+      ],
+      "inward_duvenstedt": [
+        { "seq": "qxspNEzcIu2xxlzDUnf0lA", "from": "T1hWAXk4pC-17zJLRo7vmg", "to": "hvbiBw6UOZAeq6hmK7ZHrA" },
+        { "seq": "AVvYWLkxXkpiN6KU8eNoTQ", "from": "0fR1YFt4fbdPUhTGlmimrQ", "to": "bTic-sOKF5dxLKypy-t5bQ", "note": "missing images: https://www.komoot.de/tour/41098070" },
+        { "seq": "xqKQQllOvsMKR5Q0-VZiAg", "from": "VzVviv-kFicrP8uJUd4FYA", "to": "1jJHQlAs8byQFLMpcq3MBg" },
+        { "seq": "ZK4QZnzM4AmCiJM_kdkOKw", "from": "CzZ_Vkiy_mpeUU-YpOqKbA", "to": "XVRXFmOWi7g0Tss9Ul052Q" },
+        { "seq": "u5BMm6iPSY3uSAvzcV8QNA", "from": "97yJaEvB0XOr37pn4qg1gg", "to": "vjgUTlQGfO3HF927iqt0Dg" },
+        { "seq": "dQfMxR5AlyGjYpGl60TwUw", "from": "bNwn2bY07cnrCVI3kN5Mug", "to": "Y8Zl4BqzOe3dBjzvVaEibA" },
+        { "seq": "HYJyy-pNrje5MapI0UqGxQ", "from": "crKit67HBlKAs1Dv1l13sQ", "to": "H4Qd-bM6WF6O2znAPfIzHw" },
+        { "seq": "HYJyy-pNrje5MapI0UqGxQ", "from": "MfhiDh9aRjD_rAx0E2jTkg", "to": "2lQ8MCe--0tFbx9dyo56VA" },
+        { "seq": "G_DCkv7E98xpuRls7Vm40Q", "from": "2cwhIu9mdh1dFPb9fuU6CA", "to": "5X4EcbIa584PoxaZqaPDHA" },
+        { "seq": "IwEsiyJjxjUrwpy2T5UFUQ", "from": "2TtZNucNHAQDhTl4FL1wtQ", "to": "kobRQcjLJXKfyoSyO6FyWQ" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "Untl3UpqqpJsl4ZP0cjing", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
       ]
     }
   },
