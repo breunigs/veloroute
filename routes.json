@@ -260,7 +260,63 @@
     "places": [
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Tonndorf", "Rahlstedt"],
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Jenfeld", "(Barsbüttel)"]
-    ]
+    ],
+    "images": {
+      "outward_rahlstedt": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "r_tI6Lcmfn_qw8ExKQt9rw"},
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "yca5SyKtZ9CehpwUZVS8YA", "to": "2i0pMRhoq03OrtAbrn7NRQ"},
+        { "seq": "8LHGJ55X0V1Scgj9qOsHPQ", "from": "WzJoJoA3hIwaO69PdACbkA", "to": "R12Yba7gLQlZclewFvc5IA"},
+        { "seq": "kO0r9kBg-XaSIruFfoW2Sg", "from": "TButvhigj9OamiUukPyiMA", "to": "ZTwPGPRmZvLGCclO0aIXMw"},
+        { "seq": "pjQ5nwTdMBLg4FbJuV84iA", "from": "9SDiAbgxyArXjXwT136IQQ", "to": "MGdGLyePs-e3XK5m40mcKQ"},
+        { "seq": "rQh9aNxUkyEC9iU0zZiXTA", "from": "9kFSxIIUAA9mWlXpu9CaFg", "to": "COrBjMe6wvsNeviFIkxL4g"},
+        { "seq": "rQh9aNxUkyEC9iU0zZiXTA", "from": "lLR88FbxKBjWD0Gyr7Q32w", "to": "JX630K1LZtdP1GON8Pz1Tg"},
+        { "seq": "ZJSBtZZfLwgkt9UdTU5Eng", "from": "YRVF9HiuhK6QRnDG9uG5bw", "to": "Ye8cIhY5wv4qHtzUKrjUbA"},
+        { "seq": "ZJSBtZZfLwgkt9UdTU5Eng", "from": "MZ0LRuz_HHUqd2j4GX9F2A", "to": "DSf5ypjdyeXy3QFnue13RA"},
+        { "seq": "IqhQuCsohwJ3oDkc18-9oQ", "from": "cP7vOHSGDK2geHVhNditLQ", "to": "EoaDCtCN1rk8lq-UrqHtNg"},
+        { "seq": "IqhQuCsohwJ3oDkc18-9oQ", "from": "RWMVKM8P0FDFfe0yFGcalw", "to": "gC8rtO2MmCaS7NA96cE8Eg"}
+      ],
+      "inward_rahlstedt": [
+        { "seq": "09JMeJ9x6YW2tjO0PAfILw", "from": "R6EVfhCsbLF2rtEiDJiY6A", "to": "Sbz5Vw2YEsNX47HIaRUpQQ"},
+        { "seq": "09JMeJ9x6YW2tjO0PAfILw", "from": "a-GPWfMx3D0hTFtm0CnGYA", "to": "y_nzcDpAzeungkg1ni6pgQ"},
+        { "seq": "ILOimrr0PS5qlSgKPCBGwQ", "from": "Rw_2pRAcZEmx5r2YeMWL_A", "to": "uG-m15qWpubZ9CXtx0HEVg"},
+        { "seq": "ILOimrr0PS5qlSgKPCBGwQ", "from": "2D86w2RJNEBfMttr3q3cYg", "to": "p-5fKfK1KAdAyxrS9awG-Q"},
+        { "seq": "XeTwZh3yN1jiJch_tlEbKA", "from": "Rm2Jn7EFtEtPepJNhmt1gg", "to": "RSRjlD4mDhQY4hNqCg7MdA"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "cvrfTnmex4w2m2kbBc2sWQ", "to": "bIhs1f2Vsa12CPYhA3BdLQ"},
+        { "seq": "oiU0icgOT7L_s2uESeY3GA", "from": "vEneNdI7KZcnVpl6kuRsOg", "to": "l76uN-QJ1JnJ4ms3NloExQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "defUp1LwNwFrJnpUAoijHg", "to": "IhddM5GCk0YyJIpIzSqc1g"},
+        { "seq": "fbzDF9LS8iyrAv3scVFsiQ", "from": "c3xe-HnQ_yzXcPQxu48GdQ", "to": "vH8rijPF6iaDYiSWXCWfew"},
+        { "seq": "ECMaI20C8C5zN7-jWiiQUA", "from": "s5sa7vkhJ2-CN5BUWf2gEw", "to": "i32-0lAVJvNyWlqys4mtgQ"},
+        { "seq": "Oj14-QGczpraZg8lkkwg4Q", "from": "egChXbDqe_9Mp1qcjvq9aQ", "to": "2uI-irXtsOIA1TNDMzBgGQ"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "IGzbgDlNuw3PC0Ku_Tc4cQ", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ],
+      "outward_jenfeld": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "r_tI6Lcmfn_qw8ExKQt9rw"},
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "yca5SyKtZ9CehpwUZVS8YA", "to": "2i0pMRhoq03OrtAbrn7NRQ"},
+        { "seq": "8LHGJ55X0V1Scgj9qOsHPQ", "from": "WzJoJoA3hIwaO69PdACbkA", "to": "R12Yba7gLQlZclewFvc5IA"},
+        { "seq": "kO0r9kBg-XaSIruFfoW2Sg", "from": "TButvhigj9OamiUukPyiMA", "to": "ZTwPGPRmZvLGCclO0aIXMw"},
+        { "seq": "cdOpilFID8le19UHYg-d4A", "from": "y1mLQ568hx-u5Rl3MgN9ww", "to": "vTM-YMJg1IqKWcESV9wdKQ"}
+      ],
+      "inward_jenfeld": [
+        { "seq": "R9616yZTdHznpCjlcN1RhQ", "from": "wxqj7gw0tf3ctKMvaoWAEg", "to": "yoaEnbmcq2aiVkqQLl-aGQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "qx3YQm2yH1zgaYygH33p2w", "to": "bIhs1f2Vsa12CPYhA3BdLQ"},
+        { "seq": "oiU0icgOT7L_s2uESeY3GA", "from": "vEneNdI7KZcnVpl6kuRsOg", "to": "l76uN-QJ1JnJ4ms3NloExQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "defUp1LwNwFrJnpUAoijHg", "to": "IhddM5GCk0YyJIpIzSqc1g"},
+        { "seq": "fbzDF9LS8iyrAv3scVFsiQ", "from": "c3xe-HnQ_yzXcPQxu48GdQ", "to": "vH8rijPF6iaDYiSWXCWfew"},
+        { "seq": "ECMaI20C8C5zN7-jWiiQUA", "from": "s5sa7vkhJ2-CN5BUWf2gEw", "to": "i32-0lAVJvNyWlqys4mtgQ"},
+        { "seq": "Oj14-QGczpraZg8lkkwg4Q", "from": "egChXbDqe_9Mp1qcjvq9aQ", "to": "2uI-irXtsOIA1TNDMzBgGQ"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "IGzbgDlNuw3PC0Ku_Tc4cQ", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
   },
   "8":  {
     "relation_id": 229623,
@@ -278,7 +334,45 @@
     "markers": [[10.2062839, 53.4889386]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Hammerbrook", "Rothenburgsort", "Billbrook", "Billwerder-Moorfleet", "Mittlerer Landweg", "Neuallermöhe", "Nettelnburg", "Bergedorf", "(Wentorf)", "(Reinbek)"]
-    ]
+    ],
+    "images": {
+      "outward_bergedorf": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "fJz89hG7wdxRYHBXXCqk7Q"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "b-TutVTMjlacuASJRJu2kg", "to": "R_I-uaS5GYjtk5dDpgcdIQ"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "rgITOPdBKheXlCUwmw1VUg", "to": "fQc5tQMcIT8eElrw1lMXrQ"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "6nwo3zDu55kuWKx58dauoQ", "to": "DxbRsdPAVTEeepKB_TT2UA"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "phjEK4aBwxg-5RoelKuCwg", "to": "xcP_Nc5QsCzOUh6ZwiG0VA"},
+        { "seq": "QOhGfQ6jKMwV-_hu1I5Qrw", "from": "LRnafZab5i14ILhmKgc_hg", "to": "PT5_Osbw2MkqcI-OtV2AAw"},
+        { "seq": "9q8OZbn9zqy4Nm3s6t7XAA", "from": "j8q9BvMLElLQK16n7z0qbg", "to": "euzj2a1aK71xkol4dReGCg"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "pBRn101h9QB_zxQStVcb3w", "to": "oEYXjp67cUXqmFIfDG9J_w"},
+        { "seq": "9q8OZbn9zqy4Nm3s6t7XAA", "from": "URPz-gto7IbjwQ5QJYpIQg", "to": "u3tHpeeGiODowiAILkceUA"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "oOWcXlxfx2Z6FvjXuPb0jw", "to": "YzwVbRssjYa6hDr_pDiHdg"},
+        { "seq": "3DzU0Ca2x2bjxr5avvyshA", "from": "N1LTCefB06-DQV9HuYrByQ", "to": "rik2W87uqMYyQs8EKYS05A"},
+        { "seq": "JfTt_1sgCPuA5FtFYuJPPA", "from": "tsbQ3q4hQqkyPYx4V6QU8Q", "to": "w8XMkdvDS_tudgC8g5ShEw"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "lhDM0-MYowPOWSfXtV9Wpw", "to": "d-exNd_5gTSxmVUss2U50Q"},
+        { "seq": "i5qGZYsIoMiP502matxSlg", "from": "6j2eFltHcbD44phSQMuihA", "to": "A17gU05WpUe0H-5IufFF1A"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "HR_uBWXUNmyCfMh5Th-6jQ", "to": "71UDIek3F80zI9F03NvvBg"},
+        { "seq": "i5qGZYsIoMiP502matxSlg", "from": "lZNtTe9FzpWi1QUTEHgF1A", "to": "jzhENwFICFrdgE_nlrjdKw"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "oAQPA3T-bI92NDFFIImdGg", "to": "_dwjepENDgrpOB0mOcny9A"}
+      ],
+      "inward_bergedorf": [
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "VSIJANHh2QzSzFVGlzBtZg", "to": "qJsduGqGGZi1JDTJhWcdXg"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "OMdxrmfpdVvwgTHRDtWJgw", "to": "tGccfIbUlKCb0OnzeJ_5-A"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "ik31nSWD4NJffLtlKrK1YQ", "to": "MoQ7okQ6X94Xo7g8aackMA"},
+        { "seq": "3DzU0Ca2x2bjxr5avvyshA", "from": "GyWghgFNyqMlQgGwqbPWDQ", "to": "zJTN0IosJUxVW8omf0ZNdw"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "OhyaDNvzSRfZ1tAVAwVeuQ", "to": "jZOo3CHmyQPpwy6yTEUVfQ"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "VojO3WJVSeVDkbKNT-DhQw", "to": "-Efocp4uMABWNaaqWSSQFA"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "Jy7yC6qMudvlVpnYBgWYLw", "to": "H_oItYj-8adlPx7Ib4Ymvg"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "Sf_OYEMl7dLHUf4WHuzgvQ", "to": "uaupAnz3iTLz2GAWB-g8EQ"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "2RldlAQhXiC6SOBF44tLRg", "to": "Nw6T8fVRQqmtfHzCgqmmQw"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "cem-_UXcO-e6XMgZvCNSoA", "to": "2jacnwXQffxcpYjMZrdnew"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "MmXJ7Y1i298PiXNEQmrT_w", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
+
   },
   "10": {
     "relation_id": 231965,

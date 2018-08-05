@@ -163,6 +163,7 @@ module Mapillary
       puts "…falling back to private API"
       res = query_private_api(%|[["sequenceByKey","#{id}",["keys"]]]|)
       @all_image_keys = res.dig("jsonGraph", "sequenceByKey", id, "keys", "value")
+      raise "Private API doesn't know this sequence: #{id}" if @all_image_keys.nil? || @all_image_keys.empty?
     end
   end
 end
