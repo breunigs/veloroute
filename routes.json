@@ -428,7 +428,34 @@
     "_comment": "Innere Ringroute",
     "places": [
       ["Altona", "Eimsbüttel", "Hoheluft", "Eppendorf", "Winterhude", "Mühlenkamp", "Barmbek-Süd", "Auenviertel", "Eilbek", "Borgfelde"]
-    ]
+    ],
+    "images": {
+      "outward_borgefelde": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "TCNm-0QlQ2_6PXf31yxc-Q", "to": "otRj_FFJ_F_6jKPub_xRhg" },
+        { "seq": "DcVDnd5xwmAsbono8d93ig", "from": "BkJCwL5Zs0yAFB6gZlvqHQ", "to": "ue5sxy5t_uX9dcFK5-dYCw" },
+        { "seq": "DcVDnd5xwmAsbono8d93ig", "from": "BkJCwL5Zs0yAFB6gZlvqHQ", "to": "zOAHNMc-tHeRNm6wqSBPyw" },
+        { "seq": "DahxuOGg6nueTYYE9y_JUw", "from": "JLao7J3tFok3Gp93rxPp5A", "to": "1Cy3lf1GJ0ThVHpH7TjflQ" },
+        { "seq": "gOve1PkR7jUcVzQoyUt3hA", "from": "kIttxHQjkTbH2XzWWu-RIw", "to": "O52AbJYWNUGwjPuH9-D0Jg" },
+        { "seq": "KihppDAzA7zG94gfk5XJrw", "from": "8ABMqJ2ARemuUECMEJj7hw", "to": "3Yg0GJFpO7376DE9h5yCJQ", "note": "missing images after: https://www.komoot.de/tour/41283140" },
+        { "seq": "U9vAxJCszy2yo3UtgHrL_g", "from": "4imRWwqOwggRbHsmAYpwAQ", "to": "L_3mQETXuAH15GPHjo6YWQ" },
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "CWzlTzHe97cm6V-Q8xkBiA", "to": "yx5hczPz26nbbgOhiFDCLg" },
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "9fhUB7Rd5y6XV4cAXbHATg", "to": "jT8fW29XaI1H452vcSe0VQ" },
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "at9JpTIzshqvuZZ9idymZA", "to": "ow_lgUY0e5jhzw3grbQLig" }
+      ],
+      "inward_borgefelde": [
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "1d9Dcv3FQ0VGxLt619bT4Q", "to": "N50t-9wWKIuD-ZslxHJaEw" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "5mTUw586yjfUNPDRrFGt1A", "to": "ZF_wdmxbroYX6ChFZrMwjA", "note": "missing images after: https://www.komoot.de/tour/41283227" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "c84RgJ6o7j41I7VtUqyO_w", "to": "I6z_AFXsloAdW75veYlRkw" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "MdzbuOlh9aPLVBr-xaqLMQ", "to": "bahw3lCJ6oToZO58AwzItg" },
+        { "seq": "yXSpUkm6J0zHBAKY1ogmKQ", "from": "hN0--fj8327vmjYdOYSPVw", "to": "s4iIkhg6NtraLquqJmVwqQ" },
+        { "seq": "gOve1PkR7jUcVzQoyUt3hA", "from": "5hQ5tlrjNGe6xgZpW03PyQ", "to": "waiOeOqNto_X0lAwJsYh4Q" },
+        { "seq": "6ytOLDiicztZxOu3CaoQSA", "from": "bjwtpq1T0giAMg55oZei-g", "to": "xxlEKnJhVPKiFR6rgvrQ1w" },
+        { "seq": "6_2Fv5Dv_lgzSbyfcGRjPA", "from": "fNmPq5C0WUwjuJPDGP3iyA", "to": "5xMIlnh2AaVVsXYhCZdWEw" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "fzZLI6jCsxwg8B7mDY-y0Q", "to": "N0ynFoGX2XdZXjjMXA9zAg" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "WBIjk1GJ-19h-V68gceR8g", "to": "AUmT4av9sRxoD88XA6HzQQ" },
+        { "seq": "Ul1V_30KzkouICbzu85cSg", "from": "Yrc4cr73OkUqFL42-nlSow", "to": "hjBcZHg7IHLiVrqCJ65mJw" }
+      ]
+    }
   },
   "14": {
     "relation_id": 8349004,
