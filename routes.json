@@ -398,7 +398,28 @@
     "markers": [[9.9643668, 53.5464822]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Fischmarkt", "Altona"]
-    ]
+    ],
+    "images": {
+      "outward_altona": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "CHx5AKKhUSbg4QSBuCdSQA" },
+        { "seq": "GJs5C6XWwL4x18NaGLS2YA", "from": "RPriCfQ7DyaP0E84IaggUw", "to": "rwSA33Fmv1elLppMVm7JSw" },
+        { "seq": "ZgoRkJAZ7UK0lYgQtKG8vg", "from": "EXyxpJWrz0ENBi_uTvD_Pw", "to": "OLRXu-0eql6qEcgsHUqi-A" },
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "5liMabFyNR8Epfaq1gAA1Q", "to": "OeOj5TEL5m96nLv1XMKP0A" }
+      ],
+      "inward_altona": [
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "OeOj5TEL5m96nLv1XMKP0A", "to": "a8NYYpt5D4eA63oz8dgu9w" },
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "NQuS5Ye2Zy8qhAhUmsbnzw", "to": "RZc12gtlP1YIMCITUkXrmQ" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "M9qBVeBejFtstmy4SXCIRg", "to": "h51TqtyyJ4isX-OG_vftRQ" },
+        { "seq": "qsSWaBasrPLEAzoPiuM6Lg", "from": "kR0ZrzrF92JYIhG-53uRaQ", "to": "hR-UuPm7zWlZeNkCz2ppFw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "Ezf463MiHI8Iqx9sONZ-Dg", "to": "ILHGnwuuWeL8ftU-DAPmHA" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "cNfKOBUFToE85-RlOfJWzQ", "to": "lQMmZwq52fwTr1I_2-C8cQ" },
+        { "seq": "8tDOxzkjv85CRIQFoNVp1w", "from": "tYbbfOJvfnRpNgY4_Wzrig", "to": "OmNZL4uGANQymQ6cJx0Ntw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "bR_1zmpRWtmI6300f_UdQQ", "to": "R7YTiEDyPE2fiqc4Cw49Yg" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "m3ij86SXwtMj0YGXbpCoOg", "to": "OWwwvxc8A3psYaluiMZmuA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "6xjgDPB0OoSW_ePb2GsZBw", "to": "_QP-m2bY1ayBFdcqZCheCQ" }
+      ]
+    }
   },
   "13": {
     "relation_id": 2238764,
