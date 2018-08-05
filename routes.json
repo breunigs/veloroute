@@ -325,7 +325,67 @@
     "places": [
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Boberg", "Lohbrügge", "Bergedorf", "(Wentorf)", "(Reinbek)"],
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Mümmelmannsberg"]
-    ]
+    ],
+    "images": {
+      "outward_bergedorf": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "19gofFsy1OvLGMJGf8usmQ"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "A4Yh5rzFt9u8If1CC-JzcQ", "to": "2SNiRP0T9nOnxAHveHZvpA"},
+        { "seq": "R8-IAl_BxrIs9GJ8O5-_rg", "from": "9lBxovZ69lrnx8iS9nj80w", "to": "VcJLEe0vOsedzvgRIV0f8Q"},
+        { "seq": "evM7NP7njuk60w-G5LkEEg", "from": "4Al5RyWqzTu_xrQAr4VqNA", "to": "ac3RN11xZfJoMEktDzpJlA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "5WMikQ7YyRfwq7HagCQwqg", "to": "ARbXXtOVMtqP5UsEhB1mvA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "2azteUeQ-PcOYZ38erifqQ", "to": "uWftGvgJsuOj-dSiYUiuMQ"},
+        { "seq": "OINdHzR96tUbwP0s0xqCdw", "from": "0gXlG4Egy87P3Uu3cBZf4g", "to": "3FZ7xVIwoKPrynGdnclvvQ"},
+        { "seq": "Pw7ASDRgGjH4kEsgegh-CQ", "from": "T9Rxe5q5uTmeuciyu-968A", "to": "osk4Xc4HQcSi0H-stY1EsA"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "WOId7rCqVssOKXxWRUBwXQ", "to": "8xVKtbSoUrurtaodjGJNFA"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "hwzBfysEF1YdXwWNEOusmA", "to": "POmsw1Hmo-IdLnKQpz7Img"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "VkNjhgYb321dHncwASyGlg", "to": "Ggy-ipFxu_3kmiaRoK0v7w"}
+      ],
+      "inward_bergedorf": [
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "1KWU0vYlC30kjw361NkMmg", "to": "lDxmrZKuX8Oyj8g-hBbFmw"},
+        { "seq": "jeNURBH4eJyYK1gRgy80GQ", "from": "-QXYZXlmErDH2DMtVtpE-Q", "to": "anFztl0udap5PGiOXkmv7g"},
+        { "seq": "GQRUbehGwTegY1dw7DTutQ", "from": "WCRzpNwDWT6bvq8qMAZDSw", "to": "6rYaxk6O4dFiTcFnofo-Cg"},
+        { "seq": "H-xsQXpn-plvp7VMXJpo7g", "from": "cCeCwltG3b9AknkLQtvy6g", "to": "BgHvtA-83LgtWzmsdQZkOQ"},
+        { "seq": "STTxAqJPf6JCNWxGRCULbQ", "from": "HUSNxa-xWArr4c3YxpCy4Q", "to": "CWWcSx_PCwrwM1Cdvh1nuA"},
+        { "seq": "xWo81da2FB-EPLMwQr4lLg", "from": "1D5n78AkF1VzuiqsABhosQ", "to": "YPOYWQ1eRRIxXhqQm0oGsw"},
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "DAaWoIi3VgZTLxL-AVmzdQ", "to": "6fFcCQp0_TVXYw9WzlCHdQ"},
+        { "seq": "1TKH_bmUs9V1m3zrjX5woQ", "from": "Ara7rjT4ISQMzyG8zCeKBw", "to": "mT-ZIhvDLGF87EcB_4ASAA"},
+        { "seq": "sgxdMH__2QeG06pVwgYEwA", "from": "aAqXONrYsmhZgfqf5QwS4Q", "to": "_qyVKQPwM6Fu8lLvoZ6wVw"},
+        { "seq": "rvY6Zr2F5ktdh9dVcwr5_Q", "from": "G_-UY0Z_iPBs-NDiztRWiA", "to": "I-H1mBG7WQj4RuyddXlIqQ"},
+        { "seq": "EdRqd4SqNiKu4XuFgq7tSw", "from": "l9YihaI6oDc82vAe2zC9lQ", "to": "NR9xS0jHuFydQ0khPUJkIg"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "6TVAKi3fS0DWoNlAFdg29w", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ],
+      "outward_mummelmannsberg": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "19gofFsy1OvLGMJGf8usmQ"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "A4Yh5rzFt9u8If1CC-JzcQ", "to": "2SNiRP0T9nOnxAHveHZvpA"},
+        { "seq": "R8-IAl_BxrIs9GJ8O5-_rg", "from": "9lBxovZ69lrnx8iS9nj80w", "to": "VcJLEe0vOsedzvgRIV0f8Q"},
+        { "seq": "evM7NP7njuk60w-G5LkEEg", "from": "4Al5RyWqzTu_xrQAr4VqNA", "to": "ac3RN11xZfJoMEktDzpJlA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "5WMikQ7YyRfwq7HagCQwqg", "to": "xwSCgIbsOsugT7fnpy7G3A"},
+        { "seq": "H-xsQXpn-plvp7VMXJpo7g", "from": "SaPzwisJwEBKJG6zAaSA6w", "to": "WbQhY43kNPNREQ-C33u0Hg"},
+        { "seq": "y6Ya_wlvRe7eKGrjOio72w", "from": "lKskCSfC3VK7vYFC52Ogng", "to": "6ZUT3EKFHHaHRALx-EQAAg"},
+        { "seq": "y6Ya_wlvRe7eKGrjOio72w", "from": "f0IAQuzZ5JH-zHqA9i8ulg", "to": "soQF7nZYUS4wQKo8H00ltw"},
+        { "seq": "0Xsy5jLZwOYJFB2ADb8dug", "from": "4olppr2R_hs8A4eIinn_Pw", "to": "S0hmUhhckqNGyyjTJOeGmw"},
+        { "seq": "r3x6mWHTMpoJNuaX6rZL4A", "from": "wiI1BgDO30zDHmMU49YNgQ", "to": "_Qk8EHn6nluwIpipWFWRbQ"}
+      ],
+      "inward_mummelmannsberg": [
+        { "seq": "r3x6mWHTMpoJNuaX6rZL4A", "from": "1z7Biv540IMgWkl7_qp_TA", "to": "K3cCspRqQ0JxUH0nB1JE-w"},
+        { "seq": "0Xsy5jLZwOYJFB2ADb8dug", "from": "lHcceI2x5u3OOm8UuM8u6A", "to": "8v7w-2HP1HbgGfovEdeZ_w"},
+        { "seq": "xWo81da2FB-EPLMwQr4lLg", "from": "-CFYxJ_ehI7qDff3Gf_PIQ", "to": "YPOYWQ1eRRIxXhqQm0oGsw"},
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "DAaWoIi3VgZTLxL-AVmzdQ", "to": "6fFcCQp0_TVXYw9WzlCHdQ"},
+        { "seq": "1TKH_bmUs9V1m3zrjX5woQ", "from": "Ara7rjT4ISQMzyG8zCeKBw", "to": "mT-ZIhvDLGF87EcB_4ASAA"},
+        { "seq": "sgxdMH__2QeG06pVwgYEwA", "from": "aAqXONrYsmhZgfqf5QwS4Q", "to": "_qyVKQPwM6Fu8lLvoZ6wVw"},
+        { "seq": "rvY6Zr2F5ktdh9dVcwr5_Q", "from": "G_-UY0Z_iPBs-NDiztRWiA", "to": "I-H1mBG7WQj4RuyddXlIqQ"},
+        { "seq": "EdRqd4SqNiKu4XuFgq7tSw", "from": "l9YihaI6oDc82vAe2zC9lQ", "to": "NR9xS0jHuFydQ0khPUJkIg"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "6TVAKi3fS0DWoNlAFdg29w", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
   },
   "9":  {
     "_comment": "Last check: 2018-07-03",
