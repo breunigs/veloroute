@@ -6,9 +6,7 @@ FROM debian:unstable-slim as geodata
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
-    gdal-bin \
-    jq \
-    ruby ruby-json ruby-bundler
+    ruby ruby-json ruby-bundler ruby-nokogiri
 
 WORKDIR /app
 

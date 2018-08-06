@@ -3,124 +3,725 @@
     "_comment": "Last check: 2018-07-01",
     "relation_id": 194843,
     "color": "#7d8b2f",
-    "markers": [[53.58653, 9.73927], [53.59062, 9.85307]],
+    "markers": [[9.73927, 53.58653], [9.85307, 53.59062]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Klein Flottbek", "Nienstedten", "Blankenese", "Sülldorf", "Rissen", "(Wedel)"],
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Groß Flottbek", "Osdorf", "Osdorfer Born", "(Schenefeld)"]
-    ]
+    ],
+    "images": {
+      "outward_osdorfer_born": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "lDvARJd-fbwgbl3VbrKerQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "FoJQv1t0uHdv-Sh6e3JM-g", "to": "71-Xy3UCJcTHlWPjUHuTmw" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
+        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "vJGHq24iI-I6NQQn0iQYaw" },
+        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "KECxaTLwLLkOucqeZsaq0Q", "to": "5AkOxMJ1ivXBn1WnOQ3eDg" },
+        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "gcQpMKJz19vjGjwewHYI-g", "to": "rueX1vpE1KD79UIXOl71ZQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "IhgRlFyBqWxilippnbb-Zw", "to": "D6_wRv89U_XlgZles_lvYw" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "mC970LwA2MSOjZKdMo6cGA", "to": "pxBoeLt-X3psRUnjW4GYug" },
+        { "seq": "jgiVA03PbCSzsz7UjuBbug", "from": "j9ZwJNc1DQpjMeYC7McXIA", "to": "mEB0nn-GJgWbg4fIOrqdGg" },
+        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "ovr5lxcW99TGfy3mISbfew", "to": "uEusdWfZqOqx89lN1yNz4w" },
+        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "feZMNMEoVBiWhA_-M7pNtg", "to": "MJCXA2WHLPI4Alhd3xo9sA" },
+        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "7cVD50zO0OvlK8yyOtSzFA", "to": "8tNqNYW2emZXTipDiGmUGA" },
+        { "seq": "42rfxmnu4s5npv9h7ci16q", "from": "a2VtG08zEH1mtuB-LPQwxw", "to": "_RPb8tUw3L5g9yi5euy6PA" },
+        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "1CfiHvnShTwZxkHaDL3Tow", "to": "A2JF3iWwkV477CGooQOMtA" }
+      ],
+      "inward_osdorfer_born": [
+        { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "Eg3UcTpRXUroiy4Agl59nQ", "to": "EoP-T3XpOpHzRMYgMDwI_g"},
+        { "seq": "eH0m4ykz4cvHTCns7WdiBQ", "from": "hx_q2jIyvi2WUtxOVYwulA", "to": "h0swKIjQA0KKe66IlH4FXA"},
+        { "seq": "LXymfLy7DcNdVLmlSTt-Qg", "from": "ZEMDslovOJ5E1h445ynAfw", "to": "tXLhM42wx8jIelYXA58X5g"},
+        { "seq": "cJ5xdgWy0EYaFWrXPLT3wg", "from": "RGHBy3DIo3X6qft5-VtJcg", "to": "bJDVVPB0nIoNrEsw7wU1Yg"},
+        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "RPSHth8i2ueJUF1jSCoIOA", "to": "bJkOnxBhKmBotcLBJDjhCA"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "y6p9J2O71kdMPg0iI9AWAA"},
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ItL0COdKIGtqoSWXW-sh3g", "to": "EwLt6SQvOJqNCeMHUOGTRg"}
+      ],
+      "outward_rissen": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "lDvARJd-fbwgbl3VbrKerQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "FoJQv1t0uHdv-Sh6e3JM-g", "to": "71-Xy3UCJcTHlWPjUHuTmw" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
+        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "vJGHq24iI-I6NQQn0iQYaw" },
+        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "KECxaTLwLLkOucqeZsaq0Q", "to": "5AkOxMJ1ivXBn1WnOQ3eDg" },
+        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "gcQpMKJz19vjGjwewHYI-g", "to": "rueX1vpE1KD79UIXOl71ZQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "IhgRlFyBqWxilippnbb-Zw", "to": "D6_wRv89U_XlgZles_lvYw" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "mC970LwA2MSOjZKdMo6cGA", "to": "pxBoeLt-X3psRUnjW4GYug" },
+        { "seq": "jgiVA03PbCSzsz7UjuBbug", "from": "j9ZwJNc1DQpjMeYC7McXIA", "to": "ED2Vng4n4oiBw1Ou2cus2A" },
+        { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "7UVXM3dZNAPwJQtG3Qe_8A", "to": "3GTWBHuzT1PBqF8vQbdesQ" },
+        { "seq": "k7J4rEHSIdKIPZ7HJ14UOw", "from": "060x-ocI4UrdPrs4r3tEEQ", "to": "crWixHF_OhYk3hyq6C1F8w" },
+        { "seq": "OJcq3T1tNNJmk2p-XC77aQ", "from": "HCDf5rogIvxdbteCkL28tA", "to": "rKEl5VHP1UWcDt1ZeHAiIA" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "B6ChcpVEbkCkiywgn-Kxmg", "to": "1sjSmLlhREpSvrufzb9ZiA" }
+      ],
+      "inward_rissen": [
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "PC7filM4k9PAOwTYUCMhmA", "to": "HR8YhBdfQLE4gSFBM5h3sw" },
+        { "seq": "SAHgKCBxAnZ-U0Ze-usW5Q", "from": "4meEKSPKqFtOgXGH5MZz5Q", "to": "CH9op7pxw3njTsjsnNOsQQ" },
+        { "seq": "3xusuwLkYxOXag_1VnlWRw", "from": "SrkzN9Ei8tNYzp34SVTZzw", "to": "0XnFD80I3WRMUZejVX_rFQ" },
+        { "seq": "LXymfLy7DcNdVLmlSTt-Qg", "from": "iINPDOsCw_zRDXp2-5HF4Q", "to": "tXLhM42wx8jIelYXA58X5g" },
+        { "seq": "cJ5xdgWy0EYaFWrXPLT3wg", "from": "RGHBy3DIo3X6qft5-VtJcg", "to": "bJDVVPB0nIoNrEsw7wU1Yg" },
+        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "RPSHth8i2ueJUF1jSCoIOA", "to": "bJkOnxBhKmBotcLBJDjhCA" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "y6p9J2O71kdMPg0iI9AWAA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ItL0COdKIGtqoSWXW-sh3g", "to": "EwLt6SQvOJqNCeMHUOGTRg" }
+      ]
+    }
   },
   "2":  {
     "relation_id": 194841,
     "color": "#b2211d",
-    "markers": [[53.60570, 9.89895]],
+    "markers": [[9.89895, 53.60570]],
     "places": [
-      ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "Halstenbek"]
-    ]
+      ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "(Halstenbek)"]
+    ],
+    "images": {
+      "outward_eidelstedt": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "lDvARJd-fbwgbl3VbrKerQ" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "FoJQv1t0uHdv-Sh6e3JM-g", "to": "71-Xy3UCJcTHlWPjUHuTmw" },
+        { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
+        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "F9zbbJBqRwFbl4PmlVEl1w", "note": "missing images start here" },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "GOgyoFzOY0jZ9vK9RDJtPQ", "to": "kTZdGlb8Mrqlb5N3xCShmw" },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "JMECTW_Mdy5ObEnukwtTtw", "to": "QXKbBN-9komlDR482q0LXQ" }
+      ],
+      "inward_eidelstedt": [
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "yZF9kvnEWqg1T3Xq2NLkCg", "to": "h510f55JCMpDQSyTp9_STg", "note": "Missing images before here. Missing images after here." },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "mGODrJxPv1dzUrjBxIRzmw", "to": "mMUTH-weEEFPcOPJXhpTRw" },
+        { "seq": "Pf1WuB8qRmydht23hyMv7w", "from": "1QYwwAlKpZajZvSYYzaAXg", "to": "1QYwwAlKpZajZvSYYzaAXg" },
+        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "YI-OAazchzgiH3OMo2kaQw", "to": "bJkOnxBhKmBotcLBJDjhCA" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "y6p9J2O71kdMPg0iI9AWAA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ItL0COdKIGtqoSWXW-sh3g", "to": "EwLt6SQvOJqNCeMHUOGTRg" }
+      ]
+    }
   },
   "3":  {
     "relation_id": 194840,
     "color": "#e8430b",
-    "markers": [[53.64035, 9.95038]],
+    "markers": [[9.95038, 53.64035]],
     "places": [
       ["Rathaus", "Gänsemarkt", "Bahnhof Dammtor", "Rotherbaum", "Hoheluft", "Lokstedt", "Niendorf Markt", "Niendorf Nord"]
-    ]
+    ],
+    "images": {
+      "outward_niendorf": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "4z9G8fDJsUrlBTqkv3TrYg", "to": "sKyuI4EICdEMSLdaR5cN3A"},
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "qGBZO9DWJpk2Bh58WfXW3g", "to": "my0TtM5rtzDwPR2ZjM03Xg"},
+        { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "2CetLYdoeFCN6rKfq95wXg", "to": "e_dExn32aGxKtRUYV5KQ5Q"},
+        { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "dXPA3mKdPqA1z8zPkdV9NQ", "to": "fOTK75tSbG9KJPM8t-qn2Q"},
+        { "seq": "ZcXeMcsrDTbyzj3uTABD9A", "from": "mZ5P4TSlmnp_-_BkoRu7wQ", "to": "BVBcPNVwMgVxYTBZO-TBig"},
+        { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "Tim482UEEE--fuSAMArihw", "to": "zXquw55F0T8-dLHxfFYdWQ"}
+      ],
+      "inward_niendorf": [
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "AxG-1fliz1Qv1Z6Yn8CZBg", "to": "5H5M2Mt3RxZ47pV5hCN2vQ"},
+        { "seq": "nQUpYstYNOy0ryHBblhVlQ", "from": "VII9jUcwLd-72iSTXQUnBQ", "to": "A5btE19E5rQRJHB4ldGvwA"},
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "UW2fBwrRtjUqIbVbCx7Vtg", "note": "missing img after: https://www.komoot.de/tour/40332412"},
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "j7XuEo5sjhxBJ6-7HepNng", "to": "UpQrHnV41JapGpzOAMUe3Q"},
+        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "QnrnnbD3T9ApM2UL9TePEg", "to": "6ghcIpCg4gPU7mxN44aQYQ"},
+        { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "nzlrV75tuzXOQaxDsVWcRw", "to": "U_XX5YBjrcGb83ZZ08wg5w"},
+        { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "QE-ZuE6MEhIn9HGSaYVB3A", "to": "3qUzCXxmF7kATAJppzmMCA"},
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "cVsGgvzUmnFYGyntVtlhEQ", "to": "iRql1hCMZkGYu-AMQMqGqw"}
+      ]
+    }
   },
   "4":  {
     "_comment": "Last check: 2018-07-01",
     "relation_id": 191882,
     "color": "#008aa7",
-    "markers": [[53.67918, 10.00040]],
+    "markers": [[10.00040, 53.67918]],
     "places": [
       ["Rathaus", "Harvestehude", "Winterhude", "Sporthalle Hamburg", "Alsterdorf", "Flughafen", "Fuhlsbüttel", "Langenhorn", "Langenhorn Nord", "Ochsenzoll", "(Norderstedt)"]
     ],
+    "images": {
+      "outward_ochsenzoll": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "OLrx_Uj_u1NXnQh1FdvNeg"},
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "weGwryFjeEWgyAPJBDY4GA", "to": "qGBZO9DWJpk2Bh58WfXW3g"},
+        { "seq": "zn4A2XqoQOeOiguK0BVe5A", "from": "BbpplQ_QVt297S1YSNfWhA", "to": "epQdZVhRH8iwgj0qmA1cUg"},
+        { "seq": "q02Dkwt6gwy46AFycr-6Hw", "from": "FPopDOerMW-jS2lVi-TBXQ", "to": "GMb0VUKdBJI_LXxV6jHTmw"},
+        { "seq": "HBTtRRigC1zsU-BlJ2TybQ", "from": "j1oQ0FYz2GAyc1T8KKoO8A", "to": "6Fjo-es-Y6MfaLJQ80YEmw"},
+        { "seq": "q02Dkwt6gwy46AFycr-6Hw", "from": "VD9RHlhTb_RvenswGLhfaw", "to": "U_Qb53krQHfuXoPIzpTjrg"},
+        { "seq": "HBTtRRigC1zsU-BlJ2TybQ", "from": "rOWu8xfJvtt1cx-PG7gQXg", "to": "UsKOss5u3cGlucVs2Zgdfw"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "9uQbifNGamki352Jv4dXdw", "to": "Qeyr6b-8ZO9O6cer26tL0A"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "x8493hKyWHCjoagTqt-gkw", "to": "6TIYVKnO01As_zGDmWHH4Q"},
+        { "seq": "_Ccy_rSkQF718aMg_GUYOA", "from": "epAqhG6C5c3u0ua7nmNQAQ", "to": "vXJGJjRbaNqIjBXhNj9xKw", "_note": "Pictures missing after: https://www.komoot.de/tour/40477053"},
+        { "seq": "RRgmSMqHsQoVHs_c6cWHmA", "from": "Pel6E6luoy0XKOLCPWDDng", "to": "eTzi6G_6InAfx8Y6V4CNHg"},
+        { "seq": "l3x9GNE3cLTxLOjGB6Bw6g", "from": "Oavuj2uxH677KhCAzJE7ZA", "to": "oMJ-zEAO0UrnrxGgwW2ZiQ"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "dXQdjXQHjWKNLTWkzV7u7A", "to": "Y92NwZQr58NUGg5BUizJ2w"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "dXQdjXQHjWKNLTWkzV7u7A", "to": "Y92NwZQr58NUGg5BUizJ2w"},
+        { "seq": "l3x9GNE3cLTxLOjGB6Bw6g", "from": "Ac5KF2rL9tc01LpZ6_QBww", "to": "xJaeJvFibDirfZJFVP1CsA"},
+        { "seq": "mVOSF-thcSoy0cM28hhT-Q", "from": "9dSfjcmGtGKTW1Lv3Ji1eg", "to": "sD22nI_qox4tnEy6nvvXlA"}
+      ],
+      "inward_ochsenzoll": [
+        { "seq": "v3ruzvpbbTt9UELvi1enTQ", "from": "tFKHvc8mvFs_ktsJ7LDZxg", "to": "WfWvFEslPTOkAmXzvZB5ug"},
+        { "seq": "7Q-SJGgixBCJTqBWx47fmA", "from": "Rme10xSeLqkTSXWX8TCY1Q", "to": "7cIbUiPxQtSF46rC3rv-8Q"},
+        { "seq": "v3ruzvpbbTt9UELvi1enTQ", "from": "dxBmYE54dpIK3gr1deKPAA", "to": "L4i5xRfQGjdDFWtcjKHKtA", "note": "Missing images after: https://www.komoot.de/tour/40477180"},
+        { "seq": "7Q-SJGgixBCJTqBWx47fmA", "from": "txK05hciuE7ap-B8MXlWrA", "to": "46B8vMd1hTOOcc4keHRLRw"},
+        { "seq": "BzB-n8OAbwlbYTrECcAjYA", "from": "lmRgqZf0G67CPJ1fel7UJA", "to": "dnmFk72GtkhNDjiBMqHbXw"},
+        { "seq": "Z_1nFBleernBVgQyhLfL2g", "from": "TSpDC4ZZ5ppZF_vFFORKGw", "to": "n40ZBhuEEWngWVsh1P21qQ"},
+        { "seq": "8wEcQDUPgNLaZvlPBvAxqg", "from": "h7kBl6R6-7mxsnR4KuaWKw", "to": "C1NWf5T72z9ZfAfVnz7jew"},
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Ghj_euVtNf53iO797yc5uw", "to": "iRql1hCMZkGYu-AMQMqGqw"}
+      ]
+    },
     "_comment": "Last check: 2018-06-30"
   },
   "5":  {
     "relation_id": 226032,
     "color": "#078a3d",
-    "markers": [[53.70749, 10.10978]],
+    "markers": [[10.10978, 53.70749], [10.01796, 53.61524]],
     "places": [
-      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"]
-    ]
+      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"],
+      ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Stadtpark", "City Nord", "Flughafen"]
+    ],
+    "images": {
+      "outward_duvenstedt": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw" },
+        { "seq": "pVdn-iwU-fH-KKjJIkSbkQ", "from": "gttdCpzjX62HyxcFrIEzHA", "to": "9vpiikinMx4dMBSGLnLocQ" },
+        { "seq": "imr4yHfB7KbEpJO-3ExazA", "from": "YuDsL9xT7GM4bNh7ac1b9w", "to": "QEvfOwIFAxKrKdl4NUxyfQ" },
+        { "seq": "cmPm26bD3lotlAqX9sUN7Q", "from": "EiY77KzKalOpOTHD2kpP-Q", "to": "_IkjMFBzLXo89xoYTf851g" },
+        { "seq": "YX9ImYR98N-kguqBimIaZA", "from": "ZNV72o_QloLmRXQ7PFm0qw", "to": "EIZn6DCBKN_JSGy9gzcJ0A" },
+        { "seq": "aIG_UkA53AczAp6Qs3bbUA", "from": "YbojjTwseIDLciJsTqmBhg", "to": "XOE-psHMjiP2sENRE5sEew" }
+      ],
+      "inward_duvenstedt": [
+        { "seq": "aIG_UkA53AczAp6Qs3bbUA", "from": "xlCgDdu0Vv_t1amghtzgHw", "to": "ZiBJ88JpH__C-pIVFa4GkA" },
+        { "seq": "Jp7zWZb_M3Gnqm6P1p3J4A", "from": "W_FNJCLrO6H1GjEpy1IT8A", "to": "uwZ8ociQePa6pFx4O-RpgQ" },
+        { "seq": "eHO_N2D67rAI_EXtJN_zaQ", "from": "A_OgZG9bUjcRRr0ZifVBhg", "to": "CHaziU5W2ZfjCBDp1tawUQ", "note": "Missing images after: https://www.komoot.de/tour/40995032"  },
+        { "seq": "MDY6R1BJUSOWceZoAFIS2Q", "from": "pjODz0emZG2yy3o8Ag-9lw", "to": "lMJl6vsMhNiu4mBq4gkyXQ", "note": "Missing images after: https://www.komoot.de/tour/40995333" },
+        { "seq": "MDY6R1BJUSOWceZoAFIS2Q", "from": "zqx_nCgc3r3e71GvOjXBNw", "to": "XXWHtVHQ5u3ck9LNoNgHRg" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "q3kGy8BpVqSr4-mpYd0d0A", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
+      ],
+      "outward_flughafen": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "piMets243mI6kOPnln3HAw" },
+        { "seq": "pVdn-iwU-fH-KKjJIkSbkQ", "from": "gttdCpzjX62HyxcFrIEzHA", "to": "9vpiikinMx4dMBSGLnLocQ" },
+        { "seq": "imr4yHfB7KbEpJO-3ExazA", "from": "YuDsL9xT7GM4bNh7ac1b9w", "to": "l1aOgfZGxnbLYJrKP-cTtg" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "dLR5Oy4SAIqLekC-lFyxaA", "to": "ksJACwMsJ0rcm_2T0W7E7A" },
+        { "seq": "czGmFfeuBoNVk4fw9vMMNw", "from": "AaxQvt1V_cYuoZABHcTW8w", "to": "e1lPkU93YVpGvp6y_Vyhkg" },
+        { "seq": "M3Pzt9S8-IsM_kAhprHmww", "from": "Fekux7mu3ZE_P19EFMnV-Q", "to": "Qh_tJg992lEuaiJG2FYkZQ" },
+        { "seq": "h8pGesjCfKCZfMczUlPQxg", "from": "2fIjJCk9GAb4gkN-3I1CPQ", "to": "e_fvQUsLmASKIu5jaUMavw" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "oDuw38zpymuwOtSUeBHKMQ", "to": "d-H5uUo_Nylim01gRf0cCg" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "jg_mgk-_xmxOhavS6bLCTw", "to": "pbLyoko4LVPA_VTE8odEQw", "note": "Missing images: https://www.komoot.de/tour/40997545" },
+        { "seq": "nHp9Zc-hVDbtAKgkEm-6IA", "from": "PhkPdfqD9G1umUaKzFevEQ", "to": "9w-A64mkpO7b4HoTZLQuNQ" },
+        { "seq": "Q2JHzXixEzA8Hts8gLCBSA", "from": "0tKV4kSt6BUQ2RYsKVORkg", "to": "DwFxSqL7udjEVdcr7jv6nw" }
+      ],
+      "inward_flughafen": [
+        { "seq": "Q2JHzXixEzA8Hts8gLCBSA", "from": "_wgm0OzuwT_I2UFEdPmXJw", "to": "HCc4R_5eFecYPoq3oQt3GA" },
+        { "seq": "pcq_df1uGhjER7WMDk0hOQ", "from": "EFwCB6v7yoa_k2gfOjVibg", "to": "sGqKbMOkO6suwUGFNWjvAg", "note": "could use some better images: https://www.komoot.de/tour/40997647" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "5qhblFBEjkOhI2jYR-AE8Q", "to": "46w7yuJzKFYabqDv1D5I4A" },
+        { "seq": "U9vAxJCszy2yo3UtgHrL_g", "from": "Mr0Uo7AfHa4c1Ejh-2Wj-A", "to": "IJUEUAOpXmXQLiXgtYQSuA" },
+        { "seq": "YGC2_bEQjkR2lspu0qAU8g", "from": "WCH4DcLq2bMUrFSZDYPgnA", "to": "454SO8QTZAM8p_FInl1EbQ" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "kzqzdSq73aRd7JNaIEWR4A", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
+      ]
+    }
   },
   "6":  {
     "relation_id": 227477,
     "color": "#2a3283",
-    "markers": [[53.65005, 10.16322]],
+    "markers": [[10.16322, 53.65005]],
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Hohenfelde", "Auenviertel", "Friedrichsberg", "Dulsberg", "Wandsbek-Gartenstadt", "Trabrennbahn Farmsen", "Farmsen", "Berne", "Volksdorf", "(Ahrensburg)"]
-    ]
+    ],
+    "images": {
+      "outward_duvenstedt": [
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
+        { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Al45RhUiC33zTaGSRNFMKQ", "to": "oDsyZdr70mulNuakf1lcvg" },
+        { "seq": "YlZo1t-5tOunVrlAGmiILg", "from": "ZHEeEsPnNqSXFFLprBhynw", "to": "fzMG-Yn2J96lWZgjltUkNg" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "iWANz5vQarRVSpCO44smHQ", "to": "rA4J4dzu1M3EYFAKxRCk0g" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "_uHDcbtFG33seRzEw3z5Iw", "to": "H3mexjWJWdQe5YyvLEGX3g" },
+        { "seq": "MNjdBstIzbtahxH53P5DYg", "from": "2GXbx5yVipSf-xGNMyONZw", "to": "WYxHRow_Kwq3xAiRvYBKpw" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "7Bd0EdnUWaIddJCrCE8tWA", "to": "sEgwcbm_hD3SGgWWWbn5ng" },
+        { "seq": "Q6HqEWOsNO1Z-dxeAevbtA", "from": "5x1it4FUK7vRgtCucG4uSQ", "to": "ApSxcDNLhafbdegsffAP5g" },
+        { "seq": "9iny5MTI-xa1MiMmDy3oKA", "from": "oIcZpx_Purs5k-DFIN0t5Q", "to": "xNMdi9ng-zMCgGWJnKOFJA", "note": "check if routing works differently: https://www.komoot.de/tour/41096188" },
+        { "seq": "2AA9-fzSR7kMgzhf4ltJ3A", "from": "RVSzbz2futudvi8lcQdq7Q", "to": "GXRXHfkKOeqQurT5XNSJeA" },
+        { "seq": "fOV2ypoiARnWSAaZg4y3XA", "from": "I2_efhjnPu-iO3yZXFVxSA", "to": "mmW-XuM9O3zLwirV7g_Z8w" },
+        { "seq": "ZFcTeF628eN9J77WDkKhBw", "from": "P1an88XiCAqluhldqicTgA", "to": "Vxsa3BINCNQqIoelYz9UMw" },
+        { "seq": "qxspNEzcIu2xxlzDUnf0lA", "from": "9qQffAttJv4qWqRTdFcBrA", "to": "Ifenu1zytihZ_quJkGqBSg" }
+      ],
+      "inward_duvenstedt": [
+        { "seq": "qxspNEzcIu2xxlzDUnf0lA", "from": "T1hWAXk4pC-17zJLRo7vmg", "to": "hvbiBw6UOZAeq6hmK7ZHrA" },
+        { "seq": "AVvYWLkxXkpiN6KU8eNoTQ", "from": "0fR1YFt4fbdPUhTGlmimrQ", "to": "bTic-sOKF5dxLKypy-t5bQ", "note": "missing images: https://www.komoot.de/tour/41098070" },
+        { "seq": "xqKQQllOvsMKR5Q0-VZiAg", "from": "VzVviv-kFicrP8uJUd4FYA", "to": "1jJHQlAs8byQFLMpcq3MBg" },
+        { "seq": "ZK4QZnzM4AmCiJM_kdkOKw", "from": "CzZ_Vkiy_mpeUU-YpOqKbA", "to": "XVRXFmOWi7g0Tss9Ul052Q" },
+        { "seq": "u5BMm6iPSY3uSAvzcV8QNA", "from": "97yJaEvB0XOr37pn4qg1gg", "to": "vjgUTlQGfO3HF927iqt0Dg" },
+        { "seq": "dQfMxR5AlyGjYpGl60TwUw", "from": "bNwn2bY07cnrCVI3kN5Mug", "to": "Y8Zl4BqzOe3dBjzvVaEibA" },
+        { "seq": "HYJyy-pNrje5MapI0UqGxQ", "from": "crKit67HBlKAs1Dv1l13sQ", "to": "H4Qd-bM6WF6O2znAPfIzHw" },
+        { "seq": "HYJyy-pNrje5MapI0UqGxQ", "from": "MfhiDh9aRjD_rAx0E2jTkg", "to": "2lQ8MCe--0tFbx9dyo56VA" },
+        { "seq": "G_DCkv7E98xpuRls7Vm40Q", "from": "2cwhIu9mdh1dFPb9fuU6CA", "to": "5X4EcbIa584PoxaZqaPDHA" },
+        { "seq": "IwEsiyJjxjUrwpy2T5UFUQ", "from": "2TtZNucNHAQDhTl4FL1wtQ", "to": "kobRQcjLJXKfyoSyO6FyWQ" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "Untl3UpqqpJsl4ZP0cjing", "to": "1eHrpECrj9liEeXjt02uUg" },
+        { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
+      ]
+    }
   },
   "7":  {
     "relation_id": 228035,
     "color": "#97ba22",
-    "markers": [[53.60497, 10.15531], [53.57499, 10.13454]],
+    "markers": [[10.15531, 53.60497], [10.13454, 53.57499]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Tonndorf", "Rahlstedt"],
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Jenfeld", "(Barsbüttel)"]
-    ]
+    ],
+    "images": {
+      "outward_rahlstedt": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "r_tI6Lcmfn_qw8ExKQt9rw"},
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "yca5SyKtZ9CehpwUZVS8YA", "to": "2i0pMRhoq03OrtAbrn7NRQ"},
+        { "seq": "8LHGJ55X0V1Scgj9qOsHPQ", "from": "WzJoJoA3hIwaO69PdACbkA", "to": "R12Yba7gLQlZclewFvc5IA"},
+        { "seq": "kO0r9kBg-XaSIruFfoW2Sg", "from": "TButvhigj9OamiUukPyiMA", "to": "ZTwPGPRmZvLGCclO0aIXMw"},
+        { "seq": "pjQ5nwTdMBLg4FbJuV84iA", "from": "9SDiAbgxyArXjXwT136IQQ", "to": "MGdGLyePs-e3XK5m40mcKQ"},
+        { "seq": "rQh9aNxUkyEC9iU0zZiXTA", "from": "9kFSxIIUAA9mWlXpu9CaFg", "to": "COrBjMe6wvsNeviFIkxL4g"},
+        { "seq": "rQh9aNxUkyEC9iU0zZiXTA", "from": "lLR88FbxKBjWD0Gyr7Q32w", "to": "JX630K1LZtdP1GON8Pz1Tg"},
+        { "seq": "ZJSBtZZfLwgkt9UdTU5Eng", "from": "YRVF9HiuhK6QRnDG9uG5bw", "to": "Ye8cIhY5wv4qHtzUKrjUbA"},
+        { "seq": "ZJSBtZZfLwgkt9UdTU5Eng", "from": "MZ0LRuz_HHUqd2j4GX9F2A", "to": "DSf5ypjdyeXy3QFnue13RA"},
+        { "seq": "IqhQuCsohwJ3oDkc18-9oQ", "from": "cP7vOHSGDK2geHVhNditLQ", "to": "EoaDCtCN1rk8lq-UrqHtNg"},
+        { "seq": "IqhQuCsohwJ3oDkc18-9oQ", "from": "RWMVKM8P0FDFfe0yFGcalw", "to": "gC8rtO2MmCaS7NA96cE8Eg"}
+      ],
+      "inward_rahlstedt": [
+        { "seq": "09JMeJ9x6YW2tjO0PAfILw", "from": "R6EVfhCsbLF2rtEiDJiY6A", "to": "Sbz5Vw2YEsNX47HIaRUpQQ"},
+        { "seq": "09JMeJ9x6YW2tjO0PAfILw", "from": "a-GPWfMx3D0hTFtm0CnGYA", "to": "y_nzcDpAzeungkg1ni6pgQ"},
+        { "seq": "ILOimrr0PS5qlSgKPCBGwQ", "from": "Rw_2pRAcZEmx5r2YeMWL_A", "to": "uG-m15qWpubZ9CXtx0HEVg"},
+        { "seq": "ILOimrr0PS5qlSgKPCBGwQ", "from": "2D86w2RJNEBfMttr3q3cYg", "to": "p-5fKfK1KAdAyxrS9awG-Q"},
+        { "seq": "XeTwZh3yN1jiJch_tlEbKA", "from": "Rm2Jn7EFtEtPepJNhmt1gg", "to": "RSRjlD4mDhQY4hNqCg7MdA"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "cvrfTnmex4w2m2kbBc2sWQ", "to": "bIhs1f2Vsa12CPYhA3BdLQ"},
+        { "seq": "oiU0icgOT7L_s2uESeY3GA", "from": "vEneNdI7KZcnVpl6kuRsOg", "to": "l76uN-QJ1JnJ4ms3NloExQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "defUp1LwNwFrJnpUAoijHg", "to": "IhddM5GCk0YyJIpIzSqc1g"},
+        { "seq": "fbzDF9LS8iyrAv3scVFsiQ", "from": "c3xe-HnQ_yzXcPQxu48GdQ", "to": "vH8rijPF6iaDYiSWXCWfew"},
+        { "seq": "ECMaI20C8C5zN7-jWiiQUA", "from": "s5sa7vkhJ2-CN5BUWf2gEw", "to": "i32-0lAVJvNyWlqys4mtgQ"},
+        { "seq": "Oj14-QGczpraZg8lkkwg4Q", "from": "egChXbDqe_9Mp1qcjvq9aQ", "to": "2uI-irXtsOIA1TNDMzBgGQ"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "IGzbgDlNuw3PC0Ku_Tc4cQ", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ],
+      "outward_jenfeld": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "r_tI6Lcmfn_qw8ExKQt9rw"},
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "yca5SyKtZ9CehpwUZVS8YA", "to": "2i0pMRhoq03OrtAbrn7NRQ"},
+        { "seq": "8LHGJ55X0V1Scgj9qOsHPQ", "from": "WzJoJoA3hIwaO69PdACbkA", "to": "R12Yba7gLQlZclewFvc5IA"},
+        { "seq": "kO0r9kBg-XaSIruFfoW2Sg", "from": "TButvhigj9OamiUukPyiMA", "to": "ZTwPGPRmZvLGCclO0aIXMw"},
+        { "seq": "cdOpilFID8le19UHYg-d4A", "from": "y1mLQ568hx-u5Rl3MgN9ww", "to": "vTM-YMJg1IqKWcESV9wdKQ"}
+      ],
+      "inward_jenfeld": [
+        { "seq": "R9616yZTdHznpCjlcN1RhQ", "from": "wxqj7gw0tf3ctKMvaoWAEg", "to": "yoaEnbmcq2aiVkqQLl-aGQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "qx3YQm2yH1zgaYygH33p2w", "to": "bIhs1f2Vsa12CPYhA3BdLQ"},
+        { "seq": "oiU0icgOT7L_s2uESeY3GA", "from": "vEneNdI7KZcnVpl6kuRsOg", "to": "l76uN-QJ1JnJ4ms3NloExQ"},
+        { "seq": "4ABsKNAJhIgkbuWKrkM5ng", "from": "defUp1LwNwFrJnpUAoijHg", "to": "IhddM5GCk0YyJIpIzSqc1g"},
+        { "seq": "fbzDF9LS8iyrAv3scVFsiQ", "from": "c3xe-HnQ_yzXcPQxu48GdQ", "to": "vH8rijPF6iaDYiSWXCWfew"},
+        { "seq": "ECMaI20C8C5zN7-jWiiQUA", "from": "s5sa7vkhJ2-CN5BUWf2gEw", "to": "i32-0lAVJvNyWlqys4mtgQ"},
+        { "seq": "Oj14-QGczpraZg8lkkwg4Q", "from": "egChXbDqe_9Mp1qcjvq9aQ", "to": "2uI-irXtsOIA1TNDMzBgGQ"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "IGzbgDlNuw3PC0Ku_Tc4cQ", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
   },
   "8":  {
     "relation_id": 229623,
     "color": "#e20612",
-    "markers": [[53.52821, 10.14991], [53.48922, 10.20695]],
+    "markers": [[10.14991, 53.52821], [10.2076112, 53.4893964]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Boberg", "Lohbrügge", "Bergedorf", "(Wentorf)", "(Reinbek)"],
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Mümmelmannsberg"]
-    ]
+    ],
+    "images": {
+      "outward_bergedorf": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "19gofFsy1OvLGMJGf8usmQ"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "A4Yh5rzFt9u8If1CC-JzcQ", "to": "2SNiRP0T9nOnxAHveHZvpA"},
+        { "seq": "R8-IAl_BxrIs9GJ8O5-_rg", "from": "9lBxovZ69lrnx8iS9nj80w", "to": "VcJLEe0vOsedzvgRIV0f8Q"},
+        { "seq": "evM7NP7njuk60w-G5LkEEg", "from": "4Al5RyWqzTu_xrQAr4VqNA", "to": "ac3RN11xZfJoMEktDzpJlA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "5WMikQ7YyRfwq7HagCQwqg", "to": "ARbXXtOVMtqP5UsEhB1mvA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "2azteUeQ-PcOYZ38erifqQ", "to": "uWftGvgJsuOj-dSiYUiuMQ"},
+        { "seq": "OINdHzR96tUbwP0s0xqCdw", "from": "0gXlG4Egy87P3Uu3cBZf4g", "to": "3FZ7xVIwoKPrynGdnclvvQ"},
+        { "seq": "Pw7ASDRgGjH4kEsgegh-CQ", "from": "T9Rxe5q5uTmeuciyu-968A", "to": "osk4Xc4HQcSi0H-stY1EsA"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "WOId7rCqVssOKXxWRUBwXQ", "to": "8xVKtbSoUrurtaodjGJNFA"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "hwzBfysEF1YdXwWNEOusmA", "to": "POmsw1Hmo-IdLnKQpz7Img"},
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "VkNjhgYb321dHncwASyGlg", "to": "Ggy-ipFxu_3kmiaRoK0v7w"}
+      ],
+      "inward_bergedorf": [
+        { "seq": "XV9VjYnYrOcrvUB31_OgmQ", "from": "1KWU0vYlC30kjw361NkMmg", "to": "lDxmrZKuX8Oyj8g-hBbFmw"},
+        { "seq": "jeNURBH4eJyYK1gRgy80GQ", "from": "-QXYZXlmErDH2DMtVtpE-Q", "to": "anFztl0udap5PGiOXkmv7g"},
+        { "seq": "GQRUbehGwTegY1dw7DTutQ", "from": "WCRzpNwDWT6bvq8qMAZDSw", "to": "6rYaxk6O4dFiTcFnofo-Cg"},
+        { "seq": "H-xsQXpn-plvp7VMXJpo7g", "from": "cCeCwltG3b9AknkLQtvy6g", "to": "BgHvtA-83LgtWzmsdQZkOQ"},
+        { "seq": "STTxAqJPf6JCNWxGRCULbQ", "from": "HUSNxa-xWArr4c3YxpCy4Q", "to": "CWWcSx_PCwrwM1Cdvh1nuA"},
+        { "seq": "xWo81da2FB-EPLMwQr4lLg", "from": "1D5n78AkF1VzuiqsABhosQ", "to": "YPOYWQ1eRRIxXhqQm0oGsw"},
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "DAaWoIi3VgZTLxL-AVmzdQ", "to": "6fFcCQp0_TVXYw9WzlCHdQ"},
+        { "seq": "1TKH_bmUs9V1m3zrjX5woQ", "from": "Ara7rjT4ISQMzyG8zCeKBw", "to": "mT-ZIhvDLGF87EcB_4ASAA"},
+        { "seq": "sgxdMH__2QeG06pVwgYEwA", "from": "aAqXONrYsmhZgfqf5QwS4Q", "to": "_qyVKQPwM6Fu8lLvoZ6wVw"},
+        { "seq": "rvY6Zr2F5ktdh9dVcwr5_Q", "from": "G_-UY0Z_iPBs-NDiztRWiA", "to": "I-H1mBG7WQj4RuyddXlIqQ"},
+        { "seq": "EdRqd4SqNiKu4XuFgq7tSw", "from": "l9YihaI6oDc82vAe2zC9lQ", "to": "NR9xS0jHuFydQ0khPUJkIg"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "6TVAKi3fS0DWoNlAFdg29w", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ],
+      "outward_mummelmannsberg": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "zdgCiEqElOrI-ykNsM2CBg"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "SqndoaPKTJUgsov8M3tt4w", "to": "dIdYU9F9q_kgvkfQaf5bXg"},
+        { "seq": "hP5pAe0W8ja3_HkDllSeoQ", "from": "BiXn9buHAKreu42luAzx3Q", "to": "19gofFsy1OvLGMJGf8usmQ"},
+        { "seq": "h-figXLOPNc1VaAjVDRz7w", "from": "A4Yh5rzFt9u8If1CC-JzcQ", "to": "2SNiRP0T9nOnxAHveHZvpA"},
+        { "seq": "R8-IAl_BxrIs9GJ8O5-_rg", "from": "9lBxovZ69lrnx8iS9nj80w", "to": "VcJLEe0vOsedzvgRIV0f8Q"},
+        { "seq": "evM7NP7njuk60w-G5LkEEg", "from": "4Al5RyWqzTu_xrQAr4VqNA", "to": "ac3RN11xZfJoMEktDzpJlA"},
+        { "seq": "QP2jGHVqgVUZBMmNO21h5w", "from": "5WMikQ7YyRfwq7HagCQwqg", "to": "xwSCgIbsOsugT7fnpy7G3A"},
+        { "seq": "H-xsQXpn-plvp7VMXJpo7g", "from": "SaPzwisJwEBKJG6zAaSA6w", "to": "WbQhY43kNPNREQ-C33u0Hg"},
+        { "seq": "y6Ya_wlvRe7eKGrjOio72w", "from": "lKskCSfC3VK7vYFC52Ogng", "to": "6ZUT3EKFHHaHRALx-EQAAg"},
+        { "seq": "y6Ya_wlvRe7eKGrjOio72w", "from": "f0IAQuzZ5JH-zHqA9i8ulg", "to": "soQF7nZYUS4wQKo8H00ltw"},
+        { "seq": "0Xsy5jLZwOYJFB2ADb8dug", "from": "4olppr2R_hs8A4eIinn_Pw", "to": "S0hmUhhckqNGyyjTJOeGmw"},
+        { "seq": "r3x6mWHTMpoJNuaX6rZL4A", "from": "wiI1BgDO30zDHmMU49YNgQ", "to": "_Qk8EHn6nluwIpipWFWRbQ"}
+      ],
+      "inward_mummelmannsberg": [
+        { "seq": "r3x6mWHTMpoJNuaX6rZL4A", "from": "1z7Biv540IMgWkl7_qp_TA", "to": "K3cCspRqQ0JxUH0nB1JE-w"},
+        { "seq": "0Xsy5jLZwOYJFB2ADb8dug", "from": "lHcceI2x5u3OOm8UuM8u6A", "to": "8v7w-2HP1HbgGfovEdeZ_w"},
+        { "seq": "xWo81da2FB-EPLMwQr4lLg", "from": "-CFYxJ_ehI7qDff3Gf_PIQ", "to": "YPOYWQ1eRRIxXhqQm0oGsw"},
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "DAaWoIi3VgZTLxL-AVmzdQ", "to": "6fFcCQp0_TVXYw9WzlCHdQ"},
+        { "seq": "1TKH_bmUs9V1m3zrjX5woQ", "from": "Ara7rjT4ISQMzyG8zCeKBw", "to": "mT-ZIhvDLGF87EcB_4ASAA"},
+        { "seq": "sgxdMH__2QeG06pVwgYEwA", "from": "aAqXONrYsmhZgfqf5QwS4Q", "to": "_qyVKQPwM6Fu8lLvoZ6wVw"},
+        { "seq": "rvY6Zr2F5ktdh9dVcwr5_Q", "from": "G_-UY0Z_iPBs-NDiztRWiA", "to": "I-H1mBG7WQj4RuyddXlIqQ"},
+        { "seq": "EdRqd4SqNiKu4XuFgq7tSw", "from": "l9YihaI6oDc82vAe2zC9lQ", "to": "NR9xS0jHuFydQ0khPUJkIg"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "6TVAKi3fS0DWoNlAFdg29w", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
   },
   "9":  {
     "_comment": "Last check: 2018-07-03",
     "relation_id": 229823,
     "color": "#9d2928",
-    "markers": [[53.48922, 10.20695]],
+    "markers": [[10.2062839, 53.4889386]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Hammerbrook", "Rothenburgsort", "Billbrook", "Billwerder-Moorfleet", "Mittlerer Landweg", "Neuallermöhe", "Nettelnburg", "Bergedorf", "(Wentorf)", "(Reinbek)"]
-    ]
+    ],
+    "images": {
+      "outward_bergedorf": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "fJz89hG7wdxRYHBXXCqk7Q"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "b-TutVTMjlacuASJRJu2kg", "to": "R_I-uaS5GYjtk5dDpgcdIQ"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "rgITOPdBKheXlCUwmw1VUg", "to": "fQc5tQMcIT8eElrw1lMXrQ"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "6nwo3zDu55kuWKx58dauoQ", "to": "DxbRsdPAVTEeepKB_TT2UA"},
+        { "seq": "ah8aCspkV5Fa4bA10N7q8w", "from": "phjEK4aBwxg-5RoelKuCwg", "to": "xcP_Nc5QsCzOUh6ZwiG0VA"},
+        { "seq": "QOhGfQ6jKMwV-_hu1I5Qrw", "from": "LRnafZab5i14ILhmKgc_hg", "to": "PT5_Osbw2MkqcI-OtV2AAw"},
+        { "seq": "9q8OZbn9zqy4Nm3s6t7XAA", "from": "j8q9BvMLElLQK16n7z0qbg", "to": "euzj2a1aK71xkol4dReGCg"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "pBRn101h9QB_zxQStVcb3w", "to": "oEYXjp67cUXqmFIfDG9J_w"},
+        { "seq": "9q8OZbn9zqy4Nm3s6t7XAA", "from": "URPz-gto7IbjwQ5QJYpIQg", "to": "u3tHpeeGiODowiAILkceUA"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "oOWcXlxfx2Z6FvjXuPb0jw", "to": "YzwVbRssjYa6hDr_pDiHdg"},
+        { "seq": "3DzU0Ca2x2bjxr5avvyshA", "from": "N1LTCefB06-DQV9HuYrByQ", "to": "rik2W87uqMYyQs8EKYS05A"},
+        { "seq": "JfTt_1sgCPuA5FtFYuJPPA", "from": "tsbQ3q4hQqkyPYx4V6QU8Q", "to": "w8XMkdvDS_tudgC8g5ShEw"},
+        { "seq": "bU49-H_hbbLt2ZyTweJUPA", "from": "lhDM0-MYowPOWSfXtV9Wpw", "to": "d-exNd_5gTSxmVUss2U50Q"},
+        { "seq": "i5qGZYsIoMiP502matxSlg", "from": "6j2eFltHcbD44phSQMuihA", "to": "A17gU05WpUe0H-5IufFF1A"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "HR_uBWXUNmyCfMh5Th-6jQ", "to": "71UDIek3F80zI9F03NvvBg"},
+        { "seq": "i5qGZYsIoMiP502matxSlg", "from": "lZNtTe9FzpWi1QUTEHgF1A", "to": "jzhENwFICFrdgE_nlrjdKw"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "oAQPA3T-bI92NDFFIImdGg", "to": "_dwjepENDgrpOB0mOcny9A"}
+      ],
+      "inward_bergedorf": [
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "VSIJANHh2QzSzFVGlzBtZg", "to": "qJsduGqGGZi1JDTJhWcdXg"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "OMdxrmfpdVvwgTHRDtWJgw", "to": "tGccfIbUlKCb0OnzeJ_5-A"},
+        { "seq": "L3zgAB2Xay1NXYTSN-aToQ", "from": "ik31nSWD4NJffLtlKrK1YQ", "to": "MoQ7okQ6X94Xo7g8aackMA"},
+        { "seq": "3DzU0Ca2x2bjxr5avvyshA", "from": "GyWghgFNyqMlQgGwqbPWDQ", "to": "zJTN0IosJUxVW8omf0ZNdw"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "OhyaDNvzSRfZ1tAVAwVeuQ", "to": "jZOo3CHmyQPpwy6yTEUVfQ"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "VojO3WJVSeVDkbKNT-DhQw", "to": "-Efocp4uMABWNaaqWSSQFA"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "Jy7yC6qMudvlVpnYBgWYLw", "to": "H_oItYj-8adlPx7Ib4Ymvg"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "Sf_OYEMl7dLHUf4WHuzgvQ", "to": "uaupAnz3iTLz2GAWB-g8EQ"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "2RldlAQhXiC6SOBF44tLRg", "to": "Nw6T8fVRQqmtfHzCgqmmQw"},
+        { "seq": "aBdcyo5NLe4QdJ0lsolrJg", "from": "cem-_UXcO-e6XMgZvCNSoA", "to": "2jacnwXQffxcpYjMZrdnew"},
+        { "seq": "GqEUyGQn_vJZ_Nd33rXK0g", "from": "MmXJ7Y1i298PiXNEQmrT_w", "to": "4iXtTsiS-XPYUMxKihF9HA"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
+
   },
   "10": {
     "relation_id": 231965,
     "color": "#552976",
-    "markers": [[53.47415, 9.85377]],
+    "markers": [[9.85377, 53.47415]],
     "places": [
       ["Rathaus", "HafenCity", "Veddel", "Kirchdorf", "Alte Harburger Elbbrücke", "Binnenhafen", "Neuwiedenthal", "Neugraben", "Fischbek", "(Neu Wulmstorf)"]
-    ]
+    ],
+    "images": {
+      "outward_fischbek": [
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "pawuWfoaATSJOIil7KfMJg", "to": "_JbCqyG6Hv7lCjclIZpuOw"},
+        { "seq": "iQFRVKleyLuzsMCOm7pccQ", "from": "mrh7SlHJXXxRmjbaAc_fLg", "to": "SjP2L3DRTYPZI0Hlp5omfg"},
+        { "seq": "0WbWMPYkQA81Od8dQ92H6Q", "from": "xUNhAbn24pUtbk4HbSv-VA", "to": "Fpj1M7DzB2AEMgg1VHQ0YQ"},
+        { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "21Hfh6hX2mkF_DJZ8dwiZw", "to": "8BYOhnHQ2uc6OFrOhWYRWw"},
+        { "seq": "0WbWMPYkQA81Od8dQ92H6Q", "from": "FjV_J9K-7rDk8iKBIdPoZQ", "to": "ZTgIZJ33TveTZn7SVoR-Pw", "note": "missing images due to construction: https://www.komoot.de/tour/41409201"},
+        { "seq": "ygdlZfwb0_x3h3LJTTh3EQ", "from": "nB7NUtFPoSbO1MTGyI0f5A", "to": "zZSC-A-n7NR-63BnetGjZQ"},
+        { "seq": "TuKDJJZJP2-Mm3MMO1THiw", "from": "i8rvV60Jy6f64srQW1cSpw", "to": "u3C8P0E3U1VUmXneOtZYhA"},
+        { "seq": "jJvvgreU1FRPDM2xyLcVGA", "from": "Glm5CetU6eDtjxmLgNpjMA", "to": "eRYOGBjyuN_jQcx_vhUe8w"},
+        { "seq": "O45vpz8DQLqO0nOqN3oDzg", "from": "BlhvEgjQw0VgFIH7IUuMxw", "to": "jxGclxFBdMl9hxF5bqRWxw"},
+        { "seq": "UyZm4LW-Pc8Ffyf-jsnVgQ", "from": "tdrTZl3-KRl5ka3NyprjTQ", "to": "wkCDCzs_JjHqwQ-tb-BsaQ"},
+        { "seq": "wbIu6G9RQlIN3qGJmt8m5A", "from": "KMX8qUbi00JVeNpPS3JXwA", "to": "GU22S1kuaXZYjmWognhyUw"},
+        { "seq": "wbIu6G9RQlIN3qGJmt8m5A", "from": "ZhgZ6os10qbF_LDM-PBQSA", "to": "8ZE1ABghX495bvCb4vruTw"},
+        { "seq": "KuX_l9h2qSaAxdx9n6aPpA", "from": "r_1w9aUEj_s9ebEnj9MQ_g", "to": "eK7vBbpZSTMYoGbRuXExYQ"},
+        { "seq": "bsxQgaK9L2F_Eg_ZF8PeXQ", "from": "SGN7MMtcgiRmXdzCb44dIg", "to": "ACuVAOsoQWyBmx3DDQnAsg"},
+        { "seq": "8Kjfl3wN5Ie7BHULbS0tGA", "from": "raML_p080ivMUXp52G5F_w", "to": "NZpCnkHbtnjkhnoS87cnwA"},
+        { "seq": "SR-ldCsvujIPO7QqzMMaKA", "from": "uSKNErMr65vmrMA7G7U1fw", "to": "uSKNErMr65vmrMA7G7U1fw"},
+        { "seq": "bsxQgaK9L2F_Eg_ZF8PeXQ", "from": "hAEUO8iXh5ISY3qjvoS9pQ", "to": "mGPyftLDZxGVuVjmEqEqzA"},
+        { "seq": "4uTQn3OK9dP21r312_vwGQ", "from": "spUyRbEipk38rKVmlQn3lQ", "to": "d1nlw6kIPEXPdniDqiBJYA"},
+        { "seq": "bsxQgaK9L2F_Eg_ZF8PeXQ", "from": "sH3x71wuqIbEh5KuTWskZA", "to": "LSNNIDoDwiH3wfjSIV_x_w"},
+        { "seq": "Mg4zmpBuJo7m2cia8uaV2Q", "from": "qM16XD5seKQL12_kG_EaBw", "to": "HqlOSkEBGjNX6x9KPHABjg"},
+        { "seq": "DWCwuGJvBcJOYnqV2roQqA", "from": "g4C67DBgjeSsud3V-lmWjA", "to": "Spc91KWGfwaaYK-sxLXA7w"},
+        { "seq": "-5zXCBZoL684Btq-Lwk7Zg", "from": "NPmpTCOeY0SdK1eJP6A_xg", "to": "at2VamzxTni2C-szPZ8nEQ"},
+        { "seq": "-5zXCBZoL684Btq-Lwk7Zg", "from": "WiF8_BYFOMJJM0Anz9FbYw", "to": "HkTp--cnT9kCq93YFEGG8g"},
+        { "seq": "BEG3e2FJrKE0USETG0dmEw", "from": "loW1MihnIY8VH0euoXzBvg", "to": "Ql-8VD_CMb47kFliJAVcVQ", "note": "missing images after: https://www.komoot.de/tour/41412318"},
+        { "seq": "BEG3e2FJrKE0USETG0dmEw", "from": "ViECZUogDPyCLAXPCQ8x7Q", "to": "wzFn9V4CJZzU7QWFEIUOdA"},
+        { "seq": "BEG3e2FJrKE0USETG0dmEw", "from": "Q1nAfa3fU-mdSHbkKyZ82Q", "to": "I1NQ874d8I5Aci8H9cvbwQ", "note": "missing images after: https://www.komoot.de/tour/40330494"},
+        { "seq": "BEG3e2FJrKE0USETG0dmEw", "from": "YzVBKS0ZMjLOdXfVHjm_gQ", "to": "mO5WYJkD1k5K8EZ7ENnPfw"},
+        { "seq": "LbGJqB2L3sNEwV3--P8xeQ", "from": "8QCYkUFSZ7noCAtdNbZp3Q", "to": "2p3IZ6o5VShGiQGj2Nh96A"},
+        { "seq": "Qlshm_4izCg1M6gyKxuEIA", "from": "A4J_4MPlM_o0eh_K4elBYw", "to": "-3tzxC7Aa1PJSHXclTjx3w"},
+        { "seq": "Qlshm_4izCg1M6gyKxuEIA", "from": "HeyOCcPUUoX6E9roWZIwzQ", "to": "rNkN4beTOCQIrWcKAtT6eA"},
+        { "seq": "hrLxoYqC_pnyKN7T5GQL-Q", "from": "iT6rzagCjej7vvLY3n2R5A", "to": "Zx8Aeubj2IVAu1jTHQ4o3A"},
+        { "seq": "2flHTPh5gSg6qrco8nKrpg", "from": "LsZfSPT1uO1HJz87upwU6g", "to": "Zk9g-MAAvHmE5V0XRdOXmg"}
+      ],
+      "inward_fischbek": [
+        { "seq": "2flHTPh5gSg6qrco8nKrpg", "from": "sJGH-Sx7V-NoHp1wlsjXog", "to": "XAxLllsoHS08uUyhIdTA6A"},
+        { "seq": "lg4uYDvoJ6uJLKmgUkCLPg", "from": "ZCSSFNI2shCL21rbnpd6oA", "to": "FVzhSvELYl5J3v-l5-qWtQ"},
+        { "seq": "lg4uYDvoJ6uJLKmgUkCLPg", "from": "qM3MuXCXmWtDqKTFMK83MA", "to": "jXUq64s5U8r67aq9OOzMpg"},
+        { "seq": "lg4uYDvoJ6uJLKmgUkCLPg", "from": "A-eHRvd3SUkRKd4D1KRz7g", "to": "FGDo5RmE7yjqQT3AXT7_cw"},
+        { "seq": "QmLnkrFRLDXjmeZdofmb7g", "from": "fwbmg2BvFi7iLy2q7OpbVQ", "to": "ZnFhHMsTBDf2cDNbdI_szA"},
+        { "seq": "QmLnkrFRLDXjmeZdofmb7g", "from": "KPC1ROUwhmlTCrvZNIWk-g", "to": "qrLFY4f5s_o7zTjn-FpCUw"},
+        { "seq": "ZPriLAKzfg8QGHqdWUizrg", "from": "kzavLETmjES1aulTjkeOGQ", "to": "QUZGSeai2HdpC4hzjd1_CQ", "note": "missing images after: https://www.komoot.de/tour/40330463"},
+        { "seq": "WdW7mN3E8rkiWEjwszjerA", "from": "dWXrkecZp1WBA6B87wf_FQ", "to": "nOzHzVbpK0pBa3ifPv7IBw"},
+        { "seq": "NhxCvop5kUWHsx2i7xC7Rg", "from": "h8MVUY-Y3euDZuQ9elEKhw", "to": "leCQvkjFfPu5Y8c8gffZgw"},
+        { "seq": "rB0yYOi2ZeUzgfbNF4wWRQ", "from": "-cSp1vLfy9rPfKQRqgzE_Q", "to": "fSm0lXt9BUrv2B21E4NZVw"},
+        { "seq": "NhxCvop5kUWHsx2i7xC7Rg", "from": "FYrAQtx_dvBusYeIHPsn0w", "to": "pY7Pnf9hTaHBPQywegtwBg"},
+        { "seq": "8Kjfl3wN5Ie7BHULbS0tGA", "from": "NpmucBxtJe2e-NSB09xHfQ", "to": "2vdzxQ_hVZh2KJrOXQ7CFw"},
+        { "seq": "8Kjfl3wN5Ie7BHULbS0tGA", "from": "CbcOkEW2IJK3hD5dcYmtKg", "to": "gGyfO-NvfMMTe28KaOM0Mw"},
+        { "seq": "WcAezNQgZT6QVEX8ox8I3A", "from": "o63gpngTXXqnII0-uU51eg", "to": "tE7VgIcXShSY3ITiIeaKDg"},
+        { "seq": "C3QxZgfNRXDn31OsD4FHTA", "from": "dmafIFvc1fyw1z8ZM3gZgA", "to": "pCfFTufy8pfl5c0sAIEYOQ"},
+        { "seq": "3D2gS4LDcwO8pZBaKlYILg", "from": "l0oZmkbgW78eOeZxn-L1DA", "to": "XzQc2EpZYwD6sa-2H2js3Q"},
+        { "seq": "O45vpz8DQLqO0nOqN3oDzg", "from": "yqUEQa571ZTX0Xuzfj8y7g", "to": "uwLJTaaATn0uB_fFJc5zQg"},
+        { "seq": "NR6WoXCMm8-orh985NRwKg", "from": "jbuYhE4EPQhZgocIb_CPdA", "to": "Dx9tUH7EKh4lmA_d9RG08g"},
+        { "seq": "NR6WoXCMm8-orh985NRwKg", "from": "PCxrZjUSQiM3qkAlc1MI9Q", "to": "nAYr1tyUMhHJG_9uceG36A"},
+        { "seq": "ygdlZfwb0_x3h3LJTTh3EQ", "from": "QUghMriUPRXzFe9svJzDGw", "to": "eKbddyUaGglMsyqGbOLECg"},
+        { "seq": "ygdlZfwb0_x3h3LJTTh3EQ", "from": "PBQJsTcQefIxKO6J2FWkDA", "to": "1BZ-ZSfBWWyY6qfzjg-cXA"},
+        { "seq": "0WbWMPYkQA81Od8dQ92H6Q", "from": "vAyA6nckEMsklxFzABBP1Q", "to": "V3VFKsrVzlq1KBwwrJZ8rA"},
+        { "seq": "yvaLNhXuCBow9jPnXDYlrw", "from": "Mk7d5fEOfkvo7_ICVW_mMg", "to": "5ZWZi9n2pNCyaACxpGw_Sw"},
+        { "seq": "iQFRVKleyLuzsMCOm7pccQ", "from": "gTQUcLMSwn_mcSN72utAaA", "to": "im2guQgARtGSf2Xr7EE1xQ"},
+        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "w-h_x9HkW5E665yrLGVh5Q", "to": "PEAC_BCn3KH22rLg9bPjpA"},
+        { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
+      ]
+    }
   },
   "11": {
     "relation_id": 233959,
     "color": "#00a0e2",
-    "markers": [[53.45705, 9.94492], [53.52167, 10.01471]],
+    "markers": [[9.94492, 53.45705], [10.01471, 53.52167]],
     "_comment": "Last check: 2018-06-23",
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Bahnhof Harburg", "Harburg", "TUHH", "Heimfeld", "Eißendorf", "(Rosengarten)"],
       ["Rathaus","Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Veddel","(Seevetal)"]
-    ]
+    ],
+    "images": {
+      "outward_eissendorf": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "CHx5AKKhUSbg4QSBuCdSQA" },
+        { "seq": "GJs5C6XWwL4x18NaGLS2YA", "from": "RPriCfQ7DyaP0E84IaggUw", "to": "Rq87N4tdbnIQ0jCpOPJ-4w" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "cGoaEpaJ5byoeSF5nyNs-g", "to": "iOeVnA1E5zJsMQz6uELy2A" },
+        { "seq": "WUhTlqkff-LBjcOVNzjCXQ", "from": "-JEwpvv9kiLRy5RoifATjQ", "to": "FasbrAaesqFPukEfiMz3iQ" },
+        { "seq": "gGfDYEz0BoUKfqbLb6F2KQ", "from": "tdfP54wRjBxHc7r_0_Hq-w", "to": "qJdRncRW0lf3E1LIj3rDlQ" },
+        { "seq": "_82u-ZZerMj43SZe3O2odw", "from": "_8z791SG8JCxVYL5Fc9GOQ", "to": "a4vlUtBaQGioQuxhTeey7Q" },
+        { "seq": "xyOTNmJPpVd54ImWsDUj8w", "from": "1qd0izi1ILuFxf292MOMHA", "to": "RPUDSEzmX__mKFH4TF7HUg", "note": "missing images after: https://www.komoot.de/tour/41428201" },
+        { "seq": "P2m4o4aaWZipFSBDhhYRCQ", "from": "SERa3kalhuuUmpoaCJSStQ", "to": "y7bDUy9KRuMcZcfsJ-lMDA" },
+        { "seq": "P2m4o4aaWZipFSBDhhYRCQ", "from": "YuA1CJIz18IFN1Hlae2Tvw", "to": "xo8KPMNc7FBeeppleM6c_A" },
+        { "seq": "P2m4o4aaWZipFSBDhhYRCQ", "from": "CGbrUyd1DQ57pgxllWE2Jg", "to": "xW7CIiBpEtvonp21xdGMGA" },
+        { "seq": "Mg4zmpBuJo7m2cia8uaV2Q", "from": "uS1yYgK4k3SlJDaOyo6JGw", "to": "HqlOSkEBGjNX6x9KPHABjg" },
+        { "seq": "DWCwuGJvBcJOYnqV2roQqA", "from": "g4C67DBgjeSsud3V-lmWjA", "to": "1n5lpVOSB9egx3cyynzZ4A" },
+        { "seq": "AmjcSBOeDWP5hkG5_2IPyQ", "from": "Jom2rG4wfURW8ItA8rLFwA", "to": "ERni9ZwhURFG_s72xe3RYA" }
+      ],
+      "inward_eissendorf": [
+        { "seq": "fxWEC4O1w0sBU93esiff2g", "from": "vZ_lmtqSPD0hwg4UuQ7qhw", "to": "0pZ1eLvPFnZVVKpcWnbBGQ" },
+        { "seq": "fxWEC4O1w0sBU93esiff2g", "from": "mRz_kWWMc8TRGJicz4_wRA", "to": "tP37WbwGiVBTxU8aVcHoRw" },
+        { "seq": "rB0yYOi2ZeUzgfbNF4wWRQ", "from": "EwLsFETxcX7F4Npn7tc3NQ", "to": "x2jv0exCZFu_g1uAid9B4A" },
+        { "seq": "Mg4zmpBuJo7m2cia8uaV2Q", "from": "zlND5TIBeQVH-dvp-HLZsA", "to": "t0HfhAFn50R1jtseO-9xeA" },
+        { "seq": "SR-ldCsvujIPO7QqzMMaKA", "from": "5l8zKT9RgIpbnueokONOGg", "to": "A5NNFJzq32UOEDwgHeax_A" },
+        { "seq": "SR-ldCsvujIPO7QqzMMaKA", "from": "dIgrwxV5s9SGp653ZuTsag", "to": "624A4YQKxb1I88zrF-ypmA" },
+        { "seq": "skkQbz4ErZjgLKFmrXQCJg", "from": "ElQY0iCSydR71oEesDISfg", "to": "oxQmaICn5nV0ckEtxhEU2w" },
+        { "seq": "1-8A4-LEjrIkF10WFL1ikg", "from": "HtMad_jgCoErbawCljtvEg", "to": "iubixxVYf0azorW2ZU4x6Q" },
+        { "seq": "hj52uazCyrJTaWYiKV6wXQ", "from": "bv41fhtoCThShYckZgV2jg", "to": "ezYtnDPO-RKY8jXIeFTZyA" },
+        { "seq": "p11u6LE2bsOHysrpbbx2hQ", "from": "htdT5JMn_oLDJgR1qvb7BA", "to": "ccvWlrgUK5b2ZRkGY01CFw" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "2aQnwqgP4Fa1lsnnpCx5BQ", "to": "86QEGfeWKIVYVwj4BjVRWg" },
+        { "seq": "p11u6LE2bsOHysrpbbx2hQ", "from": "uLItViya4eSwsfWAno5hUQ", "to": "oTic12mvn8S9V_7rnAOeBQ" },
+        { "seq": "XaYBKu2-lXx1ce3mvtu3Wg", "from": "iG4PGH77LTx163eYRcSTDQ", "to": "5g_CG9fhxWZjIdu21OTHWg" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "qrvxRVnbLWO6eZNsMq_j3Q", "to": "xfvbpTEMBHuUq3xgcgx3Vw" },
+        { "seq": "XaYBKu2-lXx1ce3mvtu3Wg", "from": "ii0_VhcEV649KEMQ1-LNxQ", "to": "mTmbUyMho1UaPdpluoQnmQ" },
+        { "seq": "jorjkZKP-5d0G2MwBBA0lw", "from": "YDWMJC9xR6gmwIvguT9KJw", "to": "0oUL1jyFMQAod4PSdpr4uA" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "shD3xA9lwjFR8qgx4kEWOw", "to": "NuVpv3fvn-pjuvxy2OO_2Q" },
+        { "seq": "Rj_savT3wkj-0F9RgKyHew", "from": "G6u_WDFO7byU9edhd9X2Pg", "to": "n7dV_zsOKsLfP0tZhBiQoA" },
+        { "seq": "mb7umN5gh_j_wgheY37HJQ", "from": "WgvDLT0OeXcI6C4crGxMdQ", "to": "AHpOTYSBLQN8tZoS8mNf9w" },
+        { "seq": "Rj_savT3wkj-0F9RgKyHew", "from": "VtaPdBkzuCPLCNpf1jDMXQ", "to": "ow418lelUV0OLn-puLem9w" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "VdbqNeyE88WpoaXgM8MCBQ", "to": "zIW8Tj9AS-PCB2fzoIwHXw" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "sBymabX94uNWBECXzonh2Q", "to": "lQMmZwq52fwTr1I_2-C8cQ" },
+        { "seq": "8tDOxzkjv85CRIQFoNVp1w", "from": "tYbbfOJvfnRpNgY4_Wzrig", "to": "OmNZL4uGANQymQ6cJx0Ntw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "bR_1zmpRWtmI6300f_UdQQ", "to": "R7YTiEDyPE2fiqc4Cw49Yg" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "m3ij86SXwtMj0YGXbpCoOg", "to": "OWwwvxc8A3psYaluiMZmuA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "6xjgDPB0OoSW_ePb2GsZBw", "to": "_QP-m2bY1ayBFdcqZCheCQ" }
+      ],
+      "outward_veddel": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "CHx5AKKhUSbg4QSBuCdSQA" },
+        { "seq": "GJs5C6XWwL4x18NaGLS2YA", "from": "RPriCfQ7DyaP0E84IaggUw", "to": "Rq87N4tdbnIQ0jCpOPJ-4w" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "cGoaEpaJ5byoeSF5nyNs-g", "to": "iOeVnA1E5zJsMQz6uELy2A" },
+        { "seq": "WUhTlqkff-LBjcOVNzjCXQ", "from": "-JEwpvv9kiLRy5RoifATjQ", "to": "FasbrAaesqFPukEfiMz3iQ" },
+        { "seq": "gGfDYEz0BoUKfqbLb6F2KQ", "from": "tdfP54wRjBxHc7r_0_Hq-w", "to": "qJdRncRW0lf3E1LIj3rDlQ" },
+        { "seq": "_82u-ZZerMj43SZe3O2odw", "from": "_8z791SG8JCxVYL5Fc9GOQ", "to": "a4vlUtBaQGioQuxhTeey7Q" },
+        { "seq": "xyOTNmJPpVd54ImWsDUj8w", "from": "1qd0izi1ILuFxf292MOMHA", "to": "RPUDSEzmX__mKFH4TF7HUg", "note": "missing images after: https://www.komoot.de/tour/41428201" },
+        { "seq": "P2m4o4aaWZipFSBDhhYRCQ", "from": "SERa3kalhuuUmpoaCJSStQ", "to": "cfGYgjUVt7v4Kyx2tt4v9Q" },
+        { "seq": "njO0KBNdPLc1W7vVeR5xrQ", "from": "Jb5Kfd1L-IiMT1tc08lGGQ", "to": "-XCzwp6nScqnrxvjpjxCBw" },
+        { "seq": "S0YMyCQatih2E2mkTWsFQw", "from": "f763nunnHNgq5k8Jo7DzoQ", "to": "yQgTvrdRNysA4lgJqsNE8w" },
+        { "seq": "VS4OTjPCxN6tSp78zSt-eg", "from": "eMmzJIzJoJJcb_E_xldH4g", "to": "jvugD0WODtVwD8-nQ0_WQg" },
+        { "seq": "wbIu6G9RQlIN3qGJmt8m5A", "from": "AWpeEKmjXqhlfsp3K2qX_g", "to": "BsTLOiCQ2ewop4NRkCoPOQ" },
+        { "seq": "UyZm4LW-Pc8Ffyf-jsnVgQ", "from": "igLKWEyqJkVizSgXdAFUxQ", "to": "-QX9-glWLH15OdyWxbZB_g" }
+      ],
+      "inward_veddel": [
+        { "seq": "wbIu6G9RQlIN3qGJmt8m5A", "from": "AWpeEKmjXqhlfsp3K2qX_g", "to": "pb8Y_Znmhkf1U0bRjuTQ_A" },
+        { "seq": "UyZm4LW-Pc8Ffyf-jsnVgQ", "from": "01ouZ3EHg0HCnlpJMpWEUg", "to": "OMpi5EmYpOkMpKmr3qaKHw" },
+        { "seq": "VS4OTjPCxN6tSp78zSt-eg", "from": "7Q1sJcD3B4K79emdPXO1zg", "to": "XhV7hX76TMMlE7g1o1LwTw" },
+        { "seq": "DWCwuGJvBcJOYnqV2roQqA", "from": "zKJ3sHVPMeA0iTZ3YNrufg", "to": "pkdbN1jMQ4spAQ-o9dURBg" },
+        { "seq": "njO0KBNdPLc1W7vVeR5xrQ", "from": "Bbszlq6UwVI7q4jvtfpFzQ", "to": "VXwyZhik4z9SROGjcvcmPQ" },
+        { "seq": "hj52uazCyrJTaWYiKV6wXQ", "from": "FRUOt5BtZ1_plkLrZyY91A", "to": "ezYtnDPO-RKY8jXIeFTZyA" },
+        { "seq": "p11u6LE2bsOHysrpbbx2hQ", "from": "htdT5JMn_oLDJgR1qvb7BA", "to": "ccvWlrgUK5b2ZRkGY01CFw" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "2aQnwqgP4Fa1lsnnpCx5BQ", "to": "86QEGfeWKIVYVwj4BjVRWg" },
+        { "seq": "p11u6LE2bsOHysrpbbx2hQ", "from": "uLItViya4eSwsfWAno5hUQ", "to": "oTic12mvn8S9V_7rnAOeBQ" },
+        { "seq": "XaYBKu2-lXx1ce3mvtu3Wg", "from": "iG4PGH77LTx163eYRcSTDQ", "to": "5g_CG9fhxWZjIdu21OTHWg" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "qrvxRVnbLWO6eZNsMq_j3Q", "to": "xfvbpTEMBHuUq3xgcgx3Vw" },
+        { "seq": "XaYBKu2-lXx1ce3mvtu3Wg", "from": "ii0_VhcEV649KEMQ1-LNxQ", "to": "mTmbUyMho1UaPdpluoQnmQ" },
+        { "seq": "jorjkZKP-5d0G2MwBBA0lw", "from": "YDWMJC9xR6gmwIvguT9KJw", "to": "0oUL1jyFMQAod4PSdpr4uA" },
+        { "seq": "4XEFOolnB2jFPXoH6a2x5A", "from": "shD3xA9lwjFR8qgx4kEWOw", "to": "NuVpv3fvn-pjuvxy2OO_2Q" },
+        { "seq": "Rj_savT3wkj-0F9RgKyHew", "from": "G6u_WDFO7byU9edhd9X2Pg", "to": "n7dV_zsOKsLfP0tZhBiQoA" },
+        { "seq": "mb7umN5gh_j_wgheY37HJQ", "from": "WgvDLT0OeXcI6C4crGxMdQ", "to": "AHpOTYSBLQN8tZoS8mNf9w" },
+        { "seq": "Rj_savT3wkj-0F9RgKyHew", "from": "VtaPdBkzuCPLCNpf1jDMXQ", "to": "ow418lelUV0OLn-puLem9w" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "VdbqNeyE88WpoaXgM8MCBQ", "to": "zIW8Tj9AS-PCB2fzoIwHXw" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "sBymabX94uNWBECXzonh2Q", "to": "lQMmZwq52fwTr1I_2-C8cQ" },
+        { "seq": "8tDOxzkjv85CRIQFoNVp1w", "from": "tYbbfOJvfnRpNgY4_Wzrig", "to": "OmNZL4uGANQymQ6cJx0Ntw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "bR_1zmpRWtmI6300f_UdQQ", "to": "R7YTiEDyPE2fiqc4Cw49Yg" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "m3ij86SXwtMj0YGXbpCoOg", "to": "OWwwvxc8A3psYaluiMZmuA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "6xjgDPB0OoSW_ePb2GsZBw", "to": "_QP-m2bY1ayBFdcqZCheCQ" }
+      ]
+    }
   },
   "12": {
     "relation_id": 2238410,
     "color": "#ed6706",
-    "markers": [[53.54900, 9.93626]],
+    "markers": [[9.9643668, 53.5464822]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Fischmarkt", "Altona"]
-    ]
+    ],
+    "images": {
+      "outward_altona": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "CHx5AKKhUSbg4QSBuCdSQA" },
+        { "seq": "GJs5C6XWwL4x18NaGLS2YA", "from": "RPriCfQ7DyaP0E84IaggUw", "to": "rwSA33Fmv1elLppMVm7JSw" },
+        { "seq": "ZgoRkJAZ7UK0lYgQtKG8vg", "from": "EXyxpJWrz0ENBi_uTvD_Pw", "to": "OLRXu-0eql6qEcgsHUqi-A" },
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "5liMabFyNR8Epfaq1gAA1Q", "to": "OeOj5TEL5m96nLv1XMKP0A" }
+      ],
+      "inward_altona": [
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "OeOj5TEL5m96nLv1XMKP0A", "to": "a8NYYpt5D4eA63oz8dgu9w" },
+        { "seq": "herUeLYHNYyECiTk-rzUaQ", "from": "NQuS5Ye2Zy8qhAhUmsbnzw", "to": "RZc12gtlP1YIMCITUkXrmQ" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "M9qBVeBejFtstmy4SXCIRg", "to": "h51TqtyyJ4isX-OG_vftRQ" },
+        { "seq": "qsSWaBasrPLEAzoPiuM6Lg", "from": "kR0ZrzrF92JYIhG-53uRaQ", "to": "hR-UuPm7zWlZeNkCz2ppFw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "Ezf463MiHI8Iqx9sONZ-Dg", "to": "ILHGnwuuWeL8ftU-DAPmHA" },
+        { "seq": "ZRz7VrsCtMwIEhZPp6ePCQ", "from": "cNfKOBUFToE85-RlOfJWzQ", "to": "lQMmZwq52fwTr1I_2-C8cQ" },
+        { "seq": "8tDOxzkjv85CRIQFoNVp1w", "from": "tYbbfOJvfnRpNgY4_Wzrig", "to": "OmNZL4uGANQymQ6cJx0Ntw" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "bR_1zmpRWtmI6300f_UdQQ", "to": "R7YTiEDyPE2fiqc4Cw49Yg" },
+        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "m3ij86SXwtMj0YGXbpCoOg", "to": "OWwwvxc8A3psYaluiMZmuA" },
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "6xjgDPB0OoSW_ePb2GsZBw", "to": "_QP-m2bY1ayBFdcqZCheCQ" }
+      ]
+    }
   },
   "13": {
     "relation_id": 2238764,
     "color": "#f28801",
-    "markers": [[53.55033, 9.93620], [53.55557, 10.04046]],
+    "markers": [[9.9407869, 53.5564436], [10.04046, 53.55557]],
     "_comment": "Innere Ringroute",
     "places": [
       ["Altona", "Eimsbüttel", "Hoheluft", "Eppendorf", "Winterhude", "Mühlenkamp", "Barmbek-Süd", "Auenviertel", "Eilbek", "Borgfelde"]
-    ]
+    ],
+    "images": {
+      "outward_borgefelde": [
+        { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "TCNm-0QlQ2_6PXf31yxc-Q", "to": "otRj_FFJ_F_6jKPub_xRhg" },
+        { "seq": "DcVDnd5xwmAsbono8d93ig", "from": "BkJCwL5Zs0yAFB6gZlvqHQ", "to": "ue5sxy5t_uX9dcFK5-dYCw" },
+        { "seq": "DcVDnd5xwmAsbono8d93ig", "from": "BkJCwL5Zs0yAFB6gZlvqHQ", "to": "zOAHNMc-tHeRNm6wqSBPyw" },
+        { "seq": "DahxuOGg6nueTYYE9y_JUw", "from": "JLao7J3tFok3Gp93rxPp5A", "to": "1Cy3lf1GJ0ThVHpH7TjflQ" },
+        { "seq": "gOve1PkR7jUcVzQoyUt3hA", "from": "kIttxHQjkTbH2XzWWu-RIw", "to": "O52AbJYWNUGwjPuH9-D0Jg" },
+        { "seq": "KihppDAzA7zG94gfk5XJrw", "from": "8ABMqJ2ARemuUECMEJj7hw", "to": "3Yg0GJFpO7376DE9h5yCJQ", "note": "missing images after: https://www.komoot.de/tour/41283140" },
+        { "seq": "U9vAxJCszy2yo3UtgHrL_g", "from": "4imRWwqOwggRbHsmAYpwAQ", "to": "L_3mQETXuAH15GPHjo6YWQ" },
+        { "seq": "Ak08VvNEszamqnTLl_JPTQ", "from": "CWzlTzHe97cm6V-Q8xkBiA", "to": "yx5hczPz26nbbgOhiFDCLg" },
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "9fhUB7Rd5y6XV4cAXbHATg", "to": "jT8fW29XaI1H452vcSe0VQ" },
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "at9JpTIzshqvuZZ9idymZA", "to": "ow_lgUY0e5jhzw3grbQLig" }
+      ],
+      "inward_borgefelde": [
+        { "seq": "EZbMFBezMsg3uVLMw4kvrg", "from": "1d9Dcv3FQ0VGxLt619bT4Q", "to": "N50t-9wWKIuD-ZslxHJaEw" },
+        { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "5mTUw586yjfUNPDRrFGt1A", "to": "ZF_wdmxbroYX6ChFZrMwjA", "note": "missing images after: https://www.komoot.de/tour/41283227" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "c84RgJ6o7j41I7VtUqyO_w", "to": "I6z_AFXsloAdW75veYlRkw" },
+        { "seq": "0XO3TMQGJzIHy34rLMbmuQ", "from": "MdzbuOlh9aPLVBr-xaqLMQ", "to": "bahw3lCJ6oToZO58AwzItg" },
+        { "seq": "yXSpUkm6J0zHBAKY1ogmKQ", "from": "hN0--fj8327vmjYdOYSPVw", "to": "s4iIkhg6NtraLquqJmVwqQ" },
+        { "seq": "gOve1PkR7jUcVzQoyUt3hA", "from": "5hQ5tlrjNGe6xgZpW03PyQ", "to": "waiOeOqNto_X0lAwJsYh4Q" },
+        { "seq": "6ytOLDiicztZxOu3CaoQSA", "from": "bjwtpq1T0giAMg55oZei-g", "to": "xxlEKnJhVPKiFR6rgvrQ1w" },
+        { "seq": "6_2Fv5Dv_lgzSbyfcGRjPA", "from": "fNmPq5C0WUwjuJPDGP3iyA", "to": "5xMIlnh2AaVVsXYhCZdWEw" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "fzZLI6jCsxwg8B7mDY-y0Q", "to": "N0ynFoGX2XdZXjjMXA9zAg" },
+        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "WBIjk1GJ-19h-V68gceR8g", "to": "AUmT4av9sRxoD88XA6HzQQ" },
+        { "seq": "Ul1V_30KzkouICbzu85cSg", "from": "Yrc4cr73OkUqFL42-nlSow", "to": "hjBcZHg7IHLiVrqCJ65mJw" }
+      ]
+    }
   },
   "14": {
     "relation_id": 8349004,
     "color": "#fdb801",
-    "markers": [[53.55818, 9.88207], [53.53746, 10.10794]],
+    "markers": [[9.88207, 53.55818], [10.10794, 53.53746], [10.052352, 53.6464426]],
     "_comment": "Äußere Ringroute",
     "places": [
       ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "Jenfeld", "Öjendorfer Park", "Billstedt"],
       ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "(Barsbüttel)"]
-    ]
+    ],
+    "images": {
+      "outward_billstedt": [
+        { "seq": "jgiVA03PbCSzsz7UjuBbug", "from": "pC8o63-Qyo7CYXijqh5F0g", "to": "mEB0nn-GJgWbg4fIOrqdGg" },
+        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "ovr5lxcW99TGfy3mISbfew", "to": "uEusdWfZqOqx89lN1yNz4w" },
+        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "feZMNMEoVBiWhA_-M7pNtg", "to": "uWWrekpAhv_sQUIhMbkSZQ" },
+        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "IOrgAy-685ysJdpR27d0Zg", "to": "CniBwxFspCXJ1GMBSXKREw", "note": "missing images after: https://www.komoot.de/tour/41295969" },
+        { "seq": "d9m6_3LY2Acby-qkkLM4hA", "from": "7Aq7wviBv5w3-v7sDY0BHg", "to": "jMP6m5puX6Os1B1oh64tHA" },
+        { "seq": "d9m6_3LY2Acby-qkkLM4hA", "from": "tDewbRbu76t0DvYHavQ1jg", "to": "eCg79iBORcvDkfkFrZKgSQ" },
+        { "seq": "PqQpOSCd-dQINfc4wMnBLQ", "from": "w9m7VZmo873UZoicG4YXhg", "to": "NQGdRc2Yf9k8uE7N5LQb1Q" },
+        { "seq": "PqQpOSCd-dQINfc4wMnBLQ", "from": "q5Len8nx_cUIQkL0vbrM_Q", "to": "O8sR6cnCsLrPLa79o2W6aA" },
+        { "seq": "g4py1trtu7dvq0mmqrh7o7", "from": "_22hzblY36xnTiJ-3s8iXw", "to": "D4--CvQdEyyEIqjMcRJIXg" },
+        { "seq": "2nc7itkx9t75jnperxabo2", "from": "a7vEmbvXH9xMOtY1wKmbOw", "to": "yMopwt2NuwJ0PG7WcUUdhQ" },
+        { "seq": "i5eCR_rjE2Qf_Wcm3N87Uw", "from": "hjF1L61JRS7JzR637XIFNQ", "to": "Klr-Q0GR_3PwGUHHidXwlQ" },
+        { "seq": "ETulET1-Z4iCvzl368UUmA", "from": "n6e4ZvFXwnh6snfpneoRXQ", "to": "5pTAqRFBdVODmYedZaN5Qg" },
+        { "seq": "ETulET1-Z4iCvzl368UUmA", "from": "g7Uns8m3l5HUCw_c5GI62Q", "to": "zNTwLGQP7DUncdREK5zzQw" },
+        { "seq": "6Ap5qGgRT0PjbisQkWZUgQ", "from": "WIDr0zy5qFsBKygEQLpIvQ", "to": "IjE-be8ETw7F87Uop2VKRQ" },
+        { "seq": "xqKQQllOvsMKR5Q0-VZiAg", "from": "VtzKugyFuf10-6stgxMG_Q", "to": "1jJHQlAs8byQFLMpcq3MBg" },
+        { "seq": "ZK4QZnzM4AmCiJM_kdkOKw", "from": "CzZ_Vkiy_mpeUU-YpOqKbA", "to": "1-oyCLu4fEKuodhAxmsvzA" },
+        { "seq": "ZK4QZnzM4AmCiJM_kdkOKw", "from": "D8gNnypN8UNE0PDT1Z2x0w", "to": "sGmjCRL21INglks7Nykwsg" },
+        { "seq": "BgJypJM7lItTeLEypa7i3Q", "from": "GdA1fxZA7Jvh6HclkZrHxQ", "to": "VjVdjfuAzYKFdWrASX677Q", "note": "could use better images: https://www.komoot.de/tour/41305110" },
+        { "seq": "BgJypJM7lItTeLEypa7i3Q", "from": "yKSq8WMyiAWH5X4zzrzN-A", "to": "Z9WHJauU2Hj94f1QAxk31Q" },
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "RjpTMK8WJ8VLVd8L5g7Jmw", "to": "CzdjamLShoQwZV3uAKhf1Q" },
+        { "seq": "1TKH_bmUs9V1m3zrjX5woQ", "from": "NtjDNXpZht3EHzW9fYXVkw", "to": "nn_1wAGBoP9im5Ofkkz62w" }
+      ],
+      "inward_billstedt": [
+        { "seq": "5ve320wsMxYKOa2WvBt5mQ", "from": "FgkzoPTTUCBeHTrmFpsNgA", "to": "ZSwSbbEEiy7wZdjR8QvbDw" },
+        { "seq": "PAdknxLcjMCpeKXbNTM77Q", "from": "qfxIs6lSOF8IyyrAJPzzyg", "to": "yM1CbQnFd7tk8WQY5MbzYQ" },
+        { "seq": "PAdknxLcjMCpeKXbNTM77Q", "from": "2qenhxcWJd5Mf18WNvvTLg", "to": "qDRcrcdJtwyyVlb5qVd8WQ", "note": "missing images after: https://www.komoot.de/tour/41304957" },
+        { "seq": "PAdknxLcjMCpeKXbNTM77Q", "from": "GXREHn-ynUbEU0IBDOBIfA", "to": "rD09fzY1737vM482Px8fyA" },
+        { "seq": "qy8se-lT2AzPWKngkV7bdw", "from": "AOUFJB2sWzRtGWqPx4WMjw", "to": "brdJ6fmbtUnFjbEWiBmiuA" },
+        { "seq": "gQNdpJTpEWU4qGtyrz5ffA", "from": "zZYy40KhpPn9b46U2xkmiQ", "to": "5sZL4H8h_GQQDQa6MOFCiQ" },
+        { "seq": "_Qd-bo0fRlv5XQh_Ly0JWA", "from": "9EDwleqKA-PvBwEmavvC2A", "to": "2r7xloYi3Iz3IqeV2V4_JA" },
+        { "seq": "gQNdpJTpEWU4qGtyrz5ffA", "from": "mxH7T7oXBqyPRzEanKyC9Q", "to": "8lTGkECpSzV1i0DybJ6YBg" },
+        { "seq": "Cmh8fj2ZrKB0PGrC5sf9hg", "from": "XzcJutW_I0Ln2Bb7GTwgYw", "to": "0zCPwsap-SANHmM1sdNafQ" },
+        { "seq": "ETulET1-Z4iCvzl368UUmA", "from": "8h_EytvV7w3ppNYFdfbWLw", "to": "LzFrL3vh6yoNbPGjyAmqZg" },
+        { "seq": "ch090wzuObHkdsMoau7iAg", "from": "pzvaYNFhwSGgIwxjyCgeQw", "to": "LS2YpgpQgPP1pBihVvq0SQ" },
+        { "seq": "dzOtt0vH5WlyLJpndIHztw", "from": "UUcVmjP_DQrzMWPQAWs57g", "to": "o9HWcObJFizxifAYPwu2iA" },
+        { "seq": "hS_yDH0ElO0S4psNux_yaQ", "from": "AyuTBnXiJthic-smJ_9nGg", "to": "SCelNdSGdW4Lbh2xxltNIg" },
+        { "seq": "NJ9YxTrnbbMN8cb1oxR2wA", "from": "Ze348ITjzZ8tZxw07tE2QA", "to": "07tY2wCj0_S1zl5AYPpk2A", "note": "lots of missing images after: https://www.komoot.de/tour/41327757" },
+        { "seq": "8wtd6zlkzhd9azogtjpfsb", "from": "OekbCaFDUPP0hZb8PwJ7fQ", "to": "DjiwlOIspEI8EQ9fknKFeA", "note": "lots of missing images after: https://www.komoot.de/tour/41327757" },
+        { "seq": "42rfxmnu4s5npv9h7ci16q", "from": "NPZ1wZo70tEfUKIw4NjkWw", "to": "7QPUYTA1fYK0WUK3sG_Fnw", "note": "needs better images: https://www.komoot.de/tour/41327757" },
+        { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "WtUoCslydf31C0zyolOgbg", "to": "EoP-T3XpOpHzRMYgMDwI_g"},
+        { "seq": "eH0m4ykz4cvHTCns7WdiBQ", "from": "hx_q2jIyvi2WUtxOVYwulA", "to": "VJ85d90zjbHtBVsVZNwtBg"}
+      ]
+    }
   }
 }

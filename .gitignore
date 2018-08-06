@@ -1,5 +1,6 @@
 build/
 routes/geo/
+routes/cache/
 node_modules
 bundle.js
 index.html
@@ -7,3 +8,5 @@ index.html
 *.br
 *.css
 *.map
+npm-debug.log
+yarn-error.log

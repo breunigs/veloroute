@@ -1,103 +1,70 @@
 #!/usr/bin/env ruby
 
-# required: /usr/bin/ogr2ogr from package gdal-bin
-# sudo apt install gdal-bin jq
-
-require "open-uri"
-require "json"
-require "fileutils"
 require "base64"
+require "fileutils"
+require "json"
+require "parallel"
+
+require_relative "geojson"
+require_relative "relation"
 require_relative "route"
+require_relative "web"
 
 Dir.chdir(__dir__)
 
-def xml_name(route)
-  "geo_tmp/route#{route}.xml.osm"
-end
+REPLACE_NAMES = {
+  'Hafen' => 'Reiherdamm',
+  'Altona' => 'Altona-Altstadt',
+  'Langenhorn' => 'Langenhorn Markt',
+}
 
-def geo_route_name(route)
-  "geo_tmp/route#{route}.geojson"
-end
+def build_map_geojsons(routes)
+  collisions = Relation.build_collision_lookup(routes.map(&:relation))
 
-def geo_icon_name(route)
-  "geo_tmp/route#{route}.svg"
-end
-
-def geo_details_name(route)
-  "geo_tmp/details#{route}.geojson"
-end
-
-def html_name
-  "geo_tmp/path_render.html"
-end
-
-def download(route, relation_id)
-  url = "https://www.openstreetmap.org/api/0.6/relation/#{relation_id}/full"
-  puts "Querying: #{url}"
-  xml = open(url)
-  IO.copy_stream(xml, xml_name(route))
-rescue OpenURI::HTTPError
-  puts "Skipping route #{route}, couldn't download XML"
-end
-
-def convert(route)
-  return unless File.exist?(xml_name(route))
-  cmd = "OSM_CONFIG_FILE=./osmconf.ini ogr2ogr -lco COORDINATE_PRECISION=7 -f GeoJSON"
-  `#{cmd} "#{geo_route_name(route)}.tmp" "#{xml_name(route)}" multilinestrings 2>&1`
-  `#{cmd} "#{geo_details_name(route)}" "#{xml_name(route)}" lines 2>&1`
-  `jq -c . "#{geo_route_name(route)}.tmp" > "#{geo_route_name(route)}"`
-  File.delete(geo_route_name(route) << ".tmp")
-end
-
-def update!(routes)
-  routes.map do |route, details|
-    Thread.new do
-      download(route, details["relation_id"])
-      convert(route)
-    end
-  end.each(&:join)
-end
-
-def combine_details!(routes)
-  features = []
-  routes.keys.each do |route|
-    json = JSON.parse(File.read(geo_details_name(route)))
-    features += json["features"].map do |feat|
-      next if feat.dig("geometry", "type") != "LineString"
-      {
-        tags: feat.dig("properties"),
-        geometry: feat.dig("geometry", "coordinates")
-      }
-    end.compact
+  geojsons = routes.flat_map do |route|
+    route.to_geojson(collisions)
   end
-  filename = "geo_tmp/quality.json"
-  File.write(filename, features.to_json)
+  File.write("geo_tmp/routes.geojson", GeoJSON.join(geojsons).to_json)
+
+  markers = routes.flat_map(&:named_markers)
+  File.write("geo_tmp/markers.json", markers.to_json)
 end
 
-def resolve_names!(routes)
-  places = routes.values.flat_map { |v| v["places"] }.flatten.uniq
-  lock = Mutex.new
-  results = {}
+def place_to_nominatim_query(place)
+  search_name = REPLACE_NAMES[place] || place
+  return search_name.gsub(/[()]/, '') if search_name.include?('(')
+  search_name + ' Hamburg'
+end
 
-  places.map do |place|
+def resolve_names(routes)
+  places = routes.flat_map(&:places_with_dir).uniq
+
+  results = Parallel.map(places, in_processes: 4) do |place|
     url = "https://nominatim.openstreetmap.org/search/"
-    url << URI.escape(place)
-    url << "?format=json&viewbox=9.5732117,53.3825092,10.4081726,53.794973&bounded=1&limit=1"
-    puts "Querying: #{url}"
+    url << URI.escape(place_to_nominatim_query(place))
+    url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
 
-    resp = JSON.parse(open(url).string)
-    bbox = resp.dig(0, "boundingbox")&.map(&:to_f)
-    warn "No entry found for #{place}" if not bbox
+    resp = get(url)
+    importance = resp.map { |e| e["importance"] }.max
 
-    results[place] = bbox
-  end
+    # combine bboxes with the same importance
+    important_results = resp.take_while { |e| e["importance"] == importance }
+    bboxes = important_results.map { |e| e["boundingbox"].map(&:to_f) }
+    bbox_0 = bboxes.map { |bbox| bbox[0] }.min
+    bbox_1 = bboxes.map { |bbox| bbox[1] }.max
+    bbox_2 = bboxes.map { |bbox| bbox[2] }.min
+    bbox_3 = bboxes.map { |bbox| bbox[3] }.max
+
+    # switch order to MapboxGL one
+    bbox = [bbox_2, bbox_0, bbox_3, bbox_1]
+
+    [place, bbox]
+  end.to_h
 
   File.write("geo_tmp/places.json", results.to_json)
 end
 
-def render_route!(routes)
-  routes = routes.map { |route, details| Route.new(route, details) }
-
+def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
   routes.each do |route|
@@ -109,11 +76,22 @@ def render_route!(routes)
 
   routes.map do |route|
     svg = route.to_svg(place2route)
-    File.write(geo_icon_name(route.name), svg)
+    File.write("geo_tmp/route#{route.name}.svg", svg)
 
     html = route.to_html(place2route)
-    open(html_name, 'a') { |f| f << html }
+    open('geo_tmp/path_render.html', 'a') { |f| f << html }
+    open('geo_tmp/icons.css', 'a') { |f| f << route.to_css }
   end
+end
+
+def build_image_lists(routes)
+  debug = []
+  images = routes.map do |route|
+    debug << route.to_image_debug
+    [route.name, route.to_image_export]
+  end.to_h
+  File.write("geo_tmp/images.json", images.to_json)
+  File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 
 SCSS_MUTEX = Mutex.new
@@ -123,13 +101,13 @@ FileUtils.rm_rf("geo_tmp")
 FileUtils.mkdir_p "geo_tmp"
 
 routes = JSON.parse(File.read("../routes.json"))
+routes = routes.map { |route, details| Route.new(route, details) }
+
 threads = []
-threads << Thread.new do
-  update!(routes)
-  combine_details!(routes)
-end
-threads << Thread.new { resolve_names!(routes) }
-threads << Thread.new { render_route!(routes) }
+threads << Thread.new { build_map_geojsons(routes) }
+threads << Thread.new { resolve_names(routes) }
+threads << Thread.new { render_abstract_routes(routes) }
+threads << Thread.new { build_image_lists(routes) }
 threads.each(&:join)
 
 # swap old for new

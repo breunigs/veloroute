@@ -4,16 +4,12 @@
 <head>
   <meta charset=utf-8 />
   <title>Velorouten Hamburg</title>
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width" />
 
   <link href="base.css" rel="stylesheet" />
-
-  <link href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" rel="stylesheet" />
-  <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"></script>
-
-
-  <link href='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.css' rel='stylesheet' />
-  <script src='https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.js'></script>
+  <link rel="stylesheet" integrity="sha384-r+py76P1N9OKDLtJqgMsRj0/GhOKDdopdb6tlfKGPyEQZV469EhEY3cXKMsdGhQi" crossorigin="anonymous" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css">
+  <link rel="stylesheet" integrity="sha384-l5MNrYKyAC056KfKLDJE59cTrnsEONJhuUKurfnzwmUCUgYc5f8yB44ITeJ+2t7K" crossorigin="anonymous" href="https://unpkg.com/mapillary-js@2.12.1/dist/mapillary.min.css">
+  <link rel="stylesheet"                                                                                     crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300" >
 </head>
 
 <body>
@@ -21,18 +17,57 @@
     <div id="map"></div>
   </div>
   <div id="sidebar">
-    <div id="default">
-      <h2>Velorouten Hamburg</h2>
+    <div id="header">
+      <h2>veloroute.hamburg</h2>
     </div>
 
-    @require('routes/geo/path_render.html')
+    <div id="routes">
+      <div id="info">
+        <h3>Einleitung</h3>
+        <ul>
+          <li>
+            <span class="only-mobile"><a href="#map">Klicke auf eine Route um anzufangen</a></span>
+            <span class="not-mobile">Klicke auf eine Route um anzufangen</span>
+          </li>
+          <li>Mach Dich mit der Route vertraut</li>
+          <li>Fahr Rad!</li>
+        </ul>
 
-    <pre id="tags">
-    </pre>
+        <h3>Helfen</h3>
+        <ul>
+          <li>Melde (abgeschlossene) Umbauten</li>
+          <li>Mach aktuelle Bilder mit <a href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid. Siehe auch: <a href="https://www.komoot.de/user/100869689884/tours?sport=all&type=planned&order=date&descending=true&search=Fehlst%C3%BCck">Bekannte Fehlstellen</a>.</li>
+          <li>Verbessere die <a href="https://learnosm.org/de/beginner/">OpenStreetMap</a></li>
+        </ul>
 
-    <div id="bottomright">
-      <a id="toggle">⤡ toggle</a>
-      <a id="quality">⏻ quality</a>
+        <h3>Kontakt</h3>
+        <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br/><a href="mailto:stefan-veloroute@breunig.xyz">stefan-veloroute@breunig.xyz</a></p>
+
+        <h3>Hintergrund</h3>
+        <p>Hamburg baut aktuell die Radwege aus, <a href="https://www.hamburg.de/radverkehr/300372/velorouten/">stellt aber nur grobe Infos bereit</a>. Da die Schilder noch fehlen, ist dies gerade an Kreuzungen schwierig. Diese Seite ist ein Versuch neuen Radlern in Hamburg einen Einstieg zu bieten.</p>
+
+        <p>Nebenbei kann auch der Ausbaustatus der Velorouten beurteilt werden. Beachte, das die Einschätzung automatisch erfolgt und ggf. falsch ist.</p>
+
+        <p>Die Daten werden in der OpenStreetMap gepflegt, d.h. auch die meisten „Outdoor Navis“ sollten die Velorouten kennen. Der <a href="https://github.com/breunigs/veloroute">Quelltext liegt auf GitHub</a>.</p>
+
+        <small>
+          <a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a>
+        </small>
+      </div>
+
+      @require('routes/geo/path_render.html')
+    </div>
+
+    <div id="controls" class="hidden">
+      <a id="swap" title="Bild / Karte vergrößern">⇱</a>
+      <a id="playstop" title="Abspielen / Pause">▶</a>
+      <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">
+      <a id="prev" title="Vorheriges Bild">〈</a>
+      <a id="next" title="Nächstes Bild">〉</a>
+      <a id="direction" title="Fahrtrichtung ändern">⇆</a>
+    </div>
+
+    <div id="side">
       <div id="mly" class="mapillary"></div>
     </div>
   </div>

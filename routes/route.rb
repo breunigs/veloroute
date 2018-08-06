@@ -4,7 +4,12 @@
 # route = Route.new("1", routes["1"])
 # File.write("icon/wtf.svg", route.to_svg)
 
+require_relative "geojson"
+require_relative "mapillary"
+require_relative "markers"
+require_relative "relation"
 require_relative "svg_pather"
+
 
 class Route
   def initialize(name, parsed_json)
@@ -15,6 +20,10 @@ class Route
 
   attr_reader :name
 
+  def relation
+    @relation ||= Relation.new(relation_id)
+  end
+
   def relation_id
     @parsed_json["relation_id"]
   end
@@ -24,13 +33,20 @@ class Route
   end
 
   def markers
-    parsed_json["markers"].map do |mark|
-      {lat: mark[0], lon: mark[1]}
-    end.freeze
+    m = Markers.new(markers: @parsed_json["markers"].freeze, relation: relation)
+    m.snapped
+  end
+
+  def named_markers
+    markers.map { |m| m << name }
   end
 
   def places
-    @parsed_json["places"].flatten.uniq.reject { |stop| is_dir?(stop) }.freeze
+    places_with_dir.reject { |stop| is_dir?(stop) }.freeze
+  end
+
+  def places_with_dir
+    @parsed_json["places"].flatten.uniq.freeze
   end
 
   def main_route
@@ -58,6 +74,22 @@ class Route
     main_route.zip(secondary_route).map do |row|
       row.first == row.last ? [row.first, nil] : row
     end
+  end
+
+  def stitched_sequences
+    @stitched_sequences ||= @parsed_json["images"]&.map do |name, data|
+      [name, Mapillary::StitchedSequence.new(data)]
+    end.to_h || {}
+  end
+
+  def to_image_export
+    stitched_sequences.map do |name, ss|
+      [name, ss.to_json_export]
+    end.to_h
+  end
+
+  def to_image_debug
+    GeoJSON.join(stitched_sequences.values.map(&:to_geojson))
   end
 
   def to_svg(place2route = {})
@@ -142,6 +174,19 @@ class Route
 
   def to_html_icon
     %|<a class="icon icon#{name}">#{name}</a>|
+  end
+
+  def to_css
+    <<~CSS
+      .icon#{name}, .route-icon#{name} {
+        background: #{color};
+      }
+    CSS
+  end
+
+  def to_geojson(collisions)
+    geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
+    geojson.to_geojson
   end
 
   def &(other_route)

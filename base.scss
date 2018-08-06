@@ -8,30 +8,119 @@ body {
   padding: 0;
   margin: 0;
   background: #fff;
-  font-family: Verdana, sans;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.1em;
+  overflow: hidden;
+  display: flex;
+
+  // because Safari is special and still scrolls even with overflow: hidden
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
+$sidebar-width: 40%;
+$sidebar-max-width: 35em;
 #main {
   height: 100%;
-  width: 70%;
+  flex: 2 0 50%;
 }
 
 #sidebar {
+  background: #F8F8F8;
   height: 100%;
-  width: 30%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  flex: 1 1 20em;
 }
 
-#bottomright {
+#info {
+  padding: 0 1em;
+
+  h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  ul {
+    padding-left: 0.8em;
+    line-height: 120%;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  ul, p {
+    margin-top: 0;
+  }
+}
+
+$header-height: 3.5em;
+$side-height: 50%;
+$control-size: 2em;
+#header {
+  text-align: center;
+  background: #333;
+  color: #fff;
+  height: $header-height;
+  line-height: $header-height;
+
+  h2 {
+    cursor: pointer;
+    margin: 0;
+  }
+}
+
+#routes {
+  height: calc(100% - #{$header-height + $control-size} - #{$side-height});
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+#controls {
+  background: #333;
+  display: flex;
+  flex-direction: row;
+  height: $control-size;
+  line-height: $control-size;
+  overflow: hidden;
+
+  &.hidden {
+    visibility: hidden;
+  }
+
+  @import "range";
+
+  a {
+    font-size: 1em;
+    background: none;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    width: $control-size;
+    height: $control-size;
+    padding: 0;
+    border-radius: 0.1em;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background: #666;
+      // text-decoration: none;
+    }
+
+    &:disabled {
+      color: #888;
+      background: transparent;
+      cursor: default;
+    }
+  }
+}
+
+#side {
   width: 100%;
-  height: 25em;
-  margin-top: auto;
+  height: $side-height;
 }
 
 .route-icon {
@@ -55,6 +144,12 @@ body {
   color: #fff !important;
   text-decoration: none;
   cursor: default;
+  font-family: Verdana, sans;
+
+  &.mapboxgl-marker {
+    cursor: pointer;
+    font-size: 1.1em;
+  }
 }
 
 a.icon:hover {
@@ -75,47 +170,16 @@ a.icon:hover {
     -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 }
 
-/* icon1 to 14 colors are set through JS reading routes.js. TODO: set through build step; */
+/* icon1 to 14 colors are generated through Ruby build script */
 .icon0,
 .route-icon0 {
   background: #bbb;
 }
+@import 'routes/geo/icons';
 
-.cols {
-  display: flex;
-}
-
-.cols ol {
-  list-style-position: inside;
-  padding: 0 1em;
-}
-
-.leaflet-overlay-pane {
-  z-index: 656 !important; /* above the ones for the routes and the route markers */
-}
-
-#map,
-.mapillary {
+#map, #mly {
   width: 100%;
   height: 100%;
-}
-
-#toggle,
-#quality {
-  background: #ddd;
-  border-top-right-radius: 0.1em;
-  vertical-align: middle;
-  line-height: 2em;
-  height: 2em;
-  padding: 0.1em 0.4em;
-  display: block;
-  margin-top: -2.2em;
-  width: 5em;
-  text-align: center;
-}
-
-#quality {
-  float: right;
 }
 
 a {
@@ -126,10 +190,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-#sidebar > div:not(#bottomright) {
-  padding: 0 1em;
 }
 
 table.routing {
@@ -157,16 +217,26 @@ table.routing {
     white-space: nowrap;
   }
 
+  tr:first-child {
+    background: linear-gradient(to bottom, #333, #333 0.5em, transparent 0.5em) no-repeat;
+  }
+
+  $main-route-icon-size: 1.5em;
   // i.e. center column that displays the route
   tr:first-child td:nth-child(2) {
     // image will be set through HTML
-    background: center bottom / (2*$table-cell-height) no-repeat;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: auto calc(100% - #{$main-route-icon-size});
     width: 1.25*2*$table-cell-height;
     vertical-align: top;
     text-align: center;
+    padding-top: 0.42em;
 
     .icon {
       font-size: 120%;
+      width: $main-route-icon-size;
+      height: $main-route-icon-size;
     }
   }
 
@@ -184,4 +254,93 @@ table.routing {
 
 .desc {
   display: none;
+}
+
+#indicator, #indicator-rotate {
+  height: 2em;
+  width: 2em;
+}
+
+#indicator-loc {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.8em;
+  border: 0.2em solid #000;
+  box-shadow: 0 0 0.1em 0.1em #fff;
+  height: 0.8em;
+  left: 50%;
+  position: absolute;
+  text-color: #000;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.8em;
+}
+
+#indicator-dir {
+  &::before {
+    content: '▴';
+    font-size: 1.3em; // adjust translateY below as needed
+  }
+  height: 2em;
+  left: 50%;
+  position: relative;
+  top: 0%;
+  text-align: center;
+  text-shadow:  0.1em  0.0em 0.1em #fff,
+                0.1em -0.1em 0.1em #fff,
+               -0.1em  0.0em 0.1em #fff,
+               -0.1em -0.1em 0.1em #fff;
+  transform: translate(-50%, -45%);
+  width: 2em;
+  z-index:9999;
+  // outline: 1px solid green;
+}
+
+.only-mobile {
+  display: none;
+}
+
+.not-mobile {
+  display: inline;
+}
+
+@media only screen and (max-width: 700px) {
+  body {
+    flex-direction: column-reverse;
+    overflow: auto;
+    height: auto;
+    width: auto;
+    position: static;
+  }
+
+  .only-mobile {
+    display: inline;
+  }
+
+  .not-mobile {
+    display: none;
+  }
+
+  #main, #side {
+    height: 39vh;
+  }
+
+  #routes {
+    overflow: auto;
+    height: auto;
+  }
+
+  #controls {
+    justify-content: space-around;
+    a {
+      width: 3.5em;
+    }
+
+    &.hidden {
+      visibility: visible;
+    }
+  }
+
+  #slider, #swap {
+    display: none !important;
+  }
 }
