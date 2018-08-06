@@ -4,7 +4,6 @@ require "webcache"
 
 CACHE = WebCache.new.tap { |c| c.life = 7*24*60*60 }
 
-
 def get_xml(url)
   print "."
   Nokogiri::HTML(CACHE.get(url).to_s)

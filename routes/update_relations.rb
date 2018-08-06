@@ -94,6 +94,14 @@ def build_image_lists(routes)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 
+def check_relation_connected(routes)
+  routes.each do |route|
+    ok, err = route.relation.connected?
+    next if ok
+    warn "Route #{route.name} not connected apparently: #{err}"
+  end
+end
+
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
@@ -108,6 +116,7 @@ threads << Thread.new { build_map_geojsons(routes) }
 threads << Thread.new { resolve_names(routes) }
 threads << Thread.new { render_abstract_routes(routes) }
 threads << Thread.new { build_image_lists(routes) }
+threads << Thread.new { check_relation_connected(routes) }
 threads.each(&:join)
 
 # swap old for new

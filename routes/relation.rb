@@ -51,6 +51,13 @@ class Relation
     end
   end
 
+  def connected?
+    ra_url = "http://ra.osmsurround.org/analyzeRelation?relationId=#{id}"
+    html = get_xml(ra_url)
+    return true, nil if html.xpath('//div[@class="alert alert-success"]').size >= 1
+    return false, html.xpath('//div[@class="alert"]').text
+  end
+
   private
 
   def xml
