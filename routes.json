@@ -76,8 +76,9 @@
         { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "ihJbXiD1_0I3UgjgWJ54Iw", "to": "lDvARJd-fbwgbl3VbrKerQ" },
         { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "FoJQv1t0uHdv-Sh6e3JM-g", "to": "71-Xy3UCJcTHlWPjUHuTmw" },
         { "seq": "lfQHNZUjqXmYdvk33am48w", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
-        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "F9zbbJBqRwFbl4PmlVEl1w", "note": "missing images start here" },
-        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "GOgyoFzOY0jZ9vK9RDJtPQ", "to": "kTZdGlb8Mrqlb5N3xCShmw" },
+        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "F9zbbJBqRwFbl4PmlVEl1w" },
+        { "seq": "lFFfifx_hFzEl_wh9srGwg", "from": "i-eEZTvzthZhQxGGCIqpVQ", "to": "jgOsePdet0aHCIHEc39Kbg" },
+        { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "WK8_yfRemxgw1zF_68S5MQ", "to": "kTZdGlb8Mrqlb5N3xCShmw" },
         { "seq": "PfOicVbZgVIc21QhKiKNZQ", "from": "JMECTW_Mdy5ObEnukwtTtw", "to": "QXKbBN-9komlDR482q0LXQ" }
       ],
       "inward_eidelstedt": [
