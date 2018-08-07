@@ -1,6 +1,6 @@
 # Live Version
 
-You can find the live version at [veloroute.breunig.xyz](https://veloroute.breunig.xyz). It is updated once per week.
+You can find the live version at [veloroute.hamburg](https://veloroute.hamburg). It is updated once per week.
 
 # Building
 
