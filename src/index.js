@@ -44,7 +44,10 @@ const swap = () => {
 }
 swapBtn.addEventListener("click", swap);
 
-document.querySelector("#header h2").addEventListener("click", () => {
-  showRoute()
-  state.resetRoute();
-});
+const links = document.querySelectorAll(".show-main-text");
+for (let i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", () => {
+    showRoute()
+    state.resetRoute();
+  });
+}

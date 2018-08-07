@@ -10,7 +10,7 @@ class Markers
   attr_reader :markers, :relation
 
   def snapped
-    markers.map do |marker|
+    @snapped ||= markers.map do |marker|
       new_pos = marker
       dist_so_far = Float::INFINITY
 

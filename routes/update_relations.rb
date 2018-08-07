@@ -6,6 +6,7 @@ require "json"
 require "parallel"
 
 require_relative "geojson"
+require_relative "gpx"
 require_relative "relation"
 require_relative "route"
 require_relative "web"
@@ -37,7 +38,7 @@ def place_to_nominatim_query(place)
 end
 
 def resolve_names(routes)
-  places = routes.flat_map(&:places_with_dir).uniq
+  places = routes.flat_map(&:place_names_with_dir).uniq
 
   results = Parallel.map(places, in_processes: 4) do |place|
     url = "https://nominatim.openstreetmap.org/search/"
@@ -68,7 +69,7 @@ def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
   routes.each do |route|
-    route.places.each do |place|
+    route.place_names.each do |place|
       place2route[place] ||= []
       place2route[place] << route
     end
@@ -102,6 +103,13 @@ def check_relation_connected(routes)
   end
 end
 
+def write_gpx_files(routes)
+  routes.each do |route|
+    gpx = GPX.new(route).to_s
+    File.write("geo_tmp/route#{route.name}.gpx", gpx)
+  end
+end
+
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
@@ -117,6 +125,7 @@ threads << Thread.new { resolve_names(routes) }
 threads << Thread.new { render_abstract_routes(routes) }
 threads << Thread.new { build_image_lists(routes) }
 threads << Thread.new { check_relation_connected(routes) }
+threads << Thread.new { write_gpx_files(routes) }
 threads.each(&:join)
 
 # swap old for new

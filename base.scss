@@ -32,10 +32,10 @@ $sidebar-max-width: 35em;
   flex: 1 1 20em;
 }
 
-#info {
+#info, #extras {
   padding: 0 1em;
 
-  h3 {
+  h3, h4 {
     margin-top: 1em;
     margin-bottom: 0.5em;
   }

@@ -2,7 +2,7 @@ require "json"
 require_relative "web"
 
 class Relation
-  INTERESTING_KEYS = %w[cycleway cycleway:both cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:right cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway lit maxspeed oneway smoothness surface width].freeze
+  INTERESTING_KEYS = %w[cycleway cycleway:both cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:right cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway junction lit maxspeed oneway smoothness surface width].freeze
 
 
   def self.build_collision_lookup(relations)
@@ -32,11 +32,12 @@ class Relation
 
   def ways
     @ways ||= xml.xpath('//way').map do |way|
+      attrs = attrs(way)
       {
         id: way.attr(:id),
         coords: coords(way),
-        attrs: attrs(way),
-        oneway: role(way) != ""
+        attrs: attrs,
+        oneway: role(way) != "" || attrs["junction"] == "roundabout"
       }
     end
   end
@@ -45,7 +46,7 @@ class Relation
     @nodes ||= begin
       h = {}
       xml.xpath('//node').each do |node|
-        h[node.attr(:id)] = [node.attr(:lon).to_f, node.attr(:lat).to_f]
+        h[node.attr(:id)] = [node.attr(:lon).to_f, node.attr(:lat).to_f].freeze
       end
       h
     end
@@ -66,9 +67,18 @@ class Relation
 
   def role(way)
     @roles ||= begin
+      h = {}
       xml.xpath('//relation/member').map do |member|
-        [member.attr('ref'), member.attr('role')]
-      end.to_h
+        ref = member.attr('ref')
+        role = member.attr('role')
+        # support case where ways appear multiple times with different roles
+        if h.has_key?(ref)
+          h[ref] = "" if h[ref] != role
+        else
+          h[ref] = role
+        end
+      end
+      h
     end
     @roles[way.attr('id')]
   end

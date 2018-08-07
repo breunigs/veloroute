@@ -17,7 +17,7 @@
     <div id="map"></div>
   </div>
   <div id="sidebar">
-    <div id="header">
+    <div id="header" class="show-main-text">
       <h2>veloroute.hamburg</h2>
     </div>
 
@@ -56,6 +56,14 @@
       </div>
 
       @require('routes/geo/path_render.html')
+
+      <div id="extras">
+        <h4>Weitere Funktionen</h4>
+        <ul>
+          <li><a id="gpxlink">Route als GPX herunterladen</a></li>
+          <li><a class="show-main-text">Erklärung anzeigen</a></li>
+        </ul>
+      </div>
     </div>
 
     <div id="controls" class="hidden">

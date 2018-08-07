@@ -15,13 +15,17 @@ class Route
   def initialize(name, parsed_json)
     @name = name
     @parsed_json = parsed_json.freeze
+    @mutex = Mutex.new
     raise "only supports up to two route arms" if route_count > 2
   end
 
   attr_reader :name
 
   def relation
-    @relation ||= Relation.new(relation_id)
+    return @relation if @relation
+    @mutex.synchronize do
+      @relation = Relation.new(relation_id)
+    end
   end
 
   def relation_id
@@ -38,15 +42,21 @@ class Route
   end
 
   def named_markers
-    markers.map { |m| m << name }
+    markers.map { |m| m + [name] }
+  end
+
+  def place_names
+    place_names_with_dir.reject { |stop| is_dir?(stop) }.freeze
+  end
+
+  def place_names_with_dir
+    @parsed_json["places"].flatten.uniq.freeze
   end
 
   def places
-    places_with_dir.reject { |stop| is_dir?(stop) }.freeze
-  end
-
-  def places_with_dir
-    @parsed_json["places"].flatten.uniq.freeze
+    @parsed_json["places"].map do |stops|
+      stops.reject { |stop| is_dir?(stop) }
+    end
   end
 
   def main_route
@@ -67,6 +77,22 @@ class Route
 
   def route_max_length
     @parsed_json["places"].map(&:size).max
+  end
+
+  def gpx
+    fill = lambda do |text, idx|
+      text.gsub('{FIRST}', places[idx].first).gsub('{LAST}', places[idx].last)
+    end
+
+    @parsed_json["gpx"].map.with_index do |info, idx|
+      {
+        text:     fill.call(info["text"], idx),
+        rev_text: fill.call(info["rev_text"], idx),
+        places:   places[idx],
+        from:     snap(info["from"]),
+        to:       snap(info["to"])
+      }
+    end
   end
 
   def route_array
@@ -168,7 +194,10 @@ class Route
         </tr>
       EOF
     end
-    html << "</table></div>\n\n"
+    html << <<~EOF
+        </table>
+      </div>
+    EOF
     html
   end
 
@@ -187,10 +216,6 @@ class Route
   def to_geojson(collisions)
     geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
     geojson.to_geojson
-  end
-
-  def &(other_route)
-    places & other_route.places
   end
 
   def ==(other_route)
@@ -230,5 +255,9 @@ class Route
   def link(name)
     return "" unless name
     %|<a>#{name}</a>|
+  end
+
+  def snap(coord)
+    Markers.new(markers: [coord], relation: relation).snapped.first
   end
 end

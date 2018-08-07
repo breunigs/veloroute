@@ -1,12 +1,15 @@
 {
   "1": {
-    "_comment": "Last check: 2018-07-01",
     "relation_id": 194843,
     "color": "#7d8b2f",
     "markers": [[9.73927, 53.58653], [9.85307, 53.59062]],
     "places": [
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Klein Flottbek", "Nienstedten", "Blankenese", "Sülldorf", "Rissen", "(Wedel)"],
       ["Rathaus", "Rödingsmarkt", "Heiligengeistfeld", "St. Pauli", "Altona-Altstadt", "Ottensen", "Othmarschen", "Groß Flottbek", "Osdorf", "Osdorfer Born", "(Schenefeld)"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.73927, 53.58653] },
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.85307, 53.59062] }
     ],
     "images": {
       "outward_osdorfer_born": [
@@ -70,6 +73,9 @@
     "places": [
       ["Rathaus", "Rödingsmarkt", "Schanzenviertel", "Eimsbüttel", "Langenfelde", "Stellingen", "Eidelstedt", "(Halstenbek)"]
     ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.89895, 53.60570] }
+    ],
     "images": {
       "outward_eidelstedt": [
         { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
@@ -97,6 +103,9 @@
     "markers": [[9.95038, 53.64035]],
     "places": [
       ["Rathaus", "Gänsemarkt", "Bahnhof Dammtor", "Rotherbaum", "Hoheluft", "Lokstedt", "Niendorf Markt", "Niendorf Nord"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.95038, 53.64035] }
     ],
     "images": {
       "outward_niendorf": [
@@ -126,6 +135,9 @@
     "markers": [[10.00040, 53.67918]],
     "places": [
       ["Rathaus", "Harvestehude", "Winterhude", "Sporthalle Hamburg", "Alsterdorf", "Flughafen", "Fuhlsbüttel", "Langenhorn", "Langenhorn Nord", "Ochsenzoll", "(Norderstedt)"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.00040, 53.67918] }
     ],
     "images": {
       "outward_ochsenzoll": [
@@ -166,6 +178,10 @@
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Bahnhof Barmbek", "Barmbek-Nord", "Steilshoop", "Bramfeld", "Wellingsbüttel", "Poppenbüttel", "Bergstedt", "Duvenstedt"],
       ["Rathaus", "St. Georg", "Uhlenhorst", "Mundsburg", "Barmbek-Süd", "Stadtpark", "City Nord", "Flughafen"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.10978, 53.70749] },
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.01796, 53.61524] }
     ],
     "images": {
       "outward_duvenstedt": [
@@ -222,6 +238,9 @@
     "places": [
       ["Rathaus", "St. Georg", "Uhlenhorst", "Hohenfelde", "Auenviertel", "Friedrichsberg", "Dulsberg", "Wandsbek-Gartenstadt", "Trabrennbahn Farmsen", "Farmsen", "Berne", "Volksdorf", "(Ahrensburg)"]
     ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.16322, 53.65005] }
+    ],
     "images": {
       "outward_duvenstedt": [
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "LLR6AZ2ILfHRp5b043iueQ", "to": "tExCgdCwMH7_FGQpLTXNTw" },
@@ -261,6 +280,10 @@
     "places": [
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Tonndorf", "Rahlstedt"],
       ["Rathaus", "Hauptbahnhof", "Alsterschwimmhalle", "St. Pauli", "Eilbek", "Wandsbek Markt", "Jenfeld", "(Barsbüttel)"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.15531, 53.60497] },
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.13454, 53.57499] }
     ],
     "images": {
       "outward_rahlstedt": [
@@ -322,10 +345,14 @@
   "8":  {
     "relation_id": 229623,
     "color": "#e20612",
-    "markers": [[10.14991, 53.52821], [10.2076112, 53.4893964]],
+    "markers": [[10.2076112, 53.4893964], [10.14991, 53.52821]],
     "places": [
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Boberg", "Lohbrügge", "Bergedorf", "(Wentorf)", "(Reinbek)"],
       ["Rathaus", "Hauptbahnhof", "Berliner Tor", "Borgfelde", "Hamm", "Horn", "Billstedt", "Mümmelmannsberg"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.2076112, 53.4893964] },
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.14991, 53.52821] }
     ],
     "images": {
       "outward_bergedorf": [
@@ -396,6 +423,9 @@
     "places": [
       ["Rathaus", "Hauptbahnhof", "Hammerbrook", "Rothenburgsort", "Billbrook", "Billwerder-Moorfleet", "Mittlerer Landweg", "Neuallermöhe", "Nettelnburg", "Bergedorf", "(Wentorf)", "(Reinbek)"]
     ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.2062839, 53.4889386] }
+    ],
     "images": {
       "outward_bergedorf": [
         { "seq": "Th2z0guZ_ph5D_Vp4al6Yg", "from": "ogq4J9MsPeVkb1fYiCAcsg", "to": "QLlxJP-0A5Ycx_APDFyw5Q"},
@@ -441,6 +471,9 @@
     "markers": [[9.85377, 53.47415]],
     "places": [
       ["Rathaus", "HafenCity", "Veddel", "Kirchdorf", "Alte Harburger Elbbrücke", "Binnenhafen", "Neuwiedenthal", "Neugraben", "Fischbek", "(Neu Wulmstorf)"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.85377, 53.47415] }
     ],
     "images": {
       "outward_fischbek": [
@@ -516,6 +549,10 @@
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Bahnhof Harburg", "Harburg", "TUHH", "Heimfeld", "Eißendorf", "(Rosengarten)"],
       ["Rathaus","Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Hafen", "Reiherstiegviertel", "Wilhelmsburger Inselpark", "Alte Harburger Elbbrücke", "Veddel","(Seevetal)"]
+    ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.94492, 53.45705] },
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [10.01471, 53.52167] }
     ],
     "images": {
       "outward_eissendorf": [
@@ -612,6 +649,9 @@
     "places": [
       ["Rathaus", "Rödingsmarkt", "Landungsbrücken", "Alter Elbtunnel", "Fischmarkt", "Altona"]
     ],
+    "gpx": [
+      { "text": "stadtauswärts nach {LAST}", "rev_text": "stadteinwärts von {LAST}", "from": [9.993148, 53.550974], "to": [9.936256, 53.5501775] }
+    ],
     "images": {
       "outward_altona": [
         { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "niBSX72CO6bcxDOL1IRQug", "to": "jhM7uESoft7ZB1WM3pzvyQ" },
@@ -641,6 +681,9 @@
     "_comment": "Innere Ringroute",
     "places": [
       ["Altona", "Eimsbüttel", "Hoheluft", "Eppendorf", "Winterhude", "Mühlenkamp", "Barmbek-Süd", "Auenviertel", "Eilbek", "Borgfelde"]
+    ],
+    "gpx": [
+      { "text": "von {FIRST} nach {LAST} (im Uhrzeigersinn)", "rev_text": "von {LAST} nach {FIRST} (gegen Uhrzeigersinn)", "from": [9.936256, 53.5501775], "to": [10.0405575, 53.5554291] }
     ],
     "images": {
       "outward_borgefelde": [
@@ -678,6 +721,9 @@
     "places": [
       ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "Jenfeld", "Öjendorfer Park", "Billstedt"],
       ["Othmarschen", "Osdorf", "Lurup", "Eidelstedt", "Schnelsen", "Niendorf Nord", "Langenhorn", "Hummelsbüttel", "Poppenbüttel", "Sasel", "Berne", "Farmsen", "Tonndorf", "(Barsbüttel)"]
+    ],
+    "gpx": [
+      { "text": "von {FIRST} nach {LAST} (im Uhrzeigersinn)", "rev_text": "von {LAST} nach {FIRST} (gegen Uhrzeigersinn)", "from": [9.88207, 53.55818], "to": [10.10794, 53.53746] }
     ],
     "images": {
       "outward_billstedt": [
