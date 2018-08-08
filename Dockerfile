@@ -36,7 +36,14 @@ ENV PATH="/app/node_modules/.bin:${PATH}"
 
 COPY . /app
 COPY --from=geodata /app/routes/geo routes/geo/
-RUN webpack --output-path /bundled/
+
+ARG COMPRESS
+RUN \
+  if [ "$COMPRESS" = "yes" ]; then \
+    webpack --env.production --output-path /bundled/ \
+  else \
+    webpack --output-path /bundled/ \
+  fi
 
 
 ##############################################################

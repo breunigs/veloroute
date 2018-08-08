@@ -56,17 +56,20 @@ module.exports = env => ({
     }),
     new HtmlWebpackPlugin({
       template: "main.html",
-      minify: env !== 'prod' ? false : {
+      minify: !env.production ? false : {
         collapseWhitespace: true,
         removeComments: true
       },
       hash: true
     }),
-    env !== 'prod' ? null : new OptimizeCSSAssetsPlugin({}),
-    env !== 'prod' ? null : new UglifyJsPlugin({
+    !env.production ? null : new OptimizeCSSAssetsPlugin({}),
+    !env.production ? null : new UglifyJsPlugin({
       extractComments: true,
       parallel: true,
       sourceMap: true,
+      uglifyOptions: {
+        toplevel: true
+      }
     })
   ].filter(plugin => plugin !== null),
 });
