@@ -1,6 +1,5 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
-import data from '../routes/geo/images.json';
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
 const slider = document.getElementById("slider");
@@ -19,18 +18,35 @@ let status = {
 
 let updateInProgress = false;
 
-const route = () => data[status.routeName];
+let imageData = null;
+const getImageData = () => {
+  if(imageData) return Promise.resolve(imageData);
+  return fetch('/routes/geo/images.json')
+    .then(response => response.json())
+    .then(json => {
+      imageData = json;
+      return json;
+    });
+}
+
+const route = () => {
+  if(!status.routeName) return Promise.resolve(null);
+  return getImageData().then(data => data[status.routeName]);
+}
+
 const images = () => {
-  const r = route();
-  return r ? r[`${status.direction}_${status.branch}`] : null;
+  return route()
+    .then(r => {
+      return r ? r[`${status.direction}_${status.branch}`] : null;
+    })
 }
 
 let alertShown = false;
-const handleSliderMove = (avoidListenerUpdates) => {
+async function handleSliderMove(avoidListenerUpdates) {
   console.debug("Reacting to slider move. Current status: ", status);
   const pos = slider.value;
 
-  const i = images();
+  const i = await images();
   if(!i) {
     console.debug("could not find images, disabling everything")
     prev.disabled = true;
@@ -62,7 +78,7 @@ const handleSliderMove = (avoidListenerUpdates) => {
   }
 }
 
-const setActiveRoute = (routeName, branch, imgIndex) => {
+async function setActiveRoute(routeName, branch, imgIndex) {
   if(!routeName || !branch) {
     console.debug("missing route info, disabling controls");
     status.routeName = null;
@@ -87,16 +103,19 @@ const setActiveRoute = (routeName, branch, imgIndex) => {
   }
 
   console.debug("Setting Active Route. Status: ", status);
+  const img = await images();
   slider.disabled = false;
-  slider.setAttribute("max", images().keys.length - 1);
+  slider.setAttribute("max", img.keys.length - 1);
   slider.value = imgIndex || 0;
   controls.classList.remove("hidden");
   handleSliderMove();
 }
 
-const restoreBranch = () => {
-  for(const branch in route()) {
-    const imgKeys = route()[branch].keys;
+async function restoreBranch() {
+  const rr = await route();
+  if(!rr) return;
+  for(const branch in rr) {
+    const imgKeys = rr[branch].keys;
     const idx = imgKeys.indexOf(status.image);
     if(idx >= 0) return setActiveRoute(status.routeName, branch, idx);
   }
@@ -131,9 +150,10 @@ const addIndicatorListener = (...funcs) => {
 
 const distEuklid = (lng1, lat1, lng2, lat2) => Math.sqrt((lng1-lng2)**2 + (lat1-lat2)**2)
 
-const changeDirection = () => {
-  const idx = images().keys.indexOf(status.image);
-  const loc = images().loc[idx];
+async function changeDirection() {
+  const img = await images();
+  const idx = img.keys.indexOf(status.image);
+  const loc = img.loc[idx];
   const lngLat = {lng: loc[0], lat: loc[1]};
   showCloseImage(status.routeName, lngLat, true);
 }
@@ -189,7 +209,7 @@ const closestImageIndex = (images, lngLat) => {
 }
 
 let prevLngLat = null;
-const showCloseImage = (routeName, lngLat, ignoreCurrent) => {
+async function showCloseImage(routeName, lngLat, ignoreCurrent) {
   stopPlayback();
   status.routeName = routeName;
 
@@ -202,9 +222,10 @@ const showCloseImage = (routeName, lngLat, ignoreCurrent) => {
   const current = `${status.direction}_${status.branch}`;
   let distances = {};
 
-  for(const branch in route()) {
+  const rr = await route();
+  for(const branch in rr) {
     if(ignoreCurrent && branch === current) continue;
-    distances[branch] = closestImageIndex(route()[branch], lngLat);
+    distances[branch] = closestImageIndex(rr[branch], lngLat);
   }
 
   console.debug("Candidates for close images: ", distances)
