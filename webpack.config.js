@@ -13,9 +13,6 @@ module.exports = env => ({
     filename: "bundle.js"
   },
   module: {
-    // needed due to incompatibility with minify. Might work with mapbox-gl 0.47.0+
-    // See https://github.com/mapbox/mapbox-gl-js/issues/4359
-    noParse: /(mapbox-gl)\.js$/,
     rules: [
       {
         test: /\.scss$/,
@@ -62,11 +59,6 @@ module.exports = env => ({
       },
       hash: true
     }),
-    !env.production ? null : new OptimizeCSSAssetsPlugin({}),
-    !env.production ? null : new UglifyJsPlugin({
-      extractComments: true,
-      parallel: true,
-      sourceMap: true
-    })
+    !env.production ? null : new OptimizeCSSAssetsPlugin({})
   ].filter(plugin => plugin !== null),
 });
