@@ -66,10 +66,7 @@ module.exports = env => ({
     !env.production ? null : new UglifyJsPlugin({
       extractComments: true,
       parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        toplevel: true
-      }
+      sourceMap: true
     })
   ].filter(plugin => plugin !== null),
 });
