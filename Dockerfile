@@ -40,9 +40,9 @@ COPY --from=geodata /app/routes/geo routes/geo/
 ARG COMPRESS
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
-    webpack --env.production --output-path /bundled/ \
+    webpack --env.production --output-path /bundled/ ; \
   else \
-    webpack --output-path /bundled/ \
+    webpack --output-path /bundled/ ; \
   fi
 
 
