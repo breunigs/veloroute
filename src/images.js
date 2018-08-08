@@ -19,14 +19,17 @@ let status = {
 let updateInProgress = false;
 
 let imageData = null;
+let imageDataPromise = null;
 const getImageData = () => {
   if(imageData) return Promise.resolve(imageData);
-  return fetch('/routes/geo/images.json')
+  if(imageDataPromise) return imageDataPromise;
+  imageDataPromise = fetch('/routes/geo/images.json')
     .then(response => response.json())
     .then(json => {
       imageData = json;
       return json;
     });
+  return imageDataPromise;
 }
 
 const route = () => {
