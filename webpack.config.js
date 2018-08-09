@@ -16,6 +16,10 @@ module.exports = (env, argv) => {
       filename: "bundle.js"
     },
     module: {
+      // needed due to incompatibility with webpack production mode. This is
+      // for mapillary, but here's a similar issue for mapbox:
+      // See https://github.com/mapbox/mapbox-gl-js/issues/4359
+      noParse: /mapillary/,
       rules: [
         {
           test: /\.scss$/,
@@ -61,6 +65,11 @@ module.exports = (env, argv) => {
           removeComments: true
         },
         hash: true
+      }),
+      !isProduction ? null : new UglifyJsPlugin({
+        extractComments: true,
+        parallel: true,
+        sourceMap: true
       }),
       !isProduction ? null : new OptimizeCSSAssetsPlugin({})
     ].filter(plugin => plugin !== null),
