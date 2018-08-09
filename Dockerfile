@@ -40,12 +40,11 @@ COPY --from=geodata /app/routes/geo routes/geo/
 ARG COMPRESS
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
-    svgo favicon.svg routes/geo/*.svg ; \
+    svgo routes/geo/*.svg ; \
     webpack --mode production --output-path /bundled/ ; \
   else \
     webpack --output-path /bundled/ ; \
   fi
-RUN cp favicon.svg /bundled/
 
 
 ##############################################################
@@ -56,19 +55,21 @@ FROM debian:unstable-slim
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
-    brotli imagemagick librsvg2-bin
+    brotli inkscape optipng
 
 WORKDIR /artifacts
 
 COPY --from=webpack /bundled .
 COPY --from=webpack /app/routes/geo routes/geo/
-
-RUN convert -density 384 favicon.svg -define icon:auto-resize favicon.ico
+COPY favicons/ favicons/
+RUN favicons/render.sh
 
 ARG COMPRESS
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
-    FILES=$(find . -type f) && \
-    brotli -f --best $FILES && \
-    gzip -f -k --best $FILES ; \
+    FILES=$(find . -type f -not -iname '*.png'); \
+    optipng -q -o7 favicons/*.png & \
+    brotli -f --best $FILES & \
+    gzip -f -k --best $FILES & \
+    wait; \
   fi
