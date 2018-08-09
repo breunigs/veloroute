@@ -1,6 +1,9 @@
-build/
+build
 Dockerfile
 build.sh
 deploy.sh
 install.sh
-.git/
+.git
+node_modules
+*.log
+routes/geo/
