@@ -41,7 +41,7 @@ ARG COMPRESS
 RUN \
   if [ "$COMPRESS" = "yes" ]; then \
     svgo favicon.svg routes/geo/*.svg ; \
-    webpack --env.production --output-path /bundled/ ; \
+    webpack --mode production --output-path /bundled/ ; \
   else \
     webpack --output-path /bundled/ ; \
   fi
