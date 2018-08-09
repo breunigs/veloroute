@@ -108,6 +108,8 @@ def write_gpx_files(routes)
     gpx = GPX.new(route).to_s
     File.write("geo_tmp/route#{route.name}.gpx", gpx)
   end
+  out = `cd geo_tmp && zip -q -9 routen.zip *.gpx 2>&1`
+  raise "failed to zip routes: #{out}" if $?.exitstatus != 0
 end
 
 SCSS_MUTEX = Mutex.new
