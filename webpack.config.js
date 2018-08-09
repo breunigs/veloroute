@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
+const isProduction = typeof env != "undefined" && env && env.production;
+
 module.exports = env => ({
   devtool: "source-map",
   mode: "development",
@@ -53,12 +55,12 @@ module.exports = env => ({
     }),
     new HtmlWebpackPlugin({
       template: "main.html",
-      minify: !env.production ? false : {
+      minify: !isProduction ? false : {
         collapseWhitespace: true,
         removeComments: true
       },
       hash: true
     }),
-    !env.production ? null : new OptimizeCSSAssetsPlugin({})
+    !isProduction ? null : new OptimizeCSSAssetsPlugin({})
   ].filter(plugin => plugin !== null),
 });

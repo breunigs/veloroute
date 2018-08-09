@@ -30,7 +30,8 @@ To get live reload, first build the dependencies as shown above. If you have set
 
 ```bash
 ./routes/update_relations.rb
-cp -r ./routes/ ./build/
+# essentially makes "build" in the directory structure optional, to match with the URLs
+ln -s . build
 ```
 
 Webpack is configured to serve static assets from the build directory. To run a development server, use:
