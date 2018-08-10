@@ -44,7 +44,7 @@ class GPX
 
   def bounds
     @bounds ||= begin
-      bb = {maxlat: 99, minlat: 0, maxlon: 99, minlon: 0}
+      bb = {maxlat: 0, minlat: 99, maxlon: 0, minlon: 99}
       named_routes.flat_map { |nr| nr[:path] }.each do |coord|
         bb[:minlon] = coord[0] if coord[0] < bb[:minlon]
         bb[:maxlon] = coord[0] if coord[0] > bb[:maxlon]
