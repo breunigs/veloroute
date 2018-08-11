@@ -2,8 +2,8 @@ require_relative "geojson"
 require_relative "joiner"
 
 class Quality
-  def initialize(relation)
-    @relation = relation
+  def initialize(route:)
+    @route = route
     @ratings = Hash.new { |h, k| h[k] = [] }
     judge
   end
@@ -16,7 +16,7 @@ class Quality
 
       {
         type: "Feature",
-        properties: {color: grade2color(grade), osm_ids: way_ids},
+        properties: {name: @route.name, quality: true, color: grade2color(grade), osm_ids: way_ids},
         geometry: {
           type: "MultiLineString",
           coordinates: concatted
@@ -30,7 +30,7 @@ class Quality
   private
 
   def ways
-    @relation.ways
+    @route.relation.ways
   end
 
   def judge

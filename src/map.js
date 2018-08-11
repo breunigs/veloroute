@@ -61,10 +61,16 @@ export const map = new mapboxgl.Map({
 });
 map.touchZoomRotate.disableRotation();
 
-let clickListeners = [];
-const addClickListener = (...funcs) => {
-  funcs.forEach(f => clickListeners.push(f));
+let routeClickListeners = [];
+const addRouteClickListener = (...funcs) => {
+  funcs.forEach(f => routeClickListeners.push(f));
 }
+
+let qualityClickListeners = [];
+const addQualityClickListener = (...funcs) => {
+  funcs.forEach(f => qualityClickListeners.push(f));
+}
+
 
 const addRouteSource = () => {
   map.addSource(`source-routes`, {
@@ -165,7 +171,7 @@ const renderIcons = () => {
     el.className = `icon icon${name}`;
     el.innerText = name;
     el.addEventListener("click", (e) => {
-      clickListeners.forEach((f) => f(name, lngLat));
+      routeClickListeners.forEach((f) => f(name, lngLat));
     });
 
     // keep size in sync with base.scss!
@@ -229,15 +235,32 @@ const moveTo = (lngLat) => {
   }
 }
 
+let clickableLayers = { layers: ['layer-routes'] };
+let qualityLoaded = false;
+async function toggleQuality(shownRoute) {
+  if(shownRoute === "quality") {
+    if(!qualityLoaded) {
+      qualityLoaded = true;
+      addQualitySource();
+      renderQuality();
+      clickableLayers = { layers: ['layer-quality'] };
+    }
+    map.setLayoutProperty('layer-quality', 'visibility', 'visible');
+    map.setLayoutProperty('layer-routes', 'visibility', 'none');
+  } else if(qualityLoaded) {
+    map.setLayoutProperty('layer-routes', 'visibility', 'visible');
+    map.setLayoutProperty('layer-quality', 'visibility', 'none');
+  }
+}
+
 const getHighlightedRoute = (evt) => {
-  let routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes'] });
+  let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
   // be more lenient with click targets
   const leniency = 'ontouchstart' in window ? 10 : 3;
   if(!routes.length) {
-    console.debug(evt.originalEvent)
     const sw = [evt.point.x - leniency, evt.point.y + leniency];
     const ne = [evt.point.x + leniency, evt.point.y - leniency];
-    routes = map.queryRenderedFeatures([sw, ne], { layers: ['layer-routes'] });
+    routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
   }
   return routes.length ? routes[0] : null;
 }
@@ -249,33 +272,25 @@ const handleRouteHover = (evt) => {
 
 const handleRouteClick = (evt) => {
   const route = getHighlightedRoute(evt);
-  if(route) clickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
-}
+  if(!route) return;
 
-let qualityLoaded = false;
-const toggleQuality = (shownRoute) => {
-  if(shownRoute === "quality") {
-    if(!qualityLoaded) {
-      qualityLoaded = true;
-      addQualitySource();
-      renderQuality();
-    }
-    map.setLayoutProperty('layer-quality', 'visibility', 'visible');
-    map.setLayoutProperty('layer-routes', 'visibility', 'none');
-  } else {
-    map.setLayoutProperty('layer-routes', 'visibility', 'visible');
-    map.setLayoutProperty('layer-quality', 'visibility', 'none');
+  if(route.properties.quality) {
+    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, true, route.properties));
+    return;
   }
 
+  routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
 }
+
 
 map.on('style.load', () => {
   addRouteSource();
   renderRoutes();
   renderIcons();
+  toggleQuality(inital.route);
 
   map.on('mousemove', handleRouteHover);
   map.on('click', handleRouteClick);
 });
 
-export { addClickListener, renderIndicator, toggleQuality };
+export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality };

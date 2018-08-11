@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map, addClickListener, renderIndicator, toggleQuality } from "./map";
+import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality } from "./map";
 import { mlyViewer, addIndicatorListener, showCloseImage } from "./images";
 import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
@@ -14,9 +14,12 @@ async function invalidate() {
   map.resize();
 }
 
-addClickListener(showCloseImage, state.routeSetter(), invalidate);
+addRouteClickListener(showCloseImage, state.routeSetter(), invalidate);
 addIndicatorListener(renderIndicator, state.imageSetter());
 addRouteChangeListener(showRoute, toggleQuality);
+addQualityClickListener(showCloseImage, invalidate, (_name, _lngLat, _oneway, properties) => {
+  document.getElementById("qualitydebug").innerHTML = JSON.stringify(properties, null, 2);
+});
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
   el.addEventListener('click', evt => {
