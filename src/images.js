@@ -56,7 +56,7 @@ async function handleSliderMove(avoidListenerUpdates) {
     next.disabled = true;
     playstop.disabled = true;
     if(!alertShown) {
-      alert("Für diesen Teil sind noch keine Bilder eingepflegt. Bitte noch etwas Geduld.\n\nDiese Nachricht wird nicht nochmal angezeigt.")
+      alert("Bitte wähle zuerst eine Route aus, der gefolgt werden soll.")
       alertShown = true;
     }
     return;
