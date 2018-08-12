@@ -56,4 +56,8 @@ describe Quality::Way, type: :model do
     subject = way(tags, oneway: true, role: "forward")
     expect(subject.values('surface')).to eq({left: "asphalt"})
   end
+
+  # TODO width tests?
+  # TODO maxspeed tests?
+  # TODO issues tests
 end
