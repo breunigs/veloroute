@@ -45,7 +45,7 @@ module Quality
 
     def issues
       iss = Set.new
-      iss << :not_lit if strict_no?(:lit)
+      iss << :not_lit if strict_no?('lit')
       rate_surface.each do |side, rating|
         next if rating == :excellent
         iss << :"surface_#{side}_#{rating}"
@@ -56,12 +56,16 @@ module Quality
     def values(tag)
       tag = tag.to_s
       sides_to_consider.map do |side|
-        v = val("cycleway_#{side}_#{tag}") || val("cycleway_#{tag}")
-        v ||= cycleway_on_street?("cycleway_#{side}") ? val(tag) : nil
+        v = val("cycleway:#{side}:#{tag}") || val("cycleway:both:#{tag}") || val("cycleway:#{tag}")
+        v ||= cycleway_on_street?("cycleway:#{side}") ? val(tag) : nil
         [side, v]
       end.to_h
     end
 
+    # returns a hash in the format of:
+    # {left: :okay, right: :bad}
+    # Sides are present as per sides_to_consider.
+    # Quality is one of :excellent, :okay, :bad
     def rate_surface
       surfaces = values(:surface)
       values(:smoothness).map do |side, smooth|
@@ -74,7 +78,9 @@ module Quality
           when :asphalt, :concrete, :metal then :excellent
           when :paving_stones then :okay
           when :fine_gravel, :cobblestone, :sett, :gravel then :bad
-          else nil
+          else
+            warn "Cannot rate surface for osm_id=#{id} side=#{side} role=#{@way[:role]} oneway=#{oneway?}:\n#{attrs.inspect}"
+            :missing_tags
           end
         end
         [side, rating]
@@ -84,17 +90,17 @@ module Quality
     private
 
     def cycleway_on_street?(attr)
-      no?(attr) || %w[crossing lane opposite opposite_lane share_busway shared_lanes sidepath].include?(val(attr))
+      no?(attr) || %w[crossing lane opposite opposite_lane share_busway shared_lane sidepath].include?(val(attr))
     end
 
     def sides_to_consider
       return [:left, :right] unless oneway?
 
       if forward?
-        return [:left] if no?(:cycleway_right) && include?(:cycleway_left, :opposite)
+        return [:left] if no?('cycleway:right') && include?('cycleway:left', :opposite)
         [:right]
       elsif backward?
-        return [:right] if no?(:cycleway_left) && include?(:cycleway_right, :opposite)
+        return [:right] if no?('cycleway:left') && include?('cycleway:right', :opposite)
         [:left]
       else
         [:left, :right]
@@ -106,8 +112,14 @@ module Quality
     end
 
     def val(attribute)
-      v = @way[:attrs][attribute.to_s]
+      # Tags can contain both _ and :, so a symbol is weird
+      raise "pass a string!" unless attribute.is_a?(String)
+      v = @way[:attrs][attribute]
       v == "" ? nil : v
+    end
+
+    def attrs
+      @way[:attrs]
     end
 
     def ensure_known(key)
