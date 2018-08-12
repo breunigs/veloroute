@@ -13,7 +13,8 @@ module.exports = (env, argv) => {
     entry: "./src/index.js",
     output: {
       path: path.resolve(__dirname),
-      filename: "bundle.js"
+      chunkFilename: "chunk.[name].[contenthash].js",
+      filename: "bundle.[name].[contenthash].js"
     },
     module: {
       // needed due to incompatibility with webpack production mode. This is
@@ -56,7 +57,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "base.css"
+        filename: "base.[contenthash].css"
       }),
       new HtmlWebpackPlugin({
         template: "main.html",
@@ -64,7 +65,7 @@ module.exports = (env, argv) => {
           collapseWhitespace: true,
           removeComments: true
         },
-        hash: true
+        hash: false
       }),
       !isProduction ? null : new UglifyJsPlugin({
         extractComments: true,
