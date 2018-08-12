@@ -51,8 +51,7 @@ class GeoJSON
     # handle collisions
     groups = Hash.new{|h,k| h[k] = [] }
     relation.ways.each do |way|
-      coll = collisions[way[:id]]
-      groups[compare(relation.id, coll)] << way
+      groups[bucket_name(way)] << way
     end
 
     # handle one ways
@@ -67,7 +66,7 @@ class GeoJSON
   end
 
   def compare(our_id, all_ids)
-    return 0 if all_ids.nil? || all_ids.size >= 4
+    return 0 if all_ids.nil?
     case all_ids.size
     when 2 then
       all_ids.min == our_id ? -1 : 1
@@ -78,10 +77,20 @@ class GeoJSON
     end
   end
 
+  def bucket_name(way)
+    coll = collisions[way[:id]]
+    # Manage clutter around Rathausmarkt with many overlapping routes, but mostly
+    # only for short parts and not really in a meaningful way.
+    return "overflow" if coll&.size >= 4 || way[:attrs]["name"] == "Rathausmarkt"
+    compare(relation.id, coll)
+  end
+
   def to_geojson_feature(arrOfCords, **properties)
+    props = {color: route.color, name: route.name}.merge(properties)
+    props.merge!(color: "#000", offset: 0) if props[:offset] == "overflow"
     {
       type: "Feature",
-      properties: {color: route.color, name: route.name}.merge(properties),
+      properties: props,
       geometry: {
         type: "MultiLineString",
         coordinates: self.class.round_coords(arrOfCords)
