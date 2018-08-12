@@ -3,7 +3,6 @@
 require "base64"
 require "fileutils"
 require "json"
-require "parallel"
 
 require_relative "geojson"
 require_relative "gpx"
@@ -40,30 +39,37 @@ def place_to_nominatim_query(place)
   search_name + ' Hamburg'
 end
 
+def place2bbox(place)
+  url = "https://nominatim.openstreetmap.org/search/"
+  url << URI.escape(place_to_nominatim_query(place))
+  url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
+
+  resp = get(url)
+  importance = resp.map { |e| e["importance"] }.max
+
+  # combine bboxes with the same importance
+  important_results = resp.take_while { |e| e["importance"] == importance }
+  bboxes = important_results.map { |e| e["boundingbox"].map(&:to_f) }
+  bbox_0 = bboxes.map { |bbox| bbox[0] }.min
+  bbox_1 = bboxes.map { |bbox| bbox[1] }.max
+  bbox_2 = bboxes.map { |bbox| bbox[2] }.min
+  bbox_3 = bboxes.map { |bbox| bbox[3] }.max
+
+  # switch order to MapboxGL one
+  [bbox_2, bbox_0, bbox_3, bbox_1]
+end
+
 def resolve_names(routes)
   places = routes.flat_map(&:place_names_with_dir).uniq
 
-  results = Parallel.map(places, in_processes: 4) do |place|
-    url = "https://nominatim.openstreetmap.org/search/"
-    url << URI.escape(place_to_nominatim_query(place))
-    url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
-
-    resp = get(url)
-    importance = resp.map { |e| e["importance"] }.max
-
-    # combine bboxes with the same importance
-    important_results = resp.take_while { |e| e["importance"] == importance }
-    bboxes = important_results.map { |e| e["boundingbox"].map(&:to_f) }
-    bbox_0 = bboxes.map { |bbox| bbox[0] }.min
-    bbox_1 = bboxes.map { |bbox| bbox[1] }.max
-    bbox_2 = bboxes.map { |bbox| bbox[2] }.min
-    bbox_3 = bboxes.map { |bbox| bbox[3] }.max
-
-    # switch order to MapboxGL one
-    bbox = [bbox_2, bbox_0, bbox_3, bbox_1]
-
-    [place, bbox]
+  threads = []
+  slice_size = (places.size / 4.0).ceil
+  places.each_slice(slice_size) do |slice|
+    threads << Thread.new do
+      slice.map { |place| [place, place2bbox(place)] }
+    end
   end.to_h
+  results = threads.flat_map(&:value)
 
   File.write("geo_tmp/places.json", results.to_json)
 end
