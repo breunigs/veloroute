@@ -50,22 +50,17 @@ const addQualityClickListener = (...funcs) => {
   funcs.forEach(f => qualityClickListeners.push(f));
 }
 
-
-const addRouteSource = () => {
-  map.addSource(`source-routes`, {
-    lineMetrics: true,
-    type: 'geojson',
-    data: `/routes/geo/routes.geojson`,
-    tolerance: 0.6 // default 0.375,
-  });
-}
-
-const addQualitySource = () => {
-  map.addSource(`source-quality`, {
-    type: 'geojson',
-    data: `/routes/geo/quality.geojson`,
-    tolerance: 0.6 // default 0.375
-  });
+const addSource = (name) => {
+  return fetch(`/routes/geo/${name}.geojson`)
+    .then(response => response.json())
+    .then(json => {
+      map.addSource(`source-${name}`, {
+        lineMetrics: true,
+        type: 'geojson',
+        data: json,
+        tolerance: 0.6 // default 0.375,
+      });
+    });
 }
 
 const renderQuality = () => {
@@ -240,9 +235,10 @@ async function toggleQuality(shownRoute) {
   if(shownRoute === "quality") {
     if(!qualityLoaded) {
       qualityLoaded = true;
-      addQualitySource();
-      renderQuality();
-      clickableLayers = { layers: ['layer-quality'] };
+      addSource("quality").then(() => {
+        renderQuality();
+        clickableLayers = { layers: ['layer-quality'] };
+      });
     }
     map.setLayoutProperty('layer-quality', 'visibility', 'visible');
     map.setLayoutProperty('layer-routes', 'visibility', 'none');
@@ -283,8 +279,9 @@ const handleRouteClick = (evt) => {
 
 
 map.on('style.load', () => {
-  addRouteSource();
-  renderRoutes();
+  addSource("routes").then(() => {
+    renderRoutes();
+  })
   renderIcons();
   toggleQuality(inital.route);
 
