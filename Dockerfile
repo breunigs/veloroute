@@ -59,10 +59,12 @@ RUN \
 
 WORKDIR /artifacts
 
-COPY --from=webpack /bundled .
-COPY --from=webpack /app/routes/geo routes/geo/
 COPY favicons/ favicons/
 RUN favicons/render.sh
+
+COPY --from=webpack /app/routes/geo routes/geo/
+
+COPY --from=webpack /bundled .
 
 ARG COMPRESS
 RUN \
