@@ -348,3 +348,9 @@ table.routing {
 pre {
   white-space: pre-wrap;
 }
+
+.hide-route-markers {
+  .icon.mapboxgl-marker {
+    display: none;
+  }
+}

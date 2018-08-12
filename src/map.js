@@ -82,13 +82,14 @@ const renderQuality = () => {
   }, 'route-itself');
 }
 
-const renderRoutes = () => {
+const renderRoutes = (initialRoute) => {
   map.addLayer({
     id: `layer-routes`,
     source: `source-routes`,
     type: 'line',
     layout: {
-      "line-cap": "round"
+      "line-cap": "round",
+      "visibility": initialRoute == "quality" ? "none" : "visible",
     },
     paint: {
       "line-width": {
@@ -231,19 +232,25 @@ const moveTo = (lngLat) => {
 
 let clickableLayers = { layers: ['layer-routes'] };
 let qualityLoaded = false;
+let routesLoaded = false;
+const bodyClasses = document.getElementsByTagName('body')[0].classList;
 async function toggleQuality(shownRoute) {
   if(shownRoute === "quality") {
+    bodyClasses.add('hide-route-markers');
     if(!qualityLoaded) {
       qualityLoaded = true;
       addSource("quality").then(() => {
         renderQuality();
         clickableLayers = { layers: ['layer-quality'] };
+        toggleQuality("quality");
       });
+      return;
     }
     map.setLayoutProperty('layer-quality', 'visibility', 'visible');
-    map.setLayoutProperty('layer-routes', 'visibility', 'none');
+    if(routesLoaded) map.setLayoutProperty('layer-routes', 'visibility', 'none');
   } else if(qualityLoaded) {
-    map.setLayoutProperty('layer-routes', 'visibility', 'visible');
+    bodyClasses.remove('hide-route-markers');
+    if(routesLoaded) map.setLayoutProperty('layer-routes', 'visibility', 'visible');
     map.setLayoutProperty('layer-quality', 'visibility', 'none');
   }
 }
@@ -280,13 +287,14 @@ const handleRouteClick = (evt) => {
 
 map.on('style.load', () => {
   addSource("routes").then(() => {
-    renderRoutes();
+    routesLoaded = true;
+    renderRoutes(inital.route);
+    map.on('mousemove', handleRouteHover);
+    map.on('click', handleRouteClick);
   })
   renderIcons();
   toggleQuality(inital.route);
 
-  map.on('mousemove', handleRouteHover);
-  map.on('click', handleRouteClick);
 });
 
 export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality };

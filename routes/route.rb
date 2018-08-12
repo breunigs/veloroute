@@ -220,7 +220,7 @@ class Route
   end
 
   def to_quality_geojson
-    Quality.new(route: self).to_geojson
+    Quality::GeoJSON.new(route: self).to_geojson
   end
 
   def ==(other_route)
