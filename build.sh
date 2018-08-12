@@ -14,8 +14,13 @@ docker cp $img:/artifacts/ build_new
 docker rm $img&
 
 mkdir -p build/
-rm -rf build/*
-mv build_new/* build/
+if [ -d "build" -a ! -L "build" ]; then
+  rm -rf build/*
+  mv build_new/* build/
 
-rmdir build_new
+  rmdir build_new
+else
+  echo "./build/ is not a directory, so left artifacts in ./build_new/"
+fi
+
 wait

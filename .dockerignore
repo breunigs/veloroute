@@ -1,4 +1,5 @@
 build
+build_new/
 Dockerfile
 build.sh
 deploy.sh
