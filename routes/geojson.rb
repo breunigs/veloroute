@@ -68,10 +68,14 @@ class GeoJSON
 
   def compare(our_id, all_ids)
     return 0 if all_ids.nil? || all_ids.size >= 4
-    offset = 0
-    offset = -1 if all_ids.min == our_id
-    offset = 1 if all_ids.max == our_id
-    offset
+    case all_ids.size
+    when 2 then
+      all_ids.min == our_id ? -1 : 1
+    when 3 then
+      return -2 if all_ids.min == our_id
+      return 0 if all_ids.max == our_id
+      2
+    end
   end
 
   def to_geojson_feature(arrOfCords, **properties)

@@ -17,32 +17,11 @@ const routeWidthCasingStops = [
   [19, routeLineWidth*4+2]
 ];
 const collisionOffsets = [
-  [{zoom:  0, value: -1}, 0],
-  [{zoom:  0, value:  0}, 0],
-  [{zoom:  0, value:  1}, 0],
-  [{zoom: 14, value: -1}, -1],
-  [{zoom: 14, value:  0}, 0],
-  [{zoom: 14, value:  1}, +1],
-  [{zoom: 17, value: -1}, -routeLineWidth],
-  [{zoom: 17, value:  0}, 0],
-  [{zoom: 17, value:  1}, +routeLineWidth],
-  [{zoom: 22, value: -1}, -2*routeLineWidth],
-  [{zoom: 22, value:  0}, 0],
-  [{zoom: 22, value:  1}, +2*routeLineWidth],
+  [{zoom:  0, value: -2},  0               ], [{zoom:  0, value: -1},  0               ], [{zoom:  0, value:  0}, 0],  [{zoom:  0, value:  1}, 0                ], [{zoom:  0, value:  2}, 0                ],
+  [{zoom: 14, value: -2}, -2               ], [{zoom: 14, value: -1}, -1               ], [{zoom: 14, value:  0}, 0],  [{zoom: 14, value:  1}, +1               ], [{zoom: 14, value:  2}, +2               ],
+  [{zoom: 17, value: -2}, -2*routeLineWidth], [{zoom: 17, value: -1}, -routeLineWidth  ], [{zoom: 17, value:  0}, 0],  [{zoom: 17, value:  1}, +routeLineWidth  ], [{zoom: 17, value:  2}, +2*routeLineWidth],
+  [{zoom: 22, value: -2}, -4*routeLineWidth], [{zoom: 22, value: -1}, -2*routeLineWidth], [{zoom: 22, value:  0}, 0],  [{zoom: 22, value:  1}, +2*routeLineWidth], [{zoom: 22, value:  2}, +4*routeLineWidth],
 ];
-const routePaintConfig = {
-  "line-width": {
-    type: "exponential",
-    base: 3,
-    stops: routeWidthStops,
-  },
-  'line-color': { "type": "identity", "property": "color" },
-  'line-offset': {
-    type: "exponential",
-    property: "offset",
-    stops: collisionOffsets
-  }
-};
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 
@@ -74,9 +53,10 @@ const addQualityClickListener = (...funcs) => {
 
 const addRouteSource = () => {
   map.addSource(`source-routes`, {
+    lineMetrics: true,
     type: 'geojson',
     data: `/routes/geo/routes.geojson`,
-    tolerance: 0.6 // default 0.375
+    tolerance: 0.6 // default 0.375,
   });
 }
 
@@ -96,7 +76,14 @@ const renderQuality = () => {
     layout: {
       "line-cap": "round"
     },
-    paint: routePaintConfig,
+    paint: {
+      "line-width": {
+        type: "exponential",
+        base: 3,
+        stops: routeWidthStops,
+      },
+      'line-color': { "type": "identity", "property": "color" }
+    },
   }, 'route-itself');
 }
 
@@ -108,7 +95,19 @@ const renderRoutes = () => {
     layout: {
       "line-cap": "round"
     },
-    paint: routePaintConfig,
+    paint: {
+      "line-width": {
+        type: "exponential",
+        base: 3,
+        stops: routeWidthStops,
+      },
+      'line-color': { "type": "identity", "property": "color" },
+      'line-offset': {
+        type: "exponential",
+        property: "offset",
+        stops: collisionOffsets
+      }
+    }
   }, 'route-itself');
 
   map.addLayer({
