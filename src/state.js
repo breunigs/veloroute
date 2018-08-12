@@ -1,5 +1,3 @@
-import { Viewer } from 'mapillary-js';
-
 let updateTimer = null;
 
 const START_LON = 9.993148;
