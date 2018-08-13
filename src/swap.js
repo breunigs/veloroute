@@ -16,7 +16,7 @@ export default class {
     const ch2 = side.querySelector('div');
     this.main.appendChild(ch2);
     this.side.appendChild(ch1);
-    invalidate();
+    this._invalidate();
   }
 
   async _invalidate() {
