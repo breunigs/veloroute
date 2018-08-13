@@ -6,7 +6,36 @@ require_relative "joiner"
 require_relative "relation"
 
 module Quality
+  class Observation
+    RATING_TO_GRADE = {
+      excellent: 0,
+      okay: 3,
+      bad: 5
+    }
+
+    attr_reader :side, :name, :rating
+
+    def initialize(side, name, rating)
+      @side = side
+      @name = name
+      @rating = rating
+    end
+
+    def left_side?
+      rating == :left
+    end
+
+    def grade
+      RATING_TO_GRADE.fetch(rating)
+    end
+
+    def to_s
+      "#{side}_#{name}_#{rating}"
+    end
+  end
+
   class Way
+    YES_VALUES = ["yes"].freeze
     NO_VALUES = ["no", "none", "street"].freeze
 
     def initialize(relation_way)
@@ -37,24 +66,23 @@ module Quality
       @way[:coords]
     end
 
-    def issues
+    def observations
       iss = Set.new
 
-      iss << :not_lit if NO_VALUES.include?(val('lit'))
+      sides_to_consider.each do |side|
+        iss << Observation.new(side, :not_lit, :okay)
+      end if NO_VALUES.include?(val('lit'))
 
-      rate_surface.each do |side, rating|
-        next if rating.nil? || rating == :excellent
-        iss << :"surface_#{side}_#{rating}"
+      rate_surface.compact.each do |side, rating|
+        iss << Observation.new(side, :surface, rating)
       end
 
-      rate_width.each do |side, rating|
-        next if rating.nil? || rating == :excellent
-        iss << :"width_#{side}_#{rating}"
+      rate_width.compact.each do |side, rating|
+        iss << Observation.new(side, :width, rating)
       end
 
-      rate_maxspeed_and_segregation.each do |side, rating|
-        next if rating.nil? || rating == :excellent
-        iss << :"maxspeed_and_segregation_#{side}_#{rating}"
+      rate_maxspeed_and_segregation.compact.each do |side, rating|
+        iss << Observation.new(side, :maxspeed_and_segregation, rating)
       end
 
       iss
@@ -66,14 +94,16 @@ module Quality
     # separate lane.
     def rate_maxspeed_and_segregation
       maxspeed = val("maxspeed").to_i
-      return {} if maxspeed == 0
       sides_to_consider.map do |side|
-        rating = case cycleway_val(side)
-        when "track", "opposite_track"
-          :excellent
-        else
-          maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad)
-        end
+        rating = nil
+
+        # track next to street
+        rating ||= :excellent if %w[track opposite_track].include?(cycleway_val(side))
+        # completely own track
+        rating ||= :excellent if %w[path crossing cycleway footway].include?(val("highway"))
+        # compare with speed for shared paths
+        rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed
+
         [side, rating]
       end.to_h
     end
@@ -99,21 +129,45 @@ module Quality
     # parked cars, wide busses, etc. make the width of the street meaningless.
     def rate_width
       values(:width).map do |side, width|
+        next [side, nil] if width.nil?
+
         osm_type = cycleway_val(side)
         internal_type = case osm_type
-        when "shared_lane"             then :shared_lane
-        when "lane", "opposite_lane"   then :lane
-        when "track", "opposite_track" then
+        when "shared_lane", "shared" then :shared_lane
+        when "lane", "opposite_lane" then :lane
+        when "crossing"              then :track_dual
+        when "track", "opposite_track", "sidepath", "yes" then
           segregated = cycleway_val(side, tag: "segregated")
           oneway = cycleway_val(side, tag: "oneway")
 
           dual = NO_VALUES.include?(segregated) || NO_VALUES.include?(oneway)
           dual ? :track_dual : :track_single
-        when "no", "share_busway", "use_sidepath", "street", nil
+        when *NO_VALUES, "share_busway", "use_sidepath", "opposite", nil then
           nil # ignore these known cases
         else
           warn "no idea how to rate width for osm_id=#{id} way_type=#{osm_type}"
           nil
+        end
+
+
+        # if there are no special cycleway tags, check if this is a totally
+        # separate cycleway/footpath
+        internal_type ||= begin
+          oneway = YES_VALUES.include?(val("oneway:bicycle") || val("oneway"))
+
+          foot_disallowed_explicitly = NO_VALUES.include?(val("foot"))
+          foot_disallowed_implicitly = val("highway") == "cycleway" && val("foot").nil?
+          bicycle_only = foot_disallowed_explicitly || foot_disallowed_implicitly
+
+          # width tag vs cycleway:width tag
+          specific_width_given = val("width") != width
+
+          whole_width_for_bikes = specific_width_given || bicycle_only
+
+          # dual direction cycleways that we have to share with pedestrians
+          # probably require even more width, but it's not a common case, so
+          # not going to handle it until it becomes an issue.
+          whole_width_for_bikes && oneway ? :track_single : :track_dual
         end
 
         [side, width_compare(internal_type, width)]
@@ -161,10 +215,12 @@ module Quality
 
     def rate_surface_tag
       values(:surface).map do |side, value|
+        # ignore details like width of individual paving stones
+        value = value&.split(":", 2)&.first
         rating = case value&.to_sym
         when :asphalt, :concrete, :metal then :excellent
         when :paving_stones then :okay
-        when :fine_gravel, :cobblestone, :sett, :gravel then :bad
+        when :fine_gravel, :cobblestone, :sett, :gravel, :wood then :bad
         else nil
         end
         [side, rating]
@@ -239,21 +295,22 @@ module Quality
   class GeoJSON
     def initialize(route:)
       @route = route
-      @ratings = Hash.new { |h, k| h[k] = [] }
-      judge
+      detect_way_features
     end
 
     def to_geojson
-      features = @ratings.map do |issues, ways|
+      features = @features.map do |observations, ways|
         concatted = Joiner.join(ways.map(&:coords))
+        grade = judge(observations)
 
         {
           type: "Feature",
           properties: {
             name: @route.name,
             quality: true,
-            color: grade2color(issues.size),
-            issues: issues.to_a.join(", "),
+            grade: grade,
+            color: grade2color(grade),
+            observations: observations.to_a.join(", "),
             osm_ids: ways.map(&:id).join(", ")
           },
           geometry: {
@@ -268,17 +325,32 @@ module Quality
 
     private
 
+
+    def judge(observations)
+      return '?' if observations.empty?
+
+      grades = observations.partition(&:left_side?).map do |per_side|
+        per_side.map(&:grade).max
+      end.compact
+
+      grades.sum / grades.size.to_f
+    end
+
     def ways
       @ways ||= @route.relation.ways.map { |w| Way.new(w) }
     end
 
-    def judge
+    def detect_way_features
+      @features = Hash.new { |h, k| h[k] = [] }
       ways.each do |way|
-        @ratings[way.issues] << way
+        @features[way.observations] << way
       end
     end
 
     def grade2color(grade)
+      # i.e. no observations and no rating possible
+      return '#9A42FF' if grade == '?'
+
       pos = [grade / 5.0, 1].min
       '#' << gradient.at(pos).color.hex
     end
