@@ -128,6 +128,10 @@ FileUtils.rm_rf("geo_tmp")
 FileUtils.mkdir_p "geo_tmp"
 
 routes = JSON.parse(File.read("../routes.json"))
+if ENV['TEST'] == 'yes'
+  test_route = routes.keys.sample
+  routes.select! { |k, _v| k == test_route }
+end
 routes = routes.map { |route, details| Route.new(route, details) }
 
 threads = []
