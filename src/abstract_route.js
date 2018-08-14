@@ -9,16 +9,16 @@ const hideAll = () => {
   info.style.display = 'none';
 }
 
-const showRoute = (routeName) => {
+async function showRoute(routeName) {
   hideAll();
   const id = routeName ? `desc${routeName}` : 'info';
-  console.debug(`Showing route=${id}`)
   document.getElementById(id).style.display = 'block';
 
-  extras.style.display = routeName ? 'block' : 'none';
-
-  if(routeName) {
-    gpxlink.setAttribute("href", `routes/geo/route${routeName}.gpx`);
+  if(routeName && routeName.match(/[0-9]/)) {
+    extras.style.display = 'block';
+    gpxlink.setAttribute('href', `routes/geo/route${routeName}.gpx`);
+  } else {
+    extras.style.display = 'none';
   }
 };
 

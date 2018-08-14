@@ -1,4 +1,5 @@
 build/
+build
 routes/geo/
 routes/cache/
 node_modules

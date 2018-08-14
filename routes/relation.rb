@@ -37,6 +37,7 @@ class Relation
         id: way.attr(:id),
         coords: coords(way),
         attrs: attrs,
+        role: role(way),
         oneway: role(way) != "" || attrs["junction"] == "roundabout"
       }
     end

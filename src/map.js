@@ -30,6 +30,19 @@ const collisionOffsets = [
   [{zoom: 22, value:  0}, 0],
   [{zoom: 22, value:  1}, +2*routeLineWidth],
 ];
+const routePaintConfig = {
+  "line-width": {
+    type: "exponential",
+    base: 3,
+    stops: routeWidthStops,
+  },
+  'line-color': { "type": "identity", "property": "color" },
+  'line-offset': {
+    type: "exponential",
+    property: "offset",
+    stops: collisionOffsets
+  }
+};
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
 
@@ -53,13 +66,32 @@ const addClickListener = (...funcs) => {
   funcs.forEach(f => clickListeners.push(f));
 }
 
-
 const addRouteSource = () => {
   map.addSource(`source-routes`, {
     type: 'geojson',
     data: `/routes/geo/routes.geojson`,
     tolerance: 0.6 // default 0.375
   });
+}
+
+const addQualitySource = () => {
+  map.addSource(`source-quality`, {
+    type: 'geojson',
+    data: `/routes/geo/quality.geojson`,
+    tolerance: 0.6 // default 0.375
+  });
+}
+
+const renderQuality = () => {
+  map.addLayer({
+    id: `layer-quality`,
+    source: `source-quality`,
+    type: 'line',
+    layout: {
+      "line-cap": "round"
+    },
+    paint: routePaintConfig,
+  }, 'route-itself');
 }
 
 const renderRoutes = () => {
@@ -70,19 +102,7 @@ const renderRoutes = () => {
     layout: {
       "line-cap": "round"
     },
-    paint: {
-      "line-width": {
-        type: "exponential",
-        base: 3,
-        stops: routeWidthStops,
-      },
-      'line-color': { "type": "identity", "property": "color" },
-      'line-offset': {
-        type: "exponential",
-        property: "offset",
-        stops: collisionOffsets
-      }
-    },
+    paint: routePaintConfig,
   }, 'route-itself');
 
   map.addLayer({
@@ -162,7 +182,7 @@ const genDiv = (id) => {
 }
 
 let indicator = null
-const renderIndicator = (lon, lat, bearing) => {
+async function renderIndicator(lon, lat, bearing) {
   const lngLat = new mapboxgl.LngLat(lon, lat);
 
   if(!indicator) {
@@ -210,13 +230,14 @@ const moveTo = (lngLat) => {
 }
 
 const getHighlightedRoute = (evt) => {
-  let routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes-casing'] });
-  // be more lenient with click targets on touch devices
-  if(evt.type === "click" && !routes.length && 'ontouchstart' in window) {
+  let routes = map.queryRenderedFeatures(evt.point, { layers: ['layer-routes'] });
+  // be more lenient with click targets
+  const leniency = 'ontouchstart' in window ? 10 : 3;
+  if(!routes.length) {
     console.debug(evt.originalEvent)
-    const sw = [evt.point.x - 10, evt.point.y + 10];
-    const ne = [evt.point.x + 10, evt.point.y - 10];
-    routes = map.queryRenderedFeatures([sw, ne], { layers: ['layer-routes-casing'] });
+    const sw = [evt.point.x - leniency, evt.point.y + leniency];
+    const ne = [evt.point.x + leniency, evt.point.y - leniency];
+    routes = map.queryRenderedFeatures([sw, ne], { layers: ['layer-routes'] });
   }
   return routes.length ? routes[0] : null;
 }
@@ -231,6 +252,23 @@ const handleRouteClick = (evt) => {
   if(route) clickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
 }
 
+let qualityLoaded = false;
+const toggleQuality = (shownRoute) => {
+  if(shownRoute === "quality") {
+    if(!qualityLoaded) {
+      qualityLoaded = true;
+      addQualitySource();
+      renderQuality();
+    }
+    map.setLayoutProperty('layer-quality', 'visibility', 'visible');
+    map.setLayoutProperty('layer-routes', 'visibility', 'none');
+  } else {
+    map.setLayoutProperty('layer-routes', 'visibility', 'visible');
+    map.setLayoutProperty('layer-quality', 'visibility', 'none');
+  }
+
+}
+
 map.on('style.load', () => {
   addRouteSource();
   renderRoutes();
@@ -240,4 +278,4 @@ map.on('style.load', () => {
   map.on('click', handleRouteClick);
 });
 
-export { addClickListener, renderIndicator };
+export { addClickListener, renderIndicator, toggleQuality };

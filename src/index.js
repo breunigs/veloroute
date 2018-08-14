@@ -1,19 +1,22 @@
 import "../base.scss";
 
-import { map, addClickListener, renderIndicator } from "./map";
+import { map, addClickListener, renderIndicator, toggleQuality } from "./map";
 import { mlyViewer, addIndicatorListener, showCloseImage } from "./images";
 import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
+import { addRouteChangeListener } from './state';
+
 
 const state = new State(map);
-const invalidate = () => {
+async function invalidate() {
   if (mlyViewer.isNavigable) mlyViewer.resize();
   map.resize();
 }
 
-addClickListener(showRoute, showCloseImage, state.routeSetter(), invalidate);
+addClickListener(showCloseImage, state.routeSetter(), invalidate);
 addIndicatorListener(renderIndicator, state.imageSetter());
+addRouteChangeListener(showRoute, toggleQuality);
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
   el.addEventListener('click', evt => {
@@ -44,10 +47,13 @@ const swap = () => {
 }
 swapBtn.addEventListener("click", swap);
 
-const links = document.querySelectorAll(".show-main-text");
-for (let i = 0; i < links.length; i++) {
-  links[i].addEventListener("click", () => {
-    showRoute()
-    state.resetRoute();
+const infoLinks = document.querySelectorAll(".show-main-text");
+for (let i = 0; i < infoLinks.length; i++) {
+  infoLinks[i].addEventListener("click", state.routeResetter());
+}
+const qualityLinks = document.querySelectorAll(".show-quality");
+for (let i = 0; i < qualityLinks.length; i++) {
+  qualityLinks[i].addEventListener("click", () => {
+    state.routeSetter()("quality");
   });
 }

@@ -19,9 +19,15 @@ const readFromHash = () => {
   }
 }
 
+let routeChangeListeners = [];
+const addRouteChangeListener = (...funcs) => {
+  funcs.forEach(f => routeChangeListeners.push(f));
+}
+
 class State {
   constructor(map) {
     this._status = readFromHash();
+    this._routeChanged();
     console.debug("initial status", this._status);
 
     this._map = map;
@@ -29,6 +35,7 @@ class State {
 
     window.addEventListener('hashchange',  () => {
       this._status = readFromHash();
+      this._routeChanged();
     });
   }
 
@@ -61,6 +68,13 @@ class State {
   _setCurrentRoute(routeName) {
     if(!routeName) return;
     this._status.route = routeName;
+    this._routeChanged();
+    this._slowUpdateHash();
+  }
+
+  _resetRoute() {
+    this._status.route = null;
+    this._routeChanged();
     this._slowUpdateHash();
   }
 
@@ -72,9 +86,8 @@ class State {
     return this._setCurrentRoute.bind(this);
   }
 
-  resetRoute() {
-    this._status.route = null;
-    this._slowUpdateHash();
+  routeResetter() {
+    return this._resetRoute.bind(this);
   }
 
   _slowUpdateHash() {
@@ -93,7 +106,12 @@ class State {
   _updateHash() {
     window.history.replaceState(window.history.state, '', this._hashString());
   }
+
+  _routeChanged() {
+    console.debug(`route changed to: ${this._status.route}`)
+    routeChangeListeners.forEach((f) => f(this._status.route));
+  }
 }
 
-export { readFromHash };
+export { readFromHash, addRouteChangeListener };
 export default State;

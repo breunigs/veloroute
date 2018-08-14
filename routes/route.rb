@@ -9,6 +9,7 @@ require_relative "mapillary"
 require_relative "markers"
 require_relative "relation"
 require_relative "svg_pather"
+require_relative "quality"
 
 
 class Route
@@ -216,6 +217,10 @@ class Route
   def to_geojson(collisions)
     geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
     geojson.to_geojson
+  end
+
+  def to_quality_geojson
+    Quality.new(relation).to_geojson
   end
 
   def ==(other_route)
