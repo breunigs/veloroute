@@ -2,17 +2,17 @@ require 'spec_helper'
 
 require_relative "#{PROJECT_ROOT}/routes/quality.rb"
 
-describe Quality::Way, type: :model do
-  def way(tags, attrs = {})
-    described_class.new({
-      id: "123",
-      coords: [],
-      attrs: tags,
-      role: "",
-      oneway: false
-    }.merge(attrs))
-  end
+def way(tags, attrs = {})
+  Quality::Way.new({
+    id: "123",
+    coords: [],
+    attrs: tags,
+    role: "",
+    oneway: false
+  }.merge(attrs))
+end
 
+describe Quality::Way, type: :model do
   describe ".values" do
     it "gets surface from cycleway:surface when no other definition exists" do
       subject = way({"cycleway:surface"=>"asphalt", "highway"=>"footway", "lit"=>"yes"})
@@ -70,6 +70,19 @@ describe Quality::Way, type: :model do
     it "handles detailed values" do
       subject = way({"cycleway:both"=>"track", "cycleway:left:surface"=>"paving_stones:20", "cycleway:right:surface"=>"sett:20"})
       expect(subject.observations.map(&:to_s)).to include("left_surface_okay", "right_surface_bad")
+    end
+  end
+end
+
+describe Quality::Observation, type: :model do
+  describe ".judge" do
+    it "builds average from the directions" do
+      observations = way({"cycleway:left" => "track", "cycleway:left:smoothness" => "excellent", "cycleway:left:surface" => "paving_stones", "cycleway:right" => "track", "cycleway:right:smoothness" => "intermediate", "cycleway:right:surface" => "paving_stones", "cycleway:right:width" => "1.5", "lit" => "yes", "maxspeed" => "50", "surface" => "asphalt"}).observations
+
+      # i.e. left good, right bad
+      expect(observations.map(&:to_s).sort).to eq ["left_maxspeed_and_segregation_excellent", "left_surface_excellent", "right_maxspeed_and_segregation_excellent", "right_surface_bad", "right_width_bad"]
+      # assert avg(excellent, bad) = avg(0, 5) = 2.5
+      expect(described_class.judge(observations)).to eq 2.5
     end
   end
 end

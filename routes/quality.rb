@@ -13,6 +13,16 @@ module Quality
       bad: 5
     }
 
+    def self.judge(observations)
+      return '?' if observations.empty?
+
+      grades = observations.partition(&:left_side?).map do |per_side|
+        per_side.map(&:grade).max
+      end.compact
+
+      grades.sum / grades.size.to_f
+    end
+
     attr_reader :side, :name, :rating
 
     def initialize(side, name, rating)
@@ -22,7 +32,7 @@ module Quality
     end
 
     def left_side?
-      rating == :left
+      side == :left
     end
 
     def grade
@@ -301,7 +311,7 @@ module Quality
     def to_geojson
       features = @features.map do |observations, ways|
         concatted = Joiner.join(ways.map(&:coords))
-        grade = judge(observations)
+        grade = Observation.judge(observations)
 
         {
           type: "Feature",
@@ -324,17 +334,6 @@ module Quality
     end
 
     private
-
-
-    def judge(observations)
-      return '?' if observations.empty?
-
-      grades = observations.partition(&:left_side?).map do |per_side|
-        per_side.map(&:grade).max
-      end.compact
-
-      grades.sum / grades.size.to_f
-    end
 
     def ways
       @ways ||= @route.relation.ways.map { |w| Way.new(w) }
