@@ -310,7 +310,8 @@ module Quality
 
     def to_geojson
       features = @features.map do |observations, ways|
-        concatted = Joiner.join(ways.map(&:coords))
+        # todo: consider splitting oneway/bothways for better joining
+        concatted = Joiner.join(ways.map(&:coords), reversable: false)
         grade = Observation.judge(observations)
 
         {
