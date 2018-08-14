@@ -81,6 +81,7 @@ class GPX
       elsif ccs.last == from
         res = find_path(from: ccs.first, to: to, path: path + ccs.reverse, seen_ways: seen_tmp)
       end
+      # FIXME: returns first valid way, but not the shortest
       return res if res
     end
 

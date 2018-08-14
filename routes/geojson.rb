@@ -59,8 +59,8 @@ class GeoJSON
     groups.each do |offset, ways|
       oneways, bothways = *ways.partition { |way| way[:oneway] }
 
-      features << to_geojson_feature(to_coord_array(oneways), offset: offset, oneway: true, pattern: '▶')
-      features << to_geojson_feature(to_coord_array(bothways), offset: offset)
+      features << to_geojson_feature(to_coord_array(oneways, reversable: false), offset: offset, oneway: true, pattern: '▶')
+      features << to_geojson_feature(to_coord_array(bothways, reversable: true), offset: offset)
     end
 
     self.class.to_feature_collection(features)
@@ -85,9 +85,8 @@ class GeoJSON
     }
   end
 
-  def to_coord_array(ways)
-    concatted = []
+  def to_coord_array(ways, reversable:)
     arrOfCoords = ways.map { |w| w[:coords] }.freeze
-    Joiner.join(arrOfCoords)
+    Joiner.join(arrOfCoords, reversable: reversable)
   end
 end
