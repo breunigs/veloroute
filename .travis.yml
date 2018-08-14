@@ -5,3 +5,6 @@ services:
 
 script:
   - ./build.sh
+
+notifications:
+  email: false
