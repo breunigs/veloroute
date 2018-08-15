@@ -55,37 +55,49 @@ class GPX
     end
   end
 
-  def find_path(from:, to:, path: [], seen_ways: {})
-    return path.freeze if path.last == to
+  def find_path(from:, to:)
+    paths = find_paths(from: from, to: to)
+    shortest_dist = Float::INFINITY
+    shortest_path = nil
+    paths.each do |path|
+      dist = 0
+      path.each_cons(2) { |c1, c2| dist += euclid(c1, c2) }
+      next if dist >= shortest_dist
+      shortest_dist = dist
+      shortest_path = path
+    end
+    shortest_path
+  end
+
+  # DFS
+  def find_paths(from:, to:, path: [], seen_ways: {}, found: [])
+    return found << path if path.last == to
 
     candidates = @coord2way[from].reject do |cand|
       seen_ways[cand.fetch(:id)]
     end
 
-    candidates.each do |cand|
+    subtrees = candidates.each do |cand|
       seen_tmp = seen_ways.dup
       seen_tmp[cand.fetch(:id)] = true
 
       ccs = cand[:coords]
-      res = nil
       if roundabout?(cand)
         # ensure coords start where we enter the roundabout
         ccs = ccs.rotate(ccs.index(from))
-        # increase arc in size until we find an exit
+        # increase arc in size until we considered every possible exit
         (1...ccs.size).each do |num|
           arc = ccs[0..num]
-          res ||= find_path(from: arc.last, to: to, path: path + arc, seen_ways: seen_tmp)
+          find_paths(from: arc.last, to: to, path: path + arc, seen_ways: seen_tmp, found: found)
         end
       elsif ccs.first == from
-        res = find_path(from: ccs.last,  to: to, path: path + ccs, seen_ways: seen_tmp)
-      elsif ccs.last == from
-        res = find_path(from: ccs.first, to: to, path: path + ccs.reverse, seen_ways: seen_tmp)
+        find_paths(from: ccs.last,  to: to, path: path + ccs, seen_ways: seen_tmp, found: found)
+      elsif ccs.last == from && !cand[:oneway]
+        find_paths(from: ccs.first, to: to, path: path + ccs.reverse, seen_ways: seen_tmp, found: found)
       end
-      # FIXME: returns first valid way, but not the shortest
-      return res if res
     end
 
-    return nil
+    found
   end
 
   def index_relation
@@ -150,6 +162,10 @@ class GPX
         <bounds minlat="#{bounds[:minlat]}" minlon="#{bounds[:minlon]}" maxlat="#{bounds[:maxlat]}" maxlon="#{bounds[:maxlon]}"/>
       </metadata>
     GPX
+  end
+
+  def euclid(coord1, coord2)
+    Math.sqrt((coord1[0] - coord2[0])**2 + (coord1[1] - coord2[1])**2)
   end
 end
 
