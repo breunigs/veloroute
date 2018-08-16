@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
       }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {
-          test: /\.js$/,
+          test: /(images).*\.js$/,
           chunks: 'all'
         }
       }),

@@ -13,7 +13,9 @@ const state = new State(map);
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(showRoute, toggleQuality);
 addQualityClickListener((_name, _lngLat, _oneway, properties) => {
-  document.getElementById("qualitydebug").innerHTML = JSON.stringify(properties, null, 2);
+  import(/* webpackChunkName: "quality" */ './quality').then(({quality}) => {
+    quality(properties);
+  });
 });
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {

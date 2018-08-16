@@ -1,5 +1,4 @@
 require "gradient"
-require "set"
 
 require_relative "geojson"
 require_relative "joiner"
@@ -23,12 +22,15 @@ module Quality
       grades.sum / grades.size.to_f
     end
 
-    attr_reader :side, :name, :rating
+    attr_reader :side, :name, :rating, :raw_values
 
-    def initialize(side, name, rating)
+    def initialize(side, name, rating, raw_values: {})
       @side = side
       @name = name
       @rating = rating
+      @raw_values = raw_values.map do |k, v|
+        [:"#{side}_#{k}", v]
+      end.to_h
     end
 
     def left_side?
@@ -77,15 +79,13 @@ module Quality
     end
 
     def observations
-      iss = Set.new
+      iss = []
 
       sides_to_consider.each do |side|
         iss << Observation.new(side, :not_lit, :okay)
       end if NO_VALUES.include?(val('lit'))
 
-      rate_surface.compact.each do |side, rating|
-        iss << Observation.new(side, :surface, rating)
-      end
+      iss += rate_surface
 
       rate_width.compact.each do |side, rating|
         iss << Observation.new(side, :width, rating)
@@ -127,9 +127,13 @@ module Quality
       surf = rate_surface_tag
       smoo = rate_smoothness_tag
       sides_to_consider.map do |side|
-        rating = smoo[side] || surf[side]
-        [side, rating]
-      end.to_h
+        rating = smoo.dig(side, :rating) || surf.dig(side, :rating)
+        next if rating.nil?
+        Observation.new(side, :surface, rating, raw_values: {
+          smoothness: smoo.dig(side, :value),
+          surface: surf.dig(side, :value)
+        })
+      end.compact
     end
 
     # Separate cycleways (tracks/lanes) must meet Hamburg's own definition of a
@@ -233,7 +237,7 @@ module Quality
         when :fine_gravel, :cobblestone, :sett, :gravel, :wood then :bad
         else nil
         end
-        [side, rating]
+        [side, {rating: rating, value: value}]
       end.to_h
     end
 
@@ -245,7 +249,7 @@ module Quality
         when :intermediate, :bad then :bad
         else nil
         end
-        [side, rating]
+        [side, {rating: rating, value: value}]
       end.to_h
     end
 
@@ -305,28 +309,21 @@ module Quality
   class GeoJSON
     def initialize(route:)
       @route = route
-      detect_way_features
+      judged_ways
     end
 
     def to_geojson
-      features = @features.map do |observations, ways|
-        # todo: consider splitting oneway/bothways for better joining
-        concatted = Joiner.join(ways.map(&:coords), reversable: false)
-        grade = Observation.judge(observations)
-
+      features = judged_ways.map do |way, geo_props|
         {
           type: "Feature",
           properties: {
             name: @route.name,
             quality: true,
-            grade: grade,
-            color: grade2color(grade),
-            observations: observations.to_a.join(", "),
-            osm_ids: ways.map(&:id).join(", ")
+            **geo_props
           },
           geometry: {
-            type: "MultiLineString",
-            coordinates: concatted
+            type: "LineString",
+            coordinates: way.coords
           }
         }
       end
@@ -337,13 +334,27 @@ module Quality
     private
 
     def ways
-      @ways ||= @route.relation.ways.map { |w| Way.new(w) }
+      @ways ||= @route.relation.ways.map { |w| ::Quality::Way.new(w) }
     end
 
-    def detect_way_features
-      @features = Hash.new { |h, k| h[k] = [] }
-      ways.each do |way|
-        @features[way.observations] << way
+    def judged_ways
+      @judged_ways ||= begin
+        judged = {}
+        ways.each do |way|
+          obs = way.observations
+          raw_values = obs.map(&:raw_values).reduce(&:merge).compact
+          grade = Observation.judge(obs)
+          judged[way] = {
+            grade: grade,
+            color: grade2color(grade),
+            # Mapbox GL JS doesn't support nested properties through queryRenderedFeatures
+            # https://github.com/mapbox/mapbox-gl-js/issues/2434
+            observations: obs.join(","),
+            osm_id: way.id,
+            **raw_values
+          }
+        end
+        judged
       end
     end
 

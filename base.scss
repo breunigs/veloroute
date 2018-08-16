@@ -49,8 +49,20 @@ $sidebar-max-width: 35em;
     text-align: justify;
   }
 
-  ul, p {
+  dl, ul, p {
     margin-top: 0;
+  }
+
+  dd, dt {
+    margin-left: 0;
+    display: inline-block;
+    width: 33%;
+  }
+
+  dl.w50 {
+    dd, dt {
+      width: 50%;
+    }
   }
 }
 
@@ -345,8 +357,9 @@ table.routing {
   }
 }
 
-pre {
-  white-space: pre-wrap;
+span[title] {
+  cursor: help;
+  border-bottom: 0.05em dotted #000;
 }
 
 .hide-route-markers {
