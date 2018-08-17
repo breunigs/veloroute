@@ -277,11 +277,11 @@ const handleRouteClick = (evt) => {
   if(!route) return;
 
   if(route.properties.quality) {
-    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, true, route.properties));
+    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties));
     return;
   }
 
-  routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties.oneway));
+  routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat));
 }
 
 

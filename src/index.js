@@ -12,7 +12,7 @@ const state = new State(map);
 
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(showRoute, toggleQuality);
-addQualityClickListener((_name, _lngLat, _oneway, properties) => {
+addQualityClickListener((_name, _lngLat, properties) => {
   import(/* webpackChunkName: "quality" */ './quality').then(({quality}) => {
     quality(properties);
   });

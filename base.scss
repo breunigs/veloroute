@@ -259,6 +259,7 @@ table.routing {
 #indicator, #indicator-rotate {
   height: 2em;
   width: 2em;
+  pointer-events: none;
 }
 
 #indicator-loc {

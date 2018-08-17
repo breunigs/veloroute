@@ -227,7 +227,7 @@ async function showCloseImage(routeName, lngLat, ignoreCurrent) {
 
   const rr = await route();
   for(const branch in rr) {
-    if(ignoreCurrent && branch === current) continue;
+    if(ignoreCurrent && branch.startsWith(status.direction)) continue;
     distances[branch] = closestImageIndex(rr[branch], lngLat);
   }
 
