@@ -28,7 +28,7 @@ module Quality
       @side = side
       @name = name
       @rating = rating
-      @raw_values = raw_values.map do |k, v|
+      @raw_values = raw_values.compact.map do |k, v|
         [:"#{side}_#{k}", v]
       end.to_h
     end
@@ -80,19 +80,18 @@ module Quality
 
     def observations
       iss = []
-
-      sides_to_consider.each do |side|
-        iss << Observation.new(side, :not_lit, :okay)
-      end if NO_VALUES.include?(val('lit'))
-
+      iss += rate_lit
       iss += rate_surface
       iss += rate_width
+      iss += rate_maxspeed_and_segregation
+      iss.compact
+    end
 
-      rate_maxspeed_and_segregation.compact.each do |side, rating|
-        iss << Observation.new(side, :maxspeed_and_segregation, rating)
+    def rate_lit
+      return [] unless NO_VALUES.include?(val('lit'))
+      sides_to_consider.map do |side|
+        Observation.new(side, :not_lit, :okay)
       end
-
-      iss
     end
 
     # maxspeed is considered excellent if it's <= 30 or if cycles have their own
@@ -104,15 +103,28 @@ module Quality
       sides_to_consider.map do |side|
         rating = nil
 
-        # track next to street
-        rating ||= :excellent if %w[track opposite_track].include?(cycleway_val(side))
-        # completely own track
-        rating ||= :excellent if %w[path crossing cycleway footway].include?(val("highway"))
+        way_type = cycleway_val(side)
+
+        next_to_street = %w[track opposite_track].include?(way_type)
+        on_street = %w[lane opposite_lane].include?(way_type)
+        separate_track = %w[path crossing cycleway footway sidepath].include?(val("highway")) || way_type == "sidepath"
+
+        rating ||= :excellent if next_to_street || separate_track
         # compare with speed for shared paths
         rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed
 
-        [side, rating]
-      end.to_h
+        path_position = :shared
+        path_position = :separate if separate_track
+        path_position = :track if next_to_street
+        path_position = :lane if on_street
+
+        next if rating.nil?
+
+        Observation.new(side, :maxspeed_and_segregation, rating, raw_values: {
+          maxspeed: maxspeed,
+          path_position: path_position
+        })
+      end
     end
 
     # Uses either smoothness or surface to determine quality, preferring the
@@ -130,7 +142,7 @@ module Quality
           smoothness: smoo.dig(side, :value),
           surface: surf.dig(side, :value)
         })
-      end.compact
+      end
     end
 
     # Separate cycleways (tracks/lanes) must meet Hamburg's own definition of a
@@ -167,7 +179,6 @@ module Quality
           nil
         end
 
-
         # if there are no special cycleway tags, check if this is a totally
         # separate cycleway/footpath
         internal_type ||= begin
@@ -194,8 +205,8 @@ module Quality
         rating = width_compare(internal_type, width)
         raw[:path_internal_type] = internal_type
         raw[:path_osm_type] = osm_type
-        Observation.new(side, :width, rating, raw_values: raw.compact)
-      end.compact
+        Observation.new(side, :width, rating, raw_values: raw)
+      end
     end
 
     def values(tag)

@@ -69,7 +69,18 @@ const tInternalType = (internalType, sharedWithBikes, sharedWithPedestrians) => 
   return locInternalType[internalType] || locInternalType[`${internalType}_${sharedWithBikes}_${sharedWithPedestrians}`] || `<span title="interner Wert: ${internalType.replace('"', '')}">Unbekannter Wegtyp</span>`;
 }
 
+const locPathPosition = {
+  shared: 'auf der Straße',
+  separate: 'ohne KFZ',
+  track: 'baulich getrennt',
+  lane: 'Radfahrstreifen'
+}
+const tPathPosition = (pathPos) => {
+  return locPathPosition[pathPos] || `<span title="interner Wert: ${pathPos.replace('"', '')}">Unbekannte Führung</span>`;
+}
+
 const niceJoin = (main, extras) => {
+  main = tRating(main);
   const tmp = extras.filter(e => e).join(", ");
   return tmp ? `${main} (${tmp})` : main;
 }
@@ -80,7 +91,7 @@ const observation2text = (observation, properties) => {
     case "surface":
       const surf = tSurface(properties[`${side}_surface`]);
       const smoo = tSmoothness(properties[`${side}_smoothness`]);
-      const surf_details = niceJoin(tRating(rating), [surf, smoo]);
+      const surf_details = niceJoin(rating, [surf, smoo]);
       return `<th>Oberfläche</th><td>${surf_details}</td>`
     case "width":
       const width = properties[`${side}_width`];
@@ -88,14 +99,20 @@ const observation2text = (observation, properties) => {
       const sharedWithBikes = properties[`${side}_shared_with_other_bikes`];
       const sharedWithPedestrians = properties[`${side}_shared_with_pedestrians`];
       // TODO: oneway/bothways + track type
-      const type_details = tInternalType(internalType, sharedWithBikes, sharedWithPedestrians);
-      return `<th>Breite</th><td>ca. ${width}m (${type_details})</td>`;
+      const internalTypeText = tInternalType(internalType, sharedWithBikes, sharedWithPedestrians);
+      const widthDetails = niceJoin(rating, [`ca. ${width.replace(".", ",")}m`, internalTypeText]);
+      return `<th>Breite</th><td>${widthDetails}</td>`;
     case "not_lit":
-      return `<th>Beleuchtung</th><td>fehlt</td>`
+      return `<th>Beleuchtung</th><td>${niceJoin(rating, ["fehlt"])}</td>`
     case "maxspeed_and_segregation":
-      return `<th>Führung</th><td>TODO</td>`
+      const maxspeed = properties[`${side}_maxspeed`];
+      const maxspeedText = maxspeed ? `max. ${maxspeed} km/h` : '';
+      const pathPos = tPathPosition(properties[`${side}_path_position`]);
+
+      const segreDetails = niceJoin(rating, [pathPos, maxspeedText]);
+      return `<th>Führung</th><td>${segreDetails}</td>`
     default:
-      return `Unknown observation: ${topic} (${observation})`;
+      return `<th>${topic}</th><td>${observation}</td>`;
   }
 };
 
