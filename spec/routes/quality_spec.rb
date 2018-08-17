@@ -62,9 +62,39 @@ describe Quality::Way, type: :model do
   describe ".rate_width" do
     it "rates separated cycleway/footpath with enough width as excellent" do
       subject = way({"cycleway:width" => "2", "foot" => "yes", "highway" => "path", "oneway:bicycle" => "yes", "segregated" => "yes", "smoothness" => "excellent", "surface" => "paving_stones"}, oneway: true, role: "forward")
-      expect(subject.rate_width).to eq({right: :excellent})
+      expect(subject.rate_width.first.rating).to eq :excellent
     end
-   end
+
+    it "correctly detects separate tracks as dual if they're not oneways" do
+      subject = way({"bicycle:oneway" => "no", "cycleway" => "sidepath", "highway" => "cycleway", "oneway" => "no", "width" => "3"})
+
+      expect(subject.rate_width.first.raw_values).to include({
+        left_path_internal_type: :track_dual,
+        left_shared_with_other_bikes: true,
+        left_shared_with_pedestrians: false
+      })
+    end
+
+    it "correctly detects separate tracks as dual if they're shared with pedestrians" do
+      subject = way({"highway" => "footway", "oneway" => "yes", "bicycle" => "yes", "segregated" => "no", "width" => "3"})
+
+      expect(subject.rate_width.first.raw_values).to include({
+        left_path_internal_type: :track_dual,
+        left_shared_with_other_bikes: false,
+        left_shared_with_pedestrians: true
+      })
+    end
+
+    it "correctly detects separate tracks as dual if they're not oneways + shared with pedestrians" do
+      subject = way({"highway" => "footway", "bicycle" => "yes", "segregated" => "no", "width" => "3"})
+
+      expect(subject.rate_width.first.raw_values).to include({
+        left_path_internal_type: :track_dual,
+        left_shared_with_other_bikes: true,
+        left_shared_with_pedestrians: true
+      })
+    end
+  end
 
   describe ".observations" do
     it "handles detailed values" do

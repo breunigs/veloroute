@@ -86,10 +86,7 @@ module Quality
       end if NO_VALUES.include?(val('lit'))
 
       iss += rate_surface
-
-      rate_width.compact.each do |side, rating|
-        iss << Observation.new(side, :width, rating)
-      end
+      iss += rate_width
 
       rate_maxspeed_and_segregation.compact.each do |side, rating|
         iss << Observation.new(side, :maxspeed_and_segregation, rating)
@@ -143,19 +140,26 @@ module Quality
     # parked cars, wide busses, etc. make the width of the street meaningless.
     def rate_width
       values(:width).map do |side, width|
-        next [side, nil] if width.nil?
+        next if width.nil?
 
+        raw = {width: width}
         osm_type = cycleway_val(side)
+
         internal_type = case osm_type
         when "shared_lane", "shared" then :shared_lane
         when "lane", "opposite_lane" then :lane
         when "crossing"              then :track_dual
         when "track", "opposite_track", "sidepath", "yes" then
           segregated = cycleway_val(side, tag: "segregated")
-          oneway = cycleway_val(side, tag: "oneway")
+          oneway = cycleway_val(side, tag: "oneway") || val("bicycle:oneway")
+          oneway ||= val("oneway") if val("highway") == "cycleway"
 
-          dual = NO_VALUES.include?(segregated) || NO_VALUES.include?(oneway)
-          dual ? :track_dual : :track_single
+          shared_with_pedestrians = NO_VALUES.include?(segregated)
+          shared_with_other_bikes = NO_VALUES.include?(oneway)
+          raw[:shared_with_pedestrians] = shared_with_pedestrians
+          raw[:shared_with_other_bikes] = shared_with_other_bikes
+
+          shared_with_pedestrians || shared_with_other_bikes ? :track_dual : :track_single
         when *NO_VALUES, "share_busway", "use_sidepath", "opposite", nil then
           nil # ignore these known cases
         else
@@ -178,14 +182,20 @@ module Quality
 
           whole_width_for_bikes = specific_width_given || bicycle_only
 
+          raw[:shared_with_other_bikes] = !oneway
+          raw[:shared_with_pedestrians] = !bicycle_only
+
           # dual direction cycleways that we have to share with pedestrians
           # probably require even more width, but it's not a common case, so
           # not going to handle it until it becomes an issue.
           whole_width_for_bikes && oneway ? :track_single : :track_dual
         end
 
-        [side, width_compare(internal_type, width)]
-      end.to_h
+        rating = width_compare(internal_type, width)
+        raw[:path_internal_type] = internal_type
+        raw[:path_osm_type] = osm_type
+        Observation.new(side, :width, rating, raw_values: raw.compact)
+      end.compact
     end
 
     def values(tag)
