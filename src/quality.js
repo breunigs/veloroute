@@ -79,53 +79,83 @@ const tPathPosition = (pathPos) => {
   return locPathPosition[pathPos] || `<span title="interner Wert: ${pathPos.replace('"', '')}">Unbekannte Führung</span>`;
 }
 
+const locTopic = {
+  surface: 'Oberfläche',
+  width: 'Breite',
+  not_lit: 'Beleuchtung',
+  maxspeed_and_segregation: 'Führung'
+}
+const tTopic = (topic) => {
+  return locTopic[topic] || topic;
+}
+
 const niceJoin = (main, extras) => {
   main = tRating(main);
   const tmp = extras.filter(e => e).join(", ");
   return tmp ? `${main} (${tmp})` : main;
 }
 
-const observation2text = (observation, properties) => {
-  const [_, side, topic, rating] = observation.match(/^([^_]+)_(.*)_([^_]+)$/);
+const explainObservation = (topic, side, rating, properties) => {
   switch(topic) {
     case "surface":
       const surf = tSurface(properties[`${side}_surface`]);
       const smoo = tSmoothness(properties[`${side}_smoothness`]);
-      const surf_details = niceJoin(rating, [surf, smoo]);
-      return `<th>Oberfläche</th><td>${surf_details}</td>`
+      return niceJoin(rating, [surf, smoo]);
+
     case "width":
       const width = properties[`${side}_width`];
       const internalType = properties[`${side}_path_internal_type`];
       const sharedWithBikes = properties[`${side}_shared_with_other_bikes`];
       const sharedWithPedestrians = properties[`${side}_shared_with_pedestrians`];
-      // TODO: oneway/bothways + track type
       const internalTypeText = tInternalType(internalType, sharedWithBikes, sharedWithPedestrians);
-      const widthDetails = niceJoin(rating, [`ca. ${width.replace(".", ",")}m`, internalTypeText]);
-      return `<th>Breite</th><td>${widthDetails}</td>`;
+      return niceJoin(rating, [`ca. ${width.replace(".", ",")}m`, internalTypeText]);
+
     case "not_lit":
-      return `<th>Beleuchtung</th><td>${niceJoin(rating, ["fehlt"])}</td>`
+      return niceJoin(rating, ["fehlt"]);
+
     case "maxspeed_and_segregation":
       const maxspeed = properties[`${side}_maxspeed`];
-      const maxspeedText = maxspeed ? `max. ${maxspeed} km/h` : '';
+      const maxspeedText = maxspeed ? `max. ${maxspeed} km/h` : null;
       const pathPos = tPathPosition(properties[`${side}_path_position`]);
+      return niceJoin(rating, [pathPos, maxspeedText]);
 
-      const segreDetails = niceJoin(rating, [pathPos, maxspeedText]);
-      return `<th>Führung</th><td>${segreDetails}</td>`
     default:
-      return `<th>${topic}</th><td>${observation}</td>`;
+      return rating;
   }
+}
+
+const observation2text = (topic, ratings, properties) => {
+  const explained = Object.entries(ratings).map(([side, rating]) => {
+    return explainObservation(topic, side, rating, properties);
+  });
+  const same = explained.every(v => v === explained[0]);
+
+  let html = `<th>${tTopic(topic)}</th>`;
+  if(same) {
+    html += `<td colspan=2>${explained[0]}</td>`;
+  } else {
+    html += explained.map(e => `<td>${e}</td>`).join('');
+  }
+  return html;
 };
 
 
 const quality = (properties) => {
-  console.debug(properties)
-  const obs = properties.observations.split(",");
+  console.debug("All properties", properties)
+
+  let obs = {};
+  properties.observations.split(",").forEach(ob => {
+    const [_, side, topic, rating] = ob.match(/^([^_]+)_(.*)_([^_]+)$/);
+    if(!obs[topic]) obs[topic] = {};
+    obs[topic][side] = rating;
+  });
+  console.debug("Partitioned Observations", obs);
 
   let html = '<table>';
-  const side = considerOnlyThisSide(obs);
-  if(side) {
-    const asText = obs.filter(o => o.startsWith(side)).map(o => observation2text(o, properties));
-    html += `<tr>${asText.join('</tr><tr>')}</tr>`
+  for (const [topic, ratings] of Object.entries(obs)) {
+    html += '<tr>'
+    html += observation2text(topic, ratings, properties);
+    html += '</tr>'
   }
   html += '</table>';
 

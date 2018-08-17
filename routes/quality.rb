@@ -370,7 +370,7 @@ module Quality
             color: grade2color(grade),
             # Mapbox GL JS doesn't support nested properties through queryRenderedFeatures
             # https://github.com/mapbox/mapbox-gl-js/issues/2434
-            observations: obs.join(","),
+            observations: obs.sort.join(","),
             osm_id: way.id,
             **raw_values
           }
