@@ -31,7 +31,10 @@ const locSurfaces = {
 }
 const tSurface = (surface) => {
   if(!surface) return null;
-  return locSurfaces[surface] || `<span title="Wert in der OpenStreetMap: ${surface.replace('"', '')}">Unbekannte Oberfläche</span>`
+  if(locSurfaces[surface]) return locSurfaces[surface];
+
+  if(surface.indexOf(";") >= 0) return `<span title="Wert in der OpenStreetMap: ${surface.replace('"', '')}">wechselnder Belag</span>`;
+  return `<span title="Wert in der OpenStreetMap: ${surface.replace('"', '')}">Unbekannte Oberfläche</span>`;
 }
 
 const locSmoothness = {
