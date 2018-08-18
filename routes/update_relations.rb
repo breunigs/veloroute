@@ -138,7 +138,8 @@ FileUtils.rm_rf("geo_tmp")
 FileUtils.mkdir_p "geo_tmp"
 
 routes = JSON.parse(File.read("../routes.json"))
-if ENV['TEST'] == 'yes'
+# run only for one route when just testing (mostly on Travis)
+if ENV['TEST'] == 'yes' && ENV['PRODUCTION'] != 'yes'
   test_route = routes.keys.sample
   routes.select! { |k, _v| k == test_route }
 end

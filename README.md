@@ -16,7 +16,7 @@ The quickest way to a working copy is to run
 ./build.sh
 
 # or with brotli/gzip static compression
-COMPRESS=yes ./build.sh
+PRODUCTION=yes ./build.sh
 
 # or running all test suites
 TEST=yes ./build.sh

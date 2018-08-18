@@ -20,6 +20,7 @@ COPY spec/ /app/spec/
 ARG TEST
 RUN if [ "$TEST" = "yes" ]; then bundle exec rspec; fi
 
+ARG PRODUCTION
 RUN /app/routes/update_relations.rb
 
 ##############################################################
@@ -37,9 +38,9 @@ ENV PATH="/app/node_modules/.bin:${PATH}"
 COPY . /app
 COPY --from=geodata /app/routes/geo routes/geo/
 
-ARG COMPRESS
+ARG PRODUCTION
 RUN \
-  if [ "$COMPRESS" = "yes" ]; then \
+  if [ "$PRODUCTION" = "yes" ]; then \
     svgo routes/geo/*.svg ; \
     webpack --mode production --output-path /bundled/ ; \
   else \
@@ -48,7 +49,7 @@ RUN \
 
 
 ##############################################################
-# Compress                                                   #
+# COMBINING AND FINISHING TOUCHES                            #
 ##############################################################
 
 FROM debian:unstable-slim
@@ -66,11 +67,11 @@ COPY --from=webpack /app/routes/geo routes/geo/
 
 COPY --from=webpack /bundled .
 
-ARG COMPRESS
-RUN if [ "$COMPRESS" = "yes" ]; then optipng -q -o7 favicons/*.png; fi
-RUN if [ "$COMPRESS" = "yes" ]; then \
+ARG PRODUCTION
+RUN if [ "$PRODUCTION" = "yes" ]; then optipng -q -o7 favicons/*.png; fi
+RUN if [ "$PRODUCTION" = "yes" ]; then \
     FILES=$(find . -type f -not -iname '*.png'); \
-    echo "Compressing these files:\n${FILES}"; \
+    echo "PRODUCTIONing these files:\n${FILES}"; \
     brotli -f --best $FILES & \
     gzip -f -k --best $FILES & \
     wait; \
