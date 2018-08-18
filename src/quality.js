@@ -143,10 +143,11 @@ const observation2text = (topic, ratings, details) => {
 };
 
 
-const quality = (image_key, avoidScrolling) => {
+const showForKey = (image_key, avoidScrolling) => {
   const osm_id = key2id[image_key];
   const details = id2details[osm_id];
   console.debug("Quality Details:", details);
+  if(!details) return;
 
   let obs = {};
   details.observations.forEach(ob => {
@@ -168,4 +169,23 @@ const quality = (image_key, avoidScrolling) => {
   if(!avoidScrolling) header.scrollIntoView();
 }
 
-export { quality };
+
+export class Quality {
+  constructor(state, imagesPromise) {
+    this._state = state;
+    this._previousQualityKey = null;
+
+    this.showForKey = showForKey.bind(this);
+    this.indicatorListener = this.indicatorListener.bind(this);
+
+    imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener))
+    showForKey(this._state.currentImage(), true);
+  }
+
+  async indicatorListener(_lon, _lat, _ca, key) {
+    if(this._state.selectedRoute() !== "quality") return;
+    if(this._previousQualityKey === key) return;
+    this._previousQualityKey = key;
+    showForKey(key);
+  }
+}

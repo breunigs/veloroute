@@ -241,7 +241,7 @@ async function toggleQuality(shownRoute) {
       qualityLoaded = true;
       addSource("quality").then(() => {
         renderQuality();
-        clickableLayers = { layers: ['layer-quality'] };
+        clickableLayers["layers"].push('layer-quality');
         toggleQuality("quality");
       });
       return;

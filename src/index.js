@@ -1,18 +1,18 @@
 import "../base.scss";
 
 import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality } from "./map";
-import { showRoute } from "./abstract_route";
+import AbstractRoute from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
 import Swap from './swap';
 import { addRouteChangeListener } from './state';
 
 const state = new State(map);
-
 const imagesPromise = import(/* webpackChunkName: "images" */ './images');
+const abstractRoute = new AbstractRoute(imagesPromise, state);
 
 addRouteClickListener(state.routeSetter());
-addRouteChangeListener(showRoute, toggleQuality);
+addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
   el.addEventListener('click', evt => {
@@ -24,11 +24,11 @@ for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
 for(let el of document.querySelectorAll(".routing td a.icon")) {
   el.addEventListener('click', evt => {
     const routeName = evt.target.textContent;
-    showRoute(routeName);
+    abstractRoute.showRoute(routeName);
   });
 }
 
-showRoute(state.selectedRoute(), imagesPromise, state);
+abstractRoute.showRoute(state.selectedRoute());
 
 
 const infoLinks = document.querySelectorAll(".show-main-text");

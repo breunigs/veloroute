@@ -1,48 +1,49 @@
+const scrollbox = document.getElementById('routes');
 const gpxlink = document.getElementById('gpxlink');
 const extras = document.getElementById('extras');
 const info = document.getElementById('info');
 
-const hideAll = () => {
-  for(let el of document.querySelectorAll(".desc")) {
-    el.style.display = 'none';
+class AbstractRoute {
+  constructor(imagesPromise, state) {
+    this._state = state;
+    this._imagesPromise = imagesPromise;
+    this._qualityPromise = null;
+
+    this.showRoute = this.showRoute.bind(this)
   }
-  info.style.display = 'none';
-}
 
-let qualityPromise = null;
-const loadQuality = (imagesPromise, state) => {
-  if(qualityPromise) return qualityPromise;
-  qualityPromise = import(/* webpackChunkName: "quality" */ './quality');
+  _loadQuality() {
+    if(this._qualityPromise) return this._qualityPromise;
+    this._qualityPromise = import(/* webpackChunkName: "quality" */ './quality');
+    this._qualityPromise.then(({Quality}) => new Quality(this._state, this._imagesPromise));
+    return this._qualityPromise;
+  }
 
-  // follow quality display on image change
-  Promise.all([qualityPromise, imagesPromise]).then(([{quality}, {addIndicatorListener}]) => {
-    let previousQualityKey = null;
-    async function showQuality(_lon, _lat, _ca, key) {
-      if(state.selectedRoute() !== "quality") return;
-      if(previousQualityKey === key) return;
-      previousQualityKey = key;
-      quality(key);
+  _hideAll() {
+    for(let el of document.querySelectorAll(".desc")) {
+      el.style.display = 'none';
     }
-    quality(state.currentImage(), true);
-    addIndicatorListener(showQuality);
-  })
-
-  return qualityPromise;
-}
-
-async function showRoute(routeName, imagesPromise, state) {
-  hideAll();
-  const id = routeName ? `desc${routeName}` : 'info';
-  document.getElementById(id).style.display = 'block';
-
-  if(routeName && routeName.match(/[0-9]/)) {
-    extras.style.display = 'block';
-    gpxlink.setAttribute('href', `routes/geo/route${routeName}.gpx`);
-  } else {
-    extras.style.display = 'none';
+    info.style.display = 'none';
   }
 
-  if(routeName === "quality") loadQuality(imagesPromise, state);
-};
+  async showRoute(routeName) {
+    this._hideAll();
+    const id = routeName ? `desc${routeName}` : 'info';
+    document.getElementById(id).style.display = 'block';
 
-export { showRoute };
+    if(routeName && routeName.match(/[0-9]/)) {
+      extras.style.display = 'block';
+      gpxlink.setAttribute('href', `routes/geo/route${routeName}.gpx`);
+    } else {
+      extras.style.display = 'none';
+    }
+
+    // scroll back to top when switching "tabs". The scroll state isn't kept per
+    // tab, but rather as a "37%" across all instances.
+    scrollbox.scrollTop = 0;
+
+    if(routeName === "quality") this._loadQuality();
+  };
+}
+
+export default AbstractRoute;
