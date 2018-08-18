@@ -1,7 +1,5 @@
 module Geo
   def self.dist(from:, to:)
-    raise "expected coord for 'to'" unless is_coord?(to)
-
     # given a point
     return point2point_dist(lonLat1: from, lonLat2: to) if is_coord?(from)
 
@@ -12,18 +10,12 @@ module Geo
       return start > stop ? stop : start
     end
 
-    # less accurate, but twice as fast
-    # from.reduce(Float::INFINITY) do |dist, point|
-    #   new_dist = point2point_dist(lonLat1: point, lonLat2: to)
-    #   new_dist > dist ? dist : new_dist
-    # end
-
     closest = closest_point_on_line(from, to)
     point2point_dist(lonLat1: closest, lonLat2: to)
   end
 
   def self.is_coord?(coord)
-    coord.is_a?(Array) && coord.size == 2 && coord[0].is_a?(Float) && coord[1].is_a?(Float)
+    coord[0].is_a?(Float)
   end
 
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016

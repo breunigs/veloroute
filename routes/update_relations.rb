@@ -29,11 +29,13 @@ def build_map_geojsons(routes)
 
   markers = routes.flat_map(&:named_markers)
   File.write("geo_tmp/markers.json", markers.to_json)
+end
 
+def build_quality(routes)
   quality_geojson = routes.flat_map(&:to_quality_geojson)
   File.write("geo_tmp/quality.geojson", GeoJSON.join(quality_geojson).to_json)
 
-  quality_export = routes.map(&:to_quality_export).reduce {|a,b| Quality::GeoJSON.merge(a, b)}
+  quality_export = routes.map(&:to_quality_export).reduce {|a,b| Quality::GeoJSON.merge(a, b) }
   File.write("geo_tmp/quality_export.json", quality_export.to_json)
 end
 
@@ -139,6 +141,7 @@ end
 routes = routes.map { |route, details| Route.new(route, details) }
 
 threads = []
+threads << Thread.new { build_quality(routes) }
 threads << Thread.new { build_map_geojsons(routes) }
 threads << Thread.new { resolve_names(routes) }
 threads << Thread.new { render_abstract_routes(routes) }
