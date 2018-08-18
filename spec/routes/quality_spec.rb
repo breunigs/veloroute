@@ -101,9 +101,6 @@ describe Quality::Way, type: :model do
         left_path_internal_type: :track_single,
         left_shared_with_other_bikes: false,
         left_shared_with_pedestrians: false,
-        right_path_internal_type: :track_single,
-        right_shared_with_other_bikes: false,
-        right_shared_with_pedestrians: false
       })
     end
 
