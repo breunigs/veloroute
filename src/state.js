@@ -41,6 +41,10 @@ class State {
     return this._status.route;
   }
 
+  currentImage() {
+    return this._status.image;
+  }
+
   _setMapPosition() {
     // as per from https://github.com/mapbox/mapbox-gl-js/blob/master/src/ui/hash.js#L56
     const center = this._map.getCenter(),

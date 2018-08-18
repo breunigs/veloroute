@@ -1,4 +1,7 @@
+import {id2details, key2id} from '../routes/geo/quality_export.json';
+
 const el = document.getElementById('quality');
+const header = document.getElementById('qualityheader');
 
 const osmLink = (osmId) => {
   return `<a href="https://www.openstreetmap.org/way/${osmId}">Weg in der OpenStreetMap anzeigen</a>`;
@@ -95,18 +98,18 @@ const niceJoin = (main, extras) => {
   return tmp ? `${main} (${tmp})` : main;
 }
 
-const explainObservation = (topic, side, rating, properties) => {
+const explainObservation = (topic, side, rating, details) => {
   switch(topic) {
     case "surface":
-      const surf = tSurface(properties[`${side}_surface`]);
-      const smoo = tSmoothness(properties[`${side}_smoothness`]);
+      const surf = tSurface(details[`${side}_surface`]);
+      const smoo = tSmoothness(details[`${side}_smoothness`]);
       return niceJoin(rating, [surf, smoo]);
 
     case "width":
-      const width = properties[`${side}_width`];
-      const internalType = properties[`${side}_path_internal_type`];
-      const sharedWithBikes = properties[`${side}_shared_with_other_bikes`];
-      const sharedWithPedestrians = properties[`${side}_shared_with_pedestrians`];
+      const width = details[`${side}_width`];
+      const internalType = details[`${side}_path_internal_type`];
+      const sharedWithBikes = details[`${side}_shared_with_other_bikes`];
+      const sharedWithPedestrians = details[`${side}_shared_with_pedestrians`];
       const internalTypeText = tInternalType(internalType, sharedWithBikes, sharedWithPedestrians);
       return niceJoin(rating, [`ca. ${width.replace(".", ",")}m`, internalTypeText]);
 
@@ -114,9 +117,9 @@ const explainObservation = (topic, side, rating, properties) => {
       return niceJoin(rating, ["fehlt"]);
 
     case "maxspeed_and_segregation":
-      const maxspeed = properties[`${side}_maxspeed`];
+      const maxspeed = details[`${side}_maxspeed`];
       const maxspeedText = maxspeed ? `max. ${maxspeed} km/h` : null;
-      const pathPos = tPathPosition(properties[`${side}_path_position`]);
+      const pathPos = tPathPosition(details[`${side}_path_position`]);
       return niceJoin(rating, [pathPos, maxspeedText]);
 
     default:
@@ -124,9 +127,9 @@ const explainObservation = (topic, side, rating, properties) => {
   }
 }
 
-const observation2text = (topic, ratings, properties) => {
+const observation2text = (topic, ratings, details) => {
   const explained = Object.entries(ratings).map(([side, rating]) => {
-    return explainObservation(topic, side, rating, properties);
+    return explainObservation(topic, side, rating, details);
   });
   const same = explained.every(v => v === explained[0]);
 
@@ -140,11 +143,13 @@ const observation2text = (topic, ratings, properties) => {
 };
 
 
-const quality = (properties) => {
-  // console.debug("All properties", properties)
+const quality = (image_key, avoidScrolling) => {
+  const osm_id = key2id[image_key];
+  const details = id2details[osm_id];
+  console.debug("Quality Details:", details);
 
   let obs = {};
-  properties.observations.split(",").forEach(ob => {
+  details.observations.forEach(ob => {
     const [_, side, topic, rating] = ob.match(/^([^_]+)_(.*)_([^_]+)$/);
     if(!obs[topic]) obs[topic] = {};
     obs[topic][side] = rating;
@@ -154,13 +159,13 @@ const quality = (properties) => {
   let html = '<table>';
   for (const [topic, ratings] of Object.entries(obs)) {
     html += '<tr>'
-    html += observation2text(topic, ratings, properties);
+    html += observation2text(topic, ratings, details);
     html += '</tr>'
   }
   html += '</table>';
 
-  el.innerHTML = html + osmLink(properties.osm_id);
-  el.scrollIntoView();
+  el.innerHTML = html + osmLink(details.osm_id);
+  if(!avoidScrolling) header.scrollIntoView();
 }
 
 export { quality };

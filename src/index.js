@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, getRouteBelowIndicator } from "./map";
+import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality } from "./map";
 import { showRoute } from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
@@ -9,47 +9,10 @@ import { addRouteChangeListener } from './state';
 
 const state = new State(map);
 
-
 const imagesPromise = import(/* webpackChunkName: "images" */ './images');
-let qualityPromise = null;
-
-let qualityTimeout = null;
-let previousQualityLonLat = null;
-async function showQualityBelowMarker(lon, lat, _ca, _key, bearingOnly) {
-  if(bearingOnly) return;
-  if(state.selectedRoute() !== "quality") return;
-
-  const newLonLat = [lon, lat];
-  if(previousQualityLonLat == newLonLat) return;
-  previousQualityLonLat = newLonLat;
-
-  clearTimeout(qualityTimeout);
-  qualityTimeout = setTimeout(() => {
-    const route = getRouteBelowIndicator()
-    if(!route) return console.warn(`Couldn't find route close to ${newLonLat}, so cannot show quality.`);
-    loadQuality().then(({quality}) => quality(route.properties));
-  }, 100);
-}
-
-const loadQuality = () => {
-  if(qualityPromise) return qualityPromise;
-  qualityPromise = import(/* webpackChunkName: "quality" */ './quality');
-
-  // follow quality display on image change
-  qualityPromise.then(({quality}) => {
-    imagesPromise.then(({addIndicatorListener}) => {
-      addIndicatorListener(showQualityBelowMarker);
-    });
-  });
-
-  return qualityPromise;
-}
 
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(showRoute, toggleQuality);
-addQualityClickListener((_name, _lngLat, _ignoreCurrentDirection, properties) => {
-  loadQuality()//.then(({quality}) => quality(properties));
-});
 
 for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
   el.addEventListener('click', evt => {
@@ -65,7 +28,7 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
   });
 }
 
-showRoute(state.selectedRoute());
+showRoute(state.selectedRoute(), imagesPromise, state);
 
 
 const infoLinks = document.querySelectorAll(".show-main-text");

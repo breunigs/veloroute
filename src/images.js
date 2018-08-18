@@ -285,12 +285,12 @@ let currentNode = null;
 viewer.on(Viewer.nodechanged, function (node) {
   currentNode = node;
   if(hasLoadedDesiredImage(node.key)) {
-    indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key, false));
+    indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
   }
 });
 viewer.on(Viewer.bearingchanged, function (bearing) {
   if(hasLoadedDesiredImage(currentNode.key)) {
-    indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key, true));
+    indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
   }
 });
 window.addEventListener("resize", () => viewer.resize());
