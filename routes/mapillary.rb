@@ -37,6 +37,10 @@ module Mapillary
       sequences.flat_map(&:coords)
     end
 
+    def keys2coords
+      image_keys.zip(coords)
+    end
+
     private
 
     def sequences

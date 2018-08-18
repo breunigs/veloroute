@@ -225,6 +225,8 @@ async function showCloseImage(routeName, lngLat, ignoreCurrent) {
   const current = `${status.direction}_${status.branch}`;
   let distances = {};
 
+  if(ignoreCurrent) console.debug(`Ignoring images for direction ${status.direction}`);
+
   const rr = await route();
   for(const branch in rr) {
     if(ignoreCurrent && branch.startsWith(status.direction)) continue;
@@ -283,12 +285,12 @@ let currentNode = null;
 viewer.on(Viewer.nodechanged, function (node) {
   currentNode = node;
   if(hasLoadedDesiredImage(node.key)) {
-    indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
+    indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key, false));
   }
 });
 viewer.on(Viewer.bearingchanged, function (bearing) {
   if(hasLoadedDesiredImage(currentNode.key)) {
-    indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
+    indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key, true));
   }
 });
 window.addEventListener("resize", () => viewer.resize());

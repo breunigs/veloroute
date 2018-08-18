@@ -220,7 +220,11 @@ class Route
   end
 
   def to_quality_geojson
-    Quality::GeoJSON.new(route: self).to_geojson
+    quality.to_geojson
+  end
+
+  def to_quality_export
+    quality.to_quality_export
   end
 
   def ==(other_route)
@@ -232,6 +236,10 @@ class Route
   end
 
   private
+
+  def quality
+    @quality ||= Quality::GeoJSON.new(route: self)
+  end
 
   def get_conn(place2route, place)
     return [] unless place

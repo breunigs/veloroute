@@ -277,13 +277,19 @@ const handleRouteClick = (evt) => {
   if(!route) return;
 
   if(route.properties.quality) {
-    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, route.properties));
+    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, false, route.properties));
     return;
   }
 
   routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat));
 }
 
+const getRouteBelowIndicator = () => {
+  // this approach sucks, as it depends on zoom and the like. Mostly breaks finding
+  // the right route when zoomed in. Needs sth better.
+  const point = map.project(indicator.getLngLat());
+  return getHighlightedRoute({point: point});
+}
 
 map.on('style.load', () => {
   addSource("routes").then(() => {
@@ -297,4 +303,4 @@ map.on('style.load', () => {
 
 });
 
-export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality };
+export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, getRouteBelowIndicator };

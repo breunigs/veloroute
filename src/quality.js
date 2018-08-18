@@ -141,7 +141,7 @@ const observation2text = (topic, ratings, properties) => {
 
 
 const quality = (properties) => {
-  console.debug("All properties", properties)
+  // console.debug("All properties", properties)
 
   let obs = {};
   properties.observations.split(",").forEach(ob => {
@@ -149,7 +149,7 @@ const quality = (properties) => {
     if(!obs[topic]) obs[topic] = {};
     obs[topic][side] = rating;
   });
-  console.debug("Partitioned Observations", obs);
+  // console.debug("Partitioned Observations", obs);
 
   let html = '<table>';
   for (const [topic, ratings] of Object.entries(obs)) {

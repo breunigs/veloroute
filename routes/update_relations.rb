@@ -8,6 +8,7 @@ require_relative "geojson"
 require_relative "gpx"
 require_relative "relation"
 require_relative "route"
+require_relative "quality"
 require_relative "web"
 
 Dir.chdir(__dir__)
@@ -29,8 +30,11 @@ def build_map_geojsons(routes)
   markers = routes.flat_map(&:named_markers)
   File.write("geo_tmp/markers.json", markers.to_json)
 
-  quality = routes.flat_map.map(&:to_quality_geojson)
-  File.write("geo_tmp/quality.geojson", GeoJSON.join(quality).to_json)
+  quality_geojson = routes.flat_map(&:to_quality_geojson)
+  File.write("geo_tmp/quality.geojson", GeoJSON.join(quality_geojson).to_json)
+
+  quality_export = routes.map(&:to_quality_export).reduce {|a,b| Quality::GeoJSON.merge(a, b)}
+  File.write("geo_tmp/quality_export.json", quality_export.to_json)
 end
 
 def place_to_nominatim_query(place)

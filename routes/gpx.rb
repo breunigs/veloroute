@@ -1,5 +1,7 @@
 require 'time'
 
+require_relative 'geo'
+
 class GPX
   def self.coords2trkseg(coords)
     trkpts = coords.map { |c| self.coord2trkpt(c) }
@@ -60,8 +62,7 @@ class GPX
     shortest_dist = Float::INFINITY
     shortest_path = nil
     paths.each do |path|
-      dist = 0
-      path.each_cons(2) { |c1, c2| dist += euclid(c1, c2) }
+      dist = Geo.line_distance(path)
       next if dist >= shortest_dist
       shortest_dist = dist
       shortest_path = path
@@ -162,10 +163,6 @@ class GPX
         <bounds minlat="#{bounds[:minlat]}" minlon="#{bounds[:minlon]}" maxlat="#{bounds[:maxlat]}" maxlon="#{bounds[:maxlon]}"/>
       </metadata>
     GPX
-  end
-
-  def euclid(coord1, coord2)
-    Math.sqrt((coord1[0] - coord2[0])**2 + (coord1[1] - coord2[1])**2)
   end
 end
 

@@ -1,5 +1,6 @@
 require "gradient"
 
+require_relative "geo"
 require_relative "geojson"
 require_relative "joiner"
 require_relative "relation"
@@ -76,6 +77,10 @@ module Quality
 
     def coords
       @way[:coords]
+    end
+
+    def dist(lonLat)
+      Geo.dist(from: coords, to: lonLat)
     end
 
     def observations
@@ -328,9 +333,39 @@ module Quality
   end
 
   class GeoJSON
+    def self.merge(export1, export2)
+      {
+        id2details: export1[:id2details].merge(export2[:id2details]),
+        key2id: export1[:key2id].merge(export2[:key2id])
+      }
+    end
+
     def initialize(route:)
       @route = route
       judged_ways
+    end
+
+    def to_quality_export
+      img_key_to_osm_id = {}
+      @route.stitched_sequences.values.flat_map(&:keys2coords).uniq.each do |img_key, coord|
+        dist_so_far = Float::INFINITY
+        ways.each do |w|
+          new_dist = w.dist(coord)
+          next if new_dist >= dist_so_far
+          dist_so_far = new_dist
+          img_key_to_osm_id[img_key] = w.id
+        end
+      end
+
+      osm_id_to_details = {}
+      judged_ways.each do |way, geo_props|
+        osm_id_to_details[way.id] = geo_props
+      end
+
+      {
+        id2details: osm_id_to_details,
+        key2id: img_key_to_osm_id
+      }
     end
 
     def to_geojson
@@ -340,7 +375,8 @@ module Quality
           properties: {
             name: @route.name,
             quality: true,
-            **geo_props
+            color: geo_props[:color],
+            osm_id: way.id
           },
           geometry: {
             type: "LineString",
@@ -371,7 +407,6 @@ module Quality
             # Mapbox GL JS doesn't support nested properties through queryRenderedFeatures
             # https://github.com/mapbox/mapbox-gl-js/issues/2434
             observations: obs.map(&:to_s).sort.join(","),
-            osm_id: way.id,
             **raw_values
           }
         end
