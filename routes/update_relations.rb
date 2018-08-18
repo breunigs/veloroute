@@ -3,6 +3,7 @@
 require "base64"
 require "fileutils"
 require "json"
+require "parallel"
 
 require_relative "geojson"
 require_relative "gpx"
@@ -35,7 +36,10 @@ def build_quality(routes)
   quality_geojson = routes.flat_map(&:to_quality_geojson)
   File.write("geo_tmp/quality.geojson", GeoJSON.join(quality_geojson).to_json)
 
-  quality_export = routes.map(&:to_quality_export).reduce {|a,b| Quality::GeoJSON.merge(a, b) }
+  quality_export = Parallel.map(routes) do |r|
+    def print(*args); end # somehow segfaults when forked
+    r.to_quality_export
+  end.reduce {|a,b| Quality::GeoJSON.merge(a, b) }
   File.write("geo_tmp/quality_export.json", quality_export.to_json)
 end
 
@@ -140,15 +144,19 @@ if ENV['TEST'] == 'yes'
 end
 routes = routes.map { |route, details| Route.new(route, details) }
 
-threads = []
-threads << Thread.new { build_quality(routes) }
-threads << Thread.new { build_map_geojsons(routes) }
-threads << Thread.new { resolve_names(routes) }
-threads << Thread.new { render_abstract_routes(routes) }
-threads << Thread.new { build_image_lists(routes) }
-threads << Thread.new { check_relation_connected(routes) }
-threads << Thread.new { write_gpx_files(routes) }
-threads.each(&:join)
+tasks = %i[
+  build_quality
+  build_map_geojsons
+  resolve_names
+  render_abstract_routes
+  build_image_lists
+  check_relation_connected
+  write_gpx_files
+]
+Parallel.each(tasks) do |task|
+  def print(*args); end # somehow segfaults when forked
+  send(task, routes)
+end
 
 # swap old for new
 FileUtils.mv "geo", "geo_old" if Dir.exist?("geo")
