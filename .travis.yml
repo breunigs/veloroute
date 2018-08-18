@@ -6,7 +6,7 @@ services:
 install: true
 
 script:
-  - ./build.sh
+  - TEST=yes ./build.sh
 
 notifications:
   email: false
