@@ -67,10 +67,10 @@ COPY --from=webpack /app/routes/geo routes/geo/
 COPY --from=webpack /bundled .
 
 ARG COMPRESS
-RUN \
-  if [ "$COMPRESS" = "yes" ]; then \
+RUN if [ "$COMPRESS" = "yes" ]; then optipng -q -o7 favicons/*.png; fi
+RUN if [ "$COMPRESS" = "yes" ]; then \
     FILES=$(find . -type f -not -iname '*.png'); \
-    optipng -q -o7 favicons/*.png & \
+    echo "Compressing these files:\n${FILES}"; \
     brotli -f --best $FILES & \
     gzip -f -k --best $FILES & \
     wait; \
