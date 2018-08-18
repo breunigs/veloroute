@@ -2,8 +2,7 @@ require "json"
 require_relative "web"
 
 class Relation
-  INTERESTING_KEYS = %w[cycleway cycleway:both cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:right cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway junction lit maxspeed name oneway smoothness surface width].freeze
-
+  INTERESTING_KEYS = %w[bicycle:oneway cycleway cycleway:both cycleway:both:oneway cycleway:both:smoothness cycleway:both:surface cycleway:both:width cycleway:left cycleway:left:smoothness cycleway:left:surface cycleway:left:width cycleway:oneway cycleway:right cycleway:right:oneway cycleway:right:smoothness cycleway:right:surface cycleway:right:width cycleway:smoothness cycleway:surface cycleway:width highway junction lit maxspeed name oneway oneway:bicycle smoothness surface width].freeze
 
   def self.build_collision_lookup(relations)
     collisions = Hash.new{|h,k| h[k] = [] }

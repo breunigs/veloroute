@@ -65,7 +65,7 @@ describe Quality::Way, type: :model do
       expect(subject.rate_width.first.rating).to eq :excellent
     end
 
-    it "correctly detects separate tracks as dual if they're not oneways" do
+    it "detects separate tracks as dual if they're not oneways" do
       subject = way({"bicycle:oneway" => "no", "cycleway" => "sidepath", "highway" => "cycleway", "oneway" => "no", "width" => "3"})
 
       expect(subject.rate_width.first.raw_values).to include({
@@ -75,7 +75,7 @@ describe Quality::Way, type: :model do
       })
     end
 
-    it "correctly detects separate tracks as dual if they're shared with pedestrians" do
+    it "detects separate tracks as dual if they're shared with pedestrians" do
       subject = way({"highway" => "footway", "oneway" => "yes", "bicycle" => "yes", "segregated" => "no", "width" => "3"})
 
       expect(subject.rate_width.first.raw_values).to include({
@@ -85,7 +85,7 @@ describe Quality::Way, type: :model do
       })
     end
 
-    it "correctly detects separate tracks as dual if they're not oneways + shared with pedestrians" do
+    it "detects separate tracks as dual if they're not oneways + shared with pedestrians" do
       subject = way({"highway" => "footway", "bicycle" => "yes", "segregated" => "no", "width" => "3"})
 
       expect(subject.rate_width.first.raw_values).to include({
@@ -94,6 +94,19 @@ describe Quality::Way, type: :model do
         left_shared_with_pedestrians: true
       })
     end
+
+    it "detects separate tracks as single if oneway + shared with pedestrians + cycleway has own width" do
+      subject = way({"bicycle" => "yes", "cycleway:width" => "2", "foot" => "yes", "highway" => "path", "oneway:bicycle" => "yes", "segregated" => "yes", "smoothness" => "excellent", "surface" => "paving_stones"})
+      expect(subject.rate_width.first.raw_values).to include({
+        left_path_internal_type: :track_single,
+        left_shared_with_other_bikes: false,
+        left_shared_with_pedestrians: false,
+        right_path_internal_type: :track_single,
+        right_shared_with_other_bikes: false,
+        right_shared_with_pedestrians: false
+      })
+    end
+
   end
 
   describe ".observations" do

@@ -156,6 +156,8 @@ module Quality
     # (e.g. residential streets, share_busway) the width is not considered, as
     # parked cars, wide busses, etc. make the width of the street meaningless.
     def rate_width
+      all_path_bike_oneway = val("bicycle:oneway") || val("oneway:bicycle")
+
       values(:width).map do |side, width|
         next if width.nil?
 
@@ -168,7 +170,7 @@ module Quality
         when "crossing"              then :track_dual
         when "track", "opposite_track", "sidepath", "yes" then
           segregated = cycleway_val(side, tag: "segregated")
-          oneway = cycleway_val(side, tag: "oneway") || val("bicycle:oneway")
+          oneway = cycleway_val(side, tag: "oneway") || all_path_bike_oneway
           oneway ||= val("oneway") if val("highway") == "cycleway"
 
           shared_with_pedestrians = NO_VALUES.include?(segregated)
@@ -187,24 +189,26 @@ module Quality
         # if there are no special cycleway tags, check if this is a totally
         # separate cycleway/footpath
         internal_type ||= begin
-          oneway = YES_VALUES.include?(val("oneway:bicycle") || val("oneway"))
-
-          foot_disallowed_explicitly = NO_VALUES.include?(val("foot"))
-          foot_disallowed_implicitly = val("highway") == "cycleway" && val("foot").nil?
-          bicycle_only = foot_disallowed_explicitly || foot_disallowed_implicitly
+          oneway = YES_VALUES.include?(all_path_bike_oneway || val("oneway"))
 
           # width tag vs cycleway:width tag
           specific_width_given = val("width") != width
 
-          whole_width_for_bikes = specific_width_given || bicycle_only
+          foot_disallowed_explicitly = NO_VALUES.include?(val("foot"))
+          foot_disallowed_implicitly = val("highway") == "cycleway" && val("foot").nil?
+          bicycle_only = foot_disallowed_explicitly || foot_disallowed_implicitly
+          bicycle_only ||= specific_width_given
 
+          # shared with others, in relation to the width we're considering. So
+          # if there are segregated bike/pedestrians tracks and we have a
+          # specific width, we don't have to share with latter.
           raw[:shared_with_other_bikes] = !oneway
           raw[:shared_with_pedestrians] = !bicycle_only
 
           # dual direction cycleways that we have to share with pedestrians
           # probably require even more width, but it's not a common case, so
           # not going to handle it until it becomes an issue.
-          whole_width_for_bikes && oneway ? :track_single : :track_dual
+          bicycle_only && oneway ? :track_single : :track_dual
         end
 
         rating = width_compare(internal_type, width)
@@ -376,7 +380,6 @@ module Quality
             name: @route.name,
             quality: true,
             color: geo_props[:color],
-            osm_id: way.id
           },
           geometry: {
             type: "LineString",

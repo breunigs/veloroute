@@ -165,7 +165,7 @@ const showForKey = (image_key, avoidScrolling) => {
   }
   html += '</table>';
 
-  el.innerHTML = html + osmLink(details.osm_id);
+  el.innerHTML = html + osmLink(osm_id);
   if(!avoidScrolling && !wasScrolledIntoViewOnce) {
     wasScrolledIntoViewOnce = true;
     header.scrollIntoView({block: "start", behavior: "smooth"});
