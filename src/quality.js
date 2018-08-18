@@ -73,10 +73,11 @@ const tInternalType = (internalType, sharedWithBikes, sharedWithPedestrians) => 
 }
 
 const locPathPosition = {
-  shared: 'auf der Straße',
-  separate: 'ohne KFZ',
-  track: 'baulich getrennt',
-  lane: 'Radfahrstreifen'
+  shared:     'auf der Straße',
+  shared_bus: 'auf der Busspur',
+  separate:   'ohne KFZ',
+  track:      'baulich getrennt',
+  lane:       'Radfahrstreifen'
 }
 const tPathPosition = (pathPos) => {
   return locPathPosition[pathPos] || `<span title="interner Wert: ${pathPos.replace('"', '')}">Unbekannte Führung</span>`;

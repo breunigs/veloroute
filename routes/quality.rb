@@ -119,6 +119,7 @@ module Quality
         rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed
 
         path_position = :shared
+        path_position = :shared_bus if way_type == "share_busway"
         path_position = :separate if separate_track
         path_position = :track if next_to_street
         path_position = :lane if on_street
