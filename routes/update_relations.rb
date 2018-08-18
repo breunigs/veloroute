@@ -73,7 +73,7 @@ def resolve_names(routes)
   places = routes.flat_map(&:place_names_with_dir).uniq
 
   threads = []
-  slice_size = (places.size / 4.0).ceil
+  slice_size = (places.size / 2.0).ceil
   places.each_slice(slice_size) do |slice|
     threads << Thread.new do
       slice.map { |place| [place, place2bbox(place)] }
