@@ -50,6 +50,8 @@ def place_to_nominatim_query(place)
 end
 
 def place2bbox(place)
+  retries ||= 0
+
   url = "https://nominatim.openstreetmap.org/search/"
   url << URI.escape(place_to_nominatim_query(place))
   url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
@@ -67,6 +69,14 @@ def place2bbox(place)
 
   # switch order to MapboxGL one
   [bbox_2, bbox_0, bbox_3, bbox_1]
+rescue => e
+  warn "Nominatim query for #{place} failed. This was the #{retries+1}. try."
+  sleep 5
+  if (retries += 1) < 3
+    retry
+  else
+    raise e
+  end
 end
 
 def resolve_names(routes)
