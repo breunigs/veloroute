@@ -142,7 +142,7 @@ const observation2text = (topic, ratings, details) => {
   return html;
 };
 
-
+let wasScrolledIntoViewOnce = false;
 const showForKey = (image_key, avoidScrolling) => {
   const osm_id = key2id[image_key];
   const details = id2details[osm_id];
@@ -166,7 +166,10 @@ const showForKey = (image_key, avoidScrolling) => {
   html += '</table>';
 
   el.innerHTML = html + osmLink(details.osm_id);
-  if(!avoidScrolling) header.scrollIntoView();
+  if(!avoidScrolling && !wasScrolledIntoViewOnce) {
+    wasScrolledIntoViewOnce = true;
+    header.scrollIntoView({block: "start", behavior: "smooth"});
+  }
 }
 
 
