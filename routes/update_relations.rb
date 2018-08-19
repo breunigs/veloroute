@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "base64"
+require "digest"
 require "fileutils"
 require "json"
 require "parallel"
@@ -21,13 +22,22 @@ REPLACE_NAMES = {
   'Langenhorn' => 'Langenhorn Markt',
 }
 
+CONTENT_HASHED_FILENAMES = {}
+def write_with_hash(filename, content)
+  hash = Digest::MD5.hexdigest(content)
+  hashed_filename = filename.sub(/(\.[^.]+$)/, ".#{hash}\\1")
+  File.write("geo_tmp/#{hashed_filename}", content)
+  CONTENT_HASHED_FILENAMES[filename] = hashed_filename
+  hashed_filename
+end
+
 def build_map_geojsons(routes)
   collisions = Relation.build_collision_lookup(routes.map(&:relation))
 
   geojsons = routes.flat_map do |route|
     route.to_geojson(collisions)
   end
-  File.write("geo_tmp/routes.geojson", GeoJSON.join(geojsons).to_json)
+  write_with_hash("routes.geojson", GeoJSON.join(geojsons).to_json)
 
   markers = routes.flat_map(&:named_markers)
   File.write("geo_tmp/markers.json", markers.to_json)
@@ -35,7 +45,7 @@ end
 
 def build_quality(routes)
   quality_geojson = routes.flat_map(&:to_quality_geojson)
-  File.write("geo_tmp/quality.geojson", GeoJSON.join(quality_geojson).to_json)
+  write_with_hash("quality.geojson", GeoJSON.join(quality_geojson).to_json)
 
   css = (1..5).map do |grade|
     ".shortcoming.grade#{grade} { background: #{::Quality.grade2color(grade)} }"
@@ -132,8 +142,8 @@ def build_image_lists(routes)
   shortcomings.each do |name, details|
     images["quality"][name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
   end
+  write_with_hash("images.json", images.to_json)
 
-  File.write("geo_tmp/images.json", images.to_json)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 
@@ -168,7 +178,7 @@ if ENV['TEST'] == 'yes' && ENV['PRODUCTION'] != 'yes'
 end
 routes = routes.map { |route, details| Route.new(route, details) }
 
-tasks = %i[
+%i[
   build_quality
   build_map_geojsons
   resolve_names
@@ -176,11 +186,16 @@ tasks = %i[
   build_image_lists
   check_relation_connected
   write_gpx_files
-]
-Parallel.each(tasks) do |task|
-  def print(*args); end # somehow segfaults when forked
-  send(task, routes)
-end
+].map do |task|
+  Thread.new { send(task, routes) }
+end.each(&:join)
+
+File.write("geo_tmp/content_hashed_filenames.json", CONTENT_HASHED_FILENAMES.to_json)
+File.write("geo_tmp/preload.html", <<~PRELOAD_HTML
+  <link rel="prefetch" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['images.json']}">
+  <link rel="preload" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['routes.geojson']}" as="fetch" crossorigin="anonymous">
+PRELOAD_HTML
+)
 
 # swap old for new
 FileUtils.mv "geo", "geo_old" if Dir.exist?("geo")

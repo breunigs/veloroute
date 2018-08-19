@@ -1,5 +1,6 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
+import filenames from '../routes/geo/content_hashed_filenames.json'
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
 const slider = document.getElementById("slider");
@@ -23,7 +24,7 @@ let imageDataPromise = null;
 const getImageData = () => {
   if(imageData) return Promise.resolve(imageData);
   if(imageDataPromise) return imageDataPromise;
-  imageDataPromise = fetch('/routes/geo/images.json')
+  imageDataPromise = fetch(`/routes/geo/${filenames['images.json']}`)
     .then(response => response.json())
     .then(json => {
       imageData = json;

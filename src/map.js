@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import markers from '../routes/geo/markers.json';
+import filenames from '../routes/geo/content_hashed_filenames.json'
 import { readFromHash } from './state';
 
 const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
@@ -51,7 +52,8 @@ const addQualityClickListener = (...funcs) => {
 }
 
 const addSource = (name) => {
-  return fetch(`/routes/geo/${name}.geojson`)
+  const fn = filenames[`${name}.geojson`];
+  return fetch(`/routes/geo/${fn}`)
     .then(response => response.json())
     .then(json => {
       map.addSource(`source-${name}`, {
