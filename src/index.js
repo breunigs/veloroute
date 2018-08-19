@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality } from "./map";
+import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker } from "./map";
 import AbstractRoute from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from "./state";
@@ -9,7 +9,7 @@ import { addRouteChangeListener } from './state';
 
 const state = new State(map);
 const imagesPromise = import(/* webpackChunkName: "images" */ './images');
-const abstractRoute = new AbstractRoute(imagesPromise, state);
+const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
 
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
@@ -27,9 +27,6 @@ for(let el of document.querySelectorAll(".routing td a.icon")) {
     abstractRoute.showRoute(routeName);
   });
 }
-
-abstractRoute.showRoute(state.selectedRoute());
-
 
 const infoLinks = document.querySelectorAll(".show-main-text");
 for (let i = 0; i < infoLinks.length; i++) {

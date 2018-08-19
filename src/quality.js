@@ -1,3 +1,4 @@
+import shortcomings from '../shortcomings.json';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 
 const el = document.getElementById('quality');
@@ -144,12 +145,15 @@ const observation2text = (topic, ratings, details) => {
 };
 
 let wasScrolledIntoViewOnce = false;
-const showForKey = (image_key, avoidScrolling) => {
-  const osm_id = key2id[image_key];
-  const details = id2details[osm_id];
-  console.debug("Quality Details:", details);
-  if(!details) return;
+const maybeScrollIntoView = (avoidScrolling) => {
+  if(!avoidScrolling && !wasScrolledIntoViewOnce) {
+    wasScrolledIntoViewOnce = true;
+    header.scrollIntoView({block: "start", behavior: "smooth"});
+  }
+}
 
+const renderHtmlForWay = (details, osmId) => {
+  console.debug("Quality Details:", details);
   let obs = {};
   details.observations.forEach(ob => {
     const [_, side, topic, rating] = ob.match(/^([^_]+)_(.*)_([^_]+)$/);
@@ -165,31 +169,55 @@ const showForKey = (image_key, avoidScrolling) => {
     html += '</tr>'
   }
   html += '</table>';
-
-  el.innerHTML = html + osmLink(osm_id);
-  if(!avoidScrolling && !wasScrolledIntoViewOnce) {
-    wasScrolledIntoViewOnce = true;
-    header.scrollIntoView({block: "start", behavior: "smooth"});
-  }
+  html += osmLink(osmId);
+  return html;
 }
+
+const renderQualityMarkers = (createMarker, imagesPromise) => {
+  Object.entries(shortcomings).map(([name, details]) => {
+    createMarker(`shortcoming grade${details.grade}`, details.loc, '⚫', (e) => {
+      el.innerHTML = details.desc;
+      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, details.startImageIdx));
+    });
+  });
+};
 
 
 export class Quality {
-  constructor(state, imagesPromise) {
+  constructor(state, imagesPromise, createMarker) {
     this._state = state;
     this._previousQualityKey = null;
+    this._imagesPromise = imagesPromise;
 
-    this.showForKey = showForKey.bind(this);
+    this.showForKey = this.showForKey.bind(this);
     this.indicatorListener = this.indicatorListener.bind(this);
 
-    imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener))
-    showForKey(this._state.currentImage(), true);
+    renderQualityMarkers(createMarker, this._imagesPromise);
+    this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener))
+    this.showForKey(this._state.currentImage(), true);
   }
 
   async indicatorListener(_lon, _lat, _ca, key) {
     if(this._state.selectedRoute() !== "quality") return;
     if(this._previousQualityKey === key) return;
-    this._previousQualityKey = key;
-    showForKey(key);
+    this.showForKey(key);
+  }
+
+  async showForKey(imageKey, avoidScrolling) {
+    const osmId = key2id[imageKey];
+    const details = id2details[osmId];
+    this._previousQualityKey = imageKey;
+
+    if(details) {
+      el.innerHTML = renderHtmlForWay(details, osmId);
+    } else {
+      Object.entries(shortcomings).find(([name, details]) => {
+        if(details.images.indexOf(imageKey) < 0) return false;
+        el.innerHTML = details.desc;
+        return true;
+      });
+    }
+
+    maybeScrollIntoView(avoidScrolling);
   }
 }

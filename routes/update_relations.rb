@@ -7,9 +7,10 @@ require "parallel"
 
 require_relative "geojson"
 require_relative "gpx"
+require_relative "mapillary"
+require_relative "quality"
 require_relative "relation"
 require_relative "route"
-require_relative "quality"
 require_relative "web"
 
 Dir.chdir(__dir__)
@@ -35,6 +36,11 @@ end
 def build_quality(routes)
   quality_geojson = routes.flat_map(&:to_quality_geojson)
   File.write("geo_tmp/quality.geojson", GeoJSON.join(quality_geojson).to_json)
+
+  css = (1..5).map do |grade|
+    ".shortcoming.grade#{grade} { background: #{::Quality.grade2color(grade)} }"
+  end.join("\n")
+  File.write('geo_tmp/shortcomings.css', css)
 
   quality_export = Parallel.map(routes) do |r|
     def print(*args); end # somehow segfaults when forked
@@ -120,6 +126,13 @@ def build_image_lists(routes)
     debug << route.to_image_debug
     [route.name, route.to_image_export]
   end.to_h
+
+  images["quality"] = {}
+  shortcomings = JSON.parse(File.read(File.join(__dir__, "..", "shortcomings.json")))
+  shortcomings.each do |name, details|
+    images["quality"][name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
+  end
+
   File.write("geo_tmp/images.json", images.to_json)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end

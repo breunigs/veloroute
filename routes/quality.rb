@@ -6,6 +6,22 @@ require_relative "joiner"
 require_relative "relation"
 
 module Quality
+  GRADIENT = Gradient::Map.new(
+    Gradient::Point.new(0.00, Color::RGB.new(0,  142,  4), 1),
+    Gradient::Point.new(0.25, Color::RGB.new(105, 204, 0), 1),
+    Gradient::Point.new(0.50, Color::RGB.new(242, 234, 0), 1),
+    Gradient::Point.new(0.75, Color::RGB.new(239,  91, 0), 1),
+    Gradient::Point.new(1.00, Color::RGB.new(188,   0, 0), 1),
+  )
+
+  def self.grade2color(grade)
+    # i.e. no observations and no rating possible
+    return '#9A42FF' if grade == '?'
+
+    pos = [grade / 5.0, 1].min
+    '#' << GRADIENT.at(pos).color.hex
+  end
+
   class Observation
     RATING_TO_GRADE = {
       excellent: 0,
@@ -407,31 +423,13 @@ module Quality
           grade = Observation.judge(obs)
           judged[way] = {
             grade: grade,
-            color: grade2color(grade),
+            color: ::Quality.grade2color(grade),
             observations: obs.map(&:to_s).sort,
             **raw_values
           }
         end
         judged
       end
-    end
-
-    def grade2color(grade)
-      # i.e. no observations and no rating possible
-      return '#9A42FF' if grade == '?'
-
-      pos = [grade / 5.0, 1].min
-      '#' << gradient.at(pos).color.hex
-    end
-
-    def gradient
-      @gradient ||= Gradient::Map.new(
-        Gradient::Point.new(0.00, Color::RGB.new(0,  142,  4), 1),
-        Gradient::Point.new(0.25, Color::RGB.new(105, 204, 0), 1),
-        Gradient::Point.new(0.50, Color::RGB.new(242, 234, 0), 1),
-        Gradient::Point.new(0.75, Color::RGB.new(239,  91, 0), 1),
-        Gradient::Point.new(1.00, Color::RGB.new(188,   0, 0), 1),
-      )
     end
   end
 end

@@ -1,5 +1,5 @@
 ##############################################################
-# copy fresh data from OSM                                   #
+# copy fresh data from OSM / Mapillary                       #
 ##############################################################
 
 FROM debian:unstable-slim as geodata
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
 RUN bundle install
 
-COPY routes.json /app/
+COPY routes.json shortcomings.json /app/
 COPY routes/ /app/routes/
 COPY spec/ /app/spec/
 
@@ -64,7 +64,6 @@ COPY favicons/ favicons/
 RUN favicons/render.sh
 
 COPY --from=webpack /app/routes/geo routes/geo/
-
 COPY --from=webpack /bundled .
 
 ARG PRODUCTION

@@ -157,24 +157,28 @@ const renderRoutes = (initialRoute) => {
   }, 'route-casing');
 };
 
+const createMarker = async (classes, pos, text, clickHandler) => {
+  let el = document.createElement('div');
+  el.className = classes;
+  el.innerText = text;
+  el.addEventListener("click", clickHandler);
+
+  // keep size in sync with base.scss!
+  new mapboxgl.Marker(el, {offset: [0, 5]})
+    .setLngLat(pos)
+    .addTo(map);
+}
+
 const renderIcons = () => {
   markers.forEach(function(marker) {
     const [lon, lat, name] = marker;
     const lngLat = new mapboxgl.LngLat(lon, lat);
 
-    let el = document.createElement('div');
-    el.className = `icon icon${name}`;
-    el.innerText = name;
-    el.addEventListener("click", (e) => {
+    createMarker(`icon icon${name}`, lngLat, name, (e) => {
       routeClickListeners.forEach((f) => f(name, lngLat));
     });
-
-    // keep size in sync with base.scss!
-    new mapboxgl.Marker(el, {offset: [0, 5]})
-      .setLngLat(lngLat)
-      .addTo(map);
   });
-};
+}
 
 const genDiv = (id) => {
   const el = document.createElement('div');
@@ -230,26 +234,31 @@ const moveTo = (lngLat) => {
   }
 }
 
-let clickableLayers = { layers: ['layer-routes'] };
+
+
 let qualityLoaded = false;
+const loadQuality = () => {
+  if(qualityLoaded) return false;
+  qualityLoaded = true;
+  addSource("quality").then(() => {
+    renderQuality();
+    clickableLayers["layers"].push('layer-quality');
+    toggleQuality("quality");
+  });
+  return true;
+}
+
+let clickableLayers = { layers: ['layer-routes'] };
 let routesLoaded = false;
 const bodyClasses = document.getElementsByTagName('body')[0].classList;
 async function toggleQuality(shownRoute) {
   if(shownRoute === "quality") {
-    bodyClasses.add('hide-route-markers');
-    if(!qualityLoaded) {
-      qualityLoaded = true;
-      addSource("quality").then(() => {
-        renderQuality();
-        clickableLayers["layers"].push('layer-quality');
-        toggleQuality("quality");
-      });
-      return;
-    }
+    bodyClasses.add('toggle-route-markers');
+    if(loadQuality()) return;
     map.setLayoutProperty('layer-quality', 'visibility', 'visible');
     if(routesLoaded) map.setLayoutProperty('layer-routes', 'visibility', 'none');
   } else if(qualityLoaded) {
-    bodyClasses.remove('hide-route-markers');
+    bodyClasses.remove('toggle-route-markers');
     if(routesLoaded) map.setLayoutProperty('layer-routes', 'visibility', 'visible');
     map.setLayoutProperty('layer-quality', 'visibility', 'none');
   }
@@ -296,4 +305,4 @@ map.on('style.load', () => {
 
 });
 
-export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality };
+export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker };

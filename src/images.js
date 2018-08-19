@@ -34,13 +34,16 @@ const getImageData = () => {
 
 const route = () => {
   if(!status.routeName) return Promise.resolve(null);
-  return getImageData().then(data => data[status.routeName]);
+  return getImageData().then(data => {
+    return data[status.routeName]
+  });
 }
 
 const images = () => {
   return route()
     .then(r => {
-      return r ? r[`${status.direction}_${status.branch}`] : null;
+      if(!r) return null;
+      return r[`${status.direction}_${status.branch}`] || r[status.branch];
     })
 }
 
@@ -302,4 +305,4 @@ playstop.addEventListener("click", handlePlayStop);
 document.addEventListener("keydown", handleEsc);
 
 
-export { viewer as mlyViewer, addIndicatorListener, showCloseImage };
+export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute };

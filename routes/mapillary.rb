@@ -7,6 +7,57 @@ module Mapillary
   API_URL = "https://a.mapillary.com/v3"
   API_KEY = "MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2"
 
+  def self.query_private_api(query)
+    escaped = URI.escape(query, %|[],":|)
+    private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{escaped}&method=get|
+    get(private_api_url)
+  end
+
+  def self.get_corrected_image_data(img_keys)
+    res = query_private_api(%|[["imageByKey",#{img_keys.to_json},["cca","cl"]]]|)
+    img_keys.map do |key|
+      entry = res.dig("jsonGraph", "imageByKey", key)
+      bearing = entry.dig("cca", "value")
+      lonLat = [entry.dig("cl", "value", "lon"), entry.dig("cl", "value", "lat")]
+
+      # most likely the image has been deleted in the meantime, but their cache is stale
+      next if bearing.nil? || lonLat.any?(&:nil?)
+
+      {key: key, bearing: bearing, lonLat: lonLat}
+    end
+  end
+
+  class ManualSequence
+    def initialize(image_keys)
+      @image_keys = image_keys
+    end
+
+    attr_reader :image_keys
+
+    def to_json_export
+      {
+        keys: image_keys,
+        loc: coords.zip(bearings).map(&:flatten)
+      }
+    end
+
+    def bearings
+      corrected_data.map { |c| c[:bearing].round }
+    end
+
+    def coords
+      corrected_data.map { |c| GeoJSON.round_coord(c[:lonLat]) }
+    end
+
+    private
+
+    def corrected_data
+      @corrected_data ||= begin
+        ::Mapillary.get_corrected_image_data(image_keys)
+      end
+    end
+  end
+
   class StitchedSequence
     def initialize(list)
       @list = list
@@ -87,12 +138,6 @@ module Mapillary
 
     private
 
-    def query_private_api(query)
-      escaped = URI.escape(query, %|[],":|)
-      private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{escaped}&method=get|
-      get(private_api_url)
-    end
-
     def line_as_geojson
       return nil if corrected_data.size <= 1
       {
@@ -135,17 +180,7 @@ module Mapillary
     def corrected_data
       @corrected_data ||= begin
         image_keys_in_range.each_slice(100).flat_map do |img_keys|
-          res = query_private_api(%|[["imageByKey",#{img_keys.to_json},["cca","cl"]]]|)
-          img_keys.map do |key|
-            entry = res.dig("jsonGraph", "imageByKey", key)
-            bearing = entry.dig("cca", "value")
-            lonLat = [entry.dig("cl", "value", "lon"), entry.dig("cl", "value", "lat")]
-
-            # most likely the image has been deleted in the meantime, but their cache is stale
-            next if bearing.nil? || lonLat.any?(&:nil?)
-
-            {key: key, bearing: bearing, lonLat: lonLat}
-          end
+          ::Mapillary.get_corrected_image_data(img_keys)
         end.compact
       end
     end

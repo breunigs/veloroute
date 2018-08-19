@@ -183,7 +183,7 @@ $control-size: 2em;
   font-weight: bold;
 }
 
-.icon {
+.icon, .shortcoming {
   width: 1.5em;
   height: 1.5em;
   display: inline-block;
@@ -209,6 +209,7 @@ a.icon:hover {
   cursor: pointer;
 }
 
+.shortcoming,
 .route-icon,
 .icon {
   color: #fff;
@@ -402,8 +403,19 @@ span[title] {
   border-bottom: 0.05em dotted #000;
 }
 
-.hide-route-markers {
+
+.shortcoming.mapboxgl-marker {
+  display: none;
+}
+
+@import 'routes/geo/shortcomings';
+
+.toggle-route-markers {
   .icon.mapboxgl-marker {
     display: none;
+  }
+
+  .shortcoming.mapboxgl-marker {
+    display: block;
   }
 }
