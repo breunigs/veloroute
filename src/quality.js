@@ -77,6 +77,7 @@ const locPathPosition = {
   shared:     'auf der Straße',
   shared_bus: 'auf der Busspur',
   separate:   'ohne KFZ',
+  crossing:   'Kreuzung',
   track:      'baulich getrennt',
   lane:       'Radfahrstreifen'
 }
