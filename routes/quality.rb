@@ -309,15 +309,24 @@ module Quality
     end
 
     def sides_to_consider
-      return [:left, :right] unless oneway?
+      if oneway?
+        if forward?
+          return [:left] if no?('cycleway:right') && include?('cycleway:left', :opposite)
+          [:right]
+        elsif backward?
+          return [:right] if no?('cycleway:left') && include?('cycleway:right', :opposite)
+          [:left]
+        else
+          [:left, :right]
+        end
+      else # both directions
 
-      if forward?
-        return [:left] if no?('cycleway:right') && include?('cycleway:left', :opposite)
-        [:right]
-      elsif backward?
-        return [:right] if no?('cycleway:left') && include?('cycleway:right', :opposite)
-        [:left]
-      else
+        # prefer dual direction cycleway over street
+        has_left = !no?('cycleway:left')
+        has_right = !no?('cycleway:right')
+        return [:left] if has_left && !has_right && NO_VALUES.include?(val('cycleway:left:oneway'))
+        return [:right] if !has_left && has_right && NO_VALUES.include?(val('cycleway:right:oneway'))
+
         [:left, :right]
       end
     end

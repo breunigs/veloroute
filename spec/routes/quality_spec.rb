@@ -103,7 +103,14 @@ describe Quality::Way, type: :model do
         left_shared_with_pedestrians: false,
       })
     end
+  end
 
+  describe ".sides_to_consider" do
+    it "only considers side with the dual bike way (ignores street)" do
+      subject = way({"cycleway:right:oneway" => "no", "cycleway:right:segregated" => "yes", "cycleway:right:surface" => "paving_stones", "cycleway:right:width" => "2", "cycleway:right" => "track", "oneway:bicycle" => "no", "oneway" => "yes", "sidewalk" => "right"})
+
+      expect(subject.send(:sides_to_consider)).to eq [:right]
+    end
   end
 
   describe ".observations" do
