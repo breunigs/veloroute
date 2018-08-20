@@ -63,8 +63,8 @@ const tRating = (rating) => {
 
 const locInternalType = {
   track_single: '<span title="Mindestbreite: 1,6m. Regelbreite: 2,0m.">eigener Radweg</span>',
-  track_dual_true_false: '<span title="Mindestbreite: 2,5m. Regelbreite: 3,0m. Für gemischte Rad- und Fußwege kenne ich keine expliziten Breitenangaben. Daher werden diese Wege wie Zweirichtungsradwege behandelt.">Geteilter Rad/Fußweg</span>',
-  track_dual_false_true: '<span title="Mindestbreite: 2,5m. Regelbreite: 3,0m.">Zweirichtungsradweg</span>',
+  track_dual_false_true: '<span title="Mindestbreite: 2,5m. Regelbreite: 3,0m. Für gemischte Rad- und Fußwege kenne ich keine expliziten Breitenangaben. Daher werden diese Wege wie Zweirichtungsradwege behandelt.">Geteilter Rad/Fußweg</span>',
+  track_dual_true_false: '<span title="Mindestbreite: 2,5m. Regelbreite: 3,0m.">Zweirichtungsradweg</span>',
   track_dual_true_true: '<span title="Mindestbreite: 2,5m. Regelbreite: 3,0m. Für gemischte Rad- und Fußwege kenne ich keine expliziten Breitenangaben. Daher werden diese Wege wie Zweirichtungsradwege behandelt.">Zweirichtungsradweg und Fußweg</span>',
   lane: '<span title="Mindestbreite: 1,25m. Regelbreite: 1,6m. Durchgezogene Linie, darf von KFZ nicht benutzt werden (außer zum Queren).">Radfahrstreifen</span>',
   shared_lane: '<span title="Mindestbreite: 1,25m. Regelbreite: 1,5m. Gestrichelte Linie, darf von KFZ im Bedarfsfall befahren werden. Halten ist für kurze Zeit erlaubt.">Schutzstreifen</span>'
