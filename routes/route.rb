@@ -240,6 +240,7 @@ class Route
 
   def get_conn(place2route, place)
     return [] unless place
+    raise "Invalid place2route: expected string => route" unless place2route.keys.all? { |p| p.is_a?(String) }
     candidates = place2route[place.name] || []
     candidates = candidates.select { |route| route != self }
     # do not show connections for extremely well connected points (just Rathaus as of now)

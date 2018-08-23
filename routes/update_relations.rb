@@ -66,7 +66,7 @@ def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
   routes.each do |route|
-    route.place_names.each do |place|
+    route.place_names.map(&:to_s).each do |place|
       place2route[place] ||= []
       place2route[place] << route
     end
