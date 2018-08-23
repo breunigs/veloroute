@@ -14,6 +14,10 @@ const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
 
+const scrollTo = (selector) => {
+  document.querySelector(selector).scrollIntoView({block: "start", behavior: "smooth"});
+}
+
 document.addEventListener('click', ev => {
   if(ev.defaultPrevented) return;
   if(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
@@ -32,6 +36,7 @@ document.addEventListener('click', ev => {
 
   if(anchor.classList.contains('place')) {
     const placeName = anchor.textContent;
+    scrollTo('#map');
     map.fitBounds(places[placeName], {maxZoom: 14.5});
     ev.preventDefault();
     return;
@@ -39,7 +44,7 @@ document.addEventListener('click', ev => {
 
   const path = url.pathname.substr(1);
   if(path === "" && url.hash != "") {
-    document.querySelector(url.hash).scrollIntoView({block: "start", behavior: "smooth"});
+    scrollTo(url.hash);
     return ev.preventDefault();
   }
 
