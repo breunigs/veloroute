@@ -163,7 +163,10 @@ const createMarker = async (classes, pos, text, clickHandler) => {
   let el = document.createElement('div');
   el.className = classes;
   el.innerText = text;
-  el.addEventListener("click", clickHandler);
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    clickHandler(e)
+  });
 
   // keep size in sync with base.scss!
   new mapboxgl.Marker(el, {offset: [0, 5]})

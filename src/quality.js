@@ -179,7 +179,6 @@ const renderQualityMarkers = (createMarker, imagesPromise) => {
     createMarker(`shortcoming grade${details.grade}`, details.loc, '⚫', (e) => {
       el.innerHTML = details.desc;
       imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, details.startImageIdx));
-      e.stopPropagation();
     });
   });
 };
