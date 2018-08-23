@@ -46,6 +46,7 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, "build"),
       compress: false,
       port: 9000,
+      historyApiFallback: true,
       headers: {
         "Content-Security-Policy": [
           "worker-src blob:",

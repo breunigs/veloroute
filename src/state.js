@@ -8,12 +8,13 @@ const START_ROUTE = null;
 
 const readFromHash = () => {
   const s = window.location.hash.replace('#', '').split('/');
+  const routeFromPath = window.location.pathname.substr(1);
   return {
     zoom: +s[0] || START_ZOOM,
     lat: +s[1] || START_LAT,
     lon: +s[2] || START_LON,
     image: s[3] || START_IMAGE,
-    route: s[4] || START_ROUTE
+    route: routeFromPath || s[4] || START_ROUTE
   }
 }
 
@@ -68,16 +69,16 @@ class State {
   }
 
   _setCurrentRoute(routeName) {
-    if(!routeName) return;
+    if(!routeName) return this._resetRoute();
     this._status.route = routeName;
     this._routeChanged();
-    this._slowUpdateHash();
+    this._updateHash();
   }
 
   _resetRoute() {
     this._status.route = null;
     this._routeChanged();
-    this._slowUpdateHash();
+    this._updateHash();
   }
 
   imageSetter() {
@@ -100,13 +101,14 @@ class State {
     }, 500)
   }
 
-  _hashString() {
+  _buildUrl() {
     const s = this._status;
-    return `#${s.zoom}/${s.lat}/${s.lon}/${s.image}/${s.route || ""}`;
+    return `/${s.route || ""}#${s.zoom}/${s.lat}/${s.lon}/${s.image}`;
   }
 
   _updateHash() {
-    window.history.replaceState(window.history.state, '', this._hashString());
+    if(updateTimer) window.clearTimeout(updateTimer);
+    window.history.replaceState(window.history.state, '', this._buildUrl());
   }
 
   _routeChanged() {

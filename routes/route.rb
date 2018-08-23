@@ -7,9 +7,10 @@
 require_relative "geojson"
 require_relative "mapillary"
 require_relative "markers"
+require_relative "place"
+require_relative "quality"
 require_relative "relation"
 require_relative "svg_pather"
-require_relative "quality"
 
 
 class Route
@@ -47,25 +48,25 @@ class Route
   end
 
   def place_names
-    place_names_with_dir.reject { |stop| is_dir?(stop) }.freeze
+    place_names_with_dir.reject(&:is_dir?)
   end
 
   def place_names_with_dir
-    @parsed_json["places"].flatten.uniq.freeze
+    @parsed_json["places"].flatten.uniq.map { |place| Place.find(place) }
   end
 
   def places
     @parsed_json["places"].map do |stops|
-      stops.reject { |stop| is_dir?(stop) }
+      stops.map { |stop| Place.find(stop) }.reject(&:is_dir?)
     end
   end
 
   def main_route
-    @parsed_json["places"].first
+    @main_route ||= @parsed_json["places"].first.map { |place| Place.find(place) }
   end
 
   def secondary_route
-    @parsed_json["places"].last
+    @parsed_json["places"].last.map { |place| Place.find(place) }
   end
 
   def visits?(place)
@@ -82,7 +83,7 @@ class Route
 
   def gpx
     fill = lambda do |text, idx|
-      text.gsub('{FIRST}', places[idx].first).gsub('{LAST}', places[idx].last)
+      text.gsub('{FIRST}', places[idx].first.to_s).gsub('{LAST}', places[idx].last.to_s)
     end
 
     @parsed_json["gpx"].map.with_index do |info, idx|
@@ -126,7 +127,7 @@ class Route
       right, left = *row # switch order
       next_right, next_left = *(route_array[idx + 1] || [nil, nil])
       if left && right && !dual
-        if is_dir?(left)
+        if left.is_dir?
           # edge case: avoid splitting just to indicate a follow up location
           render_place_line(svg, :center, right, next_right)
           render_place_conn(svg, :center, place2route, :right, right)
@@ -137,8 +138,8 @@ class Route
 
           svg.split_conn(:left) if has_conn?(place2route, left)
           svg.split_conn(:right) if has_conn?(place2route, right)
-          svg.stop(:left) if next_left.nil? && !is_dir?(left)
-          svg.stop(:right) if next_right.nil? && !is_dir?(right)
+          svg.stop(:left) if next_left.nil? && !left.is_dir?
+          svg.stop(:right) if next_right.nil? && !right.is_dir?
         end
       elsif dual
         render_place_line(svg, :left, left, next_left)
@@ -179,7 +180,7 @@ class Route
       right, left = *row # switch order
 
       # edge case: avoid splitting just to indicate a follow up location
-      dual ||= left && right unless is_dir?(left)
+      dual ||= left && right unless left&.is_dir?
 
       left_conns = get_conn(place2route, left).map(&:to_html_icon).sort.join(" ")
       right_conns = get_conn(place2route, right).map(&:to_html_icon).sort.join(" ")
@@ -190,8 +191,8 @@ class Route
 
       html << <<~EOF
         <tr>
-          <td #{is_dir?(left) ? %|class="dir"| : ""}>#{left_conns} #{link left}</td>
-          <td #{is_dir?(right) ? %|class="dir"| : ""}>#{link right} #{right_conns}</td>
+          <td #{left&.is_dir? ? %|class="dir"| : ""}>#{left_conns} #{left&.link}</td>
+          <td #{right&.is_dir? ? %|class="dir"| : ""}>#{right&.link} #{right_conns}</td>
         </tr>
       EOF
     end
@@ -203,7 +204,7 @@ class Route
   end
 
   def to_html_icon
-    %|<a class="icon icon#{name}">#{name}</a>|
+    %|<a href="/#{name}" class="icon icon#{name}">#{name}</a>|
   end
 
   def to_css
@@ -231,10 +232,6 @@ class Route
     name == other_route.name
   end
 
-  def is_dir?(place)
-    place&.start_with?("(")
-  end
-
   private
 
   def quality
@@ -256,18 +253,13 @@ class Route
 
   def render_place_line(svg, pos, name, next_name)
     return if name.nil?
-    svg.line(pos, is_dir?(name))
-    svg.stop(pos) if next_name.nil? && !is_dir?(name)
+    svg.line(pos, name.is_dir?)
+    svg.stop(pos) if next_name.nil? && !name.is_dir?
   end
 
   def render_place_conn(svg, pos, place2route, dir, name)
     return unless has_conn?(place2route, name)
     svg.conn(pos, dir)
-  end
-
-  def link(name)
-    return "" unless name
-    %|<a>#{name}</a>|
   end
 
   def snap(coord)

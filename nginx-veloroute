@@ -44,6 +44,10 @@ server {
     expires 24h;
   }
 
+  location ~ /(\d|1[01234]|quality)$ {
+    try_files '' /index.html =404;
+  }
+
   access_log /var/log/nginx/veloroute.hamburg.log;
   root       /srv/veloroute/build;
   index      index.html;

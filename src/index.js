@@ -14,30 +14,39 @@ const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
 
-for(let el of document.querySelectorAll(".routing td a:not(.icon)")) {
-  el.addEventListener('click', evt => {
-    const placeName = evt.target.textContent;
+document.addEventListener('click', ev => {
+  if(ev.defaultPrevented) return;
+  if(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
+
+  let anchor = null;
+  for (let n = ev.target; n.parentNode; n = n.parentNode) {
+    if (n.nodeName !== 'A') continue;
+    anchor = n;
+    break;
+  }
+  if(!anchor) return;
+  if(anchor.hasAttribute('download')) return;
+
+  const url = new URL(anchor.href);
+  if(url.origin !== location.origin) return;
+
+  if(anchor.classList.contains('place')) {
+    const placeName = anchor.textContent;
     map.fitBounds(places[placeName], {maxZoom: 14.5});
-  });
-}
+    ev.preventDefault();
+    return;
+  }
 
-for(let el of document.querySelectorAll(".routing td a.icon")) {
-  el.addEventListener('click', evt => {
-    const routeName = evt.target.textContent;
-    abstractRoute.showRoute(routeName);
-  });
-}
+  const path = url.pathname.substr(1);
+  if(path.match(/^(quality|\d|1[01234])$/) || url.pathname === "/") {
+    ev.preventDefault();
+    return state.routeSetter()(path);
+  }
+  // give some debugging info
+  fetch(`/broken/link?${url}`)
+  ev.preventDefault();
+}, false);
 
-const infoLinks = document.querySelectorAll(".show-main-text");
-for (let i = 0; i < infoLinks.length; i++) {
-  infoLinks[i].addEventListener("click", state.routeResetter());
-}
-const qualityLinks = document.querySelectorAll(".show-quality");
-for (let i = 0; i < qualityLinks.length; i++) {
-  qualityLinks[i].addEventListener("click", () => {
-    state.routeSetter()("quality");
-  });
-}
 
 imagesPromise.then(({mlyViewer, addIndicatorListener, showCloseImage}) => {
   addIndicatorListener(renderIndicator, state.imageSetter());

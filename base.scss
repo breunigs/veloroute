@@ -114,9 +114,10 @@ $control-size: 2em;
   color: #fff;
   height: $header-height;
   line-height: $header-height;
+  text-decoration: none;
+  display: block;
 
   h2 {
-    cursor: pointer;
     margin: 0;
   }
 }

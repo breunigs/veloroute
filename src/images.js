@@ -10,6 +10,8 @@ const direction = document.getElementById("direction");
 const playstop = document.getElementById("playstop");
 const controls = document.getElementById("controls");
 
+const GENERIC_START_IMAGE = 'c4B6txFX6Xgza8iWNFzSYw';
+
 let status = {
   routeName: readFromHash().route,
   direction: "outward",
@@ -288,11 +290,13 @@ const hasLoadedDesiredImage = (loadedImage) => {
 let currentNode = null;
 viewer.on(Viewer.nodechanged, function (node) {
   currentNode = node;
+  if(node.key === GENERIC_START_IMAGE) return;
   if(hasLoadedDesiredImage(node.key)) {
     indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
   }
 });
 viewer.on(Viewer.bearingchanged, function (bearing) {
+  if(currentNode.key === GENERIC_START_IMAGE) return;
   if(hasLoadedDesiredImage(currentNode.key)) {
     indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
   }
