@@ -38,7 +38,12 @@ document.addEventListener('click', ev => {
   }
 
   const path = url.pathname.substr(1);
-  if(path.match(/^(quality|\d|1[01234])$/) || url.pathname === "/") {
+  if(path === "" && url.hash != "") {
+    document.querySelector(url.hash).scrollIntoView({block: "start", behavior: "smooth"});
+    return ev.preventDefault();
+  }
+
+  if(path.match(/^(quality|\d|1[01234])$/) || path === "") {
     ev.preventDefault();
     return state.routeSetter()(path);
   }
