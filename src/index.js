@@ -24,7 +24,7 @@ document.addEventListener('click', ev => {
     anchor = n;
     break;
   }
-  if(!anchor) return;
+  if(!anchor || !anchor.href) return;
   if(anchor.hasAttribute('download')) return;
 
   const url = new URL(anchor.href);
