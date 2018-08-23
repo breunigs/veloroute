@@ -33,9 +33,9 @@ describe Route, type: :model do
 
 
   it "only splits routes when necessary" do
-    expect(x_simple_route.route_array).to eq [
-      ["Some", nil],
-      ["Nice", nil],
+    expect(x_simple_route.route_array.map { |s| s.map(&:to_s) }).to eq [
+      ["Some", ""],
+      ["Nice", ""],
       ["Place", "Area"],
     ]
   end

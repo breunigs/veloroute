@@ -240,7 +240,7 @@ class Route
 
   def get_conn(place2route, place)
     return [] unless place
-    candidates = place2route[place] || []
+    candidates = place2route[place.name] || []
     candidates = candidates.select { |route| route != self }
     # do not show connections for extremely well connected points (just Rathaus as of now)
     candidates.size >= 4 ? [] : candidates

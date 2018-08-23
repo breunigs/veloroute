@@ -30,9 +30,10 @@ class Place
   end
 
   def url
+    return "/" if bbox.any?(&:nil?)
     # follow state.js format
-    lat = (@bbox[0] + bbox[2])/2.0
-    lon = (@bbox[1] + bbox[3])/2.0
+    lat = (bbox[0] + bbox[2])/2.0
+    lon = (bbox[1] + bbox[3])/2.0
     "/#13/#{lon}/#{lat}"
   end
 
