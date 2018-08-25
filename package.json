@@ -36,8 +36,9 @@
     "yarn": "^1.7"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-rc.3",
-    "promise-polyfill": "^8.1.0",
+    "core-js": "^2.5.7",
+    "fast-async": "^6.3.7",
+    "url-polyfill": "^1.0.14",
     "whatwg-fetch": "^2.0.4"
   }
 }

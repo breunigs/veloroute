@@ -305,6 +305,10 @@ table.routing {
   }
 }
 
+.old-browser table.routing tr:first-child {
+  background: transparent;
+}
+
 .desc {
   display: none;
 }
@@ -419,4 +423,15 @@ span[title] {
   .shortcoming.mapboxgl-marker {
     display: block;
   }
+}
+#outdated-browser {
+  background: #ECD0D0;
+  padding-top: 0.01rem;
+  padding-bottom: 0.01rem;
+  margin-bottom: 0.1rem;
+  display: none;
+}
+
+.old-browser #outdated-browser {
+  display: block;
 }

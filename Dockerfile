@@ -49,6 +49,12 @@ RUN \
     webpack --output-path /bundled/ ; \
   fi
 
+# ensure we're linking the correct file from the checker. Unfortunately Webpack
+# doesn't expose filenames within dependencies, it allows only to "import" them.
+# That uses a Promise however, which we don't have at this point. So the name
+# is simply hardcoded.
+WORKDIR /bundled
+RUN sed -i "s/POLYFILL_LOADER_FILENAME/$(ls -1 bundle.polyfillLoader.*js)/" bundle.polyfillChecker.*.js
 
 ##############################################################
 # COMBINING AND FINISHING TOUCHES                            #
@@ -72,7 +78,7 @@ ARG PRODUCTION
 RUN if [ "$PRODUCTION" = "yes" ]; then optipng -q -o7 favicons/*.png; fi
 RUN if [ "$PRODUCTION" = "yes" ]; then \
     FILES=$(find . -type f -not -iname '*.png'); \
-    echo "PRODUCTIONing these files:\n${FILES}"; \
+    echo "Compressing these files:\n${FILES}"; \
     brotli -f --best $FILES & \
     gzip -f -k --best $FILES & \
     wait; \

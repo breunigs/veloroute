@@ -11,7 +11,8 @@ module.exports = (env, argv) => {
     devtool: "source-map",
     mode: "development",
     entry: {
-      polyfills: "./src/polyfills.js",
+      polyfillLoader: "./src/polyfill-loader.js",
+      polyfillChecker: "./src/polyfill-checker.js",
       app: "./src/index.js"
     },
     output: {
@@ -49,8 +50,15 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-syntax-dynamic-import']
+              presets: [["@babel/env", {
+                targets: {
+                  browsers: ["last 1 versions", "ie >= 11"]
+                },
+                exclude: ["transform-regenerator", "transform-async-to-generator"],
+                debug: false,
+                useBuiltIns: false
+              }]],
+              plugins: ["@babel/plugin-syntax-dynamic-import", "module:fast-async"]
             },
           }
         }
@@ -70,11 +78,6 @@ module.exports = (env, argv) => {
         ].join(" ; ")
       }
     },
-    optimization: {
-      splitChunks: {
-        chunks: 'all'
-      }
-    },
     plugins: [
       new MiniCssExtractPlugin({
         filename: "base.[contenthash].css"
@@ -85,11 +88,12 @@ module.exports = (env, argv) => {
           collapseWhitespace: true,
           removeComments: true
         },
+        excludeChunks: [ 'polyfillLoader' ],
         hash: false
       }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {
-          test: /(images|app|polyfills).*\.js$/,
+          test: /(images|app|polyfillChecker).*\.js$/,
           chunks: 'all'
         }
       }),
