@@ -12,7 +12,7 @@ class Review
 
   def mentioned_places
     return [] unless description
-    description.xpath("//a").map(&:text).uniq.map { |p| Place.find(p) }
+    description.css("a").map(&:text).uniq.map { |p| Place.find(p) }
   end
 
   def description

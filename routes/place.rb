@@ -25,7 +25,6 @@ class Place
   attr_reader :bbox, :name
 
   def is_dir?
-    require 'pry'; binding.pry if @name.nil?
     @name.start_with?("(")
   end
 
