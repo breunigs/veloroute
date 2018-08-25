@@ -417,6 +417,12 @@ span[title] {
 
 @import 'routes/geo/shortcomings';
 
+span.shortcoming {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
 .toggle-route-markers {
   .icon.mapboxgl-marker {
     display: none;
@@ -448,4 +454,18 @@ span[title] {
 
 .old-browser #outdated-browser {
   display: block;
+}
+
+.vision-normal {
+  display: none;
+}
+
+.colorblind {
+  .vision-colorblind {
+    display: none;
+  }
+
+  .vision-normal {
+    display: initial;
+  }
 }

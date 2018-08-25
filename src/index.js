@@ -18,6 +18,12 @@ const scrollTo = (selector) => {
   document.querySelector(selector).scrollIntoView({block: "start", behavior: "smooth"});
 }
 
+const toggleMapColors = (layer, colorProperty) => {
+  try {
+    map.setPaintProperty(`layer-${layer}`, 'line-color', { "type": "identity", "property": colorProperty });
+  } catch(e) {} // layer doesn't exist -- most likely not loaded
+}
+
 document.addEventListener('click', ev => {
   if(ev.defaultPrevented) return;
   if(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
@@ -28,8 +34,19 @@ document.addEventListener('click', ev => {
     anchor = n;
     break;
   }
-  if(!anchor || !anchor.href) return;
+  if(!anchor) return
   if(anchor.hasAttribute('download')) return;
+
+  const body = document.getElementsByTagName('body')[0];
+  if(anchor.classList.contains('vision-colorblind')) {
+    body.classList.add("colorblind");
+    toggleMapColors('quality', 'c_blind');
+  }
+  if(anchor.classList.contains('vision-normal')) {
+    body.classList.remove("colorblind");
+    toggleMapColors('quality', 'c_norm');
+  }
+  if(!anchor.href) return;
 
   const url = new URL(anchor.href);
   if(url.origin !== location.origin) return;

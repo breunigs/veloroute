@@ -42,7 +42,10 @@ def build_quality(routes)
   write_with_hash("quality.geojson", GeoJSON.join(quality_geojson).to_json)
 
   css = (1..5).map do |grade|
-    ".shortcoming.grade#{grade} { background: #{::Quality.grade2color(grade)} }"
+    <<~CSS
+                  .shortcoming.grade#{grade} { background: #{Quality.grade2color(grade, :normal)} }
+      .colorblind .shortcoming.grade#{grade} { background: #{Quality.grade2color(grade, :colorblind)} }
+    CSS
   end.join("\n")
   File.write('geo_tmp/shortcomings.css', css)
 

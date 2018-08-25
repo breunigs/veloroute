@@ -66,6 +66,7 @@ const addSource = (name) => {
 }
 
 const renderQuality = () => {
+  const colorblind = document.getElementsByTagName('body')[0].classList.contains('colorblind');
   map.addLayer({
     id: `layer-quality`,
     source: `source-quality`,
@@ -79,7 +80,7 @@ const renderQuality = () => {
         base: 3,
         stops: routeWidthStops,
       },
-      'line-color': { "type": "identity", "property": "color" }
+      'line-color': { "type": "identity", "property": colorblind ? "c_blind" : "c_norm" }
     },
   }, 'route-itself');
 }
