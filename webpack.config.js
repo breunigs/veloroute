@@ -10,7 +10,10 @@ module.exports = (env, argv) => {
   return {
     devtool: "source-map",
     mode: "development",
-    entry: "./src/index.js",
+    entry: {
+      polyfills: "./src/polyfills.js",
+      app: "./src/index.js"
+    },
     output: {
       path: path.resolve(__dirname),
       chunkFilename: "chunk.[name].[contenthash].js",
@@ -39,6 +42,17 @@ module.exports = (env, argv) => {
             root: "myapp",
             parseDynamicRoutes: true
           }
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-syntax-dynamic-import']
+            },
+          }
         }
       ]
     },
@@ -56,6 +70,11 @@ module.exports = (env, argv) => {
         ].join(" ; ")
       }
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    },
     plugins: [
       new MiniCssExtractPlugin({
         filename: "base.[contenthash].css"
@@ -70,7 +89,7 @@ module.exports = (env, argv) => {
       }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {
-          test: /(images).*\.js$/,
+          test: /(images|app|polyfills).*\.js$/,
           chunks: 'all'
         }
       }),
