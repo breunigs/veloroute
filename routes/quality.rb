@@ -24,7 +24,7 @@ module Quality
 
   class Observation
     RATING_TO_GRADE = {
-      excellent: 0,
+      excellent: 1,
       okay: 3,
       bad: 5
     }

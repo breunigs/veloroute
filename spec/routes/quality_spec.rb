@@ -128,8 +128,8 @@ describe Quality::Observation, type: :model do
 
       # i.e. left good, right bad
       expect(observations.map(&:to_s).sort).to eq ["left_maxspeed_and_segregation_excellent", "left_surface_excellent", "right_maxspeed_and_segregation_excellent", "right_surface_bad", "right_width_bad"]
-      # assert avg(excellent, bad) = avg(0, 5) = 2.5
-      expect(described_class.judge(observations)).to eq 2.5
+      # assert avg(excellent, bad) = avg(1, 5) = 3
+      expect(described_class.judge(observations)).to eq 3
     end
   end
 end

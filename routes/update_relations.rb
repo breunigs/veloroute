@@ -55,7 +55,7 @@ end
 
 
 def resolve_names(routes)
-  places = routes.flat_map(&:place_names_with_dir).uniq
+  places = routes.flat_map(&:all_named_places).uniq
   results = places.map do |place|
     [place.name, place.bbox]
   end.to_h
@@ -66,7 +66,7 @@ def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
   routes.each do |route|
-    route.place_names.map(&:to_s).each do |place|
+    route.visited_places.map(&:to_s).each do |place|
       place2route[place] ||= []
       place2route[place] << route
     end

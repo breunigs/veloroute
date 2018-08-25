@@ -53,7 +53,7 @@ document.addEventListener('click', ev => {
     return state.routeSetter()(path);
   }
   // give some debugging info
-  fetch(`/broken/link?${url}`)
+  fetch(`/broken/link?${anchor.href}`)
   ev.preventDefault();
 }, false);
 

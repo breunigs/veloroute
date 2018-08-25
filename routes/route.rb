@@ -4,12 +4,15 @@
 # route = Route.new("1", routes["1"])
 # File.write("icon/wtf.svg", route.to_svg)
 
+require "nokogiri"
+
 require_relative "geojson"
 require_relative "mapillary"
 require_relative "markers"
 require_relative "place"
 require_relative "quality"
 require_relative "relation"
+require_relative "review"
 require_relative "svg_pather"
 
 
@@ -47,12 +50,12 @@ class Route
     markers.map { |m| m + [name] }
   end
 
-  def place_names
-    place_names_with_dir.reject(&:is_dir?)
+  def all_named_places
+    (place_names_with_dir + review.mentioned_places).uniq
   end
 
-  def place_names_with_dir
-    @parsed_json["places"].flatten.uniq.map { |place| Place.find(place) }
+  def visited_places
+    place_names_with_dir.reject(&:is_dir?)
   end
 
   def places
@@ -198,9 +201,9 @@ class Route
     end
     html << <<~EOF
         </table>
+        #{review.to_html}
       </div>
     EOF
-    html
   end
 
   def to_html_icon
@@ -233,6 +236,19 @@ class Route
   end
 
   private
+
+  def place_names_with_dir
+    @parsed_json["places"].flatten.uniq.map { |place| Place.find(place) }
+  end
+
+  def review
+    @review ||= ::Review.new(
+      self,
+      description: @parsed_json["description"],
+      date: @parsed_json["review_date"],
+      grade: @parsed_json["review_grade"],
+    )
+  end
 
   def quality
     @quality ||= Quality::GeoJSON.new(route: self)

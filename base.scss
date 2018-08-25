@@ -32,27 +32,27 @@ $sidebar-max-width: 35em;
   flex: 1 1 20em;
 }
 
-#info, #extras, #descquality {
-  padding: 0 1em;
-  margin-bottom: 0.8em;
+$sidebar-content-padding: 1rem;
+#routes > * {
+  padding: 0 $sidebar-content-padding;
+}
 
-  h3, h4 {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-  }
+h3, h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
 
-  ul {
-    padding-left: 0.8em;
-    line-height: 120%;
-  }
+ul {
+  padding-left: 0.8em;
+  line-height: 120%;
+}
 
-  p {
-    text-align: justify;
-  }
+p {
+  text-align: justify;
+}
 
-  ul, p {
-    margin-top: 0;
-  }
+ul, p {
+  margin-top: 0;
 }
 
 // ensure the headline doesn't head the top of the screen, but looks kinda good
@@ -249,7 +249,9 @@ table.routing {
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-  width: 100%;
+  width: calc(100% + 2*#{$sidebar-content-padding});
+  margin-left: -$sidebar-content-padding;
+
 
   a {
     color: #000;
@@ -424,6 +426,18 @@ span[title] {
     display: block;
   }
 }
+
+#impressum {
+  margin-top: 1.5rem;
+  display: block;
+  text-align: right;
+  margin-bottom: 0.4em;
+
+  a, a:hover {
+    color: #888;
+  }
+}
+
 #outdated-browser {
   background: #ECD0D0;
   padding-top: 0.01rem;

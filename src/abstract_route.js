@@ -1,6 +1,4 @@
 const scrollbox = document.getElementById('routes');
-const gpxlink = document.getElementById('gpxlink');
-const extras = document.getElementById('extras');
 const info = document.getElementById('info');
 
 class AbstractRoute {
@@ -35,13 +33,6 @@ class AbstractRoute {
     this._hideAll();
     const id = routeName ? `desc${routeName}` : 'info';
     document.getElementById(id).style.display = 'block';
-
-    if(routeName && routeName.match(/[0-9]/)) {
-      extras.style.display = 'block';
-      gpxlink.setAttribute('href', `routes/geo/route${routeName}.gpx`);
-    } else {
-      extras.style.display = 'none';
-    }
 
     // scroll back to top when switching "tabs". The scroll state isn't kept per
     // tab, but rather as a "37%" across all instances.
