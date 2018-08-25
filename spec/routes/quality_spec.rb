@@ -103,6 +103,17 @@ describe Quality::Way, type: :model do
         left_shared_with_pedestrians: false,
       })
     end
+
+    it "gives separate values if one side on track, other side on street" do
+      subject = way({ "cycleway:left" => "track", "cycleway:left:surface" => "asphalt", "cycleway:left:width" => "1", "highway" => "tertiary", "maxspeed " => "50", "surface" => "asphalt" })
+      expect(subject.rate_width.first.raw_values).to include({
+        left_path_internal_type: :track_single,
+        left_path_osm_type: "track",
+        left_shared_with_other_bikes: false,
+        left_shared_with_pedestrians: false,
+      })
+      expect(subject.rate_width.last.raw_values).to be {}
+    end
   end
 
   describe ".sides_to_consider" do
@@ -130,6 +141,12 @@ describe Quality::Observation, type: :model do
       expect(observations.map(&:to_s).sort).to eq ["left_maxspeed_and_segregation_excellent", "left_surface_excellent", "right_maxspeed_and_segregation_excellent", "right_surface_bad", "right_width_bad"]
       # assert avg(excellent, bad) = avg(1, 5) = 3
       expect(described_class.judge(observations)).to eq 3
+    end
+
+    it "does not include observations unknown for both sides" do
+      observations = way({"cycleway:left" => "track", "cycleway:left:smoothness" => "excellent", "cycleway:left:surface" => "paving_stones", "cycleway:right" => "track", "cycleway:right:smoothness" => "intermediate", "cycleway:right:surface" => "paving_stones", "lit" => "yes", "maxspeed" => "50", "surface" => "asphalt"}).observations
+
+      expect(observations.map(&:to_s).sort).to eq ["left_maxspeed_and_segregation_excellent", "left_surface_excellent", "right_maxspeed_and_segregation_excellent", "right_surface_bad"]
     end
   end
 end

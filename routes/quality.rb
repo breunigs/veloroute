@@ -134,14 +134,14 @@ module Quality
         # compare with speed for shared paths
         rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed
 
+        next if rating.nil?
+
         path_position = :shared
         path_position = :shared_bus if way_type == "share_busway"
         path_position = :crossing if way_type == "crossing"
         path_position = :separate if separate_track
         path_position = :track if next_to_street
         path_position = :lane if on_street
-
-        next if rating.nil?
 
         Observation.new(side, :maxspeed_and_segregation, rating, raw_values: {
           maxspeed: maxspeed,
@@ -176,9 +176,7 @@ module Quality
     def rate_width
       all_path_bike_oneway = val("bicycle:oneway") || val("oneway:bicycle")
 
-      values(:width).map do |side, width|
-        next if width.nil?
-
+      values(:width).compact.map do |side, width|
         raw = {width: width}
         osm_type = cycleway_val(side)
 

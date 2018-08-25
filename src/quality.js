@@ -130,17 +130,16 @@ const explainObservation = (topic, side, rating, details) => {
   }
 }
 
-const observation2text = (topic, ratings, details) => {
-  const explained = Object.entries(ratings).map(([side, rating]) => {
-    return explainObservation(topic, side, rating, details);
-  });
-  const same = explained.every(v => v === explained[0]);
+const observation2text = (topic, ratings, details, dual) => {
+  const lExplain = ratings.left ? explainObservation(topic, 'left', ratings.left, details) : null;
+  const rExplain = ratings.right ? explainObservation(topic, 'right', ratings.right, details) : null;
 
   let html = `<th>${tTopic(topic)}</th>`;
-  if(same) {
-    html += `<td colspan=2>${explained[0]}</td>`;
+  if(lExplain === rExplain || !dual) {
+    html += `<td colspan=2>${lExplain || rExplain}</td>`;
   } else {
-    html += explained.map(e => `<td>${e}</td>`).join('');
+    html += `<td>${lExplain || ""}</td>`;
+    html += `<td>${rExplain || ""}</td>`;
   }
   return html;
 };
@@ -156,17 +155,20 @@ const maybeScrollIntoView = (avoidScrolling) => {
 const renderHtmlForWay = (details, osmId) => {
   console.debug("Quality Details:", details);
   let obs = {};
+  let sides = [];
   details.observations.forEach(ob => {
     const [_, side, topic, rating] = ob.match(/^([^_]+)_(.*)_([^_]+)$/);
     if(!obs[topic]) obs[topic] = {};
     obs[topic][side] = rating;
+    sides.push(side);
   });
   // console.debug("Partitioned Observations", obs);
 
+  const dual = sides.indexOf("left") >=0 && sides.indexOf("right") >= 0;
   let html = '<table>';
   for (const [topic, ratings] of Object.entries(obs)) {
     html += '<tr>'
-    html += observation2text(topic, ratings, details);
+    html += observation2text(topic, ratings, details, dual);
     html += '</tr>'
   }
   html += '</table>';
