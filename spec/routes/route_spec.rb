@@ -31,6 +31,10 @@ describe Route, type: :model do
   let(:x_split_with_dir_route) { Route.new("x", split_with_dir_route) }
   let(:y_simple_route) { Route.new("yyyyy", simple_route) }
 
+  before do
+    stub_request(:get, %r|https://nominatim.openstreetmap.org/search/|).
+      to_return(status: 200, body: "{}", headers: {})
+  end
 
   it "only splits routes when necessary" do
     expect(x_simple_route.route_array.map { |s| s.map(&:to_s) }).to eq [
