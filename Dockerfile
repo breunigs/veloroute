@@ -35,13 +35,15 @@ COPY yarn.lock package.json /app/
 RUN yarn install
 ENV PATH="/app/node_modules/.bin:${PATH}"
 
-COPY . /app
+ARG PRODUCTION
 COPY --from=geodata /app/routes/geo routes/geo/
 
-ARG PRODUCTION
+RUN if [ "$PRODUCTION" = "yes" ]; then svgo routes/geo/*.svg; fi
+
+COPY . /app
+
 RUN \
   if [ "$PRODUCTION" = "yes" ]; then \
-    svgo routes/geo/*.svg ; \
     webpack --mode production --output-path /bundled/ ; \
   else \
     webpack --output-path /bundled/ ; \
