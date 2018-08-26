@@ -9,7 +9,7 @@ server {
   listen 443 ssl http2;
   listen [2a03:4000:15:155::4003]:443 ipv6only=on ssl http2 deferred;
 
-  include ssl.conf;
+  include sslbase.conf;
 
   server_name veloroute.breunig.xyz;
   return 301 https://veloroute.hamburg$request_uri;
@@ -26,8 +26,8 @@ server {
   listen 443 ssl http2;
   listen [2a03:4000:15:155::4004]:443 ipv6only=on ssl http2 deferred;
 
-  include ssl.conf;
-  add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
+  include sslbase.conf;
+  include hstspreload.conf;
 
   server_name veloroute.hamburg www.veloroute.hamburg;
   # drop www and other prefixes
@@ -39,16 +39,16 @@ server {
   location ~ (\.ch\.(js|css|geojson|json)|favicons/)$ {
     expires max;
     add_header Cache-Control immutable;
-    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
+    include hstspreload.conf;
   }
   # generated data has hard-coded references everywhere
   location /routes/geo {
     expires 24h;
-    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
+    include hstspreload.conf;
   }
 
   location ~ /(\d|1[01234]|quality)$ {
-    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
+    include hstspreload.conf;
     try_files /$1.html /index.html =404;
   }
 
