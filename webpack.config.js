@@ -47,8 +47,8 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname),
-      chunkFilename: "chunk.[name].[contenthash].js",
-      filename: "bundle.[name].[contenthash].js"
+      chunkFilename: "chunk.[name].[contenthash].ch.js",
+      filename: "bundle.[name].[contenthash].ch.js"
     },
     module: {
       // needed due to incompatibility with webpack production mode. This is
@@ -115,7 +115,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "base.[contenthash].css"
+        filename: "base.[contenthash].ch.css"
       }),
       ...pages,
       new WebpackCdnPlugin({

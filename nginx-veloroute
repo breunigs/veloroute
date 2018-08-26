@@ -27,24 +27,28 @@ server {
   listen [2a03:4000:15:155::4004]:443 ipv6only=on ssl http2 deferred;
 
   include ssl.conf;
+  add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
 
   server_name veloroute.hamburg www.veloroute.hamburg;
   # drop www and other prefixes
   if ($host != $server_name) {
-    rewrite ^/(.*) $scheme://$server_name/$1 permanent;
+    rewrite ^/(.*) https://$server_name/$1 permanent;
   }
 
   # assets are cache busted. Favicon arent't, but eh.
-  location ~ (base\.css|bundle\.js|favicons/)$ {
+  location ~ (\.ch\.(js|css|geojson|json)|favicons/)$ {
     expires max;
     add_header Cache-Control immutable;
+    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
   }
   # generated data has hard-coded references everywhere
   location /routes/geo {
     expires 24h;
+    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
   }
 
   location ~ /(\d|1[01234]|quality)$ {
+    add_header strict-transport-security "max-age=31536000; includeSubDomains; preload";
     try_files /$1.html /index.html =404;
   }
 

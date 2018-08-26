@@ -20,7 +20,7 @@ Dir.chdir(__dir__)
 CONTENT_HASHED_FILENAMES = {}
 def write_with_hash(filename, content)
   hash = Digest::MD5.hexdigest(content)
-  hashed_filename = filename.sub(/(\.[^.]+$)/, ".#{hash}\\1")
+  hashed_filename = filename.sub(/(\.[^.]+$)/, ".#{hash}.ch\\1")
   File.write("geo_tmp/#{hashed_filename}", content)
   CONTENT_HASHED_FILENAMES[filename] = hashed_filename
   hashed_filename
