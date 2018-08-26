@@ -3,13 +3,6 @@ module Geo
     # given a point
     return point2point_dist(lonLat1: from, lonLat2: to) if is_coord?(from)
 
-    # given a line, but only consider ways with reasonably close endpoints (500m)
-    start = point2point_dist(lonLat1: from.first, lonLat2: to)
-    stop = point2point_dist(lonLat1: from.last, lonLat2: to)
-    if start > 500 && stop > 500
-      return start > stop ? stop : start
-    end
-
     closest = closest_point_on_line(from, to)
     point2point_dist(lonLat1: closest, lonLat2: to)
   end
@@ -86,6 +79,24 @@ module Geo
     end
 
     [minX, minY]
+  end
+
+  def self.buffer_bbox(buffer, bbox)
+    v = buffer / KY;
+    h = buffer / KX;
+    [
+      bbox[0] - h,
+      bbox[1] - v,
+      bbox[2] + h,
+      bbox[3] + v
+    ]
+  end
+
+  def self.inside_bbox?(pt, bbox)
+    pt[0] >= bbox[0] &&
+    pt[0] <= bbox[2] &&
+    pt[1] >= bbox[1] &&
+    pt[1] <= bbox[3]
   end
 
   def self.to_rad(degrees)

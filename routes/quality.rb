@@ -107,6 +107,17 @@ module Quality
       Geo.dist(from: coords, to: lonLat)
     end
 
+    # format SE lonLat, NW lonLat as a single array
+    def bbox
+      minMaxLon = coords.minmax { |a, b| a[0] <=> b[0] }.map(&:first)
+      minMaxLat = coords.minmax { |a, b| a[1] <=> b[1] }.map(&:last)
+      [minMaxLon[0], minMaxLat[0], minMaxLon[1], minMaxLat[1]]
+    end
+
+    def buffered_bbox
+      @buffered_bbox ||= Geo.buffer_bbox(100, bbox) # buffered by 100m
+    end
+
     def observations
       iss = []
       iss += rate_lit
@@ -387,6 +398,7 @@ module Quality
       @route.stitched_sequences.values.flat_map(&:keys2coords).uniq.each do |img_key, coord|
         dist_so_far = Float::INFINITY
         ways.each do |w|
+          next unless Geo.inside_bbox?(coord, w.buffered_bbox)
           new_dist = w.dist(coord)
           next if new_dist >= dist_so_far
           dist_so_far = new_dist
