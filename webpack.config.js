@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -91,9 +92,24 @@ module.exports = (env, argv) => {
         excludeChunks: [ 'polyfillLoader' ],
         hash: false
       }),
+      new WebpackCdnPlugin({
+        modules: [
+          {
+            name: 'mapillary-js',
+            var: 'Mapillary',
+            style: 'dist/mapillary.min.css'
+          },
+          {
+            name: 'mapbox-gl',
+            var: 'mapboxgl',
+            style: 'dist/mapbox-gl.css'
+          }
+        ],
+        publicPath: '/node_modules'
+      }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {
-          test: /(images|app|polyfillChecker).*\.js$/,
+          test: /(images|app|polyfillChecker|unpkg.com).*\.js$/,
           chunks: 'all'
         }
       }),
