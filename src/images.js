@@ -21,25 +21,20 @@ let status = {
 
 let updateInProgress = false;
 
-let imageData = null;
-let imageDataPromise = null;
-const getImageData = () => {
-  if(imageData) return Promise.resolve(imageData);
-  if(imageDataPromise) return imageDataPromise;
-  imageDataPromise = fetch(`/routes/geo/${filenames['images.json']}`)
-    .then(response => response.json())
-    .then(json => {
-      imageData = json;
-      return json;
-    });
-  return imageDataPromise;
-}
-
+let imageData = {};
 const route = () => {
-  if(!status.routeName) return Promise.resolve(null);
-  return getImageData().then(data => {
-    return data[status.routeName]
-  });
+  const r = status.routeName;
+  if(!r) return Promise.resolve(null);
+  if(imageData[r]) return imageData[r];
+
+  const file = `images-${r}.json`;
+  const url = `/routes/geo/${filenames[file]}`;
+  // console.debug("Fetching images for", file, "from", url);
+
+  imageData[r] = fetch(url)
+    .then(response => response.json());
+
+  return imageData[r];
 }
 
 const images = () => {

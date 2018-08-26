@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'json'
 
 require_relative "place"
+require_relative "webpack_helper"
 
 class Review
   def initialize(route, description:, date:, grade:)
@@ -76,11 +77,7 @@ class Review
 
     # only include JSON LD for the page currently requested. Let's not confuse
     # the search engines with our hacked together single page application.
-    <<~COND_JSONLD
-      <% if(htmlWebpackPlugin.options.filename == "#{@route.name}.html") { %>
-        <script type="application/ld+json">#{json_ld.to_json}</script>
-      <% } %>
-    COND_JSONLD
+    only_if_current_route(@route, %|<script type="application/ld+json">#{json_ld.to_json}</script>|)
   end
 
   def footer

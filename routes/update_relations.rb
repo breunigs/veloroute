@@ -13,6 +13,7 @@ require_relative "place"
 require_relative "quality"
 require_relative "relation"
 require_relative "route"
+require_relative "webpack_helper"
 
 Dir.chdir(__dir__)
 
@@ -87,17 +88,18 @@ end
 
 def build_image_lists(routes)
   debug = []
-  images = routes.map do |route|
+  routes.each do |route|
     debug << route.to_image_debug
-    [route.name, route.to_image_export]
-  end.to_h
+    data = route.to_image_export
+    write_with_hash("images-#{route.name}.json", data.to_json)
+  end
 
-  images["quality"] = {}
+  quality = {}
   shortcomings = JSON.parse(File.read(File.join(__dir__, "..", "shortcomings.json")))
   shortcomings.each do |name, details|
-    images["quality"][name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
+    quality[name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
   end
-  write_with_hash("images.json", images.to_json)
+  write_with_hash("images-quality.json", quality.to_json)
 
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
@@ -145,12 +147,14 @@ routes = routes.map { |route, details| Route.new(route, details) }
   Thread.new { send(task, routes) }
 end.each(&:join)
 
+
+preload_html = %|<link rel="preload" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['routes.geojson']}" as="fetch" crossorigin="anonymous">|
+(['quality'] + routes.map(&:name)).each do |name|
+  fn = CONTENT_HASHED_FILENAMES["images-#{name}.json"]
+  preload_html << only_if_current_route(name, %|<link rel="prefetch" href="/routes/geo/#{fn}">|)
+end
+File.write("geo_tmp/preload.html", preload_html)
 File.write("geo_tmp/content_hashed_filenames.json", CONTENT_HASHED_FILENAMES.to_json)
-File.write("geo_tmp/preload.html", <<~PRELOAD_HTML
-  <link rel="prefetch" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['images.json']}">
-  <link rel="preload" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['routes.geojson']}" as="fetch" crossorigin="anonymous">
-PRELOAD_HTML
-)
 
 # swap old for new
 FileUtils.mv "geo", "geo_old" if Dir.exist?("geo")
