@@ -20,6 +20,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/favicon-180.png">
   <link rel="apple-touch-startup-image" href="/favicons/favicon-192.png">
   <link rel="manifest" href="/favicons/manifest.json">
+  <!-- uncached connections happen, even on repeat view -->
+  <link rel="preconnect" href="https://a.mapillary.com">
+  <!-- connections only happen on initial load, but not on repeat view -->
+  <link rel="dns-prefetch" href="https://api.mapbox.com">
+  <link rel="dns-prefetch" href="https://a.tiles.mapbox.com">
+  <link rel="dns-prefetch" href="https://b.tiles.mapbox.com">
 </head>
 
 <body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "") %>">
