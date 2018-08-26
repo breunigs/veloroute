@@ -146,6 +146,7 @@ const viewer = new Viewer("mly", API_KEY, status.image, {
     zoom: false,
   }
 });
+viewer.deactivateComponent("cache");
 
 let indicatorListeners = [];
 const addIndicatorListener = (...funcs) => {
@@ -181,12 +182,14 @@ const stopPlayback = () => {
   viewer.moveToKey(status.image);
   playTimeout = null;
   playstop.textContent = '▶';
+  viewer.deactivateComponent("cache");
 }
 
 const handlePlayStop = () => {
   if(playTimeout != null) return stopPlayback();
   playstop.textContent = '■';
   playShowNextImage();
+  viewer.activateComponent("cache");
 }
 
 const handleEsc = (evt) => {
