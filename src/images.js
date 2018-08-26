@@ -133,7 +133,7 @@ const viewer = new Viewer("mly", API_KEY, status.image, {
     cache: {
       depth: {
         pano: 0,
-        sequence: 4,
+        sequence: 2,
         step: 0,
         turn: 0
       }
