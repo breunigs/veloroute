@@ -1,5 +1,6 @@
 const scrollbox = document.getElementById('routes');
 const info = document.getElementById('info');
+const body = document.getElementsByTagName("body")[0];
 
 class AbstractRoute {
   constructor(imagesPromise, state, createMarker) {
@@ -20,19 +21,16 @@ class AbstractRoute {
     return this._qualityPromise;
   }
 
-  _hideAll() {
-    for(let el of document.querySelectorAll(".desc")) {
-      el.style.display = 'none';
-    }
-    info.style.display = 'none';
-  }
-
   async showRoute(routeName) {
     if(routeName === "quality") this._loadQuality();
 
-    this._hideAll();
-    const id = routeName ? `desc${routeName}` : 'info';
-    document.getElementById(id).style.display = 'block';
+    let currentPage = null;
+    body.classList.forEach(c => {
+      if(c.startsWith("page-")) currentPage = c;
+    });
+
+    if(!routeName) routeName = 'index';
+    body.classList.replace(currentPage, `page-${routeName}`)
 
     // scroll back to top when switching "tabs". The scroll state isn't kept per
     // tab, but rather as a "37%" across all instances.

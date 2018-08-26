@@ -3,7 +3,7 @@
 
 <head>
   <meta charset=utf-8 />
-  <title>veloroute.hamburg</title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width" />
 
   <link rel="stylesheet" crossorigin="anonymous" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300">
@@ -22,7 +22,7 @@
   <link rel="manifest" href="/favicons/manifest.json">
 </head>
 
-<body>
+<body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "") %>">
   <div id="main">
     <div id="map"></div>
   </div>
@@ -39,7 +39,7 @@
         </p>
       </div>
 
-      <div id="info">
+      <div id="descindex" class="desc">
         <h3>Einleitung</h3>
         <ul>
           <li>

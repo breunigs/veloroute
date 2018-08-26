@@ -8,7 +8,7 @@ const START_ROUTE = null;
 
 const readFromHash = () => {
   const s = window.location.hash.replace('#', '').split('/');
-  const routeFromPath = window.location.pathname.substr(1);
+  const routeFromPath = window.location.pathname.substr(1).replace('.html', '');
   return {
     zoom: +s[0] || START_ZOOM,
     lat: +s[1] || START_LAT,

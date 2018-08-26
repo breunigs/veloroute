@@ -55,6 +55,30 @@ ul, p {
   margin-top: 0;
 }
 
+.desc {
+  display: none;
+}
+
+.page-index #descindex,
+.page-quality #descquality,
+.page-1 #desc1,
+.page-2 #desc2,
+.page-3 #desc3,
+.page-4 #desc4,
+.page-5 #desc5,
+.page-6 #desc6,
+.page-7 #desc7,
+.page-8 #desc8,
+.page-9 #desc9,
+.page-10 #desc10,
+.page-11 #desc11,
+.page-12 #desc12,
+.page-13 #desc13,
+.page-14 #desc14,
+{
+  display: block;
+}
+
 // ensure the headline doesn't head the top of the screen, but looks kinda good
 #qualityheader:before {
   content: "";
@@ -311,9 +335,7 @@ table.routing {
   background: transparent;
 }
 
-.desc {
-  display: none;
-}
+
 
 #indicator, #indicator-rotate {
   height: 2em;

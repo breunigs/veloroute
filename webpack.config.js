@@ -8,6 +8,35 @@ const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
+
+  const htmlOpts = {
+    template: "main.html",
+    minify: !isProduction ? false : {
+      collapseWhitespace: true,
+      removeComments: true
+    },
+    excludeChunks: [ 'polyfillLoader' ],
+    hash: false
+  }
+  pages = [
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 1", filename: "1.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 2", filename: "2.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 3", filename: "3.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 4", filename: "4.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 5", filename: "5.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 6", filename: "6.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 7", filename: "7.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 8", filename: "8.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 9", filename: "9.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 10", filename: "10.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 11", filename: "11.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 12", filename: "12.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 13", filename: "13.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 14", filename: "14.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Qualität und Ausbaustatus", filename: "quality.html"})
+  ];
+
   return {
     devtool: "source-map",
     mode: "development",
@@ -69,7 +98,12 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, "build"),
       compress: false,
       port: 9000,
-      historyApiFallback: true,
+      historyApiFallback: {
+        rewrites: [{
+          from: /^\/(\d+|quality)$/,
+          to: context => context.parsedUrl.path + '.html'
+        }],
+      },
       headers: {
         "Content-Security-Policy": [
           "worker-src blob:",
@@ -83,15 +117,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: "base.[contenthash].css"
       }),
-      new HtmlWebpackPlugin({
-        template: "main.html",
-        minify: !isProduction ? false : {
-          collapseWhitespace: true,
-          removeComments: true
-        },
-        excludeChunks: [ 'polyfillLoader' ],
-        hash: false
-      }),
+      ...pages,
       new WebpackCdnPlugin({
         modules: [
           {

@@ -73,7 +73,13 @@ class Review
       reviewBody: description.text
     }
 
-    %|<script type="application/ld+json">#{json_ld.to_json}</script>|
+    # only include JSON LD for the page currently requested. Let's not confuse
+    # the search engines with our hacked together single page application.
+    <<~COND_JSONLD
+      <% if(htmlWebpackPlugin.options.filename == "#{@route.name}.html") { %>
+        <script type="application/ld+json">#{json_ld.to_json}</script>
+      <% } %>
+    COND_JSONLD
   end
 
   def footer

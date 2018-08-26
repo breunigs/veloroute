@@ -45,7 +45,7 @@ server {
   }
 
   location ~ /(\d|1[01234]|quality)$ {
-    try_files '' /index.html =404;
+    try_files /$1.html /index.html =404;
   }
 
   access_log /var/log/nginx/veloroute.hamburg.log;
