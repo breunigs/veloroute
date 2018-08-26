@@ -1,4 +1,3 @@
-require "json"
 require_relative "geojson"
 require_relative "web"
 

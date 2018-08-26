@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'json'
 
 require_relative "place"
 
