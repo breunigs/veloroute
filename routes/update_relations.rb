@@ -7,13 +7,16 @@ require "json"
 require "parallel"
 
 require_relative "geojson"
-require_relative "gpx"
 require_relative "mapillary"
 require_relative "place"
 require_relative "quality"
 require_relative "relation"
 require_relative "route"
 require_relative "webpack_helper"
+
+require_relative "gpx"
+require_relative "kml"
+require_relative "track"
 
 Dir.chdir(__dir__)
 
@@ -114,10 +117,11 @@ end
 
 def write_gpx_files(routes)
   routes.each do |route|
-    gpx = GPX.new(route).to_s
-    File.write("geo_tmp/route#{route.name}.gpx", gpx)
+    track = Track.new(route)
+    File.write("geo_tmp/route#{route.name}.gpx", GPX.from(track))
+    File.write("geo_tmp/route#{route.name}.kml", KML.from(track))
   end
-  out = `cd geo_tmp && zip -q -9 routen.zip *.gpx 2>&1`
+  out = `cd geo_tmp && zip -q -9 routen.zip *.gpx *.kml 2>&1`
   raise "failed to zip routes: #{out}" if $?.exitstatus != 0
 end
 

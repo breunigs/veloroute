@@ -37,6 +37,10 @@ class Route
     @parsed_json["relation_id"]
   end
 
+  def osm_url
+    "https://www.openstreetmap.org/relation/#{relation_id}"
+  end
+
   def color
     @parsed_json["color"]
   end

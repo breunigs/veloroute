@@ -33,11 +33,22 @@ class Review
 
   def download_html
     <<~HTML
-      <h4>GPX Download</h4>
-      <p>
-        <a href="/routes/geo/route#{@route.name}.gpx" download>Veloroute #{@route.name} als GPX</a>
-        oder
-        <a href="/routes/geo/routen.zip">alle Routen im ZIP</a> herunterladen.
+     <h4>Veloroute #{@route.name} Download</h4>
+     <p>
+        Download im
+        <a href="/routes/geo/route#{@route.name}.kml" download><b>KML-Format</b></a>
+        oder im
+        <a href="/routes/geo/route#{@route.name}.gpx" download><b>GPX-Format</b></a>.
+        Alternativ gibt es auch <a href="/routes/geo/routen.zip">alle Routen/Formate im ZIP-Archiv</a>.
+        Die Dateien enthalten die Route getrennt nach
+        Richtung#{@route.route_count > 1 ? " und Ast" : ""}.
+        Manche Programme können damit nicht umgehen und zeigen entweder alles
+        auf einmal oder nur ein Teilstück.
+        <span class="not-mobile">
+          Empfehlung:
+          <a href="https://www.gpxsee.org/" target="_blank">GPXSee</a>
+          (kostenlos, Windows / OS X / Linux) zeigt die Exporte korrekt an.
+        </span>
       </p>
     HTML
   end
@@ -84,7 +95,8 @@ class Review
     <<~HTML
       <h4>Navigation</h4>
       <ul>
-        <li><a href="/quality">Radwegqualität anzeigen</a></li>
+        <li><a href="/quality">Radwegqualität bewerten</a></li>
+        <li><a href="#{@route.osm_url}" target="_blank">Veloroute #{@route.name} in der OpenStreetMap</a></li>
         <li><a href="/">Erklärung anzeigen</a></li>
       </ul>
     HTML
