@@ -57,10 +57,10 @@ class Review
     return nil unless description
     <<~HTML
       <h4>Bewertung</h4>
-      <p>
+      <div class="review">
         #{description}
         <a href="/quality">Detaillierte Qualitätsbewertung anzeigen</a>.
-      </p>
+      </div>
     HTML
   end
 

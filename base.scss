@@ -64,7 +64,7 @@ h3, h4 {
   margin-bottom: 0.5em;
 }
 
-ul {
+ul, ol {
   padding-left: 0.8em;
   line-height: 120%;
 }
@@ -73,7 +73,7 @@ p {
   text-align: justify;
 }
 
-ul, p {
+ul, ol, p {
   margin-top: 0;
 }
 
@@ -405,6 +405,12 @@ table.routing {
 
 .not-mobile {
   display: inline;
+}
+
+.review {
+  p, ol {
+    margin-bottom: 0.55em;
+  }
 }
 
 @media only screen and (max-width: 700px) {
