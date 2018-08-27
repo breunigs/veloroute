@@ -41,6 +41,7 @@ module.exports = (env, argv) => {
     devtool: "source-map",
     mode: "development",
     entry: {
+      checkWebGL: "./src/checkWebGL.js",
       polyfillLoader: "./src/polyfill-loader.js",
       polyfillChecker: "./src/polyfill-checker.js",
       app: "./src/index.js"
@@ -135,7 +136,7 @@ module.exports = (env, argv) => {
       }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {
-          test: /(images|app|polyfillChecker|unpkg.com).*\.js$/,
+          test: /(images|app|polyfillChecker|checkWebGL|unpkg.com).*\.js$/i,
           chunks: 'all'
         }
       }),

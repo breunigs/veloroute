@@ -26,6 +26,28 @@ $sidebar-max-width: 35em;
   flex: 2 0 50%;
 }
 
+.nowebgl {
+  #map, #mly {
+    display: none;
+  }
+
+  #main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #main::before {
+    display: block;
+    background: #ddd;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 20rem;
+    margin: auto;
+    content: "In diesem Browser scheint „WebGL“ deaktiviert zu sein. Dem ist normalerweise nicht so, d.h. vermutlich liegt es an der Technik. Bitte suche im Internet nach Lösungen oder frage eine technikaffine Person um Hilfe.";
+  }
+}
+
 #sidebar {
   background: #F8F8F8;
   height: 100%;
