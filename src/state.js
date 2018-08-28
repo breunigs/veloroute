@@ -107,7 +107,10 @@ class State {
   }
 
   _updateHash() {
-    if(updateTimer) window.clearTimeout(updateTimer);
+    if(updateTimer) {
+      window.clearTimeout(updateTimer);
+      updateTimer = null;
+    }
     window.history.replaceState(window.history.state, '', this._buildUrl());
   }
 
