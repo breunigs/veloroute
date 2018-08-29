@@ -21,6 +21,7 @@ let status = {
 
 let updateInProgress = false;
 
+
 let imageData = {};
 const route = () => {
   const r = status.routeName;

@@ -178,10 +178,13 @@ const renderHtmlForWay = (details, osmId) => {
 
 const renderQualityMarkers = (createMarker, imagesPromise) => {
   Object.entries(shortcomings).map(([name, details]) => {
-    createMarker(`shortcoming grade${details.grade}`, details.loc, '⚫', (e) => {
+    const clickHandler = () => {
       el.innerHTML = details.desc;
       imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, details.startImageIdx));
-    });
+    };
+    const classes = `shortcoming grade${details.grade}`;
+    createMarker(classes, details.loc, '⚫', clickHandler);
+    if(details.loc2) createMarker(classes, details.loc2, '⚫', clickHandler);
   });
 };
 

@@ -421,7 +421,7 @@ table.routing {
 }
 
 #quality, .review {
-  p, ol {
+  p, ol, ul {
     margin-bottom: 0.55em;
   }
 }
@@ -531,4 +531,10 @@ span.shortcoming {
   .vision-normal {
     display: initial;
   }
+}
+
+// ensure the image location/viewing direction marker is drawn above route
+// and quality icons
+#indicator {
+  z-index: 1;
 }
