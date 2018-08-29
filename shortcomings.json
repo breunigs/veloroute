@@ -13,5 +13,21 @@
     "images": ["3FJoDizsSixFlw4-XG0VWA"],
     "startImageIdx": 0,
     "desc": "Eine direkte Querung war hier schwierig, da die Straße vierspurig und vielbefahren ist. Die durchgezogene Mittellinie machte dies auch StVO-widrig. Aber wie man sieht baut die Stadt gerade die Kreuzung um."
+  },
+
+  "6 Intersection Wagnerstrasse": {
+    "loc": [10.03980, 53.5710466],
+    "grade": 3,
+    "images": ["3Q_8bqul0x2tKpIZSItg-g", "IrgIralVL2cDv_6gKmW-1w"],
+    "startImageIdx": 1,
+    "desc": "Die Querung ist hier bei viel Verkehr nicht einfach. Eine Querungshilfe o.ä. ist wünschenswert."
+  },
+
+  "6 S Friedrichsberg": {
+    "loc": [10.058636, 53.5761309],
+    "grade": 5,
+    "images": ["v5vTbdoRNbrnLCjqE7SNFg", "VrGvHJPFI5vjUbVKz-3ekQ", "CiLnoL8dfeZZkh3_D-1-yA", "WsmgvMBRVmR_bxwmIa0uBQ"],
+    "startImageIdx": 1,
+    "desc": "<p>Die ganze Kreuzung geht nicht davon aus, das Radverkehr existiert. Stadtauswärts wird der benutzungspflichtige Zweirichtungs-Radweg auf einmal so schmal, das man <i>vermutlich</i> die Straßenseite hätte wechseln sollen. Dies ist aber weder auf Schildern noch Straßenmarkierungen ersichtlich, noch gibt es irgendeine offensichtlich beste Route. </p><p>Stadteinwärts fehlt es der Kreuzung an einer ordentlichen Aufleitung auf die Radspur, sodass man hinter den Autos warten muss. Platz wäre aber genug, um dem Radverkehr eine schnelle Anfahrt zu ermöglichen.</p><p>Gefährlich: Die reinen Fußgängerampeln sind nicht für den Radverkehr optimiert und gelten seit 2017 auch nicht mehr für ihn. Da die Fahrbahnampeln auf dem Radweg nicht im Blick liegen, muss man die Kreuzung entweder sehr gut kennen oder richtig raten, ob man grün hat oder nicht.</p><p></p><p>Kurzum: es wird erwartet, das sich der Radverkehr hier irgendwie durchmogelt. Das ist enttäuschend.</p>"
   }
 }
