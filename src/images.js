@@ -53,6 +53,7 @@ async function handleSliderMove(avoidListenerUpdates) {
   const i = await images();
   if(!i) {
     console.debug("could not find images, disabling everything")
+    controls.classList.add("disable-next", "disable-prev");
     prev.disabled = true;
     next.disabled = true;
     playstop.disabled = true;
@@ -66,9 +67,16 @@ async function handleSliderMove(avoidListenerUpdates) {
   const key = i.keys[pos];
   const loc = i.loc[pos];
 
-  prev.disabled = pos == 0;
-  next.disabled = pos == i.keys.length-1;
-  playstop.disabled = pos == i.keys.length-1;
+  if(pos == 0) {
+    controls.classList.add("disable-prev");
+  } else {
+    controls.classList.remove("disable-prev");
+  }
+  if(pos == i.keys.length-1) {
+    controls.classList.add("disable-next");
+  } else {
+    controls.classList.remove("disable-next");
+  }
 
   if(status.image === key) return;
   status.image = key;

@@ -187,6 +187,25 @@ $control-size: 2em;
     visibility: hidden;
   }
 
+   &.disable-next {
+      #playstop, #next {
+        opacity: 0.7;
+        color: #888;
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+
+    &.disable-prev {
+      #prev {
+        opacity: 0.7;
+        color: #888;
+        pointer-events: none;
+        background: transparent;
+        cursor: default;
+      }
+    }
+
   @import "range";
 
   a {
@@ -206,12 +225,6 @@ $control-size: 2em;
     &:hover {
       background: #666;
       // text-decoration: none;
-    }
-
-    &:disabled {
-      color: #888;
-      background: transparent;
-      cursor: default;
     }
   }
 }
