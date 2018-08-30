@@ -57,13 +57,11 @@ class Place
   end
 
   def resolve
-    retries ||= 0
-
     url = "https://nominatim.openstreetmap.org/search/"
     url << URI.escape(nominatim_query)
     url << "?format=json&viewbox=9.7,53.3825092,10.3,53.7&bounded=1&limit=5"
 
-    resp = get(url)
+    resp = get(url, max_retries: 3)
     importance = resp.map { |e| e["importance"] }.max
 
     # combine bboxes with the same importance
@@ -76,13 +74,5 @@ class Place
 
     # switch order to MapboxGL one
     [bbox_2, bbox_0, bbox_3, bbox_1]
-  rescue => e
-    warn "Nominatim query for #{@name} failed. This was the #{retries+1}. try (#{e})"
-    sleep 5
-    if (retries += 1) < 3
-      retry
-    else
-      raise e
-    end
   end
 end

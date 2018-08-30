@@ -12,12 +12,19 @@ def get_xml(url)
   end
 end
 
-def get(url)
+def get(url, max_retries: 1)
+  retries ||= 0
   PARSED_CACHE[url] ||= begin
     print "."
     JSON.parse(CACHE.get(url).to_s)
   end
 rescue JSON::ParserError => e
-  warn "\n\nURL #{url} failed to parse: #{e}"
-  raise e
+  retries += 1
+  warn "\n\nURL #{url} failed to parse. This was try #{retries} of #{max_retries} #{e}"
+  if retries < max_retries
+    sleep 5
+    retry
+  else
+    raise e
+  end
 end
