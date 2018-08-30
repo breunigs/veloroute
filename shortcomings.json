@@ -47,12 +47,45 @@
     "desc": "<p>Die ganze Kreuzung geht nicht davon aus, das Radverkehr existiert. Stadtauswärts wird der benutzungspflichtige Zweirichtungs-Radweg auf einmal so schmal, das man <i>vermutlich</i> die Straßenseite hätte wechseln sollen. Dies ist aber weder auf Schildern noch Straßenmarkierungen ersichtlich, noch gibt es irgendeine offensichtlich beste Route. </p><p>Stadteinwärts fehlt es der Kreuzung an einer ordentlichen Aufleitung auf die Radspur, sodass man hinter den Autos warten muss. Platz wäre aber genug, um dem Radverkehr eine schnelle Anfahrt zu ermöglichen.</p><p>Gefährlich: Die reinen Fußgängerampeln sind nicht für den Radverkehr optimiert und gelten seit 2017 auch nicht mehr für ihn. Da die Fahrbahnampeln auf dem Radweg nicht im Blick liegen, muss man die Kreuzung entweder sehr gut kennen oder richtig raten, ob man grün hat oder nicht.</p><p></p><p>Kurzum: es wird erwartet, das sich der Radverkehr hier irgendwie durchmogelt. Das ist enttäuschend.</p>"
   },
 
+  "7 Rahlstedter Straße": {
+    "loc": [10.1499112, 53.5955692],
+    "grade": 2,
+    "images": ["pwuW4ksOJZlXcXePhA9m8Q", "E6iwb1GKHWU-NRBVyG9ibw"],
+    "startImageIdx": 0,
+    "desc": "<p>Die Rahlstedter Straße soll 2018 erneuert werden. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p><ul><li><a href=\"http://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf\">vorläufiger Lageplan</a></li><li><a href=\"http://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf\">Erläuterungsbericht zur Umgestaltung</a></li></ul>"
+  },
+
+  "7 Steindamm": {
+    "loc": [10.0175985, 53.5559459],
+    "grade": 3,
+    "images": ["vqaa8d536GbC9u3NQeXMlA", "8FTsePivRQHDANsOuIT8eg", "dwBuU9cde772-AGlJaIHnA", "FWz9Io_6FrprkFQyv0EZrA", "QbMhNQohRUTiO-MqH17PFg", "0qoA_0UyVsvyXMdu0oxJGw"],
+    "startImageIdx": 0,
+    "desc": "<p>Bisher zeichnet sich der Steindamm vor allem durch Kopfsteinpflaster in Parkbereichen und Hochbordradwege aus. Letztere sind qualitativ gar nicht mal so schlecht, aber für das Radaufkommen zu schmal und werden häufig von Fußgängern und Lieferverker mitbenutzt. Entsprechend langsam und unbequem kommt man aktuell voran.</p><p>In der Neufassung erhält das Fahrrad durchgehende Fahrradstreifen von ca. 1,80m Breite (laut Plan: 2m inkl Markierung), wobei diese im Haltestellenbereich mit den Bussen geteilt werden. Um an haltenden Bussen vorbeizufahren muss sich der Radverkehr in den fließenden KFZ-Verkehr einordnen, was kritisch zu betrachten ist. Positiv: der Lieferverkehr wurde extra bedacht – es bleibt also zu hoffen, das der Radfahrstreifen halbwegs frei bleibt. Der Umbau soll 2019 stattfinden, zusammen mit dem barrierefreien Ausbau der U-Lohmühlenstraße. Weitere Infos:</p><ul><li><a href=\"http://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf\">vorläufiger Lageplan</a></li><li><a href=\"http://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf\">Erläuterungsbericht zur Umgestaltung</a></li></ul>"
+  },
+
   "4 14 U Langenhorn Markt": {
     "loc": [10.0177872, 53.649394],
     "grade": 3,
     "images": ["xCMDA_6f3-uBpZbjFgPnDw", "QO1hSRRQVKrUpfpPyGIvXw"],
     "startImageIdx": 0,
     "desc": "<p>Das die Führung der Veloroute 4 in Südrichtung eher umständlich ist, braucht nicht erwähnt zu werden. Aber auch die sonstigen Querungen zeichnen sich durch zu schmale Wege, enge Kurven und Wegkonflikte mit Fußgängern bzw. Wartenden an den Bushaltestellen. Dies gilt sowohl für Route 4 als auch für Route 14.</p><p>Diese Unzulänglichkeiten wurden bei der Umgestaltung dieses Knotenpunkts aber erkannt und in der Planung behoben – zumindest soweit ich dies als Laie erkennen kann. Baubeginn soll im 1. Quartal 2019 liegen. Weitere Infos:</p><ul><li><a href=\"http://lsbg.hamburg.de/contentblob/11228162/1056b9cb4d11859c4f41a8974a01a204/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-plan.pdf\">vorläufiger Lageplan</a></li><li><a href=\"http://lsbg.hamburg.de/contentblob/11228160/da357f8f8e702c19536f531d8ffad004/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-bericht.pdf\">Erläuterungsbericht zur Umgestaltung</a></li></ul>"
+  },
+
+  "11 Wilhelmsburger Inselpark": {
+    "loc": [9.99704, 53.4952812],
+    "grade": 4,
+    "images": ["ZkF2uoZ-qCldmp5Mb_oE6w"],
+    "startImageIdx": 0,
+    "desc": "<p>Dieses Teilstück durch den Wilhelmsburger Inselpark ist nachts gesperrt. Ich hatte dazu auch die Parkleitung gefragt, wie die Führung zwischen 0:00 und 5:00 Uhr ist, aber keine Antwort erhalten. Da aktuell die Autobahn (Wilhelmsburger Reichsstraße) verlegt wird, ändert sich die genaue Route aber vielleicht nochmal.</p>"
+
+  },
+
+  "11 Innenstadt Harburg": {
+    "loc": [9.9865552, 53.4577823],
+    "grade": 3,
+    "images": ["e0xm7filkqb-1zXmVdoi7w", "Poh5OCDMVVe7A4OCPE_dLQ", "pK1KgSiunKtLuhX13BDDYw", "IEHJfdE64TXVL2DPR-t4cA", "tz1pv_URSzdi8dthu2EKMg", "uA3uWgJxQoIrrs3JHxsf3Q", "0BQQsbkeuU4aNHuaFnEy9Q"],
+    "startImageIdx": 0,
+    "desc": "<p>Diese Umplanung betrifft die fast die gesamte Harburger Innenstadt. Sie verlegt die Radwege als Radfahrstreifen auf die Straße, wobei die Breiten jeweils mindestens 1,85m betragen sollen (außer an manchen Stellen in den Kreuzungsbereichen). Die neue Führung verspricht die Wege sehr klar und vorallem weniger kurvenreich umzusetzen.</p><p>An der Kreuzung Hannoverische Straße wird es nach dem Umbau möglich sein Richtung Hamburg direkt links abzubiegen, was eine erhebliche Zeitersparnis bringen dürfte. Indirektes Abbiegen ist aber auch weiterhin möglich. In umgekehrter Richtung ist dies aber nicht vorgesehen. Es bleibt zu hoffen, das die Ampelschaltung daraus kein Stop-und-Go Spiel macht.</p><p>Auch aus der Wilstorfer Straße in die Moorstraße wird es kein direktes Linksabbiegen geben. Davon abgesehen scheint die Führung aber ein akzeptabler Kompromiss zu sein.</p><p>Der Neubau Hannoverische Brücke ist bereits im Gange. Anschließen sollen sich die Verbesserungen in zwei Bauphasen ab 2019. Zuerst grob um die Moorstraße, danach um den Harburger Ring inkl. der naheliegenden Kreuzungen. Weitere Infos:</p><ul><li><a href=\"http://lsbg.hamburg.de/contentblob/9180928/62e5e6f8e1fbda5b384385f1cd14bbab/data/veloroute-11-harburg-innenstadt-zweite-abstimmungsunterlage-plaene.pdf\">vorläufiger Lageplan</a></li><li><a href=\"http://lsbg.hamburg.de/contentblob/9180924/842f0b67159d79e97292b3561caee1ba/data/veloroute-11-harburg-innenstadt-zweite-abstimmungsunterlage-bericht.pdf\">Erläuterungsbericht zur Umgestaltung</a></li></ul>"
   },
 
   "13 Iseplatz": {
