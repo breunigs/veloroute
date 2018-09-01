@@ -10,7 +10,8 @@ docker build \
   -t veloroute:latest .
 
 img=$(docker create veloroute)
-docker cp $img:/artifacts/ build_new
+mkdir -p build_new/
+docker cp $img:/artifacts/. build_new/
 docker rm $img&
 
 mkdir -p build/
