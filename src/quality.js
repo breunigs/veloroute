@@ -149,6 +149,7 @@ let wasScrolledIntoViewOnce = false;
 const maybeScrollIntoView = (avoidScrolling) => {
   if(!avoidScrolling && !wasScrolledIntoViewOnce) {
     wasScrolledIntoViewOnce = true;
+    console.debug("scrolling to details once");
     header.scrollIntoView({block: "start", behavior: "smooth"});
   }
 }

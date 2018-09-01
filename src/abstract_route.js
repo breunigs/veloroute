@@ -22,19 +22,25 @@ class AbstractRoute {
   }
 
   async showRoute(routeName) {
-    if(routeName && routeName.startsWith("quality")) this._loadQuality();
+    if(!routeName) routeName = 'index';
+    let newPage = "page-" + routeName.split("/")[0];
+
+    if(newPage === "page-quality") this._loadQuality();
 
     let currentPage = null;
     body.classList.forEach(c => {
       if(c.startsWith("page-")) currentPage = c;
     });
 
-    if(!routeName) routeName = 'index';
-    body.classList.replace(currentPage, `page-${routeName.split("/")[0]}`)
+    if(currentPage) {
+      body.classList.replace(currentPage, newPage)
+    } else {
+      body.classList.add(newPage)
+    }
 
     // scroll back to top when switching "tabs". The scroll state isn't kept per
     // tab, but rather as a "37%" across all instances.
-    scrollbox.scrollTop = 0;
+    if(currentPage !== newPage) scrollbox.scrollTop = 0;
   };
 }
 
