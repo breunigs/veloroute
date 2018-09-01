@@ -27,7 +27,7 @@ const toggleMapColors = (layer, colorProperty) => {
 
 document.addEventListener('click', ev => {
   if(ev.defaultPrevented) return;
-  if(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
+  if(ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey || (ev.button && ev.button != 0)) return;
 
   let anchor = null;
   for (let n = ev.target; n.parentNode; n = n.parentNode) {
