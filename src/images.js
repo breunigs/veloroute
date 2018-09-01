@@ -1,5 +1,6 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
+import { toQualityName } from './filename_utils.js';
 import filenames from '../routes/geo/content_hashed_filenames.json'
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
@@ -20,12 +21,21 @@ let status = {
 }
 
 let updateInProgress = false;
-
+let updateInProgressResetter = null;
+const markUpdateFinished = () => {
+  updateInProgress = false;
+  if(updateInProgressResetter) clearTimeout(updateInProgressResetter);
+  updateInProgressResetter = null;
+}
+const markUpdateInProgress = () => {
+  updateInProgress = true;
+  updateInProgressResetter = setTimeout(markUpdateFinished, 10000);
+}
 
 let imageData = {};
 const route = () => {
-  const r = status.routeName;
-  if(!r) return Promise.resolve(null);
+  if(!status.routeName) return Promise.resolve(null);
+  const r = status.routeName.split("/")[0];
   if(imageData[r]) return imageData[r];
 
   const file = `images-${r}.json`;
@@ -127,10 +137,13 @@ async function setActiveRoute(routeName, branch, imgIndex) {
 async function restoreBranch() {
   const rr = await route();
   if(!rr) return;
+  if(!status.routeName.startsWith('quality') && !status.image) return;
   for(const branch in rr) {
     const imgKeys = rr[branch].keys;
     const idx = imgKeys.indexOf(status.image);
     if(idx >= 0) return setActiveRoute(status.routeName, branch, idx);
+    const isShortcomingMarker = location.pathname.endsWith(toQualityName(branch));
+    if(isShortcomingMarker) return setActiveRoute(status.routeName, branch);
   }
 }
 restoreBranch();
@@ -164,12 +177,14 @@ const addIndicatorListener = (...funcs) => {
 
 const distEuklid = (lng1, lat1, lng2, lat2) => Math.sqrt((lng1-lng2)**2 + (lat1-lat2)**2)
 
-async function changeDirection() {
-  const img = await images();
-  const idx = img.keys.indexOf(status.image);
-  const loc = img.loc[idx];
-  const lngLat = {lng: loc[0], lat: loc[1]};
-  showCloseImage(status.routeName, lngLat, true);
+async function changeDirection(lngLat) {
+  if(!lngLat) {
+    const img = await images();
+    const idx = img.keys.indexOf(status.image);
+    const loc = img.loc[idx];
+    lngLat = {lng: loc[0], lat: loc[1]};
+  }
+  showCloseImage(status.routeName, lngLat, "change-direction");
 }
 
 const stepSlider = (amount) => {
@@ -224,13 +239,14 @@ const closestImageIndex = (images, lngLat) => {
 }
 
 let prevLngLat = null;
-async function showCloseImage(routeName, lngLat, ignoreCurrent) {
+async function showCloseImage(routeName, lngLat, eventSource) {
   stopPlayback();
   status.routeName = routeName;
+  const ignoreCurrent = eventSource == "quality" || eventSource == "change-direction";
 
-  if(prevLngLat && prevLngLat.lng === lngLat.lng && prevLngLat.lat === lngLat.lat) {
+  if(prevLngLat && prevLngLat.lng === lngLat.lng && prevLngLat.lat === lngLat.lat && eventSource != "change-direction") {
     console.debug("Previous lngLat the same as current, attempting to switch direction instead.");
-    return changeDirection();
+    return changeDirection(lngLat);
   }
   prevLngLat = lngLat;
 
@@ -264,53 +280,53 @@ async function showCloseImage(routeName, lngLat, ignoreCurrent) {
 }
 
 
-let updateInProgressResetter = null;
-const triggerImageUpdate = (triggerdThroughLoad) => {
-  if(!viewer.isNavigable && !triggerdThroughLoad) {
-    console.log("Mapillary not yet loaded, delaying jump until it is");
-    viewer.on(Viewer.navigablechanged, () => {
-      console.log("Mapillary loaded, jumping now");
-      triggerImageUpdate(true);
-    });
+const triggerImageUpdate = () => {
+  if(!viewer.isNavigable) {
+    // calling moveToKey while the cover component is still somehow active breaks
+    // Mapillary. Instead, simply wait for the initial image to be done loading,
+    // then move to the desired one. This is an edge case most of the time, since
+    // we usually attach the desired image to the URL hash, so it will be known
+    // ahead of time.
+    console.log("Mapillary not yet loaded, simply waiting for first image to be done loading.");
     return;
   }
 
   if(updateInProgress) return;
-  updateInProgress = true;
-  updateInProgressResetter = setTimeout(() => { updateInProgress = false }, 10000);
+  markUpdateInProgress();
   viewer.moveToKey(status.image);
 }
 
-const hasLoadedDesiredImage = (loadedImage) => {
+const hasLoadedDesiredImage = (loadedImage, canTriggerLoad) => {
   // console.debug("Mapillary loaded node: ", loadedImage);
   // console.debug("Desired node:          ", status.image);
 
-  if(updateInProgressResetter) clearTimeout(updateInProgressResetter);
-  updateInProgress = false;
-  if(loadedImage == status.image) return true;
+  if(loadedImage == status.image) {
+    markUpdateFinished();
+    return true;
+  }
 
-  triggerImageUpdate();
+  if(canTriggerLoad) setTimeout(triggerImageUpdate, 0);
   return false;
 }
 
 let currentNode = null;
 viewer.on(Viewer.nodechanged, function (node) {
   currentNode = node;
-  if(node.key === GENERIC_START_IMAGE) return;
-  if(hasLoadedDesiredImage(node.key)) {
+  if(hasLoadedDesiredImage(node.key, true)) {
+    if(node.key === GENERIC_START_IMAGE) return;
     indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
   }
 });
 viewer.on(Viewer.bearingchanged, function (bearing) {
   if(currentNode.key === GENERIC_START_IMAGE) return;
-  if(hasLoadedDesiredImage(currentNode.key)) {
+  if(hasLoadedDesiredImage(currentNode.key, false)) {
     indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
   }
 });
 window.addEventListener("resize", () => viewer.resize());
 next.addEventListener("click", () => { stopPlayback(); stepSlider(+1) });
 prev.addEventListener("click", () => { stopPlayback(); stepSlider(-1) });
-direction.addEventListener("click", changeDirection);
+direction.addEventListener("click", () => changeDirection());
 slider.addEventListener("input", () => handleSliderMove(false));
 playstop.addEventListener("click", handlePlayStop);
 document.addEventListener("keydown", handleEsc);

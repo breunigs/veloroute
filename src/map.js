@@ -92,7 +92,7 @@ const renderRoutes = (initialRoute) => {
     type: 'line',
     layout: {
       "line-cap": "round",
-      "visibility": initialRoute == "quality" ? "none" : "visible",
+      "visibility": initialRoute && initialRoute.startsWith("quality") ? "none" : "visible",
     },
     paint: {
       "line-width": {
@@ -258,7 +258,7 @@ let clickableLayers = { layers: ['layer-routes'] };
 let routesLoaded = false;
 const bodyClasses = document.getElementsByTagName('body')[0].classList;
 async function toggleQuality(shownRoute) {
-  if(shownRoute === "quality") {
+  if(shownRoute && shownRoute.startsWith("quality")) {
     bodyClasses.add('toggle-route-markers');
     if(loadQuality()) return;
     map.setLayoutProperty('layer-quality', 'visibility', 'visible');
@@ -292,11 +292,11 @@ const handleRouteClick = (evt) => {
   if(!route) return;
 
   if(route.properties.quality) {
-    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, false, route.properties));
+    qualityClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, "quality"));
     return;
   }
 
-  routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat));
+  routeClickListeners.forEach((f) => f(route.properties.name, evt.lngLat, "regular"));
 }
 
 map.on('style.load', () => {

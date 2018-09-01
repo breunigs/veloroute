@@ -12,6 +12,7 @@ const imagesPromise = import(/* webpackChunkName: "images" */ './images');
 const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
 
 addRouteClickListener(state.routeSetter());
+addQualityClickListener(state.routeSetter());
 addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
 
 const scrollTo = (selector) => {
@@ -65,7 +66,7 @@ document.addEventListener('click', ev => {
     return ev.preventDefault();
   }
 
-  if(path.match(/^(quality|\d|1[01234])$/) || path === "") {
+  if(path.match(/^(quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
     ev.preventDefault();
     return state.routeSetter()(path);
   }

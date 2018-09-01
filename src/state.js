@@ -68,9 +68,9 @@ class State {
     this._slowUpdateHash();
   }
 
-  _setCurrentRoute(routeName) {
+  _setCurrentRoute(routeName, _lngLat, eventType) {
     if(!routeName) return this._resetRoute();
-    this._status.route = routeName;
+    this._status.route = eventType === "quality" ? "quality" : routeName;
     this._routeChanged();
     this._updateHash();
   }

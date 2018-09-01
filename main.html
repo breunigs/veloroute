@@ -28,7 +28,7 @@
   <link rel="dns-prefetch" href="https://b.tiles.mapbox.com">
 </head>
 
-<body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "") %>">
+<body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "").replace(/\/.*$/, '') %>">
   <div id="main">
     <div id="map"></div>
   </div>
@@ -105,7 +105,41 @@
 
         <h4 id="qualityheader">Details</h4>
         <div id="quality">
-          <p>Bitte wähle zuerst einen Weg/Marker aus.</p>
+          <% if(htmlWebpackPlugin.options.qualityDesc) { %>
+            <%= htmlWebpackPlugin.options.qualityDesc %>
+            <% title = htmlWebpackPlugin.options.title.split(" – "); %>
+            <script type="application/ld+json">
+              {
+                "@context": "http://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@id": "https://veloroute.hamburg",
+                    "name": "<%= title[0] %>"
+                  }
+                },{
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@id": "https://veloroute.hamburg/quality",
+                    "name": "<%= title[1] %>"
+                  }
+                },{
+                  "@type": "ListItem",
+                  "position": 3,
+                  "item": {
+                    "@id": "https://veloroute.hamburg/<%=htmlWebpackPlugin.options.filename.replace(".html", "")%>",
+                    "name": "<%= title[2] %>",
+                    "image": "<%=htmlWebpackPlugin.options.imagePath%>"
+                  }
+                }]
+              }
+            </script>
+          <% } else { %>
+            <p>Bitte wähle zuerst einen Weg/Marker aus.</p>
+          <% } %>
         </div>
 
         <a href="/">zurück zur normalen Ansicht</a></li>

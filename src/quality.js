@@ -1,4 +1,5 @@
 import shortcomings from '../shortcomings.json';
+import { toQualityName } from './filename_utils.js';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 
 const el = document.getElementById('quality');
@@ -176,11 +177,12 @@ const renderHtmlForWay = (details, osmId) => {
   return html;
 }
 
-const renderQualityMarkers = (createMarker, imagesPromise) => {
+const renderQualityMarkers = (createMarker, state, imagesPromise) => {
   Object.entries(shortcomings).map(([name, details]) => {
     const clickHandler = () => {
       el.innerHTML = details.desc;
-      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, details.startImageIdx));
+      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name));
+      state.routeSetter()(toQualityName(name));
     };
     const classes = `shortcoming grade${details.grade}`;
     createMarker(classes, details.loc, '⚫', clickHandler);
@@ -198,7 +200,7 @@ export class Quality {
     this.showForKey = this.showForKey.bind(this);
     this.indicatorListener = this.indicatorListener.bind(this);
 
-    renderQualityMarkers(createMarker, this._imagesPromise);
+    renderQualityMarkers(createMarker, state, this._imagesPromise);
     this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener))
     this.showForKey(this._state.currentImage(), true);
   }

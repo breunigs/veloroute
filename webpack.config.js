@@ -6,6 +6,9 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
+const shortcomings = require('./shortcomings.json');
+const { toQualityName } = require('./src/filename_utils.js');
+
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
@@ -20,22 +23,24 @@ module.exports = (env, argv) => {
   }
   pages = [
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 1", filename: "1.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 2", filename: "2.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 3", filename: "3.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 4", filename: "4.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 5", filename: "5.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 6", filename: "6.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 7", filename: "7.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 8", filename: "8.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 9", filename: "9.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 10", filename: "10.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 11", filename: "11.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 12", filename: "12.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 13", filename: "13.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Alltagsroute 14", filename: "14.html"}),
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Qualität und Ausbaustatus", filename: "quality.html"})
   ];
+  for(let i = 1; i <= 14; i++) {
+    pages.push(new HtmlWebpackPlugin({...htmlOpts, title: `veloroute.hamburg – Alltagsroute ${i}`, filename: `${i}.html`}));
+  }
+  const entries = Object.keys(shortcomings);
+  for(let i = 0; i < entries.length; i++) {
+    const title = entries[i];
+    const fn = toQualityName(title);
+    const short = shortcomings[title];
+    pages.push(new HtmlWebpackPlugin({
+      ...htmlOpts,
+      title: `veloroute.hamburg – Qualität und Ausbaustatus – ${title}`,
+      filename: `${fn}.html`,
+      imagePath: `https://d1cuyjsrcm0gby.cloudfront.net/${short.images[0]}/thumb-2048.jpg`,
+      qualityDesc: short.desc
+    }));
+  }
 
   return {
     devtool: "source-map",
@@ -99,12 +104,7 @@ module.exports = (env, argv) => {
       contentBase: path.join(__dirname, "build"),
       compress: false,
       port: 9000,
-      historyApiFallback: {
-        rewrites: [{
-          from: /^\/(\d+|quality)$/,
-          to: context => context.parsedUrl.path + '.html'
-        }],
-      },
+      historyApiFallback: true,
       headers: {
         "Content-Security-Policy": [
           "worker-src blob:",
