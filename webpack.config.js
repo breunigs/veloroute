@@ -3,10 +3,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
 const shortcomings = require('./shortcomings.json');
+const routes = require('./routes.json');
 const { toQualityName } = require('./src/utils_webpack');
 
 module.exports = (env, argv) => {
@@ -26,7 +28,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Qualität und Ausbaustatus", filename: "quality.html"})
   ];
   for(let i = 1; i <= 14; i++) {
-    pages.push(new HtmlWebpackPlugin({...htmlOpts, title: `veloroute.hamburg – Alltagsroute ${i}`, filename: `${i}.html`}));
+    const reviewDate = routes[i+'']["review_date"];
+    pages.push(new HtmlWebpackPlugin({...htmlOpts, reviewDate: reviewDate, title: `veloroute.hamburg – Alltagsroute ${i}`, filename: `${i}.html`}));
   }
   const entries = Object.keys(shortcomings);
   for(let i = 0; i < entries.length; i++) {
@@ -38,9 +41,19 @@ module.exports = (env, argv) => {
       title: `veloroute.hamburg – Qualität und Ausbaustatus – ${title}`,
       filename: `${fn}.html`,
       imagePath: `https://d1cuyjsrcm0gby.cloudfront.net/${short.images[0]}/thumb-2048.jpg`,
-      qualityDesc: short.desc
+      qualityDesc: short.desc,
+      lastCheck: short.lastCheck
     }));
   }
+
+  const sitemapURLs = pages.map(p => {
+    const subHeadlines = (p.options.title.match(/–/g) || []).length;
+    return {
+      path: '/' + p.options.filename.replace(/\.html$/, ''),
+      priority: Math.max(1 - subHeadlines*0.2, 0),
+      lastMod: p.options.reviewDate || p.options.lastCheck
+    }
+  });
 
   return {
     devtool: "source-map",
@@ -133,6 +146,9 @@ module.exports = (env, argv) => {
           }
         ],
         publicPath: '/node_modules'
+      }),
+      new SitemapPlugin('https://veloroute.hamburg', sitemapURLs, {
+        skipGzip: true
       }),
       new ScriptExtHtmlWebpackPlugin({
         preload: {

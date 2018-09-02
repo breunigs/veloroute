@@ -1,5 +1,6 @@
 {
   "2 Lagerstraße": {
+    "lastCheck": "2018-08-30",
     "loc": [9.96598, 53.56228],
     "grade": 2,
     "images": ["BJ2cODwYJW3kj5WUKrS1Ww"],
@@ -7,6 +8,7 @@
   },
 
   "2 Weidenallee": {
+    "lastCheck": "2018-08-30",
     "loc": [9.96355, 53.56950],
     "grade": 3,
     "images": ["BJOCAkBbQKLaFEuTJLHT4A"],
@@ -14,6 +16,7 @@
   },
 
   "4 Kreuzung Neuer Jungfernstieg": {
+    "lastCheck": "2018-08-19",
     "loc": [9.994009366, 53.55777163],
     "grade": 3,
     "images": ["EWyGBNzBlzNnwh3YTvxQlw", "Nb-tt5p34NRNQtLw02jYEA", "2spdIaeNN8ticy60bcMOcw", "G7i57uprZH0Ps3KCfxK5Jw"],
@@ -21,6 +24,7 @@
   },
 
   "4 Krugkoppel": {
+    "lastCheck": "2018-09-01",
     "loc": [9.9986931, 53.5796807],
     "grade": 3,
     "images": ["vKwtpDBcYeCCRj8V-X_48A", "CUV_L1y-MQpMuJ0UK1zXhQ", "fRPiug-kxmwlt-ksLBP_gQ", "YzwIhOW3lzY3XfRcGxWm9g", "NgF-z3Xcc375fcFKNccUow", "-_6JY2gD4OvxYbzFQIXQAQ"],
@@ -28,6 +32,7 @@
   },
 
   "6 Kreuzung Lerchenfeld": {
+    "lastCheck": "2018-08-21",
     "loc": [10.0313444, 53.5667883],
     "grade": 1,
     "images": ["3FJoDizsSixFlw4-XG0VWA"],
@@ -35,6 +40,7 @@
   },
 
   "6 Kreuzung Wagnerstrasse": {
+    "lastCheck": "2018-08-29",
     "loc": [10.03980, 53.5710466],
     "grade": 3,
     "images": ["3Q_8bqul0x2tKpIZSItg-g", "IrgIralVL2cDv_6gKmW-1w"],
@@ -42,6 +48,7 @@
   },
 
   "6 S-Friedrichsberg": {
+    "lastCheck": "2018-08-29",
     "loc": [10.058636, 53.5761309],
     "grade": 5,
     "images": ["v5vTbdoRNbrnLCjqE7SNFg", "VrGvHJPFI5vjUbVKz-3ekQ", "CiLnoL8dfeZZkh3_D-1-yA", "WsmgvMBRVmR_bxwmIa0uBQ"],
@@ -49,6 +56,7 @@
   },
 
   "7 Rahlstedter Straße": {
+    "lastCheck": "2018-08-30",
     "loc": [10.1499112, 53.5955692],
     "grade": 2,
     "images": ["pwuW4ksOJZlXcXePhA9m8Q", "E6iwb1GKHWU-NRBVyG9ibw"],
@@ -56,6 +64,7 @@
   },
 
   "7 Steindamm": {
+    "lastCheck": "2018-08-30",
     "loc": [10.0175985, 53.5559459],
     "grade": 3,
     "images": ["vqaa8d536GbC9u3NQeXMlA", "8FTsePivRQHDANsOuIT8eg", "dwBuU9cde772-AGlJaIHnA", "FWz9Io_6FrprkFQyv0EZrA", "QbMhNQohRUTiO-MqH17PFg", "0qoA_0UyVsvyXMdu0oxJGw"],
@@ -63,6 +72,7 @@
   },
 
   "4+14 U-Langenhorn Markt": {
+    "lastCheck": "2018-08-29",
     "loc": [10.0177872, 53.649394],
     "grade": 3,
     "images": ["xCMDA_6f3-uBpZbjFgPnDw", "QO1hSRRQVKrUpfpPyGIvXw"],
@@ -70,6 +80,7 @@
   },
 
   "11 Wilhelmsburger Inselpark": {
+    "lastCheck": "2018-08-30",
     "loc": [9.99704, 53.4952812],
     "grade": 4,
     "images": ["ZkF2uoZ-qCldmp5Mb_oE6w"],
@@ -78,6 +89,7 @@
   },
 
   "11 Innenstadt Harburg": {
+    "lastCheck": "2018-08-30",
     "loc": [9.9865552, 53.4577823],
     "grade": 3,
     "images": ["e0xm7filkqb-1zXmVdoi7w", "Poh5OCDMVVe7A4OCPE_dLQ", "pK1KgSiunKtLuhX13BDDYw", "IEHJfdE64TXVL2DPR-t4cA", "tz1pv_URSzdi8dthu2EKMg", "uA3uWgJxQoIrrs3JHxsf3Q", "0BQQsbkeuU4aNHuaFnEy9Q"],
@@ -85,6 +97,7 @@
   },
 
   "13 Iseplatz": {
+    "lastCheck": "2018-08-29",
     "loc": [9.9883672, 53.5854104],
     "grade": 2,
     "images": ["pQdv4XxzzkoPWdmJ-KfXrg"],
@@ -92,6 +105,7 @@
   },
 
   "13 Holstenplatz": {
+    "lastCheck": "2018-08-29",
     "loc": [9.94755, 53.56115],
     "loc2": [9.94867, 53.56232],
     "grade": 5,
