@@ -5,6 +5,7 @@ import filenames from '../routes/geo/content_hashed_filenames.json';
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
 const slider = document.getElementById("slider");
+const side = document.getElementById("side");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 const direction = document.getElementById("direction");
@@ -22,14 +23,19 @@ let status = {
 
 let updateInProgress = false;
 let updateInProgressResetter = null;
+let updateInProgressHourglass = null;
 const markUpdateFinished = () => {
   updateInProgress = false;
+  if(updateInProgressHourglass) clearTimeout(updateInProgressHourglass);
   if(updateInProgressResetter) clearTimeout(updateInProgressResetter);
+  side.classList.remove('wait');
   updateInProgressResetter = null;
+  updateInProgressHourglass = null;
 }
 const markUpdateInProgress = () => {
   updateInProgress = true;
   updateInProgressResetter = setTimeout(markUpdateFinished, 10000);
+  updateInProgressHourglass = setTimeout(() => side.classList.add('wait'), 1000);
 }
 
 let imageData = {};
@@ -58,12 +64,13 @@ const images = () => {
 
 let alertShown = false;
 async function handleSliderMove(avoidListenerUpdates) {
-  console.debug("Reacting to slider move. Current status: ", status);
+  console.debug("Slider moved. Current status: ", status);
   const pos = slider.value;
 
   const i = await images();
   if(!i) {
     console.debug("could not find images, disabling everything")
+    stopPlayback();
     controls.classList.add("disable-next", "disable-prev");
     prev.disabled = true;
     next.disabled = true;
@@ -155,12 +162,12 @@ const viewer = new Viewer("mly", API_KEY, status.image, {
     cache: {
       depth: {
         pano: 0,
-        sequence: 2,
+        sequence: 3,
         step: 0,
         turn: 0
       }
     },
-    cover: false,
+    cover: true,
     direction: false,
     keyboard: false,
     marker: false,
@@ -168,7 +175,6 @@ const viewer = new Viewer("mly", API_KEY, status.image, {
     zoom: false,
   }
 });
-viewer.deactivateComponent("cache");
 
 let indicatorListeners = [];
 const addIndicatorListener = (...funcs) => {
@@ -190,7 +196,6 @@ async function changeDirection(lngLat) {
 const stepSlider = (amount) => {
   slider.value = slider.value*1 + amount;
   handleSliderMove(true);
-  viewer.activateComponent("cache");
 }
 
 let playTimeout = null;
@@ -201,10 +206,12 @@ const playShowNextImage = () => {
 }
 
 const stopPlayback = () => {
+  if(!playTimeout) return;
+  markUpdateFinished();
   clearTimeout(playTimeout);
   // prevent Mapillary from showing the next image, in case it is currently
   // loading one
-  viewer.moveToKey(status.image);
+  triggerImageUpdate();
   playTimeout = null;
   playstop.textContent = '▶';
 }
@@ -213,6 +220,11 @@ const handlePlayStop = () => {
   if(playTimeout != null) return stopPlayback();
   playstop.textContent = '■';
   playShowNextImage();
+}
+
+const handlePlay = () => {
+  if(playTimeout != null) return;
+  handlePlayStop();
 }
 
 const handleEsc = (evt) => {
@@ -279,9 +291,16 @@ async function showCloseImage(routeName, lngLat, eventSource) {
   return setActiveRoute(routeName, closestBranch, closestIdx);
 }
 
-
+let currentNode = null;
+let hasLoadedFirstNode = false;
+let coverBtn = document.getElementsByClassName('CoverButton')[0];
 const triggerImageUpdate = () => {
-  if(!viewer.isNavigable) {
+  if(!hasLoadedFirstNode) {
+    if(coverBtn) {
+      coverBtn.click();
+      coverBtn = null;
+    }
+
     // calling moveToKey while the cover component is still somehow active breaks
     // Mapillary. Instead, simply wait for the initial image to be done loading,
     // then move to the desired one. This is an edge case most of the time, since
@@ -292,37 +311,36 @@ const triggerImageUpdate = () => {
   }
 
   if(updateInProgress) return;
+  if(currentNode.key == status.image) return;
   markUpdateInProgress();
   viewer.moveToKey(status.image);
 }
 
-const hasLoadedDesiredImage = (loadedImage, canTriggerLoad) => {
-  // console.debug("Mapillary loaded node: ", loadedImage);
-  // console.debug("Desired node:          ", status.image);
+viewer.on(Viewer.nodechanged, (node) => {
+  hasLoadedFirstNode = true;
+  markUpdateFinished();
+  if(node.key == status.image) return;
+  setTimeout(triggerImageUpdate, 0);
+});
 
-  if(loadedImage == status.image) {
-    markUpdateFinished();
-    return true;
-  }
+viewer.on(Viewer.click, handlePlayStop)
+if(coverBtn) {
+  coverBtn.addEventListener("click", async (event) => {
+    if(event.clientX == 0 && event.clientY == 0) return; // not a human click
+    console.log("playing because cover button was clicked", status)
+    if(!status.routeName) status.routeName = "12";
+    if(!status.branch) {
+      const allBranches = await route();
+      const branch = Object.keys(allBranches).find(name => name.startsWith('outward'));
+      const idx = status.image ? allBranches[branch].keys.indexOf(status.image) : null;
+      await setActiveRoute(status.routeName, branch, idx);
+    }
 
-  if(canTriggerLoad) setTimeout(triggerImageUpdate, 0);
-  return false;
+    coverBtn = null;
+    handlePlay();
+  });
 }
 
-let currentNode = null;
-viewer.on(Viewer.nodechanged, function (node) {
-  currentNode = node;
-  if(hasLoadedDesiredImage(node.key, true)) {
-    if(node.key === GENERIC_START_IMAGE) return;
-    indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
-  }
-});
-viewer.on(Viewer.bearingchanged, function (bearing) {
-  if(currentNode.key === GENERIC_START_IMAGE) return;
-  if(hasLoadedDesiredImage(currentNode.key, false)) {
-    indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
-  }
-});
 window.addEventListener("resize", () => viewer.resize());
 next.addEventListener("click", () => { stopPlayback(); stepSlider(+1) });
 prev.addEventListener("click", () => { stopPlayback(); stepSlider(-1) });
@@ -331,5 +349,17 @@ slider.addEventListener("input", () => handleSliderMove(false));
 playstop.addEventListener("click", handlePlayStop);
 document.addEventListener("keydown", handleEsc);
 
+// inform listeners
+viewer.on(Viewer.nodechanged, function (node) {
+  currentNode = node;
+  if(node.key === GENERIC_START_IMAGE) return;
+  if(node.key != status.image) return;
+  indicatorListeners.forEach((f) => f(node.latLon.lon, node.latLon.lat, node.ca, node.key));
+});
+viewer.on(Viewer.bearingchanged, function (bearing) {
+  if(currentNode.key === GENERIC_START_IMAGE) return;
+  if(currentNode.key != status.image) return;
+  indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
+});
 
 export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute };

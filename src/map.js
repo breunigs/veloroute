@@ -240,8 +240,6 @@ const moveTo = (lngLat) => {
   }
 }
 
-
-
 let qualityLoaded = false;
 const loadQuality = () => {
   if(qualityLoaded) return false;
@@ -308,7 +306,6 @@ map.on('style.load', () => {
   })
   renderIcons();
   toggleQuality(inital.route);
-
 });
 
 export { addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker };
