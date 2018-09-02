@@ -92,6 +92,7 @@ async function handleSliderMove(avoidListenerUpdates) {
   }
   if(pos == i.keys.length-1) {
     controls.classList.add("disable-next");
+    stopPlayback();
   } else {
     controls.classList.remove("disable-next");
   }
