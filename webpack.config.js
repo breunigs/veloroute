@@ -27,10 +27,15 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg"}),
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Qualität und Ausbaustatus", filename: "quality.html"})
   ];
+  let sitemapURLs = [];
   for(let i = 1; i <= 14; i++) {
     const reviewDate = routes[i+'']["review_date"];
     pages.push(new HtmlWebpackPlugin({...htmlOpts, reviewDate: reviewDate, title: `veloroute.hamburg – Alltagsroute ${i}`, filename: `${i}.html`}));
+    sitemapURLs.push({path: `/routes/geo/route${i}.gpx`, priority: 0.1});
+    sitemapURLs.push({path: `/routes/geo/route${i}.kml`, priority: 0.1});
   }
+  sitemapURLs.push({path: `/routes/geo/routen.zip`, priority: 0.1});
+
   const entries = Object.keys(shortcomings);
   for(let i = 0; i < entries.length; i++) {
     const title = entries[i];
@@ -46,14 +51,16 @@ module.exports = (env, argv) => {
     }));
   }
 
-  const sitemapURLs = pages.map(p => {
+  sitemapURLs = sitemapURLs.concat(pages.map(p => {
     const subHeadlines = (p.options.title.match(/–/g) || []).length;
+    let path = p.options.filename.replace(/\.html$/, '');
+    if(path === 'index') path = '';
     return {
-      path: '/' + p.options.filename.replace(/\.html$/, ''),
+      path: '/' + path,
       priority: Math.max(1 - subHeadlines*0.2, 0),
       lastMod: p.options.reviewDate || p.options.lastCheck
     }
-  });
+  }));
 
   return {
     devtool: "source-map",
