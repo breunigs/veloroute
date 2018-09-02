@@ -11,5 +11,4 @@ function toQualityName(string) {
   return "quality/" + toFileName(string);
 }
 
-module.exports.toFileName = toFileName;
-module.exports.toQualityName = toQualityName;
+export { toFileName, toQualityName };

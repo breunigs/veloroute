@@ -1,7 +1,7 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
-import { toQualityName } from './filename_utils.js';
-import filenames from '../routes/geo/content_hashed_filenames.json'
+import { toQualityName } from './utils_web';
+import filenames from '../routes/geo/content_hashed_filenames.json';
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
 const slider = document.getElementById("slider");

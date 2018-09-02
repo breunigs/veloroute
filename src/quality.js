@@ -1,5 +1,5 @@
 import shortcomings from '../shortcomings.json';
-import { toQualityName } from './filename_utils.js';
+import { toQualityName } from './utils_web';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 
 const el = document.getElementById('quality');

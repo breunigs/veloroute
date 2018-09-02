@@ -7,7 +7,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
 const shortcomings = require('./shortcomings.json');
-const { toQualityName } = require('./src/filename_utils.js');
+const { toQualityName } = require('./src/utils_webpack');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -46,9 +46,9 @@ module.exports = (env, argv) => {
     devtool: "source-map",
     mode: "development",
     entry: {
-      checkWebGL: "./src/checkWebGL.js",
-      polyfillLoader: "./src/polyfill-loader.js",
       polyfillChecker: "./src/polyfill-checker.js",
+      polyfillLoader: "./src/polyfill-loader.js",
+      checkWebGL: "./src/checkWebGL.js",
       app: "./src/index.js"
     },
     output: {
