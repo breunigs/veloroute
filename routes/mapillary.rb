@@ -1,6 +1,7 @@
 require_relative "geojson"
 require_relative "web"
 
+require 'digest/md5'
 
 module Mapillary
   API_URL = "https://a.mapillary.com/v3"
@@ -139,9 +140,13 @@ module Mapillary
 
     def line_as_geojson
       return nil if corrected_data.size <= 1
+      rng = Random.new(Digest::MD5.hexdigest(id).to_i(16))
       {
         type: "Feature",
-        properties: {sequence_id: id},
+        properties: {
+          sequence_id: id,
+          color: '#' << ("%06x" % (rng.rand * 0xffffff))
+        },
         geometry: {
           type: "LineString",
           coordinates: coords
@@ -162,10 +167,11 @@ module Mapillary
     def marker_as_geojson(which)
      {
         type: "Feature",
+        id: rand(10000000000),
         properties: {
           sequence_id: id,
           image_key: image_keys.public_send(which),
-          url: "https://www.mapillary.com/app/?pKey=#{image_keys.public_send(which)}"
+          which: which
         },
         geometry: {
           type: "Point",

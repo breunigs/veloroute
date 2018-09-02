@@ -87,8 +87,8 @@ const renderQuality = () => {
 
 const renderRoutes = (initialRoute) => {
   map.addLayer({
-    id: `layer-routes`,
-    source: `source-routes`,
+    id: 'layer-routes',
+    source: 'source-routes',
     type: 'line',
     layout: {
       "line-cap": "round",

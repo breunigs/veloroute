@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Debugging Image Tracks</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+    #info { position: absolute; top: 10px; left: 10px; width: 300px; background:#fff; z-index: 10; }
+  </style>
+</head>
+<body>
+<div id='info'></div>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYnJldW5pZ3MiLCJhIjoiY2poeDIwOW14MDZsZTNxcHViajE0Y3Y5eCJ9._zBVNwelSOZOnRDEmwPGiA';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: [9.993148, 53.550974],
+  zoom: 10,
+  hash: true
+});
+
+map.on('load', function () {
+  map.addSource("debug", {
+    "type": "geojson",
+    "data": "./geo/images_debug.geojson"
+  });
+
+  map.addLayer({
+    "id": "lines",
+    "type": "line",
+    "source": "debug",
+    "paint": {
+      // "line-color": "#888",
+      'line-color': { "type": "identity", "property": "color" },
+      "line-width": 4
+    },
+    "filter": ["==", "$type", "LineString"]
+  });
+
+  map.addLayer({
+    "id": "start-end",
+    "type": "circle",
+    "source": "debug",
+    "paint": {
+        "circle-radius": 4,
+        // "circle-color": "red",
+        "circle-color": ["case",
+            ["boolean", ["feature-state", "hover"], false],
+            "red",
+            "blue"
+        ]
+    },
+    "filter": ["==", "$type", "Point"],
+  });
+
+  let prevHover = null;
+  // When the user moves their mouse over the state-fill layer, we'll update the
+  // feature state for the feature under the mouse.
+  map.on("mousemove", "start-end", function(e) {
+    if (e.features.length == 0) return;
+    const dat = e.features[0].properties;
+    document.getElementById('info').innerHTML = `
+      <table>
+        <tr><th>sequence</th><td><tt>${dat.sequence_id}</tt></tr>
+        <tr><th>image key</th><td><tt>${dat.image_key}</tt></tr>
+        <tr>
+          <td><a href="https://www.mapillary.com/app/?pKey=${dat.image_key}">goto mapillary</a></td>
+          <td>img @ ${dat.which}</td>
+        </tr>
+      </table>
+    `;
+
+    if(prevHover) map.setFeatureState({source: 'debug', id: prevHover}, { hover: false});
+    prevHover = e.features[0].id;
+    map.setFeatureState({source: 'debug', id: prevHover}, { hover: true});
+  });
+
+  // When the mouse leaves the state-fill layer, update the feature state of the
+  // previously hovered feature.
+  // map.on("mouseleave", "state-fills", function() {
+  //     if (hoveredStateId) {
+  //         map.setFeatureState({source: 'states', id: hoveredStateId}, { hover: false});
+  //     }
+  //     hoveredStateId =  null;
+  // });
+});
+</script>
+</body>
+</html>
