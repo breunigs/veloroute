@@ -255,7 +255,7 @@ let prevLngLat = null;
 async function showCloseImage(routeName, lngLat, eventSource) {
   stopPlayback();
   status.routeName = routeName;
-  const ignoreCurrent = eventSource == "quality" || eventSource == "change-direction";
+  const ignoreCurrent = eventSource == "change-direction";
 
   if(prevLngLat && prevLngLat.lng === lngLat.lng && prevLngLat.lat === lngLat.lat && eventSource != "change-direction") {
     console.debug("Previous lngLat the same as current, attempting to switch direction instead.");
@@ -266,7 +266,7 @@ async function showCloseImage(routeName, lngLat, eventSource) {
   const current = `${status.direction}_${status.branch}`;
   let distances = {};
 
-  if(ignoreCurrent) console.debug(`Ignoring images for direction ${status.direction}`);
+  if(ignoreCurrent) console.debug(`Ignoring images for direction ${status.direction} (source: ${eventSource})`);
 
   const rr = await route();
   for(const branch in rr) {
