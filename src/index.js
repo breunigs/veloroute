@@ -55,6 +55,7 @@ document.addEventListener('click', ev => {
   if(anchor.classList.contains('place')) {
     const placeName = anchor.textContent;
     scrollTo('#map');
+    if(!places[placeName]) console.debug(`Cannot find place ${placeName} in presolved list.`)
     map.fitBounds(places[placeName], {maxZoom: 14.5});
     ev.preventDefault();
     return;

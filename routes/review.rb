@@ -1,7 +1,6 @@
-require 'nokogiri'
 require 'json'
 
-require_relative "place"
+require_relative "util"
 require_relative "webpack_helper"
 
 class Review
@@ -20,14 +19,8 @@ class Review
   def description
     return nil unless @raw_description
     @description ||= begin
-      # XXX: xpath doesn't work with fragments
-      d = Nokogiri::HTML::fragment(@raw_description)
-      d.css("a").each do |link|
-        next if link.attr(:href)
-        link[:class] = "place"
-        link[:href] = Place.find(link.text).url
-      end
-      d
+      html, _places = link_places(@raw_description)
+      html
     end
   end
 

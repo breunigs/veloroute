@@ -1,4 +1,4 @@
-import shortcomings from '../shortcomings.json';
+import shortcomings from '../routes/geo/shortcomings.json';
 import { toQualityName } from './utils_web';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 

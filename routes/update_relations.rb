@@ -5,6 +5,7 @@ require "digest"
 require "fileutils"
 require "json"
 require "parallel"
+require "yaml"
 
 require_relative "geojson"
 require_relative "mapillary"
@@ -12,6 +13,7 @@ require_relative "place"
 require_relative "quality"
 require_relative "relation"
 require_relative "route"
+require_relative "util"
 require_relative "webpack_helper"
 
 require_relative "gpx"
@@ -62,8 +64,15 @@ end
 
 
 def resolve_names(routes)
-  places = routes.flat_map(&:all_named_places).uniq
-  results = places.map do |place|
+  shortcomings = YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
+  places = shortcomings.values.flat_map do |s|
+    _text, list = link_places(s["desc"])
+    list
+  end
+
+  places += routes.flat_map(&:all_named_places)
+
+  results = places.uniq.map do |place|
     [place.name, place.bbox]
   end.to_h
   File.write("geo_tmp/places.json", results.to_json)
@@ -98,12 +107,13 @@ def build_image_lists(routes)
   end
 
   quality = {}
-  shortcomings = JSON.parse(File.read(File.join(__dir__, "..", "shortcomings.json")))
+  shortcomings = YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
   shortcomings.each do |name, details|
     quality[name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
+    details["desc"] = link_places(details["desc"])[0].to_s
   end
   write_with_hash("images-quality.json", quality.to_json)
-
+  File.write('geo_tmp/shortcomings.json', shortcomings.to_json)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 

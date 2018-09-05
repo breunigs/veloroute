@@ -7,7 +7,7 @@ const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
-const shortcomings = require('./shortcomings.json');
+const shortcomings = require('./routes/geo/shortcomings.json');
 const routes = require('./routes.json');
 const { toQualityName } = require('./src/utils_webpack');
 
