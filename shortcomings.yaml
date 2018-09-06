@@ -42,6 +42,7 @@
   - 2spdIaeNN8ticy60bcMOcw
   - G7i57uprZH0Ps3KCfxK5Jw
   desc: Stadtauswärts soll auf die linke Straßenseite gewechselt werden, um die Bahn zu unterqueren. Die Ampelschaltung ist nicht fahrradfreundlich.
+
 4 Alsterufer:
   lastCheck: '2018-09-03'
   loc: [9.9974312, 53.5618547]
@@ -210,6 +211,7 @@
         <a href="http://lsbg.hamburg.de/contentblob/11228160/da357f8f8e702c19536f531d8ffad004/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>
+
 11 Wilhelmsburger Inselpark:
   lastCheck: '2018-08-30'
   loc: [9.99704, 53.4952812]
@@ -217,6 +219,7 @@
   images:
   - ZkF2uoZ-qCldmp5Mb_oE6w
   desc: <p>Dieses Teilstück durch den Wilhelmsburger Inselpark ist nachts gesperrt. Ich hatte dazu auch die Parkleitung gefragt, wie die Führung zwischen 0:00 und 5:00 Uhr ist, aber keine Antwort erhalten. Da aktuell die Autobahn (Wilhelmsburger Reichsstraße) verlegt wird, ändert sich die genaue Route aber vielleicht nochmal.</p>
+
 11 Innenstadt Harburg:
   lastCheck: '2018-08-30'
   loc: [9.9865552, 53.4577823]
@@ -244,6 +247,27 @@
         <a href="http://lsbg.hamburg.de/contentblob/9180924/842f0b67159d79e97292b3561caee1ba/data/veloroute-11-harburg-innenstadt-zweite-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>
+
+13 Marie-Louisen-Straße:
+  lastCheck: '2018-09-06'
+  loc: [10.0033736, 53.5877531]
+  grade: 5
+  images:
+  - WBHoYuQN32F-uM-ab47hPw
+  - ny4lNh6cyFK1SMRZRKtG9g
+  - SKM7v1-z3pgbPLBbJ0C7Jg
+  - 5c7IObdCCnKsADD1Eveo8w
+  desc: >
+    <p>Aktuell sind die Radwege in der <a>Marie-Louisen-Straße</a> mangelhaft. Da sie viel zu schmal sind gibt es häufig Konflikte mit Fußgängern – und ist laut Bericht sogar ein Unfallschwerpunkt. In 2020 soll der Radverkehr daher auf die Straße verlegt werden. Leider nicht als eigene Spur, sondern wegen Platzmangel nur als Schutzstreifen (gestrichelte Linie).</p><p>Ebenso werden jeweils die Zu- und Abgänge in die <a>Klärchenstraße</a> und <a>Dorotheenstraße</a> an die neuen Schutzstreifen angepasst und die Abbiegebeziehungen für den Radverkehr verbessert. Weitere Infos:</p>
+    <ul>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11586720/b563dbc9220ce43f0171aeb94777a6a7/data/veloroute-13-maria-louisen-strasse-von-sierichstrasse-bis-dorotheenstrasse-absgestimmungsunterlage-plan.pdf">vorläufiger Lageplan</a>
+      </li>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11586716/2a42bf3d14a90ef24a693ab4dffcc803/data/veloroute-13-maria-louisen-strasse-von-sierichstrasse-bis-dorotheenstrasse-absgestimmungsunterlage-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
+      </li>
+    </ul>
+
 13 Iseplatz:
   lastCheck: '2018-08-29'
   loc: [9.9883672, 53.5854104]
@@ -259,6 +283,7 @@
         <a href="http://lsbg.hamburg.de/contentblob/11372564/07c8da32ec0eeab7caa6357b320a542e/data/veloroute-13-loogestrasse-von-isekai-bis-kellinghusenstrasse-%E2%80%93-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>
+
 13 Holstenplatz:
   lastCheck: '2018-08-29'
   loc: [9.94755, 53.56115]
