@@ -489,8 +489,10 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    }
-
+    },
+    "review_date": "2018-09-07",
+    "review_grade": "2",
+    "description": "<p>Veloroute 9 führt wie die Veloroute 8 nach <a>Bergedorf</a>. Allerdings verläuft sie deutlich südlicher und bindet entsprechend <a>Billbrook</a>, <a>Billwerder</a> und <a>Neuallermöhe</a> ins Radnetz ein. Die Route ist bereits gut ausgebaut, führt allerdings auch ein großes Stück durch ländlichere Bereich Hamburgs. Die Straßen sind dort zwar weitgehend autofrei und gut asphaltiert, aber leider nicht beleuchtet.</p><p>Es gibt nur wenige Stellen, an denen definitiv noch nachgebessert werden sollte: die Unterführung an der Autobahn in <a>Rothenburgsort</a> etwa ist sehr schmal. Im Industriegebiet an der <a>Bredowstraße</a> ist zwar genug Platz, aber man fährt hier trotzdem im Mischverkehr mit entsprechendem Schwerlastanteil. Auch ist die Führung in der Innenstadt und in Bergedorf eher durchwachsen, jedoch sticht keine Stelle als besonders schlecht heraussticht.</p><p>Zusammengefasst ist die Veloroute 9 bereits heute überdurchschnittlich gut ausgebaut und sehr angenehm zu fahren. Es gibt zwar einige ausbaufähige Stellen, aber diese fallen nicht so stark ins Gewicht, das sich die Wertung ändern würde.</p><p>Von Bergedorf aus bietet sie sich tagsüber als Alternative zur Veloroute 8 an – am besten ausprobieren welche Route einem eher zusagt.</p>"
   },
   "10": {
     "relation_id": 231965,
@@ -566,7 +568,10 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "w-h_x9HkW5E665yrLGVh5Q", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    }
+    },
+    "review_date": "2018-09-07",
+    "review_grade": "4",
+    "description": "<p>Es fällt mir schwer die Veloroute 10 im aktuellen Zustand zu empfehlen: Wirklich ausgebaut ist die Route nirgens, auch wenn hier und da gute Ansätze erkennbar sind. So sind etwa in der <a>Hafencity</a> durchgehend Radwege vorhanden, zumindest im bereits fertig gebauten Teil. Die Autobahnquerung (<a>Neue Elbbrücke</a>) ist jedoch bereits zu schmal zum Überholen, obwohl es sich gerade hier anbieten würde. Die Führung auf der <a>Veddel</a> wurde zwar überarbeitet, dann allerdings mit einer Bettelampel ausgestattet – unverständlich. Im weiteren Verlauf schleicht man vor allem hinter Autos auf Parkplatzsuche.</p><p>In <a>Niedergeorgswerder</a> und <a>Kirchdorf</a> findet man noch alte Radwege, d.h. je nach Platz mal breit, mal schmal, aber eher ruppiger Oberfläche. Vor allem die Führung in der <a>Kirchdorfer Straße</a> ist verwirrend: Ursprünglich war dort ein Zweirichtungsradweg mit Benutzungspflicht, die mittlerweile aufgehoben wurde. Je nachdem wo man auf die Schilder schaut darf man manchmal den Weg noch Richtung Norden benutzen, manchmal nicht. Auf der Straße fühlt man sich bei 50 km/h und hohem Autoverkehr auch nicht wirklich wohl.</p><p>In <a>Harburg</a> geht es im Wesentlichen auf alten und durchwachsenen Radwegen weiter. Der Umbau steht hier für 2019 an.</p><p>Zusammenfassend: Veloroute 10 hat überwiegend noch akzeptable Teile, viele schlechte Stellen und wenig Gute. Neueinsteiger suchen sich besser eine andere Route, bevor sie über das Fahrrad als Verkehrsmittel im Alltag urteilen.</p>"
   },
   "11": {
     "relation_id": 233959,
@@ -702,7 +707,10 @@
         { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "m3ij86SXwtMj0YGXbpCoOg", "to": "OWwwvxc8A3psYaluiMZmuA" },
         { "seq": "d_wyUt_j1s-h16gEMttbfQ", "from": "6xjgDPB0OoSW_ePb2GsZBw", "to": "_QP-m2bY1ayBFdcqZCheCQ" }
       ]
-    }
+    },
+    "review_date": "2018-09-07",
+    "review_grade": "4",
+    "description": "<p>Warum man der Veloroute 12 einen eigenen Namen gegönnt hat, statt sie einfach als Teil der <em>Ringroute</em> 13 auszuschildern ist mir nicht ganz klar. Eventuell lässt sie sich so leichter für Touristen anbieten? Immerhin sind mit Ausnahme von <a>Altona</a> alle passierten Stationen Sehenswürdigkeiten – und der steile Anstieg in der <a>Kirchenstraße</a> Richtung Alonta macht sie für den Alltag auch weniger attraktiv als andere Führungen.</p><p>Beim Ausbaustatus macht die Route keine gute Figur: bis auf wenige Stellen, etwa in der Innenstadt bis <a>Rödingsmarkt</a>, präsentiert sich die Route klassisch. Will sagen, Hochbordradwege die im Nichts enden und schmal sind, enge Kurven und unklare Führung.</p><p>Für Teilstrecken taugt die Route also sicherlich, einen Umweg wegen ihr kann man sich aber sparen, zumindest als Einwohner.</p>"
   },
   "13": {
     "relation_id": 2238764,
