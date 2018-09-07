@@ -194,6 +194,15 @@
         <a href="http://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>'
+
+10 Veddeler Marktplatz:
+  lastCheck: '2018-09-07'
+  loc: [10.0223942, 53.529614]
+  grade: 3
+  images:
+  - aS0wZcULoeUqaS4HCkTfCw
+  desc: '<p>Die Kreuzung wurde erst kürzlich umgestaltet, wobei der Fokus nach wie vor auf dem motorisiertem Verkehr liegt. Dies ist bei einer Auf- bzw. Auffahrt einer Autobahn auch wenig verwunderlich. Völlig unklar ist jedoch, warum man die Querungen als Bettelampeln ausgeführt hat. An dieser Stelle werden wohl die meisten in die Falle tappen und ewig warten, bevor sie den Taster einige Meter weiter links sehen. Die Schaltzeiten sind auch nicht besonders schnell – man erhält also nicht kurz nach Betätigung grün. Mindestens sollte ein weiterer Taster in Radwegnähe installiert werden.</p>'
+
 4+14 U-Langenhorn Markt:
   lastCheck: '2018-08-29'
   loc: [10.0177872, 53.649394]
