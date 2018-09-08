@@ -46,38 +46,38 @@
       </div>
 
       <div id="descindex" class="desc">
-        <h3>Einleitung</h3>
-        <ul>
-          <li>
-            <span class="only-mobile"><a href="/#map">Klicke auf eine Route um anzufangen</a></span>
-            <span class="not-mobile">Klicke auf eine Route um anzufangen</span>
-          </li>
-          <li>Mach Dich mit der Route vertraut</li>
-          <li>Fahr Rad!</li>
-        </ul>
+        <h3>Radwege erkunden</h3>
+        <p>
+          Wähle hier oder
+          <span class="not-mobile">auf der Karte</span>
+          <span class="only-mobile"><a href="/#map">auf der Karte</a></span>
+          eine Fahrradroute um anzufangen. Mach Dich mit ihr vertraut und… fahr Rad!
+        </p>
+        <ol class="route-list">
+          <li><a href="/1" class="autoplay icon icon1">1</a></li>
+          <li><a href="/2" class="autoplay icon icon2">2</a></li>
+          <li><a href="/3" class="autoplay icon icon3">3</a></li>
+          <li><a href="/4" class="autoplay icon icon4">4</a></li>
+          <li><a href="/5" class="autoplay icon icon5">5</a></li>
+          <li><a href="/6" class="autoplay icon icon6">6</a></li>
+          <li><a href="/7" class="autoplay icon icon7">7</a></li>
+          <break></break>
+          <li><a href="/8" class="autoplay icon icon8">8</a></li>
+          <li><a href="/9" class="autoplay icon icon9">9</a></li>
+          <li><a href="/10" class="autoplay icon icon10">10</a></li>
+          <li><a href="/11" class="autoplay icon icon11">11</a></li>
+          <li><a href="/12" class="autoplay icon icon12">12</a></li>
+          <li><a href="/13" class="autoplay icon icon13">13</a></li>
+          <li><a href="/14" class="autoplay icon icon14">14</a></li>
+        </ol>
 
-        <h3>Helfen</h3>
-        <ul>
-          <li>Melde (abgeschlossene) Umbauten</li>
-          <li>Mach aktuelle Bilder mit <a href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid. Siehe auch: <a href="https://www.komoot.de/user/100869689884/tours?sport=all&type=planned&order=date&descending=true&search=Fehlst%C3%BCck">Bekannte Fehlstellen</a>.</li>
-          <li>Verbessere die <a href="https://learnosm.org/de/beginner/">OpenStreetMap</a></li>
-        </ul>
+        <h3>Qualität und Ausbaustatus</h3>
+        <p>Wie weit Hamburg schon ist auf dem Weg zur „Fahrradstadt“ und wo noch Lücken sind. Zeigt auch aktuelle und geplante Baumaßnahmen. <a href="/quality">Detaillierte Qualitätsbewertung anzeigen</a>.</p>
 
-        <h3>Kontakt</h3>
-        <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br/><a href="mailto:stefan-veloroute@breunig.xyz">stefan-veloroute@breunig.xyz</a></p>
-
-        <h3>Weitere Funktionen</h3>
-        <ul>
-          <li><a href="/routes/geo/routen.zip" download>alle Routen als GPX herunterladen</a></li>
-          <li><a href="/quality">Radwegqualität anzeigen</a></li>
-        </ul>
-
-        <h3>Hintergrund</h3>
-        <p>Hamburg baut aktuell die Radwege aus, <a href="https://www.hamburg.de/radverkehr/300372/velorouten/">stellt aber nur grobe Infos bereit</a>. Da die Schilder noch fehlen, ist dies gerade an Kreuzungen schwierig. Diese Seite ist ein Versuch neuen Radlern in Hamburg einen Einstieg zu bieten.</p>
-
-        <p>Nebenbei kann auch der Ausbaustatus der Velorouten beurteilt werden. Beachte, das die Einschätzung automatisch erfolgt und ggf. falsch ist.</p>
-
-        <p>Die Daten werden in der OpenStreetMap gepflegt, d.h. auch die meisten „Outdoor Navis“ sollten die Velorouten kennen. Der <a href="https://github.com/breunigs/veloroute">Quelltext liegt auf GitHub</a>.</p>
+        <!-- show contact section only on main page for small screens -->
+        <div class="only-mobile">
+          @require('html/contact.html')
+        </div>
       </div>
 
       @require('routes/geo/path_render.html')
@@ -145,9 +145,32 @@
         <a href="/">zurück zur normalen Ansicht</a>
       </div>
 
-      <small id="impressum">
-        <a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a>
-      </small>
+      <div id="descproject" class="desc">
+        <h3>Helfen</h3>
+        <ul>
+          <li>Melde (abgeschlossene) Umbauten</li>
+          <li>Mach aktuelle Bilder mit <a href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid. Siehe auch: <a href="https://www.komoot.de/user/100869689884/tours?sport=all&type=planned&order=date&descending=true&search=Fehlst%C3%BCck">Bekannte Fehlstellen</a>.</li>
+          <li>Verbessere die <a href="https://learnosm.org/de/beginner/">OpenStreetMap</a></li>
+        </ul>
+
+        <h3>Hintergrund</h3>
+        <p>Hamburg baut aktuell die Radwege aus, <a href="https://www.hamburg.de/radverkehr/300372/velorouten/">stellt aber nur grobe Infos bereit</a>. Da die Schilder noch fehlen, ist dies gerade an Kreuzungen schwierig. Diese Seite ist ein Versuch neuen Radlern in Hamburg einen Einstieg zu bieten.</p>
+
+        <p>Nebenbei kann auch der Ausbaustatus der Velorouten beurteilt werden. Beachte, das die Einschätzung automatisch erfolgt und ggf. falsch ist.</p>
+
+        <p>Die Daten werden in der OpenStreetMap gepflegt, d.h. auch die meisten „Outdoor Navis“ sollten die Velorouten kennen. Der <a href="https://github.com/breunigs/veloroute">Quelltext liegt auf GitHub</a>.</p>
+      </div>
+
+      <div id="other">
+        <!-- show contact section all the time on big screens -->
+        <div class="not-mobile">
+          @require('html/contact.html')
+        </div>
+
+        <small id="impressum">
+          <a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a>
+        </small>
+      </div>
     </div>
 
     <div id="controls" class="hidden">

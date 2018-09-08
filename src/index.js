@@ -69,7 +69,13 @@ document.addEventListener('click', ev => {
 
   if(path.match(/^(quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
     ev.preventDefault();
-    return state.routeSetter()(path);
+    state.routeSetter()(path);
+    if(anchor.classList.contains('autoplay')) {
+      imagesPromise.then(({startPlaybackWithDefaultBranch}) => {
+        startPlaybackWithDefaultBranch(path);
+      });
+    }
+    return;
   }
   // give some debugging info
   fetch(`/broken/link?${anchor.href}`)

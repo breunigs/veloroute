@@ -55,7 +55,7 @@ $sidebar-max-width: 35em;
 }
 
 $sidebar-content-padding: 1rem;
-#routes > * {
+#routes > *, #other {
   padding: 0 $sidebar-content-padding;
 }
 
@@ -560,4 +560,28 @@ span.shortcoming {
   text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2), -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
   top: 0;
   z-index: 1;
+}
+
+ol.route-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  li {
+    margin: 0.5rem;
+    display: inline-block;
+  }
+
+  break {
+    flex-basis: 100%;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+  }
 }

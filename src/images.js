@@ -109,6 +109,13 @@ async function handleSliderMove(avoidListenerUpdates) {
   }
 }
 
+const startPlaybackWithDefaultBranch = async (routeName) => {
+  status.routeName = routeName;
+  // TODO: maybe keep current branch if it's part of the route?
+  status.branch = null;
+  maybeSelectDefaultBranch().then(() => handlePlay());
+}
+
 async function setActiveRoute(routeName, branch, imgIndex) {
   if(!routeName || !branch) {
     console.debug("missing route info, disabling controls");
@@ -251,6 +258,16 @@ const closestImageIndex = (images, lngLat) => {
   return { idx: candidateIdx, dist: distSoFar };
 }
 
+const maybeSelectDefaultBranch = async () => {
+  if(status.branch) return Promise.resolve(null);
+  console.log("setting default branch. Status: ", status)
+
+  const allBranches = await route();
+  const branch = Object.keys(allBranches).find(name => name.startsWith('outward'));
+  const idx = status.image ? allBranches[branch].keys.indexOf(status.image) : null;
+  return setActiveRoute(status.routeName, branch, idx);
+}
+
 let prevLngLat = null;
 async function showCloseImage(routeName, lngLat, eventSource) {
   stopPlayback();
@@ -330,12 +347,7 @@ if(coverBtn) {
     if(event.clientX == 0 && event.clientY == 0) return; // not a human click
     console.log("playing because cover button was clicked", status)
     if(!status.routeName) status.routeName = "12";
-    if(!status.branch) {
-      const allBranches = await route();
-      const branch = Object.keys(allBranches).find(name => name.startsWith('outward'));
-      const idx = status.image ? allBranches[branch].keys.indexOf(status.image) : null;
-      await setActiveRoute(status.routeName, branch, idx);
-    }
+    await maybeSelectDefaultBranch();
 
     coverBtn = null;
     handlePlay();
@@ -363,4 +375,4 @@ viewer.on(Viewer.bearingchanged, function (bearing) {
   indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
 });
 
-export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute };
+export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute, startPlaybackWithDefaultBranch };

@@ -90,7 +90,7 @@ class Review
       <ul>
         <li><a href="/quality">Radwegqualität bewerten</a></li>
         <li><a href="#{@route.osm_url}" target="_blank">Veloroute #{@route.name} in der OpenStreetMap</a></li>
-        <li><a href="/">Erklärung anzeigen</a></li>
+        <li><a href="/">Startseite</a></li>
       </ul>
     HTML
   end
