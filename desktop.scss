@@ -1,0 +1,42 @@
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row-reverse;
+  // Safari is special
+  position: fixed;
+}
+
+.only-mobile {
+  display: none;
+}
+
+.not-mobile {
+  display: inline;
+}
+
+#sidebar {
+  height: 100%;
+  flex: 1 1 20em;
+}
+
+#main {
+  height: 100%;
+  flex: 2 0 50%;
+}
+
+$side-height: 50%;
+#side {
+  width: 100%;
+  height: $side-height;
+}
+
+#routes {
+  height: calc(100% - #{$header-height + $control-size} - #{$side-height});
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // Safari is special
+  -webkit-overflow-scrolling: touch;
+}

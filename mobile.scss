@@ -1,0 +1,31 @@
+// XXX: some combinations of the height values make iOS Safari break the panning
+// mechanism of the map. I cannot find any rhyme or reason to this, so this
+// values have been found experimentally on an iPhone 6. It might be broken on
+// other devices.
+
+#main {
+  height: 41vh;
+}
+
+#side {
+  height: 39vh;
+}
+
+#controls {
+  justify-content: space-around;
+  a {
+    width: 3.5em;
+  }
+
+  &.hidden {
+    visibility: visible;
+  }
+}
+
+.only-mobile {
+  display: inline;
+}
+
+.not-mobile {
+  display: none;
+}

@@ -29,9 +29,6 @@
 </head>
 
 <body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "").replace(/\/.*$/, '') %>">
-  <div id="main">
-    <div id="map"></div>
-  </div>
   <div id="sidebar">
     <a id="header" href="/">
       <h2>veloroute.hamburg</h2>
@@ -168,9 +165,9 @@
     </div>
 
     <div id="controls" class="hidden">
-      <a id="swap" title="Bild / Karte vergrößern">⇱</a>
+      <a id="swap" title="Bild / Karte vergrößern" class="not-mobile">⇱</a>
       <a id="playstop" title="Abspielen / Pause">▶</a>
-      <input type="range" min="0" max="0" id="slider" title="Aktuelle Position auf der Route">
+      <input type="range" min="0" max="0" id="slider" class="not-mobile" title="Aktuelle Position auf der Route">
       <a id="prev" title="Vorheriges Bild">〈</a>
       <a id="next" title="Nächstes Bild">〉</a>
       <a id="direction" title="Fahrtrichtung ändern">⇆</a>
@@ -179,6 +176,10 @@
     <div id="side">
       <div id="mly" class="mapillary"></div>
     </div>
+  </div>
+
+  <div id="main">
+    <div id="map"></div>
   </div>
 </body>
 
