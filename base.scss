@@ -497,14 +497,19 @@ span.shortcoming {
 }
 
 #impressum {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: block;
   text-align: right;
-  margin-bottom: 0.4em;
 
   a, a:hover {
     color: #888;
   }
+}
+
+#routes::after {
+  content: "";
+  margin-bottom: 0.5em;
+  display: block;
 }
 
 #outdated-browser {

@@ -6,7 +6,7 @@ const el = document.getElementById('quality');
 const header = document.getElementById('qualityheader');
 
 const osmLink = (osmId) => {
-  return `<a href="https://www.openstreetmap.org/way/${osmId}">Weg in der OpenStreetMap anzeigen</a>`;
+  return `<a class="not-mobile" href="https://www.openstreetmap.org/way/${osmId}">Weg in der OpenStreetMap anzeigen</a>`;
 }
 
 const considerOnlyThisSide = (observations) => {
