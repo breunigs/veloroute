@@ -1,14 +1,17 @@
 // XXX: some combinations of the height values make iOS Safari break the panning
-// mechanism of the map. I cannot find any rhyme or reason to this, so this
-// values have been found experimentally on an iPhone 6. It might be broken on
-// other devices.
+// mechanism of the map. I cannot find any rhyme or reason to this, but it
+// apparently depends on the screen size. Different iOS devices need different
+// height values. Placing the map above Mapillary seems to work, though.
 
+$block-size: 40vh;
 #main {
-  height: 41vh;
+  height: $block-size;
+  margin-top: -$block-size;
 }
 
 #side {
-  height: 39vh;
+  top: $block-size;
+  height: $block-size;
 }
 
 #controls {
