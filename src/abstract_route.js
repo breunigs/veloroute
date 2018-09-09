@@ -1,3 +1,5 @@
+import { isMobileView } from './utils_web';
+
 const scrollbox = document.getElementById('routes');
 const info = document.getElementById('info');
 const body = document.getElementsByTagName("body")[0];
@@ -21,10 +23,6 @@ class AbstractRoute {
     return this._qualityPromise;
   }
 
-  isMobileView() {
-    return body.clientWidth <= 700;
-  }
-
   async showRoute(routeName) {
     if(!routeName) routeName = 'index';
     let newPage = "page-" + routeName.split("/")[0];
@@ -44,7 +42,7 @@ class AbstractRoute {
       }
     }
 
-    if(this.isMobileView()) {
+    if(isMobileView()) {
       const rectBefore = scrollbox.getBoundingClientRect();
       const routesBottomVisible = rectBefore.bottom-rectBefore.height < 0;
 

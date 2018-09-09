@@ -11,4 +11,9 @@ function toQualityName(string) {
   return "quality/" + toFileName(string);
 }
 
-export { toFileName, toQualityName };
+function isMobileView(body) {
+  body = body || document.getElementsByTagName('body')[0];
+  return body.clientWidth <= 700;
+}
+
+export { toFileName, toQualityName, isMobileView };
