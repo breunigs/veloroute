@@ -21,6 +21,10 @@ class AbstractRoute {
     return this._qualityPromise;
   }
 
+  isMobileView() {
+    return body.clientWidth <= 700;
+  }
+
   async showRoute(routeName) {
     if(!routeName) routeName = 'index';
     let newPage = "page-" + routeName.split("/")[0];
@@ -32,15 +36,30 @@ class AbstractRoute {
       if(c.startsWith("page-")) currentPage = c;
     });
 
-    if(currentPage) {
-      body.classList.replace(currentPage, newPage)
-    } else {
-      body.classList.add(newPage)
+    const switchPage = () => {
+      if(currentPage) {
+        body.classList.replace(currentPage, newPage)
+      } else {
+        body.classList.add(newPage)
+      }
     }
 
-    // scroll back to top when switching "tabs". The scroll state isn't kept per
-    // tab, but rather as a "37%" across all instances.
-    if(currentPage !== newPage) scrollbox.scrollTop = 0;
+    if(this.isMobileView()) {
+      const rectBefore = scrollbox.getBoundingClientRect();
+      const routesBottomVisible = rectBefore.bottom-rectBefore.height < 0;
+
+      switchPage();
+      if(!routesBottomVisible) return;
+
+      const rectAfter = scrollbox.getBoundingClientRect();
+      const diff = Math.round(rectAfter.bottom - rectBefore.bottom);
+      window.scrollBy(0, diff);
+    } else {
+      switchPage();
+      // scroll back to top when switching "tabs". The scroll state isn't kept per
+      // tab, but rather as a "37%" across all instances.
+      if(currentPage !== newPage) scrollbox.scrollTop = 0;
+    }
   };
 }
 
