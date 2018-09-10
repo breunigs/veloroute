@@ -314,10 +314,12 @@ let hasLoadedFirstNode = false;
 let coverBtn = document.getElementsByClassName('CoverButton')[0];
 const triggerImageUpdate = () => {
   if(!hasLoadedFirstNode) {
-    if(coverBtn) {
+    setTimeout(() => {
+      if(!coverBtn) return;
+      console.log("clicking cover button")
       coverBtn.click();
       coverBtn = null;
-    }
+    }, 0);
 
     // calling moveToKey while the cover component is still somehow active breaks
     // Mapillary. Instead, simply wait for the initial image to be done loading,
