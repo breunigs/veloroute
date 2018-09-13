@@ -182,7 +182,7 @@ const renderQualityMarkers = (createMarker, state, imagesPromise) => {
   Object.entries(shortcomings).map(([name, details]) => {
     const clickHandler = () => {
       el.innerHTML = details.desc;
-      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name));
+      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
       state.routeSetter()(toQualityName(name));
     };
     const classes = `shortcoming grade${details.grade}`;

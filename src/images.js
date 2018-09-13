@@ -116,7 +116,7 @@ const startPlaybackWithDefaultBranch = async (routeName) => {
   maybeSelectDefaultBranch().then(() => handlePlay());
 }
 
-async function setActiveRoute(routeName, branch, imgIndex) {
+async function setActiveRoute(routeName, branch, imgIndex, manualInteraction) {
   if(!routeName || !branch) {
     console.debug("missing route info, disabling controls");
     status.routeName = null;
@@ -146,6 +146,7 @@ async function setActiveRoute(routeName, branch, imgIndex) {
   slider.setAttribute("max", img.keys.length - 1);
   slider.value = imgIndex || 0;
   controls.classList.remove("hidden");
+  if(manualInteraction) deactivateCover();
   handleSliderMove();
 }
 
@@ -294,7 +295,7 @@ async function showCloseImage(routeName, lngLat, eventSource) {
   console.debug("Candidates for close images: ", distances)
 
   if(current in distances && distances[current].dist <= cutOffDist)
-    return setActiveRoute(routeName, current, distances[current].idx);
+    return setActiveRoute(routeName, current, distances[current].idx, true);
 
   let closestBranch = null;
   let closestIdx = null;
@@ -306,20 +307,26 @@ async function showCloseImage(routeName, lngLat, eventSource) {
     distSoFar = distances[branch].dist;
   }
 
-  return setActiveRoute(routeName, closestBranch, closestIdx);
+  return setActiveRoute(routeName, closestBranch, closestIdx, true);
 }
 
-let currentNode = null;
 let hasLoadedFirstNode = false;
+let currentNode = null;
 let coverBtn = document.getElementsByClassName('CoverButton')[0];
+const deactivateCover = async () => {
+  if(hasLoadedFirstNode) return;
+
+  setTimeout(() => {
+    if(!coverBtn) return;
+    console.log("clicking cover button")
+    coverBtn.click();
+    coverBtn = null;
+  }, 0);
+}
+
 const triggerImageUpdate = () => {
   if(!hasLoadedFirstNode) {
-    setTimeout(() => {
-      if(!coverBtn) return;
-      console.log("clicking cover button")
-      coverBtn.click();
-      coverBtn = null;
-    }, 0);
+    deactivateCover();
 
     // calling moveToKey while the cover component is still somehow active breaks
     // Mapillary. Instead, simply wait for the initial image to be done loading,
