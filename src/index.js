@@ -1,7 +1,6 @@
 import "../base.scss";
 
 import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker } from "./map";
-import { isMobileView } from './utils_web';
 import AbstractRoute from "./abstract_route";
 import places from '../routes/geo/places.json';
 import State from './state';
@@ -71,7 +70,7 @@ document.addEventListener('click', ev => {
   if(path.match(/^(quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
     ev.preventDefault();
     state.routeSetter()(path);
-    if(anchor.classList.contains('autoplay') && !isMobileView(body)) {
+    if(anchor.classList.contains('autoplay')) {
       imagesPromise.then(({startPlaybackWithDefaultBranch}) => {
         startPlaybackWithDefaultBranch(path);
       });

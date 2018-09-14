@@ -1,6 +1,7 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
-import { toQualityName } from './utils_web';
+import { toQualityName, isMobileView } from './utils_web';
+
 import filenames from '../routes/geo/content_hashed_filenames.json';
 
 const API_KEY = 'MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2';
@@ -113,7 +114,9 @@ const startPlaybackWithDefaultBranch = async (routeName) => {
   status.routeName = routeName;
   // TODO: maybe keep current branch if it's part of the route?
   status.branch = null;
-  maybeSelectDefaultBranch().then(() => handlePlay());
+  const promise = maybeSelectDefaultBranch()
+  // load Mapillary, but do not start playback on mobile, as it's below the fold
+  if(!isMobileView(body)) promise.then(() => handlePlay());
 }
 
 async function setActiveRoute(routeName, branch, imgIndex, manualInteraction) {
