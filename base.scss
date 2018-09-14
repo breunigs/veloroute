@@ -160,6 +160,7 @@ $control-size: 2em;
   height: $control-size;
   line-height: $control-size;
   overflow: hidden;
+  user-select: none;
 
   &.hidden {
     visibility: hidden;
