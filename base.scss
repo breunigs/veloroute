@@ -9,6 +9,10 @@ body {
 $sidebar-width: 40%;
 $sidebar-max-width: 35em;
 
+#side, #map {
+  contain: strict;
+}
+
 .nowebgl {
   #map, #mly {
     display: none;
