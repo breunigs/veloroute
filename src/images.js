@@ -12,6 +12,7 @@ const next = document.getElementById("next");
 const direction = document.getElementById("direction");
 const playstop = document.getElementById("playstop");
 const controls = document.getElementById("controls");
+const body = document.getElementsByTagName('body')[0];
 
 const GENERIC_START_IMAGE = 'c4B6txFX6Xgza8iWNFzSYw';
 

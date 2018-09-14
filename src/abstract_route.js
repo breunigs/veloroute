@@ -42,7 +42,7 @@ class AbstractRoute {
       }
     }
 
-    if(isMobileView()) {
+    if(isMobileView(body)) {
       const rectBefore = scrollbox.getBoundingClientRect();
       const routesBottomVisible = rectBefore.bottom-rectBefore.height < 0;
 
