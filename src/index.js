@@ -67,7 +67,7 @@ document.addEventListener('click', ev => {
     return ev.preventDefault();
   }
 
-  if(path.match(/^(quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
+  if(path.match(/^(projekt|quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
     ev.preventDefault();
     state.routeSetter()(path);
     if(anchor.classList.contains('autoplay')) {
