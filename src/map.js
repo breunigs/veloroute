@@ -114,14 +114,14 @@ const renderRoutes = (initialRoute) => {
     "type": "symbol",
     "source": 'source-routes',
     "minzoom": 13.5,
+    "filter": ["get", "oneway"],
     "layout": {
       "symbol-placement": "line",
       "symbol-spacing": 20,
       "text-keep-upright": false,
-      "text-justify": "left",
       "text-allow-overlap": true,
       "text-ignore-placement": true,
-      "text-field": '{pattern}',
+      "text-field": '▶',
       "text-size": {
         "type": "exponential",
         "stops": [
