@@ -44,6 +44,26 @@ map.on('load', function () {
   });
 
   map.addLayer({
+    "id": "arrows",
+    "type": "symbol",
+    "source": "debug",
+    "minzoom": 13,
+    "paint": {
+      "text-color": "#fff"
+    },
+    "layout": {
+      "symbol-placement": "line",
+      "symbol-spacing": 20,
+      "text-keep-upright": false,
+      "text-allow-overlap": true,
+      "text-ignore-placement": true,
+      "text-field": '▶',
+      "text-size": 15,
+    },
+    "filter": ["==", "$type", "LineString"]
+  });
+
+  map.addLayer({
     "id": "start-end",
     "type": "circle",
     "source": "debug",
