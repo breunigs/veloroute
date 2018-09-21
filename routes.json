@@ -285,8 +285,10 @@
       ],
       "inward_duvenstedt": [
         { "seq": "qxspNEzcIu2xxlzDUnf0lA", "from": "T1hWAXk4pC-17zJLRo7vmg", "to": "hvbiBw6UOZAeq6hmK7ZHrA" },
-        { "seq": "AVvYWLkxXkpiN6KU8eNoTQ", "from": "0fR1YFt4fbdPUhTGlmimrQ", "to": "bTic-sOKF5dxLKypy-t5bQ", "note": "missing images: https://www.komoot.de/tour/41098070" },
-        { "seq": "xqKQQllOvsMKR5Q0-VZiAg", "from": "VzVviv-kFicrP8uJUd4FYA", "to": "1jJHQlAs8byQFLMpcq3MBg" },
+        { "seq": "AVvYWLkxXkpiN6KU8eNoTQ", "from": "0fR1YFt4fbdPUhTGlmimrQ", "to": "bTic-sOKF5dxLKypy-t5bQ" },
+        { "seq": "5sHx2NJbeS-d5RwzX1OzEg", "from": "XqehqRLbqT-FHCxKiZEr1w", "to": "UU469SB3EW15bD-gHdHRmg" },
+        { "seq": "7pGt4AUqCC87ilKF9Ccpsg", "from": "AIBxWXihR5LBYPgvUaLS2Q", "to": "J3VfJ5CSjF8efaugXCuoQQ" },
+        { "seq": "xqKQQllOvsMKR5Q0-VZiAg", "from": "FcbsbP57bz3Eolp3C_8Pkw", "to": "1jJHQlAs8byQFLMpcq3MBg" },
         { "seq": "ZK4QZnzM4AmCiJM_kdkOKw", "from": "CzZ_Vkiy_mpeUU-YpOqKbA", "to": "XVRXFmOWi7g0Tss9Ul052Q" },
         { "seq": "u5BMm6iPSY3uSAvzcV8QNA", "from": "97yJaEvB0XOr37pn4qg1gg", "to": "vjgUTlQGfO3HF927iqt0Dg" },
         { "seq": "dQfMxR5AlyGjYpGl60TwUw", "from": "bNwn2bY07cnrCVI3kN5Mug", "to": "Y8Zl4BqzOe3dBjzvVaEibA" },
