@@ -59,6 +59,13 @@ describe Quality::Way, type: :model do
     end
   end
 
+  describe ".rate_maxspeed_and_segregation" do
+    it "ignores ways without maxspeed" do
+      subject = way({"bicycle" => "designated", "foot" => "yes", "highway" => "service", "oneway" => "yes", "service" => "parking_aisle", "surface" => "paving_stones"}, oneway: true, role: "forward")
+      expect(subject.rate_maxspeed_and_segregation.first).to be_nil
+    end
+  end
+
   describe ".rate_width" do
     it "rates separated cycleway/footpath with enough width as excellent" do
       subject = way({"cycleway:width" => "2", "foot" => "yes", "highway" => "path", "oneway:bicycle" => "yes", "segregated" => "yes", "smoothness" => "excellent", "surface" => "paving_stones"}, oneway: true, role: "forward")

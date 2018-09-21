@@ -151,7 +151,7 @@ module Quality
 
         rating ||= :excellent if next_to_street || separate_track
         # compare with speed for shared paths
-        rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed
+        rating ||= maxspeed <= 30 ? :excellent : (maxspeed <= 50 ? :okay : :bad) if maxspeed > 0
 
         next if rating.nil?
 
@@ -448,7 +448,8 @@ module Quality
         judged = {}
         ways.each do |way|
           obs = way.observations
-          raw_values = obs.map(&:raw_values).reduce(&:merge).compact
+          warn "No observations for https://www.openstreetmap.org/way/#{way.id} "  if obs.empty?
+          raw_values = obs.map(&:raw_values).reduce({}, &:merge).compact
           grade = Observation.judge(obs)
           judged[way] = {
             grade: grade,
