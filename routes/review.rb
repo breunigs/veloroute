@@ -35,13 +35,16 @@ class Review
         Alternativ gibt es auch <a href="/routes/geo/routen.zip">alle Routen/Formate im ZIP-Archiv</a>.
         Die Dateien enthalten die Route getrennt nach
         Richtung#{@route.route_count > 1 ? " und Ast" : ""}.
-        Manche Programme können damit nicht umgehen und zeigen entweder alles
-        auf einmal oder nur ein Teilstück.
-        <span class="not-mobile">
-          Empfehlung:
-          <a href="https://www.gpxsee.org/" target="_blank">GPXSee</a>
-          (kostenlos, Windows / OS X / Linux) zeigt die Exporte korrekt an.
-        </span>
+        <br>
+        <small>
+          Manche Programme können damit nicht umgehen und zeigen entweder alles
+          auf einmal oder nur ein Teilstück.
+          <span class="not-mobile">
+            Empfehlung:
+            <a href="https://www.gpxsee.org/" target="_blank">GPXSee</a>
+            (kostenlos, Windows / OS X / Linux) zeigt die Exporte korrekt an.
+          </span>
+        </small>
       </p>
     HTML
   end
