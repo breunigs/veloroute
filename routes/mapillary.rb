@@ -8,9 +8,8 @@ module Mapillary
   API_KEY = "MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2"
 
   def self.query_private_api(query)
-    escaped = URI.escape(query, %|[],":|)
-    private_api_url = %|#{API_URL}/model.json?client_id=#{API_KEY}&paths=#{escaped}&method=get|
-    get(private_api_url, max_retries: 2)
+    escaped = URI.encode_www_form(client_id: API_KEY, paths: query, method: :get)
+    get("#{API_URL}/model.json?#{escaped}", max_retries: 2)
   end
 
   def self.get_corrected_image_data(img_keys)
