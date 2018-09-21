@@ -59,6 +59,19 @@ class Track
     end
   end
 
+  def total_length_in_m
+    @total_length_in_m ||= begin
+      lengths = []
+      named_routes.reduce([]) do |seen, nr|
+        # ignore already considered segments in terms of total length
+        lengths << Geo.line_distance(nr[:path] - seen)
+        seen + nr[:path]
+      end
+      # half because we don't care about round trips
+      (lengths.sum / 2.0).round
+    end
+  end
+
   private
 
   def find_path(from:, to:)

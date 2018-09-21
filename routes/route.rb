@@ -14,6 +14,7 @@ require_relative "quality"
 require_relative "relation"
 require_relative "review"
 require_relative "svg_pather"
+require_relative "track"
 
 
 class Route
@@ -35,6 +36,10 @@ class Route
 
   def relation_id
     @parsed_json["relation_id"]
+  end
+
+  def track
+    @track ||= Track.new(self)
   end
 
   def osm_url

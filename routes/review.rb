@@ -59,12 +59,35 @@ class Review
 
   def review_json_ld
     return nil unless @grade && @date && description
+    main_route = @route.gpx.first # TODO: represent secondary routes
     json_ld = {
       "@context": "http://schema.org/",
       "@type": :Review,
       itemReviewed: {
-        "@type": :Thing,
-        name: "Veloroute #{@route.name} (Alltagsroute)"
+        "@type": :TravelAction,
+        name: "Veloroute #{@route.name} (Alltagsroute)",
+        distance: "#{@route.track.total_length_in_m} m",
+        instrument: {
+          name: "bicycle",
+          alternateName: "velo",
+          sameAs: "https://en.wikipedia.org/wiki/Bicycle"
+        },
+        fromLocation: {
+          name: main_route[:places].first.to_s,
+          geo: {
+            "@type": :GeoCoordinates,
+            longitude: main_route[:from][0],
+            latitude: main_route[:from][1]
+          },
+        },
+        toLocation: {
+          name: main_route[:places].last.to_s,
+          geo: {
+            "@type": :GeoCoordinates,
+            longitude: main_route[:to][0],
+            latitude: main_route[:to][1]
+          },
+        }
       },
       reviewRating: {
         "@type": :Rating,
