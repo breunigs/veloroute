@@ -64,6 +64,8 @@ class Place
     resp = get(url, max_retries: 3)
     importance = resp.map { |e| e["importance"] }.max
 
+    raise "#{nominatim_query} did not yield any results" unless importance
+
     # combine bboxes with the same importance
     important_results = resp.take_while { |e| e["importance"] == importance }
     bboxes = important_results.map { |e| e["boundingbox"].map(&:to_f) }
