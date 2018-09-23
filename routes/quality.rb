@@ -395,12 +395,20 @@ module Quality
 
     def to_quality_export
       img_key_to_osm_id = {}
-      @route.stitched_sequences.values.flat_map(&:keys2coords).uniq.each do |img_key, coord|
+      @route.stitched_sequences.values.flat_map(&:details).uniq.each do |img_key, coord, img_bearing|
         dist_so_far = Float::INFINITY
         ways.each do |w|
           next unless Geo.inside_bbox?(coord, w.buffered_bbox)
           new_dist = w.dist(coord)
           next if new_dist >= dist_so_far
+          if w.oneway?
+            ordered = w.forward? ? w.coords : w.coords.reverse
+            _pt, idx = Geo.closest_point_on_line(ordered, coord)
+            way_bearing = Geo.bearing(lonLat1: ordered[idx], lonLat2: ordered[idx+1])
+            different_direction = (img_bearing - way_bearing).abs > 100
+            next if different_direction
+          end
+
           dist_so_far = new_dist
           img_key_to_osm_id[img_key] = w.id
         end

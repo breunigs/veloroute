@@ -3,7 +3,7 @@ module Geo
     # given a point
     return point2point_dist(lonLat1: from, lonLat2: to) if is_coord?(from)
 
-    closest = closest_point_on_line(from, to)
+    closest, _index = closest_point_on_line(from, to)
     point2point_dist(lonLat1: closest, lonLat2: to)
   end
 
@@ -37,7 +37,8 @@ module Geo
     dy = (lonLat2[1] - lonLat1[1]) * KY
     return 0.0 if dx == 0 && dy == 0
     bearing = to_deg(Math.atan2(dx, dy));
-    bearing -= 360 if bearing > 180
+    # bearing -= 360 if bearing > 180
+    bearing += 360 if bearing < 0
     bearing
   end
 
@@ -49,7 +50,7 @@ module Geo
 
   def self.closest_point_on_line(line, pt)
     minDist = Float::INFINITY
-    minX, minY = nil, nil
+    minX, minY, minI = nil, nil, nil
 
     (0..line.length-2).each do |i|
       x, y = line[i][0], line[i][1]
@@ -76,9 +77,10 @@ module Geo
       minDist = sqDist
       minX = x
       minY = y
+      minI = i
     end
 
-    [minX, minY]
+    return [minX, minY], minI
   end
 
   def self.buffer_bbox(buffer, bbox)
