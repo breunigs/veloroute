@@ -178,13 +178,17 @@ const renderHtmlForWay = (details, osmId) => {
   return html;
 }
 
+const renderShortcomingHandler = (state, imagesPromise, name) => {
+  return () => {
+    el.innerHTML = shortcomings[name].desc;
+    imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
+    state.routeSetter()(toQualityName(name));
+  }
+}
+
 const renderQualityMarkers = (createMarker, state, imagesPromise) => {
   Object.entries(shortcomings).map(([name, details]) => {
-    const clickHandler = () => {
-      el.innerHTML = details.desc;
-      imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
-      state.routeSetter()(toQualityName(name));
-    };
+    const clickHandler = renderShortcomingHandler(state, imagesPromise, name);
     const classes = `shortcoming grade${details.grade}`;
     createMarker(classes, details.loc, '⚫', clickHandler);
     if(details.loc2) createMarker(classes, details.loc2, '⚫', clickHandler);
@@ -202,8 +206,13 @@ export class Quality {
     this.indicatorListener = this.indicatorListener.bind(this);
 
     renderQualityMarkers(createMarker, state, this._imagesPromise);
-    this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener))
-    this.showForKey(this._state.currentImage(), true);
+    this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener));
+
+    if(state.getShortcomingName()) {
+      renderShortcomingHandler(state, imagesPromise, state.getShortcomingName())();
+    } else {
+      this.showForKey(this._state.currentImage(), true);
+    }
   }
 
   async indicatorListener(_lon, _lat, _ca, key) {

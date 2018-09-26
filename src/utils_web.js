@@ -8,7 +8,7 @@ function toFileName(string) {
 }
 
 function toQualityName(string) {
-  return "quality/" + toFileName(string);
+  return "quality/" + string;
 }
 
 function isMobileView(body) {

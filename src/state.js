@@ -42,6 +42,14 @@ class State {
     return this._status.route;
   }
 
+  getShortcomingName() {
+    if(this._status.route.startsWith("quality/")) {
+      return this._status.route.substr(8);
+    }
+
+    return null;
+  }
+
   currentImage() {
     return this._status.image;
   }

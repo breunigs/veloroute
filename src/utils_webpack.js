@@ -11,7 +11,7 @@ function toFileName(string) {
 }
 
 function toQualityName(string) {
-  return "quality/" + toFileName(string);
+  return "quality/" + string;
 }
 
 module.exports.toFileName = toFileName;
