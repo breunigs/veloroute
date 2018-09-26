@@ -107,3 +107,6 @@
 - "/contentblob/9537982/0a4f8a9c541a736dc2e385fed5e800f4/data/wandsbeker-alle-zw-tiroler-str-u-wandsegruenzug-abgestimmte-planung-plan.pdf"
 - "/contentblob/10880812/3aae1567959e32228ef351257cab957f/data/wandsbeker-allee-erschliessung-abgestimmte-planung-bericht.pdf"
 - "/contentblob/10880862/260a539d6740d75e58697eb5acdea347/data/wandsbeker-allee-erschliessung-abgestimmte-planung-plan.pdf"
+'2018-09-26':
+- "/contentblob/11654690/39f1b9c967bf3d15559c82c812c256b9/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/11654692/403fd11eed65c4b2f84325732ce87033/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-plaene.pdf"

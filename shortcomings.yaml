@@ -150,7 +150,7 @@
   - xoQHcRZwJCYogfTPJBNQvQ
   - L03oD1LsaLg-OQgNqp9Q8Q
   - bI_lrdQrBOBpefsmR_rajg
-  desc: <p>Stadtauswärts müsste man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Es ist nicht davon auszugehen, das sich Leute daran halten. Bei den aktuellen Breiten ist daher von Konflikten mit anderen Verkehrsteilnehmern auszugehen.</p>
+  desc: <p>Stadtauswärts müsste man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Es ist nicht davon auszugehen, das sich Leute daran halten. Bei den aktuellen Breiten ist daher von Konflikten mit anderen Verkehrsteilnehmern auszugehen. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p>
 
 6 Kreuzung Lerchenfeld:
   lastCheck: '2018-08-21'
@@ -380,3 +380,30 @@
   - GSzmixpNxjcXfNwQyTbYBA
   desc: >
     <p>An dieser Kreuzung kann man nur indirekt und in zwei Phasen linksabbiegen. Das wäre an dieser vielbefahrenen Straße sogar verständlich, allerdings lässt der Aufstellbereich Fragen aufkommen. Soll man den Radweg rechts blockieren oder lieber die Bushaltestelle? Außerdem scheint es sich um eine Bettelampel zu halten, die beim Machen der Fotos aber von Fußgängern auf der anderen Seite für mich betätigt wurde.</p>
+
+14 Gehlengraben:
+  lastCheck: '2018-09-26'
+  loc: [10.02855, 53.65029]
+  grade: 3
+  images:
+  - _1CMUs3QEE5JPAoqSJViKg
+  - VaaeWnONb3zMo1HVGDyupA
+  - 4m_HAkjXzrr2xAs-zIxnHQ
+  - 3v2UHMNaxgPIah9mAGL6QQ
+  - klbtayLjSNiRU_LNM6Ou4A
+  - 7FuV0xgwsmQcVWq7U1TzCg
+  - yZQyNA2OrJqL3zDuI32X_w
+  - vgyYsj2RC6zoW_mfQ4Hy1w
+  desc: >
+    <p>Betrifft: <a>Gehlengraben</a> von ca. <a>Neukoppel</a> bis <a>Raakmoorgrund</a></p>
+    <p>Im Wesentlichen bleibt hier nach dem Umbau im Frühjahr 2020 alles beim Alten. Die Bushaltestellen sollen versetzt werden, damit Fahrgäste, Fußgänger und Radverkehr sich weniger in die Quere kommen. Der Belag wird natürlich auch erneuert. Die Radwegbreiten orientieren sich an der 1,6m Mindestforderung, sofern der Platz ausreicht. Auf der Südseite ist dies meist nicht der Fall und Rad- und Fußverkehr werden gemischt geführt, wobei jedoch nur wenig Fußgänger hier unterwegs seien. Immerhin stehen hier dann 2,5m bis 3m zur Verfügung. Meinem Bauchgefühl nach ist das ein akzeptabler Kompromiss.</p>
+    <p>Am Knoten <a>Am Schulwald</a> soll die Radführung laut Plan jedoch so kurvig bleiben. Ich habe nachgefragt, ob sich diese nicht doch begradigen lässt.</p>
+    <p>Weitere Infos:</p>
+    <ul>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11654692/403fd11eed65c4b2f84325732ce87033/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-plaene.pdf">vorläufiger Lageplan</a>
+      </li>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11654690/39f1b9c967bf3d15559c82c812c256b9/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
+      </li>
+    </ul>
