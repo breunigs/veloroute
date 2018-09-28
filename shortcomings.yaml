@@ -7,7 +7,51 @@
   - z9E5eNmWX8KT_R8763EcrQ
   - ty0MjVgKYoD1mibL5sHjVQ
   - d03DjXwTmrYJD6A_Q_0y1g
-  desc: <p>Sowohl stadteinwärts als auch stadtauswärts darf man der Veloroute auf einem kurzen Stück des <a>Geranienweg</a> nicht folgen – die Einfahrt ist von beiden Richtungen untersagt. Absteigen und zu Fuß queren ist zwar legal, aber einer Veloroute unwürdig. Die Verwaltung weiß von dem Problem und es soll im Zuge einer Umbaumaßnahme behoben werden.
+  desc: <p>Sowohl stadteinwärts als auch stadtauswärts darf man der Veloroute auf einem kurzen Stück des <a>Geranienweg</a> nicht folgen – die Einfahrt ist von beiden Richtungen untersagt. Absteigen und zu Fuß queren ist zwar legal, aber einer Veloroute unwürdig. Die Verwaltung weiß von dem Problem und es soll im Zuge einer Umbaumaßnahme behoben werden.</p>
+
+1-thadenstrasse:
+  lastCheck: '2018-09-28'
+  loc: [9.95913, 53.55679]
+  grade: 2
+  images:
+  - _tVvDmNLaJLRn4cGUP0dUQ
+  - GBBwCOLt9qt81oRLK5LFKA
+  - MbdQiQLghJmU2c11B4YlMA
+  - GXm64hvmnUFBAfux6hkgjA
+  - 6UaiAO2cfNqtgDg40ro6-A
+  - vWxoilUzzfZj9enUv5HJiQ
+  - mi-US2RUkPRgVfoX5rVi7A
+  - sOFwoira6-vFOrMOxVrGLQ
+  - NeDo8qLhP8jX7Zy2mADpyA
+  desc: <p>Die <a>Thadenstraße</a> soll im Sommer 2019 zu einer Fahrradstraße umgebaut werden. Im Vergleich zu jetzt gibt es durchgehend Vorfahrt wenn man der Veloroute folgt, insbesondere auch an der <a>Wohlers Allee</a> im Westen sowie <a>Beim Grünen Jäger</a> im Osten. Dort soll auch die Aufleitung durch den Park verbessert und in Asphalt ausgeführt werden.  Durchgangsautoverkehr im östlichen Teil der Thadenstraße wird durch eine Einbahnstraßenregelung reduziert, deren Richtung sich ab <a>Brunnenhofstraße</a> bzw. <a>Lerchenstraße</a> umkehrt. Um genügend Platz für den Rad- und Fußverkehr zu erhalten entfällt der südliche Parkstreifen.</p>
+    <p>Insgesamt klingt die Umgestaltung gelungen und bei einem Radaufkommen das selbst in Nebenzeiten den KFZ-Verkehr um das dreifache übersteigt auch notwendig.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007815">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+1-juergensallee:
+  lastCheck: '2018-09-28'
+  loc: [9.86159, 53.55740]
+  grade: 4
+  images:
+  - jBJXEWooDgi51g8n_8eY9Q
+  - _EF5zeIJvrc5Zown-I-NVg
+  - 1DMP6WPaunVayYoYb3O2xg
+  - znfKTvAbelR8__4FcBLVYw
+  - YYn_RDVzX7BRP2QI5l2uxQ
+  - tQc64IlQPQUKXL1-XZpLtQ
+  desc: <p>Die <a>Jürgensallee</a> ist zwischen der <a>Baron-Voght-Straße</a> und der <a>Kanzleistraße</a> momentan vollständig in Kopfsteinpflaster geführt. Entsprechend unkomfortabel ist dieser Teilabschnitt. Nach dem geplanten Umbau im Frühjahr 2019 soll im Bereich der denkmalgeschützten Häuser das Kopfsteinpflaster bestehen bleiben (<a>Baron-Voght-Straße</a> bis ca. Hausnummer 100), aber neu verlegt werden um den Zustand zu verbessern. Im weiteren Verlauf wird die Straße asphaltiert und es kommen an einigen Stellen noch Querungshilfen hinzu. Die Doppeleinmündung <a>Kanzleistraße</a> und <a>Karl-Jacob-Straße</a> wird etwas kompakter gefasst, bleibt aber sonst bei der aktuellen Führung.</p><p>Besser als vorher ist der reduzierte Streckenanteil mit Kopfsteinpflaster allemal, wirklich attraktiv sind die verbleibenden 90m aber nicht. Idealerweise würde die Route hier anders geführt werden um nicht zwischen Radverkehr und Denkmalschutz abwägen zu müssen.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007916">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+1-alte-suelldorfer-landstrasse:
+  lastCheck: '2018-09-28'
+  loc: [9.7717, 53.5805]
+  grade: 1
+  images:
+  - gO0wvvG-aVzGadqAQTmhSA
+  - EfZZqi08k0qGiU-LDxX7zA
+  - xkM3TVkXy5gEbFKfEKtYVw
+  - uEeZ1EtA7GLzT3Rv6A9_Ag
+  desc: <p>Die <a>Alte Sülldorfer Landstraße</a> ab dem <a>Rissener Busch</a> soll 2019 in der Breite reduziert werden, um eine Verkehrsberuhigung zu erreichen. Die Radverkehrsführung bleibt unverändert im Mischverkehr. Lediglich die Schikanen mit schmalem Durchlass für Fahrräder werden in Zukunft auch von Radlern umfahren werden müssen. Bei dem sehr geringem Verkehrsaufkommen sollte dies aber wenig problematisch sein.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007689">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
 2-lagerstrasse:
   lastCheck: '2018-08-30'

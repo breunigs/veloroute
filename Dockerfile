@@ -18,7 +18,10 @@ COPY routes/ /app/routes/
 COPY spec/ /app/spec/
 
 ARG TEST
-RUN if [ "$TEST" = "yes" ]; then bundle exec rspec; fi
+RUN if [ "$TEST" = "yes" ]; then \
+  bundle exec rspec && \
+  bundle exec rspec --tag integration; \
+fi
 
 ARG PRODUCTION
 RUN /app/routes/update_relations.rb
