@@ -27,6 +27,24 @@
     <p>Insgesamt klingt die Umgestaltung gelungen und bei einem Radaufkommen das selbst in Nebenzeiten den KFZ-Verkehr um das dreifache übersteigt auch notwendig.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007815">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+1-chemnitzstraße:
+  lastCheck: '2018-09-29'
+  loc: [9.94674, 53.55556]
+  grade: 2
+  images:
+  - pe4g-cPzEz1w97DP3debeQ
+  - Ms3aeYxVRx5VLW2I5svIGg
+  - bJDVVPB0nIoNrEsw7wU1Yg
+  - APAplV9Wm_5F-PguAwcZ8Q
+  - DlWekdOsKvckWlpvKz1NSw
+  - OUdHtT5ccpKfLxRD2wFWGA
+  - Km3ZR71K2NNoggxZCrcBQg
+  desc: >
+    <p>Im Frühjahr 2019 soll die <a>Chemnitzstraße</a> zu einer Fahrradstraße umgebaut werden. Das Kopfsteinpflaster wird entfernt und die Engstellen mit teils abenteuerlichen Radwegchen entschärft. Wermutstropfen: Der Diagonaltrenner an der Hospitalstraße wird nicht überfahrbar sein, sodass man hier sein Gespräch ggf. kurz unterbrechen muss. Die traurige Begründung hier ist, das dieser sonst vom KFZ Verkehr ignoriert und wortwörtlich umgefahren wird.</p>
+    <p>Die Chemnitzstraße sollte übrigens bereits seit etlichen Jahren umgebaut werden. Bisher scheiterte dies daran, das die die Kombination „Fahrradstraße + KFZ frei“ nicht vorgesehen war. „Fahrradstraße + Anlieger frei“ hätte die Anwohner in den Straße zwischen Chemnitzstraße und <a>Große Bergstraße</a> aber zu stark abgeschnitten und wurde deswegen abgelehnt.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+
 1-juergensallee:
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
@@ -51,7 +69,23 @@
   - xkM3TVkXy5gEbFKfEKtYVw
   - uEeZ1EtA7GLzT3Rv6A9_Ag
   desc: <p>Die <a>Alte Sülldorfer Landstraße</a> ab dem <a>Rissener Busch</a> soll 2019 in der Breite reduziert werden, um eine Verkehrsberuhigung zu erreichen. Die Radverkehrsführung bleibt unverändert im Mischverkehr. Lediglich die Schikanen mit schmalem Durchlass für Fahrräder werden in Zukunft auch von Radlern umfahren werden müssen. Bei dem sehr geringem Verkehrsaufkommen sollte dies aber wenig problematisch sein.</p>
+    <p>Das Stück der alten Sülldorfer Landstraße Richtung <a>Klövensteenweg</a> soll im Anschluss ebenso erneuer werden.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007689">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+1-kloevensteenweg:
+  lastCheck: '2018-09-28'
+  loc: [9.76309, 53.58120]
+  grade: 1
+  images:
+  - LQgBS_-O4gJ8PbDHJXSY6w
+  - R6F1LFkSwjFbRjlHdWHP1A
+  - aPsFqkWT17ps3qEBq1DXhQ
+  - hfbID05YcxZgbVYdfPEK3Q
+  - ZZzzSHYht4vJ9Icl1oAWlg
+  desc: <p>Diese Kreuzung soll vorraussichtlich 2020 zu einem Kreisverkehr umgebaut werden. Die Stummelradwege auf dem <a>Klövensteenweg</a> werden zurückgebaut und die <a>Alte Sülldorfer Landstraße</a> wird bis zum <a>Rissener Busch</a> auf eine einer Wohnstraße angemessene Breite reduziert. Der Rest dieser Straße wird in einer vorhergehenden Baumaßnahme  ebenso angepasst.</p>
+    <p>Ein Kreisverkehr klingt gerade in Nebenzeiten sehr sinnvoll – beim Abfahren der Route stand ich häufig grundlos an der roten Ampel. Außerdem wird durch die neue Anordnung klar, das der Radverkehr auf die Straße gehört und man als Radfahrer weniger verwirrt.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007917">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 
 2-lagerstrasse:
   lastCheck: '2018-08-30'
