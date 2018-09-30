@@ -108,4 +108,10 @@ module Geo
   def self.to_deg(degrees)
     degrees / Math::PI * 180.0
   end
+
+  def self.bbox(coords)
+    minMaxLon = coords.minmax { |a, b| a[0] <=> b[0] }.map(&:first)
+    minMaxLat = coords.minmax { |a, b| a[1] <=> b[1] }.map(&:last)
+    [minMaxLon[0], minMaxLat[0], minMaxLon[1], minMaxLat[1]]
+  end
 end

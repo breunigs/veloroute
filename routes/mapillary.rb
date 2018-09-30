@@ -1,3 +1,4 @@
+require_relative "geo"
 require_relative "geojson"
 require_relative "web"
 
@@ -45,7 +46,16 @@ module Mapillary
     end
 
     def coords
-      corrected_data.map { |c| GeoJSON.round_coord(c[:lonLat]) }
+      @coords ||= corrected_data.map { |c| GeoJSON.round_coord(c[:lonLat]) }
+    end
+
+    def ==(other)
+      hash == other.hash
+    end
+    alias eql? ==
+
+    def hash
+      image_keys.map(&:hash).reduce { |h, x| h ^ x }
     end
 
     private
@@ -80,18 +90,21 @@ module Mapillary
     end
 
     def bearings
-      sequences.flat_map(&:bearings).map { |angle| angle.round }
+      sequences.flat_map(&:bearings)
     end
 
     def coords
       sequences.flat_map(&:coords)
     end
 
-    def details
-      image_keys.zip(coords, bearings)
+    def ==(other)
+      hash == other.hash
     end
+    alias eql? ==
 
-    private
+    def hash
+      list.map(&:hash).reduce { |h, x| h ^ x }
+    end
 
     def sequences
       @sequences ||= begin
@@ -118,11 +131,15 @@ module Mapillary
     end
 
     def bearings
-      corrected_data.map { |d| d[:bearing] }
+      corrected_data.map { |d| d[:bearing].round }
     end
 
     def coords
-      corrected_data.map { |d| GeoJSON.round_coord(d[:lonLat]) }
+      @coords ||= corrected_data.map { |d| GeoJSON.round_coord(d[:lonLat]) }
+    end
+
+    def details
+      image_keys.zip(coords, bearings)
     end
 
     def to_geojson
@@ -133,6 +150,20 @@ module Mapillary
 
     def public_url
       "#{API_URL}/sequences/#{id}?client_id=#{API_KEY}"
+    end
+
+    # format SE lonLat, NW lonLat as a single array
+    def bbox
+      @bbox ||= Geo.bbox(coords)
+    end
+
+    def ==(other)
+      hash == other.hash
+    end
+    alias eql? ==
+
+    def hash
+      id.hash ^ from.hash ^ to.hash
     end
 
     private

@@ -109,13 +109,19 @@ module Quality
 
     # format SE lonLat, NW lonLat as a single array
     def bbox
-      minMaxLon = coords.minmax { |a, b| a[0] <=> b[0] }.map(&:first)
-      minMaxLat = coords.minmax { |a, b| a[1] <=> b[1] }.map(&:last)
-      [minMaxLon[0], minMaxLat[0], minMaxLon[1], minMaxLat[1]]
+      Geo.bbox(coords)
     end
 
     def buffered_bbox
-      @buffered_bbox ||= Geo.buffer_bbox(100, bbox) # buffered by 100m
+      @buffered_bbox ||= Geo.buffer_bbox(30, bbox) # buffered by 30m
+    end
+
+    def bbox_intersect?(other)
+      # format SE lonLat, NW lonLat as a single array
+      bo = other
+      bw = buffered_bbox
+      # 0 bottom, 1 left, 2 top, 3 right
+      bo[1] <= bw[3] && bo[3] >= bw[1] && bo[2] >= bw[0] && bo[0] <= bw[2]
     end
 
     def observations
@@ -395,21 +401,30 @@ module Quality
 
     def to_quality_export
       img_key_to_osm_id = {}
-      @route.stitched_sequences.values.flat_map(&:details).uniq.each do |img_key, coord, img_bearing|
-        dist_so_far = Float::INFINITY
-        ways.each do |w|
-          next unless Geo.inside_bbox?(coord, w.buffered_bbox)
-          new_dist = w.dist(coord)
-          next if new_dist >= dist_so_far
-          if w.oneway?
-            _pt, idx = Geo.closest_point_on_line(w.coords, coord)
-            way_bearing = Geo.bearing(lonLat1: w.coords[idx], lonLat2: w.coords[idx+1])
-            different_direction = (img_bearing - way_bearing).abs > 100
-            next if different_direction
-          end
 
-          dist_so_far = new_dist
-          img_key_to_osm_id[img_key] = w.id
+      seqs = @route.stitched_sequences.values.flat_map(&:sequences).uniq
+      seqs.each do |seq|
+        bs = seq.bbox
+        possible_ways = ways.select { |w| w.bbox_intersect?(bs) }
+
+        seq.details.each do |img_key, coord, img_bearing|
+          next if img_key_to_osm_id.has_key?(img_key)
+
+          dist_so_far = Float::INFINITY
+          possible_ways.each do |w|
+            next unless Geo.inside_bbox?(coord, w.buffered_bbox)
+            new_dist = w.dist(coord)
+            next if new_dist >= dist_so_far
+            if w.oneway?
+              _pt, idx = Geo.closest_point_on_line(w.coords, coord)
+              way_bearing = Geo.bearing(lonLat1: w.coords[idx], lonLat2: w.coords[idx+1])
+              different_direction = (img_bearing - way_bearing).abs > 100
+              next if different_direction
+            end
+
+            dist_so_far = new_dist
+            img_key_to_osm_id[img_key] = w.id
+          end
         end
       end
 
