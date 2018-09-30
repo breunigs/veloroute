@@ -2,12 +2,27 @@ require "json"
 require "nokogiri"
 require "webcache"
 
-CACHE = WebCache.new.tap { |c| c.life = 7*24*60*60 }
+class WebCache
+  alias_method :orig_http_get, :http_get
+
+  def http_get(url)
+    host = URI.parse(url).host
+    if host == 'nominatim.openstreetmap.org'
+      print '#'
+      sleep 1
+    else
+      print "."
+    end
+
+    orig_http_get(url)
+  end
+end
+
+CACHE = WebCache.new.tap { |c| c.life = 14*24*60*60 }
 PARSED_CACHE = {}
 
 def get_xml(url)
   PARSED_CACHE[url] ||= begin
-    print "."
     Nokogiri::HTML(CACHE.get(url).to_s)
   end
 end
@@ -15,7 +30,6 @@ end
 def get(url, max_retries: 1)
   retries ||= 0
   PARSED_CACHE[url] ||= begin
-    print "."
     JSON.parse(CACHE.get(url).to_s)
   end
 rescue JSON::ParserError => e
