@@ -402,9 +402,8 @@ module Quality
           new_dist = w.dist(coord)
           next if new_dist >= dist_so_far
           if w.oneway?
-            ordered = w.forward? ? w.coords : w.coords.reverse
-            _pt, idx = Geo.closest_point_on_line(ordered, coord)
-            way_bearing = Geo.bearing(lonLat1: ordered[idx], lonLat2: ordered[idx+1])
+            _pt, idx = Geo.closest_point_on_line(w.coords, coord)
+            way_bearing = Geo.bearing(lonLat1: w.coords[idx], lonLat2: w.coords[idx+1])
             different_direction = (img_bearing - way_bearing).abs > 100
             next if different_direction
           end
