@@ -226,16 +226,21 @@ export class Quality {
     const details = id2details[osmId];
     this._previousQualityKey = imageKey;
 
+    let html = null;
     if(details) {
-      el.innerHTML = renderHtmlForWay(details, osmId);
+      html = renderHtmlForWay(details, osmId);
     } else {
       Object.entries(shortcomings).find(([name, details]) => {
         if(details.images.indexOf(imageKey) < 0) return false;
-        el.innerHTML = details.desc;
+        html = details.desc;
         return true;
       });
     }
 
-    maybeScrollIntoView(avoidScrolling);
+    el.innerHTML = html || "Keine Details für diese Stelle verfügbar.";
+
+    if(html) {
+      maybeScrollIntoView(avoidScrolling);
+    }
   }
 }
