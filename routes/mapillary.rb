@@ -194,6 +194,7 @@ module Mapillary
       to_idx = all_image_keys.index(to)
       raise "Sequence #{id} does not contain starting image #{from}" if from_idx.nil?
       raise "Sequence #{id} does not contain ending image #{to}" if to_idx.nil?
+      raise "Sequence #{id} is out of order #{from} (#{from_idx}) is after #{to} (#{to_idx})" if from_idx > to_idx
       all_image_keys[from_idx..to_idx]
     end
 
