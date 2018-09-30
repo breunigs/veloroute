@@ -44,7 +44,6 @@
     <p>Die Chemnitzstraße sollte übrigens bereits seit etlichen Jahren umgebaut werden. Bisher scheiterte dies daran, das die die Kombination „Fahrradstraße + KFZ frei“ nicht vorgesehen war. „Fahrradstraße + Anlieger frei“ hätte die Anwohner in den Straße zwischen Chemnitzstraße und <a>Große Bergstraße</a> aber zu stark abgeschnitten und wurde deswegen abgelehnt.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
-
 1-juergensallee:
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
@@ -58,6 +57,17 @@
   - tQc64IlQPQUKXL1-XZpLtQ
   desc: <p>Die <a>Jürgensallee</a> ist zwischen der <a>Baron-Voght-Straße</a> und der <a>Kanzleistraße</a> momentan vollständig in Kopfsteinpflaster geführt. Entsprechend unkomfortabel ist dieser Teilabschnitt. Nach dem geplanten Umbau im Frühjahr 2019 soll im Bereich der denkmalgeschützten Häuser das Kopfsteinpflaster bestehen bleiben (<a>Baron-Voght-Straße</a> bis ca. Hausnummer 100), aber neu verlegt werden um den Zustand zu verbessern. Im weiteren Verlauf wird die Straße asphaltiert und es kommen an einigen Stellen noch Querungshilfen hinzu. Die Doppeleinmündung <a>Kanzleistraße</a> und <a>Karl-Jacob-Straße</a> wird etwas kompakter gefasst, bleibt aber sonst bei der aktuellen Führung.</p><p>Besser als vorher ist der reduzierte Streckenanteil mit Kopfsteinpflaster allemal, wirklich attraktiv sind die verbleibenden 90m aber nicht. Idealerweise würde die Route hier anders geführt werden um nicht zwischen Radverkehr und Denkmalschutz abwägen zu müssen.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007916">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+1-blankeneser-friedhof:
+  lastCheck: '2018-09-29'
+  loc: [9.80107, 53.57320]
+  loc2: [9.79920, 53.57482]
+  grade: 5
+  images:
+  - pfVytKPTsgFca__kzZwe5Q
+  - -xxRsy6BWuiu412rfYarvg
+  - iYbM2oHrCWvdgAYkcJ8wmw
+  desc: <p>Am <a>Friedhof Blankenese</a> gibt es an beiden Zugangsstellen sehr enge Drängelgitter. Diese sind bereits mit einem normalen Fahrrad kaum zu passieren, mit Anhänger oder Lastenrad kommt man vermutlich überhaupt nicht durch. Allgemein erscheint die Führung durch den Friedhof fragwürdig, liegt doch der <a>Sülldorfer Kirchenweg</a> knapp daneben. Vermutlich traute man sich nicht den KFZ Verkehr dort einzudämmen.</p>
 
 1-alte-suelldorfer-landstrasse:
   lastCheck: '2018-09-28'
@@ -127,6 +137,74 @@
   images:
   - KHUIA919w_DV95O-SZJ9HA
   desc: <p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a> zu queren. Immerhin ist diese gut sichtbar und es ist klar erkennbar, das man sie benutzen muss.</p>
+
+2-reichsbahnstrasse:
+  lastCheck: '2018-09-29'
+  loc: [9.91146, 53.60261]
+  grade: 4
+  images:
+  - jcaiYgNA-6p2bjW13n0EJw
+  - XppeEi7d4wQ9EmEIU7Sxyw
+  - Hrh2ujjEC_V4tmciGPRHAw
+  - MhBdT-xqhzsThjC9oYWLdg
+  desc: <p>Die Führung an der Kreuzung ist aktuell etwas verwirrend, weil die Führung nur für den Fußverkehr gebaut wurde. Als Radfahrer muss man ein bisschen Slalom fahren um der Veloroute zu folgen. Um dies zu verbessern wird die Führung etwas begradigt und auch der Vorbeifahrstreifen aus der <a>Reichsbahnstraße</a> etwas breiter. Leider lässt sich den Plänen nicht entnehmen ob endlich der Fahrradweg auf der Westseite der <a>Kieler Straße</a> wie suggeriert in der Gegenrichtung freigegeben wird. Aktuell muss man stadteinwärts noch wie die KFZ auf der Fahrbahn links in den <a>Olloweg</a> abbiegen  – oder schieben – wenn man sich an die StVo halten möchte.</p>
+    <p>Im Zuge der Maßnahme wird auch das Tempo-30-Limit auf der <a>Reichsbahnstraße</a> erweitert, das dann schon ab Höhe <a>Bollweg</a> stadtauswärts gilt.</p>
+    <p><a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004043">vorläufiger Lageplan</a> (unter Anlagen)</p>
+
+2-langenfelder-damm:
+  lastCheck: '2018-09-29'
+  loc: [9.93894, 53.58042]
+  grade: 5
+  images:
+  - ugStveYUBk2IxkEpXfCzww
+  - 89eKol78cSWNHhWQdOAHJA
+  - bmlRHhOvhrTfRrD_uR4YOg
+  - ai8o2x7G2P7yKfeKGuITww
+  - uhMe9iWHVbwnZQHP95uV2w
+  - _3OYxHcYPIW5kYLihC5FFA
+  - KgvqrY4pOnPbPSot5ox5Yg
+  - 3hVWoEmJ_E8ov5tqfww-Nw
+  - q-ylQAnLFJ0mvkGJ8_ZcYg
+  - rN7Y7alVhTRyp_VyGou8vg
+  - feYtZNnyRdA1niVagKRlIQ
+  desc: >
+    <p>Die Situation im <a>Langenfelder Damm</a> ist aktuell grausig: schlechter Belag, zu schmal, Radwege verschwinden im Nichts. Bis zum Umbau ist die alte Führung der Veloroute 2 durch Anwohnerstraßen definitiv zu bevorzugen.</p><p>In der Neuplanung ist ein Kreisverkehr an der Einmündung der <a>Müggenkampstraße</a> vorgesehen. Im Vor- bzw. Nachlauf wird der Radverkehr je nach Platz auf Schutzstreifen (gestrichelete Linie), Radfahrstreifen (durchgezogene Linie) oder Fahrradwegen geführt. Im Bereich der Bushaltestelle „Högenstraße“ muss auf die KFZ-Spur ausgewichen werden, wenn ein Bus hält.</p>
+    <p>Stadteinwärts muss man auch in Zukunft zweimal links abbiegen: aus dem <a>Högenstraße</a> in den <a>Langenfelder Damm</a> und von diesem in die <a>Sillemstraße</a>. Immerhin erlauben Verkehrsinseln den Vorgang auf zweimal zu machen, was bei starkem Verkehr helfen sollte. Das auf dem kurzen Stück zwischen Kreisel und Sillemstraße nochmal ein Radstreifen eingezeichnet verwundert mich aber. Er drängt den Radverkehr zur Seite, statt ihn bequem links abbiegen zu lassen. Außerdem ist nach wenigen Metern sowieso wieder ein Einfädelvorgang nötig. Insgesamt scheint mir diese Lösung vor allem dazu geeignet die KFZ zu zu knappem Überholen zu animieren.</p>
+    <p>Unterm Strich ist die vorgestellte Planung definitiv besser als der Bestand. Ob das Linksabbiegen in die Sillemstraße klappt wird sich zeigen müssen. Der Umbau soll im Sommer 2019 stattfinden.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/contentblob/11244408/57799f9cd35ca253b23c0d1a504cfd3c/data/praesentation-langenfelder-damm.pdf">Präsentation zum Umbau, mit vorläufigen Lageplänen</a> (S. 49, 58 ff)</li>
+      <li><a href="https://www.hamburg.de/contentblob/11283754/50fb3ed0938d92614bd40d9e054b3044/data/lageplan2-langenfelder-damm.pdf">Hochauflösender, vorläufiger Lageplan</a></li>
+      <li><a href="https://www.hamburg.de/eimsbuettel/langenfelderdamm/">Infoseite der Stadt zum Langenfelder Damm</a></li>
+    </ul>
+
+2-hoegenstrasse:
+  lastCheck: '2018-09-30'
+  loc: [9.9374, 53.5861]
+  grade: 1
+  images:
+  - 7LELqrJHSFDpypFSKn2AMg
+  - eqd_2ofbYUtPNwwKeWuLHg
+  - PpzQAtd_vgdSybzb77B9tQ
+  - kIW2fCD8Zw7ZH_yKsAZGSw
+  - gCxBus9T4xG-AP7XCEEVbA
+  - _9I0XTov_x5TtN74w0wqZQ
+  - IUN5FGUf2eF-kd9CRRAq9Q
+  - ojGHKS9PIEOQQiETTNS92A
+  desc: >
+    <p>Die <a>Högenstraße</a> soll zu einer Fahrradstraße umgebaut werden. Dies dürfte die bereits jetzt angenehm zu befahrende Strecke noch besser machen, da die verbleibenden Probleme gelöst werden. Etwa war die Querung des stärker befahrenen <a>Steenwisch</a> nicht immer einfach. In Zukunft wird ein kleiner Kreisel dieses Problem lösen und vermutlich eine Weiterfahrt ohne Anhalten ermöglichen. Vom <a>Langenfelder Damm</a> bis zum <a>Steenwisch</a> soll auch „Anlieger frei“ gelten, sodass der KFZ-Durchgangsverkehr hoffentlich weiter sinkt. Am nördlichen Ende soll der Übergang zum <a>Spannskamp</a> verbessert werden und der Weg einen neuen Belag erhalten.</p>
+    <p>Geplant war der Umabu für Frühjahr/Sommer 2018, aber der Termin konnte offenbar nicht gehalten werden.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/contentblob/9223346/09c5a4f1dae49706ebcefdb84f69d483/data/hoegenstrasse-buergerinfo310517.pdf">Präsentation zum Umbau, mit vorläufigen Lageplänen</a></li>
+      <li><a href="https://www.hamburg.de/eimsbuettel/hoegenstrasse">Infoseite der Stadt zur Högenstraße</a></li>
+      <li>
+        Hochauflösende, vorläufige Lagepläne:
+        <ul>
+          <li><a href="https://www.hamburg.de/contentblob/9223422/d6d6e4f077af409945339b0f160a3f68/data/hoegenstrasse-vereinfachter-lageplan1.pdf">Teil 1 (Langenfelder Damm bis Vehrenkampstraße)</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223424/a05864f7b2ee3440be75b34ad39b178f/data/hoegenstrasse-vereinfachter-lageplan2.pdf">Teil 2 (Vehrenkampstraße bis Schrebergärten)</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223426/cff64fe5711adaad6d2b0e106a6d5571/data/hoegenstrasse-vereinfachter-lageplan3.pdf">Teil 3 (Schrebergärten bis Spannkamp)</a</li>
+        </ul>
+      </li>
+    </ul>
 
 4-kreuzung-neuer-jungfernstieg:
   lastCheck: '2018-08-19'
