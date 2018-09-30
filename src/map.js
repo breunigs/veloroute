@@ -1,10 +1,10 @@
 import mapboxgl from 'mapbox-gl';
+import geocoder from './geocoder';
 import markers from '../routes/geo/markers.json';
 import filenames from '../routes/geo/content_hashed_filenames.json'
 import { readFromHash } from './state';
 
-const hamburgBounds = new mapboxgl.LngLatBounds([8.9236, 53.1336], [10.8897, 53.9682]);
-const rathausmarktCoord = [9.993148, 53.550974];
+const hamburgBounds = [8.9236, 53.1336, 10.8897, 53.9682];
 
 const routeLineWidth = 3;
 const routeWidthStops = [
@@ -40,6 +40,7 @@ export const map = new mapboxgl.Map({
     dragRotate: false,
 });
 map.touchZoomRotate.disableRotation();
+new geocoder(map, mapboxgl.accessToken, hamburgBounds);
 
 let routeClickListeners = [];
 const addRouteClickListener = (...funcs) => {
