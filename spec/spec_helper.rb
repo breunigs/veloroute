@@ -30,6 +30,7 @@ disable_net_connect!
 RSpec.configure do |config|
   config.before :all do
     CACHE.disable
+    WebCache::THROTTLED_HOSTS.clear
   end
 
   # rspec-expectations config goes here. You can use an alternate

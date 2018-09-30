@@ -5,9 +5,11 @@ require "webcache"
 class WebCache
   alias_method :orig_http_get, :http_get
 
+  THROTTLED_HOSTS = ['nominatim.openstreetmap.org']
+
   def http_get(url)
     host = URI.parse(url).host
-    if host == 'nominatim.openstreetmap.org'
+    if THROTTLED_HOSTS.include?(host)
       print '#'
       sleep 1
     else
