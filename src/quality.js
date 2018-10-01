@@ -3,7 +3,6 @@ import { toQualityName } from './utils_web';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 
 const el = document.getElementById('quality');
-const header = document.getElementById('qualityheader');
 
 const osmLink = (osmId) => {
   return `<a class="not-mobile" href="https://www.openstreetmap.org/way/${osmId}">Weg in der OpenStreetMap anzeigen</a>`;
@@ -145,15 +144,6 @@ const observation2text = (topic, ratings, details, dual) => {
   return html;
 };
 
-let wasScrolledIntoViewOnce = false;
-const maybeScrollIntoView = (avoidScrolling) => {
-  if(!avoidScrolling && !wasScrolledIntoViewOnce) {
-    wasScrolledIntoViewOnce = true;
-    console.debug("scrolling to details once");
-    header.scrollIntoView({block: "start", behavior: "smooth"});
-  }
-}
-
 const renderHtmlForWay = (details, osmId) => {
   console.debug("Quality Details:", details);
   let obs = {};
@@ -237,10 +227,11 @@ export class Quality {
       });
     }
 
-    el.innerHTML = html || "Keine Details für diese Stelle verfügbar.";
-
     if(html) {
-      maybeScrollIntoView(avoidScrolling);
+      el.innerHTML = html;
+      el.style.cssText = 'display: block'
+    } else {
+      el.style.cssText = 'display: none'
     }
   }
 }

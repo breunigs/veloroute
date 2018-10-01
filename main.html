@@ -84,26 +84,6 @@
 
       <div id="descquality" class="desc">
         <h3>Qualität</h3>
-        <h4>Problemstellen</h4>
-        <p>Problemstellen werden durch Marker in der Karte angezeigt. Klicke auf eine um Details anzuzeigen. Hervorgehoben werden meist Kreuzungen, da sich diese nur schlecht in der Karte abbilden lassen.</p>
-
-        <h4>Streckenbewertung</h4>
-        <p>Die Streckenbewertung erfolgt mittels einer Heuristik. Bitte <a href="mailto:stefan-veloroute@breunig.xyz">melde</a> Stellen falsch eingeschätzt wurden. Beachtet wird:</p>
-        <ul>
-          <li>Oberfläche (etwa: Asphalt besser als Kopfsteinpflaster)</li>
-          <li>Breite nach <a href="http://www.hamburg.de/contentblob/2695554/42d1b5cf759fa2fe2b3ffc621538b6e1/data/vorabinformation-zur-plast9-fortschreibung.pdf">PLAST 9 (2010)</a></li>
-          <li>fehlende Beleuchtung</li>
-          <li>getrennte Führung bei hohen KFZ-Geschwindigkeiten</li>
-        </ul>
-
-        <h4>Bewertungsstufen</h4>
-        <p>
-          Die Bewertung geht von „gut“ <span class="shortcoming grade1"></span>, über „okay“ <span class="shortcoming grade3"></span> zu „schlecht“ <span class="shortcoming grade5"></span>. Unterscheiden sich Hin- und Rückrichtung kann auch eine Zwischenstufe vorkommen. Findet sich zu einem Merkmal keine Angabe, dann fehlt es bereits in der OpenStreetMap.
-          <a class="vision-colorblind">Auf kontraststarkes Farbschema umschalten?</a>
-          <a class="vision-normal">Auf Ampel Farbschema umschalten?</a>
-        </p>
-
-        <h4 id="qualityheader">Details</h4>
         <div id="quality">
           <% if(htmlWebpackPlugin.options.qualityDesc) { %>
             <%= htmlWebpackPlugin.options.qualityDesc %>
@@ -137,10 +117,27 @@
                 }]
               }
             </script>
-          <% } else { %>
-            <p>Bitte wähle zuerst einen Weg/Marker aus.</p>
           <% } %>
         </div>
+
+        <h4>Problemstellen</h4>
+        <p>Problemstellen werden durch Marker in der Karte angezeigt. Klicke auf eine um Details anzuzeigen. Hervorgehoben werden Bettelampeln, geplante Baustellen und punktuelle Probleme, etwa an Kreuzungen.</p>
+
+        <h4>Streckenbewertung</h4>
+        <p>Die Streckenbewertung erfolgt mittels einer Heuristik. Bitte <a href="mailto:stefan-veloroute@breunig.xyz">melde</a> Stellen falsch eingeschätzt wurden. Beachtet wird:</p>
+        <ul>
+          <li>Oberfläche (etwa: Asphalt besser als Kopfsteinpflaster)</li>
+          <li>Breite nach <a href="http://www.hamburg.de/contentblob/2695554/42d1b5cf759fa2fe2b3ffc621538b6e1/data/vorabinformation-zur-plast9-fortschreibung.pdf">PLAST 9 (2010)</a></li>
+          <li>fehlende Beleuchtung</li>
+          <li>getrennte Führung bei hohen KFZ-Geschwindigkeiten</li>
+        </ul>
+
+        <h4>Bewertungsstufen</h4>
+        <p>
+          Die Bewertung geht von „gut“ <span class="shortcoming grade1"></span>, über „okay“ <span class="shortcoming grade3"></span> zu „schlecht“ <span class="shortcoming grade5"></span>. Unterscheiden sich Hin- und Rückrichtung kann auch eine Zwischenstufe vorkommen. Findet sich zu einem Merkmal keine Angabe, dann fehlt es bereits in der OpenStreetMap.
+          <a class="vision-colorblind">Auf kontraststarkes Farbschema umschalten?</a>
+          <a class="vision-normal">Auf Ampel Farbschema umschalten?</a>
+        </p>
 
         <a href="/">zurück zur normalen Ansicht</a>
       </div>
