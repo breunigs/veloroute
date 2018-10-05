@@ -54,16 +54,23 @@ const addQualityClickListener = (...funcs) => {
 
 const addSource = (name) => {
   const fn = filenames[`${name}.geojson`];
-  return fetch(`/routes/geo/${fn}`)
-    .then(response => response.json())
-    .then(json => {
-      map.addSource(`source-${name}`, {
-        lineMetrics: true,
-        type: 'geojson',
-        data: json,
-        tolerance: 0.6 // default 0.375,
-      });
+  const sourceName = `source-${name}`;
+
+  return new Promise((resolve) => {
+    const sourceListener = (data) => {
+      if(data.sourceId !== sourceName) return;
+      map.off('sourcedata', sourceListener);
+      resolve();
+    }
+    map.on('sourcedata', sourceListener);
+
+    map.addSource(sourceName, {
+      lineMetrics: false,
+      type: 'geojson',
+      data: `/routes/geo/${fn}`,
+      tolerance: 0.6 // default 0.375,
     });
+  });
 }
 
 const renderQuality = () => {
