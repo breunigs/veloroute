@@ -562,17 +562,11 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
 
-"@mapbox/polylabel@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/polylabel/-/polylabel-1.0.2.tgz#c5714619b65add082638ea06027e69b14500efa6"
-  dependencies:
-    tinyqueue "^1.1.0"
-
 "@mapbox/tiny-sdf@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@mapbox/tiny-sdf/-/tiny-sdf-1.1.0.tgz#b0b8f5c22005e6ddb838f421ffd257c1f74f9a20"
 
-"@mapbox/unitbezier@0.0.0", "@mapbox/unitbezier@^0.0.0":
+"@mapbox/unitbezier@^0.0.0":
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/@mapbox/unitbezier/-/unitbezier-0.0.0.tgz#15651bd553a67b8581fb398810c98ad86a34524e"
 
@@ -2695,7 +2689,7 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-earcut@^2.1.2, earcut@^2.1.3:
+earcut@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.1.3.tgz#ca579545f351941af7c3d0df49c9f7d34af99b0c"
 
@@ -4437,21 +4431,18 @@ mapbox@1.0.0-beta5:
   dependencies:
     rest "^2.0.0"
 
-mapillary-js@2.12.1:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/mapillary-js/-/mapillary-js-2.12.1.tgz#4e32ecd1f6f14d9f52231b36e752bcfe74a0914f"
+mapillary-js@2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/mapillary-js/-/mapillary-js-2.13.1.tgz#f99380c5af1e4f72ba3a613bc98ee6cc266cbfbc"
   dependencies:
-    "@mapbox/polylabel" "^1.0.2"
-    "@mapbox/unitbezier" "0.0.0"
-    earcut "^2.1.2"
+    earcut "^2.1.3"
     falcor "^0.1.17"
     falcor-http-datasource "^0.1.3"
     latlon-geohash "^1.1.0"
     pbf "^3.1.0"
-    rbush "^2.0.1"
-    rxjs "^5.5.2"
-    three "^0.88.0"
-    underscore "^1.8.3"
+    rbush "^2.0.2"
+    rxjs "^6.2.1"
+    three "^0.93.0"
     virtual-dom "^2.1.1"
     when "^3.7.8"
 
@@ -5794,7 +5785,7 @@ raw-body@2.3.2:
     iconv-lite "0.4.19"
     unpipe "1.0.0"
 
-rbush@^2.0.1:
+rbush@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.2.tgz#bb6005c2731b7ba1d5a9a035772927d16a614605"
   dependencies:
@@ -6173,15 +6164,15 @@ rx@2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/rx/-/rx-2.5.3.tgz#21adc7d80f02002af50dae97fd9dbf248755f566"
 
-rxjs@^5.5.2:
-  version "5.5.11"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.11.tgz#f733027ca43e3bec6b994473be4ab98ad43ced87"
-  dependencies:
-    symbol-observable "1.0.1"
-
 rxjs@^6.1.0:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.1.tgz#246cebec189a6cbc143a3ef9f62d6f4c91813ca1"
+  dependencies:
+    tslib "^1.9.0"
+
+rxjs@^6.2.1:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
   dependencies:
     tslib "^1.9.0"
 
@@ -6802,10 +6793,6 @@ svgo@^1.0.5:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-symbol-observable@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
-
 tapable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.0.0.tgz#cbb639d9002eed9c6b5975eb20598d7936f1f9f2"
@@ -6834,9 +6821,9 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-three@^0.88.0:
-  version "0.88.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.88.0.tgz#4256c2fc38e4fb23a0d23eba2b6cce4df8e466d5"
+three@^0.93.0:
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.93.0.tgz#3fd6c367ef4554abbb6e16ad69936283e895c123"
 
 through2@^2.0.0, through2@~2.0.3:
   version "2.0.3"
@@ -6999,10 +6986,6 @@ underscore-template-loader@^1.0:
   dependencies:
     fastparse "^1.1.1"
     loader-utils "^0.2.11"
-
-underscore@^1.8.3:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
