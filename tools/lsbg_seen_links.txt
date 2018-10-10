@@ -110,3 +110,6 @@
 '2018-09-26':
 - "/contentblob/11654690/39f1b9c967bf3d15559c82c812c256b9/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/11654692/403fd11eed65c4b2f84325732ce87033/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abstimmungsunterlage-plaene.pdf"
+'2018-10-10':
+- "/contentblob/11676030/a4b5eba8f88fcee157469e72b7857419/data/hohenfelder-bucht-abgestimmte-planung-bericht.pdf"
+- "/contentblob/11676036/af2c20b137dfedee3c0da0c4921e6173/data/hohenfelder-bucht-abgestimmte-planung-plan.pdf"

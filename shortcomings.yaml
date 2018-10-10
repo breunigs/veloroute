@@ -44,6 +44,36 @@
     <p>Die Chemnitzstraße sollte übrigens bereits seit etlichen Jahren umgebaut werden. Bisher scheiterte dies daran, das die die Kombination „Fahrradstraße + KFZ frei“ nicht vorgesehen war. „Fahrradstraße + Anlieger frei“ hätte die Anwohner in den Straße zwischen Chemnitzstraße und <a>Große Bergstraße</a> aber zu stark abgeschnitten und wurde deswegen abgelehnt.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+1-ottensen-mitte:
+  lastCheck: '2018-10-10'
+  loc: [9.9278, 53.5499]
+  grade: 3
+  images:
+  - 2mEXfCAh4hvQZJ6DM2ZTzQ
+  - QLhdQHosNcpTRPvmITumrQ
+  - MgZf90wtq8wF7FiA9CJ1tQ
+  - 5ek49L4FwroCLwbgcgAQmg
+  - QfUx3gpVi54x9Hp08B8mQg
+  - Od9_m1c92q3FAKZQiYKUpw
+  - nVYP5aSHo4s4hmXXO6ebIw
+  - nSuY5eQJU3152MUeUW8mew
+  - P-uoY-njdjjC-yTcIKzCFA
+  - sci7UD2pE4YHT7g1wBqdbQ
+  - y3d1pFq_oKza5MQrkV70EQ
+  - Y46KLCJWcBIHYIYXwqjxGg
+  - _TNzXpKU2nzC7u-r141VzA
+  - -rMECPgGYmivFJ5wqK-uxA
+  - RGAZUlyvRPX9yyLAD9hQtw
+  - 6AkOvdNfodrP7X-upJwcnw
+  - vh7nxam4OhRa2J8NmspXHg
+  - wJNy86-ZS3rn-jRCX_dzxQ
+  desc: >
+    <p>Betrifft: <a>Klausstraße</a>, <a>Eulenstraße</a>, <a>Keplerstraße</a>, <a>Arnoldstraße</a>, <a>Lobuschstraße</a></p>
+    <p>Aufgrund der schmalen Straßenquerschnitte teilt sich die Veloroute hier in Nord (stadtauswärts) und Süd (stadteinwärts) auf. Die Führung in diesen Abschnitten ist heikel, da die Radfahrstreifen viel zu schmal sind und auf der <a>Eulenstraße</a> teilweise auch ganz fehlen und man sich entweder über Kopfsteinpflaster oder den Fußweg quälen soll.</p><p>Im ersten Entwurf (siehe Anlagen) ist der Fahrradweg durchgängig auf der Straße geplant. An der schmalsten Stelle wäre er 1,50m breit, was deutlich mehr ist als heute. Leider wird er meist nur als Schutzstreifen (gestrichelete Linie, kurzes Halten für KFZ erlaubt) geführt.</p>
+    <p>Die Bushaltestellen werden so ausgeführt, das der Radverkehr links vorbeifahren kann, auch wenn der Bus hält. Der KFZ Verkehr muss hingegen warten. Die Kreuzungen erhalten allerlei Detailverbesserungen: Vorgezogene Aufstellstreifen, damit man leicht links abbiegen kann wenn die Ampel rot ist. Die Freigabe der Fahrtrichtung gegen die Einbahnstraße sollen kleine Verkehrsinseln den Radverkehr vorm Auto schützen. Teilweise werden die Querungsmöglichkeiten für Fußgänger verbessert und die Gehwege breiter. Da so die Querungszeiten kürzer werden, können die Ampeln schneller umschalten, was allen Zugute kommt. Auch werden die Sichtbeziehungen optimiert, indem im Kreuzungsbereich Fahrradbügel u.ä. aufgestellt werden – über diese kann man im Gegensatz zu einem Auto gut hinwegsehen.</p>
+    <p>Leider führen die Erläuterungen nur kurz „verfügbare Gesamtbreite“ als Argument gegen einen durchgängigen Radfahrstreifen an, ohne ins Detail zu gehen. In den Plänen ist die KFZ-Spur immer mindestens 3,25m breit; die Fahrradspur je nach Platz 2,25m bis 1,5m. Bis einschließlich 2,0m Platz gibt es nur einen Schutzstreifen. In den mir bekannten Regelwerken wird für einen Radfahrstreifen nur eine Mindestbreite von 1,25m gefordert. Als Laie ist mir unklar, warum ein Radfahrstreifen hier also nicht regelkonform ist, ein Schutzstreifen aber schon.</p>
+      <p>Erläuterungsberichte, jeweils mit vorläufigem Lageplan (unter Anlagen): <a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007947">Nordeite (stadtauswärts)</a> und <a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007937">Südseite (stadteinwärts)</a>. Unter letzterem Link findet sich auch die „Gesamtdokumentation“ die auch Details zur Bürgerbeteiligung beider Abschnitte enthält.</p>
+
 1-juergensallee:
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
@@ -263,6 +293,43 @@
       </li>
       <li>
         <a href="http://lsbg.hamburg.de/contentblob/9681702/7b5274de08bdb5d0a490e6153eaebf2a/data/alster-fahrradachsen-krugkoppel-bis-fernsicht-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
+      </li>
+    </ul>
+
+5-6-hohenfelder-bucht:
+  lastCheck: '2018-10-10'
+  loc: [10.01641, 53.56284]
+  grade: 1
+  images:
+  - H6PBpY6a76addwmL7WtYWg
+  - Vl_O1Sy-aF9DH8lerKXRRQ
+  - LBXnbdOTEH8w_kCOEAwCeg
+  - H6aOCSVC6BZjfqDqxbCKfw
+  - G1wiF6c-pGV17HpnChs9JA
+  - c1JuQThMs9lpJg7QC5G5UQ
+  - MuNAQWJzQAJU0GSUPOiWuA
+  - LnaI_mL42ROGoOMyIJi8sA
+  - yxrqI8UThnkdF8t23Icepg
+  - ApCo-WSRk_XlFA2MewsSzw
+  - PT6a_VqzydBTgURpIhKxyQ
+  - 0TMUBL7qLy5bfOStheofUg
+  - 6uwcehHibqRmaGvyj8rbLQ
+  - tsrEB-H6w7C6FouA_EqHfg
+  - lZdCo1e6uM-Z2NcNRuMsSQ
+  - t1fVvtFok05jzFjbtOGk0w
+  desc: >
+    <p>Im Vergleich zur aktuellen Situation rund um die <a>Hohenfelder Bucht</a> verbessert die abgestimmte Planung an praktisch allen Wegen und Knotenpunkten die Situation für den Radverkehr. Auch wird die Aufenhaltsqualität um die Bucht durch mehr Grünflächen erhöht. Genauer umfasst die Planung die Straßen <a>An der Alster</a>, <a>Sechslingspforte</a>, <a>Barcastraße</a>, <a>Buchtstraße</a>, <a>Schwanenwik</a> und den <a>Mundsburger Damm</a>. Da die Planung für dieses Gebiet sehr umfangreich sind, gehe ich im Folgenden nur auf die für die Veloroute relevanten Änderungen ein. Für alle anderen Kreuzungen finden sich die Details in den PDFs.</p>
+    <p><strong>Stadtauswärts, entlang der Straße:</strong> Die bisherigen Fahrtmöglichkeiten bleiben erhalten. D.h. man wird auch weiterhin durch die Unterführung (wie eingezeichnet) und an der Oberfläche über die <a>Barcastraße</a> Richtung <a>Mundsburger Damm</a> fahren können. Neu hinzu kommt eine echte geradeaus Möglichkeit. Abgesehen von einer kleinen Verschwenkung an der Einmündung der <a>Sechslingspforte</a> fährt man zukünftig kerzengerade bis zum Altbestand im <a>Mundsburger Damm</a>.</p>
+    <p><strong>Stadtauswärts, entlang der Alster:</strong> Bislang ist es nicht möglich vom Radweg an der Alster Richtung <a>Mundsburger Damm</a> zu fahren ohne an zig Ampeln warten zu müssen. Die Planung sieht jetzt eine viel direktere Querungsmöglichkeit vor: von der Alster einmal über den Schwanenwik (1. Ampel) und anschließend den Mundsburger Damm queren um auf der richtigen Straßenseite zu landen (2. Ampel) – das war's. Auch an die Fahrt in die <a>Buchtstraße</a> wurde gedacht, sodass der Zweirichtungsradweg sich hier nirgens „in Luft auflöst“ und man raten muss wie man fahren soll.</p>
+    <p><strong>Stadteinwärts:</strong> Diese Fahrtrichtung war auch bisher vergleichsweise unproblematisch, entsprechend wenig ändert sich. Die Querung des <a>Schwanenwik</a> wird begradigt und die Einmündung zum Radweg an der Alster erhält einen besseren Winkel, sodass man leichter links abbiegen kann um der Veloroute zu folgen. Ich hoffe die Hecke wird auch zurückgeschnitten, sodass man Radler aus Richtung Innenstadt gut sieht.</p>
+    <p><strong>Breiten:</strong> Der Radweg an der Alster soll mit 4,0m deutlich breiter werden als bisher, sodass 2,0m je Richtung zur Verfügung stehen. Radfahrstreifen haben meist 2,25m, Einrichtungsradwege sind mit 2,0m ebenfalls deutlich breiter als aktuell. Lediglich in der <a>Barcastraße</a> gibt es nur Schutzstreifen (gestrichelte Linie) mit 1,50m Breite – allerdings wird die Straße künftig auch deutlich schmaler ausgeführt und sollte den Verkehr hoffentlich etwas beruhigen.</p>
+    <p><strong>Fazit:</strong> Insgesamt wirkt die Planung gelungen: die Hohenfelder Bucht wird nicht nur grüner, sondern auch für den Radverkehr erheblich aufgewertet. Es ist zu wünschen, das auch der Rest der Veloroute so vorbildlich umgesetzt wird. Baubeginn soll im Mai 2019 sein (Angabe vom Oktober 2017).</p>
+    <ul>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11676036/af2c20b137dfedee3c0da0c4921e6173/data/hohenfelder-bucht-abgestimmte-planung-plan.pdf">abgestimmter Lageplan</a>
+      </li>
+      <li>
+        <a href="http://lsbg.hamburg.de/contentblob/11676030/a4b5eba8f88fcee157469e72b7857419/data/hohenfelder-bucht-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>
 
