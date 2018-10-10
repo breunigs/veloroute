@@ -12,7 +12,13 @@ RSpec::Matchers.define :resolve_with_200 do
     req.use_ssl = url.scheme == 'https'
     res = req.request_head(rest)
 
-    res.code.to_i == 200
+    code = res.code.to_i
+
+    if code == 301 || code == 302
+      warn "URL moved:\nold: #{url}\nnew: #{res.header['Location']}\n"
+    end
+
+    code == 200
   rescue Errno::ECONNREFUSED
     false
   end
