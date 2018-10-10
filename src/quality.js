@@ -171,6 +171,8 @@ const renderHtmlForWay = (details, osmId) => {
 const renderShortcomingHandler = (state, imagesPromise, name) => {
   return () => {
     el.innerHTML = shortcomings[name].desc;
+    el.style.cssText = 'display: block';
+    document.getElementById("routes").scrollTop = 0;
     imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
     state.routeSetter()(toQualityName(name));
   }
