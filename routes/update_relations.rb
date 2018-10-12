@@ -134,6 +134,11 @@ def write_gpx_files(routes)
   raise "failed to zip routes: #{out}" if $?.exitstatus != 0
 end
 
+def write_rss(_routes)
+  require_relative 'rss'
+  File.write("geo_tmp/#{RSS::FILENAME}", RSS.build)
+end
+
 SCSS_MUTEX = Mutex.new
 
 # cleanup temp dir
@@ -156,6 +161,7 @@ routes = routes.map { |route, details| Route.new(route, details) }
   build_image_lists
   check_relation_connected
   write_gpx_files
+  write_rss
 ].map do |task|
   Thread.new { send(task, routes) }
 end.each(&:join)
