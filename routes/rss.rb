@@ -19,11 +19,12 @@ module RSS
 
   def self.shortcomings
     self.get_yaml(:shortcomings).map do |key, details|
+      img_tags = self.to_img_list(details["images"])
       {
         link: BASE.merge("/quality/#{key}").to_s,
         title: "Problemstelle: #{key}",
         updated: self.to_time(details["lastCheck"]),
-        description: details["desc"]
+        description: details["desc"] + '<br>' + img_tags
       }
     end
   end
@@ -39,6 +40,7 @@ module RSS
         link: BASE.merge(path).to_s,
         title: details["title"],
         updated: self.to_time(details["date"]),
+        description: self.to_img_list(details['startImage'])
       }
     end
   end
@@ -47,8 +49,10 @@ module RSS
     RSS::Maker.make("atom") do |maker|
       maker.channel.author = "veloroute.hamburg"
       maker.channel.updated = Time.now.to_s
-      maker.channel.about = BASE.merge(FILENAME).to_s
+      maker.channel.about = BASE.merge("routes/geo/" + FILENAME).to_s
       maker.channel.title = "veloroute.hamburg – Updates zu Baumaßnahmen und neuen Bildern"
+      maker.channel.language = :de
+      maker.channel.link = BASE.to_s
 
       yield maker.items
     end
@@ -64,5 +68,12 @@ module RSS
 
   def self.to_time(date)
     Date.parse(date).to_time
+  end
+
+  def self.to_img_list(images)
+    images = [images] if images.is_a?(String)
+    images.first(5).map do |img|
+      %|<img src="#{Mapillary.image_url(img)}"/>|
+    end.join("<br>")
   end
 end

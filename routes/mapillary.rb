@@ -27,6 +27,10 @@ module Mapillary
     end
   end
 
+  def self.image_url(img_key)
+    "https://d1cuyjsrcm0gby.cloudfront.net/#{img_key}/thumb-2048.jpg"
+  end
+
   class ManualSequence
     def initialize(image_keys)
       @image_keys = image_keys
