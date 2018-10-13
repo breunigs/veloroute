@@ -39,3 +39,16 @@ Webpack is configured to serve static assets from the build directory. To run a 
 ```bash
 npm run start:dev
 ```
+
+# Testing
+
+There are only some basic tests for backend. You can run them with
+
+```
+bundle exec rspec
+```
+
+To run the link checker and other tests that require a network connection, add `--tag integration`:
+```
+bundle exec rspec --tag integration
+```
