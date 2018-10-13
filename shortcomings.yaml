@@ -1,6 +1,6 @@
 ---
 1-geranienweg:
-  lastCheck: '2018-07-01'
+  lastCheck: '2018-10-13'
   loc: [9.86589, 53.57786]
   grade: 4
   images:
@@ -8,6 +8,8 @@
   - ty0MjVgKYoD1mibL5sHjVQ
   - d03DjXwTmrYJD6A_Q_0y1g
   desc: <p>Sowohl stadteinwärts als auch stadtauswärts darf man der Veloroute auf einem kurzen Stück des <a>Geranienweg</a> nicht folgen – die Einfahrt ist von beiden Richtungen untersagt. Absteigen und zu Fuß queren ist zwar legal, aber einer Veloroute unwürdig. Die Verwaltung weiß von dem Problem und es soll im Zuge einer Umbaumaßnahme behoben werden.</p>
+    <p>Die Straße soll im Zuge einer neuen Wohnsiedlung überarbeitet werden, sodass eine Durchfahrt legal möglich ist. Die Zufahrt von der <a>Flurstraße</a> bleibt dem Radverkehr vorbehalten, der hier einen 2m breiten, rot gepflasterten Radweg erhalten soll um sie vor entgegenkommenden KFZ zu schützen. Die Straße wird zugunsten breiterer Gehwege etwas schmäler und behält ihren verkehrsberuhigten Charakter.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007546">Details zur geplanten Gestaltung</a> (Anlage 2, S. 35)</p>
 
 1-thadenstrasse:
   lastCheck: '2018-09-28'
@@ -160,13 +162,47 @@
       </li>
     </ul>
 
-2-kreuzung-gaertnerstrasse:
-  lastCheck: '2018-09-19'
-  loc: [9.96226, 53.57786]
+2-weidenstieg-tornquiststrasse:
+  lastCheck: '2018-10-13'
+  loc: [9.95971, 53.57169]
+  loc2: [9.95389, 53.57331]
   grade: 4
   images:
-  - KHUIA919w_DV95O-SZJ9HA
-  desc: <p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a> zu queren. Immerhin ist diese gut sichtbar und es ist klar erkennbar, das man sie benutzen muss.</p>
+  - mxjcA_A77IgW1Gf3_OEOhA
+  - tw7jg7L-CGuZDLfZVnyQdw
+  - 80Nxx4KavWKw57WYwCb1og
+  - iF34O_0W91ljB8MtLK64Rg
+  - qaqHKxpHIMntiVnlmSj8og
+  - agDGDbd--liK8_Wd-a_ZtA
+  - iszqr-swT2CGvXxtONSIBA
+  - 291Nlm0OnQsWvPEd5YBGtg
+  - 4-QzoGqjxwJn-pghRrX2zA
+  - 8828q3vt-wJPehuUK5Vw3w
+  - hQJXE4q8yogDF1eaJzGF3g
+  - elwQXdR2v6J5zhSXk73H7w
+  - J5ww2wBxTRytRctvmVlo9w
+  - C5JNN8W03B-ySaSKTzX7Hg
+  - VhQ93UyLATaLiW1KbYcs4Q
+  - YTx4wnkx9uPeGqb7bFgwKw
+  - QQwANRWUms4zm6yyMAhCbg
+  desc: >
+    <p>Die Umbaupläne für den <a>Weidenstieg</a> und die <a>Tornquiststraße</a> kann man als durchwachsen bezeichnen. Defintiv verbessert wird die Führung im direkten Anschluss an die Kreuzung <a>Christuskirche</a> und der Radverkehr erhält erstmals eine sinnvolle Führung. Bei der Kreuzung <a>Bismarckstraße</a>/<a>Eschenstieg</a> hat es aber nicht für eine durchgehende Vorfahrt gereicht – immerhin ist der Einsichtsbereich groß genug, sodass man nicht zu stark wegen Rechts-vor-Links abbremsen muss. Im Anschluss wird das unkomfortable Kopfsteinpflaster durch geringfügig weniger unkomfortables „gesägtes Kopfsteinplaster“ ersetzt, welches etwas flacher ist. Durch die weiterhin vorhandenen großen Fugen bleibt diese Lösung für den Radverkehr unattraktiv. Wer sich selbst ein Bild machen möchte, kann solches Pflaster z.B. auf der <a>Lombardsbrücke</a> an der Binnenalster bereits heute ausprobieren.</p>
+    <p>Die Kreuzung des Eppendorfer Weg bleibt im Wesentlichen unverändert. Auch wurde die Schikane vom <a>Henriettenweg</a> in die <a>Tornquiststraße</a> nur geringfügig entschärft. Immerhin wird es am <a>Doormannsweg</a> eine ordentliche Ampel geben, die das Queren ohne Schlenker erlaubt. Auf den Plänen ist stadtauswärts weiterhin ein Taster an der Radwegfurt eingezeichnet, was bedeuten könnte das die Bettelampel weiterhin bleibt. In der <a>Tornquiststraße</a> bleibt das Kleinpflaster, wird aber wenigstens neu verlegt um etwas ebener zu sein. Die Straße wird als Fahrradstraße ausgeführt und erhält an der Kreuzung zur <a>Emilienstraße</a> Vorfahrt.</p>
+    <p>Der Wendekreis und Übergang zum Fahrradweg auf Höhe der <a>Grundschule Tornquiststraße</a> erhalten nur geringfügige Anpassungen, wobei der Fahrradweg deutlich breiter wird: statt aktuell 2,5m stehen in Zukunft 4,0m zur Verfügung. Die Kreuzung mit dem <a>Heußweg</a> wird zu einem Kreisel umgebaut, was eine Querung im Vergleich zu jetzt erheblich erleichtern sollte.</p>
+    <p>Der Baubeginn ist aktuell für Frühjahr 2019 angesetzt, da sich für die Umsetzung im Herbst 2018 leider keine Baufirma fand.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/contentblob/11395594/152cc297f049103dff89583effeaf122/data/fokus-biweto2018-03.pdf">Übersichts-PDF mit allen Änderungen</a></li>
+      <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/6943642/bismarckstrasse-weidenstieg-tornquiststrasse/">Infoseite der Stadt zum Weidenstieg und Tornquiststraße</a></li>
+      <li>Pläne Richtung stadtauswärts:
+        <ul>
+          <li><a href="https://www.hamburg.de/contentblob/10844928/f547c768ea5df0438b2e41df42720ae1/data/schlussverschickung-weidenstieg.pdf">Weidenstieg (bis Doormannsweg)</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/10844926/47dd4e57afa9515d170c1afde21fc3c6/data/schlussverschickung-blatt3-tornquiststr-heussweg-doormannsweg.pdf">Plan Tornquiststraße ab Doormannsweg</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/10844924/fc6778cea27ce38fcdf74751fe2c0580/data/schlussverschickung-blatt2-tornquiststr-heussweg-doormannsweg.pdf">Plan Kreuzung Emilienstraße</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/10844916/486a1fbba9351d310b8773fc21d2301e/data/schlussverschickung-blatt1-tornquiststr-heussweg-doormannsweg.pdf">Plan Kreisel Heußweg</a></li>
+        </ul>
+      </li>
+    </ul>
+
 
 2-reichsbahnstrasse:
   lastCheck: '2018-09-29'
@@ -234,6 +270,127 @@
           <li><a href="https://www.hamburg.de/contentblob/9223426/cff64fe5711adaad6d2b0e106a6d5571/data/hoegenstrasse-vereinfachter-lageplan3.pdf">Teil 3 (Schrebergärten bis Spannkamp)</a</li>
         </ul>
       </li>
+    </ul>
+
+2-woerdemanns-weg:
+  lastCheck: '2018-10-13'
+  loc: [9.92897, 53.59813]
+  grade: 3
+  images:
+  - bd9nr2pm9Vu7KRxZrmYYBg
+  - H0Zd-y_w34ZZgnd-dZCkug
+  - Fmb_VEBFIZqYU4penPMCEw
+  - 2ABg1nbvDB0NV_sttZ9vdg
+  - G1kLRX6a9EVzhjqfwpjcdQ
+  - p66ThmbwUoPmeImGHUKBWQ
+  - AGeV_l8YbMm7Ad_ln88fYQ
+  desc: >
+    <p>Die ungenügenden Radwege im <a>Wördemanns Weg</a> sollen zurückgebaut und durch 1,5m breite Schutzstreifen ersetzt werden. Diese sind geradlinig und durchgängig, wenn man von der kurzen Unterbrechung an den Bushaltestellen absieht. An der Kreuzung zum <a>Basselweg</a> bzw. <a>Gazellenkamp</a> gibt es nur kleine Änderungen: die Aufleitung auf den Radweg entgegen der Einbahnstraße <a>Basselweg</a> wird im Kreuzungsbereich auf der Fahrbahn geführt und erst ein paar Meter später auf den alten Hochbordradweg aufgeleitet. Neben den den fortgeführten Leitlinien für die Schutzstreifen gibt es noch eine eigene Linksabbiegerspur für Fahrräder, die vom <a>Gazellenkamp</a> in den <a>Basselweg</a> abbiegen wollen.</p>
+    <p>Im Vergleich zur aktuellen Situation, wo man sich als Radfahrer sowohl auf dem Radweg als auch auf der Straße fehl am Platze fühlt, schafft die geplante Führung definitiv Klarheit. Zwar wäre ein geringeres Tempo als 50 km/h wünschenswert gewesen, aber auch ohne ist der Entwurf annehmbar.</p>
+    <p>Der Umbau soll im Anschluss an die Fertigstellung des Stellinger Deckels erfolgen. Projektiert war das ursprünglich für Anfang 2018, wobei dieser Termin offensichtlich nicht gehalten wurde.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/8692918/woerdemannsweg/">Infoseite der Stadt zum Wördemanns Weg</a></li>
+      <li><a href="https://www.hamburg.de/contentblob/9260570/5cde8e63927be87a686c694331d68834/data/woerdemannsweg-lageplan.pdf">Detaillierter Lageplan</a></li>
+    </ul>
+
+3-kreuzung-gaertnerstrasse:
+  lastCheck: '2018-09-19'
+  loc: [9.96226, 53.57786]
+  grade: 4
+  images:
+  - KHUIA919w_DV95O-SZJ9HA
+  desc: <p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a> zu queren. Immerhin ist diese gut sichtbar und es ist klar erkennbar, das man sie benutzen muss.</p>
+
+3-stresemannallee:
+  lastCheck: '2018-10-13'
+  loc: [9.9572, 53.5880]
+  grade: 5
+  images:
+  - QdUOwBErhD0kEt4MWLOjgw
+  - gnvPVG35KOiByA6mPfqLyg
+  - JylGxx1_bwEqEQYXEMCQmA
+  - daZgRiu74vBIVUigWX3o1g
+  - WhC8hjyPsx_TLVzgwy72Sw
+  - rqOYWAA6npgs9hymlbwiyA
+  - axnBl-T8VBJENf7at2opyQ
+  - 4nv51m3QAHf4CVHHE_5_7Q
+  desc: >
+    <p>Die Stresemannallee soll ab Ende 2018 umgebaut werden. Auf Höhe der <a>Troplowitzstraße</a> wird der Zweirichtungsradweg zurückgebaut und durch je einen Schutzstreifen pro Fahrtrichtung ersetzt. Auf Höhe des <a>Lohkoppelweg</a> reicht der Platz dafür nicht mehr aus und man wollte keine Parkplätze verlieren, sodass der Fahrräder hier im Mischverkehr mit den KFZ mitschwimmen müssen. Die Schutzstreifen werden mit 1,25m in absolutem Mindestmaß ausgeführt, sodass die KFZ die Überholabstände in der Regel wohl nicht einhalten werden.</p>
+    <p>Die ursprüngliche Präsentation ist an mehreren Stellen veraltet: Der eingezeichnete Kreisel an der Einmündung beim <a>Grandweg</a> wird nicht gebaut, es bleibt hier beim Rechts-vor-Links. Am <a>Lohkoppelweg</a> wird es keine Verkehrsinsel zum „Schutz“ der Radfahrer geben, die stattdessen im Reisverschlussprinzip in den Mischverkehr übergehen können.</p>
+    <p>Zwischen <a>Eidelstedter Weg</a> und <a>Troplowitzstraße</a> bleibt der Zweirichtungsradweg vorerst erhalten. Dank eines Aufstellbereichs vor den KFZ kann man stadteinwärts aber brauchbar auf diesen wechseln. Vermutlich ist irgendwann Umgestaltung dieser Kreuzung geplant, sodass man diese erstmal so lässt. Leider gibt es bisher noch keine Anschlussplanung.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/8692916/stresemannallee/">Infoseite der Stadt zur Stresemannallee</a></li>
+      <li>
+        Detaillierte Lagepläne, Richtung stadtauswärts:
+        <ul>
+          <li><a href="https://www.hamburg.de/contentblob/9223530/3bdbed19c752ec9780590bd6acddce33/data/stresemannallee-abschnitt1.pdf">Abschnitt 1, Troplowitzstraße bis ca. Deepenstöcken</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223532/9a0355d58cd8def86a911ab7bd634b7a/data/stresemannallee-abschnitt2.pdf">Abschnitt 2, ca. Herlingsburg bis Glockenblumenweg</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223534/645c6b8c111e91fdfe3e8d6324b9e0fb/data/stresemannallee-abschnitt3.pdf">Abschnitt 3, Glockenblumenweg bis Veilchenweg</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223536/ab1d259583e77b52e843283e5e4f5760/data/stresemannallee-abschnitt4.pdf">Abschnitt 4, ca. Veilchenweg bis Lohkoppelweg</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/9223538/2c126896680dcede1d55146f58053e23/data/stresemannallee-abschnitt5.pdf">Abschnitt 5, ca. Lohkoppelweg bis Henning-Wulf-Weg</a></li>
+        </ul>
+    </ul>
+
+3-niendorfer-strasse:
+  lastCheck: '2018-10-13'
+  loc: [9.9561, 53.6080]
+  grade: 2
+  images:
+  - G05LUvr7cbZTl6sSzL8P0g
+  - VLb32MKuSmRp4-g7FTMIOQ
+  - fxcH4m8MjPOWC7HkjFoeaw
+  - D0DXLSDrwCm63zHI2m47jQ
+  - 1xYYDWkmItj4CUp1muk4oA
+  - N5lREO7Wg2Szsx4eS6O7CA
+  - 7KXojT7tAcYjRv-O_pqyjQ
+  - 2Iijb4Vgpy4DnAIXNTJhbg
+  - wTHYf9xK5mJZgZZXzqXbTQ
+  - 8UIxdYHvDlz5KROVgkglAg
+  - UW2fBwrRtjUqIbVbCx7Vtg
+  desc: >
+    <p>Aktuell ist die Niendorfer Straße für Radfahrer nicht gut befahrbar. Man hat die Wahl zwischen viel zu schmalen Fahrradwegen, die auf Höhe der Bahnbrücke im Nichts enden oder der Fahrbahn, wo man von KFZ in hohem Tempo knapp überholt wird.</p>
+    <p>In Zukunft wird die Straße je nach Platz mit 1,5m breiten Schutzstreifen ausgestattet, stückweise auch als Radfahrstreifen (1,5m – 2,25m, je nach Platz). Nur im Bereich der Bahnbrücke ist der Querschnitt so schmal, das weiterhin Mischverkehr herrscht. Stadtauswärts erhält der Radverkehr hier keine optische Hilfe, sondern er muss sich sicher in die KFZ Spur einfädeln. Mir ist nicht klar, warum die Engstelle einseitig zu Lasten der Radfahrer so dargestellt wird.</p>
+    <p>Am <a>Rütersbarg</a> wird die Kreuzung durch einen Kreisel ersetzt. Das sollte das Linksabbiegen im Vergleich zu jetzt viel sicherer machen. Das man durch einen haltenden Bus hier stadteinwärts blockiert wird, sollte bei aktuell vier Bussen pro Tag verschmerzbar sein.</p>
+    <p>Geplant ist die Maßnahme ab Frühjahr 2019 umzusetzen.</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/11283732/niendorferstrasse/">Infoseite der Stadt zur Niendorfer Straße</a></li>
+      <li>
+        Detaillierte Lagepläne, Richtung stadtauswärts:
+        <ul>
+          <li><a href="https://www.hamburg.de/contentblob/11283742/78aac54b4c7c298bdb0f2e046135eab3/data/karte1-niendorferstrasse.pdf">Abschnitt 1, Rütersbarg bis vor Bahnbrücke</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/11283744/053e7c94bae9559327dae3faec540881/data/karte2-niendorferstrasse.pdf">Abschnitt 2, ab Bahnbrücke</a></li>
+          <li><a href="https://www.hamburg.de/contentblob/11574420/035fd56ae686a854e92fd0cbb9351c1c/data/karte3-niendorferstrasse.pdf">Abschnitt 3, bis Kollaustraße</a></li>
+        </ul>
+    </ul>
+
+3-paul-sorge-strasse:
+  lastCheck: '2018-10-13'
+  loc: [9.9515, 53.6318]
+  grade: 2
+  images:
+  - 4FYlWhgOZenWWneeU0wmSA
+  - 0TBH8EyJySyQjrveN_WQ2Q
+  - waRNdiZdVZa2MN2q1MQHeg
+  - DI3P6wk0Tq5PqWm26XuaPw
+  - LnYLo0sa5Jh37Mb2559CCg
+  - 4xbPIuIhNHKcQBtMZOsayw
+  - 8ZmQ-LwMEhjxzCRAoeUpcA
+  - VsacEaTgTHpwZYxLjF1gnw
+  desc: >
+    <p>Die <a>Paul-Sorge-Straße</a> besitzt momentan beidseitig schmale Hochbordradwege von nur ca. 1m Breite. In Zukunft soll der Radverkehr stattdessen auf 1,5m breiten Schutzstreifen geführt werden.</p>
+    <p>
+      Die Kreuzungen sind jeweils unterschiedlich geplant.<br>
+      <a>An der Lohe</a>: „klassische Kreuzung“, direktes Abbiegen nur im KFZ-Mischverkehr. Die Fahrradspuren reichen aber bis zur Haltelinie.<br>
+      <a>Joachim-Mähl-Straße</a>/<a>Johannkamp</a>: jeweils mit Aufstellbereichen für Fahrräder vor den KFZ an der Ampel.<br>
+      Der <a>Krähenweg</a> erhält ebenfalls einen Aufstellbereich; Linksabbieger aus der <a>Paul-Sorge-Straße</a> erhalten eine eigene Wartebucht für indirektes Linksabbiegen. Die Ampel bleibt.<br>
+      <a>Nordalbingerweg</a>/<a>Emmy-Beckmann-Weg</a>: die Fahrradspur reicht bis zur Ampel und ist im Vergleich zu den KFZ etwas vorgezogen. Einen vergrößerten Aufstellbereich gibt es aber nicht. Die Kreuzung ist nicht Teil der Umplanung und die Wege werden nur in den Bestand übergeführt. Rechtsabbiegen bei Rot ist nicht vorgesehen.</p>
+      Alle anderen Einmündungen und Kreuzungen haben keine eigenen Radspuren und es wird im Mischverkehr abgebogen. Die Paul-Sorge-Straße hat jeweils Vorfahrt.
+    </p>
+    <p>Zwischen <a>Schippelsweg</a> und <a>Viehlohweg</a> wird eine StadtRAD Station gebaut.</p>
+    <p>Geplant ist die Maßnahme ab Frühjahr 2019 in drei Teilabschnitten umzusetzen (<a>An der Lohe</a> → <a>Joachim-Mähl-Straße</a> → <a>Nordalbingerweg</a>).</p>
+    <ul>
+      <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/11540694/paulsorgestrasse/">Infoseite der Stadt zur Paul-Sorge-Straße</a></li>
+      <li><a href="https://www.hamburg.de/contentblob/11687976/5b8b69991f6e66c19d033be1ca914e1a/data/planung-paulsorgestrasse20180827.pdf">Präsentation mit Planausschnitten</a></li>
     </ul>
 
 4-kreuzung-neuer-jungfernstieg:
