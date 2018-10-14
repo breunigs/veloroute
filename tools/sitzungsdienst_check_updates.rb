@@ -6,7 +6,9 @@ require 'nokogiri'
 require 'yaml'
 
 SEEN_LINKS_FN = File.join(__dir__, './sitzungsdienst_seen_links.txt')
-DISTRICTS = %w[altona eimsbuettel]
+# Note: Mitte and Nord currently do not attach PDFs :(
+# todo: wandsbek bergedorf
+DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord]
 
 def index_url(district)
   "https://sitzungsdienst-#{district}.hamburg.de/bi/vo040.asp"

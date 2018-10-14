@@ -22,11 +22,20 @@ module RSS
       img_tags = self.to_img_list(details["images"])
       {
         link: BASE.merge("/quality/#{key}").to_s,
-        title: "Problemstelle: #{key}",
-        updated: self.to_time(details["lastCheck"]),
-        description: details["desc"] + '<br>' + img_tags
+        title: self.shortcoming_title(details, key),
+        updated: self.to_time(details['lastCheck']),
+        description: details['desc'] + '<br>' + img_tags
       }
     end
+  end
+
+  def self.shortcoming_title(details, key)
+    prefix = case details['type']
+      when 'planned-construction' then 'Baumaßnahme'
+      when nil then 'Problemstelle'
+    end
+    title = details['title'] || key
+    "#{prefix}: #{title}"
   end
 
   def self.image_updates

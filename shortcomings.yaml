@@ -619,32 +619,6 @@
   desc: >
     <p>Stadteinwärts muss man eine Bettelampel betätigen um die <a>Nordschleswiger Straße</a> queren zu dürfen. Immerhin ist der Taster in Reichweite des Radweges, komfortabel ist dies dennoch nicht.</p>
 
-7-rahlstedter-strasse:
-  lastCheck: '2018-08-30'
-  loc: [10.1499112, 53.5955692]
-  grade: 2
-  images:
-  - pwuW4ksOJZlXcXePhA9m8Q
-  - E6iwb1GKHWU-NRBVyG9ibw
-  desc: <p>Die Rahlstedter Straße soll 2018 erneuert werden. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p>
-    <ul>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
-      </li>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
-      </li>
-    </ul>
-
-7-kreuzung-am-alten-posthaus:
-  lastCheck: '2018-07-19'
-  loc: [10.07204, 53.56981]
-  grade: 4
-  images:
-  - 6ITXbtBuSgLydxBhSJgfHg
-  - pqry-NwVpmEiJmzIBepBhQ
-  desc: <p>Der Veloroute darf man hier stadtauswärts nicht legal folgen, da ein „Fahrrad frei“ Schild fehlt. Auch in der Gegenrichtung ist die Führungs durch das Stop-Schild und die versetzten Straßen nur mäßig gut. Ideal wäre hier eine durchgehende Fahrradstraße mit Vorfahrt.</p>
-
 7-steindamm:
   lastCheck: '2018-08-30'
   loc: [10.0175985, 53.5559459]
@@ -666,7 +640,84 @@
       <li>
         <a href="https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
-    </ul>'
+    </ul>
+
+7-kreuzung-am-alten-posthaus:
+  lastCheck: '2018-07-19'
+  loc: [10.07204, 53.56981]
+  grade: 4
+  images:
+  - 6ITXbtBuSgLydxBhSJgfHg
+  - pqry-NwVpmEiJmzIBepBhQ
+  desc: <p>Der Veloroute darf man hier stadtauswärts nicht legal folgen, da ein „Fahrrad frei“ Schild fehlt. Auch in der Gegenrichtung ist die Führungs durch das Stop-Schild und die versetzten Straßen nur mäßig gut. Ideal wäre hier eine durchgehende Fahrradstraße mit Vorfahrt.</p>
+
+7-schimmelmannstrasse-w22:
+  lastCheck: '2018-10-14'
+  loc: [10.10181, 53.57157]
+  grade: 2
+  type: planned-construction
+  start: '2019'
+  title: Schimmelmannstraße (Veloroute 7, „Abschnitt W22“)
+  images:
+  - p_MYCfa3qkvwEK6bjKuM4w
+  - K1ldPP5TvKmpGBmOPxS5Ew
+  - vyUzorbUz3oTrgfxoMoA4w
+  - qF9AsnTKQy1MAzJZwJ_avQ
+  - Ay0YfgA2QN3kVY1tIiZckA
+  - R_EfkDBRUW0fplk8H_PX6Q
+  - wNA8lbxSEEIJGyaEVrPbEQ
+  - 8LdXviW1L8HdX-iZ_UuX1A
+  - XtWV70BjATNVVD5ukYG5yQ
+  desc: >
+    <p>Im wenig befahrenen Westteil der <a>Schimmelmannstraße</a> sollen die vorhandenen und sehr unebenen Radwege zurückgebaut werden. Stattdessen wird künftig im Mischverkehr mit den KFZ gefahren, was in Anbetracht der geringen Verkehrsmengen zweckmäßig erscheint.</p>
+    <p>Die bisher ungeordneten Parkplätze werden gefasst, sodass zu hoffen ist das künftig weniger im Kreuzungsbereich geparkt wird. Dann sollte durch die gute Einsehbarkeit auch ein zügiges Vorankommen möglich sein.</p>
+    <p>Die Maßnahme soll irgendwann 2019 umgesetzt werden.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008618">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+7-schimmelmannstrasse-w23:
+  lastCheck: '2018-10-14'
+  loc: [10.1097, 53.5744]
+  grade: 1
+  type: planned-construction
+  start: 2018Q2
+  title: Schimmelmannstraße (Veloroute 7, „Abschnitt W23“)
+  images:
+  - F2024q_K_nNi9o2oX2dUgg
+  - B-KXc9xGV5F-MKVYqOeuMA
+  - lgAKnSPo1aUOg3KfwnL_cQ
+  - AvCppavKZYsWqvg5x8r4Zg
+  - tEcwguoM0WjhLEXS_7anWA
+  - oh6W9JO1l_l4lytlCTVemA
+  - ps5g0Tk2M2RQRNSIE-zCww
+  - 2uipyKZCSFCe3Oq4iNXaJw
+  - ut02xlcQnAQy1ueMwfgRhA
+  - ssqmlfQl4xBzfN3OXBvPjw
+  - N9c6BzKCDPHwo7Cf8KOcfw
+  - 7GE9h38lQ6kU3kYVZx0vaw
+  - EytIztXe2n5zK8UScDQHLg
+  - H3ttbtVAQCh4lK-bkSk3mw
+  desc: >
+    <p>Die Baumaßnahme betrifft die <a>Schimmelmannstraße</a> nur zwischen der bereits umgebauten Kreuzung mit dem <a>Holstenhofweg</a> und bis vor der Kreuzung mit der <a>Jenfelder Straße</a>. Letztere wird in einer anderen Baumaßnahme verbessert. Die Umbauarbeiten für die Schimmelmannstraße sollen im Frühjahr 2019 beginnen.</p>
+    <p>Die momentan vorhandenen schmalen und unebenen Radwege sollen künftig durch 2,25m breite Radfahrstreifen ersetzt werden. In den Kreuzungsbereichen fallen diese teilweise schmaler aus und messen vom <a>Holstenhofweg</a> stadtauswärts nur 1,80m oder an der Kreuzung mit der <a>Jenfelder Straße</a> in beiden Richtungen etwa 2,0m.</p>
+    <p>Stadteinwärts wird die ungünstige und verwirrende Abbiegesituation am <a>Holstenhofweg</a> erheblich verbessert: wer gerade aus der Veloroute folgen möchte, kann jetzt einfach auf seiner Spur bleiben und muss nicht mehr über den KFZ-Rechtsabbieger kreuzen. Rechtsabbiegende Radfahrer fädlen sich einfach vom Radfahrstreifen mit in den Rechtsabbiegerspur mit ein.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008585">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+7-rahlstedter-strasse:
+  lastCheck: '2018-08-30'
+  loc: [10.1499112, 53.5955692]
+  grade: 2
+  images:
+  - pwuW4ksOJZlXcXePhA9m8Q
+  - E6iwb1GKHWU-NRBVyG9ibw
+  desc: <p>Die Rahlstedter Straße soll 2018 erneuert werden. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p>
+    <ul>
+      <li>
+        <a href="https://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
+      </li>
+      <li>
+        <a href="https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
+      </li>
+    </ul>
 
 10-veddeler-marktplatz:
   lastCheck: '2018-09-07'
