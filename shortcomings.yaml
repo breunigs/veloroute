@@ -619,6 +619,36 @@
   desc: >
     <p>Stadteinwärts muss man eine Bettelampel betätigen um die <a>Nordschleswiger Straße</a> queren zu dürfen. Immerhin ist der Taster in Reichweite des Radweges, komfortabel ist dies dennoch nicht.</p>
 
+6-friedrich-ebert-damm-w17:
+  lastCheck: '2018-10-15'
+  loc: [10.1165, 53.6034]
+  grade: 1
+  type: planned-construction
+  start: '2019Q2'
+  finish: '2020Q1'
+  title: Friedrich-Ebert-Damm (Veloroute 6, „Abschnitt W17“)
+  images:
+  - ACemcCqTyRszD5Jt3lNMaQ
+  - HCKGMRljlVYvG_8mNnKaOw
+  - uWsJjCYGtLwairQ6FGpjFg
+  - UvAigDiBFgQV902SijR34g
+  - uK8sWe8SZC0ThvWIYb1xBQ
+  - 0tUXGuVp7zzs-2iX0sOX_A
+  - 2CqOquKDnFG5_pvpGoK-ow
+  - 2p-6lITERo1VI_07gFrq7w
+  - OLQUb0OYzAK82KW5c1__dw
+  - wYpYZp7TfnEVI2TSGnnVzg
+  - fGIZRFV5ih3nHqBIazLOeQ
+  - SbfiF5qgUycVmHuEFPVGsw
+  - xiG8L9NSS5X8myejoO31ug
+  desc: >
+    <p>Die Planungen für den <a>Friedrich-Ebert-Damm</a> von der <a>Eckerkoppel</a> (mit Kreuzung) bis zur <a>August-Krogmann-Straße</a> (ohne Kreuzung) sind ordentlich: die in die Jahre gekommenen Radwege werden beidseitig durch Radfahrstreifen ersetzt. Bis auf wenige Ausnahmestellen sind sie ca. 2,15m breit.</p>
+    <p>Auch die Situation an den verschiedenen Kreuzungen und Einmündungen wurde gut überdacht. Sind nur wenige Autospuren vorhanden, können Radfahrer künftig direkt links abbiegen, indem sie sich in den KFZ-Verkehr einordnen. Wer das nicht möchte hat Aufstelllaschen für's indirekte Linkssabbiegen. Letzteres ist auch für alle großen Kreuzungen so vorgesehen.</p>
+    <p>Wer als Radfahrer gerade aus möchte, verbleibt in der Regel auf seiner Spur. Rechtsabbiegende Radfahrer teilen sich die Spur mit den KFZ, wobei es Radfahrer bequemer haben: sie halten sich einfach rechts, während die Autos in Zukunft die Geradeausspur des Radverkehrs queren müssen.</p>
+    <p>An der Einmündung <a>An der Walddörferbahn</a> wird es künftig sowohl vor als auch nach der Kreuzung eine Fußgänger- bzw. Fahrradampel zur Querung geben. Aus Richtung Süden kommend muss der Radverkehr den linksseitigen Radweg nutzen, was sich mit dem Umbau auch nicht ändern wird. Immerhin gibt es in Zukunft eine ordentliche Querungsmöglichkeit, die verdeutlicht das der Zweirichtungsradweg an der <a>Eckerkoppel</a> endet. Die Furt wird dabei diagonal über die Kreuzung geführt, was die Kurvenradien für den Radverkehr deutlich angenehmer macht.</p>
+    <p>Die Maßnahme soll ab Sommer 2019 umgesetzt werden. Die Kreuzung mit dem <a>Rahlstedter Weg</a> wird in einer anderen Planung überarbeiten.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009007">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 7-steindamm:
   lastCheck: '2018-08-30'
   loc: [10.0175985, 53.5559459]
