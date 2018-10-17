@@ -35,7 +35,6 @@ module.exports = (env, argv) => {
     sitemapURLs.push({path: `/routes/geo/route${i}.gpx`, priority: 0.1});
     sitemapURLs.push({path: `/routes/geo/route${i}.kml`, priority: 0.1});
   }
-  sitemapURLs.push({path: `/routes/geo/routen.zip`, priority: 0.1});
 
   const entries = Object.keys(shortcomings);
   for(let i = 0; i < entries.length; i++) {
