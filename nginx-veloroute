@@ -47,7 +47,7 @@ server {
     include hstspreload.conf;
   }
 
-  location ~ /(\d|1[01234]|quality|quality/[a-z0-9-]+)$ {
+  location ~ /(\d|1[01234]|projekt|quality|quality/[a-z0-9-]+)$ {
     include hstspreload.conf;
     try_files /$1.html /index.html =404;
   }
