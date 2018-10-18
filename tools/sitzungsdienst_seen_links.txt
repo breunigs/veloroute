@@ -102,3 +102,4 @@
 '2018-10-17':
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008836
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008837
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008834
