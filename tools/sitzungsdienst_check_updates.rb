@@ -56,7 +56,7 @@ links = Parallel.map(DISTRICTS, in_threads: DISTRICTS.size) do |district|
       next if seen_links.include?(abs)
 
       {district: district, title: link.text.strip, url: abs}
-    end.compact
+    end.compact.uniq
   end
 end.flatten
 
