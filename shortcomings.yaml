@@ -576,15 +576,57 @@
       </li>
     </ul>
 
+4-leeschenblick-und-fabriciusstrasse:
+  lastCheck: '2018-10-21'
+  loc: [10.07011, 53.61494]
+  loc2: [10.07653, 53.61963]
+  grade: 3
+  images:
+  - x_ixxcpCkv4-k3KRC8ZAmw
+  - B0OUQEd7T3ujwiMPq6Cy6g
+  - 8Mhqsx539E4D9D4YhT-lTg
+  - PX6nHn_nIW3DtinjEh7ssQ
+  - gRsmGhgyPwgk5hIkS7oi2Q
+  - qlkEnau_bn7IRjI-5qxTqA
+  - cu200mDbMi9yQnKYoLtMgw
+  - PMx6fAj2Mw4O3UFt-SUmaQ
+  - sRGoLrC8i7jxH4LT2uJduA
+  - 08HpSVCfEzNNfYdj1_N6xA
+  - Y0KeENSoqZzVxt-JfI_03Q
+  - 6gbamh0L4MELIGp_whGshA
+  - DMf-A53OTh5tjfkhgVFo8Q
+  - JB5voG2USm6YJnhJy5y7Jw
+  - 2DobUdMh1dyazIPoBQ-OWA
+  - ubgaK2fs59-RhvmZeoSDEw
+  - -txDpdda9MTWFrapCb1NuQ
+  - WcCx5yYx9fHifCZUpULD2w
+  - VjVs6QzOKofm5zaCEdFlgA
+  type: planned-construction
+  title: Leeschenblick und Fabriciusstraße (Veloroute 5)
+  start: ASAP, in Abstimmung mit Neubau „Am Dorfgraben“
+  desc: >
+    <p>Im momentanen Ausbauzustand sind <a>Fabriciusstraße</a> und <a>Leeschenblick</a> ein gemischtes Erlebnis. Teilweise sind Radwege oder Radfahrstreifen vorhanden, aber diese liegen ungünstig oder sind nicht durchgehend und enden stellenweise ohne ordentliche Aufleitung auf die Straße. Die vergleichsweise geringe Verkehrsdichte erlaubt trotz dieser Schwachstellen eine angenehme Fahrt.</p>
+    <p>In der vorliegenden Planung werden die Radfahrstreifen im <a>Leeschenblick</a> durch Schutzstreifen ersetzt. Auch werden die aktuell illegalen Parkplätze in legale Stellplätze umgewandelt, an denen der Schutzstreifen links vorbeiführt. Das sollte das „Tunnelgefühl“ beheben, das man hier durch regelmäßig abgestelle LKW stadteinwärts hat.</p>
+    <p>An der künftigen Kreuzung mit der <a>Fabriciusstraße</a> und der neuen Straße <a>Am Dorfgraben</a> wird ein Kreisverkehr gebaut der die bisherige Ampel an der Einmündung ersetzt.</p>
+    <p>Bis zum <a>Bräsigweg</a> bleibt es stadteinwärts beim Fahrradweg, der immerhin erneuert und teilweise verbreitert wird. Leider erreicht er nicht durchgängig die Mindestbreite und wird um die <a>Bramfelder Redder</a> nur mit 1,75m ausgeführt. Vor dem Kreisel und der Bushaltestelle wird der Radverkehr gerade auf die Straße geleitet. In der Gegenrichtung gibt es einen 1,5m schmalen Schutzstreifen, außer einem kurzen Stück das für den Lieferverkehr anliegender Geschäfte vorgesehen wird.</p>
+    <p>Ab dem <a>Bräsigweg</a> wird der vorhandene Radweg stadteinwärts komplett zurückgebaut und stattdessen der Radverkehr ausschließlich im Mischverkehr geführt. Die zur Verkehrsberuhigung aufgestellten Kübel werden durch bauliche „Nasen“ ersetzt.</p>
+    <p>Wegweisenden Charakter kann man der Planung nicht ausstellen. Der gepflasterte Radweg in der <a>Fabriciusstraße</a> ist heute schon schlechter zu befahren als die deutlich älter wirkenden, aber asphalierten Radfahrstreifen im <a>Leeschenblick</a>. In ein paar Jahren dürfte der neue Radweg ein ähnliches Schicksal erfahren. Der 1,5m breite Schutzstreifen stadtauswärts dürfte zwar seinen Zweck erfüllen, aber sicher keine Glücksgefühle auslösen und ggf. KFZ zu Überholmanövern ohne Spurwechseln animieren. Die wesentliche Verbesserung dürfte die Neuordnung der KFZ-Parkplätze sein, um die der Radverkehr jetzt halbwegs sicher geführt wird. Das diese Hilfestellung, wie sicher und legal geparkt werden kann, ausschließlich aus den Radverkehrsmitteln finanziert wird zeigt das es noch ein weiter Weg ist zum fahrradfreundlichen Hamburg.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit Lageplänen</a></p>
+
+
 5-querung-bramfelder-chaussee:
-  lastCheck: '2018-07-04'
+  lastCheck: '2018-10-21'
   loc: [10.08033, 53.61918]
   grade: 5
   images:
   - xoQHcRZwJCYogfTPJBNQvQ
   - L03oD1LsaLg-OQgNqp9Q8Q
   - bI_lrdQrBOBpefsmR_rajg
-  desc: <p>Stadtauswärts müsste man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Es ist nicht davon auszugehen, das sich Leute daran halten. Bei den aktuellen Breiten ist daher von Konflikten mit anderen Verkehrsteilnehmern auszugehen. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p>
+  desc: >
+    <p>Stadtauswärts muss man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p>
+    <p>In er aktuellen Planung wird der Radweg an dieser Engstelle etwas verbreitert und das kurze Stück bis zur Ampel im Zweirichtungsverkehr freigegeben. Das macht die Führung der Veloroute wenigstens StVo-konform, für eine wirkliche Verbesserung ist aber ein Umbau der Kreuzung notwendig.</p>
+    <p>Auch ist die Breite von stellenweise nur 2,0m einer Veloroute unwürdig, wäre aber auch nur durch eine Reduktion der angrenzenden Grünfläche verbreiterbar.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen. „08_LP (5).pdf“ für Lageplan)</p>
 
 6-kreuzung-wagnerstrasse:
   lastCheck: '2018-08-29'
@@ -832,6 +874,28 @@
         <a href="https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
     </ul>
+
+7-jenfelder-strasse-w28:
+  lastCheck: '2018-10-21'
+  loc: [10.1310, 53.5752]
+  grade: 2
+  images:
+  - yOw9ipZOLz9HNFxE8VFoBQ
+  - djTqsJALkcmQQIuKoxFQRw
+  - DLj74jOXTVwUXuosdaXJ2A
+  - 8DXO0IJCCU2pDRIUA26SHA
+  - 3BhLro1KA-Kjt7zT71MkiQ
+  - 7X31tIegCeIbL0UQ5twgEw
+  - 48L7LUGPFKmU5JxpIrWCQQ
+  - P4NXRfxNvBbfTv2b-JH5BQ
+  - iIJxTNuRvVmVFof3gyVt2Q
+  - 9N-Dmv3VyolFbTkrVP2NOA
+  start: 2019Q2
+  title: Jenfelder Straße zw. Jenfelder Allee und Charlottenburger Straße (Veloroute 7, Abschnitt W28)
+  desc: >
+    <p>Im Abschnitt der <a>Jenfelder Straße</a> zwischen <a>Jenfelder Allee</a> und <a>Charlottenburger Straße</a> sollen künftig Schutzstreifen (gestrichelte Linie) mit 1,5m Breite markiert werden. Kurz nach der Jenfelder Allee steht mit 1,75m sogar etwas mehr Platz zur Verfügung, wobei Radfahrer im Bereich der Bushaltestelle auch bei Gegenverkehr am Bus vorbeifahren können. Am Ostende zur Charlottenburger Straße erlaubt ein Aufstellbereich vor den KFZ bequem in alle Richtungen abzubiegen.</p>
+    <p>Im Vergleich zum Bestand ist die vorliegende Planung eine deutliche Verbesserung. Die nur 1,5m breiten Schutzstreifen wären zu verschmerzen, wenn das vom ADFC vorgeschlagene 30 km/h Tempolimit eingerichtet wird. Dies ist jedoch unabhängig von der Velorouten Planung, sondern wird ggf. auf Grund der Schule bzw. des Altenheims eingerichtet.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009131">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
 10-veddeler-marktplatz:
   lastCheck: '2018-09-07'
