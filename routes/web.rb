@@ -34,6 +34,15 @@ def get(url, max_retries: 1)
   PARSED_CACHE[url] ||= begin
     JSON.parse(CACHE.get(url).to_s)
   end
+rescue Errno::ENOENT => e
+  # cache failed to read file, simply retry and hope the race
+  # condition went away
+  retries += 1
+  if retries < max_retries
+    retry
+  else
+    raise e
+  end
 rescue JSON::ParserError => e
   retries += 1
   warn "\n\nURL #{url} failed to parse. This was try #{retries} of #{max_retries} #{e}"
