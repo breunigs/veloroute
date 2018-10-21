@@ -19,7 +19,7 @@ COPY spec/ /app/spec/
 
 ARG TEST
 RUN if [ "$TEST" = "yes" ]; then \
-  bundle exec rspec && \
+  bundle exec rspec; \
 fi
 
 ARG PRODUCTION
