@@ -38,9 +38,10 @@ module.exports = (env, argv) => {
 
   const entries = Object.keys(shortcomings);
   for(let i = 0; i < entries.length; i++) {
-    const title = entries[i];
-    const fn = toQualityName(title);
-    const short = shortcomings[title];
+    const key = entries[i];
+    const title = shortcomings[key]['title'] || key;
+    const fn = toQualityName(key);
+    const short = shortcomings[key];
     pages.push(new HtmlWebpackPlugin({
       ...htmlOpts,
       title: `veloroute.hamburg – Qualität und Ausbaustatus – ${title}`,
