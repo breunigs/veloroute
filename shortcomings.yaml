@@ -886,6 +886,35 @@
     <p>Stadteinwärts wird die ungünstige und verwirrende Abbiegesituation am <a>Holstenhofweg</a> erheblich verbessert: wer gerade aus der Veloroute folgen möchte, kann jetzt einfach auf seiner Spur bleiben und muss nicht mehr über den KFZ-Rechtsabbieger kreuzen. Rechtsabbiegende Radfahrende fädlen sich einfach vom Radfahrstreifen mit in den Rechtsabbiegerspur mit ein.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008585">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+7-kuehnstrasse-w24:
+  lastCheck: '2018-10-25'
+  loc: [10.1212, 53.5786]
+  grade: 1
+  images:
+  - ps5g0Tk2M2RQRNSIE-zCww
+  - PW6s3Y4L6Qo3L1CV9553gA
+  - BSVDbjxXLAzz--n79ebOSQ
+  - Qfdy4dcR2IGtW2lbdG7wZg
+  - idp4xkWlYxmrSq_TSyYnKQ
+  - GSsZz1Ysf-sWe3BIqHMbOQ
+  - ADuOp89HtJWaq1aztdMS_g
+  - vwCaPtJfu2gn26Yn55BLCQ
+  - k51tDa-t6fAxPD0vMBN5Gg
+  - R6fF2FADHXkRqMyRhOq4zg
+  - mSxu43OFzUqvUNWmKawmCA
+  - mKRPAQi9ot9arJgmgClQXg
+  - OmOYflEAW5R24eivBVX5dA
+  - PfikrOSvzhJUHdyzeRwFyA
+  - dQu5mUh5wNIsBXAr0YjXsg
+  - pJRkEUgYYoDz25Gqx-66MA
+  title: "Kuehnstraße (zw. Jenfelder Straße und Jenfelder Allee, Veloroute 7, Abschnitt W24)"
+  desc: >
+    <p>In der vorliegenden Planung werden die unbenutzbaren Radwege durch ordentliche Radfahrstreifen ersetzt – durchgängig mit mehr als 2,0m Breite, meist 2,15m. Zusätzlich wird die Abflussrinne zwischen KFZ und Radspur angebracht, was eine zusätzliche optische Trennung bewirkt. Die Markierungen werden als „Rüttelstreifen“ ausgeführt, sodass KFZ doppelt daran erinnert werden, das sie ihre Spur verlassen.</p>
+    <p>An den Bushaltestellen ist genug Platz um auch bei Gegenverkehr am Bus vorbeifahren zu können. Auf indirektes Linksabbiegen wird meist verzichtet, immerhin wird direktes Linksabbiegen aber ordentlich markiert. Ausnahme bildet hier die Kreuzung mit der <a>Jenfelder Straße</a>.</p>
+    <p>Auf Höhe des <a>Albert-Schweitzer-Ring</a> wird am Zuweg des <a>Jenfelder Moorpark</a>s eine neue StadtRAD Station eingerichtet. Die Kreuzung mit der <a>Jenfelder Allee</a> wird in einer weiteren Maßnahme umgebaut.</p>
+    <p>Was will man mehr? Sähe die Planung überall so aus, wäre der gewünschte Radverkehrsanteil binnen weniger Jahre erreicht.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009152">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 7-rahlstedter-strasse:
   lastCheck: '2018-08-30'
   loc: [10.1499112, 53.5955692]
@@ -949,7 +978,7 @@
   start: 2019Q3
   title: Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)
   desc: >
-    <p>Die <a>Rahlstedter Bahnhostraße</a> zwischen <a>Scharbeutzer Straße</a> und <a>Amtsstraße</a> ist momentan vor allem für den Autoverkehr ausgelegt. Stadteinwärts ist die Radverkehrsführung nur ein kurzes Stück vorhanden und es gibt keine klare Führung wie weitergefahren werden soll. In der Gegenrichtung ist der vorhandene Radweg zwar etwas länger, fängt aber genauso unvermittelt an.</p>
+    <p>Die <a>Rahlstedter Bahnhofstraße</a> zwischen <a>Scharbeutzer Straße</a> und <a>Amtsstraße</a> ist momentan vor allem für den Autoverkehr ausgelegt. Stadteinwärts ist die Radverkehrsführung nur ein kurzes Stück vorhanden und es gibt keine klare Führung wie weitergefahren werden soll. In der Gegenrichtung ist der vorhandene Radweg zwar etwas länger, fängt aber genauso unvermittelt an.</p>
     <p>In der vorliegenden Planung soll der Radverkehr künftig zwischen <a>Merowingerweg</a> und <a>Amtsstraße</a> beidseitig auf 1,80m breiten Schutzstreifen (gestrichelte Linie) geführt werden. Die Kreuzung mit der <a>Amtsstraße</a> wird nicht umgebaut, aber es gibt stadtauswärts einen Aufstellbereich vor den Autos. Das freie Rechtsabbiegen entfällt aber.</p>
     <p>Das Teilstück stadteinwärts ab dem <a>Merowingerweg</a> ist etwas komplizierter: Richtung Innenstadt wird die Veloroute 7 künftig durch die <a>Wilhelm-Grimm-Straße</a> und in der <a>Rahlstedter Straße</a> auf den Radfahrstreifen geleitet. Dafür wird an dieser Stelle eine eigene Linksabbiegerspur eingerichtet. Die Alternative wäre im Mischverkehr (keine eigenen Radspuren) auf der <a>Rahlstedter Bahnhofstraße</a> zu verbleiben und dann erst an der Ampel links abzubiegen.</p>
     <p>Richtung Rahlstedt Bahnhof gibt es auch einen Schutzstreifen, der hier allerdings nur 1,50m breit ist. Die Vorbeiführung an der Ampel an der <a>Scharbeutzer Straße</a> bleibt.</p>
