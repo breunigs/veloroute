@@ -33,6 +33,8 @@
   lastCheck: '2018-09-29'
   loc: [9.94674, 53.55556]
   grade: 2
+  start: 2019Q2
+  title: Chemnitzstraße (Veloroute 1)
   images:
   - pe4g-cPzEz1w97DP3debeQ
   - Ms3aeYxVRx5VLW2I5svIGg
@@ -576,8 +578,8 @@
       </li>
     </ul>
 
-4-leeschenblick-und-fabriciusstrasse:
-  lastCheck: '2018-10-21'
+5-leeschenblick-und-fabriciusstrasse:
+  lastCheck: '2018-10-25'
   loc: [10.07011, 53.61494]
   loc2: [10.07653, 53.61963]
   grade: 3
@@ -605,6 +607,7 @@
   title: Leeschenblick und Fabriciusstraße (Veloroute 5)
   start: ASAP, in Abstimmung mit Neubau „Am Dorfgraben“
   desc: >
+    <p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße <a>Am Dorfgraben</a> geführt. Der Kreisel soll wie geplant umgesetzt werden, ebenso werden sich für den <a>Leeschenblick</a> keine Planänderungen ergeben. Ob die Verbesserungen in der <a>Fabriciusstraße</a> noch umgesetzt werden ist mir derzeit nicht bekannt. Für Details siehe bitte <a href="/quality/5-am-dorfgraben">Neue Führung durch „Am Dorfgraben“</a>.</p>
     <p>Im momentanen Ausbauzustand sind <a>Fabriciusstraße</a> und <a>Leeschenblick</a> ein gemischtes Erlebnis. Teilweise sind Radwege oder Radfahrstreifen vorhanden, aber diese liegen ungünstig oder sind nicht durchgehend und enden stellenweise ohne ordentliche Aufleitung auf die Straße. Die vergleichsweise geringe Verkehrsdichte erlaubt trotz dieser Schwachstellen eine angenehme Fahrt.</p>
     <p>In der vorliegenden Planung werden die Radfahrstreifen im <a>Leeschenblick</a> durch Schutzstreifen ersetzt. Auch werden die aktuell illegalen Parkplätze in legale Stellplätze umgewandelt, an denen der Schutzstreifen links vorbeiführt. Das sollte das „Tunnelgefühl“ beheben, das man hier durch regelmäßig abgestelle LKW stadteinwärts hat.</p>
     <p>An der künftigen Kreuzung mit der <a>Fabriciusstraße</a> und der neuen Straße <a>Am Dorfgraben</a> wird ein Kreisverkehr gebaut der die bisherige Ampel an der Einmündung ersetzt.</p>
@@ -613,20 +616,45 @@
     <p>Wegweisenden Charakter kann man der Planung nicht ausstellen. Der gepflasterte Radweg in der <a>Fabriciusstraße</a> ist heute schon schlechter zu befahren als die deutlich älter wirkenden, aber asphalierten Radfahrstreifen im <a>Leeschenblick</a>. In ein paar Jahren dürfte der neue Radweg ein ähnliches Schicksal erfahren. Der 1,5m breite Schutzstreifen stadtauswärts dürfte zwar seinen Zweck erfüllen, aber sicher keine Glücksgefühle auslösen und ggf. KFZ zu Überholmanövern ohne Spurwechseln animieren. Die wesentliche Verbesserung dürfte die Neuordnung der KFZ-Parkplätze sein, um die der Radverkehr jetzt halbwegs sicher geführt wird. Das diese Hilfestellung, wie sicher und legal geparkt werden kann, ausschließlich aus den Radverkehrsmitteln finanziert wird zeigt das es noch ein weiter Weg ist zum fahrradfreundlichen Hamburg.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit Lageplänen</a></p>
 
-
 5-querung-bramfelder-chaussee:
-  lastCheck: '2018-10-21'
+  lastCheck: '2018-10-25'
   loc: [10.08033, 53.61918]
   grade: 5
   images:
   - xoQHcRZwJCYogfTPJBNQvQ
   - L03oD1LsaLg-OQgNqp9Q8Q
   - bI_lrdQrBOBpefsmR_rajg
+  title: "Querung Bramfelder Chaussee, Höhe Fabriciusstraße"
   desc: >
+    <p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße <a>Am Dorfgraben</a> geführt. Der Umbau der Ampel an diesem Knotenpunkt soll definitiv entfallen. Ob dies auch auf die sonstigen Verbesserungen zutrifft ist mir derzeit nicht bekannt. Für Details siehe bitte <a href="/quality/5-am-dorfgraben">Neue Führung durch „Am Dorfgraben“</a>.</p>
     <p>Stadtauswärts muss man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p>
     <p>In er aktuellen Planung wird der Radweg an dieser Engstelle etwas verbreitert und das kurze Stück bis zur Ampel im Zweirichtungsverkehr freigegeben. Das macht die Führung der Veloroute wenigstens StVo-konform, für eine wirkliche Verbesserung ist aber ein Umbau der Kreuzung notwendig.</p>
     <p>Auch ist die Breite von stellenweise nur 2,0m einer Veloroute unwürdig, wäre aber auch nur durch eine Reduktion der angrenzenden Grünfläche verbreiterbar.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen. „08_LP (5).pdf“ für Lageplan)</p>
+
+5-am-dorfgraben:
+  lastCheck: '2018-10-25'
+  loc: [10.07404, 53.61460]
+  grade: 3
+  title: "Veloroute 5: Neue Führung durch „Am Dorfgraben“"
+  images:
+  - UG3BP8Z-VX-EtIhatIgupw
+  - JN-2gwFKHHziX2aTLcHSPg
+  - 4Rp_iWjEvmCEC-KntYfjzw
+  - 30ECh7qy9sbXIoRly-n5JA
+  - sxj5x_wDWgOIjeilUyCcJg
+  - ArLSY-j-NIdBH-U-MJJ0_w
+  - 6mkOOGE8JdTz0zVadINfbQ
+  - WG2YkzV46hHkxJhOSHu7eA
+  - qC2dLQAeL9U9uWQAw9PpPA
+  - w3aH94mg5kZEotsWfH-s0g
+  desc: >
+    <p>Das BWVI hat sich dazu entschieden, die Veloroute künftig nicht mehr über die <a>Fabriciusstraße</a>, sondern über die neue Straße <a>Am Dorfgraben</a> auf die <a>Bramfelder Chaussee</a> zu führen.</p>
+    <p>Genaue Planungen liegen hierzu noch nicht vor, aber die <a href="/quality/5-leeschenblick-und-fabriciusstrasse">ursprünglich genannten Umbaumaßnahmen</a> entfallen praktisch vollständig. Der <a>Leeschenblick</a> erhält wohl nach wie vor neue Markierungungen. Die Radfahrstreifen werden dabei durch Schutzstreifen ersetzt und künftig nicht mehr zwischen illegal abgestellen KFZ und Grünstreifen geführt.</p>
+    <p>An der neuen Kreuzung <a>Am Dorfgraben</a> / <a>Leeschenblick</a> / <a>Fabriciusstraße</a> soll nach wie vor ein Kreisel gebaut werden.</p>
+    <p><a>Am Dorfgraben</a> wird als Wohnstraße einfach im Mischverkehr geführt und auf die vorhandenen Radwege in der <a>Bramfelder Chaussee</a> geleitet. Die vorhandene Fußgängerampel soll irgendwie mitbenutzt werden.</p>
+    <p>Eine genaue Bewertung kann erst erfolgen, wenn die Pläne genauer ausgearbeitet wurden. Ob eine Verlegung an die deutlich lautere <a>Bramfelder Chaussee</a> wünschenswert ist, ist fraglich. Andererseits wollte man in der <a>Fabriciusstraße</a> auch keine ordentlichen Radspuren ausweisen, um den KFZ-Verkehr nicht zu sehr zu beschränken. Unterm Strich wirkt es auf mich so, als suche man den besten Weg die Radfahrenden irgendwie loszuwerden, damit der KFZ-Schleichverkehr weiterhin erhalten werden kann.</p>
+    <p>Die Pläne für den Kreisel und den <a>Leeschenblick</a> finden sich unter <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">den ursprünglichen Umbauplänen</a>. Die <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009168">Entscheidung zur Verlegung der Route</a> ist nur eine Mitteilung, detaillierte Lagepläne gibt es noch nicht.</p>
 
 6-kreuzung-wagnerstrasse:
   lastCheck: '2018-08-29'
