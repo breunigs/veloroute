@@ -897,6 +897,39 @@
     <p>Im Vergleich zum Bestand ist die vorliegende Planung eine deutliche Verbesserung. Die nur 1,5m breiten Schutzstreifen wären zu verschmerzen, wenn das vom ADFC vorgeschlagene 30 km/h Tempolimit eingerichtet wird. Dies ist jedoch unabhängig von der Velorouten Planung, sondern wird ggf. auf Grund der Schule bzw. des Altenheims eingerichtet.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009131">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+7-rahlstedter-bahnhofstrasse:
+  lastCheck: '2018-10-21'
+  loc: [10.1541, 53.6018]
+  grade: 3
+  images:
+  - QQdnLLW5u119Ri0X9qOUBw
+  - fsVhZIM8SriYsstLHEtwLw
+  - jXa3QWjWpl-WBAQgYBLpZg
+  - EOPl0Smw5Kt5_9bHLP5P1g
+  - 8d9Od5q4PG81UaFgllGi0A
+  - UJWimk65KSwzyBx5S6H_Sw
+  - 7p94C9SshaDgTfvN6TYPgg
+  - KW-tX8wbKHh8NkjxM1fu_w
+  - 6sCmOml6zhgrzQ_FsW_GrA
+  - RXi7u7Ph3NwiYq1SNLLDAw
+  - 20DZ1b8pVx9RO-njQ7qdUw
+  - R29beSJjfbTM7m4CVW1Ydg
+  - IvxKjKIjyEQJgvySDe1epQ
+  - eM9gWRKo4QHdXjN5ywoLbA
+  - nZbPswAP9fWvW1NzakDBxw
+  - qWk23UyOXMyQt7cNZisGDw
+  start: 2019Q3
+  title: Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)
+  desc: >
+    <p>Die <a>Rahlstedter Bahnhostraße</a> zwischen <a>Scharbeutzer Straße</a> und <a>Amtsstraße</a> ist momentan vor allem für den Autoverkehr ausgelegt. Stadteinwärts ist die Radverkehrsführung nur ein kurzes Stück vorhanden und es gibt keine klare Führung wie weitergefahren werden soll. In der Gegenrichtung ist der vorhandene Radweg zwar etwas länger, fängt aber genauso unvermittelt an.</p>
+    <p>In der vorliegenden Planung soll der Radverkehr künftig zwischen <a>Merowingerweg</a> und <a>Amtsstraße</a> beidseitig auf 1,80m breiten Schutzstreifen (gestrichelte Linie) geführt werden. Die Kreuzung mit der <a>Amtsstraße</a> wird nicht umgebaut, aber es gibt stadtauswärts einen Aufstellbereich vor den Autos. Das freie Rechtsabbiegen entfällt aber.</p>
+    <p>Das Teilstück stadteinwärts ab dem <a>Merowingerweg</a> ist etwas komplizierter: Richtung Innenstadt wird die Veloroute 7 künftig durch die <a>Wilhelm-Grimm-Straße</a> und in der <a>Rahlstedter Straße</a> auf den Radfahrstreifen geleitet. Dafür wird an dieser Stelle eine eigene Linksabbiegerspur eingerichtet. Die Alternative wäre im Mischverkehr (keine eigenen Radspuren) auf der <a>Rahlstedter Bahnhofstraße</a> zu verbleiben und dann erst an der Ampel links abzubiegen.</p>
+    <p>Richtung Rahlstedt Bahnhof gibt es auch einen Schutzstreifen, der hier allerdings nur 1,50m breit ist. Die Vorbeiführung an der Ampel an der <a>Scharbeutzer Straße</a> bleibt.</p>
+    <p>Unterm Strich wirkt die Planung ausgewogen: die durchgängige Radverkehrsführung ist viel besser als das heutige Stückwerk, auch wenn der Platz nur für Schutzstreifen reicht. Immerhin bleibt die Anzahl der Parkplätze gleich, sodass dieser nicht zugeparkt wird. Die Führung durch die weniger befahrene <a>Wilhelm-Grimm-Straße</a> ist angesichts des Platzmangels eine gute Lösung.</p>
+    <p>Umgebaut werden soll im Sommer 2019.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009129">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+
 10-veddeler-marktplatz:
   lastCheck: '2018-09-07'
   loc: [10.0223942, 53.529614]
