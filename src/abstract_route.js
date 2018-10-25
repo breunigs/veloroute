@@ -18,8 +18,9 @@ class AbstractRoute {
 
   _loadQuality() {
     if(this._qualityPromise) return this._qualityPromise;
-    this._qualityPromise = import(/* webpackChunkName: "quality" */ './quality');
-    this._qualityPromise.then(({Quality}) => new Quality(this._state, this._imagesPromise, this._createMarker));
+    this._qualityPromise =
+      import(/* webpackChunkName: "quality" */ './quality')
+      .then(({Quality}) => new Quality(this._state, this._imagesPromise, this._createMarker));
     return this._qualityPromise;
   }
 
@@ -27,7 +28,10 @@ class AbstractRoute {
     if(!routeName) routeName = 'index';
     let newPage = "page-" + routeName.split("/")[0];
 
-    if(newPage === "page-quality") this._loadQuality();
+    if(newPage === "page-quality") {
+      console.log("switching1")
+      this._loadQuality().then(quality => quality.showShortcoming());
+    }
 
     let currentPage = null;
     body.classList.forEach(c => {

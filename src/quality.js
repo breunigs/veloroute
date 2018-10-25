@@ -168,19 +168,18 @@ const renderHtmlForWay = (details, osmId) => {
   return html;
 }
 
-const renderShortcomingHandler = (state, imagesPromise, name) => {
-  return () => {
-    el.innerHTML = shortcomings[name].desc;
-    el.style.cssText = 'display: block';
-    document.getElementById("routes").scrollTop = 0;
-    imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
-    state.routeSetter()(toQualityName(name));
-  }
+const displayShortcoming = (imagesPromise, name) => {
+  el.innerHTML = shortcomings[name].desc;
+  el.style.cssText = 'display: block';
+  document.getElementById("routes").scrollTop = 0;
+  imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
 }
 
 const renderQualityMarkers = (createMarker, state, imagesPromise) => {
   Object.entries(shortcomings).map(([name, details]) => {
-    const clickHandler = renderShortcomingHandler(state, imagesPromise, name);
+    const clickHandler = () => {
+      state.routeSetter()(toQualityName(name));
+    }
     const classes = `shortcoming grade${details.grade}`;
     createMarker(classes, details.loc, '⚫', clickHandler);
     if(details.loc2) createMarker(classes, details.loc2, '⚫', clickHandler);
@@ -201,10 +200,15 @@ export class Quality {
     this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener));
 
     if(state.getShortcomingName()) {
-      renderShortcomingHandler(state, imagesPromise, state.getShortcomingName())();
+      displayShortcoming(imagesPromise, state.getShortcomingName());
     } else {
       this.showForKey(this._state.currentImage(), true);
     }
+  }
+
+  showShortcoming() {
+    if(!this._state.getShortcomingName()) return;
+    displayShortcoming(this._imagesPromise, this._state.getShortcomingName());
   }
 
   async indicatorListener(_lon, _lat, _ca, key) {
