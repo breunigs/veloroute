@@ -9,7 +9,7 @@ require 'yaml'
 SEEN_LINKS_FN = File.join(__dir__, './sitzungsdienst_seen_links.txt')
 # Note: Mitte and Nord currently do not attach PDFs :(
 # todo: bergedorf harburg
-DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord wandsbek]
+DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord wandsbek bergedorf harburg]
 
 def index_url(district)
   "https://sitzungsdienst-#{district}.hamburg.de/bi/vo040.asp"
