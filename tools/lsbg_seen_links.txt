@@ -113,3 +113,6 @@
 '2018-10-10':
 - "/contentblob/11676030/a4b5eba8f88fcee157469e72b7857419/data/hohenfelder-bucht-abgestimmte-planung-bericht.pdf"
 - "/contentblob/11676036/af2c20b137dfedee3c0da0c4921e6173/data/hohenfelder-bucht-abgestimmte-planung-plan.pdf"
+'2018-10-30':
+- "/contentblob/11707572/93f2f357e49751484c52940c5d0e0b4c/data/waldweg-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/11707576/4765b93d2ec7c7312ea84a7a20d5de1b/data/waldweg-abstimmungsunterlage-plaene.pdf"

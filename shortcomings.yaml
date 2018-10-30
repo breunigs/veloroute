@@ -246,9 +246,11 @@
     </ul>
 
 2-hoegenstrasse:
-  lastCheck: '2018-09-30'
+  lastCheck: '2018-10-30'
   loc: [9.9374, 53.5861]
   grade: 1
+  start: 2019Q3
+  title: "Högenstraße (Veloroute 2)"
   images:
   - 7LELqrJHSFDpypFSKn2AMg
   - eqd_2ofbYUtPNwwKeWuLHg
@@ -259,8 +261,9 @@
   - IUN5FGUf2eF-kd9CRRAq9Q
   - ojGHKS9PIEOQQiETTNS92A
   desc: >
-    <p>Die <a>Högenstraße</a> soll zu einer Fahrradstraße umgebaut werden. Dies dürfte die bereits jetzt angenehm zu befahrende Strecke noch besser machen, da die verbleibenden Probleme gelöst werden. Etwa war die Querung des stärker befahrenen <a>Steenwisch</a> nicht immer einfach. In Zukunft wird ein kleiner Kreisel dieses Problem lösen und vermutlich eine Weiterfahrt ohne Anhalten ermöglichen. Vom <a>Langenfelder Damm</a> bis zum <a>Steenwisch</a> soll auch „Anlieger frei“ gelten, sodass der KFZ-Durchgangsverkehr hoffentlich weiter sinkt. Am nördlichen Ende soll der Übergang zum <a>Spannskamp</a> verbessert werden und der Weg einen neuen Belag erhalten.</p>
-    <p>Geplant war der Umabu für Frühjahr/Sommer 2018, aber der Termin konnte offenbar nicht gehalten werden.</p>
+    <p>Die <a>Högenstraße</a> soll zu einer Fahrradstraße umgebaut werden. Dies dürfte die bereits jetzt angenehm zu befahrende Strecke noch besser machen, da die verbleibenden Probleme gelöst werden. Etwa war die Querung des stärker befahrenen <a>Steenwisch</a> nicht immer einfach. In Zukunft wird ein kleiner Kreisel dieses Problem lösen und vermutlich eine Weiterfahrt ohne Anhalten ermöglichen. Vom <a>Langenfelder Damm</a> bis zum <a>Steenwisch</a> soll auch „Anlieger frei“ gelten, sodass der KFZ-Durchgangsverkehr hoffentlich weiter sinkt.</p>
+    <p><s>Am nördlichen Ende soll der Übergang zum <a>Spannskamp</a> verbessert werden und der Weg einen neuen Belag erhalten.</s> Der Umbau des Übergangs zum <a>Spannskamp</a>s soll jetzt erst mit der Erschließung erfolgen – es ist unklar, wann das passiert (<a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085">vgl. Drucksache 20-3247</a>).</p>
+    <p>Geplant ist der Umbau ab Sommer 2019.</p>
     <ul>
       <li><a href="https://www.hamburg.de/contentblob/9223346/09c5a4f1dae49706ebcefdb84f69d483/data/hoegenstrasse-buergerinfo310517.pdf">Präsentation zum Umbau, mit vorläufigen Lageplänen</a></li>
       <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/8692914/hoegenstrasse/">Infoseite der Stadt zur Högenstraße</a></li>
@@ -272,6 +275,7 @@
           <li><a href="https://www.hamburg.de/contentblob/9223426/cff64fe5711adaad6d2b0e106a6d5571/data/hoegenstrasse-vereinfachter-lageplan3.pdf">Teil 3 (Schrebergärten bis Spannkamp)</a</li>
         </ul>
       </li>
+      <li><a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085">Änderungen der ursprünglichen Planung (29.10.2018)</a></li>
     </ul>
 
 2-woerdemanns-weg:
