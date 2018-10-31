@@ -7,6 +7,10 @@ require "json"
 require "parallel"
 require "yaml"
 
+require 'i18n'
+I18n.load_path << "translations.yml"
+I18n.default_locale = :de
+
 require_relative "geojson"
 require_relative "mapillary"
 require_relative "place"
@@ -136,7 +140,8 @@ end
 
 def write_rss(_routes)
   require_relative 'rss'
-  File.write("geo_tmp/#{RSS::FILENAME}", RSS.build)
+  File.write("geo_tmp/#{RSS::FILENAME}", RSS.build_atom)
+  File.write("geo_tmp/recent_changes.html", RSS.build_html)
 end
 
 SCSS_MUTEX = Mutex.new

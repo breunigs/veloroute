@@ -13,7 +13,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
 RUN bundle install
 
-COPY routes.json shortcomings.yaml image_updates.yaml /app/
+COPY routes.json *.yaml /app/
 COPY routes/ /app/routes/
 COPY spec/ /app/spec/
 

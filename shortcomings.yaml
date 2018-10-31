@@ -251,6 +251,7 @@
   grade: 1
   start: 2019Q3
   title: "Högenstraße (Veloroute 2)"
+  type: planned-construction
   images:
   - 7LELqrJHSFDpypFSKn2AMg
   - eqd_2ofbYUtPNwwKeWuLHg
@@ -641,6 +642,7 @@
   loc: [10.07404, 53.61460]
   grade: 3
   title: "Veloroute 5: Neue Führung durch „Am Dorfgraben“"
+  type: changed-routing
   images:
   - UG3BP8Z-VX-EtIhatIgupw
   - JN-2gwFKHHziX2aTLcHSPg
@@ -911,6 +913,7 @@
   - PfikrOSvzhJUHdyzeRwFyA
   - dQu5mUh5wNIsBXAr0YjXsg
   - pJRkEUgYYoDz25Gqx-66MA
+  type: planned-construction
   title: "Kuehnstraße (zw. Jenfelder Straße und Jenfelder Allee, Veloroute 7, Abschnitt W24)"
   desc: >
     <p>In der vorliegenden Planung werden die unbenutzbaren Radwege durch ordentliche Radfahrstreifen ersetzt – durchgängig mit mehr als 2,0m Breite, meist 2,15m. Zusätzlich wird die Abflussrinne zwischen KFZ und Radspur angebracht, was eine zusätzliche optische Trennung bewirkt. Die Markierungen werden als „Rüttelstreifen“ ausgeführt, sodass KFZ doppelt daran erinnert werden, das sie ihre Spur verlassen.</p>
@@ -1062,6 +1065,7 @@
   grade: 1
   start: 2019
   title: Eißendorfer Straße bis Denickestraße (Veloroute 11)
+  type: planned-construction
   images:
   - vZ_lmtqSPD0hwg4UuQ7qhw
   - NItGXt-iqSy0VrbvvhKYOA

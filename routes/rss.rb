@@ -7,9 +7,28 @@ module RSS
   FILENAME = 'updates.atom'
   BASE = URI("https://veloroute.hamburg")
 
-  def self.build
+  def self.list(count:)
+    self.newest(shortcomings + image_updates, count: count)
+  end
+
+  def self.build_html
+
+    entries = self.list(count: 4).map do |data|
+      german_date = I18n.localize(data[:updated].to_date, format: :short)
+      <<~ENTRY
+        <li>
+          <time datetime="#{data[:updated].strftime("%F")}">#{german_date}</time>
+          <a href="#{data[:link]}">#{data[:title]}</a>
+        </li>
+      ENTRY
+    end.join
+
+    %|<ol class=" hide-bullets">#{entries}</ol>|
+  end
+
+  def self.build_atom
     self.with_header do |items|
-      self.newest(shortcomings + image_updates).each do |data|
+      self.list(count: 10).each do |data|
         items.new_item do |item|
           data.each { |k, v| item.public_send("#{k}=", v)}
         end
@@ -32,6 +51,7 @@ module RSS
   def self.shortcoming_title(details, key)
     prefix = case details['type']
       when 'planned-construction' then 'Baumaßnahme'
+      when 'changed-routing' then 'Routenänderung'
       when nil then 'Problemstelle'
     end
     title = details['title'] || key
@@ -67,7 +87,7 @@ module RSS
     end
   end
 
-  def self.newest(data, count: 10)
+  def self.newest(data, count:)
     data.sort_by { |d| d[:updated] }.reverse.first(count)
   end
 

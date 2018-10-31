@@ -526,3 +526,29 @@ ol.route-list {
     overflow: hidden;
   }
 }
+
+ol.hide-bullets {
+  list-style-type: none;
+  padding: 0;
+
+  time {
+    width: 2.5em;
+    display: inline-block;
+  }
+
+  a {
+    width: calc(100% - 3em);
+    display: inline-block;
+    float: right;
+  }
+
+  li { clear: both; }
+
+  &:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
