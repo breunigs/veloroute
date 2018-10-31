@@ -8,7 +8,7 @@ require "parallel"
 require "yaml"
 
 require 'i18n'
-I18n.load_path << "translations.yml"
+I18n.load_path << "translations.yaml"
 I18n.default_locale = :de
 
 require_relative "geojson"
