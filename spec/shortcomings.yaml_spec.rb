@@ -31,7 +31,11 @@ describe "shortcomings.yaml" do
   end
 
   it "uses only URL safe names" do
-    expect(shortcomings.keys).to all(match  /\A[a-z0-9-]+\z/)
+    expect(shortcomings.keys).to all(match /\A[a-z0-9-]+\z/)
+  end
+
+  it "has titles for all entries" do
+    expect(shortcomings.values).to all(include('title'))
   end
 
   context "integration", integration: true do

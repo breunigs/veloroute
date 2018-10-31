@@ -52,6 +52,7 @@ module RSS
     prefix = case details['type']
       when 'planned-construction' then 'Baumaßnahme'
       when 'changed-routing' then 'Routenänderung'
+      when 'bettelampel' then 'Bettelampel'
       when nil then 'Problemstelle'
     end
     title = details['title'] || key

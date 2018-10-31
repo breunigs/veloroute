@@ -3,6 +3,7 @@ import { toQualityName } from './utils_web';
 import {id2details, key2id} from '../routes/geo/quality_export.json';
 
 const el = document.getElementById('quality');
+const titleEl = document.getElementById('qualityTitle');
 
 const osmLink = (osmId) => {
   return `<a class="not-mobile" href="https://www.openstreetmap.org/way/${osmId}">Weg in der OpenStreetMap anzeigen</a>`;
@@ -170,6 +171,7 @@ const renderHtmlForWay = (details, osmId) => {
 
 const displayShortcoming = (imagesPromise, name) => {
   el.innerHTML = shortcomings[name].desc;
+  titleEl.innerHTML = shortcomings[name].title;
   el.style.cssText = 'display: block';
   document.getElementById("routes").scrollTop = 0;
   imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
@@ -235,6 +237,7 @@ export class Quality {
 
     if(html) {
       el.innerHTML = html;
+      titleEl.innerHTML = 'Wegqualität';
       el.style.cssText = 'display: block'
     } else {
       el.style.cssText = 'display: none'

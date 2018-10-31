@@ -7,6 +7,7 @@
   - z9E5eNmWX8KT_R8763EcrQ
   - ty0MjVgKYoD1mibL5sHjVQ
   - d03DjXwTmrYJD6A_Q_0y1g
+  title: "Geranienweg (Veloroute 1)"
   desc: <p>Sowohl stadteinwärts als auch stadtauswärts darf man der Veloroute auf einem kurzen Stück des <a>Geranienweg</a> nicht folgen – die Einfahrt ist von beiden Richtungen untersagt. Absteigen und zu Fuß queren ist zwar legal, aber einer Veloroute unwürdig. Die Verwaltung weiß von dem Problem und es soll im Zuge einer Umbaumaßnahme behoben werden.</p>
     <p>Die Straße soll im Zuge einer neuen Wohnsiedlung überarbeitet werden, sodass eine Durchfahrt legal möglich ist. Die Zufahrt von der <a>Flurstraße</a> bleibt dem Radverkehr vorbehalten, der hier einen 2m breiten, rot gepflasterten Radweg erhalten soll um sie vor entgegenkommenden KFZ zu schützen. Die Straße wird zugunsten breiterer Gehwege etwas schmäler und behält ihren verkehrsberuhigten Charakter.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007546">Details zur geplanten Gestaltung</a> (Anlage 2, S. 35)</p>
@@ -15,6 +16,7 @@
   lastCheck: '2018-09-28'
   loc: [9.95913, 53.55679]
   grade: 2
+  title: "Thadenstraße (Veloroute 1)"
   images:
   - _tVvDmNLaJLRn4cGUP0dUQ
   - GBBwCOLt9qt81oRLK5LFKA
@@ -52,6 +54,7 @@
   lastCheck: '2018-10-10'
   loc: [9.9278, 53.5499]
   grade: 3
+  title: "Ottensen Mitte (Veloroute 1)"
   images:
   - 2mEXfCAh4hvQZJ6DM2ZTzQ
   - QLhdQHosNcpTRPvmITumrQ
@@ -82,6 +85,7 @@
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
   grade: 4
+  title: "Jürgensallee (Veloroute 1)"
   images:
   - jBJXEWooDgi51g8n_8eY9Q
   - _EF5zeIJvrc5Zown-I-NVg
@@ -101,12 +105,14 @@
   - pfVytKPTsgFca__kzZwe5Q
   - -xxRsy6BWuiu412rfYarvg
   - iYbM2oHrCWvdgAYkcJ8wmw
+  title: "Friedhof Blankenese (Veloroute 1)"
   desc: <p>Am <a>Friedhof Blankenese</a> gibt es an beiden Zugangsstellen sehr enge Drängelgitter. Diese sind bereits mit einem normalen Fahrrad kaum zu passieren, mit Anhänger oder Lastenrad kommt man vermutlich überhaupt nicht durch. Allgemein erscheint die Führung durch den Friedhof fragwürdig, liegt doch der <a>Sülldorfer Kirchenweg</a> knapp daneben. Vermutlich traute man sich nicht den KFZ Verkehr dort einzudämmen.</p>
 
 1-alte-suelldorfer-landstrasse:
   lastCheck: '2018-09-28'
   loc: [9.7717, 53.5805]
   grade: 1
+  title: "Alte Sülldorfer Landstraße (Veloroute 1)"
   images:
   - gO0wvvG-aVzGadqAQTmhSA
   - EfZZqi08k0qGiU-LDxX7zA
@@ -120,6 +126,7 @@
   lastCheck: '2018-09-28'
   loc: [9.76309, 53.58120]
   grade: 1
+  title: "Klövensteenweg (Veloroute 1)"
   images:
   - LQgBS_-O4gJ8PbDHJXSY6w
   - R6F1LFkSwjFbRjlHdWHP1A
@@ -135,6 +142,7 @@
   lastCheck: '2018-08-30'
   loc: [9.96598, 53.56228]
   grade: 2
+  title: "Lagerstraße (Veloroute 2)"
   images:
   - BJ2cODwYJW3kj5WUKrS1Ww
   desc: <p>Diese Kreuzung wird demnächst zu einem Kreisel umgebaut. Weitere Infos, auch zum Umbau im weiteren Verlauf Richtung U2 Christuskirche:</p>
@@ -151,6 +159,7 @@
   lastCheck: '2018-08-30'
   loc: [9.96355, 53.5695]
   grade: 3
+  title: "Weidenallee (Veloroute 2)"
   images:
   - BJOCAkBbQKLaFEuTJLHT4A
   desc: <p>Die Kreuzung wird gerade umgebaut und der Radverkehr erstmals ordentlich bedacht. So wird eine Querung entlang der Veloroute 2 deutlich komfortabler und zumindest stadtauswärts auch nur eine Ampel beinhalten. Richtung Süden zähle ich
@@ -168,6 +177,7 @@
   lastCheck: '2018-10-13'
   loc: [9.95971, 53.57169]
   loc2: [9.95389, 53.57331]
+  title: "Weidenstieg und Tornquiststraße (Veloroute 2)"
   grade: 4
   images:
   - mxjcA_A77IgW1Gf3_OEOhA
@@ -210,6 +220,7 @@
   lastCheck: '2018-09-29'
   loc: [9.91146, 53.60261]
   grade: 4
+  title: "Reichsbahnstraße (Veloroute 2)"
   images:
   - jcaiYgNA-6p2bjW13n0EJw
   - XppeEi7d4wQ9EmEIU7Sxyw
@@ -223,6 +234,7 @@
   lastCheck: '2018-09-29'
   loc: [9.93894, 53.58042]
   grade: 5
+  title: "Langenfelder Damm (Veloroute 2)"
   images:
   - ugStveYUBk2IxkEpXfCzww
   - 89eKol78cSWNHhWQdOAHJA
@@ -283,6 +295,7 @@
   lastCheck: '2018-10-13'
   loc: [9.92897, 53.59813]
   grade: 3
+  title: "Wördemanns Weg (Veloroute 2)"
   images:
   - bd9nr2pm9Vu7KRxZrmYYBg
   - H0Zd-y_w34ZZgnd-dZCkug
@@ -304,6 +317,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9892, 53.5638]
   grade: 2
+  title: "Moorweidenstraße (Veloroute 3)"
   images:
   - DQcQt76fvEaVnR03MiUqWg
   - mXo8dVeMBtMvxV28xa_dKg
@@ -331,6 +345,7 @@
   loc: [9.9875, 53.5642]
   loc2: [9.9856, 53.5702]
   grade: 2
+  title: "Schlüterstraße (Veloroute 3)"
   images:
   - r_HRIzCf350HHIUWC7Kwmg
   - B-qxs2FMVydSgsj6Rjxw8Q
@@ -358,6 +373,8 @@
   lastCheck: '2018-09-19'
   loc: [9.96226, 53.57786]
   grade: 4
+  title: "Kreuzung Gärtnerstraße (Veloroute 3)"
+  type: bettelampel
   images:
   - KHUIA919w_DV95O-SZJ9HA
   desc: <p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a> zu queren. Immerhin ist diese gut sichtbar und es ist klar erkennbar, das man sie benutzen muss.</p>
@@ -366,6 +383,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9572, 53.5880]
   grade: 5
+  title: "Stresemannallee (Veloroute 3)"
   images:
   - QdUOwBErhD0kEt4MWLOjgw
   - gnvPVG35KOiByA6mPfqLyg
@@ -396,6 +414,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9561, 53.6080]
   grade: 2
+  title: "Niendorfer Straße (Veloroute 3)"
   images:
   - G05LUvr7cbZTl6sSzL8P0g
   - VLb32MKuSmRp4-g7FTMIOQ
@@ -428,6 +447,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9515, 53.6318]
   grade: 2
+  title: "Paul-Sorge-Straße (Veloroute 3)"
   images:
   - 4FYlWhgOZenWWneeU0wmSA
   - 0TBH8EyJySyQjrveN_WQ2Q
@@ -458,6 +478,7 @@
   lastCheck: '2018-08-19'
   loc: [9.994009366, 53.55777163]
   grade: 3
+  title: "Kreuzung am Neuen Jungfernstieg (Veloroute 4)"
   images:
   - EWyGBNzBlzNnwh3YTvxQlw
   - Nb-tt5p34NRNQtLw02jYEA
@@ -469,6 +490,7 @@
   lastCheck: '2018-09-03'
   loc: [9.9974312, 53.5618547]
   grade: 2
+  title: "Radweg am Alsterufer (Veloroute 4)"
   images:
   - VPpu2II1l1pVfCmb_xHNwA
   - Br7ein7urhbqOqgM5rzYIg
@@ -493,6 +515,7 @@
   lastCheck: '2018-09-01'
   loc: [9.9986931, 53.5796807]
   grade: 3
+  title: "Krugkoppel (Veloroute 4)"
   images:
   - vKwtpDBcYeCCRj8V-X_48A
   - CUV_L1y-MQpMuJ0UK1zXhQ
@@ -518,6 +541,7 @@
   lastCheck: '2018-10-10'
   loc: [10.01641, 53.56284]
   grade: 1
+  title: "Hohenfelder Bucht (Veloroute 5 und 6)"
   images:
   - H6PBpY6a76addwmL7WtYWg
   - Vl_O1Sy-aF9DH8lerKXRRQ
@@ -558,6 +582,7 @@
   - 10.02993
   - 53.57131
   grade: 2
+  title: "Hamburger Straße (Veloroute 5)"
   images:
   - oPhEF4xaDxjmdQgKpA4suQ
   - ALBPoGFNcmC4DHxMrB9hzA
@@ -588,6 +613,7 @@
   loc: [10.07011, 53.61494]
   loc2: [10.07653, 53.61963]
   grade: 3
+  title: "Leeschenblick (Veloroute 5)"
   images:
   - x_ixxcpCkv4-k3KRC8ZAmw
   - B0OUQEd7T3ujwiMPq6Cy6g
@@ -629,7 +655,7 @@
   - xoQHcRZwJCYogfTPJBNQvQ
   - L03oD1LsaLg-OQgNqp9Q8Q
   - bI_lrdQrBOBpefsmR_rajg
-  title: "Querung Bramfelder Chaussee, Höhe Fabriciusstraße"
+  title: "Querung Bramfelder Chaussee, Höhe Fabriciusstraße (Veloroute 5)"
   desc: >
     <p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße <a>Am Dorfgraben</a> geführt. Der Umbau der Ampel an diesem Knotenpunkt soll definitiv entfallen. Ob dies auch auf die sonstigen Verbesserungen zutrifft ist mir derzeit nicht bekannt. Für Details siehe bitte <a href="/quality/5-am-dorfgraben">Neue Führung durch „Am Dorfgraben“</a>.</p>
     <p>Stadtauswärts muss man absteigen um die Ampel zur Querung der <a>Bramfelder Chaussee</a> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p>
@@ -666,6 +692,7 @@
   lastCheck: '2018-08-29'
   loc: [10.0398, 53.5710466]
   grade: 3
+  title: "Kreuzung Wagnerstraße (Veloroute 6)"
   images:
   - 3Q_8bqul0x2tKpIZSItg-g
   - IrgIralVL2cDv_6gKmW-1w
@@ -675,6 +702,7 @@
   lastCheck: '2018-08-29'
   loc: [10.058636, 53.5761309]
   grade: 5
+  title: "Kreuzung am S-Bahnhof Friedrichsberg (Veloroute 6)"
   images:
   - v5vTbdoRNbrnLCjqE7SNFg
   - VrGvHJPFI5vjUbVKz-3ekQ
@@ -690,6 +718,8 @@
   lastCheck: '2018-09-20'
   loc: [10.06863, 53.58096]
   grade: 4
+  title: "Kreuzung Nordschleswiger Straße (Veloroute 6)"
+  type: bettelampel
   images:
   - OytJf1qtgwsMflzuagp_ow
   desc: >
@@ -819,6 +849,7 @@
   - FWz9Io_6FrprkFQyv0EZrA
   - QbMhNQohRUTiO-MqH17PFg
   - 0qoA_0UyVsvyXMdu0oxJGw
+  title: "Steindamm (Veloroute 7)"
   desc: >
     <p>Bisher zeichnet sich der Steindamm vor allem durch Kopfsteinpflaster in Parkbereichen und Hochbordradwege aus. Letztere sind qualitativ gar nicht mal so schlecht, aber für das Radaufkommen zu schmal und werden häufig von Zufußgehenden
     und Lieferverker mitbenutzt. Entsprechend langsam und unbequem kommt man aktuell voran.</p>
@@ -836,6 +867,7 @@
   lastCheck: '2018-07-19'
   loc: [10.07204, 53.56981]
   grade: 4
+  title: "Kreuzung Am alten Posthaus (Veloroute 7)"
   images:
   - 6ITXbtBuSgLydxBhSJgfHg
   - pqry-NwVpmEiJmzIBepBhQ
@@ -929,6 +961,7 @@
   images:
   - pwuW4ksOJZlXcXePhA9m8Q
   - E6iwb1GKHWU-NRBVyG9ibw
+  title: "Rahlstedter Straße (Veloroute 7)"
   desc: <p>Die Rahlstedter Straße soll 2018 erneuert werden. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p>
     <ul>
       <li>
@@ -998,6 +1031,7 @@
   lastCheck: '2018-09-07'
   loc: [10.0223942, 53.529614]
   grade: 3
+  title: "Veddeler Marktplatz (Veloroute 10)"
   images:
   - aS0wZcULoeUqaS4HCkTfCw
   desc: '<p>Die Kreuzung wurde erst kürzlich umgestaltet, wobei der Fokus nach wie vor auf dem motorisiertem Verkehr liegt. Dies ist bei einer Auf- bzw. Auffahrt einer Autobahn auch wenig verwunderlich. Völlig unklar ist jedoch, warum man die Querungen als Bettelampeln ausgeführt hat. An dieser Stelle werden wohl die meisten in die Falle tappen und ewig warten, bevor sie den Taster einige Meter weiter links sehen. Die Schaltzeiten sind auch nicht besonders schnell – man erhält also nicht kurz nach Betätigung grün. Mindestens sollte ein weiterer Taster in Radwegnähe installiert werden.</p>'
@@ -1006,6 +1040,7 @@
   lastCheck: '2018-08-29'
   loc: [10.0177872, 53.649394]
   grade: 3
+  title: "Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)"
   images:
   - xCMDA_6f3-uBpZbjFgPnDw
   - QO1hSRRQVKrUpfpPyGIvXw
@@ -1024,6 +1059,7 @@
   lastCheck: '2018-08-30'
   loc: [9.99704, 53.4952812]
   grade: 4
+  title: "Wilhelmsburger Inselpark (Veloroute 11)"
   images:
   - ZkF2uoZ-qCldmp5Mb_oE6w
   desc: <p>Dieses Teilstück durch den Wilhelmsburger Inselpark ist nachts gesperrt. Ich hatte dazu auch die Parkleitung gefragt, wie die Führung zwischen 0:00 und 5:00 Uhr ist, aber keine Antwort erhalten. Da aktuell die Autobahn (Wilhelmsburger Reichsstraße) verlegt wird, ändert sich die genaue Route aber vielleicht nochmal.</p>
@@ -1097,6 +1133,7 @@
   lastCheck: '2018-09-06'
   loc: [10.0033736, 53.5877531]
   grade: 5
+  title: "Maria-Louisen-Straße (Veloroute 13)"
   images:
   - WBHoYuQN32F-uM-ab47hPw
   - ny4lNh6cyFK1SMRZRKtG9g
@@ -1117,6 +1154,7 @@
   lastCheck: '2018-08-29'
   loc: [9.9883672, 53.5854104]
   grade: 2
+  title: "Iseplatz (Veloroute 13)"
   images:
   - pQdv4XxzzkoPWdmJ-KfXrg
   desc: <p>Diese Kreuzung fiel mir nicht besonders negativ auf – einziges Manko ist das Stopschild, wenn man von der Hegestraße links in die Loogestraße abbiegen möchte. Die Kreuzung soll im Frühjahr 2020 zu einem Kreisverkehr umgebaut werden, dann ist dieses Problem auch passé. Weitere Infos, auch zur Verbesserung der Radführung in der <a>Loogestraße</a>:</p>
@@ -1136,6 +1174,7 @@
   - 9.94867
   - 53.56232
   grade: 5
+  title: "Kreuzungen um den Holstenplatz (Veloroute 13)"
   images:
   - SBEKMxDdlIanphEEoS3qBg
   - 8r2gqBg4gCqZBabWw-npgg
@@ -1164,6 +1203,8 @@
   loc: [9.87348, 53.58697]
   grade: 4
   icon: 🤚
+  title: "Böttcherkamp (Veloroute 14)"
+  type: planned-construction
   images:
   - kEiDHeOit_QIah8w5-xJpg
   - WFTWhVY24R-4NZ3sEGZNgA
@@ -1177,6 +1218,7 @@
   lastCheck: '2018-09-26'
   loc: [10.02855, 53.65029]
   grade: 3
+  title: "Gehlengraben (Veloroute 14)"
   images:
   - _1CMUs3QEE5JPAoqSJViKg
   - VaaeWnONb3zMo1HVGDyupA

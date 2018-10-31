@@ -88,11 +88,11 @@
       @require('routes/geo/path_render.html')
 
       <div id="descquality" class="desc">
-        <h3>Qualität</h3>
+        <% title = htmlWebpackPlugin.options.title.split(" – "); %>
+        <h3 id="qualityTitle"><%= title[2] %></h3>
         <div id="quality">
           <% if(htmlWebpackPlugin.options.qualityDesc) { %>
             <%= htmlWebpackPlugin.options.qualityDesc %>
-            <% title = htmlWebpackPlugin.options.title.split(" – "); %>
             <script type="application/ld+json">
               {
                 "@context": "http://schema.org",
