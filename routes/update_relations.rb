@@ -125,7 +125,7 @@ def check_relation_connected(routes)
   routes.each do |route|
     ok, err = route.relation.connected?
     next if ok
-    warn "Route #{route.name} not connected apparently: #{err}"
+    raise "Route #{route.name} not connected apparently: #{err}"
   end
 end
 
