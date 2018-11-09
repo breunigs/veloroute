@@ -116,3 +116,6 @@
 '2018-10-30':
 - "/contentblob/11707572/93f2f357e49751484c52940c5d0e0b4c/data/waldweg-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/11707576/4765b93d2ec7c7312ea84a7a20d5de1b/data/waldweg-abstimmungsunterlage-plaene.pdf"
+'2018-11-03':
+- "/contentblob/11814044/4173ed444be8949a9c2329168d6a3375/data/borgfelder-strasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/11814046/f930f26b829f932286cc5647c26b6ea0/data/borgfelder-strasse-abstimmungsunterlage-plan.pdf"
