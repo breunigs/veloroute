@@ -12,13 +12,13 @@ module RSS
   end
 
   def self.build_html
-
     entries = self.list(count: 4).map do |data|
       german_date = I18n.localize(data[:updated].to_date, format: :short)
+      rel_path = data[:link].route_from(BASE)
       <<~ENTRY
         <li>
           <time datetime="#{data[:updated].strftime("%F")}">#{german_date}</time>
-          <a href="#{data[:link]}">#{data[:title]}</a>
+          <a href="#{rel_path}">#{data[:title]}</a>
         </li>
       ENTRY
     end.join
@@ -30,7 +30,7 @@ module RSS
     self.with_header do |items|
       self.list(count: 10).each do |data|
         items.new_item do |item|
-          data.each { |k, v| item.public_send("#{k}=", v)}
+          data.each { |k, v| item.public_send("#{k}=", v.to_s)}
         end
       end
     end.to_s
@@ -40,7 +40,7 @@ module RSS
     self.get_yaml(:shortcomings).map do |key, details|
       img_tags = self.to_img_list(details["images"])
       {
-        link: BASE.merge("/quality/#{key}").to_s,
+        link: BASE.merge("/quality/#{key}"),
         title: self.shortcoming_title(details, key),
         updated: self.to_time(details['lastCheck']),
         description: details['desc'] + '<br>' + img_tags
@@ -67,7 +67,7 @@ module RSS
       anchor = [15, *lonLat.reverse, details['startImage']].join('/')
       path = "/#{details['route']}##{anchor}"
       {
-        link: BASE.merge(path).to_s,
+        link: BASE.merge(path),
         title: details["title"],
         updated: self.to_time(details["date"]),
         description: self.to_img_list(details['startImage'])
