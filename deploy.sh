@@ -9,5 +9,5 @@ cd $(dirname $0)
 sudo -u www-data git pull
 systemctl reload nginx
 
-PRODUCTION=yes TEST=yes ./build.sh
+KEEP=yes PRODUCTION=yes TEST=yes ./build.sh
 chown -R www-data:www-data build/

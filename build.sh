@@ -16,10 +16,14 @@ docker rm $img&
 
 mkdir -p build/
 if [ -d "build" -a ! -L "build" ]; then
-  rm -rf build/*
-  mv build_new/* build/
-
-  rmdir build_new
+  if [ "$KEEP" = "yes" ]; then
+    cp -RT build_new/ build/
+    rm -rf build_new/
+  else
+    rm -rf build/*
+    mv build_new/* build/
+    rmdir build_new
+  fi
 else
   echo "./build/ is not a directory, so left artifacts in ./build_new/"
 fi
