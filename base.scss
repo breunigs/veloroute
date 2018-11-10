@@ -2,8 +2,8 @@ body {
   padding: 0;
   margin: 0;
   background: #fff;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 1.1em;
+  font-family: Arial, sans;
+  font-size: 0.9em;
 }
 
 $sidebar-width: 40%;
@@ -231,7 +231,7 @@ $control-size: 2em;
   color: #fff !important;
   text-decoration: none;
   cursor: default;
-  font-family: Verdana, sans;
+  font-family: Arial, sans;
 
   &.mapboxgl-marker {
     cursor: pointer;
@@ -532,12 +532,12 @@ ol.hide-bullets {
   padding: 0;
 
   time {
-    width: 2.5em;
+    width: 4em;
     display: inline-block;
   }
 
   a {
-    width: calc(100% - 3em);
+    width: calc(100% - 4.5em);
     display: inline-block;
     float: right;
   }
