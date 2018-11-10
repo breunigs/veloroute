@@ -1043,6 +1043,7 @@
   grade: 3
   type: planned-construction
   title: "Cuxhavener Straße bis zum Dubben (neue Führung, Veloroute 10)"
+  start: 2019
   images:
   - WV9cpGYiXwSornbLG4Y5YA
   - vAGEFhI5m-cLbM_wL0i6JQ
@@ -1084,6 +1085,7 @@
   loc: [10.0177872, 53.649394]
   grade: 3
   title: "Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)"
+  start: 2019Q1
   images:
   - xCMDA_6f3-uBpZbjFgPnDw
   - QO1hSRRQVKrUpfpPyGIvXw
@@ -1106,6 +1108,44 @@
   images:
   - ZkF2uoZ-qCldmp5Mb_oE6w
   desc: <p>Dieses Teilstück durch den Wilhelmsburger Inselpark ist nachts gesperrt. Ich hatte dazu auch die Parkleitung gefragt, wie die Führung zwischen 0:00 und 5:00 Uhr ist, aber keine Antwort erhalten. Da aktuell die Autobahn (Wilhelmsburger Reichsstraße) verlegt wird, ändert sich die genaue Route aber vielleicht nochmal.</p>
+
+11-hannoversche-strasse:
+  lastCheck: '2018-11-10'
+  loc: [9.9940, 53.4695]
+  loc2: [9.9909, 53.4594]
+  grade: 1
+  title: "Hannoversche Straße (Veloroute 11)"
+  images:
+  - MG9dt0zm--s2gKrHfzv56A
+  - jL4nfku-KEtoV-e-2tZxNQ
+  - 6Ers9PeyfasLal3d7MgWng
+  - lCQGEZ-SJQOG8GNncExYLg
+  - 0BWmyqrVkOufYim1VMcuTQ
+  - jjz1zs2awFaezUObDKJtHg
+  - 4Zvnx7v2ZsoRtf0hbrzI5A
+  - W-IjrUQDh56-8U7-lGSTVg
+  - RkRetkT7DazIHlg5dZDeeQ
+  - adr_xzPw5B8okPvoFM-mHQ
+  - Rfh_jYgQ-Jf6UnTmRAfo6w
+  - Spc91KWGfwaaYK-sxLXA7w
+  - YUs7DWGoKljPKYIUa_K_ZQ
+  - g9k3XTgN4pohTmM9VLo-1Q
+  - 9rm1h33VLbBWuFLaxO8dKQ
+  - 6v7c4gtNkDNytU2l-ENqmw
+  - XLsPJkklzTbRWkVHZtbOng
+  - P4vDCjUH1uMPTmSAQM7e-A
+  - M5Xflpxf9tOst1vYlvuk6w
+  - JtnSYSj1KFl9y0jONaFTuw
+  - jsAN_mFNERLHgBNhC8r3DA
+  - 7zKo2RHsD_m-4ou_upqBUQ
+  start: 2020Q1
+  type: planned-construction
+  desc: >
+    <p>Die <a>Hannoversche Straße</a> besitzt momentan auf fast der gesamten Länge Hochbordradwege, die jedoch durchweg zu schmal und teilweise starke Unebenheiten aufweisen. Lediglich Richtung <a>Alte Harburger Elbbrücke</a> muss der Radverkehr sich irgendwie in den fließenden KFZ-Verkehr einordnen – die Umsetzung ist hier aber sehr unglücklich.</p>
+    <p>Die vorliegende Planung löst dies besser: es soll durchgehende Radfahrstreifen von ca. 2,00m Breite geben, die so nahtlos an den Neubau <a>Hannoversche Brücke</a> anschließen. Es gibt einige Ausnahmen: an der Kreuzung mit der <a>Neuländer Straße</a> fährt man Richtung Norden durch den Haltebereich des Busses, wobei man sich in den KFZ-Verkehr einfädeln muss um einen wartenden Bus zu überholen. Am nördlichen Ende, also der Kreuzung mit dem <a>Neuländer Hauptdeich</a>, der <a>Brücke des 17. Juni</a> und der <a>Nartenstraße</a> soll künftig ein Kreisel den Verkehr regeln. Die <a>alte Harburger Elbbrücke</a> wird dabei direkt angeschlossen und der Radverkehr erhält dafür eigene Auf- und Abfahrten. Im Kreisel selbst herrscht Mischverkehr und Richtung Süden bleibt es bei einem kurzen Stück Hochbordradweg, da so die vorhandenen Bäume nicht gefällt werden müssen. Hier erhalten Radfahrende ebenfalls eine eigene Abfahrt.</p>
+    <p>Die Kreuzung mit der <a>Neuländer Straße</a> wird dagegen klassisch mit Ampel geregelt. Linksabbiegerspuren sind für den Radverkehr nicht vorgesehen, dafür aber großzügige Aufstellbereich für indirektes Abbiegen. Geübte Radfahrende können sich in den KFZ-Verkehr einordnen und so direkt links abbiegen. Verkehrsinseln trennen beim Rechtsabbiegen den KFZ- vom Radverkehr.</p>
+    <p>Umgesetzt werden soll der Umbau 2020, sobald der Ersatzneubau der <a>Hannoversche Brücke</a> fertiggestellt ist.</p>
+    <p><a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005817">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a></p>
 
 11-innenstadt-harburg:
   lastCheck: '2018-08-30'

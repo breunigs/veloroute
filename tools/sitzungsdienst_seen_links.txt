@@ -179,3 +179,5 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000148
 '2018-11-09':
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005816
+'2018-11-10':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005817
