@@ -130,14 +130,15 @@
         { "seq": "V1x0dtyBUcEH1UEJSzuUBA", "from": "IA0hkZfMa2WQfrxkCsWKuA", "to": "zXquw55F0T8-dLHxfFYdWQ"}
       ],
       "inward_niendorf": [
-        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "AxG-1fliz1Qv1Z6Yn8CZBg", "to": "5H5M2Mt3RxZ47pV5hCN2vQ"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "AxG-1fliz1Qv1Z6Yn8CZBg", "to": "5H5M2Mt3RxZ47pV5hCN2vQ"},
         { "seq": "nQUpYstYNOy0ryHBblhVlQ", "from": "VII9jUcwLd-72iSTXQUnBQ", "to": "A5btE19E5rQRJHB4ldGvwA"},
-        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "q8EX4NZXdqI9mOSLhSeS6g", "note": "missing images: https://www.komoot.de/tour/40332412"},
-        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "j7XuEo5sjhxBJ6-7HepNng", "to": "iNhW9ny-vn2gnNCVOI0QAg"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "q8EX4NZXdqI9mOSLhSeS6g", "note": "missing images: https://www.komoot.de/tour/40332412"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "j7XuEo5sjhxBJ6-7HepNng", "to": "iNhW9ny-vn2gnNCVOI0QAg"},
         { "seq": "jNXCNvonju--8JTdbuGaUg", "from": "75i6DRVsX98CbBq8F2uAGA", "to": "vibIJ0kXv6uAWPWvdADLSA"},
         { "seq": "z0aYuEuVTJoXBwN6hsmbzA", "from": "fQO1gynMHaxCkqoMQ0gRAw", "to": "Zbs5ACMM-YsoEm6ExKQcqA"},
         { "seq": "76q3ToTfee0iT9wFSBiSdA", "from": "wbqrdLbbz6ouo9KKUw8jRw", "to": "yDT-ep_uixx9pGhr8xf3eA"},
-        { "seq": "dgQEzP1k1voPVBYU26IJ3w", "from": "YOonAMpmiFzzsQ7FRQQj5Q", "to": "6ghcIpCg4gPU7mxN44aQYQ"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "YOonAMpmiFzzsQ7FRQQj5Q", "to": "8TjF7rZzGdUSppCNYVE9-A"},
+        { "seq": "sez714t349hwlcwbrwc9rn", "from": "hXMF1GuYMLGvtKns6KW3Fw", "to": "6ghcIpCg4gPU7mxN44aQYQ"},
         { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "nzlrV75tuzXOQaxDsVWcRw", "to": "U_XX5YBjrcGb83ZZ08wg5w"},
         { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "QE-ZuE6MEhIn9HGSaYVB3A", "to": "3qUzCXxmF7kATAJppzmMCA"},
         { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "cVsGgvzUmnFYGyntVtlhEQ", "to": "iRql1hCMZkGYu-AMQMqGqw"}
