@@ -83,9 +83,16 @@ document.addEventListener('click', ev => {
 }, false);
 
 
-imagesPromise.then(({mlyViewer, addIndicatorListener, showCloseImage}) => {
+imagesPromise.then(({mlyViewer, addIndicatorListener, showCloseImage, stopPlayback}) => {
   addIndicatorListener(renderIndicator, state.imageSetter());
   new Swap(map, mlyViewer);
   addRouteClickListener(showCloseImage);
   addQualityClickListener(showCloseImage);
+  map.on('movestart', (evt) => {
+    // We only care about events directly triggered through interacting with the
+    // map, i.e. ignore events triggered through map.jumpTo and the like.
+    if(evt.originalEvent) {
+      stopPlayback();
+    }
+  });
 });

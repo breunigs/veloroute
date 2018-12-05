@@ -388,4 +388,4 @@ viewer.on(Viewer.bearingchanged, function (bearing) {
   indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
 });
 
-export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute, startPlaybackWithDefaultBranch };
+export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute, startPlaybackWithDefaultBranch, stopPlayback };
