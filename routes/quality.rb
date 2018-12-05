@@ -274,10 +274,13 @@ module Quality
     # see [1]. These width match the Germany wide(?) ERA [2]. The newer red
     # square tiles are 25cm wide. Usually, there should be 6.5 of them, so
     # 162.5cm wide cycle tracks.
+    # Cycle lanes (thick continous line, "Breitstrich") are supposed to be 2,25m
+    # wide including the marking, as per [3] p99.
     # I could not find values for ways shared with pedestrians, so I am going to
     # assume the same as for dual-way tracks.
     # [1] http://www.hamburg.de/contentblob/2695554/42d1b5cf759fa2fe2b3ffc621538b6e1/data/vorabinformation-zur-plast9-fortschreibung.pdf
     # [2] https://de.wikipedia.org/wiki/Empfehlungen_f%C3%BCr_Radverkehrsanlagen
+    # [3] https://www.hamburg.de/contentblob/11873926/4dcff718d6ebafbaa53c6c76c518c7e9/data/fortschrittsbericht-2018-webversion.pdf
     MINIMAL_WIDTHS = {
       track_single: 1.6,
       track_dual: 2.5,
@@ -287,7 +290,7 @@ module Quality
     DESIRED_WIDTHS = {
       track_single: 2.0,
       track_dual: 3.0,
-      lane: 1.6,
+      lane: 2.25,
       shared_lane: 1.5
     }
 
