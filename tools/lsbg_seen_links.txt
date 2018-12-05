@@ -119,3 +119,9 @@
 '2018-11-03':
 - "/contentblob/11814044/4173ed444be8949a9c2329168d6a3375/data/borgfelder-strasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/11814046/f930f26b829f932286cc5647c26b6ea0/data/borgfelder-strasse-abstimmungsunterlage-plan.pdf"
+'2018-11-26':
+- "/contentblob/11884494/f36fd1102be0aac210c7c364ea294f1d/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/11884498/3261c12f25f04cd7a51c7a2fc1bebbfc/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abstimmungsunterlage-plaene.pdf"
+'2018-12-01':
+- "/contentblob/11893012/0aaf991daed579efa9b1f4a5df986f24/data/farmsener-weg-karlshoehe-august-krogmann-strasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/11893008/8db8397cf35b692e16b3cc3d7f1ec06e/data/farmsener-weg-karlshoehe-august-krogmann-str-abstimmungsunterlage-plan.pdf"
