@@ -31,6 +31,11 @@ RUN /app/routes/update_relations.rb
 
 FROM node:slim as webpack
 
+RUN \
+  apt-get -qq update && \
+  apt-get -yq install --no-install-recommends \
+    python make g++
+
 WORKDIR /app
 
 COPY yarn.lock package.json /app/
