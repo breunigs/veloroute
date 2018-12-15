@@ -125,3 +125,6 @@
 '2018-12-01':
 - "/contentblob/11893012/0aaf991daed579efa9b1f4a5df986f24/data/farmsener-weg-karlshoehe-august-krogmann-strasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/11893008/8db8397cf35b692e16b3cc3d7f1ec06e/data/farmsener-weg-karlshoehe-august-krogmann-str-abstimmungsunterlage-plan.pdf"
+'2018-12-15':
+- "/contentblob/11963508/81fd0bff567e7cf3ae27609c9d5f0a48/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-bericht.pdf"
+- "/contentblob/11963520/22966e4064a5af6bfefa2dac2ee1df3b/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-plaene.pdf"

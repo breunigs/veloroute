@@ -1026,6 +1026,46 @@
     <p>Umgebaut werden soll im Sommer 2019.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009129">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+8-lohbruegger-markt:
+  lastCheck: '2018-12-15'
+  loc: [10.20672, 53.49479]
+  grade: 2
+  images:
+  - q5e8MVMGFk4d8WSUtANXjA
+  - 2iNBdQLjMz6KDutVkVUmfA
+  - TTnOY1AWgVFRwf-vX1UXKQ
+  - dKTke913HPMLuYXk_KcoKw
+  - f67dY3i3Xz4txu6RXOSTbw
+  - neY4EaK9empsb6wBCnSJ5g
+  - pDtrnDGiYUt1G80iCl-C-A
+  - Puil3PEUWKku0YW_6eAtjA
+  - tCaxiZvTOhDtiUROW8Wm_w
+  - wTxHict3qTWJ-G-u7_6wSg
+  - E8Kbr9ZCiJ9u_DadpvaETQ
+  - lSF_WAYgguhzSDpSgqNCsA
+  - euV2vB09gZFftBb06Eq3fA
+  - 7_uQZRgQ1V9hEGiggmTrNA
+  - ONdtA1wYPuVUjxkJXRymKA
+  - 80FN8cFKO7NsGXNxZuqWqw
+  - PLFQwSn9FcQXYWzorRQMxg
+  - ti-blaz9cyPEJbMDT2TSEQ
+  start: 2019
+  title: Doppelknoten Lohbrügger Markt (Veloroute 8)
+  desc: >
+    <p>Bisher ist es eher unbequem der Veloroute 8 über den <a>Lohbrügger Markt</a> zu folgen: man kann jeweils nicht direkt abbiegen, sondern muss einen Umweg Richtung Fußgängerüberweg machen. Da man die Ampeln nicht sehen kann, ist es auch nur schwer abschätzbar ob man sich beeilen oder lieber ausrollen lassen sollte.</p>
+    <p>Nach dem Umbau wird das besser: der Radverkehr kann künftig der Spur folgend direkt abbiegen. Die Hochbordradwege werden dabei aufgegeben und die Fahrräder fahren stattdessen auf einer Radfahrspur auf der Fahrbahn. Der Zweirichtungsradweg in der <a>Lohbrügger Landstraße</a> bleibt erhalten und es werden entsprechend Abbiegemöglichkeiten vorgesehen.</p>
+    <p>Auf dem <a>Ludwig-Rosenberg-Ring</a> fährt man Richtung Bahnhof (bergab) im Mischverkehr. Die Gegenrichtung erhält ab der <a>Walter-Freitag-Straße</a> einen Radfahrstreifen der an der Bushaltestelle vorbeiführt um im Anschluss zwischen KFZ-Linksabbieger und Rechtsabbiegerstreifen zur Kreuzung zu führen.</p>
+    <p>Unverständlich ist jedoch, warum man aus der <a>Lohbrügger Landstraße</a> eine Bettelampel vorsieht: gerade hier könnte man sich ideal rollen lassen, um die Kreuzung zu queren. Auch beim indirekten Abbiegen aus dem <a>Sander Damm</a> in die <a>Lohbrügger Landstraße</a> sind Bettelampeln vorgesehen.</p>
+    <p>Die Planung betrachtet den gesamten Straßenzug <a>Sander Damm</a> bis <a>Binnenfeldredder</a> und sieht eine dreijährige Bauzeit ab 2019 vor.</p>
+    <ul>
+      <li>
+        <a href="https://lsbg.hamburg.de/contentblob/11963520/22966e4064a5af6bfefa2dac2ee1df3b/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
+      </li>
+      <li>
+        <a href="https://lsbg.hamburg.de/contentblob/11963508/81fd0bff567e7cf3ae27609c9d5f0a48/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
+      </li>
+    </ul>
+
 
 10-veddeler-marktplatz:
   lastCheck: '2018-09-07'
