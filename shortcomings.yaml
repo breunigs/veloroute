@@ -17,6 +17,7 @@
   loc: [9.95913, 53.55679]
   grade: 2
   title: "Thadenstraße (Veloroute 1)"
+  type: planned-construction
   images:
   - _tVvDmNLaJLRn4cGUP0dUQ
   - GBBwCOLt9qt81oRLK5LFKA
@@ -37,6 +38,7 @@
   grade: 2
   start: 2019Q2
   title: Chemnitzstraße (Veloroute 1)
+  type: planned-construction
   images:
   - pe4g-cPzEz1w97DP3debeQ
   - Ms3aeYxVRx5VLW2I5svIGg
@@ -50,6 +52,50 @@
     <p>Die Chemnitzstraße sollte übrigens bereits seit etlichen Jahren umgebaut werden. Bisher scheiterte dies daran, das die die Kombination „Fahrradstraße + KFZ frei“ nicht vorgesehen war. „Fahrradstraße + Anlieger frei“ hätte die Anwohner in den Straße zwischen Chemnitzstraße und <a>Große Bergstraße</a> aber zu stark abgeschnitten und wurde deswegen abgelehnt.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+1-13-max-brauer-allee:
+  lastCheck: '2018-12-17'
+  title: Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Veloroute 1 und 13)
+  loc: [9.9386, 53.5534]
+  grade: 1
+  start: 2019Q3
+  type: planned-construction
+  images:
+  - WLWi0oQ0weIJG2yEvA4dWw
+  - xBV9egT25RheqvSa8qM4oA
+  - duDXCmuGq8tdJH3niHkqXw
+  - zOwS5lzIZZkZtSKU0VNnUg
+  - 4ZET3Y9KTa9rn93VK4fy0g
+  - NFZaOE92feqsB9O-UT-Ruw
+  - SqWgfXUhE149hHz1H-QhQw
+  - vrv1Ks82avuJ3sU7So_Kpg
+  - XC7U3n8d4j7CkgwAC6QJ0g
+  - FCQqE4hAXL37kavXAnPgtA
+  - AIIFMC_DhSaARFaMqGaj9A
+  - aKnOogveZ0aUfH4vM9ZXBw
+  - udRWZEZ8VkD41OIO0rjFEg
+  - iPrye0QsPu2YJQtT1QXUnw
+  - Sz1jYN3VjF226_6T0DqnXA
+  - rXFMXV6oUIP7ulUyTi6v4Q
+  - tezPkdDRwU21mYMoaPbEgQ
+  - _kflLnA7kPrJv-LgVDpyIA
+  - QZA4ZdnXKs-MtZvpITh0GQ
+  - cNG2w-FzX_Q9wbF7TXJr5A
+  - 6Fc2RTJ06Ek_xhiPpLJWGQ
+  - ieDtMRw5iLJ0Is33cdb_8g
+  - ULeG4Xa0Mr92Zg7F5l__uw
+  - Vz74ovzYRlRa-Ic3iynRzQ
+  - hoP4cLllCOSL2gc-Z1DVYw
+  - 0InRB9BDnlZJvVW4fzgVHg
+  - Z6DKCbPJ-9952ddBVJwLbA
+  - GipYBNjZ52olb3W0EGpV3A
+  - qxhrcBRGC83k_EgGHYn5Hw
+  desc: >
+    <p>Aktuell ist die <a>Max-Brauer-Allee</a> für den Radverkehr untauglich: Radweg, Mitbenutzung der Busspur oder Mischverkehr wechseln sich je nach genauer Stelle und Tageszeit ab. Für den Radverkehr wichtige Strecken sind nicht erkennbar – etwa Richtung <a>Ottenser Hauptstraße</a> oder wie man links aus der <a>Chemnitzstraße</a> abbiegen soll, um der Veloroute 1 zu folgen. Zusammen mit den in die Jahre gekommenen Belägen lässt sich also zusammenfassen, das die <a>Max-Brauer-Allee</a> eher abstoßend auf den Radverkehr wirkt.</p>
+    <p>Die Umplanung verbessert die Situation erheblich, obwohl platzbedingt an einigen Stellen Kompromisse eingegangen werden mussten. Meistens werden Radfahrstreifen gebaut, die alle mindestens 1,80m breit sind. In Richtung Elbe gibt ab der <a>Holstenstraße</a> bis zur <a>Goetheallee</a> und auf der Höhe des <a>Paul-Nevermann-Platz</a>es (vorm Bahnhof) dagegen eine überbreite Busspur: hier teilen sich Radverkehr und Bus eine 4,70m breite Spur. Im Vergleich zu jetzt soll diese Spur ausschließlich dem Rad- und Busverkehr dienen.</p>
+    <p>Die provisorische Radverkehrsführung auf dem Fußweg vorm Bahnhof Altona wird auf die Zufahrt zum Busbahnhof verlegt. Im weiteren Verlauf biegt man dann wieder auf die Nebenstraße mit den Parkplätzen für Polizei und Taxen ein. In vielen Fällen kann man hier auch direkt abbiegen. Nur wenn man kommt von Süden kommt und Richtung Bahnhof abbiegen möchte, funktioniert es anders. Entweder nutzt man den Überweg Höhe <a>Neue Große Bergstraße</a> zum Wenden und biegt anschließend Richtung Busbahnhof ein. Alternativ fährt man ein Stückchen Richtung <a>Große Bergstraße</a> weiter und biegt hier indirekt in den <a>Paul-Nevermann-Platz</a> ein.</p>
+    <p>Die Kreuzung an der <a>Julius-Leber-Straße</a> bedenkt jetzt alle gängigen Radrelationen. Die nah am Gebäude verlaufende Führung aus der <a>Chemnitzstraße</a> (Veloroute 1) wird als 3,0m breiter Zweirichtungsradweg gestaltet und verbindet geradlinig mit der <a>Gerichtstraße</a> (Veloroute 13). Über diesen Überweg werden auch die Linksabbieger aus der <a>Max-Brauer-Allee</a> von Süden abgewickelt. Aus der <a>Chemnitzstraße</a> der Veloroute 1 folgen bleibt im Wesentlichen so wie jetzt – allerdings gibt es künftig helfende Piktogramme und eine eigene Ampel für den kreuzenden Verkehr aus der <a>Julius-Leber-Straße</a>. Letztere erhält Schutzstreifen von 1,50m Breite. Die <a>Gerichtstraße</a> wird für den KFZ-Verkehr eine Sackgasse und erhält keinen Anschluss an die <a>Max-Brauer-Allee</a> mehr. Geübte Radfahrende aus Richtung Süden mit Ziel <a>Lessingtunnel</a> können künftig auch direkt über die KFZ-Spuren und die <a>Goetheallee</a> abbiegen.</p>
+    <p>Die Umsetzung soll in mehreren Abschnitten erfolgen: Ab Sommer 2019 vom Busbahnhof Altona bis ca. <a>Goetheallee</a>. Dies schließt auch die notwendigen Umbaumaßnahmen an der Kreuzung der <a>Goetheallee</a> mit der <a>Julius-Leber-Straße</a> mit ein. Danach ruhen die Arbeiten auf dieser Strecke, da zuerst die <a>Holstenstraße</a> umgebaut werden soll (siehe „<a href="/quality/13-holstenplatz">Kreuzungen um den Holstenplatz</a>“). Erst 2021 soll der Lückenschluss von <a>Goetheallee</a> zur <a>Holstenstraße</a> folgen. Der Knotenpunkt <a>Julius-Leber-Straße</a> mit der <a>Max-Brauer-Allee</a> wird auch erst zu diesem Zeitpunkt umgebaut.</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008162">Erläuterungsbericht mit Lageplänen</a> (unter Anlagen). Übersicht Seite 22, Pläne ab Seite 88.</p>
 1-ottensen-mitte:
   lastCheck: '2018-10-10'
   loc: [9.9278, 53.5499]
@@ -1050,6 +1096,7 @@
   - PLFQwSn9FcQXYWzorRQMxg
   - ti-blaz9cyPEJbMDT2TSEQ
   start: 2019
+  type: planned-construction
   title: Doppelknoten Lohbrügger Markt (Veloroute 8)
   desc: >
     <p>Bisher ist es eher unbequem der Veloroute 8 über den <a>Lohbrügger Markt</a> zu folgen: man kann jeweils nicht direkt abbiegen, sondern muss einen Umweg Richtung Fußgängerüberweg machen. Da man die Ampeln nicht sehen kann, ist es auch nur schwer abschätzbar ob man sich beeilen oder lieber ausrollen lassen sollte.</p>
