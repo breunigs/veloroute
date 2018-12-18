@@ -10,6 +10,7 @@ SEEN_LINKS_FN = File.join(__dir__, './sitzungsdienst_seen_links.txt')
 # Note: Mitte and Nord currently do not attach PDFs :(
 # todo: bergedorf harburg
 DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord wandsbek bergedorf harburg]
+FILTER_KEYWORDS = %w[velo straße radverkehr fahrrad verschickung]
 
 def index_url(district)
   "https://sitzungsdienst-#{district}.hamburg.de/bi/vo040.asp"
@@ -42,7 +43,7 @@ seen_links = seen.values.flatten
 links = Parallel.map(DISTRICTS, in_threads: DISTRICTS.size) do |district|
   url = URI.parse(index_url(district))
 
-  %w[velo straße radverkehr fahrrad].flat_map do |keyword|
+  FILTER_KEYWORDS.flat_map do |keyword|
     params = {filtvobetr1: :filter, filtvoname: :filter, VO040FIL2: keyword}
     resp, _data = post(url, params)
     ff = Nokogiri::HTML::fragment(resp.body)
