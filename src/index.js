@@ -36,7 +36,7 @@ document.addEventListener('click', ev => {
     break;
   }
   if(!anchor) return
-  if(anchor.hasAttribute('download') || anchor.href.endsWith(".zip")) return;
+  if(anchor.hasAttribute('download') || anchor.href.endsWith(".zip") || anchor.href.endsWith(".pdf")) return;
 
   const body = document.getElementsByTagName('body')[0];
   if(anchor.classList.contains('vision-colorblind')) {

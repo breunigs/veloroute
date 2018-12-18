@@ -36,7 +36,7 @@ server {
   }
 
   # assets are cache busted. Favicon arent't, but eh.
-  location ~ (\.ch\.(js|css|geojson|json)|favicons/)$ {
+  location ~ (\.ch\.(js|css|geojson|json)|favicons/|pdf/)$ {
     expires max;
     add_header Cache-Control immutable;
     include hstspreload.conf;
