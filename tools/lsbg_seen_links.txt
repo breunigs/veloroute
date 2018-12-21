@@ -128,3 +128,6 @@
 '2018-12-15':
 - "/contentblob/11963508/81fd0bff567e7cf3ae27609c9d5f0a48/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-bericht.pdf"
 - "/contentblob/11963520/22966e4064a5af6bfefa2dac2ee1df3b/data/sander-damm-bis-binnenfeldredder-landesgrenze-abgestimmte-planung-plaene.pdf"
+'2018-12-21':
+- "/contentblob/11989956/22f6a3cbbaa66202e26ea5f22973cdb3/data/veloroute-14-pinneberger-chaussee-von-johann-schmidt-strasse-bis-pflugacker-abgestimmte-planung-bericht.pdf"
+- "/contentblob/11989958/95c1ac8d392c018f2db021fcd920a517/data/veloroute-14-pinneberger-chaussee-von-johann-schmidt-strasse-bis-pflugacker-abgestimmte-planung-plan.pdf"

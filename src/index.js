@@ -55,8 +55,14 @@ document.addEventListener('click', ev => {
   if(anchor.classList.contains('place')) {
     const placeName = anchor.textContent;
     scrollTo('#map');
-    if(!places[placeName]) console.debug(`Cannot find place ${placeName} in presolved list.`)
-    map.fitBounds(places[placeName], {maxZoom: 14.5});
+    let m;
+    if(places[placeName]) {
+      map.fitBounds(places[placeName], {maxZoom: 14.5});
+    } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)$/)) {
+      map.flyTo({center: [m[3], m[2]], zoom: m[1]});
+    } else {
+      console.debug(`Cannot find place ${placeName} in presolved list and it doesn't seem to be a mapref href (${anchor.href}).`)
+    }
     ev.preventDefault();
     return;
   }
