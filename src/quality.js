@@ -169,12 +169,14 @@ const renderHtmlForWay = (details, osmId) => {
   return html;
 }
 
-const displayShortcoming = (imagesPromise, name) => {
-  el.innerHTML = shortcomings[name].desc;
-  titleEl.innerHTML = shortcomings[name].title;
+const displayShortcoming = (imagesPromise, name, state) => {
+  let sc = shortcomings[name];
+  el.innerHTML = sc.desc;
+  titleEl.innerHTML = sc.title;
   el.style.cssText = 'display: block';
   document.getElementById("routes").scrollTop = 0;
   imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
+  state.showPolygon(sc.area);
 }
 
 const renderQualityMarkers = (createMarker, state, imagesPromise) => {
@@ -200,17 +202,17 @@ export class Quality {
 
     renderQualityMarkers(createMarker, state, this._imagesPromise);
     this._imagesPromise.then(({addIndicatorListener}) => addIndicatorListener(this.indicatorListener));
-
     if(state.getShortcomingName()) {
-      displayShortcoming(imagesPromise, state.getShortcomingName());
+      displayShortcoming(imagesPromise, state.getShortcomingName(), state);
     } else {
       this.showForKey(this._state.currentImage(), true);
     }
   }
 
   showShortcoming() {
-    if(!this._state.getShortcomingName()) return;
-    displayShortcoming(this._imagesPromise, this._state.getShortcomingName());
+    console.log("YAY CALLED: showShortcoming")
+    if(!this._state.getShortcomingName()) return this._state.hidePolygon();
+    displayShortcoming(this._imagesPromise, this._state.getShortcomingName(), this._state);
   }
 
   async indicatorListener(_lon, _lat, _ca, key) {

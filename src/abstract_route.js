@@ -29,7 +29,7 @@ class AbstractRoute {
     let newPage = "page-" + routeName.split("/")[0];
 
     if(newPage === "page-quality") {
-      console.log("switching1")
+      console.debug("Loading Quality, then showing Shortcoming")
       this._loadQuality().then(quality => quality.showShortcoming());
     }
 

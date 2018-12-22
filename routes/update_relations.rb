@@ -11,6 +11,10 @@ require 'i18n'
 I18n.load_path << "translations.yaml"
 I18n.default_locale = :de
 
+require "rgeo"
+require "rgeo/geo_json"
+raise "rgeo needs these packages installed: ruby-geos libgeos-dev. Once they are, reinstall rego" unless RGeo::Geos.supported?
+
 require_relative "geojson"
 require_relative "mapillary"
 require_relative "place"
@@ -115,6 +119,8 @@ def build_image_lists(routes)
   shortcomings.each do |name, details|
     quality[name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
     details["desc"] = link_places(details["desc"])[0].to_s
+    # use list of images to show affected area if no specific one is defined
+    shortcomings[name]["area"] ||= coords_to_buffered_poly(quality[name][:loc])
   end
   write_with_hash("images-quality.json", quality.to_json)
   File.write('geo_tmp/shortcomings.json', shortcomings.to_json)
@@ -142,6 +148,16 @@ def write_rss(_routes)
   require_relative 'rss'
   File.write("geo_tmp/#{RSS::FILENAME}", RSS.build_atom)
   File.write("geo_tmp/recent_changes.html", RSS.build_html)
+end
+
+BUFFER_IN_METERS = 10
+def coords_to_buffered_poly(coords)
+  return nil if coords.size <= 1
+  factory = RGeo::Geographic.simple_mercator_factory(buffer_resolution: 2)
+  coords = coords.map { |c| factory.point(c[0], c[1]) }
+  buffered = factory.line_string(coords).buffer(BUFFER_IN_METERS)
+  geojson = RGeo::GeoJSON.encode(buffered)["coordinates"].first
+  geojson.map { |c| [c[0].round(6), c[1].round(6)] }
 end
 
 SCSS_MUTEX = Mutex.new

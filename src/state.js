@@ -54,6 +54,46 @@ class State {
     return this._status.image;
   }
 
+  _toPoly(coords) {
+    return {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Polygon',
+          'coordinates': [coords]
+        }
+      }
+  }
+
+  showPolygon(coords) {
+    if(!coords) return this.hidePolygon();
+
+    let asPoly = this._toPoly(coords);
+    if(!this._map.getSource('source-polygon')) {
+      this._map.addSource('source-polygon', { type: 'geojson', data: asPoly });
+    } else {
+      this._map.getSource('source-polygon').setData(asPoly);
+    }
+    if(!this._map.getLayer("layer-polygon")) {
+      this._map.addLayer({
+        'id': 'layer-polygon',
+        'type': 'fill',
+        'source': 'source-polygon',
+        'layout': {},
+        'paint': {
+          'fill-color': '#888',
+          'fill-opacity': 0.5
+        }
+      }, 'route-casing');
+    }
+
+    this._map.setLayoutProperty('layer-polygon', 'visibility', 'visible');
+  }
+
+  hidePolygon() {
+    if(!this._map.getLayer("layer-polygon")) return;
+    this._map.setLayoutProperty('layer-polygon', 'visibility', 'none');
+  }
+
   _setMapPosition() {
     // as per from https://github.com/mapbox/mapbox-gl-js/blob/master/src/ui/hash.js#L56
     const center = this._map.getCenter(),
