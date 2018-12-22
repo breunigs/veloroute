@@ -218,6 +218,10 @@ async function renderIndicator(lon, lat, bearing) {
   document.getElementById('indicator-rotate').style.transform = `rotate(${bearing}deg)`;
   indicator.setLngLat(lngLat);
 
+  if(map.isMoving()) {
+    console.debug("map already moving, not going to focus indicator");
+    return
+  }
   moveTo(lngLat);
 }
 
@@ -242,8 +246,10 @@ const moveTo = (lngLat) => {
   const outsideViewport = cmp(10);
   const veryFarOutside = cmp(-200);
   if(outsideViewport && veryFarOutside) {
+    console.debug("Flying to location")
     map.flyTo({center: lngLat});
   } else if (outsideViewport) {
+    console.debug("Panning to location")
     map.panTo(lngLat);
   }
 }

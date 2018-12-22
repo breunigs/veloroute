@@ -87,6 +87,10 @@ class State {
     }
 
     this._map.setLayoutProperty('layer-polygon', 'visibility', 'visible');
+
+    let bounds = new mapboxgl.LngLatBounds(coords[0], coords[0]);
+    bounds = coords.reduce((bounds, coord) => bounds.extend(coord), bounds);
+    this._map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
   }
 
   hidePolygon() {
