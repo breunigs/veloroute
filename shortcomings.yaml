@@ -762,6 +762,64 @@
     <p>Gefährlich: Die reinen Zufußgehendeampeln sind nicht für den Radverkehr optimiert und gelten seit 2017 auch nicht mehr für ihn. Da die Fahrbahnampeln auf dem Radweg nicht im Blick liegen, muss man die Kreuzung entweder sehr gut kennen oder richtig raten, ob man grün hat oder nicht.</p>
     <p>Kurzum: es wird erwartet, das sich der Radverkehr hier irgendwie durchmogelt. Das ist enttäuschend.</p>
 
+6-stormarner-strasse-eulenkamp:
+  lastCheck: '2018-12-22'
+  loc: [10.0639, 53.5785]
+  grade: 2
+  start: Q42019
+  title: "Stormarner Straße und Eulenkamp West (Veloroute 6)"
+  type: planned-construction
+  area: [[10.059539,53.576505],[10.059769,53.576317],[10.064109,53.578435],[10.065965,53.578875],[10.065901,53.579079],[10.065354,53.578977],[10.065139,53.579149],[10.065171,53.579283],[10.066180,53.579939],[10.066941,53.580060],[10.066856,53.580289],[10.068336,53.580709],[10.068218,53.580856],[10.066534,53.580423],[10.064613,53.579155],[10.064882,53.578945],[10.063905,53.578690],[10.059539,53.576505]]
+  images:
+  - ED-VwoIoheGBjyNWOK51uA
+  - qYdTxHYGIoJ6LKMkuA0LFA
+  - Mof-NKh0ptwDrVREMceENg
+  - 7om3ulE4T0O0NujQzVWW-w
+  - 5vYFzyf4RSiTf6lOiPQaJQ
+  - DQ4nGcmPpDqNwXPPN6c6Lw
+  - 1MNzgM2pDuYaOisUMDq9Lw
+  - PErdUgwMzq1SBftBObBrCQ
+  - fgGEToTI8tZVzYqe6Smi8A
+  - jnEOjGBaJ047k2pCAyYv9g
+  - CI22Kv5wzEnGItY2rO0Zcg
+  - zIHUwpmAdSgICFkRlVxKOw
+  - _ZB5TGjQcqN-x9gd8V4SYw
+  - MUrEpj-dCNtLtDLiJKerUg
+  - YY6PziYhjkCqQcMVq2oKKA
+  - BH-vkW8BSPQ3_39dCxTsNw
+  - 1f1N0eXqnH36aGbTSbO9MQ
+  - d9PXQwPL8Y5nGuR2o7okfQ
+  - d5y8AN4Q9IATEbcmNl_AyA
+  - tKbGo7BhXAwCWlmxUr9r2A
+  - JU-TWuHMJXJymOG-v0jW_w
+  - 6AY96m57XfRUunDgPlOWPQ
+  - 2qyZeONlJErTksIafxQftA
+  - Yxg23a0NtJGDLXlQgXzamA
+  - uO8SFMvWq4k2T5wozYKIoQ
+  - zlTxx8FtIHkMMm4_EDrb9g
+  - zLIhNWTqW9tKU5s--cO3Qg
+  - VrPEbmS5at8nGbqWy092Yg
+  - 9Ob_R153_GyUBUnJ9whDBg
+  - csq7ixMklyAW-nItGvm5WA
+  - 2tEUQ-KJMz34NqLv9tOdVw
+  - MfhiDh9aRjD_rAx0E2jTkg
+  - 20Vja2MbtHErow2RH7SuKg
+  - zoqx7YmdSSzNfLo1VtxvYg
+  - xFd9Tlw-_PiCz2S7U2hvRg
+  - n3qePfx86yAKjJ4EPop_lA
+  - c2o-7j38-Nikcg1DBHMdjQ
+  - C8OMD3BudLgNWfpJ-amJpA
+  - u-U-uwry2V9HBEz9NiC99A
+  - Cc7Ux2J5-Lzd6UaG1vc2SA
+  - _QHG6ZCREwE_DY8PXmM8xQ
+  - 0ZbIW-euVIb8pC7jgele8A
+  desc: >
+    <p>Die Fahrradroute in der <a>Stormarner Straße</a> bzw. <a>Walddörferstraße</a> krankt an den geringen Breiten der Radfahrstreifen, die nahe der Kreuzungen auch unvermittelt aufhören. In der <a>Elsässer Straße</a> und dem <a>Eulenkamp</a> kommt jeweils noch das unkomfortable Kopfsteinpflaster hinzu. Für Radfahrende, die von der <a>Walddörferstraße</a> links in die <a>Elsässer Straße</a> abbiegen möchten, gibt es bisher auch keine klare Führung.</p>
+    <p>In der ersten Fassung der Neuplanung löst sich das Problem: bis auf das kurze Stück in der <a>Elsässer Straße</a> gibt es ca. 1,80m breite, durchgängige Radfahrstreifen. Wo vorhanden, wird das Kopfsteinpflaster durch Asphalt ersetzt – zumindest für den Radverkehr. Im Eulenkamp verbleibt aufgrund des Denkmalschutzes der alte Belag in der Mitte.</p>
+    <p>Das Linksabbiegen in die <a>Elsässer Straße</a> wird zumindest klar geregelt: die Bettelampel rückt näher an die Kreuzung heran und gilt auch für indirekte Abbieger. Direkt über die KFZ-Spur im Mischverkehr abbiegen bleibt weiterhin erlaubt.</p>
+    <p>Sollte die Planung so umgesetzt werden, gibt es wenig zu meckern. Die Radfahrstreifen werden im Veloroutenstandard ausgeführt, sie sind durchgängig und asphaltiert. Auch die problematische Kreuzung wird entschärft. An Parkplätzen und Baumbestand ändert sich praktisch nichts. Umgesetzt werden soll die Maßnahme ab Herbst 2019.</p>
+    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007645">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 6-kreuzung-nordschleswiger-strasse:
   lastCheck: '2018-09-20'
   loc: [10.06863, 53.58096]
