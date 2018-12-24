@@ -1,6 +1,6 @@
 const fKey = 'F'.charCodeAt(0);
 const rathausmarktCoord = {longitude: 9.993148, latitude: 53.550974};
-const styleURL = 'https://unpkg.com/mapbox-gl-geocoder@2.0.1/dist/mapbox-gl-geocoder.css';
+const styleURL = 'https://unpkg.com/@mapbox/mapbox-gl-geocoder@2.3.0/dist/mapbox-gl-geocoder.css';
 
 class Geocoder {
   constructor(map, accessToken, hamburgBounds) {
@@ -38,7 +38,7 @@ class Geocoder {
     link.rel = 'stylesheet';
     document.getElementsByTagName('head')[0].appendChild(link);
 
-    import(/* webpackChunkName: "mapbox-gl-geocoder"  */ 'mapbox-gl-geocoder')
+    import(/* webpackChunkName: "mapbox-gl-geocoder"  */ '@mapbox/mapbox-gl-geocoder')
     .then((mod) => {
       this._map.addControl(new mod.default({
         accessToken: this._accessToken,
