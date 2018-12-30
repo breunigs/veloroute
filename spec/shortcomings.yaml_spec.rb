@@ -38,6 +38,11 @@ describe "shortcomings.yaml" do
     expect(shortcomings.values).to all(include('title'))
   end
 
+  it "has last check dates in the past" do
+    lastChecks = shortcomings.values.map { |v| Date.parse(v["lastCheck"]) }
+    expect(lastChecks).to all(be <= Date.today)
+  end
+
   context "integration", integration: true do
     before { allow_net_connect! }
     after { disable_net_connect! }
