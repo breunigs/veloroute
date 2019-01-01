@@ -639,6 +639,43 @@
     <p>Viele Änderungen brauchte der <a>Kleekamp</a> wirklich nicht, um für eine Veloroute geeignet zu sein. Der Kreisel – wenn er denn kommt – und die Belagerneuerung sind zu begrüßen. Warum man unbedingt an den 50 km/h festhalten will ist jedoch verwunderlich. Umgesetzt werden soll die Maßnahme ab Sommer 2019.</p>
     <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007540">Erläuterungsbericht zum ersten Entwurf</a> (unter Anlagen)</p>
 
+
+4-hoepen-ohlmoorgraben:
+  lastCheck: '2019-01-01'
+  loc: [10.01777, 53.64719]
+  type: planned-construction
+  title: "Höpen und Am Ohlmoorgraben (Veloroute 4)"
+  area: [[10.020126,53.646731],[10.020185,53.646820],[10.019453,53.646970],[10.018761,53.647127],[10.017798,53.647235],[10.017790,53.647674],[10.017854,53.648776],[10.017895,53.649318],[10.017766,53.649323],[10.017645,53.647167],[10.018766,53.647040],[10.020081,53.646750]]
+  start: 2019
+  images:
+  - -DC-ETqeShuWsz_wCNaaqQ
+  - 0wJk2_h1sBEFIsKvhKcCwA
+  - Y-v6EePZaSnMvu1-HeUOaQ
+  - 5QNPVR5YLZ3FAHayi0UrpA
+  - 6eonpbqpQTnkL-JcCrEBrA
+  - t5vkyQaaQKNdTjMATahvKw
+  - rGYSzrNu-3UI6x1QTfEdUA
+  - gM7nQs0YkbQDk9Hmlu3dYg
+  - 0tZhDbmzKvR5uJtf9DEN_g
+  - wCGKp6HfiwxBadZRxzKuQg
+  - hMF4hd3vIW59u__nRFmW8Q
+  - jpsborrznqjzF2tuJAAm9Q
+  - LS7IBuiJnHqh-u2WJfTahw
+  - 8K1_VI3b42uo58YAZZ-i4g
+  - TwTrcUsJg9MR6IrWTvMkww
+  - HU14xdDLKqNLXSlNK6ahWw
+  - gaVq0EhQVUv7r1nZE0Xc2w
+  - mkk0jcQcUjF3NGQnVPrBaQ
+  - FJ7C5i73u-hIeA6Gzc3wTw
+  - TG82YBWQxGojdhQLOkmQ7g
+  - ucDTeGBITGwJH-vEgz7Bbw
+  - TqNcUHGy8upNFJs_rQRIfg
+  grade: 1
+  desc: >
+    <p>Bisher sind sowohl der <a>Höpen</a> als auch der Fuß- und Radweg <a>Am Ohlmoorgraben</a> eher Stückwerk. Der erste Entwurf der Umgestaltung sieht eine durchgängige Fahrradstraße vor, wobei ein zusätzlicher Fußweg angelegt werden soll. Lediglich im <a class="place" href="#18/53.646856/10.019609">Bereich zwischen Willerstwiete und Willersweg</a> dürfen auch KFZ die Fahrradstraße benutzen. Durch eine Fußwegüberfahrt an der <a>Willerstwiete</a> bekommt der Radverkehr Vorfahrt.</p>
+    <p>Sollte die Planung so umgesetzt werden, gibt es nichts auszusetzen. Lediglich der Anschluss im Norden an den Knotenpunkt <a href="/quality/4-14-u-langenhorn-markt">Gehlengraben/Tangstedter Landstraße</a> scheint noch nicht abgestimmt zu sein und bietet Verbesserungsmöglichkeiten. Hoffentlich erfolgt noch eine Anpassung, da beide Maßnahmen 2019 umgesetzt werden sollen.</p>
+    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007339">Erläuterungsbericht und Pläne des ersten Entwurfs</a> (unter Anlagen)</p>
+
 4-immenhoeven-foorthkamp:
   lastCheck: '2018-12-29'
   loc: [10.01850, 53.66139]
@@ -1316,6 +1353,7 @@
   grade: 3
   title: "Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)"
   start: 2019Q1
+  area: [[10.017916,53.650717],[10.018007,53.650704],[10.017846,53.650300],[10.017836,53.649528],[10.018168,53.649553],[10.019021,53.649499],[10.018978,53.649369],[10.018227,53.649404],[10.018216,53.649232],[10.017219,53.649312],[10.016366,53.649331],[10.016371,53.649388],[10.017412,53.649356],[10.017412,53.649483],[10.017621,53.649525],[10.017680,53.649623],[10.017696,53.650304],[10.017884,53.650666]]
   images:
   - xCMDA_6f3-uBpZbjFgPnDw
   - QO1hSRRQVKrUpfpPyGIvXw
