@@ -28,7 +28,7 @@ module RSS
 
   def self.build_atom
     self.with_header do |items|
-      self.list(count: 10).each do |data|
+      self.list(count: 15).each do |data|
         items.new_item do |item|
           data.each { |k, v| item.public_send("#{k}=", v.to_s)}
         end
