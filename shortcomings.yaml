@@ -639,6 +639,25 @@
     <p>Viele Änderungen brauchte der <a>Kleekamp</a> wirklich nicht, um für eine Veloroute geeignet zu sein. Der Kreisel – wenn er denn kommt – und die Belagerneuerung sind zu begrüßen. Warum man unbedingt an den 50 km/h festhalten will ist jedoch verwunderlich. Umgesetzt werden soll die Maßnahme ab Sommer 2019.</p>
     <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007540">Erläuterungsbericht zum ersten Entwurf</a> (unter Anlagen)</p>
 
+4-moorreye:
+  lastCheck: '2019-01-02'
+  loc: [10.02058, 53.64130]
+  type: planned-construction
+  title: "Moorreye (Veloroute 4)"
+  area: [[10.019981,53.640176],[10.020207,53.640179],[10.020250,53.640758],[10.021516,53.642087],[10.021226,53.642173],[10.020110,53.641047],[10.020003,53.640828],[10.019901,53.640284],[10.019917,53.640179]]
+  start:
+  images:
+  - VCJC9bgqIuJWI2BEso4lUg
+  - zG2ZdZLY8BQX_-OUXFsFUw
+  - 2vqlmoUARn4idI0FG5NloQ
+  - gEWoswcdylO0BFQIOeFAQQ
+  - yqfw_wyZ4ceHjQ0oQUyfng
+  grade: 2
+  desc: >
+    <p>Die <a>Moorreye</a> ist wegen des geringen Verkehrsaufkommen gut zu beradeln. Entsprechend verwundlich ist auch die Ampel an der Kreuzung mit der <a>Flughafenstraße</a> und dem <a>Ohkamp</a>, die sowohl den KFZ- als auch den Radverkehr unnötig ausbremst. In einem ersten Entwurf soll sie daher verschwinden und durch einen Kreisel ersetzt werden. Im weiteren Verlauf sollen die kaum sichtbaren und im Bereich der Autotüren verlaufenden Radwege zurückgebaut werden, sodass der Radverkehr künftig nur noch im Mischverkehr fahren würde – so wie heute im nördlicheren Teil der <a>Moorreye</a>.</p>
+    <p>Die KFZ-Parkplätze verschieben sich teils, bleiben aber sonst erhalten. Das meint insbesondere auch das legale „halb auf dem Gehweg parken“. Da man aber sowohl Fußwege als auch die Fahrbahn neupflastert bzw. asphaltiert, leuchtet mir nicht ein warum man an diesem antiquiertem Konzept festhält. Da die Fläche sehr wahrscheinlich dauerhaft zum Parken verwendet wird, haben Zufußgehende keine Vorteile durch den „breiteren Gehweg“. Andererseits wird so suggeriert, das Parken auf dem Gehweg generell erlaubt sein könnte. Immerhin soll alles ordentlich ausgeschildert werden und es verbleiben akzeptable 2,0m Breite für den Gehweg.</p>
+    <p>Die Umsetzung ist für die erste Jahreshälfte 2019 vorgesehen.</p>
+    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007346">Erläuterungsbericht und Lageplan zum ersten Entwurf</a> (unter Anlagen)</p>
 
 4-hoepen-ohlmoorgraben:
   lastCheck: '2019-01-01'
