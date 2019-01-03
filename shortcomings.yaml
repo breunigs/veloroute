@@ -612,7 +612,7 @@
     <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007551">Erläuterungsbericht und Lagepläne</a> (unter Anlagen)</p>
 
 4-fuhlsbuetteler-damm:
-  lastCheck: '2018-01-03'
+  lastCheck: '2019-01-03'
   loc: [10.0213, 53.6252]
   area: [[10.023554,53.626148],[10.023272,53.626283],[10.021473,53.625464],[10.019273,53.624039],[10.018833,53.623816],[10.018522,53.623733],[10.018479,53.623542],[10.019112,53.623644],[10.019713,53.623962],[10.021140,53.624968],[10.021677,53.625286],[10.023415,53.626119]]
   type: planned-construction
