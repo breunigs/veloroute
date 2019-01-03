@@ -11,8 +11,8 @@ module RSS
     self.newest(shortcomings + image_updates, count: count)
   end
 
-  def self.build_html
-    entries = self.list(count: 4).map do |data|
+  def self.build_html(count: nil)
+    entries = self.list(count: count).map do |data|
       german_date = I18n.localize(data[:updated].to_date, format: :short)
       rel_path = data[:link].route_from(BASE)
       <<~ENTRY
@@ -89,7 +89,8 @@ module RSS
   end
 
   def self.newest(data, count:)
-    data.sort_by { |d| d[:updated] }.reverse.first(count)
+    all = data.sort_by { |d| d[:updated] }.reverse
+    count ? all.first(count) : all
   end
 
   def self.get_yaml(name)

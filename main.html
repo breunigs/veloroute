@@ -69,10 +69,12 @@
         </ol>
 
         <h3>Qualität und Ausbaustatus</h3>
-        <p>Wie weit Hamburg schon ist auf dem Weg zur „Fahrradstadt“ und wo noch Lücken sind. Zeigt auch aktuelle und geplante Baumaßnahmen. <a href="/quality">Detaillierte Qualitätsbewertung anzeigen</a>.</p>
+        <p>Wie weit Hamburg schon ist auf dem Weg zur „Fahrradstadt“ und wo noch Lücken sind. Zeigt auch aktuelle und geplante Baumaßnahmen.</p>
+        <p><a href="/quality">Detaillierte Qualitätsbewertung anzeigen</a></p>
 
         <h3>Letzte Änderungen</h3>
         @require('routes/geo/recent_changes.html')
+        <p><a href="/changes">Alle Änderungen anzeigen</a></p>
 
         <!-- show contact section only on main page for small screens -->
         <div class="only-mobile">
@@ -159,6 +161,23 @@
         <p>Nebenbei kann auch der Ausbaustatus der Velorouten beurteilt werden. Beachte, das die Einschätzung automatisch erfolgt und ggf. falsch ist.</p>
 
         <p>Die Daten werden in der OpenStreetMap gepflegt, d.h. auch die meisten „Outdoor Navis“ sollten die Velorouten kennen. Der <a href="https://github.com/breunigs/veloroute">Quelltext liegt auf GitHub</a>.</p>
+
+        <a href="/">zurück zur ersten Seite</a>
+      </div>
+
+      <div id="descchanges" class="desc">
+        <h3>Auf dem Laufenden bleiben</h3>
+        <ul>
+          <li>
+            <a href="/routes/geo/updates.atom">RSS-Feed</a> (benötigt einen <a href="https://www.rss-readers.org/">Feedreader</a>)
+          </li>
+          <li><a href="mailto:stefan-veloroute@breunig.xyz?subject=veloroute.hamburg%20Newsletter%20abonnieren&body=Hallo,%0A%0Abitte%20halte%20mich%20über%20über%20Baustellen,%20Änderungen%20an%20der%20Seite,%20usw.%20auf%20dem%20Laufenden.%20Nimm%20dazu%20einfach%20diese%20E-Mail%20Adresse.%0A%0ADanke!">E-Mail Newsletter abonnieren</a></li>
+        </ul>
+
+        <h3>Letzte Änderungen</h3>
+        @require('routes/geo/recent_changes_full.html')
+
+        <a href="/">zurück zur ersten Seite</a>
       </div>
 
       <!-- show section all the time on big screens -->

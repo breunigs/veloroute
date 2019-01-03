@@ -147,7 +147,8 @@ end
 def write_rss(_routes)
   require_relative 'rss'
   File.write("geo_tmp/#{RSS::FILENAME}", RSS.build_atom)
-  File.write("geo_tmp/recent_changes.html", RSS.build_html)
+  File.write("geo_tmp/recent_changes.html", RSS.build_html(count: 4))
+  File.write("geo_tmp/recent_changes_full.html", RSS.build_html)
 end
 
 BUFFER_IN_METERS = 10
