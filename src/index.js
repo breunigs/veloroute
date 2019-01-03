@@ -58,7 +58,7 @@ document.addEventListener('click', ev => {
     let m;
     if(places[placeName]) {
       console.debug("fitting bounds to place name");
-      map.fitBounds(places[placeName], {maxZoom: 14.5});
+      map.fitBounds(places[placeName], {maxZoom: 16.5});
     } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)$/)) {
       console.debug("flying to coords in href");
       map.flyTo({center: [m[3], m[2]], zoom: m[1]});
