@@ -585,6 +585,44 @@
       </li>
     </ul>
 
+4-knoten-hudtwalckerstrasse:
+  lastCheck: '2019-01-04'
+  loc: [9.99532, 53.59374]
+  grade: 2
+  area: [[9.995225,53.594555],[9.9953,53.594288],[9.99552,53.593988],[9.993986,53.593377],[9.993734,53.593269],[9.993986,53.593122],[9.995547,53.593711],[9.995906,53.593648],[9.996293,53.593543],[9.996378,53.594014],[9.996427,53.594074],[9.996336,53.59423],[9.995917,53.594087],[9.995676,53.594281],[9.995504,53.594243],[9.995397,53.594355],[9.995332,53.594546],[9.995247,53.594558]]
+  type: planned-construction
+  title: "Knoten Hudtwalckerstraße (Leinpfad bis Bebelallee, Veloroute 4)"
+  images:
+  - w0-TvuqAkt2SpwNot4eKTQ
+  - z_RX72UGuPehRfa2cEZ8bA
+  - 1iESK4kDBBsIiuPWHX6Fzw
+  - gEBhDUXnwkdgBBl3FSZUPA
+  - DW7ptiQcI3z7AN6bUB1UdA
+  - DzT7Uu-jmbP5wzvfB4T49w
+  - idwib6dbCJVPfIgOT2gKtw
+  - -snBgsi8MRJteXCTwcjM3A
+  - kKmzgSHW-uv-nuQcWlCajw
+  - oaYRpWbuYemGdxElq4BhgQ
+  - gPh_9kQJXsZDBg3_UoE4kw
+  - fW7ZRoldQSWRurmVu_lkeA
+  - 11UJW_QPNNeZWYgnpCPbrw
+  - NKmGE_gM2OapX2K583dxhQ
+  - iC3yF3owPxjKLfPMDoiX_Q
+  - 8imvjJ4dNqJ841HwpJwj-w
+  - FXHDg41V85LZeAu1QV8Vcw
+  - rup8OXmZ399MeWeyPujjLg
+  start: 2019Q3
+  desc: >
+    <p>Die Situation in der <a class="place" href="/#18/53.59364/9.99505">Hudtwalckerstraße</a> bzw. im ganzen Knoten vom <a class="place" href="/#18/53.59310/9.99440">Leinpfad</a> zur <a class="place" href="/#18/53.59423/9.99551">Bebelallee</a> ist unübersichtlich. Die Radwege sind viel zu schmal und verlaufen im Gehwegbereich, wobei die engen Kurven auch ohne Fußverkehr keine hohen Geschwindigkeiten erlauben.</p>
+    <p>Die Umplanung, die mittlerweile in zweiter Fassung vorliegt, verbessert das Teilstück in den meisten Punkten. Damit ist sie zwar besser als die wenig ambitionierte erste Version, die Qualität des Leinpfads erreicht jedoch auch sie nicht: eine eigentlich attraktive Führung über den <a>Winterhuder Kai</a> wird wegen des Kopfsteinpflasters und einer zu planenden Ampel an der <a class="place" href="/#18/53.59604/9.99483">Einmündung in die Bebelallee</a> als zu teuer abgelehnt.</p>
+    <p>Im Detail ergibt sich folgendes: die beiden Kreuzungen, also Leinpfad und Hudtwalckerstraße bzw. Hudtwalckerstraße und Bebelallee erhalten je eine voll ausgebaute Ampel. Das heißt, das alle Knotenarme eigene Ampeln erhalten und man zu Fuß auch auf allen Seiten eine Furt zum Queren erhält. Entsprechend ändern sich für den Radverkehr viele Fahrbeziehungen, wobei sich entlang der Veloroute gar nicht so viel ändert. Aber der Reihe nach:</p>
+    <p><strong>Leinpfad → Bebelallee</strong> (Veloroute 4 stadtauswärts): Am Leinpfad geht es über einen ampelfreien Rechtsabbieger auf den Hochbordradweg, der mit 1,75m Breite geplant ist. Das ist zwar nicht ganz Velorouten Standard, aber im Vergleich zur bisherigen Situation fast ein Paradies. Heute sollen sich dort entgegenkommende Radfahrende eine ca. 1,0m breiten Ruckelpiste im Autotürbereich teilen. An der Kreuzung muss Richtung Bebelallee indirekt links abgebogen werden – so ähnlich wie heute. Der Unterschied ist, das alle Fahrtrichtungen bedacht wurden, sodass man beim Warten den anderen Radfahrenden nicht mehr im Weg steht. Die dafür notwendigen Verschwenkungen sind nicht ideal, aber wohl nicht zu vermeiden. In der Bebelallee angekommen geht es auf den vorhandenen Hochbordradweg.</p>
+    <p><strong>Leinpfad → Bebelallee</strong> (Veloroute 4 stadteinwärts): statt wie bisher abenteuerlich von der Straße auf den Radweg geleitet zu werden, fährt man einfach gerade aus auf die Kreuzung weiter und ordnet sich im KFZ-Rechtsabbieger ein. Einige Meter vor der KFZ-Ampel gibt es dann aber doch eine Aufleitung auf einen Hochbordradweg der ohne Ampel daherkommt. Idealerweise kann man also ohne Anhalten rechts abbiegen. Der Radweg selbst erreicht nur absolute Mindestmaße von ca. 1,60m Breite, geht aber nach wenigen Metern in der Nebenstraße auf. Auch hier bleibt es beim Mischverkehr, wobei die Markierungen den Fahrradweg aber besser hervorheben. Am Ende der Nebenstraße gibt es wieder einen Radweg – diesmal mit ordentlichen 2,0m – dem man bis zum <a class="place" href="/#18/53.5932676/9.9939017">Winterhuder Kai</a> folgt. Dort biegt man dann links Richtung Leinpfad ab und kann die Kreuzung geradlinig queren. Das ist erheblich besser als wie bisher bereits vor der Kreuzung queren zu müssen.</p>
+    <p><strong>Weitere Fahrbeziehungen:</strong> Aus dem Leinpfad sind jetzt alle Fahrtrichtungen ohne Umwege möglich. Analog funktioniert das auch für den <a class="place" href="/#18/53.5932676/9.9939017">Winterhuder Kai</a>, da diese Kreuzung voll mit Ampeln ausgestattet wird. KFZ dürfen weiterhin nur rechts abbiegen, damit der Leinpfad für sie unattraktiv bleibt. An der <a class="place" href="/#18/53.5940118/9.9956463">Kreuzung mit der Bebelallee</a> sind ebenfalls alle Fahrtrichtungen offen, wobei jedoch nur indirekt links abgebogen werden kann. So erreicht man deutlich bequemer als vorher den Fahrradweg in der <a href="/#17/53.59342/9.997402">Sierichstraße</a>, egal aus welcher Himmelsrichtung man kommt. Aus der Sierichstraße Richtung Norden bleibt der Fahrradweg allerdings schmal, weil man die Autospuren sonst hätte verschieben müssen um genug Platz für Aufstellflächen, Rad- und Fußverkehr zu haben. Das wollte man den Autos aufgrund des ungewöhnlichen Fahrtrichtungswechsel (<a href="https://de.wikipedia.org/wiki/Sierichstra%C3%9Fe_%28Hamburg%29#Fahrtrichtungswechsel">Wikipedia</a>) aber dann doch nicht zumuten.</p>
+    <p><strong>Fazit:</strong> Die Planung wirkt auf mich gut. Schade sind die teils schmalen Radwege und die sich ständig ändernde Führungsform stadteinwärts (Schutzstreifen auf der Bebelallee, Mischverkehr, Hochbordradweg, Mischverkehr, Hochbordradweg und schließlich Querung der Kreuzung zum Leinpfad). Das dürfte aber zu verschmerzen sein, da man dennoch eine erheblich Verbesserung zum Bestand erzielt. Auch ist der spätere Vollausbau des <a>Winterhuder Kai</a>s zu einer Veloroute nicht durch die Neugestaltung ausgeschlossen – realistisch dürfte das aber nicht sein.</p>
+    <p>Der Umbau ist für Sommer 2019 angedacht.</p>
+    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007303">Erläuterungsbericht und Pläne des zweiten Entwurfs</a> (unter Anlagen)</p>
+
 4-kreuzung-maienweg-sengelmannstrasse:
   lastCheck: '2018-12-30'
   loc: [10.01570, 53.61713]
