@@ -70,22 +70,6 @@ def build_quality(routes)
   File.write("geo_tmp/quality_export.json", quality_export.to_json)
 end
 
-
-def resolve_names(routes)
-  shortcomings = YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
-  places = shortcomings.values.flat_map do |s|
-    _text, list = link_places(s["desc"])
-    list
-  end
-
-  places += routes.flat_map(&:all_named_places)
-
-  results = places.uniq.map do |place|
-    [place.name, place.bbox]
-  end.to_h
-  File.write("geo_tmp/places.json", results.to_json)
-end
-
 def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
@@ -178,7 +162,6 @@ routes = routes.map { |route, details| Route.new(route, details) }
 %i[
   build_quality
   build_map_geojsons
-  resolve_names
   render_abstract_routes
   build_image_lists
   check_relation_connected

@@ -10,6 +10,8 @@ def link_places(html_string)
     places << Place.find(link.text)
     link[:class] = "place"
     link[:href] = places.last.url
+    link["data-bbox"] = places.last.bbox.join(",")
+    link["data-maxzoom"] = 18
   end
   return d, places
 end

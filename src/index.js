@@ -2,7 +2,6 @@ import "../base.scss";
 
 import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker } from "./map";
 import AbstractRoute from "./abstract_route";
-import places from '../routes/geo/places.json';
 import State from './state';
 import Swap from './swap';
 import { addRouteChangeListener } from './state';
@@ -53,17 +52,16 @@ document.addEventListener('click', ev => {
   if(url.origin !== location.origin) return;
 
   if(anchor.classList.contains('place')) {
-    const placeName = anchor.textContent;
     scrollTo('#map');
     let m;
-    if(places[placeName]) {
-      console.debug("fitting bounds to place name");
-      map.fitBounds(places[placeName], {maxZoom: 16.5});
+    if(anchor.dataset.bbox) {
+      console.debug("fitting to bounds in data attr");
+      map.fitBounds(anchor.dataset.bbox.split(","), {maxZoom: anchor.dataset.maxzoom || 14});
     } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)$/)) {
       console.debug("flying to coords in href");
       map.flyTo({center: [m[3], m[2]], zoom: m[1]});
     } else {
-      console.debug(`Cannot find place ${placeName} in presolved list and it doesn't seem to be a mapref href (${anchor.href}).`)
+      console.debug(`Cannot find attributes on place ${anchor.textContent} that would know where to pan map (${anchor}).`)
     }
     ev.preventDefault();
     return;

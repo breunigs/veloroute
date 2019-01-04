@@ -37,7 +37,7 @@ class Place
   end
 
   def link
-    %|<a href="#{url}" class="place">#{name}</a>|
+    %|<a href="#{url}" data-bbox="#{bbox&.join(",")}" class="place">#{name}</a>|
   end
 
   def ==(other_place)
