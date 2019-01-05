@@ -31,20 +31,22 @@ end
 
 def get(url, max_retries: 1)
   retries ||= 0
+  retries += 1
   PARSED_CACHE[url] ||= begin
     JSON.parse(CACHE.get(url).to_s)
   end
+rescue ArgumentError => e
+  # most likely corrupted file, i.e. "marshal data too short"
+  warn "\n\nURL #{url} had the following error on read. This was try #{retries} of #{max_retries} #{e}"
+  CACHE.clear(url)
+  sleep(rand)
+  retries < max_retries ? retry : raise
 rescue Errno::ENOENT => e
   # cache failed to read file, simply retry and hope the race
   # condition went away
-  retries += 1
-  if retries < max_retries
-    retry
-  else
-    raise e
-  end
+  sleep(rand)
+  retries < max_retries ? retry : raise
 rescue JSON::ParserError => e
-  retries += 1
   warn "\n\nURL #{url} failed to parse. This was try #{retries} of #{max_retries} #{e}"
   if retries < max_retries
     sleep 5
