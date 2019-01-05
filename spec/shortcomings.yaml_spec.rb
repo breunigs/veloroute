@@ -25,9 +25,30 @@ RSpec::Matchers.define :resolve_with_200 do
   end
 end
 
+RSpec::Matchers.define :have_place_class do
+  match do |a|
+    a.classes.include?("place")
+  end
+end
+
+RSpec::Matchers.define :have_place_link_start do
+  match do |a|
+    url = a.attr(:href)
+    url.start_with?("/#") || url.start_with?("#")
+  end
+end
+
 describe "shortcomings.yaml" do
   let(:shortcomings) do
     YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
+  end
+
+  let(:links) do
+    shortcomings
+     .values
+     .map { |s| s["desc"] }
+     .map { |desc| Nokogiri::HTML::fragment(desc) }
+     .flat_map { |html| html.css("a[href]") }
   end
 
   it "uses only URL safe names" do
@@ -43,16 +64,25 @@ describe "shortcomings.yaml" do
     expect(lastChecks).to all(be <= Date.today)
   end
 
+  it "links that look like places include proper class" do
+    placehrefs = links.select do |a|
+      url = a.attr(:href)
+      url.start_with?("/#") || url.start_with?("#")
+    end
+    expect(placehrefs).to all(have_place_class)
+  end
+
+  it "place classes have proper links" do
+    placehrefs = links.select { |a| a.classes.include?("place") }
+    expect(placehrefs).to all(have_place_link_start)
+  end
+
   context "integration", integration: true do
     before { allow_net_connect! }
     after { disable_net_connect! }
 
     it "links only valid URLs" do
-      urls = shortcomings
-        .values
-        .map { |s| s["desc"] }
-        .map { |desc| Nokogiri::HTML::fragment(desc) }
-        .flat_map { |html| html.css("a[href]") }
+      urls = links
         .map { |a| a.attr(:href) }
         .select { |url| url.match(%r{^https?://}i) }
 
