@@ -15,3 +15,12 @@ def link_places(html_string)
   end
   return d, places
 end
+
+def exernal_new_tab(html_string)
+  d = Nokogiri::HTML::fragment(html_string)
+  d.css("a").each do |link|
+    next unless link.attr(:href)&.downcase.start_with?(%r{https?://})
+    link[:target] = "_blank"
+  end
+  return d
+end

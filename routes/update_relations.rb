@@ -103,6 +103,7 @@ def build_image_lists(routes)
   shortcomings.each do |name, details|
     quality[name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
     details["desc"] = link_places(details["desc"])[0].to_s
+    details["desc"] = exernal_new_tab(details["desc"]).to_s
     # use list of images to show affected area if no specific one is defined
     shortcomings[name]["area"] ||= coords_to_buffered_poly(quality[name][:loc])
   end
