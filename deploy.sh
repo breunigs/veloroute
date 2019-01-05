@@ -5,6 +5,8 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi
 
+set -e
+
 cd $(dirname $0)
 sudo -u www-data git pull
 systemctl reload nginx
