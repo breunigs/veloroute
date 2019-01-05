@@ -25,6 +25,7 @@ const addRouteChangeListener = (...funcs) => {
 
 class State {
   constructor(map) {
+    this._preventHistoryUpdate = false;
     this._status = readFromHash();
     this._routeChanged();
     console.debug("initial status", this._status);
@@ -35,6 +36,12 @@ class State {
     window.addEventListener('hashchange',  () => {
       this._status = readFromHash();
       this._routeChanged();
+    });
+
+    window.addEventListener('popstate',  (evt) => {
+      console.debug("popstate", document.location.pathname)
+      this._preventHistoryUpdate = true;
+      this._setCurrentRoute(document.location.pathname.substr(1));
     });
   }
 
@@ -168,6 +175,10 @@ class State {
 
   _routeChanged() {
     console.debug(`route changed to: ${this._status.route}`)
+    if(!this._preventHistoryUpdate) {
+      window.history.pushState(null, "", this._status.route);
+    }
+    this._preventHistoryUpdate = false
     routeChangeListeners.forEach((f) => f(this._status.route));
   }
 }
