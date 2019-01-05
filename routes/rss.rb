@@ -30,7 +30,10 @@ module RSS
     self.with_header do |items|
       self.list(count: 15).each do |data|
         items.new_item do |item|
-          data.each { |k, v| item.public_send("#{k}=", v.to_s)}
+          data.each do |k, v|
+            next if %i[lonLat image].include?(k)
+            item.public_send("#{k}=", v.to_s)
+          end
         end
       end
     end.to_s
