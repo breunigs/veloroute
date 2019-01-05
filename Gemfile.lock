@@ -73,7 +73,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    webcache (0.3.0)
+    webcache (0.5.1)
       open_uri_redirections (~> 0.2)
     webmock (3.4.2)
       addressable (>= 2.3.6)
