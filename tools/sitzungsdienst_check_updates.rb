@@ -7,8 +7,7 @@ require 'parallel'
 require 'yaml'
 
 SEEN_LINKS_FN = File.join(__dir__, './sitzungsdienst_seen_links.txt')
-# Note: Mitte and Nord currently do not attach PDFs :(
-# todo: bergedorf harburg
+# Note: Mitte and Bergedorf(?) currently do not attach PDFs :(
 DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord wandsbek bergedorf harburg]
 FILTER_KEYWORDS = %w[velo straße radverkehr fahrrad verschickung]
 
