@@ -43,7 +43,9 @@ module RSS
         link: BASE.merge("/quality/#{key}"),
         title: self.shortcoming_title(details, key),
         updated: self.to_time(details['lastCheck']),
-        description: details['desc'] + '<br>' + img_tags
+        description: details['desc'] + '<br>' + img_tags,
+        lonLat: details['loc'].reverse,
+        image: Mapillary.image_url(details["images"].first)
       }
     end
   end
@@ -70,7 +72,9 @@ module RSS
         link: BASE.merge(path),
         title: details["title"],
         updated: self.to_time(details["date"]),
-        description: self.to_img_list(details['startImage'])
+        description: self.to_img_list(details['startImage']),
+        lonLat: lonLat,
+        image: Mapillary.image_url(details['startImage'])
       }
     end
   end

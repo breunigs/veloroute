@@ -9,3 +9,5 @@ gem 'rgeo'
 gem 'rgeo-geojson'
 gem 'webcache'
 gem 'webmock'
+
+gem 'twitter'
