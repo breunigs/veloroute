@@ -132,8 +132,10 @@
       "inward_niendorf": [
         { "seq": "9nylhfqzo9ypatev56rg8i", "from": "AxG-1fliz1Qv1Z6Yn8CZBg", "to": "5H5M2Mt3RxZ47pV5hCN2vQ"},
         { "seq": "nQUpYstYNOy0ryHBblhVlQ", "from": "VII9jUcwLd-72iSTXQUnBQ", "to": "A5btE19E5rQRJHB4ldGvwA"},
-        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "q8EX4NZXdqI9mOSLhSeS6g", "note": "missing images: https://www.komoot.de/tour/40332412"},
-        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "j7XuEo5sjhxBJ6-7HepNng", "to": "iNhW9ny-vn2gnNCVOI0QAg"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "qTxkwPO7eZHCtrpB12SW2w", "to": "dCBGy8jrobNeQRD1yfzsEw"},
+        { "seq": "JOFToA8OnAK6u8r8RihURg", "from": "EVe7W0pVY5ENFoST0xqmaQ", "to": "i_x5k8U4cJeUgtXednmUIQ"},
+        { "seq": "qPHCXStOJhU3tRMldn7oag", "from": "XWUpjvT20Sxjc2zdRUaGGQ", "to": "NezbHPhFKnzs1HpvIh3UCA"},
+        { "seq": "9nylhfqzo9ypatev56rg8i", "from": "xO9lZnyOj4Jlfurpn8Iu4g", "to": "iNhW9ny-vn2gnNCVOI0QAg"},
         { "seq": "jNXCNvonju--8JTdbuGaUg", "from": "75i6DRVsX98CbBq8F2uAGA", "to": "vibIJ0kXv6uAWPWvdADLSA"},
         { "seq": "z0aYuEuVTJoXBwN6hsmbzA", "from": "fQO1gynMHaxCkqoMQ0gRAw", "to": "Zbs5ACMM-YsoEm6ExKQcqA"},
         { "seq": "76q3ToTfee0iT9wFSBiSdA", "from": "wbqrdLbbz6ouo9KKUw8jRw", "to": "yDT-ep_uixx9pGhr8xf3eA"},
