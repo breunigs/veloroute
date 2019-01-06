@@ -56,7 +56,7 @@ class GeoJSON
 
     # handle one ways
     groups.each do |offset, ways|
-      oneways, bothways = *ways.partition { |way| way[:oneway] }
+      oneways, bothways = *ways.partition { |way| only_used_as_oneway?(way) }
 
       features << to_geojson_feature(to_coord_array(oneways, reversable: false), offset: offset, oneway: true)
       features << to_geojson_feature(to_coord_array(bothways, reversable: true), offset: offset)
@@ -77,8 +77,12 @@ class GeoJSON
     end
   end
 
+  def only_used_as_oneway?(way)
+    way[:oneway] && collisions.fetch(way[:id]).fetch(:only_oneway)
+  end
+
   def bucket_name(way)
-    coll = collisions[way[:id]]
+    coll = collisions.fetch(way[:id]).fetch(:relation_ids)
     # Manage clutter around Rathausmarkt with many overlapping routes, but mostly
     # only for short parts and not really in a meaningful way.
     return "overflow" if coll&.size >= 4 || way[:attrs]["name"] == "Rathausmarkt"
