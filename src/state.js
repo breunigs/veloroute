@@ -128,6 +128,7 @@ class State {
   }
 
   _setCurrentRoute(routeName, _lngLat, eventType) {
+    if(eventType != "quality") this.hidePolygon();
     if(!routeName) return this._resetRoute();
     this._status.route = eventType === "quality" ? "quality" : routeName;
     this._routeChanged();
