@@ -1425,11 +1425,30 @@
     <p>Damit die automatisch Erkennung funktioniert, sollte man sich möglichst an die vorgesehene Radführung halten. Zur Überprüfung kann man auf den Taster für Zufußgehende schielen: leuchtet dieser auf wurde für den Radfahrenden Grün angefordert. Besser wäre eine klare Anzeige mit „Signal kommt“ am Signalgeber. So wäre die Chance größer durch Langsamfahren nicht absteigen zu müssen.</p>
     <p><s>Die Kreuzung wurde erst kürzlich umgestaltet, wobei der Fokus nach wie vor auf dem motorisiertem Verkehr liegt. Dies ist bei einer Auf- bzw. Auffahrt einer Autobahn auch wenig verwunderlich. Völlig unklar ist jedoch, warum man die Querungen als Bettelampeln ausgeführt hat. An dieser Stelle werden wohl die meisten in die Falle tappen und ewig warten, bevor sie den Taster einige Meter weiter links sehen. Die Schaltzeiten sind auch nicht besonders schnell – man erhält also nicht kurz nach Betätigung grün. Mindestens sollte ein weiterer Taster in Radwegnähe installiert werden.</s></p>
 
+4-knoten-hudtwalckerstrasse:
+  lastCheck: '2019-01-06'
+  loc: [9.9027, 53.4739]
+  grade: 1
+  area: [[9.900943,53.473988],[9.901026,53.473848],[9.901222,53.473904],[9.904668,53.473843],[9.904668,53.474063],[9.904196,53.47407],[9.90381,53.474003],[9.901283,53.47405],[9.90116,53.474047]]
+  type: planned-construction
+  title: "Zum Dubben (neue Führung, Veloroute 10)"
+  images:
+  - uhF3_NofxYm1vjevwPb6yg
+  - Sjo0PVQ7bHMbJD2w6fV0ZA
+  - eYKtuR2p8DF9RcJFow5sHQ
+  start: 2019Q2
+  desc: >
+    <p>In dem ersten Entwurf ist vorgesehen die Straße <a>Zum Dubben</a> beidseitig mit Radfahrstreifen in 2,25m Breite auszuführen. Die Gehwege und der einseitig vorhandene Hochbordradweg werden entsprechend angepasst bzw. entfernt.</p>
+    <p>Mittelfristig soll die Straße <a>Dubben</a> eine Fahrradstraße werden. Dazu muss aus rechtlichen Gründen aber offenbar erst der weitere Verlauf der neuen Führung über den <a>Heykenaubrook</a> fertiggestellt werden. Dann soll auch nochmal die Einmündung vom <a>Dubben</a> in <a>Zum Dubben</a> angepasst werden. Als Laie erscheint mir das etwas übertrieben und ich finde bis auf die Beschilderung könnte das auch in einem Rutsch erledigt werden.</p>
+    <p>Umgesetzt werden soll der erste Teil bis Mitte 2019, die Vorstellung des Entwurfs erfolgt Mitte Januar.</p>
+    <p><a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005980">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 10-cuxhavener-strasse:
   lastCheck: '2018-11-09'
   loc: [9.89445, 53.47173]
   loc2: [9.90124, 53.47295]
   grade: 3
+  area: [[9.901235,53.473872],[9.901096,53.474082],[9.900935,53.47407],[9.900795,53.474287],[9.900302,53.474191],[9.900752,53.473418],[9.900978,53.472895],[9.901085,53.472384],[9.901021,53.471273],[9.900495,53.471273],[9.899358,53.471439],[9.898435,53.471656],[9.896729,53.471726],[9.894353,53.471847],[9.893779,53.471865],[9.892593,53.471882],[9.89258,53.471763],[9.894302,53.471689],[9.895442,53.471603],[9.896107,53.471568],[9.897544,53.471515],[9.898008,53.471477],[9.898867,53.471317],[9.900111,53.471062],[9.900723,53.471028],[9.901544,53.470912],[9.901557,53.471014],[9.902442,53.470974],[9.902989,53.470936],[9.903003,53.471011],[9.901519,53.471105],[9.901412,53.471175],[9.90153,53.472368],[9.901385,53.472933],[9.901192,53.473546],[9.90101,53.473824]]
   type: planned-construction
   title: "Cuxhavener Straße bis zum Dubben (neue Führung, Veloroute 10)"
   start: 2019
