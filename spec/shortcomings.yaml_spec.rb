@@ -52,7 +52,7 @@ describe "shortcomings.yaml" do
   end
 
   it "uses unique keys" do
-    raw = File.read(path)
+    raw = File.read(path, encoding: 'UTF-8')
     keys = raw.split("\n").grep(/^[a-z0-9_-]+:/).map { |k| k.chomp(":") }
     expect(keys).to match_array shortcomings.keys
   end
