@@ -39,9 +39,9 @@ RSpec::Matchers.define :have_place_link_start do
 end
 
 describe "shortcomings.yaml" do
-  let(:shortcomings) do
-    YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
-  end
+  let(:path) { File.join(__dir__, "..", "shortcomings.yaml") }
+  let(:shortcomings) { YAML.load_file(path) }
+
 
   let(:links) do
     shortcomings
@@ -49,6 +49,12 @@ describe "shortcomings.yaml" do
      .map { |s| s["desc"] }
      .map { |desc| Nokogiri::HTML::fragment(desc) }
      .flat_map { |html| html.css("a[href]") }
+  end
+
+  it "uses unique keys" do
+    raw = File.read(path)
+    keys = raw.split("\n").grep(/^[a-z0-9_-]+:/).map { |k| k.chomp(":") }
+    expect(keys).to match_array shortcomings.keys
   end
 
   it "uses only URL safe names" do
