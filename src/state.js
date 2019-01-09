@@ -177,7 +177,7 @@ class State {
   _routeChanged() {
     console.debug(`route changed to: ${this._status.route}`)
     if(!this._preventHistoryUpdate) {
-      window.history.pushState(null, "", this._status.route);
+      window.history.pushState(null, "", this._buildUrl());
     }
     this._preventHistoryUpdate = false
     routeChangeListeners.forEach((f) => f(this._status.route));

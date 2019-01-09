@@ -210,7 +210,6 @@ export class Quality {
   }
 
   showShortcoming() {
-    console.log("YAY CALLED: showShortcoming")
     if(!this._state.getShortcomingName()) return this._state.hidePolygon();
     displayShortcoming(this._imagesPromise, this._state.getShortcomingName(), this._state);
   }
