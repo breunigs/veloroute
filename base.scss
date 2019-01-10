@@ -71,6 +71,7 @@ ul, ol, p {
 .page-quality #descquality,
 .page-projekt #descprojekt,
 .page-changes #descchanges,
+.page-bau #descbau,
 .page-1 #desc1,
 .page-2 #desc2,
 .page-3 #desc3,
@@ -551,5 +552,22 @@ ol.hide-bullets {
     display: block;
     height: 0;
     clear: both;
+  }
+}
+
+.construction {
+  .duration {
+    color: #999;
+    float: right;
+    padding-left: 0.5em;
+  }
+
+  &.grouped {
+    list-style-type: none;
+    padding: 0;
+
+    strong {
+      font-weight: normal;
+    }
   }
 }

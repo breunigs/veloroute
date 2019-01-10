@@ -3,6 +3,7 @@
   lastCheck: '2018-10-13'
   loc: [9.86589, 53.57786]
   grade: 4
+  type: planned-construction
   images:
   - z9E5eNmWX8KT_R8763EcrQ
   - ty0MjVgKYoD1mibL5sHjVQ
@@ -18,6 +19,7 @@
   grade: 2
   title: "Thadenstraße (Veloroute 1)"
   type: planned-construction
+  start: 2019Q3
   images:
   - _tVvDmNLaJLRn4cGUP0dUQ
   - GBBwCOLt9qt81oRLK5LFKA
@@ -133,6 +135,7 @@
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
   grade: 4
+  type: planned-construction
   title: "Jürgensallee (Veloroute 1)"
   images:
   - jBJXEWooDgi51g8n_8eY9Q
@@ -148,6 +151,7 @@
   lastCheck: '2018-09-29'
   loc: [9.80107, 53.57320]
   loc2: [9.79920, 53.57482]
+  type: issue
   grade: 5
   images:
   - pfVytKPTsgFca__kzZwe5Q
@@ -160,6 +164,7 @@
   lastCheck: '2018-09-28'
   loc: [9.7717, 53.5805]
   grade: 1
+  type: planned-construction
   title: "Alte Sülldorfer Landstraße (Veloroute 1)"
   images:
   - gO0wvvG-aVzGadqAQTmhSA
@@ -174,6 +179,8 @@
   lastCheck: '2018-09-28'
   loc: [9.76309, 53.58120]
   grade: 1
+  type: planned-construction
+  start: 2020
   title: "Klövensteenweg (Veloroute 1)"
   images:
   - LQgBS_-O4gJ8PbDHJXSY6w
@@ -190,6 +197,7 @@
   lastCheck: '2018-08-30'
   loc: [9.96598, 53.56228]
   grade: 2
+  type: construction
   title: "Lagerstraße (Veloroute 2)"
   images:
   - BJ2cODwYJW3kj5WUKrS1Ww
@@ -208,6 +216,7 @@
   loc: [9.96355, 53.5695]
   grade: 3
   title: "Weidenallee (Veloroute 2)"
+  type: planned-construction
   images:
   - BJOCAkBbQKLaFEuTJLHT4A
   desc: <p>Die Kreuzung wird gerade umgebaut und der Radverkehr erstmals ordentlich bedacht. So wird eine Querung entlang der Veloroute 2 deutlich komfortabler und zumindest stadtauswärts auch nur eine Ampel beinhalten. Richtung Süden zähle ich
@@ -227,6 +236,7 @@
   loc2: [9.95389, 53.57331]
   title: "Weidenstieg und Tornquiststraße (Veloroute 2)"
   grade: 4
+  type: planned-construction
   images:
   - mxjcA_A77IgW1Gf3_OEOhA
   - tw7jg7L-CGuZDLfZVnyQdw
@@ -268,6 +278,7 @@
   lastCheck: '2018-09-29'
   loc: [9.91146, 53.60261]
   grade: 4
+  type: planned-construction
   title: "Reichsbahnstraße (Veloroute 2)"
   images:
   - jcaiYgNA-6p2bjW13n0EJw
@@ -282,6 +293,7 @@
   lastCheck: '2018-09-29'
   loc: [9.93894, 53.58042]
   grade: 5
+  type: planned-construction
   title: "Langenfelder Damm (Veloroute 2)"
   images:
   - ugStveYUBk2IxkEpXfCzww
@@ -343,6 +355,7 @@
   lastCheck: '2018-10-13'
   loc: [9.92897, 53.59813]
   grade: 3
+  type: planned-construction
   title: "Wördemanns Weg (Veloroute 2)"
   images:
   - bd9nr2pm9Vu7KRxZrmYYBg
@@ -365,6 +378,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9892, 53.5638]
   grade: 2
+  type: planned-construction
   title: "Moorweidenstraße (Veloroute 3)"
   images:
   - DQcQt76fvEaVnR03MiUqWg
@@ -393,6 +407,8 @@
   loc: [9.9875, 53.5642]
   loc2: [9.9856, 53.5702]
   grade: 2
+  start: 2019Q3
+  type: planned-construction
   title: "Schlüterstraße (Veloroute 3)"
   images:
   - r_HRIzCf350HHIUWC7Kwmg
@@ -431,6 +447,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9572, 53.5880]
   grade: 5
+  type: planned-construction
   title: "Stresemannallee (Veloroute 3)"
   images:
   - QdUOwBErhD0kEt4MWLOjgw
@@ -462,6 +479,8 @@
   lastCheck: '2018-10-13'
   loc: [9.9561, 53.6080]
   grade: 2
+  type: planned-construction
+  start: 2019Q2
   title: "Niendorfer Straße (Veloroute 3)"
   images:
   - G05LUvr7cbZTl6sSzL8P0g
@@ -495,6 +514,8 @@
   lastCheck: '2018-10-13'
   loc: [9.9515, 53.6318]
   grade: 2
+  type: planned-construction
+  start: 2019Q2
   title: "Paul-Sorge-Straße (Veloroute 3)"
   images:
   - 4FYlWhgOZenWWneeU0wmSA
@@ -526,6 +547,7 @@
   lastCheck: '2018-08-19'
   loc: [9.994009366, 53.55777163]
   grade: 3
+  type: issue
   title: "Kreuzung am Neuen Jungfernstieg (Veloroute 4)"
   images:
   - EWyGBNzBlzNnwh3YTvxQlw
@@ -539,6 +561,7 @@
   loc: [9.9974312, 53.5618547]
   grade: 2
   title: "Radweg am Alsterufer (Veloroute 4)"
+  type: planned-construction
   images:
   - VPpu2II1l1pVfCmb_xHNwA
   - Br7ein7urhbqOqgM5rzYIg
@@ -564,6 +587,7 @@
   loc: [9.9986931, 53.5796807]
   grade: 3
   title: "Krugkoppel (Veloroute 4)"
+  type: planned-construction
   images:
   - vKwtpDBcYeCCRj8V-X_48A
   - CUV_L1y-MQpMuJ0UK1zXhQ
@@ -711,7 +735,7 @@
   type: planned-construction
   title: "Moorreye (Veloroute 4)"
   area: [[10.019981,53.640176],[10.020207,53.640179],[10.020250,53.640758],[10.021516,53.642087],[10.021226,53.642173],[10.020110,53.641047],[10.020003,53.640828],[10.019901,53.640284],[10.019917,53.640179]]
-  start:
+  start: 2019Q2
   images:
   - VCJC9bgqIuJWI2BEso4lUg
   - zG2ZdZLY8BQX_-OUXFsFUw
@@ -790,6 +814,8 @@
   lastCheck: '2018-10-10'
   loc: [10.01641, 53.56284]
   grade: 1
+  type: planned-construction
+  start: 2019-05
   title: "Hohenfelder Bucht (Veloroute 5 und 6)"
   images:
   - H6PBpY6a76addwmL7WtYWg
@@ -832,10 +858,11 @@
   - 53.57131
   grade: 2
   title: "Hamburger Straße (Veloroute 5)"
+  type: planned-construction
   images:
   - oPhEF4xaDxjmdQgKpA4suQ
   - ALBPoGFNcmC4DHxMrB9hzA
-  - "-Ip-aEKFFDg3oJyA3LXVJw"
+  - -Ip-aEKFFDg3oJyA3LXVJw
   - tmjBsBqGu0i4fxArgmFIPw
   - bS02S9MFvW6_OBxp7FkJew
   - MvuB5vMHffYbGdZVJaFjJw
@@ -845,12 +872,11 @@
   desc: <p>Im Bereich der Einmündungen <a>Finkenau</a> und <a>Richardstraße</a> soll der Radweg jeweils vom Hochbord auf eine Fahrradspur geleitet werden. Dies soll die Sichtbarkeit der Radfahrende für rechts abbiegende KFZ erhöhen.</p>
     <p>Weiter Richtung Norden, zwischen <a>Wagnerstraße</a> und <a>Wohldorferstraße</a> soll der Radverkehr ebenfalls auf eine 2,0m breite Spur verlegt werden. Da die Einmündungen hier dicht beieinander liegen ist die Spur hier jedoch durchgängig.</p>
     <p>Nicht geändert werden vorerst die große Kreuzung an der <a>Rönnhaidbrücke</a>, da diese im Rahmen der <a href="/13">Veloroute 13</a> überarbeitet werden soll. Die arg schlechte Stelle nach dem <a>Polizeikommissariat 31</a> wird noch provisorisch
-    ausgebessert bis die Bauarbeiten dort fertig sind. Warum die Radwege im sonstigen Planungsgebiet (von <a>U-Mundsburg</a> bis <a>U-Dehnhaide</a>) bei 1,5m belassen werden ist mir nicht ganz klar – aktuelle Mindestbreite sind 1,60m. Qualitativ
-    ist der Radweg sonst aber in gutem Zustand.</p>
+    ausgebessert bis die Bauarbeiten dort fertig sind. Warum die Radwege im sonstigen Planungsgebiet (von <a>U-Mundsburg</a> bis <a>U-Dehnhaide</a>) bei 1,5m belassen werden ist mir nicht ganz klar – aktuelle Mindestbreite sind 1,60m. Qualitativ ist der Radweg sonst aber in gutem Zustand.</p>
     <p>Die Bauarbeiten sollen noch 2018 stattfinden. Weitere Infos:</p>
     <ul>
       <li>
-        <a href="https://lsbg.hamburg.de/contentblob/8562206/b5d77551bff25b2c761cf2e9ec6e3e10/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
+        <a href="https://lsbg.hamburg.de/contentblob/8562206/b5d77551bff25b2c761cf2e9ec6e3e10/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-plaene.pdf">Lageplan</a>
       </li>
       <li>
         <a href="https://lsbg.hamburg.de/contentblob/8562200/f1b507756545a32010ba75b0259c3e33/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
@@ -900,6 +926,7 @@
   lastCheck: '2018-10-25'
   loc: [10.08033, 53.61918]
   grade: 5
+  type: planned-construction
   images:
   - xoQHcRZwJCYogfTPJBNQvQ
   - L03oD1LsaLg-OQgNqp9Q8Q
@@ -978,6 +1005,7 @@
   lastCheck: '2018-08-29'
   loc: [10.0398, 53.5710466]
   grade: 3
+  type: issue
   title: "Kreuzung Wagnerstraße (Veloroute 6)"
   images:
   - 3Q_8bqul0x2tKpIZSItg-g
@@ -988,6 +1016,7 @@
   lastCheck: '2018-08-29'
   loc: [10.058636, 53.5761309]
   grade: 5
+  type: issue
   title: "Kreuzung am S-Bahnhof Friedrichsberg (Veloroute 6)"
   images:
   - v5vTbdoRNbrnLCjqE7SNFg
@@ -1137,6 +1166,7 @@
   lastCheck: '2018-10-17'
   loc: [10.12258, 53.61614]
   grade: 4
+  start: 2019
   type: planned-construction
   title: Neusurenland (Veloroute 6, „Abschnitt W19“)
   images:
@@ -1228,6 +1258,8 @@
   - QbMhNQohRUTiO-MqH17PFg
   - 0qoA_0UyVsvyXMdu0oxJGw
   title: "Steindamm (Veloroute 7)"
+  type: planned-construction
+  start: 2019
   desc: >
     <p>Bisher zeichnet sich der Steindamm vor allem durch Kopfsteinpflaster in Parkbereichen und Hochbordradwege aus. Letztere sind qualitativ gar nicht mal so schlecht, aber für das Radaufkommen zu schmal und werden häufig von Zufußgehenden
     und Lieferverker mitbenutzt. Entsprechend langsam und unbequem kommt man aktuell voran.</p>
@@ -1246,6 +1278,7 @@
   loc: [10.07204, 53.56981]
   grade: 4
   title: "Kreuzung Am alten Posthaus (Veloroute 7)"
+  type: issue
   images:
   - 6ITXbtBuSgLydxBhSJgfHg
   - pqry-NwVpmEiJmzIBepBhQ
@@ -1306,6 +1339,8 @@
   lastCheck: '2018-10-25'
   loc: [10.1212, 53.5786]
   grade: 1
+  start: 2019
+  end: 2020
   images:
   - ps5g0Tk2M2RQRNSIE-zCww
   - PW6s3Y4L6Qo3L1CV9553gA
@@ -1336,6 +1371,8 @@
   lastCheck: '2018-08-30'
   loc: [10.1499112, 53.5955692]
   grade: 2
+  type: planned-construction
+  start: 2018
   images:
   - pwuW4ksOJZlXcXePhA9m8Q
   - E6iwb1GKHWU-NRBVyG9ibw
@@ -1354,6 +1391,7 @@
   lastCheck: '2018-10-21'
   loc: [10.1310, 53.5752]
   grade: 2
+  type: planned-construction
   images:
   - yOw9ipZOLz9HNFxE8VFoBQ
   - djTqsJALkcmQQIuKoxFQRw
@@ -1394,6 +1432,7 @@
   - nZbPswAP9fWvW1NzakDBxw
   - qWk23UyOXMyQt7cNZisGDw
   start: 2019Q3
+  type: planned-construction
   title: Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)
   desc: >
     <p>Die <a>Rahlstedter Bahnhofstraße</a> zwischen <a>Scharbeutzer Straße</a> und <a>Amtsstraße</a> ist momentan vor allem für den Autoverkehr ausgelegt. Stadteinwärts ist die Radverkehrsführung nur ein kurzes Stück vorhanden und es gibt keine klare Führung wie weitergefahren werden soll. In der Gegenrichtung ist der vorhandene Radweg zwar etwas länger, fängt aber genauso unvermittelt an.</p>
@@ -1570,6 +1609,7 @@
   images:
   - xCMDA_6f3-uBpZbjFgPnDw
   - QO1hSRRQVKrUpfpPyGIvXw
+  type: planned-construction
   desc: <p>Das die Führung der Veloroute 4 in Südrichtung eher umständlich ist, braucht nicht erwähnt zu werden. Aber auch die sonstigen Querungen zeichnen sich durch zu schmale Wege, enge Kurven und Wegkonflikte mit Zufußgehenden bzw. Wartenden an den Bushaltestellen. Dies gilt sowohl für Route 4 als auch für Route 14.</p>
     <p>Diese Unzulänglichkeiten wurden bei der Umgestaltung dieses Knotenpunkts aber erkannt und in der Planung behoben – zumindest soweit ich dies als Laie erkennen kann. Baubeginn soll im 1. Quartal 2019 liegen. Weitere Infos:</p>
     <ul>
@@ -1602,6 +1642,7 @@
   loc: [9.99704, 53.4952812]
   grade: 4
   title: "Wilhelmsburger Inselpark (Veloroute 11)"
+  type: issue
   images:
   - ZkF2uoZ-qCldmp5Mb_oE6w
   desc: <p>Dieses Teilstück durch den Wilhelmsburger Inselpark ist nachts gesperrt. Ich hatte dazu auch die Parkleitung gefragt, wie die Führung zwischen 0:00 und 5:00 Uhr ist, aber keine Antwort erhalten. Da aktuell die Autobahn (Wilhelmsburger Reichsstraße) verlegt wird, ändert sich die genaue Route aber vielleicht nochmal.</p>
@@ -1650,6 +1691,7 @@
   loc2: [9.97730, 53.46089]
   grade: 3
   title: "Innenstadt Harburg (Veloroute 11)"
+  type: planned-construction
   images:
   - e0xm7filkqb-1zXmVdoi7w
   - Poh5OCDMVVe7A4OCPE_dLQ
@@ -1722,6 +1764,8 @@
   - ny4lNh6cyFK1SMRZRKtG9g
   - SKM7v1-z3pgbPLBbJ0C7Jg
   - 5c7IObdCCnKsADD1Eveo8w
+  type: planned-construction
+  start: 2020
   desc: >
     <p>Aktuell sind die Radwege in der <a>Maria-Louisen-Straße</a> mangelhaft. Da sie viel zu schmal sind gibt es häufig Konflikte mit Zufußgehenden – und ist laut Bericht sogar ein Unfallschwerpunkt. In 2020 soll der Radverkehr daher auf die Straße verlegt werden. Leider nicht als eigene Spur, sondern wegen Platzmangel nur als Schutzstreifen (gestrichelte Linie).</p><p>Ebenso werden jeweils die Zu- und Abgänge in die <a>Klärchenstraße</a> und <a>Dorotheenstraße</a> an die neuen Schutzstreifen angepasst und die Abbiegebeziehungen für den Radverkehr verbessert. Weitere Infos:</p>
     <ul>
@@ -1738,6 +1782,8 @@
   loc: [9.9883672, 53.5854104]
   grade: 2
   title: "Iseplatz (Veloroute 13)"
+  start: 2020Q2
+  type: planned-construction
   images:
   - pQdv4XxzzkoPWdmJ-KfXrg
   desc: <p>Diese Kreuzung fiel mir nicht besonders negativ auf – einziges Manko ist das Stopschild, wenn man von der Hegestraße links in die Loogestraße abbiegen möchte. Die Kreuzung soll im Frühjahr 2020 zu einem Kreisverkehr umgebaut werden, dann ist dieses Problem auch passé. Weitere Infos, auch zur Verbesserung der Radführung in der <a>Loogestraße</a>:</p>
@@ -1757,6 +1803,8 @@
   - 9.94867
   - 53.56232
   grade: 5
+  type: planned-construction
+  start: 2020
   title: "Kreuzungen um den Holstenplatz (Veloroute 13)"
   images:
   - SBEKMxDdlIanphEEoS3qBg
@@ -1819,7 +1867,7 @@
   lastCheck: '2018-09-02'
   loc: [9.87348, 53.58697]
   grade: 4
-  icon: 🤚
+  start: 2019Q2
   title: "Böttcherkamp (Veloroute 14)"
   type: planned-construction
   images:
@@ -1905,6 +1953,7 @@
   lastCheck: '2018-10-21'
   loc: [10.13724, 53.59274]
   grade: 2
+  type: planned-construction
   images:
   - TKH8zxPJnPClAmTIjD8bdA
   - G0_QEKcwvjVtzDI5gy8qMg

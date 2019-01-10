@@ -2,6 +2,7 @@ require 'rss'
 require 'yaml'
 
 require_relative 'mapillary'
+require_relative 'shortcoming'
 
 module RSS
   FILENAME = 'updates.atom'
@@ -40,30 +41,17 @@ module RSS
   end
 
   def self.shortcomings
-    self.get_yaml(:shortcomings).map do |key, details|
-      img_tags = self.to_img_list(details["images"])
+    Shortcoming.all.map do |s|
+      img_tags = self.to_img_list(s.images)
       {
-        link: BASE.merge("/quality/#{key}"),
-        title: self.shortcoming_title(details, key),
-        updated: self.to_time(details['lastCheck']),
-        description: details['desc'] + '<br>' + img_tags,
-        lonLat: details['loc'].reverse,
-        image: Mapillary.image_url(details["images"].first)
+        link: BASE.merge("/quality/#{s.key}"),
+        title: s.full_title,
+        updated: self.to_time(s.last_check),
+        description: s.desc + '<br>' + img_tags,
+        lonLat: s.lonLat,
+        image: Mapillary.image_url(s.images.first)
       }
     end
-  end
-
-  def self.shortcoming_title(details, key)
-    prefix = case details['type']
-      when 'construction' then 'Baustelle'
-      when 'planned-construction' then 'Baumaßnahme'
-      when 'changed-routing' then 'Routenänderung'
-      when 'bettelampel' then 'Bettelampel'
-      when 'intent' then 'Vorhaben'
-      when nil then 'Problemstelle'
-    end
-    title = details['title'] || key
-    "#{prefix}: #{title}"
   end
 
   def self.image_updates
@@ -107,7 +95,7 @@ module RSS
   end
 
   def self.to_time(date)
-    Date.parse(date).to_time
+    Date.parse(date.to_s).to_time
   end
 
   def self.to_img_list(images)

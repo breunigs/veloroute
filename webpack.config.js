@@ -27,7 +27,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Fahrradwege für den Alltag"}),
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Qualität und Ausbaustatus", filename: "quality.html"}),
     new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Hintergrund und Helfen", filename: "projekt.html"}),
-    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Letzte Änderungen", filename: "changes.html"})
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Letzte Änderungen", filename: "changes.html"}),
+    new HtmlWebpackPlugin({...htmlOpts, title: "veloroute.hamburg – Baustellen und geplante Maßnahmen auf Fahrradwegen", filename: "bau.html"})
   ];
   let sitemapURLs = [];
   for(let i = 1; i <= 14; i++) {

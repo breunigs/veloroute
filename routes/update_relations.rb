@@ -21,6 +21,7 @@ require_relative "place"
 require_relative "quality"
 require_relative "relation"
 require_relative "route"
+require_relative "shortcoming"
 require_relative "util"
 require_relative "webpack_helper"
 
@@ -112,6 +113,37 @@ def build_image_lists(routes)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 end
 
+def listify(header, items, group: false)
+  return '' if items.none?
+  out = "<strong>#{header}</strong><br>"
+  out << %|<ul class="construction #{group ? :grouped : :single}"><li>|
+  if group
+    items.group_by { |i| i.start.year }.each do |year, items|
+      hdr = year ? year.to_s : "Unbekannt"
+      hdr << " (#{items.size} Stück)" if items.size >= 4
+      out << listify(hdr, items, group: false)
+    end
+  else
+    out << items.map(&:duration_with_link).join('</li><li>')
+  end
+  out << '</li></ul>'
+  out
+end
+
+def build_construction_sites(_whocares)
+  out = ''
+  in_progress = Shortcoming.select(type: "construction").sort_by(&:start)
+  out << listify('Baustellen', in_progress)
+
+  upcoming = Shortcoming.select(type: "planned-construction").sort_by(&:start)
+  out << listify('Geplante Baumaßnahmen', upcoming, group: true)
+
+  vague = Shortcoming.select(type: "intent").sort_by(&:start)
+  out << listify('Vorhaben / Absichten', vague)
+
+  File.write("geo_tmp/bau.html", out)
+end
+
 def check_relation_connected(routes)
   routes.each do |route|
     ok, err = route.relation.connected?
@@ -167,6 +199,7 @@ routes = routes.map { |route, details| Route.new(route, details) }
   build_image_lists
   check_relation_connected
   write_gpx_files
+  build_construction_sites
   write_rss
 ].map do |task|
   Thread.new { send(task, routes) }
