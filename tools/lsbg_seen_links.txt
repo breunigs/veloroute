@@ -131,3 +131,6 @@
 '2018-12-21':
 - "/contentblob/11989956/22f6a3cbbaa66202e26ea5f22973cdb3/data/veloroute-14-pinneberger-chaussee-von-johann-schmidt-strasse-bis-pflugacker-abgestimmte-planung-bericht.pdf"
 - "/contentblob/11989958/95c1ac8d392c018f2db021fcd920a517/data/veloroute-14-pinneberger-chaussee-von-johann-schmidt-strasse-bis-pflugacker-abgestimmte-planung-plan.pdf"
+'2019-01-09':
+- "/contentblob/11998296/d82201e5383f82f5589444318c9d596a/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abgestimmte-planung-bericht.pdf"
+- "/contentblob/11998298/bbb3cf4eedcd8e57215f6d25caff9ffa/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abgestimmte-planung-plan.pdf"

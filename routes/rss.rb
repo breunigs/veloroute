@@ -55,9 +55,11 @@ module RSS
 
   def self.shortcoming_title(details, key)
     prefix = case details['type']
+      when 'construction' then 'Baustelle'
       when 'planned-construction' then 'Baumaßnahme'
       when 'changed-routing' then 'Routenänderung'
       when 'bettelampel' then 'Bettelampel'
+      when 'intent' then 'Vorhaben'
       when nil then 'Problemstelle'
     end
     title = details['title'] || key
