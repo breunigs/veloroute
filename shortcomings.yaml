@@ -146,6 +146,7 @@
   grade: 4
   type: planned-construction
   title: "Jürgensallee (Veloroute 1)"
+  start: 2019Q2
   images:
   - jBJXEWooDgi51g8n_8eY9Q
   - _EF5zeIJvrc5Zown-I-NVg
@@ -174,6 +175,7 @@
   loc: [9.7717, 53.5805]
   grade: 1
   type: planned-construction
+  start: 2019Q3
   title: "Alte Sülldorfer Landstraße (Veloroute 1)"
   images:
   - gO0wvvG-aVzGadqAQTmhSA
@@ -225,7 +227,7 @@
   loc: [9.96355, 53.5695]
   grade: 3
   title: "Weidenallee (Veloroute 2)"
-  type: planned-construction
+  type: construction
   images:
   - BJOCAkBbQKLaFEuTJLHT4A
   desc: <p>Die Kreuzung wird gerade umgebaut und der Radverkehr erstmals ordentlich bedacht. So wird eine Querung entlang der Veloroute 2 deutlich komfortabler und zumindest stadtauswärts auch nur eine Ampel beinhalten. Richtung Süden zähle ich
@@ -245,6 +247,7 @@
   loc2: [9.95389, 53.57331]
   title: "Weidenstieg und Tornquiststraße (Veloroute 2)"
   grade: 4
+  start: 2019Q2
   type: planned-construction
   images:
   - mxjcA_A77IgW1Gf3_OEOhA
@@ -303,6 +306,7 @@
   loc: [9.93894, 53.58042]
   grade: 5
   type: planned-construction
+  start: 2019Q3
   title: "Langenfelder Damm (Veloroute 2)"
   images:
   - ugStveYUBk2IxkEpXfCzww
@@ -387,6 +391,7 @@
   lastCheck: '2018-10-13'
   loc: [9.9892, 53.5638]
   grade: 2
+  start: 2019Q3
   type: planned-construction
   title: "Moorweidenstraße (Veloroute 3)"
   images:
@@ -456,6 +461,8 @@
   lastCheck: '2018-10-13'
   loc: [9.9572, 53.5880]
   grade: 5
+  start: 2019-01
+  end: 2020
   type: planned-construction
   title: "Stresemannallee (Veloroute 3)"
   images:
@@ -596,7 +603,9 @@
   loc: [9.9986931, 53.5796807]
   grade: 3
   title: "Krugkoppel (Veloroute 4)"
-  type: planned-construction
+  type: construction
+  start: 2018Q4
+  end: 2019Q3
   images:
   - vKwtpDBcYeCCRj8V-X_48A
   - CUV_L1y-MQpMuJ0UK1zXhQ
@@ -866,6 +875,7 @@
   - 10.02993
   - 53.57131
   grade: 2
+  start: 2018
   title: "Hamburger Straße (Veloroute 5)"
   type: planned-construction
   images:
@@ -1699,6 +1709,7 @@
   loc: [9.9865552, 53.4577823]
   loc2: [9.97730, 53.46089]
   grade: 3
+  start: 2019
   title: "Innenstadt Harburg (Veloroute 11)"
   type: planned-construction
   images:
@@ -1963,6 +1974,7 @@
   loc: [10.13724, 53.59274]
   grade: 2
   type: planned-construction
+  start: 2019
   images:
   - TKH8zxPJnPClAmTIjD8bdA
   - G0_QEKcwvjVtzDI5gy8qMg
