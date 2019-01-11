@@ -330,3 +330,13 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005980
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005979
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005978
+'2019-01-10':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008237
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008235
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008245
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007798
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007805
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009544
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009516
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009505
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009565

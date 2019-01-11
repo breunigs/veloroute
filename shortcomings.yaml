@@ -1265,6 +1265,27 @@
     <p>Der Umbau ist 2019 vorgesehen.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008834">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
+6-beim-farenland:
+  lastCheck: '2019-01-11'
+  loc: [10.13610, 53.63517]
+  grade: 3
+  area: [[10.135612,53.635711],[10.135971,53.635768],[10.13606,53.635593],[10.136264,53.635638],[10.136379,53.635424],[10.136197,53.635388],[10.136741,53.634457],[10.136325,53.634368],[10.136097,53.634799],[10.135915,53.634768],[10.135848,53.634911],[10.136025,53.634939],[10.135623,53.63569]]
+  images:
+  - A_WI53-S7c9vU9OulS0lMw
+  - _OQe5CcmbwEtkmAl17NX1g
+  - o0blAi7gJopk6nEP_AU6jQ
+  - AUR4r49JcrSJtFTOKcQWDw
+  type: planned-construction
+  start: 2019
+  end: 2019
+  title: "Beim Farenland (Veloroute 6)"
+  desc: >
+    <p>Fährt man hier in den Nebenzeiten oder am Wochenende, gibt es wenig auszusetzen, da man praktisch alleine unterwegs ist. Zu Stoßzeiten ist es jedoch schwierig eine Lücke zu finden, da <a>Beim Farenland</a> 50 km/h erlaubt und kerzengerade ist.</p>
+    <p>Um das Queren zu erleichtern soll eine Ampel errichtet werden, die aus den Nebenstraßen jeweils angefordert werden muss. Für KFZ und Fahrräder erfolgt die Anforderung automatisch, für Zufußgehende gibt's Handtaster. Die Bushaltestelle wird aus dem Zwischenbereich Richtung Süden hinter <a>De Beern</a> verschoben.</p>
+    <p>Laut Bericht soll die Ampel je nach Verkehrsaufkommen schalten. Es ist also zu hoffen, das die Ampel in den Nebenzeiten praktisch sofort wechselt und man „durchrollen“ kann.</p>
+    <p>Aufgrund der geringen Breite der Straße an dieser Stelle, wird es keine eigenen Radspuren geben. Aufgestellt werden soll die Ampel 2019.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009505">Erläuterung und Pläne zum ersten Entwurf</a> (unter Anlagen)</p>
+
 7-steindamm:
   lastCheck: '2018-08-30'
   loc: [10.0175985, 53.5559459]
