@@ -1922,7 +1922,7 @@
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007690">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
 14-kreuzung-luruper-hauptstrasse-elbgaustrasse:
-  lastCheck: '2018-22-12'
+  lastCheck: '2018-12-22'
   type: construction
   grad: 2
   loc: [9.87605, 53.58847]
@@ -1932,8 +1932,6 @@
   - qpTgiqKYaA4OZsRu7ok9FA
   - _s3ehObFmq-o8ldNr1ST7w
   - sBTEDXtZkf9mbLNp80EY1w
-  -
-  -
   area: [[9.946704,53.561845],[9.946328,53.561724],[9.946768,53.56131],[9.946393,53.561208],[9.946586,53.56103],[9.947047,53.561144],[9.947723,53.560676],[9.948227,53.56016],[9.948555,53.560224],[9.947863,53.560953],[9.948694,53.56204],[9.949729,53.561864],[9.949815,53.56204],[9.950985,53.561919],[9.951049,53.562116],[9.949241,53.562406],[9.950507,53.56434],[9.950014,53.56442],[9.948801,53.562817],[9.948533,53.562489],[9.947519,53.562674],[9.947374,53.56247],[9.94826,53.562225],[9.947879,53.561648],[9.94716,53.56145]]
   desc: >
     <p>Zur Zeit wird die Kreuzung umgebaut. Künftig wird der Radverkehr aus allen Knotenarmen vom Hochbordradweg auf einen Radfahrstreifen mit ca. 1,80m Breite aufgeleitet und geradlinig über die Kreuzung geführt. Für indirektes Linksabbiegen gibt es jeweils Aufstelltaschen mit eigener Ampel. An den Bushaltestellen fährt man künftig links vorbei.</p>
