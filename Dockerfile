@@ -6,7 +6,7 @@ FROM debian:unstable-slim as geodata
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
-    build-essential ruby ruby-dev ruby-json ruby-bundler ruby-nokogiri ruby-geos libgeos-dev zip
+    build-essential ruby ruby-dev ruby-json ruby-bundler ruby-nokogiri ruby-geos libgeos-dev zip zlib1g-dev
 
 WORKDIR /app
 
