@@ -140,6 +140,33 @@
       <li><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008237">Erläuterung und Lagepläne Südseite</a> (unter Anlagen, 2. Entwurf)</li>
     </ul>
 
+1-kreuzung-hohenzollernring-bleickenallee:
+  lastCheck: '2019-01-15'
+  loc: [9.91781, 53.55112]
+  grade: 2
+  area: [[9.917403,53.551285],[9.91735,53.550985],[9.919093,53.550899],[9.919083,53.550753],[9.91941,53.550743],[9.919458,53.551247],[9.918095,53.551317],[9.91823,53.552333],[9.917908,53.552356],[9.917817,53.551323]]
+  start: 2020Q2
+  title: "Kreuzung Hohenzollernring / Bleickenallee (Veloroute 1)"
+  type: planned-construction
+  images:
+  - QqekBPmvySv-g0rf4VYdtg
+  - 0Qx44gbsQoSSjMZQCWTZHw
+  - SYw3Gsi7BLQQzVYhs8wBKw
+  - h4Srv9jMAbN8GMqyN0zgNA
+  - A-tTknYPDXNAaRnzqcYIpw
+  - DBITmmVgJzWY0wvK82QCuQ
+  - _BdwA-CbxrVCmrlLCbGhPw
+  - UzcKQQKHwgy-LPKdbJKkww
+  - JGKj1FcYj6ADn1CdvmpiTg
+  desc: >
+    <p>In Richtung Ottensen ist die Kreuzung auch bisher schon recht einfach zu benutzen: man fährt entweder aus dem Mittelstreifen „über Eck“ oder direkt aus dem Mischverkehr auf <a class="place" href="/#18/53.551169/9.918608">ein Stück Radweg in der Bleickenallee</a>, bei guten Grünzeiten. Die Gegenrichtung ist nicht so einfach: entweder man quetscht sich an der Bushaltestelle auf den Radweg und hat dann nur 8 Sekunden um den Hohenzollernring zu queren, oder man ordnet sich vorher in den Mischverkehr ein.</p>
+    <p>Für die Umplanung der Kreuzung wurden etliche Varianten untersucht, wobei sich für den ersten Entwurf folgendes ergeben hat. Die Bushaltestelle stadtauswärts wird in den Hohenzollernring verschoben. Dadurch gewinnt man etwas Platz und die Mittelinsel kann teilweise erhalten bleiben. Der Radverkehr erhält dafür einen ca. 2m breiten Radfahrstreifen, der kerzengerade in den <a class="place" href="/#18/53.551205/9.916772">westlichen Teil der Bleickenallee</a> führt. Die Grünzeit für den Radverkehr wird mit 19s geplant – das ist zwar deutlich kürzer als die Gegenrichtung, aber deutlich besser als der Bestand.</p>
+    <p>In der Gegenrichtung, also stadteinwärts, teilt noch vor der Kreuzung eine Sperrfläche den KFZ und Radverkehr auf. Auch hier führt der Radfahrstreifen praktisch gerade auf die andere Straßenseite, geht dort aber in die Bushaltestelle über. Da die Busspur hier breit genug ist, kann der meiste Radverkehr auch an einem haltenden Bus vorbeifahren. Der bisherige Hochbordradweg wird entsprechend zurückgebaut. Wie im Bestand setzt sich der Radfahrstreifen ab Höhe <a>Tönsfeldtstraße</a> fort. Die Grünzeit für den Radverkehr ist in dieser Richtung mit 46s angegeben.</p>
+    <p>Direktes Linksabbiegen ist nur möglich, indem man sich rechtzeitig in den Autoverkehr einordnet. Vom <a href="/#18/53.551742/9.917387" class="place">Hohenzollernring Nord</a> in die <a hef="/#18/53.551111/9.918728" class="place">Bleickenallee Ost</a> ist dies gar nicht vorgesehen. Für indirektes Linksabbiegen sind jeweils Aufstelltaschen mit eigener Radampel vorgesehen. Bezüglich der Platzierung besteht aber jeweils noch Optimierungspotential: momentan sind diese außerhalb der normalen Radfurt, sodass keine visuelle Orientierungshilfe besteht.</p>
+    <p>Der vorliegende Plan wirkt bis auf Details bereits brauchbar. Natürlich nur unter der Annahme, das auch in der <a class="place" href="/#18/53.551205/9.916772">Bleickenallee West</a> das Kopfsteinpflaster durch einen angenehmeren Belag ersetzt wird. Denn wie bisher ist auch künftig nicht vorgesehen, das man bequem auf den Mittelstreifen auffahren kann – was aber die Regel sein dürfte, wenn es bei einem holprigen Belag bleibt.</p>
+    <p>Da es sich um einen ersten Entwurf handelt sind Änderungen noch möglich. Dem Verkehrsausschuss sollen diese Planungen zusammen mit denen für die <a hef="/#18/53.551111/9.918728" class="place">Bleickenallee Ost</a> und <a class="place" href="/#18/53.551205/9.916772">West</a> am 21.01.2019 vorgestellt werden. Angesetzt ist der Umbau für Frühjahr 2020, wobei dieser Termin maßgeblich durch andere Baumaßnahmen beeinflusst wird (A7-Deckel, <a>Lessingtunnel</a>).</p>
+    <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008265">Erläuterungsbericht zum ersten Entwurf mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
 1-juergensallee:
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
