@@ -36,8 +36,18 @@ puts "accidentally double post."
 sleep 60
 reject_seen_urls!(posts)
 
+def find(lonLat)
+  x = `../tools/coord_to_suburb.rb #{lonLat[1]} #{lonLat[0]}`
+  return nil if $?.exitstatus != 0
+  x.strip
+end
+
 posts.each do |post|
-  tweet = " " + post[:link].to_s
+  loc = find(post[:lonLat])
+
+  tweet = " "
+  tweet << "#" << loc << " " if loc
+  tweet << post[:link].to_s
   tweet = post[:title][0..(280-tweet.size)] + tweet
 
   puts "Will post:"
