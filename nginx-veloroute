@@ -56,6 +56,7 @@ server {
   root       /srv/veloroute/build;
   index      index.html;
 
-  brotli_static on;
+  # requires custom built nginx, which is too annoying on Debian :(
+  #brotli_static on;
   gzip_static on;
 }
