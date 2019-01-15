@@ -9,6 +9,11 @@ set -e
 
 cd $(dirname $0)
 sudo -u www-data git pull
+
+# warmup cache
+sudo -u www-data bundle install --path /tmp/veloroute-gems --deployment
+bundle exec ./routes/update_relations.rb
+
 systemctl reload nginx
 
 KEEP=yes PRODUCTION=yes TEST=yes ./build.sh
