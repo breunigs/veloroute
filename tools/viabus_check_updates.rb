@@ -43,10 +43,9 @@ end
 pdfs = traverse(URI.join(BASE_URL, "/plaene"))
 exit(0) if pdfs.none?
 
-seen[TODAY] ||= []
-
 pdfs.uniq.each do |info|
   next if seen_links.include?(info[:url])
+  seen[TODAY] ||= []
   seen[TODAY] << info[:url]
 
   puts "NEW LINK: #{info[:text]}"

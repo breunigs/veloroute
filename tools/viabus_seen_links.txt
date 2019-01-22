@@ -384,3 +384,5 @@
 - https://via-bus.hamburg.de/contentblob/4070400/eebdbb34bc2c07009a80b77bb3af247c/data/brunsberg-metrobusline-5-gesamtplanung.pdf
 - https://via-bus.hamburg.de/contentblob/10519472/3cc6ce8c2fd420f5c3534784f477550b/data/20180221-pm.pdf
 - https://via-bus.hamburg.de/contentblob/8264140/864f1ad77a920a70228d72559ec56dc2/data/20170227-glossar-2-auflage.pdf
+'2019-01-18':
+- https://via-bus.hamburg.de/contentblob/12074612/3f098f1a8e87cfa2ff1b4e60fdc1a2f8/data/23-m20-25-schlussverschickung-maxbrauer.pdf
