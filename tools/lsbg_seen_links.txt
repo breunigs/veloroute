@@ -134,3 +134,8 @@
 '2019-01-09':
 - "/contentblob/11998296/d82201e5383f82f5589444318c9d596a/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abgestimmte-planung-bericht.pdf"
 - "/contentblob/11998298/bbb3cf4eedcd8e57215f6d25caff9ffa/data/veloroute-14-gehlengraben-von-tangstedter-landstr-bis-lademannbogen-abgestimmte-planung-plan.pdf"
+'2019-01-22':
+- "/contentblob/12098146/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12098148/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-plaene.pdf"
+- "/contentblob/12098150/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12098152/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-abgestimmte-planung-plaene.pdf"

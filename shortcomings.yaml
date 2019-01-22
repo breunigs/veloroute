@@ -391,6 +391,36 @@
       <li><a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085">Änderungen der ursprünglichen Planung (29.10.2018)</a></li>
     </ul>
 
+2-basselweg-beim-sportplatzring:
+  lastCheck: '2019-01-22'
+  loc: [9.93349, 53.59310]
+  grade: 3
+  type: planned-construction
+  title: "Basselweg auf Höhe des Sportplatzring (Veloroute 2)"
+  area: [[9.929873,53.592435],[9.929943,53.592169],[9.932467,53.592299],[9.93399,53.592462],[9.933969,53.5926],[9.934677,53.592656],[9.935251,53.592646],[9.935246,53.592803],[9.934339,53.592844],[9.933741,53.59278],[9.932858,53.594679],[9.932585,53.594651],[9.933448,53.59281],[9.929873,53.592435]]
+  images:
+  - UB2XuizlMVtNSbL7wyQwmg
+  - BqiVp9jiULTpSqkqWo99nw
+  - 7rLNWtPUqW10WdlZviCjNA
+  - lATBUIf_67vFRFGD64Osdg
+  - 5_iodOdtoMOJmWKFldb34g
+  - lpLVWwrd0md0QJVhqOZNEA
+  - ni91nt41L_q-dDdlPbHTYg
+  - WgpRZArfZIGcP5wIEDUhxA
+  desc: >
+    <p>Das Gelände des ehemaligen Sportplatzes „Kampfbahn Stellingen“ wird erschlossen und soll zum Wohngebiet werden. Ebenso wird der <a href="/#18/53.59237/9.93091" class="place">südliche Sportplatzring</a> angepasst um die Abbiegesituation für KFZ in die Kieler Straße zu verbessern. Im Zuge dessen wird auch die Radverkehrsführung im <a href="/#17/53.593474/9.933109" class="place">Basselweg</a> leicht angepasst.</p>
+    <p>Zuerst zur <a href="/#19/53.59432/9.93290" class="place">Einmündung der Hagenbeckallee</a>: Der Hochbordradweg wird weiter nördlich auf einen Radfahrstreifen abgeleitet, sodass man nicht mehr im Kreuzungsbereich auf die Straße wechseln muss. Durch die Markierung hat der von Norden kommende Radverkehr gegenüber dem Sportplatzring Vorfahrt, was hoffentlich durch Schilder verdeutlicht wird. Kurz nach der Kreuzung hört der Radfahrstreifen auf und man fährt im Mischverkehr weiter. Von Süden kommend ändert sich fast nichts, da weiterhin Rechts-vor-Links gilt. Lediglich die Möglichkeit den Hochbordradweg zu benutzen entfällt, was aufgrund der unklaren Kreuzungssituation nur wenige hundert Meter später aber keinen großen Verlust darstellt.</p>
+    <p>Richtung Süden geht kurz vor der <a class="place" href="/#19/53.59257/9.93401">Kreuzung Sportplatzring / Koppelweg / Basselweg</a> noch die neu zu bauende <a>Borchertstraße</a> ab, wobei der Radverkehr auch hier durch Markierungen die Vorfahrt hat. Danach wird der Basselweg im Vergleich zu heute deutlich verbreitert um Platz für eine Rechtsabbiegerspur zu gewinnen. Diese teilt sich der Radverkehr mit den KFZ. Für die kombinierte Geradeaus- und Linksabbiegerspur wird ein schmaler Vorbeifahrstreifen eingezeichnet, sodass man die Aufstellfläche vor den Autos legal erreichen kann. In der Gegenrichtung gibt es ein kurzes Stück Radfahrstreifen, der aber noch vor der <a>Borchertstraße</a> endet.</p>
+    <p>Die anderen Arme der Kreuzung bleiben jedoch praktisch gleich. Nur wer entlang Hauptverkehrsstraße (<a>Sportplatzring</a> bzw. <a>Koppelstraße</a>) fährt und indirekt links auf die Veloroute abbiegen möchte erhält künftig eigene Ampeln. Zusätzlich wird in der nordwestlichen Ecke der Kreuzung, auf dem neuen <a>Stegemannplatz</a>, eine StadtRAD Station eingerichtet.</p>
+    <p>Im Bereich der Veloroute sind die Planungen okay, aber definitiv nicht überragend. Es ist gut das man die Vorfahrtsituation am <a class="place" href="/#19/53.59432/9.93290">nördlichen Sportplatzring</a> und der <a>Borchertstraße</a> deutlich klärt, ebenso wie der Vorbeifahrstreifen Richtung Süden. Andererseits bleibt es in diesem Abschnitt des Basselwegs bei 50 km/h, ohne das für den Radverkehr Infrastruktur geschaffen wird. Detaillierter wird im Bericht nur die Einrichtung von Schutzstreifen diskutiert – die unter hohem Baum- und Stellplatzverlust jedoch zurecht abgelehnt wird. Das weder ein 30er Tempolimit noch Einbahnstraße mit Busfreigabe erörtert wurden zeigt jedoch, das es noch ein weiter Weg bis zur Fahrradstadt Hamburg ist.</p>
+    <p>Der Umbau der Hauptverkehrsstraße soll 2020 beginnen, sobald der Autobahnanschluss Hamburg-Stellingen fertig ist. Der Basselweg folgt wenn die angrenzende Wohnbebauung weitestgehend abgeschlossen ist – was ca. erst 2022 der Fall sein wird.</p>
+    <ul>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12098150/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-abgestimmte-planung-bericht.pdf">Bericht Hauptverkehrsstraße</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12098152/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-abgestimmte-planung-plaene.pdf">Lagepläne Hauptverkehrsstraße</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12098146/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-bericht.pdf">Bericht Neubaugebiet / Basselweg</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12098148/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-plaene.pdf">Lagepläne Neubaugebiet / Basselweg</a></li>
+    </ul>
+
 2-woerdemanns-weg:
   lastCheck: '2018-10-13'
   loc: [9.92897, 53.59813]

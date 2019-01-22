@@ -342,3 +342,6 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009565
 '2019-01-15':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008265
+'2019-01-16':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005985
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005984
