@@ -228,8 +228,7 @@ class Route
   end
 
   def to_geojson(collisions)
-    geojson = GeoJSON.new(relation: relation, route: self, collisions: collisions)
-    geojson.to_geojson
+    geojson(collisions).to_geojson
   end
 
   def to_quality_geojson
@@ -240,11 +239,19 @@ class Route
     quality.to_quality_export
   end
 
+  def to_full_feature_list(collisions)
+    geojson(collisions).to_full_feature_list
+  end
+
   def ==(other_route)
     name == other_route.name
   end
 
   private
+
+  def geojson(collisions)
+    @geojson ||= GeoJSON.new(relation: relation, route: self, collisions: collisions)
+  end
 
   def place_names_with_dir
     @parsed_json["places"].flatten.uniq.map { |place| Place.find(place) }

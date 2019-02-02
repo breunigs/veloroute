@@ -48,6 +48,11 @@ def build_map_geojsons(routes)
   end
   write_with_hash("routes.geojson", GeoJSON.join(geojsons).to_json)
 
+  features = routes.flat_map do |route|
+    route.to_full_feature_list(collisions)
+  end
+  File.write("geo_tmp/feature_list.geojson", features.to_json)
+
   markers = routes.flat_map(&:named_markers)
   File.write("geo_tmp/markers.json", markers.to_json)
 end

@@ -25,6 +25,10 @@ class Relation
     end
   end
 
+  def name
+    relation.send(:xml).xpath('//relation/tag[@k="name"]').first[:v]
+  end
+
   def url
     "https://www.openstreetmap.org/api/0.6/relation/#{@id}/full"
   end
