@@ -38,6 +38,16 @@ def debug(request, response)
   require 'pry'; binding.pry
 end
 
+def get(uri)
+  print "."
+  request = Net::HTTP::Get.new(uri.request_uri, $headers)
+  response = $http.request(request)
+  debug(request, response) unless success?(response)
+
+  return JSON.parse(response.body) unless response.body.nil? || response.body == ""
+  nil
+end
+
 def post(uri, body)
   print "."
   request = Net::HTTP::Post.new(uri.request_uri, $headers)
