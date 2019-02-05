@@ -19,7 +19,7 @@ module RSS
       <<~ENTRY
         <li>
           <time datetime="#{data[:updated].strftime("%F")}">#{german_date}</time>
-          <a href="#{rel_path}">#{data[:title]}</a>
+          <a href="#{rel_path}" class="#{data[:classes]}">#{data[:title]}</a>
         </li>
       ENTRY
     end.join
@@ -32,7 +32,7 @@ module RSS
       self.list(count: 15).each do |data|
         items.new_item do |item|
           data.each do |k, v|
-            next if %i[lonLat image].include?(k)
+            next if %i[lonLat image classes].include?(k)
             item.public_send("#{k}=", v.to_s)
           end
         end
@@ -63,11 +63,12 @@ module RSS
       path = "/#{details['route']}##{anchor}"
       {
         link: BASE.merge(path),
-        title: details["title"],
+        title: "Neue Bilder: " + details["title"],
         updated: self.to_time(details["date"]),
         description: self.to_img_list(details['startImage']),
         lonLat: lonLat,
-        image: Mapillary.image_url(details['startImage'])
+        image: Mapillary.image_url(details['startImage']),
+        classes: 'newImgLink'
       }
     end
   end

@@ -273,6 +273,22 @@ const maybeSelectDefaultBranch = async () => {
   return setActiveRoute(status.routeName, branch, idx);
 }
 
+const playFromImage = async (routeName, key) => {
+  status.routeName = routeName;
+  const allBranches = await route();
+  let branchForImg;
+  let idxForImg;
+  Object.entries(allBranches).forEach(([branch, imgs]) => {
+    const idx = imgs.keys.indexOf(key);
+    if(idx >= 0) {
+      branchForImg = branch;
+      idxForImg = idx
+    }
+  });
+  await setActiveRoute(routeName, branchForImg, idxForImg);
+  if(!isMobileView(body)) handlePlay();
+}
+
 let prevLngLat = null;
 async function showCloseImage(routeName, lngLat, eventSource) {
   stopPlayback();
@@ -388,4 +404,4 @@ viewer.on(Viewer.bearingchanged, function (bearing) {
   indicatorListeners.forEach((f) => f(currentNode.latLon.lon, currentNode.latLon.lat, bearing, currentNode.key));
 });
 
-export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute, startPlaybackWithDefaultBranch, stopPlayback };
+export { viewer as mlyViewer, addIndicatorListener, showCloseImage, setActiveRoute, startPlaybackWithDefaultBranch, stopPlayback, playFromImage };

@@ -57,7 +57,7 @@ document.addEventListener('click', ev => {
     if(anchor.dataset.bbox) {
       console.debug("fitting to bounds in data attr");
       map.fitBounds(anchor.dataset.bbox.split(","), {maxZoom: anchor.dataset.maxzoom || 14});
-    } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)$/)) {
+    } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)(?:\/|$)/)) {
       console.debug("flying to coords in href");
       map.flyTo({center: [m[3], m[2]], zoom: m[1]});
     } else {
@@ -68,6 +68,18 @@ document.addEventListener('click', ev => {
   }
 
   const path = url.pathname.substr(1);
+
+  if(anchor.classList.contains('newImgLink')) {
+    let m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)\/([^/]+)$/);
+    if(m) {
+      map.flyTo({center: [m[3], m[2]], zoom: m[1]});
+    }
+    state.routeSetter()(path);
+    imagesPromise.then(({playFromImage}) => playFromImage(path, m[4]));
+    ev.preventDefault();
+    return;
+  }
+
   if(path === "" && url.hash != "") {
     scrollTo(url.hash);
     return ev.preventDefault();
