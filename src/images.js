@@ -99,16 +99,13 @@ async function handleSliderMove(avoidListenerUpdates) {
     controls.classList.remove("disable-next");
   }
 
-  if(status.image === key) return;
-  status.image = key;
-  triggerImageUpdate();
-
-  // The data here is the corrected "Structure From Motion" data, but it doesn't
-  // take image-to-image transitions into account. Therefore, only update it
-  // when immediate feedback is required, e.g. when the slider is being dragged.
   if(!avoidListenerUpdates) {
     indicatorListeners.forEach((f) => f(loc[0], loc[1], loc[2], key));
   }
+
+  if(status.image === key) return;
+  status.image = key;
+  triggerImageUpdate();
 }
 
 const startPlaybackWithDefaultBranch = async (routeName) => {
