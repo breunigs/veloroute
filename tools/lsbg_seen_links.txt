@@ -139,3 +139,6 @@
 - "/contentblob/12098148/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-plaene.pdf"
 - "/contentblob/12098150/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-abgestimmte-planung-bericht.pdf"
 - "/contentblob/12098152/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-abgestimmte-planung-plaene.pdf"
+'2019-02-06':
+- "/contentblob/12140104/0672dcffac558dd57d56f701cc3c1ab6/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12140108/7d66e7903d0e5570ec9ef6d41326531f/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abstimmungsunterlage-plan.pdf"
