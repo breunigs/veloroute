@@ -142,3 +142,6 @@
 '2019-02-06':
 - "/contentblob/12140104/0672dcffac558dd57d56f701cc3c1ab6/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12140108/7d66e7903d0e5570ec9ef6d41326531f/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abstimmungsunterlage-plan.pdf"
+'2019-02-13':
+- "/contentblob/12151638/5e324b79a88fc307b67f54e9c0836dca/data/luruper-hauptstrasse-zw-elbgaustrasse-und-achtern-styg-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12151640/c976c077f3d448ecf81c63c20fa7fa70/data/luruper-hauptstrasse-zw-elbgaustrasse-und-achtern-styg-abgestimmte-planung-plaene.pdf"

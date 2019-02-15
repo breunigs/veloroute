@@ -353,3 +353,7 @@
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008307
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007917
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007931
+'2019-02-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008392
+'2019-02-15':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007975
