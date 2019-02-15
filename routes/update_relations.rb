@@ -149,14 +149,6 @@ def build_construction_sites(_whocares)
   File.write("geo_tmp/bau.html", out)
 end
 
-def check_relation_connected(routes)
-  routes.each do |route|
-    ok, err = route.relation.connected?
-    next if ok
-    raise "Route #{route.name} not connected apparently: #{err}"
-  end
-end
-
 def write_gpx_files(routes)
   routes.each do |route|
     File.write("geo_tmp/route#{route.name}.gpx", GPX.from(route.track))
@@ -202,7 +194,6 @@ routes = routes.map { |route, details| Route.new(route, details) }
   build_map_geojsons
   render_abstract_routes
   build_image_lists
-  check_relation_connected
   write_gpx_files
   build_construction_sites
   write_rss
