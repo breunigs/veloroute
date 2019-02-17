@@ -18,6 +18,12 @@ class WebCache
 
     orig_http_get(url)
   end
+
+  def get_path(url)
+    uri = URI.parse(url)
+    FileUtils.mkdir_p File.join(dir, uri.host)
+    File.join dir, uri.host, Digest::MD5.hexdigest(url)
+  end
 end
 
 CACHE = WebCache.new.tap { |c| c.life = 14*24*60*60 }
