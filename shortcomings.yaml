@@ -847,12 +847,12 @@
     <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007540">Erläuterungsbericht zum ersten Entwurf</a> (unter Anlagen)</p>
 
 4-moorreye:
-  lastCheck: '2019-01-02'
+  lastCheck: '2019-02-18'
   loc: [10.02058, 53.64130]
   type: planned-construction
   title: "Moorreye (Veloroute 4)"
   area: [[10.019981,53.640176],[10.020207,53.640179],[10.020250,53.640758],[10.021516,53.642087],[10.021226,53.642173],[10.020110,53.641047],[10.020003,53.640828],[10.019901,53.640284],[10.019917,53.640179]]
-  start: 2019Q2
+  start: 2020Q1
   images:
   - VCJC9bgqIuJWI2BEso4lUg
   - zG2ZdZLY8BQX_-OUXFsFUw
@@ -860,11 +860,14 @@
   - gEWoswcdylO0BFQIOeFAQQ
   - yqfw_wyZ4ceHjQ0oQUyfng
   grade: 2
+  length: 0.22
   desc: >
-    <p>Die <a>Moorreye</a> ist wegen des geringen Verkehrsaufkommen gut zu beradeln. Entsprechend verwundlich ist auch die Ampel an der Kreuzung mit der <a>Flughafenstraße</a> und dem <a>Ohkamp</a>, die sowohl den KFZ- als auch den Radverkehr unnötig ausbremst. In einem ersten Entwurf soll sie daher verschwinden und durch einen Kreisel ersetzt werden. Im weiteren Verlauf sollen die kaum sichtbaren und im Bereich der Autotüren verlaufenden Radwege zurückgebaut werden, sodass der Radverkehr künftig nur noch im Mischverkehr fahren würde – so wie heute im nördlicheren Teil der <a>Moorreye</a>.</p>
-    <p>Die KFZ-Parkplätze verschieben sich teils, bleiben aber sonst erhalten. Das meint insbesondere auch das legale „halb auf dem Gehweg parken“. Da man aber sowohl Fußwege als auch die Fahrbahn neupflastert bzw. asphaltiert, leuchtet mir nicht ein warum man an diesem antiquiertem Konzept festhält. Da die Fläche sehr wahrscheinlich dauerhaft zum Parken verwendet wird, haben Zufußgehende keine Vorteile durch den „breiteren Gehweg“. Andererseits wird so suggeriert, das Parken auf dem Gehweg generell erlaubt sein könnte. Immerhin soll alles ordentlich ausgeschildert werden und es verbleiben akzeptable 2,0m Breite für den Gehweg.</p>
-    <p>Die Umsetzung ist für die erste Jahreshälfte 2019 vorgesehen.</p>
-    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007346">Erläuterungsbericht und Lageplan zum ersten Entwurf</a> (unter Anlagen)</p>
+    <p><strong>Update:</strong> Der entgültige Entwurf liegt nun vor. Das zuvor kritisierte „halb auf dem Gehweg parken“ wird durch ordentliche Parkstände auf der Fahrbahn ersetzt. Wegen Leitungsarbeiten verschiebt sich der Umbau von Mitte auf Ende 2019. Die Beschreibung wurde entsprechend angepasst.</p>
+    <p>Die <a>Moorreye</a> ist wegen des geringen Verkehrsaufkommen gut zu beradeln. Entsprechend verwundlich ist auch die Ampel an der Kreuzung mit der <a>Flughafenstraße</a> und dem <a>Ohkamp</a>, die sowohl den KFZ- als auch den Radverkehr unnötig ausbremst. Dem entgültigen Entwurf nach soll sie daher verschwinden und durch einen Kreisel ersetzt werden. Im weiteren Verlauf sollen die kaum sichtbaren und im Bereich der Autotüren verlaufenden Radwege zurückgebaut werden, sodass der Radverkehr künftig nur noch im Mischverkehr fahren würde – so wie heute im nördlicheren Teil der <a>Moorreye</a>.</p>
+    <p>Die KFZ-Parkplätze verschieben sich teils, bleiben aber sonst erhalten. Sie werden dabei so umgebaut, dass das „halb auf dem Gehweg parken“ entfällt und so KFZ nicht durch Unachtsamkeit oder Gleichgültigkeit zu viel des Gehweg blockieren. Dieser wird im Vergleich zum Bestand teils breiter, trotz der angepassten Radbuchten.</p>
+    <p>Auch die Details stimmen: es gibt deutlich mehr Radbügel zum Anschließen der Räder und es werden zusätzliche Sitzbänke aufgestellt. Die 30 km/h Zone wird so erweitert, das der Kreisel und der östliche Teil der <a>Flughafenstraße</a> ebenfalls enthalten sind. Leider ist der Anteil des Radverkehrs noch zu gering um die Moorreye als Fahrradstraße auszuweisen.</p>
+    <p>Die Umsetzung ist ab Ende 2019/Anfang 2020 vorgesehen. Zuvor sollen noch Leitungsarbeiten stattfinden.</p>
+    <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007999">Erläuterungsbericht und Lageplan zum entgültigen Entwurf</a> (unter Anlagen)</p>
 
 4-hoepen-ohlmoorgraben:
   lastCheck: '2019-01-01'
