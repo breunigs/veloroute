@@ -1,4 +1,60 @@
 ---
+
+binnenalster:
+  lastCheck: '2019-02-20'
+  loc: [9.9954, 53.5548]
+  grade: 2
+  type: planned-construction
+  images:
+  - c54mvNGX5J3cp2KiI77VQA
+  - W5o1fYjrRmnRxOjRDG-1_A
+  - L56oyH4qQWvhmygBXLZyWw
+  - 2gjAPnXyGJoeJp0ImMMx1w
+  - jYxhLwalbZ-z8J90bjBMHA
+  - wqqp-Wj-8WaEiMg2zX8MaA
+  - wXcsTrgVg0l_Spbv7n-iZQ
+  - ZVQbTptPGPKJlmJEGdDNGg
+  - lHyWuohTkJJKd6L5ta7U_g
+  - RH6FCMuupJZqkW8IgGNILw
+  - KpiXePkLhGXVnM_I9oI7HA
+  - 8ojW_2spr417X8WGhZuP3g
+  - wzCsz17Oo77rKJl2M9W_6g
+  - 2ASd5-WDELM_gmJTexQtrw
+  - X5CyqNjmrN9-UNaHKbhovQ
+  - ePnJABZrVQR7EHoVmwuABw
+  - 0SxedkgwZ5ZsQSGmrqADtg
+  - 6KLIG0-yTtLcfO0q5B5zEQ
+  - iXORGp3uuI7RCQV_UWrwkA
+  - mcfccCeIHQeO1H0oXr4ikw
+  - Lm5AQ0VMzX1N9zdy9-pXDw
+  - x3Kg5mo-BAHbJ83bc56W4A
+  - OQGdnfEDKdMegETVyHI8Mw
+  - MHqSMHP37vWJCPHtfFNMXg
+  - ZHEeEsPnNqSXFFLprBhynw
+  - mELCKJrP4rQxhy1XkejN9A
+  - PjlnzRC4RRnjM2c8B8I-Sw
+  - I9Ttd7xHEW3HPSFKy_aiIw
+  - _FEWI20O406oPqlLzhbNPg
+  - MPB1sf383TIvjzjUfCOHtg
+  - A3wZ6jNl7FSAfy-vnIYn9g
+  - CpShLY2J3-souXYrNWqkgA
+  - I5BYUi4OM7WhxcZ0ZDAGVw
+  title: "Radwege rund um die Binnenalster (Veloroute 3 bis 6)"
+  area: [[9.992849,53.557493],[9.992055,53.556043],[9.990638,53.554539],[9.990397,53.554411],[9.993616,53.552356],[9.994276,53.551874],[9.995,53.551894],[9.996759,53.552862],[10.00067,53.555313],[10.000058,53.555498],[9.994683,53.552279],[9.991196,53.554338],[9.99139,53.554771],[9.992441,53.556021],[9.99316,53.557251]]
+  start: 2019Q2
+  desc: >
+    <p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a> und <a>Neuer Jungfernstieg</a>.</p>
+    <p>Die Probleme der Radführungen um die Binnenalster sind schnell erklärt: konstanter Konflikt mit Passanten. An Kreuzungen und Einmündungen wurde häufig nicht an den Radverkehr gedacht, der nicht sinnvoll abbiegen kann. Auf der Gebäudeseite des <a>Jungfernstieg</a> befindet sich die einzige Ausnahme: dort steht man wegen der unübersichtlichen Situation mit Taxen und Bussen in Konflikt.</p>
+    <p>Die neue Planung, die bereits im Mai 2019 umgesetzt werden soll, hinterlässt gemischte Gefühle. So werden die Radfahrstreifen überall mit mindestens 1,8m Breite ausgeführt und sie sind auch fast durchgängig vorhanden. Das ist im Vergleich zu den unsichtbaren Radwegen auf den Fußwegen eine erhebliche Verbesserung. Andererseits wird die Gebäudeseite am Jungfernstieg noch komplexer als bisher und die Planung begünstigt Falschparken und enges Überholen. Unterm Strich sollte sich für den Radverkehr dennoch eine deutliche Verbesserung geben, trotz der teils ungelösten Probleme. Im Detail:</p>
+    <p><strong>Ballindamm:</strong> Es werden beidseitig Radwege von rund 2,0m hergestellt, hinzu kommen jeweils noch die Breiten der Fahrbahnmarkierungen und der Sicherheitsabstände zu parkenden Autos. Diese befinden sich jeweils hinter der Radfahrstreifen, sodass dieser also beim Einparken durch KFZ blockiert wird. Die meisten Parkplätze befinden sich auf der Gebäudeseite, wo der Radfahrstreifen mit einer Rüttelmarkierung gegenüber dem Autostreifen abgegrenzt wird. Die KFZ-Spur ist hier gearde so breit, das zwei Autos noch nebeneinanderpassen – aber eben nur gerade so. Vermutlich werden daher entweder Falschparker die Straße belegen oder Autos noch knapper überholen als sonst. Möchte man von der Alsterseite links in die <a>Gertrudenstraße</a> oder das <a>Alstertor</a> abbiegen, muss man sich jeweils kurz in den Autoverkehr einfädeln um dann gemeinsam direkt abzubiegen. Indirektes abbiegen scheint nicht vorgesehen zu sein.</p>
+    <p>Bei der <a class="place" href="/#18/53.552023/9.994481">Bergstraße</a> hat man die Wahl: entweder direkt über die KFZ-Spuren oder man nutzt die verbesserte, indirekte Querungsmöglichkeit zum <a>Reesendamm</a> und dreht dann um. Im Vergleich zu jetzt wird der Radweg zum <a>Reesendamm</a> nicht nur deutlich besser hervorgehoben, sondern auch geradliniger gestaltet. Man muss also nicht mehr „entgegen der Fahrtrichtung“ fahren um zum Rathausmarkt zu gelangen. KFZ dürfen künftig aus dem <a>Jungfernstieg</a> nur noch links Richtung <a>Ballindamm</a> fahren, der Radverkehr darf aber weiterhin alles. Das sollte die Unfallgefahr durch fehlenden Schulterblick reduzieren. Gegen Falschfahrer wird eine schützende Verkehrsinsel angebracht, die so zumindest die Geschwindigkeit der KFZ reduzieren sollte.</p>
+    <p><strong>Jungfernstieg:</strong> Auf der Alsterseite wird der Radverkehr auf einem 2,5m Breiten Radfahrstreifen geführt. Im Bereich der Bushaltestelle teilt man sich die Fahrbahn mit dem Bus, wobei genug Platz bleibt um an wartenden Bussen vorbeizufahren, ohne sich in den fließenden Verkehr einordnen zu müssen. Kurz darauf sollte man aber zeitig zurück auf den Radfahrstreifen wechseln, weil sich die Busspur in eine KFZ-Geradeausspur verwandelt. Mit anderen Worten: KFZ die gerade aus möchten, müssen eine Spur nach rechts wechseln. Ungefähr auf gleicher Höhe sollten auch Radfahrende Richtung <a class="place" href="/#18/53.553824/9.990993">Große Bleichen</a> auf die linke Fahrspur wechseln um dort im Mischverkehr links abzubiegen. D.h. hier finden ggf. gleichzeitig Spurwechsel in unterschiedliche Richtungen statt – hoffentlich geht das gut. An der <a href="/#18.53/53.5544235/9.9910416" class="place">Kreuzung mit dem neuen Jungfernstieg</a> teilt sich der Radweg auf in Rechtsabbieger und Geradeausspur auf. Letztere wird von rechtsabbiegenden KFZ gequert, wobei eine Aufplasterung verdeutlichen soll sich nicht zu früh einzuordnen und so den Radverkehr zu blockieren.</p>
+    <p>In der Gegenrichtung soll man sich bereits auf dem <a href="/#18.11/53.55453/9.991171" class="place">Neuen Jungfernstieg</a> einordnen. Die Spuren sind hier Links-KFZ, Links-Fahrrad, Gemischt-Halblinks. Die Halblinks Spur ist für Verkehr Richtung <a class="place" href="/#18/53.553824/9.990993">Große Bleichen</a> gedacht, die aber halb über die Markierung für den Radfahrstreifen aus Richtung Gänsemarkt geführt wird. Radfahrende aus dem <a href="/#17.44/53.554788/9.991514" class="place">Neuen Jungfernstieg</a> in Richtung <a class="place" href="/#18/53.552023/9.994481">Bergstraße</a> fahren hier also im Zweifel zwischen zwei Autos, was in etwa der aktuellen unkomfortablen Verkehrsführung entspricht. Einziger Unterschied zu jetzt ist also der aufgemalte Radfahrstreifen. Im Anschluss geht es wie bisher auf die geteilten Rad-, Bus- und Taxispur. Unterschied: die Markierung für den Radverkehr befindet sich nun auf der linken Seite, ähnlich einem linksseitigen Schutzstreifen. Damit möchte man den Konflikt mit den Bussen loswerden, die später alle rechts in den <a>Reesendamm</a> abbiegen. Es ist sehr wahrscheinlich das man hier gleichzeitig links und rechts überholt wird und Taxen auf Höhe <a>Neuer Wall</a> ungeordnet auf die normale Fahrspur vorpreschen. Wie Radfahrende von hier in den <a>Reesendamm</a> wechseln, wird auch den Verkehrsteilnehmer ad hoc überlassen. Weder die Planer noch die Polizei haben viel Vertrauen in diese Führung: alle sind sich einig das der Belag erneuert werden sollte, damit die alten Markierung rückstandslos entfernt werden können. So soll eine zusätzliche Verwirrung der Verkehrsteilnehmer vermieden werden.</p>
+    <p><strong>Neuer Jungfernstieg:</strong> Die Gebäudeseite erhält einen ca. 1,8m breiten Radfahrstreifen. Der Sicherheitsabstand zu den parkenden KFZ wird nicht markiert, weil diese sonst regelmäßig als Parkplatzbegrenzung missverstanden werden. Somit sieht der Radweg optisch breiter aus als er ist, da man immer noch ausreichend Abstand von den Autotüren halten muss. Zur Kreuzungssituation vom Neuen Jungfernstieg zum Jungfernstieg hin siehe im vorigen Absatz. Auf der Alsterseite sieht es ähnlich aus: der Radfahrstreifen ist ca. 1,8m breit (bzw. 2,0m mit Markierung), allerdings entfallen hier alle Parkplätze. Der vorhandene Radweg wird zurückgebaut und dem Fußweg zugeschlagen. Die <a href="/#18.02/53.557381/9.992893" class="place">Kreuzung Esplanade/Lombardsbrücke</a> ist nicht teil dieser Umplanung, weswegen hier temporäre Überleitungen auf den Bestand erfolgen.</p>
+    <p><strong>Sonstiges:</strong> Die <a href="/#18.56/53.5548815/9.9911484" class="place">Stadtrad Station gegenüber den Colonnaden</a> wird vergrößert. Zusätzlich werden an allen drei genannten Straßen Fahrradbügel aufgestellt. Am Ballindamm kommen weitere Querungsstellen hinzu, am neuen Jungfernstieg jedoch nicht, obwohl sie auch hier notwendig wären. An die Außengastronomie wurde jeweils gedacht, indem man Lücken in den Parkständen gelassen hat. Die Ampelschaltungen werden jeweils auf den langsameren Radverkehr angepasst, sodass genug Zeit bleibt die Kreuzungen zu räumen. Der Bericht geht nicht darauf ein, ob die Ampeln zu einer „grünen Welle“ für den Radverkehr geschalten werden, weswegen eher nicht davon auszugehen ist. Es bleibt zu hoffen, das diese nicht zu einer „roten Welle“ werden, da künftig deutlich mehr Ampeln zu passieren sind.</p>
+    <p>Wer vom <a>Gänsemarkt</a> kommend links auf in den Neuen Jungfernstieg abbiegen möchte, darf dies auch künftig weiter tun. Allerdings ändert sich die Führung: statt indirekt über die Fußfurt soll man künftig direkt links abbiegen. Dazu wird eine Stummel-Linksabbiegerspur nur für den Radverkehr angelegt. Es gibt dafür keine eigene Schaltung, sondern man muss entweder eine Lücke finden oder warten bis der Gegenverkehr wieder rot hat und dann die Kreuzung räumen. Baubeginn soll bereits im Mai 2019 sein.</p>
+    <p><a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/12074562/umbau-ballindamm-jungfernst-neuer-jungfernst-art/">Erläuterungsbericht und Lagepläne</a></p>
+
 1-geranienweg:
   lastCheck: '2018-10-13'
   loc: [9.86589, 53.57786]
