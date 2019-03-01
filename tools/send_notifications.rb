@@ -5,6 +5,8 @@ Dir.chdir(File.dirname(__FILE__) + "/../routes")
 require_relative Dir.pwd+"/rss"
 require "twitter"
 require "open-uri"
+require "pry"
+require 'open3'
 
 posts = RSS.list(count: 3).reverse
 # ignore posts older than 3 days
@@ -42,6 +44,26 @@ def find(lonLat)
   x.strip
 end
 
+def direct_run(command, pipe = nil)
+  raise "must be an array" unless command.is_a?(Array)
+  exit_status = -1
+  str_out = []
+  str_err = []
+  output = ''
+  Open3.popen3(*command) do |stdin, stdout, stderr, wait_thr|
+    # wait_thr.pid # pid of the started process.
+    stdin.write(pipe) if pipe
+    stdin.close
+    exit_status = wait_thr.value # Process::Status object returned.
+    str_out << stdout.read
+    str_err << stderr.read
+    output << str_out.last
+    output << str_err.last
+  end
+
+  return exit_status == 0, output, str_out.join, str_err.join
+end
+
 posts.each do |post|
   loc = find(post[:lonLat])
 
@@ -74,6 +96,35 @@ posts.each do |post|
     lat: post[:lonLat][1],
     display_coordinates: true
   )
+
+  subject = post[:title]
+  subject += " (#{loc})" if loc
+
+  ENV["EMAILS"].split(/\s+/).each do |email|
+    body = <<~BODY
+      <strong>#{subject}</strong><br><br>
+
+      <a href="#{post[:link]}">Ansicht auf veloroute.hamburg</a><br><br>
+
+      #{post[:description].gsub("<img ", '<img width="300" style="margin:1em;max-width:80%;max-height:80%;width:auto" ')}<br><br>
+
+      Dein veloroute.hamburg
+    BODY
+
+    ok, stdout, stdin = direct_run(["/usr/bin/s-nail",
+      # "-d",
+      "-s", "veloroute.hamburg: #{subject}",
+      "-r", "stefan-veloroute@breunig.xyz",
+      "-b", "stefan-bcc@yrden.de",
+      "-M", 'text/html',
+      email],
+      body)
+
+    if !ok
+      puts "Failed to send email for #{email}"
+      binding.pry
+    end
+  end
 end
 
 
