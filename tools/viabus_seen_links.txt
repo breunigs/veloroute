@@ -390,3 +390,9 @@
 - https://via-bus.hamburg.de/contentblob/12128092/777cc763164a5083f2db6d46569b03ca/data/m6-vereinfachter-lageplan-schlussverschickung-borgweg.pdf
 '2019-02-13':
 - https://via-bus.hamburg.de/contentblob/12151432/b0c8b6810408a7bf6951f9d3ba845399/data/m6-semperstrasse-schlussverschickung.pdf
+'2019-02-21':
+- https://via-bus.hamburg.de/contentblob/12185924/9d56ce505872a90224904ba0bf951891/data/18-m25-hofweg-schlussverschickung.pdf
+- https://via-bus.hamburg.de/contentblob/12178528/d9eb809982526d6c6ee99ccf3ceba2cf/data/17-m25-hofweg-visualisierungen.pdf
+- https://via-bus.hamburg.de/contentblob/9892750/c98ee82e5617bdb1b3d37b39271eab18/data/15-m25-hofweg.pdf
+'2019-02-26':
+- https://via-bus.hamburg.de/contentblob/12227144/0c0daf4983f92ce162421751581c9bbb/data/61-schlussverschickung-hofweg.pdf

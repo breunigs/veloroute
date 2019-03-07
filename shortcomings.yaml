@@ -261,6 +261,7 @@ binnenalster:
     <p>Aus dem Publikum gab es Kritik an den wechselseitigen Hindernissen, da diese zwar den Verkehr beruhigen würden, aber eben auch den Radverkehr ausbremsen, der dann ggf. hinter den Autos warten muss. Ebenso wurde angemerkt, das diese Art der Verkehrsführung enges Überholen bzw. Abdrängen des Radverkehrs im Gegenverkehr begünstige. Das Planungsbüro will dies in der Detailplanung berücksichtigen und nochmals andere Maßnahmen der Beruhigung prüfen. Vorgeschlagen wurden etwa eine Einbahnstraßenregelung oder „Anwohner frei“, jeweils mit Freigabe für's Fahrrad. Laut Planer werden diese Lösungen aber regelmäßig von der Polizei abgelehnt.</p>
     <p>Insgesamt wirkt die Planung durchwachsen: der neue Belag ist natürlich gerne gesehen und das geordnete Parken dürfte auch etwas Übersichtlichkeit schaffen. Die wechselseitigen Hindernisse sind aber klar eine Krücke um KFZ-Schleichverkehr und Rasen zu vermeiden – es ist schade, das sich hier keine besseren Möglichkeiten finden lassen. Das man auch weiterhin an der <a href="/#17/53.55285/9.894541" class="place">Kreuzung Agathe-Lasch-Weg / Emkendorfstraße</a> einen Zwangstop einlegen muss ist wegen des Platzmangels und Busverkehrs zwar verständlich, löst das Problem aber nicht.</p>
     <p>Die Planung soll nun im Detail erfolgen und die Anregungen so gut es geht berücksichtigen. Start der Baumaßnahme könnte 2020 sein.</p>
+    <p><a href="http://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Othmarschen_A17_Dokumentation_%C3%BCberarb.pdf">Dokumentation zur Infoveranstaltung</a></p>
 
 1-juergensallee:
   lastCheck: '2018-09-28'
@@ -278,6 +279,50 @@ binnenalster:
   - tQc64IlQPQUKXL1-XZpLtQ
   desc: <p>Die <a>Jürgensallee</a> ist zwischen der <a>Baron-Voght-Straße</a> und der <a>Kanzleistraße</a> momentan vollständig in Kopfsteinpflaster geführt. Entsprechend unkomfortabel ist dieser Teilabschnitt. Nach dem geplanten Umbau im Frühjahr 2019 soll im Bereich der denkmalgeschützten Häuser das Kopfsteinpflaster bestehen bleiben (<a>Baron-Voght-Straße</a> bis ca. Hausnummer 100), aber neu verlegt werden um den Zustand zu verbessern. Im weiteren Verlauf wird die Straße asphaltiert und es kommen an einigen Stellen noch Querungshilfen hinzu. Die Doppeleinmündung <a>Kanzleistraße</a> und <a>Karl-Jacob-Straße</a> wird etwas kompakter gefasst, bleibt aber sonst bei der aktuellen Führung.</p><p>Besser als vorher ist der reduzierte Streckenanteil mit Kopfsteinpflaster allemal, wirklich attraktiv sind die verbleibenden 90m aber nicht. Idealerweise würde die Route hier anders geführt werden um nicht zwischen Radverkehr und Denkmalschutz abwägen zu müssen.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007916">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+1-blankenese-sued:
+  lastCheck: '2019-03-07'
+  loc: [9.81622, 53.56199]
+  loc2: [9.8339, 53.5598]
+  type: intent
+  grade: 3
+  title: "Blankenese Süd (Veloroute 1, Humannstraße bis Godeffroystraße)"
+  start: 2020
+  area:
+  - [[9.814605,53.562588],[9.814353,53.562266],[9.814809,53.562167],[9.815013,53.562486]]
+  - [[9.818408,53.560768],[9.818527,53.560265],[9.819396,53.560357],[9.819176,53.560743]]
+  - [[9.819964,53.560584],[9.81968,53.560386],[9.821745,53.559653],[9.822094,53.559908]]
+  - [[9.823274,53.560743],[9.823161,53.560606],[9.823419,53.560319],[9.823982,53.560386],[9.824132,53.560698],[9.823564,53.560883]]
+  - [[9.826573,53.561199],[9.826868,53.560998],[9.827405,53.561128],[9.827152,53.561332]]
+  - [[9.831516,53.560327],[9.832495,53.560051],[9.832721,53.560356],[9.831712,53.560614]]
+  - [[9.834405,53.559771],[9.834276,53.559551],[9.834936,53.559347],[9.835119,53.55965]]
+  images:
+  - 7bJhuQbfcEaQVc-4Xk4yjg
+  - FuOUN04aWTQwtTsdTW-i1A
+  - LvdjBwAHB1GtDm5PpXnRMQ
+  - bm1R2ABnOH27L8kFSG6gyA
+  - ELaVKfAVUuh_SS_ARd-u7w
+  - 5vBJdFY11aJ2dnfPypHFxQ
+  - ewoMfRN4bVjLrBa5-D--8g
+  - ZNBBANWvLorTQEyR709BbQ
+  - gkPCHrVa8AMkGztRv4LLFw
+  - 9K69CLq0XKd2KVH86zy4_w
+  - z3RRsiSE6m_CoFMR6A65vg
+  - 88QsxgQacjNX-mIksTb1jQ
+  - ABwRfavdwPZG1y88fS8g0w
+  - q7DCb-VcTgu2lLE39BchCA
+  - PaaajSxh7iSKBjxIzo2pBg
+  - V-kFBY7xupKEtLI8S3aqOQ
+  desc: >
+    <p>Zur Verbesserung der Veloroute 1 im Süden von Blankenese ab der  <a class="place" href="/#17/53.559698/9.834337">Kreuzung mit der Eichendorffstraße</a> bis zur <a>Blankeneser Bahnhofstraße</a> wurden wurden auf einer Infoveranstaltung angedachte Maßnahmen vorgestellt. Diese beschränken sich im Wesentlichen darauf die kritischsten Stellen etwas zu entschärfen, ein durchgängiger Umbau ist nicht vorgesehen.</p>
+    <p>Die abknickende Vorfahrt <a class="place" href="/#17/53.559698/9.834337">Manteuffelstraße / Eichendorffstraße</a> bleibt wie bisher. Um die Situation für den Radverkehr dennoch zu verbessern wird in der Manteuffelstraße eine Querungshilfe gebaut, in deren Verlängerung sich dann ein Aufstellbereich zum Abbiegen befindet. KFZ werden so klarer geleitet und etwas von wartenden Radfahrenden ferngehalten. Richtung Blankenese ändert sich nichts – das Rechts-vor-Links bleibt also ebenfalls. Im weiteren Verlauf der Manteuffelstraße werden noch zwei Bushaltestellen ausgebaut.</p>
+    <p>Für die <a href="/#17.59/53.560861/9.82359" class="place">Kreuzung Elbchaussee / Mühlenberg / Manteuffelstraße</a> war ein Kreisel angedacht, der sich aufgrund des verfügbaren Platzes und der vorhandenen Bäume nur schwerlich umsetzten lässt. Stattdessen soll die Ampelschaltung entlang der Veloroute für den Radverkehr etwas verbessert werden. Zusätzlich werden in den Nebenstraßen Aufstellbereiche vor den KFZ aufgemalt. Das unkomfortable indirekte Abbiegen aus der <a>Manteuffelstraße</a> entfiele also.</p>
+    <p>Für die <a>Gätgensstraße</a> ist vorgesehen das Kopfsteinpflaster durch Asphalt zu ersetzen und die Parkplätze zu ordnen. Letztere wären wechselseitig als Parkstreifen ausgeführt. Anwohnenden gefiel beides nicht, weswegen nochmal geprüft wird ob andere Optionen bestehen. Die Einmündung in die Elbchaussee soll indes nicht angepasst werden.</p>
+    <p>An der <a class="place" href="/#18/53.560455/9.818865">Einmündung Godeffroystraße / Elbchaussee</a> soll eine Sprunginsel in der Straßenmitte das Queren vereinfachen. Diese würde auch Überholvorgänge auf der Geraden unterbinden, wobei es jedoch sehr wahrscheinlich bei Tempo 50 bleibt.</p>
+    <p>Die <a class="place" href="/#17/53.562307/9.814347">Kreuzung Ole Hoop / Godeffroystraße</a> wird schmaler eingefasst, sodass die Fußwege großzügiger werden. Auch die Breite der Straßen verringert sich so, sodass die Querung kürzer ausfällt. Es bleibt beim Rechts-vor-Links.</p>
+    <p><strong>Fazit:</strong> Die Verbesserungen fallen minimal aus, sind aber dennoch gern gesehen. Leider bleiben auch viele Probleme ungelöst, etwa Mischverkehr bei Tempo 50 in der <a>Manteuffelstraße</a> und der <a>Elbchaussee</a>, die auf Höhe der <a>Gätgensstraße</a> auch keine Querungshilfe erhält. Dort sind die wechselseitigen Parkplatzstreifen auch keine Idealsituation für den Radverkehr, weil dieser dann durch wartende KFZ behindert wird.</p>
+    <p>Die Maßnahmen sollen nun im Detail ausgearbeitet werden, sodass im Frühjahr 2020 mit der Umsetzung begonnen werden kann.</p>
+    <p><a href="http://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Altona_A22_Gesamtdokumentation_mit%20Anlagen.pdf">Dokumentation zur Infoveranstaltung</a></p>
 
 1-blankeneser-friedhof:
   lastCheck: '2018-09-29'
@@ -510,10 +555,10 @@ binnenalster:
     <p>Im Bereich der Veloroute sind die Planungen okay, aber definitiv nicht überragend. Es ist gut das man die Vorfahrtsituation am <a class="place" href="/#19/53.59432/9.93290">nördlichen Sportplatzring</a> und der <a>Borchertstraße</a> deutlich klärt, ebenso wie der Vorbeifahrstreifen Richtung Süden. Andererseits bleibt es in diesem Abschnitt des Basselwegs bei 50 km/h, ohne das für den Radverkehr Infrastruktur geschaffen wird. Detaillierter wird im Bericht nur die Einrichtung von Schutzstreifen diskutiert – die unter hohem Baum- und Stellplatzverlust jedoch zurecht abgelehnt wird. Das weder ein 30er Tempolimit noch Einbahnstraße mit Busfreigabe erörtert wurden zeigt jedoch, das es noch ein weiter Weg bis zur Fahrradstadt Hamburg ist.</p>
     <p>Der Umbau der Hauptverkehrsstraße soll 2020 beginnen, sobald der Autobahnanschluss Hamburg-Stellingen fertig ist. Der Basselweg folgt wenn die angrenzende Wohnbebauung weitestgehend abgeschlossen ist – was ca. erst 2022 der Fall sein wird.</p>
     <ul>
-      <li><a href="https://lsbg.hamburg.de/contentblob/12098150/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-abgestimmte-planung-bericht.pdf">Bericht Hauptverkehrsstraße</a></li>
-      <li><a href="https://lsbg.hamburg.de/contentblob/12098152/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-abgestimmte-planung-plaene.pdf">Lagepläne Hauptverkehrsstraße</a></li>
-      <li><a href="https://lsbg.hamburg.de/contentblob/12098146/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-bericht.pdf">Bericht Neubaugebiet / Basselweg</a></li>
-      <li><a href="https://lsbg.hamburg.de/contentblob/12098148/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-abgestimmte-planung-plaene.pdf">Lagepläne Neubaugebiet / Basselweg</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12272210/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-bericht.pdf">Bericht Hauptverkehrsstraße</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12272212/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-lageplan.pdf">Lagepläne Hauptverkehrsstraße</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12272214/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-bericht.pdf">Bericht Neubaugebiet / Basselweg</a></li>
+      <li><a href="https://lsbg.hamburg.de/contentblob/12272216/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-lageplan.pdf">Lagepläne Neubaugebiet / Basselweg</a></li>
     </ul>
 
 2-woerdemanns-weg:

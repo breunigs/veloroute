@@ -176,6 +176,7 @@ const displayShortcoming = (imagesPromise, name, state) => {
   el.style.cssText = 'display: block';
   document.getElementById("routes").scrollTop = 0;
   imagesPromise.then(({setActiveRoute}) => setActiveRoute("quality", name, null, true));
+  state.zoomToBounds(sc.bounds);
   state.showPolygon(sc.area);
 }
 

@@ -62,19 +62,32 @@ class State {
   }
 
   _toPoly(coords) {
-    return {
+    if(typeof coords[0][0] == "number") {
+      return {
         'type': 'Feature',
         'geometry': {
           'type': 'Polygon',
           'coordinates': [coords]
         }
       }
+    }
+
+    return {
+      'type': 'GeometryCollection',
+      'geometries': coords.map(function(cc) {
+        return { 'type': 'Polygon', 'coordinates': [cc] }
+      })
+    }
   }
 
-  showPolygon(coords) {
+  zoomToBounds(bounds) {
+    this._map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
+  }
+
+  showPolygon(coords, bounds) {
     if(!coords) return this.hidePolygon();
 
-    let asPoly = this._toPoly(coords);
+    const asPoly = this._toPoly(coords);
     if(!this._map.getSource('source-polygon')) {
       this._map.addSource('source-polygon', { type: 'geojson', data: asPoly });
     } else {
@@ -94,10 +107,6 @@ class State {
     }
 
     this._map.setLayoutProperty('layer-polygon', 'visibility', 'visible');
-
-    let bounds = new mapboxgl.LngLatBounds(coords[0], coords[0]);
-    bounds = coords.reduce((bounds, coord) => bounds.extend(coord), bounds);
-    this._map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
   }
 
   hidePolygon() {

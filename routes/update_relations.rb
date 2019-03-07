@@ -111,7 +111,10 @@ def build_image_lists(routes)
     details["desc"] = link_places(details["desc"])[0].to_s
     details["desc"] = exernal_new_tab(details["desc"]).to_s
     # use list of images to show affected area if no specific one is defined
-    shortcomings[name]["area"] ||= coords_to_buffered_poly(quality[name][:loc])
+    coords = quality[name][:loc]
+    coords += [shortcomings[name]["loc"]] if coords.size <= 1
+    shortcomings[name]["area"] ||= coords_to_buffered_poly(coords)
+    shortcomings[name]["bounds"] = coords_to_bounds(shortcomings[name]["area"])
   end
   write_with_hash("images-quality.json", quality.to_json)
   File.write('geo_tmp/shortcomings.json', shortcomings.to_json)
@@ -173,6 +176,13 @@ def coords_to_buffered_poly(coords)
   buffered = factory.line_string(coords).buffer(BUFFER_IN_METERS)
   geojson = RGeo::GeoJSON.encode(buffered)["coordinates"].first
   geojson.map { |c| [c[0].round(6), c[1].round(6)] }
+end
+
+def coords_to_bounds(coords)
+  coords = coords.flatten(1) if coords[0][0].is_a?(Array)
+  minlon, maxlon = coords.map(&:first).minmax
+  minlat, maxlat = coords.map(&:last).minmax
+  [minlon, minlat, maxlon, maxlat]
 end
 
 SCSS_MUTEX = Mutex.new
