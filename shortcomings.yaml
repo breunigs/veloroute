@@ -263,6 +263,44 @@ binnenalster:
     <p>Die Planung soll nun im Detail erfolgen und die Anregungen so gut es geht berücksichtigen. Start der Baumaßnahme könnte 2020 sein.</p>
     <p><a href="http://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Othmarschen_A17_Dokumentation_%C3%BCberarb.pdf">Dokumentation zur Infoveranstaltung</a></p>
 
+1-reventlowstrasse:
+  lastCheck: '2019-03-08'
+  loc: [9.89030, 53.55626]
+  grade: 3
+  title: "Reventlowstraße (Veloroute 1)"
+  type: intent
+  start: 2019Q3
+  area: [[9.887749,53.558869],[9.887191,53.558659],[9.889036,53.557416],[9.889637,53.556932],[9.890528,53.555237],[9.89085,53.553624],[9.89026,53.55256],[9.889948,53.552566],[9.889852,53.55226],[9.890195,53.552222],[9.890109,53.551961],[9.890796,53.551929],[9.890871,53.552235],[9.891161,53.552222],[9.891214,53.552496],[9.890817,53.552528],[9.891236,53.55342],[9.891397,53.553879],[9.891182,53.555192],[9.890528,53.556467],[9.890893,53.55655],[9.89056,53.557238],[9.890217,53.557212],[9.887846,53.558799]]
+  images:
+  - b6ElwvyArj77K4Srt4rxTQ
+  - KA9Oo3fWrd_4y02H8XSmAg
+  - NdpABw3npUFGxC-8TIUNWg
+  - DjXxjUUUvJfyYHagdW6-xQ
+  - zZoZa4sIla2ECIh7azD4ZA
+  - QXgzAZZzILpObCsCAT2B4g
+  - aa_NrZpAKlGYpfBLhPAnaQ
+  - RBA_l9iBxLYChZZPwGP59Q
+  - DL7AT_VehBjcfTX9q7pghQ
+  - s_IUpgC7i4kHA_Gv1Y6CAA
+  - 4i6XM2ttYjurc56jQH24kw
+  - 2zZjvvPyYEWJ5ifoAY4lwg
+  - UHxU3EfLsEHi3XO_BNOZNQ
+  - y9LyVfj28BlksZa-4cf-wQ
+  - z74K38gKGINCOOuELn9M1g
+  - R8Cf5AKWTlLMQNVB_WtW2g
+  - m292uSf-i5eVlTIqkC6EtQ
+  - tP6ozPF_XtGIylEYOyi9HA
+  - l5cMGWycb-WN5PLHHWkScA
+  desc: >
+    <p>Bisher ist die <a href="/#17/53.555961/9.890466" class="place">Reventlowstraße</a> vor allem auf den Autoverkehr ausgerichtet. Radwege oder -spuren gibt es nur wenige, die häufig im Nichts enden. Gerade an den Kreuzungen ist die Führung unklar, sodass man der Veloroute selbst mit Navi kaum folgen kann. Bereits im August 2018 gab es eine Infoveranstaltung zu den angedachten Umbaumaßnahmen, die im Sommer 2019 in die Tat umgesetzt werden sollen. Aktuell ist mir aber noch keine endgültige Planung bekannt.</p>
+    <p>Die Vorplanung sieht entlang der Veloroute folgendes vor: In der <a class="place" href="/#18/53.555184/9.890766">Einmündung Emkendorfstraße</a> wird der Zebrastreifen entfernt und durch eine Gehwegüberfahrt ersetzt. Zufußgehende können künftig also deutlich direkter queren. Die Fußampel rückt näher Richtung Einmündung und erhält eine Mittelinsel. In dessen Schutz befindet sich auch die Aufstellfläche für linksabbiegenden Radverkehr Richtung Innenstadt. Das wirkt nach einer guten Lösung.</p>
+    <p>Im Anschluss gibt es in der <a href="/#17/53.555961/9.890466" class="place">Reventlowstraße</a> allerdings nur 1,50m schmale Schutzstreifen, die zusätzlich noch durch die Bushaltestelle führen. Es sollte aber genug Platz sein um an einem wartenden Bus vorbeizufahren.</p>
+    <p>Die <a href="/#18/53.556797/9.889955" class="place">Einmündung bzw. Kreuzung mit der Walderseestraße</a> soll in einen Kreisel umgebaut werden. Der Radverkehr würde hier jeweils auf einen Hochbordradweg geschickt, der mit 2,0m breit genug wäre. Am nordöstlichen Ende ist jedoch weiterhin der mit 1,25m viel zu schmalen Altbestand vorgesehen, der kurz darauf in einen breiteren Radfahrstreifen übergeht – hoffentlich wird das noch verbessert, sodass die Führung durchgehend eine akzeptable Breite bietet.</p>
+    <p>Zum <a class="place" href="/#18/53.557518/9.889185">Abbiegen in die Jungmannstraße</a> teilt sich der Radfahrstreifen in zwei Spuren auf, sodass Linksabbieger eine klare Aufstellfläche haben. Wer geradeaus weiter möchte muss einen kleinen Verschwenk nach rechts in Kauf nehmen, kommt aber ungehindert weiter. Das ist eine sinnvolle und eingängige Lösung, die leider nicht überall in Hamburg Anwendung findet. Auch in der Gegenrichtung ist genug Platz für einen ca. 2,0m breiten Radfahrstreifen, der aber schnell wieder zum Hochbordradweg im Kreisel wird.</p>
+    <p>Die Maßnahmen außerhalb der Veloroute seien kurz angerissen: 1,80m breite Radfahrstreifen Richtung <a>S-Othmarschen</a>. Südlich der <a>Emkendorfstraße</a> gibt es Richtung Elbe einen Hochbordradweg, in der Gegenrichtung nur einen Schutzstreifen. Die <a href="/#18.02/53.552681/9.890332">Kreuzung</a> wird ebenfalls für den Radverkehr angepasst und erhält eine geradlinige Führung, Aufstelltaschen für indirektes Linksabbiegen und vorgezogene Aufstellbereich in den Nebenstraßen.</p>
+    <p><strong>Fazit:</strong> Die angedachten Maßnahmen, gerade in den Einmündungen der Jungmann- bzw. Emkendorfstraße, sind gelungen und verbessern die Situation für den Radverkehr erheblich. Die kümmerlichen Schutzstreifen südlich des Kreisel sind jedoch von fraglichem Nutzen. Sofern die Überfahrten im Kreisel ebenerdig gestaltet werden und die KFZ diese nicht blockieren, dürfte so trotz des „Umweges“ erheblich Zeit eingespart werden im Vergleich zu einer Ampel. Leider ist die Führung noch sehr kurvig eingezeichnet – vermutlich absichtlich, damit der Autoverkehr nicht zu sehr von Fahrrädern überrascht wird. Insgesamt stellt die Planung eine erhebliche Verbesserung da, lässt aber auch noch klar Luft nach oben.</p>
+    <p><a href="http://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2018-08_Veloroute-Altona_A12_Gesamtdokumentation.pdf">Dokumentation zur Infoveranstaltung</a> (mit Lageplänen)</p>
+
 1-juergensallee:
   lastCheck: '2018-09-28'
   loc: [9.86159, 53.55740]
