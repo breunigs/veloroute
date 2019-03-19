@@ -396,3 +396,7 @@
 - https://via-bus.hamburg.de/contentblob/9892750/c98ee82e5617bdb1b3d37b39271eab18/data/15-m25-hofweg.pdf
 '2019-02-26':
 - https://via-bus.hamburg.de/contentblob/12227144/0c0daf4983f92ce162421751581c9bbb/data/61-schlussverschickung-hofweg.pdf
+'2019-03-17':
+- https://via-bus.hamburg.de/contentblob/12241644/03a67930a28cdebbffd185527fc5895c/data/plakat-befragung.pdf
+- https://via-bus.hamburg.de/contentblob/12293588/4b8572725f56d68488b1203b7fb7f76b/data/19-m25-ba-wartenau.pdf
+- https://via-bus.hamburg.de/contentblob/9838390/914bdb5dab11c2180f578705b4894b3b/data/55-ausfuehrungsplaene-uferstr-hebbelstr.pdf

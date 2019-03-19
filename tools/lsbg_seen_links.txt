@@ -152,3 +152,6 @@
 - "/contentblob/12272212/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-lageplan.pdf"
 - "/contentblob/12275556/ec192cd0c2aca89cf09383bb18090b65/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-bericht.pdf"
 - "/contentblob/12275558/5d6da732beaabe929d6477671246c4e8/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-plaene.pdf"
+'2019-03-17':
+- "/contentblob/12289890/1b030631e6508d515645eea83e78ad9d/data/fuhlsbuettler-strasse-101-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12289892/0a22abc9060abe00fec8c937049b9d69/data/fuhlsbuettler-strasse-101-abgestimmte-planung-plan.pdf"

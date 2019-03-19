@@ -361,3 +361,11 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007999
 '2019-02-25':
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009893
+'2019-03-17':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008503
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008064
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009931
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009941
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006435
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006415
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006413

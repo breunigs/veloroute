@@ -1483,8 +1483,59 @@ binnenalster:
     <p>Auch die Situation an den verschiedenen Kreuzungen und Einmündungen wurde gut überdacht. Sind nur wenige Autospuren vorhanden, können Radfahrende künftig direkt links abbiegen, indem sie sich in den KFZ-Verkehr einordnen. Wer das nicht möchte hat Aufstelllaschen für's indirekte Linkssabbiegen. Letzteres ist auch für alle großen Kreuzungen so vorgesehen.</p>
     <p>Wer als Radfahrende gerade aus möchte, verbleibt in der Regel auf seiner Spur. Rechtsabbiegende Radfahrende teilen sich die Spur mit den KFZ, wobei es Radfahrende bequemer haben: sie halten sich einfach rechts, während die Autos in Zukunft die Geradeausspur des Radverkehrs queren müssen.</p>
     <p>An der Einmündung <a>An der Walddörferbahn</a> wird es künftig sowohl vor als auch nach der Kreuzung eine Zufußgehende- bzw. Fahrradampel zur Querung geben. Aus Richtung Süden kommend muss der Radverkehr den linksseitigen Radweg nutzen, was sich mit dem Umbau auch nicht ändern wird. Immerhin gibt es in Zukunft eine ordentliche Querungsmöglichkeit, die verdeutlicht das der Zweirichtungsradweg an der <a>Eckerkoppel</a> endet. Die Furt wird dabei diagonal über die Kreuzung geführt, was die Kurvenradien für den Radverkehr deutlich angenehmer macht.</p>
-    <p>Die Maßnahme soll ab Sommer 2019 umgesetzt werden. Die Kreuzung mit dem <a>Rahlstedter Weg</a> wird in einer anderen Planung überarbeiten.</p>
+    <p>Die Maßnahme soll ab Sommer 2019 umgesetzt werden. Die Kreuzung mit dem Rahlstedter Weg wird in <a href="/quality/6-berner-heerweg">Berner Heerweg (Abschnitt W18)</a> betrachtet.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009007">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+
+6-berner-heerweg:
+  lastCheck: '2019-03-19'
+  loc: [10.12328, 53.61104]
+  grade: 3
+  type: planned-construction
+  start: '2019Q2'
+  finish: '2020Q1'
+  area: [[10.119106,53.605977],[10.119739,53.605748],[10.120468,53.60669],[10.121133,53.607798],[10.122925,53.610076],[10.124116,53.611922],[10.124298,53.612711],[10.123837,53.614214],[10.123655,53.615544],[10.123891,53.616193],[10.123236,53.616339],[10.123086,53.615461],[10.123075,53.61415],[10.123633,53.612991],[10.123526,53.611859],[10.118934,53.606041]]
+  title: "Berner Heerweg (Veloroute 6, „Abschnitt W18“)"
+  images:
+  - wsNaubw_qnhK1iLEkbesIQ
+  - DUixxaSoxUuQes0jUDElSA
+  - nWt2gru4PkGDrOE2uBlvAA
+  - I5JTgc9NNVpd2eQ55H_XXw
+  - ge2a7rSRHigXsLAq5zXNjQ
+  - wCKjZhZoNOCw_GmijLcf2w
+  - jCZ3c1CP9lGNy8sEaPPb1w
+  - Wy17EM5KoSHymXDZWqpc7A
+  - MQhed8RymHeUe2PMx_T6gQ
+  - SdC-rVVwn6CHuRFsxtyN_w
+  - o2xWxZE5czh8d6nG2O61RA
+  - 3TC1LABGTERQmjW8FqMwPA
+  - JKZs-GlnThs_qYmNJd-7uw
+  - rpePc-KV_0R715fZ4moOhQ
+  - fVikhyuD6bXkmozW51TiFQ
+  - mcZO8OA4GEl7qxZvIwfqyA
+  - NbGPBt1Q1SUgDJ-0RofTIg
+  - qWgcP2xRWeSZY0M1ovJKyw
+  - u4QzfKLJyAsIGBVpz0vPTw
+  - zGjPNp88_rySMvAsBZWKpA
+  - ZDQaRXRK_a1hDuJO2jmagw
+  - L9K5bFwRWREbVbHVRLf0oA
+  - RUqfcxn3pSf1QPtEwqRLAQ
+  - UBlDwzSACENjx6gbBvID0Q
+  - rM18vP-k0M12CChruJZwsw
+  - G5hc5qeinCHCJeYjm7-bXw
+  - VcGFcbHHYapn5CQkuiTWng
+  - xqZZ_TybZPnVVwEjEo3Lsw
+  - Exm4liO2IIWeXLSzkNEy_A
+  - 567Rm7r-uRCCBMBaI2xyTQ
+  - an7BaRYtVtCMTiZNecPF2w
+  - 5jlZpkewlG1M-o68_UBmRg
+  desc: >
+    <p>Der <a>Berner Heerweg</a> ist im akutellen Zustand brauchbar befahrbar. Der Radweg ist halbwegs eben und breit genug um Schlaglöchern auszuweichen. Zum Überholen reicht der Platz allerdings kaum. Problematisch sind vor allem die Kreuzungen, die <a class="place" href="/#18/53.606594/10.119401/Exm4liO2IIWeXLSzkNEy_A">Slalom</a> oder <a class="place" href="/#17/53.613456/10.124158/RkaTnKS_xWHQhaO1UvBA9A">schlechte Sicht</a> bieten. Zum <a>Neusurenland</a> hin muss außerdem um Grün gebettelt werden.</p>
+    <p><strong>Strecke:</strong> Die Umplanung sieht vor die Radwege als Radfahrstreifen mit Asphalt auszuführen. Sie sollen meist ca. 2,15m breit sein, wobei sie durch Markierung und Sicherheitsabstand zu parkenden KFZ rechts (Türunfälle, „Dooring“) ggf. breiter wirken. Gut: Die Regenrinne soll jeweils links der Markierung verlaufen und so den gefühlten Abstand zu KFZ nochmals erhöhen. Die <a href="/#17.39/53.612828/10.123993" class="place">Engstelle südlich der Stargarder Straße</a> wird nicht gelöst – stattdessen sind die Radfahrstreifen hier beidseitig mit rund 1,75m deutlich schmaler.</p>
+    <p><strong><a href="/#17/53.61624/10.122829" class="place">Einmündung Neusurenland</a>:</strong> Stadteinwärts wird der Radweg kurz vor der Kreuzung auf einen Radfahrstreifen abgeleitet (vgl. <a href="/quality/6-neusurenland">Neusurenland (Abschnitt W19)</a>), der mit der KFZ-Ampel signalisiert wird. Eine Möglichkeit frei Rechts abzubiegen ist nicht vorgesehen. Wer Linksabbiegen möchte wird geradeaus auf die andere Straßenseite geschickt um dann im 90° Winkel auf dem Radfahrstreifen die Richtung zu ändern.<br>Ins Neusurenland ist der Überweg jetzt deutlich zur Kreuzung gerückt, sodass man weniger umständlich abbiegen muss. Neu ist eine Aufstelltasche rechts des Geradeausverkehrs, die allerdings keine eigene Schaltung erhalten soll – d.h. es wären wie aktuell kombinierte Rad/Fußampeln, was nicht zeitgemäß ist. Direktes Linksabbiegen ist nicht vorgesehen.</p>
+    <p><strong><a href="/#17/53.613107/10.123974" class="place">Einmündung Stargarder Straße</a>:</strong> Stadtauswärts führt der Radfahrstreifen künftig geradlinig über die Kreuzung. Beim Rechtsabbiegen in die Stargarder Straße muss man sich nach wie vor in den Mischverkehr einordnen.<br>Stadteinwärts wird eine indirekte Linksabbiege Möglichkeit geschaffen. Dazu wird die Einmündung um eine Fußampel an der Südseite ergänzt, die wohl auch vom Radverkehr mitbenutzt werden soll. Leider ist die Planung hier fehlerhaft, sodass nicht zu erkennen ist wie die Ampel genau gestaltet werden soll.</p>
+    <p><strong><a href="/#17/53.613107/10.123974" class="place">Kreuzung August-Krogmann-Straße / Rahlstedter Weg</a>:</strong> Folgt man der Veloroute stadtauswärts bleibt man rechts der KFZ-Rechts spur. Die Planung geht leider nicht auf die Ampelschaltung ein, sodass hier der Konfliktpunkt Geradeaus-Rad / Rechts-KFZ im Kreuzungsbereich bleiben wird. Entlang der Veloroute stadteinwärts wird er dagegen vorgezogen: die Rad-Geradeaus Spur befindet sich hier zwischen den KFZ-Geradeausspuren und der Rechtsabbiegerspur.<br>Vom und zum Rahlstedter Weg und der August-Krogmann-Straße bleiben die freie Rechtsabbieger, die auf die dort vorhandenen Hochbordradwege aufleiten. Zum indirekten Linksabbiegen sind jeweils kleine Aufstelltaschen vorgesehen, deren Signalisierung wohl mit der Fußampel erfolgt. Direktes Linksabbiegen ist nicht vorgesehen.</p>
+    <p><strong>Fazit:</strong> Die breiteren Radwege sind zu begrüßen, obgleich sie als Radfahrstreifen ein gemischtes Bild abgeben – <a href="/#17.39/53.612828/10.123993" class="place">Engstelle südlich der Stargarder Straße</a> ergibt sich auch aus dem Kurvenverhalten von LKW die ggf. den Radfahrstreifen überfahren würden, wenn er breiter wäre.<br>Die Einmündung der Stargarder Straße wird für Radfahrende und Zufußgehende aufgewertet, da beide Seiten jetzt eine Ampel erhalten und so auch Linksabbiegen vom Norden kommend möglich wird.<br>An der <a href="/#17/53.613107/10.123974" class="place">Kreuzung August-Krogmann-Straße / Rahlstedter Weg</a> findet im Wesentlichen nur eine Anpassung an die Radfahrstreifen statt, was aber immerhin bedeutet das der Radweg Richtung Innenstadt nun gerade ist. Da sowohl hier als auch am <a>Neusurenland</a> Details zur Ampelschaltung fehlen, ist davon auszugehen das hier keine Verbesserung für den Radverkehr vorgenommen wird.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009931">Lagepläne und Erläuterungsbericht des zweiten Entwurfs</a></p>
 
 6-neusurenland:
   lastCheck: '2018-10-17'
@@ -1504,10 +1555,10 @@ binnenalster:
   - 4KVWwoQ0xOEm5b41wyi0GQ
   - _12nRQZ0MTpkbv2aBaUXwA
   desc: >
-    <p>Aktuell ist die Führung der Veloroute 6 auf dem <a>Neusurenland</a> unbrauchbar: stadtauswärts endet der Radweg einfach in der Bushaltestelle und in der Gegenrichtung kann man gar nicht ordentlich auf den Radweg auffahren, weil sich die Busbucht davor befindet.</p><p>Die Neuplanung sieht stadtauswärts einen Schutzstreifen in Minimalausführung vor, in der Gegenrichtung bleibt es beim Radweg, der aber etwas verbreitert wird. Die größte Änderung ist die Versetzung der Bushaltestellen hinter die Einmündungen vom <a>Hermelinweg</a> und <a>An der Berner Au</a>, was die Konflikte etwas entschärft.</p>
-    <p>Der große Wurf ist die Planung aber nicht: Die Kreuzung am <a>Berner Heerweg</a> wird in einer weiteren Planung geändert, sodass hier nur an die umständliche Platzierung der Zufußgehendeampeln angeschlossen wird. Im Kurvenbereich wird der „neue“ Radweg ebenfalls nur 1,75m breit, weil man den KFZ nicht mehr Platz nehmen möchte. Der Schutzstreifen ist inkl. Markierung und Kanalrinne nur 1,50m breit, was zwar den Vorgaben entspricht, an dieser Stelle aber auch nicht wirklich einladend wirkt. Auch wenn man jetzt erstmals von <a>An der Berner Au</a> auf den Radweg im <a>Neusurenland</a> auffahren kann, muss man entweder eine „S-Kurve“ beim Queren der Straße nehmen oder mit einem kleinen Kurvenradius am Anfang des Radweges leben. Beides senkt die Geschwindigkeit etwas.</p>
-    <p>Ich hoffe die Überplanung der Kreuzung mit <a>Berner Heerweg</a> verbessert die unangemessene Radführung über die Zufußgehendefurte und begradigt die Wege. Ansonsten behebt die Planung alle kritischen Punkte, wenn auch nur die Mindestanforderungen umgesetzt werden.</p>
-    <p>In den aktuellen Unterlagen wird noch kein Zeitraum für die Umsetzung genannt.</p>
+    <p>Aktuell ist die Führung der Veloroute 6 auf dem <a>Neusurenland</a> unbrauchbar: stadtauswärts endet der Radweg einfach in der Bushaltestelle und in der Gegenrichtung kann man gar nicht ordentlich auf den Radweg auffahren, weil sich die Busbucht davor befindet.</p>
+    <p>Die Neuplanung sieht stadtauswärts einen Schutzstreifen in Minimalausführung vor, in der Gegenrichtung bleibt es beim Radweg, der aber etwas verbreitert wird. Die größte Änderung ist die Versetzung der Bushaltestellen hinter die Einmündungen vom <a>Hermelinweg</a> und <a>An der Berner Au</a>, was die Konflikte etwas entschärft.</p>
+    <p>Der große Wurf ist die Planung nicht: Im Kurvenbereich wird der „neue“ Radweg ebenfalls nur 1,75m breit, weil man den KFZ nicht mehr Platz nehmen möchte. Der Schutzstreifen ist inkl. Markierung und Kanalrinne nur 1,50m breit, was zwar den Vorgaben entspricht, an dieser Stelle aber auch nicht wirklich einladend wirkt. Auch wenn man jetzt erstmals von <a>An der Berner Au</a> auf den Radweg im <a>Neusurenland</a> auffahren kann, muss man entweder eine „S-Kurve“ beim Queren der Straße nehmen oder mit einem kleinen Kurvenradius am Anfang des Radweges leben. Beides senkt die Geschwindigkeit etwas. Die Planung behebt alle kritischen Punkte, wenn auch nur die Mindestanforderungen umgesetzt werden.</p>
+    <p>In den aktuellen Unterlagen wird noch kein Zeitraum für die Umsetzung genannt. Zur Einmündung in den Berner Heerweg siehe <a href="/quality/6-berner-heerweg">Berner Heerweg (Abschnitt W18)</a>.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008836">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
 6-verbindungsweg-berner-au-roter-hahn:
