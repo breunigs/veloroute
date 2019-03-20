@@ -369,3 +369,6 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006435
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006415
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006413
+'2019-03-20':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004339
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004338
