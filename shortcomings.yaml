@@ -729,7 +729,7 @@ binnenalster:
   grade: 5
   start: 2019-01
   end: 2020
-  type: planned-construction
+  type: construction
   title: "Stresemannallee (Veloroute 3)"
   length: 1.0
   images:
@@ -798,7 +798,8 @@ binnenalster:
   loc: [9.9515, 53.6318]
   grade: 2
   type: planned-construction
-  start: 2019Q2
+  start: 2019Q3
+  end: 2021Q1
   title: "Paul-Sorge-Straße (Veloroute 3)"
   images:
   - 4FYlWhgOZenWWneeU0wmSA
@@ -820,7 +821,7 @@ binnenalster:
       Alle anderen Einmündungen und Kreuzungen haben keine eigenen Radspuren und es wird im Mischverkehr abgebogen. Die Paul-Sorge-Straße hat jeweils Vorfahrt.
     </p>
     <p>Gegenüber dem <a>Seesrein</a> sowie zwischen <a>Schippelsweg</a> und <a>Viehlohweg</a> werden neue StadtRAD Stationen gebaut. Die Anzahl der Abstellbügel für private Fahrräder erhöht sich entlang der gesamten Straße.</p>
-    <p>Geplant ist die Maßnahme ab Frühjahr 2019 in drei Teilabschnitten umzusetzen (<a>An der Lohe</a> → <a>Joachim-Mähl-Straße</a> → <a>Nordalbingerweg</a>).</p>
+    <p>Geplant ist die Maßnahme ab Herbst 2019 in drei Teilabschnitten umzusetzen (<a>An der Lohe</a> → <a>Joachim-Mähl-Straße</a> → <a>Nordalbingerweg</a>). Ursprünglich war Frühjahr 2019 angedacht, was sich aber offenbar <a href="https://www.niendorfer-wochenblatt.de/2019/03/27/veloroute-3-kommt-nach-niendorf/">durch Nachbesserungen am Plan</a> verschob.</p>
     <ul>
       <li><a href="https://www.hamburg.de/eimsbuettel/eimsbuettel-wohnen-bauen-und-verkehr/11540694/paulsorgestrasse/">Infoseite der Stadt zur Paul-Sorge-Straße</a></li>
       <li><a href="https://www.hamburg.de/contentblob/11687976/5b8b69991f6e66c19d033be1ca914e1a/data/planung-paulsorgestrasse20180827.pdf">Präsentation mit Planausschnitten</a></li>
@@ -1292,9 +1293,10 @@ binnenalster:
 5-pergolenvierel:
   lastCheck: '2019-01-05'
   loc: [10.029, 53.6041]
+  start: 2019Q1
   grade: 3
   area: [[10.030816,53.599418],[10.030961,53.599319],[10.031326,53.599594],[10.031606,53.600046],[10.031651,53.600338],[10.031603,53.600599],[10.031482,53.600834],[10.031129,53.601108],[10.030917,53.601192],[10.030753,53.601321],[10.030730,53.601594],[10.030725,53.601956],[10.030515,53.602389],[10.030127,53.602759],[10.029798,53.602983],[10.029556,53.603258],[10.029452,53.603610],[10.029144,53.604004],[10.028839,53.604388],[10.028647,53.604524],[10.028458,53.604699],[10.028417,53.604804],[10.028417,53.604924],[10.028410,53.605128],[10.028382,53.605183],[10.028213,53.605336],[10.028140,53.605556],[10.028180,53.605758],[10.028132,53.605931],[10.027920,53.606176],[10.027708,53.606379],[10.027410,53.606624],[10.027200,53.606791],[10.027006,53.606873],[10.026915,53.606900],[10.026706,53.607206],[10.026741,53.607411],[10.026425,53.607829],[10.025653,53.608838],[10.025453,53.608972],[10.025006,53.609535],[10.024504,53.609445],[10.024602,53.609306],[10.024996,53.609400],[10.025319,53.608991],[10.025567,53.608831],[10.026589,53.607435],[10.026617,53.607375],[10.026605,53.607258],[10.026607,53.607191],[10.026902,53.606777],[10.027226,53.606278],[10.027319,53.606295],[10.027241,53.606373],[10.026945,53.606795],[10.026973,53.606809],[10.027468,53.606443],[10.027988,53.605953],[10.028051,53.605838],[10.028054,53.605651],[10.028026,53.605522],[10.028054,53.605382],[10.028157,53.605246],[10.028296,53.605119],[10.028339,53.605024],[10.028334,53.604887],[10.028369,53.604738],[10.028291,53.604714],[10.028336,53.604665],[10.028392,53.604683],[10.028511,53.604544],[10.028730,53.604391],[10.028930,53.604169],[10.029213,53.603818],[10.029362,53.603610],[10.029442,53.603333],[10.029526,53.603173],[10.029682,53.602992],[10.030101,53.602675],[10.030346,53.602446],[10.030503,53.602238],[10.030631,53.601970],[10.030662,53.601750],[10.030652,53.601480],[10.030637,53.601368],[10.030684,53.601276],[10.030750,53.601207],[10.030955,53.601096],[10.031222,53.600950],[10.031369,53.600794],[10.031462,53.600668],[10.031543,53.600469],[10.031553,53.600302],[10.031523,53.600289],[10.031422,53.599970],[10.031169,53.599612],[10.031033,53.599511]]
-  type: planned-construction
+  type: construction
   title: "Neubaugebiet Pergolenviertel (Veloroute 5 Richtung Flughafen)"
   images:
   - Qh_tJg992lEuaiJG2FYkZQ
@@ -1768,7 +1770,7 @@ binnenalster:
   lastCheck: '2018-08-30'
   loc: [10.1499112, 53.5955692]
   grade: 2
-  type: planned-construction
+  type: construction
   start: 2018
   images:
   - pwuW4ksOJZlXcXePhA9m8Q
