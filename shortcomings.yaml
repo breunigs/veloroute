@@ -2033,6 +2033,42 @@ binnenalster:
       </li>
     </ul>
 
+11-reiherdamm-und-hermann-blohm-strasse:
+  lastCheck: '2019-04-03'
+  loc: [9.9687, 53.5359]
+  area: [[9.966354,53.541283],[9.966348,53.540613],[9.965817,53.539957],[9.965308,53.539357],[9.965093,53.538764],[9.965115,53.538474],[9.965243,53.538098],[9.965528,53.537872],[9.966365,53.53761],[9.967786,53.537151],[9.96828,53.536836],[9.968516,53.536278],[9.969084,53.532426],[9.969374,53.530048],[9.969707,53.529563],[9.972678,53.527972],[9.973016,53.528176],[9.971815,53.528667],[9.97042,53.529397],[9.970023,53.529706],[9.969782,53.530115],[9.969535,53.531945],[9.96917,53.534103],[9.968929,53.536064],[9.968762,53.536632],[9.968392,53.5371],[9.967588,53.537483],[9.966064,53.537929],[9.965474,53.538283],[9.96541,53.538857],[9.966069,53.539855],[9.966622,53.540476],[9.966729,53.540999],[9.966697,53.541321]]
+  start: 2019-05-13
+  end: 2021Q3
+  grade: 2
+  title: Reiherdamm und Hermann-Blohm-Straße (Hafen, Veloroute 11)
+  type: planned-construction
+  images:
+  - ILR6U1iCIY_2Z53FcyJA0g
+  - wFBF-aOblIx6-9CX-KA44Q
+  - SFd8jp0eC5Xwsnj0x-UadQ
+  - 9xdH8PbqnpIZa0bTAsORcw
+  - Y9D3MvdFvH6pP5sVCO43kA
+  - 6gPBz_tNBjhVEu3eduN3TA
+  - oZtzGPUDyF_Duj11OTf_uw
+  - TS5E4sR1FQSIS4eYdcbEng
+  - 5d8BFqoG89cAk_Y1frYH3Q
+  - duJuY8uB57XsrY65_vxjFw
+  - efGor0MANYtfPQRcrrjzRw
+  - 4JOztj66ezyDl1KmIoeFyg
+  - xfvbpTEMBHuUq3xgcgx3Vw
+  - a1qf_CdNjNiZtAir0tbUkA
+  - AUMdVeOk_cqyiD8iSlXSGw
+  - fraIYiZX1tezkqQDpNonbw
+  - W7_9X7ULb5FeA1TAzObefA
+  - aOII1dlMIerNdRtT8jzyjg
+  desc: >
+    <p>Im Hafen sollen sowohl die <a href="/#16.43/53.539186/9.966408" class="place">Hermann-Blohm-Straße</a> als auch der <a class="place" href="/#15.24/53.532296/9.96969">Reiherdamm</a> umgebaut werden. Bisher lenkt die Radführung auf den Fußweg, der auch noch in beide Richtungen befahren werden soll. Radfahrende Richtung Süden sollen also linksseitig entgegen der normalen Verkehrsrichtung auch den Fußweg nutzen.</p>
+    <p>Auf dem Infoschild ist dagegen ein Radfahrstreifen pro Richtung vorgesehen, der an den Bushaltestellen aber von den Bussen mitbenutzt wird. Aus der Ausschreibung geht hervor, das die Radfahrstreifen wohl jeweils nur rund 1,70m breit werden (Erklärung siehe unten). Fußwege sollen beidseitig erhalten bleiben.</p>
+    <p>Es bleibt offen wie parkende LKW gelöst werden sollen. Auf dem Radfahrstreifen sind sie genauso falsch wie knapp links daneben, wo sie die Sicht behindern und je nach Sichtweise den Radverkehr ausbremsen bzw. querende FußgängerInnen gefährden. Da momentan selbst sonntags LKW auf der Straße parken könnte dies ein Problem werden.</p>
+    <p>Der Umbau soll Mitte 2019 im <a class="place" href="/#15.24/53.532296/9.96969">Reiherdamm</a> beginnen und bis Ende des Jahres dauern. Im direkten Anschluss soll bis 2021 die <a href="/#16.43/53.539186/9.966408" class="place">Hermann-Blohm-Straße</a> folgen. Während der Bauzeit soll der Radverkehr vorerst weiter den Gehweg nutzen.</p>
+    <p><a href="https://ted.europa.eu/TED/notice/udl?uri=TED:NOTICE:084056-2019:TEXT:DE:HTML">Ausschreibung zum Umbau</a></p>
+    <p><small>Zur Breite der Radfahrstreifen: Die Ausschreibung spricht von 10,70m bis 11,50m Fahrbahnbreite. Die breiten Stellen sind vermutlich im Kurvenbereich der KFZ Spur zugeschlagen, damit die LKW den Radfahrstreifen nicht überfahren. Der Fachausdruck hierzu lautet „Schleppkurve“. Die Standardspurbreite für KFZ bei hohem LKW Anteil ist 3,50m. Bleiben 3,70m für den Radverkehr, also rund 1,85m pro Seite. Der weiße Trennstrich ist 25cm breit und wird zum Radstreifen gezählt. Da man ihn nicht vollständig nutzen kann bleiben also rund 1,70m pro Seite.</small></p>
+
 11-veringstrasse:
   lastCheck: '2019-01-10'
   loc: [9.9866, 53.5098]
