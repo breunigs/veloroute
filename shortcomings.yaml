@@ -828,17 +828,41 @@ binnenalster:
     </ul>
 
 4-kreuzung-neuer-jungfernstieg:
-  lastCheck: '2018-08-19'
+  lastCheck: '2019-04-10'
   loc: [9.994009366, 53.55777163]
   grade: 3
-  type: issue
+  area:
+  - [[9.993036,53.559076],[9.992731,53.558799],[9.993428,53.558388],[9.992967,53.55792],[9.992822,53.557945],[9.992478,53.557512],[9.992838,53.55741],[9.992656,53.557104],[9.993015,53.557043],[9.993192,53.557308],[9.993804,53.557378],[9.99456,53.557365],[9.994801,53.557643],[9.994013,53.557869],[9.994249,53.558213],[9.995032,53.558022],[9.995563,53.558544],[9.995289,53.559175],[9.993895,53.559115],[9.993766,53.558981],[9.993074,53.559067]]
+  - [[9.992846,53.557074],[9.992902,53.557066],[9.993305,53.557831],[9.993482,53.557864],[9.993648,53.558296],[9.993766,53.558337],[9.993905,53.558503],[9.994453,53.55843],[9.994673,53.558723],[9.994828,53.558812],[9.995386,53.558927],[9.995359,53.558978],[9.994796,53.558863],[9.994581,53.558761],[9.994399,53.558497],[9.993841,53.558567],[9.993685,53.558371],[9.993576,53.558332],[9.993436,53.55791],[9.993259,53.557866],[9.992854,53.557098]]
+  - [[9.992846,53.557074],[9.992902,53.557066],[9.993305,53.557831],[9.993482,53.557864],[9.993648,53.558296],[9.993766,53.558337],[9.993905,53.558503],[9.994453,53.55843],[9.994673,53.558723],[9.994828,53.558812],[9.995386,53.558927],[9.995359,53.558978],[9.994796,53.558863],[9.994581,53.558761],[9.994399,53.558497],[9.993841,53.558567],[9.993685,53.558371],[9.993576,53.558332],[9.993436,53.55791],[9.993259,53.557866],[9.992854,53.557098]]
+  - [[9.995359,53.558978],[9.995338,53.559032],[9.994675,53.558923],[9.994394,53.558775],[9.993605,53.558946],[9.993487,53.558705],[9.993278,53.558541],[9.993468,53.558423],[9.993463,53.558377],[9.993353,53.558203],[9.993216,53.558157],[9.993066,53.557963],[9.993109,53.55788],[9.992749,53.557099],[9.992811,53.55708],[9.993192,53.557882],[9.993149,53.557963],[9.993272,53.558122],[9.993425,53.558178],[9.993525,53.558361],[9.993538,53.558438],[9.993393,53.55853],[9.993554,53.55867],[9.993648,53.558871],[9.994386,53.558707],[9.994496,53.558763],[9.994699,53.558868],[9.995322,53.558973]]
+  - [[9.995359,53.558978],[9.995338,53.559032],[9.994675,53.558923],[9.994394,53.558775],[9.993605,53.558946],[9.993487,53.558705],[9.993278,53.558541],[9.993468,53.558423],[9.993463,53.558377],[9.993353,53.558203],[9.993216,53.558157],[9.993066,53.557963],[9.993109,53.55788],[9.992749,53.557099],[9.992811,53.55708],[9.993192,53.557882],[9.993149,53.557963],[9.993272,53.558122],[9.993425,53.558178],[9.993525,53.558361],[9.993538,53.558438],[9.993393,53.55853],[9.993554,53.55867],[9.993648,53.558871],[9.994386,53.558707],[9.994496,53.558763],[9.994699,53.558868],[9.995322,53.558973]]
+  type: planned-construction
   title: "Kreuzung am Neuen Jungfernstieg (Veloroute 4)"
   images:
   - EWyGBNzBlzNnwh3YTvxQlw
   - Nb-tt5p34NRNQtLw02jYEA
   - 2spdIaeNN8ticy60bcMOcw
   - G7i57uprZH0Ps3KCfxK5Jw
-  desc: Stadtauswärts soll auf die linke Straßenseite gewechselt werden, um die Bahn zu unterqueren. Die Ampelschaltung ist nicht fahrradfreundlich.
+  desc: >
+    <p>In keine Richtung gibt es an diesem Doppelknoten eine fahrradfreundliche Schaltung, noch ist die Führung besonders einladend. Entlang der Veloroute 4 soll man stadtauswärts sogar auf die falsche Straßenseite wechseln, um auf einem kaum einen Meter breiten Radweg die Bahnbrücke zu unterqueren. Mit anderen Worten: Die Radverkehrsführung ist hier katastrophal.</p>
+    <p>Die Umplanung verbessert die Situation definitiv, setzt aber nur Mindestmaße um. Es wird versucht möglichst viele der Unfallschwerpunkte zu entschärfen und die Ampelmissachtung durch verbesserte Schaltungen zu verringern. Da der Knoten aber als essentiell für den Autoverkehr angesehen wird und dieser entsprechend Vorrang in der Planung genießt, gelingt dies leider nicht immer. Etwa wird der Radverkehr von der <a href="/#18/53.557684/9.993245" class="place">Lombardsbrücke zur Esplanade</a> auch künftig mehrmals warten müssen, weil es sich „signaltechnisch nicht vermeiden“ lässt.</p>
+    <p>Der erste Entwurf sieht folgende Änderungen vor:</p>
+    <ul>
+      <li>Die östliche Unterführung wird nur noch vom Autoverkehr benutzt, der Fußweg wird entfernt.</li>
+      <li>Der Nord/Süd Radverkehr entlang der Veloroute wird durch die westliche Unterführung abgewickelt, wobei der Radweg je nach Richtung auf der „richtigen“ Seite ist. Hier wird es beidseitig Fußwege geben.</li>
+      <li><a href="/#18/53.559028/9.994293" class="place">Alsterufer und Warburgstraße</a> sind jeweils Einbahnstraßen, wobei das Alsterufer von der Kreuzung wegführt, die Warburgstraße dagegen zur Kreuzung hin. Sie tauschen im Vergleich zu heute also jeweils die Richtung.</li>
+      <li>Es wird versucht durch mehr KFZ-Aufstellflächen Rückstau in die Kreuzungsbereiche zu vermeiden.</li>
+      <li>Bettelampeln werden abgeschafft und die Rad- und Fußfurten erhalten automatisch grün.</li>
+    </ul>
+    <p>Die Verbesserung für den Radverkehr ergibt sich hauptsächlich aus den Detailmaßnahmen zur Unfallreduktion. Die Führung im gesamten Kreuzungsbereich bleibt komplex, wobei sich häufig Einrichtung- und Zweirichtungsradwege abwechseln, sodass von viel Falschfahrenden auszugehen ist.</p>
+    <p>Entlang der Veloroute sind drei (nach Süden) bzw. vier (nach Norden) Ampeln zu queren, die teils gemeinsam mit der Fußampel geschalten werden. Leider ergibt sich aus dem Erläuterungsbericht nicht wie häufig gehalten werden muss. Richtung Norden wird die Führung leicht begradigt, in der Gegenrichtung bleibt es im Wesentlichen wie bisher. Die angedachte Führung der Radwege entlang der Veloroute sind in der Karte skizziert (dunkelgraue Linien). Die Radwege verbleiben an vielen Stellen mit Mindestmaßen, bequemes Überholen ist also nicht möglich.</p>
+    <p>Es ist schwierig in der Planung konkrete Verbesserungsmöglichkeiten auszumachen, da auch kleine Änderungen sich auf beide Kreuzungen auswirken und so ggf. die Situation insgesamt wieder verschlechtern. Um eine erhebliche Verbesserung zu erzielen wäre eine Verbreiterung der Unterführungen notwendig, oder die KFZ müssten Spuren abtreten. Erstes ist zu teuer und für letzteres ist Hamburg noch zu sehr auf KFZ fixiert. Es handelt sich hier um den ersten Entwurf, d.h. Details können durchaus noch geändert werden.</p>
+    <p>Der Umbau soll 2020 bis 2021 in mehreren Bauphasen erfolgen. Die Kreuzungen sollen jeweils für alle Verkehrsteilnehmenden passierbar bleiben, aber die Spurenreduktion dürfte zu massiven Behinderungen im KFZ-Verkehr führen.</p>
+    <ul>
+      <li><a href="http://lsbg.hamburg.de/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zum Umbau</a></li>
+      <li><a href="http://lsbg.hamburg.de/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf">Lagepläne</a></li>
+    </ul>
 
 4-alsterufer:
   lastCheck: '2018-09-03'

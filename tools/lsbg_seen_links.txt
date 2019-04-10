@@ -155,3 +155,6 @@
 '2019-03-17':
 - "/contentblob/12289890/1b030631e6508d515645eea83e78ad9d/data/fuhlsbuettler-strasse-101-abgestimmte-planung-bericht.pdf"
 - "/contentblob/12289892/0a22abc9060abe00fec8c937049b9d69/data/fuhlsbuettler-strasse-101-abgestimmte-planung-plan.pdf"
+'2019-04-08':
+- "/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"
