@@ -158,3 +158,8 @@
 '2019-04-08':
 - "/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"
+'2019-04-12':
+- "/contentblob/12443988/973a56519141756990763018f3d2fc43/data/erschliessung-schnelsen-86-hogenfelder-kamp-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12443990/0c42a0ad503f033acea8eddaa4dd1e5e/data/erschliessung-schnelsen-86-hogenfelder-kamp-abstimmungsunterlage-plan.pdf"
+- "/contentblob/12437970/021ac4ed5c34e441af7033624dfddb97/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12437968/f262524d0b75db84e6283ad7206e28a1/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"

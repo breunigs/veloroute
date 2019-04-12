@@ -379,3 +379,8 @@
 '2019-04-08':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008673
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008211
+'2019-04-12':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008672
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008657
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010199
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006531

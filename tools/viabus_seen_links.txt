@@ -400,3 +400,5 @@
 - https://via-bus.hamburg.de/contentblob/12241644/03a67930a28cdebbffd185527fc5895c/data/plakat-befragung.pdf
 - https://via-bus.hamburg.de/contentblob/12293588/4b8572725f56d68488b1203b7fb7f76b/data/19-m25-ba-wartenau.pdf
 - https://via-bus.hamburg.de/contentblob/9838390/914bdb5dab11c2180f578705b4894b3b/data/55-ausfuehrungsplaene-uferstr-hebbelstr.pdf
+'2019-04-12':
+- https://via-bus.hamburg.de/contentblob/12457656/21a86aa39e2169fcfc2345e37882245e/data/20-m25-praesentation-info-hofweg-27-03-2019.pdf
