@@ -2154,6 +2154,25 @@ binnenalster:
     <p><a href="https://ted.europa.eu/TED/notice/udl?uri=TED:NOTICE:084056-2019:TEXT:DE:HTML">Ausschreibung zum Umbau</a></p>
     <p><small>Zur Breite der Radfahrstreifen: Die Ausschreibung spricht von 10,70m bis 11,50m Fahrbahnbreite. Die breiten Stellen sind vermutlich im Kurvenbereich der KFZ Spur zugeschlagen, damit die LKW den Radfahrstreifen nicht überfahren. Der Fachausdruck hierzu lautet „Schleppkurve“. Die Standardspurbreite für KFZ bei hohem LKW Anteil ist 3,50m. Bleiben 3,70m für den Radverkehr, also rund 1,85m pro Seite. Der weiße Trennstrich ist 25cm breit und wird zum Radstreifen gezählt. Da man ihn nicht vollständig nutzen kann bleiben also rund 1,70m pro Seite.</small></p>
 
+11-faehrstrasse:
+  lastCheck: '2019-04-16'
+  area: [[9.979888,53.518465],[9.97969,53.51829],[9.980553,53.517738],[9.981557,53.517113],[9.981884,53.516982],[9.981911,53.517212],[9.981294,53.517553],[9.979936,53.518424]]
+  loc: [9.9810, 53.5176]
+  grade: 2
+  title: "Fährstraße (Veloroute 11)"
+  type: construction
+  start: 2019-04
+  end: 2019-07
+  images:
+  - gbpAdtlyrC-ESE4PZwth8w
+  - _8u1db24-b5npg3Kf11J8A
+  - ZGh0zekz0Sx5uVTsSjxywg
+  - 8FDgIddLZWwrh2khArM4iA
+  - XsA3S-q0Pa7CAK5bNLxbqw
+  desc: >
+    <p>Die <a>Fährstraße</a> ist bereits heute gut befahrbar, besitzt aber gerade im Anfangsteil einige Unebenheiten, die das Radfahren unangenehm machen. Insbesondere ist hier die alte Bahnstrecke hervorzuheben.</p>
+    <p>Seit Mitte April bis vorraussichtlich Mitte Juli 2019 wird hier daher der Straßenbelag erneuert. Außerdem sollen Markierungsarbeiten stattfinden. Leider geht aus den Anliegerinformationen nicht hervor ob diese den aktuellen Stand wiederherstellen oder ob gravierendere Änderungen geplant sind.</p>
+
 11-veringstrasse:
   lastCheck: '2019-01-10'
   loc: [9.9866, 53.5098]
