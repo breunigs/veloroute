@@ -402,3 +402,6 @@
 - https://via-bus.hamburg.de/contentblob/9838390/914bdb5dab11c2180f578705b4894b3b/data/55-ausfuehrungsplaene-uferstr-hebbelstr.pdf
 '2019-04-12':
 - https://via-bus.hamburg.de/contentblob/12457656/21a86aa39e2169fcfc2345e37882245e/data/20-m25-praesentation-info-hofweg-27-03-2019.pdf
+'2019-04-18':
+- https://via-bus.hamburg.de/contentblob/12476306/366c425d511c1cbdaa376169e9893460/data/praesentation-wandsbek-praesentationbeteiligungsverfahrenufa.pdf
+- https://via-bus.hamburg.de/contentblob/12476306/366c425d511c1cbdaa376169e9893460/data/praesentation-wandsbek-praesentationbeteiligungsverfahrenufa.pdf
