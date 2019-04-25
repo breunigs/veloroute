@@ -90,12 +90,12 @@ binnenalster:
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007815">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
 1-chemnitzstrasse:
-  lastCheck: '2018-09-29'
+  lastCheck: '2019-04-25'
   loc: [9.94674, 53.55556]
   grade: 2
   start: 2019Q2
   title: Chemnitzstraße (Veloroute 1)
-  type: planned-construction
+  type: construction
   images:
   - pe4g-cPzEz1w97DP3debeQ
   - Ms3aeYxVRx5VLW2I5svIGg
@@ -105,7 +105,7 @@ binnenalster:
   - OUdHtT5ccpKfLxRD2wFWGA
   - Km3ZR71K2NNoggxZCrcBQg
   desc: >
-    <p>Im Frühjahr 2019 soll die <a>Chemnitzstraße</a> zu einer Fahrradstraße umgebaut werden. Das Kopfsteinpflaster wird entfernt und die Engstellen mit teils abenteuerlichen Radwegchen entschärft. Wermutstropfen: Der Diagonaltrenner an der Hospitalstraße wird nicht überfahrbar sein, sodass man hier sein Gespräch ggf. kurz unterbrechen muss. Die traurige Begründung hier ist, das dieser sonst vom KFZ Verkehr ignoriert und wortwörtlich umgefahren wird.</p>
+    <p>Seit Frühjahr 2019 wird die <a>Chemnitzstraße</a> zu einer Fahrradstraße umgebaut. Das Kopfsteinpflaster wird entfernt und die Engstellen mit teils abenteuerlichen Radwegchen entschärft. Wermutstropfen: Der Diagonaltrenner an der Hospitalstraße wird nicht überfahrbar sein, sodass man hier sein Gespräch ggf. kurz unterbrechen muss. Die traurige Begründung hier ist, das dieser sonst vom KFZ Verkehr ignoriert und wortwörtlich umgefahren wird.</p>
     <p>Die Chemnitzstraße sollte übrigens bereits seit etlichen Jahren umgebaut werden. Bisher scheiterte dies daran, das die die Kombination „Fahrradstraße + KFZ frei“ nicht vorgesehen war. „Fahrradstraße + Anlieger frei“ hätte die Anwohner in den Straße zwischen Chemnitzstraße und <a>Große Bergstraße</a> aber zu stark abgeschnitten und wurde deswegen abgelehnt.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
