@@ -1467,6 +1467,40 @@ binnenalster:
       <a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006595">Überarbeitete Fassung zu Plan/Blatt 2, weitere Erläuterungen</a>
     </p>
 
+5-heegbarg:
+  lastCheck: '2019-04-25'
+  loc: [10.0956, 53.6591]
+  grade: 2
+  type: planned-construction
+  title: "Heegbarg (Veloroute 5)"
+  images:
+  - 99PwOPRUzieQ4nfbVRGDDw
+  - -6WWlNmruPZodKxg6EeEqQ
+  - lZtqKNpV0hg-YZ8xWTybww
+  - 4hOlULvq6DBYWeugLVdLng
+  - Xp82rJ5i5_HNWWv_UeePIA
+  - LnvTp-RwpL9kjM2rsjKdIg
+  - ed15qHE0QclHdSyh4TVK2g
+  - ZoO2JuzfC_1xbT3tj1Obmg
+  - A61KdL0k1loKSRj5Q-vmIw
+  - 5vXJVMiE2tpz_vjFgqYX-w
+  - fhzrwHfAbjiuPhSajMYj0A
+  - _vs6rcxcyaG8pElkGN63Ig
+  - f_5aDUZqOfBA79DYAtVT7Q
+  - _d01zr2jwTXjgtqSAvA3uQ
+  - sM7fnJfuLZNxo0wwFTBRdg
+  - JymyL-pkHiKSCxvtU2PM6Q
+  - FIcNa-_XFbiemyVlcws9Zg
+  - 6bfZs6gtzh4SLknnCH4rwA
+  area: [[10.093753,53.656351],[10.094027,53.656339],[10.0962,53.660071],[10.096843,53.662264],[10.096436,53.662289],[10.095899,53.660121],[10.093657,53.656383]]
+  desc: >
+    <p>Im markierten Stück des <a class="place" href="/#18/53.656266/10.093697">Heegbarg</a> gibt es noch unbenutzbare Radwege im Altbestand. Sie sind viel zu schmal, uneben, ohne Sicherheitsabstände und an <a class="place" href="/#17/53.659551/10.095399">der Kreuzung mit der Alsterredder</a> nichtmal durchgängig. Auf der Fahrbahn fährt es sich dagegen sehr angenehm, was aber gerade Radneulingen schwer fallen dürfte.</p>
+    <p>Im ersten Entwurf ist vorgesehen die alten Radwege vollständig zu entfernen. Vom <a class="place" href="/#17/53.657917/10.09454">Saseler Damm bis zur Alsterredder</a> wird ein ca. 1,7m breiter Schutzstreifen (gestrichelete Linie) angelegt. KFZ dürfen diesen zum Ausweichen und kurzem Halten verwenden, Parken ist nicht erlaubt. In diesem Abschnitt bleibt es beim Tempo 50.</p>
+    <p>Im <a class="place" href="/#17/53.660729/10.096304">nördlichen Teil</a> sollen Radfahrende im Mischverkehr mit den Autos fahren, also so wie im weiteren Verlauf. Die ehemaligen Flächen des Radweges werden begrünt. Die bereits eingerichtete Tempo-30-Zone bleibt bestehen.</p>
+    <p>Es wird ebenfalls noch überlegt ob die Tempo-30-Zone etwas erweitert werden kann, sodass die Stop-Schilder an <a class="place" href="/#17/53.659551/10.095399">der Kreuzung mit der Alsterredder</a> entfallen könnten. Zum <a href="/#18/53.65638/10.093554" class="place">Saseler Damm (Ring 3)</a> wird auf die dort bestehenden Radwege übergeleitet, d.h. diese Kreuzung ist nicht Bestandteil dieser Planung.</p>
+    <p>Auf dem Heegbarg herrscht wenig Verkehr, sodass die vorgesehenen Maßnahmen ausreichend erscheinen. Die Qualität für Radfahrende verbessern sie definitiv.</p>
+    <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010194">Erläuterung und Lagepläne des ersten Entwurfs</a></p>
+
 6-kreuzung-wagnerstrasse:
   lastCheck: '2018-08-29'
   loc: [10.0398, 53.5710466]
