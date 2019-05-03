@@ -405,3 +405,6 @@
 '2019-04-18':
 - https://via-bus.hamburg.de/contentblob/12476306/366c425d511c1cbdaa376169e9893460/data/praesentation-wandsbek-praesentationbeteiligungsverfahrenufa.pdf
 - https://via-bus.hamburg.de/contentblob/12476306/366c425d511c1cbdaa376169e9893460/data/praesentation-wandsbek-praesentationbeteiligungsverfahrenufa.pdf
+'2019-04-26':
+- https://via-bus.hamburg.de/contentblob/12524322/73aa6fa5bd1775b3f2aef1a103ac222c/data/62-m20-25-1-verschickung-eppendorfermarkt.pdf
+- https://via-bus.hamburg.de/contentblob/12524320/73aa6fa5bd1775b3f2aef1a103ac222c/data/24-m20-25-1-verschickung-eppendorfermarkt.pdf
