@@ -792,6 +792,40 @@ binnenalster:
         </ul>
     </ul>
 
+3-kreuzung-grandweg-grelckstrasse:
+  lastCheck: '2019-06-22'
+  loc: [9.9586, 53.5992]
+  type: intent
+  grade: 3
+  title: "Kreuzung Grandweg / Grelckstraße (Veloroute 3)"
+  images:
+  - OLiN89RWEKPJT-snhYvl8g
+  - 4qt0JGrKhEYiCxU-QosZ9w
+  - B50XvEFpKSR9h4OMnUm2rQ
+  - UA56a0tOBr0Unhl11HeMtA
+  - W0ZNjkwRqwDje-DlyMAV0A
+  - ErRdThGqdKmtc-ApKjh6ag
+  - FCvjqym9AzIGhX1OskX0hA
+  - 8ZfVfOlxKaYr_F9MSOTBcg
+  - htrR77bEijCDOYftst6-Hg
+  - fLfXxgU63oeVbF3DSElrcw
+  - 6xWTdrwJOC7deE4g_DPW1g
+  - ZZiXTBX6ZNkev02Vj5_nnw
+  - ECMat6cV51ZQZ9Z002zodg
+  - RMiHKzW6ZjlmgyiDMyrJiw
+  - f9ovGE2f2AIkkNUIja9Kww
+  - MdOjAG5cqDgW8d4nQW9ZrQ
+  - gHDM1RFtd_34FIZfY18rHg
+  - t7agz0V0-WZ6aRuC4OQfng
+  area: [[9.957486,53.599315],[9.957486,53.598958],[9.958237,53.598923],[9.958168,53.598525],[9.958586,53.598503],[9.958779,53.598958],[9.959707,53.599044],[9.959621,53.599439],[9.958892,53.599401],[9.958366,53.599764],[9.958055,53.599585],[9.958237,53.599369],[9.957669,53.599305]]
+  start: 2020
+  desc: >
+    <p>Folgt man der Veloroute 3 entlang des Grandwegs bzw. der Grelckstraße muss man die breite Julius-Vossler- bzw. Vogt-Wells-Straße queren. Dazu wird man jeweils auf schmale und unkomfortable Hochbordradwege geleitet. Die Kurven sind eng und man kommt sich leicht mit Zufußgehenden in die Quere. Da man die Fußampeln mitbenutzt, sind die Grünzeiten auch entsprechend knapp. Kurzum: die Kreuzung muss dringend verbessert werden.</p>
+    <p>Dazu wurden im April 2019 erste Ansätze vorgestellt: Entlang der Veloroute wird der Radverkehr im Kreuzungsbereich auf 1,5m breiten Schutzstreifen (gestrichelte Linie) geführt. Im Vergleich zu heute ist die Führung geradlinig. Um direktes Linksabbiegen zu erleichtern wird jeweils eine Aufstellfläche für Fahrräder vor den KFZ aufgemalt. Indirektes Linksabbiegen ist laut aktuellem Stand nicht vorgesehen.</p>
+    <p>Für die Markttage, an denen der <a href="/#18/53.599618/9.958609" class="place">Behrmannsplatz</a> blockiert ist, soll eine Umleitung über den <a class="place" href="/#17/53.600272/9.952061">Oddernskamp</a> ausgeschildert werden. Angedacht ist die Kreuzung (ab) 2020 umzubauen.</p>
+    <p>Die angedachte Lösung sieht auf den ersten Blick okay aus. Die Schutzstreifen könnten deutlich breiter ausfallen, wenn man die jeweils zwei KFZ-Abbiegespuren (links bzw. rechts/geradeaus) zusammenfassen würde. Vermutlich scheut man sich davor aber, weil dann die Hauptstraße länger rot hätte, bzw. die Nebenstraßen weniger KFZ-Durchsatz. Außerdem sollte ungeübten Radfahrenden indirektes Linksabbiegen ermöglicht werden – gerade wenn bereits Grün ist dies deutlich leichter als sich in den fließenden Verkehr einzuordnen.</p>
+    <p><a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi//to020.asp?TOLFDNR=1015900">Sitzungsprotokoll mit Präsentation</a></p>
+
 3-niendorfer-strasse:
   lastCheck: '2018-10-13'
   loc: [9.9561, 53.6080]
