@@ -11,6 +11,8 @@ SEEN_LINKS_FN = File.join(__dir__, './sitzungsdienst_seen_links.txt')
 DISTRICTS = %w[altona eimsbuettel hamburg-mitte hamburg-nord wandsbek bergedorf harburg]
 FILTER_KEYWORDS = %w[velo straße radverkehr fahrrad verschickung]
 
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 def index_url(district)
   "https://sitzungsdienst-#{district}.hamburg.de/bi/vo040.asp"
 end

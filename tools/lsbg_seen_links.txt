@@ -163,3 +163,9 @@
 - "/contentblob/12443990/0c42a0ad503f033acea8eddaa4dd1e5e/data/erschliessung-schnelsen-86-hogenfelder-kamp-abstimmungsunterlage-plan.pdf"
 - "/contentblob/12437970/021ac4ed5c34e441af7033624dfddb97/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12437968/f262524d0b75db84e6283ad7206e28a1/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"
+'2019-06-12':
+- "/contentblob/12673320/983dbb9744d8a6d82a276993ba4663a3/data/hannoversche-strasse-boardinghouse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12673322/b1de40535a5d0cba29190bd08b924e06/data/hannoversche-strasse-boardinghouse-abgestimmte-planung-plaene.pdf"
+'2019-06-22':
+- "/contentblob/12717674/67814bbaa0a2298793a22a49dcb95de7/data/veloroute-13-jordanstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12717676/2f8747b4f31fcc9d7fa1f30027ee96c4/data/veloroute-13-jordanstrasse-abstimmungsunterlage-plan.pdf"
