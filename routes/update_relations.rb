@@ -132,7 +132,8 @@ def listify(header, items, group: false)
       out << listify(hdr, items, group: false)
     end
   else
-    out << items.sort_by(&:title).map(&:duration_with_link).join('</li><li>')
+    sorted = items.sort_by { |i| [i.start, i.title] }
+    out << sorted.map(&:duration_with_link).join('</li><li>')
   end
   out << '</li></ul>'
   out
