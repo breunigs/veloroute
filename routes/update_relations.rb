@@ -132,7 +132,7 @@ def listify(header, items, group: false)
       out << listify(hdr, items, group: false)
     end
   else
-    out << items.map(&:duration_with_link).join('</li><li>')
+    out << items.sort_by(&:title).map(&:duration_with_link).join('</li><li>')
   end
   out << '</li></ul>'
   out

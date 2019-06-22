@@ -1928,7 +1928,8 @@ binnenalster:
   loc: [10.10181, 53.57157]
   grade: 2
   type: planned-construction
-  start: '2019'
+  start: '2019-07'
+  end: 2020Q1
   title: Schimmelmannstraße (Veloroute 7, „Abschnitt W22“)
   images:
   - p_MYCfa3qkvwEK6bjKuM4w
