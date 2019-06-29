@@ -169,3 +169,6 @@
 '2019-06-22':
 - "/contentblob/12717674/67814bbaa0a2298793a22a49dcb95de7/data/veloroute-13-jordanstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12717676/2f8747b4f31fcc9d7fa1f30027ee96c4/data/veloroute-13-jordanstrasse-abstimmungsunterlage-plan.pdf"
+'2019-06-29':
+- "/contentblob/12727340/ce0aac515c22c9dc35209fbc8cfdec09/data/neuland-23-abgestimmte-planung-1-aenderung)-bericht.pdf"
+- "/contentblob/12727342/ae3e9cd2538579a4a5b489c28c1a5132/data/neuland-23-abgestimmte-planung-1-aenderung)-plan.pdf"
