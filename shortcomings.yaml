@@ -383,7 +383,7 @@ binnenalster:
   - 5OHDpQODhhqqZ3x9Rl_4gg
   desc: >
     <p>Der <a class="place" href="/#15/53.566988/9.810351">Sülldorfer Kirchenweg</a> wird fast auf gesamter Länge im Mischverkehr mit den Autos befahren. Nur für ein kurzes Stück gibt es bergab einen kleinen Radweg, der viel zu schmal ist und zudem in der Türzone der parkenden Autos liegt. Zudem sind die Fußwege stellenweise freigegeben, aber ebenfalls viel zu schmal um sicheres Vorankommen zu gewährleisten.</p>
-    <p>Die Vorplanung sieht vor die Straße um Schutzstreifen (gestrichelte Linie) zu ergänzen, die aber nur rund 1,50m breit sind. Im Bereich von Bushaltestellen muss der Radverkehr auf die normale Fahrbahn ausweichen. Die Kanalrinne zwischen Fahrbahn und Schutzstreifen verlaufen um das Sicherheitsgefühl zu verbessern.</p>
+    <p>Die Vorplanung sieht vor die Straße um Schutzstreifen (gestrichelte Linie) zu ergänzen, die aber nur rund 1,50m breit sind. Im Bereich von Bushaltestellen muss der Radverkehr auf die normale Fahrbahn ausweichen. Die Kanalrinne soll zwischen Fahrbahn und Schutzstreifen verlaufen um das Sicherheitsgefühl zu verbessern.</p>
     <p>Die im markierten Bereich liegenden Einmündungen werden bis auf eine Ausnahme als „Gehwegüberfahrt“ ausgeführt, d.h. der in den <a class="place" href="/#15/53.566988/9.810351">Sülldorfer Kirchenweg</a> einbiegende Verkehr bleibt wartepflichtig. Teilweise werden die Sichtlinien verbessert, sodass Radfahrende hoffentlicher weniger übersehen werden.</p>
     <p>Beim <a href="/#17/53.569219/9.809021" class="place">Abknicken der Veloroute in die Babendiekstraße</a> soll dagegen ein Kreisel entstehen. Das reduziert nicht nur die Geschwindigkeit der KFZ, sondern erleichtert auch erheblich das Linksabbiegen. Die Nebenstraße <a>Wulfsdal</a> bleibt eine Sackgasse.</p>
     <p>Die erlaubte Höchstgeschwindigkeit bleibt unverändert bei 50 km/h. Im Bergabschnitt werden die KFZ-Parkplätze allerdings auf die Bergseite verlegt, um bei einem „Dooring-Unfall“ (KFZ-Insasse öffnet Tür ohne auf Verkehr zu achten) die Unfallfolgen zu reduzieren. Man geht davon aus, das der Radverkehr bergauf im Schnitt langsamer ist und die Verletzungen daher weniger schlimm ausfallen.</p>
@@ -408,7 +408,7 @@ binnenalster:
   lastCheck: '2018-09-28'
   loc: [9.7717, 53.5805]
   grade: 1
-  type: planned-construction
+  type: construction
   start: 2019Q3
   title: "Alte Sülldorfer Landstraße (Veloroute 1)"
   images:
@@ -416,7 +416,7 @@ binnenalster:
   - EfZZqi08k0qGiU-LDxX7zA
   - xkM3TVkXy5gEbFKfEKtYVw
   - uEeZ1EtA7GLzT3Rv6A9_Ag
-  desc: <p>Die <a>Alte Sülldorfer Landstraße</a> ab dem <a>Rissener Busch</a> soll 2019 in der Breite reduziert werden, um eine Verkehrsberuhigung zu erreichen. Die Radverkehrsführung bleibt unverändert im Mischverkehr. Lediglich die Schikanen mit schmalem Durchlass für Fahrräder werden in Zukunft auch von Radlern umfahren werden müssen. Bei dem sehr geringem Verkehrsaufkommen sollte dies aber wenig problematisch sein.</p>
+  desc: <p>Die <a>Alte Sülldorfer Landstraße</a> ab dem <a>Rissener Busch</a> wird zur Zeit in der Breite reduziert, um eine Verkehrsberuhigung zu erreichen. Die Radverkehrsführung bleibt unverändert im Mischverkehr. Lediglich die Schikanen mit schmalem Durchlass für Fahrräder werden in Zukunft auch von Radlern umfahren werden müssen. Bei dem sehr geringem Verkehrsaufkommen sollte dies aber wenig problematisch sein.</p>
     <p>Das Stück der alten Sülldorfer Landstraße Richtung <a>Klövensteenweg</a> soll im Anschluss ebenso erneuer werden.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007689">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
@@ -992,7 +992,7 @@ binnenalster:
   loc: [9.99532, 53.59374]
   grade: 2
   area: [[9.995225,53.594555],[9.9953,53.594288],[9.99552,53.593988],[9.993986,53.593377],[9.993734,53.593269],[9.993986,53.593122],[9.995547,53.593711],[9.995906,53.593648],[9.996293,53.593543],[9.996378,53.594014],[9.996427,53.594074],[9.996336,53.59423],[9.995917,53.594087],[9.995676,53.594281],[9.995504,53.594243],[9.995397,53.594355],[9.995332,53.594546],[9.995247,53.594558]]
-  type: planned-construction
+  type: construction
   title: "Knoten Hudtwalckerstraße (Leinpfad bis Bebelallee, Veloroute 4)"
   images:
   - w0-TvuqAkt2SpwNot4eKTQ
@@ -1015,7 +1015,6 @@ binnenalster:
   - rup8OXmZ399MeWeyPujjLg
   start: 2019Q3
   desc: >
-    <p><strong>Änderungen:</strong> Im Vergleich zur vorigen Beschreibung wurde in der Schlussverschickung der Rechtsabbieger aus der Bebelallee radfreundlicher gestaltet – man sollte jetzt praktisch immer der Veloroute folgen können, ohne durch den Autoverkehr blockiert zu werden. Der Text wurde entsprechend angepasst.</p>
     <p>Die Situation in der <a class="place" href="/#18/53.59364/9.99505">Hudtwalckerstraße</a> bzw. im ganzen Knoten vom <a class="place" href="/#18/53.59310/9.99440">Leinpfad</a> zur <a class="place" href="/#18/53.59423/9.99551">Bebelallee</a> ist unübersichtlich. Die Radwege sind viel zu schmal und verlaufen im Gehwegbereich, wobei die engen Kurven auch ohne Fußverkehr keine hohen Geschwindigkeiten erlauben.</p>
     <p>Die Umplanung, die mittlerweile in der Schlussfassung vorliegt, verbessert das Teilstück in den meisten Punkten. Damit ist sie zwar besser als die wenig ambitionierte erste Version, die Qualität des Leinpfads erreicht jedoch auch sie nicht: eine eigentlich attraktive Führung über den <a>Winterhuder Kai</a> wird wegen des Kopfsteinpflasters und einer zu planenden Ampel an der <a class="place" href="/#18/53.59604/9.99483">Einmündung in die Bebelallee</a> als zu teuer abgelehnt.</p>
     <p>Im Detail ergibt sich folgendes: die beiden Kreuzungen, also Leinpfad und Hudtwalckerstraße bzw. Hudtwalckerstraße und Bebelallee erhalten je eine voll ausgebaute Ampel. Das heißt, das alle Knotenarme eigene Ampeln erhalten und man zu Fuß auch auf allen Seiten eine Furt zum Queren erhält. Entsprechend ändern sich für den Radverkehr viele Fahrbeziehungen, wobei sich entlang der Veloroute gar nicht so viel ändert. Aber der Reihe nach:</p>
@@ -1023,7 +1022,7 @@ binnenalster:
     <p><strong>Bebelallee → Leinpfad</strong> (Veloroute 4 stadteinwärts): statt wie bisher abenteuerlich von der Straße auf den Radweg geleitet zu werden, fährt man einfach gerade aus auf die Kreuzung weiter. Dort spaltet sich der Radfahrstreifen in eine Rechts- und eine Geradeausspur. Hält man sich rechts, wird man geradlinig auf einen Radweg aufgeleitet, auf dem man frei an der Ampel vorbei abbiegen kann. Der Radweg selbst erreicht nur absolute Mindestmaße von ca. 1,60m Breite, geht aber nach wenigen Metern in der Nebenstraße auf. Hier bleibt es beim Mischverkehr, wobei die vorige Planung vorsah durch Piktogramme den Radverkehr hervorzuheben. Da es sich um Privatgrund handelt, wird dies nun aber separat abgesprochen. Am Ende der Nebenstraße gibt es wieder einen Radweg – diesmal mit ordentlichen 2,0m – dem man bis zum <a class="place" href="/#18/53.5932676/9.9939017">Winterhuder Kai</a> folgt. Dort biegt man dann links Richtung Leinpfad ab und kann die Kreuzung geradlinig queren. Das ist erheblich besser als wie bisher bereits vor der Kreuzung queren zu müssen.</p>
     <p><strong>Weitere Fahrbeziehungen:</strong> Aus dem Leinpfad sind jetzt alle Fahrtrichtungen ohne Umwege möglich. Analog funktioniert das auch für den <a class="place" href="/#18/53.5932676/9.9939017">Winterhuder Kai</a>, da diese Kreuzung voll mit Ampeln ausgestattet wird. KFZ dürfen weiterhin nur rechts abbiegen, damit der Leinpfad für sie unattraktiv bleibt. An der <a class="place" href="/#18/53.5940118/9.9956463">Kreuzung mit der Bebelallee</a> sind ebenfalls alle Fahrtrichtungen offen, wobei jedoch nur indirekt links abgebogen werden kann. So erreicht man deutlich bequemer als vorher den Fahrradweg in der <a href="/#17/53.59342/9.997402" class="place">Sierichstraße</a>, egal aus welcher Himmelsrichtung man kommt. Aus der Sierichstraße Richtung Norden bleibt der Fahrradweg allerdings schmal, weil man die Autospuren sonst hätte verschieben müssen um genug Platz für Aufstellflächen, Rad- und Fußverkehr zu haben. Das wollte man den Autos aufgrund des ungewöhnlichen Fahrtrichtungswechsel (<a href="https://de.wikipedia.org/wiki/Sierichstra%C3%9Fe_%28Hamburg%29#Fahrtrichtungswechsel">Wikipedia</a>) aber dann doch nicht zumuten.</p>
     <p><strong>Fazit:</strong> Die Planung wirkt auf mich gut. Schade sind die teils schmalen Radwege und die sich ständig ändernde Führungsform stadteinwärts (Schutzstreifen auf der Bebelallee, Mischverkehr, Hochbordradweg, Mischverkehr, Hochbordradweg und schließlich Querung der Kreuzung zum Leinpfad). Das dürfte aber zu verschmerzen sein, da man dennoch eine erheblich Verbesserung zum Bestand erzielt. Auch ist der spätere Vollausbau des <a>Winterhuder Kai</a>s zu einer Veloroute nicht durch die Neugestaltung ausgeschlossen – realistisch dürfte das aber nicht sein.</p>
-    <p>Der Umbau ist für Sommer 2019 angedacht.</p>
+    <p>Zur Zeit erfolgt der Umbau, der vorraussichtlich noch bis zum 19. August dauert.</p>
     <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007917">Erläuterungsbericht und Lagepläne</a> (unter Anlagen)</p>
 
 4-kreuzung-maienweg-sengelmannstrasse:
