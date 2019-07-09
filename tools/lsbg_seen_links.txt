@@ -172,3 +172,6 @@
 '2019-06-29':
 - "/contentblob/12727340/ce0aac515c22c9dc35209fbc8cfdec09/data/neuland-23-abgestimmte-planung-1-aenderung)-bericht.pdf"
 - "/contentblob/12727342/ae3e9cd2538579a4a5b489c28c1a5132/data/neuland-23-abgestimmte-planung-1-aenderung)-plan.pdf"
+'2019-07-09':
+- "/contentblob/12759360/3e96e268cf788396f93eb98a9c0e18ac/data/veloroute-13-gertigstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12759366/15a07b6b4612c31207a48f057393402e/data/veloroute-13-gertigstrasse-abstimmungsunterlage-plan.pdf"
