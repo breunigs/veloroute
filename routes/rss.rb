@@ -64,9 +64,6 @@ module RSS
         title: post['title'],
         updated: self.to_time(fn[0...10]),
         description: post['text']
-        # lonLat: lonLat,
-        # image: Mapillary.image_url(details['startImage']),
-        # classes: 'newImgLink'
       }
     end
   end

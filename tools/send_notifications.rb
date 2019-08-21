@@ -39,6 +39,7 @@ sleep 60
 reject_seen_urls!(posts)
 
 def find(lonLat)
+  return nil unless lonLat
   x = `../tools/coord_to_suburb.rb #{lonLat[1]} #{lonLat[0]}`
   return nil if $?.exitstatus != 0
   x.strip
@@ -75,7 +76,7 @@ posts.each do |post|
   puts "Will post:"
   puts
   puts "#{tweet}"
-  puts "@ #{post[:lonLat]}"
+  puts "@ #{post[:lonLat]}" if post[:lonLat]
   puts post[:image]
   puts
   puts
@@ -88,14 +89,21 @@ posts.each do |post|
   # end
 
   # next if rep != "y"
+  extras = {
+    long: post.dig(:lonLat, 0),
+    lat: post.dig(:lonLat, 1),
+    display_coordinates: !!post[:lonLat],
+  }.compact
 
-  @client.update_with_media(
-    tweet,
-    open(post[:image]),
-    long: post[:lonLat][0],
-    lat: post[:lonLat][1],
-    display_coordinates: true
-  )
+  if post[:image]
+    @client.update_with_media(
+      tweet,
+      open(post[:image]),
+      **extras
+    )
+  else
+    @client.update(tweet, **extras)
+  end
 
   subject = post[:title]
   subject += " (#{loc})" if loc
@@ -111,6 +119,7 @@ posts.each do |post|
       Dein veloroute.hamburg
     BODY
 
+    puts "emailing: #{email}"
     ok, stdout, stdin = direct_run(["/usr/bin/s-nail",
       # "-d",
       "-s", "veloroute.hamburg: #{subject}",
