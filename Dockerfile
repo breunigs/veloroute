@@ -16,6 +16,7 @@ RUN bundle install
 COPY routes.json *.yaml /app/
 COPY routes/ /app/routes/
 COPY spec/ /app/spec/
+COPY blog/ app/blog/
 
 ARG TEST
 RUN if [ "$TEST" = "yes" ]; then \
