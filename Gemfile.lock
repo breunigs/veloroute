@@ -34,7 +34,7 @@ GEM
     mini_portile2 (2.4.0)
     multipart-post (2.1.1)
     naught (1.1.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     open_uri_redirections (0.2.1)
     parallel (1.17.0)
