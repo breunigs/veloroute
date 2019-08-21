@@ -9,7 +9,7 @@ module RSS
   BASE = URI("https://veloroute.hamburg")
 
   def self.list(count:)
-    self.newest(shortcomings + image_updates, count: count)
+    self.newest(shortcomings + image_updates + blog, count: count)
   end
 
   def self.build_html(count: nil)
@@ -50,6 +50,23 @@ module RSS
         description: s.desc + '<br>' + img_tags,
         lonLat: s.lonLat,
         image: Mapillary.image_url(s.images.first)
+      }
+    end
+  end
+
+  def self.blog
+    glob = File.join(__dir__, "..", "blog", "*.yaml")
+    Dir.glob(glob).sort.map do |path|
+      fn = File.basename(path, ".yaml")
+      post = self.get_yaml("blog/#{fn}")
+      {
+        link: BASE.merge("/blog/#{fn}"),
+        title: post['title'],
+        updated: self.to_time(fn[0...10]),
+        description: post['text']
+        # lonLat: lonLat,
+        # image: Mapillary.image_url(details['startImage']),
+        # classes: 'newImgLink'
       }
     end
   end

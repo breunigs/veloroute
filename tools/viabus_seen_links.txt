@@ -446,3 +446,5 @@
 - https://via-bus.hamburg.de/contentblob/4279818/dd4b6dbd9c509e7151ff8160906f425f/data/2014-03-05-via-bus-vogt-cordes-damm.pdf
 '2019-06-19':
 - https://via-bus.hamburg.de/contentblob/12704774/babeef8800f77f10ca976cfc1c4561c2/data/m6-praesentation-infoveranstaltung-12-06-2019.pdf
+'2019-07-19':
+- https://via-bus.hamburg.de/contentblob/12769734/6a3532c8a2f8cb5dd4a1bee23436f3bc/data/dokumentation-baubeginn-borgeweg.pdf

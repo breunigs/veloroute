@@ -12,8 +12,8 @@ require_relative "markers"
 require_relative "place"
 require_relative "quality"
 require_relative "relation"
-require_relative "review"
 require_relative "svg_pather"
+require_relative "blog"
 require_relative "track"
 
 
@@ -57,10 +57,6 @@ class Route
 
   def named_markers
     markers.map { |m| m + [name] }
-  end
-
-  def all_named_places
-    (place_names_with_dir + review.mentioned_places).uniq
   end
 
   def visited_places
@@ -210,7 +206,9 @@ class Route
     end
     html << <<~EOF
         </table>
-        #{review.to_html}
+        #{download_html}
+        #{articles_html}
+        #{footer}
       </div>
     EOF
   end
@@ -249,6 +247,61 @@ class Route
 
   private
 
+
+  def download_html
+    <<~HTML
+     <h4>Veloroute #{name} Download</h4>
+     <p>
+        Download im
+        <a href="/routes/geo/route#{name}.kml" download><b>KML-Format</b></a>
+        oder im
+        <a href="/routes/geo/route#{name}.gpx" download><b>GPX-Format</b></a>.
+        Alternativ gibt es auch <a href="/routes/geo/routen.zip">alle Routen/Formate im ZIP-Archiv</a>.
+        Die Dateien enthalten die Route getrennt nach
+        Richtung#{route_count > 1 ? " und Ast" : ""}.
+        <br>
+        <small>
+          Manche Programme können damit nicht umgehen und zeigen entweder alles
+          auf einmal oder nur ein Teilstück.
+          <span class="not-mobile">
+            Empfehlung:
+            <a href="https://www.gpxsee.org/" target="_blank">GPXSee</a>
+            (kostenlos, Windows / OS X / Linux) zeigt die Exporte korrekt an.
+          </span>
+        </small>
+      </p>
+    HTML
+  end
+
+  def articles_html
+    posts = Blog.instance.with_tags("velo#{name}").reverse.map do |post|
+      <<~HTML
+        <li>
+          <time>#{post.ger_date}</time>
+          <a href="/blog/#{post.name}">#{post.title}</a>
+        </li>
+      HTML
+    end
+
+    <<~HTML
+      <h4>Artikel</h4>
+      <ul class="articles single">
+        #{posts.join("\n")}
+      </ul>
+    HTML
+  end
+
+  def footer
+    <<~HTML
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="/quality">Radwegqualität bewerten</a></li>
+        <li><a href="#{osm_url}" target="_blank">Veloroute #{name} in der OpenStreetMap</a></li>
+        <li><a href="/">Startseite</a></li>
+      </ul>
+    HTML
+  end
+
   def geojson(collisions)
     @geojson ||= GeoJSON.new(relation: relation, route: self, collisions: collisions)
   end
@@ -258,12 +311,7 @@ class Route
   end
 
   def review
-    @review ||= ::Review.new(
-      self,
-      description: @parsed_json["description"],
-      date: @parsed_json["review_date"],
-      grade: @parsed_json["review_grade"],
-    )
+    @review ||= ::Review.new(self)
   end
 
   def quality

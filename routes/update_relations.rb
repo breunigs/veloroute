@@ -21,6 +21,7 @@ require_relative "place"
 require_relative "quality"
 require_relative "relation"
 require_relative "route"
+require_relative "blog"
 require_relative "shortcoming"
 require_relative "util"
 require_relative "webpack_helper"
@@ -169,6 +170,26 @@ def write_rss(_routes)
   File.write("geo_tmp/recent_changes_full.html", RSS.build_html)
 end
 
+def write_blog(_routes)
+  Dir.mkdir("geo_tmp/blog")
+  html = ""
+  css = ""
+  Blog.instance.posts.each do |post|
+    css << ".page-blog-#{post.name} #desc-blog-#{post.name} { display: block }"
+    html << <<~HTML
+      <div id="desc-blog-#{post.name}" class="desc">
+        <h3>#{post.title}</h3>
+
+        #{post.linked_text}
+
+        <p><small>Letzte Änderung: #{post.ger_date}</small></p>
+      </div>
+    HTML
+  end
+  File.write("geo_tmp/blog.html", html)
+  File.write("geo_tmp/blog.scss", css)
+end
+
 BUFFER_IN_METERS = 10
 def coords_to_buffered_poly(coords)
   return nil if coords.size <= 1
@@ -208,6 +229,7 @@ routes = routes.map { |route, details| Route.new(route, details) }
   write_gpx_files
   build_construction_sites
   write_rss
+  write_blog
 ].map do |task|
   Thread.new { send(task, routes) }
 end.each(&:join)

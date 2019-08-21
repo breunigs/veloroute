@@ -89,6 +89,7 @@ ul, ol, p {
 {
   display: block;
 }
+@import 'routes/geo/blog';
 
 // ensure the headline doesn't head the top of the screen, but looks kinda good
 #qualityheader:before {
@@ -555,8 +556,8 @@ ol.hide-bullets {
   }
 }
 
-.construction {
-  .duration {
+.construction, .articles {
+  .duration, time {
     color: #999;
     float: right;
     padding-left: 0.5em;

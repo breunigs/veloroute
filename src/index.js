@@ -50,6 +50,7 @@ document.addEventListener('click', ev => {
 
   const url = new URL(anchor.href);
   if(url.origin !== location.origin) return;
+  const path = url.pathname.substr(1);
 
   if(anchor.classList.contains('place')) {
     scrollTo('#map');
@@ -57,9 +58,12 @@ document.addEventListener('click', ev => {
     if(anchor.dataset.bbox) {
       console.debug("fitting to bounds in data attr");
       map.fitBounds(anchor.dataset.bbox.split(","), {maxZoom: anchor.dataset.maxzoom || 14});
-    } else if(m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)(?:\/|$)/)) {
+    } else if(m = anchor.href.match(/(\d*)#([\d.]+)\/([\d.]+)\/([\d.]+)(?:\/|$)([a-zA-Z0-9-_]*)/)) {
       console.debug("flying to coords in href");
-      map.flyTo({center: [m[3], m[2]], zoom: m[1]});
+      map.flyTo({center: [m[4], m[3]], zoom: m[2]});
+      if(m[1] && m[5]) {
+        imagesPromise.then(({setActiveImage}) => setActiveImage(path, m[5]));
+      }
     } else {
       console.debug(`Cannot find attributes on place ${anchor.textContent} that would know where to pan map (${anchor}).`)
     }
@@ -67,7 +71,6 @@ document.addEventListener('click', ev => {
     return;
   }
 
-  const path = url.pathname.substr(1);
 
   if(anchor.classList.contains('newImgLink')) {
     let m = anchor.href.match(/#([\d.]+)\/([\d.]+)\/([\d.]+)\/([^/]+)$/);
@@ -85,7 +88,7 @@ document.addEventListener('click', ev => {
     return ev.preventDefault();
   }
 
-  if(path.match(/^(projekt|changes|bau|quality|quality\/[0-9a-z-]+|\d|1[01234])$/) || path === "") {
+  if(path.match(/^(projekt|changes|bau|quality|quality\/[0-9a-z-]+|\d|1[01234]|blog\/[0-9a-z_-]+)$/) || path === "") {
     ev.preventDefault();
     state.routeSetter()(path);
     if(anchor.classList.contains('autoplay')) {

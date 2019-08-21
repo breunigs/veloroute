@@ -13,67 +13,54 @@
     ],
     "images": {
       "outward_osdorfer_born": [
-        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "_FsZ5q_99OuP6UTmbVt7Rg", "to": "I3412scip0MDc4QlMF1i9w" },
-        { "seq": "AFKem6SXO4ZlbOka4PgZkg", "from": "VsDwT00ujmt8pblwzGqVJQ", "to": "mhZe7dAIgmXNGDIuTElUMw" },
-        { "seq": "OGk5mIiwu3eFmgCObPcpfw", "from": "p6eLPwG9I13xSJHde3TKYg", "to": "m-eQHsR6RiEmNwjM9tfuTw" },
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
-        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "vJGHq24iI-I6NQQn0iQYaw" },
-        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "KECxaTLwLLkOucqeZsaq0Q", "to": "5AkOxMJ1ivXBn1WnOQ3eDg" },
-        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "gcQpMKJz19vjGjwewHYI-g", "to": "rueX1vpE1KD79UIXOl71ZQ" },
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "IhgRlFyBqWxilippnbb-Zw", "to": "D6_wRv89U_XlgZles_lvYw" },
-        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "mC970LwA2MSOjZKdMo6cGA", "to": "pxBoeLt-X3psRUnjW4GYug" },
-        { "seq": "jgiVA03PbCSzsz7UjuBbug", "from": "j9ZwJNc1DQpjMeYC7McXIA", "to": "mEB0nn-GJgWbg4fIOrqdGg" },
-        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "ovr5lxcW99TGfy3mISbfew", "to": "uEusdWfZqOqx89lN1yNz4w" },
-        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "feZMNMEoVBiWhA_-M7pNtg", "to": "MJCXA2WHLPI4Alhd3xo9sA" },
-        { "seq": "zO25FQYXaWuruJVgezch8w", "from": "7cVD50zO0OvlK8yyOtSzFA", "to": "8tNqNYW2emZXTipDiGmUGA" },
-        { "seq": "yjwoe4gkss0kye0o86on2v", "from": "a2VtG08zEH1mtuB-LPQwxw", "to": "_RPb8tUw3L5g9yi5euy6PA" },
-        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "1CfiHvnShTwZxkHaDL3Tow", "to": "6-F7dAQ2XHYHcTFM3fu0hQ" },
-        { "seq": "4K6cCOYeTV1dLnDWRqR_3Q", "from": "APWupFiyKTe0lzcn-zBE_g", "to": "HF-avwQfC9NJQU6mhVy1Eg" },
-        { "seq": "lpDR9dpxwt_WnFF7GjZOVg", "from": "xJ0jnyWyhpxt_uMVjEha4g", "to": "XJj4wo21LD6RUy_UM-W44A" },
-        { "seq": "a_YcPvkaQEcea-C_xURRKQ", "from": "jQEVsshQ46chyNaoqeJe-Q", "to": "4n811EjTQz7P0AcUuuaBZg" }
+        { "seq": "gU8H89FM5sbgFCOXi3TwSg", "from": "EyCWTStQf55pcb6tTFDwpg", "to": "qXeNR2EVP1o6fwMLXzM9kQ" },
+        { "seq": "inWHFtKUA0vCxunc20uwIA", "from": "hDxqRFisEJixtysBiVpEWw", "to": "mBUFUHvlaL-vlQsF0njahw" },
+        { "seq": "fOEzka9wBqa6IadRSzmhqw", "from": "unFuX3VbVrfIkb3yVL1Dpw", "to": "U40Ybk6__62RwyJM9Pujaw" },
+        { "seq": "kLsbPJD9aK-_-2A0Jg1uTg", "from": "dWBCsXKYWj7jTIaexRqu8Q", "to": "yr-vaDKVYBa4sAkDndcJ_g" },
+        { "seq": "kjn2sGeOWhgq8qiweCq-mA", "from": "SloWGylYxUTXsHbgYBU6Ig", "to": "AlKtfleL9qww4U4GySbrhw" },
+        { "seq": "koNGbmiRPIlgh2HdyXuCiw", "from": "eb3pS0APNNK20q68ZPm3Og", "to": "FCIBwiy7Y9rHT9-MRLYoFA" },
+        { "seq": "e1wKvcpEeFdX83OjznlTWw", "from": "7mDa4yqGHapflyPCKiN4vg", "to": "Bb6mfbHAnxJS94tHunl_3w" },
+        { "seq": "wd3kp8zb8fxoK5xdJg23gA", "from": "E5AOGJI5lwAR-4zIvv6hlQ", "to": "AQtQ6pbfD1_YZuuyM9WJNg" },
+        { "seq": "wd3kp8zb8fxoK5xdJg23gA", "from": "zhbzM9HJORV4VW434tk-SA", "to": "0m6sbIQUl56vUt5VoObnUA" },
+        { "seq": "aToT3ZKWMuo4pRD7PAOFzg", "from": "RFpGcXlygZunQxHMwBUjwA", "to": "4c6yz5F84uBjixH6uGOB4w" },
+        { "seq": "zK4pj0GAP073bTrTa1Kgng", "from": "3AIIFf8tp_WOQQCSU6hQ7Q", "to": "kcVvD5vIUgQlPuSyw8-vQQ" }
       ],
       "inward_osdorfer_born": [
-        { "seq": "lpDR9dpxwt_WnFF7GjZOVg", "from": "-2HRsDXY4bUqvt0G7Ffyew", "to": "Rl0UGT0j9O8pBYJHo63qNw" },
-        { "seq": "bHO5E4r6co_YoVEz3k8Hlw", "from": "V0FRNO2kF_gz8fFC0CtBPw", "to": "AYHAdwXLbKJbytA9EDXuiw" },
-        { "seq": "SRogRdD2BvaHcZWJvVUCZg", "from": "bT3FyIq-B3J5NJobhUK9sA", "to": "pZNQjcP4JUbvqlC3r6GvYQ" },
-        { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "HglD2Pb-jVeLQNPBt_Warw", "to": "EoP-T3XpOpHzRMYgMDwI_g" },
-        { "seq": "eH0m4ykz4cvHTCns7WdiBQ", "from": "hx_q2jIyvi2WUtxOVYwulA", "to": "h0swKIjQA0KKe66IlH4FXA" },
-        { "seq": "LXymfLy7DcNdVLmlSTt-Qg", "from": "ZEMDslovOJ5E1h445ynAfw", "to": "tXLhM42wx8jIelYXA58X5g" },
-        { "seq": "cJ5xdgWy0EYaFWrXPLT3wg", "from": "RGHBy3DIo3X6qft5-VtJcg", "to": "bJDVVPB0nIoNrEsw7wU1Yg" },
-        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "RPSHth8i2ueJUF1jSCoIOA", "to": "bJkOnxBhKmBotcLBJDjhCA" },
-        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "OWwwvxc8A3psYaluiMZmuA" },
-        { "seq": "DabOKyBIJ54hzZDogqEAHA", "from": "GWzP1IM3PuSJ4ePtteVjQQ", "to": "ZQDq1PjsqOzZ8mLBfky25w" }
+        { "seq": "zK4pj0GAP073bTrTa1Kgng", "from": "kcVvD5vIUgQlPuSyw8-vQQ", "to": "YzAJh9DDiA0QOTEzMcH9LA" },
+        { "seq": "fXogdGXO_DnA0drZEnl30g", "from": "r0dcTPqKLs9cNWwi1to6xQ", "to": "-nnUoy6Jc6TKaGFAzqEEtA" },
+        { "seq": "ipY_T_Rr0hurjT7aQcWOQA", "from": "UWFI-qRHURusRy2ZfqSdxQ", "to": "VRveqdFDUj8QwTnezZmAGA" },
+        { "seq": "MSqq7FVU74YOj2V7UP0mvg", "from": "FAxCyXmHQBoJNDdqM2300A", "to": "W7TfxXnbhk691ErTD-hheQ" },
+        { "seq": "4V-h-VHqXDWqpcfB50RJZg", "from": "MnqZVGUGkpHt4ZKAtCmDgg", "to": "ibs_rl3YuydiL4-UHh75FQ" },
+        { "seq": "Xd3TzXHwqRs3QiHkLiJoMw", "from": "tKOktktMrg3b68v7AB01EA", "to": "XnZPr2xgH8keeB9pMMMjMg" },
+        { "seq": "b3o7TGX9-_NGBh0sc3uFlA", "from": "c0SexOCtZuexD9DdaRKCWg", "to": "t1XVUWO0bx_RIc2It_PpIQ" }
       ],
       "outward_rissen": [
-        { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "_FsZ5q_99OuP6UTmbVt7Rg", "to": "I3412scip0MDc4QlMF1i9w" },
-        { "seq": "AFKem6SXO4ZlbOka4PgZkg", "from": "VsDwT00ujmt8pblwzGqVJQ", "to": "mhZe7dAIgmXNGDIuTElUMw" },
-        { "seq": "OGk5mIiwu3eFmgCObPcpfw", "from": "p6eLPwG9I13xSJHde3TKYg", "to": "m-eQHsR6RiEmNwjM9tfuTw" },
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "iaaXtlSV4GsEWaCp4sbmrA", "to": "HzFQLKHzmohrh8k_PdxhbA" },
-        { "seq": "sKZj0PJN5dspb1AuHqiHfQ", "from": "SWGD9bc3JQyh-rLzjQfiVw", "to": "vJGHq24iI-I6NQQn0iQYaw" },
-        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "KECxaTLwLLkOucqeZsaq0Q", "to": "5AkOxMJ1ivXBn1WnOQ3eDg" },
-        { "seq": "ewKjQZvHqOVnsZKsU-uhQQ", "from": "gcQpMKJz19vjGjwewHYI-g", "to": "rueX1vpE1KD79UIXOl71ZQ" },
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "IhgRlFyBqWxilippnbb-Zw", "to": "D6_wRv89U_XlgZles_lvYw" },
-        { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "mC970LwA2MSOjZKdMo6cGA", "to": "pxBoeLt-X3psRUnjW4GYug" },
-        { "seq": "jgiVA03PbCSzsz7UjuBbug", "from": "j9ZwJNc1DQpjMeYC7McXIA", "to": "ED2Vng4n4oiBw1Ou2cus2A" },
-        { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "7UVXM3dZNAPwJQtG3Qe_8A", "to": "3GTWBHuzT1PBqF8vQbdesQ" },
-        { "seq": "k7J4rEHSIdKIPZ7HJ14UOw", "from": "060x-ocI4UrdPrs4r3tEEQ", "to": "crWixHF_OhYk3hyq6C1F8w" },
-        { "seq": "OJcq3T1tNNJmk2p-XC77aQ", "from": "HCDf5rogIvxdbteCkL28tA", "to": "rKEl5VHP1UWcDt1ZeHAiIA" },
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "B6ChcpVEbkCkiywgn-Kxmg", "to": "1sjSmLlhREpSvrufzb9ZiA" }
+        { "seq": "gU8H89FM5sbgFCOXi3TwSg", "from": "EyCWTStQf55pcb6tTFDwpg", "to": "qXeNR2EVP1o6fwMLXzM9kQ" },
+        { "seq": "inWHFtKUA0vCxunc20uwIA", "from": "hDxqRFisEJixtysBiVpEWw", "to": "mBUFUHvlaL-vlQsF0njahw" },
+        { "seq": "fOEzka9wBqa6IadRSzmhqw", "from": "unFuX3VbVrfIkb3yVL1Dpw", "to": "U40Ybk6__62RwyJM9Pujaw" },
+        { "seq": "kLsbPJD9aK-_-2A0Jg1uTg", "from": "dWBCsXKYWj7jTIaexRqu8Q", "to": "yr-vaDKVYBa4sAkDndcJ_g" },
+        { "seq": "kjn2sGeOWhgq8qiweCq-mA", "from": "SloWGylYxUTXsHbgYBU6Ig", "to": "AlKtfleL9qww4U4GySbrhw" },
+        { "seq": "koNGbmiRPIlgh2HdyXuCiw", "from": "eb3pS0APNNK20q68ZPm3Og", "to": "FCIBwiy7Y9rHT9-MRLYoFA" },
+        { "seq": "e1wKvcpEeFdX83OjznlTWw", "from": "7mDa4yqGHapflyPCKiN4vg", "to": "iD_75Rowu9otBo-5jRCFoA" },
+        { "seq": "klVHpZI-qP8e8LuM1DfVNg", "from": "qxJzoj4n1sNI09jHnmb7Zw", "to": "3O0O2wLDe78a0M0V-9ya3w" },
+        { "seq": "JFaxwoJ9F59miF9a6TJpvw", "from": "pTeSHKrq_dXBxc7qSyFycg", "to": "OnqVQ3weWDkXQFfZoAsGmQ" },
+        { "seq": "hPkEDMXXuqYJuuY224zf0g", "from": "mBzbabnKtv5IiKnKxQeiUw", "to": "l5dwEJzaT97NkN-qSZGfAQ" },
+        { "seq": "qcrQrUkKmhsKD0acXtnG3g", "from": "HKPOtx0SmsSq_iSRfroGew", "to": "uu5xwWU1fOKLcuv9eJO60g" },
+        { "seq": "P5aFBxXD5BlWk8LNpIRrkA", "from": "FvEYxO-6z1QCzWYPcUGFPA", "to": "mdrIb0_8NRk4ZG2rDgb-Uw" }
       ],
       "inward_rissen": [
-        { "seq": "b8d8wejtu1cq0roinb4his", "from": "PC7filM4k9PAOwTYUCMhmA", "to": "HR8YhBdfQLE4gSFBM5h3sw" },
-        { "seq": "SAHgKCBxAnZ-U0Ze-usW5Q", "from": "4meEKSPKqFtOgXGH5MZz5Q", "to": "CH9op7pxw3njTsjsnNOsQQ" },
-        { "seq": "3xusuwLkYxOXag_1VnlWRw", "from": "SrkzN9Ei8tNYzp34SVTZzw", "to": "0XnFD80I3WRMUZejVX_rFQ" },
-        { "seq": "LXymfLy7DcNdVLmlSTt-Qg", "from": "iINPDOsCw_zRDXp2-5HF4Q", "to": "tXLhM42wx8jIelYXA58X5g" },
-        { "seq": "cJ5xdgWy0EYaFWrXPLT3wg", "from": "RGHBy3DIo3X6qft5-VtJcg", "to": "bJDVVPB0nIoNrEsw7wU1Yg" },
-        { "seq": "E9ruostqEmHt435KFJT1uQ", "from": "RPSHth8i2ueJUF1jSCoIOA", "to": "bJkOnxBhKmBotcLBJDjhCA" },
-        { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "OWwwvxc8A3psYaluiMZmuA" },
-        { "seq": "DabOKyBIJ54hzZDogqEAHA", "from": "GWzP1IM3PuSJ4ePtteVjQQ", "to": "ZQDq1PjsqOzZ8mLBfky25w" }
+        { "seq": "OzOSc0EcZum0-KJfzMuqWw", "from": "CBhQ7jEPjpXPgRFFriVEKQ", "to": "g6gDARZgC1qyslzRVHNP_Q" },
+        { "seq": "W9HegVOI9uXUBeXr_XODdw", "from": "nOWIfdSZrP9MWkqw_LRnfw", "to": "UeREZM3rDK9sQEypByFyzw" },
+        { "seq": "MJhVzHYyXpZ5KUIdRuXc7Q", "from": "4TMl25K-1v1lIVTEEWXOYA", "to": "7kq_fk4wSGjQS4NYOLTgSw" },
+        { "seq": "e2R4CyIMPYOeT9Keydfwhw", "from": "gc7Dj7_0XZXW2-deKzu66w", "to": "VYPhPNKB2xs6-6qE2Bcdtw" },
+        { "seq": "bwptTdxnDQg_0mQIvIdyYQ", "from": "aArs01jefkpoDP1lDzRJ8w", "to": "cahvlLCxEOtdbH2Byt0SvA" },
+        { "seq": "ipY_T_Rr0hurjT7aQcWOQA", "from": "TYjZ66nChPk5js1wyp830Q", "to": "VRveqdFDUj8QwTnezZmAGA" },
+        { "seq": "MSqq7FVU74YOj2V7UP0mvg", "from": "FAxCyXmHQBoJNDdqM2300A", "to": "W7TfxXnbhk691ErTD-hheQ" },
+        { "seq": "4V-h-VHqXDWqpcfB50RJZg", "from": "MnqZVGUGkpHt4ZKAtCmDgg", "to": "ibs_rl3YuydiL4-UHh75FQ" },
+        { "seq": "Xd3TzXHwqRs3QiHkLiJoMw", "from": "tKOktktMrg3b68v7AB01EA", "to": "XnZPr2xgH8keeB9pMMMjMg" },
+        { "seq": "b3o7TGX9-_NGBh0sc3uFlA", "from": "c0SexOCtZuexD9DdaRKCWg", "to": "t1XVUWO0bx_RIc2It_PpIQ" }
       ]
-    },
-    "review_date": "2018-08-25",
-    "review_grade": "2",
-    "description": "<p>Beide Äste der Veloroute 1 sind schon relativ weit ausgebaut und ermöglichen gutes Vorankommen. Wer etwa ein Gefühl bekommen möchte, wie sich die Autobahndeckel anfühlen werden, kann beim <a>Röperhof</a> am Nordausgang des neuen Elbtunnel vorbeischauen.</p><p>Weiter Richtung Innenstadt wird es ab <a>Ottensen</a> eher eng. Bis <a>Zum Grünen Jäger</a> erfolgt der Ausbau erst noch, sodass man kaum Platz zum Überholen hat und auch regelmäßig im Begegnungsverkehr mit KFZ ausgebremst wird. Gut: für viele Stellen ist ein Ausbau ab 2019 vorgesehen.</p><p>Außerhalb der Innenstadt gibt zwar hier und da Ausbaulücken, wirklich auffällig sind aber nur zwei Stellen. Auf dem Nordast ist dies der <a>Lise-Meitner-Park</a>, der mit engen und zugewachsenen Schotterwegen nicht einladend ist. Auf dem Westast sind dies mehrere Stellen in <a>Blankenese</a>:</p><ol><li><a>Gätgensstraße</a>/<a>Godeffroystraße</a> – man will hier der Autotrasse aus dem Weg gehen, was beim aktuellen Ausbaustand aber deutlich umständlicher ist als kurz im KFZ-Verkehr mitzuschwimmen.</li><li><a>Sülldorfer Kirchenweg</a> – zumindest der Teil bergauf, da die KFZ hier 50 km/h fahren dürfen und eher nicht auf eine ausreichend große Lücke warten.</li><li><a>Friedhof Blankenese</a> – Die Drängelgitter sind für normale Fahrräder schon eng, mit dem Lastenvelo kommt man vermutlich nicht durch.</li></ol><p>Allen in allem ist die Route definitiv alltagstauglich, auch im Berufsverkehr.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215309469/Auf-dem-Rad-nach-Westen-dieser-Weg-ist-steinig-und-schwer.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 12.09.2018</a></p>"
+    }
   },
   "2":  {
     "relation_id": 194841,
@@ -114,10 +101,7 @@
         { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "v8AoZvTSmG8BuE0ie0yd6w", "to": "OWwwvxc8A3psYaluiMZmuA" },
         { "seq": "DabOKyBIJ54hzZDogqEAHA", "from": "GWzP1IM3PuSJ4ePtteVjQQ", "to": "ZQDq1PjsqOzZ8mLBfky25w" }
       ]
-    },
-    "review_date": "2018-08-31",
-    "review_grade": "3",
-    "description": "<p>Insgesamt lässt sich die Veloroute 2 schon gut befahren. Allerdings gibt es immer noch viel unebene Stellen („Kopfsteinpflaster“) in <a>Eimsbüttel</a> und <a>St. Pauli</a>. Fraglich erscheint aktuell auch die Führung über den <a>Langenfelder Damm</a>. Stadteinwärts muss man hier zweimal links abbiegen und das für einen gar nicht so tollen Radweg. Der (alten) Beschilderung zu folgen, ergibt hier mehr Sinn. Unbefriedigend ist auch die Querung der Kieler Straße am <a>Sola-Bona-Park</a>: Der offensichtliche Weg stadteinwärts ist nämlich nicht freigegeben und das seit Jahren mit dem Wissen der Behörden. Da kann man nur den Kopf schütteln.</p><p>Bei allem Gemecker muss man aber auch zugeben, das es gute Stellen gibt, etwa die Führung <a>Tornquiststraße</a> und <a>Sillemstraße</a>. Durch die Sackgassen für den KFZ Verkehr kommt man vergleichsweise bequem durch <a>Eimsbüttel</a>. Diese Route endet bereits am <a>Furtweg</a>, aber da die Veloroute 14 direkt anschließt kommt man auch brauchbar zum <a>Eidelstedt Zentrum</a>.</p><p>Lange Rede, kurzer Sinn: Die Route ist alltagstauglich, wenn auch mit leichten Abstrichen.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215335259/Durch-Eimsbuettel-nach-Eidelstedt-ein-Weg-mit-Hindernissen.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 15.09.2018</a></p>"
+    }
   },
   "3":  {
     "relation_id": 194840,
@@ -161,10 +145,7 @@
         { "seq": "yIeac9zmVVcZzwdJjaJq8A", "from": "QE-ZuE6MEhIn9HGSaYVB3A", "to": "3qUzCXxmF7kATAJppzmMCA"},
         { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "cVsGgvzUmnFYGyntVtlhEQ", "to": "iRql1hCMZkGYu-AMQMqGqw"}
       ]
-    },
-    "review_date": "2018-09-03",
-    "review_grade": "4",
-    "description": "<p>Die Veloroute 3 ist in der Innenstadt deutlich besser befahrbar als in den Außenbezirken. Dort hat man entweder völlig desolate Radwege oder teilt sich die schnell befahrenen Straßen im Mischverkehr. In den Nebenstraßen mit 30 km/h ist Begegnungsverkehr dann oft schwierig, sodass man auch hier nicht zügig vorankommt.</p><p>Richtung Zentrum, grob ab <a>Hoheluft-West</a> ist die Situation deutlich entspannter: häufig gibt es schon Radfahrspuren oder die Nebenstraßen sind breit genug. Das vorm <a>Dammtor Bahnhof</a> gerade umgebaut wird wertet die Route zwar nicht auf, lässt aber hoffen das diese Kreuzung in Zukunft angenehmer für den Radverkehr wird.</p><p>Unterm Strich ist die Veloroute 3 kein Totalschaden, aber wirklich empfehlen kann man sie nicht. Zum Trost: für viele Straßen im äußeren Teil gab es bereits Infoveranstaltungen zur Umgestaltung – es sollte also bald besser werden.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215364183/Durchs-Univiertel-bis-Niendorf-noch-Luft-nach-oben.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 19.09.2018</a></p>"
+    }
   },
   "4":  {
     "_comment": "Last check: 2018-07-01",
@@ -214,10 +195,7 @@
         { "seq": "8wEcQDUPgNLaZvlPBvAxqg", "from": "h7kBl6R6-7mxsnR4KuaWKw", "to": "C1NWf5T72z9ZfAfVnz7jew"},
         { "seq": "19EhWiBzGDSIfEMMGQUSHg", "from": "Ghj_euVtNf53iO797yc5uw", "to": "iRql1hCMZkGYu-AMQMqGqw"}
       ]
-    },
-    "review_date": "2018-09-03",
-    "review_grade": "2",
-    "description": "<p>Mit dem <a>Leinpfad</a> und dem <a>Harvestehuder Weg</a> hat die Veloroute 4 bisher die Filetstücke unter den Fahrradwegen. Es ist natürlich ein bisschen schade, das die Ungewissheit um die amerikanische Botschaft am <a>Alsterufer</a> auch unklar macht, ob und wann die Fahrradstraße Richtung Innenstadt fortgesetzt werden kann. Notwendig wäre es bei dem hohen Zufußgehende- und Radaufkommen definitiv. Auch Kreuzung an <a>Kennedybrücke</a> bzw. <a>Lombardsbrücke</a> benötigt dringend eine Überarbeitung.</p><p>In die andere Richtung gibt's nach den Fahrradstraßen vor allem Mischverkehr: mal mit Angebotsstreifen (gestrichelte Linie), mal ohne. Gerade in in um Alsterdorf ist dies wegen der 50 km/h Höchstgeschwindigkeit eher unangenehm, wie etwa in der <a>Rathenaustraße</a>. Nach <a>Fuhlsbüttel</a> handelt es sich aber meist um Nebenstraßen mit max. 30 km/h, sodass sich ab hier bequem fahren lässt.</p><p>Insgesamt lässt sich Veloroute 4 gut befahren. Die nicht so guten Stellen sind meist kurz und im Mischverkehr die Straßen meist immer noch so breit, das man nicht mit den KFZ im Stau stehen muss. Insbesondere in den Fahrradstraßen lassen sich mögliche Zeitverluste gut ausgleichen.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215390465/Der-schwierige-Weg-nach-Langenhorn-auf-dem-Leinpfad.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 22.09.2018</a></p>"
+    }
   },
   "5":  {
     "relation_id": 226032,
@@ -281,10 +259,7 @@
         { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "kzqzdSq73aRd7JNaIEWR4A", "to": "1eHrpECrj9liEeXjt02uUg" },
         { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
       ]
-    },
-    "review_date": "2018-09-14",
-    "review_grade": "5",
-    "description": "<p>Gute Stellen auf der Veloroute 5 muss man schon mit der Lupe suchen. Zugegeben, nach dem Kopfsteinpflaster an der Straße <a>Alte Mühle</a> ist die Strecke auf dem letzten Stück ganz angenehm. Vorher prägen die Route vor allem zu schmale Radwege, die auch noch häufig mit den ZufußgehendeInnen im Konflikt stehen.</p><p>Beispiele? In der <a>Saarlandstraße</a> Richtung Norden ist der Radweg ab etwa <a>Südring</a> nur einen halben Meter breit. Stadteinwärts hat man um <a>U-Barmbek</a> eine rote Welle; gleiches gilt für den gesamten Weg stadtauswärts <a>an der Alster</a>. Die Führung am <a>Schwanenwik</a>, <a>U-Dehnhaide</a>, <a>S-Poppenbüttel</a>, <a>Heegbarg</a> und weiteren Stellen ist im besten Fall umständlich, am Ende der <a>Fabriciusstraße</a> sogar nicht mal StVo-konform. Die <a>Oberaltenallee</a> hat eine hohe Unfallrate durch rechts abbiegende KFZ.</p><p>Traurigerweise ist dies auch auf grunderneuerten Strecken nicht besser. Etwa <a>Steilshoop</a>: Im <a>Gustav-Seitz-Weg</a> ist der neu gepflasterte Radweg nur 1,5m breit statt der Mindestvorgabe von 1,6m. Weiter in der <a>Gründgensstraße</a> gibt es nur einen Angebotsstreifen (gestrichelte Linie), der an Zufußgehendeüberwegen ganz wegfällt. Vorher werden die Streifen nochmal schmaler, während die KFZ Spur gleich breit bleibt. Dies räumt Autos optisch Vorfahrt ein, was auf einer Veloroute völlig unverständlich ist.</p><p>Immerhin ist die umgebaute Kreuzung am <a>Ferdinandstor</a> ganz gut und die Umleitung am <a>Hebebrandquartier</a> teilweise ausgeschildert.</p><p>Fazit: aktuell ist Veloroute 5 eine Frechheit und nicht zu empfehlen. In <a>Barmbek</a> bietet sich die <a>Bramfelder Chaussee</a> als Alternative an. Diese ist zwar nicht unbedingt besser ausgebaut, aber dafür führt sie ohne Umwege in die Innenstadt.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215418281/Wer-nach-Duvenstedt-will-lernt-grosse-Strassen-kennen.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 26.09.2018</a></p>"
+    }
   },
   "6":  {
     "relation_id": 227477,
@@ -337,10 +312,7 @@
         { "seq": "bt-dS5AxaMEyKbcXyDSnqA", "from": "Untl3UpqqpJsl4ZP0cjing", "to": "1eHrpECrj9liEeXjt02uUg" },
         { "seq": "VThRGeZoHA7KnYfCvjaHRA", "from": "y3UixuD30H-Bd4CnGj5D4A", "to": "C9g-PLMUwL5lWng58G1ifA" }
       ]
-    },
-    "review_date": "2018-09-19",
-    "review_grade": "5",
-    "description": "<p>Bis zur <a>Hartwicusstraße</a> teilt sich die Veloroute 6 den Weg mit der 5er. Entsprechend haben auch beide anfangs die gleichen Probleme: Die Radwege sind unterdimensioniert und es gibt häufig Konflikte mit Zufußgehenden (<a>Ballindamm</a>, Radweg durch den <a>Alsterpark</a>). Stadtauswärts hat man <a>An der Alster</a> eine rote Welle und die Führung am <a>Schwanenwik</a> ist verwirrend.</p><p>Danach wird es besser: Die Kreuzung in und aus der <a>Hartwicusstraße</a> ist gelungen. Im Anschluss gibt es meist getrennte Führungen oder Fahrradstraßen. Die Kreuzungen lassen jeweils aber zu wünschen übrig: die zu querenden Straßen haben eine hohe KFZ Dichte, sodass Lücken selten sind. Selbst mit einer Querungshilfe wie an der <a>Friedrichsberger Straße</a> muss man zweimal anhalten um weiterzukommen. Das ist sehr unkomfortabel und schmälert den positiven Eindruck der Fahrradstraßen.</p><p>All dies ist aber nichts im Vergleich zur Kreuzung direkt nach <a>S-Friedrichsberg</a>. Die Radverkehrsführung endet und startet im Nichts, die Fahrbahnampeln die man laut StVo beachten <em>muss</em> kann man nicht sehen und zu schmal sind die Wege sowieso. Weiter im <a>Eulenkamp</a> trifft man auf alten Bestand: man hat die Wahl zwischen Kopfsteinpflaster auf der Straße und ebenso holprigen wie schmalen Radwegen daneben.</p><p>Danach muss man in den Mischverkehr bei 50 km/h und wird häufig knapp überholt. Warum man hier die Radführung auf <a>Pillauer Straße</a> und <a>Tilsiter Straße</a> aufgeteilt hat, statt eine Straße für den KFZ und die andere für den Radverkehr vorzusehen wird mir nicht klar. Wirklich angenehm ist so wie jetzt keine der Richtungen. Nach der <a>Eckerkoppel</a> bekommt man wieder eigene Radwege, die aber mittlerweile sehr uneben geworden sind.</p><p>Zum Ende der Route hin wird man vom <a>Berner Heerweg</a> durch Seitenstraßen umgeleitet, damit der Autoverkehr möglichst nicht durch Radfahrende behindert wird. Entsprechend unklar verläuft die Route im Zickzack, teils durch unsichtbare Hinterhöfe (<a>An der Berner Au</a>) und kaum benutzbare Waldwege (nach dem <a>Andreasweg</a>). Sonst ist der Belag meist gut, was aber nicht über die mangelhafte Führung hinwegtröstet.</p><p>Aktuell ist Veloroute 6 eher nicht zu empfehlen. Die einzig gute Stelle sind die Fahrradstraßen in <a>Barmbek-Süd</a>, die aber zu häufig durch große Kreuzungen unterbrochen werden um angenehm voran zu kommen. Die anderen Streckenteile sind kaum ausgebaut, sodass man auch jede beliebige andere Strecke fahren kann.<a></p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215455347/An-der-Alster-brauchen-Radfahrende-starke-Nerven.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 01.10.2018</a></p>"
+    }
   },
   "7":  {
     "relation_id": 228035,
@@ -409,10 +381,7 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "MkOOUaVtDvzlxROTZuexxg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    },
-    "review_date": "2018-09-21",
-    "review_grade": "3",
-    "description": "<p>Veloroute 7 wird hauptsächlich im Mischverkehr geführt, wobei es sich meist um Nebenstraßen handelt. Leider sind einige immer noch mit 50 km/h Maximalgeschwindigkeit freigegeben, obwohl sich z.B. ab Höhe <a>Steinhauerdamm</a> eine durchgehende Fahrradstraße über <a>Angerstraße</a>, <a>Hasselbrookstraße</a> <a>Pappelallee</a> und <a>Bärenallee</a> geradezu anbieten würde.</p><p>Insgesamt ist die Führung der Route ordentlich: die Streckenabschnitte an viel befahrenen Straßen sind kurz und die Führung durch die Nebenstraßen meist geradlinig ohne Umwege. Es gibt aber auch negative Stellen: an der <a>Adenauerallee</a> und am <a>Steindamm</a> kommt es häufig zu Konflikten mit den Zufußgehenden und man hat häufig Kopfsteinpflaster. An den <a>Bahngärten</a> fehlt die Führung indes völlig, was bei dieser stark befahrenen Stelle mehr als unangenehm ist – hier muss dringend nachgebessert werden.</p><p>In der <a>Kuehnstraße</a> gibt es noch Radwege aus Altbestand, die selbst bei moderaten 15 km/h unbefahrbar sind, ansonsten bleibt es aber hauptsächlich beim Mischverkehr, mit Radwegen hier und da.</p><p>Unterm Strich fehlt der Route ein echtes Highlight. Selbst wenn die genannten Mängel behoben sind hebt sich die Route kaum von anderen Nebenstraßen ab. Würde man sie konsequent als Fahrradstraße ausführen, hätte sie echtes Potential. Benutzbar ist sie aber allemal, da die meisten Streckenteile wenig befahren sind und man gut durchkommt.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215478963/Im-Zickzack-kurs-durch-Wohngebiete-nach-Rahlstedt.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 04.10.2018</a></p>"
+    }
   },
   "8":  {
     "relation_id": 229623,
@@ -485,10 +454,7 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "6TVAKi3fS0DWoNlAFdg29w", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    },
-    "review_date": "2018-09-06",
-    "review_grade": "2",
-    "description": "<p>Die Route beginnt mühsam: Im Bereich des <a>Hauptbahnhof</a> bzw. <a>ZOB</a> muss man ständig mit Zufußgehenden auf dem Radweg rechnen, an schnell und sicher vorankommen ist nicht zu denken. Im Anschluss wähnt man sich aber in einer echten Fahrradstadt: gute Beläge, gerade Führung, eigene Ampeln und auch genug Platz. Ab dem <a>Berliner Tor</a> führt die Route sogar mitten durchs Grüne. Auch wurde kürzlich der Knotenpunkt an der <a>U-Horner Rennbahn</a> umgebaut und zeigt wie sinnvolle Radwege aussehen. Dieses Teilstück ist meines Erachtens eines der besten der Alltagsrouten.</p><p>Die Radfahrspuren in der <a>Washingtonallee</a> sind immer noch gut, obwohl viele KFZ die Sicherheitsstreifen nicht verstehen und deswegen zu nah am Radweg parken. Erst ab der <a>Billstedter Hauptstraße</a> nimmt die Qualität merklich ab: nicht immer ist die Führung ersichtlich, oft sind die Wege zu schmal und in Konflikt mit Zufußgehenden. Unebene Beläge senken den Fahrtkomfort.</p><p>Folgt man der Route Richtung <a>Mümmelmannsberg</a>, bleibt die Qualität auch weiterhin mangelhaft: die Radwege wurden offenbar Jahrzehnte nicht gepflegt, sodass sie in Sachen Bequemlichkeit mit Kopfsteinpflaster konkurrieren. Wo keine baulichen Radwege sind, teilt man sich den Platz im Mischverkehr bei 50 km/h.</p><p>Auf dem anderen Ast Richtung <a>Bergedorf</a> ist es besser: weite Strecken sind auf eigenen Wegen oder Nebenstraßen geführt, die Belagsqualität insgesamt ordentlich. Der Zweirichtungsradweg in der <a>Lohbrügger Landstraße</a> ist etwas schmal, gerade wenn es bergauf geht. Die Innenstadt Bergedorf ist durchwachsen: hier und da gibt es noch alte Führungen mit engen Kurvenradien und Zufußgehendeampeln. An anderen Stellen darf man sich dagegen aussuchen, ob man lieber auf der Straße oder dem Hochbordradweg fährt und erhält für beide Fälle eine sichere Aufleitung – gut! (<a>Wilhelm-Bergner-Straße</a>).</p><p>Bis einschließlich <a>Horn</a> ist Veloroute 8 eine klare Empfehlung. Wer vom <a>Mümmelmannsberg</a> kommt, wird am Anfang aber definitiv keinen Spaß haben. Von <a>Bergedorf</a> ist die Lage deutlich entspannter und man kommt gut voran. Der Schandfleck <a>Billstedter Hauptstraße</a> ist im Vergleich zum Rest der Route kurz genug, um nicht zu arg ins Gewicht zu fallen. Insgesamt ist die Route aber auch jetzt schon zu empfehlen – mit den Lückenschlüssen hat man dann auch durchgehend gute Fahrt.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215496251/In-Billstedt-brauchen-Radler-gutes-Sitzfleisch.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 06.10.2018</a></p>"
+    }
   },
   "9":  {
     "_comment": "Last check: 2018-07-03",
@@ -536,10 +502,7 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "N3BfAS4jEGKjv2itC8Lwdg", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    },
-    "review_date": "2018-09-07",
-    "review_grade": "2",
-    "description": "<p>Veloroute 9 führt wie die Veloroute 8 nach <a>Bergedorf</a>. Allerdings verläuft sie deutlich südlicher und bindet entsprechend <a>Billbrook</a>, <a>Billwerder</a> und <a>Neuallermöhe</a> ins Radnetz ein. Die Route ist bereits gut ausgebaut, führt allerdings auch ein großes Stück durch ländlichere Bereich Hamburgs. Die Straßen sind dort zwar weitgehend autofrei und gut asphaltiert, aber leider nicht beleuchtet.</p><p>Es gibt nur wenige Stellen, an denen definitiv noch nachgebessert werden sollte: die Unterführung an der Autobahn in <a>Rothenburgsort</a> etwa ist sehr schmal. Im Industriegebiet an der <a>Bredowstraße</a> ist zwar genug Platz, aber man fährt hier trotzdem im Mischverkehr mit entsprechendem Schwerlastanteil. Auch ist die Führung in der Innenstadt und in Bergedorf eher durchwachsen, jedoch sticht keine Stelle als besonders schlecht heraussticht.</p><p>Zusammengefasst ist die Veloroute 9 bereits heute überdurchschnittlich gut ausgebaut und sehr angenehm zu fahren. Es gibt zwar einige ausbaufähige Stellen, aber diese fallen nicht so stark ins Gewicht, das sich die Wertung ändern würde.</p><p>Von Bergedorf aus bietet sie sich tagsüber als Alternative zur Veloroute 8 an – am besten ausprobieren welche Route einem eher zusagt.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215536099/Im-Hamburger-Osten-brauchen-Radler-starke-Nerven.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 11.10.2018</a></p>"
+    }
   },
   "10": {
     "relation_id": 231965,
@@ -615,10 +578,7 @@
         { "seq": "HqT4B0D8DHNRNjx2HbE2yg", "from": "w-h_x9HkW5E665yrLGVh5Q", "to": "PEAC_BCn3KH22rLg9bPjpA"},
         { "seq": "hF1pNdL25XR2ORmI2kbn8Q", "from": "8mH9Jxfony35NUdN-IHZWg", "to": "4z9G8fDJsUrlBTqkv3TrYg"}
       ]
-    },
-    "review_date": "2018-09-07",
-    "review_grade": "4",
-    "description": "<p>Es fällt mir schwer die Veloroute 10 im aktuellen Zustand zu empfehlen: Wirklich ausgebaut ist die Route nirgends, auch wenn hier und da gute Ansätze erkennbar sind. So sind etwa in der <a>Hafencity</a> durchgehend Radwege vorhanden, zumindest im bereits fertig gebauten Teil. Die Autobahnquerung (<a>Neue Elbbrücke</a>) ist jedoch bereits zu schmal zum Überholen, obwohl es sich gerade hier anbieten würde. Die Führung auf der <a>Veddel</a> wurde zwar überarbeitet, dann allerdings mit einer Bettelampel ausgestattet – unverständlich. Im weiteren Verlauf schleicht man vor allem hinter Autos auf Parkplatzsuche.</p><p>In <a>Niedergeorgswerder</a> und <a>Kirchdorf</a> findet man noch alte Radwege, d.h. je nach Platz mal breit, mal schmal, aber eher ruppiger Oberfläche. Vor allem die Führung in der <a>Kirchdorfer Straße</a> ist verwirrend: Ursprünglich war dort ein Zweirichtungsradweg mit Benutzungspflicht, die mittlerweile aufgehoben wurde. Je nachdem wo man auf die Schilder schaut darf man manchmal den Weg noch Richtung Norden benutzen, manchmal nicht. Auf der Straße fühlt man sich bei 50 km/h und hohem Autoverkehr auch nicht wirklich wohl.</p><p>In <a>Harburg</a> geht es im Wesentlichen auf alten und durchwachsenen Radwegen weiter: Die Unterführung am <a>electrum Museum</a> muss man erst mal finden und dann zeichnet sie sich durch enge Kurven aus. Das ist im Wesentlichen auch für die zwei anderen Unterführungen im weiteren Verlauf so. Die <a>Buxtehuder Straße</p> bzw. später die <a>Cuxhavener Straße</a> sind wichtige Autoverbindungen. Das die Bettelampeln zum Queren teils zwei Minuten(!) Wartezeit haben ist dennoch inakzeptabel und dürfte zu einer hohen Quote Geisterradler beitragen.</p><p>Übrigens: Das kurze Stück in der <a>Unterelbestraße</a> ist noch <em>echtes</em> Kopfsteinpflaster – und entsprechend unangenehm.<p>Zusammenfassend: Veloroute 10 hat überwiegend noch akzeptable Teile, viele schlechte Stellen und wenig Gute. Neueinsteiger suchen sich besser eine andere Route, bevor sie über das Fahrrad als Verkehrsmittel im Alltag urteilen.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215567451/Der-Sprung-ueber-die-Elbe-hier-wird-er-zur-Mutprobe.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 15.10.2018</a></p>"
+    }
   },
   "11": {
     "relation_id": 233959,
@@ -721,10 +681,7 @@
         { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "Qla3RRgIfNbiN6tY3Qa8MQ", "to": "OWwwvxc8A3psYaluiMZmuA" },
         { "seq": "DabOKyBIJ54hzZDogqEAHA", "from": "GWzP1IM3PuSJ4ePtteVjQQ", "to": "ZQDq1PjsqOzZ8mLBfky25w" }
       ]
-    },
-    "review_date": "2018-08-24",
-    "review_grade": "2",
-    "description": "<p>Die Veloroute 11 kann ich jedem empfehlen einmal abzufahren, denn sie ist schon weitestgehend ausgebaut. Sie führt an vielen Sehenswürdigkeiten vorbei (<a>Michel</a>, <a>Alter Elbtunnel</a>, <a>Wilhelmsburger Inselpark</a>, <a>Alte Harburger Elbbrücke</a> und natürlich dem <a>Hafen</a>) für die sich auch einzeln ein Abstecher lohnt. Der Wegteil in der Innenstadt und v.a. <a>Harburg</a> benötigen aber definitiv noch Nachbesserungen, damit man auch dort so angenehm fahren kann wie auf dem Rest der Strecke. Wermutstropfen: Teile des <a>Wilhelmsburger Inselpark</a> sind von 0:00 bis 5:00 geschlossen, sodass die Route hier unterbrochen ist. Noch hat mir die Parkleitung nicht geantwortet, aber ich vermute mit der Verlegung der Autobahn ändert sich die genaue Führung nochmal.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215600845/Die-faszinierende-Fahrt-durch-den-Hafen-nach-Harburg.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 15.10.2018</a></p>"
+    }
   },
   "12": {
     "relation_id": 2238410,
@@ -755,10 +712,7 @@
         { "seq": "C3uWS2PG8OjiRsOhMXlgCg", "from": "Qla3RRgIfNbiN6tY3Qa8MQ", "to": "OWwwvxc8A3psYaluiMZmuA" },
         { "seq": "DabOKyBIJ54hzZDogqEAHA", "from": "GWzP1IM3PuSJ4ePtteVjQQ", "to": "ZQDq1PjsqOzZ8mLBfky25w" }
       ]
-    },
-    "review_date": "2018-09-07",
-    "review_grade": "4",
-    "description": "<p>Warum man der Veloroute 12 einen eigenen Namen gegönnt hat, statt sie einfach als Teil der <em>Ringroute</em> 13 auszuschildern ist mir nicht ganz klar. Eventuell lässt sie sich so leichter für Touristen anbieten? Immerhin sind mit Ausnahme von <a>Altona</a> alle passierten Stationen Sehenswürdigkeiten – und der steile Anstieg in der <a>Kirchenstraße</a> Richtung Alonta macht sie für den Alltag auch weniger attraktiv als andere Führungen.</p><p>Beim Ausbaustatus macht die Route keine gute Figur: bis auf wenige Stellen, etwa in der Innenstadt bis <a>Rödingsmarkt</a>, präsentiert sich die Route klassisch. Will sagen, Hochbordradwege die im Nichts enden und schmal sind, enge Kurven und unklare Führung.</p><p>Für Teilstrecken taugt die Route also sicherlich, einen Umweg wegen ihr kann man sich aber sparen, zumindest als Einwohner.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215621967/Die-Tour-mit-schmalen-Wegen-aber-schoenem-Hamburg-Blick.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 22.10.2018</a></p>"
+    }
   },
   "13": {
     "relation_id": 2238764,
@@ -806,10 +760,7 @@
         { "seq": "dNstdZqPqVE5c80y_tmPrg", "from": "WBIjk1GJ-19h-V68gceR8g", "to": "AUmT4av9sRxoD88XA6HzQQ" },
         { "seq": "Ul1V_30KzkouICbzu85cSg", "from": "Yrc4cr73OkUqFL42-nlSow", "to": "hjBcZHg7IHLiVrqCJ65mJw" }
       ]
-    },
-    "review_date": "2018-08-28",
-    "review_grade": "5",
-    "description": "<p>Die Ringroute 13 ist eine schöne Abwechslung von Hamburgs sonst sternförmiger Verkehrsführung, aber sie ist auch ziemlich anstrengend. Nicht nur kreuzt regelmäßig eine ebenjener sternförmigen Straßen, die entweder beampelt sind oder Vorfahrt genießen. Die Strecke ist auch kaum ausgebaut: Kopfsteinpflaster in <a>Altona</a>, zu schmale Spuren in <a>Eilbek</a>, komplexe Verkehrsführung am <a>Mühlenkamp</a>. Ansonsten führt die Route hauptsächlich durch Nebenstraßen, die durch die hohe Parkdichte und Falschparkern nicht gut einsehbar sind und daher nur mit voller Aufmerksamkeit befahren werden können. Die Funktion eines „Lückenschlusses“ kann diese Route also sicherlich erfüllen und einen brauchbaren Weg <i>zwischen</i> zwei Routen aufzeigen. Sie am Stück im Gesamten zu befahren macht aber keinen Spaß – und auf Grund der Ringführung auch keinen Sinn.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215637459/Mit-dem-Fahrrad-ueber-Buckelpisten-von-Hamm-nach-Altona.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 24.10.2018</a></p>"
+    }
   },
   "14": {
     "relation_id": 8349004,
@@ -877,9 +828,6 @@
         { "seq": "8k81-VTC7iq2wildk2rAOg", "from": "WtUoCslydf31C0zyolOgbg", "to": "EoP-T3XpOpHzRMYgMDwI_g" },
         { "seq": "eH0m4ykz4cvHTCns7WdiBQ", "from": "hx_q2jIyvi2WUtxOVYwulA", "to": "VJ85d90zjbHtBVsVZNwtBg" }
       ]
-    },
-    "review_date": "2018-09-23",
-    "review_grade": "3",
-    "description": "<p>Die Ringroute 14 ist die längste Veloroute – was in der Praxis aber wenig ins Gewicht fällt. Die Route hat keinen „Freizeit-Aspekt“, weswegen sich ein Abfahren am Stück nicht lohnt. Sie ist daher vor allem für Querverbindungen zwischen den anderen Velorouten hilfreich. Entsprechend ist auch das Review strukturiert; im Uhrzeigersinn von einer Route zur nächsten.</p><p><a href=\"/1\" class=\"icon icon1\">1</a> → <a href=\"/2\" class=\"icon icon2\">2</a> Es geht los in <a>Othmarschen</a>: Durch angenehme Nebenstraßen kommt man gut voran. Erst ab dem <a>Lise-Meitner-Park</a> wird es schwieriger: die Wege sind schmal, holprig und nur geschottert. Auch der Umweg am <a>Schreinerweg</a> ist fragwürdig, zumal bereits eine Fußwegverbindung zum <a>Grandkuhlenweg</a> besteht. Der Rest des Abschnitts führt entlang der stark befahrenen <a>Elbgaustraße</a>, die mäßig gute Radwege bereithält. Zum Überholen sind sie zu schmal, aber immerhin sind sie fast durchgehend und meist geradlinig.</p><p><a href=\"/2\" class=\"icon icon2\">2</a> → <a href=\"/3\" class=\"icon icon3\">3</a> Ab <a>Eidelstedt</a> wollte man die Route offensichtlich von der <a>Holsteiner Chaussee</a> fernhalten und verlegt sie etwas westlich durchs Wohngebiet. Allerdings ist die Führung ein deutlicher Umweg und durch die vielen Abbiegevorgänge auch nicht komfortabel zu befahren. Da dieses Teilstück noch unausgebaut ist, kommen an vielen Stellen Drängelgitter hinzu. Ab der Straße <a>Spanische Furt</a> geht es dann wieder im Mischverkehr nach <a>Niendorf</a>. Die Führung ist hier besser, dafür aber auch bei 50 km/h Maximalgeschwindigkeit entsprechend hektisch.</p><p><a href=\"/3\" class=\"icon icon3\">3</a> → <a href=\"/4\" class=\"icon icon4\">4</a> In <a>Niendorf</a> schlängelt man sich noch etwas durch Nebenstraßen, ab dem <a>Krohnstieg</a> am Flughafen folgt man im Wesentlichen der Autotrasse. Je nach Platz ist der Radweg mal breiter, mal schmäler oder fehlt an Bushaltestellen ganz.</p><p><a href=\"/4\" class=\"icon icon4\">4</a> → <a href=\"/5\" class=\"icon icon5\">5</a> Man folgt hier der Autotrasse entlang des <a>Gehlengraben</a>, <a>Poppenbütteler Weg</a> und schließlich <a>Saseler Damm</a>. Ausgebaut ist hier aktuell fast nichts, entsprechend holprig geht es voran. An umgebauten Kreuzungen wird man bei 60 km/h auf einen Radfahrstreifen geführt (etwa Höhe <a>Goldröschenweg</a>). Vorgeblich der Sicherheit, was sich aber auch mit einer getrennten Ampelphase erreichen ließe. Ich habe meine Zweifel, das dieses Konzept hier viele neue Radfahrende ansprechen wird.</p><p><a href=\"/5\" class=\"icon icon5\">5</a> → <a href=\"/6\" class=\"icon icon6\">6</a> Es geht noch ein bisschen weiter entlang der Autotrasse <a>Saseler Damm</a> und <a>Stadtbahnstraße</a>. Erst nach der völlig verkorksten Führung am <a>Saseler Markt</a> wird man durch geradlinige und wenig befahrene Nebenstraßen bis zur <a>Kathenkoppel</a> geführt – gut!</p><p><a href=\"/6\" class=\"icon icon6\">6</a> → <a href=\"/7\" class=\"icon icon7\">7</a> Den kleinen Umweg <a>an der Berner Au</a> teilt man sich noch mit Veloroute 6, danach macht die Route aber einen Schlenker <a>Am Knill</a>, statt auch auf den letzten paar Metern noch dem <a>Rahlstedter Weg</a> zu folgen. Der zeigt sich abwechslungsreich: Mischverkehr, Radfahrstreifen, Schutzstreifen, alter Hochbord, neuer Hochbord – alle vorstellbaren Varianten sind hier vertreten. Durchgängig ist die Führung hier nirgends, was leider immer noch die starke Bevorzugung der KFZ unterstreicht. Ab dem <a>Auerhahnweg</a> geht es dann wieder durch gemäßigtere Nebenstraßen bei 30 km/h Höchstgeschwindigkeit.</p><p><a href=\"/7\" class=\"icon icon7\">7</a> → <a href=\"/8\" class=\"icon icon8\">8</a> Die <a>Charlottenburger Straße</a> wartet durchgehend mit eigenem Hochbord-Radweg auf, der leider etwas in die Jahre gekommen ist. Neuer Belag und bessere Sichtbarkeit an Kreuzungen sind daher wünschenswert. Das ändert sich erst ab Mitte des <a>Öjendorfer Damm</a>s, wo man fast bis zum Ende der Route im Mischverkehr geführt wird. Einzige Ausnahme ist der geschotterte <a>Daseweg</a>. Am Ende wird es nochmal schlimm: Die <a>Reclamstraße</a> ist nicht ausgebaut und bevorzugt klar den Autoverkehr. Die nur 1m breiten Radwege sind dabei nicht mal das schlechteste an diesem Streckenabschnitt, denn die <a>Möllner Landstraße</a> darf man Richtung Norden nicht queren – sondern muss stattdessen zweimal die Straßenseite wechseln. Sowohl für Radler als auch Zufußgehende ist das inakzeptabel.</p><p><a target=\"_blank\" href=\"https://www.abendblatt.de/hamburg/article215747073/Radwegetest-in-Hamburg-Komm-mit-ins-Abenteuerland.html\" rel=\"nofollow\">Zeitungsartikel/Review vom 08.11.2018</a></p>"
+    }
   }
 }

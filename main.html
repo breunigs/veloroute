@@ -28,7 +28,7 @@
   <meta name="robots" content="noarchive">
 </head>
 
-<body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "").replace(/\/.*$/, '') %>">
+<body class="page-<%= htmlWebpackPlugin.options.filename.replace(".html", "").replace("blog/", "blog-").replace(/\/.*$/, '') %>">
   <div id="sidebar">
     <a id="header" href="/">
       <h2>veloroute.hamburg</h2>
@@ -86,6 +86,7 @@
       </div>
 
       @require('routes/geo/path_render.html')
+      @require('routes/geo/blog.html')
 
       <div id="descquality" class="desc">
         <% title = htmlWebpackPlugin.options.title.split(" – "); %>

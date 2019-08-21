@@ -28,6 +28,10 @@ class AbstractRoute {
     if(!routeName) routeName = 'index';
     let newPage = "page-" + routeName.split("/")[0];
 
+    if(newPage == "page-blog") {
+      newPage += "-" + routeName.split("/")[1];
+    }
+
     if(newPage === "page-quality") {
       console.debug("Loading Quality, then showing Shortcoming")
       this._loadQuality().then(quality => quality.showShortcoming());

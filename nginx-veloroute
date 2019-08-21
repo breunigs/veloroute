@@ -52,6 +52,11 @@ server {
     try_files /$1.html /index.html =404;
   }
 
+  location ~ /blog/([0-9a-z_-]*)$ {
+    include hstspreload.conf;
+    try_files /blog/$1.html /index.html =404;
+  }
+
   access_log /var/log/nginx/veloroute.hamburg.log;
   root       /srv/veloroute/build;
   index      index.html;

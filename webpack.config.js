@@ -1,4 +1,6 @@
 const path = require("path");
+const fs = require('fs');
+const yaml = require('js-yaml');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -37,6 +39,19 @@ module.exports = (env, argv) => {
     sitemapURLs.push({path: `/routes/geo/route${i}.gpx`, priority: 0.1});
     sitemapURLs.push({path: `/routes/geo/route${i}.kml`, priority: 0.1});
   }
+
+
+  fs.readdirSync("blog/").forEach(file => {
+    let date = file.substr(0, 10);
+    let fn = file.replace(/\.yaml$/, '')
+    let doc = yaml.safeLoad(fs.readFileSync('blog/' + file, 'utf8'));
+    pages.push(new HtmlWebpackPlugin({
+      ...htmlOpts,
+      lastCheck: date,
+      title: `veloroute.hamburg – ${doc.title}`,
+      filename: `blog/${fn}.html`
+    }));
+  });
 
   const entries = Object.keys(shortcomings);
   for(let i = 0; i < entries.length; i++) {

@@ -175,3 +175,11 @@
 '2019-07-09':
 - "/contentblob/12759360/3e96e268cf788396f93eb98a9c0e18ac/data/veloroute-13-gertigstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12759366/15a07b6b4612c31207a48f057393402e/data/veloroute-13-gertigstrasse-abstimmungsunterlage-plan.pdf"
+'2019-07-17':
+- "/contentblob/12763052/b14c645d020eb32d65836bb24bf77fd0/data/elbchaussee-von-manteuffelstrasse-bis-teufelsbrueck-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12763062/e20086a475e65f6900f0611354d5b8a3/data/elbchaussee-von-manteuffelstrasse-bis-teufelsbrueck-abstimmungsunterlage-plan.pdf"
+- "/contentblob/12763066/2cdeeefde3816efe94590378f1fa74da/data/elbchaussee-von-teufelsbrueck-bis-hohenzollernring-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12763082/bd06dcef974fbc638411905d50ce5827/data/elbchaussee-von-teufelsbrueck-bis-hohenzollernring-abstimmungsunterlage-plaene.pdf"
+'2019-08-03':
+- "/contentblob/12777430/622d83b0901e95755f3e7cec2b50388a/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12777432/d278065ee7847d452e23bc99f4e9d964/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-plan.pdf"
