@@ -141,6 +141,7 @@ module.exports = (env, argv) => {
     devServer: {
       contentBase: path.join(__dirname, "build"),
       compress: false,
+      disableHostCheck: true,
       port: 9000,
       historyApiFallback: true,
       headers: {
