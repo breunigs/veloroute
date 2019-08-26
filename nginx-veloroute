@@ -35,6 +35,10 @@ server {
     rewrite ^/(.*) https://$server_name/$1 permanent;
   }
 
+  location ~ /quality/2-reichsbahnstrasse { return 302 https://$server_name/blog/2018-09-29-planned-reichsbahnstrasse; }
+  location ~ /quality/2-lagerstrasse      { return 302 https://$server_name/blog/2018-08-30-planned-2-lagerstrasse; }
+  location ~ /quality/2-weidenallee       { return 302 https://$server_name/blog/2018-08-30-planned-2-weidenallee; }
+
   # assets are cache busted. Favicon arent't, but eh.
   location ~ (\.ch\.(js|css|geojson|json)|favicons/|pdf/)$ {
     expires max;

@@ -437,44 +437,6 @@ binnenalster:
     <p>Ein Kreisverkehr klingt gerade in Nebenzeiten sehr sinnvoll – beim Abfahren der Route stand ich häufig grundlos an der roten Ampel. Außerdem wird durch die neue Anordnung klar, das der Radverkehr auf die Straße gehört und man als Radfahrende weniger verwirrt.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007917">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
-
-2-lagerstrasse:
-  lastCheck: '2018-08-30'
-  loc: [9.96598, 53.56228]
-  grade: 2
-  type: construction
-  title: "Lagerstraße (Veloroute 2)"
-  images:
-  - BJ2cODwYJW3kj5WUKrS1Ww
-  desc: <p>Diese Kreuzung wird demnächst zu einem Kreisel umgebaut. Weitere Infos, auch zum Umbau im weiteren Verlauf Richtung U2 Christuskirche:</p>
-    <ul>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9146652/47c1206338310eb87de362b61d9cf08b/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
-      </li>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9146616/fe25634deb353f14f65c99eb4435d8d1/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
-      </li>
-    </ul>
-
-2-weidenallee:
-  lastCheck: '2018-08-30'
-  loc: [9.96355, 53.5695]
-  grade: 3
-  title: "Weidenallee (Veloroute 2)"
-  type: construction
-  images:
-  - BJOCAkBbQKLaFEuTJLHT4A
-  desc: <p>Die Kreuzung wird gerade umgebaut und der Radverkehr erstmals ordentlich bedacht. So wird eine Querung entlang der Veloroute 2 deutlich komfortabler und zumindest stadtauswärts auch nur eine Ampel beinhalten. Richtung Süden zähle ich
-    drei Haltelinien, wobei ich im Bericht aber nichts zur genauen Ampelschaltung finden konnte. Es ist zu hoffen, das man in einem Schwung durchkommt. Weitere Infos, auch zum Umbau im weiteren Verlauf Richtung U2 Christuskirche:</p>
-    <ul>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9146652/47c1206338310eb87de362b61d9cf08b/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
-      </li>
-      <li>
-        <a href="https://lsbg.hamburg.de/contentblob/9146616/fe25634deb353f14f65c99eb4435d8d1/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
-      </li>
-    </ul>
-
 2-weidenstieg-tornquiststrasse:
   lastCheck: '2018-10-13'
   loc: [9.95971, 53.57169]
@@ -518,22 +480,6 @@ binnenalster:
         </ul>
       </li>
     </ul>
-
-
-2-reichsbahnstrasse:
-  lastCheck: '2018-09-29'
-  loc: [9.91146, 53.60261]
-  grade: 4
-  type: planned-construction
-  title: "Reichsbahnstraße (Veloroute 2)"
-  images:
-  - jcaiYgNA-6p2bjW13n0EJw
-  - XppeEi7d4wQ9EmEIU7Sxyw
-  - Hrh2ujjEC_V4tmciGPRHAw
-  - MhBdT-xqhzsThjC9oYWLdg
-  desc: <p>Die Führung an der Kreuzung ist aktuell etwas verwirrend, weil die Führung nur für den Fußverkehr gebaut wurde. Als Radfahrende muss man ein bisschen Slalom fahren um der Veloroute zu folgen. Um dies zu verbessern wird die Führung etwas begradigt und auch der Vorbeifahrstreifen aus der <a>Reichsbahnstraße</a> etwas breiter. Leider lässt sich den Plänen nicht entnehmen ob endlich der Fahrradweg auf der Westseite der <a>Kieler Straße</a> wie suggeriert in der Gegenrichtung freigegeben wird. Aktuell muss man stadteinwärts noch wie die KFZ auf der Fahrbahn links in den <a>Olloweg</a> abbiegen  – oder schieben – wenn man sich an die StVo halten möchte.</p>
-    <p>Im Zuge der Maßnahme wird auch das Tempo-30-Limit auf der <a>Reichsbahnstraße</a> erweitert, das dann schon ab Höhe <a>Bollweg</a> stadtauswärts gilt.</p>
-    <p><a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004043">vorläufiger Lageplan</a> (unter Anlagen)</p>
 
 2-langenfelder-damm:
   lastCheck: '2018-09-29'
