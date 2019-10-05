@@ -9,7 +9,7 @@ function printStuffs() {
     .then(resp => resp.json())
     .then(json => json.properties.sequence_key)
     .then(function(sKey) {
-      document.querySelector(".mapboxgl-ctrl.mapboxgl-ctrl-attrib").innerHTML = '<b><tt>{ "seq": "'+sKey+'", "from": "'+pKey+'", "to": "'+pKey+'" }</tt></b>';
+      document.querySelector(".mapboxgl-ctrl.mapboxgl-ctrl-attrib").innerHTML = '<b><tt>{ "seq": "'+sKey+'", "from": "'+pKey+'", "to": "'+pKey+'" },</tt></b>';
     })
 }
 
