@@ -1444,44 +1444,6 @@ binnenalster:
     <p>Umgesetzt werden soll die Maßnahme ab Herbst 2020 und ca. 9 Monate dauern.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010137">Lagepläne und Erläuterungsbericht zum ersten Entwurf</a>
 
-5-pergolenvierel:
-  lastCheck: '2019-01-05'
-  loc: [10.029, 53.6041]
-  start: 2019Q1
-  grade: 3
-  area: [[10.030816,53.599418],[10.030961,53.599319],[10.031326,53.599594],[10.031606,53.600046],[10.031651,53.600338],[10.031603,53.600599],[10.031482,53.600834],[10.031129,53.601108],[10.030917,53.601192],[10.030753,53.601321],[10.030730,53.601594],[10.030725,53.601956],[10.030515,53.602389],[10.030127,53.602759],[10.029798,53.602983],[10.029556,53.603258],[10.029452,53.603610],[10.029144,53.604004],[10.028839,53.604388],[10.028647,53.604524],[10.028458,53.604699],[10.028417,53.604804],[10.028417,53.604924],[10.028410,53.605128],[10.028382,53.605183],[10.028213,53.605336],[10.028140,53.605556],[10.028180,53.605758],[10.028132,53.605931],[10.027920,53.606176],[10.027708,53.606379],[10.027410,53.606624],[10.027200,53.606791],[10.027006,53.606873],[10.026915,53.606900],[10.026706,53.607206],[10.026741,53.607411],[10.026425,53.607829],[10.025653,53.608838],[10.025453,53.608972],[10.025006,53.609535],[10.024504,53.609445],[10.024602,53.609306],[10.024996,53.609400],[10.025319,53.608991],[10.025567,53.608831],[10.026589,53.607435],[10.026617,53.607375],[10.026605,53.607258],[10.026607,53.607191],[10.026902,53.606777],[10.027226,53.606278],[10.027319,53.606295],[10.027241,53.606373],[10.026945,53.606795],[10.026973,53.606809],[10.027468,53.606443],[10.027988,53.605953],[10.028051,53.605838],[10.028054,53.605651],[10.028026,53.605522],[10.028054,53.605382],[10.028157,53.605246],[10.028296,53.605119],[10.028339,53.605024],[10.028334,53.604887],[10.028369,53.604738],[10.028291,53.604714],[10.028336,53.604665],[10.028392,53.604683],[10.028511,53.604544],[10.028730,53.604391],[10.028930,53.604169],[10.029213,53.603818],[10.029362,53.603610],[10.029442,53.603333],[10.029526,53.603173],[10.029682,53.602992],[10.030101,53.602675],[10.030346,53.602446],[10.030503,53.602238],[10.030631,53.601970],[10.030662,53.601750],[10.030652,53.601480],[10.030637,53.601368],[10.030684,53.601276],[10.030750,53.601207],[10.030955,53.601096],[10.031222,53.600950],[10.031369,53.600794],[10.031462,53.600668],[10.031543,53.600469],[10.031553,53.600302],[10.031523,53.600289],[10.031422,53.599970],[10.031169,53.599612],[10.031033,53.599511]]
-  type: construction
-  title: "Neubaugebiet Pergolenviertel (Veloroute 5 Richtung Flughafen)"
-  images:
-  - Qh_tJg992lEuaiJG2FYkZQ
-  - m073AC6gVt3AUUHT1tsXFw
-  - QXrrklKxJ4B79ftKzV6jLA
-  - 0CvJj7NDK8MzAkcgKLkaiQ
-  - RDCmHOzY6yDhihbxyF-5Uw
-  - a0jG6T7CZ5UhqMikR8uvpg
-  - -diV0hlULohDls2GEQByHw
-  - L-jumCAKp-mROi5T_cRg7A
-  - H5ZFj23YPs_Bepa2yEJoKA
-  - _TSX9ym20GWg9tdvvg0bqw
-  - GjEdSfGatgG3VyWSsw8uMQ
-  - t9ttdM2A2K0mqXFQEN-drg
-  - uNpCkeVsxdZ3Kx8SyzvqfQ
-  - fICLEr1WmOZfSnd2_8xFHA
-  - sGqKbMOkO6suwUGFNWjvAg
-  start: im Bau
-  desc: >
-    <p>Das Pergolenviertel befindet sich bereits im Bau und die für die Veloroute eingerichtete Umleitung sollte man nicht als Maßstab zum Vergleich heranziehen. Die Neuplanung sieht nämlich einen weitestgehend eigenständigen Radweg vor, dessen grober Verlauf in grau auf der Karte angedeutet ist. Dieser ist in der Tat so schlangenlinienartig angedacht, wobei die Kurven meist großzügig genug erscheinen um sie auch mit 30 km/h nehmen zu können. Für die Überwege an der <a class="place" href="#/17/53.609394/10.024593">Sengelmannstraße</a> bzw. <a class="place" href="/#17/53.599627/10.030674">Saarlandstraße</a> gilt das natürlich nicht.</p>
-    <p>Der Radweg hat nicht immer einen begleitenden Fußweg. Im Norden sollen Zufußgehende den <a>Limaweg</a> verwenden, Richtung Süden ist offenbar die namensgebende „Pergola“ (ein <a href="https://de.wikipedia.org/wiki/Pergola">überdachter bzw. überwachsener Fußweg</a>) vorgesehen. Da die Fußwege teils in einigem Abstand verlaufen, bleibt abzuwarten ob der Radweg nicht doch als Abkürzung, zum Jogging o.ä. mitbenutzt wird. Im Gegenzug wird auch versucht den Radverkehr von den Fußwegen fernzuhalten, was sinnvoll ist. Ausnahme bildet der nördliche Teil des Limaweges, der mit „Fahrrad frei“ als Anbindung zur <a>Hebebrandstraße</a> erhalten bleibt.</p>
-    <p>Bis auf am Anfang und Ende des neuen Radweges gibt es nur eine Kreuzung: auf Höhe des ebenfalls umzubauenden <a href="#/18/53.603048/10.029802" class="place">Dakarweg</a> wird es eine Rechts-vor-Links Situation geben. Veloroute und Dakarweg werden gleichberechtigt sein. Der Dakarweg stellt einen Hauptzugang zum Viertel bereit, wickelt also den Anlieger- und Lieferverkehr ab. Der Radverkehr wird auf ihm im Mischverkehr geführt. Alle anderen Straßen werden unterfahren.</p>
-    <p>Am kritikwürdigsten dagegen ist der forcierte Zweirichtungsradweg entlang der <a class="place" href="#/17/53.60760/10.02638">Sengelmannstraße</a>. Richtung Süden entledigt sich man des Problem des zu schmalen Radwegs einfach, indem man ihn aufhebt und stattdessen nur „Fahrrad frei“ beschildert. Damit lassen sich Ziele über <a>Hebebrandstraße</a> schlechter erreichen als heute und man müsste weiträumig ausweichen. In der Praxis werden Radfahrende sich einfach nicht an die Schrittgeschwindigkeit halten. Folgt man der Veloroute muss man zweimal im rechten Winkel bei engen Kurvenradien abbiegen. Besser wäre die Furt nach Süden zu verschieben und diagonal anzulegen. Das würde nicht nur höhere Geschwindigkeiten erlauben, sondern auch die Strecke des Zweirichtungsradweges verkürzen. Letztere erziehen praktisch zum „Geisterradeln“ und sind gerade in Kreuzungsbereichen sehr unfallträchtig. Immerhin gibt es kurz nach <a href="/#18/53.606234/10.028738" class="place">der Unterführung der Hebebrandstraße</a> eine Anbindung ins Viertel, die eine brauchbare Alternative sein könnte.</p>
-    <p>Im Süden schließt der neue Radweg an die beidseitig geführten Einrichtungsradwege der <a class="place" href="/#17/53.599627/10.030674">Saarlandstraße</a> an. Stadteinwärts hat man nur noch einen rechten Winkel, ansonsten stellt sich diese Furt besser dar als ihr Pendant im Norden.</p>
-    <p>Beide Überwege werden mit Bettelampeln ausgestattet. Die <a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006595">Begründung (Frage 4)</a> warum man Radfahrende nicht automatisch erkennen und so direkt Grün anfordern kann überzeugt nicht. Immerhin soll die Ampel schneller umschalten, wenn gerade kein KFZ-Verkehr herrscht.</p>
-    <p>Insgesamt erscheint die Planung durchwachsen. Natürlich dürfte der eigenständig geführte Radweg ein Highlight auf der Strecke werden, obgleich er sich etwas schlängelt. Gerade stadteinwärts stellt sich die Anbindung mittels zweier Bettelampeln jedoch fahrradfeindlich dar. Ich hoffe die Stadt besinnt sich eines Besseren und ergänzt Kameras oder ähnliche Systeme. Das dies durchaus möglich ist sieht man z.B. an der <a href="/quality/10-veddeler-marktplatz">Bettelampel am Veddeler Marktplatz</a>.</p>
-    <p>
-      <a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006314">Erläuterungsbericht und Pläne</a> (unter Anlagen)<br>
-      <a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006595">Überarbeitete Fassung zu Plan/Blatt 2, weitere Erläuterungen</a>
-    </p>
-
 5-heegbarg:
   lastCheck: '2019-04-25'
   loc: [10.0956, 53.6591]
