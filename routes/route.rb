@@ -176,7 +176,7 @@ class Route
       <table class="routing">
         <tr>
           <td></td>
-          <td rowspan="#{route_max_length+1}" style="background-image: url(routes/geo/route#{name}.svg)">
+          <td rowspan="#{route_max_length+1}" style="background-image: url(/routes/geo/route#{name}.svg)">
             <span class="icon icon#{name}">#{name}</span>
           </td>
           <td></td>
