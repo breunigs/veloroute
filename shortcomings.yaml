@@ -3,7 +3,7 @@ binnenalster:
   lastCheck: '2019-02-20'
   loc: [9.9954, 53.5548]
   grade: 2
-  type: planned-construction
+  type: construction
   images:
   - c54mvNGX5J3cp2KiI77VQA
   - W5o1fYjrRmnRxOjRDG-1_A
@@ -40,7 +40,7 @@ binnenalster:
   - I5BYUi4OM7WhxcZ0ZDAGVw
   title: "Radwege rund um die Binnenalster (Veloroute 3 bis 6)"
   area: [[9.992849,53.557493],[9.992055,53.556043],[9.990638,53.554539],[9.990397,53.554411],[9.993616,53.552356],[9.994276,53.551874],[9.995,53.551894],[9.996759,53.552862],[10.00067,53.555313],[10.000058,53.555498],[9.994683,53.552279],[9.991196,53.554338],[9.99139,53.554771],[9.992441,53.556021],[9.99316,53.557251]]
-  start: 2019Q2
+  start: 2019-10-07
   desc: >
     <p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a> und <a>Neuer Jungfernstieg</a>.</p>
     <p>Die Probleme der Radführungen um die Binnenalster sind schnell erklärt: konstanter Konflikt mit Passanten. An Kreuzungen und Einmündungen wurde häufig nicht an den Radverkehr gedacht, der nicht sinnvoll abbiegen kann. Auf der Gebäudeseite des <a>Jungfernstieg</a> befindet sich die einzige Ausnahme: dort steht man wegen der unübersichtlichen Situation mit Taxen und Bussen in Konflikt.</p>
