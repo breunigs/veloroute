@@ -1851,8 +1851,9 @@ binnenalster:
   - QbMhNQohRUTiO-MqH17PFg
   - 0qoA_0UyVsvyXMdu0oxJGw
   title: "Steindamm (Veloroute 7)"
-  type: planned-construction
-  start: 2019
+  type: construction
+  start: 2019-10-14
+  end: 2020-11
   desc: >
     <p>Bisher zeichnet sich der Steindamm vor allem durch Kopfsteinpflaster in Parkbereichen und Hochbordradwege aus. Letztere sind qualitativ gar nicht mal so schlecht, aber für das Radaufkommen zu schmal und werden häufig von Zufußgehenden
     und Lieferverker mitbenutzt. Entsprechend langsam und unbequem kommt man aktuell voran.</p>
