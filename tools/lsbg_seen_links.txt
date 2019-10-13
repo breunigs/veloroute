@@ -186,3 +186,6 @@
 '2019-10-02':
 - "/contentblob/12950784/393bc66833407efb50fe608f21314822/data/st-benedictstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/12950786/a7e9b88551172908ed41ec73a1234029/data/st-benedictstrasse-abstimmungsunterlage-plan.pdf"
+'2019-10-13':
+- "/contentblob/13040166/94db97e9351fea38c4ded24082153c3f/data/veloroute-13-hirschgraben-abstimmungsunterlage-bericht-kenntnisnahmeverschickung).pdf"
+- "/contentblob/13040172/7e814330e8eaf856b4ab7f766c7789c7/data/veloroute-13-hirschgraben-abstimmungsunterlage-plan-kenntnisnahmeverschickung).pdf"

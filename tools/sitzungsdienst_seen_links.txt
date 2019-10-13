@@ -433,3 +433,7 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008678
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008637
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010822
+'2019-10-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009250
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008781
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008773

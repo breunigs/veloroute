@@ -1859,12 +1859,34 @@ binnenalster:
     <p>In der Neufassung erhält das Fahrrad durchgehende Fahrradstreifen von ca. 1,80m Breite (laut Plan: 2m inkl Markierung), wobei diese im Haltestellenbereich mit den Bussen geteilt werden. Um an haltenden Bussen vorbeizufahren muss sich der Radverkehr in den fließenden KFZ-Verkehr einordnen, was kritisch zu betrachten ist. Positiv: der Lieferverkehr wurde extra bedacht – es bleibt also zu hoffen, das der Radfahrstreifen halbwegs frei bleibt. Der Umbau soll 2019 stattfinden, zusammen mit dem barrierefreien Ausbau der U-Lohmühlenstraße. Weitere Infos:</p>
     <ul>
       <li>
-        <a href="https://lsbg.hamburg.de/contentblob/11504940/a4f71097cf72e63cabfe233be0472d27/data/veloroute-7-steindamm-abgestimmte-planung-bericht.pdf">vorläufiger Lageplan</a>
+        <a href="https://lsbg.hamburg.de/contentblob/11504940/a4f71097cf72e63cabfe233be0472d27/data/veloroute-7-steindamm-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a>
       </li>
       <li>
-        <a href="https://lsbg.hamburg.de/contentblob/11504942/746c8529d9f00a48593a612b9bc41501/data/veloroute-7-steindamm-abgestimmte-planung-plaene.pdf">Erläuterungsbericht zur Umgestaltung</a>
+        <a href="https://lsbg.hamburg.de/contentblob/11504942/746c8529d9f00a48593a612b9bc41501/data/veloroute-7-steindamm-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</a>
       </li>
     </ul>
+
+7-luebeckertordamm:
+    lastCheck: '2019-10-13'
+    loc: [10.02172, 53.55781]
+    grade: 2
+    type: planned-construction
+    images:
+    - v13tDJqCSkoUPTH2JzjUUg
+    - jjYhOlnvT18ArD5h7ZS_Vg
+    - 49lSdizogxGFac98i0nVZg
+    - fhPDzVQ4gWGp0DRk26gFXQ
+    - EjlrGpscWM57yiRHFzXokw
+    - V6QX131H-ZKyvYz3e7RUfg
+    - l5y5ZsWCvX6N53Wd5NNrsQ
+    - GTEnbixUsyOtjD0WeYIsmg
+    title: "Lübeckertordamm (Veloroute 7)"
+    area: [[10.020282,53.557474],[10.020465,53.557321],[10.021108,53.557506],[10.02246,53.558143],[10.022938,53.558414],[10.02327,53.558637],[10.023034,53.558735],[10.022627,53.558551],[10.022283,53.558334],[10.021039,53.557735],[10.020491,53.557518]]
+    start: 2019Q4
+    desc: >
+      <p>Die Radwege stadteinwärts sind bequem zu befahren, aber zu schmal zum Überholen. Im vorgesehenen Umbau sollen sie auf zwei Meter verbreitert werden und im Bereich mit Zufußgehenden auch taktile Nopenplatten zur klaren Abtrennung erhalten. Im Süden schließt der breitere Radweg an die geplante Ableitung auf die Radfahrstreifen auf der Fahrbahn an (siehe <a href="/quality/7-steindamm">Umbau Steindamm</a>). Stadtauswärts ist der Radweg bereits ausreichend breit, sodass hier keine Änderung vorgesehen ist. Umgebaut werden soll bereits ab Herbst 2019.</p>
+      <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008773">Erläuterungsbericht und Lageplan</a></p>
+
 
 7-kreuzung-am-alten-posthaus:
   lastCheck: '2018-07-19'
