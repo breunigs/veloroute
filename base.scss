@@ -35,6 +35,11 @@ $sidebar-max-width: 35em;
   }
 }
 
+abbr {
+  cursor: help;
+  text-decoration: underline dotted;
+}
+
 #sidebar {
   background: #F8F8F8;
   hyphens: auto;
