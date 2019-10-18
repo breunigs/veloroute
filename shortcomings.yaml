@@ -1477,17 +1477,6 @@ binnenalster:
     <p>Auf dem Heegbarg herrscht wenig Verkehr, sodass die vorgesehenen Maßnahmen ausreichend erscheinen. Die Qualität für Radfahrende verbessern sie definitiv.</p>
     <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010194">Erläuterung und Lagepläne des ersten Entwurfs</a></p>
 
-6-kreuzung-wagnerstrasse:
-  lastCheck: '2018-08-29'
-  loc: [10.0398, 53.5710466]
-  grade: 3
-  type: issue
-  title: "Kreuzung Wagnerstraße (Veloroute 6)"
-  images:
-  - 3Q_8bqul0x2tKpIZSItg-g
-  - IrgIralVL2cDv_6gKmW-1w
-  desc: Die Querung ist hier bei viel Verkehr nicht einfach. Eine Querungshilfe o.ä. ist wünschenswert.
-
 6-s-friedrichsberg:
   lastCheck: '2018-08-29'
   loc: [10.058636, 53.5761309]
