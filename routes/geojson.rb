@@ -61,13 +61,12 @@ class GeoJSON
         q = qe[way[:id]]
 
         props = {
+          type: :route,
           color: route.color,
           name: route.name,
           oneway: only_used_as_oneway?(way),
           offset: offset,
           id: way[:id].to_s,
-          qcolor_norm: ::Quality.grade2color(q[:grade], :normal),
-          qcolor_blind: ::Quality.grade2color(q[:grade], :colorblind),
           **q,
         }
         props.merge!(color: "#000", offset: 0) if offset == "overflow"

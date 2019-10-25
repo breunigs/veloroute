@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+# required os packages:
+# awscli
+# required external software:
+# tippecanoe --- https://github.com/mapbox/tippecanoe
+
 require 'json'
 require 'digest'
 require 'net/http'
@@ -60,8 +65,10 @@ def post(uri, body)
   nil
 end
 
-features_file = File.join(File.dirname(__FILE__), "..", "routes", "geo", "feature_list.geojson")
-out = `tippecanoe -o /tmp/velo-combi.mbtiles -Z 8 -z 16 "#{features_file}" -f`
+dir = File.join(__dir__, "..", "routes", "geo")
+features_file = File.join(dir, "feature_list.geojson")
+areas_file = File.join(dir, "article_areas.geojson")
+out = `tippecanoe --no-progress-indicator -o /tmp/velo-combi.mbtiles -Z 8 -z 16 "#{features_file}" "#{areas_file}" -f`
 raise out unless $?.exitstatus == 0
 
 aws = get(uri("uploads/v1/#{USERNAME}/credentials"))

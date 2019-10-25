@@ -105,6 +105,7 @@ def build_image_lists(routes)
     write_with_hash("images-#{route.name}.json", data.to_json)
   end
 
+  article_areas = []
   quality = {}
   shortcomings = YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
   shortcomings.each do |name, details|
@@ -116,10 +117,26 @@ def build_image_lists(routes)
     coords += [shortcomings[name]["loc"]] if coords.size <= 1
     shortcomings[name]["area"] ||= coords_to_buffered_poly(coords)
     shortcomings[name]["bounds"] = coords_to_bounds(shortcomings[name]["area"])
+
+    a = shortcomings[name]["area"]
+    type = a.first.first.is_a?(Array) ? "MultiPolygon" : "Polygon"
+    article_areas << {
+      type: :Feature,
+      geometry: { type: type, coordinates: [a] },
+      properties: {
+        name: name,
+        title: details["title"],
+        type: :article,
+      }
+    }
   end
   write_with_hash("images-quality.json", quality.to_json)
   File.write('geo_tmp/shortcomings.json', shortcomings.to_json)
   File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
+  File.write("geo_tmp/article_areas.geojson", {
+    type: :FeatureCollection,
+    features: article_areas
+  }.to_json)
 end
 
 def listify(header, items, group: false)
