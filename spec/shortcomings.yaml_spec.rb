@@ -34,7 +34,7 @@ end
 RSpec::Matchers.define :have_place_link_start do
   match do |a|
     url = a.attr(:href)
-    url.start_with?("/#") || url.start_with?("#")
+    url.start_with?(%r{/\d*#}) || url.start_with?("#")
   end
 end
 
