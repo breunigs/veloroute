@@ -1,4 +1,7 @@
 require 'spec_helper'
+require 'open3'
+
+GEOJSON_REWIND_PATH = File.expand_path(File.join(__dir__, "../node_modules/.bin/geojson-rewind"))
 
 RSpec::Matchers.define :resolve_with_200 do
   match do |url|
@@ -22,6 +25,40 @@ RSpec::Matchers.define :resolve_with_200 do
     code == 200
   rescue Errno::ECONNREFUSED
     false
+  end
+end
+
+RSpec::Matchers.define :be_closed_ring do
+  match do |a|
+    a[:polygon].first == a[:polygon].last
+  end
+  failure_message_for_should do |a|
+    "#{a[:shortcoming]}##{a[:pos]} should be a closed ring"
+  end
+end
+
+RSpec::Matchers.define :follow_right_hand_rule do
+  match do |a|
+    as_geojson = {
+      type: :Feature,
+      geometry: {
+        type: :Polygon,
+        coordinates: [a[:polygon]]
+      }
+    }.to_json
+
+    okay = true
+    Open3.popen3(GEOJSON_REWIND_PATH) do |stdin, stdout, stderr, wait_thr|
+      stdin.write(as_geojson)
+      stdin.close
+
+      okay = false if wait_thr.value.exitstatus != 0
+      okay = false if stdout.read.chomp != as_geojson
+    end
+    okay
+  end
+  failure_message_for_should do |a|
+    "#{a[:shortcoming]}##{a[:pos]} should follow the right-hand-rule"
   end
 end
 
@@ -81,6 +118,24 @@ describe "shortcomings.yaml" do
   it "place classes have proper links" do
     placehrefs = links.select { |a| a.classes.include?("place") }
     expect(placehrefs).to all(have_place_link_start)
+  end
+
+  it "uses proper GeoJSON polygons for area" do
+    polygons = []
+
+    shortcomings.each do |name, props|
+      area = props["area"]
+      next unless area
+
+      multi = area.first.first.is_a?(Array)
+      normalized = multi ? area : [area]
+
+      normalized.each.with_index do |poly, pos|
+        polygons << {shortcoming: name, pos: pos, polygon: poly}
+      end
+    end
+
+    expect(polygons).to all(be_closed_ring).and all(follow_right_hand_rule)
   end
 
   context "integration", integration: true do
