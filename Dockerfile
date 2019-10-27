@@ -1,18 +1,22 @@
-##############################################################
-# copy fresh data from OSM / Mapillary                       #
-##############################################################
-
-FROM debian:unstable-slim as geodata
+FROM debian:unstable-slim as builder
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
-    build-essential ruby ruby-dev ruby-json ruby-bundler ruby-nokogiri ruby-geos libgeos-dev zip zlib1g-dev
+    build-essential ruby ruby-dev ruby-json ruby-bundler ruby-nokogiri \
+    ruby-geos libgeos-dev zip zlib1g-dev nodejs python make g++ yarnpkg
 
 WORKDIR /app
 
+# Dependencies 1
+COPY yarn.lock package.json /app/
+RUN yarnpkg install
+ENV PATH="/app/node_modules/.bin:${PATH}"
+
+# Dependencies 2
 COPY Gemfile Gemfile.lock /app/
 RUN bundle install
 
+# Build Ruby parts
 COPY routes.json *.yaml /app/
 COPY routes/ /app/routes/
 COPY spec/ /app/spec/
@@ -26,26 +30,7 @@ fi
 ARG PRODUCTION
 RUN /app/routes/update_relations.rb
 
-##############################################################
-# Build the frontend                                         #
-##############################################################
-
-FROM node:slim as webpack
-
-RUN \
-  apt-get -qq update && \
-  apt-get -yq install --no-install-recommends \
-    python make g++
-
-WORKDIR /app
-
-COPY yarn.lock package.json /app/
-RUN yarn install
-ENV PATH="/app/node_modules/.bin:${PATH}"
-
-ARG PRODUCTION
-COPY --from=geodata /app/routes/geo routes/geo/
-
+# Build JS parts
 RUN if [ "$PRODUCTION" = "yes" ]; then svgo routes/geo/*.svg; fi
 
 COPY . /app
@@ -79,8 +64,8 @@ WORKDIR /artifacts
 COPY favicons/ favicons/
 RUN favicons/render.sh
 
-COPY --from=webpack /app/routes/geo routes/geo/
-COPY --from=webpack /bundled .
+COPY --from=builder /app/routes/geo routes/geo/
+COPY --from=builder /bundled .
 
 ARG PRODUCTION
 RUN if [ "$PRODUCTION" = "yes" ]; then optipng -q -o7 favicons/*.png; fi
