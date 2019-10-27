@@ -164,7 +164,7 @@ module Quality
         path_position = :shared
         path_position = :shared_bus if way_type == "share_busway"
         path_position = :crossing if way_type == "crossing"
-        path_position = :separate if separate_track
+        path_position = :separate if separate_track || val("motor_vehicle") == "no"
         path_position = :track if next_to_street
         path_position = :lane if on_street
 
