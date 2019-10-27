@@ -119,10 +119,14 @@ def build_image_lists(routes)
     shortcomings[name]["bounds"] = coords_to_bounds(shortcomings[name]["area"])
 
     a = shortcomings[name]["area"]
-    type = a.first.first.is_a?(Array) ? "MultiPolygon" : "Polygon"
+    geom = if a.first.first.is_a?(Array)
+      { type: "MultiPolygon", coordinates: a.map { |area| [area] } }
+    else
+      { type: "Polygon", coordinates: [a] }
+    end
     article_areas << {
       type: :Feature,
-      geometry: { type: type, coordinates: [a] },
+      geometry: geom,
       properties: {
         name: name,
         title: details["title"],
