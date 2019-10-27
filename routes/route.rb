@@ -14,6 +14,7 @@ require_relative "quality"
 require_relative "relation"
 require_relative "svg_pather"
 require_relative "blog"
+require_relative "shortcoming"
 require_relative "track"
 
 
