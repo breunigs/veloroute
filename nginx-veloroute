@@ -40,6 +40,7 @@ server {
   location ~ /quality/2-weidenallee             { return 302 https://$server_name/blog/2018-08-30-planned-2-weidenallee; }
   location ~ /quality/5-pergolenvierel          { return 302 https://$server_name/blog/2019-01-05-planned-5-pergolenviertel; }
   location ~ /quality/6-kreuzung-wagnerstrasse  { return 302 https://$server_name/blog/2019-10-09-veloroute-6-aenderungen; }
+  location ~ /quality/11-faehrstrasse           { return 302 https://$server_name/blog/2019-04-16-planned-11-faehrstrasse; }
 
   # assets are cache busted. Favicon arent't, but eh.
   location ~ (\.ch\.(js|css|geojson|json)|favicons/|pdf/)$ {
