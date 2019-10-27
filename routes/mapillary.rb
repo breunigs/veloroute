@@ -236,6 +236,8 @@ module Mapillary
     def fetch_image_keys
       data = get(public_url, max_retries: 2)
       @all_image_keys = data.dig("properties", "coordinateProperties", "image_keys")
+      @all_image_keys = @all_image_keys.dup.reverse if reverse
+      @all_image_keys
     rescue JSON::ParserError => e
       raise e unless e.message.downcase.include?("not found")
       # public API lags behind the private API for some days sometimes
