@@ -113,22 +113,23 @@ module Mapillary
     def sequences
       @sequences ||= begin
         list.map do |entry|
-          Sequence.new(entry["seq"], entry["from"], entry["to"])
+          Sequence.new(entry["seq"], entry["from"], entry["to"], reverse: entry["reverse"] || false)
         end
       end
     end
   end
 
   class Sequence
-    def initialize(sequence_id, from, to)
+    def initialize(sequence_id, from, to, reverse:)
       @id = sequence_id
       @from = from
       @to =  to
+      @reverse = reverse
 
       fetch_image_keys
     end
 
-    attr_reader :id, :from, :to
+    attr_reader :id, :from, :to, :reverse
 
     def image_keys
       corrected_data.map { |d| d[:key] }
