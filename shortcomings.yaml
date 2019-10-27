@@ -2174,6 +2174,26 @@ binnenalster:
     <p>Stadtauswärts muss an dieser Stelle die vierspurige <a>Oberbaumbrücke</a> gequert werden. Da hier auch 50 km/h erlaubt sind, ist die Querung momentan lebensgefährlich und man quert die Straße bereits am <a>Deichtorplatz</a> und schiebt oder fährt ein Stück illegal entgegen der Fahrtrichtung.</p>
     <p>Es ist klar, das die Stadt hier dringend die Situation verbessern muss. Dabei sollte der Radverkehr weder auf einen einseitigen Zweirichtungsradweg gezwungen werden, da diese unintiutiv sind und hohes Unfallrisiko bergen. Eine Bettelampel oder winzige Sprunginsel sind ebenso abzulehnen. Idealerweise gibt es eine mit dem <a>Deichtorplatz</a> abgestimmte Ampel, sodass der vom <a>Klosterwall</a> kommende Radverkehr ein einem Zug die Kreuzung queren und in den Deichweg abbiegen kann. Dazu muss aber zwingend auch die große Kreuzung umgebaut werden.</p>
 
+9-kurt-koerber-chaussee:
+  lastCheck: '2019-10-27'
+  loc: [10.1941, 53.4889]
+  area: [[10.187126,53.490529],[10.187277,53.490478],[10.193478,53.488882],[10.194486,53.488729],[10.196664,53.488722],[10.201224,53.488837],[10.201256,53.489105],[10.194819,53.489003],[10.193574,53.48915],[10.190592,53.489941],[10.18733,53.490797],[10.187126,53.490529]]
+  grade: 3
+  type: planned-construction
+  images:
+  - zTFccJwqBVa7WsvQKK9naQ
+  - bVvbSeXiiTT1Wl8pfsOGVQ
+  - Ux8HmZyzBa30MuN-BVh-YA
+  - WIpKNmLJTgPMJ9qIIB-s1g
+  - mXHdLyIs-9CMMjbrFEat7g
+  title: "Kurt-A.-Körber Chaussee (Veloroute 9)"
+  start: 2019
+  desc: >
+    <p>Die Radwege sind hier als Hochbordradweg ausgeführt, die meist rechts der Baumreihe bzw. KFZ-Stellplätzen verläuft. Nur an wenigen Stellen wird der Radweg links an den Bäumen vorbeigeführt. Da man die Bäume erhalten möchte, fällt die Option für Radfahrstreifen auf der Straße weg – der Platz hätte lediglich für einen einseitigen Schutzstreifen gereicht, sofern man nicht entweder eine KFZ-Spur oder eine Baumreihe aufgegeben hätte. Stattdessen hat man sich dafür entschieden die aktuelle Führungsform beizubehalten und lediglich die problematischen Stellen auszubessern. Die Verbesserungen sind bereits für 2019 angesetzt.</p>
+    <p>Leider sind mir keine Details bekannt welche Änderungen genau gemacht werden sollen. Taktile Pflastersteine zur besseren Abgrenzung zum Fußweg wären wünschenswert, ebenso Sicherheitsabstand zu parkenden Autos um vor unachtsam geöffneten Türen geschützt zu sein. Dafür wäre aber eine Erneuerung auf gesamter Länge notwendig und die Beschreibung klingt nicht so, als wäre das angedacht.</p>
+    <p><a href="https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1004268">Quelle: Sitzungsdienst Bergedorf</a></p>
+
+
 10-veddeler-marktplatz:
   lastCheck: '2018-12-31'
   loc: [10.0223942,53.529614]
