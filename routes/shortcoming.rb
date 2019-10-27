@@ -12,6 +12,10 @@ class Shortcoming
     self.all.select { |s| s.type == type.to_s }
   end
 
+  def self.with_tags(tags)
+    self.all.select { |s| s.has_tag?(tags) }
+  end
+
   def initialize(key, data)
     @key = key
 
@@ -20,6 +24,7 @@ class Shortcoming
     @desc = data.fetch("desc")
     @latLon = data.fetch("loc")
     @images = data.fetch("images")
+    @tags = data["tags"] || []
 
     @last_check = Date.parse(data.fetch("lastCheck"))
     @start = RoughDate.new(data["start"])
@@ -28,8 +33,14 @@ class Shortcoming
 
   attr_reader :title, :last_check, :images, :type, :start, :end, :key, :desc
 
+  alias :date :last_check
+
   def url
     "/quality/#{@key}"
+  end
+
+  def ger_date
+    last_check.strftime("%d.%m.%Y")
   end
 
   def link
@@ -39,6 +50,27 @@ class Shortcoming
   def duration_with_link
     d = duration
     d ? %|<span class="duration">(#{d})</span> #{link}| : link
+  end
+
+  def has_tag?(tt)
+    tt = [tt] unless tt.is_a?(Array)
+
+    (tags & tt).any?
+  end
+
+  def tags
+    return @all_tags if @all_tags
+
+    @all_tags = []
+
+    route = title.match(/\b\s?Veloroute ([0-9a]+)(?: und ([0-9a]+))?\b/)
+    @all_tags << "velo#{route[1]}" if route && route[1]
+    @all_tags << "velo#{route[2]}" if route && route[2]
+
+    @all_tags << type
+    @all_tags += @tags
+
+    @all_tags
   end
 
   def lat
@@ -65,7 +97,7 @@ class Shortcoming
   def type_text
     case @type
       when 'construction' then 'Baustelle'
-      when 'planned-construction' then 'Baumaßnahme'
+      when 'planned-construction' then 'Planung'
       when 'changed-routing' then 'Routenänderung'
       when 'bettelampel' then 'Bettelampel'
       when 'intent' then 'Vorhaben'

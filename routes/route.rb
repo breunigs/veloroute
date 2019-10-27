@@ -274,11 +274,21 @@ class Route
   end
 
   def articles_html
-    posts = Blog.instance.with_tags("velo#{name}").reverse.map do |post|
+    shorts = Shortcoming.with_tags("velo#{name}")
+    posts = Blog.instance.with_tags("velo#{name}")
+    all = (shorts + posts).sort_by { |x| x.date }
+
+    links = all.reverse.map do |post|
+      title = post.respond_to?(:full_title) ? post.full_title : post.title
+      title = title.sub(" (Veloroute #{name})", "")
+      title = title.sub(" (Veloroute #{name}, ", " (")
+      title = title.sub(", Veloroute #{name})", ")")
+      title = title.sub(", Veloroute #{name}, ", "")
+
       <<~HTML
         <li>
           <time>#{post.ger_date}</time>
-          <a href="/blog/#{post.name}">#{post.title}</a>
+          <a href="#{post.url}">#{title}</a>
         </li>
       HTML
     end
@@ -286,7 +296,7 @@ class Route
     <<~HTML
       <h4>Artikel</h4>
       <ul class="articles single">
-        #{posts.join("\n")}
+        #{links.join("\n")}
       </ul>
     HTML
   end

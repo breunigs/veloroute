@@ -33,6 +33,10 @@ class Post
     @raw = YAML.load_file(path)
   end
 
+  def url
+    "/blog/#{name}"
+  end
+
   def ger_date
     date.strftime("%d.%m.%Y")
   end
