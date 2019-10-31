@@ -448,3 +448,6 @@
 - https://via-bus.hamburg.de/contentblob/12704774/babeef8800f77f10ca976cfc1c4561c2/data/m6-praesentation-infoveranstaltung-12-06-2019.pdf
 '2019-07-19':
 - https://via-bus.hamburg.de/contentblob/12769734/6a3532c8a2f8cb5dd4a1bee23436f3bc/data/dokumentation-baubeginn-borgeweg.pdf
+'2019-10-30':
+- https://via-bus.hamburg.de/contentblob/13089482/73fc825f5cd94922edb829c68fcd2ed5/data/verkehrsfuehrungsplaene-max-brauer-abschnitt-juliusleber.pdf
+- https://via-bus.hamburg.de/contentblob/13089490/97abf2d92b2aaecb859447537d388397/data/ausfuehrungsplaene-max-brauer-abschnitt-julis-leber.pdf
