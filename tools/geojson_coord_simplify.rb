@@ -15,7 +15,8 @@ ARGF.each_line do |l|
     empty = 0
   end
   break if empty >= 4
-  json << l
+
+  json << l.sub("\e[200~", '').sub("\e[201~", '')
 end
 
 coords = JSON.parse(json).dig("features", 0, "geometry", "coordinates")
