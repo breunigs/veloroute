@@ -2711,23 +2711,6 @@ binnenalster:
     <p>In Zukunft werden die Radverkehre im Böttcherkamp im Mischverkehr bei 30 km/h Tempolimit geführt. An der Kreuzung zum Rugenbarg gibt es jeweils einen vorgezogenen Aufstellstreifen und die Aufstellbereiche für indirektes Linksabbiegen werden sinnvoll eingezeichnet. Die Maßnahme soll im Frühjahr 2019 umgesetzt werden.</p>
     <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007690">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
 
-14-kreuzung-luruper-hauptstrasse-elbgaustrasse:
-  lastCheck: '2018-12-22'
-  type: construction
-  grade: 2
-  loc: [9.87605,53.58847]
-  start: 2018Q3
-  title: Kreuzung Luruper Hauptstraße / Elbgaustraße
-  images:
-  - qpTgiqKYaA4OZsRu7ok9FA
-  - _s3ehObFmq-o8ldNr1ST7w
-  - sBTEDXtZkf9mbLNp80EY1w
-  area: [[9.874982,53.58769],[9.875829,53.58813],[9.876763,53.587474],[9.87716,53.587659],[9.876473,53.588391],[9.877374,53.58906],[9.876848,53.589276],[9.876055,53.58876],[9.875518,53.589263],[9.875143,53.589072],[9.875722,53.588544],[9.874595,53.587901],[9.874982,53.58769]]
-
-  desc: >
-    <p>Zur Zeit wird die Kreuzung umgebaut. Künftig wird der Radverkehr aus allen Knotenarmen vom Hochbordradweg auf einen Radfahrstreifen mit ca. 1,80m Breite aufgeleitet und geradlinig über die Kreuzung geführt. Für indirektes Linksabbiegen gibt es jeweils Aufstelltaschen mit eigener Ampel. An den Bushaltestellen fährt man künftig links vorbei.</p>
-    <p><a href="https://via-bus.hamburg.de/contentblob/10531724/95df8b1be14671dbb2cbb01107ee4080/data/51-sv-luruper-hauptstr-elbgaustr.pdf">Lageplan und Erläuterungen</a></p>
-
 14-niekampsweg-baumacker:
   lastCheck: '2018-12-21'
   loc: [9.89670,53.60969]

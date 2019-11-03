@@ -41,6 +41,7 @@ server {
   location ~ /quality/5-pergolenvierel          { return 302 https://$server_name/blog/2019-01-05-planned-5-pergolenviertel; }
   location ~ /quality/6-kreuzung-wagnerstrasse  { return 302 https://$server_name/blog/2019-10-09-veloroute-6-aenderungen; }
   location ~ /quality/11-faehrstrasse           { return 302 https://$server_name/blog/2019-04-16-planned-11-faehrstrasse; }
+  location ~ /quality/14-kreuzung-luruper-hauptstrasse-elbgaustrasse { return 302 https://$server_name/blog/2018-12-22-kreuzung-luruper-hauptstrasse-elbgaustrasse; }
 
   # assets are cache busted. Favicon arent't, but eh.
   location ~ (\.ch\.(js|css|geojson|json)|favicons/|pdf/)$ {
