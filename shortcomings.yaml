@@ -1816,8 +1816,9 @@ binnenalster:
   lastCheck: '2018-10-18'
   loc: [10.12524,53.62741]
   grade: 4
-  start: 2019
-  type: planned-construction
+  start: 2019-11-07
+  end: 2020Q3
+  type: construction
   title: Berner Allee (Veloroute 6 und 14, Abschnitt „W20“)
   images:
   - R2ekCXuAlzoXW0flHesJWw
