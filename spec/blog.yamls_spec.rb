@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'open3'
+require_relative '../routes/blog.rb'
 
 GEOJSON_REWIND_PATH = File.expand_path(File.join(__dir__, "../node_modules/.bin/geojson-rewind"))
 
@@ -32,8 +33,8 @@ RSpec::Matchers.define :be_closed_ring do
   match do |a|
     a[:polygon].first == a[:polygon].last
   end
-  failure_message_for_should do |a|
-    "#{a[:shortcoming]}##{a[:pos]} should be a closed ring"
+  failure_message do |a|
+    "#{a[:name]}##{a[:pos]} should be a closed ring"
   end
 end
 
@@ -57,8 +58,8 @@ RSpec::Matchers.define :follow_right_hand_rule do
     end
     okay
   end
-  failure_message_for_should do |a|
-    "#{a[:shortcoming]}##{a[:pos]} should follow the right-hand-rule"
+  failure_message do |a|
+    "#{a[:name]}##{a[:pos]} should follow the right-hand-rule"
   end
 end
 
@@ -68,43 +69,51 @@ RSpec::Matchers.define :have_place_class do
   end
 end
 
+RSpec::Matchers.define :have_area_or_image_array do
+  match do |a|
+    area = a.instance_variable_get(:@raw)["area"]
+    area || a.images.is_a?(Array)
+  end
+  failure_message do |a|
+    "#{a.name} should either specify an area or have a list of images"
+  end
+end
+
 RSpec::Matchers.define :have_place_link_start do
   match do |a|
     url = a.attr(:href)
     url.start_with?(%r{/\d*#}) || url.start_with?("#")
   end
+  failure_message do |a|
+    "URL for #{a} seems not right"
+  end
 end
 
-describe "shortcomings.yaml" do
-  let(:path) { File.join(__dir__, "..", "shortcomings.yaml") }
-  let(:shortcomings) { YAML.load_file(path) }
-
+describe "blog/*.yaml" do
+  let(:posts) { Blog.instance.posts }
 
   let(:links) do
-    shortcomings
-     .values
-     .map { |s| s["desc"] }
+    posts
+     .map(&:text)
      .map { |desc| Nokogiri::HTML::fragment(desc) }
      .flat_map { |html| html.css("a[href]") }
   end
 
-  it "uses unique keys" do
-    raw = File.read(path, encoding: 'UTF-8')
-    keys = raw.split("\n").grep(/^[a-z0-9_-]+:/).map { |k| k.chomp(":") }
-    expect(keys).to match_array shortcomings.keys
+  it "uses only URL safe names" do
+    expect(posts.map(&:name)).to all(match /\A[a-z0-9-]+\z/)
   end
 
-  it "uses only URL safe names" do
-    expect(shortcomings.keys).to all(match /\A[a-z0-9-]+\z/)
+  it "specifies area if re-using route images" do
+    reusers = posts.select { |p| p.images.is_a?(Integer) }
+    expect(reusers).to all(have_area_or_image_array)
   end
 
   it "has titles for all entries" do
-    expect(shortcomings.values).to all(include('title'))
+    expect(posts.map(&:title)).to all(match /\w+/)
   end
 
   it "has last check dates in the past" do
-    lastChecks = shortcomings.values.map { |v| Date.parse(v["lastCheck"]) }
-    expect(lastChecks).to all(be <= Date.today)
+    expect(posts.map(&:date)).to all(be <= Date.today)
   end
 
   it "links that look like places include proper class" do
@@ -123,15 +132,11 @@ describe "shortcomings.yaml" do
   it "uses proper GeoJSON polygons for area" do
     polygons = []
 
-    shortcomings.each do |name, props|
-      area = props["area"]
-      next unless area
+    posts.each do |post|
+      next unless post.instance_variable_get(:@raw)['area']
 
-      multi = area.first.first.is_a?(Array)
-      normalized = multi ? area : [area]
-
-      normalized.each.with_index do |poly, pos|
-        polygons << {shortcoming: name, pos: pos, polygon: poly}
+      post.geometry[:coordinates].each.with_index do |poly, pos|
+        polygons << {name: post.name, pos: pos, polygon: poly}
       end
     end
 

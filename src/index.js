@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map, addRouteClickListener, addQualityClickListener, renderIndicator, toggleQuality, createMarker } from "./map";
+import { map, addRouteClickListener, renderIndicator, createMarker } from "./map";
 import AbstractRoute from "./abstract_route";
 import State from './state';
 import Swap from './swap';
@@ -11,17 +11,10 @@ const imagesPromise = import(/* webpackChunkName: "images" */ './images');
 const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
 
 addRouteClickListener(state.routeSetter());
-addQualityClickListener(state.routeSetter());
-addRouteChangeListener(abstractRoute.showRoute, toggleQuality);
+addRouteChangeListener(abstractRoute.showRoute);
 
 const scrollTo = (selector) => {
   document.querySelector(selector).scrollIntoView({block: "start", behavior: "smooth"});
-}
-
-const toggleMapColors = (layer, colorProperty) => {
-  try {
-    map.setPaintProperty(`layer-${layer}`, 'line-color', { "type": "identity", "property": colorProperty });
-  } catch(e) {} // layer doesn't exist -- most likely not loaded
 }
 
 document.addEventListener('click', ev => {
@@ -38,14 +31,6 @@ document.addEventListener('click', ev => {
   if(anchor.hasAttribute('download') || anchor.href.endsWith(".zip") || anchor.href.endsWith(".pdf") || anchor.href.endsWith(".atom")) return;
 
   const body = document.getElementsByTagName('body')[0];
-  if(anchor.classList.contains('vision-colorblind')) {
-    body.classList.add("colorblind");
-    toggleMapColors('quality', 'c_blind');
-  }
-  if(anchor.classList.contains('vision-normal')) {
-    body.classList.remove("colorblind");
-    toggleMapColors('quality', 'c_norm');
-  }
   if(!anchor.href) return;
 
   const url = new URL(anchor.href);
@@ -96,6 +81,9 @@ document.addEventListener('click', ev => {
         startPlaybackWithDefaultBranch(path);
       });
     }
+    if(url.hash != "") {
+      scrollTo(url.hash);
+    }
     return;
   }
   // give some debugging info
@@ -108,7 +96,6 @@ imagesPromise.then(({mlyViewer, addIndicatorListener, showCloseImage, stopPlayba
   addIndicatorListener(renderIndicator, state.imageSetter());
   new Swap(map, mlyViewer);
   addRouteClickListener(showCloseImage);
-  addQualityClickListener(showCloseImage);
   map.on('movestart', (evt) => {
     // We only care about events directly triggered through interacting with the
     // map, i.e. ignore events triggered through map.jumpTo and the like.

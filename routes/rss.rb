@@ -2,14 +2,13 @@ require 'rss'
 require 'yaml'
 
 require_relative 'mapillary'
-require_relative 'shortcoming'
 
 module RSS
   FILENAME = 'updates.atom'
   BASE = URI("https://veloroute.hamburg")
 
   def self.list(count:)
-    self.newest(shortcomings + image_updates + blog, count: count)
+    self.newest(image_updates + blog, count: count)
   end
 
   def self.build_html(count: nil)
@@ -38,20 +37,6 @@ module RSS
         end
       end
     end.to_s
-  end
-
-  def self.shortcomings
-    Shortcoming.all.map do |s|
-      img_tags = self.to_img_list(s.images)
-      {
-        link: BASE.merge("/quality/#{s.key}"),
-        title: s.full_title,
-        updated: self.to_time(s.last_check),
-        description: s.desc + '<br>' + img_tags,
-        lonLat: s.lonLat,
-        image: Mapillary.image_url(s.images.first)
-      }
-    end
   end
 
   def self.blog

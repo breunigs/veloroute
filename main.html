@@ -68,13 +68,15 @@
           <li><a href="/14" class="autoplay icon icon14">14</a></li>
         </ol>
 
-        <h3>Qualität und Ausbaustatus</h3>
-        <p>Wie weit Hamburg schon ist auf dem Weg zur „Fahrradstadt“ und wo noch Lücken sind. Zeigt auch aktuelle und geplante Baumaßnahmen.</p>
-        <p><a href="/quality">Detaillierte Qualitätsbewertung anzeigen</a></p>
+        <h3>Pläne, Baustellen und Probleme</h3>
+        <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
 
-        <h3>Letzte Änderungen</h3>
+        <h3>Wegqualität</h3>
+        <p>…wird beim Hereinzoomen angezeigt. Je blasser die Veloroute, desto schlechter ist dieser Abschnitt. <a href="/quality#anchorlegend">Hinweise zur Wegqualität</a></p>
+
+        <h3>Aktuelle Artikel</h3>
         @require('routes/geo/recent_changes.html')
-        <p><a href="/changes">Alle Änderungen anzeigen</a></p>
+        <p><a href="/changes">Alle Artikel anzeigen</a></p>
 
         <!-- show contact section only on main page for small screens -->
         <div class="only-mobile">
@@ -91,59 +93,29 @@
       <div id="descquality" class="desc">
         <% title = htmlWebpackPlugin.options.title.split(" – "); %>
         <h3 id="qualityTitle"><%= title[2] %></h3>
-        <div id="quality">
-          <% if(htmlWebpackPlugin.options.qualityDesc) { %>
-            <%= htmlWebpackPlugin.options.qualityDesc %>
-            <script type="application/ld+json">
-              {
-                "@context": "http://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [{
-                  "@type": "ListItem",
-                  "position": 1,
-                  "item": {
-                    "@id": "https://veloroute.hamburg",
-                    "name": "<%= title[0] %>"
-                  }
-                },{
-                  "@type": "ListItem",
-                  "position": 2,
-                  "item": {
-                    "@id": "https://veloroute.hamburg/quality",
-                    "name": "<%= title[1] %>"
-                  }
-                },{
-                  "@type": "ListItem",
-                  "position": 3,
-                  "item": {
-                    "@id": "https://veloroute.hamburg/<%=htmlWebpackPlugin.options.filename.replace(".html", "")%>",
-                    "name": "<%= title[2] %>",
-                    "image": "<%=htmlWebpackPlugin.options.imagePath%>"
-                  }
-                }]
-              }
-            </script>
-          <% } %>
-        </div>
+        <h3 id="anchorplans">Pläne, Baustellen und Probleme</h3>
+        <p>
+          Für manche Abschnitte gibt es weiterführende Informationen – etwa aktuelle Planungsstände der Bezirke und Ämter, Baustellen, aber auch noch ungelöste Probleme. Diese betroffenen Bereiche sind in der Karte grau hinterlegt und Du kannst sie anklicken, um weitere Informationen zu erhalten.<br>
 
-        <h4>Problemstellen</h4>
-        <p>Problemstellen werden durch Marker in der Karte angezeigt. Klicke auf eine um Details anzuzeigen. Hervorgehoben werden Bettelampeln, geplante Baustellen und punktuelle Probleme, etwa an Kreuzungen.</p>
+          Wenn Du nicht suchen möchtest:
+        </p>
+        <ul>
+          <li><a href="/bau">(geplante) Baustellen sortiert nach Baubeginn</a> anzeigen</li>
+          <li>Die Detailseite einer Veloroute verlinkt auch alle Artikel</li>
+        </ul>
 
-        <h4>Streckenbewertung</h4>
-        <p>Die Streckenbewertung erfolgt mittels einer Heuristik. Bitte <a href="mailto:stefan-veloroute@breunig.xyz">melde</a> Stellen falsch eingeschätzt wurden. Beachtet wird:</p>
+        <h4 id="anchorlegend">Wegqualität</h4>
+        <p>
+          Die Wegqualität wird beim Hereinzoomen automatisch angezeigt. Wenn die Farben der Velorouten satt bleiben, dann ist das Teilstück gut zu befahren. Je blasser, desto schlechter.<br>
+
+          Die Bewertung erfolgt automatisch und hat leider einige Unzulänglichkeiten – subjektives Empfinden ist bisher etwa kein Kriterium. Das möchte ich ändern, hatte bisher aber noch keine Zeit. Momentan wird folgendes berücksichtigt:
+        </p>
         <ul>
           <li>Oberfläche (etwa: Asphalt besser als Kopfsteinpflaster)</li>
           <li>Breite nach <a target="_blank" href="http://www.hamburg.de/contentblob/2695554/42d1b5cf759fa2fe2b3ffc621538b6e1/data/vorabinformation-zur-plast9-fortschreibung.pdf">PLAST 9 (2010)</a></li>
           <li>fehlende Beleuchtung</li>
           <li>getrennte Führung bei hohen KFZ-Geschwindigkeiten</li>
         </ul>
-
-        <h4>Bewertungsstufen</h4>
-        <p>
-          Die Bewertung geht von „gut“ <span class="shortcoming grade1"></span>, über „okay“ <span class="shortcoming grade3"></span> zu „schlecht“ <span class="shortcoming grade5"></span>. Unterscheiden sich Hin- und Rückrichtung kann auch eine Zwischenstufe vorkommen. Findet sich zu einem Merkmal keine Angabe, dann fehlt es bereits in der OpenStreetMap.
-          <a class="vision-colorblind">Auf kontraststarkes Farbschema umschalten?</a>
-          <a class="vision-normal">Auf Ampel Farbschema umschalten?</a>
-        </p>
 
         <a href="/">zurück zur normalen Ansicht</a>
       </div>
@@ -152,7 +124,7 @@
         <h3>Helfen</h3>
         <ul>
           <li>Melde (abgeschlossene) Umbauten</li>
-          <li>Mach aktuelle Bilder mit <a target="_blank" href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid. Siehe auch: <a target="_blank" href="https://www.komoot.de/user/100869689884/tours?sport=all&type=planned&order=date&descending=true&search=Fehlst%C3%BCck">Bekannte Fehlstellen</a>.</li>
+          <li>Mach aktuelle Bilder mit <a target="_blank" href="https://help.mapillary.com/hc/en-us/categories/115000363489-Getting-started">Mapillary</a> und sag Bescheid.</li>
           <li>Verbessere die <a target="_blank" href="https://learnosm.org/de/beginner/">OpenStreetMap</a></li>
         </ul>
 

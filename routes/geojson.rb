@@ -67,7 +67,7 @@ class GeoJSON
           oneway: only_used_as_oneway?(way),
           offset: offset,
           id: way[:id].to_s,
-          **q,
+          # **q, # way quality details, currently not used
         }
         props.merge!(color: "#000", offset: 0) if offset == "overflow"
 

@@ -1,9 +1,3 @@
-# require_relative "route"
-# require "json"
-# routes = JSON.parse(File.read("../routes.json")); nil
-# route = Route.new("1", routes["1"])
-# File.write("icon/wtf.svg", route.to_svg)
-
 require "nokogiri"
 
 require_relative "geojson"
@@ -14,7 +8,6 @@ require_relative "quality"
 require_relative "relation"
 require_relative "svg_pather"
 require_relative "blog"
-require_relative "shortcoming"
 require_relative "track"
 
 
@@ -275,9 +268,8 @@ class Route
   end
 
   def articles_html
-    shorts = Shortcoming.with_tags("velo#{name}")
     posts = Blog.instance.with_tags("velo#{name}")
-    all = (shorts + posts).sort_by { |x| x.date }
+    all = posts.sort_by { |x| x.date }
 
     links = all.reverse.map do |post|
       title = post.respond_to?(:full_title) ? post.full_title : post.title

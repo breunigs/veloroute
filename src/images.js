@@ -1,6 +1,6 @@
 import { ImageSize, Viewer } from 'mapillary-js';
 import { readFromHash } from './state';
-import { toQualityName, isMobileView } from './utils_web';
+import { isMobileView } from './utils_web';
 
 import filenames from '../routes/geo/content_hashed_filenames.json';
 
@@ -154,13 +154,14 @@ async function setActiveRoute(routeName, branch, imgIndex, manualInteraction) {
 async function restoreBranch() {
   const rr = await route();
   if(!rr) return;
-  if(!status.routeName.startsWith('quality') && !status.image) return;
+  if(!status.routeName.startsWith('blog') && !status.image) return;
   for(const branch in rr) {
     const imgKeys = rr[branch].keys;
+    if(!imgKeys) continue;
     const idx = imgKeys.indexOf(status.image);
     if(idx >= 0) return setActiveRoute(status.routeName, branch, idx);
-    const isShortcomingMarker = location.pathname.endsWith(toQualityName(branch));
-    if(isShortcomingMarker) return setActiveRoute(status.routeName, branch);
+    const tryBlogImages = location.pathname.endsWith("/blog/" + branch);
+    if(tryBlogImages) return setActiveRoute(status.routeName, branch);
   }
 }
 restoreBranch();
@@ -308,13 +309,27 @@ async function showCloseImage(routeName, lngLat, eventSource) {
 
   if(ignoreCurrent) console.debug(`Ignoring images for direction ${status.direction} (source: ${eventSource})`);
 
-  const rr = await route();
-  for(const branch in rr) {
-    if(ignoreCurrent && branch.startsWith(status.direction)) continue;
-    distances[branch] = closestImageIndex(rr[branch], lngLat);
+  let rr = await route();
+  const isBlog = routeName && routeName.substr(0, 4) === 'blog';
+  const blogBranch = routeName && routeName.substr(5);
+  if(isBlog && typeof(rr[blogBranch]) === "number") {
+    console.debug("Blog specifies route images");
+    routeName = ""+rr[blogBranch];
+    status.routeName = routeName;
+    rr = await route();
+  } else if(isBlog && rr[blogBranch]) {
+    console.debug("Blog specifies own images");
+    distances[blogBranch] = closestImageIndex(rr[blogBranch], lngLat);
   }
 
-  console.debug("Candidates for close images: ", distances)
+  if(Object.keys(distances).length === 0) {
+    for(const branch in rr) {
+      if(ignoreCurrent && branch.startsWith(status.direction)) continue;
+      distances[branch] = closestImageIndex(rr[branch], lngLat);
+    }
+  }
+
+  console.debug("Candidates for close images for ", routeName, ": ", distances)
 
   if(current in distances && distances[current].dist <= cutOffDist)
     return setActiveRoute(routeName, current, distances[current].idx, true);

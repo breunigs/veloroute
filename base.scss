@@ -227,7 +227,7 @@ $control-size: 2em;
   font-weight: bold;
 }
 
-.icon, .shortcoming {
+.icon {
   width: 1.5em;
   height: 1.5em;
   display: inline-block;
@@ -253,7 +253,6 @@ a.icon:hover {
   cursor: pointer;
 }
 
-.shortcoming,
 .route-icon,
 .icon {
   color: #fff;
@@ -415,25 +414,9 @@ span[title] {
   border-bottom: 0.05em dotted #000;
 }
 
-.shortcoming.mapboxgl-marker {
-  display: none;
-}
-
-@import 'routes/geo/shortcomings';
-
-span.shortcoming {
-  display: inline-block;
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
 .toggle-route-markers {
   .icon.mapboxgl-marker {
     display: none;
-  }
-
-  .shortcoming.mapboxgl-marker {
-    display: block;
   }
 }
 
@@ -471,16 +454,6 @@ span.shortcoming {
 
 .vision-normal {
   display: none;
-}
-
-.colorblind {
-  .vision-colorblind {
-    display: none;
-  }
-
-  .vision-normal {
-    display: initial;
-  }
 }
 
 // ensure the image location/viewing direction marker is drawn above route

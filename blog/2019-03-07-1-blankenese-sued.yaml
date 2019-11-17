@@ -1,0 +1,145 @@
+---
+loc:
+- 9.81622
+- 53.56199
+loc2:
+- 9.8339
+- 53.5598
+type: intent
+grade: 3
+title: Blankenese Süd (Veloroute 1, Humannstraße bis Godeffroystraße)
+start: 2020
+area:
+- - - 9.814605
+    - 53.562588
+  - - 9.814353
+    - 53.562266
+  - - 9.814809
+    - 53.562167
+  - - 9.815013
+    - 53.562486
+  - - 9.814605
+    - 53.562588
+- - - 9.818408
+    - 53.560768
+  - - 9.818527
+    - 53.560265
+  - - 9.819396
+    - 53.560357
+  - - 9.819176
+    - 53.560743
+  - - 9.818408
+    - 53.560768
+- - - 9.819964
+    - 53.560584
+  - - 9.81968
+    - 53.560386
+  - - 9.821745
+    - 53.559653
+  - - 9.822094
+    - 53.559908
+  - - 9.819964
+    - 53.560584
+- - - 9.823274
+    - 53.560743
+  - - 9.823161
+    - 53.560606
+  - - 9.823419
+    - 53.560319
+  - - 9.823982
+    - 53.560386
+  - - 9.824132
+    - 53.560698
+  - - 9.823564
+    - 53.560883
+  - - 9.823274
+    - 53.560743
+- - - 9.826573
+    - 53.561199
+  - - 9.826868
+    - 53.560998
+  - - 9.827405
+    - 53.561128
+  - - 9.827152
+    - 53.561332
+  - - 9.826573
+    - 53.561199
+- - - 9.831516
+    - 53.560327
+  - - 9.832495
+    - 53.560051
+  - - 9.832721
+    - 53.560356
+  - - 9.831712
+    - 53.560614
+  - - 9.831516
+    - 53.560327
+- - - 9.834405
+    - 53.559771
+  - - 9.834276
+    - 53.559551
+  - - 9.834936
+    - 53.559347
+  - - 9.835119
+    - 53.55965
+  - - 9.834405
+    - 53.559771
+images:
+- 7bJhuQbfcEaQVc-4Xk4yjg
+- FuOUN04aWTQwtTsdTW-i1A
+- LvdjBwAHB1GtDm5PpXnRMQ
+- bm1R2ABnOH27L8kFSG6gyA
+- ELaVKfAVUuh_SS_ARd-u7w
+- 5vBJdFY11aJ2dnfPypHFxQ
+- ewoMfRN4bVjLrBa5-D--8g
+- ZNBBANWvLorTQEyR709BbQ
+- gkPCHrVa8AMkGztRv4LLFw
+- 9K69CLq0XKd2KVH86zy4_w
+- z3RRsiSE6m_CoFMR6A65vg
+- 88QsxgQacjNX-mIksTb1jQ
+- ABwRfavdwPZG1y88fS8g0w
+- q7DCb-VcTgu2lLE39BchCA
+- PaaajSxh7iSKBjxIzo2pBg
+- V-kFBY7xupKEtLI8S3aqOQ
+hideFromMap: false
+tags:
+- velo1
+text: '<p>Zur Verbesserung der Veloroute 1 im Süden von Blankenese ab der  <a class="place"
+  href="/#17/53.559698/9.834337">Kreuzung mit der Eichendorffstraße</a> bis zur <a>Blankeneser
+  Bahnhofstraße</a> wurden wurden auf einer Infoveranstaltung angedachte Maßnahmen
+  vorgestellt. Diese beschränken sich im Wesentlichen darauf die kritischsten Stellen
+  etwas zu entschärfen, ein durchgängiger Umbau ist nicht vorgesehen.</p> <p>Die abknickende
+  Vorfahrt <a class="place" href="/#17/53.559698/9.834337">Manteuffelstraße / Eichendorffstraße</a>
+  bleibt wie bisher. Um die Situation für den Radverkehr dennoch zu verbessern wird
+  in der Manteuffelstraße eine Querungshilfe gebaut, in deren Verlängerung sich dann
+  ein Aufstellbereich zum Abbiegen befindet. KFZ werden so klarer geleitet und etwas
+  von wartenden Radfahrenden ferngehalten. Richtung Blankenese ändert sich nichts
+  – das Rechts-vor-Links bleibt also ebenfalls. Im weiteren Verlauf der Manteuffelstraße
+  werden noch zwei Bushaltestellen ausgebaut.</p> <p>Für die <a href="/#17.59/53.560861/9.82359"
+  class="place">Kreuzung Elbchaussee / Mühlenberg / Manteuffelstraße</a> war ein Kreisel
+  angedacht, der sich aufgrund des verfügbaren Platzes und der vorhandenen Bäume nur
+  schwerlich umsetzten lässt. Stattdessen soll die Ampelschaltung entlang der Veloroute
+  für den Radverkehr etwas verbessert werden. Zusätzlich werden in den Nebenstraßen
+  Aufstellbereiche vor den KFZ aufgemalt. Das unkomfortable indirekte Abbiegen aus
+  der <a>Manteuffelstraße</a> entfiele also.</p> <p>Für die <a>Gätgensstraße</a> ist
+  vorgesehen das Kopfsteinpflaster durch Asphalt zu ersetzen und die Parkplätze zu
+  ordnen. Letztere wären wechselseitig als Parkstreifen ausgeführt. Anwohnenden gefiel
+  beides nicht, weswegen nochmal geprüft wird ob andere Optionen bestehen. Die Einmündung
+  in die Elbchaussee soll indes nicht angepasst werden.</p> <p>An der <a class="place"
+  href="/#18/53.560455/9.818865">Einmündung Godeffroystraße / Elbchaussee</a> soll
+  eine Sprunginsel in der Straßenmitte das Queren vereinfachen. Diese würde auch Überholvorgänge
+  auf der Geraden unterbinden, wobei es jedoch sehr wahrscheinlich bei Tempo 50 bleibt.</p>
+  <p>Die <a class="place" href="/#17/53.562307/9.814347">Kreuzung Ole Hoop / Godeffroystraße</a>
+  wird schmaler eingefasst, sodass die Fußwege großzügiger werden. Auch die Breite
+  der Straßen verringert sich so, sodass die Querung kürzer ausfällt. Es bleibt beim
+  Rechts-vor-Links.</p> <p><strong>Fazit:</strong> Die Verbesserungen fallen minimal
+  aus, sind aber dennoch gern gesehen. Leider bleiben auch viele Probleme ungelöst,
+  etwa Mischverkehr bei Tempo 50 in der <a>Manteuffelstraße</a> und der <a>Elbchaussee</a>,
+  die auf Höhe der <a>Gätgensstraße</a> auch keine Querungshilfe erhält. Dort sind
+  die wechselseitigen Parkplatzstreifen auch keine Idealsituation für den Radverkehr,
+  weil dieser dann durch wartende KFZ behindert wird.</p> <p>Die Maßnahmen sollen
+  nun im Detail ausgearbeitet werden, sodass im Frühjahr 2020 mit der Umsetzung begonnen
+  werden kann.</p> <p><a href="http://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Altona_A22_Gesamtdokumentation_mit%20Anlagen.pdf">Dokumentation
+  zur Infoveranstaltung</a></p>
+
+'

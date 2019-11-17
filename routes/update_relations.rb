@@ -22,7 +22,6 @@ require_relative "quality"
 require_relative "relation"
 require_relative "route"
 require_relative "blog"
-require_relative "shortcoming"
 require_relative "util"
 require_relative "webpack_helper"
 
@@ -58,25 +57,6 @@ def build_map_geojsons(routes)
   File.write("geo_tmp/markers.json", markers.to_json)
 end
 
-def build_quality(routes)
-  quality_geojson = routes.flat_map(&:to_quality_geojson)
-  write_with_hash("quality.geojson", GeoJSON.join(quality_geojson).to_json)
-
-  css = (1..5).map do |grade|
-    <<~CSS
-                  .shortcoming.grade#{grade} { background: #{Quality.grade2color(grade, :normal)} }
-      .colorblind .shortcoming.grade#{grade} { background: #{Quality.grade2color(grade, :colorblind)} }
-    CSS
-  end.join("\n")
-  File.write('geo_tmp/shortcomings.css', css)
-
-  quality_export = Parallel.map(routes) do |r|
-    def print(*args); end # somehow segfaults when forked
-    r.to_quality_export
-  end.reduce {|a,b| Quality::GeoJSON.merge(a, b) }
-  File.write("geo_tmp/quality_export.json", quality_export.to_json)
-end
-
 def render_abstract_routes(routes)
   # build route connection lookup
   place2route = {}
@@ -104,43 +84,33 @@ def build_image_lists(routes)
     data = route.to_image_export
     write_with_hash("images-#{route.name}.json", data.to_json)
   end
+  File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
 
-  article_areas = []
-  quality = {}
-  shortcomings = YAML.load_file(File.join(__dir__, "..", "shortcomings.yaml"))
-  shortcomings.each do |name, details|
-    quality[name] = Mapillary::ManualSequence.new(details["images"]).to_json_export
-    details["desc"] = link_places(details["desc"])[0].to_s
-    details["desc"] = exernal_new_tab(details["desc"]).to_s
-    # use list of images to show affected area if no specific one is defined
-    coords = quality[name][:loc]
-    coords += [shortcomings[name]["loc"]] if coords.size <= 1
-    shortcomings[name]["area"] ||= coords_to_buffered_poly(coords)
-    shortcomings[name]["bounds"] = coords_to_bounds(shortcomings[name]["area"])
-
-    a = shortcomings[name]["area"]
-    geom = if a.first.first.is_a?(Array)
-      { type: "MultiPolygon", coordinates: a.map { |area| [area] } }
-    else
-      { type: "Polygon", coordinates: [a] }
-    end
-    article_areas << {
+  article_areas = Blog.instance.posts.map do |post|
+    next nil unless post.geometry
+    next nil if post.hideFromMap?
+    {
       type: :Feature,
-      geometry: geom,
+      geometry: post.geometry,
       properties: {
-        name: name,
-        title: details["title"],
+        name: post.name,
+        title: post.title,
         type: :article,
+        bounds: coords_to_bounds(post.geometry[:coordinates]),
       }
     }
   end
-  write_with_hash("images-quality.json", quality.to_json)
-  File.write('geo_tmp/shortcomings.json', shortcomings.to_json)
-  File.write("geo_tmp/images_debug.geojson", GeoJSON.join(debug).to_json)
   File.write("geo_tmp/article_areas.geojson", {
     type: :FeatureCollection,
-    features: article_areas
+    features: article_areas.compact
   }.to_json)
+
+  blog_images = Blog.instance.posts.map do |post|
+    next nil unless post.images
+    next [post.name, post.images] unless post.images.is_a?(Array)
+    [post.name, Mapillary::ManualSequence.new(post.images).to_json_export]
+  end.compact.to_h
+  write_with_hash("images-blog.json", blog_images.to_json)
 end
 
 def listify(header, items, group: false)
@@ -163,13 +133,13 @@ end
 
 def build_construction_sites(_whocares)
   out = ''
-  in_progress = Shortcoming.select(type: "construction").sort_by(&:start)
+  in_progress = Blog.instance.with_type("construction").sort_by(&:start)
   out << listify('Baustellen', in_progress)
 
-  upcoming = Shortcoming.select(type: "planned-construction").sort_by(&:start)
+  upcoming = Blog.instance.with_type("planned-construction").sort_by(&:start)
   out << listify('Geplante Baumaßnahmen', upcoming, group: true)
 
-  vague = Shortcoming.select(type: "intent").sort_by(&:start)
+  vague = Blog.instance.with_type("intent").sort_by(&:start)
   out << listify('Vorhaben / Absichten', vague)
 
   File.write("geo_tmp/bau.html", out)
@@ -211,18 +181,10 @@ def write_blog(_routes)
   File.write("geo_tmp/blog.scss", css)
 end
 
-BUFFER_IN_METERS = 10
-def coords_to_buffered_poly(coords)
-  return nil if coords.size <= 1
-  factory = RGeo::Geographic.simple_mercator_factory(buffer_resolution: 2)
-  coords = coords.map { |c| factory.point(c[0], c[1]) }
-  buffered = factory.line_string(coords).buffer(BUFFER_IN_METERS)
-  geojson = RGeo::GeoJSON.encode(buffered)["coordinates"].first
-  geojson.map { |c| [c[0].round(6), c[1].round(6)] }
-end
+
 
 def coords_to_bounds(coords)
-  coords = coords.flatten(1) if coords[0][0].is_a?(Array)
+  coords = coords.flatten(1) while coords[0][0].is_a?(Array)
   minlon, maxlon = coords.map(&:first).minmax
   minlat, maxlat = coords.map(&:last).minmax
   [minlon, minlat, maxlon, maxlat]
@@ -243,7 +205,6 @@ end
 routes = routes.map { |route, details| Route.new(route, details) }
 
 %i[
-  build_quality
   build_map_geojsons
   render_abstract_routes
   build_image_lists

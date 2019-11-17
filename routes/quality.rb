@@ -6,30 +6,6 @@ require_relative "joiner"
 require_relative "relation"
 
 module Quality
-  GRADIENTS = {
-    colorblind: Gradient::Map.new(
-      Gradient::Point.new(1, Color::RGB.from_html("#006d2c"), 1),
-      Gradient::Point.new(2, Color::RGB.from_html("#31a354"), 1),
-      Gradient::Point.new(3, Color::RGB.from_html("#74c476"), 1),
-      Gradient::Point.new(4, Color::RGB.from_html("#a1d99b"), 1),
-      Gradient::Point.new(5, Color::RGB.from_html("#c7e9c0"), 1)
-    ),
-    normal: Gradient::Map.new(
-      Gradient::Point.new(1, Color::RGB.from_html("#2dc937"), 1),
-      Gradient::Point.new(2, Color::RGB.from_html("#99c140"), 1),
-      Gradient::Point.new(3, Color::RGB.from_html("#e7b416"), 1),
-      Gradient::Point.new(4, Color::RGB.from_html("#db7b2a"), 1),
-      Gradient::Point.new(5, Color::RGB.from_html("#cc3232"), 1)
-    )
-  }
-
-  def self.grade2color(grade, gradient)
-    # i.e. no observations and no rating possible
-    return '#9A42FF' if grade == '?'
-
-    '#' << GRADIENTS[gradient].at(grade).color.hex
-  end
-
   class Observation
     RATING_TO_GRADE = {
       excellent: 1,
@@ -449,8 +425,6 @@ module Quality
           properties: {
             name: @route.name,
             quality: true,
-            c_norm: ::Quality.grade2color(geo_props[:grade], :normal),
-            c_blind: ::Quality.grade2color(geo_props[:grade], :colorblind),
           },
           geometry: {
             type: "LineString",

@@ -1,0 +1,62 @@
+---
+loc:
+- 9.98911
+- 53.55821
+grade: 5
+start: 2020
+end: 2022Q4
+type: planned-construction
+title: Stephansplatz (Veloroute 3)
+images:
+- TpcEimymc3-KxArlk0SqDw
+- uKrfm5r3koHPSrdvuo40SQ
+- gcgJVseQv9D_YeZq2eYJOQ
+- dg9gqGp3mL4e-Frz3W3IYw
+- Ddm7Q_8GTxsRONVNt8T9Eg
+- leHAdy_7AIfxi3SmKHKRVg
+- iZgbYapilnLSoglqjZGB5g
+- DGlmKFBBLplRpcdMMh03WA
+- _RNVGmXidwu9jayrkMiCQw
+- cS0lvuQReY4LYmbIxGXp-w
+- 13u17J0nhpwcyou4rNF40Q
+- 5FjClkR1QxH4Q1BV3LO0pg
+- HKm4kSIMt2s1BNFIgfXqUQ
+area:
+- - 9.989469
+  - 53.559226
+- - 9.989448
+  - 53.559188
+- - 9.988911
+  - 53.558414
+- - 9.987661
+  - 53.55835
+- - 9.98772
+  - 53.558028
+- - 9.988584
+  - 53.558076
+- - 9.988455
+  - 53.557534
+- - 9.989045
+  - 53.557496
+- - 9.989233
+  - 53.557964
+- - 9.992731
+  - 53.557486
+- - 9.992951
+  - 53.557926
+- - 9.991727
+  - 53.558082
+- - 9.98956
+  - 53.558401
+- - 9.989898
+  - 53.559105
+- - 9.989469
+  - 53.559226
+hideFromMap: false
+tags:
+- velo3
+text: |
+  <p>Der aktuelle Zustand der Radwege über den <a>Stephansplatz</a> ist akzeptabel, wenn auch die verfügbare Breite deutlich zu schmal ist. Am kritischsten ist hier vor allem die fehlende Radführung West-Ost in Richtung <a>Lombardsbrücke</a>.</p> <p>Im Zuge der Umplanung der <a>Esplanade</a> wird auch die Kreuzung am Stephansplatz umgebaut. Im eingezeichneten Bereich wird der Radverkehr künftig ausschließlich auf Radfahrstreifen geführt. Entlang der Veloroute passiert dies zwischen den Geradeaus- und Rechtsabbiegerspuren, in Ost-West Richtung bleibt der Radfahrstreifen jedoch jeweils rechts des Rechtsabbiegers. Der Bericht erläutert nicht, wie die „Spuren in der Mitte“ von sich stauenden Autos freigehalten werden sollen. In der Praxis ist also von Behinderungen durch unachtsame KFZ auszugehen.</p> <p>Die Breiten der Radspuren fallen unterschiedlich aus und gehen von sehr gut (2m, <a class="place" href="/#18.5/53.5577487/9.9886422">Dammstorstraße Richtung Süden</a>) über  schlecht (1,60m, <a class="place" href="/#18.5/53.5578634/9.9901783">Esplanade Richtung Lombardsbrücke</a>) bis inakzeptabel (1,50m, <a class="place" href="/#18.5/53.5577487/9.9886422">Dammstorstraße Richtung Norden</a>)</p> <p>Linksabbiegen wird nach wie vor aus allen Richtungen möglich sein. Dazu werden Aufstelltaschen für indirektes Abbiegen eingezeichnet und mit eigenen Radampeln versehen. Diese stehen diesmal auch nah genug an der Kreuzung, sodass diese nicht mehr unbeabsichtigt von Zufußgehenden verdeckt werden. Der freie Rechtsabbieger vom <a href="/#18.5/53.558453/9.9885208" class="place">Dammtorbahnhof in den Gorch-Fork-Wall</a> soll entfallen.</p> <p>Im Bereich der Veloroute stellt die Umplanung keine Verbesserung dar. Ein kurzes Stück breiterer Radweg Richtung Süden ist zwar nett, steht aber einer inakzeptablen Breite in der Gegenrichtung gegenüber. Die Radspur zwischen die KFZ-Spuren zu verlegen dient vor allem dem Komfort des Autoverkehrs und ist für den Radverkehr unattraktiv. Das KFZ die Spur regelmäßig blockieren werden ist anzunehmen. Ggf. sollen sogar die bereits jetzt viel zu schmalen Fußwege in der Dammtorstraße weiter reduziert werden, damit die Abbiegespur für KFZ verlängert werden kann.</p> <p>Umgesetzt werden soll die Maßnahme in Abstimmung mit dem <a href="/quality/4-kreuzung-neuer-jungfernstieg">Umbau des Doppelknoten am neuen Jungfernstieg</a> und von etwa 2020 bis 2022 dauern.</p> <ul>
+    <li><a href="http://lsbg.hamburg.de/contentblob/12437970/021ac4ed5c34e441af7033624dfddb97/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zum ersten Entwurf</a></li>
+    <li><a href="http://lsbg.hamburg.de/contentblob/12437968/f262524d0b75db84e6283ad7206e28a1/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf">Lageplan zum ersten Entwurf</a></li>
+    </ul>

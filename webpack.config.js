@@ -9,9 +9,7 @@ const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
-const shortcomings = require('./routes/geo/shortcomings.json');
 const routes = require('./routes.json');
-const { toQualityName } = require('./src/utils_webpack');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -52,22 +50,6 @@ module.exports = (env, argv) => {
       filename: `blog/${fn}.html`
     }));
   });
-
-  const entries = Object.keys(shortcomings);
-  for(let i = 0; i < entries.length; i++) {
-    const key = entries[i];
-    const title = shortcomings[key]['title'] || key;
-    const fn = toQualityName(key);
-    const short = shortcomings[key];
-    pages.push(new HtmlWebpackPlugin({
-      ...htmlOpts,
-      title: `veloroute.hamburg – Qualität und Ausbaustatus – ${title}`,
-      filename: `${fn}.html`,
-      imagePath: `https://d1cuyjsrcm0gby.cloudfront.net/${short.images[0]}/thumb-2048.jpg`,
-      qualityDesc: short.desc,
-      lastCheck: short.lastCheck
-    }));
-  }
 
   sitemapURLs = sitemapURLs.concat(pages.map(p => {
     const subHeadlines = (p.options.title.match(/–/g) || []).length;

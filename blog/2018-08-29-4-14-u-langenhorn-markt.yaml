@@ -1,0 +1,63 @@
+---
+loc:
+- 10.0177872
+- 53.649394
+grade: 3
+title: Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)
+start: 2019Q1
+area:
+- - 10.017916
+  - 53.650717
+- - 10.017884
+  - 53.650666
+- - 10.017696
+  - 53.650304
+- - 10.01768
+  - 53.649623
+- - 10.017621
+  - 53.649525
+- - 10.017412
+  - 53.649483
+- - 10.017412
+  - 53.649356
+- - 10.016371
+  - 53.649388
+- - 10.016366
+  - 53.649331
+- - 10.017219
+  - 53.649312
+- - 10.018216
+  - 53.649232
+- - 10.018227
+  - 53.649404
+- - 10.018978
+  - 53.649369
+- - 10.019021
+  - 53.649499
+- - 10.018168
+  - 53.649553
+- - 10.017836
+  - 53.649528
+- - 10.017846
+  - 53.6503
+- - 10.018007
+  - 53.650704
+- - 10.017916
+  - 53.650717
+images:
+- xCMDA_6f3-uBpZbjFgPnDw
+- QO1hSRRQVKrUpfpPyGIvXw
+type: planned-construction
+hideFromMap: false
+tags:
+- velo4
+- velo14
+text: <p>Das die Führung der Veloroute 4 in Südrichtung eher umständlich ist, braucht
+  nicht erwähnt zu werden. Aber auch die sonstigen Querungen zeichnen sich durch zu
+  schmale Wege, enge Kurven und Wegkonflikte mit Zufußgehenden bzw. Wartenden an den
+  Bushaltestellen. Dies gilt sowohl für Route 4 als auch für Route 14.</p> <p>Diese
+  Unzulänglichkeiten wurden bei der Umgestaltung dieses Knotenpunkts aber erkannt
+  und in der Planung behoben – zumindest soweit ich dies als Laie erkennen kann. Baubeginn
+  soll im 1. Quartal 2019 liegen. Weitere Infos:</p> <ul> <li> <a href="https://lsbg.hamburg.de/contentblob/11228162/1056b9cb4d11859c4f41a8974a01a204/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-plan.pdf">vorläufiger
+  Lageplan</a> </li> <li> <a href="https://lsbg.hamburg.de/contentblob/11228160/da357f8f8e702c19536f531d8ffad004/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht
+  zur Umgestaltung</a> </li> </ul>

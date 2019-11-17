@@ -49,14 +49,6 @@ class State {
     return this._status.route;
   }
 
-  getShortcomingName() {
-    if(this._status.route.startsWith("quality/")) {
-      return this._status.route.substr(8);
-    }
-
-    return null;
-  }
-
   currentImage() {
     return this._status.image;
   }
@@ -78,40 +70,6 @@ class State {
         return { 'type': 'Polygon', 'coordinates': [cc] }
       })
     }
-  }
-
-  zoomToBounds(bounds) {
-    this._map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
-  }
-
-  showPolygon(coords, bounds) {
-    if(!coords) return this.hidePolygon();
-
-    const asPoly = this._toPoly(coords);
-    if(!this._map.getSource('source-polygon')) {
-      this._map.addSource('source-polygon', { type: 'geojson', data: asPoly });
-    } else {
-      this._map.getSource('source-polygon').setData(asPoly);
-    }
-    if(!this._map.getLayer("layer-polygon")) {
-      this._map.addLayer({
-        'id': 'layer-polygon',
-        'type': 'fill',
-        'source': 'source-polygon',
-        'layout': {},
-        'paint': {
-          'fill-color': '#888',
-          'fill-opacity': 0.5
-        }
-      }, 'route-casing');
-    }
-
-    this._map.setLayoutProperty('layer-polygon', 'visibility', 'visible');
-  }
-
-  hidePolygon() {
-    if(!this._map.getLayer("layer-polygon")) return;
-    this._map.setLayoutProperty('layer-polygon', 'visibility', 'none');
   }
 
   _setMapPosition() {
@@ -136,10 +94,9 @@ class State {
     this._slowUpdateHash();
   }
 
-  _setCurrentRoute(routeName, _lngLat, eventType) {
-    if(eventType != "quality") this.hidePolygon();
+  _setCurrentRoute(routeName, _lngLat, _eventType) {
     if(!routeName) return this._resetRoute();
-    this._status.route = eventType === "quality" ? "quality" : routeName;
+    this._status.route = routeName;
     this._routeChanged();
     this._updateHash();
   }

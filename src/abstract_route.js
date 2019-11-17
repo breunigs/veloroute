@@ -9,19 +9,10 @@ class AbstractRoute {
     this._state = state;
     this._imagesPromise = imagesPromise;
     this._createMarker = createMarker;
-    this._qualityPromise = null;
 
     this.showRoute = this.showRoute.bind(this)
 
     this.showRoute(state.selectedRoute());
-  }
-
-  _loadQuality() {
-    if(this._qualityPromise) return this._qualityPromise;
-    this._qualityPromise =
-      import(/* webpackChunkName: "quality" */ './quality')
-      .then(({Quality}) => new Quality(this._state, this._imagesPromise, this._createMarker));
-    return this._qualityPromise;
   }
 
   async showRoute(routeName) {
@@ -30,11 +21,6 @@ class AbstractRoute {
 
     if(newPage == "page-blog") {
       newPage += "-" + routeName.split("/")[1];
-    }
-
-    if(newPage === "page-quality") {
-      console.debug("Loading Quality, then showing Shortcoming")
-      this._loadQuality().then(quality => quality.showShortcoming());
     }
 
     let currentPage = null;
