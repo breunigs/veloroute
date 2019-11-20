@@ -96,7 +96,7 @@ def build_image_lists(routes)
         name: post.name,
         title: post.title,
         type: :article,
-        bounds: coords_to_bounds(post.geometry[:coordinates]),
+        bounds: post.bounds,
       }
     }
   end
@@ -167,8 +167,9 @@ def write_blog(_routes)
   css = ""
   Blog.instance.posts.each do |post|
     css << ".page-blog-#{post.name} #desc-blog-#{post.name} { display: block }"
+    bounds = post.bounds ? %|data-bounds="#{post.bounds.join(',')}"| : ''
     html << <<~HTML
-      <div id="desc-blog-#{post.name}" class="desc">
+      <div id="desc-blog-#{post.name}" class="desc" #{bounds}>
         <h3>#{post.title}</h3>
 
         #{post.linked_text}
@@ -179,15 +180,6 @@ def write_blog(_routes)
   end
   File.write("geo_tmp/blog.html", html)
   File.write("geo_tmp/blog.scss", css)
-end
-
-
-
-def coords_to_bounds(coords)
-  coords = coords.flatten(1) while coords[0][0].is_a?(Array)
-  minlon, maxlon = coords.map(&:first).minmax
-  minlat, maxlat = coords.map(&:last).minmax
-  [minlon, minlat, maxlon, maxlat]
 end
 
 SCSS_MUTEX = Mutex.new

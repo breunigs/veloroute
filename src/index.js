@@ -1,6 +1,6 @@
 import "../base.scss";
 
-import { map, addRouteClickListener, renderIndicator, createMarker } from "./map";
+import { map, addRouteClickListener, renderIndicator } from "./map";
 import AbstractRoute from "./abstract_route";
 import State from './state';
 import Swap from './swap';
@@ -8,7 +8,7 @@ import { addRouteChangeListener } from './state';
 
 const state = new State(map);
 const imagesPromise = import(/* webpackChunkName: "images" */ './images');
-const abstractRoute = new AbstractRoute(imagesPromise, state, createMarker);
+const abstractRoute = new AbstractRoute(state, map);
 
 addRouteClickListener(state.routeSetter());
 addRouteChangeListener(abstractRoute.showRoute);

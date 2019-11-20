@@ -5,10 +5,8 @@ const info = document.getElementById('info');
 const body = document.getElementsByTagName("body")[0];
 
 class AbstractRoute {
-  constructor(imagesPromise, state, createMarker) {
-    this._state = state;
-    this._imagesPromise = imagesPromise;
-    this._createMarker = createMarker;
+  constructor(state, map) {
+    this._map = map;
 
     this.showRoute = this.showRoute.bind(this)
 
@@ -17,10 +15,14 @@ class AbstractRoute {
 
   async showRoute(routeName) {
     if(!routeName) routeName = 'index';
-    let newPage = "page-" + routeName.split("/")[0];
+    const parts =routeName.split("/");
+
+    let newPage = "page-" + parts[0];
+    let elemId = "desc" + parts[0];
 
     if(newPage == "page-blog") {
-      newPage += "-" + routeName.split("/")[1];
+      newPage += "-" + parts[1];
+      elemId = "desc-blog-"+parts[1];
     }
 
     let currentPage = null;
@@ -51,6 +53,12 @@ class AbstractRoute {
       // scroll back to top when switching "tabs". The scroll state isn't kept per
       // tab, but rather as a "37%" across all instances.
       if(currentPage !== newPage) scrollbox.scrollTop = 0;
+    }
+
+    const elem = document.getElementById(elemId);
+    if(elem && elem.dataset.bounds) {
+      console.debug("zooming to bounds from page");
+      this._map.fitBounds(elem.dataset.bounds.split(","), { padding: 100, maxZoom: 17 });
     }
   };
 }

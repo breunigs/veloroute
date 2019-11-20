@@ -183,4 +183,4 @@ map.on('style.load', () => {
   renderIcons();
 });
 
-export { addRouteClickListener, renderIndicator, createMarker };
+export { addRouteClickListener, renderIndicator };

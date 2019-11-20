@@ -131,6 +131,15 @@ class Post
     end
   end
 
+  def bounds
+    return nil unless geometry
+    coords = geometry[:coordinates]
+    coords = coords.flatten(1) while coords[0][0].is_a?(Array)
+    minlon, maxlon = coords.map(&:first).minmax
+    minlat, maxlat = coords.map(&:last).minmax
+    [minlon, minlat, maxlon, maxlat]
+  end
+
   def linked_text
     html, _places = link_places(text)
     html
