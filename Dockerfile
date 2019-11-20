@@ -1,4 +1,4 @@
-FROM debian:unstable-slim as builder
+FROM debian:buster-slim as builder
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
@@ -53,7 +53,7 @@ RUN sed -i "s/POLYFILL_LOADER_FILENAME/$(ls -1 bundle.polyfillLoader.*js)/" bund
 # COMBINING AND FINISHING TOUCHES                            #
 ##############################################################
 
-FROM debian:unstable-slim
+FROM debian:buster-slim
 RUN \
   apt-get -qq update && \
   apt-get -yq install --no-install-recommends \
