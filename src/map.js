@@ -174,7 +174,9 @@ const handleMapClick = (evt) => {
     console.debug("zooming to geojson feature on mapclick", bounds);
     map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
   }
-  routeClickListeners.forEach((f) => f(article || route, evt.lngLat, "mapClick"));
+  if(article || route) {
+    routeClickListeners.forEach((f) => f(article || route, evt.lngLat, "mapClick"));
+  }
 }
 
 map.on('style.load', () => {
