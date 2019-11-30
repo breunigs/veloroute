@@ -35,9 +35,9 @@ class Post
   def initialize(path)
     @path = path
     @name = File.basename(path, ".yaml")
-    @date = Date.parse(name[0...10])
 
     @raw = YAML.load_file(path)
+    @date = @raw["updated"] || Date.parse(name[0...10])
 
     @start = RoughDate.new(@raw["start"])
     @end = RoughDate.new(@raw["end"])
