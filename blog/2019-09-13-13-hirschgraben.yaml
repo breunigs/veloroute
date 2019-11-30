@@ -4,16 +4,7 @@ loc:
 - 53.56296
 grade: 2
 title: Hirschgraben (Veloroute 13)
-images:
-- sTc5PlaXMeWEHu0AKAf7Qg
-- wAIGyq7xwE7v6kYAWxOJJg
-- D-FsAIdG7CXibZz7tuIm0w
-- mF04mzOxsuM8X8OekXwqwg
-- 1wNbQhJycF_p0jlGvgohVw
-- G5FOv0Hxv3bj1BXq6S96bQ
-- 7jahJkMvJzcalD0dljcBSg
-- 6zhEc4FkjF7irwcUsqCrLw
-- Dwi3yVAi9aNoLNi_j4hO9g
+images: 13
 area:
 - - 10.042073
   - 53.560934

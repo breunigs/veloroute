@@ -4,16 +4,7 @@ loc:
 - 53.55961
 grade: 2
 title: Jordanstraße (Veloroute 13)
-images:
-- 3OKsTYbmINFzEUFH82eeIQ
-- jbhTxQP46nQU15UGN25jrQ
-- HsJVh7dodAOBeSbVKaSyYA
-- fFxAoaCK6fRPV4LP1FV0BQ
-- TDUZk1Tzzol72pYH_fNP3A
-- wTWd8iinG-zQLtCVEcPh3g
-- uZxI9MQXelfZOc06zOONqQ
-- tVqK79osj2W6y6n9eLsr5g
-- PHDPOLt-kufG39LFLbwH3Q
+images: 13
 area:
 - - 10.04104
   - 53.558657

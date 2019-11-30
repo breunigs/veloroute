@@ -79,6 +79,15 @@ RSpec::Matchers.define :have_area_or_image_array do
   end
 end
 
+RSpec::Matchers.define :have_images do
+  match do |a|
+    a.images != nil
+  end
+  failure_message do |a|
+    "#{a.name} should either specify images if it has an area"
+  end
+end
+
 RSpec::Matchers.define :have_place_link_start do
   match do |a|
     url = a.attr(:href)
@@ -106,6 +115,11 @@ describe "blog/*.yaml" do
   it "specifies area if re-using route images" do
     reusers = posts.select { |p| p.images.is_a?(Integer) }
     expect(reusers).to all(have_area_or_image_array)
+  end
+
+  it "has images if area is specified" do
+    with_area = posts.select { |p| p.instance_variable_get(:@raw)["area"] != nil }
+    expect(with_area).to all(have_images)
   end
 
   it "has titles for all entries" do
