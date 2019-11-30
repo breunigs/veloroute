@@ -2,6 +2,7 @@ require 'rss'
 require 'yaml'
 
 require_relative 'mapillary'
+require_relative 'blog'
 
 module RSS
   FILENAME = 'updates.atom'
@@ -40,15 +41,12 @@ module RSS
   end
 
   def self.blog
-    glob = File.join(__dir__, "..", "blog", "*.yaml")
-    Dir.glob(glob).sort.map do |path|
-      fn = File.basename(path, ".yaml")
-      post = self.get_yaml("blog/#{fn}")
+    Blog.instance.posts.map do |post|
       {
-        link: BASE.merge("/blog/#{fn}"),
-        title: post['title'],
-        updated: self.to_time(fn[0...10]),
-        description: post['text']
+        link: BASE.merge(post.url),
+        title: post.title,
+        updated: self.to_time(post.date),
+        description: post.text
       }
     end
   end
