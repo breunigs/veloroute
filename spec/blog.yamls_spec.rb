@@ -88,6 +88,16 @@ RSpec::Matchers.define :have_images do
   end
 end
 
+RSpec::Matchers.define :have_valid_html do
+  match do |a|
+    parsed = Nokogiri::HTML::fragment(a.text)
+    parsed.errors.size == 0
+  end
+  failure_message do |a|
+    "#{a.name} has invalid HTML: #{Nokogiri::HTML::fragment(a.text).errors}"
+  end
+end
+
 RSpec::Matchers.define :have_place_link_start do
   match do |a|
     url = a.attr(:href)
@@ -110,6 +120,10 @@ describe "blog/*.yaml" do
 
   it "uses only URL safe names" do
     expect(posts.map(&:name)).to all(match /\A[a-z0-9-]+\z/)
+  end
+
+  it "has valid HTML in text" do
+    expect(posts).to all(have_valid_html)
   end
 
   it "specifies area if re-using route images" do
