@@ -40,7 +40,7 @@ reject_seen_urls!(posts)
 
 def find(lonLat)
   return nil unless lonLat
-  x = `../tools/coord_to_suburb.rb #{lonLat[1]} #{lonLat[0]}`
+  x = `../tools/coord_to_suburb.rb #{lonLat[0]} #{lonLat[1]}`
   return nil if $?.exitstatus != 0
   x.strip
 end

@@ -42,12 +42,16 @@ module RSS
 
   def self.blog
     Blog.instance.posts.map do |post|
+      b = post.bounds
+      center = [(b[0] + b[2])/2.0, (b[1] + b[3])/2.0] if b
+
       {
         link: BASE.merge(post.url),
         title: post.title,
         updated: self.to_time(post.date),
-        description: post.text
-      }
+        description: post.text,
+        lonLat: center
+      }.compact
     end
   end
 

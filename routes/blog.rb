@@ -1,4 +1,6 @@
 require 'singleton'
+require 'rgeo'
+require 'rgeo-geojson'
 
 require_relative 'util'
 require_relative 'rough_date'

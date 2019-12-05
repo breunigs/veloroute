@@ -6,7 +6,7 @@ require 'rgeo/geo_json'
 path = File.dirname(__FILE__)
 
 if ARGV.size != 2
-  warn "Usage: #{__FILE__} lat lon"
+  warn "Usage: #{__FILE__} lon lat"
   exit 1
 end
 
