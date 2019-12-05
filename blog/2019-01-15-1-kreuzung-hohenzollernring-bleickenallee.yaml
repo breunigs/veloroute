@@ -1,76 +1,20 @@
 ---
-loc:
-- 9.91781
-- 53.55112
-grade: 2
-area:
-- - 9.917403
-  - 53.551285
-- - 9.91735
-  - 53.550985
-- - 9.919093
-  - 53.550899
-- - 9.919083
-  - 53.550753
-- - 9.91941
-  - 53.550743
-- - 9.919458
-  - 53.551247
-- - 9.918095
-  - 53.551317
-- - 9.91823
-  - 53.552333
-- - 9.917908
-  - 53.552356
-- - 9.917817
-  - 53.551323
-- - 9.917403
-  - 53.551285
+area: [[9.917296,53.551014],[9.917564,53.550992],[9.917543,53.550842],[9.918053,53.550813],[9.918074,53.550979],[9.919356,53.550909],[9.919394,53.551196],[9.918144,53.551266],[9.918251,53.552521],[9.91787,53.552541],[9.917822,53.551256],[9.917344,53.551285],[9.917296,53.551014]]
 start: 2020Q2
 title: Kreuzung Hohenzollernring / Bleickenallee (Veloroute 1)
 type: planned-construction
 images: 1
 hideFromMap: false
+updated: 2019-12-05
 tags:
 - velo1
-text: '<p>In Richtung Ottensen ist die Kreuzung auch bisher schon recht einfach zu
-  benutzen: man fährt entweder aus dem Mittelstreifen „über Eck“ oder direkt aus dem
-  Mischverkehr auf <a class="place" href="/#18/53.551169/9.918608">ein Stück Radweg
-  in der Bleickenallee</a>, bei guten Grünzeiten. Die Gegenrichtung ist nicht so einfach:
-  entweder man quetscht sich an der Bushaltestelle auf den Radweg und hat dann nur
-  8 Sekunden um den Hohenzollernring zu queren, oder man ordnet sich vorher in den
-  Mischverkehr ein.</p> <p>Für die Umplanung der Kreuzung wurden etliche Varianten
-  untersucht, wobei sich für den ersten Entwurf folgendes ergeben hat. Die Bushaltestelle
-  stadtauswärts wird in den Hohenzollernring verschoben. Dadurch gewinnt man etwas
-  Platz und die Mittelinsel kann teilweise erhalten bleiben. Der Radverkehr erhält
-  dafür einen ca. 2m breiten Radfahrstreifen, der kerzengerade in den <a class="place"
-  href="/#18/53.551205/9.916772">westlichen Teil der Bleickenallee</a> führt. Die
-  Grünzeit für den Radverkehr wird mit 19s geplant – das ist zwar deutlich kürzer
-  als die Gegenrichtung, aber deutlich besser als der Bestand.</p> <p>In der Gegenrichtung,
-  also stadteinwärts, teilt noch vor der Kreuzung eine Sperrfläche den KFZ und Radverkehr
-  auf. Auch hier führt der Radfahrstreifen praktisch gerade auf die andere Straßenseite,
-  geht dort aber in die Bushaltestelle über. Da die Busspur hier breit genug ist,
-  kann der meiste Radverkehr auch an einem haltenden Bus vorbeifahren. Der bisherige
-  Hochbordradweg wird entsprechend zurückgebaut. Wie im Bestand setzt sich der Radfahrstreifen
-  ab Höhe <a>Tönsfeldtstraße</a> fort. Die Grünzeit für den Radverkehr ist in dieser
-  Richtung mit 46s angegeben.</p> <p>Direktes Linksabbiegen ist nur möglich, indem
-  man sich rechtzeitig in den Autoverkehr einordnet. Vom <a href="/#18/53.551742/9.917387"
-  class="place">Hohenzollernring Nord</a> in die <a hef="/#18/53.551111/9.918728"
-  class="place">Bleickenallee Ost</a> ist dies gar nicht vorgesehen. Für indirektes
-  Linksabbiegen sind jeweils Aufstelltaschen mit eigener Radampel vorgesehen. Bezüglich
-  der Platzierung besteht aber jeweils noch Optimierungspotential: momentan sind diese
-  außerhalb der normalen Radfurt, sodass keine visuelle Orientierungshilfe besteht.</p>
-  <p>Der vorliegende Plan wirkt bis auf Details bereits brauchbar. Natürlich nur unter
-  der Annahme, das auch in der <a class="place" href="/#18/53.551205/9.916772">Bleickenallee
-  West</a> das Kopfsteinpflaster durch einen angenehmeren Belag ersetzt wird. Denn
-  wie bisher ist auch künftig nicht vorgesehen, das man bequem auf den Mittelstreifen
-  auffahren kann – was aber die Regel sein dürfte, wenn es bei einem holprigen Belag
-  bleibt.</p> <p>Da es sich um einen ersten Entwurf handelt sind Änderungen noch möglich.
-  Dem Verkehrsausschuss sollen diese Planungen zusammen mit denen für die <a hef="/#18/53.551111/9.918728"
-  class="place">Bleickenallee Ost</a> und <a class="place" href="/#18/53.551205/9.916772">West</a>
-  am 21.01.2019 vorgestellt werden. Angesetzt ist der Umbau für Frühjahr 2020, wobei
-  dieser Termin maßgeblich durch andere Baumaßnahmen beeinflusst wird (A7-Deckel,
-  <a>Lessingtunnel</a>).</p> <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008265">Erläuterungsbericht
-  zum ersten Entwurf mit vorläufigem Lageplan</a> (unter Anlagen)</p>
-
-'
+- a10
+text: >
+  <p><strong>Stand Dezember 2019:</strong> Vom ersten Entwurf zur finalen Fassung hat sich einiges geändert. Der Artikel wurde an den aktuellen Stand angepasst.</p>
+  <p>In Richtung Ottensen ist die Kreuzung auch bisher schon recht einfach zu benutzen: man fährt entweder aus dem Mittelstreifen „über Eck“ oder direkt aus dem Mischverkehr auf <a class="place" href="/#18/53.551169/9.918608">ein Stück Radweg in der Bleickenallee</a>, bei guten Grünzeiten. Die Gegenrichtung ist nicht so einfach: entweder man quetscht sich an der Bushaltestelle auf den Radweg und hat dann nur 8 Sekunden um den Hohenzollernring zu queren, oder man ordnet sich vorher in den Mischverkehr ein.</p>
+  <p>Für die Umplanung der Kreuzung wurden etliche Variantenuntersucht, wobei sich nun Folgendes ergeben hat. In Fahrtrichtung stadtauswärts wird die Bushaltestelle in den Hohenzollernring verlegt. Ebenso entfällt die Möglichkeit für KFZ hier direkt links oder geradeaus zu fahren – stattdessen muss zuerst rechts abgebogen und dann auf <a href="/#17/53.552454/9.917697" class="place">Höhe Holstentwiete</a> gewendet werden. Der gewonnene Platz wird dem Fußweg und dem Radfahrstreifen zugeschlagen. Dieser ist knapp 2m breit und teilt sich an der Kreuzung in eine Geradeaus- und Rechtsabbiegerspur auf, jeweils mit eigener Ampel. Die Grünzeit für den Radverkehr wird mit 19s geplant – das ist zwar kürzer als die Gegenrichtung, aber besser als momentan.</p>
+  <p>Stadteinwärts (Richtung Ottensen) wird das kurze Stück Radweg entfernt und stattdessen durch einen Radfahrstreifen ersetzt. Dieser ist durch Verkehrsinseln von KFZ und Bussen getrennt, geht aber kurz nach der Kreuzung in die Bushaltestelle über. Der Radverkehr kann problemlos an einem wartenden Bus vorbeifahren ohne sich in die KFZ-Spur einordnen zu müssen. Auch in dieser Fahrtrichtung gibt's eine eigene Radampel und die lange Grünphase bleibt größtenteils erhalten (rund 44s).</p>
+  <p>Die Führung entlang der Veloroute ist jeweils geradlinig, was eine deutliche Verbesserung darstellt. <a href="https://de.wikipedia.org/wiki/Abbiegen_(Stra%C3%9Fenverkehr)#Direktes_und_indirektes_Abbiegen" target="_blank">Indirektes Linksabbiegen</a> ist immer möglich. Die Warteflächen sind entweder durch Verkehrsinseln gesichert oder liegen nicht im „Abbiegeradius“ der KFZ. Hier sind immer eigene Radampeln angebracht. Direktes Linksabbiegen ist möglich wenn man sich auf den KFZ-Spuren einordnet. Entsprechend entfällt es, wenn man von Ottensen auf den Hohenzollernring Richtung Süden möchte.</p>
+  <p>Der vorliegende Plan ist gut. Natürlich nur unter der Annahme, das auch in der <a class="place" href="/#18/53.551205/9.916772">Bleickenallee West</a> das Kopfsteinpflaster durch einen angenehmeren Belag ersetzt wird. Denn wie bisher ist auch künftig nicht vorgesehen, das man bequem auf den Mittelstreifen auffahren kann – was aber die Regel sein dürfte, wenn es bei einem holprigen Belag bleibt.</p>
+  <p>Angesetzt ist der Umbau für Frühjahr 2020, wobei dieser Termin maßgeblich durch andere Baumaßnahmen beeinflusst wird (A7-Deckel, <a>Lessingtunnel</a>).</p>
+  <p><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009396">Erläuterungsbericht mit Lageplan</a> (unter Anlagen)</p>
