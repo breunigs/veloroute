@@ -101,6 +101,19 @@ module Mapillary
       sequences.flat_map(&:coords)
     end
 
+    def closest_img(lonLat)
+      dist = Float::INFINITY
+      img = nil
+      sequences.each do |s|
+        newImg, newDist = s.closest_img(lonLat)
+        next if newDist > dist
+        dist = newDist
+        img = newImg
+      end
+
+      return img, dist
+    end
+
     def ==(other)
       hash == other.hash
     end
@@ -141,6 +154,12 @@ module Mapillary
 
     def coords
       @coords ||= corrected_data.map { |d| GeoJSON.round_coord(d[:lonLat]) }
+    end
+
+    def closest_img(lonLat)
+      closest, idx = Geo.closest_point_on_line(coords, lonLat)
+      dist = Geo.point2point_dist(lonLat1: closest, lonLat2: lonLat)
+      return image_keys[idx], dist
     end
 
     def details

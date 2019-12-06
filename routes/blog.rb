@@ -5,6 +5,7 @@ require 'rgeo-geojson'
 require_relative 'util'
 require_relative 'rough_date'
 require_relative 'mapillary'
+require_relative 'route'
 
 class Blog
   include Singleton
@@ -51,6 +52,12 @@ class Post
 
   def images
     @raw['images']
+  end
+
+  def image
+    return images.first if images.is_a?(Array)
+    return nil unless images.is_a?(Integer)
+    @image ||= Route.find(images).close_image(center)
   end
 
   def hideFromMap?
@@ -140,6 +147,12 @@ class Post
     minlon, maxlon = coords.map(&:first).minmax
     minlat, maxlat = coords.map(&:last).minmax
     [minlon, minlat, maxlon, maxlat]
+  end
+
+  def center
+    b = bounds
+    return nil unless b
+    [(b[0] + b[2])/2.0, (b[1] + b[3])/2.0]
   end
 
   def linked_text

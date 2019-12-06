@@ -10,8 +10,18 @@ require_relative "svg_pather"
 require_relative "blog"
 require_relative "track"
 
-
 class Route
+  SOURCE = File.expand_path("../routes.json", __dir__)
+  PARSED = JSON.parse(File.read(SOURCE))
+
+  @instances = {}
+
+  def self.find(key)
+    key = key.to_s
+    raise "No route '#{key}'. Only know: #{PARSED.keys.join(', ')}" unless PARSED.has_key?(key)
+    @instances[key] ||= self.new(key, PARSED[key])
+  end
+
   def initialize(name, parsed_json)
     @name = name
     @parsed_json = parsed_json.freeze
@@ -110,6 +120,14 @@ class Route
     @stitched_sequences ||= @parsed_json["images"]&.map do |name, data|
       [name, Mapillary::StitchedSequence.new(data)]
     end.to_h || {}
+  end
+
+  def close_image(lonLat, cutOff: 25.0)
+    stitched_sequences.values.each do |ss|
+      img, dist = ss.closest_img(lonLat)
+      return img if dist <= cutOff
+    end
+    nil
   end
 
   def to_image_export
