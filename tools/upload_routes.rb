@@ -8,6 +8,7 @@
 require 'json'
 require 'digest'
 require 'net/http'
+require 'shellwords'
 
 if ENV['MAPBOX_SECRET_TOKEN'].nil? || ENV['MAPBOX_SECRET_TOKEN'] == ""
   raise "Please specify MAPBOX_SECRET_TOKEN"
@@ -19,7 +20,6 @@ end
 
 HOST = 'https://api.mapbox.com'.freeze
 USERNAME = 'breunigs'.freeze
-DATASET_NAME = 'velo-combi'
 
 def uri(path, args = {})
   args = args.merge({access_token: ENV['MAPBOX_SECRET_TOKEN'], cache_buster: Time.now.to_i})
@@ -68,21 +68,30 @@ end
 dir = File.join(__dir__, "..", "routes", "geo")
 features_file = File.join(dir, "feature_list.geojson")
 areas_file = File.join(dir, "article_areas.geojson")
-out = `tippecanoe --no-progress-indicator -o /tmp/velo-combi.mbtiles -Z 8 -z 16 "#{features_file}" "#{areas_file}" -f`
-raise out unless $?.exitstatus == 0
+markers_file = File.join(dir, "markers.geojson")
 
-aws = get(uri("uploads/v1/#{USERNAME}/credentials"))
-ENV['AWS_ACCESS_KEY_ID'] = aws["accessKeyId"]
-ENV['AWS_SECRET_ACCESS_KEY'] = aws["secretAccessKey"]
-ENV['AWS_SESSION_TOKEN'] = aws["sessionToken"]
+[
+  { name: "velo-combi", files: [features_file, areas_file], options: '-zg --drop-densest-as-needed --extend-zooms-if-still-dropping' },
+  { name: "markers",    files: [markers_file],              options: '-d18 -D18 -m18 -B0 -z8 -Z8'                                    },
+].each do |details|
+  puts "Updating tileset #{details[:name]}"
+  files = details[:files].map { |f| Shellwords.escape(f) }.join(" ")
 
-out = `aws s3 cp /tmp/velo-combi.mbtiles s3://#{aws["bucket"]}/#{aws["key"]} --region us-east-1`
-raise out unless $?.exitstatus == 0
+  out = `tippecanoe --no-progress-indicator -o /tmp/#{details[:name]}.mbtiles #{files} -f #{details[:options]}`
+  raise out unless $?.exitstatus == 0
 
-print "Updating tileset"
-post(uri("uploads/v1/#{USERNAME}"), {
-  "url": "http://#{aws["bucket"]}.s3.amazonaws.com/#{aws["key"]}",
-  "tileset": "breunigs.#{DATASET_NAME}",
-  "name": "#{DATASET_NAME}"
-})
-puts
+  aws = get(uri("uploads/v1/#{USERNAME}/credentials"))
+  ENV['AWS_ACCESS_KEY_ID'] = aws["accessKeyId"]
+  ENV['AWS_SECRET_ACCESS_KEY'] = aws["secretAccessKey"]
+  ENV['AWS_SESSION_TOKEN'] = aws["sessionToken"]
+
+  out = `aws s3 cp /tmp/#{details[:name]}.mbtiles s3://#{aws["bucket"]}/#{aws["key"]} --region us-east-1`
+  raise out unless $?.exitstatus == 0
+
+  post(uri("uploads/v1/#{USERNAME}"), {
+    "url": "http://#{aws["bucket"]}.s3.amazonaws.com/#{aws["key"]}",
+    "tileset": "breunigs.#{details[:name]}",
+    "name": "#{details[:name]}"
+  })
+  puts
+end

@@ -1,6 +1,5 @@
 import mapboxgl from 'mapbox-gl';
 import geocoder from './geocoder';
-import markers from '../routes/geo/markers.json';
 import { readFromHash } from './state';
 
 const hamburgBounds = [8.9236, 53.1336, 10.8897, 53.9682];
@@ -44,32 +43,6 @@ new geocoder(map, mapboxgl.accessToken, hamburgBounds);
 let routeClickListeners = [];
 const addRouteClickListener = (...funcs) => {
   funcs.forEach(f => routeClickListeners.push(f));
-}
-
-const createMarker = async (classes, pos, text, clickHandler) => {
-  let el = document.createElement('div');
-  el.className = classes;
-  el.innerText = text;
-  el.addEventListener("click", (e) => {
-    e.stopPropagation();
-    clickHandler(e)
-  });
-
-  // keep size in sync with base.scss!
-  new mapboxgl.Marker(el, {offset: [0, 5]})
-    .setLngLat(pos)
-    .addTo(map);
-}
-
-const renderIcons = () => {
-  markers.forEach(function(marker) {
-    const [lon, lat, name] = marker;
-    const lngLat = new mapboxgl.LngLat(lon, lat);
-
-    createMarker(`icon icon${name}`, lngLat, name, (e) => {
-      routeClickListeners.forEach((f) => f(name, lngLat));
-    });
-  });
 }
 
 const genDiv = (id) => {
@@ -132,7 +105,7 @@ const moveTo = (lngLat) => {
   }
 }
 
-const routeLayers = ['routes-casing'];
+const routeLayers = ['routes-casing', 'routemarker-circle'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = { layers: routeLayers.concat(articleLayers) };
 const bodyClasses = document.getElementsByTagName('body')[0].classList;
@@ -182,7 +155,6 @@ const handleMapClick = (evt) => {
 map.on('style.load', () => {
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
-  renderIcons();
 });
 
 export { addRouteClickListener, renderIndicator };

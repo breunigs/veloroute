@@ -49,7 +49,16 @@ def build_map_geojsons(routes)
   File.write("geo_tmp/feature_list.geojson", features.to_json)
 
   markers = routes.flat_map(&:named_markers)
-  File.write("geo_tmp/markers.json", markers.to_json)
+  File.write("geo_tmp/markers.geojson", {
+    type: :FeatureCollection,
+    features: markers.map do |lon, lat, name|
+      {
+        type: :Feature,
+        geometry:   { type: :Point, coordinates: [lon, lat] },
+        properties: { name: name, color: Route.find(name).color }
+      }
+    end
+  }.to_json)
 end
 
 def render_abstract_routes(routes)
