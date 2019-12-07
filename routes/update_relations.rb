@@ -43,11 +43,6 @@ end
 def build_map_geojsons(routes)
   collisions = Relation.build_collision_lookup(routes.map(&:relation))
 
-  geojsons = routes.flat_map do |route|
-    route.to_geojson(collisions)
-  end
-  write_with_hash("routes.geojson", GeoJSON.join(geojsons).to_json)
-
   features = routes.flat_map do |route|
     route.to_full_feature_list(collisions)
   end
@@ -209,7 +204,7 @@ routes = routes.map { |route, details| Route.new(route, details) }
 end.each(&:join)
 
 
-preload_html = %|<link rel="preload" href="/routes/geo/#{CONTENT_HASHED_FILENAMES['routes.geojson']}" as="fetch" crossorigin="anonymous">|
+preload_html = ''
 (['quality'] + routes.map(&:name)).each do |name|
   fn = CONTENT_HASHED_FILENAMES["images-#{name}.json"]
   preload_html << only_if_current_route(name, %|<link rel="prefetch" href="/routes/geo/#{fn}">|)
