@@ -451,3 +451,12 @@
 '2019-10-30':
 - https://via-bus.hamburg.de/contentblob/13089482/73fc825f5cd94922edb829c68fcd2ed5/data/verkehrsfuehrungsplaene-max-brauer-abschnitt-juliusleber.pdf
 - https://via-bus.hamburg.de/contentblob/13089490/97abf2d92b2aaecb859447537d388397/data/ausfuehrungsplaene-max-brauer-abschnitt-julis-leber.pdf
+'2019-11-30':
+- https://via-bus.hamburg.de/contentblob/13213584/5049d58015ca6a5f62abf97be865f1fe/data/planunterlagen-zur-ersten-workshop-phase.pdf
+- https://via-bus.hamburg.de/contentblob/13213582/bf99c8c6f8249893e0fab53e2ca8723b/data/anregungen-aus-der-ersten-beteiligungsphase.pdf
+- https://via-bus.hamburg.de/contentblob/13195012/bb0d814e8b8efedc388b6e05b5c10a03/data/2019-11-08-praesentation-fuer-oeffentlichen-workshop.pdf
+- https://via-bus.hamburg.de/contentblob/13195014/f578e2af213e90e5bb5bda3471a2dc41/data/2019-11-07-praesentation-fuer-workshop-gewerbetreibende.pdf
+- https://via-bus.hamburg.de/contentblob/13222544/310a1fd935040b2dc3f7be6fcf8d49b1/data/64-schlussverschickung-doormannsweg.pdf
+- https://via-bus.hamburg.de/contentblob/13222546/af26ff706ee70f457d0c3b48e59a7686/data/65-m20-25-lageplan-doormannsweg.pdf
+- https://via-bus.hamburg.de/contentblob/13222548/72c8801f16a9a32b55cdf2017e807c8d/data/66-m20-25-deckblatt-ausfuehrungsunterlagen-doormannsweg.pdf
+- https://via-bus.hamburg.de/contentblob/13222550/2cf83396459811e2c07dd706d4568ac5/data/67-m20-deckblatt-ausfuehrungsunterlagen-hebebrandstr-ruebenkamp.pdf

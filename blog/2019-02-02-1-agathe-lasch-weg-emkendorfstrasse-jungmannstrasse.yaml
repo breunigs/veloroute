@@ -7,7 +7,6 @@ loc2:
 - 53.55738
 type: intent
 title: Agathe-Lasch-Weg, Emkendorfstraße, Jungmannstraße (Veloroute 1)
-grade: 3
 start: 2020
 area:
 - - 9.896005
@@ -48,22 +47,7 @@ area:
   - 53.553251
 - - 9.896005
   - 53.553366
-images:
-- 9iEs-N7_faz8IPLRcD8K4g
-- XtdU_73px_-5dOkn_r3YyA
-- PMB-o0pDs28CWnIFZ61DZw
-- 6sRElOQu9VaBe34JWXTjvQ
-- 5Fq8UlWesx7ZWOSrtJSPpA
-- DD5k_URrMHXvmwuXtEIZRw
-- L7QsXrQFPWbvwMK4nWQmkQ
-- 9seVOBP-22txY8M5Y-hajQ
-- b6ElwvyArj77K4Srt4rxTQ
-- 9jnPrxO0uDf_36j_I8blHQ
-- o6T-GnT-5Hb8s_VZy8wUYQ
-- lMTXpaPkNmxoQm-Boo9l-A
-- 6gxvMk8ylIiXPlvm9C8msQ
-- BHEdKipX_bvewWeifQMMlg
-- SU9g7LA7zaoB6b-7cw7Erw
+images: 1
 hideFromMap: false
 tags:
 - velo1
