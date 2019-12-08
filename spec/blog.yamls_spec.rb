@@ -101,10 +101,21 @@ end
 RSpec::Matchers.define :have_place_link_start do
   match do |a|
     url = a.attr(:href)
-    url.start_with?(%r{/\d*#}) || url.start_with?("#")
+    url.start_with?(%r{/\d*#}) || url.start_with?(/#\d/)
   end
   failure_message do |a|
     "URL for #{a} seems not right"
+  end
+end
+
+RSpec::Matchers.define :have_route_ref_for_images do
+  match do |a|
+    url = a.attr(:href)
+    has_img_in_hash = url.split('#').last.count('/') == 3
+    has_img_in_hash ? url.start_with?(%r{/\d+#}) : true
+  end
+  failure_message do |a|
+    "URL for #{a} has an image, but no route for it"
   end
 end
 
@@ -154,7 +165,7 @@ describe "blog/*.yaml" do
 
   it "place classes have proper links" do
     placehrefs = links.select { |a| a.classes.include?("place") }
-    expect(placehrefs).to all(have_place_link_start)
+    expect(placehrefs).to all(have_place_link_start).and all(have_route_ref_for_images)
   end
 
   it "uses proper GeoJSON polygons for area" do
