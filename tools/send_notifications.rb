@@ -3,6 +3,7 @@
 Dir.chdir(File.dirname(__FILE__) + "/../routes")
 
 require_relative Dir.pwd+"/rss"
+require_relative Dir.pwd+"/mapillary"
 require "twitter"
 require "open-uri"
 require "pry"
@@ -37,6 +38,11 @@ puts "accidentally double post."
 
 sleep 60
 reject_seen_urls!(posts)
+
+posts.map! do |post|
+  post[:image] = Mapillary.image_url(post[:image])
+  post
+end
 
 def find(lonLat)
   return nil unless lonLat
