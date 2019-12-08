@@ -50,11 +50,7 @@ area:
   - 53.575831
 type: planned-construction
 title: Kreuzung am S-Bahnhof Friedrichsberg (Veloroute 6)
-images:
-- v5vTbdoRNbrnLCjqE7SNFg
-- VrGvHJPFI5vjUbVKz-3ekQ
-- CiLnoL8dfeZZkh3_D-1-yA
-- WsmgvMBRVmR_bxwmIa0uBQ
+images: 6
 hideFromMap: false
 tags:
 - velo6
