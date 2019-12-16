@@ -464,3 +464,10 @@
 - https://via-bus.hamburg.de/contentblob/13271516/7db3f26060fd9d585d5fa1791f5973b6/data/rueckmeldungen-im-oeffentlichen-workshop-zu-den-vorgestellten-varianten.pdf
 - https://via-bus.hamburg.de/contentblob/13271514/0f8681eea8e392210f7453ad8cf4f1b8/data/protokoll-erster-oeffentlicher-workshop-08-11-2019.pdf
 - https://via-bus.hamburg.de/contentblob/13271512/9f18fdd21725671313dee50d412c8d9c/data/protokoll-veranstaltung-fuer-gewerbetreibende-07-11-2019.pdf
+'2019-12-12':
+- https://via-bus.hamburg.de/contentblob/13327246/1d10bff350978f9d85e86d279422e910/data/10-mb2-11602-s-ottensen-va-2019-0902-geschwaerzt.pdf
+- https://via-bus.hamburg.de/contentblob/13327396/82799a247ab86f771bb21f4b5d731b3f/data/54-mb3-amsinckstrasse-vermessung.pdf
+- https://via-bus.hamburg.de/contentblob/13327394/00b86e87d4c9ea4af8d6db65cadae8c0/data/53-mb3-amsinckstrasse-verkehrszahlen.pdf
+- https://via-bus.hamburg.de/contentblob/13327364/dee080d13f34a481f0bf46cdfcf41fc8/data/13-mb2-s-ottensen-verkehrszahlen.pdf
+- https://via-bus.hamburg.de/contentblob/13327360/84619caaccceed48b5e099ffaaacbe58/data/11-mb2-s-ottensen-1-verschickung.pdf
+- https://via-bus.hamburg.de/contentblob/13327362/4e8565c2073fa27d35a9375d0b3eb3ab/data/12-mb2-s-ottensen-schlussverschickung.pdf

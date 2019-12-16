@@ -195,3 +195,6 @@
 '2019-11-30':
 - "/contentblob/13179666/0a401f9c53116c4fd4e981995ad058cf/data/veloroute-13-sievekingsallee-hirschgraben-jordanstrasse-abgestimmte-planung-bericht.pdf"
 - "/contentblob/13179668/ff966c3c004a89b991e6f44e974871f7/data/veloroute-13-sievekingsallee-hirschgraben-jordanstrasse-abgestimmte-planung-plan.pdf"
+'2019-12-16':
+- "/contentblob/13350118/afeeac1742127e46a8577060650d0aca/data/saarlandstrasse-freilichtbuehne-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13350120/34cdb66cafbee27bb0c2d2a0bbd9efc5/data/saarlandstrasse-freilichtbuehne-abgestimmte-planung-plan.pdf"

@@ -465,3 +465,7 @@
 '2019-12-08':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008955
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008951
+'2019-12-09':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009541
+'2019-12-11':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009031
