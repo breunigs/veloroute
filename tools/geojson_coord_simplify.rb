@@ -30,10 +30,13 @@ as_polygon = {
   }
 }.to_json
 
+
 GEOJSON_REWIND_PATH = File.expand_path(File.join(__dir__, "../node_modules/.bin/geojson-rewind"))
 Open3.popen3(GEOJSON_REWIND_PATH) do |stdin, stdout, stderr, wait_thr|
   stdin.write(as_polygon)
   stdin.close
+
+  warn stderr.read.strip
 
   json = stdout.read.strip
   coords = JSON.parse(json).dig("geometry", "coordinates", 0)
