@@ -198,3 +198,6 @@
 '2019-12-16':
 - "/contentblob/13350118/afeeac1742127e46a8577060650d0aca/data/saarlandstrasse-freilichtbuehne-abgestimmte-planung-bericht.pdf"
 - "/contentblob/13350120/34cdb66cafbee27bb0c2d2a0bbd9efc5/data/saarlandstrasse-freilichtbuehne-abgestimmte-planung-plan.pdf"
+'2019-12-18':
+- "/contentblob/13359160/c4207d47fd897ce79cf2b9a5e5ea71c4/data/berlinertordammbruecke-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/13359162/1ab3707d2a07e65e51bcd7b1e20dcc28/data/berlinertordammbruecke-abstimmungsunterlage-plan.pdf"
