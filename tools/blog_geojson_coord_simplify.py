@@ -44,8 +44,6 @@ with atomic_write(sys.argv[1], overwrite=True) as f:
 
 print("Done!")
 
-# print(parsed['area']['features'])
+# print(p.stdout.strip())
+# print(parsed['area'])
 
-# code['name']['given'] = 'Astarte'  # Oh no you didn't.
-
-# print(ruamel.yaml.dump(code, Dumper=ruamel.yaml.RoundTripDumper), end='')
