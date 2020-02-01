@@ -1,72 +1,17 @@
----
-loc:
-- 10.07011
-- 53.61494
-loc2:
-- 10.07653
-- 53.61963
-grade: 3
+area: [[10.06838, 53.615213], [10.071555, 53.614443], [10.071909, 53.614404], [10.072403, 53.615722], [10.072703, 53.617007], [10.072961, 53.617542], [10.074098, 53.618522], [10.075343, 53.619267], [10.076029, 53.619502], [10.080106, 53.618929], [10.080428, 53.61912], [10.079162, 53.619375], [10.076855, 53.61975], [10.075879, 53.619782], [10.073766, 53.618821], [10.073165, 53.618159], [10.072296, 53.617217], [10.071995, 53.615817], [10.071459, 53.614774], [10.068744, 53.615455], [10.06838, 53.615213]]
 title: Leeschenblick und Fabriciusstraße (Veloroute 5)
-images:
-- x_ixxcpCkv4-k3KRC8ZAmw
-- B0OUQEd7T3ujwiMPq6Cy6g
-- 8Mhqsx539E4D9D4YhT-lTg
-- PX6nHn_nIW3DtinjEh7ssQ
-- gRsmGhgyPwgk5hIkS7oi2Q
-- qlkEnau_bn7IRjI-5qxTqA
-- cu200mDbMi9yQnKYoLtMgw
-- PMx6fAj2Mw4O3UFt-SUmaQ
-- sRGoLrC8i7jxH4LT2uJduA
-- '08HpSVCfEzNNfYdj1_N6xA'
-- Y0KeENSoqZzVxt-JfI_03Q
-- 6gbamh0L4MELIGp_whGshA
-- DMf-A53OTh5tjfkhgVFo8Q
-- JB5voG2USm6YJnhJy5y7Jw
-- 2DobUdMh1dyazIPoBQ-OWA
-- ubgaK2fs59-RhvmZeoSDEw
-- "-txDpdda9MTWFrapCb1NuQ"
-- WcCx5yYx9fHifCZUpULD2w
-- VjVs6QzOKofm5zaCEdFlgA
+images: 5
 type: planned-construction
-start: ASAP, in Abstimmung mit Neubau „Am Dorfgraben“
+start: 2020Q2
 hideFromMap: false
 tags:
 - velo5
-text: '<p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße
-  <a>Am Dorfgraben</a> geführt. Der Kreisel soll wie geplant umgesetzt werden, ebenso
-  werden sich für den <a>Leeschenblick</a> keine Planänderungen ergeben. Ob die Verbesserungen
-  in der <a>Fabriciusstraße</a> noch umgesetzt werden ist mir derzeit nicht bekannt.
-  Für Details siehe bitte <a href="/blog/2018-10-25-5-am-dorfgraben">Neue Führung durch „Am
-  Dorfgraben“</a>.</p> <p>Im momentanen Ausbauzustand sind <a>Fabriciusstraße</a>
-  und <a>Leeschenblick</a> ein gemischtes Erlebnis. Teilweise sind Radwege oder Radfahrstreifen
-  vorhanden, aber diese liegen ungünstig oder sind nicht durchgehend und enden stellenweise
-  ohne ordentliche Aufleitung auf die Straße. Die vergleichsweise geringe Verkehrsdichte
-  erlaubt trotz dieser Schwachstellen eine angenehme Fahrt.</p> <p>In der vorliegenden
-  Planung werden die Radfahrstreifen im <a>Leeschenblick</a> durch Schutzstreifen
-  ersetzt. Auch werden die aktuell illegalen Parkplätze in legale Stellplätze umgewandelt,
-  an denen der Schutzstreifen links vorbeiführt. Das sollte das „Tunnelgefühl“ beheben,
-  das man hier durch regelmäßig abgestelle LKW stadteinwärts hat.</p> <p>An der künftigen
-  Kreuzung mit der <a>Fabriciusstraße</a> und der neuen Straße <a>Am Dorfgraben</a>
-  wird ein Kreisverkehr gebaut der die bisherige Ampel an der Einmündung ersetzt.</p>
-  <p>Bis zum <a>Bräsigweg</a> bleibt es stadteinwärts beim Fahrradweg, der immerhin
-  erneuert und teilweise verbreitert wird. Leider erreicht er nicht durchgängig die
-  Mindestbreite und wird um die <a>Bramfelder Redder</a> nur mit 1,75m ausgeführt.
-  Vor dem Kreisel und der Bushaltestelle wird der Radverkehr gerade auf die Straße
-  geleitet. In der Gegenrichtung gibt es einen 1,5m schmalen Schutzstreifen, außer
-  einem kurzen Stück das für den Lieferverkehr anliegender Geschäfte vorgesehen wird.</p>
-  <p>Ab dem <a>Bräsigweg</a> wird der vorhandene Radweg stadteinwärts komplett zurückgebaut
-  und stattdessen der Radverkehr ausschließlich im Mischverkehr geführt. Die zur Verkehrsberuhigung
-  aufgestellten Kübel werden durch bauliche „Nasen“ ersetzt.</p> <p>Wegweisenden Charakter
-  kann man der Planung nicht ausstellen. Der gepflasterte Radweg in der <a>Fabriciusstraße</a>
-  ist heute schon schlechter zu befahren als die deutlich älter wirkenden, aber asphalierten
-  Radfahrstreifen im <a>Leeschenblick</a>. In ein paar Jahren dürfte der neue Radweg
-  ein ähnliches Schicksal erfahren. Der 1,5m breite Schutzstreifen stadtauswärts dürfte
-  zwar seinen Zweck erfüllen, aber sicher keine Glücksgefühle auslösen und ggf. KFZ
-  zu Überholmanövern ohne Spurwechseln animieren. Die wesentliche Verbesserung dürfte
-  die Neuordnung der KFZ-Parkplätze sein, um die der Radverkehr jetzt halbwegs sicher
-  geführt wird. Das diese Hilfestellung, wie sicher und legal geparkt werden kann,
-  ausschließlich aus den Radverkehrsmitteln finanziert wird zeigt das es noch ein
-  weiter Weg ist zum fahrradfreundlichen Hamburg.</p> <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht
-  zur Umgestaltung mit Lageplänen</a></p>
-
-'
+updated: 2020-02-01
+text: >
+  <p>
+    <strong>Änderungen Februar 2020:</strong> Der <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011620" target="_blank">ADFC hatte sich beschwert</a>, das im <a href="/5#17.5/53.615191/10.069934/V3x5YRbpsIUeQEA1qB2SLQ" class="place">Leeschenblick</a> eine unsichere Lösung für den Radverkehr gewählt wurde. Hintergrund für diese Lösung war, das sich die Stadt nicht in der Lage sah illegales Parken zu unterbinden. Stattdessen wird nun dem Vorschlag des ADFC gefolgt und rund 2,5m breite Radwege eingerichtet, die durch eine Doppellinie (und ggf. Poller, sollten weiterhin Falschparker auftreten) vom KFZ-Verkehr abgetrennt sind. Die Autospuren fallen deutlich schmaler aus als bisher. </p> <p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße <a>Am Dorfgraben</a> geführt. Der Kreisel soll wie geplant umgesetzt werden, ebenso werden sich für den <a>Leeschenblick</a> keine Planänderungen ergeben. Ob die Verbesserungen in der <a>Fabriciusstraße</a> noch umgesetzt werden ist mir derzeit nicht bekannt. Für Details siehe bitte <a href="/blog/2018-10-25-5-am-dorfgraben">Neue Führung durch „Am Dorfgraben“</a>.
+    </p>
+    <p>Im momentanen Ausbauzustand sind <a>Fabriciusstraße</a> und <a>Leeschenblick</a> ein gemischtes Erlebnis. Teilweise sind Radwege oder Radfahrstreifen vorhanden, aber diese liegen ungünstig oder sind nicht durchgehend und enden stellenweise ohne ordentliche Aufleitung auf die Straße. Die vergleichsweise geringe Verkehrsdichte erlaubt trotz dieser Schwachstellen eine angenehme Fahrt.
+    </p>
+    <p>In der vorliegenden Planung werden die Radfahrstreifen im <a>Leeschenblick</a> durch Schutzstreifen ersetzt. Auch werden die aktuell illegalen Parkplätze in legale Stellplätze umgewandelt, an denen der Schutzstreifen links vorbeiführt. Das sollte das „Tunnelgefühl“ beheben, das man hier durch regelmäßig abgestelle LKW stadteinwärts hat.</p> <p>An der künftigen Kreuzung mit der <a>Fabriciusstraße</a> und der neuen Straße <a>Am Dorfgraben</a> wird ein Kreisverkehr gebaut der die bisherige Ampel an der Einmündung ersetzt.</p> <p>Bis zum <a>Bräsigweg</a> bleibt es stadteinwärts beim Fahrradweg, der immerhin erneuert und teilweise verbreitert wird. Leider erreicht er nicht durchgängig die Mindestbreite und wird um die <a>Bramfelder Redder</a> nur mit 1,75m ausgeführt. Vor dem Kreisel und der Bushaltestelle wird der Radverkehr gerade auf die Straße geleitet. In der Gegenrichtung gibt es einen 1,5m schmalen Schutzstreifen, außer einem kurzen Stück das für den Lieferverkehr anliegender Geschäfte vorgesehen wird.</p> <p>Ab dem <a>Bräsigweg</a> wird der vorhandene Radweg stadteinwärts komplett zurückgebaut und stattdessen der Radverkehr ausschließlich im Mischverkehr geführt. Die zur Verkehrsberuhigung aufgestellten Kübel werden durch bauliche „Nasen“ ersetzt.</p> <p>Wegweisenden Charakter kann man der Planung nicht ausstellen. Der gepflasterte Radweg in der <a>Fabriciusstraße</a> ist heute schon schlechter zu befahren als die deutlich älter wirkenden, aber asphalierten Radfahrstreifen im <a>Leeschenblick</a>. In ein paar Jahren dürfte der neue Radweg ein ähnliches Schicksal erfahren. Der 1,5m breite Schutzstreifen stadtauswärts dürfte zwar seinen Zweck erfüllen, aber sicher keine Glücksgefühle auslösen und ggf. KFZ zu Überholmanövern ohne Spurwechseln animieren. Die wesentliche Verbesserung dürfte die Neuordnung der KFZ-Parkplätze sein, um die der Radverkehr jetzt halbwegs sicher geführt wird. Das diese Hilfestellung, wie sicher und legal geparkt werden kann, ausschließlich aus den Radverkehrsmitteln finanziert wird zeigt das es noch ein weiter Weg ist zum fahrradfreundlichen Hamburg.</p> <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit Lageplänen</a>
+    </p>
