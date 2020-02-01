@@ -16,8 +16,6 @@ bundle exec ./routes/update_relations.rb
 
 # upload to mapbox
 ./tools/upload_routes.rb
-echo "Sleeping 5 minutes to give Mapbox a chance to pick up new data"
-sleep 300
 
 # render & apply
 systemctl reload nginx
