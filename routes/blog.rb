@@ -58,6 +58,7 @@ class Post
     return images.first if images.is_a?(Array)
     return nil unless images.is_a?(Integer)
     @image ||= Route.find(images).close_image(center)
+    @image ||= Route.find(images).close_image(center, cutOff: 200)
   end
 
   def hideFromMap?

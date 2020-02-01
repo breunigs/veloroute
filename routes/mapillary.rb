@@ -28,6 +28,7 @@ module Mapillary
   end
 
   def self.image_url(img_key)
+    raise "No Image Key given" if img_key.nil? || img_key.empty?
     "https://d1cuyjsrcm0gby.cloudfront.net/#{img_key}/thumb-2048.jpg"
   end
 

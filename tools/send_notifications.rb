@@ -102,9 +102,16 @@ posts.each do |post|
   }.compact
 
   if post[:image]
+    begin
+      image = open(post[:image])
+    rescue => e
+      warn "Failed to load image #{post[:image]}: #{e}"
+      require 'pry'; binding.pry
+    end
+
     @client.update_with_media(
       tweet,
-      open(post[:image]),
+      image,
       **extras
     )
   else
