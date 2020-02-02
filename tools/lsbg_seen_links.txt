@@ -201,3 +201,18 @@
 '2019-12-18':
 - "/contentblob/13359160/c4207d47fd897ce79cf2b9a5e5ea71c4/data/berlinertordammbruecke-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/13359162/1ab3707d2a07e65e51bcd7b1e20dcc28/data/berlinertordammbruecke-abstimmungsunterlage-plan.pdf"
+'2020-01-06':
+- "/contentblob/13417120/6882f7991d70d679270b67540d32214a/data/elbchaussee-manteuffelstrasse-bis-parkstrasse-abstimmungsunterlage-bericht-2-verschickung).pdf"
+- "/contentblob/13417122/ecd6a77d8ed42afc297c520096ef70c1/data/elbchaussee-manteuffelstrasse-bis-jenischpark-abstimmungsunterlage-plan-2-verschickung).pdf"
+- "/contentblob/13417124/7e93aee95fe486cede99817305f04385/data/elbchaussee-jenischpark-bis-parkstrasse-abstimmungsunterlage-plaene-2-verschickung).pdf"
+'2020-01-12':
+- "/contentblob/13449088/a2051d727bbceae7c810f1691d59ae38/data/alster-fahrradachsen-abschnitt-2b-von-bellevue-bis-schwanenwik-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13449092/cd238350c015020319a8455461505e58/data/alster-fahrradachsen-abschnitt-2b-von-bellevue-bis-schwanenwik-abgestimmte-planung-plaene.pdf"
+- "/contentblob/13417120/9ef5997ec9e9066f765fc8eb06a858b0/data/elbchaussee-manteuffelstrasse-bis-parkstrasse-abstimmungsunterlage-bericht-2-verschickung).pdf"
+'2020-02-01':
+- "/contentblob/13449088/1d1f84ab93702ea96f59757303d8fbde/data/alster-fahrradachsen-abschnitt-2b-von-bellevue-bis-schwanenwik-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13449092/50307bd910ac8667e671658e583c4aab/data/alster-fahrradachsen-abschnitt-2b-von-bellevue-bis-schwanenwik-abgestimmte-planung-plaene.pdf"
+- "/contentblob/13417122/42cf7ad776ef46565a2ec059883856c2/data/elbchaussee-manteuffelstrasse-bis-jenischpark-abstimmungsunterlage-plan-2-verschickung).pdf"
+- "/contentblob/12777430/2b765c0e5762d7e19fcbce75bd0cc5ee/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/13462690/3e34c21f967099114fd6457590d0a80f/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/13462694/13418947080d815ffe478c2cb0ab8db4/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-plan.pdf"
