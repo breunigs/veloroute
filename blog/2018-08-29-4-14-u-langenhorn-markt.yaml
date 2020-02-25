@@ -1,63 +1,32 @@
----
-loc:
-- 10.0177872
-- 53.649394
-grade: 3
 title: Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)
-start: 2019Q1
-area:
-- - 10.017916
-  - 53.650717
-- - 10.017884
-  - 53.650666
-- - 10.017696
-  - 53.650304
-- - 10.01768
-  - 53.649623
-- - 10.017621
-  - 53.649525
-- - 10.017412
-  - 53.649483
-- - 10.017412
-  - 53.649356
-- - 10.016371
-  - 53.649388
-- - 10.016366
-  - 53.649331
-- - 10.017219
-  - 53.649312
-- - 10.018216
-  - 53.649232
-- - 10.018227
-  - 53.649404
-- - 10.018978
-  - 53.649369
-- - 10.019021
-  - 53.649499
-- - 10.018168
-  - 53.649553
-- - 10.017836
-  - 53.649528
-- - 10.017846
-  - 53.6503
-- - 10.018007
-  - 53.650704
-- - 10.017916
-  - 53.650717
+start: 2020-09
+end: 2021Q4
+area: [[10.017868, 53.650848], [10.017836, 53.650794], [10.01767, 53.6504], [10.017638, 53.649646], [10.017407, 53.649516], [10.017375, 53.649312], [10.016297, 53.649347], [10.016302, 53.649214], [10.018265, 53.649229], [10.018281, 53.649404], [10.018995, 53.64936], [10.019016, 53.649506], [10.018314, 53.649557], [10.018137, 53.649748], [10.018163, 53.649964], [10.018373, 53.650775], [10.017868, 53.650848]]
 images:
 - xCMDA_6f3-uBpZbjFgPnDw
 - QO1hSRRQVKrUpfpPyGIvXw
 type: planned-construction
 hideFromMap: false
+updated: 2020-02-25
 tags:
 - velo4
 - velo14
-text: <p>Das die Führung der Veloroute 4 in Südrichtung eher umständlich ist, braucht
-  nicht erwähnt zu werden. Aber auch die sonstigen Querungen zeichnen sich durch zu
-  schmale Wege, enge Kurven und Wegkonflikte mit Zufußgehenden bzw. Wartenden an den
-  Bushaltestellen. Dies gilt sowohl für Route 4 als auch für Route 14.</p> <p>Diese
-  Unzulänglichkeiten wurden bei der Umgestaltung dieses Knotenpunkts aber erkannt
-  und in der Planung behoben – zumindest soweit ich dies als Laie erkennen kann. Baubeginn
-  soll im 1. Quartal 2019 liegen. Weitere Infos:</p> <ul> <li> <a href="https://lsbg.hamburg.de/contentblob/11228162/1056b9cb4d11859c4f41a8974a01a204/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-plan.pdf">vorläufiger
-  Lageplan</a> </li> <li> <a href="https://lsbg.hamburg.de/contentblob/11228160/da357f8f8e702c19536f531d8ffad004/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht
-  zur Umgestaltung</a> </li> </ul>
+text: >
+  <p>Die Kreuzung im aktuellen Zustand ist für den Rad- und Fußverkehr eine Zumutung. Die Wege sind in einem schlechten Zustand und viel zu schmal, um diese sicher befahren zu können. Zudem werden sie auch durch die stark frequentierten Bushaltestellen geführt, wo sich Zufußgehende und Radfahrende zwangsläufig in den Weg kommen. Zudem ist die Führung für Radfahrten Richtung Süden indirekt und die Ampeln nicht aufeinander abgestimmt. Kurzum: die Kreuzung ist vor allem für den Autoverkehr da.</p>
+
+  <p>In der nun vorliegenden, abgeschlossenen Planung werden immerhin einige der Problemstellen verbessert.</p>
+
+   <p>Entlang der <a href="/14#18/53.649483/10.017327/Av3gVhW6qN1YFjKfiPniMg" class="place">Veloroute 14 Richtung Osten</a>  werden Fuß- und Radweg getauscht, sodass man nun hinter der Bushaltestelle vorbeifahren kann. Es ist ein ähnlicher Aufbau wie an der <a href="/8#18/53.555666/10.041479/6YtPXXgcqo3bFVkxz45XRA" class="place">Burgstraße</a> vorgesehen, damit der Radweg frei bleibt. Der Ein-Richtungs-Radweg soll hier 2m breit werden. Im weiteren Verlauf verschmälert er sich auf 1,6m um an die <a href="/blog/2019-01-09-14-gehlengraben#18/53.649374/10.018047/IFmcVENOflTG6pYFfRWU-g">Planung Gehlengraben</a> anzuschließen.</p>
+
+  <p>Kommt man <a href="/4#18/53.650003/10.017585/arneyR0HYBDdEcD5xxONhA" class="place">aus Richtung Norden</a>  wird man künftig auf einem Radfahrstreifen links an der Bushaltestelle und den wartenden Bussen vorbeigeführt. Eine direkte Querung Richtung Süden wurde verworfen um weiterhin den Autoverkehr bevorzugen zu können. Stattdessen muss man einmal Slalom um den Ampelmast fahren um parallel zur Fußfurt die Straßenseite wechseln zu können. Diese Führung ist sehr unkomfortabel und es ist naheliegend, das bei Grün Radfahrende illegal über die Fußfurt abkürzen. Immerhin verspricht die Planung die Ampelschaltung leicht zu verbessern, sodass der Radverkehr „nahezu in einem Zug Richtung Süden fahren“ kann. Im Vergleich zu heute sind die Wege breiter und die Kurvenradien etwas besser, weil die Nord/Süd Querung mehr Richtung Kreuzung gerückt wird. Das verbessert auch die Weiterfahrt in den <a href="/4#18/53.649233/10.017831/B8ymtE53Lz4SAvOfrQcNrA" class="place">Ohlmoorgraben</a>.</p>
+
+  <p>Die Radwege <a href="/14#18/53.64981/10.018815/ybWj4mhG_5e6DjECM0EbVQ" class="place">ab Neukoppel im Gehlengraben</a> und <a href="/4#18/53.649901/10.017855/jWbW_aXt8njjglWNqA1GKQ" class="place">Tangstedter Landstraße Richtung Norden</a> werden auf 2m verbreitert. Ungefähr ab Höhe des KFZ-Linksabbiegers Richtung Parkhaus geht dieser in einen Radfahrstreifen über. Befremdlich wirkt, das der Radverkehr hier an <a href="/4#18/53.650608/10.017923/siVPxuMTmm5kSxwSnsbOJw" class="place">der KFZ-Ampel</a> warten soll, wenn das Parkhaus grün hat. Mit Wegkonflikten zwischen Radfahrenden ist hier kaum zu rechnen, weswegen eine „Rad Dauergrün“ Ampel Sinn ergeben könnte.</p>
+
+  <p>Der Umbau der Kreuzung wurde klar vom Auto aus gedacht und die Nord/Süd Querung bleibt unkomfortabel. Gut ist hingegen das entfädeln von Fuß und Rad an den Bushaltestellen, was künftig dann nur noch an den Warteflächen vor den Ampeln ein Problem werden könnte.</p>
+
+  <p>Geplant ist ab September 2020 für ungefähr ein Jahr zu bauen. Beim ersten Entwurf war noch ein Baubeginn Anfang 2019 angedacht.</p>
+
+  <p>
+    <a href="https://lsbg.hamburg.de/contentblob/13628332/217f8e1ec509c3c0c75ef499ae3b3df9/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</a><br/>
+    <a href="https://lsbg.hamburg.de/contentblob/11228162/1056b9cb4d11859c4f41a8974a01a204/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-plan.pdf">Lageplan</a>
+  </p>
