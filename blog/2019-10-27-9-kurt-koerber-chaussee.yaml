@@ -28,7 +28,7 @@ area:
 - - 10.187126
   - 53.490529
 grade: 3
-type: planned-construction
+type: construction
 images:
 - zTFccJwqBVa7WsvQKK9naQ
 - bVvbSeXiiTT1Wl8pfsOGVQ
@@ -36,11 +36,18 @@ images:
 - WIpKNmLJTgPMJ9qIIB-s1g
 - mXHdLyIs-9CMMjbrFEat7g
 title: Kurt-A.-Körber Chaussee (Veloroute 9)
-start: 2019
+start: 2019-12
+end: 2020-10
 hideFromMap: false
 tags:
 - velo9
-text: '<p>Die Radwege sind hier als Hochbordradweg ausgeführt, die meist rechts der
+text: >
+  <p>
+    Stand Februar 2020: Der Umbau hat begonnen.
+    <a href="https://www.hamburg.de/planen-bauen-wohnen/13341442/umbau-kurt-a-koerber-chaussee/" target="_blank">Infoseite der Stadt</a>
+  </p>
+
+  <p>Die Radwege sind hier als Hochbordradweg ausgeführt, die meist rechts der
   Baumreihe bzw. KFZ-Stellplätzen verläuft. Nur an wenigen Stellen wird der Radweg
   links an den Bäumen vorbeigeführt. Da man die Bäume erhalten möchte, fällt die Option
   für Radfahrstreifen auf der Straße weg – der Platz hätte lediglich für einen einseitigen
@@ -52,7 +59,7 @@ text: '<p>Die Radwege sind hier als Hochbordradweg ausgeführt, die meist rechts
   zum Fußweg wären wünschenswert, ebenso Sicherheitsabstand zu parkenden Autos um
   vor unachtsam geöffneten Türen geschützt zu sein. Dafür wäre aber eine Erneuerung
   auf gesamter Länge notwendig und die Beschreibung klingt nicht so, als wäre das
-  angedacht.</p> <p><a href="https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1004268">Quelle:
-  Sitzungsdienst Bergedorf</a></p>
+  angedacht.</p>
 
-'
+  <p><a href="https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1004268">Quelle:
+  Sitzungsdienst Bergedorf</a></p>
