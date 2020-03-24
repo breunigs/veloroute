@@ -3,8 +3,8 @@ loc:
 - 10.1212
 - 53.5786
 grade: 1
-start: 2019
-end: 2020
+start: 2020-03
+end: 2020-12
 images:
 - ps5g0Tk2M2RQRNSIE-zCww
 - PW6s3Y4L6Qo3L1CV9553gA
@@ -22,7 +22,7 @@ images:
 - PfikrOSvzhJUHdyzeRwFyA
 - dQu5mUh5wNIsBXAr0YjXsg
 - pJRkEUgYYoDz25Gqx-66MA
-type: planned-construction
+type: construction
 title: Kuehnstraße (zw. Jenfelder Straße und Jenfelder Allee, Veloroute 7, Abschnitt
   W24)
 hideFromMap: false

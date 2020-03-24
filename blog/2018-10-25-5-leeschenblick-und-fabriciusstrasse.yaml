@@ -2,7 +2,8 @@ area: [[10.06838, 53.615213], [10.071555, 53.614443], [10.071909, 53.614404], [1
 title: Leeschenblick und Fabriciusstraße (Veloroute 5)
 images: 5
 type: planned-construction
-start: 2020Q2
+start: 2020-04
+end: 2020-12
 hideFromMap: false
 tags:
 - velo5
