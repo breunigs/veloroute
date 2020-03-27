@@ -1,26 +1,27 @@
----
 loc:
 - 9.9974312
 - 53.5618547
 grade: 2
 title: Radweg am Alsterufer (Veloroute 4)
 type: planned-construction
-images:
-- VPpu2II1l1pVfCmb_xHNwA
-- Br7ein7urhbqOqgM5rzYIg
-- U-obi-bmiNYGeTET0hHuMg
-- d6oNNhf81hWgmge_5NCtBw
-- R1Pv3cRZTMXTx0YpwIHJzg
+images: 4
 hideFromMap: false
+start: 2020Q3
+updated: 2020-03-27
+area: [[9.995306, 53.559185], [9.995386, 53.558943], [9.995574, 53.558901], [9.995885, 53.559137], [9.996496, 53.560032], [9.997087, 53.560858], [9.997365, 53.561211], [9.997585, 53.561594], [9.997923, 53.562451], [9.998068, 53.563174], [9.998406, 53.563814], [9.99905, 53.56448], [9.9989, 53.564601], [9.99846, 53.564432], [9.998165, 53.564289], [9.997714, 53.563614], [9.99758, 53.563158], [9.997537, 53.563053], [9.997864, 53.562996], [9.997585, 53.562065], [9.997221, 53.561253], [9.996813, 53.561336], [9.99648, 53.560695], [9.995826, 53.559679], [9.995622, 53.559335], [9.995429, 53.55922], [9.995306, 53.559185]]
 tags:
 - velo4
-text: <p>Im Wesentlichen soll hier die Fahrradstraße fortgeführt werden – bis auf
-  Detailunterschiede sähe es dann hier genauso aus wie am Harvestehuder Weg. Die Kreuzungen
-  ab der Kennedybrücke sind nicht Teil dieser Planungen, sodass dort nur eine Aufleitung
-  auf den gepflasterten Nebenweg erfolgt, für alle die nicht auf der normalen Straße
-  weiterfahren wollen.</p> <p>Zuletzt herrschte Unklarheit ob und wann die amerikanische
-  Botschaft umzieht. Solange dies nicht passiert, liegen die Pläne wohl vorerst auf
-  Eis. Weitere Infos:</p> <ul> <li> <a href="https://lsbg.hamburg.de/contentblob/8914482/c03892717459b69abd2f37c1e31d7fd3/data/alster-fahrradachsen-alsterufer-von-alte-rabenstrasse-bis-alsterglacis-abgestimmte-planung-plaene.pdf">vorläufiger
-  Lageplan</a> </li> <li> <a href="https://lsbg.hamburg.de/contentblob/8914480/fee50006c001fef06424d6c9117f4db4/data/alster-fahrradachsen-alsterufer-von-alte-rabenstrasse-bis-alsterglacis-abgestimmte-planung-bericht.pdf">Erläuterungsbericht
-  zur Umgestaltung</a> </li> <li> <a href="https://www.abendblatt.de/hamburg/eimsbuettel/article215036561/Umzug-des-US-Konsulats-zieht-sich-und-wird-zum-Problem.html"
-  rel="nofollow">Zeitungsartikel vom 07.08.2018</a> </li> </ul>
+text: >
+  <p>Vor einigen Jahren wollte das US-Konsulat noch umziehen, aber das wurde auf unbestimmte Zeit verschoben. Daher hat man die Pläne nun angepasst, um die Situation für den Radverkehr trotz des eingeschränkten Platzes vor dem Konsulat zu verbessern.</p>
+  <p><a href="/4#16.31/53.56365/9.998439/S9LorwNDLHsVEMYmu2mPFQ" class="place">Von Norden kommend</a> wird die Fahrradstraße bis zur <a href="/4#16.31/53.56365/9.998439/GbixgwPrBrz9FXLXMJg7Tg" class="place">Absperrung am Konsulat</a> im Wesentlichen genauso fortgesetzt. Das heißt 5,5m breit und freie Sicht auf die Alster. Parkplätze gibt es nur zur Gebäudeseite hin. Schikanen, Poller und andere Hindernisse sind hier nicht geplant.</p>
+  <p>Vor dem Konsulat schwenkt die Fahrradstraße ab und wird auf 3m verschmälert. Der Fußweg daneben bleibt mit 4m ungefähr so breit wie heute. KFZ können diese Engstelle wie bisher auch weiterhin nicht befahren. Die Poller bleiben, aber der Radweg wird so geplant, das sie möglichst wenig stören.</p>
+  <p>Nach dem Konsulat gibt es wieder die gewohnten 5,50m Breite, allerdings hat man sich hier für Parkplätze auf beiden Seiten entschieden. Begründet wird dies mit Parkplatzerhalt und da die Ruderclubs die Sicht auf die Alster bereits teilweise versperren.</p>
+  <p>An der <a href="/4#16.4/53.559231/9.995508/fGPLQREX0Objuk1u2oDUNw" class="place">Alsterterrasse</a> endet die Fahrradstraße, wobei der Radverkehr hier trotzdem Vorfahrt eingeräumt bekommen soll. Im Anschluss wird provisorisch an die vorhandenen Radwege angeschlossen – der Vollumbau soll während der <a href="/blog/2019-04-10-4-kreuzung-neuer-jungfernstieg">Umgestaltung der Kreuzung</a> erfolgen. Auf <a href="/4#16.31/53.558453/9.99479/2Yh1lHg30lS1LydG2qJVRQ" class="place">Höhe der Kurve</a> wird durch eine Querungshilfe und kurzes Radweg-Verbindungsstück die Weiterfahrt über die Kennedybrücke ermöglicht.</p>
+  <p>Man merkt, das Hamburg die westliche Alster-Fahrradachse zum Aushängeschild machen möchte. Klar, die Engstelle vor dem Konsulat ist ärglich, aber der Stadt nicht vorzuwerfen. Ansonsten muss man Mängel schon sehr genau suchen – etwa sind die Längsparkplätze im südlichen Teil ohne Sicherheitsabstände geplant, was beim Unachtsamen öffnen von Autotüren ein Problem werden kann. Ansonsten stimmt die Planung aber.
+  </p>
+  <p>Aktuell geht man von einer Umsetzung ab Mitte 2020 aus.
+
+  <ul>
+    <li><a href="https://lsbg.hamburg.de/contentblob/13755304/c54a12df525b7e9134e76fd25b14b2a3/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-planung-plan.pdf">Lageplan</a></li>
+    <li><a href="https://lsbg.hamburg.de/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a></li>
+  </ul>
