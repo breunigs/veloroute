@@ -1,0 +1,155 @@
+meta {
+  title: "Veloroute.Hamburg";
+}
+
+canvas {
+  default-points: false;
+  fill-color: #efe9e1;
+}
+
+node|z16- {
+  symbol-size:2;
+  symbol-shape: square;
+  symbol-stroke-color: #333;
+  symbol-fill-color: #ccc;
+}
+
+way {
+  color: #ff00ee;
+  width: 3;
+  casing-width: 1;
+  casing-color: white;
+  opacity: 1;
+  text-halo-radius: 1;
+}
+
+way|z0- {
+  font-size: 0;
+}
+
+way|z15- {
+  font-size: 8;
+}
+
+way|z17- {
+  font-size: 12;
+  font-weight: bold;
+}
+
+relation >[role="forward"] way|z15-::oneway {
+  modifier: true;
+  offset: 0 - prop("width", "default");
+  set parentColor;
+  width: prop("width", "default")/2;
+  dashes: 15,15;
+}
+
+relation >[role="backward"] way|z15-::oneway {
+  modifier: true;
+  offset: prop("width", "default");
+  set parentColor;
+  width: prop("width", "default")/2;
+}
+
+relation > way[!color]  {
+  set parentColor;
+}
+
+way[color] {
+  color: eval(tag("color"));
+  width: 3;
+}
+
+way.parentColor::oneway {
+  color: eval(
+    count(parent_tags("color")) <= 2
+      ? get(parent_tags("color"), 0)
+      : #000
+    );
+  dashes: eval(
+    count(parent_tags("color")) = 2
+      ? list(10, 10)
+      : none
+    );
+  dashes-background-color: get(parent_tags("color"), 1);
+}
+
+way.parentColor::default {
+  color: eval(
+    count(parent_tags("color")) <= 2
+      ? get(parent_tags("color"), 0)
+      : #000
+    );
+  dashes: eval(
+    count(parent_tags("color")) = 2
+      ? list(10, 10)
+      : none
+    );
+  dashes-background-color: get(parent_tags("color"), 1);
+}
+
+way[!talk], way[!fast], way[!comfortable] {
+  width: 5;
+  color:  #ff00ee;
+}
+
+way[talk?] {
+  text: concat(prop(text), " T✓");
+}
+
+way[fast?] {
+  text: concat(prop(text), " F✓");
+}
+
+way[comfortable?] {
+  text: concat(prop(text), " C✓");
+}
+
+way[talk?!] {
+  text: concat(prop(text), " T✗");
+}
+
+way[fast?!] {
+  text: concat(prop(text), " F✗");
+}
+
+way[comfortable?!] {
+  text: concat(prop(text), " C✗");
+}
+
+way[!talk] {
+  text: concat(prop(text), " T?");
+}
+
+way[!fast] {
+  text: concat(prop(text), " F?");
+}
+
+way[!comfortable] {
+  text: concat(prop(text), " C?");
+}
+
+
+way[talk][fast][comfortable][talk?!]::* {
+  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
+  opacity: prop(opacity) - 0.15;
+}
+
+way[talk][fast][comfortable][fast?!]::* {
+  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
+  opacity: prop(opacity) - 0.15;
+}
+
+way[talk][fast][comfortable][comfortable?!]::* {
+  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
+  opacity: prop(opacity) - 0.15;
+}
+
+area[type=article] {
+  fill-color: #000;
+  fill-opacity: 0.2;
+  color: #888;
+  width: 1;
+  casing-width: 0;
+  text: prop(name);
+}
