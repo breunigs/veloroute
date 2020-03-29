@@ -1,4 +1,3 @@
-# todo offset/overlap?
 defmodule Data.Map do
   defstruct [:ways, :nodes, :relations]
 
@@ -26,7 +25,7 @@ defmodule Data.Map do
       |> Float.round(1)
     end
 
-    def as_geojson_feature(w, extra_props \\ %{}) do
+    def as_graded_geojson(w, extra_props \\ %{}) do
       props =
         extra_props
         |> Map.merge(Map.take(w.tags, grade_tags()))
@@ -43,35 +42,57 @@ defmodule Data.Map do
         }
       }
     end
+
+    def as_article(w, articles) do
+      coords = Enum.map(w.nodes, &Node.as_geojson(&1))
+
+      latBounds = w.nodes |> Enum.map(& &1.lat) |> Enum.min_max()
+      lonBounds = w.nodes |> Enum.map(& &1.lon) |> Enum.min_max()
+      bounds = [elem(lonBounds, 0), elem(latBounds, 0), elem(lonBounds, 1), elem(latBounds, 1)]
+
+      title =
+        case articles[w.tags[:name]] do
+          %Data.Article{title: title} -> title
+          _ -> "Unknown article: " <> w.tags[:name]
+        end
+
+      %{
+        type: "Feature",
+        properties: %{
+          type: "article",
+          name: w.tags[:name],
+          bounds: bounds,
+          title: title
+        },
+        geometry: %{
+          type: "LineString",
+          coordinates: coords
+        }
+      }
+    end
   end
 
   defmodule Relation do
     defstruct [:id, :tags, :members]
 
-    def as_geojson_feature_collection(r, overlaps) do
-      features =
-        Enum.map(ways(r), fn %{ref: w} ->
-          id = r.id
+    def routes_as_geojson(r, overlaps) do
+      Enum.map(ways(r), fn %{ref: w} ->
+        id = r.id
 
-          offset =
-            case overlaps[w.id] do
-              [^id, _] -> 1
-              [_, ^id] -> -1
-              _ -> 0
-            end
+        offset =
+          case overlaps[w.id] do
+            [^id, _] -> 1
+            [_, ^id] -> -1
+            _ -> 0
+          end
 
-          tags = %{
-            color: r.tags[:color],
-            offset: offset
-          }
+        tags = %{
+          color: r.tags[:color],
+          offset: offset
+        }
 
-          Way.as_geojson_feature(w, tags)
-        end)
-
-      %{
-        type: "FeatureCollection",
-        features: features
-      }
+        Way.as_graded_geojson(w, tags)
+      end)
     end
 
     def ways(r), do: Enum.filter(r.members, &match?(%{ref: %Way{}}, &1))
@@ -82,12 +103,24 @@ defmodule Data.Map do
     end
   end
 
-  def to_feature_list(m) do
+  def to_feature_list(m, articles) do
     overlaps = find_overlaps(m)
 
-    Enum.map(m.relations, fn {_id, rel} ->
-      Relation.as_geojson_feature_collection(rel, overlaps)
-    end)
+    routes =
+      m.relations
+      |> Map.values()
+      |> Enum.map(&Relation.routes_as_geojson(&1, overlaps))
+
+    articles =
+      m.ways
+      |> Map.values()
+      |> Enum.filter(&match?(%Way{tags: %{type: "article"}}, &1))
+      |> Enum.map(&Way.as_article(&1, articles))
+
+    %{
+      type: "FeatureCollection",
+      features: Enum.concat(routes, articles)
+    }
   end
 
   # find_overlaps returns a map with way IDs mapped to a list of relations IDs

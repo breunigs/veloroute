@@ -34,3 +34,5 @@ npm-debug.log
 /priv/static/
 
 /tmp/
+
+/data/credentials.yaml

@@ -5,7 +5,7 @@ defmodule Data.MapTest do
     Data.map().ways
     |> Enum.each(fn {_id, w} ->
       isArticle = w.tags[:type] == "article"
-      isTaggedWay = Enum.all?(Data.Map.Ways.grade_tags(), &Map.has_key?(w.tags, &1))
+      isTaggedWay = Enum.all?(Data.Map.Way.grade_tags(), &Map.has_key?(w.tags, &1))
 
       assert isArticle || isTaggedWay, "Neither article nor quality tags: #{inspect(w)}"
     end)
@@ -13,7 +13,7 @@ defmodule Data.MapTest do
 
   test "can be converted to GeoJSON" do
     Data.map()
-    |> Data.Map.to_feature_list()
+    |> Data.Map.to_feature_list(%{})
     |> Jason.encode!()
   end
 end
