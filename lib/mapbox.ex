@@ -14,7 +14,8 @@ defmodule Mapbox do
   plug Tesla.Middleware.Query, access_token: @secret_token
   plug Tesla.Middleware.JSON
 
-  def upload_file(path, name) do
+  def upload_file(path) do
+    name = Path.basename(path, ".mbtiles")
     data = File.read!(path)
 
     {:ok, %{body: creds}} = get("/uploads/v1/#{@username}/credentials")
@@ -36,5 +37,7 @@ defmodule Mapbox do
         tileset: "breunigs.#{name}",
         name: name
       })
+
+    name
   end
 end

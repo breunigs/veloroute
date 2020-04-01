@@ -1,5 +1,5 @@
 meta {
-  title: "Veloroute.Hamburg";
+  title: "Veloroute.Hamburg v2";
 }
 
 canvas {
@@ -13,6 +13,27 @@ node|z16- {
   symbol-stroke-color: #333;
   symbol-fill-color: #ccc;
 }
+
+node[type=marker] {
+  symbol-size: 17;
+  symbol-shape: square;
+  color: #ff00ee;
+  font-size: 10;
+
+  text-halo-radius: 1;
+
+  symbol-stroke-color: #fff;
+  symbol-fill-color: eval(tag("color"));
+  text: name;
+  text-offset-x: -1;
+  text-anchor-horizontal: center;
+  text-anchor-vertical: center;
+}
+
+way node[type=marker] {
+  symbol-shape: circle;
+}
+
 
 way {
   color: #ff00ee;

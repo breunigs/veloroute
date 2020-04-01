@@ -11,9 +11,21 @@ defmodule Data.MapTest do
     end)
   end
 
+  test "articles are a closed ring" do
+    Data.map()
+    |> Data.Map.article_ways()
+    |> Enum.each(fn w ->
+      first = List.first(w.nodes).id
+      last = List.last(w.nodes).id
+      assert first == last, "article id=#{w.id} name=#{w.tags[:name]} be a closed area"
+    end)
+  end
+
   test "can be converted to GeoJSON" do
     Data.map()
-    |> Data.Map.to_feature_list(%{})
-    |> Jason.encode!()
+    |> Data.Map.to_feature_lists(%{})
+    |> Enum.each(fn {_name, geojson} ->
+      Jason.encode!(geojson)
+    end)
   end
 end

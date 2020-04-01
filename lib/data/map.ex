@@ -2,10 +2,23 @@ defmodule Data.Map do
   defstruct [:ways, :nodes, :relations]
 
   defmodule Node do
-    defstruct [:id, :lon, :lat]
+    defstruct [:id, :lon, :lat, :tags]
+
+    def as_geojson_coord(n) do
+      [n.lon, n.lat]
+    end
 
     def as_geojson(n) do
-      [n.lon, n.lat]
+      props = Map.merge(%{id: n.id}, n.tags)
+
+      %{
+        type: "Feature",
+        properties: props,
+        geometry: %{
+          type: "Point",
+          coordinates: as_geojson_coord(n)
+        }
+      }
     end
   end
 
@@ -31,7 +44,7 @@ defmodule Data.Map do
         |> Map.merge(Map.take(w.tags, grade_tags()))
         |> Map.merge(%{id: w.id, grade: grade(w)})
 
-      coords = Enum.map(w.nodes, &Node.as_geojson(&1))
+      coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
 
       %{
         type: "Feature",
@@ -44,7 +57,7 @@ defmodule Data.Map do
     end
 
     def as_article(w, articles) do
-      coords = Enum.map(w.nodes, &Node.as_geojson(&1))
+      coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
 
       latBounds = w.nodes |> Enum.map(& &1.lat) |> Enum.min_max()
       lonBounds = w.nodes |> Enum.map(& &1.lon) |> Enum.min_max()
@@ -65,8 +78,8 @@ defmodule Data.Map do
           title: title
         },
         geometry: %{
-          type: "LineString",
-          coordinates: coords
+          type: "Polygon",
+          coordinates: [coords]
         }
       }
     end
@@ -103,7 +116,19 @@ defmodule Data.Map do
     end
   end
 
-  def to_feature_list(m, articles) do
+  def article_ways(m) do
+    m.ways
+    |> Map.values()
+    |> Enum.filter(&match?(%Way{tags: %{type: "article"}}, &1))
+  end
+
+  def markers(m) do
+    m.nodes
+    |> Map.values()
+    |> Enum.filter(&match?(%Node{tags: %{type: "marker"}}, &1))
+  end
+
+  def to_feature_lists(m, articles) do
     overlaps = find_overlaps(m)
 
     routes =
@@ -112,14 +137,22 @@ defmodule Data.Map do
       |> Enum.map(&Relation.routes_as_geojson(&1, overlaps))
 
     articles =
-      m.ways
-      |> Map.values()
-      |> Enum.filter(&match?(%Way{tags: %{type: "article"}}, &1))
+      article_ways(m)
       |> Enum.map(&Way.as_article(&1, articles))
 
+    markers = markers(m) |> Enum.map(&Node.as_geojson(&1))
+
+    %{
+      routes: as_feat_collection(routes),
+      articles: as_feat_collection(articles),
+      markers: as_feat_collection(markers)
+    }
+  end
+
+  defp as_feat_collection(feats) do
     %{
       type: "FeatureCollection",
-      features: Enum.concat(routes, articles)
+      features: feats
     }
   end
 
@@ -144,12 +177,20 @@ defmodule Data.MapParser do
     parsed = Saxy.SimpleForm.parse_string(raw)
     {:ok, {"osm", _attr, children}} = parsed
 
+    children = Enum.reject(children, &is_deleted?(&1))
+
     nodes = nodes(children)
     ways = ways(children, nodes)
     relations = relations(children, ways, nodes)
 
     %Data.Map{ways: ways, nodes: nodes, relations: relations}
   end
+
+  defp is_deleted?({_tag, attrsList, _children}) do
+    Enum.member?(attrsList, {"action", "delete"})
+  end
+
+  defp is_deleted?(_), do: false
 
   defp relations(parsed, ways, nodes) do
     parsed
@@ -191,16 +232,19 @@ defmodule Data.MapParser do
 
       attrs = Enum.into(attrsList, %{})
 
-      noderefs =
+      nodes =
         children
         |> filter_by("nd")
         |> Enum.map(fn {"nd", [{"ref", ref}], _} -> nodes[ref] end)
+        |> ensure_right_hand_winding
+
+      if length(nodes) == 0, do: raise("Way without nodes: #{inspect(w)}")
 
       {attrs["id"],
        %Data.Map.Way{
          id: attrs["id"],
          tags: tags(children),
-         nodes: noderefs
+         nodes: nodes
        }}
     end)
   end
@@ -209,17 +253,34 @@ defmodule Data.MapParser do
     parsed
     |> filter_by("node")
     |> Enum.into(%{}, fn w ->
-      {"node", attrsList, _children} = w
+      {"node", attrsList, children} = w
 
       attrs = Enum.into(attrsList, %{})
 
       {attrs["id"],
        %Data.Map.Node{
          id: attrs["id"],
+         tags: tags(children),
          lon: to_f(attrs["lon"]),
          lat: to_f(attrs["lat"])
        }}
     end)
+  end
+
+  defp ensure_right_hand_winding([]), do: []
+
+  defp ensure_right_hand_winding(nodes) do
+    if hd(nodes) == List.last(nodes) && area(nodes) < 0,
+      do: Enum.reverse(nodes),
+      else: nodes
+  end
+
+  defp area(nodes) do
+    Enum.reduce(tl(nodes), {0, hd(nodes)}, fn curr, {area, prev} ->
+      area = area + (curr.lon - prev.lon) * (prev.lat + curr.lat)
+      {area, curr}
+    end)
+    |> elem(0)
   end
 
   defp filter_by(enum, tagName) do
