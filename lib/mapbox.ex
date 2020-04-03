@@ -1,8 +1,8 @@
 defmodule Mapbox do
   use Tesla
 
-  @username Data.credentials().mapbox_username
-  @secret_token Data.credentials().mapbox_secret_token
+  defp username, do: Data.credentials().mapbox_username
+  defp secret_token(), do: Data.credentials().mapbox_secret_token
 
   plug Tesla.Middleware.BaseUrl, "https://api.mapbox.com"
 
@@ -11,14 +11,14 @@ defmodule Mapbox do
     {"Cache-Control", "no-cache"}
   ]
 
-  plug Tesla.Middleware.Query, access_token: @secret_token
+  plug Tesla.Middleware.Query, access_token: secret_token()
   plug Tesla.Middleware.JSON
 
   def upload_file(path) do
     name = Path.basename(path, ".mbtiles")
     data = File.read!(path)
 
-    {:ok, %{body: creds}} = get("/uploads/v1/#{@username}/credentials")
+    {:ok, %{body: creds}} = get("/uploads/v1/#{username()}/credentials")
 
     cfg =
       ExAws.Config.new(:s3,
@@ -32,7 +32,7 @@ defmodule Mapbox do
     |> ExAws.request!(cfg)
 
     {:ok, _} =
-      post("/uploads/v1/#{@username}", %{
+      post("/uploads/v1/#{username()}", %{
         url: creds["url"],
         tileset: "breunigs.#{name}",
         name: name
