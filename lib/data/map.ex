@@ -26,6 +26,7 @@ defmodule Data.Map do
     defstruct [:id, :tags, :nodes]
 
     def grade_tags, do: [:fast, :comfortable, :talk]
+    def style_tags, do: [:oneway, :color]
 
     @grade_best 1
     @grade_worst 5
@@ -41,7 +42,7 @@ defmodule Data.Map do
     def as_graded_geojson(w, extra_props \\ %{}) do
       props =
         extra_props
-        |> Map.merge(Map.take(w.tags, grade_tags()))
+        |> Map.merge(Map.take(w.tags, grade_tags() ++ style_tags()))
         |> Map.merge(%{id: w.id, grade: grade(w)})
 
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
