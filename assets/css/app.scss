@@ -1,0 +1,123 @@
+/* This file is for your main application css. */
+
+/*@import "./phoenix.css";*/
+
+@import url("https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css");
+
+
+$minWidth: 330px;
+$mainWidth: 70vw;
+$sidebarWidth: 30vw;
+$bgcolor: #f8f8f8;
+$darkBg: #333;
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  overflow: auto;
+  height: 100vh;
+  min-width: $minWidth;
+  background: $bgcolor;
+  font-family: Arial, sans;
+  font-size: .9em;
+}
+
+body > div {
+  width: 100vw;
+  height: 100vh;
+  min-width: $minWidth;
+}
+
+#map, #mly {
+  width: $mainWidth;
+  min-width: $minWidth;
+  height: 50vh;
+  display: block;
+  left: 0;
+  position: fixed;
+}
+
+#map {
+  top: 0;
+}
+
+#mly {
+  top: 50vh;
+}
+
+#sidebar {
+  width: $sidebarWidth;
+  min-width: $minWidth;
+  position: absolute;
+  top: 0;
+  left: $minWidth;
+  background: $bgcolor;
+}
+
+#switcher {
+  position: sticky;
+  top: calc(50vh - 40px);
+  width: 0;
+  height: 0;
+  user-select: none;
+
+  div {
+    text-shadow:  1px  1px 1px rgba(0,0,0,0.6),
+                  1px -1px 1px rgba(0,0,0,0.6),
+                 -1px  1px 1px rgba(0,0,0,0.6),
+                 -1px -1px 1px rgba(0,0,0,0.6);
+    margin-left: -15px;
+    color: #fff;
+    width: 25px;
+    height: 80px;
+    z-index: 100;
+    touch-action: pan-x;
+    border-radius: 12.5px;
+    line-height: 80px;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    border: 1px solid rgba(0,0,0, 0.3);
+    background: rgba(0,0,0, 0.1);
+  }
+}
+
+#content {
+  padding: 1em;
+  box-sizing: border-box;
+  touch-action: pan-y;
+}
+
+
+@media (pointer: fine), (min-width: 500px) { /* i.e. minWidth / mainWidth */
+  #sidebar {
+    left: $mainWidth;
+  }
+
+  #switcher {
+    display: none;
+  }
+
+  #content {
+    touch-action: auto;
+  }
+}
+
+a.header {
+  color: #fff;
+  line-height: 2em;
+  display: block;
+  background: $darkBg;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+p {
+  text-align: justify;
+}

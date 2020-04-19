@@ -7,13 +7,16 @@
 # General application configuration
 use Mix.Config
 
+import_config "../data/credentials.exs"
+import_config "../data/settings.exs"
+
 # Configures the endpoint
 config :veloroute, VelorouteWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "q9WS4hYE+S+mcKf9grulG5+oG7h68eQNIKUh/Wx0EWCvvbvtbUjg326EAPb73OIB",
+  secret_key_base: Credentials.phoenix_secret_key_base(),
   render_errors: [view: VelorouteWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Veloroute.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "4UBQQb1H"]
+  live_view: [signing_salt: Credentials.phoenix_live_view_signing_salt()]
 
 # Configures Elixir's Logger
 config :logger, :console,
