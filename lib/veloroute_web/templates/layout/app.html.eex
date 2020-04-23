@@ -10,16 +10,7 @@
     <%= csrf_meta_tag() %>
   </head>
   <body>
-    <!--<img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/> -->
-    <!--<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p> %>-->
-
     <%= @inner_content %>
-
-    <script type="text/javascript">
-      window.mapbox_access_token = "<%= Credentials.mapbox_access_token %>";
-      window.mapillary_api_key = "<%= Credentials.mapillary_api_key %>";
-      window.bounds = [<%= Settings.bounds |> Enum.map(&to_string/1) |> Enum.join(",") %>];
-    </script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

@@ -5,8 +5,20 @@ defmodule VelorouteWeb.FrameLive do
   def render(assigns) do
     ~L"""
 
+    <script>
+      window.mapbox_access_token = "<%= Credentials.mapbox_access_token %>";
+      window.mapillary_api_key = "<%= Credentials.mapillary_api_key %>";
+      window.bounds = [<%= Settings.bounds |> Enum.map(&to_string/1) |> Enum.join(",") %>];
+      window.startImg = "<%= Settings.image %>";
+      window.startZoom = <%= Settings.zoom %>;
+      window.startLonLat = [<%= Settings.center.lon %>, <%= Settings.center.lat %>];
+    </script>
+
+    <%= render_state(assigns) %>
+
     <div id="map" phx-update="ignore"></div>
     <div id="mly" phx-update="ignore"></div>
+
     <div id="sidebar">
       <div id="switcher"><div>↤</div></div>
       <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
@@ -15,30 +27,22 @@ defmodule VelorouteWeb.FrameLive do
         <%= Phoenix.HTML.raw @content %>
       </div>
     </div>
-
-
-    <!--<div class="thermostat">
-      <div class="bar <%= @mode %>">
-        <a href="#" phx-click="toggle-mode"><%= @mode %></a>
-        <span>bla</span>
-      </div>
-      <div class="controls">
-        <span class="reading"><%= @val %></span>
-        <button phx-click="dec" class="minus">-</button>
-        <button phx-click="inc" class="plus">+</button>
-        <span class="weather">
-        </span>
-      </div>
-    </div>-->
     """
   end
 
   def mount(_params, _session, socket) do
-    if connected?(socket), do: :timer.send_interval(100, self(), :tick)
+    # if connected?(socket), do: :timer.send_interval(100, self(), :tick)
 
+    # todo: if article is loaded, use its bbox?
     socket =
       socket
-      |> assign(val: 72, mode: :cooling, time: NaiveDateTime.local_now())
+      |> assign(
+        img: Settings.image(),
+        lon: Settings.center().lon,
+        lat: Settings.center().lat,
+        zoom: Settings.zoom(),
+        mlyLoaded: false
+      )
 
     {:ok, socket}
   end
@@ -47,21 +51,14 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, assign(socket, time: NaiveDateTime.local_now())}
   end
 
-  def handle_event("inc", _, socket) do
-    if socket.assigns.val >= 75, do: raise("boom")
-    {:noreply, update(socket, :val, &(&1 + 1))}
-  end
+  def handle_event("map-zoom-to", attr, socket) do
+    socket =
+      socket
+      |> update_map(attr)
+      |> update_img(attr)
+      |> assign(update_js: true)
 
-  def handle_event("dec", _, socket) do
-    {:noreply, update(socket, :val, &(&1 - 1))}
-  end
-
-  def handle_event("toggle-mode", _, socket) do
-    {:noreply,
-     update(socket, :mode, fn
-       :cooling -> :heating
-       :heating -> :cooling
-     end)}
+    {:noreply, socket}
   end
 
   def handle_params(%{"article" => article} = _params, _uri, socket) do
@@ -73,14 +70,6 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_content(%Data.Article{live_html: live_html}, socket) do
-    #     defp parse_html(text) do
-    #     text
-    # |> Floki.find("td.tone_1_pad a")
-    # |> Floki.attribute("href")
-    # |> Enum.filter(&(String.contains?(&1, "/files/details/")))
-    # |> Enum.map(&("https://www.demonoid.ooo" <> &1)
-    # end
-
     assign(socket, :content, live_html)
   end
 
@@ -91,5 +80,41 @@ defmodule VelorouteWeb.FrameLive do
     # TODO: put_flash doesn't work?
     |> put_flash(:info, "Diese Seite konnte ich leider nicht (mehr?) finden.")
     |> push_patch(to: "/")
+  end
+
+  defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
+    with {lat, ""} <- Float.parse(lat),
+         {lon, ""} <- Float.parse(lon),
+         {zoom, ""} <- Float.parse(zoom) do
+      assign(socket, lat: lat, lon: lon, zoom: zoom)
+    else
+      _ -> socket
+    end
+  end
+
+  defp update_map(socket, _), do: socket
+
+  # todo: auto detect route if missing?
+  defp update_img(socket, %{"img" => img}), do: assign(socket, :img, img)
+  defp update_img(socket, _), do: socket
+
+  defp render_state(assigns) do
+    data = [
+      mapbox_access_token: Credentials.mapbox_access_token(),
+      mapillary_api_key: Credentials.mapillary_api_key(),
+      bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),
+      img: assigns.img,
+      zoom: assigns.zoom,
+      lon: assigns.lon,
+      lat: assigns.lat
+    ]
+
+    IO.inspect(data)
+
+    Phoenix.HTML.Tag.content_tag(:div, "",
+      id: "control",
+      "phx-hook": "control",
+      data: data
+    )
   end
 end

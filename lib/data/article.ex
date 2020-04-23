@@ -54,31 +54,39 @@ defmodule Data.Article do
   end
 
   defp to_live_links({"a", attrs, children} = keep) do
-    attrs
-    |> Enum.find({nil, nil}, fn {key, _val} -> key == "href" end)
-    |> elem(1)
-    |> case do
-      "http" <> _rest ->
-        {"a", [{"target", "_blank"} | attrs], children}
+    href =
+      attrs
+      |> Enum.find({nil, nil}, fn {key, _val} -> key == "href" end)
+      |> elem(1)
 
-      # "/#" <> coords ->
-      #   # TODO: PARSE HASH. Edge case: /13#zoom/lat/lon/img ??
-      #   {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-", coords} | attrs], children}
-
-      "/" <> _rest ->
-        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"} | attrs], children}
-
-      "mailto:" <> _rest ->
-        keep
-
-      "#" <> _rest ->
-        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"} | attrs], children}
-
-      nil ->
+    cond do
+      nil == href ->
         name = Floki.text(children)
         {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-name", name} | attrs], children}
+
+      String.starts_with?(href, "http") ->
+        {"a", [{"target", "_blank"} | attrs], children}
+
+      opts = parse_map_link(href) ->
+        values = opts |> Enum.map(fn {k, v} -> {"phx-value-#{k}", v} end)
+        attrs = [{"phx-click", "map-zoom-to"}, {"onclick", "return false"}] ++ values ++ attrs
+        {"a", attrs, children}
+
+      String.starts_with?(href, "/") ->
+        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"} | attrs], children}
+
+      "mailto:" <> _rest = href ->
+        keep
     end
   end
 
   defp to_live_links(any), do: any
+
+  defp parse_map_link(path) do
+    # /13#zoom/lat/lon/img
+    Regex.named_captures(
+      ~r{/(?<route>\d+)?#(?<zoom>[\d.]+)/(?<lat>[\d.]+)/(?<lon>[\d.]+)(?:/(?<img>.+))?},
+      path
+    )
+  end
 end

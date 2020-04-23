@@ -28,6 +28,7 @@ defmodule VelorouteWeb.Router do
     live "/", FrameLive
     live "/blog/:article", FrameLive
     live "/article/:article", FrameLive
+    live "/:route", FrameLive
   end
 
   # Other scopes may use custom stacks.

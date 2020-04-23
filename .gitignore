@@ -35,4 +35,4 @@ npm-debug.log
 
 /tmp/
 
-/data/credentials.yaml
+/data/credentials.exs
