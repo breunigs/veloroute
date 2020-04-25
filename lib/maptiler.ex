@@ -3,7 +3,7 @@ defmodule Maptiler do
 
   # mix runs from root directory
   @root_dir File.cwd!()
-  @cache_path String.to_atom(@root_dir <> "/data/geocode.cache")
+  @cache_path String.to_atom(@root_dir <> "/data/cache/geocode.dets")
 
   use Tesla
 

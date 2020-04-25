@@ -36,3 +36,4 @@ npm-debug.log
 /tmp/
 
 /data/credentials.exs
+/data/cache/

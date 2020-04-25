@@ -7,7 +7,7 @@ canvas {
   fill-color: #efe9e1;
 }
 
-node|z16- {
+node[type!=mapillary-sequence]|z16- {
   symbol-size:2;
   symbol-shape: square;
   symbol-stroke-color: #333;
@@ -164,6 +164,34 @@ way[talk][fast][comfortable][fast?!]::* {
 way[talk][fast][comfortable][comfortable?!]::* {
   width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
   opacity: prop(opacity) - 0.15;
+}
+
+way[type=mapillary-sequence] {
+  color: #00cc63;
+  width: 1;
+  text: "";
+  casing-width: 0;
+  opacity: 0.2;
+}
+
+way[type=mapillary-sequence] > node|z18- {
+  icon-image: "data:image/svg+xml,<svg><path d='m -16.745552,-26.259853 a 83.120819,84.457169 0 0 1 -83.120815,-2e-6 l 41.560409,-73.142054 z' transform='rotate(-180 -8 -7)' fill='#00cc63'/></svg>";
+  icon-width: 11;
+  icon-height: 11;
+  icon-opacity: 0.4;
+  icon-rotation: degree_to_radians(tag(bearing));
+  color: #ff00ee;
+  font-size: 10;
+}
+
+way[type=mapillary-sequence] > node|z18- {
+  icon-width: 15;
+  icon-height: 15;
+}
+
+way[type=mapillary-sequence] > node|z19- {
+  icon-width: 20;
+  icon-height: 20;
 }
 
 area[type=article] {

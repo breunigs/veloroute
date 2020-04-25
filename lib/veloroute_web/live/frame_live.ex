@@ -33,16 +33,9 @@ defmodule VelorouteWeb.FrameLive do
   def mount(_params, _session, socket) do
     # if connected?(socket), do: :timer.send_interval(100, self(), :tick)
 
-    # todo: if article is loaded, use its bbox?
     socket =
       socket
-      |> assign(
-        img: Settings.image(),
-        lon: Settings.center().lon,
-        lat: Settings.center().lat,
-        zoom: Settings.zoom(),
-        mlyLoaded: false
-      )
+      |> assign(state())
 
     {:ok, socket}
   end
@@ -56,9 +49,12 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> update_map(attr)
       |> update_img(attr)
-      |> assign(update_js: true)
 
     {:noreply, socket}
+  end
+
+  def handle_event("mly-nodechanged", %{"img" => img}, socket) do
+    {:noreply, assign(socket, mly_loaded: true, mly_img: img)}
   end
 
   def handle_params(%{"article" => article} = _params, _uri, socket) do
@@ -99,15 +95,12 @@ defmodule VelorouteWeb.FrameLive do
   defp update_img(socket, _), do: socket
 
   defp render_state(assigns) do
-    data = [
-      mapbox_access_token: Credentials.mapbox_access_token(),
-      mapillary_api_key: Credentials.mapillary_api_key(),
-      bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),
-      img: assigns.img,
-      zoom: assigns.zoom,
-      lon: assigns.lon,
-      lat: assigns.lat
-    ]
+    data =
+      [
+        mapbox_access_token: Credentials.mapbox_access_token(),
+        mapillary_api_key: Credentials.mapillary_api_key(),
+        bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")
+      ] ++ state(assigns)
 
     IO.inspect(data)
 
@@ -116,5 +109,18 @@ defmodule VelorouteWeb.FrameLive do
       "phx-hook": "control",
       data: data
     )
+  end
+
+  def state(assigns \\ %{}) do
+    # todo: if article is loaded, use its bbox as default?
+    s = Settings
+
+    [
+      img: Map.get(assigns, :img, s.image()),
+      zoom: Map.get(assigns, :zoom, s.zoom()),
+      lon: Map.get(assigns, :lon, s.center().lon),
+      lat: Map.get(assigns, :lat, s.center().lat),
+      route: Map.get(assigns, :lat, s.route())
+    ]
   end
 end

@@ -35,36 +35,48 @@ import "shim-keyboard-event-key"
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
-// const control = document.getElementById("control");
-
-// todo, read, apply and immediately push to Be
-const parsedHash = location.hash.substr(1).split("/");
-if(parsedHash[3]) {
-  window.startImg = parsedHash[3];
-}
-if(parsedHash.length >= 3) {
-  window.startZoom = parsedHash[0];
-  window.startLonLat = [parsedHash[2], parsedHash[1]];
-}
-
 let state = {};
 let prevState = {};
+const control = document.getElementById("control");
 function updateState() {
-  const attrs = document.getElementById("control").attributes;
-  Object.getOwnPropertyNames(attrs).forEach(function (key, _index) {
-    if(key.substr(0, 5) === "data-") {
-      state[key.substr(5).replace(/-/g, "_")] = attrs[key].value;
-    }
-  });
+  state = control.dataset;
 }
 updateState();
-console.log("Initial State: ", state)
+console.log("Initial State From Server: ", state)
 
+const parsedHash = location.hash.substr(1).split("/");
+if(parsedHash[3]) {
+  state.img = parsedHash[3];
+}
+if(parsedHash.length >= 3) {
+  state.zoom = parsedHash[0];
+  state.lat = parsedHash[1];
+  state.lon = parsedHash[2];
+}
+console.log("Initial State After Hash: ", state)
+
+
+let pushEventHandle = null;
+let pushEventQueued = [];
+function pushEvent(event, payload) {
+  if(!pushEventHandle) {
+    console.log("Queueing", event, "until mounted:", payload);
+    pushEventQueued.push([event, payload]);
+    return
+  }
+
+  console.log("Pushing", event, payload);
+  pushEventHandle(event, payload);
+}
 
 let Hooks = {};
 Hooks.control = {
   mounted() {
-    console.log("mounted");
+    pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
+    for(let i=0; i < pushEventQueued.length; i++) {
+      console.log("Pushing queued event ", event);
+      this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
+    }
   },
 
   beforeUpdate() {
@@ -82,6 +94,7 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
 window.liveSocket = liveSocket;
 liveSocket.connect()
+// liveSocket.enableLatencySim(1000)
 
 // mapbox
 import mapboxgl from 'mapbox-gl';
@@ -102,10 +115,13 @@ map.touchZoomRotate.disableRotation();
 
 // mapillary
 import * as Mapillary from 'mapillary-js';
+if(!state.mapillaryApiKey) {
+  console.error("Mapillary API key is missing: ", state);
+}
 
 const mly = new Mapillary.Viewer(
   'mly',
-  state.mapillary_api_key,
+  state.mapillaryApiKey,
   startImg,
   {
     component: {
@@ -136,17 +152,15 @@ mly.on(Mapillary.Viewer.navigablechanged, () => {
   mly.moveToKey(state['img']);
 });
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
-  // if(node.key !== state['img']) {
-
-  // }
+  pushEvent("mly-nodechanged", {img: node.key})
 });
 
 window.addEventListener("resize", () => mly.resize());
 function mlyUpdateImg() {
-  console.log("updating img");
+  console.debug("updating img");
 
   if(mlyCoverIndicator) {
-    console.log("loading mly");
+    console.debug("loading mly");
     let btn = mlyCoverIndicator;
     mlyCoverIndicator = null;
     btn.click()
