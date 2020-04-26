@@ -1,20 +1,44 @@
 1a (stadtauswärts zum Osdorfer Born):
 - {seq: "gU8H89FM5sbgFCOXi3TwSg", from: "EyCWTStQf55pcb6tTFDwpg", to: "qXeNR2EVP1o6fwMLXzM9kQ" }
-# - {seq: "inWHFtKUA0vCxunc20uwIA", from: "hDxqRFisEJixtysBiVpEWw", to: "mBUFUHvlaL-vlQsF0njahw" }
-# - {seq: "fOEzka9wBqa6IadRSzmhqw", from: "unFuX3VbVrfIkb3yVL1Dpw", to: "U40Ybk6__62RwyJM9Pujaw" }
-# - {seq: "kLsbPJD9aK-_-2A0Jg1uTg", from: "dWBCsXKYWj7jTIaexRqu8Q", to: "yr-vaDKVYBa4sAkDndcJ_g" }
-# - {seq: "kjn2sGeOWhgq8qiweCq-mA", from: "SloWGylYxUTXsHbgYBU6Ig", to: "AlKtfleL9qww4U4GySbrhw" }
-# - {seq: "koNGbmiRPIlgh2HdyXuCiw", from: "eb3pS0APNNK20q68ZPm3Og", to: "FCIBwiy7Y9rHT9-MRLYoFA" }
-# - {seq: "e1wKvcpEeFdX83OjznlTWw", from: "7mDa4yqGHapflyPCKiN4vg", to: "Bb6mfbHAnxJS94tHunl_3w" }
-# - {seq: "wd3kp8zb8fxoK5xdJg23gA", from: "E5AOGJI5lwAR-4zIvv6hlQ", to: "AQtQ6pbfD1_YZuuyM9WJNg" }
-# - {seq: "wd3kp8zb8fxoK5xdJg23gA", from: "zhbzM9HJORV4VW434tk-SA", to: "0m6sbIQUl56vUt5VoObnUA" }
-# - {seq: "aToT3ZKWMuo4pRD7PAOFzg", from: "RFpGcXlygZunQxHMwBUjwA", to: "4c6yz5F84uBjixH6uGOB4w" }
-# - {seq: "zK4pj0GAP073bTrTa1Kgng", from: "3AIIFf8tp_WOQQCSU6hQ7Q", to: "kcVvD5vIUgQlPuSyw8-vQQ" }
-# 1a (stadteinwärts vom Osdorfer Born):
-# - {seq: "zK4pj0GAP073bTrTa1Kgng", from: "kcVvD5vIUgQlPuSyw8-vQQ", to: "YzAJh9DDiA0QOTEzMcH9LA" }
-# - {seq: "fXogdGXO_DnA0drZEnl30g", from: "r0dcTPqKLs9cNWwi1to6xQ", to: "-nnUoy6Jc6TKaGFAzqEEtA" }
-# - {seq: "ipY_T_Rr0hurjT7aQcWOQA", from: "UWFI-qRHURusRy2ZfqSdxQ", to: "VRveqdFDUj8QwTnezZmAGA" }
-# - {seq: "MSqq7FVU74YOj2V7UP0mvg", from: "FAxCyXmHQBoJNDdqM2300A", to: "W7TfxXnbhk691ErTD-hheQ" }
-# - {seq: "4V-h-VHqXDWqpcfB50RJZg", from: "MnqZVGUGkpHt4ZKAtCmDgg", to: "ibs_rl3YuydiL4-UHh75FQ" }
-# - {seq: "Xd3TzXHwqRs3QiHkLiJoMw", from: "tKOktktMrg3b68v7AB01EA", to: "XnZPr2xgH8keeB9pMMMjMg" }
-# - {seq: "b3o7TGX9-_NGBh0sc3uFlA", from: "c0SexOCtZuexD9DdaRKCWg", to: "t1XVUWO0bx_RIc2It_PpIQ" }
+- {seq: "inWHFtKUA0vCxunc20uwIA", from: "hDxqRFisEJixtysBiVpEWw", to: "mBUFUHvlaL-vlQsF0njahw" }
+- {seq: "fOEzka9wBqa6IadRSzmhqw", from: "unFuX3VbVrfIkb3yVL1Dpw", to: "U40Ybk6__62RwyJM9Pujaw" }
+- {seq: "kLsbPJD9aK-_-2A0Jg1uTg", from: "dWBCsXKYWj7jTIaexRqu8Q", to: "yr-vaDKVYBa4sAkDndcJ_g" }
+- {seq: "kjn2sGeOWhgq8qiweCq-mA", from: "SloWGylYxUTXsHbgYBU6Ig", to: "AlKtfleL9qww4U4GySbrhw" }
+- {seq: "koNGbmiRPIlgh2HdyXuCiw", from: "eb3pS0APNNK20q68ZPm3Og", to: "FCIBwiy7Y9rHT9-MRLYoFA" }
+- {seq: "e1wKvcpEeFdX83OjznlTWw", from: "7mDa4yqGHapflyPCKiN4vg", to: "Bb6mfbHAnxJS94tHunl_3w" }
+- {seq: "wd3kp8zb8fxoK5xdJg23gA", from: "E5AOGJI5lwAR-4zIvv6hlQ", to: "AQtQ6pbfD1_YZuuyM9WJNg" }
+- {seq: "wd3kp8zb8fxoK5xdJg23gA", from: "zhbzM9HJORV4VW434tk-SA", to: "0m6sbIQUl56vUt5VoObnUA" }
+- {seq: "aToT3ZKWMuo4pRD7PAOFzg", from: "RFpGcXlygZunQxHMwBUjwA", to: "4c6yz5F84uBjixH6uGOB4w" }
+- {seq: "zK4pj0GAP073bTrTa1Kgng", from: "3AIIFf8tp_WOQQCSU6hQ7Q", to: "kcVvD5vIUgQlPuSyw8-vQQ" }
+1a (stadteinwärts vom Osdorfer Born):
+- {seq: "zK4pj0GAP073bTrTa1Kgng", from: "kcVvD5vIUgQlPuSyw8-vQQ", to: "YzAJh9DDiA0QOTEzMcH9LA" }
+- {seq: "fXogdGXO_DnA0drZEnl30g", from: "r0dcTPqKLs9cNWwi1to6xQ", to: "-nnUoy6Jc6TKaGFAzqEEtA" }
+- {seq: "ipY_T_Rr0hurjT7aQcWOQA", from: "UWFI-qRHURusRy2ZfqSdxQ", to: "VRveqdFDUj8QwTnezZmAGA" }
+- {seq: "MSqq7FVU74YOj2V7UP0mvg", from: "FAxCyXmHQBoJNDdqM2300A", to: "W7TfxXnbhk691ErTD-hheQ" }
+- {seq: "4V-h-VHqXDWqpcfB50RJZg", from: "MnqZVGUGkpHt4ZKAtCmDgg", to: "ibs_rl3YuydiL4-UHh75FQ" }
+- {seq: "Xd3TzXHwqRs3QiHkLiJoMw", from: "tKOktktMrg3b68v7AB01EA", to: "XnZPr2xgH8keeB9pMMMjMg" }
+- {seq: "b3o7TGX9-_NGBh0sc3uFlA", from: "c0SexOCtZuexD9DdaRKCWg", to: "t1XVUWO0bx_RIc2It_PpIQ" }
+1 (stadtauswärts nach Rissen):
+- {seq: "gU8H89FM5sbgFCOXi3TwSg", from: "EyCWTStQf55pcb6tTFDwpg", to: "qXeNR2EVP1o6fwMLXzM9kQ" }
+- {seq: "inWHFtKUA0vCxunc20uwIA", from: "hDxqRFisEJixtysBiVpEWw", to: "mBUFUHvlaL-vlQsF0njahw" }
+- {seq: "fOEzka9wBqa6IadRSzmhqw", from: "unFuX3VbVrfIkb3yVL1Dpw", to: "U40Ybk6__62RwyJM9Pujaw" }
+- {seq: "kLsbPJD9aK-_-2A0Jg1uTg", from: "dWBCsXKYWj7jTIaexRqu8Q", to: "yr-vaDKVYBa4sAkDndcJ_g" }
+- {seq: "kjn2sGeOWhgq8qiweCq-mA", from: "SloWGylYxUTXsHbgYBU6Ig", to: "AlKtfleL9qww4U4GySbrhw" }
+- {seq: "koNGbmiRPIlgh2HdyXuCiw", from: "eb3pS0APNNK20q68ZPm3Og", to: "FCIBwiy7Y9rHT9-MRLYoFA" }
+- {seq: "e1wKvcpEeFdX83OjznlTWw", from: "7mDa4yqGHapflyPCKiN4vg", to: "iD_75Rowu9otBo-5jRCFoA" }
+- {seq: "klVHpZI-qP8e8LuM1DfVNg", from: "qxJzoj4n1sNI09jHnmb7Zw", to: "3O0O2wLDe78a0M0V-9ya3w" }
+- {seq: "JFaxwoJ9F59miF9a6TJpvw", from: "pTeSHKrq_dXBxc7qSyFycg", to: "4UPcOAr0qByvvfrcYleXKQ" }
+- {seq: "hPkEDMXXuqYJuuY224zf0g", from: "mBzbabnKtv5IiKnKxQeiUw", to: "l5dwEJzaT97NkN-qSZGfAQ" }
+- {seq: "qcrQrUkKmhsKD0acXtnG3g", from: "HKPOtx0SmsSq_iSRfroGew", to: "uu5xwWU1fOKLcuv9eJO60g" }
+- {seq: "P5aFBxXD5BlWk8LNpIRrkA", from: "FvEYxO-6z1QCzWYPcUGFPA", to: "mdrIb0_8NRk4ZG2rDgb-Uw" }
+1 (stadteinwärts von Rissen):
+- {seq: "OzOSc0EcZum0-KJfzMuqWw", from: "CBhQ7jEPjpXPgRFFriVEKQ", to: "g6gDARZgC1qyslzRVHNP_Q" }
+- {seq: "W9HegVOI9uXUBeXr_XODdw", from: "nOWIfdSZrP9MWkqw_LRnfw", to: "UeREZM3rDK9sQEypByFyzw" }
+- {seq: "MJhVzHYyXpZ5KUIdRuXc7Q", from: "4TMl25K-1v1lIVTEEWXOYA", to: "7kq_fk4wSGjQS4NYOLTgSw" }
+- {seq: "e2R4CyIMPYOeT9Keydfwhw", from: "gc7Dj7_0XZXW2-deKzu66w", to: "VYPhPNKB2xs6-6qE2Bcdtw" }
+- {seq: "bwptTdxnDQg_0mQIvIdyYQ", from: "aArs01jefkpoDP1lDzRJ8w", to: "cahvlLCxEOtdbH2Byt0SvA" }
+- {seq: "ipY_T_Rr0hurjT7aQcWOQA", from: "TYjZ66nChPk5js1wyp830Q", to: "VRveqdFDUj8QwTnezZmAGA" }
+- {seq: "MSqq7FVU74YOj2V7UP0mvg", from: "FAxCyXmHQBoJNDdqM2300A", to: "W7TfxXnbhk691ErTD-hheQ" }
+- {seq: "4V-h-VHqXDWqpcfB50RJZg", from: "MnqZVGUGkpHt4ZKAtCmDgg", to: "ibs_rl3YuydiL4-UHh75FQ" }
+- {seq: "Xd3TzXHwqRs3QiHkLiJoMw", from: "tKOktktMrg3b68v7AB01EA", to: "XnZPr2xgH8keeB9pMMMjMg" }
+- {seq: "b3o7TGX9-_NGBh0sc3uFlA", from: "c0SexOCtZuexD9DdaRKCWg", to: "t1XVUWO0bx_RIc2It_PpIQ" }

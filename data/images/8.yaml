@@ -1,0 +1,33 @@
+8 (stadtauswärts nach Bergedorf):
+- { seq: "7SIew6thQ3ySH4UH5kiw2w", from: "pyxwn9JJsLMk7JEmaqOinA", to: "TfjdRbrqsqJisdl0TW8PjQ" }
+- { seq: "cEEAqABQHfrrXDLmuufvpA", from: "K5ORP76ItUevyraQaFIeHw", to: "fGPLxci3GpWFNdYwGjpvjg" }
+- { seq: "RNdIagpgKZeoTO43teRU3A", from: "Hk6gkgLoTMxSUJiJ1JsvHw", to: "0uqdDV9yCQ1aa_TY5dWIqw" }
+- { seq: "MZqzQJU_KK41nKLdH3xXrQ", from: "66nxx2mra3IWkv3q6n-DjA", to: "6ZqlODYJS1Sml9PhxjWHiQ" }
+- { seq: "LIbLx-LVizt4iXrBp-RGKw", from: "hcp--BIiBnS-F-CoDuua-g", to: "mktglP0H5jCO2K-Ri4IyeQ" }
+- { seq: "aq0G8AYpaWboe_zRFO-IyQ", from: "dH3XZK40r4a0NCU3YeuD0g", to: "wUyDdbSm72jNHdx3gf8PNA" }
+- { seq: "uR3l6Vmz--glCirrcGkEww", from: "8eN2JEFbbMflNwz_OyhH-Q", to: "hwmc4nYauBt09JbyP1X1WQ" }
+- { seq: "xcgGOXzlQTncPKiwQU68Bw", from: "5-U7In5m6TS6nAWlE5qwJg", to: "6cbCBxx99MFomNW0mggr6A" }
+8 (stadteinwärts von Bergedorf):
+- { seq: "xcgGOXzlQTncPKiwQU68Bw", from: "fAuuPDgi5-E-Dc25c5MVAg", to: "Pl6deCazpehV6Rrf_TlEyA" }
+- { seq: "6tk8N0Gw5j3WauP0dZBu2w", from: "COTGIpf1cVUhhKp5LyQlaw", to: "4htyl5FS0ovSBklQKVcCjA" }
+- { seq: "yr3reVO0RUioeH4GM8Hl-Q", from: "JOByBAoOodHjB2RVOWty7w", to: "OWkgNX5x-KFLJD1JWSizYg" }
+- { seq: "6jLgrWFwvmKV6A5q-uWnMw", from: "hZr8xfnSStsJcNedWoSsQg", to: "Gl1_ETvLdKOJQJqR1lyUIQ" }
+- { seq: "XVxs_s6xieOFx8oTg-iIuQ", from: "RB0EAhvLFi814QkpVx_opg", to: "ZlZv4v6V7GiLd2ktCKqs3g" }
+- { seq: "Yu8WC0JbIcU44uMUFVcuew", from: "A_TSenazoHMRaGUTtdh2Kw", to: "ptKOfxx8oJ1w3I-cvTdKkA" }
+- { seq: "4Zeiy6iwoSDgxZgqXsjQMw", from: "xs7u_SwCIh_xeDMH9Lc19Q", to: "uBFO1pCxaof1d6muCj-nWg" }
+- { seq: "uaBB5UJyePuyEC7z8o82Yg", from: "ZEWbjrxG0UdA-wEhKUD8hQ", to: "6MhGiNf5moorZDwi4Gvn3g" }
+- { seq: "gUBdDN1mTtFbSaxAfB63FQ", from: "sqoAfka1Oh3a0fxDSaU5Yw", to: "vCtRK0ZGiXdPMhlJKCV3xQ" }
+8 (stadtauswärts zum Mümmelmannsberg):
+- { seq: "7SIew6thQ3ySH4UH5kiw2w", from: "pyxwn9JJsLMk7JEmaqOinA", to: "TfjdRbrqsqJisdl0TW8PjQ" }
+- { seq: "cEEAqABQHfrrXDLmuufvpA", from: "K5ORP76ItUevyraQaFIeHw", to: "fGPLxci3GpWFNdYwGjpvjg" }
+- { seq: "RNdIagpgKZeoTO43teRU3A", from: "Hk6gkgLoTMxSUJiJ1JsvHw", to: "0uqdDV9yCQ1aa_TY5dWIqw" }
+- { seq: "MZqzQJU_KK41nKLdH3xXrQ", from: "66nxx2mra3IWkv3q6n-DjA", to: "noJA9nXcalCYeL8KrwE9Ew" }
+- { seq: "6N_C-gUg3HwXywoaexPG2A", from: "SIoeOMQGadQc5uODCF32Kw", to: "wcrmLt4uyvTdgR91vUEKLw" }
+8 (stadteinwärts vom Mümmelmannsberg):
+- { seq: "6N_C-gUg3HwXywoaexPG2A", from: "wcrmLt4uyvTdgR91vUEKLw", to: "n-Wp7-W0StUgIkbE9YbH1A" }
+- { seq: "LIbLx-LVizt4iXrBp-RGKw", from: "EL-70gnay8TC8N2IANao0A", to: "SBvjTBnGdzMXIBPZV0Y2wQ" }
+- { seq: "XVxs_s6xieOFx8oTg-iIuQ", from: "iMUpTkBKmFKSXHRN7zDUWA", to: "ZlZv4v6V7GiLd2ktCKqs3g" }
+- { seq: "Yu8WC0JbIcU44uMUFVcuew", from: "A_TSenazoHMRaGUTtdh2Kw", to: "ptKOfxx8oJ1w3I-cvTdKkA" }
+- { seq: "4Zeiy6iwoSDgxZgqXsjQMw", from: "xs7u_SwCIh_xeDMH9Lc19Q", to: "uBFO1pCxaof1d6muCj-nWg" }
+- { seq: "uaBB5UJyePuyEC7z8o82Yg", from: "ZEWbjrxG0UdA-wEhKUD8hQ", to: "6MhGiNf5moorZDwi4Gvn3g" }
+- { seq: "gUBdDN1mTtFbSaxAfB63FQ", from: "sqoAfka1Oh3a0fxDSaU5Yw", to: "vCtRK0ZGiXdPMhlJKCV3xQ" }

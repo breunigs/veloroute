@@ -7,7 +7,7 @@ canvas {
   fill-color: #efe9e1;
 }
 
-node[type!=mapillary-sequence]|z16- {
+node|z16-[type!=mapillary-sequence] {
   symbol-size:2;
   symbol-shape: square;
   symbol-stroke-color: #333;

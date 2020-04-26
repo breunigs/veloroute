@@ -3,7 +3,7 @@ defmodule Mix.Tasks.UpdateImages do
 
   @imgpath File.cwd!() <> "/data/cache/images.osm"
 
-  @shortdoc "Updates map.osm from images/ (using Mapillary)"
+  @shortdoc "Converts Mapillary sequence lists in data/images/ for viewing while editing"
   def run(_) do
     osm =
       Data.images()
@@ -11,5 +11,8 @@ defmodule Mix.Tasks.UpdateImages do
 
     :ok = File.write(@imgpath, osm)
     IO.puts("Wrote #{@imgpath}")
+    :ok
   end
+
+  def imgpath, do: @imgpath
 end
