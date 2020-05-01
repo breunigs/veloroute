@@ -7,8 +7,7 @@ defmodule Data do
   use Memoize
 
   defmemo(map, do: Data.MapParser.load("#{@root_dir}/data/map.osm"))
-  # defmemo(images, do: Data.Image.load_all("#{@root_dir}/data/images/"))
-  def images, do: Data.Image.load_all("#{@root_dir}/data/images/")
+  defmemo(images, do: Data.Image.load_all("#{@root_dir}/data/images/"))
   defmemo(articles, do: Data.Article.load_all("#{@root_dir}/data/articles/"))
   def credentials, do: Credentials
 

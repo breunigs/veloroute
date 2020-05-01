@@ -16,21 +16,6 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-// polyfill
-import "mdn-polyfills/CustomEvent"
-import "mdn-polyfills/String.prototype.startsWith"
-import "mdn-polyfills/Array.from"
-import "mdn-polyfills/NodeList.prototype.forEach"
-import "mdn-polyfills/Element.prototype.closest"
-import "mdn-polyfills/Element.prototype.matches"
-import "mdn-polyfills/Node.prototype.remove"
-import "child-replace-with-polyfill"
-import "url-search-params-polyfill"
-import "formdata-polyfill"
-import "classlist-polyfill"
-import "@webcomponents/template"
-import "shim-keyboard-event-key"
-
 // live view
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
@@ -40,6 +25,7 @@ let prevState = {};
 const control = document.getElementById("control");
 function updateState() {
   state = control.dataset;
+  console.log(state);
 }
 updateState();
 console.log("Initial State From Server: ", state)
@@ -68,6 +54,15 @@ function pushEvent(event, payload) {
   console.log("Pushing", event, payload);
   pushEventHandle(event, payload);
 }
+window.pushEvent = pushEvent;
+
+let loadMly = function() {
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = state.mlyJs;
+  document.getElementsByTagName('head')[0].appendChild(script);
+  loadMly = null;
+}
 
 let Hooks = {};
 Hooks.control = {
@@ -77,6 +72,7 @@ Hooks.control = {
       console.log("Pushing queued event ", event);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
+    pushEventQueued = null;
   },
 
   beforeUpdate() {
@@ -85,7 +81,8 @@ Hooks.control = {
 
   updated() {
     updateState();
-    mlyUpdateImg();
+    if(state.mlyJs && loadMly) loadMly();
+    if(typeof mlyStateChanged === "function") { mlyStateChanged() }
   }
 }
 
@@ -94,11 +91,12 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
 window.liveSocket = liveSocket;
 liveSocket.connect()
-// liveSocket.enableLatencySim(1000)
+// liveSocket.enableDebug()
+// liveSocket.enableLatencySim(200)
 
 // mapbox
 import mapboxgl from 'mapbox-gl';
-mapboxgl.accessToken = window.mapbox_access_token;
+mapboxgl.accessToken = state.mapboxAccessToken;
 
 const map = new mapboxgl.Map({
     container: 'map',
@@ -112,65 +110,6 @@ const map = new mapboxgl.Map({
     dragRotate: false,
 });
 map.touchZoomRotate.disableRotation();
-
-// mapillary
-import * as Mapillary from 'mapillary-js';
-if(!state.mapillaryApiKey) {
-  console.error("Mapillary API key is missing: ", state);
-}
-
-const mly = new Mapillary.Viewer(
-  'mly',
-  state.mapillaryApiKey,
-  startImg,
-  {
-    component: {
-      attribution: true,
-      bearing: false,
-      cache: {
-        depth: {
-          pano: 0,
-          sequence: 3,
-          step: 0,
-          turn: 0
-        }
-      },
-      cover: true,
-      direction: false,
-      keyboard: false,
-      marker: false,
-      sequence: false,
-      zoom: false,
-    }
-  }
-);
-
-let mlyCoverIndicator = document.getElementsByClassName('CoverIndicator')[0];
-let mlyLoaded = false;
-mly.on(Mapillary.Viewer.navigablechanged, () => {
-  mlyLoaded = true;
-  mly.moveToKey(state['img']);
-});
-mly.on(Mapillary.Viewer.nodechanged, (node) => {
-  pushEvent("mly-nodechanged", {img: node.key})
-});
-
-window.addEventListener("resize", () => mly.resize());
-function mlyUpdateImg() {
-  console.debug("updating img");
-
-  if(mlyCoverIndicator) {
-    console.debug("loading mly");
-    let btn = mlyCoverIndicator;
-    mlyCoverIndicator = null;
-    btn.click()
-    return;
-  }
-
-  if(mlyLoaded) {
-    mly.moveToKey(state['img']);
-  }
-}
 
 // mobile gui
 document.getElementById("switcher").addEventListener("click", () => {

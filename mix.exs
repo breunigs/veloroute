@@ -32,6 +32,7 @@ defmodule Veloroute.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:browser, "~> 0.4.4"},
       {:ex_aws, "~> 2.1", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.0", only: [:dev, :test]},
       {:floki, ">= 0.0.0"},

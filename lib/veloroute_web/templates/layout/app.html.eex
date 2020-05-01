@@ -4,13 +4,22 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title><%= assigns[:page_title] || "Veloroute · Phoenix Framework" %></title>
+    <title><%= assigns[:page_title] || Settings.page_title() %></title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css' rel='stylesheet' />
     <%= csrf_meta_tag() %>
   </head>
   <body>
     <%= @inner_content %>
+
+    <%
+      ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first()
+      need_polyfill = Browser.ie?(ua) || Browser.edge?(ua)
+    %>
+
+    <%= if need_polyfill do %>
+      <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/polyfill.js") %>"></script>
+    <% end %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

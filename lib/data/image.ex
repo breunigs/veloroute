@@ -5,7 +5,6 @@ defmodule Data.Image do
     {:ok, parsed} = YamlElixir.read_from_file(path)
 
     parsed
-    |> Enum.into(%{}, fn {k, v} -> {String.to_atom(k), v} end)
     |> Enum.map(fn {name, seqs} ->
       IO.write("|")
       imgs = Enum.flat_map(seqs, &Mapillary.resolve(&1))
@@ -25,22 +24,54 @@ defmodule Data.Image do
       |> Enum.reduce(%{}, &Map.merge(&1, &2))
 
     IO.puts("")
-    all
+    all |> with_index
   end
 
-  def find_by_img(all, img) do
-    Enum.find(all, fn {_name, imgs} ->
-      Enum.any?(imgs, fn %{img: x} -> x == img end)
-    end)
+  def find_next(all, img, prefix: prefix) do
+    case find_by_img(all, img, prefix: prefix) do
+      {:not_found, _} ->
+        Logger.debug("No image found for img=#{img} with prefix=#{prefix}")
+        nil
+
+      {name, imgs} ->
+        cur_pos = all[:index][img][name]
+        Enum.at(imgs, cur_pos + 1)
+    end
+  end
+
+  def find_by_img(all, img), do: find_by_img(all, img, prefix: "")
+  def find_by_img(all, img, prefix: nil), do: find_by_img(all, img, prefix: "")
+
+  def find_by_img(all, img, prefix: prefix) do
+    all = find_all_by_img(all, img)
+    filtered = Enum.filter(all, fn {name, _imgs} -> String.starts_with?(name, prefix) end)
+
+    cond do
+      x = List.first(filtered) -> x
+      x = all |> Enum.to_list() |> List.first() -> x
+      true -> {:not_found, []}
+    end
+  end
+
+  def find_all_by_img(all, img) do
+    case get_in(all, [:index, img]) do
+      nil ->
+        Logger.warn("Searching for image '#{img}', which is not in index")
+        %{}
+
+      list ->
+        Map.take(all, Map.keys(list))
+    end
   end
 
   def as_osm(all) do
     osm =
       all
+      |> Enum.reject(fn {name, _imgs} -> name == :index end)
       |> Enum.flat_map(fn {name, imgs} ->
         imgs
         |> Enum.group_by(fn %{seq: seq} -> seq end)
-        |> Enum.map(&seqToOsm(&1, name))
+        |> Enum.map(&sequence_to_osm(&1, name))
       end)
       |> Enum.join("\n\n")
 
@@ -52,7 +83,23 @@ defmodule Data.Image do
     """)
   end
 
-  defp seqToOsm({seq, imgs}, name) do
+  defp with_index(all) do
+    Logger.debug("Building index")
+
+    Enum.reduce(all, %{index: %{}}, fn {name, imgs}, acc ->
+      acc
+      |> Map.put(name, imgs)
+      |> Map.update!(:index, fn index ->
+        imgs
+        |> Enum.with_index()
+        |> Enum.reduce(index, fn {%{img: img}, pos}, index ->
+          Map.update(index, img, %{name => pos}, &Map.put(&1, name, pos))
+        end)
+      end)
+    end)
+  end
+
+  defp sequence_to_osm({seq, imgs}, name) do
     collect =
       imgs
       |> Enum.map(fn img ->

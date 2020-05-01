@@ -5,5 +5,7 @@ defmodule Settings do
   def center, do: %{lon: 9.993, lat: 53.551}
   def zoom, do: 10
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
-  def route, do: "4"
+  def route, do: "4 (stadtauswärts zum Ochsenzoll)"
+
+  def page_title, do: "Veloroute Hamburg"
 end
