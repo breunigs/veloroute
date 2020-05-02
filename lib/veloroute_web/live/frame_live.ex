@@ -36,8 +36,7 @@ defmodule VelorouteWeb.FrameLive do
     """
   end
 
-  defp display_route(route) do
-    [id, rest] = String.split(route, " ", parts: 2)
+  defp display_route({id, rest}) do
     rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
     color = Map.get(rel.tags, :color)
     full_name = Map.get(rel.tags, :name, id)
@@ -112,6 +111,21 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, slideshow(socket, :toggle)}
   end
 
+  def handle_event("sld-reverse", %{} = _attr, socket) do
+    Logger.debug("sld-reverse")
+
+    %{img: img} =
+      Data.images()
+      |> Data.Image.find_reverse(socket.assigns.img, route: socket.assigns.route)
+
+    socket =
+      socket
+      |> slideshow(false)
+      |> set_img(img || socket.assigns.img)
+
+    {:noreply, socket}
+  end
+
   def handle_params(%{"article" => article} = _params, _uri, socket) do
     Logger.debug("params: article")
 
@@ -180,7 +194,7 @@ defmodule VelorouteWeb.FrameLive do
   defp maybe_advance_slideshow(%{assigns: %{mly_loaded: true, img_load_last: %Time{}}} = socket) do
     if slideshow_next_img_in(socket) == 0 do
       Data.images()
-      |> Data.Image.find_next(socket.assigns.img, prefix: socket.assigns.route)
+      |> Data.Image.find_next(socket.assigns.img, route: socket.assigns.route)
       |> case do
         nil ->
           Logger.debug("slideshow: no more images")
@@ -235,7 +249,8 @@ defmodule VelorouteWeb.FrameLive do
 
   defp set_img(socket, img) do
     Logger.debug("showing: #{img}")
-    assign(socket, img: img, img_load_start: Time.utc_now())
+    {route, _imgs} = Data.Image.find_by_img(Data.images(), img, route: socket.assigns.route)
+    assign(socket, img: img, route: route, img_load_start: Time.utc_now())
   end
 
   @static_assigns [

@@ -13,7 +13,7 @@ defmodule Data.ArticleTest do
       hideFromMap: false
       tags:
       - tag
-      text: text
+      text: "<a>text</a>"
     """)
 
     assert Data.Article.load(file_path) == %Data.Article{
@@ -21,10 +21,11 @@ defmodule Data.ArticleTest do
              end: nil,
              hideFromMap: false,
              images: 123,
+             live_html: "<a phx-click=\"map-zoom-to\" phx-value-name=\"text\">text</a>",
              name: "2020-03-29-dummy-article",
              start: "2019Q4",
              tags: ["tag"],
-             text: "text",
+             text: "<a>text</a>",
              title: "title",
              type: "type"
            }

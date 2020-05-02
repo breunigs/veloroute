@@ -8,6 +8,7 @@ defmodule Data.Image do
     |> Enum.map(fn {name, seqs} ->
       IO.write("|")
       imgs = Enum.flat_map(seqs, &Mapillary.resolve(&1))
+      name = String.split(name, " ", parts: 2) |> List.to_tuple()
       {name, imgs}
     end)
     |> Enum.into(%{})
@@ -27,10 +28,25 @@ defmodule Data.Image do
     all |> with_index
   end
 
-  def find_next(all, img, prefix: prefix) do
-    case find_by_img(all, img, prefix: prefix) do
+  def find_reverse(all, img, route: {id, _rest} = route) when is_binary(img) do
+    Logger.debug("Finding reverse for #{img} from #{inspect(route)}")
+    index = all[:index][img][route]
+    curImg = all[route] |> Enum.at(index)
+
+    all
+    |> Map.delete(route)
+    |> find_all_by_id(id)
+    |> Map.values()
+    |> List.flatten()
+    |> Enum.min_by(fn img ->
+      CheapRuler.dist(img, curImg)
+    end)
+  end
+
+  def find_next(all, img, route: route) do
+    case find_by_img(all, img, route: route) do
       {:not_found, _} ->
-        Logger.debug("No image found for img=#{img} with prefix=#{prefix}")
+        Logger.debug("No image found for img=#{img} with route=#{inspect(route)}")
         nil
 
       {name, imgs} ->
@@ -39,17 +55,27 @@ defmodule Data.Image do
     end
   end
 
-  def find_by_img(all, img), do: find_by_img(all, img, prefix: "")
-  def find_by_img(all, img, prefix: nil), do: find_by_img(all, img, prefix: "")
+  def find_by_img(all, img), do: find_by_img(all, img, route: {nil, nil})
 
-  def find_by_img(all, img, prefix: prefix) do
+  def find_by_img(all, img, route: {id, _rest} = route) do
     all = find_all_by_img(all, img)
-    filtered = Enum.filter(all, fn {name, _imgs} -> String.starts_with?(name, prefix) end)
 
     cond do
-      x = List.first(filtered) -> x
-      x = all |> Enum.to_list() |> List.first() -> x
-      true -> {:not_found, []}
+      # exact match
+      x = Map.get(all, route, nil) ->
+        {route, x}
+
+      # id match
+      x = find_all_by_id(all, id) |> Enum.to_list() |> List.first() ->
+        x
+
+      # whatever we can find
+      x = all |> Enum.to_list() |> List.first() ->
+        x
+
+      # :(
+      true ->
+        {:not_found, []}
     end
   end
 
@@ -62,6 +88,18 @@ defmodule Data.Image do
       list ->
         Map.take(all, Map.keys(list))
     end
+  end
+
+  def find_all_by_id(all, given_id) when is_binary(given_id) do
+    keys =
+      all
+      |> Map.keys()
+      |> Enum.filter(fn
+        {id, _rest} -> id == given_id
+        :index -> false
+      end)
+
+    Map.take(all, keys)
   end
 
   def as_osm(all) do

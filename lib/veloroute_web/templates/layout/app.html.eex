@@ -13,8 +13,12 @@
     <%= @inner_content %>
 
     <%
-      ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first()
-      need_polyfill = Browser.ie?(ua) || Browser.edge?(ua)
+      need_polyfill = Plug.Conn.get_req_header(@conn, "user-agent")
+        |> List.first()
+        |> case do
+          ua when is_binary(ua) -> Browser.ie?(ua) || Browser.edge?(ua)
+          _ -> false
+        end
     %>
 
     <%= if need_polyfill do %>
