@@ -33,7 +33,7 @@ defmodule Mix.Tasks.EditMap do
 
   defp confirm(text) do
     resp =
-      case IO.gets(text + " [Y/n] ") do
+      case IO.gets(text <> " [Y/n] ") do
         :eof -> ""
         {:error, _reason} -> "no"
         dat -> String.downcase(dat)

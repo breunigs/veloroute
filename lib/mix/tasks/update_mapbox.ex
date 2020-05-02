@@ -5,6 +5,8 @@ defmodule Mix.Tasks.UpdateMapbox do
 
   @shortdoc "Updates data on Mapbox from local state."
   def run(_) do
+    Mix.Task.run("app.start")
+
     {:ok, dir_path} = Temp.mkdir("veloroutehamburgtippecanoe")
 
     Data.map()

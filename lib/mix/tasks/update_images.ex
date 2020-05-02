@@ -5,6 +5,8 @@ defmodule Mix.Tasks.UpdateImages do
 
   @shortdoc "Converts Mapillary sequence lists in data/images/ for viewing while editing"
   def run(_) do
+    Mix.Task.run("app.start")
+
     osm =
       Data.images()
       |> Data.Image.as_osm()

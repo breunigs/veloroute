@@ -117,6 +117,14 @@ defmodule Data.Map do
     end
   end
 
+  def find_relation_by_tag(m, tag, value) when is_atom(tag) and is_binary(value) do
+    m.relations
+    |> Map.values()
+    |> Enum.find(fn rel ->
+      Map.get(rel.tags, tag, nil) == value
+    end)
+  end
+
   def article_ways(m) do
     m.ways
     |> Map.values()

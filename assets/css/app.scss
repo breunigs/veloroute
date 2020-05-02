@@ -1,14 +1,9 @@
-/* This file is for your main application css. */
-
-/*@import "./phoenix.css";*/
-
-@import url("https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css");
-
 $minWidth: 330px;
 $mainWidth: 70vw;
 $sidebarWidth: 30vw;
 $bgcolor: #f8f8f8;
 $darkBg: #333;
+$darkBgHighlight: #666;
 
 * {
   margin: 0;
@@ -17,24 +12,28 @@ $darkBg: #333;
 }
 
 body {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  touch-action: pan-x;
   height: 100vh;
+  height: -webkit-fill-available;
   min-width: $minWidth;
   background: $bgcolor;
   font-family: Arial, sans;
-  font-size: .9em;
+  font-size: 1.0em;
 }
 
 body > div {
   width: 100vw;
   height: 100vh;
+  height: -webkit-fill-available;
   min-width: $minWidth;
 }
 
 #map, #mly {
   width: $mainWidth;
   min-width: $minWidth;
-  height: 50vh;
+  height: 50%;
   display: block;
   left: 0;
   position: fixed;
@@ -46,48 +45,79 @@ body > div {
 }
 
 #mly {
-  top: 50vh;
+  top: 50%;
   overflow: hidden;
-
-  #mlyPlaceholder {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    cursor: pointer;
-
-    .playIcon {
-      background-color: rgba(0,0,0, 0.6);
-      border-radius: 72px;
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDEuOTk5IDQxLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDEuOTk5IDQxLjk5OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik0zNi4wNjgsMjAuMTc2bC0yOS0yMEM2Ljc2MS0wLjAzNSw2LjM2My0wLjA1Nyw2LjAzNSwwLjExNEM1LjcwNiwwLjI4Nyw1LjUsMC42MjcsNS41LDAuOTk5djQwICBjMCwwLjM3MiwwLjIwNiwwLjcxMywwLjUzNSwwLjg4NmMwLjE0NiwwLjA3NiwwLjMwNiwwLjExNCwwLjQ2NSwwLjExNGMwLjE5OSwwLDAuMzk3LTAuMDYsMC41NjgtMC4xNzdsMjktMjAgIGMwLjI3MS0wLjE4NywwLjQzMi0wLjQ5NCwwLjQzMi0wLjgyM1MzNi4zMzgsMjAuMzYzLDM2LjA2OCwyMC4xNzZ6IiBzdHlsZT0iZmlsbDogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PC9wYXRoPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjwvc3ZnPg==);
-      background-size: 50%;
-      height: 72px;
-      width: 72px;
-      background-repeat: no-repeat;
-      background-position: center center;
-      top: 50%;
-      left: 50%;
-      position: relative;
-      margin-left: -36px;
-      margin-top: -36px;
-    }
-  }
 }
 
 #sidebar {
   width: $sidebarWidth;
   min-width: $minWidth;
+  height: 100vh;
+  height: -webkit-fill-available;
   position: absolute;
   top: 0;
   left: $minWidth;
   background: $bgcolor;
+  display: flex;
+  flex-flow: column;
+  touch-action: pan-x;
+}
+
+#content {
+  padding: 1em;
+  margin-bottom: 1em;
+  box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
+}
+
+#slideshow {
+  $btnSize: 2.5rem;
+
+  width: $sidebarWidth;
+  min-width: $minWidth;
+  box-sizing: border-box;
+
+  padding: 0 1rem;
+  color: #fff;
+  height: $btnSize;
+  background: $darkBg;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  touch-action: pan-x;
+
+  button {
+    flex-grow: 0;
+    flex-shrink: 0;
+    color: #fff;
+    background: $darkBg;
+    width: $btnSize;
+    height: $btnSize;
+    border: 0;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 130%;
+    touch-action: manipulation;
+
+    &:hover {
+      background: $darkBgHighlight;
+    }
+  }
+
+  > div {
+    height: $btnSize;
+    line-height: $btnSize;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: right;
+  }
 }
 
 #switcher {
   position: sticky;
-  top: calc(50vh - 40px);
+  top: calc(50% - 40px);
   width: 0;
   height: 0;
   user-select: none;
@@ -111,15 +141,9 @@ body > div {
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     border: 1px solid rgba(0,0,0, 0.3);
     background: rgba(0,0,0, 0.1);
+    cursor: pointer;
   }
 }
-
-#content {
-  padding: 1em;
-  box-sizing: border-box;
-  touch-action: pan-y;
-}
-
 
 @media (pointer: fine), (min-width: 500px) { /* i.e. minWidth / mainWidth */
   #sidebar {
@@ -129,9 +153,36 @@ body > div {
   #switcher {
     display: none;
   }
+}
 
-  #content {
-    touch-action: auto;
+
+
+@import url("https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css");
+
+#mlyPlaceholder {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  .playIcon {
+    background-color: rgba(0,0,0, 0.6);
+    border-radius: 72px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDEuOTk5IDQxLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDEuOTk5IDQxLjk5OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik0zNi4wNjgsMjAuMTc2bC0yOS0yMEM2Ljc2MS0wLjAzNSw2LjM2My0wLjA1Nyw2LjAzNSwwLjExNEM1LjcwNiwwLjI4Nyw1LjUsMC42MjcsNS41LDAuOTk5djQwICBjMCwwLjM3MiwwLjIwNiwwLjcxMywwLjUzNSwwLjg4NmMwLjE0NiwwLjA3NiwwLjMwNiwwLjExNCwwLjQ2NSwwLjExNGMwLjE5OSwwLDAuMzk3LTAuMDYsMC41NjgtMC4xNzdsMjktMjAgIGMwLjI3MS0wLjE4NywwLjQzMi0wLjQ5NCwwLjQzMi0wLjgyM1MzNi4zMzgsMjAuMzYzLDM2LjA2OCwyMC4xNzZ6IiBzdHlsZT0iZmlsbDogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PC9wYXRoPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjwvc3ZnPg==);
+    background-size: 50%;
+    height: 72px;
+    width: 72px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    margin-left: -36px;
+    margin-top: -36px;
   }
 }
 
@@ -147,4 +198,25 @@ a.header {
 
 p {
   text-align: justify;
+}
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  line-height: 1.5em;
+  margin-top: -0.35em;
+  margin-bottom: -0.15em;
+  font-size: 90%;
+  font-weight: normal;
+  cursor: default;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 50%;
+  border: 0.13em solid white;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
+    0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
+    -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 }

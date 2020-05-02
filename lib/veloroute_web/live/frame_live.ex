@@ -12,7 +12,7 @@ defmodule VelorouteWeb.FrameLive do
 
     <div id="map" phx-update="ignore"></div>
     <div id="mly" phx-update="ignore">
-      <div phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('https://images.mapillary.com/<%= assigns.img %>/thumb-1024.jpg')">
+      <div onclick="" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('https://images.mapillary.com/<%= assigns.img %>/thumb-1024.jpg')">
         <div class="playIcon"></div>
       </div>
     </div>
@@ -20,12 +20,36 @@ defmodule VelorouteWeb.FrameLive do
     <div id="sidebar">
       <div id="switcher"><div>↤</div></div>
       <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
-      <%= live_flash(@flash, :info) %>
       <div id="content">
         <%= Phoenix.HTML.raw @content %>
       </div>
+      <div id="slideshow">
+        <button phx-click="sld-playpause" title="Abspielen / Pause">
+          <%= if assigns.slideshow, do: "■", else: "▶" %>
+        </button>
+        <button phx-click="sld-step-backward" title="Nächstes Bild">〈</button>
+        <button phx-click="sld-step-forward" title="Voriges Bild">〉</button>
+        <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
+        <%= display_route(assigns.route) %>
+      </div>
     </div>
     """
+  end
+
+  defp display_route(route) do
+    [id, rest] = String.split(route, " ", parts: 2)
+    rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
+    color = Map.get(rel.tags, :color)
+    full_name = Map.get(rel.tags, :name, id)
+
+    icon =
+      if color do
+        Phoenix.HTML.Tag.content_tag(:span, id, style: "background: #{color}", class: "icon")
+      else
+        Phoenix.HTML.html_escape(id)
+      end
+
+    Phoenix.HTML.Tag.content_tag(:div, [icon, " ", rest], title: "Du folgst: #{full_name} #{rest}")
   end
 
   @initial_state [mly_previous_img: nil, mly_loaded: false]
