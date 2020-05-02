@@ -27,8 +27,8 @@ defmodule VelorouteWeb.FrameLive do
         <button phx-click="sld-playpause" title="Abspielen / Pause">
           <%= if assigns.slideshow, do: "■", else: "▶" %>
         </button>
-        <button phx-click="sld-step-backward" title="Nächstes Bild">〈</button>
-        <button phx-click="sld-step-forward" title="Voriges Bild">〉</button>
+        <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: assigns.img_prev == nil, "phx-click": "sld-step-backward") %>
+        <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: assigns.img_next == nil, "phx-click": "sld-step-forward") %>
         <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
         <%= display_route(assigns.route) %>
       </div>
@@ -51,7 +51,7 @@ defmodule VelorouteWeb.FrameLive do
     Phoenix.HTML.Tag.content_tag(:div, [icon, " ", rest], title: "Du folgst: #{full_name} #{rest}")
   end
 
-  @initial_state [mly_previous_img: nil, mly_loaded: false]
+  @initial_state [mly_previous_img: nil, mly_loaded: false, img_next: nil, img_prev: nil]
 
   def mount(_params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(10_000, self(), :check_updates)
@@ -66,7 +66,6 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_info(:check_updates, socket) do
     socket = socket |> maybe_advance_slideshow
-
     {:noreply, socket}
   end
 
@@ -104,6 +103,18 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply, socket}
   end
+
+  def handle_event("sld-step-backward", %{} = _attr, %{assigns: %{img_prev: nil}} = socket),
+    do: {:noreply, socket}
+
+  def handle_event("sld-step-backward", %{} = _attr, %{assigns: %{img_prev: img}} = socket),
+    do: {:noreply, set_img(socket, img)}
+
+  def handle_event("sld-step-forward", %{} = _attr, %{assigns: %{img_next: nil}} = socket),
+    do: {:noreply, socket}
+
+  def handle_event("sld-step-forward", %{} = _attr, %{assigns: %{img_next: img}} = socket),
+    do: {:noreply, set_img(socket, img)}
 
   def handle_event("sld-playpause", %{} = _attr, socket) do
     Logger.debug("sld-playpause")
@@ -191,16 +202,14 @@ defmodule VelorouteWeb.FrameLive do
        when prev != curr,
        do: socket
 
-  defp maybe_advance_slideshow(%{assigns: %{mly_loaded: true, img_load_last: %Time{}}} = socket) do
+  defp maybe_advance_slideshow(%{assigns: %{img_load_last: %Time{}}} = socket) do
     if slideshow_next_img_in(socket) == 0 do
-      Data.images()
-      |> Data.Image.find_next(socket.assigns.img, route: socket.assigns.route)
-      |> case do
-        nil ->
+      case socket.assigns do
+        %{img_next: nil} ->
           Logger.debug("slideshow: no more images")
           slideshow(socket, slideshow: false)
 
-        %{img: img} ->
+        %{img_next: img} ->
           Logger.debug("slideshow: advancing to #{img}")
           set_img(socket, img)
       end
@@ -209,12 +218,10 @@ defmodule VelorouteWeb.FrameLive do
     end
   end
 
-  defp maybe_advance_slideshow(%{assigns: %{mly_loaded: true}} = socket) do
+  defp maybe_advance_slideshow(socket) do
     Logger.warn(":img_load_last not set in state, even though mly was loaded")
     assign(socket, :img_load_last, Time.utc_now())
   end
-
-  defp maybe_advance_slideshow(socket), do: socket
 
   defp slideshow_next_img_in(%{assigns: %{img_load_last: %Time{} = t}} = socket) do
     diff = Time.diff(Time.utc_now(), t, :millisecond)
@@ -249,8 +256,17 @@ defmodule VelorouteWeb.FrameLive do
 
   defp set_img(socket, img) do
     Logger.debug("showing: #{img}")
-    {route, _imgs} = Data.Image.find_by_img(Data.images(), img, route: socket.assigns.route)
-    assign(socket, img: img, route: route, img_load_start: Time.utc_now())
+
+    %{route: route, prev: prev, next: next} =
+      Data.Image.find_surrounding(Data.images(), img, route: socket.assigns.route)
+
+    assign(socket,
+      img: img,
+      img_next: get_in(next, [:img]),
+      img_prev: get_in(prev, [:img]),
+      route: route,
+      img_load_start: Time.utc_now()
+    )
   end
 
   @static_assigns [

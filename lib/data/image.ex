@@ -43,6 +43,31 @@ defmodule Data.Image do
     end)
   end
 
+  def find_surrounding(all, img, route: route) do
+    case find_by_img(all, img, route: route) do
+      {:not_found, _} ->
+        Logger.debug("No image found for img=#{img} with route=#{inspect(route)}")
+        %{prev: nil, curr: nil, next: nil}
+
+      {name, imgs} ->
+        cur_pos = all[:index][img][name]
+
+        if cur_pos == 0 do
+          [curr, next] = Enum.slice(imgs, 0, 2)
+          %{route: name, prev: nil, curr: curr, next: next}
+        else
+          Enum.slice(imgs, (cur_pos - 1)..(cur_pos + 1))
+          |> case do
+            [prev, curr, next] ->
+              %{route: name, prev: prev, curr: curr, next: next}
+
+            [prev, curr] ->
+              %{route: name, prev: prev, curr: curr, next: nil}
+          end
+        end
+    end
+  end
+
   def find_next(all, img, route: route) do
     case find_by_img(all, img, route: route) do
       {:not_found, _} ->
