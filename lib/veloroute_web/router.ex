@@ -27,7 +27,7 @@ defmodule VelorouteWeb.Router do
 
     live "/", FrameLive
     live "/blog/:article", FrameLive
-    live "/article/:article", FrameLive
+    live "/article/:article", FrameLive, as: :article
     live "/:route", FrameLive
   end
 

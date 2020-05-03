@@ -21,12 +21,12 @@ defmodule Data.Article do
   def load(path) do
     {:ok, parsed} = YamlElixir.read_from_file(path)
 
-    parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_atom(k), v} end)
+    parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
 
     name = Path.basename(path, ".yaml")
 
     {:ok, date} =
-      name
+      Map.get(parsed, :updated, name)
       |> String.slice(0..9)
       |> case do
         "0000-00-00" -> {:ok, nil}
@@ -39,7 +39,14 @@ defmodule Data.Article do
       |> Floki.traverse_and_update(&to_live_links/1)
       |> Floki.raw_html()
 
-    data = Map.merge(%{name: name, date: date, live_html: live_html}, parsed)
+    title_html =
+      if Map.get(parsed, :title),
+        do:
+          Phoenix.HTML.Tag.content_tag(:h3, parsed.title)
+          |> Phoenix.HTML.safe_to_string(),
+        else: ""
+
+    data = Map.merge(%{name: name, date: date, live_html: title_html <> live_html}, parsed)
     struct(Data.Article, data)
   end
 
@@ -51,6 +58,16 @@ defmodule Data.Article do
     |> Enum.into(%{}, fn art ->
       {art.name, art}
     end)
+  end
+
+  def recent(all, count \\ 4) do
+    all
+    |> Map.values()
+    |> Enum.sort_by(fn
+      %Data.Article{date: nil} -> nil
+      %Data.Article{date: d} -> {d.year, d.month, d.day}
+    end)
+    |> Enum.slice((-1 * count)..-1)
   end
 
   defp to_live_links({"a", attrs, children} = keep) do

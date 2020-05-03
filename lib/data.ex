@@ -7,8 +7,13 @@ defmodule Data do
   use Memoize
 
   defmemo(map, do: Data.MapParser.load("#{@root_dir}/data/map.osm"))
+
   defmemo(images, do: Data.Image.load_all("#{@root_dir}/data/images/"))
+
+  defmemo(sequences, do: Data.Image.sequences(images()))
+
   defmemo(articles, do: Data.Article.load_all("#{@root_dir}/data/articles/"))
+
   def credentials, do: Credentials
 
   @default_article "0000-00-00-startpage"

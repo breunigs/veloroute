@@ -7,5 +7,5 @@ defmodule Settings do
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
 
-  def page_title, do: "Veloroute Hamburg"
+  def page_title, do: "veloroute.hamburg"
 end

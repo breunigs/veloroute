@@ -3,53 +3,9 @@ defmodule VelorouteWeb.FrameLive do
   require Logger
 
   alias VelorouteWeb.Router.Helpers, as: Routes
+  import VelorouteWeb.VariousHelpers
 
   @slideshow_interval_ms 500
-
-  def render(assigns) do
-    ~L"""
-    <%= render_state(assigns) %>
-
-    <div id="map" phx-update="ignore"></div>
-    <div id="mly" phx-update="ignore">
-      <div onclick="" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('https://images.mapillary.com/<%= assigns.img %>/thumb-1024.jpg')">
-        <div class="playIcon"></div>
-      </div>
-    </div>
-
-    <div id="sidebar">
-      <div id="switcher"><div>↤</div></div>
-      <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
-      <div id="content">
-        <%= Phoenix.HTML.raw @content %>
-      </div>
-      <div id="slideshow">
-        <button phx-click="sld-playpause" title="Abspielen / Pause">
-          <%= if assigns.slideshow, do: "■", else: "▶" %>
-        </button>
-        <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: assigns.img_prev == nil, "phx-click": "sld-step-backward") %>
-        <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: assigns.img_next == nil, "phx-click": "sld-step-forward") %>
-        <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
-        <%= display_route(assigns.route) %>
-      </div>
-    </div>
-    """
-  end
-
-  defp display_route({id, rest}) do
-    rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
-    color = Map.get(rel.tags, :color)
-    full_name = Map.get(rel.tags, :name, id)
-
-    icon =
-      if color do
-        Phoenix.HTML.Tag.content_tag(:span, id, style: "background: #{color}", class: "icon")
-      else
-        Phoenix.HTML.html_escape(id)
-      end
-
-    Phoenix.HTML.Tag.content_tag(:div, [icon, " ", rest], title: "Du folgst: #{full_name} #{rest}")
-  end
 
   @initial_state [mly_previous_img: nil, mly_loaded: false, img_next: nil, img_prev: nil]
 
@@ -108,13 +64,13 @@ defmodule VelorouteWeb.FrameLive do
     do: {:noreply, socket}
 
   def handle_event("sld-step-backward", %{} = _attr, %{assigns: %{img_prev: img}} = socket),
-    do: {:noreply, set_img(socket, img)}
+    do: {:noreply, socket |> slideshow(false) |> set_img(img)}
 
   def handle_event("sld-step-forward", %{} = _attr, %{assigns: %{img_next: nil}} = socket),
     do: {:noreply, socket}
 
   def handle_event("sld-step-forward", %{} = _attr, %{assigns: %{img_next: img}} = socket),
-    do: {:noreply, set_img(socket, img)}
+    do: {:noreply, socket |> slideshow(false) |> set_img(img)}
 
   def handle_event("sld-playpause", %{} = _attr, socket) do
     Logger.debug("sld-playpause")
@@ -148,17 +104,28 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, Data.find_article() |> set_content(socket)}
   end
 
-  defp set_content(%Data.Article{live_html: live_html}, socket) do
-    assign(socket, :content, live_html)
+  defp set_content(%Data.Article{live_html: live_html, title: t}, socket)
+       when is_nil(t) or t == "" do
+    assign(socket,
+      content: replace_custom_tags(live_html),
+      page_title: Settings.page_title()
+    )
+  end
+
+  defp set_content(%Data.Article{live_html: live_html, title: title}, socket) do
+    assign(socket,
+      content: replace_custom_tags(live_html),
+      page_title: title <> " · " <> Settings.page_title()
+    )
   end
 
   defp set_content(_article, socket) do
     Logger.warn("Non-existing site was accessed")
 
+    # TODO: error message?
     socket
-    # TODO: put_flash doesn't work?
     |> put_flash(:info, "Diese Seite konnte ich leider nicht (mehr?) finden.")
-    |> push_patch(to: "/")
+    |> assign(page_title: nil)
   end
 
   defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
@@ -174,7 +141,7 @@ defmodule VelorouteWeb.FrameLive do
   defp update_map(socket, _), do: socket
 
   # todo: auto detect route if missing?
-  defp update_img(socket, %{"img" => img}), do: assign(socket, :img, img)
+  defp update_img(socket, %{"img" => img}), do: set_img(socket, img)
   defp update_img(socket, _), do: socket
 
   defp slideshow(socket, :toggle), do: slideshow(socket, !socket.assigns.slideshow)
@@ -253,6 +220,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
+  defp set_img(socket, ""), do: socket
 
   defp set_img(socket, img) do
     Logger.debug("showing: #{img}")
@@ -302,5 +270,17 @@ defmodule VelorouteWeb.FrameLive do
   defp start_image() do
     # TODO: read from url/hash?
     Settings.image()
+  end
+
+  defp replace_custom_tags(source) do
+    replace_custom_tag(source, "recent_articles", fn _m ->
+      VelorouteWeb.VariousHelpers.recent_articles() |> Phoenix.HTML.safe_to_string()
+    end)
+  end
+
+  defp replace_custom_tag(source, name, fill) do
+    source
+    |> String.replace("<#{name}></#{name}>", fill, global: false)
+    |> String.replace("<#{name}/>", fill, global: false)
   end
 end

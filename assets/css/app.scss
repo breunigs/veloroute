@@ -20,7 +20,7 @@ body {
   min-width: $minWidth;
   background: $bgcolor;
   font-family: Arial, sans;
-  font-size: 1.0em;
+  font-size: 0.9em;
 }
 
 body > div {
@@ -42,6 +42,7 @@ body > div {
 #map {
   top: 0;
   overflow: hidden;
+  background-color: #efe9e1;
 }
 
 #mly {
@@ -65,10 +66,14 @@ body > div {
 
 #content {
   padding: 1em;
-  margin-bottom: 1em;
+  padding-top: 0;
   box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
+
+  > *:last-child {
+    margin-bottom: 1em;
+  }
 }
 
 #slideshow {
@@ -86,6 +91,8 @@ body > div {
   overflow: hidden;
   display: flex;
   touch-action: pan-x;
+
+  box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.4);
 
   button {
     flex-grow: 0;
@@ -201,10 +208,7 @@ a.header {
   text-align: center;
   font-weight: bold;
   font-size: 1.6em;
-}
-
-p {
-  text-align: justify;
+  text-decoration: none !important;
 }
 
 .icon {
@@ -231,4 +235,115 @@ p {
 abbr {
   cursor: help;
   text-decoration: underline dotted;
+}
+
+
+h3, h4 {
+  margin-top: 1em;
+}
+
+ul, ol {
+  padding-left: 0.85rem;
+  line-height: 120%;
+  margin-top: 0.6rem;
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+}
+
+ol.hide-bullets {
+  list-style-type: none;
+  padding: 0;
+
+  time {
+    width: 4em;
+    display: inline-block;
+  }
+
+  a {
+    width: calc(100% - 4.5em);
+    display: inline-block;
+    float: right;
+  }
+
+  li { clear: both; }
+
+  &:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+p {
+  text-align: justify;
+  margin-top: 0.6rem;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+#impressum {
+  margin-top: 2em;
+  float: right;
+}
+
+
+
+#indicator, #indicator-rotate {
+  height: 2em;
+  width: 2em;
+  pointer-events: none;
+}
+
+#indicator-loc {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.8em;
+  border: 0.2em solid #000;
+  box-shadow: 0 0 0.1em 0.1em #fff;
+  height: 0.8em;
+  left: 50%;
+  position: absolute;
+  text-color: #000;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.8em;
+}
+
+#indicator-dir {
+  &::before {
+    content: '▴';
+    font-size: 1.3em; // adjust translateY below as needed
+  }
+  height: 2em;
+  left: 50%;
+  position: relative;
+  top: 0%;
+  text-align: center;
+  text-shadow:  0.1em  0.0em 0.1em #fff,
+                0.1em -0.1em 0.1em #fff,
+               -0.1em  0.0em 0.1em #fff,
+               -0.1em -0.1em 0.1em #fff;
+  transform: translate(-50%, -45%);
+  width: 2em;
+  z-index: 10;
+  // outline: 1px solid green;
+}
+
+span[title], #slideshow > div {
+  cursor: help;
+  border-bottom: 0.05em dotted #000;
 }

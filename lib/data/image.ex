@@ -43,6 +43,10 @@ defmodule Data.Image do
     end)
   end
 
+  def sequences(all) do
+    all |> Map.values() |> List.flatten() |> Enum.map(&Map.get(&1, :seq)) |> Enum.uniq()
+  end
+
   def find_surrounding(all, img, route: route) do
     case find_by_img(all, img, route: route) do
       {:not_found, _} ->

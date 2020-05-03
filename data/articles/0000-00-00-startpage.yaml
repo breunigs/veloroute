@@ -1,7 +1,22 @@
-title: "Übersicht"
 images:
 - c4B6txFX6Xgza8iWNFzSYw
 hideFromMap: true
 text: >
   <h3>Radwege erkunden</h3>
-  <p>Wähle hier oder <span class="not-mobile">auf der Karte</span> <span class="only-mobile"><a href="/#map">auf der Karte</a></span> eine Fahrradroute um anzufangen. Mach Dich mit ihr vertraut und… fahr Rad!</p><ol class="route-list"><li><a href="/1" class="autoplay icon icon1">1</a></li><li><a href="/2" class="autoplay icon icon2">2</a></li><li><a href="/3" class="autoplay icon icon3">3</a></li><li><a href="/4" class="autoplay icon icon4">4</a></li><li><a href="/5" class="autoplay icon icon5">5</a></li><li><a href="/6" class="autoplay icon icon6">6</a></li><li><a href="/7" class="autoplay icon icon7">7</a></li><break></break><li><a href="/8" class="autoplay icon icon8">8</a></li><li><a href="/9" class="autoplay icon icon9">9</a></li><li><a href="/10" class="autoplay icon icon10">10</a></li><li><a href="/11" class="autoplay icon icon11">11</a></li><li><a href="/12" class="autoplay icon icon12">12</a></li><li><a href="/13" class="autoplay icon icon13">13</a></li><li><a href="/14" class="autoplay icon icon14">14</a></li></ol><h3>Pläne, Baustellen und Probleme</h3><p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p><h3>Wegqualität</h3><p>…wird beim Hereinzoomen angezeigt. Je blasser die Veloroute, desto schlechter ist dieser Abschnitt. <a href="/quality#anchorlegend">Hinweise zur Wegqualität</a></p><h3>Aktuelle Artikel</h3><ol class="hide-bullets"><li><time datetime="2020-03-27">27. Mär</time> <a href="/blog/2018-09-03-4-alsterufer" class="">Radweg am Alsterufer (Veloroute 4)</a></li><li><time datetime="2020-03-11">11. Mär</time> <a href="/blog/2019-04-03-11-reiherdamm-und-hermann-blohm-strasse" class="">Reiherdamm und Hermann-Blohm-Straße (Hafen, Veloroute 11)</a></li><li><time datetime="2020-02-25">25. Feb</time> <a href="/blog/2018-08-29-4-14-u-langenhorn-markt" class="">Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)</a></li><li><time datetime="2020-02-02">2. Feb</time> <a href="/blog/2020-02-02-uferstrasse-zw-lerchenfeld-richardstr" class="">Uferstraße (Zwischen Lerchenfeld und Richardstraße Veloroute 6)</a></li></ol><p><a href="/changes">Alle Artikel anzeigen</a></p><div class="only-mobile"><h3>Kontakt</h3><p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><a href="mailto:stefan-veloroute@breunig.xyz">stefan-veloroute@breunig.xyz</a></p><small class="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small></div><h3>Details zum Projekt</h3><p><a href="/projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</a></p></div>
+  <p>Klicke auf das Bild um anzufangen, oder wähle zuerst Fahrradroute auf der Karte. Mach Dich mit ihr vertraut und… fahr Rad!</p>
+
+  <h3>Pläne, Baustellen und Probleme</h3>
+  <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
+
+  <h3>Wegqualität</h3>
+  <p>…wird beim Hereinzoomen angezeigt. Je blasser die Veloroute, desto schlechter ist dieser Abschnitt. <a href="/quality#anchorlegend">Hinweise zur Wegqualität</a></p>
+
+  <h3>Aktuelle Artikel</h3>
+  <recent_articles/>
+  <p><a href="/changes">Alle Artikel anzeigen</a></p>
+
+  <h3>Kontakt</h3>
+  <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><a href="mailto:stefan-veloroute@breunig.xyz">stefan-veloroute@breunig.xyz</a></p>
+
+  <h3>Details zum Projekt</h3>
+  <p><a href="/projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</a></p>

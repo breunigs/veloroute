@@ -1,0 +1,28 @@
+<div id="map" phx-update="ignore"></div>
+<div id="mly" phx-update="ignore">
+  <div onclick="" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('https://images.mapillary.com/<%= @img %>/thumb-1024.jpg')">
+    <div class="playIcon"></div>
+  </div>
+</div>
+
+<div id="sidebar">
+  <div id="switcher"><div>↤</div></div>
+  <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
+  <div id="content">
+    <%= Phoenix.HTML.raw(@content) %>
+
+    <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
+  </div>
+  <div id="slideshow" style="<%= if !@slideshow && !@mly_loaded, do: "display:none" %>">
+    <button phx-click="sld-playpause" title="Abspielen / Pause">
+      <%= if @slideshow, do: "■", else: "▶" %>
+    </button>
+    <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-click": "sld-step-backward") %>
+    <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-click": "sld-step-forward") %>
+    <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
+    <%= display_route(@route) %>
+  </div>
+</div>
+
+<%= render_state(assigns) %>
+<div id="mly-seqs" data-seqs="<%= Data.sequences() |> Enum.join(" ") %>"></div>

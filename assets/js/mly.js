@@ -34,6 +34,9 @@ const mly = new Mapillary.Viewer(
   }
 );
 
+const sequences = document.getElementById("mly-seqs").dataset.seqs.split(" ");
+mly.setFilter(['in', 'sequenceKey'] + sequences);
+
 mly.on(Mapillary.Viewer.navigablechanged, () => {
   console.debug("mly loaded initially with" , initialImg);
   if(initialImg !== state.img) {

@@ -68,6 +68,8 @@ let Hooks = {};
 Hooks.control = {
   mounted() {
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
+
+    if(!pushEventQueued) return;
     for(let i=0; i < pushEventQueued.length; i++) {
       console.log("Pushing queued event ", event);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
@@ -92,7 +94,7 @@ let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_t
 window.liveSocket = liveSocket;
 liveSocket.connect()
 // liveSocket.enableDebug()
-// liveSocket.enableLatencySim(200)
+liveSocket.enableLatencySim(200)
 
 // mapbox
 import mapboxgl from 'mapbox-gl';
