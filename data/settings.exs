@@ -8,4 +8,5 @@ defmodule Settings do
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
 
   def page_title, do: "veloroute.hamburg"
+  def email, do: "stefan-veloroute@breunig.xyz"
 end

@@ -16,13 +16,15 @@ defmodule Data do
 
   def credentials, do: Credentials
 
-  @default_article "0000-00-00-startpage"
-  def find_article(), do: find_article(@default_article)
-  def find_article(""), do: find_article(@default_article)
-  def find_article(nil), do: find_article(@default_article)
+  @default_page "0000-00-00-startpage"
+  def find_article(), do: find_article(@default_page)
+  def find_article(""), do: find_article(@default_page)
+  def find_article(nil), do: find_article(@default_page)
 
   def find_article(name) do
     Logger.debug("Loading article #{name}")
     articles()[name]
   end
+
+  def find_page(name), do: find_article("0000-00-00-#{name}")
 end

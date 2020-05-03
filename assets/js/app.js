@@ -121,3 +121,8 @@ document.getElementById("switcher").addEventListener("click", () => {
     window.scrollBy(-1000, 0);
   }
 })
+
+
+
+
+import "./checkwebgl"

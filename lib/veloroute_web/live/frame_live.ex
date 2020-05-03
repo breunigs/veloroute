@@ -93,18 +93,22 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_params(%{"article" => article} = _params, _uri, socket) do
-    Logger.debug("params: article")
-
-    {:noreply, article |> Data.find_article() |> set_content(socket)}
+  def handle_params(%{"article" => article} = _params, uri, socket) do
+    Logger.debug("params: article #{article}")
+    {:noreply, article |> Data.find_article() |> set_content(uri, socket)}
   end
 
-  def handle_params(_params, _uri, socket) do
-    Logger.debug("params: default")
-    {:noreply, Data.find_article() |> set_content(socket)}
+  def handle_params(%{"page" => page} = _params, uri, socket) do
+    Logger.debug("params: page #{page}")
+    {:noreply, page |> Data.find_page() |> set_content(uri, socket)}
   end
 
-  defp set_content(%Data.Article{live_html: live_html, title: t}, socket)
+  def handle_params(params, uri, socket) do
+    Logger.debug("params: default (#{inspect(params)})")
+    {:noreply, Data.find_article() |> set_content(uri, socket)}
+  end
+
+  defp set_content(%Data.Article{live_html: live_html, title: t}, _uri, socket)
        when is_nil(t) or t == "" do
     assign(socket,
       content: replace_custom_tags(live_html),
@@ -112,20 +116,19 @@ defmodule VelorouteWeb.FrameLive do
     )
   end
 
-  defp set_content(%Data.Article{live_html: live_html, title: title}, socket) do
+  defp set_content(%Data.Article{live_html: live_html, title: title}, _uri, socket) do
     assign(socket,
       content: replace_custom_tags(live_html),
       page_title: title <> " · " <> Settings.page_title()
     )
   end
 
-  defp set_content(_article, socket) do
-    Logger.warn("Non-existing site was accessed")
+  defp set_content(_article, uri, socket) do
+    Logger.error("Non-existing site was accessed: #{uri}")
 
-    # TODO: error message?
     socket
-    |> put_flash(:info, "Diese Seite konnte ich leider nicht (mehr?) finden.")
-    |> assign(page_title: nil)
+    |> put_flash(:info, 404)
+    |> push_patch(to: Routes.startpage_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive))
   end
 
   defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
@@ -273,14 +276,21 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp replace_custom_tags(source) do
-    replace_custom_tag(source, "recent_articles", fn _m ->
+    source
+    |> replace_custom_tag("recent_articles", fn _m ->
       VelorouteWeb.VariousHelpers.recent_articles() |> Phoenix.HTML.safe_to_string()
+    end)
+    |> replace_custom_tag("articles_by_date", fn _m ->
+      VelorouteWeb.VariousHelpers.articles_by_date() |> Phoenix.HTML.safe_to_string()
+    end)
+    |> replace_custom_tag("mailto", fn _m, content ->
+      mail = Settings.email()
+      content = if content != "", do: content, else: mail
+      ~s(<a href="mailto:#{mail}">#{content}</a>)
     end)
   end
 
   defp replace_custom_tag(source, name, fill) do
-    source
-    |> String.replace("<#{name}></#{name}>", fill, global: false)
-    |> String.replace("<#{name}/>", fill, global: false)
+    Regex.replace(~r{<#{name}>(.*?)</#{name}>}, source, fill)
   end
 end

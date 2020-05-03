@@ -19,9 +19,13 @@ defmodule Data.Image do
 
     all =
       File.ls!(path)
-      |> Enum.map(fn filename ->
-        load(Path.join([path, filename]))
-      end)
+      |> Task.async_stream(
+        fn filename ->
+          load(Path.join([path, filename]))
+        end,
+        ordered: false
+      )
+      |> Stream.map(fn {:ok, map} -> map end)
       |> Enum.reduce(%{}, &Map.merge(&1, &2))
 
     IO.puts("")

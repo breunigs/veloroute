@@ -4,6 +4,7 @@ $sidebarWidth: 30vw;
 $bgcolor: #f8f8f8;
 $darkBg: #333;
 $darkBgHighlight: #666;
+$contentPad: 0.9rem;
 
 * {
   margin: 0;
@@ -65,7 +66,7 @@ body > div {
 }
 
 #content {
-  padding: 1em;
+  padding: $contentPad;
   padding-top: 0;
   box-sizing: border-box;
   flex: 1;
@@ -269,6 +270,11 @@ ol.hide-bullets {
 
   li { clear: both; }
 
+  li.separator {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
   &:after {
     content: ".";
     visibility: hidden;
@@ -346,4 +352,32 @@ a:hover {
 span[title], #slideshow > div {
   cursor: help;
   border-bottom: 0.05em dotted #000;
+}
+
+
+p.alert {
+  background: #ECD0D0;
+  padding: $contentPad;
+  margin: 0 #{-1*$contentPad};
+}
+
+
+
+.nowebgl {
+  #mly {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #mly::before {
+    display: block;
+    background: #ddd;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 20rem;
+    z-index: 100;
+    margin: auto;
+    content: "In diesem Browser scheint „WebGL“ deaktiviert zu sein. Dem ist normalerweise nicht so, d.h. vermutlich liegt es an der Technik. Bitte suche im Internet nach Lösungen oder frage eine technikaffine Person um Hilfe.";
+  }
 }

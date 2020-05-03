@@ -40,7 +40,7 @@ defmodule Data.Article do
       |> Floki.raw_html()
 
     title_html =
-      if Map.get(parsed, :title),
+      if Map.get(parsed, :title) && !String.starts_with?(live_html, "<h3>"),
         do:
           Phoenix.HTML.Tag.content_tag(:h3, parsed.title)
           |> Phoenix.HTML.safe_to_string(),
@@ -60,14 +60,16 @@ defmodule Data.Article do
     end)
   end
 
-  def recent(all, count \\ 4) do
+  def ordered_by_date(all) do
     all
     |> Map.values()
-    |> Enum.sort_by(fn
-      %Data.Article{date: nil} -> nil
-      %Data.Article{date: d} -> {d.year, d.month, d.day}
+    |> Enum.reject(fn
+      %Data.Article{date: nil} -> true
+      _ -> false
     end)
-    |> Enum.slice((-1 * count)..-1)
+    |> Enum.sort_by(fn
+      %Data.Article{date: %Date{} = d} -> {d.year, d.month, d.day}
+    end)
   end
 
   defp to_live_links({"a", attrs, children} = keep) do

@@ -9,6 +9,16 @@
   <div id="switcher"><div>↤</div></div>
   <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
   <div id="content">
+    <%= if Map.get(@flash, "info") do %>
+      <p class="alert" phx-click="lv:clear-flash" phx-value-key="info">
+        <%= case Map.get(@flash, "info") do
+          404 -> """
+            Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <a href="mailto:#{Settings.email()}">mir schreibst</a> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
+          """
+        end |> Phoenix.HTML.raw %>
+      </p>
+    <% end %>
+
     <%= Phoenix.HTML.raw(@content) %>
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
