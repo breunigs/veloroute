@@ -1,0 +1,23 @@
+hideFromMap: true
+title: Qualität
+text: >
+  <h3 id="anchorplans">Pläne, Baustellen und Probleme</h3>
+  <p>
+  Für manche Abschnitte gibt es weiterführende Informationen – etwa aktuelle Planungsstände der Bezirke und Ämter, Baustellen, aber auch noch ungelöste Probleme. Diese betroffenen Bereiche sind in der Karte grau hinterlegt und Du kannst sie anklicken, um weitere Informationen zu erhalten.<br>
+
+  Wenn Du nicht suchen möchtest:
+  </p>
+  <ul>
+  <li><a href="/bau">(geplante) Baustellen sortiert nach Baubeginn</a> anzeigen</li>
+  <li>Die Detailseite einer Veloroute verlinkt auch alle Artikel</li>
+  </ul>
+
+  <h3 id="anchorlegend">Was ist eine gute Veloroute?</h3>
+  <p>Es gibt unstreitbar gute Abschnitte (<a href="/5#15.02/53.60238/10.02622/fTY74gRzhqNaLxf8116QVw">Pergolenviertel</a>) und problematische Stellen (<a href="/10#15.37/53.465174/9.976184/zFKGPE8ss4tLVhz9AvHTNg">Führung an der Buxtehuder Straße</a>). Bei allem dazwischen hängt die Bewertung von den eigenen Bedürfnissen ab – Renn- oder Lastenrad, Neuling oder Profi, in der Gruppe oder allein. Viel hängt auch von der Verkehrssituation ab: Wohngebiete sind ruhiger als Hauptstraßen.</p>
+  <p>Die Bewertung wird beim Hereinzoomen in die Karte automatisch geladen. Je blasser, desto schlechter finde ich einen Abschnitt. Nach Bauchgefühl beurteile ich:</p>
+  <ul>
+    <li><strong>Vorankommen:</strong> Ampelschaltungen, Stau durch KFZ oder überlastete Radwege, Überholmöglichkeiten, enge Kurven, usw.</li>
+    <li><strong>Komfort:</strong> ebener Belag, Abstand zu KFZ, Lärm, Licht, Klarheit der Führung, u.ä.</li>
+    <li><strong>Gespräche:</strong> kann man sich während der Fahrt unterhalten? Hier spielen Radwegbreite, Engstellen, Gegenverkehr und alles andere hinein, was eine Unterbrechung des Gesprächs nötig macht.</li>
+  </ul>
+  <p>Die aktuelle Bewertung erfolgte meist automatisch und daher sind grobe Fehleinschätzungen nicht selten. Du kannst mir <mailto>gerne Fehler melden</mailto>.</p>

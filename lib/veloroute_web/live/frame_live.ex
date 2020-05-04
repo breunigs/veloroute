@@ -112,14 +112,14 @@ defmodule VelorouteWeb.FrameLive do
        when is_nil(t) or t == "" do
     assign(socket,
       content: replace_custom_tags(live_html),
-      page_title: Settings.page_title()
+      page_title: Settings.page_title_long()
     )
   end
 
   defp set_content(%Data.Article{live_html: live_html, title: title}, _uri, socket) do
     assign(socket,
       content: replace_custom_tags(live_html),
-      page_title: title <> " · " <> Settings.page_title()
+      page_title: Settings.page_title_short() <> title
     )
   end
 
@@ -277,11 +277,21 @@ defmodule VelorouteWeb.FrameLive do
 
   defp replace_custom_tags(source) do
     source
-    |> replace_custom_tag("recent_articles", fn _m ->
-      VelorouteWeb.VariousHelpers.recent_articles() |> Phoenix.HTML.safe_to_string()
+    |> replace_custom_tag("articles", fn _m, filter ->
+      filter
+      |> String.split(" ")
+      |> Enum.map(&String.split(&1, "=", parts: 2))
+      |> Enum.reject(fn
+        [_] -> true
+        [_, _] -> false
+      end)
+      |> Enum.map(fn [key, vals] ->
+        {String.to_existing_atom(key), String.split(vals, ",")}
+      end)
+      |> VelorouteWeb.VariousHelpers.articles_by_date()
     end)
-    |> replace_custom_tag("articles_by_date", fn _m ->
-      VelorouteWeb.VariousHelpers.articles_by_date() |> Phoenix.HTML.safe_to_string()
+    |> replace_custom_tag("recent_articles", fn _m ->
+      VelorouteWeb.VariousHelpers.recent_articles()
     end)
     |> replace_custom_tag("mailto", fn _m, content ->
       mail = Settings.email()

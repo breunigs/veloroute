@@ -16,10 +16,9 @@ defmodule Data do
 
   def credentials, do: Credentials
 
-  @default_page "0000-00-00-startpage"
-  def find_article(), do: find_article(@default_page)
-  def find_article(""), do: find_article(@default_page)
-  def find_article(nil), do: find_article(@default_page)
+  def find_article(), do: find_article(Settings.default_page())
+  def find_article(""), do: find_article(Settings.default_page())
+  def find_article(nil), do: find_article(Settings.default_page())
 
   def find_article(name) do
     Logger.debug("Loading article #{name}")

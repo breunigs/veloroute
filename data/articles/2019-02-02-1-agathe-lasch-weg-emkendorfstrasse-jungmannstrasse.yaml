@@ -44,7 +44,7 @@ area:
 images: 1
 hideFromMap: false
 tags:
-- velo1
+- 1
 text: |
   <p>Am 31. Januar 2019 fand <a href="https://www.hamburg.de/pressemeldungen-bezirke/12074776/veloroute-1-informationsveranstaltung-othmarsch/">eine Infoveranstaltung</a> statt, die die angedachten Verbesserung für die Veloroute an den Straßen <a>Agathe-Lasch-Weg</a>, <a>Emkendorfstraße</a> und <a>Jungmannstraße</a> vorstellte. Die dazwischenliegende <a class="place" href="/#17/53.556395/9.88976">Reventlowstraße</a> ist nicht Teil dieser Planungen.</p> <p>Die Kernpunkte dieser sehr frühen Version sind im Wesentlichen:</p> <ul>
     <li>Straße sanieren</li>

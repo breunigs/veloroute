@@ -13,6 +13,7 @@ defmodule Data.ArticleTest do
       hideFromMap: false
       tags:
       - tag
+      - 4
       text: "<a>text</a>"
     """)
 
@@ -21,10 +22,11 @@ defmodule Data.ArticleTest do
              end: nil,
              hideFromMap: false,
              images: 123,
-             live_html: "<a phx-click=\"map-zoom-to\" phx-value-name=\"text\">text</a>",
+             live_html:
+               "<h3>title</h3><a phx-click=\"map-zoom-to\" phx-value-name=\"text\">text</a>\n\n<articles>tags=tag,4</articles>",
              name: "2020-03-29-dummy-article",
              start: "2019Q4",
-             tags: ["tag"],
+             tags: ["tag", "4"],
              text: "<a>text</a>",
              title: "title",
              type: "type"
@@ -42,6 +44,28 @@ defmodule Data.ArticleTest do
 
       assert length(MapSet.to_list(missing)) == 0,
              "#{name} is missing some of the required keys. Missing: #{inspect(missing)}"
+    end)
+  end
+
+  test "all articles use valid filters" do
+    known = Map.keys(%Data.Article{})
+
+    Data.articles()
+    |> Map.values()
+    |> Enum.flat_map(fn art ->
+      Regex.scan(~r{<articles>(.*?)</articles>}, art.live_html)
+    end)
+    |> Enum.flat_map(fn [_match, filters] ->
+      String.split(filters, " ")
+    end)
+    |> Enum.reject(fn
+      "" -> true
+      _ -> false
+    end)
+    |> Enum.each(fn filter ->
+      [key, _vals] = String.split(filter, "=", parts: 2)
+      key = String.to_existing_atom(key)
+      assert Enum.member?(known, key), "There is no '#{key}' for articles. Filter: #{filter}"
     end)
   end
 end

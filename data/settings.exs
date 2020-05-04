@@ -7,6 +7,9 @@ defmodule Settings do
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
 
-  def page_title, do: "veloroute.hamburg"
+  def page_title_short, do: "veloroute.hamburg · "
+  def page_title_long, do: "veloroute.hamburg · Fahrradwege für den Alltag"
   def email, do: "stefan-veloroute@breunig.xyz"
+
+  def default_page, do: "0000-00-00-startpage"
 end

@@ -75,10 +75,10 @@ area:
 start: 2019-10-07
 hideFromMap: false
 tags:
-- velo6
-- velo5
-- velo4
-- velo3
+- 6
+- 5
+- 4
+- 3
 text: '<p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a> und
   <a>Neuer Jungfernstieg</a>.</p> <p>Die Probleme der Radführungen um die Binnenalster
   sind schnell erklärt: konstanter Konflikt mit Passanten. An Kreuzungen und Einmündungen
