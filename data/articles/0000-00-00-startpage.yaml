@@ -12,7 +12,7 @@ text: >
   <p>…wird beim Hereinzoomen angezeigt. Je blasser die Veloroute, desto schlechter ist dieser Abschnitt. <a href="/quality#anchorlegend">Hinweise zur Wegqualität</a></p>
 
   <h3>Aktuelle Artikel</h3>
-  <recent_articles/>
+  <articles range="recent" sort="date"/>
   <p><a href="/changes">Alle Artikel anzeigen</a></p>
 
   <h3>Kontakt</h3>

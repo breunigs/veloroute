@@ -277,30 +277,29 @@ defmodule VelorouteWeb.FrameLive do
 
   defp replace_custom_tags(source) do
     source
-    |> replace_custom_tag("articles", fn _m, filter ->
-      filter
-      |> String.split(" ")
-      |> Enum.map(&String.split(&1, "=", parts: 2))
-      |> Enum.reject(fn
-        [_] -> true
-        [_, _] -> false
-      end)
-      |> Enum.map(fn [key, vals] ->
-        {String.to_existing_atom(key), String.split(vals, ",")}
-      end)
-      |> VelorouteWeb.VariousHelpers.articles_by_date()
-    end)
-    |> replace_custom_tag("recent_articles", fn _m ->
-      VelorouteWeb.VariousHelpers.recent_articles()
-    end)
+    |> replace_custom_tag("articles", &VelorouteWeb.VariousHelpers.articles/2)
     |> replace_custom_tag("mailto", fn _m, content ->
       mail = Settings.email()
-      content = if content != "", do: content, else: mail
-      ~s(<a href="mailto:#{mail}">#{content}</a>)
+      content = if content == [], do: mail, else: content
+      {"a", [{"href", "mailto:#{mail}"}], List.wrap(content)}
     end)
   end
 
-  defp replace_custom_tag(source, name, fill) do
-    Regex.replace(~r{<#{name}>(.*?)</#{name}>}, source, fill)
+  defp replace_custom_tag(source, name, replacer) do
+    source
+    |> Floki.parse_fragment!()
+    |> Floki.traverse_and_update(fn
+      {^name, attrs, children} ->
+        attrs
+        |> Enum.map(fn {k, v} ->
+          {String.to_existing_atom(k), v}
+        end)
+        |> Enum.into(%{})
+        |> replacer.(children)
+
+      any ->
+        any
+    end)
+    |> Floki.raw_html()
   end
 end

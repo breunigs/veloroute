@@ -251,6 +251,12 @@ ul, ol {
   li {
     margin-bottom: 0.4rem;
   }
+
+  .duration {
+    color: #999;
+    float: right;
+    padding-left: .5em;
+  }
 }
 
 ol.hide-bullets {

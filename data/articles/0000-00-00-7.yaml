@@ -1,4 +1,4 @@
 hideFromMap: true
 title: Veloroute 7
 text: >
-  <articles>tags=7</articles>
+  <articles tag="7" sort="date"/>

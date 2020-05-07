@@ -19,13 +19,13 @@ defmodule Data.ArticleTest do
 
     assert Data.Article.load(file_path) == %Data.Article{
              date: ~D[2020-03-29],
-             end: nil,
+             end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
              hideFromMap: false,
              images: 123,
              live_html:
-               "<h3>title</h3><a phx-click=\"map-zoom-to\" phx-value-name=\"text\">text</a>\n\n<articles>tags=tag,4</articles>",
+               "<h3>title</h3>  <a phx-click=\"map-zoom-to\" phx-value-name=\"text\">text</a>\n\n  <h3>Verwandte Artikel</h3>\n  <articles tags=\"tag,4\" sort=\"date\"/>\n",
              name: "2020-03-29-dummy-article",
-             start: "2019Q4",
+             start: %Data.RoughDate{month: nil, quarter: 4, year: 2019},
              tags: ["tag", "4"],
              text: "<a>text</a>",
              title: "title",

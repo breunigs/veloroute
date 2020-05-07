@@ -12,7 +12,8 @@ defmodule Data.Article do
     :start,
     :end,
     :date,
-    :live_html
+    :live_html,
+    :range
   ]
 
   @required_params [:type, :title, :text, :date, :name]
@@ -54,7 +55,9 @@ defmodule Data.Article do
         name: name,
         date: date,
         live_html: title_html <> live_html,
-        tags: tags
+        tags: tags,
+        start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
+        end: parsed |> Map.get(:end) |> Data.RoughDate.parse()
       })
 
     struct(Data.Article, data)
@@ -70,22 +73,22 @@ defmodule Data.Article do
     end)
   end
 
-  def filter(all, ""), do: all
-  def filter(all, nil), do: all
-  def filter(all, []), do: all
+  # def filter(all, ""), do: all
+  # def filter(all, nil), do: all
+  # def filter(all, []), do: all
 
-  def filter(all, filter) when is_binary(filter) do
-    filter =
-      filter
-      |> String.trim()
-      |> String.split(" ")
-      |> Enum.map(&String.split(&1, "=", parts: 2))
-      |> Enum.map(fn [key, vals] ->
-        {String.to_existing_atom(key), String.split(vals, ",")}
-      end)
+  # def filter(all, filter) when is_binary(filter) do
+  #   filter =
+  #     filter
+  #     |> String.trim()
+  #     |> String.split(" ")
+  #     |> Enum.map(&String.split(&1, "=", parts: 2))
+  #     |> Enum.map(fn [key, vals] ->
+  #       {String.to_existing_atom(key), String.split(vals, ",")}
+  #     end)
 
-    filter(all, filter)
-  end
+  #   filter(all, filter)
+  # end
 
   def filter(all, filter) when is_list(filter) do
     all
@@ -101,20 +104,36 @@ defmodule Data.Article do
     |> Enum.into(%{})
   end
 
-  def ordered_by_date(map) when is_map(map), do: map |> Map.values() |> ordered_by_date()
+  def ordered(various, key) when is_binary(key),
+    do: ordered(various, String.to_existing_atom(key))
 
-  def ordered_by_date([{name, %Data.Article{name: name}} | _rest] = list),
-    do: list |> Enum.map(&elem(&1, 1)) |> ordered_by_date()
+  def ordered(various, key) do
+    case key do
+      :start -> ordered_by_start(various)
+      :date -> ordered_by_date(various)
+      nil -> ordered_by_date(various)
+    end
+  end
 
-  def ordered_by_date(list) when is_list(list) do
-    list
-    |> Enum.reject(fn
-      %Data.Article{date: nil} -> true
-      _ -> false
-    end)
+  def ordered_by_start(various) do
+    various
+    |> orderable_only()
+    |> Enum.sort_by(
+      fn art -> art.start end,
+      &Data.RoughDate.compare(&1, &2)
+    )
+  end
+
+  def ordered_by_date(various) do
+    various
+    |> orderable_only()
     |> Enum.sort_by(fn
       %Data.Article{date: %Date{} = d} -> {d.year, d.month, d.day}
     end)
+  end
+
+  def range(%Data.Article{start: from, end: to}) do
+    Data.RoughDate.range(from, to)
   end
 
   defp to_live_links({"a", attrs, children} = keep) do
@@ -154,6 +173,20 @@ defmodule Data.Article do
     )
   end
 
+  def orderable_only(map) when is_map(map),
+    do: map |> Map.values() |> orderable_only()
+
+  def orderable_only([{name, %Data.Article{name: name}} | _rest] = list),
+    do: list |> Enum.map(&elem(&1, 1)) |> orderable_only()
+
+  def orderable_only(list) when is_list(list) do
+    list
+    |> Enum.reject(fn
+      %Data.Article{date: nil} -> true
+      _ -> false
+    end)
+  end
+
   defp append_related_articles(content, nil), do: content
   defp append_related_articles(content, []), do: content
 
@@ -162,7 +195,7 @@ defmodule Data.Article do
       #{content}
 
       <h3>Verwandte Artikel</h3>
-      <articles>tags=#{Enum.join(tags, ",")}</articles>
+      <articles tags="#{Enum.join(tags, ",")}" sort="date"/>
     """
   end
 end
