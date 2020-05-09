@@ -9,7 +9,7 @@ images:
 title: Kurt-A.-Körber Chaussee (Veloroute 9)
 start: 2019-12
 end: 2020-10
-hideFromMap: false
+hide_from_map: false
 tags:
 - 9
 text: >

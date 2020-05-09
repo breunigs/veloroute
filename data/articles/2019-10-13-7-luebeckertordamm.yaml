@@ -11,7 +11,7 @@ images:
 - GTEnbixUsyOtjD0WeYIsmg
 title: Lübeckertordamm (Veloroute 7)
 start: 2019Q4
-hideFromMap: false
+hide_from_map: false
 tags:
 - 7
 text: '<p>Die Radwege stadteinwärts sind bequem zu befahren, aber zu schmal zum Überholen.

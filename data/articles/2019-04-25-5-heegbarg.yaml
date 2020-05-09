@@ -41,7 +41,7 @@ area:
   - 53.656383
 - - 10.093753
   - 53.656351
-hideFromMap: false
+hide_from_map: false
 tags:
 - 5
 text: '<p>Im markierten Stück des <a class="place" href="/#18/53.656266/10.093697">Heegbarg</a>

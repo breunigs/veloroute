@@ -39,7 +39,7 @@ area:
   - 53.646489
 title: Uppenhof und Eulenkrugstraße (Veloroute 6)
 images: 6
-hideFromMap: false
+hide_from_map: false
 updated: 2019-12-01
 tags:
 - 6

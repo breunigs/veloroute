@@ -1,4 +1,4 @@
-hideFromMap: true
+hide_from_map: true
 title: Baustellen und geplante Maßnahmen
 text: >
   <p>Die Zeitangaben zu den Baustellen und geplanten Baumaßnahmen stellt meist nur eine grobe Orientierung dar. In der Praxis verschieben sich die genauen Termine durch Baustellenkoordination oder wenn es Streit um Vorhaben gibt. Auch bekomme ich längst nicht alle Änderungen mit – wenn du Fehler findest, bitte <mailto>schreib mir</mailto> und ich korrigiere das.</p>

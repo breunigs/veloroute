@@ -4,7 +4,7 @@ start: 2020Q2
 title: Kreuzung Hohenzollernring / Bleickenallee (Veloroute 1)
 type: planned-construction
 images: 1
-hideFromMap: false
+hide_from_map: false
 updated: 2019-12-05
 tags:
 - 1

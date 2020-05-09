@@ -54,7 +54,7 @@ area:
 - - 9.957486
   - 53.599315
 start: 2020
-hideFromMap: false
+hide_from_map: false
 tags:
 - 3
 text: '<p>Folgt man der Veloroute 3 entlang des Grandwegs bzw. der Grelckstraße muss

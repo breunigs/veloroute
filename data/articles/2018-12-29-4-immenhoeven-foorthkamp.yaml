@@ -62,7 +62,7 @@ images:
 - mZ8p-UozGl64QzNKhPpcTQ
 - sNpf-NVwkbZN3DcAlzAg7g
 grade: 2
-hideFromMap: false
+hide_from_map: false
 tags:
 - 4
 text: '<p>Der Radverkehrsführung um die U-Bahn Station <a>Langenhorn Nord</a> mangelt

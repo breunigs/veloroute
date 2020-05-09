@@ -73,7 +73,7 @@ area:
 - - 9.992849
   - 53.557493
 start: 2019-10-07
-hideFromMap: false
+hide_from_map: false
 tags:
 - 6
 - 5

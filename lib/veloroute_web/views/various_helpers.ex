@@ -3,17 +3,9 @@ defmodule VelorouteWeb.VariousHelpers do
 
   def display_route({id, rest}) do
     rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
-    color = Map.get(rel.tags, :color)
     full_name = Map.get(rel.tags, :name, id)
 
-    icon =
-      if color do
-        content_tag(:span, id, style: "background: #{color}", class: "icon")
-      else
-        Phoenix.HTML.html_escape(id)
-      end
-
-    content_tag(:div, [icon, " ", rest], title: "Du folgst: #{full_name} #{rest}")
+    content_tag(:div, [route_icon(id), " ", rest], title: "Du folgst: #{full_name} #{rest}")
   end
 
   @short_month_names [
@@ -51,5 +43,23 @@ defmodule VelorouteWeb.VariousHelpers do
 
   def long_date(%Date{day: day, month: month, year: year}) do
     "#{day}. #{Enum.at(@long_month_names, month - 1)} #{year}"
+  end
+
+  def route_icon(%Data.Map.Relation{id: id, tags: tags}) do
+    route_icon(id, Map.get(tags, :color))
+  end
+
+  def route_icon(id) when is_binary(id) do
+    rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
+    color = Map.get(rel.tags, :color)
+    route_icon(id, color)
+  end
+
+  def route_icon(id, color) do
+    if color do
+      content_tag(:span, id, style: "background: #{color}", class: "icon")
+    else
+      Phoenix.HTML.html_escape(id)
+    end
   end
 end

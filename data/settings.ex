@@ -12,4 +12,12 @@ defmodule Settings do
   def email, do: "stefan-veloroute@breunig.xyz"
 
   def default_page, do: "0000-00-00-startpage"
+
+  def footer,
+    do: """
+      <h3>Kontakt</h3>
+      <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><mailto/></p>
+
+      <p><a href="/"><strong>Zurück zur Startseite</strong></a></p>
+    """
 end

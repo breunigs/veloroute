@@ -7,7 +7,7 @@ type: bettelampel
 title: Veddeler Marktplatz (Veloroute 10)
 images:
 - aS0wZcULoeUqaS4HCkTfCw
-hideFromMap: true
+hide_from_map: true
 tags:
 - 10
 text: "<p><strong>Update:</strong> Die Kreuzung wurde um einen Bewegungsmelder für

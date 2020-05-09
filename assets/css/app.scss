@@ -49,6 +49,13 @@ body > div {
 #mly {
   top: 50%;
   overflow: hidden;
+
+  &.mlyzoom {
+    top: 0%;
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+  }
 }
 
 #sidebar {
@@ -223,7 +230,7 @@ a.header {
   font-weight: normal;
   cursor: default;
   text-decoration: none;
-  color: #fff;
+  color: #fff !important;
   border-radius: 50%;
   border: 0.13em solid white;
   text-align: center;
@@ -231,6 +238,14 @@ a.header {
   text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
     0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
     -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
+}
+
+a.icon {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
 
 abbr {
@@ -256,6 +271,27 @@ ul, ol {
     color: #999;
     float: right;
     padding-left: .5em;
+  }
+}
+
+ol.route-list {
+  list-style-type: none;
+  padding: 0;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  li {
+    margin: 0.5rem 0;
+    display: inline-block;
+  }
+
+  break {
+    flex-basis: 100%;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
   }
 }
 
@@ -305,15 +341,13 @@ a:hover {
   text-decoration: underline;
 }
 
-
-
-
 #impressum {
   margin-top: 2em;
   float: right;
+  a {
+    color: #888;
+  }
 }
-
-
 
 #indicator, #indicator-rotate {
   height: 2em;
@@ -385,5 +419,67 @@ p.alert {
     z-index: 100;
     margin: auto;
     content: "In diesem Browser scheint „WebGL“ deaktiviert zu sein. Dem ist normalerweise nicht so, d.h. vermutlich liegt es an der Technik. Bitte suche im Internet nach Lösungen oder frage eine technikaffine Person um Hilfe.";
+  }
+}
+
+table.routing {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: calc(100% + 2*#{$contentPad});
+  margin-left: -$contentPad;
+
+
+  a {
+    color: #000;
+  }
+
+  tr,
+  td,
+  th {
+    padding: 0;
+  }
+
+  // this will control the size of the abstract route rendering, since it needs
+  // to match in cell height for the different sub-icons to line up.
+  $table-cell-height: 20px;
+
+  td {
+    height: $table-cell-height;
+    white-space: nowrap;
+  }
+
+  $main-route-icon-size: 1.5em;
+  // i.e. center column that displays the route
+  tr:first-child td:nth-child(2) {
+    // image will be set through HTML
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: auto calc(100% - #{$main-route-icon-size});
+    width: 1.25*2*$table-cell-height;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 0.42em;
+
+    .icon {
+      font-size: 120%;
+      width: $main-route-icon-size;
+      height: $main-route-icon-size;
+    }
+  }
+
+  td:first-child {
+    text-align: right;
+  }
+
+  td:last-child {
+  }
+
+  td.dir {
+    opacity: 0.3;
+  }
+
+  .icon {
+    margin: 0 0.2em;
   }
 }

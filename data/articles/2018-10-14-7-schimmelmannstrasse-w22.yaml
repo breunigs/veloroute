@@ -8,7 +8,7 @@ end: 2020-03
 area: [[10.098442, 53.571072], [10.098581, 53.570833], [10.104922, 53.57204], [10.104761, 53.572269], [10.098442, 53.571072]]
 title: Schimmelmannstraße (Veloroute 7, „Abschnitt W22“)
 images: 7
-hideFromMap: false
+hide_from_map: false
 updated: 2020-02-02
 tags:
 - 7

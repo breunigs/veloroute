@@ -14,11 +14,13 @@ defmodule VelorouteWeb.ArticleView do
     art
     |> Map.fetch!(:text)
     |> Floki.parse_fragment!()
-    |> enhance_tag("a", &live_links/2)
-    |> enhance_tag("articles", &articles/2)
-    |> enhance_tag("mailto", &mailto/2)
     |> maybe_prepend_title(art)
     |> append_related_articles(art)
+    |> append_footer(art)
+    |> enhance_tag("icon", &icon/2)
+    |> enhance_tag("articles", &articles/2)
+    |> enhance_tag("mailto", &mailto/2)
+    |> enhance_tag("a", &live_links/2)
     |> Floki.raw_html()
     |> Phoenix.HTML.raw()
   end
@@ -40,40 +42,45 @@ defmodule VelorouteWeb.ArticleView do
 
   @spec maybe_prepend_title(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_title(html, %Article{text: "<h3" <> _x}), do: html
+  defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
   defp maybe_prepend_title(html, %Article{title: t}), do: floki_content_tag(:h3, t) ++ html
 
   @spec append_related_articles(Floki.html_tree(), %Article{}) :: Floki.html_tree()
+  defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
+
   defp append_related_articles(html, art) do
-    Data.articles()
-    |> Article.related(art)
-    |> case do
-      x when x == %{} ->
-        html
+    related = Article.related(Data.articles(), art)
+    dated = Article.ordered(related, :date)
+    nodate = Article.filter(related, date: [nil]) |> Map.values()
 
-      x ->
-        items =
-          x
-          |> Article.ordered(:date)
-          |> article_list(years: true, time_format: :date)
+    if related == %{} do
+      html
+    else
+      main = nodate |> Enum.flat_map(&to_link/1) |> to_soft_list
+      dated = article_list(dated, years: true, time_format: :date)
 
-        html ++
-          floki_content_tag(:h3, "Verwandte Artikel") ++
-          floki_content_tag(:ol, items, class: "hide-bullets")
+      html ++
+        floki_content_tag(:h3, "Verwandte Artikel") ++
+        main ++
+        floki_content_tag(:ol, dated, class: "hide-bullets")
     end
   end
 
   @spec to_list_item(%Article{}, atom()) :: Floki.html_tree()
-  defp to_list_item(%Article{name: name, title: title} = art, time_format) do
-    url = Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+  defp to_list_item(art, time_format) do
+    floki_content_tag(:li, to_list_time(art, time_format) ++ to_link(art))
+  end
 
-    time = to_list_time(art, time_format)
-    link = live_patch(title, to: url) |> to_floki
-    floki_content_tag(:li, time ++ link)
+  defp to_link(%Article{name: name, title: title}) do
+    url = Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    live_patch(title, to: url) |> to_floki
   end
 
   defp to_list_time(art, :range),
     do: floki_content_tag(:span, Article.range(art), class: "duration")
+
+  defp to_list_time(%Article{date: nil}, :date), do: []
 
   defp to_list_time(%Article{date: date}, :date),
     do:
@@ -84,10 +91,24 @@ defmodule VelorouteWeb.ArticleView do
         datetime: Date.to_string(date)
       )
 
+  defp to_soft_list([x]) do
+    floki_content_tag(:p, ["Übersicht: " | floki_content_tag(:strong, [x])])
+  end
+
+  defp to_soft_list(list) do
+    lis = Enum.flat_map(list, &floki_content_tag(:li, [&1]))
+    floki_content_tag(:ul, lis)
+  end
+
   @mail Settings.email()
   defp mailto(_attr, content) do
     content = if content == [], do: @mail, else: content
     {"a", [{"href", "mailto:#{@mail}"}], List.wrap(content)}
+  end
+
+  defp icon(_attr, content) do
+    [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
+    {"a", attrs ++ [{"href", "/#{content}"}], content}
   end
 
   @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
@@ -95,6 +116,9 @@ defmodule VelorouteWeb.ArticleView do
     href = find_attribute(attrs, "href")
 
     cond do
+      find_attribute(attrs, "data-phx-link") != nil ->
+        {"a", attrs, children}
+
       nil == href ->
         name = Floki.text(children)
         {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-name", name} | attrs], children}
@@ -170,7 +194,9 @@ defmodule VelorouteWeb.ArticleView do
   @spec article_list([%Article{}],
           years: boolean(),
           time_format: :date | :range
-        ) :: Floki.html_tag()
+        ) :: Floki.html_tree()
+  defp article_list([], years: _years, time_format: _time_format), do: []
+
   defp article_list(articles, years: years, time_format: time_format) do
     articles
     |> Enum.reduce({nil, []}, fn art, {year, list} ->
@@ -184,10 +210,16 @@ defmodule VelorouteWeb.ArticleView do
           item ++ split ++ list
         end
 
-      {art.date.year, list}
+      prev = if art.date, do: art.date.year, else: nil
+      {prev, list}
     end)
     |> elem(1)
+    |> List.wrap()
   end
+
+  @spec append_footer(Floki.html_tree(), %Article{}) :: Floki.html_tree()
+  defp append_footer(html, %Article{hide_footer: true}), do: html
+  defp append_footer(html, _art), do: html ++ Floki.parse_fragment!(Settings.footer())
 
   @spec floki_content_tag(any(), any()) :: Floki.html_tree()
   defp floki_content_tag(tag, content), do: floki_content_tag(tag, content, [])

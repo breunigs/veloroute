@@ -17,7 +17,7 @@ images:
 - nJvaWBCngxQV6L2apq30Dw
 - 43gbWliw-a4JL3WGuy61Lw
 title: Kreuzung Am Pulverteich / Tonndorfer Hauptstraße / Auerhahnweg (Veloroute 14)
-hideFromMap: false
+hide_from_map: false
 tags:
 - 14
 text: '<p>Die Querung der <a>Tonndorfer Straße</a> entlang der Veloroute 14 ist mit

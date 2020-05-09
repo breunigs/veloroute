@@ -34,7 +34,7 @@ images:
 - yqfw_wyZ4ceHjQ0oQUyfng
 grade: 2
 length: 0.22
-hideFromMap: false
+hide_from_map: false
 tags:
 - 4
 text: '<p><strong>Update:</strong> Der entgültige Entwurf liegt nun vor. Das zuvor

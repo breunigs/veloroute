@@ -1,9 +1,27 @@
 images:
 - c4B6txFX6Xgza8iWNFzSYw
-hideFromMap: true
+hide_from_map: true
+hide_footer: true
 text: >
   <h3>Radwege erkunden</h3>
   <p>Klicke auf das Bild um anzufangen, oder wähle zuerst Fahrradroute auf der Karte. Mach Dich mit ihr vertraut und… fahr Rad!</p>
+  <ol class="route-list">
+    <li><icon>1</icon></li>
+    <li><icon>2</icon></li>
+    <li><icon>3</icon></li>
+    <li><icon>4</icon></li>
+    <li><icon>5</icon></li>
+    <li><icon>6</icon></li>
+    <li><icon>7</icon></li>
+    <break></break>
+    <li><icon>8</icon></li>
+    <li><icon>9</icon></li>
+    <li><icon>10</icon></li>
+    <li><icon>11</icon></li>
+    <li><icon>12</icon></li>
+    <li><icon>13</icon></li>
+    <li><icon>14</icon></li>
+  </ol>
 
   <h3>Pläne, Baustellen und Probleme</h3>
   <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>

@@ -6,7 +6,7 @@ images:
 - xCMDA_6f3-uBpZbjFgPnDw
 - QO1hSRRQVKrUpfpPyGIvXw
 type: planned-construction
-hideFromMap: false
+hide_from_map: false
 updated: 2020-02-25
 tags:
 - 4

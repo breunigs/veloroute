@@ -20,7 +20,7 @@ type: planned-construction
 title: Binnenhafen Harburg (Veloroute 10)
 start: 2019
 finish: 2020
-hideFromMap: false
+hide_from_map: false
 tags:
 - 10
 text: '<p>Radverkehrsanlagen sind auf der <a>Nartenstraße</a> gar nicht vorhanden,

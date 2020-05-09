@@ -11,8 +11,8 @@ const mly = new Mapillary.Viewer(
   state.mapillaryApiKey,
   initialImg,
   {
-    // baseImageSize: Mapillary.ImageSize.Size320,
-    // basePanoramaSize: Mapillary.ImageSize.Size1024,
+    baseImageSize: Mapillary.ImageSize.Size320,
+    basePanoramaSize: Mapillary.ImageSize.Size1024,
     component: {
       attribution: true,
       bearing: false,
@@ -27,7 +27,7 @@ const mly = new Mapillary.Viewer(
       cover: false,
       direction: false,
       keyboard: false,
-      marker: false,
+      marker: true,
       sequence: false,
       zoom: false,
     }

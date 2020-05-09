@@ -19,7 +19,7 @@ start: 2020-05
 end: 2020-12
 title: Jenfelder Straße zw. Jenfelder Allee und Charlottenburger Straße (Veloroute
   7, Abschnitt W28)
-hideFromMap: false
+hide_from_map: false
 tags:
 - 7
 text: '<p>Im Abschnitt der <a>Jenfelder Straße</a> zwischen <a>Jenfelder Allee</a>

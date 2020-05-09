@@ -9,7 +9,7 @@ images:
 - L03oD1LsaLg-OQgNqp9Q8Q
 - bI_lrdQrBOBpefsmR_rajg
 title: Querung Bramfelder Chaussee, Höhe Fabriciusstraße (Veloroute 5)
-hideFromMap: false
+hide_from_map: false
 tags:
 - 5
 text: '<p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße

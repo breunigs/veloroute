@@ -7,13 +7,15 @@ defmodule Data.Article do
     :title,
     :name,
     :images,
-    :hideFromMap,
+    :hide_from_map,
     :tags,
     :text,
     :start,
     :end,
     :date,
-    :range
+    :range,
+    :no_auto_title,
+    :hide_footer
   ]
 
   defstruct @known_params
@@ -69,8 +71,8 @@ defmodule Data.Article do
   ## Examples
 
       iex> %{
-      ...> "a" => Data.ArticleTest.example_article(),
-      ...> "b" => Data.ArticleTest.example_article() |> Map.delete(:tags),
+      ...>   "a" => Data.ArticleTest.example_article(),
+      ...>   "b" => Data.ArticleTest.example_article() |> Map.delete(:tags),
       ...> }
       ...> |> Data.Article.filter([tags: ["7"]])
       %{"a" => Data.ArticleTest.example_article()}
@@ -78,6 +80,10 @@ defmodule Data.Article do
       iex> %{"a" => Data.ArticleTest.example_article()}
       ...> |> Data.Article.filter([tags: ["7"], unknown_key: ["7"]])
       {:error, "Unknown filter key(s) unknown_key"}
+
+      iex> %{"a" => Data.ArticleTest.example_article(date: nil)}
+      ...> |> Data.Article.filter([date: [nil]])
+      %{"a" => Data.ArticleTest.example_article(date: nil)}
   """
   def filter(all, filter) when is_list(filter) do
     find_invalid_keys(filter)
@@ -87,7 +93,7 @@ defmodule Data.Article do
         |> Enum.filter(fn {_name, art} ->
           Enum.all?(filter, fn {key, allowed_values} ->
             allowed = MapSet.new(allowed_values)
-            have = Map.get(art, key, []) |> List.wrap() |> MapSet.new()
+            have = Map.get(art, key) |> Kernel.||([nil]) |> List.wrap() |> MapSet.new()
             matches = MapSet.intersection(allowed, have)
 
             MapSet.size(matches) > 0

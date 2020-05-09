@@ -2,11 +2,11 @@ defmodule Data.ArticleTest do
   use ExUnit.Case, async: true
   doctest Data.Article
 
-  def example_article do
+  def example_article(extra_keys \\ []) do
     %Data.Article{
       date: ~D[2018-07-19],
       end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-      hideFromMap: false,
+      hide_from_map: false,
       name: "2018-07-19-example-article",
       range: nil,
       start: %Data.RoughDate{month: nil, quarter: nil, year: nil},
@@ -15,6 +15,7 @@ defmodule Data.ArticleTest do
       title: "Example Article",
       type: "issue"
     }
+    |> Map.merge(Enum.into(extra_keys, %{}))
   end
 
   test "parses decently" do
@@ -26,7 +27,7 @@ defmodule Data.ArticleTest do
       title: title
       start: 2019Q4
       images: 123
-      hideFromMap: false
+      hide_from_map: false
       tags:
       - tag
       - 4
@@ -36,7 +37,7 @@ defmodule Data.ArticleTest do
     assert Data.Article.load(file_path) == %Data.Article{
              date: ~D[2020-03-29],
              end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-             hideFromMap: false,
+             hide_from_map: false,
              images: 123,
              name: "2020-03-29-dummy-article",
              start: %Data.RoughDate{month: nil, quarter: 4, year: 2019},

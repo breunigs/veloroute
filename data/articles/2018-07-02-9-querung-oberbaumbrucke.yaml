@@ -9,7 +9,7 @@ images:
 - akFCezeu2dphPyBxQ2xhYw
 - 87QWoV20s5V5dIACqdKK-w
 title: Querung Oberbaumbrücke (Veloroute 9 stadtauswärts)
-hideFromMap: false
+hide_from_map: false
 tags:
 - 9
 text: "<p>Stadtauswärts muss an dieser Stelle die vierspurige <a>Oberbaumbrücke</a>

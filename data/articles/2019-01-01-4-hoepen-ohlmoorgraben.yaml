@@ -34,7 +34,7 @@ area:
 start: 2021Q1
 images: 4
 grade: 1
-hideFromMap: false
+hide_from_map: false
 updated: 2019-12-01
 tags:
 - 4

@@ -22,7 +22,7 @@ area:
   - 53.558657
 start: 2020Q2
 type: planned-construction
-hideFromMap: false
+hide_from_map: false
 tags:
 - 13
 text: |
