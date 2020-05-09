@@ -7,8 +7,8 @@
 # General application configuration
 use Mix.Config
 
-import_config "../data/credentials.exs"
-import_config "../data/settings.exs"
+import_config "../data/credentials.ex"
+import_config "../data/settings.ex"
 
 # Configures the endpoint
 config :veloroute, VelorouteWeb.Endpoint,

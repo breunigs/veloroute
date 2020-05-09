@@ -9,7 +9,8 @@ defmodule Veloroute.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_apps: [:mix]]
     ]
   end
 
@@ -24,8 +25,8 @@ defmodule Veloroute.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "data", "test/support"]
+  defp elixirc_paths(_), do: ["lib", "data"]
 
   # Specifies your project dependencies.
   #
@@ -33,13 +34,14 @@ defmodule Veloroute.MixProject do
   defp deps do
     [
       {:browser, "~> 0.4.4"},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ex_aws, "~> 2.1", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.0", only: [:dev, :test]},
       {:floki, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
-      {:memoize, "~> 1.3", only: [:dev, :test]},
+      {:memoize, "~> 1.3"},
       {:phoenix, "~> 1.4.16"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

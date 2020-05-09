@@ -108,17 +108,17 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, Data.find_article() |> set_content(uri, socket)}
   end
 
-  defp set_content(%Data.Article{live_html: live_html, title: t}, _uri, socket)
+  defp set_content(%Data.Article{name: name, title: t}, _uri, socket)
        when is_nil(t) or t == "" do
     assign(socket,
-      content: replace_custom_tags(live_html),
+      content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
       page_title: Settings.page_title_long()
     )
   end
 
-  defp set_content(%Data.Article{live_html: live_html, title: title}, _uri, socket) do
+  defp set_content(%Data.Article{name: name, title: title}, _uri, socket) do
     assign(socket,
-      content: replace_custom_tags(live_html),
+      content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
       page_title: Settings.page_title_short() <> title
     )
   end
@@ -177,7 +177,7 @@ defmodule VelorouteWeb.FrameLive do
       case socket.assigns do
         %{img_next: nil} ->
           Logger.debug("slideshow: no more images")
-          slideshow(socket, slideshow: false)
+          slideshow(socket, false)
 
         %{img_next: img} ->
           Logger.debug("slideshow: advancing to #{img}")
@@ -273,33 +273,5 @@ defmodule VelorouteWeb.FrameLive do
   defp start_image() do
     # TODO: read from url/hash?
     Settings.image()
-  end
-
-  defp replace_custom_tags(source) do
-    source
-    |> replace_custom_tag("articles", &VelorouteWeb.VariousHelpers.articles/2)
-    |> replace_custom_tag("mailto", fn _m, content ->
-      mail = Settings.email()
-      content = if content == [], do: mail, else: content
-      {"a", [{"href", "mailto:#{mail}"}], List.wrap(content)}
-    end)
-  end
-
-  defp replace_custom_tag(source, name, replacer) do
-    source
-    |> Floki.parse_fragment!()
-    |> Floki.traverse_and_update(fn
-      {^name, attrs, children} ->
-        attrs
-        |> Enum.map(fn {k, v} ->
-          {String.to_existing_atom(k), v}
-        end)
-        |> Enum.into(%{})
-        |> replacer.(children)
-
-      any ->
-        any
-    end)
-    |> Floki.raw_html()
   end
 end

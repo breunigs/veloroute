@@ -1,7 +1,8 @@
 defmodule Data.Article do
+  alias __MODULE__
   require Logger
 
-  defstruct [
+  @known_params [
     :type,
     :title,
     :name,
@@ -12,9 +13,10 @@ defmodule Data.Article do
     :start,
     :end,
     :date,
-    :live_html,
     :range
   ]
+
+  defstruct @known_params
 
   @required_params [:type, :title, :text, :date, :name]
   def required_params, do: @required_params
@@ -34,27 +36,13 @@ defmodule Data.Article do
         x -> Date.from_iso8601(x)
       end
 
-    live_html =
-      parsed[:text]
-      |> Floki.parse_fragment!()
-      |> Floki.traverse_and_update(&to_live_links/1)
-      |> Floki.raw_html()
-      |> append_related_articles(Map.get(parsed, :tags, nil))
-
-    title_html =
-      if Map.get(parsed, :title) && !String.starts_with?(live_html, "<h3"),
-        do:
-          Phoenix.HTML.Tag.content_tag(:h3, parsed.title)
-          |> Phoenix.HTML.safe_to_string(),
-        else: ""
-
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
     data =
       Map.merge(parsed, %{
         name: name,
         date: date,
-        live_html: title_html <> live_html,
+        text: String.trim(parsed.text),
         tags: tags,
         start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
         end: parsed |> Map.get(:end) |> Data.RoughDate.parse()
@@ -73,35 +61,50 @@ defmodule Data.Article do
     end)
   end
 
-  # def filter(all, ""), do: all
-  # def filter(all, nil), do: all
-  # def filter(all, []), do: all
+  @doc ~S"""
+  Filters down a list or map of articles. The filter is a keyword list with the
+  keys being fields to filter on. The values are regular lists to denote
+  acceptable values.
 
-  # def filter(all, filter) when is_binary(filter) do
-  #   filter =
-  #     filter
-  #     |> String.trim()
-  #     |> String.split(" ")
-  #     |> Enum.map(&String.split(&1, "=", parts: 2))
-  #     |> Enum.map(fn [key, vals] ->
-  #       {String.to_existing_atom(key), String.split(vals, ",")}
-  #     end)
+  ## Examples
 
-  #   filter(all, filter)
-  # end
+      iex> %{
+      ...> "a" => Data.ArticleTest.example_article(),
+      ...> "b" => Data.ArticleTest.example_article() |> Map.delete(:tags),
+      ...> }
+      ...> |> Data.Article.filter([tags: ["7"]])
+      %{"a" => Data.ArticleTest.example_article()}
 
+      iex> %{"a" => Data.ArticleTest.example_article()}
+      ...> |> Data.Article.filter([tags: ["7"], unknown_key: ["7"]])
+      {:error, "Unknown filter key(s) unknown_key"}
+  """
   def filter(all, filter) when is_list(filter) do
-    all
-    |> Enum.filter(fn {_name, art} ->
-      Enum.all?(filter, fn {key, allowed_values} ->
-        allowed = MapSet.new(allowed_values)
-        have = Map.get(art, key, []) |> List.wrap() |> MapSet.new()
-        matches = MapSet.intersection(allowed, have)
+    find_invalid_keys(filter)
+    |> case do
+      [] ->
+        all
+        |> Enum.filter(fn {_name, art} ->
+          Enum.all?(filter, fn {key, allowed_values} ->
+            allowed = MapSet.new(allowed_values)
+            have = Map.get(art, key, []) |> List.wrap() |> MapSet.new()
+            matches = MapSet.intersection(allowed, have)
 
-        MapSet.size(matches) > 0
-      end)
+            MapSet.size(matches) > 0
+          end)
+        end)
+        |> Enum.into(%{})
+
+      invalid ->
+        {:error, "Unknown filter key(s) #{invalid |> Enum.join(", ")}"}
+    end
+  end
+
+  defp find_invalid_keys(filter) do
+    Enum.reject(filter, fn {key, _vals} ->
+      Enum.member?(@known_params, key)
     end)
-    |> Enum.into(%{})
+    |> Keyword.keys()
   end
 
   def ordered(various, key) when is_binary(key),
@@ -132,45 +135,16 @@ defmodule Data.Article do
     end)
   end
 
+  def related(_all, %Article{tags: nil}), do: %{}
+  def related(_all, %Article{tags: []}), do: %{}
+
+  def related(all, %Article{name: name, tags: tags}) when is_list(tags) do
+    Article.filter(all, tags: tags)
+    |> Map.delete(name)
+  end
+
   def range(%Data.Article{start: from, end: to}) do
     Data.RoughDate.range(from, to)
-  end
-
-  defp to_live_links({"a", attrs, children} = keep) do
-    href =
-      attrs
-      |> Enum.find({nil, nil}, fn {key, _val} -> key == "href" end)
-      |> elem(1)
-
-    cond do
-      nil == href ->
-        name = Floki.text(children)
-        {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-name", name} | attrs], children}
-
-      String.starts_with?(href, "http") ->
-        {"a", [{"target", "_blank"} | attrs], children}
-
-      opts = parse_map_link(href) ->
-        values = opts |> Enum.map(fn {k, v} -> {"phx-value-#{k}", v} end)
-        attrs = [{"phx-click", "map-zoom-to"}, {"onclick", "return false"}] ++ values ++ attrs
-        {"a", attrs, children}
-
-      String.starts_with?(href, "/") ->
-        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"} | attrs], children}
-
-      "mailto:" <> _rest = href ->
-        keep
-    end
-  end
-
-  defp to_live_links(any), do: any
-
-  defp parse_map_link(path) do
-    # /13#zoom/lat/lon/img
-    Regex.named_captures(
-      ~r{/(?<route>\d+)?#(?<zoom>[\d.]+)/(?<lat>[\d.]+)/(?<lon>[\d.]+)(?:/(?<img>.+))?},
-      path
-    )
   end
 
   def orderable_only(map) when is_map(map),
@@ -185,17 +159,5 @@ defmodule Data.Article do
       %Data.Article{date: nil} -> true
       _ -> false
     end)
-  end
-
-  defp append_related_articles(content, nil), do: content
-  defp append_related_articles(content, []), do: content
-
-  defp append_related_articles(content, tags) when is_list(tags) do
-    """
-      #{content}
-
-      <h3>Verwandte Artikel</h3>
-      <articles tags="#{Enum.join(tags, ",")}" sort="date"/>
-    """
   end
 end

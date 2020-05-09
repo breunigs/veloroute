@@ -25,10 +25,10 @@ defmodule VelorouteWeb.Router do
   scope "/", VelorouteWeb do
     pipe_through :browser
 
-    live "/", FrameLive, as: :startpage
     live "/blog/:article", FrameLive
     live "/article/:article", FrameLive, as: :article
-    live "/:page", FrameLive
+    live "/:page", FrameLive, as: :page
+    live "/", FrameLive, as: :startpage
   end
 
   # Other scopes may use custom stacks.
