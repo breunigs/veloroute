@@ -92,11 +92,7 @@ defmodule VelorouteWeb.ArticleView do
 
   @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
   defp live_links(attrs, children) do
-    href =
-      Enum.find_value(attrs, fn
-        {"href", val} -> val
-        _any -> false
-      end)
+    href = find_attribute(attrs, "href")
 
     cond do
       nil == href ->
@@ -122,7 +118,7 @@ defmodule VelorouteWeb.ArticleView do
     end
   end
 
-  defp parse_map_link(path) do
+  def parse_map_link(path) do
     # /13#zoom/lat/lon/img
     Regex.named_captures(
       ~r{/(?<route>\d+)?#(?<zoom>[\d.]+)/(?<lat>[\d.]+)/(?<lon>[\d.]+)(?:/(?<img>.+))?},
@@ -216,5 +212,12 @@ defmodule VelorouteWeb.ArticleView do
   defp to_floki({:safe, [_, tag, attrs, _, content | _rest]}) do
     attrs = Enum.map(attrs, fn [_, k, _, _, v, _] -> {k, v} end)
     [{tag, attrs, List.wrap(content)}]
+  end
+
+  def find_attribute(attrs, key) do
+    Enum.find_value(attrs, fn
+      {^key, val} -> val
+      _any -> false
+    end)
   end
 end

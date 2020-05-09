@@ -60,6 +60,8 @@ defmodule Data.Image do
       {name, imgs} ->
         cur_pos = all[:index][img][name]
 
+        Logger.debug("Found #{img} in #{inspect(name)} at position #{cur_pos}")
+
         if cur_pos == 0 do
           [curr, next] = Enum.slice(imgs, 0, 2)
           %{route: name, prev: nil, curr: curr, next: next}

@@ -217,19 +217,22 @@ defmodule VelorouteWeb.FrameLive do
   defp slideshow_image_load_latency(_socket), do: 0
 
   defp set_img(%{assigns: %{mly_js: nil}} = socket, img) do
+    Logger.debug("loading mly")
     path = Routes.static_path(VelorouteWeb.Endpoint, "/js/mly.js")
-    socket = assign(socket, mly_js: path)
-    set_img(socket, img)
+
+    socket
+    |> assign(mly_js: path)
+    |> set_img(img)
   end
 
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
   defp set_img(socket, ""), do: socket
 
   defp set_img(socket, img) do
-    Logger.debug("showing: #{img}")
-
     %{route: route, prev: prev, next: next} =
       Data.Image.find_surrounding(Data.images(), img, route: socket.assigns.route)
+
+    Logger.debug("showing: #{img} (route: #{inspect(route)}")
 
     assign(socket,
       img: img,

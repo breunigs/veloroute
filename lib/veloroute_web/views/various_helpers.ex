@@ -1,9 +1,6 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
 
-  import Phoenix.LiveView.Helpers
-  alias VelorouteWeb.Router.Helpers, as: Routes
-
   def display_route({id, rest}) do
     rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
     color = Map.get(rel.tags, :color)
