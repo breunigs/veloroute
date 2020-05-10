@@ -171,7 +171,7 @@ defmodule Data.Image do
     Map.put(all, :index, index)
   end
 
-  defp sequence_to_osm({seq, imgs}, name) do
+  defp sequence_to_osm({seq, imgs}, {id, rest}) do
     collect =
       imgs
       |> Enum.map(fn img ->
@@ -197,7 +197,7 @@ defmodule Data.Image do
       <way id='#{Enum.random(1..1_000_000_000)}' version='1'>
         #{Enum.join(refs, "\n")}
         <tag k='type' v='mapillary-sequence' />
-        <tag k='name' v='#{name}' />
+        <tag k='name' v='#{id} #{rest}' />
         <tag k='seq' v='#{seq}' />
       </way>
     """

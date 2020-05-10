@@ -90,7 +90,9 @@ defmodule Data.Map do
     defstruct [:id, :tags, :members]
 
     def routes_as_geojson(r, overlaps) do
-      Enum.map(ways(r), fn %{ref: w} ->
+      r
+      |> ways()
+      |> Enum.map(fn w ->
         id = r.id
 
         offset =
@@ -109,11 +111,20 @@ defmodule Data.Map do
       end)
     end
 
-    def ways(r), do: Enum.filter(r.members, &match?(%{ref: %Way{}}, &1))
+    def ways(r),
+      do:
+        Enum.filter(r.members, &match?(%{ref: %Way{}}, &1))
+        |> Enum.map(&Map.get(&1, :ref))
+
+    def nodes(r) do
+      r
+      |> Data.Map.Relation.ways()
+      |> Enum.flat_map(fn %Data.Map.Way{nodes: nodes} -> nodes end)
+    end
 
     def way_ids(r) do
       ways(r)
-      |> Enum.map(fn %{ref: %Way{id: wid}} -> wid end)
+      |> Enum.map(fn %Way{id: wid} -> wid end)
     end
   end
 
