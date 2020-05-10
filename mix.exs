@@ -42,6 +42,7 @@ defmodule Veloroute.MixProject do
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
+      {:memoize, "~> 1.3", only: [:test]},
       {:phoenix, "~> 1.4.16"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

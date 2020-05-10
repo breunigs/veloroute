@@ -1,5 +1,5 @@
 defmodule Data.RoughDateTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   alias Data.RoughDate
 
   @unknown %RoughDate{year: nil, quarter: nil, month: nil}

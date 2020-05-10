@@ -1,10 +1,11 @@
 defmodule Data.MapTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
-  @map Data.full_map()
+  use Memoize
+  defmemo(map(), do: Data.full_map())
 
   test "ways are tagged decently" do
-    @map.ways
+    map().ways
     |> Enum.each(fn {_id, w} ->
       isArticle = w.tags[:type] == "article"
       isTaggedWay = Enum.all?(Data.Map.Way.grade_tags(), &Map.has_key?(w.tags, &1))
@@ -14,7 +15,7 @@ defmodule Data.MapTest do
   end
 
   test "articles are a closed ring" do
-    @map
+    map()
     |> Data.Map.article_ways()
     |> Enum.each(fn w ->
       first = List.first(w.nodes).id
@@ -24,7 +25,7 @@ defmodule Data.MapTest do
   end
 
   test "can be converted to GeoJSON" do
-    @map
+    map()
     |> Data.Map.to_feature_lists(%{})
     |> Enum.each(fn {_name, geojson} ->
       Jason.encode!(geojson)

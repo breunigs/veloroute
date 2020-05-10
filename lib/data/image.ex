@@ -159,17 +159,16 @@ defmodule Data.Image do
   end
 
   defp with_index(all) do
-    Enum.reduce(all, %{index: %{}}, fn {name, imgs}, acc ->
-      acc
-      |> Map.put(name, imgs)
-      |> Map.update!(:index, fn index ->
+    index =
+      Enum.reduce(all, %{}, fn {name, imgs}, index ->
         imgs
         |> Enum.with_index()
         |> Enum.reduce(index, fn {%{img: img}, pos}, index ->
           Map.update(index, img, %{name => pos}, &Map.put(&1, name, pos))
         end)
       end)
-    end)
+
+    Map.put(all, :index, index)
   end
 
   defp sequence_to_osm({seq, imgs}, name) do
