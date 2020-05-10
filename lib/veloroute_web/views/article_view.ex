@@ -2,6 +2,7 @@ defmodule VelorouteWeb.ArticleView do
   use VelorouteWeb, :view
   alias Data.Article
   alias VelorouteWeb.VariousHelpers
+  alias Data.Map.Relation
 
   @dialyzer {:nowarn_function, render_template: 2}
   @recent_article_count 4
@@ -20,6 +21,7 @@ defmodule VelorouteWeb.ArticleView do
     |> enhance_tag("icon", &icon/2)
     |> enhance_tag("articles", &articles/2)
     |> enhance_tag("mailto", &mailto/2)
+    |> enhance_tag("geolinks", &geolinks/2)
     |> enhance_tag("a", &live_links/2)
     |> Floki.raw_html()
     |> Phoenix.HTML.raw()
@@ -106,6 +108,38 @@ defmodule VelorouteWeb.ArticleView do
     {"a", [{"href", "mailto:#{@mail}"}], List.wrap(content)}
   end
 
+  defp geolinks([{"route", route}], content) do
+    rel = Data.Map.find_relation_by_tag(Data.relations(), :id, route)
+
+    gpx = geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
+
+    osm =
+      case Relation.osm_url(rel) do
+        nil -> []
+        href -> [{"li", [], floki_content_tag("a", "Route in der OpenStreetMap", href: href)}]
+      end
+
+    {"ul", [], content ++ osm ++ gpx}
+  end
+
+  defp geolinks_gpx(_, nil), do: []
+
+  defp geolinks_gpx(name, gpx_name) do
+    [gpx] =
+      floki_content_tag("a", "GPX-Format",
+        href: "/geo/#{gpx_name}.gpx",
+        download: name <> ".gpx"
+      )
+
+    [kml] =
+      floki_content_tag("a", " KML-Format",
+        href: "/geo/#{gpx_name}.kml",
+        download: name <> ".kml"
+      )
+
+    {"li", [], ["Route im ", gpx, " bzw. ", kml]}
+  end
+
   defp icon(_attr, content) do
     [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
     {"a", attrs ++ [{"href", "/#{content}"}], content}
@@ -114,10 +148,14 @@ defmodule VelorouteWeb.ArticleView do
   @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
   defp live_links(attrs, children) do
     href = find_attribute(attrs, "href")
+    keep = {"a", attrs, children}
 
     cond do
       find_attribute(attrs, "data-phx-link") != nil ->
-        {"a", attrs, children}
+        keep
+
+      find_attribute(attrs, "download") != nil ->
+        keep
 
       nil == href ->
         name = Floki.text(children)
@@ -135,10 +173,10 @@ defmodule VelorouteWeb.ArticleView do
         {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"} | attrs], children}
 
       String.starts_with?(href, "mailto:") ->
-        {"a", attrs, children}
+        keep
 
       true ->
-        {"a", attrs, children}
+        keep
     end
   end
 

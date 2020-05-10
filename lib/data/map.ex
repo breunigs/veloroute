@@ -111,6 +111,44 @@ defmodule Data.Map do
       end)
     end
 
+    def osm_url(%{tags: %{osm_relation_ref: url}}), do: url
+
+    def osm_url(%{tags: %{osm_relation_id: rel_id}}),
+      do: "https://www.openstreetmap.org/relation/#{rel_id}"
+
+    def osm_url(_), do: nil
+
+    def osm_relation_id(%{tags: %{osm_relation_id: rel_id}}) do
+      {rel_id, ""} = Integer.parse(rel_id)
+      rel_id
+    end
+
+    def osm_relation_id(%{tags: %{osm_relation_ref: url}}) do
+      String.split(url, "/")
+      |> List.last()
+      |> Integer.parse()
+      |> case do
+        {rel_id, ""} ->
+          rel_id
+
+        _ ->
+          IO.warn(
+            "Relation has osm_relation_ref=#{url} but cannot find the OSM relation ID in that"
+          )
+
+          nil
+      end
+    end
+
+    def osm_relation_id(_), do: nil
+
+    def name(rel), do: rel.tags[:name] || rel.tags[:id]
+
+    def gpx_name(rel) do
+      # return GPX name only if relation can be detected
+      if osm_relation_id(rel) != nil, do: Map.get(rel.tags, :gpx_name, rel.tags[:id])
+    end
+
     def ways(r),
       do:
         Enum.filter(r.members, &match?(%{ref: %Way{}}, &1))

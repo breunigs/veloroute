@@ -51523,6 +51523,7 @@
     <member type='way' ref='603998126' role='forward' />
     <member type='way' ref='603677724' role='forward' />
     <tag k='color' v='#7d8b2f' />
+    <tag k='gpx_name' v='1' />
     <tag k='id' v='1a' />
     <tag k='name' v='Alltagsroute 1a' />
     <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/194843' />
@@ -51597,6 +51598,7 @@
     <member type='way' ref='608715903' role='forward' />
     <member type='way' ref='31824018' role='forward' />
     <tag k='color' v='#078a3d' />
+    <tag k='gpx_name' v='5' />
     <tag k='id' v='5N' />
     <tag k='name' v='Alltagsroute 5N' />
     <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/226032' />
@@ -52155,6 +52157,7 @@
     <member type='way' ref='499451687' role='' />
     <member type='way' ref='8553434' role='' />
     <tag k='color' v='#7d8b2f' />
+    <tag k='gpx_name' v='1' />
     <tag k='id' v='1' />
     <tag k='name' v='Alltagsroute 1' />
     <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/194843' />
@@ -52406,6 +52409,7 @@
     <member type='way' ref='151043950' role='' />
     <member type='way' ref='41725635' role='' />
     <tag k='color' v='#078a3d' />
+    <tag k='gpx_name' v='5' />
     <tag k='id' v='5' />
     <tag k='name' v='Alltagsroute 5' />
     <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/226032' />

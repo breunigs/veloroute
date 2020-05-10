@@ -38,3 +38,4 @@ npm-debug.log
 /data/*credential*
 /data/cache/
 /data/josmhome/
+/assets/static/geo/

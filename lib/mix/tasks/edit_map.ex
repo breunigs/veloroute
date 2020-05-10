@@ -26,6 +26,8 @@ defmodule Mix.Tasks.EditMap do
 
     {:ok, %{mtime: lastModAfter}} = File.stat(@map_path)
 
+    Mix.Tasks.UpdateGpx.run(nil)
+
     if lastMod != lastModAfter && confirm("\n\nUpdate map remotely, too?") do
       Mix.Tasks.UpdateMapbox.run(nil)
     end

@@ -49,10 +49,9 @@ text: >
   </table>
 
   <h3>Externe Links</h3>
-  <ul>
+  <geolinks route="7">
     <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426718/veloroute-7/">Detailseite der Stadt</a></li>
-    <li><a href="https://www.openstreetmap.org/relation/228035">Route in der OpenStreetMap</a></li>
-  </ul>
+  </geolinks>
 
   <h3>Artikel zu Veloroute 7</h3>
   <articles tags="7" sort="date"/>
