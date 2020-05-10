@@ -9,7 +9,7 @@ defmodule Data.DataTest do
         nil
 
       {id, name} ->
-        rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
+        rel = Data.Map.find_relation_by_tag(Data.relations(), :id, id)
 
         assert rel != nil, """
         The images reference a route '#{id}' (#{name}) which has no matching

@@ -1,5 +1,7 @@
 defmodule Data.Image do
   require Logger
+  # XXX: otherwise it fails on compile, as if the dependency detection is broken?
+  require Mapillary
 
   def load(path) do
     {:ok, parsed} = YamlElixir.read_from_file(path)
@@ -28,7 +30,7 @@ defmodule Data.Image do
       |> Stream.map(fn {:ok, map} -> map end)
       |> Enum.reduce(%{}, &Map.merge(&1, &2))
 
-    IO.puts("")
+    IO.puts(" ✓")
     all |> with_index
   end
 
@@ -157,8 +159,6 @@ defmodule Data.Image do
   end
 
   defp with_index(all) do
-    Logger.debug("Building index")
-
     Enum.reduce(all, %{index: %{}}, fn {name, imgs}, acc ->
       acc
       |> Map.put(name, imgs)
@@ -176,7 +176,7 @@ defmodule Data.Image do
     collect =
       imgs
       |> Enum.map(fn img ->
-        id = osmId(img)
+        id = osm_id(img)
 
         node = """
           <node id='#{id}' version='1' lat='#{img.lat}' lon='#{img.lon}'>
@@ -204,7 +204,7 @@ defmodule Data.Image do
     """
   end
 
-  defp osmId(%{lat: lat, lon: lon}) do
+  defp osm_id(%{lat: lat, lon: lon}) do
     [lat, lon]
     |> Enum.map(&Float.round(&1, 7))
     |> Enum.map(&Float.to_string/1)
@@ -212,4 +212,26 @@ defmodule Data.Image do
     |> Enum.map(&String.pad_trailing(&1, 9, "0"))
     |> Enum.join("")
   end
+end
+
+defmodule Data.ImageCache do
+  @image_path "data/images/"
+  @glob_path @image_path <> "*.yaml"
+
+  paths = Path.wildcard(@glob_path)
+  paths_hash = :erlang.md5(paths)
+
+  for path <- paths do
+    @external_resource path
+  end
+
+  def __phoenix_recompile__?() do
+    Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
+  end
+
+  @images Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
+  def images, do: @images
+
+  @sequences Benchmark.measure("loading sequences", fn -> Data.Image.sequences(@images) end)
+  def sequences, do: @sequences
 end

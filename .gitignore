@@ -35,6 +35,6 @@ npm-debug.log
 
 /tmp/
 
-/data/credentials.exs
+/data/*credential*
 /data/cache/
 /data/josmhome/

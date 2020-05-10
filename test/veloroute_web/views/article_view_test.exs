@@ -27,7 +27,7 @@ defmodule VelorouteWeb.ArticleViewTest do
       |> Enum.each(fn
         %{route: r, img: _img, href: href, text: text} ->
           if r != "" do
-            assert nil != Data.Map.find_relation_by_tag(Data.map(), :id, r),
+            assert nil != Data.Map.find_relation_by_tag(Data.relations(), :id, r),
                    """
                    #{art.name}.yaml: link "#{text}" refers to route '#{r}',
                    but that route is not defined on the map (href: #{href})

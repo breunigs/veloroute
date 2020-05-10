@@ -1,2 +1,0 @@
-defmodule GeocoderCache do
-end

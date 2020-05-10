@@ -1,6 +1,8 @@
 defmodule Data.Article do
   alias __MODULE__
   require Logger
+  # XXX: otherwise it fails on compile, as if the dependency detection is broken?
+  require Data.RoughDate
 
   @known_params [
     :type,
@@ -55,10 +57,10 @@ defmodule Data.Article do
 
   def load_all(path) do
     File.ls!(path)
-    |> Enum.map(fn filename ->
+    |> Task.async_stream(fn filename ->
       load(Path.join([path, filename]))
     end)
-    |> Enum.into(%{}, fn art ->
+    |> Enum.into(%{}, fn {:ok, art} ->
       {art.name, art}
     end)
   end
@@ -166,4 +168,23 @@ defmodule Data.Article do
       _ -> false
     end)
   end
+end
+
+defmodule Data.ArticleCache do
+  @article_path "data/articles/"
+  @glob_path @article_path <> "*.yaml"
+
+  paths = Path.wildcard(@glob_path)
+  paths_hash = :erlang.md5(paths)
+
+  for path <- paths do
+    @external_resource path
+  end
+
+  def __phoenix_recompile__?() do
+    Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
+  end
+
+  @get Benchmark.measure("loading articles", fn -> Data.Article.load_all(@article_path) end)
+  def get, do: @get
 end

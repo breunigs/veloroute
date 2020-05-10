@@ -1,18 +1,18 @@
 defmodule Data do
   require Logger
 
-  # mix runs from root directory
-  @root_dir File.cwd!()
+  @map_path "data/map.osm"
 
-  use Memoize
+  @external_resource @map_path
 
-  defmemo(map, do: Data.MapParser.load("#{@root_dir}/data/map.osm"))
+  def full_map,
+    do: Benchmark.measure("loading full map", fn -> Data.MapParser.load(@map_path) end)
 
-  defmemo(images, do: Data.Image.load_all("#{@root_dir}/data/images/"))
+  def relations, do: Data.MapCache.relations()
+  def images, do: Data.ImageCache.images()
+  def sequences, do: Data.ImageCache.sequences()
 
-  defmemo(sequences, do: Data.Image.sequences(images()))
-
-  defmemo(articles, do: Data.Article.load_all("#{@root_dir}/data/articles/"))
+  def articles, do: Data.ArticleCache.get()
 
   def credentials, do: Credentials
 

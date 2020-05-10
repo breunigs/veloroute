@@ -1,6 +1,8 @@
 defmodule Mapillary do
   require Logger
 
+  @precision 6
+
   # mix runs from root directory
   @root_dir File.cwd!()
   @cache_path String.to_atom(@root_dir <> "/data/cache/mapillary.dets")
@@ -30,7 +32,15 @@ defmodule Mapillary do
     result =
       image_keys(seq, from, to, reverse: rev)
       |> positional_data
-      |> Enum.map(&Map.merge(&1, %{seq: seq}))
+      |> Enum.map(fn data ->
+        %{
+          data
+          | lat: Float.round(data.lat, @precision),
+            lon: Float.round(data.lon, @precision),
+            bearing: Float.round(data.bearing, @precision)
+        }
+        |> Map.put(:seq, seq)
+      end)
 
     # assert we don't break ordering
     %{img: ^from} = hd(result)

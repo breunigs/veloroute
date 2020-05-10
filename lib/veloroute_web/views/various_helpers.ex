@@ -2,7 +2,7 @@ defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
 
   def display_route({id, rest}) do
-    rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
+    rel = Data.Map.find_relation_by_tag(Data.relations(), :id, id)
     full_name = Map.get(rel.tags, :name, id)
 
     content_tag(:div, [route_icon(id), " ", rest], title: "Du folgst: #{full_name} #{rest}")
@@ -50,7 +50,7 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def route_icon(id) when is_binary(id) do
-    rel = Data.Map.find_relation_by_tag(Data.map(), :id, id)
+    rel = Data.Map.find_relation_by_tag(Data.relations(), :id, id)
     color = Map.get(rel.tags, :color)
     route_icon(id, color)
   end

@@ -117,8 +117,12 @@ defmodule Data.Map do
     end
   end
 
-  def find_relation_by_tag(m, tag, value) when is_atom(tag) and is_binary(value) do
-    m.relations
+  def find_relation_by_tag(%Data.Map{relations: r}, tag, value) do
+    find_relation_by_tag(r, tag, value)
+  end
+
+  def find_relation_by_tag(relations, tag, value) when is_atom(tag) and is_binary(value) do
+    relations
     |> Map.values()
     |> Enum.find(fn rel ->
       Map.get(rel.tags, tag, nil) == value
@@ -181,6 +185,10 @@ defmodule Data.Map do
 end
 
 defmodule Data.MapParser do
+  @map_path "data/map.osm"
+
+  def map_path, do: @map_path
+
   def load(path) do
     raw = File.read!(path)
     parsed = Saxy.SimpleForm.parse_string(raw)
@@ -312,4 +320,13 @@ defmodule Data.MapParser do
   defp weak_bool("yes"), do: true
   defp weak_bool("no"), do: false
   defp weak_bool(x), do: x
+end
+
+defmodule Data.MapCache do
+  @external_resource Data.MapParser.map_path()
+
+  @relations Benchmark.measure("loading map relations", fn ->
+               Data.MapParser.load(Data.MapParser.map_path()).relations
+             end)
+  def relations, do: @relations
 end
