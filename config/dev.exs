@@ -53,7 +53,8 @@ config :veloroute, VelorouteWeb.Endpoint,
       ~r"priv/gettext/.*(po)$",
       ~r"lib/veloroute_web/(live|views)/.*(ex)$",
       ~r"lib/veloroute_web/templates/.*(eex)$",
-      ~r"data/articles/.*(yaml)$"
+      ~r"data/articles/.*(yaml)$",
+      ~r"data/images/.*(yaml)$"
     ]
   ]
 

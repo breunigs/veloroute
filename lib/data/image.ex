@@ -228,9 +228,21 @@ defmodule Data.ImageCache do
     Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
   end
 
-  @images Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
-  def images, do: @images
+  if Mix.env() == :prod do
+    @images Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
+    def images, do: @images
 
-  @sequences Benchmark.measure("loading sequences", fn -> Data.Image.sequences(@images) end)
-  def sequences, do: @sequences
+    @sequences Benchmark.measure("loading sequences", fn -> Data.Image.sequences(@images) end)
+    def sequences, do: @sequences
+  else
+    use Memoize
+
+    defmemo(images(),
+      do: Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
+    )
+
+    defmemo(sequences(),
+      do: Benchmark.measure("loading sequences", fn -> Data.Image.sequences(images()) end)
+    )
+  end
 end
