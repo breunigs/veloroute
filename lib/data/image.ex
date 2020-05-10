@@ -128,15 +128,18 @@ defmodule Data.Image do
   end
 
   def find_all_by_id(all, given_id) when is_binary(given_id) do
-    keys =
-      all
-      |> Map.keys()
-      |> Enum.filter(fn
-        {id, _rest} -> id == given_id
-        :index -> false
-      end)
+    Map.take(all, find_all_routes(all, given_id))
+  end
 
-    Map.take(all, keys)
+  def find_all_routes(_all, nil), do: []
+
+  def find_all_routes(all, given_id) when is_binary(given_id) do
+    all
+    |> Map.keys()
+    |> Enum.filter(fn
+      {id, _rest} -> id == given_id
+      :index -> false
+    end)
   end
 
   def as_osm(all) do

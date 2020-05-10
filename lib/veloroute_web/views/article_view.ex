@@ -135,9 +135,9 @@ defmodule VelorouteWeb.ArticleView do
     {"li", [], ["Route im ", gpx, " bzw. ", kml]}
   end
 
-  defp icon(_attr, content) do
+  defp icon(given_attr, content) do
     [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
-    {"a", attrs ++ [{"href", "/#{content}"}], content}
+    {"a", given_attr ++ attrs ++ [{"href", "/#{content}"}], content}
   end
 
   @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()

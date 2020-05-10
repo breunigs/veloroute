@@ -5,9 +5,17 @@ defmodule VelorouteWeb.FrameLive do
   alias VelorouteWeb.Router.Helpers, as: Routes
   import VelorouteWeb.VariousHelpers
 
+  alias Data.Article
+
   @slideshow_interval_ms 500
 
-  @initial_state [mly_previous_img: nil, mly_loaded: false, img_next: nil, img_prev: nil]
+  @initial_state [
+    mly_previous_img: nil,
+    autoplayed_once: false,
+    mly_loaded: false,
+    img_next: nil,
+    img_prev: nil
+  ]
 
   def mount(_params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(10_000, self(), :check_updates)
@@ -78,6 +86,17 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, slideshow(socket, :toggle)}
   end
 
+  def handle_event("sld-autoplay", attr, socket) do
+    Logger.debug("sld-autoplay")
+
+    socket =
+      socket
+      |> maybe_update_initial_route(Map.get(attr, "route", nil))
+      |> maybe_autoplay()
+
+    {:noreply, socket}
+  end
+
   def handle_event("sld-reverse", %{} = _attr, socket) do
     Logger.debug("sld-reverse")
 
@@ -93,14 +112,28 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_params(%{"article" => article} = _params, uri, socket) do
-    Logger.debug("params: article #{article}")
-    {:noreply, article |> Data.find_article() |> set_content(uri, socket)}
+  def handle_params(%{"article" => name} = _params, uri, socket) do
+    Logger.debug("params: article #{name}")
+
+    article = Data.find_article(name)
+
+    socket =
+      set_content(article, uri, socket)
+      |> maybe_update_initial_route(article)
+
+    {:noreply, socket}
   end
 
-  def handle_params(%{"page" => page} = _params, uri, socket) do
-    Logger.debug("params: page #{page}")
-    {:noreply, page |> Data.find_page() |> set_content(uri, socket)}
+  def handle_params(%{"page" => name} = _params, uri, socket) do
+    Logger.debug("params: page #{name}")
+
+    page = Data.find_page(name)
+
+    socket =
+      set_content(page, uri, socket)
+      |> maybe_update_initial_route(page)
+
+    {:noreply, socket}
   end
 
   def handle_params(params, uri, socket) do
@@ -108,7 +141,7 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, Data.find_article() |> set_content(uri, socket)}
   end
 
-  defp set_content(%Data.Article{name: name, title: t}, _uri, socket)
+  defp set_content(%Article{name: name, title: t}, _uri, socket)
        when is_nil(t) or t == "" do
     assign(socket,
       content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
@@ -116,7 +149,7 @@ defmodule VelorouteWeb.FrameLive do
     )
   end
 
-  defp set_content(%Data.Article{name: name, title: title}, _uri, socket) do
+  defp set_content(%Article{name: name, title: title}, _uri, socket) do
     assign(socket,
       content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
       page_title: Settings.page_title_short() <> title
@@ -154,13 +187,14 @@ defmodule VelorouteWeb.FrameLive do
 
     socket
     |> assign(slideshow: status)
+    |> assign(autoplayed_once: socket.assigns.slideshow || status)
     |> maybe_advance_slideshow
   end
 
   @default_image Settings.image()
   defp maybe_advance_slideshow(%{assigns: %{slideshow: true, img: @default_image}} = socket) do
     Logger.debug("slideshow: replacing default image")
-    [%{img: img} | _] = Data.images()[Settings.route()]
+    [%{img: img} | _] = Data.images()[socket.assigns.route]
 
     set_img(socket, img)
   end
@@ -216,6 +250,32 @@ defmodule VelorouteWeb.FrameLive do
 
   defp slideshow_image_load_latency(_socket), do: 0
 
+  defp maybe_autoplay(%{assigns: %{autoplayed_once: true}} = socket), do: socket
+  defp maybe_autoplay(%{assigns: %{slideshow: true}} = socket), do: socket
+  defp maybe_autoplay(socket), do: slideshow(socket, true)
+
+  defp maybe_update_initial_route(socket, taglike)
+
+  defp maybe_update_initial_route(%{assigns: %{autoplayed_once: true}} = socket, _),
+    do: socket
+
+  defp maybe_update_initial_route(socket, %Article{tags: [tag | _rest]}),
+    do: maybe_update_initial_route(socket, tag)
+
+  defp maybe_update_initial_route(socket, %Article{}),
+    do: socket
+
+  defp maybe_update_initial_route(socket, nil), do: socket
+
+  defp maybe_update_initial_route(socket, tag) when is_binary(tag) do
+    route = Data.Image.find_all_routes(Data.images(), tag) |> List.first()
+
+    if route && route != socket.assigns.route,
+      do: Logger.debug("Setting new initial route to #{inspect(route)}")
+
+    assign(socket, route: route || socket.assigns.route)
+  end
+
   defp set_img(%{assigns: %{mly_js: nil}} = socket, img) do
     Logger.debug("loading mly")
     path = Routes.static_path(VelorouteWeb.Endpoint, "/js/mly.js")
@@ -263,18 +323,13 @@ defmodule VelorouteWeb.FrameLive do
     s = Settings
 
     [
-      img: Map.get(assigns, :img, start_image()),
+      img: Map.get(assigns, :img, Settings.image()),
       zoom: Map.get(assigns, :zoom, s.zoom()),
       lon: Map.get(assigns, :lon, s.center().lon),
       lat: Map.get(assigns, :lat, s.center().lat),
-      route: Map.get(assigns, :lat, s.route()),
+      route: Map.get(assigns, :lat, Settings.route()),
       slideshow: Map.get(assigns, :slideshow, false),
       mly_js: Map.get(assigns, :mly_js, nil)
     ]
-  end
-
-  defp start_image() do
-    # TODO: read from url/hash?
-    Settings.image()
   end
 end
