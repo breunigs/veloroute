@@ -168,6 +168,25 @@ defmodule Data.Article do
       _ -> false
     end)
   end
+
+  def full_title(%{title: t, type: type}) do
+    if String.contains?(t, ":") do
+      t
+    else
+      case type do
+        "construction" -> "Baustelle: #{t}"
+        "planned-construction" -> "Planung: #{t}"
+        "changed-routing" -> "Routenänderung: #{t}"
+        "bettelampel" -> "Bettelampel: #{t}"
+        "intent" -> "Vorhaben: #{t}"
+        "issue" -> "Problemstelle: #{t}"
+        "finished" -> "Abgeschlossen: #{t}"
+        _ -> t
+      end
+    end
+  end
+
+  def full_title(%{title: t}), do: t
 end
 
 defmodule Data.ArticleCache do

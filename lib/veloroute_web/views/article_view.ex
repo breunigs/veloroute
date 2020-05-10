@@ -69,14 +69,9 @@ defmodule VelorouteWeb.ArticleView do
     end
   end
 
-  @spec to_list_item(%Article{}, atom()) :: Floki.html_tree()
-  defp to_list_item(art, time_format) do
-    floki_content_tag(:li, to_list_time(art, time_format) ++ to_link(art))
-  end
-
-  defp to_link(%Article{name: name, title: title}) do
+  defp to_link(%Article{name: name} = art) do
     url = Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    live_patch(title, to: url) |> to_floki
+    live_patch(Article.full_title(art), to: url) |> to_floki
   end
 
   defp to_list_time(art, :range),
@@ -222,6 +217,7 @@ defmodule VelorouteWeb.ArticleView do
       |> Data.Article.filter(filters)
       |> Data.Article.ordered(Map.get(attrs, :sort))
       |> Enum.slice((-1 * range)..-1)
+      |> title_filter_cleaner(filters)
       |> article_list(list_opts)
 
     if display == "range",
@@ -253,6 +249,23 @@ defmodule VelorouteWeb.ArticleView do
     end)
     |> elem(1)
     |> List.wrap()
+  end
+
+  @spec to_list_item(%Article{}, atom()) :: Floki.html_tree()
+  defp to_list_item(art, time_format) do
+    floki_content_tag(:li, to_list_time(art, time_format) ++ to_link(art))
+  end
+
+  defp title_filter_cleaner(arts, filters) do
+    cleaners =
+      Keyword.get(filters, :tags, [])
+      |> Enum.map(fn val -> ~r{\s+\(Veloroute #{val},?(.*?)\)$} end)
+
+    arts
+    |> Enum.map(fn %Article{title: t} = art ->
+      t = Enum.reduce(cleaners, t, fn cleaner, t -> Regex.replace(cleaner, t, "\\1") end)
+      %{art | title: t}
+    end)
   end
 
   @spec append_footer(Floki.html_tree(), %Article{}) :: Floki.html_tree()
