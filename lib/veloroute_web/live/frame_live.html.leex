@@ -7,7 +7,7 @@
 
 <div id="sidebar">
   <div id="switcher"><div>↤</div></div>
-  <%= live_patch "veloroute.hamburg", to: "/", class: "header" %>
+  <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
   <div id="content">
     <%= if Map.get(@flash, "info") do %>
       <p class="alert" phx-click="lv:clear-flash" phx-value-key="info">

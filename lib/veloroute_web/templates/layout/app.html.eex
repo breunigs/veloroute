@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css' rel='stylesheet' />
     <%= csrf_meta_tag() %>
+    <link rel="canonical" href="<%= Settings.url() <> @conn.request_path %>"/>
   </head>
   <body>
     <%= @inner_content %>
