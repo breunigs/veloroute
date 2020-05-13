@@ -24,7 +24,7 @@ defmodule VelorouteWeb.Endpoint do
     at: "/",
     from: :veloroute,
     gzip: Mix.env() == :prod,
-    only: ~w(css fonts images js geo favicon.ico robots.txt)
+    only: ~w(css fonts images js geo favicons robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

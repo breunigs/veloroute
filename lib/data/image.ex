@@ -20,13 +20,10 @@ defmodule Data.Image do
     IO.write("Resolving Images: ")
 
     all =
-      File.ls!(path)
-      |> Task.async_stream(
-        fn filename ->
-          load(Path.join([path, filename]))
-        end,
-        ordered: false
-      )
+      path
+      |> Path.join("*.yaml")
+      |> Path.wildcard()
+      |> Task.async_stream(&load(&1), ordered: false)
       |> Stream.map(fn {:ok, map} -> map end)
       |> Enum.reduce(%{}, &Map.merge(&1, &2))
 
