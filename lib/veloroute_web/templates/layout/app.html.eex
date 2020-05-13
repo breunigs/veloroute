@@ -26,7 +26,7 @@
     <%# <link rel="dns-prefetch" href="https://api.mapbox.com"> # commented out because the CSS already resolves the domain %>
     <link rel="dns-prefetch" href="https://a.tiles.mapbox.com">
     <link rel="dns-prefetch" href="https://b.tiles.mapbox.com">
-    <link rel="alternate" type="application/atom+xml" href="/routes/geo/updates.atom" title="veloroute.hamburg – Updates zu Baumaßnahmen und neuen Bildern">
+    <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
   </head>
   <body>
     <%= @inner_content %>

@@ -7,7 +7,11 @@ defmodule Settings do
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
 
+  # no trailing slash
   def url, do: "https://veloroute.hamburg"
+
+  def feed_title, do: "veloroute.hamburg – Neue Artikel"
+  def feed_author, do: "veloroute.hamburg"
 
   def sitebar_name, do: "veloroute.hamburg"
   def page_title_short, do: "veloroute.hamburg · "

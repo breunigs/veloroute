@@ -33,6 +33,7 @@ defmodule Veloroute.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:atomex, "0.3.0", runtime: false},
       {:browser, "~> 0.4.4"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},

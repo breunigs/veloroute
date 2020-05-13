@@ -27,6 +27,20 @@ defmodule VelorouteWeb.ArticleView do
     |> Phoenix.HTML.raw()
   end
 
+  def render_feed(%Article{} = art) do
+    art
+    |> Map.fetch!(:text)
+    |> Floki.parse_fragment!()
+    |> maybe_prepend_title(art)
+    |> enhance_tag("icon", &icon/2)
+    |> enhance_tag("articles", &hide/2)
+    |> enhance_tag("mailto", &mailto/2)
+    |> enhance_tag("geolinks", &geolinks/2)
+    |> enhance_tag("a", &feed_links/2)
+    |> Floki.raw_html()
+    |> Phoenix.HTML.raw()
+  end
+
   @spec enhance_tag(
           Floki.html_tree(),
           binary(),
@@ -97,6 +111,10 @@ defmodule VelorouteWeb.ArticleView do
     floki_content_tag(:ul, lis)
   end
 
+  defp hide(_attr, _content) do
+    {"span", [], []}
+  end
+
   @mail Settings.email()
   defp mailto(_attr, content) do
     content = if content == [], do: @mail, else: content
@@ -138,6 +156,30 @@ defmodule VelorouteWeb.ArticleView do
   defp icon(given_attr, content) do
     [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
     {"a", given_attr ++ attrs ++ [{"href", "/#{content}"}], content}
+  end
+
+  @spec feed_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
+  defp feed_links(attrs, children) do
+    href = find_attribute(attrs, "href")
+
+    attrs =
+      Enum.reject(attrs, fn
+        {"data-" <> _, _v} -> true
+        {"phx-" <> _, _v} -> true
+        _ -> false
+      end)
+
+    cond do
+      nil == href ->
+        name = Floki.text(children)
+        {"a", [{"href", "#{Settings.url()}/#{name}"}], children}
+
+      String.starts_with?(href, "/") ->
+        {"a", set_attribute(attrs, "href", Settings.url()), children}
+
+      true ->
+        {"a", attrs, children}
+    end
   end
 
   @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
@@ -301,6 +343,13 @@ defmodule VelorouteWeb.ArticleView do
     Enum.find_value(attrs, fn
       {^key, val} -> val
       _any -> false
+    end)
+  end
+
+  def set_attribute(attrs, key, val) do
+    Enum.map(attrs, fn
+      {^key, _v} -> {key, val}
+      any -> any
     end)
   end
 end

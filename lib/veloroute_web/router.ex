@@ -16,11 +16,10 @@ defmodule VelorouteWeb.Router do
   #   plug :accepts, ["json"]
   # end
 
-  # scope "/", VelorouteWeb do
-  #   pipe_through :browser
-
-  #   get "/", PageController, :index
-  # end
+  scope "/", VelorouteWeb do
+    get "/updates.atom", FeedController, :feed
+    get "/routes/geo/updates.atom", FeedController, :legacy
+  end
 
   scope "/", VelorouteWeb do
     pipe_through :browser
@@ -30,9 +29,4 @@ defmodule VelorouteWeb.Router do
     live "/:page", FrameLive, as: :page
     live "/", FrameLive, as: :startpage
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", VelorouteWeb do
-  #   pipe_through :api
-  # end
 end
