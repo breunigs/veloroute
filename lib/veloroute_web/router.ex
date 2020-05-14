@@ -19,12 +19,13 @@ defmodule VelorouteWeb.Router do
   scope "/", VelorouteWeb do
     get "/updates.atom", FeedController, :feed
     get "/routes/geo/updates.atom", FeedController, :legacy
+
+    get "/blog/:article", PageController, :blog
   end
 
   scope "/", VelorouteWeb do
     pipe_through :browser
 
-    live "/blog/:article", FrameLive
     live "/article/:article", FrameLive, as: :article
     live "/:page", FrameLive, as: :page
     live "/", FrameLive, as: :startpage
