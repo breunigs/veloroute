@@ -1,11 +1,7 @@
-loc:
-- 10.10181
-- 53.57157
 grade: 2
 type: construction
 start: 2019-07
 end: 2020-03
-area: [[10.098442, 53.571072], [10.098581, 53.570833], [10.104922, 53.57204], [10.104761, 53.572269], [10.098442, 53.571072]]
 title: Schimmelmannstraße (Veloroute 7, „Abschnitt W22“)
 images: 7
 hide_from_map: false
