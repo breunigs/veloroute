@@ -9,9 +9,10 @@ defmodule Veloroute.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      VelorouteWeb.Endpoint
+      VelorouteWeb.Endpoint,
       # Starts a worker by calling: Veloroute.Worker.start_link(arg)
       # {Veloroute.Worker, arg},
+      Data.ImageCache
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

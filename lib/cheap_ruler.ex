@@ -31,6 +31,28 @@ defmodule CheapRuler do
   end
 
   @doc ~S"""
+  Unions two bounding boxes
+
+  ## Examples
+
+      iex> CheapRuler.union(
+      ...>   %{minLon: 1, minLat: 0, maxLon: 1, maxLat: 2},
+      ...>   %{minLon: 0, minLat: 1, maxLon: 2, maxLat: 1}
+      ...> )
+      %{minLon: 0, minLat: 0, maxLon: 2, maxLat: 2}
+  """
+  def union(nil, bbox2), do: bbox2
+  def union(bbox1, nil), do: bbox1
+
+  def union(bbox1, bbox2) do
+    minLon = if bbox1.minLon < bbox2.minLon, do: bbox1.minLon, else: bbox2.minLon
+    minLat = if bbox1.minLat < bbox2.minLat, do: bbox1.minLat, else: bbox2.minLat
+    maxLon = if bbox1.maxLon > bbox2.maxLon, do: bbox1.maxLon, else: bbox2.maxLon
+    maxLat = if bbox1.maxLat > bbox2.maxLat, do: bbox1.maxLat, else: bbox2.maxLat
+    %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
+  @doc ~S"""
   Returns true if the point is contained within the bounding box
 
   ## Examples

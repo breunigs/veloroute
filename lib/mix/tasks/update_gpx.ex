@@ -26,7 +26,7 @@ defmodule Mix.Tasks.UpdateGpx do
 
     user = user()
 
-    Data.relations()
+    Data.MapCache.relations()
     |> Map.values()
     |> Enum.map(fn rel ->
       {Relation.gpx_name(rel), Relation.osm_relation_id(rel)}
@@ -37,7 +37,8 @@ defmodule Mix.Tasks.UpdateGpx do
       fn {id, relation_id} ->
         convert(user, id, relation_id)
       end,
-      timeout: @convert_timeout
+      timeout: @convert_timeout,
+      ordered: false
     )
     |> Enum.to_list()
     |> Enum.all?(fn exit_code -> exit_code == 0 end)

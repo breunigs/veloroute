@@ -4,13 +4,13 @@ defmodule VelorouteWeb.ArticleViewTest do
   alias VelorouteWeb.ArticleView
 
   test "all articles can be rendered" do
-    Data.articles()
+    Data.ArticleCache.get()
     |> Map.keys()
     |> Enum.each(&ArticleView.render(&1, []))
   end
 
   test "only valid routes are referenced" do
-    Data.articles()
+    Data.ArticleCache.get()
     |> Map.values()
     |> Enum.each(fn art ->
       art
@@ -27,7 +27,9 @@ defmodule VelorouteWeb.ArticleViewTest do
       |> Enum.each(fn
         %{route: r, img: _img, href: href, text: text} ->
           if r != "" do
-            assert nil != Data.Map.find_relation_by_tag(Data.relations(), :id, r),
+            rel = VelorouteWeb.VariousHelpers.relation_by_id(r)
+
+            assert nil != rel,
                    """
                    #{art.name}.yaml: link "#{text}" refers to route '#{r}',
                    but that route is not defined on the map (href: #{href})

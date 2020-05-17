@@ -2,6 +2,8 @@ defmodule Feed do
   alias Atomex.{Feed, Entry}
   alias Data.Article
 
+  require Data.ArticleCache
+
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
@@ -12,7 +14,7 @@ defmodule Feed do
   end
 
   defp articles() do
-    Data.articles()
+    Data.ArticleCache.get()
     |> Article.ordered_by_date()
     |> Enum.slice(-10..-1)
     |> Enum.map(&article/1)

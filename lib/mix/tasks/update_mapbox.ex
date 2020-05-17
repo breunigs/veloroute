@@ -9,8 +9,8 @@ defmodule Mix.Tasks.UpdateMapbox do
 
     {:ok, dir_path} = Temp.mkdir("veloroutehamburgtippecanoe")
 
-    Data.full_map()
-    |> Data.Map.to_feature_lists(Data.articles())
+    Data.MapCache.full_map()
+    |> Data.Map.to_feature_lists(Data.ArticleCache.get())
     |> Enum.each(fn {name, geojson} ->
       convert_to_mbtiles(
         geojson,

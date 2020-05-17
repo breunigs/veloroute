@@ -9,7 +9,7 @@ defmodule VelorouteWeb.ArticleView do
 
   def render(name, _assigns) do
     art =
-      Data.articles()
+      Data.ArticleCache.get()
       |> Map.fetch!(name)
 
     art
@@ -66,7 +66,7 @@ defmodule VelorouteWeb.ArticleView do
   defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
 
   defp append_related_articles(html, art) do
-    related = Article.related(Data.articles(), art)
+    related = Article.related(Data.ArticleCache.get(), art)
     dated = Article.ordered(related, :date)
     nodate = Article.filter(related, date: [nil]) |> Map.values()
 
@@ -81,6 +81,11 @@ defmodule VelorouteWeb.ArticleView do
         main ++
         floki_content_tag(:ol, dated, class: "hide-bullets")
     end
+  end
+
+  defp to_link(%Article{name: "0000-00-00-" <> name} = art) do
+    url = Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    live_patch(Article.full_title(art), to: url) |> to_floki
   end
 
   defp to_link(%Article{name: name} = art) do
@@ -122,7 +127,7 @@ defmodule VelorouteWeb.ArticleView do
   end
 
   defp geolinks([{"route", route}], content) do
-    rel = Data.Map.find_relation_by_tag(Data.relations(), :id, route)
+    rel = Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, route)
 
     gpx = geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
 
@@ -255,7 +260,7 @@ defmodule VelorouteWeb.ArticleView do
       end
 
     arts =
-      Data.articles()
+      Data.ArticleCache.get()
       |> Data.Article.filter(filters)
       |> Data.Article.ordered(Map.get(attrs, :sort))
       |> Enum.slice((-1 * range)..-1)

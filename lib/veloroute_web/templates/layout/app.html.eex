@@ -29,6 +29,10 @@
     <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
   </head>
   <body>
+    <div id="map"></div>
+    <div id="mly"></div>
+
+
     <%= @inner_content %>
 
     <%

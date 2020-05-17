@@ -2,6 +2,22 @@ defmodule Data.Image do
   require Logger
   # XXX: otherwise it fails on compile, as if the dependency detection is broken?
   require Mapillary
+  import Mapillary, only: [is_ref: 1]
+
+  @type route() :: {binary(), binary() | nil} | nil
+  @typep img_non_nil() :: %{
+           img: Mapillary.ref(),
+           lat: float(),
+           lon: float(),
+           seq: Mapillary.ref()
+         }
+  @type img() :: img_non_nil() | nil
+  @typep ref_or_nil() :: Mapillary.ref() | nil
+  @type vanilla_images() :: %{required(route()) => [img_non_nil(), ...]}
+  @type indexed_images() :: %{
+          :index => %{required(binary()) => %{required(route()) => integer()}},
+          required(route()) => [img_non_nil(), ...]
+        }
 
   def load(path) do
     {:ok, parsed} = YamlElixir.read_from_file(path)
@@ -16,6 +32,7 @@ defmodule Data.Image do
     |> Enum.into(%{})
   end
 
+  @spec load_all(binary()) :: indexed_images()
   def load_all(path) do
     IO.write("Resolving Images: ")
 
@@ -23,7 +40,7 @@ defmodule Data.Image do
       path
       |> Path.join("*.yaml")
       |> Path.wildcard()
-      |> Task.async_stream(&load(&1), ordered: false)
+      |> Task.async_stream(&load(&1), ordered: false, timeout: 15 * 60 * 1000)
       |> Stream.map(fn {:ok, map} -> map end)
       |> Enum.reduce(%{}, &Map.merge(&1, &2))
 
@@ -31,7 +48,25 @@ defmodule Data.Image do
     all |> with_index
   end
 
-  def find_reverse(all, img, route: {id, _rest} = route) when is_binary(img) do
+  @spec associated_route(indexed_images(), [Mapillary.ref()], Mapillary.ref()) ::
+          {route(), Mapillary.ref()} | nil
+  def associated_route(all, sequences, img) when is_ref(img) and is_list(sequences) do
+    routes =
+      if all[:index][img] do
+        all[:index][img]
+      else
+        Mapillary.close_to(img, sequences)
+        |> Enum.find_value(fn %{img: close} -> all[:index][close] end)
+      end
+
+    if routes do
+      {route, pos} = routes |> Map.to_list() |> List.first()
+      replacement_img = all[route] |> Enum.at(pos) |> Map.get(:img)
+      {route, replacement_img}
+    end
+  end
+
+  def find_reverse(all, img, route: {id, _rest} = route) when is_ref(img) do
     Logger.debug("Finding reverse for #{img} from #{inspect(route)}")
     index = all[:index][img][route]
     curImg = all[route] |> Enum.at(index)
@@ -46,15 +81,54 @@ defmodule Data.Image do
     end)
   end
 
-  def sequences(all) do
-    all |> Map.values() |> List.flatten() |> Enum.map(&Map.get(&1, :seq)) |> Enum.uniq()
+  @spec find_close(indexed_images(), map(), route: route()) :: img()
+  def find_close(all, bbox, route: {id, _rest}) do
+    find_all_routes(all, id)
+    |> Enum.flat_map(fn name -> all[name] end)
+    |> Enum.find(&CheapRuler.inside_bbox?(&1, bbox))
   end
 
+  @spec sequences(indexed_images()) :: [binary()]
+  def sequences(all) do
+    all
+    |> Map.values()
+    |> List.flatten()
+    |> Enum.map(&Map.get(&1, :seq))
+    |> Enum.uniq()
+    |> Enum.filter(&is_binary/1)
+  end
+
+  def as_ids(all) do
+    all
+    |> Map.keys()
+    |> Enum.reject(fn x -> x == :index end)
+    |> Enum.map(fn {id, _rest} -> id end)
+    |> Enum.uniq()
+  end
+
+  @no_surrounding_images %{route: nil, prev: nil, curr: nil, next: nil}
+
+  @type surrounding() :: %{route: route(), curr: img(), prev: img(), next: img()}
+  @spec find_surrounding(indexed_images(), [ref_or_nil(), ...], route: route()) ::
+          surrounding()
+  def find_surrounding(all, imgs, route: route) when is_list(imgs) do
+    imgs
+    |> Enum.reject(&is_nil/1)
+    |> Enum.find_value(fn img ->
+      case find_surrounding(all, img, route: route) do
+        %{curr: nil} -> nil
+        any -> any
+      end
+    end)
+    |> Kernel.||(@no_surrounding_images)
+  end
+
+  @spec find_surrounding(indexed_images(), Mapillary.ref(), route: route()) :: surrounding()
   def find_surrounding(all, img, route: route) do
     case find_by_img(all, img, route: route) do
       {:not_found, _} ->
         Logger.debug("No image found for img=#{img} with route=#{inspect(route)}")
-        %{prev: nil, curr: nil, next: nil}
+        @no_surrounding_images
 
       {name, imgs} ->
         cur_pos = all[:index][img][name]
@@ -210,39 +284,5 @@ defmodule Data.Image do
     |> Enum.map(&String.replace(&1, ".", ""))
     |> Enum.map(&String.pad_trailing(&1, 9, "0"))
     |> Enum.join("")
-  end
-end
-
-defmodule Data.ImageCache do
-  @image_path "data/images/"
-  @glob_path @image_path <> "*.yaml"
-
-  paths = Path.wildcard(@glob_path)
-  paths_hash = :erlang.md5(paths)
-
-  for path <- paths do
-    @external_resource path
-  end
-
-  def __phoenix_recompile__?() do
-    Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
-  end
-
-  if Mix.env() == :prod do
-    @images Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
-    def images, do: @images
-
-    @sequences Benchmark.measure("loading sequences", fn -> Data.Image.sequences(@images) end)
-    def sequences, do: @sequences
-  else
-    use Memoize
-
-    defmemo(images(),
-      do: Benchmark.measure("loading images", fn -> Data.Image.load_all(@image_path) end)
-    )
-
-    defmemo(sequences(),
-      do: Benchmark.measure("loading sequences", fn -> Data.Image.sequences(images()) end)
-    )
   end
 end

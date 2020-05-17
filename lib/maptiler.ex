@@ -7,7 +7,7 @@ defmodule Maptiler do
 
   use Tesla
 
-  defp key(), do: Data.credentials().maptiler_api_key
+  defp key(), do: Credentials.maptiler_api_key()
 
   plug Tesla.Middleware.BaseUrl, "https://api.maptiler.com"
 

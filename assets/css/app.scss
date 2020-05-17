@@ -31,7 +31,7 @@ body > div {
   min-width: $minWidth;
 }
 
-#map, #mly {
+#map, #mly, #mlyPlaceholder {
   width: $mainWidth;
   min-width: $minWidth;
   height: 50%;
@@ -46,7 +46,7 @@ body > div {
   background-color: #efe9e1;
 }
 
-#mly {
+#mly, #mlyPlaceholder {
   top: 50%;
   overflow: hidden;
 
@@ -182,14 +182,12 @@ body > div {
 @import url("https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css");
 
 #mlyPlaceholder {
-  position: absolute;
-  height: 100%;
-  width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   cursor: pointer;
   touch-action: manipulation;
+  transition: background-image 0.5s ease-in-out;
 
   .playIcon {
     background-color: rgba(0,0,0, 0.6);

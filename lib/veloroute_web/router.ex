@@ -21,6 +21,7 @@ defmodule VelorouteWeb.Router do
     get "/routes/geo/updates.atom", FeedController, :legacy
 
     get "/blog/:article", PageController, :blog
+    get "/article/0000-00-00-:page", PageController, :article_vs_page
   end
 
   scope "/", VelorouteWeb do

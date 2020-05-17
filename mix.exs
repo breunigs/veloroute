@@ -33,7 +33,7 @@ defmodule Veloroute.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:atomex, "0.3.0", runtime: false},
+      {:atomex, "0.3.0"},
       {:browser, "~> 0.4.4"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
@@ -43,7 +43,6 @@ defmodule Veloroute.MixProject do
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
-      {:memoize, "~> 1.3", only: [:dev, :test]},
       {:phoenix, "~> 1.4.16"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

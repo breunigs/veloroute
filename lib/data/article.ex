@@ -1,8 +1,17 @@
 defmodule Data.Article do
   alias __MODULE__
   require Logger
-  # XXX: otherwise it fails on compile, as if the dependency detection is broken?
-  require Data.RoughDate
+
+  Code.ensure_compiled(Data.RoughDate)
+  alias Data.RoughDate
+
+  Code.ensure_compiled(Data.MapCache)
+  alias Data.MapCache
+
+  Code.ensure_compiled(Data.ImageCache)
+  alias Data.ImageCache
+
+  import Mapillary, only: [is_ref: 1]
 
   @known_params [
     :type,
@@ -17,7 +26,10 @@ defmodule Data.Article do
     :date,
     :range,
     :no_auto_title,
-    :hide_footer
+    :hide_footer,
+    :bbox,
+    :start_image,
+    :start_position
   ]
 
   defstruct @known_params
@@ -42,24 +54,63 @@ defmodule Data.Article do
 
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
+    bbox = find_bbox(name, tags)
+
     data =
       Map.merge(parsed, %{
         name: name,
         date: date,
         text: String.trim(parsed.text),
         tags: tags,
-        start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
-        end: parsed |> Map.get(:end) |> Data.RoughDate.parse()
+        start: parsed |> Map.get(:start) |> RoughDate.parse(),
+        end: parsed |> Map.get(:end) |> RoughDate.parse(),
+        bbox: bbox,
+        start_image: start_image(parsed[:images] || List.first(tags), bbox)
       })
+      |> set_start_position
 
     struct(Data.Article, data)
   end
 
+  defp start_image(various_img_or_route, bbox)
+  defp start_image(nil, _bbox), do: nil
+  defp start_image([], _bbox), do: nil
+
+  defp start_image([img | _rest], _bbox) when is_ref(img), do: img
+
+  defp start_image(_, []), do: nil
+  defp start_image(_, nil), do: nil
+  defp start_image(route_id, bbox) when is_integer(route_id), do: start_image("#{route_id}", bbox)
+
+  defp start_image(route_id, bbox) when is_binary(route_id) do
+    Benchmark.measure("finding start_image #{route_id} with #{inspect(bbox)}", fn ->
+      Data.Image.find_close(ImageCache.images(), bbox, route: {route_id, nil}) |> get_in([:img])
+      # || raise "Cannot find image for route_id=#{route_id}, within #{inspect(bbox)}"
+    end)
+  end
+
+  # finds bbox for article if present in map, alternatively falls back to bbox
+  # of referenced tags
+  defp find_bbox(name, tags) do
+    MapCache.bboxes()[name] ||
+      Enum.map(tags, &Data.Map.find_relation_by_tag(Data.MapCache.relations(), :id, &1))
+      |> Enum.reject(&is_nil/1)
+      |> Enum.map(&Map.get(&1, :bbox))
+      |> case do
+        [] -> nil
+        bboxes -> Enum.reduce(bboxes, &CheapRuler.union/2)
+      end
+  end
+
   def load_all(path) do
     File.ls!(path)
-    |> Task.async_stream(fn filename ->
-      load(Path.join([path, filename]))
-    end)
+    |> Task.async_stream(
+      fn filename ->
+        load(Path.join([path, filename]))
+      end,
+      timeout: 50_000,
+      ordered: false
+    )
     |> Enum.into(%{}, fn {:ok, art} ->
       {art.name, art}
     end)
@@ -131,7 +182,7 @@ defmodule Data.Article do
     |> orderable_only()
     |> Enum.sort_by(
       fn art -> art.start end,
-      &Data.RoughDate.compare(&1, &2)
+      &RoughDate.compare(&1, &2)
     )
   end
 
@@ -152,7 +203,7 @@ defmodule Data.Article do
   end
 
   def range(%Data.Article{start: from, end: to}) do
-    Data.RoughDate.range(from, to)
+    RoughDate.range(from, to)
   end
 
   def orderable_only(map) when is_map(map),
@@ -187,23 +238,12 @@ defmodule Data.Article do
   end
 
   def full_title(%{title: t}), do: t
-end
 
-defmodule Data.ArticleCache do
-  @article_path "data/articles/"
-  @glob_path @article_path <> "*.yaml"
+  defp set_start_position(%{start_image: nil} = art), do: art
 
-  paths = Path.wildcard(@glob_path)
-  paths_hash = :erlang.md5(paths)
+  defp set_start_position(%{start_image: img} = art) when is_ref(img) do
+    route_pos = Data.Image.associated_route(ImageCache.images(), ImageCache.sequences(), img)
 
-  for path <- paths do
-    @external_resource path
+    Map.put(art, :start_position, route_pos)
   end
-
-  def __phoenix_recompile__?() do
-    Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
-  end
-
-  @get Benchmark.measure("loading articles", fn -> Data.Article.load_all(@article_path) end)
-  def get, do: @get
 end

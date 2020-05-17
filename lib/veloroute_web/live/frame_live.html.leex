@@ -1,9 +1,10 @@
-<div id="map" phx-update="ignore"></div>
-<div id="mly" phx-update="ignore">
-  <div onclick="" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('https://images.mapillary.com/<%= @img %>/thumb-1024.jpg')">
-    <div class="playIcon"></div>
+<%= if !@mly_loaded do %>
+  <div phx-update="ignore">
+    <div phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
+      <div class="playIcon"></div>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div id="sidebar">
   <div id="switcher"><div>↤</div></div>
@@ -35,4 +36,4 @@
 </div>
 
 <%= render_state(assigns) %>
-<div id="mly-seqs" data-seqs="<%= Data.sequences() |> Enum.join(" ") %>"></div>
+<div id="mly-seqs" data-seqs="<%= Data.ImageCache.sequences() |> Enum.join(" ") %>"></div>

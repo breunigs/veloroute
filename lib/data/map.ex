@@ -1,5 +1,5 @@
 defmodule Data.Map do
-  defstruct [:ways, :nodes, :relations]
+  defstruct [:ways, :nodes, :relations, :bboxes]
 
   defmodule Node do
     defstruct [:id, :lon, :lat, :tags]
@@ -57,16 +57,18 @@ defmodule Data.Map do
       }
     end
 
+    def bounds(w) do
+      latBounds = w.nodes |> Enum.map(& &1.lat) |> Enum.min_max()
+      lonBounds = w.nodes |> Enum.map(& &1.lon) |> Enum.min_max()
+      [elem(lonBounds, 0), elem(latBounds, 0), elem(lonBounds, 1), elem(latBounds, 1)]
+    end
+
     def as_article(w, articles) do
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
 
-      latBounds = w.nodes |> Enum.map(& &1.lat) |> Enum.min_max()
-      lonBounds = w.nodes |> Enum.map(& &1.lon) |> Enum.min_max()
-      bounds = [elem(lonBounds, 0), elem(latBounds, 0), elem(lonBounds, 1), elem(latBounds, 1)]
-
       title =
         case articles[w.tags[:name]] do
-          %Data.Article{title: title} -> title
+          %{title: title} -> title
           _ -> "Unknown article: " <> w.tags[:name]
         end
 
@@ -75,7 +77,7 @@ defmodule Data.Map do
         properties: %{
           type: "article",
           name: w.tags[:name],
-          bounds: bounds,
+          bounds: bounds(w),
           title: title
         },
         geometry: %{
@@ -87,7 +89,7 @@ defmodule Data.Map do
   end
 
   defmodule Relation do
-    defstruct [:id, :tags, :members]
+    defstruct [:id, :tags, :members, :bbox]
 
     def routes_as_geojson(r, overlaps) do
       r
@@ -149,6 +151,19 @@ defmodule Data.Map do
       if osm_relation_id(rel) != nil, do: Map.get(rel.tags, :gpx_name, rel.tags[:id])
     end
 
+    def calc_bbox(r) do
+      Map.put(
+        r,
+        :bbox,
+        ways(r)
+        |> Enum.reduce(nil, fn way, acc ->
+          way.nodes
+          |> CheapRuler.bbox()
+          |> CheapRuler.union(acc)
+        end)
+      )
+    end
+
     def ways(r),
       do:
         Enum.filter(r.members, &match?(%{ref: %Way{}}, &1))
@@ -175,6 +190,14 @@ defmodule Data.Map do
     |> Map.values()
     |> Enum.find(fn rel ->
       Map.get(rel.tags, tag, nil) == value
+    end)
+  end
+
+  def article_bboxes(m) do
+    article_ways(m)
+    |> Enum.reduce(%{}, fn way, acc ->
+      bbox = way.nodes |> CheapRuler.bbox()
+      Map.update(acc, way.tags[:name], bbox, &CheapRuler.union(&1, bbox))
     end)
   end
 
@@ -281,12 +304,14 @@ defmodule Data.MapParser do
           %{ref: ref, role: attrs["role"]}
         end)
 
-      {attrs["id"],
-       %Data.Map.Relation{
-         id: attrs["id"],
-         tags: tags(children),
-         members: members
-       }}
+      rel =
+        Data.Map.Relation.calc_bbox(%Data.Map.Relation{
+          id: attrs["id"],
+          tags: tags(children),
+          members: members
+        })
+
+      {attrs["id"], rel}
     end)
   end
 
@@ -369,13 +394,4 @@ defmodule Data.MapParser do
   defp weak_bool("yes"), do: true
   defp weak_bool("no"), do: false
   defp weak_bool(x), do: x
-end
-
-defmodule Data.MapCache do
-  @external_resource Data.MapParser.map_path()
-
-  @relations Benchmark.measure("loading map relations", fn ->
-               Data.MapParser.load(Data.MapParser.map_path()).relations
-             end)
-  def relations, do: @relations
 end

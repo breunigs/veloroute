@@ -57,11 +57,28 @@ function pushEvent(event, payload) {
 window.pushEvent = pushEvent;
 
 let loadMly = function() {
+  console.log("loading mapillary");
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = state.mlyJs;
   document.getElementsByTagName('head')[0].appendChild(script);
   loadMly = null;
+}
+
+window.mlyStateChanged = function() {
+  const img = new Image();
+  const url = "https://images.mapillary.com/" + state.img + "/thumb-1024.jpg";
+  const placeholder = document.getElementById("mlyPlaceholder")
+  // both preload and the multiple BG image hack are required to avoid flashing
+  // the background in-between image loads
+  // console.debug("preloading", url)
+  const prev = placeholder.style.backgroundImage.split(",").pop();
+  placeholder.style.backgroundImage = "url("+url+"), " + prev;
+  img.onload = () => {
+    // console.debug("setting preloaded image as BG" , url)
+    placeholder.style.backgroundImage = " url("+url+")";
+  }
+  img.src = url;
 }
 
 let Hooks = {};
@@ -84,7 +101,7 @@ Hooks.control = {
   updated() {
     updateState();
     if(state.mlyJs && loadMly) loadMly();
-    if(typeof mlyStateChanged === "function") { mlyStateChanged() }
+    window.mlyStateChanged();
   }
 }
 

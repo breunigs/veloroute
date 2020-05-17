@@ -27,6 +27,7 @@ config :phoenix, :json_library, Jason
 
 config :ex_aws, json_codec: Jason
 
+# very verbose HTTP output. Needs: mix deps.compile tesla --force
 config :tesla, Tesla.Middleware.Logger, debug: false
 
 # Import environment specific config. This must remain at the bottom

@@ -8,7 +8,7 @@ defmodule Mix.Tasks.UpdateImages do
     Mix.Task.run("app.start")
 
     osm =
-      Data.images()
+      Data.ImageCache.images()
       |> Data.Image.as_osm()
 
     :ok = File.write(@imgpath, osm)

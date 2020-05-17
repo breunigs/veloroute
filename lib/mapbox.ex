@@ -1,8 +1,8 @@
 defmodule Mapbox do
   use Tesla
 
-  defp username, do: Data.credentials().mapbox_username
-  defp secret_token(), do: Data.credentials().mapbox_secret_token
+  defp username, do: Credentials.mapbox_username()
+  defp secret_token(), do: Credentials.mapbox_secret_token()
 
   plug Tesla.Middleware.BaseUrl, "https://api.mapbox.com"
 
