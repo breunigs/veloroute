@@ -38,7 +38,9 @@ defmodule Maptiler do
 
   defp resolve(query) do
     bounds = Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")
-    center = "#{Settings.center()[:lat]},#{Settings.center()[:lon]}"
+
+    [lon1, lat1, lon2, lat2] = Settings.bounds()
+    center = "#{(lat1 + lat2) / 2.0},#{(lon1 + lon2) / 2.0}"
 
     Logger.info("Resolving MapTiler GeoCode query: #{query}")
 

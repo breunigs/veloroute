@@ -102,6 +102,7 @@ Hooks.control = {
     updateState();
     if(state.mlyJs && loadMly) loadMly();
     window.mlyStateChanged();
+    if(typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
   }
 }
 
@@ -113,23 +114,6 @@ liveSocket.connect()
 // liveSocket.enableDebug()
 liveSocket.enableLatencySim(200)
 
-// mapbox
-import mapboxgl from 'mapbox-gl';
-mapboxgl.accessToken = state.mapboxAccessToken;
-
-const map = new mapboxgl.Map({
-    container: 'map',
-    maxBounds: state.bounds.split(","),
-    center: [state.lon, state.lat],
-    zoom: state.zoom,
-    minZoom: 9,
-    maxZoom: 19,
-    style: 'mapbox://styles/breunigs/ck8hk6y7e0csv1ioh4oqdtybb',
-    pitchWithRotate: false,
-    dragRotate: false,
-});
-map.touchZoomRotate.disableRotation();
-
 // mobile gui
 document.getElementById("switcher").addEventListener("click", () => {
   if(window.scrollX < 100) {
@@ -139,7 +123,5 @@ document.getElementById("switcher").addEventListener("click", () => {
   }
 })
 
-
-
-
+import "./map"
 import "./checkwebgl"

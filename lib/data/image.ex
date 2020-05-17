@@ -9,6 +9,7 @@ defmodule Data.Image do
            img: Mapillary.ref(),
            lat: float(),
            lon: float(),
+           bearing: float(),
            seq: Mapillary.ref()
          }
   @type img() :: img_non_nil() | nil

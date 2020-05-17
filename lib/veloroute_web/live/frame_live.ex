@@ -15,11 +15,12 @@ defmodule VelorouteWeb.FrameLive do
     autoplayed_once: false,
     mly_loaded: false,
     img_next: nil,
-    img_prev: nil
+    img_prev: nil,
+    route: Settings.route()
   ]
 
   def mount(_params, _session, socket) do
-    if connected?(socket), do: :timer.send_interval(10_000, self(), :check_updates)
+    if connected?(socket), do: :timer.send_interval(5_000, self(), :check_updates)
 
     socket =
       socket
@@ -194,9 +195,13 @@ defmodule VelorouteWeb.FrameLive do
   @default_image Settings.image()
   defp maybe_advance_slideshow(%{assigns: %{slideshow: true, img: @default_image}} = socket) do
     Logger.debug("slideshow: replacing default image")
-    [%{img: img} | _] = Data.ImageCache.images()[socket.assigns.route]
+    route = socket.assigns.route
 
-    set_img(socket, img)
+    [%{img: img} | _] = Data.ImageCache.images()[route]
+
+    socket
+    |> assign(:route, route)
+    |> set_img(img)
   end
 
   defp maybe_advance_slideshow(%{assigns: %{slideshow: false}} = socket), do: socket
@@ -270,7 +275,7 @@ defmodule VelorouteWeb.FrameLive do
   defp maybe_update_initial_route(socket, %Article{}),
     do: socket
 
-  # defp maybe_update_initial_route(socket, nil), do: socket
+  defp maybe_update_initial_route(socket, nil), do: socket
 
   defp maybe_update_initial_route(socket, tag) when is_binary(tag) do
     route = Data.ImageCache.images() |> Data.Image.find_all_routes(tag) |> List.first()
@@ -289,7 +294,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp load_mly(socket), do: socket
 
-  defp set_img(socket, %Article{images: [img | _rest]}) when is_ref(img) do
+  defp set_img(socket, %Article{start_image: img}) when is_ref(img) do
     set_img(socket, img)
   end
 
@@ -300,8 +305,10 @@ defmodule VelorouteWeb.FrameLive do
     do: set_img(socket, img)
 
   defp set_img(socket, img) when is_ref(img) do
-    %{route: route, prev: prev, next: next} =
-      Data.Image.find_surrounding(Data.ImageCache.images(), [img, socket.assigns.alt_img],
+    %{route: route, prev: prev, curr: %{lon: lon, lat: lat, bearing: bearing}, next: next} =
+      Data.Image.find_surrounding(
+        Data.ImageCache.images(),
+        [img, get_in(socket.assigns, [:alt_img])],
         route: socket.assigns.route
       )
 
@@ -309,6 +316,9 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket,
       img: img,
+      lon: lon,
+      lat: lat,
+      bearing: bearing,
       img_next: get_in(next, [:img]),
       img_prev: get_in(prev, [:img]),
       route: route,
@@ -316,31 +326,21 @@ defmodule VelorouteWeb.FrameLive do
     )
   end
 
-  @static_assigns [
-    mapbox_access_token: Credentials.mapbox_access_token(),
-    mapillary_api_key: Credentials.mapillary_api_key(),
-    bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")
-  ]
   defp render_state(assigns) do
-    data = @static_assigns ++ state(assigns)
-
     Phoenix.HTML.Tag.content_tag(:div, "",
       id: "control",
       "phx-hook": "control",
-      data: data
+      data: state(assigns)
     )
   end
 
   def state(assigns \\ %{}) do
     # todo: if article is loaded, use its bbox as default?
-    s = Settings
-
     [
       img: Map.get(assigns, :img, Settings.image()),
-      zoom: Map.get(assigns, :zoom, s.zoom()),
-      lon: Map.get(assigns, :lon, s.center().lon),
-      lat: Map.get(assigns, :lat, s.center().lat),
-      route: Map.get(assigns, :lat, Settings.route()),
+      lon: Map.get(assigns, :lon),
+      lat: Map.get(assigns, :lat),
+      bearing: Map.get(assigns, :bearing),
       slideshow: Map.get(assigns, :slideshow, false),
       mly_js: Map.get(assigns, :mly_js, nil)
     ]

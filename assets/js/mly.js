@@ -1,14 +1,12 @@
 const state = document.getElementById("control").dataset;
+const settings = document.getElementById("settings").dataset;
 
 import * as Mapillary from 'mapillary-js';
-if(!state.mapillaryApiKey) {
-  console.error("Mapillary API key is missing: ", state);
-}
 
 const initialImg = state.img;
 const mly = new Mapillary.Viewer(
   'mly',
-  state.mapillaryApiKey,
+  settings.mapillaryApiKey,
   initialImg,
   {
     baseImageSize: Mapillary.ImageSize.Size320,
@@ -34,8 +32,7 @@ const mly = new Mapillary.Viewer(
   }
 );
 
-const sequences = document.getElementById("mly-seqs").dataset.seqs.split(" ");
-mly.setFilter(['in', 'sequenceKey'] + sequences);
+mly.setFilter(['in', 'sequenceKey'] + settings.seqs.split(" "));
 
 mly.on(Mapillary.Viewer.navigablechanged, () => {
   console.debug("mly loaded initially with" , initialImg);

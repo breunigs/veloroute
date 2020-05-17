@@ -1,7 +1,15 @@
 defmodule CheapRuler do
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016
 
-  @reference_lat Settings.center().lat
+  ref_lat =
+    if Mix.env() == :test do
+      53.551
+    else
+      [_, lat1, _, lat2] = Settings.bounds()
+      (lat1 + lat2) / 2.0
+    end
+
+  @reference_lat ref_lat
 
   @cos1 :math.cos(@reference_lat * :math.pi() / 180)
   @cos2 2 * @cos1 * @cos1 - 1
