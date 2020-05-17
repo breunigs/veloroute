@@ -104,6 +104,17 @@ defmodule CheapRuler do
     %{minLon: minLon - h, minLat: minLat - v, maxLon: maxLon + h, maxLat: maxLat + v}
   end
 
+  # as per https://wiki.openstreetmap.org/wiki/Zoom_levels#Distance_per_pixel_math
+  @zoom_factor 40_075_016.686 * @cos1
+  def center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}) do
+    buffer_bbox(@zoom_factor / :math.pow(2, zoom), %{
+      minLon: lon,
+      minLat: lat,
+      maxLon: lon,
+      maxLat: lat
+    })
+  end
+
   @doc ~S"""
   Returns the distance between two points or from a line and a point
 

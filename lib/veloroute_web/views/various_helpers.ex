@@ -68,4 +68,12 @@ defmodule VelorouteWeb.VariousHelpers do
   def relation_by_id(id) do
     Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, id)
   end
+
+  def to_string_bounds(nil), do: ""
+
+  def to_string_bounds([minLon, minLat, maxLon, maxLat]),
+    do: "#{minLon},#{minLat},#{maxLon},#{maxLat}"
+
+  def to_string_bounds(%{minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon}),
+    do: "#{minLon},#{minLat},#{maxLon},#{maxLat}"
 end

@@ -16,6 +16,7 @@ defmodule VelorouteWeb.FrameLive do
     mly_loaded: false,
     img_next: nil,
     img_prev: nil,
+    bounds: nil,
     route: Settings.route()
   ]
 
@@ -102,7 +103,7 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("sld-reverse", %{} = _attr, socket) do
     Logger.debug("sld-reverse")
 
-    %{img: img} =
+    img =
       Data.ImageCache.images()
       |> Data.Image.find_reverse(socket.assigns.img, route: socket.assigns.route)
 
@@ -145,7 +146,7 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, find_article() |> set_content(uri, socket)}
   end
 
-  defp set_content(%Article{name: name, title: t}, _uri, socket) do
+  defp set_content(%Article{name: name, title: t} = art, _uri, socket) do
     title =
       if is_nil(t) or t == "",
         do: Settings.page_title_long(),
@@ -153,6 +154,7 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket,
       content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
+      bounds: Map.get(art, :bbox, socket.assigns.bounds),
       page_title: title
     )
   end
@@ -169,7 +171,7 @@ defmodule VelorouteWeb.FrameLive do
     with {lat, ""} <- Float.parse(lat),
          {lon, ""} <- Float.parse(lon),
          {zoom, ""} <- Float.parse(zoom) do
-      assign(socket, lat: lat, lon: lon, zoom: zoom)
+      assign(socket, bounds: CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
     else
       _ -> socket
     end
@@ -342,7 +344,8 @@ defmodule VelorouteWeb.FrameLive do
       lat: Map.get(assigns, :lat),
       bearing: Map.get(assigns, :bearing),
       slideshow: Map.get(assigns, :slideshow, false),
-      mly_js: Map.get(assigns, :mly_js, nil)
+      mly_js: Map.get(assigns, :mly_js, nil),
+      bounds: Map.get(assigns, :bounds) |> to_string_bounds
     ]
   end
 

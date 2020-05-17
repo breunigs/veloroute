@@ -2,14 +2,16 @@ import mapboxgl from 'mapbox-gl';
 
 const state = document.getElementById("control").dataset;
 const settings = document.getElementById("settings").dataset;
-
 mapboxgl.accessToken = settings.mapboxAccessToken;
+
+const fitBoundsOpt = {padding: {top: 35, bottom: 35, left: 35, right: 35}};
 
 const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
     container: 'map',
-    maxBounds: settings.bounds.split(","),
+    maxBounds: settings.maxBounds.split(","),
     bounds: settings.initial.split(","),
+    fitBoundsOptions: fitBoundsOpt,
     minZoom: 9,
     maxZoom: 19,
     style: 'mapbox://styles/breunigs/ck8hk6y7e0csv1ioh4oqdtybb',
@@ -39,8 +41,9 @@ function renderIndicator() {
       .setLngLat(lngLat)
       .addTo(map);
     indicatorRot = document.getElementById('indicator-rotate');
-    if(!map.isMoving()) {
-      map.flyTo({center: lngLat, zoom: 14});
+    if(!map.isMoving() && prevBounds === null) {
+      const zoom = Math.max(map.getZoom(), 14);
+      map.flyTo({center: lngLat, zoom: zoom});
     }
   }
 
@@ -63,29 +66,40 @@ const ensureIndicatorInView = () => {
         || indiPos.x >= mapRect.right  - padding;
   }
 
-
   // add padding in pixels around the viewport
-  const outsideViewport = cmp(10);
+  const outsideViewport = cmp(20);
   if(!outsideViewport) { return; }
 
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
   const veryFarOutside = cmp(-200);
   if(veryFarOutside) {
-    console.debug("Flying to location")
+    console.debug("Flying to location", lngLat)
     map.flyTo({center: lngLat});
   } else {
-    console.debug("Panning to location")
+    console.debug("Panning to location", lngLat)
     map.panTo(lngLat);
   }
 }
 
+
+let prevBounds = null;
+const maybeFitBounds = () => {
+  if(prevBounds == state.bounds) {
+    return;
+  }
+  prevBounds = state.bounds;
+  map.fitBounds(prevBounds.split(","), fitBoundsOpt);
+}
+
 let indicatorFocus = null;
 window.mapStateChanged = () => {
+  maybeFitBounds();
   renderIndicator();
+
   if(state.slideshow === "true" && indicatorFocus === null) {
     indicatorFocus = setInterval(ensureIndicatorInView, 2000);
   } else if(state.slideshow !== "true" && indicatorFocus !== null) {
-    clearInterval(ensureIndicatorInView);
+    clearInterval(indicatorFocus);
     indicatorFocus = null;
   }
 }
