@@ -128,3 +128,4 @@ document.getElementById("switcher").addEventListener("click", () => {
 
 import "./map"
 import "./checkwebgl"
+import "./error_reporter"

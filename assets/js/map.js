@@ -84,7 +84,7 @@ const ensureIndicatorInView = () => {
 
 let prevBounds = null;
 const maybeFitBounds = () => {
-  if(prevBounds == state.bounds) {
+  if(prevBounds == state.bounds || state.bounds == "") {
     return;
   }
   prevBounds = state.bounds;

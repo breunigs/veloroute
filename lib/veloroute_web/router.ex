@@ -22,6 +22,7 @@ defmodule VelorouteWeb.Router do
 
     get "/blog/:article", PageController, :blog
     get "/article/0000-00-00-:page", PageController, :article_vs_page
+    post "/js_errors", PageController, :js_errors
   end
 
   scope "/", VelorouteWeb do
