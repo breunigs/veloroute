@@ -1,5 +1,5 @@
 <%= if !@mly_loaded do %>
-  <div phx-update="ignore">
+  <div phx-update="ignore" id="mlyPlaceholderOuter">
     <div phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
       <div class="playIcon"></div>
     </div>

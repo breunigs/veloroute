@@ -31,7 +31,7 @@ body > div {
   min-width: $minWidth;
 }
 
-#map, #mly, #mlyPlaceholder {
+#map, #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
   width: $mainWidth;
   min-width: $minWidth;
   height: 50%;
@@ -46,16 +46,9 @@ body > div {
   background-color: #efe9e1;
 }
 
-#mly, #mlyPlaceholder {
+#mly, #mlyPlaceholder, #mlyPlaceholderOuter {
   top: 50%;
   overflow: hidden;
-
-  &.mlyzoom {
-    top: 0%;
-    height: 100vh;
-    width: 100vw;
-    z-index: 100;
-  }
 }
 
 #sidebar {
@@ -181,10 +174,13 @@ body > div {
 
 @import url("https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css");
 
-#mlyPlaceholder {
+#mlyPlaceholder, #mlyPlaceholderOuter {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+#mlyPlaceholder {
   cursor: pointer;
   touch-action: manipulation;
   transition: background-image 0.5s ease-in-out;

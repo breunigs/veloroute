@@ -69,14 +69,17 @@ window.mlyStateChanged = function() {
   const img = new Image();
   const url = "https://images.mapillary.com/" + state.img + "/thumb-1024.jpg";
   const placeholder = document.getElementById("mlyPlaceholder")
+  const placeholderOuter = document.getElementById("mlyPlaceholderOuter")
   // both preload and the multiple BG image hack are required to avoid flashing
   // the background in-between image loads
-  // console.debug("preloading", url)
-  const prev = placeholder.style.backgroundImage.split(",").pop();
-  placeholder.style.backgroundImage = "url("+url+"), " + prev;
+  console.debug("preloading", url)
+  placeholder.classList.add('loading');
+  placeholderOuter.style.backgroundImage = "url("+url+")";
   img.onload = () => {
-    // console.debug("setting preloaded image as BG" , url)
-    placeholder.style.backgroundImage = " url("+url+")";
+    console.debug("setting preloaded image as BG" , url)
+    placeholder.style.backgroundImage = placeholderOuter.style.backgroundImage;
+    placeholderOuter.style.backgroundImage = "";
+    placeholder.classList.remove('loading');
   }
   img.src = url;
 }
