@@ -48,6 +48,53 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("map-click", attr, socket) do
+    Logger.debug("map-click #{inspect(attr)}")
+
+    article = Data.ArticleCache.get()[attr["article"]]
+
+    route =
+      cond do
+        socket.assigns.route |> elem(0) == attr["route"] -> socket.assigns.route
+        is_binary(attr["route"]) -> {attr["route"], nil}
+        article && is_tuple(article.start_position) -> article.start_position |> elem(0)
+        true -> nil
+      end
+
+    img =
+      with lon when is_float(lon) <- attr["lon"],
+           lat when is_float(lon) <- attr["lat"],
+           route when not is_nil(route) <- route do
+        Logger.debug("Searching for image on #{inspect(route)}, near lon/lat: #{lon}/#{lat}")
+        curimg = socket.assigns.img
+
+        Data.ImageCache.images()
+        |> Data.Image.find_around_point(
+          %{lat: lat, lon: lon},
+          route: route,
+          max_dist: 100
+        )
+        |> case do
+          # none
+          [] -> nil
+          # i.e. reverse on double click
+          [{_r, _d, %{img: ^curimg}}, {_, _, img} | _rest] -> img
+          # prefer from same route, unless it's the same
+          [_______, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
+          [____, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
+          [_, _, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
+          # take closest
+          other -> List.first(other) |> elem(2)
+        end
+      end
+
+    socket = if article, do: set_content(article, "", socket), else: socket
+    socket = if article && !img, do: maybe_update_initial_route(socket, article), else: socket
+    socket = set_img(socket, img || article)
+
+    {:noreply, socket |> load_mly}
+  end
+
   # ignore double events for the same image
   def handle_event(
         "mly-nodechanged",
@@ -296,15 +343,13 @@ defmodule VelorouteWeb.FrameLive do
 
   defp load_mly(socket), do: socket
 
-  defp set_img(socket, %Article{start_image: img}) when is_ref(img) do
-    set_img(socket, img)
-  end
+  defp set_img(socket, ""), do: socket
+  defp set_img(socket, nil), do: socket
+
+  defp set_img(socket, %Article{start_image: img}) when is_ref(img), do: set_img(socket, img)
+  defp set_img(socket, %{img: img}) when is_ref(img), do: set_img(socket, img)
 
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
-  defp set_img(socket, ""), do: socket
-
-  defp set_img(socket, %Article{start_image: img}) when is_ref(img),
-    do: set_img(socket, img)
 
   defp set_img(socket, img) when is_ref(img) do
     %{route: route, prev: prev, curr: %{lon: lon, lat: lat, bearing: bearing}, next: next} =

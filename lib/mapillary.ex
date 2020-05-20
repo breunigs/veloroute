@@ -78,6 +78,7 @@ defmodule Mapillary do
 
     # assert we don't break ordering
     %{img: ^from} = hd(result)
+    %{img: ^to} = List.last(result)
 
     result
   end
@@ -134,7 +135,7 @@ defmodule Mapillary do
         nil
 
       true ->
-        Enum.slice(keys, fromIdx, toIdx - fromIdx)
+        Enum.slice(keys, fromIdx, toIdx - fromIdx + 1)
     end
   end
 

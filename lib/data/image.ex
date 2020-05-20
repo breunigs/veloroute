@@ -83,10 +83,35 @@ defmodule Data.Image do
   end
 
   @spec find_close(indexed_images(), map(), route: route()) :: img()
-  def find_close(all, bbox, route: {id, _rest}) do
+  def find_close(all, %{minLon: _} = bbox, route: {id, _rest}) do
     find_all_routes(all, id)
     |> Enum.flat_map(fn name -> all[name] end)
     |> Enum.find(&CheapRuler.inside_bbox?(&1, bbox))
+  end
+
+  @spec find_around_point(indexed_images(), map(), route: route(), max_dist: float()) :: [
+          {route(), float(), img()}
+        ]
+  def find_around_point(all, %{lon: _, lat: _} = pt, route: {id, _rest}, max_dist: max_dist) do
+    find_all_routes(all, id)
+    |> Enum.reduce([], fn name, list ->
+      {dist, img} = closest_img_from(all[name], pt)
+
+      if dist <= max_dist,
+        do: [{name, dist, img} | list],
+        else: list
+    end)
+    |> Enum.sort_by(&elem(&1, 1))
+  end
+
+  defp closest_img_from(images, pt) do
+    Enum.reduce(images, {nil, nil}, fn next, {dist, prev} ->
+      next_dist = CheapRuler.dist(next, pt)
+
+      if dist == nil || next_dist < dist,
+        do: {next_dist, next},
+        else: {dist, prev}
+    end)
   end
 
   @spec sequences(indexed_images()) :: [binary()]

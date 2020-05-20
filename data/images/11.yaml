@@ -18,22 +18,10 @@
 - { seq: "NgQXpWX7yEXrVrACGuhKlg", from: "m8p38qdfSV5qgDsvQVTd9Q", to: "PWQe65cBK2-JYuhasNRsLw" }
 - { seq: "9P7LrWunBC9OifwdWXkumA", from: "q3909OkHKcJx1WpojQfuvQ", to: "a8lM-nl2UPqJMqdJldzu0w" }
 - { seq: "iLLFBHyysVAmEF8U0pQzSw", from: "N4i1jDBUFAOAaISOCcgBEg", to: "v4tUDWZ3B95l0ZC2nHpo8Q" }
-11 (stadtauswärts zur Veddel):
-- { seq: "SIt7m031b8o6YTc2Oc9Qbw", from: "gUE20t-fNTkwvGwqN4crEA", to: "2rpArxk_w3ZZPDA9v8tQ4A" }
-- { seq: "9P7LrWunBC9OifwdWXkumA", from: "a8lM-nl2UPqJMqdJldzu0w", to: "q3909OkHKcJx1WpojQfuvQ", "reverse": true }
-- { seq: "voRWA396c80ffAY4WqwFWw", from: "F187wMd3WGtW3pHnpMvaEw", to: "VEuREYFyCWinex4u52Z9gQ" }
-- { seq: "bYs6RaaPqf2Dsm8BYff8iQ", from: "fTmFK2-DMWclk6qs-tvgYQ", to: "aiOGca--y8tF_3StnGpOaw" }
+11 (Wilhelmsburg zur Veddel):
 - { seq: "Uyc6SZzwVAxgr7ifkUfgYg", from: "4zikcDZI-OpnDncvSpXHYw", to: "bqXphwCK5igprFBKr_UsBA" }
 - { seq: "OudSB1X19sRPAbQoMIBCAg", from: "t0RopYD5P6Iu-WAz0XGn5g", to: "jA253qjEb_mxwnxpzCwtUQ" }
 - { seq: "OudSB1X19sRPAbQoMIBCAg", from: "RfZ4sgjq6ONrT4kz3SM-ow", to: "lVf7Iv-ZyHB94wlJbo-Iow" }
-11 (stadtauswärts von der Veddel):
+11 (Veddel nach Wilhelmsburg):
 - { seq: "OudSB1X19sRPAbQoMIBCAg", from: "Z7HrKNOUYpNMGkjMKo1sMg", to: "oznERVKlde4LNYcPB1BsNQ" }
 - { seq: "GdHIdWv-O7HvdQqb0RwAtQ", from: "CggrOECO5c78T0BSUy5yNw", to: "Lq_GUEdDHTWeDUs3y-Cwsw" }
-- { seq: "GdHIdWv-O7HvdQqb0RwAtQ", from: "fgSpoJTaCt7S9fHsd-JRlw", to: "f3sGUfSa15Tj18FTZ2VyGg" }
-- { seq: "8CRQT7Xxuu5QDmnGfcwuqg", from: "aW4t2W0Y7WRE56j1aNzpPw", to: "Bib2kGqHwvbynoeDBonnhQ" }
-- { seq: "W-XRb9wCLf60hK_Iu0HOag", from: "7sOv7onUcXwQqbsCA1t1ZA", to: "nsO9a-mgZr1GOz_jxW2BkQ" }
-- { seq: "NgQXpWX7yEXrVrACGuhKlg", from: "m8p38qdfSV5qgDsvQVTd9Q", to: "PWQe65cBK2-JYuhasNRsLw" }
-- { seq: "9P7LrWunBC9OifwdWXkumA", from: "q3909OkHKcJx1WpojQfuvQ", to: "a8lM-nl2UPqJMqdJldzu0w" }
-- { seq: "iLLFBHyysVAmEF8U0pQzSw", from: "N4i1jDBUFAOAaISOCcgBEg", to: "v4tUDWZ3B95l0ZC2nHpo8Q" }
-
-

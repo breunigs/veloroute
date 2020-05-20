@@ -16,16 +16,9 @@
 - { seq: "gUBdDN1mTtFbSaxAfB63FQ", from: "sqoAfka1Oh3a0fxDSaU5Yw", to: "vCtRK0ZGiXdPMhlJKCV3xQ" }
 
 7 (stadtauswärts nach Jenfeld):
-- { seq: "7SIew6thQ3ySH4UH5kiw2w", from: "pyxwn9JJsLMk7JEmaqOinA", to: "3qA_xKSSwIMhXJb6cz4AmQ" }
-- { seq: "1I7dTvYXMmh4na-S5iH4HA", from: "pu-x88optmLgDaah-R0Gnw", to: "CIEv5ttiBRoVjFiVhiF_vQ" }
-- { seq: "926ceHLyftnHdUbcOjH-5g", from: "svZvjSaMUByOnHQullG1GA", to: "5TGH3zBtrbUYa0jvQh5dLQ" }
-- { seq: "qpmSXN3pmL6_6CZ4mE5DCA", from: "2TRil_ph-lKPhEbrSJsYjA", to: "sHrN-Vbivm6AoVKvi7IAMQ" }
 - { seq: "n02L-ECaEp4__88BmILFCg", from: "aURG4uQ_beGww44kSN5MOg", to: "rQHgbE1DWzfyjL1oz9GDcg" }
 - { seq: "8drkZwCYtfge0FMrw7UM7g", from: "rJRgrQKXyqdYxFLz46PpQQ", to: "-BGR48z-6AQDkZMGR27iLQ" }
 7 (stadteinwärts von Jenfeld):
 - { seq: "8drkZwCYtfge0FMrw7UM7g", from: "WsKk_4C4MF6hS1MXBi3RYA", to: "mTIk_64piwQ1s0FRr_sQLg" }
 - { seq: "4ABsKNAJhIgkbuWKrkM5ng", from: "CHJU71C9x_IvOz6KUPOk9w", to: "_4RN3SJ_VPOACFt6x_h9rg" }
-- { seq: "f9HEDvN7ah5AORbj-u5-YQ", from: "YFIRcM6cA-cfu3STPlm9tg", to: "40K_9Gyyk9kVereI0HmAhg" }
-- { seq: "cEW-cPUB-DaTGNLabiMOMw", from: "9D8ZtPrR8hS78YGVKnNRkg", to: "_Hzf4ehH3qdDYK8b0AbzxA" }
-- { seq: "uaBB5UJyePuyEC7z8o82Yg", from: "iGRn1OpGAl4LYgI_QjLigA", to: "6MhGiNf5moorZDwi4Gvn3g" }
-- { seq: "gUBdDN1mTtFbSaxAfB63FQ", from: "sqoAfka1Oh3a0fxDSaU5Yw", to: "vCtRK0ZGiXdPMhlJKCV3xQ" }
+- { seq: "f9HEDvN7ah5AORbj-u5-YQ", from: "YFIRcM6cA-cfu3STPlm9tg", to: "hTex4x1qG0hFeigGk-ZipQ" }

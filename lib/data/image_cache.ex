@@ -3,7 +3,7 @@ defmodule Data.ImageCache do
 
   @image_path "data/images/"
   @glob_path @image_path <> "*.yaml"
-  @cache_path String.to_atom("data/cache/images.dets")
+  @cache_path :"data/cache/images.dets"
 
   paths = Path.wildcard(@glob_path)
   paths_hash = :erlang.md5(paths)
@@ -19,8 +19,8 @@ defmodule Data.ImageCache do
     imgs = Data.Image.load_all(@image_path)
     seqs = Data.Image.sequences(imgs)
     {:ok, table} = :dets.open_file(:image_cache, file: @cache_path, type: :set)
-    :dets.insert_new(table, {:imgs, imgs})
-    :dets.insert_new(table, {:seqs, seqs})
+    :dets.insert(table, {:imgs, imgs})
+    :dets.insert(table, {:seqs, seqs})
     :dets.close(table)
   end)
 

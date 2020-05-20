@@ -42,7 +42,7 @@ defmodule Data.Map do
     def as_graded_geojson(w, extra_props \\ %{}) do
       props =
         extra_props
-        |> Map.merge(Map.take(w.tags, grade_tags() ++ style_tags()))
+        |> Map.merge(Map.take(w.tags, style_tags()))
         |> Map.merge(%{id: w.id, grade: grade(w)})
 
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
@@ -55,12 +55,6 @@ defmodule Data.Map do
           coordinates: coords
         }
       }
-    end
-
-    def bounds(w) do
-      latBounds = w.nodes |> Enum.map(& &1.lat) |> Enum.min_max()
-      lonBounds = w.nodes |> Enum.map(& &1.lon) |> Enum.min_max()
-      [elem(lonBounds, 0), elem(latBounds, 0), elem(lonBounds, 1), elem(latBounds, 1)]
     end
 
     def as_article(w, articles) do
@@ -77,7 +71,6 @@ defmodule Data.Map do
         properties: %{
           type: "article",
           name: w.tags[:name],
-          bounds: bounds(w),
           title: title
         },
         geometry: %{
@@ -106,7 +99,8 @@ defmodule Data.Map do
 
         tags = %{
           color: r.tags[:color],
-          offset: offset
+          offset: offset,
+          route_id: r.tags.id
         }
 
         Way.as_graded_geojson(w, tags)

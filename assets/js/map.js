@@ -4,7 +4,7 @@ const state = document.getElementById("control").dataset;
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 
-const fitBoundsOpt = {padding: {top: 35, bottom: 35, left: 35, right: 35}};
+const fitBoundsOpt = {padding: {top: 35, bottom: 35, left: 35, right: 35}, maxZoom: 16};
 
 const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
@@ -19,6 +19,10 @@ const map = new mapboxgl.Map({
     dragRotate: false,
 });
 map.touchZoomRotate.disableRotation();
+
+const routeLayers = ['routes-casing', 'routemarker-circle'];
+const articleLayers = ['article-areas title', 'article-areas bg'];
+const clickableLayers = { layers: routeLayers.concat(articleLayers) };
 
 const genDiv = (id) => {
   const el = document.createElement('div');
@@ -82,14 +86,62 @@ const ensureIndicatorInView = () => {
 }
 
 
-let prevBounds = null;
+let prevBounds = settings.initial;
 const maybeFitBounds = () => {
   if(prevBounds == state.bounds || state.bounds == "") {
     return;
   }
+  console.debug("Bounds have change from", prevBounds, "to", state.bounds)
   prevBounds = state.bounds;
   map.fitBounds(prevBounds.split(","), fitBoundsOpt);
 }
+
+const clickLeniency = 'ontouchstart' in window ? 10 : 3;
+const itemsUnderCursor = (evt) => {
+  let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
+  // be more lenient with click targets
+  if(!routes.length) {
+    const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
+    const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
+    routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
+  }
+  return routes;
+}
+
+const handleMapHover = (evt) => {
+  const none = itemsUnderCursor(evt).length === 0;
+  map.getCanvas().style.cursor = none ? '' : 'pointer';
+}
+
+const handleMapClick = (evt) => {
+  const items = itemsUnderCursor(evt);
+
+  let route = null;
+  let article = null;
+  items.forEach(r => {
+    if(routeLayers.includes(r.layer.id)) {
+      route = r.properties.route_id;
+    } else if(articleLayers.includes(r.layer.id)) {
+      article = r.properties.name;
+    }
+  });
+
+  if(route === null && article === null) return;
+
+  window.pushEvent("map-click", {
+    route: route,
+    article: article,
+    lon: evt.lngLat.lng,
+    lat: evt.lngLat.lat,
+  })
+}
+
+
+map.on('style.load', () => {
+  map.on('mousemove', handleMapHover);
+  map.on('click', handleMapClick);
+});
+
 
 let indicatorFocus = null;
 window.mapStateChanged = () => {
@@ -103,58 +155,3 @@ window.mapStateChanged = () => {
     indicatorFocus = null;
   }
 }
-
-// const routeLayers = ['routes-casing', 'routemarker-circle'];
-// const articleLayers = ['article-areas title', 'article-areas bg'];
-// const clickableLayers = { layers: routeLayers.concat(articleLayers) };
-// const bodyClasses = document.getElementsByTagName('body')[0].classList;
-
-// const itemsUnderCursor = (evt) => {
-//   let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
-//   // be more lenient with click targets
-//   if(!routes.length) {
-//     const leniency = 'ontouchstart' in window ? 10 : 3;
-//     const sw = [evt.point.x - leniency, evt.point.y + leniency];
-//     const ne = [evt.point.x + leniency, evt.point.y - leniency];
-//     routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
-//   }
-//   return routes;
-// }
-
-// const handleMapHover = (evt) => {
-//   const none = itemsUnderCursor(evt).length === 0;
-//   map.getCanvas().style.cursor = none ? '' : 'pointer';
-// }
-
-// const handleMapClick = (evt) => {
-//   const items = itemsUnderCursor(evt);
-
-//   let route = null;
-//   let article = null;
-//   let bounds = null;
-//   items.forEach(r => {
-//     if(routeLayers.includes(r.layer.id)) {
-//       route = r.properties.name;
-//     } else if(articleLayers.includes(r.layer.id)) {
-//       article = "blog/" + r.properties.name;
-//       bounds = r.properties.bounds;
-//     }
-//   });
-
-//   if(bounds) {
-//     bounds = JSON.parse(bounds);
-//     console.debug("zooming to geojson feature on mapclick", bounds);
-//     map.fitBounds(bounds, { padding: 100, maxZoom: 17 });
-//   }```
-
-//    killall steam
-//    `
-//   if(article || route) {
-//     routeClickListeners.forEach((f) => f(article || route, evt.lngLat, "mapClick"));
-//   }
-// }
-
-// map.on('style.load', () => {
-//   map.on('mousemove', handleMapHover);
-//   map.on('click', handleMapClick);
-// });
