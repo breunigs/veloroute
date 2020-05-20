@@ -1,5 +1,5 @@
 defmodule VelorouteWeb.PageControllerTest do
-  use VelorouteWeb.ConnCase
+  use VelorouteWeb.ConnCase, async: true
 
   # test "GET /", %{conn: conn} do
   #   conn = get(conn, "/")
