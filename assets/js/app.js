@@ -20,12 +20,15 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
-let state = {};
-let prevState = {};
-const control = document.getElementById("control");
+window.state = {};
 function updateState() {
-  state = control.dataset;
+  // XXX: the element might be replaced by liveview, need to search it every time
+  window.state = document.getElementById("control").dataset;
   console.log(state);
+
+  if(state.mlyJs && loadMly) loadMly();
+  if(typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }
+  if(typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
 }
 updateState();
 console.log("Initial State From Server: ", state)
@@ -87,7 +90,10 @@ window.mlyStateChanged = function() {
 let Hooks = {};
 Hooks.control = {
   mounted() {
+    console.log("mounted");
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
+
+    updateState();
 
     if(!pushEventQueued) return;
     for(let i=0; i < pushEventQueued.length; i++) {
@@ -97,15 +103,8 @@ Hooks.control = {
     pushEventQueued = null;
   },
 
-  beforeUpdate() {
-    prevState = state;
-  },
-
   updated() {
     updateState();
-    if(state.mlyJs && loadMly) loadMly();
-    window.mlyStateChanged();
-    if(typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
   }
 }
 
@@ -114,8 +113,8 @@ let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
 window.liveSocket = liveSocket;
 liveSocket.connect()
-// liveSocket.enableDebug()
-liveSocket.enableLatencySim(200)
+// liveSocket.disableDebug()
+// liveSocket.enableLatencySim(200)
 
 // mobile gui
 document.getElementById("switcher").addEventListener("click", () => {

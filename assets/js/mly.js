@@ -1,4 +1,3 @@
-const state = document.getElementById("control").dataset;
 const settings = document.getElementById("settings").dataset;
 
 import * as Mapillary from 'mapillary-js';

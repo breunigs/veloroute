@@ -88,9 +88,12 @@ defmodule VelorouteWeb.FrameLive do
         end
       end
 
-    socket = if article, do: set_content(article, "", socket), else: socket
-    socket = if article && !img, do: maybe_update_initial_route(socket, article), else: socket
-    socket = set_img(socket, img || article)
+    socket =
+      cond do
+        article -> socket |> push_patch(to: article_path(socket, article, img))
+        img -> socket |> set_img(img)
+        true -> socket
+      end
 
     {:noreply, socket |> load_mly}
   end
@@ -163,8 +166,19 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_params(%{"article" => name, "img" => img} = _params, uri, socket) when is_ref(img) do
+    Logger.debug("article: #{name} with img #{img}")
+
+    socket =
+      find_article(name)
+      |> set_content(uri, socket)
+      |> set_img(img)
+
+    {:noreply, socket}
+  end
+
   def handle_params(%{"article" => name} = _params, uri, socket) do
-    Logger.debug("params: article #{name}")
+    Logger.debug("article: #{name}")
 
     article = find_article(name)
 
@@ -177,7 +191,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_params(%{"page" => name} = _params, uri, socket) do
-    Logger.debug("params: page #{name}")
+    Logger.debug("page: #{name}")
 
     page = find_article("0000-00-00-#{name}")
 
@@ -352,12 +366,14 @@ defmodule VelorouteWeb.FrameLive do
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
 
   defp set_img(socket, img) when is_ref(img) do
-    %{route: route, prev: prev, curr: %{lon: lon, lat: lat, bearing: bearing}, next: next} =
+    %{route: route, prev: prev, curr: curr, next: next} =
       Data.Image.find_surrounding(
         Data.ImageCache.images(),
         [img, get_in(socket.assigns, [:alt_img])],
         route: socket.assigns.route
       )
+
+    %{lon: lon, lat: lat, bearing: bearing} = curr || socket.assigns
 
     Logger.debug("showing: #{img} (route: #{inspect(route)})")
 
@@ -401,5 +417,13 @@ defmodule VelorouteWeb.FrameLive do
   defp find_article(name) do
     Logger.debug("Loading article #{name}")
     Data.ArticleCache.get()[name]
+  end
+
+  defp article_path(socket, %Article{name: name}, nil) do
+    Routes.article_path(socket, VelorouteWeb.FrameLive, name)
+  end
+
+  defp article_path(socket, %Article{name: name}, %{img: img}) do
+    Routes.article_path(socket, VelorouteWeb.FrameLive, name, img: img)
   end
 end

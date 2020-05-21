@@ -1,6 +1,5 @@
 import mapboxgl from 'mapbox-gl';
 
-const state = document.getElementById("control").dataset;
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 

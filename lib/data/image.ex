@@ -216,7 +216,7 @@ defmodule Data.Image do
   def find_all_by_img(all, img) do
     case get_in(all, [:index, img]) do
       nil ->
-        Logger.warn("Searching for image '#{img}', which is not in index")
+        Logger.info("Searching for image '#{img}', which is not in index")
         %{}
 
       list ->
