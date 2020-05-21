@@ -1,7 +1,9 @@
-// IE 11
+// IE 11 (lvieview)
+import "mdn-polyfills/Object.assign"
 import "mdn-polyfills/CustomEvent"
 import "mdn-polyfills/String.prototype.startsWith"
 import "mdn-polyfills/Array.from"
+import "mdn-polyfills/Array.prototype.find"
 import "mdn-polyfills/NodeList.prototype.forEach"
 import "mdn-polyfills/Element.prototype.closest"
 import "mdn-polyfills/Element.prototype.matches"
@@ -13,3 +15,6 @@ import "classlist-polyfill"
 import "@webcomponents/template"
 // IE 11 + Edge
 import "shim-keyboard-event-key"
+
+// ours
+import 'mdn-polyfills/Array.prototype.includes'
