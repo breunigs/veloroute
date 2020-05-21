@@ -39,7 +39,7 @@
         mapbox_access_token: Credentials.mapbox_access_token(),
         mapillary_api_key: Credentials.mapillary_api_key(),
         max_bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),
-        initial: (@bounds || Settings.initial()) |> VelorouteWeb.VariousHelpers.to_string_bounds
+        initial: VelorouteWeb.VariousHelpers.to_string_bounds(@bounds)
       ])
     %>
 

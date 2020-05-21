@@ -22,7 +22,7 @@
       </p>
     <% end %>
 
-    <%= @content %>
+    <%= Phoenix.View.render(VelorouteWeb.ArticleView, @current_page, []) %>
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>

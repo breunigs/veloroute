@@ -49,4 +49,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert render_hook(view, "map-click", %{article: "2018-04-08-4-kleekamp"}) =~
              ~s(data-mly-js="/)
   end
+
+  test "converts from old hash style", %{conn: conn} do
+    {:ok, view, _html} = conn |> get("/") |> live()
+
+    html =
+      render_hook(view, "convert-hash", %{hash: "19/53.59194/10.13825/TKH8zxPJnPClAmTIjD8bdA"})
+
+    assert html =~ ~s(data-img="TKH8zxPJnPClAmTIjD8bdA")
+    assert html =~ ~s(data-bounds="10.137565,53.591532,10.138935,53.592348")
+  end
 end

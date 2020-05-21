@@ -135,10 +135,14 @@ const handleMapClick = (evt) => {
   })
 }
 
+const sendBounds = () => {
+  window.pushEvent("map-bounds", {bounds: map.getBounds().toArray()});
+}
 
 map.on('style.load', () => {
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
+  map.on('moveend', sendBounds);
 });
 
 

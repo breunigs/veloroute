@@ -11,10 +11,7 @@ import css from "../css/app.scss"
 //
 import "phoenix_html"
 
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"
+import "./error_reporter"
 
 // live view
 import {Socket} from "phoenix"
@@ -33,18 +30,6 @@ function updateState() {
 updateState();
 console.log("Initial State From Server: ", state)
 
-const parsedHash = location.hash.substr(1).split("/");
-if(parsedHash[3]) {
-  state.img = parsedHash[3];
-}
-if(parsedHash.length >= 3) {
-  state.zoom = parsedHash[0];
-  state.lat = parsedHash[1];
-  state.lon = parsedHash[2];
-}
-console.log("Initial State After Hash: ", state)
-
-
 let pushEventHandle = null;
 let pushEventQueued = [];
 function pushEvent(event, payload) {
@@ -58,6 +43,9 @@ function pushEvent(event, payload) {
   pushEventHandle(event, payload);
 }
 window.pushEvent = pushEvent;
+
+const hash = location.hash.substr(1);
+if(hash != "") window.pushEvent("convert-hash", {hash: hash});
 
 let loadMly = function() {
   console.log("loading mapillary");
@@ -111,8 +99,8 @@ Hooks.control = {
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
-window.liveSocket = liveSocket;
 liveSocket.connect()
+// window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
 // liveSocket.enableLatencySim(200)
 
@@ -127,4 +115,3 @@ document.getElementById("switcher").addEventListener("click", () => {
 
 import "./map"
 import "./checkwebgl"
-import "./error_reporter"

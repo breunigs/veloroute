@@ -16,7 +16,10 @@ defmodule VelorouteWeb.FrameLive do
     mly_loaded: false,
     img_next: nil,
     img_prev: nil,
+    prev_page: nil,
+    current_page: nil,
     bounds: nil,
+    map_bounds: nil,
     route: Settings.route()
   ]
 
@@ -32,7 +35,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_info(:check_updates, socket) do
-    socket = socket |> maybe_advance_slideshow
+    socket = socket |> maybe_advance_slideshow |> update_url_query
     {:noreply, socket}
   end
 
@@ -47,6 +50,13 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply, socket}
   end
+
+  def handle_event("map-bounds", %{"bounds" => bounds}, socket) do
+    Process.send_after(self(), :check_updates, 100)
+    {:noreply, assign(socket, :map_bounds, bounds)}
+  end
+
+  def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
   def handle_event("map-click", attr, socket) do
     Logger.debug("map-click #{inspect(attr)}")
@@ -121,6 +131,28 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("convert-hash", %{"hash" => hash}, socket) do
+    Logger.debug("converting hash #{hash}")
+    parts = String.split(hash, "/", parts: 4)
+
+    socket =
+      if length(parts) >= 3,
+        do:
+          update_map(socket, %{
+            "lat" => Enum.at(parts, 1),
+            "lon" => Enum.at(parts, 2),
+            "zoom" => Enum.at(parts, 0)
+          }),
+        else: socket
+
+    socket =
+      if length(parts) >= 4,
+        do: set_img(socket, Enum.at(parts, 3)),
+        else: socket
+
+    {:noreply, socket}
+  end
+
   def handle_event("sld-step-backward", %{} = _attr, %{assigns: %{img_prev: nil}} = socket),
     do: {:noreply, socket}
 
@@ -166,66 +198,89 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_params(%{"article" => name, "img" => img} = _params, uri, socket) when is_ref(img) do
-    Logger.debug("article: #{name} with img #{img}")
-
-    socket =
-      find_article(name)
-      |> set_content(uri, socket)
-      |> set_img(img)
-
-    {:noreply, socket}
+  def handle_params(params, uri, socket) when is_binary(uri) do
+    socket = assign(socket, :current_url, uri)
+    handle_params(params, nil, socket)
   end
 
-  def handle_params(%{"article" => name} = _params, uri, socket) do
-    Logger.debug("article: #{name}")
+  def handle_params(%{"article" => name} = params, nil, socket) do
+    Logger.debug("article: #{name} (#{inspect(params)})")
 
     article = find_article(name)
 
     socket =
-      set_content(article, uri, socket)
+      set_content(article, socket)
       |> maybe_update_initial_route(article)
-      |> set_img(article)
+      |> set_img(Map.get(params, "img", article))
+      |> set_bounds(article, Map.get(params, "bounds"))
 
     {:noreply, socket}
   end
 
-  def handle_params(%{"page" => name} = _params, uri, socket) do
-    Logger.debug("page: #{name}")
-
-    page = find_article("0000-00-00-#{name}")
-
-    socket =
-      set_content(page, uri, socket)
-      |> maybe_update_initial_route(page)
-
-    {:noreply, socket}
+  def handle_params(%{"page" => name} = params, nil, socket) do
+    params
+    |> Map.put("article", "0000-00-00-#{name}")
+    |> handle_params(nil, socket)
   end
 
-  def handle_params(params, uri, socket) do
+  def handle_params(params, nil, socket) do
     Logger.debug("params: default (#{inspect(params)})")
-    {:noreply, find_article() |> set_content(uri, socket)}
+
+    params
+    |> Map.put("article", Settings.default_page())
+    |> handle_params(nil, socket)
   end
 
-  defp set_content(%Article{name: name, title: t} = art, _uri, socket) do
+  defp set_content(%Article{name: name}, %{assigns: %{current_page: name}} = socket) do
+    assign(socket, prev_page: name)
+  end
+
+  defp set_content(%Article{name: name, title: t}, socket) do
     title =
       if is_nil(t) or t == "",
         do: Settings.page_title_long(),
         else: Settings.page_title_short() <> t
 
     assign(socket,
-      content: Phoenix.View.render(VelorouteWeb.ArticleView, name, []),
-      bounds: Map.get(art, :bbox, socket.assigns.bounds),
+      prev_page: socket.assigns.current_page,
+      current_page: name,
       page_title: title
     )
   end
 
-  defp set_content(_article, uri, socket) do
-    Logger.error("Non-existing site was accessed: #{uri}")
+  defp set_content(_article, socket) do
+    Logger.error("Non-existing site was accessed: #{socket.assigns.current_url}")
 
     socket
     |> put_flash(:info, 404)
     |> push_patch(to: Routes.startpage_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive))
+  end
+
+  defp set_bounds(socket, article, bounds_param)
+
+  defp set_bounds(%{assigns: %{map_bounds: nil}} = socket, article, bounds_param)
+       when is_binary(bounds_param) do
+    parsed = parse_bounds(bounds_param)
+
+    if parsed != nil,
+      do: assign(socket, bounds: parsed),
+      else: set_bounds(socket, article, nil)
+  end
+
+  defp set_bounds(
+         %{assigns: %{prev_page: name}} = socket,
+         %Article{name: name},
+         _bounds_param
+       ) do
+    socket
+  end
+
+  defp set_bounds(socket, %Article{bbox: bbox}, _bounds_param) when is_map(bbox) do
+    assign(socket, bounds: bbox)
+  end
+
+  defp set_bounds(socket, _article, _bounds_param) do
+    socket
   end
 
   defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
@@ -361,6 +416,7 @@ defmodule VelorouteWeb.FrameLive do
   defp set_img(socket, nil), do: socket
 
   defp set_img(socket, %Article{start_image: img}) when is_ref(img), do: set_img(socket, img)
+  defp set_img(socket, %Article{}), do: socket
   defp set_img(socket, %{img: img}) when is_ref(img), do: set_img(socket, img)
 
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
@@ -398,7 +454,6 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def state(assigns \\ %{}) do
-    # todo: if article is loaded, use its bbox as default?
     [
       img: Map.get(assigns, :img, Settings.image()),
       lon: Map.get(assigns, :lon),
@@ -406,24 +461,43 @@ defmodule VelorouteWeb.FrameLive do
       bearing: Map.get(assigns, :bearing),
       slideshow: Map.get(assigns, :slideshow, false),
       mly_js: Map.get(assigns, :mly_js, nil),
-      bounds: Map.get(assigns, :bounds) |> to_string_bounds
+      bounds: Map.get(assigns, :bounds, Settings.initial()) |> to_string_bounds
     ]
   end
 
-  defp find_article(), do: find_article(Settings.default_page())
   defp find_article(""), do: find_article(Settings.default_page())
   defp find_article(nil), do: find_article(Settings.default_page())
 
   defp find_article(name) do
-    Logger.debug("Loading article #{name}")
     Data.ArticleCache.get()[name]
   end
 
-  defp article_path(socket, %Article{name: name}, nil) do
+  defp article_path(socket, %Article{name: name}, img) do
+    article_path(socket, name, img)
+  end
+
+  defp article_path(socket, name, nil) when is_binary(name) do
     Routes.article_path(socket, VelorouteWeb.FrameLive, name)
   end
 
-  defp article_path(socket, %Article{name: name}, %{img: img}) do
+  defp article_path(socket, name, %{img: img}) when is_binary(name) do
     Routes.article_path(socket, VelorouteWeb.FrameLive, name, img: img)
+  end
+
+  defp update_url_query(%{assigns: assigns} = socket) do
+    %{path: path, query: prev_query} = URI.parse(socket.assigns.current_url)
+    # IO.puts(path)
+    # IO.puts(prev_query)
+
+    bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
+    query = "img=#{socket.assigns.img}&bounds=#{bounds}"
+
+    if prev_query == query,
+      do: socket,
+      else:
+        push_patch(socket,
+          to: path <> "?" <> query,
+          replace: true
+        )
   end
 end

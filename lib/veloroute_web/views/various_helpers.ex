@@ -69,11 +69,34 @@ defmodule VelorouteWeb.VariousHelpers do
     Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, id)
   end
 
-  def to_string_bounds(nil), do: ""
+  def parse_bounds(bounds) when is_binary(bounds) do
+    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
+         {minLon, ""} <- Float.parse(minLon),
+         {minLat, ""} <- Float.parse(minLat),
+         {maxLon, ""} <- Float.parse(maxLon),
+         {maxLat, ""} <- Float.parse(maxLat) do
+      %{
+        minLon: minLon,
+        minLat: minLat,
+        maxLon: maxLon,
+        maxLat: maxLat
+      }
+    end
+  end
+
+  def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
+    bounds
+  end
+
+  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]]),
+    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
 
   def to_string_bounds([minLon, minLat, maxLon, maxLat]),
-    do: "#{minLon},#{minLat},#{maxLon},#{maxLat}"
+    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
 
   def to_string_bounds(%{minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon}),
-    do: "#{minLon},#{minLat},#{maxLon},#{maxLat}"
+    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+
+  @precision 6
+  defp r(float), do: Float.round(float, @precision)
 end
