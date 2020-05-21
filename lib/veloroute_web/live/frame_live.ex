@@ -58,14 +58,14 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
-  def handle_event("map-click", attr, socket) do
+  def handle_event("map-click", attr, %{assigns: assigns} = socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
     article = Data.ArticleCache.get()[attr["article"]]
 
     route =
       cond do
-        socket.assigns.route |> elem(0) == attr["route"] -> socket.assigns.route
+        assigns.route && elem(assigns.route, 0) == attr["route"] -> assigns.route
         is_binary(attr["route"]) -> {attr["route"], nil}
         article && is_tuple(article.start_position) -> article.start_position |> elem(0)
         true -> nil
@@ -76,7 +76,7 @@ defmodule VelorouteWeb.FrameLive do
            lat when is_float(lon) <- attr["lat"],
            route when not is_nil(route) <- route do
         Logger.debug("Searching for image on #{inspect(route)}, near lon/lat: #{lon}/#{lat}")
-        curimg = socket.assigns.img
+        curimg = assigns.img
 
         Data.ImageCache.images()
         |> Data.Image.find_around_point(
@@ -306,7 +306,7 @@ defmodule VelorouteWeb.FrameLive do
 
     socket
     |> assign(slideshow: status)
-    |> assign(autoplayed_once: socket.assigns.slideshow || status)
+    |> assign(autoplayed_once: socket.assigns.autoplayed_once || status)
     |> maybe_advance_slideshow
   end
 
@@ -379,12 +379,15 @@ defmodule VelorouteWeb.FrameLive do
 
   defp maybe_update_initial_route(socket, taglike)
 
-  defp maybe_update_initial_route(%{assigns: %{autoplayed_once: true}} = socket, _),
+  defp maybe_update_initial_route(%{assigns: %{mly_js: m}} = socket, _) when is_binary(m),
     do: socket
 
-  defp maybe_update_initial_route(socket, %Article{start_position: {route, img}}) do
-    Logger.debug("Setting new initial route to #{inspect(route)}")
-    assign(socket, route: route, alt_img: img)
+  defp maybe_update_initial_route(%{assigns: %{slideshow: true}} = socket, _),
+    do: socket
+
+  defp maybe_update_initial_route(socket, %Article{start_position: {route, _img}}) do
+    Logger.debug("Setting new initial route to #{inspect(route)} (case 1)")
+    assign(socket, route: route)
   end
 
   defp maybe_update_initial_route(socket, %Article{tags: [tag | _rest]}),
@@ -399,7 +402,7 @@ defmodule VelorouteWeb.FrameLive do
     route = Data.ImageCache.images() |> Data.Image.find_all_routes(tag) |> List.first()
 
     if route && route != socket.assigns.route,
-      do: Logger.debug("Setting new initial route to #{inspect(route)}")
+      do: Logger.debug("Setting new initial route to #{inspect(route)} (case 2)")
 
     assign(socket, route: route || socket.assigns.route)
   end
@@ -422,16 +425,22 @@ defmodule VelorouteWeb.FrameLive do
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
 
   defp set_img(socket, img) when is_ref(img) do
+    alt_img =
+      case find_article(socket) do
+        %Article{start_position: {_, img}} -> img
+        _ -> nil
+      end
+
     %{route: route, prev: prev, curr: curr, next: next} =
       Data.Image.find_surrounding(
         Data.ImageCache.images(),
-        [img, get_in(socket.assigns, [:alt_img])],
+        [img, alt_img],
         route: socket.assigns.route
       )
 
     %{lon: lon, lat: lat, bearing: bearing} = curr || socket.assigns
 
-    Logger.debug("showing: #{img} (route: #{inspect(route)})")
+    Logger.debug("showing: #{img} (route: #{inspect(route)}, curr: #{inspect(curr)})")
 
     assign(socket,
       img: img,
@@ -468,7 +477,11 @@ defmodule VelorouteWeb.FrameLive do
   defp find_article(""), do: find_article(Settings.default_page())
   defp find_article(nil), do: find_article(Settings.default_page())
 
-  defp find_article(name) do
+  defp find_article(name) when is_binary(name) do
+    Data.ArticleCache.get()[name]
+  end
+
+  defp find_article(%{assigns: %{current_page: name}}) do
     Data.ArticleCache.get()[name]
   end
 

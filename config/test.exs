@@ -7,4 +7,5 @@ config :veloroute, VelorouteWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
+# config :logger, level: :debug
 config :logger, level: :warn

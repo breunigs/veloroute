@@ -26,15 +26,17 @@
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
-  <div id="slideshow" style="<%= if !@slideshow && !@mly_loaded, do: "display:none" %>">
-    <button phx-click="sld-playpause" title="Abspielen / Pause">
-      <%= if @slideshow, do: "■", else: "▶" %>
-    </button>
-    <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-click": "sld-step-backward") %>
-    <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-click": "sld-step-forward") %>
-    <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
-    <%= display_route(@route) %>
-  </div>
+  <%= if @slideshow || @mly_js do %>
+    <div id="slideshow">
+      <button phx-click="sld-playpause" title="Abspielen / Pause">
+        <%= if @slideshow, do: "■", else: "▶" %>
+      </button>
+      <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-click": "sld-step-backward") %>
+      <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-click": "sld-step-forward") %>
+      <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
+      <%= display_route(@route) %>
+    </div>
+  <% end %>
 </div>
 
 <%= render_state(assigns) %>

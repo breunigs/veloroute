@@ -153,7 +153,7 @@ defmodule Data.Image do
   def find_surrounding(all, img, route: route) do
     case find_by_img(all, img, route: route) do
       {:not_found, _} ->
-        Logger.debug("No image found for img=#{img} with route=#{inspect(route)}")
+        Logger.debug("No image found for img=#{img} with route=#{inspect(route)} (surrounding)")
         @no_surrounding_images
 
       {name, imgs} ->
@@ -180,7 +180,7 @@ defmodule Data.Image do
   def find_next(all, img, route: route) do
     case find_by_img(all, img, route: route) do
       {:not_found, _} ->
-        Logger.debug("No image found for img=#{img} with route=#{inspect(route)}")
+        Logger.debug("No image found for img=#{img} with route=#{inspect(route)} (next)")
         nil
 
       {name, imgs} ->

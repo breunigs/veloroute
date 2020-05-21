@@ -50,6 +50,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
              ~s(data-mly-js="/)
   end
 
+  test "map click sets correct route on article click", %{conn: conn} do
+    {:ok, view, _html} = conn |> get("/") |> live()
+
+    html = render_hook(view, "map-click", %{article: "2018-10-13-3-paul-sorge-strasse"})
+    assert html =~ ~s(data-img="4FYlWhgOZenWWneeU0wmSA")
+    assert html =~ "Du folgst: Alltagsroute 3"
+  end
+
   test "converts from old hash style", %{conn: conn} do
     {:ok, view, _html} = conn |> get("/") |> live()
 
@@ -58,5 +66,26 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert html =~ ~s(data-img="TKH8zxPJnPClAmTIjD8bdA")
     assert html =~ ~s(data-bounds="10.137565,53.591532,10.138935,53.592348")
+  end
+
+  test "slideshow sticks with current route, even other articles", %{conn: conn} do
+    {:ok, view, _html} = conn |> get("/article/2018-04-08-4-kleekamp") |> live()
+    expected_route = "Du folgst: Alltagsroute 5"
+
+    html =
+      render_hook(view, "map-click", %{
+        route: "5",
+        lon: 10.086236642889446,
+        lat: 53.627742238425384
+      })
+
+    assert html =~ ~s(data-mly-js="/)
+    assert html =~ expected_route
+
+    assert render_click(element(view, "button", "〉")) =~ expected_route
+
+    # force URL update
+    send(view.pid, :check_updates)
+    assert render(view) =~ expected_route
   end
 end
