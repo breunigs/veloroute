@@ -293,6 +293,14 @@ defmodule VelorouteWeb.FrameLive do
     end
   end
 
+  defp update_map(socket, %{"bounds" => bounds}) do
+    parsed = parse_bounds(bounds)
+
+    if parsed != nil,
+      do: assign(socket, bounds: parsed),
+      else: socket
+  end
+
   defp update_map(socket, _), do: socket
 
   # todo: auto detect route if missing?

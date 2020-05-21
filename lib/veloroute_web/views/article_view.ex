@@ -201,7 +201,14 @@ defmodule VelorouteWeb.ArticleView do
 
       nil == href ->
         name = Floki.text(children)
-        {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-name", name} | attrs], children}
+        bounds = Maptiler.bounds(name, save: true)
+
+        if bounds do
+          bounds = VariousHelpers.to_string_bounds(bounds)
+          {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds} | attrs], children}
+        else
+          {"span", [], children}
+        end
 
       String.starts_with?(href, "http") ->
         {"a", [{"target", "_blank"} | attrs], children}

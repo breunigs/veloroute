@@ -1,13 +1,9 @@
 defmodule Maptiler do
   require Logger
 
-  # mix runs from root directory
-  @root_dir File.cwd!()
-  @cache_path String.to_atom(@root_dir <> "/data/cache/geocode.dets")
+  @cache_path :"data/cache/geocode.dets"
 
   use Tesla
-
-  defp key(), do: Credentials.maptiler_api_key()
 
   plug Tesla.Middleware.BaseUrl, "https://api.maptiler.com"
 
@@ -16,11 +12,25 @@ defmodule Maptiler do
     {"Cache-Control", "no-cache"}
   ]
 
-  plug Tesla.Middleware.Query, key: key()
+  plug Tesla.Middleware.Query, key: Credentials.maptiler_api_key()
   plug Tesla.Middleware.JSON
+  # for debugging help
+  plug Tesla.Middleware.Logger
 
   def bounds(query, save: save) do
-    geocode(query, save: save) |> Map.fetch!("features") |> hd() |> Map.fetch!("bbox")
+    try do
+      [minLon, minLat, maxLon, maxLat] =
+        geocode(query, save: save)
+        |> Map.fetch!("features")
+        |> hd()
+        |> Map.fetch!("bbox")
+
+      %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    rescue
+      _err ->
+        Logger.warn("Failed to resolve #{query} on MapTiler")
+        nil
+    end
   end
 
   defp geocode(query, save: save) do

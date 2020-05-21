@@ -81,6 +81,8 @@ defmodule VelorouteWeb.VariousHelpers do
         maxLon: maxLon,
         maxLat: maxLat
       }
+    else
+      _ -> nil
     end
   end
 
