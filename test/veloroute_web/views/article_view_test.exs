@@ -3,6 +3,7 @@ defmodule VelorouteWeb.ArticleViewTest do
 
   alias VelorouteWeb.ArticleView
 
+  @tag timeout: :infinity
   test "all articles can be rendered" do
     Data.ArticleCache.get()
     |> Map.keys()

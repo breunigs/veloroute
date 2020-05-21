@@ -17,7 +17,7 @@ defmodule Maptiler do
   # for debugging help
   plug Tesla.Middleware.Logger
 
-  def bounds(query, save: save) do
+  def bounds(query, save: save) when query != "" do
     try do
       [minLon, minLat, maxLon, maxLat] =
         geocode(query, save: save)

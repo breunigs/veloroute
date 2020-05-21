@@ -201,7 +201,7 @@ defmodule VelorouteWeb.ArticleView do
 
       nil == href ->
         name = Floki.text(children)
-        bounds = Maptiler.bounds(name, save: true)
+        bounds = Overpass.bounds(name)
 
         if bounds do
           bounds = VariousHelpers.to_string_bounds(bounds)

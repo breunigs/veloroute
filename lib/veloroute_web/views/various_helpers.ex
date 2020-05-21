@@ -69,6 +69,20 @@ defmodule VelorouteWeb.VariousHelpers do
     Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, id)
   end
 
+  def parse_bounds(%{
+        "maxlat" => maxLat,
+        "maxlon" => maxLon,
+        "minlat" => minLat,
+        "minlon" => minLon
+      }) do
+    %{
+      minLon: minLon,
+      minLat: minLat,
+      maxLon: maxLon,
+      maxLat: maxLat
+    }
+  end
+
   def parse_bounds(bounds) when is_binary(bounds) do
     with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
          {minLon, ""} <- Float.parse(minLon),

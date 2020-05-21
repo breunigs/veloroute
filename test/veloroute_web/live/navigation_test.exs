@@ -19,7 +19,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.727%2C53.3898%2C10.3395%2C53.7478&img=j7B3ZUn2dsw-clYblrn0Bw"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&img=j7B3ZUn2dsw-clYblrn0Bw"
     )
   end
 
