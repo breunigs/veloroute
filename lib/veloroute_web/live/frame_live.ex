@@ -485,32 +485,33 @@ defmodule VelorouteWeb.FrameLive do
     Data.ArticleCache.get()[name]
   end
 
-  defp article_path(socket, %Article{name: name}, img) do
-    article_path(socket, name, img)
+  defp article_path(socket, %Article{start_image: img} = art, nil) do
+    article_path(socket, art, %{img: img})
   end
 
-  defp article_path(socket, name, nil) when is_binary(name) do
-    Routes.article_path(socket, VelorouteWeb.FrameLive, name)
-  end
-
-  defp article_path(socket, name, %{img: img}) when is_binary(name) do
-    Routes.article_path(socket, VelorouteWeb.FrameLive, name, img: img)
+  defp article_path(socket, %Article{name: name}, %{img: img}) do
+    query = assign(socket, img: img) |> url_query()
+    Routes.article_path(socket, VelorouteWeb.FrameLive, name, query)
   end
 
   defp update_url_query(%{assigns: assigns} = socket) do
-    %{path: path, query: prev_query} = URI.parse(socket.assigns.current_url)
+    %{path: path, query: prev_query} = URI.parse(assigns.current_url)
     # IO.puts(path)
     # IO.puts(prev_query)
 
-    bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
-    query = "img=#{socket.assigns.img}&bounds=#{bounds}"
+    query = url_query(socket)
 
-    if prev_query == query,
+    if prev_query != nil && URI.decode_query(prev_query) == query,
       do: socket,
       else:
         push_patch(socket,
-          to: path <> "?" <> query,
+          to: path <> "?" <> URI.encode_query(query),
           replace: true
         )
+  end
+
+  defp url_query(%{assigns: assigns}) do
+    bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
+    %{"img" => assigns.img, "bounds" => bounds}
   end
 end

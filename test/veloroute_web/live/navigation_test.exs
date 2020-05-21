@@ -16,7 +16,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
     refute html =~ "Kleekamp"
 
     assert render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"}) =~ "Kleekamp"
-    assert_patched(view, "/article/2018-04-08-4-kleekamp")
+
+    assert_patched(
+      view,
+      "/article/2018-04-08-4-kleekamp?bounds=9.727%2C53.3898%2C10.3395%2C53.7478&img=j7B3ZUn2dsw-clYblrn0Bw"
+    )
   end
 
   test "prefers route image over article image", %{conn: conn} do
