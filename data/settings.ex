@@ -27,4 +27,6 @@ defmodule Settings do
 
       <p><a href="/"><strong>Zurück zur Startseite</strong></a></p>
     """
+
+  def deploy_ssh_name, do: "netcup-git"
 end

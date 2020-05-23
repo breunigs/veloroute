@@ -1,0 +1,14 @@
+[Unit]
+Description=Veloroute HTTP server
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+RestartSec=5
+Restart=always
+ExecStart=/usr/bin/docker run --name veloroute -p=127.0.0.1:4000:4000/tcp veloroute.hamburg/v1:latest
+ExecStop=/usr/bin/docker stop veloroute
+
+[Install]
+WantedBy=multi-user.target

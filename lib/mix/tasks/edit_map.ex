@@ -28,20 +28,9 @@ defmodule Mix.Tasks.EditMap do
 
     Mix.Tasks.UpdateGpx.run(nil)
 
-    if lastMod != lastModAfter && confirm("\n\nUpdate map remotely, too?") do
+    if lastMod != lastModAfter && Cli.confirm("\n\nUpdate map remotely, too?") do
       Mix.Tasks.UpdateMapbox.run(nil)
     end
-  end
-
-  defp confirm(text) do
-    resp =
-      case IO.gets(text <> " [Y/n] ") do
-        :eof -> ""
-        {:error, _reason} -> "no"
-        dat -> String.downcase(dat)
-      end
-
-    resp == "" || resp == "y" || resp == "yes"
   end
 
   defp write_josm_session do

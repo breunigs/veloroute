@@ -1,5 +1,3 @@
-# ?data=%5Bout%3Ajson%5D%5Btimeout%3A5%5D%5Bbbox%3A53.63250126718963%2C9.94389295578003%2C53.6445233453448%2C9.966487884521484%5D%3B%0A%28%0A%20%20node%5B%22name%22%3D%22Emmy-Beckmann-Weg%22%5D%3B%0A%20%20way%5B%22name%22%3D%22Emmy-Beckmann-Weg%22%5D%3B%0A%29%3B%0Aout%20bb%3B
-
 defmodule Overpass do
   require Logger
 

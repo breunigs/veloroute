@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.UpdateImages do
   use Mix.Task
 
-  @imgpath File.cwd!() <> "/data/cache/images.osm"
+  @imgpath "data/cache/images.osm"
 
   @shortdoc "Converts Mapillary sequence lists in data/images/ for viewing while editing"
   def run(_) do

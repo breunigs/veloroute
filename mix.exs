@@ -10,7 +10,7 @@ defmodule Veloroute.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      dialyzer: [plt_add_apps: [:mix]]
+      dialyzer: [plt_add_apps: [:mix, :ex_unit]]
     ]
   end
 
@@ -35,7 +35,7 @@ defmodule Veloroute.MixProject do
     [
       {:atomex, "0.3.0"},
       {:browser, "~> 0.4.4"},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:ex_aws, "~> 2.1", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.0", only: [:dev, :test]},
@@ -51,7 +51,7 @@ defmodule Veloroute.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:saxy, "~> 1.0.0"},
       {:temp, "~> 0.4", only: [:dev, :test]},
-      {:tesla, "~> 1.3.0", only: [:dev, :test]},
+      {:tesla, "~> 1.3.0"},
       {:yaml_elixir, "~> 2.4"}
     ]
   end
