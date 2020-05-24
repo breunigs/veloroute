@@ -101,7 +101,7 @@ defmodule VelorouteWeb.FrameLive do
         end
       else
         err ->
-          Logger.warn(
+          Logger.debug(
             "Failed to parse map click params:" <>
               "\nroute=#{inspect(route)}" <>
               "\nattr=#{inspect(attr)}" <>

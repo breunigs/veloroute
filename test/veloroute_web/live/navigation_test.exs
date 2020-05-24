@@ -31,7 +31,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
              route: "4",
              article: "2018-04-08-4-kleekamp",
              lon: 10.024947118265771,
-             lat: 53.63658286414295
+             lat: 53.63658286414295,
+             zoom: 16
            }) =~ ~s(data-img="j7B3ZUn2dsw-clYblrn0Bw")
   end
 
@@ -42,7 +43,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert render_hook(view, "map-click", %{
              route: "4",
              lon: 10.024947118265771,
-             lat: 53.63658286414295
+             lat: 53.63658286414295,
+             zoom: 16
            }) =~ ~s(data-mly-js="/)
   end
 
@@ -80,7 +82,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
       render_hook(view, "map-click", %{
         route: "5",
         lon: 10.086236642889446,
-        lat: 53.627742238425384
+        lat: 53.627742238425384,
+        zoom: 16
       })
 
     assert html =~ ~s(data-mly-js="/)
