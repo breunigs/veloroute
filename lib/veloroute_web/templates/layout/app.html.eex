@@ -10,16 +10,16 @@
     <%= csrf_meta_tag() %>
     <link rel="canonical" href="<%= Settings.url() <> @conn.request_path %>"/>
 
-    <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png">
-    <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png">
-    <link rel="icon" type="image/png" size="48x48" href="/favicons/48.png">
-    <link rel="icon" type="image/png" size="192x192" href="/favicons/192.png">
-    <link rel="apple-touch-icon" href="/favicons/57.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/152.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="/favicons/167.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/180.png">
-    <link rel="apple-touch-startup-image" href="/favicons/192.png">
-    <link rel="manifest" href="/favicons/manifest.json">
+    <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
+    <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
+    <link rel="icon" type="image/png" size="48x48" href="/favicons/48.png?vsn=1">
+    <link rel="icon" type="image/png" size="192x192" href="/favicons/192.png?vsn=1">
+    <link rel="apple-touch-icon" href="/favicons/57.png?vsn=1">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/152.png?vsn=1">
+    <link rel="apple-touch-icon" sizes="167x167" href="/favicons/167.png?vsn=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/180.png?vsn=1">
+    <link rel="apple-touch-startup-image" href="/favicons/192.png?vsn=1">
+    <link rel="manifest" href="/favicons/manifest.json?vsn=1">
     <%# uncached connections happen, even on repeat view %>
     <link rel="preconnect" href="https://a.mapillary.com">
     <%# connections only happen on initial load, but not on repeat view %>
