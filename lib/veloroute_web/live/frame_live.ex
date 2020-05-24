@@ -264,9 +264,16 @@ defmodule VelorouteWeb.FrameLive do
   defp set_content(_article, socket) do
     Logger.error("Non-existing site was accessed: #{socket.assigns.current_url}")
 
+    url =
+      Routes.startpage_path(
+        VelorouteWeb.Endpoint,
+        VelorouteWeb.FrameLive,
+        url_query(socket)
+      )
+
     socket
     |> put_flash(:info, 404)
-    |> push_patch(to: Routes.startpage_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive))
+    |> push_patch(to: url)
   end
 
   defp set_bounds(socket, article, bounds_param)
@@ -517,22 +524,29 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_url_query(%{assigns: assigns} = socket) do
     %{path: path, query: prev_query} = URI.parse(assigns.current_url)
-    # IO.puts(path)
-    # IO.puts(prev_query)
-
     query = url_query(socket)
 
-    if prev_query != nil && URI.decode_query(prev_query) == query,
-      do: socket,
-      else:
-        push_patch(socket,
-          to: path <> "?" <> URI.encode_query(query),
-          replace: true
-        )
+    if prev_query != nil && URI.decode_query(prev_query) == query do
+      socket
+    else
+      socket
+      |> push_patch(
+        to: path <> "?" <> URI.encode_query(query),
+        replace: true
+      )
+      |> preserve_flash(socket)
+    end
   end
 
   defp url_query(%{assigns: assigns}) do
     bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
     %{"img" => assigns.img, "bounds" => bounds}
+  end
+
+  defp preserve_flash(socket, old_socket) do
+    old_socket.assigns.flash
+    |> Enum.reduce(socket, fn {type, msg}, socket ->
+      put_flash(socket, type, msg)
+    end)
   end
 end
