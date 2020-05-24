@@ -47,11 +47,12 @@ RUN \
 
 
 FROM elixirbase as js
-RUN apk add --no-cache nodejs npm
+RUN apk add --no-cache nodejs npm brotli
 RUN --mount=type=cache,target=/build/assets/node_modules \
   npm install --prefix ./assets && \
   npm run deploy --prefix ./assets && \
-  MIX_ENV=prod mix phx.digest
+  MIX_ENV=prod mix phx.digest && \
+  (find priv/static/ -type f -not -iname '*.png' -not -iname '*.gz' -not -iname '*.br' -print0 | xargs -r -0 -n1 -P0 brotli -f --best)
 
 
 FROM elixirbase as build

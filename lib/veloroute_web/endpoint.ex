@@ -23,8 +23,9 @@ defmodule VelorouteWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :veloroute,
-    gzip: Mix.env() == :prod,
-    only: ~w(css fonts images js geo favicons robots.txt)
+    gzip: true,
+    brotli: true,
+    only: ~w(css images js geo favicons robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
