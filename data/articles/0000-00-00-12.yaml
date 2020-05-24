@@ -1,0 +1,56 @@
+hide_from_map: true
+title: Veloroute 12
+no_auto_title: true
+tags: [12]
+text: >
+  <table class="routing">
+    <tr>
+      <td></td>
+      <td rowspan="7" style="background-image: url(/images/route12.svg)">
+        <icon>12<iconspan>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>1</icon>
+        <icon>11</icon>
+        <icon>2</icon>
+      </td>
+      <td><a phx-value-bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>11</icon>
+      </td>
+      <td><a phx-value-bounds="9.9661435,53.5412334,9.9761435,53.5512334">Landungsbrücken</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>11</icon>
+      </td>
+      <td><a phx-value-bounds="9.9663729,53.5457403,9.9668345,53.5459993">Alter Elbtunnel</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9510767,53.5453571,9.9530303,53.546346">Fischmarkt</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>13</icon>
+      </td>
+      <td><a phx-value-bounds="9.92758,53.5417787,9.9602617,53.5627471">Altona</a></td>
+    </tr>
+  </table>
+
+  <h3>Externe Links</h3>
+  <geolinks route="12">
+    <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426798/veloroute-12/">Detailseite der Stadt</a></li>
+  </geolinks>
+
+  <h3>Artikel zu Veloroute 12</h3>
+  <articles tags="12" sort="date"/>

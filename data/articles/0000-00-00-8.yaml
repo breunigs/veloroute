@@ -1,0 +1,79 @@
+hide_from_map: true
+title: Veloroute 8
+no_auto_title: true
+tags: [8]
+text: >
+  <table class="routing">
+    <tr>
+      <td></td>
+      <td rowspan="13" style="background-image: url(/images/route8.svg)">
+        <icon>8</icon>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>7</icon>
+        <icon>9</icon>
+      </td>
+      <td><a phx-value-bounds="10.0083377,53.5523647,10.0084377,53.5524647">Hauptbahnhof</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.0203837,53.5571426,10.020621,53.5572954">Berliner Tor</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>13</icon>
+      </td>
+      <td><a phx-value-bounds="10.022745,53.5494664,10.0411521,53.5608608">Borgfelde</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.0376053,53.5377541,10.0707064,53.5661079">Hamm</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.0661032,53.5366519,10.1086515,53.565535">Horn</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>14</icon>
+      </td>
+      <td><a phx-value-bounds="10.0903342,53.5190615,10.168776,53.5673577">Billstedt</a></td>
+    </tr>
+    <tr>
+      <td><a phx-value-bounds="10.1450277,53.5231075,10.1550277,53.5331075">Mümmelmannsberg</a></td>
+      <td><a phx-value-bounds="10.1526762,53.504713,10.1726762,53.524713">Boberg</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.1223665,53.4890274,10.2238906,53.5264217">Lohbrügge</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.1704506,53.4677586,10.2662395,53.499341">Bergedorf</a>
+        <icon>9</icon>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="dir"><a phx-value-bounds="10.2345401,53.4789784,10.2876139,53.5089987">(Wentorf)</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="dir"><a phx-value-bounds="10.2104116,53.4956643,10.3158619,53.5799592">(Reinbek)</a></td>
+    </tr>
+  </table>
+
+  <h3>Externe Links</h3>
+  <geolinks route="8">
+    <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426726/veloroute-8/">Detailseite der Stadt</a></li>
+  </geolinks>
+
+  <h3>Artikel zu Veloroute 8</h3>
+  <articles tags="8" sort="date"/>

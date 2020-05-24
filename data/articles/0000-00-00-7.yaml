@@ -13,38 +13,38 @@ text: >
     </tr>
     <tr>
       <td></td>
-      <td><a href="/#13/53.55040785/9.99237385" phx-value-bbox="9.9915695,53.5499061,9.9931782,53.5509096" class="place">Rathaus</a>
+      <td><a phx-value-bounds="9.986909,53.549043,10.000479,53.553078">Rathaus</a>
       </td>
     </tr>
     <tr>
       <td>
         <icon>8</icon>
         <icon>9</icon></td>
-      <td><a href="/#13/53.5524147/10.0083877" phx-value-bbox="10.0083377,53.5523647,10.0084377,53.5524647" class="place">Hauptbahnhof</a></td>
+      <td><a phx-value-bounds="10.0083377,53.5523647,10.0084377,53.5524647">Hauptbahnhof</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a href="/#13/53.5600916/10.021602" phx-value-bbox="10.0207948,53.5597006,10.0224092,53.5604826" class="place">Alsterschwimmhalle</a></td>
+      <td><a phx-value-bounds="10.0207948,53.5597006,10.0224092,53.5604826">Alsterschwimmhalle</a></td>
     </tr>
     <tr>
       <td><icon>1</icon></td>
-      <td><a href="/#13/53.5534896/9.97262965" phx-value-bbox="9.9549651,53.5431746,9.9902942,53.5638046" class="place">St. Pauli</a></td>
+      <td><a phx-value-bounds="9.9549651,53.5431746,9.9902942,53.5638046">St. Pauli</a></td>
     </tr>
     <tr>
       <td><icon>13</icon></td>
-      <td><a href="/#13/53.5684402/10.0472666" phx-value-bbox="10.0318304,53.5608608,10.0627028,53.5760196" class="place">Eilbek</a></td>
+      <td><a phx-value-bounds="10.0318304,53.5608608,10.0627028,53.5760196">Eilbek</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a href="/#13/53.5716636/10.066741400000002" phx-value-bbox="10.0617414,53.5666636,10.0717414,53.5766636" class="place">Wandsbek Markt</a></td>
+      <td><a phx-value-bounds="10.0617414,53.5666636,10.0717414,53.5766636">Wandsbek Markt</a></td>
     </tr>
     <tr>
-      <td><icon>14</icon> <a href="/#13/53.57617535/10.127726299999999" phx-value-bbox="10.1034487,53.5643859,10.1520039,53.5879648" class="place">Jenfeld</a></td>
-      <td><a href="/#13/53.5869584/10.12057755" phx-value-bbox="10.098152,53.5759187,10.1430031,53.5979981" class="place">Tonndorf</a> <icon>14</icon></td>
+      <td><icon>14</icon> <a phx-value-bounds="10.1034487,53.5643859,10.1520039,53.5879648">Jenfeld</a></td>
+      <td><a phx-value-bounds="10.098152,53.5759187,10.1430031,53.5979981">Tonndorf</a> <icon>14</icon></td>
     </tr>
     <tr>
-      <td class="dir"><a href="/#13/53.57644425/10.213043200000001" phx-value-bbox="10.14752,53.5540497,10.2785664,53.5988388" class="place">(Barsbüttel)</a></td>
-      <td><a href="/#13/53.60730065/10.1726676" phx-value-bbox="10.1233839,53.5762276,10.2219513,53.6383737" class="place">Rahlstedt</a></td>
+      <td class="dir"><a phx-value-bounds="10.14752,53.5540497,10.2785664,53.5988388">(Barsbüttel)</a></td>
+      <td><a phx-value-bounds="10.1233839,53.5762276,10.2219513,53.6383737">Rahlstedt</a></td>
     </tr>
   </table>
 

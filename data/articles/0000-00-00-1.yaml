@@ -1,0 +1,84 @@
+hide_from_map: true
+title: Veloroute 1
+no_auto_title: true
+tags: [1, 1a]
+text: >
+  <table class="routing">
+    <tr>
+      <td></td>
+      <td rowspan="14" style="background-image: url(/images/route1.svg)">
+        <icon>1</icon>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>11</icon>
+        <icon>12</icon>
+        <icon>2</icon>
+      </td>
+      <td><a phx-value-bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9672602,53.5511364,9.9745376,53.5571361">Heiligengeistfeld</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>7</icon>
+      </td>
+      <td><a phx-value-bounds="9.9549651,53.5431746,9.9902942,53.5638046">St. Pauli</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.92758,53.5417787,9.9602617,53.5627471">Altona-Altstadt</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.9093475,53.5415333,9.9348885,53.5600679">Ottensen</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>14</icon>
+      </td>
+      <td><a phx-value-bounds="9.8638682,53.5415406,9.917539,53.5600054">Othmarschen</a></td>
+    </tr>
+    <tr>
+      <td><a phx-value-bounds="9.8637341,53.5583216,9.9004188,53.5715607">Groß Flottbek</a></td>
+      <td><a phx-value-bounds="9.8558825,53.5531648,9.8658825,53.5631648">Klein Flottbek</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>14</icon> <a phx-value-bounds="9.8266622,53.5577662,9.8669147,53.5950351">Osdorf</a>
+      </td>
+      <td><a phx-value-bounds="9.8204171,53.5442254,9.8650723,53.5653583">Nienstedten</a></td>
+    </tr>
+    <tr>
+      <td><a phx-value-bounds="9.8399615,53.5752492,9.8456209,53.5917348">Osdorfer Born</a></td>
+      <td><a phx-value-bounds="9.7617571,53.5508,9.8266896,53.5742528">Blankenese</a></td>
+    </tr>
+    <tr>
+      <td class="dir"><a phx-value-bounds="9.7897061,53.5841903,9.8681548,53.6156231">(Schenefeld)</a></td>
+      <td><a phx-value-bounds="9.7788518,53.5709306,9.8184877,53.6067525">Sülldorf</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.7301155,53.5551486,9.7990198,53.6314046">Rissen</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="dir"><a phx-value-bounds="9.6333439,53.5575882,9.7592222,53.6187534">(Wedel)</a></td>
+    </tr>
+  </table>
+
+  <h3>Externe Links</h3>
+  <geolinks route="1">
+    <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418898/veloroute-1/">Detailseite der Stadt</a></li>
+  </geolinks>
+
+  <h3>Artikel zu Veloroute 1</h3>
+  <articles tags="1,1a" sort="date"/>

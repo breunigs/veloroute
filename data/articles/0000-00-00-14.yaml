@@ -1,0 +1,108 @@
+hide_from_map: true
+title: Veloroute 14
+no_auto_title: true
+tags: [14]
+text: >
+  <table class="routing">
+    <tr>
+      <td></td>
+      <td rowspan="17" style="background-image: url(/images/route14.svg)">
+        <icon>14<iconspan>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>1</icon>
+      </td>
+      <td><a phx-value-bounds="9.8638682,53.5415406,9.917539,53.5600054">Othmarschen</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>1</icon>
+      </td>
+      <td><a phx-value-bounds="9.8266622,53.5577662,9.8669147,53.5950351">Osdorf</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.844518,53.5813426,9.9008894,53.6132514">Lurup</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>2</icon>
+      </td>
+      <td><a phx-value-bounds="9.8691962,53.5861088,9.9353742,53.6252091">Eidelstedt</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="9.8861829,53.6199835,9.9501171,53.6555215">Schnelsen</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>3</icon>
+      </td>
+      <td><a phx-value-bounds="9.9451122,53.6358535,9.9551122,53.6458535">Niendorf Nord</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>4</icon>
+      </td>
+      <td><a phx-value-bounds="10.0122131,53.6438888,10.0222131,53.6538888">Langenhorn</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.0202046,53.6319343,10.0685823,53.6819818">Hummelsbüttel</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>5</icon>
+      </td>
+      <td><a phx-value-bounds="10.0517108,53.6405808,10.1016828,53.6797629">Poppenbüttel</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.0903848,53.6302042,10.1426051,53.6726368">Sasel</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>6</icon>
+      </td>
+      <td><a phx-value-bounds="10.1349662,53.6220857,10.1449662,53.6320857">Berne</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>6</icon>
+      </td>
+      <td><a phx-value-bounds="10.1127994,53.602222,10.1227994,53.612222">Farmsen</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>7</icon>
+      </td>
+      <td><a phx-value-bounds="10.098152,53.5759187,10.1430031,53.5979981">Tonndorf</a></td>
+    </tr>
+    <tr>
+      <td class="dir"><a phx-value-bounds="10.14752,53.5540497,10.2785664,53.5988388">(Barsbüttel)</a></td>
+      <td><a phx-value-bounds="10.1034487,53.5643859,10.1520039,53.5879648">Jenfeld</a>
+        <icon>7</icon>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a phx-value-bounds="10.1335082,53.5495053,10.152237,53.5659504">Öjendorfer Park</a></td>
+    </tr>
+    <tr>
+      <td>
+        <icon>8</icon>
+      </td>
+      <td><a phx-value-bounds="10.0903342,53.5190615,10.168776,53.5673577">Billstedt</a></td>
+    </tr>
+  </table>
+
+  <h3>Externe Links</h3>
+  <geolinks route="14">
+    <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426818/veloroute-14/">Detailseite der Stadt</a></li>
+  </geolinks>
+
+  <h3>Artikel zu Veloroute 14</h3>
+  <articles tags="14" sort="date"/>
