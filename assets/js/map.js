@@ -32,6 +32,7 @@ const genDiv = (id) => {
 let indicator = null;
 let indicatorRot = null;
 function renderIndicator() {
+  if(state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
 
   if(!indicator) {
@@ -55,6 +56,10 @@ function renderIndicator() {
 }
 
 const ensureIndicatorInView = () => {
+  if(map.isMoving()) {
+    return;
+  }
+
   const indiRect = indicator.getElement().getBoundingClientRect();
   const indiPos = {
     x: indiRect.left + indiRect.width / 2,
@@ -84,13 +89,28 @@ const ensureIndicatorInView = () => {
   }
 }
 
+let indicatorFocus = null;
+let prevIndicatorPos = '';
+const maybeEnsureIndicatorInView = () => {
+  if(state.slideshow === "true" && indicatorFocus === null) {
+    indicatorFocus = setInterval(ensureIndicatorInView, 2000);
+  } else if(state.slideshow !== "true" && indicatorFocus !== null) {
+    clearInterval(indicatorFocus);
+    indicatorFocus = null;
+  } else if(indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
+    console.debug("indicator present, and changed, ensuring it's in view", indicator)
+    prevIndicatorPos = `${state.lon},${state.lat}`;
+    setTimeout(ensureIndicatorInView, 0);
+  }
+}
+
 
 let prevBounds = settings.initial;
 const maybeFitBounds = () => {
   if(prevBounds == state.bounds || state.bounds == "") {
     return;
   }
-  console.debug("Bounds have change from", prevBounds, "to", state.bounds)
+  console.debug("Bounds have changed from", prevBounds, "to", state.bounds)
   prevBounds = state.bounds;
   map.fitBounds(prevBounds.split(","), fitBoundsOpt);
 }
@@ -147,15 +167,9 @@ map.on('style.load', () => {
 });
 
 
-let indicatorFocus = null;
 window.mapStateChanged = () => {
   maybeFitBounds();
   renderIndicator();
+  maybeEnsureIndicatorInView();
 
-  if(state.slideshow === "true" && indicatorFocus === null) {
-    indicatorFocus = setInterval(ensureIndicatorInView, 2000);
-  } else if(state.slideshow !== "true" && indicatorFocus !== null) {
-    clearInterval(indicatorFocus);
-    indicatorFocus = null;
-  }
 }
