@@ -56,5 +56,6 @@
       <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/polyfill.js") %>"></script>
     <% end %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/map.js") %>"></script>
   </body>
 </html>
