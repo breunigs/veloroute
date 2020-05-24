@@ -73,16 +73,19 @@ defmodule VelorouteWeb.FrameLive do
 
     img =
       with lon when is_float(lon) <- attr["lon"],
-           lat when is_float(lon) <- attr["lat"],
+           lat when is_float(lat) <- attr["lat"],
+           zoom when is_number(zoom) <- attr["zoom"],
            route when not is_nil(route) <- route do
         Logger.debug("Searching for image on #{inspect(route)}, near lon/lat: #{lon}/#{lat}")
         curimg = assigns.img
+
+        zoom = zoom |> max(1) |> min(18)
 
         Data.ImageCache.images(route_id: elem(route, 0))
         |> Data.Image.find_around_point(
           %{lat: lat, lon: lon},
           route: route,
-          max_dist: 100
+          max_dist: 100 * CheapRuler.meters_per_pixel(zoom)
         )
         |> case do
           # none
@@ -96,6 +99,16 @@ defmodule VelorouteWeb.FrameLive do
           # take closest
           other -> List.first(other) |> elem(2)
         end
+      else
+        err ->
+          Logger.warn(
+            "Failed to parse map click params:" <>
+              "\nroute=#{inspect(route)}" <>
+              "\nattr=#{inspect(attr)}" <>
+              "\nerr=#{inspect(err)}"
+          )
+
+          nil
       end
 
     socket =

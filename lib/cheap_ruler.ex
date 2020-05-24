@@ -115,6 +115,10 @@ defmodule CheapRuler do
     })
   end
 
+  def meters_per_pixel(zoom) do
+    @zoom_factor / :math.pow(2, zoom + 8)
+  end
+
   @doc ~S"""
   Returns the distance between two points or from a line and a point
 

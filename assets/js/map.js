@@ -132,6 +132,7 @@ const handleMapClick = (evt) => {
     article: article,
     lon: evt.lngLat.lng,
     lat: evt.lngLat.lat,
+    zoom: map.getZoom()
   })
 }
 
