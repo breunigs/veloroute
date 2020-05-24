@@ -105,14 +105,10 @@ defmodule Data.Article do
 
   def load_all(path) do
     File.ls!(path)
-    |> Task.async_stream(
-      fn filename ->
-        load(Path.join([path, filename]))
-      end,
-      timeout: 50_000,
-      ordered: false
-    )
-    |> Enum.into(%{}, fn {:ok, art} ->
+    |> Enum.map(fn filename ->
+      load(Path.join([path, filename]))
+    end)
+    |> Enum.into(%{}, fn art ->
       {art.name, art}
     end)
   end
