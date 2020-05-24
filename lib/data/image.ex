@@ -52,19 +52,23 @@ defmodule Data.Image do
   @spec associated_route(indexed_images(), [Mapillary.ref()], Mapillary.ref()) ::
           {route(), Mapillary.ref()} | nil
   def associated_route(all, sequences, img) when is_ref(img) and is_list(sequences) do
-    routes =
-      if all[:index][img] do
-        all[:index][img]
-      else
-        Mapillary.close_to(img, sequences)
-        |> Enum.find_value(fn %{img: close} -> all[:index][close] end)
-      end
-
-    if routes do
-      {route, pos} = routes |> Map.to_list() |> List.first()
-      replacement_img = all[route] |> Enum.at(pos) |> Map.get(:img)
-      {route, replacement_img}
+    if all[:index][img] do
+      all[:index][img]
+    else
+      Mapillary.close_to(img, sequences)
+      |> Enum.find_value(fn %{img: close} ->
+        # TODO: reject matches which are not in all (which may be filtered by
+        # tags on the article)
+        all[:index][close]
+      end)
     end
+    |> Kernel.||(%{})
+    |> Enum.find_value(fn {route, pos} ->
+      if Map.has_key?(all, route) do
+        replacement_img = all[route] |> Enum.at(pos) |> Map.get(:img)
+        {route, replacement_img}
+      end
+    end)
   end
 
   def find_reverse(all, img, route: {id, _rest} = route) when is_ref(img) do

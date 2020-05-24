@@ -1,7 +1,8 @@
 defmodule Mix.Tasks.UpdateImages do
   use Mix.Task
 
-  @imgpath "data/cache/images.osm"
+  # XXX: path needs to be absolute for JOSM to find it
+  @imgpath File.cwd!() <> "/data/cache/images.osm"
 
   @shortdoc "Converts Mapillary sequence lists in data/images/ for viewing while editing"
   def run(_) do

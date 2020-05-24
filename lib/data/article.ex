@@ -55,6 +55,7 @@ defmodule Data.Article do
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
     bbox = find_bbox(name, tags)
+    simg = start_image(parsed[:images] || List.first(tags), bbox)
 
     data =
       Map.merge(parsed, %{
@@ -65,7 +66,7 @@ defmodule Data.Article do
         start: parsed |> Map.get(:start) |> RoughDate.parse(),
         end: parsed |> Map.get(:end) |> RoughDate.parse(),
         bbox: bbox,
-        start_image: start_image(parsed[:images] || List.first(tags), bbox)
+        start_image: simg
       })
       |> set_start_position
 
@@ -74,16 +75,11 @@ defmodule Data.Article do
 
   defp start_image(various_img_or_route, bbox)
   defp start_image(nil, _bbox), do: nil
-  defp start_image([], _bbox), do: nil
-
   defp start_image([img | _rest], _bbox) when is_ref(img), do: img
-
-  defp start_image(_, []), do: nil
   defp start_image(_, nil), do: nil
-  defp start_image(route_id, bbox) when is_integer(route_id), do: start_image("#{route_id}", bbox)
 
-  defp start_image(route_id, bbox) when is_binary(route_id) do
-    ImageCache.images_stream(route_id: route_id)
+  defp start_image(route_id, bbox) when is_binary(route_id) or is_integer(route_id) do
+    ImageCache.images_stream(route_id: "#{route_id}")
     |> Data.Image.find_close(bbox)
     |> get_in([:img])
 
@@ -238,8 +234,13 @@ defmodule Data.Article do
 
   defp set_start_position(%{start_image: nil} = art), do: art
 
-  defp set_start_position(%{start_image: img} = art) when is_ref(img) do
-    route_pos = Data.Image.associated_route(ImageCache.images(), ImageCache.sequences(), img)
+  defp set_start_position(%{start_image: img, tags: tags} = art)
+       when is_ref(img) and is_list(tags) do
+    route_pos =
+      ImageCache.images(route_id: tags)
+      |> Data.Image.associated_route(ImageCache.sequences(), img)
+
+    if is_nil(route_pos), do: IO.puts("no route for #{art.name}")
 
     Map.put(art, :start_position, route_pos)
   end

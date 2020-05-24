@@ -54,7 +54,8 @@ defmodule Data.ImageCache do
     ids = List.wrap(ids)
     [keys: keys] = :ets.lookup(ets(), :keys)
 
-    Enum.filter(keys, fn
+    keys
+    |> Enum.filter(fn
       {route_id, _rest} -> Enum.member?(ids, route_id)
       :index -> true
     end)

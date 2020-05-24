@@ -48,6 +48,8 @@ defmodule Mapillary do
       pp = 10
 
       lazy("close-to-#{pp}-#{radius}-#{img}-#{seq_strs}-v3", fn ->
+        IO.write("~")
+
         query = [closeto: "#{lon},#{lat}", radius: radius, per_page: pp]
 
         query = if sequences == [], do: query, else: Keyword.put(query, :sequence_keys, seq_strs)
