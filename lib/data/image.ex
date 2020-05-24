@@ -89,6 +89,11 @@ defmodule Data.Image do
     |> Enum.find(&CheapRuler.inside_bbox?(&1, bbox))
   end
 
+  @spec find_close([img_non_nil(), ...] | fun(), map()) :: img()
+  def find_close(imgs, %{minLon: _} = bbox) do
+    Enum.find(imgs, &CheapRuler.inside_bbox?(&1, bbox))
+  end
+
   @spec find_around_point(indexed_images(), map(), route: route(), max_dist: float()) :: [
           {route(), float(), img()}
         ]

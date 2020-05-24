@@ -2,8 +2,7 @@ defmodule Data.DataTest do
   use ExUnit.Case, async: true
 
   test "all images have an associated route" do
-    Data.ImageCache.images()
-    |> Map.keys()
+    Data.ImageCache.image_keys()
     |> Enum.each(fn
       :index ->
         nil

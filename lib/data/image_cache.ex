@@ -17,10 +17,13 @@ defmodule Data.ImageCache do
 
   Benchmark.measure("loading images", fn ->
     imgs = Data.Image.load_all(@image_path)
+    keys = Map.keys(imgs)
     seqs = Data.Image.sequences(imgs)
+
     {:ok, table} = :dets.open_file(:image_cache, file: @cache_path, type: :set)
-    :dets.insert(table, {:imgs, imgs})
+    :dets.insert(table, {:keys, keys})
     :dets.insert(table, {:seqs, seqs})
+    for {key, val} <- imgs, do: :dets.insert(table, {key, val})
     :dets.close(table)
   end)
 
@@ -40,14 +43,53 @@ defmodule Data.ImageCache do
     end
   end
 
+  @spec images() :: Data.Image.indexed_images()
   def images() do
-    [imgs: imgs] = :ets.lookup(ets(), :imgs)
-    imgs
+    [keys: keys] = :ets.lookup(ets(), :keys)
+    images(keys)
+  end
+
+  # @spec images(route_id: [binary()]) :: Data.Image.indexed_images()
+  def images(route_id: ids) when is_list(ids) or is_binary(ids) do
+    ids = List.wrap(ids)
+    [keys: keys] = :ets.lookup(ets(), :keys)
+
+    Enum.filter(keys, fn
+      {route_id, _rest} -> Enum.member?(ids, route_id)
+      :index -> true
+    end)
+    |> images()
+  end
+
+  # @spec images([Data.Image.route() | :index]) :: Data.Image.indexed_images()
+  def images(keys) when is_list(keys) do
+    Enum.map(keys, fn key ->
+      :ets.lookup(ets(), key) |> hd
+    end)
+    |> Enum.into(%{})
+  end
+
+  def images_stream(route_id: ids) when is_list(ids) or is_binary(ids) do
+    ids = List.wrap(ids)
+    [keys: keys] = :ets.lookup(ets(), :keys)
+
+    Stream.filter(keys, fn
+      {route_id, _rest} -> Enum.member?(ids, route_id)
+      :index -> false
+    end)
+    |> Stream.flat_map(fn key ->
+      :ets.lookup(ets(), key) |> hd |> elem(1)
+    end)
   end
 
   def sequences() do
     [seqs: seqs] = :ets.lookup(ets(), :seqs)
     seqs
+  end
+
+  def image_keys() do
+    [keys: keys] = :ets.lookup(ets(), :keys)
+    keys
   end
 
   defp ets do

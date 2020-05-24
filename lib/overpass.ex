@@ -67,11 +67,11 @@ defmodule Overpass do
   end
 
   defp sanitize(str) do
-    Regex.replace(~r/[^\w-]+/ui, str, " ")
+    Regex.replace(~r/[^\w.-]+/ui, str, " ") |> String.trim()
   end
 
   defp cache do
-    {:ok, table} = :dets.open_file(:maptiler_geocode, file: @cache_path, type: :set)
+    {:ok, table} = :dets.open_file(:overpass_geocode, file: @cache_path, type: :set)
     table
   end
 end

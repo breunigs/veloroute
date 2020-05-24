@@ -78,7 +78,7 @@ defmodule VelorouteWeb.FrameLive do
         Logger.debug("Searching for image on #{inspect(route)}, near lon/lat: #{lon}/#{lat}")
         curimg = assigns.img
 
-        Data.ImageCache.images()
+        Data.ImageCache.images(route_id: elem(route, 0))
         |> Data.Image.find_around_point(
           %{lat: lat, lon: lon},
           route: route,
@@ -186,7 +186,7 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("sld-reverse")
 
     img =
-      Data.ImageCache.images()
+      Data.ImageCache.images(route_id: socket.assigns.route |> elem(0))
       |> Data.Image.find_reverse(socket.assigns.img, route: socket.assigns.route)
 
     socket =
@@ -323,7 +323,7 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("slideshow: replacing default image")
     route = socket.assigns.route
 
-    [%{img: img} | _] = Data.ImageCache.images()[route]
+    [%{img: img} | _] = Data.ImageCache.images([route])[route]
 
     socket
     |> assign(:route, route)

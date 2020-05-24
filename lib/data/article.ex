@@ -83,10 +83,11 @@ defmodule Data.Article do
   defp start_image(route_id, bbox) when is_integer(route_id), do: start_image("#{route_id}", bbox)
 
   defp start_image(route_id, bbox) when is_binary(route_id) do
-    Benchmark.measure("finding start_image #{route_id} with #{inspect(bbox)}", fn ->
-      Data.Image.find_close(ImageCache.images(), bbox, route: {route_id, nil}) |> get_in([:img])
-      # || raise "Cannot find image for route_id=#{route_id}, within #{inspect(bbox)}"
-    end)
+    ImageCache.images_stream(route_id: route_id)
+    |> Data.Image.find_close(bbox)
+    |> get_in([:img])
+
+    # || raise "Cannot find image for route_id=#{route_id}, within #{inspect(bbox)}"
   end
 
   # finds bbox for article if present in map, alternatively falls back to bbox
