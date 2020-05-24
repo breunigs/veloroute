@@ -59,6 +59,7 @@ let loadMly = function() {
 window.mlyStateChanged = function() {
   const img = new Image();
   const url = "https://images.mapillary.com/" + state.img + "/thumb-1024.jpg";
+  const imgKey = state.img;
   const placeholder = document.getElementById("mlyPlaceholder")
   const placeholderOuter = document.getElementById("mlyPlaceholderOuter")
   // both preload and the multiple BG image hack are required to avoid flashing
@@ -67,8 +68,13 @@ window.mlyStateChanged = function() {
   placeholder.classList.add('loading');
   placeholderOuter.style.backgroundImage = "url("+url+")";
   img.onload = () => {
+    if(imgKey != state.img) {
+      // abort if another image was queued
+      return;
+    }
+
     console.debug("setting preloaded image as BG" , url)
-    placeholder.style.backgroundImage = placeholderOuter.style.backgroundImage;
+    placeholder.style.backgroundImage = "url("+url+")";
     placeholderOuter.style.backgroundImage = "";
     placeholder.classList.remove('loading');
   }
