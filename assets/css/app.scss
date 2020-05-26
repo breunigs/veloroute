@@ -24,6 +24,20 @@ body {
   font-family: Arial, sans;
   font-size: 0.9em;
   min-width: 2*$minWidth;
+
+  &.loading::before {
+    color: white;
+    content: '⌛'; /* hourglass */
+    display: block;
+    font-weight: bold;
+    right: 0;
+    padding: 0.3rem 0.5rem;
+    position: absolute;
+    text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2), -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
+    top: 0;
+    z-index: 1;
+    font-size: 2em;
+  }
 }
 
 body > div[data-phx-main="true"] {

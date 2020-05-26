@@ -2,7 +2,7 @@
 
 <%= if !@mly_loaded do %>
   <div phx-update="ignore" id="mlyPlaceholderOuter">
-    <a href="#" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
+    <a href="#" phx-click="sld-playpause" phx-page-loading id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
       <div class="playIcon"></div>
     </a>
   </div>
@@ -33,8 +33,8 @@
       <button phx-click="sld-playpause" phx-disable-with="<%= if @slideshow, do: "▶", else: "■" %>" title="Abspielen / Pause">
         <%= if @slideshow, do: "■", else: "▶" %>
       </button>
-      <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-click": "sld-step-backward") %>
-      <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-click": "sld-step-forward") %>
+      <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-page-loading": "", "phx-click": "sld-step-backward") %>
+      <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-page-loading": "", "phx-click": "sld-step-forward") %>
       <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
       <%= display_route(@route) %>
     </div>

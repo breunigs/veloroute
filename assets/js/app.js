@@ -117,4 +117,5 @@ document.getElementById("switcher").addEventListener("click", () => {
   }
 })
 
+import "./loading"
 import "./checkwebgl"
