@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
+  alias VelorouteWeb.Router.Helpers, as: Routes
 
   def display_route(nil), do: nil
 
@@ -7,7 +8,11 @@ defmodule VelorouteWeb.VariousHelpers do
     rel = relation_by_id(id)
     full_name = Map.get(rel.tags, :name, id)
 
-    content_tag(:div, [route_icon(id), " ", rest], title: "Du folgst: #{full_name} #{rest}")
+    Phoenix.LiveView.Helpers.live_patch([route_icon(id), " ", rest],
+      to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
+      title: "Du folgst: #{full_name} #{rest}",
+      class: "curRoute"
+    )
   end
 
   @short_month_names [

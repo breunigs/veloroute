@@ -10,6 +10,7 @@ $contentPad: 0.9rem;
   margin: 0;
   padding: 0;
   text-decoration: none;
+  touch-action: manipulation;
 }
 
 body {
@@ -129,13 +130,15 @@ body > div[data-phx-main="true"] {
     }
   }
 
-  > div {
+  .curRoute {
     height: $btnSize;
     line-height: $btnSize;
     flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: right;
+    color: #fff;
+    text-decoration: none;
   }
 }
 
@@ -395,7 +398,7 @@ a:hover {
   z-index: 10;
 }
 
-span[title], #slideshow > div {
+span[title], #slideshow .curRoute {
   cursor: help;
   border-bottom: 0.05em dotted #000;
 }
