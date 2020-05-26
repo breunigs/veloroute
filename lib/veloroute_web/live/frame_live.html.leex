@@ -2,9 +2,9 @@
 
 <%= if !@mly_loaded do %>
   <div phx-update="ignore" id="mlyPlaceholderOuter">
-    <div phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
+    <a href="#" phx-click="sld-playpause" id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
       <div class="playIcon"></div>
-    </div>
+    </a>
   </div>
 <% else %>
   <link href='https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css' rel='stylesheet' />
