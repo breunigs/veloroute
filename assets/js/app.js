@@ -10,7 +10,13 @@ import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
 window.state = {};
+let prevLocation = location.pathname;
 function updateState() {
+  if(prevLocation !== location.pathname) {
+    document.getElementById("content").scroll(0, 0);
+    prevLocation = location.pathname;
+  }
+
   // XXX: the element might be replaced by liveview, need to search it every time
   window.state = document.getElementById("control").dataset;
   console.log(state);
