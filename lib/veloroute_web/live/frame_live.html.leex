@@ -30,7 +30,7 @@
   </div>
   <%= if with_slideshow do %>
     <div id="slideshow">
-      <button phx-click="sld-playpause" title="Abspielen / Pause">
+      <button phx-click="sld-playpause" phx-disable-with="<%= if @slideshow, do: "▶", else: "■" %>" title="Abspielen / Pause">
         <%= if @slideshow, do: "■", else: "▶" %>
       </button>
       <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-click": "sld-step-backward") %>
