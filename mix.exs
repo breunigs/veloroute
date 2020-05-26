@@ -20,7 +20,7 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -43,13 +43,16 @@ defmodule Veloroute.MixProject do
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.4.16"},
+      {:phoenix, "~> 1.5.3"},
       {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_dashboard, "~> 0.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "0.12.1"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_live_view, "~> 0.13"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"},
       {:saxy, "~> 1.0.0"},
+      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"},
       {:temp, "~> 0.4", only: [:dev, :test]},
       {:tesla, "~> 1.3.0"},
       {:yaml_elixir, "~> 2.4"}

@@ -2,6 +2,8 @@ defmodule VelorouteWeb.Router do
   use VelorouteWeb, :router
 
   import Phoenix.LiveView.Router
+  import Plug.BasicAuth
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,9 +14,18 @@ defmodule VelorouteWeb.Router do
     plug :put_root_layout, {VelorouteWeb.LayoutView, :app}
   end
 
-  # pipeline :api do
-  #   plug :accepts, ["json"]
-  # end
+  pipeline :admins_only do
+    plug :basic_auth,
+      username: Credentials.dashboard_user(),
+      password: Credentials.dashboard_password()
+  end
+
+  scope "/" do
+    pipe_through [:browser, :admins_only]
+
+    if is_binary(Credentials.dashboard_password()) && Credentials.dashboard_password() != "",
+      do: live_dashboard("/dashboard", metrics: VelorouteWeb.Telemetry)
+  end
 
   scope "/", VelorouteWeb do
     get "/updates.atom", FeedController, :feed

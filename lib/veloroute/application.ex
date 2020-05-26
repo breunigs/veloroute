@@ -8,8 +8,10 @@ defmodule Veloroute.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      VelorouteWeb.Telemetry,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
+      {Phoenix.PubSub, [name: Veloroute.PubSub, adapter: Phoenix.PubSub.PG2]},
       # Starts a worker by calling: Veloroute.Worker.start_link(arg)
       # {Veloroute.Worker, arg},
       Data.ImageCache
