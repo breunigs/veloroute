@@ -30,6 +30,19 @@ config :ex_aws, json_codec: Jason
 # very verbose HTTP output. Needs: mix deps.compile tesla --force
 config :tesla, Tesla.Middleware.Logger, debug: false
 
+config :sentry,
+  dsn: PhoenixCredentials.sentry_dsn(),
+  # enable_source_code_context: true,
+  # root_source_code_path: File.cwd!(),
+  included_environments: [:prod, :dev],
+  tags: %{
+    env: Mix.env()
+  },
+  environment_name: Mix.env()
+
+config :logger,
+  backends: [:console, Sentry.LoggerBackend]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

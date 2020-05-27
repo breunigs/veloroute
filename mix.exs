@@ -51,6 +51,7 @@ defmodule Veloroute.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"},
       {:saxy, "~> 1.0.0"},
+      {:sentry, "~> 7.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:temp, "~> 0.4", only: [:dev, :test]},

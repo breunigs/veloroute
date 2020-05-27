@@ -29,6 +29,9 @@ defmodule VelorouteWeb.Telemetry do
         tags: [:route],
         unit: {:native, :millisecond}
       ),
+      counter("phoenix.socket_connected.duration"),
+      counter("phoenix.router_dispatch.stop.count"),
+      counter("phoenix.error_rendered.count"),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),

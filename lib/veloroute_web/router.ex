@@ -1,5 +1,7 @@
 defmodule VelorouteWeb.Router do
   use VelorouteWeb, :router
+  use Plug.ErrorHandler
+  use Sentry.Plug
 
   import Phoenix.LiveView.Router
   import Plug.BasicAuth
