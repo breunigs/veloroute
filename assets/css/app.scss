@@ -160,7 +160,7 @@ body > div[data-phx-main="true"] {
   $height: 80px;
 
   position: sticky;
-  top: calc(50% - #{$height/2});
+  top: calc(50vh - #{$height/2});
   left: 0;
   height: 0;
   overflow: show;
