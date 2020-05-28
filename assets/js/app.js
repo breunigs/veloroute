@@ -100,20 +100,20 @@ Hooks.control = {
   }
 }
 
-
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
 liveSocket.connect()
 window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
-// liveSocket.enableLatencySim(200)
+// liveSocket.enableLatencySim(2000)
 
 // mobile gui
 document.getElementById("switcher").addEventListener("click", () => {
-  if(window.scrollX < 100) {
-    window.scrollBy(1000, 0);
+  const elm = document.getElementsByTagName("html")[0];
+  if(elm.scrollLeft < 100) {
+    elm.scrollBy(1000, 0);
   } else {
-    window.scrollBy(-1000, 0);
+    elm.scrollBy(-1000, 0);
   }
 })
 

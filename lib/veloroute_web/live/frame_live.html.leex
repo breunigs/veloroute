@@ -11,7 +11,7 @@
 <% end %>
 
 <div id="sidebar">
-  <div id="switcher"><div>↤</div></div>
+  <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
   <div id="content" <%= if with_slideshow, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
     <%= if Map.get(@flash, "info") do %>

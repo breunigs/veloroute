@@ -157,32 +157,27 @@ body > div[data-phx-main="true"] {
 }
 
 #switcher {
+  $width: 30px;
+  $height: 80px;
+
   position: sticky;
-  top: calc(50% - 40px);
-  width: 0;
+  top: calc(50% - #{$height/2});
+  left: 0;
   height: 0;
-  user-select: none;
+  overflow: show;
 
   div {
-    text-shadow:  1px  1px 1px rgba(0,0,0,0.6),
-                  1px -1px 1px rgba(0,0,0,0.6),
-                 -1px  1px 1px rgba(0,0,0,0.6),
-                 -1px -1px 1px rgba(0,0,0,0.6);
-    margin-left: -15px;
-    color: #fff;
-    width: 25px;
-    height: 80px;
-    z-index: 100;
+    margin-left: #{$width/-2};
+    width: 0;
+    height: 0;
+    user-select: none;
+    background-image: url("/images/switcher.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: $width;
+    height: $height;
     touch-action: pan-x;
-    border-radius: 12.5px;
-    line-height: 80px;
-    font-size: 2.5em;
-    text-align: center;
-    font-weight: bold;
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    border: 1px solid rgba(0,0,0, 0.3);
-    background: rgba(0,0,0, 0.1);
-    cursor: pointer;
+    background-size: cover;
   }
 }
 
