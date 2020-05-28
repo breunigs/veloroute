@@ -64,7 +64,7 @@ defmodule VelorouteWeb.ArticleView do
 
   defp maybe_prepend_title(html, %Article{title: t}), do: floki_content_tag(:h3, t) ++ html
 
-  @spec maybe_prepend_title(Floki.html_tree(), %Article{}) :: Floki.html_tree()
+  @spec maybe_prepend_image(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_image(html, %Article{start_image: img}) when is_ref(img) do
     [{"img", [{"src", Mapillary.img_url(img, 2048)}], []}] ++ html
   end
