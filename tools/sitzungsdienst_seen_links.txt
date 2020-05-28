@@ -1,0 +1,505 @@
+---
+'2018-09-29':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007916
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007815
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007660
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007657
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007595
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007391
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007321
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006455
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006332
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005417
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005410
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005211
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004952
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004946
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004650
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004429
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004385
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003344
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1002511
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001912
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001732
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001538
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1000209
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=7797
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=7660
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=6007
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=2752
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007857
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007225
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007204
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006343
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006279
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005509
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005429
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005291
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005210
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004886
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004882
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004869
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004633
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004441
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004319
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004263
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004159
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003965
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003620
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003619
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003596
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003214
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1002898
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1002473
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001533
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001382
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1001057
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1000947
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1000378
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1000024
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=7611
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=7562
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=7387
+'2018-10-10':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007947
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007937
+'2018-10-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007323
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005893
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005507
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005084
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004473
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004321
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004102
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1004051
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003831
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003790
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003527
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003433
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1003342
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1002921
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1002823
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004043
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1003963
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1003860
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1002826
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1001420
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004043
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1003934
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1003887
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1003003
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1002565
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1002459
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1002355
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1002336
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1001836
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1001334
+'2018-10-14':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008585
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008618
+'2018-10-15':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009007
+'2018-10-17':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008836
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008837
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008834
+'2018-10-21':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009131
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006689
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004392
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006692
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006605
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004297
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006635
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006693
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006870
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007378
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001698
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005342
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005258
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004997
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007356
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1000405
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1000022
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001892
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004723
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004877
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=13553
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005304
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005074
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005436
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005437
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005566
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006514
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006815
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006831
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007018
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009083
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007042
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008868
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=10729
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=10416
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001892
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=13967
+'2018-10-25':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009129
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008015
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009168
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009152
+'2018-10-30':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008014
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008015
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008048
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009162
+- https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1002791
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005134
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002504
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000880
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005677
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002854
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002747
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001829
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001412
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000445
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000278
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000221
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004624
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004198
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003298
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002394
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002173
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001994
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001911
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001758
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1001207
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000407
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1000148
+'2018-11-09':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005816
+'2018-11-10':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005817
+'2018-11-21':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008149
+'2018-11-26':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009360
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009343
+'2018-12-18':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008162
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008108
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008080
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007248
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007043
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007042
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006906
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006800
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006678
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006646
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006617
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006605
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006587
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006446
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006435
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006427
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006378
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006347
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006345
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006278
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006205
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006192
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006071
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006070
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1006037
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005777
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005634
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005548
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005547
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005508
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005388
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005257
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1005227
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009132
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008542
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008059
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007708
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007250
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1007113
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006830
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006583
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006513
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1006511
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005497
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1005228
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004875
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1004425
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1002135
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001985
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001931
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001073
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1001071
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1000940
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1000537
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1000335
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=12663
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=11741
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=9475
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=9462
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=8675
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005655
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005591
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005517
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005463
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005061
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004946
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004945
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004793
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1004242
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003591
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003317
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003312
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003137
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1003018
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002932
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002841
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002830
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002692
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002684
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002366
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002265
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002238
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002154
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002021
+'2018-12-21':
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1010328
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1010489
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1010469
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1009338
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1007942
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007738
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007645
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007644
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007540
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007431
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007347
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007346
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007339
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007303
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007177
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007176
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007161
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006903
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006595
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006314
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006309
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007551
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007542
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007528
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007069
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007064
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007028
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007016
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006940
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006917
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006743
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006541
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005978
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005966
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005874
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005404
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006590
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006379
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005565
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1004677
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007702
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007668
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007631
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007536
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007065
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006862
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006538
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006498
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1006495
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005979
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005977
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005529
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005005
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1005004
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005983
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005980
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005979
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005978
+'2019-01-10':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008237
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008235
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008245
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007798
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007805
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009544
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009516
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009505
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009565
+'2019-01-15':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008265
+'2019-01-16':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005985
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005984
+'2019-01-23':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007863
+'2019-01-28':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007875
+'2019-02-01':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008307
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007917
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007931
+'2019-02-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008392
+'2019-02-15':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007975
+'2019-02-18':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1007999
+'2019-02-25':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009893
+'2019-03-17':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008503
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008064
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009931
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009941
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006435
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006415
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006413
+'2019-03-20':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004339
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004338
+'2019-03-23':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008591
+'2019-04-04':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008180
+'2019-04-08':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008673
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008211
+'2019-04-12':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008672
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008657
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010199
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1006531
+'2019-04-15':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008255
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008249
+'2019-04-18':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004423
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010138
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010137
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010193
+- https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1004275
+'2019-04-23':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008274
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010198
+'2019-04-25':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008244
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010194
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010264
+'2019-05-03':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008284
+'2019-05-12':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004498
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004514
+'2019-06-22':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004581
+'2019-06-29':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008430
+'2019-07-09':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008439
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008438
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008437
+'2019-07-17':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004685
+'2019-09-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009052
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004696
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004670
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1011943
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008514
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008509
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008474
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008471
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008500
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008460
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010750
+'2019-10-02':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004779
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008678
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008637
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010822
+'2019-10-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009250
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008781
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008773
+'2019-10-24':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009266
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009304
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008653
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011013
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011006
+'2019-10-30':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004546
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010846
+'2019-11-30':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009396
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009395
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009394
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009431
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1012127
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008974
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008916
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008877
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008963
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010875
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011226
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011239
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011232
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011096
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011242
+'2019-12-08':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008955
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008951
+'2019-12-09':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009541
+'2019-12-11':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009031
+'2020-01-06':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009580
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009060
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011413
+'2020-02-01':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009667
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004600
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1005252
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1005308
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009173
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009123
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009155
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009180
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009096
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009187
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009145
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011523
+'2020-02-15':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009254
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009242
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009243
+'2020-02-20':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009792
+'2020-03-06':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009324
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009323
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009322
+'2020-03-12':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009330
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009329
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009357
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009336
+'2020-03-28':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009871
