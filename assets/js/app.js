@@ -2,12 +2,7 @@
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
 import css from "../css/app.scss"
-
 // import "./error_reporter"
-
-// live view
-import {Socket} from "phoenix"
-import LiveSocket from "phoenix_live_view"
 
 window.state = {};
 let prevLocation = location.pathname;
@@ -108,15 +103,6 @@ window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
 // liveSocket.enableLatencySim(2000)
 
-// mobile gui
-document.getElementById("switcher").addEventListener("click", () => {
-  const elm = document.getElementsByTagName("html")[0];
-  if(elm.scrollLeft < 100) {
-    elm.scrollBy(1000, 0);
-  } else {
-    elm.scrollBy(-1000, 0);
-  }
-})
-
+import "./mobilegui"
 import "./loading"
 import "./checkwebgl"

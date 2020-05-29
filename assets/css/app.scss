@@ -14,15 +14,12 @@ $contentPad: 0.9rem;
 }
 
 body {
-  overflow-x: auto;
-  overflow-y: hidden;
-  touch-action: pan-x;
+  overflow: hidden;
   height: 100vh;
   height: -webkit-fill-available;
   background: $bgcolor;
   font-family: Arial, sans;
   font-size: 0.9em;
-  min-width: 2*$minWidth;
 
   &.loading::before {
     color: white;
@@ -39,13 +36,6 @@ body {
   }
 }
 
-body > div[data-phx-main="true"] {
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 100vh;
-  height: -webkit-fill-available;
-  min-width: 2*$minWidth;
-}
 
 #map, #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
   width: $mainWidth;
@@ -74,11 +64,10 @@ body > div[data-phx-main="true"] {
   height: -webkit-fill-available;
   position: relative;
   top: 0;
-  left: $minWidth;
+  left: unquote('max(#{$minWidth}, #{$mainWidth})');
   background: $bgcolor;
   display: flex;
   flex-flow: column;
-  touch-action: pan-x;
 }
 
 #content {
@@ -156,14 +145,15 @@ body > div[data-phx-main="true"] {
 }
 
 #switcher {
-  $width: 30px;
-  $height: 80px;
+  $width: 26px;
+  $height: 68px;
 
   position: sticky;
   top: calc(50vh - #{$height/2});
   left: 0;
   height: 0;
-  overflow: show;
+  overflow: visible;
+  touch-action: pan-x;
 
   div {
     margin-left: #{$width/-2};
@@ -180,15 +170,9 @@ body > div[data-phx-main="true"] {
   }
 }
 
-@media (min-width: $minWidth+46px) { /* found through experiment */
-  #sidebar {
-    left: $mainWidth;
-  }
-}
 
 @media (min-width: 3*$minWidth) {
   #sidebar {
-    left: $mainWidth;
     position: fixed;
   }
 
