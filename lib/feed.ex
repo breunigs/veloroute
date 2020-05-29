@@ -5,6 +5,8 @@ defmodule Feed do
 
   require Data.ArticleCache
 
+  import Mapillary, only: [is_ref: 1]
+
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
@@ -29,10 +31,13 @@ defmodule Feed do
     # TODO: this fails, presumably because dependencies are missing during
     # compile?
     # Routes.article_url(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    (Settings.url() <> "/article/" <> name)
-    |> Entry.new(date, title)
+    url = Settings.url() <> "/article/" <> name
+
+    Entry.new(url, date, title)
     |> Entry.content(content, type: "html")
     |> maybe_add_location(art)
+    |> maybe_add_image(art)
+    |> Entry.link(url, rel: "alternate", type: "text/html")
     |> Entry.build()
   end
 
@@ -43,4 +48,11 @@ defmodule Feed do
   end
 
   defp maybe_add_location(entry, _article), do: entry
+
+  defp maybe_add_image(entry, %{start_image: img}) when is_ref(img) do
+    url = Mapillary.img_url(img, 2048)
+    Entry.link(entry, url, rel: "enclosure", type: "image/jpeg")
+  end
+
+  defp maybe_add_image(entry, _article), do: entry
 end
