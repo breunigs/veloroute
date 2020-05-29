@@ -17,6 +17,9 @@ config :veloroute, VelorouteWeb.Endpoint,
   live_view: [signing_salt: PhoenixCredentials.live_view_signing_salt()],
   pubsub_server: Veloroute.PubSub
 
+config :veloroute,
+  env: Mix.env()
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
