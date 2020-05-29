@@ -1,7 +1,7 @@
 defmodule Feed do
   alias Atomex.{Feed, Entry}
   alias Data.Article
-  alias VelorouteWeb.Router.Helpers, as: Routes
+  # alias VelorouteWeb.Router.Helpers, as: Routes
 
   require Data.ArticleCache
 
@@ -10,7 +10,7 @@ defmodule Feed do
     |> Feed.author(Settings.feed_author(), email: Settings.email())
     |> Feed.link(Settings.url() <> "/updates.atom", rel: "self")
     |> Feed.entries(articles())
-    |> Feed.build()
+    |> Feed.build(%{"xmlns:georss" => "http://www.georss.org/georss"})
     |> Atomex.generate_document()
   end
 
@@ -32,6 +32,15 @@ defmodule Feed do
     (Settings.url() <> "/article/" <> name)
     |> Entry.new(date, title)
     |> Entry.content(content, type: "html")
+    |> maybe_add_location(art)
     |> Entry.build()
   end
+
+  defp maybe_add_location(entry, %{bbox: bbox}) when is_map(bbox) do
+    lat = (bbox.minLat + bbox.maxLat) / 2
+    lon = (bbox.minLon + bbox.maxLon) / 2
+    Entry.add_field(entry, "georss:point", %{}, "#{lat} #{lon}")
+  end
+
+  defp maybe_add_location(entry, _article), do: entry
 end
