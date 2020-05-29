@@ -7,7 +7,7 @@ text: >
     <tr>
       <td></td>
       <td rowspan="15" style="background-image: url(/images/route11.svg)">
-        <icon>11<iconspan>
+        <icon>11</icon>
       </td>
       <td></td>
     </tr>

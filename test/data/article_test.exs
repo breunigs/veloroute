@@ -90,6 +90,32 @@ defmodule Data.ArticleTest do
     end)
   end
 
+  test "all articles' contents are valid HTML" do
+    Data.ArticleCache.get()
+    |> Enum.each(fn {name, a} ->
+      beauty =
+        a.text
+        |> Floki.parse_fragment()
+        |> elem(1)
+        |> Floki.raw_html()
+
+      beauty = Regex.replace(~r/<\/p><p>/, beauty, "</p>\n\n<p>")
+
+      expected = Regex.replace(~r/<([a-z0-9]+)([^>]*?)\/>/, a.text, "<\\1\\2></\\1>")
+      expected = Regex.replace(~r/\s+/, expected, "")
+      expected = String.replace(expected, "<br>", "<br/>")
+      expected = String.replace(expected, "<br/></br>", "<br/>")
+      expected = HtmlEntities.decode(expected)
+
+      got = Regex.replace(~r/\s+/, beauty, "")
+      got = HtmlEntities.decode(got)
+
+      if got != expected, do: IO.puts("Article #{name} has invalid HTML")
+
+      assert got == expected
+    end)
+  end
+
   test "all dated articles have a bounding box" do
     assert Data.ArticleCache.get_dated()
            |> Enum.filter(fn {_name, %Data.Article{bbox: bbox}} -> is_nil(bbox) end)
