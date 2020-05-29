@@ -1,6 +1,7 @@
 defmodule Feed do
   alias Atomex.{Feed, Entry}
   alias Data.Article
+  alias VelorouteWeb.Router.Helpers, as: Routes
 
   require Data.ArticleCache
 
@@ -25,7 +26,11 @@ defmodule Feed do
     {:safe, content} = VelorouteWeb.ArticleView.render_feed(art)
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(date) <> " 00:00:00Z")
 
-    Entry.new(Settings.url() <> "/" <> name, date, title)
+    # TODO: this fails, presumably because dependencies are missing during
+    # compile?
+    # Routes.article_url(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    (Settings.url() <> "/article/" <> name)
+    |> Entry.new(date, title)
     |> Entry.content(content, type: "html")
     |> Entry.build()
   end
