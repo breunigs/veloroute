@@ -3,7 +3,7 @@
 // its own CSS file.
 import css from "../css/app.scss"
 
-import "./error_reporter"
+// import "./error_reporter"
 
 // live view
 import {Socket} from "phoenix"
