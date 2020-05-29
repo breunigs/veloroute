@@ -24,6 +24,7 @@ function updateState() {
   if(state.mlyJs && loadMly) loadMly();
   if(typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }
   if(typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
+  if(typeof window.loadingCb === "function") { window.loadingCb(); }
 }
 updateState();
 console.log("Initial State From Server: ", state)

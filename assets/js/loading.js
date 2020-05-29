@@ -19,6 +19,11 @@ function ignore(info) {
   return true;
 }
 
+window.loadingCb = function() {
+  clear()
+  cls().remove("loading");
+}
+
 let loadingTimer = null;
 window.addEventListener("phx:page-loading-start", info => {
   clear()
@@ -30,7 +35,6 @@ window.addEventListener("phx:page-loading-start", info => {
 })
 window.addEventListener("phx:page-loading-stop", info => {
   if(ignore(info)) return;
-  clear()
-  console.debug("removing loading icon", info)
-  cls().remove("loading");
+  console.debug("removing loading icon", info);
+  loadingCb();
 })
