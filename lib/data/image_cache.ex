@@ -64,10 +64,15 @@ defmodule Data.ImageCache do
 
   # @spec images([Data.Image.route() | :index]) :: Data.Image.indexed_images()
   def images(keys) when is_list(keys) do
-    Enum.map(keys, fn key ->
-      :ets.lookup(ets(), key) |> hd
-    end)
-    |> Enum.into(%{})
+    try do
+      Enum.map(keys, fn key ->
+        :ets.lookup(ets(), key) |> hd()
+      end)
+      |> Enum.into(%{})
+    rescue
+      e ->
+        Logger.warn("was looking for keys #{inspect(keys)}, but got: #{inspect(e)}")
+    end
   end
 
   def images_stream(route_id: ids) when is_list(ids) or is_binary(ids) do

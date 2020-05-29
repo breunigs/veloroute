@@ -37,6 +37,7 @@
   <node id='-102996' action='modify' lat='53.45771281129' lon='9.98473226488' />
   <node id='-103003' action='modify' lat='53.45744131533' lon='9.98452305257' />
   <node id='-103017' action='modify' lat='53.45703885931' lon='9.9883693403' />
+  <node id='-103019' action='modify' lat='53.55716320604' lon='9.8635233487' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' version='1' lat='53.54662' lon='10.00421' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -16296,6 +16297,15 @@
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
   </way>
+  <way id='-102231' action='modify'>
+    <nd ref='-103019' />
+    <nd ref='86505950005569398' />
+    <tag k='comfortable' v='no' />
+    <tag k='fast' v='no' />
+    <tag k='grade' v='5.0' />
+    <tag k='name' v='Jürgensallee' />
+    <tag k='talk' v='yes' />
+  </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
     <nd ref='89112220004731541' />
@@ -24206,15 +24216,21 @@
     <tag k='talk' v='yes' />
   </way>
   <way id='38623687' action='modify' version='1'>
+    <nd ref='85852410005576978' />
+    <nd ref='85874530005577088' />
+    <nd ref='859061900055773' />
+    <nd ref='85934440005577576' />
     <nd ref='85951790005577492' />
     <nd ref='85965550005577321' />
     <nd ref='86030460005576226' />
     <nd ref='8608250005575383' />
-    <tag k='comfortable' v='no' />
-    <tag k='fast' v='no' />
-    <tag k='grade' v='5.0' />
+    <nd ref='86141990005574419' />
+    <nd ref='86334530005571891' />
+    <nd ref='-103019' />
+    <tag k='comfortable' v='yes' />
+    <tag k='fast' v='yes' />
     <tag k='name' v='Jürgensallee' />
-    <tag k='talk' v='no' />
+    <tag k='talk' v='yes' />
   </way>
   <way id='38666068' action='modify' version='1'>
     <nd ref='12877630005277205' />
@@ -33521,14 +33537,9 @@
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
   </way>
-  <way id='317259020' action='modify' version='1'>
-    <nd ref='8608250005575383' />
-    <nd ref='86141990005574419' />
-    <nd ref='86334530005571891' />
-    <nd ref='86505950005569398' />
-    <tag k='comfortable' v='no' />
-    <tag k='fast' v='no' />
-    <tag k='grade' v='5.0' />
+  <way id='317259020' action='delete' version='1'>
+    <tag k='comfortable' v='yes' />
+    <tag k='fast' v='yes' />
     <tag k='name' v='Jürgensallee' />
     <tag k='talk' v='yes' />
   </way>
@@ -37805,14 +37816,9 @@
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
   </way>
-  <way id='595218925' action='modify' version='1'>
-    <nd ref='85852410005576978' />
-    <nd ref='85874530005577088' />
-    <nd ref='859061900055773' />
-    <nd ref='85934440005577576' />
-    <nd ref='85951790005577492' />
-    <tag k='comfortable' v='no' />
-    <tag k='fast' v='no' />
+  <way id='595218925' action='delete' version='1'>
+    <tag k='comfortable' v='yes' />
+    <tag k='fast' v='yes' />
     <tag k='grade' v='5.0' />
     <tag k='name' v='Jürgensallee' />
     <tag k='talk' v='yes' />
@@ -52107,9 +52113,8 @@
     <member type='way' ref='152623946' role='' />
     <member type='way' ref='603517259' role='' />
     <member type='way' ref='369285897' role='' />
-    <member type='way' ref='317259020' role='' />
+    <member type='way' ref='-102231' role='' />
     <member type='way' ref='38623687' role='' />
-    <member type='way' ref='595218925' role='' />
     <member type='way' ref='38968268' role='' />
     <member type='way' ref='13447994' role='' />
     <member type='way' ref='146854149' role='' />

@@ -222,6 +222,12 @@ defmodule Data.Image do
     end
   end
 
+  def find_by_img(all, img, route) do
+    raise "Invalid call to find_by_img. Received:\n2. img: #{inspect(img)}\n3. route: #{
+            inspect(route)
+          }\n1. all: #{inspect(all)}"
+  end
+
   def find_all_by_img(all, img) do
     case get_in(all, [:index, img]) do
       nil ->

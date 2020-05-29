@@ -18,7 +18,6 @@ defmodule Data.Article do
     :title,
     :name,
     :images,
-    :hide_from_map,
     :tags,
     :text,
     :start,

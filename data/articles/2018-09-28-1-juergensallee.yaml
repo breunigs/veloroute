@@ -1,23 +1,15 @@
 ---
-loc:
-- 9.86159
-- 53.5574
-grade: 4
-type: construction
+type: finished
 title: Jürgensallee (Veloroute 1)
 start: 2019-11
 end: 2020-03
-images:
-- jBJXEWooDgi51g8n_8eY9Q
-- _EF5zeIJvrc5Zown-I-NVg
-- 1DMP6WPaunVayYoYb3O2xg
-- znfKTvAbelR8__4FcBLVYw
-- YYn_RDVzX7BRP2QI5l2uxQ
-- tQc64IlQPQUKXL1-XZpLtQ
-hide_from_map: false
+images: 1
+updated: 2020-05-29
 tags:
 - 1
-text: <p>Die <a>Jürgensallee</a> ist zwischen der <a>Baron-Voght-Straße</a> und der
+text:
+  <p><strong>Stand Frühjahr 2020:</strong> Der Umbau ist mittlerweile abgeschlossen und der asphaltierte Teil fährt sich gut. Im denkmalgeschützten Bereich verbleibt es beim Kopfsteinpflaster und enstprechend unbequem ist dieser Abschnitt. Er ist jetzt aber deutlich kürzer, und daher zu verschmerzen.</p>
+  <p>Die <a>Jürgensallee</a> ist zwischen der <a>Baron-Voght-Straße</a> und der
   <a>Kanzleistraße</a> momentan vollständig in Kopfsteinpflaster geführt. Entsprechend
   unkomfortabel ist dieser Teilabschnitt. Nach dem geplanten Umbau im Frühjahr 2019
   soll im Bereich der denkmalgeschützten Häuser das Kopfsteinpflaster bestehen bleiben

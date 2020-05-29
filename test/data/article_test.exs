@@ -8,7 +8,6 @@ defmodule Data.ArticleTest do
     %Data.Article{
       date: ~D[2018-07-19],
       end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-      hide_from_map: false,
       name: "2018-07-19-example-article",
       range: nil,
       start: %Data.RoughDate{month: nil, quarter: nil, year: nil},
@@ -29,7 +28,6 @@ defmodule Data.ArticleTest do
       title: title
       start: 2019Q4
       images: 123
-      hide_from_map: false
       tags:
       - tag
       - 4
@@ -45,7 +43,6 @@ defmodule Data.ArticleTest do
              },
              date: ~D[2020-03-29],
              end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-             hide_from_map: false,
              images: 123,
              start_image: nil,
              name: "2020-03-29-dummy-article",
