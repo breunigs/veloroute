@@ -13,6 +13,10 @@ $contentPad: 0.9rem;
   touch-action: manipulation;
 }
 
+html, body > div {
+  overflow: hidden;
+}
+
 body {
   overflow: hidden;
   height: 100vh;
@@ -68,6 +72,11 @@ body {
   background: $bgcolor;
   display: flex;
   flex-flow: column;
+  transition: all 0.3s ease;
+}
+
+.showSidebar #sidebar {
+  left: unquote('min(100vw - #{$minWidth}, #{$mainWidth})');
 }
 
 #content {

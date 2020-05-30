@@ -1,10 +1,6 @@
-const htmlElem = document.getElementsByTagName("html")[0];
+const cls = document.getElementsByTagName("body")[0].classList;
 document.getElementById("switcher").addEventListener("click", () => {
-  if(htmlElem.scrollLeft < 100) {
-    htmlElem.scrollBy({left: 1000, top: 0, behavior: 'smooth'});
-  } else {
-    htmlElem.scrollBy({left: -1000, top: 0, behavior: 'smooth'});
-  }
+  cls.toggle("showSidebar");
 })
 
 function detectswipe(el) {
@@ -38,12 +34,14 @@ function detectswipe(el) {
         (eX > 0)
       ) {
 
+      console.debug("swiped x", sX-eX, "swiped y", sY, eY);
+
       if(eX > sX) {
         // swiped right
-        htmlElem.scrollBy({left: -1000, top: 0, behavior: 'smooth'});
+        cls.remove("showSidebar");
       } else {
         // swiped left
-        htmlElem.scrollBy({left: 1000, top: 0, behavior: 'smooth'});
+        cls.add("showSidebar");
       }
     }
 

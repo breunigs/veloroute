@@ -59,12 +59,6 @@
     <%= if Plug.Conn.get_req_header(@conn, "DNT") != "1" do %>
       <script src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js" integrity="sha384-wF7Jc4ZlWVxe/L8Ji3hOIBeTgo/HwFuaeEfjGmS3EXAG7Y+7Kjjr91gJpJtr+PAT" crossorigin="anonymous" onload="Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791' }); Sentry.setTag('env', '<%= Application.get_env(:veloroute, :env) %>');" async></script>
     <% end %>
-
-    <%= if Browser.ios?(ua) do %>
-      <%# feature enhancing polyfills, e.g. smooth scrolling %>
-      <script type="text/javascript" async src="<%= Routes.static_path(@conn, "/js/ios-polyfill.js") %>"></script>
-    <% end %>
-
     <link rel="prefetch" href="<%= Routes.static_path(@conn, "/js/mly.js") %>">
   </body>
 </html>
