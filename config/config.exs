@@ -35,9 +35,9 @@ config :tesla, Tesla.Middleware.Logger, debug: false
 
 config :sentry,
   dsn: PhoenixCredentials.sentry_dsn(),
-  # enable_source_code_context: true,
-  # root_source_code_path: File.cwd!(),
-  included_environments: [:prod, :dev],
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  included_environments: [:prod],
   tags: %{
     env: Mix.env()
   },

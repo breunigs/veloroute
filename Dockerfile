@@ -60,12 +60,12 @@ COPY --from=js /build/priv/static/ /build/priv/static/
 RUN --network=none \
   mkdir -p /build/rel/overlays/data/cache/ && \
   cp /build/data/cache/*.dets /build/rel/overlays/data/cache/ && \
-  MIX_ENV=prod mix release
+  MIX_ENV=prod mix do deps.compile sentry --force, release
 # ensure they succeeded
 COPY --from=test /__test /
 COPY --from=dialyzer /__dialyzerrun /
 
-FROM alpine:3.11
+FROM alpine:3.11 as runtime
 RUN apk add --no-cache ncurses-libs
 
 RUN mkdir -p app/
