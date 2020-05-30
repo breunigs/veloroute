@@ -34,7 +34,7 @@ defmodule VelorouteWeb.Router do
     get "/routes/geo/updates.atom", FeedController, :legacy
 
     get "/blog/:article", PageController, :blog
-    get "/quality/:article", PageController, :blog
+    get "/quality/:article", PageController, :quality
     get "/article/0000-00-00-:page", PageController, :article_vs_page
     post "/js_errors", PageController, :js_errors
   end
@@ -45,5 +45,7 @@ defmodule VelorouteWeb.Router do
     live "/article/:article", FrameLive, as: :article
     live "/:page", FrameLive, as: :page
     live "/", FrameLive, as: :startpage
+
+    live "/*path", FrameLive
   end
 end
