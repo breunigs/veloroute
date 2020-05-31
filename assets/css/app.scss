@@ -13,7 +13,8 @@ $contentPad: 0.9rem;
   touch-action: manipulation;
 }
 
-html, body > div {
+html,
+body>div {
   overflow: hidden;
 }
 
@@ -27,7 +28,8 @@ body {
 
   &.loading::before {
     color: white;
-    content: '⌛'; /* hourglass */
+    content: '⌛';
+    /* hourglass */
     display: block;
     font-weight: bold;
     right: 0;
@@ -41,7 +43,10 @@ body {
 }
 
 
-#map, #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+#map,
+#mly,
+#mlyPlaceholder,
+#mlyPlaceholderOuter {
   width: $mainWidth;
   min-width: $minWidth;
   height: 50%;
@@ -56,7 +61,9 @@ body {
   background-color: #efe9e1;
 }
 
-#mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+#mly,
+#mlyPlaceholder,
+#mlyPlaceholderOuter {
   top: 50%;
   overflow: hidden;
 }
@@ -191,7 +198,8 @@ body {
 }
 
 
-#mlyPlaceholder, #mlyPlaceholderOuter {
+#mlyPlaceholder,
+#mlyPlaceholderOuter {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -203,7 +211,7 @@ body {
   transition: background-image 0.5s ease-in-out;
 
   .playIcon {
-    background-color: rgba(0,0,0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 72px;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDEuOTk5IDQxLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDEuOTk5IDQxLjk5OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik0zNi4wNjgsMjAuMTc2bC0yOS0yMEM2Ljc2MS0wLjAzNSw2LjM2My0wLjA1Nyw2LjAzNSwwLjExNEM1LjcwNiwwLjI4Nyw1LjUsMC42MjcsNS41LDAuOTk5djQwICBjMCwwLjM3MiwwLjIwNiwwLjcxMywwLjUzNSwwLjg4NmMwLjE0NiwwLjA3NiwwLjMwNiwwLjExNCwwLjQ2NSwwLjExNGMwLjE5OSwwLDAuMzk3LTAuMDYsMC41NjgtMC4xNzdsMjktMjAgIGMwLjI3MS0wLjE4NywwLjQzMi0wLjQ5NCwwLjQzMi0wLjgyM1MzNi4zMzgsMjAuMzYzLDM2LjA2OCwyMC4xNzZ6IiBzdHlsZT0iZmlsbDogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PC9wYXRoPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjwvc3ZnPg==);
     background-size: 50%;
@@ -253,6 +261,7 @@ a.header {
 
 a.icon {
   cursor: pointer;
+
   &:hover {
     text-decoration: none;
     font-weight: bold;
@@ -265,11 +274,13 @@ abbr {
 }
 
 
-h3, h4 {
+h3,
+h4 {
   margin-top: 1em;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 0.85rem;
   line-height: 120%;
   margin-top: 0.6rem;
@@ -321,7 +332,9 @@ ol.hide-bullets {
     float: right;
   }
 
-  li { clear: both; }
+  li {
+    clear: both;
+  }
 
   li.separator {
     margin-top: 1rem;
@@ -355,12 +368,14 @@ a:hover {
 #impressum {
   margin-top: 2em;
   float: right;
+
   a {
     color: #888;
   }
 }
 
-#indicator, #indicator-rotate {
+#indicator,
+#indicator-rotate {
   height: 2em;
   width: 2em;
   pointer-events: none;
@@ -385,21 +400,23 @@ a:hover {
     content: '▴';
     font-size: 1.3em; // adjust translateY below as needed
   }
+
   height: 2em;
   left: 50%;
   position: relative;
   top: 0%;
   text-align: center;
-  text-shadow:  0.1em  0.0em 0.1em #fff,
-                0.1em -0.1em 0.1em #fff,
-               -0.1em  0.0em 0.1em #fff,
-               -0.1em -0.1em 0.1em #fff;
+  text-shadow: 0.1em 0.0em 0.1em #fff,
+  0.1em -0.1em 0.1em #fff,
+  -0.1em 0.0em 0.1em #fff,
+  -0.1em -0.1em 0.1em #fff;
   transform: translate(-50%, -45%);
   width: 2em;
   z-index: 10;
 }
 
-span[title], #slideshow .curRoute {
+span[title],
+#slideshow .curRoute {
   cursor: help;
   border-bottom: 0.05em dotted #000;
 }
@@ -460,6 +477,7 @@ table.routing {
   }
 
   $main-route-icon-size: 1.5em;
+
   // i.e. center column that displays the route
   tr:first-child td:nth-child(2) {
     // image will be set through HTML
@@ -482,8 +500,7 @@ table.routing {
     text-align: right;
   }
 
-  td:last-child {
-  }
+  td:last-child {}
 
   td.dir {
     opacity: 0.3;
