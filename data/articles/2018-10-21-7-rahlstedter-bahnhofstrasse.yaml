@@ -1,8 +1,4 @@
 ---
-loc:
-- 10.1541
-- 53.6018
-grade: 3
 images:
 - QQdnLLW5u119Ri0X9qOUBw
 - fsVhZIM8SriYsstLHEtwLw
@@ -21,9 +17,8 @@ images:
 - nZbPswAP9fWvW1NzakDBxw
 - qWk23UyOXMyQt7cNZisGDw
 start: 2019Q3
-type: planned-construction
+type: construction
 title: Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)
-
 tags:
 - 7
 text: '<p>Die <a>Rahlstedter Bahnhofstraße</a> zwischen <a>Scharbeutzer Straße</a>
