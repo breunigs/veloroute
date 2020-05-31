@@ -2,7 +2,7 @@
 
 # run like this: DOCKER_BUILDKIT=1 docker build .
 
-FROM elixir:1.10.2-alpine AS elixirbase
+FROM elixir:1.10.3-alpine AS elixirbase
 WORKDIR /build
 ENV GIT_COMMIT="dockerfile dummy"
 
