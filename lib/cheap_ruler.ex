@@ -215,6 +215,7 @@ defmodule CheapRuler do
     end)
   end
 
+  @spec point2point_dist(%{lat: number, lon: number}, %{lat: number, lon: number}) :: float
   @doc ~S"""
   Returns the distance in meters between two points
 
