@@ -95,4 +95,19 @@ defmodule VelorouteWeb.LiveNavigationTest do
     send(view.pid, :check_updates)
     assert render(view) =~ expected_route
   end
+
+  test "handles route click after article without route", %{conn: conn} do
+    {:ok, view, html} = conn |> get("/article/2019-01-06-10-zum-dubben") |> live()
+    assert html =~ ~s(Zum Dubben)
+
+    html =
+      render_hook(view, "map-click", %{
+        route: "5",
+        lon: 10.086236642889446,
+        lat: 53.627742238425384,
+        zoom: 16
+      })
+
+    assert html =~ "Du folgst: Alltagsroute 5"
+  end
 end

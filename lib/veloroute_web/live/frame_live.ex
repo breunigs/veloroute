@@ -71,7 +71,7 @@ defmodule VelorouteWeb.FrameLive do
         true -> nil
       end
 
-    img =
+    {route, img} =
       with lon when is_float(lon) <- attr["lon"],
            lat when is_float(lat) <- attr["lat"],
            zoom when is_number(zoom) <- attr["zoom"],
@@ -89,15 +89,15 @@ defmodule VelorouteWeb.FrameLive do
         )
         |> case do
           # none
-          [] -> nil
+          [] -> {nil, nil}
           # i.e. reverse on double click
-          [{_r, _d, %{img: ^curimg}}, {_, _, img} | _rest] -> img
+          [{r, _d, %{img: ^curimg}}, {_, _, img} | _rest] -> {r, img}
           # prefer from same route, unless it's the same
-          [_______, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
-          [____, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
-          [_, _, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> img
+          [_______, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
+          [____, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
+          [_, _, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
           # take closest
-          other -> List.first(other) |> elem(2)
+          other -> List.first(other) |> Tuple.delete_at(1)
         end
       else
         err ->
@@ -108,13 +108,13 @@ defmodule VelorouteWeb.FrameLive do
               "\nerr=#{inspect(err)}"
           )
 
-          nil
+          {nil, nil}
       end
 
     socket =
       cond do
         article -> socket |> push_patch(to: article_path(socket, article, img))
-        img -> socket |> set_img(img)
+        img -> socket |> assign(route: route) |> set_img(img)
         true -> socket
       end
 
