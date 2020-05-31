@@ -5,7 +5,6 @@ document.getElementById("switcher").addEventListener("click", () => {
 
 function detectswipe(el) {
   const ele = document.getElementById(el);
-  const content = document.getElementById("content");
 
   let sX = 0;
   let sY = 0;
