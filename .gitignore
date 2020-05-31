@@ -42,3 +42,4 @@ npm-debug.log
 /assets/static/favicons/
 
 /.vscode
+/.elixir_ls
