@@ -40,3 +40,5 @@ npm-debug.log
 /data/josmhome/
 /assets/static/geo/
 /assets/static/favicons/
+
+/.vscode
