@@ -41,7 +41,8 @@ config :sentry,
   tags: %{
     env: Mix.env()
   },
-  environment_name: Mix.env()
+  environment_name: Mix.env(),
+  release: "set at boot up"
 
 config :logger,
   backends: [:console, Sentry.LoggerBackend]

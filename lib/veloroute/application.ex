@@ -6,6 +6,8 @@ defmodule Veloroute.Application do
   use Application
 
   def start(_type, _args) do
+    :ok = Application.put_env(:sentry, :release, Git.revision(), persistent: true)
+
     # List all child processes to be supervised
     children = [
       VelorouteWeb.Telemetry,

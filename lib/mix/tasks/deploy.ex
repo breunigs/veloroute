@@ -39,7 +39,13 @@ defmodule Mix.Tasks.Deploy do
     ts = :os.system_time(:millisecond)
     name = "#{@name_prefix}:#{ts}"
 
-    {_, 0} = System.cmd("docker", ["build", ".", "-t", name], env: [{"DOCKER_BUILDKIT", "1"}])
+    {_, 0} =
+      System.cmd(
+        "docker",
+        ["build", ".", "-t", name, "--build-arg", "GIT_COMMIT=#{Git.revision()}"],
+        env: [{"DOCKER_BUILDKIT", "1"}]
+      )
+
     ensure_container_runs(name)
 
     IO.puts("copying to image to #{Settings.deploy_ssh_name()}")

@@ -4,10 +4,11 @@
 
 FROM elixir:1.10.2-alpine AS elixirbase
 WORKDIR /build
+ENV GIT_COMMIT="dockerfile dummy"
 
 RUN apk add --no-cache build-base && \
-    mix local.hex --force && \
-    mix local.rebar --force
+  mix local.hex --force && \
+  mix local.rebar --force
 
 COPY mix.* /build/
 RUN \
@@ -70,6 +71,8 @@ RUN apk add --no-cache ncurses-libs
 
 RUN mkdir -p app/
 WORKDIR app/
+ARG GIT_COMMIT
+ENV GIT_COMMIT=${GIT_COMMIT}
 COPY --from=build /build/_build/prod/rel/veloroute .
 EXPOSE 4000
 CMD ["bin/veloroute", "start"]
