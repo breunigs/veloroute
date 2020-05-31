@@ -28,8 +28,7 @@ body {
 
   &.loading::before {
     color: white;
-    content: '⌛';
-    /* hourglass */
+    content: '⌛'; // hourglass
     display: block;
     font-weight: bold;
     right: 0;
@@ -75,6 +74,7 @@ body {
   height: -webkit-fill-available;
   position: relative;
   top: 0;
+  left: $mainWidth; // IE11 doesn't support max()
   left: unquote('max(#{$minWidth}, #{$mainWidth})');
   background: $bgcolor;
   display: flex;
