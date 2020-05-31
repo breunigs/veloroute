@@ -9,14 +9,14 @@ RestartSec=5
 Restart=always
 
 ExecStartPre=/bin/echo "Starting temp replacement"
-ExecStartPre=-/usr/bin/docker run --detach --rm --name veloroute2-temp -p=127.0.0.1:4002:4000/tcp veloroute.hamburg/v1:latest
+ExecStartPre=-/usr/bin/docker run --log-driver=journald --detach --rm --name veloroute2-temp -p=127.0.0.1:4002:4000/tcp veloroute.hamburg/v1:latest
 ExecStartPre=/bin/sleep 60
 
 ExecStartPre=/bin/echo "Stopping old real server (maybe)"
 ExecStartPre=-/usr/bin/docker stop veloroute2
 
 ExecStartPre=/bin/echo "Starting real server"
-ExecStart=/usr/bin/docker run --detach --rm --name veloroute2 -p=127.0.0.1:4001:4000/tcp veloroute.hamburg/v1:latest
+ExecStart=/usr/bin/docker run --log-driver=journald --detach --rm --name veloroute2 -p=127.0.0.1:4001:4000/tcp veloroute.hamburg/v1:latest
 ExecStartPost=/bin/sleep 60
 
 ExecStartPost=/bin/echo "Stopping temp replacement"
