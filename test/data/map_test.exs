@@ -25,7 +25,7 @@ defmodule Data.MapTest do
 
   test "can be converted to GeoJSON" do
     @map
-    |> Data.Map.to_feature_lists(%{})
+    |> Data.Map.to_feature_lists(Data.ArticleCache.get())
     |> Enum.each(fn {_name, geojson} ->
       Jason.encode!(geojson)
     end)
