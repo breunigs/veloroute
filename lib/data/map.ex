@@ -59,19 +59,15 @@ defmodule Data.Map do
 
     def as_article(w, articles) do
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
-
-      title =
-        case articles[w.tags[:name]] do
-          %{title: title} -> title
-          _ -> "Unknown article: " <> w.tags[:name]
-        end
+      %{title: title, type: type} = articles[w.tags[:name]]
 
       %{
         type: "Feature",
         properties: %{
           type: "article",
           name: w.tags[:name],
-          title: title
+          title: title,
+          icon: type
         },
         geometry: %{
           type: "Polygon",
