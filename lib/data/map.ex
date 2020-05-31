@@ -59,7 +59,11 @@ defmodule Data.Map do
 
     def as_article(w, articles) do
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
-      %{title: title, type: type} = articles[w.tags[:name]]
+
+      if !Map.has_key?(articles, w.tags[:name]),
+        do: raise("map refers to an article '#{w.tags[:name]}', but no such article exists.")
+
+      %{title: title, type: type} = art = articles[w.tags[:name]]
 
       %{
         type: "Feature",
@@ -67,7 +71,7 @@ defmodule Data.Map do
           type: "article",
           name: w.tags[:name],
           title: title,
-          icon: type
+          icon: Map.get(art, :icon) || type
         },
         geometry: %{
           type: "Polygon",

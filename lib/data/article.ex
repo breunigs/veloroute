@@ -21,6 +21,7 @@ defmodule Data.Article do
     :tags,
     :text,
     :start,
+    :icon,
     :end,
     :date,
     :range,
