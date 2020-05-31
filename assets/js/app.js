@@ -8,7 +8,7 @@ window.state = {};
 let prevLocation = location.pathname;
 function updateState() {
   if (prevLocation !== location.pathname) {
-    document.getElementById("content").scroll(0, 0);
+    document.getElementById("content").scrollTop = 0;
     prevLocation = location.pathname;
   }
 
