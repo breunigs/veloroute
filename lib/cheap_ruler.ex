@@ -259,18 +259,3 @@ defmodule CheapRuler do
     rad / :math.pi() * 180.0
   end
 end
-
-# module Geo
-#   def self.dist(from:, to:)
-#     # given a point
-#     return point2point_dist(lonLat1: from, lonLat2: to) if is_coord?(from)
-
-#     closest, _index = closest_point_on_line(from, to)
-#     point2point_dist(lonLat1: closest, lonLat2: to)
-#   end
-
-#   def self.is_coord?(coord)
-#     coord[0].is_a?(Float)
-#   end
-
-# end
