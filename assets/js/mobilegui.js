@@ -15,28 +15,28 @@ function detectswipe(el) {
   const minX = 30;  // min x swipe for horizontal swipe
   const maxY = 30;  // max y difference for horizontal swipe
 
-  ele.addEventListener('touchstart',  (e) => {
+  ele.addEventListener('touchstart', (e) => {
     const t = e.touches[0];
     sX = t.screenX;
     sY = t.screenY;
-  }, {capture: false, passive: true});
+  }, { capture: false, passive: true });
 
-  ele.addEventListener('touchmove',  (e) => {
+  ele.addEventListener('touchmove', (e) => {
     const t = e.touches[0];
     eX = t.screenX;
     eY = t.screenY;
-  }, {capture: false, passive: true});
+  }, { capture: false, passive: true });
 
   ele.addEventListener('touchend', (e) => {
     if (
-        ((eX - minX > sX) || (eX + minX < sX)) &&
-        ((eY < sY + maxY) && (sY > eY - maxY)) &&
-        (eX > 0)
-      ) {
+      ((eX - minX > sX) || (eX + minX < sX)) &&
+      ((eY < sY + maxY) && (sY > eY - maxY)) &&
+      (eX > 0)
+    ) {
 
-      console.debug("swiped x", sX-eX, "swiped y", sY, eY);
+      console.debug("swiped x", sX - eX, "swiped y", sY, eY);
 
-      if(eX > sX) {
+      if (eX > sX) {
         // swiped right
         cls.remove("showSidebar");
       } else {
@@ -49,7 +49,7 @@ function detectswipe(el) {
     sY = 0;
     eX = 0;
     eY = 0;
-  }, {capture: false, passive: true});
+  }, { capture: false, passive: true });
 }
 
 detectswipe("sidebar")

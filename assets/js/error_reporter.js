@@ -1,4 +1,4 @@
-window.onerror = function(msg, url, lineNo, columnNo, error) {
+window.onerror = function (msg, url, lineNo, columnNo, error) {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', '/js_errors', true);
   let body = "";
@@ -6,7 +6,7 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
   body += "url: " + url + "\n"
   body += "lineNo: " + lineNo + "\n"
   body += "columnNo: " + columnNo + "\n"
-  if(error !== undefined) {
+  if (error !== undefined) {
     body += "error: " + error + "\n"
     body += "stack: " + error.stack + "\n"
   }

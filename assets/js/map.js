@@ -3,19 +3,19 @@ import mapboxgl from 'mapbox-gl';
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 
-const fitBoundsOpt = {padding: {top: 35, bottom: 35, left: 35, right: 35}, maxZoom: 16};
+const fitBoundsOpt = { padding: { top: 35, bottom: 35, left: 35, right: 35 }, maxZoom: 16 };
 
 const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
-    container: 'map',
-    maxBounds: settings.maxBounds.split(","),
-    bounds: settings.initial.split(","),
-    fitBoundsOptions: fitBoundsOpt,
-    minZoom: 9,
-    maxZoom: 19,
-    style: 'mapbox://styles/breunigs/ck8hk6y7e0csv1ioh4oqdtybb',
-    pitchWithRotate: false,
-    dragRotate: false,
+  container: 'map',
+  maxBounds: settings.maxBounds.split(","),
+  bounds: settings.initial.split(","),
+  fitBoundsOptions: fitBoundsOpt,
+  minZoom: 9,
+  maxZoom: 19,
+  style: 'mapbox://styles/breunigs/ck8hk6y7e0csv1ioh4oqdtybb',
+  pitchWithRotate: false,
+  dragRotate: false,
 });
 map.touchZoomRotate.disableRotation();
 
@@ -25,17 +25,17 @@ const clickableLayers = { layers: routeLayers.concat(articleLayers) };
 
 const genDiv = (id) => {
   const el = document.createElement('div');
-  if(id) el.id = id;
+  if (id) el.id = id;
   return el;
 }
 
 let indicator = null;
 let indicatorRot = null;
 function renderIndicator() {
-  if(state.lon == "" || state.lat == "") return;
+  if (state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
 
-  if(!indicator) {
+  if (!indicator) {
     const rotated = genDiv('indicator-rotate');
     rotated.appendChild(genDiv('indicator-dir'));
     rotated.appendChild(genDiv('indicator-loc'));
@@ -45,9 +45,9 @@ function renderIndicator() {
       .setLngLat(lngLat)
       .addTo(map);
     indicatorRot = document.getElementById('indicator-rotate');
-    if(!map.isMoving() && prevBounds === null) {
+    if (!map.isMoving() && prevBounds === null) {
       const zoom = Math.max(map.getZoom(), 14);
-      map.flyTo({center: lngLat, zoom: zoom});
+      map.flyTo({ center: lngLat, zoom: zoom });
     }
   }
 
@@ -56,7 +56,7 @@ function renderIndicator() {
 }
 
 const ensureIndicatorInView = () => {
-  if(map.isMoving()) {
+  if (map.isMoving()) {
     return;
   }
 
@@ -68,21 +68,21 @@ const ensureIndicatorInView = () => {
 
   const mapRect = mapElem.getBoundingClientRect();
   const cmp = (padding) => {
-    return indiPos.y <= mapRect.top    + padding
-        || indiPos.y >= mapRect.bottom - padding
-        || indiPos.x <= mapRect.left   + padding
-        || indiPos.x >= mapRect.right  - padding;
+    return indiPos.y <= mapRect.top + padding
+      || indiPos.y >= mapRect.bottom - padding
+      || indiPos.x <= mapRect.left + padding
+      || indiPos.x >= mapRect.right - padding;
   }
 
   // add padding in pixels around the viewport
   const outsideViewport = cmp(20);
-  if(!outsideViewport) { return; }
+  if (!outsideViewport) { return; }
 
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
   const veryFarOutside = cmp(-200);
-  if(veryFarOutside) {
+  if (veryFarOutside) {
     console.debug("Flying to location", lngLat)
-    map.flyTo({center: lngLat});
+    map.flyTo({ center: lngLat });
   } else {
     console.debug("Panning to location", lngLat)
     map.panTo(lngLat);
@@ -92,12 +92,12 @@ const ensureIndicatorInView = () => {
 let indicatorFocus = null;
 let prevIndicatorPos = '';
 const maybeEnsureIndicatorInView = () => {
-  if(state.slideshow === "true" && indicatorFocus === null) {
+  if (state.slideshow === "true" && indicatorFocus === null) {
     indicatorFocus = setInterval(ensureIndicatorInView, 2000);
-  } else if(state.slideshow !== "true" && indicatorFocus !== null) {
+  } else if (state.slideshow !== "true" && indicatorFocus !== null) {
     clearInterval(indicatorFocus);
     indicatorFocus = null;
-  } else if(indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
+  } else if (indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
     console.debug("indicator present, and changed, ensuring it's in view", indicator)
     prevIndicatorPos = `${state.lon},${state.lat}`;
     setTimeout(ensureIndicatorInView, 0);
@@ -107,7 +107,7 @@ const maybeEnsureIndicatorInView = () => {
 
 let prevBounds = settings.initial;
 const maybeFitBounds = () => {
-  if(prevBounds == state.bounds || state.bounds == "") {
+  if (prevBounds == state.bounds || state.bounds == "") {
     return;
   }
   console.debug("Bounds have changed from", prevBounds, "to", state.bounds)
@@ -119,7 +119,7 @@ const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
   let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
   // be more lenient with click targets
-  if(!routes.length) {
+  if (!routes.length) {
     const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
     const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
     routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
@@ -138,14 +138,14 @@ const handleMapClick = (evt) => {
   let route = null;
   let article = null;
   items.forEach(r => {
-    if(routeLayers.includes(r.layer.id)) {
+    if (routeLayers.includes(r.layer.id)) {
       route = r.properties.route_id;
-    } else if(articleLayers.includes(r.layer.id)) {
+    } else if (articleLayers.includes(r.layer.id)) {
       article = r.properties.name;
     }
   });
 
-  if(route === null && article === null) return;
+  if (route === null && article === null) return;
 
   window.pushEvent("map-click", {
     route: route,
@@ -157,7 +157,7 @@ const handleMapClick = (evt) => {
 }
 
 const sendBounds = () => {
-  window.pushEvent("map-bounds", {bounds: map.getBounds().toArray()});
+  window.pushEvent("map-bounds", { bounds: map.getBounds().toArray() });
 }
 
 map.on('style.load', () => {

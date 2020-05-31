@@ -34,8 +34,8 @@ const mly = new Mapillary.Viewer(
 mly.setFilter(['in', 'sequenceKey'] + settings.seqs.split(" "));
 
 mly.on(Mapillary.Viewer.navigablechanged, () => {
-  console.debug("mly loaded initially with" , initialImg);
-  if(initialImg !== state.img) {
+  console.debug("mly loaded initially with", initialImg);
+  if (initialImg !== state.img) {
     console.debug("…moving it to", state.img)
     mly.moveToKey(state.img);
   }
@@ -43,12 +43,12 @@ mly.on(Mapillary.Viewer.navigablechanged, () => {
 });
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
   console.debug("mly loaded", node.key)
-  window.pushEvent("mly-nodechanged", {img: node.key})
+  window.pushEvent("mly-nodechanged", { img: node.key })
 });
 
 window.addEventListener("resize", () => mly.resize());
 
-window.mlyStateChanged = function() {
+window.mlyStateChanged = function () {
   console.debug("updating img to", state.img);
   mly.moveToKey(state.img);
 }

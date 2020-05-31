@@ -1,4 +1,4 @@
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
 import LiveSocket from "phoenix_live_view"
 
 window.Socket = Socket;

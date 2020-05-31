@@ -7,7 +7,7 @@ import css from "../css/app.scss"
 window.state = {};
 let prevLocation = location.pathname;
 function updateState() {
-  if(prevLocation !== location.pathname) {
+  if (prevLocation !== location.pathname) {
     document.getElementById("content").scroll(0, 0);
     prevLocation = location.pathname;
   }
@@ -16,10 +16,10 @@ function updateState() {
   window.state = document.getElementById("control").dataset;
   console.log(state);
 
-  if(state.mlyJs && loadMly) loadMly();
-  if(typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }
-  if(typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
-  if(typeof window.loadingCb === "function") { window.loadingCb(); }
+  if (state.mlyJs && loadMly) loadMly();
+  if (typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }
+  if (typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
+  if (typeof window.loadingCb === "function") { window.loadingCb(); }
 }
 updateState();
 console.log("Initial State From Server: ", state)
@@ -27,7 +27,7 @@ console.log("Initial State From Server: ", state)
 let pushEventHandle = null;
 let pushEventQueued = [];
 function pushEvent(event, payload) {
-  if(!pushEventHandle) {
+  if (!pushEventHandle) {
     console.log("Queueing", event, "until mounted:", payload);
     pushEventQueued.push([event, payload]);
     return
@@ -39,9 +39,9 @@ function pushEvent(event, payload) {
 window.pushEvent = pushEvent;
 
 const hash = location.hash.substr(1);
-if(hash != "") window.pushEvent("convert-hash", {hash: hash});
+if (hash != "") window.pushEvent("convert-hash", { hash: hash });
 
-let loadMly = function() {
+let loadMly = function () {
   console.log("loading mapillary");
   const script = document.createElement('script');
   script.type = 'text/javascript';
@@ -50,7 +50,7 @@ let loadMly = function() {
   loadMly = null;
 }
 
-window.mlyStateChanged = function() {
+window.mlyStateChanged = function () {
   const img = new Image();
   const url = "https://images.mapillary.com/" + state.img + "/thumb-1024.jpg";
   const imgKey = state.img;
@@ -60,15 +60,15 @@ window.mlyStateChanged = function() {
   // the background in-between image loads
   console.debug("preloading", url)
   placeholder.classList.add('loading');
-  placeholderOuter.style.backgroundImage = "url("+url+")";
+  placeholderOuter.style.backgroundImage = "url(" + url + ")";
   img.onload = () => {
-    if(imgKey != state.img) {
+    if (imgKey != state.img) {
       // abort if another image was queued
       return;
     }
 
-    console.debug("setting preloaded image as BG" , url)
-    placeholder.style.backgroundImage = "url("+url+")";
+    console.debug("setting preloaded image as BG", url)
+    placeholder.style.backgroundImage = "url(" + url + ")";
     placeholderOuter.style.backgroundImage = "";
     placeholder.classList.remove('loading');
   }
@@ -83,8 +83,8 @@ Hooks.control = {
 
     updateState();
 
-    if(!pushEventQueued) return;
-    for(let i=0; i < pushEventQueued.length; i++) {
+    if (!pushEventQueued) return;
+    for (let i = 0; i < pushEventQueued.length; i++) {
       console.log("Pushing queued event ", event);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
@@ -97,7 +97,7 @@ Hooks.control = {
 }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}});
+let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } });
 liveSocket.connect()
 window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
