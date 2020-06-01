@@ -347,15 +347,13 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   @default_image Settings.image()
-  defp maybe_advance_slideshow(%{assigns: %{slideshow: true, img: @default_image}} = socket) do
-    Logger.debug("slideshow: replacing default image")
-    route = socket.assigns.route
+  defp maybe_advance_slideshow(
+         %{assigns: %{route: route, slideshow: true, img: @default_image}} = socket
+       ) do
+    Logger.debug("slideshow: replacing default image (current route: #{inspect(route)})")
 
     [%{img: img} | _] = Data.ImageCache.images([route])[route]
-
-    socket
-    |> assign(:route, route)
-    |> set_img(img)
+    set_img(socket, img)
   end
 
   defp maybe_advance_slideshow(%{assigns: %{slideshow: false}} = socket), do: socket

@@ -198,27 +198,33 @@ defmodule Data.Image do
     end
   end
 
-  def find_by_img(all, img), do: find_by_img(all, img, route: {nil, nil})
+  @spec filter_by_img(indexed_images(), Mapillary.ref()) :: vanilla_images() | %{}
+  defp filter_by_img(all, img) when is_ref(img) do
+    routes_with_img =
+      all
+      |> get_in([:index, img])
+      # i.e. image is not indexed
+      |> Kernel.||(%{})
+      |> Map.keys()
 
-  def find_by_img(all, img, route: {id, _rest} = route) do
-    all = find_all_by_img(all, img)
+    Map.take(all, routes_with_img)
+  end
+
+  @spec find_by_img(indexed_images(), Mapillary.ref(), [{:route, route()}]) ::
+          {route(), [img(), ...]} | {:not_found, []}
+  def find_by_img(all, img, route: route) when is_ref(img) do
+    route_id = if is_tuple(route), do: elem(route, 0)
+    filtered = filter_by_img(all, img)
 
     cond do
       # exact match
-      x = Map.get(all, route, nil) ->
-        {route, x}
-
+      x = Map.get(filtered, route) -> {route, x}
       # id match
-      x = find_all_by_id(all, id) |> Enum.to_list() |> List.first() ->
-        x
-
-      # whatever we can find
-      x = all |> Enum.to_list() |> List.first() ->
-        x
-
+      x = find_all_by_id(filtered, route_id) |> Map.to_list() |> List.first() -> x
+      # no route, use whatever we can find
+      x = filtered |> Map.to_list() |> List.first() -> x
       # :(
-      true ->
-        {:not_found, []}
+      true -> {:not_found, []}
     end
   end
 
@@ -228,16 +234,7 @@ defmodule Data.Image do
           }\n1. all: #{inspect(all)}"
   end
 
-  def find_all_by_img(all, img) do
-    case get_in(all, [:index, img]) do
-      nil ->
-        Logger.info("Searching for image '#{img}', which is not in index")
-        %{}
-
-      list ->
-        Map.take(all, Map.keys(list))
-    end
-  end
+  def find_all_by_id(_all, nil), do: %{}
 
   def find_all_by_id(all, given_id) when is_binary(given_id) do
     Map.take(all, find_all_routes(all, given_id))
