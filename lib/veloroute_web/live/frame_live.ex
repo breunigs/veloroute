@@ -348,6 +348,21 @@ defmodule VelorouteWeb.FrameLive do
 
   @default_image Settings.image()
   defp maybe_advance_slideshow(
+         %{assigns: %{route: nil, slideshow: true, img: @default_image}} = socket
+       ) do
+    err = "Slideshow is on default image, no route is set, yet we should advance?"
+
+    try do
+      raise err
+    rescue
+      exp ->
+        Sentry.capture_exception(exp, extra: %{assigns: socket.assigns})
+    end
+
+    socket
+  end
+
+  defp maybe_advance_slideshow(
          %{assigns: %{route: route, slideshow: true, img: @default_image}} = socket
        ) do
     Logger.debug("slideshow: replacing default image (current route: #{inspect(route)})")
