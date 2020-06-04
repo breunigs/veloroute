@@ -56,7 +56,7 @@ function renderIndicator() {
 }
 
 const ensureIndicatorInView = () => {
-  if (map.isMoving()) {
+  if (map.isMoving() || !indicator) {
     return;
   }
 
