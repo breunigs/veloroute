@@ -279,6 +279,7 @@ defmodule Data.Image do
           Map.update(index, img, %{name => pos}, &Map.put(&1, name, pos))
         end)
       end)
+      |> Map.put_new_lazy(Settings.image(), fn -> %{Settings.route() => 0} end)
 
     Map.put(all, :index, index)
   end

@@ -125,4 +125,27 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
+
+  test "supports going back to default route after using back button", %{conn: conn} do
+    path = "/?img=" <> Settings.image()
+
+    {:ok, view, html} = live(conn, path)
+    assert html =~ ~s|id="mlyPlaceholder"|
+    assert html =~ ~s|/#{Settings.image()}/|
+
+    html =
+      view
+      |> element(".icon", "7")
+      |> render_click()
+
+    assert html =~ ~s|Du folgst: Alltagsroute 7|
+    assert html =~ ~s|data-mly-js="/|
+    assert html =~ ~s|data-slideshow="true"|
+
+    html =
+      view
+      |> render_patch(path)
+
+    assert html =~ ~s|Du folgst: Alltagsroute 4|
+  end
 end

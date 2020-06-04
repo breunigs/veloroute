@@ -29,7 +29,7 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       socket
       |> assign(@initial_state)
-      |> assign(state())
+      |> assign(state(socket.assigns))
 
     {:ok, socket}
   end
@@ -347,32 +347,22 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   @default_image Settings.image()
-  defp maybe_advance_slideshow(
-         %{assigns: %{route: nil, slideshow: true, img: @default_image}} = socket
-       ) do
-    err = "Slideshow is on default image, no route is set, yet we should advance?"
-
-    try do
-      raise err
-    rescue
-      exp ->
-        Sentry.capture_exception(exp, extra: %{assigns: socket.assigns})
-    end
-
-    socket
-  end
-
-  defp maybe_advance_slideshow(
-         %{assigns: %{route: route, slideshow: true, img: @default_image}} = socket
-       ) do
+  defp maybe_advance_slideshow(%{assigns: %{slideshow: true, img: @default_image}} = socket) do
+    route = socket.assigns.route || Settings.route()
     Logger.debug("slideshow: replacing default image (current route: #{inspect(route)})")
 
     [%{img: img} | _] = Data.ImageCache.images([route])[route]
-    set_img(socket, img)
+
+    socket
+    |> assign(route: route)
+    |> set_img(img)
   end
 
   defp maybe_advance_slideshow(%{assigns: %{slideshow: false}} = socket), do: socket
   defp maybe_advance_slideshow(%{assigns: %{mly_loaded: false}} = socket), do: socket
+
+  defp maybe_advance_slideshow(%{assigns: %{route: nil, slideshow: true}} = socket),
+    do: slideshow(socket, false)
 
   defp maybe_advance_slideshow(%{assigns: %{mly_previous_img: prev, img: curr}} = socket)
        when prev != curr,
