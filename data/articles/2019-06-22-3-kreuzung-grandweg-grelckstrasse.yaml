@@ -5,25 +5,8 @@ loc:
 type: intent
 grade: 3
 title: Kreuzung Grandweg / Grelckstraße (Veloroute 3)
-images:
-- OLiN89RWEKPJT-snhYvl8g
-- 4qt0JGrKhEYiCxU-QosZ9w
-- B50XvEFpKSR9h4OMnUm2rQ
-- UA56a0tOBr0Unhl11HeMtA
-- W0ZNjkwRqwDje-DlyMAV0A
-- ErRdThGqdKmtc-ApKjh6ag
-- FCvjqym9AzIGhX1OskX0hA
-- 8ZfVfOlxKaYr_F9MSOTBcg
-- htrR77bEijCDOYftst6-Hg
-- fLfXxgU63oeVbF3DSElrcw
-- 6xWTdrwJOC7deE4g_DPW1g
-- ZZiXTBX6ZNkev02Vj5_nnw
-- ECMat6cV51ZQZ9Z002zodg
-- RMiHKzW6ZjlmgyiDMyrJiw
-- f9ovGE2f2AIkkNUIja9Kww
-- MdOjAG5cqDgW8d4nQW9ZrQ
-- gHDM1RFtd_34FIZfY18rHg
-- t7agz0V0-WZ6aRuC4OQfng
+images: articles
+
 start: 2020
 
 tags:

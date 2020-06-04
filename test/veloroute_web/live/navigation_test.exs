@@ -60,7 +60,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
     {:ok, view, _html} = conn |> get("/") |> live()
 
     html = render_hook(view, "map-click", %{article: "2018-10-13-3-paul-sorge-strasse"})
-    assert html =~ ~s(data-img="4FYlWhgOZenWWneeU0wmSA")
     assert html =~ "Du folgst: Alltagsroute 3"
   end
 

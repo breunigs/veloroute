@@ -9,7 +9,7 @@ defmodule Mapillary do
   @type ref() :: <<_::176>>
   defguard is_ref(x) when is_binary(x) and byte_size(x) == 22
   # TODO: move to central place so it can be shared more easily
-  @type img() :: %{img: ref(), lat: float(), lon: float(), seq: ref()} | nil
+  @type img() :: %{img: ref(), lat: float(), lon: float(), bearing: float(), seq: ref()} | nil
 
   use Tesla
 
@@ -62,7 +62,9 @@ defmodule Mapillary do
     end)
   end
 
-  def resolve(%{"seq" => seq, "from" => from, "to" => to} = attr) do
+  @spec resolve(%{required(binary()) => ref()}) :: [img()]
+  def resolve(%{"seq" => seq, "from" => from, "to" => to} = attr)
+      when is_ref(seq) and is_ref(from) and is_ref(to) do
     rev = Map.get(attr, "reverse", false)
 
     result =
@@ -85,6 +87,11 @@ defmodule Mapillary do
     result
   end
 
+  @spec resolve(ref()) :: [img()]
+  def resolve(img) when is_ref(img) do
+    [image_lookup(img)]
+  end
+
   def img_url(img, size \\ 1024) when size in [320, 640, 1024, 2048] do
     "https://images.mapillary.com/#{img}/thumb-#{size}.jpg"
   end
@@ -103,9 +110,10 @@ defmodule Mapillary do
           resp.body
           |> get_in(["jsonGraph", "imageByKey"])
           |> Enum.map(fn {imgKey, data} ->
-            bearing = get_in(data, ["cca", "value"])
-            lon = get_in(data, ["cl", "value", "lon"])
-            lat = get_in(data, ["cl", "value", "lat"])
+            # ensure we're passing floats
+            bearing = get_in(data, ["cca", "value"]) / 1
+            lon = get_in(data, ["cl", "value", "lon"]) / 1
+            lat = get_in(data, ["cl", "value", "lat"]) / 1
             {imgKey, %{img: imgKey, lat: lat, lon: lon, bearing: bearing}}
           end)
           |> Enum.into(%{})
@@ -164,9 +172,11 @@ defmodule Mapillary do
     lon = m["geometry"]["coordinates"] |> Enum.at(0)
     lat = m["geometry"]["coordinates"] |> Enum.at(1)
     img = m["properties"]["key"]
+    bearing = m["properties"]["ca"]
     seq = m["properties"]["sequence_key"]
 
-    %{img: img, lon: lon, lat: lat, seq: seq}
+    # ensure we're passing floats
+    %{img: img, lon: lon / 1, lat: lat / 1, bearing: bearing / 1, seq: seq}
   end
 
   defp lazy(cache_key, func) do

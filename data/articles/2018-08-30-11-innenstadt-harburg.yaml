@@ -3,14 +3,7 @@ grade: 3
 start: 2019
 title: Innenstadt Harburg (Veloroute 11)
 type: planned-construction
-images:
-- e0xm7filkqb-1zXmVdoi7w
-- Poh5OCDMVVe7A4OCPE_dLQ
-- pK1KgSiunKtLuhX13BDDYw
-- IEHJfdE64TXVL2DPR-t4cA
-- tz1pv_URSzdi8dthu2EKMg
-- uA3uWgJxQoIrrs3JHxsf3Q
-- 0BQQsbkeuU4aNHuaFnEy9Q
+images: articles
 
 tags:
 - 11

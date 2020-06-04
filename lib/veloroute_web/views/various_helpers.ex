@@ -5,14 +5,20 @@ defmodule VelorouteWeb.VariousHelpers do
   def display_route(nil), do: nil
 
   def display_route({id, rest}) do
-    rel = relation_by_id(id)
-    full_name = Map.get(rel.tags, :name, id)
+    relation_by_id(id)
+    |> case do
+      nil ->
+        nil
 
-    Phoenix.LiveView.Helpers.live_patch([route_icon(id), " ", rest],
-      to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
-      title: "Du folgst: #{full_name} #{rest}",
-      class: "curRoute"
-    )
+      rel ->
+        full_name = Map.get(rel.tags, :name, id)
+
+        Phoenix.LiveView.Helpers.live_patch([route_icon(id), " ", rest],
+          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
+          title: "Du folgst: #{full_name} #{rest}",
+          class: "curRoute"
+        )
+    end
   end
 
   @short_month_names [

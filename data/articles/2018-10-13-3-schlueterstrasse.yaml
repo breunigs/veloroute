@@ -4,19 +4,8 @@ start: 2020Q2
 end: 2020Q4
 type: planned-construction
 title: Schlüterstraße (Veloroute 3)
-images:
-- r_HRIzCf350HHIUWC7Kwmg
-- B-qxs2FMVydSgsj6Rjxw8Q
-- X5h8lOxH8NngpSY9pj9z7A
-- loGuwppC4J4Uq3xyxO1jug
-- rjyUGTj5qEFqWECNFAKoKw
-- JgkYb89_Nwmgw1ilhH9kKQ
-- J7qlp9l7vqnrloeLkmw4BA
-- sbxB7uJD3I9PsovM9m7hBA
-- gz1a4kBBSi1udBj86uYqcQ
-- bfciPUJvKor0A1WE1wBKbg
-- HaRtmSfvr71tRz4hBPTtcQ
-- w5-u3rH78hTyXUE3RVFT9Q
+images: articles
+
 
 tags:
 - 3

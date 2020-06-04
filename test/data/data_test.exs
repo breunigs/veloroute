@@ -7,6 +7,9 @@ defmodule Data.DataTest do
       :index ->
         nil
 
+      {"articles", _} ->
+        nil
+
       {id, name} ->
         rel = VelorouteWeb.VariousHelpers.relation_by_id(id)
 

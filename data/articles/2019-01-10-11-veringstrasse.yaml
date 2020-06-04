@@ -1,12 +1,7 @@
 ---
 title: Veringstraße (Veloroute 11)
 type: intent
-images:
-- UQ71hrJeXeC93IQxeuyMDQ
-- MKv3mW8WjBqcsVsOzWnH-w
-- qAyM0fIT4tQ75IPZ0ySU4w
-- Tf2beo6Wk4MDE7eASp42OQ
-- ZsCQ-3ijJl_dD2VIr7Xkbw
+images: articles
 
 tags:
 - 11

@@ -4,11 +4,8 @@ loc:
 - 53.5877531
 grade: 5
 title: Maria-Louisen-Straße (Veloroute 13)
-images:
-- WBHoYuQN32F-uM-ab47hPw
-- ny4lNh6cyFK1SMRZRKtG9g
-- SKM7v1-z3pgbPLBbJ0C7Jg
-- 5c7IObdCCnKsADD1Eveo8w
+images: articles
+
 type: planned-construction
 start: 2020
 

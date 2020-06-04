@@ -2,21 +2,8 @@
 type: planned-construction
 title: Gertigstraße (Veloroute 13)
 grade: 2
-images:
-- GRXbCedhi-izENYoz5CVtg
-- 2nEiFZF9JGwAz6DboHlMRA
-- YSN7O79Gh2_gUJeqivFvmg
-- 0H2NROCefot1Yh43P3DMUQ
-- JyS6tFIhP7oW9A7cxfCyJQ
-- YCMCwqd3Sy2CRPVta-Vl0Q
-- Wo63ie4eoOL9CX7WRswArw
-- e7nYKx0RFtr1yJSZxbJzqQ
-- xwZr9XbXKxLgaXdy66TJDg
-- NIaKUXNd6GK_F7xCUtOqoQ
-- HDQj4Z-iG_z8K3_tESMQZA
-- 6hSGKVsDy97X1QmMvbADgw
-- FLl9pSpoMRGjv8Eg2SNkKA
-- mnhxkxaXfHQd_lY6-pMDcQ
+images: articles
+
 start: 2020Q3
 
 tags:

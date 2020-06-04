@@ -6,17 +6,8 @@ grade: 2
 start: 2019Q3
 type: construction
 title: Moorweidenstraße (Veloroute 3)
-images:
-- DQcQt76fvEaVnR03MiUqWg
-- mXo8dVeMBtMvxV28xa_dKg
-- Bx8i2jyxTZXxX--8lZdo6g
-- kdHYsoyiIqSZ5S3J6-emPg
-- levN5Jj5xMHTLxjokwD9Gg
-- QlYC8Gf-dSuizKThh-sOXQ
-- S2AhLFThpfrEAfXfLCKhSQ
-- FoVViIB-3gcE5SKwnhUxRg
-- ZlHqQslO2UCi1vqKR5dRRw
-- m-SIQJxilm771_wcyB9tEQ
+images: articles
+
 
 tags:
 - 3

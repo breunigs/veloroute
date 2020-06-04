@@ -6,15 +6,7 @@ grade: 2
 start: 2019Q2
 title: Chemnitzstraße (Veloroute 1)
 type: finished
-images:
-- pe4g-cPzEz1w97DP3debeQ
-- Ms3aeYxVRx5VLW2I5svIGg
-- bJDVVPB0nIoNrEsw7wU1Yg
-- APAplV9Wm_5F-PguAwcZ8Q
-- DlWekdOsKvckWlpvKz1NSw
-- OUdHtT5ccpKfLxRD2wFWGA
-- Km3ZR71K2NNoggxZCrcBQg
-
+images: articles
 tags:
 - 1
 text: '<p>Seit Frühjahr 2019 wird die <a>Chemnitzstraße</a> zu einer Fahrradstraße

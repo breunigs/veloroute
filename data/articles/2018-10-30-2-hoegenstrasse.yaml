@@ -6,15 +6,7 @@ grade: 1
 start: 2019Q3
 title: Högenstraße (Veloroute 2)
 type: construction
-images:
-- 7LELqrJHSFDpypFSKn2AMg
-- eqd_2ofbYUtPNwwKeWuLHg
-- PpzQAtd_vgdSybzb77B9tQ
-- kIW2fCD8Zw7ZH_yKsAZGSw
-- gCxBus9T4xG-AP7XCEEVbA
-- _9I0XTov_x5TtN74w0wqZQ
-- IUN5FGUf2eF-kd9CRRAq9Q
-- ojGHKS9PIEOQQiETTNS92A
+images: articles
 
 tags:
 - 2

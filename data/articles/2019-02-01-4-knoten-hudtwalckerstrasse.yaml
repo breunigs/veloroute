@@ -2,25 +2,8 @@
 grade: 2
 type: construction
 title: Knoten Hudtwalckerstraße (Leinpfad bis Bebelallee, Veloroute 4)
-images:
-- w0-TvuqAkt2SpwNot4eKTQ
-- z_RX72UGuPehRfa2cEZ8bA
-- 1iESK4kDBBsIiuPWHX6Fzw
-- gEBhDUXnwkdgBBl3FSZUPA
-- DW7ptiQcI3z7AN6bUB1UdA
-- DzT7Uu-jmbP5wzvfB4T49w
-- idwib6dbCJVPfIgOT2gKtw
-- "-snBgsi8MRJteXCTwcjM3A"
-- kKmzgSHW-uv-nuQcWlCajw
-- oaYRpWbuYemGdxElq4BhgQ
-- gPh_9kQJXsZDBg3_UoE4kw
-- fW7ZRoldQSWRurmVu_lkeA
-- 11UJW_QPNNeZWYgnpCPbrw
-- NKmGE_gM2OapX2K583dxhQ
-- iC3yF3owPxjKLfPMDoiX_Q
-- 8imvjJ4dNqJ841HwpJwj-w
-- FXHDg41V85LZeAu1QV8Vcw
-- rup8OXmZ399MeWeyPujjLg
+images: articles
+
 start: 2019Q3
 
 tags:

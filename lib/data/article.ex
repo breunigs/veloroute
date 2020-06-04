@@ -13,6 +13,8 @@ defmodule Data.Article do
 
   import Mapillary, only: [is_ref: 1]
 
+  alias Data.Image
+
   @known_params [
     :type,
     :title,
@@ -79,11 +81,12 @@ defmodule Data.Article do
   defp start_image(_, nil), do: nil
 
   defp start_image(route_id, bbox) when is_binary(route_id) or is_integer(route_id) do
-    ImageCache.images_stream(route_id: "#{route_id}")
-    |> Data.Image.find_close(bbox)
-    |> get_in([:img])
+    stream = ImageCache.images_stream(route_id: "#{route_id}")
+    buffered_bbox = CheapRuler.buffer_bbox(150, bbox)
 
-    # || raise "Cannot find image for route_id=#{route_id}, within #{inspect(bbox)}"
+    img = Image.find_close(stream, bbox) || Image.find_close(stream, buffered_bbox)
+
+    get_in(img, [:img])
   end
 
   # finds bbox for article if present in map, alternatively falls back to bbox
@@ -238,9 +241,8 @@ defmodule Data.Article do
        when is_ref(img) and is_list(tags) do
     route_pos =
       ImageCache.images(route_id: tags)
-      |> Data.Image.associated_route(ImageCache.sequences(), img)
-
-    if is_nil(route_pos), do: IO.puts("no route for #{art.name}")
+      |> Image.associated_route(ImageCache.sequences(), img)
+      |> Kernel.||(0)
 
     Map.put(art, :start_position, route_pos)
   end

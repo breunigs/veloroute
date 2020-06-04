@@ -3,19 +3,8 @@ type: construction
 grade: 2
 title: Kreuzung Maienweg/Sengelmannstraße (Veloroute 4)
 start: 2019Q3
-images:
-- QD3DKPZdMTnddEe0xGesMQ
-- _w2_-7SX3UCv0x5RZ5ft_w
-- WVLzBBcyLpbdIgF99Glq2g
-- VjHkXJhRTDSDsOecsbNV6A
-- ucuQoD64nfZOgoQlHBKazA
-- PmXMKSkD7QiImJhiRAjlzg
-- 9uQbifNGamki352Jv4dXdw
-- _fauVw-ME164lVW-G3T8wA
-- _51WowVLWYQ63ReHyDobbA
-- jKtSe5Jdop-Y80kug1dc6Q
-- Wd_-3PpFtqqnTdFtd8Q_bQ
-- KaGrYxe_XgfRacGoHp8vIg
+images: articles
+
 
 tags:
 - 4

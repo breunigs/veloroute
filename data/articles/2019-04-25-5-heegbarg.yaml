@@ -5,25 +5,8 @@ loc:
 grade: 2
 type: planned-construction
 title: Heegbarg (Veloroute 5)
-images:
-- 99PwOPRUzieQ4nfbVRGDDw
-- "-6WWlNmruPZodKxg6EeEqQ"
-- lZtqKNpV0hg-YZ8xWTybww
-- 4hOlULvq6DBYWeugLVdLng
-- Xp82rJ5i5_HNWWv_UeePIA
-- LnvTp-RwpL9kjM2rsjKdIg
-- ed15qHE0QclHdSyh4TVK2g
-- ZoO2JuzfC_1xbT3tj1Obmg
-- A61KdL0k1loKSRj5Q-vmIw
-- 5vXJVMiE2tpz_vjFgqYX-w
-- fhzrwHfAbjiuPhSajMYj0A
-- _vs6rcxcyaG8pElkGN63Ig
-- f_5aDUZqOfBA79DYAtVT7Q
-- _d01zr2jwTXjgtqSAvA3uQ
-- sM7fnJfuLZNxo0wwFTBRdg
-- JymyL-pkHiKSCxvtU2PM6Q
-- FIcNa-_XFbiemyVlcws9Zg
-- 6bfZs6gtzh4SLknnCH4rwA
+images: articles
+
 
 tags:
 - 5

@@ -1,28 +1,8 @@
 ---
-loc:
-- 10.01907
-- 53.6526
 type: planned-construction
 title: Tangstedter Landstraße (Veloroute 4)
 start: 2020
-length: 0.56
-images:
-- VWyYa2u2KLN5mvnidTo6xQ
-- MoExblvkj284FVTHXn9P6g
-- IUWczqWpGtCHiN0oz2I_6Q
-- S89cQa8-6aINb5pM6c_jeg
-- 9K2ZHuuq1-Bo5bKJ5MzWDA
-- vmX-sYWX67BtDO4qYNBjcg
-- oU3Y-KqLhRt6gZAy6FoTkw
-- HOzWTPjbr8fm9tFoRp4q0A
-- Nyn0ibYUgVaOyBg55KVAaw
-- X1X7XM1QtpLhMh_BRFT0YA
-- 48MCPmnuNFRGr8f447zTpA
-- 4BwK56TgcaUWd94HHYwV2w
-- K__ZutS9D_dDWglcm03EhA
-- Exsypd85sB3kbp2U_HkTGQ
-grade: 1
-
+images: articles
 tags:
 - 4
 text: '<p><strong>Änderungen:</strong> Die Umplanung liegt nun in der Schlussfassung

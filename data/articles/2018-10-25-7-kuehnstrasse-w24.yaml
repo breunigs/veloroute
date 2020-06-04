@@ -5,23 +5,8 @@ loc:
 grade: 1
 start: 2020-03
 end: 2020-12
-images:
-- ps5g0Tk2M2RQRNSIE-zCww
-- PW6s3Y4L6Qo3L1CV9553gA
-- BSVDbjxXLAzz--n79ebOSQ
-- Qfdy4dcR2IGtW2lbdG7wZg
-- idp4xkWlYxmrSq_TSyYnKQ
-- GSsZz1Ysf-sWe3BIqHMbOQ
-- ADuOp89HtJWaq1aztdMS_g
-- vwCaPtJfu2gn26Yn55BLCQ
-- k51tDa-t6fAxPD0vMBN5Gg
-- R6fF2FADHXkRqMyRhOq4zg
-- mSxu43OFzUqvUNWmKawmCA
-- mKRPAQi9ot9arJgmgClQXg
-- OmOYflEAW5R24eivBVX5dA
-- PfikrOSvzhJUHdyzeRwFyA
-- dQu5mUh5wNIsBXAr0YjXsg
-- pJRkEUgYYoDz25Gqx-66MA
+images: articles
+
 type: construction
 title: Kuehnstraße (zw. Jenfelder Straße und Jenfelder Allee, Veloroute 7, Abschnitt
   W24)

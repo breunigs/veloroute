@@ -81,9 +81,7 @@ defmodule Data.Image do
     |> find_all_by_id(id)
     |> Map.values()
     |> List.flatten()
-    |> Enum.min_by(fn img ->
-      CheapRuler.dist(img, curImg)
-    end)
+    |> Enum.min_by(&CheapRuler.dist(&1, curImg), fn -> nil end)
   end
 
   @spec find_close(indexed_images(), map(), route: route()) :: img()

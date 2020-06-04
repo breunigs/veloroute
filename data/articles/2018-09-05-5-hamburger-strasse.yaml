@@ -3,16 +3,7 @@ grade: 2
 start: 2018
 title: Hamburger Straße (Veloroute 5)
 type: construction
-images:
-- oPhEF4xaDxjmdQgKpA4suQ
-- ALBPoGFNcmC4DHxMrB9hzA
-- "-Ip-aEKFFDg3oJyA3LXVJw"
-- tmjBsBqGu0i4fxArgmFIPw
-- bS02S9MFvW6_OBxp7FkJew
-- MvuB5vMHffYbGdZVJaFjJw
-- b-UO66NARs882aR43m_wtg
-- l5HqPOCWXs98hvG-gGJmEQ
-- zW7KE5hmfvUUzWhCHfLexg
+images: articles
 tags:
 - 5
 - 5N

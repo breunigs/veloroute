@@ -3,25 +3,8 @@ loc:
 - 10.20672
 - 53.49479
 grade: 2
-images:
-- q5e8MVMGFk4d8WSUtANXjA
-- 2iNBdQLjMz6KDutVkVUmfA
-- TTnOY1AWgVFRwf-vX1UXKQ
-- dKTke913HPMLuYXk_KcoKw
-- f67dY3i3Xz4txu6RXOSTbw
-- neY4EaK9empsb6wBCnSJ5g
-- pDtrnDGiYUt1G80iCl-C-A
-- Puil3PEUWKku0YW_6eAtjA
-- tCaxiZvTOhDtiUROW8Wm_w
-- wTxHict3qTWJ-G-u7_6wSg
-- E8Kbr9ZCiJ9u_DadpvaETQ
-- lSF_WAYgguhzSDpSgqNCsA
-- euV2vB09gZFftBb06Eq3fA
-- 7_uQZRgQ1V9hEGiggmTrNA
-- ONdtA1wYPuVUjxkJXRymKA
-- 80FN8cFKO7NsGXNxZuqWqw
-- PLFQwSn9FcQXYWzorRQMxg
-- ti-blaz9cyPEJbMDT2TSEQ
+images: articles
+
 start: 2019
 type: planned-construction
 title: Doppelknoten Lohbrügger Markt (Veloroute 8)

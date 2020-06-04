@@ -3,13 +3,8 @@ loc:
 - 10.0175985
 - 53.5559459
 grade: 3
-images:
-- vqaa8d536GbC9u3NQeXMlA
-- 8FTsePivRQHDANsOuIT8eg
-- dwBuU9cde772-AGlJaIHnA
-- FWz9Io_6FrprkFQyv0EZrA
-- QbMhNQohRUTiO-MqH17PFg
-- 0qoA_0UyVsvyXMdu0oxJGw
+images: articles
+
 title: Steindamm (Veloroute 7)
 type: construction
 start: 2019-10-14
