@@ -208,6 +208,10 @@ defmodule VelorouteWeb.ArticleView do
       find_attribute(attrs, "download") != nil ->
         keep
 
+      find_attribute(attrs, "bounds") != nil ->
+        bounds = find_attribute(attrs, "bounds")
+        {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds}], children}
+
       nil == href ->
         name = Floki.text(children)
         bounds = Overpass.bounds(name)

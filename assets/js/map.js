@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 
-const fitBoundsOpt = { padding: { top: 35, bottom: 35, left: 35, right: 35 }, maxZoom: 16 };
+const fitBoundsOpt = { padding: { top: 35, bottom: 35, left: 35, right: 35 }, maxZoom: 17 };
 
 const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
@@ -45,7 +45,7 @@ function renderIndicator() {
       .setLngLat(lngLat)
       .addTo(map);
     indicatorRot = document.getElementById('indicator-rotate');
-    if (!map.isMoving() && prevBounds === null) {
+    if (!map.isMoving() && prevBoundsTs === "") {
       const zoom = Math.max(map.getZoom(), 14);
       map.flyTo({ center: lngLat, zoom: zoom });
     }
@@ -105,14 +105,14 @@ const maybeEnsureIndicatorInView = () => {
 }
 
 
-let prevBounds = settings.initial;
+let prevBoundsTs = "";
 const maybeFitBounds = () => {
-  if (prevBounds == state.bounds || state.bounds == "") {
+  if (prevBoundsTs == state.boundsTs || state.bounds == "") {
     return;
   }
-  console.debug("Bounds have changed from", prevBounds, "to", state.bounds)
-  prevBounds = state.bounds;
-  map.fitBounds(prevBounds.split(","), fitBoundsOpt);
+  console.debug("Bounds have changed from to", state.bounds)
+  prevBoundsTs = state.boundsTs;
+  map.fitBounds(state.bounds.split(","), fitBoundsOpt);
 }
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;

@@ -291,7 +291,7 @@ defmodule VelorouteWeb.FrameLive do
     parsed = parse_bounds(bounds_param)
 
     if parsed != nil,
-      do: assign(socket, bounds: parsed),
+      do: assign(socket, bounds: parsed) |> set_bounds_ts,
       else: set_bounds(socket, article, nil)
   end
 
@@ -304,18 +304,24 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_bounds(socket, %Article{bbox: bbox}, _bounds_param) when is_map(bbox) do
-    assign(socket, bounds: bbox)
+    assign(socket, bounds: bbox) |> set_bounds_ts
   end
 
   defp set_bounds(socket, _article, _bounds_param) do
     socket
   end
 
+  defp set_bounds_ts(socket) do
+    assign(socket, bounds_ts: "#{:os.system_time(:second)}")
+  end
+
   defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
     with {lat, ""} <- Float.parse(lat),
          {lon, ""} <- Float.parse(lon),
          {zoom, ""} <- Float.parse(zoom) do
-      assign(socket, bounds: CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
+      socket
+      |> assign(bounds: CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
+      |> set_bounds_ts
     else
       _ -> socket
     end
@@ -325,7 +331,7 @@ defmodule VelorouteWeb.FrameLive do
     parsed = parse_bounds(bounds)
 
     if parsed != nil,
-      do: assign(socket, bounds: parsed),
+      do: assign(socket, bounds: parsed) |> set_bounds_ts,
       else: socket
   end
 
@@ -509,7 +515,8 @@ defmodule VelorouteWeb.FrameLive do
       bearing: Map.get(assigns, :bearing),
       slideshow: Map.get(assigns, :slideshow, false),
       mly_js: Map.get(assigns, :mly_js, nil),
-      bounds: Map.get(assigns, :bounds, Settings.initial()) |> to_string_bounds
+      bounds: Map.get(assigns, :bounds, Settings.initial()) |> to_string_bounds,
+      bounds_ts: Map.get(assigns, :bounds_ts)
     ]
   end
 
