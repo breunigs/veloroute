@@ -154,6 +154,10 @@
   <node id='-105887' action='modify' lat='53.54962443465' lon='10.00674247473' />
   <node id='-105888' action='modify' lat='53.54903480927' lon='10.00660568208' />
   <node id='-105889' action='modify' lat='53.54836390121' lon='10.0064340207' />
+  <node id='-105902' action='modify' lat='53.55008098949' lon='10.00663518772' />
+  <node id='-105903' action='modify' lat='53.55012162509' lon='10.00684574112' />
+  <node id='-105905' action='modify' lat='53.55171833675' lon='10.00617920816' />
+  <node id='-105906' action='modify' lat='53.55169602786' lon='10.00602364004' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -2735,7 +2739,7 @@
   <node id='672240004806615' version='1' lat='53.4806615' lon='10.0067224' />
   <node id='672770005497447' action='modify' version='1' lat='53.54974629357' lon='10.00668210245' />
   <node id='673130006508357' version='1' lat='53.6508357' lon='10.067313' />
-  <node id='673510005503567' version='1' lat='53.5503567' lon='10.0067351' />
+  <node id='673510005503567' action='modify' version='1' lat='53.55035191937' lon='10.0067055957' />
   <node id='675304000529421' version='1' lat='53.529421' lon='10.0675304' />
   <node id='676390004806511' version='1' lat='53.4806511' lon='10.0067639' />
   <node id='676440005502637' version='1' lat='53.5502637' lon='10.0067644' />
@@ -16859,6 +16863,15 @@
     <nd ref='-105889' />
     <nd ref='-105881' />
     <tag k='name' v='2020-06-04-klosterwall' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-103806' action='modify'>
+    <nd ref='-105902' />
+    <nd ref='-105903' />
+    <nd ref='-105905' />
+    <nd ref='-105906' />
+    <nd ref='-105902' />
+    <tag k='name' v='2020-06-05-steintorwall' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
