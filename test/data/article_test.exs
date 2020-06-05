@@ -128,7 +128,9 @@ defmodule Data.ArticleTest do
   test "all dated articles have a start_image" do
     assert Data.ArticleCache.get_dated()
            |> Enum.filter(fn {_name, %Data.Article{start_image: x}} -> is_nil(x) end)
-           |> Enum.map(fn {name, _art} -> "Article #{name} has no start_image." end)
+           |> Enum.map(fn {name, art} ->
+             "Article #{name} has no start_image (bbox: #{inspect(art.bbox)})."
+           end)
            |> Enum.sort() == []
   end
 end
