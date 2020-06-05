@@ -168,7 +168,7 @@ defmodule Data.Image do
 
         Logger.debug("Found #{img} in #{inspect(name)} at position #{cur_pos}")
 
-        if cur_pos == 0 do
+        if cur_pos == 0 && length(imgs) >= 2 do
           [curr, next] = Enum.slice(imgs, 0, 2)
           %{route: name, prev: nil, curr: curr, next: next}
         else
@@ -179,6 +179,9 @@ defmodule Data.Image do
 
             [prev, curr] ->
               %{route: name, prev: prev, curr: curr, next: nil}
+
+            [curr] ->
+              %{route: name, prev: nil, curr: curr, next: nil}
           end
         end
     end

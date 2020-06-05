@@ -125,6 +125,22 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
 
+  # TODO: rather slow, how to parallelize?
+  for {art_name, art} <- Data.ArticleCache.get() do
+    @art_name art_name
+    @art art
+    test "article #{@art_name} can be rendered", %{conn: conn} do
+      path =
+        case @art_name do
+          "0000-00-00-" <> page -> "/#{page}"
+          art_name -> "/article/#{art_name}"
+        end
+
+      {:ok, _view, html} = conn |> get(path) |> live()
+      if path =~ "/article/", do: assert(html =~ @art.title)
+    end
+  end
+
   test "supports going back to default route after using back button", %{conn: conn} do
     path = "/?img=" <> Settings.image()
 
