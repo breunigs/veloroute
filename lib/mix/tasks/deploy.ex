@@ -14,6 +14,7 @@ defmodule Mix.Tasks.Deploy do
     if Cli.confirm(
          "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
        ) do
+      IO.puts("Deploying…")
       # add this line to /etc/sudoers.d/veloroute2-restart
       # someuser ALL=(ALL) NOPASSWD: /bin/systemctl restart veloroute2.service
       {_, 0} =
