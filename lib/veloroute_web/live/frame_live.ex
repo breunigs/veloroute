@@ -216,6 +216,18 @@ defmodule VelorouteWeb.FrameLive do
     handle_params(params, nil, socket)
   end
 
+  def handle_params(%{"img" => img} = params, nil, socket)
+      when is_binary(img) and byte_size(img) != 22 do
+    img = String.slice(img, 0..21)
+
+    params =
+      if is_ref(img),
+        do: Map.put(params, "img", img),
+        else: Map.delete(params, "img")
+
+    handle_params(params, nil, socket)
+  end
+
   def handle_params(%{"not_found" => "true"}, nil, socket), do: {:noreply, render_404(socket)}
 
   def handle_params(%{"article" => name} = params, nil, socket) do

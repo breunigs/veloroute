@@ -3,6 +3,16 @@ defmodule VelorouteWeb.LiveNavigationTest do
   import Phoenix.LiveViewTest
   @endpoint VelorouteWeb.Endpoint
 
+  test "broken images with extra characters can be recovered", %{conn: conn} do
+    {:ok, _view, html} = conn |> get("/?img=ktvIxR_DaQOLNWRBDShxfA).") |> live()
+    html =~ "ktvIxR_DaQOLNWRBDShxfA"
+  end
+
+  test "broken images with missing characters get dropped", %{conn: conn} do
+    {:ok, _view, html} = conn |> get("/?img=ktvIxR_DaQOLNW") |> live()
+    html =~ Settings.image()
+  end
+
   test "clicking on route icon navigates to overview page", %{conn: conn} do
     {:ok, view, _html} = conn |> get("/") |> live()
 
