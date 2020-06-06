@@ -43,6 +43,7 @@ body {
 
 
 #map,
+#fakeMap,
 #mly,
 #mlyPlaceholder,
 #mlyPlaceholderOuter {
@@ -56,8 +57,21 @@ body {
 
 #map {
   top: 0;
+  z-index: 1;
   overflow: hidden;
   background-color: #efe9e1;
+}
+
+#fakeMap {
+  z-index: 2;
+  top: 0;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  pointer-events: none;
 }
 
 #mly,
@@ -80,6 +94,7 @@ body {
   display: flex;
   flex-flow: column;
   transition: all 0.3s ease;
+  z-index: 3;
 }
 
 .showSidebar #sidebar {

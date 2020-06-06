@@ -30,12 +30,12 @@ defmodule CheapRuler do
       iex> CheapRuler.bbox([
       ...>   %{lon: 1.2, lat: 3.4}, %{lon: 4.5, lat: 7.1}, %{lon: 0, lat: 0},
       ...> ])
-      %{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      %BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
   """
   def bbox(coords) when is_list(coords) do
     {%{lon: minLon}, %{lon: maxLon}} = coords |> Enum.min_max_by(fn %{lon: lon} -> lon end)
     {%{lat: minLat}, %{lat: maxLat}} = coords |> Enum.min_max_by(fn %{lat: lat} -> lat end)
-    %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   @doc ~S"""
@@ -44,10 +44,10 @@ defmodule CheapRuler do
   ## Examples
 
       iex> CheapRuler.union(
-      ...>   %{minLon: 1, minLat: 0, maxLon: 1, maxLat: 2},
-      ...>   %{minLon: 0, minLat: 1, maxLon: 2, maxLat: 1}
+      ...>   %BoundingBox{minLon: 1, minLat: 0, maxLon: 1, maxLat: 2},
+      ...>   %BoundingBox{minLon: 0, minLat: 1, maxLon: 2, maxLat: 1}
       ...> )
-      %{minLon: 0, minLat: 0, maxLon: 2, maxLat: 2}
+      %BoundingBox{minLon: 0, minLat: 0, maxLon: 2, maxLat: 2}
   """
   def union(nil, bbox2), do: bbox2
   def union(bbox1, nil), do: bbox1
@@ -57,7 +57,7 @@ defmodule CheapRuler do
     minLat = if bbox1.minLat < bbox2.minLat, do: bbox1.minLat, else: bbox2.minLat
     maxLon = if bbox1.maxLon > bbox2.maxLon, do: bbox1.maxLon, else: bbox2.maxLon
     maxLat = if bbox1.maxLat > bbox2.maxLat, do: bbox1.maxLat, else: bbox2.maxLat
-    %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   @doc ~S"""
@@ -67,14 +67,14 @@ defmodule CheapRuler do
 
       iex> CheapRuler.inside_bbox?(
       ...>   %{lon: 1.3, lat: 4.5},
-      ...>   %{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...>   %BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
       ...> )
       true
 
   """
   def inside_bbox?(
         %{lon: lon, lat: lat},
-        %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+        %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
       ) do
     lon >= minLon &&
       lon <= maxLon &&
@@ -89,25 +89,30 @@ defmodule CheapRuler do
 
       iex> CheapRuler.buffer_bbox(
       ...>   1000,
-      ...>   %{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...>   %BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
       ...> )
-      %{minLon: -0.015087116638538251,
+      %BoundingBox{minLon: -0.015087116638538251,
         minLat: -0.008984923104452173,
         maxLon: 4.515087116638538,
         maxLat: 7.108984923104452}
   """
-  def buffer_bbox(buffer, %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat})
+  def buffer_bbox(buffer, %BoundingBox{
+        minLon: minLon,
+        minLat: minLat,
+        maxLon: maxLon,
+        maxLat: maxLat
+      })
       when is_float(buffer) or is_integer(buffer) do
     v = buffer / @ky
     h = buffer / @kx
 
-    %{minLon: minLon - h, minLat: minLat - v, maxLon: maxLon + h, maxLat: maxLat + v}
+    %BoundingBox{minLon: minLon - h, minLat: minLat - v, maxLon: maxLon + h, maxLat: maxLat + v}
   end
 
   # as per https://wiki.openstreetmap.org/wiki/Zoom_levels#Distance_per_pixel_math
   @zoom_factor 40_075_016.686 * @cos1
   def center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}) do
-    buffer_bbox(@zoom_factor / :math.pow(2, zoom), %{
+    buffer_bbox(@zoom_factor / :math.pow(2, zoom), %BoundingBox{
       minLon: lon,
       minLat: lat,
       maxLon: lon,
@@ -115,8 +120,21 @@ defmodule CheapRuler do
     })
   end
 
+  @spec meters_per_pixel(number) :: float
   def meters_per_pixel(zoom) do
     @zoom_factor / :math.pow(2, zoom + 8)
+  end
+
+  def bounds_to_polyline(%BoundingBox{
+        minLon: minLon,
+        minLat: minLat,
+        maxLon: maxLon,
+        maxLat: maxLat
+      }) do
+    Polyline.encode([
+      {minLon, minLat},
+      {maxLon, maxLat}
+    ])
   end
 
   @doc ~S"""

@@ -2,7 +2,8 @@ defmodule Settings do
   # max extent the user may navigate the map
   def bounds, do: [8.9236, 53.1336, 10.8897, 53.9682]
   # start settings if no other map location/image is selected
-  def initial, do: [9.724553, 53.454363, 10.21779, 53.715809]
+  def initial,
+    do: %BoundingBox{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}

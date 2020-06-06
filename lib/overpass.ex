@@ -54,7 +54,7 @@ defmodule Overpass do
   end
 
   defp resolve(query) do
-    [minLon, minLat, maxLon, maxLat] = Settings.initial()
+    %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat} = Settings.initial()
     bounds = [minLat, minLon, maxLat, maxLon] |> Enum.map(&to_string/1) |> Enum.join(",")
 
     data =

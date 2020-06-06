@@ -4,7 +4,8 @@ defmodule Mapbox do
   defp username, do: Credentials.mapbox_username()
   defp secret_token(), do: Credentials.mapbox_secret_token()
 
-  plug Tesla.Middleware.BaseUrl, "https://api.mapbox.com"
+  @base "https://api.mapbox.com"
+  plug Tesla.Middleware.BaseUrl, @base
 
   plug Tesla.Middleware.Headers, [
     {"Content-Type", "application/json"},
@@ -13,6 +14,15 @@ defmodule Mapbox do
 
   plug Tesla.Middleware.Query, access_token: secret_token()
   plug Tesla.Middleware.JSON
+
+  @spec static_map_url(map()) :: binary()
+  def static_map_url(bounds) do
+    polyline = CheapRuler.bounds_to_polyline(bounds)
+
+    "#{@base}/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/path-0(#{polyline})/auto/150x100?access_token=#{
+      secret_token()
+    }"
+  end
 
   def upload_file(path) do
     name = Path.basename(path, ".mbtiles")

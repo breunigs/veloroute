@@ -164,7 +164,20 @@ map.on('style.load', () => {
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
+  map.once('click', removeFakeMap);
 });
+
+
+let fakeMap = document.getElementById("fakeMap");
+const removeFakeMap = () => {
+  if (fakeMap === null) return;
+  fakeMap.style.opacity = 0;
+  const localFake = fakeMap
+  fakeMap = null;
+  setTimeout(() => localFake.remove(), 200);
+}
+map.once('load', removeFakeMap);
+
 
 
 window.mapStateChanged = () => {

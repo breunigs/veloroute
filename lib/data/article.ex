@@ -36,8 +36,8 @@ defmodule Data.Article do
 
   defstruct @known_params
 
-  @required_params [:type, :title, :text, :date, :name]
-  def required_params, do: @required_params
+  @enforce_keys [:type, :title, :text, :date, :name]
+  def required_params, do: @enforce_keys
 
   def load(path) do
     {:ok, parsed} = YamlElixir.read_from_file(path)

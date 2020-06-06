@@ -30,6 +30,7 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="fakeMap" style="background-image: url('<%= Mapbox.static_map_url(@bounds) %>')"></div>
     <div id="mly"></div>
 
     <%= @inner_content %>

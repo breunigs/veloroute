@@ -86,7 +86,7 @@ defmodule VelorouteWeb.VariousHelpers do
         "minlat" => minLat,
         "minlon" => minLon
       }) do
-    %{
+    %BoundingBox{
       minLon: minLon,
       minLat: minLat,
       maxLon: maxLon,
@@ -100,7 +100,7 @@ defmodule VelorouteWeb.VariousHelpers do
          {minLat, ""} <- Float.parse(minLat),
          {maxLon, ""} <- Float.parse(maxLon),
          {maxLat, ""} <- Float.parse(maxLat) do
-      %{
+      %BoundingBox{
         minLon: minLon,
         minLat: minLat,
         maxLon: maxLon,
@@ -121,8 +121,13 @@ defmodule VelorouteWeb.VariousHelpers do
   def to_string_bounds([minLon, minLat, maxLon, maxLat]),
     do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
 
-  def to_string_bounds(%{minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon}),
-    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  def to_string_bounds(%BoundingBox{
+        minLat: minLat,
+        minLon: minLon,
+        maxLat: maxLat,
+        maxLon: maxLon
+      }),
+      do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
 
   @precision 6
   defp r(float), do: Float.round(float, @precision)
