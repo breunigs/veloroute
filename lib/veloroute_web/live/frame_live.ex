@@ -527,7 +527,7 @@ defmodule VelorouteWeb.FrameLive do
       bearing: Map.get(assigns, :bearing),
       slideshow: Map.get(assigns, :slideshow, false),
       mly_js: Map.get(assigns, :mly_js, nil),
-      bounds: Map.get(assigns, :bounds, Settings.initial()),
+      bounds: Map.get(assigns, :bounds, struct(%BoundingBox{}, Settings.initial())),
       bounds_ts: Map.get(assigns, :bounds_ts)
     ]
   end
