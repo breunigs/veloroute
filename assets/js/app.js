@@ -85,7 +85,7 @@ Hooks.control = {
 
     if (!pushEventQueued) return;
     for (let i = 0; i < pushEventQueued.length; i++) {
-      console.log("Pushing queued event ", event);
+      console.log("Pushing queued event ", pushEventQueued[i]);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
     pushEventQueued = null;
