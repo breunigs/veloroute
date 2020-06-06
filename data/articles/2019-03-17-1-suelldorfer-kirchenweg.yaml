@@ -1,12 +1,6 @@
 ---
-loc:
-- 9.8111
-- 53.5664
 title: Sülldorfer Kirchenweg (Veloroute 1, Abschnitt A13)
 type: intent
-grade: 3
-images: articles
-
 tags:
 - 1
 text: '<p>Der <a href="/#15/53.566988/9.810351">Sülldorfer Kirchenweg</a>

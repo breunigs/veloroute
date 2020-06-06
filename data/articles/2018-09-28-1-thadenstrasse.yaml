@@ -1,14 +1,9 @@
 ---
-loc:
-- 9.95913
-- 53.55679
-grade: 2
 title: Thadenstraße (Veloroute 1)
 type: construction
 start: 2020-02
 end: 2020-08
-images: articles
-
+images: 1
 tags:
 - 1
 text: <p>Die <a>Thadenstraße</a> soll im Sommer 2019 zu einer Fahrradstraße umgebaut
