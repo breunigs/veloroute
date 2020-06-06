@@ -100,7 +100,7 @@ defmodule Mapillary do
     keys
     |> Enum.chunk_every(100)
     |> Enum.flat_map(fn keys ->
-      lazy("posdata-#{Enum.join(keys, ",")}", fn ->
+      lazy("posdata-#{Enum.join(keys, ",")}-v2", fn ->
         jsonKeys = Jason.encode!(keys)
         query = ~s([["imageByKey",#{jsonKeys},["cca","cl"]]])
         IO.write(".")
@@ -109,12 +109,20 @@ defmodule Mapillary do
         data =
           resp.body
           |> get_in(["jsonGraph", "imageByKey"])
-          |> Enum.map(fn {imgKey, data} ->
+          |> Enum.map(fn {img_key, data} ->
+            bearing = get_in(data, ["cca", "value"])
+            lon = get_in(data, ["cl", "value", "lon"])
+            lat = get_in(data, ["cl", "value", "lat"])
+            img = %{img: img_key, lat: lat, lon: lon, bearing: bearing}
+
+            # processing hasn't finished, fall back to GPS info
+            img =
+              if !bearing || !lon || !lat,
+                do: Map.merge(img, image_lookup(img_key), fn _k, v1, v2 -> v1 || v2 end),
+                else: img
+
             # ensure we're passing floats
-            bearing = get_in(data, ["cca", "value"]) / 1
-            lon = get_in(data, ["cl", "value", "lon"]) / 1
-            lat = get_in(data, ["cl", "value", "lat"]) / 1
-            {imgKey, %{img: imgKey, lat: lat, lon: lon, bearing: bearing}}
+            {img_key, %{img | lat: img.lat / 1, lon: img.lon / 1, bearing: img.bearing / 1}}
           end)
           |> Enum.into(%{})
 
