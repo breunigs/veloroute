@@ -1,7 +1,6 @@
 defmodule GPX do
   alias Data.Map.Node
   alias Data.Map.Way
-  alias Data.Map.Relation
 
   require Logger
 
