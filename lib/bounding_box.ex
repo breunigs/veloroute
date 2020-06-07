@@ -8,6 +8,6 @@ end
 
 defmodule BoundingBox do
   @params [:minLon, :minLat, :maxLon, :maxLat]
-  defstruct @params
   @enforce_keys @params
+  defstruct @params
 end

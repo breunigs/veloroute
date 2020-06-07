@@ -3,7 +3,7 @@ defmodule Settings do
   def bounds, do: [8.9236, 53.1336, 10.8897, 53.9682]
   # start settings if no other map location/image is selected
   def initial,
-    do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
+    do: %BoundingBox{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
   def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
