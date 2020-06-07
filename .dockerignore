@@ -3,9 +3,11 @@
 !assets/
 assets/node_modules/
 
-!data/
-data/cache/
-data/jsomhome/
+!data/articles/
+!data/images/
+!data/*.ex
+!data/*.exs
+!data/*.osm
 
 !config/
 
@@ -13,6 +15,5 @@ data/jsomhome/
 lib/mix/tasks/deploy.ex
 
 !mix*
-!priv/
 !test/
 !tools/
