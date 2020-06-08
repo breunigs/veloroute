@@ -234,6 +234,37 @@
   <node id='-106388' action='modify' lat='53.52788254351' lon='10.0211030218' />
   <node id='-106389' action='modify' lat='53.52819025958' lon='10.02106010646' />
   <node id='-107299' action='modify' lat='53.57042971442' lon='10.07700919203' />
+  <node id='-107301' action='modify' lat='53.48079000798' lon='10.00865220487' />
+  <node id='-107302' action='modify' lat='53.48070700748' lon='10.00936567247' />
+  <node id='-107303' action='modify' lat='53.48179557803' lon='10.00972508848' />
+  <node id='-107304' action='modify' lat='53.48264789969' lon='10.01007914007' />
+  <node id='-107305' action='modify' lat='53.48312353242' lon='10.01062631071' />
+  <node id='-107306' action='modify' lat='53.48353212542' lon='10.01137196481' />
+  <node id='-107307' action='modify' lat='53.48409074228' lon='10.01269697607' />
+  <node id='-107308' action='modify' lat='53.4852494498' lon='10.01544892251' />
+  <node id='-107309' action='modify' lat='53.48632832807' lon='10.01795410573' />
+  <node id='-107310' action='modify' lat='53.48667943638' lon='10.01860856473' />
+  <node id='-107311' action='modify' lat='53.48717736682' lon='10.01932203233' />
+  <node id='-107312' action='modify' lat='53.48762103068' lon='10.01974045694' />
+  <node id='-107313' action='modify' lat='53.48825300429' lon='10.02001404226' />
+  <node id='-107314' action='modify' lat='53.48877006661' lon='10.02009450853' />
+  <node id='-107315' action='modify' lat='53.48935733961' lon='10.01999258459' />
+  <node id='-107316' action='modify' lat='53.49023823387' lon='10.01962243974' />
+  <node id='-107317' action='modify' lat='53.49109996056' lon='10.01915037096' />
+  <node id='-107318' action='modify' lat='53.49135847515' lon='10.01891433656' />
+  <node id='-107319' action='modify' lat='53.49123081382' lon='10.0185978359' />
+  <node id='-107320' action='modify' lat='53.49025100032' lon='10.01914500654' />
+  <node id='-107322' action='modify' lat='53.48958394822' lon='10.01947760046' />
+  <node id='-107323' action='modify' lat='53.48888177677' lon='10.019638533' />
+  <node id='-107324' action='modify' lat='53.48795297759' lon='10.01950978696' />
+  <node id='-107325' action='modify' lat='53.4871837505' lon='10.01878559053' />
+  <node id='-107326' action='modify' lat='53.48671773893' lon='10.01805066526' />
+  <node id='-107327' action='modify' lat='53.48589103456' lon='10.01613556802' />
+  <node id='-107328' action='modify' lat='53.48389921732' lon='10.01143633783' />
+  <node id='-107329' action='modify' lat='53.48341401691' lon='10.0104170984' />
+  <node id='-107330' action='modify' lat='53.48288412064' lon='10.00972508848' />
+  <node id='-107331' action='modify' lat='53.48254255749' lon='10.00947832525' />
+  <node id='-107332' action='modify' lat='53.48199349694' lon='10.00922083318' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17461,6 +17492,42 @@
     <tag k='name' v='Max-Brauer-Allee' />
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
+  </way>
+  <way id='-104492' action='modify'>
+    <nd ref='-107301' />
+    <nd ref='-107302' />
+    <nd ref='-107303' />
+    <nd ref='-107304' />
+    <nd ref='-107305' />
+    <nd ref='-107306' />
+    <nd ref='-107307' />
+    <nd ref='-107308' />
+    <nd ref='-107309' />
+    <nd ref='-107310' />
+    <nd ref='-107311' />
+    <nd ref='-107312' />
+    <nd ref='-107313' />
+    <nd ref='-107314' />
+    <nd ref='-107315' />
+    <nd ref='-107316' />
+    <nd ref='-107317' />
+    <nd ref='-107318' />
+    <nd ref='-107319' />
+    <nd ref='-107320' />
+    <nd ref='-107322' />
+    <nd ref='-107323' />
+    <nd ref='-107324' />
+    <nd ref='-107325' />
+    <nd ref='-107326' />
+    <nd ref='-107327' />
+    <nd ref='-107328' />
+    <nd ref='-107329' />
+    <nd ref='-107330' />
+    <nd ref='-107331' />
+    <nd ref='-107332' />
+    <nd ref='-107301' />
+    <tag k='name' v='2020-06-08-otto-brenner-strasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />

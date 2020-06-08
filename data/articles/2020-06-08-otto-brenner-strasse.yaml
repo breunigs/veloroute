@@ -1,0 +1,9 @@
+---
+type: intent
+title: Otto-Brenner-Straße (Veloroute 10)
+start: 2021
+tags:
+- 10
+text: >
+  <p>Der Bezirk Mitte prüft wie die Veloroute 10 entlang der <a>Otto-Brenner-Straße</a> am besten ausgebaut werden kann. Man überlegt jeweils eine der KFZ-Spuren zu einer Fahrradspur umzuwidmen und diese möglicherweise mit Absperrungen o.ä. gegen den KFZ-Verkehr zu schützen. Da momentan noch alles in der Vorplanung ist, muss abgewartet werden, ob der Umbau wirklich so erfolgt. Angesetzt ist dieser für 2021. Für den Rad- und Fußverkehr wäre dieser Umbau sehr vorteilhaft und dem KFZ-Verkehr dürften mit <a bounds="10.015402,53.477959,10.035841,53.486402">A1</a> und <a bounds="9.987216,53.480523,10.013433,53.491352">B75</a> auch weiterhin genügend Alternativen bereitstehen.</p>
+  <p><a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/veloroute-10-ausbau-veddel-wilhelmsburg-ab-sommer-2020">Infoseite der Stadt</a> (noch keine Pläne für diese Maßnahme)</p>
