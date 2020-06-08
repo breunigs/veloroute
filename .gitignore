@@ -43,3 +43,4 @@ npm-debug.log
 
 /.vscode
 /.elixir_ls
+xref_graph.*
