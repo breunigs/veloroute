@@ -40,7 +40,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_event("map-zoom-to", attr, socket) do
-    Logger.debug("map-zoom-to")
+    Logger.debug("map-zoom-to: #{inspect(attr)}")
 
     socket =
       socket

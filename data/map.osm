@@ -265,6 +265,21 @@
   <node id='-107330' action='modify' lat='53.48288412064' lon='10.00972508848' />
   <node id='-107331' action='modify' lat='53.48254255749' lon='10.00947832525' />
   <node id='-107332' action='modify' lat='53.48199349694' lon='10.00922083318' />
+  <node id='-107334' action='modify' lat='53.54164467239' lon='10.10915457934' />
+  <node id='-107335' action='modify' lat='53.54140559099' lon='10.10878979892' />
+  <node id='-107336' action='modify' lat='53.54118882269' lon='10.10962664813' />
+  <node id='-107337' action='modify' lat='53.54102943352' lon='10.11005580157' />
+  <node id='-107338' action='modify' lat='53.54079991207' lon='10.11030792922' />
+  <node id='-107339' action='modify' lat='53.5405735772' lon='10.11035084456' />
+  <node id='-107340' action='modify' lat='53.53976067438' lon='10.11018186539' />
+  <node id='-107341' action='modify' lat='53.53941159955' lon='10.11013090342' />
+  <node id='-107342' action='modify' lat='53.53940203581' lon='10.11056273907' />
+  <node id='-107343' action='modify' lat='53.54011134026' lon='10.11065661639' />
+  <node id='-107344' action='modify' lat='53.54065646054' lon='10.11073708266' />
+  <node id='-107345' action='modify' lat='53.54084135354' lon='10.11067807406' />
+  <node id='-107346' action='modify' lat='53.54102624574' lon='10.11052250594' />
+  <node id='-107347' action='modify' lat='53.54119360435' lon='10.11035084456' />
+  <node id='-107348' action='modify' lat='53.54136255619' lon='10.10989486903' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17527,6 +17542,26 @@
     <nd ref='-107332' />
     <nd ref='-107301' />
     <tag k='name' v='2020-06-08-otto-brenner-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-104494' action='modify'>
+    <nd ref='-107334' />
+    <nd ref='-107335' />
+    <nd ref='-107336' />
+    <nd ref='-107337' />
+    <nd ref='-107338' />
+    <nd ref='-107339' />
+    <nd ref='-107340' />
+    <nd ref='-107341' />
+    <nd ref='-107342' />
+    <nd ref='-107343' />
+    <nd ref='-107344' />
+    <nd ref='-107345' />
+    <nd ref='-107346' />
+    <nd ref='-107347' />
+    <nd ref='-107348' />
+    <nd ref='-107334' />
+    <tag k='name' v='2020-06-10-reclamstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>

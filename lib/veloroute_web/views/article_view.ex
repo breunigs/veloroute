@@ -210,7 +210,11 @@ defmodule VelorouteWeb.ArticleView do
 
       find_attribute(attrs, "bounds") != nil ->
         bounds = find_attribute(attrs, "bounds")
-        {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds}], children}
+        new_attr = [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds}]
+
+        img = find_attribute(attrs, "img")
+        new_attr = if img, do: [{"phx-value-img", img} | new_attr], else: new_attr
+        {"a", new_attr, children}
 
       nil == href ->
         name = Floki.text(children)
