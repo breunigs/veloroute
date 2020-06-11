@@ -280,6 +280,10 @@
   <node id='-107346' action='modify' lat='53.54102624574' lon='10.11052250594' />
   <node id='-107347' action='modify' lat='53.54119360435' lon='10.11035084456' />
   <node id='-107348' action='modify' lat='53.54136255619' lon='10.10989486903' />
+  <node id='-107387' action='modify' lat='53.61479073336' lon='10.07477221608' />
+  <node id='-107388' action='modify' lat='53.61473329025' lon='10.07476537268' />
+  <node id='-107389' action='modify' lat='53.61467370507' lon='10.07618666887' />
+  <node id='-107390' action='modify' lat='53.61473114826' lon='10.07619351227' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17562,6 +17566,15 @@
     <nd ref='-107348' />
     <nd ref='-107334' />
     <tag k='name' v='2020-06-10-reclamstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-104532' action='modify'>
+    <nd ref='-107387' />
+    <nd ref='-107388' />
+    <nd ref='-107389' />
+    <nd ref='-107390' />
+    <nd ref='-107387' />
+    <tag k='name' v='2018-10-25-5-am-dorfgraben' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
