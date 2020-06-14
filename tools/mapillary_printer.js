@@ -8,17 +8,14 @@ function printStuffs() {
   prevKey = pKey;
   console.log(pKey);
   if (leTimeout) { clearTimeout(leTimeout); }
-  leTimeout = setTimeout(fetchStuffs, 100);
+  leTimeout = setTimeout(fetchStuffs, 500);
 }
 
 function fetchStuffs() {
-  let pKey = history.state.pKey;
-  fetch('https://a.mapillary.com/v3/images/' + pKey + '?client_id=MjFBX2pVMXN2aUlrSXFCVGlYMi11dzo4Yjk0NGY1MjMzYmExMzI2')
-    .then(resp => resp.json())
-    .then(json => json.properties.sequence_key)
-    .then(function (sKey) {
-      document.querySelector("#seqkey").innerHTML = sKey;
-    })
+  document.getElementById("OptionsIconContainer").click();
+  let seq = document.querySelectorAll("app-copy-field input")[1].value
+  document.getElementById("OptionsIconContainer").click();
+  document.querySelector("#seqkey").innerHTML = seq;
 }
 
 window.setInterval(printStuffs, 10);
