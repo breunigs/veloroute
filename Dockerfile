@@ -48,7 +48,7 @@ RUN \
 
 
 FROM elixirbase as js
-RUN apk add --no-cache nodejs npm brotli
+RUN apk add --no-cache nodejs npm brotli git
 RUN --mount=type=cache,target=/build/assets/node_modules \
   npm install --prefix ./assets && \
   npm run deploy --prefix ./assets && \
