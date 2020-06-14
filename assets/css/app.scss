@@ -111,6 +111,9 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
+  -ms-hyphens: auto;
+  hyphens: auto;
+
   &.bottomBumper {
     margin-bottom: 2.5rem;
   }
