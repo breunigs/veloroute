@@ -17709,7 +17709,7 @@
     <nd ref='95549170006055802' />
     <tag k='comfortable' v='no' />
     <tag k='fast' v='no' />
-    <tag k='oneway' v='true' />
+    <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
   </way>
   <way id='-104883' action='modify'>
@@ -17719,7 +17719,7 @@
     <nd ref='95592050006060588' />
     <tag k='comfortable' v='no' />
     <tag k='fast' v='no' />
-    <tag k='oneway' v='true' />
+    <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
   </way>
   <way id='1880371' action='modify' version='1'>
