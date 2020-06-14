@@ -92,13 +92,13 @@ const ensureIndicatorInView = () => {
 let indicatorFocus = null;
 let prevIndicatorPos = '';
 const maybeEnsureIndicatorInView = () => {
-  if (state.slideshow === "true" && indicatorFocus === null) {
+  if (state.sequence !== "" && indicatorFocus === null) {
     indicatorFocus = setInterval(ensureIndicatorInView, 2000);
-  } else if (state.slideshow !== "true" && indicatorFocus !== null) {
+  } else if (state.sequence === "" && indicatorFocus !== null) {
     clearInterval(indicatorFocus);
     indicatorFocus = null;
   } else if (indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
-    console.debug("indicator present, and changed, ensuring it's in view", indicator)
+    // console.debug("indicator present, and changed, ensuring it's in view", indicator)
     prevIndicatorPos = `${state.lon},${state.lat}`;
     setTimeout(ensureIndicatorInView, 0);
   }

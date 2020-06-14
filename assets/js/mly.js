@@ -24,33 +24,85 @@ const mly = new Mapillary.Viewer(
       cover: false,
       direction: false,
       keyboard: false,
-      marker: true,
+      marker: false,
       sequence: false,
       zoom: false,
     }
   }
 );
 
-mly.setFilter(['in', 'sequenceKey'] + settings.seqs.split(" "));
+mly._navigator.stateService.setSpeed(1.9);
+window.mly = mly;
+
+const routeComponent = mly.getComponent('route');
+let prevSeqs = "";
+let paths = [];
+const advanceSlideshow = () => {
+  if (paths.length === 0) {
+    return deactivateSlideshow();
+  }
+  routeComponent.configure({ paths: paths, playing: true });
+  mly.moveToKey(paths[0].startKey);
+}
+
+const deactivateSlideshow = () => {
+  if (!routeComponent.activated) {
+    return;
+  }
+  console.debug("stopping slideshow");
+  routeComponent.stop();
+  mly.deactivateComponent('route');
+  paths = [];
+}
+
+const handleImageUpdates = () => {
+  if (state.sequence == "") {
+    deactivateSlideshow();
+    mly.moveToKey(state.img);
+    prevSeqs = "";
+    return;
+  }
+
+  if (prevSeqs == state.sequence) {
+    return;
+  }
+  prevSeqs = state.sequence;
+
+  const refs = state.sequence.split(" ");
+  console.debug("updating image sequence, starting from img", refs[1]);
+
+  paths = [];
+  for (let i = 0; i < refs.length - 2; i += 3) {
+    paths.push({
+      sequenceKey: refs[i],
+      startKey: refs[i + 1],
+      stopKey: refs[i + 2],
+      infoKeys: []
+    });
+  }
+  advanceSlideshow(paths);
+  mly.activateComponent('route');
+}
 
 mly.on(Mapillary.Viewer.navigablechanged, () => {
   console.debug("mly loaded initially with", initialImg);
-  if (initialImg !== state.img) {
-    console.debug("…moving it to", state.img)
-    mly.moveToKey(state.img);
-  }
   document.getElementById("mlyPlaceholder").style.display = 'none';
+  handleImageUpdates();
 });
+
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
   console.debug("mly loaded", node.key)
-  window.pushEvent("mly-nodechanged", { img: node.key })
+
+  if (paths[0] && node.key === paths[0].stopKey) {
+    console.info("end of sequence, manually shifting")
+    routeComponent.stop();
+    paths.shift();
+    advanceSlideshow(paths);
+  }
+
+  window.pushEvent("mly-nodechanged", { img: node.key, routePlaying: !!routeComponent })
 });
 
 window.addEventListener("resize", () => mly.resize());
-
-window.mlyStateChanged = function () {
-  console.debug("updating img to", state.img);
-  mly.moveToKey(state.img);
-}
-
+window.mlyStateChanged = handleImageUpdates;
 mly.on(Mapillary.Viewer.click, () => window.pushEvent("sld-playpause", {}))

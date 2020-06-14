@@ -14,7 +14,7 @@ function updateState() {
 
   // XXX: the element might be replaced by liveview, need to search it every time
   window.state = document.getElementById("control").dataset;
-  console.log(state);
+  // console.log(state);
 
   if (state.mlyJs && loadMly) loadMly();
   if (typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }

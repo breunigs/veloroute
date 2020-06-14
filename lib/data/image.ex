@@ -10,7 +10,8 @@ defmodule Data.Image do
            lat: float(),
            lon: float(),
            bearing: float(),
-           seq: Mapillary.ref()
+           seq: Mapillary.ref(),
+           seq_idx: non_neg_integer()
          }
   @type img() :: img_non_nil() | nil
   @typep ref_or_nil() :: Mapillary.ref() | nil
@@ -26,7 +27,16 @@ defmodule Data.Image do
     parsed
     |> Enum.map(fn {name, seqs} ->
       IO.write("|")
-      imgs = Enum.flat_map(seqs, &Mapillary.resolve(&1))
+
+      imgs =
+        seqs
+        |> Enum.with_index()
+        |> Enum.flat_map(fn {seq, idx} ->
+          seq
+          |> Mapillary.resolve()
+          |> Enum.map(&Map.put(&1, :seq_idx, idx))
+        end)
+
       name = String.split(name, " ", parts: 2) |> List.to_tuple()
       {name, imgs}
     end)
@@ -137,6 +147,29 @@ defmodule Data.Image do
     |> Enum.reject(fn x -> x == :index end)
     |> Enum.map(fn {id, _rest} -> id end)
     |> Enum.uniq()
+  end
+
+  @type sequence() :: %{from: Mapillary.ref(), to: Mapillary.ref(), seq: Mapillary.ref()}
+  @spec sequence_from(indexed_images(), Mapillary.ref(), route: route()) :: [sequence()] | nil
+  def sequence_from(all, img, route: route) do
+    case find_by_img(all, img, route: route) do
+      {:not_found, _} ->
+        Logger.debug("No image found for img=#{img} with route=#{inspect(route)} (sequence_from)")
+        nil
+
+      {name, imgs} ->
+        cur_pos = all[:index][img][name]
+
+        Enum.slice(imgs, cur_pos..-1)
+        |> Enum.reduce([], fn
+          %{seq_idx: idx, img: img}, [%{seq_idx: idx} = last | prevs] ->
+            [%{last | to: img} | prevs]
+
+          %{seq_idx: idx, img: img, seq: seq}, seqs ->
+            [%{to: img, from: img, seq: seq, seq_idx: idx} | seqs]
+        end)
+        |> Enum.reverse()
+    end
   end
 
   @no_surrounding_images %{route: nil, prev: nil, curr: nil, next: nil}

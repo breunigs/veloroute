@@ -8,8 +8,6 @@ defmodule VelorouteWeb.FrameLive do
   alias Data.Article
   import Mapillary, only: [is_ref: 1]
 
-  @slideshow_interval_ms 500
-
   @initial_state [
     mly_previous_img: nil,
     autoplayed_once: false,
@@ -19,7 +17,9 @@ defmodule VelorouteWeb.FrameLive do
     prev_page: nil,
     current_page: nil,
     bounds: nil,
+    slideshow: false,
     map_bounds: nil,
+    sequence: nil,
     route: Settings.route()
   ]
 
@@ -35,7 +35,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_info(:check_updates, socket) do
-    socket = socket |> maybe_advance_slideshow |> update_url_query
+    socket = socket |> update_url_query
     {:noreply, socket}
   end
 
@@ -113,36 +113,37 @@ defmodule VelorouteWeb.FrameLive do
 
     socket =
       cond do
-        article -> socket |> push_patch(to: article_path(socket, article, img))
-        img -> socket |> assign(route: route) |> set_img(img)
-        true -> socket
+        article ->
+          socket |> slideshow(false) |> push_patch(to: article_path(socket, article, img))
+
+        img ->
+          socket |> slideshow(false) |> assign(route: route) |> set_img(img)
+
+        true ->
+          socket
       end
 
     {:noreply, socket |> load_mly}
   end
 
-  # ignore double events for the same image
   def handle_event(
         "mly-nodechanged",
-        %{"img" => desired},
-        %{assigns: %{mly_previous_img: prev}} = socket
-      )
-      when prev == desired do
-    Logger.debug("mly-nodechanged double event img=#{prev}")
-    {:noreply, socket}
-  end
-
-  def handle_event("mly-nodechanged", %{"img" => img}, socket) do
-    Logger.debug("mly-nodechanged to #{img}")
+        %{"img" => img, "routePlaying" => true},
+        %{assigns: %{slideshow: true}} = socket
+      ) do
+    Logger.debug("mly-nodechanged to #{img} during slideshow, taking it")
 
     socket =
       socket
-      |> assign(mly_loaded: true, mly_previous_img: img)
-      |> assign(img_load_last: Time.utc_now())
-      |> slideshow_schedule_next_img
+      |> assign(mly_loaded: true)
+      |> set_img(img)
+      |> slideshow(:maybe_stop)
 
     {:noreply, socket}
   end
+
+  def handle_event("mly-nodechanged", _params, socket),
+    do: {:noreply, assign(socket, mly_loaded: true)}
 
   def handle_event("convert-hash", %{"hash" => hash}, socket) do
     Logger.debug("converting hash #{hash}")
@@ -355,17 +356,50 @@ defmodule VelorouteWeb.FrameLive do
 
   defp slideshow(socket, :toggle), do: slideshow(socket, !socket.assigns.slideshow)
 
-  defp slideshow(socket, status) when is_boolean(status) do
-    Logger.debug("slideshow: setting state to #{status}")
+  defp slideshow(%{assigns: %{img_next: nil}} = socket, :maybe_stop), do: slideshow(socket, false)
+  defp slideshow(socket, :maybe_stop), do: socket
+
+  defp slideshow(socket, true) do
+    socket = maybe_replace_start_image(socket)
+
+    Logger.debug(
+      "slideshow: starting from route=#{inspect(socket.assigns.route)} img=#{socket.assigns.img}"
+    )
+
+    seq_str =
+      Data.Image.sequence_from(
+        Data.ImageCache.images(),
+        socket.assigns.img,
+        route: socket.assigns.route
+      )
+      |> sequences_to_scalar
 
     socket
-    |> assign(slideshow: status)
-    |> assign(autoplayed_once: socket.assigns.autoplayed_once || status)
-    |> maybe_advance_slideshow
+    |> assign(sequence: seq_str)
+    |> assign(slideshow: true)
+    |> assign(autoplayed_once: true)
+    |> load_mly
+  end
+
+  defp slideshow(socket, false) do
+    Logger.debug("slideshow: stop")
+
+    socket
+    |> assign(slideshow: false)
+    |> assign(sequence: nil)
+  end
+
+  defp sequences_to_scalar(nil), do: nil
+
+  defp sequences_to_scalar(seqs) when is_list(seqs) do
+    Enum.map(seqs, fn %{seq: seq, from: from, to: to} ->
+      "#{seq} #{from} #{to}"
+    end)
+    |> Enum.join(" ")
   end
 
   @default_image Settings.image()
-  defp maybe_advance_slideshow(%{assigns: %{slideshow: true, img: @default_image}} = socket) do
+  defp maybe_replace_start_image(%{assigns: %{img: @default_image}} = socket) do
     route = socket.assigns.route || Settings.route()
     Logger.debug("slideshow: replacing default image (current route: #{inspect(route)})")
 
@@ -376,63 +410,11 @@ defmodule VelorouteWeb.FrameLive do
     |> set_img(img)
   end
 
-  defp maybe_advance_slideshow(%{assigns: %{slideshow: false}} = socket), do: socket
-  defp maybe_advance_slideshow(%{assigns: %{mly_loaded: false}} = socket), do: socket
-
-  defp maybe_advance_slideshow(%{assigns: %{route: nil, slideshow: true}} = socket),
-    do: slideshow(socket, false)
-
-  defp maybe_advance_slideshow(%{assigns: %{mly_previous_img: prev, img: curr}} = socket)
-       when prev != curr,
-       do: socket
-
-  defp maybe_advance_slideshow(%{assigns: %{img_load_last: %Time{}}} = socket) do
-    if slideshow_next_img_in(socket) == 0 do
-      case socket.assigns do
-        %{img_next: nil} ->
-          Logger.debug("slideshow: no more images")
-          slideshow(socket, false)
-
-        %{img_next: img} ->
-          Logger.debug("slideshow: advancing to #{img}")
-          set_img(socket, img)
-      end
-    else
-      socket
-    end
-  end
-
-  defp maybe_advance_slideshow(socket) do
-    Logger.warn(":img_load_last not set in state, even though mly was loaded")
-    assign(socket, :img_load_last, Time.utc_now())
-  end
-
-  defp slideshow_next_img_in(%{assigns: %{img_load_last: %Time{} = t}} = socket) do
-    diff = Time.diff(Time.utc_now(), t, :millisecond)
-    max(@slideshow_interval_ms - diff - slideshow_image_load_latency(socket), 0)
-  end
-
-  defp slideshow_next_img_in(_socket), do: nil
-
-  defp slideshow_schedule_next_img(socket) do
-    remain = slideshow_next_img_in(socket)
-    if remain != nil, do: Process.send_after(self(), :check_updates, remain)
-    socket
-  end
-
-  defp slideshow_image_load_latency(%{
-         assigns: %{img_load_start: %Time{} = start, img_load_last: %Time{} = finish}
-       }) do
-    lag = Time.diff(finish, start, :millisecond)
-    Logger.debug("img load time is #{lag}ms")
-    max(lag, 0)
-  end
-
-  defp slideshow_image_load_latency(_socket), do: 0
+  defp maybe_replace_start_image(socket), do: socket
 
   defp maybe_autoplay(%{assigns: %{autoplayed_once: true}} = socket), do: socket
   defp maybe_autoplay(%{assigns: %{slideshow: true}} = socket), do: socket
-  defp maybe_autoplay(socket), do: slideshow(socket, true) |> load_mly
+  defp maybe_autoplay(socket), do: slideshow(socket, true)
 
   defp maybe_update_initial_route(socket, taglike)
 
@@ -525,7 +507,7 @@ defmodule VelorouteWeb.FrameLive do
       lon: Map.get(assigns, :lon),
       lat: Map.get(assigns, :lat),
       bearing: Map.get(assigns, :bearing),
-      slideshow: Map.get(assigns, :slideshow, false),
+      sequence: Map.get(assigns, :sequence),
       mly_js: Map.get(assigns, :mly_js, nil),
       bounds: Map.get(assigns, :bounds, struct(BoundingBox, Settings.initial())),
       bounds_ts: Map.get(assigns, :bounds_ts)

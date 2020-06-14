@@ -36,7 +36,6 @@
     <%= @inner_content %>
 
     <%= content_tag(:div, "", id: "settings", data: [
-        seqs: Data.ImageCache.sequences() |> Enum.join(" "),
         mapbox_access_token: Credentials.mapbox_access_token(),
         mapillary_api_key: Credentials.mapillary_api_key(),
         max_bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),

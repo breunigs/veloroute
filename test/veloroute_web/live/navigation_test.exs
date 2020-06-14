@@ -165,7 +165,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert html =~ ~s|Du folgst: Alltagsroute 7|
     assert html =~ ~s|data-mly-js="/|
-    assert html =~ ~s|data-slideshow="true"|
+    assert html =~ ~r/data-sequence="[a-zA-Z0-9_-]{22} /
 
     html =
       view
