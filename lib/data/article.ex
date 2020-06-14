@@ -224,7 +224,7 @@ defmodule Data.Article do
         "construction" -> "Baustelle: #{t}"
         "planned-construction" -> "Planung: #{t}"
         "changed-routing" -> "Routenänderung: #{t}"
-        "bettelampel" -> "Bettelampel: #{t}"
+        "ampel" -> "Unfaire Ampel: #{t}"
         "intent" -> "Vorhaben: #{t}"
         "issue" -> "Problemstelle: #{t}"
         "finished" -> "Abgeschlossen: #{t}"

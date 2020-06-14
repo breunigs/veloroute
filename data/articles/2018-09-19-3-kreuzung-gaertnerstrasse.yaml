@@ -4,9 +4,7 @@ loc:
 - 53.57786
 grade: 4
 title: Kreuzung Gärtnerstraße (Veloroute 3)
-type: bettelampel
-images: articles
-
+type: ampel
 tags:
 - 3
 text: "<p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a>

@@ -1,17 +1,25 @@
 3 (stadtauswärts nach Niendorf):
-- { seq: "kjSgXLcTIfzygMkyawYb6Q", from: "ZQCAfMTq-8SN0UBx3u4ZAA", to: "ENhqIemCXitOs1_rWQkGhA" }
-- { seq: "n_bsr8eaeJA9dTuwLFXfUg", from: "x5Kqy3BkVRpmv7d9IrBmlg", to: "L6wo1bHVjpCPsxCy7wA3mQ" }
-- { seq: "OENR_IPmFYfGj7C9e0eEaA", from: "RL1fz_apRicAzxzDp37CEQ", to: "-JGv2gimisXx_YI3FHUkyQ" }
-- { seq: "LqXFia8QV5kEAIepr2Tcig", from: "xeTdCioaohlRdAlbDxqBwQ", to: "xkYEC6yue58ZPCWhB_oigQ" }
-- { seq: "OENR_IPmFYfGj7C9e0eEaA", from: "naxgd1WwFidvKK3zZeXzNQ", to: "gYdeM6CBs1leb-8jWEfEgQ" }
-- { seq: "nJHy4FJWzkUgGJoQtYsINw", from: "rDHBx9ikVmXFcMeuM9pZeA", to: "LB0IONsgmred3SL-9PSuGw" }
-- { seq: "JtwkGDSPgfW-BQSSlmSpWw", from: "2f7sLWSd068K9XoVfTCa9A", to: "HkTBGJ4ZUwmSMWIh4qiGtA" }
-- { seq: "LzqPbTttaKkevyXuKVI0yg", from: "OZEt16wVpYjHvFtTgMIhvQ", to: "BltqCAtQvfToKRMD-rQQng" }
-- { seq: "LzqPbTttaKkevyXuKVI0yg", from: "1Ypt967bYnTMgF83xCgjLg", to: "liiHwqG2BAo4yE8l8-nWdw" }
-- { seq: "3TiUBt249ca_qtRj4DLsBw", from: "hTGy-lp5W0Nug0-sNC_6Bw", to: "mjzB9AjeJQtCJwc8scWUmw" }
+- { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "_8SHUcJR5rQdE9BgLQgOcQ", to: "MdUam0XWCeUwWbRW8gYxrQ" }
+- { seq: "_gQPGIJ7g6lAI9poRctoOg", from: "cd7_6BilaxMJ2tdWXTmHew", to: "b_oL09Zs93Mx1KaZLedgYA" }
+- { seq: "_gQPGIJ7g6lAI9poRctoOg", from: "50fWfkMRmagKF4yCOa3JaA", to: "fUrIHIwEWqlN10UqMK_tWA" }
+- { seq: "Imas1OMwocKCBlg8H2Grfg", from: "wAReK81uGQwcaTIDlfNQXg", to: "vXvdexqqK3riEbuxUj7HYA" }
+- { seq: "Imas1OMwocKCBlg8H2Grfg", from: "VfPvVblrmU_gXm9aj-C8HQ", to: "IYLGhE2goUKpiTw8V2YEvQ" }
+- { seq: "d3QDGzM0JLzgSkkvSNxNgQ", from: "quLst2nbrcpzYuIBRnNF_w", to: "uG1HLzvZEumpCl3l7gCPyQ" }
+- { seq: "d3QDGzM0JLzgSkkvSNxNgQ", from: "L-4OKrxsLWTaIQJCLGEu3w", to: "OeZV5ma4x0hIHUxluNf9tg" }
+- { seq: "9mosx62E9-SIRe-JGU0h5A", from: "jUHshRSnwZbQ0Jisl-VamA", to: "ykb52xy4oCL1ED1rOsWxmA" }
+- { seq: "67-J9RVaiN5LM_5y0Hvh9g", from: "3nlvX0owsCkXgtkm93bKEQ", to: "MypJjhX5royHxNdYTFu_9A" }
+- { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "yuVIuVGSsoWG-MdLERkUpw", to: "Buo13BPTWKJou-Vduv5zfw" }
+
 3 (stadteinwärts von Niendorf):
-- { seq: "Zh2iedGF8AFlSpb79mx5Xw", from: "Q_MyBPtYONtVA5VCV146gg", to: "C9KU7xyfDRHE0sPqSyAZKw" }
-- { seq: "Pxjy5jEErsB7LnqK8kYY9Q", from: "auPPEoWzJqgitJZSOkMioA", to: "JXTPufHYV-X08HzgKc_-TQ" }
-- { seq: "89SysGY3-HhLz1Zacoiadg", from: "vOWxVwN4b48Y-Utx1omoKg", to: "h4fLW35ek2oeEjztcAiEvA" }
-- { seq: "g7xmvb5IrZurmvTpzDCQzA", from: "CaPPCnML0Ig3WT6NTF0aRg", to: "lVYia24xJNNsH2dO_SQuUA" }
-- { seq: "Cof6KH_gn4Ka-pyuxCnnag", from: "Wr5JVWImF8l7zjqWRhCj4A", to: "oBHSLrIyiyKlvB2w-hh3rA" }
+- { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "Buo13BPTWKJou-Vduv5zfw", to: "AlDpzby0dRidNyke0oQEqg" }
+- { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "D57GLmmnVDPh061LsSFshw", to: "uCloyjAskaGmYxoOEW31hw" }
+- { seq: "mbulr5a2_Umj71MfR6_7Jw", from: "N-Kdp8pgrxAuBjW1WhZV_w", to: "-xmOBg2QA2-aY4PlznILKA" }
+- { seq: "9fuCEygV5kbs4HDEi4esQA", from: "0uPZzYZBUvtTB_aRdUmdRg", to: "UL_Zw3sOnthPYj2IC17NjQ" }
+- { seq: "57efIxG6xRDQ4PqAf-zp-w", from: "mIx25WtHo6CuGqyMYBZ5Zw", to: "ca2ISnmzN89Ofs73bZKVtA" }
+- { seq: "wKYB0dor8Qvxn0f3lvmegQ", from: "diha0aroypzbz-nBC-UkZA", to: "xstumWg2wFDBD6Ewnhf5oQ" }
+- { seq: "wKYB0dor8Qvxn0f3lvmegQ", from: "6TufO3CjTEos_vZjDzlHoQ", to: "ZoJznzZncmpdbQK8SmLdrg" }
+- { seq: "izRkerJ77I2T0qbK5qFPfg", from: "R8XcEejUaQdyQEEzEphyMQ", to: "1wksmqpZwZ4QyJVludt5EA" }
+- { seq: "izRkerJ77I2T0qbK5qFPfg", from: "wLphpQC00Z2S977J-EBplw", to: "_Hp4XSPPhypf_IzeBHbyNA" }
+- { seq: "7ZMnXdUlvbOFkGA8osc6jA", from: "78izeKtjM06lbT1vaFvu6g", to: "hqeN5-1vhixmB2rIDYdnRA" }
+- { seq: "C6VUINH0APqogoyIzizQSw", from: "gFfGKYW1roOafPU9d-Q1oQ", to: "xqF7wDF2OHdL1n7i-Vy_Sw" }
+- { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "anHbEy_tq9LdbHaGFpaK0g", to: "xiVIgHDxMQXCbod76SwqVg" }

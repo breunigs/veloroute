@@ -1,14 +1,7 @@
 ---
-loc:
-- 9.9586
-- 53.5992
 type: intent
-grade: 3
 title: Kreuzung Grandweg / Grelckstraße (Veloroute 3)
-images: articles
-
 start: 2020
-
 tags:
 - 3
 text: '<p>Folgt man der Veloroute 3 entlang des Grandwegs bzw. der Grelckstraße muss
