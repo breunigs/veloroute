@@ -17,6 +17,7 @@ defmodule VelorouteWeb.ArticleView do
     |> Map.fetch!(:text)
     |> Floki.parse_fragment!()
     |> maybe_prepend_title(art)
+    |> maybe_append_date(art)
     |> append_related_articles(art)
     |> append_footer(art)
     |> enhance_tag("icon", &icon/2)
@@ -62,7 +63,18 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_prepend_title(html, %Article{text: "<h3" <> _x}), do: html
   defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
-  defp maybe_prepend_title(html, %Article{title: t}), do: floki_content_tag(:h3, t) ++ html
+  defp maybe_prepend_title(html, %Article{title: t} = art),
+    do: floki_content_tag(:h3, t) ++ html
+
+  defp maybe_append_date(html, %Article{date: d}) when not is_nil(d) do
+    html ++
+      floki_content_tag(:time, "Letzte Änderung #{d.day}.#{d.month}.#{d.year}",
+        datetime: "#{d}",
+        class: "updated"
+      )
+  end
+
+  defp maybe_append_date(html), do: html
 
   @spec maybe_prepend_image(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_image(html, %Article{start_image: img}) when is_ref(img) do
