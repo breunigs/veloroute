@@ -8,3 +8,5 @@ echo "viabus:"
 ./viabus_check_updates.rb
 echo "Sitzungsdienst:"
 ./sitzungsdienst_check_updates.rb
+
+echo "manuell: https://www.steg-hamburg.de/veloroute-altona.html"
