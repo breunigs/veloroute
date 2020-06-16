@@ -57,7 +57,7 @@ defmodule Data.Article do
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
     bbox = find_bbox(name, tags)
-    simg = start_image(parsed[:images] || List.first(tags), bbox)
+    simg = parsed[:start_image] || start_image(parsed[:images] || List.first(tags), bbox)
 
     data =
       Map.merge(parsed, %{
