@@ -63,7 +63,7 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_prepend_title(html, %Article{text: "<h3" <> _x}), do: html
   defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
-  defp maybe_prepend_title(html, %Article{title: t} = art),
+  defp maybe_prepend_title(html, %Article{title: t}),
     do: floki_content_tag(:h3, t) ++ html
 
   defp maybe_append_date(html, %Article{date: d}) when not is_nil(d) do
