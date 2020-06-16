@@ -36,7 +36,7 @@ defmodule Data.ArticleTest do
 
     assert %Data.Article{
              bbox: %BoundingBox{
-               maxLat: 53.68007921432,
+               maxLat: 53.67988983269,
                maxLon: 10.0262893,
                minLat: 53.5508649,
                minLon: 9.9909322
