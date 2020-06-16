@@ -74,7 +74,7 @@ defmodule VelorouteWeb.ArticleView do
       )
   end
 
-  defp maybe_append_date(html), do: html
+  defp maybe_append_date(html, _art), do: html
 
   @spec maybe_prepend_image(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_image(html, %Article{start_image: img}) when is_ref(img) do
