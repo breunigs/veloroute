@@ -503,3 +503,23 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009336
 '2020-03-28':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009871
+'2020-06-18':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010092
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009957
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009896
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010111
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010016
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009958
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009955
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1005530
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013149
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009573
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009465
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009454
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009455
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009409
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009402
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012155
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012140
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012185
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012033

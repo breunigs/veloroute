@@ -476,3 +476,6 @@
 - https://via-bus.hamburg.de/contentblob/13353474/adfa5fe24431841c4757263334810594/data/68-m25-deckblatt-au-landwehr.pdf
 - https://via-bus.hamburg.de/contentblob/13353476/2ae0f4be538c96f4fca77072f3589f9f/data/69-m25-ausfuehrungsplanung-landwehr.pdf
 - https://via-bus.hamburg.de/contentblob/13353480/56d91adf0f4ce20de6e16003e9e8e2f0/data/71-m25-deckblatt-au-wartenau.pdf
+'2020-06-18':
+- https://via-bus.hamburg.de/contentblob/13867022/494e665616efbe3908bccae49eb5d04b/data/72-m20-25-fruchtallee-tornquiststrasse-verkehrsfuehrungsplaene.pdf
+- https://via-bus.hamburg.de/contentblob/13867014/08acd8046a4ce17c756b495fd335cfa5/data/14-mb2-s-ottensen-ausfuehrungsunterlagen.pdf
