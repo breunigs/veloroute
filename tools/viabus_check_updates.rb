@@ -29,7 +29,7 @@ end
 def traverse(url, processed = {})
   return [] if processed.key?(url)
   processed[url] = true
-  raw_html = open(url).read and print "."
+  raw_html = OpenURI.open_uri(url).read and print "."
   ff = Nokogiri::HTML::fragment(raw_html)
   ff.css("#main a").flat_map do |link|
     abs = abs_url(link)
