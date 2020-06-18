@@ -397,6 +397,10 @@
   <node id='-108189' action='modify' lat='53.67925997186' lon='10.0003588146' />
   <node id='-108194' action='modify' lat='53.67987319999' lon='10.00025689065' />
   <node id='-108206' action='modify' lat='53.6794347269' lon='10.00055193365' />
+  <node id='-108211' action='modify' lat='53.61467493737' lon='10.01829206675' />
+  <node id='-108212' action='modify' lat='53.61478631565' lon='10.01853346556' />
+  <node id='-108213' action='modify' lat='53.61387936963' lon='10.01979142159' />
+  <node id='-108214' action='modify' lat='53.61376480664' lon='10.01959293813' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17810,6 +17814,15 @@
     <tag k='name' v='Langenhorner Chaussee' />
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
+  </way>
+  <way id='-105135' action='modify'>
+    <nd ref='-108211' />
+    <nd ref='-108212' />
+    <nd ref='-108213' />
+    <nd ref='-108214' />
+    <nd ref='-108211' />
+    <tag k='article' v='2020-06-18-sengelmannstrasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />

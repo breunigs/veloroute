@@ -222,3 +222,17 @@
 '2020-03-28':
 - "/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf"
 - "/contentblob/13755304/c54a12df525b7e9134e76fd25b14b2a3/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-planung-plan.pdf"
+'2020-06-18':
+- "/contentblob/13921876/3e2cd568e8987d0475c5460a74305a73/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13921878/11d48ab96adaa467f755ab3c4d5a0e46/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-plaene.pdf"
+- "/contentblob/12777430/de77e54d58d93a46867b0b31cdd4a54a/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/12777432/3ae54b0589e1ca7a1e3dfea7b36a36a3/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-plan.pdf"
+- "/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13867884/27c9b20de10e96f0faf3bfd1aff5e2f8/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"
+- "/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"
+- "/contentblob/11372566/c5ee72107445782f4b4b76c022ec12bd/data/veloroute-13-loogestrasse-von-isekai-bis-kellinghusenstrasse-%E2%80%93-abgestimmte-planung-plan.pdf"
+- "/contentblob/11372564/1aa436af00818c2cfa1b0e2880fef8f0/data/veloroute-13-loogestrasse-von-isekai-bis-kellinghusenstrasse-%E2%80%93-abgestimmte-planung-bericht.pdf"
+- "/contentblob/13944176/04f3018f865fdb69d06daa3e13b5ca3b/data/veloroute-13-waterloostrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/13944178/b7056a8d4de8d0cd0a3e53863a1a47e2/data/veloroute-13-waterloostrasse-abstimmungsunterlage-plan.pdf"
+- "/contentblob/13462690/98e53b0a2d1de123426264d4c696de47/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht.pdf"
