@@ -27,6 +27,7 @@
     <%# happens maybe %>
     <link rel="dns-prefetch" href="https://a.mapillary.com">
     <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
   </head>
   <body>
     <div id="map"></div>
