@@ -111,6 +111,11 @@ defmodule VelorouteWeb.FrameLive do
           {nil, nil}
       end
 
+    img =
+      if article && article.start_image && assigns.current_page != article.name,
+        do: %{img: article.start_image},
+        else: img
+
     socket =
       cond do
         article ->

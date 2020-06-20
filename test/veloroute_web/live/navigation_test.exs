@@ -33,6 +33,23 @@ defmodule VelorouteWeb.LiveNavigationTest do
     )
   end
 
+  test "map click on article selects start_image", %{conn: conn} do
+    {:ok, view, html} = conn |> get("/") |> live()
+    refute html =~ "ocG1AIlhqE9WlQffw2SqNQ"
+
+    click_opts = %{
+      "article" => "2020-06-16-ampel-ochsenzoll",
+      "lat" => 53.67776,
+      "lon" => 10.001143,
+      "route" => nil,
+      "zoom" => 18
+    }
+
+    # i.e. show start image on first click, then use proximity image selection
+    assert render_hook(view, "map-click", click_opts) =~ ~s|data-img="ocG1AIlhqE9WlQffw2SqNQ"|
+    refute render_hook(view, "map-click", click_opts) =~ ~s|data-img="ocG1AIlhqE9WlQffw2SqNQ"|
+  end
+
   test "prefers route image over article image", %{conn: conn} do
     {:ok, view, html} = conn |> get("/article/2018-04-08-4-kleekamp") |> live()
     assert html =~ ~s(data-img="j7B3ZUn2dsw-clYblrn0Bw")
