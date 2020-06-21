@@ -166,7 +166,7 @@ defmodule VelorouteWeb.FrameLive do
 
     socket =
       if length(parts) >= 4,
-        do: set_img(socket, Enum.at(parts, 3)),
+        do: set_img(socket, parts |> Enum.at(3) |> String.slice(0..21)),
         else: socket
 
     {:noreply, socket}
