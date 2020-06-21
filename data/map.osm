@@ -437,6 +437,10 @@
   <node id='-108441' action='modify' lat='53.58175455879' lon='10.04380523622' />
   <node id='-108442' action='modify' lat='53.5813150649' lon='10.0433224386' />
   <node id='-108443' action='modify' lat='53.57993604354' lon='10.04163801134' />
+  <node id='-108446' action='modify' lat='53.62281936222' lon='9.89888327537' />
+  <node id='-108447' action='modify' lat='53.62252570929' lon='9.89899925548' />
+  <node id='-108448' action='modify' lat='53.62257225596' lon='9.89933428408' />
+  <node id='-108449' action='modify' lat='53.62286590857' lon='9.89921830397' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17817,6 +17821,15 @@
     <tag k='fast' v='no' />
     <tag k='oneway' v='yes' />
     <tag k='talk' v='no' />
+  </way>
+  <way id='-105210' action='modify'>
+    <nd ref='-108446' />
+    <nd ref='-108447' />
+    <nd ref='-108448' />
+    <nd ref='-108449' />
+    <nd ref='-108446' />
+    <tag k='name' v='2020-06-21-brookgraben' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
