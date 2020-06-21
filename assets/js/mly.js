@@ -37,6 +37,7 @@ window.mly = mly;
 const routeComponent = mly.getComponent('route');
 let prevSeqs = "";
 let paths = [];
+let stuckDetector = null;
 const advanceSlideshow = () => {
   if (paths.length === 0) {
     return deactivateSlideshow();
@@ -53,13 +54,13 @@ const deactivateSlideshow = () => {
   routeComponent.stop();
   mly.deactivateComponent('route');
   paths = [];
+  prevSeqs = "";
 }
 
 const handleImageUpdates = () => {
   if (state.sequence == "") {
     deactivateSlideshow();
     mly.moveToKey(state.img);
-    prevSeqs = "";
     return;
   }
 
@@ -80,8 +81,29 @@ const handleImageUpdates = () => {
       infoKeys: []
     });
   }
-  advanceSlideshow(paths);
+  advanceSlideshow();
   mly.activateComponent('route');
+}
+
+const fixBeingStuck = () => {
+  resetStuckDetector();
+
+  if (state.sequence == "") {
+    return;
+  }
+
+  if (Sentry) {
+    Sentry.captureMessage("apparently Mapillary is stuck?");
+  }
+  deactivateSlideshow();
+  window.pushEvent("sld-playpause", {})
+  window.pushEvent("sld-playpause", {})
+}
+
+const resetStuckDetector = () => {
+  if (stuckDetector === null) return;
+  clearTimeout(stuckDetector);
+  stuckDetector = null;
 }
 
 mly.on(Mapillary.Viewer.navigablechanged, () => {
@@ -91,13 +113,15 @@ mly.on(Mapillary.Viewer.navigablechanged, () => {
 });
 
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
-  console.debug("mly loaded", node.key)
+  console.debug("mly loaded", node.key);
+  resetStuckDetector();
+  stuckDetector = setTimeout(fixBeingStuck, 5000);
 
   if (paths[0] && node.key === paths[0].stopKey) {
     console.info("end of sequence, manually shifting")
     routeComponent.stop();
     paths.shift();
-    advanceSlideshow(paths);
+    advanceSlideshow();
   }
 
   window.pushEvent("mly-nodechanged", { img: node.key, routePlaying: !!routeComponent })
