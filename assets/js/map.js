@@ -1,3 +1,5 @@
+// limit mapbox tracking
+window.loadingStorage.clear();
 import mapboxgl from 'mapbox-gl';
 
 const settings = document.getElementById("settings").dataset;
