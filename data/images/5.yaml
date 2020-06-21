@@ -1,31 +1,47 @@
-# 2019
 5 (stadtauswärts nach Duvenstedt):
-- { seq: "VqJdwFKLeroMxBC_-pVWxw", from: "ikEYWFsAU-JNxGRqnE9lTQ", to: "fBcntmYwP1oTRMKtzNK-eQ" }
-- { seq: "XHJuMmbqHOODAV0BQ7QMDA", from: "BYIn0X38PUyidlkOQ9ZYaw", to: "W_t61Xk3c2j0fbbLAfoelg" }
-- { seq: "UIkMZ-5LmEchlWQ7yaGyhA", from: "WQbhh1OtNR0IO9PeBL_zJg", to: "hWWhR0angFxsE3zhWhwUWA" }
-- { seq: "GNVwTLVeceMJx4vwuyRZCA", from: "E2cAWpRNBD_d-g34M97Jow", to: "YMXkldkKId2a3XJx3vhQmg" }
-- { seq: "SK5m61Vp4i6TlYxe9tmeag", from: "8VbdhQvF1wiuZJjMv9qj9g", to: "EzNZ2FPijnZ44vVpC_5jTw" }
-- { seq: "2dSgocS1xYYKSNTVoHplyw", from: "6mjp0Zrys1LVLRuMEUiy-A", to: "K9UemDwJeNFCZ39V76esfA" }
-- { seq: "YKzSbaeYrClwRGTq4AMqpA", from: "a444sbBad1L3TKzG35lE1Q", to: "sjTzjm-XjtYnmvs2oBpA4A" }
-- { seq: "fJjPqI3xEFMt9mtK_SMDmA", from: "rw5wCPo286lICQlIa_MEpw", to: "iI6x3zmqAsYgtAVX2GNLPw" }
-- { seq: "RVz0wcmRpDtlKJEuIhGXOA", from: "d9fh06d1wsBsf73bnGiKMw", to: "XVD8Bvwv1-SJkk0azrMD9w" }
-- { seq: "jsURk7nw5RmJdVe0lWa_jQ", from: "9T5AsxIRCR0GEMh6v5ojIQ", to: "XMuwgEfFgrI_kGhXYTO6_Q" }
-- { seq: "5XPF3yzkYCgCvCxDWXpfZA", from: "Hba3VEP9InzqM4kiuE_cOg", to: "ZdQT8xzBKqL-JVjjuixmOA" }
-5 (stadteinwärts von Duvenstedt):
-- { seq: "bQ-URfEcG0JLitRm_13Nrw", from: "CMisQnFGz2b8ThPj3olqCA", to: "XmoZ9WATnXy35r8NSGtkzQ" }
-- { seq: "iIBI2bgRhFsgpwImm0beKQ", from: "ZXs805rxMg7n77D7D2q_6g", to: "dZaUWuUSMKYPNc4Iy7uovg" }
-- { seq: "5QsNpG4kIuT7xpSFtoaWow", from: "0v9QjYIOHDoFLccn2FfzaA", to: "JNKTEoPPuwWvv0SSUEQN7Q" }
-- { seq: "eZGmT9Pz2_xFT3v3_7joBA", from: "f8JCg_rvos2zC2LXmo9NSg", to: "ubDdcBPwIAMCPQ5NRfB6LQ" }
-- { seq: "Sw4gm-DAvMhqNhcf_wSX_A", from: "TvlFZ_HGqNdD-gw9f6rziA", to: "8W4JqIBXzcjWchPNLKPBMA" }
-- { seq: "QYfPj-I3VQmCxm3FeOLh6w", from: "zkinpijkavE8cl_ndXJahg", to: "uJvPRCXzfpf5Ky7ERnqjjw" }
-- { seq: "ZjreKfALhSbhbTyh7USdcw", from: "y7Q7S-w0j2z8_O69xOSiDw", to: "E2EC1ocyGE_2_5FJflyX1w" }
-- { seq: "DWsxkueDg2WBD8aqqq-fng", from: "6JURptUvPpxZhCJoNyI0IQ", to: "K57JioA3tApJzl78eeKKwQ" }
-- { seq: "Kiy-ChnvwX_9ObzUtLNk6A", from: "GMeID7KKUw5EnAXHo6kbgw", to: "pQgicVy0eCRqAV3tdpnJNA" }
-- { seq: "8wJztNzfjZgzsOBLFaGujg", from: "rk55W8nVCViA9PxBIzoKow", to: "RUFiT8QTqSQXdgQF1YuXUw" }
-- { seq: "iEXMcr7XSryGzAjO7KympA", from: "Gw76xKJPYl1FC3MDHURAMA", to: "3WKnZCJ_t3E1PsispP-X6g" }
-- { seq: "fOEzka9wBqa6IadRSzmhqw", from: "66yLhINdytQGOcevmYXQcQ", to: "lN7beTCIH0o7rJxtorf7Jw" }
+- { seq: "8c1_G8OslL0aGG6la2r_xw", from: "pv29Z5VfMV7N6qjcu_nC6Q", to: "WtjMdwHeFpasucW43irpbw" }
+- { seq: "6YoTITDUhO_huqjbNlx4PA", from: "VooCrNV8V6H-ZmPvXZ1Qfg", to: "O37y9br9BcfwCVBkfhoB2Q" }
+- { seq: "Uaof0k_sR36e9ttS-6cS2g", from: "uGIl7i_ita63BddzDLNGXA", to: "yRT54e96X8SnNYNH_faovg" }
+- { seq: "Uaof0k_sR36e9ttS-6cS2g", from: "VaYhgR8LyWEWsVgHAR3-3g", to: "mpM20ISUwf-ErWrKJh1SIw" }
+- { seq: "EAnxTNSu2L7uy_IrtSgfQQ", from: "GLNtfeWxuySdKiiAVDG9sw", to: "IMEsY7V2_kLFyhNIG8m3dw" }
+- { seq: "2tugNV7ZSZ70Xfqc_An5iA", from: "XDKbQiuYYl7S0yenO8zKyw", to: "wociVzEHqrSnr1xP8WeKug" }
+- { seq: "DdXQLEoZCC_vZwplPVx09w", from: "_xCXVjvL2W2uwmjuf-oTbQ", to: "oDf-cxRgcoQnvWaPyHy8pg" }
+- { seq: "DdXQLEoZCC_vZwplPVx09w", from: "1iNgVr0udmoFCwu0FuszZw", to: "JgbnlFXrAMRezPhkG1Ac0Q" }
+- { seq: "rv2rUx0icLh1hZs3Vb7isw", from: "3_ganXg9dZFmc8W1oK9IdQ", to: "6bHZzoTlsacX65wxXHpHhg" }
+- { seq: "OCWTuLU2BO3CkOntLyKGpA", from: "CaoGki1SurN7j1pty4cYEQ", to: "i5ecv-z4K7fxO3PYITYESg" }
+- { seq: "OCWTuLU2BO3CkOntLyKGpA", from: "wmRbrP9JHJjiMmvaxPG9Tw", to: "fzWN1zvP2p_7qgCm2NkVDQ" }
+- { seq: "Ew0mzLCnPZhsmjL0Cc62Mg", from: "G2GUPECjo-aX5M-EAOyxlg", to: "QvguD0dDMeZfhon0S3bLMw" }
+- { seq: "Ew0mzLCnPZhsmjL0Cc62Mg", from: "ULcbgveD5_RUELQghYaNwA", to: "omv_RmZ6xc0rXPBFGK5_1A" }
+- { seq: "2dSgocS1xYYKSNTVoHplyw", from: "60Fp-LIJIGIV9kjI7enKTA", to: "CUkYpEyNNTOP3KAQ5cNFYg" }
+- { seq: "KE5H4fNAFRktrxp6gFRfxw", from: "d5IlpJ6kBOyT19JOl8kDDA", to: "gILbIURpPVGsO7b_juK0aQ" }
+- { seq: "6LmM59ijOVVoY_QqtNGyBg", from: "v86Iy5u62cK_2q6wWAELQA", to: "a6fEZtd3yEEMsmoon88kAw" }
+- { seq: "qcmL5P8eTZd61kakBquojw", from: "pO0sh6S62HVrHMrifGywGg", to: "D-wMGf1NIIJh3xH_Gvy9pw" }
+- { seq: "6LmM59ijOVVoY_QqtNGyBg", from: "gmBJq7pUzAwTRrNbK6yLaA", to: "Dk4pFZ_KpLrBBfJGzwHDBA" }
+- { seq: "GekesR84HVV3KDlao--lUQ", from: "Zym3ssECSMJCYwxe2qRdBw", to: "0YQKV-jtR02m252a3VDMXQ" }
+- { seq: "2024meMJgNTSYvnM56RmBw", from: "UgyPLcheMdyq6U2tl6TBsQ", to: "_wsj0IJdXNCrC189ueBEBg" }
+- { seq: "Oj8qEJNtzKasMn7xVVluzw", from: "PX_JZY35Jl0Soe-yDm0W7Q", to: "1Jeq9x5HLTFxenSUEPvAwQ" }
 
-# 2020
+5 (stadteinwärts von Duvenstedt):
+- { seq: "Oj8qEJNtzKasMn7xVVluzw", from: "60fBl2EHEQTEiEZgQSjKjw", to: "0iPIVIhrRWlIIWMELNRaLA" }
+- { seq: "1rX26d1xVnjn24__-fklqQ", from: "mhamxSesyqgOl6DLAt5zsA", to: "jM57N01iWVJwIspME1cTiA" }
+- { seq: "otaUS6TVadgf2INu3mJlTw", from: "ibjkE9CIkAmP8RjrgF3GXA", to: "CncLEI1dkSIyCsVA5VBiPg" }
+- { seq: "V3egkufEH9QYon-B2NQSVA", from: "clxbvTJwvrvWzSKh6Wot9w", to: "BXf7eU2iFuMfaAWWdKkRjQ" }
+- { seq: "nYtvXZwyomqMhbi4DGHqCQ", from: "chMP4fWAOzScNfD9nKO0KA", to: "T7KwxPGVH8RyNaH1jORIMw" }
+- { seq: "qcmL5P8eTZd61kakBquojw", from: "hpzRIRBFLApG4rfOZvsPkQ", to: "4iBlJGMDymZ8ly9sxoQrSQ" }
+- { seq: "qcmL5P8eTZd61kakBquojw", from: "g_ClKx5eift0rpWE-UJCTw", to: "MRJ9s2tcODAOYIOLybGH7A" }
+- { seq: "V3egkufEH9QYon-B2NQSVA", from: "FLcknMEm1hOdTeO8sJRk_w", to: "TVy0PuA5LkdDZHF5NYyLMQ" }
+- { seq: "qHm54F-s7VdiV1O9njWLrw", from: "uYZbSNOGSw4aCVsk6MSv2Q", to: "rn5RXydoCr2vuThldISHfg" }
+- { seq: "Ew0mzLCnPZhsmjL0Cc62Mg", from: "dkvEtV_dUxto_KQaRZ-LuA", to: "YyVB9dga1nBBNb5VIXm4mw" }
+- { seq: "vbxoyklPcv31CYK04wkgnA", from: "RM8QqpEmwx1w03CxC2c0Uw", to: "605sARUnys0NxUdQhpLa9Q" }
+- { seq: "GrrdaocpAzVEXcUT1odz1g", from: "Roxq3YlHHqkK8SzwHXsKTA", to: "Vz_ywUus97gzmTNzDU7aAQ" }
+- { seq: "kfQGYhIQ7hpeZyRBXikHhA", from: "QS1QxQfdfBwPob2BPTCbDQ", to: "E6Vn0bEKfXQ1ecYKhmhIQg" }
+- { seq: "tkRn4R1MksnZPHljYkDnTA", from: "6I5taN3DOc6ya40aNVLnEA", to: "POA-rAdJChzhrJRqrThmrw" }
+- { seq: "WRstOUJ3fyOjA-cP3RDmGw", from: "2f9MQc9j9VRd4rLXnm_9ww", to: "I3Oiz80-UnRgpPJRd0z05A" }
+- { seq: "iDxNYlQitoX8djoMeZG7LQ", from: "6ApYc_eApZ9cWfpXkEI07w", to: "JmZpfA1qeQgxQ5ZB7wKBKQ" }
+- { seq: "vfF4HubNTdLTF2xaPILhAA", from: "MZtyFioo4fvr4FhgfHn44A", to: "HI1ZamWB5tqD6rATychtmQ" }
+- { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "6cq5PHmksV6OJP1JNJ5-kg", to: "9BdkNzOurOOT7Ev-q96Ijg" }
+
+
 5N (stadtauswärts zum Flughafen):
 - { seq: "kfQGYhIQ7hpeZyRBXikHhA", from: "q6_J16pgKrV5EbQ7EHXWBw", to: "d6MhCh65mey5oigz6Kd1XA" }
 - { seq: "GrrdaocpAzVEXcUT1odz1g", from: "45YNZ61pEAYPtc2G421XQg", to: "reMrMkT2VWzW05W-ysruzw" }
@@ -36,6 +52,7 @@
 - { seq: "ZMcqLcdtugUfGYiBmIB8hQ", from: "haiZ4-wfkLZcTWISc7xWZA", to: "hYJNuOI4cf16s9CbaU-EjA" }
 - { seq: "ZMcqLcdtugUfGYiBmIB8hQ", from: "KCd_FXVWUyF5AZTBIt9sJA", to: "CEEV5e7XDuhBGsfOJmuHLQ" }
 - { seq: "ZMcqLcdtugUfGYiBmIB8hQ", from: "vkhZsGae9T6m2sTuZgMNrQ", to: "QZ-Vp_QtUm4Jh36aluV3Zw" }
+
 5N (stadteinwärts vom Flughafen):
 - { seq: "ZMcqLcdtugUfGYiBmIB8hQ", from: "QZ-Vp_QtUm4Jh36aluV3Zw", to: "DQ5ibr6fnZWBRtMWojlXrQ" }
 - { seq: "ZMcqLcdtugUfGYiBmIB8hQ", from: "I1jyb7nTM2y7HlE15PouJQ", to: "OKlg47Sj_-oYQ2upSl9JXA" }
