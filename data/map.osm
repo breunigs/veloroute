@@ -495,6 +495,15 @@
   <node id='-108801' action='modify' lat='53.49914860076' lon='10.13111276925' />
   <node id='-108802' action='modify' lat='53.49902934564' lon='10.13128415005' />
   <node id='-108803' action='modify' lat='53.49910966576' lon='10.13144210934' />
+  <node id='-108805' action='modify' lat='53.5663759238' lon='9.95294540852' />
+  <node id='-108806' action='modify' lat='53.56628194022' lon='9.95332091779' />
+  <node id='-108807' action='modify' lat='53.566751856' lon='9.9550804469' />
+  <node id='-108808' action='modify' lat='53.56686813944' lon='9.95553105801' />
+  <node id='-108809' action='modify' lat='53.56708318331' lon='9.95694458216' />
+  <node id='-108810' action='modify' lat='53.56723610274' lon='9.95674073428' />
+  <node id='-108811' action='modify' lat='53.56709751953' lon='9.95589047402' />
+  <node id='-108812' action='modify' lat='53.56664512983' lon='9.95397269458' />
+  <node id='-108820' action='modify' lat='53.56689999786' lon='9.95498120517' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17951,6 +17960,20 @@
     <nd ref='-108803' />
     <nd ref='-108800' />
     <tag k='name' v='2020-06-28-dweer-und-mittlerer-landweg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-105609' action='modify'>
+    <nd ref='-108805' />
+    <nd ref='-108806' />
+    <nd ref='-108807' />
+    <nd ref='-108808' />
+    <nd ref='-108809' />
+    <nd ref='-108810' />
+    <nd ref='-108811' />
+    <nd ref='-108820' />
+    <nd ref='-108812' />
+    <nd ref='-108805' />
+    <tag k='name' v='2020-06-28-waterloostrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
