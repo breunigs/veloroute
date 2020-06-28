@@ -1,27 +1,19 @@
-# 2019
 9 (stadtauswärts nach Bergedorf):
-- { seq: "7SIew6thQ3ySH4UH5kiw2w", from: "pyxwn9JJsLMk7JEmaqOinA", to: "DmXd2yFgMU5fAs-GrgsrdQ" }
-- { seq: "qbarbWtrAQl9at1Qt91HAw", from: "51BHY2MwN_QQVKUH0C33XQ", to: "cyRKpcqsg3IsPUk7GI2_-w" }
-- { seq: "66cXir0k0atXFj2GXHuDkA", from: "bntE4dzFK_DcYDN6qs8krg", to: "9ETzx9gj8jEAtNKsi4dwDw" }
-- { seq: "9Ab1YMq6y_zUT0q4L756Qw", from: "db-F7HcBjBALEvBIjnf5NA", to: "jiwVr643jOrRQJ4XNqvjRw" }
-- { seq: "eMNPt0wJ5fZj_za8TlS8FA", from: "EeqeY2tlBJEfhq8JkPtZSg", to: "TB9rEx1EjVf5LXaDRuClAQ" }
-- { seq: "CzNluTJ3qUX3aXK37bshoA", from: "xqjka5XJf0o9y4sttznu_g", to: "TekBBX5nx_W7IhzrPVWJ1w" }
-- { seq: "J9_DFesiQNfvXtWXdXemfQ", from: "k1-xhA7vYsb3jmHpi1rRPg", to: "jknF0XB-sogS-fTEGj2-Zg" }
-- { seq: "qIUUzO68FR3r452I3uExvw", from: "azO6PiQXAGvhg-4MAufZ7g", to: "zR_KB3TdhE1yZUbbHmGsLg" }
-- { seq: "vJCIb49wPq82s40DAZvxCw", from: "4ZcY-6gaanDcQl7Tbk8HdA", to: "zTFccJwqBVa7WsvQKK9naQ" }
-- { seq: "YXtr7bwf_3jAyGC2Qoz4Jg", from: "W9VZMLNlg4gxeEn_s85yqQ", to: "TG5iAINR0_Hu7V2l9DivFQ" }
+- { seq: "RZsSKCpUFcglnuQntM19eA", from: "lcGaLJMcKAWmgUo2ECz9iA", to: "spSmgtVPvWaZutmOf92sjQ" }
+- { seq: "Pt1REF8AK5ewVMbrQ9VBUA", from: "4SEYVCjshVbUdSg5MHpJAA", to: "Ns4aeaOubad7Q6hLh65Z4Q" }
+- { seq: "6rwsqgqy86qzN_5rtTfNaw", from: "pdMlWKIWNu8bSmRHM0d3KA", to: "LZzI1u6JySQxROcQbGR3GA" }
+- { seq: "RArIBKmf4Z8IoRb1OkFLUQ", from: "dlqY3c4dJFdcDDYxOHHvOA", to: "Bwxkgv7aIwX451kQeagFfg" }
+- { seq: "YDDRyEo7Uj5gtewAavG-Ww", from: "oCM0zqlMOEIKVuHBXPnYwg", to: "d0vaoZMOzsY3cstKbg-k5w" }
+- { seq: "LCjgjA5kuuG3p3CLCJdPTQ", from: "y29gTtTdLwHQVvYxzCxoMQ", to: "467ejEB4Axun8PRVBklKWw" }
+- { seq: "lCP1YB_qKq6wDfS-TPvbQg", from: "be7hxo0jZrvB-Wlu0zlTOw", to: "woB6Eakj90sdmzGuGb_MvA" }
+- { seq: "BRpmbE2d7krEon_fBbx87w", from: "Q0wZp34QuujzKUp6UUMvfQ", to: "PSS1iaH3gOJw6VjJlmKWjQ" }
+- { seq: "1tOdAnNkuPR6vK2u_wulrA", from: "dOcc_oDlFi5vxQIuuMN2Yw", to: "lITueAkbVljBbrHI3LploA" }
+
 9 (stadteinwärts von Bergedorf):
-- { seq: "34eLeVVdMlNSDErGEFAgHw", from: "a4gvVNOy1ST76ldozRTryQ", to: "A7a2baAUQumjEo-w89zy0w" }
-- { seq: "HlnXPRYTgq3T4xMmiJJGqg", from: "sx1wOmQPXbLPEY_Qng5VEA", to: "dE4aS51o-2cBj7sZjVcs4Q" }
-- { seq: "9zU9IKzWcM7zII8_MgtXEA", from: "p1kbchVGnQO3nCBN46kDpg", to: "7AsHrXxh_fV_Ht3TFEpmug" }
-- { seq: "qets24WHl22Ijzi77NQTZA", from: "yOp0V72ewCfxM2TLYCet8g", to: "XFJVmP6iDBy5XE1YJ3zchA" }
-- { seq: "CzNluTJ3qUX3aXK37bshoA", from: "pRQNsEqOQVJvLsLdxVqZsg", to: "RV7lN295j4q222pmkfsgpw" }
-- { seq: "P8IlCPyLY5gU50dsu94asw", from: "buSRS-YjDOvQftxgxh9knw", to: "5jazJg3iqmFqRMCjwyY2SQ" }
-- { seq: "4qekTpcoj6UI5pzjt5vdpw", from: "wFrd_d0J61FiZ2zThe848Q", to: "ak3GMFgAwqQOjptzYGSYsw" }
-- { seq: "P1Cl8t6LfaQA4_fB75pgTA", from: "PaNML1Fr_L7dn5M1d8_r7A", to: "ZlSCo1HA10VY8HJrakfF1w" }
-- { seq: "v5BvWbz_lb2VtdDD43_Mqw", from: "rgA7IBiX4UMjq5A0d7zIDg", to: "NoVXoaRzwrWwI5tRmw5FGA" }
-- { seq: "DOt1pWY7TGxxsVd-R0ls9A", from: "BTnNJbbYZU7Z2LbdthZw1A", to: "AalsOMMznY-Gv-gE8c6lTw" }
-- { seq: "vOlOH8mjktSig96oOAeOsQ", from: "LMIYubKux1hQJfgyzTzNGA", to: "QOZK1auSc2RRHoMM9lu18g" }
-- { seq: "dHFr5Jr91pAQdn4AzURA1A", from: "PKckvlJET40jkXFAaq4l5A", to: "j6yRh8D8Kdn_nu_1CqyR9Q" }
-- { seq: "uaBB5UJyePuyEC7z8o82Yg", from: "UO4J1Ir5n9eqz_LXoZL3Bg", to: "6MhGiNf5moorZDwi4Gvn3g" }
-- { seq: "gUBdDN1mTtFbSaxAfB63FQ", from: "sqoAfka1Oh3a0fxDSaU5Yw", to: "vCtRK0ZGiXdPMhlJKCV3xQ" }
+  - { seq: "1tOdAnNkuPR6vK2u_wulrA", from: "PSyiV_sGThXKB-vPXDgxcA", to: "E4xlBWf5koczBTDRnXEDTw" }
+  - { seq: "AZxoFPJ-8kbEZeku7BHQCw", from: "eyqblmWApwmA_WgqWED25A", to: "xjSK00C5HxGp_tTc2aWmdA" }
+  - { seq: "LoY0p0IHViyjj42Arjl84A", from: "vECS5JJi6QyDesUkWOC7mw", to: "sNVS8l8ATwr969Mi9sMM8Q" }
+  - { seq: "bAtUo3-MqUEdohsf7ohHvg", from: "WflSO8285nCbOcDgedGbIQ", to: "Q4t33aymsLTv2AZFanyiPQ" }
+  - { seq: "l_nPZwMySFTOHOVYl8nX8g", from: "SS7AlKHDzOoBAq-mrdok6g", to: "DeE8daD3PTXnkgEnhkBmYQ" }
+  - { seq: "76Az4DhNJbq7XHgbQQ3TCg", from: "hXeq0TLW9_FMbbgrma44-w", to: "8tPyIhyHdTKvv88G12xc1Q" }
+  - { seq: "QSl3dQRNQU-HlZtMowf_Sg", from: "m0gmJDI_z6iLubTX2qbyYw", to: "UPC1T9nXYnqOymAjcdd2uw" }
