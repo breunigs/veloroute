@@ -236,3 +236,6 @@
 - "/contentblob/13944176/04f3018f865fdb69d06daa3e13b5ca3b/data/veloroute-13-waterloostrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/13944178/b7056a8d4de8d0cd0a3e53863a1a47e2/data/veloroute-13-waterloostrasse-abstimmungsunterlage-plan.pdf"
 - "/contentblob/13462690/98e53b0a2d1de123426264d4c696de47/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht.pdf"
+'2020-07-04':
+- "/contentblob/14009032/34d168945041f4b78d37d4ff7543275e/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-plan.pdf"
+- "/contentblob/14009034/4ad5ba5b21fd4ef27f242be5b2999297/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-bericht.pdf"
