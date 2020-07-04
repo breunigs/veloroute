@@ -24,13 +24,7 @@ defmodule Mix.Tasks.EditMap do
         env: [{"JAVA_OPTS", "-Djosm.home=#{@josm_home}"}]
       )
 
-    {:ok, %{mtime: lastModAfter}} = File.stat(@map_path)
-
     Mix.Tasks.UpdateGpx.run(nil)
-
-    if lastMod != lastModAfter && Cli.confirm("\n\nUpdate map remotely, too?") do
-      Mix.Tasks.UpdateMapbox.run(nil)
-    end
   end
 
   defp write_josm_session do
