@@ -1,28 +1,39 @@
-# 2019
+# 2020
 11 (stadtauswärts nach Eissendorf):
-- { seq: "SIt7m031b8o6YTc2Oc9Qbw", from: "gUE20t-fNTkwvGwqN4crEA", to: "2rpArxk_w3ZZPDA9v8tQ4A" }
+- { seq: "sDU97Ch53QInMFwxCxevxw", from: "szY78_Z0XxVzLBq3XOD9sw", to: "zBvAjYrxUgqWj-AyPO02YA" }
 - { seq: "9P7LrWunBC9OifwdWXkumA", from: "a8lM-nl2UPqJMqdJldzu0w", to: "q3909OkHKcJx1WpojQfuvQ", "reverse": true }
-- { seq: "voRWA396c80ffAY4WqwFWw", from: "F187wMd3WGtW3pHnpMvaEw", to: "VEuREYFyCWinex4u52Z9gQ" }
-- { seq: "bYs6RaaPqf2Dsm8BYff8iQ", from: "fTmFK2-DMWclk6qs-tvgYQ", to: "QlWCh3B6yW02IQeSPZ8IRg" }
-- { seq: "PMzDRZ6KOvE2KQwEHmOVHw", from: "geVLclGNYW3pAGW8D5DlpA", to: "Sr3b5VZVIVHE_YOm467E5w" }
-- { seq: "BE1KMR9BhZ6l8GUL9fkCMw", from: "cyLKR61Bw62i7UWKsA2xKg", to: "AuPR0Brb8hseOvhrJb3sAg" }
-- { seq: "Is6-gYi1ji1ZQS5R-Pn-pA", from: "VNd8s5rBUG709oBHFyKF-g", to: "YAHH7U_1UmZMt0-gXm_v1Q" }
-- { seq: "aF1qgqdiYrx4WbeGH14PJg", from: "pPMo3TBf40__DYgfsNONWg", to: "YIfiZoOVx66C4pm3q3kWlw" }
+- { seq: "9PR_e_FIzoG9E5qeDl3ndA", from: "Zh80RAf6y80hU-jLD7IEGQ", to: "GTj3If2Tk20flaq08DEs_Q" }
+- { seq: "PeG5ykZ0nEfs_TrE1glROA", from: "mjWviN56YtPPenesekXPqA", to: "zNfT878UqLGNXZWDNmqhLw" }
+- { seq: "ULBR8afIcG8z59e2F_LG1g", from: "OlNw3Ta5cSnUkyqx5_JcaQ", to: "Mc8y6Snm0GIUE8O0STF5Jw" }
+- { seq: "ULBR8afIcG8z59e2F_LG1g", from: "aQ93pjuAifxlz_X-VFQ2XA", to: "sW-bGW0dpdwsQ1XkG5mGQg" }
+- { seq: "CEEp6KnQyMIEpKggUFMrNg", from: "rJaMfxCogM0dba1FDrTzWw", to: "ozkDwiCjAB76TnQ2OQE2Ww" }
+- { seq: "CEEp6KnQyMIEpKggUFMrNg", from: "Fso7kLhkEh2SbjLQNSBVAQ", to: "BvxDtV6ws8ub9j2cR9RSAw" }
+- { seq: "0ZjYqMvwVOcUHL4QV9QooA", from: "i8Hc2ADlJZKrB5ryhOskGw", to: "btf6bgqtZLI7djYhzdhwnA" }
+- { seq: "qQIgtizPrgMEF-UVMtomyA", from: "jt9OUy2D-P7FH5ZHAfoJjA", to: "jaylgG7mzC5V04ESL8R-cA" }
+- { seq: "0ZjYqMvwVOcUHL4QV9QooA", from: "dmuitlejmS_2MCY9jFrj0g", to: "mzR03k5NWEzQXBQzz73tFg" }
+- { seq: "Zwha7Cgyx-41FIae6rP9IQ", from: "zpJY0BzK0Hgp_omIqlfd9A", to: "RLx8sbyyNT5Af1fKDDZz4g" }
+- { seq: "eweCYMIts6bZd-vmftOZyg", from: "9MGv8_Dj9k5ZbM_YKEIbiA", to: "Mz2Ira9EvUtcPE-Ou2UV1w" }
+- { seq: "uGZmZzbnEF66esOwaxq-nQ", from: "XWL1YifOWBYcl7oR2xZIIg", to: "2AXvb5ZYC2lk0H4MVPXUyA" }
+- { seq: "W69nCV8edm2gNh_Ug0CLfA", from: "yD7I9IJwV4A5ZdFPiYtMJw", to: "-cWI__avN0oyBujiE8Ev4w" }
 11 (stadteinwärts von Eissendorf):
-- { seq: "aF1qgqdiYrx4WbeGH14PJg", from: "zWKnRqxb59g_wFwF57Gxww", to: "NN_fEXDSokyE_W4NtG-zAA" }
-- { seq: "BN2k56L01X_1obzDLgZPdA", from: "E_wcsNydt6iZGxD1GLP_AQ", to: "XTvVCQUVGPJfuNPHpKalLA" }
-- { seq: "Ct4-49nRnYFzBuW0j7SQOw", from: "87_dlKNUFUVkgjZjEMZcJQ", to: "xR8SyXg780LNuFhQdqkqlw" }
-- { seq: "Uyc6SZzwVAxgr7ifkUfgYg", from: "lBsZ69Xe1aUWazyF8wFaYA", to: "BJIAprG9WFLElAKIAQJVHw" }
-- { seq: "GdHIdWv-O7HvdQqb0RwAtQ", from: "Dve8YhIyPP-bTe9cKIDJdw", to: "f3sGUfSa15Tj18FTZ2VyGg" }
-- { seq: "8CRQT7Xxuu5QDmnGfcwuqg", from: "aW4t2W0Y7WRE56j1aNzpPw", to: "Bib2kGqHwvbynoeDBonnhQ" }
-- { seq: "W-XRb9wCLf60hK_Iu0HOag", from: "7sOv7onUcXwQqbsCA1t1ZA", to: "nsO9a-mgZr1GOz_jxW2BkQ" }
-- { seq: "NgQXpWX7yEXrVrACGuhKlg", from: "m8p38qdfSV5qgDsvQVTd9Q", to: "PWQe65cBK2-JYuhasNRsLw" }
+- { seq: "W69nCV8edm2gNh_Ug0CLfA", from: "M3nqC-BdGI7Qd8cO9WdDkg", to: "Y9cZb9gy5Da695tzILhYVw" }
+- { seq: "sP5mrtOwNarZYva-LAOYTA", from: "loqwdtIkOFriRzpsu0-YkA", to: "RZKN9LcO8L9_n4ETEUanYg" }
+- { seq: "3MPS8vD8oBbOBBPNhc7xlw", from: "LqIEyJJacXRG-XKPFSiv6A", to: "fkmZYUcmUF3hOQ7UfRRYEg" }
+- { seq: "xg1vuN8VuVUgr75D7aVzEA", from: "TKS-TKiCHuU_xXgdqbKh-g", to: "-JX_5qYg5oV7n_790MffTQ" }
+- { seq: "_BTTr0DW9CPfN4xKS-DCkg", from: "jQzIykqVPvEdjpD8QaIYqA", to: "fwqhqnUyRzxclSry09_TBg" }
+- { seq: "OSO3oP_Cc7I4cjndevT5Ow", from: "3ZSDgMfq1hA2qwt3D82azQ", to: "eBaL6ipLyFk2CsjhuQKfMQ" }
+- { seq: "iEpNGR0dFdu5_2idyRjVzA", from: "CgHpYUul8vRM3qtP0rrGYw", to: "VMjpL1oO1j-H3fxSoyCiCA" }
+- { seq: "ex5mr3zosSWn9WhErhHlqQ", from: "h6rLvltfzauLAyw4NiX18A", to: "-WnJZx25mJqkJ1vPKgcixA" }
 - { seq: "9P7LrWunBC9OifwdWXkumA", from: "q3909OkHKcJx1WpojQfuvQ", to: "a8lM-nl2UPqJMqdJldzu0w" }
-- { seq: "iLLFBHyysVAmEF8U0pQzSw", from: "N4i1jDBUFAOAaISOCcgBEg", to: "v4tUDWZ3B95l0ZC2nHpo8Q" }
+- { seq: "UklvfQHUJY2RQ4Ls2j5-Qg", from: "RloiW63gnatTi1eVPndJtA", to: "_7UbhxNPMl0HpAkvgle8LA" }
+- { seq: "8c1_G8OslL0aGG6la2r_xw", from: "vG7sKNCWVYrcUvmz5ajK9Q", to: "vG7sKNCWVYrcUvmz5ajK9Q" }
+
 11 (Wilhelmsburg zur Veddel):
-- { seq: "Uyc6SZzwVAxgr7ifkUfgYg", from: "4zikcDZI-OpnDncvSpXHYw", to: "bqXphwCK5igprFBKr_UsBA" }
-- { seq: "OudSB1X19sRPAbQoMIBCAg", from: "t0RopYD5P6Iu-WAz0XGn5g", to: "jA253qjEb_mxwnxpzCwtUQ" }
-- { seq: "OudSB1X19sRPAbQoMIBCAg", from: "RfZ4sgjq6ONrT4kz3SM-ow", to: "lVf7Iv-ZyHB94wlJbo-Iow" }
+- { seq: "_BTTr0DW9CPfN4xKS-DCkg", from: "PAGkkzWcOjWUR_tjNSlUSg", to: "yQm0aBcNGc1peIOdGbGdRQ" }
+- { seq: "2bKVQNJrjszgoBzp1jC8Pg", from: "3b7aEwfXfK21U_fIvMcPAQ", to: "6me-EAbjS1nY6oBByDh_Bw" }
+- { seq: "GWPtS7wN1Hu05RYZ_d8B-Q", from: "Xp3PAsrD3YdZKJIyu_pKlg", to: "Xp3PAsrD3YdZKJIyu_pKlg" }
+
 11 (Veddel nach Wilhelmsburg):
-- { seq: "OudSB1X19sRPAbQoMIBCAg", from: "Z7HrKNOUYpNMGkjMKo1sMg", to: "oznERVKlde4LNYcPB1BsNQ" }
-- { seq: "GdHIdWv-O7HvdQqb0RwAtQ", from: "CggrOECO5c78T0BSUy5yNw", to: "Lq_GUEdDHTWeDUs3y-Cwsw" }
+- { seq: "GWPtS7wN1Hu05RYZ_d8B-Q", from: "GtovIvS1aHJ-DmTEzjrgrg", to: "2DTaXA_DjY97EyvL8OwYhg" }
+- { seq: "OSO3oP_Cc7I4cjndevT5Ow", from: "0W9JR0FZfW4RRI37N-Z3oQ", to: "71e_WZn3xOt8gnfxwFPY8g" }
+- { seq: "P2m4o4aaWZipFSBDhhYRCQ", from: "VULZVUVSVOw1hGfxFoQhcQ", to: "Q-wXAPhoijL7RBCWh8o3Pw" }
