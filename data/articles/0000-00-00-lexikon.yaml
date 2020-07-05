@@ -1,0 +1,42 @@
+
+title: Lexikon
+no_auto_title: true
+text: >
+  <h3>Lexikon</h3>
+  <p>Hier werden häufige Begriffe und Regeln zu verschiedenen Bauweisen von Fahrradinfrastruktur erläutert.</p>
+
+  <h4>Fahrbahn und Nebenflächen</h4>
+  <p>„Straße“ meint immer alles, also salopp von Hauswand bis Hauswand. Die Fahrbahn bezeichnet das Stück zwischen den Bordsteinen, die heute meist geteert wird. Die KFZ-Fahrspuren sind immer Teil der Fahrbahn, auch Radfahrstreifen zählen zur Fahrbahn. Als Nebenflächen bezeichnet man alles vom Randstein bis zur Hauswand, also Fußwege oder Hochbordradwege. Auch die in Hamburg häufig anzutreffenden „Baum/Parkplatz“-Streifen zählen zu den Nebenflächen.</p>
+
+  <h4 id="radfahrstreifen">Radfahrstreifen</h4>
+  <p><a bounds=""9.944998,53.563638,9.954255,53.565782" img="th8uxzL-OOfgX9qBmvEEeQ">Radfahrstreifen</a> werden auf dem gleichen Niveau geführt wie die KFZ-Fahrspuren und durch einen weißen „Breitstrich“ von diesen abgegrenzt. KFZ dürfen den Radfahrstreifen nicht benutzen – befahren, halten oder parken sind verboten. Die einzige Ausnahme ist um Einfahrten oder Parkplätze rechts des Radfahrstreifens zu erreichen; man spricht hier häufig von „überfahren“.</p>
+  <p>Zur Breite: leider wird der 25cm „Breitstrich“ meist dem Radfahrstreifen zugeschlagen – befahren werden darf er jedoch nicht, auch nicht mit dem Lenker. Die StVO geht hier mit schlechtem Beispiel voran. Nicht ganz so häufig wird auch der Sicherheitsabstand zu Parkplätzen („<a href="#dooring">Dooring</a>“) mit in die Breite gezählt.</p>
+
+  <h4 id="hochbordradweg">Hochbordradweg</h4>
+  <p><a bounds=""9.984455,53.559813,9.997723,53.562886" img="ShhbSFllZd-4Fnv75-0NyQ">Hochbordradwege</a> werden auf dem gleichen Niveau wie die Fußwege geführt. Sie sind in Hamburg meist gepflastert und bei neuer Bauweise mit Noppenplatten vom Fußweg abgetrennt.</p>
+  <p>Zur Breite: die roten Pflastersteine geben den Ausschlag, die Noppenplatten zählen nicht zum Radweg. Hamburg strebt eine Mindestbreite von 1,60m für diese Führungsform an, wobei diese bei „begründeten Ausnahmen“ unterschritten wird. Das ist etwa bei Bäumen oder bestehenden Häusern der Fall. Oft liest man auch von 1,625m breiten Radwegen, welche sich aus den 25cm breiten Pflastersteinen ergeben: man verbaut 6½ um das Mindestmaß zu erreichen.</p>
+
+  <h4 id="fahrrad-frei">Fußwege („Fahrrad frei“ oder „Service-Lösung“)</h4>
+  <p>Radfahren ist auf Fußwegen tabu – das gebietet alleine der Anstand. Leider gibt es immer noch zuhauf Stellen wo Hamburg den <a bounds=""9.948485,53.544136,9.960335,53.546882" img="6K3LLRziiiTUn5Kithlyjg">Radverkehr auf Fußwege leitet</a> und diese mit „Fahrrad frei“ beschildert. Gefahren werden darf hier maximal in Schrittgeschwindigkeit und Klingeln darf man auch nicht.</p>
+  <p>Es ist ersichtlich das dies eine inakzeptable Radverkehrsführung ist. Leider wird sie auch heute noch geplant, wenn man zur Bevorteilung des KFZ-Verkehrs keine ordentliche Lösung bauen möchte. „Geübte“ sollen dann auf der Fahrbahn mit den KFZ fahren, „Unsichere“ auf dem Fußweg. In der Fachsprache bezeichnet man diese Variante euphemistisch auch als „Service-Lösung“.</p>
+
+  <h4 id="dooring">Dooring</h4>
+  <p>Als Dooring bezeichnet man wenn Autofahrende ohne zu schauen die Autotür öffnen und den Rad- oder Fußverkehr gefährden. Leider sind in Hamburg nicht alle Radspuren mit ausreichend Sicherheitsabstand versehen, wie etwa in der <a bounds=""9.942314,53.552371,9.99476,53.56452" img="3BQpgMx7rXEevpnb7IFODQ">Feldstraße</a>. In der Situation im Foto wurde alles richtig gemacht, aber man sieht das selbst eine nur halb geöffnete Tür deutlich über den Parkplatz hinausragt.</p>
+  <p>Die beste Lösung ist keine Parkplätze an Fahrradwegen zu bauen – in Hamburg begnügt man sich stattdessen häufig mit einem 70cm Sicherheitsabstand, der nur vorhanden ist wenn die Autos ordentlich geparkt werden.</p>
+
+  <h4 id="mischverkehr">Mischverkehr</h4>
+  <p>Als Mischverkehr wird eine Verkehrsführung bezeichnet, wo sich KFZ- und Radverkehr die Fahrspuren teilen, also „durchmischt“ fahren. Das ist in Hamburg in praktisch allen Nebenstraßen der Fall.</p>
+
+  <h4 id="benutzungspflicht">Benutzungspflicht</h4>
+  <p>Es gibt zwei Szenarien in denen der Radverkehr die KFZ-Spuren nicht benutzen darf:</p>
+  <ul style="list-style-type: none; padding-left: 0">
+    <li><img src="/images/nobike.svg"/> (VZ 254), wie etwa <a bounds=""9.987198,53.557,9.993563,53.559039" img="CkjevJzqTUigPw8b52rnPQ">an der Esplanade</a> wo die linken beiden Fahrspuren dem KFZ-Verkehr vorbehalten werden.</li>
+    <li><img src="/images/bnp.svg"/> (VZ 237). Dies ist die klassische Benutzungspflicht, die aber nur angeordnet werden darf, wenn die Fahrt auf den KFZ-Spuren für den Radverkehr besonders gefährlich wäre. Hier ein <a bounds=""10.082451,53.632066,10.098984,53.637355" img="gy-6HNBUSJCOddZSdnspzA">Beispiel an der Bramfelder Chaussee</a>. Das Schild muss an jeder Kreuzung wiederholt werden und es gelten zahlreiche Ausnahmen: zum <a href="#abbiegen">direkten Abbiegen</a>, ein verstellter (Falschparker, Mülltonnen) oder anderweiter unbenutzbarer Radweg (Scherben), oder wenn das Lastenrad breiter als der Radweg ist. <a href="http://bernd.sluka.de/Radfahren/rechtlich.html">Genauere Erklärung</a>.</li>
+  </ul>
+
+  <h4 id="rim">Radfahrstreifen in Mittellage (RiM, Fahrradweiche)</h4>
+  <p>Umgangssprachlich als „Fahrradweiche“ bezeichnet ist ein „Radfahrstreifen in Mittellage“ eine an Kreuzungen aufgemalte Verkehrsführung. Sie packt die Geradeausspur für den Radverkehr zwischen die Geradeausspur bzw. Rechtsabbiegerspur für KFZ. Beispiel: <a bounds=""10.01356,53.61575,10.018941,53.617472" img="AsRntC2KL2fxlIZZYUZ9lw">Kreuzung Maienweg/Semmelmannstraße</a>. Eine <a href="https://nationaler-radverkehrsplan.de/de/node/21396">Studie der TU Berlin</a> kommt zum Ergebnis, das diese Führung vergleichbar mit älteren Varianten ist was Unfälle betrifft.</p>
+
+  <h4 id="abbiegen">Direktes und Indirektes Abbiegen</h4>
+  <p>Es gibt oft zwei Möglichkeiten mit dem Fahrrad links abzubiegen. Beim <b>direkten Abbiegen</b> ordnet man sich auf der Linksabbiegerspur ein und kommt in einem Zug in die gewünschte Straße. Dazu muss man jedoch die KFZ-Geradeausspuren queren. Beim <b>indirekten Abbiegen</b> fährt man zunächst geradeaus in die Kreuzung und wartet in einer Aufstelltasche. Ist die Straße frei bzw. die Ampel grün quert man nun die Straße und ist auch am Ziel.</p>
+  <p>Es gibt alle möglichen Kreuzungs-Varianten: <a bounds="10.096749,53.537778,10.12086,53.54550" img="UGJ-M8jrYHYDaLQEbNjL4g">nur direktes Abbiegen</a>, <a bounds="9.866879,53.585889,9.8773,53.58922" img="vXIM5E9R1sThXAq3TUEf1w">nur indirektes Abbiegen</a>, beides (<a bounds="9.992882,53.60424,9.999811,53.606458" img="ezc8ENc7yvMO1ol0mLaXzQ">direkt</a>, <a bounds="9.992882,53.60424,9.999811,53.606458" img="Aa9jqVlXNcYMsbOVAGL7Eg">indirekt</a>). Die Aufstelltaschen können dabei im Kreuzungsbereich <a bounds="10.008971,53.55148,10.015794,53.553667" img="4C0M8xpMcJ14U2AIDXlYxA">links</a> oder <a img="0R8KGhfLf2TRhDZR65CoZg" bounds="9.997479,53.554666,10.003883,53.556719">rechts</a> des Radfahrstreifens sein, manchmal auch <a img="h9WgLqCi98SGrGQ8hPdTRw" bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</a>.
