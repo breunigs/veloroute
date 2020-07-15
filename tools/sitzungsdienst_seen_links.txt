@@ -523,3 +523,5 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012140
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012185
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012033
+'2020-07-10':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010203

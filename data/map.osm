@@ -643,6 +643,15 @@
   <node id='-112989' action='modify' lat='53.4819360399' lon='9.99577759624' />
   <node id='-112990' action='modify' lat='53.48212757372' lon='9.99723671794' />
   <node id='-112991' action='modify' lat='53.48726674152' lon='9.99702214122' />
+  <node id='-114583' action='modify' lat='53.56087992318' lon='9.99034076661' />
+  <node id='-114584' action='modify' lat='53.56076043698' lon='9.99012618989' />
+  <node id='-114585' action='modify' lat='53.5605278362' lon='9.99033540219' />
+  <node id='-114586' action='modify' lat='53.55993039682' lon='9.98995452851' />
+  <node id='-114587' action='modify' lat='53.55980772156' lon='9.99039172858' />
+  <node id='-114588' action='modify' lat='53.56020123705' lon='9.99069750041' />
+  <node id='-114589' action='modify' lat='53.5598507376' lon='9.99100863665' />
+  <node id='-114590' action='modify' lat='53.55992243091' lon='9.99124198884' />
+  <node id='-114591' action='modify' lat='53.56048163452' lon='9.99086379737' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18284,6 +18293,20 @@
     <nd ref='-112991' />
     <nd ref='-112982' />
     <tag k='name' v='2020-07-05-kueckenbracksweg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106575' action='modify'>
+    <nd ref='-114583' />
+    <nd ref='-114584' />
+    <nd ref='-114585' />
+    <nd ref='-114586' />
+    <nd ref='-114587' />
+    <nd ref='-114588' />
+    <nd ref='-114589' />
+    <nd ref='-114590' />
+    <nd ref='-114591' />
+    <nd ref='-114583' />
+    <tag k='name' v='2020-07-15-theodor-heuss-platz' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
