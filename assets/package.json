@@ -6,18 +6,19 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@webcomponents/template": "^1.4.2",
+    "@webcomponents/template": "^1.4.3",
     "child-replace-with-polyfill": "^1.0.1",
     "classlist-polyfill": "^1.2.0",
-    "formdata-polyfill": "^3.0.19",
-    "mapbox-gl": "^1.9.1",
+    "core-js": "^3.6.5",
+    "formdata-polyfill": "^3.0.20",
+    "mapbox-gl": "^1.11.1",
     "mapillary-js": "^2.20.0",
     "mdn-polyfills": "^5.20.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "git://github.com/breunigs/phoenix_live_view.git#ie11-active-element",
     "shim-keyboard-event-key": "^1.0.3",
-    "url-search-params-polyfill": "^8.0.0"
+    "url-search-params-polyfill": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -26,7 +27,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.2",
