@@ -21,6 +21,8 @@ defmodule Settings do
 
   def default_page, do: "0000-00-00-startpage"
 
+  def twitter_handle, do: "@VelorouteHH"
+
   def footer,
     do: """
       <h3>Kontakt</h3>

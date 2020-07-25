@@ -28,12 +28,18 @@
     <link rel="dns-prefetch" href="https://a.mapillary.com">
     <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta property="og:site_name" content="<%= Settings.sitebar_name() %>"/>
-    <meta property="og:image" content="<%= Mapillary.img_url(@img, 2048) %>"/>
-    <meta property="og:image:width" content="2048"/>
     <%= if assigns[:article_date] != nil do %>
       <meta property="og:type" content="article"/>
       <meta property="article:modified_time" content="<%= Date.to_iso8601(assigns[:article_date]) %>"/>
+    <% end %>
+    <%= if assigns[:article_title] != nil do %>
+      <meta property="og:title" content="<%= assigns[:article_title] %>"/>
+    <% end %>
+    <meta property="og:site_name" content="<%= Settings.sitebar_name() %>"/>
+    <meta property="og:image" content="<%= Mapillary.img_url(@img, 2048) %>"/>
+    <meta property="og:image:width" content="2048"/>
+    <%= if Settings.twitter_handle() != nil do %>
+      <meta property="twitter:creator" content="<%= Settings.twitter_handle() %>"/>
     <% end %>
   </head>
   <body>

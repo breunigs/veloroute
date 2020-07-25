@@ -21,6 +21,7 @@ defmodule VelorouteWeb.FrameLive do
     map_bounds: nil,
     sequence: nil,
     article_date: nil,
+    article_title: nil,
     route: Settings.route()
   ]
 
@@ -283,7 +284,8 @@ defmodule VelorouteWeb.FrameLive do
       prev_page: socket.assigns.current_page,
       current_page: name,
       page_title: title,
-      article_date: date
+      article_date: date,
+      article_title: t
     )
   end
 
