@@ -239,3 +239,9 @@
 '2020-07-04':
 - "/contentblob/14009032/34d168945041f4b78d37d4ff7543275e/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-plan.pdf"
 - "/contentblob/14009034/4ad5ba5b21fd4ef27f242be5b2999297/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-bericht.pdf"
+'2020-07-25':
+- "/contentblob/14126498/8161b52380f6a9aa405906af1ee1f58a/data/elbchaussee-manteuffelstrasse-bis-parkstrasse)-abgestimmte-planung-bericht.pdf"
+- "/contentblob/14126442/b6f8ad150fb018ad81fc0d414a7a0020/data/elbchaussee-manteuffelstrasse-bis-parkstrasse)-abgestimmte-planung-plan-1-8).pdf"
+- "/contentblob/14126448/c0bb2617c387df8d5818f3a5f7008093/data/elbchaussee-manteuffelstrasse-bis-parkstrasse)-abgestimmte-planung-plan-9-17).pdf"
+- "/contentblob/14072738/cf3c0c0052c2e5716b6f0b966e039ea0/data/holsteiner-chaussee-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/14072742/45d3fd7215e1598153a3013aa3e4145d/data/holsteiner-chaussee-abstimmungsunterlage-plan.pdf"
