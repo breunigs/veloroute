@@ -75,12 +75,6 @@
   <node id='-103578' action='modify' lat='53.57189351016' lon='10.08580326498' />
   <node id='-103579' action='modify' lat='53.57191580841' lon='10.08596419752' />
   <node id='-103580' action='modify' lat='53.57137109073' lon='10.0862860626' />
-  <node id='-103596' action='modify' lat='53.55643799733' lon='9.95214878976' />
-  <node id='-103640' action='modify' lat='53.5563647048' lon='9.95234190881' />
-  <node id='-103647' action='modify' lat='53.55682676426' lon='9.95331286848' />
-  <node id='-103652' action='modify' lat='53.55706575856' lon='9.95414435327' />
-  <node id='-103658' action='modify' lat='53.55675665901' lon='9.95271205366' />
-  <node id='-103666' action='modify' lat='53.5570402659' lon='9.95334505498' />
   <node id='-103678' action='modify' lat='53.55720596791' lon='9.95491146505' />
   <node id='-103691' action='modify' lat='53.55708487804' lon='9.95455741346' />
   <node id='-103700' action='modify' lat='53.55686500344' lon='9.84767674863' />
@@ -4151,7 +4145,7 @@
   <node id='954876000543383' version='1' lat='53.543383' lon='10.0954876' />
   <node id='955037000557077' version='1' lat='53.557077' lon='9.955037' />
   <node id='955042000557183' action='delete' version='1' lat='53.55720211943' lon='9.95505272884' />
-  <node id='955045000557183' action='modify' version='1' lat='53.557205306' lon='9.95413304893' />
+  <node id='955045000557183' action='modify' version='1' lat='53.55719574629' lon='9.95457293121' />
   <node id='955122000601804' version='1' lat='53.601804' lon='9.955122' />
   <node id='955140005730787' version='1' lat='53.5730787' lon='9.95514' />
   <node id='955290006012336' version='1' lat='53.6012336' lon='9.95529' />
@@ -47767,9 +47761,6 @@
     <tag k='type' v='article' />
   </way>
   <way id='785155081' action='modify' version='1'>
-    <nd ref='-103596' />
-    <nd ref='-103658' />
-    <nd ref='-103666' />
     <nd ref='955045000557183' />
     <nd ref='-103678' />
     <nd ref='956166000557148' />
@@ -47797,10 +47788,7 @@
     <nd ref='956152000557042' />
     <nd ref='955037000557077' />
     <nd ref='-103691' />
-    <nd ref='-103652' />
-    <nd ref='-103647' />
-    <nd ref='-103640' />
-    <nd ref='-103596' />
+    <nd ref='955045000557183' />
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='type' v='article' />
   </way>
