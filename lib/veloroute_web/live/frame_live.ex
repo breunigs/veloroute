@@ -20,6 +20,7 @@ defmodule VelorouteWeb.FrameLive do
     slideshow: false,
     map_bounds: nil,
     sequence: nil,
+    article_date: nil,
     route: Settings.route()
   ]
 
@@ -272,7 +273,7 @@ defmodule VelorouteWeb.FrameLive do
     assign(socket, prev_page: name)
   end
 
-  defp set_content(%Article{name: name, title: t}, socket) do
+  defp set_content(%Article{name: name, title: t, date: date}, socket) do
     title =
       if is_nil(t) or t == "",
         do: Settings.page_title_long(),
@@ -281,7 +282,8 @@ defmodule VelorouteWeb.FrameLive do
     assign(socket,
       prev_page: socket.assigns.current_page,
       current_page: name,
-      page_title: title
+      page_title: title,
+      article_date: date
     )
   end
 
