@@ -216,24 +216,30 @@ defmodule Data.Article do
     end)
   end
 
-  def full_title(%{title: t, type: type}) do
-    if String.contains?(t, ":") do
-      t
-    else
-      case type do
-        "construction" -> "Baustelle: #{t}"
-        "planned-construction" -> "Planung: #{t}"
-        "changed-routing" -> "Routenänderung: #{t}"
-        "ampel" -> "Unfaire Ampel: #{t}"
-        "intent" -> "Vorhaben: #{t}"
-        "issue" -> "Problemstelle: #{t}"
-        "finished" -> "Abgeschlossen: #{t}"
-        _ -> t
-      end
+  def full_title(a = %{title: t}) do
+    tn = type_name(a)
+
+    cond do
+      String.contains?(t, ":") -> t
+      tn != nil -> "#{tn}: #{t}"
+      true -> t
     end
   end
 
-  def full_title(%{title: t}), do: t
+  def type_name(%{type: type}) do
+    case type do
+      "construction" -> "Baustelle"
+      "planned-construction" -> "Planung"
+      "changed-routing" -> "Routenänderung"
+      "ampel" -> "Unfaire Ampel"
+      "intent" -> "Vorhaben"
+      "issue" -> "Problemstelle"
+      "finished" -> "Abgeschlossen"
+      _ -> nil
+    end
+  end
+
+  def type_name(_), do: nil
 
   defp set_start_position(%{start_image: nil} = art), do: art
 
