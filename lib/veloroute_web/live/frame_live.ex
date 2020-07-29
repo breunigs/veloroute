@@ -22,6 +22,7 @@ defmodule VelorouteWeb.FrameLive do
     sequence: nil,
     article_date: nil,
     article_title: nil,
+    search_query: nil,
     route: Settings.route()
   ]
 
@@ -59,6 +60,10 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
+
+  def handle_event("search", %{"value" => query}, socket) do
+    {:noreply, assign(socket, :search_query, String.trim(query))}
+  end
 
   def handle_event("map-click", attr, %{assigns: assigns} = socket) do
     Logger.debug("map-click #{inspect(attr)}")

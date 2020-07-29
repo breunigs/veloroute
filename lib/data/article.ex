@@ -22,6 +22,7 @@ defmodule Data.Article do
     :images,
     :tags,
     :text,
+    :dynamic,
     :start,
     :icon,
     :end,
@@ -63,7 +64,7 @@ defmodule Data.Article do
       Map.merge(parsed, %{
         name: name,
         date: date,
-        text: String.trim(parsed.text),
+        text: String.trim(parsed[:text] || ""),
         tags: tags,
         start: parsed |> Map.get(:start) |> RoughDate.parse(),
         end: parsed |> Map.get(:end) |> RoughDate.parse(),

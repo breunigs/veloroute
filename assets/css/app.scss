@@ -536,4 +536,10 @@ table.routing {
   }
 }
 
+
+input[type=search] {
+  box-sizing: border-box;
+  width: 100%;
+}
+
 @import "mapbox.css"

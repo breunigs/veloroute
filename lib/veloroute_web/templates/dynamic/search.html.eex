@@ -1,0 +1,5 @@
+<%= content_tag :content_tag, "🔍", for: :query  %>
+<%= tag :input, value: @search_query, type: :search, phx_keyup: :search, autofocus: true, placeholder: "z.B. Luftpumpe, Feldstraße, StadtRAD, …" %>
+
+
+<%= @search_query %>
