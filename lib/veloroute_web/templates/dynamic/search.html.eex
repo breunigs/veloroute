@@ -1,5 +1,30 @@
+
 <%= content_tag :content_tag, "🔍", for: :query  %>
-<%= tag :input, value: @search_query, type: :search, phx_keyup: :search, autofocus: true, placeholder: "z.B. Luftpumpe, Feldstraße, StadtRAD, …" %>
+<%= tag :input,
+  value: @search_query,
+  type: :search,
+  phx_keyup: :search,
+  phx_debounce: 500,
+  autofocus: true,
+  placeholder: "z.B. Luftpumpe, Feldstraße, StadtRAD, …"
+%>
 
+<%= if @search_bounds && @search_bounds != @map_bounds do %>
+  hier suchen?<br>
+<% end %>
 
-<%= @search_query %>
+<ul>
+<%= for result <- Mapbox.search(@search_query, @search_bounds) do %>
+  <%
+    zoom = case result[:type] do
+      "poi" -> 18
+      _ -> 16
+    end
+  %>
+  <li>
+    <a phx-click="map-zoom-to" phx-value-lat="<%= result[:lat] %>" phx-value-lon="<%= result[:lon] %>" phx-value-zoom="<%= zoom %>">
+      <%= result[:name] %> ||| <%= result[:relevance] %>
+    </a>
+  </li>
+<% end %>
+</ul>

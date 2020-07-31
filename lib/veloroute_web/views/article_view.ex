@@ -232,6 +232,9 @@ defmodule VelorouteWeb.ArticleView do
       find_attribute(attrs, "download") != nil ->
         keep
 
+      find_attribute(attrs, "phx-click") != nil ->
+        keep
+
       find_attribute(attrs, "bounds") != nil ->
         bounds = find_attribute(attrs, "bounds")
         new_attr = [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds}]

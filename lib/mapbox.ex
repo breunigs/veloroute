@@ -1,5 +1,6 @@
 defmodule Mapbox do
   use Tesla
+  alias VelorouteWeb.VariousHelpers
 
   defp username, do: Credentials.mapbox_username()
   defp secret_token(), do: Credentials.mapbox_secret_token()
@@ -13,7 +14,7 @@ defmodule Mapbox do
   ]
 
   plug Tesla.Middleware.Query, access_token: secret_token()
-  plug Tesla.Middleware.JSON
+  plug Tesla.Middleware.JSON, decode_content_types: ["application/vnd.geo+json"]
 
   @spec static_map_url(map()) :: binary()
   def static_map_url(bounds) do
@@ -22,6 +23,55 @@ defmodule Mapbox do
     "#{@base}/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/path-0(#{polyline})/auto/150x100?access_token=#{
       secret_token()
     }"
+  end
+
+  @search_query_bbox Settings.initial() |> VariousHelpers.to_string_bounds()
+  @search_language "de"
+  @search_types ["postcode", "place", "locality", "neighborhood", "address", "poi"]
+
+  @type result() :: %{
+          name: binary(),
+          lat: float(),
+          lon: float(),
+          relevance: float(),
+          type: binary()
+        }
+  @spec search(binary | nil, nil | maybe_improper_list | map) :: [result()]
+  def search(query, bounds)
+  def search(nil, _), do: []
+  def search("", _), do: []
+  def search(query, nil), do: search(query, Settings.initial())
+
+  def search(query, bounds) do
+    bounds = VariousHelpers.parse_bounds(bounds)
+
+    lon = (bounds.minLon + bounds.maxLon) / 2
+    lat = (bounds.minLat + bounds.maxLat) / 2
+    query = URI.encode(query)
+
+    {:ok, response} =
+      get(
+        "/geocoding/v5/mapbox.places/#{query}.json",
+        query: [
+          proximity: "#{lon},#{lat}",
+          language: @search_language,
+          bbox: @search_query_bbox,
+          types: @search_types
+        ]
+      )
+
+    response.body["features"]
+    |> Enum.map(fn feat ->
+      # IO.inspect(feat)
+
+      %{
+        lon: feat["center"] |> Enum.at(0),
+        lat: feat["center"] |> Enum.at(1),
+        name: feat["place_name_#{@search_language}"] || feat["place_name"],
+        relevance: feat["relevance"],
+        type: feat["place_type"] |> hd
+      }
+    end)
   end
 
   def upload_file(path) do
