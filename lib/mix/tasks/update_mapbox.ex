@@ -33,7 +33,7 @@ defmodule Mix.Tasks.UpdateMapbox do
 
     if types == ["Point"],
       do: ["-d18", "-D18", "-m18", "-B0", "-z8", "-Z8"],
-      else: ["-Z6", "-z14", "--drop-densest-as-needed", "--extend-zooms-if-still-dropping"]
+      else: ["-Z6", "-z13", "--drop-densest-as-needed", "--extend-zooms-if-still-dropping"]
   end
 
   defp convert_to_mbtiles(geojson, dir_path, name) do
