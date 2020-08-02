@@ -15,6 +15,10 @@ defmodule Mapbox do
 
   plug Tesla.Middleware.Query, access_token: secret_token()
   plug Tesla.Middleware.JSON, decode_content_types: ["application/vnd.geo+json"]
+  plug Tesla.Middleware.Cache, ttl: :timer.minutes(10)
+
+  # for debugging help
+  # plug Tesla.Middleware.Logger
 
   @spec static_map_url(map()) :: binary()
   def static_map_url(bounds) do

@@ -3,6 +3,7 @@
 // its own CSS file.
 import css from "../css/app.scss"
 // import "./error_reporter"
+import "./search_handler"
 
 window.state = {};
 let prevLocation = location.pathname;
@@ -95,6 +96,7 @@ Hooks.control = {
     updateState();
   }
 }
+Hooks.focus = { mounted() { this.el.focus() } }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } });

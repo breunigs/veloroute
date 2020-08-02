@@ -62,11 +62,24 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
+  @search_page "suche"
+  @search_page_full "0000-00-00-#{@search_page}"
   def handle_event("search", %{"value" => query}, socket) do
+    query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
+
     socket =
       socket
-      |> assign(:search_query, String.trim(query))
+      |> assign(:search_query, query || "")
       |> assign(:search_bounds, socket.assigns[:map_bounds])
+
+    socket =
+      if socket.assigns.current_page == @search_page_full do
+        update_url_query(socket)
+      else
+        url_query = url_query(socket)
+        path = Routes.page_path(socket, VelorouteWeb.FrameLive, @search_page, url_query)
+        push_patch(socket, to: path)
+      end
 
     {:noreply, socket}
   end
@@ -230,6 +243,12 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event(ident, attr, socket) do
+    Logger.warn("Received unknown/unparsable event '#{ident}': #{inspect(attr)}")
+
+    {:noreply, socket}
+  end
+
   def handle_params(params, uri, socket) when is_binary(uri) do
     socket = assign(socket, :current_url, uri)
     handle_params(params, nil, socket)
@@ -261,6 +280,12 @@ defmodule VelorouteWeb.FrameLive do
       |> set_bounds(article, Map.get(params, "bounds"))
 
     {:noreply, socket}
+  end
+
+  def handle_params(%{"page" => @search_page, "search_query" => query} = params, nil, socket) do
+    params
+    |> Map.put("article", @search_page_full)
+    |> handle_params(nil, assign(socket, :search_query, query))
   end
 
   def handle_params(%{"page" => name} = params, nil, socket) do
@@ -570,9 +595,19 @@ defmodule VelorouteWeb.FrameLive do
     end
   end
 
-  defp url_query(%{assigns: assigns}) do
+  defp on_search_page?(socket) do
+    socket.assigns.current_page == @search_page_full
+  end
+
+  defp url_query(%{assigns: assigns} = socket) do
     bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
-    %{"img" => assigns.img, "bounds" => bounds}
+    query = %{"img" => assigns.img, "bounds" => bounds}
+
+    if on_search_page?(socket) && !blank?(assigns.search_query) do
+      Map.put(query, "search_query", assigns.search_query)
+    else
+      Map.delete(query, "search_query")
+    end
   end
 
   defp preserve_flash(socket, old_socket) do
@@ -581,4 +616,8 @@ defmodule VelorouteWeb.FrameLive do
       put_flash(socket, type, msg)
     end)
   end
+
+  defp blank?(""), do: true
+  defp blank?(nil), do: true
+  defp blank?(_), do: false
 end

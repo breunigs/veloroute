@@ -57,6 +57,7 @@ defmodule Veloroute.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:temp, "~> 0.4", only: [:dev, :test]},
+      {:tesla_cache, "~> 1.1.0"},
       {:tesla, "~> 1.3.0"},
       {:yaml_elixir, "~> 2.4"}
     ]
