@@ -5,6 +5,9 @@ window.onkeydown = function (e) {
     window.pushEvent("search", { value: null });
 
     const el = document.getElementById("search");
-    if (el) el.focus();
+    if (el) {
+      el.focus();
+      el.select();
+    }
   }
 }

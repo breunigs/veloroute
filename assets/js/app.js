@@ -96,7 +96,12 @@ Hooks.control = {
     updateState();
   }
 }
-Hooks.focus = { mounted() { this.el.focus() } }
+Hooks.focus = {
+  mounted() {
+    this.el.focus();
+    this.el.select();
+  }
+}
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } });

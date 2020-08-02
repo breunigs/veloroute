@@ -76,6 +76,7 @@ defmodule VelorouteWeb.FrameLive do
       if socket.assigns.current_page == @search_page_full do
         update_url_query(socket)
       else
+        socket = assign(socket, :current_page, @search_page_full)
         url_query = url_query(socket)
         path = Routes.page_path(socket, VelorouteWeb.FrameLive, @search_page, url_query)
         push_patch(socket, to: path)
