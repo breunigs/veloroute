@@ -61,6 +61,20 @@ defmodule CheapRuler do
   end
 
   @doc ~S"""
+  Finds center of given geo object
+
+  ## Examples
+
+      iex> CheapRuler.center(
+      ...>   %BoundingBox{minLon: 2, minLat: 3, maxLon: 1, maxLat: 2}
+      ...> )
+      %Point{lon: 1.5, lat: 2.5}
+  """
+  def center(bbox) do
+    %Point{lon: (bbox.minLon + bbox.maxLon) / 2, lat: (bbox.minLat + bbox.maxLat) / 2}
+  end
+
+  @doc ~S"""
   Returns true if the point is contained within the bounding box
 
   ## Examples

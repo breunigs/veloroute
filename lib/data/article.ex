@@ -32,7 +32,9 @@ defmodule Data.Article do
     :hide_footer,
     :bbox,
     :start_image,
-    :start_position
+    :start_position,
+    :search_title,
+    :search_text
   ]
 
   defstruct @known_params
@@ -72,8 +74,36 @@ defmodule Data.Article do
         start_image: simg
       })
       |> set_start_position
+      |> search_preprocess_title
+      |> search_preprocess_text
 
     struct(Data.Article, data)
+  end
+
+  defp search_preprocess_title(art) do
+    t =
+      art
+      |> full_title()
+      |> Kernel.||("")
+      |> word_and_num_only()
+      |> FuzzyCompare.Preprocessor.process()
+
+    Map.put(art, :search_title, t)
+  end
+
+  defp search_preprocess_text(%{text: t} = art) when is_binary(t) do
+    t =
+      t
+      |> Floki.parse_fragment!()
+      |> Floki.text()
+      |> word_and_num_only()
+      |> FuzzyCompare.Preprocessor.process()
+
+    Map.put(art, :search_text, t)
+  end
+
+  defp word_and_num_only(str) do
+    Regex.replace(~r/[^\p{L}\p{N}]+/u, str, " ")
   end
 
   defp start_image(various_img_or_route, bbox)
@@ -217,6 +247,8 @@ defmodule Data.Article do
     end)
   end
 
+  def full_title(article)
+
   def full_title(%{title: t, type: type}) do
     if String.contains?(t, ":") do
       t
@@ -235,6 +267,7 @@ defmodule Data.Article do
   end
 
   def full_title(%{title: t}), do: t
+  def full_title(_), do: nil
 
   defp set_start_position(%{start_image: nil} = art), do: art
 

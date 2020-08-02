@@ -13,17 +13,18 @@
   hier suchen?<br>
 <% end %>
 
+<%
+map = Mapbox.search(@search_query, @search_bounds)
+art = Data.ArticleSearch.search(@search_query)
+
+results = SearchResult.sort_merge(map, art) |> Enum.take(15)
+%>
+
 <ul>
-<%= for result <- Mapbox.search(@search_query, @search_bounds) do %>
-  <%
-    zoom = case result[:type] do
-      "poi" -> 18
-      _ -> 16
-    end
-  %>
+<%= for result <- results do %>
   <li>
-    <a phx-click="map-zoom-to" phx-value-lat="<%= result[:lat] %>" phx-value-lon="<%= result[:lon] %>" phx-value-zoom="<%= zoom %>">
-      <%= result[:name] %> ||| <%= result[:relevance] %>
+    <a phx-click="map-zoom-to" phx-value-lat="<%= result.lat %>" phx-value-lon="<%= result.lon %>" phx-value-zoom="<%= SearchResult.zoom(result) %>">
+      <%= result.name %> ||| <%= result.relevance %>
     </a>
   </li>
 <% end %>

@@ -19,6 +19,7 @@ defmodule Data.ArticleTest do
     |> Map.merge(Enum.into(extra_keys, %{}))
   end
 
+  @ignored_fields [:search_title, :search_text]
   test "parses decently" do
     {:ok, dir_path} = Temp.mkdir("veloroutehamburgtest")
     file_path = Path.join(dir_path, "2020-03-29-dummy-article.yaml")
@@ -33,6 +34,9 @@ defmodule Data.ArticleTest do
       - 4
       text: "<a>text</a>"
     """)
+
+    art = Data.Article.load(file_path)
+    art = Enum.reduce(@ignored_fields, art, fn ign, art -> Map.put(art, ign, nil) end)
 
     assert %Data.Article{
              bbox: %BoundingBox{
@@ -51,7 +55,7 @@ defmodule Data.ArticleTest do
              text: "<a>text</a>",
              title: "title",
              type: "type"
-           } == Data.Article.load(file_path)
+           } == art
 
     File.rm_rf(dir_path)
   end

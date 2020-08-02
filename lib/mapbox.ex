@@ -29,14 +29,7 @@ defmodule Mapbox do
   @search_language "de"
   @search_types ["postcode", "place", "locality", "neighborhood", "address", "poi"]
 
-  @type result() :: %{
-          name: binary(),
-          lat: float(),
-          lon: float(),
-          relevance: float(),
-          type: binary()
-        }
-  @spec search(binary | nil, nil | maybe_improper_list | map) :: [result()]
+  @spec search(binary | nil, nil | maybe_improper_list | map) :: [SearchResult.t()]
   def search(query, bounds)
   def search(nil, _), do: []
   def search("", _), do: []
@@ -45,15 +38,14 @@ defmodule Mapbox do
   def search(query, bounds) do
     bounds = VariousHelpers.parse_bounds(bounds)
 
-    lon = (bounds.minLon + bounds.maxLon) / 2
-    lat = (bounds.minLat + bounds.maxLat) / 2
+    center = CheapRuler.center(bounds)
     query = URI.encode(query)
 
     {:ok, response} =
       get(
         "/geocoding/v5/mapbox.places/#{query}.json",
         query: [
-          proximity: "#{lon},#{lat}",
+          proximity: "#{center.lon},#{center.lat}",
           language: @search_language,
           bbox: @search_query_bbox,
           types: @search_types
@@ -64,11 +56,11 @@ defmodule Mapbox do
     |> Enum.map(fn feat ->
       # IO.inspect(feat)
 
-      %{
+      %SearchResult{
         lon: feat["center"] |> Enum.at(0),
         lat: feat["center"] |> Enum.at(1),
         name: feat["place_name_#{@search_language}"] || feat["place_name"],
-        relevance: feat["relevance"],
+        relevance: feat["relevance"] * 1.0,
         type: feat["place_type"] |> hd
       }
     end)
