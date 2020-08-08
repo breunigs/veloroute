@@ -101,7 +101,7 @@ defmodule Mapbox do
     name = Path.basename(path, ".mbtiles")
     data = File.read!(path)
 
-    {:ok, %{body: creds}} = get("/uploads/v1/#{username()}/credentials")
+    {:ok, %{body: creds}} = get("/uploads/v1/#{username()}/credentials", query: [cache_for: name])
 
     cfg =
       ExAws.Config.new(:s3,

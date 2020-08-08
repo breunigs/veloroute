@@ -5,16 +5,13 @@ defmodule Mix.Tasks.Deploy do
   @shortdoc "Builds the site using docker, then uploads it"
   def run(_) do
     Mix.Task.run("app.start")
-
-    map = Task.async(fn -> Mix.Tasks.UpdateMapbox.run(nil) end)
-
     build_and_push()
-    Task.await(map, :infinity)
 
     if Cli.confirm(
          "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
        ) do
       IO.puts("Deploying…")
+      Mix.Tasks.UpdateMapbox.run(nil)
       # add this line to /etc/sudoers.d/veloroute2-restart
       # someuser ALL=(ALL) NOPASSWD: /bin/systemctl restart veloroute2.service
       {_, 0} =
