@@ -3,6 +3,7 @@
 // its own CSS file.
 import css from "../css/app.scss"
 // import "./error_reporter"
+import "./search_handler"
 
 window.state = {};
 let prevLocation = location.pathname;
@@ -93,6 +94,12 @@ Hooks.control = {
 
   updated() {
     updateState();
+  }
+}
+Hooks.focus = {
+  mounted() {
+    this.el.focus();
+    this.el.select();
   }
 }
 

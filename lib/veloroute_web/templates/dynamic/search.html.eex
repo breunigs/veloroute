@@ -1,0 +1,49 @@
+<meta name="robots" content="noindex">
+
+<%= content_tag :h3, "🔍 Suche", for: :query %>
+<%= tag :input,
+  id: "search",
+  value: @search_query,
+  type: :search,
+  phx_keyup: :search,
+  phx_hook: :focus,
+  phx_debounce: 500,
+  autofocus: true,
+  placeholder: "z.B. Feldstraße, StadtRAD, Baustelle…"
+%>
+
+<%
+map = Mapbox.search(@search_query, @search_bounds)
+art = Data.ArticleSearch.search(@search_query)
+
+results = SearchResult.sort_merge(map, art) |> Enum.take(15)
+%>
+
+<%= if length(results) >= 1 do %>
+
+<ul>
+<%= for result <- results do %>
+  <li>
+    <div>
+      <!-- relevance: <%= result.relevance %> -->
+      <!-- type: <%= result.type %> -->
+      <%= if result.url do %>
+        <%= live_patch(result.name, to: result.url) %>
+      <% else %>
+        <a phx-click="map-zoom-to" phx-value-bounds="<%= VelorouteWeb.VariousHelpers.to_string_bounds(result.bounds) %>">
+          <%= result.name %>
+        </a>
+      <% end %>
+      <%= if result.subtext do %>
+        <div class="aside"><%= result.subtext %></div>
+      <% end %>
+    </div>
+  </li>
+<% end %>
+</ul>
+
+<% else %>
+
+<p>Leider keine Ergebnisse.</p>
+
+<% end %>

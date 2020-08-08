@@ -21,6 +21,14 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
+  def article_path(%Data.Article{name: name}) do
+    if String.starts_with?(name, "0000-00-00-") do
+      Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    else
+      Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    end
+  end
+
   @short_month_names [
     "Jan",
     "Feb",
@@ -94,6 +102,18 @@ defmodule VelorouteWeb.VariousHelpers do
     }
   end
 
+  def parse_bounds(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
+  def parse_bounds([[minLon, minLat], [maxLon, maxLat]]) do
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
+  def parse_bounds([minLon, minLat, maxLon, maxLat]) do
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
   def parse_bounds(bounds) when is_binary(bounds) do
     with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
          {minLon, ""} <- Float.parse(minLon),
@@ -121,7 +141,7 @@ defmodule VelorouteWeb.VariousHelpers do
   def to_string_bounds([minLon, minLat, maxLon, maxLat]),
     do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
 
-  def to_string_bounds(%BoundingBox{
+  def to_string_bounds(%{
         minLat: minLat,
         minLon: minLon,
         maxLat: maxLat,

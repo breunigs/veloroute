@@ -7,7 +7,7 @@ defmodule VelorouteWeb.ArticleViewTest do
   test "all articles can be rendered" do
     Data.ArticleCache.get()
     |> Map.keys()
-    |> Enum.each(&ArticleView.render(&1, []))
+    |> Enum.each(&ArticleView.render(&1, search_query: nil, search_bounds: nil))
   end
 
   test "only valid routes are referenced" do

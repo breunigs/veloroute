@@ -525,8 +525,6 @@ table.routing {
     text-align: right;
   }
 
-  td:last-child {}
-
   td.dir {
     opacity: 0.3;
   }
@@ -534,6 +532,19 @@ table.routing {
   .icon {
     margin: 0 0.2em;
   }
+}
+
+
+input[type=search] {
+  margin-top: 0.6rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+div.aside {
+  color: #888;
+  font-style: italic;
+  display: block;
 }
 
 @import "mapbox.css"

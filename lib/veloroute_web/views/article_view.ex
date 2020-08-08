@@ -8,12 +8,13 @@ defmodule VelorouteWeb.ArticleView do
   @dialyzer {:nowarn_function, render_template: 2}
   @recent_article_count 4
 
-  def render(name, _assigns) do
+  def render(name, assigns) do
     art =
       Data.ArticleCache.get()
       |> Map.fetch!(name)
 
     art
+    |> maybe_render_dynamic(assigns)
     |> Map.fetch!(:text)
     |> Floki.parse_fragment!()
     |> maybe_prepend_title(art)
@@ -58,6 +59,17 @@ defmodule VelorouteWeb.ArticleView do
         any
     end)
   end
+
+  defp maybe_render_dynamic(%Article{dynamic: name} = art, assigns)
+       when is_binary(name) and name != "" do
+    text =
+      Phoenix.View.render(VelorouteWeb.DynamicView, art.dynamic, assigns)
+      |> Phoenix.HTML.safe_to_string()
+
+    Map.put(art, :text, text)
+  end
+
+  defp maybe_render_dynamic(art, _assigns), do: art
 
   @spec maybe_prepend_title(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_title(html, %Article{text: "<h3" <> _x}), do: html
@@ -218,6 +230,9 @@ defmodule VelorouteWeb.ArticleView do
         keep
 
       find_attribute(attrs, "download") != nil ->
+        keep
+
+      find_attribute(attrs, "phx-click") != nil ->
         keep
 
       find_attribute(attrs, "bounds") != nil ->

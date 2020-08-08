@@ -40,6 +40,7 @@ defmodule Veloroute.MixProject do
       {:ex_aws_s3, "~> 2.0", only: [:dev, :test]},
       {:ex_aws, "~> 2.1", only: [:dev, :test]},
       {:floki, ">= 0.0.0"},
+      {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
@@ -56,6 +57,7 @@ defmodule Veloroute.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:temp, "~> 0.4", only: [:dev, :test]},
+      {:tesla_cache, "~> 1.1.0"},
       {:tesla, "~> 1.3.0"},
       {:yaml_elixir, "~> 2.4"}
     ]
