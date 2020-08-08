@@ -3,26 +3,20 @@ defmodule SearchResult do
 
   @type t() :: %SearchResult{
           name: binary(),
-          lat: float(),
-          lon: float(),
+          bounds: %BoundingBox{},
           relevance: float(),
-          type: binary()
+          type: binary(),
+          url: binary() | nil,
+          subtext: binary() | nil
         }
 
-  @enforce_keys [:name, :lat, :lon, :relevance, :type]
+  @enforce_keys [:name, :bounds, :relevance, :type]
 
-  defstruct @enforce_keys
+  defstruct @enforce_keys ++ [:url, :subtext]
 
   @spec sort_merge([t()], [t()]) :: [t()]
   def sort_merge(a, b) do
     Enum.sort(a ++ b, &order/2)
-  end
-
-  def zoom(%__MODULE__{type: type}) do
-    case type do
-      "poi" -> 18
-      _ -> 16
-    end
   end
 
   defp order(%__MODULE__{type: a, relevance: x}, %__MODULE__{type: b, relevance: x}) do

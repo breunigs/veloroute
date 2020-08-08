@@ -21,6 +21,14 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
+  def article_path(%Data.Article{name: name}) do
+    if String.starts_with?(name, "0000-00-00-") do
+      Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    else
+      Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+    end
+  end
+
   @short_month_names [
     "Jan",
     "Feb",
@@ -99,6 +107,10 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def parse_bounds([[minLon, minLat], [maxLon, maxLat]]) do
+    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
+  def parse_bounds([minLon, minLat, maxLon, maxLat]) do
     %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 

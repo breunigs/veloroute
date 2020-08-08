@@ -1,6 +1,6 @@
 <meta name="robots" content="noindex">
 
-<%= content_tag :content_tag, "🔍", for: :query  %>
+<%= content_tag :h3, "🔍 Suche", for: :query %>
 <%= tag :input,
   id: "search",
   value: @search_query,
@@ -9,12 +9,8 @@
   phx_hook: :focus,
   phx_debounce: 500,
   autofocus: true,
-  placeholder: "z.B. Luftpumpe, Feldstraße, StadtRAD, …"
+  placeholder: "z.B. Feldstraße, StadtRAD, Baustelle…"
 %>
-
-<%= if @search_bounds && @search_bounds != @map_bounds do %>
-  hier suchen?<br>
-<% end %>
 
 <%
 map = Mapbox.search(@search_query, @search_bounds)
@@ -23,12 +19,31 @@ art = Data.ArticleSearch.search(@search_query)
 results = SearchResult.sort_merge(map, art) |> Enum.take(15)
 %>
 
+<%= if length(results) >= 1 do %>
+
 <ul>
 <%= for result <- results do %>
   <li>
-    <a phx-click="map-zoom-to" phx-value-lat="<%= result.lat %>" phx-value-lon="<%= result.lon %>" phx-value-zoom="<%= SearchResult.zoom(result) %>">
-      <%= result.name %> ||| <%= result.relevance %>
-    </a>
+    <div>
+      <!-- relevance: <%= result.relevance %> -->
+      <!-- type: <%= result.type %> -->
+      <%= if result.url do %>
+        <%= live_patch(result.name, to: result.url) %>
+      <% else %>
+        <a phx-click="map-zoom-to" phx-value-bounds="<%= VelorouteWeb.VariousHelpers.to_string_bounds(result.bounds) %>">
+          <%= result.name %>
+        </a>
+      <% end %>
+      <%= if result.subtext do %>
+        <div class="aside"><%= result.subtext %></div>
+      <% end %>
+    </div>
   </li>
 <% end %>
 </ul>
+
+<% else %>
+
+<p>Leider keine Ergebnisse.</p>
+
+<% end %>

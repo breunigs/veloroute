@@ -58,16 +58,43 @@ defmodule Mapbox do
 
     response.body["features"]
     |> Enum.map(fn feat ->
-      # IO.inspect(feat)
+      IO.inspect(feat)
+      type = feat["place_type"] |> hd
+
+      place_name = feat["place_name_#{@search_language}"] || feat["place_name"] || ""
+      text = feat["text_#{@search_language}"] || feat["text"] || place_name
+
+      place_name_clean =
+        String.replace_prefix(place_name, text, "")
+        |> String.replace(~r/^[\s,]+/, "")
+        |> String.replace(", Deutschland", "")
 
       %SearchResult{
-        lon: feat["center"] |> Enum.at(0),
-        lat: feat["center"] |> Enum.at(1),
-        name: feat["place_name_#{@search_language}"] || feat["place_name"],
+        name: text,
+        subtext: if(place_name_clean != "", do: place_name_clean),
         relevance: feat["relevance"] * 1.0,
-        type: feat["place_type"] |> hd
+        bounds: result_to_bounds(feat, type),
+        type: type
       }
     end)
+  end
+
+  defp result_to_bounds(%{"bbox" => bbox}, _) when is_list(bbox) do
+    VariousHelpers.parse_bounds(bbox)
+  end
+
+  defp result_to_bounds(%{"center" => [lon, lat]}, type) do
+    zoom =
+      case type do
+        "poi" -> 18
+        _ -> 16
+      end
+
+    CheapRuler.center_zoom_to_bounds(%{
+      lon: lon,
+      lat: lat,
+      zoom: zoom
+    })
   end
 
   def upload_file(path) do
