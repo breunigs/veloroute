@@ -27,6 +27,8 @@ defmodule VelorouteWeb.FrameLive do
     route: Settings.route()
   ]
 
+  def initial_state, do: @initial_state
+
   def mount(_params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(5_000, self(), :check_updates)
 
