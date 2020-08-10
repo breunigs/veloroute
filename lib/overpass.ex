@@ -8,9 +8,9 @@ defmodule Overpass do
   use Tesla
 
   plug Tesla.Middleware.Retry,
-    delay: 15_000,
-    max_retries: 10,
-    max_delay: 60_000,
+    delay: 5_000,
+    max_retries: 5,
+    max_delay: 30_000,
     should_retry: fn
       {:ok, %{status: status}} when status >= 400 -> true
       {:ok, _} -> false
