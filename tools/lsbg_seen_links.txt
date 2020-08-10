@@ -245,3 +245,5 @@
 - "/contentblob/14126448/c0bb2617c387df8d5818f3a5f7008093/data/elbchaussee-manteuffelstrasse-bis-parkstrasse)-abgestimmte-planung-plan-9-17).pdf"
 - "/contentblob/14072738/cf3c0c0052c2e5716b6f0b966e039ea0/data/holsteiner-chaussee-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/14072742/45d3fd7215e1598153a3013aa3e4145d/data/holsteiner-chaussee-abstimmungsunterlage-plan.pdf"
+'2020-08-10':
+- "/contentblob/13921876/5149406c24b59bc0ba33f111dfc18bc6/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"

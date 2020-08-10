@@ -395,10 +395,10 @@
   <node id='-108212' action='modify' lat='53.61478631565' lon='10.01853346556' />
   <node id='-108213' action='modify' lat='53.61387936963' lon='10.01979142159' />
   <node id='-108214' action='modify' lat='53.61376480664' lon='10.01959293813' />
-  <node id='-108217' action='modify' lat='53.56085537596' lon='9.94594553951' />
-  <node id='-108218' action='modify' lat='53.5607572661' lon='9.94555634649' />
+  <node id='-108217' action='modify' lat='53.56102106304' lon='9.94656244758' />
+  <node id='-108218' action='modify' lat='53.56077319761' lon='9.94553488882' />
   <node id='-108219' action='modify' lat='53.56096341676' lon='9.94540904578' />
-  <node id='-108220' action='modify' lat='53.56106152615' lon='9.9457982388' />
+  <node id='-108220' action='modify' lat='53.56120490854' lon='9.94637223153' />
   <node id='-108244' action='modify' lat='53.56953460618' lon='10.03668129176' />
   <node id='-108268' action='modify' lat='53.58096473882' lon='10.06914943188' />
   <node id='-108323' action='modify' lat='53.61604327881' lon='10.12277751893' />
@@ -661,6 +661,12 @@
   <node id='-114608' action='modify' lat='53.6024390393' lon='10.05048930377' />
   <node id='-114609' action='modify' lat='53.60237696757' lon='10.05064218968' />
   <node id='-114610' action='modify' lat='53.60179542826' lon='10.05062135474' />
+  <node id='-114630' action='modify' lat='53.55950023684' lon='9.94237482011' />
+  <node id='-114637' action='modify' lat='53.55965318368' lon='9.94217633665' />
+  <node id='-114646' action='modify' lat='53.56041790958' lon='9.94359790742' />
+  <node id='-114653' action='modify' lat='53.56021717037' lon='9.9437105602' />
+  <node id='-114658' action='modify' lat='53.56053898991' lon='9.94456350267' />
+  <node id='-114664' action='modify' lat='53.5607429139' lon='9.944542045' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -17940,6 +17946,12 @@
     <nd ref='-108220' />
     <nd ref='-108217' />
     <nd ref='-108218' />
+    <nd ref='-114658' />
+    <nd ref='-114653' />
+    <nd ref='-114630' />
+    <nd ref='-114637' />
+    <nd ref='-114646' />
+    <nd ref='-114664' />
     <nd ref='-108219' />
     <nd ref='-108220' />
     <tag k='name' v='2020-06-19-haubachstrasse' />
