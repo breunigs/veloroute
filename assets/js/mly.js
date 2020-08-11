@@ -38,6 +38,8 @@ const routeComponent = mly.getComponent('route');
 let prevSeqs = "";
 let paths = [];
 let stuckDetector = null;
+let lastImageLoadDurations = [5000, 5000, 5000, 5000, 5000];
+let lastImageStart = null;
 const advanceSlideshow = () => {
   if (paths.length === 0) {
     return deactivateSlideshow();
@@ -51,6 +53,7 @@ const deactivateSlideshow = () => {
     return;
   }
   console.debug("stopping slideshow");
+  lastImageStart = null;
   routeComponent.stop();
   mly.deactivateComponent('route');
   paths = [];
@@ -81,6 +84,7 @@ const handleImageUpdates = () => {
       infoKeys: []
     });
   }
+  lastImageStart = null;
   advanceSlideshow();
   mly.activateComponent('route');
 }
@@ -92,8 +96,11 @@ const fixBeingStuck = () => {
     return;
   }
 
+  console.warn("apparently Mapillary is stuck at: ", paths[0], "\nHaving these load times:", lastImageLoadDurations)
   if (Sentry) {
-    Sentry.captureMessage("apparently Mapillary is stuck?");
+    window.setTimeout(() => {
+      Sentry.captureMessage("apparently Mapillary was stuck, see previous logs for details");
+    }, 1000)
   }
   deactivateSlideshow();
   window.pushEvent("sld-playpause", {})
@@ -114,8 +121,17 @@ mly.on(Mapillary.Viewer.navigablechanged, () => {
 
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
   console.debug("mly loaded", node.key);
+
   resetStuckDetector();
-  stuckDetector = setTimeout(fixBeingStuck, 5000);
+  const avg = lastImageLoadDurations.reduce((i, c) => i + c, 0) / lastImageLoadDurations.length;
+  stuckDetector = setTimeout(fixBeingStuck, avg * 3);
+
+  if (lastImageStart) {
+    const diff = Date.now() - lastImageStart;
+    lastImageLoadDurations.shift()
+    lastImageLoadDurations.push(diff)
+  }
+  lastImageStart = Date.now();
 
   if (paths[0] && node.key === paths[0].stopKey) {
     console.info("end of sequence, manually shifting")
