@@ -110,6 +110,7 @@ defmodule Data.ArticleTest do
       expected = String.replace(expected, "<br>", "<br/>")
       expected = String.replace(expected, "<br/></br>", "<br/>")
       expected = String.replace(expected, "></img>", "/>")
+      expected = String.replace(expected, "></input>", "/>")
       expected = HtmlEntities.decode(expected)
 
       got = Regex.replace(~r/\s+/, beauty, "")
