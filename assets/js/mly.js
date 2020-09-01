@@ -6,8 +6,7 @@ const initialImg = state.img;
 const mly = new Mapillary.Viewer(
   'mly',
   settings.mapillaryApiKey,
-  initialImg,
-  {
+  initialImg, {
     baseImageSize: Mapillary.ImageSize.Size320,
     basePanoramaSize: Mapillary.ImageSize.Size1024,
     component: {
@@ -44,7 +43,10 @@ const advanceSlideshow = () => {
   if (paths.length === 0) {
     return deactivateSlideshow();
   }
-  routeComponent.configure({ paths: paths, playing: true });
+  routeComponent.configure({
+    paths: paths,
+    playing: true
+  });
   mly.moveToKey(paths[0].startKey);
 }
 
@@ -96,11 +98,17 @@ const fixBeingStuck = () => {
     return;
   }
 
-  console.warn("apparently Mapillary is stuck at: ", paths[0], "\nHaving these load times:", lastImageLoadDurations)
-  if (Sentry) {
+  try {
+    const copyImgDur = lastImageLoadDurations.slice();
+    const copyPath = Object.assign({}, paths[0]);
     window.setTimeout(() => {
-      Sentry.captureMessage("apparently Mapillary was stuck, see previous logs for details");
-    }, 1000)
+      console.warn("apparently Mapillary is stuck at: ", copyPath, "\nHaving these load times:", copyImgDur)
+      if (Sentry) {
+        Sentry.captureMessage("mapillary stuck");
+      }
+    }, 300)
+  } catch (e) {
+    console.error(e);
   }
   deactivateSlideshow();
   window.pushEvent("sld-playpause", {})
@@ -124,7 +132,7 @@ mly.on(Mapillary.Viewer.nodechanged, (node) => {
 
   resetStuckDetector();
   const avg = lastImageLoadDurations.reduce((i, c) => i + c, 0) / lastImageLoadDurations.length;
-  stuckDetector = setTimeout(fixBeingStuck, avg * 3);
+  stuckDetector = setTimeout(fixBeingStuck, Math.max(300, avg * 3));
 
   if (lastImageStart) {
     const diff = Date.now() - lastImageStart;
@@ -140,7 +148,10 @@ mly.on(Mapillary.Viewer.nodechanged, (node) => {
     advanceSlideshow();
   }
 
-  window.pushEvent("mly-nodechanged", { img: node.key, routePlaying: !!routeComponent })
+  window.pushEvent("mly-nodechanged", {
+    img: node.key,
+    routePlaying: !!routeComponent
+  })
 });
 
 window.addEventListener("resize", () => mly.resize());
