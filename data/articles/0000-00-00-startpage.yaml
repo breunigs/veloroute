@@ -21,6 +21,9 @@ text: >
     <li><icon phx-click="sld-autoplay" phx-value-route="14">14</icon></li>
   </ol>
 
+  <h3><label for="query">Suche 🔎</label></h3>
+  <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
+
   <h3>Pläne, Baustellen und Probleme</h3>
   <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
 

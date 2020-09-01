@@ -1,6 +1,6 @@
 <meta name="robots" content="noindex">
 
-<%= content_tag :h3, "🔍 Suche", for: :query %>
+<%= content_tag :h3, "Suche 🔎", for: :query %>
 <%= tag :input,
   id: "search",
   value: @search_query,
