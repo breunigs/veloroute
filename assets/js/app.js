@@ -7,6 +7,7 @@ import "./search_handler"
 
 window.state = {};
 let prevLocation = location.pathname;
+
 function updateState() {
   if (prevLocation !== location.pathname) {
     document.getElementById("content").scrollTop = 0;
@@ -18,15 +19,22 @@ function updateState() {
   // console.log(state);
 
   if (state.mlyJs && loadMly) loadMly();
-  if (typeof window.mlyStateChanged === "function") { window.mlyStateChanged(); }
-  if (typeof window.mapStateChanged === "function") { window.mapStateChanged(); }
-  if (typeof window.loadingCb === "function") { window.loadingCb(); }
+  if (typeof window.mlyStateChanged === "function") {
+    window.mlyStateChanged();
+  }
+  if (typeof window.mapStateChanged === "function") {
+    window.mapStateChanged();
+  }
+  if (typeof window.loadingCb === "function") {
+    window.loadingCb();
+  }
 }
 updateState();
 console.log("Initial State From Server: ", state)
 
 let pushEventHandle = null;
 let pushEventQueued = [];
+
 function pushEvent(event, payload) {
   if (!pushEventHandle) {
     console.log("Queueing", event, "until mounted:", payload);
@@ -40,7 +48,9 @@ function pushEvent(event, payload) {
 window.pushEvent = pushEvent;
 
 const hash = location.hash.substr(1);
-if (hash != "") window.pushEvent("convert-hash", { hash: hash });
+if (hash != "") window.pushEvent("convert-hash", {
+  hash: hash
+});
 
 let loadMly = function () {
   console.log("loading mapillary");
@@ -99,12 +109,18 @@ Hooks.control = {
 Hooks.focus = {
   mounted() {
     this.el.focus();
-    this.el.select();
+    this.el.selectionStart = this.el.selectionEnd = this.el.value.length;
+    // this.el.select();
   }
 }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks, params: { _csrf_token: csrfToken } });
+let liveSocket = new LiveSocket("/live", Socket, {
+  hooks: Hooks,
+  params: {
+    _csrf_token: csrfToken
+  }
+});
 liveSocket.connect()
 window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
