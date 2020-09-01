@@ -58,7 +58,6 @@ defmodule Mapbox do
 
     response.body["features"]
     |> Enum.map(fn feat ->
-      IO.inspect(feat)
       type = feat["place_type"] |> hd
 
       place_name = feat["place_name_#{@search_language}"] || feat["place_name"] || ""
