@@ -528,3 +528,15 @@
 '2020-07-25':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009650
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012139
+'2020-08-10':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010226
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010254
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010253
+- https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013254
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009709
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009697
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009525
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012537
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012477
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012476
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012474

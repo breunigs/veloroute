@@ -29,7 +29,11 @@ text: >
 
   <h3>Aktuelle Artikel</h3>
   <articles range="recent" sort="date"/>
-  <p><a href="/changes">Alle Artikel anzeigen</a></p>
+  <p>
+    <a href="/changes#lastChanges">Alle Artikel anzeigen</a>
+    oder
+    <a href="/changes#getNotified">Artikel abonnieren</a>
+  </p>
 
   <h3>Kontakt</h3>
   <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><mailto/></p>
