@@ -247,3 +247,6 @@
 - "/contentblob/14072742/45d3fd7215e1598153a3013aa3e4145d/data/holsteiner-chaussee-abstimmungsunterlage-plan.pdf"
 '2020-08-10':
 - "/contentblob/13921876/5149406c24b59bc0ba33f111dfc18bc6/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"
+'2020-09-01':
+- "/contentblob/14009034/55cf96ec530c11a8ef97f009c8198bf3/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/14009032/7b2fa0885604a35e0792960b06a525d2/data/im-gehoelz-bhst-goebenstrasse-abstimmungsunterlagen-plan.pdf"
