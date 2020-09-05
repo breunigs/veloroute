@@ -539,6 +539,15 @@ input[type=search] {
   margin-top: 0.6rem;
   box-sizing: border-box;
   width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #cdc7c2;
+  outline: 0;
+
+  &:focus {
+    border: 1px solid #3584e4;
+    box-shadow: 0 0 0 1px #3584e4;
+  }
 }
 
 div.aside {
