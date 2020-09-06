@@ -232,7 +232,7 @@ defmodule VelorouteWeb.ArticleView do
       find_attribute(attrs, "download") != nil ->
         keep
 
-      find_attribute(attrs, "phx-click") != nil ->
+      href == nil && find_attribute(attrs, "phx-click") != nil ->
         keep
 
       find_attribute(attrs, "bounds") != nil ->
