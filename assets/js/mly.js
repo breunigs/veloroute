@@ -15,7 +15,7 @@ const mly = new Mapillary.Viewer(
       cache: {
         depth: {
           pano: 0,
-          sequence: 3,
+          sequence: 4,
           step: 0,
           turn: 0
         }
@@ -39,10 +39,12 @@ let paths = [];
 let stuckDetector = null;
 let lastImageLoadDurations = [5000, 5000, 5000, 5000, 5000];
 let lastImageStart = null;
+let currentlyViewedImg = null;
 const advanceSlideshow = () => {
   if (paths.length === 0) {
     return deactivateSlideshow();
   }
+  console.debug("advancing slideshow to", paths[0].startKey)
   routeComponent.configure({
     paths: paths,
     playing: true
@@ -60,6 +62,18 @@ const deactivateSlideshow = () => {
   mly.deactivateComponent('route');
   paths = [];
   prevSeqs = "";
+}
+
+const fixSlideshow = () => {
+  if (!routeComponent.activated) {
+    return;
+  }
+  console.warn("resetting slideshow from state.img=", state.img, "and paths", paths[0]);
+  routeComponent.stop();
+  if (paths[0] && currentlyViewedImg.sequenceKey === paths[0].sequenceKey) {
+    paths[0].startKey = currentlyViewedImg.key;
+  }
+  advanceSlideshow();
 }
 
 const handleImageUpdates = () => {
@@ -100,19 +114,34 @@ const fixBeingStuck = () => {
 
   try {
     const copyImgDur = lastImageLoadDurations.slice();
+    const curImgKey = currentlyViewedImg.key;
+    const curImgSeq = currentlyViewedImg.sequenceKey;
     const copyPath = Object.assign({}, paths[0]);
     window.setTimeout(() => {
-      console.warn("apparently Mapillary is stuck at: ", copyPath, "\nHaving these load times:", copyImgDur)
-      if (Sentry) {
+      console.warn("apparently Mapillary was stuck at",
+        "\n",
+        "imgBefore =", curImgKey,
+        "seqBefore =", curImgSeq,
+        "\n",
+        "imgAfter =", currentlyViewedImg.key,
+        "seqAfter =", currentlyViewedImg.sequenceKey,
+        "\n",
+        "pathBefore:", copyPath,
+        "\n",
+        "pathNow:", paths[0],
+        "\n",
+        "Having these load times:", copyImgDur)
+
+      // report issues where we're still stuck
+      if (typeof Sentry !== "undefined" && curImgKey === currentlyViewedImg.key) {
         Sentry.captureMessage("mapillary stuck");
       }
-    }, 300)
+    }, 1500)
   } catch (e) {
     console.error(e);
   }
-  deactivateSlideshow();
-  window.pushEvent("sld-playpause", {})
-  window.pushEvent("sld-playpause", {})
+
+  fixSlideshow();
 }
 
 const resetStuckDetector = () => {
@@ -128,11 +157,11 @@ mly.on(Mapillary.Viewer.navigablechanged, () => {
 });
 
 mly.on(Mapillary.Viewer.nodechanged, (node) => {
-  console.debug("mly loaded", node.key);
-
+  currentlyViewedImg = node;
   resetStuckDetector();
   const avg = lastImageLoadDurations.reduce((i, c) => i + c, 0) / lastImageLoadDurations.length;
-  stuckDetector = setTimeout(fixBeingStuck, Math.max(300, avg * 3));
+  const considerStuckAfter = Math.max(300, avg * 3);
+  stuckDetector = setTimeout(fixBeingStuck, considerStuckAfter);
 
   if (lastImageStart) {
     const diff = Date.now() - lastImageStart;
@@ -150,6 +179,7 @@ mly.on(Mapillary.Viewer.nodechanged, (node) => {
 
   window.pushEvent("mly-nodechanged", {
     img: node.key,
+    imgSeq: node.sequenceKey,
     routePlaying: !!routeComponent
   })
 });
