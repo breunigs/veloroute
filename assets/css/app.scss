@@ -543,10 +543,17 @@ input[type=search] {
   border-radius: 0.2rem;
   border: 1px solid #cdc7c2;
   outline: 0;
+  font-size: 16px;
 
   &:focus {
     border: 1px solid #3584e4;
     box-shadow: 0 0 0 1px #3584e4;
+  }
+}
+
+@media (min-width: 3*$minWidth) {
+  input[type=search] {
+    font-size: inherit;
   }
 }
 

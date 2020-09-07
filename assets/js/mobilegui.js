@@ -11,20 +11,26 @@ function detectswipe(el) {
   let eX = 0;
   let eY = 0;
 
-  const minX = 30;  // min x swipe for horizontal swipe
-  const maxY = 30;  // max y difference for horizontal swipe
+  const minX = 30; // min x swipe for horizontal swipe
+  const maxY = 30; // max y difference for horizontal swipe
 
   ele.addEventListener('touchstart', (e) => {
     const t = e.touches[0];
     sX = t.screenX;
     sY = t.screenY;
-  }, { capture: false, passive: true });
+  }, {
+    capture: false,
+    passive: true
+  });
 
   ele.addEventListener('touchmove', (e) => {
     const t = e.touches[0];
     eX = t.screenX;
     eY = t.screenY;
-  }, { capture: false, passive: true });
+  }, {
+    capture: false,
+    passive: true
+  });
 
   ele.addEventListener('touchend', (e) => {
     if (
@@ -38,8 +44,15 @@ function detectswipe(el) {
       if (eX > sX) {
         // swiped right
         cls.remove("showSidebar");
+        if (document.activeElement.tagName === 'INPUT') {
+          document.activeElement.blur();
+        }
       } else {
         // swiped left
+        cls.add("showSidebar");
+      }
+    } else {
+      if (e.target.tagName === 'INPUT') {
         cls.add("showSidebar");
       }
     }
@@ -48,7 +61,10 @@ function detectswipe(el) {
     sY = 0;
     eX = 0;
     eY = 0;
-  }, { capture: false, passive: true });
+  }, {
+    capture: false,
+    passive: true
+  });
 }
 
 detectswipe("sidebar")
