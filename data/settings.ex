@@ -32,4 +32,6 @@ defmodule Settings do
     """
 
   def deploy_ssh_name, do: "netcup-git"
+
+  def enable_sentry_frontend, do: false
 end

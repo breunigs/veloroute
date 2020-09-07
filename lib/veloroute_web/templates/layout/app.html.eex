@@ -70,7 +70,7 @@
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/liveview.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
-    <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" do %>
+    <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" && Settings.enable_sentry_frontend do %>
       <script src="https://browser.sentry-cdn.com/5.22.3/bundle.min.js"
         integrity="sha384-A1qzcXXJWl+bzYr+r8AdFzSaLbdcbYRFmG37MEDKr4EYjtraUyoZ6UiMw31jHcV9"
         crossorigin="anonymous"
