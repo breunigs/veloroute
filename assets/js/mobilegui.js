@@ -12,7 +12,7 @@ function detectswipe(el) {
   let eY = 0;
 
   const minX = 30; // min x swipe for horizontal swipe
-  const maxY = 30; // max y difference for horizontal swipe
+  const maxY = 50; // max y difference for horizontal swipe
 
   ele.addEventListener('touchstart', (e) => {
     const t = e.touches[0];
@@ -34,12 +34,10 @@ function detectswipe(el) {
 
   ele.addEventListener('touchend', (e) => {
     if (
-      ((eX - minX > sX) || (eX + minX < sX)) &&
-      ((eY < sY + maxY) && (sY > eY - maxY)) &&
-      (eX > 0)
+      eX > 0 && Math.abs(sX - eX) > minX && Math.abs(sY - eY) < maxY
     ) {
 
-      console.debug("swiped x", sX - eX, "swiped y", sY, eY);
+      console.debug("swiped x", sX - eX, "swiped y", sY - eY);
 
       if (eX > sX) {
         // swiped right
