@@ -14,7 +14,6 @@ defmodule Data.ArticleCache do
   end
 
   @get Benchmark.measure("loading articles", fn ->
-         Data.ImageCache.start_link()
          Data.Article.load_all(@article_path)
        end)
   def get, do: @get

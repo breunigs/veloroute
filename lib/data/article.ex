@@ -8,7 +8,6 @@ defmodule Data.Article do
   Code.ensure_compiled(Data.MapCache)
   alias Data.MapCache
 
-  Code.ensure_compiled(Data.ImageCache)
   alias Data.ImageCache
 
   import Mapillary, only: [is_ref: 1]

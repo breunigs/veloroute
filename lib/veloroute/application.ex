@@ -11,7 +11,6 @@ defmodule Veloroute.Application do
     # List all child processes to be supervised
     children = [
       VelorouteWeb.Telemetry,
-      Data.ImageCache,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
       {Phoenix.PubSub, [name: Veloroute.PubSub, adapter: Phoenix.PubSub.PG2]}
