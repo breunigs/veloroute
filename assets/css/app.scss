@@ -93,12 +93,17 @@ body {
   background: $bgcolor;
   display: flex;
   flex-flow: column;
-  transition: all 0.3s ease;
   z-index: 3;
 }
 
 .showSidebar #sidebar {
+  transition: all 0.3s ease;
   left: unquote('min(100vw - #{$minWidth}, #{$mainWidth})');
+}
+
+.hideSidebar #sidebar {
+  transition: all 0.3s ease;
+  left: unquote('max(#{$minWidth}, #{$mainWidth})');
 }
 
 #content {

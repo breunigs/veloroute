@@ -1,6 +1,17 @@
 const cls = document.getElementsByTagName("body")[0].classList;
+
+function showSidebar() {
+  cls.add("showSidebar");
+  cls.remove("hideSidebar");
+}
+
+function hideSidebar() {
+  cls.remove("showSidebar");
+  cls.add("hideSidebar");
+}
+
 document.getElementById("switcher").addEventListener("click", () => {
-  cls.toggle("showSidebar");
+  cls.contains("showSidebar") ? hideSidebar() : showSidebar()
 })
 
 function detectswipe(el) {
@@ -41,17 +52,17 @@ function detectswipe(el) {
 
       if (eX > sX) {
         // swiped right
-        cls.remove("showSidebar");
+        hideSidebar()
         if (document.activeElement.tagName === 'INPUT') {
           document.activeElement.blur();
         }
       } else {
         // swiped left
-        cls.add("showSidebar");
+        showSidebar();
       }
     } else {
       if (e.target.tagName === 'INPUT') {
-        cls.add("showSidebar");
+        showSidebar();
       }
     }
 
