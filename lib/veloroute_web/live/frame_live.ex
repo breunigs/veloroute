@@ -122,8 +122,8 @@ defmodule VelorouteWeb.FrameLive do
           # i.e. reverse on double click
           [{r, _d, %{img: ^curimg}}, {_, _, img} | _rest] -> {r, img}
           # prefer from same route, unless it's the same
-          [_______, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
-          [____, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
+          [_ignore, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
+          [_ign, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
           [_, _, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
           # take closest
           other -> List.first(other) |> Tuple.delete_at(1)

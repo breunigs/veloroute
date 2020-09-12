@@ -20,7 +20,7 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :plug]
     ]
   end
 
