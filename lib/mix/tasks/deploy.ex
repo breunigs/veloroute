@@ -40,7 +40,16 @@ defmodule Mix.Tasks.Deploy do
     {_, 0} =
       System.cmd(
         "docker",
-        ["build", ".", "-t", name, "--build-arg", "GIT_COMMIT=#{Git.revision()}"],
+        [
+          "build",
+          ".",
+          "--network",
+          "host",
+          "-t",
+          name,
+          "--build-arg",
+          "GIT_COMMIT=#{Git.revision()}"
+        ],
         env: [{"DOCKER_BUILDKIT", "1"}]
       )
 
