@@ -2,7 +2,7 @@
 
 # run like this: DOCKER_BUILDKIT=1 docker build .
 
-FROM elixir:1.10.3-alpine AS elixirbase
+FROM elixir:1.10.4-alpine AS elixirbase
 WORKDIR /build
 ENV GIT_COMMIT="dockerfile dummy"
 
@@ -14,10 +14,7 @@ COPY mix.* /build/
 RUN \
   --mount=type=cache,target=/plt-cache/ \
   mkdir -p /build/_build/test/ && \
-  cp -r /plt-cache/. /build/_build/test/ && \
-  MIX_ENV=test mix do deps.get, dialyzer --plt && \
-  cp -r /build/_build/test/*.plt /plt-cache/
-
+  MIX_ENV=test mix do deps.get
 
 COPY config/ /build/config/
 COPY data/phoenix_credentials.exs data/settings.ex /build/data/
@@ -39,14 +36,6 @@ RUN --network=none \
   MIX_ENV=test mix do test && \
   echo ok > /__test
 
-FROM elixirbase as dialyzer
-RUN \
-  --network=none \
-  --mount=target=/build/priv/plts/,type=cache \
-  MIX_ENV=test mix dialyzer && \
-  echo ok > /__dialyzerrun
-
-
 FROM elixirbase as js
 RUN apk add --no-cache nodejs npm brotli git
 RUN --mount=type=cache,target=/build/assets/node_modules \
@@ -64,7 +53,6 @@ RUN --network=none \
   MIX_ENV=prod mix do deps.compile sentry --force, release
 # ensure they succeeded
 COPY --from=test /__test /
-COPY --from=dialyzer /__dialyzerrun /
 
 FROM alpine:3.11 as runtime
 RUN apk add --no-cache ncurses-libs
