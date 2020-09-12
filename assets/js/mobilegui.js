@@ -10,9 +10,12 @@ function hideSidebar() {
   cls.add("hideSidebar");
 }
 
-document.getElementById("switcher").addEventListener("click", () => {
+function toggleSidebar(e) {
   cls.contains("showSidebar") ? hideSidebar() : showSidebar()
-})
+  e.stopPropagation()
+}
+
+document.getElementById("switcher").addEventListener("click", toggleSidebar)
 
 function detectswipe(el) {
   const ele = document.getElementById(el);

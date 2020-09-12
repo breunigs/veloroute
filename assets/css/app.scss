@@ -88,7 +88,7 @@ body {
   height: -webkit-fill-available;
   position: relative;
   top: 0;
-  left: $mainWidth; // IE11 doesn't support max()
+  left: $minWidth; // old browsers doesn't support max() -- for mobile devices
   left: unquote('max(#{$minWidth}, #{$mainWidth})');
   background: $bgcolor;
   display: flex;
@@ -96,14 +96,26 @@ body {
   z-index: 3;
 }
 
+@media (min-width: 3*$minWidth) {
+  #sidebar {
+    left: $mainWidth; // old browsers doesn't support max() -- for desktop
+    left: unquote('max(#{$minWidth}, #{$mainWidth})');
+    position: fixed;
+  }
+
+  #switcher {
+    display: none !important;
+  }
+}
+
 .showSidebar #sidebar {
   transition: all 0.3s ease;
+  left: calc(100vw - #{$minWidth}); // old browsers doesn't support max() -- for both
   left: unquote('min(100vw - #{$minWidth}, #{$mainWidth})');
 }
 
 .hideSidebar #sidebar {
   transition: all 0.3s ease;
-  left: unquote('max(#{$minWidth}, #{$mainWidth})');
 }
 
 #content {
@@ -208,18 +220,6 @@ body {
     background-size: cover;
   }
 }
-
-
-@media (min-width: 3*$minWidth) {
-  #sidebar {
-    position: fixed;
-  }
-
-  #switcher {
-    display: none;
-  }
-}
-
 
 #mlyPlaceholder,
 #mlyPlaceholderOuter {
