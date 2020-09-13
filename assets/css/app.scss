@@ -199,6 +199,7 @@ body {
   $width: 26px;
   $height: 68px;
 
+  position: absolute;
   position: sticky;
   top: calc(50vh - #{$height/2});
   left: 0;
