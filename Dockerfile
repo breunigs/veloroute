@@ -27,7 +27,7 @@ COPY ./ /build/
 RUN --mount=type=cache,target=/data-cache/ \
   mkdir -p /build/data/cache/ && \
   cp -r /data-cache/. /build/data/cache/ && \
-  MIX_ENV=test mix do compile, warm_caches && \
+  MIX_ENV=test mix do compile, warm_caches, update_gpx && \
   cp -r /build/data/cache/. /data-cache/
 
 FROM elixirbase as favicon
