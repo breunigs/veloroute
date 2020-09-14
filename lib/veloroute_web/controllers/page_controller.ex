@@ -22,14 +22,7 @@ defmodule VelorouteWeb.PageController do
       |> put_status(301)
       |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, article))
     else
-      home = Routes.startpage_url(conn, VelorouteWeb.FrameLive, not_found: true)
-
-      conn
-      |> put_status(404)
-      |> html("""
-         <meta http-equiv="refresh" content="0; URL=#{home}">
-         Seite nicht gefunden, leite zur Startseite...
-      """)
+      not_found_redir(conn)
     end
   end
 
@@ -37,6 +30,16 @@ defmodule VelorouteWeb.PageController do
     conn
     |> put_status(301)
     |> redirect(to: Routes.page_path(conn, VelorouteWeb.FrameLive, params["page"]))
+  end
+
+  def old_route_links(conn, %{"suffix" => suffix}) do
+    if(String.match?(suffix, ~r/\d+\.(gpx|kml)$/)) do
+      conn
+      |> put_status(301)
+      |> redirect(to: "/geo/" <> suffix)
+    else
+      not_found_redir(conn)
+    end
   end
 
   def js_errors(conn, _params) do
@@ -52,5 +55,16 @@ defmodule VelorouteWeb.PageController do
     end
 
     send_resp(conn, 204, "")
+  end
+
+  defp not_found_redir(conn) do
+    home = Routes.startpage_url(conn, VelorouteWeb.FrameLive, not_found: true)
+
+    conn
+    |> put_status(404)
+    |> html("""
+       <meta http-equiv="refresh" content="0; URL=#{home}">
+       Seite nicht gefunden, leite zur Startseite...
+    """)
   end
 end
