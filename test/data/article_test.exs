@@ -3,6 +3,7 @@ defmodule Data.ArticleTest do
   doctest Data.Article
 
   import Mapillary, only: [is_ref: 1]
+  alias VelorouteWeb.VariousHelpers
 
   def example_article(extra_keys \\ []) do
     %Data.Article{
@@ -92,6 +93,39 @@ defmodule Data.ArticleTest do
       assert length(MapSet.to_list(missing)) == 0,
              "#{name} is missing some of the required keys. Missing: #{inspect(missing)}"
     end)
+  end
+
+  test "all bounds in links are sensible" do
+    errors =
+      Data.ArticleCache.get()
+      |> Enum.map(fn {name, a} ->
+        {:ok, html} = a.text |> Floki.parse_fragment()
+        {name, html}
+      end)
+      |> Enum.flat_map(fn {name, html} ->
+        Floki.find(html, "a[bounds]") |> Enum.map(fn link -> {name, link} end)
+      end)
+      |> Enum.map(fn {name, link} ->
+        bounds = Floki.attribute(link, "bounds")
+        prefix = "#{name}, link “#{Floki.text(link)}”"
+
+        cond do
+          length(bounds) != 1 ->
+            "#{prefix}: expected attribute bounds just once"
+
+          String.contains?(hd(bounds), "%2C") ->
+            "#{prefix}: bounds contains escape sequence %2C instead of a plain comma"
+
+          VariousHelpers.parse_bounds(hd(bounds)) == nil ->
+            "#{prefix}: failed to parse bounds '#{hd(bounds)}'"
+
+          true ->
+            nil
+        end
+      end)
+      |> Enum.reject(&is_nil/1)
+
+    assert [] == errors
   end
 
   test "all articles' contents are valid HTML" do
