@@ -30,23 +30,26 @@ RUN --mount=type=cache,target=/data-cache/ \
   MIX_ENV=test mix do compile, warm_caches && \
   cp -r /build/data/cache/. /data-cache/
 
+FROM elixirbase as favicon
+RUN apk add --no-cache optipng inkscape
+RUN tools/update_favicons.sh
 
 FROM elixirbase as test
 RUN --network=none \
   MIX_ENV=test mix do test && \
   echo ok > /__test
 
-FROM elixirbase as js
+FROM elixirbase as assets
 RUN apk add --no-cache nodejs npm brotli git
 RUN --mount=type=cache,target=/build/assets/node_modules \
   npm install --prefix ./assets && \
-  npm run deploy --prefix ./assets && \
-  MIX_ENV=prod mix phx.digest && \
+  npm run deploy --prefix ./assets
+COPY --from=favicon /build/assets/static/favicons/ /build/assets/static/favicons/
+RUN  MIX_ENV=prod mix phx.digest && \
   (find priv/static/ -type f -not -iname '*.png' -not -iname '*.gz' -not -iname '*.br' -print0 | xargs -r -0 -n1 -P0 brotli -f --best)
 
-
 FROM elixirbase as build
-COPY --from=js /build/priv/static/ /build/priv/static/
+COPY --from=assets /build/priv/static/ /build/priv/static/
 RUN --network=none \
   mkdir -p /build/rel/overlays/data/cache/ && \
   cp /build/data/cache/*.dets /build/rel/overlays/data/cache/ && \
