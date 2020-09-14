@@ -97,14 +97,7 @@ defmodule Data.ArticleTest do
 
   test "all bounds in links are sensible" do
     errors =
-      Data.ArticleCache.get()
-      |> Enum.map(fn {name, a} ->
-        {:ok, html} = a.text |> Floki.parse_fragment()
-        {name, html}
-      end)
-      |> Enum.flat_map(fn {name, html} ->
-        Floki.find(html, "a[bounds]") |> Enum.map(fn link -> {name, link} end)
-      end)
+      all_articles_element_select("a[bounds]")
       |> Enum.map(fn {name, link} ->
         bounds = Floki.attribute(link, "bounds")
         prefix = "#{name}, link “#{Floki.text(link)}”"
@@ -118,6 +111,29 @@ defmodule Data.ArticleTest do
 
           VariousHelpers.parse_bounds(hd(bounds)) == nil ->
             "#{prefix}: failed to parse bounds '#{hd(bounds)}'"
+
+          true ->
+            nil
+        end
+      end)
+      |> Enum.reject(&is_nil/1)
+
+    assert [] == errors
+  end
+
+  test "all image refs in links are valid" do
+    errors =
+      all_articles_element_select("a[img]")
+      |> Enum.map(fn {name, link} ->
+        imgs = Floki.attribute(link, "img")
+        prefix = "#{name}, link “#{Floki.text(link)}”"
+
+        cond do
+          length(imgs) != 1 ->
+            "#{prefix}: expected attribute img just once"
+
+          !is_ref(hd(imgs)) ->
+            "#{prefix}: expected proper Mapillary image reference, but '#{hd(imgs)}' doesn't appear to be one"
 
           true ->
             nil
@@ -172,5 +188,16 @@ defmodule Data.ArticleTest do
              "Article #{name} has no start_image (bbox: #{inspect(art.bbox)})."
            end)
            |> Enum.sort() == []
+  end
+
+  defp all_articles_element_select(selector) do
+    Data.ArticleCache.get()
+    |> Enum.map(fn {name, a} ->
+      {:ok, html} = a.text |> Floki.parse_fragment()
+      {name, html}
+    end)
+    |> Enum.flat_map(fn {name, html} ->
+      Floki.find(html, selector) |> Enum.map(fn link -> {name, link} end)
+    end)
   end
 end
