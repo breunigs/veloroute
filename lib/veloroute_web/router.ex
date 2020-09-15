@@ -4,6 +4,8 @@ defmodule VelorouteWeb.Router do
   use Sentry.Plug
 
   import Phoenix.LiveView.Router
+  import Plug.BasicAuth
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,6 +14,19 @@ defmodule VelorouteWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :put_root_layout, {VelorouteWeb.LayoutView, :app}
+  end
+
+  pipeline :admins_only do
+    plug :basic_auth,
+      username: Credentials.dashboard_user(),
+      password: Credentials.dashboard_password()
+  end
+
+  scope "/" do
+    pipe_through [:browser, :admins_only]
+
+    if is_binary(Credentials.dashboard_password()) && Credentials.dashboard_password() != "",
+      do: live_dashboard("/dashboard", metrics: VelorouteWeb.Telemetry)
   end
 
   scope "/", VelorouteWeb do

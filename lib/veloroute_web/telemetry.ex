@@ -33,6 +33,27 @@ defmodule VelorouteWeb.Telemetry do
       counter("phoenix.router_dispatch.stop.count"),
       counter("phoenix.error_rendered.count"),
 
+      # Live View
+      counter("phoenix.live_view.mount.start.count"),
+      summary("phoenix.live_view.mount.stop.duration",
+        unit: {:native, :millisecond}
+      ),
+      counter("phoenix.live_view.mount.exception.count"),
+      summary("phoenix.live_view.handle_params.stop.duration",
+        unit: {:native, :millisecond},
+        tags: [:label],
+        tag_values: &label_page_params/1
+      ),
+      summary("phoenix.live_view.handle_event.stop.duration",
+        unit: {:native, :millisecond},
+        tags: [:event]
+      ),
+
+      # Tesla
+      summary("tesla.request.stop.duration",
+        unit: {:native, :millisecond}
+      ),
+
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
@@ -43,5 +64,9 @@ defmodule VelorouteWeb.Telemetry do
 
   defp periodic_measurements do
     []
+  end
+
+  defp label_page_params(%{params: params}) do
+    %{label: params["page"] || params["article"] || "unknown_page"}
   end
 end

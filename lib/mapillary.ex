@@ -15,6 +15,7 @@ defmodule Mapillary do
 
   defp key(), do: Credentials.mapillary_api_key()
 
+  plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.BaseUrl, "https://a.mapillary.com/v3"
   plug Tesla.Middleware.Headers, [{"Content-Type", "application/json"}]
   plug Tesla.Middleware.Query, client_id: key()

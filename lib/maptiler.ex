@@ -12,6 +12,7 @@ defmodule Maptiler do
     {"Cache-Control", "no-cache"}
   ]
 
+  plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.Query, key: Credentials.maptiler_api_key()
   plug Tesla.Middleware.JSON
   # for debugging help

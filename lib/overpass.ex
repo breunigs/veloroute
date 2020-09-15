@@ -17,6 +17,7 @@ defmodule Overpass do
       {:error, _} -> true
     end
 
+  plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.BaseUrl, "https://lz4.overpass-api.de/api/interpreter"
   plug Tesla.Middleware.JSON
   # for debugging help
