@@ -16,7 +16,8 @@ defmodule VelorouteWeb.FrameLive do
     img_prev: nil,
     prev_page: nil,
     current_page: nil,
-    bounds: nil,
+    bounds: struct(BoundingBox, Settings.initial()),
+    bounds_ts: nil,
     slideshow: false,
     map_bounds: nil,
     sequence: nil,
@@ -24,20 +25,20 @@ defmodule VelorouteWeb.FrameLive do
     article_title: nil,
     search_query: nil,
     search_bounds: nil,
-    route: Settings.route()
+    route: Settings.route(),
+    img: Settings.image(),
+    lon: nil,
+    lat: nil,
+    bearing: nil,
+    sequence: nil,
+    mly_js: nil
   ]
 
   def initial_state, do: @initial_state
 
   def mount(_params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(5_000, self(), :check_updates)
-
-    socket =
-      socket
-      |> assign(@initial_state)
-      |> assign(state(socket.assigns))
-
-    {:ok, socket}
+    {:ok, assign(socket, @initial_state)}
   end
 
   def handle_info(:check_updates, socket) do
@@ -539,27 +540,14 @@ defmodule VelorouteWeb.FrameLive do
       route: route,
       img_load_start: Time.utc_now()
     )
+    |> update_img_navigate_buttons()
   end
 
-  defp render_state(assigns) do
-    Phoenix.HTML.Tag.content_tag(:div, "",
-      id: "control",
-      "phx-hook": "control",
-      data: state(assigns)
+  defp update_img_navigate_buttons(socket) do
+    assign(socket,
+      img_next_disabled: if(is_nil(socket.assigns.img_next), do: "disabled"),
+      img_prev_disabled: if(is_nil(socket.assigns.img_prev), do: "disabled")
     )
-  end
-
-  def state(assigns \\ %{}) do
-    [
-      img: Map.get(assigns, :img, Settings.image()),
-      lon: Map.get(assigns, :lon),
-      lat: Map.get(assigns, :lat),
-      bearing: Map.get(assigns, :bearing),
-      sequence: Map.get(assigns, :sequence),
-      mly_js: Map.get(assigns, :mly_js, nil),
-      bounds: Map.get(assigns, :bounds, struct(BoundingBox, Settings.initial())),
-      bounds_ts: Map.get(assigns, :bounds_ts)
-    ]
   end
 
   defp find_article(""), do: find_article(Settings.default_page())

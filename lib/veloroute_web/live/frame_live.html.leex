@@ -1,5 +1,3 @@
-<% with_slideshow = @slideshow || @mly_js  %>
-
 <%= if !@mly_loaded do %>
   <div phx-update="ignore" id="mlyPlaceholderOuter">
     <a href="#" phx-click="sld-playpause" phx-page-loading id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
@@ -13,7 +11,7 @@
 <div id="sidebar">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-  <div id="content" <%= if with_slideshow, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
+  <div id="content" <%= if @mly_js, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
     <%= if Map.get(@flash, "info") do %>
       <p class="alert">
         <%= case Map.get(@flash, "info") do
@@ -24,23 +22,34 @@
       </p>
     <% end %>
 
-    <%= Phoenix.View.render(VelorouteWeb.ArticleView, @current_page, assigns) %>
+    <%# explicity name params so that live tracking works %>
+    <%= Phoenix.View.render(VelorouteWeb.ArticleView, @current_page, %{
+      search_bounds: @search_bounds,
+      search_query: @search_query
+    }) %>
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
-  <%= if with_slideshow do %>
+  <%= if @mly_js || @slideshow do %>
     <div id="slideshow">
       <button phx-click="sld-playpause" phx-disable-with="<%= if @slideshow, do: "▶", else: "■" %>" title="Abspielen / Pause">
         <%= if @slideshow, do: "■", else: "▶" %>
       </button>
-      <%= Phoenix.HTML.Tag.content_tag(:button, "〈", title: "Voriges Bild",  disabled: @img_prev == nil, "phx-page-loading": "", "phx-click": "sld-step-backward") %>
-      <%= Phoenix.HTML.Tag.content_tag(:button, "〉", title: "Nächstes Bild", disabled: @img_next == nil, "phx-page-loading": "", "phx-click": "sld-step-forward") %>
+      <button phx-click="sld-step-backward" phx-page-loading="" title="Voriges Bild" <%= @img_prev_disabled %>>〈</button>
+      <button phx-click="sld-step-forward" phx-page-loading="" title="Nächstes Bild" <%= @img_next_disabled %>>〉</button>
       <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
       <%= display_route(@route) %>
     </div>
   <% end %>
 </div>
 
-<%= render_state(assigns) %>
-
-<script type="application/ld+json">{"@context":"https://schema.org/","@type":"ImageObject","contentUrl":"<%= Mapillary.img_url(@img) %>","license":"https://creativecommons.org/licenses/by-sa/3.0/deed.en","acquireLicensePage":"https://help.mapillary.com/hc/en-us/articles/115001770409-Licenses"}</script>
+<div id="control" phx-hook="control"
+  data-img="<%= @img %>"
+  data-lon="<%= @lon %>"
+  data-lat="<%= @lat %>"
+  data-bearing="<%= @bearing %>"
+  data-sequence="<%= @sequence %>"
+  data-mly-js="<%= @mly_js %>"
+  data-bounds="<%= @bounds %>"
+  data-bounds-ts="<%= @bounds_ts %>"
+></div>
