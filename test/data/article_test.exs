@@ -36,7 +36,7 @@ defmodule Data.ArticleTest do
       text: "<a>text</a>"
     """)
 
-    art = Data.Article.load(file_path)
+    art = Data.Article.load(file_path, dir_path)
     art = Enum.reduce(@ignored_fields, art, fn ign, art -> Map.put(art, ign, nil) end)
 
     assert %Data.Article{

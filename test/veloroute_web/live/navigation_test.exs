@@ -157,11 +157,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     @art_name art_name
     @art art
     test "article #{@art_name} can be rendered", %{conn: conn} do
-      path =
-        case @art_name do
-          "0000-00-00-" <> page -> "/#{page}"
-          art_name -> "/article/#{art_name}"
-        end
+      path = VelorouteWeb.VariousHelpers.article_path(%Data.Article{name: @art_name})
 
       {:ok, _view, html} = conn |> get(path) |> live()
       if path =~ "/article/", do: assert(html =~ @art.title)

@@ -41,13 +41,13 @@ defmodule Data.Article do
   @enforce_keys [:type, :title, :text, :date, :name]
   def required_params, do: @enforce_keys
 
-  def load(path) do
+  def load(path, article_dir \\ "data/articles") do
     try do
       {:ok, parsed} = YamlElixir.read_from_file(path)
 
       parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
 
-      name = Path.relative_to(path, "data/articles") |> String.replace_trailing(".yaml", "")
+      name = Path.relative_to(path, article_dir) |> String.replace_trailing(".yaml", "")
 
       {:ok, date} =
         Map.get(parsed, :updated, name)
