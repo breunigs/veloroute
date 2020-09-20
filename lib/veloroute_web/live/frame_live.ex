@@ -14,6 +14,8 @@ defmodule VelorouteWeb.FrameLive do
     mly_loaded: false,
     img_next: nil,
     img_prev: nil,
+    img_next_disabled: "",
+    img_prev_disabled: "",
     prev_page: nil,
     current_page: nil,
     bounds: struct(BoundingBox, Settings.initial()),
