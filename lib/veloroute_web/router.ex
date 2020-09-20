@@ -44,6 +44,7 @@ defmodule VelorouteWeb.Router do
     pipe_through :browser
 
     live "/article/:article", FrameLive, as: :article
+    live "/:subdir/:article", FrameLive, as: :subdir
     live "/:page", FrameLive, as: :page
     live "/", FrameLive, as: :startpage
 

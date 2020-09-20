@@ -116,13 +116,8 @@ defmodule VelorouteWeb.ArticleView do
     end
   end
 
-  defp to_link(%Article{name: "0000-00-00-" <> name} = art) do
-    url = Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    live_patch(Article.full_title(art), to: url) |> to_floki
-  end
-
-  defp to_link(%Article{name: name} = art) do
-    url = Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+  defp to_link(art) do
+    url = VariousHelpers.article_path(art)
     live_patch(Article.full_title(art), to: url) |> to_floki
   end
 

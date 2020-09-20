@@ -42,41 +42,50 @@ defmodule Data.Article do
   def required_params, do: @enforce_keys
 
   def load(path) do
-    {:ok, parsed} = YamlElixir.read_from_file(path)
+    try do
+      {:ok, parsed} = YamlElixir.read_from_file(path)
 
-    parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
+      parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
 
-    name = Path.basename(path, ".yaml")
+      name = Path.relative_to(path, "data/articles") |> String.replace_trailing(".yaml", "")
 
-    {:ok, date} =
-      Map.get(parsed, :updated, name)
-      |> String.slice(0..9)
-      |> case do
-        "0000-00-00" -> {:ok, nil}
-        x -> Date.from_iso8601(x)
-      end
+      {:ok, date} =
+        Map.get(parsed, :updated, name)
+        |> Path.basename()
+        |> String.slice(0..9)
+        |> case do
+          "0000-00-00" -> {:ok, nil}
+          x -> Date.from_iso8601(x)
+        end
 
-    tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
+      tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
-    bbox = find_bbox(name, tags)
-    simg = parsed[:start_image] || start_image(parsed[:images] || List.first(tags), bbox)
+      bbox = find_bbox(name, tags)
+      simg = parsed[:start_image] || start_image(parsed[:images] || List.first(tags), bbox)
 
-    data =
-      Map.merge(parsed, %{
-        name: name,
-        date: date,
-        text: String.trim(parsed[:text] || ""),
-        tags: tags,
-        start: parsed |> Map.get(:start) |> RoughDate.parse(),
-        end: parsed |> Map.get(:end) |> RoughDate.parse(),
-        bbox: bbox,
-        start_image: simg
-      })
-      |> set_start_position
-      |> search_preprocess_title
-      |> search_preprocess_text
+      data =
+        Map.merge(parsed, %{
+          name: name,
+          date: date,
+          text: String.trim(parsed[:text] || ""),
+          tags: tags,
+          start: parsed |> Map.get(:start) |> RoughDate.parse(),
+          end: parsed |> Map.get(:end) |> RoughDate.parse(),
+          bbox: bbox,
+          start_image: simg
+        })
+        |> set_start_position
+        |> search_preprocess_title
+        |> search_preprocess_text
 
-    struct(Data.Article, data)
+      struct(Data.Article, data)
+    rescue
+      err ->
+        IO.puts("Failed to parse #{path}:")
+        require IEx
+        IEx.pry()
+        raise err
+    end
   end
 
   defp search_preprocess_title(art) do
@@ -132,11 +141,9 @@ defmodule Data.Article do
       end
   end
 
-  def load_all(path) do
-    File.ls!(path)
-    |> Enum.map(fn filename ->
-      load(Path.join([path, filename]))
-    end)
+  def load_all(files) do
+    files
+    |> Enum.map(&load/1)
     |> Enum.into(%{}, fn art ->
       {art.name, art}
     end)

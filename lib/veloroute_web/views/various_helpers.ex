@@ -22,11 +22,14 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def article_path(%Data.Article{name: name}) do
-    case name do
-      "0000-00-00-" <> name ->
+    case String.split(name, "/") do
+      ["0000-00-00-" <> name] ->
         Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
 
-      name ->
+      [subdir, "0000-00-00-" <> name] ->
+        Routes.subdir_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, subdir, name)
+
+      [name] ->
         Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
     end
   end

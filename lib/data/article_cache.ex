@@ -1,6 +1,5 @@
 defmodule Data.ArticleCache do
-  @article_path "data/articles/"
-  @glob_path @article_path <> "*.yaml"
+  @glob_path "data/articles/**/*.yaml"
 
   paths = Path.wildcard(@glob_path)
   paths_hash = :erlang.md5(paths)
@@ -14,13 +13,13 @@ defmodule Data.ArticleCache do
   end
 
   @get Benchmark.measure("loading articles", fn ->
-         Data.Article.load_all(@article_path)
+         Data.Article.load_all(paths)
        end)
   def get, do: @get
 
   def get_dated() do
     get()
-    |> Enum.reject(fn {name, _art} -> String.starts_with?(name, "0000-00-00-") end)
+    |> Enum.reject(fn {name, _art} -> String.contains?(name, "0000-00-00-") end)
     |> Enum.into(%{})
   end
 end

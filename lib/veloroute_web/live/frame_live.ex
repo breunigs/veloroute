@@ -272,6 +272,20 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"not_found" => "true"}, nil, socket), do: {:noreply, render_404(socket)}
 
+  def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
+      when is_binary(subdir) and subdir != "" do
+    name =
+      cond do
+        String.match?(name, ~r{^\d\d\d\d-\d\d-\d\d-}) -> Path.join(subdir, name)
+        true -> Path.join(subdir, "0000-00-00-" <> name)
+      end
+
+    params
+    |> Map.delete("subdir")
+    |> Map.put("article", name)
+    |> handle_params(nil, socket)
+  end
+
   def handle_params(%{"article" => name} = params, nil, socket) do
     Logger.debug("article: #{name} (#{inspect(params)})")
 
