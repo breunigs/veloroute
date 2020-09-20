@@ -692,6 +692,14 @@
   <node id='-114929' action='modify' lat='53.65129618809' lon='10.10566233516' />
   <node id='-114937' action='modify' lat='53.64835824618' lon='10.10317324519' />
   <node id='-114944' action='modify' lat='53.64833280856' lon='10.10271190524' />
+  <node id='-114946' action='modify' lat='53.5707929162' lon='10.08317470282' />
+  <node id='-114947' action='modify' lat='53.57071009188' lon='10.08286356658' />
+  <node id='-114948' action='modify' lat='53.57017491545' lon='10.08348315686' />
+  <node id='-114949' action='modify' lat='53.56974326683' lon='10.08395790517' />
+  <node id='-114950' action='modify' lat='53.56933869031' lon='10.08442997396' />
+  <node id='-114951' action='modify' lat='53.56901375203' lon='10.08501469553' />
+  <node id='-114952' action='modify' lat='53.56917622148' lon='10.08524000108' />
+  <node id='-114953' action='modify' lat='53.56937373252' lon='10.0848001188' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18373,6 +18381,19 @@
     <nd ref='-114609' />
     <nd ref='-114610' />
     <tag k='name' v='2020-07-25-ruemkestrasse-steilshooper-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106579' action='modify'>
+    <nd ref='-114946' />
+    <nd ref='-114947' />
+    <nd ref='-114948' />
+    <nd ref='-114949' />
+    <nd ref='-114950' />
+    <nd ref='-114951' />
+    <nd ref='-114952' />
+    <nd ref='-114953' />
+    <nd ref='-114946' />
+    <tag k='name' v='2020-09-20-bovestrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>

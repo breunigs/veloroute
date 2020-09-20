@@ -5,12 +5,15 @@ text: >
   <h3>Lexikon</h3>
   <p>Hier werden häufige Begriffe und Regeln zu verschiedenen Bauweisen von Fahrradinfrastruktur erläutert.</p>
 
-  <h4>Fahrbahn und Nebenflächen</h4>
+  <h4 id="fahrbahn">Fahrbahn und Nebenflächen</h4>
   <p>„Straße“ meint immer alles, also salopp von Hauswand bis Hauswand. Die Fahrbahn bezeichnet das Stück zwischen den Bordsteinen, die heute meist geteert wird. Die KFZ-Fahrspuren sind immer Teil der Fahrbahn, auch Radfahrstreifen zählen zur Fahrbahn. Als Nebenflächen bezeichnet man alles vom Randstein bis zur Hauswand, also Fußwege oder Hochbordradwege. Auch die in Hamburg häufig anzutreffenden „Baum/Parkplatz“-Streifen zählen zu den Nebenflächen.</p>
 
   <h4 id="radfahrstreifen">Radfahrstreifen</h4>
   <p><a bounds="9.944998,53.563638,9.954255,53.565782" img="th8uxzL-OOfgX9qBmvEEeQ">Radfahrstreifen</a> werden auf dem gleichen Niveau geführt wie die KFZ-Fahrspuren und durch einen weißen „Breitstrich“ von diesen abgegrenzt. KFZ dürfen den Radfahrstreifen nicht benutzen – befahren, halten oder parken sind verboten. Die einzige Ausnahme ist um Einfahrten oder Parkplätze rechts des Radfahrstreifens zu erreichen; man spricht hier häufig von „überfahren“.</p>
   <p>Zur Breite: leider wird der 25cm „Breitstrich“ meist dem Radfahrstreifen zugeschlagen – befahren werden darf er jedoch nicht, auch nicht mit dem Lenker. Die StVO geht hier mit schlechtem Beispiel voran. Nicht ganz so häufig wird auch der Sicherheitsabstand zu Parkplätzen („<a href="#dooring">Dooring</a>“) mit in die Breite gezählt.</p>
+
+  <h4 id="schutzstreifen">Schutzstreifen</h4>
+  <p><a bounds="9.946338,53.581812,9.964407,53.585945" img="AhG365UP5-_Kp8XmLPkqvQ">Schutzstreifen</a> sind die kleinere Variante des Radfahrstreifens und in jeder Hinsicht schlechter gestellt. Breite Fahrzeuge dürfen sie mitbenutzen und sie sind meist sehr schmal. Nach alter/aktueller StVO dürfen sie sogar kurzzeitig durch KFZ blockiert werden. </p>
 
   <h4 id="hochbordradweg">Hochbordradweg</h4>
   <p><a bounds="9.984455,53.559813,9.997723,53.562886" img="ShhbSFllZd-4Fnv75-0NyQ">Hochbordradwege</a> werden auf dem gleichen Niveau wie die Fußwege geführt. Sie sind in Hamburg meist gepflastert und bei neuer Bauweise mit Noppenplatten vom Fußweg abgetrennt.</p>
