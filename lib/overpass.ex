@@ -18,7 +18,7 @@ defmodule Overpass do
   plug Tesla.Middleware.BaseUrl, "https://lz4.overpass-api.de/api/interpreter"
   plug Tesla.Middleware.JSON
   # for debugging help
-  plug Tesla.Middleware.Logger
+  # plug Tesla.Middleware.Logger
 
   def bounds(query) when query != "" do
     try do

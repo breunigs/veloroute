@@ -19,7 +19,7 @@ defmodule Mapillary do
   plug Tesla.Middleware.Query, client_id: key()
   plug Tesla.Middleware.JSON
   # for debugging help
-  plug Tesla.Middleware.Logger
+  # plug Tesla.Middleware.Logger
 
   plug Tesla.Middleware.Retry,
     delay: 500,

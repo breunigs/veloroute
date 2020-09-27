@@ -5,6 +5,7 @@ assets/node_modules/
 
 !data/articles/
 !data/images/
+!data/route/
 !data/*.ex
 !data/*.exs
 !data/*.osm
