@@ -48,7 +48,7 @@ defmodule Veloroute.MixProject do
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_dashboard, "~> 0.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.14.4"},
+      {:phoenix_live_view, "~> 0.14.7"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix, "~> 1.5.3"},
       {:plug_cowboy, "~> 2.0"},
