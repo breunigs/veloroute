@@ -14,7 +14,9 @@ COPY mix.* /build/
 RUN \
   --mount=type=cache,target=/plt-cache/ \
   mkdir -p /build/_build/test/ && \
-  MIX_ENV=test mix do deps.get
+  cp -r /plt-cache/. /build/_build/test/ && \
+  MIX_ENV=test mix do deps.get, dialyzer --plt && \
+  cp -r /build/_build/test/*.plt /plt-cache/
 
 COPY config/ /build/config/
 COPY data/phoenix_credentials.exs data/settings.ex /build/data/
@@ -33,6 +35,13 @@ RUN --mount=type=cache,target=/data-cache/ \
 FROM elixirbase as favicon
 RUN apk add --no-cache optipng inkscape
 RUN tools/update_favicons.sh
+
+FROM elixirbase as dialyzer
+RUN \
+  --network=none \
+  --mount=target=/build/priv/plts/,type=cache \
+  MIX_ENV=test mix dialyzer && \
+  echo ok > /__dialyzerrun
 
 FROM elixirbase as test
 RUN --network=none \
@@ -56,6 +65,7 @@ RUN --network=none \
   MIX_ENV=prod mix do deps.compile sentry --force, release
 # ensure they succeeded
 COPY --from=test /__test /
+COPY --from=dialyzer /__dialyzerrun /
 
 FROM alpine:3.11 as runtime
 RUN apk add --no-cache ncurses-libs
