@@ -2,15 +2,13 @@ defmodule Data.DataTest do
   use ExUnit.Case, async: true
 
   test "all images have an associated route" do
-    Data.ImageCache.image_keys()
+    Data.RouteList.all()
+    |> Enum.flat_map(&Data.Route.sequences/1)
     |> Enum.each(fn
-      :index ->
+      %Data.Sequence{name: {"articles", _}} ->
         nil
 
-      {"articles", _} ->
-        nil
-
-      {id, name} ->
+      %Data.Sequence{name: {id, name}} ->
         rel = VelorouteWeb.VariousHelpers.relation_by_id(id)
 
         assert rel != nil, """

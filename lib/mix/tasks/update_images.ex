@@ -9,8 +9,8 @@ defmodule Mix.Tasks.UpdateImages do
     Mix.Task.run("app.start")
 
     osm =
-      Data.ImageCache.images()
-      |> Data.Image.as_osm()
+      Data.RouteList.sequences()
+      |> OSMWriter.as_osm()
 
     :ok = File.write(@imgpath, osm)
     IO.puts("Wrote #{@imgpath}")

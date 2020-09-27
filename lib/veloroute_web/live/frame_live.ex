@@ -27,7 +27,7 @@ defmodule VelorouteWeb.FrameLive do
     article_title: nil,
     search_query: nil,
     search_bounds: nil,
-    route: Settings.route(),
+    route: Settings.sequence(),
     img: Settings.image(),
     lon: nil,
     lat: nil,
@@ -112,24 +112,43 @@ defmodule VelorouteWeb.FrameLive do
         curimg = assigns.img
 
         zoom = zoom |> max(1) |> min(18)
+        {group, desc} = route
 
-        Data.ImageCache.images(route_id: elem(route, 0))
-        |> Data.Image.find_around_point(
+        Data.RouteList.all()
+        |> Data.RouteList.sequences_with_group(elem(route, 0))
+        |> Data.SequenceList.images_around_point(
           %{lat: lat, lon: lon},
-          route: route,
           max_dist: 100 * CheapRuler.meters_per_pixel(zoom)
         )
         |> case do
           # none
-          [] -> {nil, nil}
+          [] ->
+            {nil, nil}
+
           # i.e. reverse on double click
-          [{r, _d, %{img: ^curimg}}, {_, _, img} | _rest] -> {r, img}
-          # prefer from same route, unless it's the same
-          [_ignore, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
-          [_ign, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
-          [_, _, _, {^route, _d, %{img: ref} = img} | _rest] when ref != curimg -> {route, img}
+          [{_, %{img: ^curimg}}, {seq, img} | _rest] ->
+            {seq, img}
+
+          # prefer from same route, unless it's the same image
+          [_ignore, {%{group: ^group, description: ^desc} = s, %{img: r} = img} | _]
+          when r != curimg ->
+            {s, img}
+
+          [_ign, _, {%{group: ^group, description: ^desc} = s, %{img: r} = img} | _]
+          when r != curimg ->
+            {s, img}
+
+          [_, _, _, {%{group: ^group, description: ^desc} = s, %{img: r} = img} | _]
+          when r != curimg ->
+            {s, img}
+
           # take closest
-          other -> List.first(other) |> Tuple.delete_at(1)
+          other ->
+            List.first(other)
+        end
+        |> case do
+          {nil, _} = x -> x
+          {seq, img} -> {{seq.group, seq.description}, img}
         end
       else
         err ->
@@ -236,15 +255,26 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("sld-reverse", %{} = _attr, socket) do
     Logger.debug("sld-reverse")
 
-    img =
-      Data.ImageCache.images(route_id: socket.assigns.route |> elem(0))
-      |> Data.Image.find_reverse(socket.assigns.img, route: socket.assigns.route)
+    group = socket.assigns.route |> elem(0)
+    socket = socket |> slideshow(false) |> load_mly
 
     socket =
-      socket
-      |> slideshow(false)
-      |> load_mly
-      |> set_img(img || socket.assigns.img)
+      Data.RouteList.all()
+      |> Data.RouteList.filter_by_group(group)
+      |> Enum.find_value(&Data.Route.find_reverse(&1, socket.assigns.img))
+      |> case do
+        {_seq, img} ->
+          set_img(socket, img)
+
+        _ ->
+          Logger.warn(
+            "Tried to find reverse for #{inspect(socket.assigns.route)} and #{
+              inspect(socket.assigns.img)
+            }, but did not find any"
+          )
+
+          socket
+      end
 
     {:noreply, socket}
   end
@@ -432,11 +462,9 @@ defmodule VelorouteWeb.FrameLive do
     )
 
     seq_str =
-      Data.Image.sequence_from(
-        Data.ImageCache.images(),
-        socket.assigns.img,
-        route: socket.assigns.route
-      )
+      Data.RouteList.all()
+      |> Data.RouteList.sequence_with_name(socket.assigns.route)
+      |> Data.Sequence.mapillary_sequence_from(socket.assigns.img)
       |> sequences_to_scalar
 
     socket
@@ -465,13 +493,18 @@ defmodule VelorouteWeb.FrameLive do
 
   @default_image Settings.image()
   defp maybe_replace_start_image(%{assigns: %{img: @default_image}} = socket) do
-    route = socket.assigns.route || Settings.route()
-    Logger.debug("slideshow: replacing default image (current route: #{inspect(route)})")
+    seq_name = socket.assigns.route || Settings.sequence()
 
-    [%{img: img} | _] = Data.ImageCache.images([route])[route]
+    Logger.debug("slideshow: replacing default image (current sequence: #{inspect(seq_name)})")
+
+    img =
+      Data.RouteList.all()
+      |> Data.RouteList.sequence_with_name(seq_name)
+      |> Data.Sequence.images()
+      |> List.first()
 
     socket
-    |> assign(route: route)
+    |> assign(route: seq_name)
     |> set_img(img)
   end
 
@@ -503,7 +536,12 @@ defmodule VelorouteWeb.FrameLive do
   defp maybe_update_initial_route(socket, nil), do: socket
 
   defp maybe_update_initial_route(socket, tag) when is_binary(tag) do
-    route = Data.ImageCache.images() |> Data.Image.find_all_routes(tag) |> List.first()
+    sequence =
+      Data.RouteList.all()
+      |> Data.RouteList.sequences_with_group(tag)
+      |> List.first()
+
+    route = if sequence, do: {sequence.group, sequence.description}
 
     if route && route != socket.assigns.route,
       do: Logger.debug("Setting new initial route to #{inspect(route)} (case 2)")
@@ -535,25 +573,31 @@ defmodule VelorouteWeb.FrameLive do
         _ -> nil
       end
 
-    %{route: route, prev: prev, curr: curr, next: next} =
-      Data.Image.find_surrounding(
-        Data.ImageCache.images(),
-        [img, alt_img],
-        route: socket.assigns.route
-      )
+    socket =
+      with %{seq: seq, prev: prev, curr: curr, next: next} <-
+             Data.RouteList.all()
+             |> Data.RouteList.sequences_with_one_of_img([img, alt_img])
+             |> Enum.find_value(&Data.Sequence.find_surrounding(&1, [img, alt_img])) do
+        %{lon: lon, lat: lat, bearing: bearing} = curr
 
-    %{lon: lon, lat: lat, bearing: bearing} = curr || socket.assigns
+        Logger.debug("showing: #{img} (route: #{inspect(seq.name)}, curr: #{inspect(curr)})")
 
-    Logger.debug("showing: #{img} (route: #{inspect(route)}, curr: #{inspect(curr)})")
+        assign(socket,
+          lon: lon,
+          lat: lat,
+          bearing: bearing,
+          route: seq.name,
+          img_next: get_in(next, [:img]),
+          img_prev: get_in(prev, [:img])
+        )
+      else
+        _ ->
+          Logger.info("showing: #{img}, but no route found for it")
+          socket
+      end
 
     assign(socket,
       img: img,
-      lon: lon,
-      lat: lat,
-      bearing: bearing,
-      img_next: get_in(next, [:img]),
-      img_prev: get_in(prev, [:img]),
-      route: route,
       img_load_start: Time.utc_now()
     )
     |> update_img_navigate_buttons()

@@ -479,3 +479,5 @@
 '2020-06-18':
 - https://via-bus.hamburg.de/contentblob/13867022/494e665616efbe3908bccae49eb5d04b/data/72-m20-25-fruchtallee-tornquiststrasse-verkehrsfuehrungsplaene.pdf
 - https://via-bus.hamburg.de/contentblob/13867014/08acd8046a4ce17c756b495fd335cfa5/data/14-mb2-s-ottensen-ausfuehrungsunterlagen.pdf
+'2020-09-26':
+- https://via-bus.hamburg.de/contentblob/14340860/6426ecf3b11fefed6cdceb29a8d45cce/data/26-m20-25-eppendmarkt-schlussverschickung.pdf

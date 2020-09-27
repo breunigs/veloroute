@@ -8,11 +8,7 @@ defmodule Data.Article do
   Code.ensure_compiled(Data.MapCache)
   alias Data.MapCache
 
-  alias Data.ImageCache
-
   import Mapillary, only: [is_ref: 1]
-
-  alias Data.Image
 
   @known_params [
     :type,
@@ -42,53 +38,49 @@ defmodule Data.Article do
   def required_params, do: @enforce_keys
 
   def load(path, article_dir \\ "data/articles") do
-    try do
-      {:ok, parsed} = YamlElixir.read_from_file(path)
+    {:ok, parsed} = YamlElixir.read_from_file(path)
 
-      parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
+    parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
 
-      name = Path.relative_to(path, article_dir) |> String.replace_trailing(".yaml", "")
+    name = Path.relative_to(path, article_dir) |> String.replace_trailing(".yaml", "")
 
-      {:ok, date} =
-        Map.get(parsed, :updated, name)
-        |> Path.basename()
-        |> String.slice(0..9)
-        |> case do
-          "0000-00-00" -> {:ok, nil}
-          x -> Date.from_iso8601(x)
-        end
+    {:ok, date} =
+      Map.get(parsed, :updated, name)
+      |> Path.basename()
+      |> String.slice(0..9)
+      |> case do
+        "0000-00-00" -> {:ok, nil}
+        x -> Date.from_iso8601(x)
+      end
 
-      tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
+    tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
-      bbox = find_bbox(name, tags)
-      simg = parsed[:start_image] || start_image(parsed[:images] || List.first(tags), bbox)
+    bbox = find_bbox(name, tags)
+    simg = parsed[:start_image] || start_image(parsed[:images] || tags, bbox)
 
-      data =
-        Map.merge(parsed, %{
-          name: name,
-          date: date,
-          text: String.trim(parsed[:text] || ""),
-          tags: tags,
-          start: parsed |> Map.get(:start) |> RoughDate.parse(),
-          end: parsed |> Map.get(:end) |> RoughDate.parse(),
-          bbox: bbox,
-          start_image: simg
-        })
-        |> set_start_position
-        |> search_preprocess_title
-        |> search_preprocess_text
+    # if !is_nil(date) && is_nil(simg),
+    #   do: raise("Article #{path} is dated, but no start image could be found")
 
-      struct(Data.Article, data)
-    rescue
-      err ->
-        IO.puts("Failed to parse #{path}:")
-        require IEx
-        IEx.pry()
-        raise err
-    end
+    data =
+      Map.merge(parsed, %{
+        name: name,
+        date: date,
+        text: String.trim(parsed[:text] || ""),
+        tags: tags,
+        start: parsed |> Map.get(:start) |> RoughDate.parse(),
+        end: parsed |> Map.get(:end) |> RoughDate.parse(),
+        bbox: bbox,
+        start_image: simg
+      })
+      |> set_start_position
+      |> search_preprocess_title
+      |> search_preprocess_text
+
+    struct(Data.Article, data)
   end
 
   defp search_preprocess_title(art) do
+    # Benchmark.measure("article: preprocess title", fn ->
     t =
       art
       |> full_title()
@@ -97,9 +89,11 @@ defmodule Data.Article do
       |> FuzzyCompare.Preprocessor.process()
 
     Map.put(art, :search_title, t)
+    # end)
   end
 
   defp search_preprocess_text(%{text: t} = art) when is_binary(t) do
+    # Benchmark.measure("article: preprocess text", fn ->
     t =
       t
       |> Floki.parse_fragment!()
@@ -108,6 +102,7 @@ defmodule Data.Article do
       |> FuzzyCompare.Preprocessor.process()
 
     Map.put(art, :search_text, t)
+    # end)
   end
 
   defp word_and_num_only(str) do
@@ -119,18 +114,19 @@ defmodule Data.Article do
   defp start_image([img | _rest], _bbox) when is_ref(img), do: img
   defp start_image(_, nil), do: nil
 
-  defp start_image(route_id, bbox) when is_binary(route_id) or is_integer(route_id) do
-    stream = ImageCache.images_stream(route_id: "#{route_id}")
-    buffered_bbox = CheapRuler.buffer_bbox(150, bbox)
-
-    img = Image.find_close(stream, bbox) || Image.find_close(stream, buffered_bbox)
-
-    get_in(img, [:img])
+  defp start_image(route_ids, bbox) do
+    route_ids
+    |> List.wrap()
+    |> Enum.map(&to_string/1)
+    |> Data.RouteList.by_tags()
+    |> Data.RouteList.find_within(bbox, 150)
+    |> get_in([:img])
   end
 
   # finds bbox for article if present in map, alternatively falls back to bbox
   # of referenced tags
   defp find_bbox(name, tags) do
+    # Benchmark.measure("article: find bbox", fn ->
     MapCache.bboxes()[name] ||
       Enum.map(tags, &Data.Map.find_relation_by_tag(Data.MapCache.relations(), :id, &1))
       |> Enum.reject(&is_nil/1)
@@ -139,10 +135,14 @@ defmodule Data.Article do
         [] -> nil
         bboxes -> Enum.reduce(bboxes, &CheapRuler.union/2)
       end
+
+    # end)
   end
 
   def load_all(files) do
     files
+    # |> Enum.map(&Task.async(fn -> load(&1) end))
+    # |> Enum.map(&Task.await(&1))
     |> Enum.map(&load/1)
     |> Enum.into(%{}, fn art ->
       {art.name, art}
@@ -287,9 +287,15 @@ defmodule Data.Article do
   defp set_start_position(%{start_image: img, tags: tags} = art)
        when is_ref(img) and is_list(tags) do
     route_pos =
-      ImageCache.images(route_id: tags)
-      |> Image.associated_route(ImageCache.sequences(), img)
-      |> Kernel.||(0)
+      Data.RouteList.by_tags(tags)
+      |> Data.RouteList.find_close_to(img)
+      |> case do
+        {_sequence, route_name, img, _route_pos} ->
+          {route_name, img}
+
+        _ ->
+          0
+      end
 
     Map.put(art, :start_position, route_pos)
   end

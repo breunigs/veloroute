@@ -2,9 +2,6 @@ defmodule Overpass do
   require Logger
 
   alias VelorouteWeb.VariousHelpers
-
-  @cache_path :"data/cache/overpass.dets"
-
   use Tesla
 
   plug Tesla.Middleware.Retry,
@@ -21,7 +18,7 @@ defmodule Overpass do
   plug Tesla.Middleware.BaseUrl, "https://lz4.overpass-api.de/api/interpreter"
   plug Tesla.Middleware.JSON
   # for debugging help
-  # plug Tesla.Middleware.Logger
+  plug Tesla.Middleware.Logger
 
   def bounds(query) when query != "" do
     try do
@@ -42,16 +39,7 @@ defmodule Overpass do
   end
 
   defp geocode(query) do
-    :dets.lookup(cache(), query)
-    |> case do
-      [{^query, body}] ->
-        body
-
-      _ ->
-        body = resolve(query)
-        :dets.insert_new(cache(), {query, body})
-        body
-    end
+    DiskCache.lazy(:overpass, query, fn -> resolve(query) end)
   end
 
   defp resolve(query) do
@@ -69,10 +57,5 @@ defmodule Overpass do
 
   defp sanitize(str) do
     Regex.replace(~r/[^\w.-]+/ui, str, " ") |> String.trim()
-  end
-
-  defp cache do
-    {:ok, table} = :dets.open_file(:overpass_geocode, file: @cache_path, type: :set)
-    table
   end
 end

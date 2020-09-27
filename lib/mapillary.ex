@@ -3,8 +3,6 @@ defmodule Mapillary do
 
   @precision 6
 
-  @cache_path String.to_atom("data/cache/mapillary.dets")
-
   # 176 = 22*8
   @type ref() :: <<_::176>>
   defguard is_ref(x) when is_binary(x) and byte_size(x) == 22
@@ -21,7 +19,7 @@ defmodule Mapillary do
   plug Tesla.Middleware.Query, client_id: key()
   plug Tesla.Middleware.JSON
   # for debugging help
-  # plug Tesla.Middleware.Logger
+  plug Tesla.Middleware.Logger
 
   plug Tesla.Middleware.Retry,
     delay: 500,
@@ -32,16 +30,15 @@ defmodule Mapillary do
       {:error, _} -> true
     end
 
-  @spec close_to(img() | ref(), [ref()]) :: any()
-  def close_to(img, sequences \\ [])
+  @spec close_to(Enumerable.t(), img() | ref()) :: any()
+  def close_to(sequences, img)
 
-  def close_to(img, sequences) when is_ref(img) do
-    close_to(image_lookup(img), sequences)
+  def close_to(sequences, img) when is_ref(img) do
+    close_to(sequences, image_lookup(img))
   end
 
-  def close_to(%{img: img, lon: lon, lat: lat}, sequences) do
+  def close_to(sequences, %{img: img, lon: lon, lat: lat}) do
     sequences
-    |> Enum.sort()
     |> Stream.chunk_every(10)
     |> Stream.flat_map(fn sequences ->
       seq_strs = Enum.join(sequences, ",")
@@ -49,7 +46,7 @@ defmodule Mapillary do
       pp = 10
 
       lazy("close-to-#{pp}-#{radius}-#{img}-#{seq_strs}-v3", fn ->
-        IO.write("~")
+        IO.puts("mapillary: resolving close to #{img}\n  #{pp}-#{radius}-#{img}-#{seq_strs}-v3")
 
         query = [closeto: "#{lon},#{lat}", radius: radius, per_page: pp]
 
@@ -164,7 +161,8 @@ defmodule Mapillary do
 
   defp image_keys(seq, reverse: false) do
     lazy("seq-#{seq}", fn ->
-      IO.write(":")
+      # IO.write(":")
+      IO.puts("loading sequence #{seq}")
       {:ok, %{status: 200} = resp} = get("/sequences/#{seq}")
       get_in(resp.body, ["properties", "coordinateProperties", "image_keys"])
     end)
@@ -189,20 +187,6 @@ defmodule Mapillary do
   end
 
   defp lazy(cache_key, func) do
-    :dets.lookup(cache(), cache_key)
-    |> case do
-      [{^cache_key, res}] ->
-        res
-
-      _ ->
-        res = func.()
-        if res, do: :dets.insert_new(cache(), {cache_key, res})
-        res
-    end
-  end
-
-  defp cache do
-    {:ok, table} = :dets.open_file(:mapillary, file: @cache_path, type: :set)
-    table
+    DiskCache.lazy(:mapillary, cache_key, func)
   end
 end

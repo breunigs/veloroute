@@ -256,3 +256,9 @@
 '2020-09-12':
 - "/contentblob/14305866/a7be6c086a0a56af169032d317ef343e/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/14305868/2ed65a1915f11d5e05dbd2f4d925cd19/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-plan.pdf"
+'2020-09-20':
+- "/contentblob/14322164/275fdd9a6ecd04db5d2e9e5afb881c5a/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/14322170/28a27688c7ace23e3a3072a6b3a41093/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-plan.pdf"
+'2020-09-26':
+- "/contentblob/14335206/3bc7b443f4d367a0392241a1b0f01e68/data/jungiusstrasse-caffamacherreihe-abgestimmte-planung-bericht.pdf"
+- "/contentblob/14335208/7efaec35f5aea34329f4760ca87766d7/data/jungiusstrasse-caffamacherreihe-abgestimmte-planung-plan.pdf"

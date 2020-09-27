@@ -6,7 +6,7 @@ defmodule Settings do
     do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
   def image, do: "c4B6txFX6Xgza8iWNFzSYw"
-  def route, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
+  def sequence, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
 
   # no trailing slash
   def url, do: "https://veloroute.hamburg"
@@ -34,4 +34,24 @@ defmodule Settings do
   def deploy_ssh_name, do: "netcup-git"
 
   def enable_sentry_frontend, do: false
+
+  # TODO: check if we can automatically detect this with OTP 23+
+  def route_list,
+    do: [
+      Data.Route.Route1,
+      Data.Route.Route2,
+      Data.Route.Route3,
+      Data.Route.Route4,
+      Data.Route.Route5,
+      Data.Route.Route6,
+      Data.Route.Route7,
+      Data.Route.Route8,
+      Data.Route.Route9,
+      Data.Route.Route10,
+      Data.Route.Route11,
+      Data.Route.Route12,
+      Data.Route.Route13,
+      Data.Route.Route14,
+      Data.Route.Articles
+    ]
 end

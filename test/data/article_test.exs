@@ -62,7 +62,7 @@ defmodule Data.ArticleTest do
   end
 
   test "articles only refer to known route IDs" do
-    route_ids = Data.ImageCache.images() |> Data.Image.as_ids()
+    route_ids = Data.RouteList.all() |> Data.RouteList.groups()
 
     assert Data.ArticleCache.get_dated()
            |> Enum.filter(fn

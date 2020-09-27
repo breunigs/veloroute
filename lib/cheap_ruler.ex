@@ -1,6 +1,8 @@
 defmodule CheapRuler do
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016
 
+  @type point() :: %{:lat => float(), :lon => float(), optional(atom()) => any()}
+
   ref_lat =
     if Mix.env() == :test do
       53.551
