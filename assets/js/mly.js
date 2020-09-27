@@ -7,19 +7,9 @@ const mly = new Mapillary.Viewer(
   'mly',
   settings.mapillaryApiKey,
   initialImg, {
-    baseImageSize: Mapillary.ImageSize.Size320,
-    basePanoramaSize: Mapillary.ImageSize.Size1024,
     component: {
       attribution: true,
       bearing: false,
-      cache: {
-        depth: {
-          pano: 0,
-          sequence: 4,
-          step: 0,
-          turn: 0
-        }
-      },
       cover: false,
       direction: false,
       keyboard: false,
