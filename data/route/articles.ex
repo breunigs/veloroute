@@ -1,6 +1,9 @@
 defmodule Data.Route.Articles do
   use Data.Route,
     yaml: """
+    articles querung-kornweide:
+    - { seq: "8Kjfl3wN5Ie7BHULbS0tGA", from: "EznyzjGzITAX8_STGjKi_A", to: "EBY_Awx6Kmw2MRaiNOb1UQ" }
+
     articles zum-dubben:
     - "uhF3_NofxYm1vjevwPb6yg"
     - "Sjo0PVQ7bHMbJD2w6fV0ZA"

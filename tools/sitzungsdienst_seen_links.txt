@@ -556,3 +556,5 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1007835
 '2020-09-26':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009903
+'2020-10-05':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009933
