@@ -12,60 +12,6 @@ defmodule Data.Route.Articles do
     - xkM3TVkXy5gEbFKfEKtYVw
     - uEeZ1EtA7GLzT3Rv6A9_Ag
 
-    articles 2018-11-10-11-hannoversche-strasse:
-    - MG9dt0zm--s2gKrHfzv56A
-    - jL4nfku-KEtoV-e-2tZxNQ
-    - 6Ers9PeyfasLal3d7MgWng
-    - lCQGEZ-SJQOG8GNncExYLg
-    - 0BWmyqrVkOufYim1VMcuTQ
-    - jjz1zs2awFaezUObDKJtHg
-    - 4Zvnx7v2ZsoRtf0hbrzI5A
-    - W-IjrUQDh56-8U7-lGSTVg
-    - RkRetkT7DazIHlg5dZDeeQ
-    - adr_xzPw5B8okPvoFM-mHQ
-    - Rfh_jYgQ-Jf6UnTmRAfo6w
-    - Spc91KWGfwaaYK-sxLXA7w
-    - YUs7DWGoKljPKYIUa_K_ZQ
-    - g9k3XTgN4pohTmM9VLo-1Q
-    - 9rm1h33VLbBWuFLaxO8dKQ
-    - 6v7c4gtNkDNytU2l-ENqmw
-    - XLsPJkklzTbRWkVHZtbOng
-    - P4vDCjUH1uMPTmSAQM7e-A
-    - M5Xflpxf9tOst1vYlvuk6w
-    - JtnSYSj1KFl9y0jONaFTuw
-    - jsAN_mFNERLHgBNhC8r3DA
-    - 7zKo2RHsD_m-4ou_upqBUQ
-
-    articles 2019-10-31-6-eulenkamp-u-querung-nordschleswiger:
-    - I3gv2a5RMADbEfO5Cw_4RQ
-    - tPN8cK6l9-O8Lw_8LRBRyw
-    - fzAaonrSns9Fz2QAhJI7Rw
-    - XuQm4BFAcqnSNEb9Tu9cMQ
-    - SHloY-jAU_R9oVgXvK5CwA
-    - 4knKG50HCgLrjgJuiVsa2w
-    - ALmTHw3WpvHMgvKpO7u9lA
-    - vDkKG78dibsAt8s-biig7w
-    - KVqv3criUsNw2TMLA94hBw
-
-    articles 2019-01-09-11-denickestrasse:
-    - vZ_lmtqSPD0hwg4UuQ7qhw
-    - NItGXt-iqSy0VrbvvhKYOA
-    - t5BFZaQpJnEGQia0Z_pTNQ
-    - Z36kTSKyPXImYpiN87feUg
-    - vO9BuDGRq4WsEGAfwXi08g
-    - caVr6iwabotTmJ_atdKhdQ
-    - 1sBvZ8rJTa0YA00pbM2S-g
-    - DtqbfL9bJa-x1DKuZ7GH0Q
-    - -6YZGZVSjkHgPoKpg8aQQg
-    - _IRKA90jYGjG9OFi6m39Ag
-    - g3mr86bpr6VPpoiCXWBITQ
-    - bj2deC_NkOpTRw38GULXxw
-    - wjZO7cicbSeqTG0i3_-UpA
-    - BzpYyxjnX3_ApGzpBLrXCw
-    - wZG_SUthBG0UolF54jiOpw
-    - NwhPVy1DIl5VegTfHmePIA
-    - srCCShVpxUAJ58sCdTvQRA
-
     articles 2019-07-13-14-rahlstedter-weg:
     - buSi61folxVO9eNig_Yygg
     - xeGpglGHe5WvqZs6KdQtgw
@@ -102,20 +48,6 @@ defmodule Data.Route.Articles do
     - pfVytKPTsgFca__kzZwe5Q
     - -xxRsy6BWuiu412rfYarvg
     - iYbM2oHrCWvdgAYkcJ8wmw
-
-    articles 2018-04-08-4-kleekamp:
-    - j7B3ZUn2dsw-clYblrn0Bw
-    - n1_Lpg6wqrHBCqa6aONXfg
-    - 4N_jXb29I1QmKUJRww5D9w
-    - F0bXlK0tZLlVGVaiCIixog
-    - ZZputbCHPSmEOFryrttGhA
-    - jvsdk7C3hU5YHdB_0oSiAA
-    - V2J0whV0gYYUPkkagmi0Ug
-    - 5JySwpG6xeHJv9EBgQq4Ug
-    - TU2U-w3L-9gfDCZETG437Q
-    - 6PhUqpC1j-6Q3uzGtTCS0g
-    - N6c3zfTR2_VISkKxoSaPcg
-    - pTScyv0LyosBLfdMgVTRHA
 
     articles 2018-09-19-3-kreuzung-gaertnerstrasse:
     - KHUIA919w_DV95O-SZJ9HA
@@ -311,13 +243,6 @@ defmodule Data.Route.Articles do
     - EytIztXe2n5zK8UScDQHLg
     - H3ttbtVAQCh4lK-bkSk3mw
 
-    articles 2018-08-30-11-wilhelmsburger-inselpark:
-    - ZkF2uoZ-qCldmp5Mb_oE6w
-
-    articles 2018-08-29-4-14-u-langenhorn-markt:
-    - xCMDA_6f3-uBpZbjFgPnDw
-    - QO1hSRRQVKrUpfpPyGIvXw
-
     articles 2018-10-25-5-querung-bramfelder-chaussee:
     - xoQHcRZwJCYogfTPJBNQvQ
     - L03oD1LsaLg-OQgNqp9Q8Q
@@ -334,13 +259,6 @@ defmodule Data.Route.Articles do
     - WG2YkzV46hHkxJhOSHu7eA
     - qC2dLQAeL9U9uWQAw9PpPA
     - w3aH94mg5kZEotsWfH-s0g
-
-    articles 2019-10-27-9-kurt-koerber-chaussee:
-    - zTFccJwqBVa7WsvQKK9naQ
-    - bVvbSeXiiTT1Wl8pfsOGVQ
-    - Ux8HmZyzBa30MuN-BVh-YA
-    - WIpKNmLJTgPMJ9qIIB-s1g
-    - mXHdLyIs-9CMMjbrFEat7g
 
     articles 2018-12-15-8-lohbruegger-markt:
     - q5e8MVMGFk4d8WSUtANXjA
@@ -532,12 +450,6 @@ defmodule Data.Route.Articles do
     - PfikrOSvzhJUHdyzeRwFyA
     - dQu5mUh5wNIsBXAr0YjXsg
     - pJRkEUgYYoDz25Gqx-66MA
-
-    articles 2018-09-06-13-maria-louisen-strasse:
-    - WBHoYuQN32F-uM-ab47hPw
-    - ny4lNh6cyFK1SMRZRKtG9g
-    - SKM7v1-z3pgbPLBbJ0C7Jg
-    - 5c7IObdCCnKsADD1Eveo8w
 
     articles 2018-08-30-7-rahlstedter-strasse:
     - pwuW4ksOJZlXcXePhA9m8Q

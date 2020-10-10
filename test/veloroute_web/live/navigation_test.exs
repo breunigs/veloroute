@@ -29,7 +29,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&img=j7B3ZUn2dsw-clYblrn0Bw"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&img=CNhf5CVObJtvRTUeCphTOw"
     )
   end
 
@@ -48,19 +48,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # i.e. show start image on first click, then use proximity image selection
     assert render_hook(view, "map-click", click_opts) =~ ~s|data-img="ocG1AIlhqE9WlQffw2SqNQ"|
     refute render_hook(view, "map-click", click_opts) =~ ~s|data-img="ocG1AIlhqE9WlQffw2SqNQ"|
-  end
-
-  test "prefers route image over article image", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/article/2018-04-08-4-kleekamp") |> live()
-    assert html =~ ~s(data-img="j7B3ZUn2dsw-clYblrn0Bw")
-
-    refute render_hook(view, "map-click", %{
-             route: "4",
-             article: "2018-04-08-4-kleekamp",
-             lon: 10.024947118265771,
-             lat: 53.63658286414295,
-             zoom: 16
-           }) =~ ~s(data-img="j7B3ZUn2dsw-clYblrn0Bw")
   end
 
   test "clicking on route twice reverses image", %{conn: conn} do
