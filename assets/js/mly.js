@@ -40,6 +40,7 @@ const advanceSlideshow = () => {
     playing: true
   });
   mly.moveToKey(paths[0].startKey);
+  routeComponent.play();
 }
 
 const deactivateSlideshow = () => {
