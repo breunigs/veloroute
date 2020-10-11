@@ -167,6 +167,7 @@ map.on('style.load', () => {
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
   map.once('click', removeFakeMap);
+  map.once('movestart', removeFakeMap);
 });
 
 
