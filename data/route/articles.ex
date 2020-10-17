@@ -4,6 +4,11 @@ defmodule Data.Route.Articles do
     articles querung-kornweide:
     - { seq: "8Kjfl3wN5Ie7BHULbS0tGA", from: "EznyzjGzITAX8_STGjKi_A", to: "EBY_Awx6Kmw2MRaiNOb1UQ" }
 
+    articles hammer-landstrasse:
+    - { seq: "9n_fkkB3gASBnYiGffTqSQ", from: "43A88jFaZMXeE1qiMjchIA", to: "5NBAMnIk4_w5AbbhvtBmZA" }
+    - { seq: "q6c8LCM76To_ACWPbykKtA", from: "tC2w1yrJ0Zhgybs9sBUNOw", to: "0y52XVKw9PYU7IVaXrNURw" }
+    - { seq: "P5EIl_rGDThwfOCo8PwkiA", from: "AYANpi8yMTaVQwujovLWAQ", to: "PtINS-li8mQe-oBmZ_RQyA" }
+
     articles zum-dubben:
     - "uhF3_NofxYm1vjevwPb6yg"
     - "Sjo0PVQ7bHMbJD2w6fV0ZA"

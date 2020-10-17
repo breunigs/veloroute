@@ -791,6 +791,22 @@
   <node id='-115160' action='modify' lat='53.58803595415' lon='10.00461816519' />
   <node id='-115161' action='modify' lat='53.58847537816' lon='10.00425874919' />
   <node id='-115162' action='modify' lat='53.58837666737' lon='10.00392883748' />
+  <node id='-115165' action='modify' lat='53.55476498409' lon='10.05778490961' />
+  <node id='-115166' action='modify' lat='53.55458333868' lon='10.06006478727' />
+  <node id='-115167' action='modify' lat='53.55443674707' lon='10.06131469667' />
+  <node id='-115168' action='modify' lat='53.55391411199' lon='10.06471037328' />
+  <node id='-115169' action='modify' lat='53.55365597886' lon='10.06631433427' />
+  <node id='-115170' action='modify' lat='53.55322894036' lon='10.06808459222' />
+  <node id='-115171' action='modify' lat='53.55302498016' lon='10.06887852609' />
+  <node id='-115172' action='modify' lat='53.55233342026' lon='10.07135688722' />
+  <node id='-115173' action='modify' lat='53.55256287917' lon='10.07153391302' />
+  <node id='-115174' action='modify' lat='53.55352213144' lon='10.06807386339' />
+  <node id='-115175' action='modify' lat='53.55394598016' lon='10.06652354658' />
+  <node id='-115176' action='modify' lat='53.55413081512' lon='10.06546139181' />
+  <node id='-115177' action='modify' lat='53.55414356233' lon='10.06466209352' />
+  <node id='-115178' action='modify' lat='53.55443993385' lon='10.06263970792' />
+  <node id='-115179' action='modify' lat='53.55469487543' lon='10.06119667947' />
+  <node id='-115180' action='modify' lat='53.55505489291' lon='10.05778947053' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18591,6 +18607,27 @@
     <nd ref='-115162' />
     <nd ref='-115155' />
     <tag k='name' v='2018-09-06-13-maria-louisen-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106716' action='modify'>
+    <nd ref='-115180' />
+    <nd ref='-115165' />
+    <nd ref='-115166' />
+    <nd ref='-115167' />
+    <nd ref='-115168' />
+    <nd ref='-115169' />
+    <nd ref='-115170' />
+    <nd ref='-115171' />
+    <nd ref='-115172' />
+    <nd ref='-115173' />
+    <nd ref='-115174' />
+    <nd ref='-115175' />
+    <nd ref='-115176' />
+    <nd ref='-115177' />
+    <nd ref='-115178' />
+    <nd ref='-115179' />
+    <nd ref='-115180' />
+    <tag k='name' v='2020-10-17-hammer-landstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
