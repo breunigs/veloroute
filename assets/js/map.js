@@ -158,8 +158,12 @@ const handleMapClick = (evt) => {
   })
 }
 
+let boundsTimeout = null;
 const sendBounds = () => {
-  window.pushEvent("map-bounds", { bounds: map.getBounds().toArray() });
+  if (boundsTimeout) clearTimeout(boundsTimeout);
+  boundsTimeout = setTimeout(() => {
+    window.pushEvent("map-bounds", { bounds: map.getBounds().toArray() });
+  }, 200);
 }
 
 map.on('style.load', () => {
