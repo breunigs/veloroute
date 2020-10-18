@@ -176,6 +176,33 @@ map.on('style.load', () => {
 
 
 let fakeMap = document.getElementById("fakeMap");
+const updateFakeMap = () => {
+  if (fakeMap === null) return;
+
+  const w = fakeMap.offsetWidth;
+  const h = fakeMap.offsetHeight;
+  if (w == 0 || h == 0) return console.warn("element has no decent size, not updating fakemap", w, h);
+
+  const zoom = map.getZoom();
+  const center = map.getCenter();
+  const imgURL = `https://api.mapbox.com/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/${center.lng},${center.lat},${zoom}/${w}x${h}?access_token=${settings.mapboxAccessToken}`;
+  console.debug("new fake map URL", imgURL);
+
+  const img = new Image();
+  img.onload = () => {
+    window.requestAnimationFrame(() => {
+      if (fakeMap) {
+        // console.debug("better fake map has loaded, replacing");
+        fakeMap.style.backgroundImage = `url(${imgURL})`;
+      } else {
+        // console.debug("better fake map has loaded, but it was too late");
+      }
+    })
+  }
+  img.src = imgURL;
+}
+window.requestAnimationFrame(updateFakeMap);
+
 const removeFakeMap = () => {
   if (fakeMap === null) return;
   fakeMap.style.opacity = 0;
