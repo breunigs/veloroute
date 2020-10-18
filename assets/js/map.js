@@ -201,22 +201,28 @@ const updateFakeMap = () => {
   }
   img.src = imgURL;
 }
-window.requestAnimationFrame(updateFakeMap);
+window.requestIdleCallback(updateFakeMap);
 
 const removeFakeMap = () => {
   if (fakeMap === null) return;
-  fakeMap.style.opacity = 0;
-  const localFake = fakeMap
+  const localFake = fakeMap;
   fakeMap = null;
-  setTimeout(() => localFake.remove(), 200);
+
+  window.requestAnimationFrame(() => {
+    localFake.style.opacity = 0;
+  });
+  setTimeout(() => {
+    window.requestIdleCallback(() => {
+      localFake.remove()
+    });
+  }, 200);
 }
 map.once('load', removeFakeMap);
 
-
-
 window.mapStateChanged = () => {
-  maybeFitBounds();
-  renderIndicator();
-  maybeEnsureIndicatorInView();
-
+  window.requestIdleCallback(() => {
+    maybeFitBounds();
+    renderIndicator();
+    maybeEnsureIndicatorInView();
+  }, { timeout: 100 })
 }

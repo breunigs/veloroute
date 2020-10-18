@@ -69,21 +69,25 @@ window.mlyStateChanged = function () {
   const placeholderOuter = document.getElementById("mlyPlaceholderOuter")
   // both preload and the multiple BG image hack are required to avoid flashing
   // the background in-between image loads
-  console.debug("preloading", url)
-  placeholder.classList.add('loading');
-  placeholderOuter.style.backgroundImage = "url(" + url + ")";
   img.onload = () => {
     if (imgKey != state.img) {
       // abort if another image was queued
       return;
     }
 
-    console.debug("setting preloaded image as BG", url)
-    placeholder.style.backgroundImage = "url(" + url + ")";
-    placeholderOuter.style.backgroundImage = "";
-    placeholder.classList.remove('loading');
+    window.requestAnimationFrame(() => {
+      console.debug("setting preloaded image as BG", url)
+      placeholder.style.backgroundImage = "url(" + url + ")";
+      placeholderOuter.style.backgroundImage = "";
+      placeholder.classList.remove('loading');
+    });
   }
-  img.src = url;
+  window.requestAnimationFrame(() => {
+    console.debug("preloading", url);
+    placeholder.classList.add('loading');
+    placeholderOuter.style.backgroundImage = "url(" + url + ")";
+    img.src = url;
+  });
 }
 
 let Hooks = {};
