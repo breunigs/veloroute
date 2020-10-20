@@ -14,8 +14,9 @@ config :veloroute, VelorouteWeb.Endpoint,
   ],
   server: true,
   force_ssl: [
-    hsts: parsed.scheme == "https",
-    rewrite_on: [:x_forwarded_proto, :x_forwarded_host, :x_forwarded_port]
+    rewrite_on: [:x_forwarded_proto, :x_forwarded_host, :x_forwarded_port],
+    # added by nginx
+    hsts: false
   ]
 
 # Do not print debug messages in production
