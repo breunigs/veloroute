@@ -558,3 +558,7 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009903
 '2020-10-05':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009933
+'2020-10-19':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010527
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010546
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010526

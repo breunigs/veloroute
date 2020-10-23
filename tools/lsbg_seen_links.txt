@@ -262,3 +262,8 @@
 '2020-09-26':
 - "/contentblob/14335206/3bc7b443f4d367a0392241a1b0f01e68/data/jungiusstrasse-caffamacherreihe-abgestimmte-planung-bericht.pdf"
 - "/contentblob/14335208/7efaec35f5aea34329f4760ca87766d7/data/jungiusstrasse-caffamacherreihe-abgestimmte-planung-plan.pdf"
+'2020-10-19':
+- "/contentblob/14463994/d3162e0fa0e762030f648c2692a20272/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/14463996/ff7ce1faeac27fdfb4fbd5211c19ef76/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-plan.pdf"
+- "/contentblob/14406054/7535e5666c5849c88ce3953c6a6394c6/data/hoegerdamm-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/14406058/82afbec798501585082a79f3a15d4a7c/data/hoegerdamm-abstimmungsunterlagen-plan.pdf"
