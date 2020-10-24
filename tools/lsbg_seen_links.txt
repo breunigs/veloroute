@@ -267,3 +267,5 @@
 - "/contentblob/14463996/ff7ce1faeac27fdfb4fbd5211c19ef76/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-plan.pdf"
 - "/contentblob/14406054/7535e5666c5849c88ce3953c6a6394c6/data/hoegerdamm-abstimmungsunterlagen-bericht.pdf"
 - "/contentblob/14406058/82afbec798501585082a79f3a15d4a7c/data/hoegerdamm-abstimmungsunterlagen-plan.pdf"
+'2020-10-24':
+- "/contentblob/14305868/8e8bc1893001e49c02150f07dec0d1cb/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-plan.pdf"

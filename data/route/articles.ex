@@ -9,6 +9,11 @@ defmodule Data.Route.Articles do
     - { seq: "q6c8LCM76To_ACWPbykKtA", from: "tC2w1yrJ0Zhgybs9sBUNOw", to: "0y52XVKw9PYU7IVaXrNURw" }
     - { seq: "P5EIl_rGDThwfOCo8PwkiA", from: "AYANpi8yMTaVQwujovLWAQ", to: "PtINS-li8mQe-oBmZ_RQyA" }
 
+    articles wellingsbuetteler-langstrasse:
+    - { seq: "dyjJNotyKwLYJD2z2XmKrQ", from: "eKOJwLvnVaHWrtHJfqMbkQ", to: "Ut-MfQXm_Hwudurb7Bp7Aw" }
+    - { seq: "dyjJNotyKwLYJD2z2XmKrQ", from: "_s-WVg-kR3Wt3Yfj6--VdQ", to: "EWz3GQUbrcSD8Fli9beRAQ" }
+    - { seq: "tI2FKEsG3grrahtQN_B3Ww", from: "l2Wd9uKK40DRDEyL0vwJAw", to: "7tnFr_kDGXBn2KX2-7e-Iw" }
+
     articles zum-dubben:
     - "uhF3_NofxYm1vjevwPb6yg"
     - "Sjo0PVQ7bHMbJD2w6fV0ZA"

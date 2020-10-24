@@ -822,6 +822,39 @@
   <node id='-115196' action='modify' lat='53.57804101009' lon='9.94434356153' />
   <node id='-115197' action='modify' lat='53.57858564184' lon='9.94387685716' />
   <node id='-115198' action='modify' lat='53.57921625933' lon='9.94247674406' />
+  <node id='-115200' action='modify' lat='53.62610081984' lon='10.0308877176' />
+  <node id='-115201' action='modify' lat='53.6258208575' lon='10.03062486112' />
+  <node id='-115202' action='modify' lat='53.62567451281' lon='10.03110229433' />
+  <node id='-115203' action='modify' lat='53.62530546742' lon='10.03165482938' />
+  <node id='-115204' action='modify' lat='53.62543908767' lon='10.03208934724' />
+  <node id='-115205' action='modify' lat='53.62586857848' lon='10.03171383798' />
+  <node id='-115206' action='modify' lat='53.62606264326' lon='10.03178357542' />
+  <node id='-115207' action='modify' lat='53.62688343199' lon='10.03298520505' />
+  <node id='-115208' action='modify' lat='53.6278060049' lon='10.03418683469' />
+  <node id='-115209' action='modify' lat='53.62910075426' lon='10.03607510984' />
+  <node id='-115210' action='modify' lat='53.62996920024' lon='10.0375503248' />
+  <node id='-115211' action='modify' lat='53.63079627503' lon='10.03917037904' />
+  <node id='-115212' action='modify' lat='53.63100940322' lon='10.03973364294' />
+  <node id='-115213' action='modify' lat='53.63209093264' lon='10.04302739561' />
+  <node id='-115214' action='modify' lat='53.63290524238' lon='10.04561840951' />
+  <node id='-115215' action='modify' lat='53.63370681318' lon='10.04807531297' />
+  <node id='-115216' action='modify' lat='53.63477555056' lon='10.05140125215' />
+  <node id='-115217' action='modify' lat='53.63569158962' lon='10.05425512254' />
+  <node id='-115218' action='modify' lat='53.6362577427' lon='10.05605220258' />
+  <node id='-115219' action='modify' lat='53.63661078938' lon='10.05761861265' />
+  <node id='-115220' action='modify' lat='53.63681752705' lon='10.0574845022' />
+  <node id='-115221' action='modify' lat='53.6364772045' lon='10.05591809213' />
+  <node id='-115222' action='modify' lat='53.63588242858' lon='10.05409419' />
+  <node id='-115223' action='modify' lat='53.63498229722' lon='10.05121886194' />
+  <node id='-115224' action='modify' lat='53.63420937758' lon='10.04884778917' />
+  <node id='-115225' action='modify' lat='53.63305474285' lon='10.04519998491' />
+  <node id='-115226' action='modify' lat='53.6322054459' lon='10.04244803846' />
+  <node id='-115227' action='modify' lat='53.63113664341' lon='10.03922402322' />
+  <node id='-115228' action='modify' lat='53.630401826' lon='10.03771662176' />
+  <node id='-115229' action='modify' lat='53.62912302233' lon='10.03553330362' />
+  <node id='-115230' action='modify' lat='53.62743379688' lon='10.03324269712' />
+  <node id='-115231' action='modify' lat='53.62638396168' lon='10.03185867727' />
+  <node id='-115232' action='modify' lat='53.62620898661' lon='10.03152071893' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18663,6 +18696,44 @@
     <nd ref='-115198' />
     <nd ref='-115182' />
     <tag k='name' v='2020-10-23-sillemstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106720' action='modify'>
+    <nd ref='-115200' />
+    <nd ref='-115201' />
+    <nd ref='-115202' />
+    <nd ref='-115203' />
+    <nd ref='-115204' />
+    <nd ref='-115205' />
+    <nd ref='-115206' />
+    <nd ref='-115207' />
+    <nd ref='-115208' />
+    <nd ref='-115209' />
+    <nd ref='-115210' />
+    <nd ref='-115211' />
+    <nd ref='-115212' />
+    <nd ref='-115213' />
+    <nd ref='-115214' />
+    <nd ref='-115215' />
+    <nd ref='-115216' />
+    <nd ref='-115217' />
+    <nd ref='-115218' />
+    <nd ref='-115219' />
+    <nd ref='-115220' />
+    <nd ref='-115221' />
+    <nd ref='-115222' />
+    <nd ref='-115223' />
+    <nd ref='-115224' />
+    <nd ref='-115225' />
+    <nd ref='-115226' />
+    <nd ref='-115227' />
+    <nd ref='-115228' />
+    <nd ref='-115229' />
+    <nd ref='-115230' />
+    <nd ref='-115231' />
+    <nd ref='-115232' />
+    <nd ref='-115200' />
+    <tag k='name' v='2020-10-24-wellingsbuetteler-landstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
