@@ -15,12 +15,6 @@ import "classlist-polyfill"
 import "@webcomponents/template"
 // IE 11 + Edge
 import "shim-keyboard-event-key"
-if (!window.requestIdleCallback) {
-  window.requestIdleCallback = function (x) {
-    window.setTimeout(x, 0);
-  }
-}
-
 
 // ours
 import 'mdn-polyfills/Array.prototype.includes'

@@ -2,6 +2,12 @@
 try { if (window.localStorage) window.localStorage.clear(); } catch (e) { }
 import mapboxgl from 'mapbox-gl';
 
+if (!window.requestIdleCallback) {
+  window.requestIdleCallback = function (x) {
+    window.setTimeout(x, 0);
+  }
+}
+
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 
@@ -203,7 +209,14 @@ const updateFakeMap = () => {
 }
 window.requestIdleCallback(updateFakeMap);
 
+let removeCounter = 0;
 const removeFakeMap = () => {
+  if (removeCounter < 30 && !map.areTilesLoaded()) {
+    removeCounter++;
+    setTimeout(removeFakeMap, 200);
+    return;
+  }
+
   if (fakeMap === null) return;
   const localFake = fakeMap;
   fakeMap = null;
