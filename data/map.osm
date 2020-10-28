@@ -855,6 +855,12 @@
   <node id='-115230' action='modify' lat='53.62743379688' lon='10.03324269712' />
   <node id='-115231' action='modify' lat='53.62638396168' lon='10.03185867727' />
   <node id='-115232' action='modify' lat='53.62620898661' lon='10.03152071893' />
+  <node id='-115234' action='modify' lat='53.55258518761' lon='9.9843835777' />
+  <node id='-115235' action='modify' lat='53.55323212723' lon='9.98320340574' />
+  <node id='-115236' action='modify' lat='53.55359702231' lon='9.982744748' />
+  <node id='-115237' action='modify' lat='53.55373246292' lon='9.98301028669' />
+  <node id='-115238' action='modify' lat='53.55287838315' lon='9.9843835777' />
+  <node id='-115239' action='modify' lat='53.55272859873' lon='9.98463570535' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18734,6 +18740,17 @@
     <nd ref='-115232' />
     <nd ref='-115200' />
     <tag k='name' v='2020-10-24-wellingsbuetteler-landstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106722' action='modify'>
+    <nd ref='-115234' />
+    <nd ref='-115235' />
+    <nd ref='-115236' />
+    <nd ref='-115237' />
+    <nd ref='-115238' />
+    <nd ref='-115239' />
+    <nd ref='-115234' />
+    <tag k='name' v='2020-10-28-kaiser-wilhelm-strasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
