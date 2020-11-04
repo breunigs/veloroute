@@ -861,6 +861,39 @@
   <node id='-115237' action='modify' lat='53.55373246292' lon='9.98301028669' />
   <node id='-115238' action='modify' lat='53.55287838315' lon='9.9843835777' />
   <node id='-115239' action='modify' lat='53.55272859873' lon='9.98463570535' />
+  <node id='-115241' action='modify' lat='53.5346422175' lon='10.03024398744' />
+  <node id='-115244' action='modify' lat='53.5348940901' lon='10.02950906217' />
+  <node id='-115245' action='modify' lat='53.53474105376' lon='10.02936422288' />
+  <node id='-115246' action='modify' lat='53.53411614964' lon='10.03074824274' />
+  <node id='-115247' action='modify' lat='53.53300979167' lon='10.03379523218' />
+  <node id='-115248' action='modify' lat='53.53200224745' lon='10.0369870609' />
+  <node id='-115249' action='modify' lat='53.53183006977' lon='10.03720700204' />
+  <node id='-115250' action='modify' lat='53.53150803186' lon='10.0372230953' />
+  <node id='-115251' action='modify' lat='53.5313390407' lon='10.03738402784' />
+  <node id='-115252' action='modify' lat='53.53068857784' lon='10.03929912508' />
+  <node id='-115253' action='modify' lat='53.53043349163' lon='10.04003941476' />
+  <node id='-115254' action='modify' lat='53.53003491637' lon='10.041300053' />
+  <node id='-115255' action='modify' lat='53.5300062188' lon='10.04154681623' />
+  <node id='-115256' action='modify' lat='53.53000303018' lon='10.04195987642' />
+  <node id='-115257' action='modify' lat='53.53008593421' lon='10.04232465684' />
+  <node id='-115258' action='modify' lat='53.53036653125' lon='10.04273771703' />
+  <node id='-115259' action='modify' lat='53.53046537749' lon='10.0424909538' />
+  <node id='-115260' action='modify' lat='53.53028362777' lon='10.04226028383' />
+  <node id='-115261' action='modify' lat='53.53016564947' lon='10.04194378316' />
+  <node id='-115262' action='modify' lat='53.53015289504' lon='10.0416862911' />
+  <node id='-115263' action='modify' lat='53.53019434692' lon='10.04139124811' />
+  <node id='-115264' action='modify' lat='53.53065350357' lon='10.03986238897' />
+  <node id='-115265' action='modify' lat='53.53144107318' lon='10.03748058736' />
+  <node id='-115266' action='modify' lat='53.53151440888' lon='10.03738939226' />
+  <node id='-115267' action='modify' lat='53.5317344152' lon='10.03734111249' />
+  <node id='-115268' action='modify' lat='53.53192572412' lon='10.03735184133' />
+  <node id='-115269' action='modify' lat='53.53205963985' lon='10.03733038366' />
+  <node id='-115270' action='modify' lat='53.53371760903' lon='10.03252922952' />
+  <node id='-115283' action='modify' lat='53.53452743961' lon='10.03035664022' />
+  <node id='-115292' action='modify' lat='53.53471554765' lon='10.03089308202' />
+  <node id='-115303' action='modify' lat='53.53460076996' lon='10.03152608335' />
+  <node id='-115313' action='modify' lat='53.53442541456' lon='10.03167092264' />
+  <node id='-115324' action='modify' lat='53.53414484442' lon='10.03124713361' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18751,6 +18784,43 @@
     <nd ref='-115239' />
     <nd ref='-115234' />
     <tag k='name' v='2020-10-28-kaiser-wilhelm-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106725' action='modify'>
+    <nd ref='-115244' />
+    <nd ref='-115245' />
+    <nd ref='-115246' />
+    <nd ref='-115247' />
+    <nd ref='-115248' />
+    <nd ref='-115249' />
+    <nd ref='-115250' />
+    <nd ref='-115251' />
+    <nd ref='-115252' />
+    <nd ref='-115253' />
+    <nd ref='-115254' />
+    <nd ref='-115255' />
+    <nd ref='-115256' />
+    <nd ref='-115257' />
+    <nd ref='-115258' />
+    <nd ref='-115259' />
+    <nd ref='-115260' />
+    <nd ref='-115261' />
+    <nd ref='-115262' />
+    <nd ref='-115263' />
+    <nd ref='-115264' />
+    <nd ref='-115265' />
+    <nd ref='-115266' />
+    <nd ref='-115267' />
+    <nd ref='-115268' />
+    <nd ref='-115269' />
+    <nd ref='-115270' />
+    <nd ref='-115324' />
+    <nd ref='-115313' />
+    <nd ref='-115303' />
+    <nd ref='-115292' />
+    <nd ref='-115283' />
+    <nd ref='-115244' />
+    <tag k='name' v='2020-11-04-alexandra-stieg' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
