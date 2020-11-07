@@ -297,3 +297,5 @@
 - "/contentblob/13601334/aa496a39aa09791b86a97ec352ea2f28/data/steindamm-zweiter-bauabschnitt-17-02-2020-anliegerinformation.pdf"
 - "/contentblob/14174204/c4f23c0360abdabf8555eb9abf21ee32/data/tangstedter-landstrasse-gehlengraben-09-2020-bis-07-2021.pdf"
 - "/contentblob/14344534/955ae0a125158b964ecc67898778a337/data/fussgaengerbruecke-wehrdeich-kampbille-grundinstandsetzung-09-20-bis-05-21.pdf"
+'2020-11-07':
+- "/contentblob/13884838/d3743797ce3e7fb5bc94de47e13f8b40/data/bei-der-pulvermuehle-brueckensanierung-05-2020-bis-10-2020.pdf"

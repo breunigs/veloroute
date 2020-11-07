@@ -1,11 +1,7 @@
 ---
-loc:
-- 10.1097
-- 53.5744
-grade: 1
 type: construction
-start: 2020-03
-end: 2020-12
+start: 2020-03-23
+end: 2021-01
 title: Schimmelmannstraße (Veloroute 7, „Abschnitt W23“)
 images: articles
 tags:
@@ -23,6 +19,6 @@ text: '<p>Die Baumaßnahme betrifft die <a>Schimmelmannstraße</a> nur zwischen 
   auf seiner Spur bleiben und muss nicht mehr über den KFZ-Rechtsabbieger kreuzen.
   Rechtsabbiegende Radfahrende fädlen sich einfach vom Radfahrstreifen mit in den
   Rechtsabbiegerspur mit ein.</p> <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008585">Erläuterungsbericht
-  zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</p>
+  zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)<br><a href="https://www.hamburg.de/wandsbek/strassenbaustellen/14296892/schimmelmannstrasse/">Infoseite der Stadt zur Baustelle</a></p>
 
 '

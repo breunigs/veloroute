@@ -1,12 +1,9 @@
 ---
-loc:
-- 10.1611
-- 53.64771
-grade: 2
-type: planned-construction
-title: Uppenhof und Eulenkrugstraße (Veloroute 6)
-images: 6
 
+type: construction
+title: Uppenhof und Eulenkrugstraße (Veloroute 6)
+start: 2020-11-16
+end: 2021-01-31
 updated: 2019-12-01
 tags:
 - 6
@@ -48,5 +45,6 @@ text: |
   suchen.</p>
   <p>
     <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011413">Erläuterungsbericht und Lagepläne des finalen Entwurfs</a><br>
-    Siehe auch: <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010875">Stellungnahme ADFC zum neueren Entwurf</a>
+    Siehe auch: <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010875">Stellungnahme ADFC zum neueren Entwurf</a><br>
+    <a href="https://www.hamburg.de/wandsbek/strassenbaustellen/14574482/eulenkrugstrasse-uppenhoff/">Infoseite der Stadt zur Baustelle</a>
   </p>
