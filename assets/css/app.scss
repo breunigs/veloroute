@@ -410,6 +410,10 @@ a:hover {
   height: 2em;
   width: 2em;
   pointer-events: none;
+
+  &.animate {
+    transition: linear 0.4s;
+  }
 }
 
 #indicator-loc {
@@ -420,7 +424,7 @@ a:hover {
   height: 0.8em;
   left: 50%;
   position: absolute;
-  text-color: #000;
+  color: #000;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 0.8em;

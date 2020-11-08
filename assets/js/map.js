@@ -38,7 +38,6 @@ const genDiv = (id) => {
 }
 
 let indicator = null;
-let indicatorRot = null;
 function renderIndicator() {
   if (state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
@@ -52,15 +51,28 @@ function renderIndicator() {
     indicator = new mapboxgl.Marker(el)
       .setLngLat(lngLat)
       .addTo(map);
-    indicatorRot = document.getElementById('indicator-rotate');
     if (!map.isMoving() && prevBoundsTs === "") {
       const zoom = Math.max(map.getZoom(), 14);
       map.flyTo({ center: lngLat, zoom: zoom });
     }
   }
 
-  indicatorRot.style.transform = `rotate(${state.bearing}deg)`;
+  const dist = indicator.getLngLat().distanceTo(lngLat);
+  indicator.getElement().classList.toggle("animate", dist < 10 && !map.isMoving());
+
+  const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing)
+  indicator.setRotation(shortest);
   indicator.setLngLat(lngLat);
+}
+
+const closestEquivalentAngle = (from, to) => {
+    const delta = ((((to - from) % 360) + 540) % 360) - 180;
+    return from + delta;
+}
+
+const disableIndicatorAnimation = () => {
+  if (!indicator) return;
+  indicator.getElement().classList.toggle("animate", false)
 }
 
 const ensureIndicatorInView = () => {
@@ -108,7 +120,7 @@ const maybeEnsureIndicatorInView = () => {
   } else if (indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
     // console.debug("indicator present, and changed, ensuring it's in view", indicator)
     prevIndicatorPos = `${state.lon},${state.lat}`;
-    setTimeout(ensureIndicatorInView, 0);
+    window.requestAnimationFrame(ensureIndicatorInView);
   }
 }
 
@@ -178,6 +190,7 @@ map.on('style.load', () => {
   map.on('moveend', sendBounds);
   map.once('click', removeFakeMap);
   map.once('movestart', removeFakeMap);
+  map.on('movestart', disableIndicatorAnimation);
 });
 
 
