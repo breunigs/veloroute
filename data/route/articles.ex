@@ -14,6 +14,13 @@ defmodule Data.Route.Articles do
     - { seq: "dyjJNotyKwLYJD2z2XmKrQ", from: "_s-WVg-kR3Wt3Yfj6--VdQ", to: "EWz3GQUbrcSD8Fli9beRAQ" }
     - { seq: "tI2FKEsG3grrahtQN_B3Ww", from: "l2Wd9uKK40DRDEyL0vwJAw", to: "7tnFr_kDGXBn2KX2-7e-Iw" }
 
+    methfesselstrasse norden:
+    - { seq: "bomQcd7nEULMQqhqXOiRkA", from: "5wdE6arPtjJdCdnpgEhKjA", to: "vpfnLSGxdlIOn8A8zlgfIA" }
+    - { seq: "bomQcd7nEULMQqhqXOiRkA", from: "IAk6MscgJNiMQYSLHym30Q", to: "vLreSmuPuUwpEv-5xkfv9w" }
+    methfesselstrasse sueden:
+    - { seq: "VW0hxulSqtEuhSwHaG6Fsw", from: "iaFcI-InWGwtuOmVy7KScQ", to: "_sapIa9tlH9EqgCwgurtmw" }
+    - { seq: "_UUck4WKgqTGX_ZoS6RJaw", from: "brif-8icsKdYHSR5aatb8Q", to: "AND85P0u3cEUPECNFhjt6w" }
+
     articles zum-dubben:
     - "uhF3_NofxYm1vjevwPb6yg"
     - "Sjo0PVQ7bHMbJD2w6fV0ZA"

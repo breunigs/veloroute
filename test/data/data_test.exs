@@ -3,11 +3,9 @@ defmodule Data.DataTest do
 
   test "all images have an associated route" do
     Data.RouteList.all()
+    |> List.delete(Data.Route.Articles)
     |> Enum.flat_map(&Data.Route.sequences/1)
     |> Enum.each(fn
-      %Data.Sequence{name: {"articles", _}} ->
-        nil
-
       %Data.Sequence{name: {id, name}} ->
         rel = VelorouteWeb.VariousHelpers.relation_by_id(id)
 

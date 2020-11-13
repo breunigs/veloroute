@@ -894,6 +894,40 @@
   <node id='-115303' action='modify' lat='53.53460076996' lon='10.03152608335' />
   <node id='-115313' action='modify' lat='53.53442541456' lon='10.03167092264' />
   <node id='-115324' action='modify' lat='53.53414484442' lon='10.03124713361' />
+  <node id='-115326' action='modify' lat='53.58069721794' lon='9.9467736429' />
+  <node id='-115327' action='modify' lat='53.58057938012' lon='9.94665026128' />
+  <node id='-115328' action='modify' lat='53.58051568387' lon='9.94680582941' />
+  <node id='-115329' action='modify' lat='53.57998700125' lon='9.94628816307' />
+  <node id='-115330' action='modify' lat='53.58030230071' lon='9.94699894845' />
+  <node id='-115331' action='modify' lat='53.58040740001' lon='9.94720279634' />
+  <node id='-115332' action='modify' lat='53.58042650895' lon='9.94751393259' />
+  <node id='-115333' action='modify' lat='53.5805029446' lon='9.94756757677' />
+  <node id='-115334' action='modify' lat='53.58062396744' lon='9.94757294118' />
+  <node id='-115335' action='modify' lat='53.58152844294' lon='9.9477553314' />
+  <node id='-115336' action='modify' lat='53.58216538591' lon='9.94783043325' />
+  <node id='-115337' action='modify' lat='53.5822752576' lon='9.94804232776' />
+  <node id='-115338' action='modify' lat='53.58243608376' lon='9.94812547624' />
+  <node id='-115339' action='modify' lat='53.58258257835' lon='9.94792699277' />
+  <node id='-115340' action='modify' lat='53.58260805561' lon='9.94765877187' />
+  <node id='-115341' action='modify' lat='53.58256983971' lon='9.94743346632' />
+  <node id='-115342' action='modify' lat='53.58243926843' lon='9.94733154237' />
+  <node id='-115343' action='modify' lat='53.58230232739' lon='9.9473690933' />
+  <node id='-115344' action='modify' lat='53.58219404812' lon='9.94744419515' />
+  <node id='-115345' action='modify' lat='53.58164309338' lon='9.94738518655' />
+  <node id='-115346' action='modify' lat='53.58077046831' lon='9.94717060983' />
+  <node id='-115347' action='modify' lat='53.58066536991' lon='9.94706868589' />
+  <node id='-115362' action='modify' lat='53.58324338841' lon='9.94746565551' />
+  <node id='-115370' action='modify' lat='53.58296473416' lon='9.94748443097' />
+  <node id='-115378' action='modify' lat='53.58320517308' lon='9.94756489724' />
+  <node id='-115385' action='modify' lat='53.58260327704' lon='9.94759440154' />
+  <node id='-115394' action='modify' lat='53.58305071909' lon='9.9473744604' />
+  <node id='-115404' action='modify' lat='53.58295677258' lon='9.94735568494' />
+  <node id='-115416' action='modify' lat='53.58308734226' lon='9.94750320643' />
+  <node id='-115458' action='modify' lat='53.58233735727' lon='9.94938879937' />
+  <node id='-115469' action='modify' lat='53.58244085917' lon='9.94937538832' />
+  <node id='-115477' action='modify' lat='53.58238194274' lon='9.94814157218' />
+  <node id='-115490' action='modify' lat='53.58039784395' lon='9.9468380186' />
+  <node id='-115501' action='modify' lat='53.5799121555' lon='9.94647055596' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18821,6 +18855,45 @@
     <nd ref='-115283' />
     <nd ref='-115244' />
     <tag k='name' v='2020-11-04-alexandra-stieg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106727' action='modify'>
+    <nd ref='-115326' />
+    <nd ref='-115327' />
+    <nd ref='-115328' />
+    <nd ref='-115490' />
+    <nd ref='-115329' />
+    <nd ref='-115501' />
+    <nd ref='-115330' />
+    <nd ref='-115331' />
+    <nd ref='-115332' />
+    <nd ref='-115333' />
+    <nd ref='-115334' />
+    <nd ref='-115335' />
+    <nd ref='-115336' />
+    <nd ref='-115337' />
+    <nd ref='-115458' />
+    <nd ref='-115469' />
+    <nd ref='-115477' />
+    <nd ref='-115338' />
+    <nd ref='-115339' />
+    <nd ref='-115340' />
+    <nd ref='-115385' />
+    <nd ref='-115370' />
+    <nd ref='-115416' />
+    <nd ref='-115378' />
+    <nd ref='-115362' />
+    <nd ref='-115394' />
+    <nd ref='-115404' />
+    <nd ref='-115341' />
+    <nd ref='-115342' />
+    <nd ref='-115343' />
+    <nd ref='-115344' />
+    <nd ref='-115345' />
+    <nd ref='-115346' />
+    <nd ref='-115347' />
+    <nd ref='-115326' />
+    <tag k='name' v='2020-11-13-methfesselstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
