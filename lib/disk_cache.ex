@@ -6,7 +6,7 @@ defmodule DiskCache do
 
   def lazy(namespace, cache_key, func) do
     start_link()
-    get(namespace, cache_key) || write(namespace, cache_key, func)
+    get(namespace, cache_key, func)
   end
 
   defp start_link() do
@@ -23,26 +23,23 @@ defmodule DiskCache do
     end
   end
 
-  defp get(namespace, cache_key) when namespace in @allowed do
-    Agent.get(__MODULE__, fn _open_tables ->
-      :dets.lookup(namespace, cache_key)
-      |> case do
-        [{^cache_key, res}] -> res
-        _ -> nil
+  defp get(namespace, cache_key, func) when namespace in @allowed do
+    Agent.get(
+      __MODULE__,
+      fn _open_tables ->
+        :dets.lookup(namespace, cache_key)
+        |> case do
+          [{^cache_key, res}] -> res
+          _ -> write(namespace, cache_key, func)
+        end
       end
-    end)
+    )
   end
 
   defp write(namespace, cache_key, func) when namespace in @allowed do
     res = func.()
-
-    if res do
-      Agent.get(__MODULE__, fn _open_tables ->
-        :dets.insert_new(namespace, {cache_key, res})
-        :dets.sync(namespace)
-      end)
-    end
-
+    true = :dets.insert_new(namespace, {cache_key, res})
+    :ok = :dets.sync(namespace)
     res
   end
 
@@ -50,6 +47,11 @@ defmodule DiskCache do
     path = String.to_atom("#{@cache_dir}/v2_#{namespace}.dets")
     IO.puts("Opening disk cache #{path}")
     {:ok, ^namespace} = :dets.open_file(namespace, file: path, type: :set)
+
+    # ets = :ets.new(:temp, [])
+    # :dets.to_ets(namespace, ets)
+    # :ets.tab2list(ets) |> Enum.map(&elem(&1, 0)) |> IO.inspect()
+
     namespace
   end
 end
