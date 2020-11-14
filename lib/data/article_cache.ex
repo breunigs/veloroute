@@ -22,4 +22,16 @@ defmodule Data.ArticleCache do
     |> Enum.reject(fn {name, _art} -> String.contains?(name, "0000-00-00-") end)
     |> Enum.into(%{})
   end
+
+  def find(key) when is_binary(key) do
+    key = key |> String.downcase() |> String.replace(" ", "-")
+
+    Enum.find(get(), fn {name, art} ->
+      cond do
+        String.ends_with?(name, "-" <> key) -> art
+        Enum.member?(art.tags, key) -> art
+        true -> nil
+      end
+    end)
+  end
 end

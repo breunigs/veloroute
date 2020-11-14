@@ -25,6 +25,7 @@ defmodule VelorouteWeb.ArticleView do
     |> enhance_tag("articles", &articles/2)
     |> enhance_tag("mailto", &mailto/2)
     |> enhance_tag("geolinks", &geolinks/2)
+    |> enhance_tag("ref", &ref/2)
     |> enhance_tag("a", &live_links/2)
     |> Floki.raw_html()
     |> Phoenix.HTML.raw()
@@ -276,12 +277,25 @@ defmodule VelorouteWeb.ArticleView do
     )
   end
 
+  def ref(attrs, children) do
+    attrs_as_hash(attrs)[:name]
+    |> Kernel.||(Floki.text(children))
+    |> Data.ArticleCache.find()
+    |> case do
+      {_name, art} ->
+        url = VariousHelpers.article_path(art)
+
+        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"}, {"href", url}],
+         children}
+
+      _ ->
+        raise("Cannot find reference for #{inspect(children)}")
+    end
+  end
+
   @spec articles([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
   def articles(attrs, _children) do
-    attrs =
-      attrs
-      |> Enum.map(fn {key, val} -> {String.to_existing_atom(key), val} end)
-      |> Enum.into(%{})
+    attrs = attrs_as_hash(attrs)
 
     filters =
       attrs
@@ -402,5 +416,11 @@ defmodule VelorouteWeb.ArticleView do
       {^key, _v} -> {key, val}
       any -> any
     end)
+  end
+
+  defp attrs_as_hash(attrs) do
+    attrs
+    |> Enum.map(fn {key, val} -> {String.to_existing_atom(key), val} end)
+    |> Enum.into(%{})
   end
 end
