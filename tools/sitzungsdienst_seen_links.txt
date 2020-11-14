@@ -575,3 +575,8 @@
 '2020-11-07':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010058
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010050
+'2020-11-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010672
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010666
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006045
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010110
