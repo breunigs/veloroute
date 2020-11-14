@@ -21296,26 +21296,7 @@
     <tag k='name' v='Bethesdastraße' />
     <tag k='talk' v='no' />
   </way>
-  <way id='22376284' action='modify' version='1'>
-    <nd ref='7485710005548585' />
-    <nd ref='7455430005548855' />
-    <nd ref='7357190005549592' />
-    <nd ref='7303510005549931' />
-    <nd ref='7236390005550328' />
-    <nd ref='7146610005550783' />
-    <nd ref='711832000555095' />
-    <nd ref='705550005551381' />
-    <nd ref='702559000555174' />
-    <nd ref='7011380005552076' />
-    <nd ref='7002220005552227' />
-    <nd ref='692727000555377' />
-    <nd ref='6890420005554522' />
-    <nd ref='6862550005554915' />
-    <nd ref='6841060005555132' />
-    <nd ref='6807450005555203' />
-    <nd ref='6804540005555203' />
-    <nd ref='6786350005555153' />
-    <nd ref='676785000555507' />
+  <way id='22376284' action='delete' version='1'>
     <tag k='comfortable' v='no' />
     <tag k='fast' v='yes' />
     <tag k='name' v='Horner Weg' />
@@ -23023,9 +23004,7 @@
     <tag k='oneway' v='yes' />
     <tag k='talk' v='yes' />
   </way>
-  <way id='25474059' action='modify' version='1'>
-    <nd ref='676785000555507' />
-    <nd ref='6722910005554809' />
+  <way id='25474059' action='delete' version='1'>
     <tag k='comfortable' v='no' />
     <tag k='fast' v='yes' />
     <tag k='name' v='Horner Wegbrücke' />
@@ -30091,23 +30070,7 @@
     <tag k='name' v='Chemnitzstraße' />
     <tag k='talk' v='no' />
   </way>
-  <way id='143547367' action='modify' version='1'>
-    <nd ref='9546178000557155' />
-    <nd ref='95405730005571219' />
-    <nd ref='95367710005570402' />
-    <nd ref='95353240005569994' />
-    <nd ref='95314340005568691' />
-    <nd ref='9527994000556689' />
-    <nd ref='95250480005565105' />
-    <nd ref='95224170005563591' />
-    <nd ref='95215410005563178' />
-    <nd ref='95204520005562664' />
-    <nd ref='95180250005561768' />
-    <nd ref='95152710005560931' />
-    <nd ref='95110610005559803' />
-    <nd ref='9507788000555919' />
-    <nd ref='95070130005559057' />
-    <nd ref='95054680005558793' />
+  <way id='143547367' action='delete' version='1'>
     <tag k='comfortable' v='no' />
     <tag k='fast' v='yes' />
     <tag k='name' v='Thadenstraße' />
@@ -31613,6 +31576,38 @@
     <tag k='talk' v='no' />
   </way>
   <way id='152793488' action='modify' version='1'>
+    <nd ref='8280040005547501' />
+    <nd ref='8179370005547556' />
+    <nd ref='8172050005547558' />
+    <nd ref='8031720005547685' />
+    <nd ref='7912450005547713' />
+    <nd ref='7856480005547852' />
+    <nd ref='7832540005547912' />
+    <nd ref='7781550005547958' />
+    <nd ref='7752320005548022' />
+    <nd ref='7687750005548157' />
+    <nd ref='7626040005548274' />
+    <nd ref='7597450005548316' />
+    <nd ref='7512040005548463' />
+    <nd ref='7485710005548585' />
+    <nd ref='7455430005548855' />
+    <nd ref='7357190005549592' />
+    <nd ref='7303510005549931' />
+    <nd ref='7236390005550328' />
+    <nd ref='7146610005550783' />
+    <nd ref='711832000555095' />
+    <nd ref='705550005551381' />
+    <nd ref='702559000555174' />
+    <nd ref='7011380005552076' />
+    <nd ref='7002220005552227' />
+    <nd ref='692727000555377' />
+    <nd ref='6890420005554522' />
+    <nd ref='6862550005554915' />
+    <nd ref='6841060005555132' />
+    <nd ref='6807450005555203' />
+    <nd ref='6804540005555203' />
+    <nd ref='6786350005555153' />
+    <nd ref='676785000555507' />
     <nd ref='6722910005554809' />
     <nd ref='6697430005554728' />
     <nd ref='6687410005554684' />
@@ -31626,10 +31621,9 @@
     <nd ref='6336670005557693' />
     <nd ref='6291330005558174' />
     <nd ref='6242920005558464' />
-    <tag k='comfortable' v='no' />
+    <tag k='comfortable' v='yes' />
     <tag k='fast' v='yes' />
-    <tag k='name' v='Horner Weg' />
-    <tag k='talk' v='no' />
+    <tag k='talk' v='yes' />
   </way>
   <way id='152793492' action='modify' version='1'>
     <nd ref='4210540005604273' />
@@ -36829,21 +36823,7 @@
     <tag k='name' v='Wördemanns Weg' />
     <tag k='talk' v='no' />
   </way>
-  <way id='545671497' action='modify' version='1'>
-    <nd ref='8280040005547501' />
-    <nd ref='8179370005547556' />
-    <nd ref='8172050005547558' />
-    <nd ref='8031720005547685' />
-    <nd ref='7912450005547713' />
-    <nd ref='7856480005547852' />
-    <nd ref='7832540005547912' />
-    <nd ref='7781550005547958' />
-    <nd ref='7752320005548022' />
-    <nd ref='7687750005548157' />
-    <nd ref='7626040005548274' />
-    <nd ref='7597450005548316' />
-    <nd ref='7512040005548463' />
-    <nd ref='7485710005548585' />
+  <way id='545671497' action='delete' version='1'>
     <tag k='comfortable' v='no' />
     <tag k='fast' v='yes' />
     <tag k='name' v='Horner Weg' />
@@ -47974,11 +47954,27 @@
     <tag k='talk' v='no' />
   </way>
   <way id='782361025' action='modify' version='1'>
+    <nd ref='9546178000557155' />
+    <nd ref='95405730005571219' />
+    <nd ref='95367710005570402' />
+    <nd ref='95353240005569994' />
+    <nd ref='95314340005568691' />
+    <nd ref='9527994000556689' />
+    <nd ref='95250480005565105' />
+    <nd ref='95224170005563591' />
+    <nd ref='95215410005563178' />
+    <nd ref='95204520005562664' />
+    <nd ref='95180250005561768' />
+    <nd ref='95152710005560931' />
+    <nd ref='95110610005559803' />
+    <nd ref='9507788000555919' />
+    <nd ref='95070130005559057' />
     <nd ref='95054680005558793' />
     <nd ref='95035590005558541' />
-    <tag k='comfortable' v='no' />
+    <tag k='comfortable' v='yes' />
     <tag k='fast' v='yes' />
-    <tag k='talk' v='no' />
+    <tag k='name' v='Thadenstraße' />
+    <tag k='talk' v='yes' />
   </way>
   <way id='783000818' action='modify' version='1'>
     <nd ref='9541260006514936' />
@@ -51210,7 +51206,6 @@
     <member type='way' ref='143018869' role='' />
     <member type='way' ref='143018856' role='' />
     <member type='way' ref='25684596' role='' />
-    <member type='way' ref='143547367' role='' />
     <member type='way' ref='782361025' role='' />
     <member type='way' ref='717669969' role='' />
     <member type='way' ref='143258810' role='' />
@@ -51969,9 +51964,6 @@
     <member type='way' ref='41123663' role='' />
     <member type='way' ref='609039934' role='' />
     <member type='way' ref='152793488' role='' />
-    <member type='way' ref='25474059' role='' />
-    <member type='way' ref='22376284' role='' />
-    <member type='way' ref='545671497' role='' />
     <member type='way' ref='34603343' role='' />
     <member type='way' ref='609039981' role='' />
     <member type='way' ref='609039978' role='forward' />
