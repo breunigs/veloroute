@@ -303,3 +303,6 @@
 - "/contentblob/14603174/faf5145d6c8768982cc90ebb65632e88/data/goebenstrasse-neubau-bushaltestelle-11-2020-bis-12-2020.pdf"
 - "/contentblob/14189176/dcf543934e3c0f29870471218ef7e7a7/data/ottensen-umbau-bushaltestellen-m2-08-2020-bis-08-2021.pdf"
 - "/contentblob/14603456/1f401e39bf356950a42508e3bb36df73/data/palmaille-und-breite-strasse-provisorische-bushaltestellen-11-2020-bis-12-2020.pdf"
+'2020-11-21':
+- "/contentblob/14651304/2156fb74849f2fa8d6ab7b1a9272e7e3/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf"
+- "/contentblob/14644804/4a997764e777ab37939f9861ab001200/data/bramfelder-strasse-bramfelder-chaussee-fahrbahndecken-20-11-bis-07-12-2020.pdf"

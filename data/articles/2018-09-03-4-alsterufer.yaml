@@ -1,16 +1,15 @@
-loc:
-- 9.9974312
-- 53.5618547
-grade: 2
 title: Radweg am Alsterufer (Veloroute 4)
-type: planned-construction
-images: 4
-
-start: 2020Q3
-updated: 2020-03-27
+type: construction
+start: 2020-11-23
+end: 2021-07
+updated: 2020-11-27
 tags:
 - 4
 text: >
+  <h4>Bauarbeiten</h4>
+  <p>Die Bauarbeiten sollen am Montag, 23. November 2020 beginnen und bis ca. Ende Juni 2021 dauern. Während der Bauzeit wird der Radverkehr über die Warburgstraße / Alsterterrasse / Neue Rabenstraße / Mittelweg / Alte Rabenstraße umgeleitet.</p>
+
+  <h4>Beschreibung</h4>
   <p>Vor einigen Jahren wollte das US-Konsulat noch umziehen, aber das wurde auf unbestimmte Zeit verschoben. Daher hat man die Pläne nun angepasst, um die Situation für den Radverkehr trotz des eingeschränkten Platzes vor dem Konsulat zu verbessern.</p>
 
   <p><a href="/4#16.31/53.56365/9.998439/S9LorwNDLHsVEMYmu2mPFQ">Von Norden kommend</a> wird die Fahrradstraße bis zur <a href="/4#16.31/53.56365/9.998439/GbixgwPrBrz9FXLXMJg7Tg">Absperrung am Konsulat</a> im Wesentlichen genauso fortgesetzt. Das heißt 5,5m breit und freie Sicht auf die Alster. Parkplätze gibt es nur zur Gebäudeseite hin. Schikanen, Poller und andere Hindernisse sind hier nicht geplant.</p>
@@ -23,9 +22,10 @@ text: >
 
   <p>Man merkt, das Hamburg die westliche Alster-Fahrradachse zum Aushängeschild machen möchte. Klar, die Engstelle vor dem Konsulat ist ärglich, aber der Stadt nicht vorzuwerfen. Ansonsten muss man Mängel schon sehr genau suchen – etwa sind die Längsparkplätze im südlichen Teil ohne Sicherheitsabstände geplant, was beim Unachtsamen öffnen von Autotüren ein Problem werden kann. Ansonsten stimmt die Planung aber.
   </p>
-  <p>Aktuell geht man von einer Umsetzung ab Mitte 2020 aus.</p>
 
+  <h4>Quellen</h4>
   <ul>
     <li><a href="https://lsbg.hamburg.de/contentblob/13755304/c54a12df525b7e9134e76fd25b14b2a3/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-planung-plan.pdf">Lageplan</a></li>
     <li><a href="https://lsbg.hamburg.de/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</a></li>
+    <li><a href="https://lsbg.hamburg.de/contentblob/14651304/2156fb74849f2fa8d6ab7b1a9272e7e3/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf">Flugblatt zur Baustelle (vom 19.11.2020)</a></li>
   </ul>

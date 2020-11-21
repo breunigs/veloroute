@@ -7,15 +7,17 @@ defmodule Data.MapTest do
     @map.ways
     |> Enum.each(fn {_id, w} ->
       isArticle = w.tags[:type] == "article"
+      isDetour = w.tags[:type] == "detour"
       isTaggedWay = Enum.all?(Data.Map.Way.grade_tags(), &Map.has_key?(w.tags, &1))
 
-      assert isArticle || isTaggedWay, "Neither article nor quality tags: #{inspect(w)}"
+      assert isDetour || isArticle || isTaggedWay,
+             "Neither article nor quality tags: #{inspect(w)}"
     end)
   end
 
   test "articles are a closed ring" do
     @map
-    |> Data.Map.article_ways()
+    |> Data.Map.ways_by_type("article")
     |> Enum.each(fn w ->
       first = List.first(w.nodes).id
       last = List.last(w.nodes).id

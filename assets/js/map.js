@@ -158,9 +158,9 @@ const handleMapClick = (evt) => {
   let route = null;
   let article = null;
   items.forEach(r => {
-    if (routeLayers.includes(r.layer.id)) {
+    if (r.properties.route_id && routeLayers.includes(r.layer.id)) {
       route = r.properties.route_id;
-    } else if (articleLayers.includes(r.layer.id)) {
+    } else if (r.properties.name && (routeLayers + articleLayers).includes(r.layer.id)) {
       article = r.properties.name;
     }
   });

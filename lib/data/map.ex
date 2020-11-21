@@ -79,6 +79,22 @@ defmodule Data.Map do
         }
       }
     end
+
+    def as_typed_way(w) do
+      coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
+
+      %{
+        type: "Feature",
+        properties: %{
+          type: w.tags[:type],
+          name: w.tags[:name]
+        },
+        geometry: %{
+          type: "LineString",
+          coordinates: coords
+        }
+      }
+    end
   end
 
   defmodule Relation do
@@ -188,17 +204,17 @@ defmodule Data.Map do
   end
 
   def article_bboxes(m) do
-    article_ways(m)
+    ways_by_type(m, "article")
     |> Enum.reduce(%{}, fn way, acc ->
       bbox = way.nodes |> CheapRuler.bbox()
       Map.update(acc, way.tags[:name], bbox, &CheapRuler.union(&1, bbox))
     end)
   end
 
-  def article_ways(m) do
+  def ways_by_type(m, type) do
     m.ways
     |> Map.values()
-    |> Enum.filter(&match?(%Way{tags: %{type: "article"}}, &1))
+    |> Enum.filter(&match?(%Way{tags: %{type: ^type}}, &1))
   end
 
   def markers(m) do
@@ -216,13 +232,17 @@ defmodule Data.Map do
       |> Enum.map(&Relation.routes_as_geojson(&1, overlaps))
 
     articles =
-      article_ways(m)
+      ways_by_type(m, "article")
       |> Enum.map(&Way.as_article(&1, articles))
+
+    detours =
+      ways_by_type(m, "detour")
+      |> Enum.map(&Way.as_typed_way/1)
 
     markers = markers(m) |> Enum.map(&Node.as_geojson(&1))
 
     %{
-      routes: as_feat_collection(routes),
+      routes: as_feat_collection(routes ++ detours),
       articles: as_feat_collection(articles),
       markers: as_feat_collection(markers)
     }

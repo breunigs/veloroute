@@ -199,6 +199,16 @@ way[type=mapillary-sequence] > node|z19- {
   icon-height: 20;
 }
 
+
+way[type=detour] {
+  color: #f0ca00;
+  width: 4;
+  text: "";
+  casing-width: 0;
+  dashes: 2;
+}
+
+
 area[type=article] {
   fill-color: #000;
   fill-opacity: 0.2;
