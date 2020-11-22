@@ -5,6 +5,8 @@ set -eux
 cd $(dirname $0)
 cd ..
 
+mkdir -p assets/static/favicons/
+
 inkscape  -o assets/static/favicons/16.png -w 16 -h 16 data/images/favicon.svg&
 inkscape  -o assets/static/favicons/32.png -w 32 -h 32 data/images/favicon.svg&
 inkscape  -o assets/static/favicons/36.png -w 36 -h 36 data/images/favicon.svg&

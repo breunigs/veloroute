@@ -2,10 +2,11 @@
 
 # run like this: DOCKER_BUILDKIT=1 docker build .
 
-FROM elixir:1.11.1-alpine AS elixirbase
+FROM elixir:1.11.1-alpine AS base
 WORKDIR /build
 ENV GIT_COMMIT="dockerfile dummy"
 
+FROM base AS elixirbase
 RUN apk add --no-cache build-base && \
   mix local.hex --force && \
   mix local.rebar --force
@@ -32,8 +33,10 @@ RUN --mount=type=cache,target=/data-cache/ \
   MIX_ENV=test mix do compile, warm_caches, update_gpx && \
   cp -r /build/data/cache/. /data-cache/
 
-FROM elixirbase as favicon
+FROM base as favicon
 RUN apk add --no-cache optipng inkscape
+COPY data/images/favicon.svg /build/data/images/favicon.svg
+COPY tools/update_favicons.sh /build/tools/update_favicons.sh
 RUN tools/update_favicons.sh
 
 FROM elixirbase as dialyzer
