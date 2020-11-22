@@ -77,13 +77,14 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
   defp maybe_prepend_title(html, %Article{title: t} = art) do
-    range = Article.range(art)
-
     range =
-      if range == "" || range == nil do
-        []
-      else
-        floki_content_tag(:span, "vermutete Bauzeit: #{range}", class: "duration")
+      Article.range(art)
+      |> case do
+        "" ->
+          []
+
+        range ->
+          floki_content_tag(:span, "vermutete Bauzeit: #{range}", class: "duration")
       end
 
     floki_content_tag(:h3, t) ++ range ++ html
