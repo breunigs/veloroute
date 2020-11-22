@@ -76,8 +76,18 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_prepend_title(html, %Article{text: "<h3" <> _x}), do: html
   defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
-  defp maybe_prepend_title(html, %Article{title: t}),
-    do: floki_content_tag(:h3, t) ++ html
+  defp maybe_prepend_title(html, %Article{title: t} = art) do
+    range = Article.range(art)
+
+    range =
+      if range == "" || range == nil do
+        []
+      else
+        floki_content_tag(:span, "vermutete Bauzeit: #{range}", class: "duration")
+      end
+
+    floki_content_tag(:h3, t) ++ range ++ html
+  end
 
   defp maybe_append_date(html, %Article{date: d}) when not is_nil(d) do
     html ++
@@ -384,6 +394,7 @@ defmodule VelorouteWeb.ArticleView do
 
   @spec floki_content_tag(any(), any(), any()) :: Floki.html_tree()
   defp floki_content_tag(_tag, nil, _attrs), do: []
+  defp floki_content_tag(_tag, "", _attrs), do: []
 
   defp floki_content_tag(tag, content, attrs) when is_list(attrs) do
     attrs = Enum.map(attrs, fn {k, v} -> {to_string(k), to_string(v)} end)

@@ -5,7 +5,12 @@ defmodule Data.RoughDateTest do
   @unknown %RoughDate{year: nil, quarter: nil, month: nil}
 
   test "detects unknown text" do
-    assert RoughDate.parse("not a date") == %RoughDate{year: nil, quarter: nil, month: nil}
+    assert RoughDate.parse("not a date") == %RoughDate{
+             year: nil,
+             quarter: nil,
+             month: nil,
+             day: nil
+           }
   end
 
   test "makes nice ranges" do
@@ -16,6 +21,10 @@ defmodule Data.RoughDateTest do
     assert RoughDate.range(a, @unknown) == "ab 2019"
     assert RoughDate.range(@unknown, b) == "bis 2020"
     assert RoughDate.range(a, a) == "2019"
+
+    a = %RoughDate{year: 2020, quarter: nil, month: 6}
+    b = %RoughDate{year: 2020, quarter: nil, month: 8}
+    assert RoughDate.range(a, b) == "Juli bis September 2020"
   end
 
   test "compares decently" do
@@ -23,10 +32,11 @@ defmodule Data.RoughDateTest do
     b = RoughDate.parse("2019Q1")
     c = RoughDate.parse("2019-02")
     d = RoughDate.parse("2019-04")
-    e = RoughDate.parse("2020")
+    e = RoughDate.parse("2019-04-25")
+    f = RoughDate.parse("2020")
 
-    sorted = [a, b, c, d, e] |> Enum.shuffle() |> RoughDate.sort()
-    assert [a, b, c, d, e] == sorted
+    sorted = [a, b, c, d, e, f] |> Enum.shuffle() |> RoughDate.sort()
+    assert [a, b, c, d, e, f] == sorted
   end
 
   test "sorts unknowns last" do
@@ -49,5 +59,14 @@ defmodule Data.RoughDateTest do
     assert RoughDate.parse("2019") |> RoughDate.to_str() == "2019"
     assert RoughDate.parse("2019Q2") |> RoughDate.to_str() == "Frühjahr 2019"
     assert RoughDate.parse("2019-07") |> RoughDate.to_str() == "Juli 2019"
+  end
+
+  test "parses exact dates" do
+    assert RoughDate.parse("2019-04-25") == %RoughDate{
+             year: 2019,
+             quarter: nil,
+             month: 3,
+             day: 25
+           }
   end
 end

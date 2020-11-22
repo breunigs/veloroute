@@ -1,14 +1,15 @@
 defmodule Data.RoughDate do
   alias __MODULE__
 
-  defstruct [:year, :quarter, :month]
+  defstruct [:year, :quarter, :month, :day]
 
   @months {"Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September",
            "Oktober", "November", "Dezember"}
 
-  def parse(nil), do: %RoughDate{year: nil, quarter: nil, month: nil}
+  def parse(nil), do: %RoughDate{year: nil, quarter: nil, month: nil, day: nil}
 
-  def parse(date) when is_integer(date), do: %RoughDate{year: date, quarter: nil, month: nil}
+  def parse(date) when is_integer(date),
+    do: %RoughDate{year: date, quarter: nil, month: nil, day: nil}
 
   def parse(date) when is_binary(date) do
     date = String.trim(date)
@@ -16,14 +17,21 @@ defmodule Data.RoughDate do
     cond do
       String.match?(date, ~r/^20\d\dQ[1-4]$/) ->
         {quarter, ""} = date |> String.at(5) |> Integer.parse()
-        %RoughDate{year: get_year(date), quarter: quarter, month: nil}
+        %RoughDate{year: get_year(date), quarter: quarter, month: nil, day: nil}
 
       String.match?(date, ~r/^20\d\d-[01]\d$/) ->
         {month, ""} = date |> String.slice(5..-1) |> Integer.parse()
-        %RoughDate{year: get_year(date), quarter: nil, month: month - 1}
+        %RoughDate{year: get_year(date), quarter: nil, month: month - 1, day: nil}
 
       String.match?(date, ~r/^20\d\d$/) ->
-        %RoughDate{year: get_year(date), quarter: nil, month: nil}
+        %RoughDate{year: get_year(date), quarter: nil, month: nil, day: nil}
+
+      String.match?(date, ~r/^20\d\d-\d{1,2}-\d{1,2}$/) ->
+        s = String.split(date, "-")
+        {year, ""} = s |> Enum.at(0) |> Integer.parse()
+        {month, ""} = s |> Enum.at(1) |> Integer.parse()
+        {day, ""} = s |> Enum.at(2) |> Integer.parse()
+        %RoughDate{year: year, quarter: nil, month: month - 1, day: day}
 
       true ->
         %RoughDate{year: nil, quarter: nil, month: nil}
@@ -34,7 +42,15 @@ defmodule Data.RoughDate do
   def range(from, %RoughDate{year: nil}), do: "ab #{to_str(from)}"
   def range(%RoughDate{year: nil}, to), do: "bis #{to_str(to)}"
   def range(d, d), do: "#{to_str(d)}"
+
+  def range(%{year: y} = from, %{year: y} = to),
+    do: "#{to_str(from) |> String.slice(0..-6)} bis #{to_str(to)}"
+
   def range(from, to), do: "#{to_str(from)} bis #{to_str(to)}"
+
+  def to_str(%RoughDate{year: y, month: m, day: d}) when not is_nil(d) do
+    "#{d}. #{elem(@months, m)} #{y}"
+  end
 
   def to_str(%RoughDate{year: y, quarter: q}) when is_integer(q) do
     "#{quarter_text(q)} #{y}"
@@ -59,6 +75,7 @@ defmodule Data.RoughDate do
       left.year < right.year -> true
       guess_month(left) > guess_month(right) -> false
       guess_month(left) < guess_month(right) -> true
+      is_nil(left.day) && !is_nil(right.day) -> true
       true -> false
     end
   end
