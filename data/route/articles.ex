@@ -165,12 +165,6 @@ defmodule Data.Route.Articles do
     articles 2020-05-31-heykenaubrook:
     - L-xSKbsYArOZ0K23WHpH9w
 
-    articles 2019-01-11-6-beim-farenland:
-    - A_WI53-S7c9vU9OulS0lMw
-    - _OQe5CcmbwEtkmAl17NX1g
-    - o0blAi7gJopk6nEP_AU6jQ
-    - AUR4r49JcrSJtFTOKcQWDw
-
     articles 2019-10-13-7-luebeckertordamm:
     - v13tDJqCSkoUPTH2JzjUUg
     - jjYhOlnvT18ArD5h7ZS_Vg
@@ -452,24 +446,6 @@ defmodule Data.Route.Articles do
     - 8hpn3egY7EyQr4yIRj0iKw
     - gfz4efrVxeH9YIXGLzfZSw
     - iZv87P0ekcFOzbl72Vx_kA
-
-    articles 2018-10-25-7-kuehnstrasse-w24:
-    - ps5g0Tk2M2RQRNSIE-zCww
-    - PW6s3Y4L6Qo3L1CV9553gA
-    - BSVDbjxXLAzz--n79ebOSQ
-    - Qfdy4dcR2IGtW2lbdG7wZg
-    - idp4xkWlYxmrSq_TSyYnKQ
-    - GSsZz1Ysf-sWe3BIqHMbOQ
-    - ADuOp89HtJWaq1aztdMS_g
-    - vwCaPtJfu2gn26Yn55BLCQ
-    - k51tDa-t6fAxPD0vMBN5Gg
-    - R6fF2FADHXkRqMyRhOq4zg
-    - mSxu43OFzUqvUNWmKawmCA
-    - mKRPAQi9ot9arJgmgClQXg
-    - OmOYflEAW5R24eivBVX5dA
-    - PfikrOSvzhJUHdyzeRwFyA
-    - dQu5mUh5wNIsBXAr0YjXsg
-    - pJRkEUgYYoDz25Gqx-66MA
 
     articles 2018-08-30-7-rahlstedter-strasse:
     - pwuW4ksOJZlXcXePhA9m8Q
