@@ -573,10 +573,13 @@ defmodule VelorouteWeb.FrameLive do
         _ -> nil
       end
 
+    {group, desc} = socket.assigns.route || {nil, nil}
+
     socket =
       with %{seq: seq, prev: prev, curr: curr, next: next} <-
              Data.RouteList.all()
              |> Data.RouteList.sequences_with_one_of_img([img, alt_img])
+             |> Data.Sequence.sort_by_relatedness(group, desc)
              |> Enum.find_value(&Data.Sequence.find_surrounding(&1, [img, alt_img])) do
         %{lon: lon, lat: lat, bearing: bearing} = curr
 

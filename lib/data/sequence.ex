@@ -35,6 +35,15 @@ defmodule Data.Sequence do
     }
   end
 
+  @spec sort_by_relatedness(list(t()), group(), description()) :: list(t())
+  def sort_by_relatedness(seqs, group, desc) do
+    Enum.sort_by(seqs, fn
+      %{group: ^group, description: ^desc} -> 0
+      %{group: ^group} -> 1
+      _ -> 2
+    end)
+  end
+
   @spec images(t()) :: list(Mapillary.ref())
   def images(seq), do: seq.route.parsed[seq.name]
 
