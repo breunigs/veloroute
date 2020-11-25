@@ -22,15 +22,6 @@ defmodule Data.RouteList do
     Enum.flat_map(routes, &Data.Route.sequences_with_img(&1, img))
   end
 
-  @spec sequences_with_one_of_img(t, list(Mapillary.ref())) :: list(Data.Sequence.t())
-  def sequences_with_one_of_img(routes, imgs) when is_list(imgs) do
-    imgs
-    |> Enum.reject(&is_nil/1)
-    |> Enum.uniq()
-    |> Enum.flat_map(&sequences_with_img(routes, &1))
-    |> Enum.uniq()
-  end
-
   @spec sequences_with_group(t, binary()) :: list(Data.Sequence.t())
   def sequences_with_group(routes, group) do
     Enum.flat_map(routes, &Data.Route.sequences_with_group(&1, group))

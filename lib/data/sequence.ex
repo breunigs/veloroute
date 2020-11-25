@@ -67,14 +67,6 @@ defmodule Data.Sequence do
           prev: Data.Image.img(),
           next: Data.Image.img()
         }
-  @spec find_surrounding(t(), [Mapillary.ref()]) :: surrounding() | nil
-  def find_surrounding(seq, imgs) when is_list(imgs) do
-    imgs
-    |> Enum.reject(&is_nil/1)
-    |> Enum.uniq()
-    |> Enum.find_value(&find_surrounding(seq, &1))
-  end
-
   @spec find_surrounding(t(), Mapillary.ref()) :: surrounding() | nil
   def find_surrounding(seq, img) when is_ref(img) do
     with img_pos when is_integer(img_pos) <- get_in(seq.route.index, [img, seq.name]) do

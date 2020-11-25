@@ -567,20 +567,14 @@ defmodule VelorouteWeb.FrameLive do
   defp set_img(%{assigns: %{img: img}} = socket, img), do: socket
 
   defp set_img(socket, img) when is_ref(img) do
-    alt_img =
-      case find_article(socket) do
-        %Article{start_position: {_, img}} -> img
-        _ -> nil
-      end
-
     {group, desc} = socket.assigns.route || {nil, nil}
+    current_name = socket.assigns.current_page
+
+    surrounding =
+      find_img_details(img, group, desc) || find_alt_img_details(current_name, group, desc)
 
     socket =
-      with %{seq: seq, prev: prev, curr: curr, next: next} <-
-             Data.RouteList.all()
-             |> Data.RouteList.sequences_with_one_of_img([img, alt_img])
-             |> Data.Sequence.sort_by_relatedness(group, desc)
-             |> Enum.find_value(&Data.Sequence.find_surrounding(&1, [img, alt_img])) do
+      with %{seq: seq, prev: prev, curr: curr, next: next} <- surrounding do
         %{lon: lon, lat: lat, bearing: bearing} = curr
 
         Logger.debug("showing: #{img} (route: #{inspect(seq.name)}, curr: #{inspect(curr)})")
@@ -604,6 +598,23 @@ defmodule VelorouteWeb.FrameLive do
       img_load_start: Time.utc_now()
     )
     |> update_img_navigate_buttons()
+  end
+
+  defp find_img_details(nil, _group, _desc), do: nil
+
+  defp find_img_details(img, group, desc) do
+    Data.RouteList.all()
+    |> Data.RouteList.sequences_with_img(img)
+    |> Data.Sequence.sort_by_relatedness(group, desc)
+    |> Enum.find_value(&Data.Sequence.find_surrounding(&1, img))
+  end
+
+  defp find_alt_img_details(article_name, group, desc) do
+    case find_article(article_name) do
+      %Article{start_position: {_, img}} -> img
+      _ -> nil
+    end
+    |> find_img_details(group, desc)
   end
 
   defp update_img_navigate_buttons(socket) do
