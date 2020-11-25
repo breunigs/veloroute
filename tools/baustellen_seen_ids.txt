@@ -86,7 +86,7 @@
 9662:
   :id: 9662
   :title: Bleichertwiete, Umbau Straßenquerschnitt in Vollsperrung -- Bezirk Bergedorf
-  :updated: '2020-11-19T12:56:09.153773'
+  :updated: '2020-11-25T10:40:42.116639'
   :start: '2020-09-14'
   :end: '2021-01-29'
 9981:
@@ -430,10 +430,10 @@
 10026:
   :id: 10026
   :title: Heegbarg / Ertüchtigung Veloroute 5 -- Bezirk Wandsbek
-  :updated: '2020-10-07T09:01:14.043219'
+  :updated: '2020-11-25T07:48:56.008502'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-07-20'
-  :end: '2020-12-16'
+  :end: '2020-12-23'
 11145:
   :id: 11145
   :title: St. Pauli Fischmarkt - St. Pauli Hafenstraße / Sielarbeiten -- Hamburg Wasser
@@ -506,7 +506,7 @@
 13372:
   :id: 13372
   :title: Glinder Straße / Fahrspursperrung stadteinwärts -- Bezirk Mitte
-  :updated: '2020-11-12T11:39:57.50773'
+  :updated: '2020-11-23T09:02:39.226611'
   :start: '2020-11-11'
   :end: '2020-12-01'
 11126:
@@ -676,7 +676,7 @@
   :id: 9332
   :title: Deichtorplatz + Klosterwall + Steintorwall / Veloroute 9 / Verkehrsbehinderungen
     -- Bezirk Mitte
-  :updated: '2020-11-13T11:53:20.814528'
+  :updated: '2020-11-23T10:11:38.52187'
   :start: '2020-07-15'
   :end: '2021-01-31'
 10453:
@@ -735,9 +735,9 @@
 13033:
   :id: 13033
   :title: Bekassinenau (Nord) / Deckschichterneuerung -- Bezirk Wandsbek
-  :updated: '2020-10-30T13:00:07.807839'
+  :updated: '2020-11-23T13:41:20.840127'
   :start: '2020-11-17'
-  :end: '2020-11-23'
+  :end: '2020-11-24'
 13117:
   :id: 13117
   :title: Harburger Schloßstraße / Umbau Nebenflächen -- Bezirk Harburg
@@ -747,10 +747,10 @@
 6745:
   :id: 6745
   :title: Fabriciusstraße / Radverkehrsmaßnahme -- Bezirk Wandsbek
-  :updated: '2020-10-20T12:22:15.899316'
+  :updated: '2020-11-24T11:14:32.09694'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-04-06'
-  :end: '2021-02-14'
+  :end: '2021-03-31'
 12965:
   :id: 12965
   :title: Lauensteinstraße / Vollsperrung -- Bezirk Nord
@@ -868,7 +868,7 @@
 9604:
   :id: 9604
   :title: Niendorfer Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-11-11T11:28:00.069042'
+  :updated: '2020-11-25T15:14:41.875463'
   :link: https://www.hamburg.de/eimsbuettel/niendorferstrasse/
   :start: '2020-06-22'
   :end: '2021-08-31'
@@ -954,3 +954,98 @@
   :updated: '2020-11-17T11:19:30.785099'
   :start: '2020-12-01'
   :end: '2021-01-31'
+13561:
+  :id: 13561
+  :title: A 7 - AS HH-Volkspark bis AS HH-Nordwest / Techniktest - Vollsperrung --
+    LSBG
+  :updated: '2020-11-20T10:38:23.114373'
+  :start: '2020-11-23'
+  :end: '2020-11-26'
+13479:
+  :id: 13479
+  :title: Müggenburger Straße / Peutestraße / Teilsperrung -- Hamburg Port Authority
+  :updated: '2020-11-17T12:45:32.883863'
+  :start: '2020-11-23'
+  :end: '2020-11-27'
+13095:
+  :id: 13095
+  :title: Andreas-Meyer-Straße (Ring 2) stadtauswärts / Fahrspursperrung -- Bezirk
+    Mitte
+  :updated: '2020-11-03T12:56:57.972599'
+  :start: '2020-11-23'
+  :end: '2020-11-27'
+12876:
+  :id: 12876
+  :title: Bredenbekstraße / Instandsetzung der Deckschicht -- Bezirk Wandsbek
+  :updated: '2020-11-18T09:30:18.458429'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14574766/bredenbekstrasse/
+  :start: '2020-11-23'
+  :end: '2020-11-28'
+13569:
+  :id: 13569
+  :title: Stüffelring - Vollsperrung -- Bezirk Wandsbek
+  :updated: '2020-11-25T07:27:48.231436'
+  :start: '2020-11-25'
+  :end: '2020-12-11'
+13359:
+  :id: 13359
+  :title: Kirchwerder Elbdeich 9 | Materialanlieferung - Vollsperrung -- Bezirk Bergedorf
+  :updated: '2020-11-12T09:20:46.628646'
+  :start: '2020-11-30'
+  :end: '2020-12-02'
+13585:
+  :id: 13585
+  :title: Billstraße / Fahrbahneinengung -- Bezirk Mitte
+  :updated: '2020-11-23T11:30:37.683009'
+  :start: '2020-11-23'
+  :end: '2020-12-18'
+13450:
+  :id: 13450
+  :title: Rektor-Ritter-Straße | Telekommunikationsarbeiten - Vollsperrung -- Bezirk
+    Bergedorf
+  :updated: '2020-11-17T08:20:38.305034'
+  :start: '2020-11-24'
+  :end: '2020-11-28'
+13608:
+  :id: 13608
+  :title: Kaiser-Wilhelm-Straße / halbseitige Sperrung -- Bezirk Mitte
+  :updated: '2020-11-24T10:08:15.042782'
+  :start: '2020-11-23'
+  :end: '2020-11-27'
+13604:
+  :id: 13604
+  :title: Friedrich-Ebert-Damm - Verlegung einer Trinkwasserleitung -- Bezirk Wandsbek
+  :updated: '2020-11-24T09:51:19.405938'
+  :start: '2020-11-25'
+  :end: '2020-12-11'
+13227:
+  :id: 13227
+  :title: Osdorfer Landstraße / Julius-Brecht Straße / Trinkwasser -- Hamburg Wasser
+  :updated: '2020-11-24T14:44:26.09265'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-09-21'
+  :end: '2020-11-27'
+13656:
+  :id: 13656
+  :title: Adolphsbrücke / Verkehrsbehinderung -- Bezirk Mitte
+  :updated: '2020-11-25T10:56:40.399273'
+  :start: '2020-11-21'
+  :end: '2020-12-05'
+13582:
+  :id: 13582
+  :title: Wandalenweg / Einbahnstraßenregelung -- Bezirk Mitte
+  :updated: '2020-11-23T10:46:20.107393'
+  :start: '2020-12-01'
+  :end: '2021-12-31'
+13601:
+  :id: 13601
+  :title: Wendenstraße - Betriebsfremde Umlegung 110 kV Leitung -- Stromnetz
+  :updated: '2020-11-24T11:00:12.754863'
+  :start: '2020-11-30'
+  :end: '2020-12-23'
+13471:
+  :id: 13471
+  :title: Detlev-Bremer-Straße / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-11-17T11:11:16.780881'
+  :start: '2020-12-02'
+  :end: '2020-12-02'
