@@ -971,6 +971,19 @@
   <node id='-115643' action='modify' lat='53.59325845339' lon='9.99440688654' />
   <node id='-115645' action='modify' lat='53.59320287673' lon='9.99438822135' />
   <node id='-115646' action='modify' lat='53.59308270988' lon='9.99444458637' />
+  <node id='-115705' action='modify' lat='53.5555409494' lon='9.94204625353' />
+  <node id='-115706' action='modify' lat='53.55562738845' lon='9.94222462043' />
+  <node id='-115707' action='modify' lat='53.55607472008' lon='9.94155406415' />
+  <node id='-115708' action='modify' lat='53.55656227567' lon='9.94082986772' />
+  <node id='-115709' action='modify' lat='53.5566451277' lon='9.94072257936' />
+  <node id='-115710' action='modify' lat='53.55783053122' lon='9.94029342592' />
+  <node id='-115711' action='modify' lat='53.55803765478' lon='9.94020223081' />
+  <node id='-115712' action='modify' lat='53.55813643642' lon='9.93998228967' />
+  <node id='-115713' action='modify' lat='53.55800578968' lon='9.93976234853' />
+  <node id='-115714' action='modify' lat='53.55787832906' lon='9.93998765409' />
+  <node id='-115715' action='modify' lat='53.55728244555' lon='9.94022368848' />
+  <node id='-115716' action='modify' lat='53.55651766297' lon='9.94050800264' />
+  <node id='-115718' action='modify' lat='53.55802172223' lon='9.93992864549' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -2099,8 +2112,8 @@
   <node id='93984100057968' action='delete' version='1' lat='53.57968' lon='9.939841' />
   <node id='94027000656339' version='1' lat='53.656339' lon='10.094027' />
   <node id='94032000638032' version='1' lat='53.638032' lon='10.094032' />
-  <node id='94148000555908' action='modify' version='1' lat='53.55589525332' lon='9.94155510185' />
-  <node id='94166200055566' action='modify' version='1' lat='53.55564725325' lon='9.94173710185' />
+  <node id='94148000555908' action='delete' version='1' lat='53.5556594391' lon='9.94224040625' />
+  <node id='94166200055566' action='delete' version='1' lat='53.55564725325' lon='9.94173710185' />
   <node id='94192300055524' action='delete' version='1' lat='53.5550105556' lon='9.94532404103' />
   <node id='94193400055525' action='delete' version='1' lat='53.55502055566' lon='9.94533504103' />
   <node id='94215000555496' action='delete' version='1' lat='53.55526655699' lon='9.94555104103' />
@@ -4320,19 +4333,19 @@
   <node id='941120006515116' action='delete' version='1' lat='53.6515116' lon='10.094112' />
   <node id='941164000558892' version='1' lat='53.558892' lon='9.941164' />
   <node id='941270006381705' version='1' lat='53.6381705' lon='10.094127' />
-  <node id='941475000555944' action='modify' version='1' lat='53.55593125333' lon='9.94155010185' />
-  <node id='941511000555974' action='modify' version='1' lat='53.55596125334' lon='9.94158610185' />
-  <node id='941521000555855' action='modify' version='1' lat='53.55584225331' lon='9.94159610185' />
-  <node id='941571000555983' action='modify' version='1' lat='53.55597025335' lon='9.94164610185' />
+  <node id='941475000555944' action='delete' version='1' lat='53.55593125333' lon='9.94155010185' />
+  <node id='941511000555974' action='delete' version='1' lat='53.55596125334' lon='9.94158610185' />
+  <node id='941521000555855' action='delete' version='1' lat='53.55584225331' lon='9.94159610185' />
+  <node id='941571000555983' action='delete' version='1' lat='53.55597025335' lon='9.94164610185' />
   <node id='941597000555162' action='modify' version='1' lat='53.5551492531' lon='9.94167210185' />
-  <node id='941626000555967' action='modify' version='1' lat='53.55595425334' lon='9.94170110185' />
-  <node id='941694000555637' action='modify' version='1' lat='53.55562425324' lon='9.94176910185' />
+  <node id='941626000555967' action='delete' version='1' lat='53.55595425334' lon='9.94170110185' />
+  <node id='941694000555637' action='delete' version='1' lat='53.55562425324' lon='9.94176910185' />
   <node id='941722000555085' action='delete' version='1' lat='53.55485555476' lon='9.94512304103' />
   <node id='941734000555093' action='delete' version='1' lat='53.55486355481' lon='9.94513504103' />
   <node id='941849000555397' action='modify' version='1' lat='53.55538425317' lon='9.94192410185' />
   <node id='941853000555402' action='modify' version='1' lat='53.55538925317' lon='9.94192810185' />
   <node id='941929000555481' action='modify' version='1' lat='53.55546825319' lon='9.94200410185' />
-  <node id='941959000555529' action='modify' version='1' lat='53.55551625321' lon='9.94203410185' />
+  <node id='941959000555529' action='delete' version='1' lat='53.55551625321' lon='9.94203410185' />
   <node id='941983000555162' action='delete' version='1' lat='53.55493255518' lon='9.94538404103' />
   <node id='942011000555351' action='delete' version='1' lat='53.5551215562' lon='9.94541204103' />
   <node id='942089000555431' action='delete' version='1' lat='53.55520155664' lon='9.94549004103' />
@@ -18984,8 +18997,25 @@
     <nd ref='-115567' />
     <nd ref='-115568' />
     <nd ref='-115569' />
-    <tag k='type' v='detour' />
     <tag k='name' v='2018-09-03-4-alsterufer' />
+    <tag k='type' v='detour' />
+  </way>
+  <way id='-106759' action='modify'>
+    <nd ref='-115705' />
+    <nd ref='-115706' />
+    <nd ref='-115707' />
+    <nd ref='-115708' />
+    <nd ref='-115709' />
+    <nd ref='-115710' />
+    <nd ref='-115711' />
+    <nd ref='-115712' />
+    <nd ref='-115713' />
+    <nd ref='-115714' />
+    <nd ref='-115715' />
+    <nd ref='-115716' />
+    <nd ref='-115705' />
+    <tag k='name' v='2020-11-25-gerichtsstrasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
@@ -49155,15 +49185,6 @@
     <nd ref='941849000555397' />
     <nd ref='941853000555402' />
     <nd ref='941929000555481' />
-    <nd ref='941959000555529' />
-    <nd ref='941694000555637' />
-    <nd ref='94166200055566' />
-    <nd ref='941521000555855' />
-    <nd ref='94148000555908' />
-    <nd ref='941475000555944' />
-    <nd ref='941511000555974' />
-    <nd ref='941571000555983' />
-    <nd ref='941626000555967' />
     <nd ref='94226000555581' />
     <nd ref='942424000555513' />
     <nd ref='942432000555509' />
