@@ -1,12 +1,18 @@
 ---
-grade: 3
-type: planned-construction
-start: 2019Q2
-finish: 2020Q1
-title: Berner Heerweg (Veloroute 6, „Abschnitt W18“)
+type: intent
+start: 2023
+title: Berner Heerweg (Veloroute 6)
+updated: 2020-11-28
 tags:
 - 6
-text: '<p>Der <a>Berner Heerweg</a> ist im akutellen Zustand brauchbar befahrbar.
+- w18
+text: >
+  <h4>Stand Dezember 2020</h4>
+  <p>Man hat sich <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013329">kurzfristig entschieden</a> die bisher geplante Variante nicht umzusetzen. Stattdessen soll ein neuer Plan gemacht werden, bei dem die KFZ-Fahrspuren reduziert werden um dem Rad- und Fußverkehr eine höhere Aufenthaltsqualität zu bieten. Auch die Trennwirkung der Straße soll so reduziert werden. Statt dem Umbau ab Frühjahr 2021 geht man nun frühestens von 2022 aus.</p>
+  <p><strong>Meinung:</strong> Die Straße grundlegend zu ändern bietet großes Potenial diese hässliche Autobahn für andere Verkehrsarten angenehm zu gestalten. Die Verzögerung um ein bis zwei Jahre ist zwar bedauernswert, aber akzeptabel wenn das Ergebnis danach stimmt. Die bisherigen Pläne stellten zwar eine Verbesserung für den Radverkehr dar, setzten den Fokus aber wie bisher auf das Auto.</p>
+
+  <h4>Beschreibung (alte Planung)</h4>
+  <p>Der <a>Berner Heerweg</a> ist im akutellen Zustand brauchbar befahrbar.
   Der Radweg ist halbwegs eben und breit genug um Schlaglöchern auszuweichen. Zum
   Überholen reicht der Platz allerdings kaum. Problematisch sind vor allem die Kreuzungen,
   die <a href="/6#18/53.606594/10.119401/Exm4liO2IIWeXLSzkNEy_A">Slalom</a>
@@ -54,7 +60,15 @@ text: '<p>Der <a>Berner Heerweg</a> ist im akutellen Zustand brauchbar befahrbar
   an die Radfahrstreifen statt, was aber immerhin bedeutet das der Radweg Richtung
   Innenstadt nun gerade ist. Da sowohl hier als auch am <a>Neusurenland</a> Details
   zur Ampelschaltung fehlen, ist davon auszugehen das hier keine Verbesserung für
-  den Radverkehr vorgenommen wird.</p> <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009931">Lagepläne
-  und Erläuterungsbericht des zweiten Entwurfs</a></p>
+  den Radverkehr vorgenommen wird.</p>
 
-'
+  <h4>Quellen</h4>
+  <ul>
+    <li>
+      <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1009931">Lagepläne
+  und Erläuterungsbericht des veralteten Entwurfs</a> (März 2019)
+    </li>
+    <li>
+      <a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013329">Entscheidung zur kompletten Neuplanung</a> (Dezember 2020)
+    </li>
+  </ul>
