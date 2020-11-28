@@ -77,17 +77,21 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_prepend_title(html, %Article{no_auto_title: true}), do: html
 
   defp maybe_prepend_title(html, %Article{title: t} = art) do
-    range =
-      Article.range(art)
-      |> case do
-        "" ->
-          []
+    floki_content_tag(:h3, t) ++ maybe_construction_time(art) ++ html
+  end
 
-        range ->
-          floki_content_tag(:span, "vermutete Bauzeit: #{range}", class: "duration")
-      end
+  defp maybe_construction_time(%Article{type: type} = art) do
+    {Article.range(art), type}
+    |> case do
+      {"", _type} ->
+        []
 
-    floki_content_tag(:h3, t) ++ range ++ html
+      {range, "finished"} ->
+        floki_content_tag(:span, "Umbau abgeschlossen (Bauzeit #{range})", class: "duration")
+
+      {range, _type} ->
+        floki_content_tag(:span, "vermutete Bauzeit: #{range}", class: "duration")
+    end
   end
 
   defp maybe_append_date(html, %Article{date: d}) when not is_nil(d) do
