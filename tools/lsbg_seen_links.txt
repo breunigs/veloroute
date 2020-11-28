@@ -306,3 +306,6 @@
 '2020-11-21':
 - "/contentblob/14651304/2156fb74849f2fa8d6ab7b1a9272e7e3/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf"
 - "/contentblob/14644804/4a997764e777ab37939f9861ab001200/data/bramfelder-strasse-bramfelder-chaussee-fahrbahndecken-20-11-bis-07-12-2020.pdf"
+'2020-11-28':
+- "/contentblob/13913808/fb4a8f43eb0e063d1b51af26daa53d48/data/ehestorfer-heuweg-anliegerinformation-stand-25-11-20.pdf"
+- "/contentblob/14681740/57a3ee2592a21067471982e400914759/data/werner-otto-strasse-fahrbahndecken-11-13-dez-20.pdf"

@@ -29,7 +29,8 @@ defmodule Data.Article do
     :start_image,
     :start_position,
     :search_title,
-    :search_text
+    :search_text,
+    :construction_site_id_hh
   ]
 
   defstruct @known_params

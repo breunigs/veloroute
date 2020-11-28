@@ -19,6 +19,11 @@ end
 ids = ids_by_date(Date.today) + ids_by_date(Date.today + 7) + ids_by_date(Date.today + 30)
 ids = ids.uniq
 
+references = Dir.glob(File.join(__dir__, "../data/articles/*.yaml")).map do |path|
+  [YAML.load_file(path)["construction_site_id_hh"], path]
+end.to_h
+references.delete(nil)
+
 updates = Parallel.map(ids, in_threads: 4) do |id|
   json = OpenURI.open_uri("https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{id}").read
   json = JSON.parse(json)
@@ -43,6 +48,11 @@ end.compact
 updates.each do |upd|
   seen[upd[:id]] = upd
 
+  path = references[upd[:id]]
+  replStart = system("sed -i 's/^start: .*$/start: #{upd[:start]}/' #{path}") if path && upd[:start]
+  replEnd = system("sed -i 's/^end: .*$/end: #{upd[:end]}/' #{path}") if path && upd[:end]
+
+  next if path && replStart && replEnd
   puts <<~TEXT
 
     #{upd[:title]}
@@ -51,6 +61,7 @@ updates.each do |upd|
       curl -s https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{upd[:id]} | jq
   TEXT
   puts "  " + upd[:link] if upd[:link]
+  puts "  updated start: #{replStart}  end: #{replEnd}" if path
 end
 
 File.write(SEEN_FN, seen.to_yaml)
