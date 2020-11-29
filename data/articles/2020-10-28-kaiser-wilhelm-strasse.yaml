@@ -4,6 +4,7 @@ end: 2021-01
 title: Kaiser-Wilhelm-Straße (Veloroute 1 und 2)
 type: construction
 images: 1
+updated: 2020-11-29
 tags:
 - 1
 - 2
@@ -13,9 +14,21 @@ text: >
 
   <h4>Planung</h4>
   <p>Bereits ab dem 2. November 2020 sollen im Bereich vorm neuen Gebäude der Asphalt ausgetauscht werden und im Anschluss auch mit <a href="/lexikon/radfahrstreifen">Radfahrstreifen</a> versehen werden, was nur ca. drei Wochen dauern soll. Der Rest der Bauzeit wird auf die Fußwege und andere Nebenflächen entfallen.</p>
+  <p>Im Wesentlichen werden für den Radverkehr rund 2,0m breite Radfahrstreifen in beide Fahrtrichtungen vorgesehen. Ausnahmen gibt es an den <a bounds="9.980485,53.554007,9.982789,53.555048" img="FF7gj3Sm4tw8NgiHl3Kx8Q">Bushaltestellen beim Bäckerbreitergang</a>, da der Radverkehr hier die Wartefläche der Busse mitnutzt. Selbst bei Gegenverkehr ist eine Vorbeifahrt an einem wartendem Bus aber möglich. Die zweite Ausnahme ist eine neue <a bounds="9.982376,53.553178,9.983392,53.553637" img="6uqrNoS-RYPaZcWiAreruQ">Mittelinsel auf Höhe der Neustädter Straße</a>, die als Querungshilfe für den Fußverkehr dient. Da die Fahrbahn hier gleich breit bleibt, wird ein rund 1,3m breiter <ref>Schutzstreifen</ref> eingerichtet.</p>
+  <p>Rechts der Radfahrstreifen werden Lieferzonen bzw. KFZ-Stellplätze eingerichtet, wobei 50cm Sicherheitsabstand gegen <ref>Dooring</ref> vorgesehen sind. Richtung Innenstadt werden diese Parkplätze regelmäßig durch neue Bäume unterbrochen. In Richtung St. Pauli befinden sich die Bäume stattdessen „hinter“ den Stellplätzen und werden deutlich dichter gepflanzt. Fahrradanlehnbügel werden ebenfalls in diesen Mehrzweckarealen angebracht.</p>
 
   <h4>Meinung</h4>
-  <p>Leider sind mir keine Details bekannt, wie die Radfahrstreifen genau umgesetzt werden. Es liegt jedoch nahe, das diese ähnlich ausfallen werden wie jene im weiteren <a bounds="9.9838,53.55098,9.987522,53.551832" img="VoWYdEoNeRNs9vuylY2ETQ">Verlauf in der Stadthausbrücke</a>.</p>
+  <p>Zuerst die guten Sachen: Mit zwei Metern wird die Veloroute hier brauchbar breit und die neuen Anschließmöglichkeiten sind sowohl zahlreich als auch sinnvoll verteilt. Das die Straße in Zukunft auch deutlich grüner wird und den Hamburg-typischen Alleecharakter erhält ist zu begrüßen.</p>
+  <p>Die Vorbeifahrt an wartenden Bussen ist zwar nicht so schön, aber da auch bei Gegenverkehr eine Vorbeifahrt möglich ist, sicher zu verschmerzen.</p>
+  <p>Inakzeptabel ist die Planung der Querungshilfe, die den Radverkehr an den Rand drängt und Autofahrende zum Unterschreiten der Überholabstände einlädt. Es erscheint möglich die Mittelinsel auf Kosten von ein paar Fahrrad- und KFZ-Stellplätzen so zu bauen, das der Radfahrstreifen seine 2,0m Breite enthält.</p>
+  <p>Der fehlende Zebrastreifen an der Querungshilfe zeigt, das man den Fußverkehr nicht wirklich fördern möchte. Abgesehen von diesem Fauxpas ist der neue Zustand jedoch eine deutliche Verbesserung für den Radverkehr.</p>
 
   <h4>Quelle</h4>
-  <p><a href="https://lsbg.hamburg.de/contentblob/14475112/9ba6c13892493ad208cb5947f837475b/data/kaiser-wilhelm-strasse-strassenbauarbeiten-und-erneuerung-nebenflaechen-11-20-bis-01-21.pdf">Anliegerinformation des LSBG</a> (vom 19.10.2020)</p>
+  <ul>
+    <li>
+      <a href="https://lsbg.hamburg.de/contentblob/14475112/9ba6c13892493ad208cb5947f837475b/data/kaiser-wilhelm-strasse-strassenbauarbeiten-und-erneuerung-nebenflaechen-11-20-bis-01-21.pdf">Anliegerinformation des LSBG</a> (vom 19.10.2020)
+    </li>
+    <li>
+      <a href="https://fragdenstaat.de/anfrage/veloroute-12-umbau-der-kaiser-wilhelm-strae/#nachricht-538037">Lageplan</a> (via FragDenStaat.de)
+    </li>
+  </ul>
