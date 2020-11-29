@@ -397,7 +397,6 @@
   <node id='-108219' action='modify' lat='53.56096341676' lon='9.94540904578' />
   <node id='-108220' action='modify' lat='53.56120490854' lon='9.94637223153' />
   <node id='-108244' action='modify' lat='53.56953460618' lon='10.03668129176' />
-  <node id='-108268' action='modify' lat='53.58096473882' lon='10.06914943188' />
   <node id='-108323' action='modify' lat='53.61604327881' lon='10.12277751893' />
   <node id='-108377' action='modify' lat='53.62741152633' lon='10.12434124678' />
   <node id='-108385' action='modify' lat='53.62705840267' lon='10.12356072396' />
@@ -1856,12 +1855,12 @@
   <node id='68218000580856' action='modify' version='1' lat='53.58084644563' lon='10.0681884957' />
   <node id='68336000580709' action='modify' version='1' lat='53.58065326595' lon='10.068336' />
   <node id='68430006783765' action='delete' version='1' lat='53.6783765' lon='10.0006843' />
-  <node id='68542000580948' action='modify' version='1' lat='53.58093844565' lon='10.06816112632' />
-  <node id='68554000580989' action='modify' version='1' lat='53.58109887475' lon='10.0688222209' />
-  <node id='68582000580915' action='modify' version='1' lat='53.58065703162' lon='10.06836474107' />
+  <node id='68542000580948' action='delete' version='1' lat='53.58093844565' lon='10.06816112632' />
+  <node id='68554000580989' action='delete' version='1' lat='53.58109887475' lon='10.0688222209' />
+  <node id='68582000580915' action='delete' version='1' lat='53.58065703162' lon='10.06836474107' />
   <node id='68616000581041' action='delete' version='1' lat='53.581041' lon='10.068616' />
   <node id='68649000580908' action='delete' version='1' lat='53.58081086393' lon='10.06836468584' />
-  <node id='68706000580931' action='modify' version='1' lat='53.58082271721' lon='10.06898226753' />
+  <node id='68706000580931' action='delete' version='1' lat='53.58082271721' lon='10.06898226753' />
   <node id='68744000615455' version='1' lat='53.615455' lon='10.068744' />
   <node id='68794000581113' action='delete' version='1' lat='53.5810158644' lon='10.06850968584' />
   <node id='68822000581039' action='delete' version='1' lat='53.58094186423' lon='10.06853768584' />
@@ -50074,13 +50073,7 @@
     <tag k='name' v='2019-09-13-13-hirschgraben' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155146' action='modify' version='1'>
-    <nd ref='68706000580931' />
-    <nd ref='68582000580915' />
-    <nd ref='68542000580948' />
-    <nd ref='68554000580989' />
-    <nd ref='-108268' />
-    <nd ref='68706000580931' />
+  <way id='785155146' action='delete' version='1'>
     <tag k='name' v='2019-10-09-6-kreuzung-nordschleswiger-strasse' />
     <tag k='type' v='article' />
   </way>

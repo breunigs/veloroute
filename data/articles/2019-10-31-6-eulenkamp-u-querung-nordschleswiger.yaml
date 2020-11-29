@@ -1,12 +1,15 @@
 ---
-type: planned-construction
+type: construction
 title: Eulenkamp zw. Nordschleswiger Straße und Friedrich-Ebert-Damm (Veloroute 6)
-start: 2019Q4
-end: 2020Q4
+start: 2020-11-25
+updated: 2020-11-29
+construction_site_id_hh: 13604
 tags:
 - 6
 text: |
-  <p>Auf dem Teilstück des Eulenkamps zwischen <a href="/6#16/53.581032/10.068193/_Px3vgxSBDsSxJ7yuI8Xug">Nordschleswiger Straße</a> und <a href="/6#16/53.582948/10.070742/XvRhHvV6f4JyL_7090w2EQ">Straßburger Straße / Friedrich-Ebert-Damm</a> sollen künftig jeweils
+  <p><strong>Stand November 2020:</strong> Vorbereitende Bauarbeiten haben begonnen. Auch die <a href="https://fragdenstaat.de/anfrage/lageplan-veloroute-6-abschnitt-w14/#nachricht-513506">Lagepläne sind mittlerweile veröffentlicht</a> worden. Der Artikel wurde entsprechend angepasst.</p>
+
+  <p>Auf dem Teilstück des Eulenkamps zwischen <a bounds="10.066666,53.580161,10.070243,53.581776" img="5rVj1220QlwgKx-kVRA52g">Nordschleswiger Straße</a> und <a bounds="10.066757,53.580654,10.074466,53.584134" img="QwAKUH8_PbR_2VqVfvIdHw">Straßburger Straße / Friedrich-Ebert-Damm</a> sollen künftig jeweils
   Radfahrstreifen von rund 1,60m Breite den Radverkehr aufnehmen. Im Vergleich zur
   bisherigen Führung als 1m breiter Radweg bzw. im Mischverkehr ist dies eine deutliche
   Verbesserung. Jeweils neben dem Radweg werden je nach Baumwurzeln Parkplätze eingerichtet,
@@ -14,21 +17,16 @@ text: |
   Autotüren schützen soll. Das Kopfsteinpflaster wird im gesamten Bereich durch Asphalt
   ersetzt und sollte damit hohen Fahrkomfort bieten.</p>
   <p>Der Kreuzungsbereich <a
-  href="/6#16/53.582948/10.070742/XvRhHvV6f4JyL_7090w2EQ">Straßburger
+  bounds="10.066757,53.580654,10.074466,53.584134" img="QwAKUH8_PbR_2VqVfvIdHw">Straßburger
   Straße / Friedrich-Ebert-Damm / Eulenkamp</a> soll nochmal ganzheitlich umgeplant
   werden, weswegen die Radverkehrsführung nur entlang der Veloroute 6 genauer geplant
   wurde. Für die anderen Beziehungen wurde eine minimale Übergangslösung gesucht.
   Entlang der Veloroute fährt man von den Radfahrstreifen über Radfurten über die
   Kreuzung. Hier werden auch jeweils Aufstelltaschen mit eigener Radampel für indirektes
   Linksabbiegen eingeplant.</p>
-  <p><a href="/6#16/53.582948/10.070742/pWcc1BlkciU8SpUVvybGhA">Nördlich der Kreuzung</a> wird der Straßburger Stieg künftig für den
+  <p><a bounds="10.068792,53.583128,10.073973,53.584327" img="F41HTqb3gP8XT3x_8PF40w">Nördlich der Kreuzung</a> wird der Straßburger Stieg künftig für den
   Radverkehr in beide Richtungen befahrbar sein. Damit man ihn sinnvoll erreichen
   kann ist vorgesehen ein kurzes Stück Zweirichtungsradweg mit 2,50m Breite einzurichten.</p>
-  <p>Leider sind die Lagepläne nicht öffentlich, sodass eine genaue Beurteilung schwierig
-  ist. Das Tempolimit bleibt bei 50 km/h. Die Umbaumaßnahme soll laut Planungsstand
-  bereits ab Herbst 2019 umgesetzt werden und Ende 2020 fertiggestellt werden. Dieses
-  Teilstück (W14) schließt im Norden an den <a href="/article/2019-01-07-6-eulenkamp">Umbau Eulenkamp
-  (W15)</a> und im Süden an <a href="/article/2019-10-09-6-kreuzung-nordschleswiger-strasse">Baustelle
-  Kreuzung Nordschleswiger Straße</a>.</p>
+  <p>Das Tempolimit bleibt bei 50 km/h. In Fahrtrichtung stadtauswärts ist ein <ref>Radfahrstreifen in Mittellage</ref> vorgesehen, stadteinwärts bleibt der Radverkehr dagegen rechts der KFZ-Spuren.</p>
   <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513">Erläuterungsbericht
-  und Abwägungen</a> (finale Fassung)</p>
+  und Lagepläne</a> (finale Fassung)</p>
