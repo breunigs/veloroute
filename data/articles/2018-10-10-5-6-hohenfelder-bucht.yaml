@@ -1,10 +1,10 @@
 ---
 type: construction
-start: 2020-03
-end: 2025-12
+start: 2020-03-09
+end: 2025-12-31
 title: Hohenfelder Bucht (Veloroute 5 und 6)
 images: 5
-
+construction_site_id_hh: 6381
 tags:
 - 5
 - 6

@@ -309,3 +309,11 @@
 '2020-11-28':
 - "/contentblob/13913808/fb4a8f43eb0e063d1b51af26daa53d48/data/ehestorfer-heuweg-anliegerinformation-stand-25-11-20.pdf"
 - "/contentblob/14681740/57a3ee2592a21067471982e400914759/data/werner-otto-strasse-fahrbahndecken-11-13-dez-20.pdf"
+'2020-12-03':
+- "/contentblob/14709050/be91c50de51f8fc1f6f647181cb6ebaf/data/max-brauer-allee-pop-up-bikelane-abgestimmte-planung-bericht.pdf"
+- "/contentblob/14709052/5ac9560080fc9f4b8e049b88cc7ae566/data/max-brauer-allee-pop-up-bikelane-abgestimmt-planung-plan.pdf"
+- "/contentblob/14709016/c7c3b200a22adcb1e70a84325e6b54d6/data/vr-12-koenigstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/14709018/ca9dd47cb17aa480c15b6c92c0723d24/data/vr-12-koenigstrasse-abstimmungsunterlage-plan-1.pdf"
+- "/contentblob/14709020/1d17e11c438e34efcb03e621a03fc43a/data/vr-12-koenigstrasse-abstimmungsunterlage-plan-2.pdf"
+'2020-12-04':
+- "/contentblob/14712446/fc925c4851361ff36a841548907d731d/data/hohenfelderbucht-stand-dezember-2020.pdf"

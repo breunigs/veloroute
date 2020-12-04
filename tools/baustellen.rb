@@ -49,10 +49,22 @@ updates.each do |upd|
   seen[upd[:id]] = upd
 
   path = references[upd[:id]]
-  replStart = system("sed -i 's/^start: .*$/start: #{upd[:start]}/' #{path}") if path && upd[:start]
-  replEnd = system("sed -i 's/^end: .*$/end: #{upd[:end]}/' #{path}") if path && upd[:end]
+  if path
+    startText = "start: #{upd[:start]}"
+    endText = "end: #{upd[:end]}"
+    replStart = system("sed -i 's/^start: .*$/#{startText}/' #{path}") if upd[:start]
+    replEnd = system("sed -i 's/^end: .*$/#{endText}/' #{path}") if upd[:end]
 
-  next if path && replStart && replEnd
+    full = File.read(path)
+    added = full.dup
+    added << "\n#{startText}" if upd[:start] && !full.include?(startText)
+    added << "\n#{endText}" if upd[:end] && !full.include?(endText)
+
+    File.write(path, added) if full != added
+
+    next if replStart && replEnd
+  end
+
   puts <<~TEXT
 
     #{upd[:title]}

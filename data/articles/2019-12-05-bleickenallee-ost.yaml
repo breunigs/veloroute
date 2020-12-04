@@ -1,7 +1,9 @@
 ---
 type: construction
 title: Bleickenallee Ost (Veloroute 1)
-start: 2020Q3
+start: 2020-08-21
+end: 2020-12-18
+construction_site_id_hh: 11180
 images: 1
 tags:
 - 1

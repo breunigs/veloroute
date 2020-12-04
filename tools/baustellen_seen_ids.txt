@@ -131,7 +131,7 @@
 7145:
   :id: 7145
   :title: Neubau U4 Horner Geest -- HOCHBAHN
-  :updated: '2020-04-03T08:33:20.317013'
+  :updated: '2020-12-04T17:03:06.334802'
   :link: https://www.schneller-durch-hamburg.de/u4-horner-geest
   :start: '2020-04-01'
   :end: '2022-07-31'
@@ -163,7 +163,7 @@
 6381:
   :id: 6381
   :title: Hohenfelder Bucht / Schwanenwik /Umgestaltung -- LSBG
-  :updated: '2020-03-17T17:32:30.596072'
+  :updated: '2020-12-04T08:40:59.44059'
   :link: https://lsbg.hamburg.de/hohenfelder-bucht/
   :start: '2020-03-09'
   :end: '2025-12-31'
@@ -255,9 +255,9 @@
   :id: 9449
   :title: Sülldorfer Kirchenweg / Ausbau Veloroute 1 und Grundinstandsetzung / Vollsperrung
     -- Bezirk Altona
-  :updated: '2020-07-06T14:23:21.897214'
+  :updated: '2020-12-04T11:08:32.127397'
   :start: '2020-07-06'
-  :end: '2020-12-15'
+  :end: '2021-02-25'
 9958:
   :id: 9958
   :title: Osdorfer Weg / Leitungsbauarbeiten -- Hamburg Wasser
@@ -337,9 +337,9 @@
 9088:
   :id: 9088
   :title: Barmbeker Straße 16-32 -- Gasnetz
-  :updated: '2020-11-10T14:01:47.789502'
+  :updated: '2020-12-03T08:27:52.526661'
   :start: '2020-07-27'
-  :end: '2020-12-31'
+  :end: '2021-01-31'
 13339:
   :id: 13339
   :title: Holzhafenufer / Fräs- und Asphaltierungsarbeiten -- Hamburg Port Authority
@@ -430,7 +430,7 @@
 10026:
   :id: 10026
   :title: Heegbarg / Ertüchtigung Veloroute 5 -- Bezirk Wandsbek
-  :updated: '2020-11-30T07:51:43.135346'
+  :updated: '2020-12-03T09:56:22.10625'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-07-20'
   :end: '2020-12-23'
@@ -465,7 +465,7 @@
   :id: 65
   :title: Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- Hamburg
     Wasser
-  :updated: '2020-07-24T10:02:03.009852'
+  :updated: '2020-12-04T07:31:38.949799'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-09-25'
   :end: '2021-11-30'
@@ -545,10 +545,10 @@
 11180:
   :id: 11180
   :title: Bleickeallee Ost / Umbau für Veloroute 1 -- Bezirk Altona
-  :updated: '2020-08-24T08:57:05.790213'
+  :updated: '2020-12-04T11:06:51.558624'
   :link: https://www.steg-hamburg.de/veloroute-altona.html
   :start: '2020-08-21'
-  :end: '2020-11-30'
+  :end: '2020-12-18'
 13457:
   :id: 13457
   :title: Wilhelmsburger Brücke / Verkehrsbehinderung -- Bezirk Mitte
@@ -617,7 +617,7 @@
 8538:
   :id: 8538
   :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-11-26T10:19:21.839231'
+  :updated: '2020-12-04T07:32:32.303424'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-20'
   :end: '2021-02-01'
@@ -829,7 +829,7 @@
 6956:
   :id: 6956
   :title: Försterweg/ Grundinstandsetzung -- Bezirk Eimsbüttel
-  :updated: '2020-11-30T10:23:59.65317'
+  :updated: '2020-12-04T14:53:41.738189'
   :start: '2020-03-30'
   :end: '2020-12-23'
 320:
@@ -889,7 +889,7 @@
   :id: 69
   :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
     Wasser
-  :updated: '2020-11-26T10:18:55.391878'
+  :updated: '2020-12-04T07:32:09.116863'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-04-10'
   :end: '2021-02-08'
@@ -1105,3 +1105,34 @@
   :updated: '2020-11-30T09:09:36.479525'
   :start: '2020-12-09'
   :end: '2020-12-17'
+13795:
+  :id: 13795
+  :title: Millerntorplatz / Verkehrsbehinderung -- Bezirk Mitte
+  :updated: '2020-12-02T10:37:35.791363'
+  :start: '2020-12-03'
+  :end: '2020-12-04'
+13716:
+  :id: 13716
+  :title: Nagelsweg / Leitungsarbeiten -- Bezirk Mitte
+  :updated: '2020-12-03T10:04:30.329061'
+  :start: '2020-11-25'
+  :end: '2021-05-15'
+13825:
+  :id: 13825
+  :title: B 73 - Stader Straße / Instandsetzungsarbeiten inkl.tlw.  Vollsperrung --
+    LSBG
+  :updated: '2020-12-04T08:31:05.085045'
+  :start: '2020-12-04'
+  :end: '2020-12-10'
+13815:
+  :id: 13815
+  :title: Hafentor / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-12-03T10:23:46.060681'
+  :start: '2020-12-07'
+  :end: '2020-12-11'
+13838:
+  :id: 13838
+  :title: A 255 - Verbindungsast zur A 1 / Sondierungsarbeiten -- LSBG
+  :updated: '2020-12-04T08:54:30.308587'
+  :start: '2020-12-06'
+  :end: '2020-12-18'
