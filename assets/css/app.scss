@@ -303,6 +303,21 @@ h4 {
   margin-top: 1em;
 }
 
+h3 {
+  font-size: 1.1rem;
+}
+
+h4 {
+  font-size: 1.0rem;
+}
+
+h5 {
+  margin-top: 0.5em;
+  font-size: 0.9rem;
+  font-weight: normal;
+  font-style: italic;
+}
+
 h3:first-child + .duration {
   color: #888;
   font-style: italic;
@@ -391,6 +406,10 @@ ol.hide-bullets {
 p {
   text-align: justify;
   margin-top: 0.6rem;
+}
+
+h5 + p {
+  margin-top: 0.25rem;
 }
 
 a {
