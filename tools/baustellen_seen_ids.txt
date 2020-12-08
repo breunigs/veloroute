@@ -42,10 +42,10 @@
 13232:
   :id: 13232
   :title: Walderseestraße und Droysenstraße / Abwasser -- Hamburg Wasser
-  :updated: '2020-11-06T08:59:17.745952'
+  :updated: '2020-11-26T10:23:47.873043'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-11-16'
-  :end: '2021-04-02'
+  :start: '2021-01-04'
+  :end: '2021-05-28'
 7104:
   :id: 7104
   :title: Kreisverkehrbau /  Gr. Bergstr. / Virchowstraße -- Bezirk Altona
@@ -1136,3 +1136,28 @@
   :updated: '2020-12-04T08:54:30.308587'
   :start: '2020-12-06'
   :end: '2020-12-18'
+13833:
+  :id: 13833
+  :title: A 23 - AS HH-Eidelstedt bis AS Halstenbek-Krupunder / Instandsetzungsarbeiten
+    -- LSBG
+  :updated: '2020-12-04T08:44:46.595203'
+  :start: '2020-12-05'
+  :end: '2020-12-06'
+13392:
+  :id: 13392
+  :title: Nordkanalstraße / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2020-11-13T09:44:19.826992'
+  :start: '2020-12-06'
+  :end: '2020-12-06'
+12712:
+  :id: 12712
+  :title: Landwehr / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-11-25T11:32:31.684093'
+  :start: '2020-12-06'
+  :end: '2020-12-06'
+13733:
+  :id: 13733
+  :title: Vollsperrung Mühlenkamp -- Bezirk Nord
+  :updated: '2020-11-27T07:57:58.444645'
+  :start: '2020-12-13'
+  :end: '2020-12-13'
