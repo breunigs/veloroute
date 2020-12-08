@@ -14,4 +14,7 @@ echo "Sitzungsdienst:"
 echo "Baustellen:"
 ./baustellen.rb
 
-echo "manuell: https://www.steg-hamburg.de/veloroute-altona.html"
+echo ""
+echo "manuell:"
+echo "https://www.steg-hamburg.de/veloroute-altona.html"
+echo "https://www.hamburg.de/harburg/pressemeldungen/"
