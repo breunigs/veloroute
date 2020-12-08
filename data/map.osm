@@ -1072,6 +1072,10 @@
   <node id='-115997' action='modify' lat='53.57099838352' lon='10.08213937014' />
   <node id='-115998' action='modify' lat='53.5712611891' lon='10.08254974812' />
   <node id='-115999' action='modify' lat='53.5717453842' lon='10.08157610625' />
+  <node id='-116001' action='modify' lat='53.59417153307' lon='10.13506383926' />
+  <node id='-116002' action='modify' lat='53.5933273475' lon='10.13603317101' />
+  <node id='-116003' action='modify' lat='53.59370507386' lon='10.13696704687' />
+  <node id='-116004' action='modify' lat='53.59454925189' lon='10.13599771513' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19215,6 +19219,15 @@
     <nd ref='-115999' />
     <nd ref='-115996' />
     <tag k='name' v='2020-12-08-eisenbahnbruecke-bovestrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106930' action='modify'>
+    <nd ref='-116001' />
+    <nd ref='-116002' />
+    <nd ref='-116003' />
+    <nd ref='-116004' />
+    <nd ref='-116001' />
+    <tag k='name' v='2020-12-08-sbahn-pulverhof' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
