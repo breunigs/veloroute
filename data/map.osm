@@ -1068,6 +1068,10 @@
   <node id='-115978' action='modify' lat='53.47260888826' lon='9.91515844792' />
   <node id='-115983' action='modify' lat='53.47267115053' lon='9.91511285037' />
   <node id='-115994' action='modify' lat='53.47257216944' lon='9.91519868106' />
+  <node id='-115996' action='modify' lat='53.57148098888' lon='10.08121132582' />
+  <node id='-115997' action='modify' lat='53.57099838352' lon='10.08213937014' />
+  <node id='-115998' action='modify' lat='53.5712611891' lon='10.08254974812' />
+  <node id='-115999' action='modify' lat='53.5717453842' lon='10.08157610625' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19203,6 +19207,15 @@
     <nd ref='-115909' />
     <tag k='name' v='2020-12-08-hausbrucher-moor-nach-heyenaubrook' />
     <tag k='type' v='detour' />
+  </way>
+  <way id='-106928' action='modify'>
+    <nd ref='-115996' />
+    <nd ref='-115997' />
+    <nd ref='-115998' />
+    <nd ref='-115999' />
+    <nd ref='-115996' />
+    <tag k='name' v='2020-12-08-eisenbahnbruecke-bovestrasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
