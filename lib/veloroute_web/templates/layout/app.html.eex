@@ -4,8 +4,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1"/>
-    <title><%= assigns[:page_title] || Settings.page_title_long() %></title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <title><%= assigns[:page_title] || Settings.page_title_long() %></title>
     <%= csrf_meta_tag() %>
     <link rel="canonical" href="<%= Settings.url() <> @conn.request_path %>"/>
 
@@ -41,6 +41,50 @@
     <%= if Settings.twitter_handle() != nil do %>
       <meta property="twitter:creator" content="<%= Settings.twitter_handle() %>"/>
     <% end %>
+    <%# just the layout parts copied from the rendered CSS. Needs manual adjustment after changes are made. %>
+    <style>
+      body {
+        overflow: hidden;
+        height: 100vh;
+        height: -webkit-fill-available;
+      }
+
+      #map, #fakeMap, #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+        width: 66.6666vw;
+        min-width: 330px;
+        height: 50%;
+        display: block;
+        left: 0;
+        position: fixed;
+      }
+
+      #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+        top: 50%;
+        overflow: hidden;
+      }
+
+      #sidebar {
+        width: 33.3333vw;
+        min-width: 330px;
+        height: 100vh;
+        height: -webkit-fill-available;
+        position: relative;
+        top: 0;
+        left: 330px;
+        left: max(330px, 66.6666vw);
+        display: flex;
+        flex-flow: column;
+        z-index: 3;
+      }
+
+      @media (min-width: 990px) {
+        #sidebar {
+          left: 66.6666vw;
+          left: max(330px, 66.6666vw);
+          position: fixed;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>
