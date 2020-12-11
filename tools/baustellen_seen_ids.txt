@@ -241,10 +241,10 @@
 7917:
   :id: 7917
   :title: Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-11-26T10:19:53.716242'
+  :updated: '2020-12-10T07:39:41.980017'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
-  :end: '2020-12-01'
+  :end: '2021-03-31'
 5776:
   :id: 5776
   :title: Am Neugrabener Bahnhof / Erneuerung Bahnhofsvorplatz -- Bezirk Harburg
@@ -330,7 +330,7 @@
 7919:
   :id: 7919
   :title: Hindenburgstraße / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2020-08-17T06:10:59.794689'
+  :updated: '2020-12-11T07:08:15.38895'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
   :end: '2021-06-25'
@@ -465,7 +465,7 @@
   :id: 65
   :title: Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- Hamburg
     Wasser
-  :updated: '2020-12-04T07:31:38.949799'
+  :updated: '2020-12-11T07:03:19.267716'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-09-25'
   :end: '2021-11-30'
@@ -493,7 +493,7 @@
 9172:
   :id: 9172
   :title: Billbrookdeich / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2020-09-15T10:06:07.934403'
+  :updated: '2020-12-10T12:40:28.361061'
   :start: '2020-06-29'
   :end: '2021-03-15'
 10510:
@@ -610,14 +610,14 @@
 9608:
   :id: 9608
   :title: Wördemanns Weg/ Veloroutenausbau 2 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-10-23T11:03:43.327461'
+  :updated: '2020-12-11T09:46:59.164335'
   :link: https://www.hamburg.de/eimsbuettel/woerdemannsweg/
   :start: '2020-06-24'
   :end: '2022-03-31'
 8538:
   :id: 8538
   :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-12-04T07:32:32.303424'
+  :updated: '2020-12-11T07:05:52.896121'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-20'
   :end: '2021-02-01'
@@ -829,9 +829,9 @@
 6956:
   :id: 6956
   :title: Försterweg/ Grundinstandsetzung -- Bezirk Eimsbüttel
-  :updated: '2020-12-04T14:53:41.738189'
+  :updated: '2020-12-11T09:38:14.002247'
   :start: '2020-03-30'
-  :end: '2020-12-23'
+  :end: '2021-01-31'
 320:
   :id: 320
   :title: Stresemannallee/ Veloroutenausbau -- Bezirk Eimsbüttel
@@ -868,14 +868,14 @@
 9604:
   :id: 9604
   :title: Niendorfer Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-12-02T09:46:04.520485'
+  :updated: '2020-12-11T09:54:20.740273'
   :link: https://www.hamburg.de/eimsbuettel/niendorferstrasse/
   :start: '2020-06-22'
   :end: '2021-06-30'
 9954:
   :id: 9954
   :title: Maienweg/Alsterkrugchaussee -- Hamburg Wasser
-  :updated: '2020-11-26T10:21:21.458328'
+  :updated: '2020-12-11T07:08:36.193494'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-01'
   :end: '2020-12-15'
@@ -889,7 +889,7 @@
   :id: 69
   :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
     Wasser
-  :updated: '2020-12-04T07:32:09.116863'
+  :updated: '2020-12-11T07:05:06.721879'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-04-10'
   :end: '2021-02-08'
@@ -1174,3 +1174,45 @@
   :updated: '2020-12-07T10:36:29.167424'
   :start: '2020-12-07'
   :end: '2020-12-18'
+13876:
+  :id: 13876
+  :title: Brombeerweg / Asphaltierung -- Bezirk Nord
+  :updated: '2020-12-08T15:40:38.681078'
+  :start: '2020-12-10'
+  :end: '2020-12-18'
+13840:
+  :id: 13840
+  :title: Karolinenstraße / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2020-12-04T09:50:15.645787'
+  :start: '2020-12-10'
+  :end: '2020-12-10'
+13800:
+  :id: 13800
+  :title: Rosenrotweg / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-12-02T14:07:36.915863'
+  :start: '2020-12-17'
+  :end: '2020-12-17'
+13882:
+  :id: 13882
+  :title: Sachsenstraße / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-12-09T11:41:53.777162'
+  :start: '2020-12-11'
+  :end: '2020-12-14'
+13368:
+  :id: 13368
+  :title: Klostertor / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-12-10T11:12:01.164896'
+  :start: '2020-12-17'
+  :end: '2020-12-22'
+13691:
+  :id: 13691
+  :title: A 7 - Tunnel Stellingen / Vollsperrung -- LSBG
+  :updated: '2020-11-26T08:55:17.660001'
+  :start: '2020-12-18'
+  :end: '2020-12-21'
+13888:
+  :id: 13888
+  :title: Großmannstraße / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2020-12-10T10:48:17.533146'
+  :start: '2021-01-01'
+  :end: '2021-02-28'
