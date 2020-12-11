@@ -81,7 +81,7 @@ defmodule Mix.Tasks.Deploy do
 
     container =
       Task.async(fn ->
-        {_, 0} =
+        {_, _} =
           System.cmd("docker", ["run", "-p", "4000", "--rm", "--name", container_name, name])
       end)
 

@@ -404,10 +404,6 @@
   <node id='-108388' action='modify' lat='53.57951366381' lon='10.04096194915' />
   <node id='-108389' action='modify' lat='53.57943530792' lon='10.04113445064' />
   <node id='-108390' action='modify' lat='53.57983451177' lon='10.04164888568' />
-  <node id='-108391' action='modify' lat='53.587368554' lon='10.04113337528' />
-  <node id='-108392' action='modify' lat='53.5868130146' lon='10.04114734366' />
-  <node id='-108393' action='modify' lat='53.58681507202' lon='10.0413795643' />
-  <node id='-108394' action='modify' lat='53.58737061139' lon='10.04136559592' />
   <node id='-108423' action='modify' lat='53.59049253206' lon='10.04326343' />
   <node id='-108425' action='modify' lat='53.58645176241' lon='10.04654108942' />
   <node id='-108426' action='modify' lat='53.58610466489' lon='10.04668056428' />
@@ -1076,6 +1072,32 @@
   <node id='-116002' action='modify' lat='53.5933273475' lon='10.13603317101' />
   <node id='-116003' action='modify' lat='53.59370507386' lon='10.13696704687' />
   <node id='-116004' action='modify' lat='53.59454925189' lon='10.13599771513' />
+  <node id='-116007' action='modify' lat='53.58485954689' lon='10.04176944226' />
+  <node id='-116008' action='modify' lat='53.58475286642' lon='10.04219323128' />
+  <node id='-116009' action='modify' lat='53.585257606' lon='10.04259019822' />
+  <node id='-116010' action='modify' lat='53.58545185748' lon='10.0424963209' />
+  <node id='-116011' action='modify' lat='53.58551236186' lon='10.04235684603' />
+  <node id='-116012' action='modify' lat='53.58604734417' lon='10.04190355271' />
+  <node id='-116013' action='modify' lat='53.58629413432' lon='10.04171311587' />
+  <node id='-116014' action='modify' lat='53.58656958227' lon='10.04158436984' />
+  <node id='-116015' action='modify' lat='53.58673198427' lon='10.04154681891' />
+  <node id='-116016' action='modify' lat='53.58692622897' lon='10.04153340787' />
+  <node id='-116017' action='modify' lat='53.58700265287' lon='10.04183113307' />
+  <node id='-116018' action='modify' lat='53.58725899037' lon='10.04191159934' />
+  <node id='-116019' action='modify' lat='53.5873975075' lon='10.04157095879' />
+  <node id='-116020' action='modify' lat='53.58802480928' lon='10.04188209504' />
+  <node id='-116021' action='modify' lat='53.58809804695' lon='10.04155218333' />
+  <node id='-116022' action='modify' lat='53.58743890333' lon='10.04120081395' />
+  <node id='-116023' action='modify' lat='53.58735133517' lon='10.04109352559' />
+  <node id='-116024' action='modify' lat='53.58724943745' lon='10.04069119424' />
+  <node id='-116025' action='modify' lat='53.5869389663' lon='10.04058927029' />
+  <node id='-116026' action='modify' lat='53.58684662059' lon='10.04114716977' />
+  <node id='-116027' action='modify' lat='53.5867877103' lon='10.04121422499' />
+  <node id='-116028' action='modify' lat='53.58663645376' lon='10.04121422499' />
+  <node id='-116029' action='modify' lat='53.5863259781' lon='10.04132151335' />
+  <node id='-116030' action='modify' lat='53.58580851362' lon='10.04163801402' />
+  <node id='-116031' action='modify' lat='53.58541682859' lon='10.04200815886' />
+  <node id='-116032' action='modify' lat='53.58525919823' lon='10.0420778963' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -18372,15 +18394,6 @@
     <tag k='name' v='2020-06-21-querung-dehnhaide' />
     <tag k='type' v='article' />
   </way>
-  <way id='-105203' action='modify'>
-    <nd ref='-108391' />
-    <nd ref='-108392' />
-    <nd ref='-108393' />
-    <nd ref='-108394' />
-    <nd ref='-108391' />
-    <tag k='name' v='2020-06-21-querung-wiesendamm' />
-    <tag k='type' v='article' />
-  </way>
   <way id='-105207' action='modify'>
     <nd ref='4118130005795351' />
     <nd ref='-108443' />
@@ -19228,6 +19241,37 @@
     <nd ref='-116004' />
     <nd ref='-116001' />
     <tag k='name' v='2020-12-08-sbahn-pulverhof' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106933' action='modify'>
+    <nd ref='-116007' />
+    <nd ref='-116008' />
+    <nd ref='-116009' />
+    <nd ref='-116010' />
+    <nd ref='-116011' />
+    <nd ref='-116012' />
+    <nd ref='-116013' />
+    <nd ref='-116014' />
+    <nd ref='-116015' />
+    <nd ref='-116016' />
+    <nd ref='-116017' />
+    <nd ref='-116018' />
+    <nd ref='-116019' />
+    <nd ref='-116020' />
+    <nd ref='-116021' />
+    <nd ref='-116022' />
+    <nd ref='-116023' />
+    <nd ref='-116024' />
+    <nd ref='-116025' />
+    <nd ref='-116026' />
+    <nd ref='-116027' />
+    <nd ref='-116028' />
+    <nd ref='-116029' />
+    <nd ref='-116030' />
+    <nd ref='-116031' />
+    <nd ref='-116032' />
+    <nd ref='-116007' />
+    <tag k='name' v='2020-12-11-hufnerstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
