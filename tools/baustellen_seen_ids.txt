@@ -532,7 +532,7 @@
 7598:
   :id: 7598
   :title: B 75 - AS-Kornweide / Neubau -- LSBG
-  :updated: '2020-09-15T07:51:41.115814'
+  :updated: '2020-12-11T11:37:24.016497'
   :start: '2020-04-18'
   :end: '2020-12-31'
 10814:
@@ -572,7 +572,7 @@
 6866:
   :id: 6866
   :title: B 75 (neu) Wilhelmsburger Reichsstraße / Neubau -- LSBG
-  :updated: '2020-09-15T07:57:01.567037'
+  :updated: '2020-12-11T11:37:56.982106'
   :link: https://www.hamburg.de/fernstrassen/wilhelmsburger-reichsstrasse/
   :start: '2014-01-01'
   :end: '2020-12-31'
@@ -690,9 +690,9 @@
 12524:
   :id: 12524
   :title: Beim Farenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2020-11-26T09:34:50.355783'
+  :updated: '2020-12-11T12:34:48.772206'
   :start: '2020-11-02'
-  :end: '2021-02-01'
+  :end: '2021-02-19'
 13298:
   :id: 13298
   :title: Gertrudenstraße / Vollsperrung -- Bezirk Mitte
@@ -868,7 +868,7 @@
 9604:
   :id: 9604
   :title: Niendorfer Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-12-11T09:54:20.740273'
+  :updated: '2020-12-11T13:55:06.225215'
   :link: https://www.hamburg.de/eimsbuettel/niendorferstrasse/
   :start: '2020-06-22'
   :end: '2021-06-30'
@@ -1216,3 +1216,9 @@
   :updated: '2020-12-10T10:48:17.533146'
   :start: '2021-01-01'
   :end: '2021-02-28'
+13858:
+  :id: 13858
+  :title: Caffamacherreihe / Vollsperrung -- Bezirk Mitte
+  :updated: '2020-12-07T11:03:56.699579'
+  :start: '2020-12-13'
+  :end: '2020-12-13'
