@@ -10,14 +10,14 @@
 10764:
   :id: 10764
   :title: Volksdorfer Damm / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2020-11-26T10:22:59.111172'
+  :updated: '2020-12-17T10:54:00.334339'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-08-17'
-  :end: '2020-12-30'
+  :end: '2021-01-21'
 2477:
   :id: 2477
   :title: Volksdorfer Marktplatz / Grundinstandsetzung der Marktfläche -- Bezirk Wandsbek
-  :updated: '2020-11-06T08:57:43.942264'
+  :updated: '2020-12-18T10:36:25.108132'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-03-10'
   :end: '2021-03-31'
@@ -42,9 +42,9 @@
 13232:
   :id: 13232
   :title: Walderseestraße und Droysenstraße / Abwasser -- Hamburg Wasser
-  :updated: '2020-11-26T10:23:47.873043'
+  :updated: '2020-12-17T11:07:40.64947'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-01-04'
+  :start: '2021-01-06'
   :end: '2021-05-28'
 7104:
   :id: 7104
@@ -194,14 +194,14 @@
 12436:
   :id: 12436
   :title: Brauhausstieg - Umbau und Neugestaltung -- Bezirk Wandsbek
-  :updated: '2020-10-22T13:55:53.107864'
+  :updated: '2020-12-16T14:22:29.617809'
   :start: '2020-10-26'
-  :end: '2020-12-18'
+  :end: '2021-01-11'
 10836:
   :id: 10836
   :title: Gaußstraße - Bahrenfelder Straße - Schützenstraße / Busbeschleunigung --
     LSBG
-  :updated: '2020-11-27T06:41:54.993348'
+  :updated: '2020-12-16T17:46:14.188851'
   :link: http://www.via-bus.de/metrobus-linie-2/
   :start: '2020-08-17'
   :end: '2021-08-30'
@@ -221,7 +221,7 @@
 8311:
   :id: 8311
   :title: Berner Heerweg Kreuzung Neusurenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2020-12-02T14:27:36.224544'
+  :updated: '2020-12-18T10:02:00.951189'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-06-22'
   :end: '2021-01-31'
@@ -330,10 +330,10 @@
 7919:
   :id: 7919
   :title: Hindenburgstraße / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2020-12-11T07:08:15.38895'
+  :updated: '2020-12-17T10:50:30.220546'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
-  :end: '2021-06-25'
+  :end: '2021-06-30'
 9088:
   :id: 9088
   :title: Barmbeker Straße 16-32 -- Gasnetz
@@ -444,7 +444,7 @@
 8535:
   :id: 8535
   :title: Eppendorfer Weg (Hoheluft West) / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2020-08-21T12:21:47.371395'
+  :updated: '2020-12-17T10:51:54.593281'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-08-04'
   :end: '2021-05-15'
@@ -617,7 +617,7 @@
 8538:
   :id: 8538
   :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-12-11T07:05:52.896121'
+  :updated: '2020-12-17T10:49:43.037494'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-20'
   :end: '2021-02-01'
@@ -842,10 +842,10 @@
 9971:
   :id: 9971
   :title: Hirschgraben / Veloroute -- LSBG
-  :updated: '2020-11-06T10:51:55.942162'
+  :updated: '2020-12-18T16:04:39.178805'
   :link: https://lsbg.hamburg.de/contentblob/13040166/94db97e9351fea38c4ded24082153c3f/data/veloroute-13-hirschgraben-abstimmungsunterlage-bericht-kenntnisnahmeverschickung).pdf
   :start: '2020-08-03'
-  :end: '2020-12-31'
+  :end: '2021-02-14'
 10767:
   :id: 10767
   :title: Sander Damm bis Binnenfeldredder / Sanierung -- LSBG
@@ -889,10 +889,10 @@
   :id: 69
   :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
     Wasser
-  :updated: '2020-12-11T07:05:06.721879'
+  :updated: '2020-12-17T10:49:08.938157'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-04-10'
-  :end: '2021-02-08'
+  :end: '2021-04-15'
 99:
   :id: 99
   :title: Umgestaltung Kurt-A.-Körber-Chaussee -- Bezirk Bergedorf
@@ -1222,3 +1222,21 @@
   :updated: '2020-12-07T11:03:56.699579'
   :start: '2020-12-13'
   :end: '2020-12-13'
+13908:
+  :id: 13908
+  :title: Holstenwall / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2020-12-11T10:01:29.712316'
+  :start: '2020-11-16'
+  :end: '2020-12-19'
+13896:
+  :id: 13896
+  :title: Börnestraße / Vollsperrung -- Bezirk Wandsbek
+  :updated: '2020-12-10T15:15:01.42036'
+  :start: '2020-12-15'
+  :end: '2020-12-15'
+13935:
+  :id: 13935
+  :title: Billhorner Brückenstraße / Abbieger gesperrt -- Bezirk Mitte
+  :updated: '2020-12-16T10:35:59.664371'
+  :start: '2021-01-09'
+  :end: '2021-01-23'
