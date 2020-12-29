@@ -1098,6 +1098,26 @@
   <node id='-116030' action='modify' lat='53.58580851362' lon='10.04163801402' />
   <node id='-116031' action='modify' lat='53.58541682859' lon='10.04200815886' />
   <node id='-116032' action='modify' lat='53.58525919823' lon='10.0420778963' />
+  <node id='-116034' action='modify' lat='53.47411433401' lon='9.8591512388' />
+  <node id='-116035' action='modify' lat='53.47393553538' lon='9.85912441671' />
+  <node id='-116036' action='modify' lat='53.47419735059' lon='9.85322355151' />
+  <node id='-116037' action='modify' lat='53.47442084739' lon='9.85326646686' />
+  <node id='-116038' action='modify' lat='53.47426470312' lon='9.85323648437' />
+  <node id='-116039' action='modify' lat='53.4741973474' lon='9.854033584' />
+  <node id='-116050' action='modify' lat='53.47606830171' lon='9.8598539722' />
+  <node id='-116051' action='modify' lat='53.47681538201' lon='9.85990761638' />
+  <node id='-116052' action='modify' lat='53.47680261152' lon='9.85872744441' />
+  <node id='-116053' action='modify' lat='53.4767068327' lon='9.85778330684' />
+  <node id='-116054' action='modify' lat='53.47666852111' lon='9.85755800128' />
+  <node id='-116055' action='modify' lat='53.47604276027' lon='9.85781549335' />
+  <node id='-116056' action='modify' lat='53.47546807382' lon='9.8580407989' />
+  <node id='-116057' action='modify' lat='53.47495723489' lon='9.85798715472' />
+  <node id='-116058' action='modify' lat='53.47457410165' lon='9.857772578' />
+  <node id='-116059' action='modify' lat='53.4744847034' lon='9.85769747615' />
+  <node id='-116060' action='modify' lat='53.47471458424' lon='9.85694645762' />
+  <node id='-116061' action='modify' lat='53.47473374092' lon='9.85637782931' />
+  <node id='-116062' action='modify' lat='53.4747656687' lon='9.85403894305' />
+  <node id='-116063' action='modify' lat='53.47424205005' lon='9.85399602771' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19273,6 +19293,34 @@
     <nd ref='-116007' />
     <tag k='name' v='2020-12-11-hufnerstrasse' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-106935' action='modify'>
+    <nd ref='-116034' />
+    <nd ref='-116035' />
+    <nd ref='-116036' />
+    <nd ref='-116038' />
+    <nd ref='-116037' />
+    <nd ref='-116034' />
+    <tag k='name' v='2020-12-29-neugraben-gleisstieg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-106938' action='modify'>
+    <nd ref='-116050' />
+    <nd ref='-116051' />
+    <nd ref='-116052' />
+    <nd ref='-116053' />
+    <nd ref='-116054' />
+    <nd ref='-116055' />
+    <nd ref='-116056' />
+    <nd ref='-116057' />
+    <nd ref='-116058' />
+    <nd ref='-116059' />
+    <nd ref='-116060' />
+    <nd ref='-116061' />
+    <nd ref='-116062' />
+    <nd ref='-116063' />
+    <tag k='name' v='2020-12-29-neugraben-gleisstieg' />
+    <tag k='type' v='detour' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
