@@ -603,3 +603,7 @@
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010830
 '2021-01-05':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010840
+'2021-01-08':
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013480
+'2021-01-16':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006227

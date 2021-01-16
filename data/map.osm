@@ -1118,6 +1118,17 @@
   <node id='-116061' action='modify' lat='53.47473374092' lon='9.85637782931' />
   <node id='-116062' action='modify' lat='53.4747656687' lon='9.85403894305' />
   <node id='-116063' action='modify' lat='53.47424205005' lon='9.85399602771' />
+  <node id='-116065' action='modify' lat='53.55135820599' lon='10.00152825773' />
+  <node id='-116066' action='modify' lat='53.55111599243' lon='10.00160335958' />
+  <node id='-116067' action='modify' lat='53.55149524726' lon='10.00459134042' />
+  <node id='-116068' action='modify' lat='53.55175020658' lon='10.00448941648' />
+  <node id='-116090' action='modify' lat='53.54947464349' lon='9.99661444545' />
+  <node id='-116091' action='modify' lat='53.54981248039' lon='9.99784826159' />
+  <node id='-116092' action='modify' lat='53.54995271379' lon='9.99917863727' />
+  <node id='-116093' action='modify' lat='53.55006744986' lon='10.00189303279' />
+  <node id='-116094' action='modify' lat='53.55013756619' lon='10.00456451297' />
+  <node id='-116095' action='modify' lat='53.55013756619' lon='10.00505803943' />
+  <node id='-116096' action='modify' lat='53.55013437908' lon='10.00579832911' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -8651,7 +8662,7 @@
   <node id='7597580005901984' version='1' lat='53.5901984' lon='10.0759758' />
   <node id='7604720005891966' version='1' lat='53.5891966' lon='10.0760472' />
   <node id='7607010005893982' version='1' lat='53.5893982' lon='10.0760701' />
-  <node id='7607690005920065' version='1' lat='53.5920065' lon='10.0760769' />
+  <node id='7607690005920065' action='modify' version='1' lat='53.5920128679' lon='10.07606885337' />
   <node id='7610880005892003' version='1' lat='53.5892003' lon='10.0761088' />
   <node id='7611450006196251' version='1' lat='53.6196251' lon='10.0761145' />
   <node id='7618030005920321' version='1' lat='53.5920321' lon='10.0761803' />
@@ -19320,6 +19331,26 @@
     <nd ref='-116062' />
     <nd ref='-116063' />
     <tag k='name' v='2020-12-29-neugraben-gleisstieg' />
+    <tag k='type' v='detour' />
+  </way>
+  <way id='-106940' action='modify'>
+    <nd ref='-116065' />
+    <nd ref='-116066' />
+    <nd ref='-116067' />
+    <nd ref='-116068' />
+    <nd ref='-116065' />
+    <tag k='name' v='2021-01-16-moenckebergstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107017' action='modify'>
+    <nd ref='-116090' />
+    <nd ref='-116091' />
+    <nd ref='-116092' />
+    <nd ref='-116093' />
+    <nd ref='-116094' />
+    <nd ref='-116095' />
+    <nd ref='-116096' />
+    <tag k='name' v='2021-01-16-moenckebergstrasse' />
     <tag k='type' v='detour' />
   </way>
   <way id='1880371' action='modify' version='1'>
@@ -50376,7 +50407,7 @@
     <tag k='name' v='2019-10-18-6-s-friedrichsberg' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155150' version='1'>
+  <way id='785155150' action='modify' version='1'>
     <nd ref='75112000589206' />
     <nd ref='75235000588971' />
     <nd ref='76137000589149' />
@@ -50403,7 +50434,7 @@
     <nd ref='75772000589722' />
     <nd ref='75874000589369' />
     <nd ref='75112000589206' />
-    <tag k='name' v='2019-10-24-6-tilsiter-strasse-eckerkoppel-w16' />
+    <tag k='name' v='2021-01-16-tilsiter-strasse-beim-alten-teichweg' />
     <tag k='type' v='article' />
   </way>
   <way id='785155151' version='1'>

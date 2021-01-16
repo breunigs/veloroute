@@ -1,8 +1,10 @@
 ---
-type: planned-construction
+type: construction
 updated: 2020-06-05
 title: Steintorwall (Veloroute 9, Richtung HBF)
-start: 2020-06
+start: 2020-07-15
+end: 2021-02-28
+construction_site_id_hh: 9332
 tags:
 - 9
 text: >
