@@ -332,3 +332,6 @@
 '2020-12-29':
 - "/contentblob/14765690/42637c8f60b543987214671106a7f0f6/data/maurienbruecke-brueckenbau-01-21-bis-11-21.pdf"
 - "/contentblob/13601334/f5c037b639f29b2849788c800468ec4a/data/steindamm-zweiter-bauabschnitt-stand-dez-2020.pdf"
+'2021-01-22':
+- "/contentblob/14851092/61b49d9b1d91e14e5ab8d9c5086ee2fc/data/holsteiner-chaussee-oldesloer-str-vosskamp-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/14851094/f2682d6b24bf6188ff489724df92eec4/data/holsteiner-chaussee-oldesloer-str-vosskamp-abstimmungsunterlagen-plaene.pdf"
