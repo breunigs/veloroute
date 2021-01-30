@@ -337,7 +337,7 @@
 9088:
   :id: 9088
   :title: Barmbeker Straße 16-32 -- Gasnetz
-  :updated: '2020-12-03T08:27:52.526661'
+  :updated: '2021-01-25T14:50:55.559256'
   :start: '2020-07-27'
   :end: '2021-01-31'
 13339:
@@ -592,7 +592,7 @@
 12304:
   :id: 12304
   :title: Drehbahn / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-10-07T07:40:06.907287'
+  :updated: '2021-01-29T10:39:12.524804'
   :start: '2020-10-07'
   :end: '2021-07-31'
 13154:
@@ -1455,4 +1455,54 @@
   :title: Allermöher Deich 33 | Herstellung einer Baustellenzufahrt -- Bezirk Bergedorf
   :updated: '2021-01-22T09:08:08.541134'
   :start: '2021-01-25'
+  :end: '2021-02-26'
+14217:
+  :id: 14217
+  :title: Kaiser-Wilhelm-Straße / Verkehrsbehinderung -- Bezirk Mitte
+  :updated: '2021-01-15T10:08:24.81258'
+  :start: '2021-01-26'
+  :end: '2021-01-26'
+14325:
+  :id: 14325
+  :title: Robert-Schuman-Brücke / Rad- und Fußweg-Sanierung -- LSBG
+  :updated: '2021-01-27T14:38:13.231789'
+  :start: '2020-10-06'
+  :end: '2021-04-30'
+14302:
+  :id: 14302
+  :title: Kreuzungen Wandsbeker Maktstraße / Robert-S.-Brücke / Schloßstraße / Rohrverlegung
+    -- LSBG
+  :updated: '2021-01-26T15:06:32.643616'
+  :start: '2021-01-30'
+  :end: '2021-02-01'
+14337:
+  :id: 14337
+  :title: Sander Damm und Lohbrügger Markt / Grundinstandsetzung -- LSBG
+  :updated: '2021-01-29T06:44:04.481156'
+  :link: https://lsbg.hamburg.de/stadtstrassen/10928576/sander-damm-binnenfeldredder/
+  :start: '2021-01-18'
+  :end: '2021-12-31'
+14322:
+  :id: 14322
+  :title: Spaldingstraße / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2021-01-27T09:24:10.808704'
+  :start: '2021-02-03'
+  :end: '2021-02-17'
+14340:
+  :id: 14340
+  :title: Elfenwiese / Straßenbauarbeiten / Vollsperrung -- Bezirk Harburg
+  :updated: '2021-01-28T15:45:56.781676'
+  :start: '2021-02-01'
+  :end: '2021-03-31'
+14312:
+  :id: 14312
+  :title: Eilenau / halbseitige Straßensperrung -- Bezirk Wandsbek
+  :updated: '2021-01-26T16:12:27.709327'
+  :start: '2021-02-01'
+  :end: '2021-02-10'
+14308:
+  :id: 14308
+  :title: Bramfelder Chaussee 382 -- Gasnetz
+  :updated: '2021-01-26T14:16:19.245009'
+  :start: '2021-02-01'
   :end: '2021-02-26'

@@ -611,3 +611,9 @@
 - https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013928
 '2021-01-22':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010315
+'2021-01-26':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010936
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010314
+'2021-01-30':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010948
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010329

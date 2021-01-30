@@ -335,3 +335,6 @@
 '2021-01-22':
 - "/contentblob/14851092/61b49d9b1d91e14e5ab8d9c5086ee2fc/data/holsteiner-chaussee-oldesloer-str-vosskamp-abstimmungsunterlagen-bericht.pdf"
 - "/contentblob/14851094/f2682d6b24bf6188ff489724df92eec4/data/holsteiner-chaussee-oldesloer-str-vosskamp-abstimmungsunterlagen-plaene.pdf"
+'2021-01-30':
+- "/contentblob/14651304/c444a56cab61e638b16c9be034bc7cde/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf"
+- "/contentblob/14725214/6a155a06164bd095ec61947b99101c67/data/sander-damm-lohbruegger-markt-sanierung-01-21-bis-12-21.pdf"
