@@ -39,7 +39,12 @@ defmodule Data.Article do
   def required_params, do: @enforce_keys
 
   def load(path, article_dir \\ "data/articles") do
-    {:ok, parsed} = YamlElixir.read_from_file(path)
+    parsed =
+      YamlElixir.read_from_file(path)
+      |> case do
+        {:ok, parsed} -> parsed
+        any -> raise "Cannot parse #{path}: #{inspect(any)}"
+      end
 
     parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
 

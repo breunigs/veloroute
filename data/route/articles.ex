@@ -9,6 +9,11 @@ defmodule Data.Route.Articles do
     - { seq: "q6c8LCM76To_ACWPbykKtA", from: "tC2w1yrJ0Zhgybs9sBUNOw", to: "0y52XVKw9PYU7IVaXrNURw" }
     - { seq: "P5EIl_rGDThwfOCo8PwkiA", from: "AYANpi8yMTaVQwujovLWAQ", to: "PtINS-li8mQe-oBmZ_RQyA" }
 
+    articles hammer-strasse:
+    - { seq: "lykFEZBFxqcRRf1Py5F6cw", from: "LwbL0tRpU7GbpkHnBcxEUw", to: "VpOHdh-s8dP_-zxGjqLr2g" }
+    - { seq: "0bPEiVSojXzHMltXO4l_MQ", from: "pi5DREyfMgCGQXAukxNaSg", to: "M7AhbrX7i9NCfxYszXdlMg" }
+    - { seq: "0bPEiVSojXzHMltXO4l_MQ", from: "-XOU9nDV6wtzmmG35JEIkg", to: "E8abLpg5OyV9W-kGGw8ieg" }
+
     articles wellingsbuetteler-langstrasse:
     - { seq: "dyjJNotyKwLYJD2z2XmKrQ", from: "eKOJwLvnVaHWrtHJfqMbkQ", to: "Ut-MfQXm_Hwudurb7Bp7Aw" }
     - { seq: "dyjJNotyKwLYJD2z2XmKrQ", from: "_s-WVg-kR3Wt3Yfj6--VdQ", to: "EWz3GQUbrcSD8Fli9beRAQ" }

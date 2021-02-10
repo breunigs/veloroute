@@ -1129,6 +1129,11 @@
   <node id='-116094' action='modify' lat='53.55013756619' lon='10.00456451297' />
   <node id='-116095' action='modify' lat='53.55013756619' lon='10.00505803943' />
   <node id='-116096' action='modify' lat='53.55013437908' lon='10.00579832911' />
+  <node id='-116098' action='modify' lat='53.56055811101' lon='10.06944178462' />
+  <node id='-116099' action='modify' lat='53.56299876061' lon='10.06733893275' />
+  <node id='-116100' action='modify' lat='53.56289043189' lon='10.06694196582' />
+  <node id='-116101' action='modify' lat='53.56088948684' lon='10.06861566424' />
+  <node id='-116102' action='modify' lat='53.56042428542' lon='10.06902336001' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19352,6 +19357,16 @@
     <nd ref='-116096' />
     <tag k='name' v='2021-01-16-moenckebergstrasse' />
     <tag k='type' v='detour' />
+  </way>
+  <way id='-107019' action='modify'>
+    <nd ref='-116098' />
+    <nd ref='-116099' />
+    <nd ref='-116100' />
+    <nd ref='-116101' />
+    <nd ref='-116102' />
+    <nd ref='-116098' />
+    <tag k='name' v='2021-02-10-hammer-strasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
     <nd ref='88971180004732234' />
