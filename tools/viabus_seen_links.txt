@@ -483,3 +483,5 @@
 - https://via-bus.hamburg.de/contentblob/14340860/6426ecf3b11fefed6cdceb29a8d45cce/data/26-m20-25-eppendmarkt-schlussverschickung.pdf
 '2021-01-22':
 - https://via-bus.hamburg.de/contentblob/14851112/e41966006d55af3438812619ae66e97c/data/55-mb3-amsinckstrasse-west-schlussverschickung.pdf
+'2021-02-10':
+- https://via-bus.hamburg.de/contentblob/14851112/60840ac9de130fe5c24ce1d09e4ca78e/data/55-mb3-amsinckstrasse-west-schlussverschickung.pdf
