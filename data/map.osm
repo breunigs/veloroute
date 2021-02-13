@@ -1134,6 +1134,22 @@
   <node id='-116100' action='modify' lat='53.56289043189' lon='10.06694196582' />
   <node id='-116101' action='modify' lat='53.56088948684' lon='10.06861566424' />
   <node id='-116102' action='modify' lat='53.56042428542' lon='10.06902336001' />
+  <node id='-116104' action='modify' lat='53.53734897241' lon='10.10858058393' />
+  <node id='-116105' action='modify' lat='53.53709392633' lon='10.10824799001' />
+  <node id='-116106' action='modify' lat='53.53624588706' lon='10.11011480749' />
+  <node id='-116107' action='modify' lat='53.53576128556' lon='10.11119305551' />
+  <node id='-116108' action='modify' lat='53.53510451416' lon='10.11219620168' />
+  <node id='-116109' action='modify' lat='53.53434889562' lon='10.11311888158' />
+  <node id='-116110' action='modify' lat='53.53382282412' lon='10.11406301916' />
+  <node id='-116111' action='modify' lat='53.53348167123' lon='10.1146423763' />
+  <node id='-116112' action='modify' lat='53.53316921103' lon='10.11532902181' />
+  <node id='-116113' action='modify' lat='53.53336051346' lon='10.11558114946' />
+  <node id='-116114' action='modify' lat='53.53396948713' lon='10.11478185117' />
+  <node id='-116115' action='modify' lat='53.53444454428' lon='10.11420249403' />
+  <node id='-116116' action='modify' lat='53.53531812539' lon='10.11250733793' />
+  <node id='-116117' action='modify' lat='53.53584417832' lon='10.11145591199' />
+  <node id='-116118' action='modify' lat='53.53644355186' lon='10.1101791805' />
+  <node id='-116119' action='modify' lat='53.53706842163' lon='10.10879516065' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19366,6 +19382,27 @@
     <nd ref='-116102' />
     <nd ref='-116098' />
     <tag k='name' v='2021-02-10-hammer-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107021' action='modify'>
+    <nd ref='-116104' />
+    <nd ref='-116105' />
+    <nd ref='-116106' />
+    <nd ref='-116107' />
+    <nd ref='-116108' />
+    <nd ref='-116109' />
+    <nd ref='-116110' />
+    <nd ref='-116111' />
+    <nd ref='-116112' />
+    <nd ref='-116113' />
+    <nd ref='-116114' />
+    <nd ref='-116115' />
+    <nd ref='-116116' />
+    <nd ref='-116117' />
+    <nd ref='-116118' />
+    <nd ref='-116119' />
+    <nd ref='-116104' />
+    <tag k='name' v='2021-02-13-billstedter-hauptstrasse-ab-reclamstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
