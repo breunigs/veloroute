@@ -1150,6 +1150,47 @@
   <node id='-116117' action='modify' lat='53.53584417832' lon='10.11145591199' />
   <node id='-116118' action='modify' lat='53.53644355186' lon='10.1101791805' />
   <node id='-116119' action='modify' lat='53.53706842163' lon='10.10879516065' />
+  <node id='-116121' action='modify' lat='53.58958188012' lon='9.87728833616' />
+  <node id='-116122' action='modify' lat='53.58936854273' lon='9.87767457426' />
+  <node id='-116123' action='modify' lat='53.58974427054' lon='9.87829684675' />
+  <node id='-116124' action='modify' lat='53.59095103471' lon='9.88005101144' />
+  <node id='-116125' action='modify' lat='53.59179479393' lon='9.88119363248' />
+  <node id='-116126' action='modify' lat='53.59278181164' lon='9.88240599096' />
+  <node id='-116127' action='modify' lat='53.59345679112' lon='9.8831623739' />
+  <node id='-116128' action='modify' lat='53.59426229498' lon='9.88373636663' />
+  <node id='-116129' action='modify' lat='53.59525562246' lon='9.88446056306' />
+  <node id='-116130' action='modify' lat='53.59652908506' lon='9.88534569204' />
+  <node id='-116131' action='modify' lat='53.59807310699' lon='9.88647758424' />
+  <node id='-116132' action='modify' lat='53.59880530384' lon='9.8871481365' />
+  <node id='-116133' action='modify' lat='53.59981125796' lon='9.88815128267' />
+  <node id='-116134' action='modify' lat='53.60165120066' lon='9.89011465967' />
+  <node id='-116135' action='modify' lat='53.60225600861' lon='9.8909568733' />
+  <node id='-116136' action='modify' lat='53.60288627295' lon='9.89215850294' />
+  <node id='-116137' action='modify' lat='53.60313773943' lon='9.8925930208' />
+  <node id='-116138' action='modify' lat='53.60348469705' lon='9.89371954858' />
+  <node id='-116139' action='modify' lat='53.60406401443' lon='9.89532887399' />
+  <node id='-116140' action='modify' lat='53.60458602988' lon='9.89650904596' />
+  <node id='-116141' action='modify' lat='53.60521625785' lon='9.89798694581' />
+  <node id='-116142' action='modify' lat='53.60558707035' lon='9.89882915944' />
+  <node id='-116143' action='modify' lat='53.605758948' lon='9.89874332875' />
+  <node id='-116144' action='modify' lat='53.60537699672' lon='9.89790379733' />
+  <node id='-116145' action='modify' lat='53.60491069477' lon='9.89680408895' />
+  <node id='-116146' action='modify' lat='53.60426454552' lon='9.8953020519' />
+  <node id='-116147' action='modify' lat='53.60397170615' lon='9.89451884687' />
+  <node id='-116148' action='modify' lat='53.60374252609' lon='9.893724913' />
+  <node id='-116149' action='modify' lat='53.60344331693' lon='9.8926252073' />
+  <node id='-116150' action='modify' lat='53.60281942718' lon='9.89130556047' />
+  <node id='-116151' action='modify' lat='53.60230057307' lon='9.89038288057' />
+  <node id='-116152' action='modify' lat='53.60170531541' lon='9.8897069639' />
+  <node id='-116153' action='modify' lat='53.60056889113' lon='9.88846241891' />
+  <node id='-116154' action='modify' lat='53.59896129197' lon='9.88674580514' />
+  <node id='-116155' action='modify' lat='53.5976910862' lon='9.88573193014' />
+  <node id='-116156' action='modify' lat='53.59562493056' lon='9.88417624891' />
+  <node id='-116157' action='modify' lat='53.59386432068' lon='9.88286733091' />
+  <node id='-116158' action='modify' lat='53.59335809196' lon='9.8823898977' />
+  <node id='-116159' action='modify' lat='53.59277225997' lon='9.88178908288' />
+  <node id='-116160' action='modify' lat='53.59130446043' lon='9.87992762983' />
+  <node id='-116161' action='modify' lat='53.59016138817' lon='9.87823783815' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19403,6 +19444,52 @@
     <nd ref='-116119' />
     <nd ref='-116104' />
     <tag k='name' v='2021-02-13-billstedter-hauptstrasse-ab-reclamstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107023' action='modify'>
+    <nd ref='-116121' />
+    <nd ref='-116122' />
+    <nd ref='-116123' />
+    <nd ref='-116124' />
+    <nd ref='-116125' />
+    <nd ref='-116126' />
+    <nd ref='-116127' />
+    <nd ref='-116128' />
+    <nd ref='-116129' />
+    <nd ref='-116130' />
+    <nd ref='-116131' />
+    <nd ref='-116132' />
+    <nd ref='-116133' />
+    <nd ref='-116134' />
+    <nd ref='-116135' />
+    <nd ref='-116136' />
+    <nd ref='-116137' />
+    <nd ref='-116138' />
+    <nd ref='-116139' />
+    <nd ref='-116140' />
+    <nd ref='-116141' />
+    <nd ref='-116142' />
+    <nd ref='-116143' />
+    <nd ref='-116144' />
+    <nd ref='-116145' />
+    <nd ref='-116146' />
+    <nd ref='-116147' />
+    <nd ref='-116148' />
+    <nd ref='-116149' />
+    <nd ref='-116150' />
+    <nd ref='-116151' />
+    <nd ref='-116152' />
+    <nd ref='-116153' />
+    <nd ref='-116154' />
+    <nd ref='-116155' />
+    <nd ref='-116156' />
+    <nd ref='-116157' />
+    <nd ref='-116158' />
+    <nd ref='-116159' />
+    <nd ref='-116160' />
+    <nd ref='-116161' />
+    <nd ref='-116121' />
+    <tag k='name' v='2021-02-14-elbgaustrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
