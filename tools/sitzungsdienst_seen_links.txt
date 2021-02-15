@@ -622,3 +622,5 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013720
 '2021-02-12':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011000
+'2021-02-15':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011006
