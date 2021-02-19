@@ -2,21 +2,31 @@
 type: planned-construction
 title: Billstedter Hauptstraße (Reclamstraße bis Billstedter Mühlenweg)
 start: 2021Q3
+updated: 2021-02-19
 tags:
 - radfahrstreifen
 - 8
 text: |
+  <h4>Stand 19. Februar 2021:</h4>
+  <p>Die Lagepläne wurden mittlerweile veröffentlicht. Der Artikel wurde entsprechend konkretisiert.</p>
+
   <h4>Alter Zustand</h4>
   <p>Die Veloroute wird im Abschnitt auf <ref>Hochbordradwegen</ref> geführt. Diese sind hier häufig uneben und zu schmal zum Überholen. Die Veloroute teilt sich an dieser Stelle in zwei Äste auf: in Fahrtrichtung <a>Mümmelmannsberg</a> und über <a>Boberg</a> nach <a>Bergedorf</a>. Durch eine <a bounds="10.107714,53.533153,10.11884,53.535732" img="Gng2k2c9iRVbW1DJ99K3gw">Unterführung der Billstedter Hauptstraße</a> erreichen Radfahrende die jeweils andere Straßenseite ohne Warten. Für die Fahrtbeziehung Innenstadt/Mümmelmannsberg bedeutet das eine vermeidbare Steigung.</p>
 
   <h4>Planung</h4>
-  <p>Es ist vorgesehen die Billstedter Straße neu aufzuteilen. Von den Häusern zur Straßenmitte ist die Nutzung bisher: Fußweg, Hochbordradweg, KFZ-Spur zum Parken, KFZ-Spur zum Fahren. Geplant ist sie in Fußweg, KFZ-Parken, <ref>Radfahrstreifen</ref>, KFZ-Spur zum Fahren zu ändern. Die Aufteilung ist dann vergleichbar mit <a bounds="10.09812,53.537165,10.112144,53.540376" img="B7piMPZGCNqUzMWOBVSrkg">dem vorausgehenden Streckenabschnitt</a>. Die Breite der Radfahrstreifen soll 2,0m betragen.</p>
+  <p>Es ist vorgesehen die Billstedter Straße neu aufzuteilen. Von den Häusern zur Straßenmitte ist die Nutzung bisher: Fußweg, Hochbordradweg, KFZ-Spur zum Parken, KFZ-Spur zum Fahren. Geplant ist sie in Fußweg, KFZ-Parken, <ref>Radfahrstreifen</ref>, KFZ-Spur zum Fahren zu ändern. Die Aufteilung ist dann vergleichbar mit <a bounds="10.09812,53.537165,10.112144,53.540376" img="B7piMPZGCNqUzMWOBVSrkg">dem vorausgehenden Streckenabschnitt</a>. Die Breite der Radfahrstreifen beträgt rund 2,0m, wobei zu parkenden Autos rund 0,5m Sicherheitsabstand gegen <ref>Dooring</ref> vorgesehen sind.</p>
+  <p>An der <a bounds="10.114349,53.532809,10.116558,53.533836" img="5fksoKUKftV_nHwyUhgLCg">Bushaltestelle Billstedter Mühlenweg</a> wird der Radfahrstreifen durch die Haltezone der Busse geführt. Der Radverkehr kann hier entweder hinter dem Bus warten, oder sich in den fließenden KFZ-Verkehr einordnen und vorbeifahren.</p>
+  <p>Die Radfahrstreifen werden auch auf der Überführung weitergeführt, sodass der Radverkehr vom/zum Mümmelmannsberg nicht mehr durch die Senke fahren muss. Der Radfahrstreifen ist hier sogar rund 2,50m breit, erhält aber keine Trenner zu den KFZ Spuren.</p>
+  <p>Die Rampen und die Unterführung werden ebenfalls ausgebessert. Die Rad- und Fußwege werden jeweils mindestens 2,0m breit. Die Teilstücke mit Gegenverkehr erhalten rund 4,0m Breite, wobei aufgemalte Richtungspfeile die Abbiegemöglichkeiten verdeutlichen.</p>
+
 
   <h4>Meinung</h4>
-  <p>Leider wurden keine genauen Pläne veröffentlicht, sodass eine Beurteilung schwierig ist. Offen bleibt etwa die Frage ob Radfahrende nach Mümmelmannsberg weiterhin durch die Senke fahren müssen, oder ob sie eine ebenerdige Führung angeboten bekommen. Im gleich aufgebauten, vorhergehenden Abschnitt verhindern <a bounds="10.096327,53.53791,10.110351,53.541121" img="5dUDnT1wxLKTFgt3auqeIQ">häufiges Falschparken</a>, aber auch <a bounds="10.098185,53.536967,10.11221,53.540178" img="jDtGErPKGCra568sJfJirQ">normales Einparken</a> eine angenehme Nutzung. Da die Planung bereits im Frühjahr 2019 abgeschlossen war, wurde eine <ref>Protected-Bike-Lane</ref> vermutlich gar nicht geprüft. Diese vom <a href="https://radentscheid-hamburg.de/">Radentscheid Hamburg</a> bevorzugte Lösung verhindert solche Situationen effektiv.</p>
+  <p>Die Planung wirkt stimmig und folgt dem Hamburger Standard. Die Fahrtbeziehung zum Mümmelmannsberg wurde stark verbessert.</p>
+  <p>Im gleich aufgebauten, vorhergehenden Abschnitt verhindern <a bounds="10.096327,53.53791,10.110351,53.541121" img="5dUDnT1wxLKTFgt3auqeIQ">häufiges Falschparken</a>, aber auch <a bounds="10.098185,53.536967,10.11221,53.540178" img="jDtGErPKGCra568sJfJirQ">normales Einparken</a> eine angenehme Nutzung. In dieser Hinsicht stellt auch die neue Planung keine Lösung bereit. Es hängt rein am (Un)vermögen der Autofahrenden ob die Veloroute hier gut befahrbar wird.</p>
+  <p>Da die Planung bereits im Frühjahr 2019 abgeschlossen war, wurde eine <ref>Protected-Bike-Lane</ref> vermutlich gar nicht geprüft. Diese vom <a href="https://radentscheid-hamburg.de/">Radentscheid Hamburg</a> bevorzugte Lösung verhindert solche Probleme effektiv.</p>
 
   <h4>Quelle</h4>
   <p>
-    <a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/">Infoseite der Stadt zu Veloroute 8</a> (Abschnitt „Billstedter Hauptstraße, von Reclamstraße bis Billstedter Mühlenweg“)
+    <a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/">Infoseite der Stadt zu Veloroute 8</a> (Abschnitt „Billstedter Hauptstraße, von Reclamstraße bis Billstedter Mühlenweg“). Lagepläne am Ende der Seite.
   </p>
 
