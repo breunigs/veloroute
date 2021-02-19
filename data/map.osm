@@ -1191,6 +1191,18 @@
   <node id='-116159' action='modify' lat='53.59277225997' lon='9.88178908288' />
   <node id='-116160' action='modify' lat='53.59130446043' lon='9.87992762983' />
   <node id='-116161' action='modify' lat='53.59016138817' lon='9.87823783815' />
+  <node id='-116163' action='modify' lat='53.55722508734' lon='10.00389396608' />
+  <node id='-116164' action='modify' lat='53.55709443778' lon='10.00408172071' />
+  <node id='-116165' action='modify' lat='53.55752143727' lon='10.00512241781' />
+  <node id='-116166' action='modify' lat='53.55848695326' lon='10.0075793159' />
+  <node id='-116167' action='modify' lat='53.55986348468' lon='10.01106619298' />
+  <node id='-116168' action='modify' lat='53.55997500752' lon='10.01139342248' />
+  <node id='-116169' action='modify' lat='53.56009927547' lon='10.01124321878' />
+  <node id='-116170' action='modify' lat='53.55972965689' lon='10.01028298795' />
+  <node id='-116171' action='modify' lat='53.55934728945' lon='10.00941395223' />
+  <node id='-116172' action='modify' lat='53.55864945996' lon='10.00762760103' />
+  <node id='-116173' action='modify' lat='53.55816511492' lon='10.00635623395' />
+  <node id='-116174' action='modify' lat='53.55751506417' lon='10.00465034902' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19490,6 +19502,23 @@
     <nd ref='-116161' />
     <nd ref='-116121' />
     <tag k='name' v='2021-02-14-elbgaustrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107025' action='modify'>
+    <nd ref='-116163' />
+    <nd ref='-116164' />
+    <nd ref='-116165' />
+    <nd ref='-116166' />
+    <nd ref='-116167' />
+    <nd ref='-116168' />
+    <nd ref='-116169' />
+    <nd ref='-116170' />
+    <nd ref='-116171' />
+    <nd ref='-116172' />
+    <nd ref='-116173' />
+    <nd ref='-116174' />
+    <nd ref='-116163' />
+    <tag k='name' v='2021-02-19-an-der-alster' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
