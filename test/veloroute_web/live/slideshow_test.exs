@@ -28,6 +28,6 @@ defmodule VelorouteWeb.LiveSlideshowTest do
     # actual assert
     assert view
            |> element("button[phx-click=sld-reverse]")
-           |> render_click() =~ ~s|data-img="ZZ48cmqMqXveDho4-OK7qQ"|
+           |> render_click() =~ ~s|data-img="s_ZOhJAHTKjvG2EfkbBHxQ"|
   end
 end
