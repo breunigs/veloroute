@@ -5,8 +5,14 @@ defmodule DiskCache do
   @allowed [:mapillary, :overpass]
 
   def lazy(namespace, cache_key, func) do
-    start_link()
-    get(namespace, cache_key, func)
+    try do
+      start_link()
+      get(namespace, cache_key, func)
+    rescue
+      err ->
+        IO.warn("Failed to resolve #{namespace} #{cache_key}, retrying once (#{inspect(err)})")
+        get(namespace, cache_key, func)
+    end
   end
 
   defp start_link() do
@@ -32,7 +38,8 @@ defmodule DiskCache do
           [{^cache_key, res}] -> res
           _ -> write(namespace, cache_key, func)
         end
-      end
+      end,
+      5 * 60 * 1000
     )
   end
 

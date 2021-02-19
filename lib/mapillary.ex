@@ -22,8 +22,9 @@ defmodule Mapillary do
   # plug Tesla.Middleware.Logger
 
   plug Tesla.Middleware.Retry,
-    delay: 500,
-    max_retries: 3,
+    delay: 1000,
+    max_retries: 10,
+    max_delay: 30_000,
     should_retry: fn
       {:ok, %{status: status}} when status >= 500 -> true
       {:ok, _} -> false
@@ -46,7 +47,11 @@ defmodule Mapillary do
       pp = 10
 
       lazy("close-to-#{pp}-#{radius}-#{img}-#{seq_strs}-v3", fn ->
-        IO.puts("mapillary: resolving close to #{img}\n  #{pp}-#{radius}-#{img}-#{seq_strs}-v3")
+        IO.puts(
+          "#{Time.utc_now()}: mapillary: resolving close to #{img}\n  #{pp}-#{radius}-#{img}-#{
+            seq_strs
+          }-v3"
+        )
 
         query = [closeto: "#{lon},#{lat}", radius: radius, per_page: pp]
 
@@ -162,7 +167,7 @@ defmodule Mapillary do
   defp image_keys(seq, reverse: false) do
     lazy("seq-#{seq}", fn ->
       # IO.write(":")
-      IO.puts("loading sequence #{seq}")
+      IO.puts("\n#{Time.utc_now()}: loading sequence #{seq}")
       {:ok, %{status: 200} = resp} = get("/sequences/#{seq}")
       get_in(resp.body, ["properties", "coordinateProperties", "image_keys"])
     end)

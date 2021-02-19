@@ -6,7 +6,7 @@ defmodule Overpass do
 
   plug Tesla.Middleware.Retry,
     delay: 5_000,
-    max_retries: 5,
+    max_retries: 10,
     max_delay: 30_000,
     should_retry: fn
       {:ok, %{status: status}} when status >= 400 -> true
@@ -49,7 +49,7 @@ defmodule Overpass do
     data =
       ~s|[out:json][timeout:5][bbox:#{bounds}];(node["name"="#{query}"]; way["name"="#{query}"];);out bb;|
 
-    IO.puts("Resolving Overpass Query: #{query}")
+    IO.puts("#{Time.utc_now()}: Resolving Overpass Query: #{query}")
     {:ok, %{status: 200} = resp} = get("", query: [data: data])
 
     resp.body
