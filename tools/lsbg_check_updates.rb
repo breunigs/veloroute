@@ -6,7 +6,7 @@ require 'open-uri'
 
 LSBG_SEEN_LINKS_FN = File.join(__dir__, "./lsbg_seen_links.txt")
 LSBG_NEWS_URLS = [
-  "http://lsbg.hamburg.de/aktuelle-planungen/",
+  "https://lsbg.hamburg.de/aktuelle-planungen/",
   "https://lsbg.hamburg.de/anliegerinformationen"
 ]
 
