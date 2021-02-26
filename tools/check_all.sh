@@ -16,5 +16,7 @@ echo "Baustellen:"
 
 echo ""
 echo "manuell:"
-echo "https://www.steg-hamburg.de/veloroute-altona.html"
-echo "https://www.hamburg.de/harburg/pressemeldungen/"
+echo "* https://www.steg-hamburg.de/veloroute-altona.html"
+echo "* https://www.hamburg.de/harburg/pressemeldungen/"
+
+mix list_potentially_outdated
