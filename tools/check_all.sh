@@ -19,4 +19,5 @@ echo "manuell:"
 echo "* https://www.steg-hamburg.de/veloroute-altona.html"
 echo "* https://www.hamburg.de/harburg/pressemeldungen/"
 
+cd ..
 mix list_potentially_outdated
