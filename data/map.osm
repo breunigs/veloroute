@@ -1208,6 +1208,22 @@
   <node id='-116291' action='modify' lat='53.53251399204' lon='10.11711001128' />
   <node id='-116305' action='modify' lat='53.53266703642' lon='10.11723071069' />
   <node id='-116318' action='modify' lat='53.53289341356' lon='10.11645823449' />
+  <node id='-116321' action='modify' lat='53.47370405229' lon='9.87292706698' />
+  <node id='-116322' action='modify' lat='53.47369607015' lon='9.87312018603' />
+  <node id='-116323' action='modify' lat='53.47349491965' lon='9.87301826209' />
+  <node id='-116324' action='modify' lat='53.47333846861' lon='9.87299948663' />
+  <node id='-116325' action='modify' lat='53.47334804726' lon='9.87283318967' />
+  <node id='-116326' action='modify' lat='53.47344383366' lon='9.87285732955' />
+  <node id='-116327' action='modify' lat='53.47347895528' lon='9.870848355' />
+  <node id='-116328' action='modify' lat='53.47362263436' lon='9.86782550544' />
+  <node id='-116329' action='modify' lat='53.47373278799' lon='9.86498504609' />
+  <node id='-116330' action='modify' lat='53.47375992725' lon='9.86429840058' />
+  <node id='-116331' action='modify' lat='53.47387486979' lon='9.86431717604' />
+  <node id='-116332' action='modify' lat='53.47378706649' lon='9.86620545119' />
+  <node id='-116333' action='modify' lat='53.47365296655' lon='9.86936777562' />
+  <node id='-116334' action='modify' lat='53.47359389858' lon='9.87086444825' />
+  <node id='-116335' action='modify' lat='53.47354281271' lon='9.8729029271' />
+  <node id='-116343' action='modify' lat='53.47360507361' lon='9.8730504486' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19529,6 +19545,27 @@
     <nd ref='-116174' />
     <nd ref='-116163' />
     <tag k='name' v='2021-02-19-an-der-alster' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107028' action='modify'>
+    <nd ref='-116321' />
+    <nd ref='-116322' />
+    <nd ref='-116343' />
+    <nd ref='-116323' />
+    <nd ref='-116324' />
+    <nd ref='-116325' />
+    <nd ref='-116326' />
+    <nd ref='-116327' />
+    <nd ref='-116328' />
+    <nd ref='-116329' />
+    <nd ref='-116330' />
+    <nd ref='-116331' />
+    <nd ref='-116332' />
+    <nd ref='-116333' />
+    <nd ref='-116334' />
+    <nd ref='-116335' />
+    <nd ref='-116321' />
+    <tag k='name' v='2021-03-12-gleisstieg-rehrstieg-bis-francoper-strasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
