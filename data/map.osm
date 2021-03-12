@@ -1224,6 +1224,22 @@
   <node id='-116334' action='modify' lat='53.47359389858' lon='9.87086444825' />
   <node id='-116335' action='modify' lat='53.47354281271' lon='9.8729029271' />
   <node id='-116343' action='modify' lat='53.47360507361' lon='9.8730504486' />
+  <node id='-116345' action='modify' lat='53.47023806625' lon='9.99383568227' />
+  <node id='-116346' action='modify' lat='53.47037537009' lon='9.99388932645' />
+  <node id='-116347' action='modify' lat='53.47075854123' lon='9.99413072526' />
+  <node id='-116348' action='modify' lat='53.47143227544' lon='9.99438285291' />
+  <node id='-116349' action='modify' lat='53.47244126022' lon='9.99492465913' />
+  <node id='-116350' action='modify' lat='53.47449747139' lon='9.99599217832' />
+  <node id='-116351' action='modify' lat='53.47568517851' lon='9.99662517428' />
+  <node id='-116352' action='modify' lat='53.47654081557' lon='9.99696849704' />
+  <node id='-116353' action='modify' lat='53.47678345577' lon='9.99705432773' />
+  <node id='-116354' action='modify' lat='53.47714741348' lon='9.99693631053' />
+  <node id='-116355' action='modify' lat='53.47739005022' lon='9.99663590312' />
+  <node id='-116356' action='modify' lat='53.4774730572' lon='9.99641059756' />
+  <node id='-116357' action='modify' lat='53.4720676832' lon='9.99413072526' />
+  <node id='-116358' action='modify' lat='53.47200701654' lon='9.99447941244' />
+  <node id='-116359' action='modify' lat='53.47546807382' lon='9.99630867362' />
+  <node id='-116360' action='modify' lat='53.47553511778' lon='9.99587416112' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19566,6 +19582,31 @@
     <nd ref='-116335' />
     <nd ref='-116321' />
     <tag k='name' v='2021-03-12-gleisstieg-rehrstieg-bis-francoper-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107030' action='modify'>
+    <nd ref='-116345' />
+    <nd ref='-116346' />
+    <nd ref='-116347' />
+    <nd ref='-116348' />
+    <nd ref='-116349' />
+    <nd ref='-116350' />
+    <nd ref='-116351' />
+    <nd ref='-116352' />
+    <nd ref='-116353' />
+    <nd ref='-116354' />
+    <nd ref='-116355' />
+    <nd ref='-116356' />
+    <tag k='name' v='2021-03-12-sanierung-alte-harburger-elbbruecke' />
+    <tag k='type' v='detour' />
+  </way>
+  <way id='-107041' action='modify'>
+    <nd ref='-116357' />
+    <nd ref='-116358' />
+    <nd ref='-116359' />
+    <nd ref='-116360' />
+    <nd ref='-116357' />
+    <tag k='name' v='2021-03-12-sanierung-alte-harburger-elbbruecke' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
