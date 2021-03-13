@@ -1,6 +1,10 @@
 defmodule Data.Route.Articles do
   use Data.Route,
     yaml: """
+    articles am-neumarkt:
+    - { seq: "5UXHTdWl58Y7hpqBo5kjn2", from: "vSKsNLa4WOBN9IbSo0Rv2o", to: "rk53FPJDm2Cq42RTxB8Gwi" }
+    - { seq: "w8HWOrkan1yE3RxEiqGXRA", from: "mh0qJWIdP9ZW8kfYRYIfLT", to: "AgQzaHDMKcGY3NjsYmpgSw" }
+
     articles querung-kornweide:
     - { seq: "8Kjfl3wN5Ie7BHULbS0tGA", from: "EznyzjGzITAX8_STGjKi_A", to: "EBY_Awx6Kmw2MRaiNOb1UQ" }
 

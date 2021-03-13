@@ -1240,6 +1240,25 @@
   <node id='-116358' action='modify' lat='53.47200701654' lon='9.99447941244' />
   <node id='-116359' action='modify' lat='53.47546807382' lon='9.99630867362' />
   <node id='-116360' action='modify' lat='53.47553511778' lon='9.99587416112' />
+  <node id='-116362' action='modify' lat='53.57460425372' lon='10.08366286218' />
+  <node id='-116363' action='modify' lat='53.57435261739' lon='10.08375942171' />
+  <node id='-116364' action='modify' lat='53.57489411143' lon='10.08748769224' />
+  <node id='-116365' action='modify' lat='53.57522218973' lon='10.08971392572' />
+  <node id='-116366' action='modify' lat='53.5753464129' lon='10.09056150377' />
+  <node id='-116367' action='modify' lat='53.57537507973' lon='10.09129106462' />
+  <node id='-116368' action='modify' lat='53.57527633834' lon='10.09268581331' />
+  <node id='-116369' action='modify' lat='53.57527633834' lon='10.09374796808' />
+  <node id='-116370' action='modify' lat='53.57538145013' lon='10.09490668237' />
+  <node id='-116371' action='modify' lat='53.57566811733' lon='10.09737431467' />
+  <node id='-116372' action='modify' lat='53.57586241289' lon='10.0972938484' />
+  <node id='-116373' action='modify' lat='53.57576367263' lon='10.096403355' />
+  <node id='-116374' action='modify' lat='53.57552478397' lon='10.09453117311' />
+  <node id='-116375' action='modify' lat='53.57543559853' lon='10.09373187482' />
+  <node id='-116376' action='modify' lat='53.5754610801' lon='10.09270727098' />
+  <node id='-116377' action='modify' lat='53.57555982106' lon='10.09140908182' />
+  <node id='-116378' action='modify' lat='53.57552159878' lon='10.09061514795' />
+  <node id='-116379' action='modify' lat='53.57542922813' lon='10.08967637479' />
+  <node id='-116380' action='modify' lat='53.57495144568' lon='10.08643090189' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='42100054662' action='delete' version='1' lat='53.54647816187' lon='10.00402358647' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
@@ -19607,6 +19626,30 @@
     <nd ref='-116360' />
     <nd ref='-116357' />
     <tag k='name' v='2021-03-12-sanierung-alte-harburger-elbbruecke' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-107043' action='modify'>
+    <nd ref='-116362' />
+    <nd ref='-116363' />
+    <nd ref='-116364' />
+    <nd ref='-116365' />
+    <nd ref='-116366' />
+    <nd ref='-116367' />
+    <nd ref='-116368' />
+    <nd ref='-116369' />
+    <nd ref='-116370' />
+    <nd ref='-116371' />
+    <nd ref='-116372' />
+    <nd ref='-116373' />
+    <nd ref='-116374' />
+    <nd ref='-116375' />
+    <nd ref='-116376' />
+    <nd ref='-116377' />
+    <nd ref='-116378' />
+    <nd ref='-116379' />
+    <nd ref='-116380' />
+    <nd ref='-116362' />
+    <tag k='name' v='2021-03-13-am-neumarkt' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='modify' version='1'>
