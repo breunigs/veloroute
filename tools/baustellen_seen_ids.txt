@@ -1,407 +1,19 @@
 ---
 99999: 
-8193:
-  :id: 8193
-  :title: A 7 / Neubau Tunnel Altona -- LSBG
-  :updated: '2021-02-22T07:47:37.498308'
-  :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
-  :start: '2020-03-02'
-  :end: '2028-12-31'
-10764:
-  :id: 10764
-  :title: Volksdorfer Damm / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-01-08T07:22:48.259143'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-08-17'
-  :end: '2021-03-15'
-2477:
-  :id: 2477
-  :title: Volksdorfer Marktplatz / Grundinstandsetzung der Marktfläche -- Bezirk Wandsbek
-  :updated: '2021-03-11T17:56:15.555457'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-03-10'
-  :end: '2021-03-13'
-12837:
-  :id: 12837
-  :title: Brooktorkai / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-10-23T09:34:50.522656'
-  :start: '2020-10-05'
-  :end: '2020-11-27'
-13436:
-  :id: 13436
-  :title: Swinemünder Straße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-11-16T14:47:59.161187'
-  :start: '2020-11-19'
-  :end: '2020-12-18'
-12871:
-  :id: 12871
-  :title: Kuhmühle / Abrissarbeiten -- Bezirk Nord
-  :updated: '2020-10-30T10:37:56.697016'
-  :start: '2020-09-15'
-  :end: '2021-12-11'
-13232:
-  :id: 13232
-  :title: Walderseestraße und Droysenstraße / Abwasser -- Hamburg Wasser
-  :updated: '2021-03-05T08:26:00.587902'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-01-06'
-  :end: '2021-05-28'
-7104:
-  :id: 7104
-  :title: Kreisverkehrbau /  Gr. Bergstr. / Virchowstraße -- Bezirk Altona
-  :updated: '2020-03-30T09:54:03.021734'
-  :start: '2020-03-30'
-  :end: '2021-03-31'
-12663:
-  :id: 12663
-  :title: Köhlbrandbrücke / Vollsperrung -- Hamburg Port Authority
-  :updated: '2020-10-19T13:59:33.414533'
-  :start: '2020-11-20'
-  :end: '2020-11-23'
-5313:
-  :id: 5313
-  :title: Güntherstraße / Halbseitige Straßensperrung -- Bezirk Wandsbek
-  :updated: '2020-03-10T13:47:13.232887'
-  :start: '2020-02-11'
-  :end: '2020-12-31'
-13439:
-  :id: 13439
-  :title: Am Damm / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-11-16T15:15:38.939902'
-  :start: '2020-11-16'
-  :end: '2020-12-12'
-7123:
-  :id: 7123
-  :title: Großmannstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-08-17T11:07:52.061691'
-  :start: '2020-04-06'
-  :end: '2020-12-31'
-3248:
-  :id: 3248
-  :title: Neuländer Ring / Neuländer Hauptdeich / Neuländer Elbdeich / Breitbandausbau
-    -- Bezirk Harburg
-  :updated: '2019-11-11T13:58:42.214733'
-  :start: '2020-01-06'
-  :end: '2020-12-30'
-9662:
-  :id: 9662
-  :title: Bleichertwiete, Umbau Straßenquerschnitt in Vollsperrung -- Bezirk Bergedorf
-  :updated: '2021-03-04T10:02:43.271471'
-  :start: '2020-09-14'
-  :end: '2021-04-02'
-9981:
-  :id: 9981
-  :title: Sievekingdamm / Pop-up-Fahrradstreifen -- Bezirk Mitte
-  :updated: '2020-11-26T14:21:36.996732'
-  :start: '2020-07-07'
-  :end: '2021-08-31'
-10019:
-  :id: 10019
-  :title: Jordanstraße / Veloroute 13 -- LSBG
-  :updated: '2020-08-10T17:31:28.343919'
-  :link: https://lsbg.hamburg.de/contentblob/12717674/67814bbaa0a2298793a22a49dcb95de7/data/veloroute-13-jordanstrasse-abstimmungsunterlage-bericht.pdf
-  :start: '2020-09-01'
-  :end: '2020-12-02'
-5055:
-  :id: 5055
-  :title: Ottensen / Veloroute 1 - Ausbau und vorbereitende Maßnahmen von Stromnetz
-    Hamburg -- Bezirk Altona
-  :updated: '2020-04-17T08:37:52.011262'
-  :link: https://www.steg-hamburg.de/veloroute-altona.html
-  :start: '2020-01-06'
-  :end: '2021-04-30'
-7739:
-  :id: 7739
-  :title: Zum Dubben / Veloroute 10 - Straßenbauarbeiten -- Bezirk Harburg
-  :updated: '2021-01-04T12:27:02.806123'
-  :start: '2020-04-27'
-  :end: '2021-02-28'
-12285:
-  :id: 12285
-  :title: Jungfernstieg / Erste Schritte zur weitgehenden Autofreiheit -- Bezirk Mitte
-  :updated: '2020-10-06T11:26:58.065412'
-  :start: '2020-10-05'
-  :end: '2022-04-30'
-12316:
-  :id: 12316
-  :title: Fibigerstraße / Veloroute -- Bezirk Nord
-  :updated: '2020-10-06T12:44:04.892978'
-  :start: '2020-10-12'
-  :end: '2021-06-23'
-7145:
-  :id: 7145
-  :title: Neubau U4 Horner Geest -- HOCHBAHN
-  :updated: '2020-12-04T17:03:06.334802'
-  :link: https://www.schneller-durch-hamburg.de/u4-horner-geest
-  :start: '2020-04-01'
-  :end: '2022-07-31'
-5932:
-  :id: 5932
-  :title: Bramfelder Chaussee / Rohrverlegung Fernwärme -- Bezirk Wandsbek
-  :updated: '2020-09-29T12:43:50.252821'
-  :start: '2020-03-01'
-  :end: '2020-11-27'
-12705:
-  :id: 12705
-  :title: Schanzenstraße / Nächtliche Vollsperrung -- Bezirk Mitte
-  :updated: '2020-10-20T11:40:12.252354'
-  :start: '2020-08-15'
-  :end: '2020-12-11'
-9182:
-  :id: 9182
-  :title: Braamkamp / Baustelleneinrichtung -- Bezirk Nord
-  :updated: '2020-06-10T09:34:57.4952'
-  :start: '2020-03-23'
-  :end: '2020-12-31'
-2034:
-  :id: 2034
-  :title: 'Veloroute 7: Steindamm zwischen Kreuzweg und Lohmühlenstraße -- LSBG'
-  :updated: '2020-12-22T12:16:28.246715'
-  :link: https://lsbg.hamburg.de/contentblob/11504940/a4f71097cf72e63cabfe233be0472d27/data/veloroute-7-steindamm-abgestimmte-planung-bericht.pdf
-  :start: '2019-10-14'
-  :end: '2021-02-28'
-6381:
-  :id: 6381
-  :title: Hohenfelder Bucht / Schwanenwik /Umgestaltung -- LSBG
-  :updated: '2020-12-04T08:40:59.44059'
-  :link: https://lsbg.hamburg.de/hohenfelder-bucht/
-  :start: '2020-03-09'
-  :end: '2025-12-31'
-9209:
-  :id: 9209
-  :title: Fuhlsbütteler Damm / Veloroute -- Bezirk Nord
-  :updated: '2021-02-08T12:51:29.069129'
-  :start: '2020-06-29'
-  :end: '2021-06-01'
-12465:
-  :id: 12465
-  :title: Lombardsbrücke / Brückensanierung -- LSBG
-  :updated: '2020-10-27T11:24:37.831107'
-  :start: '2019-11-02'
-  :end: '2021-09-30'
-13141:
-  :id: 13141
-  :title: Uppenhof / Umbau Knotenpunkt, Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-08T16:43:39.130962'
-  :start: '2020-11-16'
-  :end: '2021-03-19'
-12470:
-  :id: 12470
-  :title: Bürgerweide / Neubau der Eisenbahnüberführung -- LSBG
-  :updated: '2020-10-15T11:55:46.54163'
-  :start: '2019-08-01'
-  :end: '2022-09-30'
-12436:
-  :id: 12436
-  :title: Brauhausstieg - Umbau und Neugestaltung -- Bezirk Wandsbek
-  :updated: '2021-03-02T11:09:43.832342'
-  :start: '2020-10-26'
-  :end: '2021-03-31'
-10836:
-  :id: 10836
-  :title: Gaußstraße - Bahrenfelder Straße - Schützenstraße / Busbeschleunigung --
-    LSBG
-  :updated: '2020-12-16T17:46:14.188851'
-  :link: http://www.via-bus.de/metrobus-linie-2/
-  :start: '2020-08-17'
-  :end: '2021-08-30'
-8208:
-  :id: 8208
-  :title: A 7 / Instandsetzung & Ausbau K 20 & K 30 -- LSBG
-  :updated: '2020-06-11T07:21:54.132459'
-  :link: https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/
-  :start: '2020-04-14'
-  :end: '2027-12-31'
-11454:
-  :id: 11454
-  :title: Beim Schlump / Pop-up Bikelane -- LSBG
-  :updated: '2020-09-03T12:31:17.96783'
-  :start: '2020-09-01'
-  :end: '2021-09-01'
-8311:
-  :id: 8311
-  :title: Berner Heerweg Kreuzung Neusurenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-08T16:38:56.634168'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-06-22'
-  :end: '2021-04-30'
-11817:
-  :id: 11817
-  :title: Neuenfelder Fährdeich / Pflasterarbeiten -- Hamburg Port Authority
-  :updated: '2020-09-16T08:24:32.65931'
-  :start: '2020-09-21'
-  :end: '2020-12-20'
-13011:
-  :id: 13011
-  :title: Luruper Chaussee / Trinkwasserleitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-10-30T06:35:27.872692'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-11-09'
-  :end: '2021-05-31'
-7917:
-  :id: 7917
-  :title: Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2021-03-05T08:20:26.150386'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2019-10-07'
-  :end: '2021-04-30'
-5776:
-  :id: 5776
-  :title: Am Neugrabener Bahnhof / Erneuerung Bahnhofsvorplatz -- Bezirk Harburg
-  :updated: '2020-06-11T14:47:14.388218'
-  :start: '2020-03-02'
-  :end: '2020-12-31'
-9449:
-  :id: 9449
-  :title: Sülldorfer Kirchenweg / Ausbau Veloroute 1 und Grundinstandsetzung / Vollsperrung
-    -- Bezirk Altona
-  :updated: '2020-12-04T11:08:32.127397'
-  :start: '2020-07-06'
-  :end: '2021-02-25'
-9958:
-  :id: 9958
-  :title: Osdorfer Weg / Leitungsbauarbeiten -- Hamburg Wasser
-  :updated: '2021-03-12T11:43:21.603843'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-06-29'
-  :end: '2021-04-30'
-13286:
-  :id: 13286
-  :title: Wendenstraße / halbseitige Sperrung -- Bezirk Mitte
-  :updated: '2020-11-09T08:40:06.104287'
-  :start: '2020-11-09'
-  :end: '2020-11-22'
-14:
-  :id: 14
-  :title: A 7 / Neubau Tunnel Stellingen inkl. Vollsperrungen -- BWVI-DEGES
-  :updated: '2021-02-15T15:51:04.544059'
-  :link: https://www.deges.de/projekte/projekt/a-7-stellingentunnel/
-  :start: '2016-03-01'
-  :end: '2021-03-08'
-10817:
-  :id: 10817
-  :title: S-Bahnstation Ottensen / Neubau der DB AG -- Bezirk Altona
-  :updated: '2020-08-14T11:16:00.033005'
-  :start: '2020-08-17'
-  :end: '2021-12-31'
-566:
-  :id: 566
-  :title: Schulterblatt 37-39 / Neubaumaßnahme -- Bezirk Altona
-  :updated: '2020-02-17T15:33:56.22739'
-  :start: '2019-06-24'
-  :end: '2021-03-31'
-12485:
-  :id: 12485
-  :title: Umbau Harkortstraße Nord -- LSBG
-  :updated: '2020-10-13T07:32:22.105213'
-  :link: https://lsbg.hamburg.de/contentblob/13101578/2c2a9a48fec1516b7fec2a201531f67e/data/harkortstrasse-abgestimmte-planung-plan.pdf
-  :start: '2020-09-21'
-  :end: '2021-04-30'
-7512:
-  :id: 7512
-  :title: Bergedorfer Straße, Baustelleneinrichtungsfläche -- Bezirk Bergedorf
-  :updated: '2020-04-16T14:37:38.187466'
-  :start: '2020-04-20'
-  :end: '2021-10-14'
-6889:
-  :id: 6889
-  :title: B 75 - AS HH-Harburg-Mitte und HH-Neuland / Grundinstandsetzung -- LSBG
-  :updated: '2020-08-19T13:16:44.554985'
-  :start: '2020-03-23'
-  :end: '2020-12-10'
-12513:
-  :id: 12513
-  :title: Vollsperrung Heilwigstraße -- Bezirk Nord
-  :updated: '2020-10-14T07:55:35.851159'
-  :start: '2020-11-20'
-  :end: '2020-11-23'
-8888:
-  :id: 8888
-  :title: Leuschnerstraße 48 | Bau einer Doppelhaushälfte -- Bezirk Bergedorf
-  :updated: '2020-11-30T12:03:00.394349'
-  :start: '2020-06-07'
-  :end: '2020-12-20'
-8012:
-  :id: 8012
-  :title: Ring 2 - Horn / Sanierung -- LSBG
-  :updated: '2020-05-01T07:29:46.1655'
-  :start: '2020-05-04'
-  :end: '2020-11-30'
-7919:
-  :id: 7919
-  :title: Hindenburgstraße / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-02-11T13:24:35.730705'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-06-25'
-  :end: '2021-09-30'
-9088:
-  :id: 9088
-  :title: Barmbeker Straße 16-32 -- Gasnetz
-  :updated: '2021-02-24T07:00:35.839812'
-  :start: '2020-07-27'
-  :end: '2021-04-30'
-13339:
-  :id: 13339
-  :title: Holzhafenufer / Fräs- und Asphaltierungsarbeiten -- Hamburg Port Authority
-  :updated: '2020-11-10T15:19:56.186281'
-  :start: '2020-11-20'
-  :end: '2020-11-22'
-8051:
-  :id: 8051
-  :title: Eißendorfer Straße / Containeraufstellung -- Bezirk Harburg
-  :updated: '2020-05-04T10:12:42.434318'
-  :start: '2020-05-11'
-  :end: '2020-12-31'
-13191:
-  :id: 13191
-  :title: Curslacker Deich | Deckensanierung - Vollsperrung -- Bezirk Bergedorf
-  :updated: '2020-11-11T10:28:35.486923'
-  :start: '2020-11-02'
-  :end: '2020-11-30'
-2147:
-  :id: 2147
-  :title: Cuxhavener Straße / Waltershofer Straße / Umbau und Instandsetzung -- Bezirk
-    Harburg
-  :updated: '2020-11-04T11:14:47.609043'
-  :start: '2019-10-21'
-  :end: '2020-12-31'
-3123:
-  :id: 3123
-  :title: Hannoversche Straße / Ausbau Veloroute 11 -- Bezirk Harburg
-  :updated: '2020-11-04T11:17:07.062187'
-  :start: '2019-11-18'
-  :end: '2020-12-18'
-8254:
-  :id: 8254
-  :title: Esplanade / Kabelarbeiten -- Stromnetz
-  :updated: '2020-05-19T13:27:41.140849'
-  :start: '2020-04-20'
-  :end: '2021-01-29'
-4665:
-  :id: 4665
-  :title: Grundinstandsetzung Nikolaisperrwerk -- LSBG
-  :updated: '2020-12-22T07:59:09.953368'
-  :start: '2020-02-10'
-  :end: '2020-12-22'
-9405:
-  :id: 9405
-  :title: Am Sandtorkai / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-06-15T12:02:58.123482'
-  :start: '2020-01-20'
-  :end: '2021-01-20'
-11543:
-  :id: 11543
-  :title: Billstraße / Billhorner Brückenstraße / Trinkwasserleitung -- Hamburg Wasser
-  :updated: '2020-09-04T11:01:48.606153'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-09-07'
-  :end: '2021-10-10'
-567:
-  :id: 567
-  :title: Friedensallee 128 / Kolbenhöfe -- Bezirk Altona
-  :updated: '2019-08-30T14:25:50.317066'
-  :start: '2019-06-24'
-  :end: '2022-07-01'
+23:
+  :id: 23
+  :title: B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- LSBG
+  :updated: '2020-12-01T11:31:46.964903'
+  :start: '2019-04-01'
+  :end: '2021-06-28'
+  :velo: false
+101:
+  :id: 101
+  :title: Amsinckstraße Brücke / Grundinstandsetzung -- LSBG
+  :updated: '2020-08-21T13:25:52.779947'
+  :start: '2018-09-17'
+  :end: '2021-11-03'
+  :velo: false
 7928:
   :id: 7928
   :title: Spaldingstraße / Sielrenovierung -- Hamburg Wasser
@@ -409,173 +21,35 @@
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-01'
   :end: '2021-11-30'
-12294:
-  :id: 12294
-  :title: Wiesendamm / Radverkehrsanlagen -- Bezirk Nord
-  :updated: '2021-02-17T13:59:22.410834'
-  :start: '2020-09-21'
-  :end: '2021-05-29'
-460:
-  :id: 460
-  :title: Neubau Eckgrundstück Bahrenfelder Straße/ Von-Sauer-Straße -- Bezirk Altona
-  :updated: '2019-07-29T15:52:52.207393'
-  :start: '2019-01-07'
-  :end: '2020-12-31'
-85:
-  :id: 85
-  :title: Alter Teichweg / Grundinstandsetzung -- Bezirk Nord
-  :updated: '2020-04-02T09:02:09.206213'
-  :start: '2019-09-02'
-  :end: '2021-10-29'
-10026:
-  :id: 10026
-  :title: Heegbarg / Ertüchtigung Veloroute 5 -- Bezirk Wandsbek
-  :updated: '2021-03-02T09:00:31.479584'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-07-20'
-  :end: '2021-03-19'
-11145:
-  :id: 11145
-  :title: St. Pauli Fischmarkt - St. Pauli Hafenstraße / Sielarbeiten -- Hamburg Wasser
-  :updated: '2020-10-15T18:06:42.845354'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-10-15'
-  :end: '2021-05-15'
-8535:
-  :id: 8535
-  :title: Eppendorfer Weg (Hoheluft West) / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-02-05T10:33:25.99103'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-08-04'
-  :end: '2021-05-15'
-9261:
-  :id: 9261
-  :title: Holsteiner Chaussee / Trinkwasseranschlüsse -- Hamburg Wasser
-  :updated: '2021-02-05T10:35:22.576554'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-10-02'
-  :end: '2022-05-08'
-101:
-  :id: 101
-  :title: Amsinckstraße Brücke / Grundinstandsetzung -- LSBG
-  :updated: '2020-08-21T13:25:52.779947'
-  :start: '2018-09-17'
-  :end: '2021-11-03'
-65:
-  :id: 65
-  :title: Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- Hamburg
-    Wasser
-  :updated: '2021-03-12T06:13:41.900968'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2017-09-25'
-  :end: '2021-11-30'
-11041:
-  :id: 11041
-  :title: Bahrenfelder Chaussee / Vorarbeiten für Tunnel Altona -- LSBG
-  :updated: '2020-08-17T08:50:27.56123'
-  :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
-  :start: '2020-08-24'
-  :end: '2028-12-31'
-12168:
-  :id: 12168
-  :title: Friedrich-Ebert-Strasse -- Hamburg Wasser
-  :updated: '2021-01-22T11:53:01.012437'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-10-19'
-  :end: '2021-06-30'
-6678:
-  :id: 6678
-  :title: Schimmelmannstraße / Neu- und Umbau der Veloroute 7 (W23) -- Bezirk Wandsbek
-  :updated: '2020-07-29T14:34:52.900602'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-03-23'
-  :end: '2020-12-31'
-9172:
-  :id: 9172
-  :title: Billbrookdeich / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2020-12-10T12:40:28.361061'
+  :velo: false
+9209:
+  :id: 9209
+  :title: Fuhlsbütteler Damm / Veloroute -- Bezirk Nord
+  :updated: '2021-02-08T12:51:29.069129'
   :start: '2020-06-29'
-  :end: '2021-03-15'
-10510:
-  :id: 10510
-  :title: Schöne Aussicht / Fährhausstraße / Alsterfahrradachse -- LSBG
-  :updated: '2020-09-09T09:24:02.869154'
-  :link: https://lsbg.hamburg.de/anliegerinformationen/
-  :start: '2020-08-17'
-  :end: '2021-10-04'
-13372:
-  :id: 13372
-  :title: Glinder Straße / Fahrspursperrung stadteinwärts -- Bezirk Mitte
-  :updated: '2020-11-23T09:02:39.226611'
-  :start: '2020-11-11'
-  :end: '2020-12-01'
-11126:
-  :id: 11126
-  :title: Paul-Sorge-Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-02-01T14:10:36.45679'
-  :link: https://www.hamburg.de/eimsbuettel/paulsorgestrasse/
-  :start: '2020-09-07'
-  :end: '2022-02-28'
-11626:
-  :id: 11626
-  :title: Mathildenstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-09-09T09:37:58.40092'
-  :start: '2020-01-06'
-  :end: '2020-12-18'
-8206:
-  :id: 8206
-  :title: B 75 - AS Elbinsel bis Wilhelmsburger Reichsstraße (neu) / Deckschichtsanierung
-    -- LSBG
-  :updated: '2020-09-11T08:24:32.395619'
-  :start: '2020-09-11'
-  :end: '2020-11-30'
-7598:
-  :id: 7598
-  :title: B 75 - AS-Kornweide / Neubau -- LSBG
-  :updated: '2020-12-11T11:37:24.016497'
-  :start: '2020-04-18'
-  :end: '2020-12-31'
-10814:
-  :id: 10814
-  :title: Umbau Eulenstraße - Keplerstraße (Veloroute 1) -- Bezirk Altona
-  :updated: '2020-08-21T17:13:18.791298'
-  :link: https://www.steg-hamburg.de/veloroute-altona.html
-  :start: '2020-08-17'
-  :end: '2021-01-29'
-11180:
-  :id: 11180
-  :title: Bleickeallee Ost / Umbau für Veloroute 1 -- Bezirk Altona
-  :updated: '2020-12-04T11:06:51.558624'
-  :link: https://www.steg-hamburg.de/veloroute-altona.html
-  :start: '2020-08-21'
-  :end: '2020-12-18'
-13457:
-  :id: 13457
-  :title: Wilhelmsburger Brücke / Verkehrsbehinderung -- Bezirk Mitte
-  :updated: '2020-11-17T09:31:58.734439'
-  :start: '2020-11-22'
-  :end: '2020-11-22'
-5325:
-  :id: 5325
-  :title: Kuehnstraße / Ausbau Veloroute 7 -- Bezirk Wandsbek
-  :updated: '2020-08-27T12:10:59.464128'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-03-23'
-  :end: '2020-12-31'
-615:
-  :id: 615
-  :title: Bismarckstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
-  :updated: '2020-10-23T09:57:24.678034'
-  :link: https://www.hamburg.de/eimsbuettel/bismarckstrasse/
-  :start: '2018-09-01'
-  :end: '2021-04-16'
-6866:
-  :id: 6866
-  :title: B 75 (neu) Wilhelmsburger Reichsstraße / Neubau -- LSBG
-  :updated: '2020-12-11T11:37:56.982106'
-  :link: https://www.hamburg.de/fernstrassen/wilhelmsburger-reichsstrasse/
-  :start: '2014-01-01'
-  :end: '2020-12-31'
+  :end: '2021-06-01'
+  :velo: true
+11454:
+  :id: 11454
+  :title: Beim Schlump / Pop-up Bikelane -- LSBG
+  :updated: '2020-09-03T12:31:17.96783'
+  :start: '2020-09-01'
+  :end: '2021-09-01'
+  :velo: false
+106:
+  :id: 106
+  :title: B 5 / A 1 - Brücke / Grundinstandsetzung -- LSBG
+  :updated: '2020-12-01T11:31:06.323079'
+  :start: '2019-05-23'
+  :end: '2021-09-26'
+  :velo: false
+12465:
+  :id: 12465
+  :title: Lombardsbrücke / Brückensanierung -- LSBG
+  :updated: '2020-10-27T11:24:37.831107'
+  :start: '2019-11-02'
+  :end: '2021-09-30'
+  :velo: false
 8210:
   :id: 8210
   :title: A 26 / Neubau inkl. AK HH-Hafen und Ausbau A 7 -- LSBG
@@ -583,1111 +57,43 @@
   :link: https://www.deges.de/projekte/projekt/a-26-neubau-west-2/
   :start: '2020-10-01'
   :end: '2028-12-31'
-11939:
-  :id: 11939
-  :title: Vollsperrung Scheel-Plessen-Straße -- Bezirk Altona
-  :updated: '2020-11-26T14:30:50.500452'
-  :start: '2020-09-23'
-  :end: '2021-06-30'
-12304:
-  :id: 12304
-  :title: Drehbahn / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-01-29T10:39:12.524804'
-  :start: '2020-10-07'
-  :end: '2021-07-31'
-13154:
-  :id: 13154
-  :title: Berner Heerweg / Aufbau Fahrgastunterstand -- Bezirk Wandsbek
-  :updated: '2020-11-04T15:12:12.828887'
-  :start: '2020-11-05'
-  :end: '2021-01-05'
-12308:
-  :id: 12308
-  :title: Kleekamp / Veloroute -- Bezirk Nord
-  :updated: '2021-02-01T12:46:18.898035'
-  :start: '2020-09-28'
-  :end: '2021-09-22'
-9608:
-  :id: 9608
-  :title: Wördemanns Weg/ Veloroutenausbau 2 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-12-11T09:46:59.164335'
-  :link: https://www.hamburg.de/eimsbuettel/woerdemannsweg/
-  :start: '2020-06-24'
-  :end: '2022-03-31'
-8538:
-  :id: 8538
-  :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2021-03-12T06:15:31.935096'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-07-20'
-  :end: '2021-03-30'
-12452:
-  :id: 12452
-  :title: Am Neumarkt - Anlegen eines Rechtsabbiegers -- Bezirk Wandsbek
-  :updated: '2020-10-09T14:27:25.07122'
-  :start: '2020-10-14'
-  :end: '2020-11-22'
-12404:
-  :id: 12404
-  :title: Kirchenheerweg 1a | Hausanschlussarbeiten -- Bezirk Bergedorf
-  :updated: '2020-10-09T10:17:16.041086'
-  :start: '2020-10-12'
-  :end: '2020-11-23'
-13289:
-  :id: 13289
-  :title: Hummelsbütteler Landstraße / Baustelleneinrichtung -- Bezirk Nord
-  :updated: '2020-11-09T09:51:40.920359'
-  :start: '2020-11-16'
-  :end: '2021-12-22'
-12311:
-  :id: 12311
-  :title: Tangstedter Landstraße / Veloroute -- Bezirk Nord
-  :updated: '2021-02-19T13:07:32.773058'
-  :start: '2020-09-01'
-  :end: '2021-08-01'
-12917:
-  :id: 12917
-  :title: Im Gehölz, Bushaltestelle Goebenstraße -- LSBG
-  :updated: '2020-10-28T10:28:45.829838'
-  :link: https://lsbg.hamburg.de/aktuelle-planungen/
-  :start: '2020-11-02'
-  :end: '2020-12-21'
-12172:
-  :id: 12172
-  :title: Hohe Weide, Schlankreye/Schäferstr. / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-03-05T08:21:37.74453'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-11-02'
-  :end: '2021-05-28'
-12002:
-  :id: 12002
-  :title: Große Rainstrasse / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-03-12T06:24:27.324854'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-09-21'
-  :end: '2021-07-23'
-12314:
-  :id: 12314
-  :title: Norderstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-10-06T12:45:04.539993'
-  :start: '2020-10-02'
-  :end: '2020-12-31'
-9332:
-  :id: 9332
-  :title: Deichtorplatz + Klosterwall + Steintorwall / Veloroute 9 / Verkehrsbehinderungen
-    -- Bezirk Mitte
-  :updated: '2021-02-17T13:09:00.858924'
-  :start: '2020-07-15'
-  :end: '2021-02-28'
-10453:
-  :id: 10453
-  :title: Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
-    Eulenkamp Nord -- Bezirk Wandsbek
-  :updated: '2021-02-09T08:40:09.785429'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-08-03'
-  :end: '2021-03-31'
-12524:
-  :id: 12524
-  :title: Beim Farenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-08T16:33:15.466168'
-  :start: '2020-11-02'
-  :end: '2021-03-26'
-13298:
-  :id: 13298
-  :title: Gertrudenstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-11-09T13:10:37.529811'
-  :start: '2020-11-09'
-  :end: '2020-12-31'
-12596:
-  :id: 12596
-  :title: Fuhlentwiete / Straßenbauarbeiten -- Bezirk Mitte
-  :updated: '2020-10-15T11:29:16.073885'
-  :start: '2020-10-19'
-  :end: '2021-05-31'
-106:
-  :id: 106
-  :title: B 5 / A 1 - Brücke / Grundinstandsetzung -- LSBG
-  :updated: '2020-12-01T11:31:06.323079'
-  :start: '2019-05-23'
-  :end: '2021-09-26'
-86:
-  :id: 86
-  :title: Mundsburger Damm von Schwanenwik bis Mundsburger Brücke / Bündnis für den
-    Radverkehr, Veloroute 5/6 -- Bezirk Nord
-  :updated: '2020-11-18T10:54:57.189938'
-  :start: '2020-10-05'
-  :end: '2020-12-30'
-13400:
-  :id: 13400
-  :title: U-Bahn-Linie U1 - Haltestelle Wandsbek-Gartenstadt, Erneuerung einer defekten
-    Abwasserleitung -- HOCHBAHN
-  :updated: '2020-11-13T11:01:30.15945'
-  :link: www.hochbahn.de
-  :start: '2020-11-16'
-  :end: '2020-11-28'
-12829:
-  :id: 12829
-  :title: Allermöher Deich 108-207 | Geförderter Breitbandausbau -- Bezirk Bergedorf
-  :updated: '2020-10-23T08:19:17.956879'
-  :start: '2020-10-31'
-  :end: '2020-11-30'
-13033:
-  :id: 13033
-  :title: Bekassinenau (Nord) / Deckschichterneuerung -- Bezirk Wandsbek
-  :updated: '2020-11-23T13:41:20.840127'
-  :start: '2020-11-17'
-  :end: '2020-11-24'
-13117:
-  :id: 13117
-  :title: Harburger Schloßstraße / Umbau Nebenflächen -- Bezirk Harburg
-  :updated: '2021-02-08T16:43:06.519408'
-  :start: '2020-11-16'
-  :end: '2021-02-26'
-6745:
-  :id: 6745
-  :title: Fabriciusstraße / Radverkehrsmaßnahme -- Bezirk Wandsbek
-  :updated: '2021-02-19T12:20:36.314079'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
-  :start: '2020-04-06'
-  :end: '2021-04-30'
-12965:
-  :id: 12965
-  :title: Lauensteinstraße / Vollsperrung -- Bezirk Nord
-  :updated: '2020-10-30T15:42:16.90897'
-  :start: '2020-11-22'
-  :end: '2020-11-22'
-12077:
-  :id: 12077
-  :title: Robert-Schuman-Brücke / Deckschichtsanierung -- LSBG
-  :updated: '2020-11-09T14:03:28.481392'
-  :start: '2020-10-06'
-  :end: '2020-12-23'
-13306:
-  :id: 13306
-  :title: Hein-Hoyer-Straße / Teilsperrung -- Bezirk Mitte
-  :updated: '2020-11-09T14:30:06.000381'
-  :start: '2020-11-11'
-  :end: '2021-10-01'
-11263:
-  :id: 11263
-  :title: Notfallsperrung Retheklappbrücke -- Hamburg Port Authority
-  :updated: '2020-10-21T15:09:22.950848'
-  :start: '2020-08-21'
-  :end: '2020-12-18'
-13526:
-  :id: 13526
-  :title: Feldstraße / Verkehrsbehinderung -- Bezirk Mitte
-  :updated: '2020-11-18T14:23:30.901673'
-  :start: '2020-11-22'
-  :end: '2020-11-22'
-13121:
-  :id: 13121
-  :title: Berner Allee / Aufbau Fahrgastunterstände -- Bezirk Wandsbek
-  :updated: '2020-11-04T11:30:37.435772'
-  :start: '2020-11-05'
-  :end: '2021-01-05'
-11555:
-  :id: 11555
-  :title: Grindelallee / Leitungsarbeiten -- Stromnetz
-  :updated: '2020-10-23T09:30:16.756856'
-  :start: '2020-09-01'
-  :end: '2021-03-31'
-100:
-  :id: 100
-  :title: Ehestorfer Heuweg / Grundinstandsetzung + Leitungsarbeiten -- LSBG
-  :updated: '2020-10-28T12:02:20.024497'
-  :link: https://lsbg.hamburg.de/ehestorfer-heuweg/12064608/ehestorfer-heuweg/
-  :start: '2019-04-04'
-  :end: '2020-11-30'
-295:
-  :id: 295
-  :title: Gehlengraben - Tangstedter Landstraße - Lademannbogen / Veloroute 14 --
-    LSBG
-  :updated: '2020-11-02T09:02:39.557887'
-  :start: '2020-03-30'
-  :end: '2021-08-01'
-12749:
-  :id: 12749
-  :title: Radwegesanierung Bremer Straße -- LSBG
-  :updated: '2020-10-22T08:05:02.81827'
-  :link: https://lsbg.hamburg.de/contentblob/14426248/d7e317db9725f44943ee5c20a53c624b/data/bremer-strasse-erneuerung-nebenflaechen-10-20-bis-21.pdf
-  :start: '2020-10-19'
-  :end: '2021-02-28'
-13397:
-  :id: 13397
-  :title: Billhorner Brückenstraße / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2020-11-13T14:04:22.755941'
-  :start: '2020-11-21'
-  :end: '2020-11-29'
-13530:
-  :id: 13530
-  :title: Bramfelder Straße / Bramfelder Chaussee / Deckschichtsanierung -- LSBG
-  :updated: '2020-11-19T07:34:13.027547'
-  :start: '2020-11-20'
-  :end: '2020-12-06'
-6956:
-  :id: 6956
-  :title: Försterweg/ Grundinstandsetzung -- Bezirk Eimsbüttel
-  :updated: '2021-03-11T10:41:54.191329'
-  :start: '2020-03-30'
-  :end: '2021-04-30'
-320:
-  :id: 320
-  :title: Stresemannallee/ Veloroutenausbau -- Bezirk Eimsbüttel
-  :updated: '2020-10-27T11:07:45.798604'
-  :link: https://www.hamburg.de/eimsbuettel/stresemannallee/
-  :start: '2019-08-05'
-  :end: '2020-12-20'
-9971:
-  :id: 9971
-  :title: Hirschgraben / Veloroute -- LSBG
-  :updated: '2020-12-18T16:04:39.178805'
-  :link: https://lsbg.hamburg.de/contentblob/13040166/94db97e9351fea38c4ded24082153c3f/data/veloroute-13-hirschgraben-abstimmungsunterlage-bericht-kenntnisnahmeverschickung).pdf
-  :start: '2020-08-03'
-  :end: '2021-02-14'
-10767:
-  :id: 10767
-  :title: Sander Damm bis Binnenfeldredder / Sanierung -- LSBG
-  :updated: '2020-11-06T10:18:08.107408'
-  :start: '2020-03-26'
-  :end: '2021-01-31'
-13532:
-  :id: 13532
-  :title: Saseler Chaussee -- LSBG
-  :updated: '2020-11-19T07:49:00.83347'
-  :start: '2020-11-02'
-  :end: '2021-06-30'
-8623:
-  :id: 8623
-  :title: Schlüterstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
-  :updated: '2020-11-11T11:12:21.164182'
-  :link: https://www.hamburg.de/eimsbuettel/schlueterstrasse/
-  :start: '2020-06-15'
-  :end: '2021-07-31'
-9604:
-  :id: 9604
-  :title: Niendorfer Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-03-11T15:27:32.036157'
-  :link: https://www.hamburg.de/eimsbuettel/niendorferstrasse/
-  :start: '2020-06-22'
-  :end: '2021-06-30'
-9954:
-  :id: 9954
-  :title: Maienweg/Alsterkrugchaussee -- Hamburg Wasser
-  :updated: '2021-03-12T06:55:26.779952'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-07-01'
-  :end: '2021-03-15'
-23:
-  :id: 23
-  :title: B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- LSBG
-  :updated: '2020-12-01T11:31:46.964903'
-  :start: '2019-04-01'
-  :end: '2021-06-28'
-69:
-  :id: 69
-  :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
-    Wasser
-  :updated: '2021-03-05T08:15:26.653783'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2017-04-10'
-  :end: '2021-04-15'
-99:
-  :id: 99
-  :title: Umgestaltung Kurt-A.-Körber-Chaussee -- Bezirk Bergedorf
-  :updated: '2020-11-13T12:27:38.506909'
-  :link: https://www.hamburg.de/planen-bauen-wohnen/13341442/umbau-kurt-a-koerber-chaussee/
-  :start: '2019-12-02'
-  :end: '2020-11-29'
-1826:
-  :id: 1826
-  :title: Weidenbaumsweg 9 -11/ Baustelleneinrichtung für Hochbaumaßnahme -- Bezirk
-    Bergedorf
-  :updated: '2020-11-19T12:44:27.246994'
-  :start: '2019-09-23'
-  :end: '2020-12-31'
-4245:
-  :id: 4245
-  :title: Barrierefreier Ausbau der Haltestelle Straßburger Straße (U-Bahn-Linie U1)
-    -- HOCHBAHN
-  :updated: '2020-11-18T09:45:29.535578'
-  :link: www.hochbahn.de
-  :start: '2019-07-22'
-  :end: '2020-11-30'
-9994:
-  :id: 9994
-  :title: Barrierefreier Ausbau der Haltestelle Mönckebergstraße (U-Bahn-Linie U3)
-    -- HOCHBAHN
-  :updated: '2021-02-22T16:03:50.484011'
-  :link: http://www.hochbahn.de/u3-innenstadt
-  :start: '2021-03-01'
-  :end: '2022-08-31'
-13468:
-  :id: 13468
-  :title: Lenzweg/ Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2020-11-17T10:56:44.119063'
-  :start: '2020-11-23'
-  :end: '2020-12-11'
-13375:
-  :id: 13375
-  :title: Andreas-Meyer-Straße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-12-02T14:01:44.503974'
-  :start: '2020-11-23'
-  :end: '2020-12-09'
-13513:
-  :id: 13513
-  :title: A 7 - AS HH-Volkspark bis AS HH-Heimfeld / Einrichten von Software und Bauphasenumstellung
-    -- LSBG
-  :updated: '2020-11-18T09:32:09.817212'
-  :start: '2020-11-28'
-  :end: '2020-11-29'
-13463:
-  :id: 13463
-  :title: Horster Damm 241-301 | Telekommunikationsarbeiten -- Bezirk Bergedorf
-  :updated: '2020-11-17T10:02:02.274969'
-  :start: '2020-11-30'
-  :end: '2021-02-28'
-13474:
-  :id: 13474
-  :title: Schumacherwerder / Vollsperrung -- Hamburg Port Authority
-  :updated: '2020-11-17T11:19:30.785099'
-  :start: '2020-12-01'
-  :end: '2021-01-31'
-13561:
-  :id: 13561
-  :title: A 7 - AS HH-Volkspark bis AS HH-Nordwest / Techniktest - Vollsperrung --
-    LSBG
-  :updated: '2020-11-20T10:38:23.114373'
-  :start: '2020-11-23'
-  :end: '2020-11-26'
-13479:
-  :id: 13479
-  :title: Müggenburger Straße / Peutestraße / Teilsperrung -- Hamburg Port Authority
-  :updated: '2020-11-17T12:45:32.883863'
-  :start: '2020-11-23'
-  :end: '2020-11-27'
-13095:
-  :id: 13095
-  :title: Andreas-Meyer-Straße (Ring 2) stadtauswärts / Fahrspursperrung -- Bezirk
-    Mitte
-  :updated: '2020-11-03T12:56:57.972599'
-  :start: '2020-11-23'
-  :end: '2020-11-27'
-12876:
-  :id: 12876
-  :title: Bredenbekstraße / Instandsetzung der Deckschicht -- Bezirk Wandsbek
-  :updated: '2020-11-18T09:30:18.458429'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14574766/bredenbekstrasse/
-  :start: '2020-11-23'
-  :end: '2020-11-28'
-13569:
-  :id: 13569
-  :title: Stüffelring - Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-11-25T07:27:48.231436'
-  :start: '2020-11-25'
-  :end: '2020-12-11'
-13359:
-  :id: 13359
-  :title: Kirchwerder Elbdeich 9 | Materialanlieferung - Vollsperrung -- Bezirk Bergedorf
-  :updated: '2020-11-12T09:20:46.628646'
-  :start: '2020-11-30'
-  :end: '2020-12-02'
-13585:
-  :id: 13585
-  :title: Billstraße / Fahrbahneinengung -- Bezirk Mitte
-  :updated: '2020-11-23T11:30:37.683009'
-  :start: '2020-11-23'
-  :end: '2020-12-18'
-13450:
-  :id: 13450
-  :title: Rektor-Ritter-Straße | Telekommunikationsarbeiten - Vollsperrung -- Bezirk
-    Bergedorf
-  :updated: '2020-11-17T08:20:38.305034'
-  :start: '2020-11-24'
-  :end: '2020-11-28'
-13608:
-  :id: 13608
-  :title: Kaiser-Wilhelm-Straße / halbseitige Sperrung -- Bezirk Mitte
-  :updated: '2020-11-24T10:08:15.042782'
-  :start: '2020-11-23'
-  :end: '2020-11-27'
-13604:
-  :id: 13604
-  :title: Friedrich-Ebert-Damm - Verlegung einer Trinkwasserleitung -- Bezirk Wandsbek
-  :updated: '2020-11-24T09:51:19.405938'
-  :start: '2020-11-25'
-  :end: '2020-12-11'
-13227:
-  :id: 13227
-  :title: Osdorfer Landstraße / Julius-Brecht Straße / Trinkwasser -- Hamburg Wasser
-  :updated: '2020-11-24T14:44:26.09265'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-09-21'
-  :end: '2020-11-27'
-13656:
-  :id: 13656
-  :title: Adolphsbrücke / Verkehrsbehinderung -- Bezirk Mitte
-  :updated: '2020-11-26T09:20:58.590447'
-  :start: '2020-11-21'
-  :end: '2020-12-11'
-13582:
-  :id: 13582
-  :title: Wandalenweg / Einbahnstraßenregelung -- Bezirk Mitte
-  :updated: '2020-11-23T10:46:20.107393'
-  :start: '2020-12-01'
-  :end: '2021-12-31'
-13601:
-  :id: 13601
-  :title: Wendenstraße - Betriebsfremde Umlegung 110 kV Leitung -- Stromnetz
-  :updated: '2020-11-24T11:00:12.754863'
-  :start: '2020-11-30'
-  :end: '2020-12-23'
-13471:
-  :id: 13471
-  :title: Detlev-Bremer-Straße / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-11-17T11:11:16.780881'
-  :start: '2020-12-02'
-  :end: '2020-12-02'
-7570:
-  :id: 7570
-  :title: Lombardsbrücke/Neuer Jungfernstieg -- Hamburg Wasser
-  :updated: '2020-11-26T10:20:36.818812'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-08-17'
-  :end: '2020-12-27'
-13730:
-  :id: 13730
-  :title: Vollsperrung Im Winkel -- Bezirk Nord
-  :updated: '2020-11-27T07:52:07.180212'
-  :start: '2020-12-01'
-  :end: '2020-12-02'
-13740:
-  :id: 13740
-  :title: Saseler Weg / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-11-27T11:21:49.929217'
-  :start: '2020-11-30'
-  :end: '2020-12-04'
-13697:
-  :id: 13697
-  :title: Sieker Landstraße / Erschließung Victoriapark -- LSBG
-  :updated: '2020-11-26T09:06:37.601011'
-  :start: '2020-08-01'
-  :end: '2021-07-16'
-13776:
-  :id: 13776
-  :title: Ifflandstraße / Vollsperrung -- Bezirk Nord
-  :updated: '2021-01-06T12:25:08.341282'
-  :start: '2021-01-11'
-  :end: '2021-01-29'
-13723:
-  :id: 13723
-  :title: Stader Straße / Bushaltestelle -- Bezirk Harburg
-  :updated: '2020-11-26T14:08:21.826125'
-  :start: '2020-12-07'
-  :end: '2020-12-11'
-13506:
-  :id: 13506
-  :title: Alter Zollweg / Bekassinenau (Süd) / Deckschichterneuerung -- Bezirk Wandsbek
-  :updated: '2020-11-25T09:41:48.886165'
-  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14666566/alter-zollweg-bekassinenau/
-  :start: '2020-12-03'
-  :end: '2020-12-18'
-13771:
-  :id: 13771
-  :title: Vierländer Damm / halbseitige Sperrung -- Bezirk Mitte
-  :updated: '2020-11-30T10:40:48.372665'
-  :start: '2020-12-09'
-  :end: '2021-03-08'
-13765:
-  :id: 13765
-  :title: Ernst-Bergeest-Weg / Baumpflegearbeiten -- Bezirk Harburg
-  :updated: '2020-11-30T09:09:36.479525'
-  :start: '2020-12-09'
-  :end: '2020-12-17'
-13795:
-  :id: 13795
-  :title: Millerntorplatz / Verkehrsbehinderung -- Bezirk Mitte
-  :updated: '2020-12-02T10:37:35.791363'
-  :start: '2020-12-03'
-  :end: '2020-12-04'
-13716:
-  :id: 13716
-  :title: Nagelsweg / Leitungsarbeiten -- Bezirk Mitte
-  :updated: '2021-02-17T12:52:02.99554'
-  :start: '2020-11-25'
-  :end: '2021-05-15'
-13825:
-  :id: 13825
-  :title: B 73 - Stader Straße / Instandsetzungsarbeiten inkl.tlw.  Vollsperrung --
-    LSBG
-  :updated: '2020-12-04T08:31:05.085045'
-  :start: '2020-12-04'
-  :end: '2020-12-10'
-13815:
-  :id: 13815
-  :title: Hafentor / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-03T10:23:46.060681'
-  :start: '2020-12-07'
-  :end: '2020-12-11'
-13838:
-  :id: 13838
-  :title: A 255 - Verbindungsast zur A 1 / Sondierungsarbeiten -- LSBG
-  :updated: '2020-12-04T08:54:30.308587'
-  :start: '2020-12-06'
-  :end: '2020-12-18'
-13833:
-  :id: 13833
-  :title: A 23 - AS HH-Eidelstedt bis AS Halstenbek-Krupunder / Instandsetzungsarbeiten
-    -- LSBG
-  :updated: '2020-12-04T08:44:46.595203'
-  :start: '2020-12-05'
-  :end: '2020-12-06'
-13392:
-  :id: 13392
-  :title: Nordkanalstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-11-13T09:44:19.826992'
-  :start: '2020-12-06'
-  :end: '2020-12-06'
-12712:
-  :id: 12712
-  :title: Landwehr / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-11-25T11:32:31.684093'
-  :start: '2020-12-06'
-  :end: '2020-12-06'
-13733:
-  :id: 13733
-  :title: Vollsperrung Mühlenkamp -- Bezirk Nord
-  :updated: '2020-11-27T07:57:58.444645'
-  :start: '2020-12-13'
-  :end: '2020-12-13'
-13844:
-  :id: 13844
-  :title: Papenstraße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-04T10:22:01.575502'
-  :start: '2020-11-30'
-  :end: '2020-12-11'
-13854:
-  :id: 13854
-  :title: Weidende / Neuordnung der Parkflächen und Instandsetzung der Fahrbahn --
-    Bezirk Wandsbek
-  :updated: '2020-12-07T10:36:29.167424'
-  :start: '2020-12-07'
-  :end: '2020-12-18'
-13876:
-  :id: 13876
-  :title: Brombeerweg / Asphaltierung -- Bezirk Nord
-  :updated: '2020-12-08T15:40:38.681078'
-  :start: '2020-12-10'
-  :end: '2020-12-18'
-13840:
-  :id: 13840
-  :title: Karolinenstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-12-04T09:50:15.645787'
-  :start: '2020-12-10'
-  :end: '2020-12-10'
-13800:
-  :id: 13800
-  :title: Rosenrotweg / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-02T14:07:36.915863'
-  :start: '2020-12-17'
-  :end: '2020-12-17'
-13882:
-  :id: 13882
-  :title: Sachsenstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-09T11:41:53.777162'
-  :start: '2020-12-11'
-  :end: '2020-12-14'
-13368:
-  :id: 13368
-  :title: Klostertor / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-10T11:12:01.164896'
-  :start: '2020-12-17'
-  :end: '2020-12-22'
-13691:
-  :id: 13691
-  :title: A 7 - Tunnel Stellingen / Vollsperrung -- LSBG
-  :updated: '2020-11-26T08:55:17.660001'
-  :start: '2020-12-18'
-  :end: '2020-12-21'
-13888:
-  :id: 13888
-  :title: Großmannstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-12-10T10:48:17.533146'
-  :start: '2021-01-01'
-  :end: '2021-02-28'
-13858:
-  :id: 13858
-  :title: Caffamacherreihe / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-07T11:03:56.699579'
-  :start: '2020-12-13'
-  :end: '2020-12-13'
-13908:
-  :id: 13908
-  :title: Holstenwall / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2020-12-11T10:01:29.712316'
-  :start: '2020-11-16'
-  :end: '2020-12-19'
-13896:
-  :id: 13896
-  :title: Börnestraße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-10T15:15:01.42036'
-  :start: '2020-12-15'
-  :end: '2020-12-15'
-13935:
-  :id: 13935
-  :title: Billhorner Brückenstraße / Abbieger gesperrt -- Bezirk Mitte
-  :updated: '2020-12-16T10:35:59.664371'
-  :start: '2021-01-09'
-  :end: '2021-01-23'
-13975:
-  :id: 13975
-  :title: Stemwarder Straße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-18T13:44:44.343354'
-  :start: '2020-12-21'
-  :end: '2020-12-21'
-13736:
-  :id: 13736
-  :title: Elbchaussee / Grundinstandsetzung -- LSBG
-  :updated: '2021-01-14T10:28:24.650495'
-  :start: '2021-01-11'
-  :end: '2024-03-31'
-14039:
-  :id: 14039
-  :title: A 25 - AD HH-Südwest / Brückenreparatur -- LSBG
-  :updated: '2020-12-22T08:03:09.987912'
-  :start: '2020-12-22'
-  :end: '2020-12-22'
-13995:
-  :id: 13995
-  :title: Tilsiter Straße / Veloroute 6 - vorbereitender Leitungsbau -- Bezirk Wandsbek
-  :updated: '2020-12-22T09:19:12.291548'
-  :link: www.stromnetz-hamburg.de
-  :start: '2021-01-04'
-  :end: '2021-05-07'
-14050:
-  :id: 14050
-  :title: Islandstraße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-22T13:49:23.72526'
-  :start: '2020-12-18'
-  :end: '2021-01-29'
-14018:
-  :id: 14018
-  :title: Klostertor / Vollsperrung -- Bezirk Mitte
-  :updated: '2020-12-21T12:59:38.553031'
-  :start: '2021-01-05'
-  :end: '2021-01-06'
-14067:
-  :id: 14067
-  :title: A 1  - AS HH-Stillhorn bis AD Norderelbe / Sondierungsarbeiten -- LSBG
-  :updated: '2020-12-28T12:21:49.142686'
-  :start: '2021-01-04'
-  :end: '2021-02-15'
-13652:
-  :id: 13652
-  :title: Steilshooper Straße / Vollsperrung für Fernwärmearbeiten -- Bezirk Nord
-  :updated: '2020-11-25T13:12:20.200847'
-  :start: '2021-01-11'
-  :end: '2021-03-06'
-13967:
-  :id: 13967
-  :title: Georg-Wilhelm-Straße / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2020-12-18T12:08:14.38343'
-  :start: '2021-01-25'
-  :end: '2021-05-21'
-13964:
-  :id: 13964
-  :title: Finkenwerder Norderdeich / halbseitige Sperrung -- Bezirk Mitte
-  :updated: '2020-12-18T11:03:10.482707'
-  :start: '2021-01-25'
-  :end: '2021-02-05'
-14056:
-  :id: 14056
-  :title: Poppenbütteler Weg / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-23T11:18:51.215178'
-  :start: '2021-01-24'
-  :end: '2021-01-31'
+  :velo: false
 14079:
   :id: 14079
   :title: Seevestraße / Ausbau Veloroute 11 / Vollsperrung -- Bezirk Harburg
   :updated: '2021-01-04T11:39:32.853468'
   :start: '2021-01-04'
   :end: '2021-06-13'
-14084:
-  :id: 14084
-  :title: Gleisstieg / Ausbau Veloroute 10 / Vollsperrung Geh- und Radweg -- Bezirk
-    Harburg
-  :updated: '2021-01-04T11:52:18.774209'
-  :start: '2021-01-04'
-  :end: '2021-06-30'
-14022:
-  :id: 14022
-  :title: Josephstraße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2020-12-21T14:25:48.137043'
-  :start: '2021-01-08'
-  :end: '2021-01-16'
-14036:
-  :id: 14036
-  :title: Wiesnerring 4a | Telekommunikationsarbeiten - Vollsperrung -- Bezirk Bergedorf
-  :updated: '2020-12-22T08:00:52.910875'
-  :start: '2021-01-11'
-  :end: '2021-01-12'
-14075:
-  :id: 14075
-  :title: Erdkampsweg / Abrissarbeiten -- Bezirk Nord
-  :updated: '2021-01-04T10:09:12.803468'
-  :start: '2021-01-06'
-  :end: '2021-04-30'
-13943:
-  :id: 13943
-  :title: Berner Chaussee / Demontage Baukran -- Bezirk Wandsbek
-  :updated: '2020-12-17T10:15:08.542447'
-  :start: '2021-01-08'
-  :end: '2021-01-08'
-14122:
-  :id: 14122
-  :title: Hohe-Schaar-Straße / Sondierungsbohrungen für den Neubau der A 26 OST --
-    LSBG
-  :updated: '2021-01-07T11:43:23.842955'
-  :start: '2021-01-11'
-  :end: '2021-01-15'
-14107:
-  :id: 14107
-  :title: Harvestehuder Weg/ Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-01-06T13:25:35.127548'
-  :start: '2021-01-11'
-  :end: '2021-01-22'
-14111:
-  :id: 14111
-  :title: Rahlstedter Bahnhofstraße / Leitungsarbeiten -- Bezirk Wandsbek
-  :updated: '2021-03-04T14:42:00.241818'
-  :start: '2021-01-11'
-  :end: '2021-04-01'
-13925:
-  :id: 13925
-  :title: Curslacker Deich 123, Baumfällarbeiten - Vollsperrung -- Bezirk Bergedorf
-  :updated: '2020-12-15T09:40:01.628787'
-  :start: '2021-01-16'
-  :end: '2021-01-16'
-14208:
-  :id: 14208
-  :title: Am Knill / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2021-01-14T15:07:03.265076'
-  :start: '2021-01-16'
-  :end: '2021-01-17'
-14144:
-  :id: 14144
-  :title: Überseeallee / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-01-11T11:18:25.228561'
-  :start: '2021-01-14'
-  :end: '2021-01-17'
-14148:
-  :id: 14148
-  :title: Süderstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2021-02-18T09:18:31.596079'
-  :start: '2021-01-04'
-  :end: '2021-03-19'
-14151:
-  :id: 14151
-  :title: Legienstraße / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2021-01-12T09:48:26.228908'
-  :start: '2021-01-12'
-  :end: '2021-01-29'
-14199:
-  :id: 14199
-  :title: Chrysanderstraße 46-48 | Hochbau -- Bezirk Bergedorf
-  :updated: '2021-01-14T07:36:15.826078'
-  :start: '2021-01-20'
-  :end: '2022-06-30'
-14214:
-  :id: 14214
-  :title: Hopfensack / Verkehrsbehinderungen -- Bezirk Mitte
-  :updated: '2021-01-15T09:39:35.865065'
-  :start: '2021-02-01'
-  :end: '2023-05-31'
+  :velo: true
+12308:
+  :id: 12308
+  :title: Kleekamp / Veloroute -- Bezirk Nord
+  :updated: '2021-02-01T12:46:18.898035'
+  :start: '2020-09-28'
+  :end: '2021-09-22'
+  :velo: true
 14169:
   :id: 14169
   :title: Denickestraße / Ausbau Veloroute 11 / Vollsperrung -- Bezirk Harburg
   :updated: '2021-01-13T15:41:06.77727'
   :start: '2021-02-01'
   :end: '2021-03-31'
-14119:
-  :id: 14119
-  :title: Vollsperrung Dorotheenstraße -- Bezirk Nord
-  :updated: '2021-01-07T10:30:39.60357'
-  :start: '2021-01-26'
-  :end: '2021-01-27'
-14232:
-  :id: 14232
-  :title: Weidenbaumsweg, Baustelleneinrichtungsfläche -- Bezirk Bergedorf
-  :updated: '2021-01-15T14:20:15.903649'
-  :start: '2021-02-01'
-  :end: '2022-12-05'
-14270:
-  :id: 14270
-  :title: Bramfelder Chaussee / Trinkwasserleitung -- Hamburg Wasser
-  :updated: '2021-02-05T10:24:23.081746'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-01-11'
-  :end: '2021-04-15'
-14273:
-  :id: 14273
-  :title: Bramfelder Chaussee, Haldesdorfer Straße und Bauernrosenweg / Trinkwasserleitung
-    -- Hamburg Wasser
-  :updated: '2021-01-22T11:46:53.111757'
-  :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-01-11'
-  :end: '2021-03-01'
-14249:
-  :id: 14249
-  :title: Bahngärten / Sielbauarbeiten -- Bezirk Wandsbek
-  :updated: '2021-01-20T14:37:53.158745'
-  :start: '2021-01-22'
-  :end: '2021-01-26'
-14280:
-  :id: 14280
-  :title: Maria-Louisen-Straße / Arbeiten am Radweg -- Bezirk Nord
-  :updated: '2021-01-22T13:33:19.747712'
-  :start: '2021-01-26'
-  :end: '2021-01-29'
-14260:
-  :id: 14260
-  :title: Allermöher Deich 33 | Herstellung einer Baustellenzufahrt -- Bezirk Bergedorf
-  :updated: '2021-01-22T09:08:08.541134'
-  :start: '2021-01-25'
-  :end: '2021-02-26'
-14217:
-  :id: 14217
-  :title: Kaiser-Wilhelm-Straße / Verkehrsbehinderung -- Bezirk Mitte
-  :updated: '2021-01-15T10:08:24.81258'
-  :start: '2021-01-26'
-  :end: '2021-01-26'
-14325:
-  :id: 14325
-  :title: Robert-Schuman-Brücke / Rad- und Fußweg-Sanierung -- LSBG
-  :updated: '2021-01-27T14:38:13.231789'
-  :start: '2020-10-06'
-  :end: '2021-04-30'
-14302:
-  :id: 14302
-  :title: Kreuzungen Wandsbeker Maktstraße / Robert-S.-Brücke / Schloßstraße / Rohrverlegung
-    -- LSBG
-  :updated: '2021-01-26T15:06:32.643616'
-  :start: '2021-01-30'
-  :end: '2021-02-01'
-14337:
-  :id: 14337
-  :title: Sander Damm und Lohbrügger Markt / Grundinstandsetzung -- LSBG
-  :updated: '2021-02-05T17:12:21.102648'
-  :link: https://lsbg.hamburg.de/contentblob/14880564/ed9d1ea0d62c0c39ce534689cc4026ac/data/sander-damm-lohbruegger-markt-verkehrsfuehrung-und-umleitungen.pdf
-  :start: '2021-01-18'
-  :end: '2021-12-31'
-14322:
-  :id: 14322
-  :title: Spaldingstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2021-02-17T11:27:38.728737'
-  :start: '2021-02-03'
-  :end: '2021-02-27'
-14340:
-  :id: 14340
-  :title: Elfenwiese / Straßenbauarbeiten / Vollsperrung -- Bezirk Harburg
-  :updated: '2021-01-28T15:45:56.781676'
-  :start: '2021-02-01'
-  :end: '2021-03-31'
-14312:
-  :id: 14312
-  :title: Eilenau / halbseitige Straßensperrung -- Bezirk Wandsbek
-  :updated: '2021-01-26T16:12:27.709327'
-  :start: '2021-02-01'
-  :end: '2021-02-10'
-14308:
-  :id: 14308
-  :title: Bramfelder Chaussee 382 -- Gasnetz
-  :updated: '2021-01-26T14:16:19.245009'
-  :start: '2021-02-01'
-  :end: '2021-02-26'
-14373:
-  :id: 14373
-  :title: B 75 - AS Hamburg-Georgswerder / LWL-Kabelverlegung -- LSBG
-  :updated: '2021-02-01T09:46:18.555613'
-  :start: '2021-02-01'
-  :end: '2021-02-12'
-14434:
-  :id: 14434
-  :title: Rennbahnstraße / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2021-02-08T09:40:25.100053'
-  :start: '2021-02-09'
-  :end: '2021-02-28'
-14442:
-  :id: 14442
-  :title: Kurt-Schumacher-Allee / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2021-02-08T13:13:46.47917'
-  :start: '2021-02-09'
-  :end: '2021-02-11'
-14449:
-  :id: 14449
-  :title: Schultzweg / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-19T08:23:06.389909'
-  :start: '2021-03-15'
-  :end: '2021-03-19'
-14462:
-  :id: 14462
-  :title: Steinstraße / Johanniswall - Ausbau Haltestelle Steinstraße -- LSBG
-  :updated: '2021-02-09T08:46:51.361756'
-  :start: '2021-01-22'
-  :end: '2021-03-02'
-14470:
-  :id: 14470
-  :title: Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
-    Ring 2 bis Friedrich-Ebert-Damm -- Bezirk Wandsbek
-  :updated: '2021-02-09T12:27:44.786322'
-  :start: '2021-02-08'
-  :end: '2021-03-26'
-14431:
-  :id: 14431
-  :title: Loogeplatz / Baustelleneinrichtung -- Bezirk Nord
-  :updated: '2021-02-08T09:26:14.196005'
-  :start: '2020-11-30'
-  :end: '2021-04-20'
-14357:
-  :id: 14357
-  :title: Pillauer Straße / Fahrbahneinschränkung -- Bezirk Wandsbek
-  :updated: '2021-01-29T11:07:08.667483'
-  :start: '2021-02-01'
-  :end: '2021-02-12'
-14360:
-  :id: 14360
-  :title: Bramfelder Straße 160 / Abwasseranschlüsse -- Hamburg Wasser
-  :updated: '2021-02-01T09:25:57.034514'
-  :start: '2021-02-01'
-  :end: '2021-02-19'
-14396:
-  :id: 14396
-  :title: Kornträgergang / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-03T10:00:56.016789'
-  :start: '2021-02-11'
-  :end: '2021-12-31'
-14399:
-  :id: 14399
-  :title: Bäckerbreitergang / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-03T10:06:39.939181'
-  :start: '2021-02-11'
-  :end: '2021-12-31'
-14403:
-  :id: 14403
-  :title: Neustädter Straße / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-03T10:18:06.923422'
-  :start: '2021-02-11'
-  :end: '2021-12-31'
-14393:
-  :id: 14393
-  :title: Kaiser-Wilhelm-Straße / Sperrung stadtauswärts -- Bezirk Mitte
-  :updated: '2021-02-10T10:29:49.785137'
-  :start: '2021-02-11'
-  :end: '2021-12-31'
-14499:
-  :id: 14499
-  :title: Vogelhüttendeich / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-03-02T12:53:27.251677'
-  :start: '2021-03-03'
-  :end: '2021-03-31'
+  :velo: true
+8193:
+  :id: 8193
+  :title: A 7 / Neubau Tunnel Altona -- LSBG
+  :updated: '2021-02-22T07:47:37.498308'
+  :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
+  :start: '2020-03-02'
+  :end: '2028-12-31'
+  :velo: false
 14495:
   :id: 14495
   :title: Umbau Kreuzung Theodor-Heuss-Platz / Dammtordamm -- LSBG
   :updated: '2021-02-11T07:48:27.560033'
   :start: '2021-03-14'
   :end: '2021-08-01'
-14549:
-  :id: 14549
-  :title: Großlohering / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2021-02-11T16:56:10.978649'
-  :start: '2021-02-09'
-  :end: '2021-02-15'
-14536:
-  :id: 14536
-  :title: Horster Damm 29-89 | Netzerweiterungsarbeiten -- Bezirk Bergedorf
-  :updated: '2021-02-11T11:01:32.08319'
-  :start: '2021-02-15'
-  :end: '2021-06-30'
-14511:
-  :id: 14511
-  :title: Große Freiheit / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-10T12:09:12.762214'
-  :start: '2021-02-22'
-  :end: '2021-02-24'
-14552:
-  :id: 14552
-  :title: Hindenburgstraße 66-104 / Leitungsarbeiten -- Gasnetz
-  :updated: '2021-02-15T10:05:55.611588'
-  :start: '2021-03-08'
-  :end: '2021-10-08'
-14533:
-  :id: 14533
-  :title: Horster Damm 269-301 | Netzerweiterungsarbeiten -- Bezirk Bergedorf
-  :updated: '2021-02-11T10:56:44.033298'
-  :start: '2021-03-01'
-  :end: '2021-05-31'
-14569:
-  :id: 14569
-  :title: Blohmstraße / Ausbau Veloroute 10 / Leitungsarbeiten -- Bezirk Harburg
-  :updated: '2021-02-15T14:30:34.753489'
-  :start: '2021-02-15'
-  :end: '2021-09-30'
-14446:
-  :id: 14446
-  :title: Ferdinandstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-08T13:23:59.516706'
-  :start: '2021-02-23'
-  :end: '2021-02-23'
-14452:
-  :id: 14452
-  :title: Ferdinandstor / Fahrspursperrung -- Bezirk Mitte
-  :updated: '2021-02-16T11:43:16.735376'
-  :start: '2021-02-22'
-  :end: '2021-02-26'
-14593:
-  :id: 14593
-  :title: A 1 - AS HH-Moorfleet bis AD Norderelbe / Sondierungsarbeiten -- LSBG
-  :updated: '2021-02-19T07:41:14.959653'
-  :start: '2021-02-19'
-  :end: '2021-03-15'
-14543:
-  :id: 14543
-  :title: Retheklappbrücke / Vollsperrung -- Hamburg Port Authority
-  :updated: '2021-02-25T13:49:12.640282'
-  :start: '2021-02-26'
-  :end: '2021-03-04'
-14582:
-  :id: 14582
-  :title: Müggenkampstraße / Vollsperrung -- Bezirk Eimsbüttel
-  :updated: '2021-02-17T13:49:26.729503'
-  :start: '2021-02-22'
-  :end: '2021-02-23'
-14601:
-  :id: 14601
-  :title: Hammerbrookstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-02-19T08:59:06.532939'
-  :start: '2021-02-18'
-  :end: '2021-02-26'
-14635:
-  :id: 14635
-  :title: A 7 - AS HH-Volkspark und der AS HH-Eidelstedt / Vollsperrung -- LSBG
-  :updated: '2021-02-22T10:01:59.53525'
-  :start: '2021-02-26'
-  :end: '2021-03-01'
-14625:
-  :id: 14625
-  :title: B 5 - AS HH-Mümmelmannsberg bis AS HH-Billstedt-Mitte / Reparatur von Asphaltschäden
-    -- LSBG
-  :updated: '2021-02-22T08:07:58.715212'
-  :start: '2021-02-23'
-  :end: '2021-02-23'
-14631:
-  :id: 14631
-  :title: Eppendorfer Marktplatz / Leitungsarbeiten -- Stromnetz
-  :updated: '2021-02-23T07:59:20.146638'
-  :start: '2021-03-01'
-  :end: '2022-01-28'
+  :velo: false
 14657:
   :id: 14657
   :title: Verlagerung der Busse von der Mönckebergstraße in die Steinstraße -- HOCHBAHN
@@ -1695,6 +101,37 @@
   :link: https://www.hochbahn.de/hochbahn/hamburg/de/Home/Einsteigen/Fahrplan_und_Fahrplanaenderungen/Stoerungsticker/u3_innenstadt_verlagerung_moenckeberg_in_steinstrasse
   :start: '2021-03-01'
   :end: '2021-08-31'
+  :velo: false
+9958:
+  :id: 9958
+  :title: Osdorfer Weg / Leitungsbauarbeiten -- Hamburg Wasser
+  :updated: '2021-03-12T11:43:21.603843'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-06-29'
+  :end: '2021-04-30'
+  :velo: false
+11939:
+  :id: 11939
+  :title: Vollsperrung Scheel-Plessen-Straße -- Bezirk Altona
+  :updated: '2020-11-26T14:30:50.500452'
+  :start: '2020-09-23'
+  :end: '2021-06-30'
+  :velo: false
+9261:
+  :id: 9261
+  :title: Holsteiner Chaussee / Trinkwasseranschlüsse -- Hamburg Wasser
+  :updated: '2021-02-05T10:35:22.576554'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-10-02'
+  :end: '2022-05-08'
+  :velo: false
+12285:
+  :id: 12285
+  :title: Jungfernstieg / Erste Schritte zur weitgehenden Autofreiheit -- Bezirk Mitte
+  :updated: '2020-10-06T11:26:58.065412'
+  :start: '2020-10-05'
+  :end: '2022-04-30'
+  :velo: false
 14688:
   :id: 14688
   :title: Umbau Esplanade und Umbau Knotenpunkt Stephansplatz/ Gorch-Fock-Wall/ Dammtorstraße
@@ -1703,67 +140,97 @@
   :link: https://lsbg.hamburg.de/esplanade/13287196/umbau-esplanade/
   :start: '2021-03-01'
   :end: '2021-10-25'
-14649:
-  :id: 14649
-  :title: Sartoriusstraße/ Vollsperrung -- Bezirk Eimsbüttel
-  :updated: '2021-02-22T14:49:24.312267'
-  :start: '2021-03-05'
-  :end: '2021-03-05'
+  :velo: false
 14696:
   :id: 14696
   :title: Jungiusstraße / Caffamacherreihe - Grundinstandsetzung -- LSBG
   :updated: '2021-03-02T07:12:49.285455'
   :start: '2021-03-01'
   :end: '2021-03-18'
-14734:
-  :id: 14734
-  :title: Siemersplatz/ Notmaßnahme -- Bezirk Eimsbüttel
-  :updated: '2021-03-02T13:57:53.235284'
-  :start: '2021-03-02'
-  :end: '2021-03-05'
-14737:
-  :id: 14737
-  :title: Rahlau / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2021-03-03T09:47:25.062457'
+  :velo: false
+8623:
+  :id: 8623
+  :title: Schlüterstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
+  :updated: '2020-11-11T11:12:21.164182'
+  :link: https://www.hamburg.de/eimsbuettel/schlueterstrasse/
+  :start: '2020-06-15'
+  :end: '2021-07-31'
+  :velo: true
+13141:
+  :id: 13141
+  :title: Uppenhof / Umbau Knotenpunkt, Veloroute 6 -- Bezirk Wandsbek
+  :updated: '2021-03-08T16:43:39.130962'
+  :start: '2020-11-16'
+  :end: '2021-03-19'
+  :velo: true
+12470:
+  :id: 12470
+  :title: Bürgerweide / Neubau der Eisenbahnüberführung -- LSBG
+  :updated: '2020-10-15T11:55:46.54163'
+  :start: '2019-08-01'
+  :end: '2022-09-30'
+  :velo: false
+8538:
+  :id: 8538
+  :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
+  :updated: '2021-03-12T06:15:31.935096'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-07-20'
+  :end: '2021-03-30'
+  :velo: false
+7145:
+  :id: 7145
+  :title: Neubau U4 Horner Geest -- HOCHBAHN
+  :updated: '2020-12-04T17:03:06.334802'
+  :link: https://www.schneller-durch-hamburg.de/u4-horner-geest
+  :start: '2020-04-01'
+  :end: '2022-07-31'
+  :velo: false
+7919:
+  :id: 7919
+  :title: Hindenburgstraße / Sielbauarbeiten -- Hamburg Wasser
+  :updated: '2021-02-11T13:24:35.730705'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-06-25'
+  :end: '2021-09-30'
+  :velo: false
+12316:
+  :id: 12316
+  :title: Fibigerstraße / Veloroute -- Bezirk Nord
+  :updated: '2020-10-06T12:44:04.892978'
+  :start: '2020-10-12'
+  :end: '2021-06-23'
+  :velo: true
+14232:
+  :id: 14232
+  :title: Weidenbaumsweg, Baustelleneinrichtungsfläche -- Bezirk Bergedorf
+  :updated: '2021-01-15T14:20:15.903649'
+  :start: '2021-02-01'
+  :end: '2022-12-05'
+  :velo: false
+10510:
+  :id: 10510
+  :title: Schöne Aussicht / Fährhausstraße / Alsterfahrradachse -- LSBG
+  :updated: '2020-09-09T09:24:02.869154'
+  :link: http://lsbg.hamburg.de/anliegerinformationen/
+  :start: '2020-08-17'
+  :end: '2021-10-04'
+  :velo: false
+14895:
+  :id: 14895
+  :title: A 1 - AS HH-Billstedt Richtung Bremen / Umsetzung der mobilen Schutzwand
+    -- LSBG
+  :updated: '2021-03-15T09:45:41.68144'
+  :start: '2021-03-17'
+  :end: '2021-03-23'
+  :velo: false
+14552:
+  :id: 14552
+  :title: Hindenburgstraße 66-104 / Leitungsarbeiten -- Gasnetz
+  :updated: '2021-02-15T10:05:55.611588'
   :start: '2021-03-08'
-  :end: '2021-03-26'
-14670:
-  :id: 14670
-  :title: Retheklappbrücke / Vollsperrung -- Hamburg Port Authority
-  :updated: '2021-02-24T07:18:51.360439'
-  :start: '2021-03-04'
-  :end: '2021-03-04'
-14749:
-  :id: 14749
-  :title: Grunewaldstraße / Vollsperrung -- Bezirk Wandsbek
-  :updated: '2021-03-08T15:55:05.434068'
-  :start: '2021-02-26'
-  :end: '2021-03-11'
-14755:
-  :id: 14755
-  :title: Koppelstraße/ Wiederherstellung der Nebenflächen -- Bezirk Eimsbüttel
-  :updated: '2021-03-03T15:57:23.255537'
-  :start: '2021-03-03'
-  :end: '2021-03-17'
-14652:
-  :id: 14652
-  :title: Hoheluftchaussee/ Kranarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-02-22T15:06:50.043293'
-  :start: '2021-03-11'
-  :end: '2021-03-11'
-14752:
-  :id: 14752
-  :title: Heckscherstraße/ Kranarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-03-03T15:11:08.798541'
-  :start: '2021-03-09'
-  :end: '2021-03-11'
-14766:
-  :id: 14766
-  :title: Holsteiner Chaussee / Grundinstandsetzung -- LSBG
-  :updated: '2021-03-05T06:31:47.429406'
-  :link: http://lsbg.hamburg.de/anliegerinformationen
-  :start: '2021-03-22'
-  :end: '2021-05-16'
+  :end: '2021-10-08'
+  :velo: false
 14698:
   :id: 14698
   :title: Berner Allee Ost / Deckschichterneuerung unter Vollsperrung -- Bezirk Wandsbek
@@ -1771,49 +238,611 @@
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2021-03-15'
   :end: '2021-03-19'
-14804:
-  :id: 14804
-  :title: Vollsperrung Knoten Sportallee/Obenhauptstraße -- Bezirk Nord
-  :updated: '2021-03-08T09:09:35.294747'
-  :start: '2021-03-13'
-  :end: '2021-03-28'
+  :velo: false
 14828:
   :id: 14828
   :title: Pinkertweg / Fahrspursperrung -- Bezirk Mitte
   :updated: '2021-03-09T13:00:50.315451'
   :start: '2021-03-17'
   :end: '2021-04-16'
+  :velo: false
 14820:
   :id: 14820
   :title: Hochallee/ Kranarbeiten -- Bezirk Eimsbüttel
   :updated: '2021-03-09T11:47:13.408875'
   :start: '2021-03-16'
   :end: '2021-03-17'
-14612:
-  :id: 14612
-  :title: A 7 -  AS HH-Waltershof bis AS HH-Volkspark / Vollsperrung -- LSBG
-  :updated: '2021-02-22T07:55:39.86669'
-  :start: '2021-03-18'
-  :end: '2021-03-22'
-14619:
-  :id: 14619
-  :title: Behringstraße, Osdorfer Weg und Bahrenfelder Chaussee / Abbrucharbeiten
-    -- LSBG
-  :updated: '2021-02-22T07:59:32.508686'
-  :start: '2021-03-18'
-  :end: '2021-03-22'
-14850:
-  :id: 14850
-  :title: A 7 / Brückenabriss / Vollsperrung -- LSBG
-  :updated: '2021-03-10T10:56:19.741527'
-  :start: '2021-03-18'
-  :end: '2021-03-22'
-14824:
-  :id: 14824
-  :title: Lerchenstraße / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-03-09T12:19:13.105454'
-  :start: '2021-03-19'
+  :velo: false
+11555:
+  :id: 11555
+  :title: Grindelallee / Leitungsarbeiten -- Stromnetz
+  :updated: '2020-10-23T09:30:16.756856'
+  :start: '2020-09-01'
+  :end: '2021-03-31'
+  :velo: false
+14403:
+  :id: 14403
+  :title: Neustädter Straße / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-02-03T10:18:06.923422'
+  :start: '2021-02-11'
+  :end: '2021-12-31'
+  :velo: false
+295:
+  :id: 295
+  :title: Gehlengraben - Tangstedter Landstraße - Lademannbogen / Veloroute 14 --
+    LSBG
+  :updated: '2020-11-02T09:02:39.557887'
+  :start: '2020-03-30'
+  :end: '2021-08-01'
+  :velo: true
+13306:
+  :id: 13306
+  :title: Hein-Hoyer-Straße / Teilsperrung -- Bezirk Mitte
+  :updated: '2020-11-09T14:30:06.000381'
+  :start: '2020-11-11'
+  :end: '2021-10-01'
+  :velo: false
+9981:
+  :id: 9981
+  :title: Sievekingdamm / Pop-up-Fahrradstreifen -- Bezirk Mitte
+  :updated: '2020-11-26T14:21:36.996732'
+  :start: '2020-07-07'
+  :end: '2021-08-31'
+  :velo: false
+14199:
+  :id: 14199
+  :title: Chrysanderstraße 46-48 | Hochbau -- Bezirk Bergedorf
+  :updated: '2021-01-14T07:36:15.826078'
+  :start: '2021-01-20'
+  :end: '2022-06-30'
+  :velo: false
+8311:
+  :id: 8311
+  :title: Berner Heerweg Kreuzung Neusurenland / Veloroute 6 -- Bezirk Wandsbek
+  :updated: '2021-03-16T14:23:05.29985'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
+  :start: '2020-06-22'
+  :end: '2021-04-30'
+  :velo: true
+9608:
+  :id: 9608
+  :title: Wördemanns Weg + Gazellenkamp/ Veloroutenausbau 2 + Leitungsarbeiten --
+    Bezirk Eimsbüttel
+  :updated: '2021-03-15T09:37:21.497174'
+  :link: https://www.hamburg.de/eimsbuettel/woerdemannsweg/
+  :start: '2020-06-24'
+  :end: '2022-05-31'
+  :velo: true
+10817:
+  :id: 10817
+  :title: S-Bahnstation Ottensen / Neubau der DB AG -- Bezirk Altona
+  :updated: '2020-08-14T11:16:00.033005'
+  :start: '2020-08-17'
+  :end: '2021-12-31'
+  :velo: false
+13967:
+  :id: 13967
+  :title: Georg-Wilhelm-Straße / Verkehrsbehinderungen -- Bezirk Mitte
+  :updated: '2020-12-18T12:08:14.38343'
+  :start: '2021-01-25'
+  :end: '2021-05-21'
+  :velo: false
+9604:
+  :id: 9604
+  :title: Niendorfer Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
+  :updated: '2021-03-11T15:27:32.036157'
+  :link: https://www.hamburg.de/eimsbuettel/niendorferstrasse/
+  :start: '2020-06-22'
+  :end: '2021-06-30'
+  :velo: true
+13289:
+  :id: 13289
+  :title: Hummelsbütteler Landstraße / Baustelleneinrichtung -- Bezirk Nord
+  :updated: '2020-11-09T09:51:40.920359'
+  :start: '2020-11-16'
+  :end: '2021-12-22'
+  :velo: false
+7104:
+  :id: 7104
+  :title: Kreisverkehrbau /  Gr. Bergstr. / Virchowstraße -- Bezirk Altona
+  :updated: '2020-03-30T09:54:03.021734'
+  :start: '2020-03-30'
+  :end: '2021-03-31'
+  :velo: false
+14449:
+  :id: 14449
+  :title: Schultzweg / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-02-19T08:23:06.389909'
+  :start: '2021-03-15'
   :end: '2021-03-19'
+  :velo: false
+10836:
+  :id: 10836
+  :title: Gaußstraße - Bahrenfelder Straße - Schützenstraße / Busbeschleunigung --
+    LSBG
+  :updated: '2020-12-16T17:46:14.188851'
+  :link: http://www.via-bus.de/metrobus-linie-2/
+  :start: '2020-08-17'
+  :end: '2021-08-30'
+  :velo: false
+14325:
+  :id: 14325
+  :title: Robert-Schuman-Brücke / Rad- und Fußweg-Sanierung -- LSBG
+  :updated: '2021-01-27T14:38:13.231789'
+  :start: '2020-10-06'
+  :end: '2021-04-30'
+  :velo: false
+14536:
+  :id: 14536
+  :title: Horster Damm 29-89 | Netzerweiterungsarbeiten -- Bezirk Bergedorf
+  :updated: '2021-02-11T11:01:32.08319'
+  :start: '2021-02-15'
+  :end: '2021-06-30'
+  :velo: false
+14499:
+  :id: 14499
+  :title: Vogelhüttendeich / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-03-02T12:53:27.251677'
+  :start: '2021-03-03'
+  :end: '2021-03-31'
+  :velo: false
+9662:
+  :id: 9662
+  :title: Bleichertwiete, Umbau Straßenquerschnitt in Vollsperrung -- Bezirk Bergedorf
+  :updated: '2021-03-04T10:02:43.271471'
+  :start: '2020-09-14'
+  :end: '2021-04-02'
+  :velo: false
+566:
+  :id: 566
+  :title: Schulterblatt 37-39 / Neubaumaßnahme -- Bezirk Altona
+  :updated: '2020-02-17T15:33:56.22739'
+  :start: '2019-06-24'
+  :end: '2021-03-31'
+  :velo: false
+13736:
+  :id: 13736
+  :title: Elbchaussee / Grundinstandsetzung -- LSBG
+  :updated: '2021-01-14T10:28:24.650495'
+  :start: '2021-01-11'
+  :end: '2024-03-31'
+  :velo: false
+12485:
+  :id: 12485
+  :title: Umbau Harkortstraße Nord -- LSBG
+  :updated: '2020-10-13T07:32:22.105213'
+  :link: https://lsbg.hamburg.de/contentblob/13101578/2c2a9a48fec1516b7fec2a201531f67e/data/harkortstrasse-abgestimmte-planung-plan.pdf
+  :start: '2020-09-21'
+  :end: '2021-04-30'
+  :velo: false
+13532:
+  :id: 13532
+  :title: Saseler Chaussee -- LSBG
+  :updated: '2020-11-19T07:49:00.83347'
+  :start: '2020-11-02'
+  :end: '2021-06-30'
+  :velo: false
+10764:
+  :id: 10764
+  :title: Volksdorfer Damm / Sielbauarbeiten -- Hamburg Wasser
+  :updated: '2021-03-15T13:11:38.437256'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-08-17'
+  :end: '2021-03-26'
+  :velo: false
+14399:
+  :id: 14399
+  :title: Bäckerbreitergang / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-02-03T10:06:39.939181'
+  :start: '2021-02-11'
+  :end: '2021-12-31'
+  :velo: false
+65:
+  :id: 65
+  :title: Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- Hamburg
+    Wasser
+  :updated: '2021-03-12T06:13:41.900968'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2017-09-25'
+  :end: '2021-11-30'
+  :velo: false
+85:
+  :id: 85
+  :title: Alter Teichweg / Grundinstandsetzung -- Bezirk Nord
+  :updated: '2020-04-02T09:02:09.206213'
+  :start: '2019-09-02'
+  :end: '2021-10-29'
+  :velo: false
+10026:
+  :id: 10026
+  :title: Heegbarg / Ertüchtigung Veloroute 5 -- Bezirk Wandsbek
+  :updated: '2021-03-02T09:00:31.479584'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
+  :start: '2020-07-20'
+  :end: '2021-03-19'
+  :velo: true
+7512:
+  :id: 7512
+  :title: Bergedorfer Straße, Baustelleneinrichtungsfläche -- Bezirk Bergedorf
+  :updated: '2020-04-16T14:37:38.187466'
+  :start: '2020-04-20'
+  :end: '2021-10-14'
+  :velo: false
+13582:
+  :id: 13582
+  :title: Wandalenweg / Einbahnstraßenregelung -- Bezirk Mitte
+  :updated: '2020-11-23T10:46:20.107393'
+  :start: '2020-12-01'
+  :end: '2021-12-31'
+  :velo: false
+14804:
+  :id: 14804
+  :title: Vollsperrung Knoten Sportallee/Obenhauptstraße -- Bezirk Nord
+  :updated: '2021-03-08T09:09:35.294747'
+  :start: '2021-03-13'
+  :end: '2021-03-28'
+  :velo: false
+14148:
+  :id: 14148
+  :title: Süderstraße / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2021-02-18T09:18:31.596079'
+  :start: '2021-01-04'
+  :end: '2021-03-19'
+  :velo: false
+14569:
+  :id: 14569
+  :title: Blohmstraße / Ausbau Veloroute 10 / Leitungsarbeiten -- Bezirk Harburg
+  :updated: '2021-02-15T14:30:34.753489'
+  :start: '2021-02-15'
+  :end: '2021-09-30'
+  :velo: true
+12436:
+  :id: 12436
+  :title: Brauhausstieg - Umbau und Neugestaltung -- Bezirk Wandsbek
+  :updated: '2021-03-02T11:09:43.832342'
+  :start: '2020-10-26'
+  :end: '2021-03-31'
+  :velo: false
+12524:
+  :id: 12524
+  :title: Beim Farenland / Veloroute 6 -- Bezirk Wandsbek
+  :updated: '2021-03-15T16:47:44.283367'
+  :start: '2020-11-02'
+  :end: '2021-04-01'
+  :velo: true
+6381:
+  :id: 6381
+  :title: Hohenfelder Bucht / Schwanenwik /Umgestaltung -- LSBG
+  :updated: '2020-12-04T08:40:59.44059'
+  :link: https://lsbg.hamburg.de/hohenfelder-bucht/
+  :start: '2020-03-09'
+  :end: '2025-12-31'
+  :velo: false
+12294:
+  :id: 12294
+  :title: Wiesendamm / Radverkehrsanlagen -- Bezirk Nord
+  :updated: '2021-02-17T13:59:22.410834'
+  :start: '2020-09-21'
+  :end: '2021-05-29'
+  :velo: false
+14337:
+  :id: 14337
+  :title: Sander Damm und Lohbrügger Markt / Grundinstandsetzung -- LSBG
+  :updated: '2021-02-05T17:12:21.102648'
+  :link: https://lsbg.hamburg.de/contentblob/14880564/ed9d1ea0d62c0c39ce534689cc4026ac/data/sander-damm-lohbruegger-markt-verkehrsfuehrung-und-umleitungen.pdf
+  :start: '2021-01-18'
+  :end: '2021-12-31'
+  :velo: false
+5055:
+  :id: 5055
+  :title: Ottensen / Veloroute 1 - Ausbau und vorbereitende Maßnahmen von Stromnetz
+    Hamburg -- Bezirk Altona
+  :updated: '2020-04-17T08:37:52.011262'
+  :link: https://www.steg-hamburg.de/veloroute-altona.html
+  :start: '2020-01-06'
+  :end: '2021-04-30'
+  :velo: true
+11145:
+  :id: 11145
+  :title: St. Pauli Fischmarkt - St. Pauli Hafenstraße / Sielarbeiten -- Hamburg Wasser
+  :updated: '2020-10-15T18:06:42.845354'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-10-15'
+  :end: '2021-05-15'
+  :velo: false
+11126:
+  :id: 11126
+  :title: Paul-Sorge-Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
+  :updated: '2021-02-01T14:10:36.45679'
+  :link: https://www.hamburg.de/eimsbuettel/paulsorgestrasse/
+  :start: '2020-09-07'
+  :end: '2022-02-28'
+  :velo: true
+8208:
+  :id: 8208
+  :title: A 7 / Instandsetzung & Ausbau K 20 & K 30 -- LSBG
+  :updated: '2020-06-11T07:21:54.132459'
+  :link: https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/
+  :start: '2020-04-14'
+  :end: '2027-12-31'
+  :velo: false
+567:
+  :id: 567
+  :title: Friedensallee 128 / Kolbenhöfe -- Bezirk Altona
+  :updated: '2019-08-30T14:25:50.317066'
+  :start: '2019-06-24'
+  :end: '2022-07-01'
+  :velo: false
+14533:
+  :id: 14533
+  :title: Horster Damm 269-301 | Netzerweiterungsarbeiten -- Bezirk Bergedorf
+  :updated: '2021-02-11T10:56:44.033298'
+  :start: '2021-03-01'
+  :end: '2021-05-31'
+  :velo: false
+9088:
+  :id: 9088
+  :title: Barmbeker Straße 16-32 -- Gasnetz
+  :updated: '2021-02-24T07:00:35.839812'
+  :start: '2020-07-27'
+  :end: '2021-04-30'
+  :velo: false
+11543:
+  :id: 11543
+  :title: Billstraße / Billhorner Brückenstraße / Trinkwasserleitung -- Hamburg Wasser
+  :updated: '2020-09-04T11:01:48.606153'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-09-07'
+  :end: '2021-10-10'
+  :velo: false
+12304:
+  :id: 12304
+  :title: Drehbahn / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-01-29T10:39:12.524804'
+  :start: '2020-10-07'
+  :end: '2021-07-31'
+  :velo: false
+10453:
+  :id: 10453
+  :title: Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
+    Eulenkamp Nord -- Bezirk Wandsbek
+  :updated: '2021-02-09T08:40:09.785429'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
+  :start: '2020-08-03'
+  :end: '2021-03-31'
+  :velo: true
+9994:
+  :id: 9994
+  :title: Barrierefreier Ausbau der Haltestelle Mönckebergstraße (U-Bahn-Linie U3)
+    -- HOCHBAHN
+  :updated: '2021-02-22T16:03:50.484011'
+  :link: http://www.hochbahn.de/u3-innenstadt
+  :start: '2021-03-01'
+  :end: '2022-08-31'
+  :velo: false
+12871:
+  :id: 12871
+  :title: Kuhmühle / Abrissarbeiten -- Bezirk Nord
+  :updated: '2020-10-30T10:37:56.697016'
+  :start: '2020-09-15'
+  :end: '2021-12-11'
+  :velo: false
+12172:
+  :id: 12172
+  :title: Hohe Weide, Schlankreye/Schäferstr. / Sielbauarbeiten -- Hamburg Wasser
+  :updated: '2021-03-05T08:21:37.74453'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-11-02'
+  :end: '2021-05-28'
+  :velo: false
+14270:
+  :id: 14270
+  :title: Bramfelder Chaussee / Trinkwasserleitung -- Hamburg Wasser
+  :updated: '2021-02-05T10:24:23.081746'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-01-11'
+  :end: '2021-04-15'
+  :velo: false
+12311:
+  :id: 12311
+  :title: Tangstedter Landstraße / Veloroute -- Bezirk Nord
+  :updated: '2021-02-19T13:07:32.773058'
+  :start: '2020-09-01'
+  :end: '2021-08-01'
+  :velo: true
+7917:
+  :id: 7917
+  :title: Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- Hamburg Wasser
+  :updated: '2021-03-05T08:20:26.150386'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2019-10-07'
+  :end: '2021-04-30'
+  :velo: false
+14631:
+  :id: 14631
+  :title: Eppendorfer Marktplatz / Leitungsarbeiten -- Stromnetz
+  :updated: '2021-02-23T07:59:20.146638'
+  :start: '2021-03-01'
+  :end: '2022-01-28'
+  :velo: false
+14470:
+  :id: 14470
+  :title: Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
+    Ring 2 bis Friedrich-Ebert-Damm -- Bezirk Wandsbek
+  :updated: '2021-02-09T12:27:44.786322'
+  :start: '2021-02-08'
+  :end: '2021-03-26'
+  :velo: true
+6745:
+  :id: 6745
+  :title: Fabriciusstraße / Radverkehrsmaßnahme -- Bezirk Wandsbek
+  :updated: '2021-02-19T12:20:36.314079'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
+  :start: '2020-04-06'
+  :end: '2021-04-30'
+  :velo: false
+14737:
+  :id: 14737
+  :title: Rahlau / Vollsperrung -- Bezirk Wandsbek
+  :updated: '2021-03-03T09:47:25.062457'
+  :start: '2021-03-08'
+  :end: '2021-03-26'
+  :velo: false
+14396:
+  :id: 14396
+  :title: Kornträgergang / Vollsperrung -- Bezirk Mitte
+  :updated: '2021-02-03T10:00:56.016789'
+  :start: '2021-02-11'
+  :end: '2021-12-31'
+  :velo: false
+14111:
+  :id: 14111
+  :title: Rahlstedter Bahnhofstraße / Leitungsarbeiten -- Bezirk Wandsbek
+  :updated: '2021-03-04T14:42:00.241818'
+  :start: '2021-01-11'
+  :end: '2021-04-01'
+  :velo: false
+6956:
+  :id: 6956
+  :title: Försterweg/ Grundinstandsetzung -- Bezirk Eimsbüttel
+  :updated: '2021-03-11T10:41:54.191329'
+  :start: '2020-03-30'
+  :end: '2021-04-30'
+  :velo: false
+8535:
+  :id: 8535
+  :title: Eppendorfer Weg (Hoheluft West) / Sielbauarbeiten -- Hamburg Wasser
+  :updated: '2021-02-05T10:33:25.99103'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-08-04'
+  :end: '2021-05-15'
+  :velo: false
+14393:
+  :id: 14393
+  :title: Kaiser-Wilhelm-Straße / Sperrung stadtauswärts -- Bezirk Mitte
+  :updated: '2021-02-10T10:29:49.785137'
+  :start: '2021-02-11'
+  :end: '2021-12-31'
+  :velo: false
+14075:
+  :id: 14075
+  :title: Erdkampsweg / Abrissarbeiten -- Bezirk Nord
+  :updated: '2021-01-04T10:09:12.803468'
+  :start: '2021-01-06'
+  :end: '2021-04-30'
+  :velo: false
+11041:
+  :id: 11041
+  :title: Bahrenfelder Chaussee / Vorarbeiten für Tunnel Altona -- LSBG
+  :updated: '2020-08-17T08:50:27.56123'
+  :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
+  :start: '2020-08-24'
+  :end: '2028-12-31'
+  :velo: false
+14084:
+  :id: 14084
+  :title: Gleisstieg / Ausbau Veloroute 10 / Vollsperrung Geh- und Radweg -- Bezirk
+    Harburg
+  :updated: '2021-01-04T11:52:18.774209'
+  :start: '2021-01-04'
+  :end: '2021-06-30'
+  :velo: true
+13716:
+  :id: 13716
+  :title: Nagelsweg / Leitungsarbeiten -- Bezirk Mitte
+  :updated: '2021-02-17T12:52:02.99554'
+  :start: '2020-11-25'
+  :end: '2021-05-15'
+  :velo: false
+12002:
+  :id: 12002
+  :title: Große Rainstrasse / Sielbauarbeiten -- Hamburg Wasser
+  :updated: '2021-03-12T06:24:27.324854'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-09-21'
+  :end: '2021-07-23'
+  :velo: false
+14431:
+  :id: 14431
+  :title: Loogeplatz / Baustelleneinrichtung -- Bezirk Nord
+  :updated: '2021-02-08T09:26:14.196005'
+  :start: '2020-11-30'
+  :end: '2021-04-20'
+  :velo: false
+12168:
+  :id: 12168
+  :title: Friedrich-Ebert-Strasse -- Hamburg Wasser
+  :updated: '2021-01-22T11:53:01.012437'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-10-19'
+  :end: '2021-06-30'
+  :velo: false
+14340:
+  :id: 14340
+  :title: Elfenwiese / Straßenbauarbeiten / Vollsperrung -- Bezirk Harburg
+  :updated: '2021-01-28T15:45:56.781676'
+  :start: '2021-02-01'
+  :end: '2021-03-31'
+  :velo: false
+14755:
+  :id: 14755
+  :title: Koppelstraße/ Wiederherstellung der Nebenflächen -- Bezirk Eimsbüttel
+  :updated: '2021-03-03T15:57:23.255537'
+  :start: '2021-03-03'
+  :end: '2021-03-17'
+  :velo: false
+13011:
+  :id: 13011
+  :title: Luruper Chaussee / Trinkwasserleitungsarbeiten -- Hamburg Wasser
+  :updated: '2020-10-30T06:35:27.872692'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2020-11-09'
+  :end: '2021-05-31'
+  :velo: false
+13232:
+  :id: 13232
+  :title: Walderseestraße und Droysenstraße / Abwasser -- Hamburg Wasser
+  :updated: '2021-03-05T08:26:00.587902'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-01-06'
+  :end: '2021-05-28'
+  :velo: false
+13697:
+  :id: 13697
+  :title: Sieker Landstraße / Erschließung Victoriapark -- LSBG
+  :updated: '2020-11-26T09:06:37.601011'
+  :start: '2020-08-01'
+  :end: '2021-07-16'
+  :velo: false
+12596:
+  :id: 12596
+  :title: Fuhlentwiete / Straßenbauarbeiten -- Bezirk Mitte
+  :updated: '2020-10-15T11:29:16.073885'
+  :start: '2020-10-19'
+  :end: '2021-05-31'
+  :velo: false
+14214:
+  :id: 14214
+  :title: Hopfensack / Verkehrsbehinderungen -- Bezirk Mitte
+  :updated: '2021-01-15T09:39:35.865065'
+  :start: '2021-02-01'
+  :end: '2023-05-31'
+  :velo: false
+14766:
+  :id: 14766
+  :title: Holsteiner Chaussee / Grundinstandsetzung -- LSBG
+  :updated: '2021-03-05T06:31:47.429406'
+  :link: http://lsbg.hamburg.de/anliegerinformationen
+  :start: '2021-03-22'
+  :end: '2021-05-16'
+  :velo: false
+14790:
+  :id: 14790
+  :title: Berner Allee West / Deckschichterneuerung unter Vollsperrung -- Bezirk Wandsbek
+  :updated: '2021-03-09T15:28:35.34047'
+  :start: '2021-03-22'
+  :end: '2021-03-30'
+  :velo: false
 14863:
   :id: 14863
   :title: Am Hohen Knäbel / Leitungs- und Straßenbauarbeiten / Vollsperrung -- Bezirk
@@ -1821,3 +850,44 @@
   :updated: '2021-03-11T09:50:49.812709'
   :start: '2021-03-22'
   :end: '2021-09-30'
+  :velo: false
+14914:
+  :id: 14914
+  :title: Teil- und Vollsperrung Kattwykbrücke -- Hamburg Port Authority
+  :updated: '2021-03-17T10:33:55.370053'
+  :link: https://www.hamburg-port-authority.de/de/aktuelles-presse/kattwykbruecke-wird-fuer-alleinige-nutzung-fuer-den-strassenverkehr-umgebaut/
+  :start: '2021-04-06'
+  :end: '2021-11-06'
+  :velo: false
+14882:
+  :id: 14882
+  :title: Thadenstraße / Ausbau Veloroute -- Bezirk Mitte
+  :updated: '2021-03-12T12:12:27.761582'
+  :start: '2021-04-06'
+  :end: '2021-12-31'
+  :velo: true
+69:
+  :id: 69
+  :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
+    Wasser
+  :updated: '2021-03-05T08:15:26.653783'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2017-04-10'
+  :end: '2021-04-15'
+  :velo: false
+615:
+  :id: 615
+  :title: Bismarckstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
+  :updated: '2020-10-23T09:57:24.678034'
+  :link: https://www.hamburg.de/eimsbuettel/bismarckstrasse/
+  :start: '2018-09-01'
+  :end: '2021-04-16'
+  :velo: true
+13995:
+  :id: 13995
+  :title: Tilsiter Straße / Veloroute 6 - vorbereitender Leitungsbau -- Bezirk Wandsbek
+  :updated: '2020-12-22T09:19:12.291548'
+  :link: www.stromnetz-hamburg.de
+  :start: '2021-01-04'
+  :end: '2021-05-07'
+  :velo: true

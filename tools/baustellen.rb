@@ -19,21 +19,21 @@ end
 ids = ids_by_date(Date.today) + ids_by_date(Date.today + 7) + ids_by_date(Date.today + 30)
 ids = ids.uniq
 
-references = Dir.glob(File.join(__dir__, "../data/articles/*.yaml")).map do |path|
-  [YAML.load_file(path)["construction_site_id_hh"], path]
+references = Dir.glob(File.join(__dir__, "../data/articles/*.yaml")).flat_map do |path|
+  construction_ids = YAML.load_file(path)["construction_site_id_hh"]
+  [construction_ids].flatten.map { |cid| [cid, path] }
 end.to_h
 references.delete(nil)
 
 updates = Parallel.map(ids, in_threads: 4) do |id|
-  json = OpenURI.open_uri("https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{id}").read
-  json = JSON.parse(json)
+  jsonRaw = OpenURI.open_uri("https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{id}").read
+  json = JSON.parse(jsonRaw)
+  print "."
 
   prev = seen[json["id"]]
   if prev && prev[:updated] == json['updateDatetime']
-    print "."
     next
   end
-  print "✓"
 
   {
     id: id,
@@ -41,7 +41,8 @@ updates = Parallel.map(ids, in_threads: 4) do |id|
     updated: json['updateDatetime'],
     link: json["internetLink"],
     start: json["bauintervall"]["start"],
-    end: json["bauintervall"]["end"]
+    end: json["bauintervall"]["end"],
+    velo: jsonRaw.downcase.include?("veloroute"),
   }.compact
 end.compact
 
@@ -52,17 +53,22 @@ updates.each do |upd|
   if path
     startText = "start: #{upd[:start]}"
     endText = "end: #{upd[:end]}"
-    replStart = system("sed -i 's/^start: .*$/#{startText}/' #{path}") if upd[:start]
-    replEnd = system("sed -i 's/^end: .*$/#{endText}/' #{path}") if upd[:end]
-
     full = File.read(path)
-    added = full.dup
-    added << "\n#{startText}" if upd[:start] && !full.include?(startText)
-    added << "\n#{endText}" if upd[:end] && !full.include?(endText)
+    updated = full.dup
 
-    File.write(path, added) if full != added
+    if !updated.include?(startText) && upd[:start]
+      updated.sub!(/^start: .*$/, startText) || updated.prepend("#{startText}\n")
+    end
+    if !updated.include?(endText) && upd[:end]
+      updated.sub!(/^end: .*$/, endText) || updated.prepend("#{endText}\n")
+    end
 
-    next if replStart && replEnd
+    if full != updated
+      File.write(path, updated)
+      puts "\n✓ #{File.basename(path)}"
+    end
+
+    next
   end
 
   puts <<~TEXT
@@ -70,10 +76,10 @@ updates.each do |upd|
     #{upd[:title]}
       start: #{upd[:start]}
       end: #{upd[:end]}
+      velo: #{upd[:velo]}
       curl -s https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{upd[:id]} | jq
   TEXT
   puts "  " + upd[:link] if upd[:link]
-  puts "  updated start: #{replStart}  end: #{replEnd}" if path
 end
 
 File.write(SEEN_FN, seen.to_yaml)

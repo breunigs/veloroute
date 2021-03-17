@@ -1,11 +1,13 @@
----
+
 type: construction
 title: Eulenkamp zw. Nordschleswiger Straße und Friedrich-Ebert-Damm (Veloroute 6)
 start: 2021-02-08
+end: 2021-08
 updated: 2020-11-29
-construction_site_id_hh: 14470
+# construction_site_id_hh: 14470
 tags:
 - 6
+- w14
 text: |
   <p><strong>Stand November 2020:</strong> Vorbereitende Bauarbeiten haben begonnen. Auch die <a href="https://fragdenstaat.de/anfrage/lageplan-veloroute-6-abschnitt-w14/#nachricht-513506">Lagepläne sind mittlerweile veröffentlicht</a> worden. Der Artikel wurde entsprechend angepasst.</p>
 
@@ -28,5 +30,5 @@ text: |
   Radverkehr in beide Richtungen befahrbar sein. Damit man ihn sinnvoll erreichen
   kann ist vorgesehen ein kurzes Stück Zweirichtungsradweg mit 2,50m Breite einzurichten.</p>
   <p>Das Tempolimit bleibt bei 50 km/h. In Fahrtrichtung stadtauswärts ist ein <ref>Radfahrstreifen in Mittellage</ref> vorgesehen, stadteinwärts bleibt der Radverkehr dagegen rechts der KFZ-Spuren.</p>
-  <p><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513">Erläuterungsbericht
-  und Lagepläne</a> (finale Fassung)</p>
+  <ul><li><a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513">Erläuterungsbericht
+  und Lagepläne</a> (finale Fassung)</li><li><a href="https://suche.transparenz.hamburg.de/dataset/364dbf59-71fb-4d41-8873-779dd1dd758e">Auftragsvergabe</a> (Bauzeiten)</li></ul>

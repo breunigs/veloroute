@@ -1,1 +1,2 @@
 *.osm binary
+tools/*seen*.txt binary

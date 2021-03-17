@@ -367,3 +367,6 @@
 - "/contentblob/14950070/4657ea8b072aaa84995f41ebdff63c33/data/strassenzug-wandsbek-teil-lemsahler-landstrasse-abstimmungsunterlage-plan.pdf"
 - "/contentblob/14950046/0775c96f391220ee9c48e7955f0bfacc/data/strassenzug-wandsbek-teil-poppenbuetteler-chausee-lohe-abstimmungsunterlage-plan.pdf"
 - "/contentblob/14947682/18485d879cd7439ab322b7a449aad383/data/santorkai-und-brooktorrkai-temporaerer-radfahrschreifen-maerz-2021.pdf"
+'2021-03-16':
+- "/contentblob/14964708/498be079a2048cea8025d8b05422703b/data/volksdorfer-damm-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/14964710/3dcce09432c1264daf13ceb834ca5190/data/volksdorfer-damm-abstimmungsunterlagen-plan.pdf"

@@ -384,14 +384,6 @@ defmodule Data.Route.Articles do
     - mZ8p-UozGl64QzNKhPpcTQ
     - sNpf-NVwkbZN3DcAlzAg7g
 
-    articles 2018-08-30-7-steindamm:
-    - vqaa8d536GbC9u3NQeXMlA
-    - 8FTsePivRQHDANsOuIT8eg
-    - dwBuU9cde772-AGlJaIHnA
-    - FWz9Io_6FrprkFQyv0EZrA
-    - QbMhNQohRUTiO-MqH17PFg
-    - 0qoA_0UyVsvyXMdu0oxJGw
-
     articles 2018-10-21-14-tonndorfer-hauptstrasse:
     - TKH8zxPJnPClAmTIjD8bdA
     - G0_QEKcwvjVtzDI5gy8qMg
