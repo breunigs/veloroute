@@ -2,17 +2,20 @@
 
 cd "${0%/*}"
 
+echo "Baustellen:"
+./baustellen.rb
+
 echo "LSBG:"
 ./lsbg_check_updates.rb
+
+echo "e-vergabe:"
+./baustellen.rb
 
 echo "viabus:"
 ./viabus_check_updates.rb
 
 echo "Sitzungsdienst:"
 ./sitzungsdienst_check_updates.rb
-
-echo "Baustellen:"
-./baustellen.rb
 
 echo ""
 echo "manuell:"
