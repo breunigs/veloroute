@@ -25,25 +25,13 @@ defmodule Data.Map do
   defmodule Way do
     defstruct [:id, :tags, :nodes]
 
-    def grade_tags, do: [:fast, :comfortable, :talk]
     def style_tags, do: [:oneway, :color]
 
-    @grade_best 1
-    @grade_worst 5
-    def grade(w) do
-      have = Enum.count(grade_tags(), &w.tags[&1])
-      want = length(grade_tags())
-
-      # transform ranges [0, 1] to [best, worst]
-      (@grade_best + (1 - have / want) * (@grade_worst - @grade_best))
-      |> Float.round(1)
-    end
-
-    def as_graded_geojson(w, extra_props \\ %{}) do
+    def as_geojson(w, extra_props \\ %{}) do
       props =
         extra_props
         |> Map.merge(Map.take(w.tags, style_tags()))
-        |> Map.merge(%{id: w.id, grade: grade(w)})
+        |> Map.merge(%{id: w.id})
 
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
 
@@ -119,7 +107,7 @@ defmodule Data.Map do
           route_id: r.tags.id
         }
 
-        Way.as_graded_geojson(w, tags)
+        Way.as_geojson(w, tags)
       end)
     end
 

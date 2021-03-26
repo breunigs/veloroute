@@ -6,12 +6,12 @@ defmodule Data.MapTest do
   test "ways are tagged decently" do
     @map.ways
     |> Enum.each(fn {_id, w} ->
+      hasName = is_binary(w.tags[:name]) && w.tags[:name] != ""
       isArticle = w.tags[:type] == "article"
       isDetour = w.tags[:type] == "detour"
-      isTaggedWay = Enum.all?(Data.Map.Way.grade_tags(), &Map.has_key?(w.tags, &1))
 
-      assert isDetour || isArticle || isTaggedWay,
-             "Neither article nor quality tags: #{inspect(w)}"
+      if isDetour || isArticle,
+        do: assert(hasName, "Neither article nor quality tags: #{inspect(w)}")
     end)
   end
 

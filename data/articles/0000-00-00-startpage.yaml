@@ -27,9 +27,6 @@ text: >
   <h3>Pläne, Baustellen und Probleme</h3>
   <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
 
-  <h3>Wegqualität</h3>
-  <p>…wird beim Hereinzoomen angezeigt. Je blasser die Veloroute, desto schlechter ist dieser Abschnitt. <a href="/quality#anchorlegend">Hinweise zur Wegqualität</a></p>
-
   <h3>Aktuelle Artikel</h3>
   <articles range="recent" sort="date"/>
   <p>
