@@ -60,7 +60,6 @@ way|z17- {
 relation >[role="forward"] way|z15-::oneway {
   modifier: true;
   offset: 0 - prop("width", "default");
-  set parentColor;
   width: prop("width", "default")/2;
   dashes: 15,15;
 }
@@ -68,102 +67,68 @@ relation >[role="forward"] way|z15-::oneway {
 relation >[role="backward"] way|z15-::oneway {
   modifier: true;
   offset: prop("width", "default");
-  set parentColor;
   width: prop("width", "default")/2;
 }
 
-relation > way[!color]  {
+/* error highlight nodes with only some of the tags */
+node[seq_forward_start], node[img_forward_start], node[seq_backward_start], node[img_backward_start] {
+  set error;
+}
+
+/* highlight if mapillary ref is wrong */
+node[eval(length(tag("seq_forward_start")) != 22)], node[eval(length(tag("img_forward_start")) != 22)], node[eval(length(tag("img_forward_end")) != 22)], node[eval(length(tag("seq_backward_start")) != 22)], node[eval(length(tag("img_backward_start")) != 22)], node[eval(length(tag("img_backward_end")) != 22)] {
+  set error;
+}
+
+node.error {
+  symbol-size: 12;
+  symbol-shape: square;
+  symbol-stroke-color: #ff00ee;
+  symbol-fill-color: #ff00ee;
+}
+
+/* hide error highlight if matching tags
+  1. nodes in the middle somewhere
+  2. node starting somewhere
+  3. node ending somewhere
+*/
+node[seq_forward_start][img_forward_start][img_forward_end][seq_backward_start][img_backward_start][img_backward_end]:connection,
+node[seq_forward_start][img_forward_start][!img_forward_end][!seq_backward_start][!img_backward_start][img_backward_end]!:connection,
+node[!seq_forward_start][!img_forward_start][img_forward_end][seq_backward_start][img_backward_start][!img_backward_end]!:connection
+ {
+  symbol-size: 8;
+  symbol-shape: square;
+  symbol-stroke-color: #333;
+  symbol-fill-color: #ccc;
+  set nodeOk;
+}
+
+node[seq_forward_start][img_forward_start][img_forward_end][seq_backward_start][img_backward_start][img_backward_end]:connection < way,
+node[seq_forward_start][img_forward_start][!img_forward_end][!seq_backward_start][!img_backward_start][img_backward_end]!:connection < way,
+node[!seq_forward_start][!img_forward_start][img_forward_end][seq_backward_start][img_backward_start][!img_backward_end]!:connection < way {
   set parentColor;
 }
 
-way[color] {
+way.hasForward.hasBackward[color] {
   color: eval(tag("color"));
-  width: 3;
 }
 
-way.parentColor::oneway {
+way.parentColor::default, way.parentColor::oneway {
   color: eval(
-    count(parent_tags("color")) <= 2
+    count(parent_tags("color")) <= 2 && count(parent_tags("color")) > 0
       ? get(parent_tags("color"), 0)
-      : #000
+      : #ff00ee
     );
   dashes: eval(
-    count(parent_tags("color")) = 2
+    count(parent_tags("color")) == 2
       ? list(10, 10)
       : none
     );
   dashes-background-color: get(parent_tags("color"), 1);
 }
 
-way.parentColor::default {
-  color: eval(
-    count(parent_tags("color")) <= 2
-      ? get(parent_tags("color"), 0)
-      : #000
-    );
-  dashes: eval(
-    count(parent_tags("color")) = 2
-      ? list(10, 10)
-      : none
-    );
-  dashes-background-color: get(parent_tags("color"), 1);
-}
-
-way[!talk], way[!fast], way[!comfortable] {
-  width: 5;
-  color:  #ff00ee;
-}
-
-way[talk?] {
-  text: concat(prop(text), " T✓");
-}
-
-way[fast?] {
-  text: concat(prop(text), " F✓");
-}
-
-way[comfortable?] {
-  text: concat(prop(text), " C✓");
-}
-
-way[talk?!] {
-  text: concat(prop(text), " T✗");
-}
-
-way[fast?!] {
-  text: concat(prop(text), " F✗");
-}
-
-way[comfortable?!] {
-  text: concat(prop(text), " C✗");
-}
-
-way[!talk] {
-  text: concat(prop(text), " T?");
-}
-
-way[!fast] {
-  text: concat(prop(text), " F?");
-}
-
-way[!comfortable] {
-  text: concat(prop(text), " C?");
-}
-
-
-way[talk][fast][comfortable][talk?!]::* {
-  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
-  opacity: prop(opacity) - 0.15;
-}
-
-way[talk][fast][comfortable][fast?!]::* {
-  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
-  opacity: prop(opacity) - 0.15;
-}
-
-way[talk][fast][comfortable][comfortable?!]::* {
-  width: eval(prop(width) - 0.5 < 1 ? 1 : prop(width) - 0.5);
-  opacity: prop(opacity) - 0.15;
+way[img_date] {
+  text: concat(prop(text), eval(tag("img_date")));
 }
 
 way[type=mapillary-sequence] {

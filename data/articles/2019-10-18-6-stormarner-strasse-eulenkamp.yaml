@@ -1,10 +1,11 @@
 
 start: 2021-03-22
-end: 2022-04
+end: 2022-04-30
 title: Stormarner Straße und Eulenkamp West (Veloroute 6)
 type: construction
 images: 6
 updated: 2019-12-08
+construction_site_id_hh: 15014
 tags:
 - 6
 - w13
