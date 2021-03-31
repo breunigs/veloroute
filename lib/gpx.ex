@@ -1,10 +1,11 @@
 defmodule GPX do
   alias Data.Map.Node
   alias Data.Map.Way
+  import Mapillary, only: [is_ref: 1]
 
   require Logger
 
-  def ordered_nodes(r) do
+  def ordered(r) do
     ways = normalize_ways(r)
     first_node_index = Enum.group_by(ways, fn w -> hd(w.nodes) end)
 
@@ -25,21 +26,70 @@ defmodule GPX do
       |> Graph.add_edges(edges)
 
     track_matrix(r, ways)
-    |> Enum.map(fn {name, start, stop} ->
-      nodes = Graph.Pathfinding.dijkstra(g, start, stop) |> concatenate()
-      {name, nodes}
+    |> Enum.map(fn track ->
+      ways = Graph.Pathfinding.dijkstra(g, track.start, track.stop)
+
+      track
+      |> Map.drop([:start, :stop])
+      |> Map.put(:ways, ways)
     end)
   end
 
-  defp concatenate(ways) do
+  def with_nodes(list_with_ordered) do
+    Enum.map(list_with_ordered, &concatenate_nodes/1)
+  end
+
+  def with_image_sequence(list_with_ordered) do
+    Enum.map(list_with_ordered, &concatenate_image_sequence/1)
+  end
+
+  defp concatenate_image_sequence(obj = %{full_name: full_name, type: type, ways: ways}) do
+    img_seq =
+      Enum.reduce(ways, [], fn way, img_seq ->
+        prev = List.first(img_seq)
+        cur = extract_img_tags(way)
+
+        case {prev, cur} do
+          # new start image, create next entry
+          {_, %{seq: s, from: f, to: b}}
+          when is_ref(s) and is_ref(f) ->
+            [%{seq: s, from: f, to: b} | img_seq]
+
+          # sequence continues, and has end img, overwrite "to"
+          {%{seq: s, from: f}, %{seq: s, to: b}}
+          when is_ref(b) ->
+            [%{seq: s, from: f, to: b} | tl(img_seq)]
+
+          # sequence continues, but still has no end img
+          {%{seq: s}, %{seq: s}} ->
+            img_seq
+
+          # error
+          {prev, cur} ->
+            raise """
+            Failed to find a continuation. Trying to find a #{type} route for #{full_name}.
+            Prev: #{inspect(prev)}
+            Curr: #{inspect(cur)}
+            Note that the tags are auto-reversed, so do not correspond to the ones in JOSM.
+            """
+        end
+      end)
+      |> Enum.reverse()
+
+    Map.put(obj, :image_sequence, img_seq)
+  end
+
+  # concatenate_nodes joins the nodes of the ways in order, removing any
+  # duplicates. It adds them to the Map as "nodes".
+  defp concatenate_nodes(obj = %{ways: ways}) do
     first_node = ways |> hd |> Map.get(:nodes) |> hd
     rest = Enum.flat_map(ways, fn %Way{nodes: [_f | rest]} -> rest end)
-    [first_node | rest]
+    Map.put(obj, :nodes, [first_node | rest])
   end
 
   defp resolve_to_start_end_ways(name, members, normalized_ways) do
     text = fn kind ->
-      "#{name}: The #{kind} nodes must be part of one of the ways of the relation."
+      "#{name}: The #{kind} nodes must be part of one of the ways of the relation, and it must be at the start or end of that way."
     end
 
     Enum.map(members, fn %{ref: node} ->
@@ -56,6 +106,7 @@ defmodule GPX do
 
   defp track_matrix(r, normalized_ways) do
     name = r.tags[:name]
+    id = r.tags[:id]
     fw_text = r.tags[:gpx_forward] || "stadtauswärts"
     bw_text = r.tags[:gpx_backward] || "stadteinwärts"
 
@@ -77,23 +128,86 @@ defmodule GPX do
     Enum.flat_map(start_ways, fn {s_as_start, s_as_end} ->
       Enum.flat_map(end_ways, fn {e_as_start, e_as_end} ->
         [
-          {"#{name} #{fw_text}", s_as_start, e_as_end},
-          {"#{name} #{bw_text}", e_as_start, s_as_end}
+          %{
+            type: :forward,
+            id: id,
+            name: name,
+            direction: fw_text,
+            full_name: "#{name} #{fw_text}",
+            start: s_as_start,
+            stop: e_as_end
+          },
+          %{
+            type: :backward,
+            id: id,
+            name: name,
+            direction: bw_text,
+            full_name: "#{name} #{bw_text}",
+            start: e_as_start,
+            stop: s_as_end
+          }
         ]
       end)
     end)
   end
 
-  defp reverse_nodes(%Way{nodes: nodes} = w) do
-    Map.put(w, :nodes, Enum.reverse(nodes))
+  # extract_img_tags retrieves the interesting Mapillary image ref tags from the
+  # way, using an abbreviated tag format seq/from/to.
+  defp extract_img_tags(way) do
+    %{
+      seq: get_mly_ref(way, :seq_forward),
+      from: get_mly_ref(way, :img_forward_start),
+      to: get_mly_ref(way, :img_forward_end)
+    }
+  end
+
+  # get_mly_ref tries to extract a Mapillary reference from the way's tags. It
+  # returns nil if the tag is not set, the ref if it is, or it raises if it is
+  # invalid. Since it does not know if the way was originally like this or if
+  # this is a normalized (=reversed) variant, it includes more than one
+  # potential wrong key in the error message.
+  defp get_mly_ref(%{id: id, tags: tags}, field) when is_atom(field) do
+    case tags[field] do
+      nil ->
+        nil
+
+      x when is_ref(x) ->
+        tags[field]
+
+      wrong ->
+        rev_field = field |> Atom.to_string() |> String.replace("forward", "backward")
+        raise("Way #{id} has incorrect mapillary ref '#{wrong}' in #{field} or #{rev_field}")
+    end
+  end
+
+  # reverse turns around the order of nodes in a way and adjust tags so that
+  # their direction is kept the same
+  defp reverse(%Way{nodes: nodes, tags: tags} = w) do
+    reversed_tags = Enum.map(tags, fn {key, val} -> {reverse_key(key), val} end)
+
+    w
+    |> Map.put(:nodes, Enum.reverse(nodes))
+    |> Map.put(:tags, reversed_tags)
+  end
+
+  # reverse_key swaps "forward" and "backward" in the key itself
+  defp reverse_key(key) when is_atom(key) do
+    key = key |> Atom.to_string()
+
+    cond do
+      String.contains?(key, "forward") -> String.replace(key, "forward", "backward")
+      String.contains?(key, "backward") -> String.replace(key, "backward", "forward")
+      true -> key
+    end
+    |> String.to_existing_atom()
   end
 
   defp normalize_ways(r) do
     for %{role: r, ref: %Way{} = way} <- r.members do
       case r do
         "forward" -> way
-        "backward" -> reverse_nodes(way)
-        "" -> [way, reverse_nodes(way)]
+        "backward" -> reverse(way)
+        "" -> [way, reverse(way)]
       end
     end
     |> List.flatten()

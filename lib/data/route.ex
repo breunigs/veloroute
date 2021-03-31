@@ -9,7 +9,7 @@ defmodule Data.Route do
     quote bind_quoted: [opts: opts] do
       @behaviour Data.Route
 
-      @parsed Data.Route.load(opts[:yaml], __MODULE__)
+      @parsed Data.Route.load(opts, __MODULE__)
       @index Data.Route.index(@parsed, __MODULE__)
 
       @impl Data.Route
@@ -22,9 +22,26 @@ defmodule Data.Route do
     end
   end
 
-  def load(yaml, module) do
+  defp yaml_from_map(nil), do: nil
+
+  defp yaml_from_map(route_id) do
+    Data.MapCache.relations()
+    |> Data.Map.find_relation_by_tag(:id, route_id)
+    |> GPX.ordered()
+    |> GPX.with_image_sequence()
+    |> Enum.reduce(%{}, fn %{id: id, direction: dir, image_sequence: img_seq}, acc ->
+      Map.put(acc, "#{id} (#{dir})", img_seq)
+    end)
+  end
+
+  defp yaml_from_string(yaml) do
+    {:ok, parsed} = YamlElixir.read_from_string(yaml)
+    parsed
+  end
+
+  def load(opts, module) do
     Benchmark.measure("#{module}: parsing yaml #{}", fn ->
-      {:ok, parsed} = YamlElixir.read_from_string(yaml)
+      parsed = yaml_from_map(opts[:id]) || yaml_from_string(opts[:yaml])
 
       parsed
       |> Enum.map(fn {name, seqs} ->
