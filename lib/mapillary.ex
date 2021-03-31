@@ -65,6 +65,10 @@ defmodule Mapillary do
     end)
   end
 
+  @spec resolve(%{required(atom()) => ref()}) :: [img()]
+  def resolve(%Mapillary.Sequence{seq: seq, from: from, to: to}),
+    do: resolve(%{"seq" => seq, "from" => from, "to" => to})
+
   @spec resolve(%{required(binary()) => ref()}) :: [img()]
   def resolve(%{"seq" => seq, "from" => from, "to" => to} = attr)
       when is_ref(seq) and is_ref(from) and is_ref(to) do

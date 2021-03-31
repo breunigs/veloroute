@@ -1,5 +1,5 @@
 meta {
-  title: "Veloroute.Hamburg v2";
+  title: "Veloroute.Hamburg v3";
 }
 
 canvas {
@@ -34,9 +34,9 @@ way node[type=marker] {
   symbol-shape: circle;
 }
 
-
+/* default way color is purple */
 way {
-  color: #ff00ee;
+  color: #9233CC;
   width: 3;
   casing-width: 1;
   casing-color: white;
@@ -70,50 +70,123 @@ relation >[role="backward"] way|z15-::oneway {
   width: prop("width", "default")/2;
 }
 
-/* error highlight nodes with only some of the tags */
-node[seq_forward_start], node[img_forward_start], node[seq_backward_start], node[img_backward_start] {
-  set error;
-}
-
 /* highlight if mapillary ref is wrong */
-node[eval(length(tag("seq_forward_start")) != 22)], node[eval(length(tag("img_forward_start")) != 22)], node[eval(length(tag("img_forward_end")) != 22)], node[eval(length(tag("seq_backward_start")) != 22)], node[eval(length(tag("img_backward_start")) != 22)], node[eval(length(tag("img_backward_end")) != 22)] {
+way[eval(length(tag("seq_forward")) != 22)],
+way[eval(length(tag("img_forward_start")) != 22)],
+way[eval(length(tag("img_forward_end")) != 22)],
+way[eval(length(tag("seq_backward")) != 22)],
+way[eval(length(tag("img_backward_start")) != 22)],
+way[eval(length(tag("img_backward_end")) != 22)] {
   set error;
+  text: concat(prop(text), "invalid mapillary tag"));
+  throwWarning: tr("invalid mapillary tag");
 }
 
-node.error {
-  symbol-size: 12;
-  symbol-shape: square;
-  symbol-stroke-color: #ff00ee;
-  symbol-fill-color: #ff00ee;
+way[oneway?][seq_forward] {
+  color: #ff00ee;
+  set ok;
 }
 
-/* hide error highlight if matching tags
-  1. nodes in the middle somewhere
-  2. node starting somewhere
-  3. node ending somewhere
-*/
-node[seq_forward_start][img_forward_start][img_forward_end][seq_backward_start][img_backward_start][img_backward_end]:connection,
-node[seq_forward_start][img_forward_start][!img_forward_end][!seq_backward_start][!img_backward_start][img_backward_end]!:connection,
-node[!seq_forward_start][!img_forward_start][img_forward_end][seq_backward_start][img_backward_start][!img_backward_end]!:connection
- {
-  symbol-size: 8;
-  symbol-shape: square;
-  symbol-stroke-color: #333;
-  symbol-fill-color: #ccc;
-  set nodeOk;
+way[!oneway?][seq_forward][seq_backward] {
+  set ok;
+  color: #ff00ee;
 }
 
-node[seq_forward_start][img_forward_start][img_forward_end][seq_backward_start][img_backward_start][img_backward_end]:connection < way,
-node[seq_forward_start][img_forward_start][!img_forward_end][!seq_backward_start][!img_backward_start][img_backward_end]!:connection < way,
-node[!seq_forward_start][!img_forward_start][img_forward_end][seq_backward_start][img_backward_start][!img_backward_end]!:connection < way {
-  set parentColor;
+/* img arrow icons forward */
+way[seq_forward][!img_forward_start] >[index=1] node|z16-::fw {
+  set hasSeqOne;
+}
+way[seq_forward][!img_forward_end] >[index=-1] node|z16-::fw {
+  set hasSeqTwo;
+}
+way[seq_forward][img_forward_end] >[index=-1] node|z16-::fw {
+  set forwardEnd;
+}
+way[seq_forward][img_forward_start] >[index=1] node|z16-::fw {
+  set forwardStart;
+}
+way[seq_forward][img_forward_end][oneway?] >[index=-1] node|z16-::fw {
+  set onewayEnds;
+}
+way[seq_forward][img_forward_start][oneway?] >[index=1] node|z16-::fw {
+  set onewayStarts;
+}
+node.forwardStart::fw {
+  text: eval("↦");
+}
+node.forwardEnd::fw {
+  text: eval("⇥");
+}
+node.forwardStart.forwardEnd::fw {
+  text: eval("⇸");
+}
+node.hasSeqOne.hasSeqTwo::fw,
+node.forwardStart.onewayEnds::fw,
+node.forwardEnds.onewayStarts::fw {
+  text: eval("↷");
+}
+node.forwardStart::fw, node.forwardEnd::fw, node.hasSeqOne.hasSeqTwo::fw {
+  text-offset-x: 10;
+  text-offset-y: 0;
+  text-color: #038D50; /* some green */
+  font-size: 20;
+  font-weight: bold;
+  text-halo-color: #ffffff;
+  text-halo-radius: 2;
+  text-anchor-horizontal: center;
+  text-anchor-vertical: center;
 }
 
-way.hasForward.hasBackward[color] {
+/* img arrow icons backward */
+way[seq_backward][!img_backward_start] >[index=1] node|z16-::bw {
+  set hasSeqOne;
+}
+way[seq_backward][!img_forward_end] >[index=-1] node|z16-::bw {
+  set hasSeqTwo;
+}
+way[seq_forward][img_forward_end][oneway?] >[index=-1] node|z16-::bw {
+  set onewayEnds;
+}
+way[seq_forward][img_forward_start][oneway?] >[index=1] node|z16-::bw {
+  set onewayStarts;
+}
+way[seq_backward][img_backward_end] >[index=1] node|z16-::bw {
+  set backwardEnd;
+}
+way[seq_backward][img_backward_start] >[index=-1] node|z16-::bw {
+  set backwardStart;
+}
+node.backwardStart::bw {
+  text: eval("↤");
+}
+node.backwardEnd::bw {
+  text: eval("⇤");
+}
+node.backwardStart.backwardEnd::bw {
+  text: eval("⇷");
+}
+node.hasSeqOne.hasSeqTwo::bw,
+node.backwardStart.onewayEnds::bw,
+node.backwardEnd.onewayStarts::bw {
+  text: eval("↶");
+}
+node.backwardStart::bw, node.backwardEnd::bw, node.hasSeqOne.hasSeqTwo::bw {
+  text-offset-x: -10;
+  text-offset-y: 0;
+  text-color: #004f8d; /* some blue */
+  font-size: 20;
+  font-weight: bold;
+  text-halo-color: #ffffff;
+  text-halo-radius: 2;
+  text-anchor-horizontal: center;
+  text-anchor-vertical: center;
+}
+
+way.ok[color] {
   color: eval(tag("color"));
 }
 
-way.parentColor::default, way.parentColor::oneway {
+way.ok[!color]::default, way.parentColor.ok[!color]::oneway {
   color: eval(
     count(parent_tags("color")) <= 2 && count(parent_tags("color")) > 0
       ? get(parent_tags("color"), 0)
@@ -126,6 +199,11 @@ way.parentColor::default, way.parentColor::oneway {
     );
   dashes-background-color: get(parent_tags("color"), 1);
 }
+
+way.error {
+  color: #ff00ee;
+}
+
 
 way[img_date] {
   text: concat(prop(text), eval(tag("img_date")));

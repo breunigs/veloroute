@@ -68,9 +68,9 @@
 12308:
   :id: 12308
   :title: Kleekamp / Veloroute -- Bezirk Nord
-  :updated: '2021-02-01T12:46:18.898035'
+  :updated: '2021-03-25T16:44:44.402061'
   :start: '2020-09-28'
-  :end: '2021-09-22'
+  :end: '2021-10-07'
   :velo: true
 14169:
   :id: 14169
@@ -90,7 +90,7 @@
 14495:
   :id: 14495
   :title: Umbau Kreuzung Theodor-Heuss-Platz / Dammtordamm -- LSBG
-  :updated: '2021-02-11T07:48:27.560033'
+  :updated: '2021-03-18T18:19:15.217717'
   :start: '2021-03-14'
   :end: '2021-08-01'
   :velo: false
@@ -151,7 +151,7 @@
 8623:
   :id: 8623
   :title: Schlüterstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
-  :updated: '2020-11-11T11:12:21.164182'
+  :updated: '2021-03-23T15:09:50.891999'
   :link: https://www.hamburg.de/eimsbuettel/schlueterstrasse/
   :start: '2020-06-15'
   :end: '2021-07-31'
@@ -159,9 +159,9 @@
 13141:
   :id: 13141
   :title: Uppenhof / Umbau Knotenpunkt, Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-08T16:43:39.130962'
+  :updated: '2021-03-22T11:19:38.846504'
   :start: '2020-11-16'
-  :end: '2021-03-19'
+  :end: '2021-04-02'
   :velo: true
 12470:
   :id: 12470
@@ -173,7 +173,7 @@
 8538:
   :id: 8538
   :title: Burgstraße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2021-03-12T06:15:31.935096'
+  :updated: '2021-03-26T11:21:42.097266'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-20'
   :end: '2021-03-30'
@@ -308,7 +308,7 @@
   :id: 9608
   :title: Wördemanns Weg + Gazellenkamp/ Veloroutenausbau 2 + Leitungsarbeiten --
     Bezirk Eimsbüttel
-  :updated: '2021-03-15T09:37:21.497174'
+  :updated: '2021-03-23T09:24:54.369695'
   :link: https://www.hamburg.de/eimsbuettel/woerdemannsweg/
   :start: '2020-06-24'
   :end: '2022-05-31'
@@ -382,9 +382,9 @@
 14499:
   :id: 14499
   :title: Vogelhüttendeich / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-03-02T12:53:27.251677'
+  :updated: '2021-03-23T12:59:16.232228'
   :start: '2021-03-03'
-  :end: '2021-03-31'
+  :end: '2021-04-09'
   :velo: false
 9662:
   :id: 9662
@@ -506,9 +506,9 @@
 12524:
   :id: 12524
   :title: Beim Farenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-15T16:47:44.283367'
+  :updated: '2021-03-22T07:06:15.777734'
   :start: '2020-11-02'
-  :end: '2021-04-01'
+  :end: '2021-04-09'
   :velo: true
 6381:
   :id: 6381
@@ -553,7 +553,7 @@
 11126:
   :id: 11126
   :title: Paul-Sorge-Straße/ Veloroutenausbau 3 + Leitungsarbeiten -- Bezirk Eimsbüttel
-  :updated: '2021-02-01T14:10:36.45679'
+  :updated: '2021-03-23T16:46:54.682346'
   :link: https://www.hamburg.de/eimsbuettel/paulsorgestrasse/
   :start: '2020-09-07'
   :end: '2022-02-28'
@@ -653,10 +653,10 @@
 7917:
   :id: 7917
   :title: Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2021-03-05T08:20:26.150386'
+  :updated: '2021-03-26T11:24:14.772253'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
-  :end: '2021-04-30'
+  :end: '2021-06-30'
   :velo: false
 14631:
   :id: 14631
@@ -720,7 +720,7 @@
 14393:
   :id: 14393
   :title: Kaiser-Wilhelm-Straße / Sperrung stadtauswärts -- Bezirk Mitte
-  :updated: '2021-02-10T10:29:49.785137'
+  :updated: '2021-03-22T10:02:32.260393'
   :start: '2021-02-11'
   :end: '2021-12-31'
   :velo: false
@@ -847,8 +847,8 @@
   :id: 14863
   :title: Am Hohen Knäbel / Leitungs- und Straßenbauarbeiten / Vollsperrung -- Bezirk
     Harburg
-  :updated: '2021-03-11T09:50:49.812709'
-  :start: '2021-03-22'
+  :updated: '2021-03-18T13:07:45.691921'
+  :start: '2021-03-29'
   :end: '2021-09-30'
   :velo: false
 14914:
@@ -891,3 +891,88 @@
   :start: '2021-01-04'
   :end: '2021-05-07'
   :velo: true
+14923:
+  :id: 14923
+  :title: Kirchwerder Hausdeich 13 | Netzerweiterung -- Bezirk Bergedorf
+  :updated: '2021-03-17T09:33:36.073352'
+  :start: '2021-03-22'
+  :end: '2021-04-22'
+  :velo: false
+15014:
+  :id: 15014
+  :title: Stormarner Straße / Ausbau der Veloroute 6 unter halbseitiger Straßensperrung
+    -- Bezirk Wandsbek
+  :updated: '2021-03-22T17:13:17.711674'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14941782/stormarner-strasse-eulenkamp/
+  :start: '2021-03-22'
+  :end: '2022-04-30'
+  :velo: true
+2034:
+  :id: 2034
+  :title: 'Veloroute 7: Steindamm zwischen Kreuzweg und Lohmühlenstraße -- LSBG'
+  :updated: '2021-03-18T17:03:56.438227'
+  :link: https://lsbg.hamburg.de/contentblob/11504940/a4f71097cf72e63cabfe233be0472d27/data/veloroute-7-steindamm-abgestimmte-planung-bericht.pdf
+  :start: '2019-10-14'
+  :end: '2021-04-16'
+  :velo: true
+14907:
+  :id: 14907
+  :title: Rödingsmarkt / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2021-03-15T12:03:49.324091'
+  :start: '2021-03-26'
+  :end: '2021-03-28'
+  :velo: false
+14273:
+  :id: 14273
+  :title: Bramfelder Chaussee, Haldesdorfer Straße und Bauernrosenweg / Trinkwasserleitung
+    -- Hamburg Wasser
+  :updated: '2021-03-19T06:52:34.907017'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-01-11'
+  :end: '2021-03-26'
+  :velo: false
+14807:
+  :id: 14807
+  :title: Auf der Strenge/Brandheide / Deckschichterneuerung unter Vollsperrung --
+    Bezirk Wandsbek
+  :updated: '2021-03-22T07:45:28.031544'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14973688/brandheide-auf-der-strenge/
+  :start: '2021-03-29'
+  :end: '2021-04-07'
+  :velo: false
+14952:
+  :id: 14952
+  :title: Buxtehuder Straße / Markierungsarbeiten -- Bezirk Harburg
+  :updated: '2021-03-18T13:12:41.808344'
+  :start: '2021-03-30'
+  :end: '2021-04-11'
+  :velo: false
+15050:
+  :id: 15050
+  :title: Ferdinandstor / Fahrspursperrung -- Bezirk Mitte
+  :updated: '2021-03-24T10:31:38.827814'
+  :start: '2021-04-01'
+  :end: '2021-04-06'
+  :velo: false
+15074:
+  :id: 15074
+  :title: Vollsperrung Poelchaukamp -- Bezirk Nord
+  :updated: '2021-03-26T06:48:58.486132'
+  :start: '2021-03-28'
+  :end: '2021-04-25'
+  :velo: false
+14996:
+  :id: 14996
+  :title: Harburger Chaussee / Fahrspursperrungen -- Bezirk Mitte
+  :updated: '2021-03-22T16:57:18.626191'
+  :start: '2021-04-06'
+  :end: '2021-05-28'
+  :velo: false
+14933:
+  :id: 14933
+  :title: Moorburger Hauptdeich / Erneuerung Entwässerungsleitung -- Hamburg Port
+    Authority
+  :updated: '2021-03-18T11:41:02.738082'
+  :start: '2021-04-07'
+  :end: '2021-07-30'
+  :velo: false

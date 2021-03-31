@@ -11,9 +11,9 @@ defmodule Mix.Tasks.UpdateGpx do
     |> Map.values()
     |> Enum.map(fn rel ->
       basename = rel.tags[:gpx_name] || rel.tags[:id]
-      tracks = GPX.ordered_nodes(rel)
-      gpx_tracks = Enum.map(tracks, &as_gpx_track(&1))
-      kml_tracks = Enum.map(tracks, &as_kml_track(&1))
+      tracks = TrackFinder.ordered(rel) |> TrackFinder.with_nodes()
+      gpx_tracks = tracks |> Enum.map(&as_gpx_track(&1))
+      kml_tracks = tracks |> Enum.map(&as_kml_track(&1))
 
       {basename, rel, gpx_tracks, kml_tracks}
     end)
@@ -64,7 +64,7 @@ defmodule Mix.Tasks.UpdateGpx do
     |> String.trim()
   end
 
-  defp as_kml_track({name, nodes}) do
+  defp as_kml_track(%{full_name: name, nodes: nodes}) do
     """
       <Placemark>
         <visibility>1</visibility>
@@ -82,7 +82,7 @@ defmodule Mix.Tasks.UpdateGpx do
     """
   end
 
-  defp as_gpx_track({name, nodes}) do
+  defp as_gpx_track(%{full_name: name, nodes: nodes}) do
     """
     <trk>
       <name>#{name}</name>
