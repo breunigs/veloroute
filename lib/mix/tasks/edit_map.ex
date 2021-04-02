@@ -8,7 +8,6 @@ defmodule Mix.Tasks.EditMap do
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
   def run(_) do
-    :ok = Mix.Tasks.UpdateImages.run(nil)
     write_josm_session()
 
     {:ok, %{mtime: lastMod}} = File.stat(@map_path)
@@ -25,6 +24,7 @@ defmodule Mix.Tasks.EditMap do
       )
 
     Mix.Tasks.UpdateGpx.run(nil)
+    Mix.Tasks.UpdateImages.run(nil)
   end
 
   defp write_josm_session do
