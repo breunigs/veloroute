@@ -140,27 +140,35 @@ defmodule Mapillary do
 
   defp image_keys(seq, from, to, reverse: rev) do
     keys = image_keys(seq, reverse: rev)
-    fromIdx = Enum.find_index(keys, fn x -> x == from end)
-    toIdx = Enum.find_index(keys, fn x -> x == to end)
+
+    {started, ended, list} =
+      Enum.reduce(keys, {false, false, []}, fn key, {started, ended, list} ->
+        started = started || key == from
+        list = if started && !ended, do: [key | list], else: list
+        ended = ended || (started && key == to)
+
+        {started, ended, list}
+      end)
 
     cond do
-      !fromIdx ->
+      !started ->
         Logger.error("Sequence #{seq} does not contain image #{from}")
         nil
 
-      !toIdx ->
-        Logger.error("Sequence #{seq} does not contain image #{to}")
-        nil
-
-      fromIdx > toIdx ->
+      # check if we just missed the end key, or if it is actually not present
+      !ended && Enum.find_index(keys, fn x -> x == to end) ->
         Logger.error(
           "Sequence #{seq} appears to be out-of-order 'from #{from}' appears later than 'to #{to}'. Either swap them, or specify 'reverse: false'."
         )
 
         nil
 
+      !ended ->
+        Logger.error("Sequence #{seq} does not contain image y#{to}")
+        nil
+
       true ->
-        Enum.slice(keys, fromIdx, toIdx - fromIdx + 1)
+        list |> Enum.reverse()
     end
   end
 

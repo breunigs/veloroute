@@ -41,22 +41,31 @@ defmodule Data.Route do
 
   def load(opts, module) do
     Benchmark.measure("#{module}: parsing", fn ->
-      parsed = yaml_from_map(opts[:id]) || yaml_from_string(opts[:yaml])
+      # ./deps/eflame/stack_to_flame.sh < stacks.out > flame.svg
+      # if module == Data.Route.Route12 do
+      # :eflame.apply(fn -> load_plain(opts, module) end, [])
+      # else
+      load_plain(opts)
+      # end
+    end)
+  end
 
-      parsed
-      |> Enum.reduce(%{}, fn {name, seqs}, acc ->
-        imgs =
-          seqs
-          |> Enum.with_index()
-          |> Enum.flat_map(fn {seq, idx} ->
-            seq
-            |> Mapillary.resolve()
-            |> Enum.map(&Map.put(&1, :seq_idx, idx))
-          end)
+  defp load_plain(opts) do
+    parsed = yaml_from_map(opts[:id]) || yaml_from_string(opts[:yaml])
 
-        name = String.split(name, " ", parts: 2) |> List.to_tuple()
-        Map.put(acc, name, imgs)
-      end)
+    parsed
+    |> Enum.reduce(%{}, fn {name, seqs}, acc ->
+      imgs =
+        seqs
+        |> Enum.with_index()
+        |> Enum.flat_map(fn {seq, idx} ->
+          seq
+          |> Mapillary.resolve()
+          |> Enum.map(&Map.put(&1, :seq_idx, idx))
+        end)
+
+      name = String.split(name, " ", parts: 2) |> List.to_tuple()
+      Map.put(acc, name, imgs)
     end)
   end
 
