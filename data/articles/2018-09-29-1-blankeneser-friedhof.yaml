@@ -1,13 +1,19 @@
 
-type: issue
+type: intent
 icon: nocargo
 images: articles
 title: Friedhof Blankenese (Veloroute 1)
+start: 2021Q3
 tags:
 - 1
-text: "<p>Am <a>Friedhof Blankenese</a> gibt es an beiden Zugangsstellen sehr enge
+- a15.1
+text: >
+  <p>Am <a>Friedhof Blankenese</a> gibt es an beiden Zugangsstellen sehr enge
   Drängelgitter. Diese sind bereits mit einem normalen Fahrrad kaum zu passieren,
   mit Anhänger oder Lastenrad kommt man vermutlich überhaupt nicht durch. Allgemein
   erscheint die Führung durch den Friedhof fragwürdig, liegt doch der <a>Sülldorfer
   Kirchenweg</a> knapp daneben. Vermutlich traute man sich nicht den KFZ Verkehr dort
-  einzudämmen.</p>"
+  einzudämmen.</p>
+
+  <h4>Quelle</h4>
+  <p><a href="https://www.steg-hamburg.de/veloroute-altona.html">Baubeginn</a> (rechte Seitenleiste)</p>

@@ -9,9 +9,8 @@ require 'parallel'
 
 SEEN_FN = File.join(__dir__, './baustellen_seen_ids.txt')
 seen = YAML.load_file(SEEN_FN)
-
 def ids_by_date(date)
-  json = OpenURI.open_uri("https://roads-steckbrief.hamburg/api/steckbriefeweb/list?date=#{date}").read
+  json = OpenURI.open_uri("https://bauweiser.hamburg.de/api/steckbriefeweb/list?date=#{date}").read
   print "."
   JSON.parse(json).map { |entry| entry["id"] }
 end
@@ -26,7 +25,7 @@ end.to_h
 references.delete(nil)
 
 updates = Parallel.map(ids, in_threads: 4) do |id|
-  jsonRaw = OpenURI.open_uri("https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{id}").read
+  jsonRaw = OpenURI.open_uri("https://bauweiser.hamburg.de/api/steckbriefeweb/id/#{id}").read
   json = JSON.parse(jsonRaw)
   print "."
 
@@ -77,7 +76,7 @@ updates.each do |upd|
       start: #{upd[:start]}
       end: #{upd[:end]}
       velo: #{upd[:velo]}
-      curl -s https://roads-steckbrief.hamburg/api/steckbriefeweb/id/#{upd[:id]} | jq
+      curl -s https://bauweiser.hamburg.de/api/steckbriefeweb/id/#{upd[:id]} | jq
   TEXT
   puts "  " + upd[:link] if upd[:link]
 end

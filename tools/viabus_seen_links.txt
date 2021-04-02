@@ -489,3 +489,5 @@
 - https://via-bus.hamburg.de/contentblob/14911102/c69c243ff3e98ff734b65743f79b5295/data/01-mb10-grunewaldstrasse-schlussverschickung.pdf
 - https://via-bus.hamburg.de/contentblob/14910806/40712ba2703d8986940e8cd0fd4e3de2/data/01-mb12-karl-ruether-stieg-und-otto-grot-strasse-schlussverschickung.pdf
 - https://via-bus.hamburg.de/contentblob/14910814/36761870be8962c98e077ffa39ec1aa6/data/02-mb12-von-scheliha-strasse-und-wilhelm-osterhold-steg-schlussverschickung.pdf
+'2021-04-02':
+- https://via-bus.hamburg.de/contentblob/14991544/311c6aa17781fe377bb2282069b713a9/data/27-m20-25-schlussverschickung-maxbrauer.pdf
