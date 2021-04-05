@@ -30,6 +30,16 @@ node[type=marker] {
   text-anchor-vertical: center;
 }
 
+node|z13-[target]::routing {
+  font-size: 15;
+  text-halo-radius: 1;
+  text: target;
+}
+
+node|z16-[target]::routing {
+  text-offset-y: 15;
+}
+
 way node[type=marker] {
   symbol-shape: circle;
 }
@@ -78,18 +88,22 @@ way[eval(length(tag("seq_backward")) != 22)],
 way[eval(length(tag("img_backward_start")) != 22)],
 way[eval(length(tag("img_backward_end")) != 22)] {
   set error;
-  text: concat(prop(text), "invalid mapillary tag"));
-  throwWarning: tr("invalid mapillary tag");
+  text: concat(prop(text), " invalid mapillary tag");
 }
 
 way[oneway?][seq_forward] {
-  color: #ff00ee;
+  color: #7E67A7;
   set ok;
 }
 
 way[!oneway?][seq_forward][seq_backward] {
   set ok;
-  color: #ff00ee;
+  color: #7E67A7;
+}
+
+way[oneway?][seq_backward] {
+  set error;
+  text: concat(prop(text), " oneway has seq_backward tag");
 }
 
 /* img arrow icons forward */
@@ -121,14 +135,15 @@ node.forwardStart.forwardEnd::fw {
   text: eval("⇸");
 }
 node.hasSeqOne.hasSeqTwo::fw,
-node.forwardStart.onewayEnds::fw,
-node.forwardEnds.onewayStarts::fw {
+node.forwardStart.forwardEnds.onewayEnds::fw,
+node.forwardStart.forwardEnds.onewayStarts::fw {
   text: eval("↷");
 }
 node.forwardStart::fw, node.forwardEnd::fw, node.hasSeqOne.hasSeqTwo::fw {
   text-offset-x: 10;
   text-offset-y: 0;
   text-color: #038D50; /* some green */
+
   font-size: 20;
   font-weight: bold;
   text-halo-color: #ffffff;
@@ -138,10 +153,10 @@ node.forwardStart::fw, node.forwardEnd::fw, node.hasSeqOne.hasSeqTwo::fw {
 }
 
 /* img arrow icons backward */
-way[seq_backward][!img_backward_start] >[index=1] node|z16-::bw {
+way[seq_backward][!img_backward_end] >[index=1] node|z16-::bw {
   set hasSeqOne;
 }
-way[seq_backward][!img_forward_end] >[index=-1] node|z16-::bw {
+way[seq_backward][!img_backward_start] >[index=-1] node|z16-::bw {
   set hasSeqTwo;
 }
 way[seq_forward][img_forward_end][oneway?] >[index=-1] node|z16-::bw {
@@ -162,12 +177,12 @@ node.backwardStart::bw {
 node.backwardEnd::bw {
   text: eval("⇤");
 }
-node.backwardStart.backwardEnd::bw {
+node.backwardStart.backwardEnd::bw,
+node.backwardEnd.onewayStarts::bw,
+node.backwardStart.onewayEnds::bw   {
   text: eval("⇷");
 }
-node.hasSeqOne.hasSeqTwo::bw,
-node.backwardStart.onewayEnds::bw,
-node.backwardEnd.onewayStarts::bw {
+node.hasSeqOne.hasSeqTwo::bw {
   text: eval("↶");
 }
 node.backwardStart::bw, node.backwardEnd::bw, node.hasSeqOne.hasSeqTwo::bw {
@@ -186,7 +201,7 @@ way.ok[color] {
   color: eval(tag("color"));
 }
 
-way.ok[!color]::default, way.parentColor.ok[!color]::oneway {
+way.ok[!color], way.parentColor.ok[!color]::oneway {
   color: eval(
     count(parent_tags("color")) <= 2 && count(parent_tags("color")) > 0
       ? get(parent_tags("color"), 0)
@@ -203,7 +218,6 @@ way.ok[!color]::default, way.parentColor.ok[!color]::oneway {
 way.error {
   color: #ff00ee;
 }
-
 
 way[img_date] {
   text: concat(prop(text), eval(tag("img_date")));

@@ -5,12 +5,14 @@ defmodule Mix.Tasks.EditMap do
   @josm_default_prefs File.cwd!() <> "/data/josm_default_prefs.xml"
   @session_path File.cwd!() <> "/data/cache/map_session.jos"
   @map_path File.cwd!() <> "/data/map.osm"
+  @style_debug_path File.cwd!() <> "/data/style_debug.osm"
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
   def run(_) do
-    write_josm_session()
+    # ensure images are up to date if there have been edits outside this helper
+    Mix.Tasks.UpdateImages.run(nil)
 
-    {:ok, %{mtime: lastMod}} = File.stat(@map_path)
+    write_josm_session()
 
     {_stream, 0} =
       System.cmd(
@@ -23,8 +25,11 @@ defmodule Mix.Tasks.EditMap do
         env: [{"JAVA_OPTS", "-Djosm.home=#{@josm_home}"}]
       )
 
-    Mix.Tasks.UpdateGpx.run(nil)
-    Mix.Tasks.UpdateImages.run(nil)
+    # run in extra process to ensure we recompile after map update
+    IO.puts("Updating images…")
+    {_stream, 0} = System.cmd("mix", ["update_images"], into: IO.stream(:stdio, :line))
+    IO.puts("Updating GPX…")
+    {_stream, 0} = System.cmd("mix", ["update_gpx"], into: IO.stream(:stdio, :line))
   end
 
   defp write_josm_session do
@@ -45,7 +50,10 @@ defmodule Mix.Tasks.EditMap do
               <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="true">
                   <file>file:#{Mix.Tasks.UpdateImages.imgpath()}</file>
               </layer>
-              <layer index="3" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
+              <layer index="3" name="Style Debug" type="osm-data" version="0.1" visible="false">
+                  <file>file:#{@style_debug_path}</file>
+              </layer>
+              <layer index="4" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
                   <name>OpenStreetMap (Standard Black &amp; White)</name>
                   <id>osm-mapnik-black_and_white</id>
                   <type>tms</type>

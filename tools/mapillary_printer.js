@@ -8,7 +8,20 @@ function getSeq() {
 }
 
 function render(pKey, seq) {
-  document.querySelector(".mapboxgl-ctrl.mapboxgl-ctrl-attrib").innerHTML = '<b><tt>- { seq: "<span style="user-select: all" id="seqkey">' + seq + '</span>", from: "<span style="user-select: all">' + pKey + '</span>", to: "<span style="user-select: all">' + pKey + '</span>" }</tt></b>';
+  let elem = document.querySelector(".mapboxgl-ctrl.mapboxgl-ctrl-attrib");
+  elem.style.padding = '2px 24px 2px 4px';
+  elem.innerHTML = `
+    <style>
+      .vhhgroup {
+        user-select: all;
+        font: monospace;
+      }
+    </style>
+    <div class="vhhgroup">seq_forward=${seq}<br>img_forward_start=${pKey}</div><br>
+    <div class="vhhgroup">seq_forward=${seq}<br>img_forward_end=${pKey}</div><br>
+    <div class="vhhgroup">seq_backward=${seq}<br>img_backward_start=${pKey}</div><br>
+    <div class="vhhgroup">seq_backward=${seq}<br>img_backward_end=${pKey}</div>
+  `;
 }
 
 function printStuffs() {

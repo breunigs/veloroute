@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' upload='never' generator='JOSM'>
+  <node id='-119720' action='modify' lat='53.56484269588' lon='10.00653593659' />
+  <node id='-119721' action='modify' lat='53.56457128799' lon='10.00623083532'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119722' action='modify' lat='53.56457128799' lon='10.00656342924'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119723' action='modify' lat='53.56438629952' lon='10.00575541377' />
+  <node id='-119724' action='modify' lat='53.56461410006' lon='10.00556497693' />
+  <node id='-119725' action='modify' lat='53.56457128799' lon='10.0058982414'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119726' action='modify' lat='53.5646999232' lon='10.0058969003' />
+  <node id='-119727' action='modify' lat='53.56438629952' lon='10.00608532548' />
+  <node id='-119728' action='modify' lat='53.56475468265' lon='10.00618590832'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119729' action='modify' lat='53.56470171533' lon='10.00560252786' />
+  <node id='-119730' action='modify' lat='53.56479570242' lon='10.00686853051' />
+  <node id='-119731' action='modify' lat='53.5647015162' lon='10.0065835458' />
+  <node id='-119732' action='modify' lat='53.56461350269' lon='10.00623351753'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119733' action='modify' lat='53.56479849016' lon='10.00654264212'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119734' action='modify' lat='53.56448665935' lon='10.00575273156' />
+  <node id='-119735' action='modify' lat='53.56442453186' lon='10.00616579175' />
+  <node id='-119736' action='modify' lat='53.56465770859' lon='10.00589421809' />
+  <node id='-119737' action='modify' lat='53.56479689717' lon='10.00585599661'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119738' action='modify' lat='53.56448984537' lon='10.00608800769' />
+  <node id='-119739' action='modify' lat='53.56484110288' lon='10.00584929109' />
+  <node id='-119740' action='modify' lat='53.5646166887' lon='10.00657147586'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119741' action='modify' lat='53.56488331731' lon='10.00618456721' />
+  <node id='-119742' action='modify' lat='53.5646999232' lon='10.00622949421' />
+  <node id='-119743' action='modify' lat='53.56475468265' lon='10.0058533144'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119744' action='modify' lat='53.56461350269' lon='10.00590092361'>
+    <tag k='oneway' v='-1' />
+  </node>
+  <node id='-119745' action='modify' lat='53.5648849103' lon='10.0065386188' />
+  <node id='-119746' action='modify' lat='53.56488331731' lon='10.0058519733' />
+  <node id='-119747' action='modify' lat='53.5648865033' lon='10.00684707284' />
+  <node id='-119748' action='modify' lat='53.56479689717' lon='10.00618859053'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119749' action='modify' lat='53.56484110288' lon='10.006181885' />
+  <node id='-119750' action='modify' lat='53.5646593016' lon='10.0065808636' />
+  <node id='-119751' action='modify' lat='53.56465770859' lon='10.00622681201' />
+  <node id='-119752' action='modify' lat='53.56475627566' lon='10.00653995991'>
+    <tag k='oneway' v='yes' />
+  </node>
+  <node id='-119753' action='modify' lat='53.56442612488' lon='10.00656007648' />
+  <node id='-119754' action='modify' lat='53.56427385379' lon='10.00653543377' />
+  <node id='-119755' action='modify' lat='53.56421299594' lon='10.00579210496' />
+  <node id='-119756' action='modify' lat='53.56427134713' lon='10.00615038721' />
+  <node id='-119757' action='modify' lat='53.56431874708' lon='10.0057768927' />
+  <node id='-119758' action='modify' lat='53.56421424876' lon='10.00607594579' />
+  <node id='-119759' action='modify' lat='53.56432257409' lon='10.00607996911' />
+  <node id='-119760' action='modify' lat='53.5643247951' lon='10.00760505108' />
+  <node id='-119761' action='modify' lat='53.56421646978' lon='10.00760102777' />
+  <node id='-119762' action='modify' lat='53.56432096809' lon='10.00730197467' />
+  <node id='-119763' action='modify' lat='53.56421521696' lon='10.00731718694' />
+  <node id='-119764' action='modify' lat='53.56427356815' lon='10.00767546918' />
+  <node id='-119765' action='modify' lat='53.56427607481' lon='10.00806051574' />
+  <node id='-119766' action='modify' lat='53.56449684064' lon='10.00758359341' />
+  <node id='-119767' action='modify' lat='53.56438851575' lon='10.0075795701' />
+  <node id='-119768' action='modify' lat='53.56449301364' lon='10.007280517' />
+  <node id='-119769' action='modify' lat='53.56438726294' lon='10.00729572927' />
+  <node id='-119770' action='modify' lat='53.56444561389' lon='10.00765401151' />
+  <node id='-119771' action='modify' lat='53.56444812054' lon='10.00803905807' />
+  <node id='-119915' action='modify' lat='53.56472040435' lon='10.00734218262' />
+  <node id='-119917' action='modify' lat='53.56471883576' lon='10.00778735787' />
+  <node id='-120003' action='modify' lat='53.56472104147' lon='10.00814524319' />
+  <way id='-111708' action='modify'>
+    <nd ref='-119728' />
+    <nd ref='-119752' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111709' action='modify'>
+    <nd ref='-119732' />
+    <nd ref='-119744' />
+    <tag k='color' v='#000000' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111710' action='modify'>
+    <nd ref='-119737' />
+    <nd ref='-119748' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111711' action='modify'>
+    <nd ref='-119750' />
+    <nd ref='-119751' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111712' action='modify'>
+    <nd ref='-119744' />
+    <nd ref='-119724' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111713' action='modify'>
+    <nd ref='-119733' />
+    <nd ref='-119730' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111714' action='modify'>
+    <nd ref='-119739' />
+    <nd ref='-119749' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show seq change' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111715' action='modify'>
+    <nd ref='-119743' />
+    <nd ref='-119728' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111716' action='modify'>
+    <nd ref='-119742' />
+    <nd ref='-119726' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111717' action='modify'>
+    <nd ref='-119735' />
+    <nd ref='-119738' />
+    <nd ref='-119734' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111718' action='modify'>
+    <nd ref='-119748' />
+    <nd ref='-119733' />
+    <tag k='color' v='#000000' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111719' action='modify'>
+    <nd ref='-119740' />
+    <nd ref='-119732' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111720' action='modify'>
+    <nd ref='-119723' />
+    <nd ref='-119727' />
+    <nd ref='-119735' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111721' action='modify'>
+    <nd ref='-119735' />
+    <nd ref='-119753' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='img_forward_start' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111722' action='modify'>
+    <nd ref='-119751' />
+    <nd ref='-119736' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111723' action='modify'>
+    <nd ref='-119741' />
+    <nd ref='-119745' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111724' action='modify'>
+    <nd ref='-119731' />
+    <nd ref='-119742' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111725' action='modify'>
+    <nd ref='-119721' />
+    <nd ref='-119725' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation (way should be error)' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111726' action='modify'>
+    <nd ref='-119726' />
+    <nd ref='-119729' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111727' action='modify'>
+    <nd ref='-119749' />
+    <nd ref='-119720' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show seq change' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111728' action='modify'>
+    <nd ref='-119722' />
+    <nd ref='-119721' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_backward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation (way should be error)' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+  </way>
+  <way id='-111729' action='modify'>
+    <nd ref='-119745' />
+    <nd ref='-119747' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111730' action='modify'>
+    <nd ref='-119746' />
+    <nd ref='-119741' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='name' v='good, should show continuation' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111731' action='modify'>
+    <nd ref='-119756' />
+    <nd ref='-119759' />
+    <nd ref='-119757' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111732' action='modify'>
+    <nd ref='-119754' />
+    <nd ref='-119756' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='img_backward_start' v='1111111111111111111111' />
+    <tag k='img_forward_end' v='1111111111111111111111' />
+    <tag k='img_forward_start' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111733' action='modify'>
+    <nd ref='-119755' />
+    <nd ref='-119758' />
+    <nd ref='-119756' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111734' action='modify'>
+    <nd ref='-119765' />
+    <nd ref='-119764' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='img_backward_start' v='1111111111111111111111' />
+    <tag k='img_forward_end' v='1111111111111111111111' />
+    <tag k='img_forward_start' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111735' action='modify'>
+    <nd ref='-119764' />
+    <nd ref='-119760' />
+    <nd ref='-119762' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111736' action='modify'>
+    <nd ref='-119763' />
+    <nd ref='-119761' />
+    <nd ref='-119764' />
+    <tag k='color' v='#000000' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='-111737' action='modify'>
+    <nd ref='-119771' />
+    <nd ref='-119770' />
+    <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='img_backward_start' v='1111111111111111111111' />
+    <tag k='img_forward_end' v='1111111111111111111111' />
+    <tag k='img_forward_start' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='seq_backward' v='1111111111111111111111' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111738' action='modify'>
+    <nd ref='-119770' />
+    <nd ref='-119766' />
+    <nd ref='-119768' />
+    <tag k='color' v='#000000' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='-111739' action='modify'>
+    <nd ref='-119769' />
+    <nd ref='-119767' />
+    <nd ref='-119770' />
+    <tag k='color' v='#000000' />
+    <tag k='img_forward_end' v='bbbbbbbbbbbbbbbbbbbbbb' />
+    <tag k='img_forward_start' v='aaaaaaaaaaaaaaaaaaaaaa' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='1111111111111111111111' />
+  </way>
+  <way id='-111784' action='modify'>
+    <nd ref='-119915' />
+    <nd ref='-119917' />
+    <tag k='img_backward_end' v='_1Ue1UJ71WMuMKEFTxVTCQ' />
+    <tag k='img_forward_end' v='12gMKcuF1p9VioKSvVL_xw' />
+    <tag k='img_forward_start' v='GcmMp80S_KWiuS3GfQLyUQ' />
+    <tag k='seq_backward' v='2fEwkC94NPNbBhvYziLt7w' />
+    <tag k='seq_forward' v='0wDg8K2zPRU6rzax3yFzBw' />
+  </way>
+  <way id='-111785' action='modify'>
+    <nd ref='-120003' />
+    <nd ref='-119917' />
+    <tag k='img_backward_start' v='12gMKcuF1p9VioKSvVL_xw' />
+    <tag k='img_forward_end' v='-q9RnZplF1meUnG9zRMvrw' />
+    <tag k='img_forward_start' v='RtRnrllbQMkXE7APDLpAlA' />
+    <tag k='seq_backward' v='gGtaKeqV7v6jtX3sCcz_oQ' />
+    <tag k='seq_forward' v='2fEwkC94NPNbBhvYziLt7w' />
+  </way>
+</osm>
