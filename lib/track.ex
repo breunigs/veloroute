@@ -51,6 +51,10 @@ defmodule Track do
             Curr: #{inspect(cur)}
             """
 
+          # old one ends in same image as next one continues, join, and overwrite "to"
+          {%{seq: s, from: f, to: x}, next = %{seq: s, from: x}} ->
+            [%Sequence{seq: s, from: f, to: next[:to]} | tl(img_seq)]
+
           # new start image, create next entry
           {_, %{seq: s, from: f, to: b}}
           when is_ref(s) and is_ref(f) ->
