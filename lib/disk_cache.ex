@@ -19,7 +19,7 @@ defmodule DiskCache do
     Agent.start(
       fn ->
         Process.flag(:trap_exit, true)
-        Enum.map(@allowed, &open/1)
+        %{}
       end,
       name: __MODULE__
     )
@@ -30,6 +30,8 @@ defmodule DiskCache do
   end
 
   defp get(namespace, cache_key, func) when namespace in @allowed do
+    Agent.update(__MODULE__, fn open_tables -> ensure_open(open_tables, namespace) end)
+
     Agent.get(
       __MODULE__,
       fn _open_tables ->
@@ -45,9 +47,30 @@ defmodule DiskCache do
 
   defp write(namespace, cache_key, func) when namespace in @allowed do
     res = func.()
-    true = :dets.insert_new(namespace, {cache_key, res})
+
+    true =
+      :dets.insert_new(namespace, {cache_key, res})
+      |> case do
+        true ->
+          true
+
+        {:error, err} ->
+          IO.warn("Encountered dets(#{namespace}) error: #{inspect(err)}, trying to close/reopen")
+          :dets.close(namespace)
+          open(namespace)
+          :dets.insert_new(namespace, {cache_key, res})
+      end
+
     :ok = :dets.sync(namespace)
     res
+  end
+
+  defp ensure_open(open_tables, namespace) do
+    if open_tables[namespace] do
+      open_tables
+    else
+      Map.put(open_tables, open(namespace), true)
+    end
   end
 
   defp open(namespace) do
