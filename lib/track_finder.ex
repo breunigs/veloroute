@@ -78,8 +78,9 @@ defmodule TrackFinder do
   defp track_matrix(r, normalized_ways) do
     name = r.tags[:name]
     id = r.tags[:id]
-    fw_text = r.tags[:forward] || r.tags[:gpx_forward] || "stadtauswärts"
-    bw_text = r.tags[:backward] || r.tags[:gpx_backward] || "stadteinwärts"
+    # TODO: old style fallback, should go away once everything is migrated to map.osm
+    fw_text = r.tags[:gpx_forward] || "stadtauswärts"
+    bw_text = r.tags[:gpx_backward] || "stadteinwärts"
 
     {start_members, end_members} =
       Enum.group_by(r.members, fn
@@ -98,6 +99,16 @@ defmodule TrackFinder do
 
     Enum.flat_map(start_ways, fn {s_as_start, s_as_end} ->
       Enum.flat_map(end_ways, fn {e_as_start, e_as_end} ->
+        fw_target = hd(e_as_start.nodes).tags[:target]
+        bw_target = hd(s_as_start.nodes).tags[:target]
+
+        # TODO: once everything is migrated to map.osm, this should not need to be checked anymore
+        fw_text = if bw_target, do: r.tags[:"#{bw_target}→#{fw_target}"], else: fw_text
+        bw_text = if bw_target, do: r.tags[:"#{fw_target}→#{bw_target}"], else: bw_text
+
+        fw_text = fw_text || "von #{bw_target} nach #{fw_target}"
+        bw_text = bw_text || "von #{fw_target} nach #{bw_target}"
+
         [
           %{
             type: :forward,
