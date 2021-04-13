@@ -140,11 +140,6 @@ defmodule Data.Route.Articles do
     - Tf2beo6Wk4MDE7eASp42OQ
     - ZsCQ-3ijJl_dD2VIr7Xkbw
 
-    articles 2018-09-02-14-boettcherkamp:
-    - kEiDHeOit_QIah8w5-xJpg
-    - WFTWhVY24R-4NZ3sEGZNgA
-    - GSzmixpNxjcXfNwQyTbYBA
-
     articles 2019-01-10-1-ottensen-mitte:
     - 2mEXfCAh4hvQZJ6DM2ZTzQ
     - QLhdQHosNcpTRPvmITumrQ

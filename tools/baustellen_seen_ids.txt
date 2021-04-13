@@ -381,10 +381,10 @@
   :velo: false
 14499:
   :id: 14499
-  :title: Vogelhüttendeich / Vollsperrung -- Bezirk Mitte
-  :updated: '2021-03-23T12:59:16.232228'
+  :title: 'Vogelhüttendeich / Vollsperrung -- '
+  :updated: '2021-04-08T09:52:53.68117'
   :start: '2021-03-03'
-  :end: '2021-04-09'
+  :end: '2021-04-17'
   :velo: false
 9662:
   :id: 9662
@@ -402,8 +402,8 @@
   :velo: false
 13736:
   :id: 13736
-  :title: Elbchaussee / Grundinstandsetzung -- LSBG
-  :updated: '2021-01-14T10:28:24.650495'
+  :title: 'Elbchaussee / Grundinstandsetzung -- '
+  :updated: '2021-04-13T08:26:40.733006'
   :start: '2021-01-11'
   :end: '2024-03-31'
   :velo: false
@@ -491,10 +491,10 @@
   :velo: false
 14569:
   :id: 14569
-  :title: Blohmstraße / Ausbau Veloroute 10 / Leitungsarbeiten -- Bezirk Harburg
-  :updated: '2021-02-15T14:30:34.753489'
+  :title: 'Blohmstraße / Kanalplatz / Ausbau Veloroute 10 / Straßenbauarbeiten -- '
+  :updated: '2021-04-07T13:22:20.127426'
   :start: '2021-02-15'
-  :end: '2021-09-30'
+  :end: '2021-10-30'
   :velo: true
 12436:
   :id: 12436
@@ -506,9 +506,9 @@
 12524:
   :id: 12524
   :title: 'Beim Farenland / Veloroute 6 -- '
-  :updated: '2021-04-02T10:56:49.963083'
+  :updated: '2021-04-07T10:45:22.906727'
   :start: '2020-11-02'
-  :end: '2021-04-16'
+  :end: '2021-04-13'
   :velo: true
 6381:
   :id: 6381
@@ -749,8 +749,8 @@
   :velo: true
 13716:
   :id: 13716
-  :title: Nagelsweg / Leitungsarbeiten -- Bezirk Mitte
-  :updated: '2021-02-17T12:52:02.99554'
+  :title: 'Nagelsweg / Leitungsarbeiten -- '
+  :updated: '2021-04-09T13:57:06.947459'
   :start: '2020-11-25'
   :end: '2021-05-15'
   :velo: false
@@ -861,8 +861,8 @@
   :velo: false
 14882:
   :id: 14882
-  :title: Thadenstraße / Ausbau Veloroute -- Bezirk Mitte
-  :updated: '2021-03-12T12:12:27.761582'
+  :title: 'Thadenstraße / Ausbau Veloroute -- '
+  :updated: '2021-04-06T09:48:51.845276'
   :start: '2021-04-06'
   :end: '2021-12-31'
   :velo: true
@@ -986,9 +986,9 @@
 15070:
   :id: 15070
   :title: 'Sinstorfer Weg / Reparatur Trumme -- '
-  :updated: '2021-03-25T09:23:49.235589'
+  :updated: '2021-04-08T13:10:49.822713'
   :start: '2021-04-06'
-  :end: '2021-04-09'
+  :end: '2021-04-16'
   :velo: false
 15001:
   :id: 15001
@@ -1004,4 +1004,139 @@
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2021-04-06'
   :end: '2021-04-14'
+  :velo: false
+15189:
+  :id: 15189
+  :title: 'Barmbeker Straße / Leitungsbau -- '
+  :updated: '2021-04-06T10:24:24.810947'
+  :start: '2021-03-29'
+  :end: '2021-05-10'
+  :velo: false
+15195:
+  :id: 15195
+  :title: 'Barmbeker Str. - Eppendorfer Stieg/ Markierung TABA -- '
+  :updated: '2021-04-06T10:24:45.74797'
+  :start: '2021-04-06'
+  :end: '2021-04-06'
+  :velo: false
+14999:
+  :id: 14999
+  :title: 'Fiersbarg / Vollsperrung -- '
+  :updated: '2021-03-22T09:50:21.866513'
+  :start: '2021-04-06'
+  :end: '2021-04-07'
+  :velo: false
+14985:
+  :id: 14985
+  :title: 'Tonndorfer Schulstraße / Vollsperrung -- '
+  :updated: '2021-03-19T14:31:29.335646'
+  :start: '2021-04-12'
+  :end: '2021-04-20'
+  :velo: false
+15232:
+  :id: 15232
+  :title: 'Gartenstadtweg - Hortensienweg / Deckschichterneuerung unter Vollsperrung
+    -- '
+  :updated: '2021-04-06T10:25:31.888248'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14996808/gartenstadtweg-hortensienweg/
+  :start: '2021-04-26'
+  :end: '2021-05-07'
+  :velo: false
+15257:
+  :id: 15257
+  :title: 'Billstedter Hauptstraße / Fahrspursperrung -- '
+  :updated: '2021-04-07T10:05:03.0808'
+  :start: '2021-04-12'
+  :end: '2021-04-16'
+  :velo: true
+15097:
+  :id: 15097
+  :title: 'Rahlstedter Bahnhofstraße - Neu- und Umbau der Veloroute 7 -- '
+  :updated: '2021-04-09T11:22:56.534284'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14989182/rahlstedter-bahnhofstrasse/
+  :start: '2021-04-12'
+  :end: '2021-10-31'
+  :velo: true
+14878:
+  :id: 14878
+  :title: 'Veringstraße / Sielbau -- '
+  :updated: '2021-04-07T14:38:05.944697'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-04-01'
+  :end: '2021-07-31'
+  :velo: false
+15360:
+  :id: 15360
+  :title: 'Poßmoorweg Einbahnstraße Richtung Krohnskamp -- '
+  :updated: '2021-04-08T12:01:31.605669'
+  :start: '2021-04-12'
+  :end: '2021-04-19'
+  :velo: false
+15394:
+  :id: 15394
+  :title: 'A 7 - Tunnel Stellingen / Wartung / Vollsperrungen -- '
+  :updated: '2021-04-09T13:27:19.899542'
+  :start: '2021-04-12'
+  :end: '2021-04-16'
+  :velo: false
+15411:
+  :id: 15411
+  :title: 'Warwischer Hauptdeich Ecke Wrauster Bogen | Fahrbahnsanierung -- '
+  :updated: '2021-04-13T08:17:42.331161'
+  :start: '2021-04-13'
+  :end: '2021-04-16'
+  :velo: false
+15276:
+  :id: 15276
+  :title: 'Steinbeker Hauptstraße / Verkehrsbehinderung -- '
+  :updated: '2021-04-07T06:25:43.951304'
+  :start: '2021-04-14'
+  :end: '2021-04-23'
+  :velo: true
+15243:
+  :id: 15243
+  :title: 'Auf dem Königslande / Deckschichterneuerung unter Vollsperrung -- '
+  :updated: '2021-04-06T10:25:45.695525'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14996812/auf-dem-koenigslande/
+  :start: '2021-04-19'
+  :end: '2021-04-26'
+  :velo: false
+15249:
+  :id: 15249
+  :title: 'Auf dem Königslande (ab Lesserstraße) / Deckschichterneuerung unter Vollsperrung
+    -- '
+  :updated: '2021-04-06T10:25:57.56806'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14996822/auf-dem-koenigslande-ab-lesserstrasse/
+  :start: '2021-04-15'
+  :end: '2021-04-26'
+  :velo: false
+15367:
+  :id: 15367
+  :title: 'Landwehrplatz / Sielbau -- '
+  :updated: '2021-04-08T12:02:06.384994'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-04-15'
+  :end: '2021-05-30'
+  :velo: false
+15420:
+  :id: 15420
+  :title: 'Adenauerallee / Sperrung -- '
+  :updated: '2021-04-13T08:18:22.218204'
+  :start: '2021-04-19'
+  :end: '2021-05-28'
+  :velo: true
+15053:
+  :id: 15053
+  :title: 'Münzstraße / Vollsperrung -- '
+  :updated: '2021-03-24T10:08:19.753694'
+  :start: '2021-04-19'
+  :end: '2021-04-20'
+  :velo: false
+14420:
+  :id: 14420
+  :title: 'Stresemannstraße / Sielbauarbeiten -- '
+  :updated: '2021-04-07T14:39:14.591429'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-04-26'
+  :end: '2021-08-30'
   :velo: false

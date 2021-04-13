@@ -1,10 +1,12 @@
 
 start: 2021-04-12
-end: 2021-10
+end: 2021-10-31
 type: construction
 title: Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)
+construction_site_id_hh: 15097
 tags:
 - 7
+- w27
 text: '<p>Die <a>Rahlstedter Bahnhofstraße</a> zwischen <a>Scharbeutzer Straße</a>
   und <a>Amtsstraße</a> ist momentan vor allem für den Autoverkehr ausgelegt. Stadteinwärts
   ist die Radverkehrsführung nur ein kurzes Stück vorhanden und es gibt keine klare

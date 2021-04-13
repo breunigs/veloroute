@@ -373,3 +373,5 @@
 '2021-03-26':
 - "/contentblob/14984264/2936f50d58fe43c5bc15cfc66b25a0d5/data/am-sandtorkai-brooktorkai-pop-up-bikelane-abgestimmte-planung-bericht.pdf"
 - "/contentblob/14984274/07862393b9b52161f7ef28c8498d55b5/data/am-sandtorkai-brooktorkai-pop-up-bikelane-abgestimmte-planung-plan.pdf"
+'2021-04-06':
+- "/contentblob/15002128/c16b32c7c5a020f81d2b501baf4612eb/data/elbchaussee-anliegerinformation-erster-bauabschnitt-parkstrasse-bis-manteuffelstr-baustart-mai-2021.pdf"
