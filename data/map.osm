@@ -1099,7 +1099,7 @@
   <node id='-116093' lat='53.55006744986' lon='10.00189303279' />
   <node id='-116094' lat='53.55013756619' lon='10.00456451297' />
   <node id='-116095' lat='53.55013756619' lon='10.00505803943' />
-  <node id='-116096' lat='53.55013437908' lon='10.00579832911' />
+  <node id='-116096' action='modify' lat='53.55013437908' lon='10.00585733771' />
   <node id='-116098' lat='53.56055811101' lon='10.06944178462' />
   <node id='-116099' lat='53.56299876061' lon='10.06733893275' />
   <node id='-116100' lat='53.56289043189' lon='10.06694196582' />
@@ -1195,18 +1195,12 @@
   <node id='-116334' lat='53.47359389858' lon='9.87086444825' />
   <node id='-116335' lat='53.47354281271' lon='9.8729029271' />
   <node id='-116343' lat='53.47360507361' lon='9.8730504486' />
-  <node id='-116345' lat='53.47023806625' lon='9.99383568227' />
-  <node id='-116346' lat='53.47037537009' lon='9.99388932645' />
-  <node id='-116347' lat='53.47075854123' lon='9.99413072526' />
+  <node id='-116347' action='modify' lat='53.47112255061' lon='9.99379276692' />
   <node id='-116348' lat='53.47143227544' lon='9.99438285291' />
   <node id='-116349' lat='53.47244126022' lon='9.99492465913' />
   <node id='-116350' lat='53.47449747139' lon='9.99599217832' />
   <node id='-116351' lat='53.47568517851' lon='9.99662517428' />
-  <node id='-116352' lat='53.47654081557' lon='9.99696849704' />
-  <node id='-116353' lat='53.47678345577' lon='9.99705432773' />
-  <node id='-116354' lat='53.47714741348' lon='9.99693631053' />
-  <node id='-116355' lat='53.47739005022' lon='9.99663590312' />
-  <node id='-116356' lat='53.4774730572' lon='9.99641059756' />
+  <node id='-116352' action='modify' lat='53.47609703582' lon='9.99634622455' />
   <node id='-116357' lat='53.4720676832' lon='9.99413072526' />
   <node id='-116358' lat='53.47200701654' lon='9.99447941244' />
   <node id='-116359' lat='53.47546807382' lon='9.99630867362' />
@@ -1281,6 +1275,34 @@
   <node id='-118133' action='modify' lat='53.52126823975' lon='10.14761119501' />
   <node id='-119618' action='modify' lat='53.55236608397' lon='10.00979080662' />
   <node id='-119719' action='modify' lat='53.52982077141' lon='10.1431166054' />
+  <node id='-120106' action='modify' lat='53.56499278667' lon='9.96574730123' />
+  <node id='-120163' action='modify' lat='53.58092652143' lon='9.93833541602' />
+  <node id='-120166' action='modify' lat='53.58390356474' lon='9.93827123809' />
+  <node id='-120174' action='modify' lat='53.60068775378' lon='9.92109279649' />
+  <node id='-120216' action='modify' lat='53.60224903777' lon='9.90830945371' />
+  <node id='-120221' action='modify' lat='53.59384123899' lon='9.93312858203' />
+  <node id='-120257' action='modify' lat='53.5717071721' lon='9.95967497625' />
+  <node id='-120325' action='modify' lat='53.47584640515' lon='9.99643206328' />
+  <node id='-120370' action='modify' lat='53.47105230343' lon='9.99423264921' />
+  <node id='-120380' action='modify' lat='53.47574902782' lon='9.99649911851' />
+  <node id='-120391' action='modify' lat='53.55012481459' lon='10.00499367177' />
+  <node id='-120395' action='modify' lat='53.55001007867' lon='10.00499367177' />
+  <node id='-120396' action='modify' lat='53.54940452287' lon='10.00495075643' />
+  <node id='-120397' action='modify' lat='53.54898700304' lon='10.00483810365' />
+  <node id='-120398' action='modify' lat='53.54867465726' lon='10.00467180669' />
+  <node id='-120399' action='modify' lat='53.54848342402' lon='10.00458061159' />
+  <node id='-120400' action='modify' lat='53.54834318576' lon='10.00458061159' />
+  <node id='-120401' action='modify' lat='53.54815513827' lon='10.0047630018' />
+  <node id='-120402' action='modify' lat='53.54800852439' lon='10.00492393434' />
+  <node id='-120460' action='modify' lat='53.5500164529' lon='10.00577151239' />
+  <node id='-120461' action='modify' lat='53.54950013752' lon='10.0057446903' />
+  <node id='-120462' action='modify' lat='53.54864915955' lon='10.00554620683' />
+  <node id='-120463' action='modify' lat='53.54838780707' lon='10.00534772336' />
+  <node id='-120464' action='modify' lat='53.54832406232' lon='10.00557302892' />
+  <node id='-120465' action='modify' lat='53.54844517727' lon='10.00566958845' />
+  <node id='-120466' action='modify' lat='53.5486395979' lon='10.00576614797' />
+  <node id='-120467' action='modify' lat='53.54957344194' lon='10.00601827562' />
+  <node id='-120468' action='modify' lat='53.55001326579' lon='10.00605582654' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' version='1' lat='53.555313' lon='10.00067' />
@@ -8481,9 +8503,10 @@
   <node id='8981910004714332' version='1' lat='53.4714332' lon='9.898191' />
   <node id='8984020005534339' version='1' lat='53.5534339' lon='9.898402' />
   <node id='8985980006119922' version='1' lat='53.6119922' lon='9.898598' />
-  <node id='8988588000605706' version='1' lat='53.605706' lon='9.8988588'>
+  <node id='8988588000605706' action='modify' version='1' lat='53.605706' lon='9.8988588'>
     <tag k='color' v='#b2211d' />
     <tag k='name' v='2' />
+    <tag k='target' v='Eidelstedt' />
     <tag k='type' v='marker' />
   </node>
   <node id='8989879000471512' version='1' lat='53.471512' lon='9.8989879' />
@@ -8691,7 +8714,7 @@
   <node id='9381730006563305' version='1' lat='53.6563305' lon='10.0938173' />
   <node id='9382970006377898' version='1' lat='53.6377898' lon='10.0938297' />
   <node id='9383330005836251' version='1' lat='53.5836251' lon='9.938333' />
-  <node id='9384190005809069' version='1' lat='53.5809069' lon='9.938419' />
+  <node id='9384190005809069' action='delete' version='1' lat='53.5809069' lon='9.938419' />
   <node id='9384554000547772' version='1' lat='53.547772' lon='9.9384554' />
   <node id='9384630006351865' version='1' lat='53.6351865' lon='9.938463' />
   <node id='9386450005823369' version='1' lat='53.5823369' lon='9.938645' />
@@ -8948,8 +8971,8 @@
   <node id='9610960006601384' version='1' lat='53.6601384' lon='10.0961096' />
   <node id='9611840005422928' version='1' lat='53.5422593292' lon='10.09599770059' />
   <node id='9613160005464315' action='modify' version='1' lat='53.54647612333' lon='9.96130527116' />
-  <node id='9615220005705487' version='1' lat='53.5705487' lon='9.961522' />
-  <node id='9615870005704552' version='1' lat='53.5704552' lon='9.961587' />
+  <node id='9615220005705487' action='delete' version='1' lat='53.57054551443' lon='9.96153205828' />
+  <node id='9615870005704552' action='delete' version='1' lat='53.5704552' lon='9.961587' />
   <node id='9618480006604315' version='1' lat='53.6604315' lon='10.0961848' />
   <node id='9619248000556425' version='1' lat='53.556425' lon='9.9619248' />
   <node id='9620990006561167' version='1' lat='53.6561167' lon='10.0962099' />
@@ -12914,17 +12937,17 @@
   <node id='93826790005501019' version='1' lat='53.5501019' lon='9.9382679' />
   <node id='93832040005500992' version='1' lat='53.5500992' lon='9.9383204' />
   <node id='93832680006349845' version='1' lat='53.6349845' lon='9.9383268' />
-  <node id='93837050005809458' version='1' lat='53.5809458' lon='9.9383705' />
+  <node id='93837050005809458' action='delete' version='1' lat='53.5809458' lon='9.9383705' />
   <node id='93839670005533413' version='1' lat='53.5533413' lon='9.9383967' />
   <node id='93842090005832502' version='1' lat='53.5832502' lon='9.9384209' />
   <node id='93844590005831485' version='1' lat='53.5831485' lon='9.9384459' />
-  <node id='93847070005808653' version='1' lat='53.5808653' lon='9.9384707' />
+  <node id='93847070005808653' action='delete' version='1' lat='53.5808653' lon='9.9384707' />
   <node id='93847580005532453' version='1' lat='53.5532453' lon='9.9384758' />
-  <node id='93862550005807357' version='1' lat='53.5807357' lon='9.9386255' />
+  <node id='93862550005807357' action='delete' version='1' lat='53.5807357' lon='9.9386255' />
   <node id='93865780005810686' version='1' lat='53.5810686' lon='9.9386578' />
   <node id='93866390005822607' version='1' lat='53.5822607' lon='9.9386639' />
   <node id='93866770005477733' version='1' lat='53.5477733' lon='9.9386677' />
-  <node id='93867870005806899' version='1' lat='53.5806899' lon='9.9386787' />
+  <node id='93867870005806899' action='modify' version='1' lat='53.58095264535' lon='9.93839706805' />
   <node id='93869050006355563' version='1' lat='53.6355563' lon='9.9386905' />
   <node id='93869840005821372' version='1' lat='53.5821372' lon='9.9386984' />
   <node id='93871780005806135' version='1' lat='53.5806135' lon='9.9387178' />
@@ -13305,9 +13328,9 @@
   <node id='95084540006272123' version='1' lat='53.6272123' lon='9.9508454' />
   <node id='95090420006269089' version='1' lat='53.6269089' lon='9.9509042' />
   <node id='95091970006391303' version='1' lat='53.6391303' lon='9.9509197' />
-  <node id='95092010005741526' version='1' lat='53.5741526' lon='9.9509201' />
+  <node id='95092010005741526' action='modify' version='1' lat='53.57382610605' lon='9.95177304247' />
   <node id='95092440005471003' version='1' lat='53.5471003' lon='9.9509244' />
-  <node id='95092680005741498' version='1' lat='53.5741498' lon='9.9509268' />
+  <node id='95092680005741498' action='delete' version='1' lat='53.57413068823' lon='9.95096435093' />
   <node id='95093470006404918' version='1' lat='53.6404918' lon='9.9509347' />
   <node id='95093640005653548' version='1' lat='53.5653548' lon='9.9509364' />
   <node id='95093970006390872' version='1' lat='53.6390872' lon='9.9509397' />
@@ -13315,7 +13338,7 @@
   <node id='95095370005656222' version='1' lat='53.5656222' lon='9.9509537' />
   <node id='95097260006405011' version='1' lat='53.6405011' lon='9.9509726' />
   <node id='95100150006256958' version='1' lat='53.6256958' lon='9.9510015' />
-  <node id='95102270005741098' version='1' lat='53.5741098' lon='9.9510227' />
+  <node id='95102270005741098' action='delete' version='1' lat='53.5741098' lon='9.9510227' />
   <node id='95105080005466907' action='delete' version='1' lat='53.5466907' lon='9.9510508' />
   <node id='95107440005466317' action='delete' version='1' lat='53.5466317' lon='9.9510744' />
   <node id='95107860006252885' version='1' lat='53.6252885' lon='9.9510786' />
@@ -13726,16 +13749,16 @@
   <node id='96143580005706552' version='1' lat='53.5706552' lon='9.9614358' />
   <node id='96148640005564843' version='1' lat='53.5564843' lon='9.9614864' />
   <node id='96150170005463044' version='1' lat='53.5463044' lon='9.9615017' />
-  <node id='96151110005705848' version='1' lat='53.5705848' lon='9.9615111' />
+  <node id='96151110005705848' action='modify' version='1' lat='53.57057763248' lon='9.96149433619' />
   <node id='96151350004613148' version='1' lat='53.4613148' lon='9.9615135' />
-  <node id='96151580005705092' version='1' lat='53.5705092' lon='9.9615158' />
-  <node id='96151730005705211' version='1' lat='53.5705211' lon='9.9615173' />
-  <node id='96152030005704971' version='1' lat='53.5704971' lon='9.9615203' />
-  <node id='96153280005704846' version='1' lat='53.5704846' lon='9.9615328' />
-  <node id='96155240005704767' version='1' lat='53.5704767' lon='9.9615524' />
+  <node id='96151580005705092' action='delete' version='1' lat='53.5705092' lon='9.9615158' />
+  <node id='96151730005705211' action='delete' version='1' lat='53.5705211' lon='9.9615173' />
+  <node id='96152030005704971' action='delete' version='1' lat='53.5704971' lon='9.9615203' />
+  <node id='96153280005704846' action='modify' version='1' lat='53.57040097868' lon='9.96165752272' />
+  <node id='96155240005704767' action='delete' version='1' lat='53.5704767' lon='9.9615524' />
   <node id='96156920005741884' version='1' lat='53.5741884' lon='9.9615692' />
   <node id='96160940005705522' version='1' lat='53.5705522' lon='9.9616094' />
-  <node id='96163180005705449' version='1' lat='53.5705449' lon='9.9616318' />
+  <node id='96163180005705449' action='delete' version='1' lat='53.5705449' lon='9.9616318' />
   <node id='96164320005705319' version='1' lat='53.5705319' lon='9.9616432' />
   <node id='96173540006396631' version='1' lat='53.6396631' lon='9.9617354' />
   <node id='96183780005744727' version='1' lat='53.5744727' lon='9.9618378' />
@@ -13766,7 +13789,7 @@
   <node id='96300230005694952' version='1' lat='53.5694952' lon='9.9630023' />
   <node id='96300430005694909' version='1' lat='53.5694909' lon='9.9630043' />
   <node id='96302440005463772' version='1' lat='53.5463772' lon='9.9630244' />
-  <node id='96304360005694263' version='1' lat='53.5694263' lon='9.9630436' />
+  <node id='96304360005694263' action='modify' version='1' lat='53.56938647935' lon='9.96302750675' />
   <node id='96313120005568501' version='1' lat='53.5568501' lon='9.9631312' />
   <node id='96314280005775513' version='1' lat='53.5775513' lon='9.9631428' />
   <node id='96315420005696952' version='1' lat='53.5696952' lon='9.9631542' />
@@ -13797,7 +13820,7 @@
   <node id='96352680005775343' version='1' lat='53.5775343' lon='9.9635268' />
   <node id='96352720005772336' version='1' lat='53.5772336' lon='9.9635272' />
   <node id='96353270005570536' version='1' lat='53.5570536' lon='9.9635327' />
-  <node id='96354530005694026' version='1' lat='53.5694026' lon='9.9635453' />
+  <node id='96354530005694026' action='modify' version='1' lat='53.56929986259' lon='9.96363917732' />
   <node id='96357910005570596' version='1' lat='53.5570596' lon='9.9635791' />
   <node id='96358820005772873' version='1' lat='53.5772873' lon='9.9635882' />
   <node id='96359080005775318' version='1' lat='53.5775318' lon='9.9635908' />
@@ -15795,40 +15818,12 @@
     <tag k='name' v='Grubenstieg' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='-101832'>
-    <nd ref='98608530005498071' />
-    <nd ref='9860962000549957' />
-    <nd ref='98604020005502754' />
-    <nd ref='9859940005505219' />
-    <nd ref='98594720005507856' />
-    <nd ref='9859110005510046' />
-    <nd ref='9859030005510546' />
-    <nd ref='98585470005516101' />
-    <nd ref='98584040005517746' />
-    <nd ref='98567810005520149' />
-    <tag k='name' v='Stadthausbrücke' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='-101836'>
-    <nd ref='97532980005564534' />
-    <nd ref='9751370005564644' />
-    <nd ref='97500740005564844' />
-    <nd ref='97485940005565145' />
-    <nd ref='97458710005565879' />
-    <nd ref='97402160005567136' />
-    <nd ref='9737550005567513' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='-101876'>
+  <way id='-101883' action='modify'>
     <nd ref='93867870005806899' />
+    <nd ref='-120163' />
     <nd ref='93871780005806135' />
     <nd ref='93876150005805672' />
     <nd ref='93879570005805298' />
-    <nd ref='93882040005804793' />
-    <tag k='name' v='Langenfelder Damm' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='-101883'>
     <nd ref='93882040005804793' />
     <nd ref='93880560005804537' />
     <nd ref='93880410005804267' />
@@ -15840,27 +15835,20 @@
     <nd ref='93904430005802842' />
     <nd ref='93908890005802498' />
     <nd ref='93918840005801803' />
-    <tag k='name' v='Langenfelder Damm' />
+    <tag k='img_forward_end' v='KHpr9jAucpyoGz9jkTl1Lg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
   </way>
-  <way id='-101888'>
+  <way id='-101888' action='modify'>
     <nd ref='94696620005758188' />
     <nd ref='94701790005757738' />
     <nd ref='94708750005757381' />
     <nd ref='94717080005757308' />
     <nd ref='94721320005757468' />
+    <tag k='img_forward_end' v='i5zIHWvYNx39D1P2xnmS6w' />
+    <tag k='img_forward_start' v='9rro4H_EwCNPSAbwAN8-lQ' />
     <tag k='oneway' v='yes' />
-  </way>
-  <way id='-101892'>
-    <nd ref='96268070005698537' />
-    <nd ref='96266770005699192' />
-    <nd ref='9622750005701512' />
-    <nd ref='96214640005702316' />
-    <nd ref='96164320005705319' />
-    <nd ref='96163180005705449' />
-    <nd ref='96160940005705522' />
-    <tag k='name' v='Weidenstieg' />
-    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
   </way>
   <way id='-101896'>
     <nd ref='95843620005984764' />
@@ -17875,19 +17863,16 @@
     <tag k='name' v='2021-03-12-gleisstieg-rehrstieg-bis-francoper-strasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='-107030'>
-    <nd ref='-116345' />
-    <nd ref='-116346' />
+  <way id='-107030' action='modify'>
     <nd ref='-116347' />
+    <nd ref='-120370' />
     <nd ref='-116348' />
     <nd ref='-116349' />
     <nd ref='-116350' />
     <nd ref='-116351' />
+    <nd ref='-120380' />
+    <nd ref='-120325' />
     <nd ref='-116352' />
-    <nd ref='-116353' />
-    <nd ref='-116354' />
-    <nd ref='-116355' />
-    <nd ref='-116356' />
     <tag k='name' v='2021-03-12-sanierung-alte-harburger-elbbruecke' />
     <tag k='type' v='detour' />
   </way>
@@ -18127,6 +18112,182 @@
     <tag k='img_forward_start' v='cyHPisNkAEq9ayGzya0zcw' />
     <tag k='seq_backward' v='LIbLx-LVizt4iXrBp-RGKw' />
     <tag k='seq_forward' v='MZqzQJU_KK41nKLdH3xXrQ' />
+  </way>
+  <way id='-112106' action='modify'>
+    <nd ref='93882060005817008' />
+    <nd ref='9388119000581632' />
+    <nd ref='93878610005814195' />
+    <nd ref='93876950005812231' />
+    <nd ref='9387573000581147' />
+    <nd ref='93872830005811095' />
+    <nd ref='93865780005810686' />
+    <nd ref='93867870005806899' />
+    <tag k='img_backward_end' v='y8nwBD5G45NE13QNcSGd0A' />
+    <tag k='img_backward_start' v='GCxBk67Lp7QxNQixhxQOew' />
+    <tag k='img_forward_start' v='kEEzbIGCFIF-lTTANgB53Q' />
+    <tag k='name' v='Langenfelder Damm' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
+  </way>
+  <way id='-112218' action='modify'>
+    <nd ref='8988588000605706' />
+    <nd ref='89891970006055698' />
+    <nd ref='89933290006052582' />
+    <nd ref='8997820006049459' />
+    <nd ref='89995610006048484' />
+    <nd ref='90046570006046466' />
+    <nd ref='9009360006043095' />
+    <nd ref='9011280006041718' />
+    <nd ref='90190390006037035' />
+    <nd ref='90225860006034916' />
+    <nd ref='90248960006033566' />
+    <nd ref='90286150006032053' />
+    <nd ref='90329550006030813' />
+    <nd ref='90375480006029778' />
+    <nd ref='90488820006027915' />
+    <nd ref='9050849000602779' />
+    <nd ref='90548360006027599' />
+    <nd ref='90627120006026011' />
+    <nd ref='9069074000602472' />
+    <nd ref='90702250006024338' />
+    <nd ref='90715730006022943' />
+    <nd ref='9072480006022964' />
+    <nd ref='90739250006022914' />
+    <nd ref='9075760006022832' />
+    <nd ref='9078360006022707' />
+    <nd ref='-120216' />
+    <tag k='img_backward_end' v='HmUTUMQ91DCBRU6i3076pA' />
+    <tag k='img_forward_end' v='2tfraZxlpsOBs8elTIafbg' />
+    <tag k='img_forward_start' v='B0iezEP02_e8Q_zQxjod1w' />
+    <tag k='seq_backward' v='L_7mk8kjENxqXm8q1Z8sOQ' />
+    <tag k='seq_forward' v='L_7mk8kjENxqXm8q1Z8sOQ' />
+  </way>
+  <way id='-112231' action='modify'>
+    <nd ref='-120221' />
+    <nd ref='93335180005933786' />
+    <nd ref='9334140005932498' />
+    <nd ref='9334290005932187' />
+    <nd ref='93345930005931412' />
+    <nd ref='93349680005930452' />
+    <nd ref='93357340005928493' />
+    <nd ref='93360720005927827' />
+    <nd ref='93363070005927355' />
+    <nd ref='93368250005926429' />
+    <nd ref='93374340005925379' />
+    <nd ref='93379570005924531' />
+    <nd ref='93382080005924124' />
+    <nd ref='93391280005922215' />
+    <nd ref='93397260005920893' />
+    <nd ref='93400170005920226' />
+    <nd ref='9340486000591892' />
+    <nd ref='93404920005918281' />
+    <nd ref='93403450005917654' />
+    <nd ref='93390640005913313' />
+    <nd ref='93381620005909858' />
+    <nd ref='93374490005907436' />
+    <nd ref='93373930005907196' />
+    <nd ref='93348160005897996' />
+    <nd ref='93342620005896417' />
+    <nd ref='93316250005890549' />
+    <nd ref='93308830005888898' />
+    <nd ref='9330660005888402' />
+    <nd ref='9331421000588828' />
+    <nd ref='93392790005886999' />
+    <nd ref='93411960005886715' />
+    <nd ref='93451490005886343' />
+    <nd ref='9349022000588608' />
+    <nd ref='9353304000588589' />
+    <nd ref='93576090005885844' />
+    <nd ref='93620780005885916' />
+    <nd ref='9367210005877772' />
+    <nd ref='9368570005876231' />
+    <nd ref='937016900058745' />
+    <nd ref='93705230005873764' />
+    <nd ref='93707740005873039' />
+    <nd ref='93711810005871815' />
+    <nd ref='93734590005864877' />
+    <nd ref='93751970005859689' />
+    <nd ref='9376590005855621' />
+    <nd ref='9377906000585303' />
+    <nd ref='93784410005852289' />
+    <nd ref='93785810005851879' />
+    <nd ref='93787630005851067' />
+    <nd ref='93789340005850602' />
+    <nd ref='93819590005842359' />
+    <nd ref='93822920005840931' />
+    <nd ref='-120166' />
+    <tag k='img_backward_start' v='YHk3Q31mtG3s8ahcd6fFXQ' />
+    <tag k='img_forward_start' v='EOJnktpJMqe_OMOS-cgvsg' />
+    <tag k='name' v='Olloweg' />
+    <tag k='seq_backward' v='3cke0ofSMRAPnh52yPXkAA' />
+    <tag k='seq_forward' v='95OcDiHEGeWEByb803HUjQ' />
+  </way>
+  <way id='-112238' action='modify'>
+    <nd ref='-120166' />
+    <nd ref='9383330005836251' />
+    <nd ref='93842090005832502' />
+    <nd ref='93844590005831485' />
+    <nd ref='9386450005823369' />
+    <tag k='img_backward_end' v='dgTgKPvM4AhmR_kXs5p9AQ' />
+    <tag k='img_forward_end' v='obhX5QzfL29REZgjha_rGA' />
+    <tag k='name' v='Langenfelder Damm' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='95OcDiHEGeWEByb803HUjQ' />
+  </way>
+  <way id='-112274' action='modify'>
+    <nd ref='9386450005823369' />
+    <nd ref='93866390005822607' />
+    <nd ref='93869840005821372' />
+    <nd ref='93882060005817008' />
+    <tag k='img_backward_start' v='queSIvjeMCfyvh-HU_xVBQ' />
+    <tag k='img_forward_end' v='tMZN6-J-JshFpDZeE7eA6w' />
+    <tag k='img_forward_start' v='ZkxfVBZzyPP1PVoSIcr4ng' />
+    <tag k='name' v='Langenfelder Damm' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
+  </way>
+  <way id='-112441' action='modify'>
+    <nd ref='-120257' />
+    <nd ref='95992280005715535' />
+    <nd ref='96009740005714991' />
+    <nd ref='9607450005711264' />
+    <nd ref='96082980005710682' />
+    <nd ref='96120460005708117' />
+    <nd ref='96135740005707072' />
+    <nd ref='96143580005706552' />
+    <tag k='img_backward_start' v='SnyNcz_jAtRxSipyciZkxw' />
+    <tag k='img_forward_end' v='7ed5i6jdCZplCIlBGELCHA' />
+    <tag k='img_forward_start' v='hgwnaurIoCo26FQ_t5fwQQ' />
+    <tag k='seq_backward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
+  </way>
+  <way id='-112548' action='modify'>
+    <nd ref='-120391' />
+    <nd ref='-120395' />
+    <nd ref='-120396' />
+    <nd ref='-120397' />
+    <nd ref='-120398' />
+    <nd ref='-120399' />
+    <nd ref='-120400' />
+    <nd ref='-120401' />
+    <nd ref='-120402' />
+    <tag k='name' v='2020-01-01-abriss-essohaeuser' />
+    <tag k='oneway' v='yes' />
+    <tag k='type' v='detour' />
+  </way>
+  <way id='-112585' action='modify'>
+    <nd ref='-120460' />
+    <nd ref='-120461' />
+    <nd ref='-120462' />
+    <nd ref='-120463' />
+    <nd ref='-120464' />
+    <nd ref='-120465' />
+    <nd ref='-120466' />
+    <nd ref='-120467' />
+    <nd ref='-120468' />
+    <nd ref='-120460' />
+    <tag k='name' v='2020-01-01-abriss-essohaeuser' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
     <nd ref='88971180004732234' />
@@ -18798,12 +18959,7 @@
     <nd ref='89945770006206895' />
     <tag k='name' v='Hörgensweg' />
   </way>
-  <way id='4926295' version='1'>
-    <nd ref='97915620005555246' />
-    <nd ref='97922420005555097' />
-    <nd ref='97936220005554828' />
-    <nd ref='97945030005554628' />
-    <tag k='name' v='Johannes-Brahms-Platz' />
+  <way id='4926295' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='4930404' version='1'>
@@ -19031,14 +19187,18 @@
     <nd ref='96227170005777948' />
     <nd ref='96233930005777714' />
   </way>
-  <way id='5112640' version='1'>
-    <nd ref='8988588000605706' />
-    <nd ref='89881040006058243' />
-    <nd ref='89873750006059426' />
-    <nd ref='89856490006063366' />
-    <nd ref='89840340006067064' />
+  <way id='5112640' action='modify' version='1'>
     <nd ref='89841250006067371' />
+    <nd ref='89840340006067064' />
+    <nd ref='89856490006063366' />
+    <nd ref='89873750006059426' />
+    <nd ref='89881040006058243' />
+    <nd ref='8988588000605706' />
+    <tag k='img_backward_start' v='p8NHKDgQXT3PUgzWL8RWqg' />
+    <tag k='img_forward_end' v='ezuIiYy1xjnH0K-cavXL_A' />
     <tag k='name' v='Niekampsweg' />
+    <tag k='seq_backward' v='L_7mk8kjENxqXm8q1Z8sOQ' />
+    <tag k='seq_forward' v='L_7mk8kjENxqXm8q1Z8sOQ' />
   </way>
   <way id='5142770' version='1'>
     <nd ref='1119760005818964' />
@@ -19230,62 +19390,84 @@
     <nd ref='89832190006069' />
     <tag k='name' v='Niekampsweg' />
   </way>
-  <way id='7395592' version='1'>
-    <nd ref='8988588000605706' />
-    <nd ref='89891970006055698' />
-    <nd ref='89933290006052582' />
-    <nd ref='8997820006049459' />
-    <nd ref='89995610006048484' />
-    <nd ref='90046570006046466' />
-    <nd ref='9009360006043095' />
-    <nd ref='9011280006041718' />
-    <nd ref='90190390006037035' />
-    <nd ref='90225860006034916' />
-    <nd ref='90248960006033566' />
-    <nd ref='90286150006032053' />
-    <nd ref='90329550006030813' />
-    <nd ref='90375480006029778' />
-    <nd ref='90488820006027915' />
-    <nd ref='9050849000602779' />
-    <nd ref='90548360006027599' />
-    <nd ref='90627120006026011' />
-    <nd ref='9069074000602472' />
-    <nd ref='90702250006024338' />
-    <nd ref='90715730006022943' />
-    <tag k='name' v='Furtweg' />
+  <way id='7395592' action='delete' version='1'>
   </way>
-  <way id='7559013' version='1'>
-    <nd ref='91250450006023679' />
-    <nd ref='9127646000602437' />
-    <nd ref='91293330006024818' />
-    <nd ref='91309210006025237' />
-    <nd ref='9136570006026437' />
-    <tag k='name' v='Olloweg' />
+  <way id='7559013' action='delete' version='1'>
   </way>
-  <way id='7559180' version='1'>
-    <nd ref='91501870006031463' />
-    <nd ref='91608690006034103' />
-    <nd ref='91643480006034209' />
-    <nd ref='91686840006033884' />
-    <nd ref='91726760006033005' />
-    <nd ref='91799730006029979' />
-    <nd ref='91812710006029386' />
+  <way id='7559180' action='delete' version='1'>
   </way>
-  <way id='7559718' version='1'>
-    <nd ref='92203840005996123' />
-    <nd ref='92210050005996601' />
-    <nd ref='92214460005996903' />
-    <nd ref='92219210005997761' />
-    <nd ref='92217430005998611' />
-    <nd ref='92180350006001041' />
-    <nd ref='9217090006001661' />
+  <way id='7559718' action='modify' version='1'>
+    <nd ref='-120174' />
     <nd ref='92133830006004536' />
-    <nd ref='92063970006011199' />
-    <nd ref='92012640006015134' />
-    <nd ref='9199440006016731' />
-    <nd ref='91933890006021531' />
-    <nd ref='9187330006025006' />
-    <tag k='name' v='Olloweg' />
+    <nd ref='9217090006001661' />
+    <nd ref='92180350006001041' />
+    <nd ref='92217430005998611' />
+    <nd ref='92219210005997761' />
+    <nd ref='92214460005996903' />
+    <nd ref='92210050005996601' />
+    <nd ref='92203840005996123' />
+    <nd ref='92222970005995756' />
+    <nd ref='9224125000599555' />
+    <nd ref='92338910005994902' />
+    <nd ref='9236701000599481' />
+    <nd ref='92379680005994726' />
+    <nd ref='92391970005994716' />
+    <nd ref='92411540005994785' />
+    <nd ref='9242156000599476' />
+    <nd ref='9243643000599436' />
+    <nd ref='92464910005993559' />
+    <nd ref='92487660005992749' />
+    <nd ref='92496480005992435' />
+    <nd ref='92537790005990808' />
+    <nd ref='92567870005989624' />
+    <nd ref='92603250005988147' />
+    <nd ref='9261962000598753' />
+    <nd ref='92627960005987256' />
+    <nd ref='92633060005987061' />
+    <nd ref='92681850005985541' />
+    <nd ref='92703870005985013' />
+    <nd ref='9284888000598242' />
+    <nd ref='9289090005981603' />
+    <nd ref='92969250005981181' />
+    <nd ref='93028590005980765' />
+    <nd ref='93049110005980394' />
+    <nd ref='93124120005978521' />
+    <nd ref='93130090005978372' />
+    <nd ref='93146250005978015' />
+    <nd ref='93160290005977684' />
+    <nd ref='9317230005977244' />
+    <nd ref='93175840005977106' />
+    <nd ref='93196230005976352' />
+    <nd ref='93203020005976094' />
+    <nd ref='93208740005975877' />
+    <nd ref='93212270005975743' />
+    <nd ref='93230320005974626' />
+    <nd ref='93247080005972308' />
+    <nd ref='93256870005970953' />
+    <nd ref='93264290005969899' />
+    <nd ref='93267840005969395' />
+    <nd ref='93271450005969054' />
+    <nd ref='932817900059684' />
+    <nd ref='93286530005967674' />
+    <nd ref='93284940005965571' />
+    <nd ref='93281880005962379' />
+    <nd ref='93281110005961572' />
+    <nd ref='93280120005960706' />
+    <nd ref='93278140005958984' />
+    <nd ref='93271650005953059' />
+    <nd ref='93270940005951741' />
+    <nd ref='93270240005950213' />
+    <nd ref='93271110005948673' />
+    <nd ref='93271530005948387' />
+    <nd ref='93273860005947286' />
+    <nd ref='93275780005946655' />
+    <nd ref='9328920005943317' />
+    <nd ref='9329357000594241' />
+    <nd ref='-120221' />
+    <tag k='img_backward_end' v='pB5a8iwKTtt6kXoU5LXebw' />
+    <tag k='img_forward_end' v='nxcOwu2w779U2hW87oF9Yg' />
+    <tag k='seq_backward' v='3cke0ofSMRAPnh52yPXkAA' />
+    <tag k='seq_forward' v='n59iXqs91Dz64isjXInuew' />
   </way>
   <way id='7562662' version='1'>
     <nd ref='89648240006096579' />
@@ -19766,11 +19948,7 @@
     <nd ref='95618320005813701' />
     <tag k='name' v='Eidelstedter Weg' />
   </way>
-  <way id='16324044' version='1'>
-    <nd ref='95811090005724196' />
-    <nd ref='95855870005723195' />
-    <nd ref='95864590005723208' />
-    <nd ref='95890090005723644' />
+  <way id='16324044' action='delete' version='1'>
   </way>
   <way id='18146147' action='modify' version='1'>
     <nd ref='1840015000506413' />
@@ -19849,26 +20027,20 @@
     <tag k='name' v='Jungfernstieg' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='19821025' version='1'>
-    <nd ref='95781680005724718' />
-    <nd ref='95766060005725097' />
-    <nd ref='95723760005726137' />
-    <nd ref='955140005730787' />
-    <nd ref='9538970005733579' />
+  <way id='19821025' action='delete' version='1'>
   </way>
-  <way id='19821078' version='1'>
-    <nd ref='95092010005741526' />
-    <nd ref='95070090005742412' />
-    <nd ref='95038210005743701' />
-    <nd ref='95032150005743946' />
+  <way id='19821078' action='modify' version='1'>
     <nd ref='95024620005744253' />
-  </way>
-  <way id='19821089' version='1'>
-    <nd ref='95230470005736713' />
-    <nd ref='95198680005737481' />
-    <nd ref='95102270005741098' />
-    <nd ref='95092680005741498' />
+    <nd ref='95032150005743946' />
+    <nd ref='95038210005743701' />
+    <nd ref='95070090005742412' />
     <nd ref='95092010005741526' />
+    <tag k='img_backward_end' v='Un3jBZ1ZOPmTNptDqC1Y1Q' />
+    <tag k='img_backward_start' v='0hwU3F4VW4VfFlkxSD0KPg' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
+  </way>
+  <way id='19821089' action='delete' version='1'>
   </way>
   <way id='20297117' version='1'>
     <nd ref='711360005458116' />
@@ -19930,11 +20102,7 @@
   <way id='21432773' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='22131840' version='1'>
-    <nd ref='96588250005623601' />
-    <nd ref='96608620005623609' />
-    <nd ref='96715990005623772' />
-    <nd ref='96809050005623991' />
+  <way id='22131840' action='delete' version='1'>
   </way>
   <way id='22346391' version='1'>
     <nd ref='3943970005578663' />
@@ -20249,8 +20417,10 @@
     <nd ref='99158420005491133' />
     <nd ref='9917154000549172' />
     <tag k='color' v='#000000' />
+    <tag k='img_backward_end' v='KEFuRGhU27r5Jt5K3lFOyA' />
     <tag k='img_backward_start' v='obsbFDqgn5rnUqpeB32LRw' />
     <tag k='img_forward_end' v='b0C3VL2cOcMs431mnjUg2g' />
+    <tag k='img_forward_start' v='QClpEtMTDysqpr0MG9WtZw' />
     <tag k='seq_backward' v='C6VUINH0APqogoyIzizQSw' />
     <tag k='seq_forward' v='8c1_G8OslL0aGG6la2r_xw' />
   </way>
@@ -20280,10 +20450,7 @@
     <nd ref='80098630005732879' />
     <nd ref='80109420005732001' />
   </way>
-  <way id='22964540' version='1'>
-    <nd ref='-106327' />
-    <nd ref='98566870005517705' />
-    <nd ref='98571550005514326' />
+  <way id='22964540' action='modify' version='1'>
     <nd ref='98576620005510511' />
     <nd ref='98580005507764' />
     <nd ref='9858520005504842' />
@@ -20292,8 +20459,11 @@
     <nd ref='98595640005499585' />
     <nd ref='98596130005499385' />
     <nd ref='98608530005498071' />
+    <tag k='img_forward_end' v='Til7kbSE6kSDh1p83qucMw' />
+    <tag k='img_forward_start' v='ySRL4KCXkDwRess1tqgWHA' />
     <tag k='name' v='Stadthausbrücke' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='GAlZxAbozyILLiAnbklXjQ' />
   </way>
   <way id='22966775' version='1'>
     <nd ref='12674430006037916' />
@@ -20351,23 +20521,7 @@
     <nd ref='82337610005604279' />
     <tag k='name' v='Mühlenberg' />
   </way>
-  <way id='23107292' version='1'>
-    <nd ref='95024620005744253' />
-    <nd ref='95014850005744692' />
-    <nd ref='95007880005744969' />
-    <nd ref='9496820005746549' />
-    <nd ref='94948010005747279' />
-    <nd ref='94932310005747874' />
-    <nd ref='94914990005748552' />
-    <nd ref='94893560005749376' />
-    <nd ref='94856370005750823' />
-    <nd ref='94839450005751522' />
-    <nd ref='9481998000575231' />
-    <nd ref='94810130005752712' />
-    <nd ref='94790390005753551' />
-    <nd ref='94756830005754978' />
-  </way>
-  <way id='23107428' version='1'>
+  <way id='23107292' action='modify' version='1'>
     <nd ref='94721320005757468' />
     <nd ref='94722590005757113' />
     <nd ref='94723550005756799' />
@@ -20375,6 +20529,26 @@
     <nd ref='94735230005755852' />
     <nd ref='94746370005755395' />
     <nd ref='94756830005754978' />
+    <nd ref='94790390005753551' />
+    <nd ref='94810130005752712' />
+    <nd ref='9481998000575231' />
+    <nd ref='94839450005751522' />
+    <nd ref='94856370005750823' />
+    <nd ref='94893560005749376' />
+    <nd ref='94914990005748552' />
+    <nd ref='94932310005747874' />
+    <nd ref='94948010005747279' />
+    <nd ref='9496820005746549' />
+    <nd ref='95007880005744969' />
+    <nd ref='95014850005744692' />
+    <nd ref='95024620005744253' />
+    <tag k='img_backward_end' v='vuAv0FL4zbCiJwm2Ghn1_w' />
+    <tag k='img_backward_start' v='mz0j9QhwTgCNbD9Qb-SjFw' />
+    <tag k='img_forward_start' v='2n6l354vdA9Zi9IvnmP7GA' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
+  </way>
+  <way id='23107428' action='delete' version='1'>
   </way>
   <way id='23107840' version='1'>
     <nd ref='96832310004697194' />
@@ -20384,36 +20558,7 @@
     <nd ref='96823610004693036' />
     <nd ref='96822920004692375' />
   </way>
-  <way id='23115394' version='1'>
-    <nd ref='93837050005809458' />
-    <nd ref='93865780005810686' />
-    <nd ref='93872830005811095' />
-    <nd ref='9387573000581147' />
-    <nd ref='93876950005812231' />
-    <nd ref='93878610005814195' />
-    <nd ref='9388119000581632' />
-    <nd ref='93882060005817008' />
-    <nd ref='93869840005821372' />
-    <nd ref='93866390005822607' />
-    <nd ref='9386450005823369' />
-    <nd ref='93844590005831485' />
-    <nd ref='93842090005832502' />
-    <nd ref='9383330005836251' />
-    <nd ref='93822920005840931' />
-    <nd ref='93819590005842359' />
-    <nd ref='93789340005850602' />
-    <nd ref='93787630005851067' />
-    <nd ref='93785810005851879' />
-    <nd ref='93784410005852289' />
-    <nd ref='9377906000585303' />
-    <nd ref='9376590005855621' />
-    <nd ref='93751970005859689' />
-    <nd ref='93734590005864877' />
-    <nd ref='93711810005871815' />
-    <nd ref='93707740005873039' />
-    <nd ref='93705230005873764' />
-    <nd ref='937016900058745' />
-    <nd ref='9368570005876231' />
+  <way id='23115394' action='delete' version='1'>
   </way>
   <way id='23118429' version='1'>
     <nd ref='95610420006078694' />
@@ -20539,13 +20684,20 @@
     <nd ref='63910005150745' />
     <nd ref='64430005150532' />
   </way>
-  <way id='23489827' version='1'>
+  <way id='23489827' action='modify' version='1'>
+    <nd ref='98444010005526666' />
+    <nd ref='98468260005525121' />
     <nd ref='98481930005524499' />
     <nd ref='9852801000552233' />
     <nd ref='9853845000552165' />
     <nd ref='-106327' />
-    <tag k='name' v='Axel-Springer-Platz' />
+    <nd ref='98566870005517705' />
+    <nd ref='98571550005514326' />
+    <nd ref='98576620005510511' />
+    <tag k='img_forward_end' v='8g6AbMKaQFLZOlw-oC3zCw' />
+    <tag k='img_forward_start' v='QLbaIFJRO07iRZL2E4OdAw' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
   <way id='23559447' version='1'>
     <nd ref='98134550005199442' />
@@ -20604,10 +20756,7 @@
     <nd ref='1528660005995175' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='23777892' version='1'>
-    <nd ref='9368570005876231' />
-    <nd ref='9367210005877772' />
-    <nd ref='93620780005885916' />
+  <way id='23777892' action='delete' version='1'>
   </way>
   <way id='23780911' version='1'>
     <nd ref='91533140006236587' />
@@ -20909,13 +21058,7 @@
     <tag k='name' v='An der Alster' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='24433715' version='1'>
-    <nd ref='93368250005926429' />
-    <nd ref='93363070005927355' />
-    <nd ref='93360720005927827' />
-    <nd ref='93357340005928493' />
-    <nd ref='93349680005930452' />
-    <tag k='name' v='Basselweg' />
+  <way id='24433715' action='delete' version='1'>
   </way>
   <way id='24439120' version='1'>
     <nd ref='96665740005752214' />
@@ -22226,24 +22369,7 @@
     <nd ref='2523160006352286' />
     <tag k='name' v='Kleekamp' />
   </way>
-  <way id='27383861' version='1'>
-    <nd ref='96546230005662142' />
-    <nd ref='96542170005662985' />
-    <nd ref='96540810005663268' />
-    <nd ref='96535320005664612' />
-    <nd ref='96505110005669819' />
-    <nd ref='96502290005670301' />
-    <nd ref='96495190005671533' />
-    <nd ref='964855100056732' />
-    <nd ref='96468870005676043' />
-    <nd ref='96464230005676903' />
-    <nd ref='96460410005677554' />
-    <nd ref='96459540005677702' />
-    <nd ref='96455370005678414' />
-    <nd ref='96441460005680787' />
-    <nd ref='96430530005682653' />
-    <nd ref='96417910005684799' />
-    <nd ref='96407790005686501' />
+  <way id='27383861' action='delete' version='1'>
     <tag k='name' v='Weidenallee' />
   </way>
   <way id='27615731' version='1'>
@@ -22321,43 +22447,13 @@
     <tag k='name' v='Vogelhüttendeichbrücke' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='28174280' version='1'>
-    <nd ref='9330660005888402' />
-    <nd ref='93308830005888898' />
-    <nd ref='93316250005890549' />
-    <nd ref='93342620005896417' />
-    <nd ref='93348160005897996' />
-    <nd ref='93373930005907196' />
-    <nd ref='93374490005907436' />
-    <nd ref='93381620005909858' />
-    <nd ref='93390640005913313' />
-    <nd ref='93403450005917654' />
-    <nd ref='93404920005918281' />
-    <nd ref='9340486000591892' />
-    <nd ref='93400170005920226' />
-    <tag k='name' v='Basselweg' />
+  <way id='28174280' action='delete' version='1'>
   </way>
-  <way id='28174305' version='1'>
-    <nd ref='9330660005888402' />
-    <nd ref='9331421000588828' />
-    <nd ref='93392790005886999' />
-    <nd ref='93411960005886715' />
-    <nd ref='93451490005886343' />
-    <nd ref='9349022000588608' />
-    <nd ref='9353304000588589' />
-    <nd ref='93576090005885844' />
-    <nd ref='93620780005885916' />
-    <tag k='name' v='Spannskamp' />
+  <way id='28174305' action='delete' version='1'>
   </way>
-  <way id='28174972' version='1'>
-    <nd ref='95890090005723644' />
-    <nd ref='95905370005720777' />
-    <tag k='name' v='Henriettenweg' />
+  <way id='28174972' action='delete' version='1'>
   </way>
-  <way id='28175272' version='1'>
-    <nd ref='91176060006027913' />
-    <nd ref='91192060006027046' />
-    <nd ref='91250450006023679' />
+  <way id='28175272' action='delete' version='1'>
   </way>
   <way id='28180452' version='1'>
     <nd ref='93667490005517209' />
@@ -22493,23 +22589,7 @@
     <nd ref='9567831000587586' />
     <tag k='name' v='Stresemannallee' />
   </way>
-  <way id='30077138' version='1'>
-    <nd ref='93146250005978015' />
-    <nd ref='93160290005977684' />
-    <nd ref='9317230005977244' />
-    <nd ref='93175840005977106' />
-    <nd ref='93196230005976352' />
-    <nd ref='93203020005976094' />
-    <nd ref='93208740005975877' />
-    <nd ref='93212270005975743' />
-    <nd ref='93230320005974626' />
-    <nd ref='93247080005972308' />
-    <nd ref='93256870005970953' />
-    <nd ref='93264290005969899' />
-    <nd ref='93267840005969395' />
-    <nd ref='93271450005969054' />
-    <nd ref='932817900059684' />
-    <tag k='name' v='Wördemanns Weg' />
+  <way id='30077138' action='delete' version='1'>
   </way>
   <way id='30153834' version='1'>
     <nd ref='11481470005453912' />
@@ -22925,20 +23005,9 @@
     <nd ref='10057450005713698' />
     <nd ref='1000620005712775' />
   </way>
-  <way id='31987579' version='1'>
-    <nd ref='96698290005594785' />
-    <nd ref='96699570005593695' />
-    <nd ref='96700840005592606' />
-    <nd ref='9670207000559155' />
-    <nd ref='96705980005588209' />
-    <nd ref='96707310005586965' />
+  <way id='31987579' action='delete' version='1'>
   </way>
-  <way id='31987580' version='1'>
-    <nd ref='96683760005600988' />
-    <nd ref='9670842000560536' />
-    <nd ref='96735770005610209' />
-    <nd ref='96758720005614485' />
-    <nd ref='96809050005623991' />
+  <way id='31987580' action='delete' version='1'>
   </way>
   <way id='32108419' version='1'>
     <nd ref='8315770006561077' />
@@ -23084,14 +23153,17 @@
     <tag k='oneway' v='yes' />
     <tag k='seq_forward' v='2fEwkC94NPNbBhvYziLt7w' />
   </way>
-  <way id='33174204' version='1'>
+  <way id='33174204' action='modify' version='1'>
     <nd ref='94721320005757468' />
     <nd ref='94722490005757807' />
     <nd ref='9472070005758133' />
     <nd ref='9471430005758424' />
     <nd ref='94706690005758406' />
     <nd ref='94696620005758188' />
+    <tag k='img_forward_end' v='ZAoBY8ZDPefTYUoz3FUx8g' />
+    <tag k='img_forward_start' v='be3zKVgelKCqI-_OX3nmWg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='WwMG87C_d3FMENjz9E6PMA' />
   </way>
   <way id='33822468' action='modify' version='1'>
     <nd ref='949310005487385' />
@@ -23194,21 +23266,7 @@
     <nd ref='1760930005638202' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='34342302' version='1'>
-    <nd ref='9261962000598753' />
-    <nd ref='92627960005987256' />
-    <nd ref='92633060005987061' />
-    <nd ref='92681850005985541' />
-    <nd ref='92703870005985013' />
-    <nd ref='9284888000598242' />
-    <nd ref='9289090005981603' />
-    <nd ref='92969250005981181' />
-    <nd ref='93028590005980765' />
-    <nd ref='93049110005980394' />
-    <nd ref='93124120005978521' />
-    <nd ref='93130090005978372' />
-    <nd ref='93146250005978015' />
-    <tag k='name' v='Wördemanns Weg' />
+  <way id='34342302' action='delete' version='1'>
   </way>
   <way id='34350534' version='1'>
     <nd ref='99387370005992214' />
@@ -23737,13 +23795,9 @@
   <way id='39602947' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='39749610' version='1'>
-    <nd ref='93867870005806899' />
-    <nd ref='93862550005807357' />
-    <nd ref='93847070005808653' />
-    <nd ref='9384190005809069' />
-    <nd ref='93837050005809458' />
-    <tag k='name' v='Langenfelder Damm' />
+  <way id='39749610' action='delete' version='1'>
+    <tag k='img_backward_start' v='YHk3Q31mtG3s8ahcd6fFXQ' />
+    <tag k='seq_backward' v='3cke0ofSMRAPnh52yPXkAA' />
   </way>
   <way id='39775793' action='modify' version='1'>
     <nd ref='20635380004945904' />
@@ -23804,17 +23858,9 @@
   <way id='39978008' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='39980064' version='1'>
-    <nd ref='92338910005994902' />
-    <nd ref='9236701000599481' />
-    <tag k='name' v='Wördemanns Weg' />
+  <way id='39980064' action='delete' version='1'>
   </way>
-  <way id='39980065' version='1'>
-    <nd ref='92203840005996123' />
-    <nd ref='92222970005995756' />
-    <nd ref='9224125000599555' />
-    <nd ref='92338910005994902' />
-    <tag k='name' v='Wördemanns Weg' />
+  <way id='39980065' action='delete' version='1'>
   </way>
   <way id='39998566' version='1'>
     <nd ref='9553740006591674' />
@@ -24321,14 +24367,16 @@
     <nd ref='86456750005784321' />
     <tag k='name' v='Geranienweg' />
   </way>
-  <way id='43118542' version='1'>
+  <way id='43118542' action='modify' version='1'>
     <nd ref='98684450005491446' />
     <nd ref='98694730005490478' />
     <nd ref='98716410005488792' />
     <nd ref='98724470005488226' />
     <nd ref='9875130005486659' />
-    <tag k='name' v='Graskeller' />
+    <tag k='img_forward_end' v='ePwmAhTFdqg8iMHJr6ufkQ' />
+    <tag k='img_forward_start' v='2Zc5vYQ0Bwfrc8gUJYOw9w' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='GAlZxAbozyILLiAnbklXjQ' />
   </way>
   <way id='43118548' action='delete' version='1'>
     <tag k='color' v='#000000' />
@@ -24644,21 +24692,18 @@
     <tag k='name' v='Washingtonallee' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='52718531' version='1'>
+  <way id='52718531' action='modify' version='1'>
     <nd ref='96143580005706552' />
     <nd ref='96151110005705848' />
-    <nd ref='9615220005705487' />
-    <nd ref='96151730005705211' />
-    <nd ref='96151580005705092' />
-    <nd ref='96152030005704971' />
     <nd ref='96153280005704846' />
-    <nd ref='96155240005704767' />
-    <nd ref='9615870005704552' />
     <nd ref='96208530005701453' />
     <nd ref='96256720005698606' />
     <nd ref='96268070005698537' />
+    <tag k='img_forward_end' v='NOWQdqpY9rWZLV3WTZse_A' />
+    <tag k='img_forward_start' v='QE0uh0H1C5pSgRMkHNg6Cg' />
     <tag k='name' v='Weidenstieg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
   </way>
   <way id='52869684' version='1'>
     <nd ref='2082690005247889' />
@@ -24752,7 +24797,7 @@
     <nd ref='1568710005632775' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='53666939' version='1'>
+  <way id='53666939' action='modify' version='1'>
     <nd ref='9737550005567513' />
     <nd ref='97418610005565873' />
     <nd ref='97438160005565279' />
@@ -24761,7 +24806,36 @@
     <nd ref='97493260005564038' />
     <nd ref='9750366000556393' />
     <nd ref='97524740005563832' />
+    <nd ref='97557280005564006' />
+    <nd ref='97586050005563961' />
+    <nd ref='97601620005563847' />
+    <nd ref='97613490005563715' />
+    <nd ref='9764590005563153' />
+    <nd ref='97649450005563071' />
+    <nd ref='97682760005562227' />
+    <nd ref='9770420005561519' />
+    <nd ref='97719620005560906' />
+    <nd ref='97745650005559754' />
+    <nd ref='97789780005558174' />
+    <nd ref='97824640005557275' />
+    <nd ref='97846270005556717' />
+    <nd ref='9789725000555567' />
+    <nd ref='97901260005555588' />
+    <nd ref='97915620005555246' />
+    <nd ref='97922420005555097' />
+    <nd ref='97936220005554828' />
+    <nd ref='97945030005554628' />
+    <nd ref='97963380005554104' />
+    <nd ref='97965790005554025' />
+    <nd ref='98008490005552372' />
+    <nd ref='98024090005551762' />
+    <nd ref='98039960005551079' />
+    <nd ref='98063690005550094' />
+    <nd ref='98094150005548881' />
+    <tag k='img_forward_end' v='l3Us4lhRr2ntc_eSYXlKQg' />
+    <tag k='img_forward_start' v='jw4uxYfMGJETfPvh6YpOPQ' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
   <way id='56017392' version='1'>
     <nd ref='977320005281666' />
@@ -24940,54 +25014,22 @@
     <nd ref='12020005668867' />
     <tag k='name' v='Alsterufer' />
   </way>
-  <way id='76034972' version='1'>
-    <nd ref='97846270005556717' />
-    <nd ref='9789725000555567' />
-    <nd ref='97901260005555588' />
-    <nd ref='97915620005555246' />
-    <tag k='name' v='Sievekingplatz' />
+  <way id='76034972' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='76034973' version='1'>
-    <nd ref='97905540005556524' />
-    <nd ref='97886610005556843' />
-    <nd ref='97871740005557104' />
-    <nd ref='97854490005557488' />
-    <nd ref='97832790005557972' />
-    <nd ref='97798320005558913' />
-    <nd ref='97771230005559824' />
-    <nd ref='97728560005561473' />
-    <nd ref='97710730005562133' />
-    <nd ref='9768764000556288' />
-    <nd ref='97665110005563466' />
-    <nd ref='9765150005563751' />
-    <nd ref='97616570005564266' />
-    <nd ref='97590210005564461' />
-    <nd ref='97580780005564492' />
-    <nd ref='97561450005564504' />
-    <nd ref='97532980005564534' />
+  <way id='76034973' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='79251892' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='80022202' version='1'>
-    <nd ref='97945030005554628' />
-    <nd ref='97963380005554104' />
-    <nd ref='97965790005554025' />
-    <nd ref='98008490005552372' />
-    <nd ref='98024090005551762' />
+  <way id='80022202' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='80022210' version='1'>
-    <nd ref='980350005552522' />
-    <nd ref='9798450005555052' />
+  <way id='80022210' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='80022222' version='1'>
-    <nd ref='97929580005556219' />
-    <nd ref='97915710005556345' />
-    <nd ref='97905540005556524' />
+  <way id='80022222' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='80982455' version='1'>
@@ -25504,12 +25546,14 @@
     <nd ref='99772490005787073' />
     <tag k='name' v='Krugkoppel' />
   </way>
-  <way id='126759623' version='1'>
-    <nd ref='8979770006053114' />
-    <nd ref='89824920006054234' />
-    <nd ref='89831770006054534' />
-    <nd ref='89871260006056466' />
+  <way id='126759623' action='modify' version='1'>
     <nd ref='8988588000605706' />
+    <nd ref='89871260006056466' />
+    <nd ref='89831770006054534' />
+    <nd ref='89824920006054234' />
+    <nd ref='8979770006053114' />
+    <tag k='img_forward_start' v='yw50vqYbCvJJTiivlETqtv' />
+    <tag k='seq_forward' v='m45p77lehxpxjmrnzrclzr' />
   </way>
   <way id='127212893' version='1'>
     <nd ref='87503830005802811' />
@@ -25950,14 +25994,7 @@
     <nd ref='4603380005877818' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='137037891' version='1'>
-    <nd ref='95905370005720777' />
-    <nd ref='95938110005718894' />
-    <nd ref='95992280005715535' />
-    <nd ref='96009740005714991' />
-    <nd ref='9607450005711264' />
-    <nd ref='96082980005710682' />
-    <tag k='name' v='Weidenstieg' />
+  <way id='137037891' action='delete' version='1'>
   </way>
   <way id='137039495' version='1'>
     <nd ref='95614040005681907' />
@@ -26066,11 +26103,7 @@
   <way id='138701930' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='139083722' version='1'>
-    <nd ref='97954220005557921' />
-    <nd ref='9794442000555724' />
-    <nd ref='97929580005556219' />
-    <tag k='name' v='Johannes-Brahms-Platz' />
+  <way id='139083722' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='139263539' version='1'>
@@ -26111,11 +26144,46 @@
     <nd ref='99053050005544689' />
     <tag k='name' v='Jungfernstieg' />
   </way>
-  <way id='142677523' version='1'>
+  <way id='142677523' action='modify' version='1'>
     <nd ref='98094150005548881' />
     <nd ref='98049210005551659' />
     <nd ref='980350005552522' />
+    <nd ref='9798450005555052' />
+    <nd ref='97972740005556149' />
+    <nd ref='9796933000555643' />
+    <nd ref='97968540005556495' />
+    <nd ref='97957690005557605' />
+    <nd ref='97954220005557921' />
+    <nd ref='9794442000555724' />
+    <nd ref='97929580005556219' />
+    <nd ref='97915710005556345' />
+    <nd ref='97905540005556524' />
+    <nd ref='97886610005556843' />
+    <nd ref='97871740005557104' />
+    <nd ref='97854490005557488' />
+    <nd ref='97832790005557972' />
+    <nd ref='97798320005558913' />
+    <nd ref='97771230005559824' />
+    <nd ref='97728560005561473' />
+    <nd ref='97710730005562133' />
+    <nd ref='9768764000556288' />
+    <nd ref='97665110005563466' />
+    <nd ref='9765150005563751' />
+    <nd ref='97616570005564266' />
+    <nd ref='97590210005564461' />
+    <nd ref='97580780005564492' />
+    <nd ref='97561450005564504' />
+    <nd ref='97532980005564534' />
+    <nd ref='9751370005564644' />
+    <nd ref='97500740005564844' />
+    <nd ref='97485940005565145' />
+    <nd ref='97458710005565879' />
+    <nd ref='97402160005567136' />
+    <nd ref='9737550005567513' />
+    <tag k='img_forward_end' v='Nz0DLzJFWlUBHxfZiq7K-A' />
+    <tag k='img_forward_start' v='Tv9HGWN4K8uffKwHQ3tgIg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='bor_P477G7MpkLE-7bm5og' />
   </way>
   <way id='142677525' version='1'>
     <nd ref='9929510005572424' />
@@ -26223,14 +26291,20 @@
     <nd ref='99299630005573989' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='142944343' version='1'>
+  <way id='142944343' action='modify' version='1'>
     <nd ref='98608530005498071' />
     <nd ref='98617150005497166' />
     <nd ref='98622740005496615' />
     <nd ref='98638210005495089' />
     <nd ref='98679840005491812' />
     <nd ref='98684450005491446' />
+    <tag k='img_backward_end' v='406WyGWmEyV2F0L96oNdSQ' />
+    <tag k='img_backward_start' v='nQyPLjNtuVdJdQgn77kbrA' />
+    <tag k='img_forward_end' v='2Zc5vYQ0Bwfrc8gUJYOw9w' />
+    <tag k='img_forward_start' v='9uPK8wxryVyPv2ig4vXsig' />
     <tag k='name' v='Graskeller' />
+    <tag k='seq_backward' v='C6VUINH0APqogoyIzizQSw' />
+    <tag k='seq_forward' v='GAlZxAbozyILLiAnbklXjQ' />
   </way>
   <way id='142944424' version='1'>
     <nd ref='476940005470668' />
@@ -26250,45 +26324,21 @@
     <nd ref='98720430005489606' />
     <nd ref='98700860005490752' />
     <nd ref='98684450005491446' />
+    <tag k='img_forward_end' v='s71k8SD_XXqRIzF2_--NxA' />
+    <tag k='img_forward_start' v='4TnX2Y5Af8FIBhp5mt19-Q' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='C6VUINH0APqogoyIzizQSw' />
   </way>
   <way id='142944471' action='delete' version='1'>
     <tag k='name' v='Steintordamm' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='142954620' version='1'>
-    <nd ref='9695080005573143' />
-    <nd ref='96984770005573045' />
-    <nd ref='97017930005572851' />
-    <nd ref='97077910005572276' />
-    <nd ref='97079350005572263' />
-    <nd ref='97111560005571905' />
-    <nd ref='97193180005571069' />
+  <way id='142954620' action='delete' version='1'>
   </way>
-  <way id='142954644' version='1'>
-    <nd ref='97524740005563832' />
-    <nd ref='97557280005564006' />
-    <nd ref='97586050005563961' />
-    <nd ref='97601620005563847' />
-    <nd ref='97613490005563715' />
-    <nd ref='9764590005563153' />
-    <nd ref='97649450005563071' />
-    <nd ref='97682760005562227' />
-    <nd ref='9770420005561519' />
-    <nd ref='97719620005560906' />
-    <nd ref='97745650005559754' />
-    <nd ref='97789780005558174' />
-    <nd ref='97824640005557275' />
-    <nd ref='97846270005556717' />
-    <tag k='name' v='Sievekingplatz' />
+  <way id='142954644' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='142954649' version='1'>
-    <nd ref='96722840005573791' />
-    <nd ref='96722080005574441' />
-    <nd ref='96720290005575976' />
-    <nd ref='9671995000557627' />
-    <nd ref='96719570005576593' />
+  <way id='142954649' action='delete' version='1'>
   </way>
   <way id='143018785' version='1'>
     <nd ref='96282420005563594' />
@@ -26436,15 +26486,7 @@
     <nd ref='92558380005507998' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='144069392' version='1'>
-    <nd ref='939880005795078' />
-    <nd ref='94006470005795646' />
-    <nd ref='94014790005795709' />
-    <nd ref='94022770005795646' />
-    <nd ref='94204820005792836' />
-    <nd ref='94268020005790033' />
-    <nd ref='94354960005786155' />
-    <nd ref='94377570005784791' />
+  <way id='144069392' action='delete' version='1'>
   </way>
   <way id='144069403' version='1'>
     <nd ref='95903410005905413' />
@@ -26566,12 +26608,33 @@
     <nd ref='91172820005511271' />
     <tag k='name' v='Othmarscher Kirchenweg' />
   </way>
-  <way id='145693863' version='1'>
+  <way id='145693863' action='modify' version='1'>
+    <nd ref='93918840005801803' />
+    <nd ref='939665900057971' />
+    <nd ref='93981820005795661' />
+    <nd ref='939880005795078' />
+    <nd ref='94006470005795646' />
+    <nd ref='94014790005795709' />
+    <nd ref='94022770005795646' />
+    <nd ref='94204820005792836' />
+    <nd ref='94268020005790033' />
+    <nd ref='94354960005786155' />
+    <nd ref='94377570005784791' />
+    <nd ref='94460150005775818' />
+    <nd ref='94473520005774436' />
+    <nd ref='9453883000576861' />
     <nd ref='94574730005765662' />
     <nd ref='94645670005761158' />
     <nd ref='946669500057599' />
     <nd ref='946887900057586' />
     <nd ref='94696620005758188' />
+    <tag k='img_backward_end' v='AfR898nKdcEc-yuhhGznaA' />
+    <tag k='img_backward_start' v='zcarb0OIwVBd89jshMbpHg' />
+    <tag k='img_forward_end' v='_ltyVBq7DScMDVWkyM-4Og' />
+    <tag k='img_forward_start' v='IKu21QoONYINQovxXU5lZA' />
+    <tag k='name' v='Langenfelder Damm' />
+    <tag k='seq_backward' v='WwMG87C_d3FMENjz9E6PMA' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
   </way>
   <way id='145893933' version='1'>
     <nd ref='1962350005819064' />
@@ -26948,18 +27011,7 @@
     <nd ref='2129880004946787' />
     <nd ref='214301000494773' />
   </way>
-  <way id='148667124' version='1'>
-    <nd ref='91143790006026042' />
-    <nd ref='91102450006023921' />
-    <nd ref='91077350006022777' />
-    <nd ref='91069730006022541' />
-    <nd ref='91059520006022226' />
-    <nd ref='9103675000602185' />
-    <nd ref='9101670006021742' />
-    <nd ref='90974070006021841' />
-    <nd ref='9092220006022053' />
-    <nd ref='90848950006022408' />
-    <nd ref='9078360006022707' />
+  <way id='148667124' action='delete' version='1'>
   </way>
   <way id='149097181' version='1'>
     <nd ref='423530005883841' />
@@ -28077,11 +28129,47 @@
     <nd ref='414201000587185' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='186236164' version='1'>
-    <nd ref='9187330006025006' />
-    <nd ref='91830480006028362' />
+  <way id='186236164' action='modify' version='1'>
+    <nd ref='-120216' />
+    <nd ref='90848950006022408' />
+    <nd ref='9092220006022053' />
+    <nd ref='90974070006021841' />
+    <nd ref='9101670006021742' />
+    <nd ref='9103675000602185' />
+    <nd ref='91059520006022226' />
+    <nd ref='91069730006022541' />
+    <nd ref='91077350006022777' />
+    <nd ref='91102450006023921' />
+    <nd ref='91143790006026042' />
+    <nd ref='9116110006026921' />
+    <nd ref='91165990006027245' />
+    <nd ref='91176060006027913' />
+    <nd ref='91192060006027046' />
+    <nd ref='91250450006023679' />
+    <nd ref='9127646000602437' />
+    <nd ref='91293330006024818' />
+    <nd ref='91309210006025237' />
+    <nd ref='9136570006026437' />
+    <nd ref='91394520006027369' />
+    <nd ref='9144358000602951' />
+    <nd ref='91501870006031463' />
+    <nd ref='91608690006034103' />
+    <nd ref='91643480006034209' />
+    <nd ref='91686840006033884' />
+    <nd ref='91726760006033005' />
+    <nd ref='91799730006029979' />
     <nd ref='91812710006029386' />
-    <tag k='name' v='Olloweg' />
+    <nd ref='91830480006028362' />
+    <nd ref='9187330006025006' />
+    <nd ref='91933890006021531' />
+    <nd ref='9199440006016731' />
+    <nd ref='92012640006015134' />
+    <nd ref='92063970006011199' />
+    <nd ref='-120174' />
+    <tag k='img_backward_start' v='tfdVH6FDGcwWzN95EwZsqg' />
+    <tag k='img_forward_start' v='8gWApk_NADzZ8XAdZRJEbQ' />
+    <tag k='seq_backward' v='L_7mk8kjENxqXm8q1Z8sOQ' />
+    <tag k='seq_forward' v='n59iXqs91Dz64isjXInuew' />
   </way>
   <way id='186714395' version='1'>
     <nd ref='26130005552167' />
@@ -29145,44 +29233,33 @@
     <tag k='name' v='Rothenbaumchaussee' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='252843133' version='1'>
-    <nd ref='98024090005551762' />
-    <nd ref='98039960005551079' />
-    <nd ref='98063690005550094' />
+  <way id='252843133' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='252843137' version='1'>
-    <nd ref='98094150005548881' />
-    <nd ref='98118760005547501' />
-    <nd ref='98125290005547172' />
-    <nd ref='98148410005545781' />
-    <nd ref='98170020005544405' />
-    <nd ref='98177880005543917' />
-    <nd ref='98185420005543411' />
-    <nd ref='98206830005541975' />
-    <nd ref='98255410005538643' />
-    <nd ref='98294180005536011' />
-    <nd ref='98326630005533654' />
+  <way id='252843137' action='delete' version='1'>
   </way>
-  <way id='252993339' version='1'>
+  <way id='252993339' action='modify' version='1'>
+    <nd ref='98608530005498071' />
+    <nd ref='9860962000549957' />
+    <nd ref='98604020005502754' />
+    <nd ref='9859940005505219' />
+    <nd ref='98594720005507856' />
+    <nd ref='9859110005510046' />
+    <nd ref='9859030005510546' />
+    <nd ref='98585470005516101' />
+    <nd ref='98584040005517746' />
     <nd ref='98567810005520149' />
     <nd ref='-106300' />
     <nd ref='9854761000552189' />
-    <nd ref='98534930005522806' />
-    <tag k='name' v='Axel-Springer-Platz' />
+    <tag k='img_forward_end' v='IUNLkL_XzegCNSRsiOPLHA' />
+    <tag k='img_forward_start' v='406WyGWmEyV2F0L96oNdSQ' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='C6VUINH0APqogoyIzizQSw' />
+  </way>
+  <way id='252993340' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='252993340' version='1'>
-    <nd ref='98444010005526666' />
-    <nd ref='98468260005525121' />
-    <nd ref='98481930005524499' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='252993341' version='1'>
-    <nd ref='98498350005524676' />
-    <nd ref='98476560005525632' />
-    <nd ref='98460290005526178' />
-    <nd ref='98444010005526666' />
+  <way id='252993341' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='253280380' action='modify' version='1'>
@@ -29351,15 +29428,7 @@
     <nd ref='1017020005437669' />
     <nd ref='1026010005436455' />
   </way>
-  <way id='292370962' version='1'>
-    <nd ref='93400170005920226' />
-    <nd ref='93397260005920893' />
-    <nd ref='93391280005922215' />
-    <nd ref='93382080005924124' />
-    <nd ref='93379570005924531' />
-    <nd ref='93374340005925379' />
-    <nd ref='93368250005926429' />
-    <tag k='name' v='Basselweg' />
+  <way id='292370962' action='delete' version='1'>
   </way>
   <way id='292501526' action='delete' version='1'>
   </way>
@@ -29843,12 +29912,7 @@
     <nd ref='89061680005557033' />
     <nd ref='89043780005560326' />
   </way>
-  <way id='362820560' version='1'>
-    <nd ref='94377570005784791' />
-    <nd ref='94460150005775818' />
-    <nd ref='94473520005774436' />
-    <nd ref='9453883000576861' />
-    <nd ref='94574730005765662' />
+  <way id='362820560' action='delete' version='1'>
   </way>
   <way id='363169509' action='delete' version='1'>
     <tag k='oneway' v='yes' />
@@ -30252,13 +30316,17 @@
     <nd ref='2698270005332541' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='427242166' version='1'>
+  <way id='427242166' action='modify' version='1'>
     <nd ref='96354530005694026' />
     <nd ref='96345970005694835' />
     <nd ref='963344000569581' />
     <nd ref='96328960005696203' />
-    <tag k='name' v='Weidenallee' />
+    <nd ref='96315420005696952' />
+    <nd ref='96295260005697455' />
+    <tag k='img_forward_end' v='Bp7K8IgmB8woBtiytmyPhw' />
+    <tag k='img_forward_start' v='Ou2ZqEuilj8GFX_xpKSlkw' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
   </way>
   <way id='430654948' action='delete' version='1'>
     <tag k='oneway' v='yes' />
@@ -30424,19 +30492,10 @@
     <nd ref='1271090005751563' />
     <nd ref='12701270005751556' />
   </way>
-  <way id='457768682' version='1'>
-    <nd ref='98063690005550094' />
-    <nd ref='98094150005548881' />
+  <way id='457768682' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='457986148' version='1'>
-    <nd ref='9798450005555052' />
-    <nd ref='97972740005556149' />
-    <nd ref='9796933000555643' />
-    <nd ref='97968540005556495' />
-    <nd ref='97957690005557605' />
-    <nd ref='97954220005557921' />
-    <tag k='name' v='Johannes-Brahms-Platz' />
+  <way id='457986148' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
   <way id='461097032' version='1'>
@@ -31247,21 +31306,7 @@
     <nd ref='96379320005570301' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='544123834' version='1'>
-    <nd ref='9236701000599481' />
-    <nd ref='92379680005994726' />
-    <nd ref='92391970005994716' />
-    <nd ref='92411540005994785' />
-    <nd ref='9242156000599476' />
-    <nd ref='9243643000599436' />
-    <nd ref='92464910005993559' />
-    <nd ref='92487660005992749' />
-    <nd ref='92496480005992435' />
-    <nd ref='92537790005990808' />
-    <nd ref='92567870005989624' />
-    <nd ref='92603250005988147' />
-    <nd ref='9261962000598753' />
-    <tag k='name' v='Wördemanns Weg' />
+  <way id='544123834' action='delete' version='1'>
   </way>
   <way id='547724833' version='1'>
     <nd ref='94866240005621447' />
@@ -31608,12 +31653,15 @@
     <nd ref='98970280005616758' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='566711282' version='1'>
+  <way id='566711282' action='modify' version='1'>
     <nd ref='96722840005573791' />
     <nd ref='96723820005573135' />
+    <tag k='img_forward_end' v='DBaHkxAlE9g0S1Dbv-APfg' />
+    <tag k='img_forward_start' v='FjYbJ675O4Qu9I_5CF0fxg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
   </way>
-  <way id='566711283' version='1'>
+  <way id='566711283' action='modify' version='1'>
     <nd ref='96722840005573791' />
     <nd ref='96690780005573494' />
     <nd ref='96672130005573255' />
@@ -31622,8 +31670,10 @@
     <nd ref='9656877000557202' />
     <nd ref='9654390005571813' />
     <nd ref='965154000557159' />
+    <tag k='img_forward_start' v='QOVkbBvZR9vseqgxB_pPrw' />
     <tag k='name' v='Neuer Kamp' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='oaXdSdkraoWgtfuPypLdLA' />
   </way>
   <way id='566711286' version='1'>
     <nd ref='965154000557159' />
@@ -31631,28 +31681,39 @@
     <tag k='name' v='Neuer Kamp' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='566711289' version='1'>
+  <way id='566711289' action='modify' version='1'>
     <nd ref='96458420005570187' />
     <nd ref='96582820005571612' />
     <nd ref='96674670005572664' />
     <nd ref='9671372000557307' />
     <nd ref='96723820005573135' />
-    <tag k='name' v='Neuer Kamp' />
+    <tag k='img_forward_end' v='nZ2fXFeQDha1E0D3bDxjRA' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
-  <way id='566711300' version='1'>
+  <way id='566711300' action='modify' version='1'>
     <nd ref='9695080005573143' />
     <nd ref='96875530005573853' />
+    <nd ref='96864120005573878' />
+    <nd ref='96857180005573893' />
+    <nd ref='96821450005573921' />
+    <nd ref='9681043000557393' />
+    <nd ref='9679260005573946' />
+    <nd ref='96773770005573968' />
+    <nd ref='96766880005573977' />
+    <nd ref='96759750005573975' />
+    <nd ref='9674540005573943' />
+    <nd ref='96722840005573791' />
+    <tag k='img_forward_end' v='9V-MPstEudTh9ngMLyMUEQ' />
+    <tag k='img_forward_start' v='SB6RBDAiV9wigS61SsMpqw' />
+    <tag k='name' v='Neuer Kamp' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='bor_P477G7MpkLE-7bm5og' />
+  </way>
+  <way id='566711301' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='566711301' version='1'>
-    <nd ref='96873720005573026' />
-    <nd ref='9690110005573012' />
-    <nd ref='96933910005573096' />
-    <nd ref='9695080005573143' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='566711302' version='1'>
+  <way id='566711302' action='modify' version='1'>
     <nd ref='96723820005573135' />
     <nd ref='9672890005573168' />
     <nd ref='96756980005573267' />
@@ -31662,10 +31723,21 @@
     <nd ref='9685030005573055' />
     <nd ref='96856450005573037' />
     <nd ref='96873720005573026' />
-    <tag k='name' v='Neuer Kamp' />
+    <nd ref='9690110005573012' />
+    <nd ref='96933910005573096' />
+    <nd ref='9695080005573143' />
+    <tag k='img_forward_end' v='9v_VuLYMfq84Au3luUM2Kw' />
+    <tag k='img_forward_start' v='RpKwTqgH50Vmxy2UdrMRcQ' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
-  <way id='566711303' version='1'>
+  <way id='566711303' action='modify' version='1'>
+    <nd ref='9695080005573143' />
+    <nd ref='96984770005573045' />
+    <nd ref='97017930005572851' />
+    <nd ref='97077910005572276' />
+    <nd ref='97079350005572263' />
+    <nd ref='97111560005571905' />
     <nd ref='97193180005571069' />
     <nd ref='97221110005570683' />
     <nd ref='9724272000557036' />
@@ -31674,6 +31746,12 @@
     <nd ref='97305660005569112' />
     <nd ref='97338450005568391' />
     <nd ref='9737550005567513' />
+    <tag k='img_backward_end' v='SB6RBDAiV9wigS61SsMpqw' />
+    <tag k='img_backward_start' v='Nz0DLzJFWlUBHxfZiq7K-A' />
+    <tag k='img_forward_end' v='0wNfM7gloecBAp7zC-nzpg' />
+    <tag k='img_forward_start' v='OtvuX-0Xm_0NBuUpVO9QHQ' />
+    <tag k='seq_backward' v='bor_P477G7MpkLE-7bm5og' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
   <way id='567535670' version='1'>
     <nd ref='11031460005387605' />
@@ -32088,18 +32166,7 @@
     <nd ref='9262140004717955' />
     <tag k='name' v='Am Radeland' />
   </way>
-  <way id='591207082' version='1'>
-    <nd ref='96875530005573853' />
-    <nd ref='96864120005573878' />
-    <nd ref='96857180005573893' />
-    <nd ref='96821450005573921' />
-    <nd ref='9681043000557393' />
-    <nd ref='9679260005573946' />
-    <nd ref='96773770005573968' />
-    <nd ref='96766880005573977' />
-    <nd ref='96759750005573975' />
-    <nd ref='9674540005573943' />
-    <nd ref='96722840005573791' />
+  <way id='591207082' action='delete' version='1'>
     <tag k='name' v='Neuer Kamp' />
     <tag k='oneway' v='yes' />
   </way>
@@ -32735,33 +32802,35 @@
     <nd ref='87573350004737423' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='599783454' version='1'>
-    <nd ref='9078360006022707' />
-    <nd ref='9075760006022832' />
-    <nd ref='90739250006022914' />
-    <nd ref='9072480006022964' />
-    <nd ref='90715730006022943' />
+  <way id='599783454' action='delete' version='1'>
   </way>
-  <way id='599879282' version='1'>
-    <nd ref='96082980005710682' />
-    <nd ref='96120460005708117' />
-    <nd ref='96135740005707072' />
-    <nd ref='96143580005706552' />
-    <tag k='name' v='Weidenstieg' />
-  </way>
-  <way id='599879283' version='1'>
-    <nd ref='9538970005733579' />
-    <nd ref='95322220005734912' />
-    <nd ref='95252010005736416' />
-    <nd ref='95249180005736455' />
+  <way id='599879282' action='modify' version='1'>
+    <nd ref='95092010005741526' />
+    <nd ref='95198680005737481' />
     <nd ref='95230470005736713' />
+    <nd ref='95249180005736455' />
+    <nd ref='95252010005736416' />
+    <nd ref='95322220005734912' />
+    <nd ref='9538970005733579' />
+    <nd ref='955140005730787' />
+    <nd ref='95723760005726137' />
+    <nd ref='95766060005725097' />
+    <nd ref='95781680005724718' />
+    <nd ref='95811090005724196' />
+    <nd ref='95855870005723195' />
+    <nd ref='95864590005723208' />
+    <nd ref='95890090005723644' />
+    <nd ref='95905370005720777' />
+    <nd ref='95938110005718894' />
+    <nd ref='-120257' />
+    <tag k='img_backward_end' v='mOA6lKqzVcDGeO1FVGLOGw' />
+    <tag k='img_forward_end' v='U9eHISE5iEnyUXQhimz6qA' />
+    <tag k='seq_backward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
+    <tag k='seq_forward' v='WHrqBMZgIwn7DUL4MFLwaw' />
   </way>
-  <way id='599879284' version='1'>
-    <nd ref='9136570006026437' />
-    <nd ref='91394520006027369' />
-    <nd ref='9144358000602951' />
-    <nd ref='91501870006031463' />
-    <tag k='name' v='Olloweg' />
+  <way id='599879283' action='delete' version='1'>
+  </way>
+  <way id='599879284' action='delete' version='1'>
   </way>
   <way id='600461250' version='1'>
     <nd ref='86370140004738879' />
@@ -32782,11 +32851,7 @@
   <way id='600601565' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='601018738' version='1'>
-    <nd ref='91176060006027913' />
-    <nd ref='91165990006027245' />
-    <nd ref='9116110006026921' />
-    <nd ref='91143790006026042' />
+  <way id='601018738' action='delete' version='1'>
   </way>
   <way id='601033589' version='1'>
     <nd ref='98219840005221626' />
@@ -33475,9 +33540,7 @@
     <nd ref='2418760006283966' />
     <tag k='name' v='Erdkampsweg' />
   </way>
-  <way id='603942282' version='1'>
-    <nd ref='93918840005801803' />
-    <nd ref='939665900057971' />
+  <way id='603942282' action='delete' version='1'>
     <tag k='name' v='Langenfelder Damm' />
   </way>
   <way id='603959064' version='1'>
@@ -36854,28 +36917,61 @@
     <tag k='name' v='Gehlengraben' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='621072259' version='1'>
-    <nd ref='96719570005576593' />
-    <nd ref='96718550005577462' />
-    <nd ref='96717980005577889' />
-    <nd ref='96717170005578491' />
-    <nd ref='96710440005584113' />
-  </way>
-  <way id='621072713' version='1'>
+  <way id='621072259' action='modify' version='1'>
+    <nd ref='-120106' />
+    <nd ref='965543000564169' />
+    <nd ref='9655188000564106' />
+    <nd ref='96547590005639912' />
+    <nd ref='96544850005639207' />
+    <nd ref='96542860005638004' />
+    <nd ref='965419600056372' />
+    <nd ref='96545040005634277' />
+    <nd ref='96550690005630652' />
+    <nd ref='96561240005628375' />
+    <nd ref='96564180005627734' />
+    <nd ref='96568260005626848' />
+    <nd ref='96575430005625555' />
+    <nd ref='96577440005625192' />
+    <nd ref='96580530005624673' />
+    <nd ref='96588250005623601' />
+    <nd ref='96608620005623609' />
+    <nd ref='96715990005623772' />
+    <nd ref='96809050005623991' />
+    <nd ref='96758720005614485' />
+    <nd ref='96735770005610209' />
+    <nd ref='9670842000560536' />
+    <nd ref='96683760005600988' />
+    <nd ref='9667090005598707' />
+    <nd ref='96674040005597488' />
+    <nd ref='96696480005596336' />
+    <nd ref='96698290005594785' />
+    <nd ref='96699570005593695' />
+    <nd ref='96700840005592606' />
+    <nd ref='9670207000559155' />
+    <nd ref='96705980005588209' />
     <nd ref='96707310005586965' />
     <nd ref='96709190005585203' />
     <nd ref='96709730005584696' />
     <nd ref='96710440005584113' />
+    <nd ref='96717170005578491' />
+    <nd ref='96717980005577889' />
+    <nd ref='96718550005577462' />
+    <nd ref='96719570005576593' />
+    <nd ref='9671995000557627' />
+    <nd ref='96720290005575976' />
+    <nd ref='96722080005574441' />
+    <nd ref='96722840005573791' />
+    <tag k='img_backward_end' v='o2DnerxJ_OE1am8Ak4rVNg' />
+    <tag k='img_backward_start' v='V27Yo-Dt1vA0_OM2pdhK0A' />
+    <tag k='img_forward_end' v='j1R70yGbTsGl9XdPGh8kDQ' />
+    <tag k='seq_backward' v='bor_P477G7MpkLE-7bm5og' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
   </way>
-  <way id='621072715' version='1'>
-    <nd ref='96674040005597488' />
-    <nd ref='9667090005598707' />
-    <nd ref='96683760005600988' />
+  <way id='621072713' action='delete' version='1'>
   </way>
-  <way id='621072716' version='1'>
-    <nd ref='96674040005597488' />
-    <nd ref='96696480005596336' />
-    <nd ref='96698290005594785' />
+  <way id='621072715' action='delete' version='1'>
+  </way>
+  <way id='621072716' action='delete' version='1'>
   </way>
   <way id='622987229' version='1'>
     <nd ref='3453540005754798' />
@@ -37260,18 +37356,41 @@
     <nd ref='2017930006467716' />
     <tag k='name' v='Höpen' />
   </way>
-  <way id='660916747' version='1'>
+  <way id='660916747' action='modify' version='1'>
+    <nd ref='9854761000552189' />
     <nd ref='98534930005522806' />
     <nd ref='98498350005524676' />
+    <nd ref='98476560005525632' />
+    <nd ref='98460290005526178' />
+    <nd ref='98444010005526666' />
+    <tag k='img_forward_end' v='RAeTyJFMczVajFmUhvcBhA' />
+    <tag k='img_forward_start' v='xNYPex0aKNbleeFatBMI4A' />
     <tag k='name' v='Axel-Springer-Platz' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='C6VUINH0APqogoyIzizQSw' />
   </way>
-  <way id='660916748' version='1'>
+  <way id='660916748' action='modify' version='1'>
+    <nd ref='98094150005548881' />
+    <nd ref='98118760005547501' />
+    <nd ref='98125290005547172' />
+    <nd ref='98148410005545781' />
+    <nd ref='98170020005544405' />
+    <nd ref='98177880005543917' />
+    <nd ref='98185420005543411' />
+    <nd ref='98206830005541975' />
+    <nd ref='98255410005538643' />
+    <nd ref='98294180005536011' />
     <nd ref='98326630005533654' />
     <nd ref='98358610005531557' />
     <nd ref='9840112000552884' />
     <nd ref='98406890005528471' />
     <nd ref='98444010005526666' />
+    <tag k='img_backward_end' v='Tv9HGWN4K8uffKwHQ3tgIg' />
+    <tag k='img_backward_start' v='iXKR3ZtiNrtLaiETvyPLbw' />
+    <tag k='img_forward_end' v='Wfv4rSSEWt9AHehz5nQdLg' />
+    <tag k='img_forward_start' v='72PxXAOngTEK147Ry6UP-A' />
+    <tag k='seq_backward' v='bor_P477G7MpkLE-7bm5og' />
+    <tag k='seq_forward' v='dYRM00zq6t6mgIu8nDfHTg' />
   </way>
   <way id='660916752' action='delete' version='1'>
     <tag k='oneway' v='yes' />
@@ -37337,75 +37456,89 @@
     <nd ref='162240006494061' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='664771997' version='1'>
-    <nd ref='96568260005626848' />
-    <nd ref='96575430005625555' />
-    <nd ref='96577440005625192' />
-    <nd ref='96580530005624673' />
-    <nd ref='96588250005623601' />
+  <way id='664771997' action='delete' version='1'>
   </way>
-  <way id='664771998' version='1'>
-    <nd ref='96407790005686501' />
-    <nd ref='96394320005688414' />
+  <way id='664771998' action='delete' version='1'>
     <tag k='name' v='Weidenallee' />
   </way>
-  <way id='664771999' version='1'>
-    <nd ref='96394320005688414' />
-    <nd ref='9637406000569167' />
+  <way id='664771999' action='delete' version='1'>
+    <tag k='name' v='Weidenallee' />
+  </way>
+  <way id='664772000' action='modify' version='1'>
+    <nd ref='96354530005694026' />
     <nd ref='96370560005692233' />
-    <nd ref='96354530005694026' />
-    <tag k='name' v='Weidenallee' />
-  </way>
-  <way id='664772000' version='1'>
-    <nd ref='96576480005654678' />
-    <nd ref='96572790005656442' />
-    <nd ref='96569880005657228' />
-    <nd ref='96553360005660659' />
+    <nd ref='9637406000569167' />
+    <nd ref='96394320005688414' />
+    <nd ref='96407790005686501' />
+    <nd ref='96417910005684799' />
+    <nd ref='96430530005682653' />
+    <nd ref='96441460005680787' />
+    <nd ref='96455370005678414' />
+    <nd ref='96459540005677702' />
+    <nd ref='96460410005677554' />
+    <nd ref='96464230005676903' />
+    <nd ref='96468870005676043' />
+    <nd ref='964855100056732' />
+    <nd ref='96495190005671533' />
+    <nd ref='96502290005670301' />
+    <nd ref='96505110005669819' />
+    <nd ref='96535320005664612' />
+    <nd ref='96540810005663268' />
+    <nd ref='96542170005662985' />
     <nd ref='96546230005662142' />
-    <tag k='name' v='Weidenallee' />
+    <nd ref='96553360005660659' />
+    <nd ref='96569880005657228' />
+    <nd ref='96572790005656442' />
+    <nd ref='96576480005654678' />
+    <nd ref='9657850005653609' />
+    <nd ref='96579450005651831' />
+    <nd ref='-120106' />
+    <tag k='img_backward_end' v='0r7-_p_0s3bx892uHJV4qA' />
+    <tag k='img_backward_start' v='YTrkI-61NUHn-qJzTGg9ig' />
+    <tag k='img_forward_start' v='FCixfYd0tOGYfQfsflr90A' />
+    <tag k='seq_backward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
   </way>
-  <way id='664772006' version='1'>
-    <nd ref='96561240005628375' />
-    <nd ref='96564180005627734' />
-    <nd ref='96568260005626848' />
+  <way id='664772006' action='delete' version='1'>
   </way>
-  <way id='664779990' version='1'>
-    <nd ref='96295260005697455' />
-    <nd ref='9628891000569766' />
+  <way id='664779990' action='modify' version='1'>
     <nd ref='96268070005698537' />
-    <tag k='name' v='Weidenstieg' />
-  </way>
-  <way id='664779999' version='1'>
-    <nd ref='96328960005696203' />
-    <nd ref='96315420005696952' />
+    <nd ref='9628891000569766' />
     <nd ref='96295260005697455' />
+    <tag k='img_backward_end' v='NARm3pQR7a9BI4IkC7Nadg' />
+    <tag k='img_backward_start' v='Bp7K8IgmB8woBtiytmyPhw' />
+    <tag k='img_forward_end' v='Y6R5LCAs8SpmgZ4-EYIvgw' />
+    <tag k='img_forward_start' v='4sQ6ViJ0WsIv6pdtKLPd0g' />
     <tag k='name' v='Weidenstieg' />
+    <tag k='seq_backward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
+  </way>
+  <way id='664779999' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='664780000' version='1'>
-    <nd ref='96304360005694263' />
-    <nd ref='96354530005694026' />
-    <tag k='name' v='Fruchtallee' />
+  <way id='664780000' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='664780007' version='1'>
-    <nd ref='96300430005694909' />
-    <nd ref='96304360005694263' />
+  <way id='664780007' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='664780008' version='1'>
-    <nd ref='96296640005695975' />
-    <nd ref='96298250005695388' />
-    <nd ref='96300230005694952' />
-    <nd ref='96300430005694909' />
+  <way id='664780008' action='delete' version='1'>
     <tag k='oneway' v='yes' />
   </way>
-  <way id='664780010' version='1'>
+  <way id='664780010' action='modify' version='1'>
     <nd ref='96295260005697455' />
     <nd ref='962953100056965' />
     <nd ref='96295310005696401' />
     <nd ref='96296640005695975' />
+    <nd ref='96298250005695388' />
+    <nd ref='96300230005694952' />
+    <nd ref='96300430005694909' />
+    <nd ref='96304360005694263' />
+    <nd ref='96354530005694026' />
+    <tag k='img_forward_end' v='f6wNoVn2zwHTRZcFpdnvkw' />
+    <tag k='img_forward_start' v='8qM_KJKT9UDSxhCDrgHtyQ' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='IbrBmM-eF4r6SJ6g72ec1w' />
   </way>
   <way id='668443895' version='1'>
     <nd ref='88946740005574111' />
@@ -37506,19 +37639,7 @@
     <nd ref='92239760005509222' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='675171037' version='1'>
-    <nd ref='96561240005628375' />
-    <nd ref='96550690005630652' />
-    <nd ref='96545040005634277' />
-    <nd ref='965419600056372' />
-    <nd ref='96542860005638004' />
-    <nd ref='96544850005639207' />
-    <nd ref='96547590005639912' />
-    <nd ref='9655188000564106' />
-    <nd ref='965543000564169' />
-    <nd ref='96579450005651831' />
-    <nd ref='9657850005653609' />
-    <nd ref='96576480005654678' />
+  <way id='675171037' action='delete' version='1'>
   </way>
   <way id='676005884' version='1'>
     <nd ref='2097960006492128' />
@@ -37855,9 +37976,7 @@
     <tag k='name' v='Friedrich-Frank-Bogen' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='695013757' version='1'>
-    <nd ref='95811090005724196' />
-    <nd ref='95781680005724718' />
+  <way id='695013757' action='delete' version='1'>
   </way>
   <way id='696906737' version='1'>
     <nd ref='99522720006027778' />
@@ -38020,33 +38139,9 @@
     <nd ref='3149850006000915' />
     <nd ref='315287000600181' />
   </way>
-  <way id='705620524' version='1'>
-    <nd ref='93349680005930452' />
-    <nd ref='93345930005931412' />
-    <nd ref='9334290005932187' />
-    <nd ref='9334140005932498' />
-    <nd ref='93335180005933786' />
-    <nd ref='9329357000594241' />
-    <nd ref='9328920005943317' />
-    <tag k='name' v='Basselweg' />
+  <way id='705620524' action='delete' version='1'>
   </way>
-  <way id='705620525' version='1'>
-    <nd ref='9328920005943317' />
-    <nd ref='93275780005946655' />
-    <nd ref='93273860005947286' />
-    <nd ref='93271530005948387' />
-    <nd ref='93271110005948673' />
-    <nd ref='93270240005950213' />
-    <nd ref='93270940005951741' />
-    <nd ref='93271650005953059' />
-    <nd ref='93278140005958984' />
-    <nd ref='93280120005960706' />
-    <nd ref='93281110005961572' />
-    <nd ref='93281880005962379' />
-    <nd ref='93284940005965571' />
-    <nd ref='93286530005967674' />
-    <nd ref='932817900059684' />
-    <tag k='name' v='Basselweg' />
+  <way id='705620525' action='delete' version='1'>
   </way>
   <way id='708595505' version='1'>
     <nd ref='923870006359474' />
@@ -38309,10 +38404,19 @@
     <nd ref='7079880005271776' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='736602517' version='1'>
+  <way id='736602517' action='modify' version='1'>
+    <nd ref='96268070005698537' />
+    <nd ref='96266770005699192' />
+    <nd ref='9622750005701512' />
+    <nd ref='96214640005702316' />
+    <nd ref='96164320005705319' />
     <nd ref='96160940005705522' />
     <nd ref='96143580005706552' />
+    <tag k='img_forward_end' v='y2XQCRSGWWCSnNT_E5oTRg' />
+    <tag k='img_forward_start' v='8s1b_aOQBZ5PwWw1qjBwgg' />
+    <tag k='name' v='Weidenstieg' />
     <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='TWTgr9Fpsv5wroiDXOMTPQ' />
   </way>
   <way id='738633624' version='1'>
     <nd ref='9865340005666768' />
@@ -38406,7 +38510,7 @@
     <nd ref='3147610005668407' />
     <nd ref='313050005668365' />
   </way>
-  <way id='745522719' version='1'>
+  <way id='745522719' action='modify' version='1'>
     <nd ref='93918840005801803' />
     <nd ref='93914350005802709' />
     <nd ref='93912110005803086' />
@@ -38418,15 +38522,17 @@
     <nd ref='9390520005805094' />
     <nd ref='93899840005805254' />
     <nd ref='93893850005805281' />
-    <tag k='name' v='Langenfelder Damm' />
-    <tag k='oneway' v='yes' />
-  </way>
-  <way id='745592173' version='1'>
-    <nd ref='93893850005805281' />
     <nd ref='93888160005805554' />
     <nd ref='9388430005805929' />
     <nd ref='93879140005806383' />
     <nd ref='93867870005806899' />
+    <tag k='img_forward_end' v='hzzl131nFow2zubktTIfqw' />
+    <tag k='img_forward_start' v='AfR898nKdcEc-yuhhGznaA' />
+    <tag k='name' v='Langenfelder Damm' />
+    <tag k='oneway' v='yes' />
+    <tag k='seq_forward' v='WwMG87C_d3FMENjz9E6PMA' />
+  </way>
+  <way id='745592173' action='delete' version='1'>
     <tag k='name' v='Langenfelder Damm' />
     <tag k='oneway' v='yes' />
   </way>
@@ -38484,9 +38590,7 @@
     <nd ref='49620005149385' />
     <nd ref='43070005148451' />
   </way>
-  <way id='752715205' version='1'>
-    <nd ref='93981820005795661' />
-    <nd ref='939880005795078' />
+  <way id='752715205' action='delete' version='1'>
     <tag k='name' v='Langenfelder Damm' />
   </way>
   <way id='754373435' version='1'>
@@ -38656,9 +38760,7 @@
     <tag k='name' v='Rugenbarg' />
     <tag k='oneway' v='yes' />
   </way>
-  <way id='757098524' version='1'>
-    <nd ref='939665900057971' />
-    <nd ref='93981820005795661' />
+  <way id='757098524' action='delete' version='1'>
     <tag k='name' v='Langenfelder Damm' />
   </way>
   <way id='759400933' version='1'>
@@ -41700,109 +41802,43 @@
     <member type='way' ref='142944452' role='forward' />
     <member type='way' ref='43118542' role='forward' />
     <member type='way' ref='142944343' role='' />
-    <member type='way' ref='-101832' role='forward' />
     <member type='way' ref='252993339' role='forward' />
     <member type='way' ref='660916747' role='forward' />
-    <member type='way' ref='252993341' role='forward' />
     <member type='way' ref='22964540' role='forward' />
     <member type='way' ref='23489827' role='forward' />
-    <member type='way' ref='252993340' role='forward' />
     <member type='way' ref='660916748' role='' />
-    <member type='way' ref='252843137' role='' />
     <member type='way' ref='142677523' role='forward' />
-    <member type='way' ref='80022210' role='forward' />
-    <member type='way' ref='457986148' role='forward' />
-    <member type='way' ref='139083722' role='forward' />
-    <member type='way' ref='80022222' role='forward' />
-    <member type='way' ref='76034973' role='forward' />
-    <member type='way' ref='-101836' role='forward' />
-    <member type='way' ref='457768682' role='forward' />
-    <member type='way' ref='252843133' role='forward' />
-    <member type='way' ref='80022202' role='forward' />
-    <member type='way' ref='4926295' role='forward' />
-    <member type='way' ref='76034972' role='forward' />
-    <member type='way' ref='142954644' role='forward' />
     <member type='way' ref='53666939' role='forward' />
     <member type='way' ref='566711303' role='' />
-    <member type='way' ref='142954620' role='' />
     <member type='way' ref='566711300' role='forward' />
-    <member type='way' ref='591207082' role='forward' />
-    <member type='way' ref='566711301' role='forward' />
     <member type='way' ref='566711302' role='forward' />
     <member type='way' ref='566711282' role='forward' />
-    <member type='way' ref='142954649' role='' />
     <member type='way' ref='621072259' role='' />
-    <member type='way' ref='621072713' role='' />
-    <member type='way' ref='31987579' role='' />
-    <member type='way' ref='621072716' role='' />
-    <member type='way' ref='621072715' role='' />
-    <member type='way' ref='31987580' role='' />
-    <member type='way' ref='22131840' role='' />
-    <member type='way' ref='664771997' role='' />
-    <member type='way' ref='664772006' role='' />
-    <member type='way' ref='675171037' role='' />
     <member type='way' ref='664772000' role='' />
-    <member type='way' ref='27383861' role='' />
-    <member type='way' ref='664771998' role='' />
-    <member type='way' ref='664771999' role='' />
     <member type='way' ref='427242166' role='forward' />
-    <member type='way' ref='664779999' role='forward' />
-    <member type='way' ref='664780000' role='forward' />
-    <member type='way' ref='664780007' role='forward' />
-    <member type='way' ref='664780008' role='forward' />
     <member type='way' ref='664780010' role='forward' />
     <member type='way' ref='664779990' role='' />
-    <member type='way' ref='-101892' role='forward' />
     <member type='way' ref='736602517' role='forward' />
     <member type='way' ref='52718531' role='forward' />
+    <member type='way' ref='-112441' role='' />
     <member type='way' ref='599879282' role='' />
-    <member type='way' ref='137037891' role='' />
-    <member type='way' ref='28174972' role='' />
-    <member type='way' ref='16324044' role='' />
-    <member type='way' ref='695013757' role='' />
-    <member type='way' ref='19821025' role='' />
-    <member type='way' ref='599879283' role='' />
-    <member type='way' ref='19821089' role='' />
     <member type='way' ref='19821078' role='' />
     <member type='way' ref='23107292' role='' />
-    <member type='way' ref='23107428' role='' />
     <member type='way' ref='33174204' role='forward' />
     <member type='way' ref='-101888' role='forward' />
     <member type='way' ref='145693863' role='' />
-    <member type='way' ref='362820560' role='' />
-    <member type='way' ref='144069392' role='' />
-    <member type='way' ref='752715205' role='' />
-    <member type='way' ref='757098524' role='' />
-    <member type='way' ref='603942282' role='' />
     <member type='way' ref='745522719' role='forward' />
-    <member type='way' ref='745592173' role='forward' />
     <member type='way' ref='-101883' role='forward' />
-    <member type='way' ref='-101876' role='forward' />
-    <member type='way' ref='39749610' role='' />
-    <member type='way' ref='23115394' role='' />
-    <member type='way' ref='23777892' role='' />
-    <member type='way' ref='28174305' role='' />
-    <member type='way' ref='28174280' role='' />
-    <member type='way' ref='292370962' role='' />
-    <member type='way' ref='24433715' role='' />
-    <member type='way' ref='705620524' role='' />
-    <member type='way' ref='705620525' role='' />
-    <member type='way' ref='30077138' role='' />
-    <member type='way' ref='34342302' role='' />
-    <member type='way' ref='544123834' role='' />
-    <member type='way' ref='39980064' role='' />
-    <member type='way' ref='39980065' role='' />
+    <member type='way' ref='-112106' role='' />
+    <member type='way' ref='-112274' role='' />
+    <member type='way' ref='-112238' role='' />
+    <member type='way' ref='-112231' role='' />
     <member type='way' ref='7559718' role='' />
     <member type='way' ref='186236164' role='' />
-    <member type='way' ref='7559180' role='' />
-    <member type='way' ref='599879284' role='' />
-    <member type='way' ref='7559013' role='' />
-    <member type='way' ref='28175272' role='' />
-    <member type='way' ref='601018738' role='' />
-    <member type='way' ref='148667124' role='' />
-    <member type='way' ref='599783454' role='' />
-    <member type='way' ref='7395592' role='' />
+    <member type='way' ref='-112218' role='' />
     <member type='node' ref='8988588000605706' role='gpx_end' />
+    <tag k='Eidelstedt→Innenstadt' v='von Eidelstedt zur Innenstadt' />
+    <tag k='Innenstadt→Eidelstedt' v='von der Innenstadt nach Eidelstedt' />
     <tag k='color' v='#b2211d' />
     <tag k='gpx_backward' v='Richtung Innenstadt' />
     <tag k='gpx_forward' v='Richtung Eidelstedt' />
@@ -41819,37 +41855,20 @@
     <member type='way' ref='142944452' role='forward' />
     <member type='way' ref='43118542' role='forward' />
     <member type='way' ref='142944343' role='' />
-    <member type='way' ref='-101832' role='forward' />
     <member type='way' ref='252993339' role='forward' />
     <member type='way' ref='660916747' role='forward' />
-    <member type='way' ref='252993341' role='forward' />
+    <member type='way' ref='23489827' role='forward' />
     <member type='way' ref='22964540' role='forward' />
     <member type='way' ref='23489827' role='forward' />
-    <member type='way' ref='252993340' role='forward' />
+    <member type='way' ref='23489827' role='forward' />
     <member type='way' ref='660916748' role='' />
-    <member type='way' ref='252843137' role='' />
     <member type='way' ref='142677523' role='forward' />
-    <member type='way' ref='80022210' role='forward' />
-    <member type='way' ref='457986148' role='forward' />
-    <member type='way' ref='139083722' role='forward' />
-    <member type='way' ref='80022222' role='forward' />
-    <member type='way' ref='76034973' role='forward' />
-    <member type='way' ref='-101836' role='forward' />
-    <member type='way' ref='457768682' role='forward' />
-    <member type='way' ref='252843133' role='forward' />
-    <member type='way' ref='80022202' role='forward' />
-    <member type='way' ref='4926295' role='forward' />
-    <member type='way' ref='76034972' role='forward' />
-    <member type='way' ref='142954644' role='forward' />
     <member type='way' ref='53666939' role='forward' />
     <member type='way' ref='566711303' role='' />
-    <member type='way' ref='142954620' role='' />
     <member type='way' ref='566711300' role='forward' />
-    <member type='way' ref='591207082' role='forward' />
     <member type='way' ref='566711283' role='forward' />
     <member type='way' ref='566711286' role='forward' />
     <member type='way' ref='421057068' role='forward' />
-    <member type='way' ref='566711301' role='forward' />
     <member type='way' ref='566711302' role='forward' />
     <member type='way' ref='566711289' role='forward' />
     <member type='way' ref='421056926' role='forward' />

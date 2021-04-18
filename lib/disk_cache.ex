@@ -7,11 +7,11 @@ defmodule DiskCache do
   def lazy(namespace, cache_key, func) do
     try do
       start_link()
-      get(namespace, cache_key, func)
+      get_or_write(namespace, cache_key, func)
     rescue
       err ->
         IO.warn("Failed to resolve #{namespace} #{cache_key}, retrying once (#{inspect(err)})")
-        get(namespace, cache_key, func)
+        get_or_write(namespace, cache_key, func)
     end
   end
 
@@ -29,16 +29,19 @@ defmodule DiskCache do
     end
   end
 
-  defp get(namespace, cache_key, func) when namespace in @allowed do
+  defp get_or_write(namespace, cache_key, func) do
     Agent.update(__MODULE__, fn open_tables -> ensure_open(open_tables, namespace) end)
+    get(namespace, cache_key) || write(namespace, cache_key, func)
+  end
 
+  defp get(namespace, cache_key) when namespace in @allowed do
     Agent.get(
       __MODULE__,
       fn _open_tables ->
         :dets.lookup(namespace, cache_key)
         |> case do
           [{^cache_key, res}] -> res
-          _ -> write(namespace, cache_key, func)
+          _ -> nil
         end
       end,
       5 * 60 * 1000
@@ -48,20 +51,30 @@ defmodule DiskCache do
   defp write(namespace, cache_key, func) when namespace in @allowed do
     res = func.()
 
-    true =
-      :dets.insert_new(namespace, {cache_key, res})
-      |> case do
-        true ->
-          true
+    Agent.get(
+      __MODULE__,
+      fn _open_tables ->
+        :ok =
+          :dets.insert(namespace, {cache_key, res})
+          |> case do
+            :ok ->
+              :ok
 
-        {:error, err} ->
-          IO.warn("Encountered dets(#{namespace}) error: #{inspect(err)}, trying to close/reopen")
-          :dets.close(namespace)
-          open(namespace)
-          :dets.insert_new(namespace, {cache_key, res})
-      end
+            {:error, err} ->
+              IO.warn(
+                "Encountered dets(#{namespace}) error: #{inspect(err)}, trying to close/reopen"
+              )
 
-    :ok = :dets.sync(namespace)
+              :dets.close(namespace)
+              open(namespace)
+              :dets.insert(namespace, {cache_key, res})
+          end
+
+        :ok = :dets.sync(namespace)
+      end,
+      5 * 60 * 1000
+    )
+
     res
   end
 

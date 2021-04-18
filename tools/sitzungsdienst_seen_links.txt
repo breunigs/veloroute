@@ -658,3 +658,5 @@
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011167
 - https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006511
 - https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1005759
+'2021-04-18':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010576

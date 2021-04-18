@@ -382,9 +382,9 @@
 14499:
   :id: 14499
   :title: 'Vogelhüttendeich / Vollsperrung -- '
-  :updated: '2021-04-08T09:52:53.68117'
+  :updated: '2021-04-15T10:17:00.647349'
   :start: '2021-03-03'
-  :end: '2021-04-17'
+  :end: '2021-04-21'
   :velo: false
 9662:
   :id: 9662
@@ -520,10 +520,10 @@
   :velo: false
 12294:
   :id: 12294
-  :title: Wiesendamm / Radverkehrsanlagen -- Bezirk Nord
-  :updated: '2021-02-17T13:59:22.410834'
+  :title: 'Wiesendamm / Radverkehrsanlagen -- '
+  :updated: '2021-04-16T12:17:34.330186'
   :start: '2020-09-21'
-  :end: '2021-05-29'
+  :end: '2021-06-06'
   :velo: false
 14337:
   :id: 14337
@@ -645,10 +645,10 @@
   :velo: false
 12311:
   :id: 12311
-  :title: Tangstedter Landstraße / Veloroute -- Bezirk Nord
-  :updated: '2021-02-19T13:07:32.773058'
+  :title: 'Tangstedter Landstraße / Veloroute -- '
+  :updated: '2021-04-15T17:04:56.279508'
   :start: '2020-09-01'
-  :end: '2021-08-01'
+  :end: '2021-06-29'
   :velo: true
 7917:
   :id: 7917
@@ -1139,4 +1139,48 @@
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-26'
   :end: '2021-08-30'
+  :velo: false
+15344:
+  :id: 15344
+  :title: 'Hittfelder Straße / Grünschnitt -- '
+  :updated: '2021-04-16T07:44:10.029932'
+  :start: '2021-04-10'
+  :end: '2021-04-18'
+  :velo: false
+15441:
+  :id: 15441
+  :title: 'Wilhelm-Busch-Weg / Ausbau Veloroute 11 / Vollsperrung -- '
+  :updated: '2021-04-14T11:13:26.910485'
+  :start: '2021-04-12'
+  :end: '2021-04-26'
+  :velo: true
+15290:
+  :id: 15290
+  :title: 'Bramfelder Chaussee, Saseler Chaussee / Optimierung Veloroute 5 -- '
+  :updated: '2021-04-16T07:42:51.447275'
+  :start: '2021-04-12'
+  :end: '2021-06-25'
+  :velo: true
+15349:
+  :id: 15349
+  :title: 'Zum Dubben / Ausbau Veloroute 10 / Asphaltierungsarbeiten / Vollsperrung
+    -- '
+  :updated: '2021-04-08T12:01:16.55962'
+  :start: '2021-04-23'
+  :end: '2021-04-30'
+  :velo: true
+14876:
+  :id: 14876
+  :title: 'Mittelweg / Sielbau -- '
+  :updated: '2021-04-16T08:05:12.286634'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-04-25'
+  :end: '2021-08-30'
+  :velo: false
+15480:
+  :id: 15480
+  :title: 'Horster Damm 247a | Herstellung einer Baustellenzufahrt -- '
+  :updated: '2021-04-16T07:35:49.119319'
+  :start: '2021-05-03'
+  :end: '2021-06-03'
   :velo: false

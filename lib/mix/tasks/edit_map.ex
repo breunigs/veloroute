@@ -18,7 +18,7 @@ defmodule Mix.Tasks.EditMap do
       System.cmd(
         "josm",
         [
-          "--offline=osm_api",
+          "--offline=osm_api,josm_website,certificates",
           "--load-preferences=#{@josm_default_prefs}",
           @session_path
         ],

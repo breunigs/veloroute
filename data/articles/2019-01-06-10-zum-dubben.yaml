@@ -3,8 +3,8 @@ type: construction
 title: Zum Dubben (neue Führung, Veloroute 10)
 images: articles
 start: 2020-04-27
-end: 2021-02-28
-construction_site_id_hh: 7739
+end: 2021-04-30
+construction_site_id_hh: [7739, 15349]
 tags:
 - 10
 text: '<p>In dem ersten Entwurf ist vorgesehen die Straße <a>Zum Dubben</a> beidseitig
