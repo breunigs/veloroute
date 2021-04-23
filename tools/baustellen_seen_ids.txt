@@ -112,18 +112,18 @@
   :velo: false
 11939:
   :id: 11939
-  :title: Vollsperrung Scheel-Plessen-Straße -- Bezirk Altona
-  :updated: '2020-11-26T14:30:50.500452'
+  :title: 'Einbahnstraße Scheel-Plessen-Straße -- '
+  :updated: '2021-04-21T15:17:23.610686'
   :start: '2020-09-23'
-  :end: '2021-06-30'
+  :end: '2021-05-23'
   :velo: false
 9261:
   :id: 9261
-  :title: Holsteiner Chaussee / Trinkwasseranschlüsse -- Hamburg Wasser
-  :updated: '2021-02-05T10:35:22.576554'
+  :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
+  :updated: '2021-04-19T16:00:55.264507'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2020-10-02'
-  :end: '2022-05-08'
+  :start: '2020-06-29'
+  :end: '2022-03-15'
   :velo: false
 12285:
   :id: 12285
@@ -150,11 +150,11 @@
   :velo: false
 8623:
   :id: 8623
-  :title: Schlüterstraße/ Veloroutenausbau -- Bezirk Eimsbüttel
-  :updated: '2021-03-23T15:09:50.891999'
+  :title: 'Schlüterstraße/ Veloroutenausbau -- '
+  :updated: '2021-04-20T12:23:37.900474'
   :link: https://www.hamburg.de/eimsbuettel/schlueterstrasse/
   :start: '2020-06-15'
-  :end: '2021-07-31'
+  :end: '2021-08-13'
   :velo: true
 13141:
   :id: 13141
@@ -298,11 +298,11 @@
   :velo: false
 8311:
   :id: 8311
-  :title: Berner Heerweg Kreuzung Neusurenland / Veloroute 6 -- Bezirk Wandsbek
-  :updated: '2021-03-16T14:23:05.29985'
+  :title: 'Berner Heerweg Kreuzung Neusurenland / Veloroute 6 -- '
+  :updated: '2021-04-16T07:18:49.192436'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-06-22'
-  :end: '2021-04-30'
+  :end: '2021-04-09'
   :velo: true
 9608:
   :id: 9608
@@ -439,9 +439,8 @@
   :velo: false
 65:
   :id: 65
-  :title: Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- Hamburg
-    Wasser
-  :updated: '2021-03-12T06:13:41.900968'
+  :title: 'Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- '
+  :updated: '2021-04-19T15:42:13.915867'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-09-25'
   :end: '2021-11-30'
@@ -506,9 +505,9 @@
 12524:
   :id: 12524
   :title: 'Beim Farenland / Veloroute 6 -- '
-  :updated: '2021-04-07T10:45:22.906727'
+  :updated: '2021-04-16T07:23:54.169765'
   :start: '2020-11-02'
-  :end: '2021-04-13'
+  :end: '2021-04-16'
   :velo: true
 6381:
   :id: 6381
@@ -604,12 +603,12 @@
   :velo: false
 10453:
   :id: 10453
-  :title: Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
-    Eulenkamp Nord -- Bezirk Wandsbek
-  :updated: '2021-02-09T08:40:09.785429'
+  :title: 'Eulenkamp - Teilabschnitt Veloroute 6 - Neuordnung der Radverkehrsführung
+    Eulenkamp Nord -- '
+  :updated: '2021-03-19T15:03:25.095251'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
   :start: '2020-08-03'
-  :end: '2021-03-31'
+  :end: '2021-03-19'
   :velo: true
 9994:
   :id: 9994
@@ -637,11 +636,11 @@
   :velo: false
 14270:
   :id: 14270
-  :title: Bramfelder Chaussee / Trinkwasserleitung -- Hamburg Wasser
-  :updated: '2021-02-05T10:24:23.081746'
+  :title: 'Bramfelder Chaussee / Trinkwasserleitung -- '
+  :updated: '2021-04-23T10:13:42.246976'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-01-11'
-  :end: '2021-04-15'
+  :end: '2021-05-05'
   :velo: false
 12311:
   :id: 12311
@@ -652,8 +651,8 @@
   :velo: true
 7917:
   :id: 7917
-  :title: Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- Hamburg Wasser
-  :updated: '2021-03-26T11:24:14.772253'
+  :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
+  :updated: '2021-04-19T15:49:29.29328'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
   :end: '2021-06-30'
@@ -704,8 +703,8 @@
   :velo: false
 6956:
   :id: 6956
-  :title: Försterweg/ Grundinstandsetzung -- Bezirk Eimsbüttel
-  :updated: '2021-03-11T10:41:54.191329'
+  :title: 'Försterweg/ Grundinstandsetzung -- '
+  :updated: '2021-04-20T09:10:04.42578'
   :start: '2020-03-30'
   :end: '2021-04-30'
   :velo: false
@@ -868,12 +867,11 @@
   :velo: true
 69:
   :id: 69
-  :title: Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- Hamburg
-    Wasser
-  :updated: '2021-03-05T08:15:26.653783'
+  :title: 'Bismarckstraße (Kreuzung Osterstraße/Mansteinstraße) / Sielarbeiten -- '
+  :updated: '2021-04-19T15:44:14.241481'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-04-10'
-  :end: '2021-04-15'
+  :end: '2021-05-07'
   :velo: false
 615:
   :id: 615
@@ -1135,7 +1133,7 @@
 14420:
   :id: 14420
   :title: 'Stresemannstraße / Sielbauarbeiten -- '
-  :updated: '2021-04-07T14:39:14.591429'
+  :updated: '2021-04-19T16:08:31.321285'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-26'
   :end: '2021-08-30'
@@ -1165,16 +1163,16 @@
   :id: 15349
   :title: 'Zum Dubben / Ausbau Veloroute 10 / Asphaltierungsarbeiten / Vollsperrung
     -- '
-  :updated: '2021-04-08T12:01:16.55962'
-  :start: '2021-04-23'
+  :updated: '2021-04-19T16:17:08.069361'
+  :start: '2021-04-21'
   :end: '2021-04-30'
   :velo: true
 14876:
   :id: 14876
   :title: 'Mittelweg / Sielbau -- '
-  :updated: '2021-04-16T08:05:12.286634'
+  :updated: '2021-04-19T16:02:29.668276'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-04-25'
+  :start: '2021-04-26'
   :end: '2021-08-30'
   :velo: false
 15480:
@@ -1184,3 +1182,128 @@
   :start: '2021-05-03'
   :end: '2021-06-03'
   :velo: false
+15628:
+  :id: 15628
+  :title: 'Nordlandweg 111 / Wohnungsbau -- '
+  :updated: '2021-04-22T11:43:43.01794'
+  :start: '2021-04-21'
+  :end: '2021-05-28'
+  :velo: false
+15633:
+  :id: 15633
+  :title: 'Nordkanalstraße / Fahrspursperrung -- '
+  :updated: '2021-04-22T11:44:05.019924'
+  :start: '2021-04-20'
+  :end: '2021-05-28'
+  :velo: false
+15475:
+  :id: 15475
+  :title: 'Heinrich-Heine-Weg 52-58 und 30-38 | Baumpflegearbeiten, Vollsperrung -- '
+  :updated: '2021-04-19T07:38:10.848238'
+  :start: '2021-04-29'
+  :end: '2021-04-30'
+  :velo: false
+15539:
+  :id: 15539
+  :title: 'Norderstraße / Vollsperrung -- '
+  :updated: '2021-04-20T07:25:15.156786'
+  :start: '2021-04-26'
+  :end: '2021-04-30'
+  :velo: false
+15669:
+  :id: 15669
+  :title: 'Spadenländer Hauptdeich 43-49 | Fahrbahnsanierung -- '
+  :updated: '2021-04-22T11:45:50.879789'
+  :start: '2021-04-26'
+  :end: '2021-04-30'
+  :velo: false
+15681:
+  :id: 15681
+  :title: 'Denickestraße / Ausbau Veloroute 11 / Vollsperrung -- '
+  :updated: '2021-04-22T11:46:30.981589'
+  :start: '2021-04-26'
+  :end: '2021-05-28'
+  :velo: true
+15562:
+  :id: 15562
+  :title: 'Tilsiter Straße- Allensteiner Straße / Veloroute 6 -- '
+  :updated: '2021-04-22T12:55:25.577507'
+  :start: '2021-04-26'
+  :end: '2021-11-15'
+  :velo: true
+15745:
+  :id: 15745
+  :title: 'Dreieichenweg | Fahrbahnsanierung, Vollsperrung -- '
+  :updated: '2021-04-23T11:35:54.955764'
+  :start: '2021-04-27'
+  :end: '2021-06-04'
+  :velo: false
+15661:
+  :id: 15661
+  :title: 'Vierlandenstraße/Rektor-Ritter-Straße | Verlegung von Telekommunikationsleitungen
+    -- '
+  :updated: '2021-04-22T11:45:22.110195'
+  :start: '2021-05-03'
+  :end: '2021-07-03'
+  :velo: false
+13702:
+  :id: 13702
+  :title: 'Stapelfelder Straße / Erschließung Victoriapark -- '
+  :updated: '2021-04-22T15:06:17.390333'
+  :start: '2021-05-01'
+  :end: '2021-05-31'
+  :velo: false
+9332:
+  :id: 9332
+  :title: 'Deichtorplatz + Klosterwall + Steintorwall / Veloroute 9 / Verkehrsbehinderungen
+    -- '
+  :updated: '2021-03-02T11:55:21.433892'
+  :start: '2020-07-15'
+  :end: '2021-02-28'
+  :velo: true
+9437:
+  :id: 9437
+  :title: 'Umbau Kreuzung Hohenzollernring / Bleickenallee  (Veloroute 1) -- '
+  :updated: '2020-11-27T12:30:17.280228'
+  :link: https://www.steg-hamburg.de/veloroute-altona.html
+  :start: '2020-07-06'
+  :end: '2020-11-30'
+  :velo: true
+9971:
+  :id: 9971
+  :title: 'Hirschgraben / Veloroute -- '
+  :updated: '2020-12-18T16:04:39.178805'
+  :link: https://lsbg.hamburg.de/contentblob/13040166/94db97e9351fea38c4ded24082153c3f/data/veloroute-13-hirschgraben-abstimmungsunterlage-bericht-kenntnisnahmeverschickung).pdf
+  :start: '2020-08-03'
+  :end: '2021-02-14'
+  :velo: true
+2147:
+  :id: 2147
+  :title: 'Cuxhavener Straße / Waltershofer Straße / Umbau und Instandsetzung -- '
+  :updated: '2020-11-04T11:14:47.609043'
+  :start: '2019-10-21'
+  :end: '2020-12-31'
+  :velo: false
+7739:
+  :id: 7739
+  :title: 'Zum Dubben / Veloroute 10 - Straßenbauarbeiten -- '
+  :updated: '2021-01-04T12:27:02.806123'
+  :start: '2020-04-27'
+  :end: '2021-02-28'
+  :velo: true
+11180:
+  :id: 11180
+  :title: 'Bleickeallee Ost / Umbau für Veloroute 1 -- '
+  :updated: '2020-12-04T11:06:51.558624'
+  :link: https://www.steg-hamburg.de/veloroute-altona.html
+  :start: '2020-08-21'
+  :end: '2020-12-18'
+  :velo: true
+9449:
+  :id: 9449
+  :title: 'Sülldorfer Kirchenweg / Ausbau Veloroute 1 und Grundinstandsetzung / Vollsperrung
+    -- '
+  :updated: '2020-12-04T11:08:32.127397'
+  :start: '2020-07-06'
+  :end: '2021-02-25'
+  :velo: true
