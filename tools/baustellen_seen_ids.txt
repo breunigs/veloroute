@@ -852,8 +852,8 @@
   :velo: false
 14914:
   :id: 14914
-  :title: Teil- und Vollsperrung Kattwykbrücke -- Hamburg Port Authority
-  :updated: '2021-03-17T10:33:55.370053'
+  :title: 'Teil- und Vollsperrung Kattwykbrücke - 1. Aktualisierung -- '
+  :updated: '2021-04-27T13:59:32.297732'
   :link: https://www.hamburg-port-authority.de/de/aktuelles-presse/kattwykbruecke-wird-fuer-alleinige-nutzung-fuer-den-strassenverkehr-umgebaut/
   :start: '2021-04-06'
   :end: '2021-11-06'
@@ -1035,9 +1035,9 @@
   :id: 15232
   :title: 'Gartenstadtweg - Hortensienweg / Deckschichterneuerung unter Vollsperrung
     -- '
-  :updated: '2021-04-06T10:25:31.888248'
+  :updated: '2021-04-15T15:01:35.779641'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14996808/gartenstadtweg-hortensienweg/
-  :start: '2021-04-26'
+  :start: '2021-05-03'
   :end: '2021-05-07'
   :velo: false
 15257:
@@ -1306,4 +1306,47 @@
   :updated: '2020-12-04T11:08:32.127397'
   :start: '2020-07-06'
   :end: '2021-02-25'
+  :velo: true
+15521:
+  :id: 15521
+  :title: 'Wrauster Bogen 86 | Kranstellung, Vollsperrung -- '
+  :updated: '2021-04-21T14:02:44.001643'
+  :start: '2021-04-26'
+  :end: '2021-04-28'
+  :velo: false
+15645:
+  :id: 15645
+  :title: 'Burgstraße / Verkehrsbehinderung -- '
+  :updated: '2021-04-22T11:44:44.72863'
+  :start: '2021-04-27'
+  :end: '2021-04-29'
+  :velo: false
+15650:
+  :id: 15650
+  :title: 'Rehmbrook - Vollsperrung -- '
+  :updated: '2021-04-22T12:55:47.078556'
+  :start: '2021-04-28'
+  :end: '2021-04-29'
+  :velo: false
+15764:
+  :id: 15764
+  :title: 'Kraueler Hauptdeich 251 | Fahrbahnsanierung -- '
+  :updated: '2021-04-27T10:56:51.361153'
+  :start: '2021-04-27'
+  :end: '2021-04-30'
+  :velo: false
+15612:
+  :id: 15612
+  :title: 'Allermöher Deich 514 | Deckensanierung -- '
+  :updated: '2021-04-20T12:23:55.506425'
+  :start: '2021-05-04'
+  :end: '2021-05-06'
+  :velo: false
+15779:
+  :id: 15779
+  :title: 'Eulenkamp / Veloroute 6 -- '
+  :updated: '2021-04-28T06:50:28.43916'
+  :link: http://www.hamburg.de/wandsbek/strassenbaustellen
+  :start: '2021-05-10'
+  :end: '2021-09-30'
   :velo: true

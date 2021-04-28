@@ -378,3 +378,7 @@
 '2021-04-18':
 - "/contentblob/14651304/006ec5ad8a0eaa81c9758bf97e5d43b3/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf"
 - "/contentblob/15002128/8e3ecd28b8824c62314230c5dc797910/data/elbchaussee-anliegerinformation-erster-bauabschnitt-parkstrasse-bis-manteuffelstr-baustart-mai-2021.pdf"
+'2021-04-28':
+- "/contentblob/13755304/c03892717459b69abd2f37c1e31d7fd3/data/alster-fahrradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-plaene.pdf"
+- "/contentblob/15034444/2fec8fb605e461ff9db398c8845aaaf4/data/gerichtstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/15034488/0c494c0994aa4907d5f53a1eb94b1adb/data/gerichtstrasse-abstimmungsunterlage-plaene.pdf"

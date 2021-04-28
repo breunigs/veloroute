@@ -493,3 +493,6 @@
 - https://via-bus.hamburg.de/contentblob/14991544/311c6aa17781fe377bb2282069b713a9/data/27-m20-25-schlussverschickung-maxbrauer.pdf
 '2021-04-23':
 - https://via-bus.hamburg.de/contentblob/15030614/24a1960f9f40b7d91a5b287c76106230/data/56-mb3-bushaltestellen-rothenburgsort-erstverschickung.pdf
+'2021-04-28':
+- https://via-bus.hamburg.de/contentblob/15032948/ad10d351d791270e024ead44e9dcf90b/data/mb3-lageplan-haltestellen-rothenburgsort.pdf
+- https://via-bus.hamburg.de/contentblob/15030614/ef0af43aa5513c0c0d2591bb536f0ff8/data/56-mb3-bushaltestellen-rothenburgsort-erstverschickung.pdf

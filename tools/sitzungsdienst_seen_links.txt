@@ -662,3 +662,6 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010576
 '2021-04-23':
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014134
+'2021-04-28':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011302
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011303
