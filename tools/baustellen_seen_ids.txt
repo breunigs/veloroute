@@ -403,7 +403,8 @@
 13736:
   :id: 13736
   :title: 'Elbchaussee / Grundinstandsetzung -- '
-  :updated: '2021-04-13T08:26:40.733006'
+  :updated: '2021-04-30T11:19:09.582544'
+  :link: https://lsbg.hamburg.de/elbchaussee/
   :start: '2021-01-11'
   :end: '2024-03-31'
   :velo: false
@@ -853,7 +854,7 @@
 14914:
   :id: 14914
   :title: 'Teil- und Vollsperrung Kattwykbrücke - 1. Aktualisierung -- '
-  :updated: '2021-04-27T13:59:32.297732'
+  :updated: '2021-04-28T18:56:04.336754'
   :link: https://www.hamburg-port-authority.de/de/aktuelles-presse/kattwykbruecke-wird-fuer-alleinige-nutzung-fuer-den-strassenverkehr-umgebaut/
   :start: '2021-04-06'
   :end: '2021-11-06'
@@ -1035,10 +1036,10 @@
   :id: 15232
   :title: 'Gartenstadtweg - Hortensienweg / Deckschichterneuerung unter Vollsperrung
     -- '
-  :updated: '2021-04-15T15:01:35.779641'
+  :updated: '2021-04-29T14:45:11.180832'
   :link: https://www.hamburg.de/wandsbek/strassenbaustellen/14996808/gartenstadtweg-hortensienweg/
-  :start: '2021-05-03'
-  :end: '2021-05-07'
+  :start: '2021-05-04'
+  :end: '2021-05-12'
   :velo: false
 15257:
   :id: 15257
@@ -1350,3 +1351,31 @@
   :start: '2021-05-10'
   :end: '2021-09-30'
   :velo: true
+15751:
+  :id: 15751
+  :title: 'Hermann-Distel-Straße | Fahrbahnsanierung, Vollsperrung -- '
+  :updated: '2021-05-05T08:46:30.783715'
+  :start: '2021-05-03'
+  :end: '2021-06-04'
+  :velo: false
+15819:
+  :id: 15819
+  :title: 'Vorderdeich 217-271| Fahrbahnsanierung, Vollsperrung -- '
+  :updated: '2021-04-30T07:54:50.431027'
+  :start: '2021-05-04'
+  :end: '2021-05-07'
+  :velo: false
+15843:
+  :id: 15843
+  :title: 'Adenauerallee / Fahrspursperrung -- '
+  :updated: '2021-04-30T07:55:09.849015'
+  :start: '2021-05-04'
+  :end: '2021-05-12'
+  :velo: false
+15901:
+  :id: 15901
+  :title: 'Süderquerweg | Deckensanierung, Vollsperrung -- '
+  :updated: '2021-05-05T08:29:55.473169'
+  :start: '2021-05-10'
+  :end: '2021-05-28'
+  :velo: false

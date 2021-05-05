@@ -382,3 +382,7 @@
 - "/contentblob/13755304/c03892717459b69abd2f37c1e31d7fd3/data/alster-fahrradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-plaene.pdf"
 - "/contentblob/15034444/2fec8fb605e461ff9db398c8845aaaf4/data/gerichtstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/15034488/0c494c0994aa4907d5f53a1eb94b1adb/data/gerichtstrasse-abstimmungsunterlage-plaene.pdf"
+'2021-05-05':
+- "/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-fahrradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf"

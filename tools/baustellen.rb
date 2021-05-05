@@ -55,7 +55,7 @@ updates.each do |upd|
 
   prev = seen[upd[:id]]
   alreadySeen = prev && prev[:updated] == upd[:updated]
-  next if alreadySeen
+  next if alreadySeen || path
 
   seen[upd[:id]] = upd
   puts <<~TEXT
