@@ -1308,6 +1308,21 @@
   <node id='-120543' action='modify' lat='53.59140953238' lon='10.08824407518' />
   <node id='-120544' action='modify' lat='53.59159420364' lon='10.0881314224' />
   <node id='-120545' action='modify' lat='53.59045432328' lon='10.08303522527' />
+  <node id='-120602' action='modify' lat='53.56478614123' lon='10.0335055536' />
+  <node id='-120603' action='modify' lat='53.56490083708' lon='10.03384351194' />
+  <node id='-120604' action='modify' lat='53.56654796258' lon='10.03190159261' />
+  <node id='-120605' action='modify' lat='53.56791786336' lon='10.03024398744' />
+  <node id='-120606' action='modify' lat='53.56908065129' lon='10.02887606084' />
+  <node id='-120607' action='modify' lat='53.56965088356' lon='10.02821623743' />
+  <node id='-120608' action='modify' lat='53.56957761392' lon='10.02807676256' />
+  <node id='-120609' action='modify' lat='53.56920807817' lon='10.02852737367' />
+  <node id='-120610' action='modify' lat='53.56902330908' lon='10.02807139814' />
+  <node id='-120611' action='modify' lat='53.56880668222' lon='10.02860247552' />
+  <node id='-120612' action='modify' lat='53.56639504067' lon='10.03163337171' />
+  <node id='-120687' action='modify' lat='53.56571325709' lon='10.03287255228' />
+  <node id='-120695' action='modify' lat='53.56587892514' lon='10.03268479764' />
+  <node id='-120704' action='modify' lat='53.56625804765' lon='10.03343581617' />
+  <node id='-120721' action='modify' lat='53.56609556699' lon='10.03364502847' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' version='1' lat='53.555313' lon='10.00067' />
@@ -18302,6 +18317,26 @@
     <nd ref='-120545' />
     <nd ref='-120541' />
     <tag k='name' v='2021-04-23-tilsiter-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-112680' action='modify'>
+    <nd ref='-120602' />
+    <nd ref='-120603' />
+    <nd ref='-120687' />
+    <nd ref='-120721' />
+    <nd ref='-120704' />
+    <nd ref='-120695' />
+    <nd ref='-120604' />
+    <nd ref='-120605' />
+    <nd ref='-120606' />
+    <nd ref='-120607' />
+    <nd ref='-120608' />
+    <nd ref='-120609' />
+    <nd ref='-120610' />
+    <nd ref='-120611' />
+    <nd ref='-120612' />
+    <nd ref='-120602' />
+    <tag k='name' v='2021-05-05-lerchenfeld-wartenau' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>

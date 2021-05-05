@@ -1,6 +1,11 @@
 defmodule Data.Route.Articles do
   use Data.Route,
     yaml: """
+    articles 2021-05-05-lerchenfeld-wartenau:
+    - { seq: "_AjF0nbBzTJQzeaOVEUtYw", from: "SAbRGmkNjIE-zt6DTmQz9w", to: "oYbIOqYOux2-xoL4TpTU4g" }
+    - { seq: "8h51yMu9er_TTQTzKNy8eA", from: "OIFbmEBGZli2-PVks8MZrg", to: "m3SvunBM9itVOiMYGjkfPw" }
+    - { seq: "bLNbo1pJLgvEKP5H6WENew", from: "dyL7xW43RFaBaPOKyhSvsA", to: "0V-ZRSRI3bjBUXUiFK9duQ" }
+
     articles am-neumarkt:
     - { seq: "5UXHTdWl58Y7hpqBo5kjn2", from: "vSKsNLa4WOBN9IbSo0Rv2o", to: "rk53FPJDm2Cq42RTxB8Gwi" }
     - { seq: "w8HWOrkan1yE3RxEiqGXRA", from: "mh0qJWIdP9ZW8kfYRYIfLT", to: "AgQzaHDMKcGY3NjsYmpgSw" }
