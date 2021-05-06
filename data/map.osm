@@ -1323,6 +1323,22 @@
   <node id='-120695' action='modify' lat='53.56587892514' lon='10.03268479764' />
   <node id='-120704' action='modify' lat='53.56625804765' lon='10.03343581617' />
   <node id='-120721' action='modify' lat='53.56609556699' lon='10.03364502847' />
+  <node id='-120778' action='modify' lat='53.5553736499' lon='9.98024224699' />
+  <node id='-120779' action='modify' lat='53.55521750087' lon='9.98054801881' />
+  <node id='-120780' action='modify' lat='53.55544375744' lon='9.98095035017' />
+  <node id='-120781' action='modify' lat='53.55550749146' lon='9.98158871591' />
+  <node id='-120782' action='modify' lat='53.55554254514' lon='9.98322486341' />
+  <node id='-120783' action='modify' lat='53.55557122539' lon='9.98557984293' />
+  <node id='-120784' action='modify' lat='53.55547562446' lon='9.98779534757' />
+  <node id='-120785' action='modify' lat='53.55577198665' lon='9.98763441503' />
+  <node id='-120786' action='modify' lat='53.55573374648' lon='9.9871784395' />
+  <node id='-120787' action='modify' lat='53.55578792004' lon='9.98412608564' />
+  <node id='-120788' action='modify' lat='53.55573693317' lon='9.98222708166' />
+  <node id='-120789' action='modify' lat='53.55567957286' lon='9.9810200876' />
+  <node id='-120808' action='modify' lat='53.55554254354' lon='9.98646229237' />
+  <node id='-120816' action='modify' lat='53.55531469414' lon='9.98645156354' />
+  <node id='-120823' action='modify' lat='53.55531150743' lon='9.98662590712' />
+  <node id='-120831' action='modify' lat='53.55553139011' lon='9.98663395375' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' version='1' lat='53.555313' lon='10.00067' />
@@ -18337,6 +18353,27 @@
     <nd ref='-120612' />
     <nd ref='-120602' />
     <tag k='name' v='2021-05-05-lerchenfeld-wartenau' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-112716' action='modify'>
+    <nd ref='-120778' />
+    <nd ref='-120779' />
+    <nd ref='-120780' />
+    <nd ref='-120781' />
+    <nd ref='-120782' />
+    <nd ref='-120783' />
+    <nd ref='-120808' />
+    <nd ref='-120816' />
+    <nd ref='-120823' />
+    <nd ref='-120831' />
+    <nd ref='-120784' />
+    <nd ref='-120785' />
+    <nd ref='-120786' />
+    <nd ref='-120787' />
+    <nd ref='-120788' />
+    <nd ref='-120789' />
+    <nd ref='-120778' />
+    <tag k='name' v='2021-05-06-valentinskamp' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
