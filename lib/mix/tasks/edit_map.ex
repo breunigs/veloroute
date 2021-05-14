@@ -50,10 +50,16 @@ defmodule Mix.Tasks.EditMap do
               <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="true">
                   <file>file:#{Mix.Tasks.UpdateImages.imgpath()}</file>
               </layer>
-              <layer index="3" name="Style Debug" type="osm-data" version="0.1" visible="false">
+              <layer index="3" name="Videos (anonymized, read only)" type="tracks" version="0.1" visible="true">
+                <file>file:#{Mix.Tasks.IndexVideos.out_anonymized()}</file>
+              </layer>
+              <layer index="4" name="Videos (pending, read only)" type="tracks" version="0.1" visible="false'">
+                <file>file:#{Mix.Tasks.IndexVideos.out_pending()}</file>
+              </layer>
+              <layer index="5" name="Style Debug" type="osm-data" version="0.1" visible="false">
                   <file>file:#{@style_debug_path}</file>
               </layer>
-              <layer index="4" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
+              <layer index="6" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
                   <name>OpenStreetMap (Standard Black &amp; White)</name>
                   <id>osm-mapnik-black_and_white</id>
                   <type>tms</type>

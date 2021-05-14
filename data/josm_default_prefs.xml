@@ -3,88 +3,103 @@
     <preferences operation="replace">
         <maps key="mappaint.style.entries" xmlns="http://josm.openstreetmap.de/preferences-1.0">
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="JOSM default (MapCSS)"/>
-                <tag key="ptoken" value="standard"/>
-                <tag key="url" value="resource://styles/standard/elemstyles.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="JOSM default (MapCSS)" />
+                <tag key="ptoken" value="standard" />
+                <tag key="url" value="resource://styles/standard/elemstyles.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Potlatch 2"/>
-                <tag key="ptoken" value="standard"/>
-                <tag key="url" value="resource://styles/standard/potlatch2.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Potlatch 2" />
+                <tag key="ptoken" value="standard" />
+                <tag key="url" value="resource://styles/standard/potlatch2.mapcss" />
             </map>
             <map>
-                <tag key="active" value="true"/>
-                <tag key="title" value="veloroute"/>
-                <tag key="url" value="data/josm.mapcss"/>
+                <tag key="active" value="true" />
+                <tag key="title" value="veloroute" />
+                <tag key="url" value="data/josm.mapcss" />
             </map>
         </maps>
         <list key="mappaint.style.known-defaults" xmlns="http://josm.openstreetmap.de/preferences-1.0">
-            <entry value="resource://styles/standard/elemstyles.mapcss"/>
-            <entry value="resource://styles/standard/potlatch2.mapcss"/>
+            <entry value="resource://styles/standard/elemstyles.mapcss" />
+            <entry value="resource://styles/standard/potlatch2.mapcss" />
         </list>
         <maps key="validator.org.openstreetmap.josm.data.validation.tests.MapCSSTagChecker.entries" xmlns="http://josm.openstreetmap.de/preferences-1.0">
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Addresses"/>
-                <tag key="url" value="resource://data/validator/addresses.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Addresses" />
+                <tag key="url" value="resource://data/validator/addresses.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Tag combinations"/>
-                <tag key="url" value="resource://data/validator/combinations.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Tag combinations" />
+                <tag key="url" value="resource://data/validator/combinations.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Deprecated features"/>
-                <tag key="url" value="resource://data/validator/deprecated.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Deprecated features" />
+                <tag key="url" value="resource://data/validator/deprecated.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Geometry"/>
-                <tag key="url" value="resource://data/validator/geometry.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Geometry" />
+                <tag key="url" value="resource://data/validator/geometry.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Highways"/>
-                <tag key="url" value="resource://data/validator/highway.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Highways" />
+                <tag key="url" value="resource://data/validator/highway.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Multiple values"/>
-                <tag key="url" value="resource://data/validator/multiple.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Multiple values" />
+                <tag key="url" value="resource://data/validator/multiple.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Numeric values"/>
-                <tag key="url" value="resource://data/validator/numeric.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Numeric values" />
+                <tag key="url" value="resource://data/validator/numeric.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Religion"/>
-                <tag key="url" value="resource://data/validator/religion.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Religion" />
+                <tag key="url" value="resource://data/validator/religion.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Relations"/>
-                <tag key="url" value="resource://data/validator/relation.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Relations" />
+                <tag key="url" value="resource://data/validator/relation.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Territories"/>
-                <tag key="url" value="resource://data/validator/territories.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Territories" />
+                <tag key="url" value="resource://data/validator/territories.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Unnecessary tags"/>
-                <tag key="url" value="resource://data/validator/unnecessary.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Unnecessary tags" />
+                <tag key="url" value="resource://data/validator/unnecessary.mapcss" />
             </map>
             <map>
-                <tag key="active" value="false"/>
-                <tag key="title" value="Wikipedia"/>
-                <tag key="url" value="resource://data/validator/wikipedia.mapcss"/>
+                <tag key="active" value="false" />
+                <tag key="title" value="Wikipedia" />
+                <tag key="url" value="resource://data/validator/wikipedia.mapcss" />
             </map>
         </maps>
+
+        <tag key='simplify-way.auto.remember' value='yes' />
+        <tag key='simplify-way.auto.max-error' value='0.5' />
+        <tag key='gpx.convert-tags' value='all' />
+        <tag key='gpx.convert-tags.last' value='all' />
+
+        <tag key='use.native.file.dialog' value='true' />
+
+        <tag key='draw.rawgps.colormode' value='1' />
+        <tag key='draw.rawgps.colormode.dynamic-range' value='true' />
+        <tag key='draw.rawgps.colormode.velocity.tune' value='20' />
+        <tag key='draw.rawgps.lines.arrows' value='true' />
+
+        <tag key='message.convert_to_data' value='false' />
+        <tag key='message.convert_to_data.value' value='0' />
     </preferences>
 </config>

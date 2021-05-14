@@ -256,6 +256,21 @@ way[type=mapillary-sequence] > node|z19- {
   icon-height: 20;
 }
 
+way[gpx:name] {
+  color: #FFFE9D;
+  text: tag("gpx:name");
+  text-position: line;
+  width: 1;
+  casing-color: #555555;
+  casing-width: 0.1;
+}
+
+way[gpx:name] > node {
+  symbol-size: 1;
+  symbol-stroke-opacity: 0;
+  symbol-fill-opacity: 0;
+  symbol-shape: circle;
+}
 
 way[type=detour] {
   color: #f0ca00;
