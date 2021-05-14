@@ -653,15 +653,15 @@
 7917:
   :id: 7917
   :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
-  :updated: '2021-04-19T15:49:29.29328'
+  :updated: '2021-05-12T09:31:55.661075'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
   :end: '2021-06-30'
   :velo: false
 14631:
   :id: 14631
-  :title: Eppendorfer Marktplatz / Leitungsarbeiten -- Stromnetz
-  :updated: '2021-02-23T07:59:20.146638'
+  :title: 'Eppendorfer Marktplatz / Leitungsarbeiten -- '
+  :updated: '2021-05-07T17:06:36.651369'
   :start: '2021-03-01'
   :end: '2022-01-28'
   :velo: false
@@ -845,9 +845,8 @@
   :velo: false
 14863:
   :id: 14863
-  :title: Am Hohen Knäbel / Leitungs- und Straßenbauarbeiten / Vollsperrung -- Bezirk
-    Harburg
-  :updated: '2021-03-18T13:07:45.691921'
+  :title: 'Am Hohen Knäbel / Leitungs- und Straßenbauarbeiten / Vollsperrung -- '
+  :updated: '2021-05-06T14:00:01.788136'
   :start: '2021-03-29'
   :end: '2021-09-30'
   :velo: false
@@ -1193,9 +1192,9 @@
 15633:
   :id: 15633
   :title: 'Nordkanalstraße / Fahrspursperrung -- '
-  :updated: '2021-04-22T11:44:05.019924'
+  :updated: '2021-05-11T15:29:01.506339'
   :start: '2021-04-20'
-  :end: '2021-05-28'
+  :end: '2021-05-11'
   :velo: false
 15475:
   :id: 15475
@@ -1375,7 +1374,84 @@
 15901:
   :id: 15901
   :title: 'Süderquerweg | Deckensanierung, Vollsperrung -- '
-  :updated: '2021-05-05T08:29:55.473169'
+  :updated: '2021-05-11T13:58:38.101506'
   :start: '2021-05-10'
   :end: '2021-05-28'
   :velo: false
+15458:
+  :id: 15458
+  :title: 'Niedergeorgswerder Deich / Verkehrsbehinderungen -- '
+  :updated: '2021-04-16T07:29:05.87525'
+  :start: '2021-05-06'
+  :end: '2021-05-08'
+  :velo: false
+15706:
+  :id: 15706
+  :title: 'Frankenstraße / Vollsperrung -- '
+  :updated: '2021-04-22T12:56:27.784446'
+  :start: '2021-05-08'
+  :end: '2021-05-09'
+  :velo: false
+15926:
+  :id: 15926
+  :title: 'Kleine Reichenstraße / Vollsperrung -- '
+  :updated: '2021-05-06T15:19:04.374405'
+  :start: '2021-05-10'
+  :end: '2021-05-11'
+  :velo: false
+15969:
+  :id: 15969
+  :title: 'Kandinskyallee - Havighorster Redder / Halbseitige Fahrspursperrung -- '
+  :updated: '2021-05-10T11:34:20.150759'
+  :start: '2021-05-10'
+  :end: '2021-06-30'
+  :velo: false
+15978:
+  :id: 15978
+  :title: 'Spaldingstraße / Fahrspursperrung -- '
+  :updated: '2021-05-11T08:10:05.375837'
+  :start: '2021-05-03'
+  :end: '2021-08-27'
+  :velo: false
+15988:
+  :id: 15988
+  :title: 'Marckmannstraße / Fahrspursperrung -- '
+  :updated: '2021-05-11T08:11:49.075274'
+  :start: '2021-05-05'
+  :end: '2021-05-28'
+  :velo: false
+15545:
+  :id: 15545
+  :title: 'Schultzweg / Vollsperrung -- '
+  :updated: '2021-04-20T07:25:45.992961'
+  :start: '2021-05-11'
+  :end: '2021-05-11'
+  :velo: false
+15594:
+  :id: 15594
+  :title: 'Sillemstraße/ Vollsperrung -- '
+  :updated: '2021-04-20T12:23:27.504702'
+  :start: '2021-05-11'
+  :end: '2021-05-11'
+  :velo: false
+15933:
+  :id: 15933
+  :title: 'Moorburger Elbdeich / Erneuerung Trummenleitungen / Vollsperrung -- '
+  :updated: '2021-05-06T15:19:25.396844'
+  :start: '2021-05-18'
+  :end: '2021-05-20'
+  :velo: false
+15983:
+  :id: 15983
+  :title: 'Zweibrückenstraße / Fahrspursperrung -- '
+  :updated: '2021-05-11T08:11:02.131297'
+  :start: '2021-05-17'
+  :end: '2021-12-31'
+  :velo: false
+16005:
+  :id: 16005
+  :title: 'Reclamstraße / Einbahnstraße -- '
+  :updated: '2021-05-12T08:08:06.046545'
+  :start: '2021-05-17'
+  :end: '2021-09-30'
+  :velo: true
