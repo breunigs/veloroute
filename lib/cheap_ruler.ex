@@ -188,32 +188,33 @@ defmodule CheapRuler do
 
       iex> CheapRuler.closest_point_on_line(
       ...>   [
+      ...>     %{lon: 10, lat: 53},
       ...>     %{lon: 10.03971050427, lat: 53.58988354712},
       ...>     %{lon: 10.04383358673, lat: 53.58986207956},
       ...>     %{lon: 10.04026843693, lat: 53.58887260434}
       ...>   ],
       ...>   %{lon: 10.04289976489, lat: 53.59004976324}
       ...> )
-      %{lon: 10.042897081160916, lat: 53.58986695564232}
+      %{lon: 10.042897081160916, lat: 53.58986695564232, index: 1, t: 0.7728627602842454}
   """
   def closest_point_on_line(line, %{lon: lon, lat: lat}) when is_list(line) do
     line
     |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.reduce(%{dist: nil}, fn [one, two], mins ->
+    |> Enum.reduce(%{dist: nil, i: 0, index: 0, t: 0}, fn [one, two], mins ->
       x = one.lon
       y = one.lat
       dx = (two.lon - x) * @kx
       dy = (two.lat - y) * @ky
 
-      {x, y} =
+      {x, y, t} =
         if dx == 0 && dy == 0 do
-          {x, y}
+          {x, y, 0}
         else
           (((lon - x) * @kx * dx + (lat - y) * @ky * dy) / (dx * dx + dy * dy))
           |> case do
-            t when t > 1 -> {two.lon, two.lat}
-            t when t > 0 -> {x + dx / @kx * t, y + dy / @ky * t}
-            _ -> {x, y}
+            t when t > 1 -> {two.lon, two.lat, t}
+            t when t > 0 -> {x + dx / @kx * t, y + dy / @ky * t, t}
+            t -> {x, y, t}
           end
         end
 
@@ -223,10 +224,10 @@ defmodule CheapRuler do
       sqDist = dx * dx + dy * dy
 
       if mins.dist && sqDist >= mins.dist,
-        do: mins,
-        else: %{dist: sqDist, lon: x, lat: y}
+        do: %{mins | i: mins.i + 1},
+        else: %{dist: sqDist, lon: x, lat: y, i: mins.i + 1, index: mins.i, t: t}
     end)
-    |> Map.take([:lon, :lat])
+    |> Map.take([:lon, :lat, :index, :t])
   end
 
   @doc ~S"""

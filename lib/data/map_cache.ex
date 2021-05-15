@@ -3,7 +3,7 @@ defmodule Data.MapCache do
 
   data =
     Benchmark.measure("loading map relations", fn ->
-      Data.MapParser.load(Data.MapParser.map_path())
+      Data.MapParser.load()
     end)
 
   @relations data.relations
@@ -34,6 +34,6 @@ defmodule Data.MapCache do
   def full_map,
     do:
       Benchmark.measure("loading full map", fn ->
-        Data.MapParser.load(Data.MapParser.map_path())
+        Data.MapParser.load()
       end)
 end

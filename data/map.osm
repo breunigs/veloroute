@@ -1339,6 +1339,22 @@
   <node id='-120816' action='modify' lat='53.55531469414' lon='9.98645156354' />
   <node id='-120823' action='modify' lat='53.55531150743' lon='9.98662590712' />
   <node id='-120831' action='modify' lat='53.55553139011' lon='9.98663395375' />
+  <node id='-120904' action='modify' lat='53.55703389591' lon='9.95365618587' />
+  <node id='-120905' action='modify' lat='53.55678534163' lon='9.95380638957' />
+  <node id='-120906' action='modify' lat='53.55661326474' lon='9.95384930491' />
+  <node id='-120907' action='modify' lat='53.55627548213' lon='9.95364545703' />
+  <node id='-120908' action='modify' lat='53.55581660332' lon='9.9533986938' />
+  <node id='-120909' action='modify' lat='53.5555616685' lon='9.95333432078' />
+  <node id='-120910' action='modify' lat='53.55545332073' lon='9.95331286311' />
+  <node id='-120911' action='modify' lat='53.55484784283' lon='9.95688556552' />
+  <node id='-120912' action='modify' lat='53.55460564924' lon='9.95840906024' />
+  <node id='-120913' action='modify' lat='53.55482234883' lon='9.95849489093' />
+  <node id='-120914' action='modify' lat='53.55509003503' lon='9.95892404437' />
+  <node id='-120915' action='modify' lat='53.55528123842' lon='9.95924590945' />
+  <node id='-120916' action='modify' lat='53.55548518775' lon='9.95977162242' />
+  <node id='-120917' action='modify' lat='53.55582297667' lon='9.96023296237' />
+  <node id='-120918' action='modify' lat='53.55607790992' lon='9.96054409862' />
+  <node id='-120919' action='modify' lat='53.55655590562' lon='9.96082304835' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -18375,6 +18391,27 @@
     <nd ref='-120778' />
     <tag k='name' v='2021-05-06-valentinskamp' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-112767' action='modify'>
+    <nd ref='-120904' />
+    <nd ref='-120905' />
+    <nd ref='-120906' />
+    <nd ref='-120907' />
+    <nd ref='-120908' />
+    <nd ref='-120909' />
+    <nd ref='-120910' />
+    <nd ref='-120911' />
+    <nd ref='-120912' />
+    <nd ref='-120913' />
+    <nd ref='-120914' />
+    <nd ref='-120915' />
+    <nd ref='-120916' />
+    <nd ref='-120917' />
+    <nd ref='-120918' />
+    <nd ref='-120919' />
+    <tag k='name' v='2018-09-28-1-thadenstrasse' />
+    <tag k='type' v='detour' />
+    <tag k='video' v='2021-04-10-freizeitroute2/GX011183' />
   </way>
   <way id='1880371' version='1'>
     <nd ref='88971180004732234' />

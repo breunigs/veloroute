@@ -263,7 +263,7 @@ defmodule Data.MapParser do
 
   def map_path, do: @map_path
 
-  def load(path) do
+  def load(path \\ @map_path) do
     raw = File.read!(path)
     parsed = Saxy.SimpleForm.parse_string(raw)
     {:ok, {"osm", _attr, children}} = parsed

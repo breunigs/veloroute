@@ -1,16 +1,10 @@
-defmodule Mix.Tasks.IndexVideos do
-  use Mix.Task
-
+defmodule Mix.Tasks.Velo.Videos do
   # XXX: path needs to be absolute for JOSM to find it
   @out_anonymized File.cwd!() <> "/data/cache/videos_anonymized.gpx"
   @out_pending File.cwd!() <> "/data/cache/videos_pending.gpx"
-  @videopath File.cwd!() <> "/videos"
-  @source_ending ".MP4"
-  @gpx_ending ".gpx"
-  @anonymized_ending ".MP4.anonymized.mkv"
+  @source_path File.cwd!() <> "/videos"
 
-  @shortdoc "Indexes videos and their anonymization status"
-  def run(_) do
+  def ensure_source_dir_exists(fun) when is_function(fun) do
     case video_dir_present?() do
       {:error, msg} ->
         IO.warn(msg, [])
@@ -18,18 +12,72 @@ defmodule Mix.Tasks.IndexVideos do
         exit(:no_video_dir)
 
       :ok ->
-        real_run()
+        fun.()
     end
   end
 
   def out_anonymized, do: @out_anonymized
   def out_pending, do: @out_pending
+  def source_path, do: @source_path
+
+  defp video_dir_present? do
+    case File.stat(source_path()) do
+      {:ok, %{type: :directory}} ->
+        :ok
+
+      {:ok, %{type: :symlink}} ->
+        :ok
+
+      any ->
+        {:error,
+         "#{source_path()} should point to video data, but it's not accessible: #{inspect(any)}"}
+    end
+  end
+end
+
+defmodule Mix.Tasks.Velo.Videos.Render do
+  use Mix.Task
+  import Mix.Tasks.Velo.Videos
+
+  @shortdoc "Finds videos from the map and renders them"
+  def run(_) do
+    ensure_source_dir_exists(&real_run/0)
+  end
+
+  defp real_run do
+    # TODO: stale cache after edit map?
+    %{ways: ways, relations: _relations} = Data.MapCache.full_map()
+
+    ways
+    |> Map.values()
+    |> Enum.filter(fn
+      %{tags: %{video: path}} when is_binary(path) -> true
+      _ -> false
+    end)
+    |> Enum.each(fn %{tags: %{video: path}, nodes: [first | tail]} ->
+      video = Path.join(source_path(), path) |> SourceVideo.new_from_path()
+
+      %{from: from, to: to} = SourceVideo.time_range(video, first, List.last(tail))
+
+      IO.puts("ffmpeg -i #{video.path_anonymized} -ss #{from} -to #{to} -c:v copy test.mkv")
+    end)
+  end
+end
+
+defmodule Mix.Tasks.Velo.Videos.Index do
+  use Mix.Task
+  import Mix.Tasks.Velo.Videos
+
+  @shortdoc "Indexes videos and their anonymization status"
+  def run(_) do
+    ensure_source_dir_exists(&real_run/0)
+  end
 
   defp real_run() do
     IO.puts("Indexing videos…")
 
     {anon, pending} =
-      @videopath
+      source_path()
       |> tree()
       |> group()
       |> Enum.reduce({"", ""}, fn video, {anon, pending} ->
@@ -51,20 +99,6 @@ defmodule Mix.Tasks.IndexVideos do
     IO.puts("Wrote #{out_pending()}")
   end
 
-  defp video_dir_present? do
-    case File.stat(@videopath) do
-      {:ok, %{type: :directory}} ->
-        :ok
-
-      {:ok, %{type: :symlink}} ->
-        :ok
-
-      any ->
-        {:error,
-         "#{@videopath} should point to video data, but it's not accessible: #{inspect(any)}"}
-    end
-  end
-
   defp wrap(tracks) do
     """
       <?xml version='1.0' encoding='UTF-8'?>
@@ -78,7 +112,7 @@ defmodule Mix.Tasks.IndexVideos do
   end
 
   defp named_track_segments(%{path_gpx: path}) do
-    name = Path.relative_to(path, @videopath)
+    name = Path.relative_to(path, source_path())
     {:ok, content} = File.read(path)
 
     Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
@@ -88,32 +122,9 @@ defmodule Mix.Tasks.IndexVideos do
 
   defp group(files) do
     files
-    |> Enum.filter(&is_source?/1)
-    |> Enum.map(fn file ->
-      base = String.replace_suffix(file, @source_ending, "")
-      has_gpx = MapSet.member?(files, base <> @gpx_ending)
-      unless has_gpx, do: IO.warn("#{file} has no associcated GPX, maybe try `gopro2gpx #{file}`")
-
-      %{
-        path_source: file,
-        path_anonymized: base <> @anonymized_ending,
-        path_gpx: base <> @gpx_ending,
-        is_anonymized: MapSet.member?(files, base <> @anonymized_ending),
-        has_gpx: has_gpx,
-        date: date_from_path(file)
-      }
-    end)
+    |> Enum.map(fn file -> SourceVideo.new_from_path(file, files) end)
+    |> Enum.reject(&is_nil/1)
   end
-
-  defp date_from_path(file) do
-    case Regex.run(~r/\b\d\d\d\d-\d\d-\d\d\b/, file) do
-      nil -> "unknown"
-      str -> str
-    end
-  end
-
-  defp is_source?(path),
-    do: String.ends_with?(path, @source_ending) && !String.ends_with?(path, @anonymized_ending)
 
   defp tree(path) do
     case File.stat(path) do
@@ -149,6 +160,4 @@ defmodule Mix.Tasks.IndexVideos do
   defp merge(mapset, [x]), do: MapSet.put(mapset, x)
   defp merge(mapset, list) when is_list(list), do: list |> MapSet.new() |> MapSet.union(mapset)
   defp merge(mapset, other), do: MapSet.union(mapset, other)
-
-  # defp
 end

@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.EditMap do
   use Mix.Task
+  alias Mix.Tasks.Velo.Videos
 
   @josm_home File.cwd!() <> "/data/josmhome/"
   @josm_default_prefs File.cwd!() <> "/data/josm_default_prefs.xml"
@@ -51,10 +52,10 @@ defmodule Mix.Tasks.EditMap do
                   <file>file:#{Mix.Tasks.UpdateImages.imgpath()}</file>
               </layer>
               <layer index="3" name="Videos (anonymized, read only)" type="tracks" version="0.1" visible="true">
-                <file>file:#{Mix.Tasks.IndexVideos.out_anonymized()}</file>
+                <file>file:#{Videos.out_anonymized()}</file>
               </layer>
               <layer index="4" name="Videos (pending, read only)" type="tracks" version="0.1" visible="false'">
-                <file>file:#{Mix.Tasks.IndexVideos.out_pending()}</file>
+                <file>file:#{Videos.out_pending()}</file>
               </layer>
               <layer index="5" name="Style Debug" type="osm-data" version="0.1" visible="false">
                   <file>file:#{@style_debug_path}</file>
