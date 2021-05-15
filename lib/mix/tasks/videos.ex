@@ -59,7 +59,8 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
       %{from: from, to: to} = SourceVideo.time_range(video, first, List.last(tail))
 
-      IO.puts("ffmpeg -i #{video.path_anonymized} -ss #{from} -to #{to} -c:v copy test.mkv")
+      IO.write("./tools/video_concat.rb #{video.path_anonymized} #{from} #{to}")
+      IO.puts(" | mpv --pause --no-resume-playback --speed=0.5 --framedrop=no -")
     end)
   end
 end
