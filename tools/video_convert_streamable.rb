@@ -90,8 +90,8 @@ end
 hls << %w[-movflags +faststart]
 hls << %w[-f hls -hls_time] << HLS_TIME << %w[-hls_playlist_type vod]
 hls << %w[-hls_segment_type fmp4]
-# hls << %w[-master_pl_name] << "#{VIDEO_OUT}.m3u8"
-hls << %w[-hls_flags single_file -hls_list_size 0]
+hls << %w[-master_pl_name] << "stream.m3u8"
+hls << %w[-hls_flags single_file+independent_segments -hls_list_size 0]
 hls << %w[-var_stream_map] << VARIANTS.map.with_index { |_, idx| "v:#{idx}"}.join(" ")
 hls << "#{tmp_dir}/stream_%v.m3u8"
 
