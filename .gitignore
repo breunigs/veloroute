@@ -46,4 +46,5 @@ npm-debug.log
 xref_graph.*
 
 
-/videos
+/videos-source
+/videos-rendered

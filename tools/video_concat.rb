@@ -26,11 +26,11 @@ Dir.mktmpdir("video_concat") do |temp_dir|
     die("File not found: #{video}") unless File.exist?(video)
 
     fifo = File.join(temp_dir, "temp#{idx}")
-    system("mkfifo", fifo)
+    File.mkfifo(fifo)
     pipes << "file '#{fifo}'\n"
     Thread.new do
       io = IO.popen([
-        "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y", "-i", video,
+        "nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y", "-i", video,
         "-ss", start, "-to", stop, "-c", "copy", "-f", "matroska", fifo
       ])
       out = io.read
@@ -43,7 +43,7 @@ Dir.mktmpdir("video_concat") do |temp_dir|
   File.write(concat, pipes)
 
   system(
-    "ffmpeg", "-hide_banner", "-loglevel", "warning", "-f", "concat",
+    "nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-f", "concat",
     "-safe", "0", "-i", concat, "-c", "copy", "-f", "matroska", "-"
   )
 end

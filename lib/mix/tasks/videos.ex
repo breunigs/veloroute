@@ -2,7 +2,8 @@ defmodule Mix.Tasks.Velo.Videos do
   # XXX: path needs to be absolute for JOSM to find it
   @out_anonymized File.cwd!() <> "/data/cache/videos_anonymized.gpx"
   @out_pending File.cwd!() <> "/data/cache/videos_pending.gpx"
-  @source_path File.cwd!() <> "/videos"
+  @source_path File.cwd!() <> "/videos-source"
+  @rendered_path File.cwd!() <> "/videos-rendered"
 
   def ensure_source_dir_exists(fun) when is_function(fun) do
     case video_dir_present?() do
@@ -19,6 +20,7 @@ defmodule Mix.Tasks.Velo.Videos do
   def out_anonymized, do: @out_anonymized
   def out_pending, do: @out_pending
   def source_path, do: @source_path
+  def rendered_path, do: @rendered_path
 
   defp video_dir_present? do
     case File.stat(source_path()) do
@@ -48,20 +50,43 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     # TODO: stale cache after edit map?
     %{ways: ways, relations: _relations} = Data.MapCache.full_map()
 
+    to_convert =
+      collect_single_ways(ways)
+      |> Enum.reduce(%{}, fn tsv_list, map ->
+        hsh = TrimmedSourceVideo.hash(tsv_list)
+        out_dir = Path.join(rendered_path(), hsh)
+        if File.dir?(out_dir), do: map, else: Map.put(map, hsh, tsv_list)
+      end)
+
+    Enum.each(to_convert, fn {hsh, tsv_list} ->
+      preview = tsv_list |> TrimmedSourceVideo.preview() |> Enum.join(" ")
+      video_out_dir = Path.join(rendered_path(), hsh)
+      render = tsv_list |> TrimmedSourceVideo.render(video_out_dir) |> Enum.join(" ")
+
+      IO.puts("\nneed to convert #{hsh}:\n    #{preview}\n    #{render}")
+    end)
+  end
+
+  @valid_single_way_types ["detour"]
+  defp collect_single_ways(ways, seen \\ MapSet.new()) do
     ways
     |> Map.values()
-    |> Enum.filter(fn
-      %{tags: %{video: path}} when is_binary(path) -> true
-      _ -> false
-    end)
-    |> Enum.each(fn %{tags: %{video: path}, nodes: [first | tail]} ->
-      video = Path.join(source_path(), path) |> SourceVideo.new_from_path()
+    |> Enum.map(fn
+      %{tags: %{video: path, type: type}} = way
+      when type in @valid_single_way_types
+      when is_binary(path) ->
+        [TrimmedSourceVideo.new_from_way(way, source_path())]
 
-      %{from: from, to: to} = SourceVideo.time_range(video, first, List.last(tail))
+      %{tags: %{video: path}, id: id} ->
+        unless MapSet.member?(seen, id),
+          do: IO.warn("way id=#{id} refers to video=#{path}, but doesn't have a valid type")
 
-      IO.write("./tools/video_concat.rb #{video.path_anonymized} #{from} #{to}")
-      IO.puts(" | mpv --pause --no-resume-playback --speed=0.5 --framedrop=no -")
+        nil
+
+      _any ->
+        nil
     end)
+    |> Enum.reject(&is_nil/1)
   end
 end
 
@@ -83,13 +108,13 @@ defmodule Mix.Tasks.Velo.Videos.Index do
       |> group()
       |> Enum.reduce({"", ""}, fn video, {anon, pending} ->
         case video do
-          %{has_gpx: false} ->
+          %{available_gpx: false} ->
             {anon, pending}
 
-          %{is_anonymized: true} ->
+          %{available_anonymized: true} ->
             {anon <> "\n\n" <> named_track_segments(video), pending}
 
-          %{is_anonymized: false} ->
+          %{available_anonymized: false} ->
             {anon, pending <> "\n\n" <> named_track_segments(video)}
         end
       end)
@@ -124,7 +149,10 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   defp group(files) do
     files
     |> Enum.map(fn file -> SourceVideo.new_from_path(file, files) end)
-    |> Enum.reject(&is_nil/1)
+    |> Enum.reject(fn
+      {:error, _reason} -> true
+      _video -> false
+    end)
   end
 
   defp tree(path) do

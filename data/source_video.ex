@@ -1,7 +1,7 @@
 defmodule SourceVideo do
-  @source_ending ".MP4"
   @gpx_ending ".gpx"
-  @anonymized_ending ".MP4.anonymized.mkv"
+  @anonymized_suffix ".anonymized.mkv"
+  @source_endings [".MP4", ".mkv"]
 
   @known_params [
     :path_source,
@@ -48,9 +48,10 @@ defmodule SourceVideo do
     unless available_gpx,
       do: IO.warn("#{source_path} has no associcated GPX, maybe try `gopro2gpx #{source_path}`")
 
+    # support paths to just the base name by adding default extension
     source_path =
       if source_path == as_base(source_path),
-        do: source_path <> @source_ending,
+        do: source_path <> ".MP4",
         else: source_path
 
     %__MODULE__{
@@ -114,16 +115,27 @@ defmodule SourceVideo do
   end
 
   defp is_source_path(path) do
+    ext = file_extension(path)
+
     cond do
-      String.ends_with?(path, @anonymized_ending) -> false
-      String.ends_with?(path, @source_ending) -> true
-      !String.contains?(Path.basename(path), ".") -> true
+      String.ends_with?(ext, @anonymized_suffix) -> false
+      Enum.any?(@source_endings, &String.ends_with?(ext, &1)) -> true
+      ext == "" -> true
       true -> false
     end
   end
 
+  defp file_extension(path) do
+    Path.basename(path)
+    |> String.split(".", parts: 2)
+    |> case do
+      [_name] -> ""
+      [_name, extension] -> "." <> extension
+    end
+  end
+
   defp as_base(source_path) do
-    String.replace_suffix(source_path, @source_ending, "")
+    String.replace_suffix(source_path, file_extension(source_path), "")
   end
 
   defp as_gpx(source_path) do
@@ -131,7 +143,7 @@ defmodule SourceVideo do
   end
 
   defp as_anonymized(source_path) do
-    source_path |> as_base |> Kernel.<>(@anonymized_ending)
+    source_path |> Kernel.<>(@anonymized_suffix)
   end
 
   defp date_from_path(source_path) do
