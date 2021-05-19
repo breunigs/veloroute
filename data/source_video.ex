@@ -26,7 +26,7 @@ defmodule SourceVideo do
       )
   end
 
-  def new_from_path(source_path, known_files) when is_map(known_files) do
+  def new_from_path(source_path, known_files) do
     error_unless_valid_source(source_path) ||
       new_from_path(
         source_path,
