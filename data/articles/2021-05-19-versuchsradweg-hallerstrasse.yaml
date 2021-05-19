@@ -1,7 +1,7 @@
 type: intent
 title: Versuchsradweg Hallerstraße
 start: 2021-05-26
-end: 20212-06-02
+end: 2021-06-02
 images: articles
 tags:
 - popup
