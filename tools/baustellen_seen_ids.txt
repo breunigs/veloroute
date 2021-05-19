@@ -1310,9 +1310,9 @@
 15521:
   :id: 15521
   :title: 'Wrauster Bogen 86 | Kranstellung, Vollsperrung -- '
-  :updated: '2021-04-21T14:02:44.001643'
-  :start: '2021-04-26'
-  :end: '2021-04-28'
+  :updated: '2021-05-05T07:41:34.643609'
+  :start: '2021-05-17'
+  :end: '2021-05-17'
   :velo: false
 15645:
   :id: 15645
@@ -1374,7 +1374,7 @@
 15901:
   :id: 15901
   :title: 'Süderquerweg | Deckensanierung, Vollsperrung -- '
-  :updated: '2021-05-11T13:58:38.101506'
+  :updated: '2021-05-17T11:18:07.687686'
   :start: '2021-05-10'
   :end: '2021-05-28'
   :velo: false
@@ -1455,3 +1455,52 @@
   :start: '2021-05-17'
   :end: '2021-09-30'
   :velo: true
+16000:
+  :id: 16000
+  :title: 'Brookdeich 94 - 96, Vollsperrung durch Kranaufstellung -- '
+  :updated: '2021-05-12T08:07:15.839307'
+  :start: '2021-05-17'
+  :end: '2021-05-17'
+  :velo: false
+16043:
+  :id: 16043
+  :title: 'Kurgkoppelbrücke / Filmaufnahmen -- '
+  :updated: '2021-05-18T06:30:35.65861'
+  :start: '2021-05-19'
+  :end: '2021-05-19'
+  :velo: false
+16049:
+  :id: 16049
+  :title: 'Hufnerstraße / Hochbau -- '
+  :updated: '2021-05-18T06:30:49.406285'
+  :start: '2021-05-19'
+  :end: '2021-12-31'
+  :velo: false
+15909:
+  :id: 15909
+  :title: 'Försterweg/ Vollsperrung -- '
+  :updated: '2021-05-05T08:30:17.250568'
+  :start: '2021-05-26'
+  :end: '2021-05-26'
+  :velo: false
+16028:
+  :id: 16028
+  :title: 'Hongkongstraße / Vollsperrung -- '
+  :updated: '2021-05-18T06:29:36.834728'
+  :start: '2021-05-26'
+  :end: '2021-05-26'
+  :velo: false
+15865:
+  :id: 15865
+  :title: 'Schmidts Breite 15 - 17 / Leitungsarbeiten -- '
+  :updated: '2021-05-06T15:18:47.236747'
+  :start: '2021-05-25'
+  :end: '2021-05-26'
+  :velo: false
+16055:
+  :id: 16055
+  :title: 'Bellevue / Alster Fahrradachsen -- '
+  :updated: '2021-05-18T06:39:11.276047'
+  :start: '2021-06-14'
+  :end: '2022-02-01'
+  :velo: false

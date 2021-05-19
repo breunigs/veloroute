@@ -1355,6 +1355,12 @@
   <node id='-120917' action='modify' lat='53.55582297667' lon='9.96023296237' />
   <node id='-120918' action='modify' lat='53.55607790992' lon='9.96054409862' />
   <node id='-120919' action='modify' lat='53.55655590562' lon='9.96082304835' />
+  <node id='-120976' action='modify' lat='53.57258475035' lon='9.97959851682' />
+  <node id='-120977' action='modify' lat='53.57234584373' lon='9.9795931524' />
+  <node id='-120978' action='modify' lat='53.57239362516' lon='9.98141169012' />
+  <node id='-120979' action='modify' lat='53.57256882647' lon='9.9881493938' />
+  <node id='-120980' action='modify' lat='53.57278543405' lon='9.98813866496' />
+  <node id='-120981' action='modify' lat='53.57268350121' lon='9.98443721652' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -18412,6 +18418,17 @@
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='type' v='detour' />
     <tag k='video' v='2021-04-10-freizeitroute2/GX011183' />
+  </way>
+  <way id='-112803' action='modify'>
+    <nd ref='-120976' />
+    <nd ref='-120977' />
+    <nd ref='-120978' />
+    <nd ref='-120979' />
+    <nd ref='-120980' />
+    <nd ref='-120981' />
+    <nd ref='-120976' />
+    <tag k='name' v='2021-05-19-versuchsradweg-hallerstrasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
     <nd ref='88971180004732234' />

@@ -386,3 +386,7 @@
 - "/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-fahrradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf"
+'2021-05-19':
+- "/contentblob/15068828/81a50c1734756d0860feaf426cd3536e/data/hallerstrasse-pop-up-bikelane-abgestimmte-planung.pdf"
+- "/contentblob/15068826/1788039429d56062d616de171dc47922/data/hallerstrasse-temporaerer-radfahrstreifen.pdf"
+- "/contentblob/15068420/8fe43239bac69ce1a1bd3c3934feec46/data/kaiser-wilhelm-strasse-allgemein-anliegerinformation-05-21.pdf"
