@@ -58,7 +58,7 @@ defmodule Mix.Tasks.EditMap do
                 <file>file:#{Videos.out_pending()}</file>
               </layer>
               <layer index="5" name="Style Debug" type="osm-data" version="0.1" visible="false">
-                  <file>file:#{@style_debug_path}</file>
+                <file>file:#{@style_debug_path}</file>
               </layer>
               <layer index="6" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
                   <name>OpenStreetMap (Standard Black &amp; White)</name>

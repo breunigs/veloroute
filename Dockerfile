@@ -2,7 +2,7 @@
 
 # run like this: DOCKER_BUILDKIT=1 docker build .
 
-FROM elixir:1.11.1-alpine AS base
+FROM elixir:1.12.0-alpine AS base
 WORKDIR /build
 ENV GIT_COMMIT="dockerfile dummy"
 
@@ -70,8 +70,8 @@ RUN --network=none \
 COPY --from=test /__test /
 COPY --from=dialyzer /__dialyzerrun /
 
-FROM alpine:3.11 as runtime
-RUN apk add --no-cache ncurses-libs
+FROM alpine:3.13 as runtime
+RUN apk add --no-cache ncurses-libs libstdc++ libgcc
 
 RUN mkdir -p app/
 WORKDIR app/
