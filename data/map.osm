@@ -1386,6 +1386,19 @@
   <node id='-121203' action='modify' lat='53.56582795042' lon='10.02521752775' />
   <node id='-121204' action='modify' lat='53.56579927712' lon='10.02436458528' />
   <node id='-121205' action='modify' lat='53.56586936738' lon='10.02388715208' />
+  <node id='-121212' action='modify' lat='53.60730740836' lon='10.11567234457' />
+  <node id='-121213' action='modify' lat='53.60754611741' lon='10.11570453107' />
+  <node id='-121214' action='modify' lat='53.60756521407' lon='10.11511980951' />
+  <node id='-121215' action='modify' lat='53.60759704183' lon='10.11477648675' />
+  <node id='-121216' action='modify' lat='53.60779437338' lon='10.11433124006' />
+  <node id='-121217' action='modify' lat='53.60785484577' lon='10.11412739217' />
+  <node id='-121218' action='modify' lat='53.60763205233' lon='10.11408984125' />
+  <node id='-121219' action='modify' lat='53.60753338629' lon='10.11429368913' />
+  <node id='-121220' action='modify' lat='53.60746336509' lon='10.11433660448' />
+  <node id='-121221' action='modify' lat='53.60712280578' lon='10.11224984586' />
+  <node id='-121222' action='modify' lat='53.60685544888' lon='10.11240004957' />
+  <node id='-121223' action='modify' lat='53.60721828997' lon='10.11429368913' />
+  <node id='-121224' action='modify' lat='53.60729785997' lon='10.11479258001' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -18486,6 +18499,24 @@
     <nd ref='-121205' />
     <nd ref='-121190' />
     <tag k='name' v='2021-05-22-kuhmuehlenteichpark' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-112962' action='modify'>
+    <nd ref='-121212' />
+    <nd ref='-121213' />
+    <nd ref='-121214' />
+    <nd ref='-121215' />
+    <nd ref='-121216' />
+    <nd ref='-121217' />
+    <nd ref='-121218' />
+    <nd ref='-121219' />
+    <nd ref='-121220' />
+    <nd ref='-121221' />
+    <nd ref='-121222' />
+    <nd ref='-121223' />
+    <nd ref='-121224' />
+    <nd ref='-121212' />
+    <tag k='name' v='2021-05-22-am-luisenhof' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
