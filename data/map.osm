@@ -1399,6 +1399,15 @@
   <node id='-121222' action='modify' lat='53.60685544888' lon='10.11240004957' />
   <node id='-121223' action='modify' lat='53.60721828997' lon='10.11429368913' />
   <node id='-121224' action='modify' lat='53.60729785997' lon='10.11479258001' />
+  <node id='-121281' action='modify' lat='53.55243062016' lon='10.01567154855' />
+  <node id='-121282' action='modify' lat='53.55251029336' lon='10.01809626549' />
+  <node id='-121283' action='modify' lat='53.55261227482' lon='10.01850127906' />
+  <node id='-121284' action='modify' lat='53.55271266259' lon='10.01842349499' />
+  <node id='-121340' action='modify' lat='53.55231429863' lon='10.01567422807' />
+  <node id='-121353' action='modify' lat='53.55237485043' lon='10.01685976446' />
+  <node id='-121361' action='modify' lat='53.55243221522' lon='10.01756250322' />
+  <node id='-121370' action='modify' lat='53.55246089759' lon='10.01640378892' />
+  <node id='-121381' action='modify' lat='53.55255650533' lon='10.01757859647' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -18517,6 +18526,20 @@
     <nd ref='-121224' />
     <nd ref='-121212' />
     <tag k='name' v='2021-05-22-am-luisenhof' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-112998' action='modify'>
+    <nd ref='-121281' />
+    <nd ref='-121340' />
+    <nd ref='-121353' />
+    <nd ref='-121361' />
+    <nd ref='-121282' />
+    <nd ref='-121283' />
+    <nd ref='-121284' />
+    <nd ref='-121381' />
+    <nd ref='-121370' />
+    <nd ref='-121281' />
+    <tag k='name' v='2021-05-22-st-georg-zentralpark' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
