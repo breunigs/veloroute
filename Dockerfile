@@ -26,6 +26,7 @@ RUN --network=none \
   MIX_ENV=prod mix deps.compile& \
   wait
 
+FROM elixirbase AS phxbase
 COPY ./ /build/
 RUN --mount=type=cache,target=/data-cache/ \
   mkdir -p /build/data/cache/ && \
@@ -39,28 +40,30 @@ COPY data/images/favicon.svg /build/data/images/favicon.svg
 COPY tools/update_favicons.sh /build/tools/update_favicons.sh
 RUN tools/update_favicons.sh
 
-FROM elixirbase as dialyzer
+FROM phxbase as dialyzer
 RUN \
   --network=none \
   --mount=target=/build/priv/plts/,type=cache \
   MIX_ENV=test mix dialyzer && \
   echo ok > /__dialyzerrun
 
-FROM elixirbase as test
+FROM phxbase as test
 RUN --network=none \
   MIX_ENV=test mix do test && \
   echo ok > /__test
 
 FROM elixirbase as assets
 RUN apk add --no-cache nodejs npm brotli git
-RUN --mount=type=cache,target=/build/assets/node_modules \
-  npm install --prefix ./assets && \
-  npm run deploy --prefix ./assets
+COPY ./assets/package* /build/assets/
+RUN npm install --prefix ./assets
+COPY ./assets/ /build/assets/
+COPY ./data/images/ /build/data/images/
+RUN npm run deploy --prefix ./assets
 COPY --from=favicon /build/assets/static/favicons/ /build/assets/static/favicons/
 RUN  MIX_ENV=prod mix phx.digest && \
   (find priv/static/ -type f -not -iname '*.png' -not -iname '*.gz' -not -iname '*.br' -print0 | xargs -r -0 -n1 -P0 brotli -f --best)
 
-FROM elixirbase as build
+FROM phxbase as build
 COPY --from=assets /build/priv/static/ /build/priv/static/
 RUN --network=none \
   mkdir -p /build/rel/overlays/data/cache/ && \
