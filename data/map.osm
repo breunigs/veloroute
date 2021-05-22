@@ -1370,6 +1370,22 @@
   <node id='-121066' action='modify' lat='53.61074468844' lon='10.06216763914' />
   <node id='-121115' action='modify' lat='53.61040733814' lon='10.06202279985' />
   <node id='-121133' action='modify' lat='53.61030867859' lon='10.06216227472' />
+  <node id='-121190' action='modify' lat='53.56607007977' lon='10.02334534585' />
+  <node id='-121191' action='modify' lat='53.56608919519' lon='10.02384423673' />
+  <node id='-121192' action='modify' lat='53.56599680393' lon='10.02433776319' />
+  <node id='-121193' action='modify' lat='53.56600317575' lon='10.02505659521' />
+  <node id='-121194' action='modify' lat='53.56621663107' lon='10.02539455354' />
+  <node id='-121195' action='modify' lat='53.56637911127' lon='10.02565204561' />
+  <node id='-121196' action='modify' lat='53.56670725565' lon='10.02638160646' />
+  <node id='-121197' action='modify' lat='53.56691433574' lon='10.02662300527' />
+  <node id='-121198' action='modify' lat='53.56693982245' lon='10.02696632802' />
+  <node id='-121199' action='modify' lat='53.56673911419' lon='10.02680539548' />
+  <node id='-121200' action='modify' lat='53.56643008532' lon='10.0263923353' />
+  <node id='-121201' action='modify' lat='53.56621981697' lon='10.02593635976' />
+  <node id='-121202' action='modify' lat='53.56590122656' lon='10.02539991796' />
+  <node id='-121203' action='modify' lat='53.56582795042' lon='10.02521752775' />
+  <node id='-121204' action='modify' lat='53.56579927712' lon='10.02436458528' />
+  <node id='-121205' action='modify' lat='53.56586936738' lon='10.02388715208' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -18449,6 +18465,27 @@
     <nd ref='-121066' />
     <nd ref='-121061' />
     <tag k='name' v='2021-05-21-gustav-seitz-weg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-112875' action='modify'>
+    <nd ref='-121190' />
+    <nd ref='-121191' />
+    <nd ref='-121192' />
+    <nd ref='-121193' />
+    <nd ref='-121194' />
+    <nd ref='-121195' />
+    <nd ref='-121196' />
+    <nd ref='-121197' />
+    <nd ref='-121198' />
+    <nd ref='-121199' />
+    <nd ref='-121200' />
+    <nd ref='-121201' />
+    <nd ref='-121202' />
+    <nd ref='-121203' />
+    <nd ref='-121204' />
+    <nd ref='-121205' />
+    <nd ref='-121190' />
+    <tag k='name' v='2021-05-22-kuhmuehlenteichpark' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' version='1'>
