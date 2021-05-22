@@ -85,6 +85,10 @@ defmodule Data.Article do
     struct(Data.Article, data)
   end
 
+  def age_in_days(%__MODULE__{date: date}) do
+    Date.diff(Date.utc_today(), date)
+  end
+
   defp search_preprocess_title(art) do
     # Benchmark.measure("article: preprocess title", fn ->
     t =

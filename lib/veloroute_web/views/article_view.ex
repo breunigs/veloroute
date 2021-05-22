@@ -6,7 +6,9 @@ defmodule VelorouteWeb.ArticleView do
   import Mapillary, only: [is_ref: 1]
 
   @dialyzer {:nowarn_function, render_template: 2}
-  @recent_article_count 4
+  @recent_article_min 4
+  @recent_article_max 20
+  @recent_article_days 14
 
   def render(name, assigns) do
     art =
@@ -322,14 +324,6 @@ defmodule VelorouteWeb.ArticleView do
       |> Map.drop([:sort, :display, :range, :order])
       |> Enum.map(fn {k, v} -> {k, String.split(v, ",")} end)
 
-    range =
-      attrs
-      |> Map.get(:range)
-      |> case do
-        "recent" -> @recent_article_count
-        _ -> -1
-      end
-
     display = Map.get(attrs, :display)
 
     list_opts =
@@ -343,13 +337,29 @@ defmodule VelorouteWeb.ArticleView do
       Data.ArticleCache.get()
       |> Data.Article.filter(filters)
       |> Data.Article.ordered(Map.get(attrs, :sort))
-      |> Enum.slice((-1 * range)..-1)
+      |> slice_articles(Map.get(attrs, :range))
       |> title_filter_cleaner(filters)
       |> article_list(list_opts)
 
     if display == "range",
       do: floki_content_tag("ul", arts) |> hd(),
       else: floki_content_tag("ol", arts, class: "hide-bullets") |> hd()
+  end
+
+  defp slice_articles(arts, nil), do: arts
+
+  defp slice_articles(arts, "recent") do
+    {extra, min} =
+      arts
+      |> Enum.slice((-1 * @recent_article_max)..-1)
+      |> Enum.split(@recent_article_max - @recent_article_min)
+
+    extra =
+      Enum.filter(extra, fn art ->
+        Data.Article.age_in_days(art) <= @recent_article_days
+      end)
+
+    extra ++ min
   end
 
   @spec article_list([%Article{}],
