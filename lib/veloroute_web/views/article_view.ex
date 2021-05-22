@@ -300,8 +300,13 @@ defmodule VelorouteWeb.ArticleView do
       {_name, art} ->
         url = VariousHelpers.article_path(art)
 
-        {"a", [{"data-phx-link-state", "push"}, {"data-phx-link", "patch"}, {"href", url}],
-         children}
+        {"a",
+         [
+           {"data-phx-link-state", "push"},
+           {"data-phx-link", "patch"},
+           {"class", "ref"},
+           {"href", url}
+         ], children}
 
       _ ->
         raise("Cannot find reference for #{inspect(children)}")

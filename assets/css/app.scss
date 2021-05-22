@@ -416,10 +416,15 @@ a {
   color: #0366d6;
   text-decoration: none;
   cursor: pointer;
-}
 
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.ref {
+    text-decoration-style: dotted;
+    cursor: help;
+  }
 }
 
 #impressum {
