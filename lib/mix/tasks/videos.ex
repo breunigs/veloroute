@@ -1,9 +1,8 @@
 defmodule Mix.Tasks.Velo.Videos do
   # XXX: path needs to be absolute for JOSM to find it
-  @out_anonymized File.cwd!() <> "/data/cache/videos_anonymized.gpx"
-  @out_pending File.cwd!() <> "/data/cache/videos_pending.gpx"
-  @source_path File.cwd!() <> "/videos-source"
-  @rendered_path File.cwd!() <> "/videos-rendered"
+  @working_dir File.cwd!()
+  @out_anonymized @working_dir <> "/data/cache/videos_anonymized.gpx"
+  @out_pending @working_dir <> "/data/cache/videos_pending.gpx"
 
   def ensure_source_dir_exists(fun) when is_function(fun) do
     case video_dir_present?() do
@@ -19,11 +18,11 @@ defmodule Mix.Tasks.Velo.Videos do
 
   def out_anonymized, do: @out_anonymized
   def out_pending, do: @out_pending
-  def source_path, do: @source_path
-  def rendered_path, do: @rendered_path
 
   defp video_dir_present? do
-    case File.stat(source_path()) do
+    Settings.video_source_dir_abs()
+    |> File.stat()
+    |> case do
       {:ok, %{type: :directory}} ->
         :ok
 
@@ -32,7 +31,7 @@ defmodule Mix.Tasks.Velo.Videos do
 
       any ->
         {:error,
-         "#{source_path()} should point to video data, but it's not accessible: #{inspect(any)}"}
+         "#{Settings.video_source_dir_abs()} should point to video data, but it's not accessible: #{inspect(any)}"}
     end
   end
 end
@@ -48,45 +47,16 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
   defp real_run do
     # TODO: stale cache after edit map?
-    %{ways: ways, relations: _relations} = Data.MapCache.full_map()
 
-    to_convert =
-      collect_single_ways(ways)
-      |> Enum.reduce(%{}, fn tsv_list, map ->
-        hsh = TrimmedSourceVideo.hash(tsv_list)
-        out_dir = Path.join(rendered_path(), hsh)
-        if File.dir?(out_dir), do: map, else: Map.put(map, hsh, tsv_list)
-      end)
+    Data.MapCache.full_map()
+    |> TrimmedSourceVideoSequence.list_from_map()
+    |> Enum.reject(&TrimmedSourceVideoSequence.already_rendered?(&1))
+    |> Enum.each(fn tsv_seq ->
+      preview = tsv_seq |> TrimmedSourceVideoSequence.preview() |> Enum.join(" ")
+      render = tsv_seq |> TrimmedSourceVideoSequence.render() |> Enum.join(" ")
 
-    Enum.each(to_convert, fn {hsh, tsv_list} ->
-      preview = tsv_list |> TrimmedSourceVideo.preview() |> Enum.join(" ")
-      video_out_dir = Path.join(rendered_path(), hsh)
-      render = tsv_list |> TrimmedSourceVideo.render(video_out_dir) |> Enum.join(" ")
-
-      IO.puts("\nneed to convert #{hsh}:\n    #{preview}\n    #{render}")
+      IO.puts("\nneed to convert #{tsv_seq.hash}:\n    #{preview}\n    #{render}")
     end)
-  end
-
-  @valid_single_way_types ["detour"]
-  defp collect_single_ways(ways, seen \\ MapSet.new()) do
-    ways
-    |> Map.values()
-    |> Enum.map(fn
-      %{tags: %{video: path, type: type}} = way
-      when type in @valid_single_way_types
-      when is_binary(path) ->
-        [TrimmedSourceVideo.new_from_way(way, source_path())]
-
-      %{tags: %{video: path}, id: id} ->
-        unless MapSet.member?(seen, id),
-          do: IO.warn("way id=#{id} refers to video=#{path}, but doesn't have a valid type")
-
-        nil
-
-      _any ->
-        nil
-    end)
-    |> Enum.reject(&is_nil/1)
   end
 end
 
@@ -103,7 +73,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     IO.puts("Indexing videos…")
 
     {anon, pending} =
-      source_path()
+      Settings.video_source_dir_abs()
       |> tree()
       |> group()
       |> Enum.reduce({"", ""}, fn video, {anon, pending} ->
@@ -138,7 +108,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   end
 
   defp named_track_segments(%{path_gpx: path}) do
-    name = Path.relative_to(path, source_path())
+    name = Path.relative_to(path, Settings.video_source_dir_abs())
     {:ok, content} = File.read(path)
 
     Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)

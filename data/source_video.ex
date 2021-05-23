@@ -21,8 +21,8 @@ defmodule SourceVideo do
     error_unless_valid_source(source_path) ||
       new_from_path(
         source_path,
-        File.exists?(as_gpx(source_path)),
-        File.exists?(as_anonymized(source_path))
+        source_path |> as_gpx() |> make_abs() |> File.exists?(),
+        source_path |> as_anonymized() |> make_abs() |> File.exists?()
       )
   end
 
@@ -47,6 +47,8 @@ defmodule SourceVideo do
        when is_boolean(available_anonymized) do
     unless available_gpx,
       do: IO.warn("#{source_path} has no associcated GPX, maybe try `gopro2gpx #{source_path}`")
+
+    source_path = make_relative(source_path)
 
     # support paths to just the base name by adding default extension
     source_path =
@@ -110,7 +112,7 @@ defmodule SourceVideo do
   end
 
   defp parse_gpx(%__MODULE__{path_gpx: gpx, available_gpx: true}) do
-    {:ok, content} = File.read(gpx)
+    {:ok, content} = File.read(make_abs(gpx))
     Gpx.parse(content)
   end
 
@@ -152,4 +154,10 @@ defmodule SourceVideo do
       str -> str
     end
   end
+
+  defp make_relative("/" <> path), do: Path.relative_to(Settings.video_source_dir_abs(), path)
+  defp make_relative(path), do: path
+
+  defp make_abs("/" <> _rest = path), do: raise("path was already absolute: #{path}")
+  defp make_abs(path), do: Path.join(Settings.video_source_dir_abs(), path)
 end

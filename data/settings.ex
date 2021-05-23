@@ -35,6 +35,10 @@ defmodule Settings do
 
   def enable_sentry_frontend, do: false
 
+  def video_dir_abs, do: Path.join(__DIR__, "videos")
+  def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
+  def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
+
   # TODO: check if we can automatically detect this with OTP 23+
   def route_list,
     do: [

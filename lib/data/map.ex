@@ -71,17 +71,38 @@ defmodule Data.Map do
     def as_typed_way(w) do
       coords = Enum.map(w.nodes, &Node.as_geojson_coord(&1))
 
-      %{
-        type: "Feature",
-        properties: %{
+      props =
+        %{
           type: w.tags[:type],
           name: w.tags[:name]
-        },
+        }
+        |> maybe_add_video(w)
+
+      %{
+        type: "Feature",
+        properties: props,
         geometry: %{
           type: "LineString",
           coordinates: coords
         }
       }
+    end
+
+    defp maybe_add_video(props, way) do
+      TrimmedSourceVideoSequence.new_from_way(way)
+      |> case do
+        {:ok, tsv_seq} ->
+          if TrimmedSourceVideoSequence.already_rendered?(tsv_seq),
+            do: Map.put(props, :video, tsv_seq.hash),
+            else: props
+
+        {:no_video, _error} ->
+          props
+
+        {:invalid_type, err} ->
+          IO.warn(err)
+          props
+      end
     end
   end
 
