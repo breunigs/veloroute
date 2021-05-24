@@ -72,8 +72,8 @@ defmodule SourceVideo do
   @spec time_range(t(), CheapRuler.point(), CheapRuler.point()) ::
           %{from: binary(), to: binary()} | {:error, binary()}
   def time_range(%__MODULE__{path_source: source, available_gpx: false}, _from, _to) do
-    IO.warn("#{source} has no associcated GPX, maybe try `gopro2gpx #{source}`")
-    {:error, "needs GPX to extract time range"}
+    {:error,
+     "#{source} has no GPX file available to extract time range from, try `gopro2gpx #{make_abs(source)}`?"}
   end
 
   def time_range(self, from, to) do

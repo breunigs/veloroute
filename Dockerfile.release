@@ -1,0 +1,20 @@
+FROM alpine:3.13 as builder
+RUN apk add --no-cache tar gzip
+RUN mkdir /build
+COPY ./_build/prod/prod-2.0.0.tar.gz /
+RUN tar -zxf /prod-2.0.0.tar.gz -C /build/
+
+FROM alpine:3.13 as runtime
+RUN apk add --no-cache ncurses-libs libstdc++ libgcc
+
+COPY --from=builder /build/ /app/
+WORKDIR /app/
+EXPOSE 4000
+VOLUME "/app/build/videos"
+CMD ["bin/prod", "start"]
+ARG GIT_COMMIT
+ENV GIT_COMMIT=${GIT_COMMIT}
+
+
+# COPY
+# COPY --from=build /build/_build/prod/rel/veloroute .

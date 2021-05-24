@@ -4,36 +4,8 @@ defmodule Mix.Tasks.Velo.Videos do
   @out_anonymized @working_dir <> "/data/cache/videos_anonymized.gpx"
   @out_pending @working_dir <> "/data/cache/videos_pending.gpx"
 
-  def ensure_source_dir_exists(fun) when is_function(fun) do
-    case video_dir_present?() do
-      {:error, msg} ->
-        IO.warn(msg, [])
-        :error
-        exit(:no_video_dir)
-
-      :ok ->
-        fun.()
-    end
-  end
-
   def out_anonymized, do: @out_anonymized
   def out_pending, do: @out_pending
-
-  defp video_dir_present? do
-    Settings.video_source_dir_abs()
-    |> File.stat()
-    |> case do
-      {:ok, %{type: :directory}} ->
-        :ok
-
-      {:ok, %{type: :symlink}} ->
-        :ok
-
-      any ->
-        {:error,
-         "#{Settings.video_source_dir_abs()} should point to video data, but it's not accessible: #{inspect(any)}"}
-    end
-  end
 end
 
 defmodule Mix.Tasks.Velo.Videos.Render do
@@ -42,7 +14,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
   @shortdoc "Finds videos from the map and renders them"
   def run(_) do
-    ensure_source_dir_exists(&real_run/0)
+    VideoDir.must_exist!(&real_run/0)
   end
 
   defp real_run do
@@ -66,7 +38,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   @shortdoc "Indexes videos and their anonymization status"
   def run(_) do
-    ensure_source_dir_exists(&real_run/0)
+    VideoDir.must_exist!(&real_run/0)
   end
 
   defp real_run() do

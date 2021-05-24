@@ -8,6 +8,11 @@ defmodule Veloroute.Application do
   def start(_type, _args) do
     :ok = Application.put_env(:sentry, :release, Git.revision(), persistent: true)
 
+    # ensure the video directory is mounted
+    unless File.dir?(Settings.video_dir_abs()) do
+      raise "Video directory does not appear to be mounted since #{Settings.video_dir_abs()} is not a directory."
+    end
+
     # List all child processes to be supervised
     children = [
       VelorouteWeb.Telemetry,
