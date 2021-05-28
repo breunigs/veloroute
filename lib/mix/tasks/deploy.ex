@@ -91,7 +91,7 @@ defmodule Mix.Tasks.Deploy do
     try do
       {output, 0} = System.cmd("docker", ["port", Docker.container_name_release()])
       port = output |> String.split(":") |> List.last() |> String.trim()
-      {:ok, response} = Tesla.get("http://localhost:#{port}")
+      {:ok, response} = Tesla.get("http://localhost:#{port}/1")
 
       if response.status == 200 do
         IO.puts("✓ Image boots fine and replies with 200")

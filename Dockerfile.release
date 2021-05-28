@@ -8,13 +8,10 @@ FROM alpine:3.13 as runtime
 RUN apk add --no-cache ncurses-libs libstdc++ libgcc
 
 COPY --from=builder /build/ /app/
+COPY data/cache/ /app/data/cache/
 WORKDIR /app/
 EXPOSE 4000
 VOLUME "/app/build/videos"
 CMD ["bin/prod", "start"]
 ARG GIT_COMMIT
 ENV GIT_COMMIT=${GIT_COMMIT}
-
-
-# COPY
-# COPY --from=build /build/_build/prod/rel/veloroute .
