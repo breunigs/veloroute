@@ -390,3 +390,7 @@
 - "/contentblob/15068828/81a50c1734756d0860feaf426cd3536e/data/hallerstrasse-pop-up-bikelane-abgestimmte-planung.pdf"
 - "/contentblob/15068826/1788039429d56062d616de171dc47922/data/hallerstrasse-temporaerer-radfahrstreifen.pdf"
 - "/contentblob/15068420/8fe43239bac69ce1a1bd3c3934feec46/data/kaiser-wilhelm-strasse-allgemein-anliegerinformation-05-21.pdf"
+'2021-06-07':
+- "/contentblob/15137380/3b55516f4cce539646078a61cbb4db44/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-bericht.pdf"
+- "/contentblob/15137384/6074c525bf53e8f5a18cc6319de7b110/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-plan.pdf"
+- "/contentblob/15140810/147fca0ef4fb0d4e568591b221176db2/data/alster-fahrradachsen-bellevue-bis-fernsicht-06-2021-bis-04-2022.pdf"

@@ -52,8 +52,8 @@
   :velo: false
 8210:
   :id: 8210
-  :title: A 26 / Neubau inkl. AK HH-Hafen und Ausbau A 7 -- LSBG
-  :updated: '2021-01-04T13:50:34.101136'
+  :title: 'A 26 / Neubau inkl. AK HH-Hafen und Ausbau A 7 -- '
+  :updated: '2021-05-27T14:13:12.204458'
   :link: https://www.deges.de/projekte/projekt/a-26-neubau-west-2/
   :start: '2020-10-01'
   :end: '2028-12-31'
@@ -560,8 +560,8 @@
   :velo: true
 8208:
   :id: 8208
-  :title: A 7 / Instandsetzung & Ausbau K 20 & K 30 -- LSBG
-  :updated: '2020-06-11T07:21:54.132459'
+  :title: 'A 7 / Instandsetzung & Ausbau K 20 & K 30 -- '
+  :updated: '2021-05-27T14:11:06.570994'
   :link: https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/
   :start: '2020-04-14'
   :end: '2027-12-31'
@@ -629,11 +629,11 @@
   :velo: false
 12172:
   :id: 12172
-  :title: Hohe Weide, Schlankreye/Schäferstr. / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-03-05T08:21:37.74453'
+  :title: 'Hohe Weide, Schlankreye/Schäferstr. / Sielbauarbeiten -- '
+  :updated: '2021-06-04T07:18:09.657161'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-11-02'
-  :end: '2021-05-28'
+  :end: '2021-06-18'
   :velo: false
 14270:
   :id: 14270
@@ -653,7 +653,7 @@
 7917:
   :id: 7917
   :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
-  :updated: '2021-05-12T09:31:55.661075'
+  :updated: '2021-05-21T07:03:49.650674'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
   :end: '2021-06-30'
@@ -750,9 +750,9 @@
 13716:
   :id: 13716
   :title: 'Nagelsweg / Leitungsarbeiten -- '
-  :updated: '2021-04-09T13:57:06.947459'
+  :updated: '2021-06-01T14:55:49.690831'
   :start: '2020-11-25'
-  :end: '2021-05-15'
+  :end: '2021-06-11'
   :velo: false
 12002:
   :id: 12002
@@ -771,8 +771,8 @@
   :velo: false
 12168:
   :id: 12168
-  :title: Friedrich-Ebert-Strasse -- Hamburg Wasser
-  :updated: '2021-01-22T11:53:01.012437'
+  :title: 'Friedrich-Ebert-Strasse -- '
+  :updated: '2021-06-04T07:17:23.486404'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-10-19'
   :end: '2021-06-30'
@@ -1058,7 +1058,7 @@
 14878:
   :id: 14878
   :title: 'Veringstraße / Sielbau -- '
-  :updated: '2021-04-07T14:38:05.944697'
+  :updated: '2021-06-04T07:45:32.482869'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-01'
   :end: '2021-07-31'
@@ -1111,17 +1111,17 @@
 15367:
   :id: 15367
   :title: 'Landwehrplatz / Sielbau -- '
-  :updated: '2021-04-08T12:02:06.384994'
+  :updated: '2021-06-04T07:37:48.172258'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-15'
-  :end: '2021-05-30'
+  :end: '2021-07-30'
   :velo: false
 15420:
   :id: 15420
   :title: 'Adenauerallee / Sperrung -- '
-  :updated: '2021-04-13T08:18:22.218204'
+  :updated: '2021-06-07T09:41:56.528651'
   :start: '2021-04-19'
-  :end: '2021-05-28'
+  :end: '2021-06-18'
   :velo: true
 15053:
   :id: 15053
@@ -1499,8 +1499,102 @@
   :velo: false
 16055:
   :id: 16055
-  :title: 'Bellevue / Alster Fahrradachsen -- '
-  :updated: '2021-05-18T06:39:11.276047'
+  :title: 'Bellevue / Alster Fahrradachsen Abschnitt 2c -- '
+  :updated: '2021-05-26T13:25:58.757697'
+  :link: https://lsbg.hamburg.de/contentblob/13449088/1d1f84ab93702ea96f59757303d8fbde/data/alster-fahrradachsen-abschnitt-2b-von-bellevue-bis-schwanenwik-abgestimmte-planung-bericht.pdf
   :start: '2021-06-14'
   :end: '2022-02-01'
+  :velo: false
+16101:
+  :id: 16101
+  :title: 'Großmannstraße / Fahrspursperrung -- '
+  :updated: '2021-05-21T11:44:34.864449'
+  :start: '2021-05-31'
+  :end: '2021-06-25'
+  :velo: false
+16106:
+  :id: 16106
+  :title: 'Bargstedgasse / Vollsperrung -- '
+  :updated: '2021-05-21T11:45:18.04631'
+  :start: '2021-06-07'
+  :end: '2021-06-11'
+  :velo: false
+16142:
+  :id: 16142
+  :title: 'Ballindamm / Fahrspursperrung -- '
+  :updated: '2021-05-27T07:17:07.51905'
+  :start: '2021-06-01'
+  :end: '2021-06-30'
+  :velo: false
+16147:
+  :id: 16147
+  :title: 'Kirchwerder Elbdeich, Vollsperrung für Leitungsbau -- '
+  :updated: '2021-05-27T07:17:37.796305'
+  :start: '2021-05-24'
+  :end: '2021-09-30'
+  :velo: false
+16167:
+  :id: 16167
+  :title: 'Weidestraße / Sielbau -- '
+  :updated: '2021-05-27T14:07:23.500531'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-05-31'
+  :end: '2021-07-31'
+  :velo: false
+16202:
+  :id: 16202
+  :title: 'Eilenau 34 - 40 / Kranarbeiten -- '
+  :updated: '2021-06-03T09:06:40.604197'
+  :start: '2021-06-07'
+  :end: '2021-06-23'
+  :velo: false
+16219:
+  :id: 16219
+  :title: 'Boberger Furt, Deckensanierung in Vollsperrung -- '
+  :updated: '2021-05-31T11:34:38.60444'
+  :start: '2021-06-07'
+  :end: '2021-06-18'
+  :velo: false
+16223:
+  :id: 16223
+  :title: 'Billwerder Billdeich, Deckensanierung in Vollsperrung -- '
+  :updated: '2021-05-31T11:35:01.629119'
+  :start: '2021-06-07'
+  :end: '2021-06-09'
+  :velo: false
+16275:
+  :id: 16275
+  :title: 'Allermöher Deich 108 - 207, Oberflächenausbesserung -- '
+  :updated: '2021-06-04T13:23:48.442753'
+  :start: '2021-05-31'
+  :end: '2021-07-30'
+  :velo: false
+16281:
+  :id: 16281
+  :title: 'Bayernweg/ Asphaltierung -- '
+  :updated: '2021-06-04T13:24:37.835704'
+  :start: '2021-06-07'
+  :end: '2021-06-09'
+  :velo: false
+16173:
+  :id: 16173
+  :title: 'Kriegkamp / Düker Aufhebung (Sielbau) -- '
+  :updated: '2021-06-01T07:59:51.510345'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-06-14'
+  :end: '2021-07-30'
+  :velo: false
+16091:
+  :id: 16091
+  :title: 'Neuländer Straße / Grundinstandsetzung -- '
+  :updated: '2021-06-01T07:58:56.030421'
+  :start: '2021-06-14'
+  :end: '2022-03-31'
+  :velo: false
+15466:
+  :id: 15466
+  :title: 'Sinstorfer Kirchweg Brücke / Grundinstandsetzung -- '
+  :updated: '2021-06-01T08:00:34.568211'
+  :start: '2021-06-28'
+  :end: '2022-04-01'
   :velo: false

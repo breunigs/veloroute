@@ -671,3 +671,14 @@
 - https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006604
 - https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006596
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010643
+'2021-06-07':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011405
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011391
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011390
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010709
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014336
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014322
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014315
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014425
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014335
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1008685

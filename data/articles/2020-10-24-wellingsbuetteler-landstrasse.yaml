@@ -1,8 +1,9 @@
 
 type: planned-construction
 title: Wellingsbütteler Landstraße
-start: 2022Q2
+start: 2022-03
 end: 2024
+updated: 2021-06-07
 tags:
 - articles
 text: >
@@ -12,16 +13,32 @@ text: >
   <p>In der <a>Wellingsbütteler Landstraße</a> selbst gibt es im Stadtteil <a>Klein Borstel</a> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<a href="/lexikon/fahrrad-frei">Fahrrad frei</a>). Die Höchstgeschwindigkeit beträgt 50 km/h. Im <a bounds="10.029983,53.62536,10.032621,53.626527">Kreuzungsbereich mit der Fuhlsbütteler Landstraße</a> gibt es schmale <a href="/lexikon/hochbordradweg">Hochbordradwege</a>, die mit engen Kuren durch die Kreuzung führen.</p>
 
   <h4>Planung</h4>
-  <p>Ab Sommer 2021 soll die Wellingsbütteler Landstraße saniert werden – Kanäle, Versorgungsleitungen und Straßenbelag gemeinsam. Nach dem derzeitigen Planungsstand stehen für den Radverkehr auch im Anschluss keine eigenen Wege zur Verfügung. Pro Fahrtrichtung sollen rund 1,5m breite <a href="/lexikon/schutzstreifen">Schutzstreifen</a> als Teil der Fahrbahn markiert werden. Die Breite setzt sich aus 30cm Regenrinne und ca. 10cm Markierung zusammen. Ein Sicherheitsabstand gegen <a href="/lexikon/dooring">Dooring</a> ist in die Parkplätze integriert, die mit 2,75m etwas breiter sind als die meisten KFZ.</p>
+  <h5>Wesentliche Änderungen des zweiten Entwurfs:</h5>
+  <ul>
+    <li>Die <ref>Radfahrstreifen</ref> werden bis zur <a bounds="10.032924,53.629069,10.041573,53.631069" img="a8I79kvrE8tGvsQeocF_jQ">Einmündung Stübeheide</a> verlängert. Dies erfordert die Fällung aller Bäume auf der Südseite zwischen U-Bahn und Stübeheide.</li>
+    <li>Die <ref>Schutzstreifen</ref> ab Stübeheide entfallen ersatzlos.</li>
+    <li>Baubeginn frühestens März 2022.</li>
+  </ul>
+  <p><em>Der nachfolgende Artikel beschreibt den zweiten Entwurf.</em></p>
 
-  <p>Im Kreuzungsbereich orientiert sich die Führung an den vorhandenen Hochbordradwegen, welche jedoch so gut wie möglich verbreitert werden. Auch ist eine gut sichtbare Trennung vom Fußweg durch den Einbau von weißen Noppenplatten vorgesehen. Von der Kreuzung bis etwa auf Höhe der <a bounds="10.029858,53.625736,10.035331,53.628157">U-Bahn Station Klein Borstel</a> sind rund 1,5m breite <a href="/lexikon/radfahrstreifen">Radfahrstreifen</a> vorgesehen.</p>
+  <p>Die Wellingsbütteler Landstraße soll komplett saniert werden – Kanäle, Versorgungsleitungen und Straßenbelag gemeinsam. Es ist vorgesehen dem Radverkehr zwischen <a bounds="10.027247,53.625691,10.039097,53.630037" img="KWOqurnnZ41FUfRVCsWlog">Fuhlsbütteler Straße und Stübeheide</a> je einen <ref>Radfahrstreifen</ref> mit rund 1,60m Breite anzubieten. Die Regenrinne zählt dabei zum Radweg; zu Parkplätzen ist nochmal zusätzlicher Sicherheitsabstand vorgesehen.</p>
 
-  <p>Zur U-Bahn Station Klein Borstel und in den <a>Kornweg</a> sind jeweils Aufstellflächen für das <a href="/lexikon/direktes-und-indirektes-abbiegen">indirekte Linksabbiegen</a> vorgesehen. Anschließmöglichkeiten für Fahrräder werden lediglich um die U-Bahn Station herum eingerichtet.</p>
+  <p>Die Einmündung in die <a bounds="10.032924,53.629069,10.041573,53.631069" img="D7WOLWiqPdIe60z6nJDJ0A">Stübeheide</a> wird so gestaltet, dass der Radverkehr diese leichter als Alternative verwenden kann. Ab der Stübeheide bleibt es wie heute bei <ref>Mischverkehr</ref> mit Tempo 50.</p>
+
+  <p>Im <a bounds="10.028903,53.625167,10.033771,53.626293" img="zYa8-Csyygnh_gjbfLRFlg">Kreuzungsbereich mit der Fuhlsbütteler Straße</a> orientiert sich die Führung an den vorhandenen Hochbordradwegen, welche jedoch so gut wie möglich verbreitert werden. Auch ist eine gut sichtbare Trennung vom Fußweg durch den Einbau von weißen Noppenplatten vorgesehen.</p>
+
+  <p>Zur U-Bahn Station Klein Borstel und in den <a bounds="10.046698,53.633591,10.056424,53.63584" img="yrpy9U5YY3SITzkxaDlmRg">Kornweg</a> sind jeweils Aufstellflächen für das <ref>indirekte Linksabbiegen</ref> vorgesehen. Anschließmöglichkeiten für Fahrräder werden im gesamten Baugebiet aufgestellt.</p>
 
   <h4>Meinung</h4>
-  <p>Um die Bäume zu erhalten muss die grobe Aufteilung der Straße so bleiben wie sie ist. Zusätzlich werden die häufigen Unfälle zwischen Fuß- und Rad angeführt, die durch einen ähnlichen Umbau in der vergleichbaren <a>Weidestraße</a> verhindert werden konnten. Dennoch sind Schutzstreifen nicht jedermanns Sache, da sie zu engem Überholen einladen und hier mit nutzbarer Breite von rund 1,1m auch sehr schmal ausfallen. Für tiefergehende Verbesserungen für den Radverkehr müsste die KFZ-Zweispurigkeit aufgegeben werden, was momentan leider als unrealistisch einzustufen ist.</p>
+  <p>Die Planung holt noch mit das Beste aus einer schwierigen Situation. Eine KFZ-Einbahnstraße ist unrealistisch, weil die Strecke auch für Verbesserungen im Nahverkehr („Hamburg-Takt“) eingeplant sind. Die Hälfte der Bäume zu fällen ist auch wenig attraktiv.</p>
+
+  <p>Man fällt also nur die Bäume auf einem Teilstück, kann dadurch aber die Radfahrstreifen bis zu einer weniger befahrenen Straße verlängern. Diese ist offensichtlich als Alternativstrecke für diejenigen gedacht, die sich im Mischverkehr nicht wohlfühlen. Hier gilt zwar Tempo 30, aber eine Fahrradstraße ist momentan nicht geplant.</p>
+
+  <p>Abseits der groben Planung hat der zweite Entwurf noch Detailverbesserungen für den Radverkehr an einigen Stellen erreicht. Zum Beispiel wird die Querung am U-Bahnhof vergrößert um dem geplanten Radschnellweg gerecht zu werden. Zum Linksabbiegen in die Fuhlsbütteler Straße gibt's nun eine zweite Auffahrt, sodass die Kurven weniger eng ausfallen. Gut, auch wenn die Rampe nur auf mangelhafte Radwege führt.</p>
 
   <h4>Quellen</h4>
-  <p>
-    <a href="https://lsbg.hamburg.de/wellingsbuetteler-landstrasse/14247548/wellingsbuetteler-landstrasse/">Informationsseite der Stadt</a>. Pläne und der genaue Erläuterungsbericht befinden sich am Ende der Seite.
-  </p>
+  <ul>
+    <li><a href="https://lsbg.hamburg.de/wellingsbuetteler-landstrasse/14247548/wellingsbuetteler-landstrasse/">Informationsseite der Stadt</a></li>
+    <li><a href="https://lsbg.hamburg.de/contentblob/15137380/3b55516f4cce539646078a61cbb4db44/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-bericht.pdf">Erläuterungsbericht</a> (2. Entwurf)</li>
+    <li><a href="https://lsbg.hamburg.de/contentblob/15137384/6074c525bf53e8f5a18cc6319de7b110/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-plan.pdf">Lagepläne</a> (2. Entwurf)</li>
+  </ul>

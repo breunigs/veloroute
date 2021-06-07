@@ -7,7 +7,12 @@ defmodule Article.Parser do
         any -> raise "Cannot parse #{path}: #{inspect(any)}"
       end
 
-    parsed = Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
+    parsed =
+      try do
+        Enum.into(parsed, %{}, fn {k, v} -> {String.to_existing_atom(k), v} end)
+      rescue
+        e -> reraise "cannot parse #{path} (#{e.message})", __STACKTRACE__
+      end
 
     name = Path.relative_to(path, article_dir) |> String.replace_trailing(".yaml", "")
 
