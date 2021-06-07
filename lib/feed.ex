@@ -1,11 +1,11 @@
 defmodule Feed do
   alias Atomex.{Feed, Entry}
-  alias Data.Article
+  alias Article
   # alias VelorouteWeb.Router.Helpers, as: Routes
 
-  require Data.ArticleCache
+  require Cache.Articles
 
-  import Mapillary, only: [is_ref: 1]
+  import Mapillary.Types, only: [is_ref: 1]
 
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
@@ -17,14 +17,13 @@ defmodule Feed do
   end
 
   defp articles() do
-    Data.ArticleCache.get()
+    Cache.Articles.get()
     |> Article.ordered_by_date()
     |> Enum.slice(-10..-1)
     |> Enum.map(&article/1)
   end
 
   defp article(%Article{name: name, date: date} = art) do
-    title = Article.full_title(art)
     {:safe, content} = VelorouteWeb.ArticleView.render_feed(art)
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(date) <> " 00:00:00Z")
 
@@ -33,7 +32,7 @@ defmodule Feed do
     # Routes.article_url(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
     url = Settings.url() <> "/article/" <> name
 
-    Entry.new(url, date, title)
+    Entry.new(url, date, art.full_title)
     |> Entry.content(content, type: "html")
     |> maybe_add_location(art)
     |> maybe_add_image(art)
@@ -50,7 +49,7 @@ defmodule Feed do
   defp maybe_add_location(entry, _article), do: entry
 
   defp maybe_add_image(entry, %{start_image: img}) when is_ref(img) do
-    url = Mapillary.img_url(img, 2048)
+    url = Mapillary.Resolver.img_url(img, 2048)
     Entry.link(entry, url, rel: "enclosure", type: "image/jpeg")
   end
 

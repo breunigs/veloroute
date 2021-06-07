@@ -1,5 +1,5 @@
 defmodule Data.Route.Route6 do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     6 (stadtauswärts nach Volksdorf):
     - { seq: "8c1_G8OslL0aGG6la2r_xw", from: "pv29Z5VfMV7N6qjcu_nC6Q", to: "WtjMdwHeFpasucW43irpbw" }

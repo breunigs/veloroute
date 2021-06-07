@@ -2,7 +2,7 @@ defmodule Data.Sequence do
   @enforce_keys [:route, :name, :group, :description]
   defstruct @enforce_keys
 
-  import Mapillary, only: [is_ref: 1]
+  import Mapillary.Types, only: [is_ref: 1]
 
   @type group() :: binary()
   @type description() :: binary()
@@ -10,7 +10,7 @@ defmodule Data.Sequence do
 
   @type t() :: %__MODULE__{
           name: name(),
-          route: Data.Route.t(),
+          route: Route.t(),
           group: group(),
           description: description()
         }
@@ -22,9 +22,7 @@ defmodule Data.Sequence do
     if route.parsed[name] == nil,
       do:
         raise(
-          "Invalid sequence created: #{inspect(route)} does not have a sequence named #{
-            inspect(name)
-          }"
+          "Invalid sequence created: #{inspect(route)} does not have a sequence named #{inspect(name)}"
         )
 
     %__MODULE__{
@@ -44,16 +42,16 @@ defmodule Data.Sequence do
     end)
   end
 
-  @spec images(t()) :: list(Mapillary.ref())
+  @spec images(t()) :: list(Mapillary.Types.ref())
   def images(seq), do: seq.route.parsed[seq.name]
 
-  @spec closest(t(), CheapRuler.point()) :: {float(), Data.Image.img_non_nil()}
+  @spec closest(t(), Geo.CheapRuler.point()) :: {float(), Data.Image.img_non_nil()}
   def closest(%__MODULE__{} = seq, pt = %{lon: lon, lat: lat})
       when is_float(lon) and is_float(lat) do
     seq
     |> images()
     |> Enum.reduce({nil, nil}, fn next, {dist, prev} ->
-      next_dist = CheapRuler.dist(next, pt)
+      next_dist = Geo.CheapRuler.dist(next, pt)
 
       if dist == nil || next_dist < dist,
         do: {next_dist, next},
@@ -67,7 +65,7 @@ defmodule Data.Sequence do
           prev: Data.Image.img(),
           next: Data.Image.img()
         }
-  @spec find_surrounding(t(), Mapillary.ref()) :: surrounding() | nil
+  @spec find_surrounding(t(), Mapillary.Types.ref()) :: surrounding() | nil
   def find_surrounding(seq, img) when is_ref(img) do
     with img_pos when is_integer(img_pos) <- get_in(seq.route.index, [img, seq.name]) do
       imgs = images(seq)
@@ -92,12 +90,12 @@ defmodule Data.Sequence do
   end
 
   @type mapillary_sequence() :: %{
-          from: Mapillary.ref(),
-          to: Mapillary.ref(),
-          seq: Mapillary.ref(),
+          from: Mapillary.Types.ref(),
+          to: Mapillary.Types.ref(),
+          seq: Mapillary.Types.ref(),
           seq_idx: integer()
         }
-  @spec mapillary_sequence_from(t(), Mapillary.ref()) :: list(mapillary_sequence()) | nil
+  @spec mapillary_sequence_from(t(), Mapillary.Types.ref()) :: list(mapillary_sequence()) | nil
   def mapillary_sequence_from(seq, img) when is_ref(img) do
     with img_pos when not is_nil(img_pos) <- get_in(seq.route.index, [img, seq.name]) do
       seq

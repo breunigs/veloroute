@@ -1,5 +1,5 @@
 defmodule Data.Route.Route3 do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     3 (stadtauswärts nach Niendorf):
     - { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "_8SHUcJR5rQdE9BgLQgOcQ", to: "MdUam0XWCeUwWbRW8gYxrQ" }

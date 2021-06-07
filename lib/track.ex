@@ -5,9 +5,9 @@ defmodule Track do
   @enforce_keys [:type, :id, :name, :direction, :full_name, :ways]
   defstruct [:type, :id, :name, :direction, :full_name, :ways, :nodes, :image_sequence]
 
-  import Mapillary, only: [is_ref: 1]
+  import Mapillary.Types, only: [is_ref: 1]
   alias Mapillary.Sequence
-  alias Data.Map.Way
+  alias Map.Way
 
   @doc """
   with_nodes takes an existing track and generates a consecutive list of nodes

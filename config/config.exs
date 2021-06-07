@@ -28,8 +28,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :ex_aws, json_codec: Jason
-
 # very verbose HTTP output. Needs: mix deps.compile tesla --force
 config :tesla, Tesla.Middleware.Logger, debug: false
 

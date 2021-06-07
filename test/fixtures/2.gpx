@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>Untitled</name>
+    <trkseg>
+      <trkpt lat="53.460917" lon="9.977349">
+        <ele>4.485000</ele>
+        <time>2021-04-17T13:21:42.000Z</time>
+      </trkpt>
+      <trkpt lat="53.460921" lon="9.977315">
+        <ele>4.529600</ele>
+        <time>2021-04-17T13:21:42.334Z</time>
+      </trkpt>
+      <trkpt lat="53.460930" lon="9.977242">
+        <ele>4.535000</ele>
+        <time>2021-04-17T13:21:42.667Z</time>
+      </trkpt>
+      <trkpt lat="53.460937" lon="9.977158">
+        <ele>4.423400</ele>
+        <time>2021-04-17T13:21:43.001Z</time>
+      </trkpt>
+      <trkpt lat="53.460918" lon="9.977086">
+        <ele>4.411800</ele>
+        <time>2021-04-17T13:21:43.335Z</time>
+      </trkpt>
+      <trkpt lat="53.460875" lon="9.977034">
+        <ele>4.243200</ele>
+        <time>2021-04-17T13:21:43.668Z</time>
+      </trkpt>
+      <trkpt lat="53.460831" lon="9.976966">
+        <ele>4.034800</ele>
+        <time>2021-04-17T13:21:44.002Z</time>
+      </trkpt>
+      <trkpt lat="53.460787" lon="9.976885">
+        <ele>3.941000</ele>
+        <time>2021-04-17T13:21:44.336Z</time>
+      </trkpt>
+      <trkpt lat="53.460747" lon="9.976805">
+        <ele>3.905200</ele>
+        <time>2021-04-17T13:21:44.669Z</time>
+      </trkpt>
+      <trkpt lat="53.460705" lon="9.976724">
+        <ele>3.654100</ele>
+        <time>2021-04-17T13:21:45.003Z</time>
+      </trkpt>
+      <trkpt lat="53.460665" lon="9.976645">
+        <ele>3.601100</ele>
+        <time>2021-04-17T13:21:45.337Z</time>
+      </trkpt>
+      <trkpt lat="53.460629" lon="9.976576">
+        <ele>3.293800</ele>
+        <time>2021-04-17T13:21:45.670Z</time>
+      </trkpt>
+      <trkpt lat="53.460603" lon="9.976529">
+        <ele>2.983000</ele>
+        <time>2021-04-17T13:21:46.004Z</time>
+      </trkpt>
+      <trkpt lat="53.460584" lon="9.976514">
+        <ele>2.666600</ele>
+        <time>2021-04-17T13:21:46.338Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

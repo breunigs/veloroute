@@ -38,24 +38,4 @@ defmodule Settings do
   def video_dir_abs, do: Path.join(File.cwd!(), "data/videos")
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
-
-  # TODO: check if we can automatically detect this with OTP 23+
-  def route_list,
-    do: [
-      Data.Route.Route1,
-      Data.Route.Route2,
-      Data.Route.Route3,
-      Data.Route.Route4,
-      Data.Route.Route5,
-      Data.Route.Route6,
-      Data.Route.Route7,
-      Data.Route.Route8,
-      Data.Route.Route9,
-      Data.Route.Route10,
-      Data.Route.Route11,
-      Data.Route.Route12,
-      Data.Route.Route13,
-      Data.Route.Route14,
-      Data.Route.Articles
-    ]
 end

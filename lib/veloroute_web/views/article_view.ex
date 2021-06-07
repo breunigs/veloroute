@@ -1,9 +1,9 @@
 defmodule VelorouteWeb.ArticleView do
   use VelorouteWeb, :view
-  alias Data.Article
+  alias Article
   alias VelorouteWeb.VariousHelpers
-  alias Data.Map.Relation
-  import Mapillary, only: [is_ref: 1]
+  alias Map.Relation
+  import Mapillary.Types, only: [is_ref: 1]
 
   @dialyzer {:nowarn_function, render_template: 2}
   @recent_article_min 4
@@ -12,7 +12,7 @@ defmodule VelorouteWeb.ArticleView do
 
   def render(name, assigns) do
     art =
-      Data.ArticleCache.get()
+      Cache.Articles.get()
       |> Map.fetch!(name)
 
     art
@@ -108,7 +108,7 @@ defmodule VelorouteWeb.ArticleView do
 
   @spec maybe_prepend_image(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp maybe_prepend_image(html, %Article{start_image: img}) when is_ref(img) do
-    [{"img", [{"src", Mapillary.img_url(img, 2048)}], []}] ++ html
+    [{"img", [{"src", Mapillary.Resolver.img_url(img, 2048)}], []}] ++ html
   end
 
   defp maybe_prepend_image(html, _art), do: html
@@ -117,7 +117,7 @@ defmodule VelorouteWeb.ArticleView do
   defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
 
   defp append_related_articles(html, art) do
-    related = Article.related(Data.ArticleCache.get(), art)
+    related = Article.related(Cache.Articles.get(), art)
     dated = Article.ordered(related, :date)
     nodate = Article.filter(related, date: [nil]) |> Map.values()
 
@@ -136,7 +136,7 @@ defmodule VelorouteWeb.ArticleView do
 
   defp to_link(art) do
     url = VariousHelpers.article_path(art)
-    live_patch(Article.full_title(art), to: url) |> to_floki
+    live_patch(art.full_title, to: url) |> to_floki
   end
 
   defp to_list_time(art, :range),
@@ -173,8 +173,7 @@ defmodule VelorouteWeb.ArticleView do
   end
 
   defp geolinks([{"route", route}], content) do
-    rel = Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, route)
-
+    rel = VariousHelpers.relation_by_id(route)
     gpx = geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
 
     osm =
@@ -297,7 +296,7 @@ defmodule VelorouteWeb.ArticleView do
   def ref(attrs, children) do
     attrs_as_hash(attrs)[:name]
     |> Kernel.||(Floki.text(children))
-    |> Data.ArticleCache.find()
+    |> Cache.Articles.find()
     |> case do
       {_name, art} ->
         url = VariousHelpers.article_path(art)
@@ -334,9 +333,9 @@ defmodule VelorouteWeb.ArticleView do
       end
 
     arts =
-      Data.ArticleCache.get()
-      |> Data.Article.filter(filters)
-      |> Data.Article.ordered(Map.get(attrs, :sort))
+      Cache.Articles.get()
+      |> Article.filter(filters)
+      |> Article.ordered(Map.get(attrs, :sort))
       |> slice_articles(Map.get(attrs, :range))
       |> title_filter_cleaner(filters)
       |> article_list(list_opts)
@@ -356,7 +355,7 @@ defmodule VelorouteWeb.ArticleView do
 
     extra =
       Enum.filter(extra, fn art ->
-        Data.Article.age_in_days(art) <= @recent_article_days
+        Article.age_in_days(art) <= @recent_article_days
       end)
 
     extra ++ min

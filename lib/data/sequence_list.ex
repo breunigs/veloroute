@@ -4,7 +4,7 @@ defmodule Data.SequenceList do
   require Logger
 
   @typep seq_with_img() :: {Data.Sequence.t(), Data.Image.img_non_nil()}
-  @spec images_around_point(t(), CheapRuler.point(), max_dist: float()) :: [seq_with_img()]
+  @spec images_around_point(t(), Geo.CheapRuler.point(), max_dist: float()) :: [seq_with_img()]
   @doc ~S"""
     Returns the closest image for each of the given sequence, provided it is within the
     maximum distance. The results are ordered by distance, closest image first.

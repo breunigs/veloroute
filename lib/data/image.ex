@@ -1,10 +1,10 @@
 defmodule Data.Image do
   @type img_non_nil() :: %{
-          img: Mapillary.ref(),
+          img: Mapillary.Types.ref(),
           lat: float(),
           lon: float(),
           bearing: float(),
-          seq: Mapillary.ref(),
+          seq: Mapillary.Types.ref(),
           seq_idx: non_neg_integer()
         }
   @type img() :: img_non_nil() | nil

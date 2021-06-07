@@ -1,5 +1,5 @@
 defmodule Data.Route.Route4 do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     4 (stadtauswärts zum Ochsenzoll):
     - { seq: "GAlZxAbozyILLiAnbklXjQ", from: "fGZrNE7xyW7ddXo0C_1s5Q", to: "zLtefjNJklfMTeUrga8wWw" }

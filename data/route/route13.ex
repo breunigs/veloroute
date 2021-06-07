@@ -1,5 +1,5 @@
 defmodule Data.Route.Route13 do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     # 2019
     13 (Ringroute, im Uhrzeigersinn):

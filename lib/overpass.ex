@@ -28,9 +28,9 @@ defmodule Overpass do
       |> Map.get("elements", [])
       |> Enum.map(fn
         %{"bounds" => bounds} -> VariousHelpers.parse_bounds(bounds)
-        %{"lat" => lat, "lon" => lon} -> CheapRuler.bbox([%{lat: lat, lon: lon}])
+        %{"lat" => lat, "lon" => lon} -> Geo.CheapRuler.bbox([%{lat: lat, lon: lon}])
       end)
-      |> Enum.reduce(nil, &CheapRuler.union/2)
+      |> Enum.reduce(nil, &Geo.CheapRuler.union/2)
     rescue
       e ->
         Logger.error("Failed to find bounding box for #{query}: #{inspect(e)}")

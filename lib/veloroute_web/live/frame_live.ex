@@ -5,8 +5,8 @@ defmodule VelorouteWeb.FrameLive do
   alias VelorouteWeb.Router.Helpers, as: Routes
   import VelorouteWeb.VariousHelpers
 
-  alias Data.Article
-  import Mapillary, only: [is_ref: 1]
+  alias Article
+  import Mapillary.Types, only: [is_ref: 1]
 
   @initial_state [
     mly_previous_img: nil,
@@ -18,7 +18,7 @@ defmodule VelorouteWeb.FrameLive do
     img_prev_disabled: "",
     prev_page: nil,
     current_page: nil,
-    bounds: struct(BoundingBox, Settings.initial()),
+    bounds: struct(Geo.BoundingBox, Settings.initial()),
     bounds_ts: nil,
     slideshow: false,
     map_bounds: nil,
@@ -33,6 +33,8 @@ defmodule VelorouteWeb.FrameLive do
     lat: nil,
     bearing: nil,
     sequence: nil,
+    video: nil,
+    video_player_js: nil,
     mly_js: nil
   ]
 
@@ -90,10 +92,28 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("map-click", %{"video_forward" => video} = attr, %{assigns: _assigns} = socket)
+      when is_binary(video) and video != "" do
+    Logger.debug("map-click #{inspect(attr)}")
+    rendered_video = Cache.Videos.get(video)
+
+    Logger.debug(inspect(Cache.Videos.get(video)))
+
+    # TODO: sync pos marker with video
+
+    socket =
+      if rendered_video == nil,
+        do: nil,
+        else:
+          socket |> slideshow(false) |> load_video_player |> assign(video: rendered_video.hash)
+
+    {:noreply, socket}
+  end
+
   def handle_event("map-click", attr, %{assigns: assigns} = socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    article = Data.ArticleCache.get()[attr["article"]]
+    article = Cache.Articles.get()[attr["article"]]
 
     route =
       cond do
@@ -114,11 +134,11 @@ defmodule VelorouteWeb.FrameLive do
         zoom = zoom |> max(1) |> min(18)
         {group, desc} = route
 
-        Data.RouteList.all()
-        |> Data.RouteList.sequences_with_group(elem(route, 0))
+        Route.List.all()
+        |> Route.List.sequences_with_group(elem(route, 0))
         |> Data.SequenceList.images_around_point(
           %{lat: lat, lon: lon},
-          max_dist: 100 * CheapRuler.meters_per_pixel(zoom)
+          max_dist: 100 * Geo.CheapRuler.meters_per_pixel(zoom)
         )
         |> case do
           # none
@@ -259,18 +279,16 @@ defmodule VelorouteWeb.FrameLive do
     socket = socket |> slideshow(false) |> load_mly
 
     socket =
-      Data.RouteList.all()
-      |> Data.RouteList.filter_by_group(group)
-      |> Enum.find_value(&Data.Route.find_reverse(&1, socket.assigns.img))
+      Route.List.all()
+      |> Route.List.filter_by_group(group)
+      |> Enum.find_value(&Route.find_reverse(&1, socket.assigns.img))
       |> case do
         {_seq, img} ->
           set_img(socket, img)
 
         _ ->
           Logger.warn(
-            "Tried to find reverse for #{inspect(socket.assigns.route)} and #{
-              inspect(socket.assigns.img)
-            }, but did not find any"
+            "Tried to find reverse for #{inspect(socket.assigns.route)} and #{inspect(socket.assigns.img)}, but did not find any"
           )
 
           socket
@@ -428,7 +446,7 @@ defmodule VelorouteWeb.FrameLive do
          {lon, ""} <- Float.parse(lon),
          {zoom, ""} <- Float.parse(zoom) do
       socket
-      |> assign(bounds: CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
+      |> assign(bounds: Geo.CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
       |> set_bounds_ts
     else
       _ -> socket
@@ -462,14 +480,15 @@ defmodule VelorouteWeb.FrameLive do
     )
 
     seq_str =
-      Data.RouteList.all()
-      |> Data.RouteList.sequence_with_name(socket.assigns.route)
+      Route.List.all()
+      |> Route.List.sequence_with_name(socket.assigns.route)
       |> Data.Sequence.mapillary_sequence_from(socket.assigns.img)
       |> sequences_to_scalar
 
     socket
     |> assign(sequence: seq_str)
     |> assign(slideshow: true)
+    |> assign(video: nil)
     |> assign(autoplayed_once: true)
     |> load_mly
   end
@@ -498,8 +517,8 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("slideshow: replacing default image (current sequence: #{inspect(seq_name)})")
 
     img =
-      Data.RouteList.all()
-      |> Data.RouteList.sequence_with_name(seq_name)
+      Route.List.all()
+      |> Route.List.sequence_with_name(seq_name)
       |> Data.Sequence.images()
       |> List.first()
 
@@ -537,8 +556,8 @@ defmodule VelorouteWeb.FrameLive do
 
   defp maybe_update_initial_route(socket, tag) when is_binary(tag) do
     sequence =
-      Data.RouteList.all()
-      |> Data.RouteList.sequences_with_group(tag)
+      Route.List.all()
+      |> Route.List.sequences_with_group(tag)
       |> List.first()
 
     route = if sequence, do: {sequence.group, sequence.description}
@@ -548,6 +567,14 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket, route: route || socket.assigns.route)
   end
+
+  defp load_video_player(%{assigns: %{video_player_js: nil}} = socket) do
+    Logger.debug("loading video player")
+    path = Routes.static_path(VelorouteWeb.Endpoint, "/js/video_player.js")
+    assign(socket, video_player_js: path)
+  end
+
+  defp load_video_player(socket), do: socket
 
   defp load_mly(%{assigns: %{mly_js: nil}} = socket) do
     Logger.debug("loading mly")
@@ -595,7 +622,8 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket,
       img: img,
-      img_load_start: Time.utc_now()
+      img_load_start: Time.utc_now(),
+      video: nil
     )
     |> update_img_navigate_buttons()
   end
@@ -603,8 +631,8 @@ defmodule VelorouteWeb.FrameLive do
   defp find_img_details(nil, _group, _desc), do: nil
 
   defp find_img_details(img, group, desc) do
-    Data.RouteList.all()
-    |> Data.RouteList.sequences_with_img(img)
+    Route.List.all()
+    |> Route.List.sequences_with_img(img)
     |> Data.Sequence.sort_by_relatedness(group, desc)
     |> Enum.find_value(&Data.Sequence.find_surrounding(&1, img))
   end
@@ -628,11 +656,11 @@ defmodule VelorouteWeb.FrameLive do
   defp find_article(nil), do: find_article(Settings.default_page())
 
   defp find_article(name) when is_binary(name) do
-    Data.ArticleCache.get()[name]
+    Cache.Articles.get()[name]
   end
 
   defp find_article(%{assigns: %{current_page: name}}) do
-    Data.ArticleCache.get()[name]
+    Cache.Articles.get()[name]
   end
 
   defp article_path(socket, %Article{start_image: img} = art, nil) do

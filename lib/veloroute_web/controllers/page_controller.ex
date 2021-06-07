@@ -13,7 +13,7 @@ defmodule VelorouteWeb.PageController do
     name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
 
     article =
-      Data.ArticleCache.get_dated()
+      Cache.Articles.get_dated()
       |> Map.keys()
       |> Enum.find(&String.ends_with?(&1, name))
 

@@ -14,18 +14,16 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
   @shortdoc "Finds videos from the map and renders them"
   def run(_) do
-    VideoDir.must_exist!(&real_run/0)
+    Video.Dir.must_exist!(&real_run/0)
   end
 
   defp real_run do
-    # TODO: stale cache after edit map?
-
-    Data.MapCache.full_map()
-    |> TrimmedSourceVideoSequence.list_from_map()
-    |> Enum.reject(&TrimmedSourceVideoSequence.already_rendered?(&1))
+    Cache.Map.full_map()
+    |> Video.TrimmedSourceSequence.list_from_map()
+    |> Enum.reject(&Video.TrimmedSourceSequence.already_rendered?(&1))
     |> Enum.each(fn tsv_seq ->
-      preview = tsv_seq |> TrimmedSourceVideoSequence.preview() |> Enum.join(" ")
-      render = tsv_seq |> TrimmedSourceVideoSequence.render() |> Enum.join(" ")
+      preview = tsv_seq |> Video.TrimmedSourceSequence.preview() |> Enum.join(" ")
+      render = tsv_seq |> Video.TrimmedSourceSequence.render() |> Enum.join(" ")
 
       IO.puts("\nneed to convert #{tsv_seq.hash}:\n    #{preview}\n    #{render}")
     end)
@@ -38,7 +36,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   @shortdoc "Indexes videos and their anonymization status"
   def run(_) do
-    VideoDir.must_exist!(&real_run/0)
+    Video.Dir.must_exist!(&real_run/0)
   end
 
   defp real_run() do
@@ -48,22 +46,26 @@ defmodule Mix.Tasks.Velo.Videos.Index do
       Settings.video_source_dir_abs()
       |> tree()
       |> group()
-      |> Enum.reduce({"", ""}, fn video, {anon, pending} ->
+      |> Enum.reduce({[], []}, fn video, {anon, pending} ->
         case video do
-          %{available_gpx: false} ->
+          %{available_gpx: false, path_source: source} ->
+            IO.puts("skipping #{source} as it doesn't have a GPX file")
             {anon, pending}
 
           %{available_anonymized: true} ->
-            {anon <> "\n\n" <> named_track_segments(video), pending}
+            {[named_track_segments_task(video) | anon], pending}
 
           %{available_anonymized: false} ->
-            {anon, pending <> "\n\n" <> named_track_segments(video)}
+            {anon, [named_track_segments_task(video) | pending]}
         end
       end)
 
-    :ok = File.write(out_anonymized(), wrap(anon))
+    anon = anon |> join_tasks() |> wrap()
+    pending = pending |> join_tasks() |> wrap()
+
+    :ok = File.write(out_anonymized(), anon)
     IO.puts("Wrote #{out_anonymized()}")
-    :ok = File.write(out_pending(), wrap(pending))
+    :ok = File.write(out_pending(), pending)
     IO.puts("Wrote #{out_pending()}")
   end
 
@@ -79,18 +81,26 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     |> String.trim()
   end
 
-  defp named_track_segments(%{path_gpx: path}) do
-    name = Path.relative_to(path, Settings.video_source_dir_abs())
-    {:ok, content} = File.read(path)
+  defp join_tasks(list) do
+    list |> Enum.map(&Task.await(&1, :infinity)) |> Enum.join("\n\n")
+  end
+
+  defp named_track_segments_task(x) do
+    Task.async(fn -> named_track_segments(x) end)
+  end
+
+  defp named_track_segments(%{path_gpx: rel_path}) do
+    abs_path = Path.join(Settings.video_source_dir_abs(), rel_path)
+    {:ok, content} = File.read(abs_path)
 
     Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
-    |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)
+    |> Enum.map(fn seg -> "<trk><name>" <> rel_path <> "</name>" <> hd(seg) <> "</trk>" end)
     |> Enum.join("\n")
   end
 
   defp group(files) do
     files
-    |> Enum.map(fn file -> SourceVideo.new_from_path(file, files) end)
+    |> Enum.map(fn file -> Video.Source.new_from_path(file, files) end)
     |> Enum.reject(fn
       {:error, _reason} -> true
       _video -> false

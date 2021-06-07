@@ -155,13 +155,13 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   # TODO: rather slow, how to parallelize?
-  for {art_name, art} <- Data.ArticleCache.get() do
+  for {art_name, art} <- Cache.Articles.get() do
     @art_name art_name
     @art art
     @tag timeout: :infinity
     test "article #{@art_name} can be rendered", %{conn: conn} do
       if String.contains?(@art_name, "kreuzung-am-alten-posthaus") do
-        path = VelorouteWeb.VariousHelpers.article_path(%Data.Article{name: @art_name})
+        path = VelorouteWeb.VariousHelpers.article_path(%Article{name: @art_name})
 
         {:ok, _view, html} = conn |> get(path) |> live()
         if path =~ "/article/", do: assert(html =~ @art.title)

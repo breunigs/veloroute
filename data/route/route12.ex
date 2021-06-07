@@ -1,4 +1,4 @@
 defmodule Data.Route.Route12 do
-  use Data.Route,
+  use Route.Parser,
     id: "12"
 end

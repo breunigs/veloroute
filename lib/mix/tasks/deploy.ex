@@ -3,50 +3,61 @@ defmodule Mix.Tasks.Deploy do
   @cwd File.cwd!()
 
   @shortdoc "Builds the site using docker, then uploads it"
-  def run(["skip-build"]) do
-    deploy_tar_gz()
+  def run(skip) do
+    skip = parse_cli_args(skip)
+    build_tar_gz(skip)
+    deploy_tar_gz(skip)
   end
 
-  def run([]) do
-    build_tar_gz()
-    deploy_tar_gz()
+  defp parse_cli_args(skip) when is_list(skip) do
+    Enum.into(skip, %{}, fn s ->
+      try do
+        {String.to_existing_atom(s), true}
+      rescue
+        ArgumentError ->
+          raise "Unknown build argument #{s}"
+      end
+    end)
   end
 
-  defp build_tar_gz() do
-    make_build_env()
-    test()
-    make_release()
+  defp build_tar_gz(%{skip_build: true}), do: nil
+
+  defp build_tar_gz(skip) do
+    make_build_env(skip)
+    test(skip)
+    make_release(skip)
   end
 
-  defp deploy_tar_gz() do
-    make_release_image()
-    ensure_container_runs()
+  @confirm_msg "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
+  defp deploy_tar_gz(skip) do
+    make_release_image(skip)
+    ensure_container_runs(skip)
 
     IO.puts("Image: #{Docker.image_name_release()}")
     upload()
 
-    if Cli.confirm(
-         "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
-       ) do
+    if !skip[:skip_deploy] && Cli.confirm(@confirm_msg) do
       rename_on_remote()
-      update_mapbox()
+      update_mapbox(skip)
       restart()
     end
   end
 
-  defp make_build_env() do
+  defp make_build_env(_skip) do
     Util.banner("Creating Build Environment")
     Docker.build_devel_image()
   end
 
-  defp test() do
+  defp test(%{skip_test: true}), do: nil
+
+  defp test(_skip) do
     Util.banner("Unit tests")
     Docker.mix("test --color")
     Util.banner("Dialyzer")
     Docker.mix("dialyzer")
   end
 
-  defp make_release() do
+  defp make_release(_skip) do
     [
       ["mix", "deps.get"],
       ["mix", "deps.compile"],
@@ -57,6 +68,7 @@ defmodule Mix.Tasks.Deploy do
       ["mix", "compile"],
       ["mix", "warm_caches"],
       ["mix", "update_gpx"],
+      ["rm", "priv/static/videos-rendered"],
       ["mix", "release", "--overwrite", "--quiet"]
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
@@ -67,12 +79,12 @@ defmodule Mix.Tasks.Deploy do
     |> Enum.to_list()
   end
 
-  defp make_release_image() do
+  defp make_release_image(_skip) do
     Util.banner("Building Release Image")
     Docker.build_release_image()
   end
 
-  defp ensure_container_runs() do
+  defp ensure_container_runs(_skip) do
     Util.banner("Testing the image can boot")
     Docker.stop_release()
 
@@ -131,7 +143,9 @@ defmodule Mix.Tasks.Deploy do
     ])
   end
 
-  defp update_mapbox() do
+  defp update_mapbox(%{skip_mapbox: true}), do: nil
+
+  defp update_mapbox(_skip) do
     Util.banner("Updating Mapbox")
     # TODO: need to make tippecanoe available in container
     # Docker.mix("update_mapbox")
@@ -141,16 +155,17 @@ defmodule Mix.Tasks.Deploy do
   defp restart() do
     Util.banner("Restarting")
 
-    System.cmd(
-      "ssh",
-      [
-        Settings.deploy_ssh_name(),
-        "sudo",
-        "/bin/systemctl",
-        "restart",
-        "veloroute2.service"
-      ],
-      into: IO.stream(:stdio, :line)
-    )
+    {_, 0} =
+      System.cmd(
+        "ssh",
+        [
+          Settings.deploy_ssh_name(),
+          "sudo",
+          "/bin/systemctl",
+          "restart",
+          "veloroute2.service"
+        ],
+        into: IO.stream(:stdio, :line)
+      )
   end
 end

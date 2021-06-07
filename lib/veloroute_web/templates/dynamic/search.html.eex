@@ -14,7 +14,7 @@
 
 <%
 map = Mapbox.search(@search_query, @search_bounds)
-art = Data.ArticleSearch.search(@search_query)
+art = VelorouteWeb.VariousHelpers.article_search(@search_query)
 
 results = SearchResult.sort_merge(map, art) |> Enum.take(15)
 %>

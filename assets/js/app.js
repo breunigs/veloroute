@@ -19,8 +19,12 @@ function updateState() {
   // console.log(state);
 
   if (state.mlyJs && loadMly) loadMly();
+  if (state.videoPlayerJs && loadVideoPlayer) loadVideoPlayer();
   if (typeof window.mlyStateChanged === "function") {
     window.mlyStateChanged();
+  }
+  if (typeof window.videoStateChanged === "function") {
+    window.videoStateChanged();
   }
   if (typeof window.mapStateChanged === "function") {
     window.mapStateChanged();
@@ -59,6 +63,14 @@ let loadMly = function () {
   script.src = state.mlyJs;
   document.getElementsByTagName('head')[0].appendChild(script);
   loadMly = null;
+}
+let loadVideoPlayer = function () {
+  console.log("loading video player");
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = state.videoPlayerJs;
+  document.getElementsByTagName('head')[0].appendChild(script);
+  loadVideoPlayer = null;
 }
 
 window.mlyStateChanged = function () {

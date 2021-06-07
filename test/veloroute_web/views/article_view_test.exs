@@ -5,13 +5,13 @@ defmodule VelorouteWeb.ArticleViewTest do
 
   @tag timeout: :infinity
   test "all articles can be rendered" do
-    Data.ArticleCache.get()
+    Cache.Articles.get()
     |> Map.keys()
     |> Enum.each(&ArticleView.render(&1, search_query: nil, search_bounds: nil))
   end
 
   test "only valid routes are referenced" do
-    Data.ArticleCache.get()
+    Cache.Articles.get()
     |> Map.values()
     |> Enum.each(fn art ->
       art

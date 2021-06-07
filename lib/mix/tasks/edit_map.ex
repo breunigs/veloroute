@@ -5,7 +5,6 @@ defmodule Mix.Tasks.EditMap do
   @josm_home File.cwd!() <> "/data/josmhome/"
   @josm_default_prefs File.cwd!() <> "/data/josm_default_prefs.xml"
   @session_path File.cwd!() <> "/data/cache/map_session.jos"
-  @map_path File.cwd!() <> "/data/map.osm"
   @style_debug_path File.cwd!() <> "/data/style_debug.osm"
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
@@ -46,7 +45,7 @@ defmodule Mix.Tasks.EditMap do
           </projection>
           <layers active="1">
               <layer index="1" name="Map" type="osm-data" version="0.1" visible="true">
-                  <file>file:#{@map_path}</file>
+                  <file>file:#{Map.Parser.default_map_path()}</file>
               </layer>
               <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="true">
                   <file>file:#{Mix.Tasks.UpdateImages.imgpath()}</file>

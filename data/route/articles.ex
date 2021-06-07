@@ -1,5 +1,5 @@
 defmodule Data.Route.Articles do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     articles 2021-05-22-am-luisenhof:
     - { seq: "PQ1w-NCPYuBCQ-YeUQSfAA", from: "F9fFIJNgZpEYa9sUuGpC2Q", to: "ms92YIBOrVXGb3Ke3HVNSA" }

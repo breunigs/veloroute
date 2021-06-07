@@ -19,6 +19,7 @@ module.exports = (env, options) => ({
     'liveview.js': ['./js/liveview.js'],
     'mly.js': ['./js/mly.js'],
     'map.js': ['./js/map.js'],
+    'video_player.js': ['./js/video_player.js'],
   },
   output: {
     filename: '[name]',

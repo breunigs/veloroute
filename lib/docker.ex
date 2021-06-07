@@ -107,7 +107,8 @@ defmodule Docker do
   def stop_release() do
     try do
       Util.cmd(["docker", "stop", container_name_release()])
-    rescue _ ->
+    rescue
+      _ -> nil
     end
   end
 end

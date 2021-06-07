@@ -49,7 +49,7 @@ config :veloroute, VelorouteWeb.Endpoint,
 config :veloroute, VelorouteWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!videos-rendered).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/veloroute_web/(live|views)/.*(ex)$",
       ~r"lib/veloroute_web/templates/.*(eex)$",
@@ -66,3 +66,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :ex_aws, json_codec: Jason

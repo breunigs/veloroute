@@ -1,5 +1,5 @@
 defmodule Data.Route.Route11 do
-  use Data.Route,
+  use Route.Parser,
     yaml: """
     # 2020
     11 (stadtauswärts nach Eissendorf):

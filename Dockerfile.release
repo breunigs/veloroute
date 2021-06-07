@@ -1,8 +1,8 @@
 FROM alpine:3.13 as builder
 RUN apk add --no-cache tar gzip
 RUN mkdir /build
-COPY ./_build/prod/prod-2.0.0.tar.gz /
-RUN tar -zxf /prod-2.0.0.tar.gz -C /build/
+COPY ./_build/prod/prod-*.tar.gz /
+RUN tar -zxf /prod-*.tar.gz -C /build/
 
 FROM alpine:3.13 as runtime
 RUN apk add --no-cache ncurses-libs libstdc++ libgcc

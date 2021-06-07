@@ -21,7 +21,16 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
-  def article_path(%Data.Article{name: name}) do
+  @spec article_search(binary | nil) :: [SearchResult.t()]
+  def article_search(query) do
+    Cache.Articles.get()
+    |> Enum.into(%{}, fn {key, art} ->
+      {key, Map.put(art, :url, article_path(art))}
+    end)
+    |> Article.Search.search(query)
+  end
+
+  def article_path(%Article{name: name}) do
     case String.split(name, "/") do
       ["0000-00-00-" <> name] ->
         Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
@@ -71,7 +80,7 @@ defmodule VelorouteWeb.VariousHelpers do
     "#{day}. #{Enum.at(@long_month_names, month - 1)} #{year}"
   end
 
-  def route_icon(%Data.Map.Relation{id: id, tags: tags}) do
+  def route_icon(%Map.Relation{id: id, tags: tags}) do
     route_icon(id, Map.get(tags, :color))
   end
 
@@ -90,7 +99,7 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def relation_by_id(id) do
-    Data.MapCache.relations() |> Data.Map.find_relation_by_tag(:id, id)
+    Cache.Map.relations() |> Map.Element.find_by_tag(:id, id)
   end
 
   def parse_bounds(%{
@@ -99,7 +108,7 @@ defmodule VelorouteWeb.VariousHelpers do
         "minlat" => minLat,
         "minlon" => minLon
       }) do
-    %BoundingBox{
+    %Geo.BoundingBox{
       minLon: minLon,
       minLat: minLat,
       maxLon: maxLon,
@@ -108,15 +117,15 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def parse_bounds(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do
-    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   def parse_bounds([[minLon, minLat], [maxLon, maxLat]]) do
-    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   def parse_bounds([minLon, minLat, maxLon, maxLat]) do
-    %BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   def parse_bounds(bounds) when is_binary(bounds) do
@@ -125,7 +134,7 @@ defmodule VelorouteWeb.VariousHelpers do
          {minLat, ""} <- Float.parse(minLat),
          {maxLon, ""} <- Float.parse(maxLon),
          {maxLat, ""} <- Float.parse(maxLat) do
-      %BoundingBox{
+      %Geo.BoundingBox{
         minLon: minLon,
         minLat: minLat,
         maxLon: maxLon,

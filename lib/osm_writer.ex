@@ -1,5 +1,5 @@
 defmodule OSMWriter do
-  import Mapillary, only: [is_ref: 1]
+  import Mapillary.Types, only: [is_ref: 1]
 
   @spec as_osm(list(Data.Sequence.t())) :: binary()
   def as_osm(sequences) do

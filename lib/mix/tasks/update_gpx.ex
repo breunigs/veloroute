@@ -7,7 +7,7 @@ defmodule Mix.Tasks.UpdateGpx do
   def run(_) do
     Mix.Task.run("app.start")
 
-    Data.MapCache.relations()
+    Cache.Map.relations()
     |> Map.values()
     |> Enum.map(fn rel ->
       basename = rel.tags[:gpx_name] || rel.tags[:id]

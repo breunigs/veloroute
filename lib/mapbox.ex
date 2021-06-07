@@ -23,7 +23,7 @@ defmodule Mapbox do
 
   @spec static_map_url(map()) :: binary()
   def static_map_url(bounds) do
-    polyline = CheapRuler.bounds_to_polyline(bounds)
+    polyline = Geo.CheapRuler.bounds_to_polyline(bounds)
 
     "#{@base}/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/path-0(#{polyline})/auto/150x100?access_token=#{secret_token()}"
   end
@@ -41,7 +41,7 @@ defmodule Mapbox do
   def search(query, bounds) do
     bounds = VariousHelpers.parse_bounds(bounds)
 
-    center = CheapRuler.center(bounds)
+    center = Geo.CheapRuler.center(bounds)
     query = URI.encode(query)
 
     {:ok, response} =
@@ -88,7 +88,7 @@ defmodule Mapbox do
         _ -> 16
       end
 
-    CheapRuler.center_zoom_to_bounds(%{
+    Geo.CheapRuler.center_zoom_to_bounds(%{
       lon: lon,
       lat: lat,
       zoom: zoom

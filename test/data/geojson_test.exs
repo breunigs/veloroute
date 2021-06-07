@@ -1,0 +1,85 @@
+defmodule Data.GeoJSONTest do
+  use ExUnit.Case, async: true
+
+  @example_map %Map.Parsed{
+    nodes: %{},
+    relations: %{
+      "1" => %Map.Relation{
+        id: "1",
+        tags: %{
+          id: "1",
+          color: "#7d8b2f",
+          gpx_backward: "Richtung Innenstadt",
+          gpx_forward: "Richtung Rissen",
+          gpx_name: "1",
+          name: "Alltagsroute 1",
+          osm_relation_ref: "https://www.openstreetmap.org/relation/194843"
+        },
+        members: [
+          %{ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
+          %{ref: %Map.Way{nodes: [], id: "5", tags: %{color: "#000000"}}}
+        ]
+      }
+    },
+    ways: %{
+      "1" => %Map.Way{
+        nodes: [],
+        tags: %{name: "art1", type: "article"}
+      },
+      "2" => %Map.Way{
+        nodes: [],
+        tags: %{name: "art2", type: "article"}
+      }
+    }
+  }
+
+  @example_articles [
+    %Article{name: "art1", type: "issue", title: "hi!"},
+    %Article{name: "art2", type: "issue", title: "hi!", icon: "icon"}
+  ]
+
+  # TODO: ensure the hash gets set on a video?
+
+  test "sets appropriate tags on route-ways" do
+    assert %{
+             routes: %{
+               features: [
+                 [
+                   %{properties: %{color: "#7d8b2f", route_id: "1"}},
+                   %{properties: %{color: "#000000", route_id: "1"}}
+                 ]
+               ]
+             }
+           } = enrich(@example_articles)
+  end
+
+  test "article uses type as fallback" do
+    assert %{
+             articles: %{
+               features: [
+                 %{properties: %{name: "art1", icon: "issue"}},
+                 %{properties: %{name: "art2", icon: "icon"}}
+               ]
+             }
+           } = enrich(@example_articles)
+  end
+
+  test "article gets correct title" do
+    assert %{
+             articles: %{
+               features: [
+                 %{properties: %{name: "art1", title: "hi!"}},
+                 %{properties: %{name: "art2", title: "hi!"}}
+               ]
+             }
+           } = enrich(@example_articles)
+  end
+
+  defp enrich(articles) do
+    articles = Enum.into(articles, %{}, fn art -> {art.name, art} end)
+
+    @example_map
+    |> Map.Enrich.with_articles(articles)
+    |> Data.GeoJSON.to_feature_lists()
+  end
+end

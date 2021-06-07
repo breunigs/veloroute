@@ -8,7 +8,7 @@ defmodule Mix.Tasks.WarmCaches do
 
     articles =
       Task.async(fn ->
-        Data.ArticleCache.get()
+        Cache.Articles.get()
         |> Map.keys()
         |> Enum.each(&VelorouteWeb.ArticleView.render(&1, FrameLive.initial_state()))
       end)

@@ -3,15 +3,15 @@ defmodule TrackFinder do
   TrackFinder takes a raw relation and tries to find shortest path trips (called a
   track) within that relation.
   """
-  alias Data.Map.Node
-  alias Data.Map.Way
+  alias Map.Node
+  alias Map.Way
 
   @doc """
-  ordered takes a Data.Map.Relation and finds the shortest connections between
+  ordered takes a Map.Relation and finds the shortest connections between
   start and end, along the ways and their oneway/role restrictions from the
   relation. It returns a list of TrackFinder.Track.
   """
-  def ordered(r = %Data.Map.Relation{}) do
+  def ordered(r = %Map.Relation{}) do
     ways = normalize_ways(r)
     first_node_index = Enum.group_by(ways, fn w -> hd(w.nodes) end)
 
@@ -103,8 +103,9 @@ defmodule TrackFinder do
         bw_target = hd(s_as_start.nodes).tags[:target]
 
         # TODO: once everything is migrated to map.osm, this should not need to be checked anymore
-        fw_text = if bw_target, do: r.tags[:"#{bw_target}→#{fw_target}"], else: fw_text
-        bw_text = if bw_target, do: r.tags[:"#{fw_target}→#{bw_target}"], else: bw_text
+        is_modern = fw_target && bw_target
+        fw_text = if is_modern, do: r.tags[:"#{bw_target}→#{fw_target}"], else: fw_text
+        bw_text = if is_modern, do: r.tags[:"#{fw_target}→#{bw_target}"], else: bw_text
 
         fw_text = fw_text || "von #{bw_target} nach #{fw_target}"
         bw_text = bw_text || "von #{fw_target} nach #{bw_target}"

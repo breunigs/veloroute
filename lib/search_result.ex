@@ -3,7 +3,7 @@ defmodule SearchResult do
 
   @type t() :: %SearchResult{
           name: binary(),
-          bounds: %BoundingBox{},
+          bounds: %Geo.BoundingBox{},
           relevance: float(),
           type: binary(),
           url: binary() | nil,
@@ -20,7 +20,6 @@ defmodule SearchResult do
   end
 
   defp order(%__MODULE__{type: a, relevance: x}, %__MODULE__{type: b, relevance: x}) do
-    # IO.warn("TYPE COMPARE")
     type_to_num(a) >= type_to_num(b)
   end
 

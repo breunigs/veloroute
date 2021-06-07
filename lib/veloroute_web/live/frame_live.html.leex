@@ -1,6 +1,6 @@
 <%= if !@mly_loaded do %>
   <div phx-update="ignore" id="mlyPlaceholderOuter">
-    <a href="#" phx-click="sld-playpause" phx-page-loading id="mlyPlaceholder" style="background-image:url('<%= Mapillary.img_url(@img) %>')">
+    <a href="#" phx-click="sld-playpause" phx-page-loading id="mlyPlaceholder" style="background-image:url('<%= Mapillary.Resolver.img_url(@img) %>')">
       <div class="playIcon"></div>
     </a>
   </div>
@@ -8,10 +8,15 @@
   <link href='https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css' rel='stylesheet' />
 <% end %>
 
+<%= if @video_player_js do %>
+  <div phx-update="ignore" id="videoOuter">
+  </div>
+<% end %>
+
 <div id="sidebar">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-  <div id="content" <%= if @mly_js, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
+  <div id="content" <%= if @mly_js || @video_player_js, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
     <%= if Map.get(@flash, "info") do %>
       <p class="alert">
         <%= case Map.get(@flash, "info") do
@@ -50,6 +55,8 @@
   data-bearing="<%= @bearing %>"
   data-sequence="<%= @sequence %>"
   data-mly-js="<%= @mly_js %>"
+  data-video="<%= @video %>"
+  data-video-player-js="<%= @video_player_js %>"
   data-bounds="<%= @bounds %>"
   data-bounds-ts="<%= @bounds_ts %>"
 ></div>

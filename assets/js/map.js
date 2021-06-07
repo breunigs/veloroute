@@ -157,12 +157,17 @@ const handleMapClick = (evt) => {
 
   let route = null;
   let article = null;
+  let video_forward = null;
+  let video_backward = null;
   items.forEach(r => {
     if (r.properties.route_id && routeLayers.includes(r.layer.id)) {
       route = r.properties.route_id;
     } else if (r.properties.name && (routeLayers + articleLayers).includes(r.layer.id)) {
       article = r.properties.name;
     }
+    console.debug(r.properties)
+    video_forward = video_forward || r.properties.video_forward;
+    video_backward = video_backward || r.properties.video_backward;
   });
 
   if (route === null && article === null) return;
@@ -170,6 +175,8 @@ const handleMapClick = (evt) => {
   window.pushEvent("map-click", {
     route: route,
     article: article,
+    video_forward: video_forward,
+    video_backward: video_backward,
     lon: evt.lngLat.lng,
     lat: evt.lngLat.lat,
     zoom: map.getZoom()

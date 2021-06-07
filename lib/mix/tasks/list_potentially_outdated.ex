@@ -7,7 +7,7 @@ defmodule Mix.Tasks.ListPotentiallyOutdated do
 
     today = Date.utc_today() |> Date.to_string() |> Data.RoughDate.parse()
 
-    Data.ArticleCache.get()
+    Cache.Articles.get()
     |> Map.values()
     |> Enum.each(fn art ->
       start_after_today = Data.RoughDate.compare(art.start, today)
