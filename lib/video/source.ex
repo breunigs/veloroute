@@ -72,7 +72,7 @@ defmodule Video.Source do
   start of the track.
   """
   @spec time_range(t(), Geo.CheapRuler.point(), Geo.CheapRuler.point()) ::
-          [%{:lat => float(), :lon => float(), time_offset_ms: integer()}] | {:error, binary()}
+          [Video.TimedPoint.t()] | {:error, binary()}
   def time_range(%__MODULE__{path_source: source, available_gpx: false}, _from, _to) do
     {:error,
      "#{source} has no GPX file available to extract time range from, try `gopro2gpx #{make_abs(source)}`?"}
@@ -89,7 +89,7 @@ defmodule Video.Source do
 
     ([from] ++ coords ++ [to])
     |> Enum.map(fn point ->
-      %{
+      %Video.TimedPoint{
         time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
         lat: point.lat,
         lon: point.lon

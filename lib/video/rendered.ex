@@ -8,7 +8,11 @@ defmodule Video.Rendered do
   @enforce_keys @known_params
   defstruct @known_params
 
-  @type t :: %__MODULE__{}
+  @type t :: %__MODULE__{
+          hash: binary(),
+          coords: [Video.TimedPoint.t()],
+          length_ms: integer()
+        }
 
   def all_from_map(%Map.Parsed{} = map) do
     map
@@ -27,5 +31,21 @@ defmodule Video.Rendered do
       coords: coords,
       length_ms: length_ms
     }
+  end
+
+  @spec start_time_ms_from(t(), Geo.Point.like() | nil) :: float()
+  @doc """
+  Find a timestamp for the video that roughly corresponds to the given point.
+  If the point is not valid, it returns the start of the video.
+  """
+  def start_time_ms_from(rendered_video, point)
+  def start_time_ms_from(%__MODULE__{}, nil), do: 0.0
+
+  def start_time_ms_from(%__MODULE__{coords: coords}, point) do
+    %{index: idx} = Geo.CheapRuler.closest_point_on_line(coords, point)
+
+    coords
+    |> Enum.at(idx)
+    |> Map.get(:time_offset_ms)
   end
 end

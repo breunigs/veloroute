@@ -1,5 +1,5 @@
 defmodule Map.Parser do
-  @default_map_path __DIR__ <> "/../../data/map.osm"
+  @default_map_path File.cwd!() |> Path.join("data/map.osm")
 
   def default_map_path, do: @default_map_path
 

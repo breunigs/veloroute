@@ -40,17 +40,17 @@ defmodule Video.TrimmedSourceSequenceTest do
     coords = example_tsv() |> Video.TrimmedSourceSequence.coords()
 
     assert coords == [
-             %{lat: 53.460992, lon: 9.977524, time_offset_ms: 0},
-             %{lat: 53.460977, lon: 9.977508, time_offset_ms: 334},
-             %{lat: 53.460951, lon: 9.977476, time_offset_ms: 667},
-             %{lat: 53.460951, lon: 9.977433, time_offset_ms: 1001},
-             %{lat: 53.46095, lon: 9.977412, time_offset_ms: 1334},
-             %{lat: 53.460917, lon: 9.977349, time_offset_ms: 1334},
-             %{lat: 53.460921, lon: 9.977315, time_offset_ms: 1668},
-             %{lat: 53.46093, lon: 9.977242, time_offset_ms: 2001},
-             %{lat: 53.460937, lon: 9.977158, time_offset_ms: 2335},
-             %{lat: 53.460918, lon: 9.977086, time_offset_ms: 2669},
-             %{lat: 53.460875, lon: 9.977034, time_offset_ms: 3002}
+             %Video.TimedPoint{lat: 53.460992, lon: 9.977524, time_offset_ms: 0},
+             %Video.TimedPoint{lat: 53.460977, lon: 9.977508, time_offset_ms: 334},
+             %Video.TimedPoint{lat: 53.460951, lon: 9.977476, time_offset_ms: 667},
+             %Video.TimedPoint{lat: 53.460951, lon: 9.977433, time_offset_ms: 1001},
+             %Video.TimedPoint{lat: 53.46095, lon: 9.977412, time_offset_ms: 1334},
+             %Video.TimedPoint{lat: 53.460917, lon: 9.977349, time_offset_ms: 1334},
+             %Video.TimedPoint{lat: 53.460921, lon: 9.977315, time_offset_ms: 1668},
+             %Video.TimedPoint{lat: 53.46093, lon: 9.977242, time_offset_ms: 2001},
+             %Video.TimedPoint{lat: 53.460937, lon: 9.977158, time_offset_ms: 2335},
+             %Video.TimedPoint{lat: 53.460918, lon: 9.977086, time_offset_ms: 2669},
+             %Video.TimedPoint{lat: 53.460875, lon: 9.977034, time_offset_ms: 3002}
            ]
   end
 end

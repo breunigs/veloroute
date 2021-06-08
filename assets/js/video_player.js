@@ -1,35 +1,57 @@
 import * as Hls from 'hls.js';
 
 const wrapper = document.getElementById('videoOuter');
+let video = null;
 let prevVideo = null;
+let prevStartTimeMs = 0;
 
-function playVideo(video_hash) {
-  if (prevVideo == video_hash) {
-    console.debug("desired video is already playing, not changing")
-    return;
-  }
-  prevVideo = video_hash;
-
-  console.debug('trying to play video for: ', video_hash)
-  const stream = `/videos-rendered/${video_hash}/stream.m3u8`;
-  const fallback = `/videos-rendered/${video_hash}/fallback.mp4`;
+function updateVideoElement(videoHash) {
+  console.debug('trying to play video for: ', videoHash)
+  const stream = `/videos-rendered/${videoHash}/stream.m3u8`;
+  const fallback = `/videos-rendered/${videoHash}/fallback.mp4`;
 
   wrapper.innerHTML = `
-    <video id="videoInner" autoplay controls playsinline>
-      <source src="${stream}" type="application/x-mpegURL">
-      <source src="${fallback}" type="video/mp4">
+    <video id="videoInner" controls playsinline preload="metadata">
+      <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
+      <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
     </video>
   `;
-  const video = document.getElementById('videoInner');
+  video = document.getElementById('videoInner');
+  video.addEventListener('loadedmetadata', seekToStartTime, { once: true });
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
-    // video.src = stream;
   } else if (Hls.isSupported()) {
     console.debug('streamed hls')
     var hls = new Hls();
     hls.loadSource(stream);
     hls.attachMedia(video);
+  }
+}
+
+function seekToStartTime() {
+  if (prevStartTimeMs == state.videoStart) return;
+  seekToTime(state.videoStart);
+  prevStartTimeMs = state.videoStart;
+}
+
+function seekToTime(timeInMs) {
+  if (video === null) return;
+  const seconds = timeInMs / 1000.0;
+  if (video.currentTime == seconds) return;
+  video.currentTime = seconds;
+}
+
+function playVideo() {
+  if (prevVideo !== state.video) {
+    prevVideo = state.video;
+    updateVideoElement(state.video);
+    return;
+  }
+
+  if (prevStartTimeMs != state.videoStart) {
+    seekToStartTime();
+    video.pause();
   }
 }
 
@@ -40,7 +62,7 @@ function removeVideo() {
 
 function setVideo() {
   if (state.video) {
-    playVideo(state.video)
+    playVideo()
   } else {
     removeVideo()
   }

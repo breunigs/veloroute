@@ -43,6 +43,7 @@ defmodule Veloroute.Application do
 
     unless File.dir?(asset_path) do
       File.rm(asset_path)
+      File.mkdir_p!(Path.dirname(asset_path))
       File.ln_s!(rendered_path, asset_path)
     end
   end

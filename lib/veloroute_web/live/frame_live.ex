@@ -34,6 +34,7 @@ defmodule VelorouteWeb.FrameLive do
     bearing: nil,
     sequence: nil,
     video: nil,
+    video_start: 0,
     video_player_js: nil,
     mly_js: nil
   ]
@@ -95,17 +96,23 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-click", %{"video_forward" => video} = attr, %{assigns: _assigns} = socket)
       when is_binary(video) and video != "" do
     Logger.debug("map-click #{inspect(attr)}")
-    rendered_video = Cache.Videos.get(video)
 
-    Logger.debug(inspect(Cache.Videos.get(video)))
+    rendered_video = Cache.Videos.get(video)
 
     # TODO: sync pos marker with video
 
     socket =
-      if rendered_video == nil,
-        do: nil,
-        else:
-          socket |> slideshow(false) |> load_video_player |> assign(video: rendered_video.hash)
+      if rendered_video == nil do
+        socket
+      else
+        start_at = Video.Rendered.start_time_ms_from(rendered_video, Geo.Point.from_params(attr))
+        Logger.debug(inspect(rendered_video))
+
+        socket
+        |> slideshow(false)
+        |> load_video_player
+        |> assign(video: rendered_video.hash, video_start: start_at)
+      end
 
     {:noreply, socket}
   end

@@ -51,7 +51,7 @@ defmodule VelorouteWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     # very slow with network mounts
-    # plug Phoenix.CodeReloader
+    plug Phoenix.CodeReloader
   end
 
   plug Plug.Parsers,

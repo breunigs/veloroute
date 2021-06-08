@@ -178,7 +178,7 @@ defmodule Video.TrimmedSourceSequence do
           )
         )
 
-      prev_time_offset_ms = List.last(coords)[:time_offset_ms]
+      prev_time_offset_ms = List.last(coords).time_offset_ms
       {prev_time_offset_ms, acc ++ coords}
     end)
     |> elem(1)

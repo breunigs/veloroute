@@ -10,13 +10,7 @@ defmodule Video.TrimmedSource do
           anonymized_path_rel: binary(),
           from: binary(),
           to: binary(),
-          coords: [
-            %{
-              lat: float(),
-              lon: float(),
-              time_offset_ms: integer()
-            }
-          ]
+          coords: [Video.TimedPoint.t()]
         }
 
   @enforce_keys @known_params
