@@ -154,6 +154,7 @@ defmodule Video.TrimmedSourceSequence do
         "--no-resume-playback",
         "--speed=0.5",
         "--framedrop=no",
+        "--keep-open=yes",
         "--demuxer-max-bytes=500M",
         "-"
       ]

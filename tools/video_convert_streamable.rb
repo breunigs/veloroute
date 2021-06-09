@@ -26,16 +26,25 @@ if File.exist?(VIDEO_OUT_DIR)
   die "#{VIDEO_OUT_DIR} already exists -- refusing to overwrite"
 end
 
-HLS_TIME="4"
-GOP_SIZE="60"
+# length of a single segment in seconds. Quality usually switches between
+# segments. https://ffmpeg.org/ffmpeg-formats.html#Options-8
+HLS_TIME="2"
+# FPS of the source videos. We can't easily change this, since the GPX tracks
+# match the FPS.
+FPS = 29.97
+# GOP=group of pictures, essentially when to insert a keyframe. The script sets
+# the min/max for this to the same value, i.e. there will be a keyframe exactly
+# every GOP_SIZE. Ideally HLS_TIME * FPS = GOP_SIZE.
+# https://video.stackexchange.com/a/24684
+GOP_SIZE=(HLS_TIME.to_i * FPS).round.to_s
 
 VARIANTS = [
-  {title: "Mittel", width:  960, height:  540, bitrate:  4   },
+  {title: "Mittel",       width:  960, height:  540, bitrate:  4   },
   {title: "Sehr niedrig", width:  640, height:  360, bitrate:  0.7 },
-  {title: "Niedrig", width:  768, height:  432, bitrate:  2   },
-  {title: "Mittel", width: 1280, height:  720, bitrate:  6   },
-  {title: "Hoch", width: 1920, height: 1080, bitrate: 12   },
-  {title: "Extrem", width: 2688, height: 1512, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
+  {title: "Niedrig",      width:  768, height:  432, bitrate:  2   },
+  {title: "Mittel",       width: 1280, height:  720, bitrate:  6   },
+  {title: "Hoch",         width: 1920, height: 1080, bitrate: 12   },
+  {title: "Extrem",       width: 2688, height: 1512, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -79,7 +88,7 @@ fallback << "#{tmp_dir}/fallback.mp4"
 # hls
 hls = ffmpeg()
 VARIANTS.each.with_index do |var, idx|
-  hls << "-c:v:#{idx}" << (var[:codec] || "libx264")
+  hls << "-c:v:#{idx}" << (var[:codec] || "libx264") << "-flags" << "+cgop"
   hls << %w[-map v:0] << "-s:#{idx}" << "#{var[:width]}x#{var[:height]}"
   hls << "-metadata:s:v:#{idx}" << %|title="#{var[:title]}"|
   rate = var[:bitrate]

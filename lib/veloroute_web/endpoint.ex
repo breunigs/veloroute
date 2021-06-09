@@ -24,6 +24,8 @@ defmodule VelorouteWeb.Endpoint do
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
+  plug Video.ServePlug
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -34,16 +36,6 @@ defmodule VelorouteWeb.Endpoint do
     gzip: true,
     brotli: true,
     only: ~w(css images js geo favicons robots.txt)
-
-  plug Plug.Static,
-    at: "/",
-    from: :veloroute,
-    gzip: false,
-    brotli: false,
-    headers: %{
-      "cache-control" => "public, max-age=31536000, immutable"
-    },
-    only: ~w(videos-rendered)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

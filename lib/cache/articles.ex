@@ -14,7 +14,7 @@ defmodule Cache.Articles do
     Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
   end
 
-  @get Benchmark.measure("loading articles", fn ->
+  @get Benchmark.measure("#{__MODULE__}: loading", fn ->
          paths
          # |> Enum.map(&Task.async(fn -> load(&1) end))
          # |> Enum.map(&Task.await(&1))

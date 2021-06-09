@@ -38,4 +38,5 @@ defmodule Settings do
   def video_dir_abs, do: Path.join(File.cwd!(), "data/videos")
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
+  def video_serve_path, do: "videos-rendered"
 end

@@ -39,7 +39,7 @@ defmodule Veloroute.Application do
     end
 
     rendered_path = Path.join(Settings.video_dir_abs(), "rendered")
-    asset_path = Path.join([:code.priv_dir(:veloroute), "static", "videos-rendered"])
+    asset_path = Path.join([:code.priv_dir(:veloroute), "static", Settings.video_serve_path()])
 
     unless File.dir?(asset_path) do
       File.rm(asset_path)

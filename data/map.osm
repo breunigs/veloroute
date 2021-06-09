@@ -18375,6 +18375,8 @@
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='type' v='detour' />
     <tag k='video_forward' v='2021-04-10-freizeitroute2/GX011183' />
+    <tag k='video_forward_end' v='0:00:34.0000' />
+    <tag k='video_forward_start' v='0:00:01.0000' />
   </way>
   <way id='-112803' action='modify'>
     <nd ref='-120976' />

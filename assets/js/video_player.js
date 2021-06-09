@@ -4,6 +4,29 @@ const wrapper = document.getElementById('videoOuter');
 let video = null;
 let prevVideo = null;
 let prevStartTimeMs = 0;
+let hls = null;
+
+function attachHlsErrorHandler(hls) {
+  hls.on(Hls.Events.ERROR, function (event, data) {
+    if (data.fatal) {
+      switch (data.type) {
+        case Hls.ErrorTypes.NETWORK_ERROR:
+          console.warn('fatal network error encountered, try to recover');
+          hls.startLoad();
+          break;
+        case Hls.ErrorTypes.MEDIA_ERROR:
+          console.warn('fatal media error encountered, try to recover');
+          hls.recoverMediaError();
+          break;
+        default:
+          console.warn('failed to recover HLS', data);
+          hls.destroy();
+          break;
+      }
+    }
+  });
+}
+
 
 function updateVideoElement(videoHash) {
   console.debug('trying to play video for: ', videoHash)
@@ -19,13 +42,22 @@ function updateVideoElement(videoHash) {
   video = document.getElementById('videoInner');
   video.addEventListener('loadedmetadata', seekToStartTime, { once: true });
 
+
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
   } else if (Hls.isSupported()) {
     console.debug('streamed hls')
-    var hls = new Hls();
+    if (!hls) {
+      hls = new Hls({
+        startFragPrefetch: true,
+        enableWebVTT: false,
+        progressive: true,
+      });
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+      attachHlsErrorHandler(hls);
+    }
     hls.loadSource(stream);
-    hls.attachMedia(video);
   }
 }
 

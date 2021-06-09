@@ -2,10 +2,10 @@ defmodule Mix.Tasks.EditMap do
   use Mix.Task
   alias Mix.Tasks.Velo.Videos
 
-  @josm_home File.cwd!() <> "/data/josmhome/"
-  @josm_default_prefs File.cwd!() <> "/data/josm_default_prefs.xml"
-  @session_path File.cwd!() <> "/data/cache/map_session.jos"
-  @style_debug_path File.cwd!() <> "/data/style_debug.osm"
+  @josm_home "data/josmhome/"
+  @josm_default_prefs "data/josm_default_prefs.xml"
+  @session_path "data/cache/map_session.jos"
+  @style_debug_path "data/style_debug.osm"
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
   def run(_) do
@@ -19,10 +19,10 @@ defmodule Mix.Tasks.EditMap do
         "josm",
         [
           "--offline=osm_api,josm_website,certificates",
-          "--load-preferences=#{@josm_default_prefs}",
+          "--load-preferences=#{Path.absname(@josm_default_prefs)}",
           @session_path
         ],
-        env: [{"JAVA_OPTS", "-Djosm.home=#{@josm_home}"}]
+        env: [{"JAVA_OPTS", "-Djosm.home=#{Path.absname(@josm_home)}"}]
       )
 
     # run in extra process to ensure we recompile after map update
@@ -45,19 +45,19 @@ defmodule Mix.Tasks.EditMap do
           </projection>
           <layers active="1">
               <layer index="1" name="Map" type="osm-data" version="0.1" visible="true">
-                  <file>file:#{Map.Parser.default_map_path()}</file>
+                  <file>file:#{Path.absname(Map.Parser.default_map_path())}</file>
               </layer>
               <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="true">
-                  <file>file:#{Mix.Tasks.UpdateImages.imgpath()}</file>
+                  <file>file:#{Path.absname(Mix.Tasks.UpdateImages.imgpath())}</file>
               </layer>
               <layer index="3" name="Videos (anonymized, read only)" type="tracks" version="0.1" visible="true">
-                <file>file:#{Videos.out_anonymized()}</file>
+                <file>file:#{Path.absname(Videos.out_anonymized())}</file>
               </layer>
               <layer index="4" name="Videos (pending, read only)" type="tracks" version="0.1" visible="false'">
-                <file>file:#{Videos.out_pending()}</file>
+                <file>file:#{Path.absname(Videos.out_pending())}</file>
               </layer>
               <layer index="5" name="Style Debug" type="osm-data" version="0.1" visible="false">
-                <file>file:#{@style_debug_path}</file>
+                <file>file:#{Path.absname(@style_debug_path)}</file>
               </layer>
               <layer index="6" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
                   <name>OpenStreetMap (Standard Black &amp; White)</name>

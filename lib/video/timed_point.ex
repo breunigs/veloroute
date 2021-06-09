@@ -8,4 +8,5 @@ defmodule Video.TimedPoint do
           lon: float(),
           time_offset_ms: integer()
         }
+
 end

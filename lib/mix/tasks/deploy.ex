@@ -64,11 +64,11 @@ defmodule Mix.Tasks.Deploy do
       ["npm", "--prefix", "./assets", "ci", "--progress=false", "--no-audit", "--loglevel=error"],
       ["npm", "run", "--prefix", "./assets", "deploy"],
       [Path.join(@cwd, "tools/update_favicons.sh")],
-      ["mix", "phx.digest"],
       ["mix", "compile"],
       ["mix", "warm_caches"],
       ["mix", "update_gpx"],
-      ["rm", "priv/static/videos-rendered"],
+      ["rm", "priv/static/#{Settings.video_serve_path()}"],
+      ["mix", "phx.digest"],
       ["mix", "release", "--overwrite", "--quiet"]
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
