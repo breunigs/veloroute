@@ -190,7 +190,23 @@ defmodule Video.TrimmedSourceSequence do
   """
   def render(%__MODULE__{} = tsv_seq) do
     concat(tsv_seq) ++
-      ["|", "./tools/video_convert_streamable.rb", target_dir_abs(tsv_seq)]
+      ["|", "./tools/video_convert_streamable.rb", target_dir_abs(tsv_seq), "#{size(tsv_seq)}"]
+  end
+
+  @doc """
+  Returns the combined size in bytes of all input files
+  """
+  def size(%__MODULE__{tsvs: tsvs}) do
+    Enum.reduce(tsvs, 0, fn tsv, acc ->
+      file = Video.TrimmedSource.abs_path(tsv)
+
+      with {:ok, %{size: size}} <- File.stat(file) do
+        acc + size
+      else
+        _ ->
+          acc
+      end
+    end)
   end
 
   defp target_dir_abs(%__MODULE__{hash: hash}),
