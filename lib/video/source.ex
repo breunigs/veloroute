@@ -136,8 +136,6 @@ defmodule Video.Source do
         lat = prev.lat + t * (next.lat - prev.lat)
         lon = prev.lon + t * (next.lon - prev.lon)
 
-        IO.inspect %{lat: lat, lon: lon, time: point_time, prev_index: next_idx - 1}
-
         %{lat: lat, lon: lon, time: point_time, prev_index: next_idx - 1}
     end
   end

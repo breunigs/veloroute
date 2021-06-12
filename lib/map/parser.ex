@@ -16,7 +16,16 @@ defmodule Map.Parser do
     ways = ways(children, nodes)
     relations = relations(children, ways, nodes)
 
-    %Map.Parsed{ways: ways, nodes: nodes, relations: relations}
+    %Map.Parsed{ways: filter_typed(ways), nodes: filter_typed(nodes), relations: relations}
+  end
+
+  @spec filter_typed(%{optional(binary()) => Map.Way.t() | Map.Node.t()}) ::
+          %{optional(binary()) => Map.Way.t() | Map.Node.t()}
+  defp filter_typed(objs) do
+    Enum.reduce(objs, %{}, fn
+      {key, obj = %{tags: %{type: type}}}, acc when is_binary(type) -> Map.put(acc, key, obj)
+      {_key, _obj}, acc -> acc
+    end)
   end
 
   defp is_deleted?({_tag, attrsList, _children}) do
@@ -49,11 +58,13 @@ defmodule Map.Parser do
         end)
 
       rel =
-        Map.Element.with_bbox(%Map.Relation{
+        %Map.Relation{
           id: attrs["id"],
           tags: tags(children),
           members: members
-        })
+        }
+        |> Map.Element.with_bbox()
+        |> Map.Relation.purge_member_bbox()
 
       {attrs["id"], rel}
     end)

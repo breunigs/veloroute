@@ -8,6 +8,17 @@ defmodule Map.Relation do
           bbox: Geo.BoundingBox.t() | nil
         }
 
+  @spec purge_member_bbox(t()) :: t()
+  def purge_member_bbox(%__MODULE__{members: mem} = r) do
+    mem =
+      Enum.map(mem, fn
+        x = %{ref: %Map.Way{} = w} -> %{x | ref: Map.delete(w, :bbox)}
+        any -> any
+      end)
+
+    %{r | members: mem}
+  end
+
   def osm_url(%__MODULE__{tags: %{osm_relation_ref: url}}), do: url
 
   def osm_url(%__MODULE__{tags: %{osm_relation_id: rel_id}}),
