@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'tmpdir'
+require 'ruby-progressbar'
 
 VIDEO_OUT_DIR = ARGV[0]
+COMBINED_SIZE_BYTES = ARGV[1] && ARGV[1].to_i > 0 ? ARGV[1].to_i : nil
 PARENT_DIR = File.dirname(VIDEO_OUT_DIR)
 
 def die(msg)
@@ -39,12 +41,12 @@ FPS = 29.97
 GOP_SIZE=(HLS_TIME.to_i * FPS).round.to_s
 
 VARIANTS = [
-  {title: "Mittel",       width:  960, height:  540, bitrate:  4   },
-  {title: "Sehr niedrig", width:  640, height:  360, bitrate:  0.7 },
-  {title: "Niedrig",      width:  768, height:  432, bitrate:  2   },
-  {title: "Mittel",       width: 1280, height:  720, bitrate:  6   },
-  {title: "Hoch",         width: 1920, height: 1080, bitrate: 12   },
-  {title: "Extrem",       width: 2688, height: 1512, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
+  {title: "360p",       width:  640, height:  360, bitrate:  4   },
+  {title: "144p",       width:  256, height:  144, bitrate:  0.7 },
+  {title: "240p",       width:  426, height:  240, bitrate:  2   },
+  {title: "720p",       width: 1280, height:  720, bitrate:  6   },
+  {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -55,16 +57,12 @@ MAX_BITRATE = 1.1
 # https://trac.ffmpeg.org/wiki/Limiting%20the%20output%20bitrate
 BUF_SIZE = 2.0
 
-$written = 0
-def progress(bytes)
-  $written += bytes
-  gb = $written / (1024**3).to_f
-  if gb > 1
-    $stderr.write "\rREAD: #{gb.round(2)} Gi"
-  else
-    $stderr.write "\rREAD: #{($written / (1024**2).to_f).round} Mi"
-  end
-end
+$bar = ProgressBar.create(
+  format: '%a [%W]%E (%R MiB/s)',
+  total: COMBINED_SIZE_BYTES,
+  smoothing: 0.2,
+  rate_scale: lambda { |rate| rate / 1024 / 1024 }
+)
 
 def ffmpeg
   cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning]
@@ -126,7 +124,7 @@ begin
   loop do
     break if $stdin.closed?
     buf = $stdin.readpartial(1024*1024)
-    progress(buf.size)
+    $bar.progress += buf.size
     $ios.each { |io| io.write(buf) }
   rescue EOFError
     # stdin is empty
@@ -136,6 +134,8 @@ begin
 ensure
   $ios.each { |io| io.close() }
 end
+
+$bar.finish
 
 print "\nRenaming… "
 File.rename(tmp_dir, VIDEO_OUT_DIR)
