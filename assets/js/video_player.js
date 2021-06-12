@@ -1,64 +1,61 @@
-import * as Hls from 'hls.js';
+// import * as Hls from 'hls.js';
 
-const wrapper = document.getElementById('videoOuter');
-let video = null;
-let prevVideo = null;
-let prevStartTimeMs = 0;
-let hls = null;
-
-function attachHlsErrorHandler(hls) {
-  hls.on(Hls.Events.ERROR, function (event, data) {
+function attachHlsErrorHandler(obj, Hls) {
+  obj.on(Hls.Events.ERROR, function (event, data) {
     if (data.fatal) {
       switch (data.type) {
         case Hls.ErrorTypes.NETWORK_ERROR:
           console.warn('fatal network error encountered, try to recover');
-          hls.startLoad();
+          obj.startLoad();
           break;
         case Hls.ErrorTypes.MEDIA_ERROR:
           console.warn('fatal media error encountered, try to recover');
-          hls.recoverMediaError();
+          obj.recoverMediaError();
           break;
         default:
           console.warn('failed to recover HLS', data);
-          hls.destroy();
+          // obj.destroy();
           break;
       }
     }
   });
 }
 
-
 function updateVideoElement(videoHash) {
   console.debug('trying to play video for: ', videoHash)
   const stream = `/videos-rendered/${videoHash}/stream.m3u8`;
   const fallback = `/videos-rendered/${videoHash}/fallback.mp4`;
 
-  wrapper.innerHTML = `
-    <video id="videoInner" controls playsinline preload="metadata">
-      <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
-      <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
-    </video>
-  `;
-  video = document.getElementById('videoInner');
-  video.addEventListener('loadedmetadata', seekToStartTime, { once: true });
-
-
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
-  } else if (Hls.isSupported()) {
-    console.debug('streamed hls')
-    if (!hls) {
-      hls = new Hls({
+  } else if (window.hls) {
+    console.debug('reusing hls.js')
+    window.hls.loadSource(stream);
+  } else if (window.hls === false) {
+    console.debug('hls.js not supported, using fallback')
+  } else {
+    console.debug('no native hls, trying to load hls.js')
+    import('hls.js').then(Hls => {
+      if (!Hls.isSupported()) return window.hls = false;
+      console.debug('streamed hls');
+      Hls = Hls.default;
+
+      window.hls = new Hls({
         startFragPrefetch: true,
         enableWebVTT: false,
-        progressive: true,
       });
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      attachHlsErrorHandler(hls);
-    }
-    hls.loadSource(stream);
+      attachHlsErrorHandler(hls, Hls);
+      updateVideoElement(videoHash)
+    })
+    return
   }
+
+  video.innerHTML = `
+    <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
+    <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
+  `;
 }
 
 function seekToStartTime() {
@@ -89,7 +86,8 @@ function playVideo() {
 
 function removeVideo() {
   prevVideo = null;
-  wrapper.innerHTML = '';
+  video.pause();
+  video.innerHTML = '';
 }
 
 function setVideo() {
@@ -99,6 +97,12 @@ function setVideo() {
     removeVideo()
   }
 }
+
+const video = document.getElementById('videoInner');
+let prevVideo = null;
+let prevStartTimeMs = 0;
+video.addEventListener('loadedmetadata', seekToStartTime);
+
 
 window.videoStateChanged = setVideo;
 setVideo()

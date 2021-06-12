@@ -14,15 +14,16 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-    'app.js': glob.sync('./vendor/**/*.js').concat(['./js/app.js']),
-    'polyfill.js': ['./js/polyfill.js'],
-    'liveview.js': ['./js/liveview.js'],
-    'mly.js': ['./js/mly.js'],
-    'map.js': ['./js/map.js'],
-    'video_player.js': ['./js/video_player.js'],
+    'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js']),
+    'polyfill': ['./js/polyfill.js'],
+    'liveview': ['./js/liveview.js'],
+    'mly': ['./js/mly.js'],
+    'map': ['./js/map.js'],
+    'video_player': ['./js/video_player.js'],
   },
   output: {
-    filename: '[name]',
+    filename: '[name].js',
+    publicPath: "/js/",
     path: path.resolve(__dirname, '../priv/static/js')
   },
   module: {

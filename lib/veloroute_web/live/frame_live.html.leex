@@ -9,7 +9,8 @@
 <% end %>
 
 <%= if @video_player_js do %>
-  <div phx-update="ignore" id="videoOuter">
+  <div phx-update="ignore" id="videoOuter" style="<% if !@video, do: "display: none" %>">
+    <video id="videoInner" controls playsinline preload="metadata"></video>
   </div>
 <% end %>
 
