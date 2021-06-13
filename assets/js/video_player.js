@@ -28,9 +28,6 @@ function updateVideoElement(videoHash) {
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
-  } else if (window.hls) {
-    console.debug('reusing hls.js')
-    window.hls.loadSource(stream);
   } else if (window.hls === false) {
     console.debug('hls.js not supported, using fallback')
   } else {
@@ -44,10 +41,10 @@ function updateVideoElement(videoHash) {
         startFragPrefetch: true,
         enableWebVTT: false,
       });
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+      window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
-      updateVideoElement(videoHash)
+      window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+      window.hls.loadSource(stream);
     })
     return
   }
@@ -75,6 +72,7 @@ function playVideo() {
   if (prevVideo !== state.video) {
     prevVideo = state.video;
     updateVideoElement(state.video);
+    videoCoords = parseCoordsFromState();
     return;
   }
 
@@ -88,6 +86,23 @@ function removeVideo() {
   prevVideo = null;
   video.pause();
   video.innerHTML = '';
+  videoCoords = null;
+  if (window.hls) {
+    window.hls.destroy()
+    window.hls = null;
+  }
+}
+
+function parseCoordsFromState() {
+  return state.videoCoords.split(" ").reduce((acc, cur) => {
+    const prev = acc[acc.length - 3] || 0;
+    return acc.concat(prev + cur * 1.0)
+  }, [])
+}
+
+function updateIndicatorPos(evt) {
+  if (!videoCoords) return;
+  window.mapUpdateIndicatorFromVideo(video, videoCoords);
 }
 
 function setVideo() {
@@ -99,9 +114,11 @@ function setVideo() {
 }
 
 const video = document.getElementById('videoInner');
+let videoCoords = null;
 let prevVideo = null;
 let prevStartTimeMs = 0;
 video.addEventListener('loadedmetadata', seekToStartTime);
+video.addEventListener('timeupdate', updateIndicatorPos);
 
 
 window.videoStateChanged = setVideo;

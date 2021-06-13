@@ -57,8 +57,12 @@ function renderIndicator() {
     }
   }
 
-  const dist = indicator.getLngLat().distanceTo(lngLat);
-  indicator.getElement().classList.toggle("animate", dist < 10 && !map.isMoving());
+  const animate = !map.isMoving() && (
+    (video && !video.paused)
+    ||
+    (indicator.getLngLat().distanceTo(lngLat) < 10)
+  );
+  indicator.getElement().classList.toggle("animate", animate);
 
   const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing)
   indicator.setRotation(shortest);
@@ -252,9 +256,74 @@ const removeFakeMap = () => {
 }
 map.once('load', removeFakeMap);
 
+let video = null;
+let videoCoords = null;
+window.mapUpdateIndicatorFromVideo = (vid, coords) => {
+  video = vid;
+  videoCoords = coords;
+  mapStateChanged()
+}
+
+function toRad(degrees) {
+  return degrees * Math.PI / 180;
+};
+
+function ToDeg(radians) {
+  return radians * 180 / Math.PI;
+}
+
+function calcBearing(fromLon, fromLat, toLon, toLat) {
+  fromLon = toRad(fromLon);
+  fromLat = toRad(fromLat);
+  toLon = toRad(toLon);
+  toLat = toRad(toLat);
+
+  const y = Math.sin(toLon - fromLon) * Math.cos(toLat);
+  const x = Math.cos(fromLat) * Math.sin(toLat) -
+        Math.sin(fromLat) * Math.cos(toLat) * Math.cos(toLon - fromLon);
+  const bearing = Math.atan2(y, x);
+  return ToDeg(bearing);
+}
+
+function maybeHackStateFromVideo() {
+  if (!video || !videoCoords || !state.video) return;
+
+  const curr = video.currentTime;
+  const prec = Math.max(0, curr / video.duration);
+
+  // guess start index based on % of video played, minus some
+  // fixed offset (TODO: measure if this is actually faster)
+  let percIndex = (prec / 100.0 * videoCoords.length);
+  percIndex -= percIndex % 3
+
+  let nextIdx = Math.max(0, percIndex - 10 * 3);
+  for (; nextIdx < videoCoords.length; nextIdx += 3) {
+    if (videoCoords[nextIdx] >= curr) break;
+  }
+
+  if (nextIdx == 0) {
+    state.lon = videoCoords[1]
+    state.lat = videoCoords[2];
+
+    state.bearing = calcBearing(videoCoords[1], videoCoords[2], videoCoords[4], videoCoords[5])
+
+  } else {
+    const [nextT, nextLon, nextLat] = [videoCoords[nextIdx], videoCoords[nextIdx+1], videoCoords[nextIdx + 2]];
+    const [prevT, prevLon, prevLat] = [videoCoords[nextIdx-3], videoCoords[nextIdx-2], videoCoords[nextIdx - 1]];
+
+    // interpolate
+    const t = (curr - prevT) / (nextT - prevT);
+    state.lat = prevLat + t * (nextLat - prevLat)
+    state.lon = prevLon + t * (nextLon - prevLon)
+
+    state.bearing = calcBearing(prevLon, prevLat, nextLon, nextLat)
+  }
+}
+
 window.mapStateChanged = () => {
   window.requestIdleCallback(() => {
     maybeFitBounds();
+    maybeHackStateFromVideo();
     renderIndicator();
     maybeEnsureIndicatorInView();
   }, { timeout: 100 })

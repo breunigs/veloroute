@@ -54,34 +54,6 @@ defmodule Video.TrimmedSourceSequence do
     has_video_for?(way, :forward) || has_video_for?(way, :backward)
   end
 
-  # cond do
-  #   !(type in @valid_single_way_types) ->
-  #   {:invalid_type, "way id=#{id} refers to video=#{video_name}, but doesn't have a valid type"}
-
-  #  end
-
-  # def new_from_way(
-  #       %Map.Way{tags: %{"video_#{direction}": video_name, type: type}} = way,
-  #       direction
-  #     )
-  #     when is_binary(video_name)
-  #     when type in @valid_single_way_types do
-  #   tsv_seq =
-  #     way
-  #     |> Video.TrimmedSource.new_from_way(direction)
-  #     |> List.wrap()
-  #     |> new_from_tsv_list()
-
-  #   {:ok, tsv_seq}
-  # end
-
-  # def new_from_way(%Map.Way{tags: %{video: video_name}, id: id}) do
-  #   {:invalid_type, "way id=#{id} refers to video=#{video_name}, but doesn't have a valid type"}
-  # end
-
-  # def new_from_way(%Map.Way{id: id}),
-  #   do: {:no_video, "way id=#{id} does not seem to have video associated"}
-
   @spec list_from_map(struct()) :: [t()]
   @doc """
   Extracts all video references from the Map.Parsed

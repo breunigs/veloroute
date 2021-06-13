@@ -10,7 +10,7 @@
 
 <%= if @video_player_js do %>
   <div id="videoOuter" style="<%= if !@video, do: "display: none" %>">
-    <video phx-update="ignore" id="videoInner" controls playsinline preload="metadata"></video>
+    <video phx-update="ignore" id="videoInner" autoplay muted controls playsinline preload="metadata"></video>
   </div>
 <% end %>
 
@@ -58,6 +58,7 @@
   data-mly-js="<%= @mly_js %>"
   data-video="<%= @video %>"
   data-video-start="<%= @video_start %>"
+  data-video-coords="<%= @video_coords %>"
   data-video-player-js="<%= @video_player_js %>"
   data-bounds="<%= @bounds %>"
   data-bounds-ts="<%= @bounds_ts %>"

@@ -35,6 +35,7 @@ defmodule VelorouteWeb.FrameLive do
     sequence: nil,
     video: nil,
     video_start: 0,
+    video_coords: '',
     video_player_js: nil,
     mly_js: nil
   ]
@@ -105,13 +106,21 @@ defmodule VelorouteWeb.FrameLive do
       if rendered_video == nil do
         socket
       else
-        start_at = Video.Rendered.start_time_ms_from(rendered_video, Geo.Point.from_params(attr))
-        Logger.debug(inspect(rendered_video))
+        start_from = Video.Rendered.start_from(rendered_video, Geo.Point.from_params(attr))
+        # Logger.debug(inspect(rendered_video))
+        coords = Video.Rendered.coord_io_list(rendered_video)
 
         socket
         |> slideshow(false)
         |> load_video_player
-        |> assign(video: rendered_video.hash, video_start: start_at)
+        |> assign(
+          video: rendered_video.hash,
+          video_start: start_from.time_offset_ms,
+          lon: start_from.lon,
+          lat: start_from.lat,
+          bearing: start_from.bearing,
+          video_coords: coords
+        )
       end
 
     {:noreply, socket}
