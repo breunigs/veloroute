@@ -38,6 +38,7 @@ const genDiv = (id) => {
 }
 
 let indicator = null;
+let videoWasPlaying = false;
 function renderIndicator() {
   if (state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
@@ -57,12 +58,11 @@ function renderIndicator() {
     }
   }
 
-  const animate = !map.isMoving() && (
-    (video && !video.paused)
-    ||
-    (indicator.getLngLat().distanceTo(lngLat) < 10)
-  );
+  const videoPlaying = video && !video.paused;
+  const dist = indicator.getLngLat().distanceTo(lngLat);
+  const animate = !map.isMoving() && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
   indicator.getElement().classList.toggle("animate", animate);
+  videoWasPlaying = videoPlaying;
 
   const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing)
   indicator.setRotation(shortest);
