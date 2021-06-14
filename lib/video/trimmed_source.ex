@@ -1,6 +1,7 @@
 defmodule Video.TrimmedSource do
   @known_params [
     :anonymized_path_rel,
+    :source_path_rel,
     :from,
     :to,
     :coords
@@ -41,6 +42,7 @@ defmodule Video.TrimmedSource do
 
     %__MODULE__{
       anonymized_path_rel: video.path_anonymized,
+      source_path_rel: video.path_source,
       coords: coords,
       from: coords |> hd() |> Video.Timestamp.from_timed_point(),
       to: coords |> List.last() |> Video.Timestamp.from_timed_point()
@@ -50,6 +52,12 @@ defmodule Video.TrimmedSource do
   def to_str(%__MODULE__{anonymized_path_rel: p, from: f, to: t}), do: "#{p} #{f} #{t}"
 
   def abs_path(%__MODULE__{anonymized_path_rel: r}),
+    do:
+      Settings.video_source_dir_abs()
+      |> Path.join(r)
+
+
+  def abs_source_path(%__MODULE__{source_path_rel: r}),
     do:
       Settings.video_source_dir_abs()
       |> Path.join(r)

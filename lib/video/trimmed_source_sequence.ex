@@ -106,10 +106,13 @@ defmodule Video.TrimmedSourceSequence do
   @doc """
   Returns the command to concatenate the given video(s) and output them to stdout.
   """
-  def concat(%__MODULE__{tsvs: tsvs}) do
+  def concat(%__MODULE__{tsvs: tsvs}, preview \\ false) do
     tsvs
     |> Enum.reduce(["./tools/video_concat.rb"], fn tsv, cmd ->
-      [tsv.to | [tsv.from | [Video.TrimmedSource.abs_path(tsv) | cmd]]]
+      path = if preview, do: tsv.source_path_rel, else: tsv.anonymized_path_rel
+      path = Settings.video_source_dir_abs() |> Path.join(path) |> Path.relative_to(File.cwd!())
+
+      [tsv.to, tsv.from, path | cmd]
     end)
     |> Enum.reverse()
   end
@@ -118,13 +121,13 @@ defmodule Video.TrimmedSourceSequence do
   Returns the command needed to preview the given video(s)
   """
   def preview(%__MODULE__{} = tsv_seq) do
-    concat(tsv_seq) ++
+    concat(tsv_seq, true) ++
       [
         "|",
         "mpv",
         "--pause",
         "--no-resume-playback",
-        "--speed=0.5",
+        # "--speed=0.5",
         "--framedrop=no",
         "--keep-open=yes",
         "--demuxer-max-bytes=500M",
