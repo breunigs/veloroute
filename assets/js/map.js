@@ -286,7 +286,7 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 }
 
 function maybeHackStateFromVideo() {
-  if (!video || !videoCoords || !state.video) return;
+  if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
   const curr = video.currentTime;
   const prec = Math.max(0, curr / video.duration);
@@ -320,8 +320,12 @@ function maybeHackStateFromVideo() {
   }
 }
 
+let queued = false;
 window.mapStateChanged = () => {
+  if (queued) return;
+  queued = true;
   window.requestIdleCallback(() => {
+    queued = false;
     maybeFitBounds();
     maybeHackStateFromVideo();
     renderIndicator();

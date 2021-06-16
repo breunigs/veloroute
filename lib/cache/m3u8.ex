@@ -5,7 +5,8 @@ defmodule Cache.M3U8 do
   paths_hash = :erlang.md5(paths)
 
   def __mix_recompile__?() do
-    Path.wildcard(@glob_path) |> :erlang.md5() != unquote(paths_hash)
+    # ensure our cache is up to date for production only
+    Mix.env() == :prod && :erlang.md5(Path.wildcard(@glob_path)) != unquote(paths_hash)
   end
 
   @cache Benchmark.measure("#{__MODULE__}: caching m3u8s", fn ->

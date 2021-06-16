@@ -42,12 +42,8 @@ defmodule Video.Source do
   end
 
   defp new_from_path(source_path, available_gpx, available_anonymized)
-       when is_binary(source_path)
-       when is_boolean(available_gpx)
-       when is_boolean(available_anonymized) do
-    unless available_gpx,
-      do: IO.warn("#{source_path} has no associcated GPX, maybe try `gopro2gpx #{source_path}`")
-
+       when is_binary(source_path) and is_boolean(available_gpx) and
+              is_boolean(available_anonymized) do
     source_path = make_relative(source_path)
 
     # support paths to just the base name by adding default extension

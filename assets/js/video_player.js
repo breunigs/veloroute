@@ -1,5 +1,3 @@
-// import * as Hls from 'hls.js';
-
 function attachHlsErrorHandler(obj, Hls) {
   obj.on(Hls.Events.ERROR, function (event, data) {
     if (data.fatal) {
@@ -14,7 +12,7 @@ function attachHlsErrorHandler(obj, Hls) {
           break;
         default:
           console.warn('failed to recover HLS', data);
-          // obj.destroy();
+          obj.destroy();
           break;
       }
     }
@@ -23,6 +21,10 @@ function attachHlsErrorHandler(obj, Hls) {
 
 function updateVideoElement(videoHash) {
   console.debug('trying to play video for: ', videoHash)
+  video = document.getElementById('videoInner');
+  video.addEventListener('loadedmetadata', seekToStartTime);
+  video.addEventListener('timeupdate', updateIndicatorPos);
+
   const stream = `/videos-rendered/${videoHash}/stream.m3u8`;
   const fallback = `/videos-rendered/${videoHash}/fallback.mp4`;
 
@@ -69,9 +71,9 @@ function seekToTime(timeInMs) {
 }
 
 function playVideo() {
-  if (prevVideo !== state.video) {
-    prevVideo = state.video;
-    updateVideoElement(state.video);
+  if (prevVideo !== state.videoHash) {
+    prevVideo = state.videoHash;
+    updateVideoElement(state.videoHash);
     videoCoords = parseCoordsFromState();
     return;
   }
@@ -84,9 +86,11 @@ function playVideo() {
 
 function removeVideo() {
   prevVideo = null;
-  video.pause();
-  video.innerHTML = '';
   videoCoords = null;
+  if(video) {
+    video.pause();
+    video.innerHTML = '';
+  }
   if (window.hls) {
     window.hls.destroy()
     window.hls = null;
@@ -106,19 +110,18 @@ function updateIndicatorPos(evt) {
 }
 
 function setVideo() {
-  if (state.video) {
+  if (state.videoHash) {
     playVideo()
   } else {
     removeVideo()
   }
 }
 
-const video = document.getElementById('videoInner');
+let video = null;
 let videoCoords = null;
 let prevVideo = null;
 let prevStartTimeMs = 0;
-video.addEventListener('loadedmetadata', seekToStartTime);
-video.addEventListener('timeupdate', updateIndicatorPos);
+
 
 
 window.videoStateChanged = setVideo;

@@ -18386,6 +18386,9 @@
     <nd ref='-120919' />
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='type' v='detour' />
+    <tag k='video_backward' v='2021-06-12-veloroute-3-und-4/GX011660' />
+    <tag k='video_backward_end' v='0:00:48.0000' />
+    <tag k='video_backward_start' v='0:00:13.0000' />
     <tag k='video_forward' v='2021-04-10-freizeitroute2/GX011183' />
     <tag k='video_forward_end' v='0:00:34.0000' />
     <tag k='video_forward_start' v='0:00:01.0000' />

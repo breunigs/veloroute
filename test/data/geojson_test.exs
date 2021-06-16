@@ -38,8 +38,6 @@ defmodule Data.GeoJSONTest do
     %Article{name: "art2", type: "issue", title: "hi!", icon: "icon"}
   ]
 
-  # TODO: ensure the hash gets set on a video?
-
   test "sets appropriate tags on route-ways" do
     assert %{
              routes: %{

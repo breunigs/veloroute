@@ -69,7 +69,8 @@ defmodule Mix.Tasks.Deploy do
       ["mix", "update_gpx"],
       ["rm", "priv/static/#{Settings.video_serve_path()}"],
       ["mix", "phx.digest"],
-      ["mix", "release", "--overwrite", "--quiet"]
+      ["mix", "release", "--overwrite", "--quiet"],
+      ["mix", "phx.digest.clean"]
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn

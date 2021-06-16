@@ -121,7 +121,10 @@
         onload="Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '<%= Application.get_env(:sentry, :release) %>' }); Sentry.setTag('env', '<%= Application.get_env(:veloroute, :env) %>');" async></script>
     <% end %>
     <link rel="prefetch" href="<%= Routes.static_path(@conn, "/js/mly.js") %>">
+    <link rel="prefetch" href="<%= Routes.static_path(@conn, "/js/video_player.js") %>">
 
-    <script type="application/ld+json">{"@context":"https://schema.org/","@type":"ImageObject","contentUrl":"<%= Mapillary.Resolver.img_url(@img) %>","license":"https://creativecommons.org/licenses/by-sa/3.0/deed.en","acquireLicensePage":"https://help.mapillary.com/hc/en-us/articles/115001770409-Licenses"}</script>
+    <%= if @img && @img != "" do %>
+      <script type="application/ld+json">{"@context":"https://schema.org/","@type":"ImageObject","contentUrl":"<%= Mapillary.Resolver.img_url(@img) %>","license":"https://creativecommons.org/licenses/by-sa/3.0/deed.en","acquireLicensePage":"https://help.mapillary.com/hc/en-us/articles/115001770409-Licenses"}</script>
+    <% end %>
   </body>
 </html>

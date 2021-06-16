@@ -64,21 +64,22 @@ defmodule Docker do
       ~s|type=bind,source=#{@cwd}/,target=/build/|
     ]
 
-    extra_video_mount =
-      with {:ok, real} <- File.read_link("data/videos") do
-        ["--mount", ~s|type=bind,source=#{real},target=/build/data/videos|]
-      else
-        _ -> []
-      end
-
-    Util.cmd(
-      docker ++ extra_video_mount ++ [@image_name_devel] ++ args,
+    Util.cmd(docker ++ extra_video_mount("/build") ++ [@image_name_devel] ++ args,
       into: line_stream()
     )
   end
 
   def container_name_release, do: @container_name_release
   def image_name_release, do: @image_name_release
+
+  defp extra_video_mount(base_path) do
+    with {:ok, real} <- File.read_link(Settings.video_dir_rel()) do
+      target_path = Path.join(base_path, Settings.video_dir_rel())
+      ["--mount", ~s|type=bind,source=#{real},target=#{target_path}|]
+    else
+      _ -> []
+    end
+  end
 
   def boot_release() do
     docker = [
@@ -91,15 +92,7 @@ defmodule Docker do
       "4000"
     ]
 
-    extra_video_mount =
-      with {:ok, real} <- File.read_link("data/videos") do
-        ["--mount", ~s|type=bind,source=#{real},target=/app/data/videos|]
-      else
-        _ -> []
-      end
-
-    cli = docker ++ extra_video_mount ++ [@image_name_release]
-    # IO.puts(Enum.join(cli, " "))
+    cli = docker ++ extra_video_mount("/app") ++ [@image_name_release]
 
     Util.cmd(cli, into: line_stream())
   end

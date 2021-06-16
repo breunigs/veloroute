@@ -35,7 +35,8 @@ defmodule Settings do
 
   def enable_sentry_frontend, do: false
 
-  def video_dir_abs, do: Path.join(File.cwd!(), "data/videos")
+  def video_dir_rel, do: "videos"
+  def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
   def video_serve_path, do: "videos-rendered"

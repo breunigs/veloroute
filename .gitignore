@@ -46,5 +46,6 @@ npm-debug.log
 xref_graph.*
 
 
-/data/videos
+/assets/videos
+/assets/videos/**
 .hex

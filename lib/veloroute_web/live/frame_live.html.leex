@@ -9,7 +9,7 @@
 <% end %>
 
 <%= if @video_player_js do %>
-  <div id="videoOuter" style="<%= if !@video, do: "display: none" %>">
+  <div id="videoOuter" style="<%= if @video_hash == "", do: "display: none" %>">
     <video phx-update="ignore" id="videoInner" autoplay muted controls playsinline preload="metadata"></video>
   </div>
 <% end %>
@@ -36,7 +36,7 @@
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
-  <%= if @mly_js || @slideshow do %>
+  <%= if @video_hash == "" && (@mly_js || @slideshow) do %>
     <div id="slideshow">
       <button phx-click="sld-playpause" phx-disable-with="<%= if @slideshow, do: "▶", else: "■" %>" title="Abspielen / Pause">
         <%= if @slideshow, do: "■", else: "▶" %>
@@ -44,6 +44,14 @@
       <button phx-click="sld-step-backward" phx-page-loading="" title="Voriges Bild" <%= @img_prev_disabled %>>〈</button>
       <button phx-click="sld-step-forward" phx-page-loading="" title="Nächstes Bild" <%= @img_next_disabled %>>〉</button>
       <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
+      <%= display_route(@route) %>
+    </div>
+  <% end %>
+  <%= if @video_hash != "" do %>
+    <div id="slideshow">
+      <%= if @video_reversable do %>
+        <button phx-click="video-reverse" title="Fahrtrichtung ändern">⇆</button>
+      <% end %>
       <%= display_route(@route) %>
     </div>
   <% end %>
@@ -56,7 +64,7 @@
   data-bearing="<%= @bearing %>"
   data-sequence="<%= @sequence %>"
   data-mly-js="<%= @mly_js %>"
-  data-video="<%= @video %>"
+  data-video-hash="<%= @video_hash %>"
   data-video-start="<%= @video_start %>"
   data-video-coords="<%= @video_coords %>"
   data-video-player-js="<%= @video_player_js %>"

@@ -6,7 +6,9 @@ defmodule VelorouteWeb.FrameLive do
   import VelorouteWeb.VariousHelpers
 
   alias Article
+
   import Mapillary.Types, only: [is_ref: 1]
+  import VelorouteWeb.Live.VideoState, only: [has_video_params: 1]
 
   @initial_state [
     mly_previous_img: nil,
@@ -33,18 +35,20 @@ defmodule VelorouteWeb.FrameLive do
     lat: nil,
     bearing: nil,
     sequence: nil,
-    video: nil,
-    video_start: 0,
-    video_coords: '',
-    video_player_js: nil,
     mly_js: nil
   ]
 
   def initial_state, do: @initial_state
 
-  def mount(_params, _session, socket) do
+  def mount(params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(5_000, self(), :check_updates)
-    {:ok, assign(socket, @initial_state)}
+
+    socket =
+      socket
+      |> assign(@initial_state)
+      |> VelorouteWeb.Live.VideoState.update_socket_from_params(params)
+
+    {:ok, socket}
   end
 
   def handle_info(:check_updates, socket) do
@@ -94,34 +98,30 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("map-click", %{"video_forward" => video} = attr, %{assigns: _assigns} = socket)
-      when is_binary(video) and video != "" do
+  def handle_event("map-click", attr, %{assigns: assigns} = socket)
+      when has_video_params(attr) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    rendered_video = Cache.Videos.get(video)
+    article = Cache.Articles.get()[attr["article"]]
 
-    # TODO: sync pos marker with video
+    route =
+      cond do
+        assigns.route && elem(assigns.route, 0) == attr["route"] -> assigns.route
+        is_binary(attr["route"]) -> {attr["route"], nil}
+        article && is_tuple(article.start_position) -> article.start_position |> elem(0)
+        true -> nil
+      end
 
     socket =
-      if rendered_video == nil do
-        socket
-      else
-        start_from = Video.Rendered.start_from(rendered_video, Geo.Point.from_params(attr))
-        # Logger.debug(inspect(rendered_video))
-        coords = Video.Rendered.coord_io_list(rendered_video)
+      socket
+      |> assign(route: route)
+      |> slideshow(false)
+      |> VelorouteWeb.Live.VideoState.update_socket_from_params(attr)
 
-        socket
-        |> slideshow(false)
-        |> load_video_player
-        |> assign(
-          video: rendered_video.hash,
-          video_start: start_from.time_offset_ms,
-          lon: start_from.lon,
-          lat: start_from.lat,
-          bearing: start_from.bearing,
-          video_coords: coords
-        )
-      end
+    socket =
+      if article,
+        do: push_patch(socket, to: article_path(socket, article, nil)),
+        else: socket
 
     {:noreply, socket}
   end
@@ -215,7 +215,7 @@ defmodule VelorouteWeb.FrameLive do
           socket
       end
 
-    {:noreply, socket |> load_mly}
+    {:noreply, socket |> load_mly |> VelorouteWeb.Live.VideoState.reset()}
   end
 
   def handle_event(
@@ -314,7 +314,9 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_event(ident, attr, socket) do
-    Logger.warn("Received unknown/unparsable event '#{ident}': #{inspect(attr)}")
+    msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
+    Logger.warn(msg)
+    Sentry.capture_message(msg)
 
     {:noreply, socket}
   end
@@ -584,14 +586,6 @@ defmodule VelorouteWeb.FrameLive do
     assign(socket, route: route || socket.assigns.route)
   end
 
-  defp load_video_player(%{assigns: %{video_player_js: nil}} = socket) do
-    Logger.debug("loading video player")
-    path = Routes.static_path(VelorouteWeb.Endpoint, "/js/video_player.js")
-    assign(socket, video_player_js: path)
-  end
-
-  defp load_video_player(socket), do: socket
-
   defp load_mly(%{assigns: %{mly_js: nil}} = socket) do
     Logger.debug("loading mly")
     path = Routes.static_path(VelorouteWeb.Endpoint, "/js/mly.js")
@@ -638,9 +632,9 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket,
       img: img,
-      img_load_start: Time.utc_now(),
-      video: nil
+      img_load_start: Time.utc_now()
     )
+    |> VelorouteWeb.Live.VideoState.reset()
     |> update_img_navigate_buttons()
   end
 
