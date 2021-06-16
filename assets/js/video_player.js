@@ -3,11 +3,11 @@ function attachHlsErrorHandler(obj, Hls) {
     if (data.fatal) {
       switch (data.type) {
         case Hls.ErrorTypes.NETWORK_ERROR:
-          console.warn('fatal network error encountered, try to recover');
+          console.warn('fatal network error encountered, try to recover', event, data);
           obj.startLoad();
           break;
         case Hls.ErrorTypes.MEDIA_ERROR:
-          console.warn('fatal media error encountered, try to recover');
+          console.warn('fatal media error encountered, try to recover', event, data);
           obj.recoverMediaError();
           break;
         default:
@@ -27,6 +27,10 @@ function updateVideoElement(videoHash) {
 
   const stream = `/videos-rendered/${videoHash}/stream.m3u8`;
   const fallback = `/videos-rendered/${videoHash}/fallback.mp4`;
+  const innerHTML = `
+    <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
+    <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
+  `;
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
@@ -47,14 +51,12 @@ function updateVideoElement(videoHash) {
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       window.hls.loadSource(stream);
+      video.innerHTML = innerHTML;
     })
     return
   }
 
-  video.innerHTML = `
-    <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
-    <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
-  `;
+  video.innerHTML = innerHTML;
 }
 
 function seekToStartTime() {
