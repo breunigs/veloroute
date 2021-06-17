@@ -48,6 +48,7 @@ VARIANTS = [
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
   {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
 ]
+DEFAULT_CODEC = %w[libx264 -preset veryslow -x264opts opencl]
 
 # The average bitrate is given in the variants above. This defined
 # how much the maximum bitrate may deviate from that (as a ratio)
@@ -65,9 +66,9 @@ $bar = ProgressBar.create(
 )
 
 def ffmpeg
-  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning]
+  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning -hwaccel auto]
   cmd << %w[-re -f matroska -i -]
-  cmd << %w[-preset veryslow -keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
+  cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
   cmd << %w[-pix_fmt yuv420p -refs 5]
   cmd
 end
@@ -76,17 +77,32 @@ tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)
 at_exit { FileUtils.remove_entry(tmp_dir, true) }
 
 # mp4 (fallback and ie11)
-fallback = ffmpeg()
-fallback << "-c:v" << "libx264" << "-s" << "#{VARIANTS[0][:width]}x#{VARIANTS[0][:height]}"
+fallback_mp4 = ffmpeg()
+fallback_mp4 << "-c:v" << DEFAULT_CODEC
+fallback_mp4 << "-s" << "#{VARIANTS[0][:width]}x#{VARIANTS[0][:height]}"
 rate = VARIANTS[0][:bitrate]
-fallback << ["-b:v", "#{rate}M", "-maxrate", "#{rate * MAX_BITRATE}M", "-bufsize", "#{rate*BUF_SIZE}M"]
-fallback << %w[-movflags +faststart]
-fallback << "#{tmp_dir}/fallback.mp4"
+fallback_mp4 << ["-b:v", "#{rate}M", "-maxrate", "#{rate * MAX_BITRATE}M", "-bufsize", "#{rate*BUF_SIZE}M"]
+fallback_mp4 << %w[-movflags +faststart]
+fallback_mp4 << "#{tmp_dir}/fallback.mp4"
+
+# webm (no h264 installed?). We use a decent quality here, since presumably it's
+# some open source licencing issue, and not bandwidth/performance related.
+fallback_webm = ffmpeg()
+fallback_webm << %w[-c:v libvpx-vp9 -row-mt 1]
+fallback_webm << "-s" << "#{VARIANTS[3][:width]}x#{VARIANTS[3][:height]}"
+rate = VARIANTS[3][:bitrate]
+fallback_webm << ["-b:v", "#{rate}M", "-maxrate", "#{rate * MAX_BITRATE}M", "-bufsize", "#{rate*BUF_SIZE}M"]
+fallback_webm << "#{tmp_dir}/fallback.webm"
+# ffmpeg recommends two pass, but that's not straight forward to implement with
+# the current approach
+# fallback_webm_pass1 += ["-pass", "1", "-f", "null", "/dev/null"]
+# fallback_webm_pass2 += ["-pass", "2", "#{tmp_dir}/fallback.webm"]
+
 
 # hls
 hls = ffmpeg()
 VARIANTS.each.with_index do |var, idx|
-  hls << "-c:v:#{idx}" << (var[:codec] || "libx264") << "-flags" << "+cgop"
+  hls << "-c:v:#{idx}" << (var[:codec] || DEFAULT_CODEC) << "-flags" << "+cgop"
   hls << %w[-map v:0] << "-s:#{idx}" << "#{var[:width]}x#{var[:height]}"
   hls << "-metadata:s:v:#{idx}" << %|title="#{var[:title]}"|
   rate = var[:bitrate]
@@ -107,7 +123,7 @@ $ios = []
 $stdin.binmode
 
 def cancel
-  warn "Aborting…"
+  warn "\nAborting…"
   $stdin.close
   $ios.each { |io| Process.kill("KILL", io.pid) unless io.closed? }
   $ios.each(&:close)
@@ -118,7 +134,8 @@ Signal.trap("TERM") { cancel() }
 Signal.trap("INT") { cancel() }
 
 begin
-  $ios << IO.popen(fallback.flatten, "w+")
+  $ios << IO.popen(fallback_mp4.flatten, "w+")
+  $ios << IO.popen(fallback_webm.flatten, "w+")
   $ios << IO.popen(hls.flatten, "w+")
 
   loop do

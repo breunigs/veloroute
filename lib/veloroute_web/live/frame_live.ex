@@ -126,6 +126,12 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("video-reverse", attr, socket) do
+    Logger.debug("video-reverse #{inspect(attr)}")
+
+    {:noreply, VelorouteWeb.Live.VideoState.reverse(socket, attr)}
+  end
+
   def handle_event("map-click", attr, %{assigns: assigns} = socket) do
     Logger.debug("map-click #{inspect(attr)}")
 

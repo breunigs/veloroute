@@ -50,7 +50,7 @@
   <%= if @video_hash != "" do %>
     <div id="slideshow">
       <%= if @video_reversable do %>
-        <button phx-click="video-reverse" title="Fahrtrichtung ändern">⇆</button>
+        <button onclick="window.reverseVideo()" title="Fahrtrichtung ändern">⇆</button>
       <% end %>
       <%= display_route(@route) %>
     </div>

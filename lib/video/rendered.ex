@@ -93,7 +93,10 @@ defmodule Video.Rendered do
       %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
   """
   def start_from(rendered_video, point)
-  def start_from(%__MODULE__{coords: coords}, nil), do: hd(coords)
+
+  def start_from(%__MODULE__{coords: [a, b | _rest]}, nil) do
+    Map.put(a, :bearing, Geo.CheapRuler.bearing(a, b))
+  end
 
   def start_from(%__MODULE__{coords: coords}, point) do
     %{lon: lon, lat: lat, t: t, index: idx} = Geo.CheapRuler.closest_point_on_line(coords, point)

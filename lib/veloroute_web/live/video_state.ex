@@ -27,6 +27,7 @@ defmodule VelorouteWeb.Live.VideoState do
       |> Kernel.||(new())
       |> extract_video(params)
       |> extract_start(params)
+      |> maybe_reverse_direction(assigns[:video])
       |> for_frontend()
 
     Phoenix.LiveView.assign(socket, assigns)
@@ -40,6 +41,22 @@ defmodule VelorouteWeb.Live.VideoState do
       assigns[:video]
       |> Kernel.||(new())
       |> Map.merge(%{forward: nil, backward: nil, start: nil})
+      |> for_frontend()
+
+    Phoenix.LiveView.assign(socket, assigns)
+  end
+
+  @doc """
+  Reverse a video if possible, using the given coordinate to determine
+  where to play the reveresed video from.
+  """
+  def reverse(%{assigns: %{video: nil}} = socket, _params), do: socket
+
+  def reverse(%{assigns: %{video: video}} = socket, params) do
+    assigns =
+      video
+      |> reverse_direction()
+      |> extract_start(params)
       |> for_frontend()
 
     Phoenix.LiveView.assign(socket, assigns)
@@ -106,15 +123,23 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp extract_start(%__MODULE__{} = state, params) do
     %{state | start: Geo.Point.from_params(params)}
-    |> maybe_reverse_direction(state.start)
   end
 
-  defp maybe_reverse_direction(%__MODULE__{start: start} = state, start)
-       when is_reversable(state) do
+  defp maybe_reverse_direction(%__MODULE__{} = state, nil), do: state
+
+  defp maybe_reverse_direction(%__MODULE__{start: start} = state, start),
+    do: reverse_direction(state)
+
+  defp maybe_reverse_direction(%__MODULE__{start: start} = state, %__MODULE__{start: start}),
+    do: reverse_direction(state)
+
+  defp maybe_reverse_direction(%__MODULE__{} = state, _start), do: state
+
+  defp reverse_direction(%__MODULE__{} = state) when is_reversable(state) do
     %{state | direction: if(state.direction == :forward, do: :backward, else: :forward)}
   end
 
-  defp maybe_reverse_direction(%__MODULE__{} = state, _start), do: state
+  defp reverse_direction(%__MODULE__{} = state), do: state
 
   defp extract_video(%__MODULE__{} = state, %{"video_forward" => f, "video_backward" => b})
        when is_binary(f) and is_binary(b) do

@@ -1,35 +1,37 @@
+function reverseVideo() {
+  window.pushEvent('video-reverse', {
+    lon: window.state.lon,
+    lat: window.state.lat
+  })
+}
+
 function attachHlsErrorHandler(obj, Hls) {
   obj.on(Hls.Events.ERROR, function (event, data) {
     if (data.fatal) {
-      switch (data.type) {
-        case Hls.ErrorTypes.NETWORK_ERROR:
-          console.warn('fatal network error encountered, try to recover', event, data);
-          obj.startLoad();
-          break;
-        case Hls.ErrorTypes.MEDIA_ERROR:
-          console.warn('fatal media error encountered, try to recover', event, data);
-          obj.recoverMediaError();
-          break;
-        default:
-          console.warn('failed to recover HLS', data);
-          obj.destroy();
-          break;
-      }
+      console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', event, data);
+      window.hls = false;
+      obj.destroy();
+    } else {
+      console.log('Hls encountered an error', event, data);
     }
   });
 }
 
-function updateVideoElement(videoHash) {
-  console.debug('trying to play video for: ', videoHash)
+function updateVideoElement() {
+  console.debug('trying to play video for: ', state.videoHash)
   video = document.getElementById('videoInner');
   video.addEventListener('loadedmetadata', seekToStartTime);
   video.addEventListener('timeupdate', updateIndicatorPos);
 
-  const stream = `/videos-rendered/${videoHash}/stream.m3u8`;
-  const fallback = `/videos-rendered/${videoHash}/fallback.mp4`;
+  const time = `#t=${state.videoStart / 1000.0}`;
+  const path = `/videos-rendered/${state.videoHash}/`;
+  // codec version for h264 can be determined through (Debian package: gpac)
+  // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
   const innerHTML = `
-    <source src="${stream}#t=${state.videoStart / 1000.0}" type="application/x-mpegURL">
-    <source src="${fallback}#t=${state.videoStart / 1000.0}" type="video/mp4">
+    <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
+    <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
+    <source src="${path}fallback.mp4${time}" type="video/mp4; codec=avc1.64001E">
+    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anzuschauen.</p>
   `;
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
@@ -50,17 +52,19 @@ function updateVideoElement(videoHash) {
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      window.hls.loadSource(stream);
+      window.hls.loadSource(`${path}stream.m3u8`);
       video.innerHTML = innerHTML;
     })
     return
   }
 
   video.innerHTML = innerHTML;
+  video.load();
 }
 
 function seekToStartTime() {
   if (prevStartTimeMs == state.videoStart) return;
+  console.debug("seeking to", state.videoStart)
   seekToTime(state.videoStart);
   prevStartTimeMs = state.videoStart;
 }
@@ -75,7 +79,7 @@ function seekToTime(timeInMs) {
 function playVideo() {
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
-    updateVideoElement(state.videoHash);
+    updateVideoElement();
     videoCoords = parseCoordsFromState();
     return;
   }
@@ -87,6 +91,7 @@ function playVideo() {
 }
 
 function removeVideo() {
+  console.debug("removing video (if there is)")
   prevVideo = null;
   videoCoords = null;
   if(video) {
@@ -127,4 +132,5 @@ let prevStartTimeMs = 0;
 
 
 window.videoStateChanged = setVideo;
+window.reverseVideo = reverseVideo;
 setVideo()
