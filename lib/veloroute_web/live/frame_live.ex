@@ -369,6 +369,7 @@ defmodule VelorouteWeb.FrameLive do
       set_content(article, socket)
       |> maybe_update_initial_route(article)
       |> set_img(Map.get(params, "img", article))
+      |> VelorouteWeb.Live.VideoState.update_socket_from_params(article)
       |> set_bounds(article, Map.get(params, "bounds"))
 
     {:noreply, socket}

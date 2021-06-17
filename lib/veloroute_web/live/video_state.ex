@@ -154,6 +154,11 @@ defmodule VelorouteWeb.Live.VideoState do
     update_real(state, nil, b)
   end
 
+  # this variant extracts videos from articles
+  defp extract_video(%__MODULE__{} = state, %{video_forward: f, video_backward: b}) do
+    update_real(state, f, b)
+  end
+
   defp extract_video(%__MODULE__{} = state, _params), do: state
 
   defp update_real(state, forward, backward) do

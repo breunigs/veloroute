@@ -1381,6 +1381,30 @@
   <node id='-499645' action='modify' lat='53.66762919197' lon='10.01284717441' />
   <node id='-499646' action='modify' lat='53.66783259937' lon='10.01387714267' />
   <node id='-499647' action='modify' lat='53.66877970213' lon='10.01682757258' />
+  <node id='-499704' action='modify' lat='53.56035737247' lon='9.94804500461' />
+  <node id='-499705' action='modify' lat='53.56042747175' lon='9.94880138755' />
+  <node id='-499706' action='modify' lat='53.55892349802' lon='9.94954704165' />
+  <node id='-499707' action='modify' lat='53.55904776906' lon='9.95006202579' />
+  <node id='-499708' action='modify' lat='53.55916248047' lon='9.95038925529' />
+  <node id='-499709' action='modify' lat='53.55894261667' lon='9.9506628406' />
+  <node id='-499710' action='modify' lat='53.5588502098' lon='9.95042680621' />
+  <node id='-499711' action='modify' lat='53.55853475035' lon='9.94962750793' />
+  <node id='-499712' action='modify' lat='53.55781141526' lon='9.94989572883' />
+  <node id='-499713' action='modify' lat='53.55774768471' lon='9.94948803306' />
+  <node id='-499714' action='modify' lat='53.55842322372' lon='9.94922517657' />
+  <node id='-499715' action='modify' lat='53.55800579287' lon='9.94793771625' />
+  <node id='-499716' action='modify' lat='53.55822566154' lon='9.94771241069' />
+  <node id='-499717' action='modify' lat='53.55866539546' lon='9.94876383662' />
+  <node id='-499718' action='modify' lat='53.55875461627' lon='9.94909643054' />
+  <node id='-499719' action='modify' lat='53.55937278391' lon='9.94879065871' />
+  <node id='-499747' action='modify' lat='53.5604434002' lon='9.94831859529' />
+  <node id='-499756' action='modify' lat='53.56033187861' lon='9.9484097904' />
+  <node id='-499765' action='modify' lat='53.56031276059' lon='9.9488872236' />
+  <node id='-499770' action='modify' lat='53.56021079768' lon='9.94851171434' />
+  <node id='-499781' action='modify' lat='53.55989216201' lon='9.94843124807' />
+  <node id='-499790' action='modify' lat='53.55986667105' lon='9.94834541738' />
+  <node id='-499797' action='modify' lat='53.55974877518' lon='9.9484097904' />
+  <node id='-499808' action='modify' lat='53.55976152069' lon='9.94854390085' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='58000555498' action='delete' version='1' lat='53.555498' lon='10.000058' />
   <node id='67000555313' action='delete' version='1' lat='53.555313' lon='10.00067' />
@@ -2362,7 +2386,7 @@
   <node id='94676800056131' version='1' lat='53.56131' lon='9.946768' />
   <node id='94737400056247' version='1' lat='53.56247' lon='9.947374' />
   <node id='94738000457936' version='1' lat='53.457936' lon='9.94738' />
-  <node id='94822700056016' version='1' lat='53.56016' lon='9.948227' />
+  <node id='94822700056016' action='modify' version='1' lat='53.56037985748' lon='9.9480177877' />
   <node id='94826000562225' version='1' lat='53.562225' lon='9.94826' />
   <node id='94840006778088' version='1' lat='53.67781356622' lon='10.0009484' />
   <node id='94869400056204' version='1' lat='53.56204' lon='9.948694' />
@@ -4287,7 +4311,7 @@
   <node id='947916000457898' version='1' lat='53.457898' lon='9.947916' />
   <node id='948276000458122' version='1' lat='53.458122' lon='9.948276' />
   <node id='948533000562489' version='1' lat='53.562489' lon='9.948533' />
-  <node id='948555000560224' version='1' lat='53.560224' lon='9.948555' />
+  <node id='948555000560224' action='modify' version='1' lat='53.5604757204' lon='9.94830287235' />
   <node id='948801000562817' version='1' lat='53.562817' lon='9.948801' />
   <node id='948847000640047' version='1' lat='53.640047' lon='9.948847' />
   <node id='949180005629721' version='1' lat='53.5629721' lon='9.94918' />
@@ -18509,6 +18533,38 @@
     <nd ref='-499647' />
     <tag k='name' v='2019-10-13-4-fibigerstrasse' />
     <tag k='type' v='detour' />
+  </way>
+  <way id='-114271' action='modify'>
+    <nd ref='-499704' />
+    <nd ref='-499747' />
+    <nd ref='-499756' />
+    <nd ref='-499705' />
+    <nd ref='-499765' />
+    <nd ref='-499770' />
+    <nd ref='-499706' />
+    <nd ref='-499707' />
+    <nd ref='-499708' />
+    <nd ref='-499709' />
+    <nd ref='-499710' />
+    <nd ref='-499711' />
+    <nd ref='-499712' />
+    <nd ref='-499713' />
+    <nd ref='-499714' />
+    <nd ref='-499715' />
+    <nd ref='-499716' />
+    <nd ref='-499717' />
+    <nd ref='-499718' />
+    <nd ref='-499719' />
+    <nd ref='-499808' />
+    <nd ref='-499797' />
+    <nd ref='-499790' />
+    <nd ref='-499781' />
+    <nd ref='-499704' />
+    <tag k='name' v='2021-06-17-kreuzung-max-brauer-allee-holstenstrasse' />
+    <tag k='type' v='article' />
+    <tag k='video_forward' v='2021-04-04-freizeitroute-12-speedup-5x/GX011181' />
+    <tag k='video_forward_end' v='0:00:25.0000' />
+    <tag k='video_forward_start' v='0:00:16.0000' />
   </way>
   <way id='1880371' version='1'>
     <nd ref='88971180004732234' />

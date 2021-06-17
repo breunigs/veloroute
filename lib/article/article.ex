@@ -12,7 +12,9 @@ defmodule Article do
           start: Data.RoughDate.t() | nil,
           text: binary(),
           title: binary() | nil,
-          type: binary() | nil
+          type: binary() | nil,
+          video_forward: binary() | nil,
+          video_backward: binary() | nil
         }
   @type collection() :: %{binary() => t()}
 
@@ -35,6 +37,8 @@ defmodule Article do
     :search_title,
     :start_image,
     :start_position,
+    :video_forward,
+    :video_backward,
     :start,
     :tags,
     :text,
@@ -67,21 +71,30 @@ defmodule Article do
 
   @spec enrich_with_map(t(), Map.Parsed.t()) :: t()
   def enrich_with_map(%__MODULE__{} = art, %Map.Parsed{} = map) do
-    bbox =
+    ways =
       map.ways
       |> Map.Element.filter_by_tag(:type, "article")
       |> Map.Element.filter_by_tag(:name, art.name)
-      |> Map.Element.bbox()
 
     bbox =
-      bbox ||
+      Map.Element.bbox(ways) ||
         map.relations
         |> Map.Element.filter_by_tag(:id, art.tags)
         |> Map.Element.bbox()
 
     start_img = art.start_image || start_image(art.images || art.tags, bbox)
 
-    %{art | start_image: start_img, bbox: bbox}
+    finder = &Video.TrimmedSourceSequence.maybe_hash_from_way/2
+    video_forward = Enum.find_value(ways, &finder.(&1, :forward))
+    video_backward = Enum.find_value(ways, &finder.(&1, :backward))
+
+    %{
+      art
+      | start_image: start_img,
+        bbox: bbox,
+        video_forward: video_forward,
+        video_backward: video_backward
+    }
     |> set_start_position
   end
 

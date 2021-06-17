@@ -1,5 +1,5 @@
 defmodule Video.TrimmedSourceSequence do
-  @valid_single_way_types ["detour"]
+  @valid_single_way_types ["detour", "article"]
 
   @known_params [
     :tsvs,
@@ -15,6 +15,31 @@ defmodule Video.TrimmedSourceSequence do
   def new_from_tsv_list(tsv_list) when is_list(tsv_list) do
     hash = calc_hash(tsv_list)
     %__MODULE__{tsvs: tsv_list, hash: hash}
+  end
+
+  @spec maybe_hash_from_way(Map.Way.t(), :forward | :backward) :: binary() | nil
+  def maybe_hash_from_way(%Map.Way{} = way, direction) do
+    tsv_seq = maybe_from_way(way, direction)
+    if tsv_seq, do: tsv_seq.hash, else: nil
+  end
+
+  @spec maybe_from_way(Map.Way.t(), :forward | :backward) :: t() | nil
+  def maybe_from_way(%Map.Way{} = way, direction)
+      when direction == :forward or direction == :backward do
+    new_from_way(way, direction)
+    |> case do
+      {:ok, tsv_seq} ->
+        if already_rendered?(tsv_seq),
+          do: tsv_seq,
+          else: nil
+
+      {:no_video, _error} ->
+        nil
+
+      {:invalid_type, err} ->
+        IO.warn(err)
+        nil
+    end
   end
 
   def new_from_way(%Map.Way{tags: %{type: type}} = way, direction)

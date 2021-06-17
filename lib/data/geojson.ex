@@ -59,14 +59,19 @@ defmodule Data.GeoJSON do
        ) do
     coords = Enum.map(w.nodes, &as_geojson_coord(&1))
 
-    %{
-      type: "Feature",
-      properties: %{
+    props =
+      %{
         type: "article",
         name: name,
         title: title,
         icon: Map.get(w.tags, :article_icon) || type
-      },
+      }
+      |> maybe_add_video(w, :forward)
+      |> maybe_add_video(w, :backward)
+
+    %{
+      type: "Feature",
+      properties: props,
       geometry: %{
         type: "Polygon",
         coordinates: [coords]
@@ -174,19 +179,10 @@ defmodule Data.GeoJSON do
 
   defp maybe_add_video(props, %Map.Way{} = way, direction)
        when direction == :forward or direction == :backward do
-    Video.TrimmedSourceSequence.new_from_way(way, direction)
-    |> case do
-      {:ok, tsv_seq} ->
-        if Video.TrimmedSourceSequence.already_rendered?(tsv_seq),
-          do: Map.put(props, :"video_#{direction}", tsv_seq.hash),
-          else: props
+    tsv_seq = Video.TrimmedSourceSequence.maybe_from_way(way, direction)
 
-      {:no_video, _error} ->
-        props
-
-      {:invalid_type, err} ->
-        IO.warn(err)
-        props
-    end
+    if tsv_seq,
+      do: Map.put(props, :"video_#{direction}", tsv_seq.hash),
+      else: props
   end
 end

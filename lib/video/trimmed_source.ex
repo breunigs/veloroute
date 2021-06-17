@@ -36,7 +36,7 @@ defmodule Video.TrimmedSource do
           Geo.CheapRuler.point() | Video.Timestamp.t(),
           Geo.CheapRuler.point() | Video.Timestamp.t()
         ) :: t()
-  def new(video_name, from, to) do
+  def new(video_name, from, to) when from != to do
     video = Video.Source.new_from_path(video_name)
     coords = Video.Source.time_range(video, from, to)
 
@@ -55,7 +55,6 @@ defmodule Video.TrimmedSource do
     do:
       Settings.video_source_dir_abs()
       |> Path.join(r)
-
 
   def abs_source_path(%__MODULE__{source_path_rel: r}),
     do:

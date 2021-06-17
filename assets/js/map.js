@@ -289,15 +289,15 @@ function maybeHackStateFromVideo() {
   if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
   const curr = video.currentTime;
-  const prec = Math.max(0, curr / video.duration);
+  const perc = Math.max(0, curr / video.duration);
 
   // guess start index based on % of video played, minus some
   // fixed offset (TODO: measure if this is actually faster)
-  let percIndex = (prec / 100.0 * videoCoords.length);
+  let percIndex = (perc / 100.0 * videoCoords.length);
   percIndex -= percIndex % 3
 
   let nextIdx = Math.max(0, percIndex - 10 * 3);
-  for (; nextIdx < videoCoords.length; nextIdx += 3) {
+  for (; nextIdx < videoCoords.length-3; nextIdx += 3) {
     if (videoCoords[nextIdx] >= curr) break;
   }
 
