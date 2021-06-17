@@ -188,8 +188,8 @@
   :velo: false
 7919:
   :id: 7919
-  :title: Hindenburgstraße / Sielbauarbeiten -- Hamburg Wasser
-  :updated: '2021-02-11T13:24:35.730705'
+  :title: 'Hindenburgstraße / Sielbauarbeiten -- '
+  :updated: '2021-06-16T16:54:16.324055'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
   :end: '2021-09-30'
@@ -653,10 +653,10 @@
 7917:
   :id: 7917
   :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
-  :updated: '2021-05-21T07:03:49.650674'
+  :updated: '2021-06-16T16:52:10.91011'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
-  :end: '2021-06-30'
+  :end: '2021-07-30'
   :velo: false
 14631:
   :id: 14631
@@ -1594,7 +1594,159 @@
 15466:
   :id: 15466
   :title: 'Sinstorfer Kirchweg Brücke / Grundinstandsetzung -- '
-  :updated: '2021-06-01T08:00:34.568211'
+  :updated: '2021-06-09T16:58:22.206593'
   :start: '2021-06-28'
   :end: '2022-04-01'
+  :velo: false
+16390:
+  :id: 16390
+  :title: 'Barmbeker Straße / Erkundungsbohrung -- '
+  :updated: '2021-06-08T08:25:25.214295'
+  :link: https://www.schneller-durch-hamburg.de/
+  :start: '2021-06-07'
+  :end: '2021-06-18'
+  :velo: false
+16286:
+  :id: 16286
+  :title: 'Levkojenweg/ Asphaltierung -- '
+  :updated: '2021-06-17T15:03:18.268046'
+  :start: '2021-06-16'
+  :end: '2021-06-22'
+  :velo: false
+16292:
+  :id: 16292
+  :title: 'Strohblumenweg/ Asphaltierung -- '
+  :updated: '2021-06-17T15:03:39.815926'
+  :start: '2021-06-16'
+  :end: '2021-06-22'
+  :velo: false
+16562:
+  :id: 16562
+  :title: 'Nettelnburger Landweg, Deckensanierung -- '
+  :updated: '2021-06-14T10:40:10.41104'
+  :start: '2021-06-14'
+  :end: '2021-07-16'
+  :velo: false
+16700:
+  :id: 16700
+  :title: 'Eilbeker Weg 88 / Hochbau -- '
+  :updated: '2021-06-11T11:31:08.38338'
+  :start: '2021-06-13'
+  :end: '2021-12-15'
+  :velo: false
+16352:
+  :id: 16352
+  :title: 'Poelchaukamp, Sierichstraße, Dorotheenstraße (Sielbau) -- '
+  :updated: '2021-06-11T07:26:49.314249'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-06-04'
+  :end: '2021-11-15'
+  :velo: false
+16775:
+  :id: 16775
+  :title: 'Ferdinandstor / Verkehrsbehinderungen -- '
+  :updated: '2021-06-11T11:33:22.381171'
+  :start: '2021-06-14'
+  :end: '2021-07-05'
+  :velo: false
+16897:
+  :id: 16897
+  :title: 'Berner Heerweg / Deckschichtsanierung -- '
+  :updated: '2021-06-15T07:18:46.630946'
+  :start: '2021-06-14'
+  :end: '2021-09-30'
+  :velo: false
+16974:
+  :id: 16974
+  :title: 'Julius-Vosseler-Straße/ Arbeiten am Fernwärmenetz -- '
+  :updated: '2021-06-16T08:33:30.133351'
+  :start: '2021-06-09'
+  :end: '2021-08-20'
+  :velo: false
+17032:
+  :id: 17032
+  :title: 'Schnackenburgallee/ Verkehrsabsicherung -- '
+  :updated: '2021-06-17T07:00:36.608685'
+  :start: '2021-06-15'
+  :end: '2021-07-01'
+  :velo: false
+16546:
+  :id: 16546
+  :title: 'Baakenwerder Straße / Halbseitige Sperrung -- '
+  :updated: '2021-06-09T09:50:12.115227'
+  :start: '2021-06-22'
+  :end: '2021-06-27'
+  :velo: false
+16420:
+  :id: 16420
+  :title: 'Hasselbrookstraße / Neu- und Umbau der Veloroute 7 -- '
+  :updated: '2021-06-11T08:13:54.243934'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/
+  :start: '2021-06-21'
+  :end: '2021-12-31'
+  :velo: true
+16902:
+  :id: 16902
+  :title: 'Neue Burg / Verkehrsbehinderung -- '
+  :updated: '2021-06-15T07:20:45.181217'
+  :start: '2021-06-23'
+  :end: '2021-09-10'
+  :velo: false
+16414:
+  :id: 16414
+  :title: 'Kennedybrücke / Ferdinandstor - Deckensanierung -- '
+  :updated: '2021-06-08T08:19:26.541977'
+  :link: http://lsbg.hamburg.de/anliegerinformationen
+  :start: '2021-07-12'
+  :end: '2021-08-01'
+  :velo: false
+15556:
+  :id: 15556
+  :title: 'Bovestraße, Gehölzweg - Jüthornstraße / Grundinstandsetzung -- '
+  :updated: '2021-06-15T07:57:18.131372'
+  :start: '2021-07-01'
+  :end: '2021-11-02'
+  :velo: false
+16267:
+  :id: 16267
+  :title: 'Poststraße / Hamburgs Sommergärten / Vollsperrung -- '
+  :updated: '2021-06-15T08:02:54.452359'
+  :start: '2021-07-17'
+  :end: '2021-08-07'
+  :velo: false
+16614:
+  :id: 16614
+  :title: 'Hansastraße/ Hamburg European Open 2021 -- '
+  :updated: '2021-06-09T09:53:31.91095'
+  :start: '2021-07-01'
+  :end: '2021-07-19'
+  :velo: false
+16659:
+  :id: 16659
+  :title: 'Baakenwerder Straße / Fahrspursperrung -- '
+  :updated: '2021-06-11T11:29:43.241194'
+  :start: '2021-06-28'
+  :end: '2021-07-31'
+  :velo: false
+16337:
+  :id: 16337
+  :title: 'Ludwig-Erhard-Straße / Verkehrsbehinderung -- '
+  :updated: '2021-06-15T08:04:57.044564'
+  :start: '2021-07-12'
+  :end: '2021-07-30'
+  :velo: false
+16359:
+  :id: 16359
+  :title: 'Heidenkampsweg / Fahrspursperrung -- '
+  :updated: '2021-06-08T08:25:37.820787'
+  :start: '2021-06-28'
+  :end: '2021-07-18'
+  :velo: false
+16995:
+  :id: 16995
+  :title: 'Heckscherstraße - Gebiet Sielbau -- '
+  :updated: '2021-06-16T07:34:56.210787'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-07-01'
+  :end: '2021-12-30'
   :velo: false
