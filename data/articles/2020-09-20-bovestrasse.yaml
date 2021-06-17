@@ -1,8 +1,10 @@
 
 title: Bovestraße (Veloroute 7)
-type: planned-construction
-start: 2021
+type: construction
+start: 2021-07-01
+end: 2021-11-02
 start_image: WoR3orllPCEkHRnAATcY9g
+construction_site_id_hh: 15556
 tags:
 - 7
 text: >
@@ -14,6 +16,7 @@ text: >
 
   <h4>Meinung</h4>
   <p>Für den Radverkehr wurde vergleichsweise viel herausgeholt. Weitere Verbesserungen würden eine grundlegende Überarbeitung der Straße erfordern – etwa Grundstückzukauf, Fällen aller Bäume oder die Einrichtung einer KFZ-Einbahnstraße. Die Planung wird sich daran messen müssen, ob die Fußwege künftig frei von Radfahrenden sind – wenn nicht muss nachgebessert werden.</p>
+
   <h4>Quelle</h4>
   <p>
     <a href="https://lsbg.hamburg.de/contentblob/14322164/275fdd9a6ecd04db5d2e9e5afb881c5a/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</a> und

@@ -1,10 +1,10 @@
 
-type: planned-construction
+type: construction
 title: Hasselbrookstraße (Veloroute 7)
 images: articles
 start: 2021-06-21
-end: 2021Q4
-
+end: 2021-12-31
+construction_site_id_hh: 16420
 tags:
 - 7
 - w10
