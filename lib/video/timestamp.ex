@@ -37,6 +37,20 @@ defmodule Video.Timestamp do
       String.to_integer(milliseconds)
   end
 
+  @spec add_milliseconds(t(), integer()) :: t()
+  @doc """
+  Add milliseconds to the timestamp in ffmpeg format, and return it again
+  in ffmpeg format. Negative milliseconds are allowed, but the time will
+  be clamped to 0.
+  """
+  def add_milliseconds(timestamp, ms_to_add) when is_integer(ms_to_add) do
+    timestamp
+    |> in_milliseconds()
+    |> Kernel.+(ms_to_add)
+    |> Kernel.max(0)
+    |> from_milliseconds()
+  end
+
   defp pad_left(int, num \\ 2), do: String.pad_leading("#{int}", num, "0")
 
   @spec valid_or_nil(any(), any()) :: t() | nil

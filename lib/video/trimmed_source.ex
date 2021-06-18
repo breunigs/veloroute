@@ -51,13 +51,21 @@ defmodule Video.TrimmedSource do
 
   def to_str(%__MODULE__{anonymized_path_rel: p, from: f, to: t}), do: "#{p} #{f} #{t}"
 
+  def abs_path(%__MODULE__{anonymized_path_rel: "/" <> _rest = r}), do: r
+
   def abs_path(%__MODULE__{anonymized_path_rel: r}),
-    do:
-      Settings.video_source_dir_abs()
-      |> Path.join(r)
+    do: Path.join(Settings.video_source_dir_abs(), r)
+
+  def abs_source_path(%__MODULE__{source_path_rel: "/" <> _rest = r}), do: r
 
   def abs_source_path(%__MODULE__{source_path_rel: r}),
-    do:
-      Settings.video_source_dir_abs()
-      |> Path.join(r)
+    do: Path.join(Settings.video_source_dir_abs(), r)
+
+  def cwd_to_source_path(%__MODULE__{} = tsv) do
+    Path.relative_to(abs_source_path(tsv), File.cwd!())
+  end
+
+  def cwd_to_anonymized_path(%__MODULE__{} = tsv) do
+    Path.relative_to(abs_path(tsv), File.cwd!())
+  end
 end

@@ -128,36 +128,55 @@ defmodule Video.TrimmedSourceSequence do
     |> Base.encode16(case: :lower)
   end
 
+  @concat_tool "./tools/video_concat.rb"
   @doc """
   Returns the command to concatenate the given video(s) and output them to stdout.
   """
-  def concat(%__MODULE__{tsvs: tsvs}, preview \\ false) do
+  def concat(%__MODULE__{tsvs: tsvs}) do
     tsvs
-    |> Enum.reduce(["./tools/video_concat.rb"], fn tsv, cmd ->
-      path = if preview, do: tsv.source_path_rel, else: tsv.anonymized_path_rel
-      path = Settings.video_source_dir_abs() |> Path.join(path) |> Path.relative_to(File.cwd!())
-
-      [tsv.to, tsv.from, path | cmd]
+    |> Enum.reduce([@concat_tool], fn tsv, cmd ->
+      path = Video.TrimmedSource.cwd_to_anonymized_path(tsv)
+      cmd ++ [path, tsv.from, tsv.to]
     end)
-    |> Enum.reverse()
   end
 
   @doc """
-  Returns the command needed to preview the given video(s)
+  Returns the commands to preview the given video(s). The first item previews
+  everything, the following ones just the individual concatting points.
   """
-  def preview(%__MODULE__{} = tsv_seq) do
-    concat(tsv_seq, true) ++
-      [
-        "|",
-        "mpv",
-        "--pause",
-        "--no-resume-playback",
-        # "--speed=0.5",
-        "--framedrop=no",
-        "--keep-open=yes",
-        "--demuxer-max-bytes=500M",
-        "-"
-      ]
+  def preview(%__MODULE__{tsvs: tsvs}, gap_buffer_ms \\ 5_000) do
+    player = [
+      "|",
+      "mpv",
+      "--pause",
+      "--no-resume-playback",
+      # "--speed=0.5",
+      "--framedrop=no",
+      "--keep-open=yes",
+      "--demuxer-max-bytes=500M",
+      "-"
+    ]
+
+    concats =
+      tsvs
+      |> Enum.chunk_every(2, 1, :discard)
+      |> Enum.map(fn [tsv1, tsv2] ->
+        path1 = Video.TrimmedSource.cwd_to_source_path(tsv1)
+        path2 = Video.TrimmedSource.cwd_to_source_path(tsv2)
+
+        from = tsv1.to |> Video.Timestamp.add_milliseconds(-1 * gap_buffer_ms)
+        to = tsv2.from |> Video.Timestamp.add_milliseconds(gap_buffer_ms)
+
+        [@concat_tool, path1, from, tsv1.to, path2, tsv2.from, to] ++ player
+      end)
+
+    full =
+      Enum.reduce(tsvs, [@concat_tool], fn tsv, cmd ->
+        path = Video.TrimmedSource.cwd_to_source_path(tsv)
+        cmd ++ [path, tsv.from, tsv.to]
+      end) ++ player
+
+    [full] ++ concats
   end
 
   @doc """

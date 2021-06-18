@@ -36,6 +36,21 @@ defmodule Video.TrimmedSourceSequenceTest do
            }
   end
 
+  test "produces correct video preview commands" do
+    cmds =
+      example_tsv()
+      |> Video.TrimmedSourceSequence.preview(123)
+      |> Enum.map(fn preview ->
+        # remove player part and join as string
+        preview |> Enum.take_while(fn x -> x != "|" end) |> Enum.join(" ")
+      end)
+
+    assert [
+             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:00.0000 0:00:01.0334 test/fixtures/2.MP4 0:00:00.0000 0:00:01.0668",
+             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:01.0211 0:00:01.0334 test/fixtures/2.MP4 0:00:00.0000 0:00:00.0123"
+           ] == cmds
+  end
+
   test "concats coordinates with absolute time offsets" do
     coords = example_tsv() |> Video.TrimmedSourceSequence.coords()
 

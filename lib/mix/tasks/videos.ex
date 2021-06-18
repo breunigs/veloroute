@@ -22,10 +22,28 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     |> Video.TrimmedSourceSequence.list_from_map()
     |> Enum.reject(&Video.TrimmedSourceSequence.already_rendered?(&1))
     |> Enum.each(fn tsv_seq ->
-      preview = tsv_seq |> Video.TrimmedSourceSequence.preview() |> Enum.join(" ")
-      render = tsv_seq |> Video.TrimmedSourceSequence.render() |> Enum.join(" ")
+      render = tsv_seq |> Video.TrimmedSourceSequence.render()
+      previews = tsv_seq |> Video.TrimmedSourceSequence.preview()
 
-      IO.puts("\nneed to convert #{tsv_seq.hash}:\n    #{preview}\n    #{render}")
+      IO.puts("""
+
+      ###########################################################
+      CONVERT #{tsv_seq.hash} (#{length(tsv_seq.tsvs)} segments):
+      ###########################################################
+
+      render:
+        #{Enum.join(render, " ")}
+      """)
+
+      for {preview, idx} <- Enum.with_index(previews) do
+        desc = if idx == 0, do: "full preview", else: "#{idx}. concat"
+
+        IO.puts("""
+
+        #{desc}:
+          #{Enum.join(preview, " ")}
+        """)
+      end
     end)
   end
 end
