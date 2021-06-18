@@ -122,11 +122,13 @@ defmodule Cache.ArticlesTest do
            |> Enum.sort() == []
   end
 
-  test "all dated articles have a start_image" do
+  test "all dated articles have a start_image or a video" do
     assert Cache.Articles.get_dated()
-           |> Enum.filter(fn {_name, %Article{start_image: x}} -> is_nil(x) end)
+           |> Enum.filter(fn {_name, art} ->
+             art == %Article{start_image: nil, video_forward: nil, video_backward: nil}
+           end)
            |> Enum.map(fn {name, art} ->
-             "Article #{name} has no start_image (bbox: #{inspect(art.bbox)})."
+             "Article #{name} has no start_image nor a video (bbox: #{inspect(art.bbox)})."
            end)
            |> Enum.sort() == []
   end

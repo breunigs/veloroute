@@ -42,6 +42,7 @@ let videoWasPlaying = false;
 function renderIndicator() {
   if (state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
+  const mapActive = map.isMoving() || map.isZooming();
 
   if (!indicator) {
     const rotated = genDiv('indicator-rotate');
@@ -52,7 +53,7 @@ function renderIndicator() {
     indicator = new mapboxgl.Marker(el)
       .setLngLat(lngLat)
       .addTo(map);
-    if (!map.isMoving() && prevBoundsTs === "") {
+    if (!mapActive && prevBoundsTs === "") {
       const zoom = Math.max(map.getZoom(), 14);
       map.flyTo({ center: lngLat, zoom: zoom });
     }
@@ -60,7 +61,7 @@ function renderIndicator() {
 
   const videoPlaying = video && !video.paused;
   const dist = indicator.getLngLat().distanceTo(lngLat);
-  const animate = !map.isMoving() && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
+  const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
   indicator.getElement().classList.toggle("animate", animate);
   videoWasPlaying = videoPlaying;
 
