@@ -16,8 +16,12 @@ defmodule Article.ParserTest do
 
   test "parses decently" do
     file_path = Path.join(@fixtures_dir, "2020-03-29-dummy-article.yaml")
+    article_ways = Article.article_ways(@example_map)
 
-    art = file_path |> Article.Parser.load(@fixtures_dir) |> Article.enrich_with_map(@example_map)
+    art =
+      file_path
+      |> Article.Parser.load(@fixtures_dir)
+      |> Article.enrich_with_map(article_ways, %{})
 
     assert %Article{
              bbox: %Geo.BoundingBox{

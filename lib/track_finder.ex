@@ -32,7 +32,7 @@ defmodule TrackFinder do
       |> Graph.add_edges(edges)
 
     track_matrix(r, ways)
-    |> Enum.map(fn track ->
+    |> Parallel.map(fn track ->
       ways = Graph.Pathfinding.dijkstra(g, track.start, track.stop)
 
       track =
@@ -63,7 +63,7 @@ defmodule TrackFinder do
       "#{name}: The #{kind} nodes must be part of one of the ways of the relation, and it must be at the start or end of that way."
     end
 
-    Enum.map(members, fn %{ref: node} ->
+    Parallel.map(members, fn %{ref: node} ->
       # todo: iterate once with reduce
       as_start = Enum.find(normalized_ways, fn %Way{nodes: nodes} -> hd(nodes) == node end)
       as_end = Enum.find(normalized_ways, fn %Way{nodes: nodes} -> last(nodes) == node end)

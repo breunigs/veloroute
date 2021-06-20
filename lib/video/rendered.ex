@@ -99,7 +99,8 @@ defmodule Video.Rendered do
   end
 
   def start_from(%__MODULE__{coords: coords}, point) do
-    %{lon: lon, lat: lat, t: t, index: idx} = Geo.CheapRuler.closest_point_on_line(coords, point)
+    %{point: %{lon: lon, lat: lat}, t: t, index: idx} =
+      Geo.CheapRuler.closest_point_on_line(coords, point)
 
     {idx, time} =
       if idx == length(coords) - 1 do

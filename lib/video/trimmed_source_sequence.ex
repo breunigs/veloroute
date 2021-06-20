@@ -11,6 +11,9 @@ defmodule Video.TrimmedSourceSequence do
 
   @type t :: %__MODULE__{}
 
+  @debug true
+  @enum_lib if @debug, do: Enum, else: Parallel
+
   @spec new_from_tsv_list([Video.TrimmedSource.t()]) :: t()
   def new_from_tsv_list(tsv_list) when is_list(tsv_list) do
     hash = calc_hash(tsv_list)
@@ -102,8 +105,10 @@ defmodule Video.TrimmedSourceSequence do
     File.dir?(tda) && File.exists?(Path.join(tda, "stream.m3u8"))
   end
 
-  defp collect_all(%Map.Parsed{ways: ways, relations: _relations}) do
-    collect_single_ways(ways)
+  defp collect_all(%Map.Parsed{ways: ways, relations: relations}) do
+    [collect_relations(relations), collect_single_ways(ways)]
+    |> List.flatten()
+    |> Enum.reject(&is_nil/1)
   end
 
   defp collect_single_ways(ways) do
@@ -116,6 +121,143 @@ defmodule Video.TrimmedSourceSequence do
       {:ok, tsv}, acc -> [tsv | acc]
       {_err, _err_msg}, acc -> acc
     end)
+  end
+
+  # Find relations that specify a video_folder, then generate tsv_seqs for each
+  # of their tracks.
+  @max_video_segment_length_seconds 30
+  defp collect_relations(rels) do
+    tsvs =
+      Settings.video_source_dir_abs()
+      |> Video.TrimmedSource.new_from_folder()
+      |> Enum.flat_map(&Video.TrimmedSource.split_every(&1, @max_video_segment_length_seconds))
+
+    rels
+    |> Enum.filter(fn {_id, rel} -> Map.has_key?(rel.tags, :video_folders) end)
+    |> @enum_lib.flat_map(fn {_id, rel} ->
+      allowed = rel.tags.video_folders |> String.split(" ") |> Enum.uniq()
+
+      filtered_tsv =
+        tsvs
+        |> Enum.filter(fn tsv ->
+          Enum.any?(allowed, &String.starts_with?(tsv.source_path_rel, &1))
+        end)
+
+      warn_if_no_videos(rel, filtered_tsv)
+
+      rel
+      |> TrackFinder.ordered()
+      |> TrackFinder.with_nodes()
+      |> @enum_lib.map(&match_track(&1, filtered_tsv))
+    end)
+  end
+
+  defp sort_by_matchiness(tsvs, coord, bearing, prev_tsv) do
+    Enum.sort_by(tsvs, &Video.TrimmedSource.matchiness(&1, coord, bearing, prev_tsv))
+  end
+
+  # maximum distance between two consecutive source way nodes
+  @source_segment_max_dist 25
+  # maximum distance meters the segment's start and the found video may be apart
+  @source_and_cut_max_dist 100
+
+  defp match_track(track, tsvs) do
+    Benchmark.measure("match #{track.full_name}", fn ->
+      match_track_real(track, tsvs)
+    end)
+  end
+
+  @auto_connect_threshold_ms 1_000
+  @discard_threshold_ms 150
+  defp match_track_real(track, tsvs) do
+    [first | rest] = Geo.CheapRuler.max_segment_length(track.nodes, @source_segment_max_dist)
+
+    close =
+      Enum.reduce(rest, {first, nil, []}, fn
+        coord, {prev_coord, prev_bearing, acc} ->
+          bearing = Geo.CheapRuler.bearing(prev_coord, coord)
+          prev_tsv = List.first(acc)
+          sorted_tsvs = sort_by_matchiness(tsvs, prev_coord, bearing, prev_tsv)
+
+          cut =
+            sorted_tsvs
+            |> Stream.take(10)
+            |> Stream.map(fn tsv ->
+              Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
+            end)
+            |> Stream.filter(&is_struct(&1, Video.TrimmedSource))
+            |> Stream.filter(fn tsv ->
+              Geo.CheapRuler.dist(hd(tsv.coords), coord) < @source_and_cut_max_dist
+            end)
+            |> Stream.take(1)
+            |> Enum.at(0)
+
+          cond do
+            cut == nil ->
+              # i.e. ignore the current node, keep the previous one until
+              # we can find a match.
+              {coord, bearing, acc}
+
+            cut.to == cut.original_duration ->
+              # If we read to the end of a TSV, there is a chance our way segment
+              # actually extends past it. To avoid gaps, we calculate where we
+              # left off in the way and try to resume from there.
+              coord =
+                [prev_coord, coord]
+                |> Geo.CheapRuler.closest_point_on_line(List.last(cut.coords))
+                |> Map.fetch!(:point)
+
+              {coord, bearing, [cut | acc]}
+
+            true ->
+              # Found a non-edge case segment, continue with the same node we used
+              # to find our end. Changing the nodes causes gaps or overlaps.
+              {coord, bearing, [cut | acc]}
+          end
+      end)
+      |> elem(2)
+      |> Enum.reverse()
+      |> Video.TrimmedSource.simplify(@auto_connect_threshold_ms, @discard_threshold_ms)
+
+    trackpts = fn coords ->
+      Enum.map(coords, fn coord ->
+        """
+          <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
+        """
+      end)
+      |> Enum.join("\n")
+    end
+
+    xxx =
+      Enum.map(Enum.with_index(close), fn {tsv, idx} ->
+        """
+          <trk>
+             <name>#{idx} #{tsv.source_path_rel} || #{tsv.from} → #{tsv.to}</name>
+            <trkseg>#{trackpts.(tsv.coords)}</trkseg>
+          </trk>
+        """
+      end)
+      |> Enum.join("\n")
+
+    File.write(
+      "/tmp/#{track.full_name}.gpx",
+      String.trim("""
+          <?xml version="1.0" encoding="UTF-8"?>
+          <gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+            #{xxx}
+          </gpx>
+      """)
+    )
+
+    nil
+  end
+
+  defp warn_if_no_videos(rel, filtered_tsv) do
+    if length(filtered_tsv) == 0,
+      do:
+        IO.warn(
+          "Relation #{inspect(rel.tags)} has no source videos. Is the folder name correct and relative to #{Settings.video_source_dir_abs()}? Is the video directory mounted?"
+        )
   end
 
   defp calc_hash(tsv_list) when is_list(tsv_list) do

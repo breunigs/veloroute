@@ -3,17 +3,23 @@ defmodule Video.TrimmedSourceSequenceTest do
 
   def example_tsv() do
     tsv1 =
-      Video.TrimmedSource.new(
-        File.cwd!() <> "/test/fixtures/1",
+      Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/1")
+      |> Video.TrimmedSource.cut(
         %{lat: 53.460992, lon: 9.977524},
-        %{lat: 53.460950, lon: 9.977412}
+        %{lat: 53.460950, lon: 9.977412},
+        nil,
+        nil,
+        nil
       )
 
     tsv2 =
-      Video.TrimmedSource.new(
-        File.cwd!() <> "/test/fixtures/2",
+      Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/2")
+      |> Video.TrimmedSource.cut(
         %{lat: 53.460917, lon: 9.977349},
-        %{lat: 53.460875, lon: 9.977034}
+        %{lat: 53.460875, lon: 9.977034},
+        nil,
+        nil,
+        nil
       )
 
     Video.TrimmedSourceSequence.new_from_tsv_list([tsv1, tsv2])
@@ -29,10 +35,10 @@ defmodule Video.TrimmedSourceSequenceTest do
              start2: start2,
              end2: end2
            } == %{
-             start1: "0:00:00.0000",
-             end1: "0:00:01.0334",
-             start2: "0:00:00.0000",
-             end2: "0:00:01.0668"
+             start1: "0:00:00.000",
+             end1: "0:00:01.334",
+             start2: "0:00:00.000",
+             end2: "0:00:01.668"
            }
   end
 
@@ -46,8 +52,8 @@ defmodule Video.TrimmedSourceSequenceTest do
       end)
 
     assert [
-             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:00.0000 0:00:01.0334 test/fixtures/2.MP4 0:00:00.0000 0:00:01.0668",
-             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:01.0211 0:00:01.0334 test/fixtures/2.MP4 0:00:00.0000 0:00:00.0123"
+             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:00.000 0:00:01.334 test/fixtures/2.MP4 0:00:00.000 0:00:01.668",
+             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:01.211 0:00:01.334 test/fixtures/2.MP4 0:00:00.000 0:00:00.123"
            ] == cmds
   end
 

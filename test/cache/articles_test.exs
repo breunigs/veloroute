@@ -87,7 +87,7 @@ defmodule Cache.ArticlesTest do
 
   test "all articles' contents are valid HTML" do
     Cache.Articles.get()
-    |> Enum.each(fn {name, a} ->
+    |> Parallel.each(fn {name, a} ->
       beauty =
         a.text
         |> Floki.parse_fragment()

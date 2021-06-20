@@ -11,15 +11,12 @@ defmodule Cache.M3U8 do
 
   @cache Benchmark.measure("#{__MODULE__}: caching m3u8s", fn ->
            paths
-           |> Task.async_stream(
-             fn file ->
-               ref = file |> Path.split() |> Enum.slice(-2..-1) |> Path.join()
-               raw = File.read!(file)
-               gzip = :zlib.gzip(raw)
-               {ref, {raw, gzip}}
-             end,
-             timeout: :infinity
-           )
+           |> Parallel.map(fn file ->
+             ref = file |> Path.split() |> Enum.slice(-2..-1) |> Path.join()
+             raw = File.read!(file)
+             gzip = :zlib.gzip(raw)
+             {ref, {raw, gzip}}
+           end)
            |> Enum.map(&elem(&1, 1))
            |> Enum.into(%{})
          end)

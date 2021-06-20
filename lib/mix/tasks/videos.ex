@@ -62,8 +62,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
     {anon, pending} =
       Settings.video_source_dir_abs()
-      |> tree()
-      |> group()
+      |> Video.Source.new_from_folder()
       |> Enum.reduce({[], []}, fn video, {anon, pending} ->
         case video do
           %{available_gpx: false, path_source: source} ->
@@ -115,48 +114,4 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     |> Enum.map(fn seg -> "<trk><name>" <> rel_path <> "</name>" <> hd(seg) <> "</trk>" end)
     |> Enum.join("\n")
   end
-
-  defp group(files) do
-    files
-    |> Enum.map(fn file -> Video.Source.new_from_path(file, files) end)
-    |> Enum.reject(fn
-      {:error, _reason} -> true
-      _video -> false
-    end)
-  end
-
-  defp tree(path) do
-    case File.stat(path) do
-      {:ok, %{type: :directory}} ->
-        case File.ls(path) do
-          {:ok, list} ->
-            list
-            |> Enum.map(&Path.join(path, &1))
-            |> Enum.reduce(MapSet.new(), fn item, files ->
-              merge(files, tree(item))
-            end)
-
-          {:error, reason} ->
-            IO.warn("Failed to read #{path}: #{reason}")
-            []
-        end
-
-      {:ok, %{type: :regular}} ->
-        [path]
-
-      {:ok, _stat} ->
-        # symlinks, devices, etc.
-        []
-
-      {:error, reason} ->
-        IO.warn("Failed to read #{path}: #{reason}")
-        []
-    end
-  end
-
-  defp merge(mapset, elem)
-  defp merge(mapset, []), do: mapset
-  defp merge(mapset, [x]), do: MapSet.put(mapset, x)
-  defp merge(mapset, list) when is_list(list), do: list |> MapSet.new() |> MapSet.union(mapset)
-  defp merge(mapset, other), do: MapSet.union(mapset, other)
 end

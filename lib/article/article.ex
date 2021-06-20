@@ -69,18 +69,21 @@ defmodule Article do
     |> get_in([:img])
   end
 
-  @spec enrich_with_map(t(), Map.Parsed.t()) :: t()
-  def enrich_with_map(%__MODULE__{} = art, %Map.Parsed{} = map) do
-    ways =
-      map.ways
-      |> Map.Element.filter_by_tag(:type, "article")
-      |> Map.Element.filter_by_tag(:name, art.name)
+  @spec article_ways(Map.Parsed.t()) :: [Map.Way.t()]
+  def article_ways(%Map.Parsed{} = map) do
+    Map.Element.filter_by_tag(map.ways, :type, "article")
+  end
+
+  @spec enrich_with_map(t(), [Map.Way.t()], %{binary() => Geo.BoundingBox.t()}) :: t()
+  def enrich_with_map(%__MODULE__{} = art, article_ways, tag_bboxes)
+      when is_list(article_ways) and is_map(tag_bboxes) do
+    ways = Map.Element.filter_by_tag(article_ways, :name, art.name)
 
     bbox =
       Map.Element.bbox(ways) ||
-        map.relations
-        |> Map.Element.filter_by_tag(:id, art.tags)
-        |> Map.Element.bbox()
+        Enum.find_value(art.tags, fn tag ->
+          if is_map_key(tag_bboxes, tag), do: tag_bboxes[tag], else: nil
+        end)
 
     start_img = art.start_image || start_image(art.images || art.tags, bbox)
 
