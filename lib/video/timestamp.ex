@@ -7,7 +7,7 @@ defmodule Video.Timestamp do
 
   defguardp looks_valid(str) when is_binary(str) and byte_size(str) == @expected_length
 
-  # 11*8=96
+  # 11*8=88
   @type t :: <<_::88>>
   def valid?(str) do
     looks_valid(str) && Regex.match?(~r/^\d:\d{2}:\d{2}\.\d{3}$/, str)

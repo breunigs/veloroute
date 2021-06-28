@@ -2,6 +2,7 @@ defmodule Video.TrimmedSourceSequence do
   @valid_single_way_types ["detour", "article"]
 
   @known_params [
+    :name,
     :tsvs,
     :hash
   ]
@@ -10,14 +11,17 @@ defmodule Video.TrimmedSourceSequence do
   defstruct @known_params
 
   @type t :: %__MODULE__{}
+  # 32*8=256
+  @type hash :: <<_::256>>
+  defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
 
-  @debug true
+  @debug false
   @enum_lib if @debug, do: Enum, else: Parallel
 
-  @spec new_from_tsv_list([Video.TrimmedSource.t()]) :: t()
-  def new_from_tsv_list(tsv_list) when is_list(tsv_list) do
+  @spec new_from_tsv_list([Video.TrimmedSource.t()], binary()) :: t()
+  def new_from_tsv_list(tsv_list, name) when is_list(tsv_list) do
     hash = calc_hash(tsv_list)
-    %__MODULE__{tsvs: tsv_list, hash: hash}
+    %__MODULE__{tsvs: tsv_list, hash: hash, name: name}
   end
 
   @spec maybe_hash_from_way(Map.Way.t(), :forward | :backward) :: binary() | nil
@@ -32,9 +36,7 @@ defmodule Video.TrimmedSourceSequence do
     new_from_way(way, direction)
     |> case do
       {:ok, tsv_seq} ->
-        if already_rendered?(tsv_seq),
-          do: tsv_seq,
-          else: nil
+        tsv_seq
 
       {:no_video, _error} ->
         nil
@@ -53,7 +55,7 @@ defmodule Video.TrimmedSourceSequence do
          way
          |> Video.TrimmedSource.new_from_way(direction)
          |> List.wrap()
-         |> new_from_tsv_list()}
+         |> new_from_tsv_list("single way #{type} (#{direction}): #{way.tags[:name]}")}
 
       has_any_video?(way) ->
         {:no_video,
@@ -98,11 +100,6 @@ defmodule Video.TrimmedSourceSequence do
   """
   def uniq(list_of_tsv_seqs) when is_list(list_of_tsv_seqs) do
     Enum.uniq_by(list_of_tsv_seqs, & &1.hash)
-  end
-
-  def already_rendered?(%__MODULE__{} = tsv_seq) do
-    tda = target_dir_abs(tsv_seq)
-    File.dir?(tda) && File.exists?(Path.join(tda, "stream.m3u8"))
   end
 
   defp collect_all(%Map.Parsed{ways: ways, relations: relations}) do
@@ -172,84 +169,82 @@ defmodule Video.TrimmedSourceSequence do
   defp match_track_real(track, tsvs) do
     [first | rest] = Geo.CheapRuler.max_segment_length(track.nodes, @source_segment_max_dist)
 
-    close =
-      Enum.reduce(rest, {first, nil, []}, fn
-        coord, {prev_coord, prev_bearing, acc} ->
-          bearing = Geo.CheapRuler.bearing(prev_coord, coord)
-          prev_tsv = List.first(acc)
-          sorted_tsvs = sort_by_matchiness(tsvs, prev_coord, bearing, prev_tsv)
+    Enum.reduce(rest, {first, nil, []}, fn
+      coord, {prev_coord, prev_bearing, acc} ->
+        bearing = Geo.CheapRuler.bearing(prev_coord, coord)
+        prev_tsv = List.first(acc)
+        sorted_tsvs = sort_by_matchiness(tsvs, prev_coord, bearing, prev_tsv)
 
-          cut =
-            sorted_tsvs
-            |> Stream.take(10)
-            |> Stream.map(fn tsv ->
-              Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
-            end)
-            |> Stream.filter(&is_struct(&1, Video.TrimmedSource))
-            |> Stream.filter(fn tsv ->
-              Geo.CheapRuler.dist(hd(tsv.coords), coord) < @source_and_cut_max_dist
-            end)
-            |> Stream.take(1)
-            |> Enum.at(0)
+        cut =
+          sorted_tsvs
+          |> Stream.take(10)
+          |> Stream.map(fn tsv ->
+            Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
+          end)
+          |> Stream.filter(&is_struct(&1, Video.TrimmedSource))
+          |> Stream.filter(fn tsv ->
+            Geo.CheapRuler.dist(hd(tsv.coords), coord) < @source_and_cut_max_dist
+          end)
+          |> Stream.take(1)
+          |> Enum.at(0)
 
-          cond do
-            cut == nil ->
-              # i.e. ignore the current node, keep the previous one until
-              # we can find a match.
-              {coord, bearing, acc}
+        cond do
+          cut == nil ->
+            # i.e. ignore the current node, keep the previous one until
+            # we can find a match.
+            {coord, bearing, acc}
 
-            cut.to == cut.original_duration ->
-              # If we read to the end of a TSV, there is a chance our way segment
-              # actually extends past it. To avoid gaps, we calculate where we
-              # left off in the way and try to resume from there.
-              coord =
-                [prev_coord, coord]
-                |> Geo.CheapRuler.closest_point_on_line(List.last(cut.coords))
-                |> Map.fetch!(:point)
+          cut.to == cut.original_duration ->
+            # If we read to the end of a TSV, there is a chance our way segment
+            # actually extends past it. To avoid gaps, we calculate where we
+            # left off in the way and try to resume from there.
+            coord =
+              [prev_coord, coord]
+              |> Geo.CheapRuler.closest_point_on_line(List.last(cut.coords))
+              |> Map.fetch!(:point)
 
-              {coord, bearing, [cut | acc]}
+            {coord, bearing, [cut | acc]}
 
-            true ->
-              # Found a non-edge case segment, continue with the same node we used
-              # to find our end. Changing the nodes causes gaps or overlaps.
-              {coord, bearing, [cut | acc]}
-          end
-      end)
-      |> elem(2)
-      |> Enum.reverse()
-      |> Video.TrimmedSource.simplify(@auto_connect_threshold_ms, @discard_threshold_ms)
+          true ->
+            # Found a non-edge case segment, continue with the same node we used
+            # to find our end. Changing the nodes causes gaps or overlaps.
+            {coord, bearing, [cut | acc]}
+        end
+    end)
+    |> elem(2)
+    |> Enum.reverse()
+    |> Video.TrimmedSource.simplify(@auto_connect_threshold_ms, @discard_threshold_ms)
+    |> new_from_tsv_list("Route #{track.id} (#{track.direction}): #{track.full_name}")
 
-    trackpts = fn coords ->
-      Enum.map(coords, fn coord ->
-        """
-          <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
-        """
-      end)
-      |> Enum.join("\n")
-    end
+    # trackpts = fn coords ->
+    #   Enum.map(coords, fn coord ->
+    #     """
+    #       <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
+    #     """
+    #   end)
+    #   |> Enum.join("\n")
+    # end
 
-    xxx =
-      Enum.map(Enum.with_index(close), fn {tsv, idx} ->
-        """
-          <trk>
-             <name>#{idx} #{tsv.source_path_rel} || #{tsv.from} → #{tsv.to}</name>
-            <trkseg>#{trackpts.(tsv.coords)}</trkseg>
-          </trk>
-        """
-      end)
-      |> Enum.join("\n")
+    # xxx =
+    #   Enum.map(Enum.with_index(close), fn {tsv, idx} ->
+    #     """
+    #       <trk>
+    #          <name>#{idx} #{tsv.source_path_rel} || #{tsv.from} → #{tsv.to}</name>
+    #         <trkseg>#{trackpts.(tsv.coords)}</trkseg>
+    #       </trk>
+    #     """
+    #   end)
+    #   |> Enum.join("\n")
 
-    File.write(
-      "/tmp/#{track.full_name}.gpx",
-      String.trim("""
-          <?xml version="1.0" encoding="UTF-8"?>
-          <gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-            #{xxx}
-          </gpx>
-      """)
-    )
-
-    nil
+    # File.write(
+    #   "/tmp/#{track.full_name}.gpx",
+    #   String.trim("""
+    #       <?xml version="1.0" encoding="UTF-8"?>
+    #       <gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    #         #{xxx}
+    #       </gpx>
+    #   """)
+    # )
   end
 
   defp warn_if_no_videos(rel, filtered_tsv) do
@@ -260,6 +255,7 @@ defmodule Video.TrimmedSourceSequence do
         )
   end
 
+  @spec calc_hash([Video.TrimmedSource.t()]) :: hash()
   defp calc_hash(tsv_list) when is_list(tsv_list) do
     tsv_list
     |> Enum.map(&Video.TrimmedSource.to_str(&1))
@@ -268,57 +264,6 @@ defmodule Video.TrimmedSourceSequence do
     end)
     |> :crypto.hash_final()
     |> Base.encode16(case: :lower)
-  end
-
-  @concat_tool "./tools/video_concat.rb"
-  @doc """
-  Returns the command to concatenate the given video(s) and output them to stdout.
-  """
-  def concat(%__MODULE__{tsvs: tsvs}) do
-    tsvs
-    |> Enum.reduce([@concat_tool], fn tsv, cmd ->
-      path = Video.TrimmedSource.cwd_to_anonymized_path(tsv)
-      cmd ++ [path, tsv.from, tsv.to]
-    end)
-  end
-
-  @doc """
-  Returns the commands to preview the given video(s). The first item previews
-  everything, the following ones just the individual concatting points.
-  """
-  def preview(%__MODULE__{tsvs: tsvs}, gap_buffer_ms \\ 5_000) do
-    player = [
-      "|",
-      "mpv",
-      "--pause",
-      "--no-resume-playback",
-      # "--speed=0.5",
-      "--framedrop=no",
-      "--keep-open=yes",
-      "--demuxer-max-bytes=500M",
-      "-"
-    ]
-
-    concats =
-      tsvs
-      |> Enum.chunk_every(2, 1, :discard)
-      |> Enum.map(fn [tsv1, tsv2] ->
-        path1 = Video.TrimmedSource.cwd_to_source_path(tsv1)
-        path2 = Video.TrimmedSource.cwd_to_source_path(tsv2)
-
-        from = tsv1.to |> Video.Timestamp.add_milliseconds(-1 * gap_buffer_ms)
-        to = tsv2.from |> Video.Timestamp.add_milliseconds(gap_buffer_ms)
-
-        [@concat_tool, path1, from, tsv1.to, path2, tsv2.from, to] ++ player
-      end)
-
-    full =
-      Enum.reduce(tsvs, [@concat_tool], fn tsv, cmd ->
-        path = Video.TrimmedSource.cwd_to_source_path(tsv)
-        cmd ++ [path, tsv.from, tsv.to]
-      end) ++ player
-
-    [full] ++ concats
   end
 
   @doc """
@@ -347,29 +292,13 @@ defmodule Video.TrimmedSourceSequence do
   end
 
   @doc """
-  Returns the command needed to render the given video(s) in streamable resolutions
+  Returns the list of sources and their cutpoints
   """
-  def render(%__MODULE__{} = tsv_seq) do
-    concat(tsv_seq) ++
-      ["|", "./tools/video_convert_streamable.rb", target_dir_abs(tsv_seq), "#{size(tsv_seq)}"]
-  end
-
-  @doc """
-  Returns the combined size in bytes of all input files
-  """
-  def size(%__MODULE__{tsvs: tsvs}) do
-    Enum.reduce(tsvs, 0, fn tsv, acc ->
-      file = Video.TrimmedSource.abs_path(tsv)
-
-      with {:ok, %{size: size}} <- File.stat(file) do
-        acc + size
-      else
-        _ ->
-          acc
-      end
+  @type sources :: [{binary(), Video.Timestamp.t(), Video.Timestamp.t()}]
+  @spec sources(t()) :: sources()
+  def sources(%__MODULE__{tsvs: tsvs}) do
+    Enum.map(tsvs, fn tsv ->
+      {tsv.anonymized_path_rel, tsv.from, tsv.to}
     end)
   end
-
-  defp target_dir_abs(%__MODULE__{hash: hash}),
-    do: Path.join(Settings.video_target_dir_abs(), hash)
 end

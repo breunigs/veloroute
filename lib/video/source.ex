@@ -1,5 +1,6 @@
 defmodule Video.Source do
   @gpx_ending ".gpx"
+  # TODO use from Video.Path
   @anonymized_suffix ".anonymized.mkv"
   @source_endings [".MP4", ".mkv"]
 

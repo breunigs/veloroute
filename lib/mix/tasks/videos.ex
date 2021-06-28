@@ -8,6 +8,24 @@ defmodule Mix.Tasks.Velo.Videos do
   def out_pending, do: @out_pending
 end
 
+defmodule Mix.Tasks.Velo.Videos.UpdateFromMap do
+  use Mix.Task
+
+  @shortdoc "Finds videos from the map and generates their metadata"
+  def run(_) do
+    # disable the warning if we're updating files
+    Code.compiler_options(ignore_module_conflict: true)
+
+    Map.Parser.load_default()
+    |> Video.TrimmedSourceSequence.list_from_map()
+    |> Parallel.map(&Video.Rendered.save_from_tsv_seq/1)
+    |> Enum.each(fn
+      :ok -> :ok
+      broken -> IO.puts(:stderr, inspect(broken))
+    end)
+  end
+end
+
 defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
@@ -18,17 +36,16 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   defp real_run do
-    Cache.Map.full_map()
-    |> Video.TrimmedSourceSequence.list_from_map()
-    |> Enum.reject(&Video.TrimmedSourceSequence.already_rendered?(&1))
-    |> Enum.each(fn tsv_seq ->
-      render = tsv_seq |> Video.TrimmedSourceSequence.render()
-      previews = tsv_seq |> Video.TrimmedSourceSequence.preview()
+    Video.Rendered.pending()
+    |> Enum.each(fn rendered ->
+      render = Video.Rendered.render(rendered)
+      previews = Video.Rendered.preview(rendered)
 
       IO.puts("""
 
       ###########################################################
-      CONVERT #{tsv_seq.hash} (#{length(tsv_seq.tsvs)} segments):
+      #{rendered.name}
+      Hash: #{rendered.hash}  Segments: #{length(rendered.sources)}
       ###########################################################
 
       render:
@@ -36,7 +53,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
       """)
 
       for {preview, idx} <- Enum.with_index(previews) do
-        desc = if idx == 0, do: "full preview", else: "#{idx}. concat"
+        desc = if idx == 0, do: "full preview", else: "#{idx}. concat preview"
 
         IO.puts("""
 

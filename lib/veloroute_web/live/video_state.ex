@@ -162,8 +162,8 @@ defmodule VelorouteWeb.Live.VideoState do
   defp extract_video(%__MODULE__{} = state, _params), do: state
 
   defp update_real(state, forward, backward) do
-    forward = Cache.Videos.get(forward)
-    backward = Cache.Videos.get(backward)
+    forward = Video.Rendered.get(forward)
+    backward = Video.Rendered.get(backward)
 
     dir =
       cond do

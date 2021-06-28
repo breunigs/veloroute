@@ -22,39 +22,7 @@ defmodule Video.TrimmedSourceSequenceTest do
         nil
       )
 
-    Video.TrimmedSourceSequence.new_from_tsv_list([tsv1, tsv2])
-  end
-
-  test "produces correct video trim commands" do
-    [_exe_path, _video1, start1, end1, _video2, start2, end2] =
-      example_tsv() |> Video.TrimmedSourceSequence.concat()
-
-    assert %{
-             start1: start1,
-             end1: end1,
-             start2: start2,
-             end2: end2
-           } == %{
-             start1: "0:00:00.000",
-             end1: "0:00:01.334",
-             start2: "0:00:00.000",
-             end2: "0:00:01.668"
-           }
-  end
-
-  test "produces correct video preview commands" do
-    cmds =
-      example_tsv()
-      |> Video.TrimmedSourceSequence.preview(123)
-      |> Enum.map(fn preview ->
-        # remove player part and join as string
-        preview |> Enum.take_while(fn x -> x != "|" end) |> Enum.join(" ")
-      end)
-
-    assert [
-             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:00.000 0:00:01.334 test/fixtures/2.MP4 0:00:00.000 0:00:01.668",
-             "./tools/video_concat.rb test/fixtures/1.MP4 0:00:01.211 0:00:01.334 test/fixtures/2.MP4 0:00:00.000 0:00:00.123"
-           ] == cmds
+    Video.TrimmedSourceSequence.new_from_tsv_list([tsv1, tsv2], "fixtures 1+2")
   end
 
   test "concats coordinates with absolute time offsets" do

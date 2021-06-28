@@ -26,10 +26,14 @@ defmodule Mix.Tasks.EditMap do
       )
 
     # run in extra process to ensure we recompile after map update
-    IO.puts("Updating images…")
-    {_stream, 0} = System.cmd("mix", ["update_images"], into: IO.stream(:stdio, :line))
-    IO.puts("Updating GPX…")
-    {_stream, 0} = System.cmd("mix", ["update_gpx"], into: IO.stream(:stdio, :line))
+    %{
+      "velo.videos.update_from_map" => "Updating Videos…",
+      "update_gpx" => "Updating GPX…"
+    }
+    |> Enum.each(fn {cmd, text} ->
+      {_stream, 0} = System.cmd("mix", [cmd], into: IO.stream(:stdio, :line))
+      IO.puts(text)
+    end)
   end
 
   defp write_josm_session do
