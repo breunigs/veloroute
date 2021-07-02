@@ -16,7 +16,6 @@ defmodule Video.TrimmedSourceTest do
         %Video.TimedPoint{lat: 53.460951, lon: 9.977433, time_offset_ms: 1001},
         %Video.TimedPoint{lat: 53.46095, lon: 9.977412, time_offset_ms: 1334}
       ],
-      cut_history: ["cut approx idx 1→3"],
       from: "0:00:00.000",
       to: "0:00:01.334"
     }
@@ -70,7 +69,6 @@ defmodule Video.TrimmedSourceTest do
   test "cuts properly 2" do
     tsv = %Video.TrimmedSource{
       anonymized_path_rel: "bla",
-      cut_history: [],
       coords: [
         %Video.TimedPoint{lat: 53.552107, lon: 9.994336, time_offset_ms: 0},
         %Video.TimedPoint{lat: 53.552092, lon: 9.994364, time_offset_ms: 334},
@@ -142,7 +140,7 @@ defmodule Video.TrimmedSourceTest do
       from: "0:00:00.0000",
       source_path_rel: "bla",
       to: "0:00:21.0688",
-      original_duration: "0:00:21.0688"
+      duration_ms_uncut: "0:00:21.0688"
     }
 
     from = %{lat: 53.5506939, lon: 9.9942354}
@@ -164,11 +162,10 @@ defmodule Video.TrimmedSourceTest do
                %Video.TimedPoint{lat: 53.550598, lon: 9.994402, time_offset_ms: 14014},
                %Video.TimedPoint{lat: 53.550572, lon: 9.994393, time_offset_ms: 14348}
              ],
-             cut_history: ["cut approx idx 39→42"],
              from: "0:00:12.918",
              source_path_rel: "bla",
              to: "0:00:14.348",
-             original_duration: "0:00:21.0688"
+             duration_ms_uncut: "0:00:21.0688"
            } == cut
   end
 

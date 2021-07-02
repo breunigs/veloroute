@@ -87,16 +87,16 @@ defmodule Article do
 
     start_img = art.start_image || start_image(art.images || art.tags, bbox)
 
-    finder = &Video.TrimmedSourceSequence.maybe_hash_from_way/2
-    video_forward = Enum.find_value(ways, &finder.(&1, :forward))
-    video_backward = Enum.find_value(ways, &finder.(&1, :backward))
+    # finder = &Video.TrimmedSourceSequence.maybe_hash_from_way/2
+    # video_forward = Enum.find_value(ways, &finder.(&1, :forward))
+    # video_backward = Enum.find_value(ways, &finder.(&1, :backward))
 
     %{
       art
       | start_image: start_img,
-        bbox: bbox,
-        video_forward: video_forward,
-        video_backward: video_backward
+        bbox: bbox
+        # video_forward: video_forward,
+        # video_backward: video_backward
     }
     |> set_start_position
   end

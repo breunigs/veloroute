@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk>
+    <name>Untitled</name>
+    <trkseg>
+      <trkpt lat="53.605917" lon="9.898713">
+        <ele>21.105000</ele>
+        <time>2021-06-05T11:44:12.000Z</time>
+      </trkpt>
+      <trkpt lat="53.605904" lon="9.898718">
+        <ele>20.751900</ele>
+        <time>2021-06-05T11:44:12.334Z</time>
+      </trkpt>
+      <trkpt lat="53.605880" lon="9.898731">
+        <ele>19.812500</ele>
+        <time>2021-06-05T11:44:12.667Z</time>
+      </trkpt>
+      <trkpt lat="53.605856" lon="9.898744">
+        <ele>19.140300</ele>
+        <time>2021-06-05T11:44:13.001Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

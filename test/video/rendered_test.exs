@@ -40,8 +40,6 @@ defmodule Video.RenderedTest do
     @impl Video.Rendered
     def name(), do: "example"
     @impl Video.Rendered
-    def created(), do: "definitely today"
-    @impl Video.Rendered
     def hash(), do: "badc0ffeebadc0ffeebadc0ffeebadc0"
     @impl Video.Rendered
     def length_ms(), do: 400

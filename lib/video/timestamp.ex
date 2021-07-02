@@ -13,6 +13,8 @@ defmodule Video.Timestamp do
     looks_valid(str) && Regex.match?(~r/^\d:\d{2}:\d{2}\.\d{3}$/, str)
   end
 
+  def zero(), do: "0:00:00.000"
+
   @doc """
   Takes a duration in millisecond and returns it as an ffmpeg formatted timestamp
 

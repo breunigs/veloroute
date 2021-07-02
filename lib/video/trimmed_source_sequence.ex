@@ -15,7 +15,12 @@ defmodule Video.TrimmedSourceSequence do
   @type hash :: <<_::256>>
   defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
 
-  @debug false
+  # specify a track name to debug here, or false for none
+  # @debug false
+  # TODO: why is the first bit missing at Roedingsmarkt? Maybe just have simplify take a video from the start if it's "close enough" as well
+  # TODO: why is the section around weidenstieg missing completely?
+  # @debug "Innenstadt nach Eidelstedt"
+  @debug "velo2_2021"
   @enum_lib if @debug, do: Enum, else: Parallel
 
   @spec new_from_tsv_list([Video.TrimmedSource.t()], binary()) :: t()
@@ -145,63 +150,72 @@ defmodule Video.TrimmedSourceSequence do
       rel
       |> TrackFinder.ordered()
       |> TrackFinder.with_nodes()
-      |> @enum_lib.map(&match_track(&1, filtered_tsv))
+      |> @enum_lib.map(&match_track_measure(&1, filtered_tsv))
     end)
   end
 
-  defp sort_by_matchiness(tsvs, coord, bearing, prev_tsv) do
-    Enum.sort_by(tsvs, &Video.TrimmedSource.matchiness(&1, coord, bearing, prev_tsv))
+  defp match_track_measure(track, tsvs) do
+    Benchmark.measure("match #{track.full_name}", fn ->
+      match_track(track, tsvs)
+    end)
   end
 
+  @doc """
+  Given a track and list of trimmed source videos, it will try to find the closest match
+  of them to the track.
+  """
   # maximum distance between two consecutive source way nodes
   @source_segment_max_dist 25
   # maximum distance meters the segment's start and the found video may be apart
-  @source_and_cut_max_dist 100
-
-  defp match_track(track, tsvs) do
-    Benchmark.measure("match #{track.full_name}", fn ->
-      match_track_real(track, tsvs)
-    end)
-  end
-
-  @auto_connect_threshold_ms 1_000
-  @discard_threshold_ms 150
-  defp match_track_real(track, tsvs) do
+  # @source_and_cut_max_dist 100
+  def match_track(%{} = track, tsvs) do
     [first | rest] = Geo.CheapRuler.max_segment_length(track.nodes, @source_segment_max_dist)
 
     Enum.reduce(rest, {first, nil, []}, fn
       coord, {prev_coord, prev_bearing, acc} ->
         bearing = Geo.CheapRuler.bearing(prev_coord, coord)
         prev_tsv = List.first(acc)
-        sorted_tsvs = sort_by_matchiness(tsvs, prev_coord, bearing, prev_tsv)
 
         cut =
-          sorted_tsvs
-          |> Stream.take(10)
-          |> Stream.map(fn tsv ->
+          tsvs
+          |> Enum.map(fn tsv ->
             Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
           end)
-          |> Stream.filter(&is_struct(&1, Video.TrimmedSource))
-          |> Stream.filter(fn tsv ->
-            Geo.CheapRuler.dist(hd(tsv.coords), coord) < @source_and_cut_max_dist
+          |> Enum.filter(&is_struct(&1, Video.TrimmedSource))
+          |> Enum.sort_by(fn tsv ->
+            dist_start = Geo.CheapRuler.dist(tsv.coord_from, prev_coord)
+            dist_end = Geo.CheapRuler.dist(tsv.coord_to, coord)
+            same_video = Video.TrimmedSource.same?(prev_tsv, tsv)
+            ended = prev_tsv && Video.TrimmedSource.reaches_end_of_video?(prev_tsv)
+            consecutive = !same_video && Video.TrimmedSource.consecutive?(prev_tsv, tsv)
+
+            (dist_start + dist_end) / 2 +
+              if(same_video && !ended, do: -25, else: 0) +
+              if(ended && consecutive, do: -10, else: 0)
           end)
-          |> Stream.take(1)
           |> Enum.at(0)
 
+        excessively_far_away = cut && Geo.CheapRuler.dist(cut.coord_from, coord) > 100
+
         cond do
-          cut == nil ->
+          cut == nil || excessively_far_away ->
             # i.e. ignore the current node, keep the previous one until
             # we can find a match.
+            if @debug, do: IO.puts("No candidate for #{inspect(coord)}")
             {coord, bearing, acc}
 
-          cut.to == cut.original_duration ->
+          Video.TrimmedSource.reaches_end_of_video?(cut, 500) ->
             # If we read to the end of a TSV, there is a chance our way segment
             # actually extends past it. To avoid gaps, we calculate where we
             # left off in the way and try to resume from there.
+
             coord =
               [prev_coord, coord]
-              |> Geo.CheapRuler.closest_point_on_line(List.last(cut.coords))
+              |> Geo.CheapRuler.closest_point_on_line(cut.coord_to)
               |> Map.fetch!(:point)
+
+            if @debug,
+              do: IO.puts("End of TSV #{cut.source_path_rel}, resume from #{inspect(coord)}")
 
             {coord, bearing, [cut | acc]}
 
@@ -213,38 +227,48 @@ defmodule Video.TrimmedSourceSequence do
     end)
     |> elem(2)
     |> Enum.reverse()
-    |> Video.TrimmedSource.simplify(@auto_connect_threshold_ms, @discard_threshold_ms)
+    |> maybe_debug(track, "full")
+    |> Video.TrimmedSource.simplify()
+    |> maybe_debug(track, "simplified")
     |> new_from_tsv_list("Route #{track.id} (#{track.direction}): #{track.full_name}")
+  end
 
-    # trackpts = fn coords ->
-    #   Enum.map(coords, fn coord ->
-    #     """
-    #       <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
-    #     """
-    #   end)
-    #   |> Enum.join("\n")
-    # end
+  defp maybe_debug(tsv_list, track, text), do: maybe_debug(tsv_list, track, text, @debug)
 
-    # xxx =
-    #   Enum.map(Enum.with_index(close), fn {tsv, idx} ->
-    #     """
-    #       <trk>
-    #          <name>#{idx} #{tsv.source_path_rel} || #{tsv.from} → #{tsv.to}</name>
-    #         <trkseg>#{trackpts.(tsv.coords)}</trkseg>
-    #       </trk>
-    #     """
-    #   end)
-    #   |> Enum.join("\n")
+  defp maybe_debug(tsv_list, track, text, debug) do
+    if debug && String.contains?(track.full_name, debug) do
+      contents =
+        tsv_list
+        |> Enum.with_index()
+        |> Enum.map(fn {tsv, idx} ->
+          coords = tsv |> Video.TrimmedSource.coords() |> Map.fetch!(:coords)
 
-    # File.write(
-    #   "/tmp/#{track.full_name}.gpx",
-    #   String.trim("""
-    #       <?xml version="1.0" encoding="UTF-8"?>
-    #       <gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-    #         #{xxx}
-    #       </gpx>
-    #   """)
-    # )
+          """
+            <trk>
+               <number>#{idx}</number>
+               <desc>#{tsv.coord_from.time_offset_ms} → #{tsv.coord_to.time_offset_ms} (max: #{tsv.duration_ms_uncut})</desc>
+               <cmt>#{Video.Timestamp.from_timed_point(tsv.coord_from)} → #{Video.Timestamp.from_timed_point(tsv.coord_to)} (max: #{Video.Timestamp.from_milliseconds(tsv.duration_ms_uncut)})</cmt>
+               <src>#{tsv.source_path_rel}</src>
+              <trkseg>#{coords |> Enum.map(&Video.TimedPoint.to_gpx_trkpt/1) |> Enum.join()}</trkseg>
+            </trk>
+          """
+        end)
+        |> Enum.join("\n")
+
+      gpx =
+        String.trim("""
+            <?xml version="1.0" encoding="UTF-8"?>
+            <gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+              #{contents}
+            </gpx>
+        """)
+
+      path = "./tmp/#{track.full_name}.#{text}.gpx"
+      IO.puts("Writing #{path} (TSVs before simplification)")
+      File.write(path, gpx)
+    end
+
+    tsv_list
   end
 
   defp warn_if_no_videos(rel, filtered_tsv) do
@@ -273,11 +297,12 @@ defmodule Video.TrimmedSourceSequence do
   def coords(%__MODULE__{} = tsv_seq) do
     tsv_seq.tsvs
     |> Enum.reduce({0, []}, fn tsv, {prev_time_offset_ms, acc} ->
-      [%{time_offset_ms: cur_time_offset_ms} | _rest] = tsv.coords
+      %{first: %{time_offset_ms: cur_time_offset_ms}, coords: coords} =
+        Video.TrimmedSource.coords(tsv)
 
       coords =
         Enum.map(
-          tsv.coords,
+          coords,
           &Map.put(
             &1,
             :time_offset_ms,
@@ -298,7 +323,11 @@ defmodule Video.TrimmedSourceSequence do
   @spec sources(t()) :: sources()
   def sources(%__MODULE__{tsvs: tsvs}) do
     Enum.map(tsvs, fn tsv ->
-      {tsv.anonymized_path_rel, tsv.from, tsv.to}
+      {
+        tsv.anonymized_path_rel,
+        Video.Timestamp.from_timed_point(tsv.coord_from),
+        Video.Timestamp.from_timed_point(tsv.coord_to)
+      }
     end)
   end
 end

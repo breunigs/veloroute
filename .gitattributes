@@ -1,2 +1,3 @@
 *.osm binary
+data/auto_generated/video/*.ex binary
 tools/*seen*.txt binary

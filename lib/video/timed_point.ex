@@ -21,6 +21,13 @@ defmodule Video.TimedPoint do
       time_offset_ms: round(time)
     }
   end
+
+  @spec to_gpx_trkpt(t()) :: binary()
+  def to_gpx_trkpt(coord) do
+    """
+      <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
+    """
+  end
 end
 
 defimpl Geo.Interpolate, for: Video.TimedPoint do

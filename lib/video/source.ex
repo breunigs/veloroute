@@ -140,7 +140,7 @@ defmodule Video.Source do
   end
 
   defp as_gpx(source_path) do
-    source_path |> as_base |> Kernel.<>(@gpx_ending)
+    source_path |> as_base() |> Kernel.<>(@gpx_ending)
   end
 
   defp as_anonymized(source_path) do

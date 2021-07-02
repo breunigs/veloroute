@@ -51,7 +51,7 @@ defmodule Mix.Tasks.EditMap do
               <layer index="1" name="Map" type="osm-data" version="0.1" visible="true">
                   <file>file:#{Path.absname(Map.Parser.default_map_path())}</file>
               </layer>
-              <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="true">
+              <layer index="2" name="Images (read only)" type="osm-data" version="0.1" visible="false">
                   <file>file:#{Path.absname(Mix.Tasks.UpdateImages.imgpath())}</file>
               </layer>
               <layer index="3" name="Videos (anonymized, read only)" type="tracks" version="0.1" visible="true">
