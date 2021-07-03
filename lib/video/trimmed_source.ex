@@ -74,7 +74,7 @@ defmodule Video.TrimmedSource do
     %{coords: subset} = coords(tsv)
 
     from_adjusters =
-      if prev_tsv && prev_tsv.source_path_rel == tsv.source_path_rel,
+      if same?(prev_tsv, tsv),
         do: [adjuster_bearing(from_bearing), adjuster_duration(prev_tsv)],
         else: [adjuster_bearing(from_bearing)]
 
@@ -171,7 +171,7 @@ defmodule Video.TrimmedSource do
   @doc """
   Extract a part of the video as denoted by the timestamps.
   """
-  @spec extract(t(), Video.Timestamp.t(), Video.Timestamp.t()) ::
+  @spec extract(t(), Video.Timestamp.t() | integer(), Video.Timestamp.t() | integer()) ::
           t() | {:error, binary()}
 
   def extract(%__MODULE__{} = tsv, "" <> from, to),
@@ -180,7 +180,8 @@ defmodule Video.TrimmedSource do
   def extract(%__MODULE__{} = tsv, from, "" <> to),
     do: extract(tsv, from, Video.Timestamp.in_milliseconds(to))
 
-  def extract(%__MODULE__{} = tsv, from, to) when is_integer(from) and is_integer(to) do
+  def extract(%__MODULE__{} = tsv, from, to)
+      when is_integer(from) and is_integer(to) and from <= to do
     %{first: from_pt, last: to_pt} = coords(tsv, from, to)
 
     %{tsv | coord_from: from_pt, coord_to: to_pt} |> assert_valid()
@@ -255,6 +256,18 @@ defmodule Video.TrimmedSource do
       else: {:error, "Invalid time range requested: from #{from_ms} >= to #{to_ms}"}
   end
 
+  defp assert_valid!(%__MODULE__{} = tsv) do
+    case assert_valid(tsv) do
+      {:error, msg} ->
+        require IEx
+        IEx.pry()
+        raise(msg)
+
+      tsv ->
+        tsv
+    end
+  end
+
   # defp valid_order(%{time_offset_ms: from} = a, %{time_offset_ms: to} = b) when from >= to do
   #   {:error, "Invalid time range requested: from #{inspect(a)} >= to #{inspect(b)}"}
   # end
@@ -312,7 +325,9 @@ defmodule Video.TrimmedSource do
   # defp adjuster_duration(previous_video_or_timestamp)
   # defp adjuster_duration(nil), do: adjuster_noop()
 
-  defp adjuster_duration(%{coord_to: %{time_offset_ms: ms}}) do
+  defp adjuster_duration(%{coord_to: %{time_offset_ms: ms}} = tsv) do
+    IO.puts("#{tsv.source_path_rel}: #{ms}")
+
     fn _prev, next, _idx, _dist ->
       diff_ms = next.time_offset_ms - ms
 
@@ -320,7 +335,7 @@ defmodule Video.TrimmedSource do
         # 1.5s of video roughly equals 1m of penalty
         do: diff_ms / 1500,
         # avoid points behind the previous one ("repetitions")
-        else: 10 + -1 * diff_ms / 1500
+        else: 10 - diff_ms / 1500
     end
   end
 
@@ -361,7 +376,7 @@ defmodule Video.TrimmedSource do
   # automatically join two consecutive videos if the time gap is less than this.
   # If the two videos are from different files, the first one is extended to its
   # end, and the second one to its start.
-  @auto_connect_threshold_ms 1_250
+  @auto_connect_threshold_ms 2_500
   # The distance is only checked for two consecutive videos, to prevent actual gaps
   # over huge distances from taking the full video.
   @auto_connect_threshold_distance_meters 30
@@ -373,13 +388,17 @@ defmodule Video.TrimmedSource do
   def simplify([head | tail]) do
     Enum.reduce(tail, [head], fn next, [prev | rest] ->
       cond do
+        Map.get(prev.coord_to, :no_simplify, false) &&
+            Map.get(next.coord_from, :no_simplify, false) ->
+          [next, prev | rest]
+
         joinable?(prev, next) ->
-          joined = %{prev | coord_to: next.coord_to}
+          joined = assert_valid!(%{prev | coord_to: next.coord_to})
           [joined | rest]
 
         bridgable_consecutive?(prev, next) ->
-          prev = %{prev | coord_to: List.last(prev.coords_uncut)}
-          next = %{next | coord_from: hd(next.coords_uncut)}
+          prev = assert_valid!(%{prev | coord_to: List.last(prev.coords_uncut)})
+          next = assert_valid!(%{next | coord_from: hd(next.coords_uncut)})
           [remove_unknown_params(next), prev | rest]
 
         duration_ms(next) < @discard_threshold_ms ->
@@ -393,12 +412,17 @@ defmodule Video.TrimmedSource do
     |> Enum.reverse()
   end
 
+  @max_backwards_seek_ms 10_000
   defp optimize_join(%__MODULE__{} = prev, %__MODULE__{} = next) do
     if small_dist_gap_between?(prev, next, 2 * @auto_connect_threshold_distance_meters) do
+      resume_from = next.coord_from.time_offset_ms
+
       closest_in_next =
         Geo.CheapRuler.closest_point_on_line(next.coords_uncut, prev.coord_to, [
           fn _a_pt, b_pt, _idx, _dist ->
-            if b_pt.time_offset_ms > next.coord_from.time_offset_ms, do: 10_000, else: 0
+            is_after_our_start = b_pt.time_offset_ms > resume_from
+            is_excessively_before = b_pt.time_offset_ms + @max_backwards_seek_ms < resume_from
+            if is_after_our_start || is_excessively_before, do: 10_000, else: 0
           end
         ])
 
@@ -417,7 +441,7 @@ defmodule Video.TrimmedSource do
       # require IEx
       # IEx.pry()
       # IO.puts("yaaaaaaaaaaaaaaaaaaaaaaaaaay")
-      {prev, %{next | coord_from: closest_in_next.point}}
+      {prev, assert_valid!(%{next | coord_from: closest_in_next.point})}
     else
       {prev, next}
     end
@@ -440,8 +464,7 @@ defmodule Video.TrimmedSource do
     if same?(prev, next) do
       {_, ends_ms} = in_ms(prev)
       {begins_ms, _} = in_ms(next)
-
-      begins_ms - ends_ms < @auto_connect_threshold_ms
+      abs(begins_ms - ends_ms) < @auto_connect_threshold_ms
     else
       false
     end

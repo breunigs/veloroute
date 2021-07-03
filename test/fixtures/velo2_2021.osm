@@ -309,6 +309,13 @@
   <node id='-1096857' lat='53.5714991' lon='9.9600974' />
   <node id='-1096858' lat='53.5711264' lon='9.960745' />
   <node id='-1096859' lat='53.5706552' lon='9.9614358' />
+  <node id='-1234712' action='modify' lat='53.60261252054' lon='9.90621194109'>
+    <tag k='next_name' v='GX011645' />
+    <tag k='next_ts' v='0:01:05.399' />
+    <tag k='prev_name' v='GX011645' />
+    <tag k='prev_ts' v='0:00:19.620' />
+    <tag k='type' v='manual_cut' />
+  </node>
   <way id='-137347' action='modify'>
     <nd ref='-1096658' />
     <nd ref='-1096550' />
@@ -693,6 +700,7 @@
     <nd ref='-1096824' />
     <nd ref='-1096825' />
     <nd ref='-1096826' />
+    <nd ref='-1234712' />
     <nd ref='-1096827' />
     <nd ref='-1096828' />
     <nd ref='-1096829' />

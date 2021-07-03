@@ -16,11 +16,7 @@ defmodule Video.TrimmedSourceSequence do
   defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
 
   # specify a track name to debug here, or false for none
-  # @debug false
-  # TODO: why is the first bit missing at Roedingsmarkt? Maybe just have simplify take a video from the start if it's "close enough" as well
-  # TODO: why is the section around weidenstieg missing completely?
-  # @debug "Innenstadt nach Eidelstedt"
-  @debug "velo2_2021"
+  @debug false
   @enum_lib if @debug, do: Enum, else: Parallel
 
   @spec new_from_tsv_list([Video.TrimmedSource.t()], binary()) :: t()
@@ -176,32 +172,26 @@ defmodule Video.TrimmedSourceSequence do
         bearing = Geo.CheapRuler.bearing(prev_coord, coord)
         prev_tsv = List.first(acc)
 
-        cut =
-          tsvs
-          |> Enum.map(fn tsv ->
-            Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
-          end)
-          |> Enum.filter(&is_struct(&1, Video.TrimmedSource))
-          |> Enum.sort_by(fn tsv ->
-            dist_start = Geo.CheapRuler.dist(tsv.coord_from, prev_coord)
-            dist_end = Geo.CheapRuler.dist(tsv.coord_to, coord)
-            same_video = Video.TrimmedSource.same?(prev_tsv, tsv)
-            ended = prev_tsv && Video.TrimmedSource.reaches_end_of_video?(prev_tsv)
-            consecutive = !same_video && Video.TrimmedSource.consecutive?(prev_tsv, tsv)
+        is_short_segment = Geo.CheapRuler.dist(coord, prev_coord) < @source_segment_max_dist
 
-            (dist_start + dist_end) / 2 +
-              if(same_video && !ended, do: -25, else: 0) +
-              if(ended && consecutive, do: -10, else: 0)
-          end)
-          |> Enum.at(0)
-
-        excessively_far_away = cut && Geo.CheapRuler.dist(cut.coord_from, coord) > 100
+        {cut, excessively_far_away, excessively_long} =
+          if !is_short_segment do
+            cut = find_best_cut(tsvs, prev_coord, coord, prev_bearing, bearing, prev_tsv)
+            excessively_far_away = cut && Geo.CheapRuler.dist(cut.coord_from, coord) > 100
+            excessively_long = cut && Video.TrimmedSource.duration_ms(cut) > 30_000
+            {cut, excessively_far_away, excessively_long}
+          else
+            {nil, nil, nil}
+          end
 
         cond do
-          cut == nil || excessively_far_away ->
-            # i.e. ignore the current node, keep the previous one until
-            # we can find a match.
-            if @debug, do: IO.puts("No candidate for #{inspect(coord)}")
+          # ignore the current node if the found segment was very short. Keep the prev
+          # node to get a longer segment, so we don't get "random" matches
+          is_short_segment ->
+            {prev_coord, bearing, acc}
+
+          # just ignore the current coord, as we can't find a decent match for it
+          cut == nil || excessively_far_away || excessively_long ->
             {coord, bearing, acc}
 
           Video.TrimmedSource.reaches_end_of_video?(cut, 500) ->
@@ -213,9 +203,6 @@ defmodule Video.TrimmedSourceSequence do
               [prev_coord, coord]
               |> Geo.CheapRuler.closest_point_on_line(cut.coord_to)
               |> Map.fetch!(:point)
-
-            if @debug,
-              do: IO.puts("End of TSV #{cut.source_path_rel}, resume from #{inspect(coord)}")
 
             {coord, bearing, [cut | acc]}
 
@@ -233,10 +220,65 @@ defmodule Video.TrimmedSourceSequence do
     |> new_from_tsv_list("Route #{track.id} (#{track.direction}): #{track.full_name}")
   end
 
+  # defp manual_cut?(%{tags: %{type: "manual_cut"}}, _b), do: true
+  # defp manual_cut?(_a, %{tags: %{type: "manual_cut"}}), do: true
+  # defp manual_cut?(_a, _b), do: false
+
+  # handle when we encounter a manual cut (i.e. finish the current video)
+  defp find_best_cut(ts, p_coord, %{tags: %{type: "manual_cut"}} = coord, p_bear, bear, prev_tsv) do
+    if String.contains?(prev_tsv.source_path_rel, coord.tags.prev_name) do
+      cut =
+        Video.TrimmedSource.extract(
+          prev_tsv,
+          prev_tsv.coord_to.time_offset_ms,
+          coord.tags.prev_ts
+        )
+
+      coord_to = Map.put(cut.coord_to, :no_simplify, true)
+      %{cut | coord_to: coord_to}
+    else
+      find_best_cut(ts, p_coord, Map.put(coord, :tags, %{}), p_bear, bear, prev_tsv)
+    end
+  end
+
+  # handle when we continue a manual cut
+  defp find_best_cut(ts, %{tags: %{type: "manual_cut"}} = p_c, coord, p_bear, bear, prev_tsv) do
+    if String.contains?(prev_tsv.source_path_rel, p_c.tags.prev_name) do
+      next_tsv = Enum.find(ts, &String.contains?(&1.source_path_rel, p_c.tags.next_name))
+      cut = Video.TrimmedSource.cut(next_tsv, p_c, coord, p_bear, bear, prev_tsv)
+      cut = Video.TrimmedSource.extract(next_tsv, p_c.tags.next_ts, cut.coord_to.time_offset_ms)
+
+      coord_from = Map.put(cut.coord_from, :no_simplify, true)
+      %{cut | coord_from: coord_from}
+    else
+      find_best_cut(ts, Map.put(p_c, :tags, %{}), coord, p_bear, bear, prev_tsv)
+    end
+  end
+
+  defp find_best_cut(tsvs, prev_coord, coord, prev_bearing, bearing, prev_tsv) do
+    tsvs
+    |> Enum.map(fn tsv ->
+      Video.TrimmedSource.cut(tsv, prev_coord, coord, prev_bearing, bearing, prev_tsv)
+    end)
+    |> Enum.filter(&is_struct(&1, Video.TrimmedSource))
+    |> Enum.sort_by(fn tsv ->
+      dist_start = Geo.CheapRuler.dist(tsv.coord_from, prev_coord)
+      dist_end = Geo.CheapRuler.dist(tsv.coord_to, coord)
+      same_video = Video.TrimmedSource.same?(prev_tsv, tsv)
+      ended = prev_tsv && Video.TrimmedSource.reaches_end_of_video?(prev_tsv)
+      consecutive = !same_video && Video.TrimmedSource.consecutive?(prev_tsv, tsv)
+
+      (dist_start + dist_end) / 2 +
+        if(same_video && !ended, do: -25, else: 0) +
+        if(ended && consecutive, do: -10, else: 0)
+    end)
+    |> Enum.at(0)
+  end
+
   defp maybe_debug(tsv_list, track, text), do: maybe_debug(tsv_list, track, text, @debug)
 
   defp maybe_debug(tsv_list, track, text, debug) do
-    if debug && String.contains?(track.full_name, debug) do
+    if debug == true || (debug && String.contains?(track.full_name, debug)) do
       contents =
         tsv_list
         |> Enum.with_index()
