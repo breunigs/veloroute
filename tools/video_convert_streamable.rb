@@ -48,7 +48,9 @@ VARIANTS = [
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
   {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
 ]
-DEFAULT_CODEC = %w[libx264 -preset veryslow -x264opts opencl]
+DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
+  ? %w[libx264 -preset veryslow -x264opts opencl] \
+  : %w[libx264 -preset veryslow]
 
 # The average bitrate is given in the variants above. This defined
 # how much the maximum bitrate may deviate from that (as a ratio)
@@ -65,15 +67,18 @@ $bar = ProgressBar.create(
   rate_scale: lambda { |rate| rate / 1024 / 1024 }
 )
 
+
+
 def ffmpeg
-  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning -hwaccel auto]
+  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning]
+  cmd << %w[-hwaccel auto] if ENV["HW_ACCEL"] == "1"
   cmd << %w[-re -f matroska -i -]
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
   cmd << %w[-pix_fmt yuv420p -refs 5]
   cmd
 end
 
-tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__", PARENT_DIR)
+tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
 at_exit { FileUtils.remove_entry(tmp_dir, true) }
 
 # mp4 (fallback and ie11)
@@ -122,6 +127,13 @@ hls << "#{tmp_dir}/stream_%v.m3u8"
 $ios = []
 $stdin.binmode
 
+def add_to_bar(count)
+  $bar.progress += count
+rescue ProgressBar::InvalidProgressError => e
+  $bar.total = nil
+  retry
+end
+
 def cancel
   warn "\nAborting…"
   $stdin.close
@@ -141,8 +153,8 @@ begin
   loop do
     break if $stdin.closed?
     buf = $stdin.readpartial(1024*1024)
-    $bar.progress += buf.size
     $ios.each { |io| io.write(buf) }
+    add_to_bar(buf.size)
   rescue EOFError
     # stdin is empty
     $stdin.close
@@ -155,5 +167,10 @@ end
 $bar.finish
 
 print "\nRenaming… "
-File.rename(tmp_dir, VIDEO_OUT_DIR)
+begin
+  File.rename(tmp_dir, VIDEO_OUT_DIR)
+rescue => e
+  # in case we are on a different file system
+  FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
+end
 puts "Done!"
