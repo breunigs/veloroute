@@ -8,7 +8,6 @@ defmodule VelorouteWeb.FrameLive do
   alias Article
 
   import Mapillary.Types, only: [is_ref: 1]
-  import VelorouteWeb.Live.VideoState, only: [has_video_params: 1]
 
   @initial_state [
     mly_previous_img: nil,
@@ -98,33 +97,33 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("map-click", attr, %{assigns: assigns} = socket)
-      when has_video_params(attr) do
-    Logger.debug("map-click #{inspect(attr)}")
+  # def handle_event("map-click", attr, %{assigns: assigns} = socket)
+  #     when has_video_params(attr) do
+  #   Logger.debug("map-click #{inspect(attr)}")
 
-    article = Cache.Articles.get()[attr["article"]]
+  #   article = Cache.Articles.get()[attr["article"]]
 
-    route =
-      cond do
-        assigns.route && elem(assigns.route, 0) == attr["route"] -> assigns.route
-        is_binary(attr["route"]) -> {attr["route"], nil}
-        article && is_tuple(article.start_position) -> article.start_position |> elem(0)
-        true -> nil
-      end
+  #   route =
+  #     cond do
+  #       assigns.route && elem(assigns.route, 0) == attr["route"] -> assigns.route
+  #       is_binary(attr["route"]) -> {attr["route"], nil}
+  #       article && is_tuple(article.start_position) -> article.start_position |> elem(0)
+  #       true -> nil
+  #     end
 
-    socket =
-      socket
-      |> assign(route: route)
-      |> slideshow(false)
-      |> VelorouteWeb.Live.VideoState.update_socket_from_params(attr)
+  #   socket =
+  #     socket
+  #     |> assign(route: route)
+  #     |> slideshow(false)
+  #     |> VelorouteWeb.Live.VideoState.update_socket_from_params(attr)
 
-    socket =
-      if article,
-        do: push_patch(socket, to: article_path(socket, article, nil)),
-        else: socket
+  #   socket =
+  #     if article,
+  #       do: push_patch(socket, to: article_path(socket, article, nil)),
+  #       else: socket
 
-    {:noreply, socket}
-  end
+  #   {:noreply, socket}
+  # end
 
   def handle_event("video-reverse", attr, socket) do
     Logger.debug("video-reverse #{inspect(attr)}")
@@ -211,17 +210,33 @@ defmodule VelorouteWeb.FrameLive do
 
     socket =
       cond do
+        article && length(article.tracks) > 0 ->
+          Logger.debug("video article")
+
+          socket
+          |> VelorouteWeb.Live.VideoState.update_from_article(article, attr)
+          |> push_patch(to: article_path(socket, article, img))
+
         article ->
-          socket |> slideshow(false) |> push_patch(to: article_path(socket, article, img))
+          socket
+          |> slideshow(false)
+          |> push_patch(to: article_path(socket, article, img))
+          |> load_mly
+          |> VelorouteWeb.Live.VideoState.reset()
 
         img ->
-          socket |> slideshow(false) |> assign(route: route) |> set_img(img)
+          socket
+          |> slideshow(false)
+          |> assign(route: route)
+          |> set_img(img)
+          |> load_mly
+          |> VelorouteWeb.Live.VideoState.reset()
 
         true ->
           socket
       end
 
-    {:noreply, socket |> load_mly |> VelorouteWeb.Live.VideoState.reset()}
+    {:noreply, socket}
   end
 
   def handle_event(
@@ -368,8 +383,8 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       set_content(article, socket)
       |> maybe_update_initial_route(article)
-      |> set_img(Map.get(params, "img", article))
-      |> VelorouteWeb.Live.VideoState.update_socket_from_params(article)
+      |> VelorouteWeb.Live.VideoState.update_from_article(article)
+      |> set_img_if_no_video(Map.get(params, "img", article))
       |> set_bounds(article, Map.get(params, "bounds"))
 
     {:noreply, socket}
@@ -600,6 +615,11 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp load_mly(socket), do: socket
+
+  defp set_img_if_no_video(%{assigns: %{video_hash: hash}} = socket, _extra) when hash != "",
+    do: socket
+
+  defp set_img_if_no_video(socket, extra), do: set_img(socket, extra)
 
   defp set_img(socket, ""), do: socket
   defp set_img(socket, nil), do: socket

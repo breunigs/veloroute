@@ -12643,13 +12643,7 @@
   <node id='90595710006229124' version='1' lat='53.6229124' lon='9.9059571' />
   <node id='90599460006228901' version='1' lat='53.6228901' lon='9.9059946' />
   <node id='90615250005519661' version='1' lat='53.5519661' lon='9.9061525' />
-  <node id='90627120006026011' action='modify' version='1' lat='53.60265043881' lon='9.90600700241'>
-    <tag k='next_name' v='GX011645' />
-    <tag k='next_ts' v='0:01:05.399' />
-    <tag k='prev_name' v='GX011645' />
-    <tag k='prev_ts' v='0:00:19.620' />
-    <tag k='type' v='manual_cut' />
-  </node>
+  <node id='90627120006026011' action='modify' version='1' lat='53.60265043881' lon='9.90600700241'></node>
   <node id='90635290006228986' version='1' lat='53.6228986' lon='9.9063529' />
   <node id='90692190005516835' version='1' lat='53.5516835' lon='9.9069219' />
   <node id='90694640006229079' version='1' lat='53.6229079' lon='9.9069464' />
@@ -18416,12 +18410,6 @@
     <nd ref='-1266254' />
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='type' v='detour' />
-    <tag k='video_backward' v='2021-06-05-velorouten-1-1a-2/GX011660' />
-    <tag k='video_backward_end' v='0:00:48.000' />
-    <tag k='video_backward_start' v='0:00:13.000' />
-    <tag k='video_forward' v='2021-04-10-freizeitroute2/GX011183' />
-    <tag k='video_forward_end' v='0:00:34.000' />
-    <tag k='video_forward_start' v='0:00:01.000' />
   </way>
   <way id='-178209' action='modify'>
     <nd ref='-1266255' />
@@ -25855,7 +25843,6 @@
     <nd ref='90905830006229603' />
     <nd ref='90897650006229457' />
     <nd ref='90882250006229185' />
-    <tag k='name' v='Spanische Furt' />
   </way>
   <way id='127704898' version='1'>
     <nd ref='90533530006228889' />
@@ -25875,7 +25862,6 @@
     <nd ref='9085959000622907' />
     <nd ref='90866340006229098' />
     <nd ref='90882250006229185' />
-    <tag k='name' v='Eidelstedter Brook' />
   </way>
   <way id='128255509' version='1'>
     <nd ref='977250005282891' />
@@ -42025,15 +42011,7 @@
     <member type='way' ref='186236164' role='' />
     <member type='way' ref='-178198' role='' />
     <member type='node' ref='8988588000605706' role='gpx_end' />
-    <tag k='Eidelstedt→Innenstadt' v='von Eidelstedt zur Innenstadt' />
-    <tag k='Innenstadt→Eidelstedt' v='von der Innenstadt nach Eidelstedt' />
-    <tag k='color' v='#b2211d' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Eidelstedt' />
-    <tag k='id' v='2' />
-    <tag k='name' v='Alltagsroute 2' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/194841' />
-    <tag k='video_folders' v='2021-06-05-velorouten-1-1a-2' />
+    <tag k='ref' v='Route2' />
   </relation>
   <relation id='194843' action='modify' version='1'>
     <member type='node' ref='99394920005508649' role='gpx_start' />

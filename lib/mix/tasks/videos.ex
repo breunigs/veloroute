@@ -8,21 +8,31 @@ defmodule Mix.Tasks.Velo.Videos do
   def out_pending, do: @out_pending
 end
 
-defmodule Mix.Tasks.Velo.Videos.UpdateFromMap do
+defmodule Mix.Tasks.Velo.Videos.Generate do
   use Mix.Task
 
-  @shortdoc "Finds videos from the map and generates their metadata"
+  @shortdoc "Finds videos in routes and articles and generates their metadata"
   def run(_) do
     # disable the warning if we're updating files
     Code.compiler_options(ignore_module_conflict: true)
 
-    Map.Parser.load_default()
-    |> Video.TrimmedSourceSequence.list_from_map()
+    (route_tracks() ++ article_tracks())
+    |> Enum.map(&Video.TrimmedSourceSequence.new_from_track/1)
     |> Parallel.map(&Video.Rendered.save_from_tsv_seq/1)
     |> Enum.each(fn
       :ok -> :ok
       broken -> IO.puts(:stderr, inspect(broken))
     end)
+  end
+
+  defp route_tracks do
+    Enum.flat_map(Route.List.all(), & &1.tracks())
+  end
+
+  defp article_tracks do
+    Cache.Articles.get()
+    |> Map.values()
+    |> Enum.flat_map(fn %Article{tracks: tracks} -> tracks end)
   end
 end
 
@@ -30,7 +40,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
 
-  @shortdoc "Finds videos from the map and renders them"
+  @shortdoc "Ensures all already generated videos have been rendered"
   def run(_) do
     Video.Dir.must_exist!(&real_run/0)
   end
@@ -45,7 +55,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
       ###########################################################
       #{rendered.name}
-      Hash: #{rendered.hash}  Segments: #{length(rendered.sources)}
+      Hash: #{rendered.hash}
       ###########################################################
 
       render:

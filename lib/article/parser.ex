@@ -27,6 +27,20 @@ defmodule Article.Parser do
 
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
+    tracks =
+      Map.get(parsed, :tracks, [])
+      |> Enum.map(fn vid ->
+        Video.Track.with_rendered_ref(%Video.Track{
+          from: Map.get(vid, "from", ""),
+          to: Map.get(vid, "to", ""),
+          text: Map.get(vid, "text", ""),
+          videos: Map.get(vid, "videos", []) |> Enum.map(&List.to_tuple/1),
+          parent_text: parsed.title,
+          direction: Map.get(vid, "direction", "forward") |> String.to_existing_atom(),
+          group: Map.get(vid, "group", "default")
+        })
+      end)
+
     # if !is_nil(date) && is_nil(simg),
     #   do: raise("Article #{path} is dated, but no start image could be found")
 
@@ -38,7 +52,8 @@ defmodule Article.Parser do
         text: String.trim(parsed[:text] || ""),
         tags: tags,
         start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
-        end: parsed |> Map.get(:end) |> Data.RoughDate.parse()
+        end: parsed |> Map.get(:end) |> Data.RoughDate.parse(),
+        tracks: tracks
       })
       |> full_title()
 

@@ -75,12 +75,29 @@ defmodule TrackFinder do
     end)
   end
 
+  defp direction_text(route, direction)
+  defp direction_text(nil, _direction), do: nil
+
+  defp direction_text(route, direction) do
+    route.tracks()
+    |> Enum.find(fn %{direction: dir} -> dir == direction end)
+    |> case do
+      %{text: text} -> text
+      nil -> nil
+    end
+  end
+
   defp track_matrix(r, normalized_ways) do
-    name = r.tags[:name]
-    id = r.tags[:id]
-    # TODO: old style fallback, should go away once everything is migrated to map.osm
-    fw_text = r.tags[:gpx_forward] || "stadtauswärts"
-    bw_text = r.tags[:gpx_backward] || "stadteinwärts"
+    route = Route.from_relation(r)
+
+    {id, name} =
+      if route,
+        do: {route.id(), route.name()},
+        else: {r.tags[:id], r.tags[:name]}
+
+    # TODO: old style fallback, should go away once everything is migrated to videos
+    fw_text = r.tags[:gpx_forward] || direction_text(route, :forward)
+    bw_text = r.tags[:gpx_backward] || direction_text(route, :backward)
 
     {start_members, end_members} =
       Enum.group_by(r.members, fn
@@ -102,11 +119,9 @@ defmodule TrackFinder do
         fw_target = hd(e_as_start.nodes).tags[:target]
         bw_target = hd(s_as_start.nodes).tags[:target]
 
-        # TODO: once everything is migrated to map.osm, this should not need to be checked anymore
-        is_modern = fw_target && bw_target
-        fw_text = if is_modern, do: r.tags[:"#{bw_target}→#{fw_target}"], else: fw_text
-        bw_text = if is_modern, do: r.tags[:"#{fw_target}→#{bw_target}"], else: bw_text
-
+        # TODO: remove after all is video
+        fw_text = r.tags[:"#{bw_target}→#{fw_target}"] || fw_text
+        bw_text = r.tags[:"#{fw_target}→#{bw_target}"] || bw_text
         fw_text = fw_text || "von #{bw_target} nach #{fw_target}"
         bw_text = bw_text || "von #{fw_target} nach #{bw_target}"
 

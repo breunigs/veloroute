@@ -19,7 +19,9 @@ defmodule Cache.Articles do
 
          relation_bboxes =
            Enum.into(Cache.Map.relations(), %{}, fn
-             {_rel_id, rel} -> {rel.tags[:id], Map.Element.bbox(rel)}
+             {_rel_id, rel} ->
+               id = rel.tags[:id] || Route.from_relation(rel).id()
+               {id, Map.Element.bbox(rel)}
            end)
 
          paths

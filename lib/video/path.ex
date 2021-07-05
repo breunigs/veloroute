@@ -2,6 +2,7 @@ defmodule Video.Path do
   import Video.TrimmedSourceSequence, only: [valid_hash: 1]
 
   @anonymized_suffix ".anonymized.mkv"
+
   @video_out_m3u8 "stream.m3u8"
 
   def target(hash) when valid_hash(hash) do
@@ -29,8 +30,27 @@ defmodule Video.Path do
     path |> abs_path() |> String.replace_suffix(@anonymized_suffix, "")
   end
 
+  def anonymized(path) when is_binary(path) do
+    path =
+      if String.ends_with?(path, @anonymized_suffix) do
+        path
+      else
+        path <> @anonymized_suffix
+      end
+
+    abs_path(path)
+  end
+
+  def source_base(path) when is_binary(path) do
+    path |> source() |> Path.relative_to(Settings.video_source_dir_abs())
+  end
+
   def source_rel_to_cwd(path) when is_binary(path) do
     path |> source() |> rel_to_cwd()
+  end
+
+  def anonymized_rel_to_cwd(path) when is_binary(path) do
+    path |> anonymized() |> rel_to_cwd()
   end
 
   def rel_to_cwd(path) do

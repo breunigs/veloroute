@@ -10,7 +10,8 @@ defmodule Mix.Tasks.UpdateGpx do
     Cache.Map.relations()
     |> Map.values()
     |> Enum.map(fn rel ->
-      basename = rel.tags[:gpx_name] || rel.tags[:id]
+      basename = rel.tags[:gpx_name] || rel.tags[:id] || Route.from_relation(rel).id()
+
       tracks = TrackFinder.ordered(rel) |> TrackFinder.with_nodes()
       gpx_tracks = tracks |> Enum.map(&as_gpx_track(&1))
       kml_tracks = tracks |> Enum.map(&as_kml_track(&1))

@@ -4,6 +4,7 @@ defmodule VelorouteWeb.Live.VideoState do
     :backward,
     :start,
     :direction,
+    :group,
     :player_js
   ]
 
@@ -14,12 +15,15 @@ defmodule VelorouteWeb.Live.VideoState do
           forward: Video.Rendered.t() | nil,
           backward: Video.Rendered.t() | nil,
           start: Geo.Point.t() | nil,
+          group: binary(),
           direction: :forward | :backward,
           player_js: binary() | nil
         }
 
   @doc """
-  Extracts all video related settings from the params hash and updates itself in the assigns, convenience accessors for video and also some shared assigns like lat/lon.
+  Extracts all video related settings from the params hash and updates itself in
+  the assigns, convenience accessors for video and also some shared assigns like
+  lat/lon.
   """
   def update_socket_from_params(%{assigns: assigns} = socket, params) do
     assigns =
@@ -34,9 +38,51 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   @doc """
+  Extracts the video from the article and the start position from the location
+  in the params. Currently nothing is done to select the right group from the
+  given params.
+  """
+  def update_from_article(%{assigns: assigns} = socket, article, params) do
+    assigns =
+      assigns[:video]
+      |> Kernel.||(new())
+      |> extract_video(article)
+      |> extract_start(params)
+      |> for_frontend()
+
+    Phoenix.LiveView.assign(socket, assigns)
+  end
+
+  def update_from_article(socket, article)
+  def update_from_article(socket, nil), do: reset(socket)
+
+  def update_from_article(%{assigns: assigns} = socket, article) do
+    prev_state = assigns[:video]
+
+    new_state =
+      prev_state
+      |> Kernel.||(new())
+      |> extract_video(article)
+
+    if video_changes?(prev_state, new_state) do
+      IO.puts("video changes!")
+      IO.inspect(prev_state)
+      IO.inspect(new_state)
+      assigns = %{new_state | start: nil} |> for_frontend()
+      Phoenix.LiveView.assign(socket, assigns)
+    else
+      IO.puts("video NOT CHANGED!!")
+
+      socket
+    end
+  end
+
+  @doc """
   Disables all video related settings on the socket
   """
   def reset(%{assigns: assigns} = socket) do
+    IO.puts("resetting")
+
     assigns =
       assigns[:video]
       |> Kernel.||(new())
@@ -45,6 +91,13 @@ defmodule VelorouteWeb.Live.VideoState do
 
     Phoenix.LiveView.assign(socket, assigns)
   end
+
+  defp video_changes?(old_state, new_state)
+
+  defp video_changes?(%__MODULE__{forward: f, backward: b}, %__MODULE__{forward: f, backward: b}),
+    do: false
+
+  defp video_changes?(_old_state, _new_state), do: true
 
   @doc """
   Reverse a video if possible, using the given coordinate to determine
@@ -67,6 +120,7 @@ defmodule VelorouteWeb.Live.VideoState do
       forward: nil,
       backward: nil,
       start: nil,
+      group: nil,
       direction: :forward,
       player_js: nil
     }
@@ -78,9 +132,6 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defguardp is_reversable(state)
             when not is_nil(state.forward) and not is_nil(state.backward)
-
-  defguard has_video_params(params)
-           when is_map_key(params, "video_forward") or is_map_key(params, "video_backward")
 
   @spec for_frontend(t()) :: keyword()
 
@@ -125,13 +176,13 @@ defmodule VelorouteWeb.Live.VideoState do
     %{state | start: Geo.Point.from_params(params)}
   end
 
+  defp maybe_reverse_direction(state, prev_state)
   defp maybe_reverse_direction(%__MODULE__{} = state, nil), do: state
+  defp maybe_reverse_direction(%__MODULE__{start: nil} = state, _), do: state
 
-  defp maybe_reverse_direction(%__MODULE__{start: start} = state, start),
-    do: reverse_direction(state)
-
-  defp maybe_reverse_direction(%__MODULE__{start: start} = state, %__MODULE__{start: start}),
-    do: reverse_direction(state)
+  defp maybe_reverse_direction(%__MODULE__{start: start} = state, %__MODULE__{start: start}) do
+    reverse_direction(state)
+  end
 
   defp maybe_reverse_direction(%__MODULE__{} = state, _start), do: state
 
@@ -141,25 +192,29 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp reverse_direction(%__MODULE__{} = state), do: state
 
-  defp extract_video(%__MODULE__{} = state, %{"video_forward" => f, "video_backward" => b})
-       when is_binary(f) and is_binary(b) do
-    update_real(state, f, b)
-  end
-
-  defp extract_video(%__MODULE__{} = state, %{"video_forward" => f}) when is_binary(f) do
-    update_real(state, f, nil)
-  end
-
-  defp extract_video(%__MODULE__{} = state, %{"video_backward" => b}) when is_binary(b) do
-    update_real(state, nil, b)
-  end
-
   # this variant extracts videos from articles
-  defp extract_video(%__MODULE__{} = state, %{video_forward: f, video_backward: b}) do
-    update_real(state, f, b)
+  defp extract_video(%__MODULE__{} = state, %{tracks: []}), do: state
+
+  defp extract_video(%__MODULE__{} = state, %{tracks: tracks}) when is_list(tracks) do
+    %{forward: fws, backward: bws} =
+      Enum.group_by(tracks, & &1.direction)
+      |> Map.put_new(:forward, [])
+      |> Map.put_new(:backward, [])
+
+    fw = List.first(fws)
+
+    bw =
+      if fw,
+        do: Enum.find(bws, fn track -> track.group == fw.group end),
+        else: List.first(bws)
+
+    update_real(state, fw, bw)
   end
 
-  defp extract_video(%__MODULE__{} = state, _params), do: state
+  defp extract_video(%__MODULE__{} = state, params) do
+    IO.inspect(params)
+    state
+  end
 
   defp update_real(state, forward, backward) do
     forward = Video.Rendered.get(forward)

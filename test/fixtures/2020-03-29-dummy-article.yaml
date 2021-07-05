@@ -6,3 +6,9 @@ tags:
 - tag
 - 4
 text: "<a>text</a>"
+tracks:
+- group: detour
+  direction: forward
+  text: "blub"
+  videos:
+  - ["somefile", "0:00:13.000", "0:00:48.000"]

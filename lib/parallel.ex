@@ -1,5 +1,5 @@
 defmodule Parallel do
-  @spec map(Enumerable.t(), (Enumerable.element() -> any())) :: list()
+  @spec map(Enumerable.t(), (Enum.element() -> any())) :: list()
   def map(enum, fun) do
     Task.async_stream(
       enum,
@@ -9,7 +9,7 @@ defmodule Parallel do
     |> Enum.map(&elem(&1, 1))
   end
 
-  @spec flat_map(Enumerable.t(), (Enumerable.element() -> Enumerable.t())) :: list()
+  @spec flat_map(Enumerable.t(), (Enum.element() -> Enumerable.t())) :: list()
   def flat_map(enum, fun) do
     Task.async_stream(
       enum,
@@ -19,7 +19,7 @@ defmodule Parallel do
     |> Enum.flat_map(&elem(&1, 1))
   end
 
-  @spec each(Enumerable.t(), (Enumerable.element() -> any())) :: :ok
+  @spec each(Enumerable.t(), (Enum.element() -> any())) :: :ok
   def each(enum, fun) do
     Task.async_stream(
       enum,

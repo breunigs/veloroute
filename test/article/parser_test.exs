@@ -39,6 +39,16 @@ defmodule Article.ParserTest do
              tags: ["tag", "4"],
              text: "<a>text</a>",
              title: "title",
+             tracks: [
+               %Video.Track{
+                 direction: :forward,
+                 from: "",
+                 group: "detour",
+                 text: "blub",
+                 to: "",
+                 videos: [{"somefile", "0:00:13.000", "0:00:48.000"}]
+               }
+             ],
              full_title: "Baustelle: title",
              type: "construction"
            } == art

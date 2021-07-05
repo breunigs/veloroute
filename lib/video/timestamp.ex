@@ -42,7 +42,7 @@ defmodule Video.Timestamp do
     ...> |> Video.Timestamp.from_timed_point()
     "0:00:01.337"
   """
-  @spec from_milliseconds(integer()) :: t()
+  @spec from_timed_point(Video.TimedPoint.t()) :: t()
   def from_timed_point(%Video.TimedPoint{time_offset_ms: duration_in_ms}),
     do: from_milliseconds(duration_in_ms)
 

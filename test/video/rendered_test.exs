@@ -2,21 +2,24 @@ defmodule Video.RenderedTest do
   use ExUnit.Case, async: true
   doctest Video.Rendered
 
-  test "produces correct video trim commands" do
-    [_exe_path, _video1, start1, end1, _video2, start2, end2] =
-      Video.Rendered.concat(Video.RenderedTest.Example)
+  test "produces correct video render commands" do
+    cmds =
+      Video.RenderedTest.Example
+      |> Video.Rendered.render()
 
-    assert %{
-             start1: start1,
-             end1: end1,
-             start2: start2,
-             end2: end2
-           } == %{
-             start1: "0:00:01.337",
-             end1: "0:00:01.737",
-             start2: "0:00:00.000",
-             end2: "0:00:00.123"
-           }
+    assert [
+             "./tools/video_concat.rb",
+             "videos/source/1.mp4.anonymized.mkv",
+             "0:00:01.337",
+             "0:00:01.737",
+             "videos/source/2.mp4.anonymized.mkv",
+             "0:00:00.000",
+             "0:00:00.123",
+             "|",
+             "./tools/video_convert_streamable.rb",
+             "videos/rendered/badc0ffeebadc0ffeebadc0ffeebadc0",
+             "0"
+           ] == cmds
   end
 
   test "produces correct video preview commands" do
