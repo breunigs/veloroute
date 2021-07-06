@@ -216,6 +216,8 @@ defmodule Video.Rendered do
       '0.0 10.044 53.507 0.1 -0.002 0.001 0.1 -0.002 0.001 0.1 -0.002 0.001 0.1 -0.002 0.001'
   """
   @spec coord_io_list(t()) :: iolist()
+  @geo_precision 6
+  @time_precision 3
   def coord_io_list(rendered) do
     rendered.coords
     |> Enum.reduce(
@@ -227,11 +229,11 @@ defmodule Video.Rendered do
 
         coord = [
           ' ',
-          :erlang.float_to_list(ms / 1000.0, [{:decimals, 3}, :compact]),
+          :erlang.float_to_list(ms / 1000.0, [{:decimals, @time_precision}, :compact]),
           ' ',
-          :erlang.float_to_list(lon, [{:decimals, 5}, :compact]),
+          :erlang.float_to_list(lon, [{:decimals, @geo_precision}, :compact]),
           ' ',
-          :erlang.float_to_list(lat, [{:decimals, 5}, :compact])
+          :erlang.float_to_list(lat, [{:decimals, @geo_precision}, :compact])
         ]
 
         {curr, [acc | coord]}
