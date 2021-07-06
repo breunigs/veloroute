@@ -9,4 +9,27 @@ defmodule Video.TimedPoint do
           time_offset_ms: integer()
         }
 
+  @spec interpolate(t(), t(), float()) :: t()
+  def interpolate(a, b, t) when t >= 0 and t <= 1 do
+    lon = a.lon + (b.lon - a.lon) * t
+    lat = a.lat + (b.lat - a.lat) * t
+    time = a.time_offset_ms + (b.time_offset_ms - a.time_offset_ms) * t
+
+    %__MODULE__{
+      lat: lat,
+      lon: lon,
+      time_offset_ms: round(time)
+    }
+  end
+
+  @spec to_gpx_trkpt(t()) :: binary()
+  def to_gpx_trkpt(coord) do
+    """
+      <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
+    """
+  end
+end
+
+defimpl Geo.Interpolate, for: Video.TimedPoint do
+  def point(a, b, t), do: Video.TimedPoint.interpolate(a, b, t)
 end

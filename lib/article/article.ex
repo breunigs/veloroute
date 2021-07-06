@@ -13,8 +13,7 @@ defmodule Article do
           text: binary(),
           title: binary() | nil,
           type: binary() | nil,
-          video_forward: binary() | nil,
-          video_backward: binary() | nil
+          tracks: [Video.Track.t()]
         }
   @type collection() :: %{binary() => t()}
 
@@ -37,13 +36,12 @@ defmodule Article do
     :search_title,
     :start_image,
     :start_position,
-    :video_forward,
-    :video_backward,
     :start,
     :tags,
     :text,
     :title,
-    :type
+    :type,
+    :tracks
   ]
 
   defstruct @known_params
@@ -69,32 +67,25 @@ defmodule Article do
     |> get_in([:img])
   end
 
-  @spec enrich_with_map(t(), Map.Parsed.t()) :: t()
-  def enrich_with_map(%__MODULE__{} = art, %Map.Parsed{} = map) do
-    ways =
-      map.ways
-      |> Map.Element.filter_by_tag(:type, "article")
-      |> Map.Element.filter_by_tag(:name, art.name)
+  @spec article_ways(Map.Parsed.t()) :: [Map.Way.t()]
+  def article_ways(%Map.Parsed{} = map) do
+    Map.Element.filter_by_tag(map.ways, :type, "article")
+  end
+
+  @spec enrich_with_map(t(), [Map.Way.t()], %{binary() => Geo.BoundingBox.t()}) :: t()
+  def enrich_with_map(%__MODULE__{} = art, article_ways, tag_bboxes)
+      when is_list(article_ways) and is_map(tag_bboxes) do
+    ways = Map.Element.filter_by_tag(article_ways, :name, art.name)
 
     bbox =
       Map.Element.bbox(ways) ||
-        map.relations
-        |> Map.Element.filter_by_tag(:id, art.tags)
-        |> Map.Element.bbox()
+        Enum.find_value(art.tags, fn tag ->
+          if is_map_key(tag_bboxes, tag), do: tag_bboxes[tag], else: nil
+        end)
 
     start_img = art.start_image || start_image(art.images || art.tags, bbox)
 
-    finder = &Video.TrimmedSourceSequence.maybe_hash_from_way/2
-    video_forward = Enum.find_value(ways, &finder.(&1, :forward))
-    video_backward = Enum.find_value(ways, &finder.(&1, :backward))
-
-    %{
-      art
-      | start_image: start_img,
-        bbox: bbox,
-        video_forward: video_forward,
-        video_backward: video_backward
-    }
+    %{art | start_image: start_img, bbox: bbox}
     |> set_start_position
   end
 

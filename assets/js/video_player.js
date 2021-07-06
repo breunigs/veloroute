@@ -31,12 +31,12 @@ function updateVideoElement() {
     <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
     <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
     <source src="${path}fallback.mp4${time}" type="video/mp4; codec=avc1.64001E">
-    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anzuschauen.</p>
+    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
-  } else if (window.hls === false) {
+  } else if (window.hls === false || typeof Promise === "undefined") {
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')

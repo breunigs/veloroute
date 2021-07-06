@@ -59,15 +59,12 @@ defmodule Data.GeoJSON do
        ) do
     coords = Enum.map(w.nodes, &as_geojson_coord(&1))
 
-    props =
-      %{
-        type: "article",
-        name: name,
-        title: title,
-        icon: Map.get(w.tags, :article_icon) || type
-      }
-      |> maybe_add_video(w, :forward)
-      |> maybe_add_video(w, :backward)
+    props = %{
+      type: "article",
+      name: name,
+      title: title,
+      icon: Map.get(w.tags, :article_icon) || type
+    }
 
     %{
       type: "Feature",
@@ -89,8 +86,6 @@ defmodule Data.GeoJSON do
     props =
       w.tags
       |> Map.take([:name, :type, :offset, :route_id | Map.Way.style_tags()])
-      |> maybe_add_video(w, :forward)
-      |> maybe_add_video(w, :backward)
 
     %{
       type: "Feature",
@@ -104,16 +99,16 @@ defmodule Data.GeoJSON do
 
   # renders for relations
   defp as_geojson(%Map.Relation{} = r) do
+    route = Route.from_relation(r)
+
     extra_rel_tags = %{
-      color: r.tags[:color],
-      route_id: r.tags.id
+      color: r.tags[:color] || route.color(),
+      route_id: r.tags[:id] || route.id()
     }
 
     r
     |> Map.Relation.ways()
-    |> Enum.map(
-      &Map.Element.keep_only_tags(&1, [:oneway, :video_forward, :video_backward, :offset, :color])
-    )
+    |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :color]))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
   end
@@ -175,14 +170,5 @@ defmodule Data.GeoJSON do
       end)
 
     %{r | members: members}
-  end
-
-  defp maybe_add_video(props, %Map.Way{} = way, direction)
-       when direction == :forward or direction == :backward do
-    tsv_seq = Video.TrimmedSourceSequence.maybe_from_way(way, direction)
-
-    if tsv_seq,
-      do: Map.put(props, :"video_#{direction}", tsv_seq.hash),
-      else: props
   end
 end

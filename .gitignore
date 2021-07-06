@@ -45,7 +45,7 @@ npm-debug.log
 /.elixir_ls
 xref_graph.*
 
-
+/videos
 /assets/videos
 /assets/videos/**
 .hex

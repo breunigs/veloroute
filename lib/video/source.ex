@@ -1,5 +1,6 @@
 defmodule Video.Source do
   @gpx_ending ".gpx"
+  # TODO use from Video.Path
   @anonymized_suffix ".anonymized.mkv"
   @source_endings [".MP4", ".mkv"]
 
@@ -35,6 +36,20 @@ defmodule Video.Source do
       )
   end
 
+  @doc """
+  Recursively finds all valid source videos within the given folder
+  """
+  def new_from_folder(source_folder) do
+    all_files = IOUtil.tree(source_folder) |> MapSet.new()
+
+    all_files
+    |> Enum.map(&new_from_path(&1, all_files))
+    |> Enum.reject(fn
+      {:error, _reason} -> true
+      _video -> false
+    end)
+  end
+
   defp error_unless_valid_source(source_path) do
     if is_source_path(source_path),
       do: nil,
@@ -62,104 +77,42 @@ defmodule Video.Source do
     }
   end
 
-  @doc ~S"""
-  Extracts a portion of the GPX track for the given start and end time. It
-  returns a list of coordinates with the time offset in milliseconds since the
-  start of the track.
+  @doc """
+  Parse the GPX and returned the coordinates with timestamps relative to the video
   """
-  @spec time_range(
-          t(),
-          Geo.CheapRuler.point() | Video.Timestamp.t(),
-          Geo.CheapRuler.point() | Video.Timestamp.t()
-        ) ::
-          [Video.TimedPoint.t()] | {:error, binary()}
-  def time_range(%__MODULE__{path_source: source, available_gpx: false}, _from, _to) do
+  @spec timed_points(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
+  def timed_points(%__MODULE__{path_source: source, available_gpx: false}) do
     {:error,
      "#{source} has no GPX file available to extract time range from, try `gopro2gpx #{make_abs(source)}`?"}
   end
 
-  def time_range(self, from, to) do
-    line = parse_gpx(self)
-    start_time = hd(line).time
+  def timed_points(%__MODULE__{} = self) do
+    with line when is_list(line) <- parse_gpx(self) do
+      start_time = hd(line).time
 
-    from = interpolate_closest_point(line, from)
-    to = interpolate_closest_point(line, to)
-
-    coords = Enum.slice(line, (from.prev_index + 1)..to.prev_index)
-
-    ([from] ++ coords ++ [to])
-    |> Enum.map(fn point ->
-      %Video.TimedPoint{
-        time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
-        lat: point.lat,
-        lon: point.lon
-      }
-    end)
-  end
-
-  defp interpolate_closest_point(line, "" <> timestamp) do
-    timestamp_ms = Video.Timestamp.in_milliseconds(timestamp)
-    start = hd(line).time
-
-    next_idx =
-      Enum.find_index(line, fn %{time: time} ->
-        ms_since_start = Time.diff(time, start, :millisecond)
-        timestamp_ms <= ms_since_start
+      Enum.map(line, fn point ->
+        %Video.TimedPoint{
+          time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
+          lat: point.lat,
+          lon: point.lon
+        }
       end)
-
-    case next_idx do
-      nil ->
-        # i.e. the timestamp is after the video
-        line
-        |> List.last()
-        |> Map.take([:lat, :lon, :time])
-        |> Map.put(:prev_index, length(line) - 1)
-
-      0 ->
-        # i.e. the timestamp is before the video
-        line |> hd() |> Map.take([:lat, :lon, :time]) |> Map.put(:prev_index, 0)
-
-      next_idx ->
-        # interpolate
-        [prev, next] = Enum.slice(line, (next_idx - 1)..next_idx)
-        prev_ms = Time.diff(prev.time, start, :millisecond)
-        next_ms = Time.diff(next.time, start, :millisecond)
-        t = (timestamp_ms - prev_ms) / (next_ms - prev_ms)
-
-        diff = next_ms - prev_ms
-        point_time = NaiveDateTime.add(prev.time, round(t * diff), :millisecond)
-
-        lat = prev.lat + t * (next.lat - prev.lat)
-        lon = prev.lon + t * (next.lon - prev.lon)
-
-        %{lat: lat, lon: lon, time: point_time, prev_index: next_idx - 1}
     end
   end
 
-  defp interpolate_closest_point(line, %{} = point) do
-    %{index: idx, t: t, lat: lat, lon: lon} = Geo.CheapRuler.closest_point_on_line(line, point)
-
-    cond do
-      t < 0 or t > 1 ->
-        # clamp to track if point is outside of track
-        line
-        |> Enum.at(idx)
-        |> Map.take([:lat, :lon, :time])
-        |> Map.put(:prev_index, max(0, idx - 1))
-
-      t >= 0 and t <= 1 ->
-        # interpolate time to match interpolated point
-        [a, b] = line |> Enum.slice(idx..(idx + 1)) |> Enum.map(& &1.time)
-        diff = NaiveDateTime.diff(b, a, :microsecond)
-        point_time = NaiveDateTime.add(a, round(t * diff), :microsecond)
-
-        %{lat: lat, lon: lon, time: point_time, prev_index: idx}
+  defp parse_gpx(%__MODULE__{path_gpx: gpx_path, available_gpx: true}) do
+    try do
+      with {:ok, content} <- File.read(make_abs(gpx_path)),
+           gpx when is_list(gpx) <- Gpx.parse(content) do
+        if length(gpx) <= 1,
+          do: {:error, "#{gpx_path} is very short -- only #{length(gpx)} point"},
+          else: gpx
+      end
+    rescue
+      x -> {:error, "#{gpx_path} parsing error: #{inspect(x)}"}
+    catch
+      code, e -> {:error, "(caught #{code}) #{inspect(e)}"}
     end
-  end
-
-  defp parse_gpx(%__MODULE__{path_gpx: gpx, available_gpx: true}) do
-    {:ok, content} = File.read(make_abs(gpx))
-    Gpx.parse(content)
   end
 
   defp is_source_path(path) do
@@ -187,7 +140,7 @@ defmodule Video.Source do
   end
 
   defp as_gpx(source_path) do
-    source_path |> as_base |> Kernel.<>(@gpx_ending)
+    source_path |> as_base() |> Kernel.<>(@gpx_ending)
   end
 
   defp as_anonymized(source_path) do

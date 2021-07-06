@@ -2,6 +2,7 @@ defmodule Route.Parser do
   defmacro __using__(opts) do
     quote bind_quoted: [opts: opts] do
       @behaviour Route
+      @behhaviour Route.Behaviour
 
       @parsed Route.Parser.load(opts, __MODULE__)
       @index Route.Parser.index(@parsed, __MODULE__)
@@ -13,6 +14,12 @@ defmodule Route.Parser do
 
       defoverridable parsed: 0
       defoverridable index: 0
+
+      def id(), do: ""
+      def color(), do: "#000000"
+      def name(), do: ""
+      def osm_relation_ref(), do: ""
+      def tracks(), do: []
     end
   end
 
@@ -35,12 +42,7 @@ defmodule Route.Parser do
 
   def load(opts, module) do
     Benchmark.measure("#{module}: parsing", fn ->
-      # ./deps/eflame/stack_to_flame.sh < stacks.out > flame.svg
-      # if module == Data.Route.Route12 do
-      # :eflame.apply(fn -> load_plain(opts, module) end, [])
-      # else
       load_plain(opts)
-      # end
     end)
   end
 

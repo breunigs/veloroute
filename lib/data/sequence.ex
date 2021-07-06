@@ -42,7 +42,8 @@ defmodule Data.Sequence do
     end)
   end
 
-  @spec images(t()) :: list(Mapillary.Types.ref())
+  @spec images(t() | nil) :: list(Mapillary.Types.ref())
+  def images(nil), do: []
   def images(seq), do: seq.route.parsed[seq.name]
 
   @spec closest(t(), Geo.CheapRuler.point()) :: {float(), Data.Image.img_non_nil()}

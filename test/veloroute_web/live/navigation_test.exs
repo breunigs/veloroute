@@ -181,8 +181,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> element(".icon", "7")
       |> render_click()
 
-    assert html =~ ~s|Du folgst: Alltagsroute 7|
     assert html =~ ~s|data-mly-js="/|
+    assert html =~ ~s|Du folgst: Alltagsroute 7|
     assert html =~ ~r/data-sequence="[a-zA-Z0-9_-]{22} /
 
     html =

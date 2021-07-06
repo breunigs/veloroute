@@ -8,27 +8,54 @@ defmodule Mix.Tasks.Velo.Videos do
   def out_pending, do: @out_pending
 end
 
+defmodule Mix.Tasks.Velo.Videos.Generate do
+  use Mix.Task
+
+  @shortdoc "Finds videos in routes and articles and generates their metadata"
+  def run(_) do
+    # disable the warning if we're updating files
+    Code.compiler_options(ignore_module_conflict: true)
+
+    (route_tracks() ++ article_tracks())
+    |> Enum.map(&Video.TrimmedSourceSequence.new_from_track/1)
+    |> Parallel.map(&Video.Rendered.save_from_tsv_seq/1)
+    |> Enum.each(fn
+      :ok -> :ok
+      broken -> IO.puts(:stderr, inspect(broken))
+    end)
+  end
+
+  defp route_tracks do
+    Enum.flat_map(Route.List.all(), & &1.tracks())
+  end
+
+  defp article_tracks do
+    Cache.Articles.get()
+    |> Map.values()
+    |> Enum.flat_map(fn %Article{tracks: tracks} -> tracks end)
+  end
+end
+
 defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
 
-  @shortdoc "Finds videos from the map and renders them"
+  @shortdoc "Ensures all already generated videos have been rendered"
   def run(_) do
     Video.Dir.must_exist!(&real_run/0)
   end
 
   defp real_run do
-    Cache.Map.full_map()
-    |> Video.TrimmedSourceSequence.list_from_map()
-    |> Enum.reject(&Video.TrimmedSourceSequence.already_rendered?(&1))
-    |> Enum.each(fn tsv_seq ->
-      render = tsv_seq |> Video.TrimmedSourceSequence.render()
-      previews = tsv_seq |> Video.TrimmedSourceSequence.preview()
+    Video.Rendered.pending()
+    |> Enum.each(fn rendered ->
+      render = Video.Rendered.render(rendered)
+      previews = Video.Rendered.preview(rendered)
 
       IO.puts("""
 
       ###########################################################
-      CONVERT #{tsv_seq.hash} (#{length(tsv_seq.tsvs)} segments):
+      #{rendered.name}
+      Hash: #{rendered.hash}
       ###########################################################
 
       render:
@@ -36,7 +63,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
       """)
 
       for {preview, idx} <- Enum.with_index(previews) do
-        desc = if idx == 0, do: "full preview", else: "#{idx}. concat"
+        desc = if idx == 0, do: "full preview", else: "#{idx}. concat preview"
 
         IO.puts("""
 
@@ -62,8 +89,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
     {anon, pending} =
       Settings.video_source_dir_abs()
-      |> tree()
-      |> group()
+      |> Video.Source.new_from_folder()
       |> Enum.reduce({[], []}, fn video, {anon, pending} ->
         case video do
           %{available_gpx: false, path_source: source} ->
@@ -115,48 +141,4 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     |> Enum.map(fn seg -> "<trk><name>" <> rel_path <> "</name>" <> hd(seg) <> "</trk>" end)
     |> Enum.join("\n")
   end
-
-  defp group(files) do
-    files
-    |> Enum.map(fn file -> Video.Source.new_from_path(file, files) end)
-    |> Enum.reject(fn
-      {:error, _reason} -> true
-      _video -> false
-    end)
-  end
-
-  defp tree(path) do
-    case File.stat(path) do
-      {:ok, %{type: :directory}} ->
-        case File.ls(path) do
-          {:ok, list} ->
-            list
-            |> Enum.map(&Path.join(path, &1))
-            |> Enum.reduce(MapSet.new(), fn item, files ->
-              merge(files, tree(item))
-            end)
-
-          {:error, reason} ->
-            IO.warn("Failed to read #{path}: #{reason}")
-            []
-        end
-
-      {:ok, %{type: :regular}} ->
-        [path]
-
-      {:ok, _stat} ->
-        # symlinks, devices, etc.
-        []
-
-      {:error, reason} ->
-        IO.warn("Failed to read #{path}: #{reason}")
-        []
-    end
-  end
-
-  defp merge(mapset, elem)
-  defp merge(mapset, []), do: mapset
-  defp merge(mapset, [x]), do: MapSet.put(mapset, x)
-  defp merge(mapset, list) when is_list(list), do: list |> MapSet.new() |> MapSet.union(mapset)
-  defp merge(mapset, other), do: MapSet.union(mapset, other)
 end

@@ -32,7 +32,7 @@ defmodule Map.Element do
 
   def bbox(list) when is_list(list) do
     list
-    |> Enum.map(&bbox/1)
+    |> Parallel.map(&bbox/1)
     |> Enum.reduce(&Geo.CheapRuler.union/2)
   end
 

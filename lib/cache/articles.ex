@@ -15,18 +15,20 @@ defmodule Cache.Articles do
   end
 
   @get Benchmark.measure("#{__MODULE__}: loading", fn ->
-         paths
-         # |> Enum.map(&Task.async(fn -> load(&1) end))
-         # |> Enum.map(&Task.await(&1))
-         |> Enum.map(&Article.Parser.load/1)
-         |> Enum.into(%{}, fn art ->
-           art =
-             art
-             |> Article.Search.preprocess()
-             |> Article.enrich_with_map(Cache.Map.full_map())
+         ways = Cache.Map.full_map() |> Article.article_ways()
 
-           {art.name, art}
-         end)
+         relation_bboxes =
+           Enum.into(Cache.Map.relations(), %{}, fn
+             {_rel_id, rel} ->
+               id = rel.tags[:id] || Route.from_relation(rel).id()
+               {id, Map.Element.bbox(rel)}
+           end)
+
+         paths
+         |> Parallel.map(&Article.Parser.load/1)
+         |> Parallel.map(&Article.Search.preprocess/1)
+         |> Parallel.map(&Article.enrich_with_map(&1, ways, relation_bboxes))
+         |> Enum.into(%{}, fn art -> {art.name, art} end)
        end)
   def get, do: @get
 

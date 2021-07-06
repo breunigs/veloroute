@@ -18,3 +18,9 @@ import "shim-keyboard-event-key"
 
 // ours
 import 'mdn-polyfills/Array.prototype.includes'
+
+// IE 11 only
+// via https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN#polyfill
+Number.isNaN = Number.isNaN || function isNaN(input) {
+  return typeof input === 'number' && input !== input;
+}

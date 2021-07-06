@@ -1,5 +1,5 @@
 defmodule Article.Parser do
-  def load(path, article_dir \\ "data/articles") do
+  def load(path) do
     parsed =
       YamlElixir.read_from_file(path)
       |> case do
@@ -14,7 +14,7 @@ defmodule Article.Parser do
         e -> reraise "cannot parse #{path} (#{e.message})", __STACKTRACE__
       end
 
-    name = Path.relative_to(path, article_dir) |> String.replace_trailing(".yaml", "")
+    name = Path.relative_to(path, "data/articles") |> String.replace_trailing(".yaml", "")
 
     {:ok, date} =
       Map.get(parsed, :updated, name)
@@ -27,8 +27,19 @@ defmodule Article.Parser do
 
     tags = Map.get(parsed, :tags, []) |> Enum.map(&to_string/1)
 
-    # if !is_nil(date) && is_nil(simg),
-    #   do: raise("Article #{path} is dated, but no start image could be found")
+    tracks =
+      Map.get(parsed, :tracks, [])
+      |> Enum.map(fn vid ->
+        Video.Track.with_rendered_ref(%Video.Track{
+          from: Map.get(vid, "from", ""),
+          to: Map.get(vid, "to", ""),
+          text: Map.get(vid, "text", ""),
+          videos: Map.get(vid, "videos", []) |> Enum.map(&List.to_tuple/1),
+          parent_text: parsed.title,
+          direction: Map.get(vid, "direction", "forward") |> String.to_existing_atom(),
+          group: Map.get(vid, "group", "default")
+        })
+      end)
 
     data =
       parsed
@@ -38,7 +49,8 @@ defmodule Article.Parser do
         text: String.trim(parsed[:text] || ""),
         tags: tags,
         start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
-        end: parsed |> Map.get(:end) |> Data.RoughDate.parse()
+        end: parsed |> Map.get(:end) |> Data.RoughDate.parse(),
+        tracks: tracks
       })
       |> full_title()
 

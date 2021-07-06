@@ -2,23 +2,68 @@ defmodule Video.RenderedTest do
   use ExUnit.Case, async: true
   doctest Video.Rendered
 
-  def example() do
-    %Video.Rendered{
-      hash: "i-am-a-hash",
-      coords: [
-        # %Video.TimedPoint{lon: 9.0, lat: 9.0, time_offset_ms: 0},
-        # %Video.TimedPoint{lon: 1.0, lat: 1.0, time_offset_ms: 100},
-        # %Video.TimedPoint{lon: 2.0, lat: 2.0, time_offset_ms: 200},
-        # %Video.TimedPoint{lon: 3.0, lat: 3.0, time_offset_ms: 300},
-        # %Video.TimedPoint{lon: 4.0, lat: 4.0, time_offset_ms: 400},
-        # %Video.TimedPoint{lon: 5.0, lat: 5.0, time_offset_ms: 500}
+  test "produces correct video render commands" do
+    cmds =
+      Video.RenderedTest.Example
+      |> Video.Rendered.render()
+
+    assert [
+             "./tools/video_concat.rb",
+             "videos/source/1.mp4.anonymized.mkv",
+             "0:00:01.337",
+             "0:00:01.737",
+             "videos/source/2.mp4.anonymized.mkv",
+             "0:00:00.000",
+             "0:00:00.123",
+             "|",
+             "./tools/video_convert_streamable.rb",
+             "videos/rendered/badc0ffeebadc0ffeebadc0ffeebadc0",
+             "0"
+           ] == cmds
+  end
+
+  test "produces correct video preview commands" do
+    cmds =
+      Video.RenderedTest.Example
+      |> Video.Rendered.preview(123)
+      |> Enum.map(fn preview ->
+        # remove player part and join as string
+        preview |> Enum.take_while(fn x -> x != "|" end) |> Enum.join(" ")
+      end)
+
+    assert [
+             "./tools/video_concat.rb videos/source/1.mp4 0:00:01.337 0:00:01.737 videos/source/2.mp4 0:00:00.000 0:00:00.123",
+             "./tools/video_concat.rb videos/source/1.mp4 0:00:01.614 0:00:01.737 videos/source/2.mp4 0:00:00.000 0:00:00.123"
+           ] == cmds
+  end
+
+  defmodule Example do
+    @behaviour Video.Rendered
+
+    @impl Video.Rendered
+    def name(), do: "example"
+    @impl Video.Rendered
+    def hash(), do: "badc0ffeebadc0ffeebadc0ffeebadc0"
+    @impl Video.Rendered
+    def length_ms(), do: 400
+    @impl Video.Rendered
+    def sources(),
+      do: [
+        {"1.mp4", "0:00:01.337", "0:00:01.737"},
+        {"2.mp4", "0:00:00.000", "0:00:00.123"}
+      ]
+
+    @impl Video.Rendered
+    def coords(),
+      do: [
         %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},
         %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 100},
         %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 200},
         %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 300},
         %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 400}
-      ],
-      length_ms: 400
-    }
+      ]
+
+    @impl Video.Rendered
+    def rendered?(), do: true
   end
 end

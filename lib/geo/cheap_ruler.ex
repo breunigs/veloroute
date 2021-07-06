@@ -76,6 +76,7 @@ defmodule Geo.CheapRuler do
       ...> )
       %Geo.Point{lon: 1.5, lat: 2.5}
   """
+  @spec center(Geo.BoundingBox.like()) :: Geo.Point.t()
   def center(bbox) do
     %Geo.Point{lon: (bbox.minLon + bbox.maxLon) / 2, lat: (bbox.minLat + bbox.maxLat) / 2}
   end
@@ -163,7 +164,7 @@ defmodule Geo.CheapRuler do
   end
 
   @doc ~S"""
-  Returns the distance between two points or from a line and a point
+  Returns the distance between two line or from a line and a point
 
   ## Examples
 
@@ -184,36 +185,79 @@ defmodule Geo.CheapRuler do
       273.29543042145286
   """
   def dist(from, %{lon: _lon1, lat: _lat1} = to) when is_list(from) do
-    closest_point_on_line(from, to) |> point2point_dist(to)
+    closest_point_on_line(from, to) |> Map.fetch!(:dist)
   end
 
   def dist(%{lon: _lon1, lat: _lat1} = from, %{lon: _lon2, lat: _lat2} = to),
     do: point2point_dist(from, to)
 
+  @type adjuster ::
+          (prev :: Geo.Point.like(),
+           next :: Geo.Point.like(),
+           index :: integer(),
+           calculated_distance :: float() ->
+             number())
+
   @doc ~S"""
-  It finds the closest point of a line to another given point
+  It finds the closest point of a line to another given point. Optionally you
+  can pass the bearing and how strongly to consider it. Default is to ignore
+  the bearing.
+
+  It allows to modify the caluclation using additional factors, besides
+  distance, by specifying any number of adjusters. An adjuster that prefers
+  the start of the line might look like:
+
+      fn prev, next, index, calc_dist -> index*index end
 
   ## Examples
 
+  It interpolates the point in the format of the given line:
+
       iex> Geo.CheapRuler.closest_point_on_line(
       ...>   [
-      ...>     %{lon: 10, lat: 53},
-      ...>     %{lon: 10.03971050427, lat: 53.58988354712},
-      ...>     %{lon: 10.04383358673, lat: 53.58986207956},
-      ...>     %{lon: 10.04026843693, lat: 53.58887260434}
+      ...>     %Video.TimedPoint{lon: 10,             lat: 53            , time_offset_ms: 100},
+      ...>     %Video.TimedPoint{lon: 10.03971050427, lat: 53.58988354712, time_offset_ms: 200},
+      ...>     %Video.TimedPoint{lon: 10.04383358673, lat: 53.58986207956, time_offset_ms: 300},
+      ...>     %Video.TimedPoint{lon: 10.04026843693, lat: 53.58887260434, time_offset_ms: 400}
       ...>   ],
       ...>   %{lon: 10.04289976489, lat: 53.59004976324}
       ...> )
-      %{lon: 10.042897081160916, lat: 53.58986695564232, index: 1, t: 0.7728627602842454}
+      %{index: 1, t: 0.7728627602842454, dist: 20.34681678169861,
+        point: %Video.TimedPoint{lon: 10.042897081160916, lat: 53.58986695564232, time_offset_ms: 277}}
+
+  It does not extend beyond line start/end points:
+
+      iex> Geo.CheapRuler.closest_point_on_line(
+      ...>   [
+      ...>     %{lat: 53.550598, lon: 9.994402},
+      ...>     %{lat: 53.550572, lon: 9.994393}
+      ...>   ],
+      ...>   %{lat: 53.5505342, lon: 9.9944973}
+      ...> )
+      %{index: 0, t: 1, dist: 8.092672677012276, point: %{lat: 53.550572, lon: 9.994393}}
+
   """
-  def closest_point_on_line(line, %{lon: lon, lat: lat}) when is_list(line) do
-    line
-    |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.reduce(%{dist: nil, i: 0, index: 0, t: 0}, fn [one, two], mins ->
-      x = one.lon
-      y = one.lat
-      dx = (two.lon - x) * @kx
-      dy = (two.lat - y) * @ky
+  @spec closest_point_on_line([Geo.Point.like()], Geo.Point.like(), [adjuster()]) :: %{
+          point: Geo.Point.like(),
+          index: integer(),
+          dist: float(),
+          t: float()
+        }
+  def closest_point_on_line(line, point, adjusters \\ [])
+
+  def closest_point_on_line(
+        line,
+        %{lon: lon, lat: lat},
+        adjusters
+      )
+      when is_list(line) and is_list(adjusters) do
+    [head | tail] = line
+
+    Enum.reduce(tail, %{prev: head, dist: nil, point: head, i: 0, index: 0, t: 0}, fn next, acc ->
+      x = acc.prev.lon
+      y = acc.prev.lat
+      dx = (next.lon - x) * @kx
+      dy = (next.lat - y) * @ky
 
       {x, y, t} =
         if dx == 0 && dy == 0 do
@@ -221,22 +265,32 @@ defmodule Geo.CheapRuler do
         else
           (((lon - x) * @kx * dx + (lat - y) * @ky * dy) / (dx * dx + dy * dy))
           |> case do
-            t when t > 1 -> {two.lon, two.lat, t}
+            t when t > 1 -> {next.lon, next.lat, 1}
             t when t > 0 -> {x + dx / @kx * t, y + dy / @ky * t, t}
-            t -> {x, y, t}
+            _t -> {x, y, 0}
           end
         end
 
       dx = (lon - x) * @kx
       dy = (lat - y) * @ky
+      dist = :math.sqrt(dx * dx + dy * dy)
 
-      sqDist = dx * dx + dy * dy
+      final =
+        adjusters
+        |> Enum.map(fn adj -> adj.(acc.prev, next, acc.i, dist) end)
+        |> Enum.sum()
+        |> Kernel.+(dist)
 
-      if mins.dist && sqDist >= mins.dist,
-        do: %{mins | i: mins.i + 1},
-        else: %{dist: sqDist, lon: x, lat: y, i: mins.i + 1, index: mins.i, t: t}
+      next_acc = %{acc | i: acc.i + 1, prev: next}
+
+      if acc.dist && final >= acc.dist do
+        next_acc
+      else
+        point = Geo.Interpolate.point(acc.prev, next, t)
+        %{next_acc | dist: final, point: point, index: acc.i, t: t}
+      end
     end)
-    |> Map.take([:lon, :lat, :index, :t])
+    |> Map.take([:point, :index, :dist, :t])
   end
 
   @doc ~S"""
@@ -261,7 +315,7 @@ defmodule Geo.CheapRuler do
 
   @spec point2point_dist(%{lat: number, lon: number}, %{lat: number, lon: number}) :: float
   @doc ~S"""
-  Returns the distance in meters between two points
+  Returns the distance in meters between two line
 
   ## Examples
 
@@ -277,8 +331,21 @@ defmodule Geo.CheapRuler do
     :math.sqrt(dx * dx + dy * dy)
   end
 
+  @doc """
+  Given two bearings in degrees, calculates how far they are apart and returns
+  the absolute value (also in degrees)
+  """
+  def bearing_diff(b1, b2) do
+    case b2 - b1 do
+      d when d < -180 -> d + 360
+      d when d > 180 -> d - 360
+      d -> d
+    end
+    |> abs()
+  end
+
   @doc ~S"""
-  Returns the bearing between two points in angles.
+  Returns the bearing between two line in degrees.
 
   ## Examples
 
@@ -295,9 +362,45 @@ defmodule Geo.CheapRuler do
     if dx == 0 && dy == 0 do
       0.0
     else
-      bearing = to_deg(:math.atan2(dx, dy))
-      if bearing < 0, do: bearing + 360, else: bearing
+      bear = :math.atan2(dx, dy) |> to_deg()
+      if bear < 0, do: bear + 360, else: bear
     end
+  end
+
+  @doc """
+  Ensure that all segments in the given line are shorter than the given
+  distance. If necessary, additional points will be inserted in between
+  the too long segment.
+
+      iex> Geo.CheapRuler.max_segment_length([
+      ...>  %{lat: 53.49806818946, lon: 9.98100144757},
+      ...>  %{lat: 53.49689925483, lon: 9.98101267651},
+      ...>  %{lat: 53.49690593455, lon: 9.98334829625}
+      ...> ], 75)
+      [
+        %{lat: 53.49806818946,     lon: 9.98100144757},
+        %{lat: 53.497483722145,    lon: 9.98100706204},
+        %{lat: 53.49689925483,     lon: 9.98101267651},
+        %{lat: 53.496901481403334, lon: 9.981791216423334},
+        %{lat: 53.496903707976664, lon: 9.982569756336666},
+        %{lat: 53.49690593455,     lon: 9.98334829625}
+      ]
+  """
+  def max_segment_length(polyline, max_dist) do
+    polyline
+    |> Enum.chunk_every(2, 1, :discard)
+    |> Enum.reduce([hd(polyline)], fn
+      [a, a], line ->
+        IO.warn("got duplicated point in #{inspect(polyline)}")
+        # i.e. remove duplicated point
+        line
+
+      [a, b], line ->
+        pieces = ceil(dist(a, b) / max_dist)
+        segmented = Enum.map(pieces..1, fn n -> Geo.Interpolate.point(a, b, n / pieces) end)
+        segmented ++ line
+    end)
+    |> Enum.reverse()
   end
 
   defp to_deg(rad) do

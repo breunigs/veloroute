@@ -45,14 +45,21 @@ defmodule Route.List do
 
   @spec groups(t) :: list(binary())
   def groups(routes) do
-    routes
-    |> Enum.flat_map(&Route.sequences/1)
-    |> Enum.map(& &1.group)
-    |> Enum.uniq()
+    from_seq =
+      routes
+      |> Enum.flat_map(&Route.sequences/1)
+      |> Enum.map(& &1.group)
+
+    from_tracks =
+      Enum.flat_map(routes, fn route ->
+        Enum.map(route.tracks(), & &1.group)
+      end)
+
+    (from_seq ++ from_tracks) |> Enum.uniq()
   end
 
   @spec by_tags(list(binary())) :: list(module())
-  def by_tags(tags) when is_list(tags) do
+  def  by_tags(tags) when is_list(tags) do
     Enum.filter(all(), &Route.has_group?(&1, tags))
   end
 

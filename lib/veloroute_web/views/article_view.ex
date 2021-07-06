@@ -173,11 +173,24 @@ defmodule VelorouteWeb.ArticleView do
   end
 
   defp geolinks([{"route", route}], content) do
+    # TODO: cleanup once all is video
     rel = VariousHelpers.relation_by_id(route)
-    gpx = geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
+    route = Route.from_id(route)
+
+    gpx =
+      cond do
+        rel -> geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
+        route -> geolinks_gpx(route.name(), route.id())
+      end
+
+    osm_href =
+      cond do
+        route -> route.osm_relation_ref()
+        rel -> Relation.osm_url(rel)
+      end
 
     osm =
-      case Relation.osm_url(rel) do
+      case osm_href do
         nil -> []
         href -> [{"li", [], floki_content_tag("a", "Route in der OpenStreetMap", href: href)}]
       end

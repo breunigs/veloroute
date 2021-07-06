@@ -19,3 +19,9 @@ text: >
     <li><a href="https://lsbg.hamburg.de/stadtstrassen/5828548/max-brauer-allee/">Infoseite der Stadt</a> (Pläne finden sich um Fließtext hinter „hier“ Links)</li>
     <li><a href="https://lsbg.hamburg.de/contentblob/15174848/d7a7efa724941b75e17de3168a69f2c7/data/max-brauer-allee-1-bauabschnitt-juni-20.pdf">Baustelleninfo Juli 2021</a></li>
   </ul>
+tracks:
+- group: article
+  direction: forward
+  text: "Max-Brauer-Allee, Sternschanze → Altona"
+  videos:
+  - ["2021-04-04-freizeitroute-12-speedup-5x/GX011181", "0:00:16.000", "0:00:25.000"]

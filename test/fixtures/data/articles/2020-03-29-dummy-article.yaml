@@ -1,0 +1,15 @@
+type: construction
+title: title
+start: 2019Q4
+images: 123
+tags:
+- tag
+- 4
+text: "<a>text</a>"
+tracks:
+- group: detour
+  direction: forward
+  text: "blub"
+  videos:
+  - ["somefile", "0:00:00.000", "0:00:00.123"]
+

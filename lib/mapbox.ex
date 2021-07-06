@@ -41,7 +41,7 @@ defmodule Mapbox do
   def search(query, bounds) do
     bounds = VariousHelpers.parse_bounds(bounds)
 
-    center = Geo.CheapRuler.center(bounds)
+    center = Geo.CheapRuler.center(bounds || Settings.initial())
     query = URI.encode(query)
 
     {:ok, response} =

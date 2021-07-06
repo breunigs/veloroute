@@ -18,4 +18,16 @@ defmodule Geo.Point do
   end
 
   def from_params(_params), do: nil
+
+  def osm_url(%{lon: lon, lat: lat}) do
+    "https://www.openstreetmap.org/?mlat=#{lat}&mlon=#{lon}#map=19/#{lat}/#{lon}"
+  end
+end
+
+defimpl Geo.Interpolate, for: Geo.Point do
+  def point(%Geo.Point{lon: lon1, lat: lat1}, %Geo.Point{lon: lon2, lat: lat2}, t) do
+    dx = lon2 - lon1
+    dy = lat2 - lat1
+    %Geo.Point{lon: lon1 + dx * t, lat: lat1 + dy * t}
+  end
 end

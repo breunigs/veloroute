@@ -17,3 +17,14 @@ text: <p>Die <a>Thadenstraße</a> soll im Sommer 2020 zu einer Fahrradstraße um
   gelungen und bei einem Radaufkommen das selbst in Nebenzeiten den KFZ-Verkehr um
   das dreifache übersteigt auch notwendig.</p> <ul><li><a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1007815">Erläuterungsbericht
   zur Umgestaltung mit vorläufigem Lageplan</a> (unter Anlagen)</li><li><a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/13952802/veloroute-2-ausbau-thadenstr-art/">Baustellen Info</a></li></ul>
+tracks:
+- group: detour
+  direction: forward
+  text: "Umleitung"
+  videos:
+  - ["2021-06-05-velorouten-1-1a-2/GX011660", "0:00:13.000", "0:00:48.000"]
+- group: detour
+  direction: backward
+  text: "Umleitung"
+  videos:
+  - ["2021-04-10-freizeitroute2/GX011183", "0:00:01.000", "0:00:34.000"]

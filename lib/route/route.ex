@@ -1,9 +1,35 @@
 defmodule Route do
-  @type t :: any()
+  @type t :: atom()
   @callback index() :: %{required(binary()) => %{required(Data.Sequence.name()) => integer()}}
   @callback parsed() :: %{required(Data.Sequence.name()) => [Data.Image.img_non_nil(), ...]}
 
   import Mapillary.Types, only: [is_ref: 1]
+
+  @doc """
+  Finds the matching route to the given relation. Uses the "ref" tag.
+  """
+  @spec from_relation(Map.Relation.t()) :: module() | nil
+  def from_relation(%Map.Relation{tags: %{ref: ref}}) when is_binary(ref) and ref != "",
+    do: Module.safe_concat(["Data", "Route", ref])
+
+  def from_relation(_r), do: nil
+
+  @doc """
+  Finds the matching route where the ID matches the given one.
+  """
+  @spec from_id(binary()) :: module() | nil
+  def from_id(id) when is_binary(id) do
+    Enum.find(all(), fn route -> route.id() == id end)
+  end
+
+  @spec all() :: [t()]
+  def all() do
+    :code.all_available()
+    |> Enum.map(&elem(&1, 0))
+    |> Enum.filter(&List.starts_with?(&1, 'Elixir.Data.Route.'))
+    |> Enum.map(&List.to_atom/1)
+    |> Enum.sort()
+  end
 
   @spec sequences_with_img(t(), Mapillary.Types.ref()) :: list(Data.Sequence.t())
   def sequences_with_img(route, img) when is_ref(img) do
@@ -38,6 +64,7 @@ defmodule Route do
   @spec sequences(t()) :: list(Data.Sequence.t())
   def sequences(route) do
     route.parsed
+    |> Enum.filter(fn {{_group, description}, _imgs} -> description != "" end)
     |> Enum.map(fn {{group, description}, _imgs} ->
       Data.Sequence.new(
         group: group,

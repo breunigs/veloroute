@@ -50,7 +50,8 @@ defmodule Map.Relation do
 
   def osm_relation_id(_), do: nil
 
-  def name(%__MODULE__{} = rel), do: rel.tags[:name] || rel.tags[:id]
+  def name(%__MODULE__{} = rel),
+    do: rel.tags[:name] || rel.tags[:id]
 
   def gpx_name(%__MODULE__{} = rel) do
     # return GPX name only if relation can be detected
