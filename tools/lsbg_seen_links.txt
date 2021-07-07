@@ -399,3 +399,10 @@
 - "/contentblob/15174822/6b6378502b37c14ba3e57179f0d0aa8d/data/bremer-strasse-abgestimmte-planung-plaene.pdf"
 - "/contentblob/15140810/43a909eba663da20eb52a98e67d6e5ba/data/alster-fahrradachsen-bellevue-bis-fernsicht-06-2021-bis-04-2022.pdf"
 - "/contentblob/15174848/d7a7efa724941b75e17de3168a69f2c7/data/max-brauer-allee-1-bauabschnitt-juni-20.pdf"
+'2021-07-07':
+- "/contentblob/15239992/586d5212d0217f5496a5bc3e90a1d978/data/billwerder-billdeich-ost-gesamtschul-grundinstandsetzung-fussgaengerbruecke-07-21-bis-09-21.pdf"
+- "/contentblob/15174878/51e8b1b1261c1165dec3091a64833133/data/bovestrasse-07-2021-bis-11-2021.pdf"
+- "/contentblob/15239988/20a55c01faa31f8eb0e82ce59e4cde35/data/jahnring-jahnbruecke-ring-2-fahrbahnsanierung-12-07-21-bis-04-08-21.pdf"
+- "/contentblob/15199946/6c9bc82ba0c2f387637618425d6abc77/data/krohnstieg-06-2021-bis-08-2021.pdf"
+- "/contentblob/15196012/ed741b9d1561ca0262315d41440cafe6/data/stader-strasse-07-2021-bis-09-2021.pdf"
+- "/contentblob/15222472/ef4904922f840cec0331a505f12648c8/data/winsener-strasse-hittfelder-strasse-07-2021-bis-08-2021.pdf"
