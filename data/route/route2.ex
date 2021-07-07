@@ -14,7 +14,7 @@ defmodule Data.Route.Route2 do
     from: "Innenstadt",
     to: "Eidelstedt",
     parent_text: @name,
-    text: "#{@name}: aus der Innenstadt nach Eidelstedt",
+    text: "aus der Innenstadt nach Eidelstedt",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011629", "0:00:12.246", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011630", :start, :end},
