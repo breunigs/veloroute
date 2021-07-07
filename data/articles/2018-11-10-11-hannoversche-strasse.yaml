@@ -1,8 +1,8 @@
 
 title: Hannoversche Straße (Veloroute 11)
 start: 2021-01-04
-end: 2021-06-13
-construction_site_id_hh: 14079
+end: 2021-12-31
+construction_site_id_hh: [14079, 17581]
 type: construction
 tags:
 - 11

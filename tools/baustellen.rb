@@ -27,9 +27,13 @@ ids = (ids + references.keys).uniq
 
 
 updates = Parallel.map(ids, in_threads: 4) do |id|
-  jsonRaw = OpenURI.open_uri("https://bauweiser.hamburg.de/api/steckbriefeweb/id/#{id}").read
+  url = "https://bauweiser.hamburg.de/api/steckbriefeweb/id/#{id}"
+  jsonRaw = OpenURI.open_uri(url).read
   json = JSON.parse(jsonRaw)
   print "."
+
+  text = jsonRaw.downcase
+  velo = ["veloroute", "radverkehr", "radfahr"].any? { |x| text.include?(x) }
 
   {
     id: id,
@@ -38,8 +42,11 @@ updates = Parallel.map(ids, in_threads: 4) do |id|
     link: json["internetLink"],
     start: json["bauintervall"]["start"],
     end: json["bauintervall"]["end"],
-    velo: jsonRaw.downcase.include?("veloroute"),
+    velo: velo,
   }.compact
+rescue => e
+  warn "baustellen.rb: failed to process id=#{id} #{url}\n#{e}\n"
+  nil
 end.compact
 
 

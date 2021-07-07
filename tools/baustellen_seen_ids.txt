@@ -2,10 +2,10 @@
 99999: 
 23:
   :id: 23
-  :title: B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- LSBG
-  :updated: '2020-12-01T11:31:46.964903'
+  :title: 'B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- '
+  :updated: '2021-06-30T07:24:15.200305'
   :start: '2019-04-01'
-  :end: '2021-06-28'
+  :end: '2021-10-31'
   :velo: false
 101:
   :id: 101
@@ -38,10 +38,10 @@
   :velo: false
 106:
   :id: 106
-  :title: B 5 / A 1 - Brücke / Grundinstandsetzung -- LSBG
-  :updated: '2020-12-01T11:31:06.323079'
+  :title: 'B 5 / A 1 - Brücke / Grundinstandsetzung -- '
+  :updated: '2021-06-30T07:23:10.030919'
   :start: '2019-05-23'
-  :end: '2021-09-26'
+  :end: '2021-10-31'
   :velo: false
 12465:
   :id: 12465
@@ -120,7 +120,7 @@
 9261:
   :id: 9261
   :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
-  :updated: '2021-04-19T16:00:55.264507'
+  :updated: '2021-06-30T16:27:30.12532'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-29'
   :end: '2022-03-15'
@@ -165,8 +165,8 @@
   :velo: true
 12470:
   :id: 12470
-  :title: Bürgerweide / Neubau der Eisenbahnüberführung -- LSBG
-  :updated: '2020-10-15T11:55:46.54163'
+  :title: 'Bürgerweide / Neubau der Eisenbahnüberführung -- '
+  :updated: '2021-07-07T10:48:21.881603'
   :start: '2019-08-01'
   :end: '2022-09-30'
   :velo: false
@@ -189,7 +189,7 @@
 7919:
   :id: 7919
   :title: 'Hindenburgstraße / Sielbauarbeiten -- '
-  :updated: '2021-06-16T16:54:16.324055'
+  :updated: '2021-06-18T06:41:27.592423'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
   :end: '2021-09-30'
@@ -816,10 +816,10 @@
   :velo: false
 12596:
   :id: 12596
-  :title: Fuhlentwiete / Straßenbauarbeiten -- Bezirk Mitte
-  :updated: '2020-10-15T11:29:16.073885'
+  :title: 'Fuhlentwiete / Straßenbauarbeiten -- '
+  :updated: '2021-07-07T12:54:30.226426'
   :start: '2020-10-19'
-  :end: '2021-05-31'
+  :end: '2021-10-30'
   :velo: false
 14214:
   :id: 14214
@@ -852,12 +852,12 @@
   :velo: false
 14914:
   :id: 14914
-  :title: 'Teil- und Vollsperrung Kattwykbrücke - 1. Aktualisierung -- '
-  :updated: '2021-04-28T18:56:04.336754'
+  :title: 'Teil- und Vollsperrung Kattwykbrücke - 2. Aktualisierung -- '
+  :updated: '2021-07-02T13:29:58.211419'
   :link: https://www.hamburg-port-authority.de/de/aktuelles-presse/kattwykbruecke-wird-fuer-alleinige-nutzung-fuer-den-strassenverkehr-umgebaut/
   :start: '2021-04-06'
-  :end: '2021-11-06'
-  :velo: false
+  :end: '2021-07-09'
+  :velo: true
 14882:
   :id: 14882
   :title: 'Thadenstraße / Ausbau Veloroute -- '
@@ -1111,7 +1111,7 @@
 15367:
   :id: 15367
   :title: 'Landwehrplatz / Sielbau -- '
-  :updated: '2021-06-04T07:37:48.172258'
+  :updated: '2021-06-18T06:43:15.654077'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-15'
   :end: '2021-07-30'
@@ -1402,9 +1402,9 @@
 15969:
   :id: 15969
   :title: 'Kandinskyallee - Havighorster Redder / Halbseitige Fahrspursperrung -- '
-  :updated: '2021-05-10T11:34:20.150759'
+  :updated: '2021-06-23T14:46:14.624929'
   :start: '2021-05-10'
-  :end: '2021-06-30'
+  :end: '2021-07-30'
   :velo: false
 15978:
   :id: 15978
@@ -1659,16 +1659,16 @@
 16974:
   :id: 16974
   :title: 'Julius-Vosseler-Straße/ Arbeiten am Fernwärmenetz -- '
-  :updated: '2021-06-16T08:33:30.133351'
+  :updated: '2021-06-28T15:22:03.310298'
   :start: '2021-06-09'
   :end: '2021-08-20'
   :velo: false
 17032:
   :id: 17032
-  :title: 'Schnackenburgallee/ Verkehrsabsicherung -- '
-  :updated: '2021-06-17T07:00:36.608685'
+  :title: 'Schnackenburgallee/ Notmaßnahme -- '
+  :updated: '2021-06-28T16:14:31.247432'
   :start: '2021-06-15'
-  :end: '2021-07-01'
+  :end: '2021-07-22'
   :velo: false
 16546:
   :id: 16546
@@ -1717,7 +1717,7 @@
 16614:
   :id: 16614
   :title: 'Hansastraße/ Hamburg European Open 2021 -- '
-  :updated: '2021-06-09T09:53:31.91095'
+  :updated: '2021-06-24T07:59:29.804656'
   :start: '2021-07-01'
   :end: '2021-07-19'
   :velo: false
@@ -1750,3 +1750,167 @@
   :start: '2021-07-01'
   :end: '2021-12-30'
   :velo: false
+17847:
+  :id: 17847
+  :title: 'Hardorffsweg Hochbau Vollsperrung -- '
+  :updated: '2021-07-06T14:23:03.135108'
+  :start: '2021-07-06'
+  :end: '2022-03-31'
+  :velo: false
+460:
+  :id: 460
+  :title: 'Neubau Eckgrundstück Bahrenfelder Straße/ Von-Sauer-Straße -- '
+  :updated: '2021-07-07T09:00:08.826048'
+  :start: '2019-01-07'
+  :end: '2022-03-31'
+  :velo: true
+16296:
+  :id: 16296
+  :title: 'Heilwigstraße/ Asphaltierung -- '
+  :updated: '2021-06-28T15:31:08.723434'
+  :start: '2021-07-06'
+  :end: '2021-07-08'
+  :velo: false
+16316:
+  :id: 16316
+  :title: 'Neuengammer Hausdeich 166b, Herstellen einer Gehwegüberfahrt -- '
+  :updated: '2021-06-28T13:52:44.872204'
+  :start: '2021-06-21'
+  :end: '2021-07-16'
+  :velo: false
+17091:
+  :id: 17091
+  :title: 'Kennedybrücke / Fahrbahnsanierung an 3 Wochenenden -- '
+  :updated: '2021-06-18T07:42:28.25573'
+  :start: '2021-06-25'
+  :end: '2021-07-12'
+  :velo: false
+17244:
+  :id: 17244
+  :title: 'Bismarckstraße/ Leitungsarbeiten -- '
+  :updated: '2021-06-23T06:12:14.507437'
+  :start: '2021-06-17'
+  :end: '2021-07-09'
+  :velo: false
+17313:
+  :id: 17313
+  :title: 'Ludwig-Erhard-Straße / Fahrbahnschaden -- '
+  :updated: '2021-06-24T06:32:55.544159'
+  :start: '2021-06-23'
+  :end: '2021-07-23'
+  :velo: false
+17324:
+  :id: 17324
+  :title: 'Wandsbeker Königstraße / Vollsperrung -- '
+  :updated: '2021-06-24T10:09:10.668566'
+  :start: '2021-06-28'
+  :end: '2021-07-09'
+  :velo: true
+17405:
+  :id: 17405
+  :title: 'Beim Schlump/ Notmaßnahme -- '
+  :updated: '2021-07-05T07:54:35.753056'
+  :start: '2021-06-24'
+  :end: '2021-07-13'
+  :velo: true
+17480:
+  :id: 17480
+  :title: 'Rothenbaumchaussee/ Instandsetzung U-Bahn-Tunnel -- '
+  :updated: '2021-06-28T11:25:43.091248'
+  :start: '2021-06-29'
+  :end: '2021-07-30'
+  :velo: false
+17604:
+  :id: 17604
+  :title: 'Stader Straße zw. Moorburger Bogen und Moorburger Straße - Deckensanierung
+    -- '
+  :updated: '2021-06-30T07:03:46.849195'
+  :link: https://www.hamburg.de/baustellen
+  :start: '2021-07-04'
+  :end: '2021-08-23'
+  :velo: false
+17589:
+  :id: 17589
+  :title: 'Winsener Straße - Hittfelder Straße - Deckensanierung -- '
+  :updated: '2021-06-30T07:04:02.744329'
+  :link: https://www.hamburg.de/baustellen
+  :start: '2021-07-01'
+  :end: '2021-08-08'
+  :velo: false
+17690:
+  :id: 17690
+  :title: 'Ernst-Merck-Straße / Vollsperrung -- '
+  :updated: '2021-07-02T08:42:08.106545'
+  :start: '2021-07-07'
+  :end: '2021-07-08'
+  :velo: false
+17716:
+  :id: 17716
+  :title: 'Berzeliusstraße / Leitungsarbeiten -- '
+  :updated: '2021-07-02T08:44:08.928927'
+  :start: '2021-07-01'
+  :end: '2021-07-31'
+  :velo: false
+13298:
+  :id: 13298
+  :title: 'Gertrudenstraße / Vollsperrung -- '
+  :updated: '2021-07-06T14:27:13.825423'
+  :start: '2020-11-09'
+  :end: '2021-12-31'
+  :velo: false
+17836:
+  :id: 17836
+  :title: 'Karlshof 2, Kranarbeiten -- '
+  :updated: '2021-07-06T14:22:38.126619'
+  :start: '2021-07-12'
+  :end: '2021-08-02'
+  :velo: false
+17380:
+  :id: 17380
+  :title: 'Koppel / Vollsperrung -- '
+  :updated: '2021-07-05T14:27:11.552403'
+  :start: '2021-07-13'
+  :end: '2021-07-15'
+  :velo: false
+17530:
+  :id: 17530
+  :title: 'Burchardstraße / Kranaufstellung -- '
+  :updated: '2021-06-29T06:51:40.218347'
+  :start: '2021-07-14'
+  :end: '2021-07-14'
+  :velo: false
+17700:
+  :id: 17700
+  :title: 'Nydamer Weg 22 / Vollsperrung -- '
+  :updated: '2021-07-02T08:42:50.54298'
+  :start: '2021-07-12'
+  :end: '2021-07-14'
+  :velo: false
+17707:
+  :id: 17707
+  :title: 'Halskestraße / Leitungsarbeiten -- '
+  :updated: '2021-07-02T08:43:44.792959'
+  :start: '2021-07-09'
+  :end: '2021-07-25'
+  :velo: false
+17726:
+  :id: 17726
+  :title: 'Kattwykbrück / Ertüchtigung -- '
+  :updated: '2021-07-02T08:44:47.871483'
+  :start: '2021-07-09'
+  :end: '2021-11-06'
+  :velo: false
+16306:
+  :id: 16306
+  :title: 'Mollerstraße/ Asphaltierung -- '
+  :updated: '2021-06-15T08:04:04.479548'
+  :start: '2021-08-02'
+  :end: '2021-08-06'
+  :velo: false
+13785:
+  :id: 13785
+  :title: 'Georg-Wilhelm-Straße / Radverkehrsanlagen -- '
+  :updated: '2021-07-06T14:27:59.476545'
+  :start: '2021-08-02'
+  :end: '2023-11-12'
+  :velo: true

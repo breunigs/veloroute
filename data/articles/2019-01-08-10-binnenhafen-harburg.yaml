@@ -1,10 +1,10 @@
 
 images: articles
-type: planned-construction
+type: construction
 title: Binnenhafen Harburg (Veloroute 10)
 start: 2021-02-15
 end: 2021-10-30
-construction_site_id_hh: 14569
+construction_site_id_hh: [14569, 17416]
 tags:
 - 10
 text: '<p>Radverkehrsanlagen sind auf der <a>Nartenstraße</a> gar nicht vorhanden,

@@ -1,10 +1,11 @@
 
-start: 2020-10-28
-end: 2021-01
+start: 2021-02-11
+end: 2021-12-31
 title: Kaiser-Wilhelm-Straße (Veloroute 1 und 2)
 type: construction
 images: 1
 updated: 2020-11-29
+construction_site_id_hh: 14393
 tags:
 - 1
 - 2

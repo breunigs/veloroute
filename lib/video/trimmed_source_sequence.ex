@@ -30,7 +30,7 @@ defmodule Video.TrimmedSourceSequence do
     |> Enum.map(fn {file, from, to} ->
       file |> Video.TrimmedSource.new_from_path() |> Video.TrimmedSource.extract(from, to)
     end)
-    |> new_from_tsv_list("#{track.parent_text}: #{track.text} (#{track.direction})")
+    |> new_from_tsv_list("#{track.parent_text}: #{track.text}")
   end
 
   @spec calc_hash([Video.TrimmedSource.t()]) :: hash()
