@@ -11,6 +11,8 @@ end
 
 pipes = ""
 
+
+
 Dir.mktmpdir("video_concat") do |temp_dir|
   ARGV.each_slice(3).with_index do |group, idx|
     video, start, stop = *group
@@ -20,6 +22,7 @@ Dir.mktmpdir("video_concat") do |temp_dir|
       video0 start_time     end_time     \\
       video1 hh:mm:ss.milli hh:mm:ss.milli \\
       video2 hh:mm:ss.milli hh:mm:ss.milli \\
+      video2 "start"        "end" \\
       …
     MAN
 
@@ -29,10 +32,20 @@ Dir.mktmpdir("video_concat") do |temp_dir|
     File.mkfifo(fifo)
     pipes << "file '#{fifo}'\n"
     Thread.new do
-      io = IO.popen([
-        "nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y", "-i", video,
-        "-ss", start, "-to", stop, "-c", "copy", "-f", "matroska", fifo
-      ])
+      is_start = start == "start"
+      is_end = stop == "end"
+
+      # ffmpeg cannot cut accurately with a copy codec and cuts on keyframes only,
+      # see https://trac.ffmpeg.org/wiki/Seeking#Seekingwhiledoingacodeccopy
+      codec = ENV['INACCURATE_CUTS'] == '1' ? 'copy' : 'yuv4'
+
+      cmd = ["nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y"]
+      cmd += ["-sseof", start] if !is_start && start[0] == "-"
+      cmd += ["-ss", start] if !is_start && start[0] != "-"
+      cmd += ["-to", stop] if !is_end
+      cmd += ["-i", video]
+      cmd += ["-c:v", codec, "-an", "-f", "matroska", fifo]
+      io = IO.popen(cmd)
       out = io.read
       io.close
       die(out) unless $?.success?
@@ -47,4 +60,3 @@ Dir.mktmpdir("video_concat") do |temp_dir|
     "-safe", "0", "-i", concat, "-c", "copy", "-f", "matroska", "-"
   )
 end
-

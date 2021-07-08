@@ -6,6 +6,7 @@ defmodule Video.Rendered do
   @autogen_file_path "data/auto_generated/video"
 
   @concat_tool "./tools/video_concat.rb"
+  @inaccurate_concat ["INACCURATE_CUTS=1", @concat_tool]
 
   import Video.TrimmedSourceSequence, only: [valid_hash: 1]
 
@@ -105,7 +106,7 @@ defmodule Video.Rendered do
       "--framedrop=no",
       "--audio=no",
       "--keep-open=yes",
-      "--demuxer-max-bytes=1500M",
+      "--demuxer-max-bytes=10G",
       "--force-seekable=yes",
       "-"
     ]
@@ -124,7 +125,7 @@ defmodule Video.Rendered do
       end)
 
     full =
-      Enum.reduce(rendered.sources, [@concat_tool], fn {path, from, to}, cmd ->
+      Enum.reduce(rendered.sources, @inaccurate_concat, fn {path, from, to}, cmd ->
         path = Video.Path.source_rel_to_cwd(path)
         cmd ++ [path, from, to]
       end) ++ player

@@ -168,10 +168,11 @@ defmodule Video.TrimmedSource do
     to_ms - from_ms
   end
 
+  @spec source(t()) :: {binary(), Video.Timestamp.t() | :start, Video.Timestamp.t() | :end}
   def source(%__MODULE__{} = tsv) do
     {from, to} = in_ms(tsv)
-    from = Video.Timestamp.from_milliseconds(from)
-    to = Video.Timestamp.from_milliseconds(to)
+    from = if from == 0, do: :start, else: Video.Timestamp.from_milliseconds(from)
+    to = if to == tsv.duration_ms_uncut, do: :end, else: Video.Timestamp.from_milliseconds(to)
 
     {Video.Path.source_base(tsv.source_path_rel), from, to}
   end

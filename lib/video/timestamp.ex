@@ -63,7 +63,7 @@ defmodule Video.Timestamp do
       String.to_integer(milliseconds)
   end
 
-  @spec add_milliseconds(t(), integer()) :: t()
+  @spec add_milliseconds(t() | :start | :end, integer()) :: t()
   @doc """
   Add milliseconds to the timestamp in ffmpeg format, and return it again
   in ffmpeg format. Negative milliseconds are allowed, but the time will
@@ -75,6 +75,12 @@ defmodule Video.Timestamp do
       iex> Video.Timestamp.add_milliseconds("0:00:01.337", -31337)
       "0:00:00.000"
   """
+  def add_milliseconds(:start, ms_to_add), do: add_milliseconds(zero(), ms_to_add)
+
+  def add_milliseconds(:end, ms_to_add) when ms_to_add < 0 do
+    "-" <> add_milliseconds(zero(), -1 * ms_to_add)
+  end
+
   def add_milliseconds(timestamp, ms_to_add) when is_integer(ms_to_add) do
     timestamp
     |> in_milliseconds()

@@ -40,7 +40,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
 
-  @shortdoc "Ensures all already generated videos have been rendered"
+  @shortdoc "Print commands to render videos that are still missing"
   def run(_) do
     Video.Dir.must_exist!(&real_run/0)
   end
@@ -49,17 +49,42 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     Video.Rendered.pending()
     |> Enum.each(fn rendered ->
       render = Video.Rendered.render(rendered)
+
+      IO.puts("""
+
+      ###########################################################
+      # #{rendered.name}
+      # Hash: #{rendered.hash}
+      ###########################################################
+
+      render:
+        #{Enum.join(render, " ")}
+      """)
+    end)
+  end
+end
+
+defmodule Mix.Tasks.Velo.Videos.Preview do
+  use Mix.Task
+  import Mix.Tasks.Velo.Videos
+
+  @shortdoc "Print commands to preview videos that are still missing"
+  def run(_) do
+    Video.Dir.must_exist!(&real_run/0)
+  end
+
+  defp real_run do
+    Video.Rendered.pending()
+    |> Enum.each(fn rendered ->
       previews = Video.Rendered.preview(rendered)
 
       IO.puts("""
 
       ###########################################################
-      #{rendered.name}
-      Hash: #{rendered.hash}
+      # #{rendered.name}
+      # Hash: #{rendered.hash}
       ###########################################################
 
-      render:
-        #{Enum.join(render, " ")}
       """)
 
       for {preview, idx} <- Enum.with_index(previews) do
