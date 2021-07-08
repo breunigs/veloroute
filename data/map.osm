@@ -42967,12 +42967,7 @@
     <member type='way' ref='575225945' role='forward' />
     <member type='way' ref='785155065' role='forward' />
     <member type='way' ref='181193408' role='' />
-    <tag k='color' v='#9d2928' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Bergedorf' />
-    <tag k='id' v='9' />
-    <tag k='name' v='Alltagsroute 9' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/229823' />
+    <tag k='ref' v='Route9' />
   </relation>
   <relation id='231965' action='modify' version='1'>
     <member type='way' ref='-182566' role='' />
