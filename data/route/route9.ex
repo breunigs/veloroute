@@ -1,25 +1,72 @@
 defmodule Data.Route.Route9 do
-  use Route.Parser,
-    yaml: """
-    # 2020
-    9 (stadtauswärts nach Bergedorf):
-    - { seq: "RZsSKCpUFcglnuQntM19eA", from: "lcGaLJMcKAWmgUo2ECz9iA", to: "spSmgtVPvWaZutmOf92sjQ" }
-    - { seq: "Pt1REF8AK5ewVMbrQ9VBUA", from: "4SEYVCjshVbUdSg5MHpJAA", to: "Ns4aeaOubad7Q6hLh65Z4Q" }
-    - { seq: "6rwsqgqy86qzN_5rtTfNaw", from: "pdMlWKIWNu8bSmRHM0d3KA", to: "LZzI1u6JySQxROcQbGR3GA" }
-    - { seq: "RArIBKmf4Z8IoRb1OkFLUQ", from: "dlqY3c4dJFdcDDYxOHHvOA", to: "Bwxkgv7aIwX451kQeagFfg" }
-    - { seq: "YDDRyEo7Uj5gtewAavG-Ww", from: "oCM0zqlMOEIKVuHBXPnYwg", to: "d0vaoZMOzsY3cstKbg-k5w" }
-    - { seq: "LCjgjA5kuuG3p3CLCJdPTQ", from: "y29gTtTdLwHQVvYxzCxoMQ", to: "467ejEB4Axun8PRVBklKWw" }
-    - { seq: "lCP1YB_qKq6wDfS-TPvbQg", from: "be7hxo0jZrvB-Wlu0zlTOw", to: "woB6Eakj90sdmzGuGb_MvA" }
-    - { seq: "BRpmbE2d7krEon_fBbx87w", from: "Q0wZp34QuujzKUp6UUMvfQ", to: "PSS1iaH3gOJw6VjJlmKWjQ" }
-    - { seq: "1tOdAnNkuPR6vK2u_wulrA", from: "dOcc_oDlFi5vxQIuuMN2Yw", to: "lITueAkbVljBbrHI3LploA" }
+  @behaviour Route.Behaviour
 
-    9 (stadteinwärts von Bergedorf):
-    - { seq: "1tOdAnNkuPR6vK2u_wulrA", from: "PSyiV_sGThXKB-vPXDgxcA", to: "E4xlBWf5koczBTDRnXEDTw" }
-    - { seq: "AZxoFPJ-8kbEZeku7BHQCw", from: "eyqblmWApwmA_WgqWED25A", to: "xjSK00C5HxGp_tTc2aWmdA" }
-    - { seq: "LoY0p0IHViyjj42Arjl84A", from: "vECS5JJi6QyDesUkWOC7mw", to: "sNVS8l8ATwr969Mi9sMM8Q" }
-    - { seq: "bAtUo3-MqUEdohsf7ohHvg", from: "WflSO8285nCbOcDgedGbIQ", to: "Q4t33aymsLTv2AZFanyiPQ" }
-    - { seq: "l_nPZwMySFTOHOVYl8nX8g", from: "SS7AlKHDzOoBAq-mrdok6g", to: "DeE8daD3PTXnkgEnhkBmYQ" }
-    - { seq: "76Az4DhNJbq7XHgbQQ3TCg", from: "hXeq0TLW9_FMbbgrma44-w", to: "8tPyIhyHdTKvv88G12xc1Q" }
-    - { seq: "QSl3dQRNQU-HlZtMowf_Sg", from: "m0gmJDI_z6iLubTX2qbyYw", to: "UPC1T9nXYnqOymAjcdd2uw" }
-    """
+  @name "Alltagsroute 9"
+
+  def id(), do: "9"
+  def color(), do: "#9d2928"
+  def name(), do: @name
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/229823"
+
+  forward = %Video.Track{
+    group: "9 Bergedorf",
+    direction: :forward,
+    from: "Innenstadt",
+    to: "Bergedorf",
+    parent_text: @name,
+    text: "aus der Innenstadt nach Bergedorf",
+    videos: [
+      {"2021-07-03-veloroute10/GX012051", :start, "0:00:03.770"},
+      {"2021-06-27-veloroute9/GX012023", "0:00:56.356", :end},
+      {"2021-04-25-freizeitroute4/GX011376", "0:00:10.377", :end},
+      {"2021-06-27-veloroute9/GX012024", "0:00:31.131", :end},
+      {"2021-06-27-veloroute9/GX012025", :start, :end},
+      {"2021-06-27-veloroute9/GX012026", :start, :end},
+      {"2021-06-27-veloroute9/GX012027", :start, :end},
+      {"2021-06-27-veloroute9/GX022027", :start, :end},
+      {"2021-06-27-veloroute9/GX012028", :start, :end},
+      {"2021-06-27-veloroute9/GX012029", :start, :end},
+      {"2021-06-27-veloroute9/GX012030", :start, :end},
+      {"2021-06-27-veloroute9/GX012031", :start, "0:00:12.312"}
+    ]
+  }
+
+  backward = %Video.Track{
+    group: "9 Bergedorf",
+    direction: :backward,
+    from: "Bergedorf",
+    to: "Innenstadt",
+    parent_text: @name,
+    text: "aus Bergedorf in die Innenstadt",
+    videos: [
+      {"2021-06-27-veloroute9/GX012031", "0:00:21.655", :end},
+      {"2021-06-27-veloroute9/GX012032", :start, :end},
+      {"2021-06-27-veloroute9/GX012033", :start, :end},
+      {"2021-06-27-veloroute9/GX012034", :start, :end},
+      {"2021-06-27-veloroute9/GX012035", :start, :end},
+      {"2021-06-27-veloroute9/GX022035", :start, :end},
+      {"2021-06-27-veloroute9/GX012036", :start, :end},
+      {"2021-06-27-veloroute9/GX012037", :start, :end},
+      {"2021-06-27-veloroute9/GX012038", :start, :end},
+      {"2021-06-27-veloroute9/GX012039", :start, :end},
+      {"2021-06-27-veloroute9/GX012040", :start, :end},
+      {"2021-06-27-veloroute9/GX012041", :start, "0:00:16.350"},
+      {"2021-06-22-velo7-und-pauli-altona/GX011937", "0:00:23.023", "0:00:47.180"}
+    ]
+  }
+
+  @tracks Enum.map(
+            [forward, backward],
+            &Video.Track.with_rendered_ref/1
+          )
+  def tracks(), do: @tracks
+
+  # legacy
+  def parsed() do
+    %{{id(), ""} => []}
+  end
+
+  def index() do
+    %{}
+  end
 end

@@ -18,7 +18,7 @@ defmodule Video.RenderedTest do
              "|",
              "./tools/video_convert_streamable.rb",
              "videos/rendered/badc0ffeebadc0ffeebadc0ffeebadc0",
-             "0"
+             "400"
            ] == cmds
   end
 
