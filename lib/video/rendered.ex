@@ -73,24 +73,8 @@ defmodule Video.Rendered do
         "|",
         "./tools/video_convert_streamable.rb",
         Video.Path.target_rel_to_cwd(rendered.hash()),
-        "#{size(rendered)}"
+        "#{rendered.length_ms()}"
       ]
-  end
-
-  @doc """
-  Returns the combined size in bytes of all input files
-  """
-  def size(rendered) do
-    Enum.reduce(rendered.sources(), 0, fn {path, _from, _to}, acc ->
-      file = Video.Path.anonymized(path)
-
-      with {:ok, %{size: size}} <- File.stat(file) do
-        acc + size
-      else
-        _ ->
-          acc
-      end
-    end)
   end
 
   @doc """

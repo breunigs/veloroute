@@ -4,7 +4,7 @@ require 'tmpdir'
 require 'ruby-progressbar'
 
 VIDEO_OUT_DIR = ARGV[0]
-COMBINED_SIZE_BYTES = ARGV[1] && ARGV[1].to_i > 0 ? ARGV[1].to_i : nil
+EXPECTED_VIDEO_DURATION_MS = ARGV[1] && ARGV[1].to_i > 0 ? ARGV[1].to_i : nil
 PARENT_DIR = File.dirname(VIDEO_OUT_DIR)
 
 def die(msg)
@@ -40,17 +40,20 @@ FPS = 29.97
 # https://video.stackexchange.com/a/24684
 GOP_SIZE=(HLS_TIME.to_i * FPS).round.to_s
 
+DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
+  ? %w[libx264 -preset veryslow -x264opts opencl] \
+  : %w[libx264 -preset veryslow]
+HQ_CODEC = ENV["HW_ACCEL"] == "1" \
+  ? %w[hevc_nvenc -preset slow -tier high -level 6.2 -nonref_p 1 -spatial_aq 1] \
+  : %w[libx265 -x265-params log-level=error]
 VARIANTS = [
   {title: "360p",       width:  640, height:  360, bitrate:  4   },
   {title: "144p",       width:  256, height:  144, bitrate:  0.7 },
   {title: "240p",       width:  426, height:  240, bitrate:  2   },
   {title: "720p",       width: 1280, height:  720, bitrate:  6   },
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: %w[libx265 -x265-params log-level=error]},
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC},
 ]
-DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
-  ? %w[libx264 -preset veryslow -x264opts opencl] \
-  : %w[libx264 -preset veryslow]
 
 # The average bitrate is given in the variants above. This defined
 # how much the maximum bitrate may deviate from that (as a ratio)
@@ -60,13 +63,30 @@ MAX_BITRATE = 1.1
 # https://trac.ffmpeg.org/wiki/Limiting%20the%20output%20bitrate
 BUF_SIZE = 2.0
 
+
+tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
+at_exit { FileUtils.remove_entry(tmp_dir, true) }
+
+
+variants_index = VARIANTS.size - 1
+EXPECTED_VIDEO_SIZE = EXPECTED_VIDEO_DURATION_MS/1000.0 * VARIANTS[variants_index][:bitrate]/8.0*1024*1024
 $bar = ProgressBar.create(
   format: '%a [%W]%E (%R MiB/s)',
-  total: COMBINED_SIZE_BYTES,
+  total: EXPECTED_VIDEO_SIZE.round,
   smoothing: 0.2,
   rate_scale: lambda { |rate| rate / 1024 / 1024 }
 )
+$bar_thread = Thread.new do
+  loop do
+    sleep 10
 
+    size = File.new("#{tmp_dir}/stream_#{variants_index}.m4s").size rescue 0
+    $bar.progress = size
+  rescue ProgressBar::InvalidProgressError
+    $bar.total = nil
+    retry
+  end
+end
 
 
 def ffmpeg
@@ -77,9 +97,6 @@ def ffmpeg
   cmd << %w[-pix_fmt yuv420p -refs 5]
   cmd
 end
-
-tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
-at_exit { FileUtils.remove_entry(tmp_dir, true) }
 
 # mp4 (fallback and ie11)
 fallback_mp4 = ffmpeg()
@@ -127,13 +144,6 @@ hls << "#{tmp_dir}/stream_%v.m3u8"
 $ios = []
 $stdin.binmode
 
-def add_to_bar(count)
-  $bar.progress += count
-rescue ProgressBar::InvalidProgressError => e
-  $bar.total = nil
-  retry
-end
-
 def cancel
   warn "\nAborting…"
   $stdin.close
@@ -154,7 +164,6 @@ begin
     break if $stdin.closed?
     buf = $stdin.readpartial(1024*1024)
     $ios.each { |io| io.write(buf) }
-    add_to_bar(buf.size)
   rescue EOFError
     # stdin is empty
     $stdin.close
@@ -164,6 +173,7 @@ ensure
   $ios.each { |io| io.close() }
 end
 
+$bar_thread.terminate
 $bar.finish
 
 print "\nRenaming… "

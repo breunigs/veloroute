@@ -46,6 +46,12 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   defp real_run do
+    IO.puts("""
+    ###########################################################
+    # Optional: enable HW acceleration if the GPU is unused
+    export HW_ACCEL=1
+    """)
+
     Video.Rendered.pending()
     |> Enum.each(fn rendered ->
       render = Video.Rendered.render(rendered)
@@ -53,12 +59,11 @@ defmodule Mix.Tasks.Velo.Videos.Render do
       IO.puts("""
 
       ###########################################################
-      # #{rendered.name}
+      echo "#{rendered.name}"
       # Hash: #{rendered.hash}
       ###########################################################
 
-      render:
-        #{Enum.join(render, " ")}
+      #{Enum.join(render, " ")}
       """)
     end)
   end
