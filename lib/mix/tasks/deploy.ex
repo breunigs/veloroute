@@ -164,7 +164,23 @@ defmodule Mix.Tasks.Deploy do
           "sudo",
           "/bin/systemctl",
           "restart",
-          "veloroute2.service"
+          "veloroute-phoenix1.service"
+        ],
+        into: IO.stream(:stdio, :line)
+      )
+
+    # sleep 10s
+    Process.sleep(10_000)
+
+    {_, 0} =
+      System.cmd(
+        "ssh",
+        [
+          Settings.deploy_ssh_name(),
+          "sudo",
+          "/bin/systemctl",
+          "restart",
+          "veloroute-phoenix2.service"
         ],
         into: IO.stream(:stdio, :line)
       )

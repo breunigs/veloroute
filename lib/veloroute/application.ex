@@ -34,17 +34,26 @@ defmodule Veloroute.Application do
   end
 
   defp ensure_videos_are_mounted do
-    unless File.dir?(Settings.video_dir_abs()) do
-      raise "Video directory does not appear to be mounted since #{Settings.video_dir_abs()} is not a directory."
-    end
+    if File.dir?(Settings.video_dir_abs()) do
+      IO.puts("Setting up video dir for serving through Phoenix")
+      rendered_path = Path.join(Settings.video_dir_abs(), "rendered")
+      asset_path = Path.join([:code.priv_dir(:veloroute), "static", Settings.video_serve_path()])
 
-    rendered_path = Path.join(Settings.video_dir_abs(), "rendered")
-    asset_path = Path.join([:code.priv_dir(:veloroute), "static", Settings.video_serve_path()])
-
-    unless File.dir?(asset_path) do
-      File.rm(asset_path)
-      File.mkdir_p!(Path.dirname(asset_path))
-      File.ln_s!(rendered_path, asset_path)
+      unless File.dir?(asset_path) do
+        File.rm(asset_path)
+        File.mkdir_p!(Path.dirname(asset_path))
+        File.ln_s!(rendered_path, asset_path)
+      end
+    else
+      IO.puts(
+        :stderr,
+        """
+        Video directory does not appear to be mounted.
+        Expected #{Settings.video_dir_abs()} is not a directory.
+        Either mount the videos into the docker container, or ensure they
+        are served outside of this container.
+        """
+      )
     end
   end
 end
