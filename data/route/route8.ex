@@ -1,8 +1,3 @@
-# defmodule Data.Route.Route8 do
-#   use Route.Parser,
-#     id: "8"
-# end
-
 defmodule Data.Route.Route8 do
   @behaviour Route.Behaviour
 

@@ -16,12 +16,26 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     # disable the warning if we're updating files
     Code.compiler_options(ignore_module_conflict: true)
 
-    (route_tracks() ++ article_tracks())
-    |> Enum.map(&Video.TrimmedSourceSequence.new_from_track/1)
+    tracks =
+      (route_tracks() ++ article_tracks())
+      |> Enum.map(&Video.TrimmedSourceSequence.new_from_track/1)
+
+    tracks
     |> Parallel.map(&Video.Rendered.save_from_tsv_seq/1)
     |> Enum.each(fn
       :ok -> :ok
       broken -> IO.puts(:stderr, inspect(broken))
+    end)
+
+    list_unused(tracks)
+  end
+
+  def list_unused(tracks) do
+    keep = tracks |> Enum.map(&Video.Rendered.path/1) |> MapSet.new()
+    all = Enum.map(Video.Rendered.all(), &Video.Rendered.path/1) |> MapSet.new()
+
+    Enum.each(MapSet.difference(all, keep), fn path ->
+      IO.puts(:stderr, "unused/unreferenced rendered video: #{path}")
     end)
   end
 
@@ -166,9 +180,10 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   defp named_track_segments(%{path_gpx: rel_path}) do
     abs_path = Path.join(Settings.video_source_dir_abs(), rel_path)
     {:ok, content} = File.read(abs_path)
+    name = String.replace_suffix(rel_path, ".gpx", "")
 
     Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
-    |> Enum.map(fn seg -> "<trk><name>" <> rel_path <> "</name>" <> hd(seg) <> "</trk>" end)
+    |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)
     |> Enum.join("\n")
   end
 end

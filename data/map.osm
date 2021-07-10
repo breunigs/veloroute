@@ -43369,12 +43369,7 @@
     <member type='way' ref='138128207' role='forward' />
     <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='node' ref='93630760005501802' role='gpx_end' />
-    <tag k='Altona→Innenstadt' v='von Altona zur Innenstadt' />
-    <tag k='Innenstadt→Altona' v='von der Innenstadt nach Altona' />
-    <tag k='color' v='#ed6706' />
-    <tag k='id' v='12' />
-    <tag k='name' v='Alltagsroute 12' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/2238410' />
+    <tag k='ref' v='Route12' />
   </relation>
   <relation id='2238764' version='1'>
     <member type='way' ref='37262498' role='forward' />
