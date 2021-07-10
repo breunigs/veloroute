@@ -145,7 +145,7 @@ body {
 video {
   width: 100%;
   height: 100%;
-  background: #333333;
+  background: #333333 url("/images/video_banner.svg") 50% 50% / contain no-repeat;
   object-fit: cover;
 }
 
