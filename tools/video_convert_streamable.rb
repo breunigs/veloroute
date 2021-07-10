@@ -177,10 +177,5 @@ $bar_thread.terminate
 $bar.finish
 
 print "\nRenaming… "
-begin
-  File.rename(tmp_dir, VIDEO_OUT_DIR)
-rescue => e
-  # in case we are on a different file system
-  FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
-end
+FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
 puts "Done!"
