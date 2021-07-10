@@ -65,7 +65,7 @@ BUF_SIZE = 2.0
 
 
 tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
-at_exit { FileUtils.remove_entry(tmp_dir, true) }
+at_exit { FileUtils.rmdir(tmp_dir) }
 
 
 variants_index = VARIANTS.size - 1
