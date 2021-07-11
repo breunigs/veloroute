@@ -1,8 +1,6 @@
 defmodule Video.ServePlug do
   use Plug.Builder
 
-  plug Video.M3U8CachePlug
-
   plug Plug.Static,
     at: "/",
     from: :veloroute,
