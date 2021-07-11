@@ -97,10 +97,42 @@ defmodule Video.Source do
           lon: point.lon
         }
       end)
+      |> assert_monotonic_increase(self)
     end
   end
 
-  defp parse_gpx(%__MODULE__{path_gpx: gpx_path, available_gpx: true}) do
+  defp assert_monotonic_increase(line, %__MODULE__{path_source: source}) do
+    Enum.reduce_while(line, 0, fn
+      %{time_offset_ms: next}, prev when prev <= next ->
+        {:cont, next}
+
+      point, _prev ->
+        IO.puts(:stderr, """
+          #{source}'s GPX file is invalid, the timestamps reset within the GPX file (around #{inspect(point)}). Check if it's a long video that was split up at 4 GB, where the GPX of the first video contains both parts anyway. The next segment of the video increases its most significant digit."
+        """)
+
+        {:halt, nil}
+    end)
+
+    line
+  end
+
+  @doc """
+  reads the length of a video. This result is not cached and thus quite
+  expensive to read.
+  """
+  @spec video_length_ms(t()) :: integer()
+  def video_length_ms(%__MODULE__{path_source: source}) do
+    path = Video.Path.source_rel_to_cwd(source)
+    {ms, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%", path])
+    ms |> String.trim() |> String.to_integer()
+  end
+
+  @doc """
+  Read the raw GPS points for this source from disk
+  """
+  @spec parse_gpx(t()) :: [Gpx.Point.t()] | {:error, binary()}
+  def parse_gpx(%__MODULE__{path_gpx: gpx_path, available_gpx: true}) do
     try do
       with {:ok, content} <- File.read(make_abs(gpx_path)),
            gpx when is_list(gpx) <- Gpx.parse(content) do
