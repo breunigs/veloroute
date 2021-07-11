@@ -16,7 +16,7 @@ defmodule Route.Parser do
       defoverridable index: 0
 
       def id(), do: ""
-      def color(), do: "#000000"
+      def color(), do: "#ff00ee"
       def name(), do: ""
       def osm_relation_ref(), do: ""
       def tracks(), do: []

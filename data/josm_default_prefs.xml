@@ -3,16 +3,9 @@
     <preferences operation="replace">
         <maps key="mappaint.style.entries" xmlns="http://josm.openstreetmap.de/preferences-1.0">
             <map>
-                <tag key="active" value="false" />
-                <tag key="title" value="JOSM default (MapCSS)" />
-                <tag key="ptoken" value="standard" />
-                <tag key="url" value="resource://styles/standard/elemstyles.mapcss" />
-            </map>
-            <map>
-                <tag key="active" value="false" />
-                <tag key="title" value="Potlatch 2" />
-                <tag key="ptoken" value="standard" />
-                <tag key="url" value="resource://styles/standard/potlatch2.mapcss" />
+                <tag key="active" value="true" />
+                <tag key="title" value="veloroute route colors" />
+                <tag key="url" value="data/cache/route_colors.mapcss" />
             </map>
             <map>
                 <tag key="active" value="true" />

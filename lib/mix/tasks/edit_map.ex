@@ -6,12 +6,14 @@ defmodule Mix.Tasks.EditMap do
   @josm_default_prefs "data/josm_default_prefs.xml"
   @session_path "data/cache/map_session.jos"
   @style_debug_path "data/style_debug.osm"
+  @route_colors_path "data/cache/route_colors.mapcss"
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
   def run(_) do
     # ensure images are up to date if there have been edits outside this helper
     Mix.Tasks.UpdateImages.run(nil)
 
+    generate_mapcss()
     write_josm_session()
 
     {_stream, 0} =
@@ -28,6 +30,24 @@ defmodule Mix.Tasks.EditMap do
     # run in extra process to ensure we recompile after map update
     IO.puts("Updating GPX…")
     {_stream, 0} = System.cmd("mix", ["update_gpx"], into: IO.stream(:stdio, :line))
+  end
+
+  defp generate_mapcss() do
+    mapcss =
+      Route.List.all()
+      |> Enum.map(fn route ->
+        name = route |> Module.split() |> List.last()
+
+        """
+        relation[ref="#{name}"] > way[!color] {
+          colors: concat(prop(colors), " #{route.color()}");
+        }
+        """
+      end)
+      |> Enum.join("\n")
+
+    :ok = File.write(@route_colors_path, mapcss)
+    IO.puts("Wrote #{@route_colors_path}")
   end
 
   defp write_josm_session do
