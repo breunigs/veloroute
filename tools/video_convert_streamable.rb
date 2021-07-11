@@ -93,7 +93,7 @@ end
 def ffmpeg
   cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning]
   cmd << %w[-hwaccel auto] if ENV["HW_ACCEL"] == "1"
-  cmd << %w[-re -f matroska -i -]
+  cmd << %w[-re -f matroska -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
   cmd << %w[-pix_fmt yuv420p -refs 5]
   cmd

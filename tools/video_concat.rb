@@ -58,6 +58,6 @@ Dir.mktmpdir("video_concat") do |temp_dir|
 
   system(
     "nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-f", "concat",
-    "-safe", "0", "-i", concat, "-c", "copy", "-f", "matroska", "-"
+    "-safe", "0", "-i", concat, "-c:v", "copy", "-an", "-f", "matroska", "-"
   )
 end
