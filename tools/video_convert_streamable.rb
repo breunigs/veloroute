@@ -52,7 +52,7 @@ VARIANTS = [
   {title: "240p",       width:  426, height:  240, bitrate:  2   },
   {title: "720p",       width: 1280, height:  720, bitrate:  6   },
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC},
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC + %w[-tag:v:5 hvc1]},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -65,7 +65,7 @@ BUF_SIZE = 2.0
 
 
 tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
-at_exit { FileUtils.rmdir(tmp_dir) }
+at_exit { FileUtils.rmdir(tmp_dir) if Dir.exist?(tmp_dir) }
 
 
 variants_index = VARIANTS.size - 1
@@ -139,7 +139,6 @@ hls << %w[-master_pl_name] << "stream.m3u8"
 hls << %w[-hls_flags single_file+independent_segments -hls_list_size 0]
 hls << %w[-var_stream_map] << VARIANTS.map.with_index { |_, idx| "v:#{idx}"}.join(" ")
 hls << "#{tmp_dir}/stream_%v.m3u8"
-
 
 $ios = []
 $stdin.binmode
