@@ -75,16 +75,14 @@ defmodule TrackFinder do
     end)
   end
 
-  defp direction_text(route, direction)
-  defp direction_text(nil, _direction), do: nil
+  defp direction_text(route, from, to)
+  defp direction_text(nil, _from, _to), do: nil
 
-  defp direction_text(route, direction) do
-    route.tracks()
-    |> Enum.find(fn %{direction: dir} -> dir == direction end)
-    |> case do
-      %{text: text} -> text
-      nil -> nil
-    end
+  defp direction_text(route, from, to) do
+    Enum.find_value(route.tracks(), fn
+      %{from: ^from, to: ^to, text: text} -> text
+      _track -> nil
+    end)
   end
 
   defp track_matrix(r, normalized_ways) do
@@ -94,10 +92,6 @@ defmodule TrackFinder do
       if route,
         do: {route.id(), route.name()},
         else: {r.tags[:id], r.tags[:name]}
-
-    # TODO: old style fallback, should go away once everything is migrated to videos
-    fw_text = r.tags[:gpx_forward] || direction_text(route, :forward)
-    bw_text = r.tags[:gpx_backward] || direction_text(route, :backward)
 
     {start_members, end_members} =
       Enum.group_by(r.members, fn
@@ -119,7 +113,9 @@ defmodule TrackFinder do
         fw_target = hd(e_as_start.nodes).tags[:target]
         bw_target = hd(s_as_start.nodes).tags[:target]
 
-        # TODO: remove after all is video
+        # TODO: remove all fallbacks except direction_text after all is video
+        fw_text = r.tags[:gpx_forward] || direction_text(route, bw_target, fw_target)
+        bw_text = r.tags[:gpx_backward] || direction_text(route, fw_target, bw_target)
         fw_text = r.tags[:"#{bw_target}→#{fw_target}"] || fw_text
         bw_text = r.tags[:"#{fw_target}→#{bw_target}"] || bw_text
         fw_text = fw_text || "von #{bw_target} nach #{fw_target}"
