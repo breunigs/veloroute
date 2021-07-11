@@ -1,7 +1,6 @@
 defmodule Video.TrimmedSource do
   @known_params [
-    :anonymized_path_rel,
-    :source_path_rel,
+    :source,
     :coord_from,
     :coord_to,
     :duration_ms_uncut,
@@ -9,8 +8,7 @@ defmodule Video.TrimmedSource do
   ]
 
   @type t :: %__MODULE__{
-          anonymized_path_rel: binary(),
-          source_path_rel: binary(),
+          source: binary(),
           coord_from: Video.TimedPoint.t(),
           coord_to: Video.TimedPoint.t(),
           duration_ms_uncut: Video.Timestamp.t(),
@@ -32,8 +30,7 @@ defmodule Video.TrimmedSource do
       coord_to = coords |> List.last()
 
       %__MODULE__{
-        anonymized_path_rel: source.path_anonymized,
-        source_path_rel: source.path_source,
+        source: source.source,
         coords_uncut: coords,
         coord_from: coord_from,
         coord_to: coord_to,
@@ -90,8 +87,7 @@ defmodule Video.TrimmedSource do
       |> Enum.uniq()
 
     if rev_coords == [] do
-      {:error,
-       "Cutting #{tsv.source_path_rel} from #{from_ms}ms to #{to_ms}ms yields an empty video"}
+      {:error, "Cutting #{tsv.source} from #{from_ms}ms to #{to_ms}ms yields an empty video"}
     else
       last = hd(rev_coords)
       coords = Enum.reverse(rev_coords)
@@ -174,9 +170,10 @@ defmodule Video.TrimmedSource do
     from = if from == 0, do: :start, else: Video.Timestamp.from_milliseconds(from)
     to = if to == tsv.duration_ms_uncut, do: :end, else: Video.Timestamp.from_milliseconds(to)
 
-    {Video.Path.source_base(tsv.source_path_rel), from, to}
+    {Video.Path.source_base_with_ending(tsv.source), from, to}
   end
 
-  def hash_ident(%__MODULE__{source_path_rel: p, coord_from: f, coord_to: t}),
-    do: "#{Video.Path.source_base(p)} #{f.time_offset_ms} #{inspect(t.time_offset_ms)}"
+  def hash_ident(%__MODULE__{source: p, coord_from: f, coord_to: t}) do
+    "#{Video.Path.source_base_with_ending(p)} #{f.time_offset_ms} #{inspect(t.time_offset_ms)}"
+  end
 end

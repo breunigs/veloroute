@@ -1,13 +1,6 @@
 defmodule Video.Source do
-  @gpx_ending ".gpx"
-  # TODO use from Video.Path
-  @anonymized_suffix ".anonymized.mkv"
-  @source_endings [".MP4", ".mkv"]
-
   @known_params [
-    :path_source,
-    :path_anonymized,
-    :path_gpx,
+    :source,
     :available_anonymized,
     :available_gpx,
     :date
@@ -22,8 +15,8 @@ defmodule Video.Source do
     error_unless_valid_source(source_path) ||
       new_from_path(
         source_path,
-        source_path |> as_gpx() |> make_abs() |> File.exists?(),
-        source_path |> as_anonymized() |> make_abs() |> File.exists?()
+        source_path |> Video.Path.gpx() |> File.exists?(),
+        source_path |> Video.Path.anonymized() |> File.exists?()
       )
   end
 
@@ -31,8 +24,8 @@ defmodule Video.Source do
     error_unless_valid_source(source_path) ||
       new_from_path(
         source_path,
-        MapSet.member?(known_files, as_gpx(source_path)),
-        MapSet.member?(known_files, as_anonymized(source_path))
+        MapSet.member?(known_files, Video.Path.gpx(source_path)),
+        MapSet.member?(known_files, Video.Path.anonymized(source_path))
       )
   end
 
@@ -51,7 +44,7 @@ defmodule Video.Source do
   end
 
   defp error_unless_valid_source(source_path) do
-    if is_source_path(source_path),
+    if Video.Path.is_source_path(source_path),
       do: nil,
       else: {:error, "Not a valid source path: #{source_path}"}
   end
@@ -59,18 +52,8 @@ defmodule Video.Source do
   defp new_from_path(source_path, available_gpx, available_anonymized)
        when is_binary(source_path) and is_boolean(available_gpx) and
               is_boolean(available_anonymized) do
-    source_path = make_relative(source_path)
-
-    # support paths to just the base name by adding default extension
-    source_path =
-      if source_path == as_base(source_path),
-        do: source_path <> ".MP4",
-        else: source_path
-
     %__MODULE__{
-      path_source: source_path,
-      path_anonymized: as_anonymized(source_path),
-      path_gpx: as_gpx(source_path),
+      source: Video.Path.source_base(source_path),
       available_anonymized: available_anonymized,
       available_gpx: available_gpx,
       date: date_from_path(source_path)
@@ -81,9 +64,9 @@ defmodule Video.Source do
   Parse the GPX and returned the coordinates with timestamps relative to the video
   """
   @spec timed_points(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
-  def timed_points(%__MODULE__{path_source: source, available_gpx: false}) do
+  def timed_points(%__MODULE__{source: source, available_gpx: false}) do
     {:error,
-     "#{source} has no GPX file available to extract time range from, try `gopro2gpx #{make_abs(source)}`?"}
+     "#{Video.Path.source_base(source)} has no GPX file available to extract time range from, try `gopro2gpx #{Video.Path.gpx(source)}`?"}
   end
 
   def timed_points(%__MODULE__{} = self) do
@@ -101,7 +84,7 @@ defmodule Video.Source do
     end
   end
 
-  defp assert_monotonic_increase(line, %__MODULE__{path_source: source}) do
+  defp assert_monotonic_increase(line, %__MODULE__{source: source}) do
     Enum.reduce_while(line, 0, fn
       %{time_offset_ms: next}, prev when prev <= next ->
         {:cont, next}
@@ -122,7 +105,7 @@ defmodule Video.Source do
   expensive to read.
   """
   @spec video_length_ms(t()) :: integer()
-  def video_length_ms(%__MODULE__{path_source: source}) do
+  def video_length_ms(%__MODULE__{source: source}) do
     path = Video.Path.source_rel_to_cwd(source)
     {ms, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%", path])
     ms |> String.trim() |> String.to_integer()
@@ -132,9 +115,11 @@ defmodule Video.Source do
   Read the raw GPS points for this source from disk
   """
   @spec parse_gpx(t()) :: [Gpx.Point.t()] | {:error, binary()}
-  def parse_gpx(%__MODULE__{path_gpx: gpx_path, available_gpx: true}) do
+  def parse_gpx(%__MODULE__{source: source, available_gpx: true}) do
+    gpx_path = Video.Path.gpx(source)
+
     try do
-      with {:ok, content} <- File.read(make_abs(gpx_path)),
+      with {:ok, content} <- File.read(gpx_path),
            gpx when is_list(gpx) <- Gpx.parse(content) do
         if length(gpx) <= 1,
           do: {:error, "#{gpx_path} is very short -- only #{length(gpx)} point"},
@@ -147,50 +132,10 @@ defmodule Video.Source do
     end
   end
 
-  defp is_source_path(path) do
-    ext = file_extension(path)
-
-    cond do
-      String.ends_with?(ext, @anonymized_suffix) -> false
-      Enum.any?(@source_endings, &String.ends_with?(ext, &1)) -> true
-      ext == "" -> true
-      true -> false
-    end
-  end
-
-  defp file_extension(path) do
-    Path.basename(path)
-    |> String.split(".", parts: 2)
-    |> case do
-      [_name] -> ""
-      [_name, extension] -> "." <> extension
-    end
-  end
-
-  defp as_base(source_path) do
-    String.replace_suffix(source_path, file_extension(source_path), "")
-  end
-
-  defp as_gpx(source_path) do
-    source_path |> as_base() |> Kernel.<>(@gpx_ending)
-  end
-
-  defp as_anonymized(source_path) do
-    source_path |> Kernel.<>(@anonymized_suffix)
-  end
-
   defp date_from_path(source_path) do
     case Regex.run(~r/\b\d\d\d\d-\d\d-\d\d\b/, source_path) do
       nil -> "unknown"
       str -> str
     end
   end
-
-  defp make_relative("/" <> _rest = path),
-    do: Path.relative_to(path, Settings.video_source_dir_abs())
-
-  defp make_relative(path), do: path
-
-  defp make_abs("/" <> _rest = path), do: path
-  defp make_abs(path), do: Path.join(Settings.video_source_dir_abs(), path)
 end

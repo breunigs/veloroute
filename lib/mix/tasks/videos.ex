@@ -1,8 +1,7 @@
 defmodule Mix.Tasks.Velo.Videos do
   # XXX: path needs to be absolute for JOSM to find it
-  @working_dir File.cwd!()
-  @out_anonymized @working_dir <> "/data/cache/videos_anonymized.gpx"
-  @out_pending @working_dir <> "/data/cache/videos_pending.gpx"
+  @out_anonymized "data/cache/videos_anonymized.gpx"
+  @out_pending "data/cache/videos_pending.gpx"
 
   def out_anonymized, do: @out_anonymized
   def out_pending, do: @out_pending
@@ -136,7 +135,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
       |> Video.Source.new_from_folder()
       |> Enum.reduce({[], []}, fn video, {anon, pending} ->
         case video do
-          %{available_gpx: false, path_source: source} ->
+          %{available_gpx: false, name: source} ->
             IO.puts("skipping #{source} as it doesn't have a GPX file")
             {anon, pending}
 
@@ -177,10 +176,10 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     Task.async(fn -> named_track_segments(x) end)
   end
 
-  defp named_track_segments(%{path_gpx: rel_path}) do
-    abs_path = Path.join(Settings.video_source_dir_abs(), rel_path)
+  defp named_track_segments(%{source: source}) do
+    abs_path = Video.Path.gpx(source)
     {:ok, content} = File.read(abs_path)
-    name = String.replace_suffix(rel_path, ".gpx", "")
+    name = Video.Path.source_base(source)
 
     Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
     |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)

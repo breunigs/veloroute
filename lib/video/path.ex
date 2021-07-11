@@ -2,6 +2,8 @@ defmodule Video.Path do
   import Video.TrimmedSourceSequence, only: [valid_hash: 1]
 
   @anonymized_suffix ".anonymized.mkv"
+  @source_endings [".MP4", ".mkv"]
+  @gpx_ending ".gpx"
 
   @video_out_m3u8 "stream.m3u8"
 
@@ -27,30 +29,54 @@ defmodule Video.Path do
   end
 
   def source(path) when is_binary(path) do
-    path |> abs_path() |> String.replace_suffix(@anonymized_suffix, "")
+    path = path |> abs_path() |> String.replace_suffix(@anonymized_suffix, "")
+    if has_extension?(path), do: path, else: path <> hd(@source_endings)
+  end
+
+  def gpx(path) when is_binary(path) do
+    ext = file_extension(path)
+    path = abs_path(path)
+    if ext == "", do: path <> @gpx_ending, else: String.replace_suffix(path, ext, @gpx_ending)
+  end
+
+  def gpx_rel_to_cwd(path) when is_binary(path) do
+    gpx(path) |> rel_to_cwd()
   end
 
   def anonymized(path) when is_binary(path) do
     path =
-      if String.ends_with?(path, @anonymized_suffix) do
-        path
-      else
-        path <> @anonymized_suffix
+      cond do
+        String.ends_with?(path, @anonymized_suffix) ->
+          path
+
+        has_extension?(path) ->
+          path <> @anonymized_suffix
+
+        true ->
+          path <> hd(@source_endings) <> @anonymized_suffix
       end
 
     abs_path(path)
   end
 
+  def anonymized_rel_to_cwd(path) when is_binary(path) do
+    anonymized(path) |> rel_to_cwd()
+  end
+
   def source_base(path) when is_binary(path) do
-    path |> source() |> Path.relative_to(Settings.video_source_dir_abs())
+    path
+    |> source_base_with_ending()
+    |> String.replace_suffix(hd(@source_endings), "")
+  end
+
+  def source_base_with_ending(path) when is_binary(path) do
+    path
+    |> source()
+    |> Path.relative_to(Settings.video_source_dir_abs())
   end
 
   def source_rel_to_cwd(path) when is_binary(path) do
     path |> source() |> rel_to_cwd()
-  end
-
-  def anonymized_rel_to_cwd(path) when is_binary(path) do
-    path |> anonymized() |> rel_to_cwd()
   end
 
   def rel_to_cwd(path) do
@@ -60,4 +86,33 @@ defmodule Video.Path do
   def abs_path("/" <> _rest = path), do: path
 
   def abs_path(path), do: Path.join(Settings.video_source_dir_abs(), path)
+
+  @doc """
+  Returns if the path is either extension less or the extension is one
+  of the valid source extensions.
+  """
+  def is_source_path(path) do
+    cond do
+      String.ends_with?(path, @anonymized_suffix) -> false
+      Enum.any?(@source_endings, &String.ends_with?(path, &1)) -> true
+      !has_extension?(path) -> true
+      true -> false
+    end
+  end
+
+  @doc """
+  Returns true if the path has a file extension
+  """
+  def has_extension?(path) do
+    path |> Path.basename() |> String.contains?(".")
+  end
+
+  defp file_extension(path) do
+    Path.basename(path)
+    |> String.split(".", parts: 2)
+    |> case do
+      [_name] -> ""
+      [_name, extension] -> "." <> extension
+    end
+  end
 end
