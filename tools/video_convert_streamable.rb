@@ -52,7 +52,8 @@ VARIANTS = [
   {title: "240p",       width:  426, height:  240, bitrate:  2   },
   {title: "720p",       width: 1280, height:  720, bitrate:  6   },
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC + %w[-tag:v:5 hvc1]},
+  # XXX: adjust index to match array
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC + %w[-tag:v:5 hvc1 -refs:v:5 0]},
 ]
 
 # The average bitrate is given in the variants above. This defined

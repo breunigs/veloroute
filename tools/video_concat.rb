@@ -46,6 +46,7 @@ Dir.mktmpdir("video_concat") do |temp_dir|
       cmd += ["-i", video]
       cmd += ["-c:v", codec, "-an", "-f", "matroska", fifo]
       io = IO.popen(cmd)
+      at_exit { Process.kill("KILL", io.pid) unless io.closed? }
       out = io.read
       io.close
       die(out) unless $?.success?
