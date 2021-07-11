@@ -33,7 +33,7 @@ defmodule VelorouteWeb.Live.VideoState do
     accurate_new_start = Geo.Point.from_params(params)
 
     old_state = assigns[:video] || new()
-    new_state = update_from_tracks(old_state, tracks)
+    new_state = update_from_tracks(old_state, tracks, accurate_new_start || old_state.start)
 
     new_state =
       cond do
@@ -187,21 +187,32 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp reverse_direction(%__MODULE__{} = state), do: state
 
-  defp update_from_tracks(state, tracks)
-  defp update_from_tracks(state, []), do: state
+  defp update_from_tracks(state, tracks, near_position)
+  defp update_from_tracks(state, [], _pos), do: state
 
-  defp update_from_tracks(state, tracks) do
-    %{forward: fws, backward: bws} =
-      Enum.group_by(tracks, & &1.direction)
-      |> Map.put_new(:forward, [])
-      |> Map.put_new(:backward, [])
+  # if we have a position, change the tracks default order by closeness to the position
+  defp update_from_tracks(state, tracks, near_position) when is_map(near_position) do
+    sorted =
+      Enum.sort_by(tracks, fn track ->
+        track.rendered_ref.coords()
+        |> Geo.CheapRuler.closest_point_on_line(near_position)
+        |> Map.fetch!(:dist)
+      end)
 
-    fw = List.first(fws)
+    update_from_tracks(state, sorted, nil)
+  end
 
-    bw =
-      if fw,
-        do: Enum.find(bws, fn track -> track.group == fw.group end),
-        else: List.first(bws)
+  # if no position is given, assume tracks are already sorted by distance
+  defp update_from_tracks(state, tracks, nil) do
+    closest = hd(tracks)
+
+    reverse =
+      Enum.find(tracks, fn track ->
+        track.group == closest.group && track.direction == reverse(closest.direction)
+      end)
+
+    fw = if(closest.direction == :forward, do: closest, else: reverse)
+    bw = if(closest.direction == :forward, do: reverse, else: closest)
 
     update_real(state, fw, bw)
   end
@@ -222,4 +233,7 @@ defmodule VelorouteWeb.Live.VideoState do
     %{state | forward: forward, backward: backward, direction: dir}
     |> maybe_enable_player()
   end
+
+  def reverse(:forward), do: :backward
+  def reverse(:backward), do: :forward
 end
