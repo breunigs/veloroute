@@ -1,31 +1,84 @@
 defmodule Data.Route.Route3 do
-  use Route.Parser,
-    yaml: """
-    3 (stadtauswärts nach Niendorf):
-    - { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "_8SHUcJR5rQdE9BgLQgOcQ", to: "MdUam0XWCeUwWbRW8gYxrQ" }
-    - { seq: "_gQPGIJ7g6lAI9poRctoOg", from: "cd7_6BilaxMJ2tdWXTmHew", to: "b_oL09Zs93Mx1KaZLedgYA" }
-    - { seq: "_gQPGIJ7g6lAI9poRctoOg", from: "50fWfkMRmagKF4yCOa3JaA", to: "fUrIHIwEWqlN10UqMK_tWA" }
-    - { seq: "Imas1OMwocKCBlg8H2Grfg", from: "wAReK81uGQwcaTIDlfNQXg", to: "vXvdexqqK3riEbuxUj7HYA" }
-    - { seq: "Imas1OMwocKCBlg8H2Grfg", from: "VfPvVblrmU_gXm9aj-C8HQ", to: "IYLGhE2goUKpiTw8V2YEvQ" }
-    - { seq: "d3QDGzM0JLzgSkkvSNxNgQ", from: "quLst2nbrcpzYuIBRnNF_w", to: "uG1HLzvZEumpCl3l7gCPyQ" }
-    - { seq: "d3QDGzM0JLzgSkkvSNxNgQ", from: "L-4OKrxsLWTaIQJCLGEu3w", to: "OeZV5ma4x0hIHUxluNf9tg" }
-    - { seq: "9mosx62E9-SIRe-JGU0h5A", from: "jUHshRSnwZbQ0Jisl-VamA", to: "ykb52xy4oCL1ED1rOsWxmA" }
-    - { seq: "67-J9RVaiN5LM_5y0Hvh9g", from: "3nlvX0owsCkXgtkm93bKEQ", to: "MypJjhX5royHxNdYTFu_9A" }
-    - { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "yuVIuVGSsoWG-MdLERkUpw", to: "Buo13BPTWKJou-Vduv5zfw" }
+  @behaviour Route.Behaviour
 
-    3 (stadteinwärts von Niendorf):
-    - { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "Buo13BPTWKJou-Vduv5zfw", to: "AlDpzby0dRidNyke0oQEqg" }
-    - { seq: "7_pJFA4LtHU8LAYA_pXJpQ", from: "D57GLmmnVDPh061LsSFshw", to: "uCloyjAskaGmYxoOEW31hw" }
-    - { seq: "mbulr5a2_Umj71MfR6_7Jw", from: "N-Kdp8pgrxAuBjW1WhZV_w", to: "-xmOBg2QA2-aY4PlznILKA" }
-    - { seq: "9fuCEygV5kbs4HDEi4esQA", from: "0uPZzYZBUvtTB_aRdUmdRg", to: "UL_Zw3sOnthPYj2IC17NjQ" }
-    - { seq: "57efIxG6xRDQ4PqAf-zp-w", from: "mIx25WtHo6CuGqyMYBZ5Zw", to: "ca2ISnmzN89Ofs73bZKVtA" }
-    - { seq: "wKYB0dor8Qvxn0f3lvmegQ", from: "diha0aroypzbz-nBC-UkZA", to: "xstumWg2wFDBD6Ewnhf5oQ" }
-    - { seq: "wKYB0dor8Qvxn0f3lvmegQ", from: "6TufO3CjTEos_vZjDzlHoQ", to: "ZoJznzZncmpdbQK8SmLdrg" }
-    - { seq: "izRkerJ77I2T0qbK5qFPfg", from: "R8XcEejUaQdyQEEzEphyMQ", to: "1wksmqpZwZ4QyJVludt5EA" }
-    - { seq: "izRkerJ77I2T0qbK5qFPfg", from: "wLphpQC00Z2S977J-EBplw", to: "_Hp4XSPPhypf_IzeBHbyNA" }
-    - { seq: "7ZMnXdUlvbOFkGA8osc6jA", from: "78izeKtjM06lbT1vaFvu6g", to: "hqeN5-1vhixmB2rIDYdnRA" }
-    - { seq: "C6VUINH0APqogoyIzizQSw", from: "gFfGKYW1roOafPU9d-Q1oQ", to: "xqF7wDF2OHdL1n7i-Vy_Sw" }
-    - { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "anHbEy_tq9LdbHaGFpaK0g", to: "xiVIgHDxMQXCbod76SwqVg" }
+  @name "Alltagsroute 3"
 
-    """
+  def id(), do: "3"
+  def color(), do: "#e8430b"
+  def name(), do: @name
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/194840"
+
+  forward = %Video.Track{
+    group: "3",
+    direction: :forward,
+    from: "Innenstadt",
+    to: "Niendorf",
+    parent_text: @name,
+    text: "aus der Innenstadt nach Niendorf",
+    videos: [
+      {"2021-06-05-velorouten-1-1a-2/GX011655", "0:00:46.480", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011656", :start, "0:00:13.046"},
+      {"2021-06-12-veloroute-3-und-4/GX011737", "0:00:11.144", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011738", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011739", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011740", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011741", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011742", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011743", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011744", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011745", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011746", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011747", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011748", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011749", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011750", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011751", :start, "0:00:02.302"}
+    ]
+  }
+
+  backward = %Video.Track{
+    group: "3",
+    direction: :backward,
+    from: "Niendorf",
+    to: "Innenstadt",
+    parent_text: @name,
+    text: "von Niendorf in die Innenstadt",
+    videos: [
+      {"2021-06-12-veloroute-3-und-4/GX011751", "0:00:02.302", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011752", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011753", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011754", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011755", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011756", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011757", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011758", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011760", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011761", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011762", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011763", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011764", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011765", :start, :end},
+
+      # cutting together a legal path
+      {"2021-06-12-veloroute-3-und-4/GX011766", :start, "0:00:08.141"},
+      {"2021-06-12-veloroute-3-und-4/GX011734", "0:00:24.157", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "0:00:00.934"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "0:00:01.001", "0:00:02.336"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "0:00:09.610", "0:00:14.348"}
+      # real path, but that's not legal
+      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "0:00:18.886"}
+    ]
+  }
+
+  @tracks Enum.map([forward, backward], &Video.Track.with_rendered_ref/1)
+  def tracks(), do: @tracks
+
+  # legacy
+  def parsed() do
+    %{{id(), ""} => []}
+  end
+
+  def index() do
+    %{}
+  end
 end

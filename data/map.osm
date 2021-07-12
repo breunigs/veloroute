@@ -39938,7 +39938,7 @@
     <tag k='name' v='Alltagsroute 5N' />
     <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/226032' />
   </relation>
-  <relation id='191882' version='1'>
+  <relation id='191882' action='modify' version='1'>
     <member type='way' ref='238754832' role='' />
     <member type='way' ref='19410366' role='forward' />
     <member type='way' ref='5056539' role='forward' />
@@ -40073,14 +40073,9 @@
     <member type='way' ref='27121204' role='forward' />
     <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='node' ref='48680006792118' role='gpx_end' />
-    <tag k='color' v='#008aa7' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Ochsenzoll' />
-    <tag k='id' v='4' />
-    <tag k='name' v='Alltagsroute 4' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/191882' />
+    <tag k='ref' v='Route4' />
   </relation>
-  <relation id='194840' version='1'>
+  <relation id='194840' action='modify' version='1'>
     <member type='node' ref='95034860006403485' role='gpx_end' />
     <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='238754832' role='' />
@@ -40206,12 +40201,7 @@
     <member type='way' ref='605872195' role='' />
     <member type='way' ref='605872196' role='' />
     <member type='way' ref='605866503' role='' />
-    <tag k='color' v='#e8430b' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Niendorf' />
-    <tag k='id' v='3' />
-    <tag k='name' v='Alltagsroute 3' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/194840' />
+    <tag k='ref' v='Route3' />
   </relation>
   <relation id='194841' action='modify' version='1'>
     <member type='node' ref='99394920005508649' role='gpx_start' />

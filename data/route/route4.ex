@@ -1,34 +1,80 @@
 defmodule Data.Route.Route4 do
-  use Route.Parser,
-    yaml: """
-    4 (stadtauswärts zum Ochsenzoll):
-    - { seq: "GAlZxAbozyILLiAnbklXjQ", from: "fGZrNE7xyW7ddXo0C_1s5Q", to: "zLtefjNJklfMTeUrga8wWw" }
-    - { seq: "rSq8tWrCuNt7Y7urVqhpDg", from: "PBkbU80uk57RaggvHoqS4w", to: "SNsY3KwvBQTH8G5S1-8ZMA" }
-    - { seq: "rSq8tWrCuNt7Y7urVqhpDg", from: "kYqWeLsdj1aNhN1giXyLZw", to: "T9BrQFKvDbGxKchJ_n8-yQ" }
-    - { seq: "I3X7Bs_TFeUGgRtmmdwTLg", from: "G_rlniNFxTeFoEN3A0Tx6Q", to: "Y7Y341GcFLJz0EwkFz3ZVQ" }
-    - { seq: "CLCsg8BXgvLFE4AthMkwvg", from: "Yk3vAJeGHMJkBV2sMOMm8A", to: "a56ICtJFMQ9RmkmUXKZOxQ" }
-    - { seq: "CLCsg8BXgvLFE4AthMkwvg", from: "u1x9cj9EPLKYxiTvfJ71og", to: "GvxFMLfzDpfP_-YjcWNo1g" }
-    - { seq: "CLCsg8BXgvLFE4AthMkwvg", from: "ZBNoUP3mt9ppz734xic1Zw", to: "bMBiO9nPRCktsTxOpiIfFQ" }
-    - { seq: "AC2RHADcHD8aMZhVfAOVUw", from: "1dcBkugjtKmssFOJKDACMA", to: "rKz_mutvjN_PlSqPLRKKZw" }
-    - { seq: "AC2RHADcHD8aMZhVfAOVUw", from: "HzXN_cgx2g2IuXjWuUdGkA", to: "DW-qNQFaIjKVz3NAszPeEQ" }
-    - { seq: "6SaG8GYPmRGfczhOutJGAg", from: "QGcjqflczNTcDSAkaWbPZA", to: "RFpYySSUheW-3osl8_vYjw" }
-    - { seq: "pJbMWxbln8YzpvYyM2oNtg", from: "HZgomKR2gWqitVrc431yyA", to: "5xDHI2ncuOVfWg8B3EG7sA" }
-    - { seq: "pJbMWxbln8YzpvYyM2oNtg", from: "ZGbghUSMxnvuKR-bcwEB9g", to: "_INsa8Bfn4gBk-jLsxqYvw" }
-    - { seq: "RHxepcMjDV1Cmp7zptKenA", from: "AxQTFV-qfdaR8Tf8WBXFbg", to: "GAvXF0DxOZP3ZwBAaglBhA" }
+  @behaviour Route.Behaviour
 
-    4 (stadteinwärts vom Ochsenzoll):
-    - { seq: "RHxepcMjDV1Cmp7zptKenA", from: "FomAoOW817snbrmgmYNZfg", to: "fY9_GTmJ0X0eUclkh7JJAg" }
-    - { seq: "bw1zeBJDPcD27b-nXqZ2mw", from: "ocG1AIlhqE9WlQffw2SqNQ", to: "1rmE7253IT-PjpG5EfpznQ" }
-    - { seq: "bw1zeBJDPcD27b-nXqZ2mw", from: "DBxQdG-3UcXX_ppap6g56g", to: "vdJQXSHv3L8IcXKfe7EY8A" }
-    - { seq: "q35CY3484L_prqDuREyPOw", from: "QY5mnQ7nK8R3oI48ejP3Yw", to: "86WaRKr5JCKKIAUN_ehTxg" }
-    - { seq: "BHxg_wkvXMyfCsKJDBbCsA", from: "QubOpG54KQ1xGQwOrhIMHg", to: "LcXwNVo_G4yb37YrZAxJqw" }
-    - { seq: "BHxg_wkvXMyfCsKJDBbCsA", from: "hNAirmwn9n-YKGmwrYy85w", to: "XRP0AQuwEeu_hYoPSoDf5Q" }
-    - { seq: "oEpwXEwbuAzAydEAVBCZ3A", from: "bX13A0k-TNtgDhuuLDkxUw", to: "wZwcptl9g0o4KlCefyIzEQ" }
-    - { seq: "sYJzv-QWyig9mWBUVFKZhQ", from: "tw8aREMHkI-um1qplZtEmA", to: "jCnlbcWs15pTumLr0HDWDw" }
-    - { seq: "ASx7Vyofk9HLSTLTt4PngA", from: "JV2bRXn1uTLMtnpSqOg9Gw", to: "n8PfuyQNN__jpYMPvlLOdA" }
-    - { seq: "ASx7Vyofk9HLSTLTt4PngA", from: "kzO45D5kyHBkSrVU_udkhg", to: "KZSh9pOu_TrQj4iXUdUOgQ" }
-    - { seq: "yV4DKnI1Y8DZ3v2LBu9fCA", from: "H82AeK4d8ETVCCOv9CTocw", to: "WzSnFOFYugWU3hp0EUd6sw" }
-    - { seq: "yV4DKnI1Y8DZ3v2LBu9fCA", from: "L8m_jJNRp9FG9yVWR_fr-g", to: "daAgM72vloenhuyFs0vTVw" }
-    - { seq: "TYtOnj73gXuYzZmJvaHTnQ", from: "qfFO36BkKmjDnoQp7z3-Tg", to: "Ew80DVE0H6XU0tyv89b5rQ" }
-    """
+  @name "Alltagsroute 4"
+
+  def id(), do: "4"
+  def color(), do: "#008aa7"
+  def name(), do: @name
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/191882"
+
+  forward = %Video.Track{
+    group: "4",
+    direction: :forward,
+    from: "Innenstadt",
+    to: "Ochsenzoll",
+    parent_text: @name,
+    text: "aus der Innenstadt zum Ochsenzoll",
+    videos: [
+      {"2021-06-05-velorouten-1-1a-2/GX011655", "0:00:46.480", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011656", :start, "0:00:02.669"},
+      {"2021-06-12-veloroute-3-und-4/GX011701", "0:00:01.301", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011702", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011703", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011704", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011705", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011706", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011707", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011708", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011709", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011710", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011711", :start, :end}
+    ]
+  }
+
+  backward = %Video.Track{
+    group: "4",
+    direction: :backward,
+    from: "Ochsenzoll",
+    to: "Innenstadt",
+    parent_text: @name,
+    text: "vom Ochsenzoll in die Innenstadt",
+    videos: [
+      {"2021-06-12-veloroute-3-und-4/GX011712", "0:00:01.869", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011713", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011714", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011715", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011716", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011717", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011718", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011719", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011720", :start, "0:00:19.319"},
+      {"2021-06-12-veloroute-3-und-4/GX011727", "0:00:01.568", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011728", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011729", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011730", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011731", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011732", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011733", :start, :end},
+      # cutting together a legal path
+      {"2021-06-12-veloroute-3-und-4/GX011734", :start, :end},
+      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "0:00:00.934"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "0:00:01.001", "0:00:02.336"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "0:00:09.610", "0:00:14.348"}
+      # real path, but that's not legal
+      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "0:00:18.886"}
+    ]
+  }
+
+  @tracks Enum.map([forward, backward], &Video.Track.with_rendered_ref/1)
+  def tracks(), do: @tracks
+
+  # legacy
+  def parsed() do
+    %{{id(), ""} => []}
+  end
+
+  def index() do
+    %{}
+  end
 end
