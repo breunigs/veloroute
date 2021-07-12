@@ -18,7 +18,7 @@ defmodule Data.Route.Route12 do
     direction: :forward,
     from: "Innenstadt",
     to: "Altona",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "von der Innenstadt nach Altona",
     videos: [
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011832", :start, :end},
@@ -35,7 +35,7 @@ defmodule Data.Route.Route12 do
     direction: :backward,
     from: "Altona",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "von Altona in die Innenstadt",
     videos: [
       {"2021-06-27-veloroute9/GX012013", :start, :end},
@@ -52,7 +52,7 @@ defmodule Data.Route.Route12 do
     ]
   }
 
-  @tracks Enum.map([forward, backward], &Video.Track.with_rendered_ref/1)
+  @tracks [forward, backward]
   def tracks(), do: @tracks
 
   # legacy

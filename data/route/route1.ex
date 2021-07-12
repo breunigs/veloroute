@@ -78,7 +78,7 @@ defmodule Data.Route.Route1 do
     direction: :forward,
     from: "Innenstadt",
     to: "Rissen",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Rissen",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011629", "0:00:12.246", :end},
@@ -110,7 +110,7 @@ defmodule Data.Route.Route1 do
     direction: :backward,
     from: "Rissen",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus Rissen in die Innenstadt",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011675", :start, :end},
@@ -137,7 +137,7 @@ defmodule Data.Route.Route1 do
     direction: :forward,
     from: "Innenstadt",
     to: "Osdorfer Born",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt zum Osdorfer Born",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011680", "0:00:01.000", :end},
@@ -152,7 +152,7 @@ defmodule Data.Route.Route1 do
     direction: :backward,
     from: "Osdorfer Born",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "vom Osdorfer Born in die Innenstadt",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011683", "0:00:47.447", :end},
@@ -162,15 +162,13 @@ defmodule Data.Route.Route1 do
     ]
   }
 
-  @tracks Enum.map(
-            [
-              forward_rissen,
-              backward_rissen,
-              forward_osdorf,
-              backward_osdorf
-            ],
-            &Video.Track.with_rendered_ref/1
-          )
+  @tracks [
+    forward_rissen,
+    backward_rissen,
+    forward_osdorf,
+    backward_osdorf
+  ]
+
   def tracks(), do: @tracks
 
   # legacy

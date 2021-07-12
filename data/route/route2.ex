@@ -13,7 +13,7 @@ defmodule Data.Route.Route2 do
     direction: :forward,
     from: "Innenstadt",
     to: "Eidelstedt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Eidelstedt",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011629", "0:00:12.246", :end},
@@ -41,7 +41,7 @@ defmodule Data.Route.Route2 do
     direction: :backward,
     from: "Eidelstedt",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "von Eidelstedt in die Innenstadt",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011645", :start, "0:00:19.620"},
@@ -58,7 +58,7 @@ defmodule Data.Route.Route2 do
     ]
   }
 
-  @tracks Enum.map([forward, backward], &Video.Track.with_rendered_ref/1)
+  @tracks [forward, backward]
   def tracks(), do: @tracks
 
   # legacy

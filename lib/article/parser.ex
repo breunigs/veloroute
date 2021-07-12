@@ -30,15 +30,16 @@ defmodule Article.Parser do
     tracks =
       Map.get(parsed, :tracks, [])
       |> Enum.map(fn vid ->
-        Video.Track.with_rendered_ref(%Video.Track{
+        %Video.Track{
           from: Map.get(vid, "from", ""),
           to: Map.get(vid, "to", ""),
           text: Map.get(vid, "text", ""),
+          # TODO if we make articles proper modules, passing the article name would not be so awkward
+          parent_ref: parsed.title,
           videos: Map.get(vid, "videos", []) |> Enum.map(&List.to_tuple/1),
-          parent_text: parsed.title,
           direction: Map.get(vid, "direction", "forward") |> String.to_existing_atom(),
           group: Map.get(vid, "group", "default")
-        })
+        }
       end)
 
     data =

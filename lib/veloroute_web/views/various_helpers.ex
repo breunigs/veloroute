@@ -4,6 +4,31 @@ defmodule VelorouteWeb.VariousHelpers do
 
   def display_route(nil), do: nil
 
+  def display_route(%VelorouteWeb.Live.VideoState{} = state) do
+    %Video.Track{parent_ref: ref, text: text, group: group} =
+      VelorouteWeb.Live.VideoState.current_track(state)
+
+    cond do
+      is_binary(ref) ->
+        content_tag(:span, text,
+          title: "Du folgst: #{text} (aus: #{ref})",
+          class: "curRoute"
+        )
+
+      is_atom(ref) and not is_nil(ref) ->
+        icon = route_icon(group, ref.color())
+
+        Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
+          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.id()),
+          title: "Du folgst: #{ref.name()} #{text}",
+          class: "curRoute"
+        )
+
+      true ->
+        nil
+    end
+  end
+
   def display_route({id, rest}) do
     cond do
       rel = relation_by_id(id) ->

@@ -13,7 +13,7 @@ defmodule Data.Route.Route3 do
     direction: :forward,
     from: "Innenstadt",
     to: "Niendorf",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Niendorf",
     videos: [
       {"2021-06-05-velorouten-1-1a-2/GX011655", "0:00:46.480", :end},
@@ -41,7 +41,7 @@ defmodule Data.Route.Route3 do
     direction: :backward,
     from: "Niendorf",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "von Niendorf in die Innenstadt",
     videos: [
       {"2021-06-12-veloroute-3-und-4/GX011751", "0:00:02.302", :end},
@@ -70,7 +70,7 @@ defmodule Data.Route.Route3 do
     ]
   }
 
-  @tracks Enum.map([forward, backward], &Video.Track.with_rendered_ref/1)
+  @tracks [forward, backward]
   def tracks(), do: @tracks
 
   # legacy

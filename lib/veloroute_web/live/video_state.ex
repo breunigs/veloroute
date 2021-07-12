@@ -3,10 +3,11 @@ defmodule VelorouteWeb.Live.VideoState do
 
   @known_params [
     :forward,
+    :forward_track,
     :backward,
+    :backward_track,
     :start,
     :direction,
-    :group,
     :player_js
   ]
 
@@ -16,8 +17,9 @@ defmodule VelorouteWeb.Live.VideoState do
   @type t :: %__MODULE__{
           forward: Video.Rendered.t() | nil,
           backward: Video.Rendered.t() | nil,
+          forward_track: Video.Track.t() | nil,
+          backward_track: Video.Track.t() | nil,
           start: Geo.Point.t() | nil,
-          group: binary(),
           direction: :forward | :backward,
           player_js: binary() | nil
         }
@@ -58,6 +60,10 @@ defmodule VelorouteWeb.Live.VideoState do
 
     Phoenix.LiveView.assign(socket, for_frontend(new_state))
   end
+
+  @spec current_track(t()) :: Video.Track.t() | nil
+  def current_track(%__MODULE__{direction: :forward, forward_track: fw}), do: fw
+  def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
 
   defp extract_tracks(nil), do: []
   defp extract_tracks(%Article{tracks: tracks}) when length(tracks) > 0, do: tracks
@@ -106,9 +112,9 @@ defmodule VelorouteWeb.Live.VideoState do
   """
   def reverse(%{assigns: %{video: nil}} = socket, _params), do: socket
 
-  def reverse(%{assigns: %{video: video}} = socket, params) do
+  def reverse(%{assigns: %{video: state}} = socket, params) do
     assigns =
-      video
+      state
       |> reverse_direction()
       |> extract_start(params)
       |> for_frontend()
@@ -118,10 +124,11 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp new() do
     %__MODULE__{
+      forward_track: nil,
+      backward_track: nil,
       forward: nil,
       backward: nil,
       start: nil,
-      group: nil,
       direction: :forward,
       player_js: nil
     }
@@ -194,7 +201,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp update_from_tracks(state, tracks, near_position) when is_map(near_position) do
     sorted =
       Enum.sort_by(tracks, fn track ->
-        track.rendered_ref.coords()
+        Video.Rendered.get(track).coords()
         |> Geo.CheapRuler.closest_point_on_line(near_position)
         |> Map.fetch!(:dist)
       end)
@@ -211,15 +218,28 @@ defmodule VelorouteWeb.Live.VideoState do
         track.group == closest.group && track.direction == reverse(closest.direction)
       end)
 
-    fw = if(closest.direction == :forward, do: closest, else: reverse)
-    bw = if(closest.direction == :forward, do: reverse, else: closest)
+    fw_track = if(closest.direction == :forward, do: closest, else: reverse)
+    bw_track = if(closest.direction == :forward, do: reverse, else: closest)
 
-    fw = Video.Rendered.get(fw)
-    bw = Video.Rendered.get(bw)
+    fw_ren = Video.Rendered.get(fw_track)
+    bw_ren = Video.Rendered.get(bw_track)
 
-    %{state | forward: fw, backward: bw, direction: closest.direction}
+    %{
+      state
+      | forward_track: if(fw_ren, do: fw_track),
+        forward: fw_ren,
+        backward_track: if(bw_ren, do: bw_track),
+        backward: bw_ren,
+        direction: closest.direction
+    }
+    |> maybe_fix_direction()
     |> maybe_enable_player()
   end
+
+  defp maybe_fix_direction(state) when not has_video(state) and is_reversable(state),
+    do: reverse_direction(state)
+
+  defp maybe_fix_direction(state), do: state
 
   def reverse(:forward), do: :backward
   def reverse(:backward), do: :forward

@@ -15,22 +15,23 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     # disable the warning if we're updating files
     Code.compiler_options(ignore_module_conflict: true)
 
-    tracks =
-      (route_tracks() ++ article_tracks())
-      |> Enum.map(&Video.TrimmedSourceSequence.new_from_track/1)
+    tracks = route_tracks() ++ article_tracks()
 
     tracks
-    |> Parallel.map(&Video.Rendered.save_from_tsv_seq/1)
-    |> Enum.each(fn
-      :ok -> :ok
-      broken -> IO.puts(:stderr, inspect(broken))
-    end)
+    |> Parallel.map(&Video.Rendered.save_from_track/1)
+    |> Enum.map(fn
+      rendered when is_atom(rendered) ->
+        rendered
 
-    list_unused(tracks)
+      broken ->
+        IO.puts(:stderr, inspect(broken))
+        nil
+    end)
+    |> list_unused()
   end
 
-  def list_unused(tracks) do
-    keep = tracks |> Enum.map(&Video.Rendered.path/1) |> MapSet.new()
+  def list_unused(rendered) do
+    keep = rendered |> Enum.map(&Video.Rendered.path/1) |> MapSet.new()
     all = Enum.map(Video.Rendered.all(), &Video.Rendered.path/1) |> MapSet.new()
 
     Enum.each(MapSet.difference(all, keep), fn path ->

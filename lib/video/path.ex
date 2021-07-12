@@ -1,5 +1,5 @@
 defmodule Video.Path do
-  import Video.TrimmedSourceSequence, only: [valid_hash: 1]
+  import Video.Track, only: [valid_hash: 1]
 
   @anonymized_suffix ".anonymized.mkv"
   @source_endings [".MP4", ".mkv"]

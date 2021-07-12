@@ -13,7 +13,7 @@ defmodule Data.Route.Route8 do
     direction: :forward,
     from: "Innenstadt",
     to: "Bergedorf",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Bergedorf",
     videos: [
       {"2021-07-03-veloroute10/GX012051", :start, "0:00:03.770"},
@@ -44,7 +44,7 @@ defmodule Data.Route.Route8 do
     direction: :backward,
     from: "Bergedorf",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus Bergedorf in die Innenstadt",
     videos: [
       {"2021-06-25-velo8/GX011989", "0:00:01.368", :end},
@@ -70,7 +70,7 @@ defmodule Data.Route.Route8 do
     direction: :forward,
     from: "Innenstadt",
     to: "Mümmelmannsberg",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "aus der Innenstadt zum Mümmelmannsberg",
     videos: [
       {"2021-06-25-velo8/GX011984", "0:00:19.753", :end},
@@ -83,22 +83,19 @@ defmodule Data.Route.Route8 do
     direction: :backward,
     from: "Mümmelmannsberg",
     to: "Innenstadt",
-    parent_text: @name,
+    parent_ref: __MODULE__,
     text: "vom Mümmelmannsberg in die Innenstadt",
     videos: [
       {"2021-06-25-velo8/GX011985", "0:01:33.226", "0:03:12.592"}
     ]
   }
 
-  @tracks Enum.map(
-            [
-              forward_bergedorf,
-              backward_bergedorf,
-              forward_mmb,
-              backward_mmb
-            ],
-            &Video.Track.with_rendered_ref/1
-          )
+  @tracks [
+    forward_bergedorf,
+    backward_bergedorf,
+    forward_mmb,
+    backward_mmb
+  ]
   def tracks(), do: @tracks
 
   # legacy
