@@ -66,6 +66,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     """)
 
     Video.Rendered.pending()
+    |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       render = Video.Rendered.render(rendered)
 
@@ -93,6 +94,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
   defp real_run do
     Video.Rendered.pending()
+    |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       previews = Video.Rendered.preview(rendered)
 
