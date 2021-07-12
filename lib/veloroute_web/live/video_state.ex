@@ -197,13 +197,23 @@ defmodule VelorouteWeb.Live.VideoState do
   defp update_from_tracks(state, tracks, near_position)
   defp update_from_tracks(state, [], _pos), do: state
 
+  # Due to slight inaccuracies when clicking, users might reverse the track all the time when
+  # in practice they just wanted to skip aloung the route. Therefore we slightly prefer tracks
+  # in th the current direction.
+  @same_direction_bonus_in_meters 15
+
   # if we have a position, change the tracks default order by closeness to the position
   defp update_from_tracks(state, tracks, near_position) when is_map(near_position) do
     sorted =
       Enum.sort_by(tracks, fn track ->
-        Video.Rendered.get(track).coords()
-        |> Geo.CheapRuler.closest_point_on_line(near_position)
-        |> Map.fetch!(:dist)
+        dist =
+          Video.Rendered.get(track).coords()
+          |> Geo.CheapRuler.closest_point_on_line(near_position)
+          |> Map.fetch!(:dist)
+
+        if track.direction == state.direction,
+          do: dist - @same_direction_bonus_in_meters,
+          else: dist
       end)
 
     update_from_tracks(state, sorted, nil)
