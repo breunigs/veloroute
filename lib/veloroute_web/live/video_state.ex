@@ -214,23 +214,10 @@ defmodule VelorouteWeb.Live.VideoState do
     fw = if(closest.direction == :forward, do: closest, else: reverse)
     bw = if(closest.direction == :forward, do: reverse, else: closest)
 
-    update_real(state, fw, bw)
-  end
+    fw = Video.Rendered.get(fw)
+    bw = Video.Rendered.get(bw)
 
-  defp update_real(state, forward, backward) do
-    forward = Video.Rendered.get(forward)
-    backward = Video.Rendered.get(backward)
-
-    dir =
-      cond do
-        state.direction == :forward && forward -> :forward
-        state.direction == :backward && backward -> :backward
-        forward -> :forward
-        backward -> :backward
-        true -> :forward
-      end
-
-    %{state | forward: forward, backward: backward, direction: dir}
+    %{state | forward: fw, backward: bw, direction: closest.direction}
     |> maybe_enable_player()
   end
 
