@@ -169,13 +169,16 @@ begin
     $stdin.close
     break
   end
-ensure
-  $ios.each { |io| io.close() }
 end
 
 $bar_thread.terminate
 $bar.finish
 
-print "\nRenaming… "
-FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
-puts "Done!"
+if $ios.map { |io| io.close(); $?.success? }.all?
+  print "\nUploading… "
+  FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
+  puts "Done!"
+else
+  warn "rendering failed!"
+  cancel()
+end
