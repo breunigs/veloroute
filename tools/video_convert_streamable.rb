@@ -175,11 +175,21 @@ end
 $bar_thread.terminate
 $bar.finish
 
-if $ios.map { |io| io.close(); $?.success? }.all?
-  print "\nUploading… "
-  FileUtils.move(tmp_dir, VIDEO_OUT_DIR, verbose: true)
-  puts "Done!"
-else
-  warn "rendering failed!"
+rendering_ok = $ios.map { |io| io.close(); $?.success? }.all?
+
+if !rendering_ok
   cancel()
+  die("rendering failed!")
 end
+
+print "\nUploading… "
+tries = 0
+begin
+  FileUtils.move(tmp_dir, VIDEO_OUT_DIR, verbose: true)
+rescue => e
+  tries += 1
+  warn "Failed moving (try #{tries}): #{e}"
+  tries <= 3 ? retry : die("Failed moving the files from #{tmp_dir} to #{VIDEO_OUT_DIR}: #{e}"
+end
+
+puts "Done!"
