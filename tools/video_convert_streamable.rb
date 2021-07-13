@@ -189,7 +189,7 @@ begin
 rescue => e
   tries += 1
   warn "Failed moving (try #{tries}): #{e}"
-  tries <= 3 ? retry : die("Failed moving the files from #{tmp_dir} to #{VIDEO_OUT_DIR}: #{e}"
+  tries <= 3 ? retry : die("Failed moving the files from #{tmp_dir} to #{VIDEO_OUT_DIR}: #{e}")
 end
 
 puts "Done!"
