@@ -17,6 +17,7 @@ defmodule Data.GeoJSON do
     map.ways()
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.map(&as_geojson(&1))
+    |> Enum.reject(&is_nil/1)
   end
 
   defp detours(map) do
@@ -47,6 +48,8 @@ defmodule Data.GeoJSON do
   end
 
   # renders for ways
+  defp as_geojson(%Map.Way{tags: %{type: "article", hide_from_map: "yes"}}), do: nil
+
   defp as_geojson(
          w = %Map.Way{
            tags: %{

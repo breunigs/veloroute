@@ -127,3 +127,7 @@ area[type=article] {
   casing-width: 0;
   text: prop(name);
 }
+
+area[type=article][hide_from_map=yes] {
+  fill-opacity: 0.05;
+}
