@@ -124,7 +124,7 @@ fallback_webm << "#{tmp_dir}/fallback.webm"
 # hls
 hls = ffmpeg()
 VARIANTS.each.with_index do |var, idx|
-  hls << "-c:v:#{idx}" << (var[:codec] || DEFAULT_CODEC).gub("__INDEX__", "#{idx}") << "-flags" << "+cgop"
+  hls << "-c:v:#{idx}" << (var[:codec] || DEFAULT_CODEC).gsub("__INDEX__", "#{idx}") << "-flags" << "+cgop"
   hls << %w[-map v:0] << "-s:#{idx}" << "#{var[:width]}x#{var[:height]}"
   hls << "-metadata:s:v:#{idx}" << %|title="#{var[:title]}"|
   rate = var[:bitrate]
