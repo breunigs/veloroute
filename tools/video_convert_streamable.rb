@@ -44,16 +44,15 @@ DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
   ? %w[libx264 -preset veryslow -x264opts opencl] \
   : %w[libx264 -preset veryslow]
 HQ_CODEC = ENV["HW_ACCEL"] == "1" \
-  ? %w[hevc_nvenc -preset slow -tier high -level 6.2 -nonref_p 1 -spatial_aq 1] \
-  : %w[libx265 -x265-params log-level=error]
+  ? %w[hevc_nvenc -preset slow -tier high -level 6.2 -nonref_p 1 -spatial_aq 1 -tag:v:__INDEX__ hvc1 -refs:v:__INDEX__ 0] \
+  : %w[libx265 -x265-params log-level=error -tag:v:__INDEX__ hvc1]
 VARIANTS = [
   {title: "360p",       width:  640, height:  360, bitrate:  4   },
   {title: "144p",       width:  256, height:  144, bitrate:  0.7 },
   {title: "240p",       width:  426, height:  240, bitrate:  2   },
   {title: "720p",       width: 1280, height:  720, bitrate:  6   },
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
-  # XXX: adjust index to match array
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC + %w[-tag:v:5 hvc1 -refs:v:5 0]},
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -66,7 +65,7 @@ BUF_SIZE = 2.0
 
 
 tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
-at_exit { FileUtils.rmdir(tmp_dir) if Dir.exist?(tmp_dir) }
+at_exit { FileUtils.rmdir(tmp_dir) if Dir.exist?(tmp_dir) && Dir.empty?(tmp_dir) }
 
 
 variants_index = VARIANTS.size - 1
@@ -125,7 +124,7 @@ fallback_webm << "#{tmp_dir}/fallback.webm"
 # hls
 hls = ffmpeg()
 VARIANTS.each.with_index do |var, idx|
-  hls << "-c:v:#{idx}" << (var[:codec] || DEFAULT_CODEC) << "-flags" << "+cgop"
+  hls << "-c:v:#{idx}" << (var[:codec] || DEFAULT_CODEC).gub("__INDEX__", "#{idx}") << "-flags" << "+cgop"
   hls << %w[-map v:0] << "-s:#{idx}" << "#{var[:width]}x#{var[:height]}"
   hls << "-metadata:s:v:#{idx}" << %|title="#{var[:title]}"|
   rate = var[:bitrate]
