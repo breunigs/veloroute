@@ -177,7 +177,7 @@ $bar.finish
 
 if $ios.map { |io| io.close(); $?.success? }.all?
   print "\nUploading… "
-  FileUtils.move(tmp_dir, VIDEO_OUT_DIR)
+  FileUtils.move(tmp_dir, VIDEO_OUT_DIR, verbose: true)
   puts "Done!"
 else
   warn "rendering failed!"
