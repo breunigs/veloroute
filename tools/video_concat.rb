@@ -50,6 +50,7 @@ Dir.mktmpdir("video_concat") do |temp_dir|
       out = io.read
       io.close
       die(out) unless $?.success?
+      warn "finished #{video}"
     end
   end
 
