@@ -5,8 +5,7 @@ defmodule VelorouteWeb.VariousHelpers do
   def display_route(nil), do: nil
 
   def display_route(%VelorouteWeb.Live.VideoState{} = state) do
-    %Video.Track{parent_ref: ref, text: text, group: group} =
-      VelorouteWeb.Live.VideoState.current_track(state)
+    %Video.Track{parent_ref: ref, text: text} = VelorouteWeb.Live.VideoState.current_track(state)
 
     cond do
       is_binary(ref) ->
@@ -16,7 +15,7 @@ defmodule VelorouteWeb.VariousHelpers do
         )
 
       is_atom(ref) and not is_nil(ref) ->
-        icon = route_icon(group, ref.color())
+        icon = route_icon(ref.id(), ref.color())
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
           to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.id()),

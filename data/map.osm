@@ -11723,7 +11723,7 @@
   <node id='85287780005917173' version='1' lat='53.5917173' lon='9.8528778' />
   <node id='85290010005933402' action='modify' version='1' lat='53.59334338385' lon='9.85296782578'>
     <tag k='color' v='#7d8b2f' />
-    <tag k='name' v='1a' />
+    <tag k='name' v='1' />
     <tag k='target' v='Osdorfer Born' />
     <tag k='type' v='marker' />
   </node>
