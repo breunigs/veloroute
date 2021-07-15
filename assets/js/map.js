@@ -162,17 +162,12 @@ const handleMapClick = (evt) => {
 
   let route = null;
   let article = null;
-  let video_forward = null;
-  let video_backward = null;
   items.forEach(r => {
     if (r.properties.route_id && routeLayers.includes(r.layer.id)) {
       route = r.properties.route_id;
     } else if (r.properties.name && (routeLayers + articleLayers).includes(r.layer.id)) {
       article = r.properties.name;
     }
-    console.debug(r.properties)
-    video_forward = video_forward || r.properties.video_forward;
-    video_backward = video_backward || r.properties.video_backward;
   });
 
   if (route === null && article === null) return;
@@ -180,8 +175,6 @@ const handleMapClick = (evt) => {
   window.pushEvent("map-click", {
     route: route,
     article: article,
-    video_forward: video_forward,
-    video_backward: video_backward,
     lon: evt.lngLat.lng,
     lat: evt.lngLat.lat,
     zoom: map.getZoom()
@@ -290,11 +283,11 @@ function maybeHackStateFromVideo() {
   if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
   const curr = video.currentTime;
-  const perc = Math.max(0, curr / video.duration);
+  const ratio = Math.max(0, curr / video.duration);
 
   // guess start index based on % of video played, minus some
   // fixed offset (TODO: measure if this is actually faster)
-  let percIndex = (perc / 100.0 * videoCoords.length);
+  let percIndex = Math.round(ratio * videoCoords.length);
   percIndex -= percIndex % 3
 
   let nextIdx = Math.max(0, percIndex - 10 * 3);
@@ -313,7 +306,7 @@ function maybeHackStateFromVideo() {
     const [prevT, prevLon, prevLat] = [videoCoords[nextIdx-3], videoCoords[nextIdx-2], videoCoords[nextIdx - 1]];
 
     // interpolate
-    const t = (curr - prevT) / (nextT - prevT);
+    const t = Math.min(1, (curr - prevT) / (nextT - prevT));
     state.lat = prevLat + t * (nextLat - prevLat)
     state.lon = prevLon + t * (nextLon - prevLon)
 

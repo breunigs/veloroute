@@ -34,7 +34,7 @@ defmodule Video.TrimmedSource do
         coords_uncut: coords,
         coord_from: coord_from,
         coord_to: coord_to,
-        duration_ms_uncut: coord_to.time_offset_ms
+        duration_ms_uncut: Video.Source.video_length_ms(source)
       }
       |> assert_valid()
     end

@@ -1,4 +1,6 @@
 defmodule Video.Source do
+  import SweetXml
+
   @known_params [
     :source,
     :available_anonymized,
@@ -101,14 +103,58 @@ defmodule Video.Source do
   end
 
   @doc """
-  reads the length of a video. This result is not cached and thus quite
-  expensive to read.
+  reads the length of a video. The result will be cached in the "desc" field of
+  the matching GPX of the video if it exists. Otherwise it will be calculated
+  from the video file (slow).
   """
   @spec video_length_ms(t()) :: integer()
-  def video_length_ms(%__MODULE__{source: source}) do
+  def video_length_ms(%__MODULE__{} = self) do
+    video_length_ms_fast(self) || video_length_ms_slow(self)
+  end
+
+  @spec video_length_ms_fast(t()) :: integer() | nil
+  defp video_length_ms_fast(%__MODULE__{source: source, available_gpx: true}) do
+    gpx_path = Video.Path.gpx_rel_to_cwd(source)
+
+    with {:ok, content} <- File.read(gpx_path),
+         text when is_list(text) <- SweetXml.xpath(content, ~x"//desc/text()"),
+         text <- List.to_string(text),
+         {duration, ""} <- Integer.parse(text) do
+      duration
+    else
+      _ -> nil
+    end
+  end
+
+  defp video_length_ms_fast(%__MODULE__{}), do: nil
+
+  @spec video_length_ms_slow(t()) :: integer()
+  @dialyzer {:nowarn_function, video_length_ms_slow: 1}
+  defp video_length_ms_slow(%__MODULE__{source: source}) do
+    IO.puts(:stderr, "quering video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
     {ms, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%", path])
-    ms |> String.trim() |> String.to_integer()
+    ms = ms |> String.trim() |> String.to_integer()
+
+    gpx_path = Video.Path.gpx_rel_to_cwd(source)
+
+    with {:ok, content} <- File.read(gpx_path),
+         {:ok, _len} <- File.copy(gpx_path, "#{gpx_path}_backup_without_time"),
+         content <-
+           String.replace(
+             content,
+             "<trk>",
+             "<trk><!-- desc == length of video in ms --><desc>#{ms}</desc>",
+             global: false
+           ),
+         :ok <- File.write(gpx_path, content) do
+      :ok
+    else
+      err ->
+        IO.puts(:stderr, "failed to write GPX file with video time for #{source}: #{err}")
+    end
+
+    ms
   end
 
   @doc """
