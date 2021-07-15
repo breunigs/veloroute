@@ -87,9 +87,14 @@ defmodule Track do
   # concatenate_nodes joins the nodes of the ways in order, removing any
   # duplicates. It adds them to the Map as "nodes".
   defp concatenate_nodes(obj = %{ways: ways}) do
-    first_node = ways |> hd |> Map.get(:nodes) |> hd
-    rest = Enum.flat_map(ways, fn %Way{nodes: [_f | rest]} -> rest end)
-    Map.put(obj, :nodes, [first_node | rest])
+    try do
+      first_node = ways |> hd |> Map.get(:nodes) |> hd
+      rest = Enum.flat_map(ways, fn %Way{nodes: [_f | rest]} -> rest end)
+      Map.put(obj, :nodes, [first_node | rest])
+    rescue
+      err ->
+        raise "Track is invalid: #{err}\n#{inspect(obj)}"
+    end
   end
 
   # extract_img_tags retrieves the interesting Mapillary image ref tags from the

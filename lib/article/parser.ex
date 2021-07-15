@@ -36,7 +36,7 @@ defmodule Article.Parser do
           text: Map.get(vid, "text", ""),
           # TODO if we make articles proper modules, passing the article name would not be so awkward
           parent_ref: parsed.title,
-          videos: Map.get(vid, "videos", []) |> Enum.map(&List.to_tuple/1),
+          videos: Map.get(vid, "videos", []) |> to_plain_video_triple(),
           direction: Map.get(vid, "direction", "forward") |> String.to_existing_atom(),
           group: Map.get(vid, "group", "default")
         }
@@ -56,6 +56,14 @@ defmodule Article.Parser do
       |> full_title()
 
     struct(Article, data)
+  end
+
+  defp to_plain_video_triple(vids) when is_list(vids) do
+    vids
+    |> Enum.map(&List.to_tuple/1)
+    |> Enum.map(fn {file, from, to} ->
+      {file, if(from == "start", do: :start, else: from), if(to == "end", do: :end, else: to)}
+    end)
   end
 
   defp full_title(art = %{title: t}) do
