@@ -7,6 +7,7 @@ defmodule Mix.Tasks.Deploy do
     skip = parse_cli_args(skip)
     build_tar_gz(skip)
     deploy_tar_gz(skip)
+    post_deploy(skip)
   end
 
   defp parse_cli_args(skip) when is_list(skip) do
@@ -184,5 +185,10 @@ defmodule Mix.Tasks.Deploy do
         ],
         into: IO.stream(:stdio, :line)
       )
+  end
+
+  defp post_deploy(_skip) do
+    Util.banner("Release: Preload Commands")
+    Docker.mix("velo.videos.preload", "prod")
   end
 end

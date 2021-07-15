@@ -121,6 +121,37 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   end
 end
 
+defmodule Mix.Tasks.Velo.Videos.Preload do
+  use Mix.Task
+  import Mix.Tasks.Velo.Videos
+
+  @shortdoc "Print command to preload the videos on the server"
+  def run(_) do
+    Video.Dir.must_exist!(&real_run/0)
+  end
+
+  defp real_run do
+    video_files =
+      Settings.video_target_dir_abs()
+      |> IOUtil.tree()
+      |> Enum.map(&Path.relative_to(&1, Settings.video_target_dir_abs()))
+
+    Video.Rendered.rendered()
+    |> Enum.flat_map(fn rendered ->
+      Enum.filter(video_files, &String.starts_with?(&1, rendered.hash))
+    end)
+    |> Enum.each(fn path ->
+      url = "#{Settings.url()}/#{Settings.video_serve_path()}/#{path}"
+
+      if(String.ends_with?(path, ".m3u8")) do
+        IO.puts("curl -s \"#{url}\" >/dev/null &")
+      else
+        IO.puts("curl \"#{url}\" >/dev/null")
+      end
+    end)
+  end
+end
+
 defmodule Mix.Tasks.Velo.Videos.Index do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
