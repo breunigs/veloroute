@@ -44,7 +44,7 @@ DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
   ? %w[libx264 -preset veryslow -x264opts opencl] \
   : %w[libx264 -preset veryslow]
 HQ_CODEC = ENV["HW_ACCEL"] == "1" \
-  ? %w[hevc_nvenc -preset slow -tier high -level 6.2 -nonref_p 1 -spatial_aq 1 -tag:v:__INDEX__ hvc1 -refs:v:__INDEX__ 0] \
+  ? %w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 -tag:v:__INDEX__ hvc1 -refs:v:__INDEX__ 0] \
   : %w[libx265 -x265-params log-level=error -tag:v:__INDEX__ hvc1]
 VARIANTS = [
   {title: "360p",       width:  640, height:  360, bitrate:  4   },
