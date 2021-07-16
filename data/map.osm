@@ -35175,7 +35175,7 @@
     <tag k='name' v='2018-08-30-11-wilhelmsburger-inselpark' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155073' version='1'>
+  <way id='785155073' action='modify' version='1'>
     <nd ref='1528000555047' />
     <nd ref='19568000556984' />
     <nd ref='20432000557432' />
@@ -35184,6 +35184,7 @@
     <nd ref='18249000556002' />
     <nd ref='13849000554139' />
     <nd ref='1528000555047' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-08-30-7-steindamm' />
     <tag k='type' v='article' />
   </way>
@@ -35532,7 +35533,7 @@
     <tag k='name' v='2018-10-13-3-schlueterstrasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155095' version='1'>
+  <way id='785155095' action='modify' version='1'>
     <nd ref='105739000572403' />
     <nd ref='105456000572373' />
     <nd ref='105608000572476' />
@@ -35553,6 +35554,7 @@
     <nd ref='106751000572694' />
     <nd ref='10674200057269' />
     <nd ref='105739000572403' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-14-7-schimmelmannstrasse-w23' />
     <tag k='type' v='article' />
   </way>
@@ -35643,7 +35645,7 @@
     <tag k='name' v='2018-10-21-7-rahlstedter-bahnhofstrasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155101' version='1'>
+  <way id='785155101' action='modify' version='1'>
     <nd ref='127793000575174' />
     <nd ref='127789000575179' />
     <nd ref='127812000575217' />
@@ -35670,6 +35672,7 @@
     <nd ref='127323000575149' />
     <nd ref='127386000575166' />
     <nd ref='127793000575174' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-21-7-jenfelder-strasse-w28' />
     <tag k='type' v='article' />
   </way>
@@ -35745,7 +35748,7 @@
     <tag k='name' v='2018-10-25-5-am-dorfgraben' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155105' version='1'>
+  <way id='785155105' action='modify' version='1'>
     <nd ref='114019000576676' />
     <nd ref='11466000576862' />
     <nd ref='117951000577868' />
@@ -35771,6 +35774,7 @@
     <nd ref='113762000576434' />
     <nd ref='-3358276' />
     <nd ref='114019000576676' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-25-7-kuehnstrasse-w24' />
     <tag k='type' v='article' />
   </way>
@@ -37686,12 +37690,7 @@
     <member type='node' ref='1344080005750305' role='gpx_end' />
     <member type='node' ref='155334800060497' role='gpx_end' />
     <member type='node' ref='99394920005508649' role='gpx_start' />
-    <tag k='color' v='#97ba22' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Jenfeld oder Rahlstedt' />
-    <tag k='id' v='7' />
-    <tag k='name' v='Alltagsroute 7' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/228035' />
+    <tag k='ref' v='Route7' />
   </relation>
   <relation id='229623' action='modify' version='1'>
     <member type='way' ref='-192912' role='' />
