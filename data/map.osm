@@ -1573,6 +1573,30 @@
   <node id='-3359801' action='modify' lat='53.588749219' lon='10.07507577404' />
   <node id='-3359802' action='modify' lat='53.58910744019' lon='10.07549553841' />
   <node id='-3359803' action='modify' lat='53.61615465349' lon='10.12177973717' />
+  <node id='-3359864' action='modify' lat='53.46674465502' lon='9.98369692683' />
+  <node id='-3359865' action='modify' lat='53.46699373796' lon='9.98277424693' />
+  <node id='-3359866' action='modify' lat='53.46719172593' lon='9.98194812655' />
+  <node id='-3359867' action='modify' lat='53.46721727269' lon='9.98175500751' />
+  <node id='-3359868' action='modify' lat='53.46718533923' lon='9.98156188846' />
+  <node id='-3359869' action='modify' lat='53.46712147224' lon='9.98139022708' />
+  <node id='-3359870' action='modify' lat='53.467038445' lon='9.98125075221' />
+  <node id='-3359871' action='modify' lat='53.46576746936' lon='9.98034952998' />
+  <node id='-3359872' action='modify' lat='53.46509683874' lon='9.97988819003' />
+  <node id='-3359873' action='modify' lat='53.46495632112' lon='9.97918545663' />
+  <node id='-3359874' action='modify' lat='53.46537466952' lon='9.97851490438' />
+  <node id='-3359875' action='modify' lat='53.46570360024' lon='9.97780679584' />
+  <node id='-3359876' action='modify' lat='53.46634228718' lon='9.97643350482' />
+  <node id='-3359877' action='modify' lat='53.4666743974' lon='9.97589170396' />
+  <node id='-3359878' action='modify' lat='53.46706718203' lon='9.97526943147' />
+  <node id='-3359879' action='modify' lat='53.4671310491' lon='9.9748027271' />
+  <node id='-3359880' action='modify' lat='53.46791979956' lon='9.97379421651' />
+  <node id='-3359881' action='modify' lat='53.46863828418' lon='9.9724799341' />
+  <node id='-3359882' action='modify' lat='53.46908853154' lon='9.97162698627' />
+  <node id='-3359883' action='modify' lat='53.46930566886' lon='9.97114418864' />
+  <node id='-3359884' action='modify' lat='53.46935675983' lon='9.97092961192' />
+  <node id='-3359885' action='modify' lat='53.46933760073' lon='9.97047900081' />
+  <node id='-3359886' action='modify' lat='53.46958028212' lon='9.96963142276' />
+  <node id='-3359887' action='modify' lat='53.4697016223' lon='9.96834396243' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -17607,6 +17631,34 @@
     <nd ref='-3359763' />
     <nd ref='12401250006131387' />
     <tag k='oneway' v='yes' />
+  </way>
+  <way id='-193039' action='modify'>
+    <nd ref='98402950004665831' />
+    <nd ref='-3359864' />
+    <nd ref='-3359865' />
+    <nd ref='-3359866' />
+    <nd ref='-3359867' />
+    <nd ref='-3359868' />
+    <nd ref='-3359869' />
+    <nd ref='-3359870' />
+    <nd ref='-3359871' />
+    <nd ref='-3359872' />
+    <nd ref='-3359873' />
+    <nd ref='-3359874' />
+    <nd ref='-3359875' />
+    <nd ref='-3359876' />
+    <nd ref='-3359877' />
+    <nd ref='-3359878' />
+    <nd ref='-3359879' />
+    <nd ref='-3359880' />
+    <nd ref='-3359881' />
+    <nd ref='-3359882' />
+    <nd ref='-3359883' />
+    <nd ref='-3359884' />
+    <nd ref='-3359885' />
+    <nd ref='-3359886' />
+    <nd ref='-3359887' />
+    <tag k='type' v='planned' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
@@ -37810,12 +37862,7 @@
     <member type='way' ref='607482355' role='' />
     <member type='node' ref='8540400047424' role='gpx_end' />
     <member type='node' ref='99394920005508649' role='gpx_start' />
-    <tag k='color' v='#552976' />
-    <tag k='gpx_backward' v='Richtung Innenstadt' />
-    <tag k='gpx_forward' v='Richtung Neugraben' />
-    <tag k='id' v='10' />
-    <tag k='name' v='Alltagsroute 10' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/231965' />
+    <tag k='ref' v='Route10' />
   </relation>
   <relation id='233959' action='modify' version='1'>
     <member type='node' ref='94486390004569495' role='gpx_end' />

@@ -118,6 +118,14 @@ way[type=detour] {
   dashes: 2;
 }
 
+way[type=planned] {
+  color: #c0c0c0;
+  width: 4;
+  text: "";
+  casing-width: 0;
+  dashes: 2;
+}
+
 
 area[type=article] {
   fill-color: #000;
