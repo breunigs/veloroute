@@ -182,6 +182,15 @@ if !rendering_ok
   die("rendering failed!")
 end
 
+# manually tag h265 codec if ffmpeg didn't set it
+stream_path = File.join(tmp_dir, "stream.m3u8")
+orig = File.read(stream_path)
+upd = orig.sub(/^#EXT-X-STREAM-INF:BANDWIDTH=13200000,RESOLUTION=1920x1080$/, '#EXT-X-STREAM-INF:BANDWIDTH=13200000,RESOLUTION=1920x1080,CODECS="hvc1.1.4.L186.B01"')
+if orig != upd
+  File.write(stream_path, upd)
+  puts "manually set h265 tag in stream.m3u8"
+end
+
 print "\nUploading… "
 tries = 0
 begin
