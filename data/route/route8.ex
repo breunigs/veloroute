@@ -1,11 +1,9 @@
 defmodule Data.Route.Route8 do
   @behaviour Route.Behaviour
 
-  @name "Alltagsroute 8"
-
   def id(), do: "8"
   def color(), do: "#e20612"
-  def name(), do: @name
+  def name(), do: "Alltagsroute 8"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/229623"
 
   forward_bergedorf = %Video.Track{
