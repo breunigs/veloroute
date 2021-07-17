@@ -180,19 +180,19 @@
   :velo: false
 7145:
   :id: 7145
-  :title: Neubau U4 Horner Geest -- HOCHBAHN
-  :updated: '2020-12-04T17:03:06.334802'
+  :title: 'Neubau U4 Horner Geest -- '
+  :updated: '2021-07-16T11:52:46.576296'
   :link: https://www.schneller-durch-hamburg.de/u4-horner-geest
   :start: '2020-04-01'
-  :end: '2022-07-31'
-  :velo: false
+  :end: '2026-12-31'
+  :velo: true
 7919:
   :id: 7919
   :title: 'Hindenburgstraße / Sielbauarbeiten -- '
-  :updated: '2021-06-18T06:41:27.592423'
+  :updated: '2021-07-08T16:32:13.781662'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
-  :end: '2021-09-30'
+  :end: '2021-12-03'
   :velo: false
 12316:
   :id: 12316
@@ -1594,10 +1594,10 @@
 15466:
   :id: 15466
   :title: 'Sinstorfer Kirchweg Brücke / Grundinstandsetzung -- '
-  :updated: '2021-06-09T16:58:22.206593'
+  :updated: '2021-07-12T16:48:02.875298'
   :start: '2021-06-28'
   :end: '2022-04-01'
-  :velo: false
+  :velo: true
 16390:
   :id: 16390
   :title: 'Barmbeker Straße / Erkundungsbohrung -- '
@@ -1623,10 +1623,10 @@
 16562:
   :id: 16562
   :title: 'Nettelnburger Landweg, Deckensanierung -- '
-  :updated: '2021-06-14T10:40:10.41104'
+  :updated: '2021-07-16T09:47:35.149675'
   :start: '2021-06-14'
-  :end: '2021-07-16'
-  :velo: false
+  :end: '2021-07-30'
+  :velo: true
 16700:
   :id: 16700
   :title: 'Eilbeker Weg 88 / Hochbau -- '
@@ -1914,3 +1914,67 @@
   :start: '2021-08-02'
   :end: '2023-11-12'
   :velo: true
+17902:
+  :id: 17902
+  :title: 'Heidi-Kabel-Platz / Umgestaltung -- '
+  :updated: '2021-07-08T12:36:22.68152'
+  :start: '2021-07-12'
+  :end: '2021-10-15'
+  :velo: false
+18083:
+  :id: 18083
+  :title: 'Ipanema-Neubau -- '
+  :updated: '2021-07-12T14:14:25.842226'
+  :start: '2020-09-01'
+  :end: '2024-07-31'
+  :velo: false
+18095:
+  :id: 18095
+  :title: 'Jahnring Deckensanierung -- '
+  :updated: '2021-07-12T14:02:54.893986'
+  :link: https://lsbg.hamburg.de/contentblob/15239988/20a55c01faa31f8eb0e82ce59e4cde35/data/jahnring-jahnbruecke-ring-2-fahrbahnsanierung-12-07-21-bis-04-08-21.pdf
+  :start: '2021-07-12'
+  :end: '2021-08-04'
+  :velo: false
+17197:
+  :id: 17197
+  :title: 'Warburgstraße / Kranarbeiten -- '
+  :updated: '2021-06-23T06:11:05.56803'
+  :start: '2021-07-16'
+  :end: '2021-07-18'
+  :velo: false
+18125:
+  :id: 18125
+  :title: 'Poßmoorweg & Moorfuhrtweg / Straßenbauarbeiten -- '
+  :updated: '2021-07-14T13:43:43.228661'
+  :start: '2021-07-19'
+  :end: '2021-07-30'
+  :velo: false
+18139:
+  :id: 18139
+  :title: 'Steilshooper Straße 72 / Hochbau -- '
+  :updated: '2021-07-14T13:43:59.941181'
+  :start: '2021-07-19'
+  :end: '2022-02-28'
+  :velo: false
+18161:
+  :id: 18161
+  :title: 'Stellinger Chaussee/ Asphaltierungsarbeiten -- '
+  :updated: '2021-07-14T13:44:43.624687'
+  :start: '2021-07-19'
+  :end: '2021-07-23'
+  :velo: false
+17573:
+  :id: 17573
+  :title: 'Heimfelder Straße / Asphaltierungsarbeiten / Vollsperrung -- '
+  :updated: '2021-06-30T06:55:36.132911'
+  :start: '2021-07-19'
+  :end: '2021-07-30'
+  :velo: true
+18120:
+  :id: 18120
+  :title: 'Elbgaustraße ggü. 218 / Leitungsarbeiten -- '
+  :updated: '2021-07-14T13:43:28.476767'
+  :start: '2021-08-11'
+  :end: '2021-10-19'
+  :velo: false
