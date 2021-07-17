@@ -1,37 +1,88 @@
 defmodule Data.Route.Route10 do
-  use Route.Parser,
-    yaml: """
-    # 2020
-    10 (stadtauswärts nach Fischbek):
-    - { seq: "16AmVgaTlMHDBWm2CGPvUA", from: "j2S-23C43gXWCodSWlWxHQ", to: "pJkwKWEkQfUQI6vNJAoKhQ" }
-    - { seq: "9kxL8D-l0fL23qldX-epYA", from: "HRdCbrL86pE9QEYxA5EBFQ", to: "nJ1w-bbNFBdV1tmAzFQ8jA" }
-    - { seq: "WcONXAX3FRbleyEIhzah2Q", from: "HdcA_VAjhWtZffnHKsItXg", to: "52AFskxpp5UYb0Zjy0-wzQ" }
-    - { seq: "gXaIxIITPSbZD9ifZTKhaQ", from: "mFD57ZV2Mhvg4LVDp-AQRQ", to: "O4A4K7Vgo5oFY8JclMgoxw" }
-    - { seq: "u65A2SoEjzXo5EHfe06gsg", from: "Ydlb0cj2TS28O6HYshnxPg", to: "IntvImh4ZE4PW6ROpzDx7g" }
-    - { seq: "qQIgtizPrgMEF-UVMtomyA", from: "dYHN5Qn-RxuSdYBOKUOsfA", to: "ZisYd4NEKMeDbFJQYQEXuQ" }
-    - { seq: "qQIgtizPrgMEF-UVMtomyA", from: "58_wo9tZnXeOb3A90U-9bA", to: "sryyt_eDPqexDobzVKAQ7g" }
-    - { seq: "3A6RtockTQsUzQWlfZTzkw", from: "Cf6-a0HHJ7Dy3LbgqkhQig", to: "nWtIi5auwJZEiUgavvroTA" }
-    - { seq: "9e9YIPxApfsZNLWRNdHEow", from: "LQFKJAULTVng1zAN3VO2KA", to: "X_xbti8_rqcaF-1BDyrtoQ" }
-    - { seq: "UnVhzUTeVILMabPU_uvjMA", from: "7zNYuwx3KkhdLSU1d2adyg", to: "Wvtl2dvJuClHkhiWFCkPKA" }
-    - { seq: "TgYoIqtjDkxJFkd283vs3Q", from: "5LOhubQ5AVXfETNJdvyviA", to: "7QmvxwcD9oJrhwT2mrITrg" }
+  @behaviour Route.Behaviour
 
+  def id(), do: "10"
+  def color(), do: "#552976"
+  def name(), do: "Alltagsroute 10"
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/231965"
 
-    10 (stadteinwärts von Fischbek):
-    - { seq: "Z9107sbn3c-Ke6ttz0UrWQ", from: "suly_LLr1-epmKxPbQPOLg", to: "H1rzE9JLzJoWRIgeM89Y8A" }
-    - { seq: "Z9107sbn3c-Ke6ttz0UrWQ", from: "vVI7umXvEsWG07sDsriUVA", to: "8lcwltWqsAwDPazcxMgAlw" }
-    - { seq: "Hz5C6Fhpu5nBqLJ49aSgoA", from: "rypgP1RzKGeVf8QXJl9eYQ", to: "h5MamEA7wxhnJDenY8TbOQ" }
-    - { seq: "Hz5C6Fhpu5nBqLJ49aSgoA", from: "0GEYD4gTdCpl6GHWMGKvcg", to: "ScCJvzNNJ7izB7pJkS02Lg" }
-    - { seq: "Hz5C6Fhpu5nBqLJ49aSgoA", from: "2hOSM9FhjgkAMzUUff1LYw", to: "pJkhFZEMggz8PYbxuxyDyQ" }
-    - { seq: "4yw8Zbsuly7YwKzvRAd9Ww", from: "pTIJQEP2dtwu8Nl5axdfpA", to: "Lxa18ruq6bKJwkNDm4DV7A" }
-    - { seq: "sr60vltbn4qH4RU64GiZMQ", from: "rG3qjLZI8khJrKx-oXa-uQ", to: "pnt8mJSBUPxEj9yg--xGfA" }
-    - { seq: "jtUigg7_3imxk455wsCx4g", from: "x01bSvmofVbn6Cn6htKkWw", to: "3plt2lmvXArwBhdFfpy7SQ" }
-    - { seq: "B376ko2SSGXOs0C_PToFAw", from: "fRHY1BTTY6Y_rqO329qihQ", to: "fLNvK0iRWhOopOADAI797A" }
-    - { seq: "Ep8YbU1L7Eby4PSNEkHQHQ", from: "TjZpujzXcSwEhww-UFVY-A", to: "Ll0XTN1t8yDMVxGemKIKjg" }
-    - { seq: "0_Z_7BTMuyqQ2BFkvFBsCA", from: "TkSMwFCk4z9e0PPJIZd5Fw", to: "yJWUTBBOusVdK0aD3EQ1gQ" }
-    - { seq: "ie5y3JgCQtNZ6bGP9_rV5A", from: "hl8KIdi7ehgjFN3dX3m8wg", to: "AgrctfcuU3RRZfk8EPR1YA" }
-    - { seq: "zxyGLITUZM3tK-dsdltCug", from: "0v3QDCpL6JkOZp8jQ6WRsA", to: "6nXClrcb1jIkntVoHTaxNA" }
-    - { seq: "zxyGLITUZM3tK-dsdltCug", from: "jI4ZHVJBurEFg6pRKKbEOQ", to: "hINf_ePkCvtoE8EUXgYFQA" }
-    - { seq: "EsjUiDRt59ozbQBwYNNmrQ", from: "EiOMbXl9d2VtbuNRv4sd0w", to: "VZk8kVgHNP8UYFkEpHS7kQ" }
-    - { seq: "RZsSKCpUFcglnuQntM19eA", from: "K2cz2VLKAIYcu8TqXJo2bQ", to: "ZBRH6VlGb0lyFsd5kwzh7Q" }
-    """
+  forward = %Video.Track{
+    group: "4",
+    direction: :forward,
+    from: "Innenstadt",
+    to: "Neugraben",
+    parent_ref: __MODULE__,
+    text: "aus der Innenstadt nach Neugraben",
+    videos: [
+      {"2021-07-03-veloroute10/GX012051", :start, :end},
+      {"2021-07-03-veloroute10/GX012052", :start, :end},
+      {"2021-07-03-veloroute10/GX012053", :start, :end},
+      {"2021-07-03-veloroute10/GX012054", :start, :end},
+      {"2021-07-03-veloroute10/GX012055", :start, :end},
+      {"2021-07-03-veloroute10/GX012056", :start, :end},
+      {"2021-07-03-veloroute10/GX012057", :start, :end},
+      {"2021-07-03-veloroute10/GX012058", :start, :end},
+      {"2021-07-03-veloroute10/GX012059", :start, :end},
+      {"2021-07-03-veloroute10/GX012060", :start, :end},
+      {"2021-07-03-veloroute10/GX012061", :start, :end},
+      {"2021-07-03-veloroute10/GX012062", :start, :end},
+      {"2021-07-03-veloroute10/GX012063", :start, "0:00:43.277"},
+      {"2021-07-03-veloroute10/GX012068", "0:00:31.265", :end},
+      {"2021-07-03-veloroute10/GX012069", :start, "0:01:11.939"},
+      {"2021-07-03-veloroute10/GX012083", "0:00:00.200", "0:00:03.904"},
+      {"2021-07-03-veloroute10/GX012070", "0:00:02.469", "0:00:32.366"},
+      {"2021-07-03-veloroute10/GX012071", "0:00:00.067", :end},
+      {"2021-07-03-veloroute10/GX012072", :start, :end},
+      {"2021-07-03-veloroute10/GX012073", :start, :end},
+      {"2021-07-03-veloroute10/GX012074", :start, :end},
+      {"2021-07-03-veloroute10/GX012075", :start, :end},
+      {"2021-07-03-veloroute10/GX012076", :start, "0:01:39.199"}
+    ]
+  }
+
+  backward = %Video.Track{
+    group: "4",
+    direction: :backward,
+    from: "Neugraben",
+    to: "Innenstadt",
+    parent_ref: __MODULE__,
+    text: "von Neugraben in die Innenstadt",
+    videos: [
+      {"2021-07-03-veloroute10/GX012076", "0:02:13.633", "0:03:49.229"},
+      {"2021-07-03-veloroute10/GX012077", "0:01:43.670", :end},
+      {"2021-07-03-veloroute10/GX012078", :start, :end},
+      {"2021-07-03-veloroute10/GX012079", :start, :end},
+      {"2021-07-03-veloroute10/GX012080", :start, :end},
+      {"2021-07-03-veloroute10/GX012081", :start, :end},
+      {"2021-07-03-veloroute10/GX012082", :start, "0:01:06.500"},
+      {"2021-07-03-veloroute10/GX012084", "0:00:00.400", :end},
+      {"2021-07-03-veloroute10/GX012085", :start, :end},
+      {"2021-07-03-veloroute10/GX012086", :start, "0:00:11.645"},
+      {"2021-07-03-veloroute10/GX012087", "0:00:00.200", :end},
+      {"2021-07-03-veloroute10/GX012088", :start, :end},
+      {"2021-07-03-veloroute10/GX012089", :start, :end},
+      {"2021-07-03-veloroute10/GX012090", :start, "0:00:15.782"},
+      {"2021-07-03-veloroute10/GX012091", "0:00:00.501", :end},
+      {"2021-07-03-veloroute10/GX012092", :start, :end},
+      {"2021-07-03-veloroute10/GX012093", :start, :end},
+      {"2021-07-03-veloroute10/GX012094", :start, :end},
+      {"2021-07-03-veloroute10/GX012095", :start, :end},
+      {"2021-07-03-veloroute10/GX012096", :start, :end},
+      {"2021-07-03-veloroute10/GX012097", :start, :end},
+      {"2021-07-03-veloroute10/GX012098", :start, :end},
+      {"2021-07-03-veloroute10/GX012099", :start, :end}
+    ]
+  }
+
+  @tracks [forward, backward]
+  def tracks(), do: @tracks
+
+  # legacy
+  def parsed() do
+    %{{id(), ""} => []}
+  end
+
+  def index() do
+    %{}
+  end
 end
