@@ -96,11 +96,13 @@ way[!color] {
 
 way[gpx:name] {
   color: #FFFE9D;
-  text: tag("gpx:name");
-  text-position: line;
   width: 1;
   casing-color: #555555;
   casing-width: 0.1;
+}
+
+way|z20-[gpx:name] {
+  text: tag("gpx:name");
 }
 
 way[gpx:name] > node {
