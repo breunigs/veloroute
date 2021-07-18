@@ -1,45 +1,132 @@
 defmodule Data.Route.Route11 do
-  use Route.Parser,
-    yaml: """
-    # 2020
-    11 (stadtauswärts nach Eissendorf):
-    - { seq: "sDU97Ch53QInMFwxCxevxw", from: "szY78_Z0XxVzLBq3XOD9sw", to: "zBvAjYrxUgqWj-AyPO02YA" }
-    - { seq: "9P7LrWunBC9OifwdWXkumA", from: "a8lM-nl2UPqJMqdJldzu0w", to: "q3909OkHKcJx1WpojQfuvQ", "reverse": true }
-    - { seq: "9PR_e_FIzoG9E5qeDl3ndA", from: "Zh80RAf6y80hU-jLD7IEGQ", to: "GTj3If2Tk20flaq08DEs_Q" }
-    - { seq: "PeG5ykZ0nEfs_TrE1glROA", from: "mjWviN56YtPPenesekXPqA", to: "zNfT878UqLGNXZWDNmqhLw" }
-    - { seq: "ULBR8afIcG8z59e2F_LG1g", from: "OlNw3Ta5cSnUkyqx5_JcaQ", to: "Mc8y6Snm0GIUE8O0STF5Jw" }
-    - { seq: "ULBR8afIcG8z59e2F_LG1g", from: "aQ93pjuAifxlz_X-VFQ2XA", to: "sW-bGW0dpdwsQ1XkG5mGQg" }
-    - { seq: "CEEp6KnQyMIEpKggUFMrNg", from: "rJaMfxCogM0dba1FDrTzWw", to: "ozkDwiCjAB76TnQ2OQE2Ww" }
-    - { seq: "CEEp6KnQyMIEpKggUFMrNg", from: "Fso7kLhkEh2SbjLQNSBVAQ", to: "BvxDtV6ws8ub9j2cR9RSAw" }
-    - { seq: "0ZjYqMvwVOcUHL4QV9QooA", from: "i8Hc2ADlJZKrB5ryhOskGw", to: "btf6bgqtZLI7djYhzdhwnA" }
-    - { seq: "qQIgtizPrgMEF-UVMtomyA", from: "jt9OUy2D-P7FH5ZHAfoJjA", to: "jaylgG7mzC5V04ESL8R-cA" }
-    - { seq: "0ZjYqMvwVOcUHL4QV9QooA", from: "dmuitlejmS_2MCY9jFrj0g", to: "mzR03k5NWEzQXBQzz73tFg" }
-    - { seq: "Zwha7Cgyx-41FIae6rP9IQ", from: "zpJY0BzK0Hgp_omIqlfd9A", to: "RLx8sbyyNT5Af1fKDDZz4g" }
-    - { seq: "eweCYMIts6bZd-vmftOZyg", from: "9MGv8_Dj9k5ZbM_YKEIbiA", to: "Mz2Ira9EvUtcPE-Ou2UV1w" }
-    - { seq: "uGZmZzbnEF66esOwaxq-nQ", from: "XWL1YifOWBYcl7oR2xZIIg", to: "2AXvb5ZYC2lk0H4MVPXUyA" }
-    - { seq: "W69nCV8edm2gNh_Ug0CLfA", from: "yD7I9IJwV4A5ZdFPiYtMJw", to: "-cWI__avN0oyBujiE8Ev4w" }
-    11 (stadteinwärts von Eissendorf):
-    - { seq: "W69nCV8edm2gNh_Ug0CLfA", from: "M3nqC-BdGI7Qd8cO9WdDkg", to: "Y9cZb9gy5Da695tzILhYVw" }
-    - { seq: "sP5mrtOwNarZYva-LAOYTA", from: "loqwdtIkOFriRzpsu0-YkA", to: "RZKN9LcO8L9_n4ETEUanYg" }
-    - { seq: "3MPS8vD8oBbOBBPNhc7xlw", from: "LqIEyJJacXRG-XKPFSiv6A", to: "fkmZYUcmUF3hOQ7UfRRYEg" }
-    - { seq: "xg1vuN8VuVUgr75D7aVzEA", from: "TKS-TKiCHuU_xXgdqbKh-g", to: "-JX_5qYg5oV7n_790MffTQ" }
-    - { seq: "_BTTr0DW9CPfN4xKS-DCkg", from: "jQzIykqVPvEdjpD8QaIYqA", to: "fwqhqnUyRzxclSry09_TBg" }
-    - { seq: "OSO3oP_Cc7I4cjndevT5Ow", from: "3ZSDgMfq1hA2qwt3D82azQ", to: "eBaL6ipLyFk2CsjhuQKfMQ" }
-    - { seq: "iEpNGR0dFdu5_2idyRjVzA", from: "CgHpYUul8vRM3qtP0rrGYw", to: "VMjpL1oO1j-H3fxSoyCiCA" }
-    - { seq: "ex5mr3zosSWn9WhErhHlqQ", from: "h6rLvltfzauLAyw4NiX18A", to: "-WnJZx25mJqkJ1vPKgcixA" }
-    - { seq: "9P7LrWunBC9OifwdWXkumA", from: "q3909OkHKcJx1WpojQfuvQ", to: "a8lM-nl2UPqJMqdJldzu0w" }
-    - { seq: "UklvfQHUJY2RQ4Ls2j5-Qg", from: "RloiW63gnatTi1eVPndJtA", to: "_7UbhxNPMl0HpAkvgle8LA" }
-    - { seq: "8c1_G8OslL0aGG6la2r_xw", from: "vG7sKNCWVYrcUvmz5ajK9Q", to: "vG7sKNCWVYrcUvmz5ajK9Q" }
+  @behaviour Route.Behaviour
 
-    11 (Wilhelmsburg zur Veddel):
-    - { seq: "_BTTr0DW9CPfN4xKS-DCkg", from: "PAGkkzWcOjWUR_tjNSlUSg", to: "yQm0aBcNGc1peIOdGbGdRQ" }
-    - { seq: "2bKVQNJrjszgoBzp1jC8Pg", from: "3b7aEwfXfK21U_fIvMcPAQ", to: "6me-EAbjS1nY6oBByDh_Bw" }
-    - { seq: "GWPtS7wN1Hu05RYZ_d8B-Q", from: "Xp3PAsrD3YdZKJIyu_pKlg", to: "Xp3PAsrD3YdZKJIyu_pKlg" }
+  def id(), do: "11"
+  def color(), do: "#00a0e2"
+  def name(), do: "Alltagsroute 11"
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/233959"
 
-    11 (Veddel nach Wilhelmsburg):
-    - { seq: "GWPtS7wN1Hu05RYZ_d8B-Q", from: "GtovIvS1aHJ-DmTEzjrgrg", to: "2DTaXA_DjY97EyvL8OwYhg" }
-    - { seq: "OSO3oP_Cc7I4cjndevT5Ow", from: "0W9JR0FZfW4RRI37N-Z3oQ", to: "71e_WZn3xOt8gnfxwFPY8g" }
-    - { seq: "P2m4o4aaWZipFSBDhhYRCQ", from: "VULZVUVSVOw1hGfxFoQhcQ", to: "Q-wXAPhoijL7RBCWh8o3Pw" }
+  forward_innenstadt = %Video.Track{
+    group: "11 Eißendorf",
+    direction: :forward,
+    from: "Innenstadt",
+    to: "Eißendorf",
+    parent_ref: __MODULE__,
+    text: "aus der Innenstadt nach Eißendorf",
+    videos: [
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011832", :start, :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011833", :start, :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011834", :start, :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011835", :start, "0:00:07.908"},
+      {"2021-07-04-veloroute11/GX012106", :start, :end},
+      {"2021-07-04-veloroute11/GX012107", :start, :end},
+      {"2021-07-04-veloroute11/GX012108", :start, :end},
+      {"2021-07-04-veloroute11/GX012109", :start, :end},
+      {"2021-07-04-veloroute11/GX012111", :start, :end},
+      {"2021-07-04-veloroute11/GX012112", :start, :end},
+      {"2021-07-04-veloroute11/GX012113", :start, :end},
+      {"2021-07-04-veloroute11/GX012114", :start, "0:00:31.632"},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012373", "0:00:21.488", :end},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012374", :start, "0:00:57.391"},
+      {"2021-07-04-veloroute11/GX012120", "0:01:08.535", :end},
+      {"2021-07-04-veloroute11/GX012121", :start, :end},
+      {"2021-07-04-veloroute11/GX012122", :start, :end},
+      {"2021-07-04-veloroute11/GX012123", :start, :end},
+      {"2021-07-04-veloroute11/GX012124", :start, :end},
+      {"2021-07-04-veloroute11/GX012125", :start, :end},
+      {"2021-07-04-veloroute11/GX012126", :start, "0:01:35.462"}
+    ]
+  }
 
-    """
+  backward_innenstadt = %Video.Track{
+    group: "11 Eißendorf",
+    direction: :backward,
+    from: "Eißendorf",
+    to: "Innenstadt",
+    parent_ref: __MODULE__,
+    text: "aus Eißendorf in die Innenstadt",
+    videos: [
+      {"2021-07-04-veloroute11/GX012126", "0:01:37.264", :end},
+      {"2021-07-04-veloroute11/GX012128", :start, :end},
+      {"2021-07-04-veloroute11/GX012129", :start, :end},
+      {"2021-07-04-veloroute11/GX012130", :start, :end},
+      {"2021-07-04-veloroute11/GX012131", :start, :end},
+      {"2021-07-04-veloroute11/GX012132", :start, :end},
+      {"2021-07-04-veloroute11/GX012133", :start, :end},
+      {"2021-07-04-veloroute11/GX012134", :start, :end},
+      {"2021-07-04-veloroute11/GX012135", :start, :end},
+      {"2021-07-04-veloroute11/GX012136", :start, "0:01:42.336"},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012374", "0:01:10.804", :end},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012375", :start, :end},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012376", :start, "0:00:06.540"},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012373", "0:00:01.802", "0:00:12.479"},
+      {"2021-07-04-veloroute11/GX012138", "0:00:11.278", :end},
+      {"2021-07-04-veloroute11/GX012139", :start, :end},
+      {"2021-07-04-veloroute11/GX012140", :start, :end},
+      {"2021-07-04-veloroute11/GX012141", :start, :end},
+      {"2021-07-04-veloroute11/GX012142", :start, :end},
+      {"2021-07-04-veloroute11/GX012143", :start, :end},
+      {"2021-07-04-veloroute11/GX012144", :start, :end},
+      {"2021-06-27-veloroute9/GX012017", :start, :end},
+      {"2021-06-27-veloroute9/GX012018", :start, :end},
+      {"2021-06-27-veloroute9/GX012019", :start, :end},
+      {"2021-06-27-veloroute9/GX012020", :start, :end},
+      {"2021-06-27-veloroute9/GX012021", :start, "0:00:13.413"},
+      {"2021-06-22-velo7-und-pauli-altona/GX011901", "0:00:04.238", "0:00:16.450"},
+      {"2021-06-05-velorouten-1-1a-2/GX011655", "0:00:34.601", "0:00:48.215"}
+    ]
+  }
+
+  # videos are only the short segments, GPX should be the full tracks
+  forward_veddel = %Video.Track{
+    group: "11 Veddel",
+    direction: :forward,
+    from: "Veddel",
+    to: "Wilhelmsburg",
+    parent_ref: __MODULE__,
+    text: "von der Veddel nach Wilhelmsburg",
+    videos: [
+      {"2021-07-18-whburg-and-on/GX012389", "0:00:42.242", :end},
+      {"2021-07-18-whburg-and-on/GX012390", :start, :end},
+      {"2021-07-18-whburg-and-on/GX012391", :start, :end},
+      {"2021-07-18-whburg-and-on/GX012392", :start, "0:00:02.302"},
+      {"2021-04-17-freizeitrouten-6und-7/GX011264", "0:00:02.169", "0:01:15.008"},
+      {"2021-07-04-veloroute11/GX012118", "0:00:03.704", "0:00:13.747"},
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012372", :start, "0:00:12.479"}
+    ]
+  }
+
+  backward_veddel = %Video.Track{
+    group: "11 Veddel",
+    direction: :backward,
+    from: "Wilhelmsburg",
+    to: "Veddel",
+    parent_ref: __MODULE__,
+    text: "von Wilhelmsburg zur Veddel",
+    videos: [
+      {"2021-07-17-gruenerring1-11whburg-haubach/GX012376", "0:00:06.840", "0:00:08.609"},
+      {"2021-07-04-veloroute11/GX012117", "0:00:08.308", "0:00:26.860"},
+      {"2021-04-17-freizeitrouten-6und-7/GX011303", "0:00:39.540", :end},
+      {"2021-04-17-freizeitrouten-6und-7/GX011304", :start, :end},
+      {"2021-07-18-whburg-and-on/GX012396", :start, :end},
+      {"2021-07-18-whburg-and-on/GX012397", :start, "0:00:03.270"}
+    ]
+  }
+
+  @tracks [
+    forward_innenstadt,
+    backward_innenstadt,
+    forward_veddel,
+    backward_veddel
+  ]
+  def tracks(), do: @tracks
+
+  # legacy
+  def parsed() do
+    %{{id(), ""} => []}
+  end
+
+  def index() do
+    %{}
+  end
 end

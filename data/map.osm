@@ -37996,11 +37996,6 @@
     <member type='way' ref='298844244' role='backward' />
     <member type='node' ref='10856630005374321' role='gpx_end' />
     <member type='node' ref='88210050005581981' role='gpx_start' />
-    <tag k='color' v='#fdb801' />
-    <tag k='gpx_backward' v='Äußere Ringroute, gegen Uhrzeigersinn' />
-    <tag k='gpx_forward' v='Äußere Ringroute, im Uhrzeigersinn' />
-    <tag k='id' v='14' />
-    <tag k='name' v='Alltagsroute 14' />
-    <tag k='osm_relation_ref' v='https://www.openstreetmap.org/relation/8349004' />
+    <tag k='ref' v='Route14' />
   </relation>
 </osm>
