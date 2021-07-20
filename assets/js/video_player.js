@@ -48,6 +48,8 @@ function updateVideoElement() {
       window.hls = new Hls({
         startFragPrefetch: true,
         enableWebVTT: false,
+        maxBufferLength: 30, // seconds
+        maxMaxBufferLength: 60,
       });
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
