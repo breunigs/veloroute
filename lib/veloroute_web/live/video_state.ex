@@ -19,7 +19,7 @@ defmodule VelorouteWeb.Live.VideoState do
           backward: Video.Rendered.t() | nil,
           forward_track: Video.Track.t() | nil,
           backward_track: Video.Track.t() | nil,
-          start: Geo.Point.t() | nil,
+          start: Geo.Point.like() | nil,
           direction: :forward | :backward,
           player_js: binary() | nil
         }
@@ -156,7 +156,8 @@ defmodule VelorouteWeb.Live.VideoState do
     with pos <- parse_integer(params["pos"]),
          rendered <- current_rendered(state),
          true <- 0 <= pos && pos <= rendered.length_ms do
-      point = Video.Rendered.start_from(rendered, pos)
+      # no idea why the Map.take is needed, but otherwise Dialyzer complains
+      point = Video.Rendered.start_from(rendered, pos) |> Map.take([:lat, :lon])
       assigns = %{state | start: point} |> for_frontend()
       Phoenix.LiveView.assign(socket, assigns)
     else
@@ -196,7 +197,6 @@ defmodule VelorouteWeb.Live.VideoState do
             when not is_nil(state.forward) and not is_nil(state.backward)
 
   @spec for_frontend(t()) :: keyword()
-
   defp for_frontend(%__MODULE__{} = state) when has_video(state) do
     video = if state.direction == :forward, do: state.forward, else: state.backward
 

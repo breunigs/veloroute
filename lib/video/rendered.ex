@@ -282,34 +282,35 @@ defmodule Video.Rendered do
       iex> Video.Rendered.start_from(Video.RenderedTest.Example, 124)
       %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124}
   """
-  def start_from(rendered, point)
+  def start_from(rendered, point_or_time)
 
   def start_from(rendered, nil) do
     [a, b | _rest] = rendered.coords
     Map.put(a, :bearing, Geo.CheapRuler.bearing(a, b))
   end
 
-  def start_from(rendered, point) when is_integer(point) do
+  def start_from(rendered, time) when is_integer(time) do
     cond do
-      point <= 0 ->
-        rendered.coords() |> hd()
+      time <= 0 ->
+        start_from(rendered, nil)
 
-      point >= rendered.length_ms() ->
-        rendered.coords() |> List.last()
+      time >= rendered.length_ms() ->
+        [a, b] = rendered.coords() |> Enum.slice(-2..-1)
+        Map.put(b, :bearing, Geo.CheapRuler.bearing(a, b))
 
       true ->
         rendered.coords()
         |> Enum.chunk_every(2, 1, :discard)
         |> Enum.find_value(fn [a, b] ->
-          if point >= a.time_offset_ms && point <= b.time_offset_ms do
-            t = calc_t(point, a, b)
+          if time >= a.time_offset_ms && time <= b.time_offset_ms do
+            t = calc_t(time, a, b)
 
             Video.TimedPoint.interpolate(a, b, t)
             |> Map.put(:bearing, Geo.CheapRuler.bearing(a, b))
             |> Map.delete(:__struct__)
           end
         end)
-    end || hd(rendered.coords())
+    end || start_from(rendered, nil)
   end
 
   def start_from(rendered, point) do
