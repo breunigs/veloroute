@@ -2,8 +2,6 @@
 type: planned-construction
 title: Hammer Landstraße (ab Diagonalstraße)
 start: 2022
-tags:
-- articles
 text: >
   <h4>Bestand</h4>
   <p>Die Radwege werden neben den Fußwegen als <a href="/lexikon/hochbordradweg">Hochbordradweg</a> geführt. Überholt werden kann nicht, denn dafür ist die Breite deutlich zu gering. Auch der Asphalt oder das Pflaster ist in die Jahre gekommen und stellenweise unangenehm zu befahren.</p>
@@ -29,3 +27,15 @@ text: >
     <li><a href="https://lsbg.hamburg.de/contentblob/14463994/d3162e0fa0e762030f648c2692a20272/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht</a></li>
     <li><a href="https://lsbg.hamburg.de/contentblob/14463996/ff7ce1faeac27fdfb4fbd5211c19ef76/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-plan.pdf">Pläne des ersten Entwurfs</a></li>
   </ul>
+tracks:
+- group: article
+  direction: forward
+  text: "Strecke"
+  videos:
+  - ["2021-07-15-14uhr-und-13gg/GX012274", "0:00:23.023", "end"]
+- group: article
+  direction: backward
+  text: "Strecke"
+  videos:
+  - ["2021-07-10-13uhr-14gg/GX012183", "0:00:16.116", "end"]
+  - ["2021-07-10-13uhr-14gg/GX012184", "start", "0:00:09.176"]
