@@ -48,7 +48,7 @@ defmodule Data.GeoJSON do
   end
 
   # renders for ways
-  defp as_geojson(%Map.Way{tags: %{type: "article", hide_from_map: "yes"}}), do: nil
+  defp as_geojson(%Map.Way{tags: %{type: "article", hide_from_map: true}}), do: nil
 
   defp as_geojson(
          w = %Map.Way{
