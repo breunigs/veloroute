@@ -24,11 +24,33 @@ defmodule VelorouteWeb.Live.VideoState do
           player_js: binary() | nil
         }
 
+  import Video.Track, only: [valid_hash: 1]
+
   @doc """
   Extracts all video related settings from the params hash and updates itself in
   the assigns, convenience accessors for video and also some shared assigns like
   lat/lon.
   """
+  def maybe_update_video(socket, route, article, %{"video" => hash} = params)
+      when valid_hash(hash) do
+    with rendered when not is_nil(rendered) <- Video.Rendered.get(hash),
+         src when is_list(src) <- rendered.sources(),
+         obj when not is_nil(obj) <-
+           Route.List.find_by_sources(src) || Cache.Articles.find_by_sources(src) do
+      # sort so that the desired track is on top
+      tracks = obj.tracks |> Enum.sort_by(fn t -> t.videos() != src end)
+
+      state = socket.assigns[:video] || new()
+      state = update_from_tracks(state, tracks, nil)
+
+      socket
+      |> Phoenix.LiveView.assign(for_frontend(state))
+      |> set_position(params)
+    else
+      _ -> maybe_update_video(socket, route, article, Map.delete(params, "video"))
+    end
+  end
+
   def maybe_update_video(%{assigns: assigns} = socket, route, article, params) do
     tracks = extract_tracks(article)
     tracks = if tracks == [], do: extract_tracks(route), else: tracks
@@ -64,6 +86,10 @@ defmodule VelorouteWeb.Live.VideoState do
   @spec current_track(t()) :: Video.Track.t() | nil
   def current_track(%__MODULE__{direction: :forward, forward_track: fw}), do: fw
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
+
+  @spec current_rendered(t()) :: Video.Rendered.t() | nil
+  def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
+  def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
   defp extract_tracks(nil), do: []
   defp extract_tracks(%Article{tracks: tracks}) when length(tracks) > 0, do: tracks
@@ -120,6 +146,34 @@ defmodule VelorouteWeb.Live.VideoState do
       |> for_frontend()
 
     Phoenix.LiveView.assign(socket, assigns)
+  end
+
+  @doc """
+  Set the current video position from the given time in milliseconds in the
+  "pos" param.
+  """
+  def set_position(%{assigns: %{video: state}} = socket, params) do
+    with pos <- parse_integer(params["pos"]),
+         rendered <- current_rendered(state),
+         true <- 0 <= pos && pos <= rendered.length_ms do
+      point = Video.Rendered.start_from(rendered, pos)
+      assigns = %{state | start: point} |> for_frontend()
+      Phoenix.LiveView.assign(socket, assigns)
+    else
+      _ ->
+        Logger.debug("failed to set pos from params: #{inspect(params)}")
+        socket
+    end
+  end
+
+  defp parse_integer(num) when is_integer(num), do: num
+
+  defp parse_integer(num) when is_binary(num) do
+    with {num, ""} <- Integer.parse(num) do
+      num
+    else
+      _ -> nil
+    end
   end
 
   defp new() do

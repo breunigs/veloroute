@@ -259,7 +259,7 @@ defmodule Video.Rendered do
     |> tl()
   end
 
-  @spec start_from(t(), Geo.Point.like() | nil) :: %{
+  @spec start_from(t(), Geo.Point.like() | integer() | nil) :: %{
           lat: float(),
           lon: float(),
           bearing: float(),
@@ -267,7 +267,8 @@ defmodule Video.Rendered do
         }
   @doc """
   Find the closest point for the video that roughly corresponds to the given
-  point. If the point is not valid, it returns the start of the video.
+  point or timestmap. If the point is not valid, it returns the start of the
+  video.
 
   ## Examples
 
@@ -277,12 +278,38 @@ defmodule Video.Rendered do
       iex> last_coord = Video.RenderedTest.Example.coords |> List.last()
       iex> Video.Rendered.start_from(Video.RenderedTest.Example, last_coord)
       %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
+
+      iex> Video.Rendered.start_from(Video.RenderedTest.Example, 124)
+      %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124}
   """
   def start_from(rendered, point)
 
   def start_from(rendered, nil) do
     [a, b | _rest] = rendered.coords
     Map.put(a, :bearing, Geo.CheapRuler.bearing(a, b))
+  end
+
+  def start_from(rendered, point) when is_integer(point) do
+    cond do
+      point <= 0 ->
+        rendered.coords() |> hd()
+
+      point >= rendered.length_ms() ->
+        rendered.coords() |> List.last()
+
+      true ->
+        rendered.coords()
+        |> Enum.chunk_every(2, 1, :discard)
+        |> Enum.find_value(fn [a, b] ->
+          if point >= a.time_offset_ms && point <= b.time_offset_ms do
+            t = calc_t(point, a, b)
+
+            Video.TimedPoint.interpolate(a, b, t)
+            |> Map.put(:bearing, Geo.CheapRuler.bearing(a, b))
+            |> Map.delete(:__struct__)
+          end
+        end)
+    end || hd(rendered.coords())
   end
 
   def start_from(rendered, point) do
@@ -307,4 +334,7 @@ defmodule Video.Rendered do
       time_offset_ms: round(time)
     }
   end
+
+  defp calc_t(interp, prev, next),
+    do: (interp - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
 end

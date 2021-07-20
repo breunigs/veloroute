@@ -10,7 +10,7 @@
 
 <%= if @video_player_js do %>
   <div id="videoOuter" style="<%= if @video_hash == "", do: "display: none" %>">
-    <video phx-update="ignore" id="videoInner" autoplay muted controls playsinline preload="metadata"></video>
+    <video phx-update="ignore" id="videoInner" autoplay muted controls playsinline preload="metadata" onpause="window.pushEvent('video-pause', {pos: Math.round(this.currentTime*1000)})"></video>
   </div>
 <% end %>
 

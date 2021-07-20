@@ -63,10 +63,15 @@ function updateVideoElement() {
 }
 
 function seekToStartTime() {
-  if (prevStartTimeMs == state.videoStart) return;
-  console.debug("seeking to", state.videoStart)
+  if (prevStartTimeMs == state.videoStart || currentTimeInMs() == state.videoStart) return;
+  console.debug("seeking to", state.videoStart, "(from ", prevStartTimeMs, ")")
   seekToTime(state.videoStart);
   prevStartTimeMs = state.videoStart;
+}
+
+function currentTimeInMs() {
+  if (!video) return 0;
+  return Math.round(video.currentTime * 1000);
 }
 
 function seekToTime(timeInMs) {

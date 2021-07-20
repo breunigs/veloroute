@@ -27,10 +27,9 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"}) =~ "Kleekamp"
 
-    # TODO: this should include the video time stamp or position
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&img="
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=421049&video=103d0f0e5a70650b87a10bf1b4930e82"
     )
   end
 

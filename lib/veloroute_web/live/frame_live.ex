@@ -104,6 +104,15 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, VelorouteWeb.Live.VideoState.reverse(socket, attr)}
   end
 
+  def handle_event("video-pause", attr, socket) do
+    Logger.debug("video-pause #{inspect(attr)}")
+
+    {:noreply,
+     socket
+     |> VelorouteWeb.Live.VideoState.set_position(attr)
+     |> update_url_query()}
+  end
+
   def handle_event("map-click", attr, %{assigns: assigns} = socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
@@ -196,7 +205,8 @@ defmodule VelorouteWeb.FrameLive do
             |> slideshow(false)
             # TODO video pause?
             |> VelorouteWeb.Live.VideoState.maybe_update_video(route_obj, article, attr)
-            |> push_patch(to: article_path(socket, article, img))
+
+          socket = push_patch(socket, to: article_path(socket, article))
 
           if article.tracks == [], do: load_mly(socket), else: socket
 
@@ -514,18 +524,25 @@ defmodule VelorouteWeb.FrameLive do
       "slideshow: starting from route=#{inspect(socket.assigns.route)} img=#{socket.assigns.img}"
     )
 
-    seq_str =
+    seq =
       Route.List.all()
       |> Route.List.sequence_with_name(socket.assigns.route)
-      |> Data.Sequence.mapillary_sequence_from(socket.assigns.img)
-      |> sequences_to_scalar
 
-    socket
-    |> assign(sequence: seq_str)
-    |> assign(slideshow: true)
-    |> assign(video: nil)
-    |> assign(autoplayed_once: true)
-    |> load_mly
+    if seq do
+      seq_str =
+        seq
+        |> Data.Sequence.mapillary_sequence_from(socket.assigns.img)
+        |> sequences_to_scalar
+
+      socket
+      |> assign(sequence: seq_str)
+      |> assign(slideshow: true)
+      |> assign(video: nil)
+      |> assign(autoplayed_once: true)
+      |> load_mly
+    else
+      socket
+    end
   end
 
   defp slideshow(socket, false) do
@@ -700,12 +717,8 @@ defmodule VelorouteWeb.FrameLive do
     Cache.Articles.get()[name]
   end
 
-  defp article_path(socket, %Article{start_image: img} = art, nil) do
-    article_path(socket, art, %{img: img})
-  end
-
-  defp article_path(socket, %Article{name: name}, %{img: img}) do
-    query = assign(socket, img: img) |> url_query()
+  defp article_path(socket, %Article{name: name}) do
+    query = url_query(socket)
     Routes.article_path(socket, VelorouteWeb.FrameLive, name, query)
   end
 
@@ -731,7 +744,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp url_query(%{assigns: assigns} = socket) do
     bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
-    query = %{"img" => assigns.img, "bounds" => bounds}
+    query = %{"video" => assigns.video_hash, "pos" => assigns.video_start, "bounds" => bounds}
 
     if on_search_page?(socket) && !blank?(assigns.search_query) do
       Map.put(query, "search_query", assigns.search_query)

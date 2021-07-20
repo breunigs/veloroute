@@ -50,4 +50,16 @@ defmodule Cache.Articles do
         end
       end)
   end
+
+  @doc """
+  Find an Article that contains a video with exactly the given resources
+  """
+  @spec find_by_sources(Video.Track.plain()) :: Article.t() | nil
+  def find_by_sources(sources) do
+    get()
+    |> Map.values()
+    |> Enum.find(fn %{tracks: tracks} ->
+      Enum.any?(tracks, fn %{videos: videos} -> videos == sources end)
+    end)
+  end
 end
