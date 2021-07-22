@@ -2,8 +2,6 @@ defmodule VelorouteWeb.ArticleView do
   use VelorouteWeb, :view
   alias Article
   alias VelorouteWeb.VariousHelpers
-  alias Map.Relation
-  import Mapillary.Types, only: [is_ref: 1]
 
   @dialyzer {:nowarn_function, render_template: 2}
   @recent_article_min 4
@@ -28,7 +26,7 @@ defmodule VelorouteWeb.ArticleView do
     |> enhance_tag("mailto", &mailto/2)
     |> enhance_tag("geolinks", &geolinks/2)
     |> enhance_tag("ref", &ref/2)
-    |> enhance_tag("a", &live_links/2)
+    |> enhance_tag("a", art, &live_links/3)
     |> Floki.raw_html()
     |> Phoenix.HTML.raw()
   end
@@ -57,6 +55,22 @@ defmodule VelorouteWeb.ArticleView do
     Floki.traverse_and_update(document, fn
       {^name, attrs, children} ->
         replacer.(attrs, children)
+
+      any ->
+        any
+    end)
+  end
+
+  @spec enhance_tag(
+          Floki.html_tree(),
+          binary(),
+          Article.t(),
+          (Article.t(), [Floki.html_attribute()], Floki.html_tree() -> Floki.html_tag() | nil)
+        ) :: Floki.html_tree()
+  defp enhance_tag(document, name, article, replacer) do
+    Floki.traverse_and_update(document, fn
+      {^name, attrs, children} ->
+        replacer.(article, attrs, children)
 
       any ->
         any
@@ -107,11 +121,13 @@ defmodule VelorouteWeb.ArticleView do
   defp maybe_append_date(html, _art), do: html
 
   @spec maybe_prepend_image(Floki.html_tree(), %Article{}) :: Floki.html_tree()
-  defp maybe_prepend_image(html, %Article{start_image: img}) when is_ref(img) do
-    [{"img", [{"src", Mapillary.Resolver.img_url(img, 2048)}], []}] ++ html
-  end
+  defp maybe_prepend_image(html, %Article{} = art) do
+    img_path = Article.start_image_path(art)
 
-  defp maybe_prepend_image(html, _art), do: html
+    if is_binary(img_path),
+      do: [{"img", [{"src", Settings.url() <> img_path}], []}] ++ html,
+      else: html
+  end
 
   @spec append_related_articles(Floki.html_tree(), %Article{}) :: Floki.html_tree()
   defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
@@ -173,21 +189,10 @@ defmodule VelorouteWeb.ArticleView do
   end
 
   defp geolinks([{"route", route}], content) do
-    # TODO: cleanup once all is video
-    rel = VariousHelpers.relation_by_id(route)
     route = Route.from_id(route)
 
-    gpx =
-      cond do
-        rel -> geolinks_gpx(Relation.name(rel), Relation.gpx_name(rel))
-        route -> geolinks_gpx(route.name(), route.id())
-      end
-
-    osm_href =
-      cond do
-        route -> route.osm_relation_ref()
-        rel -> Relation.osm_url(rel)
-      end
+    gpx = geolinks_gpx(route.name(), route.id())
+    osm_href = route.osm_relation_ref()
 
     osm =
       case osm_href do
@@ -245,8 +250,8 @@ defmodule VelorouteWeb.ArticleView do
     end
   end
 
-  @spec live_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
-  defp live_links(attrs, children) do
+  @spec live_links(Article.t(), [Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
+  defp live_links(article, attrs, children) do
     href = find_attribute(attrs, "href")
     keep = {"a", attrs, children}
 
@@ -261,12 +266,30 @@ defmodule VelorouteWeb.ArticleView do
         keep
 
       find_attribute(attrs, "bounds") != nil ->
-        bounds = find_attribute(attrs, "bounds")
-        new_attr = [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds}]
+        new_attr = %{"phx-click" => "map-zoom-to"}
 
-        img = find_attribute(attrs, "img")
-        new_attr = if img, do: [{"phx-value-img", img} | new_attr], else: new_attr
-        {"a", new_attr, children}
+        new_attr =
+          cond do
+            article.tracks != [] ->
+              Map.put(new_attr, "phx-value-article", article.name)
+
+            rel = article |> Article.related_route() ->
+              Map.put(new_attr, "phx-value-route", rel.id())
+
+            true ->
+              new_attr
+          end
+
+        new_attr =
+          Enum.reduce(attrs, new_attr, fn {key, val}, acc ->
+            if key in ["bounds", "lat", "lon", "dir", "route", "article"] do
+              Map.put(acc, "phx-value-#{key}", val)
+            else
+              acc
+            end
+          end)
+
+        {"a", Enum.to_list(new_attr), children}
 
       nil == href ->
         name = Floki.text(children)

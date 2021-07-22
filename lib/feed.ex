@@ -5,8 +5,6 @@ defmodule Feed do
 
   require Cache.Articles
 
-  import Mapillary.Types, only: [is_ref: 1]
-
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
@@ -48,10 +46,13 @@ defmodule Feed do
 
   defp maybe_add_location(entry, _article), do: entry
 
-  defp maybe_add_image(entry, %{start_image: img}) when is_ref(img) do
-    url = Mapillary.Resolver.img_url(img, 2048)
-    Entry.link(entry, url, rel: "enclosure", type: "image/jpeg")
-  end
+  defp maybe_add_image(entry, article) do
+    img_path = Article.start_image_path(article)
 
-  defp maybe_add_image(entry, _article), do: entry
+    if is_binary(img_path) do
+      Entry.link(entry, Settings.url() <> img_path, rel: "enclosure", type: "image/jpeg")
+    else
+      entry
+    end
+  end
 end

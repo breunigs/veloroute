@@ -15,7 +15,7 @@ text: >
   <h4>Planung</h4>
   <p>Es ist vorgesehen auf beiden Seiten Längsparkplätze für KFZ einzurichten um die Parksituation zu ordnen. Die Fahrbahn wird nur im mittleren, rund 3,5m breiten Teil asphaltiert. An beiden Seiten schließen sich jeweils nochmal 0,75m Kopfsteinpflaster an, das man aus historischen Gründen behält. Diese Streifen mit Kopfsteinpflaster liegen im <ref>Dooring</ref>-Bereich der Parkplätze.</p>
 
-  <p>Die Gerichtsstraße hat künftig Vorfahrt vor anderen Nebenstraßen. Lediglich an der <a bounds="9.93837,53.557578,9.941748,53.558351" img="J96g-yzQMvBAOeNC7uoQbg">Einmündung in die Haubachstraße</a> muss Vorfahrt gewährt werden. Die Straße wird zu einer Fahrradstraße mit „Anlieger frei“ für KFZ. Die <a bounds="9.937867,53.555017,9.944141,53.556453" img="p1ws-uovob-lTx3wlWMyUw">Durchfahrt an der Max-Brauer-Allee</a> wird für KFZ gesperrt – allerdings ist dies Teil des <a href="/article/2018-12-17-1-13-max-brauer-allee">Umbaus der Max-Brauer-Allee</a>.</p>
+  <p>Die Gerichtsstraße hat künftig Vorfahrt vor anderen Nebenstraßen. Lediglich an der <a bounds="9.93837,53.557578,9.941748,53.558351" lon="9.9401279" lat="53.5579567" dir="forward">Einmündung in die Haubachstraße</a> muss Vorfahrt gewährt werden. Die Straße wird zu einer Fahrradstraße mit „Anlieger frei“ für KFZ. Die <a bounds="9.937867,53.555017,9.944141,53.556453" lon="9.9422194" lat="53.5555027" dir="forward">Durchfahrt an der Max-Brauer-Allee</a> wird für KFZ gesperrt – allerdings ist dies Teil des <a href="/article/2018-12-17-1-13-max-brauer-allee">Umbaus der Max-Brauer-Allee</a>.</p>
 
   <p>Man möchte die Anzahl der Radanlehnbügeln deutlich erhöhen, da aktuell der Bedarf bei weitem nicht gedeckt wird. Wie viele genau wird noch entschieden, da geplant ist die Anwohnenden zu befragen wie viele Stellplätze für Lastenfahrräder notwendig sind.</p>
 
@@ -24,7 +24,7 @@ text: >
 
   <p>Kritikwürdig ist die geringe nutzbare Breite für den Radverkehr von 3,5m, was Überholen oder Unterhaltungen bei Gegenverkehr erschwert. Zum Vergleich: abgestellte KFZ erhalten ohne Sicherheitsabstände bereits 4,20m.</p>
 
-  <p>Etwas kurz gedacht wirkt die <a bounds="9.93837,53.557578,9.941748,53.558351" img="J96g-yzQMvBAOeNC7uoQbg">Einmündung in die Haubachstraße</a>. In beiden Straßen ist der Radverkehr bereits heute höher als der KFZ-Verkehr, es wäre also denkbar die Haubachstraße ebenfalls zu einer Fahrradstraße zu machen. Dann könnte man der Veloroute ohne Bodenschwellen in diesem Bereich folgen.</p>
+  <p>Etwas kurz gedacht wirkt die <a bounds="9.93837,53.557578,9.941748,53.558351" lon="9.9401279" lat="53.5579567" dir="forward">Einmündung in die Haubachstraße</a>. In beiden Straßen ist der Radverkehr bereits heute höher als der KFZ-Verkehr, es wäre also denkbar die Haubachstraße ebenfalls zu einer Fahrradstraße zu machen. Dann könnte man der Veloroute ohne Bodenschwellen in diesem Bereich folgen.</p>
 
   <h4>Quelle</h4>
   <ul>

@@ -44,20 +44,13 @@ body {
 
 #map,
 #fakeMap,
-#mly,
-#videoOuter,
-#mlyPlaceholder,
-#mlyPlaceholderOuter {
+#videoOuter {
   width: $mainWidth;
   min-width: $minWidth;
   height: 50%;
   display: block;
   left: 0;
   position: fixed;
-}
-
-#videoOuter {
-  z-index: 0;
 }
 
 #map {
@@ -79,10 +72,7 @@ body {
   pointer-events: none;
 }
 
-#mly,
-#videoOuter,
-#mlyPlaceholder,
-#mlyPlaceholderOuter {
+#videoOuter {
   top: 50%;
   overflow: hidden;
 }
@@ -145,7 +135,6 @@ body {
 video {
   width: 100%;
   height: 100%;
-  background: #333333 url("/images/video_banner.svg") 50% 50% / contain no-repeat;
   object-fit: cover;
 }
 
@@ -232,35 +221,6 @@ video {
     height: $height;
     touch-action: pan-x;
     background-size: cover;
-  }
-}
-
-#mlyPlaceholder,
-#mlyPlaceholderOuter {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
-#mlyPlaceholder {
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: background-image 0.5s ease-in-out;
-
-  .playIcon {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 72px;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDEuOTk5IDQxLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDEuOTk5IDQxLjk5OTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik0zNi4wNjgsMjAuMTc2bC0yOS0yMEM2Ljc2MS0wLjAzNSw2LjM2My0wLjA1Nyw2LjAzNSwwLjExNEM1LjcwNiwwLjI4Nyw1LjUsMC42MjcsNS41LDAuOTk5djQwICBjMCwwLjM3MiwwLjIwNiwwLjcxMywwLjUzNSwwLjg4NmMwLjE0NiwwLjA3NiwwLjMwNiwwLjExNCwwLjQ2NSwwLjExNGMwLjE5OSwwLDAuMzk3LTAuMDYsMC41NjgtMC4xNzdsMjktMjAgIGMwLjI3MS0wLjE4NywwLjQzMi0wLjQ5NCwwLjQzMi0wLjgyM1MzNi4zMzgsMjAuMzYzLDM2LjA2OCwyMC4xNzZ6IiBzdHlsZT0iZmlsbDogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PC9wYXRoPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjwvc3ZnPg==);
-    background-size: 50%;
-    height: 72px;
-    width: 72px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    top: 50%;
-    left: 50%;
-    position: relative;
-    margin-left: -36px;
-    margin-top: -36px;
   }
 }
 
@@ -456,6 +416,7 @@ a {
   pointer-events: none;
 
   &.animate {
+    // NOTE: also update timeout in map.js
     transition: linear 0.3s;
   }
 }
@@ -505,27 +466,6 @@ p.alert {
   background: #ECD0D0;
   padding: $contentPad;
   margin: 0 #{-1*$contentPad};
-}
-
-
-
-.nowebgl {
-  #mly {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #mly::before {
-    display: block;
-    background: #ddd;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    max-width: 20rem;
-    z-index: 100;
-    margin: auto;
-    content: "In diesem Browser scheint „WebGL“ deaktiviert zu sein. Dem ist normalerweise nicht so, d.h. vermutlich liegt es an der Technik. Bitte suche im Internet nach Lösungen oder frage eine technikaffine Person um Hilfe.";
-  }
 }
 
 table.routing {

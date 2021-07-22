@@ -18,11 +18,7 @@ function updateState() {
   window.state = document.getElementById("control").dataset;
   // console.log(state);
 
-  if (state.mlyJs && loadMly) loadMly();
   if (state.videoPlayerJs && loadVideoPlayer) loadVideoPlayer();
-  if (typeof window.mlyStateChanged === "function") {
-    window.mlyStateChanged();
-  }
   if (typeof window.videoStateChanged === "function") {
     window.videoStateChanged();
   }
@@ -56,14 +52,6 @@ if (hash != "") window.pushEvent("convert-hash", {
   hash: hash
 });
 
-let loadMly = function () {
-  console.log("loading mapillary");
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = state.mlyJs;
-  document.getElementsByTagName('head')[0].appendChild(script);
-  loadMly = null;
-}
 let loadVideoPlayer = function () {
   console.log("loading video player");
   const script = document.createElement('script');
@@ -71,35 +59,6 @@ let loadVideoPlayer = function () {
   script.src = state.videoPlayerJs;
   document.getElementsByTagName('head')[0].appendChild(script);
   loadVideoPlayer = null;
-}
-
-window.mlyStateChanged = function () {
-  const img = new Image();
-  const url = "https://images.mapillary.com/" + state.img + "/thumb-1024.jpg";
-  const imgKey = state.img;
-  const placeholder = document.getElementById("mlyPlaceholder")
-  const placeholderOuter = document.getElementById("mlyPlaceholderOuter")
-  // both preload and the multiple BG image hack are required to avoid flashing
-  // the background in-between image loads
-  img.onload = () => {
-    if (imgKey != state.img) {
-      // abort if another image was queued
-      return;
-    }
-
-    window.requestAnimationFrame(() => {
-      console.debug("setting preloaded image as BG", url)
-      placeholder.style.backgroundImage = "url(" + url + ")";
-      placeholderOuter.style.backgroundImage = "";
-      placeholder.classList.remove('loading');
-    });
-  }
-  window.requestAnimationFrame(() => {
-    console.debug("preloading", url);
-    placeholder.classList.add('loading');
-    placeholderOuter.style.backgroundImage = "url(" + url + ")";
-    img.src = url;
-  });
 }
 
 let Hooks = {};
@@ -144,4 +103,3 @@ window.liveSocket = liveSocket;
 
 import "./mobilegui"
 import "./loading"
-import "./checkwebgl"

@@ -1,23 +1,13 @@
-<%= if !@mly_loaded do %>
-  <div phx-update="ignore" id="mlyPlaceholderOuter">
-    <a href="#" phx-click="sld-playpause" phx-page-loading id="mlyPlaceholder" style="background-image:url('<%= Mapillary.Resolver.img_url(@img) %>')">
-      <div class="playIcon"></div>
-    </a>
-  </div>
-<% else %>
-  <link href='https://unpkg.com/mapillary-js@2.18.0/dist/mapillary.min.css' rel='stylesheet' />
-<% end %>
-
-<%= if @video_player_js do %>
-  <div id="videoOuter" style="<%= if @video_hash == "", do: "display: none" %>">
-    <video phx-update="ignore" id="videoInner" autoplay muted controls playsinline preload="metadata" onpause="window.pushEvent('video-pause', {pos: Math.round(this.currentTime*1000)})"></video>
-  </div>
-<% end %>
+<div id="videoOuter" style="background: #333333 url('<%= @video_poster %>') 50% 50% / cover no-repeat">
+  <video phx-update="ignore" id="videoInner"
+    muted controls playsinline preload="metadata">
+  </video>
+</div>
 
 <div id="sidebar">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-  <div id="content" <%= if @mly_js || @video_player_js, do: Phoenix.HTML.raw(~s(class="bottomBumper")) %>>
+  <div id="content" class="bottomBumper">
     <%= if Map.get(@flash, "info") do %>
       <p class="alert">
         <%= case Map.get(@flash, "info") do
@@ -36,17 +26,6 @@
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
-  <%= if @video_hash == "" && (@mly_js || @slideshow) do %>
-    <div id="slideshow">
-      <button phx-click="sld-playpause" phx-disable-with="<%= if @slideshow, do: "▶", else: "■" %>" title="Abspielen / Pause">
-        <%= if @slideshow, do: "■", else: "▶" %>
-      </button>
-      <button phx-click="sld-step-backward" phx-page-loading="" title="Voriges Bild" <%= @img_prev_disabled %>>〈</button>
-      <button phx-click="sld-step-forward" phx-page-loading="" title="Nächstes Bild" <%= @img_next_disabled %>>〉</button>
-      <button phx-click="sld-reverse" title="Fahrtrichtung ändern">⇆</button>
-      <%= display_route(@route) %>
-    </div>
-  <% end %>
   <%= if @video_hash != "" do %>
     <div id="slideshow">
       <%= if @video_reversable do %>
@@ -58,16 +37,14 @@
 </div>
 
 <div id="control" phx-hook="control"
-  data-img="<%= @img %>"
   data-lon="<%= @lon %>"
   data-lat="<%= @lat %>"
   data-bearing="<%= @bearing %>"
-  data-sequence="<%= @sequence %>"
-  data-mly-js="<%= @mly_js %>"
+  data-autoplay="<%= @autoplay %>"
   data-video-hash="<%= @video_hash %>"
   data-video-start="<%= @video_start %>"
+  data-video-start-gen="<%= @video_start_gen %>"
   data-video-coords="<%= @video_coords %>"
-  data-video-player-js="<%= @video_player_js %>"
   data-bounds="<%= @bounds %>"
   data-bounds-ts="<%= @bounds_ts %>"
 ></div>

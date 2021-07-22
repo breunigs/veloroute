@@ -8,7 +8,6 @@ defmodule Article do
           hide_footer: boolean() | nil,
           name: binary(),
           no_auto_title: boolean() | nil,
-          start_image: Mapillary.Types.ref() | nil,
           start: Data.RoughDate.t() | nil,
           text: binary(),
           title: binary() | nil,
@@ -16,8 +15,6 @@ defmodule Article do
           tracks: [Video.Track.t()]
         }
   @type collection() :: %{binary() => t()}
-
-  import Mapillary.Types, only: [is_ref: 1]
 
   @known_params [
     :bbox,
@@ -28,14 +25,11 @@ defmodule Article do
     :full_title,
     :hide_footer,
     :icon,
-    :images,
     :name,
     :no_auto_title,
     :range,
     :search_text,
     :search_title,
-    :start_image,
-    :start_position,
     :start,
     :tags,
     :text,
@@ -51,20 +45,6 @@ defmodule Article do
 
   def age_in_days(%__MODULE__{date: date}) do
     Date.diff(Date.utc_today(), date)
-  end
-
-  defp start_image(various_img_or_route, bbox)
-  defp start_image(nil, _bbox), do: nil
-  defp start_image([img | _rest], _bbox) when is_ref(img), do: img
-  defp start_image(_, nil), do: nil
-
-  defp start_image(route_ids, bbox) do
-    route_ids
-    |> List.wrap()
-    |> Enum.map(&to_string/1)
-    |> Route.List.by_tags()
-    |> Route.List.find_within(bbox, 150)
-    |> get_in([:img])
   end
 
   @spec article_ways(Map.Parsed.t()) :: [Map.Way.t()]
@@ -83,10 +63,7 @@ defmodule Article do
           if is_map_key(tag_bboxes, tag), do: tag_bboxes[tag], else: nil
         end)
 
-    start_img = art.start_image || start_image(art.images || art.tags, bbox)
-
-    %{art | start_image: start_img, bbox: bbox}
-    |> set_start_position
+    %{art | bbox: bbox}
   end
 
   @doc ~S"""
@@ -193,21 +170,51 @@ defmodule Article do
     end)
   end
 
-  defp set_start_position(%{start_image: nil} = art), do: art
-
-  defp set_start_position(%{start_image: img, tags: tags} = art)
-       when is_ref(img) and is_list(tags) do
-    route_pos =
-      Route.List.by_tags(tags)
-      |> Route.List.find_close_to(img)
-      |> case do
-        {_sequence, route_name, img, _route_pos} ->
-          {route_name, img}
-
-        _ ->
-          0
-      end
-
-    Map.put(art, :start_position, route_pos)
+  @spec related_routes(t()) :: [Route.t()]
+  def related_routes(art) do
+    Enum.filter(Route.all(), &Route.has_group?(&1, art.tags))
   end
+
+  @spec related_route(t()) :: Route.t() | nil
+  def related_route(art) do
+    Enum.find(Route.all(), &Route.has_group?(&1, art.tags))
+  end
+
+  @doc """
+  Find a track that is related to this article. If the article has own tracks,
+  it will prefer those. Otherwise it uses the tags to find related routes and
+  pick the first track for the first route matched.
+  """
+  @spec related_track(t()) :: Video.Track.t() | nil
+  def related_track(%{tracks: [track | _rest]}), do: track
+
+  def related_track(art) do
+    route = related_route(art)
+    if route, do: hd(route.tracks())
+  end
+
+  @doc """
+  Tries to find a picture of a related video track around the center of the
+  article's bbox.
+  """
+  @spec start_image_path(t()) :: binary() | nil
+  def start_image_path(%{bbox: bbox} = art) when is_map(bbox) do
+    rendered = art |> related_track() |> Video.Rendered.get()
+
+    if rendered do
+      center = Geo.CheapRuler.center(bbox)
+
+      %{point: %{time_offset_ms: ms}} =
+        Geo.CheapRuler.closest_point_on_line(rendered.coords(), center)
+
+      VelorouteWeb.Router.Helpers.image_extract_path(
+        VelorouteWeb.Endpoint,
+        :image,
+        rendered.hash(),
+        ms
+      )
+    end
+  end
+
+  def start_image_path(_art), do: nil
 end

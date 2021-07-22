@@ -1,7 +1,6 @@
 
 type: intent
 icon: nocargo
-images: articles
 title: Friedhof Blankenese (Veloroute 1)
 start: 2021Q4
 tags:

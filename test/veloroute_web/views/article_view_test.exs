@@ -7,13 +7,13 @@ defmodule VelorouteWeb.ArticleViewTest do
   test "all articles can be rendered" do
     Cache.Articles.get()
     |> Map.keys()
-    |> Enum.each(&ArticleView.render(&1, search_query: nil, search_bounds: nil))
+    |> Parallel.each(&ArticleView.render(&1, search_query: nil, search_bounds: nil))
   end
 
   test "only valid routes are referenced" do
     Cache.Articles.get()
     |> Map.values()
-    |> Enum.each(fn art ->
+    |> Parallel.each(fn art ->
       art
       |> Map.fetch!(:text)
       |> Floki.parse_fragment!()
@@ -28,7 +28,7 @@ defmodule VelorouteWeb.ArticleViewTest do
       |> Enum.each(fn
         %{route: r, img: _img, href: href, text: text} ->
           if r != "" do
-            resolved = VelorouteWeb.VariousHelpers.relation_by_id(r) || Route.from_id(r)
+            resolved = Route.from_id(r)
 
             assert nil != resolved,
                    """

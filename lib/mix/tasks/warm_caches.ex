@@ -6,17 +6,10 @@ defmodule Mix.Tasks.WarmCaches do
   def run(_) do
     Mix.Task.run("app.start")
 
-    articles =
-      Task.async(fn ->
-        Cache.Articles.get()
-        |> Map.keys()
-        |> Enum.each(&VelorouteWeb.ArticleView.render(&1, FrameLive.initial_state()))
-      end)
+    Cache.Articles.get()
+    |> Map.keys()
+    |> Enum.each(&VelorouteWeb.ArticleView.render(&1, FrameLive.initial_state()))
 
-    images = Task.async(fn -> Mix.Tasks.UpdateImages.run(nil) end)
-
-    Task.await(articles, :infinity)
-    Task.await(images, :infinity)
     :ok
   end
 end

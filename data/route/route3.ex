@@ -72,13 +72,4 @@ defmodule Data.Route.Route3 do
 
   @tracks [forward, backward]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

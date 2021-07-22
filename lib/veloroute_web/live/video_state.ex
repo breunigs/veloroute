@@ -7,8 +7,8 @@ defmodule VelorouteWeb.Live.VideoState do
     :backward,
     :backward_track,
     :start,
-    :direction,
-    :player_js
+    :start_generation,
+    :direction
   ]
 
   @enforce_keys @known_params
@@ -20,8 +20,8 @@ defmodule VelorouteWeb.Live.VideoState do
           forward_track: Video.Track.t() | nil,
           backward_track: Video.Track.t() | nil,
           start: Geo.Point.like() | nil,
-          direction: :forward | :backward,
-          player_js: binary() | nil
+          start_generation: integer(),
+          direction: :forward | :backward
         }
 
   import Video.Track, only: [valid_hash: 1]
@@ -57,27 +57,41 @@ defmodule VelorouteWeb.Live.VideoState do
     accurate_new_start = Geo.Point.from_params(params)
 
     old_state = assigns[:video] || new()
-    new_state = update_from_tracks(old_state, tracks, accurate_new_start || old_state.start)
+
+    new_state =
+      old_state
+      |> update_direction_from_params(params)
+      |> update_from_tracks(tracks, accurate_new_start || old_state.start)
 
     new_state =
       cond do
-        # video changed, accept low quality positioning
-        video_changes?(old_state, new_state) ->
-          start = accurate_new_start || maybe_article_center(article)
-          %{new_state | start: start}
+        accurate_new_start && old_state.start == accurate_new_start &&
+          !video_changes?(old_state, new_state) && !is_map_key(params, "dir") ->
+          Logger.debug("same position clicked again, reverse")
 
-        # same position clicked again, reverse
-        accurate_new_start && old_state.start == accurate_new_start ->
-          %{new_state | start: accurate_new_start}
+          set_start(new_state, accurate_new_start)
           |> reverse_direction()
 
-        # same video, but new position
         accurate_new_start ->
-          %{new_state | start: accurate_new_start}
+          Logger.debug("have new accurate position; updating")
 
-        # no changed
+          set_start(new_state, accurate_new_start)
+
+        article && article.tracks != [] ->
+          Logger.debug("have article with tracks, trying to start from article bbox")
+          set_start(new_state, maybe_article_center(article) || old_state.start)
+
+        # if there's an article only update the position if the article is
+        # related to the shown route. This is usually the case if an article has
+        # tagged the related route
+        article && current_track(new_state) &&
+            Route.has_group?(current_track(new_state).parent_ref, article.tags) ->
+          Logger.debug("route is related to current article, updating position")
+          set_start(new_state, maybe_article_center(article) || old_state.start)
+
         true ->
-          old_state
+          Logger.debug("no position information, not changing")
+          new_state
       end
 
     Phoenix.LiveView.assign(socket, for_frontend(new_state))
@@ -94,9 +108,6 @@ defmodule VelorouteWeb.Live.VideoState do
   defp extract_tracks(nil), do: []
   defp extract_tracks(%Article{tracks: tracks}) when length(tracks) > 0, do: tracks
 
-  defp extract_tracks(%Article{images: imgs}) when is_number(imgs) or is_binary(imgs),
-    do: "#{imgs}" |> route_by_tags() |> extract_tracks()
-
   defp extract_tracks(%Article{tags: tags}), do: tags |> route_by_tags() |> extract_tracks()
   defp extract_tracks(module) when is_atom(module), do: module.tracks()
 
@@ -107,7 +118,9 @@ defmodule VelorouteWeb.Live.VideoState do
     |> Enum.find(fn route -> length(route.tracks()) > 0 end)
   end
 
-  defp maybe_article_center(%Article{bbox: bbox}), do: Geo.CheapRuler.center(bbox)
+  defp maybe_article_center(%Article{bbox: bbox, date: date}) when not is_nil(date),
+    do: Geo.CheapRuler.center(bbox)
+
   defp maybe_article_center(_), do: nil
 
   @doc """
@@ -119,7 +132,8 @@ defmodule VelorouteWeb.Live.VideoState do
     assigns =
       assigns[:video]
       |> Kernel.||(new())
-      |> Map.merge(%{forward: nil, backward: nil, start: nil})
+      |> Map.merge(%{forward: nil, backward: nil})
+      |> set_start(nil)
       |> for_frontend()
 
     Phoenix.LiveView.assign(socket, assigns)
@@ -158,7 +172,8 @@ defmodule VelorouteWeb.Live.VideoState do
          true <- 0 <= pos && pos <= rendered.length_ms do
       # no idea why the Map.take is needed, but otherwise Dialyzer complains
       point = Video.Rendered.start_from(rendered, pos) |> Map.take([:lat, :lon])
-      assigns = %{state | start: point} |> for_frontend()
+
+      assigns = state |> set_start(point) |> for_frontend()
       Phoenix.LiveView.assign(socket, assigns)
     else
       _ ->
@@ -178,15 +193,18 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   defp new() do
+    sett = Settings.start_image()
+
     %__MODULE__{
       forward_track: nil,
       backward_track: nil,
       forward: nil,
       backward: nil,
-      start: nil,
-      direction: :forward,
-      player_js: nil
+      start: sett.position,
+      start_generation: 0,
+      direction: sett.direction
     }
+    |> update_from_tracks(sett.route.tracks(), sett.position)
   end
 
   defguardp has_video(state)
@@ -203,13 +221,24 @@ defmodule VelorouteWeb.Live.VideoState do
     start_from = Video.Rendered.start_from(video, state.start)
     coords = Video.Rendered.coord_io_list(video)
 
+    banner_url =
+      VelorouteWeb.Router.Helpers.image_extract_path(
+        VelorouteWeb.Endpoint,
+        :image,
+        video.hash,
+        start_from.time_offset_ms
+      )
+
+    Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
+
     [
       video: state,
       video_hash: video.hash,
       video_start: start_from.time_offset_ms,
+      video_start_gen: state.start_generation,
       video_coords: coords,
       video_reversable: is_reversable(state),
-      video_player_js: state.player_js,
+      video_poster: banner_url,
       lon: start_from.lon,
       lat: start_from.lat,
       bearing: start_from.bearing
@@ -217,29 +246,29 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   defp for_frontend(%__MODULE__{} = state) do
+    Logger.debug("no video loaded, resetting FE state")
+
     [
       video: state,
       video_hash: "",
       video_start: 0,
+      video_start_gen: state.start_generation,
       video_coords: '',
-      video_reversable: false,
-      video_player_js: state.player_js
+      video_reversable: false
     ]
   end
 
-  defp maybe_enable_player(%__MODULE__{player_js: nil} = state) when has_video(state) do
-    path = VelorouteWeb.Router.Helpers.static_path(VelorouteWeb.Endpoint, "/js/video_player.js")
-    %{state | player_js: path}
-  end
-
-  defp maybe_enable_player(%__MODULE__{} = state), do: state
-
   defp extract_start(state, %Article{bbox: bbox}) when is_map(bbox) do
-    %{state | start: Geo.CheapRuler.center(bbox)}
+    set_start(state, Geo.CheapRuler.center(bbox))
   end
 
   defp extract_start(%__MODULE__{} = state, params) do
-    %{state | start: Geo.Point.from_params(params)}
+    set_start(state, Geo.Point.from_params(params))
+  end
+
+  @spec set_start(t(), Geo.Point.like() | nil) :: t()
+  defp set_start(%__MODULE__{} = state, start) do
+    %{state | start: start, start_generation: state.start_generation + 1}
   end
 
   defp reverse_direction(%__MODULE__{} = state) when is_reversable(state) do
@@ -297,8 +326,14 @@ defmodule VelorouteWeb.Live.VideoState do
         direction: closest.direction
     }
     |> maybe_fix_direction()
-    |> maybe_enable_player()
   end
+
+  defp update_direction_from_params(state, %{"dir" => dir})
+       when dir in ["forward", "backward"] do
+    %{state | direction: String.to_existing_atom(dir)}
+  end
+
+  defp update_direction_from_params(state, _params), do: state
 
   defp maybe_fix_direction(state) when not has_video(state) and is_reversable(state),
     do: reverse_direction(state)

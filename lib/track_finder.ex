@@ -35,12 +35,9 @@ defmodule TrackFinder do
     |> Parallel.map(fn track ->
       ways = Graph.Pathfinding.dijkstra(g, track.start, track.stop)
 
-      track =
-        track
-        |> Map.drop([:start, :stop])
-        |> Map.put(:ways, ways)
-
-      struct!(Track, track)
+      track
+      |> Map.drop([:start, :stop])
+      |> Map.put(:ways, ways)
     end)
   end
 
@@ -49,14 +46,20 @@ defmodule TrackFinder do
   for each track, eliminating any duplicates. It returns the tracks, but with the
   nodes keys filled.
   """
-  def with_nodes(track_list), do: Enum.map(track_list, &Track.with_nodes/1)
+  def with_nodes(track_list), do: Enum.map(track_list, &concatenate_nodes/1)
 
-  @doc """
-  with_image_sequence takes an existing track list and generates a sequence of
-  Mapillary.Sequence from the tags of the ways, duplicating references as
-  needed. It returns the tracks, but with the image_sequence keys filled.
-  """
-  def with_image_sequences(track_list), do: Enum.map(track_list, &Track.with_image_sequence/1)
+  # concatenate_nodes joins the nodes of the ways in order, removing any
+  # duplicates. It adds them to the Map as "nodes".
+  defp concatenate_nodes(obj = %{ways: ways}) do
+    try do
+      first_node = ways |> hd |> Map.get(:nodes) |> hd
+      rest = Enum.flat_map(ways, fn %Way{nodes: [_f | rest]} -> rest end)
+      Map.put(obj, :nodes, [first_node | rest])
+    rescue
+      err ->
+        raise "Track is invalid: #{err}\n#{inspect(obj)}"
+    end
+  end
 
   defp resolve_to_start_end_ways(name, members, normalized_ways) do
     text = fn kind ->

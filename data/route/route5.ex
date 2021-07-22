@@ -111,13 +111,4 @@ defmodule Data.Route.Route5 do
 
   @tracks [forward, backward, forward_5N, backward_5N]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

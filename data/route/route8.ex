@@ -95,13 +95,4 @@ defmodule Data.Route.Route8 do
     backward_mmb
   ]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

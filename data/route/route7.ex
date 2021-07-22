@@ -93,13 +93,4 @@ defmodule Data.Route.Route7 do
 
   @tracks [fw_rahlstedt, bw_rahlstedt, fw_jenfeld, bw_jenfeld]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

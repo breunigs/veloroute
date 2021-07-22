@@ -10,9 +10,6 @@ defmodule Mix.Tasks.EditMap do
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
   def run(_) do
-    # ensure images are up to date if there have been edits outside this helper
-    Mix.Tasks.UpdateImages.run(nil)
-
     generate_mapcss()
     write_josm_session()
 

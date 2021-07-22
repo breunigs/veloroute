@@ -1,16 +1,9 @@
-# defmodule Data.Route.Route8 do
-#   use Route.Parser,
-#     id: "8"
-# end
-
 defmodule Data.Route.Route12 do
   @behaviour Route.Behaviour
 
-  @name "Alltagsroute 12"
-
   def id(), do: "12"
   def color(), do: "#ed6706"
-  def name(), do: @name
+  def name(), do: "Alltagsroute 12"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/2238410"
 
   forward = %Video.Track{
@@ -19,7 +12,7 @@ defmodule Data.Route.Route12 do
     from: "Innenstadt",
     to: "Altona",
     parent_ref: __MODULE__,
-    text: "von der Innenstadt nach Altona",
+    text: "aus der Innenstadt nach Altona",
     videos: [
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011832", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011833", :start, :end},
@@ -54,13 +47,4 @@ defmodule Data.Route.Route12 do
 
   @tracks [forward, backward]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

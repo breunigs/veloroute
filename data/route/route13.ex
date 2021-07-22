@@ -89,13 +89,4 @@ defmodule Data.Route.Route13 do
 
   @tracks [clockwise, counter_clockwise]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

@@ -3,15 +3,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
   import Phoenix.LiveViewTest
   @endpoint VelorouteWeb.Endpoint
 
-  test "broken images with extra characters can be recovered", %{conn: conn} do
-    {:ok, _view, html} = conn |> get("/?img=ktvIxR_DaQOLNWRBDShxfA).") |> live()
-    html =~ "ktvIxR_DaQOLNWRBDShxfA"
-  end
-
-  test "broken images with missing characters get dropped", %{conn: conn} do
-    {:ok, _view, html} = conn |> get("/?img=ktvIxR_DaQOLNW") |> live()
-    html =~ Settings.image()
-  end
+  @regexHash ~r/data-video-hash=[^\s]+/
+  @regexStart ~r/data-video-start=[^\s]+/
 
   test "clicking on route icon navigates to overview page", %{conn: conn} do
     {:ok, view, _html} = conn |> get("/") |> live()
@@ -21,11 +14,21 @@ defmodule VelorouteWeb.LiveNavigationTest do
     |> render_click() =~ "Artikel zu Veloroute 7"
   end
 
-  test "map click on article renders article", %{conn: conn} do
+  test "initial render sets video", %{conn: conn} do
+    {:ok, _view, html} = conn |> get("/") |> live()
+    refute html =~ ~s|data-video-hash=""|
+    refute html =~ ~s|data-video-start="0"|
+  end
+
+  test "map click on article renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = conn |> get("/") |> live()
     refute html =~ "Kleekamp"
 
-    assert render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"}) =~ "Kleekamp"
+    html = render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"})
+
+    assert html =~ "<h3>Kleekamp"
+    assert html =~ ~s|data-video-hash="103d0f0e5a70650b87a10bf1b4930e82"|
+    assert html =~ ~s|data-video-start="421049"|
 
     assert_patched(
       view,
@@ -33,9 +36,24 @@ defmodule VelorouteWeb.LiveNavigationTest do
     )
   end
 
+  test "link on article in sidebar renders article and sets video pos", %{conn: conn} do
+    {:ok, view, html} = conn |> get("/changes") |> live()
+    assert html =~ ~s|<h3 id="lastChanges">|
+
+    html =
+      view
+      |> element("a", "Kleekamp")
+      |> render_click()
+
+    assert html =~ "<h3>Kleekamp"
+    assert html =~ ~s|data-video-hash="103d0f0e5a70650b87a10bf1b4930e82"|
+    assert html =~ ~s|data-video-start="421049"|
+
+    assert_patched(view, "/article/2018-04-08-4-kleekamp")
+  end
+
   test "clicking on route twice reverses image", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/") |> live()
-    assert html =~ ~s(data-mly-js="")
+    {:ok, view, _html} = conn |> get("/") |> live()
 
     click_pos = %{
       route: "3",
@@ -44,31 +62,33 @@ defmodule VelorouteWeb.LiveNavigationTest do
       zoom: 16
     }
 
-    regex = ~r/data-video-hash=[^\s]+/
-    a = Regex.run(regex, render_hook(view, "map-click", click_pos))
-    b = Regex.run(regex, render_hook(view, "map-click", click_pos))
+    a = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
+    b = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
 
     assert a != b
   end
 
-  test "map click loads video player on route click", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/") |> live()
-    assert html =~ ~s(data-video-player-js="")
+  test "clicking on article without tracks keeps the video as is", %{conn: conn} do
+    {:ok, view, _html} = conn |> get("/") |> live()
 
-    assert render_hook(view, "map-click", %{
-             route: "4",
-             lon: 10.024947118265771,
-             lat: 53.63658286414295,
-             zoom: 16
-           }) =~ ~s(data-video-player-js="/)
-  end
+    html =
+      render_hook(view, "map-click", %{
+        route: "3",
+        lon: 10.024947118265771,
+        lat: 53.63658286414295,
+        zoom: 16
+      })
 
-  test "map click loads mly on article click", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/") |> live()
-    assert html =~ ~s(data-video-player-js="")
+    aHash = Regex.run(@regexHash, html)
+    aStart = Regex.run(@regexStart, html)
 
-    assert render_hook(view, "map-click", %{article: "2018-04-08-4-kleekamp"}) =~
-             ~s(data-video-player-js="/)
+    html = render_hook(view, "map-click", %{article: "2021-03-13-am-neumarkt"})
+
+    bHash = Regex.run(@regexHash, html)
+    bStart = Regex.run(@regexStart, html)
+
+    assert aHash == bHash
+    assert aStart == bStart
   end
 
   test "map click sets correct route on article click", %{conn: conn} do
@@ -84,7 +104,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
     html =
       render_hook(view, "convert-hash", %{hash: "19/53.59194/10.13825/TKH8zxPJnPClAmTIjD8bdA"})
 
-    assert html =~ ~s(data-img="TKH8zxPJnPClAmTIjD8bdA")
     assert html =~ ~s(data-bounds="10.137565,53.591532,10.138935,53.592348")
   end
 
@@ -132,29 +151,4 @@ defmodule VelorouteWeb.LiveNavigationTest do
       end
     end
   end
-
-  # TODO: back button is currently broken since we do not store the current video in
-  # the URL params
-  # test "supports going back to default route after using back button", %{conn: conn} do
-  #   path = "/?img=" <> Settings.image()
-
-  #   {:ok, view, html} = live(conn, path)
-  #   assert html =~ ~s|id="mlyPlaceholder"|
-  #   assert html =~ ~s|/#{Settings.image()}/|
-
-  #   html =
-  #     view
-  #     |> element(".icon", "7")
-  #     |> render_click()
-
-  #   assert html =~ ~s|data-mly-js="/|
-  #   assert html =~ ~s|Du folgst: Alltagsroute 7|
-  #   assert html =~ ~r/data-sequence="[a-zA-Z0-9_-]{22} /
-
-  #   html =
-  #     view
-  #     |> render_patch(path)
-
-  #   assert html =~ ~s|Du folgst: Alltagsroute 4|
-  # end
 end

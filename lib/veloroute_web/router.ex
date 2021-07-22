@@ -37,6 +37,10 @@ defmodule VelorouteWeb.Router do
     get "/quality/:article", PageController, :quality
     get "/article/0000-00-00-:page", PageController, :article_vs_page
     get "/routes/geo/route:suffix", PageController, :old_route_links
+
+    # note: must be manually adjusted in robots.txt
+    get "/images/thumbnails/:hash/:timestamp", ImageExtractController, :image
+
     post "/js_errors", PageController, :js_errors
   end
 

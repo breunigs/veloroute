@@ -36,8 +36,7 @@
       <meta property="og:title" content="<%= assigns[:article_title] %>"/>
     <% end %>
     <meta property="og:site_name" content="<%= Settings.sitebar_name() %>"/>
-    <meta property="og:image" content="<%= Mapillary.Resolver.img_url(@img, 2048) %>"/>
-    <meta property="og:image:width" content="2048"/>
+    <meta property="og:image" content="<%= Routes.image_extract_path(@conn, :image, @video_hash, @video_start) %>"/>
     <%= if Settings.twitter_handle() != nil do %>
       <meta property="twitter:creator" content="<%= Settings.twitter_handle() %>"/>
     <% end %>
@@ -49,7 +48,7 @@
         height: -webkit-fill-available;
       }
 
-      #map, #fakeMap, #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+      #map, #fakeMap, #videoOuter {
         width: 66.6666vw;
         min-width: 330px;
         height: 50%;
@@ -58,7 +57,7 @@
         position: fixed;
       }
 
-      #mly, #mlyPlaceholder, #mlyPlaceholderOuter {
+      #videoOuter {
         top: 50%;
         overflow: hidden;
       }
@@ -89,7 +88,6 @@
   <body>
     <div id="map"></div>
     <div id="fakeMap"></div>
-    <div id="mly"></div>
 
     <%= @inner_content %>
 
@@ -113,18 +111,13 @@
     <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/map.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/liveview.js") %>"></script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/video_player.js") %>"></script>
 
     <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" && Settings.enable_sentry_frontend do %>
       <script src="https://browser.sentry-cdn.com/5.22.3/bundle.min.js"
         integrity="sha384-A1qzcXXJWl+bzYr+r8AdFzSaLbdcbYRFmG37MEDKr4EYjtraUyoZ6UiMw31jHcV9"
         crossorigin="anonymous"
         onload="Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '<%= Application.get_env(:sentry, :release) %>' }); Sentry.setTag('env', '<%= Application.get_env(:veloroute, :env) %>');" async></script>
-    <% end %>
-    <link rel="prefetch" href="<%= Routes.static_path(@conn, "/js/mly.js") %>">
-    <link rel="prefetch" href="<%= Routes.static_path(@conn, "/js/video_player.js") %>">
-
-    <%= if @img && @img != "" do %>
-      <script type="application/ld+json">{"@context":"https://schema.org/","@type":"ImageObject","contentUrl":"<%= Mapillary.Resolver.img_url(@img) %>","license":"https://creativecommons.org/licenses/by-sa/3.0/deed.en","acquireLicensePage":"https://help.mapillary.com/hc/en-us/articles/115001770409-Licenses"}</script>
     <% end %>
   </body>
 </html>

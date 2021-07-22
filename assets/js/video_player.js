@@ -1,8 +1,34 @@
+let videoCoords = null;
+let prevVideo = null;
+let prevStartGen = null;
+
+const video = document.getElementById('videoInner');
+video.addEventListener('loadedmetadata', seekToStartTime);
+video.addEventListener('timeupdate', updateIndicatorPos);
+video.addEventListener('play', maybeMarkAutoplayed);
+video.addEventListener('pause', markPause);
+
+
 function reverseVideo() {
   window.pushEvent('video-reverse', {
     lon: window.state.lon,
     lat: window.state.lat
   })
+}
+
+function autoplayEnabled() {
+  return window.state.autoplay === "true"
+}
+
+function maybeMarkAutoplayed() {
+  if (autoplayEnabled()) {
+    console.debug("autoplay is enabled, but we played, disabling it")
+    window.pushEvent('video-autoplayed', {})
+  }
+}
+
+function markPause() {
+  window.pushEvent('video-pause', { pos: Math.round(this.currentTime * 1000) })
 }
 
 function attachHlsErrorHandler(obj, Hls) {
@@ -11,6 +37,7 @@ function attachHlsErrorHandler(obj, Hls) {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', event, data);
       window.hls = false;
       obj.destroy();
+      updateVideoElement();
     } else {
       console.log('Hls encountered an error', event, data);
     }
@@ -18,21 +45,9 @@ function attachHlsErrorHandler(obj, Hls) {
 }
 
 function updateVideoElement() {
+  if (!state.videoHash) return;
   console.debug('trying to play video for: ', state.videoHash)
-  video = document.getElementById('videoInner');
-  video.addEventListener('loadedmetadata', seekToStartTime);
-  video.addEventListener('timeupdate', updateIndicatorPos);
-
-  const time = `#t=${state.videoStart / 1000.0}`;
   const path = `/videos-rendered/${state.videoHash}/`;
-  // codec version for h264 can be determined through (Debian package: gpac)
-  // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
-  const innerHTML = `
-    <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
-    <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
-    <source src="${path}fallback.mp4${time}" type="video/mp4; codec=avc1.64001E">
-    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
-  `;
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
@@ -42,33 +57,56 @@ function updateVideoElement() {
     console.debug('no native hls, trying to load hls.js')
     import('hls.js').then(Hls => {
       if (!Hls.isSupported()) return window.hls = false;
-      console.debug('streamed hls');
+      console.debug('loading hls video stream');
       Hls = Hls.default;
+
+      if (window.hls) {
+        // don't leak previous one
+        window.hls.destroy();
+      }
 
       window.hls = new Hls({
         startFragPrefetch: true,
         enableWebVTT: false,
-        maxBufferLength: 30, // seconds
-        maxMaxBufferLength: 60,
+        maxBufferLength: 10, // seconds
+        maxMaxBufferLength: 30, // seconds
       });
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       window.hls.loadSource(`${path}stream.m3u8`);
-      video.innerHTML = innerHTML;
     })
     return
   }
 
+
+  console.debug('loading regular html video')
+  const time = `#t=${state.videoStart / 1000.0}`;
+  // codec version for h264 can be determined through (Debian package: gpac)
+  // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
+  const innerHTML = `
+    <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
+    <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
+    <source src="${path}fallback.mp4${time}" type="video/mp4; codec=avc1.64001E">
+    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
+  `;
   video.innerHTML = innerHTML;
   video.load();
 }
 
 function seekToStartTime() {
-  if (prevStartTimeMs == state.videoStart || currentTimeInMs() == state.videoStart) return;
-  console.debug("seeking to", state.videoStart, "(from ", prevStartTimeMs, ")")
+  const cur = currentTimeInMs();
+  const auto = autoplayEnabled();
+
+  if (Math.abs(cur - state.videoStart) < 100 || prevStartGen == state.videoStartGen) {
+    video.autoplay = auto;
+    return;
+  }
+  console.debug("seeking to", state.videoStart, "(from ", cur, ")");
+  if (!auto) video.pause();
   seekToTime(state.videoStart);
-  prevStartTimeMs = state.videoStart;
+  video.autoplay = auto;
+  prevStartGen = state.videoStartGen;
 }
 
 function currentTimeInMs() {
@@ -77,13 +115,12 @@ function currentTimeInMs() {
 }
 
 function seekToTime(timeInMs) {
-  if (video === null) return;
   const seconds = timeInMs / 1000.0;
   if (video.currentTime == seconds) return;
   video.currentTime = seconds;
 }
 
-function playVideo() {
+function setVideo() {
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
     updateVideoElement();
@@ -91,24 +128,7 @@ function playVideo() {
     return;
   }
 
-  if (prevStartTimeMs != state.videoStart) {
-    seekToStartTime();
-    video.pause();
-  }
-}
-
-function removeVideo() {
-  console.debug("removing video (if there is)")
-  prevVideo = null;
-  videoCoords = null;
-  if(video) {
-    video.pause();
-    video.innerHTML = '';
-  }
-  if (window.hls) {
-    window.hls.destroy()
-    window.hls = null;
-  }
+  seekToStartTime();
 }
 
 function parseCoordsFromState() {
@@ -122,21 +142,6 @@ function updateIndicatorPos(evt) {
   if (!videoCoords) return;
   window.mapUpdateIndicatorFromVideo(video, videoCoords);
 }
-
-function setVideo() {
-  if (state.videoHash) {
-    playVideo()
-  } else {
-    removeVideo()
-  }
-}
-
-let video = null;
-let videoCoords = null;
-let prevVideo = null;
-let prevStartTimeMs = 0;
-
-
 
 window.videoStateChanged = setVideo;
 window.reverseVideo = reverseVideo;

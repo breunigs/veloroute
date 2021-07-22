@@ -44,8 +44,6 @@ defmodule Article.ParserTest do
              },
              date: ~D[2020-03-29],
              end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-             images: 123,
-             start_image: nil,
              name: "2020-03-29-dummy-article",
              start: %Data.RoughDate{month: nil, quarter: 4, year: 2019},
              tags: ["tag", "4"],

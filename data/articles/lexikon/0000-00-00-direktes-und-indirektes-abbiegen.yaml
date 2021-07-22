@@ -1,14 +1,22 @@
 
 title: Lexikon · Direktes und Indirektes Abbiegen
-start_image: UGJ-M8jrYHYDaLQEbNjL4g
 tags:
-- lexikon
 - abbiegen
+- direkten-abbiegen
 - direktes
 - indirekt
+- indirekt-linksabbiegen
+- indirekte-linksabbiegen
+- indirektem-linksabbiegen
 - indirektes
 - indirektes-linksabbiegen
-- indirekte-linksabbiegen
+- lexikon
 text: >
   <p>Es gibt oft zwei Möglichkeiten mit dem Fahrrad links abzubiegen. Beim <b>direkten Abbiegen</b> ordnet man sich auf der Linksabbiegerspur ein und kommt in einem Zug in die gewünschte Straße. Dazu muss man jedoch die KFZ-Geradeausspuren queren. Beim <b>indirekten Abbiegen</b> fährt man zunächst geradeaus in die Kreuzung und wartet in einer Aufstelltasche. Ist die Straße frei bzw. die Ampel grün quert man nun die Straße und ist auch am Ziel.</p>
-  <p>Es gibt alle möglichen Kreuzungs-Varianten: <a bounds="10.096749,53.537778,10.12086,53.54550" img="UGJ-M8jrYHYDaLQEbNjL4g">nur direktes Abbiegen</a>, <a bounds="9.866879,53.585889,9.8773,53.58922" img="vXIM5E9R1sThXAq3TUEf1w">nur indirektes Abbiegen</a>, beides (<a bounds="9.992882,53.60424,9.999811,53.606458" img="ezc8ENc7yvMO1ol0mLaXzQ">direkt</a>, <a bounds="9.992882,53.60424,9.999811,53.606458" img="Aa9jqVlXNcYMsbOVAGL7Eg">indirekt</a>). Die Aufstelltaschen können dabei im Kreuzungsbereich <a bounds="9.975387,53.553634,9.983536,53.557482" img="BwlDNozfMKU_MWGkGw_s_g">links</a> oder <a img="0R8KGhfLf2TRhDZR65CoZg" bounds="9.997479,53.554666,10.003883,53.556719">rechts</a> des Radfahrstreifens sein, manchmal auch <a img="h9WgLqCi98SGrGQ8hPdTRw" bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</a>.</p>
+  <p>Es gibt alle möglichen Kreuzungs-Varianten:</p>
+  <ul>
+    <li><a bounds="10.096749,53.537778,10.12086,53.54550" lon="10.1092239" lat="53.5417533" dir="forward" route="14">nur direktes Abbiegen</a></li>
+    <li><a bounds="9.866879,53.585889,9.8773,53.58922" lon="9.8738435" lat="53.5873562" dir="backward" route="14">nur indirektes Abbiegen</a></li>
+    <li>beides (<a bounds="9.992882,53.60424,9.999811,53.606458" lon="9.9972532" lat="53.6046497" dir="forward" route="4">direkt</a> bzw. indirekt über die <a bounds="9.996751,53.604899,9.999158,53.606016">Wilhelm-Metzger-Straße</a>)</li>
+  </ul>
+  <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <a bounds="9.975387,53.553634,9.983536,53.557482" lon="9.97973" lat="53.55578" dir="forward" route="2">links</a> oder <a lon="10.00076" lat="53.55560" dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" route="6">rechts</a> des Radfahrstreifens sein, manchmal auch <a bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</a>.</p>

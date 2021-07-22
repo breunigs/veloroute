@@ -7,7 +7,7 @@ defmodule Data.Route.Route10 do
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/231965"
 
   forward = %Video.Track{
-    group: "4",
+    group: "10",
     direction: :forward,
     from: "Innenstadt",
     to: "Neugraben",
@@ -41,7 +41,7 @@ defmodule Data.Route.Route10 do
   }
 
   backward = %Video.Track{
-    group: "4",
+    group: "10",
     direction: :backward,
     from: "Neugraben",
     to: "Innenstadt",
@@ -76,13 +76,4 @@ defmodule Data.Route.Route10 do
 
   @tracks [forward, backward]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end

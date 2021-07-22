@@ -5,8 +5,12 @@ defmodule Settings do
   def initial,
     do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
-  def image, do: "c4B6txFX6Xgza8iWNFzSYw"
-  def sequence, do: {"4", "(stadtauswärts zum Ochsenzoll)"}
+  def start_image,
+    do: %{
+      route: Data.Route.Route11,
+      direction: :forward,
+      position: %{lat: 53.55044, lon: 9.99440}
+    }
 
   # no trailing slash
   def url, do: "https://veloroute.hamburg"
@@ -39,5 +43,6 @@ defmodule Settings do
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
+  # Note: must be manually adjusted in robots.txt
   def video_serve_path, do: "videos-rendered"
 end

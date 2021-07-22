@@ -30,15 +30,6 @@ defmodule VelorouteWeb.VariousHelpers do
 
   def display_route({id, rest}) do
     cond do
-      rel = relation_by_id(id) ->
-        full_name = Map.get(rel.tags, :name, id)
-
-        Phoenix.LiveView.Helpers.live_patch([route_icon(id), " ", rest],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
-          title: "Du folgst: #{full_name} #{rest}",
-          class: "curRoute"
-        )
-
       route = Route.from_id(id) ->
         icon = route_icon(route.id(), route.color())
         name = route.name()
@@ -118,14 +109,8 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def route_icon(id) when is_binary(id) do
-    cond do
-      rel = relation_by_id(id) ->
-        color = Map.get(rel.tags, :color)
-        route_icon(id, color)
-
-      route = Route.from_id(id) ->
-        route_icon(id, route.color())
-    end
+    route = Route.from_id(id)
+    if route, do: route_icon(id, route.color())
   end
 
   def route_icon(id, color) do
@@ -134,10 +119,6 @@ defmodule VelorouteWeb.VariousHelpers do
     else
       Phoenix.HTML.html_escape(id)
     end
-  end
-
-  def relation_by_id(id) do
-    Cache.Map.relations() |> Map.Element.find_by_tag(:id, id)
   end
 
   def parse_bounds(%{

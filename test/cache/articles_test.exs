@@ -1,32 +1,11 @@
 defmodule Cache.ArticlesTest do
   use ExUnit.Case, async: true
 
-  import Mapillary.Types, only: [is_ref: 1]
   alias VelorouteWeb.VariousHelpers
-
-  test "articles only refer to known route IDs" do
-    route_ids = Route.List.all() |> Route.List.groups()
-
-    assert Cache.Articles.get_dated()
-           |> Enum.filter(fn
-             {_name, %Article{images: imgs}} when is_list(imgs) or is_nil(imgs) ->
-               false
-
-             {_name, %Article{images: route_id}} when not is_ref(route_id) ->
-               !Enum.member?(route_ids, "#{route_id}")
-
-             _ ->
-               false
-           end)
-           |> Enum.map(fn {name, %Article{images: route_id}} ->
-             "#{name} refers to images of a route with ID '#{route_id}', but no such route is known. Known: #{Enum.join(route_ids, ", ")}"
-           end)
-           |> Enum.sort() == []
-  end
 
   test "all articles have mandatory params" do
     Cache.Articles.get()
-    |> Enum.each(fn {name, a} ->
+    |> Parallel.each(fn {name, a} ->
       have = a |> Map.keys() |> MapSet.new()
       want = Article.required_params() |> MapSet.new()
       missing = MapSet.difference(want, have)
@@ -39,7 +18,7 @@ defmodule Cache.ArticlesTest do
   test "all bounds in links are sensible" do
     errors =
       all_articles_element_select("a[bounds]")
-      |> Enum.map(fn {name, link} ->
+      |> Parallel.map(fn {name, _art, link} ->
         bounds = Floki.attribute(link, "bounds")
         prefix = "#{name}, link “#{Floki.text(link)}”"
 
@@ -62,23 +41,24 @@ defmodule Cache.ArticlesTest do
     assert [] == errors
   end
 
-  test "all image refs in links are valid" do
+  test "exact position links are complete" do
     errors =
-      all_articles_element_select("a[img]")
-      |> Enum.map(fn {name, link} ->
-        imgs = Floki.attribute(link, "img")
+      all_articles_element_select("a[lat], a[lon], a[dir], a[route]")
+      |> Parallel.flat_map(fn {name, art, link} ->
         prefix = "#{name}, link “#{Floki.text(link)}”"
 
-        cond do
-          length(imgs) != 1 ->
-            "#{prefix}: expected attribute img just once"
-
-          !is_ref(hd(imgs)) ->
-            "#{prefix}: expected proper Mapillary image reference, but '#{hd(imgs)}' doesn't appear to be one"
-
-          true ->
-            nil
-        end
+        [
+          if(Floki.attribute(link, "lat") == [], do: "#{prefix} is missing the “lat” attribute"),
+          if(Floki.attribute(link, "lon") == [], do: "#{prefix} is missing the “lon” attribute"),
+          if(Floki.attribute(link, "dir") == [], do: "#{prefix} is missing the “dir” attribute"),
+          if(
+            Floki.attribute(link, "route") == [] &&
+              Floki.attribute(link, "article") == [] &&
+              art.tracks == [] &&
+              Article.related_routes(art) == [],
+            do: "#{prefix} is missing the “route” or “article” attribute"
+          )
+        ]
       end)
       |> Enum.reject(&is_nil/1)
 
@@ -122,25 +102,14 @@ defmodule Cache.ArticlesTest do
            |> Enum.sort() == []
   end
 
-  test "all dated articles have a start_image or a video" do
-    assert Cache.Articles.get_dated()
-           |> Enum.filter(fn {_name, art} ->
-             art == %Article{start_image: nil}
-           end)
-           |> Enum.map(fn {name, art} ->
-             "Article #{name} has no start_image nor a video (bbox: #{inspect(art.bbox)})."
-           end)
-           |> Enum.sort() == []
-  end
-
   defp all_articles_element_select(selector) do
     Cache.Articles.get()
     |> Enum.map(fn {name, a} ->
       {:ok, html} = a.text |> Floki.parse_fragment()
-      {name, html}
+      {name, a, html}
     end)
-    |> Enum.flat_map(fn {name, html} ->
-      Floki.find(html, selector) |> Enum.map(fn link -> {name, link} end)
+    |> Enum.flat_map(fn {name, a, html} ->
+      Floki.find(html, selector) |> Enum.map(fn link -> {name, a, link} end)
     end)
   end
 end

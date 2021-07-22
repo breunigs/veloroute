@@ -1,8 +1,7 @@
 
 title: Lexikon · Schutzstreifen
-start_image: AhG365UP5-_Kp8XmLPkqvQ
 tags:
 - lexikon
 text: >
-  <p><a bounds="9.946338,53.581812,9.964407,53.585945" img="AhG365UP5-_Kp8XmLPkqvQ">Schutzstreifen</a> sind die kleinere Variante des <a href="/lexikon/radfahrstreifen">Radfahrstreifens</a> und in jeder Hinsicht schlechter gestellt. Breite Fahrzeuge dürfen sie mitbenutzen und sie sind meist sehr schmal. Nach alter/aktueller StVO dürfen sie sogar kurzzeitig durch KFZ blockiert werden.</p>
-  <p>Nicht verwechseln: „<a href="/lexikon/protected-bike-lane">Protected Bike Lane</a>“ klingt sehr ähnlich, ist für den Radverkehr aber deutlich besser.</p>
+  <p><a bounds="9.946338,53.581812,9.964407,53.585945" lon="9.9556474" lat="53.5846119" dir="forward" route="3">Schutzstreifen</a> sind die kleinere Variante des <ref>Radfahrstreifens</ref> und in jeder Hinsicht schlechter gestellt. Breite Fahrzeuge dürfen sie mitbenutzen und sie sind meist sehr schmal. Nach alter/aktueller StVO dürfen sie sogar kurzzeitig durch KFZ blockiert werden.</p>
+  <p>Nicht verwechseln: „<ref>Protected Bike Lane</ref>“ klingt sehr ähnlich, ist für den Radverkehr aber deutlich besser.</p>

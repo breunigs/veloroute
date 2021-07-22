@@ -2,7 +2,7 @@ defmodule DiskCache do
   use Agent
 
   @cache_dir "data/cache"
-  @allowed [:mapillary, :overpass]
+  @allowed [:overpass]
 
   def lazy(namespace, cache_key, func) do
     try do

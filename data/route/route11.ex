@@ -120,13 +120,4 @@ defmodule Data.Route.Route11 do
     backward_veddel
   ]
   def tracks(), do: @tracks
-
-  # legacy
-  def parsed() do
-    %{{id(), ""} => []}
-  end
-
-  def index() do
-    %{}
-  end
 end
