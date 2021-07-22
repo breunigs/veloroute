@@ -5,7 +5,7 @@ COPY ./_build/prod/prod-*.tar.gz /
 RUN tar -zxf /prod-*.tar.gz -C /build/
 
 FROM alpine:3.13 as runtime
-RUN apk add --no-cache ncurses-libs libstdc++ libgcc
+RUN apk add --no-cache ncurses-libs libstdc++ libgcc ffmpeg
 
 COPY --from=builder /build/ /app/
 COPY data/cache/ /app/data/cache/
