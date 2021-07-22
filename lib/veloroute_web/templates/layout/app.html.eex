@@ -21,8 +21,6 @@
     <link rel="manifest" href="/favicons/manifest.json?vsn=1">
     <%# used on this page, unless fully cached %>
     <link rel="preconnect" href="https://api.mapbox.com">
-    <link rel="preconnect" href="https://a.tiles.mapbox.com">
-    <link rel="preconnect" href="https://b.tiles.mapbox.com">
     <%# happens maybe %>
     <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
     <meta name="referrer" content="strict-origin-when-cross-origin">
