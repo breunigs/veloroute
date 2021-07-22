@@ -1,6 +1,7 @@
 let videoCoords = null;
 let prevVideo = null;
 let prevStartGen = null;
+let hlsAutoStartLoad = false;
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
@@ -66,7 +67,7 @@ function updateVideoElement() {
       }
 
       window.hls = new Hls({
-        startFragPrefetch: true,
+        autoStartLoad: hlsAutoStartLoad || !video.paused || autoplayEnabled(),
         enableWebVTT: false,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 30, // seconds
@@ -75,6 +76,12 @@ function updateVideoElement() {
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       window.hls.loadSource(`${path}stream.m3u8`);
+      video.addEventListener('play', () => {
+        if (hlsAutoStartLoad) return;
+        console.debug("triggering hls.startLoad");
+        hlsAutoStartLoad = true;
+        window.hls.startLoad(-1);
+      });
     })
     return
   }
@@ -91,7 +98,7 @@ function updateVideoElement() {
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
   video.innerHTML = innerHTML;
-  video.load();
+  if(autoplayEnabled()) video.load();
 }
 
 function seekToStartTime() {
