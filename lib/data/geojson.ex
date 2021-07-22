@@ -1,7 +1,7 @@
 defmodule Data.GeoJSON do
   def to_feature_lists(%Map.Parsed{} = map) do
     %{
-      routes: as_feat_collection(routes(map) ++ detours(map)),
+      routes: as_feat_collection(routes(map) ++ routeless_ways(map)),
       articles: as_feat_collection(articles(map)),
       markers: as_feat_collection(markers(map))
     }
@@ -20,9 +20,9 @@ defmodule Data.GeoJSON do
     |> Enum.reject(&is_nil/1)
   end
 
-  defp detours(map) do
+  defp routeless_ways(map) do
     map.ways()
-    |> Map.Element.filter_by_tag(:type, "detour")
+    |> Map.Element.filter_by_tag(:type, ["detour", "planned"])
     |> Enum.map(&as_geojson(&1))
   end
 
