@@ -1,4 +1,4 @@
-defmodule Data.Route.RouteAlster do
+defmodule Data.Route.RouteFR1 do
   @behaviour Route.Behaviour
 
   def id(), do: "FR1"

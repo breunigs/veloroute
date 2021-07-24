@@ -29,7 +29,7 @@ defmodule Data.GeoJSON do
   defp routes(map) do
     map.relations()
     |> Map.values()
-    |> add_overlap_info()
+    |> add_overlap_info(:alltag)
     |> Enum.map(&as_geojson(&1))
   end
 
@@ -128,10 +128,15 @@ defmodule Data.GeoJSON do
     }
   end
 
-  defp add_overlap_info(relations) do
+  defp add_overlap_info(relations, type) do
+    {rels_to_modify, rels_to_keep} =
+      Enum.split_with(relations, fn rel ->
+        Route.from_relation(rel).type() == type
+      end)
+
     # create map from way IDs to relation IDs that include that way
     ways_to_rels =
-      relations
+      rels_to_modify
       |> Enum.sort_by(fn %Map.Relation{id: id} -> id end)
       |> Enum.reduce(%{}, fn rel, acc ->
         rel
@@ -158,12 +163,12 @@ defmodule Data.GeoJSON do
       |> Enum.into(%{})
 
     # add offset to tags of ways
-    Enum.map(relations, fn rel ->
+    Enum.map(rels_to_modify, fn rel ->
       modify_ways(rel, fn way ->
         offset = %{offset: Map.get(offsets, {way.id, rel.id}, 0)}
         Map.Element.add_new_tags(way, offset)
       end)
-    end)
+    end) ++ rels_to_keep
   end
 
   defp modify_ways(%Map.Relation{} = r, fun) do
