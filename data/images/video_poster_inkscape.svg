@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="209.84836mm"
+   width="324.41632mm"
    height="155.59692mm"
-   viewBox="0 0 209.84836 155.59693"
+   viewBox="0 0 324.41632 155.59693"
    version="1.1"
    id="svg24"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
@@ -24,16 +24,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497474"
-     inkscape:cx="386.7835"
+     inkscape:cx="603.28992"
      inkscape:cy="485.54497"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1916"
-     inkscape:window-height="1046"
+     inkscape:window-height="1058"
      inkscape:window-x="0"
-     inkscape:window-y="14"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -45,7 +45,7 @@
        type="xygrid"
        id="grid21"
        dotted="true"
-       originx="-71.179384"
+       originx="-13.895395"
        originy="-114.37371" />
   </sodipodi:namedview>
   <metadata
@@ -64,12 +64,12 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-0.20301768,-0.31975921)">
+     transform="translate(57.080972,-0.31975921)">
     <path
        fill="#333333"
-       d="M 0.20301768,0.31975921 H 210.05137 V 155.91669 H 0.20301768 Z"
+       d="M -57.080972,0.31975921 H 267.33536 V 155.91669 H -57.080972 Z"
        id="path2"
-       style="stroke-width:15.055" />
+       style="stroke-width:18.7189" />
     <g
        aria-label="v"
        style="font-weight:400;font-size:0.287px;line-height:1.25;font-family:'Yanone Kaffeesatz';letter-spacing:0;word-spacing:0;stroke-width:0.007"
