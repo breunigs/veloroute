@@ -496,3 +496,6 @@
 '2021-04-28':
 - https://via-bus.hamburg.de/contentblob/15032948/ad10d351d791270e024ead44e9dcf90b/data/mb3-lageplan-haltestellen-rothenburgsort.pdf
 - https://via-bus.hamburg.de/contentblob/15030614/ef0af43aa5513c0c0d2591bb536f0ff8/data/56-mb3-bushaltestellen-rothenburgsort-erstverschickung.pdf
+'2021-07-24':
+- https://via-bus.hamburg.de/contentblob/15281608/d1cae26dbce99ad0e8ffb5c9b2a774a6/data/01-mb26-u-farmsen-erste-verschickung.pdf
+- https://via-bus.hamburg.de/contentblob/15281612/e19c11e020c6d864beb80869581424a0/data/02-mb26-u-farmsen-erste-verschickung-ueberarbeiteter-lageplan-ueberliegerplaetze.pdf

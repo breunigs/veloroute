@@ -1616,7 +1616,7 @@
   <node id='-5112991' action='modify' lat='53.55870681625' lon='9.99579369485' />
   <node id='-5112992' action='modify' lat='53.59377835774' lon='9.99346553743' />
   <node id='-5112993' action='modify' lat='53.59418270042' lon='9.99302565515' />
-  <node id='-5112994' action='modify' lat='53.59456475293' lon='9.99281107843' />
+  <node id='-5112994' action='modify' lat='53.59458067171' lon='9.99278962076' />
   <node id='-5112995' action='modify' lat='53.59505186488' lon='9.99263405263' />
   <node id='-5112996' action='modify' lat='53.5953256639' lon='9.99261795938' />
   <node id='-5112997' action='modify' lat='53.59560264482' lon='9.99266623914' />
@@ -2199,6 +2199,26 @@
     <tag k='type' v='warning' />
   </node>
   <node id='-5114659' action='modify' lat='53.61174956021' lon='10.00989809498' />
+  <node id='-5114806' action='modify' lat='53.54774716636' lon='10.00848322839' />
+  <node id='-5114807' action='modify' lat='53.54763401765' lon='10.0084885928' />
+  <node id='-5114808' action='modify' lat='53.54762286213' lon='10.00889897078' />
+  <node id='-5114809' action='modify' lat='53.54754955433' lon='10.00932812423' />
+  <node id='-5114810' action='modify' lat='53.54726588383' lon='10.01025885075' />
+  <node id='-5114811' action='modify' lat='53.54643398523' lon='10.01267015666' />
+  <node id='-5114812' action='modify' lat='53.54566741285' lon='10.01481592387' />
+  <node id='-5114813' action='modify' lat='53.54546500992' lon='10.01546233624' />
+  <node id='-5114814' action='modify' lat='53.54562916355' lon='10.01558035344' />
+  <node id='-5114815' action='modify' lat='53.54570566211' lon='10.01558303565' />
+  <node id='-5114816' action='modify' lat='53.54659176036' lon='10.01297592849' />
+  <node id='-5114817' action='modify' lat='53.54664435194' lon='10.01254409283' />
+  <node id='-5114818' action='modify' lat='53.5474188749' lon='10.01036882132' />
+  <node id='-5114819' action='modify' lat='53.5476961698' lon='10.00958025187' />
+  <node id='-5114841' action='modify' lat='53.49638164179' lon='10.23561536998' />
+  <node id='-5114842' action='modify' lat='53.49634334797' lon='10.23582190007' />
+  <node id='-5114843' action='modify' lat='53.49663693305' lon='10.23607402772' />
+  <node id='-5114844' action='modify' lat='53.49690179611' lon='10.23640662163' />
+  <node id='-5114845' action='modify' lat='53.49697838271' lon='10.23618131608' />
+  <node id='-5114846' action='modify' lat='53.49671511569' lon='10.23588090867' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -19031,6 +19051,36 @@
     <nd ref='10975370007074017' />
     <nd ref='1097590007074425' />
     <nd ref='10978180007074897' />
+  </way>
+  <way id='-206556' action='modify'>
+    <nd ref='-5114806' />
+    <nd ref='-5114807' />
+    <nd ref='-5114808' />
+    <nd ref='-5114809' />
+    <nd ref='-5114810' />
+    <nd ref='-5114811' />
+    <nd ref='-5114812' />
+    <nd ref='-5114813' />
+    <nd ref='-5114814' />
+    <nd ref='-5114815' />
+    <nd ref='-5114816' />
+    <nd ref='-5114817' />
+    <nd ref='-5114818' />
+    <nd ref='-5114819' />
+    <nd ref='-5114806' />
+    <tag k='name' v='2021-07-24-hoegerdamm' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-206701' action='modify'>
+    <nd ref='-5114841' />
+    <nd ref='-5114842' />
+    <nd ref='-5114843' />
+    <nd ref='-5114844' />
+    <nd ref='-5114845' />
+    <nd ref='-5114846' />
+    <nd ref='-5114841' />
+    <tag k='name' v='2021-07-24-pionierbruecke' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
@@ -37936,7 +37986,7 @@
     <tag k='name' v='2019-10-13-4-fibigerstrasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155148' version='1'>
+  <way id='785155148' action='modify' version='1'>
     <nd ref='20282000557474' />
     <nd ref='20465000557321' />
     <nd ref='21108000557506' />
@@ -37949,6 +37999,7 @@
     <nd ref='21039000557735' />
     <nd ref='20491000557518' />
     <nd ref='20282000557474' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-10-13-7-luebeckertordamm' />
     <tag k='type' v='article' />
   </way>

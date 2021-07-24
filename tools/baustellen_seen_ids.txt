@@ -16,8 +16,8 @@
   :velo: false
 7928:
   :id: 7928
-  :title: Spaldingstraße / Sielrenovierung -- Hamburg Wasser
-  :updated: '2020-08-21T07:04:51.217234'
+  :title: 'Spaldingstraße / Sielrenovierung -- '
+  :updated: '2021-07-16T16:28:00.938214'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-01'
   :end: '2021-11-30'
@@ -120,7 +120,7 @@
 9261:
   :id: 9261
   :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
-  :updated: '2021-06-30T16:27:30.12532'
+  :updated: '2021-07-23T11:52:38.33941'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-29'
   :end: '2022-03-15'
@@ -189,7 +189,7 @@
 7919:
   :id: 7919
   :title: 'Hindenburgstraße / Sielbauarbeiten -- '
-  :updated: '2021-07-08T16:32:13.781662'
+  :updated: '2021-07-16T16:24:44.669027'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
   :end: '2021-12-03'
@@ -793,11 +793,11 @@
   :velo: false
 13011:
   :id: 13011
-  :title: Luruper Chaussee / Trinkwasserleitungsarbeiten -- Hamburg Wasser
-  :updated: '2020-10-30T06:35:27.872692'
+  :title: 'Luruper Chaussee / Trinkwasserleitungsarbeiten -- '
+  :updated: '2021-07-23T11:46:30.153406'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-11-09'
-  :end: '2021-05-31'
+  :end: '2021-08-31'
   :velo: false
 13232:
   :id: 13232
@@ -1133,10 +1133,10 @@
 14420:
   :id: 14420
   :title: 'Stresemannstraße / Sielbauarbeiten -- '
-  :updated: '2021-04-19T16:08:31.321285'
+  :updated: '2021-07-16T16:29:38.184814'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-26'
-  :end: '2021-08-30'
+  :end: '2021-07-30'
   :velo: false
 15344:
   :id: 15344
@@ -1579,10 +1579,10 @@
 16173:
   :id: 16173
   :title: 'Kriegkamp / Düker Aufhebung (Sielbau) -- '
-  :updated: '2021-06-01T07:59:51.510345'
+  :updated: '2021-07-23T11:43:54.395986'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-14'
-  :end: '2021-07-30'
+  :end: '2021-08-27'
   :velo: false
 16091:
   :id: 16091
@@ -1623,9 +1623,9 @@
 16562:
   :id: 16562
   :title: 'Nettelnburger Landweg, Deckensanierung -- '
-  :updated: '2021-07-16T09:47:35.149675'
+  :updated: '2021-07-22T09:23:22.71509'
   :start: '2021-06-14'
-  :end: '2021-07-30'
+  :end: '2021-08-23'
   :velo: true
 16700:
   :id: 16700
@@ -1745,10 +1745,10 @@
 16995:
   :id: 16995
   :title: 'Heckscherstraße - Gebiet Sielbau -- '
-  :updated: '2021-06-16T07:34:56.210787'
+  :updated: '2021-07-16T16:22:03.971211'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
-  :start: '2021-07-01'
-  :end: '2021-12-30'
+  :start: '2021-06-26'
+  :end: '2021-12-20'
   :velo: false
 17847:
   :id: 17847
@@ -1931,7 +1931,7 @@
 18095:
   :id: 18095
   :title: 'Jahnring Deckensanierung -- '
-  :updated: '2021-07-12T14:02:54.893986'
+  :updated: '2021-07-20T15:57:15.397233'
   :link: https://lsbg.hamburg.de/contentblob/15239988/20a55c01faa31f8eb0e82ce59e4cde35/data/jahnring-jahnbruecke-ring-2-fahrbahnsanierung-12-07-21-bis-04-08-21.pdf
   :start: '2021-07-12'
   :end: '2021-08-04'
@@ -1977,4 +1977,92 @@
   :updated: '2021-07-14T13:43:28.476767'
   :start: '2021-08-11'
   :end: '2021-10-19'
+  :velo: false
+18233:
+  :id: 18233
+  :title: 'Högerdamm / Hochbau -- '
+  :updated: '2021-07-23T16:01:08.357897'
+  :start: '2020-01-07'
+  :end: '2022-04-01'
+  :velo: false
+18239:
+  :id: 18239
+  :title: 'Spaldingstraße 188-190 - Nordkanalstraße 52 / Hochbau -- '
+  :updated: '2021-07-23T16:01:26.02238'
+  :start: '2020-04-01'
+  :end: '2022-11-30'
+  :velo: false
+18246:
+  :id: 18246
+  :title: 'Rennbahnstraße 89 / Hochbau -- '
+  :updated: '2021-07-23T16:01:39.752549'
+  :start: '2020-09-01'
+  :end: '2022-08-01'
+  :velo: false
+18251:
+  :id: 18251
+  :title: 'Ludwig-Erhard-Straße 24 / Austausch Glasfassade -- '
+  :updated: '2021-07-23T16:01:48.431414'
+  :start: '2021-06-21'
+  :end: '2022-10-31'
+  :velo: true
+18258:
+  :id: 18258
+  :title: 'Am Sandtorkai 41 - Fassadeninstandsetzung -- '
+  :updated: '2021-07-23T16:01:55.858159'
+  :start: '2021-02-01'
+  :end: '2021-08-31'
+  :velo: false
+18466:
+  :id: 18466
+  :title: 'Steintordamm / Treppeneinbau -- '
+  :updated: '2021-07-23T16:08:58.229248'
+  :start: '2021-07-02'
+  :end: '2021-11-15'
+  :velo: false
+18474:
+  :id: 18474
+  :title: 'Steintordammbrücke - Steintorwall / Bahnsteigerneuerung -- '
+  :updated: '2021-07-23T16:09:20.516562'
+  :start: '2021-07-13'
+  :end: '2021-08-20'
+  :velo: false
+18325:
+  :id: 18325
+  :title: 'Mönkedamm-Adolphsplatz/Tunnelsanierung, Tunneltrog-Erneuerung, Stahlviadukt-Instandsetzung
+    (U-Bahn-Linie U3) -- '
+  :updated: '2021-07-23T16:05:14.196882'
+  :link: www.hochbahn.de/u3-innenstadt
+  :start: '2021-01-04'
+  :end: '2022-06-30'
+  :velo: false
+18330:
+  :id: 18330
+  :title: 'Rödingsmarkt/Haltestellensanierung und Stahlviadukt-Instandsetzung (U-Bahn-Linie
+    U3) -- '
+  :updated: '2021-07-23T16:06:59.851209'
+  :link: www.hochbahn.de/u3-innenstadt
+  :start: '2021-01-04'
+  :end: '2022-06-30'
+  :velo: false
+18204:
+  :id: 18204
+  :title: 'Neuer Wall - Poststraße / Kreuzungsinstandsetzung -- '
+  :updated: '2021-07-15T06:47:30.749873'
+  :start: '2021-07-29'
+  :end: '2021-08-02'
+  :velo: true
+18454:
+  :id: 18454
+  :title: 'Vogt-Kock-Weg 1-13 -- '
+  :updated: '2021-07-23T16:07:50.482777'
+  :start: '2021-08-02'
+  :end: '2021-08-28'
+  :velo: false
+18460:
+  :id: 18460
+  :title: 'Op de Solt 12-33 -- '
+  :updated: '2021-07-23T16:08:12.883507'
+  :start: '2021-08-02'
+  :end: '2021-09-30'
   :velo: false

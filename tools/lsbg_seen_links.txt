@@ -410,3 +410,7 @@
 - "/contentblob/15261298/12fd226644e11725bb5a15f1a3c65924/data/domstrasse-08-2021.pdf"
 - "/contentblob/15261296/03354a22f64331dbd5fc84ecbaadb070/data/kennedybruecke-asphaltsanierung-07-2021.pdf"
 - "/contentblob/15261316/b88f42d1b95f459900f9e2fa26186017/data/pinneberger-chaussee-veloroute-14-07-2021-bis-12-2021.pdf"
+'2021-07-24':
+- "/contentblob/15272742/005843155bb13b25b0c1901ab81ad338/data/hoegerdamm-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15272744/92375049d4a9e8457398ae32e46fffeb/data/hoegerdamm-abgestimmte-planung-plan.pdf"
+- "/contentblob/15272918/9b50693c9218d8495bca494d8dbe9f5b/data/pionierbruecke-06-2021-bis-12-2021.pdf"

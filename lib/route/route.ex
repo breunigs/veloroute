@@ -38,6 +38,6 @@ defmodule Route do
   end
 
   def has_group?(route, group) do
-    route.id() == group || Enum.any?(route.tracks, fn track -> track.group == group end)
+    route.id() == group || Enum.any?(route.tracks(), fn track -> track.group == group end)
   end
 end

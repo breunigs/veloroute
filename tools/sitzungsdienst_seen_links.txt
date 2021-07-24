@@ -696,3 +696,5 @@
 '2021-07-16':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011594
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010866
+'2021-07-24':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010872

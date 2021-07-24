@@ -1,5 +1,6 @@
 type: planned-construction
 title: Am Luisenhof
+start: 2023
 text: >
   <h4>Alter Zustand</h4>
   <p>Der Radverkehr wird auf <ref>Hochbordradwegen</ref> unterschiedlicher Breiten, Oberflächen und Ebenheiten geführt.</p>
@@ -13,4 +14,7 @@ text: >
   <p>Der erste Entwurf enthält noch einige Planungsfehler, etwa das manche Ampeln ohne Fahrrad-Piktogramme daherkommen, obwohl diese sehr wahrscheinlich auch für den Radverkehr gedacht sind. Insgesamt ist die Planung aber gut. Die Breite und Führung der neuen Radwege ist ansprechend. Konflikte mit anderen Verkehrsarten bleiben wie bisher minimal, bzw. werden sogar geringer weil alle genug Verkehrsfläche bekommen.</p>
 
   <h4>Quelle</h4>
-  <p><a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014335">Erläuterungsbericht und Lageplan des ersten Entwurfs</a></p>
+  <ul>
+    <li><a href="https://via-bus.hamburg.de/contentblob/15281608/d1cae26dbce99ad0e8ffb5c9b2a774a6/data/01-mb26-u-farmsen-erste-verschickung.pdf">Erläuterungsbericht des zweiten Entwurfs</a></li>
+    <li><a href="https://via-bus.hamburg.de/contentblob/15281612/e19c11e020c6d864beb80869581424a0/data/02-mb26-u-farmsen-erste-verschickung-ueberarbeiteter-lageplan-ueberliegerplaetze.pdf">Lageplan des zweiten Entwurfs</a></li>
+  </ul>

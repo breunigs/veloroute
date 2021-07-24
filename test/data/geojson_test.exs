@@ -7,13 +7,7 @@ defmodule Data.GeoJSONTest do
       "1" => %Map.Relation{
         id: "1",
         tags: %{
-          id: "1",
-          color: "#7d8b2f",
-          gpx_backward: "Richtung Innenstadt",
-          gpx_forward: "Richtung Rissen",
-          gpx_name: "1",
-          name: "Alltagsroute 1",
-          osm_relation_ref: "https://www.openstreetmap.org/relation/194843"
+          ref: "Route1"
         },
         members: [
           %{ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
