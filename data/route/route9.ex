@@ -1,11 +1,10 @@
 defmodule Data.Route.Route9 do
   @behaviour Route.Behaviour
 
-  @name "Alltagsroute 9"
-
   def id(), do: "9"
+  def type(), do: :alltag
   def color(), do: "#9d2928"
-  def name(), do: @name
+  def name(), do: "Alltagsroute 9"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/229823"
 
   forward = %Video.Track{

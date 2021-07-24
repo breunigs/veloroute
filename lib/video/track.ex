@@ -35,7 +35,7 @@ defmodule Video.Track do
   @spec render(t()) :: {hash(), [Video.TimedPoint.t()]}
   def render(%__MODULE__{videos: videos}) do
     tsv_list =
-      Enum.map(videos, fn {file, from, to} ->
+      Parallel.map(videos, fn {file, from, to} ->
         file |> Video.TrimmedSource.new_from_path() |> Video.TrimmedSource.extract(from, to)
       end)
 

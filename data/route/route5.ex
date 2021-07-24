@@ -2,6 +2,7 @@ defmodule Data.Route.Route5 do
   @behaviour Route.Behaviour
 
   def id(), do: "5"
+  def type(), do: :alltag
   def color(), do: "#078a3d"
   def name(), do: "Alltagsroute 5"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/226032"

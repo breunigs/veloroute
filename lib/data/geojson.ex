@@ -105,8 +105,9 @@ defmodule Data.GeoJSON do
     route = Route.from_relation(r)
 
     extra_rel_tags = %{
-      color: r.tags[:color] || route.color(),
-      route_id: r.tags[:id] || route.id()
+      color: route.color(),
+      route_id: route.id(),
+      type: route.type()
     }
 
     r
