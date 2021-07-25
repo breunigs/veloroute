@@ -1,0 +1,28 @@
+
+title: Freizeitroute 2 – Osterbekradweg
+no_auto_title: true
+tags: [FR2]
+text: >
+  <h3>Freizeitroute 2 – Osterbekradweg <icon>FR2</icon></h3>
+  <p>Ab dem <a dir="forward" bounds="9.998862,53.55525,10.00495,53.557416" lat="53.55588" lon="10.00128" dir="forward">Ferdinandstor</a> fährt man zunächst entlang der Alster und folgt dann dem <a dir="forward" bounds="9.997975,53.575401,10.035784,53.584155" lat="53.5771" lon="10.0116">Osterbekkanal</a> durch zahlreiche Grünflächen und Nebenstraßen. Ab der <a dir="forward" lat="53.5979" lon="10.0991" bounds="10.090837,53.596174,10.110603,53.600748">U-Bahn Station Trabrennbahn</a> geben die Schienen die grobe Richtung vor – nach einem kurzen Abstecher in die <a dir="forward" bounds="10.115089,53.617707,10.131955,53.623899" lat="53.6190" lon="10.1236">Berner Au</a> führen diese bis zum <a dir="forward" lat="53.6368" lon="10.1554" bounds="10.144436,53.634382,10.180475,53.646241">Volksdorfder Wald</a>. Von dort ist es nur noch ein kurzes Stück bis zum Ziel der Route, dem <a dir="forward" bounds="10.158367,53.611997,10.234936,53.636551" lat="53.6349" lon="10.1987">Stellmoorer Tunneltal</a>.</p>
+
+  <h4>Auffindbarkeit</h4>
+  <p>Die Route ist nicht beschildert und die Führung oft nicht ersichtlich. Gerade an den zahlreichen Straßenquerungen müssen teils erhebliche Umwege gefahren werden, um der Route „geradeaus“ folgen zu können. Ein Navi mit einem großen Bildschirm ist hier hilfreich, um genauer sehen zu können wie man fahren soll. Die Routingdaten der Stadt geben nur die grobe Richtung vor – die von veloroute.hamburg orientieren sich eher an einer fahrbaren Strecke.</p>
+
+  <h4>Befahrbarkeit</h4>
+  <p>Die Qualität der Bodenbeläge schwankt stark und es sind praktisch alle Varianten vertreten: Kopfsteinpflaster, modernes Radwegpflaster, Asphalt sowie Waldwege aus Grand oder Schotter. Es gibt einige enge Drängelgitter und <a bounds="10.110882,53.604856,10.123379,53.609256" lat="53.60689" lon="10.11650" dir="forward">bei Farmsen</a> eine Treppe, die aber über die nahen Nebenstraßen umfahren werden kann. </p>
+  <p>Nicht überall ist Radfahren erlaubt, an anderen Stellen ist es wegen der engen Wege nicht möglich. Sei exzellent zu Anderen und steige ab, bevor es brenzlig wird.</p>
+
+  <h4>Meinung</h4>
+  <p>In die größeren Grünflächen wie den <a dir="forward" lat="53.6368" lon="10.1554" bounds="10.144436,53.634382,10.180475,53.646241">Volksdorfder Wald</a> oder die <a dir="forward" bounds="10.115089,53.617707,10.131955,53.623899" lat="53.6190" lon="10.1236">Berner Au</a> lohnt sich ein Abstecher. Auch <a lat="53.59773" lon="10.07785" dir="forward" bounds="10.067883,53.595866,10.091143,53.601249">an der Osterbek</a> gibt es einige schöne Stellen. Die Verbindungen dazwischen wirken jedoch lieblos und sind teils kaum befahrbar. Das man auch bei umgebauten Straßen noch riesige Umwege fahren muss zeigt klar, das man am Radverkehr wenig interessiert ist.</p>
+
+  <p>Insgesamt lässt sich die Route in ihrem aktuellen Zustand nicht empfehlen. Es ist besser die günstig gelegenen Abschnitte in eine eigene Planung zu übernehmen, statt der Route am Stück zu folgen.</p>
+
+  <h3>Externe Links</h3>
+  <geolinks route="FR2">
+    <li><a href="https://www.hamburg.de/radtour/6294574/radtour-city-alster-osterbekkanal-volksdorfer-wald/">Detailseite der Stadt</a> (grobe Führung)</li>
+    <li><a href="https://www.komoot.de/tour/227466998">Komoot Routenplaner</a> (grobe Führung)</li>
+  </geolinks>
+
+  <h3>Artikel zum Osterbekradweg</h3>
+  <articles tags="FR2" sort="date"/>

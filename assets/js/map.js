@@ -275,7 +275,8 @@ let videoCoords = null;
 window.mapUpdateIndicatorFromVideo = (vid, coords) => {
   video = vid;
   videoCoords = coords;
-  mapStateChanged()
+  renderIndicator();
+  maybeEnsureIndicatorInView();
 }
 
 function toRad(degrees) {
@@ -310,7 +311,7 @@ function maybeHackStateFromVideo() {
   let percIndex = Math.round(ratio * videoCoords.length);
   percIndex -= percIndex % 3
 
-  let nextIdx = Math.max(0, percIndex - 100 * 3);
+  let nextIdx = Math.max(0, percIndex - 200 * 3);
   for (; nextIdx < videoCoords.length-3; nextIdx += 3) {
     if (videoCoords[nextIdx] >= curr) break;
   }

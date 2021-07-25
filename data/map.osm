@@ -37942,6 +37942,7 @@
     <nd ref='12322000616241' />
     <nd ref='123601000616253' />
     <nd ref='123159000616025' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-17-6-neusurenland' />
     <tag k='type' v='article' />
   </way>
