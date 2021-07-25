@@ -78,14 +78,11 @@ defmodule TrackFinder do
     end)
   end
 
-  defp direction_text(route, from, to)
-  defp direction_text(nil, _from, _to), do: nil
-
   defp direction_text(route, from, to) do
     Enum.find_value(route.tracks(), fn
       %{from: ^from, to: ^to, text: text} -> text
       _track -> nil
-    end)
+    end) || raise("Failed to find track '#{from}'→'#{to}' for #{inspect(route)}")
   end
 
   defp track_matrix(r, normalized_ways) do
@@ -98,14 +95,21 @@ defmodule TrackFinder do
 
     {start_members, end_members} =
       Enum.group_by(r.members, fn
-        %{ref: %Node{}, role: "gpx_" <> role} -> role
+        %{ref: %Node{tags: %{target: "" <> _rest}}, role: "gpx_" <> role} -> role
         _ -> nil
       end)
       |> case do
-        %{"start" => start_members, "end" => end_members} -> {start_members, end_members}
-        %{"start" => _} -> raise "Route #{name} specifies GPX start(s), but no end(s)."
-        %{"end" => _} -> raise "Route #{name} specifies GPX end(s), but no start(s)."
-        _ -> {[], []}
+        %{"start" => start_members, "end" => end_members} ->
+          {start_members, end_members}
+
+        %{"start" => _} ->
+          raise "Route #{name} specifies GPX start(s), but no end(s) that have a target"
+
+        %{"end" => _} ->
+          raise "Route #{name} specifies GPX end(s), but no start(s) that have a target"
+
+        _ ->
+          {[], []}
       end
 
     start_ways = resolve_to_start_end_ways(name, start_members, normalized_ways)
@@ -116,13 +120,8 @@ defmodule TrackFinder do
         fw_target = hd(e_as_start.nodes).tags[:target]
         bw_target = hd(s_as_start.nodes).tags[:target]
 
-        # TODO: remove all fallbacks except direction_text after all is video
-        fw_text = r.tags[:gpx_forward] || direction_text(route, bw_target, fw_target)
-        bw_text = r.tags[:gpx_backward] || direction_text(route, fw_target, bw_target)
-        fw_text = r.tags[:"#{bw_target}→#{fw_target}"] || fw_text
-        bw_text = r.tags[:"#{fw_target}→#{bw_target}"] || bw_text
-        fw_text = fw_text || "von #{bw_target} nach #{fw_target}"
-        bw_text = bw_text || "von #{fw_target} nach #{bw_target}"
+        fw_text = direction_text(route, bw_target, fw_target)
+        bw_text = direction_text(route, fw_target, bw_target)
 
         [
           %{

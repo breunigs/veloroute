@@ -190,8 +190,9 @@ defmodule VelorouteWeb.ArticleView do
 
   defp geolinks([{"route", route}], content) do
     route = Route.from_id(route)
+    basename = Cache.Articles.basename(route.id())
 
-    gpx = geolinks_gpx(route.name(), route.id())
+    gpx = geolinks_gpx(route.name(), basename)
     osm_href = route.osm_relation_ref()
 
     osm =
@@ -202,8 +203,6 @@ defmodule VelorouteWeb.ArticleView do
 
     {"ul", [], content ++ osm ++ gpx}
   end
-
-  defp geolinks_gpx(_, nil), do: []
 
   defp geolinks_gpx(name, gpx_name) do
     [gpx] =

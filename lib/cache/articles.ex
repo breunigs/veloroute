@@ -45,11 +45,31 @@ defmodule Cache.Articles do
 
     get()[key] ||
       Enum.find_value(get(), fn {name, art} ->
-        if String.ends_with?(name, "-#{downkey}"), do: art
+        clean = name |> String.split("/") |> List.last() |> String.slice(11..-1)
+        if clean == downkey, do: art
       end) ||
-      Enum.find_value(get(), fn {_name, art} ->
+      get()
+      |> Enum.sort_by(&elem(&1, 0))
+      |> Enum.find_value(fn {_name, art} ->
         if Enum.member?(art.tags, key) || Enum.member?(art.tags, downkey), do: art
       end)
+  end
+
+  @doc """
+  Tries to find an article for the given ID, then return its path with the leading
+  slash removed -- usually that's a decent name that can be used in an URL.
+  """
+  @spec basename(binary()) :: binary()
+  def basename(key) do
+    case Cache.Articles.find(key) do
+      nil ->
+        key
+
+      art ->
+        art
+        |> Article.path()
+        |> String.replace_prefix("/", "")
+    end
   end
 
   @doc """

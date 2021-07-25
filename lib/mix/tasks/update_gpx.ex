@@ -10,18 +10,20 @@ defmodule Mix.Tasks.UpdateGpx do
     Cache.Map.relations()
     |> Map.values()
     |> Enum.map(fn rel ->
-      basename = rel.tags[:gpx_name] || rel.tags[:id] || Route.from_relation(rel).id()
+      id = Route.from_relation(rel).id() || raise "failed to find relation for #{inspect(rel)}"
+
+      basename = Cache.Articles.basename(id)
 
       tracks = TrackFinder.ordered(rel) |> TrackFinder.with_nodes()
       gpx_tracks = tracks |> Enum.map(&as_gpx_track(&1))
       kml_tracks = tracks |> Enum.map(&as_kml_track(&1))
 
-      {basename, rel, gpx_tracks, kml_tracks}
+      {basename, gpx_tracks, kml_tracks}
     end)
     |> Enum.group_by(&elem(&1, 0))
     |> Enum.map(fn {basename, routes} ->
-      gpx_tracks = Enum.flat_map(routes, fn {_base, _rel, gpx_tracks, _kml} -> gpx_tracks end)
-      kml_tracks = Enum.flat_map(routes, fn {_base, _rel, _gpx, kml_tracks} -> kml_tracks end)
+      gpx_tracks = Enum.flat_map(routes, fn {_base, gpx_tracks, _kml} -> gpx_tracks end)
+      kml_tracks = Enum.flat_map(routes, fn {_base, _gpx, kml_tracks} -> kml_tracks end)
 
       base = Path.join(@out, basename)
       File.write!("#{base}.gpx", gpx_wrapper(basename, gpx_tracks))
