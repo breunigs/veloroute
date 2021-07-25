@@ -265,31 +265,8 @@ defmodule VelorouteWeb.ArticleView do
       href == nil && find_attribute(attrs, "phx-click") != nil ->
         keep
 
-      find_attribute(attrs, "bounds") != nil ->
-        new_attr = %{"phx-click" => "map-zoom-to"}
-
-        new_attr =
-          cond do
-            article.tracks != [] ->
-              Map.put(new_attr, "phx-value-article", article.name)
-
-            rel = article |> Article.related_route() ->
-              Map.put(new_attr, "phx-value-route", rel.id())
-
-            true ->
-              new_attr
-          end
-
-        new_attr =
-          Enum.reduce(attrs, new_attr, fn {key, val}, acc ->
-            if key in ["bounds", "lat", "lon", "dir", "route", "article"] do
-              Map.put(acc, "phx-value-#{key}", val)
-            else
-              acc
-            end
-          end)
-
-        {"a", Enum.to_list(new_attr), children}
+      find_attribute(attrs, "bounds") || find_attribute(attrs, "lat") ->
+        zoomable_link(article, attrs, children)
 
       nil == href ->
         name = Floki.text(children)
@@ -319,6 +296,35 @@ defmodule VelorouteWeb.ArticleView do
       true ->
         keep
     end
+  end
+
+  defp zoomable_link(article, attrs, children) do
+    new_attr = %{"phx-click" => "map-zoom-to"}
+
+    new_attr =
+      cond do
+        article.tracks != [] ->
+          Map.put(new_attr, "phx-value-article", article.name)
+
+        rel = article |> Article.related_route() ->
+          Map.put(new_attr, "phx-value-route", rel.id())
+
+        true ->
+          new_attr
+      end
+
+    new_attr =
+      Enum.reduce(attrs, new_attr, fn {key, val}, acc ->
+        if key in ["bounds", "lat", "lon", "dir", "route", "article", "zoom"] do
+          Map.put(acc, "phx-value-#{key}", val)
+        else
+          acc
+        end
+      end)
+
+    new_attr = Map.put_new(new_attr, "phx-value-zoom", "15")
+
+    {"a", Enum.to_list(new_attr), children}
   end
 
   def parse_map_link(path) do

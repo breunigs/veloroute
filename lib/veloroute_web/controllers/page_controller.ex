@@ -42,6 +42,20 @@ defmodule VelorouteWeb.PageController do
     end
   end
 
+  def redir_plain_veloroute(conn, _params) do
+    with [[_path, route]] <- Regex.scan(~r/^\/([1-9]|10|11|12|13|14)/, conn.request_path) do
+      path = "/alltagsroute-#{route}"
+      path = if(conn.query_string != "", do: path <> "?" <> conn.query_string, else: path)
+
+      conn
+      |> put_status(302)
+      |> redirect(to: path)
+    else
+      _ ->
+        not_found_redir(conn)
+    end
+  end
+
   def js_errors(conn, _params) do
     {:ok, data, _conn_details} = Plug.Conn.read_body(conn)
     err = "A JavaScript error was reported:\n#{data}\n#{inspect(conn)}"

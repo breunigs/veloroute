@@ -33,6 +33,10 @@ defmodule VelorouteWeb.Router do
     get "/updates.atom", FeedController, :feed
     get "/routes/geo/updates.atom", FeedController, :legacy
 
+    for num <- 1..14 do
+      get "/#{num}", PageController, :redir_plain_veloroute
+    end
+
     get "/blog/:article", PageController, :blog
     get "/quality/:article", PageController, :quality
     get "/article/0000-00-00-:page", PageController, :article_vs_page

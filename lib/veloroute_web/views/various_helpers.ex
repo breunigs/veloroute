@@ -15,7 +15,7 @@ defmodule VelorouteWeb.VariousHelpers do
         )
 
       is_atom(ref) and not is_nil(ref) ->
-        icon = route_icon(ref.id(), ref.color())
+        icon = route_icon(ref)
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
           to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.id()),
@@ -31,7 +31,7 @@ defmodule VelorouteWeb.VariousHelpers do
   def display_route({id, rest}) do
     cond do
       route = Route.from_id(id) ->
-        icon = route_icon(route.id(), route.color())
+        icon = route_icon(route)
         name = route.name()
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", rest],
@@ -104,21 +104,16 @@ defmodule VelorouteWeb.VariousHelpers do
     "#{day}. #{Enum.at(@long_month_names, month - 1)} #{year}"
   end
 
-  def route_icon(%Map.Relation{id: id, tags: tags}) do
-    route_icon(id, Map.get(tags, :color))
-  end
-
   def route_icon(id) when is_binary(id) do
     route = Route.from_id(id)
-    if route, do: route_icon(id, route.color())
+    if route, do: route_icon(route)
   end
 
-  def route_icon(id, color) do
-    if color do
-      content_tag(:span, id, style: "background: #{color}", class: "icon")
-    else
-      Phoenix.HTML.html_escape(id)
-    end
+  def route_icon(route) when is_atom(route) and not is_nil(route) do
+    content_tag(:span, route.id(),
+      style: "background: #{route.color()}",
+      class: "icon #{route.type()}"
+    )
   end
 
   def parse_bounds(%{

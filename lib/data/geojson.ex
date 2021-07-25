@@ -9,7 +9,7 @@ defmodule Data.GeoJSON do
 
   defp markers(map) do
     map.nodes()
-    |> Map.Element.filter_by_tag(:type, "marker")
+    |> Map.Element.filter_by_tag(:type, ["marker", "warning"])
     |> Enum.map(&as_geojson(&1))
   end
 

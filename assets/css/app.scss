@@ -236,7 +236,6 @@ a.header {
 }
 
 .icon {
-  width: 1.5em;
   height: 1.5em;
   display: inline-block;
   line-height: 1.5em;
@@ -244,17 +243,44 @@ a.header {
   margin-bottom: -0.15em;
   font-size: 90%;
   font-weight: normal;
-  cursor: default;
   text-decoration: none;
-  color: #fff !important;
-  border-radius: 50%;
-  border: 0.13em solid white;
   text-align: center;
   vertical-align: middle;
+  color: #fff !important;
+  cursor: default;
+  border: 0.13em solid white;
+  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
+    0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
+    -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
+
+  &.freizeit {
+    border-radius: 0.2rem;
+    padding: 0 0.2rem;
+  }
+
+  &.alltag {
+    border-radius: 50%;
+    width: 1.5em;
+  }
+}
+
+h3 .icon {
+  outline: 1px solid #eee;
+  float: right;
+  margin-top: -0.2rem;
+  pointer-events: none;
+  cursor: normal;
+}
+
+.icon, .fricon {
+  color: #fff !important;
+  cursor: default;
+  border: 0.13em solid white;
   text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
     0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
     -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 }
+
 
 a.icon {
   cursor: pointer;
@@ -459,6 +485,10 @@ span[title],
 #slideshow .curRoute {
   cursor: help;
   border-bottom: 0.05em dotted #000;
+}
+
+#slideshow .curRoute .icon {
+  cursor: help;
 }
 
 

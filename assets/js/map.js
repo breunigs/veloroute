@@ -27,7 +27,7 @@ const map = new mapboxgl.Map({
 });
 map.touchZoomRotate.disableRotation();
 
-const routeLayers = ['routes-casing', 'routemarker-circle'];
+const routeLayers = ['vr-casing', 'fr-casing', 'vr-marker-circle'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = { layers: routeLayers.concat(articleLayers) };
 
@@ -334,6 +334,51 @@ function maybeHackStateFromVideo() {
   }
 }
 
+
+const layerVisibilityConfig = [
+  ['alltag', 'opacity', [
+    ['line', ['vr-casing', 'vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none', 'detour-line', 'planned-line']],
+    ['icon', ['both-oneway', 'vr-marker-text']],
+    ['circle', ['vr-marker-circle']],
+  ]],
+  ['freizeit', 'visibility', [
+    ['line', ['fr-casing', 'fr-line']],
+    ['icon', ['fr-sign', 'fr-warning-icons']],
+  ]]
+]
+// same order as layerVisibilityConfig
+let prevVisibility = [true, false];
+function setLayerVisibility() {
+  const types = state.visibleTypes.split(",");
+  for (let i = 0; i < layerVisibilityConfig.length; i++) {
+    const type = layerVisibilityConfig[i][0];
+    const prevVis = prevVisibility[i];
+    const nextVis = types.indexOf(type) >= 0;
+    if (prevVis != nextVis) {
+      setLayerStyle(layerVisibilityConfig[i][1], layerVisibilityConfig[i][2], nextVis);
+      prevVisibility[i] = nextVis;
+    }
+  }
+}
+
+function setLayerStyle(style, layersByType, show) {
+  const opacity = show ? 1 : 0.4;
+  const lineCap = show ? "round" : "butt";
+  const visibility = show ? "visible" : "none";
+
+  for (let i = 0; i < layersByType.length; i++) {
+    const type = layersByType[i][0];
+    const layers = layersByType[i][1];
+    for (let j = 0; j < layers.length; j++) {
+      console.log("setting style", style, "for", layers[j], "to", show);
+      if (style == "opacity" && type == "line") map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
+      if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, { validate: true })
+      if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, { validate: true })
+    }
+  }
+}
+window.map = map;
+
 let queued = false;
 window.mapStateChanged = () => {
   if (queued) return;
@@ -344,5 +389,6 @@ window.mapStateChanged = () => {
     maybeHackStateFromVideo();
     renderIndicator();
     maybeEnsureIndicatorInView();
+    setLayerVisibility();
   }, { timeout: 100 })
 }

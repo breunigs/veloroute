@@ -21,7 +21,8 @@ defmodule VelorouteWeb.FrameLive do
     lon: nil,
     lat: nil,
     bearing: nil,
-    tmp_last_article_set: nil
+    tmp_last_article_set: nil,
+    visible_types: []
   ]
 
   def initial_state, do: @initial_state
@@ -31,6 +32,7 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> assign(@initial_state)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, nil, params)
+      |> determine_visible_types(nil, nil)
 
     {:ok, socket}
   end
@@ -50,6 +52,7 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> update_map(attr)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
+      |> determine_visible_types(route, article)
 
     {:noreply, socket}
   end
@@ -72,7 +75,7 @@ defmodule VelorouteWeb.FrameLive do
       |> assign(:search_bounds, socket.assigns[:map_bounds])
 
     socket =
-      if socket.assigns.current_page == @search_page_full do
+      if on_search_page?(socket) do
         update_url_query(socket)
       else
         socket = assign(socket, :current_page, @search_page_full)
@@ -111,7 +114,10 @@ defmodule VelorouteWeb.FrameLive do
     article = Cache.Articles.get()[attr["article"]]
     route = Route.from_id(attr["route"])
 
-    socket = VelorouteWeb.Live.VideoState.maybe_update_video(socket, route, article, attr)
+    socket =
+      socket
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
+      |> determine_visible_types(route, article)
 
     socket =
       if(article) do
@@ -151,6 +157,7 @@ defmodule VelorouteWeb.FrameLive do
         socket
         |> VelorouteWeb.Live.VideoState.reset()
         |> VelorouteWeb.Live.VideoState.maybe_update_video(route, nil, start_from)
+        |> determine_visible_types(route, nil)
         |> assign(:autoplay, true)
       else
         socket
@@ -200,7 +207,10 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       if article == prev_article,
         do: socket,
-        else: VelorouteWeb.Live.VideoState.maybe_update_video(socket, nil, article, params)
+        else:
+          socket
+          |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, article, params)
+          |> determine_visible_types(nil, article)
 
     socket =
       set_content(article, socket)
@@ -380,4 +390,30 @@ defmodule VelorouteWeb.FrameLive do
   defp blank?(""), do: true
   defp blank?(nil), do: true
   defp blank?(_), do: false
+
+  defp determine_visible_types(socket, route, article) do
+    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
+    parent_ref = track && track.parent_ref
+    article = article || find_article(socket) || Cache.Articles.get()[parent_ref]
+
+    show = if route, do: [route.type()], else: []
+    show = if is_module(parent_ref), do: [parent_ref.type() | show], else: []
+
+    show =
+      if article,
+        do: show ++ Enum.map(Article.related_routes(article), & &1.type()),
+        else: show
+
+    show =
+      if show == [] do
+        Sentry.capture_message("came up with an empty list of visible routes")
+        [:alltag]
+      else
+        show
+      end
+
+    assign(socket, visible_types: Enum.uniq(show))
+  end
+
+  defp is_module(ref), do: is_atom(ref) and not is_nil(ref)
 end
