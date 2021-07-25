@@ -5,7 +5,6 @@ defmodule Mix.Tasks.EditMap do
   @josm_home "data/josmhome/"
   @josm_default_prefs "data/josm_default_prefs.xml"
   @session_path "data/cache/map_session.jos"
-  @style_debug_path "data/style_debug.osm"
   @route_colors_path "data/cache/route_colors.mapcss"
 
   @shortdoc "Prepares data for viewing and opens map in JOSM"
@@ -68,10 +67,7 @@ defmodule Mix.Tasks.EditMap do
               <layer index="3" name="Videos (pending, read only)" type="tracks" version="0.1" visible="false'">
                 <file>file:#{Path.absname(Videos.out_pending())}</file>
               </layer>
-              <layer index="4" name="Style Debug" type="osm-data" version="0.1" visible="false">
-                <file>file:#{Path.absname(@style_debug_path)}</file>
-              </layer>
-              <layer index="5" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
+              <layer index="4" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
                   <name>OpenStreetMap (Standard Black &amp; White)</name>
                   <id>osm-mapnik-black_and_white</id>
                   <type>tms</type>
