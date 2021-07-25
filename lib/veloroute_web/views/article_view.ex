@@ -223,7 +223,8 @@ defmodule VelorouteWeb.ArticleView do
 
   defp icon(given_attr, content) do
     [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
-    {"a", given_attr ++ attrs ++ [{"href", "/#{content}"}], content}
+    path = Cache.Articles.find("#{content}") |> Article.path()
+    {"a", given_attr ++ attrs ++ [{"href", path}], content}
   end
 
   @spec feed_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
@@ -340,7 +341,7 @@ defmodule VelorouteWeb.ArticleView do
     |> Kernel.||(Floki.text(children))
     |> Cache.Articles.find()
     |> case do
-      {_name, art} ->
+      art when is_map(art) ->
         url = VariousHelpers.article_path(art)
 
         {"a",

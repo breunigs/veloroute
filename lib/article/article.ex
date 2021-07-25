@@ -217,4 +217,8 @@ defmodule Article do
   end
 
   def start_image_path(_art), do: nil
+
+  @spec path(t()) :: binary()
+  def path(%__MODULE__{name: "0000-00-00-" <> page_name}), do: "/#{page_name}"
+  def path(%__MODULE__{name: page_name}), do: "/article/#{page_name}"
 end

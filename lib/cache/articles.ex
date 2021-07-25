@@ -38,16 +38,17 @@ defmodule Cache.Articles do
     |> Enum.into(%{})
   end
 
+  @spec find(binary()) :: Article.t() | nil
   def find(key) when is_binary(key) do
-    key = key |> String.downcase() |> String.replace(" ", "-")
+    key = String.replace(key, " ", "-")
+    downkey = String.downcase(key)
 
     get()[key] ||
-      Enum.find(get(), fn {name, art} ->
-        cond do
-          String.ends_with?(name, "-" <> key) -> art
-          Enum.member?(art.tags, key) -> art
-          true -> nil
-        end
+      Enum.find_value(get(), fn {name, art} ->
+        if String.ends_with?(name, "-#{downkey}"), do: art
+      end) ||
+      Enum.find_value(get(), fn {_name, art} ->
+        if Enum.member?(art.tags, key) || Enum.member?(art.tags, downkey), do: art
       end)
   end
 
