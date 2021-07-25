@@ -140,13 +140,22 @@ defmodule Mix.Tasks.Velo.Videos.Preload do
     |> Enum.flat_map(fn rendered ->
       Enum.filter(video_files, &String.starts_with?(&1, rendered.hash))
     end)
-    |> Enum.each(fn path ->
-      url = "#{Settings.url()}/#{Settings.video_serve_path()}/#{path}"
+    |> Parallel.each(4, fn path ->
+      full_path = Path.join(Settings.deploy_video_mount_dir(), path)
+      cmd = [Settings.deploy_ssh_name(), "--", "cat", full_path, ">/dev/null"]
 
-      if(String.ends_with?(path, ".m3u8")) do
-        IO.puts("curl -s \"#{url}\" >/dev/null &")
-      else
-        IO.puts("curl \"#{url}\" >/dev/null")
+      try do
+        System.cmd("ssh", cmd)
+        |> case do
+          {_msgs, 0} ->
+            IO.puts("✓ #{path}")
+
+          {msgs, exit_code} ->
+            IO.puts(:stderr, "FAILED #{path} with exit code #{exit_code}:\n#{msgs}\n\n")
+        end
+      rescue
+        error ->
+          IO.puts(:stderr, "FAILED #{path}:\n#{inspect(error)}\n\n")
       end
     end)
   end

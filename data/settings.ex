@@ -36,6 +36,7 @@ defmodule Settings do
     """
 
   def deploy_ssh_name, do: "veloroute-deploy"
+  def deploy_video_mount_dir, do: "/home/veloroute-rclone/mount"
 
   def enable_sentry_frontend, do: false
 
