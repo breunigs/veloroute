@@ -26,8 +26,8 @@ defmodule Data.Route.Route13 do
       {"2021-07-10-13uhr-14gg/GX012164", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012165", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012166", :start, :end},
-      {"2021-07-10-13uhr-14gg/GX012167", :start, "0:00:09.076"},
-      {"2021-07-10-13uhr-14gg/GX012168", "0:00:01.668", :end},
+      {"2021-07-10-13uhr-14gg/GX012167", :start, "00:00:09.076"},
+      {"2021-07-10-13uhr-14gg/GX012168", "00:00:01.668", :end},
       {"2021-07-10-13uhr-14gg/GX012169", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012170", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012171", :start, :end},
@@ -38,10 +38,10 @@ defmodule Data.Route.Route13 do
       {"2021-07-10-13uhr-14gg/GX012176", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012177", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012178", :start, :end},
-      {"2021-07-10-13uhr-14gg/GX012179", :start, "0:00:12.079"},
-      {"2021-07-15-14uhr-und-13gg/GX012277", "0:00:00.534", :end},
-      {"2021-07-15-14uhr-und-13gg/GX012278", :start, "0:00:03.303"},
-      {"2021-07-10-13uhr-14gg/GX012180", "0:00:03.403", :end},
+      {"2021-07-10-13uhr-14gg/GX012179", :start, "00:00:12.079"},
+      {"2021-07-15-14uhr-und-13gg/GX012277", "00:00:00.534", :end},
+      {"2021-07-15-14uhr-und-13gg/GX012278", :start, "00:00:03.303"},
+      {"2021-07-10-13uhr-14gg/GX012180", "00:00:03.403", :end},
       {"2021-07-10-13uhr-14gg/GX012181", :start, :end}
     ]
   }
@@ -54,8 +54,8 @@ defmodule Data.Route.Route13 do
     parent_ref: __MODULE__,
     text: "innere Ringroute, gegen Uhrzeigersinn",
     videos: [
-      {"2021-07-15-14uhr-und-13gg/GX012276", "0:00:00.601", "0:00:11.979"},
-      {"2021-07-15-14uhr-und-13gg/GX012279", "0:00:03.203", :end},
+      {"2021-07-15-14uhr-und-13gg/GX012276", "00:00:00.601", "00:00:11.979"},
+      {"2021-07-15-14uhr-und-13gg/GX012279", "00:00:03.203", :end},
       {"2021-07-15-14uhr-und-13gg/GX012280", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012281", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012282", :start, :end},
@@ -63,8 +63,8 @@ defmodule Data.Route.Route13 do
       {"2021-07-15-14uhr-und-13gg/GX012284", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012285", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012286", :start, :end},
-      {"2021-07-15-14uhr-und-13gg/GX012287", :start, "0:00:08.408"},
-      {"2021-07-15-14uhr-und-13gg/GX012288", "0:00:02.369", "0:00:25.559"},
+      {"2021-07-15-14uhr-und-13gg/GX012287", :start, "00:00:08.408"},
+      {"2021-07-15-14uhr-und-13gg/GX012288", "00:00:02.369", "00:00:25.559"},
       {"2021-07-15-14uhr-und-13gg/GX012289", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012290", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012291", :start, :end},
@@ -83,8 +83,8 @@ defmodule Data.Route.Route13 do
       {"2021-07-15-14uhr-und-13gg/GX012304", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012305", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012306", :start, :end},
-      {"2021-07-15-14uhr-und-13gg/GX012307", :start, "0:00:07.040"},
-      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011552", "0:00:03.737", "0:00:07.608"}
+      {"2021-07-15-14uhr-und-13gg/GX012307", :start, "00:00:07.040"},
+      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011552", "00:00:03.737", "00:00:07.608"}
     ]
   }
 

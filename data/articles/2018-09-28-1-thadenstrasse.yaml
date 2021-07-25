@@ -22,9 +22,9 @@ tracks:
   direction: forward
   text: "Umleitung"
   videos:
-  - ["2021-06-05-velorouten-1-1a-2/GX011660", "0:00:13.000", "0:00:48.000"]
+  - ["2021-06-05-velorouten-1-1a-2/GX011660", "00:00:13.000", "00:00:48.000"]
 - group: detour
   direction: backward
   text: "Umleitung"
   videos:
-  - ["2021-04-10-freizeitroute2/GX011183", "0:00:01.000", "0:00:34.000"]
+  - ["2021-04-10-freizeitroute2/GX011183", "00:00:01.000", "00:00:34.000"]

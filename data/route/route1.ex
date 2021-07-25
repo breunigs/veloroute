@@ -17,7 +17,7 @@ defmodule Data.Route.Route1 do
     parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Rissen",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011629", "0:00:12.246", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011629", "00:00:12.246", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011630", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011631", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011632", :start, :end},
@@ -37,7 +37,7 @@ defmodule Data.Route.Route1 do
       {"2021-06-05-velorouten-1-1a-2/GX011671", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011672", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011673", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011674", :start, "0:01:14.000"}
+      {"2021-06-05-velorouten-1-1a-2/GX011674", :start, "00:01:14.000"}
     ]
   }
 
@@ -53,17 +53,17 @@ defmodule Data.Route.Route1 do
       {"2021-06-05-velorouten-1-1a-2/GX011676", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011677", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011678", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011679", :start, "0:00:45.178"},
-      {"2021-06-05-velorouten-1-1a-2/GX011686", "0:02:00.187", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011679", :start, "00:00:45.178"},
+      {"2021-06-05-velorouten-1-1a-2/GX011686", "00:02:00.187", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011687", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011688", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011690", :start, "0:00:15.282"},
-      {"2021-06-05-velorouten-1-1a-2/GX011691", "0:00:01.134", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011690", :start, "00:00:15.282"},
+      {"2021-06-05-velorouten-1-1a-2/GX011691", "00:00:01.134", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011692", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011693", :start, :end},
-      {"2021-04-18-freizeitroute3/GX011324", :start, "0:00:16.683"},
-      {"2021-04-10-freizeitroute2/GX011183", "0:00:01.435", "0:00:51.818"},
-      {"2021-06-05-velorouten-1-1a-2/GX011654", "0:00:30.964", :end},
+      {"2021-04-18-freizeitroute3/GX011324", :start, "00:00:16.683"},
+      {"2021-04-10-freizeitroute2/GX011183", "00:00:01.435", "00:00:51.818"},
+      {"2021-06-05-velorouten-1-1a-2/GX011654", "00:00:30.964", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011655", :start, :end}
     ]
   }
@@ -76,10 +76,10 @@ defmodule Data.Route.Route1 do
     parent_ref: __MODULE__,
     text: "aus der Innenstadt zum Osdorfer Born",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011680", "0:00:01.000", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011680", "00:00:01.000", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011681", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011682", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011683", :start, "0:00:47.447"}
+      {"2021-06-05-velorouten-1-1a-2/GX011683", :start, "00:00:47.447"}
     ]
   }
 
@@ -91,10 +91,10 @@ defmodule Data.Route.Route1 do
     parent_ref: __MODULE__,
     text: "vom Osdorfer Born in die Innenstadt",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011683", "0:00:47.447", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011683", "00:00:47.447", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011684", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011685", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011686", :start, "0:02:00.187"}
+      {"2021-06-05-velorouten-1-1a-2/GX011686", :start, "00:02:00.187"}
     ]
   }
 

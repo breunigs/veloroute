@@ -15,28 +15,28 @@ defmodule Data.Route.Route5 do
     parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Duvenstedt",
     videos: [
-      {"2021-06-22-velo7-und-pauli-altona/GX011937", "0:00:45.812", "0:00:48.682"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "0:00:15.782", :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011827", :start, "0:00:22.389"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011779", "0:00:00.834", :end},
+      {"2021-06-22-velo7-und-pauli-altona/GX011937", "00:00:45.812", "00:00:48.682"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "00:00:15.782", :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011827", :start, "00:00:22.389"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011779", "00:00:00.834", :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011780", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011781", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011782", :start, :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011783", :start, "0:00:01.502"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011796", "0:00:00.567", :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011783", :start, "00:00:01.502"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011796", "00:00:00.567", :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011797", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011798", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011799", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011800", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011801", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011802", :start, :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011803", :start, "0:01:25.185"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011804", "0:00:00.801", :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011803", :start, "00:01:25.185"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011804", "00:00:00.801", :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011805", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011807", :start, :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011808", :start, "0:02:45.766"},
-      {"2021-05-29-freizeitroute1/GX011488", "0:04:12.519", :end},
-      {"2021-05-29-freizeitroute1/GX021488", :start, "0:00:31.465"}
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011808", :start, "00:02:45.766"},
+      {"2021-05-29-freizeitroute1/GX011488", "00:04:12.519", :end},
+      {"2021-05-29-freizeitroute1/GX021488", :start, "00:00:31.465"}
     ]
   }
 
@@ -48,9 +48,9 @@ defmodule Data.Route.Route5 do
     parent_ref: __MODULE__,
     text: "von Duvenstedt in die Innenstadt",
     videos: [
-      {"2021-05-29-freizeitroute1/GX021488", "0:00:32.399", "0:00:55.055"},
-      {"2021-05-29-freizeitroute1/GX011488", "0:00:29.062", "0:01:41.868"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011808", "0:02:57.444", :end},
+      {"2021-05-29-freizeitroute1/GX021488", "00:00:32.399", "00:00:55.055"},
+      {"2021-05-29-freizeitroute1/GX011488", "00:00:29.062", "00:01:41.868"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011808", "00:02:57.444", :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX021808", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011809", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011810", :start, :end},
@@ -69,10 +69,10 @@ defmodule Data.Route.Route5 do
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011823", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011824", :start, :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011825", :start, :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011829", "0:00:13.947", :end},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011829", "00:00:13.947", :end},
       {"2021-06-13-veloroute-5-5a-und-13rein/GX011830", :start, :end},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", :start, "0:00:02.336"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "0:00:09.610", "0:00:14.348"}
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", :start, "00:00:02.336"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "00:00:09.610", "00:00:14.348"}
     ]
   }
 

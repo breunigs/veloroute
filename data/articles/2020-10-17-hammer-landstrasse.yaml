@@ -32,10 +32,10 @@ tracks:
   direction: forward
   text: "Hammer Landstraße (stadtauswärts)"
   videos:
-  - ["2021-07-15-14uhr-und-13gg/GX012274", "0:00:23.023", "end"]
+  - ["2021-07-15-14uhr-und-13gg/GX012274", "00:00:23.023", "end"]
 - group: article
   direction: backward
   text: "Hammer Landstraße (stadteinwärts)"
   videos:
-  - ["2021-07-10-13uhr-14gg/GX012183", "0:00:16.116", "end"]
-  - ["2021-07-10-13uhr-14gg/GX012184", "start", "0:00:09.176"]
+  - ["2021-07-10-13uhr-14gg/GX012183", "00:00:16.116", "end"]
+  - ["2021-07-10-13uhr-14gg/GX012184", "start", "00:00:09.176"]

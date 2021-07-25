@@ -1,3 +1,6 @@
+- clicking on a route in map should set route in sidebar, unless the viewed page is related to that route
+- video should auto-upgrade to HQ if paused
+
 TODO
 
 https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/

@@ -10,5 +10,5 @@ tracks:
   direction: forward
   text: "blub"
   videos:
-  - ["somefile", "0:00:00.000", "0:00:00.123"]
+  - ["somefile", "00:00:00.000", "00:00:00.123"]
 

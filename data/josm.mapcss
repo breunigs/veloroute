@@ -30,6 +30,14 @@ node[type=marker] {
   text-anchor-vertical: center;
 }
 
+node[type=warning] {
+  symbol-size: 17;
+  symbol-shape: circle;
+  symbol-fill-color: #EE3535;
+  font-size: 10;
+  icon-image: eval(concat("./images/", tag("icon"), ".svg"));
+}
+
 node|z13-[target]::routing {
   font-size: 15;
   text-halo-radius: 1;

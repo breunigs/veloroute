@@ -3,23 +3,23 @@ defmodule Video.Timestamp do
   @minute_in_ms 60 * @second_in_ms
   @hour_in_ms 60 * @minute_in_ms
 
-  @expected_length 11
+  @expected_length 12
 
   defguardp looks_valid(str) when is_binary(str) and byte_size(str) == @expected_length
 
-  # 11*8=88
-  @type t :: <<_::88>>
+  # 12*8=96
+  @type t :: <<_::96>>
   def valid?(str) do
-    looks_valid(str) && Regex.match?(~r/^\d:\d{2}:\d{2}\.\d{3}$/, str)
+    looks_valid(str) && Regex.match?(~r/^\d{2}:\d{2}:\d{2}\.\d{3}$/, str)
   end
 
-  def zero(), do: "0:00:00.000"
+  def zero(), do: "00:00:00.000"
 
   @doc """
   Takes a duration in millisecond and returns it as an ffmpeg formatted timestamp
 
     iex> Video.Timestamp.from_milliseconds(1337)
-    "0:00:01.337"
+    "00:00:01.337"
   """
   @spec from_milliseconds(integer()) :: t()
   def from_milliseconds(duration_in_ms) do
@@ -32,7 +32,7 @@ defmodule Video.Timestamp do
     seconds = div(duration_in_ms - hours - minutes, @second_in_ms)
     milliseconds = rem(duration_in_ms, @second_in_ms)
 
-    "#{hours}:#{pad_left(minutes)}:#{pad_left(seconds)}.#{pad_left(milliseconds, 3)}"
+    "#{pad_left(hours)}:#{pad_left(minutes)}:#{pad_left(seconds)}.#{pad_left(milliseconds, 3)}"
   end
 
   @doc """
@@ -40,7 +40,7 @@ defmodule Video.Timestamp do
 
     iex> %Video.TimedPoint{time_offset_ms: 1337, lat: 0, lon: 0}
     ...> |> Video.Timestamp.from_timed_point()
-    "0:00:01.337"
+    "00:00:01.337"
   """
   @spec from_timed_point(Video.TimedPoint.t()) :: t()
   def from_timed_point(%Video.TimedPoint{time_offset_ms: duration_in_ms}),
@@ -49,12 +49,12 @@ defmodule Video.Timestamp do
   @doc """
   Takes an ffmpeg timestamp and returns the value in milliseconds
 
-    iex> Video.Timestamp.in_milliseconds("0:00:01.337")
+    iex> Video.Timestamp.in_milliseconds("00:00:01.337")
     1337
   """
   @spec in_milliseconds(t()) :: integer()
   def in_milliseconds(timestamp) when looks_valid(timestamp) do
-    <<hours::binary-size(1), ":", minutes::binary-size(2), ":", seconds::binary-size(2), ".",
+    <<hours::binary-size(2), ":", minutes::binary-size(2), ":", seconds::binary-size(2), ".",
       milliseconds::binary-size(3)>> = timestamp
 
     String.to_integer(hours) * @hour_in_ms +
@@ -69,11 +69,11 @@ defmodule Video.Timestamp do
   in ffmpeg format. Negative milliseconds are allowed, but the time will
   be clamped to 0.
 
-      iex> Video.Timestamp.add_milliseconds("0:00:01.337", 42)
-      "0:00:01.379"
+      iex> Video.Timestamp.add_milliseconds("00:00:01.337", 42)
+      "00:00:01.379"
 
-      iex> Video.Timestamp.add_milliseconds("0:00:01.337", -31337)
-      "0:00:00.000"
+      iex> Video.Timestamp.add_milliseconds("00:00:01.337", -31337)
+      "00:00:00.000"
   """
   def add_milliseconds(:start, ms_to_add), do: add_milliseconds(zero(), ms_to_add)
 
@@ -96,8 +96,8 @@ defmodule Video.Timestamp do
   otherwise. The 2nd argument will be printed on error for identification
   purposes.
 
-    iex> Video.Timestamp.valid_or_nil("0:00:01.337", "wat")
-    "0:00:01.337"
+    iex> Video.Timestamp.valid_or_nil("00:00:01.337", "wat")
+    "00:00:01.337"
   """
   @spec valid_or_nil(any(), any()) :: t() | nil
   def valid_or_nil(nil, _ident), do: nil

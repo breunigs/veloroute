@@ -3,7 +3,7 @@ defmodule Video.TrimmedSourceTest do
 
   test "extracts parts between two timestamps" do
     tsv = Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/1")
-    cut = Video.TrimmedSource.extract(tsv, "0:00:00.200", "0:00:00.999")
+    cut = Video.TrimmedSource.extract(tsv, "00:00:00.200", "00:00:00.999")
 
     expected = %{
       coord_from: %Video.TimedPoint{

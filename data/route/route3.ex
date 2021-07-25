@@ -17,9 +17,9 @@ defmodule Data.Route.Route3 do
     parent_ref: __MODULE__,
     text: "aus der Innenstadt nach Niendorf",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011655", "0:00:46.480", :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011656", :start, "0:00:13.046"},
-      {"2021-06-12-veloroute-3-und-4/GX011737", "0:00:11.144", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011655", "00:00:46.480", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011656", :start, "00:00:13.046"},
+      {"2021-06-12-veloroute-3-und-4/GX011737", "00:00:11.144", :end},
       {"2021-06-12-veloroute-3-und-4/GX011738", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011739", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011740", :start, :end},
@@ -33,7 +33,7 @@ defmodule Data.Route.Route3 do
       {"2021-06-12-veloroute-3-und-4/GX011748", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011749", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011750", :start, :end},
-      {"2021-06-12-veloroute-3-und-4/GX011751", :start, "0:00:02.302"}
+      {"2021-06-12-veloroute-3-und-4/GX011751", :start, "00:00:02.302"}
     ]
   }
 
@@ -45,7 +45,7 @@ defmodule Data.Route.Route3 do
     parent_ref: __MODULE__,
     text: "von Niendorf in die Innenstadt",
     videos: [
-      {"2021-06-12-veloroute-3-und-4/GX011751", "0:00:02.302", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011751", "00:00:02.302", :end},
       {"2021-06-12-veloroute-3-und-4/GX011752", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011753", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011754", :start, :end},
@@ -61,13 +61,13 @@ defmodule Data.Route.Route3 do
       {"2021-06-12-veloroute-3-und-4/GX011765", :start, :end},
 
       # cutting together a legal path
-      {"2021-06-12-veloroute-3-und-4/GX011766", :start, "0:00:08.141"},
-      {"2021-06-12-veloroute-3-und-4/GX011734", "0:00:24.157", :end},
-      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "0:00:00.934"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "0:00:01.001", "0:00:02.336"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "0:00:09.610", "0:00:14.348"}
+      {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:08.141"},
+      {"2021-06-12-veloroute-3-und-4/GX011734", "00:00:24.157", :end},
+      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "00:00:00.934"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "00:00:01.001", "00:00:02.336"},
+      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "00:00:09.610", "00:00:14.348"}
       # real path, but that's not legal
-      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "0:00:18.886"}
+      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:18.886"}
     ]
   }
 

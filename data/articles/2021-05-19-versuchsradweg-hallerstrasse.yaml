@@ -22,10 +22,10 @@ tracks:
   direction: forward
   text: "Hallerstraße Richtung Osten"
   videos:
-  - ["2021-06-19-veloroute6/GX011842", "0:00:18.852", "0:00:38.305"]
+  - ["2021-06-19-veloroute6/GX011842", "00:00:18.852", "00:00:38.305"]
 - group: article
   direction: backward
   text: "Hallerstraße Richtung Westen"
   videos:
-  - ["2021-06-19-veloroute6/GX011884", "0:00:02.002", "end"]
-  - ["2021-06-19-veloroute6/GX011885", "start", "0:00:13.447"]
+  - ["2021-06-19-veloroute6/GX011884", "00:00:02.002", "end"]
+  - ["2021-06-19-veloroute6/GX011885", "start", "00:00:13.447"]

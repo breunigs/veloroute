@@ -338,12 +338,12 @@ function maybeHackStateFromVideo() {
 const layerVisibilityConfig = [
   ['alltag', 'opacity', [
     ['line', ['vr-casing', 'vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none', 'detour-line', 'planned-line']],
-    ['icon', ['both-oneway', 'vr-marker-text']],
+    ['icon', ['vr-oneway', 'vr-marker-text']],
     ['circle', ['vr-marker-circle']],
   ]],
   ['freizeit', 'visibility', [
     ['line', ['fr-casing', 'fr-line']],
-    ['icon', ['fr-sign', 'fr-warning-icons']],
+    ['icon', ['fr-oneway', 'fr-sign', 'fr-warning-icons']],
   ]]
 ]
 // same order as layerVisibilityConfig

@@ -57,7 +57,7 @@ defmodule Article.ParserTest do
                  text: "blub",
                  parent_ref: "title",
                  to: "",
-                 videos: [{"somefile", "0:00:00.000", "0:00:00.123"}]
+                 videos: [{"somefile", "00:00:00.000", "00:00:00.123"}]
                }
              ],
              full_title: "Baustelle: title",
