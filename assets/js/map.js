@@ -275,8 +275,7 @@ let videoCoords = null;
 window.mapUpdateIndicatorFromVideo = (vid, coords) => {
   video = vid;
   videoCoords = coords;
-  renderIndicator();
-  maybeEnsureIndicatorInView();
+  updateVideoIndicator();
 }
 
 function toRad(degrees) {
@@ -380,6 +379,12 @@ function setLayerStyle(style, layersByType, show) {
 }
 window.map = map;
 
+function updateVideoIndicator() {
+  maybeHackStateFromVideo();
+  renderIndicator();
+  maybeEnsureIndicatorInView();
+}
+
 let queued = false;
 window.mapStateChanged = () => {
   if (queued) return;
@@ -387,9 +392,7 @@ window.mapStateChanged = () => {
   window.requestIdleCallback(() => {
     queued = false;
     maybeFitBounds();
-    maybeHackStateFromVideo();
-    renderIndicator();
-    maybeEnsureIndicatorInView();
+    updateVideoIndicator();
     setLayerVisibility();
   }, { timeout: 100 })
 }
