@@ -189,6 +189,6 @@ defmodule Mix.Tasks.Deploy do
 
   defp post_deploy(_skip) do
     Util.banner("Release: Preload Commands")
-    Docker.mix("velo.videos.preload", "prod")
+    Mix.Tasks.Velo.Videos.Preload.run(nil)
   end
 end
