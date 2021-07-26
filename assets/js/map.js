@@ -371,7 +371,8 @@ function setLayerStyle(style, layersByType, show) {
     const layers = layersByType[i][1];
     for (let j = 0; j < layers.length; j++) {
       console.log("setting style", style, "for", layers[j], "to", show);
-      if (style == "opacity" && type == "line") map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
+      if (style == "opacity" && type == "line" && layers[j] != 'vr-line-off-p1' && layers[j] != 'vr-line-off-m1')
+        map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
       if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, { validate: true })
       if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, { validate: true })
     }
