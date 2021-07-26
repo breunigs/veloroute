@@ -42,6 +42,11 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_info(other, socket) do
+    Sentry.capture_message("got unexpected info for: #{inspect(other)} at #{inspect(socket)}")
+    {:noreply, socket}
+  end
+
   def handle_event("map-zoom-to", attr, socket) do
     Logger.debug("map-zoom-to: #{inspect(attr)}")
 
@@ -406,7 +411,6 @@ defmodule VelorouteWeb.FrameLive do
 
     show =
       if show == [] do
-        Sentry.capture_message("came up with an empty list of visible routes")
         [:alltag]
       else
         show
