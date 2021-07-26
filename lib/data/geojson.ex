@@ -30,6 +30,7 @@ defmodule Data.GeoJSON do
     map.relations()
     |> Map.values()
     |> add_overlap_info(:alltag)
+    |> add_overlap_info(:freizeit)
     |> Enum.map(&as_geojson(&1))
   end
 
@@ -134,24 +135,26 @@ defmodule Data.GeoJSON do
         Route.from_relation(rel).type() == type
       end)
 
-    # create map from way IDs to relation IDs that include that way
+    # create map from way IDs to relation IDs that include that way,
+    # additionally collecting their roles
     ways_to_rels =
       rels_to_modify
       |> Enum.sort_by(fn %Map.Relation{id: id} -> id end)
       |> Enum.reduce(%{}, fn rel, acc ->
         rel
-        |> Map.Relation.way_ids()
-        |> Enum.reduce(acc, fn wid, acc ->
-          Map.update(acc, wid, [rel.id], &[rel.id | &1])
+        |> Map.Relation.way_members()
+        |> Enum.reduce(acc, fn %{role: role, ref: %Map.Way{id: wid}}, acc ->
+          %{rels: rels, roles: roles} = acc[wid] || %{rels: [], roles: []}
+          Map.put(acc, wid, %{rels: [rel.id | rels], roles: [role | roles]})
         end)
       end)
 
     # handle offsets for exactly two routes overlapping
     offsets =
       ways_to_rels
-      |> Enum.filter(fn {_wid, rels} -> length(rels) == 2 end)
+      |> Enum.filter(fn {_wid, %{rels: rels}} -> length(rels) == 2 end)
       |> Enum.flat_map(fn
-        {way_id, [a_id, b_id]} ->
+        {way_id, %{rels: [a_id, b_id]}} ->
           [
             {{way_id, a_id}, 1},
             {{way_id, b_id}, -1}
@@ -162,11 +165,18 @@ defmodule Data.GeoJSON do
       end)
       |> Enum.into(%{})
 
-    # add offset to tags of ways
+    # add offset/oneway to tags of ways
     Enum.map(rels_to_modify, fn rel ->
       modify_ways(rel, fn way ->
-        offset = %{offset: Map.get(offsets, {way.id, rel.id}, 0)}
-        Map.Element.add_new_tags(way, offset)
+        tags = %{offset: Map.get(offsets, {way.id, rel.id}, 0)}
+        roles = Enum.uniq(ways_to_rels[way.id][:roles])
+
+        tags =
+          if length(roles) == 1 && hd(roles) in ["forward", "backward"],
+            do: Map.put(tags, :oneway, true),
+            else: tags
+
+        Map.Element.add_new_tags(way, tags)
       end)
     end) ++ rels_to_keep
   end

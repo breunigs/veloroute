@@ -75,7 +75,7 @@ way|z17- {
   font-weight: bold;
 }
 
-relation >[role="forward"] way|z15-::oneway {
+relation >[role="forward"] way|z15-::overlap {
   modifier: true;
   offset: 0 - prop("width", "default");
   width: prop("width", "default")/2;
@@ -83,7 +83,7 @@ relation >[role="forward"] way|z15-::oneway {
 }
 
 
-relation >[role="backward"] way|z15-::oneway {
+relation >[role="backward"] way|z15-::overlap {
   modifier: true;
   offset: prop("width", "default");
   width: prop("width", "default")/2;
@@ -100,6 +100,26 @@ way[!color] {
     : #ff00ee;
   dashes-background-color: get(prop(colors), 1);
   dashes: count(prop(colors)) ==2 ? list(10, 10) : none;
+}
+
+relation >[role="backward"] way::fakeoneway {
+  set rolebw;
+}
+relation >[role="forward"] way::fakeoneway {
+  set rolefw;
+}
+relation >[role=""] way::fakeoneway {
+  set rolenone;
+}
+relation way.rolebw.rolefw::fakeoneway, relation way.rolenone::fakeoneway {
+  set mixed;
+}
+relation way|z16-!.mixed::fakeoneway {
+  repeat-image: "images/audio-fwd.svg";
+  repeat-image-spacing: 35;
+  major-z-index: 4;
+  repeat-image-opacity: 0.5;
+  repeat-image-phase: 10;
 }
 
 way[gpx:name] {

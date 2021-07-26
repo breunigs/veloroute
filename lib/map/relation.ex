@@ -73,4 +73,8 @@ defmodule Map.Relation do
     ways(r)
     |> Enum.map(fn %Map.Way{id: wid} -> wid end)
   end
+
+  def way_members(%__MODULE__{} = r) do
+    Enum.filter(r.members, &match?(%{ref: %Map.Way{}}, &1))
+  end
 end
