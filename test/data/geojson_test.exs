@@ -10,8 +10,8 @@ defmodule Data.GeoJSONTest do
           ref: "Route1"
         },
         members: [
-          %{ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
-          %{ref: %Map.Way{nodes: [], id: "5", tags: %{color: "#000000"}}}
+          %{role: "", ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
+          %{role: "", ref: %Map.Way{nodes: [], id: "5", tags: %{color: "#000000"}}}
         ]
       }
     },

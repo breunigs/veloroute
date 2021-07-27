@@ -331,6 +331,13 @@ time.updated {
   display: block;
 }
 
+span.updated {
+  color: #888;
+  font-style: italic;
+  display: block;
+  padding-top: 0.1rem;
+}
+
 ul,
 ol {
   padding-left: 0.85rem;

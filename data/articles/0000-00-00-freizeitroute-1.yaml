@@ -4,6 +4,8 @@ no_auto_title: true
 tags: [FR1]
 text: >
   <h3>Freizeitroute 1 – Alsterradweg <icon>FR1</icon></h3>
+  <span class="updated">Länge rund 32km</span>
+
   <p>Die Fahrt beginnt an der <a>Binnenalster</a> und folgt der Alster dann flussaufwärts fast bis zur Landesgrenze. Bei <a bounds="10.094746,53.670325,10.163218,53.707857">Ohlstedt</a> knickt sie jedoch in den <a bounds="10.121815,53.702633,10.214657,53.747276">Duvenstedter Brook</a> ab und endet dort.</p>
 
   <h4>Auffindbarkeit</h4>
