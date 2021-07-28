@@ -2066,3 +2066,59 @@
   :start: '2021-08-02'
   :end: '2021-09-30'
   :velo: false
+17915:
+  :id: 17915
+  :title: 'Himmelstraße - Vollsperrung -- '
+  :updated: '2021-07-09T07:37:57.029228'
+  :start: '2021-07-28'
+  :end: '2021-07-29'
+  :velo: false
+18132:
+  :id: 18132
+  :title: 'Tycho-Brahe-Weg / Vollsperrung -- '
+  :updated: '2021-07-14T13:44:09.382276'
+  :start: '2021-07-26'
+  :end: '2021-07-28'
+  :velo: false
+18153:
+  :id: 18153
+  :title: 'Eppendorfer Weg/ Fahrbahnversackung -- '
+  :updated: '2021-07-14T13:44:26.474611'
+  :start: '2021-07-27'
+  :end: '2021-07-30'
+  :velo: true
+18271:
+  :id: 18271
+  :title: 'Rentzelstraße/ Schachtarbeiten -- '
+  :updated: '2021-07-19T16:53:11.647847'
+  :start: '2021-07-26'
+  :end: '2021-07-30'
+  :velo: false
+16301:
+  :id: 16301
+  :title: 'Oderfelder Straße/ Asphaltierung -- '
+  :updated: '2021-06-15T08:03:53.5767'
+  :start: '2021-07-26'
+  :end: '2021-07-30'
+  :velo: false
+18594:
+  :id: 18594
+  :title: 'Billhorner Deich / Erneuerung Eisenbahnübergang -- '
+  :updated: '2021-07-27T16:30:20.322717'
+  :start: '2020-01-01'
+  :end: '2022-06-30'
+  :velo: false
+18587:
+  :id: 18587
+  :title: 'Tonndorfer Strand / Asphaltierungsarbeiten -- '
+  :updated: '2021-07-27T16:28:29.206453'
+  :start: '2021-08-02'
+  :end: '2021-08-06'
+  :velo: true
+18605:
+  :id: 18605
+  :title: 'Kuehnstieg / Asphaltierungsarbeiten -- '
+  :updated: '2021-07-27T16:30:57.341667'
+  :start: '2021-08-02'
+  :end: '2021-08-06'
+  :velo: false

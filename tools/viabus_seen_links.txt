@@ -499,3 +499,6 @@
 '2021-07-24':
 - https://via-bus.hamburg.de/contentblob/15281608/d1cae26dbce99ad0e8ffb5c9b2a774a6/data/01-mb26-u-farmsen-erste-verschickung.pdf
 - https://via-bus.hamburg.de/contentblob/15281612/e19c11e020c6d864beb80869581424a0/data/02-mb26-u-farmsen-erste-verschickung-ueberarbeiteter-lageplan-ueberliegerplaetze.pdf
+'2021-07-28':
+- https://via-bus.hamburg.de/contentblob/15288318/858ac5826c0556af13ac2a17fe21d481/data/u-farmsen-verkehrskonzept.pdf
+- https://via-bus.hamburg.de/contentblob/15288316/eb8f4dc627c433a069c7d78f010d7c2c/data/u-farmsen-info-folder-juli-2021.pdf
