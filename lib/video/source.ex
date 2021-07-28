@@ -38,7 +38,7 @@ defmodule Video.Source do
     all_files = IOUtil.tree(source_folder) |> MapSet.new()
 
     all_files
-    |> Enum.map(&new_from_path(&1, all_files))
+    |> Parallel.map(&new_from_path(&1, all_files))
     |> Enum.reject(fn
       {:error, _reason} -> true
       _video -> false
