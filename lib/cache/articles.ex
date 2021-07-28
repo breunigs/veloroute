@@ -18,11 +18,10 @@ defmodule Cache.Articles do
          ways = Cache.Map.full_map() |> Article.article_ways()
 
          relation_bboxes =
-           Enum.into(Cache.Map.relations(), %{}, fn
-             {_rel_id, rel} ->
-               id = rel.tags[:id] || Route.from_relation(rel).id()
-               {id, Map.Element.bbox(rel)}
-           end)
+           Cache.Map.relations()
+           |> Enum.map(fn {_rel_id, rel} -> {Route.from_relation(rel), rel} end)
+           |> Enum.reject(fn {route, _rel} -> is_nil(route) end)
+           |> Enum.into(%{}, fn {route, rel} -> {route.id(), Map.Element.bbox(rel)} end)
 
          paths
          |> Parallel.map(&Article.Parser.load/1)

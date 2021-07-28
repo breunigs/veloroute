@@ -8,11 +8,10 @@ defmodule Mix.Tasks.UpdateGpx do
     Mix.Task.run("app.start")
 
     Cache.Map.relations()
-    |> Map.values()
-    |> Enum.map(fn rel ->
-      id = Route.from_relation(rel).id() || raise "failed to find relation for #{inspect(rel)}"
-
-      basename = Cache.Articles.basename(id)
+    |> Enum.map(fn {_rel_id, rel} -> {Route.from_relation(rel), rel} end)
+    |> Enum.reject(fn {route, _rel} -> is_nil(route) end)
+    |> Enum.map(fn {route, rel} ->
+      basename = Cache.Articles.basename(route.id())
 
       tracks = TrackFinder.ordered(rel) |> TrackFinder.with_nodes()
       gpx_tracks = tracks |> Enum.map(&as_gpx_track(&1))
