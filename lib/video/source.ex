@@ -134,7 +134,7 @@ defmodule Video.Source do
     IO.puts(:stderr, "quering video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
     {ms, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%", path])
-    ms = ms |> String.trim() |> String.to_integer()
+    ms = ms |> String.trim() |> String.replace(~r/\.\d+$/, "") |> String.to_integer()
 
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
