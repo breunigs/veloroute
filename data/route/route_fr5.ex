@@ -26,10 +26,10 @@ defmodule Data.Route.RouteFR5 do
       {"2021-04-03-freizeitroute-5-realtime/GX021117.MP4_time_lapse.mkv", :start, :end},
       {"2021-04-03-freizeitroute-5-realtime/GX031117.MP4_time_lapse.mkv", :start, :end},
       {"2021-04-03-freizeitroute-5-realtime/GX041117.MP4_time_lapse.mkv", :start, :end},
-      {"2021-04-03-freizeitroute-5-realtime/GX051117.MP4_time_lapse.mkv", :start, "00:00:34.701"},
-      {"2021-04-03-freizeitroute-5-realtime/GX011118.MP4_time_lapse.mkv", "00:00:01.960", :end},
-      {"2021-04-03-freizeitroute-5-realtime/GX021118.MP4_time_lapse.mkv", :start, "00:00:42.125"},
-      {"2021-04-03-freizeitroute-5-realtime/GX011119.MP4_time_lapse.mkv", "00:00:00.459", :end},
+      {"2021-04-03-freizeitroute-5-realtime/GX051117.MP4_time_lapse.mkv", :start, "00:00:27.661"},
+      {"2021-04-03-freizeitroute-5-realtime/GX011118.MP4_time_lapse.mkv", "00:00:01.502", :end},
+      {"2021-04-03-freizeitroute-5-realtime/GX021118.MP4_time_lapse.mkv", :start, :end},
+      {"2021-04-03-freizeitroute-5-realtime/GX011119.MP4_time_lapse.mkv", "00:00:00.400", :end},
       {"2021-04-03-freizeitroute-5-realtime/GX021119.MP4_time_lapse.mkv", :start, :end},
       {"2021-04-03-freizeitroute-5-realtime/GX031119.MP4_time_lapse.mkv", :start, :end}
     ]
@@ -43,8 +43,8 @@ defmodule Data.Route.RouteFR5 do
     parent_ref: __MODULE__,
     text: "von Borghorst zum Hauptbahnhof",
     videos: [
-      {"2021-04-03-freizeitroute-5-realtime/GX011120.MP4_time_lapse.mkv", :start, "00:01:16.034"},
-      {"2021-04-03-freizeitroute-5-realtime/GX011121.MP4_time_lapse.mkv", "00:00:00.667", :end},
+      {"2021-04-03-freizeitroute-5-realtime/GX011120.MP4_time_lapse.mkv", :start, "00:01:00.928"},
+      {"2021-04-03-freizeitroute-5-realtime/GX011121.MP4_time_lapse.mkv", "00:00:00.434", :end},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011122", :start, :end},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011123", :start, :end},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011124", :start, :end},
