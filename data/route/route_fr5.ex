@@ -52,7 +52,7 @@ defmodule Data.Route.RouteFR5 do
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011126", :start, :end},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX021126", :start, :end},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011127", :start, :end},
-      {"2021-04-03-freizeitroute-5-zeitraffer/GX011128", :start, :end},
+      {"2021-04-03-freizeitroute-5-zeitraffer/GX011128", :start, "00:00:07.241"},
       {"2021-04-03-freizeitroute-5-zeitraffer/GX011129", :start, "00:00:15.048"},
       {"2021-04-17-freizeitrouten-6und-7/GX011307", "00:00:00.234", :end},
       {"2021-04-17-freizeitrouten-6und-7/GX011308", :start, :end},
