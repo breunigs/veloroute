@@ -102,7 +102,7 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
-  defp as_geojson(%Map.Relation{} = r) do
+  defp as_geojson(%Map.Relation{tags: %{ref: "" <> _rest}} = r) do
     route = Route.from_relation(r)
 
     extra_rel_tags = %{
@@ -116,6 +116,11 @@ defmodule Data.GeoJSON do
     |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :color]))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
+  end
+
+  defp as_geojson(%Map.Relation{} = r) do
+    IO.puts(:stderr, "skipping unsupported relatin: #{inspect(r)}")
+    nil
   end
 
   defp as_geojson_coord(%{lon: lon, lat: lat}) do
@@ -132,7 +137,8 @@ defmodule Data.GeoJSON do
   defp add_overlap_info(relations, type) do
     {rels_to_modify, rels_to_keep} =
       Enum.split_with(relations, fn rel ->
-        Route.from_relation(rel).type() == type
+        route = Route.from_relation(rel)
+        route && route.type() == type
       end)
 
     # create map from way IDs to relation IDs that include that way,
