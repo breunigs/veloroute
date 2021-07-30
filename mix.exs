@@ -26,7 +26,7 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: [:logger, :runtime_tools, :plug, :gpx]
+      extra_applications: [:logger, :runtime_tools, :plug]
     ]
   end
 
@@ -48,7 +48,6 @@ defmodule Veloroute.MixProject do
       {:floki, ">= 0.0.0"},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:gpx, "~> 0.1.0"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
       {:libgraph, "~> 0.7"},
@@ -62,6 +61,7 @@ defmodule Veloroute.MixProject do
       {:polyline, "~> 1.2"},
       {:saxy, "~> 1.0.0"},
       {:sentry, "~> 7.0"},
+      {:sweet_xml, "~> 0.6.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:telemetry, "~> 0.4.2 or ~> 0.5"},

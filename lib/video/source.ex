@@ -83,10 +83,50 @@ defmodule Video.Source do
         }
       end)
       |> assert_monotonic_increase(self)
+      |> maybe_stretch_to_video(self)
+      |> remove_unnecessary_points()
+    end
+  end
+
+  @min_duration_between_points_ms 300
+  @spec remove_unnecessary_points([Video.TimedPoint.t()]) :: [Video.TimedPoint.t()]
+  defp remove_unnecessary_points(timed_points) do
+    reduced =
+      Enum.reduce(timed_points, [], fn
+        first, [] ->
+          [first]
+
+        next, [prev | _rest] = acc ->
+          diff = next.time_offset_ms - prev.time_offset_ms
+          if diff < @min_duration_between_points_ms, do: acc, else: [next | acc]
+      end)
+
+    # ensure we don't accidentally trim the video
+    last = List.last(timed_points)
+    reduced = if hd(reduced) != last, do: [last | reduced], else: reduced
+
+    Enum.reverse(reduced)
+  end
+
+  # for some videos the absolute GPX timestamps do not match the video duration,
+  # therefore we just stretch them to fit.
+  @spec maybe_stretch_to_video([Video.TimedPoint.t()], t()) :: [Video.TimedPoint.t()]
+  defp maybe_stretch_to_video(timed_points, %__MODULE__{} = self) do
+    if String.ends_with?(self.source, ".mkv") do
+      vid_len_ms = video_length_ms(self)
+      gpx_len_ms = List.last(timed_points).time_offset_ms
+
+      Enum.map(timed_points, fn pt ->
+        ratio = pt.time_offset_ms / gpx_len_ms
+        %{pt | time_offset_ms: round(vid_len_ms * ratio)}
+      end)
+    else
+      timed_points
     end
   end
 
   defp assert_monotonic_increase(line, %__MODULE__{source: source}) do
+    # TODO: this can probably go now that we cut if this happens
     Enum.reduce_while(line, 0, fn
       %{time_offset_ms: next}, prev when prev <= next ->
         {:cont, next}
@@ -157,16 +197,14 @@ defmodule Video.Source do
     ms
   end
 
-  @doc """
-  Read the raw GPS points for this source from disk
-  """
-  @spec parse_gpx(t()) :: [Gpx.Point.t()] | {:error, binary()}
-  def parse_gpx(%__MODULE__{source: source, available_gpx: true}) do
+  @typep gpx_point :: %{lat: float(), lon: float(), time: NaiveDateTime.t()}
+  @spec parse_gpx(t()) :: [gpx_point] | {:error, binary()}
+  defp parse_gpx(%__MODULE__{source: source, available_gpx: true}) do
     gpx_path = Video.Path.gpx(source)
 
     try do
       with {:ok, content} <- File.read(gpx_path),
-           gpx when is_list(gpx) <- Gpx.parse(content) do
+           gpx when is_list(gpx) <- parse_gpx_xml(content) do
         if length(gpx) <= 1,
           do: {:error, "#{gpx_path} is very short -- only #{length(gpx)} point"},
           else: gpx
@@ -176,6 +214,50 @@ defmodule Video.Source do
     catch
       code, e -> {:error, "(caught #{code}) #{inspect(e)}"}
     end
+  end
+
+  @spec parse_gpx_xml(String.t()) :: list(gpx_point)
+  defp parse_gpx_xml(xml) do
+    xml
+    |> xpath(~x"//trkseg/trkpt"l)
+    |> Enum.map(fn trkpt ->
+      %{
+        lat: trkpt |> xpath(~x"./@lat"f),
+        lon: trkpt |> xpath(~x"./@lon"f),
+        time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date
+      }
+    end)
+    |> Enum.reduce_while([], fn
+      # the GPX exporter has a bug where it exports all track points for the
+      # first video, even if it is split across multiple videos that each have
+      # their own GPX tracks. When this happens, the timestamps also reset
+      # again. We detect this here and simply drop all remaining points, which
+      # are duplicated anyway.
+      next, [] ->
+        {:cont, [next]}
+
+      next, [prev | _rest] = list ->
+        if NaiveDateTime.compare(next.time, prev.time) == :lt,
+          do: {:halt, nil},
+          else: {:cont, [next | list]}
+    end)
+    |> Enum.reverse()
+  end
+
+  @spec parse_gpx_date(binary()) :: NaiveDateTime.t()
+  defp parse_gpx_date(date) do
+    {:ok, parsed} = NaiveDateTime.from_iso8601(date)
+
+    # the GPX exporter has a bug where it sometimes the sub-second field works
+    # out to 1000ms. Instead of incrementing the second it simply adds a 0 to
+    # the ms field, which gets interpreted as 100ms. So we manually add the
+    # missing 900ms here.
+    parsed =
+      if String.ends_with?(date, ".1000Z"),
+        do: NaiveDateTime.add(parsed, 900, :millisecond),
+        else: parsed
+
+    parsed
   end
 
   defp date_from_path(source_path) do
