@@ -299,21 +299,16 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
+let prevCoordVideoIndex = 0;
 function maybeHackStateFromVideo() {
   if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
   const curr = video.currentTime;
-  const ratio = Math.max(0, curr / video.duration);
-
-  // guess start index based on % of video played, minus some
-  // fixed offset (TODO: measure if this is actually faster)
-  let percIndex = Math.round(ratio * videoCoords.length);
-  percIndex -= percIndex % 3
-
-  let nextIdx = Math.max(0, percIndex - 200 * 3);
+  let nextIdx = videoCoords[prevCoordVideoIndex] <= curr ? prevCoordVideoIndex : 0;
   for (; nextIdx < videoCoords.length-3; nextIdx += 3) {
     if (videoCoords[nextIdx] >= curr) break;
   }
+  prevCoordVideoIndex = nextIdx;
 
   if (nextIdx == 0) {
     state.lon = videoCoords[1]
