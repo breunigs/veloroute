@@ -140,9 +140,10 @@ function setVideo() {
 
 function parseCoordsFromState() {
   let coords = state.videoCoords.split(" ");
-  for (let i = 0; i < coords.length; i++) {
-    const prev = i < 3 ? 0 : coords[i - 3];
-    coords[i] = prev + coords[i] * 1.0;
+  for (let i = 0; i < coords.length; i+=3) {
+    coords[i] = (coords[i - 3] || 0) + coords[i] / 1000.0;
+    coords[i+1] = (coords[i - 2] || 0) + coords[i+1] / 1000000.0;
+    coords[i+2] = (coords[i - 1] || 0) + coords[i+2] / 1000000.0;
   }
   return coords
 }

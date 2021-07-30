@@ -228,11 +228,9 @@ defmodule Video.Rendered do
   ## Examples
 
       iex> Video.Rendered.coord_io_list(Video.RenderedTest.Example)
-      '0.0 10.044 53.507 0.1 -0.002 0.001 0.1 -0.002 0.001 0.1 -0.002 0.001 0.1 -0.002 0.001'
+      '0 10044000 53507000 100 -2000 1000 100 -2000 1000 100 -2000 1000 100 -2000 1000'
   """
   @spec coord_io_list(t()) :: iolist()
-  @geo_precision 6
-  @time_precision 3
   def coord_io_list(rendered) do
     rendered.coords
     |> Enum.reduce(
@@ -242,14 +240,7 @@ defmodule Video.Rendered do
         lat = curr.lat - prev.lat
         ms = curr.time_offset_ms - prev.time_offset_ms
 
-        coord = [
-          ' ',
-          :erlang.float_to_list(ms / 1000.0, [{:decimals, @time_precision}, :compact]),
-          ' ',
-          :erlang.float_to_list(lon, [{:decimals, @geo_precision}, :compact]),
-          ' ',
-          :erlang.float_to_list(lat, [{:decimals, @geo_precision}, :compact])
-        ]
+        coord = ' #{ms} #{round(lon * 1_000_000)} #{round(lat * 1_000_000)}'
 
         {curr, [acc | coord]}
       end
