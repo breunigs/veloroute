@@ -1,0 +1,27 @@
+
+type: construction
+title: Ferdinandstor
+start: 2021-07
+end: 2025
+tags:
+- 5
+- 6
+- FR2
+- FR3
+text: |
+  <h4>Baustelle</h4>
+  <p>Die Deutsche Bahn erneuert die Bahnbrücken um das Ferdinandstor, sodass Rad- und Fußverkehr hier ortsnah umgeleitet werden. Bis auf einige rund 14-tägige Vollsperrungen bleibt die Unterführung aber in beide Richtungen offen. Die Zeiträume für diese stehen noch nicht genau fest, die Bahn gibt hier Oktober 2022, Juli/August 2023, sowie 2024 und 2025 an.</p>
+
+  <h4>Quelle</h4>
+  <p>
+    <a href="https://bauprojekte.deutschebahn.com/p/hamburg-ferdinandstor/pdf">Baustelleninfo der Bahn</a>
+  </p>
+
+tracks:
+- group: detour
+  direction: forward
+  text: "Umleitung Ferdinandstor stadtauswärts"
+  videos:
+  - ["2021-07-30-ferdinandstor-fr4-lohsen/GX012449", "00:00:05.172", "end"]
+  - ["2021-07-30-ferdinandstor-fr4-lohsen/GX012450", "start", "end"]
+  - ["2021-07-30-ferdinandstor-fr4-lohsen/GX012451", "start", "00:00:01.502"]

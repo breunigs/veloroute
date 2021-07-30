@@ -3969,6 +3969,20 @@
   <node id='-8433588' action='modify' lat='53.44101577415' lon='10.30367642373' />
   <node id='-8433589' action='modify' lat='53.4410061882' lon='10.30358791083' />
   <node id='-8433590' action='modify' lat='53.44100938352' lon='10.30350744456' />
+  <node id='-8433592' action='modify' lat='53.55577039172' lon='10.00103473395' />
+  <node id='-8433593' action='modify' lat='53.55585643197' lon='10.00096767873' />
+  <node id='-8433594' action='modify' lat='53.55595840537' lon='10.0009891364' />
+  <node id='-8433595' action='modify' lat='53.55621174448' lon='10.00104009837' />
+  <node id='-8433596' action='modify' lat='53.55634399008' lon='10.00110178918' />
+  <node id='-8433597' action='modify' lat='53.55643002916' lon='10.00120103091' />
+  <node id='-8433598' action='modify' lat='53.55651447476' lon='10.00140219659' />
+  <node id='-8433599' action='modify' lat='53.55660848003' lon='10.00172942609' />
+  <node id='-8433600' action='modify' lat='53.55694307339' lon='10.00223368138' />
+  <node id='-8433601' action='modify' lat='53.556743911' lon='10.00277280539' />
+  <node id='-8433602' action='modify' lat='53.55703707931' lon='10.00178574979' />
+  <node id='-8433603' action='modify' lat='53.5563838246' lon='10.00036954343' />
+  <node id='-8433604' action='modify' lat='53.55578473336' lon='10.00142096937' />
+  <node id='-8433605' action='modify' lat='53.55665468753' lon='10.0028586334' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -23249,6 +23263,30 @@
   <way id='-222754' action='modify'>
     <nd ref='479470005473778' />
     <nd ref='499570005471943' />
+  </way>
+  <way id='-222756' action='modify'>
+    <nd ref='-8433592' />
+    <nd ref='-8433593' />
+    <nd ref='-8433594' />
+    <nd ref='-8433595' />
+    <nd ref='-8433596' />
+    <nd ref='-8433597' />
+    <nd ref='-8433598' />
+    <nd ref='-8433599' />
+    <nd ref='-8433600' />
+    <nd ref='-8433601' />
+    <tag k='name' v='2021-07-30-ferdinandstor' />
+    <tag k='oneway' v='yes' />
+    <tag k='type' v='detour' />
+  </way>
+  <way id='-222836' action='modify'>
+    <nd ref='-8433602' />
+    <nd ref='-8433603' />
+    <nd ref='-8433604' />
+    <nd ref='-8433605' />
+    <nd ref='-8433602' />
+    <tag k='name' v='2021-07-30-ferdinandstor' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
