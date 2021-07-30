@@ -139,10 +139,12 @@ function setVideo() {
 }
 
 function parseCoordsFromState() {
-  return state.videoCoords.split(" ").reduce((acc, cur) => {
-    const prev = acc[acc.length - 3] || 0;
-    return acc.concat(prev + cur * 1.0)
-  }, [])
+  let coords = state.videoCoords.split(" ");
+  for (let i = 0; i < coords.length; i++) {
+    const prev = i < 3 ? 0 : coords[i - 3];
+    coords[i] = prev + coords[i] * 1.0;
+  }
+  return coords
 }
 
 function updateIndicatorPos(evt) {
