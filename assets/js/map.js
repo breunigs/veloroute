@@ -205,7 +205,53 @@ const sendBounds = () => {
   }, 200);
 }
 
+const layerVisibilityConfig = [
+  ['alltag', 'opacity', [
+    ['line', ['vr-casing', 'vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none', 'detour-line', 'planned-line']],
+    ['icon', ['vr-oneway', 'vr-marker-text']],
+    ['circle', ['vr-marker-circle']],
+  ]],
+  ['freizeit', 'visibility', [
+    ['line', ['fr-casing', 'fr-line']],
+    ['icon', ['fr-oneway', 'fr-sign', 'fr-warning-icons']],
+  ]]
+]
+// same order as layerVisibilityConfig
+let prevVisibility = [true, false];
+function setLayerVisibility() {
+  const types = state.visibleTypes.split(",");
+  for (let i = 0; i < layerVisibilityConfig.length; i++) {
+    const type = layerVisibilityConfig[i][0];
+    const prevVis = prevVisibility[i];
+    const nextVis = types.indexOf(type) >= 0;
+    if (prevVis != nextVis) {
+      setLayerStyle(layerVisibilityConfig[i][1], layerVisibilityConfig[i][2], nextVis);
+      prevVisibility[i] = nextVis;
+    }
+  }
+}
+
+function setLayerStyle(style, layersByType, show) {
+  const opacity = show ? 1 : 0.4;
+  const lineCap = show ? "round" : "butt";
+  const visibility = show ? "visible" : "none";
+
+  for (let i = 0; i < layersByType.length; i++) {
+    const type = layersByType[i][0];
+    const layers = layersByType[i][1];
+    for (let j = 0; j < layers.length; j++) {
+      console.log("setting style", style, "for", layers[j], "to", show);
+      if (style == "opacity" && type == "line" && layers[j] != 'vr-line-off-p1' && layers[j] != 'vr-line-off-m1')
+        map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
+      if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, { validate: true })
+      if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, { validate: true })
+    }
+  }
+}
+
 map.on('style.load', () => {
+  setLayerVisibility();
+
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
@@ -329,50 +375,6 @@ function maybeHackStateFromVideo() {
   }
 }
 
-
-const layerVisibilityConfig = [
-  ['alltag', 'opacity', [
-    ['line', ['vr-casing', 'vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none', 'detour-line', 'planned-line']],
-    ['icon', ['vr-oneway', 'vr-marker-text']],
-    ['circle', ['vr-marker-circle']],
-  ]],
-  ['freizeit', 'visibility', [
-    ['line', ['fr-casing', 'fr-line']],
-    ['icon', ['fr-oneway', 'fr-sign', 'fr-warning-icons']],
-  ]]
-]
-// same order as layerVisibilityConfig
-let prevVisibility = [true, false];
-function setLayerVisibility() {
-  const types = state.visibleTypes.split(",");
-  for (let i = 0; i < layerVisibilityConfig.length; i++) {
-    const type = layerVisibilityConfig[i][0];
-    const prevVis = prevVisibility[i];
-    const nextVis = types.indexOf(type) >= 0;
-    if (prevVis != nextVis) {
-      setLayerStyle(layerVisibilityConfig[i][1], layerVisibilityConfig[i][2], nextVis);
-      prevVisibility[i] = nextVis;
-    }
-  }
-}
-
-function setLayerStyle(style, layersByType, show) {
-  const opacity = show ? 1 : 0.4;
-  const lineCap = show ? "round" : "butt";
-  const visibility = show ? "visible" : "none";
-
-  for (let i = 0; i < layersByType.length; i++) {
-    const type = layersByType[i][0];
-    const layers = layersByType[i][1];
-    for (let j = 0; j < layers.length; j++) {
-      console.log("setting style", style, "for", layers[j], "to", show);
-      if (style == "opacity" && type == "line" && layers[j] != 'vr-line-off-p1' && layers[j] != 'vr-line-off-m1')
-        map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
-      if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, { validate: true })
-      if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, { validate: true })
-    }
-  }
-}
 window.map = map;
 
 function updateVideoIndicator() {
