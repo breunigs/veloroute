@@ -140,6 +140,14 @@ way[gpx:name] > node {
   symbol-shape: circle;
 }
 
+way[gpx:name] > node|z19- {
+  symbol-size: 1;
+  symbol-stroke-opacity: 1;
+  symbol-fill-opacity: 1;
+  symbol-shape: circle;
+  symbol-fill-color: black;
+}
+
 way[type=detour] {
   color: #f0ca00;
   width: 4;
