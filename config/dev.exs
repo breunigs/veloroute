@@ -68,3 +68,5 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :ex_aws, json_codec: Jason
+
+config :veloroute, enable_link_helper: true

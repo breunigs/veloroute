@@ -48,3 +48,7 @@
   data-bounds="<%= @bounds %>"
   data-bounds-ts="<%= @bounds_ts %>"
 ></div>
+
+<%= if Application.get_env(:veloroute, :enable_link_helper) do %>
+  <div id="linkInfoHelper" data-video-id="<%= VelorouteWeb.Live.VideoState.current_track(@video).parent_ref.id() %>" data-video-dir="<%= @video.direction %>"></div>
+<% end %>

@@ -114,5 +114,12 @@
         crossorigin="anonymous"
         onload="Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '<%= Application.get_env(:sentry, :release) %>' }); Sentry.setTag('env', '<%= Application.get_env(:veloroute, :env) %>');" async></script>
     <% end %>
+
+    <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
+      <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+      <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
+      <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
+      <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/link_helper.js") %>"></script>
+    <% end %>
   </body>
 </html>
