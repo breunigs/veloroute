@@ -4629,6 +4629,10 @@
   <node id='-10496197' action='modify' lat='53.4394037084' lon='9.85079347551'>
     <tag k='target' v='Harburger Berge' />
   </node>
+  <node id='-10496199' action='modify' lat='53.49468842167' lon='9.94875637118' />
+  <node id='-10496200' action='modify' lat='53.49324015147' lon='9.9499179987' />
+  <node id='-10496201' action='modify' lat='53.49461559386' lon='9.954763357' />
+  <node id='-10496202' action='modify' lat='53.49606381708' lon='9.95360172948' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -24788,6 +24792,15 @@
     <nd ref='-10496195' />
     <nd ref='-10496196' />
     <nd ref='-10496197' />
+  </way>
+  <way id='-234739' action='modify'>
+    <nd ref='-10496199' />
+    <nd ref='-10496200' />
+    <nd ref='-10496201' />
+    <nd ref='-10496202' />
+    <nd ref='-10496199' />
+    <tag k='name' v='2021-08-01-kattwykbruecke' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
