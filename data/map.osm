@@ -3022,7 +3022,9 @@
     <tag k='icon' v='nocargo' />
     <tag k='type' v='warning' />
   </node>
-  <node id='-7321925' action='modify' lat='53.55065705607' lon='10.00900357693' />
+  <node id='-7321925' action='modify' lat='53.55065705607' lon='10.00900357693'>
+    <tag k='target' v='Altmannbrücke' />
+  </node>
   <node id='-7321926' action='modify' lat='53.55058056646' lon='10.00904917449' />
   <node id='-7321927' action='modify' lat='53.55070008142' lon='10.00962048501' />
   <node id='-7321928' action='modify' lat='53.55083712482' lon='10.01032322377' />
@@ -3300,7 +3302,10 @@
   <node id='-7322264' action='modify' lat='53.50803172808' lon='10.16195252404' />
   <node id='-7322265' action='modify' lat='53.50788497524' lon='10.16209736332' />
   <node id='-7322266' action='modify' lat='53.50806203567' lon='10.16213491425' />
-  <node id='-7322267' action='modify' lat='53.50821118059' lon='10.16222745046' />
+  <node id='-7322267' action='modify' lat='53.50821118059' lon='10.16222745046'>
+    <tag k='icon' v='nocargo' />
+    <tag k='type' v='warning' />
+  </node>
   <node id='-7322268' action='modify' lat='53.50834676643' lon='10.16236558422' />
   <node id='-7322269' action='modify' lat='53.50842732016' lon='10.16249164805' />
   <node id='-7322270' action='modify' lat='53.50848793475' lon='10.16267672047' />
@@ -43034,6 +43039,8 @@
     <member type='way' ref='408668437' role='' />
     <member type='way' ref='-216769' role='' />
     <member type='node' ref='-7322717' role='gpx_end' />
+    <member type='node' ref='-7321925' role='gpx_start' />
+    <tag k='ref' v='RouteFR4' />
   </relation>
   <relation id='-100570' action='modify'>
     <member type='way' ref='-222729' role='' />
