@@ -238,7 +238,7 @@ defmodule Video.Source do
 
       next, [prev | _rest] = list ->
         if NaiveDateTime.compare(next.time, prev.time) == :lt,
-          do: {:halt, nil},
+          do: {:halt, list},
           else: {:cont, [next | list]}
     end)
     |> Enum.reverse()
