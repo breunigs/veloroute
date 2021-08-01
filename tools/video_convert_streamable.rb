@@ -164,7 +164,9 @@ begin
   loop do
     break if $stdin.closed?
     buf = $stdin.readpartial(1024*1024)
-    $ios.each { |io| io.write(buf) }
+    $ios.map do |io|
+      Thread.new { io.write(buf) }
+    end.map(&:join)
   rescue EOFError
     # stdin is empty
     $stdin.close
