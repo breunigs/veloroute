@@ -35,12 +35,12 @@ defmodule Mix.Tasks.Deploy do
     ensure_container_runs(skip)
 
     IO.puts("Image: #{Docker.image_name_release()}")
-    upload()
+    upload(skip)
 
     if !skip[:skip_deploy] && Cli.confirm(@confirm_msg) do
-      rename_on_remote()
+      rename_on_remote(skip)
       update_mapbox(skip)
-      restart()
+      restart(skip)
     end
   end
 
@@ -122,7 +122,9 @@ defmodule Mix.Tasks.Deploy do
     end
   end
 
-  defp upload() do
+  defp upload(%{skip_deploy: true}), do: nil
+
+  defp upload(_skip) do
     Util.banner("copying to image to #{Settings.deploy_ssh_name()}")
 
     Util.cmd([
@@ -132,7 +134,9 @@ defmodule Mix.Tasks.Deploy do
     ])
   end
 
-  defp rename_on_remote() do
+  defp rename_on_remote(%{skip_deploy: true}), do: nil
+
+  defp rename_on_remote(_skip) do
     Util.banner("Renaming")
 
     Util.cmd([
@@ -154,7 +158,9 @@ defmodule Mix.Tasks.Deploy do
     Mix.Tasks.UpdateMapbox.run(nil)
   end
 
-  defp restart() do
+  defp restart(%{skip_deploy: true}), do: nil
+
+  defp restart(_skip) do
     Util.banner("Restarting")
 
     {_, 0} =
@@ -170,8 +176,8 @@ defmodule Mix.Tasks.Deploy do
         into: IO.stream(:stdio, :line)
       )
 
-    # sleep 10s
-    Process.sleep(10_000)
+    # sleep 15s
+    Process.sleep(15_000)
 
     {_, 0} =
       System.cmd(
@@ -186,6 +192,8 @@ defmodule Mix.Tasks.Deploy do
         into: IO.stream(:stdio, :line)
       )
   end
+
+  defp post_deploy(%{skip_deploy: true}), do: nil
 
   defp post_deploy(_skip) do
     Util.banner("Release: Preload Commands")
