@@ -5,6 +5,7 @@ let hlsAutoStartLoad = false;
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
+video.addEventListener('loadedmetadata', updateIndicatorPos);
 video.addEventListener('timeupdate', updateIndicatorPos);
 video.addEventListener('play', maybeMarkAutoplayed);
 video.addEventListener('pause', markPause);
