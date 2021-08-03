@@ -5,7 +5,7 @@ defmodule Data.Route.RouteFR8 do
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Elbuferradweg (FR8)"
-  def osm_relation_ref(), do: ""
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/9070354"
 
   forward = %Video.Track{
     group: "Elbufer",
@@ -38,9 +38,8 @@ defmodule Data.Route.RouteFR8 do
       {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011418", "00:00:04.972", "00:00:27.327"},
       {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011549", "00:01:04.097", :end},
       {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011550", :start, "00:04:44.384"},
-      {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011510", "00:00:16.216", :end},
-      {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011511", :start, "00:00:03.270"},
-      {"2021-07-17-gruenerring1-11whburg-haubach/GX012382", "00:00:02.636", "00:00:11.845"}
+      {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011510", "00:00:16.216", "00:00:27.427"},
+      {"2021-08-03-fr14-noerdlich-kattwyk/GX012487", "00:00:28.529", :end}
     ]
   }
 
