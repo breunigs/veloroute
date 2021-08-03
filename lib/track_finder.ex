@@ -91,10 +91,13 @@ defmodule TrackFinder do
     end)
   end
 
-  defp direction_text(route, from, to) do
+  defp direction_text(route, from, to, direction) do
     Enum.find_value(route.tracks(), fn
-      %{from: ^from, to: ^to, text: text} -> text
-      _track -> nil
+      %{from: ^from, to: ^to, direction: ^direction, text: text} ->
+        text
+
+      _track ->
+        nil
     end) || raise("Failed to find track '#{from}'→'#{to}' for #{inspect(route)}")
   end
 
@@ -134,8 +137,8 @@ defmodule TrackFinder do
         fw_target = hd(e_as_start.nodes).tags[:target]
         bw_target = hd(s_as_start.nodes).tags[:target]
 
-        fw_text = direction_text(route, bw_target, fw_target)
-        bw_text = direction_text(route, fw_target, bw_target)
+        fw_text = direction_text(route, bw_target, fw_target, :forward)
+        bw_text = direction_text(route, fw_target, bw_target, :backward)
 
         [
           %{
