@@ -32,11 +32,24 @@ defmodule TrackFinder do
       |> Graph.add_edges(edges)
 
     track_matrix(r, ways)
-    |> Parallel.map(fn track ->
-      ways = Graph.Pathfinding.dijkstra(g, track.start, track.stop)
+    |> Enum.map(fn track ->
+      ways =
+        [track.start, track.via, track.stop]
+        |> List.flatten()
+        |> Enum.chunk_every(2, 1, :discard)
+        |> Enum.reduce([], fn [from, to], ways ->
+          # if track.via != [] do
+          #   require IEx
+          #   IEx.pry()
+          # end
+
+          prev = Enum.slice(ways, 0..-2)
+          next = Graph.Pathfinding.dijkstra(g, from, to)
+          prev ++ next
+        end)
 
       track
-      |> Map.drop([:start, :stop])
+      |> Map.drop([:start, :stop, :via])
       |> Map.put(:ways, ways)
     end)
   end
@@ -114,6 +127,7 @@ defmodule TrackFinder do
 
     start_ways = resolve_to_start_end_ways(name, start_members, normalized_ways)
     end_ways = resolve_to_start_end_ways(name, end_members, normalized_ways)
+    {via_fw, via_bw} = find_vias(r)
 
     Enum.flat_map(start_ways, fn {s_as_start, s_as_end} ->
       Enum.flat_map(end_ways, fn {e_as_start, e_as_end} ->
@@ -131,7 +145,8 @@ defmodule TrackFinder do
             direction: fw_text,
             full_name: "#{name} #{fw_text}",
             start: s_as_start,
-            stop: e_as_end
+            stop: e_as_end,
+            via: via_fw
           },
           %{
             type: :backward,
@@ -140,11 +155,26 @@ defmodule TrackFinder do
             direction: bw_text,
             full_name: "#{name} #{bw_text}",
             start: e_as_start,
-            stop: s_as_end
+            stop: s_as_end,
+            via: via_bw
           }
         ]
       end)
     end)
+  end
+
+  @spec find_vias(Map.Relation.t()) :: {[Map.Way.t()], [Map.Way.t()]}
+  defp find_vias(r) do
+    grouped =
+      Enum.group_by(r.members, fn
+        %{ref: %Way{}, role: "gpx_via_" <> dir} -> dir
+        _ -> nil
+      end)
+
+    fw = grouped["forward"] || []
+    bw = grouped["backward"] || []
+
+    {Enum.map(fw, &Map.get(&1, :ref)), Enum.map(bw, &Map.get(&1, :ref))}
   end
 
   # reverse turns around the order of nodes in a way and adjust tags so that
@@ -175,6 +205,8 @@ defmodule TrackFinder do
         "forward" -> way
         "backward" -> reverse(way)
         "" -> [way, reverse(way)]
+        "gpx_via_forward" -> []
+        "gpx_via_backward" -> []
       end
     end
     |> List.flatten()
