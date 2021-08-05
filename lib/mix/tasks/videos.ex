@@ -221,11 +221,15 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   defp named_track_segments(%{source: source}) do
     abs_path = Video.Path.gpx(source)
-    {:ok, content} = File.read(abs_path)
-    name = Video.Path.source_base(source)
 
-    Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
-    |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)
-    |> Enum.join("\n")
+    with {:ok, content} <- File.read(abs_path) do
+      name = Video.Path.source_base(source)
+
+      Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
+      |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)
+      |> Enum.join("\n")
+    else
+      e -> raise("failed to read #{abs_path}: #{inspect(e)}")
+    end
   end
 end
