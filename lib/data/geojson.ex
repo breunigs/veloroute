@@ -89,7 +89,7 @@ defmodule Data.GeoJSON do
 
     props =
       w.tags
-      |> Map.take([:name, :type, :offset, :route_id | Map.Way.style_tags()])
+      |> Map.take([:name, :type, :offset, :overlap_index, :route_id | Map.Way.style_tags()])
 
     %{
       type: "Feature",
@@ -113,7 +113,7 @@ defmodule Data.GeoJSON do
 
     r
     |> Map.Relation.ways()
-    |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :color]))
+    |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :overlap_index, :color]))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
   end
@@ -133,6 +133,12 @@ defmodule Data.GeoJSON do
       features: feats
     }
   end
+
+  # hash from {length_of_rels, index_of_current_rel} → desired_offset_in_geojson
+  @offsets %{
+    {2, 0} => 1,
+    {2, 1} => -1
+  }
 
   defp add_overlap_info(relations, type) do
     {rels_to_modify, rels_to_keep} =
@@ -155,32 +161,19 @@ defmodule Data.GeoJSON do
         end)
       end)
 
-    # handle offsets for exactly two routes overlapping
-    offsets =
-      ways_to_rels
-      |> Enum.filter(fn {_wid, %{rels: rels}} -> length(rels) == 2 end)
-      |> Enum.flat_map(fn
-        {way_id, %{rels: [a_id, b_id]}} ->
-          [
-            {{way_id, a_id}, 1},
-            {{way_id, b_id}, -1}
-          ]
-
-        _ ->
-          []
-      end)
-      |> Enum.into(%{})
-
     # add offset/oneway to tags of ways
     Enum.map(rels_to_modify, fn rel ->
       modify_ways(rel, fn way ->
-        tags = %{offset: Map.get(offsets, {way.id, rel.id}, 0)}
+        rels = ways_to_rels[way.id][:rels]
         roles = Enum.uniq(ways_to_rels[way.id][:roles])
+        index = Enum.find_index(rels, fn rel_id -> rel_id == rel.id end)
 
-        tags =
-          if length(roles) == 1 && hd(roles) in ["forward", "backward"],
-            do: Map.put(tags, :oneway, true),
-            else: tags
+        oneway = length(roles) == 1 && hd(roles) in ["forward", "backward"]
+        offset = @offsets[{length(rels), index}] || 0
+
+        tags = %{offset: offset}
+        tags = if length(rels) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
+        tags = if oneway, do: Map.put(tags, :oneway, true), else: tags
 
         Map.Element.add_new_tags(way, tags)
       end)
