@@ -414,3 +414,9 @@
 - "/contentblob/15272742/005843155bb13b25b0c1901ab81ad338/data/hoegerdamm-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15272744/92375049d4a9e8457398ae32e46fffeb/data/hoegerdamm-abgestimmte-planung-plan.pdf"
 - "/contentblob/15272918/9b50693c9218d8495bca494d8dbe9f5b/data/pionierbruecke-06-2021-bis-12-2021.pdf"
+'2021-08-05':
+- "/contentblob/15307322/59a70340b1e54c987209e18cf0c5451a/data/holsteiner-chaussee-oldesloer-str-vosskamp-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15307332/d66c6a6a04631210e69cb54de8e7f0de/data/holsteiner-chaussee-oldesloer-str-vosskamp-abgestimmte-planung-plaene.pdf"
+- "/contentblob/15310050/fc0ba79d73e59dda9179f250ac15178c/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-bericht.pdf"
+- "/contentblob/15310052/78b267baa20992a8375a711b03e63f11/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-plan.pdf"
+- "/contentblob/15261298/b8c410a778353268e4828b7556eb62dc/data/domstrasse-08-2021.pdf"

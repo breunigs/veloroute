@@ -120,7 +120,7 @@
 9261:
   :id: 9261
   :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
-  :updated: '2021-07-23T11:52:38.33941'
+  :updated: '2021-08-06T07:22:19.054881'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-29'
   :end: '2022-03-15'
@@ -441,7 +441,7 @@
 65:
   :id: 65
   :title: 'Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- '
-  :updated: '2021-04-19T15:42:13.915867'
+  :updated: '2021-08-06T07:20:34.414103'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-09-25'
   :end: '2021-11-30'
@@ -653,10 +653,10 @@
 7917:
   :id: 7917
   :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
-  :updated: '2021-06-16T16:52:10.91011'
+  :updated: '2021-08-06T07:21:39.743295'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
-  :end: '2021-07-30'
+  :end: '2021-08-30'
   :velo: false
 14631:
   :id: 14631
@@ -2156,3 +2156,74 @@
   :start: '2021-07-31'
   :end: '2021-08-09'
   :velo: false
+18580:
+  :id: 18580
+  :title: 'Nincoper Straße / Brückensanierung -- '
+  :updated: '2021-08-06T14:14:27.871808'
+  :start: '2021-06-29'
+  :end: '2021-12-31'
+  :velo: false
+18663:
+  :id: 18663
+  :title: 'Nußkamp Vollsperrung Wasserrohrbruch -- '
+  :updated: '2021-08-06T14:15:50.716823'
+  :start: '2021-07-29'
+  :end: '2021-08-13'
+  :velo: false
+18786:
+  :id: 18786
+  :title: 'Hohnerkamp / Asphaltierungsarbeiten -- '
+  :updated: '2021-08-06T14:17:01.864227'
+  :start: '2021-08-09'
+  :end: '2021-08-16'
+  :velo: false
+17893:
+  :id: 17893
+  :title: 'Wilhelm-Metzger-Straße - Vollsperrung -- '
+  :updated: '2021-07-09T07:38:15.428134'
+  :start: '2021-08-10'
+  :end: '2021-08-13'
+  :velo: false
+18870:
+  :id: 18870
+  :title: 'Veddeler Damm/BÜ120+BÜ121 -- '
+  :updated: '2021-08-06T14:20:07.444785'
+  :start: '2021-08-07'
+  :end: '2021-08-16'
+  :velo: true
+18382:
+  :id: 18382
+  :title: 'Innenstadtkonzept Hamburg - Abschnitt Domstraße -- '
+  :updated: '2021-08-06T14:13:54.646476'
+  :link: https://lsbg.hamburg.de/anliegerinformationen/
+  :start: '2021-08-09'
+  :end: '2021-08-27'
+  :velo: true
+18652:
+  :id: 18652
+  :title: 'Am Lehmberg / Asphaltierungsarbeiten -- '
+  :updated: '2021-07-30T14:51:44.399704'
+  :start: '2021-08-09'
+  :end: '2021-08-16'
+  :velo: false
+18692:
+  :id: 18692
+  :title: 'Hoheluftchaussee/ Kabelschachtsanierung -- '
+  :updated: '2021-07-30T14:52:36.943308'
+  :start: '2021-08-12'
+  :end: '2021-08-13'
+  :velo: false
+18884:
+  :id: 18884
+  :title: 'Veddeler Damm/BÜ132 -- '
+  :updated: '2021-08-06T14:20:23.327811'
+  :start: '2021-08-28'
+  :end: '2021-09-06'
+  :velo: true
+17981:
+  :id: 17981
+  :title: 'Horner Rampe 22-48 -- '
+  :updated: '2021-07-12T07:40:59.854648'
+  :start: '2021-08-30'
+  :end: '2021-11-26'
+  :velo: true

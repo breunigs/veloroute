@@ -702,3 +702,12 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014689
 '2021-07-30':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010892
+'2021-08-06':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011631
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011574
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011572
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014714
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014684
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014640
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014682
+- https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014727
