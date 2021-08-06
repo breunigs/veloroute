@@ -322,7 +322,10 @@ defmodule VelorouteWeb.ArticleView do
         end
       end)
 
-    new_attr = Map.put_new(new_attr, "phx-value-zoom", "15")
+    new_attr =
+      if is_map_key(new_attr, "phx-value-bounds"),
+        do: new_attr,
+        else: Map.put_new(new_attr, "phx-value-zoom", "15")
 
     {"a", Enum.to_list(new_attr), children}
   end

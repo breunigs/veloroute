@@ -5983,6 +5983,27 @@
   <node id='-12005807' action='modify' lat='53.44534520631' lon='9.91631716222'>
     <tag k='target' v='Harburger Berge' />
   </node>
+  <node id='-12005811' action='modify' lat='53.55139645011' lon='9.94765877187' />
+  <node id='-12005812' action='modify' lat='53.55122116428' lon='9.94758367002' />
+  <node id='-12005813' action='modify' lat='53.55102038143' lon='9.94849562109' />
+  <node id='-12005814' action='modify' lat='53.55090883499' lon='9.94924663961' />
+  <node id='-12005815' action='modify' lat='53.55077816593' lon='9.95039998949' />
+  <node id='-12005816' action='modify' lat='53.55077179182' lon='9.95134949148' />
+  <node id='-12005817' action='modify' lat='53.55060288072' lon='9.95147823215' />
+  <node id='-12005818' action='modify' lat='53.55066662204' lon='9.95173572421' />
+  <node id='-12005819' action='modify' lat='53.55076223384' lon='9.95167135119' />
+  <node id='-12005820' action='modify' lat='53.55083234902' lon='9.95237945437' />
+  <node id='-12005821' action='modify' lat='53.55096620495' lon='9.95317338824' />
+  <node id='-12005822' action='modify' lat='53.55113830482' lon='9.95383857608' />
+  <node id='-12005823' action='modify' lat='53.55138689227' lon='9.95460032344' />
+  <node id='-12005824' action='modify' lat='53.55128490785' lon='9.9556302917' />
+  <node id='-12005825' action='modify' lat='53.55151437245' lon='9.95566247821' />
+  <node id='-12005826' action='modify' lat='53.55199879363' lon='9.9555122745' />
+  <node id='-12005827' action='modify' lat='53.55178845354' lon='9.95493291736' />
+  <node id='-12005828' action='modify' lat='53.55138689227' lon='9.95365618587' />
+  <node id='-12005829' action='modify' lat='53.55115105293' lon='9.95288370967' />
+  <node id='-12005830' action='modify' lat='53.55099170127' lon='9.9518215549' />
+  <node id='-12005831' action='modify' lat='53.5509470827' lon='9.95090960383' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -27856,6 +27877,32 @@
   <way id='-248600' action='modify'>
     <nd ref='96936460005460436' />
     <nd ref='96933890005459729' />
+  </way>
+  <way id='-248603' action='modify'>
+    <nd ref='-12005811' />
+    <nd ref='-12005812' />
+    <nd ref='-12005813' />
+    <nd ref='-12005814' />
+    <nd ref='-12005815' />
+    <nd ref='-12005816' />
+    <nd ref='-12005817' />
+    <nd ref='-12005818' />
+    <nd ref='-12005819' />
+    <nd ref='-12005820' />
+    <nd ref='-12005821' />
+    <nd ref='-12005822' />
+    <nd ref='-12005823' />
+    <nd ref='-12005824' />
+    <nd ref='-12005825' />
+    <nd ref='-12005826' />
+    <nd ref='-12005827' />
+    <nd ref='-12005828' />
+    <nd ref='-12005829' />
+    <nd ref='-12005830' />
+    <nd ref='-12005831' />
+    <nd ref='-12005811' />
+    <tag k='name' v='2021-08-06-louise-schroeder-strasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>

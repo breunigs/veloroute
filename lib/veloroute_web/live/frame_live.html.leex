@@ -50,5 +50,12 @@
 ></div>
 
 <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
-  <div id="linkInfoHelper" data-video-id="<%= VelorouteWeb.Live.VideoState.current_track(@video).parent_ref.id() %>" data-video-dir="<%= @video.direction %>"></div>
+  <%
+  track = VelorouteWeb.Live.VideoState.current_track(@video)
+  ref = cond do
+    is_atom(track.parent_ref) -> track.parent_ref.id()
+    track -> Video.Rendered.get(track).hash()
+  end
+  %>
+  <div id="linkInfoHelper" data-video-id="<%= ref %>" data-video-dir="<%= @video.direction %>"></div>
 <% end %>

@@ -151,7 +151,7 @@ const maybeFitBounds = () => {
   if (prevBoundsTs == state.boundsTs || state.bounds == "") {
     return;
   }
-  console.debug("Bounds have changed from to", state.bounds)
+  console.debug("Bounds have changed to", state.bounds)
   prevBoundsTs = state.boundsTs;
   map.fitBounds(state.bounds.split(","), fitBoundsOpt);
 }
