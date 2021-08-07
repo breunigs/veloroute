@@ -254,7 +254,7 @@ defmodule VelorouteWeb.FrameLive do
     assign(socket, prev_page: name)
   end
 
-  defp set_content(%Article{name: name, title: t, date: date, summary: summary}, socket) do
+  defp set_content(%Article{name: name, full_title: t, date: date, summary: summary}, socket) do
     title =
       if is_nil(t) or t == "",
         do: Settings.page_title_long(),
