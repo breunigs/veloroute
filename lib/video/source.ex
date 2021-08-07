@@ -263,7 +263,7 @@ defmodule Video.Source do
   defp date_from_path(source_path) do
     case Regex.run(~r/\b\d\d\d\d-\d\d-\d\d\b/, source_path) do
       nil -> "unknown"
-      str -> str
+      [str] -> str
     end
   end
 end

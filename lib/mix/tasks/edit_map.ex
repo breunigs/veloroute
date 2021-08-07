@@ -46,48 +46,70 @@ defmodule Mix.Tasks.EditMap do
     IO.puts("Wrote #{@route_colors_path}")
   end
 
+  defp gpx_layers(start_index) do
+    all_years =
+      Videos.gpx_index_path("*") |> Path.absname() |> Path.wildcard() |> Enum.sort(&(&1 >= &2))
+
+    Enum.reduce(all_years, {"", start_index}, fn a_year, {xml, index} ->
+      name = Path.basename(a_year)
+
+      xml =
+        xml <>
+          """
+            <layer index="#{index}" name="#{name}" type="tracks" version="0.1" visible="false">
+              <file>file:#{a_year}</file>
+            </layer>
+          """
+
+      {xml, index + 1}
+    end)
+  end
+
   defp write_josm_session do
     xml = """
       <?xml version="1.0" encoding="utf-8"?>
       <josm-session version="0.1">
-          <projection>
-              <projection-choice>
-                  <id>core:mercator</id>
-                  <parameters/>
-              </projection-choice>
-              <code>EPSG:3857</code>
-          </projection>
-          <layers active="1">
-              <layer index="1" name="Map" type="osm-data" version="0.1" visible="true">
-                  <file>file:#{Path.absname(Map.Parser.default_map_path())}</file>
-              </layer>
-              <layer index="2" name="Videos (anonymized, read only)" type="tracks" version="0.1" visible="false">
-                <file>file:#{Path.absname(Videos.out_anonymized())}</file>
-              </layer>
-              <layer index="3" name="Videos (pending, read only)" type="tracks" version="0.1" visible="false'">
-                <file>file:#{Path.absname(Videos.out_pending())}</file>
-              </layer>
-              <layer index="4" name="OpenStreetMap (Standard Black &amp; White)" type="imagery" version="0.1" visible="true">
-                  <name>OpenStreetMap (Standard Black &amp; White)</name>
-                  <id>osm-mapnik-black_and_white</id>
-                  <type>tms</type>
-                  <url>https://tiles.wmflabs.org/bw-mapnik/{zoom}/{x}/{y}.png</url>
-                  <attribution-text>© OpenStreetMap contributors, CC-BY-SA</attribution-text>
-                  <attribution-url>https://www.openstreetmap.org/</attribution-url>
-                  <max-zoom>18</max-zoom>
-                  <valid-georeference>true</valid-georeference>
-                  <modTileFeatures>true</modTileFeatures>
-                  <customHttpHeaders>{}</customHttpHeaders>
-                  <transparent>true</transparent>
-                  <minimumTileExpire>3600</minimumTileExpire>
-                  <category>osmbasedmap</category>
-                  <show-errors>true</show-errors>
-                  <automatic-downloading>true</automatic-downloading>
-                  <automatically-change-resolution>true</automatically-change-resolution>
-              </layer>
-          </layers>
-      </josm-session>
+        <projection>
+          <projection-choice>
+            <id>core:mercator</id>
+            <parameters/>
+          </projection-choice>
+          <code>EPSG:3857</code>
+        </projection>
+
+        <layers active="1">
+          <layer index="1" name="Map" type="osm-data" version="0.1" visible="true">
+            <file>file:#{Path.absname(Map.Parser.default_map_path())}</file>
+          </layer>
     """
+
+    {gpx_layers, next_index} = gpx_layers(2)
+
+    xml =
+      xml <>
+        gpx_layers <>
+        """
+              <layer index="#{next_index}" name="OpenStreetMap Carto (Standard)" type="imagery" version="0.1" visible="true">
+                <max-zoom>19</max-zoom>
+                <valid-georeference>true</valid-georeference>
+                <modTileFeatures>true</modTileFeatures>
+                <transparent>true</transparent>
+                <minimumTileExpire>86400</minimumTileExpire>
+                <name>OpenStreetMap Carto (Standard)</name>
+                <id>standard</id>
+                <type>tms</type>
+                <url>https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png</url>
+                <attribution-text>© OpenStreetMap contributors</attribution-text>
+                <attribution-url>https://www.openstreetmap.org/</attribution-url>
+                <permission-reference-url>https://wiki.osmfoundation.org/wiki/Terms_of_Use</permission-reference-url>
+                <category>osmbasedmap</category>
+                <show-errors>true</show-errors>
+                <automatic-downloading>true</automatic-downloading>
+                <automatically-change-resolution>true</automatically-change-resolution>
+            </layer>
+            </layers>
+          </josm-session>
+        """
 
     File.write!(@session_path, String.trim(xml))
   end
