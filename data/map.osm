@@ -5152,7 +5152,7 @@
   <node id='-11507996' action='modify' lat='53.59997360748' lon='9.95174377888' />
   <node id='-11507997' action='modify' lat='53.60060390587' lon='9.9518376562' />
   <node id='-11507998' action='modify' lat='53.60109253982' lon='9.95199858874' />
-  <node id='-11507999' action='modify' lat='53.6012135037' lon='9.95211124152' />
+  <node id='-11507999' action='modify' lat='53.60127239389' lon='9.95217293233' />
   <node id='-11508000' action='modify' lat='53.60127080226' lon='9.95193958014' />
   <node id='-11508001' action='modify' lat='53.60125806925' lon='9.95171695679' />
   <node id='-11508002' action='modify' lat='53.60119599579' lon='9.95137363404' />
@@ -5188,9 +5188,9 @@
   <node id='-11508032' action='modify' lat='53.60306452623' lon='9.94746029109' />
   <node id='-11508033' action='modify' lat='53.60352607553' lon='9.94773924083' />
   <node id='-11508034' action='modify' lat='53.60375843982' lon='9.94697481126' />
-  <node id='-11508035' action='modify' lat='53.60412449057' lon='9.94672536582' />
-  <node id='-11508036' action='modify' lat='53.60427886754' lon='9.94721352786' />
-  <node id='-11508037' action='modify' lat='53.60446984858' lon='9.94794308871' />
+  <node id='-11508035' action='modify' lat='53.60395419779' lon='9.94629084796' />
+  <node id='-11508036' action='modify' lat='53.60428364208' lon='9.94721486896' />
+  <node id='-11508037' action='modify' lat='53.60447860186' lon='9.94792028993' />
   <node id='-11508038' action='modify' lat='53.60471175665' lon='9.94740932912' />
   <node id='-11508039' action='modify' lat='53.60500618238' lon='9.94653492898' />
   <node id='-11508040' action='modify' lat='53.60505551838' lon='9.94611650437' />
@@ -6004,6 +6004,19 @@
   <node id='-12005829' action='modify' lat='53.55115105293' lon='9.95288370967' />
   <node id='-12005830' action='modify' lat='53.55099170127' lon='9.9518215549' />
   <node id='-12005831' action='modify' lat='53.5509470827' lon='9.95090960383' />
+  <node id='-12518360' action='modify' lat='53.60129785989' lon='9.95205759734' />
+  <node id='-12518390' action='modify' lat='53.60392873339' lon='9.94683265418' />
+  <node id='-12518402' action='modify' lat='53.60382050952' lon='9.94656979769' />
+  <node id='-12518409' action='modify' lat='53.60412926512' lon='9.94673073024' />
+  <node id='-12518410' action='modify' lat='53.60391292999' lon='9.94637899973' />
+  <node id='-12518411' action='modify' lat='53.6039915978' lon='9.94656577572' />
+  <node id='-12518412' action='modify' lat='53.60412210249' lon='9.94690775737' />
+  <node id='-12518413' action='modify' lat='53.60425340254' lon='9.94740128383' />
+  <node id='-12518414' action='modify' lat='53.60436719558' lon='9.94784787163' />
+  <node id='-12518479' action='modify' lat='53.58594580626' lon='9.95139181868'>
+    <tag k='icon' v='nocargo' />
+    <tag k='type' v='warning' />
+  </node>
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -26625,6 +26638,7 @@
     <nd ref='-11507936' />
     <nd ref='-11507937' />
     <nd ref='-11507938' />
+    <nd ref='-12518479' />
     <nd ref='-11507939' />
     <nd ref='-11507940' />
     <nd ref='-11507941' />
@@ -26705,34 +26719,10 @@
     <nd ref='-11507997' />
     <nd ref='-11507998' />
     <nd ref='-11507999' />
+    <nd ref='-12518360' />
     <nd ref='-11508004' />
   </way>
   <way id='-241072' action='modify'>
-    <nd ref='-11508004' />
-    <nd ref='-11508000' />
-    <nd ref='-11508001' />
-    <nd ref='-11508002' />
-    <nd ref='-11508003' />
-    <nd ref='-11508017' />
-    <nd ref='-11508018' />
-    <nd ref='-11508019' />
-    <nd ref='-11508020' />
-    <nd ref='-11508021' />
-    <nd ref='-11508022' />
-    <nd ref='-11508023' />
-    <nd ref='-11508024' />
-    <nd ref='-11508025' />
-    <nd ref='-11508026' />
-    <nd ref='-11508027' />
-    <nd ref='-11508028' />
-    <nd ref='-11508029' />
-    <nd ref='-11508030' />
-    <nd ref='-11508031' />
-    <nd ref='-11508032' />
-    <nd ref='-11508033' />
-    <nd ref='-11508034' />
-    <nd ref='-11508035' />
-    <nd ref='-11508036' />
     <nd ref='-11508037' />
     <nd ref='-11508038' />
     <nd ref='-11508039' />
@@ -27903,6 +27893,49 @@
     <nd ref='-12005811' />
     <tag k='name' v='2021-08-06-louise-schroeder-strasse' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-251770' action='modify'>
+    <nd ref='-12518410' />
+    <nd ref='-12518411' />
+    <nd ref='-12518412' />
+    <nd ref='-12518413' />
+    <nd ref='-12518414' />
+    <nd ref='-11508037' />
+  </way>
+  <way id='-251775' action='modify'>
+    <nd ref='-11508004' />
+    <nd ref='-11508000' />
+    <nd ref='-11508001' />
+    <nd ref='-11508002' />
+    <nd ref='-11508003' />
+    <nd ref='-11508017' />
+    <nd ref='-11508018' />
+    <nd ref='-11508019' />
+    <nd ref='-11508020' />
+    <nd ref='-11508021' />
+    <nd ref='-11508022' />
+    <nd ref='-11508023' />
+    <nd ref='-11508024' />
+    <nd ref='-11508025' />
+    <nd ref='-11508026' />
+    <nd ref='-11508027' />
+    <nd ref='-11508028' />
+    <nd ref='-11508029' />
+    <nd ref='-11508030' />
+    <nd ref='-11508031' />
+    <nd ref='-11508032' />
+    <nd ref='-11508033' />
+    <nd ref='-11508034' />
+    <nd ref='-12518390' />
+    <nd ref='-12518402' />
+    <nd ref='-12518410' />
+  </way>
+  <way id='-251778' action='modify'>
+    <nd ref='-11508037' />
+    <nd ref='-11508036' />
+    <nd ref='-12518409' />
+    <nd ref='-11508035' />
+    <nd ref='-12518410' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
@@ -46587,7 +46620,6 @@
   </relation>
   <relation id='-100724' action='modify'>
     <member type='node' ref='98902320005583175' role='gpx_start' />
-    <member type='way' ref='-244271' role='' />
     <member type='way' ref='-240901' role='' />
     <member type='way' ref='-241215' role='forward' />
     <member type='way' ref='-241217' role='forward' />
@@ -46601,10 +46633,13 @@
     <member type='way' ref='-240969' role='' />
     <member type='way' ref='-241069' role='forward' />
     <member type='way' ref='-241055' role='forward' />
+    <member type='way' ref='-251775' role='' />
+    <member type='way' ref='-251778' role='forward' />
+    <member type='way' ref='-251770' role='forward' />
     <member type='way' ref='-241072' role='' />
     <member type='way' ref='-241138' role='' />
     <member type='way' ref='-241130' role='' />
-    <tag k='note' v='RouteFR10' />
+    <tag k='ref' v='RouteFR10' />
   </relation>
   <relation id='-100754' action='modify'>
     <member type='way' ref='-244153' role='' />
