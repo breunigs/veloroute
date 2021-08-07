@@ -1,3 +1,2 @@
 User-agent: *
 Disallow: /videos-rendered/
-Disallow: /images/thumbnails/

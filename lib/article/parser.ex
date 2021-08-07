@@ -47,6 +47,7 @@ defmodule Article.Parser do
       |> Map.merge(%{
         name: name,
         date: date,
+        summary: clean_summary(parsed[:summary], path),
         text: String.trim(parsed[:text] || ""),
         tags: tags,
         start: parsed |> Map.get(:start) |> Data.RoughDate.parse(),
@@ -56,6 +57,19 @@ defmodule Article.Parser do
       |> full_title()
 
     struct(Article, data)
+  end
+
+  defp clean_summary(str, path)
+  defp clean_summary(nil, _), do: nil
+  defp clean_summary("", _), do: nil
+
+  defp clean_summary(str, path) when is_binary(str) do
+    if String.length(str) >= 200 do
+      IO.puts(:stderr, "#{path}: exceeding max description length of 200, cutting")
+      String.slice(str, 0..199)
+    else
+      str
+    end
   end
 
   defp to_plain_video_triple(vids) when is_list(vids) do

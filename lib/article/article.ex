@@ -11,6 +11,7 @@ defmodule Article do
           start: Data.RoughDate.t() | nil,
           text: binary(),
           title: binary() | nil,
+          summary: binary() | nil,
           type: binary() | nil,
           tracks: [Video.Track.t()]
         }
@@ -31,6 +32,7 @@ defmodule Article do
     :search_text,
     :search_title,
     :start,
+    :summary,
     :tags,
     :text,
     :title,

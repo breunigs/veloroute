@@ -31,6 +31,9 @@
     <%= if assigns[:article_title] != nil do %>
       <meta property="og:title" content="<%= assigns[:article_title] %>"/>
     <% end %>
+    <%= if assigns[:article_summary] != nil do %>
+      <meta property="og:description" content="<%= assigns[:article_summary] %>"/>
+    <% end %>
     <meta property="og:site_name" content="<%= Settings.sitebar_name() %>"/>
     <meta property="og:image:width" content="640"/>
     <meta property="og:image" content="<%= Routes.image_extract_url(@conn, :image, @video_hash, @video_start) %>"/>
