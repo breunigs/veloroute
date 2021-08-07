@@ -6017,6 +6017,14 @@
     <tag k='icon' v='nocargo' />
     <tag k='type' v='warning' />
   </node>
+  <node id='-12518580' action='modify' lat='53.56330143914' lon='9.98448013723' />
+  <node id='-12518581' action='modify' lat='53.56350534981' lon='9.98473226488' />
+  <node id='-12518582' action='modify' lat='53.56319948343' lon='9.98539745271' />
+  <node id='-12518583' action='modify' lat='53.56280121661' lon='9.98614310682' />
+  <node id='-12518584' action='modify' lat='53.56201741655' lon='9.98752712667' />
+  <node id='-12518585' action='modify' lat='53.56178482268' lon='9.9879240936' />
+  <node id='-12518586' action='modify' lat='53.56167011838' lon='9.98766123712' />
+  <node id='-12518587' action='modify' lat='53.56251764835' lon='9.98607336938' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -27936,6 +27944,19 @@
     <nd ref='-12518409' />
     <nd ref='-11508035' />
     <nd ref='-12518410' />
+  </way>
+  <way id='-251936' action='modify'>
+    <nd ref='-12518580' />
+    <nd ref='-12518581' />
+    <nd ref='-12518582' />
+    <nd ref='-12518583' />
+    <nd ref='-12518584' />
+    <nd ref='-12518585' />
+    <nd ref='-12518586' />
+    <nd ref='-12518587' />
+    <nd ref='-12518580' />
+    <tag k='name' v='2018-01-01-cch' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
