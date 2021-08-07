@@ -6,8 +6,10 @@ defmodule Mix.Tasks.Deploy do
   def run(skip) do
     skip = parse_cli_args(skip)
     build_tar_gz(skip)
-    deploy_tar_gz(skip)
-    post_deploy(skip)
+
+    if deploy_tar_gz(skip) do
+      post_deploy(skip)
+    end
   end
 
   defp parse_cli_args(skip) when is_list(skip) do
@@ -41,6 +43,9 @@ defmodule Mix.Tasks.Deploy do
       rename_on_remote(skip)
       update_mapbox(skip)
       restart(skip)
+      true
+    else
+      false
     end
   end
 
