@@ -18,7 +18,7 @@ defmodule VelorouteWeb.VariousHelpers do
         icon = route_icon(ref)
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.id()),
+          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.article()),
           title: "Du folgst: #{ref.name()} #{text}",
           class: "curRoute"
         )

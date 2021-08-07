@@ -5,6 +5,7 @@ defmodule Data.Route.Route10 do
   def type(), do: :alltag
   def color(), do: "#552976"
   def name(), do: "Alltagsroute 10"
+  def article(), do: "alltagsroute-10"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/231965"
 
   forward = %Video.Track{

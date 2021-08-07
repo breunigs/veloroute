@@ -5,6 +5,7 @@ defmodule Data.Route.RouteFR7 do
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Harburger Berge (FR7)"
+  def article(), do: "freizeitroute-7"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/9064960"
 
   forward = %Video.Track{

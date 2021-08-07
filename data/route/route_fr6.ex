@@ -5,9 +5,8 @@ defmodule Data.Route.RouteFR6 do
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Elbbrücken (FR6)"
+  def article(), do: "freizeitroute-6"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/8847600"
-  # https://www.komoot.de/tour/227478472
-  # https://www.hamburg.de/radtour/6294576/radtour-city-wilhelmsburg-harburger-stadtpark/
 
   forward = %Video.Track{
     group: "Elbbrücken",

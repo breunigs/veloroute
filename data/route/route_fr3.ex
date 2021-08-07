@@ -5,6 +5,7 @@ defmodule Data.Route.RouteFR3 do
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Wandseradweg (FR3)"
+  def article(), do: "freizeitroute-3"
   def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/14910"
 
   forward = %Video.Track{
