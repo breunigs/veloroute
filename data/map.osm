@@ -46639,6 +46639,7 @@
     <member type='way' ref='-241072' role='' />
     <member type='way' ref='-241138' role='' />
     <member type='way' ref='-241130' role='' />
+    <member type='node' ref='-11508249' role='gpx_end' />
     <tag k='ref' v='RouteFR10' />
   </relation>
   <relation id='-100754' action='modify'>
