@@ -1,0 +1,28 @@
+
+title: Freizeitroute 12 – Tarpenbekradweg
+no_auto_title: true
+tags: [FR12]
+text: >
+  <h3>Freizeitroute 12 – Tarpenbekradweg <icon>FR12</icon></h3>
+  <span class="updated">Länge rund 14km (+5km bis zur Innenstadt)</span>
+
+  <p>Die Tour beginnt am <a bounds="9.985424,53.595857,9.998391,53.601647" lon="9.992583" lat="53.599168" dir="forward">Lattenkamp</a>, lässt sich aber mit einer Fahrt um die Außenalster ergänzen. Bis zum <a bounds="9.959435,53.612511,9.979618,53.627382" lon="9.967577" lat="53.615979" dir="forward">Flughafen</a> folgt man der Tarpenbek, die dort in einem Rohr unter der Landebahn fließt. Mit dem Rad fährt man stattdessen <a bounds="9.967811,53.614742,10.014486,53.624708" lon="9.994048" lat="53.61962" dir="forward">nach Osten</a> um am Flughafen vorbeizukommen. Über <a bounds="9.990546,53.625224,10.013622,53.662223" lon="10.000591" lat="53.649747" dir="forward">verschiedene Grünanlagen</a> gelangt man letztlich <a bounds="9.988175,53.665365,10.001593,53.682097" lon="9.991246" lat="53.666542" dir="forward">wieder zur Tarpenbek</a> und folgt dieser bis <a bounds="9.992926,53.677008,10.000502,53.6817" lon="9.994644" lat="53.677988" dir="forward">zur Landesgrenze</a>.</p>
+
+  <h4>Auffindbarkeit</h4>
+  <p>Die Route ist nicht durchgehend beschildert und es gibt einige schwierig zu navigierende Stellen. In den Grünabschnitten bzw. Parks gibt es aber meist einen naheliegenden Weg. Ein Navi ist zwar hilfreich, aber mit etwas Vorbereitung könnte es auch ohne gehen.</p>
+
+  <h4>Befahrbarkeit</h4>
+  <p>Die Wege sind meist aus Feinschotter, zwischendurch gibt es immer mal wieder befestigte Abschnitte. Stellenweise ist die Route gut besucht und die Wege zu schmal um zu überholen. Hier muss man entweder Schrittgeschwindigkeit fahren oder schieben. Sei bitte exzellent zu Anderen und steige ab bevor es brenzlig wird.</p>
+
+  <h4>Meinung</h4>
+  <p>Die Route ist schön und in sich stimmig. Wer es nicht eilig hat kann die Route abseits des Autoverkehrs genießen. Ausnahme bildet der <a bounds="9.990835,53.617861,10.010534,53.62397" lon="9.996549" lat="53.620475" dir="forward">Weg beim Jäger</a>, der mit wenig Grün daherkommt und wo die Radwege einfach im Nichts enden. Die <a bounds="10.008442,53.621868,10.014844,53.625248" lon="10.009999" lat="53.623919" dir="forward">anschließende Kreuzung</a> ist fahrradfeindlich – wer sich hier verfährt wird mit mehreren Minuten Wartezeit bestraft. Wer diesen Abschnitt nicht mag kann den Flughafen stattdessen <a bounds="9.954241,53.613989,9.977322,53.625393">auf der Westseite</a> umfahren und über den <a bounds="9.971521,53.643221,9.991455,53.654183">Krohnstieg-Tunnel</a> der Tarpenbek weiter folgen.</p>
+
+
+  <h3>Externe Links</h3>
+  <geolinks route="FR12">
+    <li><a href="https://www.hamburg.de/radtour/6294586/radtour-alsterlauf-tarpenbek-langenhorn/">Detailseite der Stadt</a></li>
+    <li><a href="https://www.komoot.de/tour/227482526">Komoot Routenplaner</a></li>
+  </geolinks>
+
+  <h3>Artikel zum Tarpenbekradweg</h3>
+  <articles tags="FR12" sort="date"/>
