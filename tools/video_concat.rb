@@ -11,7 +11,20 @@ end
 
 pipes = ""
 
+video_types = []
+ARGV.each_slice(3) do |group|
+  parts = File.basename(group[0]).split(".")
+  video_types << parts.size == 1 ? "mp4" : parts.last.downcase
+end
+single_video_type = video_types.uniq.size <= 1
 
+# ffmpeg cannot cut accurately with a copy codec and cuts on keyframes only,
+# see https://trac.ffmpeg.org/wiki/Seeking#Seekingwhiledoingacodeccopy
+# additionally, we can't "copy" mixed codecs together
+codec = ENV['INACCURATE_CUTS'] == '1' && single_video_type ? 'copy' : 'yuv4'
+warn "concatting using codec #{codec}"
+
+total_count = ARGV.size / 3
 
 Dir.mktmpdir("video_concat") do |temp_dir|
   ARGV.each_slice(3).with_index do |group, idx|
@@ -35,10 +48,6 @@ Dir.mktmpdir("video_concat") do |temp_dir|
       is_start = start == "start"
       is_end = stop == "end"
 
-      # ffmpeg cannot cut accurately with a copy codec and cuts on keyframes only,
-      # see https://trac.ffmpeg.org/wiki/Seeking#Seekingwhiledoingacodeccopy
-      codec = ENV['INACCURATE_CUTS'] == '1' ? 'copy' : 'yuv4'
-
       cmd = ["nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y"]
       cmd += ["-sseof", start] if !is_start && start[0] == "-"
       cmd += ["-ss", start] if !is_start && start[0] != "-"
@@ -50,7 +59,7 @@ Dir.mktmpdir("video_concat") do |temp_dir|
       out = io.read
       io.close
       die(out) unless $?.success?
-      warn "finished #{video}"
+      warn "finished #{idx+1}/#{total_count}: #{video}"
     end
   end
 
