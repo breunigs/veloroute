@@ -220,10 +220,20 @@ defmodule VelorouteWeb.ArticleView do
     {"li", [], ["Route im ", gpx, " bzw. ", kml]}
   end
 
-  defp icon(given_attr, content) do
-    [{_tag, attrs, content}] = content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
-    path = Cache.Articles.find("#{content}") |> Article.path()
-    {"a", given_attr ++ attrs ++ [{"href", path}], content}
+  defp icon(given_attr, content) when is_list(content) and length(content) == 1 do
+    try do
+      [{_tag, attrs, content}] =
+        content |> Floki.text() |> VariousHelpers.route_icon() |> to_floki
+
+      path = Cache.Articles.find("#{content}") |> Article.path()
+      {"a", given_attr ++ attrs ++ [{"href", path}], content}
+    rescue
+      e ->
+        msg = "Cannot generate icon for “#{inspect(content)}”:\n"
+        msg = msg <> "  given_attr: #{inspect(given_attr)}"
+        msg = msg <> "  error: #{inspect(e)}"
+        raise msg
+    end
   end
 
   @spec feed_links([Floki.html_attribute()], Floki.html_tree()) :: Floki.html_tag()
