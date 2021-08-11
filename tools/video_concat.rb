@@ -10,11 +10,11 @@ def die(msg)
 end
 
 pipes = ""
+readers = Thread::Queue.new
 
 video_types = []
 ARGV.each_slice(3) do |group|
-  parts = File.basename(group[0]).split(".")
-  video_types << parts.size == 1 ? "mp4" : parts.last.downcase
+  video_types << File.basename(group[0]).split(".").last.downcase
 end
 single_video_type = video_types.uniq.size <= 1
 
@@ -25,6 +25,25 @@ codec = ENV['INACCURATE_CUTS'] == '1' && single_video_type ? 'copy' : 'yuv4'
 warn "concatting using codec #{codec}"
 
 total_count = ARGV.size / 3
+
+def ffmpeg_reader(video, start, stop, idx, codec, fifo, total_count)
+  is_start = start == "start"
+  is_end = stop == "end"
+
+  cmd = ["nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y"]
+  cmd += ["-hwaccel", "auto"]
+  cmd += ["-sseof", start] if !is_start && start[0] == "-"
+  cmd += ["-ss", start] if !is_start && start[0] != "-"
+  cmd += ["-to", stop] if !is_end
+  cmd += ["-i", video]
+  cmd += ["-c:v", codec, "-an", "-f", "matroska", fifo]
+  io = IO.popen(cmd)
+  at_exit { Process.kill("KILL", io.pid) unless io.closed? }
+  out = io.read
+  io.close
+  die(out) unless $?.success?
+  warn "finished #{idx+1}/#{total_count}: #{video}"
+end
 
 Dir.mktmpdir("video_concat") do |temp_dir|
   ARGV.each_slice(3).with_index do |group, idx|
@@ -44,22 +63,15 @@ Dir.mktmpdir("video_concat") do |temp_dir|
     fifo = File.join(temp_dir, "temp#{idx}")
     File.mkfifo(fifo)
     pipes << "file '#{fifo}'\n"
-    Thread.new do
-      is_start = start == "start"
-      is_end = stop == "end"
+    readers << [video, start, stop, idx, codec, fifo, total_count]
+  end
+  readers.close
 
-      cmd = ["nice", "-n18", "ffmpeg", "-hide_banner", "-loglevel", "warning", "-y"]
-      cmd += ["-sseof", start] if !is_start && start[0] == "-"
-      cmd += ["-ss", start] if !is_start && start[0] != "-"
-      cmd += ["-to", stop] if !is_end
-      cmd += ["-i", video]
-      cmd += ["-c:v", codec, "-an", "-f", "matroska", fifo]
-      io = IO.popen(cmd)
-      at_exit { Process.kill("KILL", io.pid) unless io.closed? }
-      out = io.read
-      io.close
-      die(out) unless $?.success?
-      warn "finished #{idx+1}/#{total_count}: #{video}"
+  3.times do
+    Thread.new do
+      while args = readers.pop do
+        ffmpeg_reader(*args)
+      end
     end
   end
 
