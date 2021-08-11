@@ -420,3 +420,5 @@
 - "/contentblob/15310050/fc0ba79d73e59dda9179f250ac15178c/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-bericht.pdf"
 - "/contentblob/15310052/78b267baa20992a8375a711b03e63f11/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-plan.pdf"
 - "/contentblob/15261298/b8c410a778353268e4828b7556eb62dc/data/domstrasse-08-2021.pdf"
+'2021-08-11':
+- "/contentblob/15323570/d65db8bc4db0de8e864ed9e7470e15e3/data/waterloostrasse-veloroute-13-08-21-bis-03-22.pdf"

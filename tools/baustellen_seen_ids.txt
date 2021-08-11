@@ -1578,10 +1578,10 @@
 16173:
   :id: 16173
   :title: 'Kriegkamp / Düker Aufhebung (Sielbau) -- '
-  :updated: '2021-07-23T11:43:54.395986'
+  :updated: '2021-08-09T12:48:50.018728'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-14'
-  :end: '2021-08-27'
+  :end: '2021-11-19'
   :velo: false
 16091:
   :id: 16091
@@ -2227,3 +2227,24 @@
   :start: '2021-08-30'
   :end: '2021-11-26'
   :velo: true
+17996:
+  :id: 17996
+  :title: 'Halstenbeker Stieg/ Betonagearbeiten -- '
+  :updated: '2021-07-16T07:52:29.622632'
+  :start: '2021-08-09'
+  :end: '2021-08-10'
+  :velo: true
+17273:
+  :id: 17273
+  :title: 'Bismarckstraße/ Asphaltierung -- '
+  :updated: '2021-06-24T06:31:32.508866'
+  :start: '2021-09-06'
+  :end: '2021-09-12'
+  :velo: false
+18948:
+  :id: 18948
+  :title: 'Barmbeker Markt - Instandsetzung Stahlviadukt (U-Bahn-Linie U3) -- '
+  :updated: '2021-08-10T14:07:27.937097'
+  :start: '2021-08-09'
+  :end: '2021-08-13'
+  :velo: false
