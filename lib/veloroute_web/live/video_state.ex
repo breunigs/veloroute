@@ -289,14 +289,20 @@ defmodule VelorouteWeb.Live.VideoState do
   defp update_from_tracks(state, tracks, near_position) when is_map(near_position) do
     sorted =
       Enum.sort_by(tracks, fn track ->
-        dist =
-          Video.Rendered.get(track).coords()
-          |> Geo.CheapRuler.closest_point_on_line(near_position)
-          |> Map.fetch!(:dist)
+        rendered = Video.Rendered.get(track)
 
-        if track.direction == state.direction,
-          do: dist - @same_direction_bonus_in_meters,
-          else: dist
+        if is_nil(rendered) do
+          10_000_000
+        else
+          dist =
+            rendered.coords()
+            |> Geo.CheapRuler.closest_point_on_line(near_position)
+            |> Map.fetch!(:dist)
+
+          if track.direction == state.direction,
+            do: dist - @same_direction_bonus_in_meters,
+            else: dist
+        end
       end)
 
     update_from_tracks(state, sorted, nil)
