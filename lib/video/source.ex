@@ -168,13 +168,23 @@ defmodule Video.Source do
 
   defp video_length_ms_fast(%__MODULE__{}), do: nil
 
+  @required_fps 29.97
+
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}
   defp video_length_ms_slow(%__MODULE__{source: source}) do
     IO.puts(:stderr, "quering video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
-    {ms, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%", path])
-    ms = ms |> String.trim() |> String.replace(~r/\.\d+$/, "") |> String.to_integer()
+
+    {out, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%\\n%FrameRate%", path])
+    [ms, framerate] = out |> String.trim() |> String.split("\n", parts: 2)
+    framerate = framerate |> String.to_float()
+
+    if framerate != @required_fps do
+      raise "video #{source} uses #{framerate} instead of the expected #{@required_fps}"
+    end
+
+    ms = ms |> String.replace(~r/\.\d+$/, "") |> String.to_integer()
 
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
