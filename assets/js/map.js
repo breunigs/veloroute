@@ -349,7 +349,7 @@ let prevCoordVideoIndex = 0;
 function maybeHackStateFromVideo() {
   if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
-  const curr = video.currentTime;
+  const curr = video.currentTime+0.250;
   let nextIdx = videoCoords[prevCoordVideoIndex] <= curr ? prevCoordVideoIndex : 0;
   for (; nextIdx < videoCoords.length-3; nextIdx += 3) {
     if (videoCoords[nextIdx] >= curr) break;
