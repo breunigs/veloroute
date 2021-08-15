@@ -10733,7 +10733,7 @@
   <node id='-16718595' action='modify' lat='53.54608656073' lon='9.74398254812' />
   <node id='-16718596' action='modify' lat='53.54598456353' lon='9.74365531862' />
   <node id='-16718597' action='modify' lat='53.54577738098' lon='9.7431456989' />
-  <node id='-16718598' action='modify' lat='53.54563842865' lon='9.74284914717'>
+  <node id='-16718598' action='modify' lat='53.54564639725' lon='9.74286255822'>
     <tag k='target' v='Cranz' />
   </node>
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />

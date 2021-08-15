@@ -2,11 +2,11 @@ defmodule Data.Route.RouteElbradwegSued do
   @behaviour Route.Behaviour
 
   def id(), do: "𝓮"
-  def type(), do: :alltag
+  def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Elbradweg (Südteil auf Hamburger Gebiet)"
   def article(), do: "elbradweg-sued"
-  def osm_relation_ref(), do: ""
+  def osm_relation_ref(), do: "https://www.openstreetmap.org/relation/2599004"
 
   forward = %Video.Track{
     group: "Elbradweg Süd",
@@ -33,7 +33,7 @@ defmodule Data.Route.RouteElbradwegSued do
     group: "Elbradweg Süd",
     direction: :backward,
     from: "Cranz",
-    to: "Finkenweder",
+    to: "Finkenwerder",
     parent_ref: __MODULE__,
     text: "Elbradweg ab Cranz",
     videos: [
