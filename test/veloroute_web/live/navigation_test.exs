@@ -10,7 +10,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     {:ok, view, _html} = conn |> get("/") |> live()
 
     view
-    |> element(".icon", "7")
+    |> element("a", "Rahlstedt/Jenfeld")
     |> render_click() =~ "Artikel zu Veloroute 7"
   end
 
