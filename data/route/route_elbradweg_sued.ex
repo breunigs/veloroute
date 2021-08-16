@@ -1,7 +1,7 @@
 defmodule Data.Route.RouteElbradwegSued do
   @behaviour Route.Behaviour
 
-  def id(), do: "𝓮"
+  def id(), do: "e"
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "Elbradweg (Südteil auf Hamburger Gebiet)"
