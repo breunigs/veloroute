@@ -1,8 +1,8 @@
 title: Elbradweg (Südteil auf Hamburger Gebiet)
 no_auto_title: true
-tags: [𝓮]
+tags: [e]
 text: >
-  <h3>Elbradweg (Südteil auf Hamburger Gebiet) <icon>𝓮</icon></h3>
+  <h3>Elbradweg (Südteil auf Hamburger Gebiet) <icon>e</icon></h3>
   <p>Auf der <strong>Nordseite</strong> setzt sich der Elbradweg im Wesentlichen aus der <a href="/freizeitroute-5">Freizeitroute 5 <icon>FR5</icon></a> im Osten und der <a href="/freizeitroute-8">Freizeitroute 8 <icon>FR8</icon></a> im Westen zusammen. In der Innenstadt verläuft der Elbradweg leicht anders, aber das Erkunden der genauen Führung sei dem Gast überlassen.</p>
 
   <p>Die <strong>Südseite</strong> geht ab Finkenwerder wieder los, welches man mit der Fähre erreicht. Von dort folgt man größtenteils den Deichen bis man bei <a bounds="9.753531,53.527322,9.794157,53.549089" lon="9.771628" lat="53.542871" dir="forward">Cranz</a> die Landesgrenze erreicht.</p>
@@ -10,7 +10,7 @@ text: >
   <p>Hinweis zu den Videos: in Fahrtrichtung Cranz fehlen Abschnitte im Video. Statt über die <a bounds="9.826072,53.526433,9.84532,53.531481">Westerweiden</a> führt der Weg am Neßdeich entlang (wie eingezeichnet).</p>
 
   <h4>Auffindbarkeit</h4>
-  <p>Die Route ist mit einem geschwungenen, blauen „𝓮“ (Buchstabe E) ausgeschildert. Leider sind diese recht spärlich und über die Jahre verblichen, sodass man sie leicht übersieht.</p>
+  <p>Die Route ist mit einem geschwungenen, blauen „e“ (Buchstabe E) ausgeschildert. Leider sind diese recht spärlich und über die Jahre verblichen, sodass man sie leicht übersieht.</p>
 
   <h4>Befahrbarkeit</h4>
   <p>Die Strecke ist fast vollständig asphaltiert und damit sehr regenbeständig. Sie ist jedoch stark windanfällig, was einen erheblichen Unterschied in Geschwindigkeit oder Kraftaufwand bedeutet.</p>
@@ -19,10 +19,10 @@ text: >
   <p>Für Durchreisende ist der Abschnitt ab Finkenwerder ganz okay. Wer in Hamburg wohnt und ins Grüne will wird auf anderen Freizeitstrecken jedoch besser bedient.</p>
 
   <h3>Externe Links</h3>
-  <geolinks route="𝓮">
+  <geolinks route="e">
     <li><a href="https://www.hamburg.de/mit-dem-rad-durch-hamburg/318124/radtour-elberadweg/">Detailseite der Stadt</a></li>
     <li><a href="https://www.elberadweg.de/">Info/Werbeseite zum gesamten Elbradweg</a> (inkl. GPS Daten)</li>
   </geolinks>
 
   <h3>Artikel zum Elbradweg</h3>
-  <articles tags="𝓮" sort="date"/>
+  <articles tags="e" sort="date"/>
