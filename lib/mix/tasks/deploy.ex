@@ -200,9 +200,10 @@ defmodule Mix.Tasks.Deploy do
   end
 
   defp post_deploy(%{skip_deploy: true}), do: nil
+  defp post_deploy(%{skip_preload: true}), do: nil
 
   defp post_deploy(_skip) do
-    Util.banner("Release: Preload Commands")
+    Util.banner("Release: Preload Videos")
     Mix.Tasks.Velo.Videos.Preload.run(nil)
   end
 end
