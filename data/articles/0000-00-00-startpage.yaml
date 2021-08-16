@@ -2,30 +2,49 @@
 hide_footer: true
 text: >
   <h3>Radwege erkunden</h3>
-  <p>Klicke auf das Bild um anzufangen, oder wähle zuerst Fahrradroute auf der Karte. Mach Dich mit ihr vertraut und… fahr Rad!</p>
+  <p>Lust mit dem Rad zu fahren, aber nicht sicher wohin? veloroute.hamburg gibt Aufschluss über die offiziellen Radrouten der Stadt. Schau Dich etwas um und dann… fahr Rad!</p>
+
+  <h4>Velorouten</h4>
+  <p>Hamburg baut Velorouten um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
   <ol class="route-list">
-    <li><icon phx-click="sld-autoplay" phx-value-route="1">1</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="2">2</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="3">3</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="4">4</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="5">5</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="6">6</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="7">7</icon></li>
-    <break></break>
-    <li><icon phx-click="sld-autoplay" phx-value-route="8">8</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="9">9</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="10">10</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="11">11</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="12">12</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="13">13</icon></li>
-    <li><icon phx-click="sld-autoplay" phx-value-route="14">14</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="1">Rissen/Osdorfer Born</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="2">Eidelstedt</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="3">Niendorf</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="4">Langenhorn</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="5">Duvenstedt</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="6">Volksdorf</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="7">Rahlstedt/Jenfeld</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="8">Mümmelmannsberg/Bergedorf</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="9">Bergedorf</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="10">Neugraben</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="11">Eißendorf</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="12">Altona</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="13">innerer Ring</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="14">äußerer Ring</icon></li>
+  </ol>
+  <h4>Freizeitrouten</h4>
+  <p>Die Freizeitrouten führen durch Parks, Naturschutzgebiete und Wälder, zu Sehenswürdigkeiten und Ausflugszielen. Die Strecken sind klar auf Erholung ausgelegt – der Weg ist das Ziel.</p>
+  <ol class="route-list">
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR0">1. Grüner Ring</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR1">Alsterradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR2">Osterbekradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR3">Wandseradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR4">Billeradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR5">„Vier- und Marschlande“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR6">„Elbbrücken“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR7">„Harburger Berge“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR8">„Elbufer“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR9">Klövensteenradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR10">Kollauradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR11">2. Grüner Ring</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR12">Trapenbekradweg</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR13">„Dritte Meile“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="FR14">„Alter Elbtunnel“</icon></li>
+    <li><icon phx-click="sld-autoplay" phx-value-route="e">Elbradweg (Südseite)</icon></li>
   </ol>
 
   <h3><label for="query">Suche 🔎</label></h3>
   <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
-
-  <h3>Pläne, Baustellen und Probleme</h3>
-  <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
 
   <h3>Aktuelle Artikel</h3>
   <articles range="recent" sort="date"/>
@@ -34,6 +53,9 @@ text: >
     oder
     <a href="/changes#getNotified">Artikel abonnieren</a>
   </p>
+
+  <h3>Pläne, Baustellen und Probleme</h3>
+  <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
 
   <h3>Fachbegriffe</h3>
   <p>Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken. <a href="/lexikon/fahrbahn-und-nebenflaechen">Zum Lexikon</a></p>
