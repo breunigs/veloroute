@@ -64,7 +64,7 @@ defmodule Video.Track do
   # ensure that there's no long term drift. Not sure why it is needed, since
   # it's necessary even though we use the video length to determine where to
   # start the next coordinates from.
-  @video_concat_bump_ms 120
+  @video_concat_bump_ms 85
   # Returns a list of time offsets in milliseconds, relative to the beginning of
   # the trimmed and concatenated video and their corresponding lat/lon coordinates.
   @spec coords([Video.TrimmedSource.t()]) :: [Video.TimedPoint.t()]
