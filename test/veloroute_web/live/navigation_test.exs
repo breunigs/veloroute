@@ -28,11 +28,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert html =~ "<h3>Kleekamp"
     assert html =~ ~s|data-video-hash="103d0f0e5a70650b87a10bf1b4930e82"|
-    assert html =~ ~s|data-video-start="421049"|
+    assert html =~ ~s|data-video-start="420664"|
 
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=421049&video=103d0f0e5a70650b87a10bf1b4930e82"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=420664&video=103d0f0e5a70650b87a10bf1b4930e82"
     )
   end
 
@@ -47,7 +47,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert html =~ "<h3>Kleekamp"
     assert html =~ ~s|data-video-hash="103d0f0e5a70650b87a10bf1b4930e82"|
-    assert html =~ ~s|data-video-start="421049"|
+    assert html =~ ~s|data-video-start="420664"|
 
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
   end
