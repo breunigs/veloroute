@@ -230,7 +230,7 @@ defmodule VelorouteWeb.ArticleView do
       attr_with_href = [{"href", path} | given_attr]
 
       if id_from_attr do
-        {"a", attr_with_href, icon ++ [" "] ++ content}
+        {"a", attr_with_href, icon ++ content}
       else
         [{_tag, icon_attrs, icon_text}] = icon
         {"a", icon_attrs ++ attr_with_href, icon_text}

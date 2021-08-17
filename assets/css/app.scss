@@ -236,10 +236,12 @@ a.header {
   text-decoration: none !important;
 }
 
+$iconSize: 1.5em;
+$iconBorder: 0.13em;
 .icon {
-  height: 1.5em;
+  height: $iconSize;
   display: inline-block;
-  line-height: 1.5em;
+  line-height: $iconSize;
   margin-top: -0.35em;
   margin-bottom: -0.15em;
   font-size: 90%;
@@ -249,7 +251,7 @@ a.header {
   vertical-align: middle;
   color: #fff !important;
   cursor: default;
-  border: 0.13em solid white;
+  border: $iconBorder solid white;
   text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
     0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
     -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
@@ -360,22 +362,49 @@ ol.route-list {
   list-style-type: none;
   padding: 0;
   columns: 2;
-
+  column-gap: 0.5rem;
 
   li {
-    margin: 0.5rem 0;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    clear: all;
+    break-inside: avoid-column;
+  }
 
-    &:first-child {
-      margin-top: 0;
+  a:hover {
+    span {
+      text-decoration: inherit;
+      &.icon {
+        text-decoration: none;
+      }
     }
   }
 
-  .icon.freizeit {
-    min-width: 2.5em;
+  span {
+    display: inline-block;
+    vertical-align: middle;
   }
 
-  a .icon {
+  span.freizeit {
+    width: 2.5em;
+  }
+
+  span.freizeit + span {
+    width: calc(100% - 3.3em);
+  }
+
+  span.alltag + span {
+    width: unquote('calc(100% - #{$iconSize + 2*$iconBorder + 0.2em})');
+  }
+
+  span + span {
+    margin-left: 0.3em;
+  }
+
+  .icon {
     cursor: pointer;
+    text-decoration: none !important;
+    margin-top: -0.16em;
   }
 }
 
