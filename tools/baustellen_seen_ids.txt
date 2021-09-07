@@ -3,7 +3,7 @@
 23:
   :id: 23
   :title: 'B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- '
-  :updated: '2021-06-30T07:24:15.200305'
+  :updated: '2021-08-20T14:50:56.920315'
   :start: '2019-04-01'
   :end: '2021-10-31'
   :velo: false
@@ -17,7 +17,7 @@
 7928:
   :id: 7928
   :title: 'Spaldingstraße / Sielrenovierung -- '
-  :updated: '2021-07-16T16:28:00.938214'
+  :updated: '2021-08-20T07:47:02.470925'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-01'
   :end: '2021-11-30'
@@ -38,8 +38,8 @@
   :velo: false
 106:
   :id: 106
-  :title: 'B 5 / A 1 - Brücke / Grundinstandsetzung -- '
-  :updated: '2021-06-30T07:23:10.030919'
+  :title: 'A 1 - AS HH-Billstedt / Grundinstandsetzung + Brückenarbeiten -- '
+  :updated: '2021-08-20T14:52:41.2608'
   :start: '2019-05-23'
   :end: '2021-10-31'
   :velo: false
@@ -52,8 +52,8 @@
   :velo: false
 8210:
   :id: 8210
-  :title: 'A 26 / Neubau inkl. AK HH-Hafen und Ausbau A 7 -- '
-  :updated: '2021-05-27T14:13:12.204458'
+  :title: 'A 26 + A 7 / Neubau inkl. AK HH-Hafen und Ausbau A 7 -- '
+  :updated: '2021-08-20T15:11:41.55014'
   :link: https://www.deges.de/projekte/projekt/a-26-neubau-west-2/
   :start: '2020-10-01'
   :end: '2028-12-31'
@@ -81,8 +81,8 @@
   :velo: true
 8193:
   :id: 8193
-  :title: A 7 / Neubau Tunnel Altona -- LSBG
-  :updated: '2021-02-22T07:47:37.498308'
+  :title: 'A 7 / Neubau Tunnel Altona -- '
+  :updated: '2021-08-20T15:04:56.8571'
   :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
   :start: '2020-03-02'
   :end: '2028-12-31'
@@ -120,7 +120,7 @@
 9261:
   :id: 9261
   :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
-  :updated: '2021-08-12T08:44:37.372239'
+  :updated: '2021-08-20T07:13:32.976175'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-29'
   :end: '2022-03-15'
@@ -189,10 +189,10 @@
 7919:
   :id: 7919
   :title: 'Hindenburgstraße / Sielbauarbeiten -- '
-  :updated: '2021-07-16T16:24:44.669027'
+  :updated: '2021-08-26T07:06:34.353455'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-25'
-  :end: '2021-12-03'
+  :end: '2022-03-18'
   :velo: false
 12316:
   :id: 12316
@@ -561,7 +561,7 @@
 8208:
   :id: 8208
   :title: 'A 7 / Instandsetzung & Ausbau K 20 & K 30 -- '
-  :updated: '2021-05-27T14:11:06.570994'
+  :updated: '2021-08-20T15:10:35.289442'
   :link: https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/
   :start: '2020-04-14'
   :end: '2027-12-31'
@@ -589,8 +589,8 @@
   :velo: false
 11543:
   :id: 11543
-  :title: Billstraße / Billhorner Brückenstraße / Trinkwasserleitung -- Hamburg Wasser
-  :updated: '2020-09-04T11:01:48.606153'
+  :title: 'Billstraße / Billhorner Brückenstraße / Trinkwasserleitung -- '
+  :updated: '2021-08-20T06:58:16.399252'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-09-07'
   :end: '2021-10-10'
@@ -653,10 +653,10 @@
 7917:
   :id: 7917
   :title: 'Gutenbergstraße, Kieler Straße / Leitungsarbeiten -- '
-  :updated: '2021-08-06T07:21:39.743295'
+  :updated: '2021-08-26T07:05:22.233109'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2019-10-07'
-  :end: '2021-08-30'
+  :end: '2021-09-30'
   :velo: false
 14631:
   :id: 14631
@@ -757,7 +757,7 @@
 12002:
   :id: 12002
   :title: 'Große Rainstrasse / Sielbauarbeiten -- '
-  :updated: '2021-08-12T08:54:42.063009'
+  :updated: '2021-08-26T07:04:14.342686'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-09-21'
   :end: '2021-10-29'
@@ -1578,10 +1578,10 @@
 16173:
   :id: 16173
   :title: 'Kriegkamp / Düker Aufhebung (Sielbau) -- '
-  :updated: '2021-08-09T12:48:50.018728'
+  :updated: '2021-08-20T07:13:57.72385'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-14'
-  :end: '2021-11-19'
+  :end: '2021-12-20'
   :velo: false
 16091:
   :id: 16091
@@ -2131,9 +2131,9 @@
 18707:
   :id: 18707
   :title: 'Kattwykbrücke / Ertüchtigung -- '
-  :updated: '2021-07-30T14:50:21.713093'
+  :updated: '2021-08-30T17:18:39.709421'
   :start: '2021-07-26'
-  :end: '2021-11-27'
+  :end: '2021-12-06'
   :velo: true
 18614:
   :id: 18614
@@ -2268,4 +2268,159 @@
   :updated: '2021-08-13T08:24:56.598892'
   :start: '2021-08-24'
   :end: '2021-08-25'
+  :velo: true
+18847:
+  :id: 18847
+  :title: 'Am Radeland /Sielbau -- '
+  :updated: '2021-09-03T09:34:46.109845'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-06-14'
+  :end: '2021-10-01'
+  :velo: false
+18300:
+  :id: 18300
+  :title: 'Netzkabelsanierung Cranzer Hauptdeich 53-60 -- '
+  :updated: '2021-09-03T09:34:58.373867'
+  :start: '2021-06-21'
+  :end: '2021-09-17'
+  :velo: false
+19114:
+  :id: 19114
+  :title: 'Serrahnstraße, Neugestaltung -- '
+  :updated: '2021-08-20T09:13:42.840165'
+  :start: '2021-08-23'
+  :end: '2022-05-06'
+  :velo: false
+19152:
+  :id: 19152
+  :title: 'A 7 - AD HH-Südwest bis Landesgrenze NDS / Deckschichtsanierung -- '
+  :updated: '2021-08-20T14:37:09.961947'
+  :start: '2021-08-15'
+  :end: '2021-09-14'
+  :velo: false
+19163:
+  :id: 19163
+  :title: 'A 255 - Elbbrücken bis AD Norderelbe / Deckschichtsanierung -- '
+  :updated: '2021-08-20T14:47:05.947215'
+  :start: '2021-07-02'
+  :end: '2021-09-30'
+  :velo: false
+19182:
+  :id: 19182
+  :title: 'A 25 - Neuallermöhe-West bis Landesgrenze SH / Deckschichtsanierung -- '
+  :updated: '2021-08-20T14:58:57.892558'
+  :start: '2021-08-02'
+  :end: '2021-11-20'
+  :velo: false
+19195:
+  :id: 19195
+  :title: 'Brücken-Straßen für Tunnel Altona -- '
+  :updated: '2021-08-20T15:09:33.433551'
+  :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
+  :start: '2020-03-02'
+  :end: '2028-12-31'
+  :velo: false
+19270:
+  :id: 19270
+  :title: 'Stapelfelder Straße / Herstellung der Kommunaltrasse -- '
+  :updated: '2021-09-01T07:39:48.174436'
+  :start: '2021-08-30'
+  :end: '2021-10-17'
+  :velo: true
+19318:
+  :id: 19318
+  :title: 'Friedrich-Ebert-Straße / Instandsetzung -- '
+  :updated: '2021-08-27T07:29:31.91714'
+  :start: '2021-09-01'
+  :end: '2021-10-27'
+  :velo: true
+19390:
+  :id: 19390
+  :title: 'Helbingstraße / Neuverlegung der Fernwärmeleitung -- '
+  :updated: '2021-09-01T07:36:44.2494'
+  :start: '2021-09-07'
+  :end: '2021-09-10'
+  :velo: false
+19434:
+  :id: 19434
+  :title: 'Sportplatzring/ Krandemontage -- '
+  :updated: '2021-09-02T07:55:36.306621'
+  :start: '2021-09-07'
+  :end: '2021-09-07'
+  :velo: false
+19506:
+  :id: 19506
+  :title: 'Winsener Straße / Instandsetzung -- '
+  :updated: '2021-09-03T09:17:16.951206'
+  :start: '2021-09-06'
+  :end: '2021-12-31'
+  :velo: false
+17086:
+  :id: 17086
+  :title: 'Nettelnburger Landweg 186-196 / Leitungsarbeiten -- '
+  :updated: '2021-09-03T09:30:01.576421'
+  :start: '2021-08-30'
+  :end: '2021-10-01'
+  :velo: false
+19455:
+  :id: 19455
+  :title: 'Wegzoll / Deckenprogramm 2021 -- '
+  :updated: '2021-09-07T12:28:20.424586'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378228/wegzoll/
+  :start: '2021-09-13'
+  :end: '2021-09-24'
+  :velo: false
+19460:
+  :id: 19460
+  :title: 'Bauernvogtkoppel / Deckenprogramm 2021 -- '
+  :updated: '2021-09-07T12:23:47.926143'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378214/bauernvogtkoppel/
+  :start: '2021-09-14'
+  :end: '2021-09-29'
+  :velo: false
+19470:
+  :id: 19470
+  :title: 'In den Hörsten / Deckenprogramm 2021 -- '
+  :updated: '2021-09-07T12:27:01.574995'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378334/in-den-hoersten/
+  :start: '2021-09-14'
+  :end: '2021-09-28'
+  :velo: false
+19479:
+  :id: 19479
+  :title: 'Hannenstücken / Deckenprogramm 2021 -- '
+  :updated: '2021-09-07T12:26:17.050319'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378202/hannenstuecken/
+  :start: '2021-09-14'
+  :end: '2021-09-28'
+  :velo: false
+19498:
+  :id: 19498
+  :title: 'Schenefelder Landstraße / Instandsetzung -- '
+  :updated: '2021-09-03T09:15:40.772236'
+  :link: http://lsbg.hamburg.de/anliegerinformationen/
+  :start: '2021-09-13'
+  :end: '2022-05-31'
+  :velo: true
+18955:
+  :id: 18955
+  :title: 'Berner Heerweg - Brückenreparaturarbeiten (U-Bahn-Linie U1) -- '
+  :updated: '2021-08-10T13:53:05.361119'
+  :start: '2021-09-22'
+  :end: '2021-11-02'
+  :velo: false
+19071:
+  :id: 19071
+  :title: 'Veloroute 12 Königstraße - Vorabmaßnahme Radfahrstreifen -- '
+  :updated: '2021-08-18T08:17:58.970648'
+  :link: https://lsbg.hamburg.de/anliegerinformationen/
+  :start: '2021-09-27'
+  :end: '2021-10-09'
+  :velo: true
+19401:
+  :id: 19401
+  :title: 'Holstenplatz / Kampfmittelsondierung für Veloroute 13 -- '
+  :updated: '2021-09-03T09:24:28.568015'
+  :start: '2021-10-03'
+  :end: '2021-10-17'
   :velo: true
