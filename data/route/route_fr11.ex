@@ -105,7 +105,9 @@ defmodule Data.Route.RouteFR11 do
       {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011545", :start, "00:00:33.166"},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", "00:00:47.814", "00:01:23.884"},
       {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011546", "00:00:59.226", :end},
-      {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011547", :start, "00:01:07.167"},
+      {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011547", :start, "00:00:06.306"},
+      {"2021-08-04-fr13-fr14/GX012513", "00:01:04.231", "00:01:12.272"},
+      {"2021-08-14-fr13-und-11alt/GX012659", "00:00:01.001", "00:01:47.774"},
       {"2021-08-04-fr13-fr14/GX012559", :start, :end}
     ]
   }
@@ -119,7 +121,11 @@ defmodule Data.Route.RouteFR11 do
     text: "2. Grüner Ring gegen Uhrzeigersinn",
     videos: [
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011558", :start, :end},
-      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", :start, "00:00:09.843"},
+      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", :start, "00:00:03.270"},
+      {"2021-08-14-fr13-und-11alt/GX012639", "00:01:48.108", "00:02:05.225"},
+      {"2021-08-14-fr13-und-11alt/GX012658", "00:00:00.367", "00:00:31.532"},
+      {"2021-08-04-fr13-fr14/GX012514", "00:00:11.078", "00:00:18.552"},
+      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", "00:00:09.109", "00:00:09.843"},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011560", "00:00:06.440", :end},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", :start, "00:00:17.284"},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", "00:01:26.453", :end},
@@ -144,9 +150,9 @@ defmodule Data.Route.RouteFR11 do
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011582", :start, :end},
       {"2021-07-18-whburg-and-on/GX012396", :start, :end},
       {"2021-07-18-whburg-and-on/GX012397", :start, "00:00:03.604"},
-      {"2021-07-03-veloroute10/GX012091", "00:00:09.176", "00:00:21.188"},
-      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011583", "00:00:12.713", :end},
-      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011584", :start, :end},
+      {"2021-07-03-veloroute10/GX012091", "00:00:09.176", :end},
+      {"2021-07-03-veloroute10/GX012092", :start, "00:00:03.070"},
+      {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011584", "00:00:11.445", :end},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011585", :start, :end},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011586", :start, "00:00:35.636"},
       {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011586", "00:01:19.313", :end},
