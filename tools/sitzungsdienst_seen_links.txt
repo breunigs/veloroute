@@ -718,3 +718,11 @@
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011656
 '2021-08-17':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011672
+'2021-09-08':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011737
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011689
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010972
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010954
+- https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006010
+'2021-09-09':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011001

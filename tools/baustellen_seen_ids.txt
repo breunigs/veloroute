@@ -2424,3 +2424,17 @@
   :start: '2021-10-03'
   :end: '2021-10-17'
   :velo: true
+19660:
+  :id: 19660
+  :title: 'Bekassinenau / Umbau der Haltestelle "Alter Zollweg" -- '
+  :updated: '2021-09-08T07:42:46.750553'
+  :start: '2021-10-01'
+  :end: '2021-11-30'
+  :velo: false
+19683:
+  :id: 19683
+  :title: 'Eißendorfer Waldweg / Deckenerneuerung -- '
+  :updated: '2021-09-08T07:43:25.109308'
+  :start: '2021-10-02'
+  :end: '2021-10-17'
+  :velo: true
