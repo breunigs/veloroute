@@ -1,4 +1,4 @@
-defmodule Data.Route.RSWLueneBurg do
+defmodule Data.Route.RSWLueneburg do
   @behaviour Route.Behaviour
 
   def id(), do: "rsw-lueneburg"
