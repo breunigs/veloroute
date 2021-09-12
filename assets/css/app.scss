@@ -265,6 +265,10 @@ $iconBorder: 0.13em;
     border-radius: 50%;
     width: 1.5em;
   }
+
+  &.rsw {
+    display: none;
+  }
 }
 
 h3 .icon {
