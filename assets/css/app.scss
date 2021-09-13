@@ -490,6 +490,21 @@ a {
   }
 }
 
+#ping-indicator {
+  background: #f47474;
+  border-radius: 100%;
+  width: 1em;
+  height: 1em;
+  border: 0.2em solid #fff;
+  outline: 0.1em solid #000000a1;
+  pointer-events: none;
+  transition-property: opacity;
+  transition-duration: 3s;
+  transition-timing-function: ease-in;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
+
 #indicator-loc {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 0.8em;

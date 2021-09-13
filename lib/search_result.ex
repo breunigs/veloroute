@@ -3,7 +3,8 @@ defmodule SearchResult do
 
   @type t() :: %SearchResult{
           name: binary(),
-          bounds: %Geo.BoundingBox{},
+          bounds: Geo.BoundingBox.t(),
+          center: Geo.Point.t() | nil,
           relevance: float(),
           type: binary(),
           url: binary() | nil,
@@ -12,7 +13,7 @@ defmodule SearchResult do
 
   @enforce_keys [:name, :bounds, :relevance, :type]
 
-  defstruct @enforce_keys ++ [:url, :subtext]
+  defstruct @enforce_keys ++ [:url, :subtext, :center]
 
   @spec sort_merge([t()], [t()]) :: [t()]
   def sort_merge(a, b) do
@@ -31,5 +32,27 @@ defmodule SearchResult do
       "poi" -> 1
       _ -> 0
     end
+  end
+
+  @doc """
+  Generate suitable live view links that will show the search result by
+  navigating or adapting the map
+  """
+  def to_html(%SearchResult{name: name, url: url}) when is_binary(url) do
+    Phoenix.LiveView.Helpers.live_patch(name, to: url)
+  end
+
+  def to_html(%SearchResult{name: name, bounds: bounds, center: center}) do
+    attrs = [
+      {"phx-click", "map-zoom-to"},
+      {"phx-value-bounds", VelorouteWeb.VariousHelpers.to_string_bounds(bounds)}
+    ]
+
+    attrs =
+      if center,
+        do: [{"phx-value-ping-lon", center.lon}, {"phx-value-ping-lat", center.lat} | attrs],
+        else: attrs
+
+    Phoenix.HTML.Tag.content_tag(:a, name, attrs)
   end
 end

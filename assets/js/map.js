@@ -1,5 +1,7 @@
 // limit mapbox tracking
-try { if (window.localStorage) window.localStorage.clear(); } catch (e) { }
+try {
+  if (window.localStorage) window.localStorage.clear();
+} catch (e) {}
 import mapboxgl from 'mapbox-gl';
 
 if (!window.requestIdleCallback) {
@@ -11,7 +13,15 @@ if (!window.requestIdleCallback) {
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = settings.mapboxAccessToken;
 
-const fitBoundsOpt = { padding: { top: 35, bottom: 35, left: 35, right: 35 }, maxZoom: 17 };
+const fitBoundsOpt = {
+  padding: {
+    top: 35,
+    bottom: 35,
+    left: 35,
+    right: 35
+  },
+  maxZoom: 17
+};
 
 const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
@@ -29,7 +39,9 @@ map.touchZoomRotate.disableRotation();
 
 const routeLayers = ['vr-casing', 'fr-casing', 'vr-marker-circle'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
-const clickableLayers = { layers: routeLayers.concat(articleLayers) };
+const clickableLayers = {
+  layers: routeLayers.concat(articleLayers)
+};
 
 const genDiv = (id) => {
   const el = document.createElement('div');
@@ -41,6 +53,7 @@ let indicator = null;
 let videoWasPlaying = false;
 let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
+
 function renderIndicator() {
   if (state.lon == "" || state.lat == "") return;
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
@@ -64,7 +77,7 @@ function renderIndicator() {
     clearTimeout(indicatorAnimateTimer);
     indicatorAnimateTimer = null;
   }
-  if(animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 300);
+  if (animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 300);
   indicator.getElement().classList.toggle("animate", animate);
 
   videoWasPlaying = videoPlaying;
@@ -76,13 +89,16 @@ function renderIndicator() {
   if (!mapActive && !zoomedInOnce && videoPlaying && prevBoundsTs === "") {
     zoomedInOnce = true;
     const zoom = Math.max(map.getZoom(), 14);
-    map.flyTo({ center: lngLat, zoom: zoom });
+    map.flyTo({
+      center: lngLat,
+      zoom: zoom
+    });
   }
 }
 
 const closestEquivalentAngle = (from, to) => {
-    const delta = ((((to - from) % 360) + 540) % 360) - 180;
-    return from + delta;
+  const delta = ((((to - from) % 360) + 540) % 360) - 180;
+  return from + delta;
 }
 
 const disableIndicatorAnimation = () => {
@@ -103,21 +119,25 @@ const ensureIndicatorInView = () => {
 
   const mapRect = mapElem.getBoundingClientRect();
   const cmp = (padding) => {
-    return indiPos.y <= mapRect.top + padding
-      || indiPos.y >= mapRect.bottom - padding
-      || indiPos.x <= mapRect.left + padding
-      || indiPos.x >= mapRect.right - padding;
+    return indiPos.y <= mapRect.top + padding ||
+      indiPos.y >= mapRect.bottom - padding ||
+      indiPos.x <= mapRect.left + padding ||
+      indiPos.x >= mapRect.right - padding;
   }
 
   // add padding in pixels around the viewport
   const outsideViewport = cmp(20);
-  if (!outsideViewport) { return; }
+  if (!outsideViewport) {
+    return;
+  }
 
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
   const veryFarOutside = cmp(-200);
   if (veryFarOutside) {
     console.debug("Flying to location", lngLat)
-    map.flyTo({ center: lngLat });
+    map.flyTo({
+      center: lngLat
+    });
   } else {
     console.debug("Panning to location", lngLat)
     map.panTo(lngLat);
@@ -140,7 +160,9 @@ const maybeEnsureIndicatorInView = () => {
     indicatorFocus = null;
   } else if (indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
     // console.debug("indicator present, and changed, ensuring it's in view", indicator)
-    if (prevIndicatorPos !== '') { window.requestAnimationFrame(ensureIndicatorInView); }
+    if (prevIndicatorPos !== '') {
+      window.requestAnimationFrame(ensureIndicatorInView);
+    }
     prevIndicatorPos = `${state.lon},${state.lat}`;
   }
 }
@@ -166,6 +188,28 @@ const itemsUnderCursor = (evt) => {
     routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
   }
   return routes;
+}
+
+
+let pingIndicator = null;
+const maybePing = () => {
+  if (!state.ping) {
+    if (pingIndicator) pingIndicator.getElement().style.opacity = '0';
+    return;
+  }
+
+  const split = state.ping.split(",");
+  const lngLat = new mapboxgl.LngLat(split[0], split[1]);
+
+  if (!pingIndicator) {
+    const el = genDiv('ping-indicator');
+    pingIndicator = new mapboxgl.Marker(el)
+      .setLngLat(lngLat)
+      .addTo(map);
+  } else {
+    pingIndicator.getElement().style.opacity = '1';
+    pingIndicator.setLngLat(lngLat)
+  }
 }
 
 const handleMapHover = (evt) => {
@@ -201,7 +245,9 @@ let boundsTimeout = null;
 const sendBounds = () => {
   if (boundsTimeout) clearTimeout(boundsTimeout);
   boundsTimeout = setTimeout(() => {
-    window.pushEvent("map-bounds", { bounds: map.getBounds().toArray() });
+    window.pushEvent("map-bounds", {
+      bounds: map.getBounds().toArray()
+    });
   }, 200);
 }
 
@@ -218,6 +264,7 @@ const layerVisibilityConfig = [
 ]
 // same order as layerVisibilityConfig
 let prevVisibility = [true, false];
+
 function setLayerVisibility() {
   const types = state.visibleTypes.split(",");
   for (let i = 0; i < layerVisibilityConfig.length; i++) {
@@ -242,9 +289,15 @@ function setLayerStyle(style, layersByType, show) {
     for (let j = 0; j < layers.length; j++) {
       console.log("setting style", style, "for", layers[j], "to", show);
       if (style == "opacity" && type == "line" && layers[j] != 'vr-line-off-p1' && layers[j] != 'vr-line-off-m1')
-        map.setLayoutProperty(layers[j], "line-cap", lineCap, { validate: true })
-      if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, { validate: true })
-      if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, { validate: true })
+        map.setLayoutProperty(layers[j], "line-cap", lineCap, {
+          validate: true
+        })
+      if (style == "opacity") map.setPaintProperty(layers[j], `${type}-opacity`, opacity, {
+        validate: true
+      })
+      if (style == "visibility") map.setLayoutProperty(layers[j], "visibility", visibility, {
+        validate: true
+      })
     }
   }
 }
@@ -340,18 +393,19 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 
   const y = Math.sin(toLon - fromLon) * Math.cos(toLat);
   const x = Math.cos(fromLat) * Math.sin(toLat) -
-        Math.sin(fromLat) * Math.cos(toLat) * Math.cos(toLon - fromLon);
+    Math.sin(fromLat) * Math.cos(toLat) * Math.cos(toLon - fromLon);
   const bearing = Math.atan2(y, x);
   return ToDeg(bearing);
 }
 
 let prevCoordVideoIndex = 0;
+
 function maybeHackStateFromVideo() {
   if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
 
-  const curr = video.currentTime+0.250;
+  const curr = video.currentTime + 0.250;
   let nextIdx = videoCoords[prevCoordVideoIndex] <= curr ? prevCoordVideoIndex : 0;
-  for (; nextIdx < videoCoords.length-3; nextIdx += 3) {
+  for (; nextIdx < videoCoords.length - 3; nextIdx += 3) {
     if (videoCoords[nextIdx] >= curr) break;
   }
   prevCoordVideoIndex = nextIdx;
@@ -363,8 +417,8 @@ function maybeHackStateFromVideo() {
     state.bearing = calcBearing(videoCoords[1], videoCoords[2], videoCoords[4], videoCoords[5])
 
   } else {
-    const [nextT, nextLon, nextLat] = [videoCoords[nextIdx], videoCoords[nextIdx+1], videoCoords[nextIdx + 2]];
-    const [prevT, prevLon, prevLat] = [videoCoords[nextIdx-3], videoCoords[nextIdx-2], videoCoords[nextIdx - 1]];
+    const [nextT, nextLon, nextLat] = [videoCoords[nextIdx], videoCoords[nextIdx + 1], videoCoords[nextIdx + 2]];
+    const [prevT, prevLon, prevLat] = [videoCoords[nextIdx - 3], videoCoords[nextIdx - 2], videoCoords[nextIdx - 1]];
 
     // interpolate
     const t = Math.min(1, (curr - prevT) / (nextT - prevT));
@@ -392,5 +446,8 @@ window.mapStateChanged = () => {
     maybeFitBounds();
     updateVideoIndicator();
     setLayerVisibility();
-  }, { timeout: 100 })
+    maybePing();
+  }, {
+    timeout: 100
+  })
 }

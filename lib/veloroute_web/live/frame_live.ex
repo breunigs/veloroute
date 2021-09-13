@@ -21,10 +21,15 @@ defmodule VelorouteWeb.FrameLive do
     search_bounds: nil,
     lon: nil,
     lat: nil,
+    ping: nil,
     bearing: nil,
     tmp_last_article_set: nil,
     visible_types: []
   ]
+
+  # how long to wait before the ping indicator should be cleared. There's an
+  # additional CSS transition happening after.
+  @hide_ping_after_ms 5 * 1000
 
   def initial_state, do: @initial_state
 
@@ -43,6 +48,17 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_info(:clear_ping, socket) do
+    ping =
+      if socket.assigns[:ping] &&
+           Time.diff(Time.utc_now(), socket.assigns.ping[:clear_after], :millisecond) >=
+             @hide_ping_after_ms,
+         do: nil,
+         else: socket.assigns[:ping]
+
+    {:noreply, assign(socket, :ping, ping)}
+  end
+
   def handle_info(other, socket) do
     Sentry.capture_message("got unexpected info for: #{inspect(other)} at #{inspect(socket)}")
     {:noreply, socket}
@@ -57,6 +73,7 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       socket
       |> update_map(attr)
+      |> update_ping(attr)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
       |> determine_visible_types(route, article)
 
@@ -339,6 +356,18 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp update_map(socket, _), do: socket
+
+  defp update_ping(socket, %{"ping-lat" => lat, "ping-lon" => lon}) do
+    with {lat, ""} <- Float.parse(lat),
+         {lon, ""} <- Float.parse(lon) do
+      Process.send_after(self(), :clear_ping, @hide_ping_after_ms)
+      assign(socket, ping: %{lon: lon, lat: lat, clear_after: Time.utc_now()})
+    else
+      _ -> socket
+    end
+  end
+
+  defp update_ping(socket, _), do: socket
 
   defp find_article(""), do: find_article(Settings.default_page())
   defp find_article(nil), do: find_article(Settings.default_page())

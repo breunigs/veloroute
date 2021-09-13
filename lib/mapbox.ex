@@ -67,11 +67,14 @@ defmodule Mapbox do
         |> String.replace(~r/^[\s,]+/, "")
         |> String.replace(", Deutschland", "")
 
+      [lon, lat] = feat["center"]
+
       %SearchResult{
         name: text,
         subtext: if(place_name_clean != "", do: place_name_clean),
         relevance: feat["relevance"] * 1.0,
         bounds: result_to_bounds(feat, type),
+        center: %Geo.Point{lon: lon, lat: lat},
         type: type
       }
     end)
