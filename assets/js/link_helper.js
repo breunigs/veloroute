@@ -1,5 +1,9 @@
 const draw = new MapboxDraw({
-  controls: { combine_features: false, uncombine_features: false, line_string: false }
+  controls: {
+    combine_features: false,
+    uncombine_features: false,
+    line_string: false
+  }
 });
 
 function round(num) {
@@ -7,7 +11,12 @@ function round(num) {
 }
 
 function logLink() {
-  let bounds = { minLon: 180, maxLon: -180, minLat: 90, maxLat: -90 };
+  let bounds = {
+    minLon: 180,
+    maxLon: -180,
+    minLat: 90,
+    maxLat: -90
+  };
   let pos = null;
 
   for (let feat of draw.getAll().features) {
@@ -60,3 +69,5 @@ class CopyLinkButton {
 
 window.map.addControl(draw, 'top-left');
 window.map.addControl(new CopyLinkButton({}), 'top-left')
+
+document.querySelector(".mapbox-gl-draw_trash").addEventListener("click", draw.deleteAll)
