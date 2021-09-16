@@ -380,6 +380,11 @@ defmodule VelorouteWeb.FrameLive do
     Cache.Articles.get()[name]
   end
 
+  defp article_path(socket, %Article{name: "0000-00-00-" <> name}) do
+    query = url_query(socket)
+    Routes.page_path(socket, VelorouteWeb.FrameLive, name, query)
+  end
+
   defp article_path(socket, %Article{name: name}) do
     query = url_query(socket)
     Routes.article_path(socket, VelorouteWeb.FrameLive, name, query)
