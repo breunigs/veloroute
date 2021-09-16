@@ -37,7 +37,7 @@ const map = new mapboxgl.Map({
 });
 map.touchZoomRotate.disableRotation();
 
-const routeLayers = ['vr-casing', 'fr-casing', 'vr-marker-circle'];
+const routeLayers = ['vr-casing', 'fr-casing', 'planned-casing', 'vr-marker-circle'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers)

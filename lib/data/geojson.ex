@@ -89,7 +89,15 @@ defmodule Data.GeoJSON do
 
     props =
       w.tags
-      |> Map.take([:name, :type, :offset, :overlap_index, :route_id | Map.Way.style_tags()])
+      |> Map.take([
+        :name,
+        :text,
+        :bridge,
+        :type,
+        :offset,
+        :overlap_index,
+        :route_id | Map.Way.style_tags()
+      ])
 
     %{
       type: "Feature",

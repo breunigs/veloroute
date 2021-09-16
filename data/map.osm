@@ -27358,7 +27358,7 @@
     <nd ref='-13034139' />
     <nd ref='-13034140' />
     <nd ref='-13034141' />
-    <tag k='name' v='Geplante Führung Veloroute 10' />
+    <tag k='text' v='Geplante Führung Veloroute 10' />
     <tag k='type' v='planned' />
   </way>
   <way id='-255905' action='modify'>
@@ -37198,7 +37198,7 @@
     <nd ref='-16158168' />
     <nd ref='-16158169' />
     <nd ref='-16158170' />
-    <tag k='name' v='Radschnellweg Elmshorn' />
+    <tag k='text' v='Radschnellweg Elmshorn' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273040' action='modify'>
@@ -37239,7 +37239,7 @@
     <nd ref='-16157094' />
     <nd ref='-16157095' />
     <nd ref='93867870005806899' />
-    <tag k='name' v='Radschnellweg Elmshorn' />
+    <tag k='text' v='Radschnellweg Elmshorn' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273042' action='modify'>
@@ -37530,7 +37530,8 @@
     <nd ref='-16721659' />
     <nd ref='-16721665' />
     <nd ref='-16158612' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273300' action='modify'>
@@ -37540,7 +37541,8 @@
     <nd ref='-16158874' />
     <nd ref='-16158875' />
     <nd ref='-16158876' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273309' action='modify'>
@@ -37553,7 +37555,8 @@
     <nd ref='-16158884' />
     <nd ref='-16158885' />
     <nd ref='-16158698' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273316' action='modify'>
@@ -37566,13 +37569,15 @@
     <nd ref='-16158891' />
     <nd ref='-16158892' />
     <nd ref='-16158893' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273325' action='modify'>
     <nd ref='-16158882' />
     <nd ref='-16158890' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273412' action='modify'>
@@ -37594,7 +37599,8 @@
     <nd ref='-16158921' />
     <nd ref='-16158927' />
     <nd ref='-16158652' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273436' action='modify'>
@@ -37611,7 +37617,8 @@
     <nd ref='-16159152' />
     <nd ref='-16159153' />
     <nd ref='-16159154' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273451' action='modify'>
@@ -37624,7 +37631,8 @@
     <nd ref='-16159157' />
     <nd ref='-16721551' />
     <nd ref='-16159158' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273607' action='modify'>
@@ -37719,7 +37727,7 @@
     <nd ref='-16159842' />
     <nd ref='-16159843' />
     <nd ref='-16159844' />
-    <tag k='name' v='Radschnellweg Ahrensburg (bevorzugte Trasse)' />
+    <tag k='text' v='Radschnellweg Ahrensburg (bevorzugte Trasse)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273639' action='modify'>
@@ -37730,7 +37738,7 @@
     <nd ref='-16159851' />
     <nd ref='-16159852' />
     <nd ref='-16159853' />
-    <tag k='name' v='Radschnellweg Geesthacht' />
+    <tag k='text' v='Radschnellweg Geesthacht' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273825' action='modify'>
@@ -37871,7 +37879,7 @@
     <nd ref='-16159976' />
     <nd ref='-16159975' />
     <nd ref='-16159974' />
-    <tag k='name' v='Radschnellweg Geesthacht' />
+    <tag k='text' v='Radschnellweg Geesthacht' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273827' action='modify'>
@@ -37893,7 +37901,8 @@
     <nd ref='-16206455' />
     <nd ref='-16206456' />
     <nd ref='1496880005213187' />
-    <tag k='name' v='Radschnellweg Lüneburg' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg Lüneburg' />
     <tag k='type' v='planned' />
   </way>
   <way id='-273831' action='modify'>
@@ -38053,7 +38062,8 @@
     <nd ref='-16160248' />
     <nd ref='-16160249' />
     <nd ref='-16207195' />
-    <tag k='name' v='Radschnellweg Lüneburg' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg Lüneburg' />
     <tag k='type' v='planned' />
   </way>
   <way id='-276969' action='modify'>
@@ -38066,7 +38076,8 @@
     <nd ref='-16207162' />
     <nd ref='-16207163' />
     <nd ref='-16207164' />
-    <tag k='name' v='Randschnellweg (mögliche Variante)' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg (mögliche Variante)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-276978' action='modify'>
@@ -38087,7 +38098,8 @@
     <nd ref='-16207180' />
     <nd ref='-16207181' />
     <nd ref='-16207182' />
-    <tag k='name' v='Randschnellweg (mögliche Variante)' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg (mögliche Variante)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-277007' action='modify'>
@@ -38120,13 +38132,15 @@
     <nd ref='-16207221' />
     <nd ref='-16207222' />
     <nd ref='-16207164' />
-    <tag k='name' v='Randschnellweg (mögliche Variante)' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg (mögliche Variante)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-277036' action='modify'>
     <nd ref='-16207164' />
     <nd ref='-16160277' />
-    <tag k='name' v='Randschnellweg (mögliche Variante)' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg (mögliche Variante)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-277043' action='modify'>
@@ -38235,7 +38249,8 @@
     <nd ref='-16160364' />
     <nd ref='-16207153' />
     <nd ref='-16207154' />
-    <tag k='name' v='Radschnellweg Lüneburg' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg Lüneburg' />
     <tag k='type' v='planned' />
   </way>
   <way id='-277046' action='modify'>
@@ -38264,7 +38279,8 @@
     <nd ref='-16160275' />
     <nd ref='-16160276' />
     <nd ref='-16160277' />
-    <tag k='name' v='Randschnellweg (mögliche Variante)' />
+    <tag k='name' v='0000-00-00-rsw-lueneburg' />
+    <tag k='text' v='Radschnellweg (mögliche Variante)' />
     <tag k='type' v='planned' />
   </way>
   <way id='-277158' action='modify'>
@@ -39208,7 +39224,7 @@
     <nd ref='-16719148' />
     <nd ref='-16718796' />
     <nd ref='-16718797' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-281166' action='modify'>
@@ -39323,7 +39339,7 @@
     <nd ref='-16719017' />
     <nd ref='-16719018' />
     <nd ref='-16719019' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-281341' action='modify'>
@@ -39479,7 +39495,7 @@
     <nd ref='-16718937' />
     <nd ref='-16718938' />
     <nd ref='-16718939' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-282537' action='modify'>
@@ -39491,7 +39507,7 @@
     <nd ref='-16720495' />
     <nd ref='-16720496' />
     <nd ref='-16720497' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-282711' action='modify'>
@@ -39512,7 +39528,7 @@
     <nd ref='-16720270' />
     <nd ref='-16719042' />
     <nd ref='-16718939' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-282753' action='modify'>
@@ -39526,7 +39542,7 @@
     <nd ref='-16719030' />
     <nd ref='-16720462' />
     <tag k='bridge' v='yes' />
-    <tag k='name' v='Radschnellweg Stade' />
+    <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-282793' action='modify'>
@@ -39662,7 +39678,8 @@
     <nd ref='-16158780' />
     <nd ref='-16158781' />
     <nd ref='-16159160' />
-    <tag k='name' v='Radschnellweg Bad Bramstedt (Tunnelalternative)' />
+    <tag k='name' v='0000-00-00-rsw-bad-bramstedt' />
+    <tag k='text' v='Radschnellweg Bad Bramstedt (Tunnelalternative)' />
     <tag k='type' v='planned' />
   </way>
   <way id='1880371' action='delete' version='1'>
