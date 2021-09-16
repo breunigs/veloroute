@@ -143,11 +143,17 @@ defmodule VelorouteWeb.ArticleView do
       main = nodate |> Enum.flat_map(&to_link/1) |> to_soft_list
       dated = article_list(dated, years: true, time_format: :date)
 
-      html ++
+      content =
         floki_content_tag(:h3, "Verwandte Artikel") ++
-        main ++
-        floki_content_tag(:ol, dated, class: "hide-bullets")
+          main ++
+          floki_content_tag(:ol, dated, class: "hide-bullets")
+
+      html ++ noindex_wrapper(content)
     end
+  end
+
+  defp noindex_wrapper(content) do
+    floki_content_tag("div", content, [{"data-nosnippet", nil}])
   end
 
   defp to_link(art) do
