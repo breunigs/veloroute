@@ -9,11 +9,11 @@
   :velo: false
 101:
   :id: 101
-  :title: Amsinckstraße Brücke / Grundinstandsetzung -- LSBG
-  :updated: '2020-08-21T13:25:52.779947'
+  :title: 'Amsinckstraße Brücke / Grundinstandsetzung -- '
+  :updated: '2021-09-16T11:45:58.183673'
   :start: '2018-09-17'
   :end: '2021-11-03'
-  :velo: false
+  :velo: true
 7928:
   :id: 7928
   :title: 'Spaldingstraße / Sielrenovierung -- '
@@ -1980,7 +1980,7 @@
 18233:
   :id: 18233
   :title: 'Högerdamm / Hochbau -- '
-  :updated: '2021-07-23T16:01:08.357897'
+  :updated: '2021-09-16T11:45:02.994353'
   :start: '2020-01-07'
   :end: '2022-04-01'
   :velo: false
@@ -2223,8 +2223,8 @@
 17981:
   :id: 17981
   :title: 'Horner Rampe 22-48 -- '
-  :updated: '2021-07-12T07:40:59.854648'
-  :start: '2021-08-30'
+  :updated: '2021-09-13T11:31:31.897461'
+  :start: '2021-09-27'
   :end: '2021-11-26'
   :velo: true
 17996:
@@ -2272,10 +2272,10 @@
 18847:
   :id: 18847
   :title: 'Am Radeland /Sielbau -- '
-  :updated: '2021-09-03T09:34:46.109845'
+  :updated: '2021-09-15T14:22:16.695377'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-14'
-  :end: '2021-10-01'
+  :end: '2021-11-19'
   :velo: false
 18300:
   :id: 18300
@@ -2308,7 +2308,7 @@
 19182:
   :id: 19182
   :title: 'A 25 - Neuallermöhe-West bis Landesgrenze SH / Deckschichtsanierung -- '
-  :updated: '2021-08-20T14:58:57.892558'
+  :updated: '2021-09-13T11:33:32.098897'
   :start: '2021-08-02'
   :end: '2021-11-20'
   :velo: false
@@ -2438,3 +2438,76 @@
   :start: '2021-10-02'
   :end: '2021-10-17'
   :velo: true
+19725:
+  :id: 19725
+  :title: 'AS Waltershof / Reparatur -- '
+  :updated: '2021-09-09T11:42:58.494691'
+  :start: '2021-09-11'
+  :end: '2021-09-13'
+  :velo: false
+19736:
+  :id: 19736
+  :title: 'A 24 / Instandsetzung Notfallmaßnahme -- '
+  :updated: '2021-09-09T11:46:44.463191'
+  :start: '2021-09-11'
+  :end: '2021-09-12'
+  :velo: false
+19747:
+  :id: 19747
+  :title: 'A 7 (Tunnel Stellingen) / Wartungsarbeiten -- '
+  :updated: '2021-09-09T11:54:18.468991'
+  :start: '2021-09-13'
+  :end: '2021-09-17'
+  :velo: false
+19465:
+  :id: 19465
+  :title: 'Sthamerstraße / Deckenprogramm 2021 -- '
+  :updated: '2021-09-07T12:27:24.474222'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378312/sthamerstrasse/
+  :start: '2021-09-20'
+  :end: '2021-10-01'
+  :velo: false
+19606:
+  :id: 19606
+  :title: 'Eilersweg / Deckenprogramm 2021 -- '
+  :updated: '2021-09-08T07:41:43.331445'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15378050/buchwaldstrasse/
+  :start: '2021-09-21'
+  :end: '2021-10-05'
+  :velo: false
+19620:
+  :id: 19620
+  :title: 'Hörstener Straße / Asphaltierungsarbeiten / Vollsperrung -- '
+  :updated: '2021-09-08T07:42:13.128154'
+  :start: '2021-09-21'
+  :end: '2021-10-01'
+  :velo: false
+19601:
+  :id: 19601
+  :title: 'Buchwaldstraße / Deckenprogramm 2021 -- '
+  :updated: '2021-09-08T07:41:32.895819'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15377452/buchwaldstrasse/
+  :start: '2021-09-21'
+  :end: '2021-10-05'
+  :velo: false
+19824:
+  :id: 19824
+  :title: 'Am Sandtorkai / Leitungsbau -- '
+  :updated: '2021-09-15T11:39:20.874684'
+  :start: '2021-09-13'
+  :end: '2022-02-15'
+  :velo: true
+19833:
+  :id: 19833
+  :title: 'Sievekingdamm Nord / Grundinstandsetzung -- '
+  :updated: '2021-09-15T11:39:43.751552'
+  :start: '2021-09-14'
+  :end: '2021-10-29'
+  :velo: false
+19847:
+  :id: 19847
+  :title: 'Curslacker Heerweg | Bau von barrierefreien Bushaltestellen -- '
+  :updated: '2021-09-15T11:40:46.024167'
+  :start: '2021-09-15'
+  :end: '2021-09-28'
+  :velo: false

@@ -726,3 +726,8 @@
 - https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006010
 '2021-09-09':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011001
+'2021-09-13':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011773
+'2021-09-14':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011039
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011035
