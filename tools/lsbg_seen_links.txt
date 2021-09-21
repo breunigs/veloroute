@@ -431,3 +431,5 @@
 - "/contentblob/15354500/ea231210e8f976b427a6799dfd12d2fc/data/winsener-strasse-rad-und-fusswege-09-21-bis-12-21.pdf"
 '2021-09-13':
 - "/contentblob/15377446/f71f5019610147140618904f0293b07a/data/rahlstedter-strasse-tonndorfer-hauptstrasse-instandsetzung-09-21-bis-10-21.pdf"
+'2021-09-20':
+- "/contentblob/15399740/a6338bfa582c1c0ed9a7d3a3909faa3d/data/holstenplatz-haubachstrasse-kreuzung-kampfmittelsondierung-03-10-21-bis-17-10-21.pdf"
