@@ -58,15 +58,8 @@ defmodule Data.Route.Route3 do
       {"2021-06-12-veloroute-3-und-4/GX011763", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011764", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011765", :start, :end},
-
-      # cutting together a legal path
-      {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:08.141"},
-      {"2021-06-12-veloroute-3-und-4/GX011734", "00:00:24.157", :end},
-      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "00:00:00.934"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "00:00:01.001", "00:00:02.336"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "00:00:09.610", "00:00:14.348"}
-      # real path, but that's not legal
-      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:18.886"}
+      {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:09.209"},
+      {"2021-09-08-velo5-reroute/GX012727", "00:00:07.441", "00:00:20.120"}
     ]
   }
 

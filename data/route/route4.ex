@@ -27,8 +27,9 @@ defmodule Data.Route.Route4 do
       {"2021-06-12-veloroute-3-und-4/GX011707", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011708", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011709", :start, :end},
-      {"2021-06-12-veloroute-3-und-4/GX011710", :start, :end},
-      {"2021-06-12-veloroute-3-und-4/GX011711", :start, :end}
+      {"2021-06-12-veloroute-3-und-4/GX011710", :start, "00:02:14.067"},
+      {"2021-09-09-rsw-bad-bramstedt/GX012763", "00:01:27.187", "00:01:58.018"},
+      {"2021-06-12-veloroute-3-und-4/GX011711", "00:00:11.712", :end}
     ]
   }
 
@@ -56,13 +57,8 @@ defmodule Data.Route.Route4 do
       {"2021-06-12-veloroute-3-und-4/GX011731", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011732", :start, :end},
       {"2021-06-12-veloroute-3-und-4/GX011733", :start, :end},
-      # cutting together a legal path
-      {"2021-06-12-veloroute-3-und-4/GX011734", :start, :end},
-      {"2021-06-12-veloroute-3-und-4/GX011735", :start, "00:00:00.934"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011831", "00:00:01.001", "00:00:02.336"},
-      {"2021-06-13-veloroute-5-5a-und-13rein/GX011826", "00:00:09.610", "00:00:14.348"}
-      # real path, but that's not legal
-      # {"2021-06-12-veloroute-3-und-4/GX011766", :start, "00:00:18.886"}
+      {"2021-06-12-veloroute-3-und-4/GX011734", :start, "00:00:26.894"},
+      {"2021-09-08-velo5-reroute/GX012727", "00:00:09.510", "00:00:20.120"}
     ]
   }
 
