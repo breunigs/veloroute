@@ -5,7 +5,7 @@ defmodule Data.Route.RouteFR11 do
   def type(), do: :freizeit
   def color(), do: "#006106"
   def name(), do: "2. Grüner Ring (FR11)"
-  def article(), do: "freizeitroute-11"
+  def article(), do: "zweiter-gruener-ring"
   def osm_relation_ref(), do: "http://overpass-turbo.eu/s/1aam"
   # TODO: support more than one relation
   # def osm_relation_ref(),
