@@ -1,13 +1,16 @@
+end: 2021-05-28
 
 title: Eißendorfer Straße bis Denickestraße (Veloroute 11)
-type: finished
-construction_site_id_hh: [14169, 15681]
-start: 2021-02-01
-end: 2021-05-28
+type: planned-construction
+# old and finished, but there will be more construction coming
+# construction_site_id_hh: [14169, 15681]
+start: 2022
 tags:
 - 11
 text: >
-  <p><strong>Umbau:</strong> Die Denickestraße wird im April/Mai 2021 zwischen Thörlstraße und Riepenhausenweg gesperrt. Eine Umleitung soll durch den Park eingerichtet werden.</p><p><strong>Update:</strong> Mittlerweile liegt die zweite Verschickung vor,
+  <p><strong>Stand Herbst 2021:</strong> Die Denickestraße wurde zwischen <a bounds="9.965637,53.459847,9.971527,53.462105" lon="9.968171" lat="53.460898" dir="forward" ref="11">Uni</a> und der <a bounds="9.954329,53.458338,9.95959,53.461127" lon="9.957227" lat="53.459496" dir="forward" ref="11">Ampel an der Weusthoffstraße</a> bereits umgebaut. Die anderen Abschnitte sollen 2022 folgen.</p>
+
+  <p><strong>Update:</strong> Mittlerweile liegt die zweite Verschickung vor,
   die deutliche Änderungen erfahren hat. Die <a>Denickestraße</a> ist jetzt nur bis
   zur <a href="/#16/53.459154/9.957208">Kreuzung mit der Weusthoffstraße</a>
   Fahrradstraße; im weiteren Verlauf normale 30er Zone. Entsprechend gilt an allen
@@ -69,9 +72,7 @@ text: >
   deutlich aufgewertet – allerdings zu lasten der Fußwege, die nach dem Umbau schmaler
   sein werden als jetzt.</p>
 
-  <p>Die Umsetzung soll ab Herbst 2019 stattfinden.</p>
-
-  <h4>Quelle</h4>
+  <h4>Quellen</h4>
   <ul>
     <li><a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005983">Erläuterungsbericht
   und Pläne zum 2. Entwurf</a> (Lageplan nur ca. Blatt 1 bis 8, ansonsten siehe 1.
@@ -81,4 +82,6 @@ text: >
   und Pläne zum 1. Entwurf</a> (Lagepläne Blatt 9, 10 und 11 sind noch aktuell)</li>
 
     <li><a href="https://www.hamburg.de/harburg/pressemeldungen/15030832/ausbau-veloroute-11/">Pressemitteilung Umbaut zwischen Thörlstraße und Riepenhausenweg</a></li>
+
+    <li><a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1008862">Übersicht Baumaßnahmen Bezirk Harburg</a> (August 2021)</li>
   </ul>

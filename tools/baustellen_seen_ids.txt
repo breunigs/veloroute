@@ -2540,3 +2540,24 @@
   :start: '2021-10-18'
   :end: '2021-12-20'
   :velo: false
+19952:
+  :id: 19952
+  :title: 'Wendenstraße / Verkehrsbehinderungen -- '
+  :updated: '2021-09-22T10:23:04.81595'
+  :start: '2021-09-13'
+  :end: '2021-10-09'
+  :velo: false
+19959:
+  :id: 19959
+  :title: 'Kandinskyallee / Verkehrsbehinderung -- '
+  :updated: '2021-09-22T10:24:57.34494'
+  :start: '2021-09-14'
+  :end: '2021-09-30'
+  :velo: false
+19945:
+  :id: 19945
+  :title: 'Curslacker Heerweg, Deckschichterneuerung -- '
+  :updated: '2021-09-22T10:20:56.861756'
+  :start: '2021-09-29'
+  :end: '2021-10-20'
+  :velo: false
