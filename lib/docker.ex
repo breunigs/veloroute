@@ -94,7 +94,12 @@ defmodule Docker do
 
     cli = docker ++ extra_video_mount("/app") ++ [@image_name_release]
 
-    Util.cmd(cli, into: line_stream())
+    try do
+      Util.cmd(cli, into: line_stream())
+    rescue
+      # we don't care if the release fails on shut down
+      _ -> nil
+    end
   end
 
   def stop_release() do

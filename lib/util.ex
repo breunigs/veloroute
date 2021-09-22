@@ -12,7 +12,6 @@ defmodule Util do
     IO.puts("")
   end
 
-
   def user_id(), do: cmd(["id", "-u"]) |> String.trim()
   def group_id(), do: cmd(["id", "-g"]) |> String.trim()
 
