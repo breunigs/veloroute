@@ -51,8 +51,4 @@ text: >
   <geolinks route="12">
     <li><a href="https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426798/veloroute-12/">Detailseite der Stadt</a></li>
     <li><a href="https://www.komoot.de/tour/225148542">Komoot Routenplaner: nach Altona</a></li>
-
   </geolinks>
-
-  <h3>Artikel zu Veloroute 12</h3>
-  <articles tags="12" sort="date"/>

@@ -129,8 +129,8 @@ defmodule VelorouteWeb.ArticleView do
       else: html
   end
 
-  @spec append_related_articles(Floki.html_tree(), %Article{}) :: Floki.html_tree()
-  defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
+  # @spec append_related_articles(Floki.html_tree(), %Article{}) :: Floki.html_tree()
+  # defp append_related_articles(html, %Article{name: "0000-00-00-" <> _rest}), do: html
 
   defp append_related_articles(html, art) do
     related = Article.related(Cache.Articles.get(), art)

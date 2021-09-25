@@ -23,6 +23,3 @@ text: >
     <li><a href="https://www.hamburg.de/mit-dem-rad-durch-hamburg/318124/radtour-elberadweg/">Detailseite der Stadt</a></li>
     <li><a href="https://www.elberadweg.de/">Info/Werbeseite zum gesamten Elbradweg</a> (inkl. GPS Daten)</li>
   </geolinks>
-
-  <h3>Artikel zum Elbradweg</h3>
-  <articles tags="e" sort="date"/>
