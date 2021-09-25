@@ -77,9 +77,13 @@ defmodule Data.Route.Route1 do
     parent_ref: __MODULE__,
     text: "aus der Innenstadt zum Osdorfer Born",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011680", "00:00:01.000", :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011681", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011682", :start, :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011680", "00:00:01.000", "00:00:47.915"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012935", "00:00:32.466",
+       "00:00:48.148"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012936", :start, "00:00:17.918"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012939", "00:00:01.335",
+       "00:00:33.600"},
+      {"2021-06-05-velorouten-1-1a-2/GX011682", "00:00:15.883", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011683", :start, "00:00:47.447"}
     ]
   }
@@ -95,7 +99,10 @@ defmodule Data.Route.Route1 do
       {"2021-06-05-velorouten-1-1a-2/GX011683", "00:00:47.447", :end},
       {"2021-06-05-velorouten-1-1a-2/GX011684", :start, :end},
       {"2021-06-05-velorouten-1-1a-2/GX011685", :start, :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011686", :start, "00:02:00.187"}
+      {"2021-06-05-velorouten-1-1a-2/GX011686", :start, "00:00:07.174"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012940", "00:00:01.235", :end},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012941", :start, "00:00:12.045"},
+      {"2021-06-05-velorouten-1-1a-2/GX011686", "00:01:18.345", "00:02:00.187"}
     ]
   }
 

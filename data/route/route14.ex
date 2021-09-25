@@ -16,9 +16,13 @@ defmodule Data.Route.Route14 do
     parent_ref: __MODULE__,
     text: "äußere Ringroute im Uhrzeigersinn",
     videos: [
-      {"2021-06-05-velorouten-1-1a-2/GX011680", "00:00:01.000", :end},
-      {"2021-06-05-velorouten-1-1a-2/GX011681", "00:00:01.000", "00:00:01.802"},
-      {"2021-07-15-14uhr-und-13gg/GX012235", "00:00:01.268", :end},
+      {"2021-06-05-velorouten-1-1a-2/GX011680", "00:00:01.000", "00:00:47.915"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012935", "00:00:32.466",
+       "00:00:48.148"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012936", :start, "00:00:18.018"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012937", "00:00:03.770",
+       "00:00:29.763"},
+      {"2021-07-15-14uhr-und-13gg/GX012235", "00:00:38.906", :end},
       {"2021-07-15-14uhr-und-13gg/GX012236", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012238", :start, :end},
       {"2021-07-15-14uhr-und-13gg/GX012239", :start, :end},
@@ -95,8 +99,12 @@ defmodule Data.Route.Route14 do
       {"2021-07-10-13uhr-14gg/GX012212", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012213", :start, :end},
       {"2021-07-10-13uhr-14gg/GX012214", :start, :end},
-      {"2021-07-10-13uhr-14gg/GX012215", :start, "00:01:04.064"},
-      {"2021-06-05-velorouten-1-1a-2/GX011686", "00:00:24.558", "00:02:00.187"}
+      {"2021-07-10-13uhr-14gg/GX012215", :start, "00:00:47.881"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012938", "00:00:03.203",
+       "00:00:18.952"},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012940", "00:00:21.088", :end},
+      {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012941", :start, "00:00:12.045"},
+      {"2021-06-05-velorouten-1-1a-2/GX011686", "00:01:18.345", "00:02:00.187"}
     ]
   }
 
