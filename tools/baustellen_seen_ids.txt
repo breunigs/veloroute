@@ -120,7 +120,7 @@
 9261:
   :id: 9261
   :title: 'Holsteiner Chaussee / Trinkwasseranschlüsse -- '
-  :updated: '2021-08-20T07:13:32.976175'
+  :updated: '2021-09-24T10:58:07.827704'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-06-29'
   :end: '2022-03-15'
@@ -2560,4 +2560,39 @@
   :updated: '2021-09-22T10:20:56.861756'
   :start: '2021-09-29'
   :end: '2021-10-20'
+  :velo: false
+18278:
+  :id: 18278
+  :title: 'Bullerdeich / Brückenerneuerung Deutsche Bahn AG -- '
+  :updated: '2021-09-24T09:51:59.202624'
+  :start: '2020-02-01'
+  :end: '2022-08-17'
+  :velo: true
+20071:
+  :id: 20071
+  :title: 'Reeperbahnfestival -- '
+  :updated: '2021-09-24T09:33:30.486317'
+  :start: '2021-09-21'
+  :end: '2021-09-27'
+  :velo: false
+17178:
+  :id: 17178
+  :title: 'Bantschowstraße 1-38 -- '
+  :updated: '2021-09-23T11:07:49.629996'
+  :start: '2021-09-27'
+  :end: '2021-12-17'
+  :velo: true
+20036:
+  :id: 20036
+  :title: 'Eiffestraße / Fahrspursperrung -- '
+  :updated: '2021-09-23T07:49:05.94536'
+  :start: '2021-09-27'
+  :end: '2021-10-08'
+  :velo: false
+20064:
+  :id: 20064
+  :title: 'Kandinskyallee / Halbseitige Sperrung -- '
+  :updated: '2021-09-24T09:45:38.35413'
+  :start: '2021-09-29'
+  :end: '2021-10-02'
   :velo: false
