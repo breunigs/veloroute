@@ -16,7 +16,10 @@ defmodule Data.Route.RouteFR1 do
     parent_ref: __MODULE__,
     text: "entlang der Alster zum Duvenstedter Brook",
     videos: [
-      {"2021-05-29-freizeitroute1/GX011470", "00:00:05.405", :end},
+      {"2021-07-26-missing-parts-fr2-fr3/GX012415", :start, "00:00:11.178"},
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:04.972", "00:00:06.039"},
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012983", "00:01:17.811", "00:01:35.762"},
+      {"2021-05-29-freizeitroute1/GX011470", "00:00:24.524", :end},
       {"2021-05-29-freizeitroute1/GX011471", :start, "00:00:00.634"},
       {"2021-05-29-freizeitroute1/GX011473", :start, "00:00:15.349"},
       {"2021-05-29-freizeitroute1/GX011474", "00:00:26.860", :end},
@@ -57,7 +60,10 @@ defmodule Data.Route.RouteFR1 do
       {"2021-05-29-freizeitroute1/GX011497", :start, :end},
       {"2021-05-29-freizeitroute1/GX011498", :start, :end},
       {"2021-05-29-freizeitroute1/GX011499", :start, :end},
-      {"2021-05-29-freizeitroute1/GX011500", :start, "00:02:29.716"}
+      {"2021-05-29-freizeitroute1/GX011500", :start, "00:02:03.423"},
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012984", "00:00:02.736", "00:00:21.955"},
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:08.442", "00:00:13.046"},
+      {"2021-07-26-missing-parts-fr2-fr3/GX012414", "00:00:10.844", :end}
     ]
   }
 
