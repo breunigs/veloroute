@@ -3,6 +3,7 @@ type: changed-routing
 title: Verlegung Veloroute 6 in Wandsbek-Gartenstadt
 tags:
 - 6
+summary: Veloroute 6 verläuft stadteinwärts nun auch über die Tilsiter Straße
 text: >
   <h4>Alte Führung</h4>
   <p>Stadteinwärts verlief die Veloroute zunächst geradeaus über die <a bounds="10.07543,53.591694,10.093202,53.595956">Pillauer Straße</a>. Am Bahnhof Wandsbek-Gartenstadt knickte sie über die <a bounds="10.073877,53.588152,10.0782,53.592414">Allensteiner Straße</a> nach Süden ab um zum <a bounds="10.071772,53.584335,10.077073,53.589563" lon="10.075085" lat="53.588433" dir="backward">Eulenkamp</a> zu kommen.</p>

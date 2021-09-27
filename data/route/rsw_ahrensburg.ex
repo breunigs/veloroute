@@ -16,7 +16,7 @@ defmodule Data.Route.RSWAhrensburg do
     parent_ref: __MODULE__,
     text: "künftiger Radschnellweg nach Ahrensburg",
     videos: [
-      {"2021-09-26-velo6-rsw-ahrensburg/GX012960", "00:01:46.473", :end},
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012960", "00:00:41.508", :end},
       {"2021-09-26-velo6-rsw-ahrensburg/GX022960", :start, :end},
       {"2021-09-26-velo6-rsw-ahrensburg/GX012964", :start, "00:00:35.402"}
     ]
@@ -32,7 +32,7 @@ defmodule Data.Route.RSWAhrensburg do
     videos: [
       {"2021-09-26-velo6-rsw-ahrensburg/GX012965", "00:00:35.636", :end},
       {"2021-09-26-velo6-rsw-ahrensburg/GX012966", :start, :end},
-      {"2021-09-26-velo6-rsw-ahrensburg/GX012967", :start, "00:03:57.571"}
+      {"2021-09-26-velo6-rsw-ahrensburg/GX012967", :start, "00:05:01.334"}
     ]
   }
 
