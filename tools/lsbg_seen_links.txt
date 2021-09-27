@@ -435,3 +435,5 @@
 - "/contentblob/15399740/a6338bfa582c1c0ed9a7d3a3909faa3d/data/holstenplatz-haubachstrasse-kreuzung-kampfmittelsondierung-03-10-21-bis-17-10-21.pdf"
 '2021-09-25':
 - "/contentblob/15421372/d4654cb3415608e18101487d4c4df2f3/data/holsteiner-chaussee-zwischen-vosskamp-und-kettelerweg-erneuert-der-verkehrsweg-10-2021-bis-12-2021.pdf"
+'2021-09-27':
+- "/contentblob/15441170/bbb0ccdafb3a9ff7537f8cba995baef4/data/winsener-strasse-und-hittfelder-strasse-%E2%80%93-fahrbahnsanierung-18-10-2021-bis-29-10-2021.pdf"

@@ -561,7 +561,7 @@
 8208:
   :id: 8208
   :title: 'A 7 / Instandsetzung & Ausbau K 20 & K 30 -- '
-  :updated: '2021-08-20T15:10:35.289442'
+  :updated: '2021-09-27T11:38:39.88347'
   :link: https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/
   :start: '2020-04-14'
   :end: '2027-12-31'
@@ -2420,14 +2420,15 @@
 19401:
   :id: 19401
   :title: 'Holstenplatz / Kampfmittelsondierung für Veloroute 13 -- '
-  :updated: '2021-09-03T09:24:28.568015'
+  :updated: '2021-09-21T14:30:36.639528'
   :start: '2021-10-03'
   :end: '2021-10-17'
   :velo: true
 19660:
   :id: 19660
   :title: 'Bekassinenau / Umbau der Haltestelle "Alter Zollweg" -- '
-  :updated: '2021-09-08T07:42:46.750553'
+  :updated: '2021-09-27T14:04:14.593573'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15399620/bekassinenau/
   :start: '2021-10-01'
   :end: '2021-11-30'
   :velo: false
@@ -2595,4 +2596,11 @@
   :updated: '2021-09-24T09:45:38.35413'
   :start: '2021-09-29'
   :end: '2021-10-02'
+  :velo: false
+18263:
+  :id: 18263
+  :title: 'Grevenweg 3 / Kranaufstellung -- '
+  :updated: '2021-07-23T16:02:04.82904'
+  :start: '2021-10-04'
+  :end: '2021-10-06'
   :velo: false

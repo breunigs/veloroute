@@ -1,11 +1,14 @@
 
 type: planned-construction
 title: Billstedter Hauptstraße (Reclamstraße bis Billstedter Mühlenweg)
-start: 2021Q3
+# aus den Vergabeunterlagen
+start: 2021-11
+end: 2022-09
 updated: 2021-02-19
 tags:
 - radfahrstreifen
 - 8
+- M6.1a
 text: |
   <h4>Stand 19. Februar 2021:</h4>
   <p>Die Lagepläne wurden mittlerweile veröffentlicht. Der Artikel wurde entsprechend konkretisiert.</p>
