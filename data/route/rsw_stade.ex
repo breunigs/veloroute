@@ -44,12 +44,12 @@ defmodule Data.Route.RSWStade do
   }
 
   backward_north = %Video.Track{
-    group: "Radschnellweg Stade (via Neugraben)",
+    group: "Radschnellweg Stade (via Neuenfelde)",
     direction: :backward,
-    from: "Hamburg Finkenwerder",
-    to: "Stade Am Güterbahnhof",
+    from: "Buxtehude Bahnhof",
+    to: "Hamburg Finkenwerder",
     parent_ref: __MODULE__,
-    text: "künftiger Radschnellweg nach Stade (via Neuenfelde)",
+    text: "künftiger Radschnellweg von Stade (via Neuenfelde)",
     videos: [
       {"2021-09-18-rsw-stade/GX012862", :start, :end},
       {"2021-09-18-rsw-stade/GX012863", :start, :end},
