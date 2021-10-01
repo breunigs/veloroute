@@ -403,11 +403,11 @@
 13736:
   :id: 13736
   :title: 'Elbchaussee / Grundinstandsetzung -- '
-  :updated: '2021-04-30T11:19:09.582544'
+  :updated: '2021-09-28T11:13:45.557285'
   :link: https://lsbg.hamburg.de/elbchaussee/
   :start: '2021-01-11'
   :end: '2024-03-31'
-  :velo: false
+  :velo: true
 12485:
   :id: 12485
   :title: Umbau Harkortstraße Nord -- LSBG
@@ -448,11 +448,11 @@
   :velo: false
 85:
   :id: 85
-  :title: Alter Teichweg / Grundinstandsetzung -- Bezirk Nord
-  :updated: '2020-04-02T09:02:09.206213'
+  :title: 'Alter Teichweg / Grundinstandsetzung -- '
+  :updated: '2021-09-30T09:34:00.226242'
   :start: '2019-09-02'
-  :end: '2021-10-29'
-  :velo: false
+  :end: '2022-04-30'
+  :velo: true
 10026:
   :id: 10026
   :title: Heegbarg / Ertüchtigung Veloroute 5 -- Bezirk Wandsbek
@@ -2599,8 +2599,67 @@
   :velo: false
 18263:
   :id: 18263
-  :title: 'Grevenweg 3 / Kranaufstellung -- '
-  :updated: '2021-07-23T16:02:04.82904'
-  :start: '2021-10-04'
-  :end: '2021-10-06'
+  :title: 'Grevenweg / Kranaufstellung -- '
+  :updated: '2021-09-29T15:00:49.040641'
+  :start: '2021-10-05'
+  :end: '2021-10-15'
   :velo: false
+19974:
+  :id: 19974
+  :title: 'Grevenweg / Fahrspursperrung -- '
+  :updated: '2021-09-22T10:29:26.027565'
+  :start: '2021-10-05'
+  :end: '2021-10-12'
+  :velo: false
+20101:
+  :id: 20101
+  :title: 'Holsteiner Chaussee / Herstellung Nebenflächen -- '
+  :updated: '2021-09-28T09:54:27.080376'
+  :link: https://lsbg.hamburg.de/service/7521122/planungen/
+  :start: '2021-10-04'
+  :end: '2021-12-15'
+  :velo: true
+20161:
+  :id: 20161
+  :title: 'Reichsbahnstraße/ Brückenarbeiten -- '
+  :updated: '2021-09-29T07:21:15.179331'
+  :start: '2021-09-29'
+  :end: '2021-10-01'
+  :velo: true
+20290:
+  :id: 20290
+  :title: 'Dradenauer Deichweg: Deckenerneuerung -- '
+  :updated: '2021-10-01T09:02:27.368514'
+  :start: '2021-10-01'
+  :end: '2021-10-04'
+  :velo: false
+20313:
+  :id: 20313
+  :title: 'Milchgrund/ Vollsperrung -- '
+  :updated: '2021-10-01T14:44:37.279066'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-10-01'
+  :end: '2022-02-17'
+  :velo: false
+20216:
+  :id: 20216
+  :title: 'Lauensteinstraße / Dennerstraße (Ring 2) - Asphaltdeckschicht -- '
+  :updated: '2021-10-01T09:13:20.290695'
+  :link: http://lsbg.hamburg.de/anliegerinformationen/
+  :start: '2021-10-04'
+  :end: '2021-10-20'
+  :velo: true
+20222:
+  :id: 20222
+  :title: 'Wördemanns Weg / Vollsperrung -- '
+  :updated: '2021-09-30T13:27:21.098863'
+  :start: '2021-10-04'
+  :end: '2021-10-17'
+  :velo: false
+20204:
+  :id: 20204
+  :title: 'Veritaskai / Kanalplatz / Ausbau Veloroute 10 -- '
+  :updated: '2021-09-30T15:50:24.188436'
+  :start: '2021-10-18'
+  :end: '2022-08-11'
+  :velo: true

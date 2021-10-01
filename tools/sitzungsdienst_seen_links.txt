@@ -740,3 +740,7 @@
 '2021-09-27':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011851
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011812
+'2021-09-28':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011084
+'2021-09-29':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011087

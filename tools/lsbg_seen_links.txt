@@ -437,3 +437,7 @@
 - "/contentblob/15421372/d4654cb3415608e18101487d4c4df2f3/data/holsteiner-chaussee-zwischen-vosskamp-und-kettelerweg-erneuert-der-verkehrsweg-10-2021-bis-12-2021.pdf"
 '2021-09-27':
 - "/contentblob/15441170/bbb0ccdafb3a9ff7537f8cba995baef4/data/winsener-strasse-und-hittfelder-strasse-%E2%80%93-fahrbahnsanierung-18-10-2021-bis-29-10-2021.pdf"
+'2021-10-01':
+- "/contentblob/15453822/4d0fdfe3e49600f61de369a8ff506a91/data/lauensteinstrasse-dennerstrasse-ring2-oktober-21.pdf"
+- "/contentblob/15453800/9b6db7a6b4aa5877615698046eee447d/data/maurienbruecke-brueckenbau-aktueller-stand-okt-2021.pdf"
+- "/contentblob/15453808/7ef83fb7893476cb3edbb3f3f4e7e4c7/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-18-10-21-bis-07-05-22.pdf"
