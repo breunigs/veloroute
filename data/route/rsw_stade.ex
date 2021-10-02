@@ -8,7 +8,7 @@ defmodule Data.Route.RSWStade do
   def article(), do: "rsw-stade"
   def osm_relation_ref(), do: nil
 
-  forward_south = %Video.Track{
+  forward_southeast = %Video.Track{
     group: "Radschnellweg Stade (via Neugraben)",
     direction: :forward,
     from: "Hamburg Finkenwerder",
@@ -43,7 +43,7 @@ defmodule Data.Route.RSWStade do
     ]
   }
 
-  backward_north = %Video.Track{
+  backward_northwest = %Video.Track{
     group: "Radschnellweg Stade (via Neuenfelde)",
     direction: :backward,
     from: "Buxtehude Bahnhof",
@@ -67,6 +67,6 @@ defmodule Data.Route.RSWStade do
     ]
   }
 
-  @tracks [forward_south, backward_north]
+  @tracks [forward_southeast, backward_northwest]
   def tracks(), do: @tracks
 end

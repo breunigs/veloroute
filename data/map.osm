@@ -10791,8 +10791,8 @@
   <node id='-16718728' action='modify' lat='53.48854265891' lon='9.62220757127' />
   <node id='-16718729' action='modify' lat='53.48814608332' lon='9.62276547074' />
   <node id='-16718730' action='modify' lat='53.48584315863' lon='9.62856172442' />
-  <node id='-16718731' action='modify' lat='53.48174450522' lon='9.63882117391' />
-  <node id='-16718732' action='modify' lat='53.48178919672' lon='9.63891505122' />
+  <node id='-16718731' action='modify' lat='53.48177323548' lon='9.63873936654' />
+  <node id='-16718732' action='modify' lat='53.48182271532' lon='9.63883592605' />
   <node id='-16718733' action='modify' lat='53.48149710498' lon='9.63958828568' />
   <node id='-16718734' action='modify' lat='53.48131514517' lon='9.64013813853' />
   <node id='-16718735' action='modify' lat='53.48133908729' lon='9.64026420236' />
@@ -10832,7 +10832,7 @@
   <node id='-16718769' action='modify' lat='53.4712853991' lon='9.68516706348' />
   <node id='-16718770' action='modify' lat='53.47088946044' lon='9.68831061244' />
   <node id='-16718771' action='modify' lat='53.47065636579' lon='9.68976168752' />
-  <node id='-16718772' action='modify' lat='53.4703610043' lon='9.6905314815' />
+  <node id='-16718772' action='modify' lat='53.47040091814' lon='9.69062535882' />
   <node id='-16718773' action='modify' lat='53.4701295033' lon='9.69208179832' />
   <node id='-16718786' action='modify' lat='53.46996026731' lon='9.6935060513' />
   <node id='-16718787' action='modify' lat='53.46981657583' lon='9.69474657298' />
@@ -11721,7 +11721,7 @@
   <node id='-20414778' action='modify' lat='53.48267059346' lon='9.63653912043' />
   <node id='-20414793' action='modify' lat='53.47474012648' lon='9.65831278682' />
   <node id='-20414801' action='modify' lat='53.47489337959' lon='9.65636013865' />
-  <node id='-20414809' action='modify' lat='53.4705398132' lon='9.68991726369' />
+  <node id='-20414809' action='modify' lat='53.47055577867' lon='9.6901291582' />
   <node id='-20414816' action='modify' lat='53.4702205025' lon='9.69129323691' />
   <node id='-20414839' action='modify' lat='53.46868618272' lon='9.70611512125' />
   <node id='-20414848' action='modify' lat='53.46867021655' lon='9.70710753858' />
@@ -11782,7 +11782,7 @@
   <node id='-20415318' action='modify' lat='53.47481355713' lon='9.81777011812' />
   <node id='-20415328' action='modify' lat='53.47494126788' lon='9.82084929407' />
   <node id='-20415334' action='modify' lat='53.47504982171' lon='9.82257663667' />
-  <node id='-20415339' action='modify' lat='53.47483590654' lon='9.83879863679' />
+  <node id='-20415339' action='modify' lat='53.47484229208' lon='9.83849286496' />
   <node id='-20415344' action='modify' lat='53.47489656916' lon='9.83690499723' />
   <node id='-20415351' action='modify' lat='53.4749476534' lon='9.83480214536' />
   <node id='-20415359' action='modify' lat='53.47495084617' lon='9.83353077829' />
@@ -11811,6 +11811,9 @@
   <node id='-20415561' action='modify' lat='53.53467729164' lon='9.87081884265' />
   <node id='-20415571' action='modify' lat='53.53303211041' lon='9.87762629449' />
   <node id='-20415574' action='modify' lat='53.53258573326' lon='9.87802862585' />
+  <node id='-20415578' action='modify' lat='53.46956034679' lon='9.69683015356' />
+  <node id='-20415579' action='modify' lat='53.46947762155' lon='9.69750284861' />
+  <node id='-21037673' action='modify' lat='53.47031789252' lon='9.69075947732' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -39682,74 +39685,16 @@
     <nd ref='-16718771' />
     <nd ref='-20414809' />
     <nd ref='-16718772' />
+    <nd ref='-21037673' />
     <nd ref='-20414816' />
     <nd ref='-16718773' />
     <nd ref='-16718786' />
     <nd ref='-16718787' />
-    <nd ref='-16718794' />
-    <nd ref='-16718795' />
-    <nd ref='-16719148' />
-    <nd ref='-16718796' />
-    <nd ref='-20414839' />
-    <nd ref='-20414848' />
-    <nd ref='-16718797' />
+    <nd ref='-20415578' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
   <way id='-281166' action='modify'>
-    <nd ref='-16718797' />
-    <nd ref='-20414859' />
-    <nd ref='-16718943' />
-    <nd ref='-20414866' />
-    <nd ref='-16718944' />
-    <nd ref='-16718945' />
-    <nd ref='-20414872' />
-    <nd ref='-20414930' />
-    <nd ref='-20414931' />
-    <nd ref='-20414918' />
-    <nd ref='-20414946' />
-    <nd ref='-20414951' />
-    <nd ref='-20414959' />
-    <nd ref='-20414967' />
-    <nd ref='-16718946' />
-    <nd ref='-16718947' />
-    <nd ref='-20414968' />
-    <nd ref='-20414969' />
-    <nd ref='-20414970' />
-    <nd ref='-20414971' />
-    <nd ref='-20414972' />
-    <nd ref='-20414977' />
-    <nd ref='-16718948' />
-    <nd ref='-16719360' />
-    <nd ref='-16719378' />
-    <nd ref='-16719371' />
-    <nd ref='-16718949' />
-    <nd ref='-16719394' />
-    <nd ref='-20415115' />
-    <nd ref='-16718950' />
-    <nd ref='-16719444' />
-    <nd ref='-16719453' />
-    <nd ref='-16719479' />
-    <nd ref='-20415122' />
-    <nd ref='-16719470' />
-    <nd ref='-16718951' />
-    <nd ref='-16719613' />
-    <nd ref='-16719634' />
-    <nd ref='-16719625' />
-    <nd ref='-16718952' />
-    <nd ref='-20415318' />
-    <nd ref='-16718953' />
-    <nd ref='-20415328' />
-    <nd ref='-20415334' />
-    <nd ref='-16718954' />
-    <nd ref='-16718955' />
-    <nd ref='-16719649' />
-    <nd ref='-16719659' />
-    <nd ref='-20415359' />
-    <nd ref='-20415351' />
-    <nd ref='-16718956' />
-    <nd ref='-20415344' />
-    <nd ref='-20415339' />
     <nd ref='-20415365' />
     <nd ref='-16718957' />
     <nd ref='-16718958' />
@@ -40635,6 +40580,89 @@
     <nd ref='-19791912' />
     <tag k='name' v='2019-03-07-1-blankenese-sued' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-295086' action='modify'>
+    <nd ref='-20415578' />
+    <nd ref='-20415579' />
+    <tag k='bridge' v='yes' />
+    <tag k='text' v='Radschnellweg Stade' />
+    <tag k='type' v='planned' />
+  </way>
+  <way id='-295087' action='modify'>
+    <nd ref='-20415579' />
+    <nd ref='-16718794' />
+    <nd ref='-16718795' />
+    <nd ref='-16719148' />
+    <nd ref='-16718796' />
+    <nd ref='-20414839' />
+    <nd ref='-20414848' />
+    <nd ref='-16718797' />
+    <tag k='text' v='Radschnellweg Stade' />
+    <tag k='type' v='planned' />
+  </way>
+  <way id='-295112' action='modify'>
+    <nd ref='-16718797' />
+    <nd ref='-20414859' />
+    <nd ref='-16718943' />
+    <nd ref='-20414866' />
+    <nd ref='-16718944' />
+    <nd ref='-16718945' />
+    <nd ref='-20414872' />
+    <nd ref='-20414930' />
+    <nd ref='-20414931' />
+    <nd ref='-20414918' />
+    <nd ref='-20414946' />
+    <nd ref='-20414951' />
+    <nd ref='-20414959' />
+    <nd ref='-20414967' />
+    <nd ref='-16718946' />
+    <nd ref='-16718947' />
+    <nd ref='-20414968' />
+    <nd ref='-20414969' />
+    <nd ref='-20414970' />
+    <nd ref='-20414971' />
+    <nd ref='-20414972' />
+    <nd ref='-20414977' />
+    <nd ref='-16718948' />
+    <nd ref='-16719360' />
+    <nd ref='-16719378' />
+    <nd ref='-16719371' />
+    <nd ref='-16718949' />
+    <nd ref='-16719394' />
+    <nd ref='-20415115' />
+    <nd ref='-16718950' />
+    <nd ref='-16719444' />
+    <nd ref='-16719453' />
+    <nd ref='-16719479' />
+    <nd ref='-20415122' />
+    <nd ref='-16719470' />
+    <nd ref='-16718951' />
+    <nd ref='-16719613' />
+    <nd ref='-16719634' />
+    <nd ref='-16719625' />
+    <nd ref='-16718952' />
+    <nd ref='-20415318' />
+    <nd ref='-16718953' />
+    <nd ref='-20415328' />
+    <nd ref='-20415334' />
+    <nd ref='-16718954' />
+    <nd ref='-16718955' />
+    <nd ref='-16719649' />
+    <nd ref='-16719659' />
+    <nd ref='-20415359' />
+    <nd ref='-20415351' />
+    <nd ref='-16718956' />
+    <nd ref='-20415344' />
+    <nd ref='-20415339' />
+    <tag k='text' v='Radschnellweg Stade' />
+    <tag k='type' v='planned' />
+  </way>
+  <way id='-295113' action='modify'>
+    <nd ref='-20415339' />
+    <nd ref='-20415365' />
+    <tag k='bridge' v='yes' />
+    <tag k='text' v='Radschnellweg Stade' />
+    <tag k='type' v='planned' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
