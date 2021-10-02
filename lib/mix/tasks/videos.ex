@@ -26,12 +26,15 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   end
 
   def list_unused(rendered) do
-    keep = rendered |> Enum.map(&Video.Rendered.path/1) |> MapSet.new()
-    all = Enum.map(Video.Rendered.all(), &Video.Rendered.path/1) |> MapSet.new()
+    keep = rendered |> MapSet.new()
+    all = Video.Rendered.all() |> MapSet.new()
+    unused = MapSet.difference(all, keep)
 
-    Enum.each(MapSet.difference(all, keep), fn path ->
-      IO.puts(:stderr, "unused/unreferenced rendered video: #{path}")
-    end)
+    if MapSet.size(unused) > 0 do
+      IO.puts(:stderr, "unused/unreferenced rendered videos:")
+      Enum.each(unused, &IO.puts(:stderr, "#{Video.Rendered.path(&1)}: #{&1.name()}"))
+      IO.puts(:stderr, "\n")
+    end
   end
 
   defp route_tracks do
