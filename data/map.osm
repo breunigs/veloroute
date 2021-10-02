@@ -38110,6 +38110,7 @@
     <nd ref='-16159842' />
     <nd ref='-16159843' />
     <nd ref='-16159844' />
+    <tag k='name' v='0000-00-00-rsw-ahrensburg' />
     <tag k='text' v='Radschnellweg Ahrensburg (bevorzugte Trasse)' />
     <tag k='type' v='planned' />
   </way>
@@ -39691,6 +39692,7 @@
     <nd ref='-16718786' />
     <nd ref='-16718787' />
     <nd ref='-20415578' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -39795,6 +39797,7 @@
     <nd ref='-16719017' />
     <nd ref='-16719018' />
     <nd ref='-16719019' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -39993,6 +39996,7 @@
     <nd ref='-16718937' />
     <nd ref='-16718938' />
     <nd ref='-16718939' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40005,6 +40009,7 @@
     <nd ref='-16720495' />
     <nd ref='-16720496' />
     <nd ref='-16720497' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40028,6 +40033,7 @@
     <nd ref='-16720270' />
     <nd ref='-16719042' />
     <nd ref='-16718939' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40042,6 +40048,7 @@
     <nd ref='-16719030' />
     <nd ref='-16720462' />
     <tag k='bridge' v='yes' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40585,6 +40592,7 @@
     <nd ref='-20415578' />
     <nd ref='-20415579' />
     <tag k='bridge' v='yes' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40597,6 +40605,7 @@
     <nd ref='-20414839' />
     <nd ref='-20414848' />
     <nd ref='-16718797' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40654,6 +40663,7 @@
     <nd ref='-16718956' />
     <nd ref='-20415344' />
     <nd ref='-20415339' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
@@ -40661,6 +40671,7 @@
     <nd ref='-20415339' />
     <nd ref='-20415365' />
     <tag k='bridge' v='yes' />
+    <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
   </way>
