@@ -134,10 +134,7 @@ way|z20-[gpx:name] {
 }
 
 way[gpx:name] > node {
-  symbol-size: 1;
-  symbol-stroke-opacity: 0;
-  symbol-fill-opacity: 0;
-  symbol-shape: circle;
+  symbol-shape: none;
 }
 
 way[gpx:name] > node|z19- {
