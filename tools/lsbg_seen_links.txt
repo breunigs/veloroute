@@ -441,3 +441,9 @@
 - "/contentblob/15453822/4d0fdfe3e49600f61de369a8ff506a91/data/lauensteinstrasse-dennerstrasse-ring2-oktober-21.pdf"
 - "/contentblob/15453800/9b6db7a6b4aa5877615698046eee447d/data/maurienbruecke-brueckenbau-aktueller-stand-okt-2021.pdf"
 - "/contentblob/15453808/7ef83fb7893476cb3edbb3f3f4e7e4c7/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-18-10-21-bis-07-05-22.pdf"
+'2021-10-04':
+- "/contentblob/15454394/f9894f09fa880c1b06deaaa73fd7fa0a/data/max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/15454402/8a46eb6c4ab2e35fc571f797c1ee69c3/data/max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abstimmungsunterlagen-plaene.pdf"
+'2021-10-05':
+- "/contentblob/15455004/7a0e074a725439a2953ec87f56dc550c/data/ehestorfer-heuweg-anliegerinformation-stand-10-2021.pdf"
+- "/contentblob/15455008/27a4e76235fda68e6b5758c0581e3e5e/data/koenigstrasse-einrichtung-radfahrstreifen-%E2%80%93-27-09-bis-09-10-21.pdf"

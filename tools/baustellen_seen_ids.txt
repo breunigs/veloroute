@@ -441,7 +441,7 @@
 65:
   :id: 65
   :title: 'Ausschläger Weg, Eiffestraße und Süderstraße / Sielbauarbeiten -- '
-  :updated: '2021-08-12T08:40:28.553133'
+  :updated: '2021-10-04T07:29:24.294347'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2017-09-25'
   :end: '2021-11-30'
@@ -590,7 +590,7 @@
 11543:
   :id: 11543
   :title: 'Billstraße / Billhorner Brückenstraße / Trinkwasserleitung -- '
-  :updated: '2021-08-20T06:58:16.399252'
+  :updated: '2021-10-04T07:32:40.284851'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-09-07'
   :end: '2021-10-10'
@@ -2412,10 +2412,10 @@
 19071:
   :id: 19071
   :title: 'Veloroute 12 Königstraße - Vorabmaßnahme Radfahrstreifen -- '
-  :updated: '2021-08-18T08:17:58.970648'
+  :updated: '2021-10-06T10:31:55.411492'
   :link: https://lsbg.hamburg.de/anliegerinformationen/
   :start: '2021-09-27'
-  :end: '2021-10-09'
+  :end: '2021-10-15'
   :velo: true
 19401:
   :id: 19401
@@ -2663,3 +2663,32 @@
   :start: '2021-10-18'
   :end: '2022-08-11'
   :velo: true
+19352:
+  :id: 19352
+  :title: 'Brücke B5/AKN - Grundinstandsetzung -- '
+  :updated: '2021-09-01T07:35:28.11706'
+  :start: '2021-11-01'
+  :end: '2023-01-27'
+  :velo: false
+20378:
+  :id: 20378
+  :title: 'Großmannstraße / Notmaßnahme / Fahrspursperrung -- '
+  :updated: '2021-10-04T13:42:39.519145'
+  :start: '2021-09-30'
+  :end: '2021-10-22'
+  :velo: false
+20172:
+  :id: 20172
+  :title: 'Christinenstraße – Maikstraße - Hofweide - An der Twiete, Deckschichtsanierung
+    -- '
+  :updated: '2021-09-30T07:25:25.957741'
+  :start: '2021-10-11'
+  :end: '2021-10-18'
+  :velo: false
+20427:
+  :id: 20427
+  :title: 'Fuhlsbüttler Straße / Notmaßnahme -- '
+  :updated: '2021-10-06T08:21:11.120418'
+  :start: '2021-10-06'
+  :end: '2021-10-31'
+  :velo: false
