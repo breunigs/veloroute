@@ -28,6 +28,15 @@ defmodule Video.TimedPoint do
       <trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>
     """
   end
+
+  @spec to_osm_node(t(), neg_integer()) :: binary()
+  def to_osm_node(coord, id) do
+    """
+      <node id='#{id}' lat='#{coord.lat}' lon='#{coord.lon}'>
+        <tag k='video_time' v='#{Video.Timestamp.from_milliseconds(coord.time_offset_ms)}' />
+      </node>
+    """
+  end
 end
 
 defimpl Geo.Interpolate, for: Video.TimedPoint do

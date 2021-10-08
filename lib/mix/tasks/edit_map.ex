@@ -46,9 +46,9 @@ defmodule Mix.Tasks.EditMap do
     IO.puts("Wrote #{@route_colors_path}")
   end
 
-  defp gpx_layers(start_index) do
+  defp video_layers(start_index) do
     all_years =
-      Videos.gpx_index_path("*") |> Path.absname() |> Path.wildcard() |> Enum.sort(&(&1 >= &2))
+      Videos.osm_index_path("*") |> Path.absname() |> Path.wildcard() |> Enum.sort(&(&1 >= &2))
 
     Enum.reduce(all_years, {"", start_index}, fn a_year, {xml, index} ->
       name = Path.basename(a_year)
@@ -56,7 +56,7 @@ defmodule Mix.Tasks.EditMap do
       xml =
         xml <>
           """
-            <layer index="#{index}" name="#{name}" type="tracks" version="0.1" visible="false">
+            <layer index="#{index}" name="#{name}" type="osm-data" version="0.1" visible="false">
               <file>file:#{a_year}</file>
             </layer>
           """
@@ -83,11 +83,11 @@ defmodule Mix.Tasks.EditMap do
           </layer>
     """
 
-    {gpx_layers, next_index} = gpx_layers(2)
+    {video_layers, next_index} = video_layers(2)
 
     xml =
       xml <>
-        gpx_layers <>
+        video_layers <>
         """
               <layer index="#{next_index}" name="OpenStreetMap Carto (Standard)" type="imagery" version="0.1" visible="true">
                 <max-zoom>19</max-zoom>

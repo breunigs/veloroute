@@ -1,5 +1,5 @@
 defmodule Mix.Tasks.Velo.Videos do
-  def gpx_index_path(year), do: "data/cache/videos_#{year}.gpx"
+  def osm_index_path(year), do: "data/cache/videos_#{year}.osm"
 end
 
 defmodule Mix.Tasks.Velo.Videos.Generate do
@@ -168,37 +168,41 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     Video.Dir.must_exist!(&real_run/0)
   end
 
+  @max_ids_per_single_track 10_000
+
   defp real_run() do
-    IO.puts("Indexing videos…")
+    IO.puts("Finding videos…")
 
     Settings.video_source_dir_abs()
     |> Video.Source.new_from_folder()
-    |> Enum.reduce(%{}, fn video, acc ->
+    |> Enum.reduce({%{}, %{}}, fn video, {ids, tracks} ->
       case video do
         %{available_gpx: false, name: source} ->
           IO.puts("skipping #{source} as it doesn't have a GPX file")
-          acc
+          {ids, tracks}
 
         %{date: <<year::binary-size(4)>> <> _rest} ->
-          task = named_track_segments_task(video)
-          Map.update(acc, year, [task], fn list -> [task | list] end)
+          ids = Map.update(ids, year, -1, fn prev -> prev - @max_ids_per_single_track end)
+          task = named_track_segments_task(video, ids[year])
+          tracks = Map.update(tracks, year, [task], fn list -> [task | list] end)
+
+          {ids, tracks}
       end
     end)
+    |> elem(1)
     |> Enum.each(fn {year, tasks} ->
-      gpx = tasks |> join_tasks() |> wrap()
-      :ok = File.write(gpx_index_path(year), gpx)
-      IO.puts("Wrote #{gpx_index_path(year)}")
+      osm = tasks |> join_tasks() |> wrap()
+      :ok = File.write(osm_index_path(year), osm)
+      IO.puts("Wrote #{osm_index_path(year)}")
     end)
   end
 
-  defp wrap(tracks) do
+  defp wrap(data) do
     """
       <?xml version='1.0' encoding='UTF-8'?>
-      <gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-        #{tracks}
-      </gpx>
+      <osm version='0.6' upload='false'>
+        #{data}
+      </osm>
     """
     |> String.trim()
   end
@@ -207,21 +211,39 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     list |> Enum.map(&Task.await(&1, :infinity)) |> Enum.join("\n\n")
   end
 
-  defp named_track_segments_task(x) do
-    Task.async(fn -> named_track_segments(x) end)
+  defp named_track_segments_task(x, base_osm_id) do
+    Task.async(fn ->
+      res = named_track_segments(x, base_osm_id)
+      IO.write('.')
+      res
+    end)
   end
 
-  defp named_track_segments(%{source: source}) do
-    abs_path = Video.Path.gpx(source)
+  defp named_track_segments(%Video.Source{} = source, base_osm_id) do
+    source
+    |> Video.Source.timed_points()
+    |> case do
+      {:error, msg} ->
+        IO.warn(msg)
+        ""
 
-    with {:ok, content} <- File.read(abs_path) do
-      name = Video.Path.source_base(source)
+      points ->
+        {osm_id, nodes, refs} =
+          Enum.reduce(points, {base_osm_id, "", ""}, fn tp, {osm_id, nodes, refs} ->
+            node = Video.TimedPoint.to_osm_node(tp, osm_id)
+            ref = "<nd ref='#{osm_id}' />"
+            # refs need to be in right order, but for the nodes itself it doesn't matter
+            {osm_id - 1, node <> nodes, refs <> ref}
+          end)
 
-      Regex.scan(~r/<trkseg>.*?<\/trkseg>/s, content)
-      |> Enum.map(fn seg -> "<trk><name>" <> name <> "</name>" <> hd(seg) <> "</trk>" end)
-      |> Enum.join("\n")
-    else
-      e -> raise("failed to read #{abs_path}: #{inspect(e)}")
+        """
+          <way id='#{osm_id}'>
+            #{refs}
+            <tag k='gpx:name' v='#{source.source}' />
+            <tag k='oneway' v='yes' />
+          </way>
+          #{nodes}
+        """
     end
   end
 end
