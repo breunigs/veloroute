@@ -11814,6 +11814,25 @@
   <node id='-20415578' action='modify' lat='53.46956034679' lon='9.69683015356' />
   <node id='-20415579' action='modify' lat='53.46947762155' lon='9.69750284861' />
   <node id='-21037673' action='modify' lat='53.47031789252' lon='9.69075947732' />
+  <node id='-21286116' action='modify' lat='53.58332460066' lon='10.05456625342' />
+  <node id='-21286117' action='modify' lat='53.58346790757' lon='10.05493639827' />
+  <node id='-21286118' action='modify' lat='53.58491368793' lon='10.05340217471' />
+  <node id='-21286119' action='modify' lat='53.58644858123' lon='10.05186795115' />
+  <node id='-21286120' action='modify' lat='53.58675109193' lon='10.0515943712' />
+  <node id='-21286121' action='modify' lat='53.58693896789' lon='10.05176603258' />
+  <node id='-21286122' action='modify' lat='53.58704405069' lon='10.05187332094' />
+  <node id='-21286123' action='modify' lat='53.58718097637' lon='10.051476354' />
+  <node id='-21286124' action='modify' lat='53.58709181551' lon='10.05118667543' />
+  <node id='-21286125' action='modify' lat='53.58718097637' lon='10.05104183614' />
+  <node id='-21286126' action='modify' lat='53.58703131339' lon='10.05070387781' />
+  <node id='-21286127' action='modify' lat='53.58680204143' lon='10.05097209871' />
+  <node id='-21286128' action='modify' lat='53.58668740498' lon='10.05096136987' />
+  <node id='-21286129' action='modify' lat='53.58633394064' lon='10.05068242013' />
+  <node id='-21286130' action='modify' lat='53.58618745905' lon='10.05099355638' />
+  <node id='-21286131' action='modify' lat='53.58630209686' lon='10.05113839567' />
+  <node id='-21286132' action='modify' lat='53.58633394064' lon='10.05130469263' />
+  <node id='-21286133' action='modify' lat='53.58630528124' lon='10.05155682027' />
+  <node id='-21286134' action='modify' lat='53.58591041641' lon='10.05200743139' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -40674,6 +40693,30 @@
     <tag k='name' v='0000-00-00-rsw-stade' />
     <tag k='text' v='Radschnellweg Stade' />
     <tag k='type' v='planned' />
+  </way>
+  <way id='-18832326' action='modify'>
+    <nd ref='-21286116' />
+    <nd ref='-21286117' />
+    <nd ref='-21286118' />
+    <nd ref='-21286119' />
+    <nd ref='-21286120' />
+    <nd ref='-21286121' />
+    <nd ref='-21286122' />
+    <nd ref='-21286123' />
+    <nd ref='-21286124' />
+    <nd ref='-21286125' />
+    <nd ref='-21286126' />
+    <nd ref='-21286127' />
+    <nd ref='-21286128' />
+    <nd ref='-21286129' />
+    <nd ref='-21286130' />
+    <nd ref='-21286131' />
+    <nd ref='-21286132' />
+    <nd ref='-21286133' />
+    <nd ref='-21286134' />
+    <nd ref='-21286116' />
+    <tag k='name' v='2021-10-08-krausestrasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>

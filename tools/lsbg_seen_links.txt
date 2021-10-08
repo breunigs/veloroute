@@ -447,3 +447,7 @@
 '2021-10-05':
 - "/contentblob/15455004/7a0e074a725439a2953ec87f56dc550c/data/ehestorfer-heuweg-anliegerinformation-stand-10-2021.pdf"
 - "/contentblob/15455008/27a4e76235fda68e6b5758c0581e3e5e/data/koenigstrasse-einrichtung-radfahrstreifen-%E2%80%93-27-09-bis-09-10-21.pdf"
+'2021-10-08':
+- "/contentblob/15456350/8c3b5b46a6a645e33b28ea821f0b0ce4/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15456348/d2c6db9c38da707e1f95a20f7d6fd469/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-plaene.pdf"
+- "/contentblob/15174878/d1f42229e11309b85638ab5be6544e1b/data/bovestrasse-07-2021-bis-11-2021.pdf"

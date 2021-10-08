@@ -2692,3 +2692,24 @@
   :start: '2021-10-06'
   :end: '2021-10-31'
   :velo: false
+20393:
+  :id: 20393
+  :title: 'Vollsperrung / Kranabbau -- '
+  :updated: '2021-10-06T11:56:07.11183'
+  :start: '2021-10-08'
+  :end: '2021-10-10'
+  :velo: false
+20444:
+  :id: 20444
+  :title: 'Fuhlsbütteler Damm / Kabelschachtaustausch -- '
+  :updated: '2021-10-07T10:43:55.52265'
+  :start: '2021-10-11'
+  :end: '2021-10-22'
+  :velo: false
+20469:
+  :id: 20469
+  :title: 'Beim Pachthof / Vollsperrung -- '
+  :updated: '2021-10-07T13:50:04.509457'
+  :start: '2021-10-12'
+  :end: '2021-10-15'
+  :velo: false
