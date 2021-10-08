@@ -178,7 +178,6 @@ defmodule Video.Rendered do
   defp as_code(name, hash, sources, coords) do
     length_ms = coords |> List.last() |> Map.fetch!(:time_offset_ms)
     rendered = Video.Path.fully_rendered?(hash)
-    stream_path = Video.Path.stream_rel_to_cwd(hash)
 
     quote do
       defmodule unquote(module_name(hash)) do
@@ -190,8 +189,6 @@ defmodule Video.Rendered do
         """
 
         @behaviour Video.Rendered
-
-        @external_resource unquote(stream_path)
 
         @impl Video.Rendered
         def name(), do: unquote(name)
