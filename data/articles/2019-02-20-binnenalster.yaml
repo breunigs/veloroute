@@ -8,11 +8,11 @@ tags:
 - 5
 - 4
 - 3
-text: '<p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a> und
-  <a>Neuer Jungfernstieg</a>.</p> <p>Die Probleme der Radführungen um die Binnenalster
+text: '<p>Der Umbau betrifft die Straßen <a bounds="9.994589,53.551657,10.000915,53.555833">Ballindamm</a>, <a bounds="9.98931,53.551599,10.115693,53.59247">Jungfernstieg</a> und
+  <a bounds="9.990531,53.554227,9.994474,53.55879">Neuer Jungfernstieg</a>.</p> <p>Die Probleme der Radführungen um die Binnenalster
   sind schnell erklärt: konstanter Konflikt mit Passanten. An Kreuzungen und Einmündungen
   wurde häufig nicht an den Radverkehr gedacht, der nicht sinnvoll abbiegen kann.
-  Auf der Gebäudeseite des <a>Jungfernstieg</a> befindet sich die einzige Ausnahme:
+  Auf der Gebäudeseite des <a bounds="9.98931,53.551599,10.115693,53.59247">Jungfernstieg</a> befindet sich die einzige Ausnahme:
   dort steht man wegen der unübersichtlichen Situation mit Taxen und Bussen in Konflikt.</p>
   <p>Die neue Planung, die bereits im Mai 2019 umgesetzt werden soll, hinterlässt
   gemischte Gefühle. So werden die Radfahrstreifen überall mit mindestens 1,8m Breite
@@ -30,15 +30,15 @@ text: '<p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a
   ist hier gearde so breit, das zwei Autos noch nebeneinanderpassen – aber eben nur
   gerade so. Vermutlich werden daher entweder Falschparker die Straße belegen oder
   Autos noch knapper überholen als sonst. Möchte man von der Alsterseite links in
-  die <a>Gertrudenstraße</a> oder das <a>Alstertor</a> abbiegen, muss man sich jeweils
+  die <a bounds="9.997995,53.55264,10.000329,53.553953">Gertrudenstraße</a> oder das <a bounds="9.996382,53.55171,9.998472,53.553041">Alstertor</a> abbiegen, muss man sich jeweils
   kurz in den Autoverkehr einfädeln um dann gemeinsam direkt abzubiegen. Indirektes
   abbiegen scheint nicht vorgesehen zu sein.</p> <p>Bei der <a href="/#18/53.552023/9.994481">Bergstraße</a>
   hat man die Wahl: entweder direkt über die KFZ-Spuren oder man nutzt die verbesserte,
-  indirekte Querungsmöglichkeit zum <a>Reesendamm</a> und dreht dann um. Im Vergleich
-  zu jetzt wird der Radweg zum <a>Reesendamm</a> nicht nur deutlich besser hervorgehoben,
+  indirekte Querungsmöglichkeit zum <a bounds="9.993072,53.551082,9.994255,53.552362">Reesendamm</a> und dreht dann um. Im Vergleich
+  zu jetzt wird der Radweg zum <a bounds="9.993072,53.551082,9.994255,53.552362">Reesendamm</a> nicht nur deutlich besser hervorgehoben,
   sondern auch geradliniger gestaltet. Man muss also nicht mehr „entgegen der Fahrtrichtung“
-  fahren um zum Rathausmarkt zu gelangen. KFZ dürfen künftig aus dem <a>Jungfernstieg</a>
-  nur noch links Richtung <a>Ballindamm</a> fahren, der Radverkehr darf aber weiterhin
+  fahren um zum Rathausmarkt zu gelangen. KFZ dürfen künftig aus dem <a bounds="9.98931,53.551599,10.115693,53.59247">Jungfernstieg</a>
+  nur noch links Richtung <a bounds="9.994589,53.551657,10.000915,53.555833">Ballindamm</a> fahren, der Radverkehr darf aber weiterhin
   alles. Das sollte die Unfallgefahr durch fehlenden Schulterblick reduzieren. Gegen
   Falschfahrer wird eine schützende Verkehrsinsel angebracht, die so zumindest die
   Geschwindigkeit der KFZ reduzieren sollte.</p> <p><strong>Jungfernstieg:</strong>
@@ -66,10 +66,10 @@ text: '<p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a
   Radfahrstreifen. Im Anschluss geht es wie bisher auf die geteilten Rad-, Bus- und
   Taxispur. Unterschied: die Markierung für den Radverkehr befindet sich nun auf der
   linken Seite, ähnlich einem linksseitigen Schutzstreifen. Damit möchte man den Konflikt
-  mit den Bussen loswerden, die später alle rechts in den <a>Reesendamm</a> abbiegen.
+  mit den Bussen loswerden, die später alle rechts in den <a bounds="9.993072,53.551082,9.994255,53.552362">Reesendamm</a> abbiegen.
   Es ist sehr wahrscheinlich das man hier gleichzeitig links und rechts überholt wird
-  und Taxen auf Höhe <a>Neuer Wall</a> ungeordnet auf die normale Fahrspur vorpreschen.
-  Wie Radfahrende von hier in den <a>Reesendamm</a> wechseln, wird auch den Verkehrsteilnehmer
+  und Taxen auf Höhe <a bounds="9.986085,53.549807,9.993254,53.552822">Neuer Wall</a> ungeordnet auf die normale Fahrspur vorpreschen.
+  Wie Radfahrende von hier in den <a bounds="9.993072,53.551082,9.994255,53.552362">Reesendamm</a> wechseln, wird auch den Verkehrsteilnehmer
   ad hoc überlassen. Weder die Planer noch die Polizei haben viel Vertrauen in diese
   Führung: alle sind sich einig das der Belag erneuert werden sollte, damit die alten
   Markierung rückstandslos entfernt werden können. So soll eine zusätzliche Verwirrung
@@ -93,7 +93,7 @@ text: '<p>Der Umbau betrifft die Straßen <a>Ballindamm</a>, <a>Jungfernstieg</a
   die Kreuzungen zu räumen. Der Bericht geht nicht darauf ein, ob die Ampeln zu einer
   „grünen Welle“ für den Radverkehr geschalten werden, weswegen eher nicht davon auszugehen
   ist. Es bleibt zu hoffen, das diese nicht zu einer „roten Welle“ werden, da künftig
-  deutlich mehr Ampeln zu passieren sind.</p> <p>Wer vom <a>Gänsemarkt</a> kommend
+  deutlich mehr Ampeln zu passieren sind.</p> <p>Wer vom <a bounds="9.987767,53.554784,9.989311,53.555687">Gänsemarkt</a> kommend
   links auf in den Neuen Jungfernstieg abbiegen möchte, darf dies auch künftig weiter
   tun. Allerdings ändert sich die Führung: statt indirekt über die Fußfurt soll man
   künftig direkt links abbiegen. Dazu wird eine Stummel-Linksabbiegerspur nur für

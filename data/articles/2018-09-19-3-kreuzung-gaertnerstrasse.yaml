@@ -3,6 +3,7 @@ title: Kreuzung Gärtnerstraße (Veloroute 3)
 type: ampel
 tags:
 - 3
-text: "<p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a>Gärtnerstraße</a>
+text: >
+  <p>Stadtauswärts muss eine Bettelampel betätigt werden um die <a bounds="9.741041,53.577852,9.970311,53.669619">Gärtnerstraße</a>
   zu queren. Immerhin ist diese gut sichtbar und es ist klar erkennbar, das man sie
-  benutzen muss.</p>"
+  benutzen muss.</p>

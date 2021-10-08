@@ -13,7 +13,7 @@ text: >
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+      <td><a bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
     </tr>
     <tr>
       <td>
@@ -21,63 +21,63 @@ text: >
         <icon>12</icon>
         <icon>2</icon>
       </td>
-      <td><a phx-value-bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
+      <td><a bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
     </tr>
     <tr>
       <td>
         <icon>12</icon>
       </td>
-      <td><a phx-value-bounds="9.9661435,53.5412334,9.9761435,53.5512334">Landungsbrücken</a></td>
+      <td><a bounds="9.9661435,53.5412334,9.9761435,53.5512334">Landungsbrücken</a></td>
     </tr>
     <tr>
       <td>
         <icon>12</icon>
       </td>
-      <td><a phx-value-bounds="9.9663729,53.5457403,9.9668345,53.5459993">Alter Elbtunnel</a></td>
+      <td><a bounds="9.9663729,53.5457403,9.9668345,53.5459993">Alter Elbtunnel</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9680097,53.5282526,9.9779,53.5371424">Hafen</a></td>
+      <td><a bounds="9.9680097,53.5282526,9.9779,53.5371424">Hafen</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9900452,53.5120979,9.9901452,53.5121979">Reiherstiegviertel</a></td>
+      <td><a bounds="9.9900452,53.5120979,9.9901452,53.5121979">Reiherstiegviertel</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9914036,53.4830863,10.0046595,53.5004532">Wilhelmsburger Inselpark</a></td>
+      <td><a bounds="9.9914036,53.4830863,10.0046595,53.5004532">Wilhelmsburger Inselpark</a></td>
     </tr>
     <tr>
       <td>
         <icon>10</icon>
       </td>
-      <td><a phx-value-bounds="9.9938767,53.4714464,9.9961153,53.4755551">Alte Harburger Elbbrücke</a></td>
+      <td><a bounds="9.9938767,53.4714464,9.9961153,53.4755551">Alte Harburger Elbbrücke</a></td>
     </tr>
     <tr>
       <td>
-        <icon>10</icon> <a phx-value-bounds="10.011765,53.5095885,10.0597062,53.5329804">Veddel</a>
+        <icon>10</icon> <a bounds="10.011765,53.5095885,10.0597062,53.5329804">Veddel</a>
       </td>
-      <td><a phx-value-bounds="9.9897252,53.4555445,9.9908486,53.4564216">Bahnhof Harburg</a></td>
+      <td><a bounds="9.9897252,53.4555445,9.9908486,53.4564216">Bahnhof Harburg</a></td>
     </tr>
     <tr>
-      <td class="dir"><a phx-value-bounds="9.9214907,53.3167401,10.1074035,53.4639106">(Seevetal)</a></td>
-      <td><a phx-value-bounds="9.9651274,53.4487475,10.0067877,53.4753374">Harburg</a></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><a phx-value-bounds="9.9669587,53.4583205,9.9713544,53.4638611">TUHH</a></td>
+      <td class="dir"><a bounds="9.9214907,53.3167401,10.1074035,53.4639106">(Seevetal)</a></td>
+      <td><a bounds="9.9651274,53.4487475,10.0067877,53.4753374">Harburg</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.8912454,53.4465814,9.9845052,53.4850189">Heimfeld</a></td>
+      <td><a bounds="9.9669587,53.4583205,9.9713544,53.4638611">TUHH</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9066994,53.4140472,9.9770598,53.4614522">Eißendorf</a></td>
+      <td><a bounds="9.8912454,53.4465814,9.9845052,53.4850189">Heimfeld</a></td>
     </tr>
     <tr>
       <td></td>
-      <td class="dir"><a phx-value-bounds="9.8044452,53.3347794,9.9580681,53.4579631">(Rosengarten)</a></td>
+      <td><a bounds="9.9066994,53.4140472,9.9770598,53.4614522">Eißendorf</a></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="dir"><a bounds="9.8044452,53.3347794,9.9580681,53.4579631">(Rosengarten)</a></td>
     </tr>
   </table>
 

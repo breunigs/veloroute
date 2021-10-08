@@ -293,15 +293,8 @@ defmodule VelorouteWeb.ArticleView do
         zoomable_link(article, attrs, children)
 
       nil == href ->
-        name = Floki.text(children)
-        bounds = Overpass.bounds(name)
-
-        if bounds do
-          bounds = VariousHelpers.to_string_bounds(bounds)
-          {"a", [{"phx-click", "map-zoom-to"}, {"phx-value-bounds", bounds} | attrs], children}
-        else
-          {"span", [], children}
-        end
+        IO.puts(:stderr, "#{article.name}: Link “#{Floki.text(children)}” has no href")
+        {"span", [], children}
 
       String.starts_with?(href, "http") ->
         {"a", [{"target", "_blank"} | attrs], children}

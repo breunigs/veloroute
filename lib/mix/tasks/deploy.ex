@@ -71,7 +71,6 @@ defmodule Mix.Tasks.Deploy do
       ["npm", "run", "--prefix", "./assets", "deploy"],
       [Path.join(@cwd, "tools/update_favicons.sh")],
       ["mix", "compile"],
-      ["mix", "warm_caches"],
       ["mix", "update_gpx"],
       ["rm", "priv/static/#{Settings.video_serve_path()}"],
       ["mix", "phx.digest"],

@@ -13,39 +13,39 @@ text: >
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+      <td><a bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9879873,53.5547844,9.9893108,53.5554057">Gänsemarkt</a></td>
+      <td><a bounds="9.9879873,53.5547844,9.9893108,53.5554057">Gänsemarkt</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9903608,53.560823,9.9915904,53.5610058">Bahnhof Dammtor</a></td>
+      <td><a bounds="9.9903608,53.560823,9.9915904,53.5610058">Bahnhof Dammtor</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9700483,53.5569902,10.0082327,53.5738467">Rotherbaum</a></td>
+      <td><a bounds="9.9700483,53.5569902,10.0082327,53.5738467">Rotherbaum</a></td>
     </tr>
     <tr>
       <td>
         <icon>13</icon>
       </td>
-      <td><a phx-value-bounds="9.9683983,53.586403,9.9709292,53.5880841">Hoheluft</a></td>
+      <td><a bounds="9.9683983,53.586403,9.9709292,53.5880841">Hoheluft</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9353742,53.5809668,9.9745973,53.608135">Lokstedt</a></td>
+      <td><a bounds="9.9353742,53.5809668,9.9745973,53.608135">Lokstedt</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9465185,53.6146987,9.9565185,53.6246987">Niendorf Markt</a></td>
+      <td><a bounds="9.9465185,53.6146987,9.9565185,53.6246987">Niendorf Markt</a></td>
     </tr>
     <tr>
       <td>
         <icon>14</icon>
       </td>
-      <td><a phx-value-bounds="9.9451122,53.6358535,9.9551122,53.6458535">Niendorf Nord</a></td>
+      <td><a bounds="9.9451122,53.6358535,9.9551122,53.6458535">Niendorf Nord</a></td>
     </tr>
   </table>
 

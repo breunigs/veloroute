@@ -13,7 +13,7 @@ text: >
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
+      <td><a bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</a></td>
     </tr>
     <tr>
       <td>
@@ -21,35 +21,35 @@ text: >
         <icon>11</icon>
         <icon>12</icon>
       </td>
-      <td><a phx-value-bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
+      <td><a bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9624081,53.5594992,9.9655552,53.562092">Schanzenviertel</a></td>
+      <td><a bounds="9.9624081,53.5594992,9.9655552,53.562092">Schanzenviertel</a></td>
     </tr>
     <tr>
       <td>
         <icon>13</icon>
       </td>
-      <td><a phx-value-bounds="9.9351095,53.5631662,9.9775009,53.5824343">Eimsbüttel</a></td>
+      <td><a bounds="9.9351095,53.5631662,9.9775009,53.5824343">Eimsbüttel</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9307791,53.5796377,9.9308791,53.5797377">Langenfelde</a></td>
+      <td><a bounds="9.9307791,53.5796377,9.9308791,53.5797377">Langenfelde</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a phx-value-bounds="9.9054092,53.5716142,9.948001,53.6064873">Stellingen</a></td>
+      <td><a bounds="9.9054092,53.5716142,9.948001,53.6064873">Stellingen</a></td>
     </tr>
     <tr>
       <td>
         <icon>14</icon>
       </td>
-      <td><a phx-value-bounds="9.8691962,53.5861088,9.9353742,53.6252091">Eidelstedt</a></td>
+      <td><a bounds="9.8691962,53.5861088,9.9353742,53.6252091">Eidelstedt</a></td>
     </tr>
     <tr>
       <td></td>
-      <td class="dir"><a phx-value-bounds="9.7988673,53.6092986,9.8849942,53.6472848">(Halstenbek)</a></td>
+      <td class="dir"><a bounds="9.7988673,53.6092986,9.8849942,53.6472848">(Halstenbek)</a></td>
     </tr>
   </table>
 
