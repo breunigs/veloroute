@@ -3,7 +3,7 @@ defmodule Video.Source do
 
   @known_params [
     :source,
-    :available_anonymized,
+    :available_detections,
     :available_gpx,
     :date
   ]
@@ -18,7 +18,7 @@ defmodule Video.Source do
       new_from_path(
         source_path,
         source_path |> Video.Path.gpx() |> File.exists?(),
-        source_path |> Video.Path.anonymized() |> File.exists?()
+        source_path |> Video.Path.detections() |> File.exists?()
       )
   end
 
@@ -27,7 +27,7 @@ defmodule Video.Source do
       new_from_path(
         source_path,
         MapSet.member?(known_files, Video.Path.gpx(source_path)),
-        MapSet.member?(known_files, Video.Path.anonymized(source_path))
+        MapSet.member?(known_files, Video.Path.detections(source_path))
       )
   end
 
@@ -51,12 +51,12 @@ defmodule Video.Source do
       else: {:error, "Not a valid source path: #{source_path}"}
   end
 
-  defp new_from_path(source_path, available_gpx, available_anonymized)
+  defp new_from_path(source_path, available_gpx, available_detections)
        when is_binary(source_path) and is_boolean(available_gpx) and
-              is_boolean(available_anonymized) do
+              is_boolean(available_detections) do
     %__MODULE__{
       source: Video.Path.source_base(source_path),
-      available_anonymized: available_anonymized,
+      available_detections: available_detections,
       available_gpx: available_gpx,
       date: date_from_path(source_path)
     }

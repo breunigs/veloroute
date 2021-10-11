@@ -67,7 +67,7 @@ defmodule Video.Rendered do
   def render(rendered) do
     concat =
       Enum.reduce(rendered.sources(), @anonymizing_concat, fn {path, from, to}, cmd ->
-        path = Video.Path.anonymized_rel_to_cwd(path)
+        path = Video.Path.source_rel_to_cwd(path)
         cmd ++ [path, from, to]
       end)
 

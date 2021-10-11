@@ -1,7 +1,7 @@
 defmodule Video.Path do
   import Video.Track, only: [valid_hash: 1]
 
-  @anonymized_suffix ".anonymized.mkv"
+  @detections_suffix ".json.gz"
   @source_endings [".MP4", ".mkv"]
   @gpx_ending ".gpx"
 
@@ -29,7 +29,7 @@ defmodule Video.Path do
   end
 
   def source(path) when is_binary(path) do
-    path = path |> abs_path() |> String.replace_suffix(@anonymized_suffix, "")
+    path = path |> abs_path() |> String.replace_suffix(@detections_suffix, "")
     if has_extension?(path), do: path, else: path <> hd(@source_endings)
   end
 
@@ -43,24 +43,24 @@ defmodule Video.Path do
     gpx(path) |> rel_to_cwd()
   end
 
-  def anonymized(path) when is_binary(path) do
+  def detections(path) when is_binary(path) do
     path =
       cond do
-        String.ends_with?(path, @anonymized_suffix) ->
+        String.ends_with?(path, @detections_suffix) ->
           path
 
         has_extension?(path) ->
-          path <> @anonymized_suffix
+          path <> @detections_suffix
 
         true ->
-          path <> hd(@source_endings) <> @anonymized_suffix
+          path <> hd(@source_endings) <> @detections_suffix
       end
 
     abs_path(path)
   end
 
-  def anonymized_rel_to_cwd(path) when is_binary(path) do
-    anonymized(path) |> rel_to_cwd()
+  def detections_rel_to_cwd(path) when is_binary(path) do
+    detections(path) |> rel_to_cwd()
   end
 
   def source_base(path) when is_binary(path) do
@@ -93,7 +93,7 @@ defmodule Video.Path do
   """
   def is_source_path(path) do
     cond do
-      String.ends_with?(path, @anonymized_suffix) -> false
+      String.ends_with?(path, @detections_suffix) -> false
       Enum.any?(@source_endings, &String.ends_with?(path, &1)) -> true
       !has_extension?(path) -> true
       true -> false

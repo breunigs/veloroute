@@ -163,7 +163,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   use Mix.Task
   import Mix.Tasks.Velo.Videos
 
-  @shortdoc "Indexes videos and their anonymization status"
+  @shortdoc "Indexes videos and their GPX tracks"
   def run(_) do
     Video.Dir.must_exist!(&real_run/0)
   end
