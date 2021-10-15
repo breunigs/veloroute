@@ -1,4 +1,4 @@
-<div id="videoOuter" style="background: #333333 url('<%= @video_poster %>') 50% 50% / cover no-repeat">
+<div id="videoOuter" style="background: #333333 url('{@video_poster}') 50% 50% / cover no-repeat">
   <video phx-update="ignore" id="videoInner" muted controls playsinline preload="none">
   </video>
 </div>
@@ -36,18 +36,18 @@
 </div>
 
 <div id="control" phx-hook="control"
-  data-lon="<%= @lon %>"
-  data-lat="<%= @lat %>"
-  data-ping="<%= if @ping, do: "#{@ping.lon},#{@ping.lat}" %>"
-  data-bearing="<%= @bearing %>"
-  data-autoplay="<%= @autoplay %>"
-  data-video-hash="<%= @video_hash %>"
-  data-video-start="<%= @video_start %>"
-  data-video-start-gen="<%= @video_start_gen %>"
-  data-video-coords="<%= @video_coords %>"
-  data-visible-types="<%= @visible_types |> Enum.join(",") %>"
-  data-bounds="<%= @bounds %>"
-  data-bounds-ts="<%= @bounds_ts %>"
+  data-lon={@lon}
+  data-lat={@lat}
+  data-ping={if @ping, do: "#{@ping.lon},#{@ping.lat}"}
+  data-bearing={@bearing}
+  data-autoplay={@autoplay}
+  data-video-hash={@video_hash}
+  data-video-start={@video_start}
+  data-video-start-gen={@video_start_gen}
+  data-video-coords={@video_coords}
+  data-visible-types={Enum.join( @visible_types, ",")}
+  data-bounds={@bounds}
+  data-bounds-ts={@bounds_ts}
 ></div>
 
 <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
@@ -58,5 +58,5 @@
     track -> Video.Rendered.get(track).hash()
   end
   %>
-  <div id="linkInfoHelper" data-video-id="<%= ref %>" data-video-dir="<%= @video.direction %>"></div>
+  <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
 <% end %>

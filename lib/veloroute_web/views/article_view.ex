@@ -230,7 +230,7 @@ defmodule VelorouteWeb.ArticleView do
     try do
       id_from_attr = find_attribute(given_attr, "phx-value-route")
       id = id_from_attr || Floki.text(content)
-      icon = id |> VariousHelpers.route_icon() |> to_floki
+      icon = id |> VariousHelpers.route_icon() |> to_floki()
 
       path = Cache.Articles.find("#{id}") |> Article.path()
       attr_with_href = [{"href", path} | given_attr]
@@ -244,7 +244,7 @@ defmodule VelorouteWeb.ArticleView do
     rescue
       e ->
         msg = "Cannot generate icon for “#{inspect(content)}”:\n"
-        msg = msg <> "  given_attr: #{inspect(given_attr)}"
+        msg = msg <> "  given_attr: #{inspect(given_attr)}\n"
         msg = msg <> "  error: #{inspect(e)}"
         raise msg
     end
@@ -491,9 +491,9 @@ defmodule VelorouteWeb.ArticleView do
   end
 
   @spec to_floki(Phoenix.HTML.safe()) :: Floki.html_tree()
-  defp to_floki({:safe, [_, tag, attrs, _, content | _rest]}) do
-    attrs = Enum.map(attrs, fn [_, k, _, _, v, _] -> {k, v} end)
-    [{tag, attrs, List.wrap(content)}]
+  defp to_floki(safe_html) do
+    {:ok, document} = safe_html |> Phoenix.HTML.safe_to_string() |> Floki.parse_document()
+    document
   end
 
   def find_attribute(attrs, key) do

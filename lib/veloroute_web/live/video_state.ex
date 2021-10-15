@@ -221,14 +221,6 @@ defmodule VelorouteWeb.Live.VideoState do
     start_from = Video.Rendered.start_from(video, state.start)
     coords = Video.Rendered.coord_io_list(video)
 
-    banner_url =
-      VelorouteWeb.Router.Helpers.image_extract_path(
-        VelorouteWeb.Endpoint,
-        :image,
-        video.hash,
-        start_from.time_offset_ms
-      )
-
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
 
     [
@@ -238,7 +230,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start_gen: state.start_generation,
       video_coords: coords,
       video_reversable: is_reversable(state),
-      video_poster: banner_url,
+      video_poster: video_poster(video, start_from),
       lon: start_from.lon,
       lat: start_from.lat,
       bearing: start_from.bearing
@@ -256,6 +248,16 @@ defmodule VelorouteWeb.Live.VideoState do
       video_coords: '',
       video_reversable: false
     ]
+  end
+
+  @spec video_poster(Video.Rendered.t(), %{time_offset_ms: integer()}) :: binary()
+  defp video_poster(video, start_from) do
+    VelorouteWeb.Router.Helpers.image_extract_path(
+      VelorouteWeb.Endpoint,
+      :image,
+      video.hash,
+      start_from.time_offset_ms
+    )
   end
 
   defp extract_start(state, %Article{bbox: bbox}) when is_map(bbox) do
