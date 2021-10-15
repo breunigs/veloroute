@@ -17,7 +17,7 @@
 7928:
   :id: 7928
   :title: 'Spaldingstraße / Sielrenovierung -- '
-  :updated: '2021-08-20T07:47:02.470925'
+  :updated: '2021-10-15T10:28:45.130853'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2020-07-01'
   :end: '2021-11-30'
@@ -733,8 +733,8 @@
   :velo: false
 11041:
   :id: 11041
-  :title: Bahrenfelder Chaussee / Vorarbeiten für Tunnel Altona -- LSBG
-  :updated: '2020-08-17T08:50:27.56123'
+  :title: 'Bahrenfelder Chaussee / Vorarbeiten für Tunnel Altona -- '
+  :updated: '2021-10-13T14:13:08.436633'
   :link: https://www.deges.de/projekte/projekt/a-7-altonatunnel/
   :start: '2020-08-24'
   :end: '2028-12-31'
@@ -1057,10 +1057,10 @@
 14878:
   :id: 14878
   :title: 'Veringstraße / Sielbau -- '
-  :updated: '2021-08-12T08:52:21.142014'
+  :updated: '2021-10-15T10:30:41.565668'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-04-01'
-  :end: '2021-08-31'
+  :end: '2021-10-31'
   :velo: false
 15360:
   :id: 15360
@@ -1636,10 +1636,10 @@
 16352:
   :id: 16352
   :title: 'Poelchaukamp, Sierichstraße, Dorotheenstraße (Sielbau) -- '
-  :updated: '2021-06-11T07:26:49.314249'
+  :updated: '2021-10-15T10:27:33.669043'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-04'
-  :end: '2021-11-15'
+  :end: '2021-11-18'
   :velo: false
 16775:
   :id: 16775
@@ -2237,7 +2237,7 @@
 17273:
   :id: 17273
   :title: 'Bismarckstraße/ Asphaltierung -- '
-  :updated: '2021-09-16T09:59:01.841351'
+  :updated: '2021-10-11T14:05:05.576656'
   :start: '2021-10-18'
   :end: '2021-10-22'
   :velo: false
@@ -2272,7 +2272,7 @@
 18847:
   :id: 18847
   :title: 'Am Radeland /Sielbau -- '
-  :updated: '2021-09-15T14:22:16.695377'
+  :updated: '2021-10-15T10:24:45.083211'
   :link: http://www.hamburgwasser.de/privatkunden/baustellen
   :start: '2021-06-14'
   :end: '2021-11-19'
@@ -2494,7 +2494,7 @@
 19824:
   :id: 19824
   :title: 'Am Sandtorkai / Leitungsbau -- '
-  :updated: '2021-09-15T11:39:20.874684'
+  :updated: '2021-10-15T11:24:48.654021'
   :start: '2021-09-13'
   :end: '2022-02-15'
   :velo: true
@@ -2681,9 +2681,9 @@
   :id: 20172
   :title: 'Christinenstraße – Maikstraße - Hofweide - An der Twiete, Deckschichtsanierung
     -- '
-  :updated: '2021-09-30T07:25:25.957741'
+  :updated: '2021-10-14T10:52:44.436931'
   :start: '2021-10-11'
-  :end: '2021-10-18'
+  :end: '2021-10-25'
   :velo: false
 20427:
   :id: 20427
@@ -2712,4 +2712,106 @@
   :updated: '2021-10-07T13:50:04.509457'
   :start: '2021-10-12'
   :end: '2021-10-15'
+  :velo: false
+20498:
+  :id: 20498
+  :title: 'Alsterdorfer Straße / Deckschichtsanierung -- '
+  :updated: '2021-10-08T08:30:46.023461'
+  :start: '2021-10-11'
+  :end: '2021-10-13'
+  :velo: false
+20134:
+  :id: 20134
+  :title: 'Winsener Straße - Hittfelder Straße / Binder- und Deckschicht -- '
+  :updated: '2021-10-13T10:39:49.404594'
+  :link: https://www.hamburg.de/baustellen
+  :start: '2021-10-18'
+  :end: '2021-10-24'
+  :velo: true
+20526:
+  :id: 20526
+  :title: 'Greifenhagener Straße / Vollsperrung -- '
+  :updated: '2021-10-12T11:23:34.019489'
+  :start: '2021-10-12'
+  :end: '2021-10-20'
+  :velo: false
+20546:
+  :id: 20546
+  :title: 'St. Benedictstraße/ Leitungsarbeiten -- '
+  :updated: '2021-10-12T11:25:44.43126'
+  :start: '2021-11-01'
+  :end: '2021-11-18'
+  :velo: false
+20513:
+  :id: 20513
+  :title: 'Cremonbrücke / Abbruch -- '
+  :updated: '2021-10-12T11:06:52.842243'
+  :start: '2021-10-28'
+  :end: '2022-01-31'
+  :velo: false
+20581:
+  :id: 20581
+  :title: 'Jacobshagener Weg - Krohnsheide / vorbereitende Leitungsarbeiten -- '
+  :updated: '2021-10-13T13:12:37.269612'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15457466/jacobshagener-weg-krohnsheide/
+  :start: '2021-10-01'
+  :end: '2021-12-31'
+  :velo: false
+20541:
+  :id: 20541
+  :title: 'Sportplatzring/ Kranarbeiten -- '
+  :updated: '2021-10-12T11:24:19.60487'
+  :start: '2021-10-13'
+  :end: '2021-10-13'
+  :velo: false
+20658:
+  :id: 20658
+  :title: 'Nordkanalstrasse / Trinkwasser -- '
+  :updated: '2021-10-13T09:48:39.547032'
+  :link: http://www.hamburgwasser.de/privatkunden/baustellen
+  :start: '2021-08-30'
+  :end: '2021-12-20'
+  :velo: false
+20588:
+  :id: 20588
+  :title: 'Haldesdorfer Straße / Radverkehrsmaßnahme -- '
+  :updated: '2021-10-13T13:55:18.143792'
+  :link: https://www.hamburg.de/wandsbek/strassenbaustellen/15457482/haldesdorfer-strasse/
+  :start: '2021-10-25'
+  :end: '2022-11-30'
+  :velo: true
+20185:
+  :id: 20185
+  :title: 'Nelkenweg / erstmalige endgültige Herstellung -- '
+  :updated: '2021-10-12T14:54:50.621552'
+  :start: '2021-11-01'
+  :end: '2022-02-28'
+  :velo: false
+20570:
+  :id: 20570
+  :title: 'Barmbeker Markt / Trummensanierung -- '
+  :updated: '2021-10-12T11:33:02.491689'
+  :start: '2021-10-14'
+  :end: '2021-10-15'
+  :velo: false
+20719:
+  :id: 20719
+  :title: 'Liliencronstraße / Verlegung Fernwärmeleitung -- '
+  :updated: '2021-10-15T09:50:10.803959'
+  :start: '2021-10-19'
+  :end: '2021-12-31'
+  :velo: false
+20752:
+  :id: 20752
+  :title: 'Karl-Arnold-Ring / Fahrspursperrung -- '
+  :updated: '2021-10-15T11:16:23.181049'
+  :start: '2021-10-18'
+  :end: '2021-12-10'
+  :velo: true
+20708:
+  :id: 20708
+  :title: 'Steilshooper Straße / Teilsanierung -- '
+  :updated: '2021-10-15T09:49:07.089267'
+  :start: '2021-11-01'
+  :end: '2021-12-10'
   :velo: false
