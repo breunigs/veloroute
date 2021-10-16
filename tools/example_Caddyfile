@@ -1,0 +1,53 @@
+veloroute.hamburg {
+	header -Server
+	header strict-transport-security "max-age=31536000; includeSubDomains; preload"
+
+	log {
+		output file /var/log/caddy/veloroute.log {
+			roll_local_time true
+			# how many files to keep
+			roll_keep     2
+			# how many days to keep
+			roll_keep_for 7d
+		}
+		format json
+	}
+
+	encode {
+		zstd
+		gzip
+		match {
+			header Content-Type text/*
+			header Content-Type application/json*
+			header Content-Type application/javascript*
+			header Content-Type application/xhtml+xml*
+			header Content-Type application/atom+xml*
+			header Content-Type application/rss+xml*
+			header Content-Type image/svg+xml*
+			header Content-Type application/vnd.apple.mpegurl
+		}
+	}
+
+	route {
+		file_server /google-some-hash-here.html {
+			root /srv/google-verification
+		}
+
+		route /videos-rendered/* {
+			uri strip_prefix /videos-rendered/
+			header cache-control "public, max-age=604800, immutable"
+			file_server {
+				root /path/to/videos
+			}
+		}
+
+		# using two reverse proxies for deploying without losing requests
+		reverse_proxy * localhost:11371 localhost:11372 {
+			flush_interval -1
+			lb_policy first
+			lb_try_duration 1s
+			lb_try_interval 250ms
+			fail_duration 1.5s
+		}
+	}
+}
