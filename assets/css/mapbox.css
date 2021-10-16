@@ -154,3 +154,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   font-weight: 700;
   margin-left: 2px
 }
+
+.mapboxgl-ctrl-attrib-button {
+  display: none;
+}
