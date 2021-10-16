@@ -25,8 +25,8 @@ results = SearchResult.sort_merge(map, art) |> Enum.take(15)
 <%= for result <- results do %>
   <li>
     <div>
-      <!-- relevance: <%= result.relevance %> -->
-      <!-- type: <%= result.type %> -->
+      <!-- relevance: {result.relevance} -->
+      <!-- type: {result.type} -->
       <%= SearchResult.to_html(result) %>
       <%= if result.subtext do %>
         <div class="aside"><%= result.subtext %></div>

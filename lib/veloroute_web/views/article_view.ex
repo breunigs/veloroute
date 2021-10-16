@@ -81,7 +81,8 @@ defmodule VelorouteWeb.ArticleView do
        when is_binary(name) and name != "" do
     text =
       Phoenix.View.render(VelorouteWeb.DynamicView, art.dynamic, assigns)
-      |> Phoenix.HTML.safe_to_string()
+      |> Phoenix.HTML.Safe.to_iodata()
+      |> to_string()
 
     Map.put(art, :text, text)
   end

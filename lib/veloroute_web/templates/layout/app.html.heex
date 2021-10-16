@@ -4,10 +4,10 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1"/>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="stylesheet" href={Routes.static_path(@conn, "/css/app.css")}/>
     <title><%= assigns[:page_title] || Settings.page_title_long() %></title>
     <%= csrf_meta_tag() %>
-    <link rel="canonical" href="<%= Settings.url() <> @conn.request_path %>"/>
+    <link rel="canonical" href={Settings.url() <> @conn.request_path}/>
 
     <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
     <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
@@ -22,23 +22,23 @@
     <%# used on this page, unless fully cached %>
     <link rel="preconnect" href="https://api.mapbox.com">
     <%# happens maybe %>
-    <link rel="alternate" type="application/atom+xml" href="<%= Routes.feed_path(@conn, :feed) %>" title="<%= Settings.feed_title() %>">
+    <link rel="alternate" type="application/atom+xml" href={Routes.feed_path(@conn, :feed)} title={Settings.feed_title()}>
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <%= if assigns[:article_date] != nil do %>
       <meta property="og:type" content="article"/>
-      <meta property="article:modified_time" content="<%= Date.to_iso8601(assigns[:article_date]) %>"/>
+      <meta property="article:modified_time" content={Date.to_iso8601(assigns[:article_date])}/>
     <% end %>
     <%= if assigns[:article_title] != nil do %>
-      <meta property="og:title" content="<%= assigns[:article_title] %>"/>
+      <meta property="og:title" content={assigns[:article_title]}/>
     <% end %>
     <%= if assigns[:article_summary] != nil do %>
-      <meta property="og:description" content="<%= assigns[:article_summary] %>"/>
+      <meta property="og:description" content={assigns[:article_summary]}/>
     <% end %>
-    <meta property="og:site_name" content="<%= Settings.sitebar_name() %>"/>
+    <meta property="og:site_name" content={Settings.sitebar_name()}/>
     <meta property="og:image:width" content="640"/>
-    <meta property="og:image" content="<%= Routes.image_extract_url(@conn, :image, @video_hash, @video_start) %>"/>
+    <meta property="og:image" content={Routes.image_extract_url(@conn, :image, @video_hash, @video_start)} />
     <%= if Settings.twitter_handle() != nil do %>
-      <meta property="twitter:creator" content="<%= Settings.twitter_handle() %>"/>
+      <meta property="twitter:creator" content={Settings.twitter_handle()}/>
     <% end %>
     <%# just the layout parts copied from the rendered CSS. Needs manual adjustment after changes are made. %>
     <style>
@@ -104,26 +104,31 @@
 
     <%= if Browser.ie?(ua) || Browser.edge?(ua) do %>
       <%# hard polyfills IE will not work decently without %>
-      <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/polyfill.js") %>"></script>
+      <script type="text/javascript" src={Routes.static_path(@conn, "/js/polyfill.js")}></script>
     <% end %>
 
-    <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/map.js") %>"></script>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/liveview.js") %>"></script>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
-    <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/video_player.js") %>"></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")}></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/js/liveview.js")}></script>
+    <script type="text/javascript" src={Routes.static_path(@conn, "/js/app.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/video_player.js")}></script>
 
     <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" && Settings.enable_sentry_frontend do %>
+      <%
+        onload = """
+          Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '#{Application.get_env(:sentry, :release)}' }); Sentry.setTag('env', '#{Application.get_env(:veloroute, :env)}');
+        """
+      %>
       <script src="https://browser.sentry-cdn.com/5.22.3/bundle.min.js"
         integrity="sha384-A1qzcXXJWl+bzYr+r8AdFzSaLbdcbYRFmG37MEDKr4EYjtraUyoZ6UiMw31jHcV9"
         crossorigin="anonymous"
-        onload="Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '<%= Application.get_env(:sentry, :release) %>' }); Sentry.setTag('env', '<%= Application.get_env(:veloroute, :env) %>');" async></script>
+        onload={onload} async></script>
     <% end %>
 
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
       <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
       <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
       <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
-      <script type="text/javascript" defer src="<%= Routes.static_path(@conn, "/js/link_helper.js") %>"></script>
+      <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/link_helper.js")}></script>
     <% end %>
   </body>
 </html>

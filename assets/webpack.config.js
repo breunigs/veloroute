@@ -9,7 +9,11 @@ module.exports = (env, options) => ({
   devtool: "source-map",
   optimization: {
     minimizer: [
-      new TerserPlugin({ cache: true, parallel: true, sourceMap: true }),
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
@@ -28,12 +32,14 @@ module.exports = (env, options) => ({
     path: path.resolve(__dirname, '../priv/static/js')
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       },
       {
@@ -53,7 +59,12 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
+    new MiniCssExtractPlugin({
+      filename: '../css/app.css'
+    }),
+    new CopyWebpackPlugin([{
+      from: 'static/',
+      to: '../'
+    }])
   ]
 });

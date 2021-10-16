@@ -1,9 +1,10 @@
-// IE 11 (lvieview)
+// IE 11 (liveview)
 import "mdn-polyfills/Object.assign"
 import "mdn-polyfills/CustomEvent"
 import "mdn-polyfills/String.prototype.startsWith"
 import "mdn-polyfills/Array.from"
 import "mdn-polyfills/Array.prototype.find"
+import "mdn-polyfills/Array.prototype.some"
 import "mdn-polyfills/NodeList.prototype.forEach"
 import "mdn-polyfills/Element.prototype.closest"
 import "mdn-polyfills/Element.prototype.matches"
@@ -12,7 +13,10 @@ import "child-replace-with-polyfill"
 import "url-search-params-polyfill"
 import "formdata-polyfill"
 import "classlist-polyfill"
+import "new-event-polyfill"
 import "@webcomponents/template"
+import "core-js/features/set"
+import "core-js/features/url"
 // IE 11 + Edge
 import "shim-keyboard-event-key"
 
