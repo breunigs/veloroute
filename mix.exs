@@ -16,6 +16,10 @@ defmodule Veloroute.MixProject do
           include_executables_for: [:unix],
           steps: [:assemble, :tar]
         ]
+      ],
+      preferred_cli_env: [
+        test: :test,
+        dialyzer: :test
       ]
     ]
   end

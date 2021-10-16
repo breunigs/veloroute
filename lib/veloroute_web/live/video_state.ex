@@ -250,7 +250,10 @@ defmodule VelorouteWeb.Live.VideoState do
     ]
   end
 
-  @spec video_poster(Video.Rendered.t(), %{time_offset_ms: integer()}) :: binary()
+  @spec video_poster(Video.Rendered.t(), %{
+          :time_offset_ms => integer(),
+          optional(atom()) => any()
+        }) :: binary()
   defp video_poster(video, start_from) do
     VelorouteWeb.Router.Helpers.image_extract_path(
       VelorouteWeb.Endpoint,
