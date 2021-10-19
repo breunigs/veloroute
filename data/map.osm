@@ -11833,6 +11833,14 @@
   <node id='-21286132' action='modify' lat='53.58633394064' lon='10.05130469263' />
   <node id='-21286133' action='modify' lat='53.58630528124' lon='10.05155682027' />
   <node id='-21286134' action='modify' lat='53.58591041641' lon='10.05200743139' />
+  <node id='-21534578' action='modify' lat='53.56583432545' lon='9.97913717151' />
+  <node id='-21534579' action='modify' lat='53.56432417188' lon='9.98181938052' />
+  <node id='-21534580' action='modify' lat='53.56418398612' lon='9.98177646518' />
+  <node id='-21534581' action='modify' lat='53.56417761402' lon='9.98240946651' />
+  <node id='-21534582' action='modify' lat='53.56435603222' lon='9.98237728' />
+  <node id='-21534583' action='modify' lat='53.56492951418' lon='9.98117565036' />
+  <node id='-21534584' action='modify' lat='53.56564954162' lon='9.9799096477' />
+  <node id='-21534585' action='modify' lat='53.56600493942' lon='9.97940571441' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -40716,6 +40724,19 @@
     <nd ref='-21286134' />
     <nd ref='-21286116' />
     <tag k='name' v='2021-10-08-krausestrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-18834212' action='modify'>
+    <nd ref='-21534585' />
+    <nd ref='-21534578' />
+    <nd ref='-21534579' />
+    <nd ref='-21534580' />
+    <nd ref='-21534581' />
+    <nd ref='-21534582' />
+    <nd ref='-21534583' />
+    <nd ref='-21534584' />
+    <nd ref='-21534585' />
+    <tag k='name' v='2021-10-19-bundesstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
