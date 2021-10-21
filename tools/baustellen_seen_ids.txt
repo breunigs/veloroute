@@ -3,9 +3,9 @@
 23:
   :id: 23
   :title: 'B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- '
-  :updated: '2021-08-20T14:50:56.920315'
+  :updated: '2021-10-19T11:28:33.323993'
   :start: '2019-04-01'
-  :end: '2021-10-31'
+  :end: '2021-12-31'
   :velo: false
 101:
   :id: 101
@@ -2397,7 +2397,7 @@
 19498:
   :id: 19498
   :title: 'Schenefelder Landstraße / Instandsetzung -- '
-  :updated: '2021-09-03T09:15:40.772236'
+  :updated: '2021-10-18T10:38:17.96848'
   :link: http://lsbg.hamburg.de/anliegerinformationen/
   :start: '2021-09-13'
   :end: '2022-05-31'
@@ -2494,7 +2494,7 @@
 19824:
   :id: 19824
   :title: 'Am Sandtorkai / Leitungsbau -- '
-  :updated: '2021-10-15T11:24:48.654021'
+  :updated: '2021-10-18T10:33:23.973671'
   :start: '2021-09-13'
   :end: '2022-02-15'
   :velo: true
@@ -2815,3 +2815,73 @@
   :start: '2021-11-01'
   :end: '2021-12-10'
   :velo: false
+20795:
+  :id: 20795
+  :title: 'Billstedter Hauptstraße / Fahrspursperrung -- '
+  :updated: '2021-10-18T15:41:43.685073'
+  :start: '2021-10-18'
+  :end: '2021-12-31'
+  :velo: true
+20673:
+  :id: 20673
+  :title: 'Wandsbeker Schützenhof / Deckenprogramm -- '
+  :updated: '2021-10-13T13:12:12.068641'
+  :start: '2021-10-25'
+  :end: '2021-10-29'
+  :velo: false
+20814:
+  :id: 20814
+  :title: 'Anckelmannsplatz / Fahrspursperrung -- '
+  :updated: '2021-10-19T11:25:17.086767'
+  :start: '2021-10-25'
+  :end: '2021-10-29'
+  :velo: false
+20826:
+  :id: 20826
+  :title: 'Fritzschweg / Vollsperrung -- '
+  :updated: '2021-10-19T14:59:52.993646'
+  :start: '2021-10-25'
+  :end: '2021-11-24'
+  :velo: false
+20856:
+  :id: 20856
+  :title: 'Femerlingstraße / Asphaltierungsarbeiten / Vollsperrung -- '
+  :updated: '2021-10-20T14:20:52.338268'
+  :start: '2021-10-21'
+  :end: '2021-10-22'
+  :velo: false
+20521:
+  :id: 20521
+  :title: 'Ludwig-Erhard-Straße (Slamatjenbrücke) / Deckschichterneuerung -- '
+  :updated: '2021-10-12T11:31:46.085721'
+  :start: '2021-10-28'
+  :end: '2021-11-01'
+  :velo: false
+20562:
+  :id: 20562
+  :title: 'Ludwig-Erhard-Straße (Herrngrabenbrücke) / Deckschichterneuerung -- '
+  :updated: '2021-10-15T10:30:02.537248'
+  :start: '2021-10-28'
+  :end: '2021-11-01'
+  :velo: false
+20867:
+  :id: 20867
+  :title: 'Wilseder Ring / Instandsetzungsarbeiten / Vollsperrung -- '
+  :updated: '2021-10-20T14:21:45.641703'
+  :start: '2021-10-26'
+  :end: '2022-04-29'
+  :velo: true
+20840:
+  :id: 20840
+  :title: 'Wattenbergstraße / Vollsperrung -- '
+  :updated: '2021-10-20T14:20:57.445363'
+  :start: '2021-11-01'
+  :end: '2022-02-28'
+  :velo: false
+20833:
+  :id: 20833
+  :title: 'St. Benedictstraße / Straßenbauarbeiten -- '
+  :updated: '2021-10-20T14:17:53.247198'
+  :start: '2021-11-18'
+  :end: '2022-05-15'
+  :velo: true
