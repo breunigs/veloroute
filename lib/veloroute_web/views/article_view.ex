@@ -264,11 +264,7 @@ defmodule VelorouteWeb.ArticleView do
 
     cond do
       nil == href ->
-        name = Floki.text(children)
-        {"a", [{"href", "#{Settings.url()}/#{name}"}], children}
-
-      String.starts_with?(href, "/") ->
-        {"a", set_attribute(attrs, "href", Settings.url()), children}
+        {"i", [], children}
 
       true ->
         {"a", attrs, children}
