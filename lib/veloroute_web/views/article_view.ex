@@ -8,6 +8,8 @@ defmodule VelorouteWeb.ArticleView do
   @recent_article_max 20
   @recent_article_days 14
 
+  # def render(name, assigns) when name ===
+
   def render(name, assigns) do
     art =
       Cache.Articles.get()

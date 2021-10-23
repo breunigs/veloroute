@@ -1,11 +1,11 @@
+end: 2022-05-15
+start: 2021-11-18
 title: St. Benedictstraße (Klosterstern bis Streekbrücke)
 type: construction
 start:	2021-11-18
 end:	2022-05-15
 construction_site_id_hh: 20833
 summary: St. Benedictstraße erhält Schutzstreifen, Kreuzung mit der Heilwigstraße wird ein Kreisel.
-tags:
--
 text: >
   <h4>Alter Zustand</h4>
   <p>Im <a bounds="9.988819,53.581511,9.993987,53.583465" lon="9.989747" lat="53.58205" dir="forward">westlichen Teil</a> gibt es keine eigenen Radwege und man muss im <ref>Mischverkehr</ref> mit den Autos mitschwimmen. Ab der <a bounds="9.993217,53.582736,9.995991,53.584201" lon="9.993882" lat="53.583199" dir="forward">Kreuzung mit der Heilwigstraße</a> sind noch schmale <ref>Hochbordradwege</ref> vorhanden, die jedoch schlecht erreichbar sind und beim Umbau des Leinpfads auch gar nicht mehr angeschlossen wurden.</p>

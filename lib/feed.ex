@@ -8,29 +8,34 @@ defmodule Feed do
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
-    |> Feed.link(Settings.url() <> "/updates.atom", rel: "self")
+    |> Feed.link("/updates.atom", rel: "self")
     |> Feed.entries(articles())
-    |> Feed.build(%{"xmlns:georss" => "http://www.georss.org/georss"})
+    |> Feed.build(%{
+      "xmlns:georss" => "http://www.georss.org/georss",
+      "xml:base" => Settings.url()
+    })
     |> Atomex.generate_document()
   end
 
   defp articles() do
-    Cache.Articles.get()
-    |> Article.ordered_by_date()
-    |> Enum.slice(-10..-1)
+    Article.List.all()
+    |> Article.List.sort(:asc)
+    |> Enum.take(-10)
     |> Enum.map(&article/1)
   end
 
-  defp article(%Article{name: name, date: date} = art) do
-    {:safe, content} = VelorouteWeb.ArticleView.render_feed(art)
-    {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(date) <> " 00:00:00Z")
+  defp article(art) do
+    content = Article.Dectorators.html(art, %{type: :feed})
+    full_title = Article.Dectorators.full_title(art)
+
+    {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
 
     # TODO: this fails, presumably because dependencies are missing during
     # compile?
     # Routes.article_url(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    url = Settings.url() <> "/article/" <> name
+    url = Settings.url() <> "/article/" <> art.name()
 
-    Entry.new(url, date, art.full_title)
+    Entry.new(url, date, full_title)
     |> Entry.content(content, type: "html")
     |> maybe_add_location(art)
     |> maybe_add_image(art)

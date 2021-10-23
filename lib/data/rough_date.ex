@@ -6,6 +6,9 @@ defmodule Data.RoughDate do
   @months {"Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September",
            "Oktober", "November", "Dezember"}
 
+  @spec sigil_d(binary(), []) :: Date.RoughDate.t()
+  def sigil_d(str, []), do: Data.RoughDate.parse(str)
+
   def parse(nil), do: %__MODULE__{year: nil, quarter: nil, month: nil, day: nil}
 
   def parse(date) when is_integer(date),
