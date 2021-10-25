@@ -1,4 +1,4 @@
-defmodule Data.Article.StBenedictstrasse do
+defmodule Data.Article.Blog.StBenedictstrasse do
   use Article.Default
 
   def name(), do: "st-benedictstrasse"
@@ -41,10 +41,10 @@ defmodule Data.Article.StBenedictstrasse do
       }
     ]
 
-  def text(assigns),
-    do: ~H"""
+  def text(assigns) do
+    ~H"""
     <h4>Alter Zustand</h4>
-    <p>Im <.a bounds="9.988819,53.581511,9.993987,53.583465" lon="9.989747" lat="53.58205" dir="forward" {assigns}>westlichen Teil</.a> gibt es keine eigenen Radwege und man muss im <.ref>Mischverkehr</.ref> mit den Autos mitschwimmen. Ab der <.a bounds="9.993217,53.582736,9.995991,53.584201" lon="9.993882" lat="53.583199" dir="forward">Kreuzung mit der Heilwigstraße</.a> sind noch schmale <.ref>Hochbordradwege</.ref> vorhanden, die jedoch schlecht erreichbar sind und beim Umbau des Leinpfads auch gar nicht mehr angeschlossen wurden.</p>
+    <p>Im <.a bounds="9.988819,53.581511,9.993987,53.583465" lon="9.989747" lat="53.58205" dir="forward">westlichen Teil</.a> gibt es keine eigenen Radwege und man muss im <.ref>Mischverkehr</.ref> mit den Autos mitschwimmen. Ab der <.a bounds="9.993217,53.582736,9.995991,53.584201" lon="9.993882" lat="53.583199" dir="forward">Kreuzung mit der Heilwigstraße</.a> sind noch schmale <.ref>Hochbordradwege</.ref> vorhanden, die jedoch schlecht erreichbar sind und beim Umbau des Leinpfads auch gar nicht mehr angeschlossen wurden.</p>
 
     <h4>Planung</h4>
     <p>Es sollen meist <.ref>Schutzstreifen</.ref> mit rund 1,65m Breite aufgemalt werden. Im <.a bounds="9.993217,53.582736,9.995991,53.584201" lon="9.993882" lat="53.583199" dir="forward">östlichen Teil</.a> fallen diese etwas breiter aus, führen aber durch eine Bushaltestelle hindurch. Eine Vorbeifahrt ist auch bei wartenden Bussen möglich, allerdings muss hierzu auf die KFZ-Spur ausgewichen werden. Auf der <.a bounds="9.994388,53.583099,9.996719,53.584326" lon="9.995358" lat="53.583644" dir="forward">Streekbrücke</.a> und der <.a bounds="9.993502,53.582141,9.994504,53.58318">Heilwigstraße Richtung Süden</.a> sind kurze Abschnitte mit Radfahrstreifen geplant. Diese enden auf Höhe der nahen Straßeneinmündungen.</p>
@@ -60,4 +60,5 @@ defmodule Data.Article.StBenedictstrasse do
       <li><a href="https://lsbg.hamburg.de/contentblob/13867884/27c9b20de10e96f0faf3bfd1aff5e2f8/data/st-benedictstrasse-abgestimmte-planung-plan.pdf">Lagepläne</a></li>
     </ul>
     """
+  end
 end

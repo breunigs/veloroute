@@ -6,8 +6,8 @@ defmodule Article.Behaviour do
 
   @callback name() :: binary()
 
-  @callback created_at() :: Date.t()
-  @callback updated_at() :: Date.t()
+  @callback created_at() :: Date.t() | nil
+  @callback updated_at() :: Date.t() | nil
 
   @callback type() :: atom()
   @callback start() :: RoughDate.t()

@@ -27,6 +27,9 @@ defmodule VelorouteWeb.FrameLive do
     visible_types: []
   ]
 
+  # defp is_module(ref), do: is_atom(ref) and not is_nil(ref)
+  defguardp is_module(mod) when is_atom(mod) and not is_nil(mod)
+
   # how long to wait before the ping indicator should be cleared. There's an
   # additional CSS transition happening after.
   @hide_ping_after_ms 5 * 1000
@@ -68,7 +71,7 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("map-zoom-to: #{inspect(attr)}")
 
     route = Route.from_id(attr["route"])
-    article = Cache.Articles.get()[attr["article"]]
+    article = find_article(attr["article"])
 
     socket =
       socket
@@ -134,7 +137,7 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-click", attr, socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    article = Cache.Articles.get()[attr["article"]]
+    article = find_article(attr["article"])
     route = Route.from_id(attr["route"])
 
     socket =
@@ -372,12 +375,12 @@ defmodule VelorouteWeb.FrameLive do
   defp find_article(""), do: find_article(Settings.default_page())
   defp find_article(nil), do: find_article(Settings.default_page())
 
-  defp find_article(name) when is_binary(name) do
-    Cache.Articles.get()[name]
+  defp find_article(name) when is_binary(name) or is_module(name) do
+    Article.List.find_exact(name)
   end
 
   defp find_article(%{assigns: %{current_page: name}}) do
-    Cache.Articles.get()[name]
+    Article.List.find_exact(name)
   end
 
   defp article_path(socket, %Article{name: "0000-00-00-" <> name}) do
@@ -435,7 +438,7 @@ defmodule VelorouteWeb.FrameLive do
   defp determine_visible_types(socket, route, article) do
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
     parent_ref = track && track.parent_ref
-    article = article || find_article(socket) || Cache.Articles.get()[parent_ref]
+    article = article || find_article(socket) || find_article(parent_ref)
 
     show = if route, do: [route.type()], else: []
     show = if is_module(parent_ref), do: [parent_ref.type() | show], else: []
@@ -454,6 +457,4 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket, visible_types: Enum.uniq(show))
   end
-
-  defp is_module(ref), do: is_atom(ref) and not is_nil(ref)
 end

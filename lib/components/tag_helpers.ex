@@ -1,6 +1,8 @@
 defmodule TagHelpers do
   use Phoenix.Component
 
+  defguard is_module(mod) when is_atom(mod) and not is_nil(mod)
+
   def mailto(assigns) do
     ~H"""
     <a href={Settings.email()}><%= render_block(@inner_block) %></a>
@@ -8,34 +10,20 @@ defmodule TagHelpers do
   end
 
   def ref(assigns) do
-    body = ~H" <%= render_block(@inner_block) %>"
+    name =
+      assigns[:name] ||
+        assigns.inner_block.(nil, nil)
+        |> Phoenix.HTML.Safe.to_iodata()
+        |> IO.iodata_to_binary()
 
-    # todo find by tags through
-    # Article.Dectorators.html(body)
+    art = Article.List.find_with_tags(name)
+    unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
-    ~H"""
-    <a href="/FIXME"><%= body %></a>
-    """
+    to_link(art, assigns)
   end
 
-  #   def ref(attrs, children) do
-  #   attrs_as_hash(attrs)[:name]
-  #   |> Kernel.||(Floki.text(children))
-  #   |> Cache.Articles.find()
-  #   |> case do
-  #     art when is_map(art) ->
-  #       url = VariousHelpers.article_path(art)
-
-  #       {"a",
-  #        [
-  #          {"data-phx-link-state", "push"},
-  #          {"data-phx-link", "patch"},
-  #          {"class", "ref"},
-  #          {"href", url}
-  #        ], children}
-
-  #     _ ->
-  #       raise("Cannot find reference for #{inspect(children)}")
-  #   end
-  # end
+  defp to_link(art, assigns) when is_module(art) do
+    path = Article.Dectorators.path(art)
+    ~H"<a href={path}><%= render_block(@inner_block) %></a>"
+  end
 end

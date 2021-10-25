@@ -15,6 +15,17 @@ defmodule Article.Dectorators do
     end
   end
 
+  @doc """
+  Returns the canonical path for a given article
+  """
+  @spec path(Article.Behaviour.t()) :: binary()
+  def path(art) do
+    case art.created_at() do
+      nil -> "/#{art.name()}"
+      date -> "/article/#{date}-#{art.name()}"
+    end
+  end
+
   @type_names %{
     construction: "Baustelle",
     planned: "Planung",

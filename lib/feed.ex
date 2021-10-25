@@ -3,8 +3,6 @@ defmodule Feed do
   alias Article
   # alias VelorouteWeb.Router.Helpers, as: Routes
 
-  require Cache.Articles
-
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
@@ -18,7 +16,7 @@ defmodule Feed do
   end
 
   defp articles() do
-    Article.List.all()
+    Article.List.category('Blog')
     |> Article.List.sort(:asc)
     |> Enum.take(-10)
     |> Enum.map(&article/1)

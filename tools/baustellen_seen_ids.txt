@@ -39,9 +39,9 @@
 106:
   :id: 106
   :title: 'A 1 - AS HH-Billstedt / Grundinstandsetzung + Brückenarbeiten -- '
-  :updated: '2021-08-20T14:52:41.2608'
+  :updated: '2021-10-22T12:04:58.92588'
   :start: '2019-05-23'
-  :end: '2021-10-31'
+  :end: '2021-12-31'
   :velo: false
 12465:
   :id: 12465
@@ -1450,7 +1450,7 @@
 16005:
   :id: 16005
   :title: 'Reclamstraße / Einbahnstraße -- '
-  :updated: '2021-09-20T13:48:31.296711'
+  :updated: '2021-10-22T11:33:54.340834'
   :start: '2021-05-17'
   :end: '2021-12-17'
   :velo: true
@@ -2237,9 +2237,9 @@
 17273:
   :id: 17273
   :title: 'Bismarckstraße/ Asphaltierung -- '
-  :updated: '2021-10-11T14:05:05.576656'
+  :updated: '2021-10-22T11:43:48.060731'
   :start: '2021-10-18'
-  :end: '2021-10-22'
+  :end: '2021-10-26'
   :velo: false
 18948:
   :id: 18948
@@ -2308,7 +2308,7 @@
 19182:
   :id: 19182
   :title: 'A 25 - Neuallermöhe-West bis Landesgrenze SH / Deckschichtsanierung -- '
-  :updated: '2021-09-13T11:33:32.098897'
+  :updated: '2021-10-22T11:52:20.83128'
   :start: '2021-08-02'
   :end: '2021-11-20'
   :velo: false
@@ -2885,3 +2885,10 @@
   :start: '2021-11-18'
   :end: '2022-05-15'
   :velo: true
+20935:
+  :id: 20935
+  :title: 'Sartoriusstraße/ Hochbaumaßnahme -- '
+  :updated: '2021-10-22T12:04:03.391648'
+  :start: '2021-10-25'
+  :end: '2022-05-31'
+  :velo: false
