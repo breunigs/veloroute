@@ -1,8 +1,9 @@
 
-type: planned-construction
+type: construction
 title: Reclamstraße (nördlicher Teil, Veloroute 14)
-start: 2020Q4
-end: 2021Q1
+start:	2021-05-17
+end:	2021-12-17
+construction_site_id_hh: 16005
 tags:
 - 14
 - M6.5
