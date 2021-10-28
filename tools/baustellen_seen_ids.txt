@@ -1,5 +1,5 @@
 ---
-99999: 
+99999:
 23:
   :id: 23
   :title: 'B 5, östlich der AS HH-Billstedt / Grundinstandsetzung -- '
@@ -463,10 +463,10 @@
   :velo: true
 7512:
   :id: 7512
-  :title: Bergedorfer Straße, Baustelleneinrichtungsfläche -- Bezirk Bergedorf
-  :updated: '2020-04-16T14:37:38.187466'
+  :title: 'Bergedorfer Straße, Baustelleneinrichtungsfläche -- '
+  :updated: '2021-10-26T08:27:54.970009'
   :start: '2020-04-20'
-  :end: '2021-10-14'
+  :end: '2021-12-31'
   :velo: false
 13582:
   :id: 13582
@@ -2825,7 +2825,7 @@
 20673:
   :id: 20673
   :title: 'Wandsbeker Schützenhof / Deckenprogramm -- '
-  :updated: '2021-10-13T13:12:12.068641'
+  :updated: '2021-10-27T09:20:54.042576'
   :start: '2021-10-25'
   :end: '2021-10-29'
   :velo: false
@@ -2898,4 +2898,32 @@
   :updated: '2021-10-25T15:17:37.307062'
   :start: '2021-10-18'
   :end: '2021-11-03'
+  :velo: false
+20998:
+  :id: 20998
+  :title: 'Altengammer Elbdeich, Fahrbahnsanierungsarbeiten -- '
+  :updated: '2021-10-28T11:17:42.904692'
+  :start: '2021-10-28'
+  :end: '2021-11-12'
+  :velo: false
+20479:
+  :id: 20479
+  :title: 'Dorotheenstraße / Deckschichterneuerung -- '
+  :updated: '2021-10-07T13:50:37.960857'
+  :start: '2021-11-04'
+  :end: '2021-11-05'
+  :velo: false
+21007:
+  :id: 21007
+  :title: 'Kirchenheerweg, Herstellung Überfahrt -- '
+  :updated: '2021-10-28T11:17:57.751677'
+  :start: '2021-11-01'
+  :end: '2021-11-19'
+  :velo: false
+21025:
+  :id: 21025
+  :title: 'Lademannbogen, Wilhelm-Stein-Weg / Deckenprogramm -- '
+  :updated: '2021-10-28T11:18:21.348746'
+  :start: '2021-11-01'
+  :end: '2021-11-24'
   :velo: false

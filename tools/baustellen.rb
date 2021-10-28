@@ -40,8 +40,8 @@ updates = Parallel.map(ids, in_threads: 4) do |id|
     title: "#{json["titel"]} -- #{json["organisationId"]}",
     updated: json['updateDatetime'],
     link: json["internetLink"],
-    start: json["bauintervall"]["start"],
-    end: json["bauintervall"]["end"],
+    start: json["bauintervall"]["start"]&.strip,
+    end: json["bauintervall"]["end"]&.strip,
     velo: velo,
   }.compact
 rescue => e
