@@ -3,8 +3,10 @@ defmodule Article.Behaviour do
 
   @typep heex() :: Phoenix.LiveView.Rendered.t()
   @type assigns() :: %{:type => :html | :feed, optional(atom) => any}
+  @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
 
   @callback name() :: binary()
+  @callback path() :: binary()
 
   @callback created_at() :: Date.t() | nil
   @callback updated_at() :: Date.t() | nil
@@ -20,4 +22,5 @@ defmodule Article.Behaviour do
   @callback tags() :: [binary()]
 
   @callback tracks() :: [Video.Track.t()]
+  @callback links() :: [link()]
 end

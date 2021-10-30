@@ -42,9 +42,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   end
 
   defp article_tracks do
-    Cache.Articles.get()
-    |> Map.values()
-    |> Enum.flat_map(fn %Article{tracks: tracks} -> tracks end)
+    Enum.flat_map(Article.List.all(), & &1.tracks())
   end
 end
 

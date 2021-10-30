@@ -1,4 +1,7 @@
 defmodule Article.Dectorators do
+  use Phoenix.Component
+  import Guards
+
   @spec html(Article.Behaviour.t(), Article.Behaviour.assigns()) :: binary()
   def html(art, assigns) do
     art.text(assigns) |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
@@ -13,6 +16,18 @@ defmodule Article.Dectorators do
       tn != nil -> "#{tn}: #{art.title()}"
       true -> art.title()
     end
+  end
+
+  @spec gpx_links(module()) :: Phoenix.LiveView.Rendered.t()
+  def gpx_links(art) when is_module(art) do
+    assigns = %{name: art.name()}
+
+    ~H"""
+    Route im
+    <a href={"/geo/#{@name}.gpx"} download={"#{@name}.gpx"}>GPX-Format</a>
+    bzw.
+    <a href={"/geo/#{@name}.kml"} download={"#{@name}.kml"}>KML-Format</a>
+    """
   end
 
   @doc """

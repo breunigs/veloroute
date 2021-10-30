@@ -5,9 +5,12 @@ defmodule VelorouteWeb.FrameLive do
   alias VelorouteWeb.Router.Helpers, as: Routes
   import VelorouteWeb.VariousHelpers
 
+  import Guards
+
   alias Article
 
   @initial_state [
+    type: :html,
     autoplay: false,
     prev_page: nil,
     current_page: nil,
@@ -27,8 +30,7 @@ defmodule VelorouteWeb.FrameLive do
     visible_types: []
   ]
 
-  # defp is_module(ref), do: is_atom(ref) and not is_nil(ref)
-  defguardp is_module(mod) when is_atom(mod) and not is_nil(mod)
+  @default_page Article.List.find_exact("")
 
   # how long to wait before the ping indicator should be cleared. There's an
   # additional CSS transition happening after.
@@ -209,15 +211,15 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
       when is_binary(subdir) and subdir != "" do
-    name =
-      cond do
-        String.match?(name, ~r{^\d\d\d\d-\d\d-\d\d-}) -> Path.join(subdir, name)
-        true -> Path.join(subdir, "0000-00-00-" <> name)
-      end
+    # name =
+    #   cond do
+    #     String.match?(name, ~r{^\d\d\d\d-\d\d-\d\d-}) -> Path.join(subdir, name)
+    #     true -> Path.join(subdir, "0000-00-00-" <> name)
+    #   end
 
     params
     |> Map.delete("subdir")
-    |> Map.put("article", name)
+    |> Map.put("article", "#{subdir}/#{name}")
     |> handle_params(nil, socket)
   end
 
@@ -254,7 +256,7 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"page" => name} = params, nil, socket) do
     params
-    |> Map.put("article", "0000-00-00-#{name}")
+    |> Map.put("article", name)
     |> handle_params(nil, socket)
   end
 
@@ -266,27 +268,29 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("params: default (#{inspect(params)})")
 
     params
-    |> Map.put("article", Settings.default_page())
+    |> Map.put("article", @default_page)
     |> handle_params(nil, socket)
   end
 
-  defp set_content(%Article{name: name}, %{assigns: %{current_page: name}} = socket) do
-    assign(socket, prev_page: name)
+  defp set_content(art, %{assigns: %{current_page: art}} = socket) when is_module(art) do
+    assign(socket, prev_page: art)
   end
 
-  defp set_content(%Article{name: name, full_title: t, date: date, summary: summary}, socket) do
-    title =
-      if is_nil(t) or t == "",
+  defp set_content(art, socket) when is_module(art) do
+    full_title = Article.Dectorators.full_title(art)
+
+    page_title =
+      if full_title == "",
         do: Settings.page_title_long(),
-        else: Settings.page_title_short() <> t
+        else: Settings.page_title_short() <> full_title
 
     assign(socket,
       prev_page: socket.assigns.current_page,
-      current_page: name,
-      page_title: title,
-      article_date: date,
-      article_title: t,
-      article_summary: summary
+      current_page: art,
+      page_title: page_title,
+      article_date: art.updated_at(),
+      article_title: full_title,
+      article_summary: art.summary()
     )
   end
 
@@ -372,8 +376,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_ping(socket, _), do: socket
 
-  defp find_article(""), do: find_article(Settings.default_page())
-  defp find_article(nil), do: find_article(Settings.default_page())
+  defp find_article(nil), do: find_article("")
 
   defp find_article(name) when is_binary(name) or is_module(name) do
     Article.List.find_exact(name)
@@ -438,6 +441,7 @@ defmodule VelorouteWeb.FrameLive do
   defp determine_visible_types(socket, route, article) do
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
     parent_ref = track && track.parent_ref
+
     article = article || find_article(socket) || find_article(parent_ref)
 
     show = if route, do: [route.type()], else: []

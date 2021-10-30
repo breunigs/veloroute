@@ -36,7 +36,7 @@ defmodule VelorouteWeb.Live.VideoState do
     with rendered when not is_nil(rendered) <- Video.Rendered.get(hash),
          src when is_list(src) <- rendered.sources(),
          obj when not is_nil(obj) <-
-           Route.List.find_by_sources(src) || Cache.Articles.find_by_sources(src) do
+           Route.List.find_by_sources(src) || Article.List.find_by_sources(src) do
       # sort so that the desired track is on top
       tracks = obj.tracks |> Enum.sort_by(fn t -> t.videos() != src end)
 

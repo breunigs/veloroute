@@ -10,17 +10,12 @@ defmodule VelorouteWeb.PageController do
   end
 
   def quality(conn, params) do
-    name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
-
-    article =
-      Cache.Articles.get_dated()
-      |> Map.keys()
-      |> Enum.find(&String.ends_with?(&1, name))
+    article = Article.List.find_exact(params["article"])
 
     if article do
       conn
       |> put_status(301)
-      |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, article))
+      |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, params["article"]))
     else
       not_found_redir(conn)
     end
