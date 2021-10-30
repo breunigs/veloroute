@@ -35,7 +35,7 @@ defmodule Article.Default do
         if String.contains?(expr, "<a bounds="), do: raise("got invalid html tag: <a bounds")
 
         expr
-        |> String.replace(~r/<\.([a-z]+) /, "<.\\1 type={@type} current_page={@current_page}")
+        |> String.replace(~r/<\.([a-z_]+) /, "<.\\1 type={@type} current_page={@current_page}")
         |> EEx.compile_string(options)
       end
     end

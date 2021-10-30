@@ -1,8 +1,10 @@
 defmodule Article.List do
   @module_name 'Elixir.Data.Article.'
 
-  @type t :: list(module())
+  @type t :: Enumerable.t()
   @typep article :: module()
+
+  import Guards
 
   @spec all :: t
   def all() do
@@ -29,7 +31,7 @@ defmodule Article.List do
     if Enum.member?(list, art), do: art, else: nil
   end
 
-  def find_exact(list, key) when is_list(list) and is_binary(key) do
+  def find_exact(list, key) when is_binary(key) do
     list
     |> filter(key, false)
     |> Enum.at(0)
@@ -43,7 +45,7 @@ defmodule Article.List do
   @spec find_with_tags(t, binary | nil) :: article | nil
   def find_with_tags(_list, nil), do: nil
 
-  def find_with_tags(list, key) when is_list(list) and is_binary(key) do
+  def find_with_tags(list, key) when is_binary(key) do
     list
     |> filter(key, true)
     |> Enum.at(0)
@@ -52,8 +54,8 @@ defmodule Article.List do
   @spec find_with_tags(binary | nil) :: article | nil
   def find_with_tags(key), do: find_with_tags(all(), key)
 
-  @spec filter(t, binary) :: Enumerable.t()
-  def filter(list, key, search_tags \\ false) when is_list(list) and is_binary(key) do
+  @spec filter(t, binary, bool) :: t
+  def filter(list, key, search_tags \\ false) when is_binary(key) do
     key = key |> String.replace(" ", "-") |> String.downcase()
 
     exact = Stream.filter(list, fn art -> art.name() == key || to_string(art) == key end)
@@ -63,8 +65,32 @@ defmodule Article.List do
     |> Stream.uniq()
   end
 
-  @spec filter(binary) :: Enumerable.t()
+  @spec filter(binary) :: t
   def filter(key), do: filter(all(), key)
+
+  @doc """
+  Returns only articles that have videos
+  """
+  @spec with_tracks(t) :: t
+  def with_tracks(list) do
+    Stream.filter(list, fn art -> art.tracks() != [] end)
+  end
+
+  @doc """
+  Finds articles related to the given one. The given article is not part of the
+  results.
+  """
+  @spec related(t, article) :: t
+  def related(list, art) when is_module(art) do
+    tags = art.tags()
+
+    list
+    |> Stream.reject(fn other -> other == art end)
+    |> Stream.filter(fn other -> Util.overlap?(tags, other.tags()) end)
+  end
+
+  @spec related(article) :: t
+  def related(art), do: related(all(), art)
 
   @doc """
   Find an Article that contains a video with exactly the given resources

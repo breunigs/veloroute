@@ -5,6 +5,8 @@ defmodule Article.Renderer do
     ~H"""
       <h3><%= @current_page.title() %></h3>
       <%= @current_page.text(assigns) %>
+
+      <%= RelatedArticlesHelper.related_articles(assigns) %>
     """
   end
 end

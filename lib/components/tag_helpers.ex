@@ -39,46 +39,40 @@ defmodule TagHelpers do
   end
 
   def m(assigns) do
+    attr = %{"phx-click" => "map-zoom-to"}
     art = assigns.current_page
-    attrs = %{}
 
-    attrs =
-      cond do
-        art.tracks() != [] ->
-          Map.put(attrs, "phx-value-article", art.tracks())
+    art_with_tracks =
+      if art.tracks() == [] do
+        art
+        |> Article.List.related()
+        |> Article.List.with_tracks()
+        |> Enum.at(0)
+      else
+        art
       end
 
-    # TODO take an article's tags, then find a related article with tracks
+    attr =
+      if art_with_tracks,
+        do: Map.put(attr, "phx-value-article", art_with_tracks.name()),
+        else: attr
 
-    # new_attr = %{"phx-click" => "map-zoom-to"}
+    attr =
+      Enum.reduce(assigns, attr, fn {key, val}, acc ->
+        if key in [:bounds, :lat, :lon, :dir, :route, :article, :zoom] do
+          Map.put(acc, "phx-value-#{key}", val)
+        else
+          acc
+        end
+      end)
 
-    # new_attr =
-    #   cond do
-    #     article.tracks != [] ->
-    #       Map.put(new_attr, "phx-value-article", article.name)
+    attr =
+      if is_map_key(attr, "phx-value-bounds"),
+        do: attr,
+        else: Map.put_new(attr, "phx-value-zoom", "15")
 
-    #     rel = article |> Article.related_route() ->
-    #       Map.put(new_attr, "phx-value-route", rel.id())
-
-    #     true ->
-    #       new_attr
-    #   end
-
-    # new_attr =
-    #   Enum.reduce(attrs, new_attr, fn {key, val}, acc ->
-    #     if key in ["bounds", "lat", "lon", "dir", "route", "article", "zoom"] do
-    #       Map.put(acc, "phx-value-#{key}", val)
-    #     else
-    #       acc
-    #     end
-    #   end)
-
-    # new_attr =
-    #   if is_map_key(new_attr, "phx-value-bounds"),
-    #     do: new_attr,
-    #     else: Map.put_new(new_attr, "phx-value-zoom", "15")
-
-    # {"a", Enum.to_list(new_attr), children}
+    assigns = assign(assigns, :attr, attr)
+    ~H"<a {attr}><%= render_block(@inner_block) %></a>"
   end
 
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
@@ -109,6 +103,15 @@ defmodule TagHelpers do
         </ul>
         """
     end
+  end
+
+  @doc """
+  Wraps content into a div that will not be used by search engines
+  """
+  def noindex(assigns) do
+    ~H"""
+    <div data-nosnippet="yes"><%= render_block(@inner_block) %></div>
+    """
   end
 
   @spec linkify(map(), Article.Behaviour.link()) :: Phoenix.LiveView.Rendered.t()

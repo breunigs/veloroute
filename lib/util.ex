@@ -33,4 +33,14 @@ defmodule Util do
         raise("FAILED (exit code #{code}):\n#{env}\n#{cmd} #{args}")
     end
   end
+
+  @spec overlap?(Enumerable.t(), Enumerable.t()) :: bool()
+  @doc """
+  Returns true if enum1 and enum2 have at least one element in common
+  """
+  def overlap?(enum1, enum2) do
+    Enum.any?(enum1, fn el1 ->
+      Enum.member?(enum2, el1)
+    end)
+  end
 end

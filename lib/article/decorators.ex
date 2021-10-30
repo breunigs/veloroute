@@ -41,6 +41,17 @@ defmodule Article.Dectorators do
     end
   end
 
+  @doc """
+  Returns the HTML link to the article, using the full title (with type prefix)
+  as text if no content is given
+  """
+  @spec link(Article.Behaviour.t(), binary | Phoenix.LiveView.Rendered.t() | nil) ::
+          Phoenix.LiveView.Rendered.t()
+  def link(art, content \\ nil) do
+    assigns = %{href: path(art), content: content || full_title(art)}
+    ~H"<a href={@href}><%= @content %></a>"
+  end
+
   @type_names %{
     construction: "Baustelle",
     planned: "Planung",
