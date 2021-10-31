@@ -1,5 +1,6 @@
 defmodule Article.List do
   @module_name 'Elixir.Data.Article.'
+  @known_types ['Blog', 'Static']
 
   @type t :: Enumerable.t()
   @typep article :: module()
@@ -16,12 +17,17 @@ defmodule Article.List do
   end
 
   @spec category(charlist()) :: t
-  def category(type) when type in ['Blog', 'Static'] do
+  def category(type) when type in @known_types do
     :code.all_available()
     |> Enum.map(&elem(&1, 0))
     |> Enum.filter(&List.starts_with?(&1, @module_name ++ type))
     |> Enum.map(&List.to_atom/1)
     |> Enum.sort()
+  end
+
+  # TODO: this func should be moved somewhere else
+  def has_type?(art, type) when type in @known_types do
+    art |> Atom.to_charlist() |> List.starts_with?(@module_name ++ type)
   end
 
   @spec find_exact(t, binary | article | nil) :: article | nil
@@ -56,9 +62,13 @@ defmodule Article.List do
 
   @spec filter(t, binary, bool) :: t
   def filter(list, key, search_tags \\ false) when is_binary(key) do
-    key = key |> String.replace(" ", "-") |> String.downcase()
+    key = keyify(key)
 
-    exact = Stream.filter(list, fn art -> art.name() == key || to_string(art) == key end)
+    exact =
+      Stream.filter(list, fn art ->
+        keyify(art.id()) == key || art.name() == key || to_string(art) == key
+      end)
+
     loose = if search_tags, do: Stream.filter(list, fn art -> has_tag?(art, key) end), else: []
 
     Stream.concat(exact, loose)
@@ -127,4 +137,7 @@ defmodule Article.List do
   def sort(list, sorter, fun) do
     Enum.sort_by(list, &apply(&1, fun, []), sorter)
   end
+
+  defp keyify(nil), do: nil
+  defp keyify(str) when is_binary(str), do: str |> String.replace(" ", "-") |> String.downcase()
 end

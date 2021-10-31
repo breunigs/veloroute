@@ -1,3 +1,7 @@
+todo: ensure external links get target=_blank
+
+
+
 - clicking on a route in map should set route in sidebar, unless the viewed page is related to that route
 - video should auto-upgrade to HQ if paused
 - URL bounds ignored?

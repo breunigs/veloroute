@@ -23,8 +23,8 @@ defmodule Feed do
   end
 
   defp article(art) do
-    content = Article.Dectorators.html(art, %{type: :feed})
-    full_title = Article.Dectorators.full_title(art)
+    content = Article.Decorators.html(art, %{type: :feed})
+    full_title = Article.Decorators.full_title(art)
 
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
 

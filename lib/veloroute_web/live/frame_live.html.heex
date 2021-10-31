@@ -47,7 +47,7 @@
   data-video-start={@video_start}
   data-video-start-gen={@video_start_gen}
   data-video-coords={@video_coords}
-  data-visible-types={Enum.join( @visible_types, ",")}
+  data-visible-types={Enum.join(@visible_types, ",")}
   data-bounds={@bounds}
   data-bounds-ts={@bounds_ts}
 ></div>
@@ -55,10 +55,7 @@
 <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
   <%
   track = VelorouteWeb.Live.VideoState.current_track(@video)
-  ref = cond do
-    is_atom(track.parent_ref) -> track.parent_ref.id()
-    track -> Video.Rendered.get(track).hash()
-  end
+  ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
   %>
   <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
 <% end %>

@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
+  import Guards
   alias VelorouteWeb.Router.Helpers, as: Routes
 
   def display_route(nil), do: nil
@@ -9,17 +10,19 @@ defmodule VelorouteWeb.VariousHelpers do
 
     cond do
       is_binary(ref) ->
+        IO.warn("legacy call to route with binary")
+
         content_tag(:span, text,
           title: "Du folgst: #{text} (aus: #{ref})",
           class: "curRoute"
         )
 
-      is_atom(ref) and not is_nil(ref) ->
+      is_module(ref) ->
         icon = route_icon(ref)
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.article()),
-          title: "Du folgst: #{ref.name()} #{text}",
+          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.path()),
+          title: "Du folgst: #{text}",
           class: "curRoute"
         )
 
@@ -49,23 +52,23 @@ defmodule VelorouteWeb.VariousHelpers do
   def article_search(query) do
     Cache.Articles.get()
     |> Enum.into(%{}, fn {key, art} ->
-      {key, Map.put(art, :url, article_path(art))}
+      {key, Map.put(art, :url, art.path())}
     end)
     |> Article.Search.search(query)
   end
 
-  def article_path(%Article{name: name}) do
-    case String.split(name, "/") do
-      ["0000-00-00-" <> name] ->
-        Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+  # def article_path(%Article{name: name}) do
+  #   case String.split(name, "/") do
+  #     ["0000-00-00-" <> name] ->
+  #       Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
 
-      [subdir, "0000-00-00-" <> name] ->
-        Routes.subdir_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, subdir, name)
+  #     [subdir, "0000-00-00-" <> name] ->
+  #       Routes.subdir_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, subdir, name)
 
-      [name] ->
-        Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    end
-  end
+  #     [name] ->
+  #       Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
+  #   end
+  # end
 
   @short_month_names [
     "Jan",
@@ -105,15 +108,24 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def route_icon(id) when is_binary(id) do
-    route = Route.from_id(id)
-    if route, do: route_icon(route)
+    ref =
+      Article.List.find_exact(id) ||
+        raise("Tried to find route icon for #{id}, but there is no such article")
+
+    route_icon(ref)
   end
 
-  def route_icon(route) when is_atom(route) and not is_nil(route) do
-    content_tag(:span, route.id(),
-      style: "background: #{route.color()}",
-      class: "icon #{route.type()}"
-    )
+  def route_icon(nil), do: nil
+
+  def route_icon(article) when is_module(article) do
+    if article.id() do
+      content_tag(:span, article.id(),
+        style: "background: #{article.color()}",
+        class: "icon #{article.route_group()}"
+      )
+    else
+      ""
+    end
   end
 
   def parse_bounds(%{

@@ -1,0 +1,30 @@
+defmodule Data.Article.Blog.Veloroute14Bewertung do
+  use Article.Default
+
+  def name(), do: "#{created_at()}-veloroute-14-bewertung"
+  def created_at(), do: ~D[2018-09-23]
+
+  def title(), do: "Bewertung der Veloroute 14 Herbst 2018"
+
+  def type(), do: nil
+
+  def tags(), do: [14]
+
+  def links() do
+    []
+  end
+
+  def text(assigns) do
+    ~H"""
+    <p>Die Ringroute 14 ist die längste Veloroute – was in der Praxis aber wenig ins Gewicht fällt. Die Route hat keinen „Freizeit-Aspekt“, weswegen sich ein Abfahren am Stück nicht lohnt. Sie ist daher vor allem für Querverbindungen zwischen den anderen Velorouten hilfreich. Entsprechend ist auch das Review strukturiert; im Uhrzeigersinn von einer Route zur nächsten.</p>
+    <p><.icon>1</.icon> → <.icon>2</.icon> Es geht los in <.m bounds="9.885281,53.555063,9.88786,53.559227">Othmarschen</.m>: Durch angenehme Nebenstraßen kommt man gut voran. Erst ab dem <.m bounds="9.86712,53.574239,9.876374,53.578486">Lise-Meitner-Park</.m> wird es schwieriger: die Wege sind schmal, holprig und nur geschottert. Auch der Umweg am <.m bounds="9.8758,53.584261,9.878865,53.586303">Schreinerweg</.m> ist fragwürdig, zumal bereits eine Fußwegverbindung zum <.m bounds="9.866554,53.58474,9.875079,53.586571">Grandkuhlenweg</.m> besteht. Der Rest des Abschnitts führt entlang der stark befahrenen <.m bounds="9.87603,53.588479,9.90628,53.607053">Elbgaustraße</.m>, die mäßig gute Radwege bereithält. Zum Überholen sind sie zu schmal, aber immerhin sind sie fast durchgehend und meist geradlinig.</p>
+    <p><.icon>2</.icon> → <.icon>3</.icon> Ab <.m bounds="9.887095,53.595658,9.91611,53.605">Eidelstedt</.m> wollte man die Route offensichtlich von der <.m bounds="9.904755,53.608736,9.911412,53.652649">Holsteiner Chaussee</.m> fernhalten und verlegt sie etwas westlich durchs Wohngebiet. Allerdings ist die Führung ein deutlicher Umweg und durch die vielen Abbiegevorgänge auch nicht komfortabel zu befahren. Da dieses Teilstück noch unausgebaut ist, kommen an vielen Stellen Drängelgitter hinzu. Ab der Straße <.m bounds="9.908822,53.622918,9.917084,53.625087">Spanische Furt</.m> geht es dann wieder im Mischverkehr nach <.m bounds="9.955709,53.628411,9.955709,53.628411">Niendorf</.m>. Die Führung ist hier besser, dafür aber auch bei 50 km/h Maximalgeschwindigkeit entsprechend hektisch.</p>
+    <p><.icon>3</.icon> → <.icon>4</.icon> In <.m bounds="9.955709,53.628411,9.955709,53.628411">Niendorf</.m> schlängelt man sich noch etwas durch Nebenstraßen, ab dem <.m bounds="9.975091,53.64556,10.016224,53.649485">Krohnstieg</.m> am Flughafen folgt man im Wesentlichen der Autotrasse. Je nach Platz ist der Radweg mal breiter, mal schmäler oder fehlt an Bushaltestellen ganz.</p>
+    <p><.icon>4</.icon> → <.icon>5</.icon> Man folgt hier der Autotrasse entlang des <.m bounds="10.017493,53.649015,10.03166,53.650344">Gehlengraben</.m>, <.m bounds="10.031585,53.646242,10.086147,53.659396">Poppenbütteler Weg</.m> und schließlich <.m bounds="10.08565,53.653277,10.103596,53.656572">Saseler Damm</.m>. Ausgebaut ist hier aktuell fast nichts, entsprechend holprig geht es voran. An umgebauten Kreuzungen wird man bei 60 km/h auf einen Radfahrstreifen geführt (etwa Höhe <.m bounds="10.068222,53.64577,10.073157,53.651572">Goldröschenweg</.m>). Vorgeblich der Sicherheit, was sich aber auch mit einer getrennten Ampelphase erreichen ließe. Ich habe meine Zweifel, das dieses Konzept hier viele neue Radfahrende ansprechen wird.</p>
+    <p><.icon>5</.icon> → <.icon>6</.icon> Es geht noch ein bisschen weiter entlang der Autotrasse <.m bounds="10.08565,53.653277,10.103596,53.656572">Saseler Damm</.m> und <.m bounds="10.088693,53.646757,10.110899,53.654146">Stadtbahnstraße</.m>. Erst nach der völlig verkorksten Führung am <.m bounds="10.11064,53.653228,10.113573,53.653896">Saseler Markt</.m> wird man durch geradlinige und wenig befahrene Nebenstraßen bis zur <.m bounds="10.12132,53.622307,10.122576,53.626857">Kathenkoppel</.m> geführt – gut!</p>
+    <p><.icon>6</.icon> → <.icon>7</.icon> Den kleinen Umweg <.m bounds="10.115823,53.616185,10.121817,53.622506">An der Berner Au</.m> teilt man sich noch mit Veloroute 6, danach macht die Route aber einen Schlenker <.m bounds="10.126114,53.603724,10.134205,53.621735">Am Knill</.m>, statt auch auf den letzten paar Metern noch dem <.m bounds="10.119835,53.597157,10.132118,53.606373">Rahlstedter Weg</.m> zu folgen. Der zeigt sich abwechslungsreich: Mischverkehr, Radfahrstreifen, Schutzstreifen, alter Hochbord, neuer Hochbord – alle vorstellbaren Varianten sind hier vertreten. Durchgängig ist die Führung hier nirgends, was leider immer noch die starke Bevorzugung der KFZ unterstreicht. Ab dem <.m bounds="10.137375,53.590477,10.14023,53.592828">Auerhahnweg</.m> geht es dann wieder durch gemäßigtere Nebenstraßen bei 30 km/h Höchstgeschwindigkeit.</p>
+    <p><.icon>7</.icon> → <.icon>8</.icon> Die <.m bounds="10.13455,53.57499,10.141482,53.589093">Charlottenburger Straße</.m> wartet durchgehend mit eigenem Hochbord-Radweg auf, der leider etwas in die Jahre gekommen ist. Neuer Belag und bessere Sichtbarkeit an Kreuzungen sind daher wünschenswert. Das ändert sich erst ab Mitte des <.m bounds="10.133575,53.566994,10.136402,53.57499">Öjendorfer Damm</.m>s, wo man fast bis zum Ende der Route im Mischverkehr geführt wird. Einzige Ausnahme ist der geschotterte <.m bounds="10.1182,53.54962,10.118408,53.550811">Daseweg</.m>. Am Ende wird es nochmal schlimm: Die <.m bounds="10.103485,53.537143,10.111591,53.543419">Reclamstraße</.m> ist nicht ausgebaut und bevorzugt klar den Autoverkehr. Die nur 1m breiten Radwege sind dabei nicht mal das schlechteste an diesem Streckenabschnitt, denn die <.m bounds="10.10299,53.537814,10.218367,53.544648">Möllner Landstraße</.m> darf man Richtung Norden nicht queren – sondern muss stattdessen zweimal die Straßenseite wechseln. Sowohl für Radler als auch Zufußgehende ist das inakzeptabel.</p>
+    <p><.a target="_blank" href="https://www.abendblatt.de/hamburg/article215747073/Radwegetest-in-Hamburg-Komm-mit-ins-Abenteuerland.html" rel="nofollow">Zeitungsartikel/Review vom 08.11.2018</.a></p>
+    """
+  end
+end

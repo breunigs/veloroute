@@ -59,22 +59,22 @@ defmodule Data.Article.Static.Startpage do
     <h3>Aktuelle Artikel</h3>
     <articles range="recent" sort="date"/>
     <p>
-      <a href="/changes#lastChanges">Alle Artikel anzeigen</a>
+      <.a href="/changes#lastChanges">Alle Artikel anzeigen</.a>
       oder
-      <a href="/changes#getNotified">Artikel abonnieren</a>
+      <.a href="/changes#getNotified">Artikel abonnieren</.a>
     </p>
 
     <h3>Pläne, Baustellen und Probleme</h3>
-    <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <a href="/quality#anchorplans">Genauere Erklärung</a></p>
+    <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <.a href="/quality#anchorplans">Genauere Erklärung</.a></p>
 
     <h3>Fachbegriffe</h3>
-    <p>Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken. <a href="/lexikon/fahrbahn-und-nebenflaechen">Zum Lexikon</a></p>
+    <p>Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken. <.a href="/lexikon/fahrbahn-und-nebenflaechen">Zum Lexikon</.a></p>
 
     <h3>Kontakt</h3>
-    <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><mailto/></p>
+    <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><.mailto/></p>
 
     <h3>Details zum Projekt</h3>
-    <p><a href="/projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</a></p>
+    <p><.a href="/projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</.a></p>
     """
   end
 end

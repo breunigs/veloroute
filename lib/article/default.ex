@@ -15,6 +15,10 @@ defmodule Article.Default do
       def tracks, do: []
       def path, do: "/#{name()}"
       def links, do: []
+      def id, do: nil
+      def color, do: nil
+      def route_group, do: nil
+      def icon, do: nil
       defoverridable Article.Behaviour
 
       # get heex with global assigns
@@ -30,12 +34,13 @@ defmodule Article.Default do
           indentation: meta[:indentation] || 0
         ]
 
-        if String.contains?(expr, "<icon "), do: raise("got invalid html tag: icon")
-        if String.contains?(expr, "<geolinks "), do: raise("got invalid html tag: geolinks")
-        if String.contains?(expr, "<a bounds="), do: raise("got invalid html tag: <a bounds")
+        if String.contains?(expr, "</a>"), do: raise("got invalid html tag: </a>")
 
         expr
-        |> String.replace(~r/<\.([a-z_]+) /, "<.\\1 type={@type} current_page={@current_page}")
+        |> String.replace(
+          ~r{<\.([a-z_]+)([ />])},
+          "<.\\1 type={@type} current_page={@current_page}\\2"
+        )
         |> EEx.compile_string(options)
       end
     end

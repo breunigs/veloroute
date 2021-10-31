@@ -179,6 +179,7 @@ defmodule Video.Rendered do
   defp as_code(name, hash, sources, coords) do
     length_ms = coords |> List.last() |> Map.fetch!(:time_offset_ms)
     rendered = Video.Path.fully_rendered?(hash)
+    bbox = Geo.CheapRuler.bbox(coords)
 
     quote do
       defmodule unquote(module_name(hash)) do
@@ -200,9 +201,11 @@ defmodule Video.Rendered do
         @impl Video.Rendered
         def sources(), do: unquote(sources)
         @impl Video.Rendered
-        def coords(), do: unquote(coords)
-        @impl Video.Rendered
         def rendered?(), do: unquote(rendered)
+        @impl Video.Rendered
+        def bbox(), do: unquote(bbox)
+        @impl Video.Rendered
+        def coords(), do: unquote(coords)
       end
     end
     |> Macro.to_string()
@@ -215,6 +218,7 @@ defmodule Video.Rendered do
   @callback sources() :: Video.Track.plain()
   @callback coords() :: [Video.TimedPoint.t()]
   @callback rendered?() :: boolean()
+  @callback bbox() :: Geo.BoundingBox.t()
   @doc """
   Outputs the timestamps and coordinates as an iolist, suitable to be passed to the
   frontend for displaying the video position. It returns a flat list with the values

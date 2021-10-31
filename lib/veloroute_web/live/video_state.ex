@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.Live.VideoState do
   require Logger
+  import Guards
 
   @known_params [
     :forward,
@@ -31,12 +32,11 @@ defmodule VelorouteWeb.Live.VideoState do
   the assigns, convenience accessors for video and also some shared assigns like
   lat/lon.
   """
-  def maybe_update_video(socket, route, article, %{"video" => hash} = params)
+  def maybe_update_video(socket, article, %{"video" => hash} = params)
       when valid_hash(hash) do
     with rendered when not is_nil(rendered) <- Video.Rendered.get(hash),
          src when is_list(src) <- rendered.sources(),
-         obj when not is_nil(obj) <-
-           Route.List.find_by_sources(src) || Article.List.find_by_sources(src) do
+         obj when not is_nil(obj) <- Article.List.find_by_sources(src) do
       # sort so that the desired track is on top
       tracks = obj.tracks |> Enum.sort_by(fn t -> t.videos() != src end)
 
@@ -47,13 +47,12 @@ defmodule VelorouteWeb.Live.VideoState do
       |> Phoenix.LiveView.assign(for_frontend(state))
       |> set_position(params)
     else
-      _ -> maybe_update_video(socket, route, article, Map.delete(params, "video"))
+      _ -> maybe_update_video(socket, article, Map.delete(params, "video"))
     end
   end
 
-  def maybe_update_video(%{assigns: assigns} = socket, route, article, params) do
+  def maybe_update_video(%{assigns: assigns} = socket, article, params) do
     tracks = extract_tracks(article)
-    tracks = if tracks == [], do: extract_tracks(route), else: tracks
     accurate_new_start = Geo.Point.from_params(params)
 
     old_state = assigns[:video] || new()
@@ -85,7 +84,7 @@ defmodule VelorouteWeb.Live.VideoState do
         # related to the shown route. This is usually the case if an article has
         # tagged the related route
         article && current_track(new_state) &&
-            Route.has_group?(current_track(new_state).parent_ref, article.tags) ->
+            Util.overlap?(current_track(new_state).parent_ref.tags(), article.tags()) ->
           Logger.debug("route is related to current article, updating position")
           set_start(new_state, maybe_article_center(article) || old_state.start)
 
@@ -106,22 +105,12 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
   defp extract_tracks(nil), do: []
-  defp extract_tracks(%Article{tracks: tracks}) when length(tracks) > 0, do: tracks
+  defp extract_tracks(module) when is_module(module), do: module.tracks()
 
-  defp extract_tracks(%Article{tags: tags}), do: tags |> route_by_tags() |> extract_tracks()
-  defp extract_tracks(module) when is_atom(module), do: module.tracks()
-
-  defp route_by_tags(tags) do
-    tags
-    |> List.wrap()
-    |> Route.List.by_tags()
-    |> Enum.find(fn route -> length(route.tracks()) > 0 end)
+  defp maybe_article_center(art) when is_module(art) do
+    if Article.List.has_type?(art, 'Blog'),
+      do: art |> Article.Decorators.bbox() |> Geo.CheapRuler.center()
   end
-
-  defp maybe_article_center(%Article{bbox: bbox, date: date}) when not is_nil(date),
-    do: Geo.CheapRuler.center(bbox)
-
-  defp maybe_article_center(_), do: nil
 
   @doc """
   Disables all video related settings on the socket
@@ -194,6 +183,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp new() do
     sett = Settings.start_image()
+    default_tracks = Article.List.find_exact(sett.article_id).tracks()
 
     %__MODULE__{
       forward_track: nil,
@@ -204,7 +194,7 @@ defmodule VelorouteWeb.Live.VideoState do
       start_generation: 0,
       direction: sett.direction
     }
-    |> update_from_tracks(sett.route.tracks(), sett.position)
+    |> update_from_tracks(default_tracks, sett.position)
   end
 
   defguardp has_video(state)
@@ -245,6 +235,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_hash: "",
       video_start: 0,
       video_start_gen: state.start_generation,
+      video_poster: nil,
       video_coords: '',
       video_reversable: false
     ]
@@ -263,8 +254,8 @@ defmodule VelorouteWeb.Live.VideoState do
     )
   end
 
-  defp extract_start(state, %Article{bbox: bbox}) when is_map(bbox) do
-    set_start(state, Geo.CheapRuler.center(bbox))
+  defp extract_start(state, art) when is_module(art) do
+    set_start(state, Geo.CheapRuler.center(art.bbox()))
   end
 
   defp extract_start(%__MODULE__{} = state, params) do

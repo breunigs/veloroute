@@ -10,9 +10,8 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     # disable the warning if we're updating files
     Code.compiler_options(ignore_module_conflict: true)
 
-    tracks = route_tracks() ++ article_tracks()
-
-    tracks
+    Article.List.all()
+    |> Enum.flat_map(& &1.tracks())
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn
       rendered when is_atom(rendered) ->
@@ -35,14 +34,6 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
       Enum.each(unused, &IO.puts(:stderr, "#{Video.Rendered.path(&1)}: #{&1.name()}"))
       IO.puts(:stderr, "\n")
     end
-  end
-
-  defp route_tracks do
-    Enum.flat_map(Route.List.all(), & &1.tracks())
-  end
-
-  defp article_tracks do
-    Enum.flat_map(Article.List.all(), & &1.tracks())
   end
 end
 

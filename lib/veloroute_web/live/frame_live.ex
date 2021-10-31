@@ -42,8 +42,8 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       socket
       |> assign(@initial_state)
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, nil, params)
-      |> determine_visible_types(nil, nil)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, params)
+      |> determine_visible_route_groups(nil)
 
     {:ok, socket}
   end
@@ -72,15 +72,14 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-zoom-to", attr, socket) do
     Logger.debug("map-zoom-to: #{inspect(attr)}")
 
-    route = Route.from_id(attr["route"])
     article = find_article(attr["article"])
 
     socket =
       socket
       |> update_map(attr)
       |> update_ping(attr)
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
-      |> determine_visible_types(route, article)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
+      |> determine_visible_route_groups(article)
 
     {:noreply, socket}
   end
@@ -140,12 +139,11 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("map-click #{inspect(attr)}")
 
     article = find_article(attr["article"])
-    route = Route.from_id(attr["route"])
 
     socket =
       socket
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
-      |> determine_visible_types(route, article)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
+      |> determine_visible_route_groups(article)
 
     socket =
       if(article) do
@@ -175,17 +173,19 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("sld-autoplay", %{"route" => route}, socket) do
-    Logger.debug("sld-autoplay #{route}")
-    route = Route.from_id(route)
-    start_from = (route.tracks() |> Enum.find(fn %{direction: dir} -> dir == :forward end)).from
+  def handle_event("sld-autoplay", %{"article" => article}, socket) do
+    Logger.debug("sld-autoplay #{article}")
+    article = find_article(article)
 
     socket =
-      if route do
+      if article do
+        start_from =
+          (article.tracks() |> Enum.find(fn %{direction: dir} -> dir == :forward end)).from
+
         socket
         |> VelorouteWeb.Live.VideoState.reset()
-        |> VelorouteWeb.Live.VideoState.maybe_update_video(route, nil, start_from)
-        |> determine_visible_types(route, nil)
+        |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, start_from)
+        |> determine_visible_route_groups(nil)
         |> assign(:autoplay, true)
       else
         socket
@@ -208,6 +208,13 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_params(%{"not_found" => "true"}, nil, socket), do: {:noreply, render_404(socket)}
+
+  def handle_params(%{"article" => name, "subdir" => "articles"} = params, nil, socket) do
+    params
+    |> Map.delete("subdir")
+    |> Map.put("article", name)
+    |> handle_params(nil, socket)
+  end
 
   def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
       when is_binary(subdir) and subdir != "" do
@@ -237,8 +244,8 @@ defmodule VelorouteWeb.FrameLive do
         do: socket,
         else:
           socket
-          |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, article, params)
-          |> determine_visible_types(nil, article)
+          |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
+          |> determine_visible_route_groups(article)
 
     socket =
       set_content(article, socket)
@@ -277,7 +284,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_content(art, socket) when is_module(art) do
-    full_title = Article.Dectorators.full_title(art)
+    full_title = Article.Decorators.full_title(art)
 
     page_title =
       if full_title == "",
@@ -323,15 +330,21 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_bounds(
-         %{assigns: %{prev_page: name}} = socket,
-         %Article{name: name},
+         %{assigns: %{prev_page: art}} = socket,
+         art,
          _bounds_param
        ) do
     socket
   end
 
-  defp set_bounds(socket, %Article{bbox: bbox}, _bounds_param) when is_map(bbox) do
-    assign(socket, bounds: bbox) |> set_bounds_ts
+  defp set_bounds(socket, art, _bounds_param) when is_module(art) do
+    bbox = Article.Decorators.bbox(art)
+
+    if bbox do
+      assign(socket, bounds: bbox) |> set_bounds_ts
+    else
+      socket
+    end
   end
 
   defp set_bounds(socket, _article, _bounds_param) do
@@ -386,14 +399,9 @@ defmodule VelorouteWeb.FrameLive do
     Article.List.find_exact(name)
   end
 
-  defp article_path(socket, %Article{name: "0000-00-00-" <> name}) do
+  defp article_path(socket, art) when is_module(art) do
     query = url_query(socket)
-    Routes.page_path(socket, VelorouteWeb.FrameLive, name, query)
-  end
-
-  defp article_path(socket, %Article{name: name}) do
-    query = url_query(socket)
-    Routes.article_path(socket, VelorouteWeb.FrameLive, name, query)
+    Routes.page_path(socket, VelorouteWeb.FrameLive, String.trim_leading(art.path(), "/"), query)
   end
 
   defp update_url_query(%{assigns: assigns} = socket) do
@@ -438,26 +446,18 @@ defmodule VelorouteWeb.FrameLive do
   defp blank?(nil), do: true
   defp blank?(_), do: false
 
-  defp determine_visible_types(socket, route, article) do
+  defp determine_visible_route_groups(socket, article) do
+    # from displayed video
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
     parent_ref = track && track.parent_ref
+    show = if is_module(parent_ref), do: [parent_ref.route_group()], else: []
 
+    # from displayed article
     article = article || find_article(socket) || find_article(parent_ref)
+    show = if article, do: show ++ Article.Decorators.related_route_groups(article), else: show
 
-    show = if route, do: [route.type()], else: []
-    show = if is_module(parent_ref), do: [parent_ref.type() | show], else: []
-
-    show =
-      if article,
-        do: show ++ Enum.map(Article.related_routes(article), & &1.type()),
-        else: show
-
-    show =
-      if show == [] do
-        [:alltag]
-      else
-        show
-      end
+    # defaults
+    show = if show == [], do: [:alltag], else: show
 
     assign(socket, visible_types: Enum.uniq(show))
   end

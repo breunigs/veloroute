@@ -2,9 +2,15 @@ defmodule TagHelpers do
   use Phoenix.Component
   import Guards
 
-  def mailto(assigns) do
+  def mailto(%{inner_block: _x} = assigns) do
     ~H"""
     <a href={Settings.email()}><%= render_block(@inner_block) %></a>
+    """
+  end
+
+  def mailto(assigns) do
+    ~H"""
+    <a href={Settings.email()}><%= Settings.email() %></a>
     """
   end
 
@@ -13,7 +19,7 @@ defmodule TagHelpers do
     art = Article.List.find_with_tags(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
-    assigns = assign(assigns, :path, Article.Dectorators.path(art))
+    assigns = assign(assigns, :path, Article.Decorators.path(art))
     ~H"<a href={@path}><%= render_block(@inner_block) %></a>"
   end
 
@@ -23,8 +29,6 @@ defmodule TagHelpers do
     id = id_from_attr || content
 
     art = Article.List.category('Static') |> Article.List.find_with_tags(id)
-    # FIXME: remove this default
-    art = art || Article.List.find_exact("")
 
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
@@ -34,45 +38,10 @@ defmodule TagHelpers do
     assigns = assign(assigns, %{extra_attrs: extra_attrs, icon: icon, path: art.path()})
 
     ~H"""
-    <a href={@path} {@extra_attrs}><%= @icon %><%= if id != content, do: render_block(@inner_block) %></a>
+    <a href={@path} {@extra_attrs} data-phx-link-state="push" data-phx-link="patch">
+      <%= @icon %><%= if id != content, do: render_block(@inner_block) %>
+    </a>
     """
-  end
-
-  def m(assigns) do
-    attr = %{"phx-click" => "map-zoom-to"}
-    art = assigns.current_page
-
-    art_with_tracks =
-      if art.tracks() == [] do
-        art
-        |> Article.List.related()
-        |> Article.List.with_tracks()
-        |> Enum.at(0)
-      else
-        art
-      end
-
-    attr =
-      if art_with_tracks,
-        do: Map.put(attr, "phx-value-article", art_with_tracks.name()),
-        else: attr
-
-    attr =
-      Enum.reduce(assigns, attr, fn {key, val}, acc ->
-        if key in [:bounds, :lat, :lon, :dir, :route, :article, :zoom] do
-          Map.put(acc, "phx-value-#{key}", val)
-        else
-          acc
-        end
-      end)
-
-    attr =
-      if is_map_key(attr, "phx-value-bounds"),
-        do: attr,
-        else: Map.put_new(attr, "phx-value-zoom", "15")
-
-    assigns = assign(assigns, :attr, attr)
-    ~H"<a {attr}><%= render_block(@inner_block) %></a>"
   end
 
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
@@ -82,7 +51,7 @@ defmodule TagHelpers do
 
     links =
       case assigns[:gpx] do
-        "yes" -> links ++ [Article.Dectorators.gpx_links(art)]
+        "yes" -> links ++ [Article.Decorators.gpx_links(art)]
         nil -> links
         other -> raise("gpx=#{other} not supported, allowed are 'yes' or absence")
       end

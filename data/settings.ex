@@ -7,7 +7,7 @@ defmodule Settings do
 
   def start_image,
     do: %{
-      route: Data.Route.Route11,
+      article_id: "11",
       direction: :forward,
       position: %{lat: 53.55044, lon: 9.99440}
     }

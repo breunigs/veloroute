@@ -43,4 +43,9 @@ defmodule Util do
       Enum.member?(enum2, el1)
     end)
   end
+
+  @spec compact(Enumerable.t()) :: Enumerable.t()
+  def compact(list) do
+    Enum.reject(list, &is_nil(&1))
+  end
 end

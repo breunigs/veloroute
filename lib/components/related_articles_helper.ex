@@ -20,14 +20,14 @@ defmodule RelatedArticlesHelper do
   defp render_list([], []), do: empty()
 
   defp render_list(static, dated) do
-    assigns = %{}
+    assigns = %{items: article_list(dated, years: true, time_format: :date)}
 
     ~H"""
     <TagHelpers.noindex>
       <h3>Verwandte Artikel</h3>
       <%= to_soft_list(static) %>
       <ol class="hide-bullets">
-      <%= for item <- article_list(dated, years: true, time_format: :date) do %>
+      <%= for item <- @items do %>
         <%= item %>
       <% end %>
       <%=  %></ol>
@@ -38,12 +38,12 @@ defmodule RelatedArticlesHelper do
   defp to_soft_list([]), do: empty()
 
   defp to_soft_list([art]) do
-    assigns = %{link: Article.Dectorators.link(art)}
+    assigns = %{link: Article.Decorators.link(art)}
     ~H"<p>Übersicht: <strong><%= @link %></strong></p>"
   end
 
   defp to_soft_list(art_list) do
-    assigns = %{links: Enum.map(art_list, &Article.Dectorators.link(&1))}
+    assigns = %{links: Enum.map(art_list, &Article.Decorators.link(&1))}
 
     ~H"""
     <ul>
@@ -63,32 +63,32 @@ defmodule RelatedArticlesHelper do
   defp article_list([], years: _years, time_format: _time_format), do: []
 
   defp article_list(articles, years: true, time_format: time_format) do
+    current_year = DateTime.utc_now().year
+
     articles
-    |> Enum.map(fn art -> {art.created_at.year, to_list_item(art, time_format)} end)
-    |> Enum.group_by(&elem(&1, 0))
-    |> Enum.flat_map(fn {year, art_links} ->
-      assigns = %{year: year}
-      [~H{<li class="separator"><%= @year %></li>} | art_links]
+    |> Enum.group_by(& &1.created_at.year)
+    |> Enum.map(fn {year, art_list} ->
+      assigns = %{year: year, art_list: art_list}
+
+      ~H"""
+      <%= if @year != current_year do %>
+        <li class="separator"><%= @year %></li>
+      <% end %>
+      <%= for art <- @art_list do %>
+        <li>
+          <%= to_list_time(art, time_format) %>
+          <%= Article.Decorators.link(art) %>
+        </li>
+      <% end %>
+      """
     end)
-  end
-
-  @spec to_list_item(Article.Behaviour.t(), atom()) :: Phoenix.LiveView.Rendered.t()
-  defp to_list_item(art, time_format) do
-    assigns = %{}
-
-    ~H"""
-    <li>
-      <%= to_list_time(art, time_format) %>
-      <%= Article.Dectorators.link(art) %>
-    </li>
-    """
   end
 
   # TODO: used?
   # defp to_list_time(art, :range),
   #   do: floki_content_tag(:span, Article.range(art), class: "duration")
 
-  defp to_list_time(art, :date) do
+  def to_list_time(art, :date) do
     if art.created_at() == nil do
       empty()
     else
