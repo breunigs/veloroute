@@ -76,7 +76,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
     <p>Ab jetzt bleibt die Führung im Wesentlichen gleich, man passt lediglich die Breiten der vorhandenen Wege an. So sind auf der Lübecker Straße 3,0m breite Hochbordradwege pro Fahrtrichtung vorgesehen, ab dem <.m bounds="10.242473,53.677103,10.24972,53.679663" lon="10.243543" lat="53.679133" dir="forward">Ostring</.m> ein 4,0m breiter Zweirichtungsradweg. Sofern möglich würde man dies auch im <.m bounds="10.248291,53.67743,10.254179,53.680845" lon="10.249102" lat="53.678025" dir="forward">Beimoorweg</.m> so machen.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

@@ -122,7 +122,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
     <p>Die Route ist einen Ausflug wert. Der erste Streckenabschnitt um die <.m bounds="10.006037,53.548808,10.070821,53.554946" lon="10.012841" lat="53.549856" dir="forward">Norderstraße</.m> lohnt sich jedoch nicht. Es ist besser hier gleich der <.a href="/alltagsroute-8">Alltagsroute <.icon>8</.icon></.a> zu folgen. Alternativ kann man auch von der Alster den <.m bounds="10.010896,53.552599,10.026937,53.561695">Grünzug Lohmühlenstraße</.m> bis zum Berliner Tor nutzen.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

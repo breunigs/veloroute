@@ -131,6 +131,7 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("video-autoplayed", attr, socket) do
     Logger.debug("video-autoplayed #{inspect(attr)}")
+    IO.warn("autoplay off")
 
     {:noreply, assign(socket, :autoplay, false)}
   end
@@ -169,27 +170,6 @@ defmodule VelorouteWeb.FrameLive do
             "zoom" => Enum.at(parts, 0)
           }),
         else: socket
-
-    {:noreply, socket}
-  end
-
-  def handle_event("sld-autoplay", %{"article" => article}, socket) do
-    Logger.debug("sld-autoplay #{article}")
-    article = find_article(article)
-
-    socket =
-      if article do
-        start_from =
-          (article.tracks() |> Enum.find(fn %{direction: dir} -> dir == :forward end)).from
-
-        socket
-        |> VelorouteWeb.Live.VideoState.reset()
-        |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, start_from)
-        |> determine_visible_route_groups(nil)
-        |> assign(:autoplay, true)
-      else
-        socket
-      end
 
     {:noreply, socket}
   end
@@ -236,9 +216,12 @@ defmodule VelorouteWeb.FrameLive do
     prev_article = socket.assigns.tmp_last_article_set
     article = find_article(name)
 
+    if params["autoplay"] == "true", do: IO.warn("autoplay on")
+
     # temporarily only update videos if the article changed. Otherwise
     # it will always switch back to the video when viewing another route
     # that doesn't have a video yet
+    # TODO needed?
     socket =
       if article == prev_article,
         do: socket,
@@ -246,6 +229,7 @@ defmodule VelorouteWeb.FrameLive do
           socket
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
           |> determine_visible_route_groups(article)
+          |> assign(:autoplay, params["autoplay"] == "true")
 
     socket =
       set_content(article, socket)

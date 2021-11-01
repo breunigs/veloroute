@@ -126,7 +126,7 @@ defmodule Data.Article.Static.Freizeitroute2 do
     <p>Insgesamt lässt sich die Route in ihrem aktuellen Zustand nicht empfehlen. Es ist besser die günstig gelegenen Abschnitte in eine eigene Planung zu übernehmen, statt der Route am Stück zu folgen.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

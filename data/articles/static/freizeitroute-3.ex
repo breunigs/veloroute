@@ -108,7 +108,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
     <p>Die Route führt durch abswechslungsreiche Natur auf eben so abswechslungsreichen Wegen. Viele Orte an denen sie vorbeiführt laden aber auch zum Verweilen ein. Die Strecke ist selten langweilig und einen Ausflug wert. Allerdings sollte man Zeit mitbringen, denn die Wege sind voll, schmal oder beides – das tut dem Spaß aber keinen Abbruch.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

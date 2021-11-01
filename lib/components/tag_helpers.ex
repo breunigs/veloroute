@@ -33,13 +33,25 @@ defmodule TagHelpers do
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
 
-    extra_attrs = filter_attr_prefix(assigns, "phx-")
-    icon = VelorouteWeb.VariousHelpers.route_icon(id)
-    assigns = assign(assigns, %{extra_attrs: extra_attrs, icon: icon, path: art.path()})
+    query = if assigns[:autoplay] == "true", do: %{autoplay: true}
+    link_attr = %{href: art.path(query), data_phx_link: "patch", data_phx_link_state: "push"}
 
+    # link_attr =
+    #   if assigns[:autoplay] == "yes",
+    #     do: Map.merge(link_attr, %{phx_click: "sld-autoplay", phx_value_article: art.id()}),
+    #     else: link_attr
+
+    icon = VelorouteWeb.VariousHelpers.route_icon(id)
+    assigns = assign(assigns, %{icon: icon, link_attr: link_attr, id: id})
+
+    # ~H"""
+    # <a href={@path} {@extra_attrs} phx-value-article={@id} data-phx-link-state="push" data-phx-link="patch">
+    #   <%= @icon %><%= if @id != content, do: render_block(@inner_block) %>
+    # </a>
+    # """
     ~H"""
-    <a href={@path} {@extra_attrs} data-phx-link-state="push" data-phx-link="patch">
-      <%= @icon %><%= if id != content, do: render_block(@inner_block) %>
+    <a {@link_attr}>
+      <%= @icon %><%= if @id != content, do: render_block(@inner_block) %>
     </a>
     """
   end
@@ -51,7 +63,7 @@ defmodule TagHelpers do
 
     links =
       case assigns[:gpx] do
-        "yes" -> links ++ [Article.Decorators.gpx_links(art)]
+        "true" -> links ++ [Article.Decorators.gpx_links(art)]
         nil -> links
         other -> raise("gpx=#{other} not supported, allowed are 'yes' or absence")
       end

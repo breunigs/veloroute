@@ -13,12 +13,16 @@ defmodule Article.Default do
       def construction_site_id_hh, do: []
       def summary, do: ""
       def tracks, do: []
-      def path, do: "/#{name()}"
       def links(_assigns), do: []
       def id, do: nil
       def color, do: nil
       def route_group, do: nil
       def icon, do: nil
+
+      def path(query \\ nil)
+      def path(nil), do: "/#{name()}"
+      def path(query) when is_map(query), do: "/#{name()}?#{URI.encode_query(query)}"
+
       defoverridable Article.Behaviour
 
       # get heex with global assigns

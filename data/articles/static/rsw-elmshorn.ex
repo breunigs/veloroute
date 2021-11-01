@@ -111,7 +111,7 @@ defmodule Data.Article.Static.RSWElmshorn do
     <p>Die aus Tornesch kommende Fahrradstraßen würden sich bis zum <.m bounds="9.66994,53.733145,9.674969,53.73603" lon="9.671521" lat="53.734707" dir="forward">Hainholter Ohr</.m> fortsetzen. Mit Vorrang, aber ohne die baulichen Mittelstreifen. Um den geplanten Bahnhof „Elmshorn Süd“ soll der Radverkehr auf einen Zweirichtungsradweg geleitet werden, da hier zu viele Autos fahren. Ab dem <.m bounds="9.668209,53.736982,9.671291,53.738939" lon="9.670138" lat="53.737868" dir="forward">Hainholz</.m> soll es wieder eine bevorrechtigte Fahrradstraße werden. An der <.m bounds="9.663164,53.741324,9.666438,53.742946" lon="9.66474" lat="53.741958" dir="forward">Wasserstraße</.m> endet der Schnellweg vorerst.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

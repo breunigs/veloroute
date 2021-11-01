@@ -97,7 +97,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
     <p>Die Trasse soll weiterhin gemeinsam westlich der KFZ-Fahrbahn verlaufen. Dazu soll der Arm des Kreisel in der <.m bounds="9.8801,53.907345,9.883402,53.908915" lon="9.881728" lat="53.908" dir="forward">Holsatenallee</.m> umgebaut werden. Die bevorzugte Führung wäre ein geradliniger Übergang zur <.m bounds="9.880598,53.911521,9.882916,53.912914" lon="9.881335" lat="53.911712" dir="forward">Altonaer Straße</.m>, die zu einer Fahrradstraße werden soll. Am <.m bounds="9.882009,53.91666,9.88387,53.918055" lon="9.882999" lat="53.917288" dir="forward">Bleeck</.m> beginngt bzw. endet der Radschnellweg.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

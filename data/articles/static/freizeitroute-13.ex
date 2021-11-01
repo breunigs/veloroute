@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
     <p>Die Umleitung der Strecke wegen des Baus der A26 ist zwar nicht ganz so schön wie der normale Weg, macht die Tour aber nicht kaputt. Die Tour bleibt abwechslungsreich: Hafenflair, dörfliches, Obstplantagen, Moore, und schließlich Wald. Wer südlich der Elbe unterwegs ist findet hier befahrenswerte Abschnitte.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

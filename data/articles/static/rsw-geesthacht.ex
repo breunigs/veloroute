@@ -83,7 +83,7 @@ defmodule Data.Article.Static.RSWGeesthacht do
     <p>Ob die Variante entlang der Bahn umgesetzt werden kann ist noch offen, da Naturschutz und vergiftete Böden einer alten Müllkippe diese Führung möglichweise verhindern. Die im Video gefahrene Strecke stellt die alternative Trasse dar.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

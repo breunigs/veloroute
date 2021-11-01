@@ -176,7 +176,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
     </table>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

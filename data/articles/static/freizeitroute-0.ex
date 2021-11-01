@@ -106,7 +106,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
     <p>Ich muss davon abraten diese Route mit dem Fahrrad abzufahren. Man fährt an Autotrassen am Grün vorbei und wird durch häufige und schlecht geschaltene Ampeln ausgebremst. Zu Fuß ist diese Tour eher zu empfehlen. Als Verbindungsstrecke zwischen anderen Zielen oder um Freizeitrouten zu verknüpfen taugt sie aber.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

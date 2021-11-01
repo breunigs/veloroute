@@ -102,7 +102,7 @@ defmodule Data.Article.Static.RSWLueneburg do
     <p>In den geschlossenen Siedlungen sollen Fahrradstraßen eingerichtet werden, an den Strecken ohne Häuser eigenständige Zweirichtungsradwege. Der Radschnellweg mündet an der <.m bounds="10.403081,53.268036,10.406128,53.269831" lon="10.40482" lat="53.2687" dir="forward">Hamburger Straße</.m> in das städtische Radwegnetz. Um gut queren zu können soll eine Ampel gebaut werden, die idealerweise herannahende Radfahrende erkennt und rechtzeitig auf Grün schaltet.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

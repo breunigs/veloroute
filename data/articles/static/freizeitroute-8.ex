@@ -78,7 +78,7 @@ defmodule Data.Article.Static.Freizeitroute8 do
     <p>Wer es gemütlich mag oder neu in Hamburg ist, kann sich die Tour genauer ansehen. Wer vor allem Rad fahren möchte, sollte die Route frühestens ab <.m bounds="9.859689,53.54551,9.870871,53.549437" lon="9.863218" lat="53.547249" dir="forward" ref="FR8">Teufelsbrück</.m> benutzen. Von Altona bietet sich die <.m bounds="9.923566,53.547241,9.936934,53.54851">Holländische Reihe</.m>, <.m bounds="9.87914,53.547219,9.92627,53.550039">Bernadottestraße</.m>, <.m bounds="9.861326,53.546057,9.881644,53.548536">Elbchaussee</.m> als alternative Führung an. Für Rennräder ist die Tour völlig ungeeignet.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

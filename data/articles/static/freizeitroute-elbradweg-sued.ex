@@ -82,7 +82,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
     <p>Für Durchreisende ist der Abschnitt ab Finkenwerder ganz okay. Wer in Hamburg wohnt und ins Grüne will wird auf anderen Freizeitstrecken jedoch besser bedient.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

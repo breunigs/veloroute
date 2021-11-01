@@ -101,7 +101,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
     <p>Die Route ist in sich stimmig und meist gut befahrbar. Man muss sich im Klaren sein, das sie ihren Charakter zwischendurch völlig ändert und ggf. nur die bevorzugten Abschnitte befahren. Wer dem <.m bounds="9.903895,53.443683,9.91895,53.446607" lon="9.915194" lat="53.445611" dir="forward">Harburger Stadtweg</.m> noch etwas folgt erreicht jedoch gleich zwei sehenswerte Ziele: das <.m bounds="9.898042,53.435587,9.907859,53.441744">Freilichtmuseum Kiekberg</.m> und den <.m bounds="9.875153,53.439804,9.891907,53.44849">Wildpark Schwarze Berge</.m>.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

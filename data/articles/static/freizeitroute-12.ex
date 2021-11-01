@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Freizeitroute12 do
     <p>Die Route ist schön und in sich stimmig. Wer es nicht eilig hat kann die Route abseits des Autoverkehrs genießen. Ausnahme bildet der <.m bounds="9.990835,53.617861,10.010534,53.62397" lon="9.996549" lat="53.620475" dir="forward">Weg beim Jäger</.m>, der mit wenig Grün daherkommt und wo die Radwege einfach im Nichts enden. Die <.m bounds="10.008442,53.621868,10.014844,53.625248" lon="10.009999" lat="53.623919" dir="forward">anschließende Kreuzung</.m> ist fahrradfeindlich – wer sich hier verfährt wird mit mehreren Minuten Wartezeit bestraft. Wer diesen Abschnitt nicht mag kann den Flughafen stattdessen <.m bounds="9.954241,53.613989,9.977322,53.625393">auf der Westseite</.m> umfahren und über den <.m bounds="9.971521,53.643221,9.991455,53.654183">Krohnstieg-Tunnel</.m> der Tarpenbek weiter folgen.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

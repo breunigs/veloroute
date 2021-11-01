@@ -10,7 +10,7 @@ defmodule Article.Behaviour do
   @callback route_group() :: route_group() | nil
   @callback color() :: color_hex()
   @callback name() :: binary()
-  @callback path() :: binary()
+  @callback path(nil | map()) :: binary()
   @callback icon() :: :nocargo | :stau | nil
 
   @callback created_at() :: Date.t() | nil

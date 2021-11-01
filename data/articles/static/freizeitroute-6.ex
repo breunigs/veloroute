@@ -121,7 +121,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
     <p>Eine ähnliche, aber ruhigere Führung ist grob: <.a href="/alltagsroute-9">Alltagsroute <.icon>9</.icon></.a> bis Elbbrücken; Veddel wie gehabt; auf Wilhelmsburg stattdessen der <.a href="/alltagsroute-11">Alltagsroute <.icon>11</.icon></.a> folgen; Rest wie gehabt.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end

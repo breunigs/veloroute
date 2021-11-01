@@ -250,7 +250,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
     <p>Als einzige vollständig ausgeschilderte Freizeitroute ist der 2. Grüne Ring besonders gut als erste Radtour für Neulinge geeignet. Wer schon fester im Sattel sitzt kann den gesamten Ring auch an einem Tag absolvieren und die verschiedenen Landschaftstypen genießen. Perfekt ist die Tour nicht, zu häufig verhindern Drängelgitter oder Randsteine eine durchgehende Fahrt. Dennoch ist sie mit eine der besten Freizeitrouten die Hamburg anbietet.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="yes"/>
+    <.structured_links gpx="true"/>
     """
   end
 end
