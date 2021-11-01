@@ -35,10 +35,9 @@ defmodule Article.Decorators do
   """
   @spec path(Article.Behaviour.t()) :: binary()
   def path(art) do
-    case art.created_at() do
-      nil -> "/#{art.name()}"
-      date -> "/article/#{date}-#{art.name()}"
-    end
+    if Article.List.has_type?(art, 'Blog'),
+      do: "/article/#{art.name()}",
+      else: "/#{art.name()}"
   end
 
   @doc """
@@ -49,7 +48,10 @@ defmodule Article.Decorators do
           Phoenix.LiveView.Rendered.t()
   def link(art, content \\ nil) do
     assigns = %{href: path(art), content: content || full_title(art)}
-    ~H"<a href={@href}><%= @content %></a>"
+
+    ~H"""
+    <a href={@href} data-phx-link-state="push" data-phx-link="patch"><%= @content %></a>
+    """
   end
 
   @type_names %{

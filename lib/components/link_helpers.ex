@@ -1,6 +1,8 @@
 defmodule LinkHelpers do
   use Phoenix.Component
 
+  @paywall_hostnames ["abendblatt.de", "www.abendblatt.de"]
+
   @known_a_attrs [:href, :__changed__, :current_page, :type, :inner_block]
   @doc """
   a links change the current page and may point to internal or external pages
@@ -16,14 +18,17 @@ defmodule LinkHelpers do
       do: raise("Unknown keys #{inspect(unknown_keys)} for a-link: #{inspect(assigns)}")
 
     attrs =
-      cond do
-        String.starts_with?(href, "/") ->
+      case URI.parse(href) do
+        %{host: nil, path: "/" <> _rest} ->
           %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
 
-        String.starts_with?(href, "http") ->
+        %{host: h} when h in @paywall_hostnames ->
+          %{target: "_blank", rel: "nofollow", href: href}
+
+        %{host: h} when is_binary(h) ->
           %{target: "_blank", href: href}
 
-        true ->
+        _any ->
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
 

@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.Veloroute9Bewertung do
 
     <p>Von Bergedorf aus bietet sie sich tagsüber als Alternative zur Veloroute 8 an – am besten ausprobieren welche Route einem eher zusagt.</p>
 
-    <p><.a target="_blank" href="https://www.abendblatt.de/hamburg/article215536099/Im-Hamburger-Osten-brauchen-Radler-starke-Nerven.html" rel="nofollow">Zeitungsartikel/Review vom 11.10.2018</.a></p>
+    <p><.a href="https://www.abendblatt.de/hamburg/article215536099/Im-Hamburger-Osten-brauchen-Radler-starke-Nerven.html">Zeitungsartikel/Review vom 11.10.2018</.a></p>
     """
   end
 end

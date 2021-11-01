@@ -21,7 +21,7 @@ defmodule Data.Article.Blog.Veloroute10Bewertung do
     <p>In <.m bounds="9.980139,53.456222,9.991336,53.464978">Harburg</.m> geht es im Wesentlichen auf alten und durchwachsenen Radwegen weiter: Die Unterführung am <.m bounds="9.980501,53.46337,9.983138,53.464867">electrum Museum</.m> muss man erst mal finden und dann zeichnet sie sich durch enge Kurven aus. Das ist im Wesentlichen auch für die zwei anderen Unterführungen im weiteren Verlauf so. Die <.m bounds="9.716988,53.457894,9.988781,53.520317">Buxtehuder Straße</.m> bzw. später die <.m bounds="9.806636,53.464579,9.9165,53.472814">Cuxhavener Straße</.m> sind wichtige Autoverbindungen. Das die Bettelampeln zum Queren teils zwei Minuten(!) Wartezeit haben ist dennoch inakzeptabel und dürfte zu einer hohen Quote Geisterradler beitragen.</p>
     <p>Übrigens: Das kurze Stück in der <.m bounds="9.962631,53.466636,9.972555,53.470204">Unterelbestraße</.m> ist noch <em>echtes</em> Kopfsteinpflaster – und entsprechend unangenehm.</p>
     <p>Zusammenfassend: Veloroute 10 hat überwiegend noch akzeptable Teile, viele schlechte Stellen und wenig Gute. Neueinsteiger suchen sich besser eine andere Route, bevor sie über das Fahrrad als Verkehrsmittel im Alltag urteilen.</p>
-    <p><.a target="_blank" href="https://www.abendblatt.de/hamburg/article215567451/Der-Sprung-ueber-die-Elbe-hier-wird-er-zur-Mutprobe.html" rel="nofollow">Zeitungsartikel/Review vom 15.10.2018</.a></p>
+    <p><.a href="https://www.abendblatt.de/hamburg/article215567451/Der-Sprung-ueber-die-Elbe-hier-wird-er-zur-Mutprobe.html">Zeitungsartikel/Review vom 15.10.2018</.a></p>
     """
   end
 end

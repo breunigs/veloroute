@@ -21,7 +21,7 @@ defmodule Data.Article.Blog.Veloroute5Bewertung do
     <p>Traurigerweise ist dies auch auf grunderneuerten Strecken nicht besser. Etwa <.m bounds="10.058728,53.610684,10.058728,53.610684">Steilshoop</.m>: Im <.m bounds="10.061736,53.608589,10.06358,53.610768">Gustav-Seitz-Weg</.m> ist der neu gepflasterte Radweg nur 1,5m breit statt der Mindestvorgabe von 1,6m. Weiter in der <.m bounds="10.044233,53.609629,10.068401,53.615433">Gründgensstraße</.m> gibt es nur einen Angebotsstreifen (gestrichelte Linie), der an Zufußgehendeüberwegen ganz wegfällt. Vorher werden die Streifen nochmal schmaler, während die KFZ Spur gleich breit bleibt. Dies räumt Autos optisch Vorfahrt ein, was auf einer Veloroute völlig unverständlich ist.</p>
     <p>Immerhin ist die umgebaute Kreuzung am <.m bounds="10.000127,53.555559,10.002856,53.557072">Ferdinandstor</.m> ganz gut und die Umleitung am <.m bounds="10.02826,53.602835,10.032888,53.607062">Hebebrandquartier</.m> teilweise ausgeschildert.</p>
     <p>Fazit: aktuell ist Veloroute 5 eine Frechheit und nicht zu empfehlen. In <.m bounds="10.042956,53.586752,10.04604,53.587774">Barmbek</.m> bietet sich die <.m bounds="10.058741,53.593319,10.090246,53.633302">Bramfelder Chaussee</.m> als Alternative an. Diese ist zwar nicht unbedingt besser ausgebaut, aber dafür führt sie ohne Umwege in die Innenstadt.</p>
-    <p><.a target="_blank" href="https://www.abendblatt.de/hamburg/article215418281/Wer-nach-Duvenstedt-will-lernt-grosse-Strassen-kennen.html" rel="nofollow">Zeitungsartikel/Review vom 26.09.2018</.a></p>
+    <p><.a href="https://www.abendblatt.de/hamburg/article215418281/Wer-nach-Duvenstedt-will-lernt-grosse-Strassen-kennen.html">Zeitungsartikel/Review vom 26.09.2018</.a></p>
     """
   end
 end
