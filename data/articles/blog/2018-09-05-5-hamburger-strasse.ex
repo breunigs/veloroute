@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.HamburgerStrasse do
 
   def type(), do: :finished
 
-  def tags(), do: [5, "5N"]
+  def tags(), do: ["5", "5N"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

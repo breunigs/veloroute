@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Veddel do
 
   def type(), do: :construction
 
-  def tags(), do: [10]
+  def tags(), do: ["10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

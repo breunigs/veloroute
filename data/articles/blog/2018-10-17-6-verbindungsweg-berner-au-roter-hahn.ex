@@ -13,9 +13,9 @@ defmodule Data.Article.Blog.VerbindungswegBernerAuRoterHahn do
 
   def type(), do: :finished
 
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

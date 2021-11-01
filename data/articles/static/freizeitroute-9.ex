@@ -75,7 +75,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294582/radtour-city-altonaer-volkspark-kloevensteen/"},

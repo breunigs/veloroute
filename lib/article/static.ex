@@ -4,7 +4,7 @@ defmodule Article.Static do
       use Article.Default
 
       def created_at, do: nil
-      def type, do: :static
+      def type, do: nil
     end
   end
 end

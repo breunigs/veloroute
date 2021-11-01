@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.WoerdemannsWeg do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [9608, 20222]
-  def tags(), do: [2]
+  def tags(), do: ["2"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

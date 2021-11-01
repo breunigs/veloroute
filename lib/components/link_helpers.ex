@@ -16,9 +16,15 @@ defmodule LinkHelpers do
       do: raise("Unknown keys #{inspect(unknown_keys)} for a-link: #{inspect(assigns)}")
 
     attrs =
-      case String.first(href) do
-        "/" -> %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
-        "http" -> %{target: "_blank", href: href}
+      cond do
+        String.starts_with?(href, "/") ->
+          %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
+
+        String.starts_with?(href, "http") ->
+          %{target: "_blank", href: href}
+
+        true ->
+          raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
 
     assigns = assign(assigns, :attrs, attrs)

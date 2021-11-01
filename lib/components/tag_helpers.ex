@@ -47,7 +47,7 @@ defmodule TagHelpers do
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   def structured_links(assigns) do
     art = assigns.current_page
-    links = art.links()
+    links = art.links(assigns)
 
     links =
       case assigns[:gpx] do

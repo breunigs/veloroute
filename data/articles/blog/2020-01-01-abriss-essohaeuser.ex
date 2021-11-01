@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.AbrissEssohaeuser do
 
   def type(), do: :construction
 
-  def tags(), do: [9]
+  def tags(), do: ["9"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

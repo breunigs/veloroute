@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.AlexandraStieg do
 
   def type(), do: :construction
 
-  def tags(), do: [9, "M11", "M11.1a"]
+  def tags(), do: ["9", "M11", "M11.1a"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.Moorweidenstrasse do
 
   def type(), do: :finished
 
-  def tags(), do: [3]
+  def tags(), do: ["3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

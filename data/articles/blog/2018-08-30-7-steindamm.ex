@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Steindamm do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [2034]
-  def tags(), do: [7]
+  def tags(), do: ["7"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

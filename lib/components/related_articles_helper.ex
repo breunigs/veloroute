@@ -11,7 +11,7 @@ defmodule RelatedArticlesHelper do
       |> Enum.group_by(fn rel -> rel.created_at() == nil end)
 
     static = Map.get(grouped, true, [])
-    dated = Map.get(grouped, false, []) |> Enum.sort_by(& &1.created_at(), :desc)
+    dated = Map.get(grouped, false, [])
 
     render_list(static, dated)
   end
@@ -56,6 +56,9 @@ defmodule RelatedArticlesHelper do
 
   defp empty(assigns \\ %{}), do: ~H""
 
+  @doc """
+  List articles grouped by year in descending order.
+  """
   @spec article_list(Article.Behaviour.t(),
           years: boolean(),
           time_format: :date | :range
@@ -67,7 +70,10 @@ defmodule RelatedArticlesHelper do
 
     articles
     |> Enum.group_by(& &1.created_at.year)
+    |> Enum.sort_by(fn {year, _list} -> year end, :desc)
     |> Enum.map(fn {year, art_list} ->
+      art_list = Enum.sort_by(art_list, & &1.created_at(), {:desc, Date})
+
       assigns = %{year: year, art_list: art_list}
 
       ~H"""

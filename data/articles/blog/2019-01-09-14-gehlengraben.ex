@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Gehlengraben do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [295, 17929]
-  def tags(), do: [14]
+  def tags(), do: ["14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.TonndorferHauptstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: [14]
+  def tags(), do: ["14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

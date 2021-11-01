@@ -65,7 +65,7 @@ defmodule Data.Article.Static.Freizeitroute12 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294586/radtour-alsterlauf-tarpenbek-langenhorn/"},

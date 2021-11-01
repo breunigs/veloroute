@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BaerenalleeRantzaustrasse do
 
   def type(), do: :changed_routing
 
-  def tags(), do: [7]
+  def tags(), do: ["7"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

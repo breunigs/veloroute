@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14470, 15779]
-  def tags(), do: [6, "w14"]
+  def tags(), do: ["6", "w14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

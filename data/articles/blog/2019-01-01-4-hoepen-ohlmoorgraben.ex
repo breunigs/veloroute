@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
 
   def type(), do: :planned
 
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

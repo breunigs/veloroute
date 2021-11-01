@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.ZumDubben do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [7739, 15349]
-  def tags(), do: [10, "H08"]
+  def tags(), do: ["10", "H08"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Juergensallee do
 
   def type(), do: :finished
 
-  def tags(), do: [1, "a16"]
+  def tags(), do: ["1", "a16"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

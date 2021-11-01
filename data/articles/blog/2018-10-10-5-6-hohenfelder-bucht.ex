@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.HohenfelderBucht do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [6381]
-  def tags(), do: [5, 6]
+  def tags(), do: ["5", "6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

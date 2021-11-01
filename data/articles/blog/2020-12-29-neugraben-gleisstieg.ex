@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.NeugrabenGleisstieg do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [14084]
-  def tags(), do: [10]
+  def tags(), do: ["10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse do
 
   def tags(), do: ["5N"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

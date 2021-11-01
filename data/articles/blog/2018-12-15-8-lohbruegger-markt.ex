@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.LohbrueggerMarkt do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14337]
-  def tags(), do: [8]
+  def tags(), do: ["8"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

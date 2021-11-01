@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def type(), do: :planned
 
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

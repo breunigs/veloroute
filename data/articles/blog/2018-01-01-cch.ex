@@ -43,7 +43,7 @@ defmodule Data.Article.Blog.Cch do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Hirschgraben do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [9971]
-  def tags(), do: [13]
+  def tags(), do: ["13"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

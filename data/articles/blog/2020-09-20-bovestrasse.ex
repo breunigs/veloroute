@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Bovestrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [15556]
-  def tags(), do: [7]
+  def tags(), do: ["7"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

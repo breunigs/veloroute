@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BillstedterHauptstrasseAbReclamstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["radfahrstreifen", 8, "M6.1a"]
+  def tags(), do: ["radfahrstreifen", "8", "M6.1a"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

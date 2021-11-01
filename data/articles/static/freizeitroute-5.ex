@@ -80,7 +80,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294596/radtour-city-elbpark-entenwerder-vier-und-marschlande/"},

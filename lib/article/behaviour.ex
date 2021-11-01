@@ -3,7 +3,6 @@ defmodule Article.Behaviour do
   @type color_hex() :: <<_::56>> | nil
   @type route_group() :: :alltag | :freizeit | :rsw
 
-  @typep heex() :: Phoenix.LiveView.Rendered.t()
   @type assigns() :: %{:type => :html | :feed, optional(atom) => any}
   @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
 
@@ -12,21 +11,30 @@ defmodule Article.Behaviour do
   @callback color() :: color_hex()
   @callback name() :: binary()
   @callback path() :: binary()
-  @callback icon() :: :nocargo | nil
+  @callback icon() :: :nocargo | :stau | nil
 
   @callback created_at() :: Date.t() | nil
   @callback updated_at() :: Date.t() | nil
 
-  @callback type() :: :construction | :planned | :finished | :intent | :changed_routing
+  @callback type() ::
+              :construction
+              | :planned
+              | :finished
+              | :intent
+              | :changed_routing
+              | :issue
+              | :ampel
+              | nil
   @callback start() :: RoughDate.t()
   @callback stop() :: RoughDate.t()
   @callback construction_site_id_hh() :: [integer()]
 
   @callback title() :: binary()
   @callback summary() :: binary()
-  @callback text(assigns()) :: heex()
   @callback tags() :: [binary()]
 
   @callback tracks() :: [Video.Track.t()]
-  @callback links() :: [link()]
+
+  @callback text(assigns()) :: Phoenix.LiveView.Rendered.t()
+  @callback links(assigns()) :: [link()]
 end

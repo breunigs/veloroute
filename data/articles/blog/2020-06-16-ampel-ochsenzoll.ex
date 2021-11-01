@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.AmpelOchsenzoll do
 
   def type(), do: :ampel
 
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -52,7 +52,7 @@ defmodule Data.Article.Static.Freizeitroute8 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294580/radtour-city-elbufer-wittenbergen/"},

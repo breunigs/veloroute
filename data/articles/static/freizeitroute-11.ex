@@ -216,9 +216,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
       }
     ]
 
-  def links() do
-    assigns = %{}
-
+  def links(assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},

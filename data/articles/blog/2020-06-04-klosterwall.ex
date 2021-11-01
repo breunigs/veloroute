@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Klosterwall do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [9332]
-  def tags(), do: [9]
+  def tags(), do: ["9"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Bismarckstrasse do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [69, 615]
-  def tags(), do: [3]
+  def tags(), do: ["3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

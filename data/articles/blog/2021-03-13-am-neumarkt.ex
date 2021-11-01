@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
 
   def tags(), do: ["radfahrstreifen"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

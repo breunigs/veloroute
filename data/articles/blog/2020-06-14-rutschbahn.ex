@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Rutschbahn do
 
   def type(), do: :finished
 
-  def tags(), do: [3]
+  def tags(), do: ["3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.KreuzungGaertnerstrasse do
 
   def type(), do: :ampel
 
-  def tags(), do: [3]
+  def tags(), do: ["3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

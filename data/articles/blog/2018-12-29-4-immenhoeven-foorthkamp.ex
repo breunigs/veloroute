@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.ImmenhoevenFoorthkamp do
 
   def type(), do: :finished
 
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

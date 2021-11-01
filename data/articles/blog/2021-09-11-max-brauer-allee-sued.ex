@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
 
   def type(), do: :planned
 
-  def tags(), do: [1, 12]
+  def tags(), do: ["1", "12"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

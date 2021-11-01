@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.VerlegungNettelnburgVelo9 do
 
   def type(), do: :changed_routing
 
-  def tags(), do: [9]
+  def tags(), do: ["9"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

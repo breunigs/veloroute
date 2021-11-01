@@ -74,7 +74,7 @@ defmodule Data.Article.Static.Alltagsroute4 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418942/veloroute-4/"},

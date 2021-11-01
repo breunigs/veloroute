@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BleickenalleeOst do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [11180]
-  def tags(), do: [1, "a11.1"]
+  def tags(), do: ["1", "a11.1"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

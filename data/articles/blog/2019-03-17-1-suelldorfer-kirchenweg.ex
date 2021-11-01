@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.SuelldorferKirchenweg do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [9449]
-  def tags(), do: [1, "a13"]
+  def tags(), do: ["1", "a13"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

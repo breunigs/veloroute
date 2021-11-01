@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
   def type(), do: :intent
 
-  def tags(), do: [3]
+  def tags(), do: ["3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14882]
-  def tags(), do: [1]
+  def tags(), do: ["1"]
 
   def tracks(),
     do: [
@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

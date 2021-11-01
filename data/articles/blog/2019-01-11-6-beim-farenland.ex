@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BeimFarenland do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [12524]
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

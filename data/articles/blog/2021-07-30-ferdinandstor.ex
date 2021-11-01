@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def type(), do: :construction
 
-  def tags(), do: [5, 6, "FR2", "FR3"]
+  def tags(), do: ["5", "6", "FR2", "FR3"]
 
   def tracks(),
     do: [
@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

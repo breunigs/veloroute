@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.TilsiterStrasseEckerkoppelW16 do
 
   def type(), do: :planned
 
-  def tags(), do: [6, "w16.1", "w16.3", "w16"]
+  def tags(), do: ["6", "w16.1", "w16.3", "w16"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

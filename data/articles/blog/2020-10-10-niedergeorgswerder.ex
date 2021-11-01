@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.Niedergeorgswerder do
 
   def type(), do: :intent
 
-  def tags(), do: [10, "M12.1B"]
+  def tags(), do: ["10", "M12.1B"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Kattwykbruecke do
   def construction_site_id_hh(), do: [18707]
   def tags(), do: ["FR14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

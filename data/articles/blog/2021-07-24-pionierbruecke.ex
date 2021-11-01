@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Pionierbruecke do
 
   def tags(), do: ["FR4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

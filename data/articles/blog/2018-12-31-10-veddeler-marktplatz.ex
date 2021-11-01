@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.VeddelerMarktplatz do
 
   def type(), do: :ampel
 
-  def tags(), do: [10]
+  def tags(), do: ["10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

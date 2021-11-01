@@ -97,7 +97,7 @@ defmodule Data.Article.Static.Freizeitroute2 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294574/radtour-city-alster-osterbekkanal-volksdorfer-wald/"},

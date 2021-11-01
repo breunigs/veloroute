@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.OttensenMitte do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [5055]
-  def tags(), do: [1, "1a", "a8", "a9"]
+  def tags(), do: ["1", "1a", "a8", "a9"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

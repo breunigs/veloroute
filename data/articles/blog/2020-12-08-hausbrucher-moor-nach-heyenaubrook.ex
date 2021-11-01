@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.HausbrucherMoorNachHeyenaubrook do
 
   def type(), do: :finished
 
-  def tags(), do: [10]
+  def tags(), do: ["10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

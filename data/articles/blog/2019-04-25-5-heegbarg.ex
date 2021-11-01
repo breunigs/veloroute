@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Heegbarg do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [10026]
-  def tags(), do: [5]
+  def tags(), do: ["5"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

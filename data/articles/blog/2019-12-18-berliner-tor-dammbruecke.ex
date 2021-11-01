@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def type(), do: :planned
 
-  def tags(), do: [8]
+  def tags(), do: ["8"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

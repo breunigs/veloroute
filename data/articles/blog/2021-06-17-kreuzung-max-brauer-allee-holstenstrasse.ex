@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

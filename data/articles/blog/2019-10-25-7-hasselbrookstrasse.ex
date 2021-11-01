@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Hasselbrookstrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [16420]
-  def tags(), do: [7, "w10"]
+  def tags(), do: ["7", "w10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

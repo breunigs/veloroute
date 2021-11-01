@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.AnDerAlster do
 
   def type(), do: :intent
 
-  def tags(), do: ["fahrradstraße", 5, 6]
+  def tags(), do: ["fahrradstraße", "5", "6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Valentinskamp do
 
   def type(), do: :planned
 
-  def tags(), do: [1, 2, 3, "M10.2a"]
+  def tags(), do: ["1", "2", "3", "M10.2a"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Binnenalster do
 
   def type(), do: :intent
   def construction_site_id_hh(), do: [12285]
-  def tags(), do: [6, 5, 4, 3]
+  def tags(), do: ["6", "5", "4", "3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

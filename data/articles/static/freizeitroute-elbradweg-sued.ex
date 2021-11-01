@@ -54,7 +54,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/mit-dem-rad-durch-hamburg/318124/radtour-elberadweg/"},

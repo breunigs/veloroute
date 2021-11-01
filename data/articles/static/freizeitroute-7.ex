@@ -54,7 +54,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294578/radtour-harburg-harburger-berge/"},

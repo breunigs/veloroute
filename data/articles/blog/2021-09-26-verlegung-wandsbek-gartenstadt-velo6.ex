@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.VerlegungWandsbekGartenstadtVelo6 do
 
   def type(), do: :changed_routing
 
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

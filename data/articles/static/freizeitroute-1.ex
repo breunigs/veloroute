@@ -74,7 +74,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294566/radtour-city-alster-wohlsdorfer-wald-duvenstedter-brook/"},

@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.AgatheLaschWegEmkendorfstrasseJungmannstrasse do
 
   def type(), do: :intent
 
-  def tags(), do: [1]
+  def tags(), do: ["1"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

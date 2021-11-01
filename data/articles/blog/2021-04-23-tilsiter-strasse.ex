@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.TilsiterStrasse do
 
   def type(), do: :intent
 
-  def tags(), do: [6, "w16.2", "w16"]
+  def tags(), do: ["6", "w16.2", "w16"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

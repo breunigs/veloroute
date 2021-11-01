@@ -44,7 +44,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/radschnellwege/"},

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.FriedrichEbertDammW17 do
 
   def type(), do: :finished
 
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

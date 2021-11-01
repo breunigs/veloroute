@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Methfesselstrasse do
 
   def tags(), do: ["eimsbüttel", "articles"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

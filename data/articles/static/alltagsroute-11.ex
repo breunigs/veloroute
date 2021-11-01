@@ -122,9 +122,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
       }
     ]
 
-  def links() do
-    assigns = {}
-
+  def links(assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426790/veloroute-11/"},

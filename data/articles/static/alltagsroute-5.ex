@@ -119,9 +119,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
       }
     ]
 
-  def links() do
-    assigns = {}
-
+  def links(assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426674/veloroute-5/"},

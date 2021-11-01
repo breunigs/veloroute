@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.TangstedterLandstrasse do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [12311]
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

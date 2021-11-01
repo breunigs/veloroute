@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.A26 do
 
   def tags(), do: ["FR11", "FR13"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

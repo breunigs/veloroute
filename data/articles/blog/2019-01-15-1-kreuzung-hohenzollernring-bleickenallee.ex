@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.KreuzungHohenzollernringBleickenallee do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [9437]
-  def tags(), do: [1, "a10"]
+  def tags(), do: ["1", "a10"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

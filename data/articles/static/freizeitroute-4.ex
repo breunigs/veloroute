@@ -94,7 +94,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294594/radtour-city-geesthang-boberger-niederung-bergedorf/"},

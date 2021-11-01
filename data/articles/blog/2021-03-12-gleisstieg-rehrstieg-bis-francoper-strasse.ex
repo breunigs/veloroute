@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.GleisstiegRehrstiegBisFrancoperStrasse do
 
   def type(), do: :construction
 
-  def tags(), do: [10, "h10.2"]
+  def tags(), do: ["10", "h10.2"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["hochbordradweg", "fahrrad-frei", "vz240", 14]
+  def tags(), do: ["hochbordradweg", "fahrrad-frei", "vz240", "14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

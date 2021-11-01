@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Kleekamp do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [12308]
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

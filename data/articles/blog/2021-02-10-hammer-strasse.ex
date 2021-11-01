@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.HammerStrasse do
 
   def tags(), do: ["radfahrstreifen", "bettelampel", "articles"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

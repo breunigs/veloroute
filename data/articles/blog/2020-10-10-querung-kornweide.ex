@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.QuerungKornweide do
 
   def type(), do: :changed_routing
 
-  def tags(), do: [10, "M12.2"]
+  def tags(), do: ["10", "M12.2"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.UppenhofUndEulenkrugstrasse do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [13141]
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

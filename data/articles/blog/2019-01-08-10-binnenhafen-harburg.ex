@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14569, 17416, 17425, 20204]
-  def tags(), do: [10, "H01"]
+  def tags(), do: ["10", "H01"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

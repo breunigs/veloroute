@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["articles"]
+  def tags(), do: []
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

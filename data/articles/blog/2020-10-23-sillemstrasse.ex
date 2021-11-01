@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Sillemstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: [2]
+  def tags(), do: ["2"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.LangenfelderDamm do
 
   def type(), do: :finished
 
-  def tags(), do: [2]
+  def tags(), do: ["2"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

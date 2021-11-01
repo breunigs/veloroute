@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
 
   def type(), do: :construction
 
-  def tags(), do: [4, 14]
+  def tags(), do: ["4", "14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

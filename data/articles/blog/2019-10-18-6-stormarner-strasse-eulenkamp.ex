@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [15014]
-  def tags(), do: [6, "w13"]
+  def tags(), do: ["6", "w13"]
 
   def tracks(),
     do: [
@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.Veloroute6Aenderungen do
 
   def type(), do: nil
 
-  def tags(), do: [6]
+  def tags(), do: ["6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

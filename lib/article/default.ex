@@ -14,7 +14,7 @@ defmodule Article.Default do
       def summary, do: ""
       def tracks, do: []
       def path, do: "/#{name()}"
-      def links, do: []
+      def links(_assigns), do: []
       def id, do: nil
       def color, do: nil
       def route_group, do: nil
@@ -29,7 +29,7 @@ defmodule Article.Default do
         options = [
           engine: Phoenix.LiveView.HTMLEngine,
           file: __CALLER__.file,
-          line: __CALLER__.line + 1,
+          line: __CALLER__.line,
           module: __CALLER__.module,
           indentation: meta[:indentation] || 0
         ]

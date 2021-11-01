@@ -9,9 +9,9 @@ defmodule Data.Article.Blog.Brookgraben do
 
   def type(), do: :issue
 
-  def tags(), do: [14]
+  def tags(), do: ["14"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

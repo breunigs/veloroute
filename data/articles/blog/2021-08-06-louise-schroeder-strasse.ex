@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

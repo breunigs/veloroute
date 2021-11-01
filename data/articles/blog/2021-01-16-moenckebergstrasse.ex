@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Moenckebergstrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [9994]
-  def tags(), do: [7, 8, 9, "hochbahn", "u3"]
+  def tags(), do: ["7", "8", "9", "hochbahn", "u3"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

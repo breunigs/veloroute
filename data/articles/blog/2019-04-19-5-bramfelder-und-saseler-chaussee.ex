@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.BramfelderUndSaselerChaussee do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [15290]
-  def tags(), do: [5]
+  def tags(), do: ["5"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

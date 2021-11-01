@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
 
   def type(), do: :construction
 
-  def tags(), do: [7, "s4"]
+  def tags(), do: ["7", "s4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

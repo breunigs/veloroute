@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.SbahnPulverhof do
 
   def type(), do: :planned
 
-  def tags(), do: [14, "s4"]
+  def tags(), do: ["14", "s4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

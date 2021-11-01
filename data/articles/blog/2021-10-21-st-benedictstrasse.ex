@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     [
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"},

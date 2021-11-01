@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
 
   def type(), do: :construction
 
-  def tags(), do: [8]
+  def tags(), do: ["8"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

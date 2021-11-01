@@ -40,7 +40,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

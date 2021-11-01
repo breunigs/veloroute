@@ -39,7 +39,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
       }
     ]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

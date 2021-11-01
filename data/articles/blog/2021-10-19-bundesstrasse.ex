@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def tags(), do: ["Bezirksroute B", "Eimsbüttel"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

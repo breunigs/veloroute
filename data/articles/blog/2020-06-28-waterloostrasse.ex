@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Waterloostrasse do
 
   def type(), do: :construction
 
-  def tags(), do: [13]
+  def tags(), do: ["13"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

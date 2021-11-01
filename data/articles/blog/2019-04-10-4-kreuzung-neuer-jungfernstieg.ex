@@ -10,9 +10,9 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
 
   def type(), do: :intent
 
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Neusurenland do
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [8311]
-  def tags(), do: [6, "w19"]
+  def tags(), do: ["6", "w19"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

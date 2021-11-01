@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [13995, 15562]
-  def tags(), do: [6, "w16", "w16.1"]
+  def tags(), do: ["6", "w16", "w16.1"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

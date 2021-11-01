@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.SanierungAlteHarburgerElbbruecke do
 
   def type(), do: :construction
 
-  def tags(), do: [10, 11, "FR5", "FR6"]
+  def tags(), do: ["10", "11", "FR5", "FR6"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

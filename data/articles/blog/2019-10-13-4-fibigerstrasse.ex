@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.Fibigerstrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [12316]
-  def tags(), do: [4]
+  def tags(), do: ["4"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

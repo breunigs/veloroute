@@ -8,9 +8,9 @@ defmodule Data.Article.Blog.QuerungDehnhaide do
 
   def type(), do: :ampel
 
-  def tags(), do: [5]
+  def tags(), do: ["5"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 

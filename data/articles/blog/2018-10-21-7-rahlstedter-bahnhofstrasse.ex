@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.RahlstedterBahnhofstrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [15097]
-  def tags(), do: [7, "w27"]
+  def tags(), do: ["7", "w27"]
 
-  def links() do
+  def links(_assigns) do
     []
   end
 
