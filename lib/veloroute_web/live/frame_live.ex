@@ -139,20 +139,14 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-click", attr, socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    article = find_article(attr["article"])
+    article = find_article(attr["article"] || attr["route"])
 
     socket =
       socket
       |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
       |> determine_visible_route_groups(article)
 
-    socket =
-      if(article) do
-        Logger.debug("article")
-        push_patch(socket, to: article_path(socket, article))
-      else
-        socket
-      end
+    socket = if article, do: push_patch(socket, to: article_path(socket, article)), else: socket
 
     {:noreply, socket}
   end
