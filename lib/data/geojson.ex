@@ -110,13 +110,13 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
-  defp as_geojson(%Map.Relation{tags: %{ref: "" <> _rest}} = r) do
-    route = Route.from_relation(r)
+  defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
+    art = Article.List.find_exact(r.tags.name)
 
     extra_rel_tags = %{
-      color: route.color(),
-      route_id: route.id(),
-      type: route.type()
+      color: art.color(),
+      route_id: art.id(),
+      type: art.type()
     }
 
     r
@@ -151,7 +151,7 @@ defmodule Data.GeoJSON do
   defp add_overlap_info(relations, type) do
     {rels_to_modify, rels_to_keep} =
       Enum.split_with(relations, fn rel ->
-        route = Route.from_relation(rel)
+        route = Article.List.find_exact(rel.tags.name)
         route && route.type() == type
       end)
 

@@ -8,14 +8,21 @@ defmodule Mix.Tasks.UpdateGpx do
     Mix.Task.run("app.start")
 
     Cache.Map.relations()
-    |> Enum.map(fn {_rel_id, rel} -> {Route.from_relation(rel), rel} end)
-    |> Enum.reject(fn {route, _rel} -> is_nil(route) end)
+    |> Map.values()
+    |> Enum.map(fn %Map.Relation{tags: tags} = rel ->
+      art = Article.List.find_exact(tags[:name])
+
+      if is_nil(art),
+        do: raise("Relation either has no name, or nor article has that name: #{inspect(tags)}")
+
+      {art, rel}
+    end)
     |> Enum.map(fn {route, rel} ->
       tracks = TrackFinder.ordered(rel) |> TrackFinder.with_nodes()
       gpx_tracks = tracks |> Enum.map(&as_gpx_track(&1))
       kml_tracks = tracks |> Enum.map(&as_kml_track(&1))
 
-      {route.id(), gpx_tracks, kml_tracks}
+      {route.name(), gpx_tracks, kml_tracks}
     end)
     |> Enum.group_by(&elem(&1, 0))
     |> Enum.map(fn {basename, routes} ->
