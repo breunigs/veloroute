@@ -128,49 +128,6 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
-  def parse_bounds(%{
-        "maxlat" => maxLat,
-        "maxlon" => maxLon,
-        "minlat" => minLat,
-        "minlon" => minLon
-      }) do
-    %Geo.BoundingBox{
-      minLon: minLon,
-      minLat: minLat,
-      maxLon: maxLon,
-      maxLat: maxLat
-    }
-  end
-
-  def parse_bounds(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds([[minLon, minLat], [maxLon, maxLat]]) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds([minLon, minLat, maxLon, maxLat]) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds(bounds) when is_binary(bounds) do
-    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
-         {minLon, ""} <- Float.parse(minLon),
-         {minLat, ""} <- Float.parse(minLat),
-         {maxLon, ""} <- Float.parse(maxLon),
-         {maxLat, ""} <- Float.parse(maxLat) do
-      %Geo.BoundingBox{
-        minLon: minLon,
-        minLat: minLat,
-        maxLon: maxLon,
-        maxLat: maxLat
-      }
-    else
-      _ -> nil
-    end
-  end
-
   def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
     bounds
   end

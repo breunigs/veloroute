@@ -31,20 +31,20 @@ defmodule Article.Default do
 
       defmacro sigil_H({:<<>>, meta, [expr]}, []) do
         options = [
-          engine: Phoenix.LiveView.HTMLEngine,
+          engine: Article.HTMLEngine,
           file: __CALLER__.file,
-          line: __CALLER__.line,
+          line: __CALLER__.line + 1,
           module: __CALLER__.module,
           indentation: meta[:indentation] || 0
         ]
 
-        if String.contains?(expr, "</a>"), do: raise("got invalid html tag: </a>")
+        # if String.contains?(expr, "</a>"), do: raise("got invalid html tag: </a>")
 
         expr
-        |> String.replace(
-          ~r{<\.([a-z_]+)([ />])},
-          "<.\\1 type={@type} current_page={@current_page}\\2"
-        )
+        # |> String.replace(
+        #   ~r{<\.([a-z_]+)([ />]|$)}m,
+        #   "<.\\1 type={@type} current_page={@current_page}\\2"
+        # )
         |> EEx.compile_string(options)
       end
     end

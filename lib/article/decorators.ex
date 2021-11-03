@@ -4,6 +4,7 @@ defmodule Article.Decorators do
 
   @spec html(Article.Behaviour.t(), Article.Behaviour.assigns()) :: binary()
   def html(art, assigns) do
+    assigns = assign_new(assigns, :current_page, fn -> art end)
     art.text(assigns) |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
   end
 

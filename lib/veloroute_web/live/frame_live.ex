@@ -300,7 +300,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp set_bounds(%{assigns: %{map_bounds: nil}} = socket, article, bounds_param)
        when is_binary(bounds_param) do
-    parsed = parse_bounds(bounds_param)
+    parsed = Geo.BoundingBox.parse(bounds_param)
 
     if parsed != nil,
       do: assign(socket, bounds: parsed) |> set_bounds_ts,
@@ -346,7 +346,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp update_map(socket, %{"bounds" => bounds}) do
-    parsed = parse_bounds(bounds)
+    parsed = Geo.BoundingBox.parse(bounds)
 
     if parsed != nil,
       do: assign(socket, bounds: parsed) |> set_bounds_ts,

@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Alter Zustand</h4> <p>Im Planungsgebiet gibt es beidseitig schmale <ref>Hochbordradwege</ref>, die durch angekettete Fahrräder teils noch enger werden. Sie müssen nicht benutzt werden.</p>
+    <h4>Alter Zustand</h4> <p>Im Planungsgebiet gibt es beidseitig schmale <.ref>Hochbordradwege</.ref>, die durch angekettete Fahrräder teils noch enger werden. Sie müssen nicht benutzt werden.</p>
     <h4>Planung</h4> <p>Die Straße soll zu einer Fahrradstraße umgebaut werden. Die Fahrbahn soll künftig dann nur noch 5,50m breit sein, wobei am <.m bounds="9.979352,53.564563,9.981155,53.565757">Durchschnitt</.m> die Fahrbahn auf 4,0m verengt werden soll. Die Gehwegüberfahrten bleiben weiterhin erhalten.</p>
     <p>An der <.m bounds="9.981335,53.563922,9.983163,53.564482">Verbindungsbahn</.m> sollen KFZ künftig nicht mehr einbiegen dürfen, die Straße wird aber nicht zu einer Einbahnstraße. Eine komplette Durchfahrtssperre für KFZ wurde von Feuerwehr und Rettungsdiensten abgelehnt.</p>
     <p>Die alten Hochbordradwege werden den Fußwegen zugeschlagen und die KFZ-Parkplätze neu sortiert. Es sollen zahlreiche neue Radanlehnbügel aufgestellt werden; von heute 44 auf künftig 121.</p>

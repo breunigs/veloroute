@@ -81,7 +81,7 @@ defmodule Data.GeoJSON do
   end
 
   defp as_geojson(w = %Map.Way{tags: %{type: "article"}}) do
-    raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's yaml. Does the article exist? \n #{inspect(w.tags)}"
+    raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
   end
 
   defp as_geojson(%Map.Way{} = w) do

@@ -12,11 +12,6 @@ defmodule LinkHelpers do
   end
 
   def a(%{type: :html, href: href} = assigns) do
-    unknown_keys = assigns |> Map.keys() |> Enum.reject(&Enum.member?(@known_a_attrs, &1))
-
-    if unknown_keys != [],
-      do: raise("Unknown keys #{inspect(unknown_keys)} for a-link: #{inspect(assigns)}")
-
     attrs =
       case URI.parse(href) do
         %{host: nil, path: "/" <> _rest} ->

@@ -1,6 +1,23 @@
 defmodule Data.GeoJSONTest do
   use ExUnit.Case, async: true
 
+  defmodule Article1 do
+    use Article.Default
+    def name, do: "art1"
+    def type, do: :issue
+    def title, do: "hi!"
+  end
+
+  defmodule Article2 do
+    use Article.Default
+    def name, do: "art2"
+    def type, do: :issue
+    def title, do: "hi!"
+    def icon, do: :stau
+  end
+
+  @example_articles [Article1, Article2]
+
   @example_map %Map.Parsed{
     nodes: %{},
     relations: %{
@@ -26,11 +43,6 @@ defmodule Data.GeoJSONTest do
       }
     }
   }
-
-  @example_articles [
-    %Article{name: "art1", type: "issue", title: "hi!"},
-    %Article{name: "art2", type: "issue", title: "hi!", icon: "icon"}
-  ]
 
   test "sets appropriate tags on route-ways" do
     assert %{

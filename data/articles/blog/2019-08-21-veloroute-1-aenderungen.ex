@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.Veloroute1Aenderungen do
     <p><strong><.a href="/1#15/53.58782/9.85155/NMe1O40ICN0D92c1ueSGMg">Osdorfer Born:</.a></strong> Der Ausbau der Radwege wurde abgeschlossen. Diese sind jetzt mindestens 1,60m breit und eben. Vor einem Jahr befanden sich diese gerade im Umbau.</p>
     <p><strong><.a href="/1#16/53.557889/9.858056/M17DivpEiVGTajNUNMjE5Q">Jürgensallee:</.a></strong> Offenbar hat der <.a href="/article/2018-09-28-1-juergensallee">geplante Umbau</.a> begonnen – damit wird ein großer Teil des Kopfsteinpflasters durch Asphalt ersetzt.</p>
     <p><strong><.a href="/1#16/53.580707/9.769023/1mHpD8jFD7uz_qRw0UyhEg">Alte Sülldorfer Landstraße:</.a></strong> Auch hier wurde offenbar mit der <.a href="/article/2018-09-28-1-alte-suelldorfer-landstrasse">Umsetzung der geplanten Verkehrsberuhigung</.a> begonnen.</p>
-    <p>Ebenso wurden Planungen verbessert oder in Angriff genommen. Siehe dazu auch die <.a href="/bau">Liste der geplanten Baumaßnahmen und Baustellen</.a>. Wenn ich etwas vergessen habe, <mailto>schreib mir</mailto> bitte.</p>
+    <p>Ebenso wurden Planungen verbessert oder in Angriff genommen. Siehe dazu auch die <.a href="/bau">Liste der geplanten Baumaßnahmen und Baustellen</.a>. Wenn ich etwas vergessen habe, <.mailto>schreib mir</.mailto> bitte.</p>
     """
   end
 end

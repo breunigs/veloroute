@@ -56,6 +56,12 @@ defmodule TagHelpers do
     """
   end
 
+  def articles(assigns) do
+    ~H"""
+    FIXME FIXME FIXME
+    """
+  end
+
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   def structured_links(assigns) do
     art = assigns.current_page

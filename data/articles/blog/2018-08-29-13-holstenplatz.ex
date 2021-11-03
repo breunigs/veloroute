@@ -17,14 +17,14 @@ defmodule Data.Article.Blog.Holstenplatz do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Um den Holstenplatz wird der Radverkehr auf <ref>Hochbordradwegen</ref> geführt. Diese sind dabei teilweise recht schmal und verlaufen durch den Haltestellenbereich der Busse. Konflikte durch Ein-/Aussteigen bzw. auf dem Radweg Wartenden sind entsprechend häufig. An der Kreuzung mit der Stresemannstraße fehlen dem Radverkehr selbst Aufstellflächen, sodass hier die Querrichtung oder der Fußweg blockiert wird.</p>
+    <p>Um den Holstenplatz wird der Radverkehr auf <.ref>Hochbordradwegen</.ref> geführt. Diese sind dabei teilweise recht schmal und verlaufen durch den Haltestellenbereich der Busse. Konflikte durch Ein-/Aussteigen bzw. auf dem Radweg Wartenden sind entsprechend häufig. An der Kreuzung mit der Stresemannstraße fehlen dem Radverkehr selbst Aufstellflächen, sodass hier die Querrichtung oder der Fußweg blockiert wird.</p>
 
     <h4>Planung</h4>
     <p>Die bereits 2018 abgeschlossene Planung wurde nochmals überarbeitet. Im Wesentlichen bleibt das Konzept gleich, wobei sich aber Detailverbesserungen ergeben. Im Nachfolgenden wird der neuere Plan beschrieben</p>
 
-    <p>Entlang der Veloroute 13 im Uhrzeigersinn gibt es zunächst einen <ref>Radfahrstreifen in Mittellage</ref>. Geradlinig wird man über eine rot eingefärbte Furt über die Holstenstraße geführt, macht dann einen Schlenker nach rechts um auf der Busspur weiterzufahren. Diese ist breit genug um auch wartende Busse zu überholen. Unter der Brücke hört die Busspur auf und die Weiterfahrt erfolgt über einen <ref>Radfahrstreifen</ref> der durchgehend in die Alstenstraße führt.</p>
+    <p>Entlang der Veloroute 13 im Uhrzeigersinn gibt es zunächst einen <.ref>Radfahrstreifen in Mittellage</.ref>. Geradlinig wird man über eine rot eingefärbte Furt über die Holstenstraße geführt, macht dann einen Schlenker nach rechts um auf der Busspur weiterzufahren. Diese ist breit genug um auch wartende Busse zu überholen. Unter der Brücke hört die Busspur auf und die Weiterfahrt erfolgt über einen <.ref>Radfahrstreifen</.ref> der durchgehend in die Alstenstraße führt.</p>
 
-    <p>In der entgegengesetzten Fahrtrichtung gibt es wieder einen Radfahrstreifen in Mittellage, der aber deutlich länger ist. Unter der Brücke teilt man sich die Spur mit den Bussen, wobei man sich hier je nach Fahrtrichtung einordnen muss – es gibt eine eigene Linksabbieger-Spur für den Radverkehr. Die Kreuzung quert man wieder geradlinig um in der Haubachstraße im <ref>Mischverkehr</ref> weiterzufahren.</p>
+    <p>In der entgegengesetzten Fahrtrichtung gibt es wieder einen Radfahrstreifen in Mittellage, der aber deutlich länger ist. Unter der Brücke teilt man sich die Spur mit den Bussen, wobei man sich hier je nach Fahrtrichtung einordnen muss – es gibt eine eigene Linksabbieger-Spur für den Radverkehr. Die Kreuzung quert man wieder geradlinig um in der Haubachstraße im <.ref>Mischverkehr</.ref> weiterzufahren.</p>
 
     <p>Bis auf die genannte Ausnahme kann nur indirekt links abgebogen werden. Die Radfahrstreifen sind meist 2,0m breit, teils schmaler, teils breiter. Anders als 2018 noch geplant werden die Bushaltestellen in der Stresemannstraße nicht in dieser Maßnahme umgebaut.</p>
 

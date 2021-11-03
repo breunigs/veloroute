@@ -57,12 +57,12 @@ defmodule Data.Article.Static.RSWAhrensburg do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <ref>Radschnellweg</ref> nach Ahrensburg ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Ahrensburg ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
 
     <h4>Hamburg</h4>
     <p>Los geht der Schnellweg bereits ab dem <.m bounds="10.14417,53.637615,10.150893,53.646256" lon="10.146144" lat="53.639037" dir="forward">Haselkamp</.m> und folgt der <.a href="/alltagsroute-6">Alltagsroute 6</.a> bis zur U-Bahn Station Volksdorf. Bis zum <.m bounds="10.156466,53.644487,10.161663,53.647907" lon="10.158019" lat="53.645727" dir="forward">Kreisel</.m> sind Fahrradstraßen angedacht, im <.m bounds="10.159653,53.64649,10.163835,53.650212" lon="10.160452" lat="53.647107" dir="forward">Uppenhof</.m> richtet man sich nach dem Projekt „autoarmes Volksdorf“.</p>
 
-    <p>Ab dem Bahnhof werden die Vorschläge kleinteilig: die <.m bounds="10.16242,53.649905,10.164847,53.652003" lon="10.163348" lat="53.65026" dir="forward">Claus-Ferck-Straße</.m> soll am Bahnhof für private KFZ gesperrt werden, an den Einmündungen mit <.m bounds="10.163419,53.651135,10.164699,53.651826" lon="10.16395" lat="53.65145" dir="forward">Kattjahren</.m> und <.m bounds="10.166033,53.65136,10.16773,53.652237" lon="10.166721" lat="53.65169" dir="forward">Lerchenberg</.m> jeweils Kreisel entstehen, dazwischen würde <ref>Mischverkehr</ref> bei Tempo 30 eingerichtet.</p>
+    <p>Ab dem Bahnhof werden die Vorschläge kleinteilig: die <.m bounds="10.16242,53.649905,10.164847,53.652003" lon="10.163348" lat="53.65026" dir="forward">Claus-Ferck-Straße</.m> soll am Bahnhof für private KFZ gesperrt werden, an den Einmündungen mit <.m bounds="10.163419,53.651135,10.164699,53.651826" lon="10.16395" lat="53.65145" dir="forward">Kattjahren</.m> und <.m bounds="10.166033,53.65136,10.16773,53.652237" lon="10.166721" lat="53.65169" dir="forward">Lerchenberg</.m> jeweils Kreisel entstehen, dazwischen würde <.ref>Mischverkehr</.ref> bei Tempo 30 eingerichtet.</p>
 
     <p>Ab dem <.m bounds="10.166363,53.651103,10.188213,53.660759" lon="10.168285" lat="53.652267" dir="forward">Lerchenberg</.m> ist eine durchgängige, bevorrechtigte Fahrradstraße vorgesehen. Sollte der KFZ-Durchgangsverkehr zu hoch sein, hält man sich offen zusätzlich Durchgangssperren zu bauen.</p>
 

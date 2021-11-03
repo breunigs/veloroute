@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.VerlegungGrossFlottbekVelo1Velo14 do
 
   def type(), do: :changed_routing
 
-  def tags(), do: ["1", 14]
+  def tags(), do: ["1", "14"]
 
   def links(_assigns) do
     []

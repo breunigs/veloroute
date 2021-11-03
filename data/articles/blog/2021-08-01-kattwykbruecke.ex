@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.Kattwykbruecke do
     <h4>Quelle</h4>
     <ul>
     <li><.a href="https://www.hamburg-port-authority.de/de/info-port/traffic-tower">Verkehrsmeldungen der HPA</.a></li>
-    <li><.a href="https://www.abendblatt.de/wirtschaft/article232927985/kattwykbruecke-hamburg-hafen-hpa-eisenbahn-sperrung.html" rel="nofolow">Zeitungsartikel [€]</.a></li>
+    <li><.a href="https://www.abendblatt.de/wirtschaft/article232927985/kattwykbruecke-hamburg-hafen-hpa-eisenbahn-sperrung.html">Zeitungsartikel [€]</.a></li>
     </ul>
     """
   end

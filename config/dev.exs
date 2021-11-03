@@ -49,11 +49,11 @@ config :veloroute, VelorouteWeb.Endpoint,
 config :veloroute, VelorouteWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/(?!videos-rendered).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/veloroute_web/(live|views)/.*(ex)$",
-      ~r"lib/veloroute_web/templates/.*(eex)$",
-      ~r"data/images/.*(yaml|svg)$"
+      # ~r"priv/static/(?!videos-rendered).*(js|css|png|jpeg|jpg|gif|svg)$",
+      # ~r"priv/gettext/.*(po)$",
+      # ~r"lib/veloroute_web/(live|views)/.*(ex)$",
+      # ~r"lib/veloroute_web/templates/.*(eex)$",
+      # ~r"data/images/.*(yaml|svg)$"
     ]
   ]
 

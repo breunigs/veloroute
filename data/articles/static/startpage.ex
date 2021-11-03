@@ -57,7 +57,7 @@ defmodule Data.Article.Static.Startpage do
     <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
 
     <h3>Aktuelle Artikel</h3>
-    <articles range="recent" sort="date"/>
+    <.articles range="recent" sort="date"/>
     <p>
       <.a href="/changes#lastChanges">Alle Artikel anzeigen</.a>
       oder

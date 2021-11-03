@@ -59,7 +59,7 @@ defmodule Data.Article.Static.RSWGeesthacht do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <ref>Radschnellweg</ref> nach Geesthacht ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Geesthacht ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
     <p>Das Video orientiert sich bis Geesthacht an der Vorzugsführung, muss aber häufig davon abweichen da die Trasse zahlreiche Neubausabschnitte vorsieht. In Geeshacht zeigt das Video die Ausweichstrecke falls die Trasse entlang der Bahnlinie nicht möglich ist. Im unausgebauten Zustand stellt diese Führung nicht die bequemste oder schnellste Verbindung bereit.</p>
 
     <h4>Hamburg</h4>

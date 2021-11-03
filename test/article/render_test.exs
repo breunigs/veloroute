@@ -1,45 +1,52 @@
-# defmodule Cache.ArticlesTest do
-#   use ExUnit.Case, async: true
+defmodule Article.RenderTest do
+  use ExUnit.Case, async: true
 
-#   alias VelorouteWeb.VariousHelpers
+  test "all articles can be rendered" do
+    render_issues =
+      Article.List.all()
+      |> Enum.map(fn art ->
+        # try do
+        _content = Article.Decorators.html(art, %{__changed__: %{}, type: :html})
+        nil
+        # rescue
+        #   err -> {art, err}
+        # end
+      end)
+      |> Util.compact()
 
-#   test "all articles have mandatory params" do
-#     Cache.Articles.get()
-#     |> Parallel.each(fn {name, a} ->
-#       have = a |> Map.keys() |> MapSet.new()
-#       want = Article.required_params() |> MapSet.new()
-#       missing = MapSet.difference(want, have)
+    assert [] == render_issues
+  end
 
-#       assert length(MapSet.to_list(missing)) == 0,
-#              "#{name} is missing some of the required keys. Missing: #{inspect(missing)}"
-#     end)
-#   end
+  # test "link bound attributes are valid" do
+  #   wrong_links =
+  #     Article.List.all()
+  #     |> Enum.map(fn art ->
+  #       content = Article.Decorators.html(art, %{__changed__: %{}, type: :html})
+  #     end)
+  # end
 
-#   test "all bounds in links are sensible" do
-#     errors =
-#       all_articles_element_select("a[bounds]")
-#       |> Parallel.map(fn {name, _art, link} ->
-#         bounds = Floki.attribute(link, "bounds")
-#         prefix = "#{name}, link “#{Floki.text(link)}”"
+  #   defp validate!(:bounds, val, attr) do
+  #   case VelorouteWeb.VariousHelpers.parse_bounds(val) do
+  #     %Geo.BoundingBox{} -> true
+  #     _ -> raise "bounds='#{val}' is not proper. Full attributes: #{inspect(attr)}"
+  #   end
+  # end
 
-#         cond do
-#           length(bounds) != 1 ->
-#             "#{prefix}: expected attribute bounds just once"
+  # defp validate!(:dir, "forward", _attr), do: true
+  # defp validate!(:dir, "backward", _attr), do: true
 
-#           String.contains?(hd(bounds), "%2C") ->
-#             "#{prefix}: bounds contains escape sequence %2C instead of a plain comma"
+  # defp validate!(:dir, val, attr),
+  #   do: raise("dir='#{val}' not supported. Full attributes: #{inspect(attr)}")
 
-#           VariousHelpers.parse_bounds(hd(bounds)) == nil ->
-#             "#{prefix}: failed to parse bounds '#{hd(bounds)}'"
+  # defp validate!(key, val, attr) when key in [:lat, :lon] do
+  #   IO.warn("I run in prod")
 
-#           true ->
-#             nil
-#         end
-#       end)
-#       |> Enum.reject(&is_nil/1)
-
-#     assert [] == errors
-#   end
+  #   case Float.parse(val) do
+  #     {_parsed, ""} -> true
+  #     _ -> raise "#{key}='#{val}' is not a float. Full attributes: #{inspect(attr)}"
+  #   end
+  # end
+end
 
 #   test "exact position links are complete" do
 #     errors =

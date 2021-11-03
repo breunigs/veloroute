@@ -71,7 +71,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <ref>Radschnellweg</ref> nach Bad Bramstedt ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Bad Bramstedt ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
     <p>Das Video orientiert sich an der Vorzugsführung, muss aber bei Neubauabschnitten davon abweichen. Im unausgebauten Zustand stellt diese Führung nicht unbedingt die bequemste oder schnellste Verbindung bereit.</p>
 
     <h4>Hamburg</h4>
@@ -91,7 +91,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
     <p>Ab grob der <.m bounds="9.942943,53.839446,9.948144,53.842345" lon="9.944304" lat="53.840312" dir="forward">Bahn Station Holstenterme</.m> soll bevorzugt ein neuer Weg entlang der Bahntrasse gebaut werden, der auf die <.m bounds="9.920642,53.85506,9.926246,53.858556" lon="9.922667" lat="53.857276" dir="forward">Alte Landstraße</.m> führt.</p>
 
     <h4>Kaltenkirchener Land</h4>
-    <p>Bis <.m bounds="9.881137,53.868076,9.901357,53.877682" lon="9.898249" lat="53.870217" dir="forward">Lentföhrden</.m> sollen alle Straßen als Fahrradstraßen ausgebaut werden. Dort wird angedacht den Radschnellweg über eine neue Brücke und über den Wiesengrund zu führen. Entlang der Kieler Straße sollen gewöhnliche <ref>Radfahrstreifen</ref> angelegt werden. Die <.m bounds="9.881458,53.880592,9.889908,53.883789" lon="9.886955" lat="53.882126" dir="forward">Einmündung der Norderstraße</.m> soll zu einem Kreisverkehr werden und der Radschnellweg außerorts wieder gemeinsam auf der westlichen Seite geführt werden.</p>
+    <p>Bis <.m bounds="9.881137,53.868076,9.901357,53.877682" lon="9.898249" lat="53.870217" dir="forward">Lentföhrden</.m> sollen alle Straßen als Fahrradstraßen ausgebaut werden. Dort wird angedacht den Radschnellweg über eine neue Brücke und über den Wiesengrund zu führen. Entlang der Kieler Straße sollen gewöhnliche <.ref>Radfahrstreifen</.ref> angelegt werden. Die <.m bounds="9.881458,53.880592,9.889908,53.883789" lon="9.886955" lat="53.882126" dir="forward">Einmündung der Norderstraße</.m> soll zu einem Kreisverkehr werden und der Radschnellweg außerorts wieder gemeinsam auf der westlichen Seite geführt werden.</p>
 
     <h4>Bad Bramstedt</h4>
     <p>Die Trasse soll weiterhin gemeinsam westlich der KFZ-Fahrbahn verlaufen. Dazu soll der Arm des Kreisel in der <.m bounds="9.8801,53.907345,9.883402,53.908915" lon="9.881728" lat="53.908" dir="forward">Holsatenallee</.m> umgebaut werden. Die bevorzugte Führung wäre ein geradliniger Übergang zur <.m bounds="9.880598,53.911521,9.882916,53.912914" lon="9.881335" lat="53.911712" dir="forward">Altonaer Straße</.m>, die zu einer Fahrradstraße werden soll. Am <.m bounds="9.882009,53.91666,9.88387,53.918055" lon="9.882999" lat="53.917288" dir="forward">Bleeck</.m> beginngt bzw. endet der Radschnellweg.</p>

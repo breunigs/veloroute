@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def text(assigns) do
     ~H"""
-    <h4>Alter Zustand</h4> <p>Die gesamte Strecke zeichnet sich durch schmale, in die Jahre gekommene <ref>Hochbordradwege</ref> aus. Da die Parkplätze zu schmal sind für die heutigen Autobreiten, besteht kein Sicherheitsabstand gegen <ref>Dooring</ref>.</p>
+    <h4>Alter Zustand</h4> <p>Die gesamte Strecke zeichnet sich durch schmale, in die Jahre gekommene <.ref>Hochbordradwege</.ref> aus. Da die Parkplätze zu schmal sind für die heutigen Autobreiten, besteht kein Sicherheitsabstand gegen <.ref>Dooring</.ref>.</p>
     <h4>Planung</h4> <p>Die Planung sieht vor die bestehende Platzaufteilung bis auf wenige Ausnahmen beizubehalten. Dies bedeutet das die Radwege mit meist 1,5m unter den heutigen Mindestmaßen bleiben. An der engsten Stelle sind  1,25m vorgesehen. Die KFZ-Parkplätze werden vollständig durch Fahrrad-Anlehnbügel ersetzt um die Sicherheit zu verbessern.</p>
     <p>Zwischen <.m bounds="10.024282,53.567988,10.033422,53.570082">Obenaltenallee und dem Gymnasium Lerchenfeld</.m> wird der Radweg dagegen zu einem Zweirichtungsradweg verbreitert. Dieser wird bis auf eine Engstelle rund 2,80m breit. Man belässt hier eine Haltebucht für Krankentransporte zum <.m bounds="10.027979,53.569182,10.02916,53.569614">naheliegenden Ärztehaus</.m>, die wegen mangelndem Platz ohne Sicherheitsabstand an den Radweg grenzt.</p>
     <p>Die Einbahnstraßen <.m bounds="10.031086,53.565115,10.033893,53.566144">Uhlandstraße und Blaumenau</.m> werden für den Radverkehr in beide Richtungen freigegeben.</p>

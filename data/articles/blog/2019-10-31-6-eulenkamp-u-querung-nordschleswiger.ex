@@ -39,7 +39,7 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
     <p><.m bounds="10.068792,53.583128,10.073973,53.584327" lon="10.0718666" lat="53.5835517" dir="backward">Nördlich der Kreuzung</.m> wird der Straßburger Stieg künftig für den
     Radverkehr in beide Richtungen befahrbar sein. Damit man ihn sinnvoll erreichen
     kann ist vorgesehen ein kurzes Stück Zweirichtungsradweg mit 2,50m Breite einzurichten.</p>
-    <p>Das Tempolimit bleibt bei 50 km/h. In Fahrtrichtung stadtauswärts ist ein <ref>Radfahrstreifen in Mittellage</ref> vorgesehen, stadteinwärts bleibt der Radverkehr dagegen rechts der KFZ-Spuren.</p>
+    <p>Das Tempolimit bleibt bei 50 km/h. In Fahrtrichtung stadtauswärts ist ein <.ref>Radfahrstreifen in Mittellage</.ref> vorgesehen, stadteinwärts bleibt der Radverkehr dagegen rechts der KFZ-Spuren.</p>
     <ul><li><.a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513">Erläuterungsbericht
     und Lagepläne</.a> (finale Fassung)</li><li><.a href="https://suche.transparenz.hamburg.de/dataset/364dbf59-71fb-4d41-8873-779dd1dd758e">Auftragsvergabe</.a> (Bauzeiten)</li></ul>
     """

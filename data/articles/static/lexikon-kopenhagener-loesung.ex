@@ -17,7 +17,7 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
 
   def text(assigns) do
     ~H"""
-    <p>Als <.m bounds="9.973614,53.536534,10.019039,53.546934" lon="10.0054612" lat="53.5408617" dir="backward" route="10">Kopenhagener Lösung</.m> beschreibt man Radwege, die durch einen Bordstein von den KFZ-Spuren und dem Fußweg abgetrennt sind. Sie stellen damit eine Zwischenstufe von <ref>Hochbordradwegen</ref> und <ref>Radfahrstreifen</ref> dar.</p>
+    <p>Als <.m bounds="9.973614,53.536534,10.019039,53.546934" lon="10.0054612" lat="53.5408617" dir="backward" ref="10">Kopenhagener Lösung</.m> beschreibt man Radwege, die durch einen Bordstein von den KFZ-Spuren und dem Fußweg abgetrennt sind. Sie stellen damit eine Zwischenstufe von <.ref>Hochbordradwegen</.ref> und <.ref>Radfahrstreifen</.ref> dar.</p>
     """
   end
 end
