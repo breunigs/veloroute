@@ -56,12 +56,6 @@ defmodule TagHelpers do
     """
   end
 
-  def articles(assigns) do
-    ~H"""
-    FIXME FIXME FIXME
-    """
-  end
-
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   def structured_links(assigns) do
     art = assigns.current_page
@@ -109,12 +103,6 @@ defmodule TagHelpers do
   end
 
   defp linkify(_assigns, heex), do: heex
-
-  defp filter_attr_prefix(assigns, prefix) do
-    Enum.filter(assigns, fn {k, _v} ->
-      String.starts_with?(to_string(k), prefix)
-    end)
-  end
 
   defp inner_text(assigns) do
     assigns.inner_block.(nil, nil)

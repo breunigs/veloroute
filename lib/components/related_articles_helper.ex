@@ -16,6 +16,60 @@ defmodule RelatedArticlesHelper do
     render_list(static, dated)
   end
 
+  def list_articles(assigns) do
+    arts = Article.List.category('Blog')
+
+    arts =
+      if assigns[:type] do
+        require IEx
+        IEx.pry()
+        type = String.to_existing_atom(assigns[:type])
+        Stream.filter(arts, fn art -> art.type() == type end)
+      else
+        arts
+      end
+
+    arts =
+      case assigns[:sort] do
+        "start" -> Article.List.sort(arts, :asc, :start)
+        "date" -> Article.List.sort(arts)
+        nil -> arts
+      end
+
+    arts =
+      case assigns[:range] do
+        "recent" -> slice_recent(arts)
+        nil -> arts
+      end
+
+    assigns = %{items: article_list(arts, years: true, time_format: :date)}
+
+    ~H"""
+      <ol class="hide-bullets">
+      <%= for item <- @items do %>
+        <%= item %>
+      <% end %>
+      <%=  %></ol>
+    """
+  end
+
+  @recent_article_min 4
+  @recent_article_max 20
+  @recent_article_days 14
+  defp slice_recent(arts) do
+    min = Stream.take(arts, @recent_article_min)
+
+    next =
+      arts
+      |> Stream.drop(@recent_article_max)
+      |> Stream.take(@recent_article_max - @recent_article_max)
+      |> Stream.take_while(fn art ->
+        Article.Decorators.updated_n_days_ago(art) <= @recent_article_days
+      end)
+
+    Stream.concat(min, next)
+  end
+
   defp render_list(static, dated)
   defp render_list([], []), do: empty()
 

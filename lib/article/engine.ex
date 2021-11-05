@@ -4,7 +4,7 @@ defmodule Article.HTMLEngine do
   attributes into each function call. It also raises for undesired usage.
   """
   @default_attr [
-    {"type", {:expr, "@type", %{column: -1, line: -1}}},
+    {"render_target", {:expr, "@render_target", %{column: -1, line: -1}}},
     {"current_page", {:expr, "@current_page", %{column: -1, line: -1}}}
   ]
 
@@ -16,7 +16,7 @@ defmodule Article.HTMLEngine do
 
   @allowed_tags MapSet.new(~w/
     .a .m .ref .icon .mailto
-    .structured_links .articles
+    .structured_links .list_articles
     h3 h4 h5
     ol ul li
     img

@@ -13,7 +13,8 @@ defmodule Article.List do
     |> Enum.map(&elem(&1, 0))
     |> Enum.filter(&List.starts_with?(&1, @module_name))
     |> Enum.map(&List.to_atom/1)
-    |> Enum.sort()
+    # |> Enum.sort()
+    |> Enum.shuffle()
   end
 
   @spec category(charlist()) :: t
@@ -22,7 +23,8 @@ defmodule Article.List do
     |> Enum.map(&elem(&1, 0))
     |> Enum.filter(&List.starts_with?(&1, @module_name ++ type))
     |> Enum.map(&List.to_atom/1)
-    |> Enum.sort()
+    # |> Enum.sort()
+    |> Enum.shuffle()
   end
 
   # TODO: this func should be moved somewhere else
@@ -120,23 +122,19 @@ defmodule Article.List do
 
   @typep sorter() :: :desc | :asc
   @spec sort(t(), sorter(), atom) :: t()
-  def sort(list, sorter \\ :desc, fun \\ :updated_at)
+  def sort(list, sorter \\ :desc, by \\ :updated_at)
 
   def sort(list, sorter, :updated_at) do
-    Enum.sort_by(
-      list,
-      fn
-        art ->
-          d = art.updated_at()
-          if d, do: {d.year, d.month, d.day}, else: nil
-      end,
-      sorter
-    )
+    Enum.sort_by(list, & &1.updated_at(), {sorter, Date})
   end
 
-  def sort(list, sorter, fun) do
-    Enum.sort_by(list, &apply(&1, fun, []), sorter)
+  def sort(list, sorter, :start) do
+    Enum.sort_by(list, & &1.start(), {sorter, Data.RoughDate})
   end
+
+  # def sort(list, sorter, fun) do
+  #   Enum.sort_by(list, &apply(&1, fun, []), sorter)
+  # end
 
   defp keyify(nil), do: nil
   defp keyify(str) when is_binary(str), do: str |> String.replace(" ", "-") |> String.downcase()

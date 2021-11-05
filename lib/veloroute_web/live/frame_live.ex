@@ -10,7 +10,7 @@ defmodule VelorouteWeb.FrameLive do
   alias Article
 
   @initial_state [
-    type: :html,
+    render_target: :html,
     autoplay: false,
     prev_page: nil,
     current_page: nil,
@@ -72,7 +72,7 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-zoom-to", attr, socket) do
     Logger.debug("map-zoom-to: #{inspect(attr)}")
 
-    article = find_article(attr["article"])
+    article = find_article(attr["article"] || attr["ref"])
 
     socket =
       socket

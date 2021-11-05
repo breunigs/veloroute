@@ -114,4 +114,8 @@ defmodule Article.Decorators do
 
     List.wrap(groups)
   end
+
+  def updated_n_days_ago(art) when is_module(art) do
+    Date.diff(Date.utc_today(), art.updated_at())
+  end
 end

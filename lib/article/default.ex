@@ -5,6 +5,7 @@ defmodule Article.Default do
 
       import Data.RoughDate, only: [sigil_d: 2]
       import TagHelpers
+      import RelatedArticlesHelper
       import LinkHelpers
 
       def updated_at, do: created_at()
@@ -38,14 +39,7 @@ defmodule Article.Default do
           indentation: meta[:indentation] || 0
         ]
 
-        # if String.contains?(expr, "</a>"), do: raise("got invalid html tag: </a>")
-
-        expr
-        # |> String.replace(
-        #   ~r{<\.([a-z_]+)([ />]|$)}m,
-        #   "<.\\1 type={@type} current_page={@current_page}\\2"
-        # )
-        |> EEx.compile_string(options)
+        EEx.compile_string(expr, options)
       end
     end
   end

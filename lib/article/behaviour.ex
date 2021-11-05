@@ -2,6 +2,15 @@ defmodule Article.Behaviour do
   @type t() :: atom()
   @type color_hex() :: <<_::56>> | nil
   @type route_group() :: :alltag | :freizeit | :rsw
+  @type article_type() ::
+          :construction
+          | :planned
+          | :finished
+          | :intent
+          | :changed_routing
+          | :issue
+          | :ampel
+          | nil
 
   @type assigns() :: %{:type => :html | :feed, optional(atom) => any}
   @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
@@ -16,15 +25,8 @@ defmodule Article.Behaviour do
   @callback created_at() :: Date.t() | nil
   @callback updated_at() :: Date.t() | nil
 
-  @callback type() ::
-              :construction
-              | :planned
-              | :finished
-              | :intent
-              | :changed_routing
-              | :issue
-              | :ampel
-              | nil
+  @callback type() :: article_type()
+
   @callback start() :: RoughDate.t()
   @callback stop() :: RoughDate.t()
   @callback construction_site_id_hh() :: [integer()]
