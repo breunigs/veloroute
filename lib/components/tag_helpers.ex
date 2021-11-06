@@ -14,6 +14,57 @@ defmodule TagHelpers do
     """
   end
 
+  def updated_at_time(%{article: art} = assigns) when is_module(art) do
+    if art.updated_at() == nil do
+      ~H{}
+    else
+      assigns =
+        assign(assigns, %{
+          long: VelorouteWeb.VariousHelpers.long_date(art.updated_at()),
+          short: VelorouteWeb.VariousHelpers.short_date(art.updated_at()),
+          machine: Date.to_string(art.updated_at())
+        })
+
+      ~H"""
+      <time title={@long} datetime={@machine}><%= @short %></time>
+      """
+    end
+  end
+
+  def construction_duration(%{article: art} = assigns) when is_module(art) do
+    ~H"""
+    <span class="duration"><%= Data.RoughDate.range(@article.start(), @article.stop()) %></span>
+    """
+  end
+
+  def article_link(%{article: art, inner_block: _} = assigns) when is_module(art) do
+    ~H"""
+    <a href={Article.Decorators.path(@article)} data-phx-link-state="push" data-phx-link="patch"><%= render_slot(@inner_block) %></a>
+    """
+  end
+
+  def article_link(%{article: art} = assigns) when is_module(art) do
+    ~H"""
+    <a href={Article.Decorators.path(@article)} data-phx-link-state="push" data-phx-link="patch"><%= Article.Decorators.full_title(@article) %></a>
+    """
+  end
+
+  def list_articles(assigns) do
+    grouped = Enum.group_by(assigns.articles, &assigns.grouper.(&1))
+    assigns = assign(assigns, :grouped, grouped)
+
+    ~H"""
+    <%= for {group, articles} <- @grouped do %>
+      <%= if group != "" && group != nil do %>
+        <li class="separator"><%= group %></li>
+      <% end %>
+      <%= for art <- articles do %>
+        <li><%= render_slot(@inner_block, art) %></li>
+      <% end %>
+    <% end %>
+    """
+  end
+
   def ref(assigns) do
     name = assigns[:name] || inner_text(assigns)
     art = Article.List.find_with_tags(name)
@@ -105,7 +156,9 @@ defmodule TagHelpers do
   defp linkify(_assigns, heex), do: heex
 
   defp inner_text(assigns) do
-    assigns.inner_block.(nil, nil)
+    [%{inner_block: fun}] = assigns.inner_block
+
+    fun.(nil, nil)
     |> Phoenix.HTML.Safe.to_iodata()
     |> IO.iodata_to_binary()
   end

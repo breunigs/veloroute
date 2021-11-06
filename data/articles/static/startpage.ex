@@ -57,7 +57,13 @@ defmodule Data.Article.Static.Startpage do
     <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
 
     <h3>Aktuelle Artikel</h3>
-    <.list_articles range="recent" sort="date"/>
+    <ol class="hide-bullets">
+      <.list_articles let={art} articles={Article.List.recent()} grouper={& &1.updated_at.year}>
+        <.updated_at_time article={art} />
+        <.article_link article={art}/>
+      </.list_articles>
+    </ol>
+
     <p>
       <.a href="/changes#lastChanges">Alle Artikel anzeigen</.a>
       oder

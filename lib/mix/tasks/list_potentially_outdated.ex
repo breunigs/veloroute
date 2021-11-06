@@ -9,14 +9,14 @@ defmodule Mix.Tasks.ListPotentiallyOutdated do
 
     Article.List.all()
     |> Enum.each(fn art ->
-      start_after_today = Data.RoughDate.compare(art.start, today)
-      end_after_today = Data.RoughDate.compare(art.stop, today)
+      started_already = Data.RoughDate.compare(today, art.start) == :gt
+      ended_already = Data.RoughDate.compare(today, art.stop) == :gt
 
       cond do
-        start_after_today && art.type == :"planned-constuction" ->
+        started_already && art.type == :planned ->
           IO.puts("#{art.name}: maybe started already, but is still “planned-construction”")
 
-        end_after_today && art.type == :construction ->
+        ended_already && art.type == :construction ->
           IO.puts("#{art.name}: maybe ended already, but is still “construction”")
 
         true ->

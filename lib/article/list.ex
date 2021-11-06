@@ -10,21 +10,37 @@ defmodule Article.List do
   @spec all :: t
   def all() do
     :code.all_available()
-    |> Enum.map(&elem(&1, 0))
-    |> Enum.filter(&List.starts_with?(&1, @module_name))
-    |> Enum.map(&List.to_atom/1)
-    # |> Enum.sort()
-    |> Enum.shuffle()
+    |> Stream.map(&elem(&1, 0))
+    |> Stream.filter(&List.starts_with?(&1, @module_name))
+    |> Stream.map(&List.to_atom/1)
   end
 
   @spec category(charlist()) :: t
   def category(type) when type in @known_types do
     :code.all_available()
-    |> Enum.map(&elem(&1, 0))
-    |> Enum.filter(&List.starts_with?(&1, @module_name ++ type))
-    |> Enum.map(&List.to_atom/1)
-    # |> Enum.sort()
-    |> Enum.shuffle()
+    |> Stream.map(&elem(&1, 0))
+    |> Stream.filter(&List.starts_with?(&1, @module_name ++ type))
+    |> Stream.map(&List.to_atom/1)
+  end
+
+  @recent_article_min 4
+  @recent_article_max 20
+  @recent_article_days 14
+  def recent(), do: recent(category('Blog'))
+
+  def recent(arts) do
+    arts = Enum.sort_by(arts, & &1.updated_at(), {:desc, Date})
+    min = Stream.take(arts, @recent_article_min)
+
+    next =
+      arts
+      |> Stream.drop(@recent_article_max)
+      |> Stream.take(@recent_article_max - @recent_article_max)
+      |> Stream.take_while(fn art ->
+        Article.Decorators.updated_n_days_ago(art) <= @recent_article_days
+      end)
+
+    Stream.concat(min, next)
   end
 
   # TODO: this func should be moved somewhere else
@@ -125,11 +141,18 @@ defmodule Article.List do
   def sort(list, sorter \\ :desc, by \\ :updated_at)
 
   def sort(list, sorter, :updated_at) do
-    Enum.sort_by(list, & &1.updated_at(), {sorter, Date})
+    list |> Enum.sort() |> Enum.sort_by(& &1.updated_at(), {sorter, Date})
   end
 
   def sort(list, sorter, :start) do
-    Enum.sort_by(list, & &1.start(), {sorter, Data.RoughDate})
+    list |> Enum.sort() |> Enum.sort_by(& &1.start(), {sorter, Data.RoughDate})
+  end
+
+  def sort(list, sorter, :stop) do
+    list
+    |> Enum.sort()
+    |> sort(sorter, :start)
+    |> Enum.sort_by(& &1.stop(), {sorter, Data.RoughDate})
   end
 
   # def sort(list, sorter, fun) do

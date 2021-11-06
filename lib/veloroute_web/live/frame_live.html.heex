@@ -58,8 +58,4 @@
   ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
   %>
   <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
-
-  <script>
-  alert("reload")
-  </script>
 <% end %>

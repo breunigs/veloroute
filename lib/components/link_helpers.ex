@@ -6,11 +6,7 @@ defmodule LinkHelpers do
   @doc """
   a links change the current page and may point to internal or external pages
   """
-  def a(%{render_target: :feed, href: href} = assigns) do
-    ~H"<a href={href}><%= render_block(@inner_block) %></a>"
-  end
-
-  def a(%{render_target: :html, href: href} = assigns) do
+  def a(%{href: href} = assigns) do
     attrs =
       case URI.parse(href) do
         %{host: nil, path: "/" <> _rest} ->

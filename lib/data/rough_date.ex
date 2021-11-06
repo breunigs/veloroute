@@ -72,21 +72,15 @@ defmodule Data.RoughDate do
   end
 
   def compare(%__MODULE__{} = left, %__MODULE__{} = right) do
+    left = {left.year, guess_month(left), left.day}
+    right = {right.year, guess_month(right), right.day}
+
     cond do
-      unknown?(left) && unknown?(right) -> false
-      unknown?(right) -> true
-      unknown?(left) -> false
-      left.year > right.year -> false
-      left.year < right.year -> true
-      guess_month(left) > guess_month(right) -> false
-      guess_month(left) < guess_month(right) -> true
-      is_nil(left.day) && !is_nil(right.day) -> true
-      true -> false
+      left > right -> :gt
+      left < right -> :lt
+      true -> :eq
     end
   end
-
-  defp unknown?(%__MODULE__{year: nil}), do: true
-  defp unknown?(_), do: false
 
   defp guess_month(%__MODULE__{month: x}) when is_integer(x), do: x
 
