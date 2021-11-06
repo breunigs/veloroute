@@ -10,6 +10,7 @@ defmodule Data.Article.Static.LexikonFahrbahnUndNebenflaechen do
   def tags(),
     do: [
       "lexikon",
+      "fahrbahn-und-nebenflaechen",
       "fahrbahn",
       "nebenflächen"
     ]

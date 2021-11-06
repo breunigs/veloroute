@@ -1,15 +1,14 @@
 defmodule Article.Decorators do
-  # TODO remove
   use Phoenix.Component
   import Guards
 
-  @spec html(Article.Behaviour.t(), Article.Behaviour.assigns()) :: binary()
-  def html(art, assigns) do
+  @spec html(Article.t(), Article.assigns()) :: binary()
+  def html(art, %{render_target: _} = assigns) do
     assigns = assign_new(assigns, :current_page, fn -> art end)
     art.text(assigns) |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
   end
 
-  @spec full_title(Article.Behaviour.t()) :: binary()
+  @spec full_title(Article.t()) :: binary()
   def full_title(art) do
     tn = type_name(art)
 
@@ -35,26 +34,18 @@ defmodule Article.Decorators do
   @doc """
   Returns the canonical path for a given article
   """
-  @spec path(Article.Behaviour.t()) :: binary()
+  @spec path(Article.t()) :: binary()
   def path(art) do
-    if Article.List.has_type?(art, 'Blog'),
+    if has_category?(art, "Blog"),
       do: "/article/#{art.name()}",
       else: "/#{art.name()}"
   end
 
-  @doc """
-  Returns the HTML link to the article, using the full title (with type prefix)
-  as text if no content is given
-  """
-  # TODO: remove or move
-  @spec link(Article.Behaviour.t(), binary | Phoenix.LiveView.Rendered.t() | nil) ::
-          Phoenix.LiveView.Rendered.t()
-  def link(art, content \\ nil) do
-    assigns = %{href: path(art), content: content || full_title(art)}
+  def path(art, query)
+  def path(art, nil), do: path(art)
 
-    ~H"""
-    <a href={@href} data-phx-link-state="push" data-phx-link="patch"><%= @content %></a>
-    """
+  def path(art, query) when is_map(query) do
+    path(art) <> "?" <> URI.encode_query(query)
   end
 
   @type_names %{
@@ -67,7 +58,7 @@ defmodule Article.Decorators do
     finished: "Abgeschlossen"
   }
 
-  @spec type_name(Article.Behaviour.t()) :: binary() | nil
+  @spec type_name(Article.t()) :: binary() | nil
   def type_name(art), do: Map.get(@type_names, art.type(), nil)
 
   @doc """
@@ -81,7 +72,7 @@ defmodule Article.Decorators do
   If none can be found that way, it tries to find a map relation using the tags
   specified in the article and use that bounding box.
   """
-  @spec bbox(Article.Behaviour.t()) :: Geo.BoundingBox.t() | nil
+  @spec bbox(Article.t()) :: Geo.BoundingBox.t() | nil
   def bbox(art) when is_module(art) do
     # from map
     ways = Map.Element.filter_by_tag(Cache.Map.ways(), :name, art.name())
@@ -104,7 +95,13 @@ defmodule Article.Decorators do
       end)
   end
 
-  @spec related_route_groups(Article.Behaviour.t()) :: [Article.Behaviour.route_group()]
+  @spec geo_center(Article.t()) :: Geo.Point.t() | nil
+  def geo_center(art) when is_module(art) do
+    bbox = bbox(art)
+    if bbox, do: Geo.CheapRuler.center(bbox)
+  end
+
+  @spec related_route_groups(Article.t()) :: [Article.route_group()]
   def related_route_groups(art) when is_module(art) do
     groups =
       art.route_group() ||
@@ -117,14 +114,27 @@ defmodule Article.Decorators do
     List.wrap(groups)
   end
 
-  @spec article_with_tracks(Article.Behaviour.t()) :: Article.Behaviour.t()
+  @spec updated_at(Article.t()) :: binary() | nil
+  def updated_at(art) when is_module(art) do
+    d = art.updated_at()
+    if d, do: "#{d.day}.#{d.month}.#{d.year}"
+  end
+
+  @doc """
+  Returns the current article if it has tracks. Otherwise it will try to find a
+  static page with matching tags and use that one's tracks. If no tracks can
+  be found, it will still return the original article to avoid having to do nil
+  checks.
+  """
+  @spec article_with_tracks(Article.t()) :: Article.t()
   def article_with_tracks(art) when is_module(art) do
     case art.tracks() do
       [] ->
-        Article.List.category('Static')
+        Article.List.category("Static")
         |> Article.List.with_tracks()
         |> Article.List.related(art)
         |> Enum.at(0)
+        |> Kernel.||(art)
 
       _tracks ->
         art
@@ -139,13 +149,12 @@ defmodule Article.Decorators do
   Tries to find a picture of a related video track around the center of the
   article's bbox.
   """
-  @spec start_image_path(Article.Behaviour.t()) :: binary() | nil
+  @spec start_image_path(Article.t()) :: binary() | nil
   def start_image_path(art) do
-    with with_tracks when is_module(with_tracks) <- article_with_tracks(art),
-         [track | _rest] <- with_tracks.tracks(),
+    with [track | _rest] <- article_with_tracks(art).tracks(),
          bbox when is_map(bbox) <- bbox(art),
          rendered <- Video.Rendered.get(track) do
-      center = Geo.CheapRuler.center(Map.from_struct(bbox))
+      center = Geo.CheapRuler.center(bbox)
 
       %{point: %{time_offset_ms: ms}} =
         Geo.CheapRuler.closest_point_on_line(rendered.coords(), center)
@@ -157,5 +166,10 @@ defmodule Article.Decorators do
         ms
       )
     end
+  end
+
+  @known_categories Article.known_categories()
+  def has_category?(art, type) when type in @known_categories do
+    art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
   end
 end

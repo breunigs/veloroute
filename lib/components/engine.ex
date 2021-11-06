@@ -1,16 +1,16 @@
-defmodule Article.HTMLEngine do
+defmodule Components.ValidatingDefaultSettingEngine do
   @moduledoc """
   A small wrapper around Phoenix.LiveView.HTMLEngine that injects default
   attributes into each function call. It also raises for undesired usage.
   """
 
   @allowed_attributes %{
-    ".a" => MapSet.new(["href"]),
-    ".m" => MapSet.new(["bounds", "dir", "lon", "lat", "ref"]),
-    ".ref" => MapSet.new(["name"])
+    ".a" => ~w/href/,
+    ".m" => ~w/bounds dir lon lat ref/,
+    ".ref" => ~w/name/
   }
 
-  @allowed_tags MapSet.new(~w/
+  @allowed_tags ~w/
     h3 h4 h5
     ol ul li
     img
@@ -18,7 +18,7 @@ defmodule Article.HTMLEngine do
     br p
     span em strong b i s abbr
     label input
-  /)
+  /
 
   @behaviour EEx.Engine
 
@@ -56,9 +56,8 @@ defmodule Article.HTMLEngine do
   defp validate!(tokens, file) do
     Enum.each(tokens, fn
       {:tag_open, tag, attrs, pos} ->
-        if !MapSet.member?(@allowed_tags, tag) && !String.starts_with?(tag, "."),
-          do:
-            error("<#{tag}> is not allowed. OK are: #{inspect_mapset(@allowed_tags)}", pos, file)
+        if !tag_allowed?(tag),
+          do: error("<#{tag}> is not allowed. OK are: #{inspect(@allowed_tags)}", pos, file)
 
         validate_individual_attrs!(attrs, pos, file)
         validate_attr_key_set!(tag, attrs, pos, file)
@@ -68,10 +67,14 @@ defmodule Article.HTMLEngine do
     end)
   end
 
+  defp tag_allowed?(tag)
+  defp tag_allowed?("." <> _rest), do: true
+  defp tag_allowed?(tag), do: Enum.member?(@allowed_tags, tag)
+
   defp validate_individual_attrs!(attrs, pos, file) do
     Enum.each(attrs, fn
       {key, {:string, val, _extra}} when key in ["lat", "lon"] ->
-        if !float?(val), do: error("failed to parse #{key}='#{val}' as Float", pos, file)
+        if !Util.float?(val), do: error("failed to parse #{key}='#{val}' as Float", pos, file)
 
       {"dir", {:string, val, _extra}} when val not in ["forward", "backward"] ->
         error("dir='#{val}' is unknown, should be 'forward' or 'backward'", pos, file)
@@ -106,35 +109,29 @@ defmodule Article.HTMLEngine do
     ] ++ attrs
   end
 
-  @required_position_args MapSet.new(["lon", "lat", "dir"])
+  @required_position_args ["lon", "lat", "dir"]
   defp validate_attr_key_set!(tag, attrs, pos, file) do
-    keys = Enum.map(attrs, &elem(&1, 0)) |> MapSet.new()
+    keys = Enum.map(attrs, &elem(&1, 0))
 
-    int = MapSet.intersection(keys, @required_position_args)
+    has_all = Enum.all?(@required_position_args, &Enum.member?(keys, &1))
+    has_some = has_all || Enum.any?(@required_position_args, &Enum.member?(keys, &1))
 
-    if MapSet.size(int) != 0 && !MapSet.equal?(int, @required_position_args) do
+    if has_some && !has_all do
       error(
-        "Missing position attributes, expect #{inspect_mapset(@required_position_args)} to be present, but got: #{inspect(attrs)}",
+        "Missing position attributes, expect #{inspect(@required_position_args)} to be present, but got: #{inspect(attrs)}",
         pos,
         file
       )
     end
 
-    allowed = @allowed_attributes[tag]
-
-    if allowed && !MapSet.subset?(keys, allowed) do
+    with allowed when is_list(allowed) <- @allowed_attributes[tag],
+         unknown when unknown != [] <-
+           Enum.reject(keys, &Enum.member?(@allowed_attributes[tag], &1)) do
       error(
-        "<#{tag}> contains unknown attributes: #{inspect_mapset(MapSet.difference(keys, allowed))}",
+        "<#{tag}> contains unknown attributes: #{inspect(unknown)}",
         pos,
         file
       )
-    end
-  end
-
-  defp float?(str) when is_binary(str) do
-    case Float.parse(str) do
-      {_f, ""} -> true
-      _other -> false
     end
   end
 
@@ -146,6 +143,4 @@ defmodule Article.HTMLEngine do
       description: msg
     )
   end
-
-  defp inspect_mapset(ms), do: inspect(MapSet.to_list(ms))
 end

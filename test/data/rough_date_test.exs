@@ -35,14 +35,15 @@ defmodule Data.RoughDateTest do
     e = RoughDate.parse("2019-04-25")
     f = RoughDate.parse("2020")
 
-    sorted = [a, b, c, d, e, f] |> Enum.shuffle() |> RoughDate.sort()
+    sorted = [a, b, c, d, e, f] |> Enum.shuffle() |> Enum.sort({:asc, RoughDate})
+
     assert [a, b, c, d, e, f] == sorted
   end
 
   test "sorts unknowns last" do
     b = RoughDate.parse("2019Q1")
 
-    sorted = [@unknown, b] |> RoughDate.sort()
+    sorted = [@unknown, b] |> Enum.sort({:asc, RoughDate})
     assert [b, @unknown] == sorted
   end
 
@@ -51,7 +52,7 @@ defmodule Data.RoughDateTest do
     b = RoughDate.parse("2019Q1")
     c = RoughDate.parse("2019-02")
 
-    sorted = [a, b, c] |> Enum.shuffle() |> RoughDate.sort()
+    sorted = [a, b, c] |> Enum.shuffle() |> Enum.sort({:asc, RoughDate})
     assert [a, b, c] == sorted
   end
 

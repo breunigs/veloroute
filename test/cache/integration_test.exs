@@ -25,7 +25,7 @@ defmodule Cache.IntegrationTest do
 
   test "can be converted to GeoJSON" do
     Cache.Map.full_map()
-    |> Map.Enrich.with_articles(Cache.Articles.get())
+    |> Map.Enrich.with_articles(Article.List.all())
     |> Data.GeoJSON.to_feature_lists()
     |> Enum.each(fn {_name, geojson} ->
       Jason.encode!(geojson)

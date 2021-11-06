@@ -3,7 +3,6 @@ defmodule Data.Article.Static.Alltagsroute11 do
 
   def id(), do: "11"
   def route_group(), do: :alltag
-  @spec name :: <<_::104>>
   def name(), do: "alltagsroute-11"
   def title(), do: "Alltagsroute 11"
 

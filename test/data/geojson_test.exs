@@ -1,19 +1,26 @@
 defmodule Data.GeoJSONTest do
   use ExUnit.Case, async: true
+  use Phoenix.Component
 
   defmodule Article1 do
     use Article.Default
+    def created_at, do: ~D[2021-11-11]
     def name, do: "art1"
     def type, do: :issue
     def title, do: "hi!"
+    def tags, do: []
+    def text(assigns), do: ~H""
   end
 
   defmodule Article2 do
     use Article.Default
+    def created_at, do: ~D[2021-11-11]
     def name, do: "art2"
     def type, do: :issue
     def title, do: "hi!"
     def icon, do: :stau
+    def tags, do: []
+    def text(assigns), do: ~H""
   end
 
   @example_articles [Article1, Article2]
@@ -24,7 +31,7 @@ defmodule Data.GeoJSONTest do
       "1" => %Map.Relation{
         id: "1",
         tags: %{
-          ref: "Route1"
+          name: "alltagsroute-1"
         },
         members: [
           %{role: "", ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
@@ -61,8 +68,8 @@ defmodule Data.GeoJSONTest do
     assert %{
              articles: %{
                features: [
-                 %{properties: %{name: "art1", icon: "issue"}},
-                 %{properties: %{name: "art2", icon: "icon"}}
+                 %{properties: %{name: "art1", icon: :issue}},
+                 %{properties: %{name: "art2", icon: :stau}}
                ]
              }
            } = enrich(@example_articles)
@@ -80,8 +87,6 @@ defmodule Data.GeoJSONTest do
   end
 
   defp enrich(articles) do
-    articles = Enum.into(articles, %{}, fn art -> {art.name, art} end)
-
     @example_map
     |> Map.Enrich.with_articles(articles)
     |> Data.GeoJSON.to_feature_lists()

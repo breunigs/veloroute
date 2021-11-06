@@ -1,12 +1,11 @@
 defmodule Article.Default do
   defmacro __using__(_opts) do
     quote do
-      @behaviour Article.Behaviour
+      @behaviour Article
 
       import Data.RoughDate, only: [sigil_d: 2]
-      import TagHelpers
-      import RelatedArticlesHelper
-      import LinkHelpers
+      import Components.TagHelpers
+      import Components.RelatedArticlesHelper
 
       def updated_at, do: created_at()
       def start, do: Data.RoughDate.zero()
@@ -18,29 +17,11 @@ defmodule Article.Default do
       def id, do: nil
       def color, do: nil
       def route_group, do: nil
-      def icon, do: nil
+      def icon, do: :issue
 
-      def path(query \\ nil)
-      def path(nil), do: "/#{name()}"
-      def path(query) when is_map(query), do: "/#{name()}?#{URI.encode_query(query)}"
+      defoverridable Article
 
-      defoverridable Article.Behaviour
-
-      # get heex with global assigns
-      import Phoenix.LiveView
-      import Phoenix.LiveView.Helpers, except: [sigil_H: 2]
-
-      defmacro sigil_H({:<<>>, meta, [expr]}, []) do
-        options = [
-          engine: Article.HTMLEngine,
-          file: __CALLER__.file,
-          line: __CALLER__.line + 1,
-          module: __CALLER__.module,
-          indentation: meta[:indentation] || 0
-        ]
-
-        EEx.compile_string(expr, options)
-      end
+      use Components.EnhancedHeex
     end
   end
 end

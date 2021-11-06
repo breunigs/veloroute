@@ -76,7 +76,7 @@ defmodule Geo.CheapRuler do
       ...> )
       %Geo.Point{lon: 1.5, lat: 2.5}
   """
-  @spec center(Geo.BoundingBox.like()) :: Geo.Point.t()
+  @spec center(Geo.BoundingBox.like() | Geo.BoundingBox.t()) :: Geo.Point.t()
   def center(bbox) do
     %Geo.Point{lon: (bbox.minLon + bbox.maxLon) / 2, lat: (bbox.minLat + bbox.maxLat) / 2}
   end

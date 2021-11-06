@@ -32,11 +32,11 @@ defmodule Data.Article.Static.Bau do
     """
   end
 
-  @spec articles(Articles.Behaviour.article_type(), :asc | :desc, atom()) :: [
-          Article.Behaviour.t()
+  @spec articles(Article.article_type(), :asc | :desc, atom()) :: [
+          Article.t()
         ]
   defp articles(type, sorter, field) when is_atom(type) do
-    Article.List.category('Blog')
+    Article.List.category("Blog")
     |> Stream.filter(fn art -> art.type() == type end)
     |> Article.List.sort(sorter, field)
   end

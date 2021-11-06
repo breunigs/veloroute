@@ -1,19 +1,87 @@
-defmodule TagHelpers do
+defmodule Components.TagHelpers do
   use Phoenix.Component
   import Guards
 
+  @paywall_hostnames ["abendblatt.de", "www.abendblatt.de"]
+
+  @doc """
+  a links change the current page and may point to internal or external pages
+  """
+  @spec a(map()) :: Phoenix.LiveView.Rendered.t()
+  def a(%{href: href} = assigns) do
+    attrs =
+      case URI.parse(href) do
+        %{host: nil, path: "/" <> _rest} ->
+          %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
+
+        %{host: h} when h in @paywall_hostnames ->
+          %{target: "_blank", rel: "nofollow", href: href}
+
+        %{host: h} when is_binary(h) ->
+          %{target: "_blank", href: href}
+
+        %{scheme: "mailto"} ->
+          %{target: "_blank", href: href}
+
+        _any ->
+          raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
+      end
+
+    assigns = assign(assigns, :attrs, attrs)
+
+    ~H"""
+    <a {attrs}><%= render_block(@inner_block) %></a>
+    """
+  end
+
+  @doc """
+  m links modify the video or map position, but do otherwise not modify the current page
+  """
+  @spec m(map()) :: Phoenix.LiveView.Rendered.t()
+
+  def m(%{render_target: :feed} = assigns) do
+    ~H"<i><%= render_block(@inner_block) %></i>"
+  end
+
+  def m(%{render_target: :html} = assigns) do
+    attr = %{"phx-click" => "map-zoom-to"}
+    art = assigns.current_page
+
+    art_with_tracks = Article.Decorators.article_with_tracks(art)
+    attr = Map.put(attr, "phx-value-article", art_with_tracks.name())
+
+    attr =
+      Enum.reduce(assigns, attr, fn {key, val}, acc ->
+        if key in [:bounds, :lat, :lon, :dir, :ref, :zoom] do
+          Map.put(acc, "phx-value-#{key}", val)
+        else
+          acc
+        end
+      end)
+
+    attr =
+      if is_map_key(attr, "phx-value-bounds"),
+        do: attr,
+        else: Map.put_new(attr, "phx-value-zoom", "15")
+
+    assigns = assign(assigns, :attr, attr)
+    ~H"<a {attr}><%= render_block(@inner_block) %></a>"
+  end
+
+  @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
   def mailto(%{inner_block: _x} = assigns) do
     ~H"""
-    <a href={Settings.email()}><%= render_block(@inner_block) %></a>
+    <a href={"mailto:"<>Settings.email()}><%= render_block(@inner_block) %></a>
     """
   end
 
   def mailto(assigns) do
     ~H"""
-    <a href={Settings.email()}><%= Settings.email() %></a>
+    <a href={"mailto:"<>Settings.email()}><%= Settings.email() %></a>
     """
   end
 
+  @spec updated_at_time(map()) :: Phoenix.LiveView.Rendered.t()
   def updated_at_time(%{article: art} = assigns) when is_module(art) do
     if art.updated_at() == nil do
       ~H{}
@@ -31,12 +99,7 @@ defmodule TagHelpers do
     end
   end
 
-  def construction_duration(%{article: art} = assigns) when is_module(art) do
-    ~H"""
-    <span class="duration"><%= Data.RoughDate.range(@article.start(), @article.stop()) %></span>
-    """
-  end
-
+  @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
   def article_link(%{article: art, inner_block: _} = assigns) when is_module(art) do
     ~H"""
     <a href={Article.Decorators.path(@article)} data-phx-link-state="push" data-phx-link="patch"><%= render_slot(@inner_block) %></a>
@@ -49,6 +112,7 @@ defmodule TagHelpers do
     """
   end
 
+  @spec list_articles(map()) :: Phoenix.LiveView.Rendered.t()
   def list_articles(assigns) do
     assigns = assign_new(assigns, :grouper, fn -> & &1.updated_at.year end)
     grouped = Util.ordered_group_by(assigns.articles, assigns.grouper)
@@ -66,6 +130,7 @@ defmodule TagHelpers do
     """
   end
 
+  @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
   def ref(assigns) do
     name = assigns[:name] || inner_text(assigns)
     art = Article.List.find_with_tags(name)
@@ -75,18 +140,24 @@ defmodule TagHelpers do
     ~H"<a href={@path}><%= render_block(@inner_block) %></a>"
   end
 
+  @spec icon(map()) :: Phoenix.LiveView.Rendered.t()
   def icon(assigns) do
     id_from_attr = assigns[:name]
     content = inner_text(assigns)
     id = id_from_attr || content
 
-    art = Article.List.category('Static') |> Article.List.find_with_tags(id)
+    art = Article.List.category("Static") |> Article.List.find_with_tags(id)
 
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
 
     query = if assigns[:autoplay] == "true", do: %{autoplay: true}
-    link_attr = %{href: art.path(query), data_phx_link: "patch", data_phx_link_state: "push"}
+
+    link_attr = %{
+      href: Article.Decorators.path(art, query),
+      data_phx_link: "patch",
+      data_phx_link_state: "push"
+    }
 
     # link_attr =
     #   if assigns[:autoplay] == "yes",
@@ -141,13 +212,49 @@ defmodule TagHelpers do
   @doc """
   Wraps content into a div that will not be used by search engines
   """
+  @spec noindex(map()) :: Phoenix.LiveView.Rendered.t()
   def noindex(assigns) do
     ~H"""
     <div data-nosnippet="yes"><%= render_block(@inner_block) %></div>
     """
   end
 
-  @spec linkify(map(), Article.Behaviour.link()) :: Phoenix.LiveView.Rendered.t()
+  @spec construction_duration(map()) :: Phoenix.LiveView.Rendered.t()
+  def construction_duration(%{article: art} = assigns) when is_module(art) do
+    ~H"""
+    <span class="duration"><%= Data.RoughDate.range(@article.start(), @article.stop()) %></span>
+    """
+  end
+
+  @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
+  def construction_duration_header(%{article: art} = assigns) do
+    range = Data.RoughDate.range(art.start(), art.stop())
+    assigns = assign(assigns, range: range)
+
+    cond do
+      range == "" ->
+        ~H""
+
+      art.type() == :finished ->
+        ~H{<span class="duration">Umbau abgeschlossen (Bauzeit <%= @range %>)</span>}
+
+      true ->
+        ~H{<span class="duration">vermutete Bauzeit: <%= @range %></span>}
+    end
+  end
+
+  @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
+  def article_updated_at(%{article: art} = assigns) do
+    if art.updated_at() do
+      ~H"""
+        <time class="updated">Letzte Änderung <%= Article.Decorators.updated_at(@article) %></time>
+      """
+    else
+      ~H""
+    end
+  end
+
+  @spec linkify(map(), Article.link()) :: Phoenix.LiveView.Rendered.t()
   defp linkify(assigns, {text, href}) do
     assigns = assign(assigns, :text, text)
     assigns = assign(assigns, :href, href)

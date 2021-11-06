@@ -7,7 +7,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifen do
   def summary(),
     do: "Radfahrstreifen sind asphaltierte Radwege direkt neben den KFZ-Spuren"
 
-  def tags(), do: ["lexikon", "radfahrstreifens"]
+  def tags(), do: ["lexikon", "radfahrstreifen", "radfahrstreifens"]
 
   def text(assigns) do
     ~H"""

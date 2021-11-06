@@ -9,47 +9,17 @@ defmodule Article.Renderer do
     assigns =
       assign(assigns, %{
         body: body,
-        header: header,
-        related_articles: RelatedArticlesHelper.related_articles(assigns),
-        construction_time: construction_time(assigns.current_page),
-        updated_at: updated_at(assigns.current_page)
+        header: header
       })
 
     ~H"""
       <%= @header %>
-      <%= @construction_time %>
+      <Components.TagHelpers.construction_duration_header article={@current_page}/>
 
       <%= @body %>
-      <%= @updated_at %>
+      <Components.TagHelpers.article_updated_at article={@current_page}/>
 
-      <%= @related_articles %>
+      <Components.RelatedArticlesHelper.related_articles article={@current_page}/>
     """
-  end
-
-  defp construction_time(art) do
-    range = Data.RoughDate.range(art.start(), art.stop())
-    assigns = %{}
-
-    cond do
-      range == "" ->
-        nil
-
-      art.type() == :finished ->
-        ~H{<span class="duration">Umbau abgeschlossen (Bauzeit <%= range %>)</span>}
-
-      true ->
-        ~H{<span class="duration">vermutete Bauzeit: <%= range %></span>}
-    end
-  end
-
-  defp updated_at(art) do
-    d = art.updated_at()
-    assigns = %{}
-
-    if d do
-      ~H"""
-        <time class="updated">Letzte Änderung <%= d.day %>.<%= d.month %>.<%= d.year %></time>
-      """
-    end
   end
 end

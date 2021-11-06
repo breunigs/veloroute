@@ -1,5 +1,4 @@
-use Mix.Config
-
+import Config
 import_config "../data/settings.ex"
 
 parsed = URI.parse(Settings.url())

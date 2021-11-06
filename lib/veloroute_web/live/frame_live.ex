@@ -30,8 +30,6 @@ defmodule VelorouteWeb.FrameLive do
     visible_types: []
   ]
 
-  @default_page Article.List.find_exact("")
-
   # how long to wait before the ping indicator should be cleared. There's an
   # additional CSS transition happening after.
   @hide_ping_after_ms 5 * 1000
@@ -139,12 +137,15 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-click", attr, socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    article = find_article(attr["article"] || attr["route"])
+    # if we have an article use that, but ignore the default article (i.e. the
+    # startpage) when we have a route
+    article = find_article(attr["article"])
+    route = if attr["article"] && article, do: article, else: find_article(attr["route"])
 
     socket =
       socket
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
-      |> determine_visible_route_groups(article)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, attr)
+      |> determine_visible_route_groups(route)
 
     socket = if article, do: push_patch(socket, to: article_path(socket, article)), else: socket
 
@@ -192,12 +193,6 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
       when is_binary(subdir) and subdir != "" do
-    # name =
-    #   cond do
-    #     String.match?(name, ~r{^\d\d\d\d-\d\d-\d\d-}) -> Path.join(subdir, name)
-    #     true -> Path.join(subdir, "0000-00-00-" <> name)
-    #   end
-
     params
     |> Map.delete("subdir")
     |> Map.put("article", "#{subdir}/#{name}")
@@ -210,12 +205,8 @@ defmodule VelorouteWeb.FrameLive do
     prev_article = socket.assigns.tmp_last_article_set
     article = find_article(name)
 
-    if params["autoplay"] == "true", do: IO.warn("autoplay on")
-
-    # temporarily only update videos if the article changed. Otherwise
-    # it will always switch back to the video when viewing another route
-    # that doesn't have a video yet
-    # TODO needed?
+    # only update videos if the article changed. Otherwise it will slightly
+    # change the position we might've just set through map-click
     socket =
       if article == prev_article,
         do: socket,
@@ -253,7 +244,7 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("params: default (#{inspect(params)})")
 
     params
-    |> Map.put("article", @default_page)
+    |> Map.put("article", find_article(nil))
     |> handle_params(nil, socket)
   end
 
@@ -379,7 +370,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp article_path(socket, art) when is_module(art) do
     query = url_query(socket)
-    Routes.page_path(socket, VelorouteWeb.FrameLive, String.trim_leading(art.path(), "/"), query)
+    Article.Decorators.path(art, query)
   end
 
   defp update_url_query(%{assigns: assigns} = socket) do

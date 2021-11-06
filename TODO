@@ -5,7 +5,8 @@ todo: switch video when switching articles?
 todo: map click on route bork
 todo: clicking <.m> link with ref should select route?
 todo: check tranferred data when switching articles is ok, especially search
-
+todo: ensure video is loaded and starts in article bbox
+todo: zooms to full route when clicking on map, should not switch
 
 
 - clicking on a route in map should set route in sidebar, unless the viewed page is related to that route

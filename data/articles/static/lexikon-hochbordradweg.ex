@@ -7,7 +7,7 @@ defmodule Data.Article.Static.LexikonHochbordradweg do
   def summary(),
     do: "Hochbordradwege sind meist rot gepflastert und verlaufen neben den Fußwegen"
 
-  def tags(), do: ["lexikon", "hochbordradwegen", "hochbordradwege"]
+  def tags(), do: ["lexikon", "hochbordradweg", "hochbordradwegen", "hochbordradwege"]
 
   def text(assigns) do
     ~H"""

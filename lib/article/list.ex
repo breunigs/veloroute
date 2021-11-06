@@ -1,31 +1,21 @@
 defmodule Article.List do
-  @module_name 'Elixir.Data.Article.'
-  @known_types ['Blog', 'Static']
-
   @type t :: Enumerable.t()
-  @typep article :: module()
-
   import Guards
 
   @spec all :: t
   def all() do
-    :code.all_available()
-    |> Stream.map(&elem(&1, 0))
-    |> Stream.filter(&List.starts_with?(&1, @module_name))
-    |> Stream.map(&List.to_atom/1)
+    Util.modules_with_prefix(Article.module_name())
   end
 
-  @spec category(charlist()) :: t
-  def category(type) when type in @known_types do
-    :code.all_available()
-    |> Stream.map(&elem(&1, 0))
-    |> Stream.filter(&List.starts_with?(&1, @module_name ++ type))
-    |> Stream.map(&List.to_atom/1)
+  @spec category(binary()) :: t
+  @known_categories Article.known_categories()
+  def category(type) when type in @known_categories do
+    Util.modules_with_prefix(Article.module_name() <> type <> ".")
   end
 
   def recent(), do: recent(_min_arts = 4, _max_arts = 20, _max_days = 14)
 
-  def recent(arts \\ category('Blog'), min, max, days) do
+  def recent(arts \\ category("Blog"), min, max, days) do
     arts = Enum.sort_by(arts, & &1.updated_at(), {:desc, Date})
     always = Stream.take(arts, min)
 
@@ -40,12 +30,7 @@ defmodule Article.List do
     Stream.concat(always, extra)
   end
 
-  # TODO: this func should be moved somewhere else
-  def has_type?(art, type) when type in @known_types do
-    art |> Atom.to_charlist() |> List.starts_with?(@module_name ++ type)
-  end
-
-  @spec find_exact(t, binary | article | nil) :: article | nil
+  @spec find_exact(t, binary | Article.t() | nil) :: Article.t() | nil
   def find_exact(_list, nil), do: nil
 
   def find_exact(list, art) when is_atom(art) do
@@ -60,10 +45,10 @@ defmodule Article.List do
 
   def find_exact(_list, _key), do: nil
 
-  @spec find_exact(binary | nil | article) :: article | nil
+  @spec find_exact(binary | nil | Article.t()) :: Article.t() | nil
   def find_exact(key), do: find_exact(all(), key)
 
-  @spec find_with_tags(t, binary | nil) :: article | nil
+  @spec find_with_tags(t, binary | nil) :: Article.t() | nil
   def find_with_tags(_list, nil), do: nil
 
   def find_with_tags(list, key) when is_binary(key) do
@@ -72,7 +57,7 @@ defmodule Article.List do
     |> Enum.at(0)
   end
 
-  @spec find_with_tags(binary | nil) :: article | nil
+  @spec find_with_tags(binary | nil) :: Article.t() | nil
   def find_with_tags(key), do: find_with_tags(all(), key)
 
   @spec filter(t, binary, bool) :: t
@@ -105,7 +90,7 @@ defmodule Article.List do
   Finds articles related to the given one. The given article is not part of the
   results.
   """
-  @spec related(t, article) :: t
+  @spec related(t, Article.t()) :: t
   def related(list, art) when is_module(art) do
     tags = art.tags()
 
@@ -114,13 +99,13 @@ defmodule Article.List do
     |> Stream.filter(fn other -> Util.overlap?(tags, other.tags()) end)
   end
 
-  @spec related(article) :: t
+  @spec related(Article.t()) :: t()
   def related(art), do: related(all(), art)
 
   @doc """
   Find an Article that contains a video with exactly the given resources
   """
-  @spec find_by_sources(Video.Track.plain()) :: article() | nil
+  @spec find_by_sources(Video.Track.plain()) :: Article.t() | nil
   def find_by_sources(sources) do
     all()
     |> Enum.find(fn art ->

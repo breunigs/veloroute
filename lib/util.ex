@@ -58,7 +58,7 @@ defmodule Util do
       iex> Util.ordered_group_by([{1, "a"}, {1, "b"}, {2, "c"}], &elem(&1, 1))
       [{"a", [{1, "a"}]}, {"b", [{1, "b"}]}, {"c", [{2, "c"}]}]
   """
-  @spec ordered_group_by(Enumerable.t(), (Enumerable.element() -> any())) :: [{any(), [any()]}]
+  @spec ordered_group_by(Enumerable.t(), (Enum.element() -> any())) :: [{any(), [any()]}]
   def ordered_group_by(enum, key_fun) do
     enum
     |> Enum.reverse()
@@ -73,5 +73,22 @@ defmodule Util do
           do: [{key, [art | prev_list]} | rest],
           else: [{key, [art]} | all]
     end)
+  end
+
+  @doc """
+  Returns true if a given string can be *fully* parsed into a float
+  """
+  def float?(str) when is_binary(str) do
+    case Float.parse(str) do
+      {_f, ""} -> true
+      _other -> false
+    end
+  end
+
+  @spec modules_with_prefix(binary()) :: [module()]
+  def modules_with_prefix("Elixir." <> _rest = namespace) do
+    ns = to_string(namespace)
+    {:ok, list} = :application.get_key(:veloroute, :modules)
+    Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(ns)))
   end
 end

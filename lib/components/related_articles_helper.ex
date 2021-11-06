@@ -1,10 +1,9 @@
-defmodule RelatedArticlesHelper do
+defmodule Components.RelatedArticlesHelper do
   use Phoenix.Component
+  alias Components.TagHelpers
 
   @spec related_articles(map()) :: Phoenix.LiveView.Rendered.t()
-  def related_articles(assigns) do
-    art = assigns.current_page
-
+  def related_articles(%{article: art} = assigns) do
     grouped =
       art
       |> Article.List.related()
@@ -21,13 +20,13 @@ defmodule RelatedArticlesHelper do
     related_list(assigns)
   end
 
-  defp related_list(%{related_static: [], related_dated: []} = assigns), do: empty(assigns)
+  defp related_list(%{related_static: [], related_dated: []} = assigns), do: ~H""
 
   defp related_list(assigns) do
     ~H"""
     <TagHelpers.noindex>
       <h3>Verwandte Artikel</h3>
-      <%= to_soft_list(@related_static) %>
+      <.soft_list articles={@related_static}/>
       <ol class="hide-bullets">
         <TagHelpers.list_articles let={art} articles={@related_dated}>
           <TagHelpers.updated_at_time article={art} />
@@ -38,108 +37,19 @@ defmodule RelatedArticlesHelper do
     """
   end
 
-  defp to_soft_list([]), do: ""
+  defp soft_list(%{articles: []} = assigns), do: ~H""
 
-  defp to_soft_list([art]) do
-    assigns = %{link: Article.Decorators.link(art)}
-    ~H"<p>Übersicht: <strong><%= @link %></strong></p>"
+  defp soft_list(%{articles: [_art]} = assigns) do
+    ~H"<p>Übersicht: <strong><TagHelpers.article_link article={hd(@articles)}/></strong></p>"
   end
 
-  defp to_soft_list(art_list) do
-    assigns = %{links: Enum.map(art_list, &Article.Decorators.link(&1))}
-
+  defp soft_list(assigns) do
     ~H"""
     <ul>
-    <%= for link <- @links do %>
-      <li><%= link %></li>
+    <%= for art <- @articles do %>
+      <li><TagHelpers.article_link article={art}/></li>
     <% end %>
     </ul>
     """
   end
-
-  defp empty(assigns), do: ~H""
-
-  # @doc """
-  # List articles grouped by year in descending order.
-  # """
-  # @spec article_list([Article.Behaviour.t()],
-  #         years: boolean(),
-  #         full_title: boolean(),
-  #         time_format: :date | :range
-  #       ) :: [Phoenix.LiveView.Rendered.t()]
-  # defp article_list([], sort_by: _, full_title: _, time_format: _), do: []
-
-  # defp article_list(articles,
-  #        sort_by: sort_by,
-  #        full_title: full_title,
-  #        time_format: time_format
-  #      ) do
-  #   current_year = DateTime.utc_now().year
-
-  #   articles
-  #   |> Enum.group_by(fn art ->
-  #     date = apply(art, sort_by)
-  #     if date, do: date.year, else: nil
-  #   end)
-  #   |> Enum.sort_by(fn {year, _list} -> year end, :desc)
-  #   |> Enum.map(fn {year, art_list} ->
-  #     art_list = Enum.sort_by(art_list, &apply(&1, sort_by), {:desc, Date})
-
-  #     assigns = %{year: year, art_list: art_list, full_title: full_title}
-
-  #     ~H"""
-  #     <%= if @year != current_year do %>
-  #       <li class="separator"><%= @year %></li>
-  #     <% end %>
-  #     <%= for art <- @art_list do %>
-  #       <li>
-  #         <%= to_list_time(art, time_format) %>
-  #         <%= if @full_title,
-  #           do: Article.Decorators.link(art),
-  #         else: Article.Decorators.link(art, art.title())
-  #         %>
-  #       </li>
-  #     <% end %>
-  #     """
-  #   end)
-  # end
-
-  # defp to_list_time(art, :range) do
-  #   assigns = %{
-  #     range: Data.RoughDate.range(art.start(), art.stop())
-  #   }
-
-  #   ~H"""
-  #   <span class="duration"><%= @range %></span>
-  #   """
-  # end
-
-  # defp to_list_time(art, :date) do
-  #   if art.created_at() == nil do
-  #     empty()
-  #   else
-  #     assigns = %{
-  #       long: VelorouteWeb.VariousHelpers.long_date(art.created_at()),
-  #       short: VelorouteWeb.VariousHelpers.short_date(art.created_at()),
-  #       machine: Date.to_string(art.created_at())
-  #     }
-
-  #     ~H"""
-  #     <time title={@long} datetime={@machine}><%= @short %></time>
-  #     """
-  #   end
-  # end
-
-  # defp list_time(assigns) do
-  #   assigns =
-  #     assign(assigns, %{
-  #       long: VelorouteWeb.VariousHelpers.long_date(art.created_at()),
-  #       short: VelorouteWeb.VariousHelpers.short_date(art.created_at()),
-  #       machine: Date.to_string(art.created_at())
-  #     })
-
-  #   ~H"""
-  #   <time title={@long} datetime={@machine}><%= @short %></time>
-  #   """
-  # end
 end

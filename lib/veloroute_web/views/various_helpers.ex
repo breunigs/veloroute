@@ -1,7 +1,6 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
   import Guards
-  alias VelorouteWeb.Router.Helpers, as: Routes
 
   def display_route(nil), do: nil
 
@@ -9,37 +8,12 @@ defmodule VelorouteWeb.VariousHelpers do
     %Video.Track{parent_ref: ref, text: text} = VelorouteWeb.Live.VideoState.current_track(state)
 
     cond do
-      is_binary(ref) ->
-        IO.warn("legacy call to route with binary")
-
-        content_tag(:span, text,
-          title: "Du folgst: #{text} (aus: #{ref})",
-          class: "curRoute"
-        )
-
       is_module(ref) ->
         icon = route_icon(ref)
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.path()),
-          title: "Du folgst: #{text}",
-          class: "curRoute"
-        )
-
-      true ->
-        nil
-    end
-  end
-
-  def display_route({id, rest}) do
-    cond do
-      route = Route.from_id(id) ->
-        icon = route_icon(route)
-        name = route.name()
-
-        Phoenix.LiveView.Helpers.live_patch([icon, " ", rest],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
-          title: "Du folgst: #{name} #{rest}",
+          to: Article.Decorators.path(ref),
+          title: "Du folgst: #{ref.title()} #{text}",
           class: "curRoute"
         )
 
@@ -56,19 +30,6 @@ defmodule VelorouteWeb.VariousHelpers do
     end)
     |> Article.Search.search(query)
   end
-
-  # def article_path(%Article{name: name}) do
-  #   case String.split(name, "/") do
-  #     ["0000-00-00-" <> name] ->
-  #       Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-
-  #     [subdir, "0000-00-00-" <> name] ->
-  #       Routes.subdir_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, subdir, name)
-
-  #     [name] ->
-  #       Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-  #   end
-  # end
 
   @short_month_names [
     "Jan",

@@ -113,6 +113,13 @@ defmodule Data.GeoJSON do
   defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
     art = Article.List.find_exact(r.tags.name)
 
+    if !art,
+      do:
+        raise("""
+          Expected to find an article with name '#{r.tags.name}', but it doesn't exist.
+          You need to change either the relation's or the article's name.
+        """)
+
     extra_rel_tags = %{
       color: art.color(),
       route_id: art.id(),

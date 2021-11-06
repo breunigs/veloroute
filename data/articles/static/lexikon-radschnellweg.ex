@@ -1,13 +1,13 @@
 defmodule Data.Article.Static.LexikonRadschnellweg do
   use Article.Static
 
-  def name(), do: "lexikon/Radschnellweg"
+  def name(), do: "lexikon/radschnellweg"
   def title(), do: "Lexikon · Radschnellweg"
 
   def summary(),
     do: "Radschnellwege sind besonders für gutes Vorankommen optimierte Wege"
 
-  def tags(), do: ["lexikon", "rsw"]
+  def tags(), do: ["lexikon", "radschnellweg", "rsw"]
 
   def text(assigns) do
     ~H"""

@@ -16,7 +16,7 @@ defmodule Feed do
   end
 
   defp articles() do
-    Article.List.category('Blog')
+    Article.List.category("Blog")
     |> Article.List.sort(:asc)
     |> Enum.take(-10)
     |> Enum.map(&article/1)

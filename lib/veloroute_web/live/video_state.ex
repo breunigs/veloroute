@@ -52,10 +52,13 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   def maybe_update_video(%{assigns: assigns} = socket, article, params) do
-    tracks = extract_tracks(article)
+    old_state = assigns[:video] || new()
     accurate_new_start = Geo.Point.from_params(params)
 
-    old_state = assigns[:video] || new()
+    tracks =
+      if is_module(article),
+        do: Article.Decorators.article_with_tracks(article).tracks(),
+        else: []
 
     new_state =
       old_state
@@ -76,7 +79,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
           set_start(new_state, accurate_new_start)
 
-        article && article.tracks != [] ->
+        article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox")
           set_start(new_state, maybe_article_center(article) || old_state.start)
 
@@ -104,12 +107,10 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
-  defp extract_tracks(nil), do: []
-  defp extract_tracks(module) when is_module(module), do: module.tracks()
-
   defp maybe_article_center(art) when is_module(art) do
-    if Article.List.has_type?(art, 'Blog'),
-      do: art |> Article.Decorators.bbox() |> Geo.CheapRuler.center()
+    if Article.Decorators.has_category?(art, "Blog") do
+      Article.Decorators.geo_center(art)
+    end
   end
 
   @doc """

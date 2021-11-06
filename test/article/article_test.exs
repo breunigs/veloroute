@@ -1,19 +1,30 @@
-# defmodule ArticleTest do
-#   use ExUnit.Case, async: true
-#   doctest Article
+defmodule ArticleTest do
+  use ExUnit.Case, async: true
 
-#   def example_article(extra_keys \\ []) do
-#     %Article{
-#       date: ~D[2018-07-19],
-#       end: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-#       name: "2018-07-19-example-article",
-#       range: nil,
-#       start: %Data.RoughDate{month: nil, quarter: nil, year: nil},
-#       tags: ["7"],
-#       text: "text_here",
-#       title: "Example Article",
-#       type: "issue"
-#     }
-#     |> Map.merge(Enum.into(extra_keys, %{}))
-#   end
-# end
+  test "all articles can be rendered" do
+    render_issues =
+      Article.List.all()
+      |> Parallel.map(fn art ->
+        try do
+          _content = Article.Decorators.html(art, %{__changed__: %{}, render_target: :html})
+          nil
+        rescue
+          err -> "#### #{art} ####\n\n#{Exception.format(:error, err, __STACKTRACE__)}"
+        end
+      end)
+      |> Util.compact()
+
+    assert [] == render_issues, Enum.join(render_issues, "\n\n\n")
+  end
+
+  test "names consist of allowed characters only" do
+    bad_names =
+      Article.List.all()
+      |> Enum.reject(&String.match?(&1.name(), ~r{^[a-z0-9/-]*$}))
+      |> Enum.map(
+        &"Expected #{&1}'s name to consist only of lowercase alpha, numbers, slash and dash but got: #{&1.name()}"
+      )
+
+    assert [] == bad_names
+  end
+end

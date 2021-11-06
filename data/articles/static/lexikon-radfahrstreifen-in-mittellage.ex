@@ -7,7 +7,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifenInMittellage do
   def summary(),
     do: "RiMs verlaufen auf der Kreuzung zwischen den KFZ-Rechts und KFZ-Geradeaus Spuren"
 
-  def tags(), do: ["lexikon", "rim"]
+  def tags(), do: ["lexikon", "radfahrstreifen-in-mittellage", "rim"]
 
   def text(assigns) do
     ~H"""

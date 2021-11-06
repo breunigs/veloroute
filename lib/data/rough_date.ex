@@ -6,7 +6,7 @@ defmodule Data.RoughDate do
   @months {"Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September",
            "Oktober", "November", "Dezember"}
 
-  @spec sigil_d(binary(), []) :: Date.RoughDate.t()
+  @spec sigil_d(binary(), []) :: Data.RoughDate.t()
   def sigil_d(str, []), do: Data.RoughDate.parse(str)
 
   def zero(), do: parse(nil)
@@ -67,13 +67,9 @@ defmodule Data.RoughDate do
 
   def to_str(%__MODULE__{year: y}), do: "#{y}"
 
-  def sort(rds) when is_list(rds) do
-    Enum.sort(rds, &compare(&1, &2))
-  end
-
   def compare(%__MODULE__{} = left, %__MODULE__{} = right) do
-    left = {left.year, guess_month(left), left.day}
-    right = {right.year, guess_month(right), right.day}
+    left = {left.year, guess_month(left), !is_nil(left.day), left.day}
+    right = {right.year, guess_month(right), !is_nil(right.day), right.day}
 
     cond do
       left > right -> :gt
