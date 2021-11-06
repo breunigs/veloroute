@@ -5,7 +5,7 @@ defmodule Data.Article.Static.Quality do
   def title(), do: "Qualität"
 
   def summary(),
-    do: "Die Qualität einer Veloroute hängt von den eigenen Bedürfnissen ab"
+    do: "Was macht eine qualitativ hochwertige Veloroute aus."
 
   def tags(), do: []
 

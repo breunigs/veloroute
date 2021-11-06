@@ -12,7 +12,7 @@ defmodule Article.Behaviour do
           | :ampel
           | nil
 
-  @type assigns() :: %{:type => :html | :feed, optional(atom) => any}
+  @type assigns() :: %{:render_target => :html | :feed, optional(atom) => any}
   @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
 
   @callback id() :: binary() | nil

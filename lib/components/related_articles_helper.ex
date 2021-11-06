@@ -1,115 +1,63 @@
 defmodule RelatedArticlesHelper do
   use Phoenix.Component
 
-  # @spec related_articles(map()) :: Phoenix.LiveView.Rendered.t()
-  # def related_articles(assigns) do
-  #   art = assigns.current_page
+  @spec related_articles(map()) :: Phoenix.LiveView.Rendered.t()
+  def related_articles(assigns) do
+    art = assigns.current_page
 
-  #   grouped =
-  #     art
-  #     |> Article.List.related()
-  #     |> Enum.group_by(fn rel -> rel.created_at() == nil end)
+    grouped =
+      art
+      |> Article.List.related()
+      |> Enum.group_by(fn rel -> rel.created_at() == nil end)
 
-  #   static = Map.get(grouped, true, [])
-  #   dated = Map.get(grouped, false, [])
+    assigns =
+      assign(assigns, %{
+        related_static: Map.get(grouped, true, []),
+        related_dated:
+          Map.get(grouped, false, [])
+          |> Article.List.sort(:desc, :updated_at)
+      })
 
-  #   render_list(static, dated)
-  # end
+    related_list(assigns)
+  end
 
-  # def list_articles(assigns) do
-  #   arts = Article.List.category('Blog')
+  defp related_list(%{related_static: [], related_dated: []} = assigns), do: empty(assigns)
 
-  #   arts =
-  #     if assigns[:type] do
-  #       type = String.to_existing_atom(assigns[:type])
-  #       Stream.filter(arts, fn art -> art.type() == type end)
-  #     else
-  #       arts
-  #     end
+  defp related_list(assigns) do
+    ~H"""
+    <TagHelpers.noindex>
+      <h3>Verwandte Artikel</h3>
+      <%= to_soft_list(@related_static) %>
+      <ol class="hide-bullets">
+        <TagHelpers.list_articles let={art} articles={@related_dated}>
+          <TagHelpers.updated_at_time article={art} />
+          <TagHelpers.article_link article={art}/>
+        </TagHelpers.list_articles>
+      </ol>
+    </TagHelpers.noindex>
+    """
+  end
 
-  #   arts =
-  #     case assigns[:sort] do
-  #       "start" -> Article.List.sort(arts, :asc, :start)
-  #       "date" -> Article.List.sort(arts)
-  #       nil -> arts
-  #     end
+  defp to_soft_list([]), do: ""
 
-  #   IO.puts("#{assigns[:type]}")
+  defp to_soft_list([art]) do
+    assigns = %{link: Article.Decorators.link(art)}
+    ~H"<p>Übersicht: <strong><%= @link %></strong></p>"
+  end
 
-  #   arts =
-  #     case assigns[:range] do
-  #       "recent" -> slice_recent(arts)
-  #       nil -> arts
-  #     end
-  #     |> IO.inspect()
+  defp to_soft_list(art_list) do
+    assigns = %{links: Enum.map(art_list, &Article.Decorators.link(&1))}
 
-  #   assigns =
-  #     assign(assigns, %{
-  #       items: article_list(arts, years: false, full_title: !assigns[:type], time_format: :range)
-  #     })
+    ~H"""
+    <ul>
+    <%= for link <- @links do %>
+      <li><%= link %></li>
+    <% end %>
+    </ul>
+    """
+  end
 
-  #   case assigns[:display] do
-  #     "bullets" -> ~H{<ul><%= for item <- @items do %><%= item %><% end %></ul>}
-  #     _ -> ~H{<ol class="hide-bullets"><%= for item <- @items do %><%= item %><% end %></ol>}
-  #   end
-  # end
-
-  # @recent_article_min 4
-  # @recent_article_max 20
-  # @recent_article_days 14
-  # defp slice_recent(arts) do
-  #   min = Stream.take(arts, @recent_article_min)
-
-  #   next =
-  #     arts
-  #     |> Stream.drop(@recent_article_max)
-  #     |> Stream.take(@recent_article_max - @recent_article_max)
-  #     |> Stream.take_while(fn art ->
-  #       Article.Decorators.updated_n_days_ago(art) <= @recent_article_days
-  #     end)
-
-  #   Stream.concat(min, next)
-  # end
-
-  # defp render_list(static, dated)
-  # defp render_list([], []), do: empty()
-
-  # defp render_list(static, dated) do
-  #   assigns = %{items: article_list(dated, years: true, full_title: true, time_format: :date)}
-
-  #   ~H"""
-  #   <TagHelpers.noindex>
-  #     <h3>Verwandte Artikel</h3>
-  #     <%= to_soft_list(static) %>
-  #     <ol class="hide-bullets">
-  #     <%= for item <- @items do %>
-  #       <%= item %>
-  #     <% end %>
-  #     <%=  %></ol>
-  #   </TagHelpers.noindex>
-  #   """
-  # end
-
-  # defp to_soft_list([]), do: empty()
-
-  # defp to_soft_list([art]) do
-  #   assigns = %{link: Article.Decorators.link(art)}
-  #   ~H"<p>Übersicht: <strong><%= @link %></strong></p>"
-  # end
-
-  # defp to_soft_list(art_list) do
-  #   assigns = %{links: Enum.map(art_list, &Article.Decorators.link(&1))}
-
-  #   ~H"""
-  #   <ul>
-  #   <%= for link <- @links do %>
-  #     <li><%= link %></li>
-  #   <% end %>
-  #   </ul>
-  #   """
-  # end
-
-  # defp empty(assigns \\ %{}), do: ~H""
+  defp empty(assigns), do: ~H""
 
   # @doc """
   # List articles grouped by year in descending order.

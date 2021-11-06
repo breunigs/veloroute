@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.AmDorfgraben do
 
   def name(), do: "#{created_at()}-5-am-dorfgraben"
   def created_at(), do: ~D[2018-10-25]
-  def updated(), do: ~D[2020-06-11]
+  def updated_at(), do: ~D[2020-06-11]
   def title(), do: "Veloroute 5: Neue Führung durch „Am Dorfgraben“"
 
   def type(), do: :planned

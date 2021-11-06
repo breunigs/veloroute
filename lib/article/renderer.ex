@@ -10,8 +10,7 @@ defmodule Article.Renderer do
       assign(assigns, %{
         body: body,
         header: header,
-        # FIXME FIXME RelatedArticlesHelper.related_articles(assigns),
-        related_articles: [],
+        related_articles: RelatedArticlesHelper.related_articles(assigns),
         construction_time: construction_time(assigns.current_page),
         updated_at: updated_at(assigns.current_page)
       })

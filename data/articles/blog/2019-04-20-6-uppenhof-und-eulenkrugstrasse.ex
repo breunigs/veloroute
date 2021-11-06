@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.UppenhofUndEulenkrugstrasse do
 
   def name(), do: "#{created_at()}-6-uppenhof-und-eulenkrugstrasse"
   def created_at(), do: ~D[2019-04-20]
-  def updated(), do: ~D[2019-12-01]
+  def updated_at(), do: ~D[2019-12-01]
   def title(), do: "Uppenhof und Eulenkrugstraße (Veloroute 6)"
 
   def start(), do: ~d[2020-11-16]

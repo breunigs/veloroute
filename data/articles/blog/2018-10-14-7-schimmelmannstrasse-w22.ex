@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.SchimmelmannstrasseW22 do
 
   def name(), do: "#{created_at()}-7-schimmelmannstrasse-w22"
   def created_at(), do: ~D[2018-10-14]
-  def updated(), do: ~D[2020-02-02]
+  def updated_at(), do: ~D[2020-02-02]
   def title(), do: "Schimmelmannstraße (Veloroute 7, „Abschnitt W22“)"
 
   def start(), do: ~d[2019-07]

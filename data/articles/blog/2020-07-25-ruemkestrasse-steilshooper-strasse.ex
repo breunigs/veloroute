@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.RuemkestrasseSteilshooperStrasse do
 
   def name(), do: "#{created_at()}-ruemkestrasse-steilshooper-strasse"
   def created_at(), do: ~D[2020-07-25]
-  def updated(), do: ~D[2021-02-09]
+  def updated_at(), do: ~D[2021-02-09]
   def title(), do: "Kreuzung Rümkerstraße/Steilshooper Straße (Veloroute 5)"
 
   def start(), do: ~d[2030]

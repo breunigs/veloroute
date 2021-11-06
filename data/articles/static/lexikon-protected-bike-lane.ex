@@ -10,6 +10,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
   def tags(),
     do: [
       "lexikon",
+      "protected-bike-lane",
       "protected-bike-lanes",
       "pbl"
     ]

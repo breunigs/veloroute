@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.QuerungOberbaumbrucke do
 
   def name(), do: "#{created_at()}-9-querung-oberbaumbrucke"
   def created_at(), do: ~D[2018-07-02]
-  def updated(), do: ~D[2020-06-04]
+  def updated_at(), do: ~D[2020-06-04]
   def title(), do: "Querung Oberbaumbrücke (Veloroute 9 stadtauswärts)"
 
   def start(), do: ~d[2020-06]

@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungMaienwegSengelmannstrasse do
 
   def name(), do: "#{created_at()}-4-kreuzung-maienweg-sengelmannstrasse"
   def created_at(), do: ~D[2018-12-30]
-  def updated(), do: ~D[2020-06-16]
+  def updated_at(), do: ~D[2020-06-16]
   def title(), do: "Kreuzung Maienweg/Sengelmannstraße (Veloroute 4)"
 
   def start(), do: ~d[2019Q3]

@@ -23,24 +23,21 @@ defmodule Article.List do
     |> Stream.map(&List.to_atom/1)
   end
 
-  @recent_article_min 4
-  @recent_article_max 20
-  @recent_article_days 14
-  def recent(), do: recent(category('Blog'))
+  def recent(), do: recent(_min_arts = 4, _max_arts = 20, _max_days = 14)
 
-  def recent(arts) do
+  def recent(arts \\ category('Blog'), min, max, days) do
     arts = Enum.sort_by(arts, & &1.updated_at(), {:desc, Date})
-    min = Stream.take(arts, @recent_article_min)
+    always = Stream.take(arts, min)
 
-    next =
+    extra =
       arts
-      |> Stream.drop(@recent_article_max)
-      |> Stream.take(@recent_article_max - @recent_article_max)
+      |> Stream.drop(min)
+      |> Stream.take(max - min)
       |> Stream.take_while(fn art ->
-        Article.Decorators.updated_n_days_ago(art) <= @recent_article_days
+        Article.Decorators.updated_n_days_ago(art) <= days
       end)
 
-    Stream.concat(min, next)
+    Stream.concat(always, extra)
   end
 
   # TODO: this func should be moved somewhere else

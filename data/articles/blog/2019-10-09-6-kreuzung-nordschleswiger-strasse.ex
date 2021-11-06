@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungNordschleswigerStrasse do
 
   def name(), do: "#{created_at()}-6-kreuzung-nordschleswiger-strasse"
   def created_at(), do: ~D[2019-10-09]
-  def updated(), do: ~D[2020-06-20]
+  def updated_at(), do: ~D[2020-06-20]
   def title(), do: "Kreuzung Nordschleswiger Straße (Veloroute 6)"
 
   def start(), do: ~d[2019-03]

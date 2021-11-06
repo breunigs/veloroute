@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Sillemstrasse do
 
   def name(), do: "#{created_at()}-sillemstrasse"
   def created_at(), do: ~D[2020-10-23]
-  def updated(), do: ~D[2021-05-19]
+  def updated_at(), do: ~D[2021-05-19]
   def title(), do: "Sillemstraße (Veloroute 2)"
 
   def start(), do: ~d[2022Q2]

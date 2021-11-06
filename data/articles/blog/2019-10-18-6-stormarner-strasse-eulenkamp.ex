@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def name(), do: "#{created_at()}-6-stormarner-strasse-eulenkamp"
   def created_at(), do: ~D[2019-10-18]
-  def updated(), do: ~D[2019-12-08]
+  def updated_at(), do: ~D[2019-12-08]
   def title(), do: "Stormarner Straße und Eulenkamp West (Veloroute 6)"
 
   def start(), do: ~d[2021-03-22]

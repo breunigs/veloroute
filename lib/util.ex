@@ -48,4 +48,30 @@ defmodule Util do
   def compact(list) do
     Enum.reject(list, &is_nil(&1))
   end
+
+  @doc """
+  Works like Enum.group_by, but keeps the group order the same as the elements come in. For this
+  to work the elements need to already be sorted by the key being grouped by.
+
+  ## Examples
+
+      iex> Util.ordered_group_by([{1, "a"}, {1, "b"}, {2, "c"}], &elem(&1, 1))
+      [{"a", [{1, "a"}]}, {"b", [{1, "b"}]}, {"c", [{2, "c"}]}]
+  """
+  @spec ordered_group_by(Enumerable.t(), (Enumerable.element() -> any())) :: [{any(), [any()]}]
+  def ordered_group_by(enum, key_fun) do
+    enum
+    |> Enum.reverse()
+    |> Enum.reduce([], fn
+      art, [] ->
+        [{key_fun.(art), [art]}]
+
+      art, [{prev_key, prev_list} | rest] = all ->
+        key = key_fun.(art)
+
+        if prev_key == key,
+          do: [{key, [art | prev_list]} | rest],
+          else: [{key, [art]} | all]
+    end)
+  end
 end

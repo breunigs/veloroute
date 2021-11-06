@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
 
   def name(), do: "#{created_at()}-kreuzung-max-brauer-allee-holstenstrasse"
   def created_at(), do: ~D[2021-06-17]
-  def updated(), do: ~D[2021-07-24]
+  def updated_at(), do: ~D[2021-07-24]
   def title(), do: "Kreuzung Max-Brauer-Allee / Holstenstraße"
 
   def start(), do: ~d[2021-07-25]

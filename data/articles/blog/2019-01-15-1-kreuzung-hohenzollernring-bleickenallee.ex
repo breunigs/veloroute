@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungHohenzollernringBleickenallee do
 
   def name(), do: "#{created_at()}-1-kreuzung-hohenzollernring-bleickenallee"
   def created_at(), do: ~D[2019-01-15]
-  def updated(), do: ~D[2019-12-05]
+  def updated_at(), do: ~D[2019-12-05]
   def title(), do: "Kreuzung Hohenzollernring / Bleickenallee (Veloroute 1)"
 
   def start(), do: ~d[2020-07-06]

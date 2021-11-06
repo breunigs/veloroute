@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.TheodorHeussPlatz do
   def start(), do: ~d[2021-03-14]
   def stop(), do: ~d[2021-08-01]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14495]
   def tags(), do: ["3"]
 

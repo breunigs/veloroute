@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Eulenkamp do
 
   def name(), do: "#{created_at()}-6-eulenkamp"
   def created_at(), do: ~D[2019-01-07]
-  def updated(), do: ~D[2019-11-30]
+  def updated_at(), do: ~D[2019-11-30]
   def title(), do: "Eulenkamp (Veloroute 6, zw. Friedrich-Ebert-Damm und Alter Teichweg)"
 
   def start(), do: ~d[2020-08-03]

@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.ReiherdammUndHermannBlohmStrasse do
 
   def name(), do: "#{created_at()}-11-reiherdamm-und-hermann-blohm-strasse"
   def created_at(), do: ~D[2019-04-03]
-  def updated(), do: ~D[2020-03-11]
+  def updated_at(), do: ~D[2020-03-11]
   def title(), do: "Reiherdamm und Hermann-Blohm-Straße (Hafen, Veloroute 11)"
 
   def start(), do: ~d[2019-05-13]

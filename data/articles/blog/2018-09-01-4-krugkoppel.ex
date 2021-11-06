@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Krugkoppel do
 
   def name(), do: "#{created_at()}-4-krugkoppel"
   def created_at(), do: ~D[2018-09-01]
-  def updated(), do: ~D[2020-05-31]
+  def updated_at(), do: ~D[2020-05-31]
   def title(), do: "Krugkoppel (Veloroute 4)"
 
   def start(), do: ~d[2018Q4]

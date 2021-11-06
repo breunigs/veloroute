@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
 
   def name(), do: "#{created_at()}-otto-brenner-strasse"
   def created_at(), do: ~D[2020-06-08]
-  def updated(), do: ~D[2021-10-16]
+  def updated_at(), do: ~D[2021-10-16]
   def title(), do: "Otto-Brenner-Straße (Veloroute 10)"
 
   def start(), do: ~d[2022Q3]

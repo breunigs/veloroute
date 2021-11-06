@@ -6,10 +6,12 @@ defmodule Data.Article.Blog.Reclamstrasse do
 
   def title(), do: "Reclamstraße (nördlicher Teil, Veloroute 14)"
 
-  def start(), do: ~d[2020Q4]
-  def stop(), do: ~d[2021Q1]
+  def start(), do: ~d[2021-05-17]
+  def stop(), do: ~d[2021-12-17]
 
-  def type(), do: :planned
+  def type(), do: :construction
+
+  def construction_site_id_hh(), do: [16005]
 
   def tags(), do: ["14", "M6.5"]
 

@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
 
   def name(), do: "#{created_at()}-gerichtsstrasse"
   def created_at(), do: ~D[2020-11-25]
-  def updated(), do: ~D[2021-04-28]
+  def updated_at(), do: ~D[2021-04-28]
   def title(), do: "Gerichtsstraße"
 
   def start(), do: ~d[2022Q2]

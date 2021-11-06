@@ -6,7 +6,7 @@ defmodule Feed do
   def build() do
     Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
     |> Feed.author(Settings.feed_author(), email: Settings.email())
-    |> Feed.link("/updates.atom", rel: "self")
+    |> Feed.link(Settings.url() <> "/updates.atom", rel: "self")
     |> Feed.entries(articles())
     |> Feed.build(%{
       "xmlns:georss" => "http://www.georss.org/georss",
@@ -23,7 +23,7 @@ defmodule Feed do
   end
 
   defp article(art) do
-    content = Article.Decorators.html(art, %{render_target: :feed})
+    content = Article.Decorators.html(art, %{__changed__: %{}, render_target: :feed})
     full_title = Article.Decorators.full_title(art)
 
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
@@ -41,16 +41,20 @@ defmodule Feed do
     |> Entry.build()
   end
 
-  defp maybe_add_location(entry, %{bbox: bbox}) when is_map(bbox) do
-    lat = (bbox.minLat + bbox.maxLat) / 2
-    lon = (bbox.minLon + bbox.maxLon) / 2
-    Entry.add_field(entry, "georss:point", %{}, "#{lat} #{lon}")
+  defp maybe_add_location(entry, art) do
+    case Article.Decorators.bbox(art) do
+      bbox when is_map(bbox) ->
+        lat = (bbox.minLat + bbox.maxLat) / 2
+        lon = (bbox.minLon + bbox.maxLon) / 2
+        Entry.add_field(entry, "georss:point", %{}, "#{lat} #{lon}")
+
+      _other ->
+        nil
+    end
   end
 
-  defp maybe_add_location(entry, _article), do: entry
-
   defp maybe_add_image(entry, article) do
-    img_path = Article.start_image_path(article)
+    img_path = Article.Decorators.start_image_path(article)
 
     if is_binary(img_path) do
       Entry.link(entry, Settings.url() <> img_path, rel: "enclosure", type: "image/jpeg")

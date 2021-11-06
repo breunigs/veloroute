@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
 
   def name(), do: "#{created_at()}-4-14-u-langenhorn-markt"
   def created_at(), do: ~D[2018-08-29]
-  def updated(), do: ~D[2020-02-25]
+  def updated_at(), do: ~D[2020-02-25]
   def title(), do: "Kreuzung am U-Bahnhof Langenhorner Markt (Veloroute 4 und 14)"
 
   def start(), do: ~d[2020-09]

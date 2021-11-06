@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def name(), do: "#{created_at()}-wellingsbuetteler-landstrasse"
   def created_at(), do: ~D[2020-10-24]
-  def updated(), do: ~D[2021-06-07]
+  def updated_at(), do: ~D[2021-06-07]
   def title(), do: "Wellingsbütteler Landstraße"
 
   def start(), do: ~d[2022-03]

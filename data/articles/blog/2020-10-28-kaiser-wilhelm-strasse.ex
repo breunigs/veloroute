@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
 
   def name(), do: "#{created_at()}-kaiser-wilhelm-strasse"
   def created_at(), do: ~D[2020-10-28]
-  def updated(), do: ~D[2020-11-29]
+  def updated_at(), do: ~D[2020-11-29]
   def title(), do: "Kaiser-Wilhelm-Straße (Veloroute 1 und 2)"
 
   def start(), do: ~d[2021-02-11]

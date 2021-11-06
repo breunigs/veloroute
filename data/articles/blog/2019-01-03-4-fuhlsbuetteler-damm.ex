@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.FuhlsbuettelerDamm do
 
   def name(), do: "#{created_at()}-4-fuhlsbuetteler-damm"
   def created_at(), do: ~D[2019-01-03]
-  def updated(), do: ~D[2019-12-02]
+  def updated_at(), do: ~D[2019-12-02]
   def title(), do: "Fuhlsbütteler Damm (Veloroute 4)"
 
   def start(), do: ~d[2020-06-29]

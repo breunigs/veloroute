@@ -58,7 +58,7 @@ defmodule Data.Article.Static.Startpage do
 
     <h3>Aktuelle Artikel</h3>
     <ol class="hide-bullets">
-      <.list_articles let={art} articles={Article.List.recent()} grouper={& &1.updated_at.year}>
+      <.list_articles let={art} articles={Article.List.recent()}>
         <.updated_at_time article={art} />
         <.article_link article={art}/>
       </.list_articles>

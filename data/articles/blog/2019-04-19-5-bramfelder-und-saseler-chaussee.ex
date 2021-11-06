@@ -3,13 +3,13 @@ defmodule Data.Article.Blog.BramfelderUndSaselerChaussee do
 
   def name(), do: "#{created_at()}-5-bramfelder-und-saseler-chaussee"
   def created_at(), do: ~D[2019-04-19]
-  def updated(), do: ~D[2020-06-15]
+  def updated_at(), do: ~D[2020-06-15]
   def title(), do: "Bramfelder und Saseler Chaussee (Veloroute 5)"
 
   def start(), do: ~d[2021-04-12]
   def stop(), do: ~d[2021-08-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [15290]
   def tags(), do: ["5"]
 

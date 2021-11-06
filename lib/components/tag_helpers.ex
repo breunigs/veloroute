@@ -50,7 +50,8 @@ defmodule TagHelpers do
   end
 
   def list_articles(assigns) do
-    grouped = Enum.group_by(assigns.articles, &assigns.grouper.(&1))
+    assigns = assign_new(assigns, :grouper, fn -> & &1.updated_at.year end)
+    grouped = Util.ordered_group_by(assigns.articles, assigns.grouper)
     assigns = assign(assigns, :grouped, grouped)
 
     ~H"""

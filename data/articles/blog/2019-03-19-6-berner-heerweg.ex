@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.BernerHeerweg do
 
   def name(), do: "#{created_at()}-6-berner-heerweg"
   def created_at(), do: ~D[2019-03-19]
-  def updated(), do: ~D[2020-11-28]
+  def updated_at(), do: ~D[2020-11-28]
   def title(), do: "Berner Heerweg (Veloroute 6)"
 
   def start(), do: ~d[2023]

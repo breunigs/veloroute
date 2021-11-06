@@ -3,10 +3,6 @@ defmodule Article.HTMLEngine do
   A small wrapper around Phoenix.LiveView.HTMLEngine that injects default
   attributes into each function call. It also raises for undesired usage.
   """
-  @default_attr [
-    {"render_target", {:expr, "@render_target", %{column: -1, line: -1}}},
-    {"current_page", {:expr, "@current_page", %{column: -1, line: -1}}}
-  ]
 
   @allowed_attributes %{
     ".a" => MapSet.new(["href"]),
@@ -36,13 +32,13 @@ defmodule Article.HTMLEngine do
     tokens =
       Enum.map(tokens, fn
         {:tag_open, "." <> func, attr, pos} ->
-          {:tag_open, ".#{func}", @default_attr ++ attr, pos}
+          {:tag_open, ".#{func}", add_default_attr(attr, pos), pos}
 
         token ->
           token
       end)
 
-    Phoenix.LiveView.HTMLEngine.handle_body(state)
+    Phoenix.LiveView.HTMLEngine.handle_body(%{state | tokens: tokens})
   end
 
   @impl true
@@ -90,12 +86,24 @@ defmodule Article.HTMLEngine do
       {"href", {:string, "http" <> _rest, _extra}} ->
         true
 
+      {"href", {:string, "mailto:" <> _rest, _extra}} ->
+        true
+
       {"href", {:string, url, _extra}} ->
         error("non-absolute href='#{url}' – should start with / or http", pos, file)
 
       _other ->
         true
     end)
+  end
+
+  defp add_default_attr(attrs, pos) do
+    pos = Map.take(pos, [:line, :column])
+
+    [
+      {"render_target", {:expr, "@render_target", pos}},
+      {"current_page", {:expr, "@current_page", pos}}
+    ] ++ attrs
   end
 
   @required_position_args MapSet.new(["lon", "lat", "dir"])

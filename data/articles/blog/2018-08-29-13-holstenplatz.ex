@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Holstenplatz do
 
   def name(), do: "#{created_at()}-13-holstenplatz"
   def created_at(), do: ~D[2018-08-29]
-  def updated(), do: ~D[2021-08-05]
+  def updated_at(), do: ~D[2021-08-05]
   def title(), do: "Kreuzungen um den Holstenplatz (Veloroute 13)"
 
   def type(), do: :planned

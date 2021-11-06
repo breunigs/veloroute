@@ -18,6 +18,9 @@ defmodule LinkHelpers do
         %{host: h} when is_binary(h) ->
           %{target: "_blank", href: href}
 
+        %{scheme: "mailto"} ->
+          %{target: "_blank", href: href}
+
         _any ->
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
@@ -40,15 +43,7 @@ defmodule LinkHelpers do
     attr = %{"phx-click" => "map-zoom-to"}
     art = assigns.current_page
 
-    art_with_tracks =
-      if art.tracks() == [] do
-        art
-        |> Article.List.related()
-        |> Article.List.with_tracks()
-        |> Enum.at(0)
-      else
-        art
-      end
+    art_with_tracks = Article.Decorators.article_with_tracks(art)
 
     attr =
       if art_with_tracks,

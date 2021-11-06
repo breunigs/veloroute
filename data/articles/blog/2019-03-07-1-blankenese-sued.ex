@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.BlankeneseSued do
 
   def name(), do: "#{created_at()}-1-blankenese-sued"
   def created_at(), do: ~D[2019-03-07]
-  def updated(), do: ~D[2021-09-27]
+  def updated_at(), do: ~D[2021-09-27]
   def title(), do: "Blankenese Süd (Veloroute 1, Humannstraße bis Godeffroystraße)"
 
   def summary(),

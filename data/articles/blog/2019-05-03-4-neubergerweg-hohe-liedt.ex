@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.NeubergerwegHoheLiedt do
 
   def name(), do: "#{created_at()}-4-neubergerweg-hohe-liedt"
   def created_at(), do: ~D[2019-05-03]
-  def updated(), do: ~D[2020-06-18]
+  def updated_at(), do: ~D[2020-06-18]
   def title(), do: "Neubergerweg und Hohe Liedt (Veloroute 4)"
 
   def type(), do: :intent

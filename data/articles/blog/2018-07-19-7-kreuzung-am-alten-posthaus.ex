@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungAmAltenPosthaus do
 
   def name(), do: "#{created_at()}-7-kreuzung-am-alten-posthaus"
   def created_at(), do: ~D[2018-07-19]
-  def updated(), do: ~D[2020-06-26]
+  def updated_at(), do: ~D[2020-06-26]
   def title(), do: "Kreuzung Am alten Posthaus (Veloroute 7)"
 
   def start(), do: ~d[2021Q3]

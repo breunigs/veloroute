@@ -418,6 +418,10 @@ li.separator {
   font-weight: bold;
   list-style-type: '';
   margin-left: -0.85rem;
+
+  &:first-child {
+    display: none;
+  }
 }
 
 

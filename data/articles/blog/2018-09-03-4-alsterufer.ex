@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Alsterufer do
 
   def name(), do: "#{created_at()}-4-alsterufer"
   def created_at(), do: ~D[2018-09-03]
-  def updated(), do: ~D[2020-11-22]
+  def updated_at(), do: ~D[2020-11-22]
   def title(), do: "Radweg am Alsterufer (Veloroute 4)"
 
   def start(), do: ~d[2020-11-23]

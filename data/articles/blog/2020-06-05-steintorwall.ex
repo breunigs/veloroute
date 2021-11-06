@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Steintorwall do
 
   def name(), do: "#{created_at()}-steintorwall"
   def created_at(), do: ~D[2020-06-05]
-  def updated(), do: ~D[2020-06-05]
+  def updated_at(), do: ~D[2020-06-05]
   def title(), do: "Steintorwall (Veloroute 9, Richtung HBF)"
 
   def start(), do: ~d[2020-07-15]

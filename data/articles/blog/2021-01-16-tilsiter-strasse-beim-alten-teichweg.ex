@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
   def title(), do: "Tilsiter Straße zwischen Lesserstraße und Eulenkamp (Veloroute 6)"
 
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2021-11-15]
+  def stop(), do: ~d[2022-01-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [13995, 15562]

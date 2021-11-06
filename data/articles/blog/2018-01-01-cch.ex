@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Cch do
   def title(), do: "CCH / Tiergartenstraße (Freizeitrouten 9 und 10)"
 
   def start(), do: ~d[2017]
-  def stop(), do: ~d[2021]
+  def stop(), do: ~d[2022]
 
   def type(), do: :construction
 

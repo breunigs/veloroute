@@ -1,4 +1,5 @@
 defmodule Article.Decorators do
+  # TODO remove
   use Phoenix.Component
   import Guards
 
@@ -45,6 +46,7 @@ defmodule Article.Decorators do
   Returns the HTML link to the article, using the full title (with type prefix)
   as text if no content is given
   """
+  # TODO: remove or move
   @spec link(Article.Behaviour.t(), binary | Phoenix.LiveView.Rendered.t() | nil) ::
           Phoenix.LiveView.Rendered.t()
   def link(art, content \\ nil) do
@@ -115,7 +117,45 @@ defmodule Article.Decorators do
     List.wrap(groups)
   end
 
+  @spec article_with_tracks(Article.Behaviour.t()) :: Article.Behaviour.t()
+  def article_with_tracks(art) when is_module(art) do
+    case art.tracks() do
+      [] ->
+        Article.List.category('Static')
+        |> Article.List.with_tracks()
+        |> Article.List.related(art)
+        |> Enum.at(0)
+
+      _tracks ->
+        art
+    end
+  end
+
   def updated_n_days_ago(art) when is_module(art) do
     Date.diff(Date.utc_today(), art.updated_at())
+  end
+
+  @doc """
+  Tries to find a picture of a related video track around the center of the
+  article's bbox.
+  """
+  @spec start_image_path(Article.Behaviour.t()) :: binary() | nil
+  def start_image_path(art) do
+    with with_tracks when is_module(with_tracks) <- article_with_tracks(art),
+         [track | _rest] <- with_tracks.tracks(),
+         bbox when is_map(bbox) <- bbox(art),
+         rendered <- Video.Rendered.get(track) do
+      center = Geo.CheapRuler.center(Map.from_struct(bbox))
+
+      %{point: %{time_offset_ms: ms}} =
+        Geo.CheapRuler.closest_point_on_line(rendered.coords(), center)
+
+      VelorouteWeb.Router.Helpers.image_extract_path(
+        VelorouteWeb.Endpoint,
+        :image,
+        rendered.hash(),
+        ms
+      )
+    end
   end
 end
