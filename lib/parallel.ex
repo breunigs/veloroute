@@ -1,20 +1,20 @@
 defmodule Parallel do
-  @spec map(Enumerable.t(), (Enum.element() -> any())) :: list()
-  def map(enum, fun) do
+  @spec map(Enumerable.t(), (Enum.element() -> any()), Keyword.t()) :: list()
+  def map(enum, fun, opts \\ [timeout: :infinity]) do
     Task.async_stream(
       enum,
       fun,
-      timeout: :infinity
+      opts
     )
     |> Enum.map(&elem(&1, 1))
   end
 
-  @spec flat_map(Enumerable.t(), (Enum.element() -> Enumerable.t())) :: list()
-  def flat_map(enum, fun) do
+  @spec flat_map(Enumerable.t(), (Enum.element() -> Enumerable.t()), Keyword.t()) :: list()
+  def flat_map(enum, fun, opts \\ [timeout: :infinity]) do
     Task.async_stream(
       enum,
       fun,
-      timeout: :infinity
+      opts
     )
     |> Enum.flat_map(&elem(&1, 1))
   end

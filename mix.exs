@@ -52,7 +52,7 @@ defmodule Veloroute.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:hackney, "~> 1.9"},
+      {:hackney, "~> 1.17"},
       {:jason, "~> 1.0"},
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
@@ -71,7 +71,7 @@ defmodule Veloroute.MixProject do
       {:telemetry, "~> 0.4.2 or ~> 0.5"},
       {:temp, "~> 0.4", only: [:dev, :test]},
       {:tesla_cache, "~> 1.1.0"},
-      {:tesla, "~> 1.3.0"}
+      {:tesla, "~> 1.4.0"}
     ]
   end
 end

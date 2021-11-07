@@ -28,8 +28,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-# very verbose HTTP output. Needs: mix deps.compile tesla --force
-config :tesla, Tesla.Middleware.Logger, debug: false
+config :tesla, adapter: Tesla.Adapter.Hackney
 
 config :sentry,
   dsn: PhoenixCredentials.sentry_dsn(),

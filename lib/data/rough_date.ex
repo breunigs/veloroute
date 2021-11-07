@@ -43,6 +43,12 @@ defmodule Data.RoughDate do
     end
   end
 
+  def as_full_date(%__MODULE__{year: y, month: m, day: d})
+      when is_integer(y) and is_integer(m) and is_integer(d),
+      do: Date.new!(y, m + 1, d)
+
+  def as_full_date(_rough_date), do: nil
+
   def range(%__MODULE__{year: nil}, %__MODULE__{year: nil}), do: ""
   def range(from, %__MODULE__{year: nil}), do: "ab #{to_str(from)}"
   def range(%__MODULE__{year: nil}, to), do: "bis #{to_str(to)}"
