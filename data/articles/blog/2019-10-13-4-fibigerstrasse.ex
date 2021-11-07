@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Fibigerstrasse do
 
   def title(), do: "Fibingerstraße (Veloroute 4)"
 
-  def start(), do: ~d[2020-10-12]
+  def start(), do: ~d[2021-01-12]
   def stop(), do: ~d[2021-10-24]
 
   def type(), do: :construction

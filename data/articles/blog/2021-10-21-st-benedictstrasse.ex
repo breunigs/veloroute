@@ -8,10 +8,10 @@ defmodule Data.Article.Blog.StBenedictstrasse do
     do:
       "St. Benedictstraße erhält Schutzstreifen, Kreuzung mit der Heilwigstraße wird ein Kreisel."
 
-  def start(), do: ~d[2021-11-18]
+  def start(), do: ~d[2021-11-01]
   def stop(), do: ~d[2022-05-15]
   def type(), do: :construction
-  def construction_site_id_hh(), do: [20833]
+  def construction_site_id_hh(), do: [20833, 20546]
   def tags(), do: []
 
   def tracks(),
