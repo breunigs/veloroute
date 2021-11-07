@@ -1,10 +1,6 @@
-todo: ensure external links get target=_blank
-todo: check tags are string
-todo: switch video when switching articles?
 todo: check tranferred data when switching articles is ok, especially search
-todo: ensure video is loaded and starts in article bbox
 todo: zooms to full route when clicking on map, should not switch
-todo: start video at beginngin
+todo: verify mapbox output
 
 - clicking on a route in map should set route in sidebar, unless the viewed page is related to that route
 - video should auto-upgrade to HQ if paused

@@ -9,15 +9,25 @@ defmodule Article.DecoratorsTest do
     def created_at, do: ~D[2021-11-11]
     def tags, do: []
     def title, do: "title"
-    def text(assigns), do: ~H{<i>text</i> <.a href="http://example.com">link</.a>}
+
+    def text(assigns),
+      do: ~H"""
+      <i>text</i>
+      <.a href="http://example.com">link</.a>
+      <.a href="http://abendblatt.de">paid</.a>
+      """
   end
 
   test "text extraction" do
-    assert "text link" == Article.Decorators.text(FakeArticle) |> multi_trim
+    assert "text link paid" == Article.Decorators.text(FakeArticle) |> multi_trim
   end
 
   test "HTML format" do
-    assert ~s{<i>text</i> <a href="http://example.com" target="_blank">link</a>} ==
+    assert String.trim("""
+           <i>text</i>
+           <a href="http://example.com" target="_blank">link</a>
+           <a href="http://abendblatt.de" rel="nofollow" target="_blank">paid</a>
+           """) ==
              Article.Decorators.html(FakeArticle, %{__changed__: %{}, render_target: :html})
   end
 

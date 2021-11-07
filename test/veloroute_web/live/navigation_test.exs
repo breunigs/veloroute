@@ -137,7 +137,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
 
-  test "with an article shown, clicking on just a route keeps article", %{conn: conn} do
+  test "with an article shown, clicking on the map with route-only keeps article", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s|Zum Dubben (neue Führung|
 
@@ -149,6 +149,18 @@ defmodule VelorouteWeb.LiveNavigationTest do
       })
 
     assert html =~ ~s|Zum Dubben (neue Führung|
+  end
+
+  test "switches routes when new article has different route", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/alltagsroute-4")
+    assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
+
+    html =
+      view
+      |> element("a", "Radwege rund um die Binnenalster")
+      |> render_click()
+
+    assert html =~ ~s|aus der Innenstadt nach Niendorf|
   end
 
   test "click on video link with ref loads that track", %{conn: conn} do

@@ -91,14 +91,4 @@ defmodule Util do
     {:ok, list} = :application.get_key(:veloroute, :modules)
     Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(ns)))
   end
-
-  def module_name_pascalized(mod) when is_atom(mod) and not is_nil(mod) do
-    mod
-    |> Module.split()
-    |> List.last()
-    |> String.replace(~r/([A-Z]+)([A-Z][a-z])/, "\\1-\\2")
-    |> String.replace(~r/([a-z\d])([A-Z])/, "\\1-\\2")
-    |> String.replace(~r/([a-z])(\d)/, "\\1-\\2")
-    |> String.downcase()
-  end
 end

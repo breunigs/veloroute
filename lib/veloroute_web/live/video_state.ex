@@ -81,7 +81,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox")
-          set_start(new_state, maybe_article_center(article) || old_state.start)
+          set_start(new_state, nil)
 
         # if there's an article only update the position if the article is
         # related to the shown route. This is usually the case if an article has
@@ -108,7 +108,7 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
   defp maybe_article_center(art) when is_module(art) do
-    if Article.Decorators.has_category?(art, "Blog") do
+    if Article.has_category?(art, "Blog") do
       Article.Decorators.geo_center(art)
     end
   end

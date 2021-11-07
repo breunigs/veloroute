@@ -41,12 +41,28 @@ defmodule ArticleTest do
     assert [] == duplicated
   end
 
+  test "all tags are strings only" do
+    bad_tags =
+      Article.List.all()
+      |> Enum.filter(fn art ->
+        Enum.any?(art.tags(), fn
+          "" <> _tag -> false
+          _not_a_binary -> true
+        end)
+      end)
+      |> Enum.map(&{&1, &1.tags()})
+
+    assert [] == bad_tags
+  end
+
   test "auto-generated names are sensible" do
     broken =
       %{
         "2020-06-21-von-essen-strasse" => Data.Article.Blog.VonEssenStrasse,
+        "2019-10-09-veloroute-6-aenderungen" => Data.Article.Blog.Veloroute6Aenderungen,
         "alltagsroute-11" => Data.Article.Static.Alltagsroute11,
-        "rsw-stade" => Data.Article.Static.RSWStade
+        "rsw-stade" => Data.Article.Static.RSWStade,
+        "changes" => Data.Article.Static.Changes
       }
       |> Enum.map(fn {expected, mod} ->
         quoted = Article.auto_generate_name(mod)

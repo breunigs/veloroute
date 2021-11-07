@@ -40,11 +40,16 @@ defmodule Article do
   @callback links(assigns()) :: [link()]
 
   def module_name, do: "Elixir.Data.Article."
-  def known_categories, do: ~w/Blog Static/
+  @known_categories ~w/Blog Static/
+  def known_categories, do: @known_categories
+
+  def has_category?(art, type) when type in @known_categories do
+    art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
+  end
 
   def auto_generate_name(mod) do
     pascalized = module_name_pascalized(mod)
-    with_date = Article.Decorators.has_category?(mod, "Blog")
+    with_date = has_category?(mod, "Blog")
 
     if with_date do
       quote location: :keep do

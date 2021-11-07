@@ -52,7 +52,7 @@ defmodule Article.Decorators do
   """
   @spec path(Article.t()) :: binary()
   def path(art) do
-    if has_category?(art, "Blog"),
+    if Article.has_category?(art, "Blog"),
       do: "/article/#{art.name()}",
       else: "/#{art.name()}"
   end
@@ -90,6 +90,11 @@ defmodule Article.Decorators do
   """
   @spec bbox(Article.t()) :: Geo.BoundingBox.t() | nil
   def bbox(art) when is_module(art) do
+    bbox_self(art) || bbox_from_tags(art)
+  end
+
+  @spec bbox_self(Article.t()) :: Geo.BoundingBox.t() | nil
+  def bbox_self(art) when is_module(art) do
     # from map
     ways = Map.Element.filter_by_tag(Cache.Map.ways(), :name, art.name())
     rels = Map.Element.filter_by_tag(Cache.Map.relations(), :name, art.name())
@@ -102,13 +107,14 @@ defmodule Article.Decorators do
       |> Util.compact()
       |> Enum.reduce(nil, &Geo.CheapRuler.union(&1.bbox(), &2))
 
-    bbox = Geo.CheapRuler.union(bbox_map, bbox_tracks)
+    Geo.CheapRuler.union(bbox_map, bbox_tracks)
+  end
 
-    bbox ||
-      Enum.find_value(art.tags(), fn tag ->
-        # fallback to tags if article has no tracks nor other bounding box in the map
-        Cache.Map.relations() |> Map.Element.filter_by_tag(:name, tag) |> Map.Element.bbox()
-      end)
+  @spec bbox_from_tags(Article.t()) :: Geo.BoundingBox.t() | nil
+  def bbox_from_tags(art) when is_module(art) do
+    Enum.find_value(art.tags(), fn tag ->
+      Cache.Map.relations() |> Map.Element.filter_by_tag(:name, tag) |> Map.Element.bbox()
+    end)
   end
 
   @spec geo_center(Article.t()) :: Geo.Point.t() | nil
@@ -182,10 +188,5 @@ defmodule Article.Decorators do
         ms
       )
     end
-  end
-
-  @known_categories Article.known_categories()
-  def has_category?(art, type) when type in @known_categories do
-    art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
   end
 end

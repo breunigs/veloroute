@@ -114,8 +114,13 @@ defmodule Article.List do
   end
 
   defp has_tag?(art, tag) when is_binary(tag) do
-    downtags = Enum.map(art.tags(), &String.downcase/1)
-    Enum.member?(downtags, tag)
+    try do
+      downtags = Enum.map(art.tags(), &String.downcase/1)
+      Enum.member?(downtags, tag)
+    rescue
+      FunctionClauseError ->
+        raise("not all tags of #{art} are strings: #{inspect(art.tags())}")
+    end
   end
 
   @typep sorter() :: :desc | :asc
