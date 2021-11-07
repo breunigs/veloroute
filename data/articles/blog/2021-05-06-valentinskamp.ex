@@ -5,10 +5,11 @@ defmodule Data.Article.Blog.Valentinskamp do
 
   def title(), do: "Valentinskamp (Verbindung Veloroute 1/2 mit Veloroute 3)"
 
-  def start(), do: ~d[2021Q4]
-  def stop(), do: ~d[20212Q2]
+  def start(), do: ~d[2021-11-01]
+  def stop(), do: ~d[2022-08-31]
+  def construction_site_id_hh(), do: [21146]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["1", "2", "3", "M10.2a"]
 
