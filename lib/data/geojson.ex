@@ -81,7 +81,7 @@ defmodule Data.GeoJSON do
   end
 
   defp as_geojson(w = %Map.Way{tags: %{type: "article"}}) do
-    raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's yaml. Does the article exist? \n #{inspect(w.tags)}"
+    raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
   end
 
   defp as_geojson(%Map.Way{} = w) do
@@ -94,10 +94,12 @@ defmodule Data.GeoJSON do
         :text,
         :bridge,
         :type,
+        :route_group,
         :offset,
         :overlap_index,
         :route_id | Map.Way.style_tags()
       ])
+      |> Map.put_new(:type, w.tags[:route_group])
 
     %{
       type: "Feature",
@@ -110,13 +112,20 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
-  defp as_geojson(%Map.Relation{tags: %{ref: "" <> _rest}} = r) do
-    route = Route.from_relation(r)
+  defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
+    art = Article.List.find_exact(r.tags.name)
+
+    if !art,
+      do:
+        raise("""
+          Expected to find an article with name '#{r.tags.name}', but it doesn't exist.
+          You need to change either the relation's or the article's name.
+        """)
 
     extra_rel_tags = %{
-      color: route.color(),
-      route_id: route.id(),
-      type: route.type()
+      color: art.color(),
+      route_id: art.id(),
+      route_group: art.route_group()
     }
 
     r
@@ -148,11 +157,11 @@ defmodule Data.GeoJSON do
     {2, 1} => -1
   }
 
-  defp add_overlap_info(relations, type) do
+  defp add_overlap_info(relations, route_group) do
     {rels_to_modify, rels_to_keep} =
       Enum.split_with(relations, fn rel ->
-        route = Route.from_relation(rel)
-        route && route.type() == type
+        route = Article.List.find_exact(rel.tags.name)
+        route && route.route_group() == route_group
       end)
 
     # create map from way IDs to relation IDs that include that way,

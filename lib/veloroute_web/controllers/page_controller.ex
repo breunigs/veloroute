@@ -13,14 +13,15 @@ defmodule VelorouteWeb.PageController do
     name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
 
     article =
-      Cache.Articles.get_dated()
-      |> Map.keys()
-      |> Enum.find(&String.ends_with?(&1, name))
+      Article.List.all()
+      |> Stream.filter(&String.ends_with?(&1.name(), name))
+      |> Enum.take(1)
+      |> List.first()
 
     if article do
       conn
       |> put_status(301)
-      |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, article))
+      |> redirect(to: Article.Decorators.path(article))
     else
       not_found_redir(conn)
     end

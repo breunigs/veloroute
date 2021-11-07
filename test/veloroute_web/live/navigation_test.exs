@@ -7,7 +7,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   @regexStart ~r/data-video-start=[^\s]+/
 
   test "clicking on route icon navigates to overview page", %{conn: conn} do
-    {:ok, view, _html} = conn |> get("/") |> live()
+    {:ok, view, _html} = live(conn, "/")
 
     view
     |> element("a", "Rahlstedt / Jenfeld")
@@ -15,13 +15,13 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "initial render sets video", %{conn: conn} do
-    {:ok, _view, html} = conn |> get("/") |> live()
+    {:ok, _view, html} = live(conn, "/")
     refute html =~ ~s|data-video-hash=""|
     refute html =~ ~s|data-video-start="0"|
   end
 
   test "map click on article renders article and sets video pos", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/") |> live()
+    {:ok, view, html} = live(conn, "/")
     refute html =~ "Kleekamp"
 
     html = render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"})
@@ -37,7 +37,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "link on article in sidebar renders article and sets video pos", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/changes") |> live()
+    {:ok, view, html} = live(conn, "/changes")
     assert html =~ ~s|<h3 id="lastChanges">|
 
     html =
@@ -53,7 +53,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "clicking on route twice reverses image", %{conn: conn} do
-    {:ok, view, _html} = conn |> get("/") |> live()
+    {:ok, view, _html} = live(conn, "/")
 
     click_pos = %{
       route: "3",
@@ -69,7 +69,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "clicking on article without tracks keeps the video as is", %{conn: conn} do
-    {:ok, view, _html} = conn |> get("/") |> live()
+    {:ok, view, _html} = live(conn, "/")
 
     html =
       render_hook(view, "map-click", %{
@@ -92,14 +92,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "map click sets correct route on article click", %{conn: conn} do
-    {:ok, view, _html} = conn |> get("/") |> live()
+    {:ok, view, _html} = live(conn, "/")
 
     html = render_hook(view, "map-click", %{article: "2018-10-13-3-paul-sorge-strasse"})
     assert html =~ "Du folgst: Alltagsroute 3"
   end
 
   test "converts from old hash style", %{conn: conn} do
-    {:ok, view, _html} = conn |> get("/") |> live()
+    {:ok, view, _html} = live(conn, "/")
 
     html =
       render_hook(view, "convert-hash", %{hash: "19/53.59194/10.13825/TKH8zxPJnPClAmTIjD8bdA"})
@@ -108,7 +108,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "handles route click after article without route", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/article/2019-01-06-10-zum-dubben") |> live()
+    {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s(Zum Dubben)
 
     html =
@@ -123,7 +123,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "handles article click after article without route", %{conn: conn} do
-    {:ok, view, html} = conn |> get("/article/2019-01-06-10-zum-dubben") |> live()
+    {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s|Zum Dubben (neue Führung|
 
     html =
@@ -137,18 +137,61 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
 
-  # TODO: rather slow, how to parallelize?
-  for {art_name, art} <- Cache.Articles.get() do
-    @art_name art_name
-    @art art
-    @tag timeout: :infinity
-    test "article #{@art_name} can be rendered", %{conn: conn} do
-      if String.contains?(@art_name, "kreuzung-am-alten-posthaus") do
-        path = VelorouteWeb.VariousHelpers.article_path(%Article{name: @art_name})
+  test "with an article shown, clicking on the map with route-only keeps article", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
+    assert html =~ ~s|Zum Dubben (neue Führung|
 
-        {:ok, _view, html} = conn |> get(path) |> live()
-        if path =~ "/article/", do: assert(html =~ @art.title)
-      end
-    end
+    html =
+      render_hook(view, "map-click", %{
+        lon: 9.90103646729878,
+        lat: 53.473335309162394,
+        zoom: 16
+      })
+
+    assert html =~ ~s|Zum Dubben (neue Führung|
+  end
+
+  test "switches routes when new article has different route", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/alltagsroute-4")
+    assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
+
+    html =
+      view
+      |> element("a", "Radwege rund um die Binnenalster")
+      |> render_click()
+
+    assert html =~ ~s|aus der Innenstadt nach Niendorf|
+  end
+
+  test "click on video link with ref loads that track", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/lexikon/direktes-und-indirektes-abbiegen")
+    refute html =~ ~s|äußere Ringroute|
+
+    html =
+      view
+      |> element("a", "nur direktes Abbiegen")
+      |> render_click()
+
+    assert html =~ ~s|äußere Ringroute|
+  end
+
+  test "all articles can be rendered in the frame", %{conn: conn} do
+    render_issues =
+      Article.List.all()
+      |> Enum.map(fn art ->
+        try do
+          path = Article.Decorators.path(art)
+          {:ok, _view, html} = live(conn, path)
+
+          if path =~ "/article/" && !(html =~ art.title()) do
+            "#### #{art} ####\n\ndoes not include title in HTML, even though it's on /article/"
+          end
+        rescue
+          err -> "#### #{art} ####\n\n#{Exception.format(:error, err, __STACKTRACE__)}"
+        end
+      end)
+      |> Util.compact()
+
+    assert [] == render_issues, Enum.join(render_issues, "\n\n\n")
   end
 end

@@ -1,57 +1,65 @@
 defmodule Article.Search do
   alias Article
   require Logger
+  import Guards
+
+  @type searchable() :: %{
+          title: %FuzzyCompare.Preprocessed{},
+          text: %FuzzyCompare.Preprocessed{}
+        }
 
   @min_relevance 0.7
 
-  @spec search(Article.collection(), binary | nil) :: [SearchResult.t()]
+  @spec search(Article.List.t(), binary | nil) :: [SearchResult.t()]
   def search(_articles, nil), do: []
   def search(articles, query) when is_binary(query), do: real_search(articles, String.trim(query))
 
   defp real_search(_articles, ""), do: []
 
   defp real_search(articles, query) do
-    terms = FuzzyCompare.Preprocessor.process(query)
+    want = FuzzyCompare.Preprocessor.process(query)
 
     Logger.debug("query: #{query}")
 
     articles
-    |> Map.values()
-    |> Enum.reject(fn art -> blank?(art.title) || blank?(art.text) end)
-    |> Enum.map(fn art ->
-      title_sim = FuzzyCompare.ChunkSet.standard_similarity(terms, art.search_title)
-      text_sim = FuzzyCompare.ChunkSet.standard_similarity(terms, art.search_text)
-      title_cont = if String.contains?(art.search_title.string, terms.string), do: 0.4, else: 0
+    |> Enum.map(fn art -> {art, article_terms(art)} end)
+    |> Enum.reject(fn {_art, have} -> blank?(have.title.string) || blank?(have.text.string) end)
+    |> Enum.map(fn
+      {art, have} ->
+        title_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.title)
+        text_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.text)
+        title_cont = if String.contains?(have.title.string, want.string), do: 0.4, else: 0
 
-      relevance =
-        max(title_sim + title_cont, text_sim)
-        |> clamp
-        |> consider_age(art)
-        |> consider_finished(art)
-        |> clamp
+        relevance =
+          [title_sim + title_cont, text_sim]
+          |> Enum.max()
+          |> clamp
+          |> consider_age(art)
+          |> consider_finished(art)
+          |> clamp
 
-      bounds = if art.bbox, do: art.bbox, else: Settings.initial()
-      type = if art.date, do: "article", else: "page"
+        bbox = Article.Decorators.bbox(art)
+        bounds = if bbox, do: bbox, else: Settings.initial()
+        type = if art.created_at(), do: "article", else: "page"
 
-      subtext =
-        if art.date, do: "Letzte Änderung #{art.date.day}.#{art.date.month}.#{art.date.year}"
+        subtext = if art.created_at(), do: "Letzte Änderung #{Article.Decorators.updated_at(art)}"
 
-      if relevance >= @min_relevance,
-        do:
-          Logger.debug(
-            "relevance: #{Float.round(relevance, 2)} / #{Float.round(title_sim, 2)} / #{Float.round(text_sim, 2)} @ #{inspect(art.search_title.chunks)} "
-          )
+        if relevance >= @min_relevance,
+          do:
+            Logger.debug(
+              "relevance: #{Float.round(relevance, 2)} / #{Float.round(title_sim, 2)} / #{Float.round(text_sim, 2)} @ #{inspect(have.title.chunks)} "
+            )
 
-      # Logger.debug("relevance: #{title_sim} / #{text_sim} @ #{inspect(art.search_title)} ")
+        # Logger.debug("relevance: #{title_sim} / #{text_sim} @ #{inspect(art.search_title)} ")
 
-      %SearchResult{
-        bounds: bounds,
-        name: art.full_title,
-        url: art.url,
-        relevance: relevance,
-        type: type,
-        subtext: subtext
-      }
+        %SearchResult{
+          bounds: bounds,
+          name: Article.Decorators.full_title(art),
+          url: Article.Decorators.path(art),
+          relevance: relevance,
+          type: type,
+          subtext: subtext
+        }
     end)
     |> Enum.reject(fn result -> result.relevance < @min_relevance end)
   end
@@ -74,34 +82,23 @@ defmodule Article.Search do
   defp blank?(""), do: true
   defp blank?(_), do: false
 
-  @spec preprocess(Article.t()) :: Article.t()
-  def preprocess(%Article{} = art) do
-    art |> search_preprocess_title |> search_preprocess_text
+  use Memoize
+  @spec article_terms(Article.t()) :: searchable()
+  defmemo article_terms(art) when is_module(art) do
+    title = Article.Decorators.full_title(art)
+    text = Article.Decorators.text(art)
+
+    %{
+      title: preprocess_text(title),
+      text: preprocess_text(text)
+    }
   end
 
-  defp search_preprocess_title(art) do
-    # Benchmark.measure("article: preprocess title", fn ->
-    t =
-      art.full_title
-      |> Kernel.||("")
-      |> word_and_num_only()
-      |> FuzzyCompare.Preprocessor.process()
-
-    Map.put(art, :search_title, t)
-    # end)
-  end
-
-  defp search_preprocess_text(%{text: t} = art) when is_binary(t) do
-    # Benchmark.measure("article: preprocess text", fn ->
-    t =
-      t
-      |> Floki.parse_fragment!()
-      |> Floki.text(sep: " ")
-      |> word_and_num_only()
-      |> FuzzyCompare.Preprocessor.process()
-
-    Map.put(art, :search_text, t)
-    # end)
+  @spec preprocess_text(binary()) :: %FuzzyCompare.Preprocessed{}
+  def preprocess_text(text) when is_binary(text) do
+    text
+    |> word_and_num_only()
+    |> FuzzyCompare.Preprocessor.process()
   end
 
   defp word_and_num_only(str) do

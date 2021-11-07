@@ -11,7 +11,7 @@ defmodule Mix.Tasks.UpdateMapbox do
 
     try do
       Cache.Map.full_map()
-      |> Map.Enrich.with_articles(Cache.Articles.get())
+      |> Map.Enrich.with_articles(Article.List.all())
       |> Data.GeoJSON.to_feature_lists()
       |> Enum.each(fn {name, geojson} ->
         convert_to_mbtiles(

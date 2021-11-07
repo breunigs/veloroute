@@ -1,3 +1,7 @@
+todo: check tranferred data when switching articles is ok, especially search
+todo: zooms to full route when clicking on map, should not switch
+todo: verify mapbox output
+
 - clicking on a route in map should set route in sidebar, unless the viewed page is related to that route
 - video should auto-upgrade to HQ if paused
 - URL bounds ignored?

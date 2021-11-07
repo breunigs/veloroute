@@ -30,13 +30,12 @@ defmodule Mix.Tasks.EditMap do
 
   defp generate_mapcss() do
     mapcss =
-      Route.List.all()
-      |> Enum.map(fn route ->
-        name = route |> Module.split() |> List.last()
-
+      Article.List.all()
+      |> Enum.reject(&is_nil(&1.color()))
+      |> Enum.map(fn art ->
         """
-        relation[ref="#{name}"] > way[!color] {
-          colors: concat(prop(colors), " #{route.color()}");
+        relation[name="#{art.name()}"] > way[!color] {
+          colors: concat(prop(colors), " #{art.color()}");
         }
         """
       end)

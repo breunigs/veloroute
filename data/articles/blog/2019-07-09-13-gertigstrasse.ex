@@ -1,0 +1,35 @@
+defmodule Data.Article.Blog.Gertigstrasse do
+  use Article.Default
+
+  def name(), do: "#{created_at()}-13-gertigstrasse"
+  def created_at(), do: ~D[2019-07-09]
+  def updated_at(), do: ~D[2020-06-12]
+  def title(), do: "Gertigstraße (Veloroute 13)"
+
+  def start(), do: ~d[2021Q1]
+
+  def type(), do: :planned
+
+  def tags(), do: ["13"]
+
+  def links(_assigns) do
+    []
+  end
+
+  def text(assigns) do
+    ~H"""
+    <p><strong>Stand Mitte 2020:</strong> Der Plan „Fahrradstraße“ liegt in der endgültigen Fassung vor und hat sich im Vergleich zum ersten Entwurf nur unwesentlich geändert. Mit Blick auf das Corona-Virus verschiebt sich die Bauzeit ins Frühjahr 2021, damit in der Vorweihnachtszeit definitiv keine Baustelle ist.</p>
+    <p>Die <.a href="/#16.5/53.581953/10.015636">Gertigstraße</.a> erlaubt dem Radverkehr momentan die Wahl auf den Hochbordradwegen oder der Fahrbahn zu fahren. Die Radwege sind sehr schmal, teils kurvig und häufig auch von Zufußgehenden belegt. Auf der Fahrbahn kommt man deutlich besser voran, muss sich aber mit den Autos bei 50 km/h Höchstgeschwindigkeit arrangieren.</p>
+    <p>Die in einer Mitmachveranstaltung  bevorzugte Variante „Fahrradstraße“ wurde in einem ersten Entwurf detaillierter ausgearbeitet und wird auch so kommen. Da die Gertigstraße schon grob die richtige Form hat, sind nur lokale  Umbauten nötig. Die alten Radwege werden entfernt und dem Fußweg zugeschlagen. Auch die Schutzbügel gegen Falschparker entfallen zugunsten ordentlichen Stellbügeln für Fahrräder. Die Einmündungen bleiben gegenüber der Gertigstraße wartepflichtig, werden jedoch neu verfugt um dem Denkmalschutz Rechnung zu tragen. Am Anfang bzw. Ende der Gertigstraße wird ein kurzes Stück gepflastert um den Wechsel zu einer Fahrradstraße zu verdeutlichen. Wie in allen Fahrradstraßen reduziert sich das Höchsttempo auf 30 km/h.  </p>
+    <p>Verkehrsführung und Parkplätze bleiben im Wesentlichen gleich – auch Autos dürfen die Straße weiterhin befahren. Man hat jedoch den Mangel an Fahrradstellplätzen erkannt und ergänzt 86 Anlehnbügel. Auch eine StadtRAD Station kommt hinzu, auf <.m bounds="10.010817,53.581176,10.018665,53.582971" lon="10.0147491" lat="53.5819298" dir="forward">Höhe der Hausnummer 22</.m>.</p>
+    <p>Die <.a href="/#19/53.581146/10.0119887">Einmündung in den Mühlenkamp</.a> gilt als bereits umgebaut, die in <.a href="/#19/53.5830856/10.018938">die Barmbeker Straße</.a> wird getrennt geplant. Entsprechend endet die Fahrradstraße jeweils vorher.</p>
+    <p>Umgesetzt werden soll die Maßnahme vorraussichtlich ab Frühjahr 2021.</p>
+    <p>
+    <.a href="https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf">Erläuterungsbericht</.a>
+    </p>
+    <p>
+    <.a href="https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf ">Lageplan</.a>
+    </p>
+    """
+  end
+end

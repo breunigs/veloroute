@@ -6,6 +6,11 @@ defmodule Data.RoughDate do
   @months {"Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September",
            "Oktober", "November", "Dezember"}
 
+  @spec sigil_d(binary(), []) :: Data.RoughDate.t()
+  def sigil_d(str, []), do: Data.RoughDate.parse(str)
+
+  def zero(), do: parse(nil)
+
   def parse(nil), do: %__MODULE__{year: nil, quarter: nil, month: nil, day: nil}
 
   def parse(date) when is_integer(date),
@@ -62,26 +67,16 @@ defmodule Data.RoughDate do
 
   def to_str(%__MODULE__{year: y}), do: "#{y}"
 
-  def sort(rds) when is_list(rds) do
-    Enum.sort(rds, &compare(&1, &2))
-  end
-
   def compare(%__MODULE__{} = left, %__MODULE__{} = right) do
+    left = {left.year, guess_month(left), !is_nil(left.day), left.day}
+    right = {right.year, guess_month(right), !is_nil(right.day), right.day}
+
     cond do
-      unknown?(left) && unknown?(right) -> false
-      unknown?(right) -> true
-      unknown?(left) -> false
-      left.year > right.year -> false
-      left.year < right.year -> true
-      guess_month(left) > guess_month(right) -> false
-      guess_month(left) < guess_month(right) -> true
-      is_nil(left.day) && !is_nil(right.day) -> true
-      true -> false
+      left > right -> :gt
+      left < right -> :lt
+      true -> :eq
     end
   end
-
-  defp unknown?(%__MODULE__{year: nil}), do: true
-  defp unknown?(_), do: false
 
   defp guess_month(%__MODULE__{month: x}) when is_integer(x), do: x
 

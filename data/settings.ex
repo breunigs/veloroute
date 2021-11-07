@@ -7,7 +7,7 @@ defmodule Settings do
 
   def start_image,
     do: %{
-      route: Data.Route.Route11,
+      article_id: "11",
       direction: :forward,
       position: %{lat: 53.55044, lon: 9.99440}
     }
@@ -20,10 +20,8 @@ defmodule Settings do
 
   def sitebar_name, do: "veloroute.hamburg"
   def page_title_short, do: "veloroute.hamburg · "
-  def page_title_long, do: "veloroute.hamburg · Fahrradwege für den Alltag"
+  def page_title_long, do: "veloroute.hamburg · Fahrradwege für Alltag und Freizeit"
   def email, do: "stefan-veloroute@breunig.xyz"
-
-  def default_page, do: "0000-00-00-startpage"
 
   def twitter_handle, do: "@VelorouteHH"
 

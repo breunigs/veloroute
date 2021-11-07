@@ -49,15 +49,16 @@ defmodule Veloroute.MixProject do
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.0", only: [:dev, :test]},
       {:ex_aws, "~> 2.1", only: [:dev, :test]},
-      {:floki, ">= 0.0.0"},
+      {:floki, ">= 0.30.0", only: :test},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.9"},
       {:jason, "~> 1.0"},
       {:libgraph, "~> 0.7"},
+      {:memoize, "~> 1.4"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.16.4"},
+      {:phoenix_live_view, "~> 0.17.5"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix, "~> 1.6.2"},
       {:plug_cowboy, "~> 2.0"},
@@ -70,8 +71,7 @@ defmodule Veloroute.MixProject do
       {:telemetry, "~> 0.4.2 or ~> 0.5"},
       {:temp, "~> 0.4", only: [:dev, :test]},
       {:tesla_cache, "~> 1.1.0"},
-      {:tesla, "~> 1.3.0"},
-      {:yaml_elixir, "~> 2.4"}
+      {:tesla, "~> 1.3.0"}
     ]
   end
 end

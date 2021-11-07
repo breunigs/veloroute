@@ -66,5 +66,8 @@ defmodule Video.RenderedTest do
 
     @impl Video.Rendered
     def rendered?(), do: true
+
+    @impl Video.Rendered
+    def bbox(), do: Geo.CheapRuler.bbox(coords())
   end
 end

@@ -17,7 +17,7 @@ defmodule VelorouteWeb.FeedController do
 
   defp build() do
     xml = Feed.build()
-    Application.put_env(:veloroute, :cached_feed, xml)
+    # Application.put_env(:veloroute, :cached_feed, xml)
     xml
   end
 end

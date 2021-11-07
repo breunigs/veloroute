@@ -5,9 +5,12 @@ defmodule VelorouteWeb.FrameLive do
   alias VelorouteWeb.Router.Helpers, as: Routes
   import VelorouteWeb.VariousHelpers
 
+  import Guards
+
   alias Article
 
   @initial_state [
+    render_target: :html,
     autoplay: false,
     prev_page: nil,
     current_page: nil,
@@ -37,8 +40,8 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       socket
       |> assign(@initial_state)
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, nil, params)
-      |> determine_visible_types(nil, nil)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, params)
+      |> determine_visible_route_groups(nil)
 
     {:ok, socket}
   end
@@ -67,15 +70,14 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-zoom-to", attr, socket) do
     Logger.debug("map-zoom-to: #{inspect(attr)}")
 
-    route = Route.from_id(attr["route"])
-    article = Cache.Articles.get()[attr["article"]]
+    article = find_article(attr["article"] || attr["ref"])
 
     socket =
       socket
       |> update_map(attr)
       |> update_ping(attr)
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
-      |> determine_visible_types(route, article)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
+      |> determine_visible_route_groups(article)
 
     {:noreply, socket}
   end
@@ -88,24 +90,16 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
   @search_page "suche"
-  @search_page_full "0000-00-00-#{@search_page}"
   def handle_event("search", %{"value" => query}, socket) do
     query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
+    search_article = Article.List.find_exact(@search_page)
 
     socket =
       socket
       |> assign(:search_query, query || "")
       |> assign(:search_bounds, socket.assigns[:map_bounds])
 
-    socket =
-      if on_search_page?(socket) do
-        update_url_query(socket)
-      else
-        socket = assign(socket, :current_page, @search_page_full)
-        url_query = url_query(socket)
-        path = Routes.page_path(socket, VelorouteWeb.FrameLive, @search_page, url_query)
-        push_patch(socket, to: path)
-      end
+    socket = push_patch(socket, to: article_path(socket, search_article))
 
     {:noreply, socket}
   end
@@ -134,21 +128,17 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-click", attr, socket) do
     Logger.debug("map-click #{inspect(attr)}")
 
-    article = Cache.Articles.get()[attr["article"]]
-    route = Route.from_id(attr["route"])
+    # if we have an article use that, but ignore the default article (i.e. the
+    # startpage) when we have a route
+    article = find_article(attr["article"])
+    route = if attr["article"] && article, do: article, else: find_article(attr["route"])
 
     socket =
       socket
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, article, attr)
-      |> determine_visible_types(route, article)
+      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, attr)
+      |> determine_visible_route_groups(route)
 
-    socket =
-      if(article) do
-        Logger.debug("article")
-        push_patch(socket, to: article_path(socket, article))
-      else
-        socket
-      end
+    socket = if article, do: push_patch(socket, to: article_path(socket, article)), else: socket
 
     {:noreply, socket}
   end
@@ -170,25 +160,6 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("sld-autoplay", %{"route" => route}, socket) do
-    Logger.debug("sld-autoplay #{route}")
-    route = Route.from_id(route)
-    start_from = (route.tracks() |> Enum.find(fn %{direction: dir} -> dir == :forward end)).from
-
-    socket =
-      if route do
-        socket
-        |> VelorouteWeb.Live.VideoState.reset()
-        |> VelorouteWeb.Live.VideoState.maybe_update_video(route, nil, start_from)
-        |> determine_visible_types(route, nil)
-        |> assign(:autoplay, true)
-      else
-        socket
-      end
-
-    {:noreply, socket}
-  end
-
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
     Logger.warn(msg)
@@ -204,17 +175,18 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"not_found" => "true"}, nil, socket), do: {:noreply, render_404(socket)}
 
-  def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
-      when is_binary(subdir) and subdir != "" do
-    name =
-      cond do
-        String.match?(name, ~r{^\d\d\d\d-\d\d-\d\d-}) -> Path.join(subdir, name)
-        true -> Path.join(subdir, "0000-00-00-" <> name)
-      end
-
+  def handle_params(%{"article" => name, "subdir" => "articles"} = params, nil, socket) do
     params
     |> Map.delete("subdir")
     |> Map.put("article", name)
+    |> handle_params(nil, socket)
+  end
+
+  def handle_params(%{"article" => name, "subdir" => subdir} = params, nil, socket)
+      when is_binary(subdir) and subdir != "" do
+    params
+    |> Map.delete("subdir")
+    |> Map.put("article", "#{subdir}/#{name}")
     |> handle_params(nil, socket)
   end
 
@@ -222,18 +194,18 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("article: #{name} (#{inspect(params)})")
 
     prev_article = socket.assigns.tmp_last_article_set
-    article = find_article(name)
+    article = find_article(name || "")
 
-    # temporarily only update videos if the article changed. Otherwise
-    # it will always switch back to the video when viewing another route
-    # that doesn't have a video yet
+    # only update videos if the article changed. Otherwise it will slightly
+    # change the position we might've just set through map-click
     socket =
       if article == prev_article,
         do: socket,
         else:
           socket
-          |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, article, params)
-          |> determine_visible_types(nil, article)
+          |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
+          |> determine_visible_route_groups(article)
+          |> assign(:autoplay, params["autoplay"] == "true")
 
     socket =
       set_content(article, socket)
@@ -245,13 +217,13 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"page" => @search_page, "search_query" => query} = params, nil, socket) do
     params
-    |> Map.put("article", @search_page_full)
+    |> Map.put("article", @search_page)
     |> handle_params(nil, assign(socket, :search_query, query))
   end
 
   def handle_params(%{"page" => name} = params, nil, socket) do
     params
-    |> Map.put("article", "0000-00-00-#{name}")
+    |> Map.put("article", name)
     |> handle_params(nil, socket)
   end
 
@@ -263,27 +235,29 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("params: default (#{inspect(params)})")
 
     params
-    |> Map.put("article", Settings.default_page())
+    |> Map.put("article", find_article(nil))
     |> handle_params(nil, socket)
   end
 
-  defp set_content(%Article{name: name}, %{assigns: %{current_page: name}} = socket) do
-    assign(socket, prev_page: name)
+  defp set_content(art, %{assigns: %{current_page: art}} = socket) when is_module(art) do
+    assign(socket, prev_page: art)
   end
 
-  defp set_content(%Article{name: name, full_title: t, date: date, summary: summary}, socket) do
-    title =
-      if is_nil(t) or t == "",
+  defp set_content(art, socket) when is_module(art) do
+    full_title = Article.Decorators.full_title(art)
+
+    page_title =
+      if full_title == "",
         do: Settings.page_title_long(),
-        else: Settings.page_title_short() <> t
+        else: Settings.page_title_short() <> full_title
 
     assign(socket,
       prev_page: socket.assigns.current_page,
-      current_page: name,
-      page_title: title,
-      article_date: date,
-      article_title: t,
-      article_summary: summary
+      current_page: art,
+      page_title: page_title,
+      article_date: art.updated_at(),
+      article_title: full_title,
+      article_summary: art.summary()
     )
   end
 
@@ -308,7 +282,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp set_bounds(%{assigns: %{map_bounds: nil}} = socket, article, bounds_param)
        when is_binary(bounds_param) do
-    parsed = parse_bounds(bounds_param)
+    parsed = Geo.BoundingBox.parse(bounds_param)
 
     if parsed != nil,
       do: assign(socket, bounds: parsed) |> set_bounds_ts,
@@ -316,15 +290,21 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_bounds(
-         %{assigns: %{prev_page: name}} = socket,
-         %Article{name: name},
+         %{assigns: %{prev_page: art}} = socket,
+         art,
          _bounds_param
        ) do
     socket
   end
 
-  defp set_bounds(socket, %Article{bbox: bbox}, _bounds_param) when is_map(bbox) do
-    assign(socket, bounds: bbox) |> set_bounds_ts
+  defp set_bounds(socket, art, _bounds_param) when is_module(art) do
+    bbox = Article.Decorators.bbox(art)
+
+    if bbox do
+      assign(socket, bounds: bbox) |> set_bounds_ts
+    else
+      socket
+    end
   end
 
   defp set_bounds(socket, _article, _bounds_param) do
@@ -348,7 +328,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp update_map(socket, %{"bounds" => bounds}) do
-    parsed = parse_bounds(bounds)
+    parsed = Geo.BoundingBox.parse(bounds)
 
     if parsed != nil,
       do: assign(socket, bounds: parsed) |> set_bounds_ts,
@@ -369,25 +349,19 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_ping(socket, _), do: socket
 
-  defp find_article(""), do: find_article(Settings.default_page())
-  defp find_article(nil), do: find_article(Settings.default_page())
+  defp find_article(nil), do: nil
 
-  defp find_article(name) when is_binary(name) do
-    Cache.Articles.get()[name]
+  defp find_article(name) when is_binary(name) or is_module(name) do
+    Article.List.find_exact(name)
   end
 
   defp find_article(%{assigns: %{current_page: name}}) do
-    Cache.Articles.get()[name]
+    Article.List.find_exact(name)
   end
 
-  defp article_path(socket, %Article{name: "0000-00-00-" <> name}) do
+  defp article_path(socket, art) when is_module(art) do
     query = url_query(socket)
-    Routes.page_path(socket, VelorouteWeb.FrameLive, name, query)
-  end
-
-  defp article_path(socket, %Article{name: name}) do
-    query = url_query(socket)
-    Routes.article_path(socket, VelorouteWeb.FrameLive, name, query)
+    Article.Decorators.path(art, query)
   end
 
   defp update_url_query(%{assigns: assigns} = socket) do
@@ -406,18 +380,14 @@ defmodule VelorouteWeb.FrameLive do
     end
   end
 
-  defp on_search_page?(socket) do
-    socket.assigns.current_page == @search_page_full
-  end
-
-  defp url_query(%{assigns: assigns} = socket) do
+  defp url_query(%{assigns: assigns}) do
     bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
     query = %{"video" => assigns.video_hash, "pos" => assigns.video_start, "bounds" => bounds}
 
-    if on_search_page?(socket) && !blank?(assigns.search_query) do
-      Map.put(query, "search_query", assigns.search_query)
-    else
+    if blank?(assigns.search_query) do
       Map.delete(query, "search_query")
+    else
+      Map.put(query, "search_query", assigns.search_query)
     end
   end
 
@@ -432,28 +402,19 @@ defmodule VelorouteWeb.FrameLive do
   defp blank?(nil), do: true
   defp blank?(_), do: false
 
-  defp determine_visible_types(socket, route, article) do
+  defp determine_visible_route_groups(socket, article) do
+    # from displayed video
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
     parent_ref = track && track.parent_ref
-    article = article || find_article(socket) || Cache.Articles.get()[parent_ref]
+    show = if is_module(parent_ref), do: [parent_ref.route_group()], else: []
 
-    show = if route, do: [route.type()], else: []
-    show = if is_module(parent_ref), do: [parent_ref.type() | show], else: []
+    # from displayed article
+    article = article || find_article(socket) || find_article(parent_ref)
+    show = if article, do: show ++ Article.Decorators.related_route_groups(article), else: show
 
-    show =
-      if article,
-        do: show ++ Enum.map(Article.related_routes(article), & &1.type()),
-        else: show
-
-    show =
-      if show == [] do
-        [:alltag]
-      else
-        show
-      end
+    # defaults
+    show = if show == [], do: [:alltag], else: show
 
     assign(socket, visible_types: Enum.uniq(show))
   end
-
-  defp is_module(ref), do: is_atom(ref) and not is_nil(ref)
 end

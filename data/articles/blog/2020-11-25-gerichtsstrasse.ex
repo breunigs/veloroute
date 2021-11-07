@@ -1,0 +1,35 @@
+defmodule Data.Article.Blog.Gerichtsstrasse do
+  use Article.Default
+
+  def created_at(), do: ~D[2020-11-25]
+  def updated_at(), do: ~D[2021-04-28]
+  def title(), do: "Gerichtsstraße"
+
+  def start(), do: ~d[2022Q2]
+
+  def type(), do: :planned
+
+  def tags(), do: ["13"]
+
+  def links(_assigns) do
+    []
+  end
+
+  def text(assigns) do
+    ~H"""
+    <h4>Stand April 2021:</h4> <p>Der LSBG hat einen überarbeiteten Entwurf mit Plänen und Erläuterungen veröffentlicht. Der Artikel wurde entsprechend angepasst.</p>
+    <h4>Alter Zustand</h4> <p>Der Abschnitt ist durch sehr unebenes Kopfsteinpflaster geprägt. Illegal abgestellte Fahrzeuge erschweren die Übersicht. In Richtung Max-Brauer-Allee muss man den Weg erraten, da das „gemeinsamer Fuß- und Radweg“ Schild überklebt ist.</p>
+    <h4>Planung</h4> <p>Es ist vorgesehen auf beiden Seiten Längsparkplätze für KFZ einzurichten um die Parksituation zu ordnen. Die Fahrbahn wird nur im mittleren, rund 3,5m breiten Teil asphaltiert. An beiden Seiten schließen sich jeweils nochmal 0,75m Kopfsteinpflaster an, das man aus historischen Gründen behält. Diese Streifen mit Kopfsteinpflaster liegen im <.ref>Dooring</.ref>-Bereich der Parkplätze.</p>
+    <p>Die Gerichtsstraße hat künftig Vorfahrt vor anderen Nebenstraßen. Lediglich an der <.m bounds="9.93837,53.557578,9.941748,53.558351" lon="9.9401279" lat="53.5579567" dir="forward">Einmündung in die Haubachstraße</.m> muss Vorfahrt gewährt werden. Die Straße wird zu einer Fahrradstraße mit „Anlieger frei“ für KFZ. Die <.m bounds="9.937867,53.555017,9.944141,53.556453" lon="9.9422194" lat="53.5555027" dir="forward">Durchfahrt an der Max-Brauer-Allee</.m> wird für KFZ gesperrt – allerdings ist dies Teil des <.a href="/article/2018-12-17-1-13-max-brauer-allee">Umbaus der Max-Brauer-Allee</.a>.</p>
+    <p>Man möchte die Anzahl der Radanlehnbügeln deutlich erhöhen, da aktuell der Bedarf bei weitem nicht gedeckt wird. Wie viele genau wird noch entschieden, da geplant ist die Anwohnenden zu befragen wie viele Stellplätze für Lastenfahrräder notwendig sind.</p>
+    <h4>Meinung</h4> <p>Dieser Abschnitt ist so weit von einer komfortablen Veloroute entfernt, das jede Umplanung einen Gewinn darstellt. Der veröffentlichte Entwurf ist solide, lässt aber noch Luft nach oben. Das Hauptziel dem Radverkehr eine akzeptable Route anzubieten ist aber definitiv erreicht worden.</p>
+    <p>Kritikwürdig ist die geringe nutzbare Breite für den Radverkehr von 3,5m, was Überholen oder Unterhaltungen bei Gegenverkehr erschwert. Zum Vergleich: abgestellte KFZ erhalten ohne Sicherheitsabstände bereits 4,20m.</p>
+    <p>Etwas kurz gedacht wirkt die <.m bounds="9.93837,53.557578,9.941748,53.558351" lon="9.9401279" lat="53.5579567" dir="forward">Einmündung in die Haubachstraße</.m>. In beiden Straßen ist der Radverkehr bereits heute höher als der KFZ-Verkehr, es wäre also denkbar die Haubachstraße ebenfalls zu einer Fahrradstraße zu machen. Dann könnte man der Veloroute ohne Bodenschwellen in diesem Bereich folgen.</p>
+    <h4>Quelle</h4> <ul>
+    <li><.a href="https://lsbg.hamburg.de/contentblob/15034444/2fec8fb605e461ff9db398c8845aaaf4/data/gerichtstrasse-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht</.a> (April 2021)</li>
+    <li><.a href="https://lsbg.hamburg.de/contentblob/15034488/0c494c0994aa4907d5f53a1eb94b1adb/data/gerichtstrasse-abstimmungsunterlage-plaene.pdf">Lagepläne</.a> (April 2021)</li>
+    <li><.a href="https://sitzungsdienst-altona.hamburg.de/bi//to020.asp?TOLFDNR=1031355">Präsentation zum Vorentwurf</.a> (September 2020)</li>
+    </ul>
+    """
+  end
+end

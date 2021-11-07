@@ -91,23 +91,20 @@ defmodule TrackFinder do
     end)
   end
 
-  defp direction_text(route, from, to, direction) do
-    Enum.find_value(route.tracks(), fn
+  defp direction_text(art, from, to, direction) do
+    Enum.find_value(art.tracks(), fn
       %{from: ^from, to: ^to, direction: ^direction, text: text} ->
         text
 
       _track ->
         nil
-    end) || raise("Failed to find track '#{from}'→'#{to}' for #{inspect(route)}")
+    end) || raise("Failed to find track '#{from}'→'#{to}' for #{inspect(art)}")
   end
 
   defp track_matrix(r, normalized_ways) do
-    route = Route.from_relation(r)
+    art = Article.List.find_exact(r.tags.name)
 
-    {id, name} =
-      if route,
-        do: {route.id(), route.name()},
-        else: {r.tags[:id], r.tags[:name]}
+    if is_nil(art), do: raise("Failed to find matching article for relation: #{inspect(r.tags)}")
 
     {start_members, end_members} =
       Enum.group_by(r.members, fn
@@ -119,17 +116,17 @@ defmodule TrackFinder do
           {start_members, end_members}
 
         %{"start" => _} ->
-          raise "Route #{name} specifies GPX start(s), but no end(s) that have a target"
+          raise "Route #{art.name()} specifies GPX start(s), but no end(s) that have a target"
 
         %{"end" => _} ->
-          raise "Route #{name} specifies GPX end(s), but no start(s) that have a target"
+          raise "Route #{art.name()} specifies GPX end(s), but no start(s) that have a target"
 
         _ ->
           {[], []}
       end
 
-    start_ways = resolve_to_start_end_ways(name, start_members, normalized_ways)
-    end_ways = resolve_to_start_end_ways(name, end_members, normalized_ways)
+    start_ways = resolve_to_start_end_ways(art.name(), start_members, normalized_ways)
+    end_ways = resolve_to_start_end_ways(art.name(), end_members, normalized_ways)
     {via_fw, via_bw} = find_vias(r)
 
     Enum.flat_map(start_ways, fn {s_as_start, s_as_end} ->
@@ -137,26 +134,26 @@ defmodule TrackFinder do
         fw_target = hd(e_as_start.nodes).tags[:target]
         bw_target = hd(s_as_start.nodes).tags[:target]
 
-        fw_text = direction_text(route, bw_target, fw_target, :forward)
-        bw_text = direction_text(route, fw_target, bw_target, :backward)
+        fw_text = direction_text(art, bw_target, fw_target, :forward)
+        bw_text = direction_text(art, fw_target, bw_target, :backward)
 
         [
           %{
             type: :forward,
-            id: id,
-            name: name,
+            id: art.id(),
+            name: art.name(),
             direction: fw_text,
-            full_name: "#{name} #{fw_text}",
+            full_name: "#{art.title()} #{fw_text}",
             start: s_as_start,
             stop: e_as_end,
             via: via_fw
           },
           %{
             type: :backward,
-            id: id,
-            name: name,
+            id: art.id(),
+            name: art.name(),
             direction: bw_text,
-            full_name: "#{name} #{bw_text}",
+            full_name: "#{art.title()} #{bw_text}",
             start: e_as_start,
             stop: s_as_end,
             via: via_bw

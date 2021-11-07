@@ -412,6 +412,19 @@ ol.route-list {
   }
 }
 
+
+li.separator {
+  margin-top: 1rem;
+  font-weight: bold;
+  list-style-type: '';
+  margin-left: -0.85rem;
+
+  &:first-child {
+    display: none;
+  }
+}
+
+
 ol.hide-bullets {
   list-style-type: none;
   padding: 0;
@@ -427,13 +440,12 @@ ol.hide-bullets {
     float: right;
   }
 
-  li {
-    clear: both;
+  li.separator {
+    margin-left: 0;
   }
 
-  li.separator {
-    margin-top: 1rem;
-    font-weight: bold;
+  li {
+    clear: both;
   }
 
   &:after {

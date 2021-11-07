@@ -1,6 +1,6 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
-  alias VelorouteWeb.Router.Helpers, as: Routes
+  import Guards
 
   def display_route(nil), do: nil
 
@@ -8,62 +8,17 @@ defmodule VelorouteWeb.VariousHelpers do
     %Video.Track{parent_ref: ref, text: text} = VelorouteWeb.Live.VideoState.current_track(state)
 
     cond do
-      is_binary(ref) ->
-        content_tag(:span, text,
-          title: "Du folgst: #{text} (aus: #{ref})",
-          class: "curRoute"
-        )
-
-      is_atom(ref) and not is_nil(ref) ->
+      is_module(ref) ->
         icon = route_icon(ref)
 
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, ref.article()),
-          title: "Du folgst: #{ref.name()} #{text}",
+          to: Article.Decorators.path(ref),
+          title: "Du folgst: #{ref.title()} #{text}",
           class: "curRoute"
         )
 
       true ->
         nil
-    end
-  end
-
-  def display_route({id, rest}) do
-    cond do
-      route = Route.from_id(id) ->
-        icon = route_icon(route)
-        name = route.name()
-
-        Phoenix.LiveView.Helpers.live_patch([icon, " ", rest],
-          to: Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, id),
-          title: "Du folgst: #{name} #{rest}",
-          class: "curRoute"
-        )
-
-      true ->
-        nil
-    end
-  end
-
-  @spec article_search(binary | nil) :: [SearchResult.t()]
-  def article_search(query) do
-    Cache.Articles.get()
-    |> Enum.into(%{}, fn {key, art} ->
-      {key, Map.put(art, :url, article_path(art))}
-    end)
-    |> Article.Search.search(query)
-  end
-
-  def article_path(%Article{name: name}) do
-    case String.split(name, "/") do
-      ["0000-00-00-" <> name] ->
-        Routes.page_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-
-      [subdir, "0000-00-00-" <> name] ->
-        Routes.subdir_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, subdir, name)
-
-      [name] ->
-        Routes.article_path(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
     end
   end
 
@@ -105,57 +60,23 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   def route_icon(id) when is_binary(id) do
-    route = Route.from_id(id)
-    if route, do: route_icon(route)
+    ref =
+      Article.List.find_exact(id) ||
+        raise("Tried to find route icon for #{id}, but there is no such article")
+
+    route_icon(ref)
   end
 
-  def route_icon(route) when is_atom(route) and not is_nil(route) do
-    content_tag(:span, route.id(),
-      style: "background: #{route.color()}",
-      class: "icon #{route.type()}"
-    )
-  end
+  def route_icon(nil), do: nil
 
-  def parse_bounds(%{
-        "maxlat" => maxLat,
-        "maxlon" => maxLon,
-        "minlat" => minLat,
-        "minlon" => minLon
-      }) do
-    %Geo.BoundingBox{
-      minLon: minLon,
-      minLat: minLat,
-      maxLon: maxLon,
-      maxLat: maxLat
-    }
-  end
-
-  def parse_bounds(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds([[minLon, minLat], [maxLon, maxLat]]) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds([minLon, minLat, maxLon, maxLat]) do
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-  end
-
-  def parse_bounds(bounds) when is_binary(bounds) do
-    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
-         {minLon, ""} <- Float.parse(minLon),
-         {minLat, ""} <- Float.parse(minLat),
-         {maxLon, ""} <- Float.parse(maxLon),
-         {maxLat, ""} <- Float.parse(maxLat) do
-      %Geo.BoundingBox{
-        minLon: minLon,
-        minLat: minLat,
-        maxLon: maxLon,
-        maxLat: maxLat
-      }
+  def route_icon(article) when is_module(article) do
+    if article.id() do
+      content_tag(:span, article.id(),
+        style: "background: #{article.color()}",
+        class: "icon #{article.route_group()}"
+      )
     else
-      _ -> nil
+      ""
     end
   end
 

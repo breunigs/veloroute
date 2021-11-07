@@ -1,5 +1,29 @@
 defmodule Data.GeoJSONTest do
   use ExUnit.Case, async: true
+  use Phoenix.Component
+
+  defmodule Article1 do
+    use Article.Default
+    def created_at, do: ~D[2021-11-11]
+    def name, do: "art1"
+    def type, do: :construction
+    def title, do: "hi!"
+    def tags, do: []
+    def text(assigns), do: ~H""
+  end
+
+  defmodule Article2 do
+    use Article.Default
+    def created_at, do: ~D[2021-11-11]
+    def name, do: "art2"
+    def type, do: :issue
+    def title, do: "hi!"
+    def icon, do: :stau
+    def tags, do: []
+    def text(assigns), do: ~H""
+  end
+
+  @example_articles [Article1, Article2]
 
   @example_map %Map.Parsed{
     nodes: %{},
@@ -7,7 +31,7 @@ defmodule Data.GeoJSONTest do
       "1" => %Map.Relation{
         id: "1",
         tags: %{
-          ref: "Route1"
+          name: "alltagsroute-1"
         },
         members: [
           %{role: "", ref: %Map.Way{nodes: [], id: "4", tags: %{}}},
@@ -27,18 +51,27 @@ defmodule Data.GeoJSONTest do
     }
   }
 
-  @example_articles [
-    %Article{name: "art1", type: "issue", title: "hi!"},
-    %Article{name: "art2", type: "issue", title: "hi!", icon: "icon"}
-  ]
-
   test "sets appropriate tags on route-ways" do
     assert %{
              routes: %{
                features: [
                  [
-                   %{properties: %{color: "#7d8b2f", route_id: "1"}},
-                   %{properties: %{color: "#000000", route_id: "1"}}
+                   %{
+                     properties: %{
+                       type: :alltag,
+                       route_group: :alltag,
+                       color: "#7d8b2f",
+                       route_id: "1"
+                     }
+                   },
+                   %{
+                     properties: %{
+                       type: :alltag,
+                       route_group: :alltag,
+                       color: "#000000",
+                       route_id: "1"
+                     }
+                   }
                  ]
                ]
              }
@@ -49,8 +82,8 @@ defmodule Data.GeoJSONTest do
     assert %{
              articles: %{
                features: [
-                 %{properties: %{name: "art1", icon: "issue"}},
-                 %{properties: %{name: "art2", icon: "icon"}}
+                 %{properties: %{name: "art1", icon: :construction}},
+                 %{properties: %{name: "art2", icon: :stau}}
                ]
              }
            } = enrich(@example_articles)
@@ -68,8 +101,6 @@ defmodule Data.GeoJSONTest do
   end
 
   defp enrich(articles) do
-    articles = Enum.into(articles, %{}, fn art -> {art.name, art} end)
-
     @example_map
     |> Map.Enrich.with_articles(articles)
     |> Data.GeoJSON.to_feature_lists()

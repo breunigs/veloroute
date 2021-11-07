@@ -7,7 +7,6 @@ const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
 video.addEventListener('loadedmetadata', updateIndicatorPos);
 video.addEventListener('timeupdate', updateIndicatorPos);
-video.addEventListener('play', maybeMarkAutoplayed);
 video.addEventListener('pause', markPause);
 
 
@@ -30,7 +29,9 @@ function maybeMarkAutoplayed() {
 }
 
 function markPause() {
-  window.pushEvent('video-pause', { pos: Math.round(this.currentTime * 1000) })
+  window.pushEvent('video-pause', {
+    pos: Math.round(this.currentTime * 1000)
+  })
 }
 
 function attachHlsErrorHandler(obj, Hls) {
@@ -82,11 +83,11 @@ function updateVideoElement() {
         console.debug("triggering hls.startLoad");
         hlsAutoStartLoad = true;
         window.hls.startLoad(-1);
+        maybeMarkAutoplayed();
       });
     })
     return
   }
-
 
   console.debug('loading regular html video')
   const time = `#t=${state.videoStart / 1000.0}`;
@@ -99,7 +100,7 @@ function updateVideoElement() {
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
   video.innerHTML = innerHTML;
-  if(autoplayEnabled()) video.load();
+  if (autoplayEnabled()) video.load();
 }
 
 function seekToStartTime() {
@@ -141,10 +142,10 @@ function setVideo() {
 
 function parseCoordsFromState() {
   let coords = state.videoCoords.split(" ");
-  for (let i = 0; i < coords.length; i+=3) {
+  for (let i = 0; i < coords.length; i += 3) {
     coords[i] = (coords[i - 3] || 0) + coords[i] / 1000.0;
-    coords[i+1] = (coords[i - 2] || 0) + coords[i+1] / 1000000.0;
-    coords[i+2] = (coords[i - 1] || 0) + coords[i+2] / 1000000.0;
+    coords[i + 1] = (coords[i - 2] || 0) + coords[i + 1] / 1000000.0;
+    coords[i + 2] = (coords[i - 1] || 0) + coords[i + 2] / 1000000.0;
   }
   return coords
 }
