@@ -19,7 +19,7 @@ defmodule Article do
   @callback route_group() :: route_group() | nil
   @callback color() :: color_hex()
   @callback name() :: binary()
-  @callback icon() :: :nocargo | :stau | :issue
+  @callback icon() :: :nocargo | :stau | article_type()
 
   @callback created_at() :: Date.t() | nil
   @callback updated_at() :: Date.t() | nil

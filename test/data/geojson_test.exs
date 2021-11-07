@@ -6,7 +6,7 @@ defmodule Data.GeoJSONTest do
     use Article.Default
     def created_at, do: ~D[2021-11-11]
     def name, do: "art1"
-    def type, do: :issue
+    def type, do: :construction
     def title, do: "hi!"
     def tags, do: []
     def text(assigns), do: ~H""
@@ -56,8 +56,22 @@ defmodule Data.GeoJSONTest do
              routes: %{
                features: [
                  [
-                   %{properties: %{color: "#7d8b2f", route_id: "1"}},
-                   %{properties: %{color: "#000000", route_id: "1"}}
+                   %{
+                     properties: %{
+                       type: :alltag,
+                       route_group: :alltag,
+                       color: "#7d8b2f",
+                       route_id: "1"
+                     }
+                   },
+                   %{
+                     properties: %{
+                       type: :alltag,
+                       route_group: :alltag,
+                       color: "#000000",
+                       route_id: "1"
+                     }
+                   }
                  ]
                ]
              }
@@ -68,7 +82,7 @@ defmodule Data.GeoJSONTest do
     assert %{
              articles: %{
                features: [
-                 %{properties: %{name: "art1", icon: :issue}},
+                 %{properties: %{name: "art1", icon: :construction}},
                  %{properties: %{name: "art2", icon: :stau}}
                ]
              }

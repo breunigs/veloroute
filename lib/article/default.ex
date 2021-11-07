@@ -16,7 +16,7 @@ defmodule Article.Default do
       def id, do: nil
       def color, do: nil
       def route_group, do: nil
-      def icon, do: :issue
+      def icon, do: type()
 
       defoverridable Article
       use Components.EnhancedHeex

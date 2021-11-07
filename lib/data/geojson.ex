@@ -94,10 +94,12 @@ defmodule Data.GeoJSON do
         :text,
         :bridge,
         :type,
+        :route_group,
         :offset,
         :overlap_index,
         :route_id | Map.Way.style_tags()
       ])
+      |> Map.put_new(:type, w.tags[:route_group])
 
     %{
       type: "Feature",
@@ -123,7 +125,7 @@ defmodule Data.GeoJSON do
     extra_rel_tags = %{
       color: art.color(),
       route_id: art.id(),
-      type: art.type()
+      route_group: art.route_group()
     }
 
     r
@@ -155,11 +157,11 @@ defmodule Data.GeoJSON do
     {2, 1} => -1
   }
 
-  defp add_overlap_info(relations, type) do
+  defp add_overlap_info(relations, route_group) do
     {rels_to_modify, rels_to_keep} =
       Enum.split_with(relations, fn rel ->
         route = Article.List.find_exact(rel.tags.name)
-        route && route.type() == type
+        route && route.route_group() == route_group
       end)
 
     # create map from way IDs to relation IDs that include that way,
