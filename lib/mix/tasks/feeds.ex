@@ -9,16 +9,14 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
   @path "data/auto_generated/feeds_seen/bauweiser.json"
   @base "https://bauweiser.hamburg.de/api/steckbriefeweb/"
-  # @days_to_check [0, 7, 30]
-  @days_to_check [0]
+  @days_to_check [0, 7, 30]
+  @requirements ["app.start"]
 
   plug(Tesla.Middleware.BaseUrl, @base)
   plug(Tesla.Middleware.JSON)
 
   @shortdoc "Checks for updates in Bauweiser and updates articles that reference the IDs"
   def run(_) do
-    Mix.Task.run("app.start")
-
     # disable the warning if we're updating files
     # Code.compiler_options(ignore_module_conflict: true)
 

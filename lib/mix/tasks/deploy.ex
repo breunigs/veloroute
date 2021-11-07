@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Deploy do
   use Mix.Task
   @cwd File.cwd!()
+  @requirements ["app.start"]
 
   @shortdoc "Builds the site using docker, then uploads it"
   def run(skip) do
@@ -98,6 +99,7 @@ defmodule Mix.Tasks.Deploy do
     container = Task.async(&Docker.boot_release/0)
 
     try do
+      Process.sleep(500)
       true = Enum.find_value(0..10, &try_to_query_release_container/1)
     after
       Docker.stop_release()
@@ -106,22 +108,24 @@ defmodule Mix.Tasks.Deploy do
     Task.await(container, :infinity)
   end
 
-  defp try_to_query_release_container(_try) do
+  def try_to_query_release_container(trail) do
     try do
       {output, 0} = System.cmd("docker", ["port", Docker.container_name_release()])
       port = output |> String.split(":") |> List.last() |> String.trim()
+
       {:ok, response} = Tesla.get("http://localhost:#{port}/alltagsroute-1")
 
       if response.status == 200 do
         IO.puts("✓ Image boots fine and replies with 200")
         true
       else
-        IO.puts("not yet (code=#{response.status})…")
+        IO.puts("not yet (try=#{trail} code=#{response.status})…")
         Process.sleep(1_000)
         false
       end
     rescue
-      _ ->
+      e ->
+        IO.puts("not yet (try=#{trail} err=#{inspect(e)})…")
         Process.sleep(1_000)
         false
     end

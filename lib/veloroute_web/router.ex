@@ -1,7 +1,6 @@
 defmodule VelorouteWeb.Router do
   use VelorouteWeb, :router
-  use Plug.ErrorHandler
-  use Sentry.Plug
+  use Sentry.PlugCapture
 
   import Phoenix.LiveView.Router
 
@@ -12,6 +11,7 @@ defmodule VelorouteWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :put_root_layout, {VelorouteWeb.LayoutView, :app}
+    plug Sentry.PlugContext
   end
 
   scope "/", VelorouteWeb do

@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.FeedController do
   use VelorouteWeb, :controller
+  use Memoize
 
   def feed(conn, _params) do
     conn
@@ -13,11 +14,7 @@ defmodule VelorouteWeb.FeedController do
     |> redirect(to: Routes.feed_path(conn, :feed))
   end
 
-  defp get(), do: Application.get_env(:veloroute, :cached_feed) || build()
+  defmemo(get(), do: build())
 
-  defp build() do
-    xml = Feed.build()
-    # Application.put_env(:veloroute, :cached_feed, xml)
-    xml
-  end
+  defp build(), do: Feed.build()
 end
