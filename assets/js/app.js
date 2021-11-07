@@ -81,7 +81,7 @@ Hooks.control = {
     updateState();
   }
 }
-Hooks.focus = {
+Hooks.FocusSearchField = {
   mounted() {
     this.el.focus();
     this.el.selectionStart = this.el.selectionEnd = this.el.value.length;

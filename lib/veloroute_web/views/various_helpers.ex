@@ -22,15 +22,6 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
-  @spec article_search(binary | nil) :: [SearchResult.t()]
-  def article_search(query) do
-    Cache.Articles.get()
-    |> Enum.into(%{}, fn {key, art} ->
-      {key, Map.put(art, :url, art.path())}
-    end)
-    |> Article.Search.search(query)
-  end
-
   @short_month_names [
     "Jan",
     "Feb",

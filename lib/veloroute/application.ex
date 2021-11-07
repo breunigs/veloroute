@@ -9,6 +9,7 @@ defmodule Veloroute.Application do
     :ok = Application.put_env(:sentry, :release, Git.revision(), persistent: true)
 
     ensure_videos_are_mounted()
+    preprocess_search_terms()
 
     # List all child processes to be supervised
     children = [
@@ -31,6 +32,10 @@ defmodule Veloroute.Application do
   def config_change(changed, _new, removed) do
     VelorouteWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp preprocess_search_terms do
+    Enum.each(Article.List.all(), &Article.Search.article_terms(&1))
   end
 
   defp ensure_videos_are_mounted do

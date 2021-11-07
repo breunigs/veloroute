@@ -90,24 +90,16 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
   @search_page "suche"
-  @search_page_full "0000-00-00-#{@search_page}"
   def handle_event("search", %{"value" => query}, socket) do
     query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
+    search_article = Article.List.find_exact(@search_page)
 
     socket =
       socket
       |> assign(:search_query, query || "")
       |> assign(:search_bounds, socket.assigns[:map_bounds])
 
-    socket =
-      if on_search_page?(socket) do
-        update_url_query(socket)
-      else
-        socket = assign(socket, :current_page, @search_page_full)
-        url_query = url_query(socket)
-        path = Routes.page_path(socket, VelorouteWeb.FrameLive, @search_page, url_query)
-        push_patch(socket, to: path)
-      end
+    socket = push_patch(socket, to: article_path(socket, search_article))
 
     {:noreply, socket}
   end
@@ -129,7 +121,6 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("video-autoplayed", attr, socket) do
     Logger.debug("video-autoplayed #{inspect(attr)}")
-    IO.warn("autoplay off")
 
     {:noreply, assign(socket, :autoplay, false)}
   end
@@ -226,7 +217,7 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_params(%{"page" => @search_page, "search_query" => query} = params, nil, socket) do
     params
-    |> Map.put("article", @search_page_full)
+    |> Map.put("article", @search_page)
     |> handle_params(nil, assign(socket, :search_query, query))
   end
 
@@ -389,18 +380,14 @@ defmodule VelorouteWeb.FrameLive do
     end
   end
 
-  defp on_search_page?(socket) do
-    socket.assigns.current_page == @search_page_full
-  end
-
-  defp url_query(%{assigns: assigns} = socket) do
+  defp url_query(%{assigns: assigns}) do
     bounds = to_string_bounds(assigns.map_bounds || assigns.bounds)
     query = %{"video" => assigns.video_hash, "pos" => assigns.video_start, "bounds" => bounds}
 
-    if on_search_page?(socket) && !blank?(assigns.search_query) do
-      Map.put(query, "search_query", assigns.search_query)
-    else
+    if blank?(assigns.search_query) do
       Map.delete(query, "search_query")
+    else
+      Map.put(query, "search_query", assigns.search_query)
     end
   end
 

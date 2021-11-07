@@ -4,8 +4,6 @@ defmodule Article.Default do
       @behaviour Article
 
       import Data.RoughDate, only: [sigil_d: 2]
-      import Components.TagHelpers
-      import Components.RelatedArticlesHelper
 
       def updated_at, do: created_at()
       def start, do: Data.RoughDate.zero()
@@ -20,7 +18,6 @@ defmodule Article.Default do
       def icon, do: :issue
 
       defoverridable Article
-
       use Components.EnhancedHeex
     end
   end

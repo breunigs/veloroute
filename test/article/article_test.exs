@@ -6,7 +6,14 @@ defmodule ArticleTest do
       Article.List.all()
       |> Parallel.map(fn art ->
         try do
-          _content = Article.Decorators.html(art, %{__changed__: %{}, render_target: :html})
+          _content =
+            Article.Decorators.html(art, %{
+              __changed__: %{},
+              render_target: :html,
+              search_query: nil,
+              search_bounds: nil
+            })
+
           nil
         rescue
           err -> "#### #{art} ####\n\n#{Exception.format(:error, err, __STACKTRACE__)}"

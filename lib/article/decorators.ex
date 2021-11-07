@@ -8,6 +8,22 @@ defmodule Article.Decorators do
     art.text(assigns) |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
   end
 
+  @spec text(Article.t()) :: binary()
+  def text(art) do
+    assigns = %{__changed__: %{}, render_target: :html, search_query: nil, search_bounds: nil}
+
+    art
+    |> html(assigns)
+    |> Phoenix.LiveView.HTMLTokenizer.tokenize("nofile", 0, [], [], :text)
+    |> elem(0)
+    |> Enum.reverse()
+    |> Enum.map(fn
+      {:text, val, _pos} -> val
+      _any -> ""
+    end)
+    |> Enum.join(" ")
+  end
+
   @spec full_title(Article.t()) :: binary()
   def full_title(art) do
     tn = type_name(art)
