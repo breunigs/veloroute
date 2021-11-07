@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.GleisstiegRehrstiegBisFrancoperStrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-gleisstieg-rehrstieg-bis-francoper-strasse"
   def created_at(), do: ~D[2021-03-12]
 
   def title(), do: "Gleisstieg (Rehrstieg bis Francoper Straße, Veloroute 10)"

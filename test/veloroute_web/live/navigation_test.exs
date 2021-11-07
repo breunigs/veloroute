@@ -137,6 +137,32 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
 
+  test "with an article shown, clicking on just a route keeps article", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
+    assert html =~ ~s|Zum Dubben (neue Führung|
+
+    html =
+      render_hook(view, "map-click", %{
+        lon: 9.90103646729878,
+        lat: 53.473335309162394,
+        zoom: 16
+      })
+
+    assert html =~ ~s|Zum Dubben (neue Führung|
+  end
+
+  test "click on video link with ref loads that track", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/lexikon/direktes-und-indirektes-abbiegen")
+    refute html =~ ~s|äußere Ringroute|
+
+    html =
+      view
+      |> element("a", "nur direktes Abbiegen")
+      |> render_click()
+
+    assert html =~ ~s|äußere Ringroute|
+  end
+
   test "all articles can be rendered in the frame", %{conn: conn} do
     render_issues =
       Article.List.all()

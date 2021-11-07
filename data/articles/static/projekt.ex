@@ -1,7 +1,6 @@
 defmodule Data.Article.Static.Projekt do
   use Article.Static
 
-  def name(), do: "projekt"
   def title(), do: "Projekt"
 
   def tags(), do: []

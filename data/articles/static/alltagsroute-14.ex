@@ -3,7 +3,6 @@ defmodule Data.Article.Static.Alltagsroute14 do
 
   def id(), do: "14"
   def route_group(), do: :alltag
-  def name(), do: "alltagsroute-14"
   def title(), do: "Alltagsroute 14"
 
   def color(), do: "#fdb801"

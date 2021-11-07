@@ -3,7 +3,6 @@ defmodule Data.Article.Static.RSWAhrensburg do
 
   def id(), do: "rsw-ahrensburg"
   def route_group(), do: :rsw
-  def name(), do: id()
   def title(), do: "Radschnellweg nach Ahrensburg"
 
   def color(), do: "#000000"

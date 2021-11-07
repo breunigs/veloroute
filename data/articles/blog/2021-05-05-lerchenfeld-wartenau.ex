@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.LerchenfeldWartenau do
   use Article.Default
 
-  def name(), do: "#{created_at()}-lerchenfeld-wartenau"
   def created_at(), do: ~D[2021-05-05]
 
   def title(), do: "Lerchenfeld und Wartenau (kreuzt Veloroute 6)"

@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Steintorwall do
   use Article.Default
 
-  def name(), do: "#{created_at()}-steintorwall"
   def created_at(), do: ~D[2020-06-05]
   def updated_at(), do: ~D[2020-06-05]
   def title(), do: "Steintorwall (Veloroute 9, Richtung HBF)"

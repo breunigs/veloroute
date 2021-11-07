@@ -3,7 +3,6 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def id(), do: "rsw-bad-bramstedt"
   def route_group(), do: :rsw
-  def name(), do: id()
   def title(), do: "Radschnellweg nach Bad Bramstedt"
 
   def color(), do: "#000000"

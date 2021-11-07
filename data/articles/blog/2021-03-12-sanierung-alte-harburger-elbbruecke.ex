@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.SanierungAlteHarburgerElbbruecke do
   use Article.Default
 
-  def name(), do: "#{created_at()}-sanierung-alte-harburger-elbbruecke"
   def created_at(), do: ~D[2021-03-12]
 
   def title(), do: "Sanierung Alte Harburger Elbbrücke (Velorouten 10 und 11)"

@@ -41,4 +41,27 @@ defmodule Article do
 
   def module_name, do: "Elixir.Data.Article."
   def known_categories, do: ~w/Blog Static/
+
+  def auto_generate_name(mod) do
+    pascalized = module_name_pascalized(mod)
+    with_date = Article.Decorators.has_category?(mod, "Blog")
+
+    if with_date do
+      quote location: :keep do
+        "#{unquote(mod).created_at()}-#{unquote(pascalized)}"
+      end
+    else
+      pascalized
+    end
+  end
+
+  defp module_name_pascalized(mod) when is_atom(mod) and not is_nil(mod) do
+    mod
+    |> Module.split()
+    |> List.last()
+    |> String.replace(~r/([A-Z]+)([A-Z][a-z])/, "\\1-\\2")
+    |> String.replace(~r/([a-z\d])([A-Z])/, "\\1-\\2")
+    |> String.replace(~r/([a-z])(\d)/, "\\1-\\2")
+    |> String.downcase()
+  end
 end

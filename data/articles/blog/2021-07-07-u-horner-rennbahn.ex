@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.UHornerRennbahn do
   use Article.Default
 
-  def name(), do: "#{created_at()}-u-horner-rennbahn"
   def created_at(), do: ~D[2021-07-07]
 
   def title(), do: "U4 Ausfädelung Horner Rennbahn (Alltagsroute 8)"

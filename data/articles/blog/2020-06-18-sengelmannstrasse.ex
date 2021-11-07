@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Sengelmannstrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-sengelmannstrasse"
   def created_at(), do: ~D[2020-06-18]
 
   def title(), do: "Sengelmannstraße (Veloroute 5N)"

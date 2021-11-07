@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.SbahnPulverhof do
   use Article.Default
 
-  def name(), do: "#{created_at()}-sbahn-pulverhof"
   def created_at(), do: ~D[2020-12-08]
 
   def title(), do: "Unterführung künftige S-Bahn-Station „Pulverhof“ (Veloroute 14)"

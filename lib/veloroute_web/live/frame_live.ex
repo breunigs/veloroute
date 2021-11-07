@@ -194,7 +194,7 @@ defmodule VelorouteWeb.FrameLive do
     Logger.debug("article: #{name} (#{inspect(params)})")
 
     prev_article = socket.assigns.tmp_last_article_set
-    article = find_article(name)
+    article = find_article(name || "")
 
     # only update videos if the article changed. Otherwise it will slightly
     # change the position we might've just set through map-click
@@ -349,7 +349,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_ping(socket, _), do: socket
 
-  defp find_article(nil), do: find_article("")
+  defp find_article(nil), do: nil
 
   defp find_article(name) when is_binary(name) or is_module(name) do
     Article.List.find_exact(name)

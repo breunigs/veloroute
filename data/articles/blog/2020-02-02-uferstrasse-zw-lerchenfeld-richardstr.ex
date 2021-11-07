@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
   use Article.Default
 
-  def name(), do: "#{created_at()}-uferstrasse-zw-lerchenfeld-richardstr"
   def created_at(), do: ~D[2020-02-02]
 
   def title(), do: "Uferstraße (Zwischen Lerchenfeld und Richardstraße Veloroute 6)"

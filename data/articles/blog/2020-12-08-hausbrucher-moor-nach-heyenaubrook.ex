@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.HausbrucherMoorNachHeyenaubrook do
   use Article.Default
 
-  def name(), do: "#{created_at()}-hausbrucher-moor-nach-heyenaubrook"
   def created_at(), do: ~D[2020-12-08]
 
   def title(), do: "Hausbrucher Moor nach Heyenaubrook (Veloroute 10)"

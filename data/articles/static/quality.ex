@@ -1,7 +1,6 @@
 defmodule Data.Article.Static.Quality do
   use Article.Static
 
-  def name(), do: "quality"
   def title(), do: "Qualität"
 
   def summary(),

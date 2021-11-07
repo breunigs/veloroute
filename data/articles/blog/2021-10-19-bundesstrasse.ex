@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Bundesstrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-bundesstrasse"
   def created_at(), do: ~D[2021-10-19]
 
   def title(), do: "Bundesstraße (Rentzelstraße bis Verbindungsbahn, Bezirksroute B)"

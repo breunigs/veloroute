@@ -1,9 +1,8 @@
-defmodule Data.Article.Static.Alltagsroute do
+defmodule Data.Article.Static.Alltagsroute12 do
   use Article.Static
 
   def id(), do: "12"
   def route_group(), do: :alltag
-  def name(), do: "alltagsroute-12"
   def title(), do: "Alltagsroute 12"
 
   def color(), do: "#ed6706"

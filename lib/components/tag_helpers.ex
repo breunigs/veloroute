@@ -45,14 +45,14 @@ defmodule Components.TagHelpers do
 
   def m(%{render_target: :html} = assigns) do
     attr = %{"phx-click" => "map-zoom-to"}
-    art = assigns.current_page
+    art = Article.List.find_exact(assigns[:ref]) || assigns.current_page
 
     art_with_tracks = Article.Decorators.article_with_tracks(art)
     attr = Map.put(attr, "phx-value-article", art_with_tracks.name())
 
     attr =
       Enum.reduce(assigns, attr, fn {key, val}, acc ->
-        if key in [:bounds, :lat, :lon, :dir, :ref, :zoom] do
+        if key in [:bounds, :lat, :lon, :dir, :zoom] do
           Map.put(acc, "phx-value-#{key}", val)
         else
           acc

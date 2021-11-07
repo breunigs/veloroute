@@ -1,7 +1,6 @@
 defmodule Data.Article.Static.Changes do
   use Article.Static
 
-  def name(), do: "changes"
   def title(), do: "Letzte Änderungen"
 
   def tags(), do: []

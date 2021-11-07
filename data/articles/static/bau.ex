@@ -1,7 +1,6 @@
 defmodule Data.Article.Static.Bau do
   use Article.Static
 
-  def name(), do: "bau"
   def title(), do: "Baustellen und geplante Maßnahmen"
 
   def summary(),

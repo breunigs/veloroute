@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.FreilichtbuehneSaarlandstrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-freilichtbuehne-saarlandstrasse"
   def created_at(), do: ~D[2019-12-16]
   def updated_at(), do: ~D[2020-06-18]
   def title(), do: "Freilichtbühne Saarlandstraße (Veloroute 5N)"

@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.DweerUndMittlererLandweg do
   use Article.Default
 
-  def name(), do: "#{created_at()}-dweer-und-mittlerer-landweg"
   def created_at(), do: ~D[2020-06-28]
 
   def title(), do: "Schranken am Dweerlandweg und Mittlerer Landweg (Veloroute 9)"

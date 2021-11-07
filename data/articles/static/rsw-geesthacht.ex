@@ -3,7 +3,6 @@ defmodule Data.Article.Static.RSWGeesthacht do
 
   def id(), do: "rsw-geesthacht"
   def route_group(), do: :rsw
-  def name(), do: id()
   def title(), do: "Radschnellweg nach Geesthacht"
 
   def color(), do: "#000000"

@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.BillstedterHauptstrasseAbReclamstrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-billstedter-hauptstrasse-ab-reclamstrasse"
   def created_at(), do: ~D[2021-02-13]
   def updated_at(), do: ~D[2021-02-19]
   def title(), do: "Billstedter Hauptstraße (Reclamstraße bis Billstedter Mühlenweg)"

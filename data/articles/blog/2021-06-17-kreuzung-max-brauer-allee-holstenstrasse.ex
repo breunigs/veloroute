@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
   use Article.Default
 
-  def name(), do: "#{created_at()}-kreuzung-max-brauer-allee-holstenstrasse"
   def created_at(), do: ~D[2021-06-17]
   def updated_at(), do: ~D[2021-07-24]
   def title(), do: "Kreuzung Max-Brauer-Allee / Holstenstraße"

@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Frahmredder do
   use Article.Default
 
-  def name(), do: "#{created_at()}-frahmredder"
   def created_at(), do: ~D[2020-06-15]
 
   def title(), do: "Frahmredder (Veloroute 5)"

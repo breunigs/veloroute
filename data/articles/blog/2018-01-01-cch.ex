@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Cch do
   use Article.Default
 
-  def name(), do: "#{created_at()}-cch"
   def created_at(), do: ~D[2018-01-01]
 
   def title(), do: "CCH / Tiergartenstraße (Freizeitrouten 9 und 10)"

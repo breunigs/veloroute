@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.Binnenalster do
   use Article.Default
 
-  def name(), do: "#{created_at()}-binnenalster"
   def created_at(), do: ~D[2019-02-20]
 
   def title(), do: "Radwege rund um die Binnenalster (Veloroute 3 bis 6)"

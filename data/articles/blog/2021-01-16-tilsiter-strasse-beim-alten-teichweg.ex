@@ -1,7 +1,6 @@
 defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
   use Article.Default
 
-  def name(), do: "#{created_at()}-tilsiter-strasse-beim-alten-teichweg"
   def created_at(), do: ~D[2021-01-16]
 
   def title(), do: "Tilsiter Straße zwischen Lesserstraße und Eulenkamp (Veloroute 6)"

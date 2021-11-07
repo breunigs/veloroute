@@ -3,7 +3,6 @@ defmodule Data.Article.Static.Freizeitroute5 do
 
   def id(), do: "FR5"
   def route_group(), do: :freizeit
-  def name(), do: "freizeitroute-5"
   def title(), do: "Vier und Marschlande (FR5)"
 
   def color(), do: "#006106"

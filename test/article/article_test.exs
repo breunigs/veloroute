@@ -34,4 +34,27 @@ defmodule ArticleTest do
 
     assert [] == bad_names
   end
+
+  test "names are unique" do
+    names = Article.List.all() |> Enum.map(& &1.name())
+    duplicated = names -- Enum.uniq(names)
+    assert [] == duplicated
+  end
+
+  test "auto-generated names are sensible" do
+    broken =
+      %{
+        "2020-06-21-von-essen-strasse" => Data.Article.Blog.VonEssenStrasse,
+        "alltagsroute-11" => Data.Article.Static.Alltagsroute11,
+        "rsw-stade" => Data.Article.Static.RSWStade
+      }
+      |> Enum.map(fn {expected, mod} ->
+        quoted = Article.auto_generate_name(mod)
+        {actual, _binding} = Code.eval_quoted(quoted)
+        if actual != expected, do: %{expected: expected, actual: actual, mod: mod}
+      end)
+      |> Util.compact()
+
+    assert [] == broken
+  end
 end
