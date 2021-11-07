@@ -133,11 +133,14 @@ defmodule Components.TagHelpers do
   @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
   def ref(assigns) do
     name = assigns[:name] || inner_text(assigns)
-    art = Article.List.find_with_tags(name)
+    art = Article.List.category("Static") |> Article.List.find_with_tags(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
     assigns = assign(assigns, :path, Article.Decorators.path(art))
-    ~H"<a href={@path}><%= render_block(@inner_block) %></a>"
+
+    ~H"""
+    <a class="ref" href={@path}><%= render_block(@inner_block) %></a>
+    """
   end
 
   @spec icon(map()) :: Phoenix.LiveView.Rendered.t()

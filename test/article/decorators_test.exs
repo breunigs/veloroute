@@ -15,11 +15,12 @@ defmodule Article.DecoratorsTest do
       <i>text</i>
       <.a href="http://example.com">link</.a>
       <.a href="http://abendblatt.de">paid</.a>
+      <.ref>Radfahrstreifen</.ref>
       """
   end
 
   test "text extraction" do
-    assert "text link paid" == Article.Decorators.text(FakeArticle) |> multi_trim
+    assert "text link paid Radfahrstreifen" == Article.Decorators.text(FakeArticle) |> multi_trim
   end
 
   test "HTML format" do
@@ -27,6 +28,7 @@ defmodule Article.DecoratorsTest do
            <i>text</i>
            <a href="http://example.com" target="_blank">link</a>
            <a href="http://abendblatt.de" rel="nofollow" target="_blank">paid</a>
+           <a class="ref" href="/lexikon/radfahrstreifen">Radfahrstreifen</a>
            """) ==
              Article.Decorators.html(FakeArticle, %{__changed__: %{}, render_target: :html})
   end
