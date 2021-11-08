@@ -49,3 +49,6 @@ xref_graph.*
 /assets/videos
 /assets/videos/**
 .hex
+
+# Lots of PDFs and ZIPs that don't belong into git
+data/auto_generated/link_mirror

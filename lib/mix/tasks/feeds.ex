@@ -17,9 +17,6 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
   @shortdoc "Checks for updates in Bauweiser and updates articles that reference the IDs"
   def run(_) do
-    # disable the warning if we're updating files
-    # Code.compiler_options(ignore_module_conflict: true)
-
     seen_ids = load_seen()
     current_ids = Parallel.flat_map(@days_to_check, &find_ids_in_n_days(&1))
     known_ids = Enum.flat_map(articles_with_ids(), & &1.construction_site_id_hh())
@@ -27,7 +24,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
     infos =
       (known_ids ++ current_ids)
       |> Enum.uniq()
-      |> Parallel.map(&details(&1), max_concurrency: 4)
+      |> Parallel.map(4, &details(&1))
       |> Util.compact()
       |> Enum.filter(fn %{id: id, updated: updated} ->
         last_seen = seen_ids[id]
@@ -193,16 +190,4 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
       String.replace(code, ~r/def created_at\(\), .*/, "\\1\n#{str}")
     end
   end
-
-  # def list_unused(rendered) do
-  #   keep = rendered |> MapSet.new()
-  #   all = Video.Rendered.all() |> MapSet.new()
-  #   unused = MapSet.difference(all, keep)
-
-  #   if MapSet.size(unused) > 0 do
-  #     IO.puts(:stderr, "unused/unreferenced rendered videos:")
-  #     Enum.each(unused, &IO.puts(:stderr, "#{Video.Rendered.path(&1)}: #{&1.name()}"))
-  #     IO.puts(:stderr, "\n")
-  #   end
-  # end
 end

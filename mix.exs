@@ -49,7 +49,7 @@ defmodule Veloroute.MixProject do
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
       {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
-      {:floki, ">= 0.30.0", only: :test},
+      {:floki, ">= 0.30.0", only: [:dev, :test]},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.17"},

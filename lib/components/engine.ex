@@ -74,7 +74,7 @@ defmodule Components.ValidatingDefaultSettingEngine do
   defp validate_individual_attrs!(attrs, pos, file) do
     Enum.each(attrs, fn
       {key, {:string, val, _extra}} when key in ["lat", "lon"] ->
-        if !Util.float?(val), do: error("failed to parse #{key}='#{val}' as Float", pos, file)
+        if !float?(val), do: error("failed to parse #{key}='#{val}' as Float", pos, file)
 
       {"dir", {:string, val, _extra}} when val not in ["forward", "backward"] ->
         error("dir='#{val}' is unknown, should be 'forward' or 'backward'", pos, file)
@@ -142,5 +142,13 @@ defmodule Components.ValidatingDefaultSettingEngine do
       file: file,
       description: msg
     )
+  end
+
+  # Returns true if a given string can be *fully* parsed into a float
+  defp float?(str) when is_binary(str) do
+    case Float.parse(str) do
+      {_f, ""} -> true
+      _other -> false
+    end
   end
 end

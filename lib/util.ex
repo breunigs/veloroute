@@ -44,7 +44,12 @@ defmodule Util do
     end)
   end
 
-  @spec compact(Enumerable.t()) :: Enumerable.t()
+  @spec compact(Enumerable.t() | map()) :: Enumerable.t()
+  def compact(%{} = map) do
+    Enum.reject(map, fn {_k, v} -> is_nil(v) end)
+    |> Enum.into(%{})
+  end
+
   def compact(list) do
     Enum.reject(list, &is_nil(&1))
   end
@@ -75,20 +80,41 @@ defmodule Util do
     end)
   end
 
-  @doc """
-  Returns true if a given string can be *fully* parsed into a float
-  """
-  def float?(str) when is_binary(str) do
-    case Float.parse(str) do
-      {_f, ""} -> true
-      _other -> false
-    end
-  end
-
   @spec modules_with_prefix(binary()) :: [module()]
   def modules_with_prefix("Elixir." <> _rest = namespace) do
     ns = to_string(namespace)
     {:ok, list} = :application.get_key(:veloroute, :modules)
     Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(ns)))
+  end
+
+  def md5(input) do
+    :crypto.hash(:md5, input) |> Base.encode16(case: :lower)
+  end
+
+  @doc """
+  Finds <a href="x"> in an HTML document. It ignores base tags even if present.
+
+  ## Examples
+
+      iex> Util.extract_href_from_html(~s|<a href="hi">I'm a link</a>|)
+      ["hi"]
+  """
+  @spec extract_href_from_html(binary()) :: [binary()]
+  def extract_href_from_html(html) when is_binary(html) do
+    {:ok, document} = Floki.parse_document(html)
+
+    Floki.find(document, "a")
+    |> Enum.map(fn {_tag, attrs, _body} ->
+      Enum.find_value(attrs, fn
+        {"href", val} -> val
+        _other -> nil
+      end)
+    end)
+    |> compact()
+    |> Enum.uniq()
+  end
+
+  def render_heex(heex) do
+    heex |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
   end
 end

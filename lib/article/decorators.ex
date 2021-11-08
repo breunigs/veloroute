@@ -2,18 +2,21 @@ defmodule Article.Decorators do
   use Phoenix.Component
   import Guards
 
+  @spec html(Article.t()) :: binary()
+  def html(art) do
+    apply_with_assigns(art, :text) |> Util.render_heex()
+  end
+
   @spec html(Article.t(), Article.assigns()) :: binary()
   def html(art, %{render_target: _} = assigns) do
     assigns = assign_new(assigns, :current_page, fn -> art end)
-    art.text(assigns) |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
+    art.text(assigns) |> Util.render_heex()
   end
 
   @spec text(Article.t()) :: binary()
   def text(art) do
-    assigns = %{__changed__: %{}, render_target: :html, search_query: nil, search_bounds: nil}
-
     art
-    |> html(assigns)
+    |> html()
     |> Phoenix.LiveView.HTMLTokenizer.tokenize("nofile", 0, [], [], :text)
     |> elem(0)
     |> Enum.reverse()
@@ -22,6 +25,18 @@ defmodule Article.Decorators do
       _any -> ""
     end)
     |> Enum.join(" ")
+  end
+
+  def apply_with_assigns(art, fun) do
+    assigns = %{
+      __changed__: %{},
+      render_target: :html,
+      search_query: nil,
+      search_bounds: nil,
+      current_page: art
+    }
+
+    apply(art, fun, [assigns])
   end
 
   @spec full_title(Article.t()) :: binary()
