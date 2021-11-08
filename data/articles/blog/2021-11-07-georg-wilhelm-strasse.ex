@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def summary(),
     do:
-      "Radweg in der Georg-Wilhhelm-Straße wird neu gepflastert (von Mengestraße bis Pollhornweg)"
+      "Radweg Richtung Norden wird neu gepflastert, in der Gegenrichtung ein Radfahrstreifen aufgemalt (von Mengestraße bis Pollhornweg)"
 
   def start(), do: ~d[2021-08-02]
   def stop(), do: ~d[2023-11-12]
