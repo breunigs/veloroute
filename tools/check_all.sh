@@ -3,7 +3,7 @@
 cd "${0%/*}"
 
 echo "Baustellen:"
-mix velo.feeds.bauweiser
+(cd .. && mix velo.feeds.bauweiser)
 
 echo "LSBG:"
 ./lsbg_check_updates.rb

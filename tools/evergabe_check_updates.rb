@@ -42,7 +42,7 @@ begin
       from:     #{proj["contractingAuthority"]}
       project:  #{proj["projectGroupName"]}
       where:    #{proj["placeOfDelivery"]}
-      link:     #{proj["deepLink"]}
+      link:     #{proj["deepLink"].sub("stadt.hamburg.de", "web.hamburg.de")}
       download: #{proj["downloadLink"]}
       #{proj["info"].gsub(/[\r\n]+/, " ")}
     DOC
