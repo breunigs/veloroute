@@ -175,6 +175,18 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|äußere Ringroute|
   end
 
+  test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
+    assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
+
+    html =
+      view
+      |> element("a", "Wegbeziehung der Freizeitroute")
+      |> render_click()
+
+    assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
+  end
+
   test "all articles can be rendered in the frame", %{conn: conn} do
     render_issues =
       Article.List.all()

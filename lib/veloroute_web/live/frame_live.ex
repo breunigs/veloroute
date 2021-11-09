@@ -408,9 +408,14 @@ defmodule VelorouteWeb.FrameLive do
     parent_ref = track && track.parent_ref
     show = if is_module(parent_ref), do: [parent_ref.route_group()], else: []
 
-    # from displayed article
-    article = article || find_article(socket) || find_article(parent_ref)
-    show = if article, do: show ++ Article.Decorators.related_route_groups(article), else: show
+    # from the given article (e.g. as ref on links) or the displayed one
+    from_articles =
+      [article, find_article(socket), find_article(parent_ref)]
+      |> Util.compact()
+      |> Enum.uniq()
+      |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
+
+    show = from_articles ++ show
 
     # defaults
     show = if show == [], do: [:alltag], else: show

@@ -47,16 +47,21 @@ defmodule Components.TagHelpers do
     attr = %{"phx-click" => "map-zoom-to"}
     art = Article.List.find_exact(assigns[:ref]) || assigns.current_page
 
-    art_with_tracks = Article.Decorators.article_with_tracks(art)
-    attr = Map.put(attr, "phx-value-article", art_with_tracks.name())
+    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :zoom])
+
+    # add article only if a video is referenced. Otherwise it might show the
+    # video for that article starting from 0:00, instead of just moving the map.
+    attr =
+      if Map.keys(geo) != [:bounds] do
+        art_with_tracks = Article.Decorators.article_with_tracks(art)
+        Map.put(attr, "phx-value-article", art_with_tracks.name())
+      else
+        attr
+      end
 
     attr =
-      Enum.reduce(assigns, attr, fn {key, val}, acc ->
-        if key in [:bounds, :lat, :lon, :dir, :zoom] do
-          Map.put(acc, "phx-value-#{key}", val)
-        else
-          acc
-        end
+      Enum.reduce(geo, attr, fn {key, val}, acc ->
+        Map.put(acc, "phx-value-#{key}", val)
       end)
 
     attr =
