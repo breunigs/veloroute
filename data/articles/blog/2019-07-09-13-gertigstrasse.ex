@@ -6,30 +6,36 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def updated_at(), do: ~D[2020-06-12]
   def title(), do: "Gertigstraße (Veloroute 13)"
 
-  def start(), do: ~d[2021Q1]
+  def start(), do: ~d[2022-03]
+  def stop(), do: ~d[2022-09]
 
   def type(), do: :planned
 
   def tags(), do: ["13"]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
+      {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"},
+      {"Auftragsvergabe (Bauzeitraum)",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details"}
+    ]
   end
 
   def text(assigns) do
     ~H"""
-    <p><strong>Stand Mitte 2020:</strong> Der Plan „Fahrradstraße“ liegt in der endgültigen Fassung vor und hat sich im Vergleich zum ersten Entwurf nur unwesentlich geändert. Mit Blick auf das Corona-Virus verschiebt sich die Bauzeit ins Frühjahr 2021, damit in der Vorweihnachtszeit definitiv keine Baustelle ist.</p>
-    <p>Die <.a href="/#16.5/53.581953/10.015636">Gertigstraße</.a> erlaubt dem Radverkehr momentan die Wahl auf den Hochbordradwegen oder der Fahrbahn zu fahren. Die Radwege sind sehr schmal, teils kurvig und häufig auch von Zufußgehenden belegt. Auf der Fahrbahn kommt man deutlich besser voran, muss sich aber mit den Autos bei 50 km/h Höchstgeschwindigkeit arrangieren.</p>
+    <p>Die <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.581953, lon: 10.015636, zoom: 16.5}))}>Gertigstraße</.m> erlaubt dem Radverkehr momentan die Wahl auf den Hochbordradwegen oder der Fahrbahn zu fahren. Die Radwege sind sehr schmal, teils kurvig und häufig auch von Zufußgehenden belegt. Auf der Fahrbahn kommt man deutlich besser voran, muss sich aber mit den Autos bei 50 km/h Höchstgeschwindigkeit arrangieren.</p>
     <p>Die in einer Mitmachveranstaltung  bevorzugte Variante „Fahrradstraße“ wurde in einem ersten Entwurf detaillierter ausgearbeitet und wird auch so kommen. Da die Gertigstraße schon grob die richtige Form hat, sind nur lokale  Umbauten nötig. Die alten Radwege werden entfernt und dem Fußweg zugeschlagen. Auch die Schutzbügel gegen Falschparker entfallen zugunsten ordentlichen Stellbügeln für Fahrräder. Die Einmündungen bleiben gegenüber der Gertigstraße wartepflichtig, werden jedoch neu verfugt um dem Denkmalschutz Rechnung zu tragen. Am Anfang bzw. Ende der Gertigstraße wird ein kurzes Stück gepflastert um den Wechsel zu einer Fahrradstraße zu verdeutlichen. Wie in allen Fahrradstraßen reduziert sich das Höchsttempo auf 30 km/h.  </p>
     <p>Verkehrsführung und Parkplätze bleiben im Wesentlichen gleich – auch Autos dürfen die Straße weiterhin befahren. Man hat jedoch den Mangel an Fahrradstellplätzen erkannt und ergänzt 86 Anlehnbügel. Auch eine StadtRAD Station kommt hinzu, auf <.m bounds="10.010817,53.581176,10.018665,53.582971" lon="10.0147491" lat="53.5819298" dir="forward">Höhe der Hausnummer 22</.m>.</p>
-    <p>Die <.a href="/#19/53.581146/10.0119887">Einmündung in den Mühlenkamp</.a> gilt als bereits umgebaut, die in <.a href="/#19/53.5830856/10.018938">die Barmbeker Straße</.a> wird getrennt geplant. Entsprechend endet die Fahrradstraße jeweils vorher.</p>
-    <p>Umgesetzt werden soll die Maßnahme vorraussichtlich ab Frühjahr 2021.</p>
-    <p>
-    <.a href="https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf">Erläuterungsbericht</.a>
-    </p>
-    <p>
-    <.a href="https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf ">Lageplan</.a>
-    </p>
+    <p>Die <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.581146, lon: 10.0119887, zoom: 19}))}>Einmündung in den Mühlenkamp</.m> gilt als bereits umgebaut, die in <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.5830856, lon: 10.018938, zoom: 19}))}>die Barmbeker Straße</.m> wird getrennt geplant. Entsprechend endet die Fahrradstraße jeweils vorher.</p>
+
+    <h4>Umleitung während der Bauzeit</h4>
+    <p>In Richtung Komponistenviertel (Südosten) erfolgt die Umleitung über den <.m bounds="10.011374,53.578691,10.020555,53.581769">Hans-Henny-Jahnn Weg</.m>. In Ricthung Eppendorf (Nordwesten) über die <.m bounds="10.008709,53.583004,10.018511,53.587327">Semperstraße</.m>.</p>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

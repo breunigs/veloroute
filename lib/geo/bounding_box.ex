@@ -61,3 +61,12 @@ defmodule Geo.BoundingBox do
     end
   end
 end
+
+defimpl String.Chars, for: Geo.BoundingBox do
+  def to_string(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}) do
+    "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  end
+
+  @precision 6
+  defp r(float), do: Float.round(float, @precision)
+end
