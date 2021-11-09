@@ -455,3 +455,6 @@
 - "/contentblob/15530394/d5ee0997aae417e864ae25b8a8d73985/data/cremonbruecke-rueckbau-10-2021-bis-01-2022.pdf"
 - "/contentblob/15174848/d7a7efa724941b75e17de3168a69f2c7/data/max-brauer-allee-1-bauabschnitt-juni-21.pdf"
 - "/contentblob/15261316/39600e3ecf39ee3919f21b92f1da9826/data/pinneberger-chaussee-veloroute-14-07-2021-bis-03-2022.pdf"
+'2021-11-09':
+- "/contentblob/15583012/e3ba006a21bd228e6da6023a570b7249/data/bargfredestrasse-planung-neubau-fussgaengerbruecke-stand-november-2021.pdf"
+- "/contentblob/14725214/43a8e14a4e836fd889b1d3c968937d2a/data/sander-damm-lohbruegger-markt-sanierung-01-21-bis-12-21.pdf"

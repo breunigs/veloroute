@@ -502,3 +502,6 @@
 '2021-07-28':
 - https://via-bus.hamburg.de/contentblob/15288318/858ac5826c0556af13ac2a17fe21d481/data/u-farmsen-verkehrskonzept.pdf
 - https://via-bus.hamburg.de/contentblob/15288316/eb8f4dc627c433a069c7d78f010d7c2c/data/u-farmsen-info-folder-juli-2021.pdf
+'2021-11-09':
+- https://via-bus.hamburg.de/contentblob/15542682/aee1379cbb674d255d0dcc376ea1b401/data/dokumentation-online-dialogrunde-vom-11-08-2021.pdf
+- https://via-bus.hamburg.de/contentblob/15542692/738ee06d41a71392fa2108465cedcd68/data/praesentation-online-dialogrunde-vom-11-08-2021.pdf

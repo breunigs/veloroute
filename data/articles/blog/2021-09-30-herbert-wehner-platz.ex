@@ -8,8 +8,9 @@ defmodule Data.Article.Blog.HerbertWehnerPlatz do
   def summary(),
     do: "Teil des Harburger Rings soll bereits bis Ende 2022 veloroutentauglich werden"
 
-  def start(), do: ~d[2021-10]
-  def stop(), do: ~d[2022-12]
+  def start(), do: ~d[2021-11-08]
+  def stop(), do: ~d[2022-05-31]
+  def construction_site_id_hh(), do: [21187]
 
   def type(), do: :planned
 
