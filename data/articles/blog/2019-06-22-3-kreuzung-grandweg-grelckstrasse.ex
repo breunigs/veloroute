@@ -37,14 +37,14 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
     <ul>
       <li><.m bounds="9.957951,53.598645,9.959097,53.599204" lon="9.958601" lat="53.598715" dir="forward" ref="3">Grandweg</.m>: je 2,0m breite <.ref>Radfahrstreifen</.ref>.</li>
-      <li><.m bounds="9.957608,53.585327,10.045014,53.599879" lon="9.958878" lat="53.599246" dir="forward" ref="3">Behrmannplatz</.m>: Beidseitig <.ref>Schutzstreifen</.ref> mit rund 1,65m Breite.</li>
+      <li><.m bounds="9.95781,53.599145,9.95919,53.599873" lon="9.958878" lat="53.599246" dir="forward" ref="3">Behrmannplatz</.m>: Beidseitig <.ref>Schutzstreifen</.ref> mit rund 1,65m Breite.</li>
       <li><.m bounds="9.957088,53.598811,9.958146,53.599419">Julius-Vossler-Straße</.m>: Auf der Nordseite wird der Radverkehr durch den Haltebereich des Busses gelenkt. Eine Vorbeifahrt ist aber möglich, ohne sich in den Autoverkehr einordnen zu müssen. Auf der Südseite ist ein 2,0m breiter Radfahrstreifen geplant.</li>
-      <li><.m bounds="9.958889,53.598907,9.959885,53.599542">Vogt-Wells-Straße</.m>: 2,25m breite <.ref>Protected Bike Line</.ref></li>
+      <li><.m bounds="9.958889,53.598907,9.959885,53.599542">Vogt-Wells-Straße</.m>: 2,25m breite <.ref>Protected Bike Lane</.ref></li>
     </ul>
 
     <p>Am Behrmannplatz wird auch eine neue StadtRAD Station geplant. Der freie Rechtsabbieger hier entfällt ebenfalls, sodass dort Grünanlagen mit Sitzbänken angelegt werden.</p>
 
-    <p>Für Markttage soll eine Umleitung über <.m bounds="9.953348,53.597249,9.959495,53.598853">Erlenstraße</.m> und <.m bounds="9.951013,53.598543,9.953348,53.601698" lon="9.951843" lat="53.600166" dir="forward" ref="FR10">Oddernskmap</.m> ausgeschildert werden. Diese Abschnitte werden in dieser Maßnahme aber nicht umgebaut.</p>
+    <p>Für Markttage soll eine Umleitung über <.m bounds="9.953348,53.597249,9.959495,53.598853">Erlenstraße</.m> und <.m bounds="9.951013,53.598543,9.953348,53.601698" lon="9.951843" lat="53.600166" dir="forward" ref="FR10">Oddernskamp</.m> ausgeschildert werden. Diese Abschnitte werden in dieser Maßnahme aber nicht umgebaut.</p>
 
     <h4>Meinung</h4>
     <p>Leider fehlt der Lageplan, sodass eine Beurteilung schwierig ist. Im 1. Entwurf waren entlang der Veloroute nur Schutzstreifen vorgesehen; in der Hauptstraße <.ref>Radfahrstreifen in Mittellage</.ref>. Im Vergleich dazu erhält der Radverkehr im 2. Entwurf deutlich mehr Platz, auch wenn es nicht überall für abgetrennte Wege reichte. Durch den Entfall des freien Rechtsabbiegers gewinnt die Natur sogar Fläche, was bei Starkregen wichtig für die Versickerung ist.</p>

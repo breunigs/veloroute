@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.AlexandraStieg do
   def start(), do: ~d[2021-04]
   def stop(), do: ~d[2021-09]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["9", "M11", "M11.1a"]
 
