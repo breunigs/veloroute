@@ -4,9 +4,6 @@ defmodule Data.Article.Blog.UFarmsen do
   def created_at(), do: ~D[2021-11-09]
   def title(), do: "Straßen um U-Bahnhof Farmsen (Alltagsroute 6, Freizeitroute 2)"
 
-  def summary(),
-    do: "FIXME"
-
   def type(), do: :intent
   def tags(), do: ["FR2", "6"]
 
@@ -18,6 +15,10 @@ defmodule Data.Article.Blog.UFarmsen do
        "https://via-bus.hamburg.de/contentblob/15542682/aee1379cbb674d255d0dcc376ea1b401/data/dokumentation-online-dialogrunde-vom-11-08-2021.pdf"}
     ]
   end
+
+  def summary(),
+    do:
+      "Durchgängige Radwege geplant; auf der Nordseite in beide Richtungen. Fokus aufs Auto verhindert Entzerrung Fuß/Rad."
 
   def text(assigns) do
     ~H"""
