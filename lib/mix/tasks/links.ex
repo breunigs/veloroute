@@ -219,8 +219,11 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec wayback(entry()) :: entry()
   defp wayback({_method, file, url} = entry) do
-    log(file, "wayback: #{url}")
-    get("https://web.archive.org/save/#{url}")
+    case get("https://web.archive.org/save/#{url}") do
+      {:ok, %{status: 302}} -> log(file, "wayback: ✓ #{url}")
+      {:ok, resp} -> log(file, "wayback: FAILED (#{resp.status}): #{url}")
+      other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
+    end
 
     entry
   end
