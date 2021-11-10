@@ -46,14 +46,48 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     [{:download, "#{name} #{name_from_url(url)}", url}]
   end
 
+  defp extract({name, "https://via-bus.hamburg.de/contentblob" <> _rest = url}) do
+    [{:download, "#{name} #{name_from_url(url)}", url}]
+  end
+
   defp extract({_name, "https://www.hamburg.de/" <> _rest} = entry),
     do: extract_contentblob(entry)
 
   defp extract({_name, "https://metropolregion.hamburg.de/" <> _rest} = entry),
     do: extract_contentblob(entry)
 
+  defp extract({_name, "https://sitzungsdienst-altona.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
   defp extract({_name, "https://sitzungsdienst-eimsbuettel.hamburg.de/" <> _rest} = entry),
     do: extract_sitzungsdienst(entry)
+
+  defp extract({_name, "https://sitzungsdienst-hamburg-mitte.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
+  defp extract({_name, "https://sitzungsdienst-hamburg-nord.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
+  defp extract({_name, "https://sitzungsdienst-wandsbek.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
+  defp extract({_name, "https://sitzungsdienst-bergedorf.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
+  defp extract({_name, "https://sitzungsdienst-harburg.hamburg.de/" <> _rest} = entry),
+    do: extract_sitzungsdienst(entry)
+
+  @evergabe_base "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/"
+  defp extract({name, @evergabe_base <> "eva/supplierportal/fhh/subproject/" <> rest = url}) do
+    # page: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details
+    # PDFs: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/projectFilesZip
+    zips =
+      @evergabe_base <>
+        "api/supplier/subproject/" <>
+        String.replace(rest, "/details", "/projectFilesZip")
+
+    [{:download, "evergabe #{name}.zip", zips}, {:capture, "evergabe #{name}", url}]
+  end
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex) do
     heex
