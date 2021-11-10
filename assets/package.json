@@ -11,7 +11,7 @@
     "classlist-polyfill": "^1.2.0",
     "core-js": "^3.6.5",
     "formdata-polyfill": "^3.0.20",
-    "hls.js": "^1.0.6",
+    "hls.js": "^1.1.0",
     "mapbox-gl": "^1.13.2",
     "mdn-polyfills": "^5.20.0",
     "new-event-polyfill": "^1.0.1",

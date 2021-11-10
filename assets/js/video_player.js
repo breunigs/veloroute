@@ -2,6 +2,7 @@ let videoCoords = null;
 let prevVideo = null;
 let prevStartGen = null;
 let hlsAutoStartLoad = false;
+let prevLevel = null;
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
@@ -63,20 +64,34 @@ function updateVideoElement() {
       console.debug('loading hls video stream');
       Hls = Hls.default;
 
-      if (window.hls) {
-        // don't leak previous one
-        window.hls.destroy();
-      }
-
-      window.hls = new Hls({
+      let options = {
         autoStartLoad: hlsAutoStartLoad || !video.paused || autoplayEnabled(),
         enableWebVTT: false,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 30, // seconds
-      });
+      };
+
+      prevLevel = null;
+
+      if (window.hls) {
+        const currentLevel = window.hls.abrController.getNextABRAutoLevel();
+        // keep current level if the quality is good enough, otherwise re-estimate
+        if (typeof currentLevel === "number" && currentLevel >= 3) {
+          options.startLevel = currentLevel;
+          options.testBandwidth = false;
+          console.debug("setting startLevel to previously used level", currentLevel);
+          prevLevel = options.startLevel;
+        }
+
+        // don't leak previous instance
+        window.hls.destroy();
+      }
+
+      window.hls = new Hls(options);
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments)
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
         if (hlsAutoStartLoad) return;
@@ -153,6 +168,19 @@ function parseCoordsFromState() {
 function updateIndicatorPos(evt) {
   if (!videoCoords) return;
   window.mapUpdateIndicatorFromVideo(video, videoCoords);
+}
+
+function maybeUpgradeLowQualitySegments(evt, info) {
+  const nextLevel = info.level;
+  if (nextLevel <= prevLevel) {
+    console.debug("quality downgraded from", prevLevel, "to", nextLevel, " -- keeping back buffer segments");
+    prevLevel = nextLevel;
+    return
+  }
+
+  console.debug("quality upgraded from", prevLevel, "to", nextLevel, " -- flushing back buffer for segment quality upgrade");
+  hls.bufferController.flushBackBuffer();
+  prevLevel = nextLevel;
 }
 
 window.videoStateChanged = setVideo;
