@@ -34,6 +34,7 @@ const map = new mapboxgl.Map({
   style: 'mapbox://styles/breunigs/ck8hk6y7e0csv1ioh4oqdtybb',
   pitchWithRotate: false,
   dragRotate: false,
+  touchPitch: false,
 });
 map.touchZoomRotate.disableRotation();
 
