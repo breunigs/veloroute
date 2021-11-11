@@ -132,6 +132,9 @@ defmodule VelorouteWeb.FrameLive do
     # startpage) when we have a route
     article = find_article(attr["article"])
     route = if attr["article"] && article, do: article, else: find_article(attr["route"])
+    # if we don't have an article, switch to the route only if the current page is unrelated
+    current = socket.assigns.current_page
+    article = article || if route && !Article.List.related?(current, route), do: route
 
     socket =
       socket

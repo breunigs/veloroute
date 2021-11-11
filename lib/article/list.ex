@@ -103,6 +103,13 @@ defmodule Article.List do
   def related(art), do: related(all(), art)
 
   @doc """
+  Returns true if the given articles share at least one tag
+  """
+  def related?(art1, art2) when is_module(art1) and is_module(art2) do
+    Util.overlap?(art1.tags(), art2.tags())
+  end
+
+  @doc """
   Find an Article that contains a video with exactly the given resources
   """
   @spec find_by_sources(Video.Track.plain()) :: Article.t() | nil

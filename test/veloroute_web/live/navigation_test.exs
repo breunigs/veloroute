@@ -3,7 +3,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   import Phoenix.LiveViewTest
   @endpoint VelorouteWeb.Endpoint
 
-  @regexHash ~r/data-video-hash=[^\s]+/
+  @regexHash ~r/data-video-hash=\"([^\s]+)\"/
   @regexStart ~r/data-video-start=[^\s]+/
 
   test "clicking on route icon navigates to overview page", %{conn: conn} do
@@ -53,7 +53,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "clicking on route twice reverses image", %{conn: conn} do
-    {:ok, view, _html} = live(conn, "/")
+    {:ok, view, _html} = live(conn, "/alltagsroute-3")
 
     click_pos = %{
       route: "3",
@@ -65,7 +65,10 @@ defmodule VelorouteWeb.LiveNavigationTest do
     a = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
     b = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
 
-    assert a != b
+    renderA = a |> Enum.at(1) |> Video.Rendered.get()
+    renderB = b |> Enum.at(1) |> Video.Rendered.get()
+
+    assert renderA.name() != renderB.name()
   end
 
   test "clicking on article without tracks keeps the video as is", %{conn: conn} do
@@ -137,18 +140,34 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s(Cuxhavener Straße bis zum Dubben)
   end
 
-  test "with an article shown, clicking on the map with route-only keeps article", %{conn: conn} do
+  test "with an article shown, clicking on the related route keeps article", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s|Zum Dubben (neue Führung|
 
     html =
       render_hook(view, "map-click", %{
+        route: "10",
         lon: 9.90103646729878,
         lat: 53.473335309162394,
         zoom: 16
       })
 
     assert html =~ ~s|Zum Dubben (neue Führung|
+  end
+
+  test "with an article shown, clicking on UNrelated route, switches", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
+    assert html =~ ~s|Zum Dubben (neue Führung|
+
+    html =
+      render_hook(view, "map-click", %{
+        route: "FR0",
+        lon: 9.90103646729878,
+        lat: 53.473335309162394,
+        zoom: 16
+      })
+
+    assert html =~ ~s|1. Grüner Ring|
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
