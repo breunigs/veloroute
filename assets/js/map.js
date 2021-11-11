@@ -214,8 +214,18 @@ const maybePing = () => {
 }
 
 const handleMapHover = (evt) => {
-  const none = itemsUnderCursor(evt).length === 0;
-  map.getCanvas().style.cursor = none ? '' : 'pointer';
+  const items = itemsUnderCursor(evt);
+  const canvas = map.getCanvas()
+
+  if (items.length === 0) {
+    canvas.style.cursor = '';
+    canvas.title = '';
+    return;
+  }
+
+  canvas.style.cursor = 'pointer';
+  const props = items[0].properties;
+  canvas.title = props.title || `${props.route_group} ${props.route_id}`
 }
 
 const handleMapClick = (evt) => {
