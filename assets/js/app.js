@@ -103,3 +103,4 @@ window.liveSocket = liveSocket;
 
 import "./mobilegui"
 import "./loading"
+import "./plausible"

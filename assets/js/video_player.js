@@ -8,6 +8,7 @@ const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
 video.addEventListener('loadedmetadata', updateIndicatorPos);
 video.addEventListener('timeupdate', updateIndicatorPos);
+video.addEventListener('play', markPlay);
 video.addEventListener('pause', markPause);
 
 
@@ -15,6 +16,12 @@ function reverseVideo() {
   window.pushEvent('video-reverse', {
     lon: window.state.lon,
     lat: window.state.lat
+  })
+
+  window.plausible('video-reverse', {
+    props: {
+      hash: state.videoHash
+    }
   })
 }
 
@@ -29,9 +36,23 @@ function maybeMarkAutoplayed() {
   }
 }
 
+function markPlay() {
+  window.plausible('video-play', {
+    props: {
+      hash: state.videoHash
+    }
+  })
+}
+
 function markPause() {
   window.pushEvent('video-pause', {
     pos: Math.round(this.currentTime * 1000)
+  })
+
+  window.plausible('video-pause', {
+    props: {
+      hash: state.videoHash
+    }
   })
 }
 
@@ -42,8 +63,10 @@ function attachHlsErrorHandler(obj, Hls) {
       window.hls = false;
       obj.destroy();
       updateVideoElement();
+      window.plausible('video-hls-error-fatal');
     } else {
       console.log('Hls encountered an error', event, data);
+      window.plausible('video-hls-error');
     }
   });
 }

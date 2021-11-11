@@ -9,6 +9,14 @@ defmodule VelorouteWeb.PageController do
     |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, params["article"]))
   end
 
+  def event(conn, _params) do
+    with {:ok, body, _conn} <- Plug.Conn.read_body(conn) do
+      Logger.debug("plausible event: #{body}")
+    end
+
+    send_resp(conn, 204, "")
+  end
+
   def quality(conn, params) do
     name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
 
