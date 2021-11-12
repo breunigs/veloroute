@@ -95,12 +95,13 @@ defmodule Data.GeoJSON do
         :bridge,
         :type,
         :route_group,
-        :title,
         :offset,
         :overlap_index,
+        :title,
         :route_id | Map.Way.style_tags()
       ])
       |> Map.put_new(:type, w.tags[:route_group])
+      |> Map.put_new(:title, w.tags[:article_title])
 
     %{
       type: "Feature",

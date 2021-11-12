@@ -47,6 +47,10 @@ defmodule Data.GeoJSONTest do
       "2" => %Map.Way{
         nodes: [],
         tags: %{name: "art2", type: "article"}
+      },
+      "3" => %Map.Way{
+        nodes: [],
+        tags: %{name: "art2", type: "detour"}
       }
     }
   }
@@ -74,7 +78,8 @@ defmodule Data.GeoJSONTest do
                        title: "Alltagsroute 1"
                      }
                    }
-                 ]
+                 ],
+                 %{properties: %{name: "art2", title: "hi!", type: "detour"}}
                ]
              }
            } = enrich(@example_articles)
