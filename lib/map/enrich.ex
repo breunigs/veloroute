@@ -8,7 +8,7 @@ defmodule Map.Enrich do
   def with_articles(%Map.Parsed{} = map, articles) do
     Map.update!(map, :ways, fn ways ->
       Enum.into(ways, %{}, fn
-        {id, w = %{tags: %{type: "article"}}} ->
+        {id, w = %{tags: %{type: type}}} when type in ["article", "detour"] ->
           art = find_article_for(articles, w)
 
           art_tags = %{

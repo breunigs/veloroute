@@ -59445,6 +59445,60 @@
     <member type='node' ref='-16718598' role='gpx_end' />
     <tag k='name' v='elbradweg-sued' />
   </relation>
+  <relation id='-101177' action='modify'>
+    <member type='way' ref='-282711' role='' />
+    <member type='way' ref='-295112' role='' />
+    <member type='way' ref='-282753' role='' />
+    <member type='way' ref='-281341' role='' />
+    <member type='way' ref='-280829' role='' />
+    <member type='way' ref='-281166' role='' />
+    <member type='way' ref='-295086' role='' />
+    <member type='way' ref='-295087' role='' />
+    <member type='way' ref='-295113' role='' />
+    <member type='way' ref='-282537' role='' />
+    <tag k='name' v='rsw-stade' />
+  </relation>
+  <relation id='-101188' action='modify'>
+    <member type='way' ref='-277046' role='' />
+    <member type='way' ref='-273831' role='' />
+    <member type='way' ref='-276978' role='' />
+    <member type='way' ref='-273827' role='' />
+    <member type='way' ref='-277043' role='' />
+    <member type='way' ref='-277007' role='' />
+    <member type='way' ref='-276969' role='' />
+    <member type='way' ref='-277036' role='' />
+    <tag k='name' v='rsw-lueneburg' />
+  </relation>
+  <relation id='-101193' action='modify'>
+    <member type='way' ref='-273639' role='' />
+    <member type='way' ref='-273825' role='' />
+    <tag k='name' v='rsw-geesthacht' />
+  </relation>
+  <relation id='-101197' action='modify'>
+    <member type='way' ref='-273607' role='' />
+    <tag k='name' v='rsw-ahrensburg' />
+  </relation>
+  <relation id='-101209' action='modify'>
+    <member type='way' ref='-273042' role='' />
+    <member type='way' ref='-273300' role='' />
+    <member type='way' ref='-273412' role='' />
+    <member type='way' ref='-273316' role='' />
+    <member type='way' ref='-273325' role='' />
+    <member type='way' ref='-273309' role='' />
+    <member type='way' ref='-283086' role='' />
+    <member type='way' ref='-273451' role='' />
+    <member type='way' ref='-273436' role='' />
+    <tag k='name' v='rsw-bad-bramstedt' />
+  </relation>
+  <relation id='-101220' action='modify'>
+    <member type='way' ref='-291062' role='' />
+    <member type='way' ref='-290904' role='' />
+    <member type='way' ref='-272945' role='' />
+    <member type='way' ref='-291059' role='' />
+    <member type='way' ref='-273040' role='' />
+    <member type='way' ref='-290992' role='' />
+    <tag k='name' v='rsw-elmshorn' />
+  </relation>
   <relation id='191882' action='modify' version='1'>
     <member type='way' ref='238754832' role='' />
     <member type='way' ref='19410366' role='forward' />

@@ -82,12 +82,18 @@ defmodule Geo.CheapRuler do
   end
 
   @doc ~S"""
-  Returns true if the point is contained within the bounding box
+  Returns true if the point or bounding box is filly contained within the 2nd bounding box
 
   ## Examples
 
       iex> Geo.CheapRuler.inside_bbox?(
       ...>   %{lon: 1.3, lat: 4.5},
+      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...> )
+      true
+
+      iex> Geo.CheapRuler.inside_bbox?(
+      ...>   %Geo.BoundingBox{minLon: 1, minLat: 1, maxLon: 2, maxLat: 2},
       ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
       ...> )
       true
@@ -101,6 +107,10 @@ defmodule Geo.CheapRuler do
       lon <= maxLon &&
       lat >= minLat &&
       lat <= maxLat
+  end
+
+  def inside_bbox?(%Geo.BoundingBox{} = inner, %Geo.BoundingBox{} = container) do
+    container == union(inner, container)
   end
 
   @doc ~S"""

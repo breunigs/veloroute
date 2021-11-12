@@ -25,7 +25,7 @@ defmodule Mapbox do
   def static_map_url(bounds) do
     polyline = Geo.CheapRuler.bounds_to_polyline(bounds)
 
-    "#{@base}/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/path-0(#{polyline})/auto/150x100?access_token=#{secret_token()}"
+    "#{@base}/styles/v1/breunigs/ckvvdvpy63v3j14n2vwo7sut0/static/path-0(#{polyline})/auto/150x100?access_token=#{secret_token()}"
   end
 
   @search_query_bbox Settings.initial() |> VariousHelpers.to_string_bounds()

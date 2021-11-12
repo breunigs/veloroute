@@ -170,6 +170,32 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|1. Grüner Ring|
   end
 
+  test "hides freizeit routes when clicking on a alltag route", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/freizeitroute-7")
+    # article
+    assert html =~ ~s|Freizeitroute 7 – Harburger Berge|
+    # video
+    assert html =~ ~s|Du folgst: Harburger Berge (FR7)|
+    # control
+    assert html =~ ~s|data-visible-types="freizeit"|
+
+    html =
+      render_hook(view, "map-click", %{
+        route: "10",
+        article: nil,
+        lon: 9.88432366062463,
+        lat: 53.473286913579784,
+        zoom: 12.484740216464493
+      })
+
+    # article
+    assert html =~ ~s|<h3>Alltagsroute 10</h3>|
+    # video
+    assert html =~ ~s|Du folgst: Alltagsroute 10|
+    # control
+    assert html =~ ~s|data-visible-types="alltag"|
+  end
+
   test "switches routes when new article has different route", %{conn: conn} do
     {:ok, view, html} = live(conn, "/alltagsroute-4")
     assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|

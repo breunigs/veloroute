@@ -254,7 +254,8 @@ defmodule VelorouteWeb.FrameLive do
         do: Settings.page_title_long(),
         else: Settings.page_title_short() <> full_title
 
-    assign(socket,
+    socket
+    |> assign(
       prev_page: socket.assigns.current_page,
       current_page: art,
       page_title: page_title,
@@ -262,6 +263,7 @@ defmodule VelorouteWeb.FrameLive do
       article_title: full_title,
       article_summary: art.summary()
     )
+    |> determine_visible_route_groups(art)
   end
 
   defp set_content(_article, socket), do: render_404(socket)
@@ -301,12 +303,25 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp set_bounds(socket, art, _bounds_param) when is_module(art) do
-    bbox = Article.Decorators.bbox(art)
+    prev_bbox = socket.assigns.map_bounds
+    next_bbox = Article.Decorators.bbox(art)
 
-    if bbox do
-      assign(socket, bounds: bbox) |> set_bounds_ts
-    else
-      socket
+    cond do
+      is_nil(next_bbox) ->
+        socket
+
+      is_nil(prev_bbox) ->
+        assign(socket, bounds: next_bbox) |> set_bounds_ts
+
+      is_nil(art.id()) ->
+        assign(socket, bounds: next_bbox) |> set_bounds_ts
+
+      # i.e. if we have a "route article", zoom only in, but not out
+      Geo.CheapRuler.inside_bbox?(next_bbox, Geo.BoundingBox.parse(prev_bbox)) ->
+        assign(socket, bounds: next_bbox) |> set_bounds_ts
+
+      true ->
+        socket
     end
   end
 
