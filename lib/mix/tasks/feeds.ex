@@ -12,8 +12,9 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   @days_to_check [0, 7, 30]
   @requirements ["app.start"]
 
-  plug(Tesla.Middleware.BaseUrl, @base)
-  plug(Tesla.Middleware.JSON)
+  plug Tesla.Middleware.BaseUrl, @base
+  plug Tesla.Middleware.JSON
+  plug Tesla.Middleware.Timeout, timeout: 60_000
 
   @shortdoc "Checks for updates in Bauweiser and updates articles that reference the IDs"
   def run(_) do
