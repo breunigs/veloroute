@@ -25,6 +25,13 @@ defmodule Data.GeoJSONTest do
 
   @example_articles [Article1, Article2]
 
+  @example_node_ring [
+    %Map.Node{id: 1, lat: 1, lon: 1, tags: %{}},
+    %Map.Node{id: 2, lat: 2, lon: 2, tags: %{}},
+    %Map.Node{id: 3, lat: 3, lon: 3, tags: %{}},
+    %Map.Node{id: 1, lat: 1, lon: 1, tags: %{}}
+  ]
+
   @example_map %Map.Parsed{
     nodes: %{},
     relations: %{
@@ -41,15 +48,15 @@ defmodule Data.GeoJSONTest do
     },
     ways: %{
       "1" => %Map.Way{
-        nodes: [],
+        nodes: @example_node_ring,
         tags: %{name: "art1", type: "article"}
       },
       "2" => %Map.Way{
-        nodes: [],
+        nodes: @example_node_ring,
         tags: %{name: "art2", type: "article"}
       },
       "3" => %Map.Way{
-        nodes: [],
+        nodes: @example_node_ring,
         tags: %{name: "art2", type: "detour"}
       }
     }
@@ -96,6 +103,12 @@ defmodule Data.GeoJSONTest do
 
   test "article gets correct title" do
     assert %{
+             markers: %{
+               features: [
+                 %{properties: %{name: "art1", title: "hi!"}},
+                 %{properties: %{name: "art2", title: "hi!"}}
+               ]
+             },
              articles: %{
                features: [
                  %{properties: %{name: "art1", title: "hi!"}},

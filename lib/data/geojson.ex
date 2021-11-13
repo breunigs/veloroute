@@ -8,7 +8,7 @@ defmodule Data.GeoJSON do
     %{
       routes: as_feat_collection(routes(map) ++ routeless_ways(map)),
       articles: as_feat_collection(articles(map)),
-      markers: as_feat_collection(markers(map))
+      markers: as_feat_collection(markers(map) ++ article_polylabels(map))
     }
   end
 
@@ -23,6 +23,29 @@ defmodule Data.GeoJSON do
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.map(&as_geojson(&1))
     |> Enum.reject(&is_nil/1)
+  end
+
+  defp article_polylabels(map) do
+    map.ways()
+    |> Map.Element.filter_by_tag(:type, "article")
+    |> Enum.reject(fn %Map.Way{tags: tags} -> Map.get(tags, :hide_from_map, false) end)
+    |> Enum.map(fn %Map.Way{nodes: nodes, tags: tags} ->
+      point = Geo.Polylabel.calculate(nodes)
+
+      %{
+        type: "Feature",
+        properties: %{
+          type: :article,
+          name: tags.name,
+          icon: tags.article_icon,
+          title: tags.article_title
+        },
+        geometry: %{
+          type: "Point",
+          coordinates: as_geojson_coord(point)
+        }
+      }
+    end)
   end
 
   defp routeless_ways(map) do
