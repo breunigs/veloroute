@@ -59,26 +59,24 @@ defmodule Data.GeoJSONTest do
     assert %{
              routes: %{
                features: [
-                 [
-                   %{
-                     properties: %{
-                       type: :alltag,
-                       route_group: :alltag,
-                       color: "#7d8b2f",
-                       route_id: "1",
-                       title: "Alltagsroute 1"
-                     }
-                   },
-                   %{
-                     properties: %{
-                       type: :alltag,
-                       route_group: :alltag,
-                       color: "#000000",
-                       route_id: "1",
-                       title: "Alltagsroute 1"
-                     }
+                 %{
+                   properties: %{
+                     type: :alltag,
+                     route_group: :alltag,
+                     color: "#7d8b2f",
+                     route_id: "1",
+                     title: "Alltagsroute 1"
                    }
-                 ],
+                 },
+                 %{
+                   properties: %{
+                     type: :alltag,
+                     route_group: :alltag,
+                     color: "#000000",
+                     route_id: "1",
+                     title: "Alltagsroute 1"
+                   }
+                 },
                  %{properties: %{name: "art2", title: "hi!", type: "detour"}}
                ]
              }

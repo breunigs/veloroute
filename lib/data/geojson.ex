@@ -1,4 +1,9 @@
 defmodule Data.GeoJSON do
+  @spec to_feature_lists(Map.Parsed.t()) :: %{
+          articles: %{features: list, type: binary()},
+          markers: %{features: list, type: binary()},
+          routes: %{features: list, type: binary()}
+        }
   def to_feature_lists(%Map.Parsed{} = map) do
     %{
       routes: as_feat_collection(routes(map) ++ routeless_ways(map)),
@@ -26,12 +31,13 @@ defmodule Data.GeoJSON do
     |> Enum.map(&as_geojson(&1))
   end
 
+  @relevant_geojson_roles ["forward", "backward", ""]
   defp routes(map) do
     map.relations()
     |> Map.values()
     |> add_overlap_info(:alltag)
     |> add_overlap_info(:freizeit)
-    |> Enum.map(&as_geojson(&1))
+    |> Enum.flat_map(&as_geojson(&1))
   end
 
   # renders for nodes
@@ -132,7 +138,7 @@ defmodule Data.GeoJSON do
     }
 
     r
-    |> Map.Relation.ways()
+    |> Map.Relation.ways(@relevant_geojson_roles)
     |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :overlap_index, :color]))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
@@ -174,7 +180,7 @@ defmodule Data.GeoJSON do
       |> Enum.sort_by(fn %Map.Relation{id: id} -> id end)
       |> Enum.reduce(%{}, fn rel, acc ->
         rel
-        |> Map.Relation.way_members()
+        |> Map.Relation.way_members(@relevant_geojson_roles)
         |> Enum.reduce(acc, fn %{role: role, ref: %Map.Way{id: wid}}, acc ->
           %{rels: rels, roles: roles} = acc[wid] || %{rels: [], roles: []}
           Map.put(acc, wid, %{rels: [rel.id | rels], roles: [role | roles]})

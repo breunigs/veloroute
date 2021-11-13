@@ -166,7 +166,7 @@ defmodule Mix.Tasks.Deploy do
     Util.banner("Updating Mapbox")
     # TODO: need to make tippecanoe available in container
     # Docker.mix("update_mapbox")
-    Mix.Tasks.UpdateMapbox.run(nil)
+    Mix.Tasks.Velo.Mapbox.Update.run(nil)
   end
 
   defp restart(%{skip_deploy: true}), do: nil

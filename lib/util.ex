@@ -91,6 +91,10 @@ defmodule Util do
     :crypto.hash(:md5, input) |> Base.encode16(case: :lower)
   end
 
+  def md5_file(path) do
+    path |> File.read!() |> md5()
+  end
+
   @doc """
   Finds <a href="x"> in an HTML document. It ignores base tags even if present.
 

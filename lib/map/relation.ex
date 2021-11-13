@@ -58,10 +58,10 @@ defmodule Map.Relation do
     if osm_relation_id(rel) != nil, do: Map.get(rel.tags, :gpx_name, rel.tags[:id])
   end
 
-  def ways(%__MODULE__{} = r),
-    do:
-      Enum.filter(r.members, &match?(%{ref: %Map.Way{}}, &1))
-      |> Enum.map(&Map.get(&1, :ref))
+  @spec ways(Map.Relation.t(), [binary()] | :all) :: [Map.Way.t()]
+  def ways(%__MODULE__{} = r, allowed_roles \\ :all) do
+    way_members(r, allowed_roles) |> Enum.map(&Map.get(&1, :ref))
+  end
 
   def nodes(%__MODULE__{} = r) do
     r
@@ -74,7 +74,17 @@ defmodule Map.Relation do
     |> Enum.map(fn %Map.Way{id: wid} -> wid end)
   end
 
-  def way_members(%__MODULE__{} = r) do
-    Enum.filter(r.members, &match?(%{ref: %Map.Way{}}, &1))
+  @spec way_members(Map.Relation.t(), :all | list(binary())) :: [
+          %{ref: Map.Way.t(), role: binary()}
+        ]
+  def way_members(relation, allowed_roles \\ :all)
+
+  def way_members(%__MODULE__{} = r, :all) do
+    Enum.filter(r.members, &is_struct(&1.ref, Map.Way))
+  end
+
+  def way_members(%__MODULE__{} = r, allowed_roles) when is_list(allowed_roles) do
+    way_members(r, :all)
+    |> Enum.filter(fn %{role: role} -> role in allowed_roles end)
   end
 end
