@@ -7,14 +7,23 @@ defmodule Data.Article.Blog.Stephansplatz do
   def title(), do: "Stephansplatz (Veloroute 3)"
 
   def start(), do: ~d[2021-03-01]
-  def stop(), do: ~d[2021-10-25]
+  def stop(), do: ~d[2021-11-21]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14688]
   def tags(), do: ["3"]
 
   def links(_assigns) do
-    []
+    [
+      {"Infoseite des LSBGs zum Umbau",
+       "https://lsbg.hamburg.de/esplanade/13287196/umbau-esplanade/"},
+      {"Baustelleninfo",
+       "https://lsbg.hamburg.de/contentblob/15595816/351893310b12b3cd697af3ed8908baf7/data/esplanade-dammtordamm-stephansplatz-%E2%80%93-sperrungen-%E2%80%93-21-11-21-bis-22-11-21.pdf"},
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de//contentblob/12437970/ee10808c85b64c942de1c1f17fadc23e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"},
+      {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/12437968/ac9753f143f3324e5b1e8fe58102177e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -44,12 +53,7 @@ defmodule Data.Article.Blog.Stephansplatz do
     </ul>
 
     <h4>Quellen</h4>
-    <ul>
-    <li><.a href="https://lsbg.hamburg.de/esplanade/13287196/umbau-esplanade/">Infoseite des LSBGs zum Umbau</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14914430/10301267bcc2825e0c626ca32ddae348/data/esplanade-dammtordamm-stephansplatz-umbau-03-21-bis-10-21.pdf">Baustelleninfo</.a></li>
-    <li><.a href="https://lsbg.hamburg.de//contentblob/12437970/ee10808c85b64c942de1c1f17fadc23e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/12437968/ac9753f143f3324e5b1e8fe58102177e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf">Lageplan</.a></li>
-    </ul>
+    <.structured_links/>
     """
   end
 end

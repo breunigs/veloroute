@@ -45,7 +45,9 @@ defmodule Data.Article.Blog.StBenedictstrasse do
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"},
       {"Lagepläne",
-       "https://lsbg.hamburg.de/contentblob/13867884/27c9b20de10e96f0faf3bfd1aff5e2f8/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"}
+       "https://lsbg.hamburg.de/contentblob/13867884/27c9b20de10e96f0faf3bfd1aff5e2f8/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"},
+      {"Baustelleninfo",
+       "https://lsbg.hamburg.de/contentblob/15590226/45935d8e086a975284e5c9cfa8e51159/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-11-21-bis-05-22.pdf"}
     ]
   end
 

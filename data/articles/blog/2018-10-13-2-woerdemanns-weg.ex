@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.WoerdemannsWeg do
   def title(), do: "Wördemanns Weg (Veloroute 2)"
 
   def start(), do: ~d[2020-06-24]
-  def stop(), do: ~d[2022-05-31]
+  def stop(), do: ~d[2022-07-29]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [9608, 20222]
