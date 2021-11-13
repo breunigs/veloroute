@@ -103,7 +103,7 @@ defmodule Mix.Tasks.Velo.Mapbox.Update do
 
   defp uploaded_already?(%{name: name, geojson_md5: md5}, seen) do
     already_uploaded = seen[to_string(name)] == md5
-    IO.puts("Skipping tileset #{name} (same as previous upload)")
+    if already_uploaded, do: IO.puts("Skipping tileset #{name} (same as previous upload)")
     already_uploaded
   end
 
