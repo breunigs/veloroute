@@ -9,8 +9,10 @@ defmodule Mix.Tasks.Deploy do
     build_tar_gz(skip)
 
     if deploy_tar_gz(skip) do
-      post_deploy(skip)
+      preload_videos(skip)
     end
+
+    mirror_links(skip)
   end
 
   defp parse_cli_args(skip) when is_list(skip) do
@@ -202,11 +204,16 @@ defmodule Mix.Tasks.Deploy do
       )
   end
 
-  defp post_deploy(%{skip_deploy: true}), do: nil
-  defp post_deploy(%{skip_preload: true}), do: nil
+  defp preload_videos(%{skip_deploy: true}), do: nil
+  defp preload_videos(%{skip_preload: true}), do: nil
 
-  defp post_deploy(_skip) do
+  defp preload_videos(_skip) do
     Util.banner("Release: Preload Videos")
     Mix.Tasks.Velo.Videos.Preload.run(nil)
+  end
+
+  defp mirror_links(_skip) do
+    Util.banner("Release: Mirroring External Links")
+    Mix.Tasks.Velo.Links.Mirror.run(nil)
   end
 end
