@@ -42,7 +42,12 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
     remain = Map.keys(indexed) -- known_ids
 
-    Enum.reduce(remain, seen_ids, fn id, seen_ids ->
+    remain
+    |> Enum.reject(fn id ->
+      upd = indexed[id]
+      Date.diff(upd[:stop], upd[:start]) <= 5
+    end)
+    |> Enum.reduce(seen_ids, fn id, seen_ids ->
       upd = indexed[id]
 
       IO.puts("""

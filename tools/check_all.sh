@@ -2,6 +2,8 @@
 
 cd "${0%/*}"
 
+set -euo pipefail
+
 echo "Baustellen:"
 (cd .. && mix velo.feeds.bauweiser)
 
@@ -20,7 +22,6 @@ echo "Sitzungsdienst:"
 echo ""
 echo "manuell:"
 echo "* https://www.steg-hamburg.de/veloroute-altona.html"
-echo "* https://www.hamburg.de/harburg/pressemeldungen/"
 
 cd ..
 mix list_potentially_outdated
