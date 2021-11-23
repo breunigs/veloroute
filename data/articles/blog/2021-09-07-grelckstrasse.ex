@@ -7,6 +7,9 @@ defmodule Data.Article.Blog.Grelckstrasse do
 
   def start(), do: ~d[2021Q4]
   def stop(), do: ~d[2022Q3]
+  # commented out because this is only for the experiments, not
+  # reconstruction
+  # def construction_site_id_hh(), do: [21488]
 
   def type(), do: :intent
 

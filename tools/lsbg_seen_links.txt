@@ -458,3 +458,8 @@
 '2021-11-09':
 - "/contentblob/15583012/e3ba006a21bd228e6da6023a570b7249/data/bargfredestrasse-planung-neubau-fussgaengerbruecke-stand-november-2021.pdf"
 - "/contentblob/14725214/43a8e14a4e836fd889b1d3c968937d2a/data/sander-damm-lohbruegger-markt-sanierung-01-21-bis-12-21.pdf"
+'2021-11-13':
+- "/contentblob/15595816/351893310b12b3cd697af3ed8908baf7/data/esplanade-dammtordamm-stephansplatz-%E2%80%93-sperrungen-%E2%80%93-21-11-21-bis-22-11-21.pdf"
+- "/contentblob/15590226/45935d8e086a975284e5c9cfa8e51159/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-11-21-bis-05-22.pdf"
+'2021-11-23':
+- "/contentblob/15590226/7a56738c6210a1074d2c7dddadb36e0f/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-11-21-bis-05-22.pdf"

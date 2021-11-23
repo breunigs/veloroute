@@ -9,12 +9,14 @@ defmodule Data.Article.Blog.Stephansplatz do
   def start(), do: ~d[2021-03-01]
   def stop(), do: ~d[2021-11-21]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14688]
   def tags(), do: ["3"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung",
+       "https://www.hamburg.de/bvm/medien/15616728/2021-11-21-bvm-esplanade/"},
       {"Infoseite des LSBGs zum Umbau",
        "https://lsbg.hamburg.de/esplanade/13287196/umbau-esplanade/"},
       {"Baustelleninfo",
