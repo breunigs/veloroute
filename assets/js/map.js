@@ -38,7 +38,7 @@ const map = new mapboxgl.Map({
 });
 map.touchZoomRotate.disableRotation();
 
-const routeLayers = ['vr-casing', 'fr-casing', 'rsw-casing', 'planned-detour-casing'];
+const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'planned-line', 'detour-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers)
@@ -223,8 +223,14 @@ const handleMapHover = (evt) => {
     return;
   }
 
-  canvas.style.cursor = 'pointer';
   const props = items[0].properties;
+  if (!props.title && !props.route_group) {
+    canvas.style.cursor = '';
+    canvas.title = '';
+    return;
+  }
+
+  canvas.style.cursor = 'pointer';
   canvas.title = props.title || `${props.route_group} ${props.route_id}`
 }
 
