@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Schlueterstrasse do
   def title(), do: "Schlüterstraße (Veloroute 3)"
 
   def start(), do: ~d[2020-06-15]
-  def stop(), do: ~d[2021-11-30]
+  def stop(), do: ~d[2021-12-10]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [8623]

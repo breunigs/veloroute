@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Moenckebergstrasse do
   def title(), do: "Mönckebergstraße"
 
   def start(), do: ~d[2021-03-01]
-  def stop(), do: ~d[2021-11-24]
+  def stop(), do: ~d[2022-03-31]
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [9994]
