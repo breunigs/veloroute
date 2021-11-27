@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.Stephansplatz do
       {"Baustelleninfo",
        "https://lsbg.hamburg.de/contentblob/15595816/351893310b12b3cd697af3ed8908baf7/data/esplanade-dammtordamm-stephansplatz-%E2%80%93-sperrungen-%E2%80%93-21-11-21-bis-22-11-21.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de//contentblob/12437970/ee10808c85b64c942de1c1f17fadc23e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"},
+       "https://lsbg.hamburg.de/contentblob/12437970/ee10808c85b64c942de1c1f17fadc23e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"},
       {"Lageplan",
        "https://lsbg.hamburg.de/contentblob/12437968/ac9753f143f3324e5b1e8fe58102177e/data/esplanade-von-gorch-fock-wall-bis-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"}
     ]

@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       |> Stream.reject(fn {_, file, _} -> File.exists?(file) end)
       |> Stream.each(&ensure_target_folder_exists(&1))
     end)
-    |> Tqdm.tqdm()
+    |> Tqdm.tqdm(description: "mirroring", total: 0)
     |> Parallel.map(2, &grab(&1))
     |> Parallel.map(4, &wayback(&1))
   end
@@ -110,9 +110,16 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name, "https://www.komoot.de" <> _rest}), do: []
   defp extract({_name, "https://www.openstreetmap.org" <> _rest}), do: []
 
-  defp extract(other) do
-    IO.puts("don't know how to extract links for: #{inspect(other)}")
-    []
+  defp extract({name, url}) do
+    path = URI.parse(url).path
+
+    if path && String.ends_with?(path, "/") do
+      # likely a normal website, just capture it
+      [{:capture, "default #{name}", url}]
+    else
+      IO.puts("don't know how to extract links for “#{name}”: #{url}")
+      []
+    end
   end
 
   @spec extract_sitzungsdienst({binary(), binary()}) :: [entry()]
@@ -188,7 +195,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp absolute_path({method, name, url}, art) do
     filename =
       "#{Date.utc_today()} #{Util.md5(url)} #{method} #{name}"
-      |> String.replace(~r/[^äöüÄÖÜßa-z0-9_\s.-]+/i, "_")
+      |> String.replace(~r/[^äöüÄÖÜßa-z0-9_\s.-]+/iu, "_")
 
     file = Path.join([@path, art.name(), filename])
     {method, file, url}
@@ -249,8 +256,6 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
   @shortdoc "Check structured links for 404s"
   def run(_) do
-    IO.puts("Checking…")
-
     Article.List.all()
     |> Enum.flat_map(fn art ->
       art
@@ -258,7 +263,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
       |> Enum.flat_map(&extract/1)
       |> Enum.map(&Tuple.insert_at(&1, 0, art))
     end)
-    |> Tqdm.tqdm()
+    |> Tqdm.tqdm(description: "checking")
     |> Parallel.map(4, &check/1)
     |> Util.compact()
     |> Enum.each(&IO.puts/1)

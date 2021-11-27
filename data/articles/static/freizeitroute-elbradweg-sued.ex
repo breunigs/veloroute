@@ -58,7 +58,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/mit-dem-rad-durch-hamburg/318124/radtour-elberadweg/"},
-      {"Info/Werbeseite zum gesamten Elbradweg (inkl. GPS Daten)", "https://www.elberadweg.de"},
+      {"Info/Werbeseite zum gesamten Elbradweg (inkl. GPS Daten)", "https://www.elberadweg.de/"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/2599004"}
     ]
   end
