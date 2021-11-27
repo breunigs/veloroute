@@ -24,15 +24,6 @@ defmodule Settings do
   def email, do: "stefan-veloroute@breunig.xyz"
 
   def twitter_handle, do: "@VelorouteHH"
-
-  def footer,
-    do: """
-      <h3>Kontakt</h3>
-      <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><mailto/></p>
-
-      <p><a href="/"><strong>Zurück zur Startseite</strong></a></p>
-    """
-
   def deploy_ssh_name, do: "veloroute-deploy"
   def deploy_video_mount_dir, do: "/home/veloroute-rclone/mount"
 

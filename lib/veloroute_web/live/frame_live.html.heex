@@ -7,13 +7,9 @@
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
   <div id="content" class="bottomBumper">
-    <%= if Map.get(@flash, "info") do %>
+    <%= if Map.get(@flash, "info") == 404 do %>
       <p class="alert">
-        <%= case Map.get(@flash, "info") do
-          404 -> """
-            Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <a href="mailto:#{Settings.email()}">mir schreibst</a> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
-          """
-        end |> Phoenix.HTML.raw %>
+        Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <Components.TagHelpers.mailto>mir schreibst</Components.TagHelpers.mailto> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
       </p>
     <% end %>
 

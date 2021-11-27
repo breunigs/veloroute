@@ -7,13 +7,6 @@ defmodule Components.TagHelpers do
   @doc """
   a links change the current page and may point to internal or external pages
   """
-  @spec a(map()) :: Phoenix.LiveView.Rendered.t()
-  def a(%{href: "mailto:" <> _rest} = assigns) do
-    ~H"""
-    <a href={@href} target="_blank"><%= render_block(@inner_block) %></a>
-    """
-  end
-
   def a(%{href: href} = assigns) do
     attrs =
       case URI.new(href) do
@@ -77,6 +70,14 @@ defmodule Components.TagHelpers do
   end
 
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
+  def mailto(%{inner_block: _x, subject: _s, body: _b} = assigns) do
+    ~H"""
+    <a href={"mailto:#{Settings.email()}?subject=#{URI.encode @subject}&body=#{URI.encode @body}"}>
+      <%= render_block(@inner_block) %>
+    </a>
+    """
+  end
+
   def mailto(%{inner_block: _x} = assigns) do
     ~H"""
     <a href={"mailto:"<>Settings.email()}><%= render_block(@inner_block) %></a>

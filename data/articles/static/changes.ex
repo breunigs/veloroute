@@ -11,7 +11,7 @@ defmodule Data.Article.Static.Changes do
     <ul>
       <li><.a href="/updates.atom">RSS-Feed</.a> (benötigt einen <.a href="https://www.rss-readers.org/">Feedreader</.a>)</li>
       <li><.a href="https://twitter.com/VelorouteHH">Twitter</.a></li>
-      <li><.a href="mailto:stefan-veloroute@breunig.xyz?subject=veloroute.hamburg%20Newsletter%20abonnieren&amp;body=Hallo,%0A%0Abitte%20halte%20mich%20über%20über%20Baustellen,%20Änderungen%20an%20der%20Seite,%20usw.%20auf%20dem%20Laufenden.%20Nimm%20dazu%20einfach%20diese%20E-Mail%20Adresse.%0A%0ADanke!">E-Mail Newsletter abonnieren</.a></li>
+      <li><.mailto subject="veloroute.hamburg Newsletter abonnieren" body={"Hallo,\n\nbitte halte mich über über Baustellen, Änderungen an der Seite, usw. auf dem Laufenden. Nimm dazu einfach diese E-Mail Adresse.\n\nDanke!"}>E-Mail Newsletter abonnieren</.mailto></li>
     </ul>
 
     <h3 id="lastChanges">Letzte Änderungen</h3>
