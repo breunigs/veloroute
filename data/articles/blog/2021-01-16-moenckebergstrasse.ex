@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Moenckebergstrasse do
   def start(), do: ~d[2021-03-01]
   def stop(), do: ~d[2021-11-24]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [9994]
   def tags(), do: ["7", "8", "9", "hochbahn", "u3"]
 
