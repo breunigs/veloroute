@@ -30,9 +30,12 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: [:logger, :runtime_tools, :plug]
+      extra_applications: extra_apps(Mix.env())
     ]
   end
+
+  defp extra_apps(:prod), do: [:logger, :runtime_tools, :plug]
+  defp extra_apps(_), do: [:tqdm] ++ extra_apps(:prod)
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "data", "test/support"]
@@ -72,7 +75,8 @@ defmodule Veloroute.MixProject do
       {:telemetry, "~> 1.0"},
       {:temp, "~> 0.4", only: [:dev, :test]},
       {:tesla_cache, "~> 1.1.0"},
-      {:tesla, "~> 1.4.0"}
+      {:tesla, "~> 1.4.0"},
+      {:tqdm, "~> 0.0.2", only: [:dev, :test]}
     ]
   end
 end

@@ -1,3 +1,13 @@
+defmodule Mix.Tasks.Velo.Links do
+  def extract_links_from_heex(%Phoenix.LiveView.Rendered{} = heex) do
+    heex
+    |> Util.render_heex()
+    |> Util.extract_href_from_html()
+    |> Stream.with_index()
+    |> Stream.map(fn {href, index} -> {"nested_heex_#{index}", href} end)
+  end
+end
+
 defmodule Mix.Tasks.Velo.Links.Mirror do
   use Mix.Task
   use Tesla
@@ -23,6 +33,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       |> Stream.reject(fn {_, file, _} -> File.exists?(file) end)
       |> Stream.each(&ensure_target_folder_exists(&1))
     end)
+    |> Tqdm.tqdm()
     |> Parallel.map(2, &grab(&1))
     |> Parallel.map(4, &wayback(&1))
   end
@@ -91,12 +102,8 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex) do
     heex
-    |> Util.render_heex()
-    |> Util.extract_href_from_html()
-    |> Enum.with_index()
-    |> Enum.flat_map(fn {href, index} ->
-      extract({"nested_heex_#{index}", href})
-    end)
+    |> Mix.Tasks.Velo.Links.extract_links_from_heex()
+    |> Enum.flat_map(&extract/1)
   end
 
   # ignores
@@ -231,5 +238,47 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp log(file, text) do
     name = file |> Path.dirname() |> Path.basename()
     IO.puts(:stderr, "#{name}: #{text}")
+  end
+end
+
+defmodule Mix.Tasks.Velo.Links.Check do
+  use Mix.Task
+  use Tesla
+
+  @requirements ["app.start"]
+
+  @shortdoc "Check structured links for 404s"
+  def run(_) do
+    IO.puts("Checking…")
+
+    Article.List.all()
+    |> Enum.flat_map(fn art ->
+      art
+      |> Article.Decorators.apply_with_assigns(:links)
+      |> Enum.flat_map(&extract/1)
+      |> Enum.map(&Tuple.insert_at(&1, 0, art))
+    end)
+    |> Tqdm.tqdm()
+    |> Parallel.map(4, &check/1)
+    |> Util.compact()
+    |> Enum.each(&IO.puts/1)
+  end
+
+  defp extract({_name, _url} = entry), do: List.wrap(entry)
+
+  defp extract(%Phoenix.LiveView.Rendered{} = heex),
+    do: Mix.Tasks.Velo.Links.extract_links_from_heex(heex)
+
+  defp check({source, name, url}) do
+    {:ok, response} = get(url)
+
+    if response.status != 200 do
+      """
+      unexpected result: #{response.status}
+        SOURCE: #{source}
+        NAME:   #{name}
+        LINK:   #{url}
+      """
+    end
   end
 end
