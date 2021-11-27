@@ -113,7 +113,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({name, url}) do
     path = URI.new!(url).path
 
-    if path && String.ends_with?(path, "/") do
+    if String.ends_with?(path, "/") do
       # likely a normal website, just capture it
       [{:capture, "default #{name}", url}]
     else
