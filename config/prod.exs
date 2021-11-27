@@ -1,7 +1,7 @@
 import Config
 import_config "../data/settings.ex"
 
-parsed = URI.parse(Settings.url())
+parsed = URI.new!(Settings.url())
 port = String.to_integer(System.get_env("PORT") || "4000")
 
 config :veloroute, VelorouteWeb.Endpoint,

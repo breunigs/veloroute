@@ -8,19 +8,22 @@ defmodule Components.TagHelpers do
   a links change the current page and may point to internal or external pages
   """
   @spec a(map()) :: Phoenix.LiveView.Rendered.t()
+  def a(%{href: "mailto:" <> _rest} = assigns) do
+    ~H"""
+    <a href={@href} target="_blank"><%= render_block(@inner_block) %></a>
+    """
+  end
+
   def a(%{href: href} = assigns) do
     attrs =
-      case URI.parse(href) do
-        %{host: nil, path: "/" <> _rest} ->
+      case URI.new(href) do
+        {:ok, %{host: nil, path: "/" <> _rest}} ->
           %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
 
-        %{host: h} when h in @paywall_hostnames ->
+        {:ok, %{host: h}} when h in @paywall_hostnames ->
           %{target: "_blank", rel: "nofollow", href: href}
 
-        %{host: h} when is_binary(h) ->
-          %{target: "_blank", href: href}
-
-        %{scheme: "mailto"} ->
+        {:ok, %{host: h}} when is_binary(h) ->
           %{target: "_blank", href: href}
 
         _any ->

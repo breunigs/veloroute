@@ -383,7 +383,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp update_url_query(%{assigns: assigns} = socket) do
-    %{path: path, query: prev_query} = URI.parse(assigns.current_url)
+    %{path: path, query: prev_query} = URI.new!(assigns.current_url)
     query = url_query(socket)
 
     if prev_query != nil && URI.decode_query(prev_query) == query do

@@ -11,7 +11,8 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     Code.compiler_options(ignore_module_conflict: true)
 
     Article.List.all()
-    |> Enum.flat_map(& &1.tracks())
+    |> Stream.flat_map(& &1.tracks())
+    |> Tqdm.tqdm(description: "generating")
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn
       rendered when is_atom(rendered) ->

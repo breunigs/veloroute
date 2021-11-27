@@ -111,7 +111,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name, "https://www.openstreetmap.org" <> _rest}), do: []
 
   defp extract({name, url}) do
-    path = URI.parse(url).path
+    path = URI.new!(url).path
 
     if path && String.ends_with?(path, "/") do
       # likely a normal website, just capture it
@@ -124,14 +124,14 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec extract_sitzungsdienst({binary(), binary()}) :: [entry()]
   defp extract_sitzungsdienst({name, url}) do
-    given = URI.parse(url)
+    given = URI.new!(url)
 
     extra =
       url
       |> hrefs_from_url()
       |> Enum.filter(&String.match?(&1, ~r{___tmp/tmp/.*\.(pdf|zip|jpe?g)}i))
       |> Enum.map(fn href ->
-        known_url_parts = URI.parse(href) |> Map.from_struct() |> Util.compact()
+        known_url_parts = URI.new!(href) |> Map.from_struct() |> Util.compact()
         uri = Map.merge(given, known_url_parts)
 
         uri =
@@ -150,14 +150,14 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec extract_contentblob({binary(), binary()}) :: [entry()]
   defp extract_contentblob({name, url}) do
-    given = URI.parse(url)
+    given = URI.new!(url)
 
     extra =
       url
       |> hrefs_from_url()
       |> Enum.filter(&String.match?(&1, ~r{/contentblob/.*\.(pdf|zip)}))
       |> Enum.map(fn href ->
-        known_url_parts = URI.parse(href) |> Map.from_struct() |> Util.compact()
+        known_url_parts = URI.new!(href) |> Map.from_struct() |> Util.compact()
         url = Map.merge(given, known_url_parts) |> to_string()
         {:download, name_from_url(url), url}
       end)
@@ -178,7 +178,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end
   end
 
-  defp name_from_url("" <> url), do: name_from_url(URI.parse(url))
+  defp name_from_url("" <> url), do: name_from_url(URI.new!(url))
 
   defp name_from_url(%URI{path: path}) do
     path |> String.split("/") |> List.last()
