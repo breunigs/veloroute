@@ -301,6 +301,8 @@ function launchIntoFullscreen(element) {
     element.requestFullscreen();
   } else if (element.mozRequestFullScreen) {
     element.mozRequestFullScreen();
+  } else if (video.webkitSetPresentationMode) {
+    video.webkitSetPresentationMode('fullscreen');
   } else if (element.webkitRequestFullscreen && !isTouch()) {
     element.webkitRequestFullscreen();
   } else if (element.msRequestFullscreen) {
@@ -315,6 +317,8 @@ function exitFullscreen() {
     document.exitFullscreen();
   } else if (document.mozCancelFullScreen) {
     document.mozCancelFullScreen();
+  } else if (video.webkitSetPresentationMode) {
+    video.webkitSetPresentationMode('inline');
   } else if (document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   } else if (document.msExitFullscreen) {
@@ -322,13 +326,6 @@ function exitFullscreen() {
   }
   document.body.classList.remove('fullscreen');
 }
-
-function isTouch() {
-  return ('ontouchstart' in window) ||
-    (navigator.maxTouchPoints > 0) ||
-    (navigator.msMaxTouchPoints > 0);
-}
-
 
 function maybeUpgradeLowQualitySegments(evt, info) {
   const nextLevel = info.level;
