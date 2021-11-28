@@ -8,22 +8,12 @@ const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
 video.addEventListener('loadedmetadata', updateIndicatorPos);
 video.addEventListener('timeupdate', updateIndicatorPos);
+video.addEventListener('timeupdate', updateProgressbar);
+video.addEventListener('progress', updateProgressbar);
 video.addEventListener('play', markPlay);
+video.addEventListener('play', updatePlaypause);
 video.addEventListener('pause', markPause);
-
-
-function reverseVideo() {
-  window.pushEvent('video-reverse', {
-    lon: window.state.lon,
-    lat: window.state.lat
-  })
-
-  window.plausible('video-reverse', {
-    props: {
-      hash: state.videoHash
-    }
-  })
-}
+video.addEventListener('pause', updatePlaypause);
 
 function autoplayEnabled() {
   return window.state.autoplay === "true"
@@ -45,7 +35,7 @@ function markPlay() {
 }
 
 function markPause() {
-  window.pushEvent('video-pause', {
+  window.pushEvent('video-current-time', {
     pos: Math.round(this.currentTime * 1000)
   })
 
@@ -75,6 +65,7 @@ function updateVideoElement() {
   if (!state.videoHash) return;
   console.debug('trying to play video for: ', state.videoHash)
   const path = `/videos-rendered/${state.videoHash}/`;
+  updatePoster();
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
@@ -163,8 +154,28 @@ function currentTimeInMs() {
 
 function seekToTime(timeInMs) {
   const seconds = timeInMs / 1000.0;
+
+  let given = seconds;
+  let have = video.currentTime;
+
   if (video.currentTime == seconds) return;
   video.currentTime = seconds;
+  // without this check there's a continous loop on iOS
+  if (state.videoStart != Math.round(timeInMs)) {
+    window.pushEvent('video-current-time', {
+      pos: Math.round(timeInMs),
+    })
+  }
+  updateProgressbar();
+  updatePoster();
+}
+
+function updatePoster() {
+  // only update poster if we don't also have a video attached
+  if (video.readyState !== 0) return;
+
+  console.debug("setting outer style img to", state.videoPoster)
+  poster.style.backgroundImage = `url(${state.videoPoster})`;
 }
 
 function setVideo() {
@@ -176,6 +187,9 @@ function setVideo() {
   }
 
   seekToStartTime();
+  updateProgressbar();
+  updatePlaypause();
+  updatePoster();
 }
 
 function parseCoordsFromState() {
@@ -193,6 +207,129 @@ function updateIndicatorPos(evt) {
   window.mapUpdateIndicatorFromVideo(video, videoCoords);
 }
 
+const progress = document.getElementById("progress")
+const progressWrapper = document.getElementById("progressWrapper")
+const playpause = document.getElementById("playpause")
+const reverse = document.getElementById("reverse")
+const current = document.getElementById("current")
+const duration = document.getElementById("max")
+const fullscreen = document.getElementById("fullscreen")
+const outer = document.getElementById('videoOuter')
+const poster = document.getElementById('videoPoster')
+progressWrapper.addEventListener('click', seekFromProgress);
+playpause.addEventListener('click', togglePlayPause);
+video.addEventListener('click', togglePlayPause);
+video.addEventListener('dblclick', toggleFullscreen);
+reverse.addEventListener('click', reverseVideo);
+fullscreen.addEventListener('click', toggleFullscreen);
+
+function togglePlayPause() {
+  if (video.paused || video.ended)
+    video.play();
+  else
+    video.pause();
+  updatePlaypause();
+}
+
+function reverseVideo() {
+  window.pushEvent('video-reverse', {
+    lon: window.state.lon,
+    lat: window.state.lat
+  })
+
+  window.plausible('video-reverse', {
+    props: {
+      hash: state.videoHash
+    }
+  })
+}
+
+function seekFromProgress(e) {
+  const rect = this.getBoundingClientRect();
+  const pos = (e.pageX - rect.left) / this.offsetWidth;
+  const max = Math.round(video.duration * 1000) || state.videoLengthMs;
+
+  seekToTime(pos * max);
+};
+
+function updateProgressbar() {
+  const ms = Math.round(video.currentTime * 1000) || state.videoStart;
+  const max = Math.round(video.duration * 1000) || state.videoLengthMs;
+  progress.value = ms;
+  progress.max = max;
+  current.innerText = ms2text(ms);
+  duration.innerText = ms2text(max);
+
+  for (var i = 0; i < video.buffered.length; i++) {
+    const start = video.buffered.start(i) * 1000;
+    const end = video.buffered.end(i) * 1000;
+    if (start > ms) break;
+    if (end < ms) continue;
+
+    const loaded = end / max * 100;
+    progress.style.setProperty("--loaded", loaded + "%");
+  }
+}
+
+function updatePlaypause() {
+  playpause.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
+}
+
+function ms2text(ms) {
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.round((ms - minutes * 60000) / 1000.0);
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+
+function toggleFullscreen() {
+  const fullscreenElement =
+    document.fullscreenElement ||
+    document.mozFullScreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement ||
+    document.body.classList.contains("fullscreen");
+  if (fullscreenElement) {
+    exitFullscreen();
+  } else {
+    launchIntoFullscreen(outer);
+  }
+}
+
+function launchIntoFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen && !isTouch()) {
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else {
+    document.body.classList.add('fullscreen');
+  }
+}
+
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+  document.body.classList.remove('fullscreen');
+}
+
+function isTouch() {
+  return ('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0);
+}
+
+
 function maybeUpgradeLowQualitySegments(evt, info) {
   const nextLevel = info.level;
   if (nextLevel <= prevLevel) {
@@ -207,5 +344,4 @@ function maybeUpgradeLowQualitySegments(evt, info) {
 }
 
 window.videoStateChanged = setVideo;
-window.reverseVideo = reverseVideo;
 setVideo()

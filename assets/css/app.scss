@@ -3,6 +3,7 @@ $mainWidth: 66.6666vw;
 $sidebarWidth: 33.3333vw;
 $bgcolor: #f8f8f8;
 $darkBg: #333;
+$red: #e30513;
 $darkBgHighlight: #666;
 $contentPad: 0.9rem;
 
@@ -13,16 +14,14 @@ $contentPad: 0.9rem;
   touch-action: manipulation;
 }
 
-html,
-body>div {
+html, body > div {
   overflow: hidden;
 }
 
 body {
-  overflow: hidden;
   height: 100vh;
   height: -webkit-fill-available;
-  background: $bgcolor;
+  background: #333;
   font-family: Arial, sans;
   font-size: 0.9em;
 
@@ -75,6 +74,163 @@ body {
 #videoOuter {
   top: 50%;
   overflow: hidden;
+  background: #333 url('/images/video_poster.svg') 50% 50% / contain no-repeat;
+}
+
+#videoPoster {
+  width: 100%;
+  height: 100%;
+  background: url('') 50% 50% / cover no-repeat;
+}
+
+body.fullscreen #videoOuter {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available;
+    position: fixed;
+    z-index: 11;
+  }
+
+body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
+  background-size: contain;
+}
+
+#videoOuter:hover #videoControls {
+  opacity: 1;
+}
+
+$videoBarHeight: 2.6rem;
+$videoBarBtnMargin: 0.3rem;
+$videoBarProgressHeight: 0.4rem;
+#videoControls {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  height: $videoBarHeight;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+
+  width: 100%;
+  // min-width: $minWidth;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 12;
+
+  display: flex;
+
+  button {
+    border: 0;
+
+    height: $videoBarHeight - 2*$videoBarBtnMargin;
+    width: $videoBarHeight - 2*$videoBarBtnMargin;
+    margin: $videoBarBtnMargin;
+    overflow: hidden;
+    float: left;
+    color: #fff;
+    background: transparent;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: $videoBarHeight - 2*$videoBarBtnMargin;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+
+    &.disabled {
+      cursor: default;
+
+      &::before {
+        position: absolute;
+        content: "";
+        left: $videoBarBtnMargin;
+        top: 50%;
+        right: 0;
+        border-top: 2px solid;
+        border-color: $red;
+        width: 1.5rem;
+
+        -webkit-transform:rotate(-45deg);
+        -moz-transform:rotate(-45deg);
+        -ms-transform:rotate(-45deg);
+        -o-transform:rotate(-45deg);
+        transform:rotate(-45deg);
+      }
+    }
+
+    &:not(.disabled):hover {
+      color: $red;
+      // via https://codepen.io/sosuke/pen/Pjoqqp
+      filter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
+    }
+
+    &[data-state="play"] {
+      background: url("/images/play.svg") no-repeat center center;
+      background-size: $videoBarHeight / 4;
+    }
+
+    &[data-state="pause"] {
+      background: url("/images/pause.svg") no-repeat center center;
+      background-size: $videoBarHeight / 4;
+    }
+
+    &#fullscreen {
+      background: url("/images/fullscreen.svg") no-repeat center center;
+      background-size: $videoBarHeight / 2.7;
+    }
+
+    &#reverse {
+      background: url("/images/reverse.svg") no-repeat center center;
+      background-size: $videoBarHeight / 2.7;
+    }
+  }
+
+  #duration {
+    height: $videoBarHeight - 2*$videoBarBtnMargin;
+    line-height: $videoBarHeight - 2*$videoBarBtnMargin;
+    text-align: center;
+    color: #888;
+    margin: $videoBarBtnMargin;
+
+    #current {
+      color: #fff;
+    }
+  }
+
+  #progressWrapper {
+    display: block;
+    float: left;
+    flex: 2;
+    height: $videoBarHeight - 4*$videoBarBtnMargin;
+    margin: 2*$videoBarBtnMargin $videoBarBtnMargin;
+    cursor: pointer;
+  }
+
+  progress {
+    width: 100%;
+    vertical-align: middle;
+    height: $videoBarProgressHeight;
+    border: none;
+    color: $red;
+    border-radius: $videoBarProgressHeight;
+    background: #000;
+    background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
+
+    &::-webkit-progress-bar {
+      background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
+      border-radius: $videoBarProgressHeight;
+    }
+
+    &::-moz-progress-bar {
+      border-radius: $videoBarProgressHeight;
+      background-color: $red;
+    }
+    &::-webkit-progress-value {
+      border-radius: $videoBarProgressHeight;
+      background-color: $red;
+    }
+  }
 }
 
 #sidebar {
@@ -139,6 +295,10 @@ video {
   object-fit: cover;
 }
 
+body.fullscreen video, #videoOuter:fullscreen video {
+  object-fit: contain;
+}
+
 #slideshow {
   $btnSize: 2.5rem;
 
@@ -150,7 +310,7 @@ video {
   min-width: $minWidth;
   box-sizing: border-box;
 
-  padding: 0 1rem;
+  padding: 0 $contentPad;
   color: #fff;
   height: $btnSize;
   background: $darkBg;

@@ -1,6 +1,21 @@
-<div id="videoOuter" style={"background: #333333 url('#{@video_poster}') 50% 50% / cover no-repeat"}>
-  <video phx-update="ignore" id="videoInner" muted controls playsinline preload="none">
-  </video>
+<div id="videoOuter">
+  <div phx-update="ignore" id="videoPoster">
+    <video id="videoInner" muted playsinline preload="none"></video>
+  </div>
+
+  <div id="videoControls">
+    <button id="playpause" type="button" title="Video starten oder pausieren" data-state="play"></button>
+    <div id="progressWrapper">
+      <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
+    </div>
+    <div id="duration">
+      <span id="current"><%= Video.Timestamp.as_html(@video_start) %></span><span>
+      /
+      </span><span id="max"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
+    </div>
+    <button id="reverse" type="button" title={if @video_reversable, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversable, do: "disabled"}></button>
+    <button id="fullscreen" type="button" title="Video im Vollbild anzeigen"></button>
+  </div>
 </div>
 
 <div id="sidebar">
@@ -25,9 +40,6 @@
   </div>
   <%= if @video_hash != "" do %>
     <div id="slideshow">
-      <%= if @video_reversable do %>
-        <button onclick="window.reverseVideo()" title="Fahrtrichtung ändern">⇆</button>
-      <% end %>
       <%= display_route(@video) %>
     </div>
   <% end %>
@@ -42,6 +54,8 @@
   data-video-hash={@video_hash}
   data-video-start={@video_start}
   data-video-start-gen={@video_start_gen}
+  data-video-length-ms={@video_length_ms}
+  data-video-poster={@video_poster}
   data-video-coords={@video_coords}
   data-visible-types={Enum.join(@visible_types, ",")}
   data-bounds={@bounds}

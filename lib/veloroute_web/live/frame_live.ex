@@ -110,8 +110,18 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, VelorouteWeb.Live.VideoState.reverse(socket, attr)}
   end
 
+  @deprecated "removed from FE, should not be used after a while"
   def handle_event("video-pause", attr, socket) do
     Logger.debug("video-pause #{inspect(attr)}")
+
+    {:noreply,
+     socket
+     |> VelorouteWeb.Live.VideoState.set_position(attr)
+     |> update_url_query()}
+  end
+
+  def handle_event("video-current-time", attr, socket) do
+    Logger.debug("video-current-time #{inspect(attr)}")
 
     {:noreply,
      socket

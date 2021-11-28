@@ -216,9 +216,10 @@ defmodule VelorouteWeb.Live.VideoState do
 
     [
       video: state,
-      video_hash: video.hash,
+      video_hash: video.hash(),
       video_start: start_from.time_offset_ms,
       video_start_gen: state.start_generation,
+      video_length_ms: video.length_ms(),
       video_coords: coords,
       video_reversable: is_reversable(state),
       video_poster: video_poster(video, start_from),

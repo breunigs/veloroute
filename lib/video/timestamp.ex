@@ -15,6 +15,18 @@ defmodule Video.Timestamp do
 
   def zero(), do: "00:00:00.000"
 
+  @spec as_html(integer() | t()) :: binary()
+  def as_html(duration_in_ms) when is_integer(duration_in_ms) do
+    {hours, minutes, seconds, milliseconds} = duration_split(duration_in_ms)
+    minutes = hours * 60 + minutes
+    seconds = if milliseconds >= 500, do: seconds + 1, else: seconds
+    "#{minutes}:#{pad_left(seconds)}"
+  end
+
+  def as_html(timestamp) when looks_valid(timestamp) do
+    timestamp |> in_milliseconds() |> as_html()
+  end
+
   @doc """
   Takes a duration in millisecond and returns it as an ffmpeg formatted timestamp
 
@@ -23,15 +35,7 @@ defmodule Video.Timestamp do
   """
   @spec from_milliseconds(integer()) :: t()
   def from_milliseconds(duration_in_ms) do
-    hours = div(duration_in_ms, @hour_in_ms)
-    duration_in_ms = rem(duration_in_ms, @hour_in_ms)
-
-    minutes = div(duration_in_ms, @minute_in_ms)
-    duration_in_ms = rem(duration_in_ms, @minute_in_ms)
-
-    seconds = div(duration_in_ms - hours - minutes, @second_in_ms)
-    milliseconds = rem(duration_in_ms, @second_in_ms)
-
+    {hours, minutes, seconds, milliseconds} = duration_split(duration_in_ms)
     "#{pad_left(hours)}:#{pad_left(minutes)}:#{pad_left(seconds)}.#{pad_left(milliseconds, 3)}"
   end
 
@@ -113,5 +117,22 @@ defmodule Video.Timestamp do
 
       nil
     end
+  end
+
+  @second_in_ms 1000
+  @minute_in_ms 60 * @second_in_ms
+  @hour_in_ms 60 * @minute_in_ms
+  @spec duration_split(integer()) :: {integer(), integer(), integer(), integer()}
+  defp duration_split(duration_in_ms) when is_integer(duration_in_ms) do
+    hours = div(duration_in_ms, @hour_in_ms)
+    duration_in_ms = rem(duration_in_ms, @hour_in_ms)
+
+    minutes = div(duration_in_ms, @minute_in_ms)
+    duration_in_ms = rem(duration_in_ms, @minute_in_ms)
+
+    seconds = div(duration_in_ms - hours - minutes, @second_in_ms)
+    milliseconds = rem(duration_in_ms, @second_in_ms)
+
+    {hours, minutes, seconds, milliseconds}
   end
 end
