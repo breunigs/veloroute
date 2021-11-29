@@ -21,9 +21,21 @@ defmodule Data.Article.Blog.Thadenstrasse do
         from: "",
         to: "",
         parent_ref: __MODULE__,
-        text: "Umleitung Baustelle Thadenstraße",
+        text: "Umleitung Baustelle Thadenstraße stadtauswärts",
         videos: [
-          {"2021-09-08-velo5-reroute/GX012732", "00:00:04.037", "00:00:43.744"}
+          {"2021-11-29-stephansplatz/GX013032", "00:00:45.679", "00:01:21.915"}
+        ]
+      },
+      %Video.Track{
+        group: "detour",
+        direction: :backward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Umleitung Baustelle Thadenstraße stadteinwärts",
+        videos: [
+          {"2021-11-29-stephansplatz/GX013011", "00:00:20.821", :end},
+          {"2021-11-29-stephansplatz/GX013012", :start, :end}
         ]
       }
     ]
