@@ -326,8 +326,7 @@ function launchIntoFullscreen(element) {
     document.body.classList.add('fullscreen');
   }
 
-  outer.addEventListener("mousemove", inactivityDelay);
-  outer.addEventListener("touchmove", inactivityDelay);
+  inactivityListener(true);
 }
 
 function exitFullscreen() {
@@ -343,13 +342,23 @@ function exitFullscreen() {
     document.msExitFullscreen();
   }
 
-  outer.removeEventListener("mousemove", inactivityDelay);
-  outer.removeEventListener("touchmove", inactivityDelay);
-  inactivityReset()
+  inactivityListener(false);
   document.body.classList.remove('fullscreen');
 }
 
 let inactivityTimeout = null;
+
+function inactivityListener(bool) {
+  if (bool) {
+    outer.addEventListener("mousemove", inactivityDelay);
+    outer.addEventListener("touchmove", inactivityDelay);
+    inactivityReset();
+  } else {
+    outer.removeEventListener("mousemove", inactivityDelay);
+    outer.removeEventListener("touchmove", inactivityDelay);
+    inactivityDelay();
+  }
+}
 
 function inactivityReset() {
   if (inactivityTimeout) {
@@ -362,6 +371,8 @@ function inactivityReset() {
 function inactivityDelay() {
   inactivityReset()
   inactivityTimeout = setTimeout(() => {
+    // don't hide the controls if the cursor is hovering them
+    if (controls.matches(':hover')) return;
     outer.classList.add("inactivity");
   }, 2000);
 }
