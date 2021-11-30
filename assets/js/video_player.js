@@ -7,6 +7,7 @@ let prevLevel = null;
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
 video.addEventListener('loadedmetadata', updateIndicatorPos);
+video.addEventListener('loadeddata', maybeShowLoadingIndicator);
 video.addEventListener('stalled', maybeShowLoadingIndicator);
 video.addEventListener('waiting', maybeShowLoadingIndicator);
 video.addEventListener('playing', maybeShowLoadingIndicator);
@@ -324,6 +325,9 @@ function launchIntoFullscreen(element) {
   } else {
     document.body.classList.add('fullscreen');
   }
+
+  outer.addEventListener("mousemove", inactivityDelay);
+  outer.addEventListener("touchmove", inactivityDelay);
 }
 
 function exitFullscreen() {
@@ -338,7 +342,28 @@ function exitFullscreen() {
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
   }
+
+  outer.removeEventListener("mousemove", inactivityDelay);
+  outer.removeEventListener("touchmove", inactivityDelay);
+  inactivityReset()
   document.body.classList.remove('fullscreen');
+}
+
+let inactivityTimeout = null;
+
+function inactivityReset() {
+  if (inactivityTimeout) {
+    clearTimeout(inactivityTimeout);
+    inactivityTimeout = null;
+  }
+  outer.classList.remove("inactivity");
+}
+
+function inactivityDelay() {
+  inactivityReset()
+  inactivityTimeout = setTimeout(() => {
+    outer.classList.add("inactivity");
+  }, 2000);
 }
 
 function maybeUpgradeLowQualitySegments(evt, info) {

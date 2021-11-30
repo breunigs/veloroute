@@ -85,14 +85,14 @@ body {
 }
 
 body.fullscreen #videoOuter {
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: -webkit-fill-available;
-    position: fixed;
-    z-index: 11;
-  }
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: -webkit-fill-available;
+  position: fixed;
+  z-index: 11;
+}
 
 body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
   background-size: contain;
@@ -100,6 +100,18 @@ body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
 
 #videoOuter:hover #videoControls, #videoControls[data-state="play"] {
   opacity: 1;
+}
+
+
+body.fullscreen #videoOuter, #videoOuter:fullscreen {
+  &.inactivity {
+    cursor: none;
+
+    #videoControls {
+      opacity: 0 !important;
+      cursor: auto;
+    }
+  }
 }
 
 $videoBarHeight: 2.6rem;
@@ -342,8 +354,6 @@ video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-
 }
 
 body.fullscreen video, #videoOuter:fullscreen video {
