@@ -98,7 +98,7 @@ body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
   background-size: contain;
 }
 
-#videoOuter:hover #videoControls {
+#videoOuter:hover #videoControls, #videoControls[data-state="play"] {
   opacity: 1;
 }
 
@@ -165,26 +165,26 @@ $videoBarProgressHeight: 0.4rem;
       // via https://codepen.io/sosuke/pen/Pjoqqp
       filter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
     }
+  }
 
-    &[data-state="play"] {
-      background: url("/images/play.svg") no-repeat center center;
-      background-size: $videoBarHeight / 4;
-    }
+  #playpause {
+    background: url("/images/play.svg") no-repeat center center;
+    background-size: $videoBarHeight / 3;
+  }
 
-    &[data-state="pause"] {
-      background: url("/images/pause.svg") no-repeat center center;
-      background-size: $videoBarHeight / 4;
-    }
+  &[data-state="pause"] #playpause {
+    background: url("/images/pause.svg") no-repeat center center;
+    background-size: $videoBarHeight / 4;
+  }
 
-    &#fullscreen {
-      background: url("/images/fullscreen.svg") no-repeat center center;
-      background-size: $videoBarHeight / 2.7;
-    }
+  #fullscreen {
+    background: url("/images/fullscreen.svg") no-repeat center center;
+    background-size: $videoBarHeight / 2.7;
+  }
 
-    &#reverse {
-      background: url("/images/reverse.svg") no-repeat center center;
-      background-size: $videoBarHeight / 2.7;
-    }
+  #reverse {
+    background: url("/images/reverse.svg") no-repeat center center;
+    background-size: $videoBarHeight / 2.7;
   }
 
   #duration {
@@ -210,9 +210,9 @@ $videoBarProgressHeight: 0.4rem;
 
   progress {
     width: 100%;
-    vertical-align: middle;
     height: $videoBarProgressHeight;
     border: none;
+    margin: ($videoBarHeight - 4*$videoBarBtnMargin - $videoBarProgressHeight)/2 0;
     color: $red;
     border-radius: $videoBarProgressHeight;
     background: #000;
@@ -290,10 +290,60 @@ $videoBarProgressHeight: 0.4rem;
   }
 }
 
+@keyframes spinner {
+  0% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+$cyclistSize: 8rem;
+#videoPoster {
+  &::after, &::before {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    opacity: 0;
+    content: "";
+    position: absolute;
+  }
+
+  &::before {
+    background: url('/images/cyclist.svg') 100% 100% / contain no-repeat;
+    height: $cyclistSize;
+    top:  unquote('calc(50% - #{$cyclistSize/2})');
+    left: unquote('calc(50% - #{$cyclistSize/2})');
+    width: $cyclistSize;
+  }
+
+  &::after {
+    animation: 2.0s ease-in-out infinite spinner;
+    animation-play-state: inherit;
+    border: solid $cyclistSize/20 transparent;
+    border-bottom-color: $red;
+    border-radius: 50%;
+    height: $cyclistSize/3.55;
+    top: unquote('calc(50% - #{$cyclistSize/30.5})');
+    left: unquote('calc(50% - #{$cyclistSize/2.19})');
+    width: $cyclistSize/3.55;
+    will-change: transform;
+  }
+
+  &.loading {
+    &::after, &::before {
+      opacity: 1;
+    }
+  }
+}
+
 video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+
 }
 
 body.fullscreen video, #videoOuter:fullscreen video {
@@ -321,31 +371,6 @@ body.fullscreen video, #videoOuter:fullscreen video {
   touch-action: pan-x;
 
   box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.4);
-
-  button {
-    flex-grow: 0;
-    flex-shrink: 0;
-    color: #fff;
-    background: $darkBg;
-    width: $btnSize;
-    height: $btnSize;
-    border: 0;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    font-size: 130%;
-    touch-action: manipulation;
-
-    &:hover {
-      background: $darkBgHighlight;
-    }
-
-    &:disabled {
-      opacity: .7;
-      color: #888;
-      pointer-events: none;
-      cursor: default;
-    }
-  }
 
   .curRoute {
     height: $btnSize;

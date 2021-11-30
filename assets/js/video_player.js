@@ -7,6 +7,9 @@ let prevLevel = null;
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
 video.addEventListener('loadedmetadata', updateIndicatorPos);
+video.addEventListener('stalled', maybeShowLoadingIndicator);
+video.addEventListener('waiting', maybeShowLoadingIndicator);
+video.addEventListener('playing', maybeShowLoadingIndicator);
 video.addEventListener('timeupdate', updateIndicatorPos);
 video.addEventListener('timeupdate', updateProgressbar);
 video.addEventListener('progress', updateProgressbar);
@@ -170,6 +173,14 @@ function seekToTime(timeInMs) {
   updatePoster();
 }
 
+function maybeShowLoadingIndicator(evt) {
+  if (video.paused || video.ended || video.readyState >= 3) {
+    poster.classList.remove("loading");
+  } else {
+    poster.classList.add("loading");
+  }
+}
+
 function updatePoster() {
   // only update poster if we don't also have a video attached
   if (video.readyState !== 0) return;
@@ -215,6 +226,7 @@ const current = document.getElementById("current")
 const duration = document.getElementById("max")
 const fullscreen = document.getElementById("fullscreen")
 const outer = document.getElementById('videoOuter')
+const controls = document.getElementById('videoControls')
 const poster = document.getElementById('videoPoster')
 progressWrapper.addEventListener('click', seekFromProgress);
 playpause.addEventListener('click', togglePlayPause);
@@ -224,10 +236,12 @@ reverse.addEventListener('click', reverseVideo);
 fullscreen.addEventListener('click', toggleFullscreen);
 
 function togglePlayPause() {
-  if (video.paused || video.ended)
+  if (video.paused || video.ended) {
     video.play();
-  else
+    maybeShowLoadingIndicator();
+  } else {
     video.pause();
+  }
   updatePlaypause();
 }
 
@@ -272,7 +286,7 @@ function updateProgressbar() {
 }
 
 function updatePlaypause() {
-  playpause.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
+  controls.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
 }
 
 function ms2text(ms) {
