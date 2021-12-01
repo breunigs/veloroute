@@ -11927,6 +11927,20 @@
   <node id='-23298279' action='modify' lat='53.55753737' lon='9.96373056829' />
   <node id='-23298280' action='modify' lat='53.55726332615' lon='9.96379494131' />
   <node id='-23298281' action='modify' lat='53.55715498275' lon='9.96380030572' />
+  <node id='-23551643' action='modify' lat='53.59189349674' lon='9.96020078123' />
+  <node id='-23551644' action='modify' lat='53.59182344961' lon='9.96043681562' />
+  <node id='-23551645' action='modify' lat='53.59234880026' lon='9.96095984638' />
+  <node id='-23551646' action='modify' lat='53.59141590355' lon='9.96192811847' />
+  <node id='-23551647' action='modify' lat='53.59150505528' lon='9.96215342402' />
+  <node id='-23551648' action='modify' lat='53.59245148485' lon='9.96116503' />
+  <node id='-23551649' action='modify' lat='53.59249526367' lon='9.96080159068' />
+  <node id='-23551663' action='modify' lat='53.59263853392' lon='9.96113553509' />
+  <node id='-23551668' action='modify' lat='53.59252709721' lon='9.96125355229' />
+  <node id='-23551674' action='modify' lat='53.59268708839' lon='9.96093168721' />
+  <node id='-23551680' action='modify' lat='53.59264967757' lon='9.96077477798' />
+  <node id='-23551686' action='modify' lat='53.59264490252' lon='9.96104567975' />
+  <node id='-23551691' action='modify' lat='53.59254779342' lon='9.96080964535' />
+  <node id='-23551696' action='modify' lat='53.59230740764' lon='9.96110468835' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -40932,6 +40946,25 @@
     <tag k='name' v='2018-09-28-1-thadenstrasse' />
     <tag k='oneway' v='yes' />
     <tag k='type' v='detour' />
+  </way>
+  <way id='-19264320' action='modify'>
+    <nd ref='-23551643' />
+    <nd ref='-23551644' />
+    <nd ref='-23551645' />
+    <nd ref='-23551696' />
+    <nd ref='-23551646' />
+    <nd ref='-23551647' />
+    <nd ref='-23551648' />
+    <nd ref='-23551668' />
+    <nd ref='-23551663' />
+    <nd ref='-23551686' />
+    <nd ref='-23551674' />
+    <nd ref='-23551680' />
+    <nd ref='-23551691' />
+    <nd ref='-23551649' />
+    <nd ref='-23551643' />
+    <tag k='name' v='2021-12-01-grandweg-sued' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
