@@ -344,73 +344,9 @@ map.on('style.load', () => {
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
 
-  map.once('click', removeFakeMap);
-  map.once('touchstart', removeFakeMap);
-  map.once('wheel', removeFakeMap);
-  map.once('mousedown', removeFakeMap);
-
   map.on('movestart', disableIndicatorAnimation);
   map.on('zoomstart', disableIndicatorAnimation);
 });
-
-
-let fakeMap = document.getElementById("fakeMap");
-let fakeMapImg = null;
-const updateFakeMap = () => {
-  if (fakeMap === null) return;
-
-  const w = fakeMap.offsetWidth;
-  const h = fakeMap.offsetHeight;
-  if (w == 0 || h == 0) return console.warn("element has no decent size, not updating fakemap", w, h);
-
-  const zoom = map.getZoom();
-  const center = map.getCenter();
-  const imgURL = `https://api.mapbox.com/styles/v1/breunigs/ckvvdvpy63v3j14n2vwo7sut0/static/${center.lng},${center.lat},${zoom}/${w}x${h}?access_token=${settings.mapboxAccessToken}`;
-  console.debug("new fake map URL", imgURL);
-
-  fakeMapImg = new Image();
-  fakeMapImg.onload = () => {
-    window.requestAnimationFrame(() => {
-      if (fakeMap) {
-        // console.debug("better fake map has loaded, replacing");
-        fakeMap.style.backgroundImage = `url(${imgURL})`;
-      } else {
-        console.debug("fake map has loaded, but it was too late");
-      }
-    })
-  }
-  fakeMapImg.src = imgURL;
-}
-window.requestAnimationFrame(updateFakeMap);
-
-let removeCounter = 0;
-
-function removeFakeMapWhenTilesPresent() {
-  if (removeCounter < 30 && !map.areTilesLoaded()) {
-    removeCounter++;
-    setTimeout(removeFakeMapWhenTilesPresent, 200);
-    return;
-  }
-  removeFakeMap()
-}
-
-function removeFakeMap(evt) {
-  if (fakeMapImg) fakeMapImg.src = ""
-  if (fakeMap === null) return;
-
-  const localFake = fakeMap;
-  fakeMap = null;
-
-  window.requestAnimationFrame(() => {
-    localFake.style.opacity = 0;
-  });
-  setTimeout(() => {
-    window.requestIdleCallback(() => {
-      localFake.remove()
-    });
-  }, 200);
-}
-map.once('load', removeFakeMapWhenTilesPresent);
 
 let video = null;
 let videoCoords = null;

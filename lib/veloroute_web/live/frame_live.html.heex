@@ -1,7 +1,9 @@
 <div id="videoOuter" data-state="play">
-  <div phx-update="ignore" id="videoPoster">
-    <video id="videoInner" muted playsinline preload="none"></video>
-  </div>
+  <span phx-update="ignore">
+    <div id="videoPoster" style={"background-image: url('#{@video_poster}')"}>
+      <video id="videoInner" muted playsinline preload="none"></video>
+    </div>
+  </span>
 
   <%= display_route(@video) %>
 
