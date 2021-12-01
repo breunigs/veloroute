@@ -345,8 +345,9 @@ map.on('style.load', () => {
   map.on('moveend', sendBounds);
 
   map.once('click', removeFakeMap);
-  map.once('movestart', removeFakeMap);
-  map.once('zoomstart', removeFakeMap);
+  map.once('touchstart', removeFakeMap);
+  map.once('wheel', removeFakeMap);
+  map.once('mousedown', removeFakeMap);
 
   map.on('movestart', disableIndicatorAnimation);
   map.on('zoomstart', disableIndicatorAnimation);
@@ -354,6 +355,7 @@ map.on('style.load', () => {
 
 
 let fakeMap = document.getElementById("fakeMap");
+let fakeMapImg = null;
 const updateFakeMap = () => {
   if (fakeMap === null) return;
 
@@ -363,33 +365,39 @@ const updateFakeMap = () => {
 
   const zoom = map.getZoom();
   const center = map.getCenter();
-  const imgURL = `https://api.mapbox.com/styles/v1/breunigs/ck8hk6y7e0csv1ioh4oqdtybb/static/${center.lng},${center.lat},${zoom}/${w}x${h}?access_token=${settings.mapboxAccessToken}`;
+  const imgURL = `https://api.mapbox.com/styles/v1/breunigs/ckvvdvpy63v3j14n2vwo7sut0/static/${center.lng},${center.lat},${zoom}/${w}x${h}?access_token=${settings.mapboxAccessToken}`;
   console.debug("new fake map URL", imgURL);
 
-  const img = new Image();
-  img.onload = () => {
+  fakeMapImg = new Image();
+  fakeMapImg.onload = () => {
     window.requestAnimationFrame(() => {
       if (fakeMap) {
         // console.debug("better fake map has loaded, replacing");
         fakeMap.style.backgroundImage = `url(${imgURL})`;
       } else {
-        // console.debug("better fake map has loaded, but it was too late");
+        console.debug("fake map has loaded, but it was too late");
       }
     })
   }
-  img.src = imgURL;
+  fakeMapImg.src = imgURL;
 }
-window.requestIdleCallback(updateFakeMap);
+window.requestAnimationFrame(updateFakeMap);
 
 let removeCounter = 0;
-const removeFakeMap = () => {
+
+function removeFakeMapWhenTilesPresent() {
   if (removeCounter < 30 && !map.areTilesLoaded()) {
     removeCounter++;
-    setTimeout(removeFakeMap, 200);
+    setTimeout(removeFakeMapWhenTilesPresent, 200);
     return;
   }
+  removeFakeMap()
+}
 
+function removeFakeMap(evt) {
+  if (fakeMapImg) fakeMapImg.src = ""
   if (fakeMap === null) return;
+
   const localFake = fakeMap;
   fakeMap = null;
 
@@ -402,7 +410,7 @@ const removeFakeMap = () => {
     });
   }, 200);
 }
-map.once('load', removeFakeMap);
+map.once('load', removeFakeMapWhenTilesPresent);
 
 let video = null;
 let videoCoords = null;
