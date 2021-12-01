@@ -144,7 +144,8 @@ function seekToStartTime() {
     video.autoplay = auto;
     return;
   }
-  console.debug("seeking to", state.videoStart, "(from ", cur, ")");
+  console.debug("seeking to", state.videoStart, "(from ", cur,
+    ", gen", prevStartGen, "→", state.videoStartGen, ")");
   if (!auto) video.pause();
   seekToTime(state.videoStart);
   video.autoplay = auto;
@@ -159,9 +160,6 @@ function currentTimeInMs() {
 function seekToTime(timeInMs) {
   const seconds = timeInMs / 1000.0;
 
-  let given = seconds;
-  let have = video.currentTime;
-
   if (video.currentTime == seconds) return;
   video.currentTime = seconds;
   // without this check there's a continous loop on iOS
@@ -172,6 +170,11 @@ function seekToTime(timeInMs) {
   }
   updateProgressbar();
   updatePoster();
+}
+
+function seek(diffInMs) {
+  const have = video.currentTime;
+  seekToTime(have * 1000 + diffInMs)
 }
 
 function maybeShowLoadingIndicator(evt) {
@@ -229,10 +232,11 @@ const fullscreen = document.getElementById("fullscreen")
 const outer = document.getElementById('videoOuter')
 const controls = document.getElementById('videoControls')
 const poster = document.getElementById('videoPoster')
+document.getElementById('skipBackward5').addEventListener('click', () => seek(-5000))
+document.getElementById('skipForward5').addEventListener('click', () => seek(+5000))
 progressWrapper.addEventListener('click', seekFromProgress);
 playpause.addEventListener('click', togglePlayPause);
-video.addEventListener('click', togglePlayPause);
-video.addEventListener('dblclick', toggleFullscreen);
+poster.addEventListener('click', togglePlayPause);
 reverse.addEventListener('click', reverseVideo);
 fullscreen.addEventListener('click', toggleFullscreen);
 
@@ -287,7 +291,7 @@ function updateProgressbar() {
 }
 
 function updatePlaypause() {
-  controls.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
+  outer.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
 }
 
 function ms2text(ms) {

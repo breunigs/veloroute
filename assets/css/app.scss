@@ -98,19 +98,52 @@ body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
   background-size: contain;
 }
 
-#videoOuter:hover #videoControls, #videoControls[data-state="play"] {
-  opacity: 1;
+#videoOuter:hover, #videoOuter[data-state="play"] {
+  #videoControls, #videoRoute {
+    opacity: 1;
+  }
 }
-
 
 body.fullscreen #videoOuter, #videoOuter:fullscreen {
   &.inactivity {
     cursor: none;
 
-    #videoControls {
+    #videoControls, #videoRoute {
       opacity: 0 !important;
       cursor: auto;
     }
+  }
+}
+
+
+#videoRoute, #videoControls {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 12;
+}
+
+#videoRoute {
+  left: 0;
+  top: 0;
+  position: absolute;
+  display: block;
+  padding: 0.5rem;
+  // padding-top: 0.7rem;
+  color: #fff;
+  font-weight: bold;
+  max-width: 90%;
+  overflow-x: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  text-decoration: none;
+
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom-right-radius: 0.5rem;
+
+  span {
+    margin-right: 0.2rem;
+    font-weight: bold;
   }
 }
 
@@ -118,19 +151,13 @@ $videoBarHeight: 2.6rem;
 $videoBarBtnMargin: 0.3rem;
 $videoBarProgressHeight: 0.4rem;
 #videoControls {
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-
   height: $videoBarHeight;
   left: 0;
   bottom: 0;
   position: absolute;
-
   width: 100%;
-  // min-width: $minWidth;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 12;
 
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
 
   button {
@@ -184,11 +211,6 @@ $videoBarProgressHeight: 0.4rem;
     background-size: $videoBarHeight / 3;
   }
 
-  &[data-state="pause"] #playpause {
-    background: url("/images/pause.svg") no-repeat center center;
-    background-size: $videoBarHeight / 4;
-  }
-
   #fullscreen {
     background: url("/images/fullscreen.svg") no-repeat center center;
     background-size: $videoBarHeight / 2.7;
@@ -199,12 +221,22 @@ $videoBarProgressHeight: 0.4rem;
     background-size: $videoBarHeight / 2.7;
   }
 
+  #skipBackward5 {
+    background: url("/images/skip_backward_5.svg") no-repeat center center;
+    background-size: $videoBarHeight / 2.2;
+  }
+
+  #skipForward5 {
+    background: url("/images/skip_forward_5.svg") no-repeat center center;
+    background-size: $videoBarHeight / 2.2;
+  }
+
   #duration {
     height: $videoBarHeight - 2*$videoBarBtnMargin;
     line-height: $videoBarHeight - 2*$videoBarBtnMargin;
     text-align: center;
     color: #888;
-    margin: $videoBarBtnMargin;
+    margin: $videoBarBtnMargin 0;
 
     #current {
       color: #fff;
@@ -229,6 +261,7 @@ $videoBarProgressHeight: 0.4rem;
     border-radius: $videoBarProgressHeight;
     background: #000;
     background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
+    user-select: none;
 
     &::-webkit-progress-bar {
       background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
@@ -244,6 +277,17 @@ $videoBarProgressHeight: 0.4rem;
       background-color: $red;
     }
   }
+}
+
+@media (min-width: 2*$minWidth) {
+  #skipBackward5, #skipForward5 {
+    display: block !important;
+  }
+}
+
+#videoOuter[data-state="pause"] #playpause {
+  background: url("/images/pause.svg") no-repeat center center;
+  background-size: $videoBarHeight / 4;
 }
 
 #sidebar {
@@ -296,10 +340,6 @@ $videoBarProgressHeight: 0.4rem;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-
-  &.bottomBumper {
-    margin-bottom: 2.5rem;
-  }
 }
 
 @keyframes spinner {
@@ -345,6 +385,7 @@ $cyclistSize: 8rem;
 
   &.loading {
     &::after, &::before {
+      transition-delay: 500ms;
       opacity: 1;
     }
   }
@@ -358,40 +399,6 @@ video {
 
 body.fullscreen video, #videoOuter:fullscreen video {
   object-fit: contain;
-}
-
-#slideshow {
-  $btnSize: 2.5rem;
-
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  width: 100%;
-  min-width: $minWidth;
-  box-sizing: border-box;
-
-  padding: 0 $contentPad;
-  color: #fff;
-  height: $btnSize;
-  background: $darkBg;
-  white-space: nowrap;
-  overflow: hidden;
-  display: flex;
-  touch-action: pan-x;
-
-  box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.4);
-
-  .curRoute {
-    height: $btnSize;
-    line-height: $btnSize;
-    flex-grow: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: right;
-    color: #fff;
-    text-decoration: none;
-  }
 }
 
 #switcher {
@@ -746,17 +753,6 @@ a {
   width: 2em;
   z-index: 10;
 }
-
-span[title],
-#slideshow .curRoute {
-  cursor: help;
-  border-bottom: 0.05em dotted #000;
-}
-
-#slideshow .curRoute .icon {
-  cursor: help;
-}
-
 
 p.alert {
   background: #ECD0D0;

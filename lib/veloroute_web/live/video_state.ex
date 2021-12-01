@@ -45,7 +45,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
       socket
       |> Phoenix.LiveView.assign(for_frontend(state))
-      |> set_position(params)
+      |> set_position(params, seek: true)
     else
       _ -> maybe_update_video(socket, article, Map.delete(params, "video"))
     end
@@ -154,16 +154,20 @@ defmodule VelorouteWeb.Live.VideoState do
 
   @doc """
   Set the current video position from the given time in milliseconds in the
-  "pos" param.
+  "pos" param. If seek is set to true, it will also increase the start time
+  generation to ensure the FE actually seeks the video. This should be set
+  to false if the position change was triggered by the FE and it already
+  seeked.
   """
-  def set_position(%{assigns: %{video: state}} = socket, params) do
+  def set_position(%{assigns: %{video: state}} = socket, params, seek: seek)
+      when is_boolean(seek) do
     with pos <- parse_integer(params["pos"]),
          rendered <- current_rendered(state),
          true <- 0 <= pos && pos <= rendered.length_ms do
       # no idea why the Map.take is needed, but otherwise Dialyzer complains
       point = Video.Rendered.start_from(rendered, pos) |> Map.take([:lat, :lon])
 
-      assigns = state |> set_start(point) |> for_frontend()
+      assigns = state |> set_start(point, seek: seek) |> for_frontend()
       Phoenix.LiveView.assign(socket, assigns)
     else
       _ ->
@@ -264,9 +268,12 @@ defmodule VelorouteWeb.Live.VideoState do
     set_start(state, Geo.Point.from_params(params))
   end
 
-  @spec set_start(t(), Geo.Point.like() | nil) :: t()
-  defp set_start(%__MODULE__{} = state, start) do
-    %{state | start: start, start_generation: state.start_generation + 1}
+  @spec set_start(t(), Geo.Point.like() | nil, seek: boolean()) :: t()
+  defp set_start(state, start, opts \\ [seek: true])
+
+  defp set_start(%__MODULE__{} = state, start, seek: seek) when is_boolean(seek) do
+    incr = if seek, do: 1, else: 0
+    %{state | start: start, start_generation: state.start_generation + incr}
   end
 
   defp reverse_direction(%__MODULE__{} = state) when is_reversable(state) do

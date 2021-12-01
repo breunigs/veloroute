@@ -3,16 +3,20 @@
     <video id="videoInner" muted playsinline preload="none"></video>
   </div>
 
+  <%= display_route(@video) %>
+
   <div id="videoControls">
     <button id="playpause" type="button" title="Video starten oder pausieren" data-state="play"></button>
     <div id="progressWrapper">
       <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
     </div>
+    <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
     <div id="duration">
       <span id="current"><%= Video.Timestamp.as_html(@video_start) %></span><span>
       /
       </span><span id="max"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
     </div>
+    <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <button id="reverse" type="button" title={if @video_reversable, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversable, do: "disabled"}></button>
     <button id="fullscreen" type="button" title="Video im Vollbild anzeigen"></button>
   </div>
@@ -21,7 +25,7 @@
 <div id="sidebar">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-  <div id="content" class="bottomBumper">
+  <div id="content">
     <%= if Map.get(@flash, "info") == 404 do %>
       <p class="alert">
         Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <Components.TagHelpers.mailto>mir schreibst</Components.TagHelpers.mailto> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
@@ -37,11 +41,6 @@
 
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
-  <%= if @video_hash != "" do %>
-    <div id="slideshow">
-      <%= display_route(@video) %>
-    </div>
-  <% end %>
 </div>
 
 <div id="control" phx-hook="control"

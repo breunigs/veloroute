@@ -14,7 +14,7 @@ defmodule VelorouteWeb.VariousHelpers do
         Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
           to: Article.Decorators.path(ref),
           title: "Du folgst: #{ref.title()} #{text}",
-          class: "curRoute"
+          id: "videoRoute"
         )
 
       true ->
