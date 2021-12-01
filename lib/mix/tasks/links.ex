@@ -15,6 +15,8 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   @path "data/auto_generated/link_mirror/"
   @requirements ["app.start"]
 
+  @wayback_timeout 60_000
+
   @type entry :: {atom(), binary(), binary()}
 
   @shortdoc "Mirrors structured links for articles"
@@ -35,7 +37,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end)
     |> Tqdm.tqdm(description: "mirroring", total: 0)
     |> Parallel.map(2, &grab(&1))
-    |> Parallel.map(4, &wayback(&1))
+    |> Enum.map(&wayback(&1))
   end
 
   @spec already_mirrored() :: %{binary() => [binary()]}
@@ -233,7 +235,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec wayback(entry()) :: entry()
   defp wayback({_method, file, url} = entry) do
-    case get("https://web.archive.org/save/#{url}") do
+    case get("https://web.archive.org/save/#{url}",
+           opts: [adapter: [recv_timeout: @wayback_timeout]]
+         ) do
       {:ok, %{status: 302}} -> log(file, "wayback: ✓ #{url}")
       {:ok, resp} -> log(file, "wayback: FAILED (#{resp.status}): #{url}")
       other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
