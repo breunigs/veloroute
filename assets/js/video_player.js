@@ -158,7 +158,7 @@ function currentTimeInMs() {
 }
 
 function seekToTime(timeInMs) {
-  const seconds = timeInMs / 1000.0;
+  const seconds = Math.max(timeInMs / 1000.0, 0.0);
 
   if (video.currentTime == seconds) return;
   video.currentTime = seconds;
