@@ -116,7 +116,7 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply,
      socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr)
+     |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
      |> update_url_query()}
   end
 
