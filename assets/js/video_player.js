@@ -57,10 +57,14 @@ function attachHlsErrorHandler(obj, Hls) {
       window.hls = false;
       obj.destroy();
       updateVideoElement();
-      window.plausible('video-hls-error-fatal', data);
+      window.plausible('video-hls-error-fatal', {
+        props: data
+      });
     } else {
       console.log('Hls encountered an error', event, data);
-      window.plausible('video-hls-error', data);
+      window.plausible('video-hls-error', {
+        props: data
+      });
     }
   });
 }
