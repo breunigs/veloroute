@@ -100,15 +100,12 @@
       ])
     %>
 
-    <%
-      ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
-    %>
-
     <%= if Browser.ie?(ua) || Browser.edge?(ua) do %>
       <%# hard polyfills IE will not work decently without %>
       <script type="text/javascript" src={Routes.static_path(@conn, "/js/polyfill.js")}></script>
     <% end %>
 
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/mbgl#{if Browser.ie?(ua), do: 1, else: 2}.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")}></script>
     <script type="text/javascript" src={Routes.static_path(@conn, "/js/liveview.js")}></script>
     <script type="text/javascript" src={Routes.static_path(@conn, "/js/app.js")}></script>

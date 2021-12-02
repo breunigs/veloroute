@@ -21,6 +21,8 @@ module.exports = (env, options) => ({
     'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js']),
     'polyfill': ['./js/polyfill.js'],
     'liveview': ['./js/liveview.js'],
+    'mbgl1': ['./js/mbgl1.js'],
+    'mbgl2': ['./js/mbgl2.js'],
     'map': ['./js/map.js'],
     'video_player': ['./js/video_player.js'],
     'link_helper': ['./js/link_helper.js'],
