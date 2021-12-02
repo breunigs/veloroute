@@ -277,6 +277,10 @@ $videoBarProgressHeight: 0.4rem;
   background-size: $videoBarHeight / 4;
 }
 
+body.ie11 #fullscreen {
+  display: none;
+}
+
 #sidebar {
   width: $sidebarWidth;
   min-width: $minWidth;
