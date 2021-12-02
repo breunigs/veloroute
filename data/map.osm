@@ -11941,6 +11941,11 @@
   <node id='-23551686' action='modify' lat='53.59264490252' lon='9.96104567975' />
   <node id='-23551691' action='modify' lat='53.59254779342' lon='9.96080964535' />
   <node id='-23551696' action='modify' lat='53.59230740764' lon='9.96110468835' />
+  <node id='-23805059' action='modify' lat='53.56755468787' lon='10.06321905971' />
+  <node id='-23805060' action='modify' lat='53.56736991156' lon='10.06340144992' />
+  <node id='-23805061' action='modify' lat='53.56982291061' lon='10.07236002803' />
+  <node id='-23805062' action='modify' lat='53.57013510028' lon='10.07215618014' />
+  <node id='-23805063' action='modify' lat='53.5697528269' lon='10.07108329654' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -40964,6 +40969,16 @@
     <nd ref='-23551649' />
     <nd ref='-23551643' />
     <tag k='name' v='2021-12-01-grandweg-sued' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-19266248' action='modify'>
+    <nd ref='-23805059' />
+    <nd ref='-23805060' />
+    <nd ref='-23805061' />
+    <nd ref='-23805062' />
+    <nd ref='-23805063' />
+    <nd ref='-23805059' />
+    <tag k='name' v='2021-12-02-rantzaustrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
