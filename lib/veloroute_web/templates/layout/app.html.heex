@@ -107,8 +107,8 @@
 
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/mbgl#{if Browser.ie?(ua), do: 1, else: 2}.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")}></script>
-    <script type="text/javascript" src={Routes.static_path(@conn, "/js/liveview.js")}></script>
-    <script type="text/javascript" src={Routes.static_path(@conn, "/js/app.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/liveview.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/app.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/video_player.js")}></script>
 
     <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" && Settings.enable_sentry_frontend do %>
