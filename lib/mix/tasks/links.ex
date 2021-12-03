@@ -36,8 +36,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       |> Stream.each(&ensure_target_folder_exists(&1))
     end)
     |> Tqdm.tqdm(description: "mirroring", total: 0)
-    |> Parallel.map(2, &grab(&1))
-    |> Enum.map(&wayback(&1))
+    |> Enum.map(&grab_and_archive(&1))
   end
 
   @spec already_mirrored() :: %{binary() => [binary()]}
@@ -243,7 +242,14 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
     end
 
+    Process.sleep(10_000)
+
     entry
+  end
+
+  @spec grab_and_archive(entry()) :: entry()
+  defp grab_and_archive(entry) do
+    entry |> grab() |> wayback()
   end
 
   defp log(file, text) do
