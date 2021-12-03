@@ -25,14 +25,14 @@ const map = new mapboxgl.Map({
   fitBoundsOptions: fitBoundsOpt,
   minZoom: 9,
   maxZoom: 19,
-  style: 'mapbox://styles/breunigs/ckvvdvpy63v3j14n2vwo7sut0',
+  style: 'mapbox://styles/breunigs/ckwpepuex51bt14o5oq42ix9m',
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,
 });
 map.touchZoomRotate.disableRotation();
 
-const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'planned-line', 'detour-line'];
+const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers)
@@ -264,17 +264,17 @@ const sendBounds = () => {
 
 const layerConfig = {
   alltag: {
-    line: ['vr-casing', 'vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none'],
+    line: ['vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none'],
     icon: ['vr-oneway', 'vr-sign']
   },
 
   freizeit: {
-    line: ['fr-casing', 'fr-line'],
+    line: ['fr-line'],
     icon: ['fr-oneway', 'fr-sign', 'fr-warning-icons']
   },
 
   rsw: {
-    line: ['rsw-casing', 'rsw-line']
+    line: ['rsw-line']
   }
 }
 
