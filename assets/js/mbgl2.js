@@ -4,3 +4,4 @@ try {
 } catch (e) {}
 import mapboxgl from 'mbgl2';
 window.mapboxgl = mapboxgl;
+mapboxgl.preloadWorkerPool();
