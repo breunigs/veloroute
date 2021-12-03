@@ -89,6 +89,7 @@ function updateVideoElement() {
       let options = {
         autoStartLoad: hlsAutoStartLoad || !video.paused || autoplayEnabled(),
         enableWebVTT: false,
+        lowLatencyMode: false,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 30, // seconds
       };
