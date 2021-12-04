@@ -240,12 +240,28 @@ function maybeShowLoadingIndicator(evt) {
   }
 }
 
+let updatePosterTimeout = null;
+
 function updatePoster() {
   // only update poster if we don't also have a video attached
   if (video.readyState !== 0) return;
 
-  console.debug("setting outer style img to", state.videoPoster)
-  poster.style.backgroundImage = `url(${state.videoPoster})`;
+  const setPoster = () => {
+    console.debug("setting outer style img to", state.videoPoster)
+    poster.style.backgroundImage = `url(${state.videoPoster})`;
+  }
+
+  const img = new Image();
+  img.onload = () => {
+    if (updatePosterTimeout) {
+      clearTimeout(updatePosterTimeout);
+      updatePosterTimeout = null;
+    }
+    setPoster()
+  }
+  img.src = state.videoPoster;
+
+  updatePosterTimeout = setTimeout(setPoster, 750);
 }
 
 function setVideo() {
