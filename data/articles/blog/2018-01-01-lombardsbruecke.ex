@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Lombardsbruecke do
 
   def type(), do: :construction
 
-  def tags(), do: ["FR0", "FR1"]
+  def tags(), do: ["1GR", "FR1"]
 
   def links(_assigns) do
     [

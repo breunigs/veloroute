@@ -161,7 +161,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     html =
       render_hook(view, "map-click", %{
-        route: "FR0",
+        route: "1GR",
         lon: 9.90103646729878,
         lat: 53.473335309162394,
         zoom: 16

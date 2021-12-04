@@ -1,10 +1,10 @@
 defmodule Data.Article.Static.Freizeitroute0 do
   use Article.Static
 
-  def id(), do: "FR0"
+  def id(), do: "1GR"
   def route_group(), do: :freizeit
   def name(), do: "erster-gruener-ring"
-  def title(), do: "1. Grüner Ring (FR0)"
+  def title(), do: "1. Grüner Ring (1GR)"
 
   def color(), do: "#006106"
 
@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
 
   def text(assigns) do
     ~H"""
-    <h3>Freizeitroute 1. Grüner Ring – Wallanlagen <.icon>FR0</.icon></h3>
+    <h3>Freizeitroute 1. Grüner Ring – Wallanlagen <.icon>1GR</.icon></h3>
     <span class="updated">Länge rund 7km</span>
 
     <p>Diese kurze Ringroute führt im Uhrzeigersinn zunächst entlang der <.m bounds="9.9681,53.544241,9.994315,53.561761" lon="9.975699" lat="53.552291" dir="forward">ehemaligen Wallanlagen</.m>, bzw. an den heute an ihrer Stelle stehenden Parks. Nach der <.m bounds="9.992262,53.554327,10.004718,53.559976" lon="9.997233" lat="53.556813" dir="forward">Alsterquerung</.m> geht die Route in die „<.m bounds="9.999629,53.545007,10.009219,53.55806" lon="10.000217" lat="53.555789" dir="forward">Kunstmeile</.m>“ über, ein Abschnitt mit vielen Museen und Kunstaustellungen. Über die <.m bounds="9.98148,53.540509,10.01194,53.547049" lon="10.003414" lat="53.546288" dir="forward">HafenCity</.m> und entlang des <.m bounds="9.969659,53.543341,9.983004,53.546193" lon="9.976321" lat="53.54437" dir="forward">Hochbahn-Viadukts</.m> kommt man wieder zurück zum Ausgangspunkt.</p>

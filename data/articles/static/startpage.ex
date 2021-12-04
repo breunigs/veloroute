@@ -35,7 +35,7 @@ defmodule Data.Article.Static.Startpage do
     <h4>Freizeitrouten</h4>
     <p>Die Freizeitrouten führen durch Parks, Naturschutzgebiete und Wälder, zu Sehenswürdigkeiten und Ausflugszielen. Die Strecken sind klar auf Erholung ausgelegt – der Weg ist das Ziel.</p>
     <ol class="route-list">
-      <li><.icon autoplay="true" name="FR0"><span>1. Grüner Ring</span></.icon></li>
+      <li><.icon autoplay="true" name="1GR"><span>1. Grüner Ring</span></.icon></li>
       <li><.icon autoplay="true" name="FR1"><span>Alster</span></.icon></li>
       <li><.icon autoplay="true" name="FR2"><span>Osterbek</span></.icon></li>
       <li><.icon autoplay="true" name="FR3"><span>Wandse</span></.icon></li>
