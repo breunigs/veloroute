@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.RahlstedterBahnhofstrasse do
   def title(), do: "Rahlstedter Bahnhofstraße (Veloroute 7, Abschnitt W27)"
 
   def start(), do: ~d[2021-04-12]
-  def stop(), do: ~d[2021-11-30]
+  def stop(), do: ~d[2021-12-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [15097]
