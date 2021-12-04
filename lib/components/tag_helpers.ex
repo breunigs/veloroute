@@ -270,7 +270,10 @@ defmodule Components.TagHelpers do
   defp linkify(assigns, {text, href}) do
     assigns = assign(assigns, :text, text)
     assigns = assign(assigns, :href, href)
-    ~H"<a href={@href}><%= @text %></a>"
+
+    ~H"""
+    <a href={@href} target="_blank"><%= @text %></a>
+    """
   end
 
   defp linkify(_assigns, heex), do: heex
