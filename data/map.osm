@@ -11942,6 +11942,14 @@
   <node id='-23805061' action='modify' lat='53.56982291061' lon='10.07236002803' />
   <node id='-23805062' action='modify' lat='53.57013510028' lon='10.07215618014' />
   <node id='-23805063' action='modify' lat='53.5697528269' lon='10.07108329654' />
+  <node id='-24056543' action='modify' lat='53.55690961577' lon='9.9955093807' />
+  <node id='-24056544' action='modify' lat='53.55709443778' lon='9.99563276231' />
+  <node id='-24056545' action='modify' lat='53.5569382951' lon='9.99626039922' />
+  <node id='-24056546' action='modify' lat='53.55757879508' lon='9.99672173917' />
+  <node id='-24056547' action='modify' lat='53.55747045248' lon='9.99709188402' />
+  <node id='-24056548' action='modify' lat='53.55679808486' lon='9.99663054407' />
+  <node id='-24056549' action='modify' lat='53.55674072599' lon='9.99640523851' />
+  <node id='-24056550' action='modify' lat='53.55675984562' lon='9.99612628877' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='180005630923' action='delete' version='1' lat='53.5630923' lon='10.018' />
@@ -41001,6 +41009,19 @@
     <nd ref='98917790005581042' />
     <nd ref='98930690005583137' />
     <nd ref='-22537696' />
+  </way>
+  <way id='-19270126' action='modify'>
+    <nd ref='-24056543' />
+    <nd ref='-24056544' />
+    <nd ref='-24056545' />
+    <nd ref='-24056546' />
+    <nd ref='-24056547' />
+    <nd ref='-24056548' />
+    <nd ref='-24056549' />
+    <nd ref='-24056550' />
+    <nd ref='-24056543' />
+    <tag k='name' v='2018-01-01-lombardsbruecke' />
+    <tag k='type' v='article' />
   </way>
   <way id='1880371' action='delete' version='1'>
   </way>
