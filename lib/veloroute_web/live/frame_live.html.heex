@@ -20,6 +20,24 @@
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <button id="reverse" type="button" title={if @video_reversable, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversable, do: "disabled"}></button>
+    <div id="videoOptions" phx-update="ignore">
+      <button type="button"></button>
+      <div>
+        <div class="column" id="videoQuality">
+          <strong>Qualität</strong>
+          <div id="videoQualityOptions"></div>
+        </div>
+
+        <div class="column" id="playbackRate">
+          <strong>Wiedergabe</strong>
+          <a data-rate="2.0">2.0 – schnell</a>
+          <a data-rate="1.5">1.5</a>
+          <a class="active" data-rate="1.0">1.0 – normal</a>
+          <a data-rate="0.75">0.75</a>
+          <a data-rate="0.5">0.5 – langsam</a>
+        </div>
+      </div>
+    </div>
     <button id="fullscreen" type="button" title="Video im Vollbild anzeigen"></button>
   </div>
 </div>

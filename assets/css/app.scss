@@ -4,6 +4,8 @@ $sidebarWidth: 33.3333vw;
 $bgcolor: #f8f8f8;
 $darkBg: #333;
 $red: #e30513;
+// via https://codepen.io/sosuke/pen/Pjoqqp
+$redColorFilter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
 $darkBgHighlight: #666;
 $contentPad: 0.9rem;
 
@@ -104,6 +106,8 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
 
 
 #videoRoute, #videoControls {
+  // opacity: 1 !important; // toggle
+
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   z-index: 12;
@@ -186,10 +190,11 @@ $videoBarProgressHeight: 0.4rem;
       }
     }
 
-    &:not(.disabled):hover {
-      color: $red;
-      // via https://codepen.io/sosuke/pen/Pjoqqp
-      filter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
+    &:not(.disabled):hover, &:not(.disabled):hover {
+      @media (hover: hover) {
+        color: $red;
+        filter: $redColorFilter;
+      }
     }
   }
 
@@ -279,6 +284,131 @@ $videoBarProgressHeight: 0.4rem;
 
 body.ie11 #fullscreen {
   display: none;
+}
+
+#videoOptions {
+  button {
+    background: url("/images/gear.svg") no-repeat center center;
+    background-size: $videoBarHeight / 2.7;
+  }
+
+  #videoQuality {
+    display: none;
+  }
+
+  > div {
+    // visibility: visible !important; // toggle
+    // opacity: 1 !important; // toggle
+
+    opacity: 0;
+    visibility: collapse;
+
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+    transition-delay: 250ms;
+    position: absolute;
+    bottom: $videoBarHeight;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+
+    color: #fff;
+
+    padding: 2*$videoBarBtnMargin;
+    padding-bottom: 0;
+
+    border-top-left-radius: 0.5rem;
+
+    .column {
+      display: block;
+      float: left;
+    }
+
+    .column:first-child {
+      margin-right: 2rem;
+    }
+  }
+
+  &:not(.hidden):hover > div {
+    visibility: visible;
+
+    opacity: 1;
+    transition-delay: 0ms;
+    pointer-events: inherit;
+  }
+
+  strong, a {
+    display: block;
+    height: 4*$videoBarBtnMargin;
+    overflow-y: hidden;
+  }
+
+  $iconWidth: 1rem;
+  $iconPadding: 0.3rem;
+  strong {
+    padding-left: $iconWidth + $iconPadding;
+  }
+
+  a {
+    margin: 2*$videoBarBtnMargin 0;
+    text-decoration: none;
+
+    color: #fff;
+
+    &:hover {
+      @media (hover: hover) {
+        color: $red;
+      }
+      text-decoration: none;
+    }
+
+    &::before {
+      display: inline-block;
+      width: $iconWidth;
+      padding-right: $iconPadding;
+      text-align: right;
+      content: "X";
+      color: transparent;
+      line-height: 1.0rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 0.8rem;
+    }
+
+    &:hover::before {
+      @media (hover: hover) {
+        filter: $redColorFilter;
+      }
+    }
+
+    &.next::before {
+      background-image: url("/images/hourglass.svg");
+      background-size: 0.6rem;
+    }
+
+    &.active::before {
+      background-image: url("/images/checkmark.svg");
+    }
+
+    &.active.eye::before {
+      background-image: url("/images/eye.svg");
+      background-size: 0.8rem;
+    }
+  }
+}
+
+// highlight the gear icon while the menu is open
+// the :not(.hidden) is needed to unhighlight on forced-close
+#videoOptions:not(.hidden) {
+  button:hover {
+    filter: $redColorFilter;
+  }
+}
+
+// if forced-close, remove the popup immediately
+#videoOptions.hidden {
+  > div {
+    transition-delay: 0ms;
+  }
 }
 
 #sidebar {

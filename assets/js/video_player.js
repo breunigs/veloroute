@@ -114,7 +114,10 @@ function updateVideoElement() {
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments)
+      window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
+      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
+      window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
+      window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
         if (hlsAutoStartLoad) return;
@@ -155,6 +158,53 @@ function seekToStartTime() {
   seekToTime(state.videoStart);
   video.autoplay = auto;
   prevStartGen = state.videoStartGen;
+}
+
+const videoQuality = document.getElementById("videoQuality");
+const videoQualityOptions = document.getElementById("videoQualityOptions");
+videoQualityOptions.addEventListener('click', event => {
+  if (!window.hls) return hideQualityChooser();
+
+  const level = event.target.dataset.level;
+  if (!level) return;
+  if (video.paused || video.readyState <= 2) window.hls.currentLevel = level * 1;
+  window.hls.nextLevel = level * 1;
+  window.hls.loadLevel = level * 1;
+  updateQualityChooser();
+});
+
+const codecTranslate = {
+  avc1: "",
+  hc1: " (HEVC)"
+}
+
+function updateQualityChooser() {
+  if (!window.hls) return hideQualityChooser();
+
+  const current = window.hls.currentLevel;
+  const next = window.hls.loadLevel;
+  const auto = window.hls.autoLevelEnabled;
+
+  let choosers = "";
+  for (let i = window.hls.levels.length - 1; i >= 0; i--) {
+    let classes = "eye"
+    if (current == i) classes += " active";
+    if (next == i) classes += " next";
+    const resolution = window.hls.levels[i].height + "p";
+    const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
+    const codec = window.hls.levels[i].codecSet;
+    const title = `${resolution} benötigt ca. ${Math.round(mbits)} MBit/s${codecTranslate[codec]}`
+
+    choosers += `<a data-level="${i}" class="${classes}" title="${title}">${resolution}</a>`
+  }
+  choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
+
+  videoQuality.style.display = 'block';
+  videoQualityOptions.innerHTML = choosers;
+}
+
+function hideQualityChooser() {
+  videoQuality.style.display = 'none';
 }
 
 function currentTimeInMs() {
@@ -230,20 +280,36 @@ function updateIndicatorPos(evt) {
 const progress = document.getElementById("progress")
 const progressWrapper = document.getElementById("progressWrapper")
 const playpause = document.getElementById("playpause")
-const reverse = document.getElementById("reverse")
 const current = document.getElementById("current")
 const duration = document.getElementById("max")
-const fullscreen = document.getElementById("fullscreen")
 const outer = document.getElementById('videoOuter')
 const controls = document.getElementById('videoControls')
 const poster = document.getElementById('videoPoster')
+const videoOptions = document.getElementById("videoOptions")
 document.getElementById('skipBackward5').addEventListener('click', () => seek(-5000))
 document.getElementById('skipForward5').addEventListener('click', () => seek(+5000))
+document.getElementById("reverse").addEventListener('click', reverseVideo);
+document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
 progressWrapper.addEventListener('click', seekFromProgress);
 playpause.addEventListener('click', togglePlayPause);
 poster.addEventListener('click', togglePlayPause);
-reverse.addEventListener('click', reverseVideo);
-fullscreen.addEventListener('click', toggleFullscreen);
+
+// provide a way to close the options menu by clicking the gear icon again
+videoOptions.addEventListener('touchstart', () => {
+  const hide = window.getComputedStyle(videoQualityOptions).visibility == 'visible';
+  videoOptions.classList.toggle("hidden", hide)
+});
+
+document.getElementById('playbackRate').addEventListener('click', event => {
+  const rate = event.target.dataset.rate;
+  if (!rate) return;
+
+  video.playbackRate = rate;
+
+  const prev = document.querySelector("#playbackRate a.active");
+  if (prev) prev.classList.remove("active");
+  event.target.classList.add("active");
+});
 
 function togglePlayPause() {
   if (video.paused || video.ended) {
@@ -303,6 +369,10 @@ function ms2text(ms) {
   const minutes = Math.floor(ms / 60000);
   const seconds = Math.round((ms - minutes * 60000) / 1000.0);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+function isTouch() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
 
 
