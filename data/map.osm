@@ -26688,7 +26688,7 @@
     <tag k='name' v='2020-07-05-kueckenbracksweg' />
     <tag k='type' v='article' />
   </way>
-  <way id='-19036265'>
+  <way id='-19036265' action='modify'>
     <nd ref='-22532778' />
     <nd ref='-22532779' />
     <nd ref='-22532780' />
@@ -26699,6 +26699,7 @@
     <nd ref='-22532785' />
     <nd ref='-22532786' />
     <nd ref='-22532778' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-07-15-theodor-heuss-platz' />
     <tag k='type' v='article' />
   </way>
@@ -57948,7 +57949,7 @@
     <tag k='name' v='2019-04-10-4-kreuzung-neuer-jungfernstieg' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155133' version='1'>
+  <way id='785155133' action='modify' version='1'>
     <nd ref='989469000559226' />
     <nd ref='989448000559188' />
     <nd ref='988911000558414' />
@@ -57964,6 +57965,7 @@
     <nd ref='98956000558401' />
     <nd ref='989898000559105' />
     <nd ref='989469000559226' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-04-12-3-stephansplatz' />
     <tag k='type' v='article' />
   </way>
