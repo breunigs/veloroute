@@ -314,6 +314,8 @@ poster.addEventListener('click', togglePlayPause);
 videoOptions.addEventListener('touchstart', () => {
   const hide = window.getComputedStyle(videoQualityOptions).visibility == 'visible';
   videoOptions.classList.toggle("hidden", hide)
+}, {
+  passive: true
 });
 
 document.getElementById('playbackRate').addEventListener('click', event => {

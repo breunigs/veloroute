@@ -136,6 +136,10 @@
     <link rel="preload" href={Routes.static_path(@conn, "/images/reverse.svg")} as="image">
     <link rel="preload" href={Routes.static_path(@conn, "/images/skip_forward_5.svg")} as="image">
     <link rel="preload" href={Routes.static_path(@conn, "/images/skip_backward_5.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/pause.svg")} as="image">
+    <link rel="preload" href={Routes.static_path(@conn, "/images/pause.svg")} as="image" importance="low">
+
+    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
   </body>
 </html>

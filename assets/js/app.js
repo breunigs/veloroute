@@ -25,9 +25,9 @@ function updateState() {
   if (typeof window.mapStateChanged === "function") {
     window.mapStateChanged();
   }
-  if (typeof window.loadingCb === "function") {
-    window.loadingCb();
-  }
+  // if (typeof window.loadingCb === "function") {
+  //   window.loadingCb();
+  // }
 }
 updateState();
 console.log("Initial State From Server: ", state)
@@ -102,5 +102,5 @@ window.liveSocket = liveSocket;
 // liveSocket.enableLatencySim(2000)
 
 import "./mobilegui"
-import "./loading"
+// import "./loading"
 import "./plausible"

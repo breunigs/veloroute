@@ -4,12 +4,23 @@ defmodule VelorouteWeb.Router do
 
   import Phoenix.LiveView.Router
 
+  def put_preload_css_hint(conn, _opts) do
+    css_path = VelorouteWeb.Router.Helpers.static_path(conn, "/css/app.css")
+
+    put_resp_header(
+      conn,
+      "link",
+      "<#{css_path}>; rel=preload; as=style; nopush"
+    )
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_preload_css_hint
     plug :put_root_layout, {VelorouteWeb.LayoutView, :app}
     plug Sentry.PlugContext
   end
