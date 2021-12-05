@@ -1,3 +1,2 @@
-*.osm binary
 tools/*seen*.txt binary
 data/auto_generated/feeds_seen/*.json binary

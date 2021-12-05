@@ -23,9 +23,39 @@ defmodule Mix.Tasks.EditMap do
         env: [{"JAVA_OPTS", "-Djosm.home=#{Path.absname(@josm_home)}"}]
       )
 
+    remove_osm_history()
+
     # run in extra process to ensure we recompile after map update
     IO.puts("Updating GPX…")
     {_stream, 0} = System.cmd("mix", ["update_gpx"], into: IO.stream(:stdio, :line))
+  end
+
+  defp remove_osm_history() do
+    map_path = Map.Parser.default_map_path()
+
+    {:ok, parsed} =
+      map_path
+      |> File.read!()
+      |> Saxy.SimpleForm.parse_string()
+
+    clean =
+      parsed
+      |> recursive_clean()
+      |> Saxy.encode!()
+
+    File.write!(map_path, clean)
+  end
+
+  defp recursive_clean(elems) when is_list(elems),
+    do: elems |> Enum.map(&recursive_clean/1) |> Util.compact()
+
+  defp recursive_clean(binary) when is_binary(binary), do: binary
+  defp recursive_clean({"osm", attr, children}), do: {"osm", attr, recursive_clean(children)}
+  defp recursive_clean({_elem, [_id, {"action", "delete"} | _rest], _children}), do: nil
+
+  defp recursive_clean({elem, attr, children}) do
+    attr = Enum.reject(attr, fn {key, _val} -> Enum.member?(["action"], key) end)
+    {elem, attr, children}
   end
 
   defp generate_mapcss() do

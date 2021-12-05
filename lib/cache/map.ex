@@ -5,5 +5,6 @@ defmodule Cache.Map do
   def nodes, do: full_map().nodes
   def ways, do: full_map().ways
   def relations, do: full_map().relations
+  @spec full_map :: Map.Parsed.t()
   def full_map, do: @data
 end
