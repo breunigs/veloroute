@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Kattwykbruecke do
   def start(), do: ~d[2021-07-26]
   def stop(), do: ~d[2021-12-06]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [18707]
   def tags(), do: ["FR14"]
 
@@ -18,6 +18,9 @@ defmodule Data.Article.Blog.Kattwykbruecke do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand November 2021</h4>
+    <p>Die Bahnbrücke ist für den Radverkehr wieder freigegeben.</p>
+
     <h4>Baustelle</h4>
     <p>An der neuen Kattwykbrücke sind Mängel festgestellt worden, sodass diese momentan außer Betrieb ist. Sie ist für alle Verkehrsarten außer dem Schiffsverkehr voll gesperrt. Zur Wartungsdauer macht die Hamburg Port Authority (HPA) unterschiedliche Angaben: optimistisch sind bis Ende August 2021, pessimistisch bis Ende November.</p>
 
