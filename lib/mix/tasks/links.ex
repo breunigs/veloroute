@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   @path "data/auto_generated/link_mirror/"
   @requirements ["app.start"]
 
-  @wayback_timeout 60_000
+  @wayback_timeout 90_000
 
   @type entry :: {atom(), binary(), binary()}
 
@@ -254,7 +254,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   defp log(file, text) do
     name = file |> Path.dirname() |> Path.basename()
-    IO.puts(:stderr, "#{name}: #{text}")
+    IO.puts(:stderr, "\n#{name}: #{text}")
   end
 end
 
