@@ -329,6 +329,16 @@ document.getElementById('playbackRate').addEventListener('click', event => {
   event.target.classList.add("active");
 });
 
+let wasPlaying = false;
+document.addEventListener("visibilitychange", () => {
+  if (document["hidden"]) {
+    wasPlaying = !video.paused;
+    video.pause();
+  } else {
+    if (wasPlaying) video.play();
+  }
+}, false);
+
 function togglePlayPause() {
   if (video.paused || video.ended) {
     video.play();
