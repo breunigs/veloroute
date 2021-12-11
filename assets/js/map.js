@@ -68,18 +68,22 @@ function renderIndicator() {
   const videoPlaying = video && !video.paused;
   const dist = indicator.getLngLat().distanceTo(lngLat);
   const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
+
+  // only update animation status as needed to avoid style recalculations
+  if (animate != !!indicatorAnimateTimer) indicator.getElement().classList.toggle("animate", animate);
   if (indicatorAnimateTimer) {
     clearTimeout(indicatorAnimateTimer);
     indicatorAnimateTimer = null;
   }
   if (animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 300);
-  indicator.getElement().classList.toggle("animate", animate);
 
   videoWasPlaying = videoPlaying;
 
-  const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing)
-  indicator.setRotation(shortest);
-  indicator.setLngLat(lngLat);
+  const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing);
+  window.requestAnimationFrame(() => {
+    indicator.setRotation(shortest);
+    indicator.setLngLat(lngLat);
+  });
 
   if (!mapActive && !zoomedInOnce && videoPlaying && prevBoundsTs === "") {
     zoomedInOnce = true;
@@ -99,10 +103,17 @@ const closestEquivalentAngle = (from, to) => {
 const disableIndicatorAnimation = () => {
   if (!indicator) return;
   indicator.getElement().classList.toggle("animate", false)
+  if (!indicatorAnimateTimer) return;
+  clearTimeout(indicatorAnimateTimer);
+  indicatorAnimateTimer = null;
 }
 
 const ensureIndicatorInView = () => {
   if (map.isMoving() || map.isZooming() || !indicator) {
+    return;
+  }
+
+  if (map.getBounds().contains(indicator.getLngLat())) {
     return;
   }
 
@@ -118,12 +129,6 @@ const ensureIndicatorInView = () => {
       indiPos.y >= mapRect.bottom - padding ||
       indiPos.x <= mapRect.left + padding ||
       indiPos.x >= mapRect.right - padding;
-  }
-
-  // add padding in pixels around the viewport
-  const outsideViewport = cmp(20);
-  if (!outsideViewport) {
-    return;
   }
 
   const lngLat = new mapboxgl.LngLat(state.lon, state.lat);

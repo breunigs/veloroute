@@ -16,8 +16,10 @@ video.addEventListener('timeupdate', updateProgressbar);
 video.addEventListener('progress', updateProgressbar);
 video.addEventListener('play', markPlay);
 video.addEventListener('play', updatePlaypause);
+video.addEventListener('play', updateIndicatorPos);
 video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
+video.addEventListener('pause', updateIndicatorPos);
 
 function autoplayEnabled() {
   return window.state.autoplay === "true"
@@ -373,20 +375,25 @@ function seekFromProgress(e) {
 function updateProgressbar() {
   const ms = Math.round(video.currentTime * 1000) || state.videoStart;
   const max = Math.round(video.duration * 1000) || state.videoLengthMs;
-  progress.value = ms;
-  progress.max = max;
-  current.innerText = ms2text(ms);
-  duration.innerText = ms2text(max);
+  const msText = ms2text(ms);
+  const maxText = ms2text(max);
 
+  let loaded = 0;
   for (var i = 0; i < video.buffered.length; i++) {
     const start = video.buffered.start(i) * 1000;
     const end = video.buffered.end(i) * 1000;
     if (start > ms) break;
     if (end < ms) continue;
 
-    const loaded = end / max * 100;
-    progress.style.setProperty("--loaded", loaded + "%");
+    loaded = end / max * 100;
   }
+  window.requestAnimationFrame(() => {
+    current.innerText = msText;
+    duration.innerText = maxText;
+    progress.value = ms;
+    progress.max = max;
+    progress.style.setProperty("--loaded", loaded + "%");
+  });
 }
 
 function updatePlaypause() {
