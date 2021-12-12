@@ -220,9 +220,9 @@ function seekToTime(timeInMs) {
   if (video.currentTime == seconds) return;
   video.currentTime = seconds;
   // without this check there's a continous loop on iOS
-  if (state.videoStart != Math.round(timeInMs)) {
+  if (state.videoStart * 1 != Math.round(seconds * 1000)) {
     window.pushEvent('video-current-time', {
-      pos: Math.round(timeInMs),
+      pos: Math.round(seconds),
     })
   }
   updateProgressbar();
