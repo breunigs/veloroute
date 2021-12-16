@@ -505,3 +505,6 @@
 '2021-11-09':
 - https://via-bus.hamburg.de/contentblob/15542682/aee1379cbb674d255d0dcc376ea1b401/data/dokumentation-online-dialogrunde-vom-11-08-2021.pdf
 - https://via-bus.hamburg.de/contentblob/15542692/738ee06d41a71392fa2108465cedcd68/data/praesentation-online-dialogrunde-vom-11-08-2021.pdf
+'2021-12-16':
+- https://via-bus.hamburg.de/contentblob/15694450/bc240509cf25755ff6820b7214add613/data/metrobus-3-vereinfachter-lageplan-zur-erstverschickung-haltestellen-spaldingstrasse.pdf
+- https://via-bus.hamburg.de/contentblob/15694444/b898b9d559fd00970b6a08e013e7ce65/data/57-mb3-bushaltestellen-spaldingstrasse-erstverschickung.pdf

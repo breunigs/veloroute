@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
   def title(), do: "Eulenkamp zw. Nordschleswiger Straße und Friedrich-Ebert-Damm (Veloroute 6)"
 
   def start(), do: ~d[2021-02-08]
-  def stop(), do: ~d[2021-12-31]
+  def stop(), do: ~d[2022-03-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14470, 15779]
