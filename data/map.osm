@@ -54333,11 +54333,11 @@
     <member type="way" ref="-19036675" role="forward"/>
     <member type="way" ref="-19036676" role="forward"/>
     <member type="way" ref="-19036461" role="forward"/>
-    <member type="way" ref="25503176" role="forward"/>
     <member type="way" ref="-19036672" role="forward"/>
     <member type="way" ref="-19036673" role="forward"/>
     <member type="way" ref="38837206" role="forward"/>
-    <member type="way" ref="-19036460" role="forward"/>
+    <member type="way" ref="-19036462" role="forward"/>
+    <member type="way" ref="25503176" role=""/>
     <member type="way" ref="606450763" role=""/>
     <member type="way" ref="-19038715" role=""/>
     <member type="way" ref="-19036677" role=""/>
