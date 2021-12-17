@@ -2,7 +2,7 @@ defmodule VelorouteWeb.ImageExtractController do
   use VelorouteWeb, :controller
   require Logger
 
-  @extract_from_file "stream_0.m4s"
+  @extract_from_file "stream_3.m4s"
   @fallback_image_path "/images/video_poster.svg"
 
   import Video.Track, only: [valid_hash: 1]
@@ -12,7 +12,7 @@ defmodule VelorouteWeb.ImageExtractController do
          ren when not is_nil(ren) <- Video.Rendered.get(hash),
          true <- ren.length_ms() >= ts_in_ms,
          webp <- supports_webp?(conn),
-         {img, 0} <- ffmpeg(hash, ts_in_ms, webp) do
+         {:ok, img} <- ffmpeg(hash, ts_in_ms, webp) do
       conn
       |> put_resp_content_type(if(webp, do: "image/webp", else: "image/jpeg"))
       |> put_resp_header("x-robots-tag", "noindex")
@@ -41,13 +41,14 @@ defmodule VelorouteWeb.ImageExtractController do
     end
   end
 
+  @ffmpeg_path :os.find_executable('ffmpeg')
+  @ffmpeg_timeout_ms 60_000
   defp ffmpeg(hash, ts, webp) do
     ts = Video.Timestamp.from_milliseconds(ts)
     path = Path.join([Settings.video_target_dir_abs(), hash, @extract_from_file])
 
-    System.cmd(
-      "ffmpeg",
-      [
+    ffmpeg_args =
+      List.flatten([
         "-hide_banner",
         "-loglevel",
         "error",
@@ -63,8 +64,40 @@ defmodule VelorouteWeb.ImageExtractController do
         "-f",
         if(webp, do: ["webp", "-preset", "photo"], else: "mjpeg"),
         "-"
-      ]
-      |> List.flatten()
-    )
+      ])
+
+    port =
+      Port.open({:spawn_executable, @ffmpeg_path}, [
+        :stream,
+        :binary,
+        {:args, ffmpeg_args},
+        :use_stdio,
+        :exit_status,
+        {:parallelism, true}
+      ])
+
+    {:os_pid, ospid} = Port.info(port, :os_pid)
+    {:ok, timer} = :timer.send_after(@ffmpeg_timeout_ms, {:abort_ffmpeg, ospid})
+
+    collect_from_port(port, timer)
+  end
+
+  defp collect_from_port(port, timer, prev_data \\ []) do
+    receive do
+      {^port, {:data, data}} ->
+        collect_from_port(port, timer, [data | prev_data])
+
+      {^port, {:exit_status, 0}} ->
+        :timer.cancel(timer)
+        {:ok, Enum.reverse(prev_data)}
+
+      {^port, {:exit_status, status}} ->
+        :timer.cancel(timer)
+        {:error, "ffmpeg exited with status #{status}"}
+
+      {:abort_ffmpeg, ospid} ->
+        res = System.cmd("kill", ["-9", to_string(ospid)])
+        {:error, "timeout after #{@ffmpeg_timeout_ms}ms. Killed #{ospid}: #{inspect(res)}"}
+    end
   end
 end

@@ -5,7 +5,7 @@ ENTRYPOINT [ "mix" ]
 WORKDIR /build
 ENV GIT_COMMIT="dockerfile dummy"
 
-RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git
+RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg
 
 ARG UID=1000
 ARG GID=1000
