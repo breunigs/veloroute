@@ -44,12 +44,6 @@ function markPause() {
   window.pushEvent('video-current-time', {
     pos: Math.round(this.currentTime * 1000)
   })
-
-  window.plausible('video-pause', {
-    props: {
-      hash: state.videoHash
-    }
-  })
 }
 
 function attachHlsErrorHandler(obj, Hls) {
@@ -64,9 +58,6 @@ function attachHlsErrorHandler(obj, Hls) {
       });
     } else {
       console.log('Hls encountered an error', event, data);
-      window.plausible('video-hls-error', {
-        props: data
-      });
     }
   });
 }
@@ -355,12 +346,6 @@ function reverseVideo() {
   window.pushEvent('video-reverse', {
     lon: window.state.lon,
     lat: window.state.lat
-  })
-
-  window.plausible('video-reverse', {
-    props: {
-      hash: state.videoHash
-    }
   })
 }
 
