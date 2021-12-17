@@ -2,7 +2,7 @@ defmodule VelorouteWeb.ImageExtractController do
   use VelorouteWeb, :controller
   require Logger
 
-  @extract_from_file "stream_3.m4s"
+  @extract_from_file "stream_0.m4s"
   @fallback_image_path "/images/video_poster.svg"
 
   import Video.Track, only: [valid_hash: 1]
