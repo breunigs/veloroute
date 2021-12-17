@@ -385,16 +385,27 @@ function updatePlaypause() {
   outer.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
 }
 
+const minuteInMs = 60 * 1000;
+const hourInMs = 60 * minuteInMs;
+
+function pad0(num) {
+  return num < 10 ? "0" + num : num;
+}
+
 function ms2text(ms) {
-  const minutes = Math.floor(ms / 60000);
-  const seconds = Math.round((ms - minutes * 60000) / 1000.0);
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  const hours = Math.floor(ms / hourInMs);
+  ms -= hours * hourInMs;
+  const minutes = Math.floor(ms / minuteInMs);
+  ms -= minutes * minuteInMs;
+  const seconds = Math.round(ms / 1000);
+  ms -= seconds * 1000;
+  if (hours > 0) return `${hours}:${pad0(minutes)}:${pad0(seconds)}`;
+  return `${minutes}:${pad0(seconds)}`;
 }
 
 function isTouch() {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
-
 
 function toggleFullscreen() {
   const fullscreenElement =

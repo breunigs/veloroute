@@ -18,9 +18,11 @@ defmodule Video.Timestamp do
   @spec as_html(integer() | t()) :: binary()
   def as_html(duration_in_ms) when is_integer(duration_in_ms) do
     {hours, minutes, seconds, milliseconds} = duration_split(duration_in_ms)
-    minutes = hours * 60 + minutes
     seconds = if milliseconds >= 500, do: seconds + 1, else: seconds
-    "#{minutes}:#{pad_left(seconds)}"
+
+    if hours > 0,
+      do: "#{hours}:#{pad_left(minutes)}:#{pad_left(seconds)}",
+      else: "#{minutes}:#{pad_left(seconds)}"
   end
 
   def as_html(timestamp) when looks_valid(timestamp) do
