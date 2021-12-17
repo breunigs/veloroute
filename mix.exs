@@ -57,6 +57,7 @@ defmodule Veloroute.MixProject do
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.17"},
       {:jason, "~> 1.1"},
+      {:natural_order, "~> 0.2.0"},
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
       {:phoenix_html, "~> 3.0"},

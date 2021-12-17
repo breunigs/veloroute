@@ -111,8 +111,8 @@ defmodule Data.GeoJSONTest do
              },
              articles: %{
                features: [
-                 %{properties: %{name: "art1", title: "hi!"}},
-                 %{properties: %{name: "art2", title: "hi!"}}
+                 %{properties: %{name: "art1", title: "Baustelle: hi!"}},
+                 %{properties: %{name: "art2", title: "Problemstelle: hi!"}}
                ]
              }
            } = enrich(@example_articles)

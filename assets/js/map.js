@@ -212,25 +212,26 @@ const maybePing = () => {
   }
 }
 
+const titleForItem = (item) => {
+  const props = item.properties;
+  if (props.title) return props.title
+  if (props.route_group) return `${props.route_group} ${props.route_id}`
+  return null
+}
+
 const handleMapHover = (evt) => {
   const items = itemsUnderCursor(evt);
   const canvas = map.getCanvas()
 
-  if (items.length === 0) {
-    canvas.style.cursor = '';
-    canvas.title = '';
-    return;
-  }
-
-  const props = items[0].properties;
-  if (!props.title && !props.route_group) {
+  const titles = items.map(item => titleForItem(item)).filter(item => item)
+  if (titles.length === 0) {
     canvas.style.cursor = '';
     canvas.title = '';
     return;
   }
 
   canvas.style.cursor = 'pointer';
-  canvas.title = props.title || `${props.route_group} ${props.route_id}`
+  canvas.title = [...new Set(titles)].join("\n")
 }
 
 const handleMapClick = (evt) => {

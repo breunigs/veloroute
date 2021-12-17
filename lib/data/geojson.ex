@@ -85,7 +85,7 @@ defmodule Data.GeoJSON do
            tags: %{
              type: "article",
              name: name,
-             article_title: title,
+             article_title: _title,
              article_type: type
            }
          }
@@ -95,7 +95,7 @@ defmodule Data.GeoJSON do
     props = %{
       type: "article",
       name: name,
-      title: title,
+      title: full_article_title(w),
       icon: Map.get(w.tags, :article_icon) || type
     }
 
@@ -130,7 +130,7 @@ defmodule Data.GeoJSON do
         :route_id | Map.Way.style_tags()
       ])
       |> Map.put_new(:type, w.tags[:route_group])
-      |> Map.put_new(:title, w.tags[:article_title])
+      |> Map.put_new_lazy(:title, fn -> w.tags[:article_title] || w.tags[:titles] end)
 
     %{
       type: "Feature",
@@ -143,6 +143,7 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
+  @relation_way_tags_to_keep [:oneway, :offset, :title, :overlap_index, :color]
   defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
     art = Article.List.find_exact(r.tags.name)
 
@@ -162,7 +163,7 @@ defmodule Data.GeoJSON do
 
     r
     |> Map.Relation.ways(@relevant_geojson_roles)
-    |> Enum.map(&Map.Element.keep_only_tags(&1, [:oneway, :offset, :overlap_index, :color]))
+    |> Enum.map(&Map.Element.keep_only_tags(&1, @relation_way_tags_to_keep))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
   end
@@ -200,13 +201,14 @@ defmodule Data.GeoJSON do
     # additionally collecting their roles
     ways_to_rels =
       rels_to_modify
-      |> Enum.sort_by(fn %Map.Relation{id: id} -> id end)
+      |> Enum.sort_by(fn %Map.Relation{tags: %{name: name}} -> name end, {:desc, NaturalOrder})
       |> Enum.reduce(%{}, fn rel, acc ->
         rel
         |> Map.Relation.way_members(@relevant_geojson_roles)
         |> Enum.reduce(acc, fn %{role: role, ref: %Map.Way{id: wid}}, acc ->
           %{rels: rels, roles: roles} = acc[wid] || %{rels: [], roles: []}
-          Map.put(acc, wid, %{rels: [rel.id | rels], roles: [role | roles]})
+          name = Map.fetch!(rel.tags, :name)
+          Map.put(acc, wid, %{rels: [name | rels], roles: [role | roles]})
         end)
       end)
 
@@ -215,18 +217,24 @@ defmodule Data.GeoJSON do
       modify_ways(rel, fn way ->
         rels = ways_to_rels[way.id][:rels]
         roles = Enum.uniq(ways_to_rels[way.id][:roles])
-        index = Enum.find_index(rels, fn rel_id -> rel_id == rel.id end)
+        index = Enum.find_index(rels, fn rel_name -> rel_name == rel.tags[:name] end)
 
         oneway = length(roles) == 1 && hd(roles) in ["forward", "backward"]
         offset = @offsets[{length(rels), index}] || 0
 
-        tags = %{offset: offset}
+        tags = %{offset: offset, title: relation_titles(rels)}
         tags = if length(rels) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
         tags = if oneway, do: Map.put(tags, :oneway, true), else: tags
 
         Map.Element.add_new_tags(way, tags)
       end)
     end) ++ rels_to_keep
+  end
+
+  defp relation_titles(relation_names) when is_list(relation_names) do
+    relation_names
+    |> Enum.map(&Article.List.find_exact(&1).title())
+    |> Enum.join("\n")
   end
 
   defp modify_ways(%Map.Relation{} = r, fun) do
@@ -237,5 +245,10 @@ defmodule Data.GeoJSON do
       end)
 
     %{r | members: members}
+  end
+
+  defp full_article_title(way) do
+    type = Article.Decorators.type_name(way.tags[:article_type])
+    if type, do: "#{type}: #{way.tags[:article_title]}", else: way.tags[:article_title]
   end
 end

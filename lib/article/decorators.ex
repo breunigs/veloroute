@@ -95,8 +95,10 @@ defmodule Article.Decorators do
     finished: "Abgeschlossen"
   }
 
-  @spec type_name(Article.t()) :: binary() | nil
-  def type_name(art), do: Map.get(@type_names, art.type(), nil)
+  @spec type_name(Article.t() | Article.article_type()) :: binary() | nil
+  def type_name(type) when is_map_key(@type_names, type), do: @type_names[type]
+  def type_name(nil), do: nil
+  def type_name(art), do: type_name(art.type())
 
   @doc """
   Calculate bounding box for the given article.
