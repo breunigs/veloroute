@@ -130,7 +130,9 @@ defmodule Data.GeoJSON do
         :route_id | Map.Way.style_tags()
       ])
       |> Map.put_new(:type, w.tags[:route_group])
-      |> Map.put_new_lazy(:title, fn -> w.tags[:article_title] || w.tags[:titles] end)
+      |> Map.put_new_lazy(:title, fn ->
+        w.tags[:article_title] || w.tags[:titles] || w.tags[:text]
+      end)
 
     %{
       type: "Feature",
