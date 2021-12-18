@@ -19,11 +19,12 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   end
 
   def summary(),
-    do: ""
+    do:
+      "Wenig Änderungen für den Radverkehr, die Amsinckstraße bleibt eine schwer überwindbare Schneise."
 
   def text(assigns) do
     ~H"""
-    <h4>Bestand</h4>
+    <h4>Alter Zustand</h4>
     <p>Stadteinwärts fahren die Busse über die <.m bounds="10.011032,53.546217,10.016158,53.548581" lon="10.013573" lat="53.547571" dir="backward" ref="FR6">Amsinckstraße</.m>, stadtauswärts über den <.m bounds="10.009768,53.545449,10.015112,53.54758" lon="10.010393" lat="53.547278" dir="forward" ref="FR6">Högerdamm</.m>. In beiden Straßen sind für den Radverkehr jeweils <.ref>Hochbordradwege</.ref> unterschiedlicher Breiten und Qualitäten vorhanden. In der <.m bounds="10.009638,53.547213,10.012462,53.54787">Nebenstrecke Amsickstraße</.m> die den Högerdamm mit der Amsinckstraße verbindet sind keine eigenen Radwege vorhanden.</p>
 
     <h4>Planung</h4>

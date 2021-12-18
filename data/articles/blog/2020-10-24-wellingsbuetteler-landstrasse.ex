@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Bestand</h4> <p>In der <.m bounds="10.031161,53.625658,10.057393,53.636639">Wellingsbütteler Landstraße</.m> selbst gibt es im Stadtteil <.m bounds="10.033141,53.628026,10.049216,53.6317">Klein Borstel</.m> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<.ref>Fahrrad frei</.ref>). Die Höchstgeschwindigkeit beträgt 50 km/h. Im <.m bounds="10.029983,53.62536,10.032621,53.626527">Kreuzungsbereich mit der Fuhlsbütteler Landstraße</.m> gibt es schmale <.ref>Hochbordradwege</.ref>, die mit engen Kuren durch die Kreuzung führen.</p>
+    <h4>Alter Zustand</h4> <p>In der <.m bounds="10.031161,53.625658,10.057393,53.636639">Wellingsbütteler Landstraße</.m> selbst gibt es im Stadtteil <.m bounds="10.033141,53.628026,10.049216,53.6317">Klein Borstel</.m> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<.ref>Fahrrad frei</.ref>). Die Höchstgeschwindigkeit beträgt 50 km/h. Im <.m bounds="10.029983,53.62536,10.032621,53.626527">Kreuzungsbereich mit der Fuhlsbütteler Landstraße</.m> gibt es schmale <.ref>Hochbordradwege</.ref>, die mit engen Kuren durch die Kreuzung führen.</p>
     <h4>Planung</h4> <h5>Wesentliche Änderungen des zweiten Entwurfs:</h5> <ul>
     <li>Die <.ref>Radfahrstreifen</.ref> werden bis zur <.m bounds="10.032924,53.629069,10.041573,53.631069">Einmündung Stübeheide</.m> verlängert. Dies erfordert die Fällung aller Bäume auf der Südseite zwischen U-Bahn und Stübeheide.</li>
     <li>Die <.ref>Schutzstreifen</.ref> ab Stübeheide entfallen ersatzlos.</li>

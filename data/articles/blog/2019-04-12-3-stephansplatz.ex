@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.Stephansplatz do
     <h4>Stand September 2020</h4>
     <p>Der LSBG hat die abschlossene Planung veröffentlicht und nimmt den Radverkehr diesmal wirklich ernst. Im ersten Entwurf wurde die Situation für den Radverkehr teils sogar schlechter. Der Artikel wurde an die neue Fassung angepasst.</p>
 
-    <h4>Bestand</h4>
+    <h4>Alter Zustand</h4>
     <p>Der aktuelle Zustand der Radwege über den <.m bounds="9.98847,53.557063,9.989571,53.55877">Stephansplatz</.m> ist akzeptabel, wenn auch die verfügbare Breite deutlich zu schmal ist. Am kritischsten ist hier vor allem die fehlende Radführung West-Ost in Richtung <.m bounds="9.992951,53.5557,10.000595,53.557791">Lombardsbrücke</.m>.</p>
 
     <h4>Pläne</h4>
