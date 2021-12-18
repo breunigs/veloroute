@@ -153,12 +153,16 @@ way[type=detour] {
   dashes: 2;
 }
 
-way[type=planned], relation[name^=rsw] > way {
-  color: #c0c0c0;
+way[type=planned] {
+  color: tag(color, #f00);
   width: 4;
   text: "";
   casing-width: 0;
-  dashes: 2;
+  dashes: 5;
+}
+
+relation[name^=rsw] > way {
+  dashes: 5;
 }
 
 
