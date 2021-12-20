@@ -39,7 +39,7 @@ defmodule Geo.Polylabel do
     def cmp(%__MODULE__{max: a}, %__MODULE__{max: b}) when a == b, do: :eq
     def cmp(%__MODULE__{}, %__MODULE__{}), do: :gt
 
-    #  signed distance from point to polygon outline (negative if point is outside)
+    # signed distance from point to polygon outline (negative if point is outside)
     defp point_to_polygon_dist(%{lat: lat, lon: lon} = point, ring) do
       init = {List.last(ring), false, :infinity}
 
@@ -52,18 +52,38 @@ defmodule Geo.Polylabel do
                do: !inside,
                else: inside
 
-          segDist = Geo.CheapRuler.dist([a, b], point)
+          segDist = segment_distance_squared(a, b, point)
           minDist = min(minDist, segDist)
 
           {a, inside, minDist}
         end)
 
-      if inside, do: minDist, else: -1 * minDist
+      minDist * if inside, do: 1, else: -1
+    end
+
+    # calc dist from segment [a, b] to point p
+    defp segment_distance_squared(a, b, p) do
+      dx = b.lat - a.lat
+      dy = b.lon - a.lon
+
+      t =
+        if dx != 0 || dy != 0 do
+          (((p.lat - a.lat) * dx + (p.lon - a.lon) * dy) / (dx * dx + dy * dy))
+          |> max(1)
+          |> min(0)
+        else
+          0
+        end
+
+      dx = p.lat - (a.lat + dx * t)
+      dy = p.lon - (a.lon + dy * t)
+
+      dx * dx + dy * dy
     end
   end
 
   @spec calculate([Geo.Point.t()], float()) :: Geo.Point.t()
-  def calculate(ring, precision \\ 1.0)
+  def calculate(ring, precision \\ 0.001)
   def calculate([], _precision), do: raise("Invalid ring given: empty list of coordinates")
   def calculate([_], _precision), do: raise("Invalid ring given: list with only 1 coordinate")
 
@@ -103,7 +123,7 @@ defmodule Geo.Polylabel do
       end)
 
     # take centroid as the first best guess
-    bestCell = getCentroidCell(ring)
+    bestCell = get_centroid_cell(ring)
 
     # second guess: bounding box centroid
     bboxCell = Cell.new(%{lat: minLat + height / 2, lon: minLon + width / 2}, 0, ring)
@@ -143,9 +163,8 @@ defmodule Geo.Polylabel do
     |> Stream.take_while(&(&1 < stop))
   end
 
-  # get polygon centroid
-  @spec getCentroidCell([Geo.Point.like()]) :: Cell.t()
-  defp getCentroidCell(ring) do
+  @spec get_centroid_cell([Geo.Point.like()]) :: Cell.t()
+  defp get_centroid_cell(ring) do
     init = {0, 0, 0, List.last(ring)}
 
     {area, x, y, _prev} =

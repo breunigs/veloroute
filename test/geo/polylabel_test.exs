@@ -2,10 +2,7 @@ defmodule Geo.PolylabelTest do
   use ExUnit.Case, async: true
 
   test "calculates label position decently" do
-    assert %Geo.Point{
-             lat: 53.55829210425964,
-             lon: 9.989966671815605
-           } ==
+    assert %Geo.Point{lat: 53.55811179646648, lon: 9.990647505320764} ==
              [
                %{lat: 53.55992549164499, lon: 9.989910113223242},
                %{lat: 53.559199230957816, lon: 9.989411680023242},
