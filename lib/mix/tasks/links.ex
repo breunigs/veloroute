@@ -62,6 +62,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     [{:download, "#{name} #{name_from_url(url)}", url}]
   end
 
+  defp extract({_name, "https://suche.transparenz.hamburg.de/dataset/" <> _rest} = entry),
+    do: extract_transparenzportal(entry)
+
   defp extract({_name, "https://www.hamburg.de/" <> _rest} = entry),
     do: extract_contentblob(entry)
 
@@ -121,6 +124,18 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       IO.puts("don't know how to extract links for “#{name}”: #{url}")
       []
     end
+  end
+
+  @spec extract_transparenzportal({binary(), binary()}) :: [entry()]
+  defp extract_transparenzportal({name, url}) do
+    hrefs = hrefs_from_url(url)
+
+    pdfs =
+      hrefs
+      |> Enum.filter(&String.ends_with?(&1, ".pdf"))
+      |> Enum.map(&{:download, "#{name} #{name_from_url(&1)}", &1})
+
+    [{:capture, name, url}] ++ pdfs
   end
 
   @spec extract_sitzungsdienst({binary(), binary()}) :: [entry()]

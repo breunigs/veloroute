@@ -7,12 +7,11 @@ defmodule Mix.Tasks.Deploy do
   def run(skip) do
     skip = parse_cli_args(skip)
     build_tar_gz(skip)
+    mirror_links(skip)
 
     if deploy_tar_gz(skip) do
       preload_videos(skip)
     end
-
-    mirror_links(skip)
   end
 
   defp parse_cli_args(skip) when is_list(skip) do
