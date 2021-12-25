@@ -6,8 +6,6 @@ defmodule Data.Article.Blog.Reventlowstrasse do
   def updated_at(), do: ~D[2019-12-08]
   def title(), do: "Reventlowstraße (Veloroute 1)"
 
-  def start(), do: ~d[2020Q2]
-
   def type(), do: :planned
 
   def tags(), do: ["1", "a12"]
