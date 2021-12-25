@@ -1,7 +1,9 @@
 defmodule Docker do
   @cwd File.cwd!()
   @image_name_devel "veloroute.hamburg/docker:devel"
+  @image_name_detector "veloroute.hamburg/docker:detector"
   @image_name_release "veloroute.hamburg/docker:release-#{:os.system_time(:millisecond)}"
+  @container_name_detect "veloroute2detect"
   @container_name_release "veloroute2release"
 
   def line_stream, do: IO.stream(:stdio, :line)
@@ -48,6 +50,23 @@ defmodule Docker do
     @image_name_release
   end
 
+  def build_detector_image() do
+    Util.cmd(
+      [
+        "docker",
+        "build",
+        "-f",
+        "tools/detection/Dockerfile.pytorch",
+        "tools/detection/",
+        "--network",
+        "host",
+        "-t",
+        @image_name_detector
+      ],
+      env: [{"DOCKER_BUILDKIT", "1"}]
+    )
+  end
+
   def mix(args, mix_env \\ "test")
   def mix(args, mix_env) when is_binary(args), do: args |> String.split() |> mix(mix_env)
 
@@ -79,6 +98,21 @@ defmodule Docker do
     else
       _ -> []
     end
+  end
+
+  def boot_detector do
+    docker = [
+      "docker",
+      "run",
+      "--rm",
+      "--gpus",
+      "all",
+      "--tty",
+      "--name",
+      @container_name_detect
+    ]
+
+    Util.cmd2(docker ++ extra_video_mount("/") ++ [@image_name_detector])
   end
 
   def boot_release() do

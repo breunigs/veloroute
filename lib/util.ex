@@ -34,6 +34,71 @@ defmodule Util do
     end
   end
 
+  @doc """
+  cmd2 uses ports to be able to pass on signals to the child process. Since the
+  VM eats SIGINT, it can only pass SIGINT and SIGTERM.
+  """
+  def cmd2(cli, opts \\ [env: []])
+
+  def cmd2([cmd | args], env: env) do
+    port_opts = [env: validate_env(env)]
+
+    port =
+      Port.open(
+        {:spawn_executable, System.find_executable(cmd)},
+        port_opts ++
+          [
+            :stream,
+            :binary,
+            {:args, args},
+            :nouse_stdio,
+            :exit_status,
+            {:parallelism, true}
+          ]
+      )
+
+    {:os_pid, ospid} = Port.info(port, :os_pid)
+
+    pass_forward_once(:sigterm, ospid)
+    pass_forward_once(:sigquit, ospid)
+
+    IO.puts(:stderr, "running #{cmd}. Press CTRL+\\ to attempt graceful termination")
+
+    receive do
+      {^port, {:exit_status, 0}} ->
+        :ok
+
+      {^port, {:exit_status, status}} ->
+        raise("FAILED (exit code #{status})")
+    end
+  end
+
+  defp pass_forward_once(signal, pid) do
+    trap_ref = make_ref()
+
+    {:ok, _trap} =
+      System.trap_signal(signal, trap_ref, fn ->
+        name = signal |> to_string() |> String.upcase()
+        IO.puts(:stderr, "\n\ntrying to #{name} child with pid=#{pid}…")
+        System.cmd("kill", ["-#{signal}", to_string(pid)])
+        System.untrap_signal(signal, trap_ref)
+        :ok
+      end)
+  end
+
+  defp validate_env(enum) do
+    Enum.map(enum, fn
+      {k, nil} ->
+        {String.to_charlist(k), false}
+
+      {k, v} ->
+        {String.to_charlist(k), String.to_charlist(v)}
+
+      other ->
+        raise ArgumentError, "invalid environment key-value #{inspect(other)}"
+    end)
+  end
+
   @spec overlap?(Enumerable.t(), Enumerable.t()) :: bool()
   @doc """
   Returns true if enum1 and enum2 have at least one element in common
