@@ -16,12 +16,12 @@ defmodule Data.Article.Static.RSWElmshorn do
   def tracks(),
     do: [
       %Video.Track{
-        group: "Radschnellweg Elmshorn",
+        group: "Radschnellweg Elmshorn (ab Diebsteich)",
         direction: :forward,
         from: "Hamburg Diebsteich",
         to: "Elmshorn Zeltberg",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Elmshorn",
+        text: "künftiger Radschnellweg nach Elmshorn (ab Diebsteich)",
         videos: [
           {"2021-09-11-rsw-elmshorn/GX012803", "00:01:05.966", :end},
           {"2021-09-11-rsw-elmshorn/GX012804", :start, :end},
@@ -48,6 +48,35 @@ defmodule Data.Article.Static.RSWElmshorn do
           {"2021-09-11-rsw-elmshorn/GX012822", :start, "00:02:01.088"},
           {"2021-09-11-rsw-elmshorn/GX012822", "00:02:19.673", :end}
         ]
+      },
+      %Video.Track{
+        group: "Radschnellweg Elmshorn (ab Langenfelder Damm)",
+        direction: :forward,
+        from: "Hamburg Langenfelder Damm",
+        to: "Hamburg Elbgaustraße",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg nach Elmshorn (ab Langenfelder Damm)",
+        videos: [
+          {"2021-12-25-velo2-rsw-elmshorn/GX013083", "00:03:50.831", "00:03:59.806"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013084", "00:00:14.281", :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013085", :start, :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013086", :start, :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013087", :start, "00:00:50.918"}
+        ]
+      },
+      %Video.Track{
+        group: "Radschnellweg Elmshorn (ab Langenfelder Damm)",
+        direction: :backward,
+        from: "Hamburg Elbgaustraße",
+        to: "Hamburg Langenfelder Damm",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg von Elmshorn (zum Langenfelder Damm)",
+        videos: [
+          {"2021-12-25-velo2-rsw-elmshorn/GX013087", "00:01:28.322", :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013088", "00:00:01.034", :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013089", :start, "00:00:20.087"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013089", "00:01:00.561", "00:02:59.613"}
+        ]
       }
     ]
 
@@ -72,7 +101,7 @@ defmodule Data.Article.Static.RSWElmshorn do
     ~H"""
     <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Elmshorn ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
 
-    <p>Der Radschnellweg beginnt in Hamburg an zwei unterschiedlichen Stellen und vereint sich erst in der <.m bounds="9.88323,53.598201,9.895067,53.606363" lon="9.890008" lat="53.601812" dir="forward">Elbgaustraße</.m>. Das Video orientiert sich am westlichen Arm, muss aber dort wo neue Brücken und Wege erst noch gebaut werden sollen von der Trasse abweichen. Die in der Karte eingezeichnete Strecke ist die Vorzugsvariante. Sollte diesen in Teilen nicht umgesetzt werden können, wurden in der Planung auch Alternativen ausgearbeitet.</p>
+    <p>Der Radschnellweg beginnt in Hamburg an zwei unterschiedlichen Stellen und vereint sich erst in der <.m bounds="9.88323,53.598201,9.895067,53.606363" lon="9.890008" lat="53.601812" dir="forward">Elbgaustraße</.m>. Das lange Video orientiert sich am westlichen Arm und geht bis Elmshorn. Das Kurze zeigt den östlichen Arm nur ab/bis Elbgaustrase. Dort wo neue Brücken und Wege erst noch gebaut werden sollen weichen die Videos von der Trasse ab. Die in der Karte eingezeichnete Strecke ist die Vorzugsvariante. Sollte diesen in Teilen nicht umgesetzt werden können, wurden in der Planung auch Alternativen ausgearbeitet.</p>
 
     <h4>Hamburg – Westlicher Arm</h4>
     <p>Ab dem künftigen <.m bounds="9.932179,53.566228,9.936053,53.57052" lon="9.933123" lat="53.567272" dir="forward">Fernbahnhof Diebsteich</.m> käme man via Fahrradstraßen zum <.m bounds="9.905415,53.569786,9.924592,53.574445" lon="9.922476" lat="53.570868" dir="forward">Holstenkamp</.m>. Im ersten Abschnitt soll ein schmaler Zweirichtungsradweg auf der Südseite ergänzt werden, der sich nach <.m bounds="9.917098,53.570341,9.919687,53.571486" lon="9.918268" lat="53.570864" dir="forward">der Kreuzung</.m> jedoch wieder aufspaltet. Da der Holstenkamp beim Bau des Autobahndeckel eine Verbindung zur Luruper Chaussee erhalten soll, wird mit deutlich mehr KFZ Verkehr gerechnet. Die Planung dazu erfolgt im Rahmen des Deckelbaus, angepeilt ist Mitte 2020er Jahre.</p>
