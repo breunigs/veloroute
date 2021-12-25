@@ -100,17 +100,31 @@ defmodule Docker do
     end
   end
 
+  defp docker_supports_gpu do
+    {out, status} =
+      System.cmd("docker", ["run", "--gpus", "all", "hello-world"], stderr_to_stdout: true)
+
+    cond do
+      status == 0 ->
+        true
+
+      status == 125 && String.contains?(out, "with capabilities: [[gpu]]") ->
+        false
+
+      true ->
+        IO.puts(
+          :stderr,
+          "Looks like Docker cannot pass through a GPU. If nvidia-docker is not installed, this is to be expected, but the error message looks different this time: #{out}}"
+        )
+
+        false
+    end
+  end
+
   def boot_detector do
-    docker = [
-      "docker",
-      "run",
-      "--rm",
-      "--gpus",
-      "all",
-      "--tty",
-      "--name",
-      @container_name_detect
-    ]
+    docker = ["docker", "run", "--rm"]
+    docker = if docker_supports_gpu(), do: docker ++ ["--gpus", "all"], else: docker
+    docker = docker ++ ["--tty", "--name", @container_name_detect]
 
     Util.cmd2(docker ++ extra_video_mount("/") ++ [@image_name_detector])
   end
