@@ -34,6 +34,9 @@ defmodule Video.Timestamp do
 
     iex> Video.Timestamp.from_milliseconds(1337)
     "00:00:01.337"
+
+    iex> Video.Timestamp.from_milliseconds(4171008)
+    "01:09:31.008"
   """
   @spec from_milliseconds(integer()) :: t()
   def from_milliseconds(duration_in_ms) do
@@ -132,7 +135,7 @@ defmodule Video.Timestamp do
     minutes = div(duration_in_ms, @minute_in_ms)
     duration_in_ms = rem(duration_in_ms, @minute_in_ms)
 
-    seconds = div(duration_in_ms - hours - minutes, @second_in_ms)
+    seconds = div(duration_in_ms, @second_in_ms)
     milliseconds = rem(duration_in_ms, @second_in_ms)
 
     {hours, minutes, seconds, milliseconds}
