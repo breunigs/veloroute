@@ -21,7 +21,7 @@ defmodule Mapbox do
   # for debugging help
   # plug Tesla.Middleware.Logger
 
-  @search_query_bbox Settings.initial() |> VariousHelpers.to_string_bounds()
+  @search_query_bbox Settings.bounds() |> VariousHelpers.to_string_bounds()
   @search_language "de"
   @search_types ["postcode", "place", "locality", "neighborhood", "address", "poi"]
 
