@@ -190,26 +190,83 @@ const itemsUnderCursor = (evt) => {
   return routes;
 }
 
-
+let pingResetTimer = null;
 let pingIndicator = null;
-const maybePing = () => {
-  if (!state.ping) {
-    if (pingIndicator) pingIndicator.getElement().style.opacity = '0';
-    return;
-  }
+const pingHideDelaySeconds = 10;
+const pingHideTransitionSeconds = 3;
+const pingLayerDefaults = {
+  'type': 'line',
+  'source': 'ping',
+  'layout': {
+    'line-join': 'round',
+    'line-cap': 'round'
+  },
+}
+const pingLayerTransition = {
+  'duration': pingHideTransitionSeconds * 1000,
+  'delay': pingHideDelaySeconds * 1000,
+}
+document.getElementById("ping").addEventListener("click", showPing);
 
-  const split = state.ping.split(",");
-  const lngLat = new mapboxgl.LngLat(split[0], split[1]);
+function showPing(e) {
+  hidePing();
 
-  if (!pingIndicator) {
-    const el = genDiv('ping-indicator');
-    pingIndicator = new mapboxgl.Marker(el)
+  if (e.detail.polylines && e.detail.polylines.length > 0) {
+    const geojson = {
+      type: 'FeatureCollection',
+      features: e.detail.polylines.map(polyline2geojson)
+    }
+    console.log("ping: showing ", e.detail.polylines.length, "polylines")
+
+
+    map.addSource('ping', {
+      'type': 'geojson',
+      'data': geojson
+    });
+    map.addLayer(Object.assign({
+      'id': 'ping-fg',
+      'paint': {
+        'line-color': '#F47474',
+        'line-opacity-transition': pingLayerTransition,
+        'line-width': 2,
+        'line-dasharray': [2, 3],
+      }
+    }, pingLayerDefaults), "road-label");
+    map.addLayer(Object.assign({
+      'id': 'bing-bg',
+      'paint': {
+        'line-color': 'rgba(255,255,255,0.9)',
+        'line-opacity-transition': pingLayerTransition,
+        'line-width': 8,
+        'line-blur': 2,
+      }
+    }, pingLayerDefaults), "ping-fg");
+    map.setPaintProperty('ping-fg', 'line-opacity', 0.0)
+    map.setPaintProperty('bing-bg', 'line-opacity', 0.0)
+  } else {
+    const center = e.detail.center;
+    const lngLat = new mapboxgl.LngLat(center.lon, center.lat);
+    console.log("ping: setting marker @", center)
+
+    pingIndicator = new mapboxgl.Marker(genDiv('ping-indicator'))
       .setLngLat(lngLat)
       .addTo(map);
-  } else {
-    pingIndicator.getElement().style.opacity = '1';
-    pingIndicator.setLngLat(lngLat)
+    window.pingIndicator = pingIndicator;
+    // can't be in the same frame, else it'll be hidden instantly
+    setTimeout(() => pingIndicator.getElement().style.opacity = '0', 20)
   }
+  pingResetTimer = setTimeout(hidePing, (pingHideTransitionSeconds + pingHideDelaySeconds) * 1000);
+}
+
+function hidePing() {
+  if (pingResetTimer) clearTimeout(pingResetTimer)
+  pingResetTimer = null;
+  console.log("ping: hiding")
+
+  if (map.getLayer('ping-fg')) map.removeLayer('ping-fg');
+  if (map.getLayer('bing-bg')) map.removeLayer('bing-bg');
+  if (map.getSource('ping')) map.removeSource('ping');
+  if (pingIndicator) pingIndicator.remove();
 }
 
 const titleForItem = (item) => {
@@ -408,6 +465,51 @@ function maybeHackStateFromVideo() {
   }
 }
 
+// algorithm specification: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
+const factor = 1000000; // 10^6, where precision=6
+function polyline2geojson(str) {
+  let index = 0;
+  let lat = 0;
+  let lon = 0;
+  let coordinates = [];
+
+  while (index < str.length) {
+    let byte;
+    let shift = 0;
+    let val = 0;
+
+    do {
+      byte = str.charCodeAt(index++) - 63;
+      val |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+
+    lat += ((val & 1) ? ~(val >> 1) : (val >> 1));
+
+    shift = val = 0;
+
+    do {
+      byte = str.charCodeAt(index++) - 63;
+      val |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+
+    lon += ((val & 1) ? ~(val >> 1) : (val >> 1));
+
+    coordinates.push([lon / factor, lat / factor]);
+  }
+
+  return {
+    type: 'Feature',
+    "properties": {},
+    geometry: {
+      type: 'LineString',
+      coordinates: coordinates
+    }
+  };
+}
+
+
 window.map = map;
 
 function updateVideoIndicator() {
@@ -421,7 +523,6 @@ function runQueuedUpdate() {
   maybeFitBounds();
   updateVideoIndicator();
   setLayerVisibility();
-  maybePing();
 }
 
 let queued = false;

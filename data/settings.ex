@@ -15,6 +15,8 @@ defmodule Settings do
   # no trailing slash
   def url, do: "https://veloroute.hamburg"
 
+  def street_polyline_source, do: "https://download.geofabrik.de/europe/germany-latest.osm.pbf"
+
   def feed_title, do: "veloroute.hamburg – Neue Artikel"
   def feed_author, do: "veloroute.hamburg"
 

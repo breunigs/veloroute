@@ -835,8 +835,11 @@ a {
   outline: 0.1em solid #000000a1;
   pointer-events: none;
   transition-property: opacity;
+  opacity: 1;
+  // keep in sync with map.js
+  transition-delay: 10s;
   transition-duration: 3s;
-  transition-timing-function: ease-in;
+  transition-timing-function: linear;
   margin-left: 0.5em;
   margin-top: 0.5em;
 }

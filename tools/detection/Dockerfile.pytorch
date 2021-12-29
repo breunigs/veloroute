@@ -8,7 +8,7 @@ RUN apt-get update && \
   apt-get install --no-install-recommends -y ffmpeg && \
   rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /tmp/empty/ /root/.config/Ultralytics/
+RUN mkdir -p /root/.config/Ultralytics/
 # prevent YOLOv5 from downloading unnecessary assets
 RUN ln /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf /root/.config/Ultralytics/Arial.ttf
 

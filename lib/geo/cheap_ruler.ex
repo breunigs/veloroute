@@ -82,7 +82,7 @@ defmodule Geo.CheapRuler do
   end
 
   @doc ~S"""
-  Returns true if the point or bounding box is filly contained within the 2nd bounding box
+  Returns true if the point or bounding box is fully contained within the 2nd bounding box
 
   ## Examples
 
@@ -159,18 +159,6 @@ defmodule Geo.CheapRuler do
   @spec meters_per_pixel(number) :: float
   def meters_per_pixel(zoom) do
     @zoom_factor / :math.pow(2, zoom + 8)
-  end
-
-  def bounds_to_polyline(%Geo.BoundingBox{
-        minLon: minLon,
-        minLat: minLat,
-        maxLon: maxLon,
-        maxLat: maxLat
-      }) do
-    Polyline.encode([
-      {minLon, minLat},
-      {maxLon, maxLat}
-    ])
   end
 
   @doc ~S"""

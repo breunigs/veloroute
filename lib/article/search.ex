@@ -24,44 +24,45 @@ defmodule Article.Search do
     articles
     |> Enum.map(fn art -> {art, article_terms(art)} end)
     |> Enum.reject(fn {_art, have} -> blank?(have.title.string) || blank?(have.text.string) end)
-    |> Enum.map(fn
-      {art, have} ->
-        title_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.title)
-        text_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.text)
-        title_cont = if String.contains?(have.title.string, want.string), do: 0.4, else: 0
+    |> Enum.map(fn {art, have} ->
+      title_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.title)
+      text_sim = FuzzyCompare.ChunkSet.standard_similarity(want, have.text)
+      title_cont = if String.contains?(have.title.string, want.string), do: 0.4, else: 0
 
-        relevance =
-          [title_sim + title_cont, text_sim]
-          |> Enum.max()
-          |> clamp
-          |> consider_age(art)
-          |> consider_finished(art)
-          |> clamp
+      relevance =
+        [title_sim + title_cont, text_sim]
+        |> Enum.max()
+        |> clamp
+        |> consider_age(art)
+        |> consider_finished(art)
+        |> clamp
 
-        bbox = Article.Decorators.bbox(art)
-        bounds = if bbox, do: bbox, else: Settings.initial()
-        type = if art.created_at(), do: "article", else: "page"
+      if relevance >= @min_relevance,
+        do:
+          Logger.debug(
+            "relevance: #{Float.round(relevance, 2)} / #{Float.round(title_sim, 2)} / #{Float.round(text_sim, 2)} @ #{inspect(have.title.chunks)} "
+          )
 
-        subtext = if art.created_at(), do: "Letzte Änderung #{Article.Decorators.updated_at(art)}"
-
-        if relevance >= @min_relevance,
-          do:
-            Logger.debug(
-              "relevance: #{Float.round(relevance, 2)} / #{Float.round(title_sim, 2)} / #{Float.round(text_sim, 2)} @ #{inspect(have.title.chunks)} "
-            )
-
-        # Logger.debug("relevance: #{title_sim} / #{text_sim} @ #{inspect(art.search_title)} ")
-
-        %SearchResult{
-          bounds: bounds,
-          name: Article.Decorators.full_title(art),
-          url: Article.Decorators.path(art),
-          relevance: relevance,
-          type: type,
-          subtext: subtext
-        }
+      {art, relevance}
     end)
-    |> Enum.reject(fn result -> result.relevance < @min_relevance end)
+    |> Enum.reject(fn {_art, relevance} -> relevance < @min_relevance end)
+    |> Enum.map(fn {art, relevance} ->
+      bbox = Article.Decorators.bbox(art)
+      bounds = if bbox, do: bbox, else: Settings.initial()
+      type = if art.created_at(), do: "article", else: "page"
+
+      subtext = if art.created_at(), do: "Letzte Änderung #{Article.Decorators.updated_at(art)}"
+
+      %SearchResult{
+        bounds: bounds,
+        name: Article.Decorators.full_title(art),
+        url: Article.Decorators.path(art),
+        relevance: relevance,
+        polylines: Article.Decorators.polylines(art),
+        type: type,
+        subtext: subtext
+      }
+    end)
   end
 
   defp consider_age(relevance, %{date: date}) when not is_nil(date) do

@@ -66,7 +66,7 @@ defmodule Veloroute.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix, "~> 1.6.2"},
       {:plug_cowboy, "~> 2.3"},
-      {:polyline, "~> 1.2"},
+      {:polyline, "~> 1.3"},
       {:prioqueue, "~> 0.2.7"},
       {:saxy, "~> 1.0"},
       {:sentry, "~> 8.0"},

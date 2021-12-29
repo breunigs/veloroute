@@ -5,4 +5,8 @@ defmodule Map.Way do
   @type t :: %__MODULE__{}
 
   def style_tags, do: [:oneway, :color]
+
+  def to_polyline(%__MODULE__{nodes: nodes}) do
+    nodes |> Enum.map(&{&1.lon, &1.lat}) |> Geo.StreetPolyline.encode()
+  end
 end

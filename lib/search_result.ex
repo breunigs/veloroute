@@ -1,17 +1,18 @@
 defmodule SearchResult do
-  alias __MODULE__
+  use Phoenix.Component
 
   @type t() :: %SearchResult{
           name: binary(),
           bounds: Geo.BoundingBox.t(),
           center: Geo.Point.t() | nil,
           relevance: float(),
+          polylines: [binary()],
           type: binary(),
           url: binary() | nil,
           subtext: binary() | nil
         }
 
-  @enforce_keys [:name, :bounds, :relevance, :type]
+  @enforce_keys [:name, :bounds, :relevance, :type, :polylines]
 
   defstruct @enforce_keys ++ [:url, :subtext, :center]
 
@@ -38,21 +39,37 @@ defmodule SearchResult do
   Generate suitable live view links that will show the search result by
   navigating or adapting the map
   """
-  def to_html(%SearchResult{name: name, url: url}) when is_binary(url) do
-    Phoenix.LiveView.Helpers.live_patch(name, to: url)
+  def to_html(%__MODULE__{url: url} = assigns) when is_binary(url) do
+    ~H"""
+    <a
+      href={@url}
+      data-phx-link-state="push"
+      data-phx-link="patch"
+      phx-click={ping(assigns)}
+    ><%= @name %></a>
+    """
   end
 
-  def to_html(%SearchResult{name: name, bounds: bounds, center: center}) do
-    attrs = [
-      {"phx-click", "map-zoom-to"},
-      {"phx-value-bounds", VelorouteWeb.VariousHelpers.to_string_bounds(bounds)}
-    ]
+  def to_html(%__MODULE__{} = assigns) do
+    js = assigns |> ping() |> zoom_to_bounds(assigns)
 
-    attrs =
-      if center,
-        do: [{"phx-value-ping-lon", center.lon}, {"phx-value-ping-lat", center.lat} | attrs],
-        else: attrs
+    ~H"""
+    <a phx-click={js}><%= @name %></a>
+    """
+  end
 
-    Phoenix.HTML.Tag.content_tag(:a, name, attrs)
+  def ping(sr) do
+    Phoenix.LiveView.JS.dispatch(%Phoenix.LiveView.JS{}, "click",
+      to: "#ping",
+      detail: %{
+        polylines: sr.polylines,
+        center: Map.take(sr.center || %{}, [:lat, :lon])
+      }
+    )
+  end
+
+  def zoom_to_bounds(js, %{bounds: bounds}) do
+    str = VelorouteWeb.VariousHelpers.to_string_bounds(bounds)
+    Phoenix.LiveView.JS.push(js, "map-zoom-to", value: %{bounds: str})
   end
 end

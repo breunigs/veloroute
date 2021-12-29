@@ -67,6 +67,57 @@ defmodule Docker do
     )
   end
 
+  def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+    "." <> name = Path.extname(dockerfile)
+    img_name = "veloroute.hamburg/docker:#{name}"
+    container_name = "veloroute2#{name}"
+    work_dir = Path.dirname(dockerfile)
+
+    IO.puts("Building “#{name}”")
+
+    Util.cmd2(
+      [
+        "docker",
+        "build",
+        "-f",
+        dockerfile,
+        work_dir,
+        "--network",
+        "host",
+        "-t",
+        img_name
+      ],
+      env: [{"DOCKER_BUILDKIT", "1"}]
+    )
+
+    IO.puts("Running #{img_name}")
+
+    cache_dir = Path.join([File.cwd!(), "data", "cache"])
+
+    Util.cmd2(
+      [
+        "docker",
+        "run",
+        "-e",
+        owner_group_fix(),
+        "--rm",
+        "--name",
+        container_name,
+        "--mount",
+        ~s|type=bind,source=#{cache_dir},target=/workdir|,
+        img_name
+      ] ++ extra_args,
+      opts
+    )
+  end
+
+  defp owner_group_fix() do
+    {uid, 0} = System.cmd("id", ["-u"])
+    {gid, 0} = System.cmd("id", ["-g"])
+
+    "OWNER_GROUP_FIX=#{String.trim(uid)}:#{String.trim(gid)}"
+  end
+
   def mix(args, mix_env \\ "test")
   def mix(args, mix_env) when is_binary(args), do: args |> String.split() |> mix(mix_env)
 
