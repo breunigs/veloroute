@@ -218,7 +218,6 @@ function showPing(e) {
     }
     console.log("ping: showing ", e.detail.polylines.length, "polylines")
 
-
     map.addSource('ping', {
       'type': 'geojson',
       'data': geojson

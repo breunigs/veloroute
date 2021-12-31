@@ -7,9 +7,6 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
 
   @shortdoc "Finds videos in routes and articles and generates their metadata"
   def run(_) do
-    # disable the warning if we're updating files
-    Code.compiler_options(ignore_module_conflict: true)
-
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
     |> Tqdm.tqdm(description: "generating")
