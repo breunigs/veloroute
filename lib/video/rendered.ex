@@ -70,10 +70,10 @@ defmodule Video.Rendered do
 
     concat ++
       [
+        "#{rendered.length_ms() / 1000.0}",
         "|",
         "./tools/video_convert_streamable.rb",
-        Video.Path.target_rel_to_cwd(rendered.hash()),
-        "#{rendered.length_ms()}"
+        Video.Path.target_rel_to_cwd(rendered.hash())
       ]
   end
 

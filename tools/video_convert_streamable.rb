@@ -4,17 +4,17 @@ require 'tmpdir'
 require 'ruby-progressbar'
 
 VIDEO_OUT_DIR = ARGV[0]
-EXPECTED_VIDEO_DURATION_MS = ARGV[1] && ARGV[1].to_i > 0 ? ARGV[1].to_i : nil
 PARENT_DIR = File.dirname(VIDEO_OUT_DIR)
 
 def die(msg)
-  warn msg
+  warn "video_convert_streamable: #{msg}"
   $stdin.close
   exit(1)
 end
 
 if VIDEO_OUT_DIR.nil? || VIDEO_OUT_DIR == ""
   die <<~MAN
+
     Usage:
       cat <some video. | $0 <output directory>
   MAN
@@ -69,28 +69,9 @@ at_exit { FileUtils.rmdir(tmp_dir) if Dir.exist?(tmp_dir) && Dir.empty?(tmp_dir)
 
 
 variants_index = VARIANTS.size - 1
-EXPECTED_VIDEO_SIZE = EXPECTED_VIDEO_DURATION_MS/1000.0 * VARIANTS[variants_index][:bitrate]/8.0*1024*1024
-$bar = ProgressBar.create(
-  format: '%a [%W]%E (%R MiB/s)',
-  total: EXPECTED_VIDEO_SIZE.round,
-  smoothing: 0.2,
-  rate_scale: lambda { |rate| rate / 1024 / 1024 }
-)
-$bar_thread = Thread.new do
-  loop do
-    sleep 10
-
-    size = File.new("#{tmp_dir}/stream_#{variants_index}.m4s").size rescue 0
-    $bar.progress = size
-  rescue ProgressBar::InvalidProgressError
-    $bar.total = nil
-    retry
-  end
-end
-
 
 def ffmpeg
-  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel warning]
+  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel fatal]
   cmd << %w[-hwaccel auto] if ENV["HW_ACCEL"] == "1"
   cmd << %w[-re -f matroska -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
@@ -146,8 +127,8 @@ $ios = []
 $stdin.binmode
 
 def cancel
-  warn "\nAborting…"
-  $stdin.close
+  warn "\nvideo_convert_streamable: Aborting…"
+  $stdin.close unless $stdin.closed?
   $ios.each { |io| Process.kill("KILL", io.pid) unless io.closed? }
   $ios.each(&:close)
   exit(2)
@@ -165,7 +146,12 @@ begin
     break if $stdin.closed?
     buf = $stdin.readpartial(1024*1024)
     $ios.map do |io|
-      Thread.new { io.write(buf) }
+      Thread.new do
+        io.write(buf)
+      rescue IOError
+        # ignore error if we are in shutdown mode
+        raise unless $stdin.closed?
+      end
     end.map(&:join)
   rescue EOFError
     # stdin is empty
@@ -173,9 +159,6 @@ begin
     break
   end
 end
-
-$bar_thread.terminate
-$bar.finish
 
 rendering_ok = $ios.map { |io| io.close(); $?.success? }.all?
 
@@ -199,7 +182,7 @@ begin
   FileUtils.move(tmp_dir, VIDEO_OUT_DIR, verbose: true)
 rescue => e
   tries += 1
-  warn "Failed moving (try #{tries}): #{e}"
+  warn "video_convert_streamable: Failed moving (try #{tries}): #{e}"
   tries <= 3 ? retry : die("Failed moving the files from #{tmp_dir} to #{VIDEO_OUT_DIR}: #{e}")
 end
 
