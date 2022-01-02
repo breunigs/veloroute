@@ -45,7 +45,12 @@ FPS = 29.97
 # https://video.stackexchange.com/a/24684
 GOP_SIZE=(HLS_TIME.to_i * FPS).round.to_s
 
+# codec tag specification:
+# https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
+# vp9 levels: https://www.webmproject.org/vp9/levels/
+# hevc tag: ISO/IEC 14496-15 (€)
 CODEC_AVC = %w[libx264 -preset veryslow -x264opts opencl]
+CODEC_VP9 = %w[libvpx-vp9 -row-mt 1 -tile-columns 4 -frame-parallel 1 -speed 1 -threads 2]
 CODEC_HEVC = can_use?("hevc_nvenc") \
   ? %w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 -tag:v:__INDEX__ hvc1 -refs:v:__INDEX__ 0] \
   : %w[libx265 -x265-params log-level=error -tag:v:__INDEX__ hvc1]
@@ -53,9 +58,10 @@ VARIANTS = [
   {title: "360p",       width:  640, height:  360, bitrate:  4,   codec: CODEC_AVC},
   {title: "144p",       width:  256, height:  144, bitrate:  0.7, codec: CODEC_AVC},
   {title: "240p",       width:  426, height:  240, bitrate:  2,   codec: CODEC_AVC},
+  {title: "480p",       width:  854, height:  480, bitrate:  4,   codec: CODEC_VP9, tag_as: "vp09.00.30.08"},
   {title: "720p",       width: 1280, height:  720, bitrate:  6,   codec: CODEC_AVC},
   {title: "1080p",      width: 1920, height: 1080, bitrate: 12,   codec: CODEC_AVC},
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12,   codec: CODEC_HEVC},
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12,   codec: CODEC_HEVC, tag_as: "hvc1.1.4.L186.B01"},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -170,14 +176,16 @@ if !rendering_ok
   die("rendering failed!")
 end
 
-# manually tag h265 codec if ffmpeg didn't set it
+# manually tag codecs if ffmpeg didn't set them
 stream_path = File.join(tmp_dir, "stream.m3u8")
-orig = File.read(stream_path)
-upd = orig.sub(/^#EXT-X-STREAM-INF:BANDWIDTH=13200000,RESOLUTION=1920x1080$/, '#EXT-X-STREAM-INF:BANDWIDTH=13200000,RESOLUTION=1920x1080,CODECS="hvc1.1.4.L186.B01"')
-if orig != upd
-  File.write(stream_path, upd)
-  puts "manually set h265 tag in stream.m3u8"
+manifest = File.read(stream_path)
+manifest.gsub!(/^#EXT-X-STREAM-INF:.*$/).with_index do |line, idx|
+  tag = VARIANTS[idx][:tag_as]
+  next line if !tag || line.include?("CODEC")
+  warn "stream_#{idx} #{VARIANTS[idx][:title]}: manually tagging as #{tag}"
+  %|#{line},CODECS="#{tag}"|
 end
+File.write(stream_path, manifest)
 
 print "\nUploading… "
 tries = 0

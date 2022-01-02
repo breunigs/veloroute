@@ -137,7 +137,7 @@ function updateVideoElement() {
   const innerHTML = `
     <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
     <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
-    <source src="${path}fallback.mp4${time}" type="video/mp4; codec=avc1.64001E">
+    <source src="${path}fallback.mp4${time}" type="video/mp4; codecs=avc1.64001E">
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
   video.innerHTML = innerHTML;
@@ -174,8 +174,9 @@ videoQualityOptions.addEventListener('click', event => {
 });
 
 const codecTranslate = {
-  avc1: "",
-  hc1: " (HEVC)"
+  avc1: "H.264",
+  vp09: "VP9",
+  hc1: "HEVC"
 }
 
 function updateQualityChooser() {
@@ -193,7 +194,7 @@ function updateQualityChooser() {
     const resolution = window.hls.levels[i].height + "p";
     const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
     const codec = window.hls.levels[i].codecSet;
-    const title = `${resolution} benötigt ca. ${Math.round(mbits)} MBit/s${codecTranslate[codec]}`
+    const title = `${resolution} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codecTranslate[codec]})`
 
     choosers += `<a data-level="${i}" class="${classes}" title="${title}">${resolution}</a>`
   }
