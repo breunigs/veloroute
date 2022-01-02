@@ -12,6 +12,11 @@ def die(msg)
   exit(1)
 end
 
+def can_use?(codec)
+  `ffmpeg -hide_banner -loglevel fatal -f lavfi -i rgbtestsrc -pix_fmt yuv420p -t 0.016 -c:v #{codec} -f mp4 -y /dev/null`
+  $?.exitstatus == 0
+end
+
 if VIDEO_OUT_DIR.nil? || VIDEO_OUT_DIR == ""
   die <<~MAN
 
@@ -40,19 +45,17 @@ FPS = 29.97
 # https://video.stackexchange.com/a/24684
 GOP_SIZE=(HLS_TIME.to_i * FPS).round.to_s
 
-DEFAULT_CODEC = ENV["HW_ACCEL"] == "1" \
-  ? %w[libx264 -preset veryslow -x264opts opencl] \
-  : %w[libx264 -preset veryslow]
-HQ_CODEC = ENV["HW_ACCEL"] == "1" \
+CODEC_AVC = %w[libx264 -preset veryslow -x264opts opencl]
+CODEC_HEVC = can_use?("hevc_nvenc") \
   ? %w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 -tag:v:__INDEX__ hvc1 -refs:v:__INDEX__ 0] \
   : %w[libx265 -x265-params log-level=error -tag:v:__INDEX__ hvc1]
 VARIANTS = [
-  {title: "360p",       width:  640, height:  360, bitrate:  4   },
-  {title: "144p",       width:  256, height:  144, bitrate:  0.7 },
-  {title: "240p",       width:  426, height:  240, bitrate:  2   },
-  {title: "720p",       width: 1280, height:  720, bitrate:  6   },
-  {title: "1080p",      width: 1920, height: 1080, bitrate: 12   },
-  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12, codec: HQ_CODEC},
+  {title: "360p",       width:  640, height:  360, bitrate:  4,   codec: CODEC_AVC},
+  {title: "144p",       width:  256, height:  144, bitrate:  0.7, codec: CODEC_AVC},
+  {title: "240p",       width:  426, height:  240, bitrate:  2,   codec: CODEC_AVC},
+  {title: "720p",       width: 1280, height:  720, bitrate:  6,   codec: CODEC_AVC},
+  {title: "1080p",      width: 1920, height: 1080, bitrate: 12,   codec: CODEC_AVC},
+  {title: "1080p (HD)", width: 1920, height: 1080, bitrate: 12,   codec: CODEC_HEVC},
 ]
 
 # The average bitrate is given in the variants above. This defined
@@ -72,7 +75,7 @@ variants_index = VARIANTS.size - 1
 
 def ffmpeg
   cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel fatal]
-  cmd << %w[-hwaccel auto] if ENV["HW_ACCEL"] == "1"
+  cmd << %w[-hwaccel auto]
   cmd << %w[-re -f matroska -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
   cmd << %w[-pix_fmt yuv420p -refs 5]
@@ -81,7 +84,7 @@ end
 
 # mp4 (fallback and ie11)
 fallback_mp4 = ffmpeg()
-fallback_mp4 << "-c:v" << DEFAULT_CODEC
+fallback_mp4 << "-c:v" << VARIANTS[0][:codec]
 fallback_mp4 << "-s" << "#{VARIANTS[0][:width]}x#{VARIANTS[0][:height]}"
 rate = VARIANTS[0][:bitrate]
 fallback_mp4 << ["-b:v", "#{rate}M", "-maxrate", "#{rate * MAX_BITRATE}M", "-bufsize", "#{rate*BUF_SIZE}M"]
@@ -105,7 +108,7 @@ fallback_webm << "#{tmp_dir}/fallback.webm"
 # hls
 hls = ffmpeg()
 VARIANTS.each.with_index do |var, idx|
-  codec = (var[:codec] || DEFAULT_CODEC).map { |x| x.gsub("__INDEX__", "#{idx}") }
+  codec = var[:codec].map { |x| x.gsub("__INDEX__", "#{idx}") }
 
   hls << "-c:v:#{idx}" << codec << "-flags" << "+cgop"
   hls << %w[-map v:0] << "-s:#{idx}" << "#{var[:width]}x#{var[:height]}"
