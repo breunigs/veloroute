@@ -72,15 +72,12 @@ MAX_BITRATE = 1.1
 # https://trac.ffmpeg.org/wiki/Limiting%20the%20output%20bitrate
 BUF_SIZE = 2.0
 
-
 tmp_dir = Dir.mktmpdir("video_convert_streamable__#{File.basename(VIDEO_OUT_DIR)}__")
 at_exit { FileUtils.rmdir(tmp_dir) if Dir.exist?(tmp_dir) && Dir.empty?(tmp_dir) }
 
-
-variants_index = VARIANTS.size - 1
-
 def ffmpeg
-  cmd =  %w[nice -n18 ffmpeg -hide_banner -loglevel fatal]
+  cmd = %w[nice -n18 ionice -c 3]
+  cmd << %w[ffmpeg -hide_banner -loglevel fatal]
   cmd << %w[-hwaccel auto]
   cmd << %w[-re -f matroska -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
