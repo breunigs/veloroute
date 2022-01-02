@@ -88,7 +88,7 @@ def ffmpeg_concat(concat, bar)
         last_kbyte = out[-1024..-1] || out
         extract = last_kbyte.scan(/time=(\d{2,}:\d{2}:\d{2}\.\d+) /).last
         next unless extract
-        bar.progress = parse_ffmpeg_timestamp(extract[0]).round
+        bar.progress = parse_ffmpeg_timestamp(extract[0]).round(1)
       end
       stderr.close
     rescue IOError => e
