@@ -58,6 +58,12 @@ function attachHlsErrorHandler(obj, Hls) {
       });
     } else {
       console.log('Hls encountered an error', event, data);
+      window.plausible('video-hls-error', {
+        props: {
+          type: data.type,
+          details: data.details,
+        }
+      });
     }
   });
 }
@@ -110,6 +116,7 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
+      window.hls.on(Hls.Events.FRAG_LOADED, recordQualityLevel);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
@@ -198,6 +205,18 @@ function updateQualityChooser() {
 
 function hideQualityChooser() {
   videoQuality.style.display = 'none';
+}
+
+function recordQualityLevel(_ev, data) {
+  const lvl = data.frag.initSegment.level;
+  const mbits = window.hls.levels[lvl].bitrate / 1024 / 1024;
+  const codec = window.hls.levels[lvl].codecSet;
+  window.plausible('video-quality', {
+    props: {
+      mbits: mbits,
+      codec: codec
+    }
+  })
 }
 
 function currentTimeInMs() {
