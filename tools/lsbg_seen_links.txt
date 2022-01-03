@@ -467,3 +467,8 @@
 - "/contentblob/15627666/0b66c62e5e9c3e67cfc4c9d646cd2793/data/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15627664/2d274b1d6f9927747c076a159fe6a0dc/data/veloroute-13-gerichtstrasse-abgestimmte-planung-plan.pdf"
 - "/contentblob/15627670/0b53afaea45789d8f13b4df3963907e8/data/bergedorfer-str-b5-grundinstandsetzung-bruecke-bw-535-%E2%80%93-november-2021-sommer-2023.pdf"
+'2022-01-03':
+- "/contentblob/15717758/5898c6d88d74ad988a2a702daa4c6191/data/farmsener-weg-karlshoehe-august-krogmann-strasse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15717760/65f973a5755d32c735e774415a937ba7/data/farmsener-weg-karlshoehe-august-krogmann-strasse-abgestimmte-planung-plaene.pdf"
+- "/contentblob/15717754/4c10155fedce8a2737d5420dfc93ab1b/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15717756/8e8fdb8c33110bed40c07befe279ec90/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-plaene.pdf"

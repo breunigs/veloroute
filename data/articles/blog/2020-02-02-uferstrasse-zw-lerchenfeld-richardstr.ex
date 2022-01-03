@@ -6,6 +6,7 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
   def title(), do: "Uferstraße (Zwischen Lerchenfeld und Richardstraße Veloroute 6)"
 
   def type(), do: :planned
+  def start(), do: ~d[2022-07]
 
   def tags(), do: ["6"]
 
