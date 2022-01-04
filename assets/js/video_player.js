@@ -48,21 +48,32 @@ function markPause() {
 
 function attachHlsErrorHandler(obj, Hls) {
   obj.on(Hls.Events.ERROR, function (event, data) {
+    let props = {
+      type: data.type,
+      details: data.details,
+    }
+
+    try {
+      const details = window.hls.levels[window.hls.currentLevel];
+      props.bitrate = `${details.bitrate}`;
+      props.dimension = `${details.width}x${details.height}`;
+      props.codec = details.codecSet;
+    } catch (error) {
+      props.error = "HLS has no current level"
+    }
+
     if (data.fatal) {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', event, data);
       window.hls = false;
       obj.destroy();
       updateVideoElement();
       window.plausible('video-hls-error-fatal', {
-        props: data
+        props: props
       });
     } else {
       console.log('Hls encountered an error', event, data);
       window.plausible('video-hls-error', {
-        props: {
-          type: data.type,
-          details: data.details,
-        }
+        props: props
       });
     }
   });
@@ -209,16 +220,18 @@ function hideQualityChooser() {
 }
 
 function recordQualityLevel(_ev, data) {
+  if (Math.random() <= 0.9) return;
   const lvl = data.frag.initSegment.level;
-  const mbits = window.hls.levels[lvl].bitrate / 1024 / 1024;
-  const codec = window.hls.levels[lvl].codecSet;
+  const details = window.hls.levels[lvl];
   window.plausible('video-quality', {
     props: {
-      mbits: mbits,
-      codec: codec
+      bitrate: `${details.bitrate}`,
+      dimension: `${details.width}x${details.height}`,
+      codec: details.codecSet,
     }
   })
 }
+
 
 function currentTimeInMs() {
   if (!video) return 0;
