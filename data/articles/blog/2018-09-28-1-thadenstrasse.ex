@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
   def title(), do: "Thadenstraße (Veloroute 1)"
 
   def start(), do: ~d[2021-04-06]
-  def stop(), do: ~d[2022Q1]
+  def stop(), do: ~d[2021-12-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14882]
