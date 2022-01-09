@@ -2,7 +2,7 @@ defmodule Video.Renderer do
   @doc """
   Returns the commands to preview the given video(s).
   """
-  def preview(rendered, blur) do
+  def preview_cmd(rendered, blur) do
     filter =
       if blur,
         do: Enum.join(blurs(rendered) ++ xfades(rendered, true), ";"),
@@ -31,43 +31,39 @@ defmodule Video.Renderer do
       ]
   end
 
-  def render(rendered, target) when is_binary(target) do
-    target = Path.expand(target)
+  def render(rendered) do
+    target = Video.Path.target(rendered.hash())
 
     case File.ls(target) do
-      {:ok, []} -> render_real(rendered, target)
-      {:error, :enoent} -> render_real(rendered, target)
+      {:ok, []} -> render_run(rendered, target)
+      {:error, :enoent} -> render_run(rendered, target)
       _ -> {:error, "#{target} already exists, refusing to overwrite"}
     end
   end
 
   @nice_render ["nice", "-n19", "ionice", "-c", "3"]
 
-  defp render_real(rendered, target) do
+  defp render_run(rendered, target) do
     pbar = Video.Renderer.Progress.new(rendered)
+
+    with {:ok, tmp_dir} = Temp.mkdir("veloroutehamburg_render_#{rendered.hash()}"),
+         cmd <- render_cmd(rendered, tmp_dir),
+         %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render"),
+         :ok <- create_fallbacks(tmp_dir),
+         :ok <- move(tmp_dir, target) do
+      File.rm_rf!(tmp_dir)
+    end
+  end
+
+  def render_cmd(rendered, tmp_dir) do
     filter = Enum.join(blurs(rendered) ++ xfades(rendered, true), ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
 
-    cmd =
-      @nice_render ++
-        ["ffmpeg", "-hide_banner"] ++
-        inputs(rendered) ++ ["-filter_complex", filter]
-
-    {:ok, tmp_dir} = Temp.mkdir("veloroutehamburg_render_#{rendered.hash()}")
-
-    cmd = cmd ++ encoder(tmp_dir)
-
-    with %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render"),
-         :ok <- create_fallbacks(tmp_dir),
-         :ok <- move(tmp_dir, target) do
-      File.rm_rf!(tmp_dir)
-    else
-      err ->
-        IO.puts(:stderr, "failure, keeping #{tmp_dir} for inspection")
-        err
-    end
+    @nice_render ++
+      ["ffmpeg", "-hide_banner"] ++
+      inputs(rendered) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
   end
 
   defp move(tmp_dir, target) do
@@ -148,7 +144,7 @@ defmodule Video.Renderer do
       from = if from == :start, do: [], else: ["-ss", from]
       to = if to == :end, do: [], else: ["-to", to]
 
-      from ++ to ++ ["-i", Video.Path.source(path)]
+      from ++ to ++ ["-i", Video.Path.source_rel_to_cwd(path)]
     end)
   end
 
@@ -156,7 +152,7 @@ defmodule Video.Renderer do
     rendered.sources()
     |> Enum.with_index()
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
-      path = Video.Path.detections(path)
+      path = Video.Path.detections_rel_to_cwd(path)
       from = if from == :start, do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = if from == 0, do: 0, else: ceil(fps(path) * from / 1000.0)
       "[#{idx}]frei0r=jsonblur:#{path}|#{blur_frame_skip}[blur#{idx}]"

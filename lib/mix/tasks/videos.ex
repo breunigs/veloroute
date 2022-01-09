@@ -77,7 +77,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       blur = System.get_env("BLUR", nil) == "1"
-      cmd = Video.Renderer.preview(rendered, blur)
+      cmd = Video.Renderer.preview_cmd(rendered, blur)
 
       IO.puts("""
 

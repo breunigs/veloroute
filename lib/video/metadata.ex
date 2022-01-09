@@ -62,7 +62,7 @@ defmodule Video.Metadata do
 
     Util.cmd2(cli, stdout: "", stderr: "")
     |> case do
-      %{status: 0, stdout: out} ->
+      %{result: :ok, stdout: out} ->
         [_, num, denom] = Regex.run(~r/^r_frame_rate=(\d+)\/(\d+)$/m, out)
         [_, dur] = Regex.run(~r/^duration=([0-9\.]+)$/m, out)
 
@@ -72,14 +72,8 @@ defmodule Video.Metadata do
            duration: String.to_float(dur)
          }}
 
-      %{status: code, stdout: stdout, stderr: stderr} ->
-        {:error,
-         """
-          ffprobe failed with #{code}
-          CLI: #{Enum.join(cli, " ")}
-          OUT: #{stdout}
-          ERR: #{stderr}
-         """}
+      %{result: result} ->
+        result
     end
   end
 end

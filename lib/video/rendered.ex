@@ -163,7 +163,7 @@ defmodule Video.Rendered do
 
   ## Examples
 
-      iex> Video.Rendered.coord_io_list(Video.RenderedTest.Example)
+      iex> Video.Rendered.coord_io_list(Video.RendererTest.Example)
       '0 10044000 53507000 100 -2000 1000 100 -2000 1000 100 -2000 1000 100 -2000 1000'
   """
   @spec coord_io_list(t()) :: iolist()
@@ -199,14 +199,14 @@ defmodule Video.Rendered do
 
   ## Examples
 
-      iex> Video.Rendered.start_from(Video.RenderedTest.Example, %{lat: 53.5085, lon: 10.041})
+      iex> Video.Rendered.start_from(Video.RendererTest.Example, %{lat: 53.5085, lon: 10.041})
       %{bearing: 310.0161346069299, lat: 53.5085, lon: 10.041000000000002, time_offset_ms: 150}
 
-      iex> last_coord = Video.RenderedTest.Example.coords |> List.last()
-      iex> Video.Rendered.start_from(Video.RenderedTest.Example, last_coord)
+      iex> last_coord = Video.RendererTest.Example.coords |> List.last()
+      iex> Video.Rendered.start_from(Video.RendererTest.Example, last_coord)
       %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
 
-      iex> Video.Rendered.start_from(Video.RenderedTest.Example, 124)
+      iex> Video.Rendered.start_from(Video.RendererTest.Example, 124)
       %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124}
   """
   def start_from(rendered, point_or_time)

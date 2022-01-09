@@ -13,7 +13,7 @@ defmodule Video.Track do
   @type plain :: [{binary(), Video.Timestamp.t() | :start, Video.Timestamp.t() | :end}]
   # 32*8=256
   @type hash :: <<_::256>>
-  @type fade :: pos_integer() | nil
+  @type fade :: float() | nil
 
   @type t :: %__MODULE__{
           from: binary(),

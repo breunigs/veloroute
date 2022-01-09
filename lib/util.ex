@@ -38,7 +38,7 @@ defmodule Util do
   cmd2 uses ports to be able to pass on signals to the child process. Since the
   VM eats SIGINT, it can only pass SIGINT and SIGTERM.
   """
-  @spec cmd2([binary()], keyword()) :: %{
+  @spec cmd2([any()], keyword()) :: %{
           status: non_neg_integer(),
           stdout: any(),
           stderr: any(),
@@ -59,41 +59,48 @@ defmodule Util do
       if status[:status] == 0 do
         :ok
       else
-        """
-        FAILED #{name} with status=#{status[:status]}
-        CLI: #{Util.cli_printer(cli)}
-        STDOUT: #{inspect(status[:stdout])}
-        STDERR: #{inspect(status[:stderr])}
-        """
+        {:error,
+         """
+         FAILED #{name} with status=#{status[:status]}
+         CLI: #{Util.cli_printer(cli)}
+         STDOUT: #{inspect(status[:stdout])}
+         STDERR: #{inspect(status[:stderr])}
+         """}
       end
 
     if do_raise && result != :ok,
-      do: raise(result)
+      do: raise(elem(result, 1))
 
     Map.put(status, :result, result)
   end
 
-  defp exec_cmd2([cmd | args], name, env, stdout, stderr) do
+  @spec exec_cmd2([binary()], binary(), Enum.t(), Collectable.t(), Collectable.t()) :: %{
+          status: non_neg_integer(),
+          stdout: any(),
+          stderr: any()
+        }
+  defp exec_cmd2([exe | params], name, env, stdout, stderr) do
     {stdoutacc, stdout} = Collectable.into(stdout)
     {stderracc, stderr} = Collectable.into(stderr)
+    exe = System.find_executable(exe) || exe
+    args = Enum.map([exe | params], &String.to_charlist/1)
+    opts = [:stdout, :stderr, :monitor, {:env, validate_env(env)}]
 
-    {:ok, pid, monitor} =
-      :exec.run(
-        [System.find_executable(cmd) | args],
-        [:stdout, :stderr, :monitor, {:env, validate_env(env)}]
-      )
+    with {:ok, pid, monitor} <- :exec.run(args, opts) do
+      untrap1 = stop_on_signal(monitor, :sigterm)
+      untrap2 = stop_on_signal(monitor, :sigquit)
 
-    untrap1 = stop_on_signal(monitor, :sigterm)
-    untrap2 = stop_on_signal(monitor, :sigquit)
+      warner = Process.send_after(self(), {:slow_warn, name}, 500)
 
-    warner = Process.send_after(self(), {:slow_warn, name}, 500)
-
-    try do
-      receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
-    after
-      untrap1.()
-      untrap2.()
-      Process.cancel_timer(warner)
+      try do
+        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+      after
+        untrap1.()
+        untrap2.()
+        Process.cancel_timer(warner)
+      end
+    else
+      err -> %{status: 128, stdout: nil, stderr: "failed to exec: #{inspect(err)}"}
     end
   end
 
@@ -310,6 +317,7 @@ defmodule Util do
   @doc """
   Takes a command as a list and applies some heuristics for shell copy&paste
   """
+  @spec cli_printer(Enum.t()) :: binary
   def cli_printer(cmd) do
     cmd
     |> Enum.map(fn arg ->
