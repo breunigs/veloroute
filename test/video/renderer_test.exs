@@ -228,6 +228,8 @@ defmodule Video.RendererTest do
              "-n15",
              "ffmpeg",
              "-hide_banner",
+             "-loglevel",
+             "fatal",
              "-ss",
              "00:00:00.000",
              "-to",

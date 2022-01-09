@@ -8,7 +8,7 @@ defmodule Video.Renderer do
         do: Enum.join(blurs(rendered) ++ xfades(rendered, true), ";"),
         else: Enum.join(xfades(rendered, false), ";")
 
-    ["nice", "-n15", "ffmpeg", "-hide_banner"] ++
+    ["nice", "-n15", "ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
       inputs(rendered) ++
       [
         "-filter_complex",
