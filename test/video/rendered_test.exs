@@ -33,7 +33,7 @@ defmodule Video.RenderedTest do
       end)
 
     assert [
-             "INACCURATE_CUTS=1 ./tools/video_concat.rb videos/source/1.mp4 00:00:01.337 00:00:01.737 videos/source/2.mp4 00:00:00.000 00:00:00.123",
+             "./tools/video_concat.rb videos/source/1.mp4 00:00:01.337 00:00:01.737 videos/source/2.mp4 00:00:00.000 00:00:00.123",
              "./tools/video_concat.rb videos/source/1.mp4 00:00:01.614 00:00:01.737 videos/source/2.mp4 00:00:00.000 00:00:00.123"
            ] == cmds
   end

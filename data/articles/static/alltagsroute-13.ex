@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
   def tracks(),
     do: [
       %Video.Track{
+        fade: nil,
         group: "13",
         direction: :forward,
         from: "Altona",
@@ -53,6 +54,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
         ]
       },
       %Video.Track{
+        fade: nil,
         group: "13",
         direction: :backward,
         from: "Hamm",

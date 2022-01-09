@@ -17,6 +17,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
   def tracks(),
     do: [
       %Video.Track{
+        fade: nil,
         group: "track",
         from: "",
         to: "",
@@ -28,6 +29,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
         ]
       },
       %Video.Track{
+        fade: nil,
         group: "track",
         from: "",
         to: "",

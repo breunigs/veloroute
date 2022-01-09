@@ -84,7 +84,7 @@ def ffmpeg
   cmd = nice()
   cmd << %w[ffmpeg -hide_banner -loglevel fatal]
   cmd << %w[-hwaccel auto]
-  cmd << %w[-re -f matroska -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
+  cmd << %w[-re -r] << FPS.to_s << %w[-i -] << "-r" << FPS.to_s
   cmd << %w[-keyint_min] << GOP_SIZE << "-g" << GOP_SIZE << %w[-sc_threshold 0]
   cmd << %w[-pix_fmt yuv420p -refs 5]
   cmd
@@ -127,7 +127,9 @@ def fallback(type)
   cmd.flatten
 end
 
+$shutdown = false
 def cancel(message = "Aborting…")
+  $shutdown = true
   warn "\n#{NAME}: #{message}"
   $stdin.close unless $stdin.closed?
   RUNNING_CHILDREN.each { |pid| Process.kill("KILL", pid) rescue nil }
@@ -150,12 +152,14 @@ def run_pipe(cmd)
       break
     end
   end
+ensure
   input.close
   $stdin.close
-ensure
+
   wait_threads.each do |wt|
     exit_status = wt.value
     RUNNING_CHILDREN.delete(wt.pid)
+    next if $shutdown
     next if exit_status == 0
     cancel(<<~ERROR)
       subprocess failed ↑

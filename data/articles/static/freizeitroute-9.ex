@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
   def tracks(),
     do: [
       %Video.Track{
+        fade: nil,
         group: "",
         direction: :forward,
         from: "Binnenalster",
@@ -44,6 +45,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
         ]
       },
       %Video.Track{
+        fade: nil,
         group: "Kollauradweg",
         direction: :backward,
         from: "Klövensteen",

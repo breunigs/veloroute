@@ -170,6 +170,8 @@ defmodule Video.Source do
 
   @required_fps 29.97
 
+  def fps(), do: @required_fps
+
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}
   defp video_length_ms_slow(%__MODULE__{source: source}) do

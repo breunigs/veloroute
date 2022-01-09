@@ -15,6 +15,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
   def tracks(),
     do: [
       %Video.Track{
+        fade: nil,
         group: "detour",
         direction: :forward,
         from: "",

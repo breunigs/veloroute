@@ -16,6 +16,7 @@ defmodule Data.Article.Static.RSWStade do
   def tracks(),
     do: [
       %Video.Track{
+        fade: nil,
         group: "Radschnellweg Stade (via Neugraben)",
         direction: :forward,
         from: "Hamburg Finkenwerder",
@@ -50,6 +51,7 @@ defmodule Data.Article.Static.RSWStade do
         ]
       },
       %Video.Track{
+        fade: nil,
         group: "Radschnellweg Stade (via Neuenfelde)",
         direction: :backward,
         from: "Buxtehude Bahnhof",
