@@ -57,46 +57,86 @@ defmodule Video.Renderer do
 
     {:ok, tmp_dir} = Temp.mkdir("veloroutehamburg_render_#{rendered.hash()}")
 
-    try do
-      cmd = cmd ++ encoder(tmp_dir)
+    cmd = cmd ++ encoder(tmp_dir)
 
-      with %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render") do
-        create_fallbacks(tmp_dir)
-      end
-    after
+    with %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render"),
+         :ok <- create_fallbacks(tmp_dir),
+         :ok <- move(tmp_dir, target) do
       File.rm_rf!(tmp_dir)
+    else
+      err ->
+        IO.puts(:stderr, "failure, keeping #{tmp_dir} for inspection")
+        err
+    end
+  end
+
+  defp move(tmp_dir, target) do
+    with :ok <- File.mkdir_p(target),
+         {:ok, files} <- File.ls(tmp_dir) do
+      Enum.map(files, fn file ->
+        source = Path.join(tmp_dir, file)
+        target = Path.join(target, file)
+        move_file(source, target)
+      end)
+    end
+    |> collect_errors()
+  end
+
+  defp move_file(source, target) do
+    case File.rename(source, target) do
+      :ok ->
+        :ok
+
+      {:error, :exdev} ->
+        with {:ok, _copied} <- File.copy(source, target) do
+          File.rm(source)
+        end
+
+      {:error, err} ->
+        {:error, err}
     end
   end
 
   defp create_fallbacks(tmp_dir) do
-    fails =
-      variants()
-      |> Enum.filter(&is_map_key(&1, :fallback))
-      |> Enum.map(fn %{index: idx, fallback: fb} ->
-        Util.cmd2(
-          @nice_render ++
-            [
-              "ffmpeg",
-              "-hide_banner",
-              "-log_level",
-              "fatal",
-              "-i",
-              Path.join(tmp_dir, "stream_#{idx}.m4s"),
-              "-c:v",
-              "copy",
-              "-movflags",
-              "+faststart",
-              Path.join(tmp_dir, "fallback.#{fb}")
-            ],
-          name: "ffmpeg fallback #{fb}"
-        )
-      end)
-      |> Enum.reject(fn %{result: res} -> res == :ok end)
+    variants()
+    |> Enum.filter(&is_map_key(&1, :fallback))
+    |> Enum.map(fn %{index: idx, fallback: fb} ->
+      Util.cmd2(
+        @nice_render ++
+          [
+            "ffmpeg",
+            "-hide_banner",
+            "-log_level",
+            "fatal",
+            "-i",
+            Path.join(tmp_dir, "stream_#{idx}.m4s"),
+            "-c:v",
+            "copy",
+            "-movflags",
+            "+faststart",
+            Path.join(tmp_dir, "fallback.#{fb}")
+          ],
+        name: "ffmpeg fallback #{fb}"
+      )
+    end)
+    |> collect_errors()
+  end
 
-    if Enum.count(fails) >= 1 do
-      Enum.reduce("", fn %{result: {:error, res}}, acc -> "#{acc}\n\n#{res}" end)
-    else
+  defp collect_errors(list) do
+    errors =
+      Enum.reduce(list, [], fn item, errors ->
+        case item do
+          :ok -> errors
+          %{result: :ok} -> errors
+          %{result: {:error, err}} -> ["#{err}" | errors]
+          {:error, err} -> ["#{err}" | errors]
+        end
+      end)
+
+    if errors == [] do
       :ok
+    else
+      {:errors, Enum.join(errors, "\n\n")}
     end
   end
 
