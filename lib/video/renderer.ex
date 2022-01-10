@@ -31,6 +31,7 @@ defmodule Video.Renderer do
       ]
   end
 
+  @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.exec_result()
   def render(rendered) do
     target = Video.Path.target(rendered.hash())
 
@@ -51,7 +52,8 @@ defmodule Video.Renderer do
          %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render"),
          :ok <- create_fallbacks(tmp_dir),
          :ok <- move(tmp_dir, target) do
-      File.rm_rf!(tmp_dir)
+      File.rm_rf(tmp_dir)
+      :ok
     end
   end
 
@@ -132,30 +134,28 @@ defmodule Video.Renderer do
     if errors == [] do
       :ok
     else
-      {:errors, Enum.join(errors, "\n\n")}
+      {:error, Enum.join(errors, "\n\n")}
     end
   end
 
   defp inputs(rendered) do
-    ["-hwaccel", "auto", "-re"]
+    ["-hwaccel", "auto", "-re"] ++
+      Enum.flat_map(rendered.sources(), fn {path, from, to} ->
+        from = if from == :start, do: [], else: ["-ss", from]
+        to = if to == :end, do: [], else: ["-to", to]
 
-    rendered.sources()
-    |> Enum.flat_map(fn {path, from, to} ->
-      from = if from == :start, do: [], else: ["-ss", from]
-      to = if to == :end, do: [], else: ["-to", to]
-
-      from ++ to ++ ["-i", Video.Path.source_rel_to_cwd(path)]
-    end)
+        from ++ to ++ ["-i", Video.Path.source_rel_to_cwd(path)]
+      end)
   end
 
   defp blurs(rendered) do
     rendered.sources()
     |> Enum.with_index()
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
-      path = Video.Path.detections_rel_to_cwd(path)
+      detections = Video.Path.detections_rel_to_cwd(path)
       from = if from == :start, do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = if from == 0, do: 0, else: ceil(fps(path) * from / 1000.0)
-      "[#{idx}]frei0r=jsonblur:#{path}|#{blur_frame_skip}[blur#{idx}]"
+      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip}[blur#{idx}]"
     end)
   end
 
@@ -193,6 +193,7 @@ defmodule Video.Renderer do
   end
 
   defp duration_in_s(path), do: (path |> Video.Path.source() |> Video.Metadata.for())[:duration]
+
   defp fps(path), do: (path |> Video.Path.source() |> Video.Metadata.for())[:fps]
 
   # length of a single segment in seconds. Quality usually switches between
@@ -225,8 +226,7 @@ defmodule Video.Renderer do
     }
 
   # ffmpeg itself manages avc tags
-  defp codec_avc,
-    do: %{codec: ~w[libx264 -preset veryslow -x264opts opencl  -refs:v:__INDEX__ 5]}
+  defp codec_avc, do: %{codec: ~w[libx264 -preset veryslow  -refs:v:__INDEX__ 5]}
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.
@@ -263,8 +263,20 @@ defmodule Video.Renderer do
   end
 
   def variant_flags() do
-    variants()
-    |> Enum.flat_map(fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
+    # OpenCL can run out of memory on the GPU for some averse inputs it seems.
+    opencl =
+      if System.get_env("DISABLE_OPENCL", "0") == "1" do
+        []
+      else
+        IO.puts(
+          :stderr,
+          "\nOpenCL is enabled. If you run out of GPU memory, set DISABLE_OPENCL=1"
+        )
+
+        ~w[-x264opts opencl]
+      end
+
+    Enum.flat_map(variants(), fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
       ["-c:v:#{idx}"] ++
         codec ++
         [
@@ -283,7 +295,7 @@ defmodule Video.Renderer do
           "-bufsize:#{idx}",
           "#{buf_size(rate)}M"
         ]
-    end)
+    end) ++ opencl
   end
 
   defp encoder(tmp_dir) when is_binary(tmp_dir) do

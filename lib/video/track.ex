@@ -32,6 +32,7 @@ defmodule Video.Track do
   defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
 
   @fade_frames 8
+  @spec default_fade :: float
   def default_fade() do
     @fade_frames / Video.Source.fps()
   end

@@ -38,12 +38,13 @@ defmodule Util do
   cmd2 uses ports to be able to pass on signals to the child process. Since the
   VM eats SIGINT, it can only pass SIGINT and SIGTERM.
   """
-  @spec cmd2([any()], keyword()) :: %{
+  @type exec_result :: %{
           status: non_neg_integer(),
           stdout: any(),
           stderr: any(),
           result: :ok | {:error, binary()}
         }
+  @spec cmd2([any()], keyword()) :: exec_result()
   def cmd2(cli, opts) do
     {env, opts} = Keyword.pop(opts, :env, [])
     {do_raise, opts} = Keyword.pop(opts, :raise, false)
@@ -63,8 +64,8 @@ defmodule Util do
          """
          FAILED #{name} with status=#{status[:status]}
          CLI: #{Util.cli_printer(cli)}
-         STDOUT: #{inspect(status[:stdout])}
-         STDERR: #{inspect(status[:stderr])}
+         STDOUT: #{to_string_or_inspect(status[:stdout])}
+         STDERR: #{to_string_or_inspect(status[:stderr])}
          """}
       end
 
@@ -72,6 +73,12 @@ defmodule Util do
       do: raise(elem(result, 1))
 
     Map.put(status, :result, result)
+  end
+
+  defp to_string_or_inspect(term) do
+    if String.Chars.impl_for(term),
+      do: to_string(term),
+      else: inspect(term)
   end
 
   @spec exec_cmd2([binary()], binary(), Enum.t(), Collectable.t(), Collectable.t()) :: %{
@@ -122,8 +129,15 @@ defmodule Util do
       {:DOWN, ^monitor, :process, ^pid, {:exit_status, status}} ->
         reason =
           case :exec.status(status) do
-            {:status, status} -> status
-            {:signal, signal, _core} -> 128 + signal
+            {:status, status} ->
+              status
+
+            {:signal, signal, _core} when is_integer(signal) ->
+              128 + signal
+
+            {:signal, signal, core} ->
+              IO.puts(:stderr, "\nChild received #{signal} signal and died (core: #{core})")
+              137
           end
 
         stdout.(stdoutacc, :halt)

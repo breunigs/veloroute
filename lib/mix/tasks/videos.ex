@@ -48,17 +48,26 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
-      cmd = Video.Renderer.render(rendered)
-
-      IO.puts("""
+      banner = """
 
       ###########################################################
-      echo "#{rendered.name}"
+      # Name: #{rendered.name}
       # Hash: #{rendered.hash}
-      ###########################################################
+      ##########################################################
+      """
 
-      #{Util.cli_printer(cmd)}
-      """)
+      case Video.Renderer.render(rendered) do
+        :ok ->
+          :ok
+
+        {:error, reason} ->
+          IO.puts(banner)
+          IO.puts("failed: #{reason}")
+
+        %{result: {:error, reason}} ->
+          IO.puts(banner)
+          IO.puts(reason)
+      end
     end)
   end
 end
