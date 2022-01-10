@@ -81,10 +81,12 @@ defmodule Video.Track do
   # the trimmed and concatenated video and their corresponding lat/lon coordinates.
   @spec coords([Video.TrimmedSource.t()], fade()) :: [Video.TimedPoint.t()]
   defp coords(tsv_list, fade) when is_list(tsv_list) do
+    fade_in_ms = round((fade || 0) * 1000)
+
     tsv_list
     |> Enum.reduce({0, []}, fn tsv, {duration_so_far, acc} ->
       from = tsv.coord_from.time_offset_ms
-      to = tsv.coord_to.time_offset_ms - round(fade || 0) * 1000
+      to = tsv.coord_to.time_offset_ms - fade_in_ms
 
       %{coords: coords} = Video.TrimmedSource.coords(tsv, from, to)
 
@@ -99,7 +101,7 @@ defmodule Video.Track do
         )
 
       dur = duration_so_far + (to - from)
-      dur = if fade, do: dur - fade, else: dur + @video_concat_bump_ms
+      dur = if fade, do: dur - fade_in_ms, else: dur + @video_concat_bump_ms
       {dur, acc ++ coords}
     end)
     |> elem(1)

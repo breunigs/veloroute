@@ -280,7 +280,8 @@ defmodule Util do
         :ok
       end
     after
-      Code.compiler_options(ignore_module_conflict: false)
+      # re-enabling this causes warning still to be shown :(
+      # Code.compiler_options(ignore_module_conflict: false)
     end
   end
 
