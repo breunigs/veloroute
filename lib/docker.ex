@@ -128,6 +128,11 @@ defmodule Docker do
       "run",
       "-e",
       "MIX_ENV=#{mix_env}",
+      # erlexec needs a shell to be set, even though it's not used
+      "-e",
+      "SHELL=/bin/sh",
+      "-e",
+      "LDFLAGS=-static -static-libgcc -static-libstdc++",
       "--rm",
       "--name",
       "veloroute2devel",
