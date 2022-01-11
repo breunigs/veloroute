@@ -2,6 +2,9 @@ defmodule Video.RendererTest do
   use ExUnit.Case, async: true
 
   test "produces correct video render commands" do
+    # silence warning
+    System.put_env("DISABLE_OPENCL", "1")
+
     cmd =
       Video.RendererTest.Example
       |> Video.Renderer.render_cmd("FAKE_TMP")
@@ -30,7 +33,7 @@ defmodule Video.RendererTest do
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0[blur1];[blur0][blur1]xfade=transition=fade:duration=50:offset=-49.544,split=7[out0][out1][out2][out3][out4][out5][out6]",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0[blur1];[blur0][blur1]xfade=transition=fade:duration=0.05:offset=0.406,split=7[out0][out1][out2][out3][out4][out5][out6]",
              "-an",
              "-f",
              "hls",
@@ -204,8 +207,6 @@ defmodule Video.RendererTest do
              "13.200000000000001M",
              "-bufsize:6",
              "24.0M",
-             "-x264opts",
-             "opencl",
              "-var_stream_map",
              "v:0 v:1 v:2 v:3 v:4 v:5 v:6",
              "FAKE_TMP/stream_%v.m3u8"
@@ -241,7 +242,7 @@ defmodule Video.RendererTest do
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0[blur1];[blur0][blur1]xfade=transition=fade:duration=50:offset=-49.544",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0[blur1];[blur0][blur1]xfade=transition=fade:duration=0.05:offset=0.406",
              "-pix_fmt",
              "yuv420p",
              "-f",
