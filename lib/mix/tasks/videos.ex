@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   def run(_) do
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
+    |> Stream.map(&Video.Track.with_defaults/1)
     |> Tqdm.tqdm(description: "generating")
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn

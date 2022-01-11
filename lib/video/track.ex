@@ -17,7 +17,7 @@ defmodule Video.Track do
   # fade should be on by default for new videos. Old ones need to specify
   # :none. nil means "use default" of 8 frames.
   @type fade :: float() | :none | nil
-  defguardp is_fade(val) when val == :none or (is_float(val) and val >= 0)
+  defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
 
   @type t :: %__MODULE__{
           from: binary(),
@@ -37,9 +37,17 @@ defmodule Video.Track do
 
   @fade_frames 8
   @spec default_fade :: float
-  def default_fade() do
+  defp default_fade() do
     @fade_frames / Video.Source.fps()
   end
+
+  @doc """
+  Sets missing optional values to their default values.
+  """
+  @spec with_defaults(t()) :: t()
+  def with_defaults(%__MODULE__{fade: fade} = t) when valid_fade(fade), do: t
+  def with_defaults(%__MODULE__{fade: nil} = t), do: Map.put(t, :fade, default_fade())
+  def with_defaults(%__MODULE__{} = t), do: raise("Invalid fade value for #{inspect(t)}")
 
   @doc """
   Loads all references videos and turns them into a single stream of
@@ -59,12 +67,11 @@ defmodule Video.Track do
         Video.TrimmedSource.extract(tsvs[file], from, to)
       end)
 
-    fade = fade || default_fade()
     {calc_hash(tsv_list, fade), coords(tsv_list, fade)}
   end
 
   @spec calc_hash([Video.TrimmedSource.t()], fade()) :: hash()
-  defp calc_hash(tsv_list, fade) when is_list(tsv_list) and is_fade(fade) do
+  defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
     hsh = :crypto.hash_init(:md5)
     hsh = if fade == :none, do: hsh, else: :crypto.hash_update(hsh, to_string(fade))
 
@@ -85,7 +92,7 @@ defmodule Video.Track do
   # Returns a list of time offsets in milliseconds, relative to the beginning of
   # the trimmed and concatenated video and their corresponding lat/lon coordinates.
   @spec coords([Video.TrimmedSource.t()], fade()) :: [Video.TimedPoint.t()]
-  defp coords(tsv_list, fade) when is_list(tsv_list) and is_fade(fade) do
+  defp coords(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
     fade_in_ms_halfed = if fade == :none, do: 0, else: round(fade * 1000 / 2)
 
     tsv_list
@@ -106,7 +113,7 @@ defmodule Video.Track do
         )
 
       dur = duration_so_far + (to - from)
-      dur = if fade, do: dur, else: dur + @video_concat_bump_ms
+      dur = if fade == :none, do: dur + @video_concat_bump_ms, else: dur
       {dur, acc ++ coords}
     end)
     |> elem(1)
