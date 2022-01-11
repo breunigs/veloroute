@@ -104,7 +104,7 @@ defmodule Video.Renderer do
           [
             "ffmpeg",
             "-hide_banner",
-            "-log_level",
+            "-loglevel",
             "fatal",
             "-i",
             Path.join(tmp_dir, "stream_#{idx}.m4s"),
@@ -226,7 +226,7 @@ defmodule Video.Renderer do
     }
 
   # ffmpeg itself manages avc tags
-  defp codec_avc, do: %{codec: ~w[libx264 -preset veryslow  -refs:v:__INDEX__ 5]}
+  defp codec_avc, do: %{codec: ~w[libx264 -preset veryslow -refs:v:__INDEX__ 5]}
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.

@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Methfesselstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        fade: Video.Track.default_fade(),
+        fade: nil,
         group: "Methfesselstraße",
         direction: :forward,
         from: "Eidelstedter Weg",
