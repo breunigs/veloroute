@@ -177,6 +177,12 @@ defmodule Video.Renderer do
         {Float.round(to - from, 3), idx}
       end)
       |> Enum.reduce({0, []}, fn {dur, idx}, {total, list} ->
+        if fade >= dur,
+          do:
+            raise(
+              "hash=#{rendered.hash()} segment=#{idx} is #{dur}s long, but fade is #{fade}s. Reduce the fade duration or change the segment."
+            )
+
         {total + dur - fade,
          if idx == 0 do
            list
