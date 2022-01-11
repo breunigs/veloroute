@@ -42,8 +42,10 @@ defmodule Mix.Tasks.EditMap do
       parsed
       |> recursive_clean()
       |> Saxy.encode!()
+      |> String.replace("\"", "'")
+      |> String.replace("'/>", "' />")
 
-    File.write!(map_path, clean)
+    File.write!(map_path, "<?xml version='1.0' encoding='UTF-8'?>\n" <> clean <> "\n")
   end
 
   defp recursive_clean(elems) when is_list(elems),
