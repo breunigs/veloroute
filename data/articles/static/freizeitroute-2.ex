@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Freizeitroute2 do
   def tracks(),
     do: [
       %Video.Track{
+        fade: :none,
         group: "Osterbekradweg",
         direction: :forward,
         from: "Ferdinandstor",
@@ -57,6 +58,7 @@ defmodule Data.Article.Static.Freizeitroute2 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "Osterbekradweg",
         direction: :backward,
         from: "Stellmoorer Tunneltal",

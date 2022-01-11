@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   def run(_) do
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
+    |> Stream.map(&Video.Track.with_defaults/1)
     |> Tqdm.tqdm(description: "generating")
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn
@@ -37,7 +38,7 @@ end
 
 defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
-  import Mix.Tasks.Velo.Videos
+  @requirements ["app.start"]
 
   @shortdoc "Print commands to render videos that are still missing"
   def run(_) do
@@ -48,26 +49,35 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
-      render = Video.Rendered.render(rendered)
-
-      IO.puts("""
+      banner = """
 
       ###########################################################
-      echo "#{rendered.name}"
+      # Name: #{rendered.name}
       # Hash: #{rendered.hash}
-      ###########################################################
+      ##########################################################
+      """
 
-      #{Enum.join(render, " ")}
-      """)
+      case Video.Renderer.render(rendered) do
+        :ok ->
+          :ok
+
+        {:error, reason} ->
+          IO.puts(banner)
+          IO.puts("failed: #{reason}")
+
+        %{result: {:error, reason}} ->
+          IO.puts(banner)
+          IO.puts(reason)
+      end
     end)
   end
 end
 
 defmodule Mix.Tasks.Velo.Videos.Preview do
   use Mix.Task
-  import Mix.Tasks.Velo.Videos
+  @requirements ["app.start"]
 
-  @shortdoc "Print commands to preview videos that are still missing"
+  @shortdoc "Print commands to preview videos that are still missing. Set BLUR=1 to include blurs."
   def run(_) do
     Video.Dir.must_exist!(&real_run/0)
   end
@@ -76,7 +86,8 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
-      previews = Video.Rendered.preview(rendered)
+      blur = System.get_env("BLUR", nil) == "1"
+      cmd = Video.Renderer.preview_cmd(rendered, blur)
 
       IO.puts("""
 
@@ -85,17 +96,18 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
       # Hash: #{rendered.hash}
       ###########################################################
 
+      #{Util.cli_printer(cmd)}
       """)
 
-      for {preview, idx} <- Enum.with_index(previews) do
-        desc = if idx == 0, do: "full preview", else: "#{idx}. concat preview"
+      # for {preview, idx} <- Enum.with_index(previews) do
+      #   desc = if idx == 0, do: "full preview", else: "#{idx}. concat preview"
 
-        IO.puts("""
+      #   IO.puts("""
 
-        #{desc}:
-          #{Enum.join(preview, " ")}
-        """)
-      end
+      #   #{desc}:
+      #     #{Enum.join(preview, " ")}
+      #   """)
+      # end
     end)
   end
 end

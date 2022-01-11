@@ -38,52 +38,132 @@ defmodule Util do
   cmd2 uses ports to be able to pass on signals to the child process. Since the
   VM eats SIGINT, it can only pass SIGINT and SIGTERM.
   """
-  def cmd2(cli, opts \\ [env: []])
+  @type exec_result :: %{
+          status: non_neg_integer(),
+          stdout: any(),
+          stderr: any(),
+          result: :ok | {:error, binary()}
+        }
+  @spec cmd2([any()], keyword()) :: exec_result()
+  def cmd2(cli, opts) do
+    {env, opts} = Keyword.pop(opts, :env, [])
+    {do_raise, opts} = Keyword.pop(opts, :raise, false)
+    {stdout, opts} = Keyword.pop(opts, :stdout, IO.stream(:stdio, :line))
+    {stderr, opts} = Keyword.pop(opts, :stderr, IO.stream(:stderr, :line))
+    {name, opts} = Keyword.pop(opts, :name, hd(cli))
+    if length(opts) > 0, do: raise("Unknown arguments: #{inspect(opts)}")
 
-  def cmd2([cmd | args], env: env) do
-    port_opts = [env: validate_env(env)]
+    cli = Enum.map(cli, &to_string/1)
+    status = exec_cmd2(cli, name, env, stdout, stderr)
 
-    port =
-      Port.open(
-        {:spawn_executable, System.find_executable(cmd)},
-        port_opts ++
-          [
-            :stream,
-            :binary,
-            {:args, args},
-            :nouse_stdio,
-            :exit_status,
-            {:parallelism, true}
-          ]
-      )
-
-    {:os_pid, ospid} = Port.info(port, :os_pid)
-
-    pass_forward_once(:sigterm, ospid)
-    pass_forward_once(:sigquit, ospid)
-
-    IO.puts(:stderr, "running #{cmd}. Press CTRL+\\ to attempt graceful termination")
-
-    receive do
-      {^port, {:exit_status, 0}} ->
+    result =
+      if status[:status] == 0 do
         :ok
+      else
+        {:error,
+         """
+         FAILED #{name} with status=#{status[:status]}
+         CLI: #{Util.cli_printer(cli)}
+         STDOUT: #{to_string_or_inspect(status[:stdout])}
+         STDERR: #{to_string_or_inspect(status[:stderr])}
+         """}
+      end
 
-      {^port, {:exit_status, status}} ->
-        raise("FAILED (exit code #{status})")
+    if do_raise && result != :ok,
+      do: raise(elem(result, 1))
+
+    Map.put(status, :result, result)
+  end
+
+  defp to_string_or_inspect(term) do
+    if String.Chars.impl_for(term),
+      do: to_string(term),
+      else: inspect(term)
+  end
+
+  @spec exec_cmd2([binary()], binary(), Enum.t(), Collectable.t(), Collectable.t()) :: %{
+          status: non_neg_integer(),
+          stdout: any(),
+          stderr: any()
+        }
+  defp exec_cmd2([exe | params], name, env, stdout, stderr) do
+    {stdoutacc, stdout} = Collectable.into(stdout)
+    {stderracc, stderr} = Collectable.into(stderr)
+    exe = System.find_executable(exe) || exe
+    args = Enum.map([exe | params], &String.to_charlist/1)
+    opts = [:stdout, :stderr, :monitor, {:env, validate_env(env)}]
+
+    with {:ok, pid, monitor} <- :exec.run(args, opts) do
+      untrap1 = stop_on_signal(monitor, :sigterm)
+      untrap2 = stop_on_signal(monitor, :sigquit)
+
+      warner = Process.send_after(self(), {:slow_warn, name}, 500)
+
+      try do
+        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+      after
+        untrap1.()
+        untrap2.()
+        Process.cancel_timer(warner)
+      end
+    else
+      err -> %{status: 128, stdout: nil, stderr: "failed to exec: #{inspect(err)}"}
     end
   end
 
-  defp pass_forward_once(signal, pid) do
+  defp receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc) do
+    receive do
+      {:stdout, ^monitor, data} ->
+        stdoutacc = stdout.(stdoutacc, {:cont, data})
+        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+
+      {:stderr, ^monitor, data} ->
+        stderracc = stderr.(stderracc, {:cont, data})
+        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+
+      {:DOWN, ^monitor, :process, ^pid, :normal} ->
+        stdoutacc = stdout.(stdoutacc, :done)
+        stderracc = stderr.(stderracc, :done)
+        %{status: 0, stdout: stdoutacc, stderr: stderracc}
+
+      {:DOWN, ^monitor, :process, ^pid, {:exit_status, status}} ->
+        reason =
+          case :exec.status(status) do
+            {:status, status} ->
+              status
+
+            {:signal, signal, _core} when is_integer(signal) ->
+              128 + signal
+
+            {:signal, signal, core} ->
+              IO.puts(:stderr, "\nChild received #{signal} signal and died (core: #{core})")
+              137
+          end
+
+        stdout.(stdoutacc, :halt)
+        stderr.(stderracc, :halt)
+
+        %{status: reason, stdout: stdoutacc, stderr: stderracc}
+
+      {:slow_warn, cmd} ->
+        IO.puts(:stderr, "\n#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
+        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+    end
+  end
+
+  defp stop_on_signal(monitor, signal) do
     trap_ref = make_ref()
+    untrap = fn -> System.untrap_signal(signal, trap_ref) end
 
     {:ok, _trap} =
       System.trap_signal(signal, trap_ref, fn ->
-        name = signal |> to_string() |> String.upcase()
-        IO.puts(:stderr, "\n\ntrying to #{name} child with pid=#{pid}…")
-        System.cmd("kill", ["-#{signal}", to_string(pid)])
-        System.untrap_signal(signal, trap_ref)
+        IO.puts(:stderr, "\n\nreceived #{signal}, aborting…")
+        untrap.()
+        :exec.stop(monitor)
         :ok
       end)
+
+    untrap
   end
 
   defp validate_env(enum) do
@@ -200,7 +280,8 @@ defmodule Util do
         :ok
       end
     after
-      Code.compiler_options(ignore_module_conflict: false)
+      # re-enabling this causes warning still to be shown :(
+      # Code.compiler_options(ignore_module_conflict: false)
     end
   end
 
@@ -246,5 +327,18 @@ defmodule Util do
       {:error, reason} ->
         {:error, "hackney stream_body failed: #{reason}"}
     end
+  end
+
+  @doc """
+  Takes a command as a list and applies some heuristics for shell copy&paste
+  """
+  @spec cli_printer(Enum.t()) :: binary
+  def cli_printer(cmd) do
+    cmd
+    |> Enum.map(fn arg ->
+      arg = to_string(arg)
+      if String.match?(arg, ~r/^[a-zA-Z0-9_=.-]+$/) || arg == "|", do: arg, else: "'#{arg}'"
+    end)
+    |> Enum.join(" ")
   end
 end

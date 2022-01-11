@@ -87,7 +87,8 @@ defmodule Docker do
         "-t",
         img_name
       ],
-      env: [{"DOCKER_BUILDKIT", "1"}]
+      env: [{"DOCKER_BUILDKIT", "1"}],
+      raise: true
     )
 
     IO.puts("Running #{img_name}")
@@ -107,7 +108,7 @@ defmodule Docker do
         ~s|type=bind,source=#{cache_dir},target=/workdir|,
         img_name
       ] ++ extra_args,
-      opts
+      opts ++ [raise: true]
     )
   end
 
@@ -177,7 +178,7 @@ defmodule Docker do
     docker = if docker_supports_gpu(), do: docker ++ ["--gpus", "all"], else: docker
     docker = docker ++ ["--tty", "--name", @container_name_detect]
 
-    Util.cmd2(docker ++ extra_video_mount("/") ++ [@image_name_detector])
+    Util.cmd2(docker ++ extra_video_mount("/") ++ [@image_name_detector], raise: true)
   end
 
   def boot_release() do

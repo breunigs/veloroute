@@ -72,6 +72,8 @@ defmodule Video.Timestamp do
       String.to_integer(milliseconds)
   end
 
+  def in_seconds(timestamp), do: in_milliseconds(timestamp) / 1000.0
+
   @spec add_milliseconds(t() | :start | :end, integer()) :: t()
   @doc """
   Add milliseconds to the timestamp in ffmpeg format, and return it again

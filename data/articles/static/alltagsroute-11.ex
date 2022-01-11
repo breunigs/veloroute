@@ -46,6 +46,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "11 Eißendorf",
         direction: :backward,
         from: "Eißendorf",
@@ -86,6 +87,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
 
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
+        fade: :none,
         group: "11 Veddel",
         direction: :forward,
         from: "Veddel",
@@ -103,6 +105,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "11 Veddel",
         direction: :backward,
         from: "Wilhelmsburg",

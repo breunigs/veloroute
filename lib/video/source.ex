@@ -157,7 +157,7 @@ defmodule Video.Source do
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
     with {:ok, content} <- File.read(gpx_path),
-         text when is_list(text) <- SweetXml.xpath(content, ~x"//desc/text()"),
+         text when is_list(text) <- SweetXml.xpath(content, ~x"//trk/desc/text()"),
          text <- List.to_string(text),
          {duration, ""} <- Integer.parse(text) do
       duration
@@ -169,6 +169,8 @@ defmodule Video.Source do
   defp video_length_ms_fast(%__MODULE__{}), do: nil
 
   @required_fps 29.97
+
+  def fps(), do: @required_fps
 
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}

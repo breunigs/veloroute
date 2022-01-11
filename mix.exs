@@ -30,12 +30,13 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: extra_apps(Mix.env())
+      extra_applications: [:logger, :runtime_tools, :plug] ++ extra_apps(Mix.env())
     ]
   end
 
-  defp extra_apps(:prod), do: [:logger, :runtime_tools, :plug]
-  defp extra_apps(_), do: [:tqdm] ++ extra_apps(:prod)
+  defp extra_apps(:test), do: [:tqdm]
+  defp extra_apps(:dev), do: [:tqdm]
+  defp extra_apps(_), do: []
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "data", "test/support"]
@@ -50,6 +51,7 @@ defmodule Veloroute.MixProject do
       {:browser, "~> 0.4.4"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
+      {:erlexec, "~> 1.0", only: [:dev, :test]},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
       {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
       {:floki, ">= 0.30.0", only: [:dev, :test]},
@@ -57,9 +59,9 @@ defmodule Veloroute.MixProject do
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.17"},
       {:jason, "~> 1.1"},
-      {:natural_order, "~> 0.2.0"},
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
+      {:natural_order, "~> 0.2.0"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.17.5"},
@@ -70,6 +72,7 @@ defmodule Veloroute.MixProject do
       {:prioqueue, "~> 0.2.7"},
       {:saxy, "~> 1.0"},
       {:sentry, "~> 8.0"},
+      {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.6"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},

@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
   def tracks(),
     do: [
       %Video.Track{
+        fade: :none,
         group: "Alter Elbtunnel",
         direction: :forward,
         from: "Landungsbrücken",
@@ -37,6 +38,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "Alter Elbtunnel",
         direction: :backward,
         from: "Harburger Berge",

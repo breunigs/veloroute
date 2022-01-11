@@ -14,6 +14,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
   def tracks(),
     do: [
       %Video.Track{
+        fade: :none,
         group: "article",
         direction: :forward,
         from: "",
@@ -25,6 +26,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "article",
         direction: :backward,
         from: "",

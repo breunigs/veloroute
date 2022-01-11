@@ -16,6 +16,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
   def tracks(),
     do: [
       %Video.Track{
+        fade: :none,
         group: "8 Bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -46,6 +47,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "8 Bergedorf",
         direction: :backward,
         from: "Bergedorf",
@@ -72,6 +74,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
 
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
+        fade: :none,
         group: "8 Mümmelmannsberg",
         direction: :forward,
         from: "Innenstadt",
@@ -84,6 +87,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
         ]
       },
       %Video.Track{
+        fade: :none,
         group: "8 Mümmelmannsberg",
         direction: :backward,
         from: "Mümmelmannsberg",
