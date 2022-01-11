@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "detour",
         direction: :forward,
         from: "",

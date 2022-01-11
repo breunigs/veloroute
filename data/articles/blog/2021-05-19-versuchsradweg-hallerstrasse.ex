@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "article",
         direction: :forward,
         from: "",
@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "article",
         direction: :backward,
         from: "",

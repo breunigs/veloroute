@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Cch do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "detour",
         direction: :forward,
         from: "",
@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.Cch do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "detour",
         direction: :backward,
         from: "",

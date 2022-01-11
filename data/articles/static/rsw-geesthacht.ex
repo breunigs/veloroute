@@ -15,7 +15,7 @@ defmodule Data.Article.Static.RSWGeesthacht do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Radschnellweg Geesthacht",
         direction: :forward,
         from: "Hamburg Tiefstack",

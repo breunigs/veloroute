@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "detour",
         direction: :forward,
         from: "",
@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "detour",
         direction: :backward,
         from: "",

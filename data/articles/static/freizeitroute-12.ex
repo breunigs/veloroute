@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute12 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Tarpenbekradweg",
         direction: :forward,
         from: "Lattenkamp",
@@ -36,7 +36,7 @@ defmodule Data.Article.Static.Freizeitroute12 do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Tarpenbekradweg",
         direction: :backward,
         from: "Garstedt",

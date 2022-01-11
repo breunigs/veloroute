@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Billeradweg",
         direction: :forward,
         from: "Altmannbrücke",
@@ -45,7 +45,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Billeradweg",
         direction: :backward,
         from: "Bergedorfer Gehölz",
@@ -71,7 +71,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Walter-Hammer-Weg",
         direction: :forward,
         from: "",
@@ -84,7 +84,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Walter-Hammer-Weg",
         direction: :backward,
         from: "",

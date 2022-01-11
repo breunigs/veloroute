@@ -16,7 +16,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
   def tracks(),
     do: [
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Radschnellweg Ahrensburg",
         direction: :forward,
         from: "Hamburg Volksdorf",
@@ -30,7 +30,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
         ]
       },
       %Video.Track{
-        fade: nil,
+        fade: :none,
         group: "Radschnellweg Ahrensburg",
         direction: :backward,
         from: "Ahrensburg Gewerbegebiet",
