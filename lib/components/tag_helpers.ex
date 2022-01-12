@@ -24,7 +24,7 @@ defmodule Components.TagHelpers do
       end
 
     ~H"""
-    <a {attrs}><%= render_block(@inner_block) %></a> <%= extra_text %>
+    <a {attrs}><%= render_block(@inner_block) %></a><%= extra_text %>
     """
   end
 

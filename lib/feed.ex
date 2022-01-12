@@ -49,7 +49,7 @@ defmodule Feed do
         Entry.add_field(entry, "georss:point", %{}, "#{lat} #{lon}")
 
       _other ->
-        nil
+        entry
     end
   end
 

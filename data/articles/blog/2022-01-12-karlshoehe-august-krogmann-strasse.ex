@@ -1,4 +1,4 @@
-defmodule Data.Article.Blog.KarlshoehoeAugustKrogmannStrasse do
+defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
   use Article.Default
 
   def created_at(), do: ~D[2022-01-12]
