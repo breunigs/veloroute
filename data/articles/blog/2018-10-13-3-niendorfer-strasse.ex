@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.NiendorferStrasse do
   def title(), do: "Niendorfer Straße (Veloroute 3)"
 
   def start(), do: ~d[2020-06-22]
-  def stop(), do: ~d[2021-12-23]
+  def stop(), do: ~d[2022-04-30]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [9604]

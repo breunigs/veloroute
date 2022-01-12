@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.OttensenMitte do
   def title(), do: "Ottensen Mitte (Veloroute 1)"
 
   def start(), do: ~d[2020-01-06]
-  def stop(), do: ~d[2021-12-31]
+  def stop(), do: ~d[2022-03-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [5055]
