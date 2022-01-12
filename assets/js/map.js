@@ -242,7 +242,7 @@ function showPing(e) {
     }, pingLayerDefaults), "ping-fg");
     map.setPaintProperty('ping-fg', 'line-opacity', 0.0)
     map.setPaintProperty('bing-bg', 'line-opacity', 0.0)
-  } else {
+  } else if (e.detail.center) {
     const center = e.detail.center;
     const lngLat = new mapboxgl.LngLat(center.lon, center.lat);
     console.log("ping: setting marker @", center)
