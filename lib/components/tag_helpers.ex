@@ -8,25 +8,23 @@ defmodule Components.TagHelpers do
   a links change the current page and may point to internal or external pages
   """
   def a(%{href: href} = assigns) do
-    attrs =
+    {attrs, extra_text} =
       case URI.new(href) do
         {:ok, %{host: nil, path: "/" <> _rest}} ->
-          %{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}
+          {%{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}, ""}
 
         {:ok, %{host: h}} when h in @paywall_hostnames ->
-          %{target: "_blank", rel: "nofollow", href: href}
+          {%{target: "_blank", rel: "nofollow", href: href}, " [€]"}
 
         {:ok, %{host: h}} when is_binary(h) ->
-          %{target: "_blank", href: href}
+          {%{target: "_blank", href: href}, ""}
 
         _any ->
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
 
-    assigns = assign(assigns, :attrs, attrs)
-
     ~H"""
-    <a {attrs}><%= render_block(@inner_block) %></a>
+    <a {attrs}><%= render_block(@inner_block) %></a> <%= extra_text %>
     """
   end
 
@@ -208,13 +206,17 @@ defmodule Components.TagHelpers do
         ~H""
 
       1 ->
-        ~H"<p><%= linkify(assigns, hd(links)) %></p>"
+        {text, href} = hd(links)
+
+        ~H"""
+        <p><.a href={href}><%= text %></.a></p>
+        """
 
       _more ->
         ~H"""
         <ul>
-        <%= for link <- links do %>
-          <li><%= linkify(assigns, link) %></li>
+        <%= for {text, href} <- links do %>
+          <li><.a href={href}><%= text %></.a></li>
         <% end %>
         </ul>
         """
@@ -265,18 +267,6 @@ defmodule Components.TagHelpers do
       ~H""
     end
   end
-
-  @spec linkify(map(), Article.link()) :: Phoenix.LiveView.Rendered.t()
-  defp linkify(assigns, {text, href}) do
-    assigns = assign(assigns, :text, text)
-    assigns = assign(assigns, :href, href)
-
-    ~H"""
-    <a href={@href} target="_blank"><%= @text %></a>
-    """
-  end
-
-  defp linkify(_assigns, heex), do: heex
 
   defp inner_text(assigns) do
     [%{inner_block: fun}] = assigns.inner_block

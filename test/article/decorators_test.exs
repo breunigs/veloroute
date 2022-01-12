@@ -21,7 +21,7 @@ defmodule Article.DecoratorsTest do
   end
 
   test "text extraction" do
-    assert "text link paid Radfahrstreifen bounds-only" ==
+    assert "text link paid [€] Radfahrstreifen bounds-only" ==
              Article.Decorators.text(FakeArticle) |> multi_trim
   end
 
@@ -29,7 +29,7 @@ defmodule Article.DecoratorsTest do
     assert String.trim("""
            <i>text</i>
            <a href="http://example.com" target="_blank">link</a>
-           <a href="http://abendblatt.de" rel="nofollow" target="_blank">paid</a>
+           <a href="http://abendblatt.de" rel="nofollow" target="_blank">paid</a> [€]
            <a class="ref" href="/lexikon/radfahrstreifen">Radfahrstreifen</a>
            <a phx-click=\"map-zoom-to\" phx-value-bounds="10.116543,53.606325,10.119479,53.607453">bounds-only</a>
            """) ==
