@@ -249,15 +249,19 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec wayback(entry()) :: entry()
   defp wayback({_method, file, url} = entry) do
-    case get("https://web.archive.org/save/#{url}",
-           opts: [adapter: [recv_timeout: @wayback_timeout]]
-         ) do
-      {:ok, %{status: 302}} -> log(file, "wayback: ✓ #{url}")
-      {:ok, resp} -> log(file, "wayback: FAILED (#{resp.status}): #{url}")
-      other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
-    end
+    # skip sitzungsdienst tmp URLs since they expire very quickly, so we never
+    # manage to archive them anyway :(
+    if !String.match?(url, ~r{sitzungsdienst.*/bi/___tmp/tmp/}) do
+      case get("https://web.archive.org/save/#{url}",
+             opts: [adapter: [recv_timeout: @wayback_timeout]]
+           ) do
+        {:ok, %{status: 302}} -> log(file, "wayback: ✓ #{url}")
+        {:ok, resp} -> log(file, "wayback: FAILED (#{resp.status}): #{url}")
+        other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
+      end
 
-    Process.sleep(10_000)
+      Process.sleep(10_000)
+    end
 
     entry
   end
