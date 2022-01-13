@@ -800,6 +800,7 @@ a {
   }
 
   &.ref {
+    font-style: italic;
     text-decoration-style: dotted;
     cursor: help;
   }
@@ -876,6 +877,13 @@ a {
   transform: translate(-50%, -45%);
   width: 2em;
   z-index: 10;
+}
+
+img.roaddiagram {
+  width: 100%;
+  max-width: 25rem;
+  margin: 0.8rem auto;
+  display: block;
 }
 
 p.alert {

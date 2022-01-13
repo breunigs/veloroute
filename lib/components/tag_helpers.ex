@@ -156,7 +156,7 @@ defmodule Components.TagHelpers do
     assigns = assign(assigns, :path, Article.Decorators.path(art))
 
     ~H"""
-    <a class="ref" href={@path}><%= render_block(@inner_block) %></a>
+    <a class="ref" href={@path} data-phx-link-state="push" data-phx-link="patch"><%= render_block(@inner_block) %></a>
     """
   end
 
