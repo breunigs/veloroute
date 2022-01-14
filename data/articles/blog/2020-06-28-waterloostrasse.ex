@@ -6,10 +6,10 @@ defmodule Data.Article.Blog.Waterloostrasse do
   def title(), do: "Waterloostraße (Veloroute 13)"
 
   def start(), do: ~d[2021-08-16]
-  def stop(), do: ~d[2022-03]
+  def stop(), do: ~d[2022-04-30]
 
   def type(), do: :construction
-
+  def construction_site_id_hh(), do: [23862]
   def tags(), do: ["13"]
 
   def links(_assigns) do
