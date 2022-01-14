@@ -224,6 +224,10 @@ defmodule Video.Renderer do
   # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
 
   # vp9 levels: https://www.webmproject.org/vp9/levels/
+  #
+  # libvpx generates blurry videos, so can't easily use it for HQ. Additionally,
+  # hls.js locks all browsers to the initially selected codec, because of some
+  # bug in Safari.
   defp codec_vp9,
     do: %{
       codec:
@@ -236,20 +240,25 @@ defmodule Video.Renderer do
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.
-  defp codec_hevc do
-    specific =
-      if Video.Metadata.can_use?("hevc_nvenc"),
-        do:
-          ~w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 hvc1 -refs:v:__INDEX__ 0],
-        else: ~w[libx265 -x265-params log-level=error]
+  #
+  # For some reason ffmpeg creates files that are not actually playable on the
+  # only devices which support hevc (iOS). This is true even for old encodes, so
+  # potentially something in iOS itself changed. Ran out of the debugging
+  # timebox for this one.
+  # defp codec_hevc do
+  #   specific =
+  #     if Video.Metadata.can_use?("hevc_nvenc"),
+  #       do:
+  #         ~w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 hvc1 -refs:v:__INDEX__ 0],
+  #       else: ~w[libx265 -x265-params log-level=error]
 
-    %{codec: specific ++ ~w[-tag:v:__INDEX__ hvc1], tag_as: "hvc1.1.4.L186.B01"}
-  end
+  #   %{codec: specific ++ ~w[-tag:v:__INDEX__ hvc1], tag_as: "hvc1.1.4.L186.B01"}
+  # end
 
   defp variants do
     codec_avc = codec_avc()
     codec_vp9 = codec_vp9()
-    codec_hevc = codec_hevc()
+    # codec_hevc = codec_hevc()
 
     [
       Map.merge(%{width: 640, height: 360, bitrate: 4, fallback: :mp4}, codec_avc),
@@ -257,8 +266,8 @@ defmodule Video.Renderer do
       Map.merge(%{width: 426, height: 240, bitrate: 2}, codec_avc),
       Map.merge(%{width: 854, height: 480, bitrate: 4, fallback: :webm}, codec_vp9),
       Map.merge(%{width: 1280, height: 720, bitrate: 6}, codec_avc),
-      Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_avc),
-      Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_hevc)
+      Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_avc)
+      # Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_hevc)
     ]
     |> Enum.with_index()
     |> Enum.map(fn {info, idx} ->
