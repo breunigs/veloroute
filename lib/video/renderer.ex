@@ -161,7 +161,7 @@ defmodule Video.Renderer do
 
   defp xfades(rendered, blur) when is_boolean(blur) do
     fade = rendered.fade()
-    if fade == nil, do: raise("cannot render videos without fades, please set it")
+    if fade == :none, do: raise("cannot render videos without fades, please set it")
 
     count = length(rendered.sources())
     blur = if blur, do: "blur", else: ""
@@ -288,7 +288,7 @@ defmodule Video.Renderer do
           "\nOpenCL is enabled. If you run out of GPU memory, set DISABLE_OPENCL=1"
         )
 
-        ~w[-x264opts opencl]
+        ~w[-x264-params opencl]
       end
 
     Enum.flat_map(variants(), fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
