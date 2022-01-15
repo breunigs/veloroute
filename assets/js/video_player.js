@@ -270,8 +270,12 @@ function maybeShowLoadingIndicator(evt) {
 let updatePosterTimeout = null;
 
 function updatePoster() {
-  // only update poster if we don't also have a video attached
-  if (video.readyState !== 0) return;
+  // Update poster if we don't have a video attached. If we do, remove the
+  // poster instead to avoid flashing it when switching videos.
+  if (video.readyState !== 0) {
+    poster.style.backgroundImage = '';
+    return
+  }
 
   const setPoster = () => {
     console.debug("setting outer style img to", state.videoPoster)
