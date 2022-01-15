@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Suche do
     <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500" phx-hook="FocusSearchField" autofocus="autofocus" value={@search_query}/>
 
     <.noindex>
-      <%= if @search_results == [] do %>
+      <%= if @search_results == [] && @search_query != "" do %>
         <p>Leider keine Ergebnisse.</p>
       <% else %>
       <ul>

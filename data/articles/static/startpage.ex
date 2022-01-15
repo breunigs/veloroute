@@ -54,7 +54,10 @@ defmodule Data.Article.Static.Startpage do
     </ol>
 
     <h3><label for="query">Suche 🔎</label></h3>
-    <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
+    <form phx-submit="search">
+      <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500"/>
+      <input type="submit" style="display: none" />
+    </form>
 
     <h3>Aktuelle Artikel</h3>
     <ol class="hide-bullets">
