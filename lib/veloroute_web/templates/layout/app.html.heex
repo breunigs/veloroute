@@ -113,15 +113,11 @@
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/video_player.js")}></script>
 
     <%= if Plug.Conn.get_req_header(@conn, "dnt") != "1" && Settings.enable_sentry_frontend do %>
-      <%
-        onload = """
-          Sentry.init({ dsn: 'https://4728b21414cc4293a0636a0577aee097@o398714.ingest.sentry.io/5254791', release: '#{Application.get_env(:sentry, :release)}' }); Sentry.setTag('env', '#{Application.get_env(:veloroute, :env)}');
-        """
-      %>
-      <script src="https://browser.sentry-cdn.com/5.22.3/bundle.min.js"
-        integrity="sha384-A1qzcXXJWl+bzYr+r8AdFzSaLbdcbYRFmG37MEDKr4EYjtraUyoZ6UiMw31jHcV9"
-        crossorigin="anonymous"
-        onload={onload} async></script>
+    <script
+      src="https://js.sentry-cdn.com/4728b21414cc4293a0636a0577aee097.min.js"
+      crossorigin="anonymous"
+      async
+    ></script>
     <% end %>
 
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
