@@ -187,6 +187,8 @@ defmodule Video.RendererTest do
              "13.200000000000001M",
              "-bufsize:5",
              "24.0M",
+             "-x264-params",
+             "threads=4",
              "-var_stream_map",
              "v:0 v:1 v:2 v:3 v:4 v:5",
              "FAKE_TMP/stream_%v.m3u8"

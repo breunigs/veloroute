@@ -281,7 +281,7 @@ defmodule Video.Renderer do
     # OpenCL can run out of memory on the GPU for some averse inputs it seems.
     opencl =
       if System.get_env("DISABLE_OPENCL", "0") == "1" do
-        []
+        ~w[-x264-params threads=4]
       else
         IO.puts(
           :stderr,
