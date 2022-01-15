@@ -12310,6 +12310,18 @@
   <node id='-26342701' lat='53.61513636456' lon='10.11455654025' />
   <node id='-26342702' lat='53.6115148586' lon='10.11582254291' />
   <node id='-26342703' lat='53.60816675779' lon='10.11681496024' />
+  <node id='-26601970' action='modify' lat='53.45736465734' lon='9.98830496728' />
+  <node id='-26601971' action='modify' lat='53.45703247109' lon='9.98844980657' />
+  <node id='-26601972' action='modify' lat='53.45705163575' lon='9.98859464586' />
+  <node id='-26601973' action='modify' lat='53.45632337252' lon='9.98906135023' />
+  <node id='-26601974' action='modify' lat='53.45651502195' lon='9.98987137735' />
+  <node id='-26601975' action='modify' lat='53.45658848734' lon='9.99055802286' />
+  <node id='-26601976' action='modify' lat='53.45762657159' lon='9.98991429269' />
+  <node id='-26601977' action='modify' lat='53.45758824277' lon='9.98928665578' />
+  <node id='-26601978' action='modify' lat='53.45795555915' lon='9.9892920202' />
+  <node id='-26601979' action='modify' lat='53.45824940995' lon='9.98900770605' />
+  <node id='-26601980' action='modify' lat='53.45800985782' lon='9.98828350961' />
+  <node id='-26601981' action='modify' lat='53.45764573598' lon='9.98834251821' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -39803,6 +39815,23 @@
     <nd ref='-26342703' />
     <nd ref='-26342652' />
     <tag k='name' v='2022-01-12-karlshoehe-august-krogmann-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-19776512' action='modify'>
+    <nd ref='-26601970' />
+    <nd ref='-26601971' />
+    <nd ref='-26601972' />
+    <nd ref='-26601973' />
+    <nd ref='-26601974' />
+    <nd ref='-26601975' />
+    <nd ref='-26601976' />
+    <nd ref='-26601977' />
+    <nd ref='-26601978' />
+    <nd ref='-26601979' />
+    <nd ref='-26601980' />
+    <nd ref='-26601981' />
+    <nd ref='-26601970' />
+    <tag k='name' v='2022-01-15-zob-harburg' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
