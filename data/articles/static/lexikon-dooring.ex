@@ -16,8 +16,22 @@ defmodule Data.Article.Static.LexikonDooring do
 
   def text(assigns) do
     ~H"""
-    <p>Als Dooring bezeichnet man wenn Autofahrende ohne zu schauen die Autotür öffnen und den Rad- oder Fußverkehr gefährden. Leider sind in Hamburg nicht alle Radspuren mit ausreichend Sicherheitsabstand versehen, wie etwa in der <.m bounds="9.942314,53.552371,9.99476,53.56452" lon="10.038327" lat="53.572288" dir="forward" ref="13">Wagnerstraße</.m>.</p>
-    <p>Die beste Lösung ist keine Parkplätze an Fahrradwegen zu bauen – in Hamburg begnügt man sich stattdessen häufig mit einem 70cm Sicherheitsabstand, der nur vorhanden ist wenn die Autos ordentlich geparkt werden.</p>
+    <p>Als Dooring bezeichnet unachtsam geöffnete Autotüren die den Rad- oder Fußverkehr gefährden.</p>
+
+    <h4>Auf dem Fahrrad</h4>
+    <p>Zur Eigensicherheit sollte mit dem Fahrrad 1,50m Sicherheitsabstand zu parkenden Fahrzeugen gehalten werden.</p>
+
+    <p>Die geöffneten Autotüren in der Grafik stehen 80cm heraus. Gemessen von Reifen zu Reifen radelt der Dunkelrote bei 75cm und damit in der „Dooring-Zone“. Der Hellgrüne hält 1,5m Abstand und ist damit sicher unterwegs. Man sieht das dennoch ausreichend Platz für Gegenverkehr auf der 4,5m breiten <.ref>Fahrbahn</.ref> (= Asphalt) bleibt.</p>
+
+    <img src="/images/dooring.svg" class="roaddiagram" alt="Eine Straßenansicht von oben (Vogelperspektive) die Sicherheitsabstände zu parkenden Autos mit geöffneter Tür darstellt."/>
+
+    <h4>Im Auto</h4>
+    <p>Beim Aussteigen die innenliegende Hand zum Öffnen der Tür verwenden. Dadurch dreht man sich automatisch um und hat einen besseren Blick auf das Straßengeschehen. Ist man z.B. selbst gefahren, sollte man also die rechte Hand zum Öffnen der Tür verwenden. Man nennt dies auch den <.a href="https://de.wikipedia.org/wiki/Dutch_Reach">holländischen Griff</.a>.</p>
+
+    <h4>Im Planungsbüro</h4>
+    <p>Die sicherste Lösung ist es neben Radwegen keine Autoparkplätze anzulegen. So wird die Gefahr bereits bei der Planung ausgeschlossen, statt sich auf einen fehlerfreien Alltag zu verlassen.</p>
+
+    <p>Ist dies nicht möglich, muss ausreichend Sicherheitsabstand eingeplant werden. Dieser muss groß genug sein, sodass auch bei schlecht eingeparkten Autos keine Gefahr entsteht. Das ist in Hamburg leider häufig nicht der Fall, wie etwa in der <.m bounds="9.942314,53.552371,9.99476,53.56452" lon="10.038327" lat="53.572288" dir="forward" ref="13">Wagnerstraße</.m>.</p>
     """
   end
 end
