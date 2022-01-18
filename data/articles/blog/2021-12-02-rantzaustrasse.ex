@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Rantzaustrasse do
   def tags(), do: ["7"]
 
   def start(), do: ~d[2021-12-06]
-  def stop(), do: ~d[2022-01-31]
+  def stop(), do: ~d[2022-02-25]
   def construction_site_id_hh(), do: [21979]
 
   def links(_assigns) do
