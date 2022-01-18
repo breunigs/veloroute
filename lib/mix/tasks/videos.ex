@@ -243,6 +243,7 @@ end
 
 defmodule Mix.Tasks.Velo.Videos.Detect do
   use Mix.Task
+  @requirements ["app.start"]
 
   @shortdoc "Detects regions to anonymize and stores the results alongside the videos"
   def run(_) do

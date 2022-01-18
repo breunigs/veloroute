@@ -17,7 +17,7 @@ defmodule Components.ValidatingDefaultSettingEngine do
     table tr td
     br p
     span em strong b i s abbr
-    label input
+    label input form
   /
 
   @behaviour EEx.Engine
