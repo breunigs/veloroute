@@ -232,22 +232,45 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     File.mkdir_p!(Path.dirname(file))
   end
 
-  @spec grab(entry()) :: entry()
-  defp grab({:download, file, url} = entry) do
-    log(file, Path.basename(file))
+  @spec grab(entry(), integer()) :: entry()
+  defp grab(entry, retries \\ 3)
 
-    {:ok, response} = get(url)
-
-    if response.status != 200 do
-      log(file, "got a #{response.status} trying to download '#{Path.basename(file)}': #{url}")
-    else
-      File.write!(file, response.body)
-    end
-
+  defp grab({_type, file, _url} = entry, retries) when retries < 0 do
+    log(file, "failed all retries, giving up")
     entry
   end
 
-  defp grab({:capture, file, url} = entry) do
+  defp grab({:download, file, url} = entry, retries) do
+    base = Path.basename(file)
+    log(file, base)
+
+    {:ok, response} = get(url)
+
+    case response.status do
+      200 ->
+        File.write!(file, response.body)
+        entry
+
+      302 ->
+        location =
+          response.headers
+          |> Enum.find_value(fn {k, v} -> if String.downcase(k) == "location", do: v end)
+
+        if location do
+          grab({:download, file, location}, retries - 1)
+        else
+          log(file, "got a 302 without location while downloading '#{base}': #{url}")
+        end
+
+        entry
+
+      other ->
+        log(file, "got a #{other} trying to download '#{base}': #{url}")
+        entry
+    end
+  end
+
+  defp grab({:capture, file, url} = entry, _retries) do
     log(file, "#{Path.basename(file)}.pdf")
     {out, exit_code} = System.cmd("cutycapt", ["--url=#{url}", "--out=#{file}.pdf"])
 
