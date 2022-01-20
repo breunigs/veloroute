@@ -165,21 +165,28 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   defp real_run() do
     IO.puts("Finding videos…")
+    current_year = to_string(Date.utc_today().year)
 
     Settings.video_source_dir_abs()
     |> Video.Source.new_from_folder()
-    |> Enum.reduce({%{}, %{}}, fn video, {ids, tracks} ->
+    |> Enum.reduce({%{}, %{}, %{}}, fn video, {ids, tracks, exists} ->
       case video do
         %{available_gpx: false, name: source} ->
           IO.puts("skipping #{source} as it doesn't have a GPX file")
           {ids, tracks}
 
         %{date: <<year::binary-size(4)>> <> _rest} ->
-          ids = Map.update(ids, year, -1, fn prev -> prev - @max_ids_per_single_track end)
-          task = named_track_segments_task(video, ids[year])
-          tracks = Map.update(tracks, year, [task], fn list -> [task | list] end)
+          exists = Map.put_new_lazy(exists, year, fn -> File.exists?(osm_index_path(year)) end)
 
-          {ids, tracks}
+          if !exists[year] || year == current_year do
+            ids = Map.update(ids, year, -1, fn prev -> prev - @max_ids_per_single_track end)
+            task = named_track_segments_task(video, ids[year])
+            tracks = Map.update(tracks, year, [task], fn list -> [task | list] end)
+
+            {ids, tracks, exists}
+          else
+            {ids, tracks, exists}
+          end
       end
     end)
     |> elem(1)
