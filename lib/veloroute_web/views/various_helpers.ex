@@ -69,8 +69,9 @@ defmodule VelorouteWeb.VariousHelpers do
 
   def route_icon(nil), do: nil
 
+  @max_route_icon_chars 5
   def route_icon(article) when is_module(article) do
-    if article.id() do
+    if article.id() && String.length(article.id()) <= @max_route_icon_chars do
       content_tag(:span, article.id(),
         style: "background: #{article.color()}",
         class: "icon #{article.route_group()}"

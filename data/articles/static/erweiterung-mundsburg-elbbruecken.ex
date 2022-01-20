@@ -1,6 +1,7 @@
 defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
   use Article.Static
 
+  def id(), do: "erweiterung-mundsburg-elbbruecken"
   def route_group(), do: :alltag
   def color(), do: "#888888"
 
