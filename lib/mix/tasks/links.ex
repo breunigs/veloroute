@@ -92,6 +92,16 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name, "https://sitzungsdienst-harburg.hamburg.de/" <> _rest} = entry),
     do: extract_sitzungsdienst(entry)
 
+  defp extract({_name, "https://www.skyfish.com/p/fhh/" <> rest = url}) do
+    ids = Regex.scan(~r/\d+/, rest) |> List.flatten() |> Enum.join("_")
+
+    if String.contains?(rest, "/download/") do
+      [{:download, "#{ids}.unknown", url}]
+    else
+      [{:capture, ids, url}]
+    end
+  end
+
   @evergabe_base "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/"
   defp extract({name, @evergabe_base <> "eva/supplierportal/fhh/subproject/" <> rest = url}) do
     # page: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details
