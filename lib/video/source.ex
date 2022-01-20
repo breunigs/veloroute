@@ -68,7 +68,7 @@ defmodule Video.Source do
   @spec timed_points(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
   def timed_points(%__MODULE__{source: source, available_gpx: false}) do
     {:error,
-     "#{Video.Path.source_base(source)} has no GPX file available to extract time range from, try `gopro2gpx #{Video.Path.gpx(source)}`?"}
+     "#{Video.Path.source_base(source)} has no GPX file available to extract time range from, try `gopro2gpx -s #{Video.Path.source(source)}`?"}
   end
 
   def timed_points(%__MODULE__{} = self) do
