@@ -215,7 +215,14 @@ defmodule Components.TagHelpers do
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   def structured_links(assigns) do
     art = assigns.current_page
-    links = art.links(assigns)
+
+    links =
+      assigns
+      |> art.links()
+      |> Enum.map(fn
+        {text, href} -> ~H"<.a href={href}><%= text %></.a>"
+        other -> other
+      end)
 
     links =
       case assigns[:gpx] do
@@ -225,24 +232,9 @@ defmodule Components.TagHelpers do
       end
 
     case length(links) do
-      0 ->
-        ~H""
-
-      1 ->
-        {text, href} = hd(links)
-
-        ~H"""
-        <p><.a href={href}><%= text %></.a></p>
-        """
-
-      _more ->
-        ~H"""
-        <ul>
-        <%= for {text, href} <- links do %>
-          <li><.a href={href}><%= text %></.a></li>
-        <% end %>
-        </ul>
-        """
+      0 -> ~H""
+      1 -> ~H{<p><%= hd(links) %></p>}
+      _ -> ~H{<ul><%= for link <- links do %><li><%= link %></li><% end %></ul>}
     end
   end
 
