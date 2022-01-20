@@ -160,6 +160,19 @@ defmodule Components.TagHelpers do
     """
   end
 
+  @spec abbr(map()) :: Phoenix.LiveView.Rendered.t()
+  def abbr(assigns) do
+    name = inner_text(assigns)
+
+    case name do
+      "ARAS" -> ~H{<abbr title="Aufgeweiteter Radaufstellstreifen">ARAS</abbr>}
+      "BVM" -> ~H{<abbr title="Behörde für Verkehr und Mobilitätswende">BVM</abbr>}
+      "BWVI" -> ~H{<abbr title="Behörde für Wirtschaft, Verkehr und Innovation">BWVI</abbr>}
+      "LGV" -> ~H{<abbr title="Landesbetrieb Geoinformation und Vermessung">LGV</abbr>}
+      "LSBG" -> ~H{<abbr title="Landesbetrieb Straßen, Brücken und Gewässer">LSBG</abbr>}
+    end
+  end
+
   @spec icon(map()) :: Phoenix.LiveView.Rendered.t()
   def icon(assigns) do
     id_from_attr = assigns[:name]
