@@ -75,8 +75,8 @@ defmodule TrackFinder do
   end
 
   defp resolve_to_start_end_ways(name, members, normalized_ways) do
-    text = fn kind ->
-      "#{name}: The #{kind} nodes must be part of one of the ways of the relation, and it must be at the start or end of that way."
+    text = fn node ->
+      "#{name}: The gpx_start/gpx_end nodes must be part of one of the ways of the relation, and it must be at the start or end of that way. Failed to find any way for: #{inspect(node)}"
     end
 
     Parallel.map(members, fn %{ref: node} ->
@@ -84,8 +84,7 @@ defmodule TrackFinder do
       as_start = Enum.find(normalized_ways, fn %Way{nodes: nodes} -> hd(nodes) == node end)
       as_end = Enum.find(normalized_ways, fn %Way{nodes: nodes} -> last(nodes) == node end)
 
-      if is_nil(as_start), do: raise(text.("gpx_start"))
-      if is_nil(as_end), do: raise(text.("gpx_end"))
+      if is_nil(as_start) && is_nil(as_end), do: raise(text.(node))
 
       {as_start, as_end}
     end)
@@ -98,7 +97,7 @@ defmodule TrackFinder do
 
       _track ->
         nil
-    end) || raise("Failed to find track '#{from}'→'#{to}' for #{inspect(art)}")
+    end) || raise("Failed to find #{direction} track '#{from}'→'#{to}' for #{inspect(art)}")
   end
 
   defp track_matrix(r, normalized_ways) do
@@ -131,34 +130,43 @@ defmodule TrackFinder do
 
     Enum.flat_map(start_ways, fn {s_as_start, s_as_end} ->
       Enum.flat_map(end_ways, fn {e_as_start, e_as_end} ->
-        fw_target = hd(e_as_start.nodes).tags[:target]
-        bw_target = hd(s_as_start.nodes).tags[:target]
+        fw_track =
+          if s_as_start && e_as_end do
+            fw_target = List.last(e_as_end.nodes).tags[:target]
+            bw_target = hd(s_as_start.nodes).tags[:target]
+            fw_text = direction_text(art, bw_target, fw_target, :forward)
 
-        fw_text = direction_text(art, bw_target, fw_target, :forward)
-        bw_text = direction_text(art, fw_target, bw_target, :backward)
+            %{
+              type: :forward,
+              id: art.id(),
+              name: art.name(),
+              direction: fw_text,
+              full_name: "#{art.title()} #{fw_text}",
+              start: s_as_start,
+              stop: e_as_end,
+              via: via_fw
+            }
+          end
 
-        [
-          %{
-            type: :forward,
-            id: art.id(),
-            name: art.name(),
-            direction: fw_text,
-            full_name: "#{art.title()} #{fw_text}",
-            start: s_as_start,
-            stop: e_as_end,
-            via: via_fw
-          },
-          %{
-            type: :backward,
-            id: art.id(),
-            name: art.name(),
-            direction: bw_text,
-            full_name: "#{art.title()} #{bw_text}",
-            start: e_as_start,
-            stop: s_as_end,
-            via: via_bw
-          }
-        ]
+        bw_track =
+          if e_as_start && s_as_end do
+            fw_target = hd(e_as_start.nodes).tags[:target]
+            bw_target = List.last(s_as_end.nodes).tags[:target]
+            bw_text = direction_text(art, fw_target, bw_target, :backward)
+
+            %{
+              type: :backward,
+              id: art.id(),
+              name: art.name(),
+              direction: bw_text,
+              full_name: "#{art.title()} #{bw_text}",
+              start: e_as_start,
+              stop: s_as_end,
+              via: via_bw
+            }
+          end
+
+        Util.compact([fw_track, bw_track])
       end)
     end)
   end
