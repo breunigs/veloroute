@@ -3,6 +3,7 @@ let prevVideo = null;
 let prevStartGen = null;
 let hlsAutoStartLoad = false;
 let prevLevel = null;
+let previouslyPlayingCodec = null;
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
@@ -107,13 +108,18 @@ function updateVideoElement() {
       prevLevel = null;
 
       if (window.hls) {
-        const currentLevel = window.hls.abrController.getNextABRAutoLevel();
-        // keep current level if the quality is good enough, otherwise re-estimate
-        if (typeof currentLevel === "number" && currentLevel >= 3) {
-          options.startLevel = currentLevel;
+        const bwEstimate = window.hls.bandwidthEstimate;
+        if (typeof bwEstimate === "number") {
+          options.abrEwmaDefaultEstimate = bwEstimate;
           options.testBandwidth = false;
-          console.debug("setting startLevel to previously used level", currentLevel);
-          prevLevel = options.startLevel;
+          options.startLevel = -1;
+          console.debug("copying over previously eastimated bandwidth", bwEstimate);
+        }
+
+        try {
+          previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
+        } catch (error) {
+          console.warn(error)
         }
 
         // don't leak previous instance
@@ -123,6 +129,7 @@ function updateVideoElement() {
       window.hls = new Hls(options);
       window.hls.attachMedia(video);
       attachHlsErrorHandler(hls, Hls);
+      window.hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
@@ -153,6 +160,17 @@ function updateVideoElement() {
   `;
   video.innerHTML = innerHTML;
   if (autoplayEnabled()) video.load();
+}
+
+function restorePreviousQuality() {
+  if (!previouslyPlayingCodec) return;
+  for (let i = 0; i < window.hls.levels.length; i++) {
+    if (JSON.stringify(window.hls.levels[i].attrs) == previouslyPlayingCodec) {
+      window.hls.currentLevel = i;
+      console.debug("restoring previously used quality")
+      break
+    }
+  }
 }
 
 function seekToStartTime() {
