@@ -15,8 +15,14 @@ defmodule Video.Renderer do
         filter,
         "-pix_fmt",
         "yuv420p",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-qp",
+        "0",
         "-f",
-        "yuv4mpegpipe",
+        "matroska",
         "-",
         "|",
         "mpv",
@@ -26,7 +32,7 @@ defmodule Video.Renderer do
         "--audio=no",
         "--keep-open=yes",
         "--demuxer-max-bytes=10G",
-        "--force-seekable=yes",
+        "--force-seekable=no",
         "-"
       ]
   end
@@ -288,7 +294,7 @@ defmodule Video.Renderer do
           "\nOpenCL is enabled. If you run out of GPU memory, set DISABLE_OPENCL=1"
         )
 
-        ~w[-x264-params opencl]
+        ~w[-x264-params opencl=true]
       end
 
     Enum.flat_map(variants(), fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->

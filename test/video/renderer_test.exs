@@ -227,8 +227,14 @@ defmodule Video.RendererTest do
              "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0[blur1];[blur0][blur1]xfade=transition=fade:duration=0.05:offset=0.406",
              "-pix_fmt",
              "yuv420p",
+             "-c:v",
+             "libx264",
+             "-preset",
+             "ultrafast",
+             "-qp",
+             "0",
              "-f",
-             "yuv4mpegpipe",
+             "matroska",
              "-",
              "|",
              "mpv",
@@ -238,7 +244,7 @@ defmodule Video.RendererTest do
              "--audio=no",
              "--keep-open=yes",
              "--demuxer-max-bytes=10G",
-             "--force-seekable=yes",
+             "--force-seekable=no",
              "-"
            ] == cmd
   end
