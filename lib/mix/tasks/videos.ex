@@ -77,38 +77,46 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   use Mix.Task
   @requirements ["app.start"]
 
+  @video_player [
+    "mpv",
+    "--pause",
+    "--no-resume-playback",
+    "--framedrop=no",
+    "--audio=no",
+    "--keep-open=yes",
+    "--demuxer-max-bytes=10G",
+    "--force-seekable=no",
+    "-"
+  ]
+
   @shortdoc "Print commands to preview videos that are still missing. Set BLUR=1 to include blurs."
-  def run(_) do
-    Video.Dir.must_exist!(&real_run/0)
+  def run(args) do
+    Video.Dir.must_exist!()
+    if args == [], do: list(), else: preview(hd(args))
   end
 
-  defp real_run do
+  defp list do
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
-      blur = System.get_env("BLUR", nil) == "1"
-      cmd = Video.Renderer.preview_cmd(rendered, blur)
-
       IO.puts("""
 
-      ###########################################################
-      # #{rendered.name}
-      # Hash: #{rendered.hash}
-      ###########################################################
-
-      #{Util.cli_printer(cmd)}
+      #{rendered.name}
+      BLUR=1 MIX_QUIET=1 mix velo.videos.preview #{rendered.hash} | #{Util.cli_printer(@video_player)}
       """)
-
-      # for {preview, idx} <- Enum.with_index(previews) do
-      #   desc = if idx == 0, do: "full preview", else: "#{idx}. concat preview"
-
-      #   IO.puts("""
-
-      #   #{desc}:
-      #     #{Enum.join(preview, " ")}
-      #   """)
-      # end
     end)
+  end
+
+  defp preview(hash) do
+    rendered = Video.Rendered.find_by_hash(hash)
+
+    if rendered == nil do
+      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
+    else
+      blur = System.get_env("BLUR", nil) == "1"
+      cmd = Video.Renderer.preview_cmd(rendered, blur)
+      Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd)
+    end
   end
 end
 

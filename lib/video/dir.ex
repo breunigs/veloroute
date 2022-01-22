@@ -1,5 +1,5 @@
 defmodule Video.Dir do
-  def must_exist!(fun) when is_function(fun) do
+  def must_exist!(fun \\ fn -> nil end) when is_function(fun) do
     case present?() do
       {:error, msg} ->
         raise msg

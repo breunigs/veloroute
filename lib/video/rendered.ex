@@ -37,6 +37,13 @@ defmodule Video.Rendered do
 
   def get(_any), do: nil
 
+  @spec find_by_hash(Video.Track.hash()) :: t() | nil
+  def find_by_hash(hash) when valid_hash(hash) do
+    all() |> Enum.find(fn mod -> String.ends_with?("#{mod}", hash) end)
+  end
+
+  def find_by_hash(_any), do: nil
+
   @doc """
   Return a list of all videos which have video material available.
   """

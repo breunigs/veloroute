@@ -23,16 +23,6 @@ defmodule Video.Renderer do
         "0",
         "-f",
         "matroska",
-        "-",
-        "|",
-        "mpv",
-        "--pause",
-        "--no-resume-playback",
-        "--framedrop=no",
-        "--audio=no",
-        "--keep-open=yes",
-        "--demuxer-max-bytes=10G",
-        "--force-seekable=no",
         "-"
       ]
   end

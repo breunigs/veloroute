@@ -73,7 +73,7 @@ defmodule Docker do
     container_name = "veloroute2#{name}"
     work_dir = Path.dirname(dockerfile)
 
-    IO.puts("Building “#{name}”")
+    IO.puts(:stderr, "Building “#{name}”")
 
     Util.cmd2(
       [
@@ -88,28 +88,38 @@ defmodule Docker do
         img_name
       ],
       env: [{"DOCKER_BUILDKIT", "1"}],
-      raise: true
+      raise: true,
+      stdout: "",
+      stderr: ""
     )
 
-    IO.puts("Running #{img_name}")
+    IO.puts(:stderr, "Running #{img_name}")
 
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
 
-    Util.cmd2(
-      [
-        "docker",
-        "run",
-        "-e",
-        owner_group_fix(),
-        "--rm",
-        "--name",
-        container_name,
-        "--mount",
-        ~s|type=bind,source=#{cache_dir},target=/workdir|,
-        img_name
-      ] ++ extra_args,
-      opts ++ [raise: true]
-    )
+    try do
+      Util.cmd2(
+        [
+          "docker",
+          "run",
+          "-e",
+          owner_group_fix(),
+          "--rm",
+          "--name",
+          container_name,
+          "--mount",
+          ~s|type=bind,source=#{cache_dir},target=/workdir|
+        ] ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args,
+        opts ++ [raise: true]
+      )
+    rescue
+      _exp ->
+        Util.cmd2(["docker", "stop", "--time", "0", container_name],
+          raise: false,
+          stdout: "",
+          stderr: ""
+        )
+    end
   end
 
   defp owner_group_fix() do
