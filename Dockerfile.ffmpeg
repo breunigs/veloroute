@@ -1,0 +1,204 @@
+FROM debian:testing-slim AS downloader
+
+ARG RAV1E_VERSION=0.5.1
+ARG FFMPEG_VERSION=5.0
+
+RUN mkdir -p /downloads/
+
+RUN  \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+  ca-certificates \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN \
+  cd /downloads/ && \
+  wget https://github.com/xiph/rav1e/archive/refs/tags/v${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
+  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e-${RAV1E_VERSION} rav1e
+
+RUN \
+  cd /downloads/ && \
+  wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
+  tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
+
+
+FROM debian:testing-slim AS ffmpeg-build
+# TODO remove
+RUN apt-get update
+
+RUN  \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+  autoconf \
+  automake \
+  binutils \
+  build-essential \
+  ca-certificates \
+  cargo \
+  cmake \
+  curl \
+  frei0r-plugins-dev \
+  git \
+  libdav1d-dev \
+  libffmpeg-nvenc-dev \
+  libssl-dev \
+  libtool \
+  libva-dev \
+  libvpx-dev \
+  libwebp-dev \
+  libx264-dev \
+  libx265-dev \
+  make \
+  meson \
+  nasm \
+  ninja-build \
+  pkg-config \
+  yasm
+#\
+#&& rm -rf /var/lib/apt/lists/*
+
+
+RUN cargo install cargo-c
+
+
+# RUN cd /tmp/${RAV1E_VERSION} && cargo cinstall --release
+# RUN RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --locked --prefix "${prefix}" --library-type staticlib
+
+
+ARG PREFIX=/build
+RUN mkdir ${PREFIX}
+ENV CFLAGS=-O3
+ENV CXXFLAGS="$CFLAGS"
+ENV LDFLAGS="$LDFLAGS -L${PREFIX}/lib"
+ENV LD_LIBRARY_PATH="${PREFIX}/lib"
+ENV PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
+
+COPY --from=downloader /downloads /downloads/
+
+RUN cd /downloads/rav1e && \
+  RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
+
+
+# WORKING DYNAMIC
+# RUN cd /downloads/ffmpeg && \
+#   ./configure \
+#   --prefix="${PREFIX}" \
+#   --extra-libs="-lm -lpthread" \
+#   --extra-cflags="-I${PREFIX}/include -w -O3" \
+#   --extra-ldflags="-L${PREFIX}/lib" \
+#   --ld="g++" \
+#   --enable-version3 \
+#   --enable-gpl \
+#   --enable-libx264 \
+#   --enable-libx265 \
+#   --enable-libvpx \
+#   --enable-libwebp \
+#   --enable-frei0r \
+#   --enable-librav1e \
+#   --enable-libdav1d \
+#   --disable-debug \
+#   --disable-doc \
+#   --disable-ffplay \
+#   --disable-ffprobe && \
+#   make -j $(nproc) && make install && make distclean
+
+RUN cd /downloads/ffmpeg && \
+  ./configure \
+  --prefix="${PREFIX}" \
+  --extra-libs="-lm -lpthread" \
+  --extra-cflags="-I${PREFIX}/include -w -O3" \
+  --extra-ldflags="-L${PREFIX}/lib" \
+  --ld="g++" \
+  --enable-version3 \
+  --enable-gpl \
+  --enable-libx264 \
+  --enable-libx265 \
+  --enable-libvpx \
+  --enable-libwebp \
+  --enable-frei0r \
+  --enable-librav1e \
+  --enable-libdav1d \
+  --disable-debug \
+  --disable-doc \
+  --disable-ffplay \
+  --disable-ffprobe && \
+  make -j $(nproc) && make install && make distclean
+
+# FROM alpine:3.15 as build
+
+
+# ARG PREFIX=/opt/ffmpeg
+# ARG LD_LIBRARY_PATH=/opt/ffmpeg/lib
+# ARG MAKEFLAGS="-j4"
+
+# # FFmpeg build dependencies.
+# RUN apk add --update \
+#   build-base \
+#   coreutils \
+#   freetype-dev \
+#   gcc \
+#   libvpx-dev \
+#   libwebp-dev \
+#   libtheora-dev \
+#   openssl \
+#   openssl-dev \
+#   pkgconf \
+#   pkgconfig \
+#   rtmpdump-dev \
+#   wget \
+#   x264-dev \
+#   x265-dev \
+#   yasm
+
+# # Get rav1e from testing.
+# RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
+#   apk add --update rav1e-dev
+
+# # Get ffmpeg source.
+# RUN cd /tmp/ && \
+
+
+# # Compile ffmpeg.
+# RUN cd /tmp/ffmpeg-${FFMPEG_VERSION} && \
+#   ./configure \
+#   --enable-version3 \
+#   --enable-gpl \
+#   --enable-libx264 \
+#   --enable-libx265 \
+#   --enable-libvpx \
+#   --enable-libwebp \
+#   --enable-frei0r \
+#   --enable-librav1e \
+#   --enable-postproc \
+#   --enable-openssl \
+#   --disable-debug \
+#   --disable-doc \
+#   --disable-ffplay \
+#   --extra-cflags="-I${PREFIX}/include" \
+#   --extra-ldflags="-L${PREFIX}/lib" \
+#   --extra-libs="-lpthread -lm" \
+#   --prefix="${PREFIX}" && \
+#   make && make install && make distclean
+
+# # Cleanup.
+# # RUN rm -rf /var/cache/apk/* /tmp/*
+
+# ##########################
+# # Build the release image.
+# FROM alpine:3.15
+# ENV PATH=/opt/ffmpeg/bin:$PATH
+
+# RUN apk add --update \
+#   ca-certificates \
+#   openssl \
+#   pcre \
+#   libvpx \
+#   libwebp \
+#   x264-dev \
+#   x265-dev
+
+# COPY --from=build /opt/ffmpeg /opt/ffmpeg
+# COPY --from=build /usr/lib/librav1e.so /usr/lib/librav1e.so
+
+# CMD ["/usr/local/bin/ffmpeg"]
