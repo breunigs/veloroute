@@ -25,7 +25,7 @@ const map = new mapboxgl.Map({
   fitBoundsOptions: fitBoundsOpt,
   minZoom: 9,
   maxZoom: 19,
-  style: 'mapbox://styles/breunigs/ckwpepuex51bt14o5oq42ix9m',
+  style: 'mapbox://styles/breunigs/ckvvdvpy63v3j14n2vwo7sut0',
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,
