@@ -16,7 +16,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifen do
 
     <p>Radfahrstreifen werden auf dem gleichen Niveau geführt wie die KFZ-Fahrspuren und durch einen weißen „Breitstrich“ von diesen abgegrenzt. KFZ dürfen den Radfahrstreifen nicht benutzen – befahren, halten oder parken sind verboten. Die einzige Ausnahme ist um Einfahrten oder Parkplätze rechts des Radfahrstreifens zu erreichen; man spricht hier häufig von „überfahren“.</p>
 
-    <img src="/images/radfahrstreifen.svg" class="roaddiagram" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen verlaufen und wie diese in Hamburg häufig gestaltet werden."/>
+    <.roaddiagram src="radfahrstreifen" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen verlaufen und wie diese in Hamburg häufig gestaltet werden."/>
 
     <p>Die vereinfachte Draufsicht entspricht was in Hamburg um 2020 häufig umgesetzt wurde: 2,30m Fußweg, 1,85m Radfahrstreifen (inkl. Kanalrinne), 3,25m Autospur und dann das ganze nochmal spiegelverkehrt für die Gegenrichtung. Nicht in der Grafik dargestellt sind die typischen Baumreihen zwischen Radfahrstreifen und Fußweg, wo auch häufig Radanlehnbügel oder KFZ-Parkplätze angeboten werden.</p>
 

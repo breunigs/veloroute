@@ -283,6 +283,16 @@ defmodule Components.TagHelpers do
     end
   end
 
+  def roaddiagram(%{src: src} = assigns) do
+    {w, h} = Data.ImageSize.size("data/images/#{src}.svg")
+    ratio = w / h
+    assigns = assign(assigns, w: 400, h: round(400 * ratio))
+
+    ~H"""
+    <img src={"/images/#{@src}.svg"} width={@w} height={@h} class="roaddiagram" alt={@alt}/>
+    """
+  end
+
   defp inner_text(assigns) do
     [%{inner_block: fun}] = assigns.inner_block
 

@@ -23,7 +23,7 @@ defmodule Data.Article.Static.LexikonDooring do
 
     <p>Die geöffneten Autotüren in der Grafik stehen 80cm heraus. Gemessen von Reifen zu Reifen radelt der Dunkelrote bei 75cm und damit in der „Dooring-Zone“. Der Hellgrüne hält 1,5m Abstand und ist damit sicher unterwegs. Man sieht das dennoch ausreichend Platz für Gegenverkehr auf der 4,5m breiten <.ref>Fahrbahn</.ref> (= Asphalt) bleibt.</p>
 
-    <img src="/images/dooring.svg" class="roaddiagram" alt="Eine Straßenansicht von oben (Vogelperspektive) die Sicherheitsabstände zu parkenden Autos mit geöffneter Tür darstellt."/>
+    <.roaddiagram src="dooring" alt="Eine Straßenansicht von oben (Vogelperspektive) die Sicherheitsabstände zu parkenden Autos mit geöffneter Tür darstellt."/>
 
     <h4>Im Auto</h4>
     <p>Beim Aussteigen die innenliegende Hand zum Öffnen der Tür verwenden. Dadurch dreht man sich automatisch um und hat einen besseren Blick auf das Straßengeschehen. Ist man z.B. selbst gefahren, sollte man also die rechte Hand zum Öffnen der Tür verwenden. Man nennt dies auch den <.a href="https://de.wikipedia.org/wiki/Dutch_Reach">holländischen Griff</.a>.</p>

@@ -888,6 +888,9 @@ a {
 img.roaddiagram {
   width: 100%;
   max-width: 25rem;
+  max-height: 50%;
+  object-fit: contain;
+  height: auto;
   margin: 0.8rem auto;
   display: block;
 }

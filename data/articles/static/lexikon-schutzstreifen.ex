@@ -15,7 +15,7 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
     <p>Schutzstreifen sind die kleinere Variante des <.ref>Radfahrstreifens</.ref> und in jeder Hinsicht schlechter gestellt. Sie sind durch eine schmale, gestrichelte Linie gekennzeichnet. Breite Fahrzeuge dürfen sie mitbenutzen und sie sind meist sehr schmal.</p>
 
-    <img src="/images/schutzstreifen.svg" class="roaddiagram" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wie Schutzstreifen aussehen. Es sind Begegnungsverkehr PKW/PKW und LKW/LKW dargestellt."/>
+    <.roaddiagram src="schutzstreifen" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wie Schutzstreifen aussehen. Es sind Begegnungsverkehr PKW/PKW und LKW/LKW dargestellt."/>
 
     <p>Nicht verwechseln: „<.ref>Protected Bike Lane</.ref>“ klingt sehr ähnlich, ist für den Radverkehr aber deutlich besser.</p>
     """

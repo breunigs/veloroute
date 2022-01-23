@@ -16,7 +16,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifenInMittellage do
     <p>Umgangssprachlich als „Fahrradweiche“ bezeichnet ist ein „Radfahrstreifen in Mittellage“ eine an Kreuzungen aufgemalte Verkehrsführung. Sie packt die Geradeausspur für den Radverkehr zwischen die Geradeausspur bzw. Rechtsabbiegerspur für KFZ.
     </p>
 
-    <img src="/images/rim.svg" class="roaddiagram" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen in Mittellage im Kreuzungsbereich verlaufen."/>
+    <.roaddiagram src="rim" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen in Mittellage im Kreuzungsbereich verlaufen."/>
 
     <p>Eine <.a href="https://nationaler-radverkehrsplan.de/de/aktuell/nachrichten/einsatzbereiche-von-radfahrstreifen-mittellage">Studie der TU Berlin</.a> kommt zum Ergebnis, das diese Führung vergleichbar mit älteren Varianten ist was Unfälle betrifft. Die Stadt einigte sich 2020 mit dem <.a href="https://radentscheid-hamburg.de/">Radentscheid Hamburg</.a> darauf, keine neuen Radfahrstreifen in Mittellage mehr zu planen. Da zwischen Planung und Umbau teils Jahre vergehen, taucht diese Variante stellenweise trotzdem noch auf (Stand: 2022).</p>
     """
