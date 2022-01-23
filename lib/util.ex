@@ -107,13 +107,21 @@ defmodule Util do
     opts = if kill, do: [{:kill, kill}, {:kill_timeout, 3} | opts], else: opts
 
     with {:ok, pid, monitor} <- :exec.run(args, opts) do
-      stop_on_signal(:sigterm)
-      stop_on_signal(:sigquit)
-
+      untrap1 = stop_on_signal(:sigterm)
+      untrap2 = stop_on_signal(:sigquit)
       warner = Process.send_after(self(), {:slow_warn, name}, 1000)
 
       try do
-        receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+        status = receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+        # only untrap if there were no signals, since we block the received
+        # signal to prevent VM shutdown and would wait until the timeout,
+        # essentially deadlocking.
+        if !status[:user_abort] do
+          untrap1.()
+          untrap2.()
+        end
+
+        status
       after
         Process.cancel_timer(warner)
       end
@@ -168,14 +176,18 @@ defmodule Util do
 
   defp stop_on_signal(signal) do
     us = self()
+    trap_ref = make_ref()
+    untrap = fn -> System.untrap_signal(signal, trap_ref) end
 
     {:ok, _trap} =
-      System.trap_signal(signal, fn ->
+      System.trap_signal(signal, trap_ref, fn ->
         IO.puts(:stderr, "\n\nreceived #{signal}, aborting…")
         :ok = Process.send(us, {:kill, signal}, [])
         Process.sleep(5_000)
         :ok
       end)
+
+    untrap
   end
 
   defp validate_env(enum) do
