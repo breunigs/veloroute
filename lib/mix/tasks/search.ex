@@ -3,8 +3,6 @@ defmodule Mix.Tasks.Velo.Search.GeneratePolylines do
   @cache_dir "data/cache/"
   @source "street_polyline_source.pbf"
 
-  # @street_polyline_cache_source "data/cache/street_polyline_source.pbf"
-  # @street_polyline_cache_source "data/cache/street_polyline_source.pbf"
   @requirements ["app.start"]
 
   @shortdoc "Downloads and prepares the polylines used to visualize search results on the map"
@@ -39,16 +37,29 @@ defmodule Mix.Tasks.Velo.Search.GeneratePolylines do
 
       # delete dependent files
       File.rm(polyline_host())
+      bbox_docker_tmp = bbox_docker() |> String.replace(".pbf", "__tmp.pbf")
+      bbox_host_tmp = bbox_host() |> String.replace(".pbf", "__tmp.pbf")
 
-      Docker.build_and_run("tools/polylines/Dockerfile.osmconvert", [
+      args = [
         "--complete-ways",
         "--complete-multipolygons",
         "--drop-version",
         "--drop-author",
+        "-t=/tmp/osmconvert_tempfile",
         "-b=#{bbox()}",
-        "-o=#{bbox_docker()}",
+        "-o=#{bbox_docker_tmp}",
         source_docker()
-      ])
+      ]
+
+      Docker.build_and_run(
+        "tools/polylines/Dockerfile.osmconvert",
+        args,
+        name: "osmconvert"
+      )
+
+      stats = File.stat!(bbox_host_tmp)
+      if stats.size == 0, do: raise("osmconvert seemingly failed, output size is 0")
+      File.rename!(bbox_host_tmp, bbox_host())
     end
   end
 
@@ -56,10 +67,14 @@ defmodule Mix.Tasks.Velo.Search.GeneratePolylines do
     if File.exists?(polyline_host()) do
       :ok
     else
-      Docker.build_and_run("tools/polylines/Dockerfile.valhalla", [
-        polyline_docker(),
-        bbox_docker()
-      ])
+      Docker.build_and_run(
+        "tools/polylines/Dockerfile.valhalla",
+        [
+          polyline_docker(),
+          bbox_docker()
+        ],
+        name: "valhalla"
+      )
     end
   end
 

@@ -6,7 +6,3 @@ echo "Tiling PBF for valhalla…"
 valhalla_build_tiles -c /build/valhalla.json "${@:2}"
 echo "Exporting tiles to polylines…"
 valhalla_export_edges --ferries --config /build/valhalla.json > "$1"
-
-if [ "${OWNER_GROUP_FIX:-}" != "" ]; then
-  chown "${OWNER_GROUP_FIX}" $@
-fi

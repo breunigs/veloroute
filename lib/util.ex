@@ -50,11 +50,12 @@ defmodule Util do
     {do_raise, opts} = Keyword.pop(opts, :raise, false)
     {stdout, opts} = Keyword.pop(opts, :stdout, IO.stream(:stdio, :line))
     {stderr, opts} = Keyword.pop(opts, :stderr, IO.stream(:stderr, :line))
+    {kill, opts} = Keyword.pop(opts, :kill, nil)
     {name, opts} = Keyword.pop(opts, :name, hd(cli))
     if length(opts) > 0, do: raise("Unknown arguments: #{inspect(opts)}")
 
     cli = Enum.map(cli, &to_string/1)
-    status = exec_cmd2(cli, name, env, stdout, stderr)
+    status = exec_cmd2(cli, name, env, stdout, stderr, kill)
 
     result =
       if status[:status] == 0 do
@@ -69,6 +70,8 @@ defmodule Util do
          """}
       end
 
+    if do_raise && result != :ok && status[:user_abort], do: raise("User aborted")
+
     if do_raise && result != :ok,
       do: raise(elem(result, 1))
 
@@ -81,29 +84,36 @@ defmodule Util do
       else: inspect(term)
   end
 
-  @spec exec_cmd2([binary()], binary(), Enum.t(), Collectable.t(), Collectable.t()) :: %{
+  @spec exec_cmd2(
+          [binary()],
+          binary(),
+          Enum.t(),
+          Collectable.t(),
+          Collectable.t(),
+          binary() | nil
+        ) :: %{
           status: non_neg_integer(),
           stdout: any(),
-          stderr: any()
+          stderr: any(),
+          user_abort: boolean()
         }
-  defp exec_cmd2([exe | params], name, env, stdout, stderr) do
+  defp exec_cmd2([exe | params], name, env, stdout, stderr, kill) do
     {stdoutacc, stdout} = Collectable.into(stdout)
     {stderracc, stderr} = Collectable.into(stderr)
     exe = System.find_executable(exe) || exe
     args = Enum.map([exe | params], &String.to_charlist/1)
     opts = [:stdout, :stderr, :monitor, {:env, validate_env(env)}]
+    opts = if kill, do: [{:kill, kill}, {:kill_timeout, 3} | opts], else: opts
 
     with {:ok, pid, monitor} <- :exec.run(args, opts) do
-      untrap1 = stop_on_signal(monitor, :sigterm)
-      untrap2 = stop_on_signal(monitor, :sigquit)
+      stop_on_signal(:sigterm)
+      stop_on_signal(:sigquit)
 
-      warner = Process.send_after(self(), {:slow_warn, name}, 500)
+      warner = Process.send_after(self(), {:slow_warn, name}, 1000)
 
       try do
         receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
       after
-        untrap1.()
-        untrap2.()
         Process.cancel_timer(warner)
       end
     else
@@ -124,7 +134,7 @@ defmodule Util do
       {:DOWN, ^monitor, :process, ^pid, :normal} ->
         stdoutacc = stdout.(stdoutacc, :done)
         stderracc = stderr.(stderracc, :done)
-        %{status: 0, stdout: stdoutacc, stderr: stderracc}
+        %{status: 0, stdout: stdoutacc, stderr: stderracc, user_abort: false}
 
       {:DOWN, ^monitor, :process, ^pid, {:exit_status, status}} ->
         reason =
@@ -143,27 +153,28 @@ defmodule Util do
         stdout.(stdoutacc, :halt)
         stderr.(stderracc, :halt)
 
-        %{status: reason, stdout: stdoutacc, stderr: stderracc}
+        %{status: reason, stdout: stdoutacc, stderr: stderracc, user_abort: false}
 
       {:slow_warn, cmd} ->
         IO.puts(:stderr, "\n#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
         receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+
+      {:kill, _signal} ->
+        :exec.stop_and_wait(monitor, 4_000)
+        %{status: 142, stdout: stdoutacc, stderr: stderracc, user_abort: true}
     end
   end
 
-  defp stop_on_signal(monitor, signal) do
-    trap_ref = make_ref()
-    untrap = fn -> System.untrap_signal(signal, trap_ref) end
+  defp stop_on_signal(signal) do
+    us = self()
 
     {:ok, _trap} =
-      System.trap_signal(signal, trap_ref, fn ->
+      System.trap_signal(signal, fn ->
         IO.puts(:stderr, "\n\nreceived #{signal}, aborting…")
-        untrap.()
-        :exec.stop(monitor)
+        :ok = Process.send(us, {:kill, signal}, [])
+        Process.sleep(5_000)
         :ok
       end)
-
-    untrap
   end
 
   defp validate_env(enum) do

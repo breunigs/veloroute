@@ -4,8 +4,5 @@ RUN apt-get -y update && \
   apt-get -y install osmctools && \
   rm -rf /var/lib/apt/lists/*
 
-COPY osmconvert_wrapper.sh /
-
-
-ENTRYPOINT ["/osmconvert_wrapper.sh"]
+ENTRYPOINT ["/usr/bin/osmconvert"]
 

@@ -67,10 +67,9 @@ defmodule Docker do
     )
   end
 
-  def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+  def build(dockerfile) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
-    container_name = "veloroute2#{name}"
     work_dir = Path.dirname(dockerfile)
 
     IO.puts(:stderr, "Building “#{name}”")
@@ -92,7 +91,12 @@ defmodule Docker do
       stdout: "",
       stderr: ""
     )
+  end
 
+  def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+    "." <> name = Path.extname(dockerfile)
+    img_name = "veloroute.hamburg/docker:#{name}"
+    container_name = "veloroute2#{name}"
     IO.puts(:stderr, "Running #{img_name}")
 
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
@@ -102,31 +106,41 @@ defmodule Docker do
         [
           "docker",
           "run",
-          "-e",
-          owner_group_fix(),
+          "--user",
+          user(),
           "--rm",
           "--name",
           container_name,
           "--mount",
           ~s|type=bind,source=#{cache_dir},target=/workdir|
         ] ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args,
-        opts ++ [raise: true]
+        opts ++ [raise: true, kill: "docker stop --time 2 #{container_name}"]
       )
     rescue
-      _exp ->
-        Util.cmd2(["docker", "stop", "--time", "0", container_name],
-          raise: false,
-          stdout: "",
-          stderr: ""
-        )
+      exp ->
+        case exp do
+          %RuntimeError{message: msg} ->
+            %{result: {:error, msg}}
+
+          exp ->
+            %{result: {:error, inspect(exp)}}
+        end
+    after
+      # automatically created by docker when bind mounting into the cache dir
+      File.rmdir(Path.join(cache_dir, "videos"))
     end
   end
 
-  defp owner_group_fix() do
+  def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+    build(dockerfile)
+    run(dockerfile, extra_args, opts)
+  end
+
+  defp user() do
     {uid, 0} = System.cmd("id", ["-u"])
     {gid, 0} = System.cmd("id", ["-g"])
 
-    "OWNER_GROUP_FIX=#{String.trim(uid)}:#{String.trim(gid)}"
+    "#{String.trim(uid)}:#{String.trim(gid)}"
   end
 
   def mix(args, mix_env \\ "test")

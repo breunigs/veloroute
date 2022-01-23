@@ -5,6 +5,7 @@ RUN apt-get -y update && \
   rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /build/valhalla_tiles && \
+  chmod og+w -R /build/valhalla_tiles && \
   valhalla_build_config \
   --mjolnir-tile-dir /build/valhalla_tiles \
   --mjolnir-tile-extract /build/valhalla_tiles.tar \
