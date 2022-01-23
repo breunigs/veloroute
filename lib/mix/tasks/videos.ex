@@ -117,7 +117,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     else
       blur = System.get_env("BLUR", nil) == "1"
       cmd = Video.Renderer.preview_cmd(rendered, blur)
-      Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd)
+      Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd, name: "preview #{hash}")
     end
   end
 end

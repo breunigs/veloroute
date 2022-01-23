@@ -95,7 +95,7 @@ defmodule Docker do
   def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
-    container_name = "veloroute2#{name}"
+    container_name = clean_name("veloroute2#{name}", opts[:name])
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
 
     try do
@@ -126,6 +126,12 @@ defmodule Docker do
       # automatically created by docker when bind mounting into the cache dir
       File.rmdir(Path.join(cache_dir, "videos"))
     end
+  end
+
+  defp clean_name(str, extra \\ "") do
+    "#{str} #{extra}"
+    |> String.trim()
+    |> String.replace(~r/[^a-zA-Z0-9]/, "")
   end
 
   def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
