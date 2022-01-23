@@ -93,7 +93,7 @@ defmodule Video.Renderer do
             {[line | mapped], tl(variants)}
 
           hd(variants)[:tag_as] ->
-            {[line <> ",CODECS=#{hd(variants)[:tag_as]}" | mapped], tl(variants)}
+            {[line <> ",CODECS=\"#{hd(variants)[:tag_as]}\"" | mapped], tl(variants)}
 
           true ->
             {[line | mapped], tl(variants)}
