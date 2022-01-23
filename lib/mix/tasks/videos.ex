@@ -46,6 +46,8 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   defp real_run do
+    Docker.build("tools/ffmpeg/Dockerfile.ffmpeg")
+
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->

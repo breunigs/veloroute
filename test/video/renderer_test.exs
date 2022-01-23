@@ -233,6 +233,7 @@ defmodule Video.RendererTest do
              "ultrafast",
              "-qp",
              "0",
+             "-an",
              "-f",
              "matroska",
              "-"

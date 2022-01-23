@@ -72,8 +72,6 @@ defmodule Docker do
     img_name = "veloroute.hamburg/docker:#{name}"
     work_dir = Path.dirname(dockerfile)
 
-    IO.puts(:stderr, "Building “#{name}”")
-
     Util.cmd2(
       [
         "docker",
@@ -89,7 +87,8 @@ defmodule Docker do
       env: [{"DOCKER_BUILDKIT", "1"}],
       raise: true,
       stdout: "",
-      stderr: ""
+      stderr: "",
+      name: "Building “#{name}”"
     )
   end
 
@@ -97,8 +96,6 @@ defmodule Docker do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
     container_name = "veloroute2#{name}"
-    IO.puts(:stderr, "Running #{img_name}")
-
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
 
     try do

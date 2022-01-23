@@ -137,8 +137,8 @@ RUN  \
   ocl-icd-libopencl1 \
   && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /root/.frei0r-1/lib/
-COPY --from=blur /build/jsonblur.so /root/.frei0r-1/lib/
+RUN mkdir -p /usr/lib/frei0r-1/
+COPY --from=blur /build/jsonblur.so /usr/lib/frei0r-1/
 COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
 WORKDIR /workdir
 CMD ["/usr/bin/ffmpeg"]

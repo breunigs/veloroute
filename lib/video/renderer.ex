@@ -21,6 +21,7 @@ defmodule Video.Renderer do
         "ultrafast",
         "-qp",
         "0",
+        "-an",
         "-f",
         "matroska",
         "-"
@@ -42,14 +43,26 @@ defmodule Video.Renderer do
 
   defp render_run(rendered, target) do
     pbar = Video.Renderer.Progress.new(rendered)
+    cache_dir = Path.join([File.cwd!(), "data", "cache"])
+    Temp.track!()
 
-    with {:ok, tmp_dir} = Temp.mkdir("veloroutehamburg_render_#{rendered.hash()}"),
-         cmd <- render_cmd(rendered, tmp_dir),
-         %{result: :ok} <- Util.cmd2(cmd, stderr: pbar, name: "ffmpeg render"),
-         :ok <- create_fallbacks(tmp_dir),
-         :ok <- move(tmp_dir, target) do
-      File.rm_rf(tmp_dir)
-      :ok
+    try do
+      with {:ok, tmp_path} =
+             Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
+           tmp_dir <- Path.basename(tmp_path),
+           cmd <- render_cmd(rendered, tmp_dir),
+           %{result: :ok} <-
+             Docker.run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
+               env: [],
+               stderr: pbar,
+               name: "ffmpeg render"
+             ),
+           :ok <- create_fallbacks(tmp_dir),
+           :ok <- move(tmp_path, target) do
+        :ok
+      end
+    after
+      Temp.cleanup()
     end
   end
 
@@ -95,7 +108,7 @@ defmodule Video.Renderer do
     variants()
     |> Enum.filter(&is_map_key(&1, :fallback))
     |> Enum.map(fn %{index: idx, fallback: fb} ->
-      Util.cmd2(
+      cmd =
         @nice_render ++
           [
             "ffmpeg",
@@ -109,7 +122,10 @@ defmodule Video.Renderer do
             "-movflags",
             "+faststart",
             Path.join(tmp_dir, "fallback.#{fb}")
-          ],
+          ]
+
+      Docker.run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
+        env: [],
         name: "ffmpeg fallback #{fb}"
       )
     end)

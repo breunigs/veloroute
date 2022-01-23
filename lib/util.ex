@@ -42,6 +42,7 @@ defmodule Util do
           status: non_neg_integer(),
           stdout: any(),
           stderr: any(),
+          user_abort: boolean(),
           result: :ok | {:error, binary()}
         }
   @spec cmd2([any()], keyword()) :: exec_result()
