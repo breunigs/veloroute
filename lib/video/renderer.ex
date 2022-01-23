@@ -269,11 +269,22 @@ defmodule Video.Renderer do
   # libvpx generates blurry videos, so can't easily use it for HQ. Additionally,
   # hls.js locks all browsers to the initially selected codec, because of some
   # bug in Safari.
-  defp codec_vp9,
+  # defp codec_vp9,
+  #   do: %{
+  #     codec:
+  #       ~w[libvpx-vp9 -row-mt:v:__INDEX__ 1 -tile-columns 4 -frame-parallel 1 -speed 1 -threads 2 -refs:v:__INDEX__ 5],
+  #     tag_as: "vp09.00.30.08"
+  #   }
+
+  # codec tag specification:
+  # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter#av1
+  # find seq_tier and seq_level_idx through:
+  # ffmpeg -i <file> -c:v copy -bsf:v trace_headers -f null /dev/null 2>&1 | grep seq_ | head -n5
+  # The 31 chosen for LL here is "Maximum parameters", i.e. no restrictions.
+  defp codec_av1,
     do: %{
-      codec:
-        ~w[libvpx-vp9 -row-mt:v:__INDEX__ 1 -tile-columns 4 -frame-parallel 1 -speed 1 -threads 2 -refs:v:__INDEX__ 5],
-      tag_as: "vp09.00.30.08"
+      codec: ~w[librav1e -tiles:v:__INDEX__ 4 -speed:v:__INDEX__ 6],
+      tag_as: "av01.0.31M.08"
     }
 
   # ffmpeg itself manages avc tags
@@ -298,17 +309,20 @@ defmodule Video.Renderer do
 
   defp variants do
     codec_avc = codec_avc()
-    codec_vp9 = codec_vp9()
+    codec_av1 = codec_av1()
+    # codec_vp9 = codec_vp9()
     # codec_hevc = codec_hevc()
 
     [
-      Map.merge(%{width: 640, height: 360, bitrate: 4, fallback: :mp4}, codec_avc),
-      Map.merge(%{width: 256, height: 144, bitrate: 0.7}, codec_avc),
+      # av1, with default quality as first entry
+      Map.merge(%{width: 1920, height: 1080, bitrate: 9}, codec_av1),
+      Map.merge(%{width: 426, height: 240, bitrate: 1.5}, codec_av1),
+      Map.merge(%{width: 640, height: 360, bitrate: 3}, codec_av1),
+      Map.merge(%{width: 1280, height: 720, bitrate: 4.5, fallback: :webm}, codec_av1),
+      # legacy codec
       Map.merge(%{width: 426, height: 240, bitrate: 2}, codec_avc),
-      Map.merge(%{width: 854, height: 480, bitrate: 4, fallback: :webm}, codec_vp9),
-      Map.merge(%{width: 1280, height: 720, bitrate: 6}, codec_avc),
-      Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_avc)
-      # Map.merge(%{width: 1920, height: 1080, bitrate: 12}, codec_hevc)
+      Map.merge(%{width: 640, height: 360, bitrate: 4, fallback: :mp4}, codec_avc),
+      Map.merge(%{width: 1280, height: 720, bitrate: 6}, codec_avc)
     ]
     |> Enum.with_index()
     |> Enum.map(fn {info, idx} ->

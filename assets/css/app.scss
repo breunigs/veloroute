@@ -393,6 +393,12 @@ body.ie11 #fullscreen {
       background-image: url("/images/eye.svg");
       background-size: 0.8rem;
     }
+
+    small {
+      float: right;
+      margin: 0.15rem 0;
+      font-size: 0.75rem;
+    }
   }
 }
 

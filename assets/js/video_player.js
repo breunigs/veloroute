@@ -154,7 +154,7 @@ function updateVideoElement() {
   // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
   const innerHTML = `
     <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
-    <source src="${path}fallback.webm${time}" type="video/webm; codecs=vp9">
+    <source src="${path}fallback.webm${time}" type="video/webm; codecs=av1">
     <source src="${path}fallback.mp4${time}" type="video/mp4; codecs=avc1.64001E">
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
@@ -203,9 +203,22 @@ videoQualityOptions.addEventListener('click', event => {
 });
 
 const codecTranslate = {
-  avc1: "H.264",
-  vp09: "VP9",
-  hc1: "HEVC"
+  avc1: {
+    name: "H.264",
+    desc: "mäßige Qualität, funktioniert praktisch überall"
+  },
+  vp09: {
+    name: "VP9",
+    desc: "mittlere Qualität, auf Handys problematisch"
+  },
+  hc1: {
+    name: "HEVC",
+    desc: "gute Qualität, nur auf Apple Geräten"
+  },
+  av01: {
+    name: "AV1",
+    desc: "gute Qualität, auf Handys problematisch"
+  },
 }
 
 function updateQualityChooser() {
@@ -215,17 +228,33 @@ function updateQualityChooser() {
   const next = window.hls.loadLevel;
   const auto = window.hls.autoLevelEnabled;
 
+  let duplicates = {};
+  let displayCodec = false;
+  for (let i = 0; i < window.hls.levels.length; i++) {
+    const h = window.hls.levels[i].height;
+    if (duplicates[h]) {
+      displayCodec = true;
+      break
+    }
+    duplicates[h] = true;
+  }
+
   let choosers = "";
   for (let i = window.hls.levels.length - 1; i >= 0; i--) {
     let classes = "eye"
     if (current == i) classes += " active";
     if (next == i) classes += " next";
-    const resolution = window.hls.levels[i].height + "p";
     const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
-    const codec = window.hls.levels[i].codecSet;
-    const title = `${resolution} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codecTranslate[codec]})`
+    const codecSet = window.hls.levels[i].codecSet;
+    const codec = codecTranslate[codecSet] || {
+      name: codecSet,
+      desc: "Unbekannt"
+    };
+    const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
+    let name = `${window.hls.levels[i].height}p`;
+    if (displayCodec) name += ` <small>${codec.name}</small>`
 
-    choosers += `<a data-level="${i}" class="${classes}" title="${title}">${resolution}</a>`
+    choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
   }
   choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
 
