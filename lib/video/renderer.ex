@@ -315,10 +315,10 @@ defmodule Video.Renderer do
 
     [
       # av1, with default quality as first entry
-      Map.merge(%{width: 1920, height: 1080, bitrate: 9}, codec_av1),
+      Map.merge(%{width: 1280, height: 720, bitrate: 4.5, fallback: :webm}, codec_av1),
       Map.merge(%{width: 426, height: 240, bitrate: 1.5}, codec_av1),
       Map.merge(%{width: 640, height: 360, bitrate: 3}, codec_av1),
-      Map.merge(%{width: 1280, height: 720, bitrate: 4.5, fallback: :webm}, codec_av1),
+      Map.merge(%{width: 1920, height: 1080, bitrate: 9}, codec_av1),
       # legacy codec
       Map.merge(%{width: 426, height: 240, bitrate: 2}, codec_avc),
       Map.merge(%{width: 640, height: 360, bitrate: 4, fallback: :mp4}, codec_avc),
