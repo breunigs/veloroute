@@ -81,6 +81,12 @@ defmodule Docker do
         work_dir,
         "--network",
         "host",
+        "--build-arg",
+        "UID=#{Util.user_id()}",
+        "--build-arg",
+        "GID=#{Util.group_id()}",
+        "--build-arg",
+        "RENDER_GID=#{Util.group_id("render")}",
         "-t",
         img_name
       ],
@@ -98,19 +104,24 @@ defmodule Docker do
     container_name = clean_name("veloroute2#{name}", opts[:name])
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
 
+    args = [
+      "docker",
+      "run",
+      "--user",
+      "#{Util.user_id()}",
+      "--rm",
+      "--name",
+      container_name,
+      "--mount",
+      ~s|type=bind,source=#{cache_dir},target=/workdir|
+    ]
+
+    args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
+    args = args ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args
+
     try do
       Util.cmd2(
-        [
-          "docker",
-          "run",
-          "--user",
-          user(),
-          "--rm",
-          "--name",
-          container_name,
-          "--mount",
-          ~s|type=bind,source=#{cache_dir},target=/workdir|
-        ] ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args,
+        args,
         opts ++ [raise: true, kill: "docker stop --time 2 #{container_name}"]
       )
     rescue
@@ -137,13 +148,6 @@ defmodule Docker do
   def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     build(dockerfile)
     run(dockerfile, extra_args, opts)
-  end
-
-  defp user() do
-    {uid, 0} = System.cmd("id", ["-u"])
-    {gid, 0} = System.cmd("id", ["-g"])
-
-    "#{String.trim(uid)}:#{String.trim(gid)}"
   end
 
   def mix(args, mix_env \\ "test")

@@ -15,6 +15,10 @@ defmodule Util do
   def user_id(), do: cmd(["id", "-u"]) |> String.trim()
   def group_id(), do: cmd(["id", "-g"]) |> String.trim()
 
+  def group_id(group_name) when is_binary(group_name) do
+    cmd(["getent", "group", group_name]) |> String.split(":") |> Enum.at(2)
+  end
+
   def cmd([cmd | args], opts \\ []) do
     System.cmd(cmd, args, opts)
     |> case do

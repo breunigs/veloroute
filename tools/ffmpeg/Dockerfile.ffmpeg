@@ -112,6 +112,7 @@ RUN cd /downloads/ffmpeg && \
   --enable-libx265 \
   --enable-libzimg \
   --enable-opencl \
+  --enable-vaapi \
   --disable-debug \
   --disable-doc \
   --disable-ffplay \
@@ -120,9 +121,10 @@ RUN cd /downloads/ffmpeg && \
 
 
 FROM debian:testing-slim AS runner
-RUN  \
+RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+  i965-va-driver \
   libboost-iostreams1.74.0 \
   libdav1d5 \
   libmagick++-6.q16-8 \
@@ -134,11 +136,29 @@ RUN  \
   libx264-160 \
   libx265-199 \
   libzimg2 \
+  mesa-opencl-icd \
   ocl-icd-libopencl1 \
+  ocl-icd-opencl-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN \
+  echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+  beignet-opencl-icd \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/lib/frei0r-1/
 COPY --from=blur /build/jsonblur.so /usr/lib/frei0r-1/
 COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
 WORKDIR /workdir
+
+ARG RENDER_GID
+ARG GID
+ARG UID
+RUN addgroup --gid ${RENDER_GID} render && \
+  addgroup --gid ${GID} dummy && \
+  useradd -s /bin/bash -G render,video -g ${GID} -u ${UID} dummy
+USER dummy
+
 CMD ["/usr/bin/ffmpeg"]
