@@ -298,9 +298,11 @@ defmodule Util do
         download(url, file, allowed_redirects - 1)
 
       200 ->
-        with {:ok, handle} <- File.open(file, [:write, :binary, :exclusive, :delayed_write]),
+        with {:ok, handle} <-
+               File.open(file <> "_tmp", [:write, :binary, :exclusive, :delayed_write]),
              :ok <- stream_body(ref, handle),
-             :ok <- File.close(handle) do
+             :ok <- File.close(handle),
+             :ok <- File.rename(file <> "_tmp", file) do
           :ok
         end
 
