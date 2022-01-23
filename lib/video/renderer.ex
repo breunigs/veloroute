@@ -57,6 +57,7 @@ defmodule Video.Renderer do
                stderr: pbar,
                name: "ffmpeg render"
              ),
+           :ok <- manually_tag_missing(tmp_path),
            :ok <- create_fallbacks(tmp_dir),
            :ok <- move(tmp_path, target) do
         :ok
@@ -75,6 +76,34 @@ defmodule Video.Renderer do
     @nice_render ++
       ["ffmpeg", "-hide_banner"] ++
       inputs(rendered) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
+  end
+
+  defp manually_tag_missing(tmp_dir) do
+    m3u8 = Path.join(tmp_dir, "stream.m3u8")
+
+    contents =
+      File.read!(m3u8)
+      |> String.split("\n")
+      |> Enum.reduce({[], variants()}, fn line, {mapped, variants} ->
+        cond do
+          !String.starts_with?(line, "#EXT-X-STREAM-INF:") ->
+            {[line | mapped], variants}
+
+          String.contains?(line, "CODECS=") ->
+            {[line | mapped], tl(variants)}
+
+          hd(variants)[:tag_as] ->
+            {[line <> ",CODECS=#{hd(variants)[:tag_as]}" | mapped], tl(variants)}
+
+          true ->
+            {[line | mapped], tl(variants)}
+        end
+      end)
+      |> elem(0)
+      |> Enum.reverse()
+      |> Enum.join("\n")
+
+    File.write!(m3u8, contents)
   end
 
   defp move(tmp_dir, target) do
