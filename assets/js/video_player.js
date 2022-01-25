@@ -139,10 +139,12 @@ function updateVideoElement() {
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
         if (hlsAutoStartLoad) return;
+        maybeMarkAutoplayed();
+
+        if (!window.hls) return;
         console.debug("triggering hls.startLoad");
         hlsAutoStartLoad = true;
         window.hls.startLoad(-1);
-        maybeMarkAutoplayed();
       });
     })
     return
