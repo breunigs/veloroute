@@ -11,7 +11,7 @@ require 'net/https'
 EVERGABE_SEEN = File.join(__dir__, "./evergabe_seen.txt")
 PAGE_URL = "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/tabs/home"
 SEARCH_TERM = URI.encode_www_form_component("velo")
-SEARCH_URL = "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/project/publicProjects?cultureName=de-DE&pageIndex=0&pageSize=15&searchTerm=#{SEARCH_TERM}&sortExpression=biddingPeriod%20desc"
+SEARCH_URL = "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/project/public?cultureName=de-DE&pageIndex=0&pageSize=15&searchTerm=#{SEARCH_TERM}&sortExpression=biddingPeriod%20desc"
 
 seen = {}
 seen = YAML.load_file(EVERGABE_SEEN) if File.exist?(EVERGABE_SEEN)
