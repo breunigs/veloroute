@@ -285,7 +285,7 @@ defmodule Components.TagHelpers do
 
   def roaddiagram(%{src: src} = assigns) do
     {w, h} = Data.ImageSize.size("data/images/#{src}.svg")
-    ratio = w / h
+    ratio = h / w
     assigns = assign(assigns, w: 400, h: round(400 * ratio))
 
     ~H"""
