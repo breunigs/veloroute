@@ -12,17 +12,18 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
     do: [
       "lexikon",
       "abbiegen",
+      "direkt",
       "direkten-abbiegen",
+      "direktes-linksabbiegen",
       "direktes-und-indirektes-abbiegen",
       "direktes",
-      "direkt",
-      "indirekt",
       "indirekt-linksabbiegen",
+      "indirekt",
       "indirekte-linksabbiegen",
       "indirektem-linksabbiegen",
-      "indirektes",
+      "indirekten-linksabbiegen",
       "indirektes-linksabbiegen",
-      "direktes-linksabbiegen"
+      "indirektes"
     ]
 
   def text(assigns) do

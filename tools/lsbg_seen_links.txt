@@ -472,3 +472,7 @@
 - "/contentblob/15717760/65f973a5755d32c735e774415a937ba7/data/farmsener-weg-karlshoehe-august-krogmann-strasse-abgestimmte-planung-plaene.pdf"
 - "/contentblob/15717754/4c10155fedce8a2737d5420dfc93ab1b/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15717756/8e8fdb8c33110bed40c07befe279ec90/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-plaene.pdf"
+'2022-01-27':
+- "/contentblob/14735436/eb01cbb8f1af1dff264df7bb2ae213b8/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-bericht.pdf"
+- "/contentblob/14735432/850a83d7d289d86c7138a612c66ec170/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-plan.pdf"
+- "/contentblob/15818838/e24c9cd2d8db16396b204fea745a270e/data/eilbekkanal-uferwanderneuerung-02-22-bis-10-23.pdf"
