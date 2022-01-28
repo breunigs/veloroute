@@ -476,3 +476,6 @@
 - "/contentblob/14735436/eb01cbb8f1af1dff264df7bb2ae213b8/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-bericht.pdf"
 - "/contentblob/14735432/850a83d7d289d86c7138a612c66ec170/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-plan.pdf"
 - "/contentblob/15818838/e24c9cd2d8db16396b204fea745a270e/data/eilbekkanal-uferwanderneuerung-02-22-bis-10-23.pdf"
+'2022-01-28':
+- "/contentblob/15826250/c1375d7639a30df7b05c023da7408c5d/data/gertigstrasse-umsetzung-veloroute-13-02-22-bis-09-22.pdf"
+- "/contentblob/15068420/e573bd2f1aad447f3ec3a32163a74576/data/kaiser-wilhelm-strasse-allgemein-anliegerinformation-05-21.pdf"

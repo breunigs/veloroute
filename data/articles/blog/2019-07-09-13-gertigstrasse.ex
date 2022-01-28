@@ -6,8 +6,8 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def updated_at(), do: ~D[2020-06-12]
   def title(), do: "Gertigstraße (Veloroute 13)"
 
-  def start(), do: ~d[2022-03]
-  def stop(), do: ~d[2022-09]
+  def start(), do: ~d[2022-02-28]
+  def stop(), do: ~d[2022-10]
 
   def type(), do: :planned
 
@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.Gertigstrasse do
        "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
       {"Lageplan",
        "https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"},
+      {"Baustelleninfo (Februar 2022)",
+       "https://lsbg.hamburg.de/contentblob/15826250/c1375d7639a30df7b05c023da7408c5d/data/gertigstrasse-umsetzung-veloroute-13-02-22-bis-09-22.pdf"},
       {"Auftragsvergabe (Bauzeitraum)",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details"}
     ]
