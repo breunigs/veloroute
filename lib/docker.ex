@@ -117,6 +117,7 @@ defmodule Docker do
     ]
 
     args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
+    args = if docker_supports_gpu(), do: args ++ ["--gpus", "all"], else: args
     args = args ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args
 
     try do
