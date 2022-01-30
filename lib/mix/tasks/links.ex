@@ -53,6 +53,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     |> Enum.group_by(&elem(&1, 0), &elem(&1, 1))
   end
 
+  @spec extract({binary(), binary(), binary()}) :: [entry()]
+  defp extract({name, _extra, url}), do: extract({name, url})
+
   @spec extract({binary(), binary()}) :: [entry()]
   defp extract({name, "https://lsbg.hamburg.de/contentblob" <> _rest = url}) do
     [{:download, "#{name} #{name_from_url(url)}", url}]
