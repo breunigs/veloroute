@@ -221,6 +221,7 @@ defmodule Components.TagHelpers do
       |> art.links()
       |> Enum.map(fn
         {text, href} -> ~H"<.a href={href}><%= text %></.a>"
+        {text, extra, href} -> ~H"<.a href={href}><%= text %></.a> (<%= extra %>)"
         other -> other
       end)
 
