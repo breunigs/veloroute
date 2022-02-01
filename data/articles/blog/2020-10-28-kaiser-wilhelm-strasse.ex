@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def title(), do: "Kaiser-Wilhelm-Straße (Veloroute 1 und 2)"
 
   def start(), do: ~d[2021-02-11]
-  def stop(), do: ~d[2023Q4]
+  def stop(), do: ~d[2021-12-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14393]
