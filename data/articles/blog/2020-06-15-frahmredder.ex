@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.Frahmredder do
   use Article.Default
 
   def created_at(), do: ~D[2020-06-15]
-  def updated_at(), do: ~D[2021-02-05]
+  def updated_at(), do: ~D[2022-02-05]
 
   def title(), do: "Frahmredder (Alltagsroute 5)"
 
