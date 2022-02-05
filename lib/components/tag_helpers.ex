@@ -78,6 +78,12 @@ defmodule Components.TagHelpers do
   end
 
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
+  def mailto(%{inner_block: _x, email: _e} = assigns) do
+    ~H"""
+    <a href={"mailto:#{@email}"}><%= render_block(@inner_block) %></a>
+    """
+  end
+
   def mailto(%{inner_block: _x, subject: _s, body: _b} = assigns) do
     ~H"""
     <a href={"mailto:#{Settings.email()}?subject=#{URI.encode @subject}&body=#{URI.encode @body}"}>
