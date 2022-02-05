@@ -159,10 +159,14 @@ defmodule Components.TagHelpers do
     art = Article.List.category("Static") |> Article.List.find_with_tags(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
-    assigns = assign(assigns, :path, Article.Decorators.path(art))
+    assigns =
+      assign(assigns, %{
+        path: Article.Decorators.path(art),
+        summary: art.summary()
+      })
 
     ~H"""
-    <a class="ref" href={@path} data-phx-link-state="push" data-phx-link="patch"><%= render_block(@inner_block) %></a>
+    <a class="ref" href={@path} data-phx-link-state="push" data-phx-link="patch" title={@summary}><%= render_block(@inner_block) %></a>
     """
   end
 
