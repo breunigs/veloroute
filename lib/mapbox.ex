@@ -6,6 +6,8 @@ defmodule Mapbox do
   defp secret_token(), do: Credentials.mapbox_secret_token()
 
   @base "https://api.mapbox.com"
+  def base, do: @base
+
   plug Tesla.Middleware.BaseUrl, @base
 
   plug Tesla.Middleware.Headers, [

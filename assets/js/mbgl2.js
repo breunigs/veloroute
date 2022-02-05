@@ -5,3 +5,4 @@ try {
 import mapboxgl from 'mbgl2';
 window.mapboxgl = mapboxgl;
 mapboxgl.prewarm();
+mapboxgl.baseApiUrl = window.location.origin + "/map"

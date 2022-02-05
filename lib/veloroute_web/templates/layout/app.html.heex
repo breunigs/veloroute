@@ -19,9 +19,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/180.png?vsn=1">
     <link rel="apple-touch-startup-image" href="/favicons/192.png?vsn=1">
     <link rel="manifest" href="/favicons/manifest.json?vsn=1">
-    <%# used on this page, unless fully cached %>
-    <link rel="preconnect" href="https://api.mapbox.com">
-    <%# happens maybe %>
     <link rel="alternate" type="application/atom+xml" href={Routes.feed_path(@conn, :feed)} title={Settings.feed_title()}>
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <%= if assigns[:article_date] != nil do %>
@@ -95,7 +92,6 @@
     <%= @inner_content %>
 
     <%= content_tag(:div, "", id: "settings", data: [
-        mapbox_access_token: Credentials.mapbox_access_token(),
         max_bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),
         initial: VelorouteWeb.VariousHelpers.to_string_bounds(@bounds)
       ])
@@ -121,9 +117,9 @@
     <% end %>
 
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
-      <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-      <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
-      <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
+      <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+      <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
+      <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
       <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/link_helper.js")}></script>
     <% end %>
 
@@ -135,8 +131,8 @@
     <link rel="preload" href={Routes.static_path(@conn, "/images/skip_backward_5.svg")} as="image">
     <link rel="preload" href={Routes.static_path(@conn, "/images/pause.svg")} as="image" importance="low">
 
-    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
-    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
-    <link rel="preload" href={"https://api.mapbox.com/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=#{Credentials.mapbox_access_token()}"} as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
   </body>
 </html>

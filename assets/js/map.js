@@ -5,7 +5,7 @@ if (!window.requestIdleCallback) {
 }
 
 const settings = document.getElementById("settings").dataset;
-mapboxgl.accessToken = settings.mapboxAccessToken;
+mapboxgl.accessToken = "pk.";
 
 const fitBoundsOpt = {
   padding: {

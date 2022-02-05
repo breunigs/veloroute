@@ -4,3 +4,4 @@ try {
 } catch (e) {}
 import mapboxgl from 'mbgl1';
 window.mapboxgl = mapboxgl;
+mapboxgl.baseApiUrl = window.location.origin + "/map"
