@@ -6,11 +6,11 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def updated_at(), do: ~D[2020-06-12]
   def title(), do: "Gertigstraße (Veloroute 13)"
 
-  def start(), do: ~d[2022-03-01]
-  def stop(), do: ~d[2022-09-02]
+  def start(), do: ~d[2022-02-28]
+  def stop(), do: ~d[2022-09-31]
   def construction_site_id_hh(), do: [23095]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["13"]
 

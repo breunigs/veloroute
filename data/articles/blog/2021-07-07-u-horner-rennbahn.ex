@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.UHornerRennbahn do
 
   def title(), do: "U4 Ausfädelung Horner Rennbahn (Alltagsroute 8)"
 
-  def start(), do: ~d[2020-05]
-  def stop(), do: ~d[2024Q1]
+  def start(), do: ~d[2020-04-01]
+  def stop(), do: ~d[2026-12-31]
+  def construction_site_id_hh(), do: [7145]
 
   def type(), do: :construction
 
