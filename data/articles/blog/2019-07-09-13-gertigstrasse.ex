@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.Gertigstrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Bauankündigung",
+       "https://www.hamburg.de/bvm/medien/15878322/2022-02-14-bvm-fahrradstrasse-winterhude/"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
       {"Lageplan",
