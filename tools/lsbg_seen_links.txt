@@ -481,3 +481,8 @@
 - "/contentblob/15068420/e573bd2f1aad447f3ec3a32163a74576/data/kaiser-wilhelm-strasse-allgemein-anliegerinformation-05-21.pdf"
 '2022-02-07':
 - "/contentblob/15826250/50af9aaf16747cb9aa295887258d8e94/data/gertigstrasse-umsetzung-veloroute-13-02-22-bis-09-22.pdf"
+'2022-02-16':
+- "/contentblob/15884828/b2f49776abb093359f90aa0133fe66e6/data/juethornstrasse-und-rodigallee-von-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/15884824/d1eb572e220b39652df5d0d0e6678523/data/juethornstrasse-und-rodigallee-von-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-plaene.pdf"
+- "/contentblob/15884836/467caac4dd1ae7a1244b8b9f8875e509/data/marschkamper-deich-%E2%80%93-neuenfelder-faehrdeich-%E2%80%93-neuenfelder-damm-fahrbahnsanierung.pdf"
+- "/contentblob/15884834/77cf3c53dbf5e6302ba152d9ab267a87/data/rennbahnstrasse-strassenbauarbeiten-nebenflaechen.pdf"
