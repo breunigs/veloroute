@@ -791,3 +791,7 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016065
 '2022-02-15':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012472
+'2022-02-23':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012520
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007317
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007318
