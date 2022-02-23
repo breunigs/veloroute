@@ -2,6 +2,8 @@ defmodule Data.Article.Blog.GrandwegSued do
   use Article.Default
 
   def created_at(), do: ~D[2021-12-01]
+  def updated_at(), do: ~D[2022-02-23]
+
   def title(), do: "Stresemannallee / Grandweg (Veloroute 3)"
 
   def type(), do: :construction
