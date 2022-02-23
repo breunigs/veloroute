@@ -5,10 +5,11 @@ defmodule Data.Article.Blog.Pappelallee do
 
   def title(), do: "Pappelallee (Veloroute 7)"
 
-  def start(), do: ~d[2022-01]
-  def stop(), do: ~d[2022-11]
+  def start(), do: ~d[2022-03-01]
+  def stop(), do: ~d[2022-11-30]
+  def construction_site_id_hh(), do: [28847]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["7"]
 

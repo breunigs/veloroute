@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Frahmredder do
       "beidseitig je 1,75m breite Schutzstreifen geplant, ab Stadtbahnstraße Tempo-20 im Mischverkehr"
 
   def type(), do: :planned
-  def start(), do: ~d[2023]
+  def start(), do: ~d[2023Q1]
   def stop(), do: ~d[2023]
 
   def tags(), do: ["5"]

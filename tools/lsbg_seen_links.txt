@@ -486,3 +486,6 @@
 - "/contentblob/15884824/d1eb572e220b39652df5d0d0e6678523/data/juethornstrasse-und-rodigallee-von-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-plaene.pdf"
 - "/contentblob/15884836/467caac4dd1ae7a1244b8b9f8875e509/data/marschkamper-deich-%E2%80%93-neuenfelder-faehrdeich-%E2%80%93-neuenfelder-damm-fahrbahnsanierung.pdf"
 - "/contentblob/15884834/77cf3c53dbf5e6302ba152d9ab267a87/data/rennbahnstrasse-strassenbauarbeiten-nebenflaechen.pdf"
+'2022-02-21':
+- "/contentblob/15905016/3840fbef57cfbecaab80ae3a716f7624/data/bergstedter-chaussee-zw-volksdorfer-damm-und-lg-sh-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15905022/87340b9482dd4ed792ff035743bcd57b/data/bergstedter-chaussee-zw-volksdorfer-damm-und-lg-sh-abgestimmte-planung-plan.pdf"
