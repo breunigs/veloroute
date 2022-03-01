@@ -16,6 +16,7 @@ defmodule Article do
   @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
 
   @callback id() :: binary() | nil
+  @callback display_id() :: binary() | nil
   @callback route_group() :: route_group() | nil
   @callback color() :: color_hex()
   @callback name() :: binary()

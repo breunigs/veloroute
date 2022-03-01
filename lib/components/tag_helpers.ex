@@ -207,7 +207,7 @@ defmodule Components.TagHelpers do
     #     do: Map.merge(link_attr, %{phx_click: "sld-autoplay", phx_value_article: art.id()}),
     #     else: link_attr
 
-    icon = VelorouteWeb.VariousHelpers.route_icon(id)
+    icon = VelorouteWeb.VariousHelpers.route_icon(art)
     assigns = assign(assigns, %{icon: icon, link_attr: link_attr, id: id})
 
     # ~H"""
