@@ -20,7 +20,7 @@ defmodule Data.Article.Static.RSWElmshorn do
         group: "Radschnellweg Elmshorn (ab Diebsteich)",
         direction: :forward,
         from: "Hamburg Diebsteich",
-        to: "Elmshorn Zeltberg",
+        to: "Elmshorn Wasserstraße",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg nach Elmshorn (ab Diebsteich)",
         videos: [
@@ -129,7 +129,7 @@ defmodule Data.Article.Static.RSWElmshorn do
 
     <p>Um den <.m bounds="9.792388,53.652505,9.803128,53.657647" lon="9.80029" lat="53.653122" dir="forward">Bahnhof Pinneberg</.m> soll der Radschnellweg idealerweise vor der Mühlenau auf die Osterholder Allee geleitet werden, um nicht mit dem Fußverkehr entlang der Unterführung in Konflikt zu geraten. Ab dort sollen Fahrradstraßen, Tempo-20-Zonen (Bahnhof) bzw. Mischverkehr (Neubaugebiet „ILO-Park“) den Radverkehr aufnehmen. Ab der <.m bounds="9.787372,53.658899,9.792929,53.660994" lon="9.789639" lat="53.660318" dir="forward">Mühlenstraße</.m> wird wegen des hohen LKW-Aufkommens dagegen ein Zweirichtungsradweg auf der Bahnseite angestrebt.</p>
 
-    <h4>Prißdorf</h4>
+    <h4>Prisdorf</h4>
     <p>Die Wege sollen ausgebaut werden, wo dies unter Beachtung des Naturschutz möglich ist. Wo heute KFZ erlaubt sind, sollen es Fahrradstraßen werden, sonst eigenständige Rad- und Fußwege. Von <.m bounds="9.759825,53.672412,9.765766,53.67574" lon="9.765209" lat="53.672873" dir="forward">Rehmen bis zum Bahnhof</.m> hofft man einen neuen, direkten Weg bauen zu können. Ab dem <.m bounds="9.755248,53.674989,9.759273,53.680105" lon="9.75892" lat="53.675702" dir="forward">Hudenfeld</.m> sind wieder Fahrradstraßen vorgesehen.</p>
 
     <p>Entlang der <.m bounds="9.744906,53.678383,9.758333,53.683394" lon="9.749372" lat="53.681932" dir="forward">Hauptstraße</.m> soll ein Zweirichtungsradweg auf der Südseite entstehen. Je nach Platzangebot würde hier kein Radschnellwegstandard erreicht, oder man müsste Baumfällungen in Erwägung ziehen. Für die <.m bounds="9.75603,53.678685,9.757973,53.680512" lon="9.756958" lat="53.679567" dir="forward">Engstelle Hudenbarg bis Bilsbek-Brücke</.m> wird für KFZ eine Reduktion auf eine Fahrspur mit ampelgesteuertem Wechselverkehr vorgeschlagen. Die <.m bounds="9.745033,53.68186,9.746995,53.682771" lon="9.746676" lat="53.682227" dir="forward">Querung der Hauptstraße</.m> wird durch eine Mittelinsel vereinfacht.</p>

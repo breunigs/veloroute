@@ -19,8 +19,8 @@ defmodule Data.Article.Static.RSWBadBramstedt do
         fade: :none,
         group: "Radschnellweg Bad Bramstedt",
         direction: :forward,
-        from: "Hamburg Diebsteich",
-        to: "Bad Bramstedt Zeltberg",
+        from: "Hamburg Sengelmannstraße",
+        to: "Bad Bramstedt",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg nach Bad Bramstedt",
         videos: [
