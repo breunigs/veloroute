@@ -18,9 +18,9 @@ defmodule Data.Article.Blog.Gertigstrasse do
     [
       {"Pressemitteilung Bauankündigung",
        "https://www.hamburg.de/bvm/medien/15878322/2022-02-14-bvm-fahrradstrasse-winterhude/"},
-      {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
       {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
+      {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"},
       {"Baustelleninfo (Februar 2022)",
        "https://lsbg.hamburg.de/contentblob/15826250/c1375d7639a30df7b05c023da7408c5d/data/gertigstrasse-umsetzung-veloroute-13-02-22-bis-09-22.pdf"},
