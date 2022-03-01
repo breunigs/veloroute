@@ -37,6 +37,19 @@ defmodule Video.Rendered do
 
   def get(_any), do: nil
 
+  @doc """
+  Same as get, but uses a different return style pattern.
+  """
+  @spec get_error(Video.Track.t() | Video.Track.hash() | module()) ::
+          {:ok, t()} | {:error, binary()}
+  def get_error(hash) do
+    with res when not is_nil(res) <- get(hash) do
+      {:ok, res}
+    else
+      _ -> {:error, "no module found with found by '#{inspect(hash)}'"}
+    end
+  end
+
   @spec find_by_hash(Video.Track.hash()) :: t() | nil
   def find_by_hash(hash) when valid_hash(hash) do
     all() |> Enum.find(fn mod -> String.ends_with?("#{mod}", hash) end)
