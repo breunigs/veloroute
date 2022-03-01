@@ -59,19 +59,28 @@ defmodule TrackFinder do
   for each track, eliminating any duplicates. It returns the tracks, but with the
   nodes keys filled.
   """
-  def with_nodes(track_list), do: Enum.map(track_list, &concatenate_nodes/1)
+  def with_nodes(track_list), do: Enum.map(track_list, &concatenate_nodes/1) |> Util.compact()
 
   # concatenate_nodes joins the nodes of the ways in order, removing any
   # duplicates. It adds them to the Map as "nodes".
-  defp concatenate_nodes(obj = %{ways: ways}) do
+  defp concatenate_nodes(obj = %{ways: ways}) when is_list(ways) do
     try do
       first_node = ways |> hd |> Map.get(:nodes) |> hd
       rest = Enum.flat_map(ways, fn %Way{nodes: [_f | rest]} -> rest end)
       Map.put(obj, :nodes, [first_node | rest])
     rescue
       err ->
-        raise "Track is invalid: #{err}\n#{inspect(obj)}"
+        raise "Track is invalid: #{inspect(err)}\n#{inspect(obj)}"
     end
+  end
+
+  defp concatenate_nodes(obj = %{ways: nil}) do
+    IO.puts(
+      :stderr,
+      "WARNING: failed to find a matching track for #{inspect(obj)}. Not generating a GPX."
+    )
+
+    nil
   end
 
   defp resolve_to_start_end_ways(name, members, normalized_ways) do
@@ -90,14 +99,26 @@ defmodule TrackFinder do
     end)
   end
 
-  defp direction_text(art, from, to, direction) do
+  defp direction_text(art, from, to, direction) when is_binary(from) and is_binary(to) do
     Enum.find_value(art.tracks(), fn
       %{from: ^from, to: ^to, direction: ^direction, text: text} ->
         text
 
       _track ->
         nil
-    end) || raise("Failed to find #{direction} track '#{from}'→'#{to}' for #{inspect(art)}")
+    end) || "von #{from} nach #{to}"
+  end
+
+  defp direction_text(art, nil, _to, _direction) do
+    raise(
+      "#{art} does not seem to have a named start. Ensure the first node of the first way has a target=X tag. Alternatively, include such a node manually and give it the role=gpx_start"
+    )
+  end
+
+  defp direction_text(art, _from, nil, _direction) do
+    raise(
+      "#{art} does not seem to have a named end. Ensure the last node of the last way has a target=X tag. Alternatively, include such a node manually and give it the role=gpx_end"
+    )
   end
 
   defp track_matrix(r, normalized_ways) do
@@ -120,8 +141,11 @@ defmodule TrackFinder do
         %{"end" => _} ->
           raise "Route #{art.name()} specifies GPX end(s), but no start(s) that have a target"
 
-        _ ->
-          {[], []}
+        %{nil => members} ->
+          ways = for %{ref: %Map.Way{}} = o <- members, do: o.ref
+          start_node = hd(ways).nodes |> hd()
+          end_node = List.last(ways).nodes |> List.last()
+          {[%{ref: start_node, role: "gpx_start"}], [%{ref: end_node, role: "gpx_end"}]}
       end
 
     start_ways = resolve_to_start_end_ways(art.name(), start_members, normalized_ways)
