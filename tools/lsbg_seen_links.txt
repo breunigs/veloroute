@@ -489,3 +489,5 @@
 '2022-02-21':
 - "/contentblob/15905016/3840fbef57cfbecaab80ae3a716f7624/data/bergstedter-chaussee-zw-volksdorfer-damm-und-lg-sh-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15905022/87340b9482dd4ed792ff035743bcd57b/data/bergstedter-chaussee-zw-volksdorfer-damm-und-lg-sh-abgestimmte-planung-plan.pdf"
+'2022-02-24':
+- "/contentblob/15913652/4bc4da0ce61fb6a8b5dfabc3b77bcc77/data/rennbahnstrasse-erneuerung-geh-und-radwege-nordabschnitt.pdf"
