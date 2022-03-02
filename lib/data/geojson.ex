@@ -127,7 +127,9 @@ defmodule Data.GeoJSON do
         :offset,
         :overlap_index,
         :title,
-        :route_id | Map.Way.style_tags()
+        :route_id,
+        :display_id
+        | Map.Way.style_tags()
       ])
       |> Map.put_new(:type, w.tags[:route_group])
       |> Map.put_new_lazy(:title, fn ->
@@ -159,6 +161,7 @@ defmodule Data.GeoJSON do
     extra_rel_tags = %{
       color: art.color(),
       route_id: art.id(),
+      display_id: art.display_id(),
       route_group: art.route_group(),
       title: art.title()
     }
