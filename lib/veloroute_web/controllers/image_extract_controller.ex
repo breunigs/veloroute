@@ -33,12 +33,14 @@ defmodule VelorouteWeb.ImageExtractController do
     |> halt
   end
 
-  defp supports_webp?(conn) do
-    with ["" <> accept] <- get_req_header(conn, "accept") do
-      String.contains?(accept, "image/webp")
-    else
-      _ -> false
-    end
+  defp supports_webp?(_conn) do
+    false
+
+    # with ["" <> accept] <- get_req_header(conn, "accept") do
+    #   String.contains?(accept, "image/webp")
+    # else
+    #   _ -> false
+    # end
   end
 
   @ffmpeg_path :os.find_executable('ffmpeg')
