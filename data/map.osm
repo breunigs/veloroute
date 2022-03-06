@@ -8866,7 +8866,7 @@
     <tag k='icon' v='nocargo' />
     <tag k='type' v='warning' />
   </node>
-  <node id='-22541033' action='modify' lat='53.74218840515' lon='9.6647715354'>
+  <node id='-22541033' lat='53.74218840515' lon='9.6647715354'>
     <tag k='target' v='Elmshorn Wasserstraße' />
   </node>
   <node id='-22541034' lat='53.74056399133' lon='9.66543672323' />
@@ -9142,7 +9142,7 @@
   <node id='-22541304' lat='53.64583984732' lon='9.80916558623' />
   <node id='-22541305' lat='53.6462277923' lon='9.80900465369' />
   <node id='-22541306' lat='53.6454868779' lon='9.80949549794' />
-  <node id='-22541307' action='modify' lat='53.91732211278' lon='9.88310332775'>
+  <node id='-22541307' lat='53.91732211278' lon='9.88310332775'>
     <tag k='target' v='Bad Bramstedt' />
   </node>
   <node id='-22541308' lat='53.91690823129' lon='9.8828807044' />
@@ -9510,7 +9510,7 @@
   <node id='-22541670' lat='53.68003524641' lon='10.25046943545' />
   <node id='-22541671' lat='53.68021317553' lon='10.25086640239' />
   <node id='-22541672' lat='53.68036568561' lon='10.25138138652' />
-  <node id='-22541673' action='modify' lat='53.68051184058' lon='10.25354324698'>
+  <node id='-22541673' lat='53.68051184058' lon='10.25354324698'>
     <tag k='target' v='Ahrensburg Gewerbegebiet' />
   </node>
   <node id='-22541674' lat='53.51737421751' lon='10.09357093692' />
@@ -9615,7 +9615,7 @@
   <node id='-22541773' lat='53.48689967556' lon='10.18564044893' />
   <node id='-22541774' lat='53.47909165778' lon='10.23030995786' />
   <node id='-22541775' lat='53.47308623478' lon='10.25266884685' />
-  <node id='-22541776' action='modify' lat='53.53487497015' lon='10.02380130529'>
+  <node id='-22541776' lat='53.53487497015' lon='10.02380130529'>
     <tag k='target' v='Hamburg Elbbrücken' />
   </node>
   <node id='-22541777' lat='53.53127209131' lon='10.02082405329' />
@@ -9916,7 +9916,7 @@
   <node id='-22542070' lat='53.27340992214' lon='10.39023935258' />
   <node id='-22542071' lat='53.26957630482' lon='10.40117739558' />
   <node id='-22542072' lat='53.2686876225' lon='10.40490030706' />
-  <node id='-22542073' action='modify' lat='53.2687036638' lon='10.40505051076'>
+  <node id='-22542073' lat='53.2687036638' lon='10.40505051076'>
     <tag k='target' v='Lüneburg Zeltberg' />
   </node>
   <node id='-22542074' lat='53.35309531255' lon='10.22398318174' />
@@ -10610,7 +10610,7 @@
   <node id='-22542758' lat='53.54564639725' lon='9.74286255822'>
     <tag k='target' v='Cranz' />
   </node>
-  <node id='-22542759' action='modify' lat='53.59696207589' lon='9.48235984325'>
+  <node id='-22542759' lat='53.59696207589' lon='9.48235984325'>
     <tag k='target' v='Stade Am Güterbahnhof' />
   </node>
   <node id='-22542760' lat='53.59665643239' lon='9.48260127425' />
@@ -11074,7 +11074,7 @@
   <node id='-22543219' lat='53.53466772365' lon='9.87791060865' />
   <node id='-22543220' lat='53.53476337159' lon='9.87782477796' />
   <node id='-22543221' lat='53.53498017279' lon='9.87751900613' />
-  <node id='-22543222' action='modify' lat='53.53551419883' lon='9.87850606173'>
+  <node id='-22543222' lat='53.53551419883' lon='9.87850606173'>
     <tag k='target' v='Hamburg Finkenwerder' />
   </node>
   <node id='-22543223' lat='53.51751455838' lon='9.88204120517' />
@@ -11352,7 +11352,7 @@
   <node id='-22543496' lat='53.43793058964' lon='10.3613734138' />
   <node id='-22543497' lat='53.43664596004' lon='10.36267160296' />
   <node id='-22543498' lat='53.43598126083' lon='10.36326168895' />
-  <node id='-22543499' action='modify' lat='53.43547633813' lon='10.36371230006'>
+  <node id='-22543499' lat='53.43547633813' lon='10.36371230006'>
     <tag k='target' v='Geesthacht Bergedorfer Straße' />
   </node>
   <node id='-22543500' lat='53.57710142259' lon='9.87246572703' />
@@ -11428,7 +11428,7 @@
   <node id='-22543570' lat='53.56853748836' lon='9.9330621931' />
   <node id='-22543571' lat='53.56711185575' lon='9.93310510844' />
   <node id='-22543572' lat='53.56695415712' lon='9.93311047286' />
-  <node id='-22543573' action='modify' lat='53.56681875884' lon='9.93307023972'>
+  <node id='-22543573' lat='53.56681875884' lon='9.93307023972'>
     <tag k='target' v='Hamburg Diebsteich' />
   </node>
   <node id='-22543574' lat='53.57074194741' lon='9.91820275515' />
@@ -11760,7 +11760,7 @@
   <node id='-22543900' lat='53.53258573326' lon='9.87802862585' />
   <node id='-22543901' lat='53.46956034679' lon='9.69683015356' />
   <node id='-22543902' lat='53.46947762155' lon='9.69750284861' />
-  <node id='-22543903' action='modify' lat='53.47031789252' lon='9.69075947732'>
+  <node id='-22543903' lat='53.47031789252' lon='9.69075947732'>
     <tag k='target' v='Buxtehude Bahnhof' />
   </node>
   <node id='-22543904' lat='53.58332460066' lon='10.05456625342' />
@@ -12564,7 +12564,7 @@
   <node id='-28557806' lat='53.57036445947' lon='10.10580181539' />
   <node id='-28557813' lat='53.56988343417' lon='10.10579645097' />
   <node id='-28557818' lat='53.56995033206' lon='10.10593592584' />
-  <node id='-28841202' action='modify' lat='53.66265811851' lon='9.796779145'>
+  <node id='-28841202' lat='53.66265811851' lon='9.796779145'>
     <tag k='target' v='Pinneberg Zentrum' />
   </node>
   <node id='-28841203' lat='53.66484495453' lon='9.79643582225' />
@@ -12635,10 +12635,10 @@
   <node id='-28841268' lat='53.68534102079' lon='9.78233277261' />
   <node id='-28841269' lat='53.68744408732' lon='9.78380798221' />
   <node id='-28841270' lat='53.68788883046' lon='9.7841620338' />
-  <node id='-28841271' action='modify' lat='53.6880667264' lon='9.78406547427'>
+  <node id='-28841271' lat='53.6880667264' lon='9.78406547427'>
     <tag k='target' v='Kummerfeld' />
   </node>
-  <node id='-28841276' action='modify' lat='53.66186186112' lon='9.79303478926'>
+  <node id='-28841276' lat='53.66186186112' lon='9.79303478926'>
     <tag k='target' v='Pinneberg Zentrum' />
   </node>
   <node id='-28841277' lat='53.6618237169' lon='9.79236960143' />
@@ -12691,7 +12691,7 @@
   <node id='-28841331' lat='53.67340685114' lon='9.7726178062' />
   <node id='-28841332' lat='53.67437289505' lon='9.77173804164' />
   <node id='-28841333' lat='53.67448093806' lon='9.77148054957' />
-  <node id='-28841334' action='modify' lat='53.67479871001' lon='9.771190871'>
+  <node id='-28841334' lat='53.67479871001' lon='9.771190871'>
     <tag k='target' v='Prisdorf' />
   </node>
   <node id='-28841335' lat='53.67417587474' lon='9.77170585513' />
@@ -12707,7 +12707,7 @@
   <node id='-28841348' lat='53.66376744023' lon='9.78808342874' />
   <node id='-28841349' lat='53.66369433375' lon='9.78811561525' />
   <node id='-28841350' lat='53.66364029845' lon='9.78820681036' />
-  <node id='-28841363' action='modify' lat='53.66108784623' lon='9.79705273569'>
+  <node id='-28841363' lat='53.66108784623' lon='9.79705273569'>
     <tag k='target' v='Pinneberg Zentrum' />
   </node>
   <node id='-28841364' lat='53.66049659615' lon='9.79706882894' />
@@ -12831,21 +12831,21 @@
   <node id='-28841485' lat='53.6147449482' lon='9.79290067613' />
   <node id='-28841486' lat='53.61472585478' lon='9.79272365034' />
   <node id='-28841487' lat='53.61460811184' lon='9.79261636198' />
-  <node id='-28841488' action='modify' lat='53.61448400407' lon='9.79251980245'>
+  <node id='-28841488' lat='53.61448400407' lon='9.79251980245'>
     <tag k='target' v='Waldenau-Datum' />
   </node>
   <node id='-28841489' lat='53.62150241583' lon='9.79909546204' />
   <node id='-28841509' lat='53.62159044315' lon='9.79902181974' />
   <node id='-28841515' lat='53.62143212454' lon='9.79903656718' />
-  <node id='-29124901' action='modify' lat='53.66214630505' lon='9.78782457564'>
+  <node id='-29124901' lat='53.66214630505' lon='9.78782457564'>
     <tag k='icon' v='nocargo' />
     <tag k='type' v='warning' />
   </node>
-  <node id='-29124928' action='modify' lat='53.65383142034' lon='9.79954457434'>
+  <node id='-29124928' lat='53.65383142034' lon='9.79954457434'>
     <tag k='icon' v='nocargo' />
     <tag k='type' v='warning' />
   </node>
-  <node id='-29125197' action='modify' lat='53.64999715177' lon='10.16319555088'>
+  <node id='-29125197' lat='53.64999715177' lon='10.16319555088'>
     <tag k='target' v='Volksdorf' />
   </node>
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
@@ -14316,7 +14316,7 @@
   <node id='248510006273371' version='1' lat='53.6273371' lon='10.024851' />
   <node id='248840006378236' version='1' lat='53.6378236' lon='10.024884' />
   <node id='248950006308991' version='1' lat='53.6308991' lon='10.024895' />
-  <node id='249040006094395' action='modify' version='1' lat='53.60946655239' lon='10.02500324173'>
+  <node id='249040006094395' version='1' lat='53.60946655239' lon='10.02500324173'>
     <tag k='target' v='Hamburg Sengelmannstraße' />
   </node>
   <node id='249601000530281' version='1' lat='53.530281' lon='10.0249601' />
@@ -14768,7 +14768,7 @@
   <node id='672030005499851' version='1' lat='53.5499851' lon='10.00669616012' />
   <node id='672770005497447' version='1' lat='53.54974629357' lon='10.00668210245' />
   <node id='673510005503567' version='1' lat='53.55035191937' lon='10.0067055957' />
-  <node id='675304000529421' action='modify' version='1' lat='53.529421' lon='10.0675304'>
+  <node id='675304000529421' version='1' lat='53.529421' lon='10.0675304'>
     <tag k='target' v='Hamburg Tiefstack' />
   </node>
   <node id='676440005502637' version='1' lat='53.5502637' lon='10.0067644' />
@@ -21100,7 +21100,7 @@
   <node id='16316890006498487' version='1' lat='53.6498487' lon='10.1631689' />
   <node id='16317020006499107' version='1' lat='53.6499107' lon='10.1631702' />
   <node id='16317730006499509' version='1' lat='53.6499509' lon='10.1631773' />
-  <node id='16318570006499785' action='modify' version='1' lat='53.64999735049' lon='10.16319571852'>
+  <node id='16318570006499785' version='1' lat='53.64999735049' lon='10.16319571852'>
     <tag k='target' v='Hamburg Volksdorf' />
   </node>
   <node id='16324480005142532' version='1' lat='53.5142532' lon='10.1632448' />
@@ -22769,7 +22769,7 @@
   <node id='93847580005532453' version='1' lat='53.5532453' lon='9.9384758' />
   <node id='93865780005810686' version='1' lat='53.5810686' lon='9.9386578' />
   <node id='93866390005822607' version='1' lat='53.5822607' lon='9.9386639' />
-  <node id='93867870005806899' action='modify' version='1' lat='53.58095264535' lon='9.93839706805'>
+  <node id='93867870005806899' version='1' lat='53.58095264535' lon='9.93839706805'>
     <tag k='target' v='Hamburg Langenfelder Damm' />
   </node>
   <node id='93869050006355563' version='1' lat='53.6355563' lon='9.9386905' />
@@ -38342,7 +38342,7 @@
     <nd ref='-22542264' />
     <nd ref='-22542265' />
   </way>
-  <way id='-19036758' action='modify'>
+  <way id='-19036758'>
     <nd ref='-22542759' />
     <nd ref='-22543763' />
     <nd ref='-22542760' />
@@ -38563,7 +38563,7 @@
     <nd ref='-22542924' />
     <nd ref='-22543903' />
   </way>
-  <way id='-19036759' action='modify'>
+  <way id='-19036759'>
     <nd ref='-22543137' />
     <nd ref='-22543136' />
     <nd ref='-22543135' />
@@ -38861,7 +38861,7 @@
     <nd ref='-22543059' />
     <nd ref='-22543060' />
   </way>
-  <way id='-19036761' action='modify'>
+  <way id='-19036761'>
     <nd ref='-22543222' />
     <nd ref='-22543221' />
     <nd ref='-22543220' />
@@ -38871,7 +38871,7 @@
     <nd ref='-22543212' />
     <nd ref='-22543211' />
   </way>
-  <way id='-19036762' action='modify'>
+  <way id='-19036762'>
     <nd ref='-22543211' />
     <nd ref='-22543150' />
     <nd ref='-22543899' />
@@ -38890,7 +38890,7 @@
     <nd ref='-22543217' />
     <nd ref='-22543216' />
   </way>
-  <way id='-19036763' action='modify'>
+  <way id='-19036763'>
     <nd ref='-22543216' />
     <nd ref='-22543139' />
     <nd ref='-22543215' />
@@ -39429,7 +39429,7 @@
     <nd ref='-22543814' />
     <nd ref='-22542931' />
   </way>
-  <way id='-19036793' action='modify'>
+  <way id='-19036793'>
     <nd ref='-22543872' />
     <nd ref='-22543873' />
     <nd ref='-22543074' />
@@ -40666,7 +40666,7 @@
     <nd ref='-28841270' />
     <nd ref='-28841271' />
   </way>
-  <way id='-19791489' action='modify'>
+  <way id='-19791489'>
     <nd ref='-28841276' />
     <nd ref='-28841277' />
     <nd ref='-28841278' />
@@ -40764,7 +40764,7 @@
     <nd ref='-28841311' />
     <nd ref='-28841346' />
   </way>
-  <way id='-19791594' action='modify'>
+  <way id='-19791594'>
     <nd ref='-28841363' />
     <nd ref='-28841364' />
     <nd ref='-28841365' />
@@ -40940,7 +40940,7 @@
     <nd ref='-28841487' />
     <nd ref='-28841488' />
   </way>
-  <way id='-19793899' action='modify'>
+  <way id='-19793899'>
     <nd ref='-22543903' />
     <nd ref='-22543812' />
     <nd ref='-22542925' />
@@ -40948,7 +40948,7 @@
     <nd ref='-22542927' />
     <nd ref='-22543901' />
   </way>
-  <way id='-19793906' action='modify'>
+  <way id='-19793906'>
     <nd ref='-22543211' />
     <nd ref='-22543151' />
     <nd ref='-22543060' />
@@ -49705,7 +49705,7 @@
     <nd ref='12227820006266943' />
     <nd ref='12255720006267899' />
   </way>
-  <way id='606127298' action='modify' version='1'>
+  <way id='606127298' version='1'>
     <nd ref='-29125197' />
     <nd ref='16317730006499509' />
     <nd ref='16317020006499107' />
@@ -55127,7 +55127,7 @@
     <member type='node' ref='-22542758' role='gpx_end' />
     <tag k='name' v='elbradweg-sued' />
   </relation>
-  <relation id='-101246' action='modify'>
+  <relation id='-101246'>
     <member type='node' ref='-22543903' role='gpx_end' />
     <member type='node' ref='-22542759' role='gpx_end' />
     <member type='node' ref='-22543222' role='gpx_start' />
@@ -55145,7 +55145,7 @@
     <member type='way' ref='-19036760' role='' />
     <tag k='name' v='rsw-stade' />
   </relation>
-  <relation id='-101247' action='modify'>
+  <relation id='-101247'>
     <member type='way' ref='-19036724' role='' />
     <member type='way' ref='-19036677' role='' />
     <member type='way' ref='81631146' role='' />
@@ -55184,7 +55184,7 @@
     <member type='way' ref='-19036721' role='' />
     <tag k='name' v='rsw-ahrensburg' />
   </relation>
-  <relation id='-101250' action='modify'>
+  <relation id='-101250'>
     <member type='way' ref='216734856' role='' />
     <member type='way' ref='-19036714' role='' />
     <member type='way' ref='-19036718' role='' />
@@ -55197,7 +55197,7 @@
     <member type='way' ref='-19036713' role='' />
     <tag k='name' v='rsw-bad-bramstedt' />
   </relation>
-  <relation id='-101251' action='modify'>
+  <relation id='-101251'>
     <member type='way' ref='-19036783' role='' />
     <member type='way' ref='-19036780' role='' />
     <member type='way' ref='-19791611' role='' />
@@ -55249,7 +55249,7 @@
     <member type='way' ref='-19791545' role='' />
     <tag k='name' v='pinneberg-veloroute-1' />
   </relation>
-  <relation id='-101311' action='modify'>
+  <relation id='-101311'>
     <member type='way' ref='-19791594' role='' />
     <member type='way' ref='-19791613' role='' />
     <member type='way' ref='-19791616' role='' />
@@ -55516,7 +55516,7 @@
     <member type='node' ref='10978180007074897' role='gpx_end' />
     <tag k='name' v='alltagsroute-5' />
   </relation>
-  <relation id='227477' action='modify' version='1'>
+  <relation id='227477' version='1'>
     <member type='way' ref='238754832' role='' />
     <member type='way' ref='19410366' role='forward' />
     <member type='way' ref='5056539' role='forward' />
