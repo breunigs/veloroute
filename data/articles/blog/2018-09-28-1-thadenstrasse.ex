@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
   def start(), do: ~d[2021-04-06]
   def stop(), do: ~d[2022-04-01]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14882]
   def tags(), do: ["1"]
 

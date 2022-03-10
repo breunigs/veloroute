@@ -494,3 +494,6 @@
 '2022-03-03':
 - "/contentblob/15455004/aa581532d83afbae4277fc22635a33a2/data/ehestorfer-heuweg-anliegerinformation-stand-02-2022.pdf"
 - "/contentblob/15944188/2148078334b83c43b2d38c124017d988/data/moevenfleet-%E2%80%93-brueckenbauarbeiten-%E2%80%93-07-03-22-bis-07-2022.pdf"
+'2022-03-10':
+- "/contentblob/15967472/ca493f883b83cebfc36945e1aac3343a/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"

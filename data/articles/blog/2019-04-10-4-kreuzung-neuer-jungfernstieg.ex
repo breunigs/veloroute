@@ -3,32 +3,71 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
 
   def name(), do: "#{created_at()}-4-kreuzung-neuer-jungfernstieg"
   def created_at(), do: ~D[2019-04-10]
+  def updated_at(), do: ~D[2022-03-10]
 
-  def title(), do: "Kreuzung am Neuen Jungfernstieg (Veloroute 4)"
+  def title(), do: "Doppelknoten Neuer Jungfernstieg / Alsterufer (Veloroute 4)"
 
-  def start(), do: ~d[2025]
+  def summary(),
+    do:
+      "2022: Zwischenlösung für Fahrtbeziehung Nord/Süd (Veloroute 4) und Kennedybrücke → Alsterglacis"
 
-  def type(), do: :intent
+  def start(), do: ~d[2022-05]
+  def stop(), do: ~d[2022-06]
+
+  def type(), do: :planned
 
   def tags(), do: ["4"]
 
   def links(_assigns) do
-    []
+    [
+      {"Lageplan Sofortmaßnahmen 2022",
+       "https://lsbg.hamburg.de/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"},
+      {"Erläuterungsbereicht Sofortmaßnahmen 2022",
+       "https://lsbg.hamburg.de/contentblob/15967472/ca493f883b83cebfc36945e1aac3343a/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-bericht.pdf"},
+      {"Planungsziele", "Anjes Tjarks, Twitter, 2022",
+       "https://twitter.com/anjes_tjarks/status/1495396904938754048"},
+      {
+        "Erläuterungsbericht 2019",
+        "veraltet, wird so nicht umgesetzt",
+        "https://lsbg.hamburg.de/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
+      },
+      {"Lageplan 2019", "veraltet, wird so nicht umgesetzt",
+       "https://lsbg.hamburg.de/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
     ~H"""
-    <p><strong>Stand September 2020:</strong> Die Deutsche Bahn plant Umbauten am <.m bounds="10.000127,53.555559,10.002856,53.557072">Ferdinandstor</.m>, deswegen der Umbau dieser Doppelkreuzung vermutlich nicht vor 2025 stattfinden wird.</p>
-    <p>In keine Richtung gibt es an diesem Doppelknoten eine fahrradfreundliche Schaltung, noch ist die Führung besonders einladend. Entlang der Veloroute 4 soll man stadtauswärts sogar auf die falsche Straßenseite wechseln, um auf einem kaum einen Meter breiten Radweg die Bahnbrücke zu unterqueren. Mit anderen Worten: Die Radverkehrsführung ist hier katastrophal.</p> <p>Die Umplanung verbessert die Situation definitiv, setzt aber nur Mindestmaße um. Es wird versucht möglichst viele der Unfallschwerpunkte zu entschärfen und die Ampelmissachtung durch verbesserte Schaltungen zu verringern. Da der Knoten aber als essentiell für den Autoverkehr angesehen wird und dieser entsprechend Vorrang in der Planung genießt, gelingt dies leider nicht immer. Etwa wird der Radverkehr von der <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.557684, lon: 9.993245, zoom: 18}))}>Lombardsbrücke zur Esplanade</.m> auch künftig mehrmals warten müssen, weil es sich „signaltechnisch nicht vermeiden“ lässt.</p> <p>Der erste Entwurf sieht folgende Änderungen vor:</p> <ul>
-    <li>Die östliche Unterführung wird nur noch vom Autoverkehr benutzt, der Fußweg wird entfernt.</li>
-    <li>Der Nord/Süd Radverkehr entlang der Veloroute wird durch die westliche Unterführung abgewickelt, wobei der Radweg je nach Richtung auf der „richtigen“ Seite ist. Hier wird es beidseitig Fußwege geben.</li>
-    <li><.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.559028, lon: 9.994293, zoom: 18}))}>Alsterufer und Warburgstraße</.m> sind jeweils Einbahnstraßen, wobei das Alsterufer von der Kreuzung wegführt, die Warburgstraße dagegen zur Kreuzung hin. Sie tauschen im Vergleich zu heute also jeweils die Richtung.</li>
-    <li>Es wird versucht durch mehr KFZ-Aufstellflächen Rückstau in die Kreuzungsbereiche zu vermeiden.</li>
-    <li>Bettelampeln werden abgeschafft und die Rad- und Fußfurten erhalten automatisch grün.</li>
-    </ul> <p>Die Verbesserung für den Radverkehr ergibt sich hauptsächlich aus den Detailmaßnahmen zur Unfallreduktion. Die Führung im gesamten Kreuzungsbereich bleibt komplex, wobei sich häufig Einrichtung- und Zweirichtungsradwege abwechseln, sodass von viel Falschfahrenden auszugehen ist.</p> <p>Entlang der Veloroute sind drei (nach Süden) bzw. vier (nach Norden) Ampeln zu queren, die teils gemeinsam mit der Fußampel geschalten werden. Leider ergibt sich aus dem Erläuterungsbericht nicht wie häufig gehalten werden muss. Richtung Norden wird die Führung leicht begradigt, in der Gegenrichtung bleibt es im Wesentlichen wie bisher. Die angedachte Führung der Radwege entlang der Veloroute sind in der Karte skizziert (dunkelgraue Linien). Die Radwege verbleiben an vielen Stellen mit Mindestmaßen, bequemes Überholen ist also nicht möglich.</p> <p>Es ist schwierig in der Planung konkrete Verbesserungsmöglichkeiten auszumachen, da auch kleine Änderungen sich auf beide Kreuzungen auswirken und so ggf. die Situation insgesamt wieder verschlechtern. Um eine erhebliche Verbesserung zu erzielen wäre eine Verbreiterung der Unterführungen notwendig, oder die KFZ müssten Spuren abtreten. Erstes ist zu teuer und für letzteres ist Hamburg noch zu sehr auf KFZ fixiert. Es handelt sich hier um den ersten Entwurf, d.h. Details können durchaus noch geändert werden.</p> <p>Der Umbau soll 2020 bis 2021 in mehreren Bauphasen erfolgen. Die Kreuzungen sollen jeweils für alle Verkehrsteilnehmenden passierbar bleiben, aber die Spurenreduktion dürfte zu massiven Behinderungen im KFZ-Verkehr führen.</p> <ul>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht zum Umbau</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf">Lagepläne</.a></li>
+    <h4>Alter Zustand</h4>
+    <p>Der „Doppelknoten“ besteht <.m bounds="9.992341,53.556692,9.994695,53.558311" lon="9.992984" lat="53.557079" dir="forward" ref="4">im Süden</.m> aus der Kreuzung Neuer Jungerfernstieg, Esplanade, Lombardsbrücke und <.m bounds="9.992815,53.557739,9.995264,53.559274" lon="9.993889" lat="53.558475" dir="forward" ref="4">im Norden</.m> aus der Kreuzung Alsterglacis, Warburgstraße, Alsterufer, Kennedybrücke.</p>
+
+    <p>Der Radverkehr findet meist auf <.ref>Hochbordradwegen</.ref> statt. Ausnahmen sind in Fahrtrichtung Jungfernstieg <.m bounds="9.992815,53.557739,9.995264,53.559274" lon="9.994798" lat="53.559064" dir="backward" ref="4">Alsterufer</.m> und <.m bounds="9.992341,53.556692,9.994695,53.558311" lon="9.99298" lat="53.55735" dir="backward" ref="4">Neuer Jungfernstieg</.m>, wo im <.ref>Mischverkehr</.ref> gefahren werden muss.</p>
+
+    <h4>Veraltete Pläne von 2019</h4>
+    <p>Bereits 2019 wurden Pläne für einen Gesamtumbau der Kreuzung vorgestellt. Diese sollten ursprünglich 2020-2022 umgesetzt werden, aber das Zeitfenster verstrich. Momentan wird die Bahnbrücke am <.m bounds="9.997788,53.554357,10.005164,53.557432" lon="10.000818" lat="53.555599" dir="forward" ref="6">Ferdinandstor</.m> erneuert. Um KFZ- und Busverkehr nicht zu stark zu beeinträchtigen, ist daher ist ein Vollumbau des Doppelknotes frühestens ab 2025 möglich.</p>
+
+    <p>Mit der <.a href="https://de.wikipedia.org/wiki/B%C3%BCrgerschaftswahl_in_Hamburg_2020">Bürgerschaftswahl 2020</.a> haben sich die politischen Mehrheiten zugunsten des Radverkehrs verschoben. Die Stadt einigte sich kurz danach mit dem <.a href="https://radentscheid-hamburg.de/2020/04/21/radentscheid-hamburg-einigt-sich-mit-rot-gruen-auf-verbesserungen-fuer-radverkehr-initiative-wird-sich-fuer-weitere-massnahmen-einsetzen/">Radentscheid Hamburg</.a>. Seitdem werden breitere Radwege mit guter Abtrennung vom KFZ-Verkehr bevorzugt (z.B. <.ref>Protected-Bike-Lanes</.ref>, keine <.ref>Radfahrstreifen in Mittellage</.ref>).</p>
+
+    <p>Die Fahrtrichtung <.m bounds="9.990841,53.557233,9.99332,53.55827">Esplanade</.m> → <.m bounds="9.993413,53.556688,9.996116,53.557957">Lombardsbrücke</.m> soll beim Umbau „Neuer Jungfernstieg“ ebenfalls mitgeplant werden.</p>
+
+    <p>Zusammengenommen erscheint es daher unwahrscheinlich, das die Planung von 2019 so umgesetzt wird.</p>
+
+    <h4>Sofortmaßnahmen 2022</h4>
+    <p>Es sind Teilverbesserungen für den Radverkehr vorgesehen. Diese lassen sich ohne großen Umbau erreichen:</p>
+    <ul>
+      <li><.m bounds="9.993725,53.55761,9.997101,53.558943">Kennedybrücke</.m> → <.m bounds="9.991635,53.558391,9.994205,53.559518">Alsterglacis</.m>: Die Führung wird begradigt. Der Schlenker über die <.m bounds="9.993361,53.558672,9.994709,53.559909">Warburgstraße</.m> entfällt.</li>
+      <li><.m bounds="9.992815,53.557739,9.995264,53.559274" lon="9.994755" lat="53.559033" dir="backward" ref="4">Alsterufer</.m> → <.m bounds="9.992341,53.556692,9.994695,53.558311" lon="9.992956" lat="53.557327" dir="backward" ref="4">Neuer Jungfernstieg</.m>: sinngemäß wird eine der zwei KFZ-Spuren in eine Radspur umgewandelt. Teilweise sind Trennelemente zum KFZ-Verkehr vorgesehen. Unter der Brücke bleibt es jedoch beim alten Hochbordradweg, der künftig aber nur in Richtung Süden befahren werden darf. Entlang dieser Strecke gibt es nur noch zwei Ampeln: je eine vor der nördlichen und der südlichen Kreuzung.</li>
+      <li><.m bounds="9.992341,53.556692,9.994695,53.558311" lon="9.992984" lat="53.557079" dir="forward" ref="4">Neuer Jungfernstieg</.m> → <.m bounds="9.992815,53.557739,9.995264,53.559274" lon="9.994767" lat="53.558858" dir="forward" ref="4">Alsterufer</.m>: diagonal über die Kreuzung erreicht man die freistehende Verkehrsinsel an der westlichen Röhre. Von hier quert man die KFZ-Linksabbieger Richtung HBF, fährt dann direkt links neben dem Brückenpfeiler weiter. Dazu wird auf der bisher ungenutzen Fläche ein <.ref>Hochbordradweg</.ref> angelegt. Die nördliche Kreuzung quert man wieder diagonal. Entlang dieser Strecke sind drei Ampeln zu beachten: vor der südlichen Kreuzung, dann auf der freistehenden Verkehrsinsel und nochmal eine vor der nördlichen Kreuzung.</li>
     </ul>
+    <p>Die Ampeln werden für die neue Führung angepasst. Wo nötig werden die Aufstellflächen zum Linksabbiegen verschoben.</p>
+
+    <h4>Meinung</h4>
+    <p>Es ist klar, das diese Zwischenlösung nicht optimal ist. Das selbstgesteckte Ziel war es, die Fahrtbeziehungen entlang der Veloroute 4 zu verbessern. Das dürfte erreicht werden, da in beide Richtungen weniger Ampeln zu beachten sind als bisher. Dies sollte hoffentlich dazu führen, das nicht mehr illegal über den 1,5m schmalen Gehweg in der östlichen Röhre abgekürzt wird.</p>
+
+    <p>Wer auf eine Verbesserung weiterer Fahrtbeziehungen hoffte, wird enttäuscht. Umbauten sind hier frühestens ab 2023, eher nach 2025 zu erwarten.</p>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

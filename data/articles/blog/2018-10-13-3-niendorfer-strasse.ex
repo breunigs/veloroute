@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.NiendorferStrasse do
   def start(), do: ~d[2020-06-22]
   def stop(), do: ~d[2022-04-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [9604]
   def tags(), do: ["3"]
 
