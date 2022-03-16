@@ -6,9 +6,7 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
   def updated_at(), do: ~D[2020-10-31]
   def title(), do: "Höpen und Am Ohlmoorgraben (Veloroute 4)"
 
-  def start(), do: ~d[2021Q2]
-
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["4"]
 

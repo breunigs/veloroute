@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Gehlengraben do
   def start(), do: ~d[2020-03-30]
   def stop(), do: ~d[2021-08-01]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [295, 17929]
   def tags(), do: ["14"]
 

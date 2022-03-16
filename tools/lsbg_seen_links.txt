@@ -497,3 +497,6 @@
 '2022-03-10':
 - "/contentblob/15967472/ca493f883b83cebfc36945e1aac3343a/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"
+'2022-03-16':
+- "/contentblob/15993900/f53f7c722293fd2fa462d8220ffeb3f9/data/pop-up-bikelane-verstetigung-max-brauer-allee-abgestimmte-planung-bericht.pdf"
+- "/contentblob/15993902/884c79dcadcb7f41997c11a2ceb4aacc/data/pop-up-bikelane-verstetigung-max-brauer-allee-abgestimmte-planung-plan.pdf"

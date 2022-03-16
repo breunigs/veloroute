@@ -797,3 +797,6 @@
 - https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007318
 '2022-03-03':
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1008977
+'2022-03-14':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012575
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012567

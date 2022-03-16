@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
   def start(), do: ~d[2020-09]
   def stop(), do: ~d[2021Q4]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["4", "14"]
 
