@@ -13,7 +13,8 @@ defmodule Article do
           | nil
 
   @type assigns() :: %{:render_target => :html | :feed, optional(atom) => any}
-  @type link() :: {binary(), binary()} | Phoenix.LiveView.Rendered.t()
+  @type link() ::
+          {binary(), binary()} | {binary(), binary(), binary()} | Phoenix.LiveView.Rendered.t()
 
   @callback id() :: binary() | nil
   @callback display_id() :: binary() | nil

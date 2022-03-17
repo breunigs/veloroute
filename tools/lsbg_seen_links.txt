@@ -500,3 +500,6 @@
 '2022-03-16':
 - "/contentblob/15993900/f53f7c722293fd2fa462d8220ffeb3f9/data/pop-up-bikelane-verstetigung-max-brauer-allee-abgestimmte-planung-bericht.pdf"
 - "/contentblob/15993902/884c79dcadcb7f41997c11a2ceb4aacc/data/pop-up-bikelane-verstetigung-max-brauer-allee-abgestimmte-planung-plan.pdf"
+'2022-03-17':
+- "/contentblob/15996822/b8417d2dc48e67460fbb1ad0b7111708/data/rodigallee-von-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/15996824/c2766f5efb5f47659d5c45ef94236b1d/data/rodigallee-von-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-plan.pdf"

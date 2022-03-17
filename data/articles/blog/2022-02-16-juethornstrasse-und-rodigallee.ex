@@ -3,14 +3,14 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
 
   def created_at(), do: ~D[2022-02-16]
 
-  def title(), do: "Jüthornstraße und Rodigallee"
+  def title(), do: "Jüthornstraße und Rodigallee (West)"
 
   def summary(),
     do:
       "2,0m breite Radfahrstreifen, an Bushaltestellen andere Führungen. Mehr Bäume, mehr Radabstellplätze und eine Busspur stadteinwärts."
 
   def type(), do: :planned
-  def tags(), do: []
+  def tags(), do: ["rodigallee"]
 
   def start(), do: ~d[2023Q3]
   def stop(), do: ~d[2025Q3]
@@ -44,7 +44,7 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
 
     <p>Es werden weitere Bäume gepflanzt, allerdings auch einige Alte gefällt. Es sollen 61 Radanlehnbügel aufgestellt werden – bisher gab es keine.</p>
 
-    <p>Die Planung soll noch um den <.m bounds="10.123947,53.570474,10.136788,53.571421">Abschnitt zwischen Jenfelder Allee und Öjendorfer Damm</.m> erweitert werden. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
+    <p>Die Planung schließt nahtlos an den Abschnitt <.a href="/article/2022-03-17-rodigallee-und-barsbuettler-strasse">zwischen Jenfelder Allee und Öjendorfer Damm</.a> an. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
 
     <h4>Meinung</h4>
     <p>Da ich die Straße nicht kenne, enthalte ich mich einer inhaltlichen Bewertung.</p>
