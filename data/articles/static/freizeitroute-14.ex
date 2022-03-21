@@ -15,7 +15,6 @@ defmodule Data.Article.Static.Freizeitroute14 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
         group: "Alter Elbtunnel",
         direction: :forward,
         from: "Landungsbrücken",
@@ -28,17 +27,15 @@ defmodule Data.Article.Static.Freizeitroute14 do
           {"2021-07-04-veloroute11/GX012109", :start, :end},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012489", :start, :end},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012490", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012491", :start, :end},
-          {"2021-03-28-kattwybruecke-from-photo/forward.mkv", "00:00:02.002", "00:00:14.414"},
-          {"2021-08-04-fr13-fr14/GX012546", "00:02:00.220", :end},
-          {"2021-08-04-fr13-fr14/GX012547", :start, :end},
+          {"2021-08-03-fr14-noerdlich-kattwyk/GX012491", :start, "00:02:47.067"},
+          {"2022-03-20-tostedt/GX013305", "00:00:41.041", "00:02:05.058"},
+          {"2021-08-04-fr13-fr14/GX012547", "00:00:04.838", :end},
           {"2021-08-04-fr13-fr14/GX012548", :start, :end},
           {"2021-08-04-fr13-fr14/GX012549", :start, :end},
           {"2021-08-04-fr13-fr14/GX012550", :start, :end}
         ]
       },
       %Video.Track{
-        fade: :none,
         group: "Alter Elbtunnel",
         direction: :backward,
         from: "Harburger Berge",
@@ -52,9 +49,9 @@ defmodule Data.Article.Static.Freizeitroute14 do
           {"2021-08-04-fr13-fr14/GX012543", :start, :end},
           {"2021-08-04-fr13-fr14/GX012545", :start, :end},
           {"2021-08-04-fr13-fr14/GX012546", :start, "00:00:09.176"},
-          {"2021-08-04-fr13-fr14/GX012546", "00:00:23.824", "00:01:59.219"},
-          {"2021-03-28-kattwybruecke-from-photo/backward.mkv", "00:00:01.201", "00:00:11.211"},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012492", :start, :end},
+          {"2021-08-04-fr13-fr14/GX012546", "00:00:23.824", "00:01:24.885"},
+          {"2022-03-20-tostedt/GX013305", "00:02:06.426", :end},
+          {"2021-08-03-fr14-noerdlich-kattwyk/GX012492", "00:00:17.284", :end},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012493", :start, :end},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012494", :start, :end},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012495", :start, :end},
