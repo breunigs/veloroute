@@ -8,13 +8,13 @@ defmodule Video.Metadata do
   @spec for(binary) :: %{duration: float(), fps: float()} | nil
   def for(video_path) when is_binary(video_path) do
     start_link()
-    Agent.get_and_update(__MODULE__, &video_info(&1, video_path))
+    Agent.get_and_update(__MODULE__, &video_info(&1, video_path), :infinity)
   end
 
   @spec can_use?(binary) :: boolean()
   def can_use?(codec) do
     start_link()
-    Agent.get_and_update(__MODULE__, &codec_info(&1, codec))
+    Agent.get_and_update(__MODULE__, &codec_info(&1, codec), :infinity)
   end
 
   defp codec_info(state, codec) when is_map_key(state, codec),
