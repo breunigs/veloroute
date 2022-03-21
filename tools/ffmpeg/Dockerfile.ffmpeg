@@ -131,10 +131,10 @@ RUN \
   libva-drm2 \
   libva2 \
   libvpx7 \
-  libwebp6 \
+  libwebp[0-9]+ \
   libwebpmux3 \
-  libx264-160 \
-  libx265-199 \
+  libx264-[0-9]+ \
+  libx265-[0-9]+ \
   libzimg2 \
   mesa-opencl-icd \
   ocl-icd-libopencl1 \
