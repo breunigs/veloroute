@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.FuhlsbuettelerDamm do
   def start(), do: ~d[2020-06-29]
   def stop(), do: ~d[2021-07-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [9209, 17805]
   def tags(), do: ["4"]
 

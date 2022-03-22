@@ -12,7 +12,12 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
   def tags(), do: ["6"]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf"},
+      {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -23,11 +28,9 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
     <p>Die Einbahnstraßen <.m bounds="10.031086,53.565115,10.033893,53.566144">Uhlandstraße und Blaumenau</.m> werden für den Radverkehr in beide Richtungen freigegeben.</p>
     <h4>Meinung</h4> <p>Es gibt einige gute Ideen, wie den Zweirichtungsradweg um den Zugang zur Schule zu verbessern. Auch werden Fuß- und Radwege an Einmündungen ohne Ampeln ebenerdig durchgeführt. Die vielen neuen Anschließmöglichkeiten sind ebenfalls gut.</p>
     <p>Neben der mangelhaften Breite gibt es weitere Planungsfehler: Linksabbiegen ist nicht an allen Kreuzungen klar ersichtlich. An Einmündungen ist dies nur für den KFZ-Verkehr vorgesehen. Wie man der Veloroute 6 stadteinwärts an Markttagen folgen soll, bleibt ebenso offen.</p>
-    <p>Man kann dem LSBG nicht vorwerfen, sie hätten es nicht versucht: es wurden auch Varianten erarbeitet, die dem Rad- und Fußverkehr akzeptable, dem Gesetz entsprechende Wege angeboten hätten. Dazu müsste man aber entweder viele Bäume fällen, oder den KFZ je eine Spur wegnehmen. Letzteres lehnten die „Behörde für Verkehr und Mobilitätswende“ und die „Behörde Inneres und Sport“ 2019 ab – der Durchsatz für KFZ und Busse war wichtiger. Was will man da noch sagen?</p>
-    <h4>Quelle</h4> <ul>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf">Lageplan</.a></li>
-    </ul>
+    <p>Man kann dem LSBG nicht vorwerfen, sie hätten es nicht versucht: es wurden auch Varianten erarbeitet, die dem Rad- und Fußverkehr akzeptable, dem Gesetz entsprechende Wege angeboten hätten. Dazu müsste man aber entweder viele Bäume fällen, oder den KFZ je eine Spur wegnehmen. Letzteres lehnten die „Behörde für Wirtschaft und Innovation“ und die „Behörde Inneres und Sport“ 2019 ab – der Durchsatz für KFZ und Busse war wichtiger. Was will man da noch sagen?</p>
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

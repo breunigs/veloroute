@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.BillstedterHauptstrasseAbReclamstrasse do
   def stop(), do: ~d[2022-11-30]
   def construction_site_id_hh(), do: [25103]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radfahrstreifen", "8", "M6.1a"]
 
