@@ -126,6 +126,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   # ignores
   defp extract({_name, "https://www.komoot.de" <> _rest}), do: []
   defp extract({_name, "https://www.openstreetmap.org" <> _rest}), do: []
+  defp extract({_name, "https://web.archive.org" <> _rest}), do: []
 
   defp extract({name, url}) do
     path = URI.new!(url).path
