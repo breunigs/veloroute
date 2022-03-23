@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.AnDerAlster do
   def links(_assigns) do
     [
       {"Vorabmaßnahme – Plan", "2022",
-       "https://lsbg.hamburg.de/contentblob/16014652/97449df8fa9863e5995fba7e5ef2f9a3/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/contentblob/16014672/f407e06e85ec58433086e86234740e8c/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"},
       {"Vorabmaßnahme – Erläuterungsbericht", "2022",
        "https://lsbg.hamburg.de/contentblob/16014652/97449df8fa9863e5995fba7e5ef2f9a3/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-bericht.pdf"},
       {"Bezirksamtsbeschluss zur Fahrradstraße", "2021",
