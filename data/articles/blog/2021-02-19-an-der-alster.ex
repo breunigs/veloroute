@@ -6,6 +6,10 @@ defmodule Data.Article.Blog.AnDerAlster do
 
   def title(), do: "An der Alster (Veloroute 5 und 6)"
 
+  def summary(),
+    do:
+      "Fahrradstraße als Vorabmaßnahme. Protected-Bike-Lane im Anschluss bis zur Hohenfelder Bucht."
+
   def type(), do: :planned
   def start(), do: ~d[2022-07]
   def stop(), do: ~d[2022-09]
