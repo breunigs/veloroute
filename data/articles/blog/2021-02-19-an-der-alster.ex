@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.AnDerAlster do
   use Article.Default
 
   def created_at(), do: ~D[2021-02-19]
-  def updated_At(), do: ~D[2022-03-23]
+  def updated_at(), do: ~D[2022-03-23]
 
   def title(), do: "An der Alster (Veloroute 5 und 6)"
 
