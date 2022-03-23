@@ -24,6 +24,25 @@ defmodule ArticleTest do
     assert [] == render_issues, Enum.join(render_issues, "\n\n\n")
   end
 
+  test "articles do not have duplicated links" do
+    duplicated_links =
+      Article.List.all()
+      |> Enum.filter(fn art ->
+        hrefs =
+          art.links(%{})
+          |> Enum.map(fn
+            {_name, _extra, href} -> href
+            {_name, href} -> href
+            _other -> nil
+          end)
+          |> Util.compact()
+
+        hrefs != Enum.uniq(hrefs)
+      end)
+
+    assert [] == duplicated_links
+  end
+
   test "names consist of allowed characters only" do
     bad_names =
       Article.List.all()
