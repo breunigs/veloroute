@@ -11,7 +11,8 @@ defmodule Data.Article.Static.LexikonDooring do
     do: [
       "lexikon",
       "dooring",
-      "dooring-gefahr"
+      "dooring-gefahr",
+      "dooring-zone"
     ]
 
   def text(assigns) do
