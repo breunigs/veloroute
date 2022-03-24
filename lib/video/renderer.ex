@@ -198,7 +198,7 @@ defmodule Video.Renderer do
       detections = Video.Path.detections_rel_to_cwd(path)
       from = if from == :start, do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = if from == 0, do: 0, else: ceil(fps(path) * from / 1000.0)
-      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip}[blur#{idx}]"
+      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},settb=AVTB[blur#{idx}]"
     end)
   end
 
