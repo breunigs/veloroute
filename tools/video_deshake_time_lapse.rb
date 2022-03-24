@@ -10,7 +10,7 @@ require 'pry'
 
 ARGV.each do |file|
   warn "\n\nworking on #{file}"
-  target = "#{file}.time_lapse.mkv"
+  target = "#{file}_time_lapse.mkv"
 
   if File.exist?(target)
     warn "  target already exists, skpping (#{target})"
