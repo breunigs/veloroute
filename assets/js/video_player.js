@@ -47,6 +47,12 @@ function markPause() {
   })
 }
 
+function sendCurrentVideoTime(eventName) {
+  window.pushEvent(eventName || 'video-current-time', {
+    pos: currentTimeInMs()
+  })
+}
+
 function attachHlsErrorHandler(obj, Hls) {
   obj.on(Hls.Events.ERROR, function (event, data) {
     let props = {
@@ -63,8 +69,11 @@ function attachHlsErrorHandler(obj, Hls) {
       props.error = "HLS has no current level"
     }
 
-    if (data.fatal) {
-      console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', event, data);
+    if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
+      console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
+      sendCurrentVideoTime('video-fatal-hls');
+      window.state.videoStart = currentTimeInMs();
+      window.state.autoplay = true;
       window.hls = false;
       obj.destroy();
       updateVideoElement();
@@ -72,7 +81,8 @@ function attachHlsErrorHandler(obj, Hls) {
         props: props
       });
     } else {
-      console.log('Hls encountered an error', event, data);
+      console.log('Hls encountered an error', data);
+      sendCurrentVideoTime();
       window.plausible('video-hls-error', {
         props: props
       });

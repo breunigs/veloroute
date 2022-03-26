@@ -112,6 +112,16 @@ defmodule VelorouteWeb.FrameLive do
      |> update_url_query()}
   end
 
+  def handle_event("video-fatal-hls", attr, socket) do
+    Logger.debug("video-fatal-hls #{inspect(attr)}")
+
+    {:noreply,
+     socket
+     |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
+     |> assign(:autoplay, true)
+     |> update_url_query()}
+  end
+
   def handle_event("video-autoplayed", attr, socket) do
     Logger.debug("video-autoplayed #{inspect(attr)}")
 
