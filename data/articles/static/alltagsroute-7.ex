@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "7",
         direction: :forward,
         from: "Innenstadt",
@@ -47,7 +47,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "7",
         direction: :backward,
         from: "Rahlstedt",
@@ -73,7 +73,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "7j",
         direction: :forward,
         from: "Innenstadt",
@@ -86,7 +86,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "7j",
         direction: :backward,
         from: "Jenfeld",

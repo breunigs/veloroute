@@ -31,6 +31,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "indirektes Abbiegen",
         direction: :forward,
         from: "Bebelallee",

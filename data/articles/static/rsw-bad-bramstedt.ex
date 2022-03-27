@@ -16,7 +16,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radschnellweg Bad Bramstedt",
         direction: :forward,
         from: "Hamburg Sengelmannstraße",

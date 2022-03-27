@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Wandseradweg",
         direction: :forward,
         from: "Ferdinandstor",
@@ -47,7 +47,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Wandseradweg",
         direction: :backward,
         from: "Stapelfeld",

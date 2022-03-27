@@ -10,9 +10,9 @@ defmodule Video.RenderedTest do
     @impl Video.Rendered
     def hash(), do: "badc0ffeebadc0ffeebadc0ffeebadc0"
     @impl Video.Rendered
-    def fade(), do: 50
-    @impl Video.Rendered
     def length_ms(), do: 579
+    @impl Video.Rendered
+    def renderer(), do: 2
     @impl Video.Rendered
     def sources(),
       do: [

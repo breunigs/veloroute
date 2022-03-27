@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "11 Eißendorf",
         direction: :forward,
         from: "Innenstadt",
@@ -46,7 +47,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "11 Eißendorf",
         direction: :backward,
         from: "Eißendorf",
@@ -87,7 +88,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
 
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "11 Veddel",
         direction: :forward,
         from: "Veddel",
@@ -105,7 +106,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "11 Veddel",
         direction: :backward,
         from: "Eißendorf",

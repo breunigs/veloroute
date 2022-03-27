@@ -34,6 +34,12 @@ defmodule Video.Renderer do
   def render(rendered) do
     target = Video.Path.target(rendered.hash())
 
+    if rendered.renderer() <= 2,
+      do:
+        raise(
+          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version 3."
+        )
+
     case File.ls(target) do
       {:ok, []} -> render_run(rendered, target)
       {:error, :enoent} -> render_run(rendered, target)
@@ -184,7 +190,7 @@ defmodule Video.Renderer do
   defp inputs(rendered) do
     ["-hwaccel", "auto", "-re"] ++
       Enum.flat_map(rendered.sources(), fn {path, from, to} ->
-        from = if from == :start, do: [], else: ["-ss", from]
+        from = if from in [:start, :seamless], do: [], else: ["-ss", from]
         to = if to == :end, do: [], else: ["-to", to]
 
         from ++ to ++ ["-i", Video.Path.source_rel_to_cwd(path)]
@@ -196,16 +202,14 @@ defmodule Video.Renderer do
     |> Enum.with_index()
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
-      from = if from == :start, do: 0, else: Video.Timestamp.in_milliseconds(from)
+      from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = if from == 0, do: 0, else: ceil(fps(path) * from / 1000.0)
       "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},settb=AVTB[blur#{idx}]"
     end)
   end
 
   defp xfades(rendered, blur) when is_boolean(blur) do
-    fade = rendered.fade()
-    if fade == :none, do: raise("cannot render videos without fades, please set it")
-
+    fade = Video.Track.fade(rendered.renderer())
     count = length(rendered.sources())
     blur = if blur, do: "blur", else: ""
 
@@ -215,26 +219,42 @@ defmodule Video.Renderer do
       rendered.sources()
       |> Enum.with_index()
       |> Parallel.map(2, fn {{path, from, to}, idx} ->
-        from = if from == :start, do: 0, else: Video.Timestamp.in_seconds(from)
-        to = if to == :end, do: duration_in_s(path), else: Video.Timestamp.in_seconds(to)
-        {Float.round(to - from, 3), idx}
-      end)
-      |> Enum.reduce({0, []}, fn {dur, idx}, {total, list} ->
-        if fade >= dur,
+        start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
+        to_in_s = if to == :end, do: duration_in_s(path), else: Video.Timestamp.in_seconds(to)
+        segment_fade = if from == :seamless, do: 0, else: fade
+        segment_duration = Float.round(to_in_s - start_in_s, 3)
+
+        if segment_fade >= segment_duration,
           do:
             raise(
-              "hash=#{rendered.hash()} segment=#{idx} is #{dur}s long, but fade is #{fade}s. Reduce the fade duration or change the segment."
+              "hash=#{rendered.hash()} segment=#{idx} is #{segment_duration}s long, but segment fade is #{segment_fade}s. Reduce the fade duration or change the segment."
             )
 
-        {total + dur - fade,
-         if idx == 0 do
-           list
-         else
-           prev = if idx == 1, do: "[#{blur}0]", else: "[fade#{idx - 1}]"
-           xfade = "#{prev}[#{blur}#{idx}]xfade=transition=fade:duration=#{fade}:offset=#{total}"
-           xfade = if idx == count - 1, do: xfade, else: xfade <> "[fade#{idx}]"
-           [xfade | list]
-         end}
+        {segment_duration, idx, segment_fade}
+      end)
+      |> Enum.reduce({0, []}, fn
+        {dur, idx, segment_fade}, {total, filter_graph} ->
+          new_duration = total + dur - segment_fade
+
+          prev = if idx == 1, do: "[#{blur}0]", else: "[fade#{idx - 1}]"
+          next = "[#{blur}#{idx}]"
+
+          xfade =
+            cond do
+              idx == 0 -> nil
+              segment_fade == 0 -> "#{prev}#{next}concat=n=2:v=1:a=0"
+              true -> "#{prev}#{next}xfade=transition=fade:duration=#{fade}:offset=#{total}"
+            end
+
+          xfade =
+            cond do
+              xfade == nil -> nil
+              idx == count - 1 -> xfade
+              true -> "#{xfade}[fade#{idx}]"
+            end
+
+          filter_graph = if xfade, do: [xfade | filter_graph], else: filter_graph
+          {new_duration, filter_graph}
       end)
       |> elem(1)
       |> Enum.reverse()

@@ -15,7 +15,7 @@ defmodule Data.Article.Static.RSWLueneburg do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radschnellweg Lüneburg",
         direction: :forward,
         from: "Hamburg Elbbrücken",

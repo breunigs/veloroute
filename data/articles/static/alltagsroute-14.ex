@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "14",
         direction: :forward,
         from: "Othmarschen",
@@ -68,7 +68,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "14",
         direction: :backward,
         from: "Billstedt",

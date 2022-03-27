@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Elbbrücken",
         direction: :forward,
         from: "Hauptbahnhof",
@@ -53,7 +53,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Elbbrücken",
         direction: :backward,
         from: "Harburger Berge",

@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Vier und Marschlande",
         direction: :forward,
         from: "Hauptbahnhof",
@@ -46,7 +46,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Vier und Marschlande",
         direction: :backward,
         from: "Besenhorster Sandberge",

@@ -16,6 +16,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "Pinneberg 5",
         direction: :forward,
         from: "Pinneberg Zentrum",
@@ -28,6 +29,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
         ]
       },
       %Video.Track{
+        renderer: 2,
         group: "Pinneberg 5",
         direction: :backward,
         from: "Kummerfeld",

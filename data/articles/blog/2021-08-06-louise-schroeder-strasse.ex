@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Louise-Schroeder-Straße",
         direction: :forward,
         from: "",
@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Louise-Schroeder-Straße",
         direction: :backward,
         from: "",

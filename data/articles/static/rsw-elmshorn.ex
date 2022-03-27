@@ -16,7 +16,7 @@ defmodule Data.Article.Static.RSWElmshorn do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radschnellweg Elmshorn (ab Diebsteich)",
         direction: :forward,
         from: "Hamburg Diebsteich",
@@ -51,7 +51,7 @@ defmodule Data.Article.Static.RSWElmshorn do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radschnellweg Elmshorn (ab Langenfelder Damm)",
         direction: :forward,
         from: "Hamburg Langenfelder Damm",
@@ -67,7 +67,7 @@ defmodule Data.Article.Static.RSWElmshorn do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radschnellweg Elmshorn (ab Langenfelder Damm)",
         direction: :backward,
         from: "Hamburg Elbgaustraße",

@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "3",
         direction: :forward,
         from: "Innenstadt",
@@ -47,7 +47,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "3",
         direction: :backward,
         from: "Niendorf",

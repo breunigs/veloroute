@@ -15,6 +15,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "Wellingsbütteler Landstraße",
         direction: :forward,
         from: "Fuhlsbütteler Straße",

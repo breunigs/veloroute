@@ -29,11 +29,11 @@ defmodule Video.RendererTest do
              "-ss",
              "00:00:00.000",
              "-to",
-             "00:00:00.123",
+             "00:00:00.333",
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.05:offset=0.406,split=7[out0][out1][out2][out3][out4][out5][out6]",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.18906639973306638,split=7[out0][out1][out2][out3][out4][out5][out6]",
              "-an",
              "-f",
              "hls",
@@ -232,11 +232,11 @@ defmodule Video.RendererTest do
              "-ss",
              "00:00:00.000",
              "-to",
-             "00:00:00.123",
+             "00:00:00.333",
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.05:offset=0.406",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.18906639973306638",
              "-pix_fmt",
              "yuv420p",
              "-s",
@@ -262,14 +262,14 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def hash(), do: "badc0ffeebadc0ffeebadc0ffeebadc0"
     @impl Video.Rendered
-    def fade(), do: 0.050
-    @impl Video.Rendered
     def length_ms(), do: 579
+    @impl Video.Rendered
+    def renderer(), do: 2
     @impl Video.Rendered
     def sources(),
       do: [
         {"1.mp4", "00:00:00.000", "00:00:00.456"},
-        {"2.mp4", "00:00:00.000", "00:00:00.123"}
+        {"2.mp4", "00:00:00.000", "00:00:00.333"}
       ]
 
     @impl Video.Rendered

@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radweg „Dritte Meile“",
         direction: :forward,
         from: "Finkenwerder",
@@ -37,7 +37,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Radweg „Dritte Meile“",
         direction: :backward,
         from: "Harburger Berge",

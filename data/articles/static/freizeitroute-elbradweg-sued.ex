@@ -16,7 +16,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Elbradweg Süd",
         direction: :forward,
         from: "Finkenwerder",
@@ -37,7 +37,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Elbradweg Süd",
         direction: :backward,
         from: "Cranz",

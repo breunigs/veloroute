@@ -20,6 +20,7 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "detour",
         direction: :forward,
         from: "",
@@ -32,6 +33,7 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
         ]
       },
       %Video.Track{
+        renderer: 2,
         group: "detour",
         direction: :backward,
         from: "",

@@ -22,6 +22,19 @@ defmodule Video.TimedPoint do
     }
   end
 
+  @spec extrapolate(t(), t(), float()) :: t()
+  def extrapolate(a, b, t) when t >= 1 do
+    lon = a.lon + (b.lon - a.lon) * t
+    lat = a.lat + (b.lat - a.lat) * t
+    time = a.time_offset_ms + (b.time_offset_ms - a.time_offset_ms) * t
+
+    %__MODULE__{
+      lat: lat,
+      lon: lon,
+      time_offset_ms: round(time)
+    }
+  end
+
   @spec to_gpx_trkpt(t()) :: binary()
   def to_gpx_trkpt(coord) do
     """

@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Harburger Berge",
         direction: :forward,
         from: "Harburger Rathaus",
@@ -37,7 +37,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "Harburger Berge",
         direction: :backward,
         from: "Harburger Berge",

@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "6",
         direction: :forward,
         from: "Innenstadt",
@@ -46,7 +46,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "6",
         direction: :backward,
         from: "Volksdorf",

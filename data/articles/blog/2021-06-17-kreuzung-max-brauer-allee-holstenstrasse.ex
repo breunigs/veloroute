@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "article",
         direction: :forward,
         from: "",

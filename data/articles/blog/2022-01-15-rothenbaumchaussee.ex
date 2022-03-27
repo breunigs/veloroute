@@ -18,6 +18,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "Rothenbaumchaussee",
         direction: :forward,
         from: "",
@@ -31,6 +32,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
         ]
       },
       %Video.Track{
+        renderer: 2,
         group: "Rothenbaumchaussee",
         direction: :backward,
         from: "",

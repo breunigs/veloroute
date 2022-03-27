@@ -17,6 +17,7 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "Beim Schlump",
         direction: :forward,
         from: "Gustav-Falke-Straße",
@@ -29,6 +30,7 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
         ]
       },
       %Video.Track{
+        renderer: 2,
         group: "Beim Schlump",
         direction: :backward,
         from: "Bogenstraße",

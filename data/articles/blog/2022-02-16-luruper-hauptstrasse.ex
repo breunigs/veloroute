@@ -12,6 +12,7 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "Luruper Hauptstraße",
         direction: :forward,
         from: "",

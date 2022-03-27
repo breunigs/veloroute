@@ -4,7 +4,9 @@ defmodule Video.TrimmedSource do
     :coord_from,
     :coord_to,
     :duration_ms_uncut,
-    :coords_uncut
+    :coords_uncut,
+    :coords_cut,
+    :hash_ident
   ]
 
   @type t :: %__MODULE__{
@@ -12,7 +14,9 @@ defmodule Video.TrimmedSource do
           coord_from: Video.TimedPoint.t(),
           coord_to: Video.TimedPoint.t(),
           duration_ms_uncut: Video.Timestamp.t(),
-          coords_uncut: [Video.TimedPoint.t()]
+          coords_uncut: [Video.TimedPoint.t()],
+          coords_cut: [Video.TimedPoint.t()],
+          hash_ident: binary()
         }
 
   @enforce_keys @known_params
@@ -32,32 +36,27 @@ defmodule Video.TrimmedSource do
       %__MODULE__{
         source: source.source,
         coords_uncut: coords,
+        coords_cut: coords,
         coord_from: coord_from,
         coord_to: coord_to,
-        duration_ms_uncut: Video.Source.video_length_ms(source)
+        duration_ms_uncut: Video.Source.video_length_ms(source),
+        hash_ident: ""
       }
+      |> update_hash_ident()
       |> assert_valid()
     end
   end
 
-  @doc """
-  Extract the coordinates for the configured time frame. It also returns the
-  interpolated points that are closest to the given timestamps as convenience.
-  """
+  # Extract the coordinates for the configured time frame. It also returns the
+  # interpolated points that are closest to the given timestamps as convenience.
   @typep coords_ret() :: %{
-           coords: [Video.TimedPoint.t()],
-           first: Video.TimedPoint.t(),
-           last: Video.TimedPoint.t()
+           coords_cut: [Video.TimedPoint.t()],
+           coord_from: Video.TimedPoint.t(),
+           coord_to: Video.TimedPoint.t()
          }
-  @spec coords(t()) :: coords_ret()
-  def coords(%__MODULE__{} = tsv) do
-    {from_ms, to_ms} = in_ms(tsv)
-    coords(tsv, from_ms, to_ms)
-  end
-
-  @spec coords(t(), integer(), integer()) :: coords_ret() | {:error, binary()}
-  def coords(%__MODULE__{} = tsv, from_ms, to_ms)
-      when is_integer(from_ms) and is_integer(to_ms) do
+  @spec coords(t(), integer(), integer(), keyword()) :: coords_ret() | {:error, binary()}
+  defp coords(%__MODULE__{} = tsv, from_ms, to_ms, options)
+       when is_integer(from_ms) and is_integer(to_ms) do
     rev_coords =
       tsv.coords_uncut
       |> Enum.reduce_while(%{prev: nil, acc: []}, fn coord, %{prev: prev, acc: acc} ->
@@ -89,10 +88,20 @@ defmodule Video.TrimmedSource do
     if rev_coords == [] do
       {:error, "Cutting #{tsv.source} from #{from_ms}ms to #{to_ms}ms yields an empty video"}
     else
+      rev_coords =
+        if Keyword.get(options, :extrapolate_end) && to_ms > hd(rev_coords).time_offset_ms do
+          [last1, last2 | _rest] = rev_coords
+          t = calc_t(to_ms, last2, last1)
+          extrap = Video.TimedPoint.extrapolate(last2, last1, t)
+          [extrap | rev_coords]
+        else
+          rev_coords
+        end
+
       last = hd(rev_coords)
       coords = Enum.reverse(rev_coords)
       first = hd(coords)
-      %{coords: coords, first: first, last: last}
+      %{coords_cut: coords, coord_from: first, coord_to: last}
     end
   end
 
@@ -101,28 +110,35 @@ defmodule Video.TrimmedSource do
   """
   @spec extract(
           t(),
-          Video.Timestamp.t() | integer() | :start,
+          Video.Timestamp.t() | integer() | :start | :seamless,
           Video.Timestamp.t() | integer() | :end
         ) ::
           t() | {:error, binary()}
 
-  def extract(%__MODULE__{} = tsv, :start, to),
-    do: extract(tsv, 0, to)
+  def extract(tsv, from, to, options \\ [extrapolate_end: false])
 
-  def extract(%__MODULE__{} = tsv, from, :end),
-    do: extract(tsv, from, tsv.duration_ms_uncut)
+  def extract(%__MODULE__{} = tsv, :start, to, options),
+    do: extract(tsv, 0, to, options)
 
-  def extract(%__MODULE__{} = tsv, "" <> from, to),
-    do: extract(tsv, Video.Timestamp.in_milliseconds(from), to)
+  def extract(%__MODULE__{} = tsv, :seamless, to, options),
+    do: extract(tsv, 0, to, options)
 
-  def extract(%__MODULE__{} = tsv, from, "" <> to),
-    do: extract(tsv, from, Video.Timestamp.in_milliseconds(to))
+  def extract(%__MODULE__{} = tsv, from, :end, options),
+    do: extract(tsv, from, tsv.duration_ms_uncut, options)
 
-  def extract(%__MODULE__{} = tsv, from, to)
+  def extract(%__MODULE__{} = tsv, "" <> from, to, options),
+    do: extract(tsv, Video.Timestamp.in_milliseconds(from), to, options)
+
+  def extract(%__MODULE__{} = tsv, from, "" <> to, options),
+    do: extract(tsv, from, Video.Timestamp.in_milliseconds(to), options)
+
+  def extract(%__MODULE__{} = tsv, from, to, options)
       when is_integer(from) and is_integer(to) and from <= to do
-    %{first: from_pt, last: to_pt} = coords(tsv, from, to)
-
-    %{tsv | coord_from: from_pt, coord_to: to_pt} |> assert_valid()
+    with upd when is_map(upd) <- coords(tsv, from, to, options) do
+      struct(tsv, coords(tsv, from, to, options))
+      |> update_hash_ident()
+      |> assert_valid()
+    end
   end
 
   defp calc_t(interp, prev, next),
@@ -173,7 +189,8 @@ defmodule Video.TrimmedSource do
     {Video.Path.source_base_with_ending(tsv.source), from, to}
   end
 
-  def hash_ident(%__MODULE__{source: p, coord_from: f, coord_to: t}) do
-    "#{Video.Path.source_base_with_ending(p)} #{f.time_offset_ms} #{inspect(t.time_offset_ms)}"
+  defp update_hash_ident(%__MODULE__{source: p, coord_from: f, coord_to: t} = m) do
+    path = Video.Path.source_base_with_ending(p)
+    %{m | hash_ident: "#{path} #{f.time_offset_ms} #{inspect(t.time_offset_ms)}"}
   end
 end

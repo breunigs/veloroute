@@ -24,6 +24,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "veloroute",
         direction: :forward,
         from: "Mundsburg",
@@ -40,6 +41,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
         ]
       },
       %Video.Track{
+        renderer: 2,
         group: "veloroute",
         direction: :backward,
         from: "Elbbrücken",

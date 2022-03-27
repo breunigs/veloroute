@@ -15,6 +15,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
   def tracks(),
     do: [
       %Video.Track{
+        renderer: 2,
         group: "9 Bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -39,6 +40,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
         ]
       },
       %Video.Track{
+        renderer: 3,
         group: "9 Bergedorf",
         direction: :backward,
         from: "Bergedorf",
@@ -51,7 +53,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
           {"2022-04-02-velo9/GX013414", :start, :end},
           {"2022-04-02-velo9/GX013415", :start, :end},
           {"2022-04-02-velo9/GX013416", :start, :end},
-          {"2022-04-02-velo9/GX023416", :start, "00:00:22.589"},
+          {"2022-04-02-velo9/GX023416", :seamless, "00:00:22.589"},
           {"2022-04-02-velo9/GX023416", "00:00:50.617", :end},
           {"2022-04-02-velo9/GX013417", :start, :end},
           {"2022-04-02-velo9/GX013418", :start, :end},

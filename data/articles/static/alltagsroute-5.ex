@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "5",
         direction: :forward,
         from: "Innenstadt",
@@ -51,7 +51,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "5",
         direction: :backward,
         from: "Duvenstedt",
@@ -87,7 +87,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "5N",
         direction: :forward,
         from: "Hamburger Meile",
@@ -106,7 +106,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
         ]
       },
       %Video.Track{
-        fade: :none,
+        renderer: 1,
         group: "5N",
         direction: :backward,
         from: "City Nord",
