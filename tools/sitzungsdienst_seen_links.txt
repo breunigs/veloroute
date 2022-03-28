@@ -803,3 +803,6 @@
 '2022-03-25':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012606
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016310
+'2022-03-28':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012617
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012616
