@@ -42,6 +42,14 @@ defmodule Video.Track do
   end
 
   @doc """
+  Calculate the hash for the given video track
+  """
+  @spec hash(t()) :: hash()
+  def hash(%__MODULE__{} = t) do
+    t |> with_defaults() |> render() |> elem(0)
+  end
+
+  @doc """
   Sets missing optional values to their default values.
   """
   @spec with_defaults(t()) :: t()

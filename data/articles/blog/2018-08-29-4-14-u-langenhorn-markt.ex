@@ -14,7 +14,12 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
   def tags(), do: ["4", "14"]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/contentblob/13628332/217f8e1ec509c3c0c75ef499ae3b3df9/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-bericht.pdf"},
+      {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/13628334/43369dab89338f0529279947ce1d5db6/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -27,11 +32,9 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
     <p>Kommt man <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.650003, lon: 10.017585, zoom: 18})} ref="4">aus Richtung Norden</.m>  wird man künftig auf einem Radfahrstreifen links an der Bushaltestelle und den wartenden Bussen vorbeigeführt. Eine direkte Querung Richtung Süden wurde verworfen um weiterhin den Autoverkehr bevorzugen zu können. Stattdessen muss man einmal Slalom um den Ampelmast fahren um parallel zur Fußfurt die Straßenseite wechseln zu können. Diese Führung ist sehr unkomfortabel und es ist naheliegend, das bei Grün Radfahrende illegal über die Fußfurt abkürzen. Immerhin verspricht die Planung die Ampelschaltung leicht zu verbessern, sodass der Radverkehr „nahezu in einem Zug Richtung Süden fahren“ kann. Im Vergleich zu heute sind die Wege breiter und die Kurvenradien etwas besser, weil die Nord/Süd Querung mehr Richtung Kreuzung gerückt wird. Das verbessert auch die Weiterfahrt in den <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.649233, lon: 10.017831, zoom: 18})} ref="4">Ohlmoorgraben</.m>.</p>
     <p>Die Radwege <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.64981, lon: 10.018815, zoom: 18})} ref="14">ab Neukoppel im Gehlengraben</.m> und <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.649901, lon: 10.017855, zoom: 18})} ref="4">Tangstedter Landstraße Richtung Norden</.m> werden auf 2m verbreitert. Ungefähr ab Höhe des KFZ-Linksabbiegers Richtung Parkhaus geht dieser in einen Radfahrstreifen über. Befremdlich wirkt, das der Radverkehr hier an <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.650608, lon: 10.017923, zoom: 18})} ref="4">der KFZ-Ampel</.m> warten soll, wenn das Parkhaus grün hat. Mit Wegkonflikten zwischen Radfahrenden ist hier kaum zu rechnen, weswegen eine „Rad Dauergrün“ Ampel Sinn ergeben könnte.</p>
     <p>Der Umbau der Kreuzung wurde klar vom Auto aus gedacht und die Nord/Süd Querung bleibt unkomfortabel. Gut ist hingegen das entfädeln von Fuß und Rad an den Bushaltestellen, was künftig dann nur noch an den Warteflächen vor den Ampeln ein Problem werden könnte.</p>
-    <p>Geplant ist ab September 2020 für ungefähr ein Jahr zu bauen. Beim ersten Entwurf war noch ein Baubeginn Anfang 2019 angedacht.</p>
-    <p>
-    <.a href="https://lsbg.hamburg.de/contentblob/13628332/217f8e1ec509c3c0c75ef499ae3b3df9/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</.a><br/>
-    <.a href="https://lsbg.hamburg.de/contentblob/11228162/1056b9cb4d11859c4f41a8974a01a204/data/veloroute-14-kreuzung-tangstedter-landstrasse-gehlengraben-abstimmungsunterlage-plan.pdf">Lageplan</.a>
-    </p>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

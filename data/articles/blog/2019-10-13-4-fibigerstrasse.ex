@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Fibigerstrasse do
   def start(), do: ~d[2021-01-12]
   def stop(), do: ~d[2021-10-24]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [12316]
   def tags(), do: ["4"]
 

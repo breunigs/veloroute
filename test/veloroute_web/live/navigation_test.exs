@@ -6,6 +6,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
   @regexHash ~r/data-video-hash=\"([^\s]+)\"/
   @regexStart ~r/data-video-start=[^\s]+/
 
+  @video_hashes Data.Article.Static.Alltagsroute4.tracks()
+                |> Enum.map(fn %Video.Track{direction: dir} = t -> {dir, Video.Track.hash(t)} end)
+                |> Enum.into(%{})
+  @video_starts %{forward: 434_586}
+
   test "clicking on route icon navigates to overview page", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
 
@@ -27,12 +32,12 @@ defmodule VelorouteWeb.LiveNavigationTest do
     html = render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"})
 
     assert html =~ "<h3>Kleekamp"
-    assert html =~ ~s|data-video-hash="e4cffabc1e73519e643f87466f40155d"|
-    assert html =~ ~s|data-video-start="421785"|
+    assert html =~ ~s|data-video-hash="#{@video_hashes[:forward]}"|
+    assert html =~ ~s|data-video-start="#{@video_starts[:forward]}"|
 
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=421785&video=e4cffabc1e73519e643f87466f40155d"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=#{@video_starts[:forward]}&video=#{@video_hashes[:forward]}"
     )
   end
 
@@ -46,8 +51,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> render_click()
 
     assert html =~ "<h3>Kleekamp"
-    assert html =~ ~s|data-video-hash="e4cffabc1e73519e643f87466f40155d"|
-    assert html =~ ~s|data-video-start="421785"|
+    assert html =~ ~s|data-video-hash="#{@video_hashes[:forward]}"|
+    assert html =~ ~s|data-video-start="#{@video_starts[:forward]}"|
 
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
   end
