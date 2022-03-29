@@ -180,6 +180,7 @@ defmodule Components.TagHelpers do
       "BWVI" -> ~H{<abbr title="Behörde für Wirtschaft, Verkehr und Innovation">BWVI</abbr>}
       "LGV" -> ~H{<abbr title="Landesbetrieb Geoinformation und Vermessung">LGV</abbr>}
       "LSBG" -> ~H{<abbr title="Landesbetrieb Straßen, Brücken und Gewässer">LSBG</abbr>}
+      "HPA" -> ~H{<abbr title="Hamburg Port Authority">HPA</abbr>}
     end
   end
 
