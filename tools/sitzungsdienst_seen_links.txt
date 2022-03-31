@@ -806,3 +806,6 @@
 '2022-03-28':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012617
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012616
+'2022-03-30':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012637
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011665

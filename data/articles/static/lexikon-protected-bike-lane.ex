@@ -12,7 +12,10 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
       "lexikon",
       "protected-bike-lane",
       "protected-bike-lanes",
-      "pbl"
+      "pbl",
+      "geschützter-radfahrstreifen",
+      "geschützen-radfahrstreifen",
+      "geschützte-radfahrstreifen"
     ]
 
   def text(assigns) do

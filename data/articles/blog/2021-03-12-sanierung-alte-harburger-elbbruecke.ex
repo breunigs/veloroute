@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.SanierungAlteHarburgerElbbruecke do
   def start(), do: ~d[2021-03-15]
   def stop(), do: ~d[2021-12-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["10", "11", "FR5", "FR6"]
 

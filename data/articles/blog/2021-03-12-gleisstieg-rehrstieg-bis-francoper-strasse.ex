@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.GleisstiegRehrstiegBisFrancoperStrasse do
   def start(), do: ~d[2021-05-06]
   def stop(), do: ~d[2021-10-28]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["10", "h10.2"]
 
