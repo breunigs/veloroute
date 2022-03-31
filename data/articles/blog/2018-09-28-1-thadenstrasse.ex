@@ -13,34 +13,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
   def construction_site_id_hh(), do: [14882]
   def tags(), do: ["1"]
 
-  def tracks(),
-    do: [
-      %Video.Track{
-        fade: :none,
-        group: "detour",
-        direction: :forward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung Baustelle Thadenstraße stadtauswärts",
-        videos: [
-          {"2021-11-29-stephansplatz/GX013032", "00:00:45.679", "00:01:21.915"}
-        ]
-      },
-      %Video.Track{
-        fade: :none,
-        group: "detour",
-        direction: :backward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung Baustelle Thadenstraße stadteinwärts",
-        videos: [
-          {"2021-11-29-stephansplatz/GX013011", "00:00:20.821", :end},
-          {"2021-11-29-stephansplatz/GX013012", :start, :end}
-        ]
-      }
-    ]
+  def tracks(), do: []
 
   def links(_assigns) do
     [
