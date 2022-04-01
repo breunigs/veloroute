@@ -34,7 +34,7 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
     <p>Die Planung zeigt, wie verschwenderisch viel Platz zwei KFZ-Spuren verbrauchen. Mit Ausnahme der KFZ-Fahrspuren erhalten alle anderen Verkehrsarten mehr Platz, inklusive des „ruhenden Verkehrs“ in Form von Bänken, Parkplätzen und Anlehnbügeln. Zu kritisieren sind die fehlenden Ampeln für indirektes Abbiegen – zwar kann man so sofort Abbiegen wenn frei ist, was aber häufig schwer zu erkennen ist. In der Praxis orientieren sich viele an den Fußampeln, obwohl diese gar nicht für diese gelten. Dies sind aber alles Feinheiten, die grobe Planung ist vor allem eins: sehr gut.</p>
 
     <h4>Quelle</h4>
-    <p><.a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010972">Erläuterungsbericht und Pläne</.a> (zweiter Entwurf)</p>
+    <.structured_links/>
     """
   end
 end

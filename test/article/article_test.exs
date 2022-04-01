@@ -43,6 +43,29 @@ defmodule ArticleTest do
     assert [] == duplicated_links
   end
 
+  test "articles with structured links use the tag" do
+    missing_tag =
+      Article.List.all()
+      |> Enum.filter(fn art -> length(art.links(%{})) > 0 end)
+      |> Enum.reject(fn art ->
+        # don't know how to get the raw, so check the render instead
+        html = Article.Decorators.html(art)
+
+        check = fn url ->
+          url = String.replace(url, "&", "&amp;")
+          String.contains?(html, url)
+        end
+
+        Enum.all?(art.links(%{}), fn
+          {_name, _extra, url} -> check.(url)
+          {_name, url} -> check.(url)
+          _ -> true
+        end)
+      end)
+
+    assert [] == missing_tag
+  end
+
   test "names consist of allowed characters only" do
     bad_names =
       Article.List.all()
