@@ -105,6 +105,25 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end
   end
 
+  defp extract({_name, "https://fragdenstaat.de/anfrage/" <> _rest = url}) do
+    attachments =
+      url
+      |> hrefs_from_url()
+      |> Enum.filter(&String.contains?(&1, "/anhang/"))
+      |> Enum.map(&("https://fragdenstaat.de" <> &1))
+      |> Enum.flat_map(&hrefs_from_url/1)
+      |> Enum.filter(&String.ends_with?(&1, "?download"))
+      |> Enum.map(&{:download, Regex.split(~r{[/?]}, &1) |> Enum.at(-2), &1})
+
+    name = url |> String.split("/") |> Enum.at(-2)
+    [{:capture, name, url} | attachments]
+  end
+
+  defp extract({_name, "https://adfc-pinneberg.de/" <> _rest = url}) do
+    last = url |> String.split("/") |> List.last()
+    [{:capture, last, url}]
+  end
+
   @evergabe_base "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/"
   defp extract({name, @evergabe_base <> "eva/supplierportal/fhh/subproject/" <> rest = url}) do
     # page: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details
