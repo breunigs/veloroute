@@ -55,7 +55,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
     <p>Auch alle anderen Fahrtbeziehungen sind möglich. Dabei sind individuelle Lösungen vorgesehen: eigene Rechtsabbieger Spuren für den Radverkehr, mit und ohne Zebrastreifen. <.ref>Indirektes Linksabbiegen</.ref> mit eigenem Aufstellbereich, oder mit Warten auf dem Radfahrstreifen.</p>
 
     <h4>Planung – Kreuzung Paul-Nevermann-Platz</h4>
-    <p>Die Anbindung an die Ottenser Haupstraße verschiebt sich auf die Südseite der Unterführung. Über einen <.ref>Hochbordradweg</.ref> direkt am Geländer erreicht man die Taxi-Parkplätze und fährt dort wie heute. In Gegenrichtung quert man jedoch die Busspuren und kommt mittels einens <.ref>Radfahrstreifen in Mittellage</.ref> zur Kreuzung.</p>
+    <p>Die Anbindung an die <.m bounds="9.93031,53.55157,9.934129,53.552537">Ottenser Haupstraße</.m> verschiebt sich auf die Südseite der Unterführung. Über einen <.ref>Hochbordradweg</.ref> direkt am Geländer erreicht man die Taxi-Parkplätze und fährt dort wie heute. In Gegenrichtung quert man jedoch die Busspuren und kommt mittels einens <.ref>Radfahrstreifen in Mittellage</.ref> zur Kreuzung.</p>
 
     <h4>Meinung</h4>
     <p>Die Neuplanungen – sowohl von 2018 und 2022 – verbessern die Situation für den Radverkehr. Da der Zustand der Max-Brauer-Allee vorher katastrophal war, ist dies keine große Kunst. Die interessante Frage lautet also ob die neuen Radwege attraktiv sind.</p>
