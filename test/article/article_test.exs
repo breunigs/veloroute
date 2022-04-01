@@ -66,6 +66,16 @@ defmodule ArticleTest do
     assert [] == missing_tag
   end
 
+  test "newer articles have a summary" do
+    missing_sumnmary =
+      Article.List.all()
+      |> Enum.reject(fn art -> art.updated_at() == nil end)
+      |> Enum.filter(fn art -> Date.compare(art.updated_at(), ~D[2022-01-01]) == :gt end)
+      |> Enum.filter(fn art -> art.summary() == "" end)
+
+    assert [] == missing_sumnmary
+  end
+
   test "names consist of allowed characters only" do
     bad_names =
       Article.List.all()

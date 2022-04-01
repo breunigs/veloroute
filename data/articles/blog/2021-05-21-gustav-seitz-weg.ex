@@ -6,6 +6,10 @@ defmodule Data.Article.Blog.GustavSeitzWeg do
 
   def title(), do: "Gustav-Seitz-Weg (Veloroute 5)"
 
+  def summary(),
+    do:
+      "2,0m breite Radfahrstreifen ohne Trennung zu KFZ. Während des U5 Baus halten Busse auf dem Radfahrstreifen."
+
   def start(), do: ~d[2022-03-07]
   def stop(), do: ~d[2022-08-21]
 

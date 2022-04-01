@@ -5,6 +5,7 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
   def updated_at(), do: ~D[2022-01-10]
 
   def title(), do: "Eisenbahnbrücke Bovestraße (Veloroute 7)"
+  def summary(), do: "1,85m breite Radfahrstreifen zwischen Bus- und KFZ-Spuren."
 
   def start(), do: ~d[2020-12]
 
@@ -25,7 +26,7 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Stand Januar 2021</h4>
+    <h4>Stand Januar 2022</h4>
     <p>Erläuterungsbericht und Lagepläne ergänzt. Der Artikel wurde entsprechend konkretisiert.</p>
 
     <h4>Alter Zustand</h4>

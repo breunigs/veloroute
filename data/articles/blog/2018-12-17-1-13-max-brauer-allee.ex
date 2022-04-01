@@ -7,6 +7,10 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def title(), do: "Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Veloroute 1 und 13)"
 
+  def summary(),
+    do:
+      "Verschiedene Führungen; teilweise auf Busspur; Schutz vor KFZ nicht überall. Kreuzungen deutlich besser."
+
   def type(), do: :planned
 
   def tags(), do: ["1", "13"]
