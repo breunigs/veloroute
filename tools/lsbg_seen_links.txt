@@ -506,3 +506,9 @@
 '2022-03-25':
 - "/contentblob/16014652/97449df8fa9863e5995fba7e5ef2f9a3/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16014672/f407e06e85ec58433086e86234740e8c/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"
+'2022-04-01':
+- "/contentblob/16047944/bdbb59ea24bd816f5efb32dfe53741f2/data/max-brauer-allee-zw-paul-nevermann-platz-und-eggerstedtstrasse-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16047946/cebd4ea43c4373fbfd025e585edeafe6/data/max-brauer-allee-zw-paul-nevermann-platz-und-eggerstedtstrasse-abgestimmte-planung-plan.pdf"
+- "/contentblob/16047942/cb9a19c84f72fd360144e7d5771a8064/data/kaiser-wilhelm-strasse-teilrueckbau-und-instandsetzung-des-versorgungstunnels-%E2%80%93-04-22-bis-09-22.pdf"
+- "/contentblob/16047940/bae2ea3693bbede6a29dfad528cca110/data/otto-grot-strasse-und-karl-ruether-stieg-umgestaltung-der-haltestellen-%E2%80%93-28-03-22-bis-06-22.pdf"
+- "/contentblob/15261316/14e9ba27ad9cdef6957c2d4a0eb32948/data/pinneberger-chaussee-veloroute-14-07-2021-bis-03-2022.pdf"

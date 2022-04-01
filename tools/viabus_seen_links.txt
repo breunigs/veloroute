@@ -510,3 +510,5 @@
 - https://via-bus.hamburg.de/contentblob/15694444/b898b9d559fd00970b6a08e013e7ce65/data/57-mb3-bushaltestellen-spaldingstrasse-erstverschickung.pdf
 '2022-01-03':
 - https://via-bus.hamburg.de/contentblob/15723724/0b56a9b8f97fc9ef5b3680ae21bb86aa/data/farmsen-dokumentation-zweite-beteiligungsphase.pdf
+'2022-04-01':
+- https://via-bus.hamburg.de/contentblob/16047958/8e00eb7c463af23cd4f110fdbbc6fce8/data/28-m20-25-nachtrag-zur-schlussverschickung-max-brauer-allee-zw-paul-nevermann-platz-und-eggerstedtstrasse.pdf
