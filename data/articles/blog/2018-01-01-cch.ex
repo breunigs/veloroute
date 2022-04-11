@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Cch do
   def start(), do: ~d[2017]
   def stop(), do: ~d[2022]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["FR9", "FR10"]
 

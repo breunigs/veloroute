@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def title(), do: "Gertigstraße (Veloroute 13)"
 
   def start(), do: ~d[2022-02-28]
-  def stop(), do: ~d[2022-09-31]
+  def stop(), do: ~d[2022-09-30]
   def construction_site_id_hh(), do: [23095]
 
   def type(), do: :construction

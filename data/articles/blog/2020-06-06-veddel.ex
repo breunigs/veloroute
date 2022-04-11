@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Veddel do
   def start(), do: ~d[2021-02-22]
   def stop(), do: ~d[2021Q4]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["10"]
 

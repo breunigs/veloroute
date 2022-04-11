@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def title(), do: "Hannoversche Straße (Veloroute 11)"
 
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2022-04-15]
+  def stop(), do: ~d[2022-05-20]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14079, 17581]

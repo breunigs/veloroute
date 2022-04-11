@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.FischtreppePopppenbuettelerSchleuse do
 
   def start(), do: ~d[2021-10-25]
   def stop(), do: ~d[2021-12-31]
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["FR1"]
 
   def links(_assigns) do
