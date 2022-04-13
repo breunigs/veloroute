@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def start(), do: ~d[2021-02-11]
 
   def type(), do: :construction
-  def construction_site_id_hh(), do: [14393]
+  # def construction_site_id_hh(), do: [14393]
   def tags(), do: ["1", "2"]
 
   def links(_assigns) do

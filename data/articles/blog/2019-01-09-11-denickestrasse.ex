@@ -6,15 +6,26 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def title(), do: "Eißendorfer Straße bis Denickestraße (Veloroute 11)"
 
-  def start(), do: ~d[2022]
-  def stop(), do: ~d[2021-05-28]
+  def start(), do: ~d[2022-06-13]
+  def stop(), do: ~d[2023-11-30]
 
   def type(), do: :planned
 
   def tags(), do: ["11"]
 
   def links(_assigns) do
-    []
+    [
+      {"Bauvergabe ab Schüslerweg bis Triftstraße", "2022",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/d2b77611-8d12-42e6-9620-40bd161a5512/details"},
+      {"Erläuterungsbericht
+    und Pläne zum 2. Entwurf", "Lageplan nur ca. Blatt 1 bis 8, ansonsten siehe 1. Entwurf",
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005983"},
+      {"Erläuterungsbericht
+    und Pläne zum 1. Entwurf", "Lagepläne Blatt 9, 10 und 11 sind noch aktuell",
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005134"},
+      {"Pressemitteilung Umbaut zwischen Thörlstraße und Riepenhausenweg", "2021",
+       "https://www.hamburg.de/harburg/pressemeldungen/15030832/ausbau-veloroute-11/"}
+    ]
   end
 
   def text(assigns) do
@@ -25,17 +36,8 @@ defmodule Data.Article.Blog.Denickestrasse do
     <p>Im Bereich der 30er Zone gibt es erwartungsgemäß sonst nur Anpassungen im Detail. Ebenso verhält es sich im Bereich der Fahrradstraße bis zur <.m bounds="9.964491,53.45834,9.972899,53.462758">TU-Harburg</.m>, wobei hier natürlich einmündende Straßen jeweils wartepflichtig sind. Von dort bis zur <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.45963, lon: 9.97305, zoom: 18}))}>Einmündung in die Eißendorfer Straße</.m> hat sich im Vergleich zur ersten Verschickung nichts verändert: Die Spielstraße im Bereich der <.m bounds="9.964491,53.45834,9.972899,53.462758">TU-Harburg</.m> bleibt erhalten, immerhin wird sie aber neu gepflastert und damit hoffentlich weniger ruppig als aktuell. Im Anschluss wird die <.m bounds="9.944864,53.45695,9.973273,53.461455">Denickestraße</.m> zusammen mit <.m bounds="9.971565,53.459607,9.971943,53.46037">Am Irrgarten</.m> wieder eine Fahrradstraße. Der Stummel bis zur <.m bounds="9.972857,53.459919,9.973674,53.46202">Kerschensteinerstraße</.m> wird allerdings als 30er Zone ausgeführt.</p>
     <p>Die Führung der Route soll in diesem Bereich aufgespalten werden: Richtung <.m bounds="9.964491,53.45834,9.972899,53.462758">TU-Harburg</.m> soll die Route über die <.m bounds="9.972857,53.459919,9.973674,53.46202">Kerschensteinerstraße</.m> und dann links in die <.m bounds="9.944864,53.45695,9.973273,53.461455">Denickestraße</.m> abbiegen. Also jeweils entlang der vorhandenen (KFZ)-Einbahnstraßen, die auch beibehalten werden. Richtung Harburger Innenstadt führt die Route dagegen über <.m bounds="9.971565,53.459607,9.971943,53.46037">Am Irrgarten</.m> auf die <.m bounds="9.954596,53.455806,9.976792,53.460608">Eißendorfer Straße</.m>. Der Erläuterungsbericht begründet diese Teilung nicht. Ich vermute, das sich so Richtung TU eine Ampel vermeiden lässt, ohne in der Gegenrichtung die stark befahrene <.m bounds="9.954596,53.455806,9.976792,53.460608">Eißendorfer Straße</.m> ungesichert queren zu müssen.</p>
     <p>Die <.m bounds="9.954596,53.455806,9.976792,53.460608">Eißendorfer Straße</.m> erhält im Bereich der Veloroute durchgängig 2,25m breite Radfahrstreifen. Im weiteren Verlauf wird auf den vorhanden Hochbordradweg aufgeleitet, bzw. im Kreuzungsbereich ab <.m bounds="9.971138,53.456714,9.972285,53.459357">Barlachstraße</.m> ein Schutzstreifen eingezeichnet. Auf Höhe der <.m bounds="9.971791,53.458973,9.977161,53.462216">Goethe-Schule-Harburg</.m> wurde an eine Aufstelltasche für Linksabbieger gedacht, sodass diese die (Bettel)ampel mitbenutzen können, ohne nachfolgende Radfahrende zu blockieren.</p> <p>Insgesamt wirkt die Planung sehr fahrradfreundlich: Obwohl es in der <.m bounds="9.944864,53.45695,9.973273,53.461455">Denickestraße</.m> momentan deutlich weniger Rad- als KFZ-Verkehr gibt, soll diese als Fahrradstraße eingerichtet werden. Normalerweise soll dies erst passieren, wenn der Radanteil überwiegt. Auch auf der stark befahrenen <.m bounds="9.954596,53.455806,9.976792,53.460608">Eißendorfer Straße</.m> wird der Radverkehr deutlich aufgewertet – allerdings zu lasten der Fußwege, die nach dem Umbau schmaler sein werden als jetzt.</p>
-    <h4>Quellen</h4> <ul>
-    <li><.a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005983">Erläuterungsbericht
-    und Pläne zum 2. Entwurf</.a> (Lageplan nur ca. Blatt 1 bis 8, ansonsten siehe 1. Entwurf)</li>
-
-    <li><.a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005134">Erläuterungsbericht
-    und Pläne zum 1. Entwurf</.a> (Lagepläne Blatt 9, 10 und 11 sind noch aktuell)</li>
-
-    <li><.a href="https://www.hamburg.de/harburg/pressemeldungen/15030832/ausbau-veloroute-11/">Pressemitteilung Umbaut zwischen Thörlstraße und Riepenhausenweg</.a></li>
-
-    <li><.a href="https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1008862">Übersicht Baumaßnahmen Bezirk Harburg</.a> (August 2021)</li>
-    </ul>
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end
