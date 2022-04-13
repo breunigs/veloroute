@@ -326,32 +326,45 @@ function maybeShowLoadingIndicator(evt) {
   }
 }
 
-let updatePosterTimeout = null;
+// let updatePosterTimeout = null;
+// let updatePosterImage = null;
+
+let updatePosterState = {};
+
+function setPosterNow() {
+  console.debug("setting outer style img from to", updatePosterState.url)
+  poster.style.backgroundImage = `url(${updatePosterState.url})`;
+  clearPosterUpdater();
+}
+
+function clearPosterUpdater() {
+  if (updatePosterState.timeout) clearTimeout(updatePosterState.timeout);
+  if (updatePosterState.image) updatePosterState.image.onload = () => {};
+}
 
 function updatePoster() {
   // Update poster if we don't have a video attached. If we do, remove the
   // poster instead to avoid flashing it when switching videos.
   if (video.readyState !== 0) {
-    poster.style.backgroundImage = '';
+    updatePosterState = {
+      image: null,
+      timeout: null,
+      url: '',
+    }
+    setPosterNow();
     return
   }
+  if (updatePosterState.url === state.videoPoster) return;
+  clearPosterUpdater();
 
-  const setPoster = () => {
-    console.debug("setting outer style img to", state.videoPoster)
-    poster.style.backgroundImage = `url(${state.videoPoster})`;
+  console.debug("preloading poster", state.videoPoster)
+  updatePosterState = {
+    image: new Image(),
+    timeout: setTimeout(setPosterNow, 750),
+    url: state.videoPoster,
   }
-
-  const img = new Image();
-  img.onload = () => {
-    if (updatePosterTimeout) {
-      clearTimeout(updatePosterTimeout);
-      updatePosterTimeout = null;
-    }
-    setPoster()
-  }
-  img.src = state.videoPoster;
-
-  updatePosterTimeout = setTimeout(setPoster, 750);
+  updatePosterState.image.onload = setPosterNow;
+  updatePosterState.image.src = updatePosterState.url;
 }
 
 function setVideo() {
