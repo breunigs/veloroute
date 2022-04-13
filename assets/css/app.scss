@@ -492,7 +492,7 @@ $cyclistSize: 8rem;
   }
 
   &::before {
-    background: url('/images/cyclist.svg') 100% 100% / contain no-repeat;
+    background: url('/images/cyclist_outline.svg') 100% 100% / contain no-repeat;
     height: $cyclistSize;
     top:  unquote('calc(50% - #{$cyclistSize/2})');
     left: unquote('calc(50% - #{$cyclistSize/2})');
