@@ -148,8 +148,8 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
-        if (hlsAutoStartLoad) return;
         maybeMarkAutoplayed();
+        if (hlsAutoStartLoad) return;
 
         if (!window.hls) return;
         console.debug("triggering hls.startLoad");
@@ -171,7 +171,9 @@ function updateVideoElement() {
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
   `;
   video.innerHTML = innerHTML;
-  if (autoplayEnabled()) video.load();
+  video.autoplay = autoplayEnabled();
+  video.load();
+  if (autoplayEnabled()) video.play();
 }
 
 function restorePreviousQuality() {
@@ -325,9 +327,6 @@ function maybeShowLoadingIndicator(evt) {
     poster.classList.add("loading");
   }
 }
-
-// let updatePosterTimeout = null;
-// let updatePosterImage = null;
 
 let updatePosterState = {};
 
