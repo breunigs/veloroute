@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
     do: [
       %Video.Track{
         fade: :none,
-        group: "",
+        group: "Klövensteenradweg",
         direction: :forward,
         from: "Binnenalster",
         to: "Klövensteen",
@@ -46,7 +46,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
       },
       %Video.Track{
         fade: :none,
-        group: "Kollauradweg",
+        group: "Klövensteenradweg",
         direction: :backward,
         from: "Klövensteen",
         to: "Binnenalster",
