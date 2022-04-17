@@ -1,4 +1,5 @@
 let videoCoords = null;
+let videoMetadata = null;
 let prevVideo = null;
 let prevStartGen = null;
 let hlsAutoStartLoad = false;
@@ -7,20 +8,25 @@ let previouslyPlayingCodec = null;
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
-video.addEventListener('loadedmetadata', updateIndicatorPos);
+video.addEventListener('loadedmetadata', timeUpdate);
 video.addEventListener('loadeddata', maybeShowLoadingIndicator);
 video.addEventListener('stalled', maybeShowLoadingIndicator);
 video.addEventListener('waiting', maybeShowLoadingIndicator);
 video.addEventListener('playing', maybeShowLoadingIndicator);
-video.addEventListener('timeupdate', updateIndicatorPos);
+video.addEventListener('timeupdate', timeUpdate);
 video.addEventListener('timeupdate', updateProgressbar);
 video.addEventListener('progress', updateProgressbar);
 video.addEventListener('play', markPlay);
 video.addEventListener('play', updatePlaypause);
-video.addEventListener('play', updateIndicatorPos);
+video.addEventListener('play', timeUpdate);
 video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
-video.addEventListener('pause', updateIndicatorPos);
+video.addEventListener('pause', timeUpdate);
+
+function timeUpdate() {
+  updateIndicatorPos();
+  updateMetadata();
+}
 
 function autoplayEnabled() {
   return window.state.autoplay === "true"
@@ -371,6 +377,7 @@ function setVideo() {
     prevVideo = state.videoHash;
     updateVideoElement();
     videoCoords = parseCoordsFromState();
+    parseMetadataFromState();
     return;
   }
 
@@ -390,9 +397,33 @@ function parseCoordsFromState() {
   return coords
 }
 
-function updateIndicatorPos(evt) {
+function updateIndicatorPos() {
   if (!videoCoords) return;
   window.mapUpdateIndicatorFromVideo(video, videoCoords);
+}
+
+const videoMetadataEl = document.getElementById('videoMetadata');
+
+function parseMetadataFromState() {
+  let meta = state.videoMetadata.split("\n");
+  videoMetadata = [];
+  for (let i = 0; i < meta.length; i += 2) {
+    videoMetadata.push({
+      timestamp: parseInt(meta[i]),
+      text: meta[i + 1]
+    })
+  }
+}
+
+function updateMetadata() {
+  if (!videoMetadata) return;
+  const timestamp = currentTimeInMs();
+  let text = "";
+  for (let i = 0; i < videoMetadata.length; i += 1) {
+    if (videoMetadata[i].timestamp > timestamp) break;
+    text = videoMetadata[i].text;
+  }
+  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
 }
 
 const progress = document.getElementById("progress")

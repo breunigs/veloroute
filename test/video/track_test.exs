@@ -27,7 +27,7 @@ defmodule Video.TrackTest do
       Enum.flat_map(@tracks, fn {exp_hash, exp_dur, track} ->
         track = Kernel.struct!(Video.Track, Map.merge(@track_defaults, track))
 
-        {hash, coords} = Video.Track.render(track)
+        {hash, coords, _meta} = Video.Track.render(track)
         dur = List.last(coords).time_offset_ms
 
         [

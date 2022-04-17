@@ -20,6 +20,8 @@ defmodule Video.Track do
   # 32*8=256
   @type hash :: <<_::256>>
 
+  @type video_metadata :: [{non_neg_integer(), binary()}]
+
   @type fade :: float() | :none | nil
   defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
 
@@ -51,16 +53,48 @@ defmodule Video.Track do
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
-  @spec render(t()) :: {hash(), [Video.TimedPoint.t()]}
+  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], video_metadata()}
+
+  # Experimentally determined time to add between two consecutive videos to
+  # ensure that there's no long term drift. Not sure why it is needed, since
+  # it's necessary even though we use the video length to determine where to
+  # start the next coordinates from.
+  @video_concat_bump_ms 85
   def render(%__MODULE__{videos: videos, renderer: renderer} = t) when renderer <= 2 do
     tsvs = tsvs(videos)
 
     tsv_list =
-      Parallel.map(videos, fn {file, from, to} ->
+      Enum.map(videos, fn {file, from, to} ->
         Video.TrimmedSource.extract(tsvs[file], from, to)
       end)
 
-    {calc_hash(tsv_list, fade(t)), coords(tsv_list, fade(t))}
+    fade = fade(t)
+    fade_in_ms_halfed = if fade == :none, do: 0, else: round(fade * 1000 / 2)
+
+    {_dur, coords, metadata} =
+      Enum.reduce(tsv_list, {0, [], []}, fn tsv, {duration_so_far, acc, metadata} ->
+        from = tsv.coord_from.time_offset_ms
+        to = tsv.coord_to.time_offset_ms - fade_in_ms_halfed
+
+        metadata = [{duration_so_far, tsv_date(tsv)} | metadata]
+        %{coords_cut: coords} = Video.TrimmedSource.extract(tsv, from, to)
+
+        coords =
+          Enum.map(
+            coords,
+            &Map.put(
+              &1,
+              :time_offset_ms,
+              &1.time_offset_ms - from + duration_so_far
+            )
+          )
+
+        dur = duration_so_far + (to - from)
+        dur = if fade == :none, do: dur + @video_concat_bump_ms, else: dur
+        {dur, acc ++ coords, metadata}
+      end)
+
+    {calc_hash(tsv_list, fade), coords, reverse_compact_metadata(metadata)}
   end
 
   def render(%__MODULE__{videos: videos, renderer: 3}) do
@@ -68,8 +102,9 @@ defmodule Video.Track do
     hsh = :crypto.hash_init(:md5)
     fade_in_ms = round(default_fade() * 1000)
 
-    {_dur, rev_coords, hsh} =
-      Enum.reduce(videos, {0, [], hsh}, fn {file, from, to}, {dur, rev_coords, hsh} ->
+    {_dur, rev_coords, metadata, hsh} =
+      Enum.reduce(videos, {0, [], [], hsh}, fn {file, from, to},
+                                               {dur, rev_coords, metadata, hsh} ->
         {dur, rev_coords, hsh} =
           cond do
             rev_coords == [] ->
@@ -99,13 +134,15 @@ defmodule Video.Track do
             [new | rev_coords]
           end)
 
+        metadata = [{dur, tsv_date(tsv)} | metadata]
+
         # unclear why half_frame_duration_ms() is needed
         dur = dur + to_ms - from_ms + half_frame_duration_ms()
-        {dur, rev_coords, :crypto.hash_update(hsh, tsv.hash_ident)}
+        {dur, rev_coords, metadata, :crypto.hash_update(hsh, tsv.hash_ident)}
       end)
 
     hsh = hsh |> :crypto.hash_final() |> Base.encode16(case: :lower)
-    {hsh, Enum.reverse(rev_coords)}
+    {hsh, Enum.reverse(rev_coords), reverse_compact_metadata(metadata)}
   end
 
   @spec fade(t() | pos_integer()) :: fade()
@@ -140,42 +177,6 @@ defmodule Video.Track do
     |> Base.encode16(case: :lower)
   end
 
-  # Experimentally determined time to add between two consecutive videos to
-  # ensure that there's no long term drift. Not sure why it is needed, since
-  # it's necessary even though we use the video length to determine where to
-  # start the next coordinates from.
-  @video_concat_bump_ms 85
-  # Returns a list of time offsets in milliseconds, relative to the beginning of
-  # the trimmed and concatenated video and their corresponding lat/lon coordinates.
-
-  @spec coords([Video.TrimmedSource.t()], fade()) :: [Video.TimedPoint.t()]
-  defp coords(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
-    fade_in_ms_halfed = if fade == :none, do: 0, else: round(fade * 1000 / 2)
-
-    tsv_list
-    |> Enum.reduce({0, []}, fn tsv, {duration_so_far, acc} ->
-      from = tsv.coord_from.time_offset_ms
-      to = tsv.coord_to.time_offset_ms - fade_in_ms_halfed
-
-      %{coords_cut: coords} = Video.TrimmedSource.extract(tsv, from, to)
-
-      coords =
-        Enum.map(
-          coords,
-          &Map.put(
-            &1,
-            :time_offset_ms,
-            &1.time_offset_ms - from + duration_so_far
-          )
-        )
-
-      dur = duration_so_far + (to - from)
-      dur = if fade == :none, do: dur + @video_concat_bump_ms, else: dur
-      {dur, acc ++ coords}
-    end)
-    |> elem(1)
-  end
-
   @typep maybe_tsv :: {:error, binary()} | Video.TrimmedSource.t()
   @spec tsvs([plain()]) :: %{binary() => maybe_tsv()}
   defp tsvs(videos) do
@@ -184,5 +185,16 @@ defmodule Video.Track do
     |> Enum.uniq()
     |> Parallel.map(fn file -> {file, Video.TrimmedSource.new_from_path(file)} end)
     |> Enum.into(%{})
+  end
+
+  defp tsv_date(tsv),
+    do: tsv.date |> Data.RoughDate.parse() |> Data.RoughDate.without_day()
+
+  @spec reverse_compact_metadata(video_metadata()) :: video_metadata()
+  defp reverse_compact_metadata(meta) do
+    Enum.reduce(meta, [], fn
+      {dur, str}, [{_dur2, str} | rest] -> [{dur, str} | rest]
+      entry, acc -> [entry | acc]
+    end)
   end
 end

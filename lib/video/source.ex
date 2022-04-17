@@ -273,9 +273,12 @@ defmodule Video.Source do
   end
 
   defp date_from_path(source_path) do
-    case Regex.run(~r/\b\d\d\d\d-\d\d-\d\d\b/, source_path) do
-      nil -> "unknown"
-      [str] -> str
+    with [str] <- Regex.run(~r/\b\d\d\d\d-\d\d-\d\d\b/, source_path),
+         {:ok, date} <- Date.from_iso8601(str) do
+      date
+    else
+      err ->
+        {:error, "invalid date: #{inspect(err)}"}
     end
   end
 end

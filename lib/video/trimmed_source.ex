@@ -1,6 +1,7 @@
 defmodule Video.TrimmedSource do
   @known_params [
     :source,
+    :date,
     :coord_from,
     :coord_to,
     :duration_ms_uncut,
@@ -11,6 +12,7 @@ defmodule Video.TrimmedSource do
 
   @type t :: %__MODULE__{
           source: binary(),
+          date: Date.t(),
           coord_from: Video.TimedPoint.t(),
           coord_to: Video.TimedPoint.t(),
           duration_ms_uncut: Video.Timestamp.t(),
@@ -35,6 +37,7 @@ defmodule Video.TrimmedSource do
 
       %__MODULE__{
         source: source.source,
+        date: source.date,
         coords_uncut: coords,
         coords_cut: coords,
         coord_from: coord_from,

@@ -90,7 +90,7 @@ body.fullscreen #videoPoster, #videoOuter:fullscreen #videoPoster {
 }
 
 #videoOuter:hover, #videoOuter[data-state="play"] {
-  #videoControls, #videoRoute {
+  #videoControls, #videoRoute, #videoMetadata {
     opacity: 1;
   }
 }
@@ -99,7 +99,7 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
   &.inactivity {
     cursor: none;
 
-    #videoControls, #videoRoute {
+    #videoControls, #videoRoute, #videoMetadata {
       opacity: 0 !important;
       cursor: auto;
     }
@@ -107,7 +107,7 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
 }
 
 
-#videoRoute, #videoControls {
+#videoRoute, #videoControls, #videoMetadata {
   // opacity: 1 !important; // toggle
 
   opacity: 0;
@@ -115,29 +115,37 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
   z-index: 12;
 }
 
-#videoRoute {
-  left: 0;
+#videoRoute, #videoMetadata {
   top: 0;
   position: absolute;
   display: block;
   padding: 0.5rem;
   // padding-top: 0.7rem;
   color: #fff;
-  font-weight: bold;
   max-width: 90%;
   overflow-x: hidden;
   white-space: nowrap;
   box-sizing: border-box;
   text-overflow: ellipsis;
   text-decoration: none;
-
   background: rgba(0, 0, 0, 0.6);
-  border-bottom-right-radius: 0.5rem;
 
   span {
     margin-right: 0.2rem;
     font-weight: bold;
   }
+}
+
+#videoRoute {
+  left: 0;
+  border-bottom-right-radius: 0.5rem;
+  font-weight: bold;
+}
+
+#videoMetadata {
+  right: 0;
+  border-bottom-left-radius: 0.5rem;
+  display: none;
 }
 
 $videoBarHeight: 2.6rem;
@@ -443,6 +451,10 @@ body.ie11 #fullscreen {
 
   #switcher {
     display: none !important;
+  }
+
+  #videoMetadata {
+    display: block;
   }
 }
 

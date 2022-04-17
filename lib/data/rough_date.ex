@@ -16,6 +16,9 @@ defmodule Data.RoughDate do
   def parse(date) when is_integer(date),
     do: %__MODULE__{year: date, quarter: nil, month: nil, day: nil}
 
+  def parse(%Date{year: y, month: m, day: d}),
+    do: %__MODULE__{year: y, quarter: nil, month: m - 1, day: d}
+
   def parse(date) when is_binary(date) do
     date = String.trim(date)
 
@@ -71,7 +74,11 @@ defmodule Data.RoughDate do
     "#{elem(@months, m)} #{y}"
   end
 
-  def to_str(%__MODULE__{year: y}), do: "#{y}"
+  def to_str(%__MODULE__{year: y}) when is_integer(y), do: "#{y}"
+
+  def to_str(%__MODULE__{}), do: "Unbekannt"
+
+  def without_day(%__MODULE__{} = t), do: to_str(%{t | day: nil})
 
   def compare(%__MODULE__{} = left, %__MODULE__{} = right) do
     left = {left.year, guess_month(left), !is_nil(left.day), left.day}

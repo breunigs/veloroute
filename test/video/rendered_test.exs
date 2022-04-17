@@ -21,6 +21,9 @@ defmodule Video.RenderedTest do
       ]
 
     @impl Video.Rendered
+    def metadata(), do: [{0, "at start"}, {10, "after ten ms"}]
+
+    @impl Video.Rendered
     def coords(),
       do: [
         %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},

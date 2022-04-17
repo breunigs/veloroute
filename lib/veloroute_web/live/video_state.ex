@@ -215,6 +215,8 @@ defmodule VelorouteWeb.Live.VideoState do
 
     start_from = Video.Rendered.start_from(video, state.start)
     coords = Video.Rendered.coord_io_list(video)
+    metadata = Video.Rendered.metadata_io_list(video)
+    metadata_now = Video.Rendered.metadata_timestamp(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
 
@@ -225,6 +227,8 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start_gen: state.start_generation,
       video_length_ms: video.length_ms(),
       video_coords: coords,
+      video_metadata: metadata,
+      video_metadata_now: metadata_now,
       video_reversable: is_reversable(state),
       video_poster: video_poster(video, start_from),
       lon: start_from.lon,
