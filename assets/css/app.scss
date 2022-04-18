@@ -161,6 +161,9 @@ $videoBarProgressHeight: 0.4rem;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
 
+  padding-bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+
   button {
     border: 0;
 
@@ -317,6 +320,7 @@ body.ie11 #fullscreen {
     transition-delay: 250ms;
     position: absolute;
     bottom: $videoBarHeight;
+    bottom: calc(#{$videoBarHeight} + env(safe-area-inset-bottom));
     right: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 1;
