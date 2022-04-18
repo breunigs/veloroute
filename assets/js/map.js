@@ -62,6 +62,7 @@ function renderIndicator() {
     el.appendChild(rotated);
     indicator = new mapboxgl.Marker(el)
       .setLngLat(lngLat)
+      .setRotation(state.bearing * 1)
       .addTo(map);
   }
 
