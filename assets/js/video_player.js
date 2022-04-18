@@ -338,11 +338,17 @@ function maybeShowLoadingIndicator(evt) {
   }
 }
 
-let updatePosterState = {};
+let updatePosterState = {
+  image: null,
+  timeout: null,
+  url: '',
+};
 
 function setPosterNow() {
+  const url = `url("${updatePosterState.url}")`;
+  if (poster.style.backgroundImage === url) return;
   console.debug("setting outer style img from to", updatePosterState.url)
-  poster.style.backgroundImage = `url(${updatePosterState.url})`;
+  poster.style.backgroundImage = url;
   clearPosterUpdater();
 }
 
