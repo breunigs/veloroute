@@ -64,3 +64,5 @@ if (document.visibilityState === 'prerender') {
 } else {
   page()
 }
+
+window.addEventListener('beforeprint', () => window.plausible('print'));
