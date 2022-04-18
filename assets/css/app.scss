@@ -115,11 +115,12 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
   z-index: 12;
 }
 
+$videoInfoOverlayPadding: 0.5rem;
 #videoRoute, #videoMetadata {
   top: 0;
   position: absolute;
   display: block;
-  padding: 0.5rem;
+  padding: $videoInfoOverlayPadding;
   // padding-top: 0.7rem;
   color: #fff;
   max-width: 90%;
@@ -138,13 +139,15 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
 
 #videoRoute {
   left: 0;
-  border-bottom-right-radius: 0.5rem;
+  border-bottom-right-radius: $videoInfoOverlayPadding;
   font-weight: bold;
+  padding-left: $videoInfoOverlayPadding;
+  padding-left: max($videoInfoOverlayPadding, env(safe-area-inset-left));
 }
 
 #videoMetadata {
   right: 0;
-  border-bottom-left-radius: 0.5rem;
+  border-bottom-left-radius: $videoInfoOverlayPadding;
   display: none;
 }
 
@@ -213,27 +216,27 @@ $videoBarProgressHeight: 0.4rem;
 
   #playpause {
     background: url("/images/play.svg") no-repeat center center;
-    background-size: $videoBarHeight / 3;
+    background-size: calc($videoBarHeight / 3);
   }
 
   #fullscreen {
     background: url("/images/fullscreen.svg") no-repeat center center;
-    background-size: $videoBarHeight / 2.7;
+    background-size: calc($videoBarHeight / 2.7);
   }
 
   #reverse {
     background: url("/images/reverse.svg") no-repeat center center;
-    background-size: $videoBarHeight / 2.7;
+    background-size: calc($videoBarHeight / 2.7);
   }
 
   #skipBackward5 {
     background: url("/images/skip_backward_5.svg") no-repeat center center;
-    background-size: $videoBarHeight / 2.2;
+    background-size: calc($videoBarHeight / 2.2);
   }
 
   #skipForward5 {
     background: url("/images/skip_forward_5.svg") no-repeat center center;
-    background-size: $videoBarHeight / 2.2;
+    background-size: calc($videoBarHeight / 2.2);
   }
 
   #duration {
@@ -261,7 +264,7 @@ $videoBarProgressHeight: 0.4rem;
     width: 100%;
     height: $videoBarProgressHeight;
     border: none;
-    margin: ($videoBarHeight - 4*$videoBarBtnMargin - $videoBarProgressHeight)/2 0;
+    margin: calc(($videoBarHeight - 4*$videoBarBtnMargin - $videoBarProgressHeight)/2) 0;
     color: $red;
     border-radius: $videoBarProgressHeight;
     background: #000;
@@ -292,7 +295,7 @@ $videoBarProgressHeight: 0.4rem;
 
 #videoOuter[data-state="pause"] #playpause {
   background: url("/images/pause.svg") no-repeat center center;
-  background-size: $videoBarHeight / 4;
+  background-size: calc($videoBarHeight / 4);
 }
 
 body.ie11 #fullscreen {
@@ -302,7 +305,7 @@ body.ie11 #fullscreen {
 #videoOptions {
   button {
     background: url("/images/gear.svg") no-repeat center center;
-    background-size: $videoBarHeight / 2.7;
+    background-size: calc($videoBarHeight / 2.7);
   }
 
   #videoQuality {
@@ -320,7 +323,7 @@ body.ie11 #fullscreen {
     transition-delay: 250ms;
     position: absolute;
     bottom: $videoBarHeight;
-    bottom: calc(#{$videoBarHeight} + env(safe-area-inset-bottom));
+    bottom: calc($videoBarHeight + env(safe-area-inset-bottom));
     right: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 1;
@@ -439,7 +442,7 @@ body.ie11 #fullscreen {
   position: relative;
   top: 0;
   left: $minWidth; // old browsers doesn't support max() -- for mobile devices
-  left: unquote('max(#{$minWidth}, #{$mainWidth})');
+  left: max($minWidth, $mainWidth);
   background: $bgcolor;
   display: flex;
   flex-flow: column;
@@ -449,7 +452,7 @@ body.ie11 #fullscreen {
 @media (min-width: 3*$minWidth) {
   #sidebar {
     left: $mainWidth; // old browsers doesn't support max() -- for desktop
-    left: unquote('max(#{$minWidth}, #{$mainWidth})');
+    left: max($minWidth, $mainWidth);
     position: fixed;
   }
 
@@ -464,8 +467,8 @@ body.ie11 #fullscreen {
 
 .showSidebar #sidebar {
   transition: all 0.3s ease;
-  left: calc(100vw - #{$minWidth}); // old browsers doesn't support max() -- for both
-  left: unquote('min(100vw - #{$minWidth}, #{$mainWidth})');
+  left: calc(100vw - $minWidth); // old browsers doesn't support max() -- for both
+  left: min(100vw - $minWidth, $mainWidth);
 }
 
 .hideSidebar #sidebar {
@@ -510,21 +513,21 @@ $cyclistSize: 8rem;
   &::before {
     background: url('/images/cyclist_outline.svg') 100% 100% / contain no-repeat;
     height: $cyclistSize;
-    top:  unquote('calc(50% - #{$cyclistSize/2})');
-    left: unquote('calc(50% - #{$cyclistSize/2})');
+    top:  calc(50% - $cyclistSize/2);
+    left: calc(50% - $cyclistSize/2);
     width: $cyclistSize;
   }
 
   &::after {
     animation: 2.0s ease-in-out infinite spinner;
     animation-play-state: inherit;
-    border: solid $cyclistSize/20 transparent;
+    border: solid calc($cyclistSize/20) transparent;
     border-bottom-color: $red;
     border-radius: 50%;
-    height: $cyclistSize/3.55;
-    top: unquote('calc(50% - #{$cyclistSize/30.5})');
-    left: unquote('calc(50% - #{$cyclistSize/2.19})');
-    width: $cyclistSize/3.55;
+    height: calc($cyclistSize/3.55);
+    top: calc(50% - $cyclistSize/30.5);
+    left: calc(50% - $cyclistSize/2.19);
+    width: calc($cyclistSize/3.55);
     will-change: transform;
   }
 
@@ -552,14 +555,14 @@ body.fullscreen video, #videoOuter:fullscreen video {
 
   position: absolute;
   position: sticky;
-  top: calc(50vh - #{$height/2});
+  top: calc(50vh - $height / 2);
   left: 0;
   height: 0;
   overflow: visible;
   touch-action: pan-x;
 
   div {
-    margin-left: #{$width/-2};
+    margin-left: calc($width / -2);
     width: 0;
     height: 0;
     user-select: none;
@@ -747,7 +750,7 @@ ol.route-list {
   }
 
   span.alltag + span {
-    width: unquote('calc(100% - #{$iconSize + 2*$iconBorder + 0.2em})');
+    width: calc(100% - $iconSize - 2*$iconBorder - 0.2em);
   }
 
   span + span {
@@ -917,14 +920,14 @@ img.roaddiagram {
 p.alert {
   background: #ECD0D0;
   padding: $contentPad;
-  margin: 0 #{-1*$contentPad};
+  margin: 0 calc(-1*$contentPad);
 }
 
 table.routing {
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-  width: calc(100% + 2*#{$contentPad});
+  width: calc(100% + 2*$contentPad);
   margin-left: -$contentPad;
 
 
@@ -954,8 +957,8 @@ table.routing {
     // image will be set through HTML
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-size: auto calc(100% - #{$main-route-icon-size});
-    width: 1.25*2*$table-cell-height;
+    background-size: auto calc(100% - $main-route-icon-size);
+    width: calc(1.25*2*$table-cell-height);
     vertical-align: top;
     text-align: center;
     padding-top: 0.42em;
