@@ -403,6 +403,15 @@ map.on('style.load', () => {
 
   map.on('movestart', disableIndicatorAnimation);
   map.on('zoomstart', disableIndicatorAnimation);
+
+  // for some reason click events don't fire on iOS and potentially other touch
+  // devices
+  let simulateClick = false;
+  map.on('touchstart', () => simulateClick = true);
+  map.on('touchmove', () => simulateClick = false);
+  map.on('touchend', (evt) => {
+    if (simulateClick) handleMapClick(evt);
+  });
 });
 
 let video = null;
