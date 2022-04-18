@@ -24,6 +24,10 @@ video.addEventListener('pause', updatePlaypause);
 video.addEventListener('pause', timeUpdate);
 
 function timeUpdate() {
+  // iOS has a bug where the video time is reported as 0.0 during loading.
+  if (video.canPlayType('application/vnd.apple.mpegurl') && video.readyState <= 2 && currentTimeInMs() == 0) {
+    return setTimeout(timeUpdate, 100);
+  }
   updateIndicatorPos();
   updateMetadata();
 }
