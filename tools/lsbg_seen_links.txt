@@ -518,3 +518,5 @@
 - "/contentblob/16059416/3bd866c6873c417e45968842b79dc678/data/praesident-krahn-strasse-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16059418/b28b369ed2f2348ba6b33e41d9e485e8/data/praesident-krahn-strasse-abgestimmte-planung-plan.pdf"
 - "/contentblob/15453808/3d8425e53298d95b3afae0d4507d9a78/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"
+'2022-04-20':
+- "/contentblob/15453808/e8e4d04fa91a01ad39c8dc9e13ada2dc/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"

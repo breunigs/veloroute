@@ -7,9 +7,11 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
   def title(), do: "Kreuzung Grandweg / Grelckstraße (Veloroute 3)"
 
-  def start(), do: ~d[2022]
+  def start(), do: ~d[2022-04-25]
+  def stop(), do: ~d[2022-12-23]
+  def construction_site_id_hh(), do: [36805]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["3"]
 
