@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Kloevensteenweg do
 
   def links(_assigns) do
     [
-      {"Pressemitteilung zum Baubeginn", "2022"
+      {"Pressemitteilung zum Baubeginn", "2022",
        "https://www.hamburg.de/altona/baustelleninfos/16083204/ausbau-veloroute-1-mit-grundinstandsetzung-rissen/"},
       {"Erläuterungsbericht zur Umgestaltung mit Lageplan",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010254"}
