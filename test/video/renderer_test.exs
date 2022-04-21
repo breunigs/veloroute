@@ -266,6 +266,9 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def renderer(), do: 2
     @impl Video.Rendered
+    def metadata(), do: [{0, "Januar 2022"}]
+
+    @impl Video.Rendered
     def sources(),
       do: [
         {"1.mp4", "00:00:00.000", "00:00:00.456"},

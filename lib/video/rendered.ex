@@ -240,7 +240,7 @@ defmodule Video.Rendered do
       iex> Video.Rendered.metadata_timestamp(Video.RenderedTest.Example, 11)
       "after ten ms"
   """
-  @spec metadata_timestamp(t(), pos_integer()) :: binary()
+  @spec metadata_timestamp(t(), non_neg_integer()) :: binary()
   def metadata_timestamp(rendered, time_in_ms) when time_in_ms >= 0 do
     Enum.reduce_while(rendered.metadata(), "", fn {ts, binary}, prev ->
       if ts <= time_in_ms, do: {:cont, binary}, else: {:halt, prev}
