@@ -11,8 +11,14 @@ defmodule Video.Source do
   @enforce_keys @known_params
   defstruct @known_params
 
-  @type t :: %__MODULE__{}
+  @type t :: %__MODULE__{
+          source: binary(),
+          available_detections: boolean(),
+          available_gpx: boolean(),
+          date: Date.t()
+        }
 
+  @spec new_from_path(binary) :: {:error, binary()} | t()
   def new_from_path(source_path) do
     error_unless_valid_source(source_path) ||
       new_from_path(
@@ -22,6 +28,7 @@ defmodule Video.Source do
       )
   end
 
+  @spec new_from_path(binary, MapSet.t()) :: {:error, binary()} | t()
   def new_from_path(source_path, known_files) do
     error_unless_valid_source(source_path) ||
       new_from_path(
@@ -31,6 +38,7 @@ defmodule Video.Source do
       )
   end
 
+  @spec new_from_folder(binary) :: list(t())
   @doc """
   Recursively finds all valid source videos within the given folder
   """
@@ -51,6 +59,7 @@ defmodule Video.Source do
       else: {:error, "Not a valid source path: #{source_path}"}
   end
 
+  @spec new_from_path(binary(), boolean(), boolean()) :: t()
   defp new_from_path(source_path, available_gpx, available_detections)
        when is_binary(source_path) and is_boolean(available_gpx) and
               is_boolean(available_detections) do

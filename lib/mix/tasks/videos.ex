@@ -197,7 +197,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   defp real_run() do
     IO.puts("Finding videos…")
-    current_year = to_string(Date.utc_today().year)
+    current_year = Date.utc_today().year
 
     Settings.video_source_dir_abs()
     |> Video.Source.new_from_folder()
@@ -207,7 +207,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
           IO.puts("skipping #{source} as it doesn't have a GPX file")
           {ids, tracks}
 
-        %{date: <<year::binary-size(4)>> <> _rest} ->
+        %{date: %{year: year}} ->
           exists = Map.put_new_lazy(exists, year, fn -> File.exists?(osm_index_path(year)) end)
 
           if !exists[year] || year == current_year do
