@@ -152,6 +152,7 @@ defmodule Video.Track do
   def fade(%__MODULE__{renderer: v}), do: fade(v)
   def fade(1), do: :none
   def fade(2), do: default_fade()
+  def fade(3), do: default_fade()
 
   @fade_frames 8
   @spec default_fade :: float
