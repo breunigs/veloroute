@@ -1,8 +1,12 @@
 defmodule Video.Renderer do
+  @min_renderer_version 3
+
   @doc """
   Returns the commands to preview the given video(s).
   """
   def preview_cmd(rendered, blur) do
+    ensure_min_version(rendered)
+
     filter =
       if blur,
         do: Enum.join(blurs(rendered) ++ xfades(rendered, true), ";"),
@@ -32,19 +36,23 @@ defmodule Video.Renderer do
 
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.exec_result()
   def render(rendered) do
-    target = Video.Path.target(rendered.hash())
+    ensure_min_version(rendered)
 
-    if rendered.renderer() <= 2,
-      do:
-        raise(
-          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version 3."
-        )
+    target = Video.Path.target(rendered.hash())
 
     case File.ls(target) do
       {:ok, []} -> render_run(rendered, target)
       {:error, :enoent} -> render_run(rendered, target)
       _ -> {:error, "#{target} already exists, refusing to overwrite"}
     end
+  end
+
+  defp ensure_min_version(rendered) do
+    if rendered.renderer() < @min_renderer_version,
+      do:
+        raise(
+          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version 3."
+        )
   end
 
   @nice_render ["nice", "-n19", "ionice", "-c", "3"]
