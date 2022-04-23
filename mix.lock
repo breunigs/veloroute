@@ -1,5 +1,5 @@
 %{
-  "atomex": {:hex, :atomex, "0.4.1", "7d3910ff7795db91b9af9f8d3e65af7ac69f235adf03484995fc667a36f3edc5", [:mix], [{:xml_builder, "~> 2.1", [hex: :xml_builder, repo: "hexpm", optional: false]}], "hexpm", "f3ac737f7493d42cfddf917f3ac49d60e0a0cf1a35c0712851b07fe8c0a05c7a"},
+  "atomex": {:hex, :atomex, "0.5.1", "706a8241fd6d1719b27a77b6d1192d2f85e6ecc78e6eadab29207d8cb9bb7ae5", [:mix], [{:xml_builder, "~> 2.1", [hex: :xml_builder, repo: "hexpm", optional: false]}], "hexpm", "6248891b5fcab8503982e090eedeeadb757a6311c2ef2e2998b874f7d319ab3f"},
   "beam_file": {:hex, :beam_file, "0.1.0", "815cfb5427940434209d0fced87ac933264ce744b8f483667b62b7eb3bff4d79", [:mix], [], "hexpm", "0dbebe023c991522122bb34cd7865f225b743dcccbda0ff39584bf113eee1cc9"},
   "browser": {:hex, :browser, "0.4.4", "bd6436961a6b2299c6cb38d0e49761c1161d869cd0db46369cef2bf6b77c3665", [:mix], [{:plug, "~> 1.2", [hex: :plug, repo: "hexpm", optional: true]}], "hexpm", "d476ca309d4a4b19742b870380390aabbcb323c1f6f8745e2da2dfd079b4f8d7"},
   "cachex": {:hex, :cachex, "2.1.0", "fad49b4e78d11c6c314e75bd8c9408f5b78cb065c047442798caed10803ee3be", [:mix], [{:eternal, "~> 1.1", [hex: :eternal, repo: "hexpm", optional: false]}], "hexpm", "20de7299ff4383bab07f06b0b228762041454935d1e25ca5cc2088876a5a2044"},

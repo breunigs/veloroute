@@ -47,7 +47,7 @@ defmodule Veloroute.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:atomex, "~> 0.4"},
+      {:atomex, "~> 0.5.1"},
       {:browser, "~> 0.4.4"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
