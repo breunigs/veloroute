@@ -209,7 +209,6 @@ defmodule Video.Rendered do
     |> tl()
   end
 
-  @newline String.to_charlist("\n")
   @doc """
   Outputs the video metadata in the format of
     timestamp_in_milliseconds\ntext here\nts\ntext\n…
@@ -217,16 +216,15 @@ defmodule Video.Rendered do
   ## Examples
 
       iex> Video.Rendered.metadata_io_list(Video.RenderedTest.Example)
-      ...> |> to_string()
+      ...> |> to_string
       "0\\nat start\\n10\\nafter ten ms"
-
   """
   @spec metadata_io_list(t()) :: iolist()
   def metadata_io_list(rendered) do
     rendered.metadata
-    |> Enum.reduce('', fn {timestamp, binary}, acc ->
+    |> Enum.reduce([], fn {timestamp, binary}, acc ->
       binary = String.replace(binary, "\n", " ")
-      [@newline, '#{binary}', @newline, '#{timestamp}' | acc]
+      ["\n", binary, "\n", to_string(timestamp) | acc]
     end)
     |> tl()
     |> Enum.reverse()
