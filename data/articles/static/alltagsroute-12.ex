@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "12",
         direction: :forward,
         from: "Innenstadt",
@@ -23,12 +23,16 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Altona",
         videos: [
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011832", :start, :end},
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011833", :start, :end},
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011834", :start, :end},
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011835", :start, :end},
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011836", :start, :end},
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011837", :start, "00:00:46.413"}
+          {"2022-04-23-velo3-velo12altona/GX013521", "00:00:16.683", :end},
+          {"2022-04-23-velo3-velo12altona/GX013522", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013523", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013524", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013525", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013526", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013527", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013528", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013529", :start, :end},
+          {"2022-04-23-velo3-velo12altona/GX013530", :start, "00:00:02.169"}
         ]
       },
       %Video.Track{
