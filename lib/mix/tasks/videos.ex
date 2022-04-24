@@ -6,9 +6,33 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   use Mix.Task
 
   @shortdoc "Finds videos in routes and articles and generates their metadata"
-  def run(_) do
+  def run(["all"]) do
+    generate(fn _track -> true end)
+    |> list_unused()
+  end
+
+  def run(["new"]) do
+    existing =
+      Video.Rendered.all()
+      |> Enum.filter(& &1.rendered?)
+      |> Enum.map(&{&1.sources(), true})
+      |> Enum.into(%{})
+
+    generate(fn track -> !Map.has_key?(existing, track.videos) end)
+  end
+
+  def run(_args) do
+    IO.puts(
+      :stderr,
+      "Please specifiy which video renders to generate:\n* all = create new from tracks and update all existing ones\n* new = only for un-rendered tracks (as matched by the sources)"
+    )
+  end
+
+  @spec generate((Video.Track.t() -> boolean())) :: [Video.Rendered.t() | nil]
+  defp generate(filter) do
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
+    |> Stream.filter(filter)
     |> Tqdm.tqdm(description: "generating")
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn
@@ -19,10 +43,9 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
         IO.puts(:stderr, inspect(broken))
         nil
     end)
-    |> list_unused()
   end
 
-  def list_unused(rendered) do
+  defp list_unused(rendered) do
     keep = rendered |> MapSet.new()
     all = Video.Rendered.all() |> MapSet.new()
     unused = MapSet.difference(all, keep)
