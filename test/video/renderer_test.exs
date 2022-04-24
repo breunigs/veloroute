@@ -264,7 +264,7 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def length_ms(), do: 579
     @impl Video.Rendered
-    def renderer(), do: 2
+    def renderer(), do: 3
     @impl Video.Rendered
     def metadata(), do: [{0, "Januar 2022"}]
 
