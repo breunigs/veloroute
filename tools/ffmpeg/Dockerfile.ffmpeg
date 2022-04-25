@@ -1,6 +1,6 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=0.5.1
+ARG RAV1E_VERSION=p20220419
 ARG FFMPEG_VERSION=5.0
 ARG BLUR_VERSION=0e3f4c6396bff074c03c35f0cf0b2d905c6fee85
 
@@ -15,8 +15,8 @@ RUN  \
 
 RUN \
   cd /downloads/ && \
-  wget https://github.com/xiph/rav1e/archive/refs/tags/v${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
-  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e-${RAV1E_VERSION} rav1e
+  wget https://github.com/xiph/rav1e/archive/refs/tags/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
+  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
 
 RUN \
   cd /downloads/ && \
@@ -49,6 +49,7 @@ RUN cmake . && make
 FROM debian:testing-slim AS ffmpeg-build
 
 RUN  \
+  echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
   autoconf \
@@ -78,6 +79,7 @@ RUN  \
   opencl-dev \
   pkg-config \
   yasm \
+  && apt-get install -y --no-install-recommends -t experimental rustc \
   && rm -rf /var/lib/apt/lists/* \
   && cargo install cargo-c
 
