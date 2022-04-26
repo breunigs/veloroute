@@ -30741,6 +30741,7 @@
     <nd ref='-22536793' />
     <nd ref='-22536794' />
     <nd ref='-22536791' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-08-01-kattwykbruecke' />
     <tag k='type' v='article' />
   </way>
