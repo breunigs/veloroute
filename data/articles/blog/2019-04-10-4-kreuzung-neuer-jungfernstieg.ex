@@ -11,8 +11,9 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
     do:
       "2022: Zwischenlösung für Fahrtbeziehung Nord/Süd (Veloroute 4) und Kennedybrücke → Alsterglacis"
 
-  def start(), do: ~d[2022-05]
-  def stop(), do: ~d[2022-06]
+  def start(), do: ~d[2022-05-02]
+  def stop(), do: ~d[2022-06-19]
+  def construction_site_id_hh(), do: [45148]
 
   def type(), do: :planned
 

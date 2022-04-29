@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.Pappelallee do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt zum Umbau",
+       "https://www.hamburg.de/wandsbek/strassenbaustellen/15660286/buchwaldstrasse/"},
       {"Erläuterungsbereicht und Pläne",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012155"},
       {"Auftragsvergabe zum Bau",
