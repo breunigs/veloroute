@@ -20,6 +20,10 @@ end
 defimpl Collectable, for: Video.Renderer.Progress do
   def into(pbar) do
     updater = fn
+      pbar, {:cont, "WARNING:" <> _rest = out} ->
+        IO.puts(:stderr, out)
+        %{pbar | out: [out | pbar.out]}
+
       pbar, {:cont, out} ->
         with [_, frames] <- Regex.run(~r/^frame=\s*(\d+)\s/m, out),
              frames <- String.to_integer(frames) do
