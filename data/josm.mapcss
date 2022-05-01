@@ -123,10 +123,10 @@ relation way|z16-!.mixed::fakeoneway {
 }
 
 way[gpx:name] {
-  color: #FFFE9D;
+  color: #BC129A;
   width: 1;
-  casing-color: #555555;
-  casing-width: 0.1;
+  casing-color: #dddddd;
+  casing-width: 0.5;
 }
 
 way|z20-[gpx:name] {
@@ -137,8 +137,8 @@ way[gpx:name] > node {
   symbol-shape: none;
 }
 
-way[gpx:name] > node|z19- {
-  symbol-size: 1;
+way[gpx:name] > node|z18- {
+  symbol-size: 3;
   symbol-stroke-opacity: 1;
   symbol-fill-opacity: 1;
   symbol-shape: circle;
