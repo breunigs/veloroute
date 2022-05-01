@@ -7,10 +7,8 @@ defmodule Video.Renderer do
   def preview_cmd(rendered, blur) do
     ensure_min_version(rendered)
 
-    filter =
-      if blur,
-        do: Enum.join(blurs(rendered) ++ xfades(rendered, true), ";"),
-        else: Enum.join(xfades(rendered, false), ";")
+    blurred = if blur, do: blurs(rendered), else: settb(rendered)
+    filter = Enum.join(blurred ++ xfades(rendered), ";")
 
     ["nice", "-n15", "ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
       inputs(rendered) ++
@@ -84,7 +82,7 @@ defmodule Video.Renderer do
   end
 
   def render_cmd(rendered, tmp_dir) do
-    filter = Enum.join(blurs(rendered) ++ xfades(rendered, true), ";")
+    filter = Enum.join(blurs(rendered) ++ xfades(rendered), ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
@@ -205,6 +203,9 @@ defmodule Video.Renderer do
       end)
   end
 
+  # uses the jsonblur frei0r plugin for the input videos (e.g. [0]) and outputs
+  # them as blrs (e.g. [blur0]). Additionally it sets the timebase, see settb
+  # for details.
   defp blurs(rendered) do
     rendered.sources()
     |> Enum.with_index()
@@ -216,13 +217,26 @@ defmodule Video.Renderer do
     end)
   end
 
-  defp xfades(rendered, blur) when is_boolean(blur) do
+  # sets the timebase for all input videos (e.g. [0]) and outputs them as blurs
+  # (e.g. [blur0]). This is sometimes required or ffmpeg will fail with
+  # "different timebase".
+  defp settb(rendered) do
+    rendered.sources()
+    |> Enum.with_index()
+    |> Parallel.map(2, fn {{_path, _from, _to}, idx} ->
+      "[#{idx}]settb=AVTB[blur#{idx}]"
+    end)
+  end
+
+  # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
+  # ("seamless") them as needed. It outputs a single, unnamed video at the end
+  # of the filter graph.
+  defp xfades(rendered) do
     fade = Video.Track.fade(rendered.renderer())
     count = length(rendered.sources())
-    blur = if blur, do: "blur", else: ""
 
     if count == 1 do
-      ["[#{blur}0]copy"]
+      ["[blur0]copy"]
     else
       rendered.sources()
       |> Enum.with_index()
@@ -244,8 +258,8 @@ defmodule Video.Renderer do
         {dur, idx, segment_fade}, {total, filter_graph} ->
           new_duration = total + dur - segment_fade
 
-          prev = if idx == 1, do: "[#{blur}0]", else: "[fade#{idx - 1}]"
-          next = "[#{blur}#{idx}]"
+          prev = if idx == 1, do: "[blur0]", else: "[fade#{idx - 1}]"
+          next = "[blur#{idx}]"
 
           xfade =
             cond do
