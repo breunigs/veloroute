@@ -6,8 +6,6 @@ defmodule Data.Article.Blog.MariaLouisenStrasse do
 
   def title(), do: "Maria-Louisen-Straße (Veloroute 13)"
 
-  def start(), do: ~d[2020]
-
   def type(), do: :planned
 
   def tags(), do: ["13"]

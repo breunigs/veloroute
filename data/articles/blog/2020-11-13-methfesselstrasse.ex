@@ -5,8 +5,6 @@ defmodule Data.Article.Blog.Methfesselstrasse do
 
   def title(), do: "Methfesselstraße"
 
-  def start(), do: ~d[2021-05]
-
   def type(), do: :planned
 
   def tags(), do: ["eimsbüttel", "articles"]

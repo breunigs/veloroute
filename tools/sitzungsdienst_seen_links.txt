@@ -818,3 +818,5 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016483
 '2022-04-26':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012726
+'2022-05-04':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011761

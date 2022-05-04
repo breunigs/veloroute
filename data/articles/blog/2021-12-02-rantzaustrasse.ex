@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Rantzaustrasse do
   def created_at(), do: ~D[2021-12-02]
   def title(), do: "Rantzaustraße (Veloroute 7)"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["7"]
 
   def start(), do: ~d[2021-12-06]

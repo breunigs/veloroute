@@ -5,8 +5,6 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def title(), do: "Högerdamm (Freizeitroute 6)"
 
-  def start(), do: ~d[2021Q3]
-
   def type(), do: :planned
 
   def tags(), do: ["FR6"]

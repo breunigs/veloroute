@@ -4,10 +4,6 @@ defmodule Data.Article.Blog.HammerStrasse do
   def created_at(), do: ~D[2021-02-10]
 
   def title(), do: "Hammer Straße zwischen Jüthornstraße und Grenzknick"
-
-  def start(), do: ~d[2021-06]
-  def stop(), do: ~d[2021-08]
-
   def type(), do: :planned
 
   def tags(), do: ["radfahrstreifen", "bettelampel", "articles"]

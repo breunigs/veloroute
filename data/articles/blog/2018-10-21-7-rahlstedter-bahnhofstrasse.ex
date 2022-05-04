@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.RahlstedterBahnhofstrasse do
   def start(), do: ~d[2021-04-12]
   def stop(), do: ~d[2021-12-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [15097]
   def tags(), do: ["7", "w27"]
 

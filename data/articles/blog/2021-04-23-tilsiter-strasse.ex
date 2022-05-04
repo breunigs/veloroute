@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.TilsiterStrasse do
 
   def start(), do: ~d[2022Q1]
 
-  def type(), do: :intent
+  def type(), do: :construction
 
   def tags(), do: ["6", "w16.2", "w16"]
 

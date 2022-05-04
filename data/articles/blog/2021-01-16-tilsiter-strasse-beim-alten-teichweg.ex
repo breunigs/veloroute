@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
   def start(), do: ~d[2021-01-04]
   def stop(), do: ~d[2022-01-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [13995, 15562]
   def tags(), do: ["6", "w16", "w16.1"]
 

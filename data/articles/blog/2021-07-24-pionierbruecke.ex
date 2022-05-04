@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Pionierbruecke do
   def start(), do: ~d[2021-06]
   def stop(), do: ~d[2021-12]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["FR4"]
 

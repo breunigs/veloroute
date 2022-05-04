@@ -10,8 +10,6 @@ defmodule Data.Article.Blog.BlankeneseSued do
     do:
       "Veloroute 1 wird im südlichen Blankenese meist Fahrradstraße; die Kreuzungen an Eichendorffstraße und Elbchaussee deutlich fahrradfreundlicher."
 
-  def start(), do: ~d[2022Q2]
-
   def type(), do: :planned
 
   def tags(), do: ["1", "A22"]
