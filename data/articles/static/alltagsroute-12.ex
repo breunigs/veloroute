@@ -36,7 +36,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "12",
         direction: :backward,
         from: "Altona",
@@ -44,17 +44,16 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "von Altona in die Innenstadt",
         videos: [
-          {"2021-06-27-veloroute9/GX012013", :start, :end},
-          {"2021-06-27-veloroute9/GX012014", :start, :end},
-          {"2021-06-27-veloroute9/GX012015", :start, :end},
-          {"2021-06-27-veloroute9/GX012016", :start, :end},
-          {"2021-06-27-veloroute9/GX012017", :start, :end},
-          {"2021-06-27-veloroute9/GX012018", :start, :end},
-          {"2021-06-27-veloroute9/GX012019", :start, :end},
-          {"2021-06-27-veloroute9/GX012020", :start, :end},
-          {"2021-06-27-veloroute9/GX012021", :start, "00:00:13.413"},
-          {"2021-06-22-velo7-und-pauli-altona/GX011901", "00:00:04.238", "00:00:16.450"},
-          {"2021-06-05-velorouten-1-1a-2/GX011655", "00:00:34.601", "00:00:48.215"}
+          {"2022-04-30-velo5-u-12innenstadt/GX013567", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013568", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013569", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013571", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013572", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013573", :start, :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013574", :start, :end},
+          {"2021-06-27-veloroute9/GX012021", :start, "00:00:11.645"},
+          {"2022-04-30-velo5-u-12innenstadt/GX013575", "00:00:13.146", :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013576", :start, "00:00:39.740"}
         ]
       }
     ]

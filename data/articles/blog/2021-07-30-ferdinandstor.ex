@@ -12,23 +12,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def tags(), do: ["5", "6", "FR2", "FR3"]
 
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 1,
-        group: "detour",
-        direction: :forward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung Ferdinandstor stadtauswärts",
-        videos: [
-          {"2021-07-30-ferdinandstor-fr4-lohsen/GX012449", "00:00:05.172", :end},
-          {"2021-07-30-ferdinandstor-fr4-lohsen/GX012450", :start, :end},
-          {"2021-07-30-ferdinandstor-fr4-lohsen/GX012451", :start, "00:00:01.502"}
-        ]
-      }
-    ]
+  def tracks(), do: []
 
   def links(_assigns) do
     []
