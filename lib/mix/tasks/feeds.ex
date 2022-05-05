@@ -206,7 +206,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
     if String.contains?(code, str) do
       code
     else
-      String.replace(code, ~r/def created_at\(\), .*/, "\\1\n#{str}")
+      String.replace(code, ~r/def created_at\(\), .*/, "\\0\n  #{str}")
     end
   end
 end
