@@ -158,16 +158,29 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
     new_start = find_new_date(art, :start, relevant)
     new_stop = find_new_date(art, :stop, relevant)
 
-    if new_start || new_stop do
-      %{path: path, code: code} = module_to_path()[art]
+    cond do
+      past?(new_start) && past?(new_stop) ->
+        # ignore updates if they are both in the past and likely were manually
+        # removed from the article
+        nil
 
-      code = if new_stop, do: replace_with_fallback(code, :stop, new_stop), else: code
-      code = if new_start, do: replace_with_fallback(code, :start, new_start), else: code
+      new_start || new_stop ->
+        %{path: path, code: code} = module_to_path()[art]
 
-      File.write!(path, code)
-      IO.puts("Updated #{art} in #{path}")
+        code = if new_stop, do: replace_with_fallback(code, :stop, new_stop), else: code
+        code = if new_start, do: replace_with_fallback(code, :start, new_start), else: code
+
+        File.write!(path, code)
+        IO.puts("Updated #{art} in #{path}")
+
+      true ->
+        nil
     end
   end
+
+  defp past?(date)
+  defp past?(nil), do: false
+  defp past?(date), do: Date.compare(date, Date.utc_today()) == :lt
 
   defp find_new_date(art, field, relevant) do
     exact = apply(art, field, [])
