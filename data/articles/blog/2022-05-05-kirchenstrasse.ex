@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   def start(), do: ~d[2023-03]
   def stop(), do: ~d[2023-05]
 
-  def tags(), do: ["13"]
+  def tags(), do: ["12"]
 
   def links(_assigns) do
     [

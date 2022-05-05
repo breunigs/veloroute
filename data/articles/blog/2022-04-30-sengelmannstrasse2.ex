@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
   def summary(), do: "Früherer Straßenseitenwechsel durch Baustelle nötig"
   def type(), do: :construction
 
-  def tags(), do: ["5", "5N"]
+  def tags(), do: ["5N", "5"]
   def tracks(), do: []
 
   def links(_assigns) do
