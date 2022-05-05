@@ -60,10 +60,12 @@ defmodule VelorouteWeb.Live.VideoState do
         do: Article.Decorators.article_with_tracks(article).tracks(),
         else: []
 
+    art_center = maybe_article_center(article)
+
     new_state =
       old_state
       |> update_direction_from_params(params)
-      |> update_from_tracks(tracks, accurate_new_start || old_state.start)
+      |> update_from_tracks(tracks, accurate_new_start || art_center || old_state.start)
 
     new_state =
       cond do
@@ -89,7 +91,7 @@ defmodule VelorouteWeb.Live.VideoState do
         article && current_track(new_state) &&
             Util.overlap?(current_track(new_state).parent_ref.tags(), article.tags()) ->
           Logger.debug("route is related to current article, updating position")
-          set_start(new_state, maybe_article_center(article) || old_state.start)
+          set_start(new_state, art_center || old_state.start)
 
         true ->
           Logger.debug("no position information, not changing")
@@ -106,6 +108,8 @@ defmodule VelorouteWeb.Live.VideoState do
   @spec current_rendered(t()) :: Video.Rendered.t() | nil
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
+
+  defp maybe_article_center(nil), do: nil
 
   defp maybe_article_center(art) when is_module(art) do
     if Article.has_category?(art, "Blog") do
