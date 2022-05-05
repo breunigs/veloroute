@@ -354,6 +354,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
     |> Enum.each(&IO.puts/1)
   end
 
+  defp extract({name, _extra, url}), do: List.wrap({name, url})
   defp extract({_name, _url} = entry), do: List.wrap(entry)
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex),
