@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, viewport-fit=cover"/>
-    <link rel="stylesheet" href={Routes.static_path(@conn, "/css/app.css")}/>
     <title><%= assigns[:page_title] || Settings.page_title_long() %></title>
     <%= csrf_meta_tag() %>
     <link rel="canonical" href={Settings.url() <> @conn.request_path}/>
@@ -37,50 +36,7 @@
     <%= if Settings.twitter_handle() != nil do %>
       <meta property="twitter:creator" content={Settings.twitter_handle()}/>
     <% end %>
-    <%# just the layout parts copied from the rendered CSS. Needs manual adjustment after changes are made. %>
-    <style>
-      body {
-        overflow: hidden;
-        height: 100vh;
-        height: -webkit-fill-available;
-      }
-
-      #map, #videoOuter {
-        width: 66.6666vw;
-        min-width: 330px;
-        height: 50%;
-        display: block;
-        left: 0;
-        position: fixed;
-      }
-
-      #videoOuter {
-        top: 50%;
-        overflow: hidden;
-      }
-
-      #sidebar {
-        width: 33.3333vw;
-        min-width: 330px;
-        height: 100vh;
-        height: -webkit-fill-available;
-        position: relative;
-        top: 0;
-        left: 330px;
-        left: max(330px, 66.6666vw);
-        display: flex;
-        flex-flow: column;
-        z-index: 3;
-      }
-
-      @media (min-width: 990px) {
-        #sidebar {
-          left: 66.6666vw;
-          left: max(330px, 66.6666vw);
-          position: fixed;
-        }
-      }
-    </style>
+    <%= VelorouteWeb.CSSInline.tag(@conn, :app) %>
   </head>
   <%
     ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
@@ -122,14 +78,6 @@
       <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
       <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/link_helper.js")}></script>
     <% end %>
-
-    <link rel="preload" href={Routes.static_path(@conn, "/images/play.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/gear.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/fullscreen.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/reverse.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/skip_forward_5.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/skip_backward_5.svg")} as="image">
-    <link rel="preload" href={Routes.static_path(@conn, "/images/pause.svg")} as="image" importance="low">
 
     <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
