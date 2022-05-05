@@ -7,8 +7,8 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
 
   def summary(), do: "Planung sieht eigenständige Radwege und Erweiterung der Grünanlage vor."
 
-  def start(), do: ~d[2022]
-  def stop(), do: ~d[2022]
+  def start(), do: ~d[2022-06-01]
+  def stop(), do: ~d[2023-05-01]
 
   def type(), do: :planned
 

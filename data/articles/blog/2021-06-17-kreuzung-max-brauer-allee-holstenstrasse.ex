@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
   def start(), do: ~d[2021-07-25]
   def stop(), do: ~d[2022-06-11]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14983]
   def tags(), do: []
 

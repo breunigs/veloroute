@@ -8,6 +8,9 @@ defmodule Data.Article.Blog.Holstenplatz do
 
   def type(), do: :planned
 
+  def start(), do: ~d[2022-09-01]
+  def stop(), do: ~d[2023-12-22]
+
   def tags(), do: ["13"]
 
   def links(_assigns) do

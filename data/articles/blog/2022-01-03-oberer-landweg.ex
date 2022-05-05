@@ -5,12 +5,13 @@ defmodule Data.Article.Blog.ObererLandweg do
 
   def title(), do: "Oberer Landweg (Alltagsroute 9, RSW Geesthacht)"
 
-  def start(), do: ~d[2023]
+  def start(), do: ~d[2022-09]
+  def stop(), do: ~d[2023-07]
 
   def type(), do: :intent
 
   def summary(),
-    do: "Planung 2022, Umbau evtl. ab 2023"
+    do: "Planung 2022, Umbau bis 2023"
 
   def tags(), do: ["9", "rsw-geesthacht", "rsw"]
 

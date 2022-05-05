@@ -4,8 +4,8 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def created_at(), do: ~D[2022-01-15]
   def title(), do: "Rothenbaumchaussee"
 
-  def start(), do: ~d[]
-  def stop(), do: ~d[]
+  def start(), do: ~d[2022Q3]
+  def stop(), do: ~d[2023Q3]
 
   def type(), do: :planned
 
