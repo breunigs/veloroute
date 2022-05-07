@@ -63,15 +63,47 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   @requirements ["app.start"]
 
-  @shortdoc "Print commands to render videos that are still missing"
-  def run(_) do
-    Video.Dir.must_exist!(&real_run/0)
-  end
-
-  defp real_run do
+  @shortdoc "Print commands to render videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
+  def run(filters) do
     Docker.build("tools/ffmpeg/Dockerfile.ffmpeg")
 
+    Video.Dir.must_exist!(fn ->
+      filters |> find() |> info() |> render()
+    end)
+  end
+
+  defp info(videos) do
+    IO.puts(:stderr, "Rendering #{length(videos)} videos:")
+    Enum.each(videos, fn vid -> IO.puts(:stderr, "* #{vid.hash()} #{vid.name()}") end)
+    IO.puts(:stderr, "")
+    videos
+  end
+
+  @spec find(nil | [binary()]) :: any()
+  defp find(nil), do: Video.Rendered.pending()
+  defp find([]), do: Video.Rendered.pending()
+
+  defp find(filters) when is_list(filters) and length(filters) >= 1 do
+    filters = filters |> Enum.flat_map(&clean/1) |> MapSet.new()
+
     Video.Rendered.pending()
+    |> Enum.reject(fn video ->
+      ident = [video.name(), video.hash()] |> Enum.flat_map(&clean/1) |> MapSet.new()
+      MapSet.disjoint?(ident, filters)
+    end)
+  end
+
+  @spec clean(binary()) :: [binary()]
+  defp clean(string) do
+    string
+    |> String.downcase()
+    |> String.replace(~r/[^a-z0-9\s-]+/, " ")
+    |> String.trim()
+    |> String.split(~r/\s+/)
+  end
+
+  defp render(videos) do
+    videos
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       banner = """
