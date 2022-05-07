@@ -33,6 +33,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
     |> Stream.filter(filter)
+    |> Stream.uniq()
     |> Tqdm.tqdm(description: "generating")
     |> Parallel.map(&Video.Rendered.save_from_track/1)
     |> Enum.map(fn
