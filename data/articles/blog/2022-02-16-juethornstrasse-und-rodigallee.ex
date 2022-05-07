@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
   def start(), do: ~d[2023Q3]
   def stop(), do: ~d[2025Q3]
 
+  def tracks(), do: Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse.tracks()
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht",

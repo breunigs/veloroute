@@ -14,6 +14,41 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
   def start(), do: ~d[2023Q3]
   def stop(), do: ~d[2025Q3]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "Rodigallee",
+        direction: :forward,
+        from: "Bovestraße",
+        to: "Holsteiner Tor",
+        parent_ref: __MODULE__,
+        text: "Rodigallee Richtung Osten",
+        videos: [
+          {"2022-05-07-v10-v7-u-rodigallee/GX013771", "00:00:01.301", :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013772", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013773", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013774", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013775", :start, "00:00:47.147"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Rodigallee",
+        direction: :forward,
+        from: "Holsteiner Tor",
+        to: "Bovestraße",
+        parent_ref: __MODULE__,
+        text: "Rodigallee Richtung Westen",
+        videos: [
+          {"2022-05-07-v10-v7-u-rodigallee/GX013775", "00:00:48.682", :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013776", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013777", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013778", :start, "00:01:19.046"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "1. Entwurf",
