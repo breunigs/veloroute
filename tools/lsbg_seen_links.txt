@@ -522,3 +522,5 @@
 - "/contentblob/15453808/e8e4d04fa91a01ad39c8dc9e13ada2dc/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"
 '2022-05-04':
 - "/contentblob/16133046/e4d53fcc93b20ff394c1e6b7cf5e36f3/data/bergedorfer-strasse-b5-instandsetzung-05-22-bis-09-22.pdf"
+'2022-05-06':
+- "/contentblob/16149566/391f8e4dd71251622369e293136f523a/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauhphase-3-stand-05-22.pdf"

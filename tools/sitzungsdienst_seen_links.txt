@@ -854,3 +854,6 @@
 - https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006434
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1007967
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1002942
+'2022-05-06':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011790
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011750
