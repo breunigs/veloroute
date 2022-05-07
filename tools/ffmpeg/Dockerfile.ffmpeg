@@ -37,8 +37,7 @@ RUN apt-get update \
   g++ \
   libboost-dev \
   libboost-iostreams-dev \
-  libmagick++-6-headers \
-  libmagick++-6.q16-dev \
+  libvips-dev \
   make \
   && rm -rf /var/lib/apt/lists/*
 
