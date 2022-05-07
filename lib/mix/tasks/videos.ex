@@ -68,7 +68,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
     Docker.build("tools/ffmpeg/Dockerfile.ffmpeg")
 
     Video.Dir.must_exist!(fn ->
-      filters |> find() |> info() |> render()
+      filters |> find() |> Enum.sort_by(& &1.name) |> info() |> render()
     end)
   end
 
@@ -103,9 +103,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   defp render(videos) do
-    videos
-    |> Enum.sort_by(& &1.name)
-    |> Enum.each(fn rendered ->
+    Enum.each(videos, fn rendered ->
       banner = """
 
       ###########################################################
