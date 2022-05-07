@@ -128,9 +128,9 @@ RUN \
   i965-va-driver \
   libboost-iostreams1.74.0 \
   libdav1d5 \
-  libmagick++-6.q16-8 \
   libva-drm2 \
   libva2 \
+  libvips42 \
   libvpx7 \
   libwebp[0-9]+ \
   libwebpmux3 \
