@@ -9,6 +9,36 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
 
   def start(), do: ~d[2024]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "v10-geplant",
+        direction: :forward,
+        from: "Blohmstraße",
+        to: "Bostelbeker Hauptdeich",
+        parent_ref: __MODULE__,
+        text: "von der Blohmstraße zum Bostelbeker Hauptdeich",
+        videos: [
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:00:51.018", "00:01:18.946"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013685", "00:03:14.828", "00:03:32.312"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "v10-geplant",
+        direction: :backward,
+        from: "Bostelbeker Hauptdeich",
+        to: "Blohmstraße",
+        parent_ref: __MODULE__,
+        text: "vom Bostelbeker Hauptdeich zur Blohmstraße",
+        videos: [
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013685", "00:02:57.978", "00:03:14.061"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:03:00.013", "00:03:27.941"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"Hinweis des Bezirkamts Harburg auf Twitter",
