@@ -42,9 +42,6 @@
     ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
   %>
   <body class={if Browser.ie?(ua), do: "ie11"}>
-    <div id="map"></div>
-    <div id="ping"></div>
-
     <%= @inner_content %>
 
     <%= content_tag(:div, "", id: "settings", data: [

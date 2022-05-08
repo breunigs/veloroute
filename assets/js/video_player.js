@@ -382,6 +382,17 @@ function updatePoster() {
   updatePosterState.image.src = updatePosterState.url;
 }
 
+addEventListener('beforeprint', event => {
+  video.pause();
+  clearPosterUpdater();
+  updatePosterState = {
+    image: null,
+    timeout: null,
+    url: state.videoPoster,
+  }
+  setPosterNow();
+});
+
 function setVideo() {
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
