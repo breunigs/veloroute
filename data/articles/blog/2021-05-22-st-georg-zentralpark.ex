@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
 
   def start(), do: ~d[2021-04]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["8"]
 

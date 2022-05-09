@@ -857,3 +857,5 @@
 '2022-05-06':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011790
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011750
+'2022-05-09':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012631
