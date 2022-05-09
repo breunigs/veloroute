@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "8 Bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -24,30 +24,26 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         videos: [
-          {"2021-07-03-veloroute10/GX012051", :start, "00:00:03.770"},
-          {"2021-06-27-veloroute9/GX012023", "00:00:56.356", :end},
-          {"2021-04-25-freizeitroute4/GX011376", "00:00:10.377", :end},
-          {"2021-04-25-freizeitroute4/GX011377", :start, "00:00:06.473"},
-          {"2021-06-25-velo8/GX011969", "00:00:06.974", :end},
-          {"2021-06-25-velo8/GX011970", :start, :end},
-          {"2021-06-25-velo8/GX011971", :start, :end},
-          {"2021-06-25-velo8/GX011972", :start, :end},
-          {"2021-06-25-velo8/GX011973", :start, :end},
-          {"2021-06-25-velo8/GX011975", :start, "00:01:16.009"},
-          {"2021-06-25-velo8/GX011979", "00:00:21.021", :end},
-          {"2021-06-25-velo8/GX011980", :start, :end},
-          {"2021-06-25-velo8/GX011981", :start, :end},
-          {"2021-06-25-velo8/GX011982", :start, :end},
-          {"2021-06-25-velo8/GX011983", :start, :end},
-          {"2021-06-25-velo8/GX011984", :start, "00:00:19.753"},
-          {"2021-06-25-velo8/GX011985", "00:03:14.828", :end},
-          {"2021-06-25-velo8/GX011986", :start, :end},
-          {"2021-06-25-velo8/GX011987", :start, :end},
-          {"2021-06-25-velo8/GX011988", :start, "00:00:10.744"}
+          {"2022-05-07-v10-v7-u-rodigallee/GX013734", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013735", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013736", :start, :end},
+          {"2022-05-08-velo8/GX013801", :start, :end},
+          {"2022-05-08-velo8/GX013802", :start, :end},
+          {"2022-05-08-velo8/GX013803", :start, :end},
+          {"2022-05-08-velo8/GX013804", :start, "00:01:16.543"},
+          {"2022-05-08-velo8/GX013810", "00:00:00.567", :end},
+          {"2022-05-08-velo8/GX013811", :start, :end},
+          {"2022-05-08-velo8/GX013812", :start, :end},
+          {"2022-05-08-velo8/GX013813", :start, :end},
+          {"2022-05-08-velo8/GX013814", :start, :end},
+          {"2022-05-08-velo8/GX013815", :start, :end},
+          {"2022-05-08-velo8/GX013816", :start, "00:00:46.280"},
+          {"2022-05-08-velo8/GX013823", "00:00:02.336", "00:00:10.410"},
+          {"2022-05-08-velo8/GX013819", "00:00:00.133", "00:00:31.031"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "8 Bergedorf",
         direction: :backward,
         from: "Bergedorf",
@@ -55,26 +51,27 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         videos: [
-          {"2021-06-25-velo8/GX011989", "00:00:01.368", :end},
-          {"2021-06-25-velo8/GX011990", :start, :end},
-          {"2021-06-25-velo8/GX011991", :start, :end},
-          {"2021-06-25-velo8/GX011992", :start, :end},
-          {"2021-06-25-velo8/GX011993", :start, :end},
-          {"2021-06-25-velo8/GX011994", :start, :end},
-          {"2021-06-25-velo8/GX011995", :start, :end},
-          {"2021-06-25-velo8/GX011996", :start, :end},
-          {"2021-06-25-velo8/GX011997", :start, :end},
-          {"2021-06-25-velo8/GX011998", :start, :end},
-          {"2021-06-25-velo8/GX011999", :start, :end},
-          {"2021-06-25-velo8/GX012000", :start, :end},
-          {"2021-06-25-velo8/GX012001", :start, :end},
-          {"2021-06-22-velo7-und-pauli-altona/GX011937", :start, "00:00:47.180"}
+          {"2022-05-08-velo8/GX013820", "00:00:01.535", :end},
+          {"2022-05-08-velo8/GX013821", :start, :end},
+          {"2022-05-08-velo8/GX013822", :start, "00:00:08.075"},
+          {"2022-05-08-velo8/GX013830", "00:00:02.703", :end},
+          {"2022-05-08-velo8/GX013831", :start, "00:03:47.461"},
+          {"2022-05-08-velo8/GX023831", "00:02:49.936", :end},
+          {"2022-05-08-velo8/GX013832", :start, :end},
+          {"2022-05-08-velo8/GX013833", :start, :end},
+          {"2022-05-08-velo8/GX013834", :start, :end},
+          {"2022-05-08-velo8/GX013835", :start, :end},
+          {"2022-05-08-velo8/GX013836", :start, :end},
+          {"2022-05-08-velo8/GX013837", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013788", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013789", :start, :end},
+          {"2022-05-07-v10-v7-u-rodigallee/GX013790", :start, "00:00:28.228"}
         ]
       },
 
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "8 Mümmelmannsberg",
         direction: :forward,
         from: "Innenstadt",
@@ -82,12 +79,12 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Mümmelmannsberg",
         videos: [
-          {"2021-06-25-velo8/GX011984", "00:00:19.753", :end},
-          {"2021-06-25-velo8/GX011985", :start, "00:01:33.226"}
+          {"2022-05-08-velo8/GX013831", "00:03:54.234", :end},
+          {"2022-05-08-velo8/GX023831", :seamless, "00:00:27.689"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "8 Mümmelmannsberg",
         direction: :backward,
         from: "Mümmelmannsberg",
@@ -95,7 +92,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "vom Mümmelmannsberg in die Innenstadt",
         videos: [
-          {"2021-06-25-velo8/GX011985", "00:01:33.226", "00:03:12.592"}
+          {"2022-05-08-velo8/GX023831", "00:00:55.044", "00:02:56.808"}
         ]
       }
     ]
