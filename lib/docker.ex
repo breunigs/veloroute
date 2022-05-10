@@ -111,9 +111,9 @@ defmodule Docker do
       "#{Util.user_id()}",
       "--rm",
       "--name",
-      container_name
-      # "--mount",
-      # ~s|type=bind,source=#{cache_dir},target=/workdir|
+      container_name,
+      "--mount",
+      ~s|type=bind,source=#{cache_dir},target=/workdir|
     ]
 
     args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
