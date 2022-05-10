@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   def links(_assigns) do
     [
       {"Bauvergabe ab Schüslerweg bis Triftstraße", "2022",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/51f7257b-d205-4047-9a1e-e37d518339e1/details"},
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/f4e9ef1d-0187-4a07-bef1-71f57b027716/details"},
       {"Erläuterungsbericht
     und Pläne zum 2. Entwurf", "Lageplan nur ca. Blatt 1 bis 8, ansonsten siehe 1. Entwurf",
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005983"},

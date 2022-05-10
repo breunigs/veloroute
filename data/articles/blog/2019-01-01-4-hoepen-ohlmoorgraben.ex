@@ -6,46 +6,18 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
   def updated_at(), do: ~D[2020-10-31]
   def title(), do: "Höpen und Am Ohlmoorgraben (Veloroute 4)"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["4"]
 
   def links(_assigns) do
     [
+      {"Bezirksamt Nord zur Fertigstellung auf Twitter",
+       "https://twitter.com/BezirksamtN/status/1524020686783713280"},
       {"Erläuterungsbericht und Pläne des finalen Entwurfs",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1009931"}
     ]
   end
-
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 2,
-        group: "detour",
-        direction: :forward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung Baustelle Ohlmoorgraben",
-        videos: [
-          {"2022-03-26-veloroute-4/GX013360", "00:03:01.415", :end},
-          {"2022-03-26-veloroute-4/GX013361", :start, "00:00:10.911"}
-        ]
-      },
-      %Video.Track{
-        renderer: 2,
-        group: "detour",
-        direction: :backward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung Baustelle Ohlmoorgraben",
-        videos: [
-          {"2022-03-26-veloroute-4/GX013369", :start, :end},
-          {"2022-03-26-veloroute-4/GX013370", :start, "00:00:10.544"}
-        ]
-      }
-    ]
 
   def text(assigns) do
     ~H"""
