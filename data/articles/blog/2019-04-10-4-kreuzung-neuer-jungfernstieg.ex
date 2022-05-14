@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
   def stop(), do: ~d[2022-06-19]
   def construction_site_id_hh(), do: [45148]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["4"]
 
