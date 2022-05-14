@@ -44,6 +44,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
         IO.puts(:stderr, inspect(broken))
         nil
     end)
+    |> tap(fn _ -> Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"]) end)
   end
 
   defp list_unused(rendered) do
