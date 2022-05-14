@@ -13,6 +13,39 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def tags(), do: ["Bezirksroute B", "Eimsbüttel"]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "Bundesstraße",
+        direction: :forward,
+        from: "Grindelallee",
+        to: "Eimsbütteler Brücke",
+        parent_ref: __MODULE__,
+        text: "Bundesstraße Richtung Eimsbüttel",
+        videos: [
+          {"2022-05-14-velo6-u-bundesstr/GX013891", :start, :end},
+          {"2022-05-14-velo6-u-bundesstr/GX013892", :start, :end},
+          {"2022-05-14-velo6-u-bundesstr/GX013893", :start, "00:00:15.015"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Bundesstraße",
+        direction: :backward,
+        from: "Eimsbütteler Brücke",
+        to: "Grindelallee",
+        parent_ref: __MODULE__,
+        text: "Bundesstraße Richtung Dammtor",
+        videos: [
+          {"2022-05-14-velo6-u-bundesstr/GX013893", "00:00:36.403", "00:01:07.401"},
+          {"2022-05-14-velo6-u-bundesstr/GX013851", "00:00:10.277", :end},
+          {"2022-05-14-velo6-u-bundesstr/GX013852", :start, :end},
+          {"2022-05-14-velo6-u-bundesstr/GX013853", :start, "00:00:05.606"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     []
   end

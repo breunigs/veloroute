@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
   def start(), do: ~d[2021-02-08]
   def stop(), do: ~d[2022-04-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14470, 15779]
   def tags(), do: ["6", "w14"]
 
