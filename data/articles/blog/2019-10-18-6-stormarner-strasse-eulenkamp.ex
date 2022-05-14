@@ -10,22 +10,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
   def construction_site_id_hh(), do: [15014]
   def tags(), do: ["6", "w13"]
 
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 1,
-        group: "detour",
-        direction: :forward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Umleitung",
-        videos: [
-          {"2021-06-19-veloroute6/GX011852", :start, :end},
-          {"2021-06-19-veloroute6/GX011853", :start, :end}
-        ]
-      }
-    ]
+  def tracks(), do: []
 
   def links(_assigns) do
     [
