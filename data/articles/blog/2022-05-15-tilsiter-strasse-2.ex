@@ -3,7 +3,6 @@ defmodule Data.Article.Blog.TilsiterStrasse2 do
 
   def created_at(), do: ~D[2022-05-14]
 
-  @spec title :: <<_::416>>
   def title(), do: "Tilsiter Straße (Ost, ab Voßkulenweg, Veloroute 6)"
   def summary(), do: "Möglicher Bautermin in 2023. Noch keine Pläne bekannt."
 
