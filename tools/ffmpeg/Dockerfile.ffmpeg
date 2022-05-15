@@ -48,7 +48,7 @@ RUN cmake . && make
 FROM debian:testing-slim AS ffmpeg-build
 
 RUN  \
-  echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list && \
+  echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
   autoconf \
@@ -78,7 +78,7 @@ RUN  \
   opencl-dev \
   pkg-config \
   yasm \
-  && apt-get install -y --no-install-recommends -t experimental rustc \
+  && apt-get install -y --no-install-recommends -t unstable rustc \
   && rm -rf /var/lib/apt/lists/* \
   && cargo install cargo-c
 
