@@ -6,10 +6,7 @@ defmodule Data.Article.Blog.Schlueterstrasse do
 
   def title(), do: "Schlüterstraße (Veloroute 3)"
 
-  def start(), do: ~d[2020-06-15]
-  def stop(), do: ~d[2021-12-23]
-
-  def type(), do: :construction
+  def type(), do: :planned
   def construction_site_id_hh(), do: [8623]
   def tags(), do: ["3"]
 
@@ -19,9 +16,13 @@ defmodule Data.Article.Blog.Schlueterstrasse do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Frühjahr 2022</h4>
+    <p>Bis auf den Anschluss der <.m bounds="9.984367,53.565573,9.988528,53.568126" lon="9.986502" lat="53.566116" dir="forward" ref="3">Johnsallee</.m> ist der Umbau abgeschlossen. Wann das fehlende Stück nachgeholt wird ist mir nicht bekannt.</p>
+
+    <h4>Beschreibung</h4>
     <p>Die <.m bounds="9.985805,53.564028,9.98786,53.571384">Schlüterstraße</.m> soll auf ihrer gesamten Länge zu einer Fahrradstraße umgewidmet werden – mit Ausnahme des bereits jetzt existiernden Stücks Zufußgehendezone im Bereich der Uni. Insbesondere schließt die Planung das kurze Stück zwischen <.m bounds="9.984625,53.570123,9.988511,53.570325">Hartungstraße</.m> und <.m bounds="9.985401,53.571186,9.986163,53.572603">Hallerplatz</.m> mit ein, obwohl die Veloroute hier bereits vorher abknickt. Auch die <.m bounds="9.984625,53.570123,9.988511,53.570325">Hartungstraße</.m> wird im Bereich der Veloroute (und nur dort) zu einer Fahrradstraße und gleichzeitig auch asphaliert.</p>
 
-    <p>Den Fahrradstraßen wird an vielen Stellen Vorfahrt gewährt, indem man den Gehweg fortführt. Die KFZ und Radfahrende die den Gehweg queren müssen entsprechend warten. Das ist etwa so an der <.m bounds="9.984606,53.567664,9.992784,53.56821">Binderstraße</.m>, der <.m bounds="9.98658,53.566187,9.995914,53.566774">Johnsallee</.m> und dem Ostteil der <.m bounds="9.984625,53.570123,9.988511,53.570325">Hartungstraße</.m> so geplant. An der <.m bounds="9.985703,53.563735,9.993431,53.564192">Moorweidenstraße</.m> endet die Fahrradstraße und es gilt wieder Rechts-vor-Links. Ebenso an der <.m bounds="9.984335,53.569425,9.986319,53.569708">Bieberstraße</.m>.</p>
+    <p>Den Fahrradstraßen wird an vielen Stellen Vorfahrt gewährt, indem man den Gehweg fortführt. Die KFZ und Radfahrende die den Gehweg queren müssen entsprechend warten. Das ist etwa so an der <.m bounds="9.984367,53.565573,9.988528,53.568126" lon="9.986477" lat="53.56759" dir="forward" ref="3">Binderstraße</.m>, der <.m bounds="9.984367,53.565573,9.988528,53.568126" lon="9.986502" lat="53.566116" dir="forward" ref="3">Johnsallee</.m> und dem Ostteil der <.m bounds="9.984625,53.570123,9.988511,53.570325">Hartungstraße</.m> so geplant. An der <.m bounds="9.985703,53.563735,9.993431,53.564192">Moorweidenstraße</.m> endet die Fahrradstraße und es gilt wieder Rechts-vor-Links. Ebenso an der <.m bounds="9.984335,53.569425,9.986319,53.569708">Bieberstraße</.m>.</p>
 
     <p>Die Führung bleibt im Wesentlichen so wie jetzt, allerdings werden die Parkstände besser angeordnet, sodass die Strecke aufgeräumter wirkt. Außerdem kommen 100 neue Fahrradstellplätze hinzu.</p> <p>Der Umbau ist ab Frühjahr 2020 geplant.</p> <ul>
     <li><.a href="https://www.hamburg.de/eimsbuettel/schlueterstrasse/">Infoseite der Stadt zur Schlüterstraße</.a></li>

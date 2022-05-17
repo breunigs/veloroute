@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.KreuzungAmAltenPosthaus do
   def start(), do: ~d[2021Q3]
   def stop(), do: ~d[2021Q3]
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["7"]
 

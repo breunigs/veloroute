@@ -13510,6 +13510,10 @@
   <node id='-38862745' lat='53.3257052776' lon='9.88000273168' />
   <node id='-38862750' lat='53.32628839818' lon='9.88131164968' />
   <node id='-38862755' lat='53.32547779273' lon='9.87795620888' />
+  <node id='-39227072' lat='53.56634725245' lon='9.98632013261' />
+  <node id='-39227073' lat='53.56597131665' lon='9.98633086145' />
+  <node id='-39227074' lat='53.56599998985' lon='9.98682975233' />
+  <node id='-39227075' lat='53.56637273951' lon='9.98679756582' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -25734,6 +25738,7 @@
     <nd ref='-22532486' />
     <nd ref='-22532487' />
     <nd ref='-22532473' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-06-10-reclamstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -26613,6 +26618,7 @@
     <nd ref='-22533318' />
     <nd ref='-22533319' />
     <nd ref='-22533316' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-03-12-sanierung-alte-harburger-elbbruecke' />
     <tag k='type' v='article' />
   </way>
@@ -41845,6 +41851,15 @@
     <nd ref='-22536519' />
     <nd ref='-22536520' />
   </way>
+  <way id='-19849515'>
+    <nd ref='-39227072' />
+    <nd ref='-39227073' />
+    <nd ref='-39227074' />
+    <nd ref='-39227075' />
+    <nd ref='-39227072' />
+    <tag k='name' v='2018-10-13-3-schlueterstrasse' />
+    <tag k='type' v='article' />
+  </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
     <nd ref='99533190005505785' />
@@ -53232,6 +53247,7 @@
     <nd ref='987727000564063' />
     <nd ref='987668000564084' />
     <nd ref='986623000564896' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-13-3-schlueterstrasse' />
     <tag k='type' v='article' />
   </way>

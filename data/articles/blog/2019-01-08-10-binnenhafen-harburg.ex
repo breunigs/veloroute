@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
   def stop(), do: ~d[2022-08-11]
 
   def type(), do: :construction
-  def construction_site_id_hh(), do: [14569, 17416, 17425, 20204]
+  def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]
   def tags(), do: ["10", "H01"]
 
   def links(_assigns) do
