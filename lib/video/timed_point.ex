@@ -6,7 +6,7 @@ defmodule Video.TimedPoint do
   @type t :: %__MODULE__{
           lat: float(),
           lon: float(),
-          time_offset_ms: integer()
+          time_offset_ms: non_neg_integer()
         }
 
   @spec interpolate(t(), t(), float()) :: t()

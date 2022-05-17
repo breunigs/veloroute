@@ -249,7 +249,7 @@ defmodule Video.Rendered do
           lat: float(),
           lon: float(),
           bearing: float(),
-          time_offset_ms: integer()
+          time_offset_ms: non_neg_integer()
         }
   @doc """
   Find the closest point for the video that roughly corresponds to the given

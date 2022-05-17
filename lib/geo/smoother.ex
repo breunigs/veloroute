@@ -1,7 +1,7 @@
 defmodule Geo.Smoother do
   @typep coord_dist :: [Geo.Point.like()]
 
-  @spec auto([Geo.Point.like()]) :: [Geo.Point.like()]
+  @spec auto([Geo.Point.like()]) :: [Video.TimedPoint.t()]
   @doc """
   Smooth the given polyline with sensible settings.
   """
@@ -9,6 +9,51 @@ defmodule Geo.Smoother do
     coords
     |> cut_corners(3)
     |> average_in_distance(10.0)
+    |> equi_time_interval(1000.0 / 60.0)
+  end
+
+  @spec equi_time_interval([Video.TimedPoint.t()], float()) :: [Video.TimedPoint.t()]
+  @doc """
+  Takes a polyline and returns one with interpolated points exactly every
+  interval milliseconds. The starting point is conserved, but the new polyline
+  will be a bit shorter if the next interval exceeds the original polyline.
+
+  ## Examples
+
+      iex> Geo.Smoother.equi_time_interval([
+      ...>   %Video.TimedPoint{lat: 1.0, lon: 1.0, time_offset_ms: 0},
+      ...>   %Video.TimedPoint{lat: 2.0, lon: 2.0, time_offset_ms: 10}
+      ...> ], 5.0)
+      [
+        %Video.TimedPoint{lat: 1.0, lon: 1.0, time_offset_ms: 0},
+        %Video.TimedPoint{lat: 1.5, lon: 1.5, time_offset_ms: 5},
+        %Video.TimedPoint{lat: 2.0, lon: 2.0, time_offset_ms: 10}
+      ]
+  """
+  def equi_time_interval(coords, interval_in_ms) when interval_in_ms > 0 do
+    equi_time_interval(coords, [], 0, interval_in_ms) |> Enum.reverse()
+  end
+
+  defp equi_time_interval([_only_one], output, _offset, _interval), do: output
+
+  defp equi_time_interval([prev, next | _rest] = input, output, offset, interval)
+       when prev.time_offset_ms == next.time_offset_ms,
+       do: equi_time_interval(tl(input), output, offset, interval)
+
+  defp equi_time_interval([prev, next | _rest] = input, output, offset, interval) do
+    t = (offset - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
+
+    cond do
+      t > 1 ->
+        equi_time_interval(tl(input), output, offset, interval)
+
+      t >= 0 ->
+        interpolated = Video.TimedPoint.interpolate(prev, next, t)
+        equi_time_interval(input, [interpolated | output], offset + interval, interval)
+
+      true ->
+        raise("algorithm error: didn't drop an input coord in an earlier iteration")
+    end
   end
 
   @spec average_in_distance([Geo.Point.like()], float) :: [Geo.Point.like()]
