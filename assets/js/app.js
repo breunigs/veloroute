@@ -96,7 +96,12 @@ let liveSocket = new LiveSocket("/live", Socket, {
     _csrf_token: csrfToken
   }
 });
-liveSocket.connect()
+
+// avoid unintentionally breaking archive.org
+const hostname = window.location.hostname;
+const isArchive = hostname.substring(hostname.length - 11) === "archive.org";
+if (!isArchive) liveSocket.connect()
+
 window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
 // liveSocket.enableLatencySim(2000)
