@@ -526,3 +526,6 @@
 - "/contentblob/16149566/391f8e4dd71251622369e293136f523a/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauhphase-3-stand-05-22.pdf"
 '2022-05-09':
 - "/contentblob/16154792/25b16721252a0e4fcc41a2371bbbf738/data/meiendorfer-strasse-%E2%80%93-strassenbauarbeiten-%E2%80%93-20-05-22-bis-22-07-22.pdf"
+'2022-05-18':
+- "/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"
+- "/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"
