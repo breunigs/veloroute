@@ -13,7 +13,34 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def tags(), do: [id(), "rsw"]
 
-  def tracks(), do: []
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Tostedt (ab Harburg Bahnhof)",
+        direction: :forward,
+        from: "Harburg Bahnhof",
+        to: "Tostedt",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg nach Tostedt (ab Harburg Bahnhof)",
+        videos: [
+          {"2022-05-18-rsw-tostedt/GX013972", :start, :end},
+          {"2022-05-18-rsw-tostedt/GX013973", :start, :end},
+          {"2022-05-18-rsw-tostedt/GX013974", :start, "00:01:23.317"},
+          {"2022-05-18-rsw-tostedt/GX013975", :start, :end},
+          {"2022-05-18-rsw-tostedt/GX013976", :start, "00:02:24.678"},
+          {"2022-05-18-rsw-tostedt/GX013976", "00:02:31.618", :end},
+          {"2022-05-18-rsw-tostedt/GX023976", :seamless, "00:00:19.786"},
+          {"2022-05-18-rsw-tostedt/GX023976", "00:00:39.139", :end},
+          {"2022-05-18-rsw-tostedt/GX013977", :start, "00:00:46.046"},
+          {"2022-05-18-rsw-tostedt/GX013977", "00:00:53.787", :end},
+          {"2022-05-18-rsw-tostedt/GX013978", "00:00:02.236", "00:00:52.519"},
+          {"2022-05-18-rsw-tostedt/GX013978", "00:01:00.294", "00:02:09.062"},
+          {"2022-05-18-rsw-tostedt/GX013978", "00:02:34.421", :end},
+          {"2022-05-18-rsw-tostedt/GX023978", :seamless, :end}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [
@@ -31,7 +58,7 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Tostedt ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Tostedt ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen.</p>
 
     <h4>Harburg</h4>
     <p>Die Machbarkeitsstudie schlägt nur eine mögliche Anbindung an den <.m bounds="9.985339,53.451653,9.996725,53.458833" lon="9.989574" lat="53.455961" dir="forward">Bahnhof Harburg</.m> vor. Die Abwägung gegenüber anderen Führungen soll zu einem späteren Zeitpunkt nachgeholt werden. Entsprechend hoch ist die Wahrscheinlichkeit, dass sich die Strecke hier nochmal ändert. Klar ist jedoch, dass die Landesgrenze am <.m bounds="9.96695,53.415797,9.980777,53.422998" lon="9.97459" lat="53.420477" dir="forward">Beetenweg</.m> überquert werden soll.</p>
