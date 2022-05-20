@@ -29,8 +29,6 @@ defmodule Settings do
   def deploy_ssh_name, do: "veloroute-deploy"
   def deploy_video_mount_dir, do: "/home/veloroute-rclone/mount"
 
-  def enable_sentry_frontend, do: false
-
   def video_dir_rel, do: "videos"
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")

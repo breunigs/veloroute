@@ -6,8 +6,6 @@ defmodule Veloroute.Application do
   use Application
 
   def start(_type, _args) do
-    :ok = Application.put_env(:sentry, :release, Git.revision(), persistent: true)
-
     ensure_videos_are_mounted()
     preprocess_search_terms()
 

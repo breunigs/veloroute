@@ -74,7 +74,6 @@ defmodule VelorouteWeb.PageController do
     rescue
       exp ->
         Logger.error(exp.message)
-        Sentry.capture_exception(exp, extra: %{})
     end
 
     send_resp(conn, 204, "")

@@ -30,19 +30,7 @@ config :phoenix, :json_library, Jason
 
 config :tesla, adapter: Tesla.Adapter.Hackney
 
-config :sentry,
-  dsn: PhoenixCredentials.sentry_dsn(),
-  enable_source_code_context: true,
-  root_source_code_path: File.cwd!(),
-  included_environments: [:prod],
-  tags: %{
-    env: Mix.env()
-  },
-  environment_name: Mix.env(),
-  release: "set at boot up"
-
-config :logger,
-  backends: [:console, Sentry.LoggerBackend]
+config :logger, backends: [:console]
 
 config :reverse_proxy_plug, :http_client, ReverseProxyPlug.HTTPClient.Adapters.Tesla
 

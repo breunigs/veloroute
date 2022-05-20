@@ -73,7 +73,6 @@ defmodule Veloroute.MixProject do
       {:prioqueue, "~> 0.2.7"},
       {:reverse_proxy_plug, "~> 2.1"},
       {:saxy, "~> 1.0"},
-      {:sentry, "~> 8.0"},
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.6"},
       {:telemetry_metrics, "~> 0.6"},

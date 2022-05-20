@@ -47,7 +47,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_info(other, socket) do
-    Sentry.capture_message("got unexpected info for: #{inspect(other)} at #{inspect(socket)}")
+    Logger.info("got unexpected info for: #{inspect(other)} at #{inspect(socket)}")
     {:noreply, socket}
   end
 
@@ -169,7 +169,6 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
     Logger.warn(msg)
-    Sentry.capture_message(msg)
 
     {:noreply, socket}
   end
