@@ -15,7 +15,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
 
     <p>Um Hamburg herum verlaufen diese sternförmig in umliegende Gemeinden. In der Trassenfindung wurden verschiedenste Aspekte gegeneinander abgewägt, um die auf der Seite dargestellten Vorzugstrassen zu finden. Eingeflossen sind unter anderem wo Menschen leben und arbeiten, Anschlüsse an Bahnhöfe, Naturschutz, vorhandene Wege, und auch Hinweise und Wünsche aus der Bevölkerung.</p>
 
-    <p>In der Metropolregion Hamburg sind die meisten Machbarkeitsstudien („Trassenfindung“) abgeschlossen. Nur die für den Radschnellweg nach Tostedt steht noch aus. Die nächsten Schritte sind die Finanzierung und die Detailplanung der einzelnen Abschnitte, damit die gefundene Trasse Wirklichkeit wird.</p>
+    <p>In der Metropolregion Hamburg sind die Machbarkeitsstudien („Trassenfindung“) abgeschlossen. Die nächsten Schritte sind die Finanzierung und die Detailplanung der einzelnen Abschnitte, damit die gefundene Trasse Wirklichkeit wird.</p>
 
     <p><.a href="https://metropolregion.hamburg.de/radschnellwege/">offizielle Seite zu den Radschnellwegen</.a></p>
     """
