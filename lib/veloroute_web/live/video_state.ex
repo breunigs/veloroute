@@ -44,6 +44,7 @@ defmodule VelorouteWeb.Live.VideoState do
       state = update_from_tracks(state, tracks, nil)
 
       socket
+      # finalize happens in set_position
       |> Phoenix.LiveView.assign(for_frontend(state))
       |> set_position(params, seek: true)
     else
@@ -98,7 +99,23 @@ defmodule VelorouteWeb.Live.VideoState do
           new_state
       end
 
-    Phoenix.LiveView.assign(socket, for_frontend(new_state))
+    finalize(socket, for_frontend(new_state))
+  end
+
+  defp finalize(socket, assigns) do
+    socket
+    |> Phoenix.LiveView.assign(assigns)
+    |> push_changes([:video_polyline])
+  end
+
+  defp push_changes(socket, fields) do
+    Enum.reduce(fields, socket, fn field, socket ->
+      if Phoenix.LiveView.changed?(socket, field) do
+        Phoenix.LiveView.push_event(socket, field, socket.assigns[field])
+      else
+        socket
+      end
+    end)
   end
 
   @spec current_track(t()) :: Video.Track.t() | nil
@@ -130,7 +147,7 @@ defmodule VelorouteWeb.Live.VideoState do
       |> set_start(nil)
       |> for_frontend()
 
-    Phoenix.LiveView.assign(socket, assigns)
+    finalize(socket, assigns)
   end
 
   defp video_changes?(old_state, new_state)
@@ -153,7 +170,7 @@ defmodule VelorouteWeb.Live.VideoState do
       |> extract_start(params)
       |> for_frontend()
 
-    Phoenix.LiveView.assign(socket, assigns)
+    finalize(socket, assigns)
   end
 
   @doc """
@@ -172,7 +189,7 @@ defmodule VelorouteWeb.Live.VideoState do
       point = Video.Rendered.start_from(rendered, pos) |> Map.take([:lat, :lon])
 
       assigns = state |> set_start(point, seek: seek) |> for_frontend()
-      Phoenix.LiveView.assign(socket, assigns)
+      finalize(socket, assigns)
     else
       _ ->
         Logger.debug("failed to set pos from params: #{inspect(params)}")
@@ -231,6 +248,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start_gen: state.start_generation,
       video_length_ms: video.length_ms(),
       video_coords: coords,
+      video_polyline: video.polyline(),
       video_metadata: metadata,
       video_metadata_now: metadata_now,
       video_reversable: is_reversable(state),

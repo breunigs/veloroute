@@ -31,14 +31,8 @@ defmodule VelorouteWeb.FrameLive do
 
   def initial_state, do: @initial_state
 
-  def mount(params, _session, socket) do
-    socket =
-      socket
-      |> assign(@initial_state)
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(nil, params)
-      |> determine_visible_route_groups(nil)
-
-    {:ok, socket}
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, @initial_state)}
   end
 
   def handle_info(:check_updates, socket) do

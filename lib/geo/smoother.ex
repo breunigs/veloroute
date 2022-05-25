@@ -1,5 +1,20 @@
 defmodule Geo.Smoother do
+  import Guards
+
   @typep coord_dist :: [Geo.Point.like()]
+
+  @doc """
+  Smooth the given polyline with sensible settings and encode it as binary
+  polyline suitable for passing to the frontend.
+  """
+  @spec polyline([Geo.Point.like()], float(), pos_integer()) :: binary()
+  def polyline(coords, interval_ms, precision) when is_list(coords) do
+    coords
+    |> auto()
+    |> equi_time_interval(interval_ms)
+    |> Enum.map(&{&1.lon, &1.lat})
+    |> Polyline.encode(precision)
+  end
 
   @spec auto([Geo.Point.like()]) :: [Video.TimedPoint.t()]
   @doc """
@@ -9,7 +24,6 @@ defmodule Geo.Smoother do
     coords
     |> cut_corners(3)
     |> average_in_distance(10.0)
-    |> equi_time_interval(1000.0 / 60.0)
   end
 
   @spec equi_time_interval([Video.TimedPoint.t()], float()) :: [Video.TimedPoint.t()]

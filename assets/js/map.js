@@ -4,6 +4,7 @@ if (!window.requestIdleCallback) {
   }
 }
 
+const video = document.getElementById('videoInner');
 const settings = document.getElementById("settings").dataset;
 mapboxgl.accessToken = "pk.";
 
@@ -416,13 +417,15 @@ map.on('style.load', () => {
   });
 });
 
-let video = null;
-let videoCoords = null;
-window.mapUpdateIndicatorFromVideo = (vid, coords) => {
-  video = vid;
-  videoCoords = coords;
-  updateVideoIndicator();
-}
+let indicatorPolyline = null;
+window.addEventListener("phx:video_polyline", e => {
+  console.log("updating video polyline")
+  const decoded = polyline2geojson(e.detail.polyline, e.detail.precision);
+  indicatorPolyline = {
+    coords: decoded.geometry.coordinates,
+    interval: e.detail.interval,
+  }
+})
 
 function toRad(degrees) {
   return degrees * Math.PI / 180;
@@ -445,40 +448,25 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-let prevCoordVideoIndex = 0;
-
 function maybeHackStateFromVideo() {
-  if (!video || !videoCoords || !state.videoHash || Number.isNaN(video.duration)) return;
+  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number") return;
 
-  const curr = video.currentTime + 0.250;
-  let nextIdx = videoCoords[prevCoordVideoIndex] <= curr ? prevCoordVideoIndex : 0;
-  for (; nextIdx < videoCoords.length - 3; nextIdx += 3) {
-    if (videoCoords[nextIdx] >= curr) break;
-  }
-  prevCoordVideoIndex = nextIdx;
+  const currMs = video.currentTime * 1000 + 250;
+  const index = Math.floor(currMs / indicatorPolyline.interval);
+  const next = Math.min(index + 4, indicatorPolyline.coords.length - 2);
 
-  if (nextIdx == 0) {
-    state.lon = videoCoords[1]
-    state.lat = videoCoords[2];
+  const [lon1, lat1] = indicatorPolyline.coords[index];
+  const [lon2, lat2] = indicatorPolyline.coords[next];
 
-    state.bearing = calcBearing(videoCoords[1], videoCoords[2], videoCoords[4], videoCoords[5])
-
-  } else {
-    const [nextT, nextLon, nextLat] = [videoCoords[nextIdx], videoCoords[nextIdx + 1], videoCoords[nextIdx + 2]];
-    const [prevT, prevLon, prevLat] = [videoCoords[nextIdx - 3], videoCoords[nextIdx - 2], videoCoords[nextIdx - 1]];
-
-    // interpolate
-    const t = Math.min(1, (curr - prevT) / (nextT - prevT));
-    state.lat = prevLat + t * (nextLat - prevLat)
-    state.lon = prevLon + t * (nextLon - prevLon)
-
-    state.bearing = calcBearing(prevLon, prevLat, nextLon, nextLat)
-  }
+  state.lon = lon1;
+  state.lat = lat1;
+  state.bearing = calcBearing(lon1, lat1, lon2, lat2)
 }
 
 // algorithm specification: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
-const factor = 1000000; // 10^6, where precision=6
-function polyline2geojson(str) {
+function polyline2geojson(str, precision) {
+  const factor = 10 ** (precision || 6);
+
   let index = 0;
   let lat = 0;
   let lon = 0;
@@ -520,8 +508,9 @@ function polyline2geojson(str) {
   };
 }
 
-
 window.map = map;
+
+window.addEventListener("video:timeupdate", updateVideoIndicator);
 
 function updateVideoIndicator() {
   maybeHackStateFromVideo();
@@ -532,7 +521,8 @@ function updateVideoIndicator() {
 function runQueuedUpdate() {
   queued = false;
   maybeFitBounds();
-  updateVideoIndicator();
+  renderIndicator();
+  maybeEnsureIndicatorInView();
   setLayerVisibility();
 }
 

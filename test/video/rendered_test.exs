@@ -33,6 +33,16 @@ defmodule Video.RenderedTest do
         %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 400}
       ]
 
+    @precision 6
+    @impl Video.Rendered
+    def polyline,
+      do: %{
+        polyline: Polyline.encode(coords(), @precision),
+        precision: @precision
+        # as per the time_offset_ms diffs from coords()
+        interval: 100.0,
+      }
+
     @impl Video.Rendered
     def rendered?(), do: true
 

@@ -127,10 +127,18 @@ defmodule Video.Rendered do
     :"#{@autogen_module_name}#{hash}"
   end
 
+  @polyline_interval_ms 1000.0 / 60.0
+  @polyline_precision 6
   defp as_code(name, hash, sources, coords, metadata, renderer) do
     length_ms = coords |> List.last() |> Map.fetch!(:time_offset_ms)
     rendered = Video.Path.fully_rendered?(hash)
     bbox = Geo.CheapRuler.bbox(coords)
+
+    polyline = %{
+      polyline: Geo.Smoother.polyline(coords, @polyline_interval_ms, @polyline_precision),
+      interval: @polyline_interval_ms,
+      precision: @polyline_precision
+    }
 
     quote do
       defmodule unquote(module_name(hash)) do
@@ -161,6 +169,8 @@ defmodule Video.Rendered do
         def metadata(), do: unquote(metadata)
         @impl Video.Rendered
         def coords(), do: unquote(coords)
+        @impl Video.Rendered
+        def polyline(), do: unquote(Macro.escape(polyline))
       end
     end
     |> Macro.to_string()
@@ -172,10 +182,12 @@ defmodule Video.Rendered do
   @callback length_ms() :: integer()
   @callback sources() :: Video.Track.plain()
   @callback coords() :: [Video.TimedPoint.t()]
+  @callback polyline() :: %{polyline: binary(), interval: float(), precision: pos_integer()}
   @callback metadata() :: Video.Track.video_metadata()
   @callback rendered?() :: boolean()
   @callback renderer() :: pos_integer()
   @callback bbox() :: Geo.BoundingBox.t()
+
   @doc """
   Outputs the timestamps and coordinates as an iolist, suitable to be passed to the
   frontend for displaying the video position. It returns a flat list with the values

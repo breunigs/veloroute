@@ -28,8 +28,8 @@ function timeUpdate() {
   if (video.canPlayType('application/vnd.apple.mpegurl') && video.readyState <= 2 && currentTimeInMs() == 0) {
     return setTimeout(timeUpdate, 100);
   }
-  updateIndicatorPos();
   updateMetadata();
+  window.dispatchEvent(new Event("video:timeupdate"));
 }
 
 function autoplayEnabled() {
@@ -397,7 +397,6 @@ function setVideo() {
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
     updateVideoElement();
-    videoCoords = parseCoordsFromState();
     parseMetadataFromState();
     return;
   }
@@ -406,21 +405,6 @@ function setVideo() {
   updateProgressbar();
   updatePlaypause();
   updatePoster();
-}
-
-function parseCoordsFromState() {
-  let coords = state.videoCoords.split(" ");
-  for (let i = 0; i < coords.length; i += 3) {
-    coords[i] = (coords[i - 3] || 0) + coords[i] / 1000.0;
-    coords[i + 1] = (coords[i - 2] || 0) + coords[i + 1] / 1000000.0;
-    coords[i + 2] = (coords[i - 1] || 0) + coords[i + 2] / 1000000.0;
-  }
-  return coords
-}
-
-function updateIndicatorPos() {
-  if (!videoCoords) return;
-  window.mapUpdateIndicatorFromVideo(video, videoCoords);
 }
 
 const videoMetadataEl = document.getElementById('videoMetadata');
