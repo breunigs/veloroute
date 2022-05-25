@@ -51,10 +51,14 @@ let indicator = null;
 let videoWasPlaying = false;
 let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
+let indicatorFocus = null;
+let prevIndicatorPos = '';
 
 function renderIndicator() {
-  if (state.lon == "" || state.lat == "") return;
-  const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
+  const pos = getVideoPosition();
+
+  if (pos.lon == "" || pos.lat == "") return;
+  const lngLat = new mapboxgl.LngLat(pos.lon, pos.lat);
   const mapActive = map.isMoving() || map.isZooming();
 
   if (!indicator) {
@@ -65,7 +69,7 @@ function renderIndicator() {
     el.appendChild(rotated);
     indicator = new mapboxgl.Marker(el)
       .setLngLat(lngLat)
-      .setRotation(state.bearing * 1)
+      .setRotation(pos.bearing * 1)
       .addTo(map);
   }
 
@@ -83,12 +87,13 @@ function renderIndicator() {
 
   videoWasPlaying = videoPlaying;
 
-  const shortest = closestEquivalentAngle(indicator.getRotation(), state.bearing);
+  const shortest = closestEquivalentAngle(indicator.getRotation(), pos.bearing);
   window.requestAnimationFrame(() => {
     indicator.setRotation(shortest);
     indicator.setLngLat(lngLat);
   });
 
+  // zoom in once, i.e. when user just clicks play when first visiting the site
   if (!mapActive && !zoomedInOnce && videoPlaying && prevBoundsTs === "") {
     zoomedInOnce = true;
     const zoom = Math.max(map.getZoom(), 14);
@@ -96,6 +101,21 @@ function renderIndicator() {
       center: lngLat,
       zoom: zoom
     });
+    return;
+  }
+
+  // ensure indicator is in view
+  if (videoPlaying && indicatorFocus === null) {
+    indicatorFocus = setInterval(ensureIndicatorInView, 2000);
+  } else if (!videoPlaying && indicatorFocus !== null) {
+    clearInterval(indicatorFocus);
+    indicatorFocus = null;
+  } else if (indicator && prevIndicatorPos !== `${pos.lon},${pos.lat}`) {
+    // console.debug("indicator present, and changed, ensuring it's in view", indicator)
+    if (prevIndicatorPos !== '') {
+      window.requestAnimationFrame(ensureIndicatorInView);
+    }
+    prevIndicatorPos = `${pos.lon},${pos.lat}`;
   }
 }
 
@@ -117,7 +137,8 @@ const ensureIndicatorInView = () => {
     return;
   }
 
-  if (map.getBounds().contains(indicator.getLngLat())) {
+  const indiLngLat = indicator.getLngLat();
+  if (map.getBounds().contains(indiLngLat)) {
     return;
   }
 
@@ -135,40 +156,21 @@ const ensureIndicatorInView = () => {
       indiPos.x >= mapRect.right - padding;
   }
 
-  const lngLat = new mapboxgl.LngLat(state.lon, state.lat);
   const veryFarOutside = cmp(-200);
   if (veryFarOutside) {
-    console.debug("Flying to location", lngLat)
+    console.debug("Flying to location", indiLngLat)
     map.flyTo({
-      center: lngLat
+      center: indiLngLat
     });
   } else {
-    console.debug("Panning to location", lngLat)
-    map.panTo(lngLat);
+    console.debug("Panning to location", indiLngLat)
+    map.panTo(indiLngLat);
   }
 }
 
 const isVideoPlaying = () => {
   const vid = document.getElementById("videoInner");
   return vid && !vid.paused;
-}
-
-let indicatorFocus = null;
-let prevIndicatorPos = '';
-const maybeEnsureIndicatorInView = () => {
-  const playing = isVideoPlaying();
-  if (playing && indicatorFocus === null) {
-    indicatorFocus = setInterval(ensureIndicatorInView, 2000);
-  } else if (!playing && indicatorFocus !== null) {
-    clearInterval(indicatorFocus);
-    indicatorFocus = null;
-  } else if (indicator && prevIndicatorPos !== `${state.lon},${state.lat}`) {
-    // console.debug("indicator present, and changed, ensuring it's in view", indicator)
-    if (prevIndicatorPos !== '') {
-      window.requestAnimationFrame(ensureIndicatorInView);
-    }
-    prevIndicatorPos = `${state.lon},${state.lat}`;
-  }
 }
 
 
@@ -448,8 +450,15 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-function maybeHackStateFromVideo() {
-  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number") return;
+function getVideoPosition() {
+  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number") {
+    console.debug("video not yet available, using state")
+    return {
+      lat: state.lat,
+      lon: state.lon,
+      bearing: state.bearing,
+    };
+  }
 
   const currMs = video.currentTime * 1000 + 250;
   const index = Math.floor(currMs / indicatorPolyline.interval);
@@ -458,9 +467,11 @@ function maybeHackStateFromVideo() {
   const [lon1, lat1] = indicatorPolyline.coords[index];
   const [lon2, lat2] = indicatorPolyline.coords[next];
 
-  state.lon = lon1;
-  state.lat = lat1;
-  state.bearing = calcBearing(lon1, lat1, lon2, lat2)
+  return {
+    lon: lon1,
+    lat: lat1,
+    bearing: calcBearing(lon1, lat1, lon2, lat2)
+  };
 }
 
 // algorithm specification: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
@@ -513,16 +524,13 @@ window.map = map;
 window.addEventListener("video:timeupdate", updateVideoIndicator);
 
 function updateVideoIndicator() {
-  maybeHackStateFromVideo();
   renderIndicator();
-  maybeEnsureIndicatorInView();
 }
 
 function runQueuedUpdate() {
   queued = false;
   maybeFitBounds();
   renderIndicator();
-  maybeEnsureIndicatorInView();
   setLayerVisibility();
 }
 
