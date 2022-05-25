@@ -298,10 +298,16 @@ defmodule Components.TagHelpers do
   def roaddiagram(%{src: src} = assigns) do
     {w, h} = Data.ImageSize.size("data/images/#{src}.svg")
     ratio = h / w
-    assigns = assign(assigns, w: 400, h: round(400 * ratio))
+
+    w = if is_map_key(assigns, :width), do: String.to_integer(assigns.width), else: 400
+    assigns = assign(assigns, w: w, h: round(w * ratio))
+
+    style = if is_map_key(assigns, :width), do: "width: #{w}px;", else: ""
+    style = if is_map_key(assigns, :style), do: style <> assigns.style, else: style
+    assigns = assign(assigns, style: style)
 
     ~H"""
-    <img src={"/images/#{@src}.svg"} width={@w} height={@h} class="roaddiagram" alt={@alt}/>
+    <img src={"/images/#{@src}.svg"} width={@w} height={@h} class="roaddiagram" alt={@alt} style={@style}/>
     """
   end
 
