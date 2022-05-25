@@ -13523,6 +13523,17 @@
   <node id='-39960318' lat='53.38268203607' lon='9.92886721551' />
   <node id='-39960321' lat='53.38311079385' lon='9.9291890806' />
   <node id='-39960326' lat='53.38328997492' lon='9.9312436527' />
+  <node id='-40329255' action='modify' lat='53.59982718431' lon='10.03096816778' />
+  <node id='-40329256' action='modify' lat='53.59943244583' lon='10.03051755667' />
+  <node id='-40329257' action='modify' lat='53.59908863834' lon='10.03088233709' />
+  <node id='-40329258' action='modify' lat='53.59615979441' lon='10.03105399847' />
+  <node id='-40329259' action='modify' lat='53.59250482178' lon='10.0319552207' />
+  <node id='-40329260' action='modify' lat='53.58918068713' lon='10.03264186621' />
+  <node id='-40329261' action='modify' lat='53.58906605713' lon='10.03362891912' />
+  <node id='-40329262' action='modify' lat='53.59289962499' lon='10.0327276969' />
+  <node id='-40329263' action='modify' lat='53.59599424499' lon='10.03189084768' />
+  <node id='-40329264' action='modify' lat='53.59838828109' lon='10.03180501699' />
+  <node id='-40329265' action='modify' lat='53.59922870839' lon='10.03169772863' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -41881,6 +41892,22 @@
     <nd ref='-39591379' />
     <nd ref='-39591374' />
     <tag k='name' v='2022-05-18-jungfernstieg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-19855168' action='modify'>
+    <nd ref='-40329255' />
+    <nd ref='-40329256' />
+    <nd ref='-40329257' />
+    <nd ref='-40329258' />
+    <nd ref='-40329259' />
+    <nd ref='-40329260' />
+    <nd ref='-40329261' />
+    <nd ref='-40329262' />
+    <nd ref='-40329263' />
+    <nd ref='-40329264' />
+    <nd ref='-40329265' />
+    <nd ref='-40329255' />
+    <tag k='name' v='2022-05-25-saarlandstrasse-nord' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

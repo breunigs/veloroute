@@ -529,3 +529,9 @@
 '2022-05-18':
 - "/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"
 - "/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"
+'2022-05-23':
+- "/contentblob/13867884/bb792c4b88c1f11f71dc4ec449e58f95/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"
+- "/contentblob/15590226/8b29ad1da743d20da068576af4b1242d/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-11-21-bis-05-22.pdf"
+'2022-05-24':
+- "/contentblob/16202222/7990b422bdff3bde53dfc91eb5122f9b/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/16202224/6a49db3da9493224b295e4fdf30fd3a6/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan.pdf"
