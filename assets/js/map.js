@@ -451,7 +451,7 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 }
 
 function getVideoPosition() {
-  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number") {
+  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number" || video.readyState <= 1) {
     console.debug("video not yet available, using state")
     return {
       lat: state.lat,
