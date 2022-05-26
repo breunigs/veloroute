@@ -36,6 +36,7 @@
     <%= if Settings.twitter_handle() != nil do %>
       <meta property="twitter:creator" content={Settings.twitter_handle()}/>
     <% end %>
+    <meta name="twitter:card" content="summary_large_image">
     <%= VelorouteWeb.CSSInline.tag(@conn, :app) %>
   </head>
   <%
