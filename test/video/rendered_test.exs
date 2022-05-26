@@ -38,9 +38,9 @@ defmodule Video.RenderedTest do
     def polyline,
       do: %{
         polyline: Polyline.encode(coords(), @precision),
-        precision: @precision
+        precision: @precision,
         # as per the time_offset_ms diffs from coords()
-        interval: 100.0,
+        interval: 100.0
       }
 
     @impl Video.Rendered

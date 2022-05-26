@@ -1,6 +1,4 @@
 defmodule Geo.Smoother do
-  import Guards
-
   @typep coord_dist :: [Geo.Point.like()]
 
   @doc """
