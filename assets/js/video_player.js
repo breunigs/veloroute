@@ -29,6 +29,13 @@ function timeUpdate() {
   }
   updateMetadata();
   window.dispatchEvent(new Event("video:timeupdate"));
+
+  if (video.paused || video.ended || Math.random() <= 0.95) return;
+  window.plausible('video-dimension', {
+    props: {
+      dimension: `${video.videoWidth}x${video.videoHeight}`
+    }
+  })
 }
 
 function autoplayEnabled() {
