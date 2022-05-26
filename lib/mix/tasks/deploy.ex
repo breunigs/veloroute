@@ -28,7 +28,33 @@ defmodule Mix.Tasks.Deploy do
   defp build_tar_gz(skip) do
     make_build_env(skip)
     test(skip)
-    make_release(skip)
+    with_free_port(fn -> make_release(skip) end)
+  end
+
+  @required_free_port 4000
+  defp with_free_port(block, prev_reason \\ nil) do
+    case :gen_tcp.listen(@required_free_port, []) do
+      {:ok, port} ->
+        try do
+          block.()
+        after
+          Port.close(port)
+        end
+
+      {:error, ^prev_reason} ->
+        Process.sleep(1000)
+        IO.write(".")
+        with_free_port(block, prev_reason)
+
+      {:error, reason} ->
+        Util.banner("Waiting for devel server shutdown")
+
+        IO.puts(
+          "Waiting for port #{@required_free_port} to be free (#{reason}).\nOtherwise the development asset watcher might overwrite the production ones, since the same directories are used for building."
+        )
+
+        with_free_port(block, reason)
+    end
   end
 
   @confirm_msg "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
