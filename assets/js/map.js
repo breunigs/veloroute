@@ -57,9 +57,10 @@ let prevIndicatorPos = '';
 function renderIndicator() {
   const pos = getVideoPosition();
   if (!pos) return;
+  if (pos === prevIndicatorPos) return;
+  prevIndicatorPos = pos;
 
   const lngLat = new mapboxgl.LngLat(pos.lon, pos.lat);
-  const mapActive = map.isMoving() || map.isZooming();
 
   if (!indicator) {
     const rotated = genDiv('indicator-rotate');
@@ -73,6 +74,7 @@ function renderIndicator() {
       .addTo(map);
   }
 
+  const mapActive = map.isMoving() || map.isZooming();
   const videoPlaying = video && !video.paused;
   const dist = indicator.getLngLat().distanceTo(lngLat);
   const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
@@ -83,7 +85,8 @@ function renderIndicator() {
     clearTimeout(indicatorAnimateTimer);
     indicatorAnimateTimer = null;
   }
-  if (animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 300);
+  // NOTE: also update timeout in main.scss
+  if (animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 150);
 
   videoWasPlaying = videoPlaying;
 
@@ -110,12 +113,8 @@ function renderIndicator() {
   } else if (!videoPlaying && indicatorFocus !== null) {
     clearInterval(indicatorFocus);
     indicatorFocus = null;
-  } else if (indicator && prevIndicatorPos !== `${pos.lon},${pos.lat}`) {
-    // console.debug("indicator present, and changed, ensuring it's in view", indicator)
-    if (prevIndicatorPos !== '') {
-      window.requestAnimationFrame(ensureIndicatorInView);
-    }
-    prevIndicatorPos = `${pos.lon},${pos.lat}`;
+  } else {
+    window.requestAnimationFrame(ensureIndicatorInView);
   }
 }
 
@@ -515,10 +514,15 @@ function polyline2geojson(str, precision) {
 
 window.map = map;
 
-window.addEventListener("video:timeupdate", updateVideoIndicator);
+let speculativeIndicator = 0;
+window.addEventListener("video:timeupdate", () => {
+  speculativeIndicator = 25;
+  updateVideoIndicator()
+});
 
 function updateVideoIndicator() {
   renderIndicator();
+  if (speculativeIndicator-- > 0) window.requestAnimationFrame(updateVideoIndicator);
 }
 
 function runQueuedUpdate() {
