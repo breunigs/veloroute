@@ -37,6 +37,7 @@ defmodule Feed do
     |> Entry.content(content, type: "html")
     |> maybe_add_location(art)
     |> maybe_add_image(art)
+    |> maybe_add_summary(art)
     |> Entry.link(url, rel: "alternate", type: "text/html")
     |> Entry.build()
   end
@@ -50,6 +51,14 @@ defmodule Feed do
 
       _other ->
         entry
+    end
+  end
+
+  defp maybe_add_summary(entry, article) do
+    if article.summary() do
+      Entry.summary(entry, article.summary())
+    else
+      entry
     end
   end
 
