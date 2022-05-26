@@ -1,4 +1,3 @@
-let videoCoords = null;
 let videoMetadata = null;
 let prevVideo = null;
 let prevStartGen = null;
