@@ -47,10 +47,9 @@ RUN cmake . && make
 
 FROM debian:testing-slim AS ffmpeg-build
 
-RUN  \
-  echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
+RUN \
+  apt-get update \
+  && apt-get install -y --no-install-recommends \
   autoconf \
   automake \
   binutils \
@@ -78,6 +77,8 @@ RUN  \
   opencl-dev \
   pkg-config \
   yasm \
+  && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
+  && apt-get update \
   && apt-get install -y --no-install-recommends -t unstable rustc \
   && rm -rf /var/lib/apt/lists/* \
   && cargo install cargo-c
@@ -127,7 +128,7 @@ RUN \
   apt-get install -y --no-install-recommends \
   i965-va-driver \
   libboost-iostreams1.74.0 \
-  libdav1d5 \
+  libdav1d[0-9]+ \
   libva-drm2 \
   libva2 \
   libvips42 \
