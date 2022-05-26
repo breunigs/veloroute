@@ -141,7 +141,10 @@ defmodule VelorouteWeb.FrameLive do
       |> VelorouteWeb.Live.VideoState.maybe_update_video(route, attr)
       |> determine_visible_route_groups(route)
 
-    socket = if article, do: push_patch(socket, to: article_path(socket, article)), else: socket
+    socket =
+      if article,
+        do: push_patch(socket, to: article_path(socket, article)),
+        else: update_url_query(socket)
 
     {:noreply, socket}
   end
