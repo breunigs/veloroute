@@ -97,7 +97,7 @@ function renderIndicator() {
   });
 
   // zoom in once, i.e. when user just clicks play when first visiting the site
-  if (!mapActive && !zoomedInOnce && videoPlaying && prevBoundsTs === "") {
+  if (!mapActive && !zoomedInOnce && videoPlaying && map.getZoom() <= 13) {
     zoomedInOnce = true;
     const zoom = Math.max(map.getZoom(), 14);
     map.flyTo({
