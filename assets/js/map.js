@@ -56,8 +56,8 @@ let prevIndicatorPos = '';
 
 function renderIndicator() {
   const pos = getVideoPosition();
+  if (!pos) return;
 
-  if (pos.lon == "" || pos.lat == "") return;
   const lngLat = new mapboxgl.LngLat(pos.lon, pos.lat);
   const mapActive = map.isMoving() || map.isZooming();
 
@@ -451,16 +451,10 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 }
 
 function getVideoPosition() {
-  if (!video || !indicatorPolyline || !state.videoHash || (typeof video.duration) !== "number" || video.readyState <= 1) {
-    console.debug("video not yet available, using state")
-    return {
-      lat: state.lat,
-      lon: state.lon,
-      bearing: state.bearing,
-    };
-  }
+  if (!indicatorPolyline) return;
+  const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
+  const currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
 
-  const currMs = video.currentTime * 1000 + 250;
   const index = Math.floor(currMs / indicatorPolyline.interval);
   const next = Math.min(index + 4, indicatorPolyline.coords.length - 2);
 

@@ -488,8 +488,7 @@ function togglePlayPause() {
 
 function reverseVideo() {
   window.pushEvent('video-reverse', {
-    lon: window.state.lon,
-    lat: window.state.lat
+    pos: Math.round(video.currentTime * 1000)
   })
 }
 

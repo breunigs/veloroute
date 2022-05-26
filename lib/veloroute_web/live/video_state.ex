@@ -164,10 +164,14 @@ defmodule VelorouteWeb.Live.VideoState do
   def reverse(%{assigns: %{video: nil}} = socket, _params), do: socket
 
   def reverse(%{assigns: %{video: state}} = socket, params) do
+    # old style JS will send lat/lon in the params directly instead of time
+    # can be cleaned up after 2022-06-01
+    point = position_from_time(socket, params) || params
+
     assigns =
       state
       |> reverse_direction()
-      |> extract_start(params)
+      |> extract_start(point)
       |> for_frontend()
 
     finalize(socket, assigns)
@@ -182,18 +186,27 @@ defmodule VelorouteWeb.Live.VideoState do
   """
   def set_position(%{assigns: %{video: state}} = socket, params, seek: seek)
       when is_boolean(seek) do
-    with pos <- parse_integer(params["pos"]),
-         rendered <- current_rendered(state),
-         true <- 0 <= pos && pos <= rendered.length_ms do
-      # no idea why the Map.take is needed, but otherwise Dialyzer complains
-      point = Video.Rendered.start_from(rendered, pos) |> Map.take([:lat, :lon])
+    point = position_from_time(socket, params)
 
+    if point do
       assigns = state |> set_start(point, seek: seek) |> for_frontend()
       finalize(socket, assigns)
     else
+      socket
+    end
+  end
+
+  @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::
+          Video.Rendered.indicator() | nil
+  defp position_from_time(%{assigns: %{video: state}}, params) do
+    with pos <- parse_integer(params["pos"]),
+         rendered <- current_rendered(state),
+         true <- 0 <= pos && pos <= rendered.length_ms do
+      Video.Rendered.start_from(rendered, pos)
+    else
       _ ->
-        Logger.debug("failed to set pos from params: #{inspect(params)}")
-        socket
+        Logger.debug("failed to get pos from params: #{inspect(params)}")
+        nil
     end
   end
 
@@ -253,6 +266,9 @@ defmodule VelorouteWeb.Live.VideoState do
       video_metadata_now: metadata_now,
       video_reversable: is_reversable(state),
       video_poster: video_poster(video, start_from),
+
+      # old style JS sets indicator from these when video not loaded
+      # can be cleaned up after 2022-06-01
       lon: start_from.lon,
       lat: start_from.lat,
       bearing: start_from.bearing

@@ -257,12 +257,14 @@ defmodule Video.Rendered do
     end)
   end
 
-  @spec start_from(t(), Geo.Point.like() | integer() | nil) :: %{
+  @type indicator :: %{
           lat: float(),
           lon: float(),
           bearing: float(),
           time_offset_ms: non_neg_integer()
         }
+
+  @spec start_from(t(), Geo.Point.like() | integer() | nil) :: indicator()
   @doc """
   Find the closest point for the video that roughly corresponds to the given
   point or timestmap. If the point is not valid, it returns the start of the
