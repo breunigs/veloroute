@@ -149,3 +149,62 @@ hosters will work.
 quality levels and fallbacks when there are video playback issues. If the video
 codecs and browser video support improves, this number might go down in the
 future.
+
+## Installation
+
+This will install all the software you need to run the development version on
+your machine. You can also build releases and deploy them via SSH with this.
+
+Below are installation instructions for Debian and its derivates. You'll need
+Elixir 1.13+. The repository contains a `.tool-versions` that compatible version
+managers like [asdf](https://asdf-vm.com/) can use to install the right versions
+for you.
+
+```bash
+# standard tooling
+sudo apt-get install build-essential docker.io git inotify-tools josm nodejs npm unzip
+
+# give yourself access to Docker (needs re-login usually)
+sudo usermod -a -G docker $(whoami)
+
+# (A) Elixir/Erlang from distribution
+sudo apt-get install elixir erlang-dev erlang-xmerl
+# (B) …or via asdf or similar package managers
+sudo apt-get install autoconf automake libssl-dev libncurses5-dev
+asdf plugin add erlang
+asdf plugin add elixir
+asdf install
+
+# install Erlang/Elixir package management dependencies
+mix local.hex --force
+mix local.rebar --force
+
+# project itself
+git clone https://github.com/breunigs/veloroute/
+cd veloroute
+mix deps.get
+npm install --prefix ./assets
+```
+
+You'll need to a place to store your videos, both your private originals and the
+processed versions that get served on site. Due to their size, they are not
+hosted within the git repository and are not included when building the release.
+Instead, symlink them:
+
+```bash
+cd veloroute
+ln -s /path/to/your/video/storage videos/
+```
+
+Next, create a [Mapbox.com](https://account.mapbox.com/) account, which is used
+for storing and rendering the map shown to the user. Once you have created an
+account there, you'll need two tokens:
+- a public one, starting with `pk.` for showing the map to the users
+- a secret one, starting with `sk.` for updating the map on changes
+
+```bash
+mix velo.setup
+```
+
+After this, you should be able to run the development server and look at the
+website using `mix phx.server`, or build a complete release using `mix deploy`.

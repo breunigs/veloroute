@@ -58,14 +58,15 @@ defmodule Mix.Tasks.Velo.Setup do
 
   @phx_creds_path "data/phoenix_credentials.exs"
   defp phx_credentials do
-    if !File.exists?(@phx_creds_path),
-      do: phx_credentials_write(),
-      else: IO.puts("#{@phx_creds_path} already exists, not overwriting.")
+    if PhoenixCredentials.secret_key_base() == "fixme" ||
+         PhoenixCredentials.live_view_signing_salt() == "fixme",
+       do: phx_credentials_write(),
+       else: IO.puts("#{@phx_creds_path} already setup, not overwriting.")
   end
 
   defp phx_credentials_write do
-    phx = Mix.Tasks.Phx.Gen.Secret.run(["64"])
-    live = Mix.Tasks.Phx.Gen.Secret.run(["32"])
+    phx = gen(64)
+    live = gen(32)
 
     code =
       quote do
@@ -82,5 +83,11 @@ defmodule Mix.Tasks.Velo.Setup do
       |> Code.format_string!()
 
     File.write!(@phx_creds_path, code)
+    # do not coax the user into adding their credentials to git
+    System.cmd("git", ["update-index", "--assume-unchanged", @phx_creds_path])
+  end
+
+  defp gen(length) do
+    :crypto.strong_rand_bytes(length) |> Base.encode64(padding: false) |> binary_part(0, length)
   end
 end

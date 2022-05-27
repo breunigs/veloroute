@@ -1,5 +1,5 @@
 defmodule Settings do
-  # max extent the user may navigate the map
+  # max extent the user may navigate the map (min lon, min lat, max lon, max lat)
   def bounds, do: [8.9236, 53.1336, 10.8897, 53.9682]
   # start settings if no other map location/image is selected
   def initial,
