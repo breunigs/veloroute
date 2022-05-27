@@ -23,13 +23,7 @@ defmodule VelorouteWeb.FrameLive do
     search_query: nil,
     search_bounds: nil,
     tmp_last_article_set: nil,
-    visible_types: [],
-
-    # old style JS sets indicator from these when video not loaded
-    # can be cleaned up after 2022-06-01
-    lon: nil,
-    lat: nil,
-    bearing: nil
+    visible_types: []
   ]
 
   def initial_state, do: @initial_state

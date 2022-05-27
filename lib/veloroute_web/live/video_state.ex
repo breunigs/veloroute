@@ -265,13 +265,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_metadata: metadata,
       video_metadata_now: metadata_now,
       video_reversable: is_reversable(state),
-      video_poster: video_poster(video, start_from),
-
-      # old style JS sets indicator from these when video not loaded
-      # can be cleaned up after 2022-06-01
-      lon: start_from.lon,
-      lat: start_from.lat,
-      bearing: start_from.bearing
+      video_poster: video_poster(video, start_from)
     ]
   end
 
