@@ -325,14 +325,23 @@ defmodule Video.Renderer do
   # find seq_tier and seq_level_idx through:
   # ffmpeg -i <file> -c:v copy -bsf:v trace_headers -f null /dev/null 2>&1 | grep seq_ | head -n5
   # The 31 chosen for LL here is "Maximum parameters", i.e. no restrictions.
-  defp codec_av1,
+  @spec codec_av1(map(), non_neg_integer()) :: map()
+  defp codec_av1(info, idx),
     do: %{
-      codec: ~w[librav1e -tiles:v:__INDEX__ 4 -speed:v:__INDEX__ 6],
+      codec: [
+        "librav1e",
+        "-tiles:v:#{idx}",
+        "#{Integer.floor_div(info[:height], 135)}",
+        "-speed:v:#{idx}",
+        "6"
+      ],
       tag_as: "av01.0.31M.08"
     }
 
   # ffmpeg itself manages avc tags
-  defp codec_avc, do: %{codec: ~w[libx264 -preset veryslow -refs:v:__INDEX__ 5]}
+  @spec codec_avc(map(), non_neg_integer()) :: map()
+  defp codec_avc(_info, idx),
+    do: %{codec: ["libx264", "-preset:v:#{idx}", "veryslow", "-refs:v:#{idx}", "5"]}
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.
@@ -341,38 +350,33 @@ defmodule Video.Renderer do
   # only devices which support hevc (iOS). This is true even for old encodes, so
   # potentially something in iOS itself changed. Ran out of the debugging
   # timebox for this one.
-  # defp codec_hevc do
+  # defp codec_hevc(info, idx) do
   #   specific =
   #     if Video.Metadata.can_use?("hevc_nvenc"),
   #       do:
-  #         ~w[hevc_nvenc -preset slow -tier:v:__INDEX__ high -level:v:__INDEX__ 6.2 -nonref_p 1 -spatial_aq 1 hvc1 -refs:v:__INDEX__ 0],
-  #       else: ~w[libx265 -x265-params log-level=error]
-
-  #   %{codec: specific ++ ~w[-tag:v:__INDEX__ hvc1], tag_as: "hvc1.1.4.L186.B01"}
+  #         ["hevc_nvenc", "-preset", "slow", "-tier:v:#{idx}", "high", "-level:v:#{idx}", "6.2", "-nonref_p", "1", "-spatial_aq", "1", "hvc1", "-refs:v:#{idx}", "0"],
+  #       else: ["libx265", "-x265-params", "log-level=error"]
+  #
+  #   %{codec: specific ++ ["-tag:v:#{idx}", "hvc1"], tag_as: "hvc1.1.4.L186.B01"}
   # end
 
   defp variants do
-    codec_avc = codec_avc()
-    codec_av1 = codec_av1()
-    # codec_vp9 = codec_vp9()
-    # codec_hevc = codec_hevc()
-
     [
       # av1, with default quality as first entry
-      Map.merge(%{width: 1280, height: 720, bitrate: 4.5, fallback: :webm}, codec_av1),
-      Map.merge(%{width: 426, height: 240, bitrate: 1.5}, codec_av1),
-      Map.merge(%{width: 640, height: 360, bitrate: 3}, codec_av1),
-      Map.merge(%{width: 1920, height: 1080, bitrate: 9}, codec_av1),
+      %{width: 1280, height: 720, bitrate: 4.5, fallback: :webm, codec: &codec_av1/2},
+      %{width: 426, height: 240, bitrate: 1.5, codec: &codec_av1/2},
+      %{width: 640, height: 360, bitrate: 3, codec: &codec_av1/2},
+      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1/2},
       # legacy codec
-      Map.merge(%{width: 426, height: 240, bitrate: 2}, codec_avc),
-      Map.merge(%{width: 640, height: 360, bitrate: 4, fallback: :mp4}, codec_avc),
-      Map.merge(%{width: 1280, height: 720, bitrate: 6}, codec_avc)
+      %{width: 426, height: 240, bitrate: 2, codec: &codec_avc/2},
+      %{width: 640, height: 360, bitrate: 4, fallback: :mp4, codec: &codec_avc/2},
+      %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
     ]
     |> Enum.with_index()
     |> Enum.map(fn {info, idx} ->
       info
       |> Map.put(:index, idx)
-      |> Map.put(:codec, Enum.map(info[:codec], &String.replace(&1, "__INDEX__", "#{idx}")))
+      |> Map.merge(info[:codec].(info, idx))
     end)
   end
 
