@@ -280,10 +280,10 @@ function updateQualityChooser() {
       name: codecSet,
       desc: "Unbekannt"
     };
-    const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
     let name = `${window.hls.levels[i].height}p`;
-    if (displayCodec) name += ` <small>${codec.name}</small>`
+    const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
 
+    if (displayCodec) name += ` <small>${codec.name}</small>`
     choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
   }
   choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
