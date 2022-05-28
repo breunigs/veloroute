@@ -57,11 +57,8 @@ defmodule Mix.Tasks.Velo.Setup do
   end
 
   @phx_creds_path "data/phoenix_credentials.exs"
-  defp phx_credentials do
-    if PhoenixCredentials.secret_key_base() == "fixme" ||
-         PhoenixCredentials.live_view_signing_salt() == "fixme",
-       do: phx_credentials_write(),
-       else: IO.puts("#{@phx_creds_path} already setup, not overwriting.")
+  def phx_credentials do
+    if not File.exists?(@phx_creds_path), do: phx_credentials_write()
   end
 
   defp phx_credentials_write do
@@ -71,9 +68,7 @@ defmodule Mix.Tasks.Velo.Setup do
     code =
       quote do
         defmodule PhoenixCredentials do
-          @moduledoc """
-          Generated through "mix velo.setup", but you can customize it.
-          """
+          @moduledoc "Generated through `mix velo.setup`, but you can customize it."
 
           def secret_key_base, do: unquote(phx)
           def live_view_signing_salt, do: unquote(live)
@@ -83,8 +78,6 @@ defmodule Mix.Tasks.Velo.Setup do
       |> Code.format_string!()
 
     File.write!(@phx_creds_path, code)
-    # do not coax the user into adding their credentials to git
-    System.cmd("git", ["update-index", "--assume-unchanged", @phx_creds_path])
   end
 
   defp gen(length) do

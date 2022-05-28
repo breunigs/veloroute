@@ -7,7 +7,9 @@
 # General application configuration
 import Config
 
-import_config "../data/phoenix_credentials.exs"
+creds_path = Path.expand("../data/phoenix_credentials.exs", __DIR__)
+if !File.exists?(creds_path), do: Mix.Tasks.Velo.Setup.phx_credentials()
+import_config(creds_path)
 
 # Configures the endpoint
 config :veloroute, VelorouteWeb.Endpoint,
