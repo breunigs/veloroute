@@ -241,7 +241,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
 
     <h4>Auffindbarkeit</h4>
 
-    <p><img src="/images/logo_zweiter_gruener_ring.svg" style="float:left; padding: 3px 10px 10px 0; width: 100px" />Die Tour ist durchgehend beschildert und leicht zu finden. An den Wegweisern ist die Tour als „weiße 11 auf rotem Grund“ ausgezeichnet. Viel häufiger trifft man jedoch das abgebildete Logo an. Es klebt an Laternen, Schranken, Rückseiten von Schildern und sogar Mülleimern. Teilweise auch in verkürzter Form als weißer Pfeil auf grünem Grund.</p>
+    <p><img src="/images/logo_zweiter_gruener_ring.svg" style="float:left; padding: 3px 10px 10px 0; width: 100px" alt="Logo des zweiten Grünen Rings"/>Die Tour ist durchgehend beschildert und leicht zu finden. An den Wegweisern ist die Tour als „weiße 11 auf rotem Grund“ ausgezeichnet. Viel häufiger trifft man jedoch das abgebildete Logo an. Es klebt an Laternen, Schranken, Rückseiten von Schildern und sogar Mülleimern. Teilweise auch in verkürzter Form als weißer Pfeil auf grünem Grund.</p>
     <p>Leider gibt es dennoch einige nicht direkt ersichtliche Stellen. Eine Karte kann daher hilfreich sein. Faustregel: wenn es Abzweigungen gab und man das Logo nun länger nicht mehr gesehen hat, hat man sich verfahren.</p>
     <p>Es gibt mehrere Versionen der Tour, d.h. die aufgestellten Schilder und die GPS-Tourdaten im Internet stimmen nicht immer überein. Die von veloroute.hamburg orientieren sich an den Schildern, sofern man diesen sinnvoll folgen kann.</p>
 

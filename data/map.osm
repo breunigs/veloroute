@@ -56764,6 +56764,7 @@
     <tag k='name' v='rsw-tostedt' />
   </relation>
   <relation id='-101532'>
+    <member type='node' ref='-41094168' role='gpx_start' />
     <member type='way' ref='-19861719' role='forward' />
     <member type='way' ref='-19861689' role='backward' />
     <member type='way' ref='-19861650' role='forward' />
@@ -56773,9 +56774,11 @@
     <member type='way' ref='-19861731' role='backward' />
     <member type='way' ref='-19861722' role='forward' />
     <member type='way' ref='-19861692' role='' />
+    <member type='node' ref='-41094106' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-4' />
   </relation>
   <relation id='-101634'>
+    <member type='node' ref='-41094318' role='gpx_start' />
     <member type='way' ref='-19861350' role='' />
     <member type='way' ref='-19861345' role='forward' />
     <member type='way' ref='-19861349' role='forward' />
@@ -56792,9 +56795,11 @@
     <member type='way' ref='-19861886' role='' />
     <member type='way' ref='-19861731' role='' />
     <member type='way' ref='-19861869' role='' />
+    <member type='node' ref='-41093923' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-1' />
   </relation>
   <relation id='-101725'>
+    <member type='node' ref='-41094318' role='gpx_start' />
     <member type='way' ref='-19861869' role='' />
     <member type='way' ref='-19861731' role='' />
     <member type='way' ref='-19861886' role='' />
@@ -56807,9 +56812,11 @@
     <member type='way' ref='-19861577' role='forward' />
     <member type='way' ref='-19861537' role='forward' />
     <member type='way' ref='-19861538' role='forward' />
+    <member type='node' ref='-41094008' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-2' />
   </relation>
   <relation id='-101922'>
+    <member type='node' ref='-41094497' role='gpx_start' />
     <member type='way' ref='-19861604' role='' />
     <member type='way' ref='-19861596' role='forward' />
     <member type='way' ref='-19861577' role='backward' />
@@ -56822,6 +56829,7 @@
     <member type='way' ref='-19861946' role='backward' />
     <member type='way' ref='-19861937' role='backward' />
     <member type='way' ref='-19861560' role='forward' />
+    <member type='node' ref='-41094105' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-3' />
   </relation>
   <relation id='191882' version='1'>
