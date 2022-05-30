@@ -535,3 +535,6 @@
 '2022-05-24':
 - "/contentblob/16202222/7990b422bdff3bde53dfc91eb5122f9b/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht.pdf"
 - "/contentblob/16202224/6a49db3da9493224b295e4fdf30fd3a6/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan.pdf"
+'2022-05-27':
+- "/contentblob/16204932/100c87599ca0f6635928a2029f7712a6/data/holstenstrasse-erneuerung-geh-und-radwege-06-22-bis-12-22.pdf"
+- "/contentblob/16204930/748fcc1adf951d2ac9173da0dae14c7c/data/stresemannstrasse-erneuerung-geh-und-radwege-06-22-bis-08-22.pdf"
