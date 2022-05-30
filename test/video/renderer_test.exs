@@ -62,7 +62,7 @@ defmodule Video.RendererTest do
              "-c:v:0",
              "librav1e",
              "-tiles:v:0",
-             "4",
+             "5",
              "-speed:v:0",
              "6",
              "-flags",
@@ -82,7 +82,7 @@ defmodule Video.RendererTest do
              "-c:v:1",
              "librav1e",
              "-tiles:v:1",
-             "4",
+             "1",
              "-speed:v:1",
              "6",
              "-flags",
@@ -102,7 +102,7 @@ defmodule Video.RendererTest do
              "-c:v:2",
              "librav1e",
              "-tiles:v:2",
-             "4",
+             "2",
              "-speed:v:2",
              "6",
              "-flags",
@@ -122,7 +122,7 @@ defmodule Video.RendererTest do
              "-c:v:3",
              "librav1e",
              "-tiles:v:3",
-             "4",
+             "8",
              "-speed:v:3",
              "6",
              "-flags",
@@ -141,7 +141,7 @@ defmodule Video.RendererTest do
              "18.0M",
              "-c:v:4",
              "libx264",
-             "-preset",
+             "-preset:v:4",
              "veryslow",
              "-refs:v:4",
              "5",
@@ -161,7 +161,7 @@ defmodule Video.RendererTest do
              "4.0M",
              "-c:v:5",
              "libx264",
-             "-preset",
+             "-preset:v:5",
              "veryslow",
              "-refs:v:5",
              "5",
@@ -181,7 +181,7 @@ defmodule Video.RendererTest do
              "8.0M",
              "-c:v:6",
              "libx264",
-             "-preset",
+             "-preset:v:6",
              "veryslow",
              "-refs:v:6",
              "5",
@@ -275,15 +275,27 @@ defmodule Video.RendererTest do
         {"2.mp4", "00:00:00.000", "00:00:00.333"}
       ]
 
+    @polyline_interval_ms 100
+    @polyline_precision 6
+
     @impl Video.Rendered
     def coords(),
       do: [
-        %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},
-        %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 100},
-        %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 200},
-        %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 300},
-        %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 400}
+        %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0 * @polyline_interval_ms},
+        %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 1 * @polyline_interval_ms},
+        %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 2 * @polyline_interval_ms},
+        %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 3 * @polyline_interval_ms},
+        %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 4 * @polyline_interval_ms}
       ]
+
+    @impl Video.Rendered
+    def polyline() do
+      %{
+        polyline: Geo.Smoother.polyline(coords(), @polyline_interval_ms, @polyline_precision),
+        interval: @polyline_interval_ms,
+        precision: @polyline_precision
+      }
+    end
 
     @impl Video.Rendered
     def rendered?(), do: true
