@@ -92,6 +92,16 @@ Hooks.FocusSearchField = {
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,
+  dom: {
+    onBeforeElUpdated(from, to) {
+      let attrToCopy = from.getAttribute("phx-ignore-attr");
+      if (!attrToCopy) return;
+      attrToCopy = attrToCopy.split(" ");
+      for (let i = 0; i < attrToCopy.length; i++) {
+        to.setAttribute(attrToCopy[i], from.getAttribute(attrToCopy[i]));
+      }
+    }
+  },
   params: {
     _csrf_token: csrfToken
   }

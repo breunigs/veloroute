@@ -1,7 +1,7 @@
 <div phx-update="ignore" id="map"></div>
 <div phx-update="ignore" id="ping"></div>
 
-<div id="videoOuter" data-state="play">
+<div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
   <span phx-update="ignore" id="videoPhxIgnorerDummy">
     <div id="videoPoster" style={"background-image: url('#{@video_poster}')"}>
       <video id="videoInner" muted playsinline preload="none"></video>
