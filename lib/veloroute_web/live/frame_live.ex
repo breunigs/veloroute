@@ -256,7 +256,7 @@ defmodule VelorouteWeb.FrameLive do
       current_page: art,
       page_title: page_title,
       article_date: art.updated_at(),
-      article_title: full_title,
+      article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
     |> determine_visible_route_groups(art)

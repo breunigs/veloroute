@@ -5,7 +5,7 @@ defmodule Data.Article.Static.Startpage do
   def title(), do: ""
 
   def summary(),
-    do: "Hamburgs Alltags- und Freizeitradrouten"
+    do: "Alltags-, Freizeit- und Radschnellwege in der Metropolregion Hamburg"
 
   def tags(), do: []
 

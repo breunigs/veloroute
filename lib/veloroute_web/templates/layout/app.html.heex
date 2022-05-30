@@ -24,19 +24,16 @@
       <meta property="og:type" content="article"/>
       <meta property="article:modified_time" content={Date.to_iso8601(assigns[:article_date])}/>
     <% end %>
-    <%= if assigns[:article_title] != nil do %>
-      <meta property="og:title" content={assigns[:article_title]}/>
-    <% end %>
-    <%= if assigns[:article_summary] != nil do %>
+    <meta property="og:title" content={assigns[:article_title]}/>
+    <%= if assigns[:article_summary] != nil && assigns[:article_summary] != "" do %>
       <meta property="og:description" content={assigns[:article_summary]}/>
     <% end %>
     <meta property="og:site_name" content={Settings.sitebar_name()}/>
     <meta property="og:image:width" content="640"/>
     <meta property="og:image" content={Routes.image_extract_url(@conn, :image, @video_hash, @video_start)} />
     <%= if Settings.twitter_handle() != nil do %>
-      <meta property="twitter:creator" content={Settings.twitter_handle()}/>
+      <meta property="twitter:site" content={Settings.twitter_handle()}/>
     <% end %>
-    <meta name="twitter:card" content="summary_large_image">
     <%= VelorouteWeb.CSSInline.tag(@conn, :app) %>
   </head>
   <%
