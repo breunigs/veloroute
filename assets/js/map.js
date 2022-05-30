@@ -119,6 +119,7 @@ function renderIndicator() {
 }
 
 const closestEquivalentAngle = (from, to) => {
+  if (to === null) return from;
   const delta = ((((to - from) % 360) + 540) % 360) - 180;
   return from + delta;
 }
@@ -425,6 +426,7 @@ window.addEventListener("phx:video_polyline", e => {
   indicatorPolyline = {
     coords: decoded.geometry.coordinates,
     interval: e.detail.interval,
+    eps: 10 ** (-e.detail.precision),
   }
 })
 
@@ -449,22 +451,44 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-function getVideoPosition() {
+function getVideoPosition(closeRetry) {
   if (!indicatorPolyline) return;
   const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
   const currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
 
   const index = Math.floor(currMs / indicatorPolyline.interval);
-  const next = Math.min(index + 4, indicatorPolyline.coords.length - 2);
-
   const [lon1, lat1] = indicatorPolyline.coords[index];
-  const [lon2, lat2] = indicatorPolyline.coords[next];
+
+  // Look 100ms in the future to calculate a bearing that is not too affected by
+  // precision/rounding errors.
+  let next = index + Math.round(100 / indicatorPolyline.interval);
+  next = Math.min(next, indicatorPolyline.coords.length - 2);
+  let [lon2, lat2] = indicatorPolyline.coords[next];
+
+  // If both points are close to each other, look 1s further
+  let close = veryClose(lon1, lat1, lon2, lat2);
+  if (close) {
+    next += Math.round(1000 / indicatorPolyline.interval)
+    next = Math.min(next, indicatorPolyline.coords.length - 2);
+    [lon2, lat2] = indicatorPolyline.coords[next];
+    close = veryClose(lon1, lat1, lon2, lat2);
+  }
+
+  // If they are still close, we give up and re-use the previous position
+  const bearing = close ? null : calcBearing(lon1, lat1, lon2, lat2)
 
   return {
     lon: lon1,
     lat: lat1,
-    bearing: calcBearing(lon1, lat1, lon2, lat2)
+    bearing: bearing
   };
+}
+
+// veryClose returns true when the two coordinates only differ in their least
+// significant digit, determined from the indicatorPolyline precision.
+function veryClose(lon1, lat1, lon2, lat2) {
+  const close = indicatorPolyline.eps * 10;
+  return Math.abs(lon1 - lon2) < close && Math.abs(lat1 - lat2) < close
 }
 
 // algorithm specification: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
