@@ -67,7 +67,7 @@
   }
   #videoRoute { order: 1; }
   #videoMetadata { order: 2; }
-  #videoPhxIgnorerDummy { order: 3; }
+  #videoPoster { order: 3; }
   #videoPoster::after, #videoPoster::before {
     display: none;
   }

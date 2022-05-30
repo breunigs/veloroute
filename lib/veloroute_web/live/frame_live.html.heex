@@ -2,11 +2,9 @@
 <div phx-update="ignore" id="ping"></div>
 
 <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
-  <span phx-update="ignore" id="videoPhxIgnorerDummy">
-    <div id="videoPoster" style={"background-image: url('#{@video_poster}')"}>
-      <video id="videoInner" muted playsinline preload="none"></video>
-    </div>
-  </span>
+  <div id="videoPoster" style={"background-image: url('#{@video_poster}')"} phx-ignore-attr="style">
+    <video id="videoInner" muted playsinline preload="none"></video>
+  </div>
 
   <%= display_route(@video) %>
   <span id="videoMetadata"><%= @video_metadata_now %></span>
