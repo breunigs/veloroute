@@ -1,9 +1,9 @@
 defmodule Geo.Export do
   def gpx_poly(coords) do
-    Polyline.encode(coords, 6) |> Polyline.decode(6) |> gpx()
+    coords |> Enum.map(&{&1.lon, &1.lat}) |> Polyline.encode(6) |> Polyline.decode(6) |> gpx()
   end
 
-  @spec gpx([Geo.Point.like()]) :: binary
+  @spec gpx([Geo.Point.like()] | Video.Rendered.polyline()) :: binary
   def gpx(coords) do
     """
     <?xml version="1.0" encoding="UTF-8"?>
@@ -16,9 +16,23 @@ defmodule Geo.Export do
     |> String.trim()
   end
 
-  defp as_gpx_track_points(coords) do
+  defp as_gpx_track_points(coords) when is_list(coords) do
     coords
-    |> Enum.map(fn coord -> ~s(<trkpt lat="#{coord.lat}" lon="#{coord.lon}"></trkpt>) end)
+    |> Enum.map(&coord2gpx/1)
     |> Enum.join("\n")
+  end
+
+  defp as_gpx_track_points(%{polyline: poly, precision: precision}) do
+    Polyline.decode(poly, precision)
+    |> Enum.map(&coord2gpx/1)
+    |> Enum.join("\n")
+  end
+
+  defp coord2gpx(%{lat: lat, lon: lon}) do
+    ~s(<trkpt lat="#{lat}" lon="#{lon}"></trkpt>)
+  end
+
+  defp coord2gpx({lon, lat}) do
+    ~s(<trkpt lat="#{lat}" lon="#{lon}"></trkpt>)
   end
 end
