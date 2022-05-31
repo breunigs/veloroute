@@ -17,6 +17,7 @@ defmodule VelorouteWeb.FrameLive do
     bounds: struct(Geo.BoundingBox, Settings.initial()),
     bounds_ts: nil,
     map_bounds: nil,
+    article_original_date: nil,
     article_date: nil,
     article_title: nil,
     article_summary: nil,
@@ -255,6 +256,7 @@ defmodule VelorouteWeb.FrameLive do
       prev_page: socket.assigns.current_page,
       current_page: art,
       page_title: page_title,
+      article_original_date: art.created_at(),
       article_date: art.updated_at(),
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
