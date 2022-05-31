@@ -220,7 +220,7 @@ function showPing(e) {
   if (e.detail.polylines && e.detail.polylines.length > 0) {
     const geojson = {
       type: 'FeatureCollection',
-      features: e.detail.polylines.map(polyline2geojson)
+      features: e.detail.polylines.map((pl, _idx) => polyline2geojson(pl, null))
     }
     console.log("ping: showing ", e.detail.polylines.length, "polylines")
 
