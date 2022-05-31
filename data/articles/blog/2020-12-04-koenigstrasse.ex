@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.Koenigstrasse do
 
   def title(), do: "Königstraße (Veloroute 13)"
 
-  def start(), do: ~d[2022Q4]
-  def stop(), do: ~d[2023Q4]
+  def start(), do: ~d[2023-07]
+  def stop(), do: ~d[2025-04]
 
   def type(), do: :planned
 
