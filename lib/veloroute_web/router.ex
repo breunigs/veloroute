@@ -14,6 +14,7 @@ defmodule VelorouteWeb.Router do
 
   scope "/", VelorouteWeb do
     get "/updates.atom", FeedController, :feed
+    get "/sitemap.xml", SitemapController, :sitemap
     get "/routes/geo/updates.atom", FeedController, :legacy
 
     for num <- 1..14 do

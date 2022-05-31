@@ -25,13 +25,8 @@ defmodule Feed do
   defp article(art) do
     content = Article.Decorators.html(art, %{__changed__: %{}, render_target: :feed})
     full_title = Article.Decorators.full_title(art)
-
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
-
-    # TODO: this fails, presumably because dependencies are missing during
-    # compile?
-    # Routes.article_url(VelorouteWeb.Endpoint, VelorouteWeb.FrameLive, name)
-    url = Settings.url() <> "/article/" <> art.name()
+    url = Article.Decorators.url(art)
 
     Entry.new(url, date, full_title)
     |> Entry.content(content, type: "html")

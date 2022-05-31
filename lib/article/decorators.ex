@@ -85,6 +85,14 @@ defmodule Article.Decorators do
     path(art) <> "?" <> URI.encode_query(query)
   end
 
+  @doc """
+  Returns the canonical URL for a given article
+  """
+  @spec url(Article.t()) :: binary()
+  def url(art) do
+    Settings.url() <> path(art)
+  end
+
   @type_names %{
     construction: "Baustelle",
     planned: "Planung",
