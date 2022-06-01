@@ -6,7 +6,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
   def route_group(), do: :alltag
   def title(), do: "Pinneberg: Veloroute 5"
 
-  def color(), do: "#e47bb0"
+  def color(), do: "#f4628b"
 
   def summary(),
     do: "Veloroute 5 führt von Pinnebergs Zentrum nach Kummerfeld"
@@ -46,6 +46,10 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
 
   def links(_assigns) do
     [
+      {"Broschüre zu Pinnebergs Velorouten", "2022, PDF",
+       "https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
+      {"Stadt Pinneberg zur Ausschilderung",
+       "https://pinneberg.de/leben-in-pinneberg?chash=6c835baef9601f60fe5950927b65f235&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=news&tx_news_pi1%5Bnews%5D=396&cHash=3a6be95e43c0e780cd932b199730ad9c"},
       {
         "ADFC zur Ausschilderung der Route",
         "https://adfc-pinneberg.de/verkehrspolitik/384-veloroute-5-ausgeschildert"

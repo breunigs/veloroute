@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.Kloevensteenweg do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", "Mai 2022",
+       "https://www.hamburg.de/altona/baustelleninfos/16218720/zweite-bauphase-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baubeginn", "2022",
        "https://www.hamburg.de/altona/baustelleninfos/16083204/ausbau-veloroute-1-mit-grundinstandsetzung-rissen/"},
       {"Erläuterungsbericht zur Umgestaltung mit Lageplan",

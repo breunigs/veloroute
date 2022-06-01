@@ -6,7 +6,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
   def route_group(), do: :alltag
   def title(), do: "Pinneberg: Veloroute 1"
 
-  def color(), do: "#197888"
+  def color(), do: "#029154"
 
   def summary(),
     do: "Veloroute 1 führt von Pinnebergs Zentrum nach Prisdorf"
@@ -16,7 +16,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Pinneberg 1",
         direction: :forward,
         from: "Pinneberg Zentrum",
@@ -26,11 +26,11 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
         videos: [
           {"2022-02-27-pinneberg/GX013247", "00:01:36.196", "00:01:39.299"},
           {"2022-02-27-pinneberg/GX013241", "00:01:51.511", :end},
-          {"2022-02-27-pinneberg/GX013242", :start, "00:00:41.366"}
+          {"2022-02-27-pinneberg/GX013242", :start, "00:00:28.690"}
         ]
       },
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Pinneberg 1",
         direction: :backward,
         from: "Prisdorf",
@@ -38,7 +38,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
         parent_ref: __MODULE__,
         text: "von Prisdorf zum Zentrum",
         videos: [
-          {"2022-02-27-pinneberg/GX013244", "00:00:10.644", :end},
+          {"2022-02-27-pinneberg/GX013244", "00:00:26.688", :end},
           {"2022-02-27-pinneberg/GX013245", :start, :end},
           {"2022-02-27-pinneberg/GX013246", :start, :end},
           {"2022-02-27-pinneberg/GX013247", :start, "00:01:40.949"}
@@ -48,6 +48,10 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
 
   def links(_assigns) do
     [
+      {"Broschüre zu Pinnebergs Velorouten", "2022, PDF",
+       "https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
+      {"Stadt Pinneberg zur Ausschilderung",
+       "https://pinneberg.de/leben-in-pinneberg?chash=6c835baef9601f60fe5950927b65f235&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=news&tx_news_pi1%5Bnews%5D=396&cHash=3a6be95e43c0e780cd932b199730ad9c"},
       {
         "ADFC zur Ausschilderung der Route",
         "https://adfc-pinneberg.de/verkehrspolitik/381-veloroute-1-endlich-ausgeschildert"
@@ -64,7 +68,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
     <p>Die Route ist vollständig ausgeschildert und teils mit Piktogrammen versehen. Ohne Ortskenntnis muss man genau schauen um zu sehen wie abgebogen werden soll.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Anfangs führt die Route durch Nebenstraßen und Parkwege, sowohl asphaltiert als auch mit naturnahen Oberflächen (Grand). Entlang der KFZ-Trasse fährt man zunächst auf kombinierten Fuß- und Radwegen. Später muss man auf die KFZ-Spuren ausweichen oder darf im Schritttempo auf den Fußwegen weiterfahren. Die Route ist nur teilweise mit Lastenrad befahrbar.</p>
+    <p>Anfangs führt die Route durch Nebenstraßen und Parkwege, sowohl asphaltiert als auch mit naturnahen Oberflächen (Grand). Entlang der KFZ-Trasse fährt man zunächst auf kombinierten Fuß- und Radwegen. Die Route ist nur teilweise mit Lastenrad befahrbar. Der Anschluss in Prisdorf erfolgt an einen Fußweg, auf dem man mit Schritttempo weiterfahren darf oder auf die KFZ-Spur ausweichen muss.</p>
 
     <p>Die Ampelschaltung mit Fahrtrichtung Pinneberg ist nicht für den Radverkehr optimiert. Es gibt außerdem zwei Schiebestellen:</p>
     <ul>

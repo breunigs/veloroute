@@ -6,40 +6,40 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
   def route_group(), do: :alltag
   def title(), do: "Pinneberg: Veloroute 3"
 
-  def color(), do: "#ec7f44"
+  def color(), do: "#f19709"
 
   def summary(),
-    do: "Veloroute 3 führt von Pinnebergs Zentrum nach Waldenau"
+    do: "Veloroute 3 führt von Pinnebergs Zentrum nach Schenefeld"
 
   def tags(), do: [id(), "pinneberg"]
 
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Pinneberg 3",
         direction: :forward,
         from: "Pinneberg Zentrum",
-        to: "Waldenau-Datum",
+        to: "Schenefeld",
         parent_ref: __MODULE__,
-        text: "vom Pinnebergs Zentrum nach Waldenau",
+        text: "vom Pinnebergs Zentrum nach Schenefeld",
         videos: [
           {"2022-02-27-pinneberg/GX013248", "00:00:21.622", "00:01:45.238"},
           {"2022-02-27-pinneberg/GX013249", :start, :end},
           {"2022-02-27-pinneberg/GX013250", :start, "00:02:30.183"},
-          {"2022-02-27-pinneberg/GX013251", "00:00:00.100", "00:00:52.452"}
+          {"2022-02-27-pinneberg/GX013251", "00:00:00.100", "00:01:16.743"}
         ]
       },
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Pinneberg 3",
         direction: :backward,
-        from: "Waldenau-Datum",
+        from: "Schenefeld",
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
-        text: "von Waldenau zum Pinneberger Zentrum",
+        text: "von Schenefeld zum Pinneberger Zentrum",
         videos: [
-          {"2022-02-27-pinneberg/GX013230", "00:02:27.748", :end},
+          {"2022-02-27-pinneberg/GX013230", "00:02:10.530", :end},
           {"2022-02-27-pinneberg/GX023230", :start, "00:00:16.984"},
           {"2022-02-27-pinneberg/GX013231", "00:00:01.435", "00:00:13.647"},
           {"2022-02-27-pinneberg/GX013231", "00:00:35.235", "00:01:14.141"}
@@ -49,6 +49,10 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
 
   def links(_assigns) do
     [
+      {"Broschüre zu Pinnebergs Velorouten", "2022, PDF",
+       "https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
+      {"Stadt Pinneberg zur Ausschilderung",
+       "https://pinneberg.de/leben-in-pinneberg?chash=6c835baef9601f60fe5950927b65f235&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=news&tx_news_pi1%5Bnews%5D=396&cHash=3a6be95e43c0e780cd932b199730ad9c"},
       {
         "ADFC zur Ausschilderung der Route",
         "https://adfc-pinneberg.de/verkehrspolitik/386-veloroute-3"
