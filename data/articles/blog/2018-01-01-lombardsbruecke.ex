@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.Lombardsbruecke do
 
   def title(), do: "Lombardsbrücke (1. Grüner Ring und Freizeitroute 1)"
 
-  def start(), do: ~d[2020]
-  def stop(), do: ~d[2022]
+  def start(), do: ~d[2019-11-02]
+  def stop(), do: ~d[2022-09-30]
+  def construction_site_id_hh(), do: [12465]
 
   def type(), do: :construction
 

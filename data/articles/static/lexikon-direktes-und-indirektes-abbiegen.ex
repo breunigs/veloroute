@@ -15,6 +15,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
       "lexikon",
       "abbiegen",
       "direkt",
+      "direktem",
       "direkten-abbiegen",
       "direktes-linksabbiegen",
       "direktes-und-indirektes-abbiegen",
@@ -23,6 +24,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
       "indirekt",
       "indirekte-linksabbiegen",
       "indirektem-linksabbiegen",
+      "indirektem",
       "indirekten-linksabbiegen",
       "indirektes-linksabbiegen",
       "indirektes"

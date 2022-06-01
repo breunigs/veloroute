@@ -40,7 +40,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
     <p>Die für den <.a href="/rsw-lueneburg">Radschnellweg Lüneburg</.a> wichtige Verbindung von der <.m bounds="9.988558,53.457245,9.990438,53.458471" lon="9.988818" lat="53.45805" dir="forward" ref="rsw-lueneburg">Hannoverschen zur Walter-Dudek-Brücke</.m> scheint künftig ohne den Zweirichtungs-Radweg auf der Bahnseite auskommen zu müssen. Es muss hier also entweder Geschoben oder die Kreuzung zweimal gequert werden.</p>
 
     <h4>Meinung</h4>
-    <p>Eine Beurteilung fällt ohne die genauen Pläne schwierig. Es ist klar das der Busverkehr in der Planung im Vordergrund stand, für den es eine spürbare Verbesserung geben sollte. Beim Radverkehr stellen die schmalen, ungeschützen Radfahrstreifen auf einer riesigen, sechsspurigen Kreuzung eher eine Verschlechterung dar.</p>
+    <p>Eine Beurteilung fällt ohne die genauen Pläne schwierig. Es ist klar das der Busverkehr in der Planung im Vordergrund stand, für den es eine spürbare Verbesserung geben sollte. Beim Radverkehr stellen die schmalen, ungeschützten Radfahrstreifen auf einer riesigen, sechsspurigen Kreuzung eher eine Verschlechterung dar.</p>
 
     <h4>Quelle</h4>
     <.structured_links/>

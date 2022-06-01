@@ -512,3 +512,8 @@
 - https://via-bus.hamburg.de/contentblob/15723724/0b56a9b8f97fc9ef5b3680ae21bb86aa/data/farmsen-dokumentation-zweite-beteiligungsphase.pdf
 '2022-04-01':
 - https://via-bus.hamburg.de/contentblob/16047958/8e00eb7c463af23cd4f110fdbbc6fce8/data/28-m20-25-nachtrag-zur-schlussverschickung-max-brauer-allee-zw-paul-nevermann-platz-und-eggerstedtstrasse.pdf
+'2022-06-01':
+- https://via-bus.hamburg.de/contentblob/16224434/456614bf006168f04d86d4adbb05ff59/data/30-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-erneute-1-verschickung.pdf
+- https://via-bus.hamburg.de/contentblob/16224436/4dcb9010a1774411f39c38c91b976d5a/data/29-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-schlussverschickung.pdf
+- https://via-bus.hamburg.de/contentblob/16224438/ed5b3bd4c24a46b9bc237b748d716f0a/data/31-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-nachtrag-zur-schlussverschickung.pdf
+- https://via-bus.hamburg.de/contentblob/16224440/9dbb0168cfd3fba685218fc5e164d159/data/03-mb26-u-farmsen-schlussverschickung-ueberliegerplaetze.pdf

@@ -538,3 +538,6 @@
 '2022-05-27':
 - "/contentblob/16204932/100c87599ca0f6635928a2029f7712a6/data/holstenstrasse-erneuerung-geh-und-radwege-06-22-bis-12-22.pdf"
 - "/contentblob/16204930/748fcc1adf951d2ac9173da0dae14c7c/data/stresemannstrasse-erneuerung-geh-und-radwege-06-22-bis-08-22.pdf"
+'2022-06-01':
+- "/contentblob/16224444/fad3c760bc4e73557db6a0f16550563b/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"

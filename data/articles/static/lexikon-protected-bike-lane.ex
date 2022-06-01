@@ -14,7 +14,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
       "protected-bike-lanes",
       "pbl",
       "geschützter-radfahrstreifen",
-      "geschützen-radfahrstreifen",
+      "geschützten-radfahrstreifen",
       "geschützte-radfahrstreifen"
     ]
 

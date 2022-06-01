@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
     <p>In den Bahngärten sollen je Richtung 1,5m breite Radfahrstreifen inkl. Kanalrinne markiert werden. Einen Fußweg soll es nur auf der Nordseite geben.</p>
 
     <h4>Meinung</h4>
-    <p>Die Planung ist fragwürdig und stellt keine attraktive Radführung her. Dazu sind die ungeschützen Spuren zwischen Bussen und KFZ zu schmal. In den Bahngärten sind sie sogar so schmal, das heute so nicht mehr geplant werden dürften.</p>
+    <p>Die Planung ist fragwürdig und stellt keine attraktive Radführung her. Dazu sind die ungeschützten Spuren zwischen Bussen und KFZ zu schmal. In den Bahngärten sind sie sogar so schmal, das heute so nicht mehr geplant werden dürften.</p>
     <p>Abbiegen bleibt ebenfalls problematisch:</p>
     <ul>
       <li>Bahngärten → Unterführung: Radfahrstreifen fehlt im Kurvenbereich. Es muss davon ausgegangen werden das Radfahrende hier regelmäßig geschnitten werden.</li>
