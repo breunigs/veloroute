@@ -8,8 +8,14 @@
 import Config
 
 creds_path = Path.expand("../data/phoenix_credentials.exs", __DIR__)
-if !File.exists?(creds_path), do: Mix.Tasks.Velo.Setup.phx_credentials()
-import_config(creds_path)
+
+if File.exists?(creds_path),
+  do: import_config(creds_path),
+  else:
+    (defmodule(PhoenixCredentials) do
+       def secret_key_base, do: "run 'mix velo.setup'"
+       def live_view_signing_salt, do: "run 'mix velo.setup'"
+     end)
 
 # Configures the endpoint
 config :veloroute, VelorouteWeb.Endpoint,
