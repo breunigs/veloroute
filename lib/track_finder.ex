@@ -75,11 +75,7 @@ defmodule TrackFinder do
   end
 
   defp concatenate_nodes(obj = %{ways: nil}) do
-    IO.puts(
-      :stderr,
-      "WARNING: failed to find a matching track for #{inspect(obj)}. Not generating a GPX."
-    )
-
+    IO.puts(:stderr, "#{obj.id}: no connection for '#{obj.direction}', not including in GPX")
     nil
   end
 
@@ -143,9 +139,18 @@ defmodule TrackFinder do
 
         %{nil => members} ->
           ways = for %{ref: %Map.Way{}} = o <- members, do: o.ref
-          start_node = hd(ways).nodes |> hd()
-          end_node = List.last(ways).nodes |> List.last()
-          {[%{ref: start_node, role: "gpx_start"}], [%{ref: end_node, role: "gpx_end"}]}
+
+          start_nodes =
+            Enum.map(ways, &hd(&1.nodes))
+            |> Enum.filter(&is_map_key(&1.tags, :target))
+            |> Enum.map(&%{ref: &1, role: "gpx_start"})
+
+          end_nodes =
+            Enum.map(ways, &List.last(&1.nodes))
+            |> Enum.filter(&is_map_key(&1.tags, :target))
+            |> Enum.map(&%{ref: &1, role: "gpx_end"})
+
+          {start_nodes, end_nodes}
       end
 
     start_ways = resolve_to_start_end_ways(art.name(), start_members, normalized_ways)
