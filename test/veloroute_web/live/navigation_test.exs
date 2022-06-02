@@ -11,6 +11,10 @@ defmodule VelorouteWeb.LiveNavigationTest do
                 |> Enum.into(%{})
   @video_starts %{forward: 434_586}
 
+  test "viewing non-existent redirects", %{conn: conn} do
+    assert {:error, {:live_redirect, _whatever}} = live(conn, "/DoesNotExist")
+  end
+
   test "clicking on route icon navigates to overview page", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
 
