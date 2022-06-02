@@ -54,9 +54,9 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
   def links(_assigns) do
     [
       {"Broschüre zu Pinnebergs Velorouten", "4044, PDF",
-       "https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-4044.pdf"},
+       "https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
       {"Stadt Pinneberg zur Ausschilderung",
-       "https://pinneberg.de/leben-in-pinneberg?chash=6c835baef9601f60fe5950947b65f435&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=news&tx_news_pi1%5Bnews%5D=396&cHash=3a6be95e43c0e780cd934b199730ad9c"}
+       "https://pinneberg.de/leben-in-pinneberg?chash=6c835baef9601f60fe5950927b65f235&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=news&tx_news_pi1%5Bnews%5D=396&cHash=3a6be95e43c0e780cd932b199730ad9c"}
     ]
   end
 

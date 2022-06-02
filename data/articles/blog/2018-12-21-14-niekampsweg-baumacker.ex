@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.NiekampswegBaumacker do
   def links(_assigns) do
     [
       {"Baustelleninfo Juli 2021",
-       "https://lsbg.hamburg.de/contentblob/15261316/14e9ba27ad9cdef6957c2d4a0eb32948/data/pinneberger-chaussee-veloroute-14-07-2021-bis-03-2022.pdf"},
+       "https://web.archive.org/web/20220401191505/https://lsbg.hamburg.de/contentblob/15261316/14e9ba27ad9cdef6957c2d4a0eb32948/data/pinneberger-chaussee-veloroute-14-07-2021-bis-03-2022.pdf"},
       {"vorläufiger Lageplan",
        "https://lsbg.hamburg.de/contentblob/11989958/95c1ac8d392c018f2db021fcd920a517/data/veloroute-14-pinneberger-chaussee-von-johann-schmidt-strasse-bis-pflugacker-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht zur Umgestaltung",
