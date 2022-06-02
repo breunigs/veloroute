@@ -208,7 +208,8 @@ defmodule VelorouteWeb.FrameLive do
           |> assign(:autoplay, params["autoplay"] == "true")
 
     socket =
-      set_content(article, socket)
+      socket
+      |> set_content(article)
       |> set_bounds(article, Map.get(params, "bounds"))
       |> assign(:tmp_last_article_set, article)
 
@@ -239,11 +240,11 @@ defmodule VelorouteWeb.FrameLive do
     |> handle_params(nil, socket)
   end
 
-  defp set_content(art, %{assigns: %{current_page: art}} = socket) when is_module(art) do
+  defp set_content(%{assigns: %{current_page: art}} = socket, art) when is_module(art) do
     assign(socket, prev_page: art)
   end
 
-  defp set_content(art, socket) when is_module(art) do
+  defp set_content(socket, art) when is_module(art) do
     full_title = Article.Decorators.full_title(art)
 
     page_title =
@@ -264,7 +265,7 @@ defmodule VelorouteWeb.FrameLive do
     |> determine_visible_route_groups(art)
   end
 
-  defp set_content(_article, socket), do: render_404(socket)
+  defp set_content(socket, _article), do: render_404(socket)
 
   defp render_404(socket) do
     Logger.error("Non-existing site was accessed: #{socket.assigns.current_url}")
