@@ -682,11 +682,15 @@ h3:first-child + .duration {
   margin-top: 0.4em;
 }
 
-time.updated {
-  color: #888;
-  text-align: right;
+.artfooter {
   font-style: italic;
-  display: block;
+  text-align: right;
+  color: #888;
+
+  a {
+    color: #888;
+    font-style: italic;
+  }
 }
 
 span.updated {

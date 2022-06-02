@@ -84,11 +84,16 @@ defmodule Components.TagHelpers do
     """
   end
 
-  def mailto(%{inner_block: _x, subject: _s, body: _b} = assigns) do
+  def mailto(%{inner_block: _x, subject: subject, body: body} = assigns) do
+    assigns =
+      Map.merge(assigns, %{
+        email: Settings.email(),
+        subject: URI.encode(subject),
+        body: URI.encode(body)
+      })
+
     ~H"""
-    <a href={"mailto:#{Settings.email()}?subject=#{URI.encode @subject}&body=#{URI.encode @body}"}>
-      <%= render_block(@inner_block) %>
-    </a>
+    <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"}><%= render_block(@inner_block) %></a>
     """
   end
 
@@ -287,8 +292,20 @@ defmodule Components.TagHelpers do
   @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
   def article_updated_at(%{article: art} = assigns) do
     if art.updated_at() do
+      assigns =
+        Map.merge(assigns, %{
+          human: Article.Decorators.updated_at(art),
+          machine: Date.to_string(art.updated_at()),
+          subject: "Fehler im Artikel \"#{art.title()}\"",
+          body: "Moin,\n\nim Artikel \"#{art.title()}\" stimmt etwas nicht:\n\n"
+        })
+
       ~H"""
-        <time class="updated">Letzte Änderung <%= Article.Decorators.updated_at(@article) %></time>
+      <div class="artfooter">
+          <.mailto subject={@subject} body={@body}>Fehler melden</.mailto>
+          &middot;
+          <time class="updated" datetime={@machine}>Letzte Änderung <%= @human %></time>
+        </div>
       """
     else
       ~H""
