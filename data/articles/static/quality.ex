@@ -17,7 +17,7 @@ defmodule Data.Article.Static.Quality do
     Wenn Du nicht suchen möchtest:
     </p>
     <ul>
-    <li><.a href="/bau">(geplante) Baustellen sortiert nach Baubeginn</.a> anzeigen</li>
+    <li><.a name="bau">(geplante) Baustellen sortiert nach Baubeginn</.a> anzeigen</li>
     <li>Die Detailseite einer Veloroute verlinkt auch alle Artikel</li>
     </ul>
 

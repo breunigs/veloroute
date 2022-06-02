@@ -23,8 +23,8 @@ defmodule Data.Article.Blog.UFarmsen do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Entlang der <.a href="/alltagsroute-6">Alltagsroute 6</.a> fährt man größtenteils geradlinig über die Kreuzung mit der August-Krohmann-Straße. Ausnahme ist eine <.m bounds="10.118968,53.605945,10.119893,53.606486" lon="10.119556" lat="53.606425" dir="backward" ref="6">Dreiecksinsel</.m> in Fahrtrichtung Innenstadt, wo der Radweg verschwenkt wird.</p>
-    <p>Die Führung der <.a href="/freizeitroute-2">Freizeitroute 2</.a> ist unklar. Eine direkte Querungsmöglichkeit gibt es nicht, es sind entweder lange Umwege erforderlich oder es muss geschoben werden.</p>
+    <p>Entlang der <.a name="alltagsroute-6">Alltagsroute 6</.a> fährt man größtenteils geradlinig über die Kreuzung mit der August-Krohmann-Straße. Ausnahme ist eine <.m bounds="10.118968,53.605945,10.119893,53.606486" lon="10.119556" lat="53.606425" dir="backward" ref="6">Dreiecksinsel</.m> in Fahrtrichtung Innenstadt, wo der Radweg verschwenkt wird.</p>
+    <p>Die Führung der <.a name="freizeitroute-2">Freizeitroute 2</.a> ist unklar. Eine direkte Querungsmöglichkeit gibt es nicht, es sind entweder lange Umwege erforderlich oder es muss geschoben werden.</p>
     <p>An der August-Krogmann-Straße gibt es teilweise <.ref>Hochbordradwege</.ref>, die in jedem Fall aber durch die Wartebereich der Busfahrgäste führen. In Fahrtrichtung Osten gibt es unter der Bahnbrücke gar keinen eigenen Radweg.</p>
 
     <h4>Planung</h4>

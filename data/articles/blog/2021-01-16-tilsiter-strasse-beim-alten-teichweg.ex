@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
 
   def text(assigns) do
     ~H"""
-    <p>Ein Teilstück der Planung „W16“ soll bereits umgesetzt werden. Für eine Beschreibung, siehe bitte <.a href="/article/2019-10-24-6-tilsiter-strasse-eckerkoppel-w16">Eckerkoppel und Tilsiter Straße</.a>. </p> <h4>Quelle</h4> <ul>
+    <p>Ein Teilstück der Planung „W16“ soll bereits umgesetzt werden. Für eine Beschreibung, siehe bitte <.a name="2019-10-24-6-tilsiter-strasse-eckerkoppel-w16">Eckerkoppel und Tilsiter Straße</.a>. </p> <h4>Quelle</h4> <ul>
     <li><.a href="https://suche.transparenz.hamburg.de/dataset/f53a3526-a842-4fb6-9e10-7d3979aa7c55">Ausschreibung mit Zuschlag</.a> (Transparenzportal Hamburg)</li>
     <li><.a href="https://www.hamburg.de/wandsbek/strassenbaustellen/15029656/tilsiter-und-allensteiner-strasse/">Infoseite zur Baustelle</.a></li>
     </ul>

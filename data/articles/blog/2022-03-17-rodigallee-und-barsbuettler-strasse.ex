@@ -83,7 +83,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
     <h4>Sonstiges</h4>
     <p>Es sollen weitere Radanlehnbügel aufgestellt werden. Es sollen Ladezonen eingerichtet werden, damit die Radfahrstreifen nicht illegal zugeparkt werden. Die Grünflächen werden mit Pfählen gegen Beschädigung durch Falschparker gesichert.</p>
 
-    <p>Die Planung schließt nahtlos an den Abschnitt <.a href="/article/2022-02-16-juethornstrasse-und-rodigallee">zwischen Jenfelder Allee und Bovestraße</.a> an. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
+    <p>Die Planung schließt nahtlos an den Abschnitt <.a name="2022-02-16-juethornstrasse-und-rodigallee">zwischen Jenfelder Allee und Bovestraße</.a> an. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
 
     <h4>Meinung</h4>
     <p>Die Ost-West Richtung erscheint durchdacht.</p>

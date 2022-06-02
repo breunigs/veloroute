@@ -46,7 +46,7 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
 
     <p>Es werden weitere Bäume gepflanzt, allerdings auch einige Alte gefällt. Es sollen 61 Radanlehnbügel aufgestellt werden – bisher gab es keine.</p>
 
-    <p>Die Planung schließt nahtlos an den Abschnitt <.a href="/article/2022-03-17-rodigallee-und-barsbuettler-strasse">zwischen Jenfelder Allee und Öjendorfer Damm</.a> an. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
+    <p>Die Planung schließt nahtlos an den Abschnitt <.a name="2022-03-17-rodigallee-und-barsbuettler-strasse">zwischen Jenfelder Allee und Öjendorfer Damm</.a> an. Die Bauplanung und -koordinierung für beide Teile soll dann gemeinsam stattfinden.</p>
 
     <h4>Meinung</h4>
     <p>Da ich die Straße nicht kenne, enthalte ich mich einer inhaltlichen Bewertung.</p>

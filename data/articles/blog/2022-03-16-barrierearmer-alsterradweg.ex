@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.BarrierearmerAlsterradweg do
     <p>Gebaut werden soll in mehreren Abschnitten bis 2025.</p>
 
     <h4>Meinung</h4>
-    <p>Eine gute Sache. Von diesem Abschnitt war wegen der vielen Hindernisse eher abzuraten. Nach dem Umbau sollte er viel besser nutzbar sein. Bei den Umlaufsperren hängt es von ihrer genauen Umsetzung ab. Da die Strecke hauptsächlich für den Fußverkehr gedacht ist und ortsnah die <.a href="/alltagsroute-4">Alltagsroute <.icon>4</.icon></.a> zur Alternative steht, sind sie grundsätzlich in Ordnung – sofern man durchkommt.</p>
+    <p>Eine gute Sache. Von diesem Abschnitt war wegen der vielen Hindernisse eher abzuraten. Nach dem Umbau sollte er viel besser nutzbar sein. Bei den Umlaufsperren hängt es von ihrer genauen Umsetzung ab. Da die Strecke hauptsächlich für den Fußverkehr gedacht ist und ortsnah die <.a name="alltagsroute-4">Alltagsroute <.icon>4</.icon></.a> zur Alternative steht, sind sie grundsätzlich in Ordnung – sofern man durchkommt.</p>
 
     <h4>Quelle</h4>
     <.structured_links/>

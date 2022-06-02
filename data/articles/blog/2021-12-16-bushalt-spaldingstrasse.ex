@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
       <li>Die <.m bounds="10.009395,53.546848,10.011434,53.547756" lon="10.009691" lat="53.547483" dir="forward" ref="FR6">Ampel zum Queren des Högerdamm</.m> wird leicht versetzt damit nicht durch die Reisebus-Parkplätze gefahren werden muss. Die Nebenstrecke bleibt weiterhin eine Einbahnstraße ohne eigenen Radweg.</li>
       <li>Nach der <.m bounds="10.012044,53.547485,10.012934,53.547815">Woltmannstraße</.m> wird auf einen Hochbordradweg aufgeleitet. Dieser wird hier rund 1,60m breit und verläuft zwischen Fußweg und Wartebereich der Fahrgäste.</li>
       <li>Für die Fahrt in Richtung <.m bounds="10.012912,53.547381,10.016325,53.548713">Nordkanalstraße</.m> erhält der Radverkehr eine neue Furt, etwa ab <.m bounds="10.011443,53.547665,10.012096,53.547964">Höhe Hausnummer 20</.m>. Diese führt zunächst Richtung <.m bounds="10.011977,53.547751,10.013664,53.548365">Spaldingstraße</.m>, macht dann jedoch einen Knick und führt quer über den Fußweg zur Nordkanalstraße. Man folgt also nicht der Luftlinie der Nordkanalbrücke, sondern unterquert diese zweimal.</li>
-      <li>siehe auch: <.a href="/article/2021-07-24-hoegerdamm">Umplanung Högerdamm</.a></li>
+      <li>siehe auch: <.a name="2021-07-24-hoegerdamm">Umplanung Högerdamm</.a></li>
     </ul>
     <p>In der Gegenrichtung, also stadteinwärts entlang der Freizeitroute, gibt es nur eine Änderung: Vor der Nordkanalbrücke wird der Hochbordradweg zu einer <.ref>Protected-Bike-Lane</.ref>. Nach der Einmündung der <.m bounds="10.011977,53.547751,10.013664,53.548365">Spaldingstraße</.m> wird man aber wieder auf den alten Hochbordradweg geleitet. Der Radweg soll hier rund 2,0m breit werden, mit einer 1,80m Engstelle am Brückenpfeiler.</p>
 

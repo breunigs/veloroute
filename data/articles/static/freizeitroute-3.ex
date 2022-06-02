@@ -101,7 +101,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
     <p>Die Route ist nicht beschildert und <.m bounds="10.14209,53.592919,10.188502,53.611218">um Rahlstedt herum</.m> auch nicht mehr so leicht ersichtlich. Mit einem Navi kann ihr problemlos gefolgt werden. </p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Bis Höhe des <.m bounds="10.05126,53.573927,10.065831,53.579676" lat="53.57573" lon="10.05674" dir="forward">S-Bahnhof Friedrichsberg</.m> folgt man grob der <.a href="/alltagsroute-6">Alltagsroute <.icon>6</.icon></.a>, welche mit Radwegpflaster und Asphalt ausgebaut ist. Hier dürfte es am ehesten Winterdienst geben.</p>
+    <p>Bis Höhe des <.m bounds="10.05126,53.573927,10.065831,53.579676" lat="53.57573" lon="10.05674" dir="forward">S-Bahnhof Friedrichsberg</.m> folgt man grob der <.a name="alltagsroute-6">Alltagsroute <.icon>6</.icon></.a>, welche mit Radwegpflaster und Asphalt ausgebaut ist. Hier dürfte es am ehesten Winterdienst geben.</p>
     <p>Ab dem <.m lat="53.57474" lon="10.05960" bounds="10.053359,53.573339,10.066225,53.578415" dir="forward">Mühlenteich</.m> hat man fast ausschließlich naturnahe Oberflächen: Grand oder feinen Schotter.</p>
     <p>Bei schönem Wetter sind die Wege gut besucht, hohe Geschwindigkeiten sind nicht möglich. An einigen Engstellen (z.B. <.m dir="forward" bounds="10.157231,53.599673,10.167305,53.603645" lat="53.6010" lon="10.1617">Klettenstieg</.m>) erfordert sogar einfacher Begegnungsverkehr besondere Vorsicht. Sei exzellent zu Anderen und steige ab, bevor es brenzlig wird.</p>
 

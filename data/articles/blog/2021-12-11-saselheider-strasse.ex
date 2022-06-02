@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.SaselheiderStrasse do
   def text(assigns) do
     ~H"""
     <h4>Sachverhalt</h4>
-    <p>2021 wurde <.m bounds="10.135077,53.634305,10.137988,53.636035" lon="10.13611" lat="53.63489" dir="forward" ref="6">Beim Farenland</.m> eine Ampel eingerichtet, um die Querungsmöglichkeiten für Fuß- und Radverkehr zu verbessern (<.a href="/article/2019-01-11-6-beim-farenland">Artikel</.a>). Seitdem berichten Ortsansässige von einer starken Zunahme des KFZ-Durchgangsverkehr, insbesondere auch von KFZ mit auswärtigem Kennzeichen. Sie bemängeln weiter, dass Viele sich nicht an die Verkehrsregeln halten und rasen oder Radfahrende abdrängen. Zudem befürchten die Betroffenen, dass ein geplanter Kreisverkehr am <.m bounds="10.134064,53.63707,10.135764,53.63814">Meiendorfer Mühlenweg</.m> die Situation verschlimmern könnte.</p>
+    <p>2021 wurde <.m bounds="10.135077,53.634305,10.137988,53.636035" lon="10.13611" lat="53.63489" dir="forward" ref="6">Beim Farenland</.m> eine Ampel eingerichtet, um die Querungsmöglichkeiten für Fuß- und Radverkehr zu verbessern (<.a name="2019-01-11-6-beim-farenland">Artikel</.a>). Seitdem berichten Ortsansässige von einer starken Zunahme des KFZ-Durchgangsverkehr, insbesondere auch von KFZ mit auswärtigem Kennzeichen. Sie bemängeln weiter, dass Viele sich nicht an die Verkehrsregeln halten und rasen oder Radfahrende abdrängen. Zudem befürchten die Betroffenen, dass ein geplanter Kreisverkehr am <.m bounds="10.134064,53.63707,10.135764,53.63814">Meiendorfer Mühlenweg</.m> die Situation verschlimmern könnte.</p>
 
     <p>Eine genaue Lösung gibt es noch nicht. Man überprüfe aber mögliche Änderungen um die Situation zu verbessern. Zur Einschätzung des Problems zähle die Polizei auch den Durchgangsverkehr.</p>
 

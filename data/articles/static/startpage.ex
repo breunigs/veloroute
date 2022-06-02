@@ -83,7 +83,7 @@ defmodule Data.Article.Static.Startpage do
     <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><.mailto/></p>
 
     <h3>Details zum Projekt</h3>
-    <p><.a href="/projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</.a></p>
+    <p><.a name="projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</.a></p>
     """
   end
 end

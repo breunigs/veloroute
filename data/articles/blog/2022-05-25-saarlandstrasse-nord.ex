@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
     <h4>Alter Zustand</h4>
     <p>Auf der östlichen Seite gibt es ausschließlich <.ref>Hochbordradwege</.ref>, die stellenweise schmaler als ein normales Fahrrad sind.</p>
 
-    <p>Auf der Seite des Stadtparks fährt der Radverkehr ebenfalls meist über Hochbordradwege. Ausnahme ist ein <.a href="/article/2019-12-16-freilichtbuehne-saarlandstrasse">bereits sanierter Abschnitt im Norden</.a>. Dort wird man auch teilweise durch den KFZ-Parkplatz im <.ref>Mischverkehr</.ref> geführt.</p>
+    <p>Auf der Seite des Stadtparks fährt der Radverkehr ebenfalls meist über Hochbordradwege. Ausnahme ist ein <.a name="2019-12-16-freilichtbuehne-saarlandstrasse">bereits sanierter Abschnitt im Norden</.a>. Dort wird man auch teilweise durch den KFZ-Parkplatz im <.ref>Mischverkehr</.ref> geführt.</p>
 
     <h4>Planung – Ostseite</h4>
     <p>Unter der <.m bounds="10.031917,53.58829,10.034429,53.5915" lon="10.033382" lat="53.588995" dir="forward" ref="5">Bahnbrücke</.m> bis zur <.m bounds="10.031917,53.58829,10.034429,53.5915" lon="10.033033" lat="53.590672" dir="forward" ref="5">Hellbrookstraße</.m> soll eine 2,0m breite <.ref>Protected-Bike-Lane</.ref> entstehen. Ab dort wird der bestehende Hochbordradweg auf 2,0m verbreitert. Der Platz kommt von den KFZ-Fahrspuren und den Fußwegen, die jeweils etwas schmaler werden. Der Grünstreifen verschiebt sich dadurch leicht in Richtung Stadtpark.</p>

@@ -5,7 +5,7 @@ defmodule Components.ValidatingDefaultSettingEngine do
   """
 
   @allowed_attributes %{
-    ".a" => ~w/href/,
+    ".a" => ~w/href name/,
     ".m" => ~w/bounds dir lon lat ref/,
     ".ref" => ~w/name/
   }

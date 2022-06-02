@@ -7,6 +7,19 @@ defmodule Components.TagHelpers do
   @doc """
   a links change the current page and may point to internal or external pages
   """
+  def a(%{href: _h, name: _n} = assigns),
+    do:
+      raise("Link contains both href and name, but you should pick only one: #{inspect(assigns)}")
+
+  def a(%{name: name} = assigns) do
+    art = Article.List.find_exact(name)
+
+    if is_nil(art),
+      do: raise("Tried to find article by name '#{name}', but no such article exists")
+
+    article_link(Map.put(assigns, :article, art))
+  end
+
   def a(%{href: href} = assigns) do
     {attrs, extra_text} =
       case URI.new(href) do
@@ -129,14 +142,18 @@ defmodule Components.TagHelpers do
 
   @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
   def article_link(%{article: art, inner_block: _} = assigns) when is_module(art) do
+    assigns = Map.put_new(assigns, :class, "")
+
     ~H"""
-    <a href={Article.Decorators.path(@article)} data-phx-link-state="push" data-phx-link="patch"><%= render_slot(@inner_block) %></a>
+    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= render_slot(@inner_block) %></a>
     """
   end
 
   def article_link(%{article: art} = assigns) when is_module(art) do
+    assigns = Map.put_new(assigns, :class, "")
+
     ~H"""
-    <a href={Article.Decorators.path(@article)} data-phx-link-state="push" data-phx-link="patch"><%= Article.Decorators.full_title(@article) %></a>
+    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= Article.Decorators.full_title(@article) %></a>
     """
   end
 
@@ -164,15 +181,9 @@ defmodule Components.TagHelpers do
     art = Article.List.category("Static") |> Article.List.find_with_tags(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
-    assigns =
-      assign(assigns, %{
-        path: Article.Decorators.path(art),
-        summary: art.summary()
-      })
-
-    ~H"""
-    <a class="ref" href={@path} data-phx-link-state="push" data-phx-link="patch" title={@summary}><%= render_block(@inner_block) %></a>
-    """
+    assigns
+    |> Map.merge(%{article: art, class: "ref"})
+    |> article_link()
   end
 
   @spec abbr(map()) :: Phoenix.LiveView.Rendered.t()

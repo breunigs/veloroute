@@ -85,20 +85,20 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
     <h4>Anschlüsse</h4>
     <p>Der neue Abschnitt bietet direkten Anschluss zu folgenden Routen:</p>
     <ul>
-      <li><.a href="/alltagsroute-5"><.icon>5</.icon></.a> Alltagsroute</li>
-      <li><.a href="/alltagsroute-7"><.icon>7</.icon></.a> Alltagsroute</li>
-      <li><.a href="/alltagsroute-9"><.icon>9</.icon></.a> Alltagsroute</li>
-      <li><.a href="/alltagsroute-10"><.icon>10</.icon></.a> Alltagsroute</li>
-      <li><.a href="/freizeitroute-5"><.icon>FR5</.icon></.a> Freizeitroute</li>
-      <li><.a href="/freizeitroute-6"><.icon>FR6</.icon></.a> Freizeitroute</li>
-      <li><.a href="/zweiter-gruener-ring"><.icon>FR11</.icon></.a> 2. Grüner Ring</li>
+      <li><.a name="alltagsroute-5"><.icon>5</.icon></.a> Alltagsroute</li>
+      <li><.a name="alltagsroute-7"><.icon>7</.icon></.a> Alltagsroute</li>
+      <li><.a name="alltagsroute-9"><.icon>9</.icon></.a> Alltagsroute</li>
+      <li><.a name="alltagsroute-10"><.icon>10</.icon></.a> Alltagsroute</li>
+      <li><.a name="freizeitroute-5"><.icon>FR5</.icon></.a> Freizeitroute</li>
+      <li><.a name="freizeitroute-6"><.icon>FR6</.icon></.a> Freizeitroute</li>
+      <li><.a name="zweiter-gruener-ring"><.icon>FR11</.icon></.a> 2. Grüner Ring</li>
     </ul>
     <p>Die folgenden Routen verlaufen entweder über oder unter der neuen Route. Um die Höhenunterschiede auszugleichen ist daher ein kleiner Umweg notwendig:</p>
     <ul>
-      <li><.a href="/alltagsroute-6"><.icon>6</.icon></.a> Alltagsroute</li>
-      <li><.a href="/alltagsroute-8"><.icon>8</.icon></.a> Alltagsroute</li>
-      <li><.a href="/freizeitroute-3"><.icon>FR3</.icon></.a> Freizeitroute</li>
-      <li><.a href="/freizeitroute-4"><.icon>FR4</.icon></.a> Freizeitroute</li>
+      <li><.a name="alltagsroute-6"><.icon>6</.icon></.a> Alltagsroute</li>
+      <li><.a name="alltagsroute-8"><.icon>8</.icon></.a> Alltagsroute</li>
+      <li><.a name="freizeitroute-3"><.icon>FR3</.icon></.a> Freizeitroute</li>
+      <li><.a name="freizeitroute-4"><.icon>FR4</.icon></.a> Freizeitroute</li>
     </ul>
 
     <h4>Links</h4>

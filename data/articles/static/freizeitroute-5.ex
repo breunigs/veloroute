@@ -116,7 +116,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
 
     <p>Einige Tipps:</p>
     <ul>
-      <li>bis zum Entenweder Park ist die <.a href="/alltagsroute-9">Alltagsroute <.icon>9</.icon></.a> die bessere Wahl. Die <.m lat="53.5449" lon="10.0172" bounds="9.995601,53.536759,10.048165,53.552678" dir="forward">Amsinckstraße</.m> hat den Charakter einer innerstädtischen Autotrasse und bietet sonst wenig.</li>
+      <li>bis zum Entenweder Park ist die <.a name="alltagsroute-9">Alltagsroute <.icon>9</.icon></.a> die bessere Wahl. Die <.m lat="53.5449" lon="10.0172" bounds="9.995601,53.536759,10.048165,53.552678" dir="forward">Amsinckstraße</.m> hat den Charakter einer innerstädtischen Autotrasse und bietet sonst wenig.</li>
       <li>In <.m bounds="10.165931,53.394212,10.192045,53.404031">Zollenspieker</.m> kann mittels Fähre die Elbseite gewechselt werden. Dazu am <.m lat="53.4135" lon="10.1824" bounds="10.176568,53.411341,10.188502,53.416497" dir="forward">Gleisdreieck</.m> geradeaus fahren.</li>
       <li>Für Rennrad-Fahrten ist der Hauptdeich direkt an der Elbe die angenehmere Strecke, da hier auch höhere Geschwindigkeiten möglich sind.</li>
     </ul>

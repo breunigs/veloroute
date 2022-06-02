@@ -119,7 +119,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
     <h4>Meinung</h4>
     <p>Die Tour hat einige schöne Stellen, gerade ab Harburgs Innenstadt ist man fast ausschließlich im Grünen unterwegs. Auf den Elbinseln und in Hamburgs Innenstadt ist die Streckenführung jedoch sehr autolastig und weniger empfehlenswert. Hier merkt man, das die Freizeitroute geplant wurde als die Alltagsrouten noch nicht brauchbar ausgebaut waren.</p>
 
-    <p>Eine ähnliche, aber ruhigere Führung ist grob: <.a href="/alltagsroute-9">Alltagsroute <.icon>9</.icon></.a> bis Elbbrücken; Veddel wie gehabt; auf Wilhelmsburg stattdessen der <.a href="/alltagsroute-11">Alltagsroute <.icon>11</.icon></.a> folgen; Rest wie gehabt.</p>
+    <p>Eine ähnliche, aber ruhigere Führung ist grob: <.a name="alltagsroute-9">Alltagsroute <.icon>9</.icon></.a> bis Elbbrücken; Veddel wie gehabt; auf Wilhelmsburg stattdessen der <.a name="alltagsroute-11">Alltagsroute <.icon>11</.icon></.a> folgen; Rest wie gehabt.</p>
 
     <h3>Externe Links</h3>
     <.structured_links gpx="true"/>

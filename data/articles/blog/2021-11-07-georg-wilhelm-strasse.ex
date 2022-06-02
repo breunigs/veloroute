@@ -45,7 +45,7 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
     <h4>Meinung</h4>
     <p>Es ist gut, das die Georg-Wilhelm-Straße endlich überhaupt Radwege in beide Richtungen erhält. Die nachträgliche Verbreiterung und trennenden Bordsteine machen den Radfahrstreifen in Richtung Süden halbwegs akzeptabel. Dennoch bleiben große Lücken wo mit Mindestbreite ohne Bordsteine kein Sicherheitsabstand zu überholenden Autos bleibt. In der Gegenrichtung entsteht durch die kurzen Stücke an den Bushaltestellen das gleiche Problem.</p>
 
-    <p>Für geübte Alltagsradler ist der Umbau sicher vertretbar, für eine Freizeitroute aber völlig unangebracht. Es empfiehlt sich in diesem Bereich stattdessen weiter die <.a href="/alltagsroute-11">Alltagsroute 11</.a> zu nutzen.</p>
+    <p>Für geübte Alltagsradler ist der Umbau sicher vertretbar, für eine Freizeitroute aber völlig unangebracht. Es empfiehlt sich in diesem Bereich stattdessen weiter die <.a name="alltagsroute-11">Alltagsroute 11</.a> zu nutzen.</p>
 
     <h4>Quelle</h4>
     <.structured_links/>
