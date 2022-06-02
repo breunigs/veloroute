@@ -33,7 +33,7 @@ function timeUpdate() {
   if (video.paused || video.ended || Math.random() <= 0.95) return;
   window.plausible('video-dimension', {
     props: {
-      dimension: `${video.videoWidth}x${video.videoHeight}`
+      height: video.videoHeight
     }
   })
 }
