@@ -438,7 +438,6 @@ body.ie11 #fullscreen {
   width: $sidebarWidth;
   min-width: $minWidth;
   height: 100vh;
-  height: -webkit-fill-available;
   position: relative;
   top: 0;
   left: $minWidth; // old browsers doesn't support max() -- for mobile devices
@@ -550,7 +549,7 @@ body.fullscreen video, #videoOuter:fullscreen video {
 }
 
 #switcher {
-  $width: 26px;
+  $width: 41px;
   $height: 68px;
 
   position: absolute;
