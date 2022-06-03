@@ -128,8 +128,11 @@ def process(item, model, outer_bar):
         save_json_gzip(detections, wip)
         if not abort:
             os.rename(wip, final)
-    threading.Thread(target=finalizer).start()
+    json_finisher = threading.Thread(target=finalizer)
+    json_finisher.start()
+
     outer_bar.update(bytes_remain)
+    return json_finisher
 
 
 def recurse(folder, queue, bar):
@@ -137,7 +140,7 @@ def recurse(folder, queue, bar):
         if abort:
             break
 
-        # walk older folders first to hide slow remote file system enumeration
+        # walk newer folders first to hide slow remote file system enumeration
         # while already processing the first videos
         subdirs.sort(reverse=True)
 
@@ -157,6 +160,11 @@ def recurse(folder, queue, bar):
             bar.refresh()
 
     queue.put_nowait(None)
+
+
+def recurse_in_background(folder, queue, bar):
+    threading.Thread(target=lambda: recurse(
+        folder, queue, bar), daemon=True).start()
 
 
 def usage(extra=None):
@@ -204,8 +212,7 @@ os.nice(20)
 # find videos in background
 q = queue.Queue()
 bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True)
-threading.Thread(target=lambda: recurse(
-    video_dir, q, bar), daemon=True).start()
+recurse_in_background(video_dir, q, bar)
 
 # load model
 model = torch.hub.load(f'ultralytics/yolov5', 'custom',
@@ -214,12 +221,20 @@ model.conf = THRESHOLD
 bar.refresh()
 
 # process
+processed = None
 while not abort:
     item = q.get()
+    # if at least one item was worked on, scan again in case more files have
+    # been added
+    if not item and processed:
+        processed.join()
+        print(f"\nFinished, checking for new files…\n")
+        recurse_in_background(video_dir, q, bar)
+        item = q.get()
     if not item:
         break
 
-    process(item, model, bar)
+    processed = process(item, model, bar)
     q.task_done()
 
 bar.close()
