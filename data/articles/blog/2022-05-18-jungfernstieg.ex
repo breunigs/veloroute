@@ -25,6 +25,9 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def text(assigns) do
     ~H"""
+    <h4>Beteiligungsverfahren</h4>
+    <p>Die Stadt lädt dazu ein bis zum 26.06.2022 Feedback zum Entwurf zu geben: <.a href="https://beteiligung.hamburg/jungfernstieg/#/projectinfo">Beteiligungsverfahren Jungfernstieg</.a>.</p>
+
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr fährt mit den motorisierten Fahrzeugen im <.ref>Mischverkehr</.ref>. Zugelassen sind Busse und Taxen, sowie Lieferverkehr in den Nebenzeiten. Diese Regelung wird häufig missachtet, sodass weiterhin private KFZ den Jungfernstieg belasten.</p>
 
