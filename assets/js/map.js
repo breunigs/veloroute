@@ -108,8 +108,10 @@ function renderIndicator() {
   }
 
   // ensure indicator is in view
-  if (videoPlaying && indicatorFocus === null) {
-    indicatorFocus = setInterval(ensureIndicatorInView, 2000);
+  if (videoPlaying) {
+    if (indicatorFocus === null) {
+      indicatorFocus = setInterval(ensureIndicatorInView, 500);
+    }
   } else if (!videoPlaying && indicatorFocus !== null) {
     clearInterval(indicatorFocus);
     indicatorFocus = null;
