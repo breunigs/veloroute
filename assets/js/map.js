@@ -75,7 +75,7 @@ function renderIndicator() {
   }
 
   const mapActive = map.isMoving() || map.isZooming();
-  const videoPlaying = video && !video.paused;
+  const videoPlaying = isVideoPlaying();
   const dist = indicator.getLngLat().distanceTo(lngLat);
   const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
 
@@ -107,17 +107,7 @@ function renderIndicator() {
     return;
   }
 
-  // ensure indicator is in view
-  if (videoPlaying) {
-    if (indicatorFocus === null) {
-      indicatorFocus = setInterval(ensureIndicatorInView, 500);
-    }
-  } else if (!videoPlaying && indicatorFocus !== null) {
-    clearInterval(indicatorFocus);
-    indicatorFocus = null;
-  } else {
-    window.requestAnimationFrame(ensureIndicatorInView);
-  }
+  ensureIndicatorInView(lngLat);
 }
 
 const closestEquivalentAngle = (from, to) => {
@@ -134,47 +124,44 @@ const disableIndicatorAnimation = () => {
   indicatorAnimateTimer = null;
 }
 
-const ensureIndicatorInView = () => {
+const ensureIndicatorInView = (lngLat) => {
   if (map.isMoving() || map.isZooming() || !indicator) {
     return;
   }
 
-  const indiLngLat = indicator.getLngLat();
-  if (map.getBounds().contains(indiLngLat)) {
+  if (map.getBounds().contains(lngLat)) return;
+
+  const center = map.getCenter();
+  const distDiag = center.distanceTo(map.getBounds().getNorthEast())
+  const distIndi = center.distanceTo(lngLat);
+  const isClose = distIndi <= 1.5 * distDiag;
+
+  if (!isVideoPlaying()) {
+    isClose ?
+      map.panTo(lngLat) :
+      map.flyTo({
+        center: lngLat
+      });
     return;
   }
 
-  const indiRect = indicator.getElement().getBoundingClientRect();
-  const indiPos = {
-    x: indiRect.left + indiRect.width / 2,
-    y: indiRect.top + indiRect.height / 2
-  };
+  const prev = getVideoPosition(-4 * 1000);
+  const next1 = getVideoPosition(10 * 1000);
+  const next2 = getVideoPosition(15 * 1000);
+  const bbox = new mapboxgl.LngLatBounds(lngLat, prev)
+    .extend([next1.lon, next1.lat])
+    .extend([next2.lon, next2.lat]);
 
-  const mapRect = mapElem.getBoundingClientRect();
-  const cmp = (padding) => {
-    return indiPos.y <= mapRect.top + padding ||
-      indiPos.y >= mapRect.bottom - padding ||
-      indiPos.x <= mapRect.left + padding ||
-      indiPos.x >= mapRect.right - padding;
-  }
-
-  const veryFarOutside = cmp(-200);
-  if (veryFarOutside) {
-    console.debug("Flying to location", indiLngLat)
-    map.flyTo({
-      center: indiLngLat
-    });
-  } else {
-    console.debug("Panning to location", indiLngLat)
-    map.panTo(indiLngLat);
-  }
+  map.fitBounds(bbox, {
+    linear: isClose,
+    maxZoom: map.getZoom(),
+  });
 }
 
 const isVideoPlaying = () => {
   const vid = document.getElementById("videoInner");
-  return vid && !vid.paused;
+  return vid && !vid.paused && !vid.ended;
 }
-
 
 let prevBoundsTs = "";
 const maybeFitBounds = () => {
@@ -453,26 +440,31 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-function getVideoPosition(closeRetry) {
+function getVideoPosition(timeAdjustMs) {
   if (!indicatorPolyline) return;
   const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
-  const currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
+  let currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
+  if (timeAdjustMs) currMs = Math.max(0, currMs + timeAdjustMs);
 
-  let index = Math.floor(currMs / indicatorPolyline.interval);
-  index = Math.min(index, indicatorPolyline.coords.length - 1);
-  const [lon1, lat1] = indicatorPolyline.coords[index];
+  const index = indicatorIndexBounds(Math.floor(currMs / indicatorPolyline.interval));
+  let lon1;
+  let lat1;
+  try {
+    [lon1, lat1] = indicatorPolyline.coords[index];
+  } catch (e) {
+    debugger;
+  }
 
   // Look 100ms in the future to calculate a bearing that is not too affected by
   // precision/rounding errors.
-  let next = index + Math.round(100 / indicatorPolyline.interval);
-  next = Math.min(next, indicatorPolyline.coords.length - 1);
+  let next = indicatorIndexBounds(index + Math.round(100 / indicatorPolyline.interval));
   let [lon2, lat2] = indicatorPolyline.coords[next];
 
   // If both points are close to each other, look 1s further
   let close = veryClose(lon1, lat1, lon2, lat2);
   if (close) {
     next += Math.round(1000 / indicatorPolyline.interval)
-    next = Math.min(next, indicatorPolyline.coords.length - 2);
+    next = indicatorIndexBounds(next);
     [lon2, lat2] = indicatorPolyline.coords[next];
     close = veryClose(lon1, lat1, lon2, lat2);
   }
@@ -485,6 +477,11 @@ function getVideoPosition(closeRetry) {
     lat: lat1,
     bearing: bearing
   };
+}
+
+function indicatorIndexBounds(index) {
+  if (index <= 0) return 0;
+  return Math.min(index, indicatorPolyline.coords.length - 1);
 }
 
 // veryClose returns true when the two coordinates only differ in their least
