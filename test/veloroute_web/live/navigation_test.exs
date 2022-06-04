@@ -231,6 +231,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
+
     assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
 
     html =
@@ -239,6 +240,12 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> render_click()
 
     assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
+  end
+
+  test "article without route group shows :alltag", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/lexikon/kopenhagener-loesung")
+
+    assert html =~ ~r/visible-types="alltag"/
   end
 
   test "all articles can be rendered in the frame", %{conn: conn} do

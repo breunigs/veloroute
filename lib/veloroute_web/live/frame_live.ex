@@ -410,17 +410,14 @@ defmodule VelorouteWeb.FrameLive do
   defp determine_visible_route_groups(socket, article) do
     # from displayed video
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
-    parent_ref = track && track.parent_ref
-    show = if is_module(parent_ref), do: [parent_ref.route_group()], else: []
+    video_art = find_article(track && track.parent_ref)
 
     # from the given article (e.g. as ref on links) or the displayed one
-    from_articles =
-      [article, find_article(socket), find_article(parent_ref)]
+    show =
+      [article, find_article(socket), video_art]
       |> Util.compact()
       |> Enum.uniq()
       |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
-
-    show = from_articles ++ show
 
     # defaults
     show = if show == [], do: [:alltag], else: show
