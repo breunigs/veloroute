@@ -456,13 +456,14 @@ function getVideoPosition(closeRetry) {
   const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
   const currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
 
-  const index = Math.floor(currMs / indicatorPolyline.interval);
+  let index = Math.floor(currMs / indicatorPolyline.interval);
+  index = Math.min(index, indicatorPolyline.coords.length - 1);
   const [lon1, lat1] = indicatorPolyline.coords[index];
 
   // Look 100ms in the future to calculate a bearing that is not too affected by
   // precision/rounding errors.
   let next = index + Math.round(100 / indicatorPolyline.interval);
-  next = Math.min(next, indicatorPolyline.coords.length - 2);
+  next = Math.min(next, indicatorPolyline.coords.length - 1);
   let [lon2, lat2] = indicatorPolyline.coords[next];
 
   // If both points are close to each other, look 1s further
