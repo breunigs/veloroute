@@ -135,8 +135,13 @@ defmodule Docker do
             %{result: {:error, inspect(exp)}}
         end
     after
-      # automatically created by docker when bind mounting into the cache dir
-      File.rmdir(Path.join(cache_dir, "videos"))
+      # Docker creates an empty dir when mounting the `extra_video_mount`. Since
+      # the outer folder is also mounted, the empty folder shows up on the host.
+      # If it's deleted on the host, it disappears from the container as well,
+      # breaking the container. Hence we can only delete this folder safely if
+      # there are no other containers running that use it. This would need a
+      # `flock` mechanism or similar, which is effort, so we just ignore this.
+      # File.rmdir(Path.join(cache_dir, "videos"))
     end
   end
 
