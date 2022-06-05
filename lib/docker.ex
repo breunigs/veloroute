@@ -187,7 +187,9 @@ defmodule Docker do
     end
   end
 
-  defp docker_supports_gpu do
+  use Memoize
+  @spec docker_supports_gpu() :: bool()
+  defmemop docker_supports_gpu do
     {out, status} =
       System.cmd("docker", ["run", "--gpus", "all", "hello-world"], stderr_to_stdout: true)
 
