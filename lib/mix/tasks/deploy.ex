@@ -125,7 +125,7 @@ defmodule Mix.Tasks.Deploy do
 
     try do
       Process.sleep(500)
-      true = Enum.find_value(0..10, &try_to_query_release_container/1)
+      true = Enum.find_value(0..20, &try_to_query_release_container/1)
     after
       Docker.stop_release()
     end
