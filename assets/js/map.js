@@ -159,8 +159,7 @@ const ensureIndicatorInView = (lngLat) => {
 }
 
 const isVideoPlaying = () => {
-  const vid = document.getElementById("videoInner");
-  return vid && !vid.paused && !vid.ended;
+  return video && !video.paused && !video.ended;
 }
 
 let prevBoundsTs = "";
