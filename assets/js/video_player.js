@@ -160,7 +160,6 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
-      window.hls.on(Hls.Events.FRAG_LOADED, recordQualityLevel);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       video.addEventListener('play', () => {
@@ -295,20 +294,6 @@ function updateQualityChooser() {
 function hideQualityChooser() {
   videoQuality.style.display = 'none';
 }
-
-function recordQualityLevel(_ev, data) {
-  if (Math.random() <= 0.9) return;
-  const lvl = data.frag.initSegment.level;
-  const details = window.hls.levels[lvl];
-  window.plausible('video-quality', {
-    props: {
-      bitrate: `${details.bitrate}`,
-      dimension: `${details.width}x${details.height}`,
-      codec: details.codecSet,
-    }
-  })
-}
-
 
 function currentTimeInMs() {
   if (!video) return 0;
