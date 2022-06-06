@@ -32,11 +32,28 @@ const map = new mapboxgl.Map({
   touchPitch: false,
   logoPosition: 'top-left',
   attributionControl: false,
+  locale: {
+    'GeolocateControl.FindMyLocation': 'Meine Position anzeigen',
+    'GeolocateControl.LocationNotAvailable': 'Ortung nicht verfügbar',
+  },
   // https://bugzilla.mozilla.org/show_bug.cgi?id=976173
   preserveDrawingBuffer: navigator.userAgent.indexOf("Gecko/") >= 1,
 });
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.AttributionControl(), 'top-right');
+
+const geocontrol = new mapboxgl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  // When active the map will receive updates to the device's location as it changes.
+  trackUserLocation: true,
+  // Draw an arrow next to the location dot to indicate which direction the device is heading.
+  showUserHeading: true
+});
+geocontrol.on('error', () => window.plausible('geolocation-error'));
+geocontrol.on('trackuserlocationstart', () => window.plausible('geolocation-trackuserlocationstart'));
+map.addControl(geocontrol, 'bottom-left');
 
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
