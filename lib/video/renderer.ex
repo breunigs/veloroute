@@ -364,11 +364,9 @@ defmodule Video.Renderer do
     [
       # av1, with default quality as first entry
       %{width: 1280, height: 720, bitrate: 4.5, fallback: :webm, codec: &codec_av1/2},
-      %{width: 426, height: 240, bitrate: 1.5, codec: &codec_av1/2},
       %{width: 640, height: 360, bitrate: 3, codec: &codec_av1/2},
       %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1/2},
       # legacy codec
-      %{width: 426, height: 240, bitrate: 2, codec: &codec_avc/2},
       %{width: 640, height: 360, bitrate: 4, fallback: :mp4, codec: &codec_avc/2},
       %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
     ]
