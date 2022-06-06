@@ -30,10 +30,13 @@ const map = new mapboxgl.Map({
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,
+  logoPosition: 'top-left',
+  attributionControl: false,
   // https://bugzilla.mozilla.org/show_bug.cgi?id=976173
   preserveDrawingBuffer: navigator.userAgent.indexOf("Gecko/") >= 1,
 });
 map.touchZoomRotate.disableRotation();
+map.addControl(new mapboxgl.AttributionControl(), 'top-right');
 
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
