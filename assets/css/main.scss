@@ -951,6 +951,7 @@ table.routing {
   td {
     height: $table-cell-height;
     white-space: nowrap;
+    vertical-align: top;
   }
 
   $main-route-icon-size: 1.5em;
@@ -984,6 +985,21 @@ table.routing {
   .icon {
     margin: 0 0.2em;
   }
+}
+
+table {
+  border-spacing: 0.5em 0.2em;
+  margin: 0 -0.5em;
+}
+
+th {
+  text-align: left;
+  vertical-align: middle;
+}
+
+td {
+  text-align: left;
+  vertical-align: text-top;
 }
 
 input[type=search] {

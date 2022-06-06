@@ -14,7 +14,7 @@ defmodule Components.ValidatingDefaultSettingEngine do
     h3 h4 h5
     ol ul li
     img
-    table tr td
+    table tr td th
     br p
     span em strong b i s abbr
     label input form
