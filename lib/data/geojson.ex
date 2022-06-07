@@ -30,7 +30,7 @@ defmodule Data.GeoJSON do
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.reject(fn %Map.Way{tags: tags} -> Map.get(tags, :hide_from_map, false) end)
     |> Enum.map(fn %Map.Way{nodes: nodes, tags: tags} ->
-      point = Geo.Polylabel.calculate(nodes)
+      point = Geo.LongestLineLabel.calculate(nodes)
 
       %{
         type: "Feature",
