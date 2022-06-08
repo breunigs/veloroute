@@ -54,13 +54,13 @@
       ])
     %>
 
-    <%= if Browser.ie?(ua) || Browser.edge?(ua) do %>
+    <%= if Browser.ie?(ua) do %>
       <%# hard polyfills IE will not work decently without %>
       <script type="text/javascript" src={Routes.static_path(@conn, "/js/polyfill.js")}></script>
     <% end %>
 
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/mbgl#{if Browser.ie?(ua), do: 1, else: 2}.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/mbgl#{if Browser.ie?(ua), do: 1, else: 2}.js")} fetchpriority="high"></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")} fetchpriority="high"></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/liveview.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/app.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/video_player.js")}></script>
@@ -68,12 +68,12 @@
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
       <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
       <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
-      <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
+      <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js' defer></script>
       <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/link_helper.js")}></script>
     <% end %>
 
-    <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
-    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
-    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" importance="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
+    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
   </body>
 </html>

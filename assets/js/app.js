@@ -25,9 +25,6 @@ function updateState() {
   if (typeof window.mapStateChanged === "function") {
     window.mapStateChanged();
   }
-  // if (typeof window.loadingCb === "function") {
-  //   window.loadingCb();
-  // }
 }
 updateState();
 console.log("Initial State From Server: ", state)
