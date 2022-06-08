@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Kollauradweg",
         direction: :forward,
         from: "Stephansplatz",
@@ -23,8 +23,8 @@ defmodule Data.Article.Static.Freizeitroute10 do
         parent_ref: __MODULE__,
         text: "entlang der Kollau nach Wendlohe",
         videos: [
-          {"2021-08-01-freizeit9-anfang/GX012477", "00:00:29.630", "00:00:53.120"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:18.952", :end},
+          {"2022-04-30-velo5-u-12innenstadt/GX013639", "00:00:01.935", "00:00:42.976"},
+          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:20.320", :end},
           {"2021-08-01-freizeit9-anfang/GX012482", :start, "00:00:05.739"},
           {"2021-08-07-fr10/GX012568", "00:00:43.277", :end},
           {"2021-08-07-fr10/GX012569", :start, :end},
@@ -45,7 +45,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Kollauradweg",
         direction: :backward,
         from: "Wendlohe",
@@ -76,8 +76,8 @@ defmodule Data.Article.Static.Freizeitroute10 do
           {"2021-08-07-fr10/GX012606", :start, "00:00:21.855"},
           {"2021-08-01-freizeit9-anfang/GX012469", "00:00:21.989", "00:00:27.194"},
           {"2021-08-01-freizeit9-anfang/GX012472", "00:00:04.705", "00:00:11.178"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:05.539", "00:00:18.285"},
-          {"2021-08-01-freizeit9-anfang/GX012477", "00:00:53.820", "00:01:13.106"}
+          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:05.539", "00:00:13.514"},
+          {"2022-04-30-velo5-u-12innenstadt/GX013639", "00:00:49.416", "00:01:27.087"}
         ]
       }
     ]

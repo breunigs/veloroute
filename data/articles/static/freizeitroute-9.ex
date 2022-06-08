@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Klövensteenradweg",
         direction: :forward,
         from: "Binnenalster",
@@ -23,10 +23,12 @@ defmodule Data.Article.Static.Freizeitroute9 do
         parent_ref: __MODULE__,
         text: "von der Binnenalster in den Klövensteen",
         videos: [
-          {"2021-07-26-missing-parts-fr2-fr3/GX012412", "00:00:07.508", :end},
-          {"2021-07-26-missing-parts-fr2-fr3/GX012413", :start, "00:00:02.903"},
-          {"2021-08-01-freizeit9-anfang/GX012477", "00:00:13.747", "00:00:53.120"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:18.952", :end},
+          {"2022-06-04-v4-v7-random/GX014184", "00:00:27.327", :end},
+          {"2022-06-04-v4-v7-random/GX014213", :start, :end},
+          {"2022-06-04-v4-v7-random/GX014214", :start, :end},
+          {"2022-06-04-v4-v7-random/GX014215", :start, :end},
+          {"2022-06-04-v4-v7-random/GX014216", :start, "00:00:59.059"},
+          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:23.457", :end},
           {"2021-08-01-freizeit9-anfang/GX012482", :start, :end},
           {"2021-08-01-freizeit9-anfang/GX012483", :start, :end},
           {"2021-08-01-freizeit9-anfang/GX012484", :start, :end},
@@ -45,7 +47,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Klövensteenradweg",
         direction: :backward,
         from: "Klövensteen",
@@ -66,12 +68,11 @@ defmodule Data.Article.Static.Freizeitroute9 do
           {"2021-08-01-freizeit9-anfang/GX012466", :start, "00:00:16.884"},
           {"2021-08-01-freizeit9-anfang/GX012467", "00:00:00.033", :end},
           {"2021-08-01-freizeit9-anfang/GX012468", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012469", :start, "00:00:27.194"},
-          {"2021-08-01-freizeit9-anfang/GX012472", "00:00:04.705", "00:00:11.178"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:05.539", "00:00:18.285"},
-          {"2021-08-01-freizeit9-anfang/GX012477", "00:00:53.820", "00:01:15.976"},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012339", "00:00:03.704", :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012340", :start, "00:00:01.568"}
+          {"2021-08-01-freizeit9-anfang/GX012469", :start, "00:00:15.215"},
+          {"2022-06-04-v4-v7-random/GX014182", "00:00:32.466", :end},
+          {"2022-06-04-v4-v7-random/GX014183", :start, :end},
+          {"2022-06-04-v4-v7-random/GX014211", :start, :end},
+          {"2022-06-04-v4-v7-random/GX014212", :start, "00:00:01.835"}
         ]
       }
     ]

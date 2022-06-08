@@ -39,7 +39,7 @@ defmodule Data.Article.Static.Alltagsroute4 do
         ]
       },
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "4",
         direction: :backward,
         from: "Ochsenzoll",
@@ -59,10 +59,12 @@ defmodule Data.Article.Static.Alltagsroute4 do
           {"2022-03-26-veloroute-4/GX013373", :start, :end},
           {"2022-03-26-veloroute-4/GX013374", :start, :end},
           {"2022-03-26-veloroute-4/GX013375", :start, :end},
-          {"2022-03-26-veloroute-4/GX013376", :start, "00:01:16.043"},
-          {"2022-03-26-veloroute-4/GX013382", "00:00:25.225", :end},
-          {"2022-03-26-veloroute-4/GX013383", :start, "00:00:15.182"},
-          {"2022-03-26-veloroute-4/GX013377", "00:00:15.782", :end},
+          {"2022-03-26-veloroute-4/GX013376", :start, "00:01:03.931"},
+          {"2022-06-04-v4-v7-random/GX014208", "00:00:23.390", :end},
+          {"2022-06-04-v4-v7-random/GX014210", :start, "00:00:04.471"},
+          {"2022-06-04-v4-v7-random/GX014183", "00:01:02.496", :end},
+          {"2022-06-04-v4-v7-random/GX014184", :start, "00:00:04.571"},
+          {"2022-03-26-veloroute-4/GX013377", "00:00:11.311", :end},
           {"2022-03-26-veloroute-4/GX013378", :start, :end},
           {"2022-03-26-veloroute-4/GX013379", :start, "00:00:08.242"}
         ]
