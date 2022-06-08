@@ -1,6 +1,32 @@
 defmodule Map.ReverseProxyPlug do
   @behaviour Plug
 
+  defmodule Cacher do
+    @behaviour Tesla.Middleware
+    @ttl :timer.hours(24)
+
+    def call(env, next, _opts) do
+      if cache_busters?(env) do
+        Tesla.run(env, next)
+      else
+        run = fn ->
+          resp = Tesla.run(env, next)
+          {keep?(resp), resp}
+        end
+
+        {_status, resp} = Cachex.fetch(:tesla_cache_cachex, cache_key(env), run, ttl: @ttl)
+        resp
+      end
+    end
+
+    defp keep?({:ok, %Tesla.Env{status: 200}}), do: :commit
+    defp keep?({_status, _env}), do: :ignore
+
+    defp cache_busters?(%Tesla.Env{query: query}), do: Enum.any?(query, &(elem(&1, 0) == "sku"))
+
+    defp cache_key(%Tesla.Env{url: url, query: query}), do: Tesla.build_url(url, query)
+  end
+
   defmodule Massager do
     @behaviour Tesla.Middleware
 
@@ -30,9 +56,9 @@ defmodule Map.ReverseProxyPlug do
       Map.merge(env, %{url: url, query: Enum.to_list(query)})
     end
 
-    @drop_resp_headers ~w[age via x-amz-cf-id x-amz-cf-pop x-cache x-origin x-request-id]
+    @keep_resp_headers ~w[content-type content-length access-control-allow-origin access-control-allow-methods content-encoding last-modified  date cache-control etag]
     defp drop_resp_headers({:ok, env}) do
-      {:ok, Map.update!(env, :headers, &drop_string_keywords(&1, @drop_resp_headers))}
+      {:ok, Map.update!(env, :headers, &keep_string_keywords(&1, @keep_resp_headers))}
     end
 
     defp drop_resp_headers(buggy), do: buggy
@@ -44,13 +70,17 @@ defmodule Map.ReverseProxyPlug do
     defp drop_string_keywords(list, keys) when is_list(list) and is_list(keys) do
       :lists.filter(fn {key, _} -> key not in keys end, list)
     end
+
+    defp keep_string_keywords(list, keys) when is_list(list) and is_list(keys) do
+      :lists.filter(fn {key, _} -> key in keys end, list)
+    end
   end
 
   def init(_opts) do
     client =
       Tesla.client([
         Map.ReverseProxyPlug.Massager,
-        {Tesla.Middleware.Cache, ttl: :timer.hours(24)}
+        Map.ReverseProxyPlug.Cacher
       ])
 
     ReverseProxyPlug.init(

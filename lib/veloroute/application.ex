@@ -14,6 +14,7 @@ defmodule Veloroute.Application do
       VelorouteWeb.Telemetry,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
+      {Cachex, name: :tesla_cache_cachex},
       {Phoenix.PubSub, [name: Veloroute.PubSub, adapter: Phoenix.PubSub.PG2]}
       # Starts a worker by calling: Veloroute.Worker.start_link(arg)
       # {Veloroute.Worker, arg},

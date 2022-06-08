@@ -49,6 +49,7 @@ defmodule Veloroute.MixProject do
     [
       {:atomex, "~> 0.5.1"},
       {:browser, "~> 0.4.4"},
+      {:cachex, "~> 3.4"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:erlexec, "~> 1.0",
@@ -79,7 +80,6 @@ defmodule Veloroute.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:telemetry, "~> 1.0"},
       {:temp, "~> 0.4", only: [:dev, :test]},
-      {:tesla_cache, "~> 1.1.0"},
       {:tesla, "~> 1.4.0"},
       {:tqdm, "~> 0.0.2", only: [:dev, :test]}
     ]
