@@ -577,7 +577,7 @@ $iconBorder: 0.13em;
 .icon {
   height: $iconSize;
   display: inline-block;
-  line-height: $iconSize;
+  line-height: calc($iconSize + $iconBorder);
   margin-top: -0.35em;
   margin-bottom: -0.15em;
   font-size: 90%;
@@ -814,6 +814,11 @@ a {
 
   &:hover {
     text-decoration: underline;
+
+    .icon {
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 
   &.ref {
@@ -932,7 +937,7 @@ table.routing {
 
   // this will control the size of the abstract route rendering, since it needs
   // to match in cell height for the different sub-icons to line up.
-  $table-cell-height: 20px;
+  $table-cell-height: 23px;
 
   td {
     height: $table-cell-height;

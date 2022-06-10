@@ -145,7 +145,7 @@ defmodule Components.TagHelpers do
     assigns = Map.put_new(assigns, :class, "")
 
     ~H"""
-    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= render_slot(@inner_block) %></a>
+    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= render_slot(@inner_block, :already_linked) %></a>
     """
   end
 
@@ -212,31 +212,42 @@ defmodule Components.TagHelpers do
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
 
     query = if assigns[:autoplay] == "true", do: %{autoplay: true}
+    href = Article.Decorators.path(art, query)
+    # icon = VelorouteWeb.VariousHelpers.route_icon(art)
 
-    link_attr = %{
-      href: Article.Decorators.path(art, query),
-      data_phx_link: "patch",
-      data_phx_link_state: "push"
-    }
+    assigns =
+      assign(assigns, %{
+        href: href,
+        summary: art.summary(),
+        style: "background: #{art.color()}",
+        class: "icon #{art.route_group()}",
+        id: art.display_id()
+      })
 
-    # link_attr =
-    #   if assigns[:autoplay] == "yes",
-    #     do: Map.merge(link_attr, %{phx_click: "sld-autoplay", phx_value_article: art.id()}),
-    #     else: link_attr
+    cond do
+      assigns[:link] == "no" ->
+        ~H"""
+        <span style={@style} class={@class}><%= @id %></span>
+        """
 
-    icon = VelorouteWeb.VariousHelpers.route_icon(art)
-    assigns = assign(assigns, %{icon: icon, link_attr: link_attr, id: id})
+      art.display_id() == content ->
+        ~H"""
+        <a href={@href}
+           data-phx-link-state="push"
+           data-phx-link="patch"
+           title={@summary}
+           style={@style}
+           class={@class}
+        ><%= @id %></a>
+        """
 
-    # ~H"""
-    # <a href={@path} {@extra_attrs} phx-value-article={@id} data-phx-link-state="push" data-phx-link="patch">
-    #   <%= @icon %><%= if @id != content, do: render_block(@inner_block) %>
-    # </a>
-    # """
-    ~H"""
-    <a {@link_attr}>
-      <%= @icon %><%= if @id != content, do: render_block(@inner_block) %>
-    </a>
-    """
+      true ->
+        ~H"""
+        <a href={@href} data-phx-link-state="push" data-phx-link="patch" title={@summary}>
+          <span style={@style} class={@class}><%= @id %></span><%= render_block(@inner_block) %>
+        </a>
+        """
+    end
   end
 
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
