@@ -18,7 +18,7 @@ defmodule Mapbox do
   plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.Query, access_token: secret_token()
   plug Tesla.Middleware.JSON, decode_content_types: ["application/vnd.geo+json"]
-  plug Tesla.Middleware.Cache, ttl: :timer.minutes(10)
+  plug TeslaCache
 
   # for debugging help
   # plug Tesla.Middleware.Logger
