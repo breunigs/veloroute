@@ -865,3 +865,7 @@
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016686
 '2022-05-27':
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016705
+'2022-06-09':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009698
+'2022-06-10':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011881
