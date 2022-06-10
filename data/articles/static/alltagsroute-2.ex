@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</.m></td>
+        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon="9.993833" lat="53.550924" dir="forward" ref="2">Rathaus</.m></td>
       </tr>
       <tr>
         <td>
@@ -99,37 +99,50 @@ defmodule Data.Article.Static.Alltagsroute2 do
           <.icon>11</.icon>
           <.icon>12</.icon>
         </td>
-        <td><.m bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</.m></td>
+        <td><.m bounds="9.983395,53.547382,9.990571,53.551659" lon="9.987737" lat="53.548638" dir="forward" ref="2">Rödingsmarkt</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9624081,53.5594992,9.9655552,53.562092">Schanzenviertel</.m></td>
+        <td><.m bounds="9.95608,53.554674,9.975319,53.565951" lon="9.966796" lat="53.562393" dir="forward" ref="2">Schanzenviertel</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="9.9351095,53.5631662,9.9775009,53.5824343">Eimsbüttel</.m></td>
+        <td><.m bounds="9.933678,53.562581,9.973695,53.5803" lon="9.960707" lat="53.57117" dir="forward" ref="2">Eimsbüttel</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9307791,53.5796377,9.9308791,53.5797377">Langenfelde</.m></td>
+        <td><.m bounds="9.919166,53.573,9.959761,53.593032" lon="9.9383" lat="53.583977" dir="forward" ref="2">Langenfelde</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9054092,53.5716142,9.948001,53.6064873">Stellingen</.m></td>
+        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon="9.932624" lat="53.595197" dir="forward" ref="2">Stellingen</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="9.8691962,53.5861088,9.9353742,53.6252091">Eidelstedt</.m></td>
+        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon="9.932624" lat="53.595197" dir="forward" ref="2">Eidelstedt</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td class="dir"><.m bounds="9.7988673,53.6092986,9.8849942,53.6472848">(Halstenbek)</.m></td>
+        <td class="dir"><.m bounds="9.827003,53.605329,9.903607,53.640796">(Halstenbek)</.m></td>
       </tr>
     </table>
+
+    <p>Vom Rathaus aus führt die Route in einem Bogen durch die Neustadt. In der <.m bounds="9.959199,53.553031,9.979629,53.562268" lon="9.968639" lat="53.557447" dir="forward" ref="2">Feldstraße</.m> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.m bounds="9.959199,53.566871,9.969102,53.572313" lon="9.963436" lat="53.569592" dir="forward" ref="2">Christuskirche</.m> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert, es gibt aber auch Abschnitte mit Kopfsteinpflaster, welches verhältnismäßig eben ist.</p>
+
+    <h3>Meinung</h3>
+    <p>Die Route ist durchwachsen. Als Erwachsener kommt man trotz vieler Ampeln gut durch und wird in der Regel keine Probleme haben. Allerdings sind die wenigsten Abschnitte kindgerecht, wie z.B. die bereits umgebaute <.m bounds="9.960613,53.56667,9.967385,53.570781">Weidenallee</.m>.</p>
+
+    <p>Häufigstes Problem auf der Strecke sind zu dicht vorbeifahrende oder entgegenkommende Autos, die den Fahrkomfort senken. Das ist teilweise dem Fehlverhalten der Beteiligten zuzuschreiben. Oft fehlte auch der politische Mut den KFZ-Verkehr auf andere Straßen zu verlagern.</p>
 
     <h3>Externe Links</h3>
     <.structured_links gpx="true"/>
