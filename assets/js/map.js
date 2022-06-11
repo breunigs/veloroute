@@ -462,7 +462,7 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 function getVideoPosition(timeAdjustMs) {
   if (!indicatorPolyline) return;
   const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
-  let currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart;
+  let currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart * 1;
   if (timeAdjustMs) currMs = Math.max(0, currMs + timeAdjustMs);
 
   const index = indicatorIndexBounds(Math.floor(currMs / indicatorPolyline.interval));
