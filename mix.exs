@@ -20,7 +20,8 @@ defmodule Veloroute.MixProject do
       preferred_cli_env: [
         test: :test,
         dialyzer: :test
-      ]
+      ],
+      aliases: aliases()
     ]
   end
 
@@ -31,6 +32,17 @@ defmodule Veloroute.MixProject do
     [
       mod: {Veloroute.Application, []},
       extra_applications: [:logger, :runtime_tools, :plug] ++ extra_apps(Mix.env())
+    ]
+  end
+
+  defp aliases() do
+    [
+      setup: [
+        "deps.get",
+        "deps.compile",
+        "sass.install",
+        "cmd --cd assets npm ci --progress=false --no-audit --loglevel=error"
+      ]
     ]
   end
 
@@ -50,10 +62,12 @@ defmodule Veloroute.MixProject do
       {:atomex, "~> 0.5.1"},
       {:browser, "~> 0.4.4"},
       {:cachex, "~> 3.4"},
+      {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:erlexec, "~> 1.0",
        only: [:dev, :test], system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
       {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
       {:floki, ">= 0.30.0", only: [:dev, :test]},

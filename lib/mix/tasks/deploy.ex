@@ -91,18 +91,18 @@ defmodule Mix.Tasks.Deploy do
 
   defp make_release(_skip) do
     [
-      ["mix", "deps.get"],
-      ["mix", "deps.compile"],
-      ["npm", "--prefix", "./assets", "ci", "--progress=false", "--no-audit", "--loglevel=error"],
-      ["npm", "run", "--prefix", "./assets", "deploy"],
+      ~w(mix setup),
+      ~w(mix esbuild default --minify),
+      ~w(mix sass default --no-source-map --style=compressed),
+      ~w(cp -r data/images/ priv/static/),
       [Path.join(@cwd, "tools/update_favicons.sh")],
-      ["mix", "compile"],
-      ["mix", "update_gpx"],
+      ~w(mix deps.compile),
+      ~w(mix compile),
+      ~w(mix update_gpx),
       ["rm", "priv/static/#{Settings.video_serve_path()}"],
-      ["mix", "phx.digest"],
-      ["mix", "release", "--overwrite", "--quiet"],
-      ["rm", "-rf", "priv/static/"],
-      ["git", "restore", "priv/static/.gitkeep"]
+      ~w(mix phx.digest),
+      ~w(mix release --overwrite --quiet),
+      ~w(mix phx.digest.clean)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn

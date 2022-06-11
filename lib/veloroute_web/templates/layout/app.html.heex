@@ -43,10 +43,26 @@
     <meta name="twitter:card" content="summary_large_image" />
     <%= VelorouteWeb.CSSInline.tag(@conn, :app) %>
   </head>
-  <%
-    ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
-  %>
-  <body class={if Browser.ie?(ua), do: "ie11"}>
+  <body>
+    <%=
+      # serve this JS only if the user agent indicates it's IE11, and then guard it again
+      # with feature detection.
+      ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
+      if Browser.ie?(ua) do
+    %>
+    <script>
+      var hasNaN = ("Number" in window) && (typeof Number.isNaN === "function");
+      if(!hasNaN && window.localStorage.getItem("seenIEWarning") != "v1") {
+        alert(
+          "Du scheinst einen sehr alten Browser zu benutzen, mit dem die Seite nicht mehr funktioniert.\n\n" +
+          "Schau stattdessen ob „Microsoft Edge“ oder „Mozilla Firefox“ oder „Google Chrome“ installiert sind.\n\n" +
+          "Wenn nein, kannst Du die Seite auch auf Deinem Handy öffnen.\n\n"
+        );
+        window.localStorage.setItem("seenIEWarning", "v1");
+      }
+    </script>
+    <% end %>
+
     <%= @inner_content %>
 
     <%= content_tag(:div, "", id: "settings", data: [
@@ -55,22 +71,17 @@
       ])
     %>
 
-    <%= if Browser.ie?(ua) do %>
-      <%# hard polyfills IE will not work decently without %>
-      <script type="text/javascript" src={Routes.static_path(@conn, "/js/polyfill.js")}></script>
-    <% end %>
-
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/mbgl#{if Browser.ie?(ua), do: 1, else: 2}.js")} fetchpriority="high"></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/map.js")} fetchpriority="high"></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/liveview.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/app.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/video_player.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/mbgl2.js")} fetchpriority="high"></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/map.js")} fetchpriority="high"></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")}></script>
 
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
       <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
       <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
       <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js' defer></script>
-      <script type="text/javascript" defer src={Routes.static_path(@conn, "/js/link_helper.js")}></script>
+      <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/link_helper.js")}></script>
     <% end %>
 
     <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">

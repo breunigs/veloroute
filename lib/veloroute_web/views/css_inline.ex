@@ -1,7 +1,7 @@
 defmodule VelorouteWeb.CSSInline do
   use Phoenix.Component
 
-  @path_prefix "./priv/static/css"
+  @path_prefix "./priv/static/assets"
 
   path = fn name -> Path.join(@path_prefix, "#{name}.css") end
 
@@ -28,7 +28,7 @@ defmodule VelorouteWeb.CSSInline do
   end
 
   defp fallback(conn, name) do
-    assigns = %{url: VelorouteWeb.Router.Helpers.static_path(conn, "/css/#{name}.css")}
+    assigns = %{url: VelorouteWeb.Router.Helpers.static_path(conn, "/assets/#{name}.css")}
 
     ~H"""
     <link rel="stylesheet" href={@url}/>

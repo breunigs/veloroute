@@ -1,39 +1,8 @@
 {
   "repository": {},
   "license": "MIT",
-  "scripts": {
-    "deploy": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
-  },
   "dependencies": {
-    "@webcomponents/template": "^1.4.3",
-    "child-replace-with-polyfill": "^1.0.1",
-    "classlist-polyfill": "^1.2.0",
-    "core-js": "^3.6.5",
-    "formdata-polyfill": "^3.0.20",
     "hls.js": "^1.1.0",
-    "mbgl1": "npm:mapbox-gl@^1.13.2",
-    "mbgl2": "npm:mapbox-gl@^2.6.1",
-    "mdn-polyfills": "^5.20.0",
-    "new-event-polyfill": "^1.0.1",
-    "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
-    "phoenix_live_view": "file:../deps/phoenix_live_view",
-    "shim-keyboard-event-key": "^1.0.3",
-    "url-search-params-polyfill": "^8.1.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-loader": "^8.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.4.2",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "sass": "^1.50.0",
-    "sass-loader": "^8.0.2",
-    "terser-webpack-plugin": "^2.3.2",
-    "webpack": "4.41.5",
-    "webpack-cli": "^3.3.2"
+    "mapbox-gl": "^2.6.1"
   }
 }

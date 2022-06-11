@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.UpdateGpx do
   use Mix.Task
 
-  @out File.cwd!() <> "/assets/static/geo/"
+  @out File.cwd!() <> "/priv/static/geo/"
 
   @shortdoc "Update GPX/KML tracks from map data."
   def run(_) do
