@@ -9,6 +9,10 @@ defmodule VelorouteWeb.CSSInline do
     path = path.(name)
 
     case File.read(path) do
+      # strip unicode byte order mark
+      {:ok, "\uFEFF" <> css} ->
+        Phoenix.HTML.raw("<style>#{css}</style>")
+
       {:ok, css} ->
         Phoenix.HTML.raw("<style>#{css}</style>")
 
