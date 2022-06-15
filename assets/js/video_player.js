@@ -133,7 +133,7 @@ function updateVideoElement() {
 
       prevLevel = null;
 
-      if (window.hls) {
+      if (window.hls && window.hls.currentLevel) {
         const bwEstimate = window.hls.bandwidthEstimate;
         if (typeof bwEstimate === "number") {
           options.abrEwmaDefaultEstimate = bwEstimate;
