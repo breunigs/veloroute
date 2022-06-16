@@ -15,12 +15,14 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
   def stop(), do: ~d[2022-06-19]
   def construction_site_id_hh(), do: [45148]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["4"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum fertigen Umbau", "Juni 2022",
+       "https://www.hamburg.de/bvm/medien/16264052/2022-06-15-bvm-westlicher-doppelknoten/"},
       {"Lageplan Sofortmaßnahmen 2022",
        "https://lsbg.hamburg.de/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbereicht Sofortmaßnahmen 2022",

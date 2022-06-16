@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute4 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "4",
         direction: :forward,
         from: "Innenstadt",
@@ -24,10 +24,9 @@ defmodule Data.Article.Static.Alltagsroute4 do
         text: "aus der Innenstadt zum Ochsenzoll",
         videos: [
           {"2022-03-26-veloroute-4/GX013379", "00:00:08.842", "00:00:12.446"},
-          {"2022-03-26-veloroute-4/GX013380", :start, :end},
-          {"2022-03-26-veloroute-4/GX013381", :start, :end},
-          {"2022-03-26-veloroute-4/GX013382", :start, "00:00:07.407"},
-          {"2022-03-26-veloroute-4/GX013355", "00:00:01.969", :end},
+          {"2022-03-26-veloroute-4/GX013380", :start, "00:00:15.249"},
+          {"2022-06-15-doppelknoten/GX014254.MP4_time_lapse.mkv", "00:00:41.808", "00:01:04.965"},
+          {"2022-03-26-veloroute-4/GX013355", "00:00:08.976", :end},
           {"2022-03-26-veloroute-4/GX013356", :start, :end},
           {"2022-03-26-veloroute-4/GX013357", :start, :end},
           {"2022-03-26-veloroute-4/GX013358", :start, :end},
@@ -59,14 +58,13 @@ defmodule Data.Article.Static.Alltagsroute4 do
           {"2022-03-26-veloroute-4/GX013373", :start, :end},
           {"2022-03-26-veloroute-4/GX013374", :start, :end},
           {"2022-03-26-veloroute-4/GX013375", :start, :end},
-          {"2022-03-26-veloroute-4/GX013376", :start, "00:01:03.931"},
-          {"2022-06-04-v4-v7-random/GX014208", "00:00:23.390", :end},
-          {"2022-06-04-v4-v7-random/GX014210", :start, "00:00:04.471"},
-          {"2022-06-04-v4-v7-random/GX014183", "00:01:02.496", :end},
-          {"2022-06-04-v4-v7-random/GX014184", :start, "00:00:04.571"},
-          {"2022-03-26-veloroute-4/GX013377", "00:00:11.311", :end},
-          {"2022-03-26-veloroute-4/GX013378", :start, :end},
-          {"2022-03-26-veloroute-4/GX013379", :start, "00:00:08.242"}
+          {"2022-03-26-veloroute-4/GX013376", :start, "00:01:08.201"},
+          {"2022-06-15-doppelknoten/GX014250.MP4_time_lapse.mkv", "00:00:31.231", :end},
+          {"2022-06-15-doppelknoten/GX014259.MP4_time_lapse.mkv", :start, :end},
+          {"2022-06-15-doppelknoten/GX014260.MP4_time_lapse.mkv", :start, "00:00:03.270"},
+          {"2022-06-15-doppelknoten/GX014253.MP4_time_lapse.mkv", "00:00:02.503", :end},
+          {"2022-06-15-doppelknoten/GX014254.MP4_time_lapse.mkv", :start, "00:00:13.780"},
+          {"2022-03-26-veloroute-4/GX013379", "00:00:04.004", "00:00:08.242"}
         ]
       }
     ]
