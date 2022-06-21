@@ -541,3 +541,10 @@
 '2022-06-01':
 - "/contentblob/16224444/fad3c760bc4e73557db6a0f16550563b/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"
+'2022-06-21':
+- "/contentblob/16267670/7b5c29beabb81b9ec73ae6d157478856/data/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/16267672/0f41229b1e684aa782af8f0d7c2940a9/data/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-plan.pdf"
+- "/contentblob/16263886/947b7a641c3b001de0a1ace8f3b33dad/data/bargfredestrasse-neubau-fussgaengerbruecke-anwohnerschreiben-stand-05-22.pdf"
+- "/contentblob/16261038/8c55e0a338091ddbcddc001dde54e3a2/data/barmbek-strassensanierungen-06-22-bis-09-22.pdf"
+- "/contentblob/16267610/28b19489cfb3eb94009154f546c8cceb/data/maurienbruecke-stand-06-22.pdf"
+- "/contentblob/15453808/63b6e8acac1dd69547cac75900516839/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"

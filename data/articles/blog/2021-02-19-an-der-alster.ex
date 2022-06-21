@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.AnDerAlster do
     <p>Pläne zur Vorabmaßnahme „Fahrradstraße“ wurden veröffentlicht. Der Artikel wurde angepasst.</p>
 
     <h4>Alter Zustand</h4>
-    <p>Die Nebenstraße wurde Ende 2018 etwas fahrradfreundlicher umgebaut, sodass der Radverkehr vornehmlich auf dem Asphalt, statt einem schmäleren Radweg daneben fährt. Im gleichen Zug wurden die Fuß- bzw. Radampeln abgeschalten, sodass man hier größtenteils unterbrechungsfrei fahren kann. Leider nutzen viele Autofahrende die Strecke zum Ausweichen, sollte sich auf der Hauptstraße Stau gebildet haben. </p>
+    <p>Die Nebenstraße wurde Ende 2018 etwas fahrradfreundlicher umgebaut, sodass der Radverkehr vornehmlich auf dem Asphalt, statt einem schmäleren Radweg daneben fährt. Im gleichen Zug wurden die Fuß- bzw. Radampeln abgeschaltet, sodass man hier größtenteils unterbrechungsfrei fahren kann. Leider nutzen viele Autofahrende die Strecke zum Ausweichen, sollte sich auf der Hauptstraße Stau gebildet haben. </p>
 
     <h4>Planung</h4>
     <p>Die <.m bounds="10.00243,53.556592,10.004928,53.557646" lon="10.003373" lat="53.556885" dir="forward" ref="5">Nebenfahrbahn auf der man heute fährt</.m> soll in einer Vorabmaßnahme zu einer Fahrradstraße umgestaltet werden. Dazu wird die Führung auf <.m bounds="10.004046,53.557173,10.005693,53.557921" lon="10.004996" lat="53.557563" dir="forward" ref="5">Höhe der Alstertwiete</.m> so angepasst, dass KFZ eher auf die Hauptfahrbahn gelenkt werden. Zudem wird die Fahrradstraße auf gesamter Länge rot eingefärbt – erstmalig in Hamburg durch farbigen Asphalt, statt mit aufgetragenem Plastik. Die <.ref>Dooring-Zone</.ref> soll dabei klassisch schwarz bleiben, um den Gefahrenbereich zu verdeutlichen.</p>

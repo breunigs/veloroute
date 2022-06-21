@@ -11,6 +11,8 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14079, 17581]
+
+  # H14.b VR11 Hannoversche Straße (Nord): Feb 23-Dez 23 laut https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009802
   def tags(), do: ["11", "H14"]
 
   def links(_assigns) do

@@ -6,8 +6,8 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def title(), do: "Eißendorfer Straße bis Denickestraße (Veloroute 11)"
 
-  def start(), do: ~d[2022-06-13]
-  def stop(), do: ~d[2023-11-30]
+  def start(), do: ~d[2023-04]
+  def stop(), do: ~d[2023-12]
 
   def type(), do: :planned
 

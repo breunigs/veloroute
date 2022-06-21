@@ -869,3 +869,7 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009698
 '2022-06-10':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011881
+'2022-06-21':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011896
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011865
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009802
