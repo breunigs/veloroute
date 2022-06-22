@@ -22,6 +22,9 @@ video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
 video.addEventListener('pause', timeUpdate);
 
+// 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
+let minAutoBitrate = 3 * 1000 * 1000;
+
 function timeUpdate() {
   // iOS has a bug where the video time is reported as 0.0 during loading.
   if (video.canPlayType('application/vnd.apple.mpegurl') && video.readyState <= 2 && currentTimeInMs() == 0) {
@@ -97,6 +100,11 @@ function attachHlsErrorHandler(obj, Hls) {
         props: props
       });
     } else {
+      if (data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferStalledError") {
+        minAutoBitrate = Math.round(minAutoBitrate / 2)
+        window.hls.config.minAutoBitrate = minAutoBitrate
+        console.log("halfed minAutoBitrate to", minAutoBitrate)
+      }
       console.log('Hls encountered an error', data);
       sendCurrentVideoTime();
       window.plausible('video-hls-error', {
@@ -129,6 +137,7 @@ function updateVideoElement() {
         lowLatencyMode: false,
         maxBufferLength: 3, // seconds
         maxMaxBufferLength: 10, // seconds
+        minAutoBitrate: minAutoBitrate,
       };
 
       prevLevel = null;
