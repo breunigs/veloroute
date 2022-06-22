@@ -220,7 +220,8 @@ const pingLayerTransition = {
   'duration': pingHideTransitionSeconds * 1000,
   'delay': pingHideDelaySeconds * 1000,
 }
-document.getElementById("ping").addEventListener("click", showPing);
+
+window.addEventListener("map:ping", showPing);
 
 function showPing(e) {
   hidePing();

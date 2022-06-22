@@ -84,10 +84,7 @@ defmodule Components.TagHelpers do
   end
 
   defp ping(js, polylines) do
-    Phoenix.LiveView.JS.dispatch(js, "click",
-      to: "#ping",
-      detail: %{polylines: polylines}
-    )
+    Phoenix.LiveView.JS.dispatch(js, "map:ping", detail: %{polylines: polylines})
   end
 
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()

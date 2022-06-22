@@ -59,8 +59,7 @@ defmodule SearchResult do
   end
 
   def ping(sr) do
-    Phoenix.LiveView.JS.dispatch(%Phoenix.LiveView.JS{}, "click",
-      to: "#ping",
+    Phoenix.LiveView.JS.dispatch(%Phoenix.LiveView.JS{}, "map:ping",
       detail: %{
         polylines: sr.polylines,
         center: Map.take(sr.center || %{}, [:lat, :lon])
