@@ -324,19 +324,52 @@ defmodule Video.Renderer do
   # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter#av1
   # find seq_tier and seq_level_idx through:
   # ffmpeg -i <file> -c:v copy -bsf:v trace_headers -f null /dev/null 2>&1 | grep seq_ | head -n5
-  # The 31 chosen for LL here is "Maximum parameters", i.e. no restrictions.
+
+  @av1_ll_param_examples [
+    %{width: 426, height: 240, tiles: 8, fps: 30, level: 2.0, seq_level_idx: 0},
+    %{width: 640, height: 360, tiles: 8, fps: 30, level: 2.1, seq_level_idx: 1},
+    %{width: 854, height: 480, tiles: 16, fps: 30, level: 3.0, seq_level_idx: 4},
+    %{width: 1280, height: 720, tiles: 16, fps: 30, level: 3.1, seq_level_idx: 5},
+    %{width: 1920, height: 1080, tiles: 32, fps: 30, level: 4.0, seq_level_idx: 8},
+    %{width: 1920, height: 1080, tiles: 32, fps: 60, level: 4.1, seq_level_idx: 9},
+    %{width: 3840, height: 2160, tiles: 64, fps: 30, level: 5.0, seq_level_idx: 12},
+    %{width: 3840, height: 2160, tiles: 64, fps: 60, level: 5.1, seq_level_idx: 13},
+    %{width: 3840, height: 2160, tiles: 64, fps: 120, level: 5.2, seq_level_idx: 14},
+    %{width: 3840, height: 2160, tiles: 64, fps: 120, level: 5.3, seq_level_idx: 15},
+    %{width: 7680, height: 4320, tiles: 128, fps: 30, level: 6.0, seq_level_idx: 16},
+    %{width: 7680, height: 4320, tiles: 128, fps: 60, level: 6.1, seq_level_idx: 17},
+    %{width: 7680, height: 4320, tiles: 128, fps: 120, level: 6.2, seq_level_idx: 18},
+    %{width: 7680, height: 4320, tiles: 128, fps: 120, level: 6.3, seq_level_idx: 19}
+  ]
+  # Firefox doesn't support "31" for "maximum parameters". Instead pick the
+  # highest specified at the time of writing as a fallback.
+  @av1_ll_max_specified 23
+
   @spec codec_av1(map(), non_neg_integer()) :: map()
-  defp codec_av1(info, idx),
-    do: %{
+  defp codec_av1(info, idx) do
+    tiles = Integer.floor_div(info[:height], 135)
+
+    ll =
+      Enum.find_value(@av1_ll_param_examples, @av1_ll_max_specified, fn ex ->
+        dim_ok = info[:width] <= ex.width && info[:height] <= ex.height
+
+        if dim_ok && tiles <= ex.tiles && Video.Source.fps() <= ex.fps,
+          do: ex.seq_level_idx
+      end)
+      |> to_string()
+      |> String.pad_leading(2, "0")
+
+    %{
       codec: [
         "librav1e",
         "-tiles:v:#{idx}",
-        "#{Integer.floor_div(info[:height], 135)}",
+        "#{tiles}",
         "-speed:v:#{idx}",
         "6"
       ],
-      tag_as: "av01.0.31M.08"
+      tag_as: "av01.0.#{ll}M.08"
     }
+  end
 
   # ffmpeg itself manages avc tags
   @spec codec_avc(map(), non_neg_integer()) :: map()
