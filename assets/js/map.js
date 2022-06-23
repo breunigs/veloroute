@@ -111,10 +111,8 @@ function renderIndicator() {
   videoWasPlaying = videoPlaying;
 
   const shortest = closestEquivalentAngle(indicator.getRotation(), pos.bearing);
-  window.requestAnimationFrame(() => {
-    indicator.setRotation(shortest);
-    indicator.setLngLat(lngLat);
-  });
+  indicator.setRotation(shortest);
+  indicator.setLngLat(lngLat);
 
   // zoom in once, i.e. when user just clicks play when first visiting the site
   if (!mapActive && !zoomedInOnce && videoPlaying && map.getZoom() <= 13) {
@@ -569,12 +567,25 @@ window.map = map;
 let speculativeIndicator = 0;
 window.addEventListener("video:timeupdate", () => {
   speculativeIndicator = 25;
-  updateVideoIndicator()
+  updateVideoIndicator();
 });
 
+let videoIndicatorRAF = false;
+
 function updateVideoIndicator() {
+  if (!videoIndicatorRAF) {
+    window.requestAnimationFrame(updateVideoIndicator);
+    videoIndicatorRAF = true
+    return
+  }
+
   renderIndicator();
-  if (speculativeIndicator-- > 0) window.requestAnimationFrame(updateVideoIndicator);
+
+  if (speculativeIndicator-- > 0) {
+    window.requestAnimationFrame(updateVideoIndicator);
+  } else {
+    videoIndicatorRAF = false
+  }
 }
 
 function runQueuedUpdate() {
