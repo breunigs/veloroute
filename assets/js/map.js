@@ -119,15 +119,24 @@ function renderIndicator() {
   // zoom in once, i.e. when user just clicks play when first visiting the site
   if (!mapActive && !zoomedInOnce && videoPlaying && map.getZoom() <= 13) {
     zoomedInOnce = true;
-    const zoom = Math.max(map.getZoom(), 14);
-    map.flyTo({
-      center: lngLat,
-      zoom: zoom
-    });
+    withPreload("flyTo", lngLat);
     return;
   }
 
   ensureIndicatorInView(lngLat);
+}
+
+const withPreload = (action, lngLat) => {
+  const opts = {
+    center: lngLat,
+    zoom: Math.max(map.getZoom(), 14),
+  }
+
+  map[action]({
+    ...opts,
+    preloadOnly: true
+  });
+  map[action](opts);
 }
 
 const closestEquivalentAngle = (from, to) => {
@@ -157,11 +166,10 @@ const ensureIndicatorInView = (lngLat) => {
   const isClose = distIndi <= 1.5 * distDiag;
 
   if (!isVideoPlaying()) {
-    isClose ?
-      map.panTo(lngLat) :
-      map.flyTo({
-        center: lngLat
-      });
+    isClose
+      ?
+      withPreload("panTo", lngLat) :
+      withPreload("flyTo", lngLat)
     return;
   }
 
