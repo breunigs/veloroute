@@ -72,12 +72,17 @@ let videoWasPlaying = false;
 let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
 let indicatorFocus = null;
-let prevIndicatorPos = '';
+let prevIndicatorPos = {};
 
 function renderIndicator() {
   const pos = getVideoPosition();
   if (!pos) return;
-  if (pos === prevIndicatorPos) return;
+  if (pos.lat == prevIndicatorPos.lat &&
+    pos.lon == prevIndicatorPos.lon &&
+    pos.bearing == prevIndicatorPos.bearing) {
+    return;
+  }
+
   prevIndicatorPos = pos;
 
   const lngLat = new mapboxgl.LngLat(pos.lon, pos.lat);
