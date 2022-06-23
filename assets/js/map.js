@@ -103,9 +103,8 @@ function renderIndicator() {
   const videoPlaying = isVideoPlaying();
   const dist = indicator.getLngLat().distanceTo(lngLat);
   const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
+  indicator.getElement().classList.toggle("animate", animate);
 
-  // only update animation status as needed to avoid style recalculations
-  if (animate != !!indicatorAnimateTimer) indicator.getElement().classList.toggle("animate", animate);
   if (indicatorAnimateTimer) {
     clearTimeout(indicatorAnimateTimer);
     indicatorAnimateTimer = null;
