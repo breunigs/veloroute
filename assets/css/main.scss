@@ -277,6 +277,10 @@ $videoBarProgressHeight: 0.4rem;
   #skipBackward5, #skipForward5 {
     display: block !important;
   }
+
+  #layerSwitcher {
+    display: block !important;
+  }
 }
 
 #videoOuter[data-state="pause"] #playpause {
@@ -286,6 +290,27 @@ $videoBarProgressHeight: 0.4rem;
 
 body.ie11 #fullscreen {
   display: none;
+}
+
+#layerSwitcher, #videoOptions {
+  > div {
+    // visibility: visible !important; // toggle
+    // opacity: 1 !important; // toggle
+
+    opacity: 0;
+    visibility: collapse;
+
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+    transition-delay: 250ms;
+  }
+
+  &:not(.hidden):hover > div {
+    visibility: visible;
+
+    opacity: 1;
+    transition-delay: 0ms;
+    pointer-events: inherit;
+  }
 }
 
 #videoOptions {
@@ -299,14 +324,6 @@ body.ie11 #fullscreen {
   }
 
   > div {
-    // visibility: visible !important; // toggle
-    // opacity: 1 !important; // toggle
-
-    opacity: 0;
-    visibility: collapse;
-
-    transition: opacity 0.2s ease-in-out, visibility 0.2s;
-    transition-delay: 250ms;
     position: absolute;
     bottom: $videoBarHeight;
     bottom: calc($videoBarHeight + env(safe-area-inset-bottom));
@@ -329,14 +346,6 @@ body.ie11 #fullscreen {
     .column:first-child {
       margin-right: 2rem;
     }
-  }
-
-  &:not(.hidden):hover > div {
-    visibility: visible;
-
-    opacity: 1;
-    transition-delay: 0ms;
-    pointer-events: inherit;
   }
 
   strong, a {
@@ -560,6 +569,51 @@ body.fullscreen video, #videoOuter:fullscreen video {
     background-size: cover;
   }
 }
+
+#layerSwitcher {
+  display: none;
+
+  width: 29px;
+  height: 29px;
+
+  > button {
+    background-image: url("/images/layers.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+  }
+
+  > div {
+    position: absolute;
+    bottom: 0px;
+
+    background: #fff;
+
+    button {
+      width: 100%;
+      padding: 8px 8px 6px 4px;
+      text-align: left;
+      color: #000;
+
+      &::before {
+        width: 20px;
+        padding-right: 10px;
+        text-align: right;
+        content: "✓";
+        color: transparent;
+        line-height: 1.0rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 0.8rem;
+      }
+      &.active::before {
+        background-image: url("/images/checkmark.svg");
+        filter: brightness(0) saturate(100%);
+      }
+    }
+  }
+}
+
 
 a.header {
   color: #fff;

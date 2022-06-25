@@ -1,3 +1,7 @@
+import {
+  MapboxStyleSwitcherControl
+} from "./map_layer_switcher";
+
 if (!window.requestIdleCallback) {
   window.requestIdleCallback = function (x) {
     window.setTimeout(x, 0);
@@ -18,7 +22,6 @@ const fitBoundsOpt = {
   maxZoom: 17
 };
 
-const mapElem = document.getElementById('map');
 const map = new mapboxgl.Map({
   container: 'map',
   maxBounds: settings.maxBounds.split(","),
@@ -55,6 +58,9 @@ geocontrol.on('error', () => window.plausible('geolocation-error'));
 geocontrol.on('trackuserlocationstart', () => window.plausible('geolocation-trackuserlocationstart'));
 map.addControl(geocontrol, 'bottom-left');
 
+const layerSwitcher = new MapboxStyleSwitcherControl();
+map.addControl(layerSwitcher);
+
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
@@ -71,7 +77,6 @@ let indicator = null;
 let videoWasPlaying = false;
 let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
-let indicatorFocus = null;
 let prevIndicatorPos = {};
 
 function renderIndicator() {
@@ -349,73 +354,6 @@ const sendBounds = () => {
   }, 200);
 }
 
-const layerConfig = {
-  alltag: {
-    line: ['vr-line-off-p1', 'vr-line-off-m1', 'vr-line-off-none'],
-    icon: ['vr-oneway', 'vr-sign']
-  },
-
-  freizeit: {
-    line: ['fr-line'],
-    icon: ['fr-oneway', 'fr-sign', 'fr-warning-icons']
-  },
-
-  rsw: {
-    line: ['rsw-line']
-  }
-}
-
-// hard codes only, everything else will be optimized for nice display
-// depending on opacity status
-const layerLineCaps = {
-  'vr-line-off-p1': 'butt',
-  'vr-line-off-m1': 'butt'
-}
-
-const layerAbove = {
-  line: "detour-line",
-  icon: "article-areas title"
-}
-
-const hiddenOpacityRule = ["interpolate", ["linear"],
-  ["zoom"], 11, 0, 20, 1
-];
-
-function setLayerVisibility() {
-  const visibleTypes = state.visibleTypes.split(",");
-  Object.keys(layerConfig).forEach(type => {
-    const visibleType = visibleTypes.indexOf(type) >= 0;
-    const opacity = visibleType ? 1 : hiddenOpacityRule;
-
-    const layers = layerConfig[type];
-    Object.keys(layers).forEach(drawPrimitive => {
-      layers[drawPrimitive].forEach(layerName => {
-        const visible = visibleType || drawPrimitive == 'line' ? 'visible' : 'none';
-        map.setLayoutProperty(layerName, "visibility", visible, {
-          validate: false
-        });
-
-        map.setPaintProperty(layerName, `${drawPrimitive}-opacity`, opacity, {
-          validate: false
-        });
-
-        if (drawPrimitive == 'line') {
-          const lineCap = layerLineCaps[layerName] || (visibleType ? "round" : "butt");
-          map.setLayoutProperty(layerName, "line-cap", lineCap, {
-            validate: false
-          })
-        }
-
-        if (visibleType && drawPrimitive == 'line' && layerName.indexOf('line') >= 0) {
-          // console.log("moving", layerName, "above", layerAbove[drawPrimitive])
-          map.moveLayer(layerName, layerAbove[drawPrimitive]);
-        }
-
-      }); // layers
-    }); // drawPrimitives
-  }); // layerConfig
-}
-
 let mapLoaded = false;
 map.on('style.load', () => {
   mapLoaded = true;
@@ -596,7 +534,7 @@ function runQueuedUpdate() {
   queued = false;
   maybeFitBounds();
   renderIndicator();
-  setLayerVisibility();
+  layerSwitcher.refresh();
 }
 
 let queued = false;

@@ -421,6 +421,7 @@ defmodule VelorouteWeb.FrameLive do
 
     # defaults
     show = if show == [], do: [:alltag], else: show
+    show = [:articles | show]
 
     assign(socket, visible_types: Enum.uniq(show))
   end

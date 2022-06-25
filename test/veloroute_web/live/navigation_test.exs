@@ -186,7 +186,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # video
     assert html =~ ~s|Du folgst: Harburger Berge (FR7)|
     # control
-    assert html =~ ~s|data-visible-types="freizeit"|
+    assert html =~ ~s|data-visible-types="articles,freizeit"|
 
     html =
       render_hook(view, "map-click", %{
@@ -202,7 +202,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # video
     assert html =~ ~s|Du folgst: Alltagsroute 10|
     # control
-    assert html =~ ~s|data-visible-types="alltag"|
+    assert html =~ ~s|data-visible-types="articles,alltag"|
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
@@ -232,20 +232,20 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
 
-    assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
+    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles freizeit))
 
     html =
       view
       |> element("a", "Wegbeziehung der Freizeitroute")
       |> render_click()
 
-    assert html =~ ~r/visible-types="(alltag,freizeit|freizeit,alltag)"/
+    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles freizeit))
   end
 
   test "article without route group shows :alltag", %{conn: conn} do
     {:ok, _view, html} = live(conn, "/lexikon/kopenhagener-loesung")
 
-    assert html =~ ~r/visible-types="alltag"/
+    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles))
   end
 
   test "all articles can be rendered in the frame", %{conn: conn} do
@@ -266,5 +266,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> Util.compact()
 
     assert [] == render_issues, Enum.join(render_issues, "\n\n\n")
+  end
+
+  defp assert_attribute(html, selector, attribute, expected) do
+    [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
+    actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual
+    assert expected == actual
   end
 end
