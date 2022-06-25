@@ -227,7 +227,7 @@ defmodule Components.TagHelpers do
         <span style={@style} class={@class}><%= @id %></span>
         """
 
-      art.display_id() == content ->
+      art.display_id() == content || art.id() == content ->
         ~H"""
         <a href={@href}
            data-phx-link-state="push"

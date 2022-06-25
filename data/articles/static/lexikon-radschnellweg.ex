@@ -7,7 +7,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
   def summary(),
     do: "Radschnellwege sind besonders für gutes Vorankommen optimierte Wege"
 
-  def tags(), do: ["lexikon", "radschnellweg", "rsw"]
+  def tags(), do: ["lexikon", "radschnellweg", "rsw", "radschnellwege"]
 
   def text(assigns) do
     ~H"""
