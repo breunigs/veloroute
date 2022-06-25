@@ -1,6 +1,10 @@
 # syntax=docker/dockerfile:experimental
 
-FROM elixir:1.13-alpine AS base
+ARG ELIXIR_VERSION
+ARG ERLANG_VERSION
+ARG ALPINE_VERSION
+
+FROM hexpm/elixir:${ELIXIR_VERSION}-erlang-${ERLANG_VERSION}-alpine-${ALPINE_VERSION} AS base
 ENTRYPOINT [ "mix" ]
 ENV GIT_COMMIT="dockerfile dummy"
 
