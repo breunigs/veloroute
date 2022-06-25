@@ -517,3 +517,7 @@
 - https://via-bus.hamburg.de/contentblob/16224436/4dcb9010a1774411f39c38c91b976d5a/data/29-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-schlussverschickung.pdf
 - https://via-bus.hamburg.de/contentblob/16224438/ed5b3bd4c24a46b9bc237b748d716f0a/data/31-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-nachtrag-zur-schlussverschickung.pdf
 - https://via-bus.hamburg.de/contentblob/16224440/9dbb0168cfd3fba685218fc5e164d159/data/03-mb26-u-farmsen-schlussverschickung-ueberliegerplaetze.pdf
+'2022-06-25':
+- https://via-bus.hamburg.de/contentblob/16288744/212f22e53031005d4c5a06c48833e30e/data/hindenburgstr-auswertung-beteiligungsphase-1-tabellarische-uebersicht.pdf
+- https://via-bus.hamburg.de/contentblob/16288742/1b30d1546b8e734284bf19278454924d/data/hindenburgstr-auswertung-beteiligungsphase-1-zusammenfassung.pdf
+- https://via-bus.hamburg.de/contentblob/16288750/0ea0143395d07e4170ad77543d15c181/data/58-mb3-bushaltestelle-spaldingstrasse-schlussverschickung.pdf

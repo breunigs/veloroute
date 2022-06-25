@@ -548,3 +548,5 @@
 - "/contentblob/16261038/8c55e0a338091ddbcddc001dde54e3a2/data/barmbek-strassensanierungen-06-22-bis-09-22.pdf"
 - "/contentblob/16267610/28b19489cfb3eb94009154f546c8cceb/data/maurienbruecke-stand-06-22.pdf"
 - "/contentblob/15453808/63b6e8acac1dd69547cac75900516839/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"
+'2022-06-25':
+- "/contentblob/16288700/693145a7206a1bc40ffe24b44222429f/data/bramfelder-chaussee-strassensanierung-07-22-bis-09-22.pdf"
