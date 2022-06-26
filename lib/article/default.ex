@@ -12,6 +12,7 @@ defmodule Article.Default do
       def construction_site_id_hh, do: []
       def summary, do: ""
       def tracks, do: []
+      def point_of_interest, do: nil
       def links(_assigns), do: []
       def id, do: nil
       def display_id, do: id()

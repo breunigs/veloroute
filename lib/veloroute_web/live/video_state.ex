@@ -79,12 +79,11 @@ defmodule VelorouteWeb.Live.VideoState do
 
         accurate_new_start ->
           Logger.debug("have new accurate position; updating")
-
           set_start(new_state, accurate_new_start)
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox")
-          set_start(new_state, nil)
+          set_start(new_state, article.point_of_interest())
 
         # if there's an article only update the position if the article is
         # related to the shown route. This is usually the case if an article has

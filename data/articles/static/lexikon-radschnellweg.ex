@@ -9,6 +9,9 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
 
   def tags(), do: ["lexikon", "radschnellweg", "rsw", "radschnellwege"]
 
+  def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
+  def point_of_interest(), do: %{lon: 10.029203, lat: 53.603815, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <p>Ein Radschnellweg versucht längere Strecken mit dem Fahrrad attraktiv zu machen, indem er eine hohe Durchschnittsgeschwindigkeit ermöglicht. Dies wird durch Vorfahrt, genug Platz zum Überholen und gute Straßenbeläge erreicht. Stellenweise sind auch Bauwerke wie Tunnel oder Brücken vorgesehen, um eine direktere oder kreuzungsfreie Führung zu ermöglichen.</p>

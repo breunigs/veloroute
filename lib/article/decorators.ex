@@ -112,6 +112,7 @@ defmodule Article.Decorators do
   Calculate bounding box for the given article.
 
   It uses the following sources:
+  - Point of interest: if specified will zoom onto that
   - Map: Relations and Ways tagged with `name == article.name()`
   - Tracks: Bounding Boxes of all videos directly specified in the article
   and unions them to find a bounding box.
@@ -121,7 +122,18 @@ defmodule Article.Decorators do
   """
   @spec bbox(Article.t()) :: Geo.BoundingBox.t() | nil
   def bbox(art) when is_module(art) do
-    bbox_self(art) || bbox_from_tags(art)
+    bbox_point_of_interest(art) || bbox_self(art) || bbox_from_tags(art)
+  end
+
+  @spec bbox_point_of_interest(Article.t()) :: Geo.BoundingBox.t() | nil
+  def bbox_point_of_interest(art) when is_module(art) do
+    poi = art.point_of_interest()
+
+    if poi do
+      poi
+      |> Map.put_new(:zoom, 16)
+      |> Geo.CheapRuler.center_zoom_to_bounds()
+    end
   end
 
   @spec bbox_self(Article.t()) :: Geo.BoundingBox.t() | nil
@@ -195,6 +207,7 @@ defmodule Article.Decorators do
         Article.List.category("Static")
         |> Article.List.with_tracks()
         |> Article.List.related(art)
+        |> Article.List.overlap(art)
         |> Enum.at(0)
         |> Kernel.||(art)
 

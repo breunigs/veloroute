@@ -87,8 +87,8 @@ defmodule Article.List do
   end
 
   @doc """
-  Finds articles related to the given one. The given article is not part of the
-  results.
+  Finds articles related to the given one using tag based comparison. The given
+  article is not part of the results.
   """
   @spec related(t, Article.t()) :: t
   def related(list, art) when is_module(art) do
@@ -107,6 +107,22 @@ defmodule Article.List do
   """
   def related?(art1, art2) when is_module(art1) and is_module(art2) do
     Util.overlap?(art1.tags(), art2.tags())
+  end
+
+  @doc """
+  Finds articles that overlap with their own bounding boxes (i.e. ignoring
+  anything derived from matching tags to other articles).
+  """
+  @spec overlap(t, Article.t()) :: t
+  def overlap(list, art) when is_module(art) do
+    bbox_art = Article.Decorators.bbox_point_of_interest(art) || Article.Decorators.bbox_self(art)
+
+    Enum.filter(list, fn other ->
+      bbox_other =
+        Article.Decorators.bbox_point_of_interest(other) || Article.Decorators.bbox_self(other)
+
+      Geo.CheapRuler.overlap?(bbox_art, bbox_other)
+    end)
   end
 
   @doc """

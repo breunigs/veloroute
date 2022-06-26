@@ -7,6 +7,9 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
   def summary(),
     do: "Schutzstreifen verlaufen auf der KFZ-Spur und sind durch eine Strichellinie abgetrennt."
 
+  def tracks(), do: Data.Article.Static.Alltagsroute3.tracks()
+  def point_of_interest(), do: %{lon: 9.95628, lat: 53.586235, zoom: 16}
+
   def tags(), do: ~w(lexikon schutzstreifen)
 
   def text(assigns) do

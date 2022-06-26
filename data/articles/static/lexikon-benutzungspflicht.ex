@@ -10,6 +10,9 @@ defmodule Data.Article.Static.LexikonBenutzungspflicht do
 
   def tags(), do: ["lexikon", "benutzungspflicht", "benutzungspflichtiger"]
 
+  def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
+  def point_of_interest(), do: %{lon: 10.031722, lat: 53.594882, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <p>Es gibt zwei Szenarien in denen der Radverkehr die KFZ-Spuren nicht benutzen darf:</p>

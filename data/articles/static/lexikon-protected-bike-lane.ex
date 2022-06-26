@@ -18,6 +18,11 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
       "geschützte-radfahrstreifen"
     ]
 
+  def tracks(),
+    do: Data.Article.Static.Alltagsroute11.tracks() |> Enum.filter(&(&1.group == "11 Eißendorf"))
+
+  def point_of_interest(), do: %{lon: 9.991008, lat: 53.459644, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <p><.m lat="53.45947" lon="9.99094" dir="backward" ref="11" bounds="9.986734,53.458457,9.997266,53.465207">Videobeispiel einer Protected Bike Lane auf Veloroute 11</.m></p>
@@ -26,7 +31,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
 
     <.roaddiagram src="pbl" alt="Eine Straßenansicht von oben (Vogelperspektive) die ein Beispiel einer Protected-Bike-Lane auf beiden Straßenseiten zeigt."/>
 
-    <p>In der Schrägansicht erkennt man die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
+    <p>Die Schrägansicht verdeutlicht die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
 
     <.roaddiagram src="iso_pbl" alt="Schrägsicht auf einen geschützten Radfahrstreifen. Im Diagramm ist der Radweg rot gepflastert. Nicht maßstabgerecht, Sicherheitsabstände fehlen."/>
 

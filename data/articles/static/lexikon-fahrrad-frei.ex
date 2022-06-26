@@ -13,6 +13,9 @@ defmodule Data.Article.Static.LexikonFahrradFrei do
       "fahrrad-frei"
     ]
 
+  def tracks(), do: Data.Article.Static.Alltagsroute3.tracks()
+  def point_of_interest(), do: %{lon: 9.986512, lat: 53.566867, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <.roaddiagram src="fahrrad_frei" width="100" alt="Verkehrsschild 239 (Fußweg) mit Zusatzzeichen 1022-10 (Fahrrad frei)" style="float: right; padding: 0 0 1rem 1rem"/>

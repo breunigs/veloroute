@@ -7,6 +7,9 @@ defmodule Data.Article.Static.LexikonDooring do
   def summary(),
     do: "Dooring: Unfallgefahr die von unachtsam geöffneten Autotüren ausgeht"
 
+  def tracks(), do: Data.Article.Static.Alltagsroute13.tracks()
+  def point_of_interest(), do: %{lon: 10.045152, lat: 53.566255, zoom: 16}
+
   def tags(),
     do: [
       "lexikon",

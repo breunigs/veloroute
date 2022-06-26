@@ -15,6 +15,9 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
       "kopenhagener-radweg"
     ]
 
+  def tracks(), do: Data.Article.Static.Alltagsroute10.tracks()
+  def point_of_interest(), do: %{lon: 10.004687, lat: 53.540797, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <p><.m bounds="9.999916,53.539131,10.010449,53.542032" lon="10.00548" lat="53.540836" dir="backward" ref="10">Videobeispiel Überseeallee in der HafenCity</.m></p>

@@ -14,19 +14,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
-        group: "article",
-        direction: :forward,
-        from: "",
-        to: "",
-        parent_ref: __MODULE__,
-        text: "Hammer Landstraße (stadtauswärts)",
-        videos: [
-          {"2021-07-15-14uhr-und-13gg/GX012274", "00:00:23.023", :end}
-        ]
-      },
-      %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "article",
         direction: :backward,
         from: "",
@@ -34,8 +22,23 @@ defmodule Data.Article.Blog.HammerLandstrasse do
         parent_ref: __MODULE__,
         text: "Hammer Landstraße (stadteinwärts)",
         videos: [
-          {"2021-07-10-13uhr-14gg/GX012183", "00:00:16.116", :end},
-          {"2021-07-10-13uhr-14gg/GX012184", :start, "00:00:09.176"}
+          {"2022-05-26-14im-13gg/GX014011", :start, :end},
+          {"2022-05-26-14im-13gg/GX014013", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "article",
+        direction: :forward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Hammer Landstraße (stadtauswärts)",
+        videos: [
+          {"2022-05-15-13im-14gg/GX013924", "00:00:02.536", :end},
+          {"2022-05-15-13im-14gg/GX013925", :start, :end},
+          {"2022-05-15-13im-14gg/GX013926", :start, :end},
+          {"2022-05-15-13im-14gg/GX013927", :start, "00:00:11.612"}
         ]
       }
     ]

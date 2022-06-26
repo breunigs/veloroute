@@ -9,6 +9,9 @@ defmodule Data.Article.Static.LexikonMischverkehr do
 
   def tags(), do: ["lexikon", "mischverkehr"]
 
+  def tracks(), do: Data.Article.Static.Alltagsroute1.tracks()
+  def point_of_interest(), do: %{lon: 9.989528, lat: 53.54839, zoom: 16}
+
   def text(assigns) do
     ~H"""
     <p>Als Mischverkehr wird eine Verkehrsführung bezeichnet, wo sich KFZ- und Radverkehr die Fahrspuren teilen, also „durchmischt“ fahren. Das ist in Hamburg in praktisch allen Nebenstraßen der Fall.</p>

@@ -114,6 +114,34 @@ defmodule Geo.CheapRuler do
   end
 
   @doc ~S"""
+  Returns true if the two given bounding boxes overlap
+  ## Examples
+      iex> Geo.CheapRuler.overlap?(
+      ...>   %Geo.BoundingBox{minLon: 9.98160, minLat: 53.55331, maxLon: 9.999764, maxLat: 53.56092},
+      ...>   %Geo.BoundingBox{minLon: 9.99307, minLat: 53.55007, maxLon: 10.01124, maxLat: 53.55768}
+      ...> )
+      true
+
+      iex> Geo.CheapRuler.overlap?(
+      ...>   %Geo.BoundingBox{minLon:  9.98160, minLat: 53.55331, maxLon:  9.999764, maxLat: 53.56092},
+      ...>   %Geo.BoundingBox{minLon: 10.01382, minLat: 53.54506, maxLon: 10.031987, maxLat: 53.55266}
+      ...> )
+      false
+
+  """
+  @spec overlap?(Geo.BoundingBox.like() | nil, Geo.BoundingBox.like() | nil) :: boolean()
+  def overlap?(
+        %Geo.BoundingBox{minLon: minLonA, minLat: minLatA, maxLon: maxLonA, maxLat: maxLatA},
+        %Geo.BoundingBox{minLon: minLonB, minLat: minLatB, maxLon: maxLonB, maxLat: maxLatB}
+      ) do
+    maxLonA >= minLonB && maxLonB >= minLonA && maxLatA >= minLatB && maxLatB >= minLatA
+  end
+
+  def overlap?(bbox1, bbox2) when is_nil(bbox1) or is_nil(bbox2) do
+    false
+  end
+
+  @doc ~S"""
   Increases the bounding box by the given distance
 
   ## Examples
