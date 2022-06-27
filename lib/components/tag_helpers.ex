@@ -224,7 +224,7 @@ defmodule Components.TagHelpers do
     cond do
       assigns[:link] == "no" ->
         ~H"""
-        <span style={@style} class={@class}><%= @id %></span>
+        <span style={@style} class={@class}><%= if content != "", do: content, else: id %></span>
         """
 
       art.display_id() == content || art.id() == content ->

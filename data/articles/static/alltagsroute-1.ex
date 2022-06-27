@@ -130,61 +130,58 @@ defmodule Data.Article.Static.Alltagsroute1 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</.m></td>
+        <td><.m bounds="9.988972,53.547905,10.001451,53.552928" lon="9.993714" lat="53.551028" dir="forward" ref="1">Rathaus</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>11</.icon>
           <.icon>12</.icon>
-          <.icon>2</.icon>
         </td>
-        <td><.m bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</.m></td>
+        <td><.m bounds="9.983395,53.547382,9.990571,53.551659" lon="9.987737" lat="53.548638" dir="forward" ref="1">Rödingsmarkt</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9672602,53.5511364,9.9745376,53.5571361">Heiligengeistfeld</.m></td>
+        <td><.m bounds="9.961206,53.550831,9.97826,53.559197" lon="9.9736" lat="53.556844" dir="forward" ref="1">Heiligengeistfeld</.m></td>
       </tr>
       <tr>
-        <td>
-          <.icon>7</.icon>
-        </td>
-        <td><.m bounds="9.9549651,53.5431746,9.9902942,53.5638046">St. Pauli</.m></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.m bounds="9.92758,53.5417787,9.9602617,53.5627471">Altona-Altstadt</.m></td>
+        <td><.icon>2</.icon></td>
+        <td><.m bounds="9.94718,53.552172,9.976797,53.560891" lon="9.963071" lat="53.556828" dir="forward" ref="1">St. Pauli</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9093475,53.5415333,9.9348885,53.5600679">Ottensen</.m></td>
+        <td><.m bounds="9.93142,53.548879,9.961036,53.557599" lon="9.947007" lat="53.555567" dir="forward" ref="1">Altona-Altstadt</.m></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><.m bounds="9.910939,53.546744,9.940556,53.555464" lon="9.93064" lat="53.5505" dir="forward" ref="1">Ottensen</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="9.8638682,53.5415406,9.917539,53.5600054">Othmarschen</.m></td>
+        <td><.m bounds="9.867349,53.547993,9.918397,53.563768" lon="9.888057" lat="53.557353" dir="forward" ref="1">Othmarschen</.m></td>
       </tr>
       <tr>
-        <td><.m bounds="9.8637341,53.5583216,9.9004188,53.5715607">Groß Flottbek</.m></td>
-        <td><.m bounds="9.8558825,53.5531648,9.8658825,53.5631648">Klein Flottbek</.m></td>
+        <td><.icon>FR11</.icon> <.m bounds="9.860821,53.559502,9.895486,53.573619" lon="9.878153" lat="53.564649" dir="forward" ref="1">Groß Flottbek</.m></td>
+        <td><.m bounds="9.852981,53.548917,9.883378,53.563805" lon="9.863942" lat="53.557208" dir="forward" ref="1">Klein Flottbek</.m> <.icon>FR11</.icon></td>
       </tr>
       <tr>
         <td>
-          <.icon>14</.icon> <.m bounds="9.8266622,53.5577662,9.8669147,53.5950351">Osdorf</.m>
+          <.icon>14</.icon> <.m bounds="9.845905,53.568566,9.883463,53.584532" lon="9.868849" lat="53.577374" dir="forward" ref="1">Osdorf</.m>
         </td>
-        <td><.m bounds="9.8204171,53.5442254,9.8650723,53.5653583">Nienstedten</.m></td>
+        <td><.m bounds="9.824293,53.547423,9.870253,53.567174" lon="9.849254" lat="53.556615" dir="forward" ref="1">Nienstedten</.m></td>
       </tr>
       <tr>
-        <td><.m bounds="9.8399615,53.5752492,9.8456209,53.5917348">Osdorfer Born</.m></td>
-        <td><.m bounds="9.7617571,53.5508,9.8266896,53.5742528">Blankenese</.m></td>
+        <td><.m bounds="9.840864,53.577504,9.870968,53.597109" lon="9.85197" lat="53.585443" dir="forward" ref="1">Osdorfer Born</.m></td>
+        <td><.m bounds="9.789294,53.552567,9.840135,53.565533" lon="9.817201" lat="53.561758" dir="forward" ref="1">Blankenese</.m></td>
       </tr>
       <tr>
         <td class="dir"><.m bounds="9.7897061,53.5841903,9.8681548,53.6156231">(Schenefeld)</.m></td>
-        <td><.m bounds="9.7788518,53.5709306,9.8184877,53.6067525">Sülldorf</.m></td>
+        <td><.m bounds="9.776786,53.568237,9.818757,53.586265" lon="9.793236" lat="53.578416" dir="forward" ref="1">Sülldorf</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.7301155,53.5551486,9.7990198,53.6314046">Rissen</.m></td>
+        <td><.m bounds="9.733138,53.574751,9.780336,53.593962" lon="9.758658" lat="53.583422" dir="forward" ref="1">Rissen</.m></td>
       </tr>
       <tr>
         <td></td>
@@ -192,7 +189,27 @@ defmodule Data.Article.Static.Alltagsroute1 do
       </tr>
     </table>
 
-    <h3>Externe Links</h3>
+    <p>Die Alltagsroute 1 (auch: Veloroute 1) führt vom Rathaus grob in Richtung Westen. Sie macht dazu zunächst einen kleinen Umweg am Schanzenviertel vorbei. In Othmarschen teilt sich die Route:</p>
+    <ul>
+      <li><.icon link="no">1</.icon> führt <.m bounds="9.737287,53.548968,9.885129,53.588181" lon="9.880805" lat="53.558266" dir="forward" ref="1">weiter nach Westen</.m> und endet in Rissen</li>
+      <li><.icon name="1" link="no">1a</.icon> knickt <.m bounds="9.847553,53.552424,9.904828,53.595271" lon="9.882076" lat="53.558455" dir="forward" ref="1">nach Norden</.m> ab und endet im Osdorfer Born</li>
+    </ul>
+
+    <h4>Auffindbarkeit</h4>
+    <.roaddiagram src="temp_routing" width="100" alt="Beispiel eines vorläufigen Radwegweisers" style="float: right; padding: 0 0 1rem 1rem"/>
+    <p>Die meisten Abschnitte der Route sind nicht ausgeschildert und erfordern daher Ortskenntnis oder ein Navi um ihr folgen zu können.</p>
+    <p>Ab Ottensen wurden bis nach Rissen gelbe Baustellen-Wegweiser aufgestellt, die als zusätzliche Orientierungshilfe dienen können. Leider sind sie nicht zahlreich genug um alleine anhand der Schilder fahren zu können. Zusätzlich wird bei Umleitungen an Baustellen der selbe Schildertyp verwendent, sodass man auch widersprüchliche Wegweisung hat.</p>
+
+
+    <h4>Befahrbarkeit</h4>
+    <p>Die meisten Wege sind befestigt und allwettertauglich. Ausnahmen sind die noch nicht modernisierten Abschnitte in der <.m bounds="9.908084,53.547156,9.922823,53.55432" lon="9.917299" lat="53.551185" dir="forward" ref="1">Bleickenallee</.m> und durch den <.m bounds="9.866394,53.573567,9.876673,53.578734" lon="9.874045" lat="53.575509" dir="forward" ref="1">Lise-Meitner-Park</.m>. Bei letzterem gibt es auch keine ortsnahen Ausweichmöglichkeiten. Am <.m bounds="9.796555,53.567615,9.811059,53.575976" lon="9.80117" lat="53.573144" dir="forward" ref="1">Friedhof Blankenese</.m> ist eine Durchfahrt mit Lastenrädern nicht möglich.</p>
+
+    <h4>Meinung</h4>
+    <p>Manche der modernisierten Abschnitte sind gelungen, wie z.B. die <.m bounds="9.950381,53.555088,9.963928,53.558455" lon="9.960408" lat="53.556644" dir="forward" ref="1">Thadenstraße</.m>. Bei anderen hat sich im Vergleich zu vorher dagegen nichts verbessert, wie z.B. in der <.m bounds="9.92211,53.548454,9.935175,53.552139" lon="9.931826" lat="53.550367" dir="forward" ref="1">Klausstraße</.m>. Die noch nicht umgebauten Abschnitte lassen wenig überraschend ebenfalls zu wünschen übrig.</p>
+
+    <p>Das Hauptproblem der Strecke sind vor allem am Straßenrand abgestellte PKW, durch die häufig auf Gegenverkehr gewartet werden muss. Das trifft vor allem auf die Außenbezirke zu, da im Innenstadtbereich einseits meist über die KFZ-Spur ausgewichen werden kann und andererseits die Ampeln stärker ins Gewicht fallen. Nach Ottensen hat man aber kaum noch Ampeln, sodass man trotz allem noch gut vorankommt.</p>
+
+    <h4>Externe Links</h4>
     <.structured_links gpx="true"/>
     """
   end

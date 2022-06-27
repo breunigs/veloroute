@@ -140,12 +140,12 @@ defmodule Data.Article.Static.Alltagsroute2 do
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert, es gibt aber auch Abschnitte mit Kopfsteinpflaster, welches verhältnismäßig eben ist.</p>
 
-    <h3>Meinung</h3>
+    <h4>Meinung</h4>
     <p>Die Route ist durchwachsen. Als Erwachsener kommt man trotz vieler Ampeln gut durch und wird in der Regel keine Probleme haben. Allerdings sind die wenigsten Abschnitte kindgerecht, wie z.B. die bereits umgebaute <.m bounds="9.960613,53.56667,9.967385,53.570781" lon="9.965245" lat="53.566681" dir="forward" ref="2">Weidenallee</.m>.</p>
 
     <p>Häufigstes Problem auf der Strecke sind zu dicht vorbeifahrende oder entgegenkommende Autos, die den Fahrkomfort senken. Das ist teilweise dem Fehlverhalten der Beteiligten zuzuschreiben. Oft fehlte auch der politische Mut den KFZ-Verkehr auf andere Straßen zu verlagern.</p>
 
-    <h3>Externe Links</h3>
+    <h4>Externe Links</h4>
     <.structured_links gpx="true"/>
     """
   end
