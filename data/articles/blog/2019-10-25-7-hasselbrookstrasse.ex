@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Hasselbrookstrasse do
   def title(), do: "Hasselbrookstraße (Veloroute 7)"
 
   def start(), do: ~d[2021-06-21]
-  def stop(), do: ~d[2022-06-30]
+  def stop(), do: ~d[2022-09-30]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [16420]

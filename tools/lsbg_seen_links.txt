@@ -550,3 +550,5 @@
 - "/contentblob/15453808/63b6e8acac1dd69547cac75900516839/data/tonndorfer-hauptstrass-%E2%80%93-erneuerung-nebenflaechen-und-fahrbahn-%E2%80%93-03-01-22-bis-04-06-22.pdf"
 '2022-06-25':
 - "/contentblob/16288700/693145a7206a1bc40ffe24b44222429f/data/bramfelder-chaussee-strassensanierung-07-22-bis-09-22.pdf"
+'2022-06-27':
+- "/contentblob/16297866/0a80f798d809b5911e658f0aac7ef6c8/data/margit-zinke-strasse-von-haeften-strasse-bushaltestellen-07-22-bis-09-22.pdf"
