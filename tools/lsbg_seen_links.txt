@@ -552,3 +552,5 @@
 - "/contentblob/16288700/693145a7206a1bc40ffe24b44222429f/data/bramfelder-chaussee-strassensanierung-07-22-bis-09-22.pdf"
 '2022-06-27':
 - "/contentblob/16297866/0a80f798d809b5911e658f0aac7ef6c8/data/margit-zinke-strasse-von-haeften-strasse-bushaltestellen-07-22-bis-09-22.pdf"
+'2022-06-30':
+- "/contentblob/16261038/e03d91f88a946cf7aa6017030c29acad/data/barmbek-strassensanierungen-06-22-bis-09-22.pdf"

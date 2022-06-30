@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
 
   def start(), do: ~d[2022Q2]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["5"]
 

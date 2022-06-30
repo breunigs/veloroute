@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
   def title(), do: "Binnenhafen Harburg (Veloroute 10)"
 
   def start(), do: ~d[2021-02-15]
-  def stop(), do: ~d[2023-12]
+  def stop(), do: ~d[2022-08-11]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]

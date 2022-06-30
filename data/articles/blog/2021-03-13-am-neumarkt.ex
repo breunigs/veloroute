@@ -10,7 +10,12 @@ defmodule Data.Article.Blog.AmNeumarkt do
   def tags(), do: ["radfahrstreifen"]
 
   def links(_assigns) do
-    []
+    [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15956404/am-neumarkt/"},
+      {"Planungsunterlagen",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013855"}
+    ]
   end
 
   def text(assigns) do
@@ -23,7 +28,8 @@ defmodule Data.Article.Blog.AmNeumarkt do
     <p>Es werden weitere Bäume gepflanzt und viele Radanlehnbügel geschaffen. Gebaut werden kann nur wenn der S-Bahn Ausbau genug fortschreitet, da die Strecke für den Busersatzverkehr vorgesehen ist. Das bedeutet vor 2022 ist nicht mit einer Umsetzung zu rechnen, bei Verzögerungen sind 2024/2025 wahrscheinlich.</p>
     <h4>Meinung</h4> <p>Die Planung ist für den Radverkehr gut. Der größte Kritikpunkt ist der <.ref>Radfahrstreifen in Mittellage</.ref>, der von Vielen als unangenehm empfunden wird. Die Planungen erörtern eine <.ref>Kopenhagener Lösung</.ref>, lehnen diese aufgrund der Sturzgefahr am Randstein aber ab. Explizit werden hier illegal auf dem Radweg abgestellte KFZ als Verursacher genannt den Randstein überfahren zu müssen. Entsprechend wäre <.ref>Protected-Bike-Lane</.ref> wünschenswert gewesen, die Falschparken verhindert. Leider verwechselt die Planung diese beiden Führungsformen, sodass eine PBL vermutlich nicht ordentlich erwägt wurde. Auf Grund der vielen Einmündungen bzw. Einfahrten, und wegen des Wunsches KFZ-Parkplätze zu erhalten wäre diese vermutlich Stückwerk geworden.</p>
     <p>Die Fußwege werden breiter als bisher, wobei einige Engstellen verbleiben. Diese bleiben teils zum besseren Baumerhalt, teils weil KFZ-Parkplätze als wichtiger erachtet werden.</p>
-    <h4>Quelle</h4> <p><.a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013855">Planungsunterlagen</.a></p>
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end
