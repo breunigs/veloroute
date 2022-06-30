@@ -64,7 +64,8 @@ map.addControl(layerSwitcher);
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
-  layers: routeLayers.concat(articleLayers)
+  layers: routeLayers.concat(articleLayers),
+  validate: false,
 };
 
 const genDiv = (id) => {

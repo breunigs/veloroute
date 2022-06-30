@@ -45,8 +45,10 @@ export class MapboxStyleSwitcherControl implements IControl {
     icon: "article-areas title"
   }
 
+  private visibleMinZooms: { [id: string]: number; } = {};
+  private hiddenMinZoom = 11;
   private hiddenOpacityRule = ["interpolate", ["linear"],
-    ["zoom"], 11, 0, 20, 1
+    ["zoom"], this.hiddenMinZoom, 0, 20, 1
   ];
 
   private container = document.createElement("div");
@@ -133,23 +135,36 @@ export class MapboxStyleSwitcherControl implements IControl {
     return `<button data-type="${layer.type}" class="${visible ? "active" : ""}">${layer.title}</button>`
   }
 
+  private minZoomForLayer(layerName: string, minZoom: number): void {
+    if (!this.visibleMinZooms[layerName]) {
+      const layer = this.map!.getLayer(layerName) as mapboxgl.Layer;
+      this.visibleMinZooms[layerName] = layer.minzoom || 1;
+    }
+
+    minZoom = Math.max(minZoom, this.visibleMinZooms[layerName]);
+    this.map!.setLayerZoomRange(layerName, minZoom, 24);
+  }
+
   private updateMapPrimitive(layer: toggableLayer, drawPrimitive: string, isVisible: boolean): void {
     const layerNames = layer[drawPrimitive];
     const opacity = isVisible ? 1 : this.hiddenOpacityRule;
+    const minZoom = isVisible ? 1 : this.hiddenMinZoom;
 
     layerNames.forEach(layerName => {
+      this.minZoomForLayer(layerName, minZoom)
+
       const visible = isVisible || drawPrimitive == 'line' ? 'visible' : 'none';
-      this.map.setLayoutProperty(layerName, "visibility", visible, {
+      this.map!.setLayoutProperty(layerName, "visibility", visible, {
         validate: false
       });
 
-      this.map.setPaintProperty(layerName, `${drawPrimitive}-opacity`, opacity, {
+      this.map!.setPaintProperty(layerName, `${drawPrimitive}-opacity`, opacity, {
         validate: false
       });
 
       if (isVisible && drawPrimitive == 'line' && layerName.indexOf('line') >= 0) {
         // console.log("moving", layerName, "above", layerAbove[drawPrimitive])
-        this.map.moveLayer(layerName, this.layerAbove[drawPrimitive]);
+        this.map!.moveLayer(layerName, this.layerAbove[drawPrimitive]);
       }
     });
   }
