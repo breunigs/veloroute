@@ -49,6 +49,7 @@ function page() {
 if (window.history.pushState) {
   let originalPushState = window.history.pushState
   window.history.pushState = function () {
+    // @ts-ignore no idea how to make strict typescript happy here
     originalPushState.apply(this, arguments)
     page()
   }

@@ -1,4 +1,4 @@
-import { IControl, Map as MapboxMap } from "mapbox-gl";
+import { IControl, Map as MapboxMap, Layer } from "mapbox-gl";
 
 declare global {
   interface Window {
@@ -8,6 +8,8 @@ declare global {
 
 type toggableLayer =
   {
+    [index: string]: any;
+
     type: string,
     title: string,
     line?: string[],
@@ -137,7 +139,7 @@ export class MapboxStyleSwitcherControl implements IControl {
 
   private minZoomForLayer(layerName: string, minZoom: number): void {
     if (!this.visibleMinZooms[layerName]) {
-      const layer = this.map!.getLayer(layerName) as mapboxgl.Layer;
+      const layer = this.map!.getLayer(layerName) as Layer;
       this.visibleMinZooms[layerName] = layer.minzoom || 1;
     }
 
@@ -146,7 +148,7 @@ export class MapboxStyleSwitcherControl implements IControl {
   }
 
   private updateMapPrimitive(layer: toggableLayer, drawPrimitive: string, isVisible: boolean): void {
-    const layerNames = layer[drawPrimitive];
+    const layerNames: string[] = layer[drawPrimitive];
     const opacity = isVisible ? 1 : this.hiddenOpacityRule;
     const minZoom = isVisible ? 1 : this.hiddenMinZoom;
 
