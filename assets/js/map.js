@@ -9,7 +9,7 @@ if (!window.requestIdleCallback) {
 }
 
 const video = document.getElementById('videoInner');
-const settings = document.getElementById("settings").dataset;
+const settings = window.document.currentScript.dataset;
 mapboxgl.accessToken = "pk.";
 
 const fitBoundsOpt = {
@@ -29,7 +29,7 @@ const map = new mapboxgl.Map({
   fitBoundsOptions: fitBoundsOpt,
   minZoom: 9,
   maxZoom: 19,
-  style: 'mapbox://styles/breunigs/ckvvdvpy63v3j14n2vwo7sut0',
+  style: 'mapbox://styles/breunigs/' + settings.mapboxStyleId,
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,

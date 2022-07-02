@@ -66,13 +66,12 @@
 
     <%= @inner_content %>
 
-    <%= content_tag(:div, "", id: "settings", data: [
-        max_bounds: Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(","),
-        initial: VelorouteWeb.VariousHelpers.to_string_bounds(@bounds)
-      ])
-    %>
-
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/map.js")} fetchpriority="high"></script>
+    <script type="text/javascript" defer fetchpriority="high"
+      src={Routes.static_path(@conn, "/assets/map.js")}
+      data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
+      data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@bounds)}
+      data-mapbox-style-id={Settings.mapbox_style_id()}
+    ></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")}></script>
