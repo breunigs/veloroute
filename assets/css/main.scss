@@ -288,10 +288,6 @@ $videoBarProgressHeight: 0.4rem;
   background-size: calc($videoBarHeight / 4);
 }
 
-body.ie11 #fullscreen {
-  display: none;
-}
-
 #layerSwitcher, #videoOptions {
   > div {
     // visibility: visible !important; // toggle
