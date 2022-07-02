@@ -4,5 +4,8 @@
   "dependencies": {
     "hls.js": "^1.1.5",
     "mapbox-gl": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/mapbox-gl": "^2.7.3"
   }
 }
