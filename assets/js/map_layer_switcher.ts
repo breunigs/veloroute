@@ -154,17 +154,19 @@ export class MapboxStyleSwitcherControl implements IControl {
       this.minZoomForLayer(layerName, minZoom)
 
       const visible = isVisible || drawPrimitive == 'line' ? 'visible' : 'none';
-      this.map!.setLayoutProperty(layerName, "visibility", visible, {
+      // @ts-ignore wrong signature in 3rd party types
+      this.map?.setLayoutProperty(layerName, "visibility", visible, {
         validate: false
       });
 
-      this.map!.setPaintProperty(layerName, `${drawPrimitive}-opacity`, opacity, {
+      // @ts-ignore wrong signature in 3rd party types
+      this.map?.setPaintProperty(layerName, `${drawPrimitive}-opacity`, opacity, {
         validate: false
       });
 
       if (isVisible && drawPrimitive == 'line' && layerName.indexOf('line') >= 0) {
         // console.log("moving", layerName, "above", layerAbove[drawPrimitive])
-        this.map!.moveLayer(layerName, this.layerAbove[drawPrimitive]);
+        this.map?.moveLayer(layerName, this.layerAbove[drawPrimitive]);
       }
     });
   }
