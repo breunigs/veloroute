@@ -14,7 +14,6 @@ function updateState() {
   window.state = document.getElementById("control").dataset;
   // console.log(state);
 
-  if (state.videoPlayerJs && loadVideoPlayer) loadVideoPlayer();
   if (typeof window.videoStateChanged === "function") {
     window.videoStateChanged();
   }
@@ -44,15 +43,6 @@ const hash = location.hash.substr(1);
 if (hash != "") window.pushEvent("convert-hash", {
   hash: hash
 });
-
-let loadVideoPlayer = function () {
-  console.log("loading video player");
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = state.videoPlayerJs;
-  document.getElementsByTagName('head')[0].appendChild(script);
-  loadVideoPlayer = null;
-}
 
 let Hooks = {};
 Hooks.control = {
