@@ -53,10 +53,10 @@ export class MapboxStyleSwitcherControl implements IControl {
     ["zoom"], this.hiddenMinZoom, 0, 20, 1
   ];
 
-  private container = document.createElement("div");
+  private container = document.createElement("div")
   private map?: MapboxMap;
-  private checkboxGroup = document.createElement("div");
-  private iconButton = document.createElement("button");
+  private checkboxGroup = document.createElement("div")
+  private iconButton = document.createElement("button")
   private typesOnOverride: string[] | undefined;
   private visibleTypes: string[] | undefined;
 
@@ -68,8 +68,9 @@ export class MapboxStyleSwitcherControl implements IControl {
   public onAdd(map: MapboxMap): HTMLElement {
     this.map = map;
 
-    this.container.classList.add("mapboxgl-ctrl", "mapboxgl-ctrl-group");
-    this.container.setAttribute("id", "layerSwitcher");
+    this.container.classList.add("mapboxgl-ctrl", "mapboxgl-ctrl-group")
+    this.container.setAttribute("id", "layerSwitcher")
+    this.container.addEventListener("mouseenter", () => this.refresh())
 
     this.checkboxGroup.classList.add("mapboxgl-ctrl-group")
     this.checkboxGroup.addEventListener('click', event => {
@@ -118,7 +119,7 @@ export class MapboxStyleSwitcherControl implements IControl {
     this.visibleTypes = undefined;
   }
 
-  public refresh(): void {
+  private refresh(): void {
     this.maybeResetVisibleTypes();
     const visible = this.currentTypes();
 
