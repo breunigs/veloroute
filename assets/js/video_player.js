@@ -45,7 +45,7 @@ function timeUpdate() {
 }
 
 function autoplayEnabled() {
-  return window.state.autoplay === "true"
+  return window.state.autoplay === "true" || window.state.autoplay === true
 }
 
 function maybeMarkAutoplayed() {
@@ -408,6 +408,7 @@ function ensureVideoIsSet() {
 }
 
 function setVideo() {
+  if (autoplayEnabled()) userClickPlayOnce = true;
   if (!userClickPlayOnce) return;
 
   if (prevVideo !== state.videoHash) {
