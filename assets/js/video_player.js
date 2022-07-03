@@ -397,14 +397,19 @@ addEventListener('beforeprint', event => {
   setPosterNow();
 });
 
+let userClickPlayOnce = false;
+
 function ensureVideoIsSet() {
-  if (prevVideo === state.videoHash) return
+  if (userClickPlayOnce) return
+  userClickPlayOnce = true
   console.log("video was not set, doing so now");
   window.state.autoplay = true;
   setVideo();
 }
 
 function setVideo() {
+  if (!userClickPlayOnce) return;
+
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
     updateVideoElement();
