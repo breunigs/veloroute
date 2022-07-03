@@ -46,7 +46,7 @@ config :esbuild,
   version: "0.14.48",
   default: [
     args:
-      ~w(js/app.js js/liveview.js js/mbgl2.js js/map.js js/video_player.js js/link_helper.js --bundle --target=chrome80,firefox80,safari13,edge80 --outdir=../priv/static/assets),
+      ~w(js/app.js js/liveview.js js/mbgl2.js js/map.js js/video_player.js js/link_helper.js --bundle --target=chrome80,firefox80,safari13,edge80 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
