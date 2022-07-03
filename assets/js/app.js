@@ -1,7 +1,7 @@
 // import "./error_reporter"
 import "./search_handler"
 
-window.state = {};
+window.state = document.getElementById("control").dataset;
 let prevLocation = location.pathname;
 
 function updateState() {
@@ -10,9 +10,7 @@ function updateState() {
     prevLocation = location.pathname;
   }
 
-  // XXX: the element might be replaced by liveview, need to search it every time
   window.state = document.getElementById("control").dataset;
-  // console.log(state);
 
   if (typeof window.videoStateChanged === "function") {
     window.videoStateChanged();
@@ -21,8 +19,6 @@ function updateState() {
     window.mapStateChanged();
   }
 }
-updateState();
-console.log("Initial State From Server: ", state)
 
 let pushEventHandle = null;
 let pushEventQueued = [];

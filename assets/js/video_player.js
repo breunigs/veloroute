@@ -18,6 +18,9 @@ video.addEventListener('progress', updateProgressbar);
 video.addEventListener('play', markPlay);
 video.addEventListener('play', updatePlaypause);
 video.addEventListener('play', timeUpdate);
+video.addEventListener('play', ensureVideoIsSet, {
+  once: true
+});
 video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
 video.addEventListener('pause', timeUpdate);
@@ -394,6 +397,13 @@ addEventListener('beforeprint', event => {
   setPosterNow();
 });
 
+function ensureVideoIsSet() {
+  if (prevVideo === state.videoHash) return
+  console.log("video was not set, doing so now");
+  window.state.autoplay = true;
+  setVideo();
+}
+
 function setVideo() {
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
@@ -646,4 +656,3 @@ function maybeUpgradeLowQualitySegments(evt, info) {
 }
 
 window.videoStateChanged = setVideo;
-setVideo()
