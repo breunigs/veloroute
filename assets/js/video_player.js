@@ -171,6 +171,7 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
+      updatePlaypause();
       video.addEventListener('play', () => {
         maybeMarkAutoplayed();
         if (hlsAutoStartLoad) return;
