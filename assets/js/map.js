@@ -422,6 +422,7 @@ function getVideoPosition(timeAdjustMs) {
     [lon1, lat1] = indicatorPolyline.coords[index];
   } catch (e) {
     debugger;
+    return;
   }
 
   // Look 100ms in the future to calculate a bearing that is not too affected by
