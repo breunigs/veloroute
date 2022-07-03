@@ -437,6 +437,7 @@ $videoBarProgressHeight: 0.4rem;
   display: flex;
   flex-flow: column;
   z-index: 3;
+  box-shadow: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 }
 
 @media (min-width: calc(3*$minWidth)) {
@@ -444,9 +445,10 @@ $videoBarProgressHeight: 0.4rem;
     left: $mainWidth; // old browsers doesn't support max() -- for desktop
     left: max($minWidth, $mainWidth);
     position: fixed;
+    transition: none !important;
   }
 
-  #switcher {
+  #switcher, body::before {
     display: none !important;
   }
 
@@ -455,10 +457,29 @@ $videoBarProgressHeight: 0.4rem;
   }
 }
 
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset -3em 0 2em -2em rgba(0,0,0,0.7);
+  pointer-events: none;
+  z-index: 4;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+body.showSidebar::before {
+  opacity: 0;
+}
+
 .showSidebar #sidebar {
   transition: all 0.3s ease;
   left: calc(100vw - $minWidth); // old browsers doesn't support max() -- for both
   left: min(100vw - $minWidth, $mainWidth);
+  box-shadow: 2em 0 2em 2em rgba(0,0,0,0.7);
 }
 
 .hideSidebar #sidebar {
