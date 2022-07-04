@@ -560,8 +560,7 @@ function ms2text(ms) {
   ms -= hours * hourInMs;
   const minutes = Math.floor(ms / minuteInMs);
   ms -= minutes * minuteInMs;
-  const seconds = Math.round(ms / 1000);
-  ms -= seconds * 1000;
+  const seconds = Math.floor(ms / 1000);
   if (hours > 0) return `${hours}:${pad0(minutes)}:${pad0(seconds)}`;
   return `${minutes}:${pad0(seconds)}`;
 }
