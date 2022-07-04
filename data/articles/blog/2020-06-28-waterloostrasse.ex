@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Waterloostrasse do
   def start(), do: ~d[2021-08-16]
   def stop(), do: ~d[2022-04-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [23862]
   def tags(), do: ["13"]
 

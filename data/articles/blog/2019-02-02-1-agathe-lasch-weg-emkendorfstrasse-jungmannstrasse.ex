@@ -6,8 +6,6 @@ defmodule Data.Article.Blog.AgatheLaschWegEmkendorfstrasseJungmannstrasse do
 
   def title(), do: "Agathe-Lasch-Weg, Emkendorfstraße, Jungmannstraße (Veloroute 1)"
 
-  def start(), do: ~d[2020]
-
   def type(), do: :intent
 
   def tags(), do: ["1"]
