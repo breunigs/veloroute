@@ -43,9 +43,29 @@ defmodule VelorouteWeb.ImageExtractController do
     # end
   end
 
+  defp ffmpeg(hash, ts, webp) do
+    key = "#{hash} #{ts} #{webp}"
+
+    {cache_status, result} =
+      Cachex.fetch(:image_extract_cachex, key, fn ->
+        {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, webp) end)
+        Logger.debug("thumbnailing #{key} took #{elapsed / 1_000}ms")
+
+        case result do
+          {:ok, img} -> {:commit, {:ok, img}}
+          other -> {:ignore, other}
+        end
+      end)
+
+    # effectively make this a LRU
+    if cache_status == :ok, do: Cachex.touch(:image_extract_cachex, key)
+
+    result
+  end
+
   @ffmpeg_path :os.find_executable('ffmpeg')
   @ffmpeg_timeout_ms 60_000
-  defp ffmpeg(hash, ts, webp) do
+  defp ffmpeg_no_cache(hash, ts, webp) do
     ts = Video.Timestamp.from_milliseconds(ts)
     path = Path.join([Settings.video_target_dir_abs(), hash, @extract_from_file])
 

@@ -37,4 +37,7 @@ defmodule Settings do
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
   # Note: must be manually adjusted in robots.txt
   def video_serve_path, do: "videos-rendered"
+
+  # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB
+  def thumbnail_cache_entry_limit, do: 1000
 end
