@@ -409,7 +409,7 @@ function ensureVideoIsSet() {
 
 function setVideo() {
   if (autoplayEnabled()) userClickPlayOnce = true;
-  if (!userClickPlayOnce) return;
+  if (!userClickPlayOnce) return updatePoster();
 
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
