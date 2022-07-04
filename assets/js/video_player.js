@@ -505,8 +505,10 @@ function togglePlayPause() {
 }
 
 function reverseVideo() {
+  const videoTimeMs = userClickPlayOnce ? video.currentTime * 1000 : state.videoStart * 1;
+
   window.pushEvent('video-reverse', {
-    pos: Math.round(video.currentTime * 1000)
+    pos: Math.round(videoTimeMs)
   })
 }
 
