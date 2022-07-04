@@ -33,14 +33,12 @@ defmodule VelorouteWeb.ImageExtractController do
     |> halt
   end
 
-  defp supports_webp?(_conn) do
-    false
-
-    # with ["" <> accept] <- get_req_header(conn, "accept") do
-    #   String.contains?(accept, "image/webp")
-    # else
-    #   _ -> false
-    # end
+  defp supports_webp?(conn) do
+    with ["" <> accept] <- get_req_header(conn, "accept") do
+      String.contains?(accept, "image/webp")
+    else
+      _ -> false
+    end
   end
 
   defp ffmpeg(hash, ts, webp) do
@@ -72,19 +70,15 @@ defmodule VelorouteWeb.ImageExtractController do
     ffmpeg_args =
       List.flatten([
         "-hide_banner",
-        "-loglevel",
-        "error",
-        "-ss",
-        ts,
+        ["-loglevel", "error"],
+        ["-ss", ts],
         "-noaccurate_seek",
-        "-i",
-        path,
-        "-qscale:v",
-        if(webp, do: "20", else: "8"),
-        "-frames:v",
-        "1",
-        "-f",
-        if(webp, do: ["webp", "-preset", "photo"], else: "mjpeg"),
+        ["-i", path],
+        ["-qscale:v", if(webp, do: "35", else: "8")],
+        ["-frames:v", "1"],
+        ["-c:v", if(webp, do: "webp", else: "mjpeg")],
+        if(webp, do: ["-preset", "photo"], else: []),
+        ["-f", "image2pipe"],
         "-"
       ])
 
