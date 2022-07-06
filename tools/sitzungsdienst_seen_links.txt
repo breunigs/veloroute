@@ -875,3 +875,5 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009802
 '2022-06-30':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011932
+'2022-07-05':
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1007858
