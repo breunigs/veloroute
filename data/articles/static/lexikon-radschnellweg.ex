@@ -14,6 +14,8 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
 
   def text(assigns) do
     ~H"""
+    <.roaddiagram src="rsw" width="100" alt="Verkehrszeichen 350.1 „Radschnellweg“ aus der StVO" style="float: right; padding: 0 0 1rem 1rem"/>
+
     <p>Ein Radschnellweg versucht längere Strecken mit dem Fahrrad attraktiv zu machen, indem er eine hohe Durchschnittsgeschwindigkeit ermöglicht. Dies wird durch Vorfahrt, genug Platz zum Überholen und gute Straßenbeläge erreicht. Stellenweise sind auch Bauwerke wie Tunnel oder Brücken vorgesehen, um eine direktere oder kreuzungsfreie Führung zu ermöglichen.</p>
 
     <p>Um Hamburg herum verlaufen diese sternförmig in umliegende Gemeinden. In der Trassenfindung wurden verschiedenste Aspekte gegeneinander abgewägt, um die auf der Seite dargestellten Vorzugstrassen zu finden. Eingeflossen sind unter anderem wo Menschen leben und arbeiten, Anschlüsse an Bahnhöfe, Naturschutz, vorhandene Wege, und auch Hinweise und Wünsche aus der Bevölkerung.</p>

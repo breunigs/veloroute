@@ -1,5 +1,7 @@
 defmodule Data.ImageSize do
-  paths = Path.wildcard("data/images/*.svg")
+  @search_path "data/images/*.svg"
+
+  paths = Path.wildcard(@search_path)
   paths_hash = :erlang.md5(paths)
 
   for path <- paths do
@@ -17,9 +19,20 @@ defmodule Data.ImageSize do
                 [_all, h] <- Regex.run(~r/<svg [^>]*height="(\d+)/, xml) do
              {path, {String.to_integer(w), String.to_integer(h)}}
            else
-             _ -> {path, nil}
+             _ ->
+               with [_all, w, h] <- Regex.run(~r/<svg [^>]*viewBox="0 0 (\d+) (\d+)/, xml) do
+                 {path, {String.to_integer(w), String.to_integer(h)}}
+               else
+                 _ -> {path, "#{path} doesn't include width/height in the SVG"}
+               end
            end
          end)
 
-  def size(path), do: Map.get(@sizes, path)
+  def size(path),
+    do:
+      Map.get(
+        @sizes,
+        path,
+        "no image indexed for #{path}. Check it's present in #{@search_path} and the recompile the app."
+      )
 end
