@@ -74,7 +74,7 @@
     ></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")} fetchpriority="low" ></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")} fetchpriority="low"></script>
 
     <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
       <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
@@ -86,5 +86,6 @@
     <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
+    <link rel="stylesheet" media="print" fetchpriority="low" href={Routes.static_path(@conn, "/assets/print.css")}/>
   </body>
 </html>

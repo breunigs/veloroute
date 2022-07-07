@@ -1,113 +1,120 @@
 
-@media print {
-  $pageWidth:  calc(210mm * 0.87);
-  $pageHeight: calc(297mm * 0.87);
+$pageWidth:  calc(210mm * 0.87);
+$pageHeight: calc(297mm * 0.87);
 
-  html, body, body > div {
-    width: $pageWidth;
-    height: $pageHeight;
+html, body, body > div {
+  width: $pageWidth;
+  height: $pageHeight;
+}
+#map {
+  width: $pageWidth;
+  height: calc($pageHeight / 2);
+}
+@media (orientation: landscape) {
+  html, body, body > div, #map {
+    width: $pageHeight;
+    height: $pageWidth;
   }
-  #map {
-    width: $pageWidth;
-    height: calc($pageHeight / 2);
-  }
-  @media (orientation: landscape) {
-    html, body, body > div, #map {
-      width: $pageHeight;
-      height: $pageWidth;
-    }
-  }
+}
 
-  #videoControls, #ping, #switcher, [data-nosnippet="yes"], #impressum {
-    display: none;
-  }
+#videoControls, #ping, #switcher, [data-nosnippet="yes"], #impressum {
+  display: none;
+}
 
-  body, html, body > div {
-    overflow: visible;
-    height: auto;
-  }
+body, html, body > div {
+  overflow: visible;
+  height: auto;
+}
 
-  #sidebar, #map, #videoOuter, body {
-    background: transparent;
-  }
+body::before {
+  display: none;
+}
 
-  #sidebar, #videoOuter {
-    position: static;
-    width: 100%;
-    min-width: auto;
-  }
+#sidebar, #map, #videoOuter, body {
+  background: transparent;
+}
 
-  a.header {
-    text-align: left;
-    color: #000;
-    background: transparent;
-  }
+#sidebar, #videoOuter {
+  position: static;
+  width: 100%;
+  min-width: auto;
+}
 
-  #sidebar {
-    height: auto;
-    padding-bottom: 1em;
-  }
+a.header {
+  text-align: left;
+  color: #000;
+  background: transparent;
+}
 
-  #map {
-    position: relative;
-    overflow: hidden;
-  }
+#sidebar {
+  height: auto;
+  padding-bottom: 1em;
+  box-shadow: none;
+}
 
-  #videoRoute, #videoMetadata {
-    opacity: 1;
-    background: transparent;
-    color: #000;
-    position: static;
-    display: inline-block;
-  }
+#map {
+  position: relative;
+  overflow: hidden;
+}
 
-  #videoOuter {
-    display:flex;
-    flex-flow: column;
-  }
-  #videoRoute { order: 1; }
-  #videoMetadata { order: 2; }
-  #videoPoster { order: 3; }
-  #videoPoster::after, #videoPoster::before {
-    display: none;
-  }
-  #videoInner {
-    visibility: hidden;
-  }
+#videoRoute, #videoMetadata {
+  opacity: 1;
+  background: transparent;
+  color: #000;
+  position: static;
+  display: inline-block;
+}
 
-  #content {
-    padding-left: 0;
-    overflow: visible;
+#videoOuter {
+  display:flex;
+  flex-flow: column;
+}
+#videoRoute { order: 1; }
+#videoMetadata { order: 2; }
+#videoPoster { order: 3; }
+#videoPoster::after, #videoPoster::before {
+  display: none;
+}
+#videoInner {
+  visibility: hidden;
+}
 
-    a[href]:not([href^="/"]):not([href^="mailto"])::after {
-      content: " (" attr(href) ")";
-      text-decoration: none;
-      display: inline-block;
-      padding-left: 0.3em;
-    }
-  }
+#content {
+  padding-left: 0;
+  overflow: visible;
 
-  a {
-    color: #000;
-    text-decoration: underline;
-  }
-
-
-
-  a.ref, a[phx-click] {
-    color: #000;
+  a[href]:not([href^="/"]):not([href^="mailto"])::after {
+    content: " (" attr(href) ")";
     text-decoration: none;
+    display: inline-block;
+    padding-left: 0.3em;
   }
+}
 
-  .updated, .duration {
-    color: #000 !important;
-  }
+a {
+  color: #000;
+  text-decoration: underline;
+}
 
-  #map, #videoOuter {
-    break-inside: avoid;
-  }
 
-  #videoOuter {
-    break-after: page;
-  }
+
+a.ref, a[phx-click] {
+  color: #000;
+  text-decoration: none;
+}
+
+.updated, .duration {
+  color: #000 !important;
+}
+
+#map, #videoOuter {
+  break-inside: avoid;
+}
+
+#videoOuter {
+  break-after: page;
+}
+
+.mapboxgl-ctrl-geolocate, #layerSwitcher {
+  display: none !important;
 }
