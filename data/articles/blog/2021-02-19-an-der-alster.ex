@@ -10,9 +10,10 @@ defmodule Data.Article.Blog.AnDerAlster do
     do:
       "Fahrradstraße als Vorabmaßnahme. Protected-Bike-Lane im Anschluss bis zur Hohenfelder Bucht."
 
-  def type(), do: :planned
-  def start(), do: ~d[2022-07]
-  def stop(), do: ~d[2022-09]
+  def type(), do: :construction
+  def start(), do: ~d[2022-07-18]
+  def stop(), do: ~d[2022-10-07]
+  def construction_site_id_hh(), do: [82807]
 
   def tags(), do: ["fahrradstraße", "5", "6"]
 
