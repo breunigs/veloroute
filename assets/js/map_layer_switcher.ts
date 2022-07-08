@@ -58,7 +58,7 @@ export class MapboxStyleSwitcherControl implements IControl {
   private map?: MapboxMap;
   private checkboxGroup = document.createElement("div")
   private iconButton = document.createElement("button")
-  private typesOnOverride: string[] | undefined;
+  private typesOnOverride = ["articles", "alltag"];
   private visibleTypes: string[] | undefined;
 
   public getDefaultPosition(): string {
@@ -82,7 +82,6 @@ export class MapboxStyleSwitcherControl implements IControl {
       this.toggleLayer(type);
     });
 
-
     this.iconButton.classList.add("mapboxgl-ctrl-icon", "mapboxgl-style-switcher");
 
     this.container.appendChild(this.iconButton);
@@ -92,6 +91,11 @@ export class MapboxStyleSwitcherControl implements IControl {
 
   public onRemove(): void {
     throw "not implemented";
+  }
+
+  public refreshIfChanged(): void {
+    if (this.typesOnOverride?.join(",") === window.state.visibleTypes!) return;
+    this.refresh();
   }
 
   private toggleLayer(value: string): void {
@@ -114,14 +118,7 @@ export class MapboxStyleSwitcherControl implements IControl {
     return this.visibleTypes || this.stateTypes();
   }
 
-  private maybeResetVisibleTypes(): void {
-    if (this.typesOnOverride?.join(",") === window.state.visibleTypes!) return;
-    this.typesOnOverride = undefined;
-    this.visibleTypes = undefined;
-  }
-
   private refresh(): void {
-    this.maybeResetVisibleTypes();
     const visible = this.currentTypes();
 
     let html = "";

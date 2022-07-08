@@ -536,6 +536,7 @@ function runQueuedUpdate() {
   queued = false;
   maybeFitBounds();
   renderIndicator();
+  layerSwitcher.refreshIfChanged();
 }
 
 let queued = false;
