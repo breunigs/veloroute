@@ -39,6 +39,7 @@ export class MapboxStyleSwitcherControl implements IControl {
       type: "rsw",
       title: "Radschnellwege",
       line: ['rsw-line'],
+      icon: ['rsw-sign'],
     }
   ]
 
