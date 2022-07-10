@@ -36,6 +36,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :phoenix, static_compressors: [PhoenixBakery.Gzip, PhoenixBakery.Brotli]
+
 config :tesla, adapter: Tesla.Adapter.Hackney
 
 config :logger, backends: [:console]
