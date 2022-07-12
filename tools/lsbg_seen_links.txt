@@ -554,3 +554,9 @@
 - "/contentblob/16297866/0a80f798d809b5911e658f0aac7ef6c8/data/margit-zinke-strasse-von-haeften-strasse-bushaltestellen-07-22-bis-09-22.pdf"
 '2022-06-30':
 - "/contentblob/16261038/e03d91f88a946cf7aa6017030c29acad/data/barmbek-strassensanierungen-06-22-bis-09-22.pdf"
+'2022-07-08':
+- "/contentblob/16331268/854ec7af4bfeea083a5753c70a0bded6/data/ladenbeker-furtweg-bruecke-05-22-bis-08-22.pdf"
+- "/contentblob/16331212/5e641702c2b2832fef261ada933ecebc/data/margit-zinke-strasse-und-von-haeften-strasse-barrierefreier-umbau-der-haltestellen-juli-sept2022.pdf"
+- "/contentblob/16331096/5b4ed772b8b90a51ceec21379bbeb514/data/st-benedictstrasse-bauphase-3-12-bis-13-07-22.pdf"
+'2022-07-12':
+- "/contentblob/16337942/598e2584f661e41ccc2df3994a31c958/data/rothenbaumchaussee-radverkehrsanlagen-bushaltestellen-07-22-bis-mitte-2023.pdf"

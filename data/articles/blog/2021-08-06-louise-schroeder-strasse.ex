@@ -44,7 +44,10 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht und Lageplan",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012655"}
+    ]
   end
 
   def text(assigns) do
@@ -73,7 +76,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
     <p>Da es sich um den ersten Entwurf handelt, muss noch mit Änderungen gerechnet werden. Im Detail ist die Planung auch noch nicht fertig: man möchte z.B. noch mit der Stadtreinigung klären, ob das Regenwasser von den Radwegen versickern kann statt in die Kanalisation geleitet zu werden. Dafür muss im Winter aber auf Streusalz verzichtet werden.</p>
 
     <h4>Quelle</h4>
-    <p><.a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011572">Erläuterung und Lageplan zum ersten Entwurf</.a></p>
+    <.structured_links/>
     """
   end
 end
