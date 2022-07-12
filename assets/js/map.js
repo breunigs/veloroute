@@ -301,7 +301,7 @@ function hidePing() {
 
 const titleForItem = (item) => {
   const props = item.properties;
-  if (props.title) return props.title
+  if (props.title) return props.title.split("\n")
   if (props.route_group) return `${props.route_group} ${props.route_id}`
   return null
 }
@@ -310,7 +310,7 @@ const handleMapHover = (evt) => {
   const items = itemsUnderCursor(evt);
   const canvas = map.getCanvas()
 
-  const titles = items.map(item => titleForItem(item)).filter(item => item)
+  const titles = items.flatMap(item => titleForItem(item)).filter(item => item)
   if (titles.length === 0) {
     canvas.style.cursor = '';
     canvas.title = '';
