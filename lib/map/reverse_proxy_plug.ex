@@ -8,6 +8,7 @@ defmodule Map.ReverseProxyPlug do
     def call(env, next, _opts) do
       env
       |> drop_req_headers()
+      |> maybe_modify_path()
       |> set_access_token()
       |> Tesla.run(next)
       |> drop_resp_headers()
@@ -28,6 +29,17 @@ defmodule Map.ReverseProxyPlug do
       url = %{uri | query: nil} |> to_string()
 
       Map.merge(env, %{url: url, query: Enum.to_list(query)})
+    end
+
+    defp maybe_modify_path(env) do
+      url =
+        String.replace(
+          env.url,
+          "/___static/",
+          "/styles/v1/breunigs/#{Settings.mapbox_style_id()}/static/"
+        )
+
+      Map.put(env, :url, url)
     end
 
     @keep_resp_headers ~w[content-type content-length access-control-allow-origin access-control-allow-methods content-encoding last-modified  date cache-control etag]

@@ -13,12 +13,6 @@ const settings = window.document.currentScript.dataset;
 mapboxgl.accessToken = "pk.";
 
 const fitBoundsOpt = {
-  padding: {
-    top: 35,
-    bottom: 35,
-    left: 35,
-    right: 35
-  },
   maxZoom: 17
 };
 
@@ -79,6 +73,12 @@ let videoWasPlaying = false;
 let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
 let prevIndicatorPos = {};
+
+function hidePreview() {
+  const mapEl = document.getElementById("map");
+  mapEl.style.backgroundImage = '';
+  mapEl.classList.remove("preview");
+}
 
 function renderIndicator() {
   const pos = getVideoPosition();
@@ -376,6 +376,9 @@ map.on('style.load', () => {
     if (simulateClick) handleMapClick(evt);
   });
 });
+
+map.on('load', hidePreview);
+map.on('resize', hidePreview);
 
 let indicatorPolyline = null;
 window.addEventListener("phx:video_polyline", e => {

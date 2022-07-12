@@ -45,6 +45,10 @@ body {
   z-index: 1;
   overflow: hidden;
   background-color: #EFE9E1;
+
+  &.preview .mapboxgl-canvas-container {
+    visibility: hidden;
+  }
 }
 
 #videoOuter {
