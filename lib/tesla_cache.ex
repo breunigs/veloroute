@@ -19,7 +19,9 @@ defmodule TeslaCache do
   end
 
   defp fetch(env, next) do
-    {_status, resp} = Cachex.fetch(:tesla_cache_cachex, cache_key(env), run(env, next), ttl: @ttl)
+    key = cache_key(env)
+    {cache_status, resp} = Cachex.fetch(:tesla_cache_cachex, key, run(env, next), ttl: @ttl)
+    if cache_status == :ok, do: Cachex.touch(:tesla_cache_cachex, key)
     resp
   end
 

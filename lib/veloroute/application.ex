@@ -14,7 +14,10 @@ defmodule Veloroute.Application do
       VelorouteWeb.Telemetry,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
-      Supervisor.child_spec({Cachex, name: :tesla_cache_cachex}, id: :tesla_cache_cachex),
+      Supervisor.child_spec(
+        {Cachex, name: :tesla_cache_cachex, limit: Settings.map_cache_entry_limit()},
+        id: :tesla_cache_cachex
+      ),
       Supervisor.child_spec(
         {Cachex, [name: :image_extract_cachex, limit: Settings.thumbnail_cache_entry_limit()]},
         id: :image_extract_cachex
