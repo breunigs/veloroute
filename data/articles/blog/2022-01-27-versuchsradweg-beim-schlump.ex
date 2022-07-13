@@ -4,8 +4,8 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
   def created_at(), do: ~D[2022-01-27]
   def title(), do: "Versuchsradweg Beim Schlump"
 
-  def start(), do: ~d[2022Q2]
-  def stop(), do: ~d[2022Q2]
+  def start(), do: ~d[2022Q3]
+  def stop(), do: ~d[2022Q3]
 
   def type(), do: :planned
 
