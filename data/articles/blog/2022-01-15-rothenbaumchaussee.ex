@@ -4,10 +4,11 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def created_at(), do: ~D[2022-01-15]
   def title(), do: "Rothenbaumchaussee"
 
-  def start(), do: ~d[2022Q3]
-  def stop(), do: ~d[2023Q3]
+  def start(), do: ~d[2022-07-18]
+  def stop(), do: ~d[2023-06-30]
+  def construction_site_id_hh(), do: [86476]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def summary(),
     do:
@@ -51,6 +52,8 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
     [
       {"Baustelleninfo", "Juli 2022",
        "https://lsbg.hamburg.de/contentblob/16337942/598e2584f661e41ccc2df3994a31c958/data/rothenbaumchaussee-radverkehrsanlagen-bushaltestellen-07-22-bis-mitte-2023.pdf"},
+      {"Pressemitteilung zum Umabut", "Juli 2022",
+       "https://www.hamburg.de/bvm/medien/16344462/2022-07-14-bvm-rothenbaumchaussee/"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/12777430/de77e54d58d93a46867b0b31cdd4a54a/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-bericht.pdf"},
       {"Lageplan",

@@ -560,3 +560,7 @@
 - "/contentblob/16331096/5b4ed772b8b90a51ceec21379bbeb514/data/st-benedictstrasse-bauphase-3-12-bis-13-07-22.pdf"
 '2022-07-12':
 - "/contentblob/16337942/598e2584f661e41ccc2df3994a31c958/data/rothenbaumchaussee-radverkehrsanlagen-bushaltestellen-07-22-bis-mitte-2023.pdf"
+'2022-07-17':
+- "/contentblob/16344438/876047b03bb84d6518ad6e90930d249e/data/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16344442/bd427e0dab5997cf66fcfe1fe871ba6b/data/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abgestimmte-planung-plaene.pdf"
+- "/contentblob/16133046/1cc81a92dde8b48003f39c52d9b8e065/data/bergedorfer-strasse-b5-instandsetzung-05-22-bis-09-22.pdf"
