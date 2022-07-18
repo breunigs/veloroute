@@ -41,7 +41,8 @@ map.addControl(new mapboxgl.AttributionControl(), 'top-right');
 
 const geocontrol = new mapboxgl.GeolocateControl({
   positionOptions: {
-    enableHighAccuracy: true
+    enableHighAccuracy: true,
+    timeout: 10000,
   },
   // When active the map will receive updates to the device's location as it changes.
   trackUserLocation: true,
