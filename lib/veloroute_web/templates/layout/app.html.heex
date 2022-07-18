@@ -87,6 +87,7 @@
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="stylesheet" media="print" fetchpriority="low" href={Routes.static_path(@conn, "/assets/print.css")}/>
+    <%= if @visible_types == [:articles, :alltag] do %>
     <script async>
     requestAnimationFrame(function(){
       var mapEl = document.getElementById("map")
@@ -94,5 +95,6 @@
       mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false')`
     })
     </script>
+    <% end %>
   </body>
 </html>
