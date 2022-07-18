@@ -2,14 +2,8 @@
 import "./search_handler"
 
 window.state = document.getElementById("control").dataset;
-let prevLocation = location.pathname;
 
 function updateState() {
-  if (prevLocation !== location.pathname) {
-    document.getElementById("content").scrollTop = 0;
-    prevLocation = location.pathname;
-  }
-
   window.state = document.getElementById("control").dataset;
 
   if (typeof window.videoStateChanged === "function") {
@@ -65,6 +59,41 @@ Hooks.FocusSearchField = {
     this.el.focus();
     this.el.selectionStart = this.el.selectionEnd = this.el.value.length;
     // this.el.select();
+  }
+}
+Hooks.ScrollReset = {
+  nextScrollPos: undefined,
+
+  saveScrollPos(el) {
+    const oldState = history.state || {};
+    const newState = Object.assign(oldState, {
+      scrollContent: el.scrollTop
+    });
+    history.replaceState(newState, "", window.location.href);
+    // console.log("ScrollReset", "saveScrollPos", window.history.state, window.location.href)
+  },
+
+  mounted() {
+    window.addEventListener("popstate", event => {
+      this.nextScrollPos = event.state.scrollContent
+      // console.log("ScrollReset", "popstate", window.history.state)
+    });
+
+    let scrollTimer = null
+    this.el.addEventListener("scroll", _e => {
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => this.saveScrollPos(this.el), 100)
+    }, {
+      passive: true
+    })
+
+    this.saveScrollPos(this.el)
+  },
+
+  updated() {
+    // console.log("ScrollReset", "updated", window.history.state, this.nextScrollPos)
+    this.el.scrollTop = this.nextScrollPos || 0;
+    this.nextScrollPos = undefined
   }
 }
 

@@ -46,7 +46,7 @@
 <div id="sidebar">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-  <div id="content">
+  <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>
       <p class="alert">
         Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <Components.TagHelpers.mailto>mir schreibst</Components.TagHelpers.mailto> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
