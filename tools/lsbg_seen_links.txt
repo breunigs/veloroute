@@ -564,3 +564,5 @@
 - "/contentblob/16344438/876047b03bb84d6518ad6e90930d249e/data/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16344442/bd427e0dab5997cf66fcfe1fe871ba6b/data/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz-abgestimmte-planung-plaene.pdf"
 - "/contentblob/16133046/1cc81a92dde8b48003f39c52d9b8e065/data/bergedorfer-strasse-b5-instandsetzung-05-22-bis-09-22.pdf"
+'2022-07-19':
+- "/contentblob/16351446/e46da2f37829a56465609d47a5af1c18/data/an-der-alster-vorwegmassnahme-07-22-bis-10-22.pdf"
