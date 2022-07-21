@@ -330,8 +330,8 @@ function seekToTime(timeInMs) {
 }
 
 function seek(diffInMs) {
-  const have = video.currentTime;
-  seekToTime(have * 1000 + diffInMs)
+  const have = Number.isNaN(video.duration) ? state.videoStart * 1 : video.currentTime * 1000;
+  seekToTime(have + diffInMs)
 }
 
 function maybeShowLoadingIndicator(evt) {
