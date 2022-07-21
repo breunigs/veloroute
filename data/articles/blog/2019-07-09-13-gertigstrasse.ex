@@ -22,8 +22,8 @@ defmodule Data.Article.Blog.Gertigstrasse do
        "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"},
-      {"Baustelleninfo (Februar 2022)",
-       "https://lsbg.hamburg.de/contentblob/15826250/50af9aaf16747cb9aa295887258d8e94/data/gertigstrasse-umsetzung-veloroute-13-02-22-bis-09-22.pdf"},
+      {"Baustelleninfo (Juli 2022)",
+       "https://lsbg.hamburg.de/contentblob/16360474/e2d60d35f90227470884c119797c8eca/data/gertigstrasse-sperrungen-august-2022-stand-juli-2022.pdf"},
       {"Auftragsvergabe (Bauzeitraum)",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details"}
     ]
