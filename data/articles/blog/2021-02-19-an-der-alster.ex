@@ -21,8 +21,8 @@ defmodule Data.Article.Blog.AnDerAlster do
     [
       {"Vorabmaßnahme – Baustelleninfo", "Juli 2022",
        "https://lsbg.hamburg.de/contentblob/16351446/e46da2f37829a56465609d47a5af1c18/data/an-der-alster-vorwegmassnahme-07-22-bis-10-22.pdf"},
-      {"Vorabmaßnahme – Plan", "2022",
-       "https://lsbg.hamburg.de/contentblob/16014672/f407e06e85ec58433086e86234740e8c/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"},
+      {"Vorabmaßnahme – Plan", "Juli 2022",
+       "https://lsbg.hamburg.de/contentblob/16014672/d742d4d004ee5e2ef0c0a616f6e57dc5/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"},
       {"Vorabmaßnahme – Erläuterungsbericht", "2022",
        "https://lsbg.hamburg.de/contentblob/16014652/97449df8fa9863e5995fba7e5ef2f9a3/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-bericht.pdf"},
       {"Bezirksamtsbeschluss zur Fahrradstraße", "2021",

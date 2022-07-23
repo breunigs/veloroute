@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.PaulSorgeStrasse do
   def start(), do: ~d[2020-09-07]
   def stop(), do: ~d[2022-06-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [11126]
   def tags(), do: ["3"]
 
