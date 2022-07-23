@@ -78,6 +78,7 @@ defmodule Article.Decorators do
       else: "/#{art.name()}"
   end
 
+  @spec path(Article.t(), nil | map()) :: binary()
   def path(art, query)
   def path(art, nil), do: path(art)
 
