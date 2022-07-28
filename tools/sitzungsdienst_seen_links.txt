@@ -879,3 +879,5 @@
 - https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1007858
 '2022-07-17':
 - https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006791
+'2022-07-28':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011989

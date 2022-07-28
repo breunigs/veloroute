@@ -6,6 +6,7 @@ defmodule Data.Article.Blog.Hufnerstrasse do
   def title(), do: "Hufnerstraße (Veloroute 5)"
 
   def start(), do: ~d[2022Q2]
+  def stop(), do: ~d[2023-08-09]
 
   def type(), do: :construction
 
@@ -16,7 +17,9 @@ defmodule Data.Article.Blog.Hufnerstrasse do
       {"endgültige Planung: Flachsland bis Hufnertwiete",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011169"},
       {"endgültige Planung: Hufnertwiete bis Krüsistraße",
-       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011215"}
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011215"},
+      {"Bauzeitraum", "Juli 2022",
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011989"}
     ]
   end
 

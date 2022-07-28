@@ -6,6 +6,7 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
   def title(), do: "Reese- und Hufnerstraße (Veloroute 5)"
 
   def start(), do: ~d[2022Q2]
+  def stop(), do: ~d[2023-08-30]
 
   def type(), do: :construction
 
@@ -14,7 +15,9 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht und Pläne (fertige Fassung)",
-       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011214"}
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011214"},
+      {"Bauzeitraum", "Juli 2022",
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011989"}
     ]
   end
 
