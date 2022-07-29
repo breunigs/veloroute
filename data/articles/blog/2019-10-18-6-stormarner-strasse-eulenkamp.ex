@@ -3,17 +3,25 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def name(), do: "#{created_at()}-6-stormarner-strasse-eulenkamp"
   def created_at(), do: ~D[2019-10-18]
-  def updated_at(), do: ~D[2019-12-08]
+  def updated_at(), do: ~D[2022-07-29]
   def title(), do: "Stormarner Straße und Eulenkamp West (Veloroute 6)"
 
   def type(), do: :planned
-  def construction_site_id_hh(), do: [15014]
+  # def construction_site_id_hh(), do: [15014]
+  def start(), do: ~d["2022-07"]
+  def stop(), do: ~d["2022-12"]
   def tags(), do: ["6", "w13"]
+
+  def summary(),
+    do:
+      "Lückenschluss soll bis Dezember erfolgen. Asphaltierte Schutz- und Radfahrstreifen geplant."
 
   def tracks(), do: []
 
   def links(_assigns) do
     [
+      {"Vergabe Umbau Elsässer Straße/Eulenkamp", "Juli 2022",
+       "https://suche.transparenz.hamburg.de/dataset/8e17b800-5a37-4389-8f87-398e8a6d1dca"},
       {"Infoseite der Stadt zum Umbau", "veraltet, Archiv",
        "https://web.archive.org/web/20210514020458/https://www.hamburg.de/wandsbek/strassenbaustellen/14941782/stormarner-strasse-eulenkamp/"},
       {"Erläuterungsbericht",
@@ -27,6 +35,9 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Juli 2022</h4>
+    <p>Der letzte Bauabschnitt wurde an eine Baufirma vergeben. Geplant war ein Bauzeitraum von Juli bis Dezember 2022.</p>
+
     <h4>Stand April 2022</h4>
     <p>Der Umbau in der <.m bounds="10.059486,53.576206,10.065375,53.579106" lon="10.060013" lat="53.576597" dir="forward">Stormarner Straße</.m> und einem kleinen Abschnitt im Eulenkamp ist fertig. Der Umbau zwischen <.m bounds="10.063564,53.578503,10.066184,53.579998" lon="10.065177" lat="53.578975" dir="forward">Elsässer Straße</.m> und der <.m bounds="10.066013,53.578862,10.068019,53.581363" lon="10.066557" lat="53.580286" dir="forward">Lengerckestraße</.m> steht noch aus.</p>
 
