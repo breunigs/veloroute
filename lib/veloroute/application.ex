@@ -50,7 +50,7 @@ defmodule Veloroute.Application do
       asset_path = Path.join([:code.priv_dir(:veloroute), "static", Settings.video_serve_path()])
 
       unless File.dir?(asset_path) do
-        IO.puts("Setting up video dir for serving through Phoenix")
+        IO.puts(:stderr, "Setting up video dir for serving through Phoenix")
         File.rm(asset_path)
         File.mkdir_p!(Path.dirname(asset_path))
         File.ln_s!(rendered_path, asset_path)
