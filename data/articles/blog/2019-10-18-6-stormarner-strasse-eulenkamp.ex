@@ -7,14 +7,17 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
   def title(), do: "Stormarner Straße und Eulenkamp West (Veloroute 6)"
 
   def type(), do: :planned
+  def start(), do: ~d[2022-08-15]
+  def stop(), do: ~d[2023-01-31]
+  def construction_site_id_hh(), do: [96778]
+  # voriger Bauabschnitt
   # def construction_site_id_hh(), do: [15014]
-  def start(), do: ~d["2022-07"]
-  def stop(), do: ~d["2022-12"]
+
   def tags(), do: ["6", "w13"]
 
   def summary(),
     do:
-      "Lückenschluss soll bis Dezember erfolgen. Asphaltierte Schutz- und Radfahrstreifen geplant."
+      "Lückenschluss soll bis Januar 2023 erfolgen. Asphaltierte Schutz- und Radfahrstreifen geplant."
 
   def tracks(), do: []
 

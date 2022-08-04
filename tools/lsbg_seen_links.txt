@@ -570,3 +570,5 @@
 - "/contentblob/16360474/e2d60d35f90227470884c119797c8eca/data/gertigstrasse-sperrungen-august-2022-stand-juli-2022.pdf"
 '2022-07-23':
 - "/contentblob/16014672/d742d4d004ee5e2ef0c0a616f6e57dc5/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"
+'2022-08-04':
+- "/contentblob/16393158/da6670bd4619bed3e23f758d8525ee7e/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauphase-ab-august-2022.pdf"

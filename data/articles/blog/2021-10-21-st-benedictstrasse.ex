@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
       "St. Benedictstraße erhält Schutzstreifen, Kreuzung mit der Heilwigstraße wird ein Kreisel."
 
   def start(), do: ~d[2021-11-01]
-  def stop(), do: ~d[2022-08-17]
+  def stop(), do: ~d[2022-10]
   def type(), do: :construction
   def construction_site_id_hh(), do: [20833, 20546]
   def tags(), do: []
@@ -48,8 +48,8 @@ defmodule Data.Article.Blog.StBenedictstrasse do
        "https://lsbg.hamburg.de/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"},
       {"Lagepläne",
        "https://lsbg.hamburg.de/contentblob/13867884/bb792c4b88c1f11f71dc4ec449e58f95/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"},
-      {"Baustelleninfo", "Mai 2022",
-       "https://lsbg.hamburg.de/contentblob/16149566/391f8e4dd71251622369e293136f523a/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauhphase-3-stand-05-22.pdf"}
+      {"Baustelleninfo", "August 2022",
+       "https://lsbg.hamburg.de/contentblob/16393158/da6670bd4619bed3e23f758d8525ee7e/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauphase-ab-august-2022.pdf"}
     ]
   end
 

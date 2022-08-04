@@ -6,8 +6,13 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def title(), do: "Eißendorfer Straße bis Denickestraße (Veloroute 11)"
 
-  def start(), do: ~d[2023-04]
-  def stop(), do: ~d[2023-12]
+  def summary(),
+    do:
+      "Letzter Abschnitt ab Schüslerweg soll fahrradfreundlich umbebaut werden, bleibt aber Tempo-30-Zone."
+
+  def start(), do: ~d[2022-08-29]
+  def stop(), do: ~d[2023-05-28]
+  def construction_site_id_hh(), do: [91363]
 
   def type(), do: :planned
 
