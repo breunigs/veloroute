@@ -29,29 +29,11 @@ const map = new mapboxgl.Map({
   touchPitch: false,
   logoPosition: 'top-left',
   attributionControl: false,
-  locale: {
-    'GeolocateControl.FindMyLocation': 'Meine Position anzeigen',
-    'GeolocateControl.LocationNotAvailable': 'Ortung nicht verfügbar',
-  },
   // https://bugzilla.mozilla.org/show_bug.cgi?id=976173
   preserveDrawingBuffer: navigator.userAgent.indexOf("Gecko/") >= 1,
 });
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.AttributionControl(), 'top-right');
-
-const geocontrol = new mapboxgl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true,
-    timeout: 10000,
-  },
-  // When active the map will receive updates to the device's location as it changes.
-  trackUserLocation: true,
-  // Draw an arrow next to the location dot to indicate which direction the device is heading.
-  showUserHeading: false
-});
-geocontrol.on('error', () => window.plausible('geolocation-error'));
-geocontrol.on('trackuserlocationstart', () => window.plausible('geolocation-trackuserlocationstart'));
-map.addControl(geocontrol, 'bottom-left');
 
 const layerSwitcher = new MapboxStyleSwitcherControl();
 map.addControl(layerSwitcher);
