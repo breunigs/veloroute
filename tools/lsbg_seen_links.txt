@@ -572,3 +572,6 @@
 - "/contentblob/16014672/d742d4d004ee5e2ef0c0a616f6e57dc5/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"
 '2022-08-04':
 - "/contentblob/16393158/da6670bd4619bed3e23f758d8525ee7e/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauphase-ab-august-2022.pdf"
+'2022-08-05':
+- "/contentblob/16395974/e1f1e78654bc95f99c486d463509082d/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-bericht.pdf"
+- "/contentblob/16395972/2127019aa9f8bb742b3e131fb456d291/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-abgestimmte-planung-plan.pdf"

@@ -6,6 +6,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
   def title(), do: "Radschnellweg nach Bad Bramstedt"
 
   def color(), do: "#000000"
+  def start(), do: ~d[2025]
 
   def summary(),
     do:
@@ -60,6 +61,10 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def links(_assigns) do
     [
+      {"Sachstand Planung", "Juni 2022",
+       "https://www.hamburg.de/hamburg-nord/planen-bauen-wohnen/16278304/sachstand-radschnellweg/"},
+      {"Pressemitteilung zum Start der Detailplanungen", "Juni 2022",
+       "https://www.hamburg.de/pressearchiv-fhh/16270620/2022-06-16-bvm-radschnellnetz/"},
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/radschnellwege/"},
       {"Detailseite zum Radschnellweg Bad bramstedt",
