@@ -85,6 +85,12 @@ def load_video(name):
     return bar, frame_count
 
 
+def noop_thread():
+    noop = threading.Thread(target=print)
+    noop.start()
+    return noop
+
+
 def process(item, model, outer_bar):
     (name, size) = item
     (final, wip) = json_out_paths(name)
@@ -93,7 +99,7 @@ def process(item, model, outer_bar):
 
         # the files were probably moved in the meantime. Return a truthy value
         # here to ensure we scan again.
-        return True
+        return noop_thread()
 
     detections = dict()
     gzip_loader = threading.Thread(
