@@ -88,6 +88,12 @@ def load_video(name):
 def process(item, model, outer_bar):
     (name, size) = item
     (final, wip) = json_out_paths(name)
+    if not os.path.exists(name):
+        outer_bar.total -= size
+
+        # the files were probably moved in the meantime. Return a truthy value
+        # here to ensure we scan again.
+        return True
 
     detections = dict()
     gzip_loader = threading.Thread(
