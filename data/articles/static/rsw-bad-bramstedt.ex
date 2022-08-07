@@ -23,7 +23,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
         from: "Hamburg Sengelmannstraße",
         to: "Bad Bramstedt",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Bad Bramstedt",
+        text: "künftiger Radschnellweg HH-Sengelmannstraße → Bad Bramstedt",
         videos: [
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011787", "00:00:56.423", :end},
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011788", :start, :end},

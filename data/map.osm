@@ -3085,7 +3085,9 @@
   <node id='-22535376' lat='53.51744438322' lon='10.13302087516' />
   <node id='-22535377' lat='53.51711107236' lon='10.13311207026' />
   <node id='-22535378' lat='53.51693564454' lon='10.13315766782' />
-  <node id='-22535379' lat='53.51684155114' lon='10.13320862979' />
+  <node id='-22535379' lat='53.51684155114' lon='10.13320862979'>
+    <tag k='target' v='Walter-Hammer-Weg West' />
+  </node>
   <node id='-22535380' lat='53.51675862278' lon='10.13315498292' />
   <node id='-22535381' lat='53.51530413263' lon='10.13101458013' />
   <node id='-22535382' lat='53.51523714833' lon='10.13090192735' />
@@ -3143,7 +3145,9 @@
   <node id='-22535434' lat='53.50423114511' lon='10.13850599259' />
   <node id='-22535435' lat='53.50416254802' lon='10.13894051045' />
   <node id='-22535436' lat='53.50399823362' lon='10.13963520259' />
-  <node id='-22535437' lat='53.50382115622' lon='10.14093070954' />
+  <node id='-22535437' lat='53.50382115622' lon='10.14093070954'>
+    <tag k='target' v='Hauptstrecke' />
+  </node>
   <node id='-22535438' lat='53.50374139138' lon='10.14139204949' />
   <node id='-22535439' lat='53.50339202122' lon='10.14212428987' />
   <node id='-22535440' lat='53.50301552606' lon='10.14288067281' />
@@ -3200,7 +3204,6 @@
   <node id='-22535488' lat='53.50852063469' lon='10.16284704074' />
   <node id='-22535489' lat='53.50851824201' lon='10.1630736874' />
   <node id='-22535490' lat='53.50850548106' lon='10.16327485308' />
-  <node id='-22535491' lat='53.50874076125' lon='10.16413718194' />
   <node id='-22535492' lat='53.50855253784' lon='10.16486674279' />
   <node id='-22535493' lat='53.50837228921' lon='10.1654943797' />
   <node id='-22535494' lat='53.50820958626' lon='10.16597985953' />
@@ -5363,7 +5366,9 @@
   <node id='-22537642' lat='53.54264561184' lon='9.98459815711' />
   <node id='-22537643' lat='53.5426870515' lon='9.98554497689' />
   <node id='-22537644' lat='53.54279702578' lon='9.98704701394' />
-  <node id='-22537645' lat='53.54275558623' lon='9.98716503114' />
+  <node id='-22537645' lat='53.54275558623' lon='9.98716503114'>
+    <tag k='target' v='Kehrwiedersteg Süd' />
+  </node>
   <node id='-22537646' lat='53.54285440355' lon='9.98855709761' />
   <node id='-22537647' lat='53.54304406841' lon='9.99138951033' />
   <node id='-22537648' lat='53.54315404177' lon='9.99307125539' />
@@ -5441,7 +5446,9 @@
   <node id='-22537724' lat='53.55738122657' lon='9.9944311367' />
   <node id='-22537725' lat='53.55727288346' lon='9.99516203865' />
   <node id='-22537726' lat='53.55706257038' lon='9.99622016877' />
-  <node id='-22537727' lat='53.55685066216' lon='9.9971508953' />
+  <node id='-22537727' lat='53.55685066216' lon='9.9971508953'>
+    <tag k='target' v='Lombardsbrücke Süd' />
+  </node>
   <node id='-22537728' lat='53.55660370011' lon='9.9980145666' />
   <node id='-22537729' lat='53.55625476418' lon='9.99913572997' />
   <node id='-22537730' lat='53.55527167349' lon='10.00115543336' />
@@ -9069,7 +9076,9 @@
   <node id='-22541277' lat='53.58369628754' lon='9.90173362903' />
   <node id='-22541278' lat='53.60064847684' lon='9.88889156699' />
   <node id='-22541279' lat='53.60132969714' lon='9.8906779182' />
-  <node id='-22541280' lat='53.6016113729' lon='9.88992223472' />
+  <node id='-22541280' lat='53.6016113729' lon='9.88992223472'>
+    <tag k='target' v='Hamburg Elbgaustraße' />
+  </node>
   <node id='-22541281' lat='53.60207058234' lon='9.8902364914' />
   <node id='-22541282' lat='53.64044640652' lon='9.81932042956' />
   <node id='-22541283' lat='53.64044640652' lon='9.81911658168' />
@@ -10796,7 +10805,9 @@
   <node id='-22542986' lat='53.50138508156' lon='9.80613467932' />
   <node id='-22542987' lat='53.50174244672' lon='9.80615613699' />
   <node id='-22542988' lat='53.51367416079' lon='9.81182096243' />
-  <node id='-22542989' lat='53.51372360342' lon='9.81104312181' />
+  <node id='-22542989' lat='53.51372360342' lon='9.81104312181'>
+    <tag k='target' v='Neuenfelde' />
+  </node>
   <node id='-22542990' lat='53.52057642509' lon='9.81185852408' />
   <node id='-22542991' lat='53.52113136474' lon='9.81221794009' />
   <node id='-22542992' lat='53.52101655024' lon='9.81338738322' />
@@ -14081,7 +14092,7 @@
   <node id='-41094403' lat='53.69426380952' lon='10.04502990665' />
   <node id='-41094432' lat='53.70444819136' lon='10.00745326146' />
   <node id='-41094497' lat='53.70723854436' lon='9.99243288964'>
-    <tag k='target' v='Norderstedt Mitte' />
+    <tag k='target' v='Norderstedt-Mitte' />
   </node>
   <node id='-41480409' lat='53.61434717005' lon='9.79289530635' />
   <node id='-41480410' lat='53.6142707956' lon='9.79304551005' />
@@ -14422,6 +14433,26 @@
   <node id='-47079008' lat='53.543970067' lon='9.98163163394' />
   <node id='-47079009' lat='53.54396369186' lon='9.98117029399' />
   <node id='-47079010' lat='53.54399237997' lon='9.98090207309' />
+  <node id='-47515832' lat='53.51170916835' lon='10.14224765539' />
+  <node id='-47515833' lat='53.51149224801' lon='10.14336345434' />
+  <node id='-47515834' lat='53.51121152593' lon='10.14484403372' />
+  <node id='-47515835' lat='53.51121152593' lon='10.14542339087' />
+  <node id='-47515836' lat='53.51110944471' lon='10.14917848349' />
+  <node id='-47515837' lat='53.51095632243' lon='10.1554012084' />
+  <node id='-47515838' lat='53.51089252131' lon='10.1565599227' />
+  <node id='-47515839' lat='53.5106628365' lon='10.15786884069' />
+  <node id='-47515840' lat='53.50993549304' lon='10.16013798952' />
+  <node id='-47515871' lat='53.50874188281' lon='10.16413466737'>
+    <tag k='target' v='Walter-Hammer-Weg Ost' />
+  </node>
+  <node id='-47515880' lat='53.50933573473' lon='10.16209065378' />
+  <node id='-47515884' lat='53.50887634698' lon='10.16357123315' />
+  <node id='-47515952' lat='53.54296426814' lon='9.9871891934'>
+    <tag k='target' v='Kehrwiedersteg Nord' />
+  </node>
+  <node id='-47515973' lat='53.55698866972' lon='9.99728514773'>
+    <tag k='target' v='Lombardsbrücke Nord' />
+  </node>
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -29956,61 +29987,7 @@
     <nd ref='-22535729' />
   </way>
   <way id='-19036429'>
-    <nd ref='-22540198' />
-    <nd ref='-22535438' />
-    <nd ref='-22535439' />
-    <nd ref='-22535440' />
-    <nd ref='-22535441' />
-    <nd ref='-22535442' />
-    <nd ref='-22535443' />
-    <nd ref='-22535444' />
-    <nd ref='-22535445' />
-    <nd ref='-22535446' />
-    <nd ref='-22535447' />
-    <nd ref='-22535448' />
-    <nd ref='-22535449' />
-    <nd ref='-22535450' />
-    <nd ref='-22535451' />
-    <nd ref='-22535452' />
-    <nd ref='-22535453' />
-    <nd ref='-22535454' />
-    <nd ref='-22535455' />
-    <nd ref='-22535456' />
-    <nd ref='-22535457' />
-    <nd ref='-22535458' />
-    <nd ref='-22535459' />
-    <nd ref='-22535460' />
-    <nd ref='-22535461' />
-    <nd ref='-22535462' />
-    <nd ref='-22535463' />
-    <nd ref='-22535464' />
-    <nd ref='-22535465' />
-    <nd ref='-22535466' />
-    <nd ref='-22535467' />
-    <nd ref='-22535468' />
-    <nd ref='-22535469' />
-    <nd ref='-22535470' />
-    <nd ref='-22535471' />
-    <nd ref='-22535472' />
-    <nd ref='-22535473' />
-    <nd ref='-22535474' />
-    <nd ref='-22535475' />
-    <nd ref='-22535476' />
-    <nd ref='-22535477' />
-    <nd ref='-22535478' />
-    <nd ref='-22535479' />
-    <nd ref='-22535480' />
-    <nd ref='-22535481' />
-    <nd ref='-22535482' />
-    <nd ref='-22535483' />
-    <nd ref='-22535484' />
-    <nd ref='-22535485' />
-    <nd ref='-22535486' />
-    <nd ref='-22535487' />
-    <nd ref='-22535488' />
-    <nd ref='-22535489' />
-    <nd ref='-22535490' />
-    <nd ref='-22535491' />
+    <nd ref='-47515871' />
     <nd ref='-22535492' />
     <nd ref='-22535493' />
     <nd ref='-22535494' />
@@ -32323,6 +32300,7 @@
     <nd ref='-22537685' />
     <nd ref='-22537686' />
     <nd ref='-22537687' />
+    <nd ref='-47515973' />
     <nd ref='-22537688' />
     <nd ref='-22537689' />
     <nd ref='-22537690' />
@@ -32407,6 +32385,7 @@
     <nd ref='-22537754' />
     <nd ref='-22537755' />
     <nd ref='-22537756' />
+    <nd ref='-47515952' />
     <nd ref='-22537757' />
     <nd ref='-22537758' />
     <nd ref='-22537759' />
@@ -35459,25 +35438,6 @@
     <nd ref='-22540176' />
     <nd ref='-22540177' />
     <nd ref='-22540178' />
-    <nd ref='-22540179' />
-    <nd ref='-22540180' />
-    <nd ref='-22540181' />
-    <nd ref='-22540182' />
-    <nd ref='-22540183' />
-    <nd ref='-22540184' />
-    <nd ref='-22540185' />
-    <nd ref='-22540186' />
-    <nd ref='-22540187' />
-    <nd ref='-22540188' />
-    <nd ref='-22540189' />
-    <nd ref='-22540190' />
-    <nd ref='-22540191' />
-    <nd ref='-22540192' />
-    <nd ref='-22540193' />
-    <nd ref='-22540194' />
-    <nd ref='-22540195' />
-    <nd ref='-22540196' />
-    <nd ref='-22540197' />
   </way>
   <way id='-19036659'>
     <nd ref='12875690005275947' />
@@ -43651,6 +43611,100 @@
     <nd ref='-47078943' />
     <tag k='name' v='2022-08-05-verstetigung-publ-hafencity' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-19906212'>
+    <nd ref='-22540178' />
+    <nd ref='-22540179' />
+    <nd ref='-22540180' />
+    <nd ref='-22540181' />
+    <nd ref='-22540182' />
+    <nd ref='-22540183' />
+    <nd ref='-22540184' />
+    <nd ref='-22540185' />
+    <nd ref='-22540186' />
+    <nd ref='-22540187' />
+    <nd ref='-22540188' />
+    <nd ref='-22540189' />
+    <nd ref='-22540190' />
+    <nd ref='-22540191' />
+    <nd ref='-22540192' />
+    <nd ref='-22540193' />
+    <nd ref='-22540194' />
+    <nd ref='-22540195' />
+    <nd ref='-22540196' />
+    <nd ref='-22540197' />
+  </way>
+  <way id='-19906214'>
+    <nd ref='-22540178' />
+    <nd ref='-47515832' />
+    <nd ref='-47515833' />
+    <nd ref='-47515834' />
+    <nd ref='-47515835' />
+    <nd ref='-47515836' />
+    <nd ref='-47515837' />
+    <nd ref='-47515838' />
+    <nd ref='-47515839' />
+    <nd ref='-47515840' />
+    <nd ref='-47515880' />
+    <nd ref='-47515884' />
+    <nd ref='-47515871' />
+  </way>
+  <way id='-19906224'>
+    <nd ref='-22540198' />
+    <nd ref='-22535438' />
+    <nd ref='-22535439' />
+    <nd ref='-22535440' />
+    <nd ref='-22535441' />
+    <nd ref='-22535442' />
+    <nd ref='-22535443' />
+    <nd ref='-22535444' />
+    <nd ref='-22535445' />
+    <nd ref='-22535446' />
+    <nd ref='-22535447' />
+    <nd ref='-22535448' />
+    <nd ref='-22535449' />
+    <nd ref='-22535450' />
+    <nd ref='-22535451' />
+    <nd ref='-22535452' />
+    <nd ref='-22535453' />
+    <nd ref='-22535454' />
+    <nd ref='-22535455' />
+    <nd ref='-22535456' />
+    <nd ref='-22535457' />
+    <nd ref='-22535458' />
+    <nd ref='-22535459' />
+    <nd ref='-22535460' />
+    <nd ref='-22535461' />
+    <nd ref='-22535462' />
+    <nd ref='-22535463' />
+    <nd ref='-22535464' />
+    <nd ref='-22535465' />
+    <nd ref='-22535466' />
+    <nd ref='-22535467' />
+    <nd ref='-22535468' />
+    <nd ref='-22535469' />
+    <nd ref='-22535470' />
+    <nd ref='-22535471' />
+    <nd ref='-22535472' />
+    <nd ref='-22535473' />
+    <nd ref='-22535474' />
+    <nd ref='-22535475' />
+    <nd ref='-22535476' />
+    <nd ref='-22535477' />
+    <nd ref='-22535478' />
+    <nd ref='-22535479' />
+    <nd ref='-22535480' />
+    <nd ref='-22535481' />
+    <nd ref='-22535482' />
+    <nd ref='-22535483' />
+    <nd ref='-22535484' />
+    <nd ref='-22535485' />
+    <nd ref='-22535486' />
+    <nd ref='-22535487' />
+    <nd ref='-22535488' />
+    <nd ref='-22535489' />
+    <nd ref='-22535490' />
+    <nd ref='-47515871' />
   </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
@@ -56486,8 +56540,7 @@
     <member type='way' ref='185093748' role='forward' />
     <member type='way' ref='-19036320' role='forward' />
     <member type='way' ref='605698871' role='forward' />
-    <member type='node' ref='-22532266' role='gpx_end' />
-    <member type='node' ref='354890005749198' role='gpx_start' />
+    <tag k='group' v='5N' />
     <tag k='name' v='alltagsroute-5' />
   </relation>
   <relation id='-101230'>
@@ -56507,12 +56560,9 @@
     <member type='way' ref='-19036348' role='' />
     <member type='way' ref='-19036352' role='' />
     <member type='way' ref='-19036351' role='' />
-    <member type='node' ref='99328110005572779' role='gpx_start' />
-    <member type='node' ref='-22534050' role='gpx_end' />
     <tag k='name' v='freizeitroute-1' />
   </relation>
   <relation id='-101231'>
-    <member type='node' ref='-22534855' role='gpx_start' />
     <member type='way' ref='-19036390' role='forward' />
     <member type='way' ref='-19036387' role='forward' />
     <member type='way' ref='-19036357' role='forward' />
@@ -56555,7 +56605,6 @@
     <member type='way' ref='-19036385' role='forward' />
     <member type='way' ref='-19036383' role='forward' />
     <member type='way' ref='-19036384' role='' />
-    <member type='node' ref='-22534852' role='gpx_end' />
     <tag k='name' v='freizeitroute-2' />
   </relation>
   <relation id='-101232'>
@@ -56581,8 +56630,6 @@
     <member type='way' ref='-19036357' role='forward' />
     <member type='way' ref='-19036387' role='forward' />
     <member type='way' ref='-19036390' role='forward' />
-    <member type='node' ref='-22534855' role='gpx_start' />
-    <member type='node' ref='-22535204' role='gpx_end' />
     <tag k='name' v='freizeitroute-3' />
   </relation>
   <relation id='-101233'>
@@ -56601,13 +56648,14 @@
     <member type='way' ref='-19036659' role='' />
     <member type='way' ref='-19036660' role='' />
     <member type='way' ref='-19036661' role='' />
+    <member type='way' ref='-19906224' role='' />
     <member type='way' ref='-19036429' role='' />
     <member type='way' ref='-19036433' role='forward' />
     <member type='way' ref='-19036428' role='forward' />
     <member type='way' ref='408668437' role='' />
     <member type='way' ref='-19036432' role='' />
-    <member type='node' ref='-22535723' role='gpx_end' />
-    <member type='node' ref='-22535209' role='gpx_start' />
+    <member type='way' ref='-19906214' role='' />
+    <member type='way' ref='-19036658' role='' />
     <tag k='name' v='freizeitroute-4' />
   </relation>
   <relation id='-101234'>
@@ -56635,8 +56683,6 @@
     <member type='way' ref='450274070' role='forward' />
     <member type='way' ref='-19036236' role='backward' />
     <member type='way' ref='496730528' role='forward' />
-    <member type='node' ref='60230005517916' role='gpx_start' />
-    <member type='node' ref='-22536137' role='gpx_end' />
     <tag k='name' v='freizeitroute-5' />
   </relation>
   <relation id='-101235'>
@@ -56683,8 +56729,6 @@
     <member type='way' ref='-19036701' role='' />
     <member type='way' ref='-19036470' role='' />
     <member type='way' ref='-19846689' role='' />
-    <member type='node' ref='-22536520' role='gpx_end' />
-    <member type='node' ref='60230005517916' role='gpx_start' />
     <tag k='name' v='freizeitroute-6' />
   </relation>
   <relation id='-101236'>
@@ -56697,12 +56741,9 @@
     <member type='way' ref='-19036692' role='' />
     <member type='way' ref='-19036544' role='' />
     <member type='way' ref='-19036479' role='' />
-    <member type='node' ref='-22536790' role='gpx_end' />
-    <member type='node' ref='97779140004608864' role='gpx_start' />
     <tag k='name' v='freizeitroute-7' />
   </relation>
   <relation id='-101237'>
-    <member type='node' ref='96951650005459398' role='gpx_start' />
     <member type='way' ref='-19036494' role='forward' />
     <member type='way' ref='-19036495' role='forward' />
     <member type='way' ref='596083295' role='forward' />
@@ -56719,11 +56760,9 @@
     <member type='way' ref='-19036601' role='' />
     <member type='way' ref='-19036602' role='' />
     <member type='way' ref='-19036481' role='' />
-    <member type='node' ref='-22536795' role='gpx_end' />
     <tag k='name' v='freizeitroute-8' />
   </relation>
   <relation id='-101238'>
-    <member type='node' ref='98902320005583175' role='gpx_start' />
     <member type='way' ref='-19880589' role='' />
     <member type='way' ref='-19890007' role='' />
     <member type='way' ref='-19890016' role='forward' />
@@ -56750,7 +56789,6 @@
     <member type='way' ref='-19036501' role='' />
     <member type='way' ref='-19036504' role='' />
     <member type='way' ref='-19036503' role='' />
-    <member type='node' ref='-22537546' role='gpx_end' />
     <tag k='name' v='freizeitroute-10' />
   </relation>
   <relation id='-101239'>
@@ -56791,12 +56829,6 @@
     <member type='way' ref='-19036439' role='forward' />
     <member type='way' ref='-19036447' role='forward' />
     <member type='way' ref='-19036517' role='forward' />
-    <member type='node' ref='-22537589' role='gpx_end' />
-    <member type='node' ref='-22537589' role='gpx_start' />
-    <member type='way' ref='-19036520' role='gpx_via_backward' />
-    <member type='way' ref='-19883749' role='gpx_via_backward' />
-    <member type='way' ref='-19883726' role='gpx_via_backward' />
-    <member type='way' ref='-19036524' role='gpx_via_forward' />
     <tag k='name' v='erster-gruener-ring' />
   </relation>
   <relation id='-101240'>
@@ -56825,8 +56857,6 @@
     <member type='way' ref='-19036542' role='' />
     <member type='way' ref='-19036544' role='' />
     <member type='way' ref='-19036545' role='' />
-    <member type='node' ref='-22538120' role='gpx_end' />
-    <member type='node' ref='96951650005459398' role='gpx_start' />
     <tag k='name' v='freizeitroute-14' />
   </relation>
   <relation id='-101241'>
@@ -56843,13 +56873,9 @@
     <member type='way' ref='-19282551' role='' />
     <member type='way' ref='-19282552' role='' />
     <member type='way' ref='-19036560' role='' />
-    <member type='node' ref='-22538521' role='gpx_end' />
-    <member type='node' ref='-22533857' role='gpx_start' />
     <tag k='name' v='freizeitroute-12' />
   </relation>
   <relation id='-101242'>
-    <member type='node' ref='-22538965' role='gpx_end' />
-    <member type='node' ref='99328110005572779' role='gpx_start' />
     <member type='way' ref='-19036529' role='' />
     <member type='way' ref='603876232' role='' />
     <member type='way' ref='-19036562' role='' />
@@ -56960,6 +56986,7 @@
     <member type='way' ref='756281856' role='' />
     <member type='way' ref='-19036659' role='' />
     <member type='way' ref='-19036658' role='' />
+    <member type='way' ref='-19906212' role='' />
     <member type='way' ref='-19036661' role='' />
     <member type='way' ref='-19036662' role='' />
     <member type='way' ref='-19036663' role='forward' />
@@ -57019,12 +57046,9 @@
     <member type='way' ref='-19036767' role='' />
     <member type='way' ref='-19036733' role='' />
     <member type='way' ref='-19036703' role='' />
-    <member type='node' ref='-22539213' role='gpx_start' />
-    <member type='node' ref='-22540998' role='gpx_end' />
     <tag k='name' v='zweiter-gruener-ring' />
   </relation>
   <relation id='-101244'>
-    <member type='node' ref='-22542127' role='gpx_start' />
     <member type='way' ref='-19036745' role='' />
     <member type='way' ref='-19036732' role='' />
     <member type='way' ref='-19036734' role='' />
@@ -57041,11 +57065,9 @@
     <member type='way' ref='-19036742' role='forward' />
     <member type='way' ref='-19036743' role='forward' />
     <member type='way' ref='-19036741' role='' />
-    <member type='node' ref='-22542498' role='gpx_end' />
     <tag k='name' v='freizeitroute-13' />
   </relation>
   <relation id='-101245'>
-    <member type='node' ref='-22542127' role='gpx_start' />
     <member type='way' ref='-19036745' role='' />
     <member type='way' ref='-19036747' role='' />
     <member type='way' ref='-19036744' role='forward' />
@@ -57057,13 +57079,9 @@
     <member type='way' ref='-19036754' role='' />
     <member type='way' ref='-19036757' role='' />
     <member type='way' ref='-19036756' role='' />
-    <member type='node' ref='-22542758' role='gpx_end' />
     <tag k='name' v='elbradweg-sued' />
   </relation>
   <relation id='-101246'>
-    <member type='node' ref='-22543903' role='gpx_end' />
-    <member type='node' ref='-22542759' role='gpx_end' />
-    <member type='node' ref='-22543222' role='gpx_start' />
     <member type='way' ref='-19036761' role='' />
     <member type='way' ref='-19036762' role='' />
     <member type='way' ref='-19036763' role='' />
@@ -57148,13 +57166,9 @@
     <member type='way' ref='-19036782' role='' />
     <member type='way' ref='-19036712' role='' />
     <member type='way' ref='-19036781' role='' />
-    <member type='node' ref='-22541033' role='gpx_end' />
-    <member type='node' ref='-22543573' role='gpx_start' />
-    <member type='node' ref='93867870005806899' role='gpx_start' />
     <tag k='name' v='rsw-elmshorn' />
   </relation>
   <relation id='-101280'>
-    <member type='node' ref='2783610005333994' role='gpx_end' />
     <member type='way' ref='-19036673' role='forward' />
     <member type='way' ref='-19036455' role='forward' />
     <member type='way' ref='-19036456' role='backward' />
@@ -57163,15 +57177,12 @@
     <member type='way' ref='-19780803' role='forward' />
     <member type='way' ref='-19780851' role='forward' />
     <member type='way' ref='-19780854' role='forward' />
-    <member type='node' ref='-27128539' role='gpx_start' />
-    <member type='node' ref='-27128541' role='gpx_start' />
     <member type='way' ref='-19780732' role='forward' />
     <member type='way' ref='-19780788' role='forward' />
     <member type='way' ref='-19780790' role='forward' />
     <member type='way' ref='-19780793' role='forward' />
     <member type='way' ref='-19036452' role='forward' />
     <member type='way' ref='-19036676' role='forward' />
-    <member type='node' ref='2710580005334072' role='gpx_end' />
     <tag k='name' v='erweiterung-mundsburg-elbbruecken' />
   </relation>
   <relation id='-101286'>
@@ -57204,7 +57215,6 @@
     <tag k='name' v='rsw-tostedt' />
   </relation>
   <relation id='-101532'>
-    <member type='node' ref='-41094168' role='gpx_start' />
     <member type='way' ref='-19861719' role='forward' />
     <member type='way' ref='-19861689' role='backward' />
     <member type='way' ref='-19861650' role='forward' />
@@ -57214,11 +57224,9 @@
     <member type='way' ref='-19861731' role='backward' />
     <member type='way' ref='-19861722' role='forward' />
     <member type='way' ref='-19861692' role='' />
-    <member type='node' ref='-41094106' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-4' />
   </relation>
   <relation id='-101634'>
-    <member type='node' ref='-41094318' role='gpx_start' />
     <member type='way' ref='-19861350' role='' />
     <member type='way' ref='-19861345' role='forward' />
     <member type='way' ref='-19861349' role='forward' />
@@ -57235,11 +57243,9 @@
     <member type='way' ref='-19861886' role='' />
     <member type='way' ref='-19861731' role='' />
     <member type='way' ref='-19861869' role='' />
-    <member type='node' ref='-41093923' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-1' />
   </relation>
   <relation id='-101725'>
-    <member type='node' ref='-41094318' role='gpx_start' />
     <member type='way' ref='-19861869' role='' />
     <member type='way' ref='-19861731' role='' />
     <member type='way' ref='-19861886' role='' />
@@ -57252,11 +57258,9 @@
     <member type='way' ref='-19861577' role='forward' />
     <member type='way' ref='-19861537' role='forward' />
     <member type='way' ref='-19861538' role='forward' />
-    <member type='node' ref='-41094008' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-2' />
   </relation>
   <relation id='-101922'>
-    <member type='node' ref='-41094497' role='gpx_start' />
     <member type='way' ref='-19861604' role='' />
     <member type='way' ref='-19861596' role='forward' />
     <member type='way' ref='-19861577' role='backward' />
@@ -57269,7 +57273,6 @@
     <member type='way' ref='-19861946' role='backward' />
     <member type='way' ref='-19861937' role='backward' />
     <member type='way' ref='-19861560' role='forward' />
-    <member type='node' ref='-41094105' role='gpx_end' />
     <tag k='name' v='norderstedt-veloroute-3' />
   </relation>
   <relation id='-101947'>
@@ -57342,13 +57345,9 @@
     <member type='way' ref='150294457' role='' />
     <member type='way' ref='417314336' role='forward' />
     <member type='way' ref='27121204' role='forward' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
-    <member type='node' ref='48680006792118' role='gpx_end' />
     <tag k='name' v='alltagsroute-4' />
   </relation>
   <relation id='194840' version='1'>
-    <member type='node' ref='95034860006403485' role='gpx_end' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='238754832' role='' />
     <member type='way' ref='19410366' role='forward' />
     <member type='way' ref='19729394' role='forward' />
@@ -57387,7 +57386,6 @@
     <tag k='name' v='alltagsroute-3' />
   </relation>
   <relation id='194841' version='1'>
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='-19036295' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='19410612' role='' />
@@ -57424,11 +57422,9 @@
     <member type='way' ref='-19036613' role='' />
     <member type='way' ref='-19036612' role='' />
     <member type='way' ref='-19843786' role='' />
-    <member type='node' ref='8988588000605706' role='gpx_end' />
     <tag k='name' v='alltagsroute-2' />
   </relation>
   <relation id='194843' version='1'>
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='-19036295' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='19410612' role='' />
@@ -57470,7 +57466,6 @@
     <member type='way' ref='604004309' role='forward' />
     <member type='way' ref='604004307' role='forward' />
     <member type='way' ref='603889576' role='' />
-    <member type='node' ref='73956560005864374' role='gpx_end' />
     <member type='way' ref='346034902' role='' />
     <member type='way' ref='-19036773' role='' />
     <member type='way' ref='-19036777' role='' />
@@ -57480,7 +57475,6 @@
     <member type='way' ref='-19036590' role='' />
     <member type='way' ref='603998117' role='forward' />
     <member type='way' ref='603998126' role='forward' />
-    <member type='node' ref='85290010005933402' role='gpx_end' />
     <tag k='name' v='alltagsroute-1' />
   </relation>
   <relation id='226032' version='1'>
@@ -57542,8 +57536,7 @@
     <member type='way' ref='24247875' role='' />
     <member type='way' ref='-19036352' role='' />
     <member type='way' ref='-19036353' role='' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
-    <member type='node' ref='10978180007074897' role='gpx_end' />
+    <tag k='group' v='5' />
     <tag k='name' v='alltagsroute-5' />
   </relation>
   <relation id='227477' version='1'>
@@ -57592,8 +57585,6 @@
     <member type='way' ref='550868324' role='forward' />
     <member type='way' ref='-19036238' role='forward' />
     <member type='way' ref='606127298' role='' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
-    <member type='node' ref='-29125197' role='gpx_end' />
     <tag k='name' v='alltagsroute-6' />
   </relation>
   <relation id='228035' version='1'>
@@ -57646,9 +57637,6 @@
     <member type='way' ref='609325020' role='forward' />
     <member type='way' ref='609325010' role='forward' />
     <member type='way' ref='151482136' role='' />
-    <member type='node' ref='1344080005750305' role='gpx_end' />
-    <member type='node' ref='155334800060497' role='gpx_end' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <tag k='name' v='alltagsroute-7' />
   </relation>
   <relation id='229623' version='1'>
@@ -57700,14 +57688,9 @@
     <member type='way' ref='755758904' role='forward' />
     <member type='way' ref='30484259' role='' />
     <member type='way' ref='33115176' role='forward' />
-    <member type='node' ref='20698830004892153' role='gpx_end' />
-    <member type='node' ref='14988850005282157' role='gpx_end' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <tag k='name' v='alltagsroute-8' />
   </relation>
   <relation id='229823' version='1'>
-    <member type='node' ref='20698830004892153' role='gpx_end' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='-19036295' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='2956272' role='' />
@@ -57801,14 +57784,9 @@
     <member type='way' ref='607482351' role='forward' />
     <member type='way' ref='295342661' role='forward' />
     <member type='way' ref='607482355' role='' />
-    <member type='node' ref='8540400047424' role='gpx_end' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <tag k='name' v='alltagsroute-10' />
   </relation>
   <relation id='233959' version='1'>
-    <member type='node' ref='94486390004569495' role='gpx_end' />
-    <member type='node' ref='1507170005218121' role='gpx_start' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
     <member type='way' ref='-19036295' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='19410612' role='' />
@@ -57877,8 +57855,6 @@
     <member type='way' ref='40193993' role='' />
     <member type='way' ref='33822468' role='forward' />
     <member type='way' ref='138128207' role='forward' />
-    <member type='node' ref='99394920005508649' role='gpx_start' />
-    <member type='node' ref='93630760005501802' role='gpx_end' />
     <tag k='name' v='alltagsroute-12' />
   </relation>
   <relation id='2238764' version='1'>
@@ -57950,8 +57926,6 @@
     <member type='way' ref='192224311' role='forward' />
     <member type='way' ref='239778156' role='forward' />
     <member type='way' ref='-19036240' role='backward' />
-    <member type='node' ref='93630760005501802' role='gpx_start' />
-    <member type='node' ref='4056250005556585' role='gpx_end' />
     <tag k='name' v='alltagsroute-13' />
   </relation>
   <relation id='8349004' version='1'>
@@ -58032,8 +58006,6 @@
     <member type='way' ref='609040007' role='forward' />
     <member type='way' ref='567535690' role='forward' />
     <member type='way' ref='298844244' role='backward' />
-    <member type='node' ref='10856630005374321' role='gpx_end' />
-    <member type='node' ref='88210050005581981' role='gpx_start' />
     <tag k='name' v='alltagsroute-14' />
   </relation>
 </osm>

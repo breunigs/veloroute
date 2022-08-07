@@ -21,7 +21,7 @@ defmodule Data.Article.Static.RSWGeesthacht do
         from: "Hamburg Tiefstack",
         to: "Geesthacht Bergedorfer Straße",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Geesthacht",
+        text: "künftiger Radschnellweg HH-Tiefstack → Geesthacht",
         videos: [
           {"2021-06-27-veloroute9/GX012027", "00:03:10.891", :end},
           {"2021-06-27-veloroute9/GX022027", :start, "00:03:10.390"},
@@ -41,6 +41,16 @@ defmodule Data.Article.Static.RSWGeesthacht do
           {"2021-09-19-rsw-geesthacht-velo9/GX012897", "00:04:57.764", :end},
           {"2021-09-19-rsw-geesthacht-velo9/GX012898", :start, :end}
         ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Geesthacht",
+        direction: :backward,
+        from: "Geesthacht Bergedorfer Straße",
+        to: "Hamburg Tiefstack",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Geesthacht → HH-Tiefstack",
+        videos: nil
       }
     ]
 

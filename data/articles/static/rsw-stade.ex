@@ -20,9 +20,10 @@ defmodule Data.Article.Static.RSWStade do
         group: "Radschnellweg Stade (via Neugraben)",
         direction: :forward,
         from: "Hamburg Finkenwerder",
+        via: ["Neugraben"],
         to: "Stade Am Güterbahnhof",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Stade (via Neugraben)",
+        text: "künftiger Radschnellweg Finkenwerder → Stade (via Neugraben)",
         videos: [
           {"2021-09-18-rsw-stade/GX012828.MP4.time_lapse.mkv", :start, :end},
           {"2021-09-18-rsw-stade/GX012829", :start, :end},
@@ -51,13 +52,36 @@ defmodule Data.Article.Static.RSWStade do
         ]
       },
       %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Stade (via Neugraben)",
+        direction: :backward,
+        from: "Stade Am Güterbahnhof",
+        via: ["Neugraben"],
+        to: "Hamburg Finkenwerder",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Stade → Finkenwerder (via Neugraben)",
+        videos: nil
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Stade (via Neuenfelde)",
+        direction: :forward,
+        from: "Hamburg Finkenwerder",
+        via: ["Neuenfelde"],
+        to: "Buxtehude Bahnhof",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Finkenwerder → Buxtehude (via Neuenfelde)",
+        videos: nil
+      },
+      %Video.Track{
         renderer: 1,
         group: "Radschnellweg Stade (via Neuenfelde)",
         direction: :backward,
         from: "Buxtehude Bahnhof",
+        via: ["Neuenfelde"],
         to: "Hamburg Finkenwerder",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg von Stade (via Neuenfelde)",
+        text: "künftiger Radschnellweg Buxtehude → Finkenwerder (via Neuenfelde)",
         videos: [
           {"2021-09-18-rsw-stade/GX012862", :start, :end},
           {"2021-09-18-rsw-stade/GX012863", :start, :end},

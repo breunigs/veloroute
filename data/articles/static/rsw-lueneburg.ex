@@ -21,7 +21,7 @@ defmodule Data.Article.Static.RSWLueneburg do
         from: "Hamburg Elbbrücken",
         to: "Lüneburg Zeltberg",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Lüneburg",
+        text: "künftiger Radschnellweg HH-Elbbrücken → Lüneburg",
         videos: [
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012366", "00:00:57.491", "00:01:13.040"},
           {"2021-05-02-gruener-ring-sued-uhrzeigersinn/GX011460.MP4_time_lapse.mkv",
@@ -52,6 +52,16 @@ defmodule Data.Article.Static.RSWLueneburg do
           {"2021-08-15-rsw-lueneburg/GX012688.MP4.time_lapse.mkv", :start, "00:01:22.950"},
           {"2021-08-15-rsw-lueneburg/GX012688.MP4.time_lapse.mkv", "00:01:28.388", "00:02:12.099"}
         ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Lüneburg",
+        direction: :backward,
+        from: "Lüneburg Zeltberg",
+        to: "Hamburg Elbbrücken",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Lüneburg → HH-Elbbrücken",
+        videos: nil
       }
     ]
 

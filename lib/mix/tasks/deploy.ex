@@ -98,7 +98,7 @@ defmodule Mix.Tasks.Deploy do
       [Path.join(@cwd, "tools/update_favicons.sh")],
       ~w(mix deps.compile),
       ~w(mix compile),
-      ~w(mix update_gpx),
+      ~w(mix velo.gpx.generate),
       ["rm", "priv/static/#{Settings.video_serve_path()}"],
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),

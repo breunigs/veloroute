@@ -101,6 +101,8 @@ defmodule Video.Rendered do
   """
   @spec save_from_track(Video.Track.t()) ::
           :ok | {:error, binary()} | {:error, list(), list()}
+  def save_from_track(%{videos: nil}), do: :ok
+
   def save_from_track(track) do
     {hash, coords, metadata} = Video.Track.render(track)
     path = path(hash)

@@ -1,6 +1,10 @@
 defmodule Map.Parser do
   @default_map_path "data/map.osm"
 
+  @typep indexed_nodes :: %{optional(binary()) => Map.Node.t()}
+  @typep indexed_ways :: %{optional(binary()) => [Map.Way.t()]}
+  @typep indexed_relations :: %{optional(binary()) => Map.Relation.t()}
+
   def default_map_path, do: @default_map_path
 
   def load_default, do: load(default_map_path())
@@ -34,6 +38,7 @@ defmodule Map.Parser do
 
   defp is_deleted?(_), do: false
 
+  @spec relations(any(), indexed_ways, indexed_nodes) :: indexed_relations
   defp relations(parsed, ways, nodes) do
     parsed
     |> filter_by("relation")
@@ -70,6 +75,7 @@ defmodule Map.Parser do
     end)
   end
 
+  @spec ways(any(), indexed_nodes) :: indexed_ways
   defp ways(parsed, nodes) do
     parsed
     |> filter_by("way")
@@ -95,6 +101,7 @@ defmodule Map.Parser do
     end)
   end
 
+  @spec nodes(any()) :: indexed_nodes
   defp nodes(parsed) do
     parsed
     |> filter_by("node")

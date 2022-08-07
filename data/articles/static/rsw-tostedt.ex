@@ -8,8 +8,8 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def color(), do: "#000000"
 
-  # def summary(),
-  #   do: "Beschreibung und Video zum Radschnellweg Tostedt ↔ HH-Harburg"
+  def summary(),
+    do: "Beschreibung und Video zum Radschnellweg Tostedt ↔ HH-Harburg"
 
   def tags(), do: [id(), "rsw"]
 
@@ -17,12 +17,12 @@ defmodule Data.Article.Static.RSWTostedt do
     do: [
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Tostedt (ab Harburg Bahnhof)",
+        group: "Radschnellweg Tostedt",
         direction: :forward,
         from: "Harburg Bahnhof",
         to: "Tostedt",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Tostedt (ab Harburg Bahnhof)",
+        text: "künftiger Radschnellweg Harburg Bahnhof → Tostedt",
         videos: [
           {"2022-05-18-rsw-tostedt/GX013972", :start, :end},
           {"2022-05-18-rsw-tostedt/GX013973", :start, :end},
@@ -39,6 +39,16 @@ defmodule Data.Article.Static.RSWTostedt do
           {"2022-05-18-rsw-tostedt/GX013978", "00:02:34.421", :end},
           {"2022-05-18-rsw-tostedt/GX023978", :seamless, :end}
         ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Tostedt",
+        direction: :backward,
+        from: "Tostedt",
+        to: "Harburg Bahnhof",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Tostedt → Harburg Bahnhof",
+        videos: nil
       }
     ]
 

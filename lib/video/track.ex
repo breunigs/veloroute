@@ -1,6 +1,7 @@
 defmodule Video.Track do
   @known_params [
     :from,
+    :via,
     :to,
     :text,
     :parent_ref,
@@ -28,15 +29,16 @@ defmodule Video.Track do
   @type t :: %__MODULE__{
           from: binary(),
           to: binary(),
+          via: nil | [binary()],
           group: binary(),
           direction: :forward | :backward,
           text: binary(),
           parent_ref: module() | binary(),
-          videos: plain(),
+          videos: plain() | nil,
           renderer: pos_integer()
         }
 
-  @enforce_keys @known_params
+  @enforce_keys @known_params -- [:via]
   defstruct @known_params
 
   defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
@@ -47,6 +49,17 @@ defmodule Video.Track do
   @spec hash(t()) :: hash()
   def hash(%__MODULE__{} = t) do
     t |> render() |> elem(0)
+  end
+
+  @doc """
+  Returns a human readable name, describing the video's from/via/to
+  """
+  @spec name(t()) :: binary()
+  def name(%__MODULE__{text: text}) when text != "", do: text
+
+  def name(%__MODULE__{from: from, via: via, to: to}) do
+    text = "von #{from} nach #{to}"
+    if via == nil || via == [], do: text, else: "#{text} (via #{Enum.join(via, ", ")})"
   end
 
   @doc """

@@ -22,7 +22,7 @@ defmodule Data.Article.Static.RSWElmshorn do
         from: "Hamburg Diebsteich",
         to: "Elmshorn Wasserstraße",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Elmshorn (ab Diebsteich)",
+        text: "künftiger Radschnellweg HH-Diebsteich → Elmshorn",
         videos: [
           {"2021-09-11-rsw-elmshorn/GX012803", "00:01:05.966", :end},
           {"2021-09-11-rsw-elmshorn/GX012804", :start, :end},
@@ -51,13 +51,23 @@ defmodule Data.Article.Static.RSWElmshorn do
         ]
       },
       %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Elmshorn (zum Diebsteich)",
+        direction: :backward,
+        from: "Elmshorn Wasserstraße",
+        to: "Hamburg Diebsteich",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Elmshorn → HH-Diebsteich",
+        videos: nil
+      },
+      %Video.Track{
         renderer: 1,
         group: "Radschnellweg Elmshorn (ab Langenfelder Damm)",
         direction: :forward,
         from: "Hamburg Langenfelder Damm",
         to: "Hamburg Elbgaustraße",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg nach Elmshorn (ab Langenfelder Damm)",
+        text: "künftiger Radschnellweg HH Langenfelder Damm → HH Elbgaustraße",
         videos: [
           {"2021-12-25-velo2-rsw-elmshorn/GX013083", "00:03:50.831", "00:03:59.806"},
           {"2021-12-25-velo2-rsw-elmshorn/GX013084", "00:00:14.281", :end},
@@ -73,7 +83,7 @@ defmodule Data.Article.Static.RSWElmshorn do
         from: "Hamburg Elbgaustraße",
         to: "Hamburg Langenfelder Damm",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg von Elmshorn (zum Langenfelder Damm)",
+        text: "künftiger Radschnellweg HH Elbgaustraße → HH Langenfelder Damm",
         videos: [
           {"2021-12-25-velo2-rsw-elmshorn/GX013087", "00:01:28.322", :end},
           {"2021-12-25-velo2-rsw-elmshorn/GX013088", "00:00:01.034", :end},
