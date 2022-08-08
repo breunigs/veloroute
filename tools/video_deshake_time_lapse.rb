@@ -26,16 +26,9 @@ ARGV.each do |file|
   end
 
   Dir.mktmpdir("video_deshake_time_lapse") do |temp_dir|
-    warn "  shake detection"
-    `nice -n18 ffmpeg -hide_banner -loglevel warning -r 30000/1001 -i "#{file}" -vf "vidstabdetect=stepsize=6:shakiness=8:accuracy=9:result=#{temp_dir}/shake.trf" -f null -`
+    warn "  fixing speed"
+    `nice -n18 ffmpeg -hide_banner -loglevel warning -r 30000/1001 -i "#{file}" -vf "setpts=1/4*PTS" -an -c:v ffv1 "#{target}"`
     binding.pry unless $?.success?
-
-    warn "  fixing speed and smoothing"
-    `nice -n18 ffmpeg -hide_banner -loglevel warning -hwaccel auto -r 30000/1001 -i "#{file}" -vf "vidstabtransform=zoom=1:smoothing=30:input=#{temp_dir}/shake.trf,setpts=1/4*PTS" -an -c:v ffv1 "#{temp_dir}/time_lapse.mkv"`
-    binding.pry unless $?.success?
-
-    warn "  moving file to destination"
-    FileUtils.mv "#{temp_dir}/time_lapse.mkv", target
 
     warn "  renaming original"
     FileUtils.mv file, "#{file}_"
