@@ -118,7 +118,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   defp velo_related?(text) do
     text = String.downcase(text)
 
-    Enum.any?(~w/veloroute radverkehr radfahr/, fn term ->
+    Enum.any?(~w/veloroute radverkehr radfahr fahrrad bezirksroute/, fn term ->
       String.contains?(text, term)
     end)
   end
