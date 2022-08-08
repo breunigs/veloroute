@@ -103,10 +103,25 @@ defmodule Article.List do
   def related(art), do: related(all(), art)
 
   @doc """
-  Returns true if the given articles share at least one tag
+  Returns true if the given articles share at least one tag and not both
+  have videos.
   """
   def related?(art1, art2) when is_module(art1) and is_module(art2) do
-    Util.overlap?(art1.tags(), art2.tags())
+    has_tracks1 = length(art1.tracks()) > 0
+    has_tracks2 = length(art2.tracks()) > 0
+    (!has_tracks1 || !has_tracks2) && Util.overlap?(art1.tags(), art2.tags())
+  end
+
+  @doc """
+  Returns true if the two articles overlap.
+  """
+  @spec overlap?(Article.t(), Article.t()) :: boolean()
+  def overlap?(art1, art2) do
+    overlap([art1], art2)
+    |> case do
+      [_art] -> true
+      [] -> false
+    end
   end
 
   @doc """
