@@ -2,7 +2,7 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "hls.js": "^1.1.5",
+    "hls.js": "^1.2.0",
     "mapbox-gl": "^2.9.2"
   },
   "devDependencies": {
