@@ -56,6 +56,52 @@ defmodule Data.Article.Static.RSWBadBramstedt do
           {"2021-09-09-rsw-bad-bramstedt/GX012783", :start, "00:01:41.101"},
           {"2021-09-09-rsw-bad-bramstedt/GX012785", "00:00:14.381", "00:02:58.512"}
         ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Radschnellweg Bad Bramstedt",
+        direction: :backward,
+        from: "Bad Bramstedt",
+        to: "Hamburg Sengelmannstraße",
+        parent_ref: __MODULE__,
+        text: "künftiger Radschnellweg Bad Bramstedt → HH-Sengelmannstraße",
+        videos: [
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014379", "00:00:04.805", :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014380", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014381", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014382", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014383", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014384", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev-realtime/GX014385.MP4_time_lapse.mkv", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev-realtime/GX014386.MP4_time_lapse.mkv", :start,
+           "00:00:21.588"},
+          {"2022-08-06-rsw-bad-bramstedt-rev-realtime/GX014388.MP4_time_lapse.mkv",
+           "00:00:00.701", "00:01:10.637"},
+          {"2022-08-06-rsw-bad-bramstedt-rev-realtime/GX014389.MP4_time_lapse.mkv",
+           "00:00:06.740", "00:01:34.328"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014391", "00:00:00.434", :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014392", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014393", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014394", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014395", :start, "00:00:01.435"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014396", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014397", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014398", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014399", :start, "00:03:45.926"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014399", "00:03:57.738", :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014400", :start, "00:00:01.401"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014401", :start, "00:00:51.852"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014402", "00:00:02.903", :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014403", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014404", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014405", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014406", :start, "00:00:06.306"},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014406", "00:00:17.084", :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014407", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014408", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014409", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014410", :start, "00:00:07.207"}
+        ]
       }
     ]
 

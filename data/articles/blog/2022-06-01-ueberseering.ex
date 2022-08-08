@@ -13,6 +13,37 @@ defmodule Data.Article.Blog.Ueberseering do
 
   def tags(), do: []
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "Überseering",
+        direction: :forward,
+        from: "Westarm",
+        to: "Ostarm",
+        parent_ref: __MODULE__,
+        text: "Überseering im Uhrzeigersinn",
+        videos: [
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014414", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014415", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "Überseering",
+        direction: :backward,
+        from: "Ostarm",
+        to: "Westarm",
+        parent_ref: __MODULE__,
+        text: "Überseering gegen Uhrzeigersinn",
+        videos: [
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014417", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014411", :start, :end},
+          {"2022-08-06-rsw-bad-bramstedt-rev/GX014412", :start, "00:00:22.506"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht und Lageplan", "2020, fertiger Entwurf",
