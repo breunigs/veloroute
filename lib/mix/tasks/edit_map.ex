@@ -27,7 +27,7 @@ defmodule Mix.Tasks.EditMap do
 
     # run in extra process to ensure we recompile after map update
     IO.puts("Updating GPX…")
-    {_stream, 0} = System.cmd("mix", ["update_gpx"], into: IO.stream(:stdio, :line))
+    {_stream, 0} = System.cmd("mix", ["velo.gpx.generate"], into: IO.stream(:stdio, :line))
   end
 
   defp remove_osm_history() do
