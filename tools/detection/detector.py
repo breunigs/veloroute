@@ -91,6 +91,19 @@ def noop_thread():
     return noop
 
 
+def process_frame(model, frame_queue, detections):
+    while True:
+        (index, frame) = frame_queue.get()
+        if index == None:
+            frame_queue.task_done()
+            return
+
+        results = model(frame, size=MODEL_TRAIN_SIZE)
+        formatted = [format_box(det, results.names) for det in results.xyxy[0]]
+        detections[str(index)] = formatted
+        frame_queue.task_done()
+
+
 def process(item, model, outer_bar):
     (name, size) = item
     (final, wip) = json_out_paths(name)
@@ -112,6 +125,10 @@ def process(item, model, outer_bar):
     bytes_per_frame = math.floor(size / float(frame_count))
     bytes_remain = size - frame_count*bytes_per_frame
 
+    frame_queue = queue.Queue(maxsize=4)
+    threading.Thread(
+        target=lambda: process_frame(model, frame_queue, detections)).start()
+
     json_saver = None
     last_save = time.time()
     for index, frame in frames:
@@ -119,9 +136,7 @@ def process(item, model, outer_bar):
         if str(index) in detections:
             continue
 
-        results = model(frame, size=MODEL_TRAIN_SIZE)
-        formatted = [format_box(det, results.names) for det in results.xyxy[0]]
-        detections[str(index)] = formatted
+        frame_queue.put((index, frame))
 
         if(time.time() - last_save >= SAVE_INTERVAL_SECONDS):
             if json_saver:
@@ -133,6 +148,9 @@ def process(item, model, outer_bar):
 
         if abort:
             break
+
+    frame_queue.put((None, None))
+    frame_queue.join()
 
     def finalizer():
         if json_saver:
