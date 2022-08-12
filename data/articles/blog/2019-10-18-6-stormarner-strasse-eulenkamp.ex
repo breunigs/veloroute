@@ -23,6 +23,8 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def links(_assigns) do
     [
+      {"Infoseite zum Lückenschluss", "August 2022",
+       "https://www.hamburg.de/wandsbek/strassenbaustellen/16400698/elsaesser-strasse-eulenkamp/"},
       {"Vergabe Umbau Elsässer Straße/Eulenkamp", "Juli 2022",
        "https://suche.transparenz.hamburg.de/dataset/8e17b800-5a37-4389-8f87-398e8a6d1dca"},
       {"Infoseite der Stadt zum Umbau", "veraltet, Archiv",

@@ -60,7 +60,24 @@ defmodule Data.Article.Static.RSWStade do
         to: "Hamburg Finkenwerder",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Stade → Finkenwerder (via Neugraben)",
-        videos: nil
+        videos: [
+          {"2022-08-09-stade-rev/GX014455", "00:00:20.854", "00:01:56.483"},
+          {"2022-08-09-stade-rev/GX014455", "00:02:18.038", :end},
+          {"2022-08-09-stade-rev/GX024455", :seamless, "00:01:56.416"},
+          {"2022-08-09-stade-rev/GX014456", "00:00:01.335", "00:03:49.663"},
+          {"2022-08-09-stade-rev/GX014457", "00:00:00.667", "00:01:53.080"},
+          {"2022-08-09-stade-rev/GX014457", "00:02:17.371", :end},
+          {"2022-08-09-stade-rev/GX014458", :start, :end},
+          {"2022-08-09-stade-rev/GX014459", :start, :end},
+          {"2022-08-09-stade-rev/GX014460", :start, "00:01:49.443"},
+          {"2022-08-09-stade-rev/GX014460", "00:02:02.589", :end},
+          {"2022-08-09-stade-rev/GX024460", :seamless, "00:02:46.233"},
+          {"2022-08-09-stade-rev/GX014462", "00:00:01.134", "00:00:07.841"},
+          {"2022-08-09-stade-rev/GX014464", "00:00:05.038", :end},
+          {"2022-08-09-stade-rev/GX014465", :start, "00:01:12.005"},
+          {"2022-08-09-stade-rev/GX014466", "00:00:02.502", :end},
+          {"2022-08-09-stade-rev/GX014467", :start, :end}
+        ]
       },
       %Video.Track{
         renderer: 3,
@@ -71,7 +88,18 @@ defmodule Data.Article.Static.RSWStade do
         to: "Buxtehude Bahnhof",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Finkenwerder → Buxtehude (via Neuenfelde)",
-        videos: nil
+        videos: [
+          {"2021-08-04-fr13-fr14/GX012514", :start, "00:00:11.511"},
+          {"2022-08-09-stade-rev/GX014448", "00:00:04.471", "00:01:07.434"},
+          {"2022-08-09-stade-rev/GX014448", "00:01:20.113", :end},
+          {"2022-08-09-stade-rev/GX014449", :start, "00:04:16.957"},
+          {"2022-08-09-stade-rev/GX014450", "00:00:00.200", "00:00:29.963"},
+          {"2022-08-09-stade-rev/GX014451", "00:00:00.200", "00:00:23.357"},
+          {"2022-08-09-stade-rev/GX014451", "00:00:32.599", :end},
+          {"2022-08-09-stade-rev/GX014452", :start, :end},
+          {"2022-08-09-stade-rev/GX014453", :start, :end},
+          {"2022-08-09-stade-rev/GX014454", :start, "00:00:30.230"}
+        ]
       },
       %Video.Track{
         renderer: 1,

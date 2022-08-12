@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute8 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Elbufer",
         direction: :forward,
         from: "Landungsbrücken",
@@ -26,13 +26,15 @@ defmodule Data.Article.Static.Freizeitroute8 do
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011836", :start, "00:00:10.911"},
           {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011416", "00:00:01.068", :end},
           {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011417", :start, "00:00:56.390"},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011417", "00:01:21.048", :end},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011418", "00:01:08.201", :end},
+          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011417", "00:01:21.048",
+           "00:04:35.242"},
+          {"2022-08-09-stade-rev/GX014442", "00:01:06.400", "00:02:03.023"},
+          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011418", "00:01:27.087", :end},
           {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX021418", :start, "00:00:43.477"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Elbufer",
         direction: :backward,
         from: "Wedel",
@@ -41,11 +43,9 @@ defmodule Data.Article.Static.Freizeitroute8 do
         text: "entlang des Elbufers zu den Landungsbrücken",
         videos: [
           {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011419", :start, :end},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX021419", :start, :end},
-          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011549", "00:00:00.767", "00:00:12.145"},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011418", "00:00:04.972",
-           "00:00:27.327"},
-          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011549", "00:01:04.097", :end},
+          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX021419", :start, "00:00:03.136"},
+          {"2022-08-09-stade-rev/GX014442", "00:02:10.631", "00:03:01.114"},
+          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011549", "00:01:08.936", :end},
           {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011550", :start, "00:04:44.384"},
           {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011510", "00:00:16.216", "00:00:27.427"},
           {"2021-08-03-fr14-noerdlich-kattwyk/GX012487", "00:00:28.529", :end}
