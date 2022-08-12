@@ -144,6 +144,15 @@ defmodule Video.TrimmedSource do
     end
   end
 
+  def extract(%__MODULE__{} = tsv, from, to, __options)
+      when is_integer(from) and is_integer(to) and from > to do
+    from_ts = Video.Timestamp.from_milliseconds(from)
+    to_ts = Video.Timestamp.from_milliseconds(to)
+
+    {:error,
+     "#{tsv.source} is supposed to be cut from #{from_ts} to #{to_ts} – which doesn't work, obviously"}
+  end
+
   defp calc_t(interp, prev, next),
     do: (interp - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
 
