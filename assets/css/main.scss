@@ -49,6 +49,10 @@ body {
   &.preview .mapboxgl-canvas-container {
     visibility: hidden;
   }
+
+  &.preview {
+    cursor: wait;
+  }
 }
 
 #videoOuter {
