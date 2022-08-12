@@ -122,6 +122,10 @@ function updateVideoElement() {
   console.debug('trying to play video for: ', state.videoHash)
   const path = `/videos-rendered/${state.videoHash}/`;
   updatePoster();
+  const preloads = `
+    <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream.m3u8">
+    <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream_0.m3u8">
+  `;
 
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
     console.debug('native hls, doing nothing?')
@@ -129,6 +133,7 @@ function updateVideoElement() {
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')
+    video.innerHTML = preloads;
     import('hls.js').then(Hls => {
       if (!Hls.isSupported()) return window.hls = false;
       console.debug('loading hls video stream');
@@ -197,6 +202,7 @@ function updateVideoElement() {
     <source src="${path}fallback.webm${time}" type="video/webm; codecs=av1">
     <source src="${path}fallback.mp4${time}" type="video/mp4; codecs=avc1.64001E">
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
+    ${preloads}
   `;
   video.innerHTML = innerHTML;
   video.autoplay = autoplayEnabled();
