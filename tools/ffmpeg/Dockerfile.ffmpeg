@@ -1,6 +1,6 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=p20220531
+ARG RAV1E_VERSION=p20220802
 ARG FFMPEG_VERSION=5.0
 ARG BLUR_VERSION=1f77efa7947bd25a0e2fe6a1b632c832b7c4f033
 
@@ -16,7 +16,8 @@ RUN  \
 RUN \
   cd /downloads/ && \
   wget https://github.com/xiph/rav1e/archive/refs/tags/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
-  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
+  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e && \
+  printf '%s\n%s\n' 'cargo-features = ["named-profiles"]' "$(cat rav1e/Cargo.toml)" > rav1e/Cargo.toml
 
 RUN \
   cd /downloads/ && \
