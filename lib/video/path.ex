@@ -1,5 +1,5 @@
 defmodule Video.Path do
-  import Video.Track, only: [valid_hash: 1]
+  import Guards
 
   @detections_suffix ".json.gz"
   @source_endings [".MP4", ".mkv"]

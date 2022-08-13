@@ -25,7 +25,7 @@ defmodule VelorouteWeb.Live.VideoState do
           direction: :forward | :backward
         }
 
-  import Video.Track, only: [valid_hash: 1]
+  import Guards
 
   @doc """
   Extracts all video related settings from the params hash and updates itself in

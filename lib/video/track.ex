@@ -41,8 +41,6 @@ defmodule Video.Track do
   @enforce_keys @known_params -- [:via]
   defstruct @known_params
 
-  defguard valid_hash(str) when is_binary(str) and byte_size(str) == 32
-
   @doc """
   Calculate the hash for the given video track
   """

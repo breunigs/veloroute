@@ -5,7 +5,7 @@ defmodule VelorouteWeb.ImageExtractController do
   @extract_from_file "stream_0.m4s"
   @fallback_image_path "/images/video_poster.svg"
 
-  import Video.Track, only: [valid_hash: 1]
+  import Guards
 
   def image(conn, %{"hash" => hash, "timestamp" => ts}) when valid_hash(hash) do
     with {ts_in_ms, ""} <- Integer.parse(ts),

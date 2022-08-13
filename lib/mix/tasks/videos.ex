@@ -133,6 +133,8 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   use Mix.Task
   @requirements ["app.start"]
 
+  import Guards
+
   @video_player [
     "mpv",
     "--pause",
@@ -148,10 +150,20 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   @shortdoc "Print commands to preview videos that are still missing. Set BLUR=1 to include blurs."
   def run(args) do
     Video.Dir.must_exist!()
-    if args == [], do: list(), else: preview(hd(args))
+    if args == [], do: list(), else: preview(args)
   end
 
   defp list do
+    IO.puts("""
+    You can specify not-yet-generated videos by name and index. For example, this will preview the
+    first track of the given article:
+    BLUR=1 MIX_QUIET=1 mix velo.videos.preview Data.Article.Static.Freizeitroute11 0 | #{Util.cli_printer(@video_player)}
+
+    Below any generated, but not rendered videos will be shown. If there are none, try running:
+    mix velo.videos.generate new
+
+    """)
+
     Video.Rendered.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
@@ -163,16 +175,50 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end)
   end
 
-  defp preview(hash) do
+  defp preview([hash | _tail]) when valid_hash(hash) do
     rendered = Video.Rendered.find_by_hash(hash)
 
     if rendered == nil do
       IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
     else
-      blur = System.get_env("BLUR", nil) == "1"
-      cmd = Video.Renderer.preview_cmd(rendered, blur)
-      Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd, name: "preview #{hash}")
+      stream_video(rendered)
     end
+  end
+
+  defp preview(["Data.Article." <> _rest = in_art, in_index | _tail] = args) do
+    with mod = String.to_atom("Elixir." <> in_art),
+         {:module, art} <- Code.ensure_compiled(mod),
+         {index, ""} when index >= 0 <- Integer.parse(in_index),
+         track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index) do
+      track
+      |> Video.Rendered.dynamic_compile()
+      |> stream_video()
+    else
+      error ->
+        IO.puts(
+          :stderr,
+          "failed to resolve args: #{inspect(args)}. One of the parsing steps returned: #{inspect(error)}"
+        )
+
+        exit({:shutdown, 1})
+    end
+  end
+
+  defp preview(args) do
+    IO.puts(
+      :stderr,
+      "cannot find video to review from params. Expected a [video_hash], or [module, index]. Got: #{inspect(args)}"
+    )
+
+    exit({:shutdown, 1})
+  end
+
+  defp stream_video(rendered) do
+    blur = System.get_env("BLUR", nil) == "1"
+    cmd = Video.Renderer.preview_cmd(rendered, blur)
+    IO.puts(:stderr, "previewing #{rendered.hash()}: #{rendered.name()}")
+
+    Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd, name: "preview #{rendered.hash()}")
   end
 end
 
