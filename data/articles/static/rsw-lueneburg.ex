@@ -61,7 +61,33 @@ defmodule Data.Article.Static.RSWLueneburg do
         to: "Hamburg Elbbrücken",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Lüneburg → HH-Elbbrücken",
-        videos: nil
+        videos: [
+          {"2022-08-11-rsw-luene-rev/GX014483", "00:00:10.244", :end},
+          {"2022-08-11-rsw-luene-rev/GX014484", "00:00:00.734", :end},
+          {"2022-08-11-rsw-luene-rev/GX024484", :seamless, "00:00:25.859"},
+          {"2022-08-11-rsw-luene-rev/GX014486", :start, :end},
+          {"2022-08-11-rsw-luene-rev/GX014487", :start, :end},
+          {"2022-08-11-rsw-luene-rev/GX014488", "00:00:01.635", "00:00:18.285"},
+          {"2022-08-11-rsw-luene-rev/GX014491", "00:00:01.301", "00:02:16.837"},
+          {"2022-08-11-rsw-luene-rev/GX014491", "00:02:28.715", :end},
+          {"2022-08-11-rsw-luene-rev/GX024491", :seamless, "00:00:39.006"},
+          {"2022-08-11-rsw-luene-rev/GX014492", "00:00:03.837", :end},
+          {"2022-08-11-rsw-luene-rev/GX014493", :start, "00:01:17.678"},
+          {"2022-08-11-rsw-luene-rev/GX014494", "00:00:11.678", :end},
+          {"2022-08-11-rsw-luene-rev/GX014495", :start, "00:00:14.081"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013674", "00:00:06.573", :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013675", :start, :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013676", :start, "00:00:08.141"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:04:09.916", :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX023687", :seamless, :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", :start, "00:00:15.716"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", "00:00:20.320", :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013689", "00:00:01.902", :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013690", :start, :end},
+          {"2021-12-23-veddel-und-so/GX013061", :start, :end},
+          {"2021-12-23-veddel-und-so/GX013062", :start, :end},
+          {"2021-12-23-veddel-und-so/GX013063", :start, "00:00:15.849"}
+        ]
       }
     ]
 
