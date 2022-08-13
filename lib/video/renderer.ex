@@ -1,14 +1,25 @@
 defmodule Video.Renderer do
   @min_renderer_version 3
 
+  import Guards
+
   @doc """
   Returns the commands to preview the given video(s).
   """
-  def preview_cmd(rendered, blur) do
+  def preview_cmd(rendered, blur, start_from \\ nil)
+      when is_nil(start_from) or valid_timestamp(start_from) do
     ensure_min_version(rendered)
 
     blurred = if blur, do: blurs(rendered), else: settb(rendered)
     filter = Enum.join(blurred ++ xfades(rendered), ";")
+
+    filter =
+      if start_from do
+        start_from = "#{Video.Timestamp.in_milliseconds(start_from)}ms"
+        filter <> "[trim];[trim]trim=start=#{start_from}"
+      else
+        filter
+      end
 
     ["nice", "-n15", "ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
       inputs(rendered) ++

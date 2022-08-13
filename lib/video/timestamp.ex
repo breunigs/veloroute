@@ -3,14 +3,12 @@ defmodule Video.Timestamp do
   @minute_in_ms 60 * @second_in_ms
   @hour_in_ms 60 * @minute_in_ms
 
-  @expected_length 12
-
-  defguardp looks_valid(str) when is_binary(str) and byte_size(str) == @expected_length
+  import Guards
 
   # 12*8=96
   @type t :: <<_::96>>
   def valid?(str) do
-    looks_valid(str) && Regex.match?(~r/^\d{2}:\d{2}:\d{2}\.\d{3}$/, str)
+    valid_timestamp(str) && Regex.match?(~r/^\d{2}:\d{2}:\d{2}\.\d{3}$/, str)
   end
 
   def zero(), do: "00:00:00.000"
@@ -24,7 +22,7 @@ defmodule Video.Timestamp do
       else: "#{minutes}:#{pad_left(seconds)}"
   end
 
-  def as_html(timestamp) when looks_valid(timestamp) do
+  def as_html(timestamp) when valid_timestamp(timestamp) do
     timestamp |> in_milliseconds() |> as_html()
   end
 
@@ -61,7 +59,7 @@ defmodule Video.Timestamp do
     1337
   """
   @spec in_milliseconds(t()) :: integer()
-  def in_milliseconds(timestamp) when looks_valid(timestamp) do
+  def in_milliseconds(timestamp) when valid_timestamp(timestamp) do
     <<hours::binary-size(2), ":", minutes::binary-size(2), ":", seconds::binary-size(2), ".",
       milliseconds::binary-size(3)>> = timestamp
 
