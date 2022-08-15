@@ -175,8 +175,9 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
       window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
-      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
+      window.hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
+      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       updatePlaypause();
@@ -272,42 +273,44 @@ const codecTranslate = {
 function updateQualityChooser() {
   if (!window.hls) return hideQualityChooser();
 
-  const current = window.hls.currentLevel;
-  const next = window.hls.loadLevel;
-  const auto = window.hls.autoLevelEnabled;
+  requestAnimationFrame(() => {
+    const current = window.hls.currentLevel;
+    const next = window.hls.loadLevel;
+    const auto = window.hls.autoLevelEnabled;
 
-  let duplicates = {};
-  let displayCodec = false;
-  for (let i = 0; i < window.hls.levels.length; i++) {
-    const h = window.hls.levels[i].height;
-    if (duplicates[h]) {
-      displayCodec = true;
-      break
+    let duplicates = {};
+    let displayCodec = false;
+    for (let i = 0; i < window.hls.levels.length; i++) {
+      const h = window.hls.levels[i].height;
+      if (duplicates[h]) {
+        displayCodec = true;
+        break
+      }
+      duplicates[h] = true;
     }
-    duplicates[h] = true;
-  }
 
-  let choosers = "";
-  for (let i = window.hls.levels.length - 1; i >= 0; i--) {
-    let classes = "eye"
-    if (current == i) classes += " active";
-    if (next == i) classes += " next";
-    const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
-    const codecSet = window.hls.levels[i].codecSet;
-    const codec = codecTranslate[codecSet] || {
-      name: codecSet,
-      desc: "Unbekannt"
-    };
-    let name = `${window.hls.levels[i].height}p`;
-    const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
+    let choosers = "";
+    for (let i = window.hls.levels.length - 1; i >= 0; i--) {
+      let classes = "eye"
+      if (current == i) classes += " active";
+      if (next == i) classes += " next";
+      const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
+      const codecSet = window.hls.levels[i].codecSet;
+      const codec = codecTranslate[codecSet] || {
+        name: codecSet,
+        desc: "Unbekannt"
+      };
+      let name = `${window.hls.levels[i].height}p`;
+      const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
 
-    if (displayCodec) name += ` <small>${codec.name}</small>`
-    choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
-  }
-  choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
+      if (displayCodec) name += ` <small>${codec.name}</small>`
+      choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
+    }
+    choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
 
-  videoQuality.style.display = 'block';
-  videoQualityOptions.innerHTML = choosers;
+    videoQuality.style.display = 'block';
+    videoQualityOptions.innerHTML = choosers;
+  });
 }
 
 function hideQualityChooser() {
