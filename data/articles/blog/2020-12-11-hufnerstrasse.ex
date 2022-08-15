@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.Hufnerstrasse do
   def updated_at(), do: ~D[2021-11-30]
   def title(), do: "Hufnerstraße (Veloroute 5)"
 
-  def start(), do: ~d[2022Q2]
-  def stop(), do: ~d[2023-08-09]
+  def start(), do: ~d[2022-08-18]
+  def stop(), do: ~d[2023-08-30]
+  def construction_site_id_hh(), do: [101_211, 101_225]
 
   def type(), do: :construction
 
