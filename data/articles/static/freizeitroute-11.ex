@@ -126,7 +126,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "2. Grüner Ring",
         direction: :backward,
         from: "Rüschpark",
@@ -138,11 +138,12 @@ defmodule Data.Article.Static.Freizeitroute11 do
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", :start, "00:00:03.270"},
           {"2021-08-14-fr13-und-11alt/GX012639", "00:01:48.108", "00:02:05.225"},
           {"2021-08-14-fr13-und-11alt/GX012658", "00:00:00.367", "00:00:31.532"},
-          {"2021-08-04-fr13-fr14/GX012514", "00:00:11.078", "00:00:18.552"},
-          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", "00:00:09.109", "00:00:09.843"},
+          {"2021-08-04-fr13-fr14/GX012514", "00:00:11.078", "00:00:18.318"},
+          {"2021-09-18-rsw-stade/GX012828x.MP4.time_lapse.mkv", "00:00:15.482", "00:00:16.650"},
+          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", "00:00:09.510", "00:00:09.810"},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011560", "00:00:06.440", :end},
-          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", :start, "00:00:17.284"},
-          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", "00:01:26.453", :end},
+          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", :start, "00:00:47.247"},
+          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011561", "00:02:02.389", :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011562", :start, "00:02:03.323"},
           {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011542", "00:00:00.701", "00:00:24.791"},
           {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011540", "00:01:32.693", "00:02:56.209"},
@@ -171,7 +172,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011586", :start, "00:00:35.636"},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011586", "00:01:19.313", :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011587", :start, :end},
-          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX021587", :start, :end},
+          {"2021-06-01-gruener-ring-gg-uhrzeiger/GX021587", :seamless, :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011588", :start, :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011589", :start, :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011590", :start, "00:02:42.596"},
@@ -213,7 +214,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011622", :start, :end},
           {"2021-08-04-fr13-fr14/GX012509", :start, :end},
           {"2021-08-04-fr13-fr14/GX012510", :start, "00:00:06.840"},
-          {"2021-08-04-fr13-fr14/GX012512", :start, :end}
+          {"2022-08-09-stade-rev/GX014446", :start, :end}
         ]
       }
     ]
