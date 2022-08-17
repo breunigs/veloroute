@@ -302,10 +302,9 @@ defmodule Video.Renderer do
   # segments. https://ffmpeg.org/ffmpeg-formats.html#Options-8
   defp hls_time, do: 2
 
-  # GOP=group of pictures, essentially when to insert a keyframe. The script sets
-  # the min/max for this to the same value, i.e. there will be a keyframe exactly
-  # every GOP_SIZE. Ideally HLS_TIME * FPS = GOP_SIZE.
-  # https://video.stackexchange.com/a/24684
+  # GOP=group of pictures, essentially when to insert a keyframe. The script
+  # sets the max for this, i.e. there will be a keyframe at most every GOP_SIZE.
+  # Ideally HLS_TIME * FPS = GOP_SIZE. https://video.stackexchange.com/a/24684
   defp gop_size, do: round(hls_time() * Video.Source.fps())
 
   # The average bitrate is given in the variants above. This defined
@@ -472,7 +471,7 @@ defmodule Video.Renderer do
       -master_pl_name stream.m3u8
       -hls_flags single_file+independent_segments
       -hls_list_size 0] ++
-      ["-keyint_min", gop_size(), "-g", gop_size(), "-hls_time", hls_time()] ++
+      ["-g", gop_size(), "-hls_time", hls_time()] ++
       variant_flags() ++ ["-var_stream_map", stream_map, "#{tmp_dir}/stream_%v.m3u8"]
   end
 end
