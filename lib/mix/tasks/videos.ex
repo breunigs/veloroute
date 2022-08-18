@@ -15,10 +15,10 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     existing =
       Video.Rendered.all()
       |> Enum.filter(& &1.rendered?)
-      |> Enum.map(&{&1.sources(), true})
+      |> Enum.map(&{{&1.renderer(), &1.sources()}, true})
       |> Enum.into(%{})
 
-    generate(fn track -> !Map.has_key?(existing, track.videos) end)
+    generate(fn track -> !Map.has_key?(existing, {track.renderer, track.videos}) end)
   end
 
   def run(_args) do
