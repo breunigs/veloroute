@@ -16,7 +16,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Pinneberg 5",
         direction: :forward,
         from: "Pinneberg Zentrum",

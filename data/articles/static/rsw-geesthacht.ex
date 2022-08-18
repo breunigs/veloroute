@@ -50,7 +50,21 @@ defmodule Data.Article.Static.RSWGeesthacht do
         to: "Hamburg Tiefstack",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Geesthacht → HH-Tiefstack",
-        videos: nil
+        videos: [
+          {"2022-08-14-geesthacht-rev/GX014557", "00:00:56.590", "00:01:00.994"},
+          {"2022-08-14-geesthacht-rev/GX014560", :start, "00:00:08.775"},
+          {"2022-08-14-geesthacht-rev/GX014560", "00:00:14.314", "00:00:38.238"},
+          {"2022-08-14-geesthacht-rev/GX014560", "00:00:42.509", "00:03:25.906"},
+          {"2022-08-14-geesthacht-rev/GX014562", "00:00:01.635", "00:01:34.895"},
+          {"2021-09-19-rsw-geesthacht-velo9/GX012906", "00:02:16.737", "00:03:02.516"},
+          {"2022-08-14-geesthacht-rev/GX014565", "00:02:09.062", :end},
+          {"2022-08-14-geesthacht-rev/GX014566", :start, :end},
+          {"2022-08-14-geesthacht-rev/GX014567", :start, "00:00:24.725"},
+          {"2022-08-14-geesthacht-rev/GX014567", "00:00:35.602", "00:00:46.146"},
+          {"2022-08-14-geesthacht-rev/GX014569", "00:00:00.367", :end},
+          {"2022-08-14-geesthacht-rev/GX014570", :start, :end},
+          {"2022-08-14-geesthacht-rev/GX014571", :start, "00:00:19.753"}
+        ]
       }
     ]
 

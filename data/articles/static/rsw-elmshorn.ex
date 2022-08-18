@@ -58,7 +58,25 @@ defmodule Data.Article.Static.RSWElmshorn do
         to: "Hamburg Diebsteich",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Elmshorn → HH-Diebsteich",
-        videos: nil
+        videos: [
+          {"2022-08-13-rsw-elmshorn-rev/GX014526", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014527", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014528", :start, "00:00:37.037"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014530", "00:00:01.101", "00:00:19.319"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:01.735", "00:00:31.398"},
+          {"2022-02-27-pinneberg/GX013243", "00:00:01.635", "00:00:19.319"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:47.047", "00:03:43.523"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:00:01.368", "00:00:50.584"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:01:02.863", "00:03:18.331"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014534", "00:00:01.935", "00:03:08.922"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014535", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014536", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014537", :start, "00:01:16.076"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014539", "00:00:00.968", :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014540", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014541", :start, :end},
+          {"2022-08-13-rsw-elmshorn-rev/GX014542", :start, "00:00:36.336"}
+        ]
       },
       %Video.Track{
         renderer: 1,
