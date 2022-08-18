@@ -53,8 +53,6 @@ defmodule Video.RendererTest do
              "single_file+independent_segments",
              "-hls_list_size",
              "0",
-             "-keyint_min",
-             60,
              "-g",
              60,
              "-hls_time",
