@@ -223,7 +223,7 @@ defmodule Video.Renderer do
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
       from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
-      blur_frame_skip = if from == 0, do: 0, else: ceil(fps(path) * from / 1000.0)
+      blur_frame_skip = if from == 0, do: 0, else: round(fps(path) * from / 1000.0)
       "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},settb=AVTB[blur#{idx}]"
     end)
   end
