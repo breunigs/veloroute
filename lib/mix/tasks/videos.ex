@@ -4,6 +4,7 @@ end
 
 defmodule Mix.Tasks.Velo.Videos.Generate do
   use Mix.Task
+  import Guards
 
   @shortdoc "Finds videos in routes and articles and generates their metadata"
   def run(["all"]) do
@@ -35,14 +36,29 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     |> Stream.filter(filter)
     |> Stream.uniq()
     |> Tqdm.tqdm(description: "generating")
-    |> Parallel.map(&Video.Rendered.save_from_track/1)
-    |> Enum.map(fn
-      rendered when is_atom(rendered) ->
-        rendered
+    |> Parallel.map(fn track ->
+      banner = """
 
-      broken ->
-        IO.puts(:stderr, inspect(broken))
-        nil
+      ###########################################################
+      # #{track.text} / #{track.direction}
+      # from #{track.parent_ref}
+      ##########################################################
+      """
+
+      Video.Rendered.save_from_track(track)
+      |> case do
+        rendered when is_module(rendered) ->
+          rendered
+
+        {:error, reason} ->
+          IO.puts(:stderr, banner)
+          IO.puts(:stderr, "Failed to generate:\n#{reason}")
+
+        other ->
+          IO.puts(:stderr, banner)
+          IO.puts(:stderr, "Failed to generate, got unexpected output:\n#{inspect(other)}")
+          nil
+      end
     end)
     |> tap(fn _ -> Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"]) end)
   end

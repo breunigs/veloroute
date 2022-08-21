@@ -64,7 +64,7 @@ defmodule Video.Track do
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
-  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], video_metadata()}
+  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], video_metadata()} | {:error, binary()}
 
   # Experimentally determined time to add between two consecutive videos to
   # ensure that there's no long term drift. Not sure why it is needed, since
@@ -113,47 +113,69 @@ defmodule Video.Track do
     hsh = :crypto.hash_init(:md5)
     fade_in_ms = round(default_fade() * 1000)
 
-    {_dur, rev_coords, metadata, hsh} =
-      Enum.reduce(videos, {0, [], [], hsh}, fn {file, from, to},
-                                               {dur, rev_coords, metadata, hsh} ->
-        {dur, rev_coords, hsh} =
-          cond do
-            rev_coords == [] ->
-              {dur, rev_coords, hsh}
+    joined =
+      Enum.reduce(videos, {0, [], [], hsh}, fn
+        _any, {:error, reason} ->
+          {:error, reason}
 
-            from == :seamless ->
-              # we assume that the previous :end inserted an extrapolated
-              # coordinate which won't get removed since there's no fade, so
-              # let's just skip it.
-              {dur, tl(rev_coords), hsh}
+        {file, from, to}, acc ->
+          render_segment(fade_in_ms, tsvs[file], from, to, acc)
 
-            true ->
-              {
-                dur - fade_in_ms,
-                Enum.drop_while(rev_coords, &(&1.time_offset_ms >= dur - fade_in_ms)),
-                :crypto.hash_update(hsh, "fade #{fade_in_ms}")
-              }
-          end
-
-        tsv = Video.TrimmedSource.extract(tsvs[file], from, to, extrapolate_end: true)
-        from_ms = tsv.coord_from.time_offset_ms
-        to_ms = tsv.coord_to.time_offset_ms
-
-        rev_coords =
-          Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
-            new = Map.put(new, :time_offset_ms, new.time_offset_ms - from_ms + dur)
-            [new | rev_coords]
-          end)
-
-        metadata = [{dur, tsv_date(tsv)} | metadata]
-
-        # unclear why half_frame_duration_ms() is needed
-        dur = dur + to_ms - from_ms + half_frame_duration_ms()
-        {dur, rev_coords, metadata, :crypto.hash_update(hsh, tsv.hash_ident)}
+        other, _acc ->
+          {:error,
+           """
+           Unexpected video segment definition. Expected a triple of
+             {video_name, start_time, end_time}
+           where
+             video_name = relative path to video (may omit .MP4 file endings)
+             start_time = :start or :seamless or a timestamp like hh:mm:ss.ms (e.g. 00:00:45.781)
+             end_time   = :end or a timestamp
+           but got
+             #{inspect(other)}
+           """}
       end)
 
-    hsh = hsh |> :crypto.hash_final() |> Base.encode16(case: :lower)
-    {hsh, Enum.reverse(rev_coords), reverse_compact_metadata(metadata)}
+    with {_dur, rev_coords, metadata, hsh} <- joined do
+      hsh = hsh |> :crypto.hash_final() |> Base.encode16(case: :lower)
+      {hsh, Enum.reverse(rev_coords), reverse_compact_metadata(metadata)}
+    end
+  end
+
+  defp render_segment(fade_in_ms, tsv, from, to, {dur, rev_coords, metadata, hsh}) do
+    {dur, rev_coords, hsh} =
+      cond do
+        rev_coords == [] ->
+          {dur, rev_coords, hsh}
+
+        from == :seamless ->
+          # we assume that the previous :end inserted an extrapolated
+          # coordinate which won't get removed since there's no fade, so
+          # let's just skip it.
+          {dur, tl(rev_coords), hsh}
+
+        true ->
+          {
+            dur - fade_in_ms,
+            Enum.drop_while(rev_coords, &(&1.time_offset_ms >= dur - fade_in_ms)),
+            :crypto.hash_update(hsh, "fade #{fade_in_ms}")
+          }
+      end
+
+    tsv = Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true)
+    from_ms = tsv.coord_from.time_offset_ms
+    to_ms = tsv.coord_to.time_offset_ms
+
+    rev_coords =
+      Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
+        new = Map.put(new, :time_offset_ms, new.time_offset_ms - from_ms + dur)
+        [new | rev_coords]
+      end)
+
+    metadata = [{dur, tsv_date(tsv)} | metadata]
+
+    # unclear why half_frame_duration_ms() is needed
+    dur = dur + to_ms - from_ms + half_frame_duration_ms()
+    {dur, rev_coords, metadata, :crypto.hash_update(hsh, tsv.hash_ident)}
   end
 
   @spec fade(t() | pos_integer()) :: fade()
