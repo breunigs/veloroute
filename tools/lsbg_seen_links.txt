@@ -577,3 +577,6 @@
 - "/contentblob/16395972/2127019aa9f8bb742b3e131fb456d291/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-abgestimmte-planung-plan.pdf"
 '2022-08-10':
 - "/contentblob/16405298/d7a07f96955a457570f307031eb44b84/data/von-scheliha-strasse-und-wilhelm-osterhold-stieg-08-22-bis-12-22.pdf"
+'2022-08-22':
+- "/contentblob/16425964/1f3f159844143ed26f6da494aa77e6f2/data/neuer-inhalt.pdf"
+- "/contentblob/16430294/af91e4967e7265c1e00390fa7e720a43/data/winterhuder-weg-09-22-bis-10-22-stand-august-2022.pdf"

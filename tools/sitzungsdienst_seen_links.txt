@@ -1008,3 +1008,7 @@
 '2022-08-10':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013073
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012005
+'2022-08-17':
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012029
+'2022-08-22':
+- https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013004
