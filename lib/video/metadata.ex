@@ -1,11 +1,17 @@
 defmodule Video.Metadata do
   use Agent
 
+  @type t :: %Video.Metadata{duration: float(), fps: float(), time_base: float()}
+  @typep state :: %{optional(binary) => t()}
+
+  @enforce_keys [:duration, :fps, :time_base]
+  defstruct @enforce_keys
+
   def start_link() do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
-  @spec for(binary) :: %{duration: float(), fps: float()} | nil
+  @spec for(binary) :: {:ok, t()} | {:error, binary()}
   def for(video_path) when is_binary(video_path) do
     start_link()
     Agent.get_and_update(__MODULE__, &video_info(&1, video_path), :infinity)
@@ -15,6 +21,14 @@ defmodule Video.Metadata do
   def can_use?(codec) do
     start_link()
     Agent.get_and_update(__MODULE__, &codec_info(&1, codec), :infinity)
+  end
+
+  def fake(path, val) do
+    if Mix.env() != :test do
+      raise "can only use fake for testing"
+    end
+
+    Agent.update(__MODULE__, fn state -> Map.put(state, path, val) end, :infinity)
   end
 
   defp codec_info(state, codec) when is_map_key(state, codec),
@@ -33,17 +47,18 @@ defmodule Video.Metadata do
     {can_use, Map.put(state, codec, can_use)}
   end
 
+  @spec video_info(state(), binary()) :: {{:ok, t()} | {:error, binary()}, state}
   defp video_info(state, video_path) when is_map_key(state, video_path),
-    do: {state[video_path], state}
+    do: {{:ok, state[video_path]}, state}
 
   defp video_info(state, video_path) do
     case run(video_path) do
       {:ok, val} ->
-        {val, Map.put(state, video_path, val)}
+        {{:ok, val}, Map.put(state, video_path, val)}
 
       {:error, err} ->
         IO.puts(:stderr, err)
-        {nil, state}
+        {{:error, err}, state}
     end
   end
 
@@ -52,23 +67,25 @@ defmodule Video.Metadata do
       "ffprobe",
       "-hide_banner",
       "-of",
-      "compact=p=0",
+      "default=noprint_wrappers=1",
       "-select_streams",
-      "0",
+      "v:0",
       "-show_entries",
-      "stream=r_frame_rate:format=duration",
+      "stream=r_frame_rate,time_base:format=duration",
       video_path
     ]
 
     Util.cmd2(cli, stdout: "", stderr: "")
     |> case do
       %{result: :ok, stdout: out} ->
-        [_, num, denom] = Regex.run(~r/^r_frame_rate=(\d+)\/(\d+)$/m, out)
+        [_, fr_num, fr_denom] = Regex.run(~r/^r_frame_rate=(\d+)\/(\d+)$/m, out)
+        [_, tb_num, tb_denom] = Regex.run(~r/^time_base=(\d+)\/(\d+)$/m, out)
         [_, dur] = Regex.run(~r/^duration=([0-9\.]+)$/m, out)
 
         {:ok,
-         %{
-           fps: String.to_integer(num) / String.to_integer(denom),
+         %Video.Metadata{
+           fps: String.to_integer(fr_num) / String.to_integer(fr_denom),
+           time_base: String.to_integer(tb_num) / String.to_integer(tb_denom),
            duration: String.to_float(dur)
          }}
 

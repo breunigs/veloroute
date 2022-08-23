@@ -223,9 +223,31 @@ defmodule Video.Renderer do
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
       from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
-      blur_frame_skip = if from == 0, do: 0, else: round(fps(path) * from / 1000.0)
+      blur_frame_skip = blur_frame_skip(path, from)
       "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},settb=AVTB[blur#{idx}]"
     end)
+  end
+
+  defp blur_frame_skip(_path, 0), do: 0
+
+  defp blur_frame_skip(path, from) when is_integer(from) do
+    from_in_s = from / 1000.0
+    meta = metadata(path)
+    frame_no = round(meta.fps * from_in_s)
+    # The timestamps displayed in the GUIs are usually up to milliseconds, e.g.
+    # 00:00:36.904. This is also the variant specified when creating video
+    # tracks within the project. Depending on container formats, this timestamp
+    # might be stored more accurately, e.g. 00:00:36.903533. The accuracy is
+    # given by the time base.
+    #
+    # This creates an off-by-one when the more accurate value is lower than the
+    # variant shown to the user. ffmpeg will not pick the "closest" timestamp,
+    # but rather the one that satisfies ">=". Thus if we detect that the
+    # presentation timestamp (PTS) in time base accuracy for our calculated
+    # frame is less than what we specified originally, we need to pick the next
+    # frame to match ffmpeg behaviour.
+    frame_pts = round(frame_no / meta.fps / meta.time_base) * meta.time_base
+    if frame_pts < from_in_s, do: frame_no + 1, else: frame_no
   end
 
   # sets the timebase for all input videos (e.g. [0]) and outputs them as blurs
@@ -294,9 +316,17 @@ defmodule Video.Renderer do
     end
   end
 
-  defp duration_in_s(path), do: (path |> Video.Path.source() |> Video.Metadata.for())[:duration]
+  defp duration_in_s(path), do: metadata(path).duration
 
-  defp fps(path), do: (path |> Video.Path.source() |> Video.Metadata.for())[:fps]
+  defp metadata(path) do
+    path
+    |> Video.Path.source()
+    |> Video.Metadata.for()
+    |> case do
+      {:ok, meta} -> meta
+      {:error, error} -> raise(error)
+    end
+  end
 
   # length of a single segment in seconds. Quality usually switches between
   # segments. https://ffmpeg.org/ffmpeg-formats.html#Options-8

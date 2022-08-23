@@ -21,19 +21,19 @@ defmodule Video.RendererTest do
              "auto",
              "-re",
              "-ss",
-             "00:00:00.000",
+             "00:00:58.692",
              "-to",
-             "00:00:00.456",
+             "00:00:59.660",
              "-i",
              "videos/source/1.mp4",
              "-ss",
-             "00:00:00.000",
+             "00:00:36.904",
              "-to",
-             "00:00:00.333",
+             "00:00:37.904",
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.18906639973306638,split=5[out0][out1][out2][out3][out4]",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.7010663997330664,split=5[out0][out1][out2][out3][out4]",
              "-an",
              "-f",
              "hls",
@@ -182,19 +182,19 @@ defmodule Video.RendererTest do
              "auto",
              "-re",
              "-ss",
-             "00:00:00.000",
+             "00:00:58.692",
              "-to",
-             "00:00:00.456",
+             "00:00:59.660",
              "-i",
              "videos/source/1.mp4",
              "-ss",
-             "00:00:00.000",
+             "00:00:36.904",
              "-to",
-             "00:00:00.333",
+             "00:00:37.904",
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|0,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|0,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.18906639973306638",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.7010663997330664",
              "-pix_fmt",
              "yuv420p",
              "-s",
@@ -227,11 +227,19 @@ defmodule Video.RendererTest do
     def metadata(), do: [{0, "Januar 2022"}]
 
     @impl Video.Rendered
-    def sources(),
-      do: [
-        {"1.mp4", "00:00:00.000", "00:00:00.456"},
-        {"2.mp4", "00:00:00.000", "00:00:00.333"}
+    def sources() do
+      # fake the metadata entries for these non-existing files
+      prefix = File.cwd!() <> "/videos/source/"
+      default_meta = %Video.Metadata{duration: 60.0, fps: 30000 / 1001, time_base: 1 / 90000}
+      Video.Metadata.start_link()
+      Video.Metadata.fake(prefix <> "1.mp4", default_meta)
+      Video.Metadata.fake(prefix <> "2.mp4", %{default_meta | time_base: 1 / 1000})
+
+      [
+        {"1.mp4", "00:00:58.692", "00:00:59.660"},
+        {"2.mp4", "00:00:36.904", "00:00:37.904"}
       ]
+    end
 
     @polyline_interval_ms 100
     @polyline_precision 6
