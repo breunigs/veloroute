@@ -48,7 +48,25 @@ defmodule Data.Article.Static.RSWTostedt do
         to: "Harburg Bahnhof",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Tostedt → Harburg Bahnhof",
-        videos: nil
+        videos: [
+          {"2022-08-20-tostedt-rev/GX014595", "00:00:01.635", "00:02:37.257"},
+          {"2022-08-20-tostedt-rev/GX014597", "00:00:00.300", "00:00:30.530"},
+          {"2022-08-20-tostedt-rev/GX014598", "00:00:00.968", :end},
+          {"2022-08-20-tostedt-rev/GX014599", :start, :end},
+          {"2022-08-20-tostedt-rev/GX014600", :start, "00:03:13.326"},
+          {"2022-08-20-tostedt-rev/GX014601", :start, :end},
+          {"2022-08-20-tostedt-rev/GX014602", :start, "00:00:27.027"},
+          {"2022-08-20-tostedt-rev/GX014605", "00:00:00.934", "00:03:24.304"},
+          {"2022-08-20-tostedt-rev/GX014608", "00:00:02.636", :end},
+          {"2022-08-20-tostedt-rev/GX014609", "00:00:02.502", :end},
+          {"2022-08-20-tostedt-rev/GX024609", :seamless, :end},
+          {"2022-08-20-tostedt-rev/GX014610", :start, :end},
+          {"2022-08-20-tostedt-rev/GX014611", :start, "00:00:50.751"},
+          {"2022-08-20-tostedt-rev/GX014612", "00:00:00.367", :end},
+          {"2022-08-20-tostedt-rev/GX014613", :start, :end},
+          {"2022-08-20-tostedt-rev/GX014614", :start, :end},
+          {"2022-08-20-tostedt-rev/GX014615", :start, :end}
+        ]
       }
     ]
 

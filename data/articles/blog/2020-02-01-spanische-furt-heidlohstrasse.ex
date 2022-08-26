@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
 
   def links(_assigns) do
     [
+      {"Zeitplanung Abschnitt Spanische Furt/Graf-Johann-Weg", "August 2022",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007760"},
       {"Vergabeunterlagen Umbau", "Juli 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ef58f192-1b19-40b5-94f4-a411a16ee71b/details"},
       {"Pressemitteilung zu Tempo-30 Heidlohstraße",

@@ -1012,3 +1012,6 @@
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012029
 '2022-08-22':
 - https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013004
+'2022-08-24':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007760
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007759
