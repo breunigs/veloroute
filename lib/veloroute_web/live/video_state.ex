@@ -252,6 +252,7 @@ defmodule VelorouteWeb.Live.VideoState do
     metadata_now = Video.Rendered.metadata_timestamp(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
+    Video.DiskPreloader.warm(video.hash(), start_from)
 
     [
       video: state,

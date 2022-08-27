@@ -10,13 +10,13 @@ defmodule M3U8.Utils do
   def byte_range_for(tokens, timestamp) when valid_timestamp(timestamp),
     do: byte_range_for(tokens, Video.Timestamp.in_milliseconds(timestamp))
 
-  def byte_range_for(tokens, timestamp) when is_integer(timestamp) and timestamp >= 0 do
+  def byte_range_for(tokens, timestamp_ms) when is_integer(timestamp_ms) and timestamp_ms >= 0 do
     tokens
     |> byte_ranges()
     |> Enum.into(%{}, fn {url, ranges} ->
       {url,
        Enum.find_value(ranges, fn %{byte: byte, timestamp: ts} ->
-         if timestamp in ts, do: byte
+         if timestamp_ms in ts, do: byte
        end)}
     end)
   end

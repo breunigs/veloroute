@@ -9,8 +9,9 @@ defmodule M3U8.Tokenizer do
 
   @spec read_file(binary()) :: {:ok, [valid_token()]} | {:error, binary()}
   def read_file(file) do
-    with {:ok, data} <- File.read(file) do
-      {:ok, read(data)}
+    with {:ok, data} <- File.read(file),
+         {:ok, tokens} <- read(data) do
+      {:ok, tokens}
     else
       {:error, reason} -> {:error, "failed streaming #{file}: #{reason}"}
     end
