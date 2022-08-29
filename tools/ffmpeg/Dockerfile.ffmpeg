@@ -1,7 +1,7 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=p20220802
-ARG FFMPEG_VERSION=5.0
+ARG RAV1E_VERSION=p20220823
+ARG FFMPEG_VERSION=5.1
 ARG BLUR_VERSION=5ad74d3dcac0a12c67c143336b4e3f2a8090c595
 
 RUN mkdir -p /downloads/
@@ -61,9 +61,11 @@ RUN \
   curl \
   frei0r-plugins-dev \
   git \
+  libaom-dev \
   libdav1d-dev \
   libffmpeg-nvenc-dev \
   libssl-dev \
+  libsvtav1enc-dev \
   libtool \
   libva-dev \
   libvpx-dev \
@@ -107,8 +109,10 @@ RUN cd /downloads/ffmpeg && \
   --enable-version3 \
   --enable-gpl \
   --enable-frei0r \
+  --enable-libaom \
   --enable-libdav1d \
   --enable-librav1e \
+  --enable-libsvtav1 \
   --enable-libvpx \
   --enable-libwebp \
   --enable-libx264 \
@@ -129,7 +133,9 @@ RUN \
   apt-get install -y --no-install-recommends \
   i965-va-driver \
   libboost-iostreams1.74.0 \
+  libc6 \
   libdav1d[0-9]+ \
+  libsvtav1enc[0-9]+ \
   libva-drm2 \
   libva2 \
   libvips42 \

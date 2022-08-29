@@ -385,10 +385,8 @@ defmodule Video.Renderer do
   # highest specified at the time of writing as a fallback.
   @av1_ll_max_specified 23
 
-  @spec codec_av1(map(), non_neg_integer()) :: map()
-  defp codec_av1(info, idx) do
-    tiles = Integer.floor_div(info[:height], 135)
-
+  @spec av1_codec_tag(map(), non_neg_integer(), non_neg_integer()) :: binary()
+  defp av1_codec_tag(info, tiles, bit_depth) when bit_depth in [8, 10, 12] do
     ll =
       Enum.find_value(@av1_ll_param_examples, @av1_ll_max_specified, fn ex ->
         dim_ok = info[:width] <= ex.width && info[:height] <= ex.height
@@ -399,17 +397,78 @@ defmodule Video.Renderer do
       |> to_string()
       |> String.pad_leading(2, "0")
 
+    bit_depth = bit_depth |> to_string |> String.pad_leading(2, "0")
+
+    "av01.0.#{ll}M.#{bit_depth}"
+  end
+
+  @spec codec_av1_aom(map(), non_neg_integer()) :: map()
+  defp codec_av1_aom(info, idx) do
+    tiles_c = Integer.floor_div(info[:height], 1000)
+    tiles_r = max(1, tiles_c - 1)
+    tiles = 2 ** tiles_c * 2 ** tiles_r
+
     %{
       codec: [
-        "librav1e",
-        "-tiles:v:#{idx}",
-        "#{tiles}",
-        "-speed:v:#{idx}",
-        "6"
+        "libaom-av1",
+        "-tile-columns:#{idx}",
+        "#{tiles_c}",
+        "-tile-rows:#{idx}",
+        "#{tiles_r}",
+        "-cpu-used:#{idx}",
+        "5",
+        "-lag-in-frames:#{idx}",
+        "48",
+        "-aom-params:#{idx}",
+        "enable-qm=1:sb-size=64:enable-keyframe-filtering=0:arnr-strength=1:aq-mode=1:deltaq-mode=1:sharpness=1:enable-chroma-deltaq=1:quant-b-adapt=1"
       ],
-      tag_as: "av01.0.#{ll}M.08"
+      tag_as: av1_codec_tag(info, tiles, 8)
     }
   end
+
+  # @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
+  # defp codec_av1_rav1e(info, idx) do
+  #   tiles = Integer.floor_div(info[:height], 135)
+
+  #   ll =
+  #     Enum.find_value(@av1_ll_param_examples, @av1_ll_max_specified, fn ex ->
+  #       dim_ok = info[:width] <= ex.width && info[:height] <= ex.height
+
+  #       if dim_ok && tiles <= ex.tiles && Video.Source.fps() <= ex.fps,
+  #         do: ex.seq_level_idx
+  #     end)
+  #     |> to_string()
+  #     |> String.pad_leading(2, "0")
+
+  #   %{
+  #     codec: [
+  #       "librav1e",
+  #       "-tiles:v:#{idx}",
+  #       "#{tiles}",
+  #       "-speed:v:#{idx}",
+  #       "6"
+  #     ],
+  #     tag_as: av1_codec_tag(info, tiles, 8)
+  #   }
+  # end
+
+  # @spec codec_av1_svt(map(), non_neg_integer()) :: map()
+  # defp codec_av1_svt(info, idx) do
+  #   tiles_c = Integer.floor_div(info[:height], 1000)
+  #   tiles_r = max(1, tiles_c - 1)
+  #   tiles = 2 ** tiles_c * 2 ** tiles_r
+
+  #   %{
+  #     codec: [
+  #       "libsvtav1",
+  #       "-preset:#{idx}",
+  #       "4",
+  #       "-svtav1-params:#{idx}",
+  #       "tune=0:enable-overlays=1:scd=1:scm=0:irefresh-type=1:tile-columns=#{tiles_c}:tile-rows=#{tiles_r}:enable-tf=0:film-grain=4"
+  #     ],
+  #     tag_as: av1_codec_tag(info, tiles, 8)
+  #   }
+  # end
 
   # ffmpeg itself manages avc tags
   @spec codec_avc(map(), non_neg_integer()) :: map()
@@ -436,9 +495,9 @@ defmodule Video.Renderer do
   defp variants do
     [
       # av1, with default quality as first entry
-      %{width: 1280, height: 720, bitrate: 4.5, fallback: :webm, codec: &codec_av1/2},
-      %{width: 640, height: 360, bitrate: 3, codec: &codec_av1/2},
-      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1/2},
+      %{width: 1280, height: 720, bitrate: 4.5, fallback: :webm, codec: &codec_av1_aom/2},
+      %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_aom/2},
+      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_aom/2},
       # legacy codec
       %{width: 640, height: 360, bitrate: 4, fallback: :mp4, codec: &codec_avc/2},
       %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
