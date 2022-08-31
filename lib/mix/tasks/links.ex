@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   @path "data/auto_generated/link_mirror/"
   @requirements ["app.start"]
 
-  @wayback_timeout 90_000
+  @wayback_timeout 120_000
 
   @type entry :: {atom(), binary(), binary()}
 
