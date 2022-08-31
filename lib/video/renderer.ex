@@ -416,7 +416,7 @@ defmodule Video.Renderer do
         "-tile-rows:#{idx}",
         "#{tiles_r}",
         "-cpu-used:#{idx}",
-        "5",
+        "4",
         "-lag-in-frames:#{idx}",
         "48",
         "-aom-params:#{idx}",
