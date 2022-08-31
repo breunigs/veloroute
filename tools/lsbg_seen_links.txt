@@ -580,3 +580,6 @@
 '2022-08-22':
 - "/contentblob/16425964/1f3f159844143ed26f6da494aa77e6f2/data/neuer-inhalt.pdf"
 - "/contentblob/16430294/af91e4967e7265c1e00390fa7e720a43/data/winterhuder-weg-09-22-bis-10-22-stand-august-2022.pdf"
+'2022-08-31':
+- "/contentblob/16451534/f1be03d2002bfa7d7668cb2963440077/data/an-der-alster-fahrradachsen-09-22.pdf"
+- "/contentblob/16430294/5dca7f6a731536315b0e63d52176934f/data/winterhuder-weg-09-22-bis-10-22-stand-august-2022.pdf"

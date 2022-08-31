@@ -19,8 +19,8 @@ defmodule Data.Article.Blog.AnDerAlster do
 
   def links(_assigns) do
     [
-      {"Vorabmaßnahme – Baustelleninfo", "Juli 2022",
-       "https://lsbg.hamburg.de/contentblob/16351446/e46da2f37829a56465609d47a5af1c18/data/an-der-alster-vorwegmassnahme-07-22-bis-10-22.pdf"},
+      {"Vorabmaßnahme – Baustelleninfo", "August 2022",
+       "https://lsbg.hamburg.de/contentblob/16451534/f1be03d2002bfa7d7668cb2963440077/data/an-der-alster-fahrradachsen-09-22.pdf"},
       {"Vorabmaßnahme – Plan", "Juli 2022",
        "https://lsbg.hamburg.de/contentblob/16014672/d742d4d004ee5e2ef0c0a616f6e57dc5/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-plan.pdf"},
       {"Vorabmaßnahme – Erläuterungsbericht", "2022",
