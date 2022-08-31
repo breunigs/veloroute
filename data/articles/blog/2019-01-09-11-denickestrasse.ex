@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baustart", "August 2022",
+       "https://www.hamburg.de/pressemeldungen-bezirke/16451342/ausbau-veloroute-11-denickestrasse-west/"},
       {"Bauvergabe ab Schüslerweg bis Triftstraße", "2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/f4e9ef1d-0187-4a07-bef1-71f57b027716/details"},
       {"Erläuterungsbericht
