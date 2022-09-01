@@ -434,6 +434,7 @@ $videoBarProgressHeight: 0.4rem;
   }
 }
 
+$sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 #sidebar {
   width: $sidebarWidth;
   min-width: $minWidth;
@@ -446,10 +447,14 @@ $videoBarProgressHeight: 0.4rem;
   display: flex;
   flex-flow: column;
   z-index: 3;
-  box-shadow: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
+  box-shadow: $sidebarBoxShadowNormal;
 }
 
 @media (min-width: calc(3*$minWidth)) {
+  .showSidebar #sidebar {
+    box-shadow: $sidebarBoxShadowNormal !important;
+  }
+
   #sidebar {
     left: $mainWidth; // old browsers doesn't support max() -- for desktop
     left: max($minWidth, $mainWidth);
