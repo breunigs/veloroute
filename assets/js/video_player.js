@@ -309,7 +309,7 @@ function updateQualityChooser() {
     choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
 
     videoQuality.style.display = 'block';
-    videoQualityOptions.innerHTML = choosers;
+    if (videoQualityOptions.innerHTML != choosers) videoQualityOptions.innerHTML = choosers;
   });
 }
 

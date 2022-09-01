@@ -129,6 +129,7 @@ export class MapboxStyleSwitcherControl implements IControl {
       if (layer.fill) this.updateMapPrimitive(layer, "fill", isVisible);
       html += this.renderButton(layer, isVisible)
     }
+    if (this.checkboxGroup.innerHTML == html) return;
     this.checkboxGroup.innerHTML = html;
   }
 
