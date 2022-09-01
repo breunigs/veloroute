@@ -19,6 +19,7 @@ $contentPad: 0.9rem;
 html,
 body>div {
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -507,6 +508,7 @@ body.showSidebar::before {
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+  overscroll-behavior: contain;
 }
 
 @keyframes spinner {
