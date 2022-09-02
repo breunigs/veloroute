@@ -11,12 +11,45 @@ defmodule Data.Article.Blog.SFriedrichsberg do
   def tags(), do: ["6"]
 
   def links(_assigns) do
-    []
+    [
+      {"Projektseite der Stadt zur Planung",
+       "https://lsbg.hamburg.de/projekte/5100484/krausestrasse-bis-hammer-strasse/"},
+      {"Erläuterungsbericht", "1. Entwurf, 2016",
+       "https://lsbg.hamburg.de/contentblob/7702886/cc4095bee357d71d7f02dc0d2887d1cd/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-bericht.pdf"},
+      {"Lagepläne", "1. Entwurf, 2016",
+       "https://lsbg.hamburg.de/contentblob/7702888/f1d1a15664ba6590439a2b73a2f2da02/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-plaene.pdf"}
+    ]
   end
 
   def text(assigns) do
     ~H"""
-    <p>Die ganze Kreuzung geht nicht davon aus, das Radverkehr existiert. Stadtauswärts wird der benutzungspflichtige Zweirichtungs-Radweg auf einmal so schmal, das man <i>vermutlich</i> die Straßenseite hätte wechseln sollen. Dies ist aber weder auf Schildern noch Straßenmarkierungen ersichtlich, noch gibt es irgendeine offensichtlich beste Route. Gefährlich: Die reinen Fußampeln sind nicht für den Radverkehr optimiert und gelten seit 2017 auch nicht mehr für ihn. Sowohl Rad- als auch KFZ-Nutzende werden hier also seit Jahren falsch erzogen.</p> <p>Glücklicherweise plant der LSBG diese Kreuzung umzubauen – allerdings hängen die Planungen davon ab, ob die Stadt die dafür notwendigen Grundstücke erwerben kann. Der letzte Stand ist der erste Entwurf vom Sommer 2016, der aber schon die Eingaben aus der Bevölkerung berücksichtigt. Auf den ersten Blick wirkt die Planung für den Radverkehr sehr gut.</p> <p>Dem Entwurf nach wird der Radverkehr künftig direkt nach dem Friedrichsberger Park wieder aufgeteilt. Entlang des <.m bounds={Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.575831, lon: 10.057333, zoom: 18})} ref="6">Eilbektal</.m> stehen pro Richtung jeweils ca. 2m Radweg zur Verfügung und zwar jeweils auf der „richtigen“ Seite der Straße. Stadtauswärts wird dafür eine weitere Radampel eingerichtet. Auf der großen Kreuzung werden die Radspuren jeweils durchgängig und geradlinig geführt. Stadtauswärts mit eigener Ampel und praktisch unabhängig vom Autoverkehr, da das Eilbektal eine Einbahnstraße bleibt und Linksabbiegen von Norden nicht vorgesehen ist. Stadteinwärts orientiert man sich an der KFZ-Ampel und stellt sich zwischen KFZ-Rechts und KFZ-Geradeaus auf, was nicht ganz so angenehm ist. In Nord/Süd Richtung (die Veloroute kreuzend) ist die Führung ebenso wie gerade beschrieben. Man fährt fast überall auf Radfahrstreifen (Asphalt, Abtrennung zu KFZ nur durch Markierungen). Ausnahme bildet hier nur der Hochbordradweg im Eilbektal stadtauswärts, da dieser „gegen die Einbahnstraße“ verläuft und man diesen Abschnitt wohl besonders gegen KFZ abtrennen wollte.</p> <p>Wann die Planung umgesetzt werden soll ist mir unbekannt. In den Präsentation wurde von einer Umsetzung ab 2018 ausgegangen, was aber offensichtlich nicht passiert ist.</p> <p><.a href="https://lsbg.hamburg.de/projekte/5100484/krausestrasse-bis-hammer-strasse/">Projektseite der Stadt zur Planung</.a> (Die Kreuzung ist im Dokument „Vorzugsvariante Planung Blatt 2 Dehnhaide - Eilbektal Stand 1. Verschickung“ beschrieben)</p>
+    <h4>Alter Zustand</h4>
+    <p>Die Kreuzung ist für den Radverkehr verwirrend und umständlich zu benutzen – der Veloroute geradeaus folgen bedeutet regelmäßig drei rote Ampeln. Zudem reichen die Aufstellflächen bereits beim heutigen Radaufkommen nicht aus. Viele Jahre nach Änderung der StVO hat die Stadt es immerhin geschafft die Streuscheiben in den Ampeln anzupassen, damit der Radverkehr nicht mehr die für ihn unbrauchbaren Ampeln auf den KFZ-Fahrspuren beachten muss.</p>
+
+    <h4>Planung</h4>
+    <p>Es ist vorgesehen den Radverkehr nach dem Friedrichsberger Park in die Fahrtrichtungen aufzuteilen. Auf der Nordseite als 1,85m breiter <.ref>Radfahrstreifen</.ref>, auf der Südseite als <.ref>Hochbordradweg</.ref>. Damit sicher dorthin gequert werden kann, wird eine eigene Fahrradampel vorgesehen. Ab der Krausestraße führt dann ein 1,60m breiter Radfahrstreifen in die Stormarner Straße. In der Gegenrichtung ist dieser mit 1,85m etwas breiter, dafür aber <.ref>in Mittellage</.ref>.</p>
+
+    <p>Entlang der Krausestraße werden die Radfahrstreifen ebenfalls rund 1,85m breit und ebenfalls in Mittellage geführt. Die Busse müssen zum Halten jeweils die Radspur kreuzen.</p>
+
+    <p>Protektionselemente sind nirgens vorgesehen. Linksabbiegen geht <.ref>indirekt</.ref>, nur wer mutig genug ist und den Radfahrstreifen rechtzeitig verlässt kann auch <.ref>direkt</.ref> Linksabbiegen. Wer indirekt abbiegt und in der Aufstelltasche wartet muss entweder den Verkehr genau beobachten, oder sich an den Fußampeln orientieren.</p>
+
+    <p>Der beschriebene erste Entwurf ist aus dem Jahr 2016 und sollte bereits 2018 umgesetzt werden. Daraus wurde aber nichts.</p>
+
+    <h4>Meinung</h4>
+    <p>Es wäre eine Schande für die Stadt wenn der Entwurf tatsächlich so umgesetzt würde. Man muss ihm zugute halten, dass die Radführung danach immerhin verständlich wäre. Ansonsten gibt es viel zu kritisieren:</p>
+    <ul>
+      <li>mit 1,85m für die Veloroute bereits bei heutigem Aufkommen zu schmal</li>
+      <li>für das Verkehrsaufkommen unzureichende Aufstellflächen</li>
+      <li>Radfahrstreifen in Mittellage machen vielen Leuten Angst und wurden daher zurecht für Neuplanungen ausgeschlossen</li>
+      <li>keine eigene Signalisierung für indirektes Linksabbiegen</li>
+      <li>keine Trennung vom KFZ-Verkehr (z.B. <.ref>Kopenhagener Radweg</.ref>, <.ref>Protected-Bike-Lane</.ref> o.ä.)</li>
+      <li>Konflikte mit dem Busverkehr</li>
+    </ul>
+
+    <p>In diesem Sinne ist es vorteilhaft für den Radverkehr, dass sich die Umsetztung solange hinausgezögert hat. So besteht immerhin die Chance, dass die Stadt Verbesserungen einbringt statt den unbrauchbaren Zustand auf Jahre zu zementieren. Eine zeitgemäße Planung würde den Friedrichsberger Park und Mühlenteichpark zusammenwachsen lassen, statt weiterhin riesige Flächen für den KFZ-Verkehr zu versiegeln. Wenigstens aber müssen die Radspuren ordentliche Breite erhalten und geschützt werden.</p>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

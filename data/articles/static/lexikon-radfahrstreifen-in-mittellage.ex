@@ -7,7 +7,8 @@ defmodule Data.Article.Static.LexikonRadfahrstreifenInMittellage do
   def summary(),
     do: "RiMs verlaufen auf der Kreuzung zwischen den KFZ-Rechts und KFZ-Geradeaus Spuren"
 
-  def tags(), do: ["lexikon", "radfahrstreifen-in-mittellage", "rim", "mittellage"]
+  def tags(),
+    do: ["lexikon", "radfahrstreifen-in-mittellage", "rim", "mittellage", "in-mittellage"]
 
   def tracks(), do: Data.Article.Blog.HammerLandstrasse.tracks()
   def point_of_interest(), do: %{lon: 10.057493, lat: 53.554926, zoom: 16}
