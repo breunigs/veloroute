@@ -15,6 +15,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
       "lexikon",
       "abbiegen",
       "direkt",
+      "direktem-und-indirekten-linksabbiegen",
       "direktem",
       "direkten-abbiegen",
       "direktes-linksabbiegen",
@@ -70,6 +71,8 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
     </ul>
 
     <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.m bounds="9.975387,53.553634,9.983536,53.557482" lon="9.97973" lat="53.55578" dir="forward" ref="2">links</.m> oder <.m lon="10.00076" lat="53.55560" dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.m> des Radfahrstreifens sein, manchmal auch <.m bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</.m>.</p>
+
+    <p>Eine weitere Variante des Linksabiegens ist der <.ref>ARAS</.ref></p>
     """
   end
 end

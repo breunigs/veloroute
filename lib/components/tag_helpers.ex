@@ -188,7 +188,6 @@ defmodule Components.TagHelpers do
     name = inner_text(assigns)
 
     case name do
-      "ARAS" -> ~H{<abbr title="Aufgeweiteter Radaufstellstreifen">ARAS</abbr>}
       "BVM" -> ~H{<abbr title="Behörde für Verkehr und Mobilitätswende">BVM</abbr>}
       "BWVI" -> ~H{<abbr title="Behörde für Wirtschaft, Verkehr und Innovation">BWVI</abbr>}
       "LGV" -> ~H{<abbr title="Landesbetrieb Geoinformation und Vermessung">LGV</abbr>}

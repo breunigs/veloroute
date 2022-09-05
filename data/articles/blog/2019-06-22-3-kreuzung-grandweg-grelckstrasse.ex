@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
   def name(), do: "#{created_at()}-3-kreuzung-grandweg-grelckstrasse"
   def created_at(), do: ~D[2019-06-22]
-  def updated_at(), do: ~D[2021-11-09]
+  def updated_at(), do: ~D[2022-09-05]
 
   def title(), do: "Kreuzung Grandweg / Grelckstraße (Veloroute 3)"
 
