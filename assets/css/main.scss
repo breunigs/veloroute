@@ -995,6 +995,13 @@ img.roaddiagram {
   height: auto;
   margin: 0.8rem auto;
   display: block;
+
+  &.right {
+    width: auto;
+    max-width: 40%;
+    float: right;
+    padding: 0 0 1rem 1rem;
+  }
 }
 
 p.alert {

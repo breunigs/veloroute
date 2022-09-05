@@ -58,7 +58,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute4 do
   def text(assigns) do
     ~H"""
     <h3>Norderstedt: Veloroute 4</h3>
-    <.roaddiagram src="logo-norderstedt-4" width="100" alt="Logo der Veloroute 4 in Norderstedt" style="float: right; padding: 0 0 1rem 1rem"/>
+    <.roaddiagram src="logo-norderstedt-4" width="100" alt="Logo der Veloroute 4 in Norderstedt" class="right"/>
 
     <p>Die Veloroute führt von <.m bounds="9.977046,53.679559,9.988665,53.684982" lon="9.980631" lat="53.682232" dir="forward" ref="norderstedt-4">Garstedt</.m> entlang der <.m bounds="9.985277,53.679645,9.999215,53.682982" lon="9.991317" lat="53.681592" dir="forward" ref="norderstedt-4">Ochsenzoller Straße</.m> und der <.m bounds="10.007605,53.681698,10.037713,53.689052" lon="10.014211" lat="53.683523" dir="forward" ref="norderstedt-4">Segeberger Chaussee</.m> nach <.m bounds="10.024115,53.685393,10.045516,53.695013" lon="10.035206" lat="53.687964" dir="forward" ref="norderstedt-4">Glashütte</.m>.</p>
 

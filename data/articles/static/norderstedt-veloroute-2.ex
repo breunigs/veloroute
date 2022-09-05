@@ -58,7 +58,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute2 do
   def text(assigns) do
     ~H"""
     <h3>Norderstedt: Veloroute 2</h3>
-    <.roaddiagram src="logo-norderstedt-2" width="100" alt="Logo der Veloroute 2 in Norderstedt" style="float: right; padding: 0 0 1rem 1rem"/>
+    <.roaddiagram src="logo-norderstedt-2" width="100" alt="Logo der Veloroute 2 in Norderstedt" class="right"/>
 
     <p>Die Strecke beginnt am <.m bounds="9.997648,53.679996,10.004217,53.68503" lon="9.999337" lat="53.681612" dir="forward" ref="norderstedt-2">Schmuggelstieg</.m> und führt zunächst nach Norden. Am <.m bounds="9.990894,53.693671,10.005301,53.698556" lon="9.994532" lat="53.69527" dir="forward" ref="norderstedt-2">Forstweg</.m> knickt sie etwas nach Osten ab um eine direkte Verbindung zum <.m bounds="10.001945,53.701307,10.01449,53.709814" lon="10.007494" lat="53.704041" dir="forward" ref="norderstedt-2">Harksheider Markt</.m> herzustellen.</p>
 

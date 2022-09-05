@@ -331,7 +331,8 @@ defmodule Components.TagHelpers do
     end
   end
 
-  def roaddiagram(%{src: src} = assigns) do
+  @spec roaddiagram(map()) :: Phoenix.LiveView.Rendered.t()
+  def roaddiagram(%{src: src, class: class} = assigns) do
     {w, h} = Data.ImageSize.size("data/images/#{src}.svg")
     ratio = h / w
 
@@ -340,12 +341,14 @@ defmodule Components.TagHelpers do
 
     style = if is_map_key(assigns, :width), do: "width: #{w}px;", else: ""
     style = if is_map_key(assigns, :style), do: style <> assigns.style, else: style
-    assigns = assign(assigns, style: style)
+    assigns = assign(assigns, style: style, class: "roaddiagram " <> class)
 
     ~H"""
-    <img src={"/images/#{@src}.svg"} width={@w} height={@h} class="roaddiagram" alt={@alt} style={@style}/>
+    <img src={"/images/#{@src}.svg"} width={@w} height={@h} class={@class} alt={@alt} style={@style}/>
     """
   end
+
+  def roaddiagram(assigns), do: assigns |> assign(class: "") |> roaddiagram()
 
   defp inner_text(assigns) do
     [%{inner_block: fun}] = assigns.inner_block

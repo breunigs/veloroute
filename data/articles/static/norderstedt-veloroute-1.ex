@@ -66,7 +66,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
   def text(assigns) do
     ~H"""
     <h3>Norderstedt: Veloroute 1</h3>
-    <.roaddiagram src="logo-norderstedt-1" width="100" alt="Logo der Veloroute 1 in Norderstedt" style="float: right; padding: 0 0 1rem 1rem"/>
+    <.roaddiagram src="logo-norderstedt-1" width="100" alt="Logo der Veloroute 1 in Norderstedt" class="right"/>
 
 
     <p>Die Veloroute 1 verläuft in Nord-Süd Richtung und orientiert sich an den Bahnstrecken der U-Bahn und des AKN. Start ist der <.m bounds="9.997648,53.679996,10.004217,53.68503" lon="9.999337" lat="53.681612" dir="forward" ref="norderstedt-1">Schmuggelstieg</.m>, wo Anschluss an <.a name="alltagsroute-4">Hamburgs Alltagsroute 4</.a> besteht. Über verschiedene <.m bounds="9.983344,53.680517,10.004847,53.689524" lon="9.992534" lat="53.685062" dir="forward" ref="norderstedt-1">verschiedene Nebenstraßen</.m> erreicht man die Bahnschienen und folgt ihnen <.m bounds="9.990255,53.717033,9.993064,53.720824" lon="9.991487" lat="53.719901" dir="forward" ref="norderstedt-1">mehr</.m> oder <.m bounds="9.985279,53.724679,9.997136,53.731463" lon="9.99254" lat="53.727977" dir="forward" ref="norderstedt-1">weniger</.m> direkt bis nach <.m bounds="9.973136,53.748855,9.988609,53.75762" lon="9.979173" lat="53.753531" dir="forward" ref="norderstedt-1">Meeschensee</.m>.</p>

@@ -62,7 +62,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute3 do
   def text(assigns) do
     ~H"""
     <h3>Norderstedt: Veloroute 3</h3>
-    <.roaddiagram src="logo-norderstedt-3" width="100" alt="Logo der Veloroute 3 in Norderstedt" style="float: right; padding: 0 0 1rem 1rem"/>
+    <.roaddiagram src="logo-norderstedt-3" width="100" alt="Logo der Veloroute 3 in Norderstedt" class="right"/>
 
     <p>Die Route führt von <.m bounds="9.989592,53.704789,9.998013,53.710449" lon="9.992578" lat="53.707073" dir="forward" ref="norderstedt-3">Norderstedt-Mitte</.m>, über <.m bounds="9.999743,53.6999,10.014974,53.708598" lon="10.004641" lat="53.703276" dir="forward" ref="norderstedt-3">Harksheide</.m> nach <.m bounds="10.017243,53.686578,10.040955,53.699376" lon="10.034424" lat="53.694075" dir="forward" ref="norderstedt-3">Glashütte</.m>.</p>
 

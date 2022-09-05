@@ -196,7 +196,7 @@ defmodule Data.Article.Static.Alltagsroute1 do
     </ul>
 
     <h4>Auffindbarkeit</h4>
-    <.roaddiagram src="temp_routing" width="100" alt="Beispiel eines vorläufigen Radwegweisers" style="float: right; padding: 0 0 1rem 1rem"/>
+    <.roaddiagram src="temp_routing" width="100" alt="Beispiel eines vorläufigen Radwegweisers" class="right"/>
     <p>Die meisten Abschnitte der Route sind nicht ausgeschildert und erfordern daher Ortskenntnis oder ein Navi um ihr folgen zu können.</p>
     <p>Ab Ottensen wurden bis nach Rissen gelbe Baustellen-Wegweiser aufgestellt, die als zusätzliche Orientierungshilfe dienen können. Leider sind sie nicht zahlreich genug um alleine anhand der Schilder fahren zu können. Zusätzlich wird bei Umleitungen an Baustellen der selbe Schildertyp verwendent, sodass man auch widersprüchliche Wegweisung hat.</p>
 
