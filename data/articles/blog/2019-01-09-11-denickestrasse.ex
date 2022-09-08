@@ -12,6 +12,8 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def start(), do: ~d[2022-08-29]
   def stop(), do: ~d[2023-05-28]
+
+  # Kreuzung mit Weusthoffstraße vermutlich April-September 2023 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916
   def construction_site_id_hh(), do: [91363]
 
   def type(), do: :planned

@@ -4,9 +4,11 @@ defmodule Data.Article.Blog.Methfesselstrasse do
   def created_at(), do: ~D[2020-11-13]
 
   def title(), do: "Methfesselstraße"
-  def stop(), do: ~d[2023Q2]
 
   def type(), do: :construction
+  def start(), do: ~d[2022-09-13]
+  def stop(), do: ~d[2023-07-31]
+  def construction_site_id_hh(), do: [113061]
 
   def tags(), do: ["eimsbüttel", "articles"]
 

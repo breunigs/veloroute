@@ -1027,3 +1027,7 @@
 '2022-08-31':
 - https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012072
 - https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017216
+'2022-09-08':
+- https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007819
+- https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012098
+- https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916
