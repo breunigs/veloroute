@@ -9,7 +9,36 @@ defmodule Data.Article.Blog.Valentinskamp do
   def stop(), do: ~d[2022-08-31]
   def construction_site_id_hh(), do: [21146]
 
-  def type(), do: :construction
+  def type(), do: :finished
+
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "article",
+        direction: :forward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Valentinskamp (Richtung Gänsemarkt)",
+        videos: [
+          {"2022-08-14-geesthacht-rev/GX014544", "00:00:04.371", :end},
+          {"2022-08-14-geesthacht-rev/GX014545", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "article",
+        direction: :backward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Valentinskamp (Richtung Johannes-Brahms-Platz)",
+        videos: [
+          {"2022-08-14-geesthacht-rev/GX014575", "00:00:03.737", :end}
+        ]
+      }
+    ]
 
   def tags(), do: ["1", "2", "3", "M10.2a"]
 

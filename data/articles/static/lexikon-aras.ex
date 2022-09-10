@@ -10,11 +10,12 @@ defmodule Data.Article.Static.LexikonARAS do
 
   def tags(), do: ["lexikon", "aras"]
 
-  # def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
-  # def point_of_interest(), do: %{lon: 10.029203, lat: 53.603815, zoom: 16}
+  def tracks(), do: Data.Article.Blog.Valentinskamp.tracks()
+  def point_of_interest(), do: %{lon: 9.98375, lat: 53.555621, zoom: 16}
 
   def text(assigns) do
     ~H"""
+    <p><.m bounds="9.983492,53.555314,9.985186,53.556223" lon="9.983262" lat="53.555614" dir="forward">Videobeispiel eines ARAS im Valentinskamp</.m> (wird im Video aber nicht zum Abbiegen genutzt)</p>
 
     <p>Mit einem ARAS ist eine Wartefläche an der Ampel gemeint, die sich vor der Haltelinie für KFZ befindet. So muss beim Linksabbiegen nicht in den Abgasen gewartet werden und man wird eher gesehen. Auch wird man nicht durch eine langsam anfahrende Autokolonne aufgehalten.</p>
 

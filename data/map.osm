@@ -27864,6 +27864,7 @@
     <nd ref='-22533448' />
     <nd ref='-22533449' />
     <nd ref='-22533438' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-05-06-valentinskamp' />
     <tag k='type' v='article' />
   </way>
