@@ -4,9 +4,6 @@ cd "${0%/*}"
 
 set -euo pipefail
 
-echo "Baustellen:"
-(cd .. && mix velo.feeds.bauweiser)
-
 echo "LSBG:"
 ./lsbg_check_updates.rb
 
@@ -16,8 +13,9 @@ echo "e-vergabe:"
 echo "viabus:"
 ./viabus_check_updates.rb
 
-echo "Sitzungsdienst:"
-./sitzungsdienst_check_updates.rb
+echo
+echo "Baustellen & Sitzungsdienst:"
+(cd .. && mix do velo.feeds.bauweiser, velo.feeds.sitzungsdienst)
 
 echo ""
 echo "manuell:"
