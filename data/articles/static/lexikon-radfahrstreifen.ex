@@ -62,6 +62,9 @@ defmodule Data.Article.Static.LexikonRadfahrstreifen do
         <td>hoher Randstein</td>
       </tr>
     </table>
+
+    <h3>Meinung</h3>
+    <p>Radfahrstreifen stellen eine deutliche Trennung vom Fußverkehr her, aber keine zum KFZ-Verkehr. Falschparken, Schneiden und mangelnder Überholabstand sind daher tägliche Probleme auf dieser Führungsform. In Hamburg werden sie häufig eingesetzt, um KFZ-Parkplätze rechts des Radwegs zu erhalten, sodass es zu weiteren, aber legalen, Behinderungen kommt. Sie sind für den Radverkehr daher nur bedingt geeignet und für längere Abschnitte eher ungeeignet.</p>
     """
   end
 end

@@ -21,6 +21,9 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
     <.roaddiagram src="schutzstreifen" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wie Schutzstreifen aussehen. Es sind Begegnungsverkehr PKW/PKW und LKW/LKW dargestellt."/>
 
     <p>Nicht verwechseln: „<.ref>Protected Bike Lane</.ref>“ klingt sehr ähnlich, ist für den Radverkehr aber deutlich besser.</p>
+
+    <h3>Meinung</h3>
+    <p>Schutzstreifen kommen aus der autogerechten Planung und sind für den Radverkehr ungeeignet. Wenn der Platz nicht ausreicht, muss ein anderer Ansatz her. Das könnten KFZ-Einbahnstraßen sein oder Tempo 30 Strecken. Bei letzteren muss durch die Bauweise sichergestellt sein, dass man gar nicht schneller als 30 km/h fahren <em>kann</em>. Ein Verkehrsschild das leicht übersehen oder missachtet wird hilft niemandem.</p>
     """
   end
 end

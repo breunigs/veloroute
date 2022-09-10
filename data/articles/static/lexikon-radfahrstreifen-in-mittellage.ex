@@ -23,6 +23,9 @@ defmodule Data.Article.Static.LexikonRadfahrstreifenInMittellage do
     <.roaddiagram src="rim" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen in Mittellage im Kreuzungsbereich verlaufen."/>
 
     <p>Eine <.a href="https://nationaler-radverkehrsplan.de/de/aktuell/nachrichten/einsatzbereiche-von-radfahrstreifen-mittellage">Studie der TU Berlin</.a> kommt zum Ergebnis, das diese Führung vergleichbar mit älteren Varianten ist was Unfälle betrifft. Die Stadt einigte sich 2020 mit dem <.a href="https://radentscheid-hamburg.de/">Radentscheid Hamburg</.a> darauf, keine neuen Radfahrstreifen in Mittellage mehr zu planen. Da zwischen Planung und Umbau teils Jahre vergehen, taucht diese Variante stellenweise trotzdem noch auf (Stand: 2022).</p>
+
+    <h3>Meinung</h3>
+    <p>Radfahrstreifen in Mittellage kommen aus der autogerechten Planung und sind für den Radverkehr absolut ungeeignet. Hauptsächlich wurden sie eingesetzt, um trotz der Ineffizienz des Autosverkehrs noch möglichst viele Rechtsabbieger zuzulassen. In der Praxis werden sie von KFZ bei roter Ampel überstaut und zwingen den Radverkehr sich durchzuschlängeln. Nach wiederholten Todesfällen an dieser Führungsform malt Hamburg die vorhandenen RiMs rot an. RiMs lassen an der Kompetenz der Fachkommission zweifeln, die diese Variante vorgeschlagen hat.</p>
     """
   end
 end

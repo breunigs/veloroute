@@ -12,7 +12,8 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
     do: [
       "lexikon",
       "kopenhagener-lösung",
-      "kopenhagener-radweg"
+      "kopenhagener-radweg",
+      "kopenhagener-stil"
     ]
 
   def tracks(), do: Data.Article.Static.Alltagsroute10.tracks()
@@ -54,6 +55,9 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
         <td>hoher Randstein</td>
       </tr>
     </table>
+
+    <h3>Meinung</h3>
+    <p>Mit einem ordentlichen Bordstein können Kopenhagener Radwege eine gute Trennung vom KFZ Verkehr herstellen. Sind die Bordsteine jedoch zu niedrig, stellen sie eine leicht übersehbare Stolper- bzw. Sturzgefahr für Fuß- und Radverkehr dar. Diese Gestaltungsart ist in Hamburg noch neu, es muss sich also noch zeigen ob sie von Stadt und Planungsbüros sinnvoll eingesetzt wird.</p>
     """
   end
 end

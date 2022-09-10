@@ -65,6 +65,9 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
         <td>hoher Randstein</td>
       </tr>
     </table>
+
+    <h3>Meinung</h3>
+    <p>Protected-Bike-Lanes sind bei ausreichender Breite sehr angenehm zu befahren. Sowohl Fuß- als auch KFZ-Verkehr nehmen sie als deutliche Trennung wahr, sodass sie auch tatsächlich dem Radverkehr zur Verfügung steht. Umgekehrt bleibt auch der Radverkehr in seiner Spur. PBLs sind damit für alle Altersgruppen gut nutzbar.</p>
     """
   end
 end
