@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Stand November 2022</h4>
+    <h4>Stand September 2022</h4>
     <p>Ein netter Mensch hat den Lageplan von der Stadt eingefordert. Der Artikel wurde konkretisiert.</p>
 
     <h4>Stand November 2021</h4>
