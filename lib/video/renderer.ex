@@ -72,7 +72,8 @@ defmodule Video.Renderer do
     Temp.track!()
 
     try do
-      with {:ok, tmp_path} =
+      with :ok <- File.mkdir_p(cache_dir),
+           {:ok, tmp_path} <-
              Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
            tmp_dir <- Path.basename(tmp_path),
            cmd <- render_cmd(rendered, tmp_dir),
