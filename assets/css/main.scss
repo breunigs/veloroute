@@ -434,6 +434,11 @@ $videoBarProgressHeight: 0.4rem;
   }
 }
 
+.noMobile {
+  display: none;
+}
+
+
 $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 #sidebar {
   width: $sidebarWidth;
@@ -451,6 +456,10 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 }
 
 @media (min-width: calc(3*$minWidth)) {
+  .noMobile {
+    display: inline;
+  }
+
   .showSidebar #sidebar {
     box-shadow: $sidebarBoxShadowNormal !important;
   }

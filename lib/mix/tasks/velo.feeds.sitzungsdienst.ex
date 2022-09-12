@@ -5,8 +5,6 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Mix.Task
   use Tesla
 
-  # Note: Mitte and Bergedorf(?) currently do not attach PDFs :(
-  @districts ~w(altona eimsbuettel hamburg-mitte hamburg-nord wandsbek bergedorf harburg)
   @filter_keywords ~w(velo straße radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
 
   @path "data/auto_generated/feeds_seen/sitzungsdienst.json"
@@ -30,7 +28,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   def run(_) do
     status = show_all_districts(load_status())
 
-    Enum.reduce(@districts, %{}, &Map.put(&2, &1, today()))
+    Enum.reduce(Allris.districts(), %{}, &Map.put(&2, &1, today()))
     |> Map.put(@seen, [])
     |> Map.put(@seen_last_run, status[@seen_last_run])
     |> write_status()
@@ -39,7 +37,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   @spec show_all_districts(status()) :: status()
   defp show_all_districts(status) do
     results =
-      @districts
+      Allris.districts()
       |> Stream.each(&IO.puts(:stderr, "Checking Sitzungsdienst #{&1}"))
       |> Stream.flat_map(&check_district(&1, status))
 
@@ -67,12 +65,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   end
 
   @spec url(result()) :: binary()
-  defp url([district, "VOLFDNR", id, _desc]) do
-    "https://sitzungsdienst-#{district}.hamburg.de/bi/vo020.asp?VOLFDNR=#{id}"
-  end
-
-  defp url([district, "TOLFDNR", id, _desc]) do
-    "https://sitzungsdienst-#{district}.hamburg.de/bi/to020.asp?TOLFDNR=#{id}"
+  defp url([district, type, id, _desc]) do
+    Allris.url(district, type, id)
   end
 
   @spec check_district(binary(), status()) :: Stream.t()
@@ -129,7 +123,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
       |> Map.put_new(@seen, [])
       |> Map.put_new(@seen_last_run, [])
 
-    Enum.reduce(@districts, status, &Map.put_new(&2, &1, today()))
+    Enum.reduce(Allris.districts(), status, &Map.put_new(&2, &1, today()))
   end
 
   @spec write_status(status()) :: status()

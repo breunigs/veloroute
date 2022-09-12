@@ -24,17 +24,19 @@ defmodule Components.TagHelpers do
     {attrs, extra_text} =
       case URI.new(href) do
         {:ok, %{host: nil, path: "/" <> _rest}} ->
-          {%{"data-phx-link-state": "push", "data-phx-link": "patch", href: href}, ""}
+          {%{"data-phx-link-state": "push", "data-phx-link": "patch"}, ""}
 
         {:ok, %{host: h}} when h in @paywall_hostnames ->
-          {%{target: "_blank", rel: "nofollow", href: href}, " [€]"}
+          {%{target: "_blank", rel: "nofollow"}, " [€]"}
 
         {:ok, %{host: h}} when is_binary(h) ->
-          {%{target: "_blank", href: href}, ""}
+          {%{target: "_blank"}, ""}
 
         _any ->
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
+
+    attrs = Map.merge(Map.take(assigns, [:title, :href]), attrs)
 
     ~H"""
     <a {attrs}><%= render_block(@inner_block) %></a><%= extra_text %>
@@ -246,6 +248,18 @@ defmodule Components.TagHelpers do
     end
   end
 
+  def allris(assigns) do
+    ~H"""
+    <.a href={@href} title="Unterlagen im offiziellen Sitzunsdienst Hamburgs anzeigen. Weniger benutzerfreundlich als die zuerst verlinkte Alternative.">Originalseite</.a>
+    """
+  end
+
+  def no_mobile(assigns) do
+    ~H"""
+    <span class="noMobile"><%= render_block(@inner_block) %></span>
+    """
+  end
+
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   def structured_links(assigns) do
     art = assigns.current_page
@@ -254,9 +268,25 @@ defmodule Components.TagHelpers do
       assigns
       |> art.links()
       |> Enum.map(fn
-        {text, href} -> ~H"<.a href={href}><%= text %></.a>"
-        {text, extra, href} -> ~H"<.a href={href}><%= text %></.a> (<%= extra %>)"
+        {text, href} -> {text, href, nil, Allris.convert_url_to_bvhh(href)}
+        {text, extra, href} -> {text, href, extra, Allris.convert_url_to_bvhh(href)}
         other -> other
+      end)
+      |> Enum.map(fn
+        {text, href, nil, nil} ->
+          ~H"<.a href={href}><%= text %></.a>"
+
+        {text, href, nil, bvhh} ->
+          ~H"<.a href={bvhh}><%= text %></.a><.no_mobile> (<.allris href={href} />)</.no_mobile>"
+
+        {text, href, extra, nil} ->
+          ~H"<.a href={href}><%= text %></.a> (<%= extra %>)"
+
+        {text, href, extra, bvhh} ->
+          ~H"<.a href={bvhh}><%= text %></.a> (<%= extra %><.no_mobile>, <.allris href={href} /></.no_mobile>)"
+
+        other ->
+          other
       end)
 
     links =
