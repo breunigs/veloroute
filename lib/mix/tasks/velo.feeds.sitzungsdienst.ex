@@ -69,7 +69,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     Allris.url(district, type, id)
   end
 
-  @spec check_district(binary(), status()) :: Stream.t()
+  @spec check_district(binary(), status()) :: Enumerable.t()
   defp check_district(district, status) do
     de_date_range = "#{status[district]}-#{today()}"
 
