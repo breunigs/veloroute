@@ -70,7 +70,7 @@ defmodule Data.Article.Blog.VolksdorferDamm do
     <p>Die Kreuzung mit dem <.m bounds="10.144642,53.668474,10.145848,53.669323" lon="10.145376" lat="53.668972" dir="forward">Volksdorfer Grenzweg</.m> wird zu einem Kreisverkehr umgebaut. Alle Knotenarme erhalten Zebrastreifen. Im Kreisel selbst fährt man im <.ref>Mischverkehr</.ref>.</p>
 
     <h4>Meinung</h4>
-    <p>Die breiteren Gehwege sind nett, stellen aber keine ernsthafte Verbesserung für den Radverkehr dar. Die Kombination von Fahrbahnradeln (Mischverkehr) und „Fahrrad frei“ auf Gehwegen ist ein Feigenblatt um zeitgemäße Änderungen zu verhindern. Oft orientieren sich die Leute am Steuer an der Linie des Schutzstreifen und halten die 1,5m Überholabstand nicht ein. Eine sinnvollere Lösung wäre Tempo 30 mit entsprechender Verkehrsberuhigung, damit gar nicht schneller gefahren werden <em>kann</em>.</p>
+    <p>Die breiteren Gehwege sind nett, stellen aber keine ernsthafte Verbesserung für den Radverkehr dar. Die Kombination von Fahrbahnradeln (Mischverkehr) und „Fahrrad frei“ auf Gehwegen ist ein Feigenblatt um zeitgemäße Änderungen zu verhindern. Bei Schutzstreifen orientieren sich die Leute am Steuer oft an der Strichellinie und halten die 1,5m Überholabstand nicht ein. Eine sinnvollere Lösung wäre Tempo 30 mit entsprechender Verkehrsberuhigung, damit gar nicht schneller gefahren werden <em>kann</em>.</p>
 
     <h4>Quelle</h4>
     <.structured_links/>
