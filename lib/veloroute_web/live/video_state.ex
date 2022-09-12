@@ -61,6 +61,11 @@ defmodule VelorouteWeb.Live.VideoState do
         do: Article.Decorators.article_with_tracks(article).tracks(),
         else: []
 
+    tracks =
+      if params["group"] && params["group"] != "",
+        do: Enum.filter(tracks, &(&1.group == params["group"])),
+        else: tracks
+
     art_center = maybe_article_center(article)
 
     new_state =

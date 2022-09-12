@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
   use Article.Default
   def created_at(), do: ~D[2022-09-12]
-  def title(), do: "Ulzburger Straße bis Lohe"
+  def title(), do: "Straßenzug Ulzburger Straße bis Lohe"
 
   def summary(),
     do:
@@ -10,9 +10,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
   def type(), do: :planned
   def tags(), do: []
 
-  # def start(), do: ~d[2023-01]
-  # def stop(), do: ~d[2023-08]
-  # 2022-09-11-landstr-volksd-duvens/GX014750
+  def start(), do: ~d[2024-03]
 
   def tracks(),
     do: [
@@ -88,7 +86,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
     <p>Die genaue Führung des Radverkehrs hängt stark vom Streckenabschnitt und Fahrtrichtung ab. Insgesamt ist keine durchgängige Radführung vorhanden, Fußweg mit <.ref>Fahrrad frei</.ref> ist die häufigste Führungsform. Danach kommen <.ref>Hochbordradwege</.ref>, die jedoch selbst für einspure Fahrräder zu schmal sind und durch Wurzelaufbrüche u.ä. nur mäßig befahrbar. An dritter Stelle steht die Führung im <.ref>Mischverkehr</.ref>, die manchmal unumgänglich ist. <.ref>Benutzungspflicht</.ref> besteht auf dem gesamten Abschnitt keine, sodass auch auf dem ebenen Asphalt gefahren werden kann. Dort muss mit knappen Überholvorgängen gerechnet werden, auch wenn sich die Mehrheit an die Regeln hält.</p>
 
     <h4>Aufteilung</h4>
-    <p>Die Planung betrifft den gesamten Straßenzug <.m bounds="10.075281,53.652212,10.078347,53.664536" lon="10.077009" lat="53.659646" dir="forward" ref="11">Ulzburger Straße</.m>, <.m bounds="10.075069,53.662859,10.091321,53.672637" lon="10.081341" lat="53.668045" dir="forward" ref="11">Poppenbütteler Berg</.m>, <.m bounds="10.089248,53.671521,10.101427,53.697021" lon="10.095088" lat="53.681083" dir="forward" ref="11">Lemsahler Landstraße</.m>, <.m bounds="10.098932,53.695871,10.106205,53.708954">Poppenbütteler Chaussee</.m> und <.m bounds="10.104076,53.708084,10.110594,53.71479" lon="10.107853" lat="53.711575" dir="forward" ref="11">Lohe</.m>. Die Pläne und Projekte zur Umsetzung sind nach den Straßennamen aufgeteilt, d.h. es gibt je Straße eine eigene Projektnummer. Nur Lohe als kurzes Teilstück wurde der Poppenbütteler Chausee zugeschlagen.</p>
+    <p>Die Planung betrifft den gesamten Straßenzug <.m bounds="10.075281,53.652212,10.078347,53.664536" lon="10.077009" lat="53.659646" group="fußweg" dir="forward">Ulzburger Straße</.m>, <.m bounds="10.075069,53.662859,10.091321,53.672637" lon="10.081341" lat="53.668045" group="fußweg" dir="forward">Poppenbütteler Berg</.m>, <.m bounds="10.089248,53.671521,10.101427,53.697021" lon="10.095088" lat="53.681083" group="fußweg" dir="forward">Lemsahler Landstraße</.m>, <.m bounds="10.09814,53.696219,10.106431,53.708795" lon="10.103428" lat="53.701261" dir="forward" group="fußweg">Poppenbütteler Chaussee</.m> und <.m bounds="10.104076,53.708084,10.110594,53.71479" lon="10.107853" lat="53.711575" group="fußweg" dir="forward">Lohe</.m>. Die Pläne und Projekte zur Umsetzung sind nach den Straßennamen aufgeteilt, d.h. es gibt je Straße eine eigene Projektnummer. Nur Lohe als kurzes Teilstück wurde der Poppenbütteler Chausee zugeschlagen.</p>
 
     <h4>Planung – Prinzip</h4>
     <p>Man wollte entlang des gesamten Straßenzugs eine einheitliche Führung herstellen. Außerdem sollten möglichst viele der Straßenbäume erhalten bleiben. Mit diesen Vorgaben war eine eigene Radführung nicht umsetzbar, zumindest nicht ohne erheblichen Zukauf von Grundstücken.</p>
@@ -105,16 +103,16 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
     <p>Wenn nicht anders erwähnt, wird das oben erklärte Prinzip verwendet. Es gibt alledings einige Ausnahmen:</p>
 
     <ul>
-      <li>Bis zum <.m bounds="10.076469,53.652934,10.077677,53.656572" lon="10.077073" lat="53.65624" dir="forward">Minsbekweg</.m> gibt es einen 1,90m breiten Radfahrstreifen Richtung Norden. Die Aufleitung auf den Fußweg erfolgt nach dem Bushalt.</li>
-      <li>Am <.m bounds="10.076069,53.659768,10.077809,53.661463" lon="10.076414" lat="53.660858" dir="backward">Rehmbrook</.m> ist es zu eng für einen Radfahrstreifen Richtung Süden.</li>
-      <li>An der Kreuzung mit der <.m bounds="10.075394,53.66292,10.077047,53.66418" lon="10.07617" lat="53.663482" dir="forward">Harksheider Straße</.m> sind entlang des Straßenzugs <.ref>ARAS</.ref> vorgesehen zum Linksabbiegen. Die alten Hochbordradwege in der Harksheider Straße bleiben. Für diese wird <.ref>indirektes Linksabbiegen</.ref> geplant.</li>
-      <li>Von Norden kommend kann vom Fußweg nicht links in die <.m bounds="10.083277,53.668969,10.085725,53.670227" lon="10.084505" lat="53.669765" dir="backward">Ohlendiekshöhe</.m> abgebogen werden, da kein Durchlass angelegt wird. Umgekehrt kann man von der Nebenstraße auch nicht den gegenüberliegenden Gehweg erreichen.</li>
-      <li>Wer von Norden kommend links in <.m bounds="10.089076,53.670646,10.092011,53.673062" lon="10.090595" lat="53.672369" dir="forward">An der Alsterschleife</.m> abbiegen möchte, kann dies über eine Mittelinsel nach der Einmündung tun. Es gibt vorher auch eine Rampe auf die Fahrbahn, allerdings keinen Radfahrstreifen Richtung Süden.</li>
-      <li>Es gibt ein längeres Stück Radfahrstreifen in Richtung Süden ab Höhe <.m bounds="10.092566,53.675323,10.094834,53.67807" lon="10.094016" lat="53.677901" dir="backward">Hausnummer 100</.m> bis <.m bounds="10.092566,53.675323,10.094834,53.67807" lon="10.09297" lat="53.675593" dir="backward">Kuhredder</.m>.</li>
-      <li>Am <.m bounds="10.094936,53.688807,10.097735,53.690659" lon="10.096591" lat="53.690235" dir="forward">Spechtort</.m> gibt es Richtung Süden keinen Radfahrstreifen.</li>
-      <li>Wie heute gibt es in Fahrtrichtung Süden zwischen <.m bounds="10.103004,53.702325,10.104636,53.70402" lon="10.103532" lat="53.703188" dir="backward">Steenbarg</.m> und Höhe <.m bounds="10.096479,53.690367,10.098394,53.691592" lon="10.097459" lat="53.691094" dir="backward">Lemsahler Landstraße 247</.m> keinen Radweg. In der Gegenrichtung verbleiben Engstellen mit nur 1,2m breiten Fußwegen (1,85m mit Sicherheitsabstand zu den KFZ).</li>
-      <li>Der <.m bounds="10.104071,53.707644,10.106477,53.709337" lon="10.105466" lat="53.708362" dir="forward">Kreisverkehr in Duvenstedt</.m> wird nicht umgebaut.</li>
-      <li>Kurz <.m bounds="10.108084,53.71313,10.109923,53.714841" lon="10.108902" lat="53.7142" dir="forward">vor der Landesgrenze</.m> wird eine Mittelinsel als Querungshilfe gebaut.</li>
+      <li>Bis zum <.m bounds="10.076469,53.652934,10.077677,53.656572" lon="10.077073" lat="53.65624" group="fußweg" dir="forward">Minsbekweg</.m> gibt es einen 1,90m breiten Radfahrstreifen Richtung Norden. Die Aufleitung auf den Fußweg erfolgt nach dem Bushalt.</li>
+      <li>Am <.m bounds="10.076069,53.659768,10.077809,53.661463" lon="10.076414" lat="53.660858" group="fußweg" dir="backward">Rehmbrook</.m> ist es zu eng für einen Radfahrstreifen Richtung Süden.</li>
+      <li>An der Kreuzung mit der <.m bounds="10.075394,53.66292,10.077047,53.66418" lon="10.07617" lat="53.663482" group="fußweg" dir="forward">Harksheider Straße</.m> sind entlang des Straßenzugs <.ref>ARAS</.ref> vorgesehen zum Linksabbiegen. Die alten Hochbordradwege in der Harksheider Straße bleiben. Für diese wird <.ref>indirektes Linksabbiegen</.ref> geplant.</li>
+      <li>Von Norden kommend kann vom Fußweg nicht links in die <.m bounds="10.083277,53.668969,10.085725,53.670227" lon="10.084505" lat="53.669765" group="fußweg" dir="backward">Ohlendiekshöhe</.m> abgebogen werden, da kein Durchlass angelegt wird. Umgekehrt kann man von der Nebenstraße auch nicht den gegenüberliegenden Gehweg erreichen.</li>
+      <li>Wer von Norden kommend links in <.m bounds="10.089076,53.670646,10.092011,53.673062" lon="10.090595" lat="53.672369" group="fußweg" dir="forward">An der Alsterschleife</.m> abbiegen möchte, kann dies über eine Mittelinsel nach der Einmündung tun. Es gibt vorher auch eine Rampe auf die Fahrbahn, allerdings keinen Radfahrstreifen Richtung Süden.</li>
+      <li>Es gibt ein längeres Stück Radfahrstreifen in Richtung Süden ab Höhe <.m bounds="10.092566,53.675323,10.094834,53.67807" lon="10.094016" lat="53.677901" group="fußweg" dir="backward">Hausnummer 100</.m> bis <.m bounds="10.092566,53.675323,10.094834,53.67807" lon="10.09297" lat="53.675593" group="fußweg" dir="backward">Kuhredder</.m>.</li>
+      <li>Am <.m bounds="10.094936,53.688807,10.097735,53.690659" lon="10.096591" lat="53.690235" group="fußweg" dir="forward">Spechtort</.m> gibt es Richtung Süden keinen Radfahrstreifen.</li>
+      <li>Wie heute gibt es in Fahrtrichtung Süden zwischen <.m bounds="10.103004,53.702325,10.104636,53.70402" lon="10.103532" lat="53.703188" group="fußweg" dir="backward">Steenbarg</.m> und Höhe <.m bounds="10.096479,53.690367,10.098394,53.691592" lon="10.097459" lat="53.691094" group="fußweg" dir="backward">Lemsahler Landstraße 247</.m> keinen Radweg. In der Gegenrichtung verbleiben Engstellen mit nur 1,2m breiten Fußwegen (1,85m mit Sicherheitsabstand zu den KFZ).</li>
+      <li>Der <.m bounds="10.104071,53.707644,10.106477,53.709337" lon="10.105466" lat="53.708362" group="fußweg" dir="forward">Kreisverkehr in Duvenstedt</.m> wird nicht umgebaut.</li>
+      <li>Kurz <.m bounds="10.108084,53.71313,10.109923,53.714841" lon="10.108902" lat="53.7142" group="fußweg" dir="forward">vor der Landesgrenze</.m> wird eine Mittelinsel als Querungshilfe gebaut.</li>
     </ul>
 
     <h4>Meinung</h4>
@@ -156,6 +154,9 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
       </tr>
     </table>
 
+    <h4>Videovarianten</h4>
+    <p>Nach Duvenstedt <.m lon="10.077788" lat="53.65277" dir="forward" group="fußweg">auf dem Fußweg</.m> oder <.m lon="10.077788" lat="53.65277" dir="forward" group="fahrbahn">auf der Fahrbahn</.m></p>
+    <p>Nach Poppenbüttel <.m lon="10.109278" lat="53.714736" dir="backward" group="fußweg">auf dem Fußweg</.m> oder <.m lon="10.109278" lat="53.714736" dir="backward" group="fahrbahn">auf der Fahrbahn</.m></p>
 
     <h4>Quelle</h4>
     <.structured_links/>

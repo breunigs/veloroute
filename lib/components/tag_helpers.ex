@@ -56,7 +56,7 @@ defmodule Components.TagHelpers do
     attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to")}
     art = Article.List.find_exact(assigns[:ref]) || assigns.current_page
 
-    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :zoom])
+    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group, :zoom])
 
     # add article only if a video is referenced. Otherwise it might show the
     # video for that article starting from 0:00, instead of just moving the map.
