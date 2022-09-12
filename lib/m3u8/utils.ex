@@ -1,6 +1,33 @@
 defmodule M3U8.Utils do
   import Guards
 
+  @type variant :: %{
+          url: binary(),
+          bandwidth: pos_integer(),
+          width: pos_integer(),
+          height: pos_integer(),
+          codec: binary()
+        }
+
+  @spec variants([M3U8.Tokenizer.valid_token()]) :: [variant()]
+  def variants(tokens) do
+    tokens
+    |> Enum.reduce({[], nil}, fn
+      {:url, url}, {variants, stream} ->
+        variant = %{url: url, bandwidth: stream["BANDWIDTH"], codec: stream["CODECS"]}
+        variant = Map.merge(stream["RESOLUTION"], variant)
+        {[variant | variants], nil}
+
+      {:stream, stream}, {variants, _} ->
+        {variants, stream}
+
+      _other, acc ->
+        acc
+    end)
+    |> elem(0)
+    |> Enum.reverse()
+  end
+
   @type byte_time_range :: %{byte: Range.t(), timestamp: Range.t()}
 
   @spec byte_range_for(

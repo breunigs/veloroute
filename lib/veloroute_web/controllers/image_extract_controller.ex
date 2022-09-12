@@ -2,7 +2,7 @@ defmodule VelorouteWeb.ImageExtractController do
   use VelorouteWeb, :controller
   require Logger
 
-  @extract_from_file "stream_0.m4s"
+  @extract_fallback_file "stream_0.m4s"
   @fallback_image_path "/images/video_poster.svg"
 
   import Guards
@@ -64,16 +64,13 @@ defmodule VelorouteWeb.ImageExtractController do
   @ffmpeg_path :os.find_executable('ffmpeg')
   @ffmpeg_timeout_ms 60_000
   defp ffmpeg_no_cache(hash, ts, webp) do
-    ts = Video.Timestamp.from_milliseconds(ts)
-    path = Path.join([Settings.video_target_dir_abs(), hash, @extract_from_file])
-
     ffmpeg_args =
       List.flatten([
         "-hide_banner",
         ["-loglevel", "error"],
-        ["-ss", ts],
+        ["-ss", Video.Timestamp.from_milliseconds(ts)],
         "-noaccurate_seek",
-        ["-i", path],
+        ["-i", find_best_video(hash)],
         ["-qscale:v", if(webp, do: "35", else: "8")],
         ["-frames:v", "1"],
         ["-c:v", if(webp, do: "webp", else: "mjpeg")],
@@ -96,6 +93,21 @@ defmodule VelorouteWeb.ImageExtractController do
     {:ok, timer} = :timer.send_after(@ffmpeg_timeout_ms, {:abort_ffmpeg, ospid})
 
     collect_from_port(port, timer)
+  end
+
+  defp find_best_video(hash) do
+    base = Path.join(Settings.video_target_dir_abs(), hash)
+
+    with path = Path.join(base, "stream.m3u8"),
+         {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
+         variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
+      best = Enum.max_by(variants, & &1.bandwidth)
+      IO.inspect(best)
+      Path.join(base, String.replace(best.url, ".m3u8", ".m4s"))
+    else
+      _ ->
+        Path.join(base, @extract_fallback_file)
+    end
   end
 
   defp collect_from_port(port, timer, prev_data \\ []) do
