@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Hufnerstrasse do
 
   def start(), do: ~d[2022-08-18]
   def stop(), do: ~d[2023-08-30]
-  def construction_site_id_hh(), do: [101_211, 101_225]
+  def construction_site_id_hh(), do: [101_211, 101_225, 101_232]
 
   def type(), do: :construction
 

@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
   @path "data/auto_generated/feeds_seen/bauweiser.json"
   @base "https://bauweiser.hamburg.de/api/steckbriefeweb/"
-  @days_to_check [0, 7, 30]
+  @days_to_check [0, 7] ++ Enum.to_list(30..360//30)
   @requirements ["app.start"]
 
   plug Tesla.Middleware.BaseUrl, @base

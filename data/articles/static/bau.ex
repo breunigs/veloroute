@@ -12,6 +12,8 @@ defmodule Data.Article.Static.Bau do
     ~H"""
     <p>Die Zeitangaben zu den Baustellen und geplanten Baumaßnahmen stellt meist nur eine grobe Orientierung dar. In der Praxis verschieben sich die genauen Termine durch Baustellenkoordination oder wenn es Streit um Vorhaben gibt. Auch bekomme ich längst nicht alle Änderungen mit – wenn du Fehler findest, bitte <.mailto>schreib mir</.mailto> und ich korrigiere das.</p>
 
+    <p>Für tagesaktuelle Baustelleninfos, siehe auch <.a href="https://www.hamburg.de/baustellen">hamburg.de/baustellen</.a>.</p>
+
     <h3>Baustellen</h3>
     <ul>
       <.list_articles let={art} articles={articles(:construction, :asc, :stop)} grouper={&group_by_stop/1}>

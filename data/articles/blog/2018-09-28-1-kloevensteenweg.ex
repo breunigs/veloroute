@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Kloevensteenweg do
   def title(), do: "Klövensteenweg (Veloroute 1)"
 
   def start(), do: ~d[2022-04-25]
-  def stop(), do: ~d[2023-04]
+  def stop(), do: ~d[2022Q4]
 
   def type(), do: :construction
 
@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.Kloevensteenweg do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", "Juni 2022",
+       "https://www.hamburg.de/altona/baustelleninfos/16283628/dritte-bauphase-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baufortschritt", "Mai 2022",
        "https://www.hamburg.de/altona/baustelleninfos/16218720/zweite-bauphase-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baubeginn", "2022",

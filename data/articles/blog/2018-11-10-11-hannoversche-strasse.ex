@@ -6,20 +6,24 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def title(), do: "Hannoversche Straße (Veloroute 11)"
 
-  # H14.b VR11 Hannoversche Straße (Nord): Feb 23-Dez 23 laut https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2022-12-31]
+  def stop(), do: ~d[2023-12]
 
   def type(), do: :construction
-  def construction_site_id_hh(), do: [14079, 17581]
+  # commented out, as there's no entry for follow up construction yet
+  # def construction_site_id_hh(), do: [14079, 17581]
 
   def tags(), do: ["11", "H14", "H14.B"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", "September 2022",
+       "https://www.hamburg.de/harburg/pressemeldungen/16492914/veloroute-11-knoten-hannoversche-neulaender-strasse-wieder-befahrbar/"},
+      {"Bauzeiträume Harburg", "September 2022",
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916"},
       {"Erläuterungsbericht und Lageplan Kreuzung Neuländer Straße", "2022",
        "https://fragdenstaat.de/anfrage/umbau-hannoversche-strae-neulander-strae/#nachricht-683575"},
-      {"vorläufigem Lageplan", "2018",
+      {"vorläufiger Lageplan", "2018",
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005817"}
     ]
   end
