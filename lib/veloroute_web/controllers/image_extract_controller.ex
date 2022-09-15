@@ -11,10 +11,10 @@ defmodule VelorouteWeb.ImageExtractController do
     with {ts_in_ms, ""} <- Integer.parse(ts),
          {:ok, ren} <- Video.Rendered.get_error(hash),
          true <- ren.length_ms() >= ts_in_ms,
-         webp <- supports_webp?(conn),
-         {:ok, img} <- ffmpeg(hash, ts_in_ms, webp) do
+         {format, header} <- image_support(conn),
+         {:ok, img} <- ffmpeg(hash, ts_in_ms, format) do
       conn
-      |> put_resp_content_type(if(webp, do: "image/webp", else: "image/jpeg"))
+      |> put_resp_content_type(header)
       |> put_resp_header("x-robots-tag", "noindex")
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
       |> send_resp(200, img)
@@ -33,20 +33,26 @@ defmodule VelorouteWeb.ImageExtractController do
     |> halt
   end
 
-  defp supports_webp?(conn) do
-    with ["" <> accept] <- get_req_header(conn, "accept") do
-      String.contains?(accept, "image/webp")
+  @spec image_support(any) :: {:webp | :jpeg, binary()}
+  defp image_support(conn) do
+    with ["" <> accept] <- get_req_header(conn, "accept"),
+         formats <- Regex.scan(~r|image/[a-z]+|, accept) do
+      Enum.find_value(formats, fn
+        # ["image/avif"] = f -> {:avif, f}
+        ["image/webp"] = f -> {:webp, f}
+        _other -> nil
+      end)
     else
-      _ -> false
-    end
+      _ -> nil
+    end || {:jpeg, "image/jpeg"}
   end
 
-  defp ffmpeg(hash, ts, webp) do
-    key = "#{hash} #{ts} #{webp}"
+  defp ffmpeg(hash, ts, format) do
+    key = "#{hash} #{ts} #{format}"
 
     {cache_status, result} =
       Cachex.fetch(:image_extract_cachex, key, fn ->
-        {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, webp) end)
+        {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, format) end)
         Logger.debug("thumbnailing #{key} took #{elapsed / 1_000}ms")
 
         case result do
@@ -63,7 +69,7 @@ defmodule VelorouteWeb.ImageExtractController do
 
   @ffmpeg_path :os.find_executable('ffmpeg')
   @ffmpeg_timeout_ms 60_000
-  defp ffmpeg_no_cache(hash, ts, webp) do
+  defp ffmpeg_no_cache(hash, ts, format) do
     ffmpeg_args =
       List.flatten([
         "-hide_banner",
@@ -71,11 +77,8 @@ defmodule VelorouteWeb.ImageExtractController do
         ["-ss", Video.Timestamp.from_milliseconds(ts)],
         "-noaccurate_seek",
         ["-i", find_best_video(hash)],
-        ["-qscale:v", if(webp, do: "35", else: "8")],
         ["-frames:v", "1"],
-        ["-c:v", if(webp, do: "webp", else: "mjpeg")],
-        if(webp, do: ["-preset", "photo"], else: []),
-        ["-f", "image2pipe"],
+        ffmpeg_format_args(format),
         "-"
       ])
 
@@ -95,6 +98,31 @@ defmodule VelorouteWeb.ImageExtractController do
     collect_from_port(port, timer)
   end
 
+  defp ffmpeg_format_args(:avif) do
+    [
+      ["-c:v", "libsvtav1"],
+      ["-preset", "13"],
+      ["-f", "image2pipe"]
+    ]
+  end
+
+  defp ffmpeg_format_args(:webp) do
+    [
+      ["-qscale:v", "35"],
+      ["-c:v", "webp"],
+      ["-preset", "photo"],
+      ["-f", "image2pipe"]
+    ]
+  end
+
+  defp ffmpeg_format_args(:jpeg) do
+    [
+      ["-qscale:v", "8"],
+      ["-c:v", "mjpeg"],
+      ["-f", "image2pipe"]
+    ]
+  end
+
   defp find_best_video(hash) do
     base = Path.join(Settings.video_target_dir_abs(), hash)
 
@@ -102,7 +130,6 @@ defmodule VelorouteWeb.ImageExtractController do
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
       best = Enum.max_by(variants, & &1.bandwidth)
-      IO.inspect(best)
       Path.join(base, String.replace(best.url, ".m3u8", ".m4s"))
     else
       _ ->
