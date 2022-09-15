@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
   def summary(), do: "Planung sieht eigenständige Radwege und Erweiterung der Grünanlage vor."
 
   def start(), do: ~d[2022-06-01]
-  def stop(), do: ~d[2023-05-01]
+  def stop(), do: ~d[2024-05-01]
 
   def type(), do: :construction
 
@@ -45,6 +45,8 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "September 2022",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht und Lageplan",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1012655"}
     ]

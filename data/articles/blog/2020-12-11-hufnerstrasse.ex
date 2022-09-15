@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.Hufnerstrasse do
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011169"},
       {"endgültige Planung: Hufnertwiete bis Krüsistraße",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011215"},
-      {"Bauzeitraum", "Juli 2022",
+      {"Baustellenkoordination", "Juli 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011989"}
     ]
   end

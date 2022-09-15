@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.TilsiterStrasse do
 
   def links(_assigns) do
     [
-      {"Bauzeitraum", "Stand 2022",
+      {"Baustellenkoordination", "Stand 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016643"},
       {"Präsentation und Vorentwurf", "2021",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014134"}

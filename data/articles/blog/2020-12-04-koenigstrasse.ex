@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.Koenigstrasse do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "September 2022",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan", "2022",
        "https://lsbg.hamburg.de/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht des LSBG", "2022",

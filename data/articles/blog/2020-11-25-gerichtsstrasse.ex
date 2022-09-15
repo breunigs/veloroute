@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def updated_at(), do: ~D[2021-11-27]
   def title(), do: "Gerichtsstraße"
 
-  def start(), do: ~d[2022-06]
-  def stop(), do: ~d[2022-11]
+  def start(), do: ~d[2023-03-01]
+  def stop(), do: ~d[2023-11-30]
 
   def type(), do: :planned
 
@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "September 2022",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht (November 2021)",
        "https://lsbg.hamburg.de/contentblob/15627666/0b66c62e5e9c3e67cfc4c9d646cd2793/data/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht.pdf"},
       {"Lagepläne (November 2021)",

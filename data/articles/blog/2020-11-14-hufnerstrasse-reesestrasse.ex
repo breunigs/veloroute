@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
     [
       {"Erläuterungsbericht und Pläne (fertige Fassung)",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011214"},
-      {"Bauzeitraum", "Juli 2022",
+      {"Baustellenkoordination", "Juli 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011989"}
     ]
   end

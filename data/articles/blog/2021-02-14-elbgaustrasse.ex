@@ -5,14 +5,22 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def title(), do: "Elbgaustraße (Veloroute 14)"
 
-  def start(), do: ~d[2023Q2]
+  def start(), do: ~d[2023-10-01]
+  def stop(), do: ~d[2024-12-31]
 
   def type(), do: :planned
 
   def tags(), do: ["hochbordradweg", "fahrrad-frei", "vz240", "14"]
 
   def links(_assigns) do
-    []
+    [
+      {"Baustellenkoordination", "September 2022",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
+      {"Beteiligungsverfahren Elbgaustraße",
+       "https://beteiligung.hamburg/elbgaustrasse/#/projectinfo"},
+      {"Erläuterungsbericht und Lagepläne",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011035"}
+    ]
   end
 
   def text(assigns) do
@@ -37,10 +45,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     <p>Ab den Brücken gibt es für den Radverkehr nur noch Reste. An besonders engen Stellen schickt man Rad und Fuß direkt in den Konflikt. Es ist auch heute schon unangenehm Leute zu Fuß unter den Brücken zu überholen, weil kein Sicherheitsabstand eingehalten werden kann. Das dies auch künftig so bleiben soll enttäuscht und ist sehr weit von einer brauchbaren Veloroute entfernt. Eine sinnvolle Lösung erfordert eine einspurige KFZ-Führung (HVV frei), z.B. durch Einbahnstraßen oder mittels Ampel. Will man langfristig den KFZ-Verkehr fördern, könnten die Bahnbrücken verbreitert werden. Da die nächste Unterführung selbst im absurdesten Fall nur 10 Minuten Umweg bedeutet, erscheint der Nutzen fraglich.</p>
 
     <h4>Quelle</h4>
-    <ul>
-    <li><.a href="https://beteiligung.hamburg/elbgaustrasse/#/projectinfo">Beteiligungsverfahren Elbgaustraße</.a></li>
-    <li><.a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011035">Erläuterungsbericht und Lagepläne</.a></li>
-    </ul>
+    <.structured_links/>
     """
   end
 end

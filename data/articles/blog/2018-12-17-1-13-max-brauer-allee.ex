@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "September 2022",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Planung 2022", "Lageplan und Änderungen zur 2018er Version",
        "https://suche.transparenz.hamburg.de/dataset/e749e266-0450-4e76-9f0e-a0bd9ddc643d"},
       {"Erläuterungsbericht mit Lageplänen 2018", "Übersicht Seite 22, Pläne ab Seite 88",
