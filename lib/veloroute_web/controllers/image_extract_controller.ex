@@ -98,13 +98,13 @@ defmodule VelorouteWeb.ImageExtractController do
     collect_from_port(port, timer)
   end
 
-  defp ffmpeg_format_args(:avif) do
-    [
-      ["-c:v", "libsvtav1"],
-      ["-preset", "13"],
-      ["-f", "image2pipe"]
-    ]
-  end
+  # defp ffmpeg_format_args(:avif) do
+  #   [
+  #     ["-c:v", "libsvtav1"],
+  #     ["-preset", "13"],
+  #     ["-f", "image2pipe"]
+  #   ]
+  # end
 
   defp ffmpeg_format_args(:webp) do
     [
