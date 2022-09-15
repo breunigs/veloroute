@@ -19,6 +19,12 @@ defmodule Allris do
     "https://bv-hh.de/#{district}/documents/allris?allris_id=#{id}"
   end
 
+  # currently BV-HH doesn't mirror attachments for individual meeting note
+  # items, so can't link to them yet. See https://github.com/bv-hh/bv-hh/issues/270
+  # def url_bv_hh(district, "TOLFDNR", id) when district in @districts do
+  #   "https://bv-hh.de/#{district}/agenda_items/allris?allris_id=#{id}"
+  # end
+
   def url_bv_hh(district, "SILFDNR", id) when district in @districts do
     "https://bv-hh.de/#{district}/meetings/allris?allris_id=#{id}"
   end
