@@ -38,8 +38,8 @@ defmodule VelorouteWeb.ImageExtractController do
     with ["" <> accept] <- get_req_header(conn, "accept"),
          formats <- Regex.scan(~r|image/[a-z]+|, accept) do
       Enum.find_value(formats, fn
-        # ["image/avif"] = f -> {:avif, f}
-        ["image/webp"] = f -> {:webp, f}
+        # ["image/avif"] -> {:avif, "image/avif"}
+        ["image/webp"] -> {:webp, "image/webp"}
         _other -> nil
       end)
     else
@@ -53,11 +53,15 @@ defmodule VelorouteWeb.ImageExtractController do
     {cache_status, result} =
       Cachex.fetch(:image_extract_cachex, key, fn ->
         {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, format) end)
-        Logger.debug("thumbnailing #{key} took #{elapsed / 1_000}ms")
 
         case result do
-          {:ok, img} -> {:commit, {:ok, img}}
-          other -> {:ignore, other}
+          {:ok, img} ->
+            Logger.debug("thumbnailing '#{key}' took #{elapsed / 1_000}ms")
+            {:commit, {:ok, img}}
+
+          other ->
+            Logger.info("thumbnailing '#{key}' failed: #{inspect(other)}")
+            {:ignore, other}
         end
       end)
 
