@@ -583,3 +583,9 @@
 '2022-08-31':
 - "/contentblob/16451534/f1be03d2002bfa7d7668cb2963440077/data/an-der-alster-fahrradachsen-09-22.pdf"
 - "/contentblob/16430294/5dca7f6a731536315b0e63d52176934f/data/winterhuder-weg-09-22-bis-10-22-stand-august-2022.pdf"
+'2022-09-14':
+- "/contentblob/16494858/2566839aa596fae56e04a3860f72dfde/data/kuhlenmoorweg-brueckensanierung-09-22-bis-02-23.pdf"
+'2022-09-16':
+- "/contentblob/16501844/8794703e47a729e2ea768cf2b212ba00/data/bergedorfer-strasse-erneuerung-geh-und-radwege-10-22-bis-12-22.pdf"
+- "/contentblob/16501850/a506f3ca2185434aa0c3f9011120800e/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"
+- "/contentblob/16494896/b898995c9a222a24abf688186132d73a/data/speersort-rueckbau-haltestellen-09-22-bis-11-22.pdf"

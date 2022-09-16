@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Methfesselstrasse do
   def type(), do: :construction
   def start(), do: ~d[2022-09-13]
   def stop(), do: ~d[2023-07-31]
-  def construction_site_id_hh(), do: [113061]
+  def construction_site_id_hh(), do: [113_061]
 
   def tags(), do: ["eimsbüttel", "articles"]
 
@@ -30,6 +30,8 @@ defmodule Data.Article.Blog.Methfesselstrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Umbau", "September 2022",
+       "https://www.hamburg.de/eimsbuettel/pressemitteilungen/16499936/2022-09-15-eimsbuettel-methfesselstrasse/"},
       {"Erläuterungsbericht und Pläne",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006045"}
     ]

@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
   def summary(),
     do: "Verschiedene Lösungen der Einzelabschnitte. Umbau Spanische Furt ab Oktover 2022."
 
-  def start(), do: ~d[2023Q3]
+  def start(), do: ~d[2022-10]
   def stop(), do: ~d[2023-12]
 
   def type(), do: :planned
@@ -18,8 +18,8 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
 
   def links(_assigns) do
     [
-      {"Zeitplanung Abschnitt Spanische Furt/Graf-Johann-Weg", "August 2022",
-       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007760"},
+      {"Baustelleninfo Abschnitt Spanische Furt/Graf-Johann-Weg", "September 2022",
+       "https://lsbg.hamburg.de/contentblob/16501850/a506f3ca2185434aa0c3f9011120800e/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"},
       {"Vergabeunterlagen Umbau", "Juli 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ef58f192-1b19-40b5-94f4-a411a16ee71b/details"},
       {"Pressemitteilung zu Tempo-30 Heidlohstraße",
