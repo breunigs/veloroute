@@ -146,16 +146,16 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name, "https://www.komoot.de" <> _rest}), do: []
   defp extract({_name, "https://www.openstreetmap.org" <> _rest}), do: []
   defp extract({_name, "https://web.archive.org" <> _rest}), do: []
+  # defp extract({_name, "https://twitter.com" <> _rest}), do: []
 
   defp extract({name, url}) do
     path = URI.new!(url).path
 
-    if String.ends_with?(path, "/") do
+    if String.ends_with?(path, ".pdf") do
+      [{:download, "#{name} #{name_from_url(url)}", url}]
+    else
       # likely a normal website, just capture it
       [{:capture, "default #{name}", url}]
-    else
-      IO.puts("don't know how to extract links for “#{name}”: #{url}")
-      []
     end
   end
 
@@ -293,9 +293,40 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end
   end
 
+  defp grab({:capture, file, "https://twitter.com" <> _ = url} = entry, _retries) do
+    log(file, "#{Path.basename(file)}.pdf")
+
+    {out, exit_code} =
+      System.cmd(
+        "chromium",
+        [
+          "--temp-profile",
+          "--headless",
+          "--disable-gpu",
+          "--run-all-compositor-stages-before-draw",
+          "--print-to-pdf-no-header",
+          "--virtual-time-budget=15000",
+          "--print-to-pdf=#{file}.pdf",
+          url
+        ]
+      )
+
+    if exit_code != 0,
+      do: log(file, "page capture failed:\n#{out}\n\n\n")
+
+    entry
+  end
+
   defp grab({:capture, file, url} = entry, _retries) do
     log(file, "#{Path.basename(file)}.pdf")
-    {out, exit_code} = System.cmd("cutycapt", ["--url=#{url}", "--out=#{file}.pdf"])
+
+    {out, exit_code} =
+      System.cmd("cutycapt", [
+        "--url=#{url}",
+        "--out=#{file}.pdf",
+        "--delay=1000",
+        "--print-backgrounds=on"
+      ])
 
     if exit_code != 0,
       do: log(file, "page capture failed:\n#{out}\n\n\n")
