@@ -374,6 +374,11 @@ window.addEventListener("phx:video_polyline", e => {
   }
 })
 
+window.addEventListener("phx:video_route", e => {
+  if (!map.getLayer('route-casing-highlight')) return;
+  map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], e.detail.id]);
+})
+
 function toRad(degrees) {
   return degrees * Math.PI / 180;
 };

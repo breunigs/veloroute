@@ -109,7 +109,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp finalize(socket, assigns) do
     socket
     |> Phoenix.LiveView.assign(assigns)
-    |> push_changes([:video_polyline])
+    |> push_changes([:video_polyline, :video_route])
   end
 
   defp push_changes(socket, fields) do
@@ -120,6 +120,14 @@ defmodule VelorouteWeb.Live.VideoState do
         socket
       end
     end)
+  end
+
+  @spec route_id(t()) :: binary()
+  def route_id(%__MODULE__{} = state) do
+    with track <- current_track(state),
+         true <- is_module(track.parent_ref) do
+      track.parent_ref.id()
+    end || "failed-to-determine-route-id"
   end
 
   @spec current_track(t()) :: Video.Track.t() | nil
@@ -267,6 +275,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_length_ms: video.length_ms(),
       video_coords: coords,
       video_polyline: video.polyline(),
+      video_route: %{id: route_id(state)},
       video_metadata: metadata,
       video_metadata_now: metadata_now,
       video_reversable: is_reversable(state),

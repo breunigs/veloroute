@@ -92,7 +92,7 @@
     requestAnimationFrame(function(){
       var mapEl = document.getElementById("map")
       mapEl.classList.add("preview")
-      mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false')`
+      mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route.id %>"]&layer_id=route-casing-highlight')`
     })
     </script>
     <% end %>
