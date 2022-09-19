@@ -94,7 +94,8 @@ export class MapboxStyleSwitcherControl implements IControl {
   }
 
   public refreshIfChanged(): void {
-    if (this.typesOnOverride?.join(",") === window.state.visibleTypes!) return;
+    if (this.typesOnOverride.join(",") === this.stateTypes().join(",")) return;
+    this.visibleTypes = this.stateTypes();
     this.refresh();
   }
 
