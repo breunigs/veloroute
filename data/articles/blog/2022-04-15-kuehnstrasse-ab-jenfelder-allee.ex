@@ -4,17 +4,17 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
   def created_at(), do: ~D[2022-04-15]
   def updated_at(), do: ~D[2022-09-20]
 
-  def title(), do: "Kuehnstraße ab Jenfelder Allee (Alltagsroute 5)"
+  def title(), do: "Kuehnstraße ab Jenfelder Allee (Alltagsroute 7)"
 
   def summary(),
     do:
       "1,85m breite Radfahrstreifen. Umbau nur möglich, wenn die Kreuzung mit der Jenfelder Allee ebenfalls mit angepasst wird."
 
-  def type(), do: :intent
+  def type(), do: :planned
   def start(), do: ~d[2024]
   def stop(), do: ~d[2025]
 
-  def tags(), do: ["5", "w25"]
+  def tags(), do: ["7", "w25"]
 
   def links(_assigns) do
     [
