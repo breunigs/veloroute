@@ -6,6 +6,7 @@ defmodule Article.Default do
       import Data.RoughDate, only: [sigil_d: 2]
 
       def name(), do: unquote(Article.auto_generate_name(__CALLER__.module))
+      def created_at, do: unquote(Macro.escape(Article.auto_generate_created_at(__CALLER__.file)))
       def updated_at, do: created_at()
       def start, do: Data.RoughDate.zero()
       def stop, do: Data.RoughDate.zero()

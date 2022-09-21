@@ -63,6 +63,19 @@ defmodule Article do
     end
   end
 
+  def auto_generate_created_at(path) do
+    filename = Path.basename(path)
+
+    with [_, y, m, d] <- Regex.run(~r/^(\d{4})-(\d{2})-(\d{2})-/, filename) do
+      y = String.to_integer(y)
+      m = String.to_integer(m)
+      d = String.to_integer(d)
+      Date.new!(y, m, d)
+    else
+      _ -> nil
+    end
+  end
+
   defp module_name_pascalized(mod) when is_atom(mod) and not is_nil(mod) do
     mod
     |> Module.split()
