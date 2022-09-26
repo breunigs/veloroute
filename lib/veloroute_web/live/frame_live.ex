@@ -24,7 +24,8 @@ defmodule VelorouteWeb.FrameLive do
     search_query: nil,
     search_bounds: nil,
     tmp_last_article_set: nil,
-    visible_types: []
+    visible_types: [],
+    mapbox_style_id: Settings.mapbox_styles() |> hd() |> elem(1)
   ]
 
   def initial_state, do: @initial_state
@@ -120,9 +121,14 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, assign(socket, :autoplay, false)}
   end
 
-  def handle_event("map-click", attr, socket) do
-    Logger.debug("map-click #{inspect(attr)}")
+  def handle_event("map-style-switch", attr, socket) do
+    Logger.debug("map-style-switch #{inspect(attr)}")
+    valid = Enum.any?(Settings.mapbox_styles(), fn {_name, id} -> id == attr["style"] end)
+    socket = if valid, do: assign(socket, :mapbox_style_id, attr["style"]), else: socket
+    {:noreply, socket}
+  end
 
+  def handle_event("map-click", attr, socket) do
     # if we have an article use that, but ignore the default article (i.e. the
     # startpage) when we have a route
     article = find_article(attr["article"])

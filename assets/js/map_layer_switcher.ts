@@ -3,6 +3,7 @@ import { IControl, Map as MapboxMap, Layer } from "mapbox-gl";
 declare global {
   interface Window {
     state: DOMStringMap;
+    pushEvent: (name: string, args: object) => void;
   }
 }
 
@@ -15,6 +16,12 @@ type toggableLayer =
     line?: string[],
     icon?: string[],
     fill?: string[],
+  }
+
+type mapStyle =
+  {
+    title: string,
+    type: string,
   }
 
 export class MapboxStyleSwitcherControl implements IControl {
@@ -43,6 +50,8 @@ export class MapboxStyleSwitcherControl implements IControl {
     }
   ]
 
+  private styleConfig: mapStyle[] = []
+
   private layerAbove = {
     line: "detour-line",
     icon: "article-areas title"
@@ -61,6 +70,13 @@ export class MapboxStyleSwitcherControl implements IControl {
   private typesOnOverride = ["articles", "alltag"];
   private visibleTypes: string[] | undefined;
 
+  constructor(styles: string) {
+    styles.split("\n").forEach(s => {
+      let [type, title] = s.split(" ", 2);
+      this.styleConfig.push({ type: type, title: title })
+    })
+  }
+
   public getDefaultPosition(): string {
     const defaultPosition = "bottom-left";
     return defaultPosition;
@@ -76,10 +92,15 @@ export class MapboxStyleSwitcherControl implements IControl {
     this.checkboxGroup.classList.add("mapboxgl-ctrl-group")
     this.checkboxGroup.addEventListener('click', event => {
       if (!event.target) return;
-      const type = (event.target as HTMLElement).dataset.type;
+      const target = (event.target as HTMLElement);
+      const type = target.dataset.type;
       if (!type) return;
 
-      this.toggleLayer(type);
+      if (target.classList.contains("layer")) {
+        this.toggleLayer(type);
+      } else {
+        this.switchStyle(type)
+      }
     });
 
     this.iconButton.classList.add("mapboxgl-ctrl-icon", "mapboxgl-style-switcher");
@@ -94,6 +115,8 @@ export class MapboxStyleSwitcherControl implements IControl {
   }
 
   public refreshIfChanged(): void {
+    // TODO: this ignores any change in style. There are currently no
+    // server-side events to switch the style.
     if (this.typesOnOverride.join(",") === this.stateTypes().join(",")) return;
     this.visibleTypes = this.stateTypes();
     this.refresh();
@@ -111,6 +134,15 @@ export class MapboxStyleSwitcherControl implements IControl {
     this.refresh();
   }
 
+  private switchStyle(value: string): void {
+    window.state.mapboxStyleId = value;
+    this.map?.setStyle('mapbox://styles/' + value);
+    window.pushEvent("map-style-switch", {
+      style: value,
+    })
+    this.refresh();
+  }
+
   private stateTypes(): string[] {
     return window.state.visibleTypes!.split(",");
   }
@@ -121,21 +153,23 @@ export class MapboxStyleSwitcherControl implements IControl {
 
   private refresh(): void {
     const visible = this.currentTypes();
-
     let html = "";
     for (const layer of this.layerConfig) {
       const isVisible = visible.indexOf(layer.type) >= 0;
       if (layer.icon) this.updateMapPrimitive(layer, "icon", isVisible);
       if (layer.line) this.updateMapPrimitive(layer, "line", isVisible);
       if (layer.fill) this.updateMapPrimitive(layer, "fill", isVisible);
-      html += this.renderButton(layer, isVisible)
+      html += this.renderButton(layer, "layer", isVisible)
+    }
+    for (const style of this.styleConfig) {
+      html += this.renderButton(style, "style", style.type == window.state.mapboxStyleId)
     }
     if (this.checkboxGroup.innerHTML == html) return;
     this.checkboxGroup.innerHTML = html;
   }
 
-  private renderButton(layer: toggableLayer, visible: boolean): string {
-    return `<button data-type="${layer.type}" class="${visible ? "active" : ""}">${layer.title}</button>`
+  private renderButton(layer: toggableLayer | mapStyle, type: string, visible: boolean): string {
+    return `<button data-type="${layer.type}" class="${visible ? "active" : ""} ${type}">${layer.title}</button>`
   }
 
   private minZoomForLayer(layerName: string, minZoom: number): void {

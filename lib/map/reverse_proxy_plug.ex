@@ -1,6 +1,8 @@
 defmodule Map.ReverseProxyPlug do
   @behaviour Plug
 
+  def static_style(), do: Settings.mapbox_styles() |> hd |> elem(1)
+
   defmodule Massager do
     @behaviour Tesla.Middleware
 
@@ -36,7 +38,7 @@ defmodule Map.ReverseProxyPlug do
         String.replace(
           env.url,
           "/___static/",
-          "/styles/v1/breunigs/#{Settings.mapbox_style_id()}/static/"
+          "/styles/v1/#{Map.ReverseProxyPlug.static_style()}/static/"
         )
 
       Map.put(env, :url, url)

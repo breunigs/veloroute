@@ -5,7 +5,11 @@ defmodule Settings do
   def initial,
     do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
-  def mapbox_style_id, do: "ckvvdvpy63v3j14n2vwo7sut0"
+  def mapbox_styles,
+    do: [
+      {"Karte", "breunigs/ckvvdvpy63v3j14n2vwo7sut0"},
+      {"Satellitenbild", "breunigs/cl8ag4t3000gy14o6h8257pyo"}
+    ]
 
   def start_image,
     do: %{

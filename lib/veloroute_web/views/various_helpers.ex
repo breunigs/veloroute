@@ -83,6 +83,12 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
+  def mapbox_styles_to_string() do
+    Settings.mapbox_styles()
+    |> Enum.map(fn {name, id} -> "#{id} #{name}" end)
+    |> Enum.join("\n")
+  end
+
   def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
     bounds
   end

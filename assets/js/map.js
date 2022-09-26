@@ -8,6 +8,8 @@ if (!window.requestIdleCallback) {
   }
 }
 
+window.state = document.getElementById("control").dataset;
+
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 mapboxgl.accessToken = "pk.";
@@ -23,7 +25,7 @@ const map = new mapboxgl.Map({
   fitBoundsOptions: fitBoundsOpt,
   minZoom: 9,
   maxZoom: 19,
-  style: 'mapbox://styles/breunigs/' + settings.mapboxStyleId,
+  style: 'mapbox://styles/' + state.mapboxStyleId,
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,
@@ -35,7 +37,7 @@ const map = new mapboxgl.Map({
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.AttributionControl(), 'top-right');
 
-const layerSwitcher = new MapboxStyleSwitcherControl();
+const layerSwitcher = new MapboxStyleSwitcherControl(settings.mapboxStyles);
 map.addControl(layerSwitcher);
 
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];

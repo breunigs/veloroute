@@ -636,6 +636,10 @@ body.fullscreen video, #videoOuter:fullscreen video {
       text-align: left;
       color: #000;
 
+      &.layer + .style, &.style + .layer {
+        border-top: 1px solid #999;
+      }
+
       &::before {
         width: 20px;
         padding-right: 10px;
