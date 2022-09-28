@@ -36,23 +36,23 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec show_all_districts(status()) :: status()
   defp show_all_districts(status) do
-    results =
-      Allris.districts()
-      |> Stream.each(&IO.puts(:stderr, "Checking Sitzungsdienst #{&1}"))
-      |> Stream.flat_map(&check_district(&1, status))
-
+    results = Stream.flat_map(Allris.districts(), &check_district(&1, status))
     seen = MapSet.new(status[@seen])
 
     results
-    |> Enum.reduce(status, fn result, status ->
-      if not MapSet.member?(seen, result), do: show(result)
-
-      status
-      |> Map.put(@seen_last_run, [result | status[@seen_last_run]])
-      |> write_status()
+    |> Enum.reduce({status, nil}, fn result, {status, task} ->
+      if MapSet.member?(seen, result) do
+        {write_status_put(status, result), task}
+      else
+        status = write_status_put(status, task)
+        task = Task.async(fn -> show(result) end)
+        {status, task}
+      end
     end)
+    |> write_status_put()
   end
 
+  @spec show(result()) :: result() | no_return()
   defp show(result) do
     [_, _, _, desc] = result
     IO.puts("\n#{desc}\n#{url(result)}")
@@ -60,7 +60,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     case IO.gets("Continue?") do
       :eof -> exit({:shutdown, 1})
       {:error, _reason} -> exit({:shutdown, 1})
-      _input -> true
+      _input -> result
     end
   end
 
@@ -124,6 +124,22 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
       |> Map.put_new(@seen_last_run, [])
 
     Enum.reduce(Allris.districts(), status, &Map.put_new(&2, &1, today()))
+  end
+
+  @spec write_status_put({status(), Task.t() | nil}) :: status()
+  defp write_status_put({status, task}), do: write_status_put(status, task)
+
+  @spec write_status_put(status(), result() | Task.t() | nil) :: status()
+  defp write_status_put(status, %Task{} = task) do
+    write_status_put(status, Task.await(task, :infinity))
+  end
+
+  defp write_status_put(status, nil), do: status
+
+  defp write_status_put(status, result) do
+    status
+    |> Map.put(@seen_last_run, [result | status[@seen_last_run]])
+    |> write_status()
   end
 
   @spec write_status(status()) :: status()
