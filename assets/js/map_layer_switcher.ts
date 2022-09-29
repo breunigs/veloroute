@@ -136,11 +136,11 @@ export class MapboxStyleSwitcherControl implements IControl {
 
   private switchStyle(value: string): void {
     window.state.mapboxStyleId = value;
+    this.map?.once("style.load", () => this.refresh())
     this.map?.setStyle('mapbox://styles/' + value);
     window.pushEvent("map-style-switch", {
       style: value,
     })
-    this.refresh();
   }
 
   private stateTypes(): string[] {
