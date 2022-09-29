@@ -29,6 +29,7 @@ export class MapboxStyleSwitcherControl implements IControl {
     {
       type: "articles",
       title: "Artikel",
+      outline: ["article-areas bg outline", "article-areas bg outline dash"],
       fill: ['article-areas bg'],
       icon: ['article-areas title']
     },
@@ -156,9 +157,10 @@ export class MapboxStyleSwitcherControl implements IControl {
     let html = "";
     for (const layer of this.layerConfig) {
       const isVisible = visible.indexOf(layer.type) >= 0;
-      if (layer.icon) this.updateMapPrimitive(layer, "icon", isVisible);
-      if (layer.line) this.updateMapPrimitive(layer, "line", isVisible);
-      if (layer.fill) this.updateMapPrimitive(layer, "fill", isVisible);
+      this.updateMapPrimitive(layer.icon, "icon", isVisible);
+      this.updateMapPrimitive(layer.outline, "line", isVisible);
+      this.updateMapPrimitive(layer.line, "line", isVisible, true);
+      this.updateMapPrimitive(layer.fill, "fill", isVisible);
       html += this.renderButton(layer, "layer", isVisible)
     }
     for (const style of this.styleConfig) {
@@ -182,15 +184,16 @@ export class MapboxStyleSwitcherControl implements IControl {
     this.map!.setLayerZoomRange(layerName, minZoom, 24);
   }
 
-  private updateMapPrimitive(layer: toggableLayer, drawPrimitive: string, isVisible: boolean): void {
-    const layerNames: string[] = layer[drawPrimitive];
+  private updateMapPrimitive(layerNames: string[] | undefined, drawPrimitive: string, isVisible: boolean, showOnHighZoom: boolean = false): void {
+    if (!layerNames) return;
+
     const opacity = isVisible ? 1 : this.hiddenOpacityRule;
     const minZoom = isVisible ? 1 : this.hiddenMinZoom;
 
     layerNames.forEach(layerName => {
       this.minZoomForLayer(layerName, minZoom)
 
-      const visible = isVisible || drawPrimitive == 'line' ? 'visible' : 'none';
+      const visible = isVisible || showOnHighZoom ? 'visible' : 'none';
       // @ts-ignore wrong signature in 3rd party types
       this.map?.setLayoutProperty(layerName, "visibility", visible, {
         validate: false
