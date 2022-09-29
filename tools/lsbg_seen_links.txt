@@ -589,3 +589,12 @@
 - "/contentblob/16501844/8794703e47a729e2ea768cf2b212ba00/data/bergedorfer-strasse-erneuerung-geh-und-radwege-10-22-bis-12-22.pdf"
 - "/contentblob/16501850/a506f3ca2185434aa0c3f9011120800e/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"
 - "/contentblob/16494896/b898995c9a222a24abf688186132d73a/data/speersort-rueckbau-haltestellen-09-22-bis-11-22.pdf"
+'2022-09-23':
+- "/contentblob/16522376/ee441cc5b1e63a6e160825c12ce9a442/data/bargteheider-strasse-sanierung-10-22.pdf"
+'2022-09-28':
+- "/contentblob/16533874/e0462bb42a386d586b38c21224d53ea5/data/holsteiner-chaussee-erneuerung-geh-und-radwege-10-22-bis-12-22.pdf"
+'2022-09-29':
+- "/contentblob/16535924/bed291eb16849f8c88a139e7a04f0bff/data/gertigstrasse-bauzeitverlaengerung-sept-2022.pdf"
+- "/contentblob/16501850/e80ab8e2bf481f8904fa617f00834c00/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"
+- "/contentblob/16405298/d7a07f96955a457570f307031eb44b84/data/von-scheliha-strasse-und-wilhelm-osterhold-stieg-%E2%80%93-08-22-bis-12-22.pdf"
+- "/contentblob/16536036/f6fbde7bd1dc135d3c4f2be3a1dfb5b8/data/von-scheliha-strasse-und-wilhelm-osterhold-stieg-ii-%E2%80%93-10-22-bis-12-22.pdf"

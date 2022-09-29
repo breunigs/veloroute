@@ -11,15 +11,17 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
 
   def start(), do: ~d[2022-10]
   def stop(), do: ~d[2023-12]
+  # Graf-Johann-Weg
+  # def construction_site_id_hh(), do: [121136]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["14"]
 
   def links(_assigns) do
     [
       {"Baustelleninfo Abschnitt Spanische Furt/Graf-Johann-Weg", "September 2022",
-       "https://lsbg.hamburg.de/contentblob/16501850/a506f3ca2185434aa0c3f9011120800e/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"},
+       "https://lsbg.hamburg.de/contentblob/16501850/e80ab8e2bf481f8904fa617f00834c00/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"},
       {"Vergabeunterlagen Umbau", "Juli 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ef58f192-1b19-40b5-94f4-a411a16ee71b/details"},
       {"Pressemitteilung zu Tempo-30 Heidlohstraße",

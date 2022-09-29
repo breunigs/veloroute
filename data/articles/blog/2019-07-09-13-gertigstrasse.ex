@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def title(), do: "Gertigstraße (Veloroute 13)"
 
   def start(), do: ~d[2022-02-28]
-  def stop(), do: ~d[2022-09-30]
+  def stop(), do: ~d[2022-10-30]
   def construction_site_id_hh(), do: [23095]
 
   def type(), do: :construction
@@ -16,14 +16,14 @@ defmodule Data.Article.Blog.Gertigstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo (September 2022)",
+       "https://lsbg.hamburg.de/contentblob/16535924/bed291eb16849f8c88a139e7a04f0bff/data/gertigstrasse-bauzeitverlaengerung-sept-2022.pdf"},
       {"Pressemitteilung Bauankündigung",
        "https://www.hamburg.de/bvm/medien/15878322/2022-02-14-bvm-fahrradstrasse-winterhude/"},
       {"Lageplan",
        "https://lsbg.hamburg.de/contentblob/13910752/feaafed3ea97bc9c3c4e6a30ca789902/data/veloroute-13-gertigstrasse-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/13910740/d9e67d142f0a5eea576915fd36ebea26/data/veloroute-13-gertigstrasse-abgestimmte-planung-bericht.pdf"},
-      {"Baustelleninfo (Juli 2022)",
-       "https://lsbg.hamburg.de/contentblob/16360474/e2d60d35f90227470884c119797c8eca/data/gertigstrasse-sperrungen-august-2022-stand-juli-2022.pdf"},
       {"Auftragsvergabe (Bauzeitraum)",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details"}
     ]
