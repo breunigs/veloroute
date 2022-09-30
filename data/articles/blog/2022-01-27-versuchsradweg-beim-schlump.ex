@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
   def start(), do: ~d[2022Q3]
   def stop(), do: ~d[2022Q3]
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def summary(),
     do: "Pop-Up-Bikelane wird in dauerhafte Radfahrstreifen umgewandelt. Änderungen gibt es kaum."

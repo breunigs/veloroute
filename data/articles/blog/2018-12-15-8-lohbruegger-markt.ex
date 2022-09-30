@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.LohbrueggerMarkt do
   def start(), do: ~d[2021-01-18]
   def stop(), do: ~d[2021-12-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [14337]
   def tags(), do: ["8"]
 
