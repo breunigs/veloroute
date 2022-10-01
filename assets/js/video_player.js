@@ -249,6 +249,7 @@ videoQualityOptions.addEventListener('click', event => {
   window.hls.nextLevel = level * 1;
   window.hls.loadLevel = level * 1;
   updateQualityChooser();
+  window.plausible('videoQualityChanged')
 });
 
 const codecTranslate = {

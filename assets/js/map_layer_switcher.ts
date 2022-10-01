@@ -124,6 +124,7 @@ export class MapboxStyleSwitcherControl implements IControl {
   }
 
   private toggleLayer(value: string): void {
+    window.plausible('toggleLayer')
     this.typesOnOverride = this.stateTypes();
     let layers = this.currentTypes();
 
@@ -136,6 +137,7 @@ export class MapboxStyleSwitcherControl implements IControl {
   }
 
   private switchStyle(value: string): void {
+    window.plausible('switchStyle')
     window.state.mapboxStyleId = value;
     this.map?.once("style.load", () => this.refresh())
     this.map?.setStyle('mapbox://styles/' + value);
