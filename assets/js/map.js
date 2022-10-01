@@ -31,8 +31,6 @@ const map = new mapboxgl.Map({
   touchPitch: false,
   logoPosition: 'top-left',
   attributionControl: false,
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=976173
-  preserveDrawingBuffer: navigator.userAgent.indexOf("Gecko/") >= 1,
 });
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.AttributionControl(), 'top-right');
