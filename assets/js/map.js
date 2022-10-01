@@ -372,6 +372,42 @@ window.addEventListener("phx:video_polyline", e => {
     interval: e.detail.interval,
     eps: 10 ** (-e.detail.precision),
   }
+
+  // videoPathDebug render
+  // const videoLayerDefaults = {
+  //   'type': 'line',
+  //   'source': 'video',
+  //   'layout': {
+  //     'line-join': 'round',
+  //     'line-cap': 'round'
+  //   },
+  // }
+  // const source = map.getSource('video');
+  // if (source) {
+  //   source.setData(decoded)
+  //   return
+  // }
+
+  // map.addSource('video', {
+  //   'type': 'geojson',
+  //   'data': decoded
+  // });
+
+  // map.addLayer(Object.assign({
+  //   'id': 'video-fg',
+  //   'paint': {
+  //     'line-color': '#000',
+  //     'line-width': 0.5,
+  //   }
+  // }, videoLayerDefaults), "road-label");
+  // map.addLayer(Object.assign({
+  //   'id': 'video-bg',
+  //   'paint': {
+  //     'line-color': '#fff',
+  //     'line-width': 2,
+  //     'line-blur': 0,
+  //   }
+  // }, videoLayerDefaults), "video-fg");
 })
 
 window.addEventListener("phx:video_route", e => {
