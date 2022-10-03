@@ -22,7 +22,6 @@ defmodule VelorouteWeb do
       use Phoenix.Controller, namespace: VelorouteWeb
 
       import Plug.Conn
-      import VelorouteWeb.Gettext
       alias VelorouteWeb.Router.Helpers, as: Routes
       import Phoenix.LiveView.Controller
     end
@@ -40,10 +39,8 @@ defmodule VelorouteWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import VelorouteWeb.ErrorHelpers
-      import VelorouteWeb.Gettext
       alias VelorouteWeb.Router.Helpers, as: Routes
-      import Phoenix.LiveView.Helpers
+      import Phoenix.Component
     end
   end
 
@@ -59,7 +56,6 @@ defmodule VelorouteWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import VelorouteWeb.Gettext
     end
   end
 

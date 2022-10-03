@@ -82,7 +82,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
     <p>Die Waldgebiete sind schön und einen Ausflug wert, auch abseits dieser Route. Die Abschnitte durch die bebauten Gebiete lohnen sich nicht, wer hier anders plant verpasst nichts. </p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="true"/>
+    <.structured_links gpx={true}/>
     """
   end
 end

@@ -34,7 +34,7 @@ defmodule Data.Article.Blog.GustavSeitzWeg do
     <p>Die Unterlagen zur Vergabe des Umbaus wurden veröffentlicht und enthalten den überarbeiteten Lageplan. Der Erläuterungsbericht ist dort leider nur teilweise enthalten. Der Artikel wurde dem neuesten Stand angepasst.</p>
 
     <h4>Alter Zustand</h4>
-    <p>Der Radverkehr darf hier auf rund 1,25m breiten, unebenen <.ref>Hochbordradwegen</.ref> fahren, oder auf der Fahrbahn im Autoverkehr mitschwimmen. Durch die Führung der Strecke ist <.m bounds="10.060237,53.608314,10.063914,53.609466" lon="10.0623337" lat="53.6087119" dir="forward">bergauf</.m> nur der Hochbordradweg gut zu erreichen. Bergab verpasst man die <.m bounds="10.058107,53.609847,10.066346,53.61173" lon="10.0618397" lat="53.6105941" dir="backward">Aufleitung kurz nach dem Kreisel</.m> leicht.</p>
+    <p>Der Radverkehr darf hier auf rund 1,25m breiten, unebenen <.ref>Hochbordradwegen</.ref> fahren, oder auf der Fahrbahn im Autoverkehr mitschwimmen. Durch die Führung der Strecke ist <.m bounds="10.060237,53.608314,10.063914,53.609466" lon={10.0623337} lat={53.6087119} dir="forward">bergauf</.m> nur der Hochbordradweg gut zu erreichen. Bergab verpasst man die <.m bounds="10.058107,53.609847,10.066346,53.61173" lon={10.0618397} lat={53.6105941} dir="backward">Aufleitung kurz nach dem Kreisel</.m> leicht.</p>
 
     <p>Zum Queren der Steilshooper Straße muss eine Bettelampel benutzt werden.</p>
 

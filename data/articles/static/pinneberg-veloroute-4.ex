@@ -63,7 +63,7 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
   def text(assigns) do
     ~H"""
     <h3>Pinneberg: Veloroute 4 <.icon>pinneberg-4</.icon></h3>
-    <p>Los geht's am <.m bounds="9.788303,53.659153,9.796227,53.661387" lon="9.795319" lat="53.661077" dir="backward" ref="pinneberg-4">Rübekamp</.m> und mit der <.m bounds="9.78829,53.659137,9.792636,53.661052" lon="9.789596" lat="53.660131" dir="backward" ref="pinneberg-4">Bahnunterführung</.m> Richtung Westen. Über den <.m bounds="9.774689,53.650542,9.792636,53.661052" lon="9.783673" lat="53.655112" dir="backward" ref="pinneberg-4">Kirchhofsweg</.m> und die <.m bounds="9.768361,53.649378,9.776908,53.652094" lon="9.772907" lat="53.65093" dir="backward" ref="pinneberg-4">Lange Twiete</.m> erreicht man einen <.m bounds="9.752139,53.650283,9.770798,53.659509" lon="9.767815" lat="53.6519" dir="backward" ref="pinneberg-4">gemeinsamen Fuß- und Radweg der nach Appen</.m> führt.</p>
+    <p>Los geht's am <.m bounds="9.788303,53.659153,9.796227,53.661387" lon={9.795319} lat={53.661077} dir="backward" ref="pinneberg-4">Rübekamp</.m> und mit der <.m bounds="9.78829,53.659137,9.792636,53.661052" lon={9.789596} lat={53.660131} dir="backward" ref="pinneberg-4">Bahnunterführung</.m> Richtung Westen. Über den <.m bounds="9.774689,53.650542,9.792636,53.661052" lon={9.783673} lat={53.655112} dir="backward" ref="pinneberg-4">Kirchhofsweg</.m> und die <.m bounds="9.768361,53.649378,9.776908,53.652094" lon={9.772907} lat={53.65093} dir="backward" ref="pinneberg-4">Lange Twiete</.m> erreicht man einen <.m bounds="9.752139,53.650283,9.770798,53.659509" lon={9.767815} lat={53.6519} dir="backward" ref="pinneberg-4">gemeinsamen Fuß- und Radweg der nach Appen</.m> führt.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist vollständig ausgeschildert. Auch ohne Ortskenntnis ist ihr leicht zu folgen.</p>
@@ -72,10 +72,10 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
     <p>Die Route ist durchgehend befestigt und daher allwettertauglich. Die Zweirichtungsradwege sind stellenweise schmal, aber noch mit einem Lastenrad nutzbar.</p>
 
     <h4>Meinung</h4>
-    <p>Eine gute Strecke, die nur stellenweise Verbesserungen benötigt. Neben den bereits erwähnten Engstellen ist dies vor allem die Kreuzung  <.m bounds="9.774379,53.649711,9.777099,53.650951" lon="9.775567" lat="53.650511" dir="backward" ref="pinneberg-4">Lange Twiete / Wedeler Weg</.m>, wo die Führung für den Radverkehr unklar ist.</p>
+    <p>Eine gute Strecke, die nur stellenweise Verbesserungen benötigt. Neben den bereits erwähnten Engstellen ist dies vor allem die Kreuzung  <.m bounds="9.774379,53.649711,9.777099,53.650951" lon={9.775567} lat={53.650511} dir="backward" ref="pinneberg-4">Lange Twiete / Wedeler Weg</.m>, wo die Führung für den Radverkehr unklar ist.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="true"/>
+    <.structured_links gpx={true}/>
     """
   end
 end

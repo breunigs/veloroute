@@ -44,7 +44,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
     <p>Der letzte Bauabschnitt wurde an eine Baufirma vergeben. Geplant war ein Bauzeitraum von Juli bis Dezember 2022.</p>
 
     <h4>Stand April 2022</h4>
-    <p>Der Umbau in der <.m bounds="10.059486,53.576206,10.065375,53.579106" lon="10.060013" lat="53.576597" dir="forward">Stormarner Straße</.m> und einem kleinen Abschnitt im Eulenkamp ist fertig. Der Umbau zwischen <.m bounds="10.063564,53.578503,10.066184,53.579998" lon="10.065177" lat="53.578975" dir="forward">Elsässer Straße</.m> und der <.m bounds="10.066013,53.578862,10.068019,53.581363" lon="10.066557" lat="53.580286" dir="forward">Lengerckestraße</.m> steht noch aus.</p>
+    <p>Der Umbau in der <.m bounds="10.059486,53.576206,10.065375,53.579106" lon={10.060013} lat={53.576597} dir="forward">Stormarner Straße</.m> und einem kleinen Abschnitt im Eulenkamp ist fertig. Der Umbau zwischen <.m bounds="10.063564,53.578503,10.066184,53.579998" lon={10.065177} lat={53.578975} dir="forward">Elsässer Straße</.m> und der <.m bounds="10.066013,53.578862,10.068019,53.581363" lon={10.066557} lat={53.580286} dir="forward">Lengerckestraße</.m> steht noch aus.</p>
 
     <h4>Stand Dezember 2019</h4>
     <p>Die Planung wurde zwar im September 2019 abgeschlossen, nach Kritik von ADFC und Seniorenbeirat jedoch nochmals überarbeitet. Das Meckern hat sich gelohnt, die neueste Planung ist für den Radverkehr erheblich sicherer als nach dem vorigen Stand. Der Artikel wurde an den aktuellen Plan angepasst.</p>

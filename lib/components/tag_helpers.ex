@@ -7,6 +7,11 @@ defmodule Components.TagHelpers do
   @doc """
   a links change the current page and may point to internal or external pages
   """
+  attr :href, :string
+  attr :name, :string
+  attr :rest, :global
+  slot(:inner_block, required: true)
+
   def a(%{href: _h, name: _n} = assigns),
     do:
       raise("Link contains both href and name, but you should pick only one: #{inspect(assigns)}")
@@ -37,9 +42,10 @@ defmodule Components.TagHelpers do
       end
 
     attrs = Map.merge(Map.take(assigns, [:title, :href]), attrs)
+    assigns = assign(assigns, %{attrs: attrs, extra_text: extra_text})
 
     ~H"""
-    <a {attrs}><%= render_block(@inner_block) %></a><%= extra_text %>
+    <a {@attrs}><%= render_block(@inner_block) %></a><%= @extra_text %>
     """
   end
 
@@ -47,6 +53,15 @@ defmodule Components.TagHelpers do
   m links modify the video or map position, but do otherwise not modify the current page
   """
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :current_page, :atom, required: true
+  attr :render_target, :atom, values: [:feed, :html], required: true
+  attr :bounds, :string
+  attr :lat, :float
+  attr :lon, :float
+  attr :dir, :string, values: ["forward", "backward"]
+  attr :group, :string
+  attr :ref, :string
+  slot(:inner_block, required: true)
 
   def m(%{render_target: :feed} = assigns) do
     ~H"<i><%= render_block(@inner_block) %></i>"
@@ -56,7 +71,7 @@ defmodule Components.TagHelpers do
     attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to")}
     art = Article.List.find_exact(assigns[:ref]) || assigns.current_page
 
-    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group, :zoom])
+    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
 
     # add article only if a video is referenced. Otherwise it might show the
     # video for that article starting from 0:00, instead of just moving the map.
@@ -82,7 +97,7 @@ defmodule Components.TagHelpers do
     attr = if polylines, do: Map.update!(attr, "phx-click", &ping(&1, polylines)), else: attr
 
     assigns = assign(assigns, :attr, attr)
-    ~H"<a {attr}><%= render_block(@inner_block) %></a>"
+    ~H"<a {@attr}><%= render_block(@inner_block) %></a>"
   end
 
   defp ping(js, polylines) do
@@ -90,6 +105,11 @@ defmodule Components.TagHelpers do
   end
 
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :email, :string
+  attr :subject, :string
+  attr :body, :string
+  slot(:inner_block)
+
   def mailto(%{inner_block: _x, email: _e} = assigns) do
     ~H"""
     <a href={"mailto:#{@email}"}><%= render_block(@inner_block) %></a>
@@ -109,19 +129,21 @@ defmodule Components.TagHelpers do
     """
   end
 
+  def mailto(%{inner_block: []} = assigns) do
+    ~H"""
+    <a href={"mailto:"<>Settings.email()}><%= Settings.email() %></a>
+    """
+  end
+
   def mailto(%{inner_block: _x} = assigns) do
     ~H"""
     <a href={"mailto:"<>Settings.email()}><%= render_block(@inner_block) %></a>
     """
   end
 
-  def mailto(assigns) do
-    ~H"""
-    <a href={"mailto:"<>Settings.email()}><%= Settings.email() %></a>
-    """
-  end
-
   @spec updated_at_time(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :article, :atom
+
   def updated_at_time(%{article: art} = assigns) when is_module(art) do
     if art.updated_at() == nil do
       ~H{}
@@ -140,6 +162,18 @@ defmodule Components.TagHelpers do
   end
 
   @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :article, :atom
+  attr :class, :string
+  slot(:inner_block)
+
+  def article_link(%{article: art, inner_block: []} = assigns) when is_module(art) do
+    assigns = Map.put_new(assigns, :class, "")
+
+    ~H"""
+    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= Article.Decorators.full_title(@article) %></a>
+    """
+  end
+
   def article_link(%{article: art, inner_block: _} = assigns) when is_module(art) do
     assigns = Map.put_new(assigns, :class, "")
 
@@ -148,15 +182,11 @@ defmodule Components.TagHelpers do
     """
   end
 
-  def article_link(%{article: art} = assigns) when is_module(art) do
-    assigns = Map.put_new(assigns, :class, "")
-
-    ~H"""
-    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= Article.Decorators.full_title(@article) %></a>
-    """
-  end
-
   @spec list_articles(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :grouper, :any, doc: "fn/1 getting an article, outputting the value to group by"
+  attr :articles, :list
+  slot(:inner_block, required: true)
+
   def list_articles(assigns) do
     assigns = assign_new(assigns, :grouper, fn -> & &1.updated_at.year end)
     grouped = Util.ordered_group_by(assigns.articles, assigns.grouper)
@@ -175,6 +205,9 @@ defmodule Components.TagHelpers do
   end
 
   @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :name, :string
+  slot(:inner_block, required: true)
+
   def ref(assigns) do
     name = assigns[:name] || inner_text(assigns)
     art = Article.List.category("Static") |> Article.List.find_with_tags(name)
@@ -186,6 +219,8 @@ defmodule Components.TagHelpers do
   end
 
   @spec abbr(map()) :: Phoenix.LiveView.Rendered.t()
+  slot(:inner_block, required: true)
+
   def abbr(assigns) do
     name = inner_text(assigns)
 
@@ -199,6 +234,11 @@ defmodule Components.TagHelpers do
   end
 
   @spec icon(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :name, :string
+  attr :autoplay, :boolean, default: false
+  attr :link, :boolean, default: true
+  slot(:inner_block, required: true)
+
   def icon(assigns) do
     id_from_attr = assigns[:name]
     content = inner_text(assigns)
@@ -209,7 +249,7 @@ defmodule Components.TagHelpers do
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
 
-    query = if assigns[:autoplay] == "true", do: %{autoplay: true}
+    query = if assigns[:autoplay], do: %{autoplay: true}
     href = Article.Decorators.path(art, query)
     # icon = VelorouteWeb.VariousHelpers.route_icon(art)
 
@@ -223,9 +263,11 @@ defmodule Components.TagHelpers do
       })
 
     cond do
-      assigns[:link] == "no" ->
+      !assigns[:link] ->
+        assigns = assign(assigns, :content, if(content != "", do: content, else: id))
+
         ~H"""
-        <span style={@style} class={@class}><%= if content != "", do: content, else: id %></span>
+        <span style={@style} class={@class}><%= @content %></span>
         """
 
       art.display_id() == content || art.id() == content ->
@@ -248,6 +290,8 @@ defmodule Components.TagHelpers do
     end
   end
 
+  attr :href, :string, required: true
+
   def allris(assigns) do
     ~H"""
     <.a href={@href} title="Unterlagen im offiziellen Sitzunsdienst Hamburgs anzeigen. Weniger benutzerfreundlich als die zuerst verlinkte Alternative.">Originalseite</.a>
@@ -261,6 +305,9 @@ defmodule Components.TagHelpers do
   end
 
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :current_page, :atom, required: true
+  attr :gpx, :boolean, default: false
+
   def structured_links(assigns) do
     art = assigns.current_page
 
@@ -274,32 +321,34 @@ defmodule Components.TagHelpers do
       end)
       |> Enum.map(fn
         {text, href, nil, nil} ->
-          ~H"<.a href={href}><%= text %></.a>"
+          assigns = %{text: text, href: href}
+          ~H"<.a href={@href}><%= @text %></.a>"
 
         {text, href, nil, bvhh} ->
-          ~H"<.a href={bvhh}><%= text %></.a><.no_mobile> (<.allris href={href} />)</.no_mobile>"
+          assigns = %{text: text, href: href, bvhh: bvhh}
+
+          ~H"<.a href={@bvhh}><%= @text %></.a><.no_mobile> (<.allris href={@href} />)</.no_mobile>"
 
         {text, href, extra, nil} ->
-          ~H"<.a href={href}><%= text %></.a> (<%= extra %>)"
+          assigns = %{text: text, href: href, extra: extra}
+          ~H"<.a href={@href}><%= @text %></.a> (<%= @extra %>)"
 
         {text, href, extra, bvhh} ->
-          ~H"<.a href={bvhh}><%= text %></.a> (<%= extra %><.no_mobile>, <.allris href={href} /></.no_mobile>)"
+          assigns = %{text: text, href: href, extra: extra, bvhh: bvhh}
+
+          ~H"<.a href={@bvhh}><%= @text %></.a> (<%= @extra %><.no_mobile>, <.allris href={@href} /></.no_mobile>)"
 
         other ->
           other
       end)
 
-    links =
-      case assigns[:gpx] do
-        "true" -> links ++ [Article.Decorators.gpx_links(art)]
-        nil -> links
-        other -> raise("gpx=#{other} not supported, allowed are 'yes' or absence")
-      end
+    links = if assigns[:gpx], do: links ++ [Article.Decorators.gpx_links(art)], else: links
+    assigns = %{links: links}
 
     case length(links) do
       0 -> ~H""
-      1 -> ~H{<p><%= hd(links) %></p>}
-      _ -> ~H{<ul><%= for link <- links do %><li><%= link %></li><% end %></ul>}
+      1 -> ~H{<p><%= hd(@links) %></p>}
+      _ -> ~H{<ul><%= for link <- @links do %><li><%= link %></li><% end %></ul>}
     end
   end
 
@@ -307,6 +356,8 @@ defmodule Components.TagHelpers do
   Wraps content into a div that will not be used by search engines
   """
   @spec noindex(map()) :: Phoenix.LiveView.Rendered.t()
+  slot(:inner_block, required: true)
+
   def noindex(assigns) do
     ~H"""
     <div data-nosnippet="yes"><%= render_block(@inner_block) %></div>
@@ -314,6 +365,8 @@ defmodule Components.TagHelpers do
   end
 
   @spec construction_duration(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :article, :atom
+
   def construction_duration(%{article: art} = assigns) when is_module(art) do
     ~H"""
     <span class="duration"><%= Data.RoughDate.range(@article.start(), @article.stop()) %></span>
@@ -321,6 +374,8 @@ defmodule Components.TagHelpers do
   end
 
   @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :article, :atom
+
   def construction_duration_header(%{article: art} = assigns) do
     range = Data.RoughDate.range(art.start(), art.stop())
     assigns = assign(assigns, range: range)
@@ -338,6 +393,8 @@ defmodule Components.TagHelpers do
   end
 
   @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :article, :atom
+
   def article_updated_at(%{article: art} = assigns) do
     if art.updated_at() do
       assigns =
@@ -361,11 +418,16 @@ defmodule Components.TagHelpers do
   end
 
   @spec roaddiagram(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :src, :string, required: true
+  attr :class, :string, default: ""
+  attr :width, :integer
+  attr :alt, :string, required: true
+
   def roaddiagram(%{src: src, class: class} = assigns) do
     {w, h} = Data.ImageSize.size("data/images/#{src}.svg")
     ratio = h / w
 
-    w = if is_map_key(assigns, :width), do: String.to_integer(assigns.width), else: 400
+    w = if is_map_key(assigns, :width), do: assigns.width, else: 400
     assigns = assign(assigns, w: w, h: round(w * ratio))
 
     style = if is_map_key(assigns, :width), do: "width: #{w}px;", else: ""
@@ -376,8 +438,6 @@ defmodule Components.TagHelpers do
     <img src={"/images/#{@src}.svg"} width={@w} height={@h} class={@class} alt={@alt} style={@style}/>
     """
   end
-
-  def roaddiagram(assigns), do: assigns |> assign(class: "") |> roaddiagram()
 
   defp inner_text(assigns) do
     [%{inner_block: fun}] = assigns.inner_block

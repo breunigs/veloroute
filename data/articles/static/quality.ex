@@ -22,7 +22,7 @@ defmodule Data.Article.Static.Quality do
     </ul>
 
     <h3 id="anchorlegend">Was ist eine gute Veloroute?</h3>
-    <p>Es gibt unstreitbar gute Abschnitte (<.m dir="forward" ref="5" lat="53.6014" lon="10.0306" bounds="10.024441,53.598478,10.036379,53.608989">Pergolenviertel</.m>) und problematische Stellen (<.m bounds="9.978193,53.462695,9.983834,53.465077" lon="9.980495" lat="53.463877" dir="forward" ref="10">Führung an der Buxtehuder Straße</.m>). Bei allem dazwischen hängt die Bewertung von den eigenen Bedürfnissen ab – Renn- oder Lastenrad, Neuling oder Profi, in der Gruppe oder allein. Viel hängt auch von der Verkehrssituation ab: Wohngebiete sind ruhiger als Hauptstraßen. Eine gute Veloroute ermöglicht:</p>
+    <p>Es gibt unstreitbar gute Abschnitte (<.m dir="forward" ref="5" lat={53.6014} lon={10.0306} bounds="10.024441,53.598478,10.036379,53.608989">Pergolenviertel</.m>) und problematische Stellen (<.m bounds="9.978193,53.462695,9.983834,53.465077" lon={9.980495} lat={53.463877} dir="forward" ref="10">Führung an der Buxtehuder Straße</.m>). Bei allem dazwischen hängt die Bewertung von den eigenen Bedürfnissen ab – Renn- oder Lastenrad, Neuling oder Profi, in der Gruppe oder allein. Viel hängt auch von der Verkehrssituation ab: Wohngebiete sind ruhiger als Hauptstraßen. Eine gute Veloroute ermöglicht:</p>
 
     <ul>
       <li>sichere Fahrt für alle Altersgruppen und Jahreszeiten</li>

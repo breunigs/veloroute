@@ -64,16 +64,16 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Im Bauabschnitt in Fahrtrichtung Norden gibt es stellenweise schmale, unebene <.ref>Hochbordradwege</.ref>. Vor dem <.m bounds="9.98783,53.567592,9.989415,53.569216" lon="9.988588" lat="53.567933" dir="forward">Museum für Völkerkunde</.m> endet dieser ohne ersichtliche Alternative. In Fahrtrichtung Süden muss mit den KFZ im <.ref>Mischverkehr</.ref> gefahren werden.</p>
+    <p>Im Bauabschnitt in Fahrtrichtung Norden gibt es stellenweise schmale, unebene <.ref>Hochbordradwege</.ref>. Vor dem <.m bounds="9.98783,53.567592,9.989415,53.569216" lon={9.988588} lat={53.567933} dir="forward">Museum für Völkerkunde</.m> endet dieser ohne ersichtliche Alternative. In Fahrtrichtung Süden muss mit den KFZ im <.ref>Mischverkehr</.ref> gefahren werden.</p>
 
     <h4>Planung</h4>
     <p>Die <.ref>Radfahrstreifen</.ref> die in den anderen Teilen der Rothenbaumchaussee umgesetzt wurden werden fortgeführt. Sie werden mindestens 2,0m breit, stellenweise einige Zentimeter breiter. An den Bushaltestellen enden die Radspuren jeweils und man muss entweder warten, oder sich unter die Autos mischen. Auch bei Gegenverkehr sollte genug Platz bleiben um an einem wartenden Bus vorbeifahren zu können.</p>
 
-    <p>Eine Ausnahme bildet der Weg nach Norden kurz nach dem <.m bounds="9.988288,53.570811,9.989124,53.572625" lon="9.988611" lat="53.571121" dir="forward">Turmweg</.m>. Hier bleibt der Hochbordradweg rechts der Baumreihe erhalten, der aber vor der Kreuzung mit der <.m bounds="9.988288,53.570811,9.989124,53.572625" lon="9.988719" lat="53.572355" dir="forward">Hallerstraße</.m> wieder zu einem Radfahrstreifen wird. Man darf aber auch weiterhin die <.ref>Fahrbahn</.ref> nutzen.</p>
+    <p>Eine Ausnahme bildet der Weg nach Norden kurz nach dem <.m bounds="9.988288,53.570811,9.989124,53.572625" lon={9.988611} lat={53.571121} dir="forward">Turmweg</.m>. Hier bleibt der Hochbordradweg rechts der Baumreihe erhalten, der aber vor der Kreuzung mit der <.m bounds="9.988288,53.570811,9.989124,53.572625" lon={9.988719} lat={53.572355} dir="forward">Hallerstraße</.m> wieder zu einem Radfahrstreifen wird. Man darf aber auch weiterhin die <.ref>Fahrbahn</.ref> nutzen.</p>
 
     <p>Linksabbiegen ist kompliziert. An vielen Kreuzungen sind z.B. keine Aufstelltaschen eingezeichnet, die verdeutlichen wo <.ref>indirekt</.ref> links abgebogen werden kann. <.ref>Direktes Linksabbiegen</.ref> wird ebenfalls nicht angezeigt und ist stellenweise auch nicht vorgesehen, da die durchgezogene Linie ein Verlassen der Radfahrstreifen verbietet.</p>
 
-    <p>An der Kreuzung mit der Hallerstraße ist <.m bounds="9.988255,53.571937,9.989017,53.573284" lon="9.988594" lat="53.572969" dir="backward">von Norden kommend</.m> ein <.ref>Radfahrstreifen in Mittellage</.ref> geplant.</p>
+    <p>An der Kreuzung mit der Hallerstraße ist <.m bounds="9.988255,53.571937,9.989017,53.573284" lon={9.988594} lat={53.572969} dir="backward">von Norden kommend</.m> ein <.ref>Radfahrstreifen in Mittellage</.ref> geplant.</p>
 
     <h4>Meinung</h4>
     <p>Die Planung ist im Groben okay. Der Radfahrstreifen in Mittellage dürfte dem Alter der Planung geschuldet sein: als sie gemacht wurde war diese Führung noch das Maß der Dinge.</p>

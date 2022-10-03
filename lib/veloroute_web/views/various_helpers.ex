@@ -1,6 +1,7 @@
 defmodule VelorouteWeb.VariousHelpers do
   use Phoenix.HTML
   import Guards
+  import Phoenix.Component
 
   def display_route(nil), do: nil
 
@@ -9,13 +10,24 @@ defmodule VelorouteWeb.VariousHelpers do
 
     cond do
       is_module(ref) ->
-        icon = route_icon(ref)
-
-        Phoenix.LiveView.Helpers.live_patch([icon, " ", text],
-          to: Article.Decorators.path(ref),
+        assigns = %{
+          href: Article.Decorators.path(ref),
           title: "Du folgst: #{ref.title()} #{text}",
-          id: "videoRoute"
-        )
+          icon: route_icon(ref),
+          text: text
+        }
+
+        # Phoenix.Component.link([icon, " ", text],
+        #   patch: Article.Decorators.path(ref),
+        #   title: "Du folgst: #{ref.title()} #{text}",
+        #   id: "videoRoute"
+        # )
+
+        ~H"""
+        <.link patch={@href} title={@title} id="videoRoute">
+          <%= @icon %> <%= @text %>
+        </.link>
+        """
 
       true ->
         nil

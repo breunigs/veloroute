@@ -58,21 +58,21 @@ defmodule Data.Article.Static.NorderstedtVeloroute4 do
   def text(assigns) do
     ~H"""
     <h3>Norderstedt: Veloroute 4</h3>
-    <.roaddiagram src="logo-norderstedt-4" width="100" alt="Logo der Veloroute 4 in Norderstedt" class="right"/>
+    <.roaddiagram src="logo-norderstedt-4" width={100} alt="Logo der Veloroute 4 in Norderstedt" class="right"/>
 
-    <p>Die Veloroute führt von <.m bounds="9.977046,53.679559,9.988665,53.684982" lon="9.980631" lat="53.682232" dir="forward" ref="norderstedt-4">Garstedt</.m> entlang der <.m bounds="9.985277,53.679645,9.999215,53.682982" lon="9.991317" lat="53.681592" dir="forward" ref="norderstedt-4">Ochsenzoller Straße</.m> und der <.m bounds="10.007605,53.681698,10.037713,53.689052" lon="10.014211" lat="53.683523" dir="forward" ref="norderstedt-4">Segeberger Chaussee</.m> nach <.m bounds="10.024115,53.685393,10.045516,53.695013" lon="10.035206" lat="53.687964" dir="forward" ref="norderstedt-4">Glashütte</.m>.</p>
+    <p>Die Veloroute führt von <.m bounds="9.977046,53.679559,9.988665,53.684982" lon={9.980631} lat={53.682232} dir="forward" ref="norderstedt-4">Garstedt</.m> entlang der <.m bounds="9.985277,53.679645,9.999215,53.682982" lon={9.991317} lat={53.681592} dir="forward" ref="norderstedt-4">Ochsenzoller Straße</.m> und der <.m bounds="10.007605,53.681698,10.037713,53.689052" lon={10.014211} lat={53.683523} dir="forward" ref="norderstedt-4">Segeberger Chaussee</.m> nach <.m bounds="10.024115,53.685393,10.045516,53.695013" lon={10.035206} lat={53.687964} dir="forward" ref="norderstedt-4">Glashütte</.m>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nur dort ausgeschildert, wo sich verschiedene Radrouten treffen. Die Wegweiser sind klein und häufig außerhalb des Blickfelds angebracht, z.B. in Fahrtrichtung hinter dem Pfosten. Es muss daher an jeglichen Rad-Wegweisern genau geschaut werden. Da die Route aber im Wesentlichen nur geradeaus führt, ist es sehr leicht ihr zu folgen.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Die Route ist durchgehend befestigt, meist mit in die Jahre gekommenen Pflaster. Häufig stehen eigene Radwege zur Verfügung, teilweise müssen sich Fuß- und Radverkehr auf <.m bounds="10.02388,53.684615,10.031099,53.687483" lon="10.025608" lat="53.685847" dir="forward" ref="norderstedt-4">schmalen Abschnitten</.m> jedoch den Platz teilen.</p>
+    <p>Die Route ist durchgehend befestigt, meist mit in die Jahre gekommenen Pflaster. Häufig stehen eigene Radwege zur Verfügung, teilweise müssen sich Fuß- und Radverkehr auf <.m bounds="10.02388,53.684615,10.031099,53.687483" lon={10.025608} lat={53.685847} dir="forward" ref="norderstedt-4">schmalen Abschnitten</.m> jedoch den Platz teilen.</p>
 
     <h4>Meinung</h4>
-    <p>Durch ihre Führung an einer lauten KFZ-Straße ist die Veloroute nur bedingt attraktiv. Dafür kommt man schnell voran, auch wenn die Wartezeiten an der Kreuzung mit der  <.m bounds="10.024017,53.683007,10.04304,53.693039" lon="10.029904" lat="53.686541" dir="forward" ref="norderstedt-4">Poppenbütteler Straße</.m> teils lang sind. In der aktuellen Führung würde ein durchgängiger Ausbau der Radwege aus Asphalt den Komfort erhöhen, selbst wenn weiterhin Engstellen verbleiben.</p>
+    <p>Durch ihre Führung an einer lauten KFZ-Straße ist die Veloroute nur bedingt attraktiv. Dafür kommt man schnell voran, auch wenn die Wartezeiten an der Kreuzung mit der  <.m bounds="10.024017,53.683007,10.04304,53.693039" lon={10.029904} lat={53.686541} dir="forward" ref="norderstedt-4">Poppenbütteler Straße</.m> teils lang sind. In der aktuellen Führung würde ein durchgängiger Ausbau der Radwege aus Asphalt den Komfort erhöhen, selbst wenn weiterhin Engstellen verbleiben.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx="true"/>
+    <.structured_links gpx={true}/>
     """
   end
 end

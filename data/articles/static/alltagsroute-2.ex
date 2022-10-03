@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon="9.993833" lat="53.550924" dir="forward" ref="2">Rathaus</.m></td>
+        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="2">Rathaus</.m></td>
       </tr>
       <tr>
         <td>
@@ -99,32 +99,32 @@ defmodule Data.Article.Static.Alltagsroute2 do
           <.icon>11</.icon>
           <.icon>12</.icon>
         </td>
-        <td><.m bounds="9.983395,53.547382,9.990571,53.551659" lon="9.987737" lat="53.548638" dir="forward" ref="2">Rödingsmarkt</.m></td>
+        <td><.m bounds="9.983395,53.547382,9.990571,53.551659" lon={9.987737} lat={53.548638} dir="forward" ref="2">Rödingsmarkt</.m></td>
       </tr>
       <tr>
         <td><.icon>FR9</.icon></td>
-        <td><.m bounds="9.95608,53.554674,9.975319,53.565951" lon="9.966796" lat="53.562393" dir="forward" ref="2">Schanzenviertel</.m></td>
+        <td><.m bounds="9.95608,53.554674,9.975319,53.565951" lon={9.966796} lat={53.562393} dir="forward" ref="2">Schanzenviertel</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="9.933678,53.562581,9.973695,53.5803" lon="9.960707" lat="53.57117" dir="forward" ref="2">Eimsbüttel</.m></td>
+        <td><.m bounds="9.933678,53.562581,9.973695,53.5803" lon={9.960707} lat={53.57117} dir="forward" ref="2">Eimsbüttel</.m></td>
       </tr>
       <tr>
         <td><.a name="rsw-elmshorn">RSW Elmshorn</.a></td>
-        <td><.m bounds="9.919166,53.573,9.959761,53.593032" lon="9.9383" lat="53.583977" dir="forward" ref="2">Langenfelde</.m></td>
+        <td><.m bounds="9.919166,53.573,9.959761,53.593032" lon={9.9383} lat={53.583977} dir="forward" ref="2">Langenfelde</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon="9.932624" lat="53.595197" dir="forward" ref="2">Stellingen</.m></td>
+        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon={9.932624} lat={53.595197} dir="forward" ref="2">Stellingen</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>FR11</.icon>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon="9.932624" lat="53.595197" dir="forward" ref="2">Eidelstedt</.m></td>
+        <td><.m bounds="9.914985,53.584883,9.949393,53.601333" lon={9.932624} lat={53.595197} dir="forward" ref="2">Eidelstedt</.m></td>
       </tr>
       <tr>
         <td></td>
@@ -132,7 +132,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
       </tr>
     </table>
 
-    <p>Vom Rathaus aus führt die Alltagsroute 2 (auch: Veloroute 2) in einem Bogen durch die Neustadt. In der <.m bounds="9.959199,53.553031,9.979629,53.562268" lon="9.968639" lat="53.557447" dir="forward" ref="2">Feldstraße</.m> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.m bounds="9.959199,53.566871,9.969102,53.572313" lon="9.963436" lat="53.569592" dir="forward" ref="2">Christuskirche</.m> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
+    <p>Vom Rathaus aus führt die Alltagsroute 2 (auch: Veloroute 2) in einem Bogen durch die Neustadt. In der <.m bounds="9.959199,53.553031,9.979629,53.562268" lon={9.968639} lat={53.557447} dir="forward" ref="2">Feldstraße</.m> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.m bounds="9.959199,53.566871,9.969102,53.572313" lon={9.963436} lat={53.569592} dir="forward" ref="2">Christuskirche</.m> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -141,12 +141,12 @@ defmodule Data.Article.Static.Alltagsroute2 do
     <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert, es gibt aber auch Abschnitte mit Kopfsteinpflaster, welches verhältnismäßig eben ist.</p>
 
     <h4>Meinung</h4>
-    <p>Die Route ist durchwachsen. Als Erwachsener kommt man trotz vieler Ampeln gut durch und wird in der Regel keine Probleme haben. Allerdings sind die wenigsten Abschnitte kindgerecht, wie z.B. die bereits umgebaute <.m bounds="9.960613,53.56667,9.967385,53.570781" lon="9.965245" lat="53.566681" dir="forward" ref="2">Weidenallee</.m>.</p>
+    <p>Die Route ist durchwachsen. Als Erwachsener kommt man trotz vieler Ampeln gut durch und wird in der Regel keine Probleme haben. Allerdings sind die wenigsten Abschnitte kindgerecht, wie z.B. die bereits umgebaute <.m bounds="9.960613,53.56667,9.967385,53.570781" lon={9.965245} lat={53.566681} dir="forward" ref="2">Weidenallee</.m>.</p>
 
     <p>Häufigstes Problem auf der Strecke sind zu dicht vorbeifahrende oder entgegenkommende Autos, die den Fahrkomfort senken. Das ist teilweise dem Fehlverhalten der Beteiligten zuzuschreiben. Oft fehlte auch der politische Mut den KFZ-Verkehr auf andere Straßen zu verlagern.</p>
 
     <h4>Externe Links</h4>
-    <.structured_links gpx="true"/>
+    <.structured_links gpx={true}/>
     """
   end
 end

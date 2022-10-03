@@ -14,7 +14,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
 
   def text(assigns) do
     ~H"""
-    <.roaddiagram src="rsw" width="100" alt="Verkehrszeichen 350.1 „Radschnellweg“ aus der StVO" class="right"/>
+    <.roaddiagram src="rsw" width={100} alt="Verkehrszeichen 350.1 „Radschnellweg“ aus der StVO" class="right"/>
 
     <p>Ein Radschnellweg versucht längere Strecken mit dem Fahrrad attraktiv zu machen, indem er eine hohe Durchschnittsgeschwindigkeit ermöglicht. Dies wird durch Vorfahrt, genug Platz zum Überholen und gute Straßenbeläge erreicht. Stellenweise sind auch Bauwerke wie Tunnel oder Brücken vorgesehen, um eine direktere oder kreuzungsfreie Führung zu ermöglichen.</p>
 

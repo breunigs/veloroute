@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.WandsbekerBahnhofstrasse do
     <h4>Vorhaben</h4>
     <p>Der Abschnitt wurde in die Baustellenplanung aufgenommen. Pläne sind noch nicht bekannt.</p>
 
-    <p>Verwirrenderweise wird von „bis zur <.m bounds="10.083609,53.569948,10.088526,53.57224" lon="10.085961" lat="53.571845" dir="backward" ref="7">Tratzigerstraße</.m>“ gesprochen, die ein ganzes Stück weit weg ist. Möglicherweise handelt es sich um Lückenschlüsse sobald der <.a name="2020-12-08-eisenbahnbruecke-bovestrasse">Umbau für die S4</.a> abgeschlossen ist.</p>
+    <p>Verwirrenderweise wird von „bis zur <.m bounds="10.083609,53.569948,10.088526,53.57224" lon={10.085961} lat={53.571845} dir="backward" ref="7">Tratzigerstraße</.m>“ gesprochen, die ein ganzes Stück weit weg ist. Möglicherweise handelt es sich um Lückenschlüsse sobald der <.a name="2020-12-08-eisenbahnbruecke-bovestrasse">Umbau für die S4</.a> abgeschlossen ist.</p>
 
     <h4>Quelle</h4>
     <.structured_links/>

@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.GrandwegSued do
     <p>Die Planung wurde erneut überarbeitet: es soll zusätzlich ein Diagonaltrenner gebaut werden. Diese Neuplanung ist noch nicht ganz fertig, obwohl bereits gebaut wird. Entsprechend schnell soll es gehen: Anfang März soll alles abgeklärt sein. Der Artikel wurde entsprechend angepasst.</p>
 
     <h4>Alter Zustand</h4>
-    <p>Vom <.m bounds="9.960115,53.590877,9.961513,53.59218" lon="9.960137" lat="53.5917" dir="forward" ref="3">Henning-Wulf-Weg</.m> bis zur Kreuzung mit dem Grandweg wurde die Stresemannallee noch nicht umgebaut. Stadtauswärts findet sich dort noch ein alter <.ref>Hochbordradweg</.ref>, der jedoch nicht mehr erreichbar ist. In der Praxis fährt man hier bereits im <.ref>Mischverkehr</.ref>.</p>
+    <p>Vom <.m bounds="9.960115,53.590877,9.961513,53.59218" lon={9.960137} lat={53.5917} dir="forward" ref="3">Henning-Wulf-Weg</.m> bis zur Kreuzung mit dem Grandweg wurde die Stresemannallee noch nicht umgebaut. Stadtauswärts findet sich dort noch ein alter <.ref>Hochbordradweg</.ref>, der jedoch nicht mehr erreichbar ist. In der Praxis fährt man hier bereits im <.ref>Mischverkehr</.ref>.</p>
 
     <h4>Planung</h4>
     <p>In der Stresemannallee wird der alte Radweg entfernt und dort stattdessen KFZ-Parkplätze eingerichtet. Die Kreuzung mit dem Grandweg wird ebenfalls modernisiert, wobei ein Diagonaltrenner gebaut werden soll. Diese bleibt für Rad- und Fuß in alle Richtungen passierbar. KFZ die der Veloroute stadtauswärts folgen müssen dort dann rechts abbiegen in den Grandweg abbiegen; in Fahrtrichtung stadteinwärts links in den Behrkampsweg.</p>

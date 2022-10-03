@@ -40,21 +40,24 @@ defmodule SearchResult do
   navigating or adapting the map
   """
   def to_html(%__MODULE__{url: url} = assigns) when is_binary(url) do
+    assigns = %{url: url, name: assigns.name, ping: ping(assigns)}
+
     ~H"""
     <a
       href={@url}
       data-phx-link-state="push"
       data-phx-link="patch"
-      phx-click={ping(assigns)}
+      phx-click={@ping}
     ><%= @name %></a>
     """
   end
 
   def to_html(%__MODULE__{} = assigns) do
     js = assigns |> ping() |> zoom_to_bounds(assigns)
+    assigns = %{js: js, name: assigns.name}
 
     ~H"""
-    <a phx-click={js}><%= @name %></a>
+    <a phx-click={@js}><%= @name %></a>
     """
   end
 

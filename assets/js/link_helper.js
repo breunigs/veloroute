@@ -35,7 +35,7 @@ function logLink() {
   const trackInfo = document.getElementById("linkInfoHelper").dataset;
 
   let text = `<.m bounds="${round(bounds.minLon)},${round(bounds.minLat)},${round(bounds.maxLon)},${round(bounds.maxLat)}"`;
-  if (pos) text += ` lon="${round(pos[0])}" lat="${round(pos[1])}" dir="${trackInfo.videoDir}" ref="${trackInfo.videoId}"`;
+  if (pos) text += ` lon={${round(pos[0])}} lat={${round(pos[1])}} dir="${trackInfo.videoDir}" ref="${trackInfo.videoId}"`;
   text += ">";
 
   console.log(text);

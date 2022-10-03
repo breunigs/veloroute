@@ -21,7 +21,7 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
 
   def text(assigns) do
     ~H"""
-    <p><.m bounds="9.999916,53.539131,10.010449,53.542032" lon="10.00548" lat="53.540836" dir="backward" ref="10">Videobeispiel Überseeallee in der HafenCity</.m></p>
+    <p><.m bounds="9.999916,53.539131,10.010449,53.542032" lon={10.00548} lat={53.540836} dir="backward" ref="10">Videobeispiel Überseeallee in der HafenCity</.m></p>
 
     <p>Als Kopenhagener Lösung beschreibt man Radwege, die sowohl vom Fußweg als auch von der KFZ-Spur durch einen Randstein abgetrennt sind. Im Vergleich zu anderen Varianten sind die Randsteine jeweils nur etwa halb so hoch. Der Radweg sitzt von der Höhe also „mittig“. Zur Verdeutlichung sind die Höhenunterschiede in der Schrägansicht stark übertrieben:</p>
 

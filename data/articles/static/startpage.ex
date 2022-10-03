@@ -17,54 +17,54 @@ defmodule Data.Article.Static.Startpage do
     <h4>Alltagsrouten</h4>
     <p>Hamburg baut „Velorouten“ um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
     <ol class="route-list">
-      <li><.icon autoplay="true" name="1"><span>Rissen / Osdorfer Born</span></.icon></li>
-      <li><.icon autoplay="true" name="2"><span>Eidelstedt</span></.icon></li>
-      <li><.icon autoplay="true" name="3"><span>Niendorf</span></.icon></li>
-      <li><.icon autoplay="true" name="4"><span>Langenhorn</span></.icon></li>
-      <li><.icon autoplay="true" name="5"><span>Duvenstedt</span></.icon></li>
-      <li><.icon autoplay="true" name="6"><span>Volksdorf</span></.icon></li>
-      <li><.icon autoplay="true" name="7"><span>Rahlstedt / Jenfeld</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay="true" name="8"><span>Bergedorf / Mümmelmannsberg</span></.icon></li>
-      <li><.icon autoplay="true" name="9"><span>Bergedorf</span></.icon></li>
-      <li><.icon autoplay="true" name="10"><span>Neugraben</span></.icon></li>
-      <li><.icon autoplay="true" name="11"><span>Eißendorf</span></.icon></li>
-      <li><.icon autoplay="true" name="12"><span>Altona</span></.icon></li>
-      <li><.icon autoplay="true" name="13"><span>innerer Ring</span></.icon></li>
-      <li><.icon autoplay="true" name="14"><span>äußerer Ring</span></.icon></li>
+      <li><.icon autoplay={true} name="1"><span>Rissen / Osdorfer Born</span></.icon></li>
+      <li><.icon autoplay={true} name="2"><span>Eidelstedt</span></.icon></li>
+      <li><.icon autoplay={true} name="3"><span>Niendorf</span></.icon></li>
+      <li><.icon autoplay={true} name="4"><span>Langenhorn</span></.icon></li>
+      <li><.icon autoplay={true} name="5"><span>Duvenstedt</span></.icon></li>
+      <li><.icon autoplay={true} name="6"><span>Volksdorf</span></.icon></li>
+      <li><.icon autoplay={true} name="7"><span>Rahlstedt / Jenfeld</span></.icon></li>
+      <li style="break-before: column;"><.icon autoplay={true} name="8"><span>Bergedorf / Mümmelmannsberg</span></.icon></li>
+      <li><.icon autoplay={true} name="9"><span>Bergedorf</span></.icon></li>
+      <li><.icon autoplay={true} name="10"><span>Neugraben</span></.icon></li>
+      <li><.icon autoplay={true} name="11"><span>Eißendorf</span></.icon></li>
+      <li><.icon autoplay={true} name="12"><span>Altona</span></.icon></li>
+      <li><.icon autoplay={true} name="13"><span>innerer Ring</span></.icon></li>
+      <li><.icon autoplay={true} name="14"><span>äußerer Ring</span></.icon></li>
     </ol>
     <h4>Freizeitrouten</h4>
     <p>Die Freizeitrouten führen durch Parks, Naturschutzgebiete und Wälder, zu Sehenswürdigkeiten und Ausflugszielen. Die Strecken sind klar auf Erholung ausgelegt – der Weg ist das Ziel.</p>
     <ol class="route-list">
-      <li><.icon autoplay="true" name="1GR"><span>1. Grüner Ring</span></.icon></li>
-      <li><.icon autoplay="true" name="FR1"><span>Alster</span></.icon></li>
-      <li><.icon autoplay="true" name="FR2"><span>Osterbek</span></.icon></li>
-      <li><.icon autoplay="true" name="FR3"><span>Wandse</span></.icon></li>
-      <li><.icon autoplay="true" name="FR4"><span>Bille</span></.icon></li>
-      <li><.icon autoplay="true" name="FR5"><span>Vier- und Marschlande</span></.icon></li>
-      <li><.icon autoplay="true" name="FR6"><span>Elbbrücken</span></.icon></li>
-      <li><.icon autoplay="true" name="FR7"><span>Harburger Berge</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay="true" name="FR8"><span>Elbufer (Nordseite)</span></.icon></li>
-      <li><.icon autoplay="true" name="FR9"><span>Klövensteen</span></.icon></li>
-      <li><.icon autoplay="true" name="FR10"><span>Kollau</span></.icon></li>
-      <li><.icon autoplay="true" name="FR11"><span>2. Grüner Ring</span></.icon></li>
-      <li><.icon autoplay="true" name="FR12"><span>Tarpenbek</span></.icon></li>
-      <li><.icon autoplay="true" name="FR13"><span>Dritte Meile</span></.icon></li>
-      <li><.icon autoplay="true" name="FR14"><span>Alter Elbtunnel</span></.icon></li>
-      <li><.icon autoplay="true" name="e"><span>Elbradweg (Südseite)</span></.icon></li>
+      <li><.icon autoplay={true} name="1GR"><span>1. Grüner Ring</span></.icon></li>
+      <li><.icon autoplay={true} name="FR1"><span>Alster</span></.icon></li>
+      <li><.icon autoplay={true} name="FR2"><span>Osterbek</span></.icon></li>
+      <li><.icon autoplay={true} name="FR3"><span>Wandse</span></.icon></li>
+      <li><.icon autoplay={true} name="FR4"><span>Bille</span></.icon></li>
+      <li><.icon autoplay={true} name="FR5"><span>Vier- und Marschlande</span></.icon></li>
+      <li><.icon autoplay={true} name="FR6"><span>Elbbrücken</span></.icon></li>
+      <li><.icon autoplay={true} name="FR7"><span>Harburger Berge</span></.icon></li>
+      <li style="break-before: column;"><.icon autoplay={true} name="FR8"><span>Elbufer (Nordseite)</span></.icon></li>
+      <li><.icon autoplay={true} name="FR9"><span>Klövensteen</span></.icon></li>
+      <li><.icon autoplay={true} name="FR10"><span>Kollau</span></.icon></li>
+      <li><.icon autoplay={true} name="FR11"><span>2. Grüner Ring</span></.icon></li>
+      <li><.icon autoplay={true} name="FR12"><span>Tarpenbek</span></.icon></li>
+      <li><.icon autoplay={true} name="FR13"><span>Dritte Meile</span></.icon></li>
+      <li><.icon autoplay={true} name="FR14"><span>Alter Elbtunnel</span></.icon></li>
+      <li><.icon autoplay={true} name="e"><span>Elbradweg (Südseite)</span></.icon></li>
     </ol>
 
     <h4>Umland</h4>
     <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
     <ol class="route-list">
-      <li><.icon autoplay="true" name="pinneberg-1"><span>Pinneberg: Veloroute 1</span></.icon></li>
-      <li><.icon autoplay="true" name="pinneberg-2"><span>Pinneberg: Veloroute 2</span></.icon></li>
-      <li><.icon autoplay="true" name="pinneberg-3"><span>Pinneberg: Veloroute 3</span></.icon></li>
-      <li><.icon autoplay="true" name="pinneberg-4"><span>Pinneberg: Veloroute 4</span></.icon></li>
-      <li><.icon autoplay="true" name="pinneberg-5"><span>Pinneberg: Veloroute 5</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay="true" name="norderstedt-1"><span>Norderstedt: Veloroute 1</span></.icon></li>
-      <li><.icon autoplay="true" name="norderstedt-2"><span>Norderstedt: Veloroute 2</span></.icon></li>
-      <li><.icon autoplay="true" name="norderstedt-3"><span>Norderstedt: Veloroute 3</span></.icon></li>
-      <li><.icon autoplay="true" name="norderstedt-4"><span>Norderstedt: Veloroute 4</span></.icon></li>
+      <li><.icon autoplay={true} name="pinneberg-1"><span>Pinneberg: Veloroute 1</span></.icon></li>
+      <li><.icon autoplay={true} name="pinneberg-2"><span>Pinneberg: Veloroute 2</span></.icon></li>
+      <li><.icon autoplay={true} name="pinneberg-3"><span>Pinneberg: Veloroute 3</span></.icon></li>
+      <li><.icon autoplay={true} name="pinneberg-4"><span>Pinneberg: Veloroute 4</span></.icon></li>
+      <li><.icon autoplay={true} name="pinneberg-5"><span>Pinneberg: Veloroute 5</span></.icon></li>
+      <li style="break-before: column;"><.icon autoplay={true} name="norderstedt-1"><span>Norderstedt: Veloroute 1</span></.icon></li>
+      <li><.icon autoplay={true} name="norderstedt-2"><span>Norderstedt: Veloroute 2</span></.icon></li>
+      <li><.icon autoplay={true} name="norderstedt-3"><span>Norderstedt: Veloroute 3</span></.icon></li>
+      <li><.icon autoplay={true} name="norderstedt-4"><span>Norderstedt: Veloroute 4</span></.icon></li>
     </ol>
 
     <h3><label for="query">Suche 🔎</label></h3>

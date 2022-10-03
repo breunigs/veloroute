@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.SaselerMarktplatz do
     <h4>Planung</h4>
     <p>Es ist vorgesehen, den Parkplatz zu halbieren. Auf der östlichen Seite soll ein Platz mit Aufenthaltscharakter entstehen, u.a. durch umlaufende Bänke an den Rändern. Der Gesamtbereich soll neu gepflastert werden. Die heute asphaltierten Straßen werden ebenfalls gepflastert. Neu hinzukommen eine StadtRAD-Station sowie Anlehnbügel zum Anschließen von Fahrrädern.</p>
 
-    <p>Die grobe Führung bleibt gleich. Die <.m bounds="10.111461,53.652959,10.112332,53.653438" lon="10.111883" lat="53.653131" dir="backward" ref="14">Sackgasse Richtung Osten</.m> wird aber offenbar gleichberechtigt, sodass hier Rechts-vor-Links gilt. Der <.m bounds="10.110138,53.653657,10.111424,53.65413" lon="10.110259" lat="53.653776" dir="backward" ref="14">schmale Radweg an der Hauptverkehrsstraße</.m> bleibt ebenfalls bestehen.</p>
+    <p>Die grobe Führung bleibt gleich. Die <.m bounds="10.111461,53.652959,10.112332,53.653438" lon={10.111883} lat={53.653131} dir="backward" ref="14">Sackgasse Richtung Osten</.m> wird aber offenbar gleichberechtigt, sodass hier Rechts-vor-Links gilt. Der <.m bounds="10.110138,53.653657,10.111424,53.65413" lon={10.110259} lat={53.653776} dir="backward" ref="14">schmale Radweg an der Hauptverkehrsstraße</.m> bleibt ebenfalls bestehen.</p>
 
     <h4>Meinung</h4>
     <p>Die Platzgestaltung bleibt hinter den Möglichkeiten zurück – in der Umgebung gibt es zahlreiche weitere KFZ-Parkplätze, sie hier nur um die Hälfte zu reduzieren ist mindestens fragwürdig.</p>
