@@ -125,6 +125,7 @@ defmodule Data.GeoJSON do
         :bridge,
         :type,
         :route_group,
+        :display_id,
         :offset,
         :overlap_index,
         :title,
@@ -161,6 +162,7 @@ defmodule Data.GeoJSON do
     extra_rel_tags = %{
       color: art.color(),
       route_id: art.id(),
+      display_id: art.display_id(),
       route_group: art.route_group(),
       title: art.title()
     }
