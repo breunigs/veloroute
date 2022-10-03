@@ -120,6 +120,7 @@ export class MapboxStyleSwitcherControl implements IControl {
     // server-side events to switch the style.
     if (this.typesOnOverride.join(",") === this.stateTypes().join(",")) return;
     this.visibleTypes = this.stateTypes();
+    this.typesOnOverride = this.visibleTypes;
     this.refresh();
   }
 
