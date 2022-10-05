@@ -67,10 +67,17 @@ Hooks.ScrollReset = {
   saveScrollPos(el) {
     const oldState = history.state || {};
     const newState = Object.assign(oldState, {
-      scrollContent: el.scrollTop
+      scrollContent: el.scrollTop,
+      pathname: window.location.pathname,
     });
     history.replaceState(newState, "", window.location.href);
-    // console.log("ScrollReset", "saveScrollPos", window.history.state, window.location.href)
+    // console.log("ScrollReset", "saveScrollPos", window.history.state, window.location.pathname)
+  },
+
+  restoreScroll() {
+    // console.log("ScrollReset", "updated", window.history.state, this.nextScrollPos, window.location.pathname)
+    this.el.scrollTop = this.nextScrollPos || 0;
+    this.nextScrollPos = undefined
   },
 
   mounted() {
@@ -91,9 +98,21 @@ Hooks.ScrollReset = {
   },
 
   updated() {
-    // console.log("ScrollReset", "updated", window.history.state, this.nextScrollPos)
-    this.el.scrollTop = this.nextScrollPos || 0;
-    this.nextScrollPos = undefined
+    // TODO: since updating to phoenix live view 0.18.x, it seems to call
+    // updated for all events, even if this element shouldn't have changed? This
+    // workaround additionally checks if the URL changed to only reset scroll to
+    // 0 if we actually navigated to a different article.
+    if (this.nextScrollPos === undefined && window.history.state.pathname == window.location.pathname) {
+      requestAnimationFrame(() => {
+        // console.log("ScrollReset", "timeout", window.history.state.pathname, window.location.pathname)
+
+        if (window.history.state.pathname == window.location.pathname) return
+        this.restoreScroll();
+      }, 0)
+      return
+    }
+
+    this.restoreScroll()
   }
 }
 
