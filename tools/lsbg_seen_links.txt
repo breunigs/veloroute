@@ -598,3 +598,7 @@
 - "/contentblob/16501850/e80ab8e2bf481f8904fa617f00834c00/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"
 - "/contentblob/16405298/d7a07f96955a457570f307031eb44b84/data/von-scheliha-strasse-und-wilhelm-osterhold-stieg-%E2%80%93-08-22-bis-12-22.pdf"
 - "/contentblob/16536036/f6fbde7bd1dc135d3c4f2be3a1dfb5b8/data/von-scheliha-strasse-und-wilhelm-osterhold-stieg-ii-%E2%80%93-10-22-bis-12-22.pdf"
+'2022-10-05':
+- "/contentblob/16551808/397e26c533c773e2cf6c89bf13906fdd/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16551814/53163fdf6324038753edb3181727f77e/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-1.pdf"
+- "/contentblob/16551816/02158a5285c000e0e1b8ccb20288e1cf/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-2.pdf"
