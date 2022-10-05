@@ -197,9 +197,9 @@ defmodule Article.Decorators do
 
   @doc """
   Returns the current article if it has tracks. Otherwise it will try to find a
-  static page with matching tags and use that one's tracks. If no tracks can
-  be found, it will still return the original article to avoid having to do nil
-  checks.
+  single static page with matching tags and use that one's tracks. If no tracks
+  can be found, it will still return the original article to avoid having to do
+  nil checks.
   """
   @spec article_with_tracks(Article.t()) :: Article.t()
   def article_with_tracks(art) when is_module(art) do
@@ -214,6 +214,27 @@ defmodule Article.Decorators do
 
       _tracks ->
         art
+    end
+  end
+
+  @doc """
+  Returns related tracks to the current article. If the article has own tracks,
+  these are returned. Otherwise it will find all overlapping static pages with
+  matching tags and return their combined tracks.
+  """
+  @spec related_tracks(Article.t()) :: [Video.Track.t()]
+  def related_tracks(art) when is_module(art) do
+    case art.tracks() do
+      [] ->
+        Article.List.category("Static")
+        |> Article.List.with_tracks()
+        |> Article.List.related(art)
+        |> Article.List.overlap(art)
+        |> Enum.flat_map(& &1.tracks())
+        |> Enum.uniq()
+
+      tracks ->
+        tracks
     end
   end
 

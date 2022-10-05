@@ -58,7 +58,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
     tracks =
       if is_module(article),
-        do: Article.Decorators.article_with_tracks(article).tracks(),
+        do: Article.Decorators.related_tracks(article),
         else: []
 
     tracks =

@@ -209,9 +209,18 @@ defmodule VelorouteWeb.LiveNavigationTest do
     {:ok, view, html} = live(conn, "/alltagsroute-4")
     assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
 
+    # going to startpage should not change the video
     html =
       view
-      |> element("a", "Radwege rund um die Binnenalster")
+      |> element("a", "veloroute.hamburg")
+      |> render_click()
+
+    assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
+
+    # going to different route page should switch
+    html =
+      view
+      |> element("a", "Niendorf")
       |> render_click()
 
     assert html =~ ~s|aus der Innenstadt nach Niendorf|
