@@ -1,6 +1,6 @@
 defmodule Data.Article.Blog.EppendorferWeg do
   use Article.Default
-  def created_at(), do: ~D[2022-09-13]
+
   def title(), do: "Eppendorfer Weg (Alltagsroute 13)"
 
   def summary(),

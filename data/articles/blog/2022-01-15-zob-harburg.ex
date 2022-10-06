@@ -73,7 +73,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
     <h4>Meinung</h4>
     <p>Die Situation auf dem Doppelknoten ist katastrophal – man wirft den Radverkehr ungeschützt in eine bis zu 8-spurige Kreuzung. Beim Rechtsabbiegen in die Moorburger Straße reicht es noch nicht mal für eigene Wege – ein Alibi-Schutzstreifen soll's richten. Die Führung entlang des Radschnellwegs nach Lüneburg ist so umständlich, dass eine angedachte neue Brücke über die Bahngleise weiter nördlich praktisch zur Pflicht wird.</p>
 
-    <p>Die Führung entlang des Radschnellwegs Tostedt hat ähnliche Probleme. Radfahrstreifen mit nur 1,60m breite oder in Mittellage – immerhin nicht beides gleichzeitig. Das man dem Radverkehr eine Engstelle aufbürdet nur um eine KFZ-Ampel unterzubringen zeigt klar die Prioritäten der Planung. Fairerweise muss man sagen, dass zum Zeitpunkt der Planung dieser Abschnitt noch nicht als Radschnellweg gedacht war.</p>
+    <p>Die Führung entlang des Radschnellwegs Tostedt hat ähnliche Probleme. Radfahrstreifen mit nur 1,60m Breite oder in Mittellage – immerhin nicht beides gleichzeitig. Das man dem Radverkehr eine Engstelle aufbürdet nur um eine KFZ-Ampel unterzubringen zeigt klar die Prioritäten der Planung. Fairerweise muss man sagen, dass zum Zeitpunkt der Planung dieser Abschnitt noch nicht als Radschnellweg gedacht war.</p>
 
     <p>Positiv ist, dass man erstmals entlang der Hannoverschen Straße nach Norden durchfahren kann ohne die Straßenseite wechseln zu müssen. Dass die undurchsichtigen Zweirichtungs-Radwege entfallen ist ebenfalls gut. Und obwohl auch die neue Führung der Veloroute 11 sicher nicht optimal ist, sind die Kurvenradien deutlich angenehmer zu befahren als heute.</p>
 
