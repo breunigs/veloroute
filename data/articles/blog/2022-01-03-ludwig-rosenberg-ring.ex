@@ -5,13 +5,13 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
 
   def title(), do: "Ludwig-Rosenberg-Ring (Alltagsroute 8)"
 
-  def start(), do: ~d[2022-08]
-  def stop(), do: ~d[2022-12]
+  def start(), do: ~d[2023-03]
+  def stop(), do: ~d[2023-12]
 
   def type(), do: :intent
 
   def summary(),
-    do: "Noch 2022 sollen Radfahrstreifen eingerichtet werden."
+    do: "Es sollen Radfahrstreifen eingerichtet werden."
 
   def tags(), do: ["8"]
 

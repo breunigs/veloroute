@@ -602,3 +602,6 @@
 - "/contentblob/16551808/397e26c533c773e2cf6c89bf13906fdd/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16551814/53163fdf6324038753edb3181727f77e/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-1.pdf"
 - "/contentblob/16551816/02158a5285c000e0e1b8ccb20288e1cf/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-2.pdf"
+'2022-10-07':
+- "/contentblob/16564216/45049cf84272ad1f8da42e902b71cfa7/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16564230/49bc87dd323e86ef6d2902e5c7bd1aac/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-plan.pdf"

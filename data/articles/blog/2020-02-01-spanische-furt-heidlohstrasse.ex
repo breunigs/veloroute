@@ -20,6 +20,10 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
 
   def links(_assigns) do
     [
+      {"Abschnitt Spanische Furt/Graf-Johann-Weg: Plan", "Oktober 2022",
+       "https://lsbg.hamburg.de/contentblob/16564230/49bc87dd323e86ef6d2902e5c7bd1aac/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-plan.pdf"},
+      {"Abschnitt Spanische Furt/Graf-Johann-Weg: Bericht", "Oktober 2022",
+       "https://lsbg.hamburg.de/contentblob/16564216/45049cf84272ad1f8da42e902b71cfa7/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-bericht.pdf"},
       {"Baustelleninfo Abschnitt Spanische Furt/Graf-Johann-Weg", "September 2022",
        "https://lsbg.hamburg.de/contentblob/16501850/e80ab8e2bf481f8904fa617f00834c00/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"},
       {"Vergabeunterlagen Umbau", "Juli 2022",
