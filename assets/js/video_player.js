@@ -500,6 +500,9 @@ document.addEventListener("visibilitychange", () => {
     wasPlaying = !video.paused;
     video.pause();
   } else {
+    // work around iOS bug where switching tabs hangs HLS video play completely?
+    if (video.canPlayType('application/vnd.apple.mpegurl')) updateVideoElement();
+
     if (wasPlaying) video.play();
   }
 }, false);
