@@ -398,7 +398,7 @@ defmodule Components.TagHelpers do
   def article_updated_at(%{article: art} = assigns) do
     if art.updated_at() do
       assigns =
-        Map.merge(assigns, %{
+        assign(assigns, %{
           human: Article.Decorators.updated_at(art),
           machine: Date.to_string(art.updated_at()),
           subject: "Fehler im Artikel \"#{art.title()}\"",
