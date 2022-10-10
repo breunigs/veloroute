@@ -6,14 +6,16 @@ defmodule Data.Article.Blog.Geranienweg do
 
   def title(), do: "Geranienweg (Veloroute 1)"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2022-07-04]
-  def stop(), do: ~d[2022-11]
+  def stop(), do: ~d[2022-10]
 
   def tags(), do: ["1", "A23.2"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung", "Oktober 2022",
+       "https://www.hamburg.de/altona/baustelleninfos/16569202/geranienweg-arbeiten-abgeschlossen/"},
       {"Pressemitteilung zum Umbau",
        "https://www.hamburg.de/altona/baustelleninfos/16299914/instandsetzung-geranienweg/"},
       {"Sachstand Velorouten", "März 2022; S. 8",

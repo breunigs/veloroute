@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Pappelallee do
   def stop(), do: ~d[2022-11-30]
   def construction_site_id_hh(), do: [28847]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["7"]
 
