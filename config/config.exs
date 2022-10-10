@@ -45,7 +45,7 @@ config :logger, backends: [:console]
 config :reverse_proxy_plug, :http_client, ReverseProxyPlug.HTTPClient.Adapters.Tesla
 
 config :esbuild,
-  version: "0.14.48",
+  version: "0.15.10",
   default: [
     args:
       ~w(js/app.js js/liveview.js js/mbgl2.js js/map.js js/video_player.js js/link_helper.js --bundle --target=chrome80,firefox80,safari13,edge80 --outdir=../priv/static/assets --color=true),
