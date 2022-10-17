@@ -23,7 +23,8 @@ defmodule Video.Rendered do
   nil if the hash is invalid, the video cannot be found or has not been rendered
   yet. Note that you need to recompile if videos were rendered in the meantime.
   """
-  @spec get(Video.Track.t() | Video.Track.hash() | module()) :: t() | nil
+  @typep rendered_identifer :: Video.Track.t() | Video.Track.hash() | module()
+  @spec get(rendered_identifer | [rendered_identifer]) :: t() | nil
   def get(nil), do: nil
 
   def get(hash) when valid_hash(hash) do
@@ -34,6 +35,13 @@ defmodule Video.Rendered do
 
   def get(%Video.Track{videos: videos}) do
     Enum.find(all(), fn rendered -> rendered.sources() == videos end)
+  end
+
+  def get(list) when is_list(list) do
+    list
+    |> Enum.map(&get/1)
+    |> Enum.uniq()
+    |> Util.compact()
   end
 
   def get(_any), do: nil
