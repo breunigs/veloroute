@@ -20,7 +20,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
         group: "Radschnellweg Ahrensburg",
         direction: :forward,
         from: "Hamburg Volksdorf",
-        to: "Ahrensburg Gewerbegebiet",
+        to: "Ahrensburg Gewerbegebiet Süd",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Volksdorf → Ahrensburg",
         videos: [
@@ -33,7 +33,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
         renderer: 1,
         group: "Radschnellweg Ahrensburg",
         direction: :backward,
-        from: "Ahrensburg Gewerbegebiet",
+        from: "Ahrensburg Gewerbegebiet Süd",
         to: "Hamburg Volksdorf",
         parent_ref: __MODULE__,
         text: "künftiger Radschnellweg Ahrensburg → Volksdorf",
