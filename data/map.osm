@@ -16220,6 +16220,20 @@
   <node id='-56387069' lat='53.68608917538' lon='10.22736221284'>
     <tag k='target' v='Bünningstedt' />
   </node>
+  <node id='-56919433' action='modify' lat='53.54993996532' lon='9.95630620837' />
+  <node id='-56919434' action='modify' lat='53.54957025798' lon='9.95617746234' />
+  <node id='-56919435' action='modify' lat='53.5494810178' lon='9.95823739886' />
+  <node id='-56919436' action='modify' lat='53.54927703953' lon='9.96118782878' />
+  <node id='-56919437' action='modify' lat='53.54937902879' lon='9.96272205234' />
+  <node id='-56919438' action='modify' lat='53.54981566752' lon='9.9673837316' />
+  <node id='-56919439' action='modify' lat='53.54999414629' lon='9.9673837316' />
+  <node id='-56919440' action='modify' lat='53.55006107564' lon='9.96900378585' />
+  <node id='-56919441' action='modify' lat='53.55023317918' lon='9.96896623492' />
+  <node id='-56919442' action='modify' lat='53.55013756619' lon='9.96691702724' />
+  <node id='-56919443' action='modify' lat='53.54967224654' lon='9.96238945842' />
+  <node id='-56919444' action='modify' lat='53.54960850372' lon='9.96155260921' />
+  <node id='-56919445' action='modify' lat='53.54964674942' lon='9.95979308009' />
+  <node id='-56919446' action='modify' lat='53.54967862081' lon='9.9586343658' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -47692,6 +47706,25 @@
     <nd ref='-56387067' />
     <nd ref='-56387068' />
     <nd ref='-56387069' />
+  </way>
+  <way id='-19963701' action='modify'>
+    <nd ref='-56919433' />
+    <nd ref='-56919434' />
+    <nd ref='-56919435' />
+    <nd ref='-56919436' />
+    <nd ref='-56919437' />
+    <nd ref='-56919438' />
+    <nd ref='-56919439' />
+    <nd ref='-56919440' />
+    <nd ref='-56919441' />
+    <nd ref='-56919442' />
+    <nd ref='-56919443' />
+    <nd ref='-56919444' />
+    <nd ref='-56919445' />
+    <nd ref='-56919446' />
+    <nd ref='-56919433' />
+    <tag k='name' v='2022-10-18-reeperbahn' />
+    <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />

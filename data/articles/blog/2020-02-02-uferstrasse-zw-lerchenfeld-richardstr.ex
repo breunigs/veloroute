@@ -10,9 +10,10 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
       "Mehr Platz und bessere Oberflächen im Planungsabschnitt. Fahrradstraße leider nicht mehr durchgängig."
 
   def type(), do: :planned
-  def start(), do: ~d[2023Q2]
+  def start(), do: ~d[2023-03]
+  def stop(), do: ~d[2023-08]
 
-  def tags(), do: ["6"]
+  def tags(), do: ["6", "N017.1"]
 
   def links(_assigns) do
     [

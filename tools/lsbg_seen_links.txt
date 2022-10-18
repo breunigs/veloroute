@@ -605,3 +605,6 @@
 '2022-10-07':
 - "/contentblob/16564216/45049cf84272ad1f8da42e902b71cfa7/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16564230/49bc87dd323e86ef6d2902e5c7bd1aac/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-plan.pdf"
+'2022-10-18':
+- "/contentblob/16586854/6740f8ddabfe45a0a8457d86a88a7bd8/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16586856/4611d251f875c2d962e2b013eb957c72/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"
