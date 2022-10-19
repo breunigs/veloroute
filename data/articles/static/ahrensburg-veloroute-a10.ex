@@ -55,7 +55,9 @@ defmodule Data.Article.Static.AhrensburgA10 do
 
   def text(assigns) do
     ~H"""
-    <p>Veloroute 10 ist eine Planung und noch nicht fertiggestellt. Die Videos zeigen eine ortsnahe, befahrbare Führung. Hauptsächlich fehlt eine bessere Querungsmöglichkeit des <.m bounds="10.25076,53.674642,10.255981,53.677276" lon={10.25302} lat={53.675771} dir="forward" ref="ahrensburg-a10">Ostrings</.m> sowie die Durchbindung zum <.m bounds="10.248403,53.684168,10.255763,53.690064" lon={10.252412} lat={53.685161} dir="forward" ref="ahrensburg-a10">Bahnhof Gartenholz</.m>.</p>
+    <.summary/>
+
+    <p>Die Videos zeigen eine ortsnahe, befahrbare Führung. Hauptsächlich fehlt eine bessere Querungsmöglichkeit des <.m bounds="10.25076,53.674642,10.255981,53.677276" lon={10.25302} lat={53.675771} dir="forward" ref="ahrensburg-a10">Ostrings</.m> sowie die Durchbindung zum <.m bounds="10.248403,53.684168,10.255763,53.690064" lon={10.252412} lat={53.685161} dir="forward" ref="ahrensburg-a10">Bahnhof Gartenholz</.m>.</p>
 
     <h3>Externe Links</h3>
     <.structured_links gpx={true}/>

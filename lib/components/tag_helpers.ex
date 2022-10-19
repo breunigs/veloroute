@@ -316,6 +316,17 @@ defmodule Components.TagHelpers do
     """
   end
 
+  @spec summary(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :current_page, :atom, required: true
+
+  def summary(assigns) do
+    assigns = assign(assigns, %{summary: assigns.current_page.summary()})
+
+    ~H"""
+    <p><%= @summary %></p>
+    """
+  end
+
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   attr :current_page, :atom, required: true
   attr :gpx, :boolean, default: false

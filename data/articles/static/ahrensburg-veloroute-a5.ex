@@ -63,6 +63,8 @@ defmodule Data.Article.Static.AhrensburgA5 do
 
   def text(assigns) do
     ~H"""
+    <.summary/>
+
     <h3>Externe Links</h3>
     <.structured_links gpx={true}/>
     """
