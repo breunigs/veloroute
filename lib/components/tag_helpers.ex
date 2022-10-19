@@ -281,6 +281,18 @@ defmodule Components.TagHelpers do
         ><%= @id %></a>
         """
 
+      content == "RSW" ->
+        ~H"""
+        <a href={@href}
+           data-phx-link-state="push"
+           data-phx-link="patch"
+           title={@summary}
+           class="customicon"
+        >
+          <img src="/images/rsw.svg" alt="Radschnellweg Symbol der StVO"/>
+        </a>
+        """
+
       true ->
         ~H"""
         <a href={@href} data-phx-link-state="push" data-phx-link="patch" title={@summary}>

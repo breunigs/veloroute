@@ -684,12 +684,7 @@ $iconBorder: 0.13em;
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
-  color: #fff !important;
-  cursor: default;
   border: $iconBorder solid white;
-  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
-    0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
-    -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
 
   &.freizeit {
     border-radius: 0.2rem;
@@ -715,21 +710,22 @@ h3 .icon {
 }
 
 .icon, .fricon {
+  font-weight: bold;
   color: #fff !important;
   cursor: default;
-  border: 0.13em solid white;
-  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.2),
-    0.05em 0.05em 0 rgba(0, 0, 0, 0.2), 0.05em -0.05em 0 rgba(0, 0, 0, 0.2),
-    -0.05em -0.05em 0 rgba(0, 0, 0, 0.2);
+  border: $iconBorder solid white;
+  text-shadow: -0.05em 0.05em 0 rgba(0, 0, 0, 0.4),
+    0.05em 0.05em 0 rgba(0, 0, 0, 0.4), 0.05em -0.05em 0 rgba(0, 0, 0, 0.4),
+    -0.05em -0.05em 0 rgba(0, 0, 0, 0.4);
 }
 
 
-a.icon {
+a.icon, a.customicon {
   cursor: pointer;
 
   &:hover {
     text-decoration: none;
-    font-weight: bold;
+    opacity: 0.8;
   }
 }
 
@@ -895,6 +891,36 @@ ol.hide-bullets {
     display: block;
     height: 0;
     clear: both;
+  }
+}
+
+table.route-list {
+  margin-right: calc(-0.5em - 0.3rem);
+  line-height: 1.8rem;
+
+  th {
+    padding-right: 0.3rem;
+    min-width: 5.1rem;
+    vertical-align: top;
+  }
+
+  td {
+    vertical-align: middle;
+    cursor: default;
+
+    > span {
+      white-space: nowrap;
+    }
+  }
+
+  img {
+    vertical-align: text-top;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  a {
+    margin: 0.3rem;
   }
 }
 

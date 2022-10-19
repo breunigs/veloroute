@@ -1,15 +1,16 @@
 defmodule Data.Article.Static.AhrensburgA9 do
   use Article.Static
 
-  def id(), do: "ahrensburg-A9"
-  def display_id(), do: "A9"
+  def id(), do: "ahrensburg-a9"
+  def display_id(), do: "9"
   def route_group(), do: :alltag
   def title(), do: "Ahrensburg: Veloroute A9"
 
   def color(), do: "#b0a318"
 
   def summary(),
-    do: "Video und Wegführung zur Alltags-Veloroute A9 in Ahrensburg"
+    do:
+      "Alltags-Veloroute A9 in Ahrensburg führt vom U-Bahnhof Ahrensburg West zum Ahrensburger Zentrum"
 
   def tags(), do: [id(), "ahrensburg"]
 

@@ -55,17 +55,55 @@ defmodule Data.Article.Static.Startpage do
 
     <h4>Umland</h4>
     <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
-    <ol class="route-list">
-      <li><.icon autoplay={true} name="pinneberg-1"><span>Pinneberg: Veloroute 1</span></.icon></li>
-      <li><.icon autoplay={true} name="pinneberg-2"><span>Pinneberg: Veloroute 2</span></.icon></li>
-      <li><.icon autoplay={true} name="pinneberg-3"><span>Pinneberg: Veloroute 3</span></.icon></li>
-      <li><.icon autoplay={true} name="pinneberg-4"><span>Pinneberg: Veloroute 4</span></.icon></li>
-      <li><.icon autoplay={true} name="pinneberg-5"><span>Pinneberg: Veloroute 5</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay={true} name="norderstedt-1"><span>Norderstedt: Veloroute 1</span></.icon></li>
-      <li><.icon autoplay={true} name="norderstedt-2"><span>Norderstedt: Veloroute 2</span></.icon></li>
-      <li><.icon autoplay={true} name="norderstedt-3"><span>Norderstedt: Veloroute 3</span></.icon></li>
-      <li><.icon autoplay={true} name="norderstedt-4"><span>Norderstedt: Veloroute 4</span></.icon></li>
-    </ol>
+
+    <table class="route-list">
+      <tr>
+        <th>Pinneberg</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="pinneberg-1">1</.icon>
+            <.icon autoplay={true} name="pinneberg-2">2</.icon>
+          </span>
+          <span>
+            <.icon autoplay={true} name="pinneberg-3">3</.icon>
+            <.icon autoplay={true} name="pinneberg-4">4</.icon>
+            <.icon autoplay={true} name="pinneberg-5">5</.icon>
+          </span>
+        </td>
+      </tr><tr>
+        <th>Norderstedt</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="norderstedt-1">1</.icon>
+            <.icon autoplay={true} name="norderstedt-2">2</.icon>
+          </span>
+          <span>
+            <.icon autoplay={true} name="norderstedt-3">3</.icon>
+            <.icon autoplay={true} name="norderstedt-4">4</.icon>
+          </span>
+        </td>
+      </tr><tr>
+        <th>Ahrensburg</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="ahrensburg-a2">2</.icon>
+            <.icon autoplay={true} name="ahrensburg-a3">3</.icon>
+            <.icon autoplay={true} name="ahrensburg-a4">4</.icon>
+            <.icon autoplay={true} name="ahrensburg-a5">5</.icon>
+          </span>
+          <span>
+            <.icon autoplay={true} name="ahrensburg-a6">6</.icon>
+            <.icon autoplay={true} name="ahrensburg-a7">7</.icon>
+            <.icon autoplay={true} name="ahrensburg-a8">8</.icon>
+            <.icon autoplay={true} name="ahrensburg-a9">9</.icon>
+            <.icon autoplay={true} name="ahrensburg-a10">10</.icon>
+          </span>
+        </td>
+      </tr>
+    </table>
 
     <h3><label for="query">Suche 🔎</label></h3>
     <form phx-submit="search">
