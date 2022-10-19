@@ -11,7 +11,9 @@ defmodule Components.RelatedArticlesHelper do
 
     assigns =
       assign(assigns, %{
-        related_static: Map.get(grouped, true, []),
+        related_static:
+          Map.get(grouped, true, [])
+          |> Article.List.sort(:asc, :title),
         related_dated:
           Map.get(grouped, false, [])
           |> Article.List.sort(:desc, :updated_at)

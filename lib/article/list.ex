@@ -173,6 +173,10 @@ defmodule Article.List do
     list |> Enum.sort() |> Enum.sort_by(& &1.start(), {sorter, Data.RoughDate})
   end
 
+  def sort(list, sorter, :title) do
+    list |> Enum.sort_by(& &1.title(), {sorter, NaturalOrder})
+  end
+
   def sort(list, sorter, :stop) do
     list
     |> Enum.sort()
