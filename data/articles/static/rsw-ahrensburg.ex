@@ -11,7 +11,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
     do:
       "Beschreibung und Video zum geplanten Radschnellweg HH-Volksdorf ↔ Ahrensburg (Vorzugsstrecke)"
 
-  def tags(), do: [id(), "rsw"]
+  def tags(), do: [id(), "rsw", "ahrensburg"]
 
   def tracks(),
     do: [

@@ -11,7 +11,7 @@ defmodule Data.Article.Static.RSWElmshorn do
   def summary(),
     do: "Beschreibung und Video zum Radschnellweg Elmshorn ↔ HH-Bahrenfeld bzw. HH-Eimsbüttel"
 
-  def tags(), do: [id(), "rsw"]
+  def tags(), do: [id(), "rsw", "pinneberg"]
 
   def tracks(),
     do: [

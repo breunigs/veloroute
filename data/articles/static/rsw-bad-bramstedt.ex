@@ -12,7 +12,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
     do:
       "Beschreibung und Video zum geplanten Radschnellweg HH-Sengelmannstraße ↔ Bad Bramstedt (Vorzugsstrecke)"
 
-  def tags(), do: [id(), "rsw"]
+  def tags(), do: [id(), "rsw", "norderstedt"]
 
   def tracks(),
     do: [
