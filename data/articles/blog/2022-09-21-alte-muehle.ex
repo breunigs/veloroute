@@ -6,11 +6,15 @@ defmodule Data.Article.Blog.AlteMuehle do
   def summary(), do: "Wegen Denkmalschutz keine Verbesserung für den Radverkehr möglich."
 
   def type(), do: :intent
+  def start(), do: ~d[2024]
+  def stop(), do: ~d[2024]
 
   def tags(), do: ["5", "W08"]
 
   def links(_assigns) do
     [
+      {"Möglicher Bauzeitraum", "Stand Oktober 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
       {"Präsentation Umbauvarianten", "September 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017287"}
     ]

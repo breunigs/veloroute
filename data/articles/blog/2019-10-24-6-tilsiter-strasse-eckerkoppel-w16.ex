@@ -8,15 +8,15 @@ defmodule Data.Article.Blog.TilsiterStrasseEckerkoppelW16 do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2023]
-  def stop(), do: ~d[2024]
+  def start(), do: ~d[2023Q3]
+  def stop(), do: ~d[2024Q2]
 
   def tags(), do: ["6", "w16.1", "w16.3", "w16.4", "w16"]
 
   def links(_assigns) do
     [
-      {"Möglicher Bautermin", "Stand 2022",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016643"},
+      {"Möglicher Bauzeitraum", "Stand Oktober 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
       {"Vorläufige Lagepläne und Erläuterungsbericht",
        "Hinweis: der Erläuterungsbericht ist teilweise nicht mehr aktuell. Siehe auch Abwägungsvermerk.",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1011013"}

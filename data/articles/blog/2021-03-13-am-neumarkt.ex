@@ -6,11 +6,15 @@ defmodule Data.Article.Blog.AmNeumarkt do
   def title(), do: "Am Neumarkt"
 
   def type(), do: :planned
+  def start(), do: ~d[2023Q1]
+  def stop(), do: ~d[2024Q3]
 
   def tags(), do: ["radfahrstreifen"]
 
   def links(_assigns) do
     [
+      {"Möglicher Bauzeitraum", "Stand Oktober 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15956404/am-neumarkt/"},
       {"Planungsunterlagen",

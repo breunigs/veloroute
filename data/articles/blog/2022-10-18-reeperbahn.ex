@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Reeperbahn do
   use Article.Default
 
-  def title(), do: "Reeperbahn"
+  def title(), do: "Versuchsradweg Reeperbahn"
 
   def summary(),
     do: "Verkehrsversuch: eine Fahrspur pro Richtung für Bus- und Radverkehr reserviert"
