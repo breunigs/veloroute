@@ -525,3 +525,6 @@
 - https://via-bus.hamburg.de/contentblob/16305854/30c937a18e60ca10a221c6ec0d7bd909/data/praesentation-des-beteiligungsverfahrens-im-wirtschafts-und-verkehrsausschuss-wandsbek-juni-2022.pdf
 '2022-07-20':
 - https://via-bus.hamburg.de/contentblob/16305854/51546b92d6786b7116c295ea9a57d7ec/data/praesentation-des-beteiligungsverfahrens-im-wirtschafts-und-verkehrsausschuss-wandsbek-juni-2022.pdf
+'2022-10-20':
+- https://via-bus.hamburg.de/contentblob/16595676/c45ceee43986e9c5bdc54648dace360b/data/lageplan-freiraumkonzept-farmsen.pdf
+- https://via-bus.hamburg.de/contentblob/16595676/c45ceee43986e9c5bdc54648dace360b/data/lageplan-freiraumkonzept-farmsen.pdf

@@ -9,6 +9,8 @@ defmodule Data.Article.Blog.UFarmsen do
 
   def links(_assigns) do
     [
+      {"Lageplan", "Oktober 2022",
+       "https://via-bus.hamburg.de/contentblob/16595676/c45ceee43986e9c5bdc54648dace360b/data/lageplan-freiraumkonzept-farmsen.pdf"},
       {"Präsentation zum Umbau",
        "https://via-bus.hamburg.de/contentblob/15542692/738ee06d41a71392fa2108465cedcd68/data/praesentation-online-dialogrunde-vom-11-08-2021.pdf"},
       {"Dokumentation zur Online-Dialogrunde",
