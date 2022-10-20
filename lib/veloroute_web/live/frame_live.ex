@@ -209,6 +209,7 @@ defmodule VelorouteWeb.FrameLive do
         do: socket,
         else:
           socket
+          |> update_map(params)
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
           |> determine_visible_route_groups(article)
           |> assign(:autoplay, params["autoplay"] == "true")
@@ -353,7 +354,7 @@ defmodule VelorouteWeb.FrameLive do
   defp update_map(socket, %{"bounds" => bounds}) do
     parsed = Geo.BoundingBox.parse(bounds)
 
-    if parsed != nil,
+    if parsed != nil && socket.assigns[:bounds] != parsed,
       do: assign(socket, bounds: parsed) |> set_bounds_ts,
       else: socket
   end

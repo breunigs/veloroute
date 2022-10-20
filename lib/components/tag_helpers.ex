@@ -235,6 +235,11 @@ defmodule Components.TagHelpers do
 
   @spec icon(map()) :: Phoenix.LiveView.Rendered.t()
   attr :name, :string
+  attr :bounds, :string
+  attr :lat, :float
+  attr :lon, :float
+  attr :dir, :string, values: ["forward", "backward"]
+  attr :group, :string
   attr :autoplay, :boolean, default: false
   attr :link, :boolean, default: true
   slot(:inner_block, required: true)
@@ -249,9 +254,10 @@ defmodule Components.TagHelpers do
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
 
-    query = if assigns[:autoplay], do: %{autoplay: true}
+    query = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
+    query = if assigns[:autoplay], do: Map.put(query, :autoplay, true), else: query
+
     href = Article.Decorators.path(art, query)
-    # icon = VelorouteWeb.VariousHelpers.route_icon(art)
 
     assigns =
       assign(assigns, %{

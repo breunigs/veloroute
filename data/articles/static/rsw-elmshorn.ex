@@ -52,7 +52,7 @@ defmodule Data.Article.Static.RSWElmshorn do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Elmshorn (zum Diebsteich)",
+        group: "Radschnellweg Elmshorn (ab Diebsteich)",
         direction: :backward,
         from: "Elmshorn Wasserstraße",
         to: "Hamburg Diebsteich",

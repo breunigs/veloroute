@@ -61,7 +61,7 @@ defmodule Data.Article.Static.Startpage do
         <th>Pinneberg</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="rsw-elmshorn" bounds="9.76125,53.617704,9.873313,53.686535" lon={9.855594} lat={53.621113} dir="forward">RSW</.icon>
             <.icon autoplay={true} name="pinneberg-1">1</.icon>
             <.icon autoplay={true} name="pinneberg-2">2</.icon>
           </span>
@@ -75,7 +75,7 @@ defmodule Data.Article.Static.Startpage do
         <th>Norderstedt</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="rsw-bad-bramstedt" bounds="9.967335,53.669097,10.062369,53.759085" lon={10.00096} lat={53.681306} dir="forward">RSW</.icon>
             <.icon autoplay={true} name="norderstedt-1">1</.icon>
             <.icon autoplay={true} name="norderstedt-2">2</.icon>
           </span>
@@ -88,7 +88,7 @@ defmodule Data.Article.Static.Startpage do
         <th>Ahrensburg</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-ahrensburg">RSW</.icon>
+            <.icon autoplay={true} name="rsw-ahrensburg" bounds="10.143083,53.641867,10.288229,53.699555" lon={10.199777} lat={53.661468} dir="forward">RSW</.icon>
             <.icon autoplay={true} name="ahrensburg-a2">2</.icon>
             <.icon autoplay={true} name="ahrensburg-a3">3</.icon>
             <.icon autoplay={true} name="ahrensburg-a4">4</.icon>

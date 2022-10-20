@@ -336,8 +336,8 @@ defmodule VelorouteWeb.Live.VideoState do
   defp update_from_tracks(state, [], _pos), do: state
 
   # Due to slight inaccuracies when clicking, users might reverse the track all the time when
-  # in practice they just wanted to skip aloung the route. Therefore we slightly prefer tracks
-  # in th the current direction.
+  # in practice they just wanted to skip along the route. Therefore we slightly prefer tracks
+  # in the current direction.
   @same_direction_bonus_in_meters 15
 
   # if we have a position, change the tracks default order by closeness to the position
