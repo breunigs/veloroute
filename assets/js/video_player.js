@@ -143,8 +143,8 @@ function updateVideoElement() {
         autoStartLoad: hlsAutoStartLoad || !video.paused || autoplayEnabled(),
         enableWebVTT: false,
         lowLatencyMode: false,
-        maxBufferLength: 3, // seconds
-        maxMaxBufferLength: 10, // seconds
+        maxBufferLength: 9, // seconds
+        maxMaxBufferLength: 60, // seconds
         minAutoBitrate: minAutoBitrate,
       };
 
