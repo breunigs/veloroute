@@ -9,6 +9,7 @@ defmodule Components.TagHelpers do
   """
   attr :href, :string
   attr :name, :string
+  attr :rel, :string
   attr :rest, :global
   slot(:inner_block, required: true)
 
@@ -28,6 +29,9 @@ defmodule Components.TagHelpers do
   def a(%{href: href} = assigns) do
     {attrs, extra_text} =
       case URI.new(href) do
+        {:ok, %{host: nil, path: "/updates.atom" <> _rest}} ->
+          {%{target: "_blank"}, ""}
+
         {:ok, %{host: nil, path: "/" <> _rest}} ->
           {%{"data-phx-link-state": "push", "data-phx-link": "patch"}, ""}
 
@@ -41,7 +45,7 @@ defmodule Components.TagHelpers do
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
 
-    attrs = Map.merge(Map.take(assigns, [:title, :href]), attrs)
+    attrs = Map.merge(Map.take(assigns, [:title, :href, :rel]), attrs)
     assigns = assign(assigns, %{attrs: attrs, extra_text: extra_text})
 
     ~H"""
