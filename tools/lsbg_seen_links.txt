@@ -611,3 +611,6 @@
 '2022-10-19':
 - "/contentblob/16591502/c0f6f1389c0fb6042b5f9061973c0dbc/data/alsterschwimmhalle-erschliessung-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16591510/9c9d8968a9c99fa3a28a3fa6d5e79ea7/data/alsterschwimmhalle-erschliessung-abgestimmte-planung-plan.pdf"
+'2022-10-30':
+- "/contentblob/16586854/d2291601fd5bb19dc742539bfbd24f6a/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"
+- "/contentblob/16586856/d6de5326e1b7d32afda63a02e3a92b7d/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"

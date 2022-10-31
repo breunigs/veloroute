@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.TilsiterStrasse do
 
   def title(), do: "Tilsiter Straße (West, bis Voßkulen, Veloroute 6)"
 
-  def start(), do: ~d[2022Q1]
-  def stop(), do: ~d[2023Q3]
+  def start(), do: ~d[2022-10-17]
+  def stop(), do: ~d[2023-06-30]
+  def construction_site_id_hh(), do: [139_611]
 
   def type(), do: :construction
 
