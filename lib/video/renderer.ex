@@ -427,31 +427,21 @@ defmodule Video.Renderer do
     }
   end
 
-  # @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
-  # defp codec_av1_rav1e(info, idx) do
-  #   tiles = Integer.floor_div(info[:height], 135)
+  @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
+  defp codec_av1_rav1e(info, idx) do
+    tiles = Integer.floor_div(info[:height], 135)
 
-  #   ll =
-  #     Enum.find_value(@av1_ll_param_examples, @av1_ll_max_specified, fn ex ->
-  #       dim_ok = info[:width] <= ex.width && info[:height] <= ex.height
-
-  #       if dim_ok && tiles <= ex.tiles && Video.Source.fps() <= ex.fps,
-  #         do: ex.seq_level_idx
-  #     end)
-  #     |> to_string()
-  #     |> String.pad_leading(2, "0")
-
-  #   %{
-  #     codec: [
-  #       "librav1e",
-  #       "-tiles:v:#{idx}",
-  #       "#{tiles}",
-  #       "-speed:v:#{idx}",
-  #       "6"
-  #     ],
-  #     tag_as: av1_codec_tag(info, tiles, 8)
-  #   }
-  # end
+    %{
+      codec: [
+        "librav1e",
+        "-tiles:v:#{idx}",
+        "#{tiles}",
+        "-speed:v:#{idx}",
+        "3"
+      ],
+      tag_as: av1_codec_tag(info, tiles, 8)
+    }
+  end
 
   # @spec codec_av1_svt(map(), non_neg_integer()) :: map()
   # defp codec_av1_svt(info, idx) do
