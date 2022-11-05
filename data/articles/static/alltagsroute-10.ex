@@ -39,9 +39,9 @@ defmodule Data.Article.Static.Alltagsroute10 do
           {"2022-05-07-v10-v7-u-rodigallee/GX013719", :start, :end},
           {"2022-05-07-v10-v7-u-rodigallee/GX013720", :start, "00:00:40.741"},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013661", "00:01:28.689", "00:01:56.016"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013676", "00:00:12.779", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013677", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013678", :start, :end},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013676", "00:00:12.779", "00:00:53.186"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:00:51.051", "00:02:09.229"},
+          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013678", "00:00:19.186", :end},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013679", :start, :end},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013680", :start, :end},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013681", "00:00:00.467", "00:01:23.951"}
