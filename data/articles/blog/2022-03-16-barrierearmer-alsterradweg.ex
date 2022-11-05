@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.BarrierearmerAlsterradweg do
 
   def links(_assigns) do
     [
+      {"Baufortschritt", "November 2022",
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012274"},
       {"Pressemitteilung des Bezirks Nord",
        "https://www.hamburg.de/hamburg-nord/stadtgruen/14867266/steckbrief-alsterwanderweg/"}
     ]

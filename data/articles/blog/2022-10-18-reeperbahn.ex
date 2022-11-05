@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Reeperbahn do
 
   def tags(), do: []
 
-  def start(), do: ~d[2022Q4]
-  def stop(), do: ~d[2022Q4]
+  def start(), do: ~d[2022-11-14]
+  def stop(), do: ~d[2022-11-25]
 
   def tracks(),
     do: [
@@ -45,6 +45,8 @@ defmodule Data.Article.Blog.Reeperbahn do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "November 2022",
+       "https://lsbg.hamburg.de/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"},
       {"Pressemitteilung", "Oktober 2022",
        "https://www.hamburg.de/bvm/medien/16586554/2022-10-17-bvm-radverkehr/"},
       {"Lageplan – Richtung Millerntor", "Oktober 2022",

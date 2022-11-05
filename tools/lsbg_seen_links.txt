@@ -614,3 +614,6 @@
 '2022-10-30':
 - "/contentblob/16586854/d2291601fd5bb19dc742539bfbd24f6a/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"
 - "/contentblob/16586856/d6de5326e1b7d32afda63a02e3a92b7d/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"
+'2022-11-05':
+- "/contentblob/16533874/5d23a5fffbb6cb55cd99d9c84c15cb3b/data/holsteiner-chaussee-erneuerung-geh-und-radwege-10-22-bis-12-22.pdf"
+- "/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"
