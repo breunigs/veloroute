@@ -340,11 +340,11 @@ defmodule Video.Renderer do
 
   # The average bitrate is given in the variants above. This defined
   # how much the maximum bitrate may deviate from that (as a ratio)
-  defp max_bitrate(input), do: 1.1 * input
+  defp max_bitrate(input), do: 1.3 * input
   # The sliding window in which the codec can distribute its bits,
   # as a ratio of the bitrate, see
   # https://trac.ffmpeg.org/wiki/Limiting%20the%20output%20bitrate
-  defp buf_size(input), do: 2.0 * input
+  defp buf_size(input), do: 4.0 * input
 
   # codec tag specification:
   # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
