@@ -10,13 +10,15 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def stop(), do: ~d[2022-10-30]
   def construction_site_id_hh(), do: [23095]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["13"]
 
   def links(_assigns) do
     [
-      {"Baustelleninfo (September 2022)",
+      {"Pressemitteilung Fertigstellung", "Oktober 2022",
+       "https://www.hamburg.de/bvm/medien/16647266/2022-11-07-bvm-veloroute-13/"},
+      {"Baustelleninfo", "September 2022",
        "https://lsbg.hamburg.de/contentblob/16535924/bed291eb16849f8c88a139e7a04f0bff/data/gertigstrasse-bauzeitverlaengerung-sept-2022.pdf"},
       {"Pressemitteilung Bauankündigung",
        "https://www.hamburg.de/bvm/medien/15878322/2022-02-14-bvm-fahrradstrasse-winterhude/"},

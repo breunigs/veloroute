@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.BillstedterHauptstrasseAbReclamstrasse do
   def title(), do: "Billstedter Hauptstraße (Reclamstraße bis Billstedter Mühlenweg)"
 
   def start(), do: ~d[2022-01-31]
-  def stop(), do: ~d[2022-11-30]
+  def stop(), do: ~d[2023-01-31]
   def construction_site_id_hh(), do: [25103]
 
   def type(), do: :construction
