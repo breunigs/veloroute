@@ -7,7 +7,8 @@ defmodule Data.Article.Blog.Krausestrasse do
   def title(), do: "Krausestraße (1. Abschnitt, Freizeitroute 2)"
 
   def summary(),
-    do: "Krausestraße bekommt 1,60m breite Radfahrstreifen. Bisher gab es keine eigenen Radwege."
+    do:
+      "Umbau Krausestraße verschiebt sich. Stattdessen 2023 vielleicht Versuchsradweg (Pop-Up Bikelane)"
 
   def type(), do: :planned
 
