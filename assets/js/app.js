@@ -116,6 +116,25 @@ Hooks.ScrollReset = {
   }
 }
 
+Hooks.LazyLoadJS = {
+  mounted() {
+    this.el.pushEvent = (event, args) => {
+      this.pushEventTo(this.el, event, args)
+    }
+    this.check()
+  },
+  reconnected() {
+    this.check()
+  },
+  check() {
+    const path = this.el.dataset.lazyLoadJs;
+    import(path).then(() => {
+      const cb = this.el.dataset.lazyLoadCallback;
+      if (cb) window[cb](this.el);
+    })
+  }
+}
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,

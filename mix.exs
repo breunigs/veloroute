@@ -96,7 +96,8 @@ defmodule Veloroute.MixProject do
       {:telemetry, "~> 1.0"},
       {:temp, "~> 0.4", only: [:dev, :test]},
       {:tesla, "~> 1.4.0"},
-      {:tqdm, "~> 0.0.2", only: [:dev, :test]}
+      {:tqdm, "~> 0.0.2", only: [:dev, :test]},
+      {:web_push_encryption, "~> 0.3"}
     ]
   end
 end

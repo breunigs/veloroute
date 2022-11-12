@@ -35,6 +35,8 @@ npm-debug.log
 
 /tmp/
 
+# user push notification data is somewhat sensitive
+/data/user/push/
 /data/*credential*
 /data/cache/
 /data/josmhome/

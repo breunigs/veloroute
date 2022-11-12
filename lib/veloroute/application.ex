@@ -8,6 +8,7 @@ defmodule Veloroute.Application do
   def start(_type, _args) do
     ensure_videos_are_mounted()
     preprocess_search_terms()
+    update_web_push_email()
 
     # List all child processes to be supervised
     children = [
@@ -67,5 +68,11 @@ defmodule Veloroute.Application do
         """
       )
     end
+  end
+
+  defp update_web_push_email() do
+    config = Application.fetch_env!(:web_push_encryption, :vapid_details)
+    config = Keyword.put(config, :subject, "mailto:#{Settings.email()}")
+    Application.put_env(:web_push_encryption, :vapid_details, config, persistent: true)
   end
 end

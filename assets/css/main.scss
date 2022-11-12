@@ -1154,8 +1154,19 @@ div.aside {
   display: block;
 }
 
-.imgbullet a img {
+.imgbullet img {
   width: 1rem;
   height: 1rem;
   vertical-align: sub;
+}
+
+#push-notifications {
+  display: block;
+  min-height: 4.6rem;
+}
+
+.push-action {
+  display: inline-block;
+  margin-top: 0.3rem;
+  margin-right: 1rem;
 }

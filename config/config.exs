@@ -48,7 +48,7 @@ config :esbuild,
   version: "0.15.10",
   default: [
     args:
-      ~w(js/app.js js/liveview.js js/mbgl2.js js/map.js js/video_player.js js/link_helper.js --bundle --target=chrome80,firefox80,safari13,edge80 --outdir=../priv/static/assets --color=true),
+      ~w(js/app.js js/liveview.js js/mbgl2.js js/map.js js/video_player.js js/link_helper.js js/push_service_worker.ts js/push_client.ts --bundle --target=chrome80,firefox80,safari13,edge80 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -59,6 +59,10 @@ config :dart_sass,
     args: ~w(css/:../priv/static/assets/),
     cd: Path.expand("../assets", __DIR__)
   ]
+
+config :web_push_encryption, :vapid_details,
+  public_key: PhoenixCredentials.web_push_public_key(),
+  private_key: PhoenixCredentials.web_push_private_key()
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

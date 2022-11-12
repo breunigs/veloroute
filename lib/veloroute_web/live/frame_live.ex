@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.FrameLive do
-  use Phoenix.LiveView
+  use VelorouteWeb, :live_view
+
   require Logger
 
   alias VelorouteWeb.Router.Helpers, as: Routes

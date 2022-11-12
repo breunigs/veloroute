@@ -292,7 +292,14 @@ defmodule Util do
   end
 
   def render_heex(heex) do
-    heex |> Phoenix.HTML.Safe.to_iodata() |> IO.iodata_to_binary()
+    {_socket, diff, _components} =
+      Phoenix.LiveView.Diff.render(
+        %Phoenix.LiveView.Socket{},
+        heex,
+        Phoenix.LiveView.Diff.new_components()
+      )
+
+    diff |> Phoenix.LiveView.Diff.to_iodata() |> IO.iodata_to_binary()
   end
 
   @doc """

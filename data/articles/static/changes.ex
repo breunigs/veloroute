@@ -8,6 +8,8 @@ defmodule Data.Article.Static.Changes do
   def text(assigns) do
     ~H"""
     <h3 id="getNotified">Auf dem Laufenden bleiben</h3>
+    <p>Wenn Du über neue oder geänderte Artikel informiert werden möchtest, hast Du mehrere Möglichkeiten:</p>
+
     <ul class="imgbullet">
       <li><.a href="/updates.atom"><img src="/images/rss.svg"> RSS-Feed</.a> (benötigt einen <.a href="https://www.rss-readers.org/">Feedreader</.a>)</li>
       <li><.a href="https://twitter.com/VelorouteHH"><img src="/images/twitter.svg"> Twitter</.a></li>

@@ -64,6 +64,7 @@ defmodule Mix.Tasks.Velo.Setup do
   defp phx_credentials_write do
     phx = gen(64)
     live = gen(32)
+    {web_push_public, web_push_private} = :crypto.generate_key(:ecdh, :prime256v1)
 
     code =
       quote do
@@ -72,12 +73,19 @@ defmodule Mix.Tasks.Velo.Setup do
 
           def secret_key_base, do: unquote(phx)
           def live_view_signing_salt, do: unquote(live)
+
+          def web_push_public_key, do: unquote(b64(web_push_public))
+          def web_push_private_key, do: unquote(b64(web_push_private))
         end
       end
       |> Macro.to_string()
       |> Code.format_string!()
 
     File.write!(@phx_creds_path, code)
+  end
+
+  defp b64(value) do
+    Base.url_encode64(value, padding: false)
   end
 
   defp gen(length) do
