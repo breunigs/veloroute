@@ -46,7 +46,9 @@ defmodule Push.Subscription do
   """
   @spec ensure(t()) :: :ok | write_error()
   def ensure(%__MODULE__{browser: current} = subscription) do
-    with {:ok, %{browser: disk}} <- read(path(subscription)),
+    with path <- path(subscription),
+         true <- File.exists?(path),
+         {:ok, %{browser: disk}} <- read(path),
          true <- disk == current do
       :ok
     else

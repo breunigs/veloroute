@@ -19,7 +19,7 @@ defmodule Mix.Tasks.Velo.Push.Sendout.All do
 
     Alternatively, you can also run the command from the release image:
 
-      /app/bin/prod rpc "Mix.Tasks.Velo.Videos.sendout(false)"
+      /app/bin/prod rpc "Mix.Tasks.Velo.Push.Sendout.All.sendout(false)"
     """)
   end
 

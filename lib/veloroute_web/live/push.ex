@@ -43,7 +43,14 @@ defmodule VelorouteWeb.Live.Push do
       )
       when is_boolean(sup) and is_binary(perm) do
     sub = sub |> Push.Subscription.new() |> Push.Subscription.ensure_or_nil()
-    {:noreply, assign(socket, %{supported: sup, permission: perm, subscription: sub})}
+
+    {:noreply,
+     assign(socket, %{
+       supported: sup,
+       permission: perm,
+       subscription: sub,
+       test_status: nil
+     })}
   end
 
   @test_notification_ttl_seconds 1 * 60
@@ -86,6 +93,7 @@ defmodule VelorouteWeb.Live.Push do
     socket =
       socket
       |> assign(:subscription, nil)
+      |> assign(:test_status, nil)
       |> Phoenix.LiveView.push_event("push:unsubscribe", %{})
 
     {:noreply, socket}
@@ -131,7 +139,7 @@ defmodule VelorouteWeb.Live.Push do
   defp wrapper(assigns, status, actions) do
     assigns =
       assigns
-      |> set_test_icon()
+      |> update_test_status()
       |> assign(:status, status)
       |> assign(:actions, actions)
       |> assign(:public_key, Push.Subscription.public_key())
@@ -148,24 +156,38 @@ defmodule VelorouteWeb.Live.Push do
       <div><img src="/images/bell.svg"/> Push-Benachrichtigungen: <%= @status %></div>
       <%= for action <- @actions do %>
         <div class="push-action" :if={action == :test_link}>
-          <a phx-click={JS.dispatch("push:test")} phx-throttle="3000" phx-target={@myself}>Vorschau / Testen</a>
+          <a
+            phx-click={JS.dispatch("push:test")}
+            phx-throttle="3000"
+            phx-target={@myself}
+            class={@test_link_class}
+          >Vorschau / Testen</a>
           <span title={elem(@test_status, 1)} :if={@test_icon} style="cursor: help"><%= @test_icon %></span>
         </div>
 
         <div class="push-action" :if={action == :enroll}>
-          <a phx-click={JS.dispatch("push:enroll", detail: %{public_key: @public_key})} phx-throttle="1000">
+          <a
+            phx-click={JS.dispatch("push:enroll", detail: %{public_key: @public_key})}
+            phx-throttle="1000"
+          >
             Aktivieren?
           </a>
         </div>
 
-        <div class="push-action" :if={action == :retry} phx-throttle="1000">
-          <a phx-click={JS.dispatch("push:status")}>
+        <div class="push-action" :if={action == :retry}>
+          <a phx-click={
+            JS.dispatch("push:status")
+            |> JS.transition("disabled", time: 1000)
+            } phx-throttle="1000">
             Nochmal versuchen?
           </a>
         </div>
 
-        <div class="push-action" :if={action == :unsubscribe} phx-throttle="1000">
-          <a phx-click={JS.push("unsubscribe", target: @myself) |> JS.dispatch("push:unsubscribe")}>
+        <div class="push-action" :if={action == :unsubscribe}>
+          <a
+            phx-click={JS.push("unsubscribe", target: @myself) |> JS.dispatch("push:unsubscribe")}
+            phx-throttle="1000"
+          >
             Abbestellen?
           </a>
         </div>
@@ -174,18 +196,19 @@ defmodule VelorouteWeb.Live.Push do
     """
   end
 
-  defp set_test_icon(assigns) do
-    assign(
-      assigns,
-      :test_icon,
+  defp update_test_status(assigns) do
+    {icon, link_class} =
       case assigns.test_status do
-        {:sending, _} -> "⌛"
-        {:sent, _} -> "⌛"
-        {:received, _} -> "✓"
-        {:error, _} -> "⚠"
-        _ -> nil
+        {:sending, _} -> {"⌛", "disabled"}
+        {:sent, _} -> {"⌛", "disabled"}
+        {:received, _} -> {"✓", nil}
+        {:error, _} -> {"⚠", nil}
+        nil -> {nil, nil}
       end
-    )
+
+    assigns
+    |> assign(:test_icon, icon)
+    |> assign(:test_link_class, link_class)
   end
 
   defp settings_host(), do: URI.parse(Settings.url()).host

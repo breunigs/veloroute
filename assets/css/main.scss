@@ -1170,3 +1170,10 @@ div.aside {
   margin-top: 0.3rem;
   margin-right: 1rem;
 }
+
+.push-action {
+  a.disabled, a.phx-click-loading {
+    cursor: progress;
+    color: #999;
+  }
+}
