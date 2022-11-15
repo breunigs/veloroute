@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Reeperbahn do
   def summary(),
     do: "Verkehrsversuch: eine Fahrspur pro Richtung für Bus- und Radverkehr reserviert"
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 

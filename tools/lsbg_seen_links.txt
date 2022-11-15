@@ -617,3 +617,8 @@
 '2022-11-05':
 - "/contentblob/16533874/5d23a5fffbb6cb55cd99d9c84c15cb3b/data/holsteiner-chaussee-erneuerung-geh-und-radwege-10-22-bis-12-22.pdf"
 - "/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"
+'2022-11-14':
+- "/contentblob/16683594/e87f20ea30b456bcaa4a4376c0fb4463/data/fussgaengerbruecke-adolf-koester-damm-11-22-bis-03-23.pdf"
+'2022-11-15':
+- "/contentblob/12275556/0d16576522a6ea9bccc8ffec808bf97d/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-bericht.pdf"
+- "/contentblob/12275558/5cd94f216794ee9530afdbe3c61611bc/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-plaene.pdf"
