@@ -16,11 +16,11 @@ defmodule Data.Article.Blog.Pappelallee do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zum Umbau",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/15660286/buchwaldstrasse/"},
+       "https://web.archive.org/web/20220429162700/https://www.hamburg.de/wandsbek/strassenbaustellen/15660286/buchwaldstrasse/"},
       {"Erläuterungsbereicht und Pläne",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012155"},
       {"Auftragsvergabe zum Bau",
-       "https://suche.transparenz.hamburg.de/dataset/43f24c9a-66ee-48c2-8f63-725e8743126e"}
+       "https://suche.transparenz.hamburg.de/dataset/veloroute-7-w11-pappelallee-strassenbauarbeiten"}
     ]
   end
 

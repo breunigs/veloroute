@@ -14,7 +14,12 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
   def tags(), do: ["6", "w14"]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht und Lagepläne", "finale Fassung",
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513"},
+      {"Auftragsvergabe", "Bauzeiten",
+       "https://suche.transparenz.hamburg.de/dataset/veloroute-6-abschnitt-w-14-eulenkamp-ring-2-bis-friedrich-ebert-damm"}
+    ]
   end
 
   def text(assigns) do
@@ -40,8 +45,9 @@ defmodule Data.Article.Blog.EulenkampUQuerungNordschleswiger do
     Radverkehr in beide Richtungen befahrbar sein. Damit man ihn sinnvoll erreichen
     kann ist vorgesehen ein kurzes Stück Zweirichtungsradweg mit 2,50m Breite einzurichten.</p>
     <p>Das Tempolimit bleibt bei 50 km/h. In Fahrtrichtung stadtauswärts ist ein <.ref>Radfahrstreifen in Mittellage</.ref> vorgesehen, stadteinwärts bleibt der Radverkehr dagegen rechts der KFZ-Spuren.</p>
-    <ul><li><.a href="https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008513">Erläuterungsbericht
-    und Lagepläne</.a> (finale Fassung)</li><li><.a href="https://suche.transparenz.hamburg.de/dataset/364dbf59-71fb-4d41-8873-779dd1dd758e">Auftragsvergabe</.a> (Bauzeiten)</li></ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

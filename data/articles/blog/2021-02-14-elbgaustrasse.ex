@@ -16,8 +16,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     [
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
-      {"Beteiligungsverfahren Elbgaustraße",
-       "https://beteiligung.hamburg/elbgaustrasse/#/projectinfo"},
+      {"Beteiligungsverfahren Elbgaustraße", "https://elbgaustrasse.beteiligung.hamburg/"},
       {"Erläuterungsbericht und Lagepläne",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011035"}
     ]

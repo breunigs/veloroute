@@ -26,15 +26,15 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
       {"Infoseite zum Lückenschluss", "August 2022",
        "https://www.hamburg.de/wandsbek/strassenbaustellen/16400698/elsaesser-strasse-eulenkamp/"},
       {"Vergabe Umbau Elsässer Straße/Eulenkamp", "Juli 2022",
-       "https://suche.transparenz.hamburg.de/dataset/8e17b800-5a37-4389-8f87-398e8a6d1dca"},
-      {"Infoseite der Stadt zum Umbau", "veraltet, Archiv",
+       "https://suche.transparenz.hamburg.de/dataset/elsaesser-strasse-eulenkamp-veloroute-6-w13-2-ba"},
+      {"Infoseite der Stadt zum Umbau",
        "https://web.archive.org/web/20210514020458/https://www.hamburg.de/wandsbek/strassenbaustellen/14941782/stormarner-strasse-eulenkamp/"},
       {"Erläuterungsbericht",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008509"},
       {"Lagepläne",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008955"},
       {"Vergabe des Umbaus",
-       "https://suche.transparenz.hamburg.de/dataset/9e5fb528-3285-45e7-ba35-ba13aff4556f"}
+       "https://suche.transparenz.hamburg.de/dataset/strassenbaumassnahmen-veloroute-6-abschnitt-w-13-stormarner-strasse-eulenkamp"}
     ]
   end
 

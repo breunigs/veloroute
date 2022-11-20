@@ -52,7 +52,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
     [
       {"Baustelleninfo", "Juli 2022",
        "https://lsbg.hamburg.de/contentblob/16337942/598e2584f661e41ccc2df3994a31c958/data/rothenbaumchaussee-radverkehrsanlagen-bushaltestellen-07-22-bis-mitte-2023.pdf"},
-      {"Pressemitteilung zum Umabut", "Juli 2022",
+      {"Pressemitteilung zum Umbau", "Juli 2022",
        "https://www.hamburg.de/bvm/medien/16344462/2022-07-14-bvm-rothenbaumchaussee/"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/12777430/de77e54d58d93a46867b0b31cdd4a54a/data/rothenbaumchaussee-zwischen-hallerstrasse-und-moorweidenstrasse-abstimmungsunterlage-bericht.pdf"},

@@ -49,7 +49,7 @@ defmodule Data.Article.Blog.Ueberseering do
       {"Erläuterungsbericht und Lageplan", "2020, fertiger Entwurf",
        "https://via-bus.hamburg.de/contentblob/16224438/ed5b3bd4c24a46b9bc237b748d716f0a/data/31-m20-ueberseering-von-jahnring-bis-hebebrandstrasse-nachtrag-zur-schlussverschickung.pdf"},
       {"Info U5 Haltestelle City Nord",
-       "https://www.schneller-durch-hamburg.de/city-nord-u5-ost#uip-1"}
+       "https://www.schneller-durch-hamburg.de/city-nord-u5#uip-1"}
     ]
   end
 

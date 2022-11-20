@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.AnDerAlster do
     do:
       "Fahrradstraße als Vorabmaßnahme. Protected-Bike-Lane im Anschluss bis zur Hohenfelder Bucht."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2022-07-18]
   def stop(), do: ~d[2022-10-07]
   def construction_site_id_hh(), do: [82807]
@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.AnDerAlster do
        "https://lsbg.hamburg.de/contentblob/16014652/97449df8fa9863e5995fba7e5ef2f9a3/data/alster-fahrradachsen-an-der-alster-vorwegmassnahme-abgestimmte-planung-bericht.pdf"},
       {"Bezirksamtsbeschluss zur Fahrradstraße", "2021",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013998"},
-      {"NDR Artikel zum Beschluss zur Fahrradstraße", "Archiv, 2021",
+      {"NDR Artikel zum Beschluss zur Fahrradstraße", "2021",
        "https://web.archive.org/web/20210227183505/https://www.ndr.de/nachrichten/hamburg/Bezirk-Hamburg-Mitte-beschliesst-neue-Fahrradstrasse,fahrradstrasse152.html"}
     ]
   end

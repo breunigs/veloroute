@@ -13,15 +13,18 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
   def tags(), do: ["6", "w16", "w16.1"]
 
   def links(_assigns) do
-    []
+    [
+      {"Ausschreibung mit Zuschlag",
+       "https://suche.transparenz.hamburg.de/dataset/buendnis-fuer-radwege-buendnis-fuer-den-radverkehr-w16-tilsiter-strasse-am-stadtrand-ve-12-2020"},
+      {"Infoseite zur Baustelle",
+       "https://web.archive.org/web/20210426082207/https://www.hamburg.de/wandsbek/strassenbaustellen/15029656/tilsiter-und-allensteiner-strasse/"}
+    ]
   end
 
   def text(assigns) do
     ~H"""
-    <p>Ein Teilstück der Planung „W16“ soll bereits umgesetzt werden. Für eine Beschreibung, siehe bitte <.a name="2019-10-24-6-tilsiter-strasse-eckerkoppel-w16">Eckerkoppel und Tilsiter Straße</.a>. </p> <h4>Quelle</h4> <ul>
-    <li><.a href="https://suche.transparenz.hamburg.de/dataset/f53a3526-a842-4fb6-9e10-7d3979aa7c55">Ausschreibung mit Zuschlag</.a> (Transparenzportal Hamburg)</li>
-    <li><.a href="https://www.hamburg.de/wandsbek/strassenbaustellen/15029656/tilsiter-und-allensteiner-strasse/">Infoseite zur Baustelle</.a></li>
-    </ul>
+    <p>Ein Teilstück der Planung „W16“ soll bereits umgesetzt werden. Für eine Beschreibung, siehe bitte <.a name="2019-10-24-6-tilsiter-strasse-eckerkoppel-w16">Eckerkoppel und Tilsiter Straße</.a>. </p> <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

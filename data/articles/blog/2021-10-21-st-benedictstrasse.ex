@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
 
   def start(), do: ~d[2021-11-01]
   def stop(), do: ~d[2022-10-21]
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [20833, 20546]
   def tags(), do: []
 

@@ -13,16 +13,16 @@ defmodule Data.Article.Blog.GustavSeitzWeg do
   def start(), do: ~d[2022-03-07]
   def stop(), do: ~d[2022-10]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["5", "W31"]
 
   def links(_assigns) do
     [
       {"Infoseite der Stadt zum Umbau",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/16009606/gustav-seitz-weg/"},
+       "https://web.archive.org/web/20220429162558/https://www.hamburg.de/wandsbek/strassenbaustellen/16009606/gustav-seitz-weg/"},
       {"Bauvergabe mit aktuellem Lageplan",
-       "https://suche.transparenz.hamburg.de/dataset/009283c0-8f9b-429c-8872-439f67dd6c20"},
+       "https://suche.transparenz.hamburg.de/dataset/hwsp-radwege-veloroute-5-w31-gustav-seitz-weg-strassenbauarbeiten"},
       {"Veralteter Entwurf und Lageplan",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1014315"}
     ]

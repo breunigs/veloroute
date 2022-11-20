@@ -16,8 +16,7 @@ defmodule Data.Article.Blog.Heykenaubrook do
 
   def links(_assigns) do
     [
-      {"Vergabe Bauplanung",
-       "https://suche.transparenz.hamburg.de/dataset/812cb2ff-8d48-4e50-860a-5255b1990ff2"}
+      {"Vergabe Bauplanung", "https://suche.transparenz.hamburg.de/dataset/planung-gleisquerung"}
     ]
   end
 

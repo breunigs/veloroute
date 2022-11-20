@@ -50,7 +50,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
        "https://www.hamburg.de/bvm/medien/16341028/2022-07-13-bvm-pop-up-bikelane-hallerstrasse/"},
       {"Testauswertung mit Erläuterungsbericht", "Juli 2022",
        "https://www.hamburg.de/contentblob/16328090/6b4b783311ea31cbe58024ac781eded6/data/endabgabe-hallerstrasse.pdf"},
-      {"Lageplan", "Archiv, Mai 2021",
+      {"Lageplan", "Mai 2021",
        "https://web.archive.org/web/20210520052831/https://lsbg.hamburg.de/contentblob/15068828/81a50c1734756d0860feaf426cd3536e/data/hallerstrasse-pop-up-bikelane-abgestimmte-planung.pdf"}
     ]
   end
