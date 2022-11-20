@@ -1,34 +1,35 @@
 const cls = document.getElementsByTagName("body")[0].classList;
 const content = document.getElementById("content");
 
-function showSidebar(pos) {
+function showSidebar(pos?: number) {
   cls.add("showSidebar");
   cls.remove("hideSidebar");
   stopScroll(pos)
 }
 
-function hideSidebar(pos) {
+function hideSidebar(pos?: number) {
   cls.remove("showSidebar");
   cls.add("hideSidebar");
   stopScroll(pos)
 }
 
-function stopScroll(pos) {
-  if (!pos) return;
-  content.scrollTop = pos;
-  content.style.overflowY = "hidden";
-  setTimeout(() => content.style.overflowY = "auto", 50);
+function stopScroll(pos?: number) {
+  if (pos === undefined) return
+  content!.scrollTop = pos;
+  content!.style.overflowY = "hidden";
+  setTimeout(() => content!.style.overflowY = "auto", 50);
 }
 
-function toggleSidebar(e) {
+function toggleSidebar(e: Event) {
   cls.contains("showSidebar") ? hideSidebar() : showSidebar()
   e.stopPropagation()
 }
 
-document.getElementById("switcher").addEventListener("click", toggleSidebar)
+document.getElementById("switcher")!.addEventListener("click", toggleSidebar)
 
-function detectswipe(el) {
-  const ele = document.getElementById(el);
+function detectswipe(el: string) {
+  const ele = document.getElementById(el)
+  if (!ele) return
 
   let sX = 0;
   let sY = 0;
@@ -41,21 +42,20 @@ function detectswipe(el) {
   let scrollStart = 0;
   let acted = false;
 
-  const act = (event) => {
+  const act = (event?: TouchEvent) => {
     if (acted) return;
 
     if (
       eX > 0 && Math.abs(sX - eX) > minX && Math.abs(sY - eY) < maxY
     ) {
-
-      console.debug("swiped x", sX - eX, "swiped y", sY - eY);
+      console.debug("swiped x", sX - eX, "swiped y", sY - eY)
 
       if (eX > sX) {
         // swiped right
         hideSidebar(scrollStart);
         acted = true;
-        if (document.activeElement.tagName === 'INPUT') {
-          document.activeElement.blur();
+        if (document.activeElement?.tagName === 'INPUT') {
+          (document.activeElement as HTMLElement).blur();
         }
       } else {
         // swiped left
@@ -63,7 +63,8 @@ function detectswipe(el) {
         acted = true;
       }
     } else {
-      if (event && event.target.tagName === 'INPUT') {
+      const target = event?.target
+      if (target && (target as HTMLElement).tagName === 'INPUT') {
         showSidebar();
         acted = true;
       }
@@ -74,7 +75,7 @@ function detectswipe(el) {
     const t = e.touches[0];
     sX = t.screenX;
     sY = t.screenY;
-    scrollStart = content.scrollTop;
+    scrollStart = content!.scrollTop;
   }, {
     capture: false,
     passive: true
