@@ -353,6 +353,16 @@ defmodule Components.TagHelpers do
         other -> other
       end)
       |> Enum.map(fn
+        {text, "https://web.archive.org/" <> _rest = href, nil, bvhh} ->
+          {text, href, "Archiv", bvhh}
+
+        {text, "https://web.archive.org/" <> _rest = href, extra, bvhh} ->
+          {text, href, "Archiv, #{extra}", bvhh}
+
+        other ->
+          other
+      end)
+      |> Enum.map(fn
         {text, href, nil, nil} ->
           assigns = %{text: text, href: href}
           ~H"<.a href={@href}><%= @text %></.a>"
