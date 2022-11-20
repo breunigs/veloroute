@@ -396,16 +396,57 @@ defmodule Mix.Tasks.Velo.Links.Check do
     String.starts_with?(url, "https://web.archive.org/")
   end
 
-  defp check({source, name, url}) do
-    {:ok, response} = get(url)
+  @success {:ok, %{status: 200}}
 
-    if response.status != 200 do
-      """
-      unexpected result: #{response.status}
+  defp check({source, name, url}) do
+    meta =
+      String.trim("""
         SOURCE: #{source}
         NAME:   #{name}
         LINK:   #{url}
-      """
+      """)
+
+    case head_or_get(url) do
+      {:ok, %{status: 200}} ->
+        nil
+
+      {:ok, %{status: 302} = resp} ->
+        new_path = Tesla.get_header(resp, "location")
+        result = head_or_get(new_path)
+
+        if match?(@success, result) do
+          nil
+        else
+          """
+          broken redirect chain:
+          #{meta}
+                  → #{Tesla.get_header(resp, "location")}
+          """
+        end
+
+      {:ok, %{status: 301} = resp} ->
+        """
+        perma-redirects:
+        #{meta}
+                → #{Tesla.get_header(resp, "location")}
+        """
+
+      {:ok, %{status: s}} ->
+        """
+        unexpected result: #{s}
+          #{meta}
+        """
+
+      {:error, reason} ->
+        """
+        unexpected result: #{reason}
+          #{meta}
+        """
     end
+  end
+
+  defp head_or_get(url) do
+    result = head(url)
+    if match?(@success, result), do: result, else: get(url)
   end
 end
