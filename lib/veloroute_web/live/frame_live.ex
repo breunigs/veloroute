@@ -66,6 +66,10 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
+  def handle_event("search", %{"value" => ""}, socket) do
+    {:noreply, socket}
+  end
+
   @search_page "suche"
   def handle_event("search", %{"value" => query}, socket) do
     query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
