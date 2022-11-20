@@ -267,14 +267,12 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     base = Path.basename(file)
     log(file, base)
 
-    {:ok, response} = get(url)
-
-    case response.status do
-      200 ->
+    case get(url) do
+      {:ok, %{status: 200} = response} ->
         File.write!(file, response.body)
         entry
 
-      302 ->
+      {:ok, %{status: 302} = response} ->
         location =
           response.headers
           |> Enum.find_value(fn {k, v} -> if String.downcase(k) == "location", do: v end)
@@ -287,8 +285,12 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
         entry
 
-      other ->
-        log(file, "got a #{other} trying to download '#{base}': #{url}")
+      {:ok, %{status: status}} ->
+        log(file, "got a #{status} trying to download '#{base}': #{url}")
+        entry
+
+      {:error, reason} ->
+        log(file, "failed to download '#{base}' because '#{inspect(reason)}': #{url}")
         entry
     end
   end
