@@ -1,8 +1,7 @@
-const fKey = 'F'.charCodeAt(0);
 let prevSearchValue = '';
 window.onkeydown = function (e) {
-  const el = document.getElementById("query");
-  if (e.ctrlKey && e.keyCode == fKey) {
+  const el = document.getElementById("query") as HTMLFormElement;
+  if (e.ctrlKey && e.code === "KeyF") {
     if (el == document.activeElement) return;
 
     e.preventDefault();
@@ -15,7 +14,7 @@ window.onkeydown = function (e) {
         value: null
       });
     }
-  } else if (el == document.activeElement && e.keyCode == 13) {
+  } else if (el == document.activeElement && e.code === "Enter") {
     // i.e. search immediately upon enter
     if (prevSearchValue == el.value) return;
     prevSearchValue = el.value;
