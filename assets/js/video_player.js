@@ -177,7 +177,6 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
-      window.hls.on(Hls.Events.LEVEL_SWITCHED, maybeUpgradeLowQualitySegments);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       window.hls.loadSource(`${path}stream.m3u8`);
       updatePlaypause();
@@ -249,6 +248,7 @@ videoQualityOptions.addEventListener('click', event => {
   window.hls.nextLevel = level * 1;
   window.hls.loadLevel = level * 1;
   updateQualityChooser();
+  window.hls.bufferController.flushBackBuffer();
   window.plausible('videoQualityChanged')
 });
 
@@ -650,19 +650,6 @@ function inactivityDelay() {
     if (controls.matches(':hover')) return;
     outer.classList.add("inactivity");
   }, 2000);
-}
-
-function maybeUpgradeLowQualitySegments(evt, info) {
-  const nextLevel = info.level;
-  if (nextLevel <= prevLevel) {
-    console.debug("quality downgraded from", prevLevel, "to", nextLevel, " -- keeping back buffer segments");
-    prevLevel = nextLevel;
-    return
-  }
-
-  console.debug("quality upgraded from", prevLevel, "to", nextLevel, " -- flushing back buffer for segment quality upgrade");
-  hls.bufferController.flushBackBuffer();
-  prevLevel = nextLevel;
 }
 
 window.videoStateChanged = setVideo;
