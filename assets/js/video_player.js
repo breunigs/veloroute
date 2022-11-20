@@ -144,7 +144,7 @@ function updateVideoElement() {
         enableWebVTT: false,
         lowLatencyMode: false,
         maxBufferLength: 15, // seconds
-        maxMaxBufferLength: 60, // seconds
+        maxMaxBufferLength: 30, // seconds
         minAutoBitrate: minAutoBitrate,
       };
 
