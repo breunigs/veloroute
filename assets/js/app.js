@@ -163,5 +163,4 @@ window.liveSocket = liveSocket;
 // liveSocket.enableLatencySim(2000)
 
 import "./mobilegui"
-// import "./loading"
 import "./plausible"
