@@ -379,6 +379,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
       |> Enum.flat_map(&extract/1)
       |> Enum.map(&Tuple.insert_at(&1, 0, art))
     end)
+    |> Enum.reject(&is_archive_org/1)
     |> Tqdm.tqdm(description: "checking")
     |> Parallel.map(4, &check/1)
     |> Util.compact()
@@ -390,6 +391,10 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex),
     do: Mix.Tasks.Velo.Links.extract_links_from_heex(heex)
+
+  defp is_archive_org({_source, _name, url}) do
+    String.starts_with?(url, "https://web.archive.org/")
+  end
 
   defp check({source, name, url}) do
     {:ok, response} = get(url)
