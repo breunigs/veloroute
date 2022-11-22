@@ -1,4 +1,3 @@
-// import "./error_reporter"
 import "./search_handler"
 
 window.state = document.getElementById("control").dataset;

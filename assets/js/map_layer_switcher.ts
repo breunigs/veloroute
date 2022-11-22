@@ -1,12 +1,5 @@
 import { IControl, Map as MapboxMap, Layer } from "mapbox-gl";
 
-declare global {
-  interface Window {
-    state: DOMStringMap;
-    pushEvent: (name: string, args: object) => void;
-  }
-}
-
 type toggableLayer =
   {
     [index: string]: any;

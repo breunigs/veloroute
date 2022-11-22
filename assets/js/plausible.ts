@@ -1,11 +1,5 @@
 export { };
 
-declare global {
-  interface Window {
-    plausible: (eventName: string, options?: { meta?: any, props?: any }) => void
-  }
-}
-
 type payload =
   {
     n: string,
