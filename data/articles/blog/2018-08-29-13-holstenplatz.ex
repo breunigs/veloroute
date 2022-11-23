@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Holstenplatz do
   def links(_assigns) do
     [
       {"Ausschreibung Umbau",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/bc8f5e06-0085-4426-b65d-783779bfa9a8"},
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/a2db20bf-9ede-40fd-9118-c7222af5e5d6"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan",
