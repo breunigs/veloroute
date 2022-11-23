@@ -10,14 +10,13 @@ defmodule VelorouteWeb.FrameLive do
 
   alias Article
 
+  @default_bounds struct(Geo.BoundingBox, Settings.initial())
   @initial_state [
     render_target: :html,
     autoplay: false,
     prev_page: nil,
     current_page: nil,
-    bounds: struct(Geo.BoundingBox, Settings.initial()),
-    bounds_ts: nil,
-    map_bounds: nil,
+    map_bounds: @default_bounds,
     article_original_date: nil,
     article_date: nil,
     article_title: nil,
@@ -52,7 +51,7 @@ defmodule VelorouteWeb.FrameLive do
 
     socket =
       socket
-      |> update_map(attr)
+      |> update_map_bounds(attr)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
       |> determine_visible_route_groups(article)
 
@@ -155,23 +154,6 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("convert-hash", %{"hash" => hash}, socket) do
-    Logger.debug("converting hash #{hash}")
-    parts = String.split(hash, "/", parts: 4)
-
-    socket =
-      if length(parts) >= 3,
-        do:
-          update_map(socket, %{
-            "lat" => Enum.at(parts, 1),
-            "lon" => Enum.at(parts, 2),
-            "zoom" => Enum.at(parts, 0)
-          }),
-        else: socket
-
-    {:noreply, socket}
-  end
-
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
     Logger.warn(msg)
@@ -214,7 +196,7 @@ defmodule VelorouteWeb.FrameLive do
         do: socket,
         else:
           socket
-          |> update_map(params)
+          |> update_map_bounds(params)
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
           |> determine_visible_route_groups(article)
           |> assign(:autoplay, params["autoplay"] == "true")
@@ -296,20 +278,16 @@ defmodule VelorouteWeb.FrameLive do
 
   defp set_bounds(socket, article, bounds_param)
 
-  defp set_bounds(%{assigns: %{map_bounds: nil}} = socket, article, bounds_param)
+  defp set_bounds(%{assigns: %{map_bounds: @default_bounds}} = socket, article, bounds_param)
        when is_binary(bounds_param) do
     parsed = Geo.BoundingBox.parse(bounds_param)
 
     if parsed != nil,
-      do: assign(socket, bounds: parsed) |> set_bounds_ts,
+      do: update_map_bounds(socket, parsed),
       else: set_bounds(socket, article, nil)
   end
 
-  defp set_bounds(
-         %{assigns: %{prev_page: art}} = socket,
-         art,
-         _bounds_param
-       ) do
+  defp set_bounds(%{assigns: %{prev_page: art}} = socket, art, _bounds_param) do
     socket
   end
 
@@ -322,14 +300,14 @@ defmodule VelorouteWeb.FrameLive do
         socket
 
       is_nil(prev_bbox) ->
-        assign(socket, bounds: next_bbox) |> set_bounds_ts
+        update_map_bounds(socket, next_bbox)
 
       is_nil(art.id()) ->
-        assign(socket, bounds: next_bbox) |> set_bounds_ts
+        update_map_bounds(socket, next_bbox)
 
       # i.e. if we have a "route article", zoom only in, but not out
       Geo.CheapRuler.inside_bbox?(next_bbox, Geo.BoundingBox.parse(prev_bbox)) ->
-        assign(socket, bounds: next_bbox) |> set_bounds_ts
+        update_map_bounds(socket, next_bbox)
 
       true ->
         socket
@@ -340,31 +318,18 @@ defmodule VelorouteWeb.FrameLive do
     socket
   end
 
-  defp set_bounds_ts(socket) do
-    assign(socket, bounds_ts: "#{:os.system_time(:second)}")
+  defp update_map_bounds(socket, bounds) when is_struct(bounds, Geo.BoundingBox) do
+    socket
+    |> push_event("bounds:adjust", bounds)
+    |> assign(map_bounds: bounds)
   end
 
-  defp update_map(socket, %{"lat" => lat, "lon" => lon, "zoom" => zoom}) do
-    with {lat, ""} <- Float.parse(lat),
-         {lon, ""} <- Float.parse(lon),
-         {zoom, ""} <- Float.parse(zoom) do
-      socket
-      |> assign(bounds: Geo.CheapRuler.center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}))
-      |> set_bounds_ts
-    else
-      _ -> socket
-    end
+  defp update_map_bounds(socket, %{"bounds" => bounds}) do
+    update_map_bounds(socket, Geo.BoundingBox.parse(bounds))
   end
 
-  defp update_map(socket, %{"bounds" => bounds}) do
-    parsed = Geo.BoundingBox.parse(bounds)
-
-    if parsed != nil && socket.assigns[:bounds] != parsed,
-      do: assign(socket, bounds: parsed) |> set_bounds_ts,
-      else: socket
-  end
-
-  defp update_map(socket, _), do: socket
+  defp update_map_bounds(socket, %{}), do: socket
+  defp update_map_bounds(socket, nil), do: socket
 
   defp find_article(nil), do: nil
 
@@ -398,7 +363,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp url_query(%{assigns: assigns}) do
-    bounds = to_string_bounds(assigns[:map_bounds] || assigns[:bounds])
+    bounds = to_string_bounds(assigns[:map_bounds])
     query = %{"video" => assigns[:video_hash], "pos" => assigns[:video_start], "bounds" => bounds}
 
     if blank?(assigns[:search_query]) do

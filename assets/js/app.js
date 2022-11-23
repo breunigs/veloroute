@@ -28,11 +28,6 @@ function pushEvent(event, payload) {
 }
 window.pushEvent = pushEvent;
 
-const hash = location.hash.substr(1);
-if (hash != "") window.pushEvent("convert-hash", {
-  hash: hash
-});
-
 let Hooks = {};
 Hooks.control = {
   mounted() {

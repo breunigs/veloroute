@@ -18,12 +18,9 @@ defmodule Geo.BoundingBox do
 
   defstruct @params
 
-  def parse(%{
-        "maxlat" => maxLat,
-        "maxlon" => maxLon,
-        "minlat" => minLat,
-        "minlon" => minLon
-      }) do
+  @typep numberlist :: [float() | integer(), ...]
+  @spec parse(binary | numberlist | [numberlist, ...] | map) :: nil | Geo.BoundingBox.t()
+  def parse(%{"maxlat" => maxLat, "maxlon" => maxLon, "minlat" => minLat, "minlon" => minLon}) do
     %__MODULE__{
       minLon: minLon,
       minLat: minLat,
@@ -65,6 +62,15 @@ end
 defimpl String.Chars, for: Geo.BoundingBox do
   def to_string(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}) do
     "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  end
+
+  @precision 6
+  defp r(float), do: Float.round(float, @precision)
+end
+
+defimpl Jason.Encoder, for: Geo.BoundingBox do
+  def encode(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}, opts) do
+    Jason.Encode.list([r(minLon), r(minLat), r(maxLon), r(maxLat)], opts)
   end
 
   @precision 6

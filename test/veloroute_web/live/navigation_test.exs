@@ -110,15 +110,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ "Du folgst: Alltagsroute 3"
   end
 
-  test "converts from old hash style", %{conn: conn} do
-    {:ok, view, _html} = live(conn, "/")
-
-    html =
-      render_hook(view, "convert-hash", %{hash: "19/53.59194/10.13825/TKH8zxPJnPClAmTIjD8bdA"})
-
-    assert html =~ ~s(data-bounds="10.137565,53.591532,10.138935,53.592348")
-  end
-
   test "handles route click after article without route", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s(Zum Dubben)

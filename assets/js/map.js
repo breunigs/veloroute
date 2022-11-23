@@ -181,15 +181,10 @@ const isVideoPlaying = () => {
   return video && !video.paused && !video.ended;
 }
 
-let prevBoundsTs = "";
-const maybeFitBounds = () => {
-  if (prevBoundsTs == state.boundsTs || state.bounds == "") {
-    return;
-  }
-  console.debug("Bounds have changed to", state.bounds)
-  prevBoundsTs = state.boundsTs;
-  map.fitBounds(state.bounds.split(","), fitBoundsOpt);
-}
+window.addEventListener(`phx:bounds:adjust`, (e) => {
+  console.debug("adjusting bounds to", e.detail)
+  map.fitBounds(e.detail, fitBoundsOpt);
+})
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
@@ -561,7 +556,6 @@ function updateVideoIndicator() {
 
 function runQueuedUpdate() {
   queued = false;
-  maybeFitBounds();
   renderIndicator();
   layerSwitcher.refreshIfChanged();
 }

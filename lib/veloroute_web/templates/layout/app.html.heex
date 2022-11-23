@@ -70,7 +70,7 @@
     <script type="text/javascript" defer
       src={Routes.static_path(@conn, "/assets/map.js")}
       data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
-      data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@bounds)}
+      data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds)}
       data-mapbox-styles={VelorouteWeb.VariousHelpers.mapbox_styles_to_string()}
     ></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
@@ -93,7 +93,7 @@
     requestAnimationFrame(function(){
       var mapEl = document.getElementById("map")
       mapEl.classList.add("preview")
-      mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route.id %>"]&layer_id=route-casing-highlight')`
+      mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route.id %>"]&layer_id=route-casing-highlight')`
     })
     </script>
     <% end %>

@@ -175,6 +175,7 @@ defmodule Geo.CheapRuler do
 
   # as per https://wiki.openstreetmap.org/wiki/Zoom_levels#Distance_per_pixel_math
   @zoom_factor 40_075_016.686 * @cos1
+  @spec center_zoom_to_bounds(%{lat: number, lon: number, zoom: number}) :: Geo.BoundingBox.t()
   def center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}) do
     buffer_bbox(@zoom_factor / :math.pow(2, zoom), %Geo.BoundingBox{
       minLon: lon,
