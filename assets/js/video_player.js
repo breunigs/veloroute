@@ -121,7 +121,6 @@ function updateVideoElement() {
   if (!state.videoHash) return;
   console.debug('trying to play video for: ', state.videoHash)
   const path = `/videos-rendered/${state.videoHash}/`;
-  updatePoster();
   const preloads = `
     <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream.m3u8">
     <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream_0.m3u8">
@@ -336,7 +335,6 @@ function seekToTime(timeInMs) {
     })
   }
   updateProgressbar();
-  updatePoster();
 }
 
 function seek(diffInMs) {
@@ -345,56 +343,14 @@ function seek(diffInMs) {
 }
 
 function maybeShowLoadingIndicator(evt) {
-  if (video.paused || video.ended || video.readyState >= 3) {
-    poster.classList.remove("loading");
-  } else {
-    poster.classList.add("loading");
-  }
+  const showSpinner = !video.paused && !video.ended && video.readyState < 3
+  poster.classList.toggle("loading", showSpinner)
 }
 
-let updatePosterState = {
-  image: null,
-  timeout: null,
-  url: '',
-};
-
-function setPosterNow() {
-  const url = `url("${updatePosterState.url}")`;
-  if (poster.style.backgroundImage === url) return;
-  console.debug("setting outer style img from to", updatePosterState.url)
-  poster.style.backgroundImage = url;
-  clearPosterUpdater();
-}
-
-function clearPosterUpdater() {
-  if (updatePosterState.timeout) clearTimeout(updatePosterState.timeout);
-  if (updatePosterState.image) updatePosterState.image.onload = () => {};
-}
-
-function updatePoster() {
-  // Update poster if we don't have a video attached. If we do, remove the
-  // poster instead to avoid flashing it when switching videos.
-  if (video.readyState !== 0) {
-    updatePosterState = {
-      image: null,
-      timeout: null,
-      url: '',
-    }
-    setPosterNow();
-    return
-  }
-  if (updatePosterState.url === state.videoPoster) return;
-  clearPosterUpdater();
-
-  console.debug("preloading poster", state.videoPoster)
-  updatePosterState = {
-    image: new Image(),
-    timeout: setTimeout(setPosterNow, 750),
-    url: state.videoPoster,
-  }
-  updatePosterState.image.onload = setPosterNow;
-  updatePosterState.image.src = updatePosterState.url;
-}
+window.addEventListener("phx:video_poster", e => {
+  if (video.readyState >= 2 || !e.detail.value) return video.setAttribute("poster", "")
+  video.setAttribute("poster", e.detail.value)
+})
 
 let userClickPlayOnce = false;
 
@@ -408,7 +364,7 @@ function ensureVideoIsSet() {
 
 function setVideo() {
   if (autoplayEnabled()) userClickPlayOnce = true;
-  if (!userClickPlayOnce) return updatePoster();
+  if (!userClickPlayOnce) return;
 
   if (prevVideo !== state.videoHash) {
     prevVideo = state.videoHash;
@@ -420,7 +376,6 @@ function setVideo() {
   seekToStartTime();
   updateProgressbar();
   updatePlaypause();
-  updatePoster();
 }
 
 const videoMetadataEl = document.getElementById('videoMetadata');

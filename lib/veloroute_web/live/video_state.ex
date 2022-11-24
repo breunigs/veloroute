@@ -109,13 +109,19 @@ defmodule VelorouteWeb.Live.VideoState do
   defp finalize(socket, assigns) do
     socket
     |> Phoenix.Component.assign(assigns)
-    |> push_changes([:video_polyline, :video_route])
+    |> push_changes([:video_polyline, :video_route, :video_poster])
   end
 
   defp push_changes(socket, fields) do
     Enum.reduce(fields, socket, fn field, socket ->
       if Phoenix.Component.changed?(socket, field) do
-        Phoenix.LiveView.push_event(socket, field, socket.assigns[field])
+        val =
+          case socket.assigns[field] do
+            %{} = val -> val
+            val -> %{value: val}
+          end
+
+        Phoenix.LiveView.push_event(socket, field, val)
       else
         socket
       end

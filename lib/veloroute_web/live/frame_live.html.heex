@@ -1,8 +1,15 @@
 <div phx-update="ignore" id="map"></div>
 
 <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
-  <div id="videoPoster" style={"background-image: url('#{@video_poster}')"} phx-ignore-attr="style class">
-    <video id="videoInner" muted playsinline preload="none"></video>
+  <div id="videoPoster" >
+    <video
+      id="videoInner"
+      muted
+      playsinline
+      preload="none"
+      poster={@video_poster}
+      phx-ignore-attr="poster"
+    ></video>
   </div>
 
   <%= display_route(@video) %>
@@ -70,7 +77,6 @@
   data-video-start={@video_start}
   data-video-start-gen={@video_start_gen}
   data-video-length-ms={@video_length_ms}
-  data-video-poster={@video_poster}
   data-video-metadata={@video_metadata}
   data-visible-types={Enum.join(@visible_types, ",")}
   data-mapbox-style-id={@mapbox_style_id}
