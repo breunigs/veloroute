@@ -51,5 +51,3 @@ if (window.history.pushState) {
 }
 
 page()
-
-window.addEventListener('beforeprint', () => window.plausible('print'))
