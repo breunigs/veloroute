@@ -1,6 +1,6 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=p20221018
+ARG RAV1E_VERSION=p20221123
 ARG FFMPEG_VERSION=5.1
 ARG BLUR_VERSION=5ad74d3dcac0a12c67c143336b4e3f2a8090c595
 
@@ -16,8 +16,7 @@ RUN  \
 RUN \
   cd /downloads/ && \
   wget https://github.com/xiph/rav1e/archive/refs/tags/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
-  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e && \
-  printf '%s\n%s\n' 'cargo-features = ["named-profiles"]' "$(cat rav1e/Cargo.toml)" > rav1e/Cargo.toml
+  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
 
 RUN \
   cd /downloads/ && \
@@ -56,7 +55,6 @@ RUN \
   binutils \
   build-essential \
   ca-certificates \
-  cargo \
   cmake \
   curl \
   frei0r-plugins-dev \
@@ -82,9 +80,11 @@ RUN \
   yasm \
   && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
   && apt-get update \
-  && apt-get install -y --no-install-recommends -t unstable rustc \
-  && rm -rf /var/lib/apt/lists/* \
-  && cargo install cargo-c
+  && apt-get install -y --no-install-recommends -t unstable \
+  cargo \
+  cargo-c \
+  rustc \
+  && rm -rf /var/lib/apt/lists/*
 
 ENV PREFIX=/build
 RUN mkdir ${PREFIX}
@@ -131,6 +131,7 @@ FROM debian:testing-slim AS runner
 RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+  adduser \
   i965-va-driver \
   libboost-iostreams1.74.0 \
   libc6 \
