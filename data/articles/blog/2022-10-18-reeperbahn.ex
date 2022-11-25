@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Reeperbahn do
   def summary(),
     do: "Verkehrsversuch: eine Fahrspur pro Richtung für Bus- und Radverkehr reserviert"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: []
 
@@ -15,6 +15,7 @@ defmodule Data.Article.Blog.Reeperbahn do
 
   def tracks(),
     do: [
+      # Juli 2022
       %Video.Track{
         renderer: 3,
         group: "Reeperbahn",
@@ -24,11 +25,25 @@ defmodule Data.Article.Blog.Reeperbahn do
         parent_ref: __MODULE__,
         text: "Reeperbahn (→ Königstraße)",
         videos: [
-          # TODO: missing piece at the start
-          {"2021-07-04-veloroute11/GX012148", "00:00:01.468", :end},
-          {"2021-07-04-veloroute11/GX012149", :start, :end}
+          {"2022-11-25-reeperbahn/GX015005", :start, :end},
+          {"2022-11-25-reeperbahn/GX015006", :start, :end},
+          {"2022-11-25-reeperbahn/GX015007", :start, "00:00:04.271"}
         ]
       },
+      # Juli 2022
+      # %Video.Track{
+      #   renderer: 3,
+      #   group: "Reeperbahn",
+      #   direction: :forward,
+      #   from: "Königstraße",
+      #   to: "Millerntorplatz",
+      #   parent_ref: __MODULE__,
+      #   text: "Reeperbahn (→ Millerntorplatz)",
+      #   videos: [
+      #     {"2022-07-31-neumuenst2/GX014360", "00:00:07.140", "00:00:32.693"}
+      #   ]
+      # },
+      # November 2022
       %Video.Track{
         renderer: 3,
         group: "Reeperbahn",
@@ -38,7 +53,9 @@ defmodule Data.Article.Blog.Reeperbahn do
         parent_ref: __MODULE__,
         text: "Reeperbahn (→ Millerntorplatz)",
         videos: [
-          {"2022-07-31-neumuenst2/GX014360", "00:00:07.140", "00:00:32.693"}
+          {"2022-11-25-reeperbahn/GX015000", "00:00:10.377", :end},
+          {"2022-11-25-reeperbahn/GX015001", :start, :end},
+          {"2022-11-25-reeperbahn/GX015002", :start, :end}
         ]
       }
     ]
