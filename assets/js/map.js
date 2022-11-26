@@ -372,7 +372,7 @@ window.addEventListener("phx:video_meta", e => {
 });
 
 function highlightRoute() {
-  if (!videoRoute) return;
+  if (!videoRoute || !mapLoaded) return;
   map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
