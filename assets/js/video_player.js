@@ -346,8 +346,6 @@ function currentTimeInMs() {
 function currentTimeInMsFallback() {
   // don't trust the timestamp until the video is properly playable…
   if (!video || video.readyState <= 1) return videoMeta.start;
-  // …but ignore the "can play next frame" edge case at video end
-  if (video.readyState <= 2 && !video.ended) return videoMeta.start;
   return Math.round(video.currentTime * 1000);
 }
 
