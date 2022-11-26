@@ -379,8 +379,9 @@ function maybeShowLoadingIndicator(evt) {
 function maybeUpdatePoster(changedMeta) {
   if (typeof changedMeta.poster === "undefined") return
 
-  if (video.readyState >= 1 || !changedMeta.poster) return video.setAttribute("poster", "")
-  video.setAttribute("poster", changedMeta.poster)
+  const url = (video.readyState >= 1 || !changedMeta.poster) ? "" : changedMeta.poster
+  console.debug("updating poster to", url)
+  video.setAttribute("poster", url)
 }
 
 let userClickPlayOnce = false;
