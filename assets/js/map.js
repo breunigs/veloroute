@@ -118,16 +118,31 @@ function renderIndicator() {
 }
 
 const withPreload = (action, lngLat) => {
-  const opts = {
-    center: lngLat,
-    zoom: Math.max(map.getZoom(), 14),
-  }
+  switch (action) {
+    case "flyTo":
+      const opts = {
+        center: lngLat,
+        zoom: Math.max(map.getZoom(), 14),
+      }
+      map.flyTo({
+        ...opts,
+        preloadOnly: true
+      });
+      map.flyTo(opts);
+      break;
 
-  map[action]({
-    ...opts,
-    preloadOnly: true
-  });
-  map[action](opts);
+    case "panTo":
+
+      map.panTo(lngLat, {
+        preloadOnly: true
+      })
+      map.panTo(lngLat)
+      break
+
+    default:
+      console.warn("unsupported withPreload action:", action)
+      debugger
+  }
 }
 
 const closestEquivalentAngle = (from, to) => {
