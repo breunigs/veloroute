@@ -224,39 +224,6 @@ defmodule Video.Rendered do
   @callback bbox() :: Geo.BoundingBox.t()
 
   @doc """
-  Outputs the timestamps and coordinates as an iolist, suitable to be passed to the
-  frontend for displaying the video position. It returns a flat list with the values
-  being time_in_seconds, lon, lat for each point, repeated for all coordinates. The
-  caller must take care to iterate through this list by incrementing the index by 3.
-  The individual values are floats separated by a space. The first three are the
-  original values, thereafter it's the difference to the previous value.
-
-  ## Examples
-
-      iex> Video.Rendered.coord_io_list(Video.RenderedTest.Example)
-      '0 10044000 53507000 100 -2000 1000 100 -2000 1000 100 -2000 1000 100 -2000 1000'
-  """
-  @spec coord_io_list(t()) :: iolist()
-  def coord_io_list(rendered) do
-    rendered.coords
-    |> Enum.reduce(
-      {%Video.TimedPoint{lon: 0, lat: 0, time_offset_ms: 0}, ''},
-      fn curr, {prev, acc} ->
-        lon = curr.lon - prev.lon
-        lat = curr.lat - prev.lat
-        ms = curr.time_offset_ms - prev.time_offset_ms
-
-        coord = ' #{ms} #{round(lon * 1_000_000)} #{round(lat * 1_000_000)}'
-
-        {curr, [acc | coord]}
-      end
-    )
-    |> elem(1)
-    |> List.flatten()
-    |> tl()
-  end
-
-  @doc """
   Outputs the video metadata in the format of
     timestamp_in_milliseconds\ntext here\nts\ntext\n…
 

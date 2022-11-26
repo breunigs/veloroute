@@ -266,7 +266,6 @@ defmodule VelorouteWeb.Live.VideoState do
     video = if state.direction == :forward, do: state.forward, else: state.backward
 
     start_from = Video.Rendered.start_from(video, state.start)
-    coords = Video.Rendered.coord_io_list(video)
     metadata = Video.Rendered.metadata_io_list(video)
     metadata_now = Video.Rendered.metadata_timestamp(video, start_from.time_offset_ms)
 
@@ -279,7 +278,6 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start: start_from.time_offset_ms,
       video_start_gen: state.start_generation,
       video_length_ms: video.length_ms(),
-      video_coords: coords,
       video_polyline: video.polyline(),
       video_route: %{id: route_id(state)},
       video_metadata: metadata,
@@ -298,7 +296,6 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start: 0,
       video_start_gen: state.start_generation,
       video_poster: nil,
-      video_coords: '',
       video_reversable: false
     ]
   end
