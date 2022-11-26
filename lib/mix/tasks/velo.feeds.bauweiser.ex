@@ -79,8 +79,14 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
   defp find_ids_in_n_days(days) when is_integer(days) and days >= 0 do
     date = Date.utc_today() |> Date.add(days)
-    {:ok, response} = get("list", query: [date: "#{date}"])
-    Enum.map(response.body, fn entry -> entry["id"] end)
+
+    with {:ok, response} <- get("list", query: [date: "#{date}"]) do
+      Enum.map(response.body, fn entry -> entry["id"] end)
+    else
+      e ->
+        IO.puts(:stderr, "Failed to retrieve list Bauweiser date=#{date}: #{inspect(e)}")
+        []
+    end
   end
 
   defp details(id) when is_integer(id) do
