@@ -356,7 +356,7 @@ defmodule VelorouteWeb.Live.VideoState do
             |> Geo.CheapRuler.closest_point_on_line(near_position)
             |> Map.fetch!(:dist)
 
-          if track.direction == state.direction,
+          if track.direction == state.direction && track == current_track(state),
             do: dist - @same_direction_bonus_in_meters,
             else: dist
         end
