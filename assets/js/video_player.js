@@ -1,6 +1,5 @@
 let prevVideo = null;
 let prevStartGen = null;
-let hlsAutoStartLoad = false;
 let prevLevel = null;
 let previouslyPlayingCodec = null;
 
@@ -162,12 +161,13 @@ function updateVideoElement() {
       Hls = Hls.default;
 
       let options = {
-        autoStartLoad: hlsAutoStartLoad || !video.paused || autoplayEnabled(),
+        autoStartLoad: true,
         enableWebVTT: false,
         lowLatencyMode: false,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 20, // seconds
         minAutoBitrate: minAutoBitrate,
+        startPosition: videoMeta.start / 1000.0,
       };
 
       prevLevel = null;
@@ -204,11 +204,9 @@ function updateVideoElement() {
       updatePlaypause();
       video.addEventListener('play', () => {
         maybeMarkAutoplayed();
-        if (hlsAutoStartLoad) return;
 
         if (!window.hls) return;
         console.debug("triggering hls.startLoad");
-        hlsAutoStartLoad = true;
         window.hls.startLoad(-1);
       });
     })
