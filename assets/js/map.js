@@ -335,8 +335,11 @@ const sendBounds = () => {
 
 let mapLoaded = false;
 map.on('style.load', () => {
-  mapLoaded = true;
   runQueuedUpdate();
+  highlightRoute();
+
+  if (mapLoaded) return;
+  mapLoaded = true;
 
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
@@ -358,14 +361,30 @@ map.on('style.load', () => {
 map.on('load', hidePreview);
 map.on('resize', hidePreview);
 
-let indicatorPolyline = null;
-window.addEventListener("phx:video_polyline", e => {
+let videoRoute = null
+let indicatorPolyline = null
+
+window.addEventListener("phx:video_meta", e => {
+  videoRoute = e.detail.route || videoRoute
+
+  highlightRoute()
+  updateIndicatorPolyline(e.detail.polyline)
+});
+
+function highlightRoute() {
+  if (!videoRoute) return;
+  map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], videoRoute.id])
+}
+
+function updateIndicatorPolyline(data) {
+  if (!data) return
+
   console.log("updating video polyline")
-  const decoded = polyline2geojson(e.detail.polyline, e.detail.precision);
+  const decoded = polyline2geojson(data.polyline, data.precision);
   indicatorPolyline = {
     coords: decoded.geometry.coordinates,
-    interval: e.detail.interval,
-    eps: 10 ** (-e.detail.precision),
+    interval: data.interval,
+    eps: 10 ** (-data.precision),
   }
 
   // videoPathDebug render
@@ -403,12 +422,7 @@ window.addEventListener("phx:video_polyline", e => {
   //     'line-blur': 0,
   //   }
   // }, videoLayerDefaults), "video-fg");
-})
-
-window.addEventListener("phx:video_route", e => {
-  if (!map.getLayer('route-casing-highlight')) return;
-  map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], e.detail.id]);
-})
+}
 
 function toRad(degrees) {
   return degrees * Math.PI / 180;
@@ -433,8 +447,7 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 
 function getVideoPosition(timeAdjustMs) {
   if (!indicatorPolyline) return;
-  const videoLoaded = video && state.videoHash && (typeof video.duration) === "number" && video.readyState >= 2;
-  let currMs = videoLoaded ? video.currentTime * 1000 + 250 : state.videoStart * 1;
+  let currMs = videoTimeInMs
   if (timeAdjustMs) currMs = Math.max(0, currMs + timeAdjustMs);
 
   const index = indicatorIndexBounds(Math.floor(currMs / indicatorPolyline.interval));
@@ -530,33 +543,14 @@ function polyline2geojson(str, precision) {
 
 window.map = map;
 
-let speculativeIndicator = 0;
-window.addEventListener("video:timeupdate", () => {
-  speculativeIndicator = 25;
-  updateVideoIndicator();
-});
-
-let videoIndicatorRAF = false;
-
-function updateVideoIndicator() {
-  if (!videoIndicatorRAF) {
-    window.requestAnimationFrame(updateVideoIndicator);
-    videoIndicatorRAF = true
-    return
-  }
-
+let videoTimeInMs = 0;
+window.addEventListener("video:timeupdate", (e) => {
+  videoTimeInMs = e.detail.timeInMs;
   renderIndicator();
-
-  if (speculativeIndicator-- > 0) {
-    window.requestAnimationFrame(updateVideoIndicator);
-  } else {
-    videoIndicatorRAF = false
-  }
-}
+});
 
 function runQueuedUpdate() {
   queued = false;
-  renderIndicator();
   layerSwitcher.refreshIfChanged();
 }
 

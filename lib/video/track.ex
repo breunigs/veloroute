@@ -21,7 +21,7 @@ defmodule Video.Track do
   # 32*8=256
   @type hash :: <<_::256>>
 
-  @type video_metadata :: [{non_neg_integer(), binary()}]
+  @type recording_dates :: [%{timestamp: non_neg_integer(), text: binary()}]
 
   @type fade :: float() | :none | nil
   defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
@@ -64,7 +64,7 @@ defmodule Video.Track do
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
-  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], video_metadata()} | {:error, binary()}
+  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], recording_dates()} | {:error, binary()}
 
   # Experimentally determined time to add between two consecutive videos to
   # ensure that there's no long term drift. Not sure why it is needed, since
@@ -82,12 +82,12 @@ defmodule Video.Track do
     fade = fade(t)
     fade_in_ms_halfed = if fade == :none, do: 0, else: round(fade * 1000 / 2)
 
-    {_dur, coords, metadata} =
-      Enum.reduce(tsv_list, {0, [], []}, fn tsv, {duration_so_far, acc, metadata} ->
+    {_dur, coords, recording_dates} =
+      Enum.reduce(tsv_list, {0, [], []}, fn tsv, {duration_so_far, acc, recording_dates} ->
         from = tsv.coord_from.time_offset_ms
         to = tsv.coord_to.time_offset_ms - fade_in_ms_halfed
 
-        metadata = [{duration_so_far, tsv_date(tsv)} | metadata]
+        recording_dates = [%{timestamp: duration_so_far, text: tsv_date(tsv)} | recording_dates]
         %{coords_cut: coords} = Video.TrimmedSource.extract(tsv, from, to)
 
         coords =
@@ -102,10 +102,10 @@ defmodule Video.Track do
 
         dur = duration_so_far + (to - from)
         dur = if fade == :none, do: dur + @video_concat_bump_ms, else: dur
-        {dur, acc ++ coords, metadata}
+        {dur, acc ++ coords, recording_dates}
       end)
 
-    {calc_hash(tsv_list, fade), coords, reverse_compact_metadata(metadata)}
+    {calc_hash(tsv_list, fade), coords, reverse_compact_recording_dates(recording_dates)}
   end
 
   def render(%__MODULE__{videos: videos, renderer: 3}) do
@@ -135,13 +135,13 @@ defmodule Video.Track do
            """}
       end)
 
-    with {_dur, rev_coords, metadata, hsh} <- joined do
+    with {_dur, rev_coords, recording_dates, hsh} <- joined do
       hsh = hsh |> :crypto.hash_final() |> Base.encode16(case: :lower)
-      {hsh, Enum.reverse(rev_coords), reverse_compact_metadata(metadata)}
+      {hsh, Enum.reverse(rev_coords), reverse_compact_recording_dates(recording_dates)}
     end
   end
 
-  defp render_segment(fade_in_ms, tsv, from, to, {dur, rev_coords, metadata, hsh}) do
+  defp render_segment(fade_in_ms, tsv, from, to, {dur, rev_coords, recording_dates, hsh}) do
     {dur, rev_coords, hsh} =
       cond do
         rev_coords == [] ->
@@ -171,11 +171,11 @@ defmodule Video.Track do
         [new | rev_coords]
       end)
 
-    metadata = [{dur, tsv_date(tsv)} | metadata]
+    recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
 
     # unclear why half_frame_duration_ms() is needed
     dur = dur + to_ms - from_ms + half_frame_duration_ms()
-    {dur, rev_coords, metadata, :crypto.hash_update(hsh, tsv.hash_ident)}
+    {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
   end
 
   @spec fade(t() | pos_integer()) :: fade()
@@ -224,11 +224,14 @@ defmodule Video.Track do
   defp tsv_date(tsv),
     do: tsv.date |> Data.RoughDate.parse() |> Data.RoughDate.without_day()
 
-  @spec reverse_compact_metadata(video_metadata()) :: video_metadata()
-  defp reverse_compact_metadata(meta) do
-    Enum.reduce(meta, [], fn
-      {dur, str}, [{_dur2, str} | rest] -> [{dur, str} | rest]
-      entry, acc -> [entry | acc]
+  @spec reverse_compact_recording_dates(recording_dates()) :: recording_dates()
+  defp reverse_compact_recording_dates(dates) do
+    Enum.reduce(dates, [], fn
+      %{timestamp: dur, text: str}, [%{timestamp: _dur2, text: str} | rest] ->
+        [%{timestamp: dur, text: str} | rest]
+
+      entry, acc ->
+        [entry | acc]
     end)
   end
 end

@@ -1,9 +1,16 @@
-let videoMetadata = null;
 let prevVideo = null;
 let prevStartGen = null;
 let hlsAutoStartLoad = false;
 let prevLevel = null;
 let previouslyPlayingCodec = null;
+
+let videoMeta = {}
+window.addEventListener("phx:video_meta", e => {
+  console.log("updating video meta", e.detail)
+  Object.assign(videoMeta, e.detail)
+  maybeUpdatePoster(e.detail)
+  setVideo()
+});
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
@@ -28,13 +35,18 @@ video.addEventListener('pause', timeUpdate);
 // 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
 
+const canPlayHLS = video.canPlayType('application/vnd.apple.mpegurl')
+
+let highPrecisionTimeUpdate = 0;
+
 function timeUpdate() {
   // iOS has a bug where the video time is reported as 0.0 during loading.
-  if (video.canPlayType('application/vnd.apple.mpegurl') && video.readyState <= 2 && currentTimeInMs() == 0) {
+  if (canPlayHLS && video.readyState <= 2 && currentTimeInMs() == 0) {
     return setTimeout(timeUpdate, 100);
   }
   updateMetadata();
-  window.dispatchEvent(new Event("video:timeupdate"));
+  highPrecisionTimeUpdate = 25;
+  dispatchTimeupdate();
 
   if (video.paused || video.ended || Math.random() <= 0.95) return;
   window.plausible('video-dimension', {
@@ -42,6 +54,17 @@ function timeUpdate() {
       height: video.videoHeight
     }
   })
+}
+
+function dispatchTimeupdate() {
+  window.dispatchEvent(new CustomEvent("video:timeupdate", {
+    detail: {
+      timeInMs: currentTimeInMsFallback()
+    }
+  }));
+
+  if (highPrecisionTimeUpdate-- <= 0) return;
+  window.requestAnimationFrame(dispatchTimeupdate);
 }
 
 function autoplayEnabled() {
@@ -58,7 +81,7 @@ function maybeMarkAutoplayed() {
 function markPlay() {
   window.plausible('video-play', {
     props: {
-      hash: state.videoHash
+      hash: videoMeta.hash
     }
   })
 }
@@ -94,7 +117,7 @@ function attachHlsErrorHandler(obj, Hls) {
     if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
       sendCurrentVideoTime('video-fatal-hls');
-      window.state.videoStart = currentTimeInMs();
+      window.videoMeta.start = currentTimeInMs();
       window.state.autoplay = true;
       window.hls = false;
       obj.destroy();
@@ -118,9 +141,9 @@ function attachHlsErrorHandler(obj, Hls) {
 }
 
 function updateVideoElement() {
-  if (!state.videoHash) return;
-  console.debug('trying to play video for: ', state.videoHash)
-  const path = `/videos-rendered/${state.videoHash}/`;
+  if (!videoMeta.hash) return;
+  console.debug('trying to play video for: ', videoMeta.hash)
+  const path = `/videos-rendered/${videoMeta.hash}/`;
   const preloads = `
     <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream.m3u8">
     <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream_0.m3u8">
@@ -193,7 +216,7 @@ function updateVideoElement() {
   }
 
   console.debug('loading regular html video')
-  const time = `#t=${state.videoStart / 1000.0}`;
+  const time = `#t=${videoMeta.start / 1000.0}`;
   // codec version for h264 can be determined through (Debian package: gpac)
   // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
   const innerHTML = `
@@ -224,16 +247,16 @@ function seekToStartTime() {
   const cur = currentTimeInMs();
   const auto = autoplayEnabled();
 
-  if (Math.abs(cur - state.videoStart) < 100 || prevStartGen == state.videoStartGen) {
+  if (Math.abs(cur - videoMeta.start) < 100 || prevStartGen == videoMeta.start_gen) {
     video.autoplay = auto;
     return;
   }
-  console.debug("seeking to", state.videoStart, "(from ", cur,
-    ", gen", prevStartGen, "→", state.videoStartGen, ")");
+  console.debug("seeking to", videoMeta.start, "(from ", cur,
+    ", gen", prevStartGen, "→", videoMeta.start_gen, ")");
   if (!auto) video.pause();
-  seekToTime(state.videoStart);
+  seekToTime(videoMeta.start);
   video.autoplay = auto;
-  prevStartGen = state.videoStartGen;
+  prevStartGen = videoMeta.start_gen;
 }
 
 const videoQuality = document.getElementById("videoQuality");
@@ -322,6 +345,11 @@ function currentTimeInMs() {
   return Math.round(video.currentTime * 1000);
 }
 
+function currentTimeInMsFallback() {
+  if (!video || video.readyState <= 2) return videoMeta.start;
+  return Math.round(video.currentTime * 1000);
+}
+
 function seekToTime(timeInMs) {
   timeInMs = Math.max(timeInMs, 0);
   const inSeconds = timeInMs / 1000.0;
@@ -329,7 +357,7 @@ function seekToTime(timeInMs) {
   if (video.currentTime == inSeconds) return;
   video.currentTime = inSeconds;
   // without this check there's a continous loop on iOS
-  if (state.videoStart * 1 != timeInMs) {
+  if (videoMeta.start * 1 != timeInMs) {
     window.pushEvent('video-current-time', {
       pos: Math.round(timeInMs),
     })
@@ -338,7 +366,7 @@ function seekToTime(timeInMs) {
 }
 
 function seek(diffInMs) {
-  const have = Number.isNaN(video.duration) ? state.videoStart * 1 : video.currentTime * 1000;
+  const have = Number.isNaN(video.duration) ? videoMeta.start * 1 : video.currentTime * 1000;
   seekToTime(have + diffInMs)
 }
 
@@ -347,10 +375,12 @@ function maybeShowLoadingIndicator(evt) {
   poster.classList.toggle("loading", showSpinner)
 }
 
-window.addEventListener("phx:video_poster", e => {
-  if (video.readyState >= 2 || !e.detail.value) return video.setAttribute("poster", "")
-  video.setAttribute("poster", e.detail.value)
-})
+function maybeUpdatePoster(changedMeta) {
+  if (typeof changedMeta.poster === "undefined") return
+
+  if (video.readyState >= 1 || !changedMeta.poster) return video.setAttribute("poster", "")
+  video.setAttribute("poster", changedMeta.poster)
+}
 
 let userClickPlayOnce = false;
 
@@ -364,12 +394,11 @@ function ensureVideoIsSet() {
 
 function setVideo() {
   if (autoplayEnabled()) userClickPlayOnce = true;
-  if (!userClickPlayOnce) return;
+  if (!userClickPlayOnce) return timeUpdate();
 
-  if (prevVideo !== state.videoHash) {
-    prevVideo = state.videoHash;
+  if (prevVideo !== videoMeta.hash) {
+    prevVideo = videoMeta.hash;
     updateVideoElement();
-    parseMetadataFromState();
     return;
   }
 
@@ -378,28 +407,18 @@ function setVideo() {
   updatePlaypause();
 }
 
-const videoMetadataEl = document.getElementById('videoMetadata');
-
-function parseMetadataFromState() {
-  let meta = state.videoMetadata.split("\n");
-  videoMetadata = [];
-  for (let i = 0; i < meta.length; i += 2) {
-    videoMetadata.push({
-      timestamp: parseInt(meta[i]),
-      text: meta[i + 1]
-    })
-  }
-}
+const videoRecordingDateEl = document.getElementById('videoRecordingDate');
 
 function updateMetadata() {
-  if (!videoMetadata) return;
-  const timestamp = currentTimeInMs();
+  if (!videoMeta.recording_dates) return;
+
+  const timestamp = currentTimeInMsFallback();
   let text = "";
-  for (let i = 0; i < videoMetadata.length; i += 1) {
-    if (videoMetadata[i].timestamp > timestamp) break;
-    text = videoMetadata[i].text;
+  for (let i = 0; i < videoMeta.recording_dates.length; i += 1) {
+    if (videoMeta.recording_dates[i].timestamp > timestamp) break;
+    text = videoMeta.recording_dates[i].text;
   }
-  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
+  if (videoRecordingDateEl.textContent !== text) videoRecordingDateEl.textContent = text;
 }
 
 const progress = document.getElementById("progress")
@@ -462,7 +481,7 @@ function togglePlayPause() {
 }
 
 function reverseVideo() {
-  const videoTimeMs = userClickPlayOnce ? video.currentTime * 1000 : state.videoStart * 1;
+  const videoTimeMs = userClickPlayOnce ? video.currentTime * 1000 : videoMeta.start * 1;
 
   window.pushEvent('video-reverse', {
     pos: Math.round(videoTimeMs)
@@ -472,14 +491,14 @@ function reverseVideo() {
 function seekFromProgress(e) {
   const rect = this.getBoundingClientRect();
   const pos = (e.pageX - rect.left) / this.offsetWidth;
-  const max = Math.round(video.duration * 1000) || state.videoLengthMs;
+  const max = Math.round(video.duration * 1000) || videoMeta.length_ms;
 
   seekToTime(pos * max);
 };
 
 function updateProgressbar() {
-  const ms = Math.round(video.currentTime * 1000) || state.videoStart;
-  const max = Math.round(video.duration * 1000) || state.videoLengthMs;
+  const ms = Math.round(video.currentTime * 1000) || videoMeta.start;
+  const max = Math.round(video.duration * 1000) || videoMeta.length_ms;
   const msText = ms2text(ms);
   const maxText = ms2text(max);
 
@@ -595,5 +614,3 @@ function inactivityDelay() {
     outer.classList.add("inactivity");
   }, 2000);
 }
-
-window.videoStateChanged = setVideo;

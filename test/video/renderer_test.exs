@@ -242,7 +242,7 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def renderer(), do: 3
     @impl Video.Rendered
-    def metadata(), do: [{0, "Januar 2022"}]
+    def recording_dates(), do: [%{timestamp: 0, text: "Januar 2022"}]
 
     @impl Video.Rendered
     def sources() do

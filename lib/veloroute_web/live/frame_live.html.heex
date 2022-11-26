@@ -13,7 +13,7 @@
   </div>
 
   <%= display_route(@video) %>
-  <span id="videoMetadata"><%= @video_metadata_now %></span>
+  <span id="videoRecordingDate"><%= @video_recording_date %></span>
 
   <div id="videoControls">
     <button id="playpause" type="button" title="Video starten oder pausieren"></button>
@@ -73,11 +73,6 @@
 
 <div id="control" phx-hook="control"
   data-autoplay={"#{@autoplay}"}
-  data-video-hash={@video_hash}
-  data-video-start={@video_start}
-  data-video-start-gen={@video_start_gen}
-  data-video-length-ms={@video_length_ms}
-  data-video-metadata={@video_metadata}
   data-visible-types={Enum.join(@visible_types, ",")}
   data-mapbox-style-id={@mapbox_style_id}
 ></div>

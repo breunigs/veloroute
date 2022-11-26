@@ -5,9 +5,6 @@ window.state = document.getElementById("control").dataset;
 function updateState() {
   window.state = document.getElementById("control").dataset;
 
-  if (typeof window.videoStateChanged === "function") {
-    window.videoStateChanged();
-  }
   if (typeof window.mapStateChanged === "function") {
     window.mapStateChanged();
   }

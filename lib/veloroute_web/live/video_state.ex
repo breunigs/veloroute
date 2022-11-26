@@ -109,23 +109,23 @@ defmodule VelorouteWeb.Live.VideoState do
   defp finalize(socket, assigns) do
     socket
     |> Phoenix.Component.assign(assigns)
-    |> push_changes([:video_polyline, :video_route, :video_poster])
+    |> push_changes()
   end
 
-  defp push_changes(socket, fields) do
-    Enum.reduce(fields, socket, fn field, socket ->
-      if Phoenix.Component.changed?(socket, field) do
-        val =
-          case socket.assigns[field] do
-            %{} = val -> val
-            val -> %{value: val}
-          end
+  defp push_changes(socket) do
+    updates =
+      socket.assigns
+      |> Enum.filter(fn {key, _val} -> String.starts_with?("#{key}", "video_") end)
+      |> Enum.filter(fn {key, _val} -> Phoenix.Component.changed?(socket, key) end)
+      |> Enum.reduce(%{}, fn {key, val}, updates ->
+        Map.put(updates, String.replace_prefix("#{key}", "video_", ""), val)
+      end)
 
-        Phoenix.LiveView.push_event(socket, field, val)
-      else
-        socket
-      end
-    end)
+    Logger.debug("push updates for #{inspect(updates)}")
+
+    if map_size(updates) > 0,
+      do: Phoenix.LiveView.push_event(socket, :video_meta, updates),
+      else: socket
   end
 
   @spec route_id(t()) :: binary()
@@ -266,8 +266,7 @@ defmodule VelorouteWeb.Live.VideoState do
     video = if state.direction == :forward, do: state.forward, else: state.backward
 
     start_from = Video.Rendered.start_from(video, state.start)
-    metadata = Video.Rendered.metadata_io_list(video)
-    metadata_now = Video.Rendered.metadata_timestamp(video, start_from.time_offset_ms)
+    recording_date = Video.Rendered.recording_date_for(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
     Video.DiskPreloader.warm(video.hash(), start_from)
@@ -280,8 +279,8 @@ defmodule VelorouteWeb.Live.VideoState do
       video_length_ms: video.length_ms(),
       video_polyline: video.polyline(),
       video_route: %{id: route_id(state)},
-      video_metadata: metadata,
-      video_metadata_now: metadata_now,
+      video_recording_dates: video.recording_dates(),
+      video_recording_date: recording_date,
       video_reversable: is_reversable(state),
       video_poster: video_poster(video, start_from)
     ]

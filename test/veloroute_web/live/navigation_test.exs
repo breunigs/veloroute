@@ -3,9 +3,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
   import Phoenix.LiveViewTest
   @endpoint VelorouteWeb.Endpoint
 
-  @regexHash ~r/data-video-hash=\"([^\s]+)\"/
-  @regexStart ~r/data-video-start=[^\s]+/
-
   @video_hashes Data.Article.Static.Alltagsroute4.tracks()
                 |> Enum.map(fn %Video.Track{direction: dir} = t -> {dir, Video.Track.hash(t)} end)
                 |> Enum.into(%{})
@@ -36,8 +33,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
     html = render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"})
 
     assert html =~ "<h3>Kleekamp"
-    assert html =~ ~s|data-video-hash="#{@video_hashes[:forward]}"|
-    assert html =~ ~s|data-video-start="#{@video_starts[:forward]}"|
+
+    assert_push_event(view, :video_meta, %{
+      "hash" => unquote(@video_hashes[:forward]),
+      "start" => unquote(@video_starts[:forward])
+    })
 
     assert_patched(
       view,
@@ -55,8 +55,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> render_click()
 
     assert html =~ "<h3>Kleekamp"
-    assert html =~ ~s|data-video-hash="#{@video_hashes[:forward]}"|
-    assert html =~ ~s|data-video-start="#{@video_starts[:forward]}"|
+
+    assert_push_event(view, :video_meta, %{
+      "hash" => unquote(@video_hashes[:forward]),
+      "start" => unquote(@video_starts[:forward])
+    })
 
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
   end
@@ -71,13 +74,19 @@ defmodule VelorouteWeb.LiveNavigationTest do
       zoom: 16
     }
 
-    a = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
-    b = Regex.run(@regexHash, render_hook(view, "map-click", click_pos))
+    assert_attribute(
+      render_hook(view, "map-click", click_pos),
+      "#videoRoute",
+      "title",
+      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
+    )
 
-    renderA = a |> Enum.at(1) |> Video.Rendered.get()
-    renderB = b |> Enum.at(1) |> Video.Rendered.get()
-
-    assert renderA.name() != renderB.name()
+    assert_attribute(
+      render_hook(view, "map-click", click_pos),
+      "#videoRoute",
+      "title",
+      "Du folgst: Alltagsroute 3 von Niendorf in die Innenstadt"
+    )
   end
 
   test "clicking on article without tracks keeps the video as is", %{conn: conn} do
@@ -91,16 +100,21 @@ defmodule VelorouteWeb.LiveNavigationTest do
         zoom: 16
       })
 
-    aHash = Regex.run(@regexHash, html)
-    aStart = Regex.run(@regexStart, html)
+    assert_attribute(
+      html,
+      "#videoRoute",
+      "title",
+      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
+    )
 
     html = render_hook(view, "map-click", %{article: "2021-03-13-am-neumarkt"})
 
-    bHash = Regex.run(@regexHash, html)
-    bStart = Regex.run(@regexStart, html)
-
-    assert aHash == bHash
-    assert aStart == bStart
+    assert_attribute(
+      html,
+      "#videoRoute",
+      "title",
+      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
+    )
   end
 
   test "map click sets correct route on article click", %{conn: conn} do

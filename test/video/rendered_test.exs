@@ -21,7 +21,8 @@ defmodule Video.RenderedTest do
       ]
 
     @impl Video.Rendered
-    def metadata(), do: [{0, "at start"}, {10, "after ten ms"}]
+    def recording_dates(),
+      do: [%{timestamp: 0, text: "at start"}, %{timestamp: 10, text: "after ten ms"}]
 
     @impl Video.Rendered
     def coords(),

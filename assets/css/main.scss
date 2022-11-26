@@ -73,7 +73,7 @@ body.fullscreen #videoOuter {
 }
 
 #videoOuter:hover, #videoOuter[data-state="play"] {
-  #videoControls, #videoRoute, #videoMetadata {
+  #videoControls, #videoRoute, #videoRecordingDate {
     opacity: 1;
   }
 }
@@ -82,7 +82,7 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
   &.inactivity {
     cursor: none;
 
-    #videoControls, #videoRoute, #videoMetadata {
+    #videoControls, #videoRoute, #videoRecordingDate {
       opacity: 0 !important;
       cursor: auto;
     }
@@ -90,7 +90,7 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
 }
 
 
-#videoRoute, #videoControls, #videoMetadata {
+#videoRoute, #videoControls, #videoRecordingDate {
   // opacity: 1 !important; // toggle
 
   opacity: 0;
@@ -99,7 +99,7 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
 }
 
 $videoInfoOverlayPadding: 0.5rem;
-#videoRoute, #videoMetadata {
+#videoRoute, #videoRecordingDate {
   top: 0;
   position: absolute;
   display: block;
@@ -128,7 +128,7 @@ $videoInfoOverlayPadding: 0.5rem;
   padding-left: max($videoInfoOverlayPadding, env(safe-area-inset-left));
 }
 
-#videoMetadata {
+#videoRecordingDate {
   right: 0;
   border-bottom-left-radius: $videoInfoOverlayPadding;
   display: none;
@@ -463,7 +463,7 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
     display: none !important;
   }
 
-  #videoMetadata {
+  #videoRecordingDate {
     display: block;
   }
 }
