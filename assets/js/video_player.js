@@ -156,7 +156,7 @@ function updateVideoElement() {
   } else {
     console.debug('no native hls, trying to load hls.js')
     video.innerHTML = preloads;
-    import('hls.js').then(Hls => {
+    import('hls.js/dist/hls.light.js').then(Hls => {
       if (!Hls.isSupported()) return window.hls = false;
       console.debug('loading hls video stream');
       Hls = Hls.default;
