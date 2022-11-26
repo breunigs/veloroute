@@ -149,7 +149,7 @@ function updateVideoElement() {
     <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream_0.m3u8">
   `;
 
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+  if (canPlayHLS) {
     console.debug('native hls, doing nothing?')
   } else if (window.hls === false || typeof Promise === "undefined") {
     console.debug('hls.js not supported, using fallback')
@@ -464,7 +464,7 @@ document.addEventListener("visibilitychange", () => {
     video.pause();
   } else {
     // work around iOS bug where switching tabs hangs HLS video play completely?
-    if (video.canPlayType('application/vnd.apple.mpegurl')) updateVideoElement();
+    if (canPlayHLS) updateVideoElement();
 
     if (wasPlaying) video.play();
   }
