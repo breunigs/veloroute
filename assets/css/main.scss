@@ -180,11 +180,6 @@ $videoBarProgressHeight: 0.4rem;
         border-top: 2px solid;
         border-color: $red;
         width: 1.5rem;
-
-        -webkit-transform:rotate(-45deg);
-        -moz-transform:rotate(-45deg);
-        -ms-transform:rotate(-45deg);
-        -o-transform:rotate(-45deg);
         transform:rotate(-45deg);
       }
     }
@@ -435,7 +430,6 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   height: 100dvh;
   position: relative;
   top: 0;
-  left: $minWidth; // old browsers doesn't support max() -- for mobile devices
   left: max($minWidth, $mainWidth);
   background: $bgcolor;
   display: flex;
@@ -454,7 +448,6 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   }
 
   #sidebar {
-    left: $mainWidth; // old browsers doesn't support max() -- for desktop
     left: max($minWidth, $mainWidth);
     position: fixed;
     transition: none !important;
@@ -489,7 +482,6 @@ body.showSidebar::before {
 
 .showSidebar #sidebar {
   transition: all 0.3s ease;
-  left: calc(100vw - $minWidth); // old browsers doesn't support max() -- for both
   left: min(100vw - $minWidth, $mainWidth);
   box-shadow: 2em 0 2em 2em rgba(0,0,0,0.7);
 }
@@ -508,7 +500,6 @@ body.showSidebar::before {
   overflow-y: auto;
   overflow-x: hidden;
 
-  -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
   overscroll-behavior: contain;
