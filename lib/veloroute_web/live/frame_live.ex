@@ -13,7 +13,6 @@ defmodule VelorouteWeb.FrameLive do
   @default_bounds struct(Geo.BoundingBox, Settings.initial())
   @initial_state [
     render_target: :html,
-    autoplay: false,
     prev_page: nil,
     current_page: nil,
     map_bounds: @default_bounds,
@@ -115,14 +114,8 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply,
      socket
      |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
-     |> assign(:autoplay, true)
+     |> autoplay()
      |> update_url_query()}
-  end
-
-  def handle_event("video-autoplayed", attr, socket) do
-    Logger.debug("video-autoplayed #{inspect(attr)}")
-
-    {:noreply, assign(socket, :autoplay, false)}
   end
 
   def handle_event("map-style-switch", attr, socket) do
@@ -199,7 +192,7 @@ defmodule VelorouteWeb.FrameLive do
           |> update_map_bounds(params)
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
           |> determine_visible_route_groups(article)
-          |> assign(:autoplay, params["autoplay"] == "true")
+          |> maybe_autoplay(params["autoplay"] == "true")
 
     socket =
       socket
@@ -402,4 +395,8 @@ defmodule VelorouteWeb.FrameLive do
 
     assign(socket, visible_types: Enum.uniq(show))
   end
+
+  defp autoplay(socket), do: maybe_autoplay(socket, true)
+  defp maybe_autoplay(socket, true), do: push_event(socket, "video:autoplay", %{})
+  defp maybe_autoplay(socket, false), do: socket
 end

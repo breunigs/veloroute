@@ -2,6 +2,7 @@ let prevVideo = null;
 let prevStartGen = null;
 let prevLevel = null;
 let previouslyPlayingCodec = null;
+let autoplay = false;
 
 let videoMeta = {}
 window.addEventListener("phx:video_meta", e => {
@@ -55,6 +56,12 @@ function timeUpdate() {
   })
 }
 
+window.addEventListener(`phx:video:autoplay`, (e) => {
+  console.debug("enabling autoplay", e.detail)
+  autoplay = true
+  setVideo();
+})
+
 function dispatchTimeupdate() {
   window.dispatchEvent(new CustomEvent("video:timeupdate", {
     detail: {
@@ -66,23 +73,13 @@ function dispatchTimeupdate() {
   window.requestAnimationFrame(dispatchTimeupdate);
 }
 
-function autoplayEnabled() {
-  return window.state.autoplay === "true" || window.state.autoplay === true
-}
-
-function maybeMarkAutoplayed() {
-  if (autoplayEnabled()) {
-    console.debug("autoplay is enabled, but we played, disabling it")
-    window.pushEvent('video-autoplayed', {})
-  }
-}
-
 function markPlay() {
   window.plausible('video-play', {
     props: {
       hash: videoMeta.hash
     }
   })
+  autoplay = false
 }
 
 function markPause() {
@@ -117,7 +114,7 @@ function attachHlsErrorHandler(obj, Hls) {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
       sendCurrentVideoTime('video-fatal-hls');
       window.videoMeta.start = currentTimeInMs();
-      window.state.autoplay = true;
+      autoplay = true
       window.hls = false;
       obj.destroy();
       updateVideoElement();
@@ -203,8 +200,6 @@ function updateVideoElement() {
       window.hls.loadSource(`${path}stream.m3u8`);
       updatePlaypause();
       video.addEventListener('play', () => {
-        maybeMarkAutoplayed();
-
         if (!window.hls) return;
         console.debug("triggering hls.startLoad");
         window.hls.startLoad(-1);
@@ -225,9 +220,9 @@ function updateVideoElement() {
     ${preloads}
   `;
   video.innerHTML = innerHTML;
-  video.autoplay = autoplayEnabled();
+  video.autoplay = autoplay;
   video.load();
-  if (autoplayEnabled()) video.play();
+  if (autoplay) video.play();
 }
 
 function restorePreviousQuality() {
@@ -243,17 +238,16 @@ function restorePreviousQuality() {
 
 function seekToStartTime() {
   const cur = currentTimeInMs();
-  const auto = autoplayEnabled();
 
   if (Math.abs(cur - videoMeta.start) < 100 || prevStartGen == videoMeta.start_gen) {
-    video.autoplay = auto;
+    video.autoplay = autoplay;
     return;
   }
   console.debug("seeking to", videoMeta.start, "(from ", cur,
     ", gen", prevStartGen, "→", videoMeta.start_gen, ")");
-  if (!auto) video.pause();
+  if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
-  video.autoplay = auto;
+  video.autoplay = autoplay;
   prevStartGen = videoMeta.start_gen;
 }
 
@@ -388,12 +382,12 @@ function ensureVideoIsSet() {
   if (userClickPlayOnce) return
   userClickPlayOnce = true
   console.log("video was not set, doing so now");
-  window.state.autoplay = true;
+  autoplay = true
   setVideo();
 }
 
 function setVideo() {
-  if (autoplayEnabled()) userClickPlayOnce = true;
+  if (autoplay) userClickPlayOnce = true;
   if (!userClickPlayOnce) return timeUpdate();
 
   if (prevVideo !== videoMeta.hash) {
