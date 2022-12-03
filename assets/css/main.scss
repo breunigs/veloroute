@@ -604,6 +604,10 @@ body.fullscreen video, #videoOuter:fullscreen video {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 70%;
+
+    &:hover {
+      background: #bbb;
+    }
   }
 
   > div {
