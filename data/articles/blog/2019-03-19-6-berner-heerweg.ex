@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.BernerHeerweg do
 
   def links(_assigns) do
     [
+      {"Auswertung Infoveranstaltung", "Dezember 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017818"},
       {"Infoseite der Stadt zum Berner Heerweg", "Oktober 2022",
        "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15275274/umbaumassnahme-berner-heerweg/"},
       {"Möglicher Bautermin", "Stand 2022",

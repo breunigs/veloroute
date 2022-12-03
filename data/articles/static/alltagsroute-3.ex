@@ -92,42 +92,54 @@ defmodule Data.Article.Static.Alltagsroute3 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</.m></td>
+        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="3">Rathaus</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9879873,53.5547844,9.9893108,53.5554057">Gänsemarkt</.m></td>
+        <td><.m bounds="9.984306,53.553785,9.9935,53.559082" lon={9.989699} lat={53.55492} dir="forward" ref="3">Gänsemarkt</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9903608,53.560823,9.9915904,53.5610058">Bahnhof Dammtor</.m></td>
+        <td><.m bounds="9.983987,53.558014,9.994103,53.56547" lon={9.99033} lat={53.559795} dir="forward" ref="3">Bahnhof Dammtor</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9700483,53.5569902,10.0082327,53.5738467">Rotherbaum</.m></td>
+        <td><.m bounds="9.977633,53.562873,9.991701,53.572189" lon={9.986438} lat={53.56676} dir="forward" ref="3">Rotherbaum</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="9.9683983,53.586403,9.9709292,53.5880841">Hoheluft</.m></td>
+        <td><.m bounds="9.948743,53.576206,9.975451,53.594578" lon={9.95665} lat={53.583018} dir="forward" ref="3">Hoheluft</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9353742,53.5809668,9.9745973,53.608135">Lokstedt</.m></td>
+        <td><.m bounds="9.941223,53.593841,9.972655,53.611805" lon={9.957517} lat={53.600192} dir="forward" ref="3">Lokstedt</.m></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9465185,53.6146987,9.9565185,53.6246987">Niendorf Markt</.m></td>
+        <td><.m bounds="9.937511,53.614054,9.962625,53.626908" lon={9.950974} lat={53.617107} dir="forward" ref="3">Niendorf Markt</.m></td>
       </tr>
       <tr>
         <td>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="9.9451122,53.6358535,9.9551122,53.6458535">Niendorf Nord</.m></td>
+        <td><.m bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf Nord</.m></td>
       </tr>
     </table>
 
+    <p>Vom Rathaus aus schlängelt sich die Alltagsroute 3 (auch: Veloroute 3) meist über Nebenstraßen nach <.m bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf</.m>.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert, teils auch gepflastert.</p>
+
+    <h4>Meinung</h4>
+    <p>Die Umbauten haben die Situation verbessert, dennoch bleibt die Veloroute ein Kniefall vorm Autoverkehr. Nur auf den wenigsten Abschnitten stehen eigene Wege für den Radverkehr zur Verfügung – häufig setzt man auf Alibi-Lösungen mit <.ref>Schutzstreifen</.ref>, etwa in der <.m bounds="9.954151,53.582244,9.961593,53.591627" lon={9.956983} lat={53.587444} dir="forward" ref="3">Stresemannallee</.m> oder der <.m bounds="9.946787,53.631541,9.956402,53.64021" lon={9.952253} lat={53.636735} dir="forward" ref="3">Paul-Sorge-Straße</.m>.</p>
+
+    <p>Positiv sind die hingegen die <.m bounds="9.978006,53.561869,9.993006,53.573155" lon={9.986577} lat={53.567697} dir="forward" ref="3">Fahrradstraßen in Rotherbaum</.m>. Auch die Grüne Welle in der <.m bounds="9.968698,53.570018,9.979453,53.576889" lon={9.977128} lat={53.571688} dir="forward" ref="3">Bogenstraße</.m> ist eine sinnvolle Ergänzung.</p>
 
     <h3>Externe Links</h3>
     <.structured_links gpx={true}/>
