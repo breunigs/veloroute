@@ -1,6 +1,7 @@
+import "./rvfc-polyfill"
+
 let prevVideo = null;
 let prevStartGen = null;
-let prevLevel = null;
 let previouslyPlayingCodec = null;
 let autoplay = false;
 
@@ -9,50 +10,54 @@ window.addEventListener("phx:video_meta", e => {
   console.log("updating video meta", e.detail)
   Object.assign(videoMeta, e.detail)
   maybeUpdatePoster(e.detail)
+  maybeTimeUpdate(e.detail)
   setVideo()
 });
 
 const video = document.getElementById('videoInner');
 video.addEventListener('loadedmetadata', seekToStartTime);
-video.addEventListener('loadedmetadata', timeUpdate);
+video.addEventListener('loadedmetadata', updateMetadata);
 video.addEventListener('loadeddata', maybeShowLoadingIndicator);
 video.addEventListener('stalled', maybeShowLoadingIndicator);
 video.addEventListener('waiting', maybeShowLoadingIndicator);
 video.addEventListener('playing', maybeShowLoadingIndicator);
-video.addEventListener('timeupdate', timeUpdate);
+video.addEventListener('timeupdate', updateMetadata);
 video.addEventListener('timeupdate', updateProgressbar);
 video.addEventListener('progress', updateProgressbar);
 video.addEventListener('play', markPlay);
 video.addEventListener('play', updatePlaypause);
-video.addEventListener('play', timeUpdate);
+video.addEventListener('play', () => timeUpdate());
 video.addEventListener('play', ensureVideoIsSet, {
   once: true
 });
 video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
-video.addEventListener('pause', timeUpdate);
 
 // 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
 
 const canPlayHLS = video.canPlayType('application/vnd.apple.mpegurl')
 
-let highPrecisionTimeUpdate = 0;
+let videoTimeInMs = 0;
+let rvfc = null
 
-function timeUpdate() {
-  // iOS has a bug where the video time is reported as 0.0 during loading.
-  if (canPlayHLS && video.readyState <= 2 && currentTimeInMs() == 0) {
-    return setTimeout(timeUpdate, 100);
-  }
-  updateMetadata();
-  highPrecisionTimeUpdate = 25;
-  dispatchTimeupdate();
+function timeUpdate(_now, metadata) {
+  if (rvfc) video.cancelVideoFrameCallback(rvfc)
+  rvfc = video.requestVideoFrameCallback(timeUpdate)
 
-  if (video.paused || video.ended || Math.random() <= 0.95) return;
-  window.plausible('video-dimension', {
-    props: {
-      height: video.videoHeight
+  if (!metadata) return
+  videoTimeInMs = Math.round(metadata.mediaTime * 1000)
+  window.dispatchEvent(new CustomEvent("video:timeupdate", {
+    detail: {
+      timeInMs: videoTimeInMs
     }
+  }));
+}
+
+function maybeTimeUpdate(changedMeta) {
+  if (typeof changedMeta.start === "undefined") return
+  timeUpdate(null, {
+    mediaTime: changedMeta.start / 1000
   })
 }
 
@@ -61,17 +66,6 @@ window.addEventListener(`phx:video:autoplay`, (e) => {
   autoplay = true
   setVideo();
 })
-
-function dispatchTimeupdate() {
-  window.dispatchEvent(new CustomEvent("video:timeupdate", {
-    detail: {
-      timeInMs: currentTimeInMsFallback()
-    }
-  }));
-
-  if (highPrecisionTimeUpdate-- <= 0) return;
-  window.requestAnimationFrame(dispatchTimeupdate);
-}
 
 function markPlay() {
   window.plausible('video-play', {
@@ -84,13 +78,13 @@ function markPlay() {
 
 function markPause() {
   window.pushEvent('video-current-time', {
-    pos: Math.round(this.currentTime * 1000)
+    pos: videoTimeInMs
   })
 }
 
 function sendCurrentVideoTime(eventName) {
   window.pushEvent(eventName || 'video-current-time', {
-    pos: currentTimeInMs()
+    pos: videoTimeInMs
   })
 }
 
@@ -113,7 +107,7 @@ function attachHlsErrorHandler(obj, Hls) {
     if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
       sendCurrentVideoTime('video-fatal-hls');
-      window.videoMeta.start = currentTimeInMs();
+      window.videoMeta.start = videoTimeInMs;
       autoplay = true
       window.hls = false;
       obj.destroy();
@@ -166,8 +160,6 @@ function updateVideoElement() {
         minAutoBitrate: minAutoBitrate,
         startPosition: videoMeta.start / 1000.0,
       };
-
-      prevLevel = null;
 
       if (window.hls && window.hls.currentLevel) {
         const bwEstimate = window.hls.bandwidthEstimate;
@@ -237,13 +229,11 @@ function restorePreviousQuality() {
 }
 
 function seekToStartTime() {
-  const cur = currentTimeInMs();
-
-  if (Math.abs(cur - videoMeta.start) < 100 || prevStartGen == videoMeta.start_gen) {
+  if (Math.abs(videoTimeInMs - videoMeta.start) < 100 || prevStartGen == videoMeta.start_gen) {
     video.autoplay = autoplay;
     return;
   }
-  console.debug("seeking to", videoMeta.start, "(from ", cur,
+  console.debug("seeking to", videoMeta.start, "(from ", videoTimeInMs,
     ", gen", prevStartGen, "→", videoMeta.start_gen, ")");
   if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
@@ -332,17 +322,6 @@ function hideQualityChooser() {
   videoQuality.style.display = 'none';
 }
 
-function currentTimeInMs() {
-  if (!video) return 0;
-  return Math.round(video.currentTime * 1000);
-}
-
-function currentTimeInMsFallback() {
-  // don't trust the timestamp until the video is properly playable…
-  if (!video || video.readyState <= 1) return videoMeta.start;
-  return Math.round(video.currentTime * 1000);
-}
-
 function seekToTime(timeInMs) {
   timeInMs = Math.max(timeInMs, 0);
   const inSeconds = timeInMs / 1000.0;
@@ -356,11 +335,6 @@ function seekToTime(timeInMs) {
     })
   }
   updateProgressbar();
-}
-
-function seek(diffInMs) {
-  const have = Number.isNaN(video.duration) ? videoMeta.start * 1 : video.currentTime * 1000;
-  seekToTime(have + diffInMs)
 }
 
 function maybeShowLoadingIndicator(evt) {
@@ -388,7 +362,7 @@ function ensureVideoIsSet() {
 
 function setVideo() {
   if (autoplay) userClickPlayOnce = true;
-  if (!userClickPlayOnce) return timeUpdate();
+  if (!userClickPlayOnce) return;
 
   if (prevVideo !== videoMeta.hash) {
     prevVideo = videoMeta.hash;
@@ -406,10 +380,9 @@ const videoRecordingDateEl = document.getElementById('videoRecordingDate');
 function updateMetadata() {
   if (!videoMeta.recording_dates) return;
 
-  const timestamp = currentTimeInMsFallback();
   let text = "";
   for (let i = 0; i < videoMeta.recording_dates.length; i += 1) {
-    if (videoMeta.recording_dates[i].timestamp > timestamp) break;
+    if (videoMeta.recording_dates[i].timestamp > videoTimeInMs) break;
     text = videoMeta.recording_dates[i].text;
   }
   if (videoRecordingDateEl.textContent !== text) videoRecordingDateEl.textContent = text;
@@ -424,8 +397,8 @@ const outer = document.getElementById('videoOuter')
 const controls = document.getElementById('videoControls')
 const poster = document.getElementById('videoPoster')
 const videoOptions = document.getElementById("videoOptions")
-document.getElementById('skipBackward5').addEventListener('click', () => seek(-5000))
-document.getElementById('skipForward5').addEventListener('click', () => seek(+5000))
+document.getElementById('skipBackward5').addEventListener('click', () => seekToTime(videoTimeInMs - 5000))
+document.getElementById('skipForward5').addEventListener('click', () => seekToTime(videoTimeInMs + 5000))
 document.getElementById("reverse").addEventListener('click', reverseVideo);
 document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
 progressWrapper.addEventListener('click', seekFromProgress);
@@ -475,10 +448,8 @@ function togglePlayPause() {
 }
 
 function reverseVideo() {
-  const videoTimeMs = userClickPlayOnce ? video.currentTime * 1000 : videoMeta.start * 1;
-
   window.pushEvent('video-reverse', {
-    pos: Math.round(videoTimeMs)
+    pos: Math.round(videoTimeInMs)
   })
 }
 
@@ -491,7 +462,7 @@ function seekFromProgress(e) {
 };
 
 function updateProgressbar() {
-  const ms = Math.round(video.currentTime * 1000) || videoMeta.start;
+  const ms = videoTimeInMs;
   const max = Math.round(video.duration * 1000) || videoMeta.length_ms;
   const msText = ms2text(ms);
   const maxText = ms2text(max);
