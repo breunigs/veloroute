@@ -32,13 +32,17 @@ defmodule Data.GeoJSON do
     |> Enum.map(fn %Map.Way{nodes: nodes, tags: tags} ->
       point = Geo.LongestLineLabel.calculate(nodes)
 
+      {main, extra} = title_splitter(tags.article_title)
+
       %{
         type: "Feature",
         properties: %{
           type: :article,
           name: tags.name,
           icon: tags.article_icon,
-          title: tags.article_title
+          title: tags.article_title,
+          title_main: main,
+          title_extra: extra
         },
         geometry: %{
           type: "Point",
@@ -256,5 +260,21 @@ defmodule Data.GeoJSON do
   defp full_article_title(way) do
     type = Article.Decorators.type_name(way.tags[:article_type])
     if type, do: "#{type}: #{way.tags[:article_title]}", else: way.tags[:article_title]
+  end
+
+  defp title_splitter(title) do
+    with [main, extra] <- String.split(title, " (", parts: 2, trim: true) do
+      extra =
+        extra
+        |> String.split(" (", parts: 2)
+        |> List.last()
+        |> String.replace(["(", ")"], "")
+        |> String.replace(~r/\s+/, " ")
+        |> String.trim()
+
+      {main, extra}
+    else
+      _other -> {title, ""}
+    end
   end
 end
