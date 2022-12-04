@@ -12,13 +12,14 @@ defmodule Overpass do
   plug Tesla.Middleware.JSON
   plug TeslaCache
 
-  def akn_only_stations do
-    akn = query(station_query(@akn_operator))
-    hochbahn = query(station_query(@hochbahn_operator))
-    sbahn = query(station_query(@sbahn_operator))
+  def akn_only_stations, do: (akn_stations() -- hochbahn_stations()) -- sbahn_stations()
+  def akn_only_map_names, do: akn_only_stations() |> map_names()
 
-    (akn -- hochbahn) -- sbahn
-  end
+  def sbahn_map_names, do: sbahn_stations() |> map_names()
+
+  def sbahn_stations, do: query(station_query(@sbahn_operator))
+  def hochbahn_stations, do: query(station_query(@hochbahn_operator))
+  def akn_stations, do: query(station_query(@akn_operator))
 
   def query(data) do
     {:ok, resp} = get(@path, query: [data: data])
@@ -36,14 +37,17 @@ defmodule Overpass do
       ["match", ["get", "maki"], ["ferry"], true, false],
       "ferry",
 
-      ["match", ["get", "name"], [#{akn_map_names()}], true, false],
+      ["match", ["get", "name"], [#{akn_only_map_names()}], true, false],
       "akn",
 
       ["match", ["get", "maki"], ["", "rail-metro"], true, false],
       "de-u-bahn",
 
-      ["match", ["get", "maki"], ["rail", "rail-light"], true, false],
+      ["match", ["get", "name"], [#{sbahn_map_names()}], true, false],
       "de-s-bahn",
+
+      ["match", ["get", "maki"], ["rail", "rail-light"], true, false],
+      "rail",
 
       "dot-10"
     ]
@@ -59,10 +63,10 @@ defmodule Overpass do
       ["match", ["get", "maki"], ["bus"], true, false],
       "#5d5b5b",
 
-      ["match", ["get", "name"], [#{akn_map_names()}], true, false],
+      ["match", ["get", "name"], [#{akn_only_map_names()}], true, false],
       "#c4840e",
 
-      ["match", ["get", "maki"], ["rail", "rail-light"], true, false],
+      ["match", ["get", "name"], [#{sbahn_map_names()}], true, false],
       "hsl(140, 74%, 37%)",
 
       "hsl(230, 48%, 44%)"
@@ -80,10 +84,10 @@ defmodule Overpass do
       ["match", ["get", "maki"], ["bus"], true, false],
       "hsl(0, 0%, 79%)",
 
-      ["match", ["get", "name"], [#{akn_map_names()}], true, false],
+      ["match", ["get", "name"], [#{akn_only_map_names()}], true, false],
       "#f8bb49",
 
-      ["match", ["get", "maki"], ["rail", "rail-light"], true, false],
+      ["match", ["get", "name"], [#{sbahn_map_names()}], true, false],
       "hsl(140, 73%, 76%)",
 
       "hsl(230, 87%, 86%)"
@@ -92,8 +96,8 @@ defmodule Overpass do
     """
   end
 
-  def akn_map_names do
-    akn_only_stations()
+  def map_names(names) do
+    names
     |> Enum.map(&String.replace(&1, ~r{ \(.*}, ""))
     |> Enum.map(&"\"#{&1}\"")
     |> Enum.join(",")
