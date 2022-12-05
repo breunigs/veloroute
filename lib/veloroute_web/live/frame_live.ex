@@ -22,9 +22,7 @@ defmodule VelorouteWeb.FrameLive do
     article_summary: nil,
     search_query: nil,
     search_bounds: nil,
-    tmp_last_article_set: nil,
-    visible_types: [],
-    mapbox_style_id: Settings.mapbox_styles() |> hd() |> elem(1)
+    tmp_last_article_set: nil
   ]
 
   def initial_state, do: @initial_state
@@ -52,7 +50,6 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> update_map_bounds(attr)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
-      |> determine_visible_route_groups(article)
 
     {:noreply, socket}
   end
@@ -118,13 +115,6 @@ defmodule VelorouteWeb.FrameLive do
      |> update_url_query()}
   end
 
-  def handle_event("map-style-switch", attr, socket) do
-    Logger.debug("map-style-switch #{inspect(attr)}")
-    valid = Enum.any?(Settings.mapbox_styles(), fn {_name, id} -> id == attr["style"] end)
-    socket = if valid, do: assign(socket, :mapbox_style_id, attr["style"]), else: socket
-    {:noreply, socket}
-  end
-
   def handle_event("map-click", attr, socket) do
     # if we have an article use that, but ignore the default article (i.e. the
     # startpage) when we have a route
@@ -134,10 +124,7 @@ defmodule VelorouteWeb.FrameLive do
     current = socket.assigns.current_page
     article = article || if route && !Article.List.related?(current, route), do: route
 
-    socket =
-      socket
-      |> VelorouteWeb.Live.VideoState.maybe_update_video(route, attr)
-      |> determine_visible_route_groups(route)
+    socket = VelorouteWeb.Live.VideoState.maybe_update_video(socket, route, attr)
 
     socket =
       if article,
@@ -191,7 +178,6 @@ defmodule VelorouteWeb.FrameLive do
           socket
           |> update_map_bounds(params)
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
-          |> determine_visible_route_groups(article)
           |> maybe_autoplay(params["autoplay"] == "true")
 
     socket =
@@ -249,7 +235,6 @@ defmodule VelorouteWeb.FrameLive do
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
-    |> determine_visible_route_groups(art)
   end
 
   defp set_content(socket, _article), do: render_404(socket)
@@ -376,25 +361,6 @@ defmodule VelorouteWeb.FrameLive do
   defp blank?(""), do: true
   defp blank?(nil), do: true
   defp blank?(_), do: false
-
-  defp determine_visible_route_groups(socket, article) do
-    # from displayed video
-    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
-    video_art = find_article(track && track.parent_ref)
-
-    # from the given article (e.g. as ref on links) or the displayed one
-    show =
-      [article, find_article(socket), video_art]
-      |> Util.compact()
-      |> Enum.uniq()
-      |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
-
-    # defaults
-    show = if show == [], do: [:alltag], else: show
-    show = [:articles | show]
-
-    assign(socket, visible_types: Enum.uniq(show))
-  end
 
   defp autoplay(socket), do: maybe_autoplay(socket, true)
   defp maybe_autoplay(socket, true), do: push_event(socket, "video:autoplay", %{})

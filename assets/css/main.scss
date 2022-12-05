@@ -593,21 +593,32 @@ body.fullscreen video, #videoOuter:fullscreen video {
   }
 }
 
+$buttonSize: 1.8rem;
+$buttonOffset: 0.25rem;
+$buttonBorder: 2px;
 #layerSwitcher {
   display: none;
 
-  width: 29px;
-  height: 29px;
+  position: absolute;
+  top: calc(50% - $buttonSize - $buttonOffset - $buttonBorder);
+  left: $buttonOffset;
+  z-index: 2;
+
+  width: $buttonSize;
+  height: $buttonSize;
 
   > button {
     background-image: url("/images/layers.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 70%;
+    width: $buttonSize;
+    height: $buttonSize;
 
-    &:hover {
-      background: #bbb;
-    }
+    background-color: #fff;
+    border-radius: 0.2rem;
+    border: 0;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   }
 
   > div {
@@ -640,6 +651,10 @@ body.fullscreen video, #videoOuter:fullscreen video {
       &.active::before {
         background-image: url("/images/checkmark.svg");
         filter: brightness(0) saturate(100%);
+      }
+
+      &:hover {
+        background: #f3f3f3;
       }
     }
   }

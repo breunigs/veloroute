@@ -1,7 +1,10 @@
 defmodule Map.ReverseProxyPlug do
   @behaviour Plug
 
-  def static_style(), do: Settings.mapbox_styles() |> hd |> elem(1)
+  def static_style() do
+    %{id: id} = Enum.find(Settings.mapbox_styles(), fn %{active: active} -> active end)
+    id
+  end
 
   defmodule Massager do
     @behaviour Tesla.Middleware

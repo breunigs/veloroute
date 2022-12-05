@@ -71,7 +71,6 @@
       src={Routes.static_path(@conn, "/assets/map.js")}
       data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
       data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds)}
-      data-mapbox-styles={VelorouteWeb.VariousHelpers.mapbox_styles_to_string()}
     ></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
@@ -87,14 +86,5 @@
     <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
-    <%= if @visible_types == [:articles, :alltag] && @mapbox_style_id == Map.ReverseProxyPlug.static_style() do %>
-    <script async>
-    requestAnimationFrame(function(){
-      var mapEl = document.getElementById("map")
-      mapEl.classList.add("preview")
-      mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route.id %>"]&layer_id=route-casing-highlight')`
-    })
-    </script>
-    <% end %>
   </body>
 </html>

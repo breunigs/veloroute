@@ -1,15 +1,5 @@
 import "./search_handler"
 
-window.state = document.getElementById("control").dataset;
-
-function updateState() {
-  window.state = document.getElementById("control").dataset;
-
-  if (typeof window.mapStateChanged === "function") {
-    window.mapStateChanged();
-  }
-}
-
 let pushEventHandle = null;
 let pushEventQueued = [];
 
@@ -31,18 +21,12 @@ Hooks.control = {
     console.log("mounted");
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
 
-    updateState();
-
     if (!pushEventQueued) return;
     for (let i = 0; i < pushEventQueued.length; i++) {
       console.log("Pushing queued event ", pushEventQueued[i]);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
     pushEventQueued = null;
-  },
-
-  updated() {
-    updateState();
   }
 }
 Hooks.FocusSearchField = {

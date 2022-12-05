@@ -1,0 +1,196 @@
+defmodule VelorouteWeb.Live.Map do
+  use VelorouteWeb, :live_component
+  require Logger
+
+  def mount(socket) do
+    socket =
+      socket
+      |> assign(%{
+        styles: Settings.mapbox_styles(),
+        layers: Settings.mapbox_layers(),
+        server_route_groups: default_route_groups(),
+        initial: true
+      })
+
+    {:ok, socket}
+  end
+
+  def update(assigns, socket) do
+    socket =
+      socket
+      |> assign(assigns)
+      |> update_server_route_groups()
+      |> reset_layers_on_change()
+      |> maybe_map_preview()
+
+    {:ok, socket}
+  end
+
+  @spec render(%{:styles => any, optional(any) => any}) :: Phoenix.LiveView.Rendered.t()
+  def render(assigns) do
+    assigns = assign(assigns, :active_style_id, active_style_id(assigns))
+
+    ~H"""
+    <div>
+      <div phx-update="ignore" id={@id} data-style={@active_style_id}></div>
+
+      <%= @map_preview %>
+
+      <div id="layerSwitcher">
+        <button></button>
+        <div class="mapboxgl-ctrl-group">
+          <%= for layer <- @layers do %>
+            <button
+              value={layer.name}
+              class={"layer #{if layer.active, do: "active"}"}
+              phx-target={@myself}
+              phx-click="toggle-layer"><%= layer.name %></button>
+          <% end %>
+
+          <%= for style <- @styles do %>
+            <button
+              value={style.id}
+              class={"style #{if style.active, do: "active"}"}
+              phx-target={@myself}
+              phx-click="switch-style"><%= style.name %></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  def handle_event("toggle-layer", %{"value" => val}, %{assigns: %{layers: layers}} = socket) do
+    layers =
+      Enum.map(layers, fn %{name: name, active: active} = layer ->
+        %{layer | active: if(name == val, do: !active, else: active)}
+      end)
+
+    socket = socket |> assign(:layers, layers) |> push_changes()
+    {:noreply, socket}
+  end
+
+  def handle_event("switch-style", %{"value" => val}, %{assigns: %{styles: styles}} = socket) do
+    styles = Enum.map(styles, fn style -> %{style | active: style.id == val} end)
+    socket = socket |> assign(:styles, styles) |> push_changes()
+    {:noreply, socket}
+  end
+
+  @push_to_frontend [:layers, :styles]
+  defp push_changes(%{assigns: assigns} = socket) do
+    updates =
+      assigns
+      |> Enum.filter(fn {key, _val} ->
+        key in @push_to_frontend && updated?(socket, key)
+      end)
+      |> Enum.reduce(%{}, fn {key, val}, updates ->
+        Map.put(updates, key, val)
+      end)
+
+    # need to reapply the layer selection on style switch
+    updates =
+      if is_map_key(updates, :styles) && !default_layers?(assigns),
+        do: Map.put(updates, :layers, assigns.layers),
+        else: updates
+
+    IO.inspect("updating map params #{inspect(updates)}")
+
+    if map_size(updates) > 0,
+      do: Phoenix.LiveView.push_event(socket, :map, updates),
+      else: socket
+  end
+
+  @default_visibility Settings.mapbox_layers()
+                      |> Enum.into(%{}, fn %{name: name, active: active} ->
+                        {name, active}
+                      end)
+  defp default_layers?(assigns) do
+    Enum.all?(assigns.layers, fn %{name: name, active: active} ->
+      @default_visibility[name] == active
+    end)
+  end
+
+  @default_route_groups Settings.mapbox_layers()
+                        |> Enum.filter(fn %Layer{active: a} -> a end)
+                        |> Enum.map(fn %Layer{route_group: rg} -> rg end)
+                        |> Enum.uniq()
+  defp default_route_groups(), do: @default_route_groups
+
+  defp update_server_route_groups(socket) do
+    # from displayed video
+    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
+    video_art = Article.List.find_exact(track && track.parent_ref)
+
+    route_groups =
+      [socket.assigns.current_page, video_art]
+      |> Util.compact()
+      |> Enum.uniq()
+      |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
+
+    # always show ungrouped layers (i.e. articles)
+    route_groups = if route_groups == [], do: default_route_groups(), else: [nil | route_groups]
+    route_groups = route_groups |> Enum.uniq() |> Enum.sort()
+
+    Logger.debug("Server side layers: #{inspect(route_groups)}")
+
+    assign(socket, server_route_groups: route_groups)
+  end
+
+  defp reset_layers_on_change(socket) do
+    if updated?(socket, :server_route_groups) do
+      layers =
+        Enum.map(socket.assigns.layers, fn ll ->
+          %{ll | active: ll.route_group in socket.assigns.server_route_groups}
+        end)
+
+      socket
+      |> assign(:layers, layers)
+      |> push_changes()
+    else
+      socket
+    end
+  end
+
+  defp updated?(socket, key) do
+    Phoenix.Component.changed?(socket, key) && !Phoenix.Component.changed?(socket, :initial)
+  end
+
+  defp active_style_id(%{assigns: assigns}), do: active_style_id(assigns)
+
+  defp active_style_id(%{styles: styles}) do
+    %{id: id} = Enum.find(styles, fn %{active: active} -> active end)
+    id
+  end
+
+  defp default_style?(assigns) do
+    active_style_id(assigns) == Map.ReverseProxyPlug.static_style()
+  end
+
+  defp maybe_map_preview(%{assigns: %{map_preview: _any}} = socket), do: socket
+
+  defp maybe_map_preview(%{assigns: assigns} = socket) do
+    html =
+      if default_layers?(assigns) && default_style?(assigns) do
+        map_preview(assigns)
+      else
+        ""
+      end
+
+    assign(socket, :map_preview, html)
+  end
+
+  defp map_preview(assigns) do
+    video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
+    assigns = assign(assigns, %{video_route_id: video_route_id})
+
+    ~H"""
+      <script async>
+      requestAnimationFrame(function(){
+        var mapEl = document.getElementById("map")
+        mapEl.classList.add("preview")
+        mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route_id %>"]&layer_id=route-casing-highlight')`
+      })
+      </script>
+    """
+  end
+end

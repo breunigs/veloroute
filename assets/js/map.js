@@ -1,14 +1,12 @@
 import {
-  MapboxStyleSwitcherControl
-} from "./map_layer_switcher";
+  updateMap
+} from "./map_layer_toggler";
 
 if (!window.requestIdleCallback) {
   window.requestIdleCallback = function (x) {
     window.setTimeout(x, 0);
   }
 }
-
-window.state = document.getElementById("control").dataset;
 
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
@@ -25,7 +23,7 @@ const map = new mapboxgl.Map({
   fitBoundsOptions: fitBoundsOpt,
   minZoom: 9,
   maxZoom: 19,
-  style: 'mapbox://styles/' + state.mapboxStyleId,
+  style: 'mapbox://styles/' + document.getElementById('map').dataset.style,
   pitchWithRotate: false,
   dragRotate: false,
   touchPitch: false,
@@ -35,9 +33,14 @@ const map = new mapboxgl.Map({
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.AttributionControl(), 'top-right');
 
-const layerSwitcher = new MapboxStyleSwitcherControl(settings.mapboxStyles);
-map.addControl(layerSwitcher);
+let mapConfig = {}
+window.addEventListener("phx:map", e => {
+  console.debug("updating map config", e.detail)
+  Object.assign(mapConfig, e.detail)
+  updateMap(map, e.detail)
+});
 
+// TODO: move to settings.ex
 const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
@@ -348,29 +351,20 @@ const sendBounds = () => {
   }, 200);
 }
 
-let mapLoaded = false;
-map.on('style.load', () => {
-  runQueuedUpdate();
-  highlightRoute();
+map.on('mousemove', handleMapHover);
+map.on('click', handleMapClick);
+map.on('moveend', sendBounds);
 
-  if (mapLoaded) return;
-  mapLoaded = true;
+map.on('movestart', disableIndicatorAnimation);
+map.on('zoomstart', disableIndicatorAnimation);
 
-  map.on('mousemove', handleMapHover);
-  map.on('click', handleMapClick);
-  map.on('moveend', sendBounds);
-
-  map.on('movestart', disableIndicatorAnimation);
-  map.on('zoomstart', disableIndicatorAnimation);
-
-  // for some reason click events don't fire on iOS and potentially other touch
-  // devices
-  let simulateClick = false;
-  map.on('touchstart', () => simulateClick = true);
-  map.on('touchmove', () => simulateClick = false);
-  map.on('touchend', (evt) => {
-    if (simulateClick) handleMapClick(evt);
-  });
+// for some reason click events don't fire on iOS and potentially other touch
+// devices
+let simulateClick = false;
+map.on('touchstart', () => simulateClick = true);
+map.on('touchmove', () => simulateClick = false);
+map.on('touchend', (evt) => {
+  if (simulateClick) handleMapClick(evt);
 });
 
 map.on('load', hidePreview);
@@ -381,20 +375,26 @@ let indicatorPolyline = null
 
 window.addEventListener("phx:video_meta", e => {
   videoRoute = e.detail.route || videoRoute
-
   highlightRoute()
   updateIndicatorPolyline(e.detail.polyline)
 });
 
-function highlightRoute() {
-  if (!videoRoute || !mapLoaded) return;
+let styleLoaded = false;
+
+function highlightRoute(x) {
+  if (!videoRoute || !styleLoaded) return;
   map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
+
+map.on('style.load', () => {
+  styleLoaded = true;
+  highlightRoute()
+});
 
 function updateIndicatorPolyline(data) {
   if (!data) return
 
-  console.log("updating video polyline")
+  console.debug("updating video polyline")
   const decoded = polyline2geojson(data.polyline, data.precision);
   indicatorPolyline = {
     coords: decoded.geometry.coordinates,
@@ -563,19 +563,3 @@ window.addEventListener("video:timeupdate", (e) => {
   videoTimeInMs = e.detail.timeInMs;
   renderIndicator();
 });
-
-function runQueuedUpdate() {
-  queued = false;
-  layerSwitcher.refreshIfChanged();
-}
-
-let queued = false;
-window.mapStateChanged = () => {
-  if (queued) return;
-  queued = true;
-  // it will automatically be run once the map loads
-  if (!mapLoaded) return;
-  window.requestIdleCallback(runQueuedUpdate, {
-    timeout: 100
-  })
-}

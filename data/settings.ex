@@ -7,8 +7,48 @@ defmodule Settings do
 
   def mapbox_styles,
     do: [
-      {"Karte", "breunigs/ckvvdvpy63v3j14n2vwo7sut0"},
-      {"Satellitenbild", "breunigs/cl8ag4t3000gy14o6h8257pyo"}
+      %{name: "Karte", id: "breunigs/ckvvdvpy63v3j14n2vwo7sut0", active: true},
+      %{name: "Satellitenbild", id: "breunigs/cl8ag4t3000gy14o6h8257pyo", active: false}
+    ]
+
+  def mapbox_layers,
+    do: [
+      %Layer{
+        name: "Artikel",
+        route_group: nil,
+        active: true,
+        line: [],
+        icon: ["article-areas title"],
+        fill: ["article-areas bg"],
+        outline: ["article-areas bg outline", "article-areas bg outline dash"]
+      },
+      %Layer{
+        name: "Alltagsrouten",
+        route_group: :alltag,
+        active: true,
+        line: ["vr-line-off-p1", "vr-line-off-m1", "vr-line-off-none"],
+        icon: ["vr-oneway", "vr-sign"],
+        fill: [],
+        outline: []
+      },
+      %Layer{
+        name: "Freizeitrouten",
+        route_group: :freizeit,
+        active: false,
+        line: ["fr-line"],
+        icon: ["fr-oneway", "fr-sign", "fr-warning-icons"],
+        fill: [],
+        outline: []
+      },
+      %Layer{
+        name: "Radschnellwege",
+        route_group: :rsw,
+        active: false,
+        line: ["rsw-line"],
+        icon: ["rsw-oneway", "rsw-sign"],
+        fill: [],
+        outline: []
+      }
     ]
 
   def start_image,

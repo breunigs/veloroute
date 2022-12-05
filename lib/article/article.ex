@@ -1,7 +1,6 @@
 defmodule Article do
   @type t() :: module()
   @type color_hex() :: <<_::56>> | nil
-  @type route_group() :: :alltag | :freizeit | :rsw
   @type article_type() ::
           :construction
           | :planned
@@ -18,7 +17,7 @@ defmodule Article do
 
   @callback id() :: binary() | nil
   @callback display_id() :: binary() | nil
-  @callback route_group() :: route_group() | nil
+  @callback route_group() :: Layer.route_group() | nil
   @callback color() :: color_hex()
   @callback name() :: binary()
   @callback icon() :: :nocargo | :stau | article_type()

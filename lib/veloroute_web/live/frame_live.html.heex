@@ -1,4 +1,10 @@
-<div phx-update="ignore" id="map"></div>
+<.live_component
+  module={VelorouteWeb.Live.Map}
+  id="map"
+  map_bounds={@map_bounds}
+  video={@video}
+  current_page={@current_page}
+/>
 
 <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
   <div id="videoPoster" >
@@ -50,7 +56,7 @@
   </div>
 </div>
 
-<div id="sidebar">
+<div id="sidebar" phx-hook="control">
   <div id="switcher"><div></div></div>
   <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
   <div id="content" phx-hook="ScrollReset">
@@ -70,11 +76,6 @@
     <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
 </div>
-
-<div id="control" phx-hook="control"
-  data-visible-types={Enum.join(@visible_types, ",")}
-  data-mapbox-style-id={@mapbox_style_id}
-></div>
 
 <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
   <%

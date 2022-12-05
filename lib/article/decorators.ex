@@ -176,7 +176,7 @@ defmodule Article.Decorators do
     if bbox, do: Geo.CheapRuler.center(bbox)
   end
 
-  @spec related_route_groups(Article.t()) :: [Article.route_group()]
+  @spec related_route_groups(Article.t()) :: [Layer.route_group()]
   def related_route_groups(art) when is_module(art) do
     groups =
       art.route_group() ||
