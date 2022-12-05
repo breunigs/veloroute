@@ -10,8 +10,8 @@ window.addEventListener("phx:video_meta", e => {
   console.log("updating video meta", e.detail)
   Object.assign(videoMeta, e.detail)
   maybeUpdatePoster(e.detail)
-  maybeTimeUpdate(e.detail)
   setVideo()
+  maybeTimeUpdate(e.detail)
 });
 
 const video = document.getElementById('videoInner');
