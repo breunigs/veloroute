@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.HerbertWehnerPlatz do
   def stop(), do: ~d[2022-07-06]
   def construction_site_id_hh(), do: [21187]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["11"]
 

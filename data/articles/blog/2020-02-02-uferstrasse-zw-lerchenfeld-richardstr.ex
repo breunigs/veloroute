@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
   def start(), do: ~d[2023-03]
   def stop(), do: ~d[2023-08]
 
-  def tags(), do: ["6", "N017.1"]
+  def tags(), do: ["6", "N017.1", "FR3"]
 
   def links(_assigns) do
     [
