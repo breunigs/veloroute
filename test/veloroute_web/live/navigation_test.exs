@@ -190,8 +190,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|Freizeitroute 7 – Harburger Berge|
     # video
     assert html =~ ~s|Du folgst: Harburger Berge (FR7)|
-    # control
-    assert html =~ ~s|data-visible-types="articles,freizeit"|
+    # layer selector
+    assert_layers(html, ~w(Artikel Freizeitrouten))
 
     html =
       render_hook(view, "map-click", %{
@@ -206,8 +206,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|<h3>Alltagsroute 10</h3>|
     # video
     assert html =~ ~s|Du folgst: Alltagsroute 10|
-    # control
-    assert html =~ ~s|data-visible-types="articles,alltag"|
+    # layer selector
+    assert_layers(html, ~w(Artikel Alltagsrouten))
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
@@ -246,20 +246,20 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
 
-    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles freizeit))
+    assert_layers(html, ~w(Artikel Alltagsrouten Freizeitrouten))
 
     html =
       view
       |> element("a", "Wegbeziehung der Freizeitroute")
       |> render_click()
 
-    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles freizeit))
+    assert_layers(html, ~w(Artikel Alltagsrouten Freizeitrouten))
   end
 
   test "article without route group shows :alltag", %{conn: conn} do
     {:ok, _view, html} = live(conn, "/lexikon/kopenhagener-loesung")
 
-    assert_attribute(html, "#control", "data-visible-types", ~w(alltag articles))
+    assert_layers(html, ~w(Artikel Alltagsrouten))
   end
 
   test "all articles can be rendered in the frame", %{conn: conn} do
@@ -286,5 +286,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
     [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
     actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual
     assert expected == actual
+  end
+
+  defp assert_layers(html, want_layers) do
+    have_layers =
+      html
+      |> Floki.parse_document!()
+      |> Floki.attribute("#layerSwitcher button.layer.active", "value")
+
+    assert Enum.sort(want_layers) == Enum.sort(have_layers)
   end
 end

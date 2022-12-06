@@ -2,17 +2,19 @@ defmodule VelorouteWeb.Live.Map do
   use VelorouteWeb, :live_component
   require Logger
 
-  def mount(socket) do
-    socket =
-      socket
-      |> assign(%{
-        styles: Settings.mapbox_styles(),
-        layers: Settings.mapbox_layers(),
-        server_route_groups: default_route_groups(),
-        initial: true
-      })
+  @default_route_groups Settings.mapbox_layers()
+                        |> Enum.filter(fn %Layer{active: a} -> a end)
+                        |> Enum.map(fn %Layer{route_group: rg} -> rg end)
+                        |> Enum.uniq()
 
-    {:ok, socket}
+  @default_assigns %{
+    styles: Settings.mapbox_styles(),
+    layers: Settings.mapbox_layers(),
+    server_route_groups: @default_route_groups,
+    initial: true
+  }
+  def mount(socket) do
+    {:ok, assign(socket, @default_assigns)}
   end
 
   def update(assigns, socket) do
@@ -93,8 +95,6 @@ defmodule VelorouteWeb.Live.Map do
         do: Map.put(updates, :layers, assigns.layers),
         else: updates
 
-    IO.inspect("updating map params #{inspect(updates)}")
-
     if map_size(updates) > 0,
       do: Phoenix.LiveView.push_event(socket, :map, updates),
       else: socket
@@ -110,12 +110,6 @@ defmodule VelorouteWeb.Live.Map do
     end)
   end
 
-  @default_route_groups Settings.mapbox_layers()
-                        |> Enum.filter(fn %Layer{active: a} -> a end)
-                        |> Enum.map(fn %Layer{route_group: rg} -> rg end)
-                        |> Enum.uniq()
-  defp default_route_groups(), do: @default_route_groups
-
   defp update_server_route_groups(socket) do
     # from displayed video
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
@@ -128,7 +122,7 @@ defmodule VelorouteWeb.Live.Map do
       |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
 
     # always show ungrouped layers (i.e. articles)
-    route_groups = if route_groups == [], do: default_route_groups(), else: [nil | route_groups]
+    route_groups = if route_groups == [], do: @default_route_groups, else: [nil | route_groups]
     route_groups = route_groups |> Enum.uniq() |> Enum.sort()
 
     Logger.debug("Server side layers: #{inspect(route_groups)}")
@@ -152,7 +146,9 @@ defmodule VelorouteWeb.Live.Map do
   end
 
   defp updated?(socket, key) do
-    Phoenix.Component.changed?(socket, key) && !Phoenix.Component.changed?(socket, :initial)
+    Phoenix.Component.changed?(socket, key) &&
+      (!Phoenix.Component.changed?(socket, :initial) ||
+         socket.assigns[key] != @default_assigns[key])
   end
 
   defp active_style_id(%{assigns: assigns}), do: active_style_id(assigns)
