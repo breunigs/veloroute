@@ -174,7 +174,7 @@ const ensureIndicatorInView = (lngLat) => {
   const distIndi = center.distanceTo(lngLat);
   const isClose = distIndi <= 1.5 * distDiag;
 
-  if (!isVideoPlaying()) {
+  if (!isVideoPlaying() || !indicatorPolyline) {
     isClose
       ?
       withPreload("panTo", lngLat) :
@@ -182,12 +182,17 @@ const ensureIndicatorInView = (lngLat) => {
     return;
   }
 
-  const prev = getVideoPosition(-4 * 1000);
-  const next1 = getVideoPosition(10 * 1000);
-  const next2 = getVideoPosition(15 * 1000);
-  const bbox = new mapboxgl.LngLatBounds(lngLat, prev)
-    .extend([next1.lon, next1.lat])
-    .extend([next2.lon, next2.lat]);
+  let bbox = new mapboxgl.LngLatBounds(lngLat, lngLat)
+
+  const minMs = videoTimeInMs - 4 * 1000
+  const maxMs = videoTimeInMs + 15 * 1000
+
+  const minIndex = indicatorIndexBounds(Math.floor(minMs / indicatorPolyline.interval));
+  const maxIndex = indicatorIndexBounds(Math.floor(maxMs / indicatorPolyline.interval));
+
+  for (let i = minIndex; i <= maxIndex; i++) {
+    bbox.extend(indicatorPolyline.coords[i])
+  }
 
   map.fitBounds(bbox, {
     linear: isClose,
@@ -460,10 +465,9 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-function getVideoPosition(timeAdjustMs) {
+function getVideoPosition() {
   if (!indicatorPolyline) return;
   let currMs = videoTimeInMs
-  if (timeAdjustMs) currMs = Math.max(0, currMs + timeAdjustMs);
 
   const index = indicatorIndexBounds(Math.floor(currMs / indicatorPolyline.interval));
   let lon1;
