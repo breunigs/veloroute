@@ -229,13 +229,15 @@ defmodule Data.GeoJSON do
         roles = Enum.uniq(ways_to_rels[way.id][:roles])
         index = Enum.find_index(rels, fn rel_name -> rel_name == rel.tags[:name] end)
 
-        oneway = length(roles) == 1 && hd(roles) in ["forward", "backward"]
         offset = @offsets[{length(rels), index}] || 0
+        oneway = length(roles) == 1 && hd(roles) in ["forward", "backward"]
+        reverse = oneway && hd(roles) == "backward"
 
         tags = %{offset: offset, title: relation_titles(rels)}
         tags = if length(rels) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
         tags = if oneway, do: Map.put(tags, :oneway, true), else: tags
 
+        way = if reverse, do: Map.Way.reverse(way), else: way
         Map.Element.add_new_tags(way, tags)
       end)
     end) ++ rels_to_keep

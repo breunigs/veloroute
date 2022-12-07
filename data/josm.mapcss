@@ -121,6 +121,9 @@ relation way|z16-!.mixed::fakeoneway {
   repeat-image-opacity: 0.5;
   repeat-image-phase: 10;
 }
+relation way|z16-.rolebw!.mixed::fakeoneway {
+  repeat-image: "images/audio-back.svg";
+}
 
 way[gpx:name] {
   color: #BC129A;
