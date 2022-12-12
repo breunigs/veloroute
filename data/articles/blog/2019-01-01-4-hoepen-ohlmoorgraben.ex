@@ -12,6 +12,8 @@ defmodule Data.Article.Blog.HoepenOhlmoorgraben do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung",
+       "https://www.hamburg.de/hamburg-nord/16755674/veloroute4/"},
       {"Bezirksamt Nord zur Fertigstellung auf Twitter",
        "https://twitter.com/BezirksamtN/status/1524020686783713280"},
       {"Erläuterungsbericht und Pläne des finalen Entwurfs",
