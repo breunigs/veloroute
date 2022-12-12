@@ -184,7 +184,7 @@ defmodule VelorouteWeb.Live.Map do
       requestAnimationFrame(function(){
         var mapEl = document.getElementById("map")
         mapEl.classList.add("preview")
-        mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route_id %>"]&layer_id=route-casing-highlight')`
+        mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route_id %>"]&layer_id=route-casing')`
       })
       </script>
     """

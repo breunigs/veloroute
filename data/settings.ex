@@ -7,8 +7,8 @@ defmodule Settings do
 
   def mapbox_styles,
     do: [
-      %{name: "Karte", id: "breunigs/ckvvdvpy63v3j14n2vwo7sut0", active: true},
-      %{name: "Satellitenbild", id: "breunigs/cl8ag4t3000gy14o6h8257pyo", active: false}
+      %{name: "Karte", id: "breunigs/clbj46g53001114n25ayf1yqh", active: true},
+      %{name: "Satellitenbild", id: "breunigs/clbj5w269001514nuls82k7t7", active: false}
     ]
 
   def mapbox_layers,

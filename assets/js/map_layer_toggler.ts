@@ -23,14 +23,14 @@ type mapEventDetail = {
 }
 
 const hiddenMinZoom = 11;
-const hiddenOpacityRule = ["interpolate", ["linear"],
-  ["zoom"], hiddenMinZoom, 0, 20, 1
-];
 
-// TODO: move to settings.ex
-const layerAbove = {
-  line: "detour-line",
-  icon: "article-areas title"
+function opacityRule(active: boolean, tunnel: boolean) {
+  const opacity = tunnel ? 0.5 : 1
+  if (active) return opacity
+
+  return ["interpolate", ["linear"],
+    ["zoom"], hiddenMinZoom, 0, 20, opacity
+  ]
 }
 
 let visibleMinZooms: { [id: string]: number; } = {};
@@ -45,10 +45,11 @@ function minZoomForLayer(map: MapboxMap, layerName: string, minZoom: number): vo
 }
 
 function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive: string, active: boolean, showOnHighZoom: boolean = false): void {
-  const opacity = active ? 1 : hiddenOpacityRule;
   const minZoom = active ? 1 : hiddenMinZoom;
 
   layerNames.forEach(layerName => {
+    const isTunnel = layerName.indexOf("tunnel") >= 0
+    const opacity = opacityRule(active, isTunnel)
     minZoomForLayer(map, layerName, minZoom)
 
     const visible = active || showOnHighZoom ? "visible" : "none";
@@ -63,8 +64,8 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
     });
 
     if (active && drawPrimitive == "line" && layerName.indexOf("line") >= 0) {
-      // console.log("moving", layerName, "above", layerAbove[drawPrimitive])
-      map.moveLayer(layerName, layerAbove[drawPrimitive]);
+      const tunnel = isTunnel ? "tunnel" : "road"
+      map.moveLayer(layerName, `sort-${drawPrimitive}-${tunnel}`);
     }
   });
 }
@@ -78,6 +79,7 @@ function maybeToggleLayers(map: MapboxMap, layers: mapLayer[] | undefined) {
     updateMapPrimitive(map, layer.icon, "icon", layer.active);
     updateMapPrimitive(map, layer.outline, "line", layer.active);
     updateMapPrimitive(map, layer.line, "line", layer.active, true);
+    updateMapPrimitive(map, layer.line.map(l => `${l}-tunnel`), "line", layer.active, true);
     updateMapPrimitive(map, layer.fill, "fill", layer.active);
   }
 }

@@ -388,7 +388,7 @@ let styleLoaded = false;
 
 function highlightRoute(x) {
   if (!videoRoute || !styleLoaded) return;
-  map.setFilter('route-casing-highlight', ['==', ['get', 'route_id'], videoRoute.id])
+  map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
 map.on('style.load', () => {

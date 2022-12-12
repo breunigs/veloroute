@@ -126,7 +126,7 @@ defmodule Data.GeoJSON do
       |> Map.take([
         :name,
         :text,
-        :bridge,
+        :layer,
         :type,
         :route_group,
         :display_id,
@@ -152,7 +152,7 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
-  @relation_way_tags_to_keep [:oneway, :offset, :title, :overlap_index, :color]
+  @relation_way_tags_to_keep [:oneway, :offset, :title, :overlap_index, :color, :layer]
   defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
     art = Article.List.find_exact(r.tags.name)
 
