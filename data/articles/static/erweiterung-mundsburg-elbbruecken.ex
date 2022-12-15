@@ -10,7 +10,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
   def summary(),
     do: "Veloroutennetz soll um eine Verbindung von Mundsburg und Elbbrücken erweitert werden"
 
-  def tags(), do: []
+  def tags(), do: [id()]
 
   def links(_assigns) do
     [
