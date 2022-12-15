@@ -3,10 +3,11 @@ defmodule Geo.Smoother do
 
   @doc """
   Smooth the given polyline with sensible settings and encode it as binary
-  polyline suitable for passing to the frontend.
+  polyline suitable for passing to the frontend. The JS implementation only
+  supports precisions up to 7.
   """
   @spec polyline([Geo.Point.like()], float(), pos_integer()) :: binary()
-  def polyline(coords, interval_ms, precision) when is_list(coords) do
+  def polyline(coords, interval_ms, precision) when is_list(coords) and precision <= 7 do
     coords
     |> auto()
     |> equi_time_interval(interval_ms)
