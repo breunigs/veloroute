@@ -46,6 +46,12 @@ function timeUpdate(_now, metadata) {
   rvfc = video.requestVideoFrameCallback(timeUpdate)
 
   if (!metadata) return
+
+  // iOS has a bug where the video time is reported as 0.0 during loading
+  if (canPlayHLS && video.readyState <= 2 && metadata.mediaTime == 0) {
+    return;
+  }
+
   videoTimeInMs = Math.round(metadata.mediaTime * 1000)
   window.dispatchEvent(new CustomEvent("video:timeupdate", {
     detail: {
