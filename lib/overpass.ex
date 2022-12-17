@@ -66,6 +66,9 @@ defmodule Overpass do
       ["match", ["get", "name"], [#{akn_only_map_names()}], true, false],
       "#c4840e",
 
+      ["match", ["get", "maki"], ["", "rail-metro"], true, false],
+      "hsl(230, 48%, 44%)",
+
       ["match", ["get", "name"], [#{sbahn_map_names()}], true, false],
       "hsl(140, 74%, 37%)",
 
