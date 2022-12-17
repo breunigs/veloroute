@@ -10,7 +10,14 @@ defmodule Data.Article.Blog.Niedergeorgswerder do
   def tags(), do: ["10", "M12.1B"]
 
   def links(_assigns) do
-    []
+    [
+      {"Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260"},
+      {"Infoseite der Stadt", "noch keine Pläne für diese Maßnahme",
+       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/"},
+      {"Planungsstand Anfang Oktober 2020",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483"}
+    ]
   end
 
   def text(assigns) do
@@ -20,11 +27,9 @@ defmodule Data.Article.Blog.Niedergeorgswerder do
     <h4>Planung</h4> <p>In Teilabschnitten konnte schon eine Führungsform festgelegt werden. Bis zum <.m bounds="10.016838,53.517635,10.020905,53.521337" lon={10.019265} lat={53.519098} dir="forward" ref="10">Georgswerder Bogen</.m> wird eine Fahrradstraße ausgeschildert. Danach soll in Fahrtrichtung Süden ein rund 2,0m breiter <.ref>Hochbordradweg</.ref> anschließen. In der Gegenrichtung ist dagegen ein 1,5m breiter <.ref>Schutzstreifen</.ref> vorgesehen. Diese asymmetrische Führung ist überall dort vorgesehen, wo genug Platz ist. Dies entspricht grob den Abschnitten wo keine Wohnbebauung direkt an die Straßen grenzt.</p>
     <p>In den engen Straßenabschnitten, sprich in <.m bounds="10.017624,53.504388,10.024745,53.517183" lon={10.020185} lat={53.51651} dir="forward" ref="10">Niedergeorgswerder</.m> und in <.m bounds="10.018453,53.492909,10.027933,53.50007" lon={10.024409} lat={53.498374} dir="forward" ref="10">Kirchdorf</.m> prüft man ob eine Tempo-30-Zone mit Rechts-vor-Links eingerichtet werden darf. Der Radverkehr führe dort im <.ref>Mischverkehr</.ref>.</p>
     <h4>Meinung</h4> <p>Ohne die vollständigen Planungsunterlagen bleibt eine Bewertung schwierig. Es ist klar, das die vorgeschlagenen Änderungen die Situation des Radverkehrs ein wenig verbessern. Von Velorouten-Standard ist die Planung jedoch sehr weit entfernt, da ein nur 1,5m breiter Schutzstreifen zu gefährlichem Überholen verleiten wird. In Richtung Süden muss die Praxis zeigen ob man vom Hochbordradweg gut in die Tempo-30-Zone kommt ohne geschnitten zu werden.</p> <p>Ohne eine starke Reduzierungen des Autoverkehrs wird dieser Abschnitt immer eine mangelhafte Veloroute bleiben. Da man schon die Einrichtung von Tempo 30 entlang der Wohngebiete als problematisch ansieht, sind effektivere Maßnahmen wie Durchfahrtssperren als völlig unrealistisch einzustufen.</p>
-    <h4>Quellen</h4> <ul>
-    <li><.a href="https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260">Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)</.a></li>
-    <li><.a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/">Infoseite der Stadt</.a> (noch keine Pläne für diese Maßnahme)</li>
-    <li><.a href="https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483">Planungsstand Anfang Oktober 2020</.a></li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

@@ -12,7 +12,14 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
   def tags(), do: ["10", "M12.2"]
 
   def links(_assigns) do
-    []
+    [
+      {"Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260"},
+      {"Planungsstand Anfang Oktober 2020",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483"},
+      {"Infoseite der Stadt", "noch keine Pläne für diese Maßnahme",
+       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/veloroute-10-ausbau-veddel-wilhelmsburg/"}
+    ]
   end
 
   def text(assigns) do
@@ -22,11 +29,9 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
     <h4>Planung</h4> <p>Es ist vorgesehen je eine KFZ-Spur zu einem <.ref>Radfahrstreifen</.ref> umzuwidmen und diesen stellenweise als <.ref>Protected-Bike-Lane</.ref> auszuführen. Neben KFZ-Parkplätzen und an Bushaltestellen sind keine Schutzelemente vorgesehen; bei den Haltestellen muss der Radverkehr entweder hinter dem Bus warten oder sich in den KFZ-Verkehr einordnen.</p>
     <p>An der <.m bounds="10.013404,53.488846,10.024662,53.494314" lon={10.018595} lat={53.491694} dir="forward">Einmündung Kirchdorfer Straße</.m> bleibt der Radfahrstreifen jeweils rechts der KFZ-Spuren. In Fahrtrichtung Süden soll die Ampel so geschalten werden, das der Radverkehr sicher links abbiegen kann – also vermutlich eine eigene Ampelphase erhalten. An den Einmündungen sind zumindest teilweise sowohl <.ref>indirektes</.ref> als auch <.ref>direktes</.ref> Linksabbiegen vorgesehen.</p>
     <h4>Meinung</h4> <p>Für den Rad- und Fußverkehr wäre dieser Umbau vorteilhaft, da diese Verkehrsarten hier erstmals ordentlich getrennt werden. Das der Radweg an Bushaltestellen einfach aufhört oder die Schutzelemente nicht durchgängig vorhanden sind gehört leider zum Hamburger Standard. Eine vollständige Bewertung bleibt schwierig, da die Präsentation nur kleine Ausschnitte aus den Plänen enthält.</p>
-    <ul>
-    <li><.a href="https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260">Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)</.a></li>
-    <li><.a href="https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483">Planungsstand Anfang Oktober 2020</.a></li>
-    <li><.a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/veloroute-10-ausbau-veddel-wilhelmsburg/">Infoseite der Stadt</.a> (noch keine Pläne für diese Maßnahme)</li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

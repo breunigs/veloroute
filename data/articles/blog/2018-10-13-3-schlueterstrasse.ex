@@ -11,7 +11,16 @@ defmodule Data.Article.Blog.Schlueterstrasse do
   def tags(), do: ["3"]
 
   def links(_assigns) do
-    []
+    [
+      {"Infoseite der Stadt zur Schlüterstraße",
+       "https://www.hamburg.de/eimsbuettel/schlueterstrasse/"},
+      {"Lageplan Teil 1",
+       "https://www.hamburg.de/contentblob/11629636/62fc4ca330cd1f5ddae1071e1ba5e3f4/data/karte1-schlueterstrasse.pdf"},
+      {"Lageplan Teil 2",
+       "https://www.hamburg.de/contentblob/11629638/93d40af55f48014a892dd97311c6925f/data/karte2-schlueterstrasse.pdf"},
+      {"Lageplan Teil 3",
+       "https://www.hamburg.de/contentblob/11629644/426453acd67a3be976f0a4e3864eadde/data/karte3-schlueterstrasse.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -24,10 +33,10 @@ defmodule Data.Article.Blog.Schlueterstrasse do
 
     <p>Den Fahrradstraßen wird an vielen Stellen Vorfahrt gewährt, indem man den Gehweg fortführt. Die KFZ und Radfahrende die den Gehweg queren müssen entsprechend warten. Das ist etwa so an der <.m bounds="9.984367,53.565573,9.988528,53.568126" lon={9.986477} lat={53.56759} dir="forward" ref="3">Binderstraße</.m>, der <.m bounds="9.984367,53.565573,9.988528,53.568126" lon={9.986502} lat={53.566116} dir="forward" ref="3">Johnsallee</.m> und dem Ostteil der <.m bounds="9.984625,53.570123,9.988511,53.570325">Hartungstraße</.m> so geplant. An der <.m bounds="9.985703,53.563735,9.993431,53.564192">Moorweidenstraße</.m> endet die Fahrradstraße und es gilt wieder Rechts-vor-Links. Ebenso an der <.m bounds="9.984335,53.569425,9.986319,53.569708">Bieberstraße</.m>.</p>
 
-    <p>Die Führung bleibt im Wesentlichen so wie jetzt, allerdings werden die Parkstände besser angeordnet, sodass die Strecke aufgeräumter wirkt. Außerdem kommen 100 neue Fahrradstellplätze hinzu.</p> <p>Der Umbau ist ab Frühjahr 2020 geplant.</p> <ul>
-    <li><.a href="https://www.hamburg.de/eimsbuettel/schlueterstrasse/">Infoseite der Stadt zur Schlüterstraße</.a></li>
-    <li>Detaillierte Lagepläne, stadteinwärts: <.a href="https://www.hamburg.de/contentblob/11629636/62fc4ca330cd1f5ddae1071e1ba5e3f4/data/karte1-schlueterstrasse.pdf">Teil 1</.a>, <.a href="https://www.hamburg.de/contentblob/11629638/93d40af55f48014a892dd97311c6925f/data/karte2-schlueterstrasse.pdf">Teil 2</.a>, <.a href="https://www.hamburg.de/contentblob/11629644/426453acd67a3be976f0a4e3864eadde/data/karte3-schlueterstrasse.pdf">Teil 3</.a></li>
-    </ul>
+    <p>Die Führung bleibt im Wesentlichen so wie jetzt, allerdings werden die Parkstände besser angeordnet, sodass die Strecke aufgeräumter wirkt. Außerdem kommen 100 neue Fahrradstellplätze hinzu.</p>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

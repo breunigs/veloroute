@@ -381,6 +381,9 @@ defmodule Components.TagHelpers do
 
           ~H"<.a href={@bvhh}><%= @text %></.a> (<%= @extra %><.no_mobile>, <.allris href={@href} /></.no_mobile>)"
 
+        {text} when is_binary(text) ->
+          text
+
         other ->
           other
       end)

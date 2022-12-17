@@ -15,7 +15,14 @@ defmodule Data.Article.Blog.BlankeneseSued do
   def tags(), do: ["1", "A22"]
 
   def links(_assigns) do
-    []
+    [
+      {"Zweiter Entwurf (Bericht und Lagepläne)",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011851"},
+      {"Erster Entwurf (veraltet)",
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009667"},
+      {"Dokumentation zur 1. Infoveranstaltung (veraltet)",
+       "https://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Altona_A22_Gesamtdokumentation_mit%20Anlagen.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -38,11 +45,9 @@ defmodule Data.Article.Blog.BlankeneseSued do
     <h4>Meinung</h4> <p>Nachdem man im ersten Entwurf nur das Nötigste ausbesserte, zeigt man im zweiten Entwurf deutlich mehr Gestaltungsfreude. Die Regelung an der Eichendorffstraße entschärft nicht nur die unübersichtliche Stelle, sondern hält auch gleich den KFZ-Schleichverkehr fern. Der Abschnitt der Elbchaussee zwischen Gätgensstraße und Godeffroystraße wirkt nun ebenfalls viel sicherer.</p>
     <p>Schade ist das die Führung aus der Manteuffelstraße zum Mühlenberg umständlich bleibt. Auch die Vorfahrt am Pepers Diek hätte man entlang der Veloroute gewähren können, z.B. indem man die Gätgensstraße zu einer Fahrradstraße macht. Immerhin sortiert man hier die Parkplätze, was in der Godeffroystraße unterbleibt – die Straße wird also auch in Zukunft eher unordentlich aussehen.</p>
     <p>Bei allem Meckern: der zweite Entwurf nimmt den Radverkehr ernst und bemüht sich um attraktive Führungen. Das war beim ersten Entwurf noch nicht der Fall; das Warten hat sich also gelohnt.</p>
-    <h4>Quellen</h4> <ul>
-    <li><.a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011851">Zweiter Entwurf (Bericht und Lagepläne)</.a></li>
-    <li><.a href="https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009667">Erster Entwurf (veraltet)</.a></li>
-    <li><.a href="https://www.steg-hamburg.de/files/Projekte/Veloroute%201%20Altona/2019-01_Veloroute-Altona_A22_Gesamtdokumentation_mit%20Anlagen.pdf">Dokumentation zur 1. Infoveranstaltung (veraltet)</.a></li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

@@ -14,7 +14,14 @@ defmodule Data.Article.Blog.BramfelderUndSaselerChaussee do
   def tags(), do: ["5"]
 
   def links(_assigns) do
-    []
+    [
+      {"Änderung der Führung", "2020",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012022"},
+      {"Ausschreibung des Umbaus mit Lagenplänen", "2020",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e41d0d93-ab1f-44d6-b517-613afa373007/details"},
+      {"Lagepläne und Erläuterungsbericht zum ersten Entwurf", "2019",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010137"}
+    ]
   end
 
   def text(assigns) do
@@ -24,12 +31,9 @@ defmodule Data.Article.Blog.BramfelderUndSaselerChaussee do
     <p>Die vorliegende Umplanung ist eine Sparvariante. Statt die Wege auf gesamter Länge dem Mindeststandard anzupassen, werden nur die schlimmsten Stellen verbessert. Somit ist das Überholen von Lastenrädern praktisch nur an Ampeln oder illegal über die Fußwege möglich.</p> <p>Konkret wird in Fahrtrichtung stadtauswärts die Engstelle zwischen <.m bounds="10.082772,53.62249,10.085512,53.624122">Nüßlerkamp und der Königsberger Straße</.m> entschärft. Dort halten die Busse künftig direkt auf der Straße statt in einer Busbucht. Somit entsteht genug Platz um den Fahrradweg hinter dem Einstiegsbereich fortführen zu können.</p>
     <p>In der Saseler Chaussee, ebenfalls stadtauswärts, werden <.m bounds="10.091371,53.636828,10.096853,53.640092">zwei weitere Engstellen</.m> entschärft. Man fällt (und ersetzt) hier einige Bäume bzw. entfernt einige Parkplätze um einen durchgehenden Radweg zu ermöglichen.</p>
     <p>Die vorliegende Planung verbessert in der Tat die Situation an den schlimmsten Engstellen. Im Umkehrschluss heißt dies aber auch, das etliche Engstellen verbleiben, die den Komfort sowohl für Rad- als auch für Fußverkehr erheblich einschränken. Hinzu kommt die zu geringe Breite auf fast gesamter Länge. Besonders fragwürdig ist etwa warum die <.m bounds="10.08252,53.622386,10.08526,53.624018">Bushaltestelle Königsberger Straße</.m> nur stadtauswärts verbessert wird, wenn in Gegenrichtung exakt die gleiche Problematik herrscht. Sogar die Lösung, das der Bus auf der Straße statt in einer Busbucht hält würde hier Linderung verschaffen. Insgesamt kann ich aufgrund dieser homöopathischen Verbesserung nur den Kopf schütteln.</p>
-    <p>Umgesetzt werden soll die Maßnahme ab Herbst 2020 und ca. 9 Monate dauern.</p>
-    <ul>
-    <li><.a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012022">Änderung der Führung</.a> (2020)</li>
-    <li><.a href="https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e41d0d93-ab1f-44d6-b517-613afa373007/details">Ausschreibung des Umbaus mit Lagenplänen</.a> (2020)</li>
-    <li><.a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1010137">Lagepläne und Erläuterungsbericht zum ersten Entwurf</.a> (2019)</li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

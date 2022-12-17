@@ -337,7 +337,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   end
 
   @spec wayback(entry()) :: entry()
-  defp wayback({_method, file, url} = entry) do
+  defp wayback({_method, file, url} = entry, retry \\ 0) do
+    Process.sleep(retry * 60_000)
+
     # skip sitzungsdienst tmp URLs since they expire very quickly, so we never
     # manage to archive them anyway :(
     if !String.match?(url, ~r{sitzungsdienst.*/bi/___tmp/tmp/}) do
@@ -345,6 +347,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
              opts: [adapter: [recv_timeout: @wayback_timeout]]
            ) do
         {:ok, %{status: 302}} -> log(file, "wayback: ✓ #{url}")
+        {:ok, %{status: 429}} -> wayback(entry, retry + 1)
         {:ok, resp} -> log(file, "wayback: FAILED (#{resp.status}): #{url}")
         other -> log(file, "wayback: FAILED #{url} (#{inspect(other)})")
       end
@@ -390,6 +393,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
   defp extract({name, _extra, url}), do: List.wrap({name, url})
   defp extract({_name, _url} = entry), do: List.wrap(entry)
+  defp extract({_text}), do: []
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex),
     do: Mix.Tasks.Velo.Links.extract_links_from_heex(heex)

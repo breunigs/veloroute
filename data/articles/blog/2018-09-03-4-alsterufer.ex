@@ -14,7 +14,12 @@ defmodule Data.Article.Blog.Alsterufer do
   def tags(), do: ["4"]
 
   def links(_assigns) do
-    []
+    [
+      {"Lageplan",
+       "https://web.archive.org/web/20201201140259/https://lsbg.hamburg.de/contentblob/13755304/c54a12df525b7e9134e76fd25b14b2a3/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-planung-plan.pdf"},
+      {"Erläuterungsbericht zur Umgestaltung",
+       "https://web.archive.org/web/20201201150049/https://lsbg.hamburg.de/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -26,11 +31,9 @@ defmodule Data.Article.Blog.Alsterufer do
     <p>Nach dem Konsulat gibt es wieder die gewohnten 5,50m Breite, allerdings hat man sich hier für Parkplätze auf beiden Seiten entschieden. Begründet wird dies mit Parkplatzerhalt und da die Ruderclubs die Sicht auf die Alster bereits teilweise versperren.</p>
     <p>An der <.m bounds="9.991354,53.556757,9.999662,53.561705" ref="4">Alsterterrasse</.m> endet die Fahrradstraße, wobei der Radverkehr hier trotzdem Vorfahrt eingeräumt bekommen soll. Im Anschluss wird provisorisch an die vorhandenen Radwege angeschlossen – der Vollumbau soll während der <.a name="2019-04-10-4-kreuzung-neuer-jungfernstieg">Umgestaltung der Kreuzung</.a> erfolgen. Auf <.m bounds="9.990369,53.55582,9.999211,53.561086" ref="4">Höhe der Kurve</.m> wird durch eine Querungshilfe und kurzes Radweg-Verbindungsstück die Weiterfahrt über die Kennedybrücke ermöglicht.</p>
     <p>Man merkt, das Hamburg die westliche Alster-Fahrradachse zum Aushängeschild machen möchte. Klar, die Engstelle vor dem Konsulat ist ärglich, aber der Stadt nicht vorzuwerfen. Ansonsten muss man Mängel schon sehr genau suchen – etwa sind die Längsparkplätze im südlichen Teil ohne Sicherheitsabstände geplant, was beim Unachtsamen öffnen von Autotüren ein Problem werden kann. Ansonsten stimmt die Planung aber. </p>
-    <h4>Quellen</h4> <ul>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/13755304/c54a12df525b7e9134e76fd25b14b2a3/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-planung-plan.pdf">Lageplan</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/13755298/d33e2da7b9eb51fe531ac4d903c9e8d8/data/alster-farradachse-alsterufer-von-fontenay-bis-alsterglacis-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14651304/c444a56cab61e638b16c9be034bc7cde/data/alster-fahrradachsen-fontenay-bis-alsterglacis-11-20-bis-06-21.pdf">Flugblatt zur Baustelle (vom 19.11.2020)</.a></li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

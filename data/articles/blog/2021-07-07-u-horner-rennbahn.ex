@@ -14,7 +14,11 @@ defmodule Data.Article.Blog.UHornerRennbahn do
   def tags(), do: ["8"]
 
   def links(_assigns) do
-    []
+    [
+      {"Infoseite der Hochbahn zur U4 Horner Geest",
+       "https://www.schneller-durch-hamburg.de/u4-horner-geest"},
+      {"E-Mail Austausch mit der Polizei Hamburg (nicht öffentlich)"}
+    ]
   end
 
   def text(assigns) do
@@ -26,10 +30,9 @@ defmodule Data.Article.Blog.UHornerRennbahn do
     <li>In Richtung Innenstadt quert man die Kreuzung zunächst normal und schiebt dann das Rad ein Stück die Rennbahnstraße hoch. An der Einmündung der Nebenstraße kann man wieder aufsteigen.</li>
     </ul>
     <h4>Meinung</h4> <p>Der Umleitung lässt sich gut folgen und die Schiebestrecke am <.m bounds="10.081105,53.550073,10.088175,53.551692">Pagenfelder Platz</.m> ist kürzer als die durch die Baustelle. Aufwendigere Maßnahmen um eine durchgehende Fahrt zu ermöglichen werden von der Polizei Hamburg mit Verweis auf die Verhältnismäßigkeit abgelehnt. Dies ist auf einer Hauptstrecke inakzeptabel, insbesondere da die Bauzeit mehrere Jahre beträgt.</p>
-    <h4>Quelle</h4> <ul>
-    <li><.a href="https://www.schneller-durch-hamburg.de/u4-horner-geest">Infoseite der Hochbahn zur U4 Horner Geest</.a></li>
-    <li>E-Mail Austausch mit der Polizei Hamburg (nicht öffentlich)</li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

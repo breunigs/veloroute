@@ -28,8 +28,7 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
 
   def links(_assigns) do
     [
-      {"Online-Beteiligung auf Seite der Stadt",
-       "https://mobilwandel2035.beteiligung.hamburg/dipas/#/"}
+      {"Infoseite der Stadt", "https://www.hamburg.de/bvm/mobilwandel2035/"}
     ]
   end
 
@@ -37,7 +36,7 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
     ~H"""
     <p>Die Stadt bittet um Beteiligung zur zukünftigen Gestaltung der Luruper Hauptstraße. Das Projekt firmiert unter dem Titel „Mobilwandel 2035“ und wird vom Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit mitgetragen. Ziel sei die Luruper Hauptstraße fit für den Klimawandel zu machen und ihre Aufenthaltsqualität zu erhöhen. Mögliche Lösungen könnten dann auch auf ähnliche Straßen übertragen werden.</p>
 
-    <p>Die Stadt hat dazu eine Seite eingerichtet, auf der schriftliche Beiträge bis 31.03.2022 eingereicht werden können:</p>
+    <p>Die Stadt hatte dazu eine Seite eingerichtet, auf der schriftliche Beiträge bis 31.03.2022 eingereicht werden konnten.</p>
 
     <.structured_links/>
     """

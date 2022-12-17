@@ -9,7 +9,12 @@ defmodule Data.Article.Blog.HammerStrasse do
   def tags(), do: ["radfahrstreifen", "bettelampel", "articles"]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/contentblob/14873580/2e15aa1daa468d525066d61607ef09fc/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"},
+      {"Lageplan",
+       "https://lsbg.hamburg.de/contentblob/14873568/e8f1cbf923603ceaa61db8061c4c0ab3/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -29,10 +34,7 @@ defmodule Data.Article.Blog.HammerStrasse do
     <p>Das keine Protected-Bike-Lane eingerichtet werden kann ist zwar schade, aber verständlich.</p>
 
     <h4>Quelle</h4>
-    <ul>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14873580/2e15aa1daa468d525066d61607ef09fc/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14873568/e8f1cbf923603ceaa61db8061c4c0ab3/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan.pdf">Lageplan</.a></li>
-    </ul>
+    <.structured_links/>
     """
   end
 end

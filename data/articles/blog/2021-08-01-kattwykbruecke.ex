@@ -13,7 +13,12 @@ defmodule Data.Article.Blog.Kattwykbruecke do
   def tags(), do: ["FR14"]
 
   def links(_assigns) do
-    []
+    [
+      {"Verkehrsmeldungen der HPA",
+       "https://www.hamburg-port-authority.de/de/info-port/traffic-tower"},
+      {"Zeitungsartikel",
+       "https://www.abendblatt.de/wirtschaft/article232927985/kattwykbruecke-hamburg-hafen-hpa-eisenbahn-sperrung.html"}
+    ]
   end
 
   def text(assigns) do
@@ -25,10 +30,7 @@ defmodule Data.Article.Blog.Kattwykbruecke do
     <p>An der neuen Kattwykbrücke sind Mängel festgestellt worden, sodass diese momentan außer Betrieb ist. Sie ist für alle Verkehrsarten außer dem Schiffsverkehr voll gesperrt. Zur Wartungsdauer macht die Hamburg Port Authority (HPA) unterschiedliche Angaben: optimistisch sind bis Ende August 2021, pessimistisch bis Ende November.</p>
 
     <h4>Quelle</h4>
-    <ul>
-    <li><.a href="https://www.hamburg-port-authority.de/de/info-port/traffic-tower">Verkehrsmeldungen der HPA</.a></li>
-    <li><.a href="https://www.abendblatt.de/wirtschaft/article232927985/kattwykbruecke-hamburg-hafen-hpa-eisenbahn-sperrung.html">Zeitungsartikel [€]</.a></li>
-    </ul>
+    <.structured_links/>
     """
   end
 end

@@ -12,7 +12,15 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
   def tags(), do: ["8"]
 
   def links(_assigns) do
-    []
+    [
+      {"Infoseite der Stadt zum Ausbau der Veloroute 8",
+       "„Sichere Querungen an der Adenauerallee und dem Nagelsweg“",
+       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/"},
+      {"Hinweise der Polizei zur Unfallhäufung",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1011801"},
+      {"Umbau des Zentralparks",
+       "http://root.urbanista.de/deinegeest_blog/2021/01/21/bauarbeiten-am-zentralpark-beginnen/"}
+    ]
   end
 
   def text(assigns) do
@@ -21,13 +29,9 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
     <h4>Planung</h4> <p>Zusammen mit der Umgestaltung des St. Georg Zentralparks sollen an beiden Stellen auch Querungsmöglichkeiten für den Fußverkehr geschaffen werden. Die Ampel am Nagelsweg wird entsprechend umgebaut. Bei der Adenauerallee wird eine Gehwegüberfahrt hergestellt um die geltenden Vorfahrtsregeln zu verdeutlichen und Autofahrende zu mäßiger Geschwindigkeit anzuhalten.</p>
     <h4>Meinung</h4> <p>Der eigentlich nur für Fahrtrichtung Osten gedachte Radweg wird in der Praxis wie ein gemeinsamer Rad- und Fußweg in beide Richtungen verwendet. Es war überfällig die Querung des Nagelwegs in beide Richtungen zu erlauben.</p>
     <p>Die Planung sah zunächst keine Änderung an der Gefahrenstelle Adenauerallee vor – obwohl sich Bürgerschaft, Straßenverkehrsbehörde und Polizei einig waren, das diese Stelle eine Umgestaltung erfordert. Es ist traurig, das man die Sicherheit von Rad- und Fußverkehr ignorierte, nur um dem Autoverkehr einen minimalen Vorteil zu verschaffen.</p>
-    <h4>Quelle</h4> <ul>
-    <li>
-    <.a href="https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/">Infoseite der Stadt zum Ausbau der Veloroute 8</.a> („Sichere Querungen an der Adenauerallee und dem Nagelsweg“)
-    </li>
-    <li><.a href="https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1011801">Hinweise der Polizei zur Unfallhäufung</.a></li>
-    <li><.a href="http://root.urbanista.de/deinegeest_blog/2021/01/21/bauarbeiten-am-zentralpark-beginnen/">Umbau des Zentralparks</.a></li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end

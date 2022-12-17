@@ -44,7 +44,12 @@ defmodule Data.Article.Blog.HammerLandstrasse do
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/contentblob/14463994/d3162e0fa0e762030f648c2692a20272/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-bericht.pdf"},
+      {"Pläne des ersten Entwurfs",
+       "https://lsbg.hamburg.de/contentblob/14463996/ff7ce1faeac27fdfb4fbd5211c19ef76/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-plan.pdf"}
+    ]
   end
 
   def text(assigns) do
@@ -57,10 +62,9 @@ defmodule Data.Article.Blog.HammerLandstrasse do
     <h4>Meinung</h4> <p>Man hat sich im Vorfeld ordentlich damit befasst, ob man eine KFZ-Spur entfernen kann, um dem Rad- und Fußverkehr mehr Komfort zu ermöglichen. Leider hat man sich dagegen entschieden, weil man den Komfort für KFZ höher bewertet.</p>
     <p>Der erste Entwurf folgt im Wesentlichen dem Hamburger Standard und bietet daher eine solide Grundlage, aber auch kaum Überraschungen. Probleme dieses Modells, wie der geringe Sicherheitsabstand zu den fahrenden und parkenden KFZ bleiben erhalten, ebenso der häufig als „Angstweiche“ verspottete Radfahrstreifen in Mittellage am <.m bounds="10.0633,53.553292,10.06704,53.554414" lon={10.0647776} lat={53.5539221} dir="forward">Wichernsweg</.m>. Schade ist auch, das nicht überall links abgebogen werden kann, oder nur durch Absteigen über den Fußweg.</p>
     <p>Unterm Strich wird Radfahren hier deutlich angenehmer, bleibt aber weit hinter den Möglichkeiten zurück. Wer es lieber etwas ruhiger mag, findet mit der grob parallel verlaufenden <.m bounds="10.038495,53.546434,10.094111,53.559319">Veloroute 8</.m> möglicherweise eine Alternative.</p>
-    <h4>Quellen</h4> <ul>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14463994/d3162e0fa0e762030f648c2692a20272/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-bericht.pdf">Erläuterungsbericht</.a></li>
-    <li><.a href="https://lsbg.hamburg.de/contentblob/14463996/ff7ce1faeac27fdfb4fbd5211c19ef76/data/hammer-landstrasse-horner-landstrasse-zwischen-diagonalstrasse-und-culinstrasse-abstimmungsunterlage-plan.pdf">Pläne des ersten Entwurfs</.a></li>
-    </ul>
+
+    <h4>Quelle</h4>
+    <.structured_links/>
     """
   end
 end
