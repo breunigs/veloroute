@@ -46,6 +46,8 @@ defmodule Data.Article.Blog.VolksdorferDamm do
 
   def links(_assigns) do
     [
+      {"Projekt ruht", "Dezember 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017835"},
       {"Unterlagen 1. Entwurf", "2020",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017174"}
     ]

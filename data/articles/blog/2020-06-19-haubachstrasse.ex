@@ -5,8 +5,6 @@ defmodule Data.Article.Blog.Haubachstrasse do
   def updated_at(), do: ~D[2020-08-10]
   def title(), do: "Haubachstraße (Veloroute 13)"
 
-  def start(), do: ~d[2022]
-
   def type(), do: :planned
 
   def tags(), do: ["13"]
