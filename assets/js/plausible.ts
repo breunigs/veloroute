@@ -50,4 +50,6 @@ if (window.history.pushState) {
   window.addEventListener('popstate', page)
 }
 
+window.addEventListener("plausible", e => window.plausible((e as CustomEvent).detail.event))
+
 page()

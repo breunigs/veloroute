@@ -72,7 +72,6 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
 function maybeToggleLayers(map: MapboxMap, layers: mapLayer[] | undefined) {
   if (!layers) return
-  window.plausible('toggleLayer')
   console.log("toggling map layer")
 
   for (const layer of layers) {
