@@ -85,3 +85,21 @@
   %>
   <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
 <% end %>
+
+<%= if @article_original_date != nil do %>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content={Date.to_iso8601(@article_original_date)}/>
+  <meta property="datePublished" content={Date.to_iso8601(@article_original_date)}>
+<% end %>
+<%= if @article_date != nil do %>
+  <meta property="article:modified_time" content={Date.to_iso8601(@article_date)}/>
+  <meta property="dateModified" content={Date.to_iso8601(@article_date)}/>
+<% end %>
+<%= %>
+<meta property="og:title" content={@article_title}/>
+<%= if @article_summary != nil && @article_summary != "" do %>
+  <meta property="og:description" content={@article_summary}/>
+<% end %>
+<meta property="og:site_name" content={Settings.sitebar_name()}/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} />
