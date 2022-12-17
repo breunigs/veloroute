@@ -354,10 +354,10 @@ defmodule Components.TagHelpers do
       end)
       |> Enum.map(fn
         {text, "https://web.archive.org/" <> _rest = href, nil, bvhh} ->
-          {text, href, "Archiv", bvhh}
+          {text, maybe_direct_link_archive(href), "Archiv", bvhh}
 
         {text, "https://web.archive.org/" <> _rest = href, extra, bvhh} ->
-          {text, href, "Archiv, #{extra}", bvhh}
+          {text, maybe_direct_link_archive(href), "Archiv, #{extra}", bvhh}
 
         other ->
           other
@@ -392,6 +392,16 @@ defmodule Components.TagHelpers do
       0 -> ~H""
       1 -> ~H{<p><%= hd(@links) %></p>}
       _ -> ~H{<ul><%= for link <- @links do %><li><%= link %></li><% end %></ul>}
+    end
+  end
+
+  defp maybe_direct_link_archive("https://web.archive.org/" <> _rest = href) do
+    if(String.ends_with?(href, ".pdf")) do
+      href
+      |> String.replace("/https://", "if_/https://")
+      |> String.replace("/http://", "if_/http://")
+    else
+      href
     end
   end
 
