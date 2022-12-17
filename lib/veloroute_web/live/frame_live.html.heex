@@ -100,6 +100,4 @@
 <%= if @article_summary != nil && @article_summary != "" do %>
   <meta property="og:description" content={@article_summary}/>
 <% end %>
-<meta property="og:site_name" content={Settings.sitebar_name()}/>
-<meta property="og:image:width" content="1280"/>
 <meta property="og:image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} />

@@ -140,8 +140,12 @@ defmodule Data.Article.Static.Alltagsroute10 do
         <td><.m bounds="9.8193917,53.4747242,9.8194917,53.4748242">Fischbek</.m></td>
       </tr>
       <tr>
-        <td></td>
-        <td class="dir"><.m bounds="9.7264034,53.3644242,9.8618269,53.5053032">(Neu Wulmstorf)</.m></td>
+        <td>
+          <.icon name="rsw-stade" bounds="9.690203,53.461829,9.857113,53.485878" lon={9.845019} lat={53.475031} dir="forward">RSW</.icon>
+        </td>
+        <td>
+          <.m bounds="9.690203,53.461829,9.857113,53.485878" lon={9.845019} lat={53.475031} dir="forward" ref="rsw-stade">Neu Wulmstorf</.m>
+        </td>
       </tr>
     </table>
 

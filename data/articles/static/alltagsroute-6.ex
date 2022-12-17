@@ -158,8 +158,12 @@ defmodule Data.Article.Static.Alltagsroute6 do
         <td><.m bounds="10.1368101,53.6342243,10.1988518,53.6760647">Volksdorf</.m></td>
       </tr>
       <tr>
-        <td></td>
-        <td class="dir"><.m bounds="10.1699771,53.6333794,10.3156737,53.7051402">(Ahrensburg)</.m></td>
+        <td>
+          <.icon name="rsw-ahrensburg" bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward">RSW</.icon>
+        </td>
+        <td>
+          <.m bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward" ref="rsw-ahrensburg">Ahrensburg</.m>
+        </td>
       </tr>
     </table>
 
