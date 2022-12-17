@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.UppenhofUndEulenkrugstrasse do
     die reduzierte Geschwindigkeit zu einem angenehmeren Verkehrsfluss, weil Autofahrende
     weniger häufig zwanghaft überholen. Im Gegenzug gilt an den Nebenstraßen <.m bounds="10.16125,53.646706,10.163987,53.647853">Groten Hoff</.m> und der <.m bounds="10.163081,53.648625,10.167434,53.651929">Claus-Ferck-Straße</.m> Rechts-vor-Links, was dem Radverkehr
     nicht unbedingt dienlich ist.</p>
-    <p>Konkrekt umgebaut wird aber nur die <.m bounds={to_string(Geo.CheapRuler.center_zoom_to_bounds(%{lat: 53.646625, lon: 10.160273, zoom: 17}))}>Einmündung zur Eulenkrugstraße</.m>. Richtung Volksdorf wird nach der
+    <p>Konkrekt umgebaut wird aber nur die <.m bounds="10.157532,53.644993,10.163014,53.648257">Einmündung zur Eulenkrugstraße</.m>. Richtung Volksdorf wird nach der
     Aufleitung unter der Bahnbrücke ein 1,5m breiter Schutzstreifen bis nach der Einmündung
     angelegt. Außerdem wird eine Querungshilfe in Form einer kleinen Verkehrsinsel gebaut,
     sodass die Eulenkrugstraße in zwei Zügen gequert werden kann. Wer so Linksabbiegen
