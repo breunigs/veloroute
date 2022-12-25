@@ -44,6 +44,12 @@ defmodule ArticleTest do
   end
 
   test "articles with structured links use the tag" do
+    render = fn art, gpx ->
+      %{current_page: art, gpx: gpx}
+      |> Components.TagHelpers.structured_links()
+      |> Util.render_heex()
+    end
+
     missing_tag =
       Article.List.all()
       |> Enum.filter(fn art -> length(art.links(%{})) > 0 end)
@@ -51,16 +57,7 @@ defmodule ArticleTest do
         # don't know how to get the raw, so check the render instead
         html = Article.Decorators.html(art)
 
-        check = fn url ->
-          url = String.replace(url, "&", "&amp;")
-          String.contains?(html, url)
-        end
-
-        Enum.all?(art.links(%{}), fn
-          {_name, _extra, url} -> check.(url)
-          {_name, url} -> check.(url)
-          _ -> true
-        end)
+        String.contains?(html, render.(art, false)) || String.contains?(html, render.(art, true))
       end)
 
     assert [] == missing_tag

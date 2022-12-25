@@ -631,3 +631,6 @@
 - "/contentblob/16763904/fc6d05e36eac3b3347c1928d5ad75c4b/data/louis-braille-platz-abstimmungsunterlage-plan.pdf"
 - "/contentblob/16763780/a62680f82da4b049e75711e2539f36bb/data/graf-johann-weg-veloroute-14-10-22-bis-03-23-sperrung-12-22.pdf"
 - "/contentblob/16763884/009df9fa68d435529fd2a79c9393f9f6/data/kaiser-wilhelm-strasse-%E2%80%93-massnahmen-stromnetz-%E2%80%93-11-22-bis-07-23.pdf"
+'2022-12-24':
+- "/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"
+- "/contentblob/16792718/3ad6670547aa0f97cb1740e5b3aa3d59/data/graf-johann-weg-veloroute-14-aktueller-stand-12-2022.pdf"

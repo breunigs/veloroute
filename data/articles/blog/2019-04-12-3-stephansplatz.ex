@@ -54,7 +54,7 @@ defmodule Data.Article.Blog.Stephansplatz do
     <li><.m bounds="9.987216,53.557897,9.989182,53.558689">Führung durch den Bushalt im Gorch-Fock-Wall</.m>: Die Planung führt ausschließlich die geringe Anzahl an Bussen als Argument an. Warum der Bus Richtung Hauptbahnhof nicht wie bisher auf einer KFZ-Spur halten kann wird nicht erläutert.</li>
     </ul>
 
-    <h4>Quellen</h4>
+    <h4>Quelle</h4>
     <.structured_links/>
     """
   end
