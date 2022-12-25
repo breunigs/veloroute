@@ -2,6 +2,13 @@ defmodule Push.Sendout do
   require Logger
 
   @spec send_all([Article.t()], dry_run :: boolean()) :: :ok | {:error, [binary()]}
+
+  def send_all(articles, dry_run)
+
+  def send_all([], _dry_run) do
+    Logger.info("Push: no sendout needed, as no articles were given")
+  end
+
   def send_all(articles, dry_run) do
     {okays, fails, errors} =
       Enum.reduce(Push.Subscription.list(), {0, 0, []}, fn sub, {okays, fails, errors} ->
@@ -11,7 +18,7 @@ defmodule Push.Sendout do
         end
       end)
 
-    Logger.info("Finished sendout. #{okays} subscriptions were fine, #{fails} had issues")
+    Logger.info("Push: Finished sendout. #{okays} subscriptions were fine, #{fails} had issues")
     if fails == 0, do: :ok, else: {:error, errors}
   end
 
@@ -22,6 +29,10 @@ defmodule Push.Sendout do
       subscription
       |> relevant_articles(articles)
       |> Enum.map(&Push.Notification.for_article/1)
+
+    Logger.info(
+      "Push: sending #{length(notifications)} to #{Push.Subscription.ident(subscription)}"
+    )
 
     errors =
       Enum.reduce(notifications, [], fn art, errors ->
@@ -38,7 +49,7 @@ defmodule Push.Sendout do
 
       errors ->
         msg = """
-        failed to send #{length(errors)} out of #{length(notifications)} notifications"
+        Push: failed to send #{length(errors)} out of #{length(notifications)} notifications"
           ident: #{Push.Subscription.ident(subscription)}
           errors: #{inspect(errors)}
         """
