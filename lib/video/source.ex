@@ -88,7 +88,9 @@ defmodule Video.Source do
         %Video.TimedPoint{
           time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
           lat: point.lat,
-          lon: point.lon
+          lon: point.lon,
+          gpx_ele: point.ele,
+          gpx_time: point.time
         }
       end)
       |> assert_monotonic_increase(self)
@@ -218,7 +220,7 @@ defmodule Video.Source do
     ms
   end
 
-  @typep gpx_point :: %{lat: float(), lon: float(), time: NaiveDateTime.t()}
+  @typep gpx_point :: %{lat: float(), lon: float(), time: NaiveDateTime.t(), ele: float() | nil}
   @spec parse_gpx(t()) :: [gpx_point] | {:error, binary()}
   defp parse_gpx(%__MODULE__{source: source, available_gpx: true}) do
     gpx_path = Video.Path.gpx(source)
@@ -245,7 +247,8 @@ defmodule Video.Source do
       %{
         lat: trkpt |> xpath(~x"./@lat"f),
         lon: trkpt |> xpath(~x"./@lon"f),
-        time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date
+        time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date(),
+        ele: trkpt |> xpath(~x"./ele/text()"s) |> parse_gpx_ele()
       }
     end)
     |> Enum.reduce_while([], fn
@@ -279,6 +282,14 @@ defmodule Video.Source do
         else: parsed
 
     parsed
+  end
+
+  @spec parse_gpx_ele(binary()) :: float | nil
+  defp parse_gpx_ele(ele) do
+    case Float.parse(ele) do
+      {float, ""} -> float
+      _other -> nil
+    end
   end
 
   defp date_from_path(source_path) do

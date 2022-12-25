@@ -261,7 +261,7 @@ defmodule Video.Rendered do
       %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
 
       iex> Video.Rendered.start_from(Video.RenderedTest.Example, 124)
-      %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124}
+      %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124, gpx_ele: nil, gpx_time: nil}
   """
   def start_from(rendered, point_or_time)
 
