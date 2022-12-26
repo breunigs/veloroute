@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Lombardsbruecke do
   def stop(), do: ~d[2022-09-30]
   def construction_site_id_hh(), do: [12465]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["1GR", "FR1"]
 
