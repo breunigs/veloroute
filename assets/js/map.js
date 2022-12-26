@@ -41,7 +41,14 @@ window.addEventListener("phx:map", e => {
 });
 
 // TODO: move to settings.ex
-const routeLayers = ['vr-line-off-none', 'vr-line-off-p1', 'vr-line-off-m1', 'fr-line', 'rsw-line', 'extra-line'];
+const routeLayers = [
+  'vr-line-off-none', 'vr-line-off-none-tunnel',
+  'vr-line-off-p1', 'vr-line-off-p1-tunnel',
+  'vr-line-off-m1', 'vr-line-off-m1-tunnel',
+  'fr-line', 'fr-line-tunnel',
+  'rsw-line', 'rsw-line-tunnel',
+  'extra-line'
+];
 const articleLayers = ['article-areas title', 'article-areas bg'];
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers),
