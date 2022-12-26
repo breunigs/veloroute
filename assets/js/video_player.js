@@ -80,12 +80,14 @@ function markPlay() {
     }
   })
   autoplay = false
+  current.setAttribute("phx-update", "ignore")
 }
 
 function markPause() {
   window.pushEvent('video-current-time', {
     pos: videoTimeInMs
   })
+  current.setAttribute("phx-update", "")
 }
 
 function sendCurrentVideoTime(eventName) {
