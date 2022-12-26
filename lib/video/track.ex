@@ -189,7 +189,7 @@ defmodule Video.Track do
 
   @fade_frames 8
   @spec default_fade :: float
-  defp default_fade() do
+  def default_fade() do
     @fade_frames / Video.Source.fps()
   end
 

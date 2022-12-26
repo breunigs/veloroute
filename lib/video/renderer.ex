@@ -43,6 +43,30 @@ defmodule Video.Renderer do
       ]
   end
 
+  @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
+  def adhoc_cmd(sources) when is_list(sources) do
+    blurs = blurs(sources)
+    xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
+    filter = Enum.join(blurs ++ xfades, ";")
+
+    ["nice", "-n15", "ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
+      inputs(sources) ++
+      [
+        "-filter_complex",
+        filter,
+        "-pix_fmt",
+        "yuv420p",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "ultrafast",
+        "-qp",
+        "17",
+        "-an",
+        "adhoc.mp4"
+      ]
+  end
+
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.exec_result()
   def render(rendered) do
     ensure_min_version(rendered)
@@ -205,9 +229,11 @@ defmodule Video.Renderer do
     end
   end
 
-  defp inputs(rendered) do
+  defp inputs(rendered) when is_module(rendered), do: inputs(rendered.sources())
+
+  defp inputs(sources) when is_list(sources) do
     ["-hwaccel", "auto", "-re"] ++
-      Enum.flat_map(rendered.sources(), fn {path, from, to} ->
+      Enum.flat_map(sources, fn {path, from, to} ->
         from = if from in [:start, :seamless], do: [], else: ["-ss", from]
         to = if to == :end, do: [], else: ["-to", to]
 
@@ -218,8 +244,10 @@ defmodule Video.Renderer do
   # uses the jsonblur frei0r plugin for the input videos (e.g. [0]) and outputs
   # them as blrs (e.g. [blur0]). Additionally it sets the timebase, see settb
   # for details.
-  defp blurs(rendered) do
-    rendered.sources()
+  defp blurs(rendered) when is_module(rendered), do: blurs(rendered.sources())
+
+  defp blurs(sources) when is_list(sources) do
+    sources
     |> Enum.with_index()
     |> Parallel.map(2, fn {{path, from, _to}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
@@ -265,14 +293,17 @@ defmodule Video.Renderer do
   # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
   # ("seamless") them as needed. It outputs a single, unnamed video at the end
   # of the filter graph.
-  defp xfades(rendered) do
-    fade = Video.Track.fade(rendered.renderer())
-    count = length(rendered.sources())
+
+  defp xfades(rendered),
+    do: xfades(rendered.sources(), Video.Track.fade(rendered.renderer()), rendered.hash())
+
+  defp xfades(sources, fade, hash) do
+    count = length(sources)
 
     if count == 1 do
       ["[blur0]copy"]
     else
-      rendered.sources()
+      sources
       |> Enum.with_index()
       |> Parallel.map(2, fn {{path, from, to}, idx} ->
         start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
@@ -283,7 +314,7 @@ defmodule Video.Renderer do
         if segment_fade >= segment_duration,
           do:
             raise(
-              "hash=#{rendered.hash()} segment=#{idx} is #{segment_duration}s long, but segment fade is #{segment_fade}s. Reduce the fade duration or change the segment."
+              "hash=#{hash} segment=#{idx} is #{segment_duration}s long, but segment fade is #{segment_fade}s. Reduce the fade duration or change the segment."
             )
 
         {segment_duration, idx, segment_fade}
