@@ -27,12 +27,12 @@ defmodule VelorouteWeb.CSSInline do
   @css %{:app => load.(:app)}
   @known Map.keys(@css)
 
-  def tag(conn, name) when name in @known do
-    @css[name] || fallback(conn, name)
+  def tag(name) when name in @known do
+    @css[name] || fallback(name)
   end
 
-  defp fallback(conn, name) do
-    assigns = %{url: VelorouteWeb.Router.Helpers.static_path(conn, "/assets/#{name}.css")}
+  defp fallback(name) do
+    assigns = %{url: "/assets/#{name}.css"}
 
     ~H"""
     <link rel="stylesheet" href={@url}/>

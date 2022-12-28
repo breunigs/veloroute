@@ -1,75 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, viewport-fit=cover"/>
-    <title><%= assigns[:page_title] || Settings.page_title_long() %></title>
-    <%= csrf_meta_tag() %>
-    <link rel="canonical" href={Settings.url() <> @conn.request_path}/>
 
-    <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
-    <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
-    <link rel="icon" type="image/png" size="48x48" href="/favicons/48.png?vsn=1">
-    <link rel="icon" type="image/png" size="192x192" href="/favicons/192.png?vsn=1">
-    <link rel="apple-touch-icon" href="/favicons/57.png?vsn=1">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/152.png?vsn=1">
-    <link rel="apple-touch-icon" sizes="167x167" href="/favicons/167.png?vsn=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/180.png?vsn=1">
-    <link rel="apple-touch-startup-image" href="/favicons/192.png?vsn=1">
-    <link rel="manifest" href="/favicons/manifest.json?vsn=1">
-    <link rel="alternate" type="application/atom+xml" href={Routes.feed_path(@conn, :feed)} title={Settings.feed_title()}>
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta property="og:site_name" content={Settings.sitebar_name()}/>
-    <meta property="og:image:width" content="1280"/>
-    <%= if Settings.twitter_handle() != nil do %>
-      <meta property="twitter:site" content={Settings.twitter_handle()}/>
-    <% end %>
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="me" href="https://norden.social/@VelorouteHamburg">
-    <%= VelorouteWeb.CSSInline.tag(@conn, :app) %>
-  </head>
-  <body>
-    <%=
-      # serve this JS only if the user agent indicates it's IE11, and then guard it again
-      # with feature detection.
-      ua = Plug.Conn.get_req_header(@conn, "user-agent") |> List.first() |> Kernel.||("")
-      if Browser.ie?(ua) do
-    %>
-    <script>
-      var hasNaN = ("Number" in window) && (typeof Number.isNaN === "function");
-      if(!hasNaN && window.localStorage.getItem("seenIEWarning") != "v1") {
-        alert(
-          "Du scheinst einen sehr alten Browser zu benutzen, mit dem die Seite nicht mehr funktioniert.\n\n" +
-          "Schau stattdessen ob „Microsoft Edge“ oder „Mozilla Firefox“ oder „Google Chrome“ installiert sind.\n\n" +
-          "Wenn nein, kannst Du die Seite auch auf Deinem Handy öffnen.\n\n"
-        );
-        window.localStorage.setItem("seenIEWarning", "v1");
-      }
-    </script>
-    <% end %>
+  <%= @inner_content %>
 
-    <%= @inner_content %>
+  <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/mbgl2.js")}></script>
+  <script type="text/javascript" defer
+    src={Routes.static_path(@conn, "/assets/map.js")}
+    data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
+    data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds)}
+  ></script>
+  <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
+  <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")} fetchpriority="low"></script>
 
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/mbgl2.js")}></script>
-    <script type="text/javascript" defer
-      src={Routes.static_path(@conn, "/assets/map.js")}
-      data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
-      data-initial={VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds)}
-    ></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/liveview.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/app.js")}></script>
-    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/video_player.js")} fetchpriority="low"></script>
+  <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
+    <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
+    <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js' defer></script>
+    <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/link_helper.js")}></script>
+  <% end %>
 
-    <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
-      <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-      <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
-      <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js' defer></script>
-      <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/link_helper.js")}></script>
-    <% end %>
-
-    <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
-    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
-    <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
-  </body>
+  <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
+  <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
+  <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Regular,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
 </html>
