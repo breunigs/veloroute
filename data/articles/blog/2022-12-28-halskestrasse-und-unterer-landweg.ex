@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
   use Article.Default
 
   def title(),
-    do: "Halskestraße und Unterer Landweg (Veloroute 9 und RSW Geesthacht)"
+    do: "Halskestraße und Unterer Landweg (Veloroute 9 / RSW Geesthacht)"
 
   def summary(),
     do:
@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
       <li>Die Einmündung <.m bounds="10.067177,53.525678,10.073116,53.528487" lon={10.070681} lat={53.526929} dir="forward" ref="9">Grusonstraße</.m> wird angepasst, damit der Zweirichtungsradweg gut erreicht werden kann. Im näheren Umfeld werden die Hochbordradwege auf 1,75m verbreitert. Aus der Innenstadt kommend wird der Hochbordradweg zu einem <.ref>Radfahrstreifen</.ref>.</li>
       <li>In der Halskestraße ist auf der Südseite nur ein Gehweg, auf der Nordseite nur der Zweirichtungsradweg geplant.</li>
       <li>Die Brücke über den <.m bounds="10.067372,53.523101,10.083471,53.530962" lon={10.073243} lat={53.526267} dir="forward" ref="9">Tidekanal</.m> ist nicht Teil dieser Planung. Sie soll aber die gleiche Straßenaufteilung bekommen und zeitgleich umgebaut werden.</li>
-      <li>Wo die <.m bounds="10.082434,53.517836,10.088817,53.521346" lon={10.085523} lat={53.519721} dir="forward" ref="rsw-geesthacht">Schienen die Halskestraße</.m> kreuzen wird der Radweg verschwenkt damit die Schienen in einem besseren Winkel gequert werden können.</li>
+      <li>Wo die <.m bounds="10.082434,53.517836,10.088817,53.521346" lon={10.085523} lat={53.519721} dir="forward" ref="9">Schienen die Halskestraße</.m> kreuzen wird der Radweg verschwenkt damit die Schienen in einem besseren Winkel gequert werden können.</li>
       <li>Die Einfahrt zum <.m bounds="10.086424,53.512398,10.098029,53.520052" lon={10.090901} lat={53.515377} dir="forward" ref="9">LKW-Umschlagplatz</.m> wird für den Radverkehr ebenerdig. Für die wartepflichtigen LKW wird eine Rampe gebaut. Zur besseren Haltbarkeit des Radwegs wird dieser Abschnitt betoniert statt asphaltiert.</li>
       <li>Um die <.m bounds="10.088038,53.513102,10.096641,53.517782" lon={10.090926} lat={53.51482} dir="forward" ref="9">Abzweigung der Halskestraße nach Süden</.m> zu erreichen, wird der Bordstein über ein längeres Stück abgesenkt. Zusätzlich wird eine Querungshilfe in der Straßenmitte gebaut, sodass man nur eine Fahrtrichtung zur gleichen Zeit beachten muss.</li>
       <li>Die <.m bounds="10.089545,53.51246,10.094934,53.515544" lon={10.091945} lat={53.514129} dir="forward" ref="9">Kreuzung Unterer Landweg</.m> wird angepasst, damit die Fahrt vom bzw. zum Zweirichtungsradweg klar ist.</li>
