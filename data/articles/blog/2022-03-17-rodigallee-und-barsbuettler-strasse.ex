@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
       %Video.Track{
         renderer: 3,
         group: "Rodigallee",
-        direction: :forward,
+        direction: :backward,
         from: "Holsteiner Tor",
         to: "Bovestraße",
         parent_ref: __MODULE__,

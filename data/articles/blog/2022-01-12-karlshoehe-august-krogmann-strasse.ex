@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
       %Video.Track{
         renderer: 3,
         group: "KarlshoeheAugustKrogmannStrasse",
-        direction: :backward,
+        direction: :forward,
         from: "Saseler Chaussee",
         to: "Berner Heerweg",
         parent_ref: __MODULE__,

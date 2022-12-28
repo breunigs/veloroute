@@ -63,6 +63,17 @@ defmodule ArticleTest do
     assert [] == missing_tag
   end
 
+  test "no duplicated tracks" do
+    duplicated_tracks =
+      Article.List.all()
+      |> Enum.reject(fn art ->
+        idents = Enum.map(art.tracks(), &{&1.group, &1.direction})
+        idents == Enum.uniq(idents)
+      end)
+
+    assert [] == duplicated_tracks
+  end
+
   test "newer articles have a summary" do
     missing_sumnmary =
       Article.List.all()

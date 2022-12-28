@@ -81,7 +81,7 @@ defmodule Data.Article.Static.RSWLuebeck do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Lübeck",
+        group: "Radschnellweg Lübeck Variante Mönkhofer Weg",
         direction: :forward,
         from: "Possehlstraße",
         to: "Ratzeburger Allee",
@@ -95,7 +95,7 @@ defmodule Data.Article.Static.RSWLuebeck do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Lübeck",
+        group: "Radschnellweg Lübeck Variante Mönkhofer Weg",
         direction: :backward,
         from: "Ratzeburger Allee",
         to: "Possehlstraße",

@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
         group: "track",
         from: "",
         to: "",
-        direction: :forward,
+        direction: :backward,
         parent_ref: __MODULE__,
         text: "St. Benedictstraße Fahrtrichtung Westen",
         videos: [

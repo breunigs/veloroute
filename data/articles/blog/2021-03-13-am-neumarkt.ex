@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
       %Video.Track{
         renderer: 3,
         group: "AmNeumarkt",
-        direction: :backward,
+        direction: :forward,
         from: "Efftingestraße",
         to: "Holstenhofweg",
         parent_ref: __MODULE__,
