@@ -37,57 +37,54 @@ Hooks.FocusSearchField = {
   }
 }
 Hooks.ScrollReset = {
-  nextScrollPos: undefined,
+  hadPopState: false,
+  lastPage: undefined,
+  scrollPositions: {},
 
-  saveScrollPos(el) {
-    const oldState = history.state || {};
-    const newState = Object.assign(oldState, {
-      scrollContent: el.scrollTop,
-      pathname: window.location.pathname,
-    });
-    history.replaceState(newState, "", window.location.href);
-    // console.log("ScrollReset", "saveScrollPos", window.history.state, window.location.pathname)
+  saveScrollPos() {
+    // console.log("scroll", `this.scrollPositions[${window.location.pathname}]`, "=", this.el.scrollTop)
+    this.scrollPositions[window.location.pathname] = this.el.scrollTop
+    this.lastPage = window.location.pathname
   },
 
-  restoreScroll() {
-    // console.log("ScrollReset", "updated", window.history.state, this.nextScrollPos, window.location.pathname)
-    this.el.scrollTop = this.nextScrollPos || 0;
-    this.nextScrollPos = undefined
+  maybeRestoreScroll() {
+    const restore = this.scrollPositions[window.location.pathname]
+    if (restore === undefined) return
+    // console.log("scroll", "restoring", window.location.pathname, "to", restore)
+    this.el.scrollTop = restore
   },
 
   mounted() {
-    window.addEventListener("popstate", event => {
-      this.nextScrollPos = event.state.scrollContent
-      // console.log("ScrollReset", "popstate", window.history.state)
+    window.addEventListener("popstate", _event => {
+      // console.log("scroll", "popstate")
+      this.hadPopState = true
     });
 
     let scrollTimer = null
     this.el.addEventListener("scroll", _e => {
       clearTimeout(scrollTimer)
-      scrollTimer = setTimeout(() => this.saveScrollPos(this.el), 100)
+      scrollTimer = setTimeout(() => this.saveScrollPos(), 100)
     }, {
       passive: true
     })
-
-    this.saveScrollPos(this.el)
   },
 
   updated() {
-    // TODO: since updating to phoenix live view 0.18.x, it seems to call
-    // updated for all events, even if this element shouldn't have changed? This
-    // workaround additionally checks if the URL changed to only reset scroll to
-    // 0 if we actually navigated to a different article.
-    if (this.nextScrollPos === undefined && window.history.state.pathname == window.location.pathname) {
-      requestAnimationFrame(() => {
-        // console.log("ScrollReset", "timeout", window.history.state.pathname, window.location.pathname)
+    // need to wait for new element to be updated before we can scroll
+    requestAnimationFrame(() => {
+      if (this.hadPopState) {
+        // console.log("scroll", "restoring because of popState")
+        this.maybeRestoreScroll()
+        this.hadPopState = false
+        return
+      }
 
-        if (window.history.state.pathname == window.location.pathname) return
-        this.restoreScroll();
-      }, 0)
-      return
-    }
-
-    this.restoreScroll()
+      if (this.lastPage != window.location.pathname) {
+        // console.log("scroll", "resetting on new page navigation")
+        this.scrollPositions[window.location.pathname] = 0
+        this.maybeRestoreScroll()
+      }
+    })
   }
 }
 
