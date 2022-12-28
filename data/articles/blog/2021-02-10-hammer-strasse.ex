@@ -17,6 +17,36 @@ defmodule Data.Article.Blog.HammerStrasse do
     ]
   end
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "article",
+        direction: :backward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Hammer Straße → Horner Kreisel",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015085", "00:00:03.737", "00:00:22.422"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "article",
+        direction: :forward,
+        from: "",
+        to: "",
+        parent_ref: __MODULE__,
+        text: "Hammer Straße → Wandsbek",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015087", "00:00:11.278", :end},
+          {"2022-12-27-neumarkt-krogmann/GX015088", :start, :end},
+          {"2022-12-27-neumarkt-krogmann/GX015089", :start, :end}
+        ]
+      }
+    ]
+
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
