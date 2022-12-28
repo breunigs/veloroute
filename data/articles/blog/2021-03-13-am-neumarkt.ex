@@ -11,6 +11,34 @@ defmodule Data.Article.Blog.AmNeumarkt do
 
   def tags(), do: ["radfahrstreifen"]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "AmNeumarkt",
+        direction: :backward,
+        from: "Efftingestraße",
+        to: "Holstenhofweg",
+        parent_ref: __MODULE__,
+        text: "Am Neumarkt → Ziethenstraße",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015095", "00:00:24.091", :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "AmNeumarkt",
+        direction: :backward,
+        from: "Holstenhofweg",
+        to: "Efftingestraße",
+        parent_ref: __MODULE__,
+        text: "Ziethenstraße → Am Neumarkt",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015082", "00:00:15.115", :end}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"Möglicher Bauzeitraum", "Stand Oktober 2022",

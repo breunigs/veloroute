@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Auftragsvergabe 1", "Dezember 2022",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/f9644f87-e9ac-4f57-a05c-3f15897d016d/details"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Planung 2022", "Lageplan und Änderungen zur 2018er Version",

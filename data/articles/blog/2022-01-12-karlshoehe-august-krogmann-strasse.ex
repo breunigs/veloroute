@@ -13,6 +13,40 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
     do:
       "Zwecks Baumerhalt sind für den Rad- und Fußverkehr nur teilweise akzeptable Wege vorgesehen."
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "KarlshoeheAugustKrogmannStrasse",
+        direction: :backward,
+        from: "Berner Heerweg",
+        to: "Saseler Chaussee",
+        parent_ref: __MODULE__,
+        text: "August-Krogmann-Straße → Karlshöhe",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015074", "00:00:14.481", :end},
+          {"2022-12-27-neumarkt-krogmann/GX015075", :start, :end},
+          {"2022-12-27-neumarkt-krogmann/GX015076", :start, "00:00:05.172"},
+          {"2022-12-27-neumarkt-krogmann/GX015076", "00:00:36.837", "00:00:53.220"},
+          {"2022-12-27-neumarkt-krogmann/GX015077", "00:00:00.334", :end},
+          {"2022-12-27-neumarkt-krogmann/GX015078", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "KarlshoeheAugustKrogmannStrasse",
+        direction: :backward,
+        from: "Saseler Chaussee",
+        to: "Berner Heerweg",
+        parent_ref: __MODULE__,
+        text: "Karlshöhe → August-Krogmann-Straße",
+        videos: [
+          {"2022-12-27-neumarkt-krogmann/GX015071", :start, :end},
+          {"2022-12-27-neumarkt-krogmann/GX015072", :start, "00:01:10.037"}
+        ]
+      }
+    ]
+
   def tags(), do: []
 
   def links(_assigns) do

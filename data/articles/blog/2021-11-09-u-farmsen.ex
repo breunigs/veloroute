@@ -7,6 +7,8 @@ defmodule Data.Article.Blog.UFarmsen do
   def type(), do: :intent
   def tags(), do: ["FR2", "6"]
 
+  def tracks(), do: Data.Article.Blog.KarlshoeheAugustKrogmannStrasse.tracks()
+
   def links(_assigns) do
     [
       {"Lageplan", "Oktober 2022",

@@ -9,9 +9,6 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
     do:
       "Mischverkehr beim Stadtpark; Protected-Bike-Lane U-Bahn ↔ Hellbrookstraße; sonst 2m breite Hochbordradwege"
 
-  def start(), do: ~d[2023-01-01]
-  def stop(), do: ~d[2023-12-31]
-
   def type(), do: :planned
 
   def tags(), do: ["5N", "5"]

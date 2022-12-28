@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.Veringstrasse do
       {"Infoseite der Stadt",
        "https://www.hamburg.de/mitte/strassenbau-und-verkehr/11703714/veloroute-veringstrasse/"},
       {"Ausschreibung Umbau",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/d7119001-147d-4714-bf39-630994f93d8c/details"}
+       "https://web.archive.org/web/20220107185253/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/d7119001-147d-4714-bf39-630994f93d8c/details"}
     ]
   end
 
