@@ -54,7 +54,6 @@ defmodule VelorouteWeb.Live.VideoState do
 
   def maybe_update_video(%{assigns: assigns} = socket, article, params) do
     old_state = assigns[:video] || new()
-    accurate_new_start = Geo.Point.from_params(params)
 
     tracks =
       if is_module(article),
@@ -66,25 +65,30 @@ defmodule VelorouteWeb.Live.VideoState do
         do: Enum.filter(tracks, &(&1.group == params["group"])),
         else: tracks
 
-    art_center = maybe_article_center(article)
+    {near, accurate} =
+      cond do
+        p = Geo.Point.from_params(params) -> {p, true}
+        p = maybe_article_center(article) -> {p, false}
+        true -> {old_state.start, false}
+      end
 
     new_state =
       old_state
       |> update_direction_from_params(params)
-      |> update_from_tracks(tracks, accurate_new_start || art_center || old_state.start)
+      |> update_from_tracks(tracks, near, accurate)
 
     new_state =
       cond do
-        accurate_new_start && old_state.start == accurate_new_start &&
+        accurate && old_state.start == near &&
           !video_changes?(old_state, new_state) && !is_map_key(params, "dir") ->
           Logger.debug("same position clicked again, reverse")
 
-          set_start(new_state, accurate_new_start)
+          set_start(new_state, near)
           |> reverse_direction()
 
-        accurate_new_start ->
+        accurate ->
           Logger.debug("have new accurate position; updating")
-          set_start(new_state, accurate_new_start)
+          set_start(new_state, near)
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox")
@@ -96,7 +100,7 @@ defmodule VelorouteWeb.Live.VideoState do
         article && current_track(new_state) &&
             Util.overlap?(current_track(new_state).parent_ref.tags(), article.tags()) ->
           Logger.debug("route is related to current article, updating position")
-          set_start(new_state, art_center || old_state.start)
+          set_start(new_state, near)
 
         true ->
           Logger.debug("no position information, not changing")
@@ -334,16 +338,23 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp reverse_direction(%__MODULE__{} = state), do: state
 
-  defp update_from_tracks(state, tracks, near_position)
-  defp update_from_tracks(state, [], _pos), do: state
+  defp update_from_tracks(state, tracks, near_position, accurate_position \\ true)
+  defp update_from_tracks(state, [], _pos, _accurate), do: state
 
   # Due to slight inaccuracies when clicking, users might reverse the track all the time when
   # in practice they just wanted to skip along the route. Therefore we slightly prefer tracks
   # in the current direction.
   @same_direction_bonus_in_meters 15
 
+  # Slightly prefer first video track group. Only used when no accurate position
+  # info is available.
+  @first_group_bonus 5
+
   # if we have a position, change the tracks default order by closeness to the position
-  defp update_from_tracks(state, tracks, near_position) when is_map(near_position) do
+  defp update_from_tracks(state, tracks, near_position, accurate_position)
+       when is_map(near_position) do
+    first_group = tracks |> Enum.map(& &1.group) |> Enum.uniq() |> hd()
+
     sorted =
       Enum.sort_by(tracks, fn track ->
         rendered = Video.Rendered.get(track)
@@ -356,17 +367,22 @@ defmodule VelorouteWeb.Live.VideoState do
             |> Geo.CheapRuler.closest_point_on_line(near_position)
             |> Map.fetch!(:dist)
 
+          dist =
+            if !accurate_position && track.group == first_group,
+              do: dist - @first_group_bonus,
+              else: dist
+
           if track.direction == state.direction && track == current_track(state),
             do: dist - @same_direction_bonus_in_meters,
             else: dist
         end
       end)
 
-    update_from_tracks(state, sorted, nil)
+    update_from_tracks(state, sorted, nil, accurate_position)
   end
 
   # if no position is given, assume tracks are already sorted by distance
-  defp update_from_tracks(state, tracks, nil) do
+  defp update_from_tracks(state, tracks, nil, _accurate_position) do
     closest = hd(tracks)
 
     reverse =
