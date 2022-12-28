@@ -107,7 +107,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
       "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
     )
 
-    html = render_hook(view, "map-click", %{article: "2021-03-13-am-neumarkt"})
+    html = render_hook(view, "map-click", %{article: "bau"})
 
     assert_attribute(
       html,
