@@ -87,7 +87,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</.m></td>
+        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="9">Rathaus</.m></td>
       </tr>
       <tr>
         <td>
@@ -121,7 +121,9 @@ defmodule Data.Article.Static.Alltagsroute9 do
         <td><.m bounds="10.1228325,53.4740577,10.1854185,53.4925659">Neuallermöhe</.m></td>
       </tr>
       <tr>
-        <td></td>
+        <td>
+          <.icon name="rsw-geesthacht" bounds="10.181904,53.471171,10.25402,53.49209" lon={10.185906} lat={53.486877} dir="forward">RSW</.icon>
+        </td>
         <td><.m bounds="10.1688618,53.4592625,10.2088618,53.4992625">Nettelnburg</.m></td>
       </tr>
       <tr>

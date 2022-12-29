@@ -136,7 +136,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9915695,53.5499061,9.9931782,53.5509096">Rathaus</.m></td>
+        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="5">Rathaus</.m></td>
       </tr>
       <tr>
         <td>

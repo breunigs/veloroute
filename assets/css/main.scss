@@ -846,7 +846,7 @@ ol.route-list {
     cursor: pointer;
     text-decoration: none !important;
     margin-top: -0.16em;
-    line-height: 1.3rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -1094,6 +1094,7 @@ table.routing {
 
     .icon {
       font-size: 120%;
+      line-height: 1.6rem;
       width: $main-route-icon-size;
       height: $main-route-icon-size;
     }
@@ -1107,8 +1108,16 @@ table.routing {
     opacity: 0.3;
   }
 
-  .icon {
+  .icon, .customicon {
     margin: 0 0.2em;
+  }
+
+  .customicon {
+    border: 0.13em solid transparent;
+    vertical-align: middle;
+    line-height: 1.9rem;
+    display: inline-block;
+    height: 1.5em;
   }
 }
 

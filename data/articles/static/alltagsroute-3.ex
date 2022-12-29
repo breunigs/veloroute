@@ -99,7 +99,10 @@ defmodule Data.Article.Static.Alltagsroute3 do
         <td><.m bounds="9.984306,53.553785,9.9935,53.559082" lon={9.989699} lat={53.55492} dir="forward" ref="3">Gänsemarkt</.m></td>
       </tr>
       <tr>
-        <td></td>
+        <td>
+          <.icon>FR10</.icon>
+          <.icon>FR9</.icon>
+        </td>
         <td><.m bounds="9.983987,53.558014,9.994103,53.56547" lon={9.99033} lat={53.559795} dir="forward" ref="3">Bahnhof Dammtor</.m></td>
       </tr>
       <tr>
@@ -108,6 +111,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
       </tr>
       <tr>
         <td>
+          <.icon>FR10</.icon>
           <.icon>13</.icon>
         </td>
         <td><.m bounds="9.948743,53.576206,9.975451,53.594578" lon={9.95665} lat={53.583018} dir="forward" ref="3">Hoheluft</.m></td>
@@ -117,7 +121,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
         <td><.m bounds="9.941223,53.593841,9.972655,53.611805" lon={9.957517} lat={53.600192} dir="forward" ref="3">Lokstedt</.m></td>
       </tr>
       <tr>
-        <td></td>
+        <td><.icon>FR11</.icon></td>
         <td><.m bounds="9.937511,53.614054,9.962625,53.626908" lon={9.950974} lat={53.617107} dir="forward" ref="3">Niendorf Markt</.m></td>
       </tr>
       <tr>

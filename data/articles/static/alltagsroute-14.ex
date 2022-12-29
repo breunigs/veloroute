@@ -114,9 +114,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
         <td></td>
       </tr>
       <tr>
-        <td>
-          <.icon>1</.icon>
-        </td>
+        <td></td>
         <td><.m bounds="9.8638682,53.5415406,9.917539,53.5600054">Othmarschen</.m></td>
       </tr>
       <tr>
@@ -126,7 +124,9 @@ defmodule Data.Article.Static.Alltagsroute14 do
         <td><.m bounds="9.8266622,53.5577662,9.8669147,53.5950351">Osdorf</.m></td>
       </tr>
       <tr>
-        <td></td>
+        <td>
+          <.icon bounds="9.784876,53.59252,9.903967,53.659784" lon={9.889568} lat={53.602359} dir="forward" name="rsw-elmshorn">RSW</.icon>
+        </td>
         <td><.m bounds="9.844518,53.5813426,9.9008894,53.6132514">Lurup</.m></td>
       </tr>
       <tr>
@@ -147,6 +147,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
       </tr>
       <tr>
         <td>
+          <.icon bounds="9.784876,53.59252,10.060399,53.739026" lon={10.017399} lat={53.650044} dir="forward" name="rsw-bad-bramstedt">RSW</.icon>
           <.icon>4</.icon>
         </td>
         <td><.m bounds="10.0122131,53.6438888,10.0222131,53.6538888">Langenhorn</.m></td>

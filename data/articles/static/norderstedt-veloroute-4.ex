@@ -9,7 +9,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute4 do
   def color(), do: "#d14a1f"
 
   def summary(),
-    do: "Veloroute 4 führt von Garstedt nach Glashütte"
+    do: "Norderstedts Veloroute 4 führt von Garstedt nach Glashütte"
 
   def tags(), do: [id(), "norderstedt"]
 

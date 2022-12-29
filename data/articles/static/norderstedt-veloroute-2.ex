@@ -9,7 +9,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute2 do
   def color(), do: "#d24a2f"
 
   def summary(),
-    do: "Veloroute 2 führt vom Schmuggelstieg zum Harksheider Markt"
+    do: "Norderstedts Veloroute 2 führt vom Schmuggelstieg zum Harksheider Markt"
 
   def tags(), do: [id(), "norderstedt"]
 

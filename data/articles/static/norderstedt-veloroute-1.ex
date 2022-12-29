@@ -9,7 +9,8 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
   def color(), do: "#d14a1f"
 
   def summary(),
-    do: "Veloroute 1 führt vom Schmuggelstieg über Norderstedt-Mitte nach Meeschensee"
+    do:
+      "Norderstedts Veloroute 1 führt vom Schmuggelstieg über Norderstedt-Mitte nach Meeschensee"
 
   def tags(), do: [id(), "norderstedt"]
 

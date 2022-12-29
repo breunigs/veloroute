@@ -112,7 +112,9 @@ defmodule Data.Article.Static.Alltagsroute2 do
         <td><.m bounds="9.933678,53.562581,9.973695,53.5803" lon={9.960707} lat={53.57117} dir="forward" ref="2">Eimsbüttel</.m></td>
       </tr>
       <tr>
-        <td><.a name="rsw-elmshorn">RSW Elmshorn</.a></td>
+        <td>
+          <.icon bounds="9.861396,53.57754,9.93999,53.615691" lon={9.938191} lat={53.58115} dir="forward" name="rsw-elmshorn">RSW</.icon>
+        </td>
         <td><.m bounds="9.919166,53.573,9.959761,53.593032" lon={9.9383} lat={53.583977} dir="forward" ref="2">Langenfelde</.m></td>
       </tr>
       <tr>
