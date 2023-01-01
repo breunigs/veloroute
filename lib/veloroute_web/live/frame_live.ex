@@ -142,12 +142,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_params(params, uri, socket) when is_binary(uri) do
-    socket =
-      assign(socket, %{
-        current_url: uri,
-        canonical_url: canonical(uri)
-      })
-
+    socket = assign(socket, :current_url, uri)
     handle_params(params, nil, socket)
   end
 
@@ -234,6 +229,7 @@ defmodule VelorouteWeb.FrameLive do
     |> assign(
       prev_page: socket.assigns.current_page,
       current_page: art,
+      canonical_url: canonical(art),
       page_title: page_title,
       article_original_date: art.created_at(),
       article_date: art.updated_at(),
@@ -371,12 +367,7 @@ defmodule VelorouteWeb.FrameLive do
   defp maybe_autoplay(socket, true), do: push_event(socket, "video:autoplay", %{})
   defp maybe_autoplay(socket, false), do: socket
 
-  defp canonical(uri) do
-    with {:ok, uri} <- URI.new(uri) do
-      %{uri | query: nil} |> URI.to_string()
-    else
-      _ ->
-        Settings.url()
-    end
+  defp canonical(art) do
+    if art, do: Article.Decorators.path(art), else: "/"
   end
 end

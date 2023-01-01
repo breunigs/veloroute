@@ -12,6 +12,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert {:error, {:live_redirect, _whatever}} = live(conn, "/DoesNotExist")
   end
 
+  test "canonical URL is the same for different routes", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/freizeitroute-3")
+    assert_attribute(html, "link[rel=canonical]", "href", "/freizeitroute-3")
+
+    {:ok, _view, html} = live(conn, "/FR3")
+    assert_attribute(html, "link[rel=canonical]", "href", "/freizeitroute-3")
+  end
+
   test "clicking on route icon navigates to overview page", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
 
