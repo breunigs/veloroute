@@ -36,7 +36,7 @@ defmodule Video.Metadata do
 
   defp codec_info(state, codec) do
     %{status: status} =
-      Util.cmd2(
+      Util.Cmd2.exec(
         ~w[ffmpeg -hide_banner -loglevel fatal -f lavfi -i rgbtestsrc -pix_fmt yuv420p -t 0.016 -c:v] ++
           [codec] ++ ~w[-f mp4 -y /dev/null],
         stderr: "",
@@ -75,7 +75,7 @@ defmodule Video.Metadata do
       video_path
     ]
 
-    Util.cmd2(cli, stdout: "", stderr: "")
+    Util.Cmd2.exec(cli, stdout: "", stderr: "")
     |> case do
       %{result: :ok, stdout: out} ->
         [_, fr_num, fr_denom] = Regex.run(~r/^r_frame_rate=(\d+)\/(\d+)$/m, out)

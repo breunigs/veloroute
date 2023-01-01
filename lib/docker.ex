@@ -80,7 +80,7 @@ defmodule Docker do
     img_name = "veloroute.hamburg/docker:#{name}"
     work_dir = Path.dirname(dockerfile)
 
-    Util.cmd2(
+    Util.Cmd2.exec(
       [
         "docker",
         "build",
@@ -129,7 +129,7 @@ defmodule Docker do
     args = args ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args
 
     try do
-      Util.cmd2(
+      Util.Cmd2.exec(
         args,
         opts ++ [raise: true, kill: "docker stop --time 2 #{container_name}"]
       )
@@ -228,7 +228,7 @@ defmodule Docker do
     docker = if docker_supports_gpu(), do: docker ++ ["--gpus", "all"], else: docker
     docker = docker ++ ["--tty", "--name", @container_name_detect]
 
-    Util.cmd2(docker ++ extra_video_mount("/") ++ [@image_name_detector], raise: true)
+    Util.Cmd2.exec(docker ++ extra_video_mount("/") ++ [@image_name_detector], raise: true)
   end
 
   def boot_release() do

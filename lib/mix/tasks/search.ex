@@ -25,7 +25,7 @@ defmodule Mix.Tasks.Velo.Search.GeneratePolylines do
       File.rm(bbox_host())
       File.rm(polyline_host())
 
-      Util.download(url, source_host())
+      Util.Download.to_file(url, source_host())
     end
   end
 

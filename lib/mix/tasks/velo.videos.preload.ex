@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Velo.Videos.Preload do
   defp real_run do
     video_files =
       Settings.video_target_dir_abs()
-      |> IOUtil.tree()
+      |> Util.IO.tree()
       |> Enum.map(&Path.relative_to(&1, Settings.video_target_dir_abs()))
 
     seen = load_seen()

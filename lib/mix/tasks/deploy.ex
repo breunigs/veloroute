@@ -1,6 +1,5 @@
 defmodule Mix.Tasks.Deploy do
   use Mix.Task
-  @cwd File.cwd!()
   @requirements ["app.start"]
 
   @shortdoc "Builds the site using docker, then uploads it"
@@ -95,7 +94,8 @@ defmodule Mix.Tasks.Deploy do
       ~w(mix esbuild default --minify),
       ~w(mix sass default --no-source-map --style=compressed),
       ~w(cp -r data/images/ priv/static/),
-      [Path.join(@cwd, "tools/update_favicons.sh")],
+      # reuse "test" environment so we don't have to compile "dev" for the container
+      ~w(MIX_ENV=test mix velo.favicon.raster),
       ~w(mix deps.compile),
       ~w(mix compile),
       ~w(mix velo.gpx.generate),
@@ -106,6 +106,7 @@ defmodule Mix.Tasks.Deploy do
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
+      ["MIX_ENV=" <> env, "mix" | cmd] -> Docker.mix(cmd, env)
       ["mix" | cmd] -> Docker.mix(cmd, "prod")
       other -> Util.cmd(other)
     end)

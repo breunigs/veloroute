@@ -43,7 +43,7 @@ defmodule Video.Source do
   Recursively finds all valid source videos within the given folder
   """
   def new_from_folder(source_folder) do
-    all_files = IOUtil.tree(source_folder) |> MapSet.new()
+    all_files = Util.IO.tree(source_folder) |> MapSet.new()
 
     all_files
     |> Parallel.map(&new_from_path(&1, all_files))

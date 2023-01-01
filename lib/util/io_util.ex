@@ -1,4 +1,4 @@
-defmodule IOUtil do
+defmodule Util.IO do
   @doc """
   Takes a path and recursively list all files, returning the list with paths
   including the given path as a prefix. Symlinks, devices, etc. are not being
