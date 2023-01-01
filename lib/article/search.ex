@@ -32,10 +32,8 @@ defmodule Article.Search do
       relevance =
         [title_sim + title_cont, text_sim]
         |> Enum.max()
-        |> clamp
         |> consider_age(art)
         |> consider_finished(art)
-        |> clamp
 
       if relevance >= @min_relevance,
         do:
@@ -45,6 +43,7 @@ defmodule Article.Search do
 
       {art, relevance}
     end)
+    |> clamp()
     |> Enum.reject(fn {_art, relevance} -> relevance < @min_relevance end)
     |> Enum.map(fn {art, relevance} ->
       bbox = Article.Decorators.bbox(art)
@@ -65,19 +64,23 @@ defmodule Article.Search do
     end)
   end
 
-  defp consider_age(relevance, %{date: date}) when not is_nil(date) do
-    n = (Date.utc_today().year - date.year) / 10
-    relevance - n
+  defp consider_age(relevance, art) when is_module(art) do
+    date = art.updated_at()
+    correction = if date, do: (Date.utc_today().year - date.year) / 10, else: 0
+    relevance - correction
   end
 
-  defp consider_age(relevance, _), do: relevance
+  defp consider_finished(relevance, art) when is_module(art) do
+    correction = if art.type() == :finished, do: 0.2, else: 0
+    relevance - correction
+  end
 
-  defp consider_finished(relevance, %{type: "finished"}), do: relevance - 0.2
-  defp consider_finished(relevance, _), do: relevance
+  defp clamp([]), do: []
 
-  defp clamp(relevance) when relevance < 0, do: 0.0
-  defp clamp(relevance) when relevance > 1, do: 1.0
-  defp clamp(relevance), do: relevance
+  defp clamp(results) do
+    max = results |> Enum.map(&elem(&1, 1)) |> Enum.max()
+    Enum.map(results, fn {art, relevance} -> {art, relevance / max} end)
+  end
 
   defp blank?(nil), do: true
   defp blank?(""), do: true
