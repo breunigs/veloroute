@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /videos-rendered/
+Disallow: /map/___static/
