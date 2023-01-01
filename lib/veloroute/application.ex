@@ -42,8 +42,14 @@ defmodule Veloroute.Application do
     :ok
   end
 
+  # Only run it in production, to ensure the first search is fast for the user.
+  # In other envs we can wait a couple of seconds on the first search usage.
   defp preprocess_search_terms do
-    Enum.each(Article.List.all(), &Article.Search.article_terms(&1))
+    case Application.get_env(:veloroute, :env) do
+      :prod -> Enum.each(Article.List.all(), &Article.Search.article_terms(&1))
+      :dev -> nil
+      :test -> nil
+    end
   end
 
   defp ensure_videos_are_mounted do
