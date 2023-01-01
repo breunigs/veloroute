@@ -73,8 +73,12 @@ defmodule Data.Article.Blog.BernerStrasse do
     [
       {"Baustelleninfo", "Dezember 2022",
        "https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
-      {"Pläne und Erläuterungen", "Mai 2020",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1012476"}
+      {"Planänderungen", "Juli 2022",
+       "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
+      {"Erläuterungsbericht", "Mai 2020",
+       "https://lsbg.hamburg.de/contentblob/13921876/faa2ceabee11e02f39b342955a8fb5ab/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"},
+      {"Lageplan/Karte", "Mai 2020",
+       "https://lsbg.hamburg.de/contentblob/13921878/11d48ab96adaa467f755ab3c4d5a0e46/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-plaene.pdf"}
     ]
   end
 
@@ -88,11 +92,11 @@ defmodule Data.Article.Blog.BernerStrasse do
 
     <p>An der Kreuzung mit dem <.m bounds="10.138302,53.624498,10.146837,53.63036" lon={10.141882} lat={53.628606} dir="forward">Kriegkamp</.m> ist nur <.ref>indirektes Linksabbiegen</.ref> vorgesehen. Im Kriegkamp selbst gibt es Schutzstreifen-Stummel um die Führung zu verdeutlichen.</p>
 
-    <p>Die Mittelinsel am <.m bounds="10.140456,53.623775,10.148991,53.629636" lon={10.143491} lat={53.62739} dir="forward">Berner Stieg</.m> wird für den Radverkehr in alle Richtungen durchlässig.</p>
+    <p>Die Mittelinsel am <.m bounds="10.140456,53.623775,10.148991,53.629636" lon={10.143491} lat={53.62739} dir="forward">Berner Stieg</.m> wird für den Radverkehr in alle Richtungen durchlässig. Für den Fußverkehr wird eine Ampel gebaut.</p>
 
     <p>Am <.m bounds="10.141312,53.622929,10.149847,53.62879" lon={10.144684} lat={53.626329} dir="forward">Dompfaffenweg</.m> ist <.ref>direktes Linksabbiegen</.ref> vorgesehen; am <.m bounds="10.142194,53.621159,10.150729,53.627021" lon={10.145696} lat={53.624298} dir="forward">Schierenberg</.m> indirektes; <.m bounds="10.143802,53.619713,10.152337,53.625575" lon={10.147253} lat={53.622221} dir="forward">Im Rühmt</.m> wieder direktes.</p>
 
-    <p>Linksabbiegen in die <.m bounds="10.144749,53.618222,10.153284,53.624083" lon={10.148755} lat={53.620768} dir="forward">Polziner Straße</.m> ist nicht möglich; dafür aber in den <.m bounds="10.144749,53.618222,10.153284,53.624083" lon={10.149081} lat={53.620303} dir="forward">Bargkoppelweg</.m> mithilfe einer Aufstelltasche neben der Fußampel. In Richtung Norden ist hier ein <.ref>Radfahrstreifen in Mittellage</.ref> geplant.</p>
+    <p>Linksabbiegen in die <.m bounds="10.144749,53.618222,10.153284,53.624083" lon={10.148755} lat={53.620768} dir="forward">Polziner Straße</.m> ist nicht möglich; dafür aber in den <.m bounds="10.144749,53.618222,10.153284,53.624083" lon={10.149081} lat={53.620303} dir="forward">Bargkoppelweg</.m> mithilfe einer Aufstelltasche neben der Fußampel. In Richtung Norden taucht in den veralteten Plänen noch ein <.ref>Radfahrstreifen in Mittellage</.ref> auf, der aber nicht mehr umgesetzt werden soll.</p>
 
     <p>Am <.m bounds="10.148276,53.613831,10.156811,53.619692" lon={10.152065} lat={53.616128} dir="forward">Redderblock</.m> führt der Radfahrstreifen durch die Bushaltestelle. Eine Vorbeifahrt ist nur durch Einordnen auf der KFZ-Spur möglich.</p>
 

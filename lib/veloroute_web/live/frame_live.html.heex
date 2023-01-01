@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, viewport-fit=cover"/>
   <title><%= @page_title || Settings.page_title_long() %></title>
   <%= csrf_meta_tag() %>
-  <link rel="canonical" href={Settings.url() <> @current_url}/>
+  <link rel="canonical" href={@canonical_url}/>
 
   <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
   <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
