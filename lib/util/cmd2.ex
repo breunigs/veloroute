@@ -73,7 +73,7 @@ defmodule Util.Cmd2 do
     with {:ok, pid, monitor} <- :exec.run(args, opts) do
       untrap1 = stop_on_signal(:sigterm)
       untrap2 = stop_on_signal(:sigquit)
-      warner = Process.send_after(self(), {:slow_warn, name}, 1000)
+      warner = Process.send_after(self(), {:slow_warn, name}, 5_000)
 
       if stdin do
         :exec.send(pid, stdin)

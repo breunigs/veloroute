@@ -40,7 +40,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     html = render_hook(view, "map-click", %{"article" => "2018-04-08-4-kleekamp"})
 
-    assert html =~ "<h3>Kleekamp"
+    assert html =~ "<h3 itemprop=\"headline\">Kleekamp"
 
     assert_push_event(view, :video_meta, %{
       "hash" => unquote(@video_hashes[:forward]),
@@ -62,7 +62,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> element("a", "Kleekamp")
       |> render_click()
 
-    assert html =~ "<h3>Kleekamp"
+    assert html =~ "<h3 itemprop=\"headline\">Kleekamp"
 
     assert_push_event(view, :video_meta, %{
       "hash" => unquote(@video_hashes[:forward]),

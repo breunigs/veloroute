@@ -459,15 +459,17 @@ defmodule Components.TagHelpers do
         assign(assigns, %{
           human: Article.Decorators.updated_at(art),
           machine: Date.to_string(art.updated_at()),
+          machine_created: Date.to_string(art.created_at()),
           subject: "Fehler im Artikel \"#{art.title()}\"",
           body: "Moin,\n\nim Artikel \"#{art.title()}\" stimmt etwas nicht:\n\n"
         })
 
       ~H"""
-      <div class="artfooter">
+        <div class="artfooter">
           <.mailto subject={@subject} body={@body}>Fehler melden</.mailto>
           &middot;
-          <time class="updated" datetime={@machine}>Letzte Änderung <%= @human %></time>
+          <time class="updated" datetime={@machine} itemprop="dateModified" content={@machine}>Letzte Änderung <%= @human %></time>
+          <span itemprop="datePublished" content={@machine_created}></span>
         </div>
       """
     else

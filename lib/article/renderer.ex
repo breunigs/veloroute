@@ -1,23 +1,29 @@
 defmodule Article.Renderer do
   use Phoenix.LiveView
+  import Guards
 
-  def render(%{current_page: p} = assigns) when not is_nil(p) and is_atom(p) do
-    body = assigns.current_page.text(assigns)
+  def render(%{current_page: art} = assigns) when is_module(art) do
+    body = art.text(assigns)
     has_header = body.static |> List.first() |> String.starts_with?("<h3")
-    header = if !has_header, do: ~H"<h3><%= @current_page.title() %></h3>"
 
-    assigns =
-      assign(assigns, %{
-        body: body,
-        header: header
-      })
+    microdata =
+      if art.updated_at(),
+        do: %{
+          wrapper: [itemscope: "", itemtype: "https://schema.org/NewsArticle"],
+          title: [itemprop: "headline"]
+        }
+
+    assigns = assign(assigns, %{body: body, has_header: has_header, microdata: microdata})
 
     ~H"""
-      <%= @header %>
-      <Components.TagHelpers.construction_duration_header article={@current_page}/>
+      <div {@microdata[:wrapper] || %{}}>
+        <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @current_page.title() %></h3>
+        <Components.TagHelpers.construction_duration_header article={@current_page}/>
 
-      <%= @body %>
-      <Components.TagHelpers.article_updated_at article={@current_page}/>
+        <%= @body %>
+        <Components.TagHelpers.article_updated_at article={@current_page}/>
+        <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
+      </div>
 
       <Components.RelatedArticlesHelper.related_articles article={@current_page}/>
     """
