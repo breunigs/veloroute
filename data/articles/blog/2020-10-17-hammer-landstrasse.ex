@@ -5,8 +5,6 @@ defmodule Data.Article.Blog.HammerLandstrasse do
 
   def title(), do: "Hammer Landstraße (ab Diagonalstraße)"
 
-  def start(), do: ~d[2022]
-
   def type(), do: :planned
 
   def tags(), do: []

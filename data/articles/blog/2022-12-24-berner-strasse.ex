@@ -71,6 +71,8 @@ defmodule Data.Article.Blog.BernerStrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baustart", "Januar 2023",
+       "https://www.hamburg.de/bvm/medien/16807636/2023-01-02-bvm-grundinstandsetzung-berner-strasse/"},
       {"Baustelleninfo", "Dezember 2022",
        "https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
       {"Planänderungen", "Juli 2022",

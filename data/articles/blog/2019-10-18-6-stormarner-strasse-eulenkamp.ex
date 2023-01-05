@@ -6,12 +6,10 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
   def updated_at(), do: ~D[2022-07-29]
   def title(), do: "Stormarner Straße und Eulenkamp West (Veloroute 6)"
 
-  def type(), do: :planned
-  def start(), do: ~d[2022-08-15]
+  def type(), do: :construction
+  def start(), do: ~d[2021-03-22]
   def stop(), do: ~d[2023-01-31]
-  def construction_site_id_hh(), do: [96778]
-  # voriger Bauabschnitt
-  # def construction_site_id_hh(), do: [15014]
+  def construction_site_id_hh(), do: [15014, 96778]
 
   def tags(), do: ["6", "w13"]
 

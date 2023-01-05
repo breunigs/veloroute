@@ -5,8 +5,6 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
   def updated_at(), do: ~D[2021-10-16]
   def title(), do: "Otto-Brenner-Straße (Veloroute 10)"
 
-  def start(), do: ~d[2022Q3]
-
   def type(), do: :planned
 
   def tags(), do: ["10", "M12.2"]

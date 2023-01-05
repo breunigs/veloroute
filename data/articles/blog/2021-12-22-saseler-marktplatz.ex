@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.SaselerMarktplatz do
   def tags(), do: ["14"]
 
   def start(), do: ~d[2022-02-14]
-  def stop(), do: ~d[2022-12]
+  def stop(), do: ~d[2023Q2]
 
   def links(_assigns) do
     [

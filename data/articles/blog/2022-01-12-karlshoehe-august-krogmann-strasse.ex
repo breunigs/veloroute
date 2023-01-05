@@ -4,8 +4,8 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
   def created_at(), do: ~D[2022-01-12]
   def title(), do: "Karlshöhe / August-Krogmann-Straße"
 
-  def start(), do: ~d[2022]
-  def stop(), do: ~d[2023]
+  def start(), do: ~d[2023]
+  def stop(), do: ~d[2024]
 
   def type(), do: :planned
 
@@ -51,6 +51,8 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
 
   def links(_assigns) do
     [
+      {"Info zum Bauzeitraum", "April 2022",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016251"},
       {"Erläuterungsbericht und Lagepläne",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1015845"}
     ]
