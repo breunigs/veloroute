@@ -48,8 +48,14 @@ Hooks.ScrollReset = {
   },
 
   maybeRestoreScroll() {
-    const restore = this.scrollPositions[window.location.pathname]
+    let restore = this.scrollPositions[window.location.pathname]
     if (restore === undefined) return
+    // it seemst the scrollTop is not always correctly updated, so change the
+    // position by a tiny amount to force browsers to actually scroll. This
+    // seems to fix the issue.
+    if (this.el.scrollTop == restore) {
+      restore += 1
+    }
     // console.log("scroll", "restoring", window.location.pathname, "to", restore)
     this.el.scrollTop = restore
   },
