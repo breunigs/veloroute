@@ -39,12 +39,13 @@ defmodule Data.Article.Static.Bau do
   defp articles(type, sorter, field) when is_atom(type) do
     Article.List.category("Blog")
     |> Stream.filter(fn art -> art.type() == type end)
+    # |> Stream.filter(fn art -> art.start() != Data.RoughDate.zero() end)
     |> Article.List.sort(sorter, field)
   end
 
   defp group_by_start(art) do
     if art.start() == Data.RoughDate.zero() do
-      nil
+      "unbekannt"
     else
       "ab #{art.start().year}"
     end
@@ -52,14 +53,9 @@ defmodule Data.Article.Static.Bau do
 
   defp group_by_stop(art) do
     if art.stop() == Data.RoughDate.zero() do
-      nil
+      "unbekannt"
     else
       "bis #{art.stop().year}"
     end
   end
 end
-
-# <.article_link art={art}><%= art.title() %></.article_link>
-
-# <.list_articles sort="start" display="bullets" type="construction"></.list_articles>
-# <.list_articles sort="start" display="bullets" type="planned"></.list_articles>
