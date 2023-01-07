@@ -11,7 +11,8 @@ defmodule ArticleTest do
               __changed__: %{},
               render_target: :html,
               search_query: nil,
-              search_bounds: nil
+              search_bounds: nil,
+              limit_to_map_bounds: false
             })
 
           nil

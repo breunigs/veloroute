@@ -22,7 +22,8 @@ defmodule VelorouteWeb.FrameLive do
     article_summary: nil,
     search_query: nil,
     search_bounds: nil,
-    tmp_last_article_set: nil
+    tmp_last_article_set: nil,
+    limit_to_map_bounds: false
   ]
 
   def initial_state, do: @initial_state
@@ -56,13 +57,17 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("map-bounds", %{"bounds" => bounds}, socket) do
     Process.send_after(self(), :check_updates, 100)
-    {:noreply, assign(socket, :map_bounds, bounds)}
+    {:noreply, assign(socket, :map_bounds, Geo.BoundingBox.parse(bounds))}
   end
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
   def handle_event("search", %{"value" => ""}, socket) do
     {:noreply, socket}
+  end
+
+  def handle_event("limit-to-map-bounds", _attr, socket) do
+    {:noreply, assign(socket, :limit_to_map_bounds, !socket.assigns.limit_to_map_bounds)}
   end
 
   @search_page "suche"

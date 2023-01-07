@@ -792,7 +792,7 @@ ol {
   }
 
   .duration {
-    color: #999;
+    color: #888;
     float: right;
     padding-left: .5em;
   }
@@ -925,7 +925,7 @@ table.route-list {
   }
 }
 
-p {
+p, form {
   text-align: justify;
   margin-top: 0.6rem;
 }
@@ -1158,10 +1158,21 @@ input[type=search] {
   }
 }
 
-div.aside {
+.aside {
   color: #888;
   font-style: italic;
   display: block;
+}
+
+ul, ol {
+  li.aside {
+    float: right;
+    margin-top: -2.25rem;
+
+    &:first-child + li.separator {
+      display: none;
+    }
+  }
 }
 
 .imgbullet img {
@@ -1184,6 +1195,6 @@ div.aside {
 .push-action {
   a.disabled, a.phx-click-loading {
     cursor: progress;
-    color: #999;
+    color: #888;
   }
 }

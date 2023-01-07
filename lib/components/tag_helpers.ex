@@ -189,21 +189,31 @@ defmodule Components.TagHelpers do
   end
 
   @spec list_articles(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :grouper, :any, doc: "fn/1 getting an article, outputting the value to group by"
+  attr :grouper, :any,
+    default: nil,
+    doc: "fn/1 getting an article, outputting the value to group by"
+
+  attr :filter, :any,
+    default: nil,
+    doc: "fn/1 getting an article, returning if article should be kept"
+
   attr :articles, :list
   slot(:inner_block, required: true)
 
-  def list_articles(assigns) do
-    assigns = assign_new(assigns, :grouper, fn -> & &1.updated_at.year end)
-    grouped = Util.ordered_group_by(assigns.articles, assigns.grouper)
-    assigns = assign(assigns, :grouped, grouped)
+  def list_articles(%{articles: articles, filter: filter, grouper: grouper} = assigns) do
+    articles = Enum.to_list(articles)
+    filtered = if filter, do: Enum.filter(articles, filter), else: articles
+    hidden = length(articles) - length(filtered)
+    grouped = Util.ordered_group_by(filtered, grouper || (& &1.updated_at.year))
+    assigns = assign(assigns, %{grouped: grouped, hidden: hidden})
 
     ~H"""
-    <%= for {group, articles} <- @grouped do %>
+    <li :if={@hidden>0} class="aside"><%= @hidden %> gefiltert</li>
+    <%= for {group, articles_for_group} <- @grouped do %>
       <%= if group != "" && group != nil do %>
         <li class="separator"><%= group %></li>
       <% end %>
-      <%= for art <- articles do %>
+      <%= for art <- articles_for_group do %>
         <li><%= render_slot(@inner_block, art) %></li>
       <% end %>
     <% end %>
