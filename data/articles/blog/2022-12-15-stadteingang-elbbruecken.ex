@@ -13,6 +13,7 @@ defmodule Data.Article.Blog.StadteingangElbbruecken do
 
   def links(_assigns) do
     [
+      {"Visualisierungen des umgebauten Gebiets", "https://www.skyfish.com/p/fhh/1982080"},
       {"Enwurf Bebauungsplan Elbbrücken-Ost", "Dezember 2022",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1016344"},
       {"Pressemitteilung Huckepackbahnhof", "Februar 2015",

@@ -634,3 +634,5 @@
 '2022-12-24':
 - "/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"
 - "/contentblob/16792718/3ad6670547aa0f97cb1740e5b3aa3d59/data/graf-johann-weg-veloroute-14-aktueller-stand-12-2022.pdf"
+'2023-01-07':
+- "/contentblob/16817358/3f79359ca9dfb4c2001dd380892e7b84/data/georg-wilhelm-strasse-sanierung-01-23-bis-10-25.pdf"
