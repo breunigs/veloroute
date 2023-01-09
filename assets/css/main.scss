@@ -503,6 +503,10 @@ body.showSidebar::before {
   -webkit-hyphens: auto;
   hyphens: auto;
   overscroll-behavior: contain;
+
+  p, ul, ol {
+    line-height: 1.15rem;
+  }
 }
 
 @keyframes spinner {
@@ -784,7 +788,6 @@ span.updated {
 ul,
 ol {
   padding-left: 0.85rem;
-  line-height: 120%;
   margin-top: 0.6rem;
 
   li {

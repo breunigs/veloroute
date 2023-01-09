@@ -10,6 +10,7 @@ defmodule Article.Decorators do
   @spec html(Article.t(), Article.assigns()) :: binary()
   def html(art, %{render_target: _} = assigns) do
     assigns = assign_new(assigns, :current_page, fn -> art end)
+    assigns = assign_new(assigns, :limit_to_map_bounds, fn -> false end)
     art.text(assigns) |> Util.render_heex()
   end
 
@@ -39,6 +40,7 @@ defmodule Article.Decorators do
       render_target: :html,
       search_query: nil,
       search_bounds: nil,
+      limit_to_map_bounds: false,
       current_page: art
     }
 
