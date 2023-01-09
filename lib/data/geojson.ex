@@ -118,6 +118,26 @@ defmodule Data.GeoJSON do
     raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
   end
 
+  defp as_geojson(%Map.Way{tags: %{type: "detour"}} = w) do
+    coords = Enum.map(w.nodes, &as_geojson_coord(&1))
+    title = w.tags[:article_title] || w.tags[:titles] || w.tags[:text]
+    title = "empfohlene Umleitung wegen „#{title}“"
+
+    props =
+      w.tags
+      |> Map.take([:name, :type | Map.Way.style_tags()])
+      |> Map.put(:title, title)
+
+    %{
+      type: "Feature",
+      properties: props,
+      geometry: %{
+        type: "LineString",
+        coordinates: coords
+      }
+    }
+  end
+
   defp as_geojson(%Map.Way{} = w) do
     coords = Enum.map(w.nodes, &as_geojson_coord(&1))
 
