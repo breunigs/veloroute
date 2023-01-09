@@ -15,7 +15,7 @@ defmodule VelorouteWeb.ImageExtractController do
          {:ok, img} <- ffmpeg(hash, ts_in_ms, format) do
       conn
       |> put_resp_content_type(header)
-      |> put_resp_header("x-robots-tag", "noindex")
+      |> maybe_block_indexing()
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
       |> send_resp(200, img)
       |> halt
@@ -31,6 +31,16 @@ defmodule VelorouteWeb.ImageExtractController do
     |> put_status(302)
     |> redirect(to: @fallback_image_path)
     |> halt
+  end
+
+  defp maybe_block_indexing(conn) do
+    with ["" <> agent] <- get_req_header(conn, "user-agent"),
+         agent <- String.downcase(agent),
+         true <- String.contains?(agent, "google") do
+      put_resp_header(conn, "x-robots-tag", "noindex")
+    else
+      _ -> conn
+    end
   end
 
   @spec image_support(any) :: {:webp | :jpeg, binary()}
