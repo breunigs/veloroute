@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
 
   def title(), do: "Ludwig-Rosenberg-Ring (Alltagsroute 8)"
 
-  def start(), do: ~d[2023-03]
-  def stop(), do: ~d[2023-12]
+  def start(), do: ~d[2023-07]
+  def stop(), do: ~d[2024-03]
 
   def type(), do: :intent
 
@@ -17,8 +17,12 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "Januar 2023",
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1007110"},
       {"Haushaltsplan 2022 Bezirk Bergedorf (Entwurf)",
-       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"}
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"},
+      {"Zeitungsartikel zur Umbauplanung", "März 2022",
+       "https://www.abendblatt.de/hamburg/bergedorf/lohbruegge/article234886721/Ludwig-Rosenberg-Ring-Lohbruegge-Bergedorf-mehr-Platz-fuer-Radfahrer.html"}
     ]
   end
 

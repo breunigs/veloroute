@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.ObererLandweg do
 
   def title(), do: "Oberer Landweg (Alltagsroute 9, RSW Geesthacht)"
 
-  def start(), do: ~d[2023-03]
-  def stop(), do: ~d[2023-12]
+  def start(), do: ~d[2023-05]
+  def stop(), do: ~d[2024-04]
 
   def type(), do: :intent
 
@@ -17,8 +17,12 @@ defmodule Data.Article.Blog.ObererLandweg do
 
   def links(_assigns) do
     [
+      {"Baustellenkoordination", "Januar 2023",
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1007110"},
       {"Haushaltsplan 2022 Bezirk Bergedorf (Entwurf)",
-       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"}
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"},
+      {"Zeitungsartikel zur Umbauplanung", "Oktober 2021",
+       "https://www.abendblatt.de/hamburg/bergedorf/article233661837/oberer-landweg-einspurig-auto-verkehr-hamburg-nettelnburg-radfahrer-fussgaenger.html"}
     ]
   end
 

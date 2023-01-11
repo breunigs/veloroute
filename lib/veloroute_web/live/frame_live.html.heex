@@ -112,11 +112,6 @@
         </p>
       <% end %>
 
-      <%# explicity name params so that live tracking works %>
-      <%#  Phoenix.View.render(VelorouteWeb.ArticleView, @current_page, %{
-        search_bounds: @search_bounds,
-        search_query: @search_query
-      }) %>
       <%= Article.Renderer.render(assigns) %>
 
       <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
