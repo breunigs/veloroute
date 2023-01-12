@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baustart",
+       "https://www.hamburg.de/bvm/medien/16828174/2023-01-11-bvm-georg-wilhelm-strasse/"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/contentblob/10111408/9277a6b41d043d6468c5ca3a642198ee/data/georg-wilhelm-strasse-abgestimmte-planung-bericht.pdf"},
       {"Änderungen der überarbeiteten Fassung",
