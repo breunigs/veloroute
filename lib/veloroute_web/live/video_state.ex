@@ -140,9 +140,10 @@ defmodule VelorouteWeb.Live.VideoState do
     end || "failed-to-determine-route-id"
   end
 
-  @spec current_track(t()) :: Video.Track.t() | nil
+  @spec current_track(t() | nil) :: Video.Track.t() | nil
   def current_track(%__MODULE__{direction: :forward, forward_track: fw}), do: fw
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
+  def current_track(nil), do: nil
 
   @spec current_rendered(t()) :: Video.Rendered.t() | nil
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw

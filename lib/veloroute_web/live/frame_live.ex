@@ -23,7 +23,8 @@ defmodule VelorouteWeb.FrameLive do
     search_query: nil,
     search_bounds: nil,
     tmp_last_article_set: nil,
-    limit_to_map_bounds: false
+    limit_to_map_bounds: false,
+    og_image: nil
   ]
 
   def initial_state, do: @initial_state
@@ -241,6 +242,7 @@ defmodule VelorouteWeb.FrameLive do
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
+    |> update_og_image()
   end
 
   defp set_content(socket, _article), do: render_404(socket)
@@ -374,5 +376,20 @@ defmodule VelorouteWeb.FrameLive do
 
   defp canonical(art) do
     if art, do: Article.Decorators.path(art), else: "/"
+  end
+
+  defp update_og_image(%{assigns: assigns} = socket) do
+    related_tracks = Article.Decorators.related_tracks(assigns.current_page)
+    current_track = VelorouteWeb.Live.VideoState.current_track(assigns.video)
+
+    url =
+      if Enum.member?(related_tracks, current_track) do
+        "/images/thumbnails/#{assigns.video_hash}/#{assigns.video_start}"
+      else
+        bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
+        ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
+      end
+
+    assign(socket, :og_image, url)
   end
 end

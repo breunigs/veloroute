@@ -270,6 +270,35 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert_layers(html, ~w(Artikel Alltagsrouten))
   end
 
+  test "article without specific videos uses map og:image", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/")
+
+    assert_attribute(
+      html,
+      ~s(meta[property="og:image"),
+      "content",
+      &String.contains?(&1, "/map/___static")
+    )
+  end
+
+  test "articles use correct image preview", %{conn: conn} do
+    [
+      {"article with specific video", "/alltagsroute-1", "/images/thumbnails/"},
+      {"article with related video", "/article/2018-04-08-4-kleekamp", "/images/thumbnails/"},
+      {"article without videos", "/", "/map/___static"}
+    ]
+    |> Enum.each(fn {_desc, path, expected} ->
+      {:ok, _view, html} = live(conn, path)
+
+      assert_attribute(
+        html,
+        ~s(meta[property="og:image"),
+        "content",
+        &String.contains?(&1, expected)
+      )
+    end)
+  end
+
   test "all articles can be rendered in the frame", %{conn: conn} do
     render_issues =
       Article.List.all()
@@ -293,7 +322,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
   defp assert_attribute(html, selector, attribute, expected) do
     [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
     actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual
-    assert expected == actual
+
+    cond do
+      is_function(expected) -> assert expected.(actual)
+      is_binary(expected) -> assert expected == actual
+    end
   end
 
   defp assert_layers(html, want_layers) do
