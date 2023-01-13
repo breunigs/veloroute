@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
   def links(_assigns) do
     [
       {"Bauvergabe", "Dezember 2022",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/16f6c155-e00e-4a2e-828c-f5bc12341313/details"}
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/3f07b42a-bc28-4b03-bb8d-e736d73daf8b"}
     ]
   end
 

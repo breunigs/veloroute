@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Rehrstieg do
   def tags(), do: ["10", "H10.3"]
 
   def start(), do: ~d[2023-01]
-  def stop(), do: ~d[2023-08]
+  def stop(), do: ~d[2023-10]
 
   def links(_assigns) do
     [

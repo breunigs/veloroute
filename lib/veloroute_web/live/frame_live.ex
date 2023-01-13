@@ -190,6 +190,7 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> set_content(article)
       |> set_bounds(article, Map.get(params, "bounds"))
+      |> update_og_image()
       |> assign(:tmp_last_article_set, article)
 
     {:noreply, socket}
@@ -242,7 +243,6 @@ defmodule VelorouteWeb.FrameLive do
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
-    |> update_og_image()
   end
 
   defp set_content(socket, _article), do: render_404(socket)

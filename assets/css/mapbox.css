@@ -110,7 +110,7 @@ a.mapboxgl-ctrl-logo {
   background-repeat: no-repeat;
   cursor: pointer;
   overflow: hidden;
-  background-image: url("/images/mapbox-ctrl-log.svg")
+  background-image: url("/images/mapbox-ctrl-logo.svg")
 }
 
 a.mapboxgl-ctrl-logo.mapboxgl-compact {

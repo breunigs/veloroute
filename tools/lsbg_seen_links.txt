@@ -636,3 +636,5 @@
 - "/contentblob/16792718/3ad6670547aa0f97cb1740e5b3aa3d59/data/graf-johann-weg-veloroute-14-aktueller-stand-12-2022.pdf"
 '2023-01-07':
 - "/contentblob/16817358/3f79359ca9dfb4c2001dd380892e7b84/data/georg-wilhelm-strasse-sanierung-01-23-bis-10-25.pdf"
+'2023-01-13':
+- "/contentblob/16830964/62c399b9eeb1648d0b547d3587976f19/data/praesident-krahn-strasse-sanierung-01-23-bis-03-23.pdf"

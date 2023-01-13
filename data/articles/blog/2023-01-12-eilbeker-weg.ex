@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.EilbekerWeg do
   def stop(), do: ~d[2023Q2]
 
   def type(), do: :planned
-  def tags(), do: ["9", "rsw-geesthacht", "M11.3"]
+  def tags(), do: []
 
   def links(_assigns) do
     [
