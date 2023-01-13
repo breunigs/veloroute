@@ -378,6 +378,12 @@ defmodule VelorouteWeb.FrameLive do
     if art, do: Article.Decorators.path(art), else: "/"
   end
 
+  defp update_og_image(%{assigns: %{current_page: nil}} = socket) do
+    bounds = VelorouteWeb.VariousHelpers.to_string_bounds(Settings.bounds())
+    url = ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
+    assign(socket, :og_image, url)
+  end
+
   defp update_og_image(%{assigns: assigns} = socket) do
     related_tracks = Article.Decorators.related_tracks(assigns.current_page)
     current_track = VelorouteWeb.Live.VideoState.current_track(assigns.video)
