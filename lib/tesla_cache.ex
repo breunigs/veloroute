@@ -40,7 +40,10 @@ defmodule TeslaCache do
     end
   end
 
-  defp keep?({:ok, %Tesla.Env{status: 200}}), do: :commit
+  defp keep?({:ok, %Tesla.Env{status: 200, body: body}})
+       when body != <<>> and body != "" and body != nil,
+       do: :commit
+
   defp keep?({_status, _env}), do: :ignore
 
   defp cache_busters?(%Tesla.Env{query: query}), do: Enum.any?(query, &(elem(&1, 0) == "sku"))
