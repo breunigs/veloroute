@@ -23,8 +23,7 @@ defmodule Data.Article.Static.Suche do
         <%= for result <- @search_results do %>
           <li>
             <div>
-              <!-- relevance: {result.relevance} -->
-              <!-- type: {result.type} -->
+              <!-- relevance: <%= result.relevance %> type: <%= result.type %> -->
               <%= SearchResult.to_html(result) %>
               <%= if result.subtext do %>
                 <div class="aside"><%= result.subtext %></div>
