@@ -1,8 +1,8 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=p20221123
-ARG FFMPEG_VERSION=5.1
-ARG BLUR_VERSION=2bf9d4e4e1c4388df9ed142011e8ead0eee36493
+ARG RAV1E_VERSION=v0.6.3
+ARG FFMPEG_VERSION=5.1.2
+ARG BLUR_VERSION=2de67ec0d476f6a2c3bc939dbfee8242239c2375
 
 RUN mkdir -p /downloads/
 
@@ -79,11 +79,12 @@ RUN \
   pkg-config \
   yasm \
   && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
+  && echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list \
   && apt-get update \
-  && apt-get install -y --no-install-recommends -t unstable \
-  cargo \
-  cargo-c \
-  rustc \
+  && apt-get install -y --no-install-recommends \
+  cargo/unstable \
+  cargo-c/unstable \
+  rustc/experimental \
   && rm -rf /var/lib/apt/lists/*
 
 ENV PREFIX=/build
