@@ -542,7 +542,7 @@ $cyclistSize: 8rem;
 
   &::after {
     animation: 2.0s ease-in-out infinite spinner;
-    animation-play-state: inherit;
+    animation-play-state: paused;
     border: solid calc($cyclistSize/20) transparent;
     border-bottom-color: $red;
     border-radius: 50%;
@@ -556,6 +556,7 @@ $cyclistSize: 8rem;
     &::after, &::before {
       transition-delay: 500ms;
       opacity: 1;
+      animation-play-state: running;
     }
   }
 }
