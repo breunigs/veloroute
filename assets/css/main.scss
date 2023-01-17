@@ -541,6 +541,7 @@ $cyclistSize: 8rem;
   }
 
   &::after {
+    will-change: transform;
     animation: 2.0s ease-in-out infinite spinner;
     animation-play-state: paused;
     border: solid calc($cyclistSize/20) transparent;
