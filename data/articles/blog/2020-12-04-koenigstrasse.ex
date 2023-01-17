@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def summary(),
     do: "Meist 2,5m breite geschützte Radfahrstreifen; Hochbordradwege an zwei Stellen."
 
-  def start(), do: ~d[2023-07]
+  def start(), do: ~d[2023-08]
   def stop(), do: ~d[2025-04]
 
   def type(), do: :planned

@@ -638,3 +638,6 @@
 - "/contentblob/16817358/3f79359ca9dfb4c2001dd380892e7b84/data/georg-wilhelm-strasse-sanierung-01-23-bis-10-25.pdf"
 '2023-01-13':
 - "/contentblob/16830964/62c399b9eeb1648d0b547d3587976f19/data/praesident-krahn-strasse-sanierung-01-23-bis-03-23.pdf"
+'2023-01-17':
+- "/contentblob/16837794/5e073fd067b4a0973a63d8d0511c3e29/data/veloroute-14-abschnitt-nord-garstedter-weg-krohnstieg-abstimmungsunterlage-bericht.pdf"
+- "/contentblob/16837796/96b476098c3fd33165271f8f12045f8d/data/veloroute-14-abschnitt-nord-garstedter-weg-krohnstieg-abstimmungsunterlage-plan.pdf"

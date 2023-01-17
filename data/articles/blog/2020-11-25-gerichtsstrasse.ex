@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def updated_at(), do: ~D[2021-11-27]
   def title(), do: "Gerichtsstraße"
 
-  def start(), do: ~d[2023-04-14]
+  def start(), do: ~d[2023-04-01]
   def stop(), do: ~d[2024-05-31]
 
   def type(), do: :planned
