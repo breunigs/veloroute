@@ -115,7 +115,7 @@ function attachHlsErrorHandler(obj, Hls) {
     if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
       sendCurrentVideoTime('video-fatal-hls');
-      window.videoMeta.start = videoTimeInMs;
+      videoMeta.start = videoTimeInMs;
       autoplay = true
       window.hls = false;
       obj.destroy();
