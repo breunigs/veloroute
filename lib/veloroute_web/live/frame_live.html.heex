@@ -52,7 +52,8 @@
   />
 
   <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
-    <div id="videoPoster" >
+    <%# phx-ignore-attrneeded to toggle loading indicator from JS %>
+    <div id="videoPoster" phx-ignore-attr="class">
       <video
         id="videoInner"
         muted
