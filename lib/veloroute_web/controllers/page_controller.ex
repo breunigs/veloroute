@@ -65,6 +65,10 @@ defmodule VelorouteWeb.PageController do
     end
   end
 
+  def redir_favicon(conn, _params) do
+    conn |> put_status(301) |> redirect(to: "/favicons/16.png")
+  end
+
   def js_errors(conn, _params) do
     {:ok, data, _conn_details} = Plug.Conn.read_body(conn)
     err = "A JavaScript error was reported:\n#{data}\n#{inspect(conn)}"

@@ -14,8 +14,6 @@ defmodule Mix.Tasks.Velo.Favicon.Raster do
 
     IO.puts("updating #{length(variants)} favicon rasters")
     generate(variants)
-
-    File.copy!("#{@target}/16.png", "#{@target}/../favicon.ico")
   end
 
   defp generate([]), do: :ok

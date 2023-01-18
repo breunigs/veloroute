@@ -152,7 +152,8 @@ defmodule VelorouteWeb.FrameLive do
     handle_params(params, nil, socket)
   end
 
-  def handle_params(%{"not_found" => "true"}, nil, socket), do: {:noreply, render_404(socket)}
+  def handle_params(%{"not_found" => "true"}, nil, socket),
+    do: {:noreply, render_404(socket, "not found param set")}
 
   def handle_params(%{"article" => name, "subdir" => "articles"} = params, nil, socket) do
     params
@@ -209,8 +210,9 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   # i.e. there's a path we didn't recognize yet, so it must be a 404.
-  def handle_params(%{"path" => list}, nil, socket) when is_list(list),
-    do: {:noreply, render_404(socket)}
+  def handle_params(%{"path" => list}, nil, socket) when is_list(list) do
+    {:noreply, render_404(socket, "path not recognized")}
+  end
 
   def handle_params(params, nil, socket) do
     Logger.debug("params: default (#{inspect(params)})")
@@ -245,10 +247,10 @@ defmodule VelorouteWeb.FrameLive do
     )
   end
 
-  defp set_content(socket, _article), do: render_404(socket)
+  defp set_content(socket, _article), do: render_404(socket, "article not found")
 
-  defp render_404(socket) do
-    Logger.error("Non-existing site was accessed: #{socket.assigns.current_url}")
+  defp render_404(socket, reason) do
+    Logger.error("Non-existing site was accessed (#{reason}): #{socket.assigns.current_url}")
 
     url =
       Routes.startpage_path(

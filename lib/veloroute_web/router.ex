@@ -21,6 +21,8 @@ defmodule VelorouteWeb.Router do
       get "/#{num}", PageController, :redir_plain_veloroute
     end
 
+    get "/favicon.ico", PageController, :redir_favicon
+
     get "/blog/:article", PageController, :blog
     post "/plausible/event", PageController, :event
     get "/quality/:article", PageController, :quality
