@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Velo.Favicon.Raster do
 
   @source "data/images/favicon.svg"
   @target "priv/static/favicons/"
-  @variants ~w(16 32 36 48 57 72 96 144 152 167 180 192)
+  @variants ~w(16 32 36 48 57 72 96 100 144 152 167 180 192)
 
   @shortdoc "Generate raster versions of #{@source}"
   def run(_args) do

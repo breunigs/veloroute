@@ -66,7 +66,14 @@ defmodule VelorouteWeb.PageController do
   end
 
   def redir_favicon(conn, _params) do
-    conn |> put_status(301) |> redirect(to: "/favicons/16.png")
+    size =
+      if String.contains?(conn.request_path, "apple-touch-icon") do
+        100
+      else
+        16
+      end
+
+    conn |> put_status(301) |> redirect(to: "/favicons/#{size}.png")
   end
 
   def js_errors(conn, _params) do
