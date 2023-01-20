@@ -13,7 +13,9 @@ defmodule Data.Article.Static.Suche do
 
     ~H"""
     <h3><label for="query">Suche 🔎</label></h3>
-    <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500" phx-hook="FocusSearchField" autofocus="autofocus" value={@search_query}/>
+    <form method="GET" action="/suche" onsubmit="return false">
+      <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500" phx-hook="FocusSearchField" autofocus="autofocus" name="search_query" value={@search_query}/>
+    </form>
 
     <.noindex>
       <%= if @search_results == [] && @search_query != "" do %>
