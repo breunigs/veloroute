@@ -23,7 +23,7 @@ defmodule Components.TagHelpers do
     if is_nil(art),
       do: raise("Tried to find article by name '#{name}', but no such article exists")
 
-    article_link(Map.put(assigns, :article, art))
+    article_link(Map.put(assigns, :ref, art))
   end
 
   def a(%{href: href} = assigns) do
@@ -152,9 +152,9 @@ defmodule Components.TagHelpers do
   end
 
   @spec updated_at_time(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :article, :atom
+  attr :ref, :atom, required: true
 
-  def updated_at_time(%{article: art} = assigns) when is_module(art) do
+  def updated_at_time(%{ref: art} = assigns) when is_module(art) do
     if art.updated_at() == nil do
       ~H{}
     else
@@ -172,23 +172,20 @@ defmodule Components.TagHelpers do
   end
 
   @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :article, :atom
-  attr :class, :string
+  attr :ref, :atom, required: true
+  attr :class, :string, default: ""
   slot(:inner_block)
 
-  def article_link(%{article: art, inner_block: []} = assigns) when is_module(art) do
-    assigns = Map.put_new(assigns, :class, "")
+  def article_link(%{ref: art} = assigns) when is_module(art) do
+    assigns =
+      assign(assigns, %{
+        href: Article.Decorators.path(art),
+        summary: art.summary(),
+        title: Article.Decorators.full_title(art)
+      })
 
     ~H"""
-    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= Article.Decorators.full_title(@article) %></a>
-    """
-  end
-
-  def article_link(%{article: art, inner_block: _} = assigns) when is_module(art) do
-    assigns = Map.put_new(assigns, :class, "")
-
-    ~H"""
-    <a href={Article.Decorators.path(@article)} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@article.summary()}><%= render_slot(@inner_block, :already_linked) %></a>
+    <a href={@href} class={@class} data-phx-link-state="push" data-phx-link="patch" title={@summary}><%= render_slot(@inner_block, :already_linked) || @title %></a>
     """
   end
 
@@ -201,10 +198,10 @@ defmodule Components.TagHelpers do
     default: nil,
     doc: "fn/1 getting an article, returning if article should be kept"
 
-  attr :articles, :list
+  attr :refs, :list, required: true
   slot(:inner_block, required: true)
 
-  def list_articles(%{articles: articles, filter: filter, grouper: grouper} = assigns) do
+  def list_articles(%{refs: articles, filter: filter, grouper: grouper} = assigns) do
     articles = Enum.to_list(articles)
     filtered = if filter, do: Enum.filter(articles, filter), else: articles
     hidden = length(articles) - length(filtered)
@@ -234,7 +231,7 @@ defmodule Components.TagHelpers do
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
     assigns
-    |> Map.merge(%{article: art, class: "ref"})
+    |> Map.merge(%{ref: art, class: "ref"})
     |> article_link()
   end
 
@@ -424,18 +421,20 @@ defmodule Components.TagHelpers do
   end
 
   @spec construction_duration(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :article, :atom
+  attr :ref, :atom, required: true
 
-  def construction_duration(%{article: art} = assigns) when is_module(art) do
+  def construction_duration(%{ref: ref}) when is_module(ref) do
+    assigns = %{duration: Data.RoughDate.range(ref.start(), ref.stop())}
+
     ~H"""
-    <span class="duration"><%= Data.RoughDate.range(@article.start(), @article.stop()) %></span>
+    <span class="duration"><%= @duration %></span>
     """
   end
 
   @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :article, :atom
+  attr :ref, :atom, required: true
 
-  def construction_duration_header(%{article: art} = assigns) do
+  def construction_duration_header(%{ref: art} = assigns) do
     range = Data.RoughDate.range(art.start(), art.stop())
     assigns = assign(assigns, range: range)
 
@@ -452,9 +451,9 @@ defmodule Components.TagHelpers do
   end
 
   @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :article, :atom
+  attr :ref, :atom, required: true
 
-  def article_updated_at(%{article: art} = assigns) do
+  def article_updated_at(%{ref: art} = assigns) do
     if art.updated_at() do
       assigns =
         assign(assigns, %{

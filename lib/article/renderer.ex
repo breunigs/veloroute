@@ -26,14 +26,14 @@ defmodule Article.Renderer do
     ~H"""
       <div {@microdata[:wrapper] || %{}}>
         <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @ref.title() %></h3>
-        <Components.TagHelpers.construction_duration_header article={@ref}/>
+        <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
         <%= @body %>
-        <Components.TagHelpers.article_updated_at article={@ref}/>
+        <Components.TagHelpers.article_updated_at ref={@ref}/>
         <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
       </div>
 
-      <Components.RelatedArticlesHelper.related_articles article={@ref}/>
+      <Components.RelatedArticlesHelper.related_articles ref={@ref}/>
     """
   end
 end

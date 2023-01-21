@@ -41,18 +41,18 @@ defmodule Data.Article.Static.Bau do
 
     <h3>Baustellen</h3>
     <ul>
-      <.list_articles let={art} articles={articles(:construction, :asc, :stop)} grouper={&group_by_stop/1} {@list_articles_attr}>
-        <.construction_duration article={art} />
-        <.article_link article={art}><%= art.title()%></.article_link>
+      <.list_articles let={ref} refs={articles(:construction, :asc, :stop)} grouper={&group_by_stop/1} {@list_articles_attr}>
+        <.construction_duration ref={ref} />
+        <.article_link ref={ref}><%= ref.title()%></.article_link>
       </.list_articles>
     </ul>
 
 
     <h3>Geplante Baumaßnahmen</h3>
     <ul>
-      <.list_articles let={art} articles={articles(:planned, :asc, :start)}  grouper={&group_by_start/1} {@list_articles_attr}>
-        <.construction_duration article={art} />
-        <.article_link article={art}><%= art.title() %></.article_link>
+      <.list_articles let={ref} refs={articles(:planned, :asc, :start)}  grouper={&group_by_start/1} {@list_articles_attr}>
+        <.construction_duration ref={ref} />
+        <.article_link ref={ref}><%= ref.title() %></.article_link>
       </.list_articles>
     </ul>
     """

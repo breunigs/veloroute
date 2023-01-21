@@ -19,9 +19,9 @@ defmodule Data.Article.Static.Changes do
 
     <h3 id="lastChanges">Letzte Änderungen</h3>
     <ol class="hide-bullets">
-      <.list_articles let={art} articles={Article.List.recent(_min_arts = 50, _max_arts = 1000, _max_days = 10*365)}>
-        <.updated_at_time article={art} />
-        <.article_link article={art}/>
+      <.list_articles let={ref} refs={Article.List.recent(_min_arts = 50, _max_arts = 1000, _max_days = 10*365)}>
+        <.updated_at_time ref={ref} />
+        <.article_link ref={ref}/>
       </.list_articles>
     </ol>
     """

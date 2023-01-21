@@ -3,7 +3,9 @@ defmodule Components.RelatedArticlesHelper do
   alias Components.TagHelpers
 
   @spec related_articles(map()) :: Phoenix.LiveView.Rendered.t()
-  def related_articles(%{article: art} = assigns) do
+  attr :ref, :atom, required: true
+
+  def related_articles(%{ref: art} = assigns) do
     grouped =
       art
       |> Article.List.related()
@@ -28,28 +30,29 @@ defmodule Components.RelatedArticlesHelper do
     ~H"""
     <TagHelpers.noindex>
       <h3>Verwandte Artikel</h3>
-      <.soft_list articles={@related_static}/>
+      <.soft_list refs={@related_static}/>
       <ol class="hide-bullets">
-        <TagHelpers.list_articles let={art} articles={@related_dated}>
-          <TagHelpers.updated_at_time article={art} />
-          <TagHelpers.article_link article={art}/>
+        <TagHelpers.list_articles let={ref} refs={@related_dated}>
+          <TagHelpers.updated_at_time ref={ref} />
+          <TagHelpers.article_link ref={ref}/>
         </TagHelpers.list_articles>
       </ol>
     </TagHelpers.noindex>
     """
   end
 
-  defp soft_list(%{articles: []} = assigns), do: ~H""
+  defp soft_list(%{refs: []} = assigns), do: ~H""
 
-  defp soft_list(%{articles: [_art]} = assigns) do
-    ~H"<p>Übersicht: <strong><TagHelpers.article_link article={hd(@articles)}/></strong></p>"
+  defp soft_list(%{refs: [ref]}) do
+    assigns = %{ref: ref}
+    ~H"<p>Übersicht: <strong><TagHelpers.article_link ref={@ref}/></strong></p>"
   end
 
   defp soft_list(assigns) do
     ~H"""
     <ul>
-    <%= for art <- @articles do %>
-      <li><TagHelpers.article_link article={art}/></li>
+    <%= for art <- @refs do %>
+      <li><TagHelpers.article_link ref={art}/></li>
     <% end %>
     </ul>
     """
