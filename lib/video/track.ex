@@ -173,8 +173,7 @@ defmodule Video.Track do
 
     recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
 
-    # unclear why half_frame_duration_ms() is needed
-    dur = dur + to_ms - from_ms + half_frame_duration_ms()
+    dur = dur + to_ms - from_ms
     {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
   end
 
@@ -191,10 +190,6 @@ defmodule Video.Track do
   @spec default_fade :: float
   def default_fade() do
     @fade_frames / Video.Source.fps()
-  end
-
-  defp half_frame_duration_ms() do
-    round(1 / Video.Source.fps() * 1000 / 2)
   end
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()

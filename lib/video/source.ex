@@ -201,15 +201,33 @@ defmodule Video.Source do
     IO.puts(:stderr, "\nquerying video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
 
-    {out, 0} = System.cmd("mediainfo", ["--Inform=Video;%Duration%\\n%FrameRate%", path])
-    [ms, framerate] = out |> String.trim() |> String.split("\n", parts: 2)
-    framerate = framerate |> String.to_float()
+    # this selects the format length, not the video length. These can differ by
+    # some ms.
+    {out, 0} =
+      System.cmd(
+        "ffprobe",
+        [
+          "-v",
+          "error",
+          "-select_streams",
+          "v",
+          "-of",
+          "json=c=1",
+          "-show_entries",
+          "format=duration:stream=r_frame_rate",
+          path
+        ]
+      )
 
-    if framerate != @required_fps do
+    {:ok, parsed} = Jason.decode(out)
+
+    framerate = parsed["streams"] |> hd() |> get_in(["r_frame_rate"]) |> fps_to_float()
+    seconds = parsed["format"]["duration"] |> String.to_float()
+    ms = round(seconds * 1000)
+
+    if Float.round(framerate, 2) != Float.round(@required_fps, 2) do
       raise "video #{source} uses #{framerate} instead of the expected #{@required_fps}"
     end
-
-    ms = ms |> String.replace(~r/\.\d+$/, "") |> String.to_integer()
 
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
@@ -311,6 +329,15 @@ defmodule Video.Source do
     else
       err ->
         {:error, "invalid date: #{inspect(err)}"}
+    end
+  end
+
+  defp fps_to_float(str) do
+    str
+    |> String.split("/", parts: 2)
+    |> case do
+      [num, denom] -> String.to_integer(num) / String.to_integer(denom)
+      [decimal] -> String.to_float(decimal)
     end
   end
 end
