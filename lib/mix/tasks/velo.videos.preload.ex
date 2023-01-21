@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Velo.Videos.Preload do
 
     seen = load_seen()
 
-    Video.Rendered.rendered()
+    Video.Generator.rendered()
     |> Enum.flat_map(fn rendered ->
       Enum.filter(video_files, &String.starts_with?(&1, rendered.hash))
     end)

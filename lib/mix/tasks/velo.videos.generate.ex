@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
 
   def run(["new"]) do
     existing =
-      Video.Rendered.all()
+      Video.Generator.all()
       |> Enum.filter(& &1.rendered?)
       |> Enum.map(&{{&1.renderer(), &1.sources()}, true})
       |> Enum.into(%{})
@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     )
   end
 
-  @spec generate((Video.Track.t() -> boolean())) :: [Video.Rendered.t() | nil]
+  @spec generate((Video.Track.t() -> boolean())) :: [Video.Generator.t() | nil]
   defp generate(filter) do
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
@@ -49,7 +49,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
       ##########################################################
       """
 
-      Video.Rendered.save_from_track(track)
+      Video.Generator.save_from_track(track)
       |> case do
         rendered when is_module(rendered) ->
           rendered
@@ -69,12 +69,12 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
 
   defp list_unused(rendered) do
     keep = rendered |> MapSet.new()
-    all = Video.Rendered.all() |> MapSet.new()
+    all = Video.Generator.all() |> MapSet.new()
     unused = MapSet.difference(all, keep)
 
     if MapSet.size(unused) > 0 do
       IO.puts(:stderr, "unused/unreferenced rendered videos:")
-      Enum.each(unused, &IO.puts(:stderr, "#{Video.Rendered.path(&1)}: #{&1.name()}"))
+      Enum.each(unused, &IO.puts(:stderr, "#{Video.Generator.path(&1)}: #{&1.name()}"))
       IO.puts(:stderr, "\n")
     end
   end

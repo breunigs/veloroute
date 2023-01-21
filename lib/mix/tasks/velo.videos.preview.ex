@@ -37,7 +37,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
     """)
 
-    Video.Rendered.pending()
+    Video.Generator.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       IO.puts("""
@@ -49,7 +49,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   end
 
   defp preview([hash | tail]) when valid_hash(hash) do
-    rendered = Video.Rendered.find_by_hash(hash)
+    rendered = Video.Generator.find_by_hash(hash)
 
     if rendered == nil do
       IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
@@ -64,7 +64,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
          {index, ""} when index >= 0 <- Integer.parse(in_index),
          track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index) do
       track
-      |> Video.Rendered.dynamic_compile()
+      |> Video.Generator.dynamic_compile()
       |> stream_video(tail)
     else
       error ->

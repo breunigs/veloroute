@@ -9,7 +9,7 @@ defmodule VelorouteWeb.ImageExtractController do
 
   def image(conn, %{"hash" => hash, "timestamp" => ts}) when valid_hash(hash) do
     with {ts_in_ms, ""} <- Integer.parse(ts),
-         {:ok, ren} <- Video.Rendered.get_error(hash),
+         {:ok, ren} <- Video.Generator.get_error(hash),
          true <- ren.length_ms() >= ts_in_ms,
          {format, header} <- image_support(conn),
          {:ok, img} <- ffmpeg(hash, ts_in_ms, format) do

@@ -12,7 +12,7 @@ defmodule Statistics do
   use Memoize
 
   defmemo all do
-    visible_videos = Article.List.all() |> Enum.flat_map(& &1.tracks()) |> Video.Rendered.get()
+    visible_videos = Article.List.all() |> Enum.flat_map(& &1.tracks()) |> Video.Generator.get()
 
     Enum.reduce(visible_videos, %{duration_ms: 0, distance_m: 0}, fn render, all ->
       all

@@ -19,13 +19,13 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   @spec find(nil | [binary()]) :: any()
-  defp find(nil), do: Video.Rendered.pending()
-  defp find([]), do: Video.Rendered.pending()
+  defp find(nil), do: Video.Generator.pending()
+  defp find([]), do: Video.Generator.pending()
 
   defp find(filters) when is_list(filters) and length(filters) >= 1 do
     filters = filters |> Enum.flat_map(&clean/1) |> MapSet.new()
 
-    Video.Rendered.pending()
+    Video.Generator.pending()
     |> Enum.reject(fn video ->
       ident = [video.name(), video.hash()] |> Enum.flat_map(&clean/1) |> MapSet.new()
       MapSet.disjoint?(ident, filters)

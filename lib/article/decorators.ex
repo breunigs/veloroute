@@ -149,7 +149,7 @@ defmodule Article.Decorators do
     # from tracks
     bbox_tracks =
       art.tracks()
-      |> Enum.map(&Video.Rendered.get(&1))
+      |> Enum.map(&Video.Generator.get(&1))
       |> Util.compact()
       |> Enum.reduce(nil, &Geo.CheapRuler.union(&1.bbox(), &2))
 
@@ -252,7 +252,7 @@ defmodule Article.Decorators do
   def start_image_path(art) do
     with [track | _rest] <- article_with_tracks(art).tracks(),
          bbox when is_map(bbox) <- bbox(art),
-         rendered <- Video.Rendered.get(track) do
+         rendered <- Video.Generator.get(track) do
       center = Geo.CheapRuler.center(bbox)
 
       %{point: %{time_offset_ms: ms}} =

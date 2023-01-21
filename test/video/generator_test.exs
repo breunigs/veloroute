@@ -1,6 +1,6 @@
-defmodule Video.RenderedTest do
+defmodule Video.GeneratorTest do
   use ExUnit.Case, async: true
-  doctest Video.Rendered
+  doctest Video.Generator
 
   defmodule Example do
     @behaviour Video.Rendered
