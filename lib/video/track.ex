@@ -108,7 +108,7 @@ defmodule Video.Track do
     {calc_hash(tsv_list, fade), coords, reverse_compact_recording_dates(recording_dates)}
   end
 
-  def render(%__MODULE__{videos: videos, renderer: 3}) do
+  def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4] do
     tsvs = tsvs(videos)
     hsh = :crypto.hash_init(:md5)
     fade_in_ms = round(default_fade() * 1000)
@@ -183,8 +183,7 @@ defmodule Video.Track do
   """
   def fade(%__MODULE__{renderer: v}), do: fade(v)
   def fade(1), do: :none
-  def fade(2), do: default_fade()
-  def fade(3), do: default_fade()
+  def fade(version) when version in [2, 3, 4], do: default_fade()
 
   @fade_frames 8
   @spec default_fade :: float

@@ -18,10 +18,18 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
     generate(fn track -> !Map.has_key?(existing, {track.renderer, track.videos}) end)
   end
 
+  def run([num]) do
+    with {renderer_version, ""} <- Integer.parse(num) do
+      generate(fn track -> track.renderer == renderer_version end)
+    else
+      _ -> run([])
+    end
+  end
+
   def run(_args) do
     IO.puts(
       :stderr,
-      "Please specifiy which video renders to generate:\n* all = create new from tracks and update all existing ones\n* new = only for un-rendered tracks (as matched by the sources)"
+      "Please specifiy which video renders to generate:\n* all = create new from tracks and update all existing ones\n* new = only for un-rendered tracks (as matched by the sources)\n* x = where x is an integer for the corresponding renderer version"
     )
   end
 

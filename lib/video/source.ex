@@ -198,7 +198,7 @@ defmodule Video.Source do
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}
   defp video_length_ms_slow(%__MODULE__{source: source}) do
-    IO.puts(:stderr, "\nquerying video to determine length of #{source}")
+    IO.puts(:stderr, "querying video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
 
     # this selects the format length, not the video length. These can differ by

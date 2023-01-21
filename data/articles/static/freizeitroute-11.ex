@@ -17,7 +17,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 4,
         group: "2. Grüner Ring",
         direction: :forward,
         from: "Teufelsbrück",
@@ -128,7 +128,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 4,
         group: "2. Grüner Ring",
         direction: :backward,
         from: "Rüschpark",
