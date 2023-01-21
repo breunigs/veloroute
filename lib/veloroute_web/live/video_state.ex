@@ -354,7 +354,7 @@ defmodule VelorouteWeb.Live.VideoState do
   # if we have a position, change the tracks default order by closeness to the position
   defp update_from_tracks(state, tracks, near_position, accurate_position)
        when is_map(near_position) do
-    first_group = tracks |> Enum.map(& &1.group) |> Enum.uniq() |> hd()
+    first_group = Enum.find_value(tracks, & &1.group)
 
     sorted =
       Enum.sort_by(tracks, fn track ->

@@ -218,23 +218,10 @@ defmodule Geo.CheapRuler do
   def dist(%{lon: _lon1, lat: _lat1} = from, %{lon: _lon2, lat: _lat2} = to),
     do: point2point_dist(from, to)
 
-  @type adjuster ::
-          (prev :: Geo.Point.like(),
-           next :: Geo.Point.like(),
-           index :: integer(),
-           calculated_distance :: float() ->
-             number())
-
   @doc ~S"""
   It finds the closest point of a line to another given point. Optionally you
   can pass the bearing and how strongly to consider it. Default is to ignore
   the bearing.
-
-  It allows to modify the caluclation using additional factors, besides
-  distance, by specifying any number of adjusters. An adjuster that prefers
-  the start of the line might look like:
-
-      fn prev, next, index, calc_dist -> index*index end
 
   ## Examples
 
@@ -264,23 +251,18 @@ defmodule Geo.CheapRuler do
       %{index: 0, t: 1, dist: 8.092672677012276, point: %{lat: 53.550572, lon: 9.994393}}
 
   """
-  @spec closest_point_on_line([Geo.Point.like()], Geo.Point.like(), [adjuster()]) :: %{
+  @spec closest_point_on_line([Geo.Point.like()], Geo.Point.like()) :: %{
           point: Geo.Point.like(),
           index: integer(),
           dist: float(),
           t: float()
         }
-  def closest_point_on_line(line, point, adjusters \\ [])
+  def closest_point_on_line(line, point)
 
-  def closest_point_on_line(
-        line,
-        %{lon: lon, lat: lat},
-        adjusters
-      )
-      when is_list(line) and is_list(adjusters) do
+  def closest_point_on_line(line, %{lon: lon, lat: lat}) when is_list(line) do
     [head | tail] = line
 
-    Enum.reduce(tail, %{prev: head, dist: nil, point: head, i: 0, index: 0, t: 0}, fn next, acc ->
+    Enum.reduce(tail, %{prev: head, dist: nil, point: nil, i: 0, index: 0, t: 0}, fn next, acc ->
       x = acc.prev.lon
       y = acc.prev.lat
       dx = (next.lon - x) * @kx
@@ -300,24 +282,26 @@ defmodule Geo.CheapRuler do
 
       dx = (lon - x) * @kx
       dy = (lat - y) * @ky
-      dist = :math.sqrt(dx * dx + dy * dy)
-
-      final =
-        adjusters
-        |> Enum.map(fn adj -> adj.(acc.prev, next, acc.i, dist) end)
-        |> Enum.sum()
-        |> Kernel.+(dist)
+      dist = dx * dx + dy * dy
 
       next_acc = %{acc | i: acc.i + 1, prev: next}
 
-      if acc.dist && final >= acc.dist do
+      if acc.dist && dist >= acc.dist do
         next_acc
       else
-        point = Geo.Interpolate.point(acc.prev, next, t)
-        %{next_acc | dist: final, point: point, index: acc.i, t: t}
+        %{next_acc | dist: dist, point: {acc.prev, next}, index: acc.i, t: t}
       end
     end)
     |> Map.take([:point, :index, :dist, :t])
+    |> Map.update!(:dist, &:math.sqrt(&1))
+    |> case do
+      %{point: nil} = m ->
+        %{m | point: head}
+
+      %{point: {prev, next}, t: t} = m ->
+        point = Geo.Interpolate.point(prev, next, t)
+        %{m | point: point}
+    end
   end
 
   @doc ~S"""
