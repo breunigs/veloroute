@@ -243,22 +243,6 @@ defmodule VelorouteWeb.Live.VideoState do
     end
   end
 
-  defp new() do
-    sett = Settings.start_image()
-    default_tracks = Article.List.find_exact(sett.article_id).tracks()
-
-    %__MODULE__{
-      forward_track: nil,
-      backward_track: nil,
-      forward: nil,
-      backward: nil,
-      start: sett.position,
-      start_generation: 0,
-      direction: sett.direction
-    }
-    |> update_from_tracks(default_tracks, sett.position)
-  end
-
   defguardp has_video(state)
             when (state.direction == :forward and not is_nil(state.forward)) or
                    (state.direction == :backward and not is_nil(state.backward))
@@ -422,4 +406,22 @@ defmodule VelorouteWeb.Live.VideoState do
 
   def reverse(:forward), do: :backward
   def reverse(:backward), do: :forward
+
+  use Memoize
+
+  defmemop new() do
+    sett = Settings.start_image()
+    default_tracks = Article.List.find_exact(sett.article_id).tracks()
+
+    %__MODULE__{
+      forward_track: nil,
+      backward_track: nil,
+      forward: nil,
+      backward: nil,
+      start: sett.position,
+      start_generation: 0,
+      direction: sett.direction
+    }
+    |> update_from_tracks(default_tracks, sett.position)
+  end
 end
