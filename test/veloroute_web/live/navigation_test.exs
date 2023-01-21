@@ -4,7 +4,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   @endpoint VelorouteWeb.Endpoint
 
   @video_hashes Data.Article.Static.Alltagsroute4.tracks()
-                |> Enum.map(fn %Video.Track{direction: dir} = t -> {dir, Video.Track.hash(t)} end)
+                |> Enum.map(fn t -> {t.direction, Video.Generator.get(t).hash()} end)
                 |> Enum.into(%{})
   @video_starts %{forward: 425_307}
 
