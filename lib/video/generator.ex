@@ -32,8 +32,10 @@ defmodule Video.Generator do
 
   def get(module) when is_atom(module), do: if(module.rendered?(), do: module, else: nil)
 
-  def get(%Video.Track{videos: videos}) do
-    Enum.find(all(), fn rendered -> rendered.sources() == videos end)
+  def get(%Video.Track{renderer: renderer, videos: videos}) do
+    Enum.find(all(), fn rendered ->
+      rendered.renderer() == renderer && rendered.sources() == videos
+    end)
   end
 
   def get(list) when is_list(list) do
