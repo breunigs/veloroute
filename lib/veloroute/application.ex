@@ -7,7 +7,7 @@ defmodule Veloroute.Application do
 
   def start(_type, _args) do
     ensure_videos_are_mounted()
-    preprocess_search_terms()
+    Warmup.maybe()
     update_web_push_email()
 
     # List all child processes to be supervised
@@ -40,16 +40,6 @@ defmodule Veloroute.Application do
   def config_change(changed, _new, removed) do
     VelorouteWeb.Endpoint.config_change(changed, removed)
     :ok
-  end
-
-  # Only run it in production, to ensure the first search is fast for the user.
-  # In other envs we can wait a couple of seconds on the first search usage.
-  defp preprocess_search_terms do
-    case Application.get_env(:veloroute, :env) do
-      :prod -> Enum.each(Article.List.all(), &Article.Search.article_terms(&1))
-      :dev -> nil
-      :test -> nil
-    end
   end
 
   defp ensure_videos_are_mounted do

@@ -1,5 +1,6 @@
 defmodule Article.Decorators do
   use Phoenix.Component
+  use Memoize
   import Guards
 
   @spec html(Article.t(), Article.assigns()) :: binary()
@@ -133,7 +134,7 @@ defmodule Article.Decorators do
   end
 
   @spec bbox_self(Article.t()) :: Geo.BoundingBox.t() | nil
-  def bbox_self(art) when is_module(art) do
+  defmemo bbox_self(art) when is_module(art) do
     # from map
     ways = Map.Element.filter_by_tag(Cache.Map.ways(), :name, art.name())
     rels = Map.Element.filter_by_tag(Cache.Map.relations(), :name, art.name())
@@ -212,27 +213,6 @@ defmodule Article.Decorators do
     end
   end
 
-  @doc """
-  Returns related tracks to the current article. If the article has own tracks,
-  these are returned. Otherwise it will find all overlapping static pages with
-  matching tags and return their combined tracks.
-  """
-  @spec related_tracks(Article.t()) :: [Video.Track.t()]
-  def related_tracks(art) when is_module(art) do
-    case art.tracks() do
-      [] ->
-        Article.List.category("Static")
-        |> Article.List.with_tracks()
-        |> Article.List.related(art)
-        |> Article.List.overlap(art)
-        |> Stream.flat_map(& &1.tracks())
-        |> Enum.uniq()
-
-      tracks ->
-        tracks
-    end
-  end
-
   def updated_n_days_ago(art) when is_module(art) do
     Date.diff(Date.utc_today(), art.updated_at())
   end
@@ -257,6 +237,27 @@ defmodule Article.Decorators do
         rendered.hash(),
         ms
       )
+    end
+  end
+
+  @doc """
+  Returns related tracks to the current article. If the article has own tracks,
+  these are returned. Otherwise it will find all overlapping static pages with
+  matching tags and return their combined tracks.
+  """
+  @spec related_tracks(Article.t()) :: [Video.Track.t()]
+  defmemo related_tracks(art) when is_module(art) do
+    case art.tracks() do
+      [] ->
+        Article.List.category("Static")
+        |> Article.List.with_tracks()
+        |> Article.List.related(art)
+        |> Article.List.overlap(art)
+        |> Stream.flat_map(& &1.tracks())
+        |> Enum.uniq()
+
+      tracks ->
+        tracks
     end
   end
 end
