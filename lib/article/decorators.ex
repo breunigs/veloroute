@@ -225,7 +225,7 @@ defmodule Article.Decorators do
         |> Article.List.with_tracks()
         |> Article.List.related(art)
         |> Article.List.overlap(art)
-        |> Enum.flat_map(& &1.tracks())
+        |> Stream.flat_map(& &1.tracks())
         |> Enum.uniq()
 
       tracks ->

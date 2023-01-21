@@ -86,9 +86,8 @@ defmodule Util do
 
   @spec modules_with_prefix(binary()) :: [module()]
   def modules_with_prefix("Elixir." <> _rest = namespace) do
-    ns = to_string(namespace)
     {:ok, list} = :application.get_key(:veloroute, :modules)
-    Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(ns)))
+    Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(namespace)))
   end
 
   def md5(input) do
