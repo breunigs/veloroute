@@ -95,7 +95,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
     <p>Die Route ist nicht beschildert und muss daher nach Gefühl oder mit Navi gefolgt werden. Die Routingdaten dazu sind unten verlinkt. Da ich mich manchmal selbst verfahren habe, stimmen Video und eingezeichnete Strecke nicht immer überein. Ebenso finden sich je nach Quelle und Jahr leicht andere Führungen, die jedoch alle gleich gut sind. Ausnahme: die „Nebenroute“ leitet durch die Wohngebiete <.m bounds="10.077008,53.668168,10.122618,53.684726">Mellingstedt</.m> und <.m bounds="10.088551,53.697803,10.129147,53.71253">Duvenstedt</.m> statt dem Alstertal zu folgen und ist entsprechend deutlich weniger im Grünen.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Der Belag ist meistens plattgedrückter Schotter („Grand“) und daher nur bedingt regenfest. Bis Winterhude folgt die Strecke der <.a name="alltagsroute-4">Alltagsroute <.icon link={false}>4</.icon></.a> und sollte daher auch im Winter nutzbar sein. Zwischen der <.m lat={53.60584} lon={9.99573} dir="forward" ref="FR1">Wilhelm-Metzger-Straße</.m> und der <.m lat={53.61166} lon={10.00866} dir="forward" ref="FR1">Hindenburgstraße</.m> gibt es viel Hindernisse die Lastenrädern oder E-Bikes zu schaffen machen. In diesem Abschnitt ist ein Ausweichen über die <.icon>4</.icon> empfehlenswert.</p>
+    <p>Der Belag ist meistens plattgedrückter Schotter („Grand“) und daher nur bedingt regenfest. Bis Winterhude folgt die Strecke der <.a name="alltagsroute-4">Alltagsroute <.icon link={false}>4</.icon></.a> und sollte daher auch im Winter nutzbar sein. Zwischen der <.v lat={53.60584} lon={9.99573} dir="forward" ref="FR1" bounds="9.993482,53.604168,10.000989,53.607457">Wilhelm-Metzger-Straße</.v> und der <.v lat={53.61166} lon={10.00866} dir="forward" ref="FR1" bounds="10.002239,53.608553,10.017462,53.615228">Hindenburgstraße</.v> gibt es viel Hindernisse die Lastenrädern oder E-Bikes zu schaffen machen. In diesem Abschnitt ist ein Ausweichen über die <.icon>4</.icon> empfehlenswert.</p>
 
     <p>Auf der Strecke selbst gibt es viel Fußverkehr und zahlreiche Engstellen. Sei exzellent zu Anderen und steige ab, bevor es brenzlig wird.</p>
 
@@ -104,7 +104,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
 
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

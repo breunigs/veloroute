@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
     <p>Zum Linksabbiegen in die <.m bounds="10.208368,53.485606,10.210725,53.48649">Dietrich-Schreyge-Straße</.m> und die <.m bounds="10.209448,53.48514,10.211806,53.486024">Rektor-Ritter-Straße</.m> sind Verkehrsinseln in der Straßenmitte vorgesehen, sodass man in zwei Schritten abbiegen kann. An den anderen Einmündungen werden keine Querungshilfen eingerichtet.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

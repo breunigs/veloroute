@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.FischtreppePopppenbuettelerSchleuse do
     <p>An der Poppenbütteler Schleuse wird eine Fischtreppe gebaut, wobei die Brücke dort aus Sicherheitsgründen voll gesperrt wird. Die Freizeitroute wird daher über den Saseler Damm, entlang der <.a name="alltagsroute-14">Alltagsroute 14</.a>, umgeleitet.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

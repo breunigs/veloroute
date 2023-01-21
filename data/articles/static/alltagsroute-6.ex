@@ -101,7 +101,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="6">Rathaus</.m></td>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="6">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
@@ -162,13 +162,13 @@ defmodule Data.Article.Static.Alltagsroute6 do
           <.icon name="rsw-ahrensburg" bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward">RSW</.icon>
         </td>
         <td>
-          <.m bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward" ref="rsw-ahrensburg">Ahrensburg</.m>
+          <.v bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward" ref="rsw-ahrensburg">Ahrensburg</.v>
         </td>
       </tr>
     </table>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

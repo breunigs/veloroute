@@ -75,7 +75,7 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
     </ul>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

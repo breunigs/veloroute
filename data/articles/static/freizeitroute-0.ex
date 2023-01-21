@@ -98,7 +98,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
     <h3>Freizeitroute 1. Grüner Ring – Wallanlagen <.icon>1GR</.icon></h3>
     <span class="updated">Länge rund 7km</span>
 
-    <p>Diese kurze Ringroute führt im Uhrzeigersinn zunächst entlang der <.m bounds="9.9681,53.544241,9.994315,53.561761" lon={9.975699} lat={53.552291} dir="forward">ehemaligen Wallanlagen</.m>, bzw. an den heute an ihrer Stelle stehenden Parks. Nach der <.m bounds="9.992262,53.554327,10.004718,53.559976" lon={9.997233} lat={53.556813} dir="forward">Alsterquerung</.m> geht die Route in die „<.m bounds="9.999629,53.545007,10.009219,53.55806" lon={10.000217} lat={53.555789} dir="forward">Kunstmeile</.m>“ über, ein Abschnitt mit vielen Museen und Kunstaustellungen. Über die <.m bounds="9.98148,53.540509,10.01194,53.547049" lon={10.003414} lat={53.546288} dir="forward">HafenCity</.m> und entlang des <.m bounds="9.969659,53.543341,9.983004,53.546193" lon={9.976321} lat={53.54437} dir="forward">Hochbahn-Viadukts</.m> kommt man wieder zurück zum Ausgangspunkt.</p>
+    <p>Diese kurze Ringroute führt im Uhrzeigersinn zunächst entlang der <.v bounds="9.9681,53.544241,9.994315,53.561761" lon={9.975699} lat={53.552291} dir="forward" ref={@ref}>ehemaligen Wallanlagen</.v>, bzw. an den heute an ihrer Stelle stehenden Parks. Nach der <.v bounds="9.992262,53.554327,10.004718,53.559976" lon={9.997233} lat={53.556813} dir="forward" ref={@ref}>Alsterquerung</.v> geht die Route in die „<.v bounds="9.999629,53.545007,10.009219,53.55806" lon={10.000217} lat={53.555789} dir="forward" ref={@ref}>Kunstmeile</.v>“ über, ein Abschnitt mit vielen Museen und Kunstaustellungen. Über die <.v bounds="9.98148,53.540509,10.01194,53.547049" lon={10.003414} lat={53.546288} dir="forward" ref={@ref}>HafenCity</.v> und entlang des <.v bounds="9.969659,53.543341,9.983004,53.546193" lon={9.976321} lat={53.54437} dir="forward" ref={@ref}>Hochbahn-Viadukts</.v> kommt man wieder zurück zum Ausgangspunkt.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und hat viele unerwartete Abzweigungen. Ein Navi ist erforderlich.</p>
@@ -110,7 +110,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
     <p>Ich muss davon abraten diese Route mit dem Fahrrad abzufahren. Man fährt an Autotrassen am Grün vorbei und wird durch häufige und schlecht geschaltene Ampeln ausgebremst. Zu Fuß ist diese Tour eher zu empfehlen. Als Verbindungsstrecke zwischen anderen Zielen oder um Freizeitrouten zu verknüpfen taugt sie aber.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

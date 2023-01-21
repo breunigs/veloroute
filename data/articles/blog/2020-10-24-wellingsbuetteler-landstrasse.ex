@@ -57,7 +57,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
     <p>Man fällt also nur die Bäume auf einem Teilstück, kann dadurch aber die Radfahrstreifen bis zu einer weniger befahrenen Straße verlängern. Diese ist offensichtlich als Alternativstrecke für diejenigen gedacht, die sich im Mischverkehr nicht wohlfühlen. Hier gilt zwar Tempo 30, aber eine Fahrradstraße ist momentan nicht geplant.</p>
     <p>Abseits der groben Planung hat der zweite Entwurf noch Detailverbesserungen für den Radverkehr an einigen Stellen erreicht. Zum Beispiel wird die Querung am U-Bahnhof vergrößert um dem geplanten Radschnellweg gerecht zu werden. Zum Linksabbiegen in die Fuhlsbütteler Straße gibt's nun eine zweite Auffahrt, sodass die Kurven weniger eng ausfallen. Gut, auch wenn die Rampe nur auf mangelhafte Radwege führt.</p>
     <h4>Quellen</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

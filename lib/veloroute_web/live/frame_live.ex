@@ -12,7 +12,6 @@ defmodule VelorouteWeb.FrameLive do
 
   @default_bounds struct(Geo.BoundingBox, Settings.initial())
   @initial_state [
-    render_target: :html,
     prev_page: nil,
     current_page: nil,
     map_bounds: @default_bounds,

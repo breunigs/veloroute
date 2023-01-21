@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.EppendorferWeg do
     <p>Öffentliche Auftakt- und Informationsveranstaltung am 14. September 2022 um 18:00 Uhr (Einlass 17:30 Uhr) in der <.m bounds="9.972168,53.586001,9.978639,53.588894">Grund- und Stadtteilschule Eppendorf (Löwenstraße 58)</.m>.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -79,7 +79,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="12">Rathaus</.m></td>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="12">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
@@ -114,7 +114,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
     </table>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

@@ -33,7 +33,7 @@ defmodule Article.List do
   @spec find_exact(t, binary | Article.t() | nil) :: Article.t() | nil
   def find_exact(_list, nil), do: nil
 
-  def find_exact(list, art) when is_atom(art) do
+  def find_exact(list, art) when is_module(art) do
     if Enum.member?(list, art), do: art, else: nil
   end
 

@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.TilsiterStrasse2 do
     <p>Der Abschnitt wurde in die Baustellenplanung aufgenommen. Pläne sind noch nicht bekannt.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.LangenfelderDamm do
     <p>Unterm Strich ist die vorgestellte Planung definitiv besser als der Bestand. Ob das Linksabbiegen in die Sillemstraße klappt wird sich zeigen müssen. Der Umbau soll im Sommer 2019 stattfinden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

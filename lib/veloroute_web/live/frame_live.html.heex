@@ -113,7 +113,14 @@
         </p>
       <% end %>
 
-      <%= Article.Renderer.render(assigns) %>
+      <Article.Renderer.render
+        ref={@current_page}
+        video_hash={@video_hash}
+        video_start={@video_start}
+        search_query={@search_query}
+        search_bounds={@search_bounds}
+        limit_to_map_bounds={@limit_to_map_bounds}
+      />
 
       <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
     </div>

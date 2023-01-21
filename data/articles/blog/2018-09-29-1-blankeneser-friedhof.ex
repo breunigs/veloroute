@@ -34,7 +34,7 @@ defmodule Data.Article.Blog.BlankeneserFriedhof do
     <p>Laut einem Zeitungsartikel soll der Weg in diesem Abschnitt zu einem getrennten Rad- und Fußweg umgebaut werden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

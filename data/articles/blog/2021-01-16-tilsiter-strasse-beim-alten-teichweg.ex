@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.TilsiterStrasseBeimAltenTeichweg do
   def text(assigns) do
     ~H"""
     <p>Ein Teilstück der Planung „W16“ soll bereits umgesetzt werden. Für eine Beschreibung, siehe bitte <.a name="2019-10-24-6-tilsiter-strasse-eckerkoppel-w16">Eckerkoppel und Tilsiter Straße</.a>. </p> <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

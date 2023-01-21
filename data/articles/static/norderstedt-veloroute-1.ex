@@ -70,25 +70,25 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
     <.roaddiagram src="logo-norderstedt-1" width={100} alt="Logo der Veloroute 1 in Norderstedt" class="right"/>
 
 
-    <p>Die Veloroute 1 verläuft in Nord-Süd Richtung und orientiert sich an den Bahnstrecken der U-Bahn und des AKN. Start ist der <.m bounds="9.997648,53.679996,10.004217,53.68503" lon={9.999337} lat={53.681612} dir="forward" ref="norderstedt-1">Schmuggelstieg</.m>, wo Anschluss an <.a name="alltagsroute-4">Hamburgs Alltagsroute 4</.a> besteht. Über verschiedene <.m bounds="9.983344,53.680517,10.004847,53.689524" lon={9.992534} lat={53.685062} dir="forward" ref="norderstedt-1">verschiedene Nebenstraßen</.m> erreicht man die Bahnschienen und folgt ihnen <.m bounds="9.990255,53.717033,9.993064,53.720824" lon={9.991487} lat={53.719901} dir="forward" ref="norderstedt-1">mehr</.m> oder <.m bounds="9.985279,53.724679,9.997136,53.731463" lon={9.99254} lat={53.727977} dir="forward" ref="norderstedt-1">weniger</.m> direkt bis nach <.m bounds="9.973136,53.748855,9.988609,53.75762" lon={9.979173} lat={53.753531} dir="forward" ref="norderstedt-1">Meeschensee</.m>.</p>
+    <p>Die Veloroute 1 verläuft in Nord-Süd Richtung und orientiert sich an den Bahnstrecken der U-Bahn und des AKN. Start ist der <.v bounds="9.997648,53.679996,10.004217,53.68503" lon={9.999337} lat={53.681612} dir="forward" ref="norderstedt-1">Schmuggelstieg</.v>, wo Anschluss an <.a name="alltagsroute-4">Hamburgs Alltagsroute 4</.a> besteht. Über verschiedene <.v bounds="9.983344,53.680517,10.004847,53.689524" lon={9.992534} lat={53.685062} dir="forward" ref="norderstedt-1">verschiedene Nebenstraßen</.v> erreicht man die Bahnschienen und folgt ihnen <.v bounds="9.990255,53.717033,9.993064,53.720824" lon={9.991487} lat={53.719901} dir="forward" ref="norderstedt-1">mehr</.v> oder <.v bounds="9.985279,53.724679,9.997136,53.731463" lon={9.99254} lat={53.727977} dir="forward" ref="norderstedt-1">weniger</.v> direkt bis nach <.v bounds="9.973136,53.748855,9.988609,53.75762" lon={9.979173} lat={53.753531} dir="forward" ref="norderstedt-1">Meeschensee</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nur dort ausgeschildert, wo sich verschiedene Radrouten treffen. Die Wegweiser sind klein und häufig außerhalb des Blickfelds angebracht, z.B. in Fahrtrichtung hinter dem Pfosten. Es muss daher an jeglichen Rad-Wegweisern genau geschaut werden. Dazwischen muss man sich auf Intuition oder allgemeine Richtungsweise (🚲 →) verlassen.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Die Qualität der Wege schwankt. Die Oberflächen sind größtenteils laufruhig, mit Ausnahme des <.m bounds="9.981995,53.743732,9.990764,53.751645" lon={9.985989} lat={53.745192} dir="forward" ref="norderstedt-1">Waldstücks ab Haslohfurt</.m>. An vielen Stellen teilen sich Rad- und Fußverkehr schmale Wege, was zügiges Vorankommen verhindert.</p>
+    <p>Die Qualität der Wege schwankt. Die Oberflächen sind größtenteils laufruhig, mit Ausnahme des <.v bounds="9.981995,53.743732,9.990764,53.751645" lon={9.985989} lat={53.745192} dir="forward" ref="norderstedt-1">Waldstücks ab Haslohfurt</.v>. An vielen Stellen teilen sich Rad- und Fußverkehr schmale Wege, was zügiges Vorankommen verhindert.</p>
 
     <h4>Meinung</h4>
     <p>Eine brauchbare Radroute, die sich aber nicht für Rennräder und hohe Geschwindigkeiten eignet. Neben dem fehlenden Ausbau im Waldstück fallen vor allem einige Kreuzungen negativ ins Auge:</p>
     <ul>
-      <li><.m bounds="9.997329,53.68158,10.00071,53.683314" lon={9.99886} lat={53.682236} dir="forward" ref="norderstedt-1">fehlende, legale Fahrtmöglichkeit Schmuggelstieg</.m></li>
-      <li><.m bounds="9.990823,53.706587,9.994787,53.708676" lon={9.992109} lat={53.707062} dir="forward" ref="norderstedt-1">schlechte Ampelschaltung Norderstedt-Mitte</.m></li>
-      <li><.m bounds="9.989328,53.684478,9.992112,53.685953" lon={9.990251} lat={53.685077} dir="backward" ref="norderstedt-1">Schikane beim Linksabbiegen Lütjenmoor</.m> (Richtung Süden)</li>
+      <li><.v bounds="9.997329,53.68158,10.00071,53.683314" lon={9.99886} lat={53.682236} dir="forward" ref="norderstedt-1">fehlende, legale Fahrtmöglichkeit Schmuggelstieg</.v></li>
+      <li><.v bounds="9.990823,53.706587,9.994787,53.708676" lon={9.992109} lat={53.707062} dir="forward" ref="norderstedt-1">schlechte Ampelschaltung Norderstedt-Mitte</.v></li>
+      <li><.v bounds="9.989328,53.684478,9.992112,53.685953" lon={9.990251} lat={53.685077} dir="backward" ref="norderstedt-1">Schikane beim Linksabbiegen Lütjenmoor</.v> (Richtung Süden)</li>
     </ul>
     <p>Trotz allem ist sie auch in ihrem heutigen Stand bereits nutzbar.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

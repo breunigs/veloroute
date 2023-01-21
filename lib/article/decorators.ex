@@ -2,16 +2,9 @@ defmodule Article.Decorators do
   use Phoenix.Component
   import Guards
 
-  @spec html(Article.t()) :: binary()
-  def html(art) do
-    apply_with_assigns(art, :text) |> Util.render_heex()
-  end
-
   @spec html(Article.t(), Article.assigns()) :: binary()
-  def html(art, %{render_target: _} = assigns) do
-    assigns = assign_new(assigns, :current_page, fn -> art end)
-    assigns = assign_new(assigns, :limit_to_map_bounds, fn -> false end)
-    art.text(assigns) |> Util.render_heex()
+  def html(art, assigns \\ %{}) do
+    apply_with_assigns(art, :text, assigns) |> Util.render_heex()
   end
 
   @spec text(Article.t()) :: binary()
@@ -34,16 +27,16 @@ defmodule Article.Decorators do
     """
   end
 
-  def apply_with_assigns(art, fun) do
-    assigns = %{
+  def apply_with_assigns(art, fun, assigns \\ %{}) do
+    default = %{
       __changed__: %{},
-      render_target: :html,
       search_query: nil,
       search_bounds: nil,
       limit_to_map_bounds: false,
-      current_page: art
+      ref: art
     }
 
+    assigns = Map.merge(default, assigns)
     apply(art, fun, [assigns])
   end
 

@@ -64,13 +64,13 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
     <h4>Videobeispiele</h4>
     <p>Es gibt alle möglichen Kreuzungs-Varianten:</p>
     <ul>
-      <li><.m bounds="10.096749,53.537778,10.12086,53.54550" lon={10.1092239} lat={53.5417533} dir="forward" ref="14">nur direktes Abbiegen</.m></li>
-      <li><.m bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="backward" ref="14">nur indirektes Abbiegen</.m></li>
-      <li>beides (<.m bounds="9.992882,53.60424,9.999811,53.606458" lon={9.9972532} lat={53.6046497} dir="forward" ref="4">direkt</.m> bzw. indirekt über die <.m bounds="9.996751,53.604899,9.999158,53.606016" lon={9.9972532} lat={53.6046497} dir="forward" ref={name()
-    }>Wilhelm-Metzger-Straße</.m>)</li>
+      <li><.v bounds="10.096749,53.537778,10.12086,53.54550" lon={10.1092239} lat={53.5417533} dir="forward" ref="14">nur direktes Abbiegen</.v></li>
+      <li><.v bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="backward" ref="14">nur indirektes Abbiegen</.v></li>
+      <li>beides (<.v bounds="9.992882,53.60424,9.999811,53.606458" lon={9.9972532} lat={53.6046497} dir="forward" ref="4">direkt</.v> bzw. indirekt über die <.v bounds="9.996751,53.604899,9.999158,53.606016" lon={9.9972532} lat={53.6046497} dir="forward" ref={name()
+    }>Wilhelm-Metzger-Straße</.v>)</li>
     </ul>
 
-    <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.m bounds="9.975387,53.553634,9.983536,53.557482" lon={9.97973} lat={53.55578} dir="forward" ref="2">links</.m> oder <.m lon={10.00076} lat={53.55560} dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.m> des Radfahrstreifens sein, manchmal auch <.m bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</.m>.</p>
+    <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.v bounds="9.975387,53.553634,9.983536,53.557482" lon={9.97973} lat={53.55578} dir="forward" ref="2">links</.v> oder <.v lon={10.00076} lat={53.55560} dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.v> des Radfahrstreifens sein, manchmal auch <.m bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</.m>.</p>
 
     <p>Eine weitere Variante des Linksabiegens ist der <.ref>ARAS</.ref></p>
     """

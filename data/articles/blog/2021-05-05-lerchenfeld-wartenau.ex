@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
     <p>Neben der mangelhaften Breite gibt es weitere Planungsfehler: Linksabbiegen ist nicht an allen Kreuzungen klar ersichtlich. An Einmündungen ist dies nur für den KFZ-Verkehr vorgesehen. Wie man der Veloroute 6 stadteinwärts an Markttagen folgen soll, bleibt ebenso offen.</p>
     <p>Man kann dem LSBG nicht vorwerfen, sie hätten es nicht versucht: es wurden auch Varianten erarbeitet, die dem Rad- und Fußverkehr akzeptable, dem Gesetz entsprechende Wege angeboten hätten. Dazu müsste man aber entweder viele Bäume fällen, oder den KFZ je eine Spur wegnehmen. Letzteres lehnten die „Behörde für Wirtschaft und Innovation“ und die „Behörde Inneres und Sport“ 2019 ab – der Durchsatz für KFZ und Busse war wichtiger. Was will man da noch sagen?</p>
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

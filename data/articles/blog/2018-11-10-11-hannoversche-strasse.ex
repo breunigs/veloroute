@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
     <p>Die Kreuzung mit der <.m bounds="9.990524,53.462835,10.022999,53.466791">Neuländer Straße</.m> wird dagegen klassisch mit Ampel geregelt. Linksabbiegerspuren sind für den Radverkehr nicht vorgesehen, dafür aber großzügige Aufstellbereich für indirektes Abbiegen. Geübte Radfahrende können sich in den KFZ-Verkehr einordnen und so direkt links abbiegen. Verkehrsinseln trennen beim Rechtsabbiegen den KFZ- vom Radverkehr.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.StadteingangElbbruecken do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Das Gebiet wird durch die <.m bounds="10.027416,53.533876,10.034361,53.540403" lon={10.02932} lat={53.535095} dir="backward" ref="erweiterung-mundsburg-elbbruecken">Billhorner Brückenstraße</.m> geprägt, die mit ihren 12 KFZ-Spuren, autobahnähnlichen Anschlüssen und fehlenden Querungsmöglichkeiten den Stadtteil zerteilt. In geringerem Maße gilt dies auch für die Bahnstrecken im Gebiet. Insgesamt ist die Aufenthaltsqualität im Gebiet schlecht, die Rad- und Fußverbindungen wenig ersichtlich oder fehlen ganz.</p>
+    <p>Das Gebiet wird durch die <.v bounds="10.027416,53.533876,10.034361,53.540403" lon={10.02932} lat={53.535095} dir="backward" ref="erweiterung-mundsburg-elbbruecken">Billhorner Brückenstraße</.v> geprägt, die mit ihren 12 KFZ-Spuren, autobahnähnlichen Anschlüssen und fehlenden Querungsmöglichkeiten den Stadtteil zerteilt. In geringerem Maße gilt dies auch für die Bahnstrecken im Gebiet. Insgesamt ist die Aufenthaltsqualität im Gebiet schlecht, die Rad- und Fußverbindungen wenig ersichtlich oder fehlen ganz.</p>
 
     <h4>Vorhaben</h4>
     <p>Im Wesentlichen sollen die Autobahn„ohren“ von der Billhorner Brückenstraße zum Billhorner Brückendamm durch kompaktere Straßen ersetzt werden. Die so gewonnenen Flächen werden bebaut, hauptsächlich mit Gebäuden für Firmen und Geschäfte. Nur in Lagen die gut von der Straße bzw. Bahnstrecke abgeschirmt sind soll Wohnbebauung stattfinden.</p>
@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.StadteingangElbbruecken do
     <p>Der Bebauungsplan gibt nur die generelle Richtung vor, erst mit anschließenden Detailplanungen lassen sich konkretere Aussagen zum Radverkehr machen. Allgemein lässt sich sagen, dass die Radwege zumindest nicht vergessen wurden, so wie es in der HafenCity passiert ist.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

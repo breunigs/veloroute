@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.UHornerRennbahn do
     <h4>Meinung</h4> <p>Der Umleitung lässt sich gut folgen und die Schiebestrecke am <.m bounds="10.081105,53.550073,10.088175,53.551692">Pagenfelder Platz</.m> ist kürzer als die durch die Baustelle. Aufwendigere Maßnahmen um eine durchgehende Fahrt zu ermöglichen werden von der Polizei Hamburg mit Verweis auf die Verhältnismäßigkeit abgelehnt. Dies ist auf einer Hauptstrecke inakzeptabel, insbesondere da die Bauzeit mehrere Jahre beträgt.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -36,7 +36,7 @@ defmodule Data.Article.Blog.PaulSorgeStrasse do
     <p>Gegenüber dem <.m bounds="9.945263,53.627268,9.950438,53.627994">Seesrein</.m> sowie zwischen <.m bounds="9.952383,53.633035,9.962823,53.635846">Schippelsweg</.m> und <.m bounds="9.939061,53.636829,9.949023,53.640125">Viehlohweg</.m> werden neue StadtRAD Stationen gebaut. Die Anzahl der Abstellbügel für private Fahrräder erhöht sich entlang der gesamten Straße.</p> <p>Geplant ist die Maßnahme ab Herbst 2019 in drei Teilabschnitten umzusetzen (<.m bounds="9.949767,53.623506,9.954832,53.623924">An der Lohe</.m> → <.m bounds="9.943965,53.628192,9.950354,53.629057">Joachim-Mähl-Straße</.m> → <.m bounds="9.944989,53.638293,9.954121,53.64797">Nordalbingerweg</.m>). Ursprünglich war Frühjahr 2019 angedacht, was sich aber offenbar <.a href="https://www.niendorfer-wochenblatt.de/2019/03/27/veloroute-3-kommt-nach-niendorf/">durch Nachbesserungen am Plan</.a> verschob.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

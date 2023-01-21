@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
     <p>Laut Haushaltsentwurf 2022 sollen noch im selben Jahr <.ref>Radfahrstreifen</.ref> eingerichtet werden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

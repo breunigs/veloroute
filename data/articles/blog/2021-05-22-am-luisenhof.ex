@@ -34,7 +34,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
     <p>Die Planung ist gut. Die Breite und Führung der neuen Radwege ist ansprechend. Konflikte mit anderen Verkehrsarten bleiben wie bisher minimal, bzw. werden sogar geringer weil alle genug Verkehrsfläche bekommen.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

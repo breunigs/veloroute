@@ -22,7 +22,10 @@ defmodule Article.Default do
       def icon, do: type()
 
       defoverridable Article
-      use Components.EnhancedHeex
+
+      use Phoenix.Component
+      import Components.TagHelpers
+      import Components.RelatedArticlesHelper
     end
   end
 end

@@ -26,7 +26,7 @@ defmodule Data.Article.Blog.Lombardsbruecke do
     <p>Die Lombardsbrücke wird saniert. Deswegen ist der Unterführung unter der Brücke vollgesperrt, die <.a name="FR1">Freizeitroute 1</.a> entsprechend unterbrochen. Entlang des <.a name="erster-gruener-ring">1. Grünen Rings</.a> ist eine Fahrt möglich, die Breite aber stark eingeengt.</p>
 
     <h4>Weiterführende Informationen</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

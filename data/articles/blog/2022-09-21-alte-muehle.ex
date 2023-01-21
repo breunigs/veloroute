@@ -38,10 +38,10 @@ defmodule Data.Article.Blog.AlteMuehle do
     <h4>Meinung</h4>
     <p>Die Präsentation merkt selbst an, dass der Kompromiss nur dem Denkmalschutz Rechnung trägt. Die Verbesserungen für Radverkehr und Barrierefreiheit fallen jedoch gering aus. Auch bietet diese Variante keine Lösung gegen Gehwegradeln, wofür aktuell extra Bügelsperren aufgestellt wurden.</p>
 
-    <p>Lange Rede kurzer Sinn, solange man so stark am Denkmalschutz festhält, ist die Führung über die Alte Mühle für eine Veloroute untragbar. Es gibt allerdings kaum ortsnahe Alternativen – lediglich ein Ausbau des <.m bounds="10.096321,53.66682,10.105343,53.671775" lon={10.098759} lat={53.668655} dir="forward" ref="FR1">Alsterwanderwegs (FR1)</.m> wäre denkbar, mit Anschluss via <.m bounds="10.095654,53.665424,10.123492,53.685249">Kielbarg</.m>. Dies dürfte im Alsterumfeld aber mindestens genauso problematisch werden. Damit blieben noch weiträumige Alternativen, etwa via der <.m bounds="10.087685,53.656891,10.135324,53.684612">Bergstedter Chaussee</.m> bis <.m bounds="10.087685,53.656891,10.135324,53.684612">Rodenbeker Straße</.m>.</p>
+    <p>Lange Rede kurzer Sinn, solange man so stark am Denkmalschutz festhält, ist die Führung über die Alte Mühle für eine Veloroute untragbar. Es gibt allerdings kaum ortsnahe Alternativen – lediglich ein Ausbau des <.v bounds="10.096321,53.66682,10.105343,53.671775" lon={10.098759} lat={53.668655} dir="forward" ref="FR1">Alsterwanderwegs (FR1)</.v> wäre denkbar, mit Anschluss via <.m bounds="10.095654,53.665424,10.123492,53.685249">Kielbarg</.m>. Dies dürfte im Alsterumfeld aber mindestens genauso problematisch werden. Damit blieben noch weiträumige Alternativen, etwa via der <.m bounds="10.087685,53.656891,10.135324,53.684612">Bergstedter Chaussee</.m> bis <.m bounds="10.087685,53.656891,10.135324,53.684612">Rodenbeker Straße</.m>.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

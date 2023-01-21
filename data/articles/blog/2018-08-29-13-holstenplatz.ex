@@ -46,7 +46,7 @@ defmodule Data.Article.Blog.Holstenplatz do
     <p>Im Vergleich zum Bestand verbesserte die alte Planung die Situation, wobei die neue nochmal etwas oben drauf legt. Die Führung entlang der Veloroute 13 im Uhrzeigersinn ist jetzt deutlich klarer und die Breiten sind jetzt alltagstauglicher als die 1,60m Mindestmaße. Leider hält man weiterhin an den unangenehmen Radfahrstreifen in Mittellage fest und versucht dann eine Erklärung zu finden, warum diese trotzdem die bessere Wahl waren. Man sollte hier konsequent KFZ-Abbiegemöglichkeiten abschaffen, wenn sich deswegen keine ordentliche Radverkehrsführung realisieren lässt.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

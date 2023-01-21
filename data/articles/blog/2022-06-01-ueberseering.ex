@@ -72,7 +72,7 @@ defmodule Data.Article.Blog.Ueberseering do
     <p>Man merkt der Planung ihr Alter an. Mit 2,0m breiten und durchgängigen Radfahrstreifen muss sich die Planung eigentlich nicht verstecken. Allerdings setzt sie an Kreuzungen noch auf die unbeliebten Radfahrstreifen in Mittellage, die seit der Einigung der Stadt mit dem <.a href="https://radentscheid-hamburg.de/">Radentscheid</.a> nicht mehr neu geplant werden. Auch andere Verbesserungen wie eine Trennung vom KFZ-Verkehr wie etwa bei <.ref>geschützten Radfahrstreifen</.ref> fehlt.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

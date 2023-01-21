@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.Bovestrasse do
     <h4>Pläne</h4> <p>Im Zuge der Instandhaltung der Straße sollen beidseitig <.ref>Schutzstreifen</.ref> mit je rund 1,5m Breite eingerichtet werden. Damit diese Platz finden werden im markierten Abschnitt alle sechs Bäume auf der Westseite gefällt und auch die Längsparkplätze entfallen. Gebaut werden soll ursprünglich für drei Monate in 2021 – als man alte Straßenbahnschienen fand erhöhte man die vermutete Bauzeit auf ein knappes Jahr.</p>
     <h4>Meinung</h4> <p>Für den Radverkehr wurde vergleichsweise viel herausgeholt. Weitere Verbesserungen würden eine grundlegende Überarbeitung der Straße erfordern – etwa Grundstückzukauf, Fällen aller Bäume oder die Einrichtung einer KFZ-Einbahnstraße. Die Planung wird sich daran messen müssen, ob die Fußwege künftig frei von Radfahrenden sind – wenn nicht muss nachgebessert werden.</p>
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -25,14 +25,14 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Stadteinwärts fahren die Busse über die <.m bounds="10.011032,53.546217,10.016158,53.548581" lon={10.013573} lat={53.547571} dir="backward" ref="FR6">Amsinckstraße</.m>, stadtauswärts über den <.m bounds="10.009768,53.545449,10.015112,53.54758" lon={10.010393} lat={53.547278} dir="forward" ref="FR6">Högerdamm</.m>. In beiden Straßen sind für den Radverkehr jeweils <.ref>Hochbordradwege</.ref> unterschiedlicher Breiten und Qualitäten vorhanden. In der <.m bounds="10.009638,53.547213,10.012462,53.54787">Nebenstrecke Amsickstraße</.m> die den Högerdamm mit der Amsinckstraße verbindet sind keine eigenen Radwege vorhanden.</p>
+    <p>Stadteinwärts fahren die Busse über die <.v bounds="10.011032,53.546217,10.016158,53.548581" lon={10.013573} lat={53.547571} dir="backward" ref="FR6">Amsinckstraße</.v>, stadtauswärts über den <.v bounds="10.009768,53.545449,10.015112,53.54758" lon={10.010393} lat={53.547278} dir="forward" ref="FR6">Högerdamm</.v>. In beiden Straßen sind für den Radverkehr jeweils <.ref>Hochbordradwege</.ref> unterschiedlicher Breiten und Qualitäten vorhanden. In der <.m bounds="10.009638,53.547213,10.012462,53.54787">Nebenstrecke Amsickstraße</.m> die den Högerdamm mit der Amsinckstraße verbindet sind keine eigenen Radwege vorhanden.</p>
 
     <h4>Planung</h4>
     <p>Die Busse sollen in beide Richtungen in der Amsinckstraße halten. Dazu wird die Nebenstrecke angepasst um besser für Busse befahrbar zu sein. Vor der Jugendherberge an der Nebenstrecke werden Parkplätze für Reisebusse geschaffen.</p>
 
     <p>Für den Radverkehr ergeben sich nur leichte Änderungen. Jeweils vom <.m bounds="10.004381,53.547148,10.007058,53.548638">Deichtorplatz</.m> kommend:</p>
     <ul>
-      <li>Die <.m bounds="10.009395,53.546848,10.011434,53.547756" lon={10.009691} lat={53.547483} dir="forward" ref="FR6">Ampel zum Queren des Högerdamm</.m> wird leicht versetzt damit nicht durch die Reisebus-Parkplätze gefahren werden muss. Die Nebenstrecke bleibt weiterhin eine Einbahnstraße ohne eigenen Radweg.</li>
+      <li>Die <.v bounds="10.009395,53.546848,10.011434,53.547756" lon={10.009691} lat={53.547483} dir="forward" ref="FR6">Ampel zum Queren des Högerdamm</.v> wird leicht versetzt damit nicht durch die Reisebus-Parkplätze gefahren werden muss. Die Nebenstrecke bleibt weiterhin eine Einbahnstraße ohne eigenen Radweg.</li>
       <li>Nach der <.m bounds="10.012044,53.547485,10.012934,53.547815">Woltmannstraße</.m> wird auf einen Hochbordradweg aufgeleitet. Dieser wird hier rund 1,60m breit und verläuft zwischen Fußweg und Wartebereich der Fahrgäste.</li>
       <li>Für die Fahrt in Richtung <.m bounds="10.012912,53.547381,10.016325,53.548713">Nordkanalstraße</.m> erhält der Radverkehr eine neue Furt, etwa ab <.m bounds="10.011443,53.547665,10.012096,53.547964">Höhe Hausnummer 20</.m>. Diese führt zunächst Richtung <.m bounds="10.011977,53.547751,10.013664,53.548365">Spaldingstraße</.m>, macht dann jedoch einen Knick und führt quer über den Fußweg zur Nordkanalstraße. Man folgt also nicht der Luftlinie der Nordkanalbrücke, sondern unterquert diese zweimal.</li>
       <li>siehe auch: <.a name="2021-07-24-hoegerdamm">Umplanung Högerdamm</.a></li>
@@ -45,7 +45,7 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
     <p>Durch die Umplanung wird für den Radverkehr erstmals die (legale) Fahrt vom Deichtorplatz Richtung Nordkanalstraße möglich – gut! Unverständlich ist jedoch, warum eine Querung in Gegenrichtung nicht möglich ist. Entweder muss das Rad durch die Bushaltestelle in der Straßenmitte geschoben werden, oder es ist ein riesiger Umweg über den <.m bounds="10.004381,53.547148,10.007058,53.548638">Deichtorplatz</.m> notwendig. Aus der Woltmannstraße müsste man entsprechend über <.m bounds="10.016148,53.545429,10.018756,53.5463">Am Mittelkanal</.m> fahren.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

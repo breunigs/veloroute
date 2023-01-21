@@ -44,8 +44,8 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
     <p>Prinzipiell ist vorgesehen, die Hochbordradwege zu entfernen. Stattdessen soll der Radverkehr auf dem Asphalt fahren, wobei die genaue Umsetzung in den Knotenarmen unterscheidet:</p>
 
     <ul>
-      <li><.m bounds="9.957951,53.598645,9.959097,53.599204" lon={9.958601} lat={53.598715} dir="forward" ref="3">Grandweg</.m>: je 1,85m breite <.ref>Radfahrstreifen</.ref>.</li>
-      <li><.m bounds="9.95781,53.599145,9.95919,53.599873" lon={9.958878} lat={53.599246} dir="forward" ref="3">Behrmannplatz</.m>: Beidseitig <.ref>Schutzstreifen</.ref> mit rund 1,65m Breite.</li>
+      <li><.v bounds="9.957951,53.598645,9.959097,53.599204" lon={9.958601} lat={53.598715} dir="forward" ref="3">Grandweg</.v>: je 1,85m breite <.ref>Radfahrstreifen</.ref>.</li>
+      <li><.v bounds="9.95781,53.599145,9.95919,53.599873" lon={9.958878} lat={53.599246} dir="forward" ref="3">Behrmannplatz</.v>: Beidseitig <.ref>Schutzstreifen</.ref> mit rund 1,65m Breite.</li>
       <li><.m bounds="9.957088,53.598811,9.958146,53.599419">Julius-Vossler-Straße</.m>: Auf der Nordseite wird der Radverkehr durch den Haltebereich des Busses gelenkt. Eine Vorbeifahrt ist aber möglich, ohne sich in den Autoverkehr einordnen zu müssen. Auf der Südseite ist ein 2,0m breiter Radfahrstreifen geplant.</li>
       <li><.m bounds="9.958889,53.598907,9.959885,53.599542">Vogt-Wells-Straße</.m>: 2,25m breite <.ref>Protected Bike Lane</.ref></li>
     </ul>
@@ -54,7 +54,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
 
     <p>Am Behrmannplatz wird auch eine neue StadtRAD Station geplant. Der freie Rechtsabbieger hier entfällt ebenfalls, sodass dort Grünanlagen mit Sitzbänken angelegt werden. Wegen dem geplanten Bau der U5 Haltestelle in Lokstedt werden zunächst keine Bäume gepflanzt.</p>
 
-    <p>Für Markttage soll eine Umleitung über <.m bounds="9.953348,53.597249,9.959495,53.598853">Erlenstraße</.m> und <.m bounds="9.951013,53.598543,9.953348,53.601698" lon={9.951843} lat={53.600166} dir="forward" ref="FR10">Oddernskamp</.m> ausgeschildert werden. Diese Abschnitte werden in dieser Maßnahme aber nicht umgebaut.</p>
+    <p>Für Markttage soll eine Umleitung über <.m bounds="9.953348,53.597249,9.959495,53.598853">Erlenstraße</.m> und <.v bounds="9.951013,53.598543,9.953348,53.601698" lon={9.951843} lat={53.600166} dir="forward" ref="FR10">Oddernskamp</.v> ausgeschildert werden. Diese Abschnitte werden in dieser Maßnahme aber nicht umgebaut.</p>
 
     <h4>Meinung</h4>
     <p>Der überarbeitete Entwurf löst viele Probleme die den ersten Entwurf noch plagten. Die Konfliktstellen mit KFZ wurden reduziert und die Radwege etwas breiter. Dennoch bleiben sie entlang einer Veloroute zu schmal – dem Autoverkehr gibt man grob die dreifache Breite.</p>
@@ -62,7 +62,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
     <p>Linksabbiegen von der Veloroute weg ist durch die vorgelagerte Aufstellfläche angenehmer. Die Protected-Bike-Lane in der Vogt-Wells-Straße ist zwar kurz, aber super. Dafür wird man in der Julius-Vosseler-Straße in den Busverkehr geworfen. Kindertauglich ist diese Führungsform nicht.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

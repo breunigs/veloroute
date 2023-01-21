@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.KreuzungNordschleswigerStrasse do
     <p>Stadteinwärts musste man eine Bettelampel betätigen um die <.m bounds="10.062489,53.579484,10.069636,53.588212">Nordschleswiger Straße</.m> queren zu dürfen. Die Kreuzung wird zur Zeit umgebaut und sieht nach Abschluss der Arbeiten eine Führung im Mischverkehr vor. Das heißt, das sich Rad- und KFZ Verkehr die Spuren und hier auch die gleichen Ampeln teilen. Indirektes Linksabbiegen wird den Radfahrenden immer ermöglicht. Je nach Richtung steht manchmal auch eine direkte Abbiegemöglichkeit (zusammen mit den KFZ) zur Wahl. Vermutlich dauern die Arbeiten bis Ende November 2019.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

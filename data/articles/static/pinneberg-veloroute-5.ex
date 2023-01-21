@@ -60,7 +60,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
   def text(assigns) do
     ~H"""
     <h3>Pinneberg: Veloroute 5 <.icon>pinneberg-5</.icon></h3>
-    <p>Entlang der <.m bounds="9.794008,53.66242,9.797273,53.671893" lon={9.796735} lat={53.662838} dir="forward">Bismarck- und Friedensstraße</.m> fährt man zunächst direkt nach Norden. Über den <.m bounds="9.791372,53.673151,9.791372,53.673151" lon={9.791372} lat={53.673151} dir="forward">Ossenpadd bzw. An den Fischteichen</.m> weicht man dann leicht nach Westen ab, um die Autotrasse „Westring“ queren zu können. Über den <.m bounds="9.781945,53.679587,9.787478,53.688398" lon={9.782724} lat={53.680313} dir="forward">Osterloher Weg</.m> erreicht man wieder den Ossenpadd und von dort die Ziele in Kummerfeld.</p>
+    <p>Entlang der <.v bounds="9.794008,53.66242,9.797273,53.671893" lon={9.796735} lat={53.662838} dir="forward" ref={@ref}>Bismarck- und Friedensstraße</.v> fährt man zunächst direkt nach Norden. Über den <.v bounds="9.791372,53.673151,9.791372,53.673151" lon={9.791372} lat={53.673151} dir="forward" ref={@ref}>Ossenpadd bzw. An den Fischteichen</.v> weicht man dann leicht nach Westen ab, um die Autotrasse „Westring“ queren zu können. Über den <.v bounds="9.781945,53.679587,9.787478,53.688398" lon={9.782724} lat={53.680313} dir="forward" ref={@ref}>Osterloher Weg</.v> erreicht man wieder den Ossenpadd und von dort die Ziele in Kummerfeld.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist vollständig ausgeschildert und mit Piktogrammen auf der Straße markiert. Mit Ortskenntnis folgt man ihr ohne Probleme, ohne muss man teilweise etwas genauer schauen.</p>
@@ -72,7 +72,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
     <p>Die Veloroute macht einen ansehnlichen Eindruck und ist angenehm zu befahren, zumindest bei wenig Autoverkehr. Kurzfristig sollten die Strecken zu Fahrradstraßen werden. Langfristig sollten weitläufige Kreuzung kompakter gestaltet werden um die Übersicht zu verbessern. Ebenso sollten die alten Radwegreste ganz entfernt und dem Fußweg zugeschlagen werden, damit keine Missverständnisse aufkommen.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

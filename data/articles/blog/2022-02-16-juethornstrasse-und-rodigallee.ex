@@ -58,7 +58,7 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
     <p>Kurios ist auch die Begründung, warum man auf Trennelemente zum KFZ-Verkehr verzichtet („<.ref>Protected-Bike-Lane</.ref>“): man möchte auch bei zugestauter KFZ- und Busspur noch einen Weg für Einsatzfahrzeuge von Polizei und Notärzten haben.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

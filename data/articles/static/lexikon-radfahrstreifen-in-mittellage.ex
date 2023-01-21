@@ -15,7 +15,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifenInMittellage do
 
   def text(assigns) do
     ~H"""
-    <p><.m bounds="10.054611,53.554266,10.060643,53.555758" lon={10.055845} lat={53.555012} dir="forward">Videobeispiel Kreuzung Hammer Landstraße/Diagonalstraße/Hammer Steindamm</.m></p>
+    <p><.v bounds="10.054611,53.554266,10.060643,53.555758" lon={10.055845} lat={53.555012} dir="forward" ref={@ref}>Videobeispiel Kreuzung Hammer Landstraße/Diagonalstraße/Hammer Steindamm</.v></p>
 
     <p>Umgangssprachlich als „Fahrradweiche“ bezeichnet ist ein „Radfahrstreifen in Mittellage“ eine an Kreuzungen aufgemalte Verkehrsführung. Sie packt die Geradeausspur für den Radverkehr zwischen die Geradeausspur bzw. Rechtsabbiegerspur für KFZ.
     </p>

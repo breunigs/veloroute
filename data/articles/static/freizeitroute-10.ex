@@ -96,7 +96,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
     <h3>Freizeitroute 10 – Kollauradweg <.icon>FR10</.icon></h3>
     <span class="updated">Länge rund 16km</span>
 
-    <p>Los geht die Tour an <.m bounds="9.975364,53.556676,9.992494,53.564972" lon={9.988843} lat={53.559021} dir="forward">Planten un Blomen</.m>. Durch den <.m bounds="9.962894,53.563673,9.977035,53.568315" lon={9.971112} lat={53.565596} dir="forward">Sternschanzenpark</.m>, <.m bounds="9.963326,53.572971,9.970538,53.57626" lon={9.967869} lat={53.574418} dir="forward">Isebekpark</.m> und <.m bounds="9.945289,53.584999,9.957758,53.604684" lon={9.949297} lat={53.601519} dir="forward">zahlreiche Kleingärten</.m> erreicht man schließlich das <.m bounds="9.925696,53.605578,9.949393,53.620281" lon={9.938685} lat={53.607029} dir="forward">Niendorfer Gehege</.m>. Dort quert man zunächst die Kollau und folgt ihr erst wenn man das Waldstück <.m bounds="9.926832,53.618076,9.930929,53.621317" lon={9.929183} lat={53.619155} dir="forward">fast wieder verlassen</.m> hat. Am <.m bounds="9.938323,53.642209,9.950647,53.6489" lon={9.941174} lat={53.644497} dir="forward">Voßbarg</.m> vorbei erreicht man schließlich die <.m bounds="9.93087,53.652424,9.950125,53.659332" lon={9.939572} lat={53.652447} dir="forward">Landesgrenze</.m> an einem Golfplatz.</p>
+    <p>Los geht die Tour an <.v bounds="9.975364,53.556676,9.992494,53.564972" lon={9.988843} lat={53.559021} dir="forward" ref={@ref}>Planten un Blomen</.v>. Durch den <.v bounds="9.962894,53.563673,9.977035,53.568315" lon={9.971112} lat={53.565596} dir="forward" ref={@ref}>Sternschanzenpark</.v>, <.v bounds="9.963326,53.572971,9.970538,53.57626" lon={9.967869} lat={53.574418} dir="forward" ref={@ref}>Isebekpark</.v> und <.v bounds="9.945289,53.584999,9.957758,53.604684" lon={9.949297} lat={53.601519} dir="forward" ref={@ref}>zahlreiche Kleingärten</.v> erreicht man schließlich das <.v bounds="9.925696,53.605578,9.949393,53.620281" lon={9.938685} lat={53.607029} dir="forward" ref={@ref}>Niendorfer Gehege</.v>. Dort quert man zunächst die Kollau und folgt ihr erst wenn man das Waldstück <.v bounds="9.926832,53.618076,9.930929,53.621317" lon={9.929183} lat={53.619155} dir="forward" ref={@ref}>fast wieder verlassen</.v> hat. Am <.v bounds="9.938323,53.642209,9.950647,53.6489" lon={9.941174} lat={53.644497} dir="forward" ref={@ref}>Voßbarg</.v> vorbei erreicht man schließlich die <.v bounds="9.93087,53.652424,9.950125,53.659332" lon={9.939572} lat={53.652447} dir="forward" ref={@ref}>Landesgrenze</.v> an einem Golfplatz.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht ausgeschildert und selbst mit einem Navi sind die schmalen Eingänge zu den Kleingärten leicht zu übersehen. Im dicht bewaldeten Niendorfer Gehege sind die Ansagen auch mal zu spätum noch abbiegen zu können. Das Navi dauerhaft im Sichtbereich zu haben erleichtert daher die Wegfindung.</p>
@@ -110,12 +110,12 @@ defmodule Data.Article.Static.Freizeitroute10 do
 
     <p>Einige Hinweise:</p>
     <ul>
-      <li>Der Umweg über die <.m bounds="9.94834,53.590992,9.951335,53.595077" lon={9.950208} lat={53.593219} dir="forward" ref="FR4">Max-Tau-Straße</.m> lohnt sich nicht. Es ist besser durch den Park zu fahren.</li>
-      <li>Im <.m bounds="9.93609,53.656803,9.941178,53.660792" lon={9.938917} lat={53.658303} dir="forward" ref="FR4">Golfplatz</.m> wird die Straße zu einer Einbahnstraße. Die nahen Wege im Wald sind Reitwege. Wer hier weiter fährt muss einen anderen Rückweg einplanen.</li>
+      <li>Der Umweg über die <.v bounds="9.94834,53.590992,9.951335,53.595077" lon={9.950208} lat={53.593219} dir="forward" ref="FR4">Max-Tau-Straße</.v> lohnt sich nicht. Es ist besser durch den Park zu fahren.</li>
+      <li>Im <.v bounds="9.93609,53.656803,9.941178,53.660792" lon={9.938917} lat={53.658303} dir="forward" ref="FR4">Golfplatz</.v> wird die Straße zu einer Einbahnstraße. Die nahen Wege im Wald sind Reitwege. Wer hier weiter fährt muss einen anderen Rückweg einplanen.</li>
     </ul>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

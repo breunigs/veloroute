@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.Kattwykbruecke do
     <p>An der neuen Kattwykbrücke sind Mängel festgestellt worden, sodass diese momentan außer Betrieb ist. Sie ist für alle Verkehrsarten außer dem Schiffsverkehr voll gesperrt. Zur Wartungsdauer macht die Hamburg Port Authority (HPA) unterschiedliche Angaben: optimistisch sind bis Ende August 2021, pessimistisch bis Ende November.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -14,7 +14,7 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def text(assigns) do
     ~H"""
-    <p><.m bounds="9.946338,53.581812,9.964407,53.585945" lon={9.9556474} lat={53.5846119} dir="forward" ref="3">Videobeispiel eines Schutzstreifens auf Veloroute 3</.m></p>
+    <p><.v bounds="9.946338,53.581812,9.964407,53.585945" lon={9.9556474} lat={53.5846119} dir="forward" ref="3">Videobeispiel eines Schutzstreifens auf Veloroute 3</.v></p>
 
     <p>Schutzstreifen sind die kleinere Variante des <.ref>Radfahrstreifens</.ref> und in jeder Hinsicht schlechter gestellt. Sie sind durch eine schmale, gestrichelte Linie gekennzeichnet. Breite Fahrzeuge dürfen sie mitbenutzen und sie sind meist sehr schmal.</p>
 

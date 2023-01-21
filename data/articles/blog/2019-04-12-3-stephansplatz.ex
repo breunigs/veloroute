@@ -39,23 +39,23 @@ defmodule Data.Article.Blog.Stephansplatz do
     <h4>Pläne</h4>
     <p>Im Zuge der Umplanung der <.m bounds="9.989051,53.557503,9.993183,53.558317">Esplanade</.m> wird auch die Kreuzung am Stephansplatz und angrenzende Straßen umgebaut. In der Kreuzung gibt es erstmals durchgängige Radfahrstreifen für alle Richtungen, die mit rund 2,0m Breite auch brauchbar breit ausfallen. Sie sollen zusätzlich rot hervorgehoben werden. Linksabbiegen ist zwar in alle Richtungen möglich, jedoch nur mittels <.ref>indirektem Linksabbiegen</.ref>.</p>
 
-    <p>Im Vor- und Nachlauf der Kreuzung wird der Radverkehr ebenfalls auf 2,0m breiten Radfahrstreifen geführt. Ausnahme bildet der Weg nach Norden: Im <.m bounds="9.987593,53.557069,9.989654,53.558251" lon={9.9886025} lat={53.5575438} dir="forward">Bereich der Bushaltestelle in der Dammstorstraße</.m> bleibt der Radweg mit 1,5m weiterhin zu schmal. Nach der Kreuzung, auf <.m bounds="9.988345,53.558156,9.990406,53.559339" lon={9.9895327} lat={53.5585385} dir="forward">Höhe des Casinos</.m>, wird auf den vorhandenen Hochbordradweg aufgeleitet, der allerdings ebenfalls auf 2,0m verbreitert wird.</p>
+    <p>Im Vor- und Nachlauf der Kreuzung wird der Radverkehr ebenfalls auf 2,0m breiten Radfahrstreifen geführt. Ausnahme bildet der Weg nach Norden: Im <.v bounds="9.987593,53.557069,9.989654,53.558251" lon={9.9886025} lat={53.5575438} dir="forward" ref={@ref}>Bereich der Bushaltestelle in der Dammstorstraße</.v> bleibt der Radweg mit 1,5m weiterhin zu schmal. Nach der Kreuzung, auf <.v bounds="9.988345,53.558156,9.990406,53.559339" lon={9.9895327} lat={53.5585385} dir="forward" ref={@ref}>Höhe des Casinos</.v>, wird auf den vorhandenen Hochbordradweg aufgeleitet, der allerdings ebenfalls auf 2,0m verbreitert wird.</p>
 
     <p>Teilweise werden die Radfahrstreifen auch durch rund 50cm breite Fahrbahnteiler vom KFZ-Verkehr getrennt. Sie sind auf fast der gesamten Länge im <.m bounds="9.988167,53.558274,9.990758,53.559845">Dammtordamm</.m> Richtung Süden und der <.m bounds="9.989149,53.556924,9.992913,53.559206">Esplanade</.m> Richtung Westen vorgesehen. In Richtung Osten gibt es nur wenige Trenner, da KFZ-Ladeflächen rechts des Radfahrstreifens eingerichtet werden.</p>
 
-    <p>Im <.m bounds="9.987216,53.557897,9.989182,53.558689">Gorch-Fock-Wall</.m> werden die Radfahrstreifen durch Haltezone für den Bus geführt, eine Vorbeifahrt ist nur durch Einordnen in den KFZ-Verkehr gefahrlos möglich. Entlang der <.m bounds="9.987281,53.557617,9.989248,53.558408" lon={9.9887283} lat={53.5578861} dir="backward">Dammstorstraße</.m> Richtung Süden wird der Radfahrstreifen mit einem Sicherheitsabstand zu den Parkplätzen ausgestattet um die <.ref>Dooring-Gefahr</.ref> zu verringern.</p>
+    <p>Im <.m bounds="9.987216,53.557897,9.989182,53.558689">Gorch-Fock-Wall</.m> werden die Radfahrstreifen durch Haltezone für den Bus geführt, eine Vorbeifahrt ist nur durch Einordnen in den KFZ-Verkehr gefahrlos möglich. Entlang der <.v bounds="9.987281,53.557617,9.989248,53.558408" lon={9.9887283} lat={53.5578861} dir="backward" ref={@ref}>Dammstorstraße</.v> Richtung Süden wird der Radfahrstreifen mit einem Sicherheitsabstand zu den Parkplätzen ausgestattet um die <.ref>Dooring-Gefahr</.ref> zu verringern.</p>
 
     <p>Umgebaut werden soll in Abstimmungen mit umliegenden Maßnahmen. Nach aktuellem Stand ist die Umsetzung für ganz 2021 angesetzt.</p>
 
     <h4>Meinung</h4>
     <p>Die Verbesserungen für den Radverkehr liegen auf der Hand und beheben endlich die untragbare Verkehrsführung in West/Ost Richtung. Dennoch gibt es einige Kritikpunkte:</p>
     <ul>
-    <li><.m bounds="9.987593,53.557069,9.989654,53.558251" lon={9.9886025} lat={53.5575438} dir="forward">Dammstorstraße Richtung Norden</.m>: Zu Gunsten des Fußverkehrs sollte der KFZ-Rechtsabbieger entfallen. Rechtsabbiegen für KFZ kann auch problemlos über den Straßenzug Valentinskamp – Caffamacherreihe – Gorch-Fock-Wall erfolgen.</li>
+    <li><.v bounds="9.987593,53.557069,9.989654,53.558251" lon={9.9886025} lat={53.5575438} dir="forward" ref={@ref}>Dammstorstraße Richtung Norden</.v>: Zu Gunsten des Fußverkehrs sollte der KFZ-Rechtsabbieger entfallen. Rechtsabbiegen für KFZ kann auch problemlos über den Straßenzug Valentinskamp – Caffamacherreihe – Gorch-Fock-Wall erfolgen.</li>
     <li><.m bounds="9.987216,53.557897,9.989182,53.558689">Führung durch den Bushalt im Gorch-Fock-Wall</.m>: Die Planung führt ausschließlich die geringe Anzahl an Bussen als Argument an. Warum der Bus Richtung Hauptbahnhof nicht wie bisher auf einer KFZ-Spur halten kann wird nicht erläutert.</li>
     </ul>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -26,16 +26,16 @@ defmodule Data.Article.Blog.GarstedterWeg do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Stellenweise sind schmale <.ref>Hochbordradwege</.ref> vorhanden, die jedoch unvermittelt aufhören und zu reinen Gehwegen werden. Aus dem <.m bounds="9.971391,53.642904,9.976052,53.64581" lon={9.972351} lat={53.643417} dir="forward" ref="14">Moorrand</.m> ist das Linksabbiegen häufig schwierig. In der Gegenrichtung ist die Weiterfahrt <.m bounds="9.971391,53.642904,9.976052,53.64581" lon={9.975374} lat={53.645562} dir="backward" ref="14">vom Zweirichtungsradweg</.m> unklar und benötigt Ortskenntnisse.</p>
+    <p>Stellenweise sind schmale <.ref>Hochbordradwege</.ref> vorhanden, die jedoch unvermittelt aufhören und zu reinen Gehwegen werden. Aus dem <.v bounds="9.971391,53.642904,9.976052,53.64581" lon={9.972351} lat={53.643417} dir="forward" ref="14">Moorrand</.v> ist das Linksabbiegen häufig schwierig. In der Gegenrichtung ist die Weiterfahrt <.v bounds="9.971391,53.642904,9.976052,53.64581" lon={9.975374} lat={53.645562} dir="backward" ref="14">vom Zweirichtungsradweg</.v> unklar und benötigt Ortskenntnisse.</p>
 
     <h4>Planung</h4>
     <p>Die Einmündung Moorrand wird zu einem Kreisverkehr umgebaut.</p>
 
-    <p>In Richtung Flughafen folgt ein Stück <.ref>Mischverkehr</.ref>, dann <.ref>Kopenhagener Radweg</.ref>, dann <.ref>Radfahrstreifen</.ref> um die Einmündung <.m bounds="9.971391,53.642904,9.976052,53.64581" lon={9.97395} lat={53.644436} dir="forward" ref="14">Vierenkamp</.m>, und schließlich ein Hochbordradweg – bis auf den Abschnitt im Mischverkehr alle rund 2,60m breit.</p>
+    <p>In Richtung Flughafen folgt ein Stück <.ref>Mischverkehr</.ref>, dann <.ref>Kopenhagener Radweg</.ref>, dann <.ref>Radfahrstreifen</.ref> um die Einmündung <.v bounds="9.971391,53.642904,9.976052,53.64581" lon={9.97395} lat={53.644436} dir="forward" ref="14">Vierenkamp</.v>, und schließlich ein Hochbordradweg – bis auf den Abschnitt im Mischverkehr alle rund 2,60m breit.</p>
 
-    <p>In der Gegenrichtung soll weiterhin am <.m bounds="9.971391,53.642904,9.976052,53.64581" lon={9.974647} lat={53.645383} dir="backward" ref="14">Swebenweg</.m> die Straßenseite gewechselt werden, die Kreuzung wird nicht umgebaut. Zunächst fährt man über die Wartefläche des Busses, dann ein Stück <.ref>Schutzstreifen</.ref> (2,0m breit), Kopenhagener Radweg (2,60m), Radfahrstreifen um die Einmündung <.m bounds="9.971391,53.642904,9.976052,53.64581" lon={9.973854} lat={53.64472} dir="backward" ref="14">Vierenkamp</.m> (2,60m), Kopenhagener Radweg (zunächst 2,60m, verengt sich auf 1,60m) und schließlich ein Schutzstreifen der in den Mischverkehr überleitet. Die Gestaltung ist dabei so, dass die Radspur immer schmaler wird, die KFZ-Spur hingegen durchgehend gleich breit bleibt.</p>
+    <p>In der Gegenrichtung soll weiterhin am <.v bounds="9.971391,53.642904,9.976052,53.64581" lon={9.974647} lat={53.645383} dir="backward" ref="14">Swebenweg</.v> die Straßenseite gewechselt werden, die Kreuzung wird nicht umgebaut. Zunächst fährt man über die Wartefläche des Busses, dann ein Stück <.ref>Schutzstreifen</.ref> (2,0m breit), Kopenhagener Radweg (2,60m), Radfahrstreifen um die Einmündung <.v bounds="9.971391,53.642904,9.976052,53.64581" lon={9.973854} lat={53.64472} dir="backward" ref="14">Vierenkamp</.v> (2,60m), Kopenhagener Radweg (zunächst 2,60m, verengt sich auf 1,60m) und schließlich ein Schutzstreifen der in den Mischverkehr überleitet. Die Gestaltung ist dabei so, dass die Radspur immer schmaler wird, die KFZ-Spur hingegen durchgehend gleich breit bleibt.</p>
 
-    <p>Außerhalb der Veloroute wird die <.m bounds="9.97162,53.642338,9.973019,53.643597" lon={9.972921} lat={53.643491} dir="forward" ref="14">Bushaltestelle in Richtung Flughafen</.m> vor den Kreisverkehr gelegt. An ihr führt ein 2,5m breiter Radfahrstreifen vorbei. Die Gestaltung ist dabei so, dass die Radspur gleich breit bleibt und die KFZ-Spur immer schmaler wird, bis es in den Mischverkehr für den Kreisel übergeht.</p>
+    <p>Außerhalb der Veloroute wird die <.v bounds="9.97162,53.642338,9.973019,53.643597" lon={9.972921} lat={53.643491} dir="forward" ref="14">Bushaltestelle in Richtung Flughafen</.v> vor den Kreisverkehr gelegt. An ihr führt ein 2,5m breiter Radfahrstreifen vorbei. Die Gestaltung ist dabei so, dass die Radspur gleich breit bleibt und die KFZ-Spur immer schmaler wird, bis es in den Mischverkehr für den Kreisel übergeht.</p>
 
     <p>Es kommen einige Radanlehnbügel und Sitzbänke hinzu.</p>
 
@@ -50,7 +50,7 @@ defmodule Data.Article.Blog.GarstedterWeg do
     <p>Diese eklatanten Probleme kann auch der gelungene Kreisverkehr nicht mehr wettmachen. Es ist zu hoffen, dass dieser erste Entwurf stark überarbeitet wird und eine sichere und komfortable Lösung für den Radverkehr geschaffen wird.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

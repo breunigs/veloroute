@@ -39,7 +39,7 @@ defmodule Data.Article.Blog.SbahnPulverhof do
     <p>Die gesamte Straße zu unterführen wurde zwar untersucht, aber wegen des Platzbedarfs abgelehnt. Auch wäre hier eine weitere Zufahrt für die anliegenden Grundstücke notwendig gewesen. Es ist schade, das keine geradlinige Unterführung nur für den Fuß- und Radverkehr untersucht wurde, da diese deutlich schmaler ausfiele und daher ggf. passen könnte.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -23,7 +23,13 @@ defmodule Feed do
   end
 
   defp article(art) do
-    content = Article.Decorators.html(art, %{__changed__: %{}, render_target: :feed})
+    content =
+      art
+      |> Article.Decorators.html()
+      |> Floki.parse_fragment!()
+      |> Floki.find_and_update("a:not([href])", fn {"a", _attrs} -> {"i", []} end)
+      |> Floki.raw_html()
+
     full_title = Article.Decorators.full_title(art)
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
     url = Article.Decorators.url(art)

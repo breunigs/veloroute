@@ -65,20 +65,20 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
   def text(assigns) do
     ~H"""
     <h4>Vorhaben</h4>
-    <p>Die <.abbr>BVM</.abbr> möchte das Veloroutennetz erweitern, um die fehlende Anbindung mancher Stadtteile zu verbessern. Der Verlauf der Nord/Süd Verbindung vom <.m bounds="10.023539,53.566807,10.032159,53.571333" lon={10.026585} lat={53.56936} dir="forward">U-Bahnhof Mundsburg</.m> zu den <.m bounds="10.022407,53.528823,10.034761,53.538651" lon={10.030073} lat={53.537408} dir="forward">Elbbrücken</.m> wurde bereits konkretisiert:</p>
+    <p>Die <.abbr>BVM</.abbr> möchte das Veloroutennetz erweitern, um die fehlende Anbindung mancher Stadtteile zu verbessern. Der Verlauf der Nord/Süd Verbindung vom <.v bounds="10.023539,53.566807,10.032159,53.571333" lon={10.026585} lat={53.56936} dir="forward" ref={@ref}>U-Bahnhof Mundsburg</.v> zu den <.v bounds="10.022407,53.528823,10.034761,53.538651" lon={10.030073} lat={53.537408} dir="forward" ref={@ref}>Elbbrücken</.v> wurde bereits konkretisiert:</p>
     <ul>
-      <li><.m bounds="10.023511,53.564108,10.027097,53.568722" lon={10.025824} lat={53.567966} dir="forward">Schürbeker Straße</.m></li>
-      <li><.m bounds="10.023431,53.563584,10.025206,53.566265" lon={10.024717} lat={53.56605} dir="forward">Kuhmühle</.m></li>
-      <li><.m bounds="10.023405,53.556417,10.027275,53.564685" lon={10.024117} lat={53.563596} dir="forward">Mühlendamm</.m></li>
-      <li><.m bounds="10.024524,53.551213,10.028068,53.557838" lon={10.026512} lat={53.556015} dir="forward">Bürgerweide</.m></li>
-      <li><.m bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward">Heidenkampsweg</.m></li>
-      <li><.m bounds="10.024761,53.531406,10.035654,53.542411" lon={10.032604} lat={53.540696} dir="forward">Billhorner Brückenstraße</.m></li>
+      <li><.v bounds="10.023511,53.564108,10.027097,53.568722" lon={10.025824} lat={53.567966} dir="forward" ref={@ref}>Schürbeker Straße</.v></li>
+      <li><.v bounds="10.023431,53.563584,10.025206,53.566265" lon={10.024717} lat={53.56605} dir="forward" ref={@ref}>Kuhmühle</.v></li>
+      <li><.v bounds="10.023405,53.556417,10.027275,53.564685" lon={10.024117} lat={53.563596} dir="forward" ref={@ref}>Mühlendamm</.v></li>
+      <li><.v bounds="10.024524,53.551213,10.028068,53.557838" lon={10.026512} lat={53.556015} dir="forward" ref={@ref}>Bürgerweide</.v></li>
+      <li><.v bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward" ref={@ref}>Heidenkampsweg</.v></li>
+      <li><.v bounds="10.024761,53.531406,10.035654,53.542411" lon={10.032604} lat={53.540696} dir="forward" ref={@ref}>Billhorner Brückenstraße</.v></li>
     </ul>
 
     <h4>Aktueller Zustand</h4>
     <p>Die neue Veloroute ist bereits heute befahrbar und besteht aus <.ref>Hochbordradwegen</.ref> und einem kürzeren Abschnitt mit <.ref>Radfahrstreifen</.ref>. Die Wege sind meist 1,50m-1,60m breit, was den Mindestbreiten zum jeweiligen Bauzeitpunkt entspricht. Für Alltagsrouten strebt man künftig 2,50m Breite an, Bordsteine und andere Trennelemente nicht eingerechnet.</p>
 
-    <p>Die Ampelschaltungen entlang der Route sind nicht auf den Radverkehr abgestimmt. Gerade im <.m bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward">Heidenkampsweg</.m> führt dies häufig zu einer roten Welle.</p>
+    <p>Die Ampelschaltungen entlang der Route sind nicht auf den Radverkehr abgestimmt. Gerade im <.v bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward" ref={@ref}>Heidenkampsweg</.v> führt dies häufig zu einer roten Welle.</p>
 
     <p>Die Führung ist entlang einer 4 bis 8-spurigen KFZ-Hauptstraße. Stellenweise sind 60 km/h als Höchstgeschwindigkeit erlaubt. Beides erhöht den Lärmpegel an dieser Strecke.</p>
 
@@ -102,7 +102,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
     </ul>
 
     <h4>Links</h4>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

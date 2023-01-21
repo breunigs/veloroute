@@ -76,9 +76,9 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
     <p>Es wird nur die <.m bounds="10.123928,53.570192,10.124819,53.570958">Südseite der Kreuzung</.m> umgebaut. In Fahrtrichtung Norden wird ein geschätzt 1,60m breiter Radfahrstreifen einrichtet. In der Gegenrichtung gibt es ein kurzes Stück <.ref>Schutzstreifen</.ref>, bevor der Radverkehr durch die Busbucht geleitet wird. Wer an einem wartenden Bus vorbeifahren möchte, muss sich in den KFZ-Verkehr einordnen.</p>
 
     <h4>Planung – Öjendorfer Damm (Veloroute 14)</h4>
-    <p>Folgt man der Veloroute <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135622} lat={53.570497} dir="backward" ref="14">Richtung Norden</.m>, weitet sich die Fahrbahn auf und man fährt auf einem grob 2,0m breiten Radfahrstreifen. <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136138} lat={53.571177} dir="backward" ref="14">Nach der Kreuzung</.m> fährt man wie bisher rechts der Bushaltestelle auf einem Hochbordradweg.</p>
+    <p>Folgt man der Veloroute <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135622} lat={53.570497} dir="backward" ref="14">Richtung Norden</.v>, weitet sich die Fahrbahn auf und man fährt auf einem grob 2,0m breiten Radfahrstreifen. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136138} lat={53.571177} dir="backward" ref="14">Nach der Kreuzung</.v> fährt man wie bisher rechts der Bushaltestelle auf einem Hochbordradweg.</p>
 
-    <p>In <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136164} lat={53.571616} dir="forward" ref="14">Fahrtrichtung Süden</.m> wird man vom Hochbordradweg auf einen Radfahrstreifen abgeleitet. <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref="14">Nach der Kreuzung</.m> wird man durch den Wartebereich der Busse geleitet. Wer an einem wartenden Bus vorbeifahren will, muss sich in den KFZ-Verkehr einordnen. Der zur Orientierung dienende Schutzstreifen endet an der Einmündung <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135519} lat={53.570426} dir="forward" ref="14">Am Jenfelder Bach</.m>.</p>
+    <p>In <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136164} lat={53.571616} dir="forward" ref="14">Fahrtrichtung Süden</.v> wird man vom Hochbordradweg auf einen Radfahrstreifen abgeleitet. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref="14">Nach der Kreuzung</.v> wird man durch den Wartebereich der Busse geleitet. Wer an einem wartenden Bus vorbeifahren will, muss sich in den KFZ-Verkehr einordnen. Der zur Orientierung dienende Schutzstreifen endet an der Einmündung <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135519} lat={53.570426} dir="forward" ref="14">Am Jenfelder Bach</.v>.</p>
 
     <h4>Sonstiges</h4>
     <p>Es sollen weitere Radanlehnbügel aufgestellt werden. Es sollen Ladezonen eingerichtet werden, damit die Radfahrstreifen nicht illegal zugeparkt werden. Die Grünflächen werden mit Pfählen gegen Beschädigung durch Falschparker gesichert.</p>
@@ -88,12 +88,12 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
     <h4>Meinung</h4>
     <p>Die Ost-West Richtung erscheint durchdacht.</p>
 
-    <p>Im <.m bounds="10.123928,53.570192,10.124819,53.570958">Schiffbeker Weg</.m> behält man jedoch die 6-KFZ Spuren bei und muss für die unzeitgemäßen Radwege sogar noch zwei Bäume fällen. Am <.m bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref="14">Öjendorfer Damm</.m> scheinen die Radwege immerhin etwas breiter zu sein. Trotzdem ist eine Unterbrechung des Radweges durch eine Busbucht für eine Veloroute inakzeptabel.</p>
+    <p>Im <.m bounds="10.123928,53.570192,10.124819,53.570958">Schiffbeker Weg</.m> behält man jedoch die 6-KFZ Spuren bei und muss für die unzeitgemäßen Radwege sogar noch zwei Bäume fällen. Am <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref="14">Öjendorfer Damm</.v> scheinen die Radwege immerhin etwas breiter zu sein. Trotzdem ist eine Unterbrechung des Radweges durch eine Busbucht für eine Veloroute inakzeptabel.</p>
 
     <p>Es wirkt als ob nur die Ost-West-Richtung fertig geplant wurde. Die Querstraßen scheinen fast wie Platzhalter, die zu einem späteren Zeitpunkt nochmal ordentlich angegangen werden sollen. Es ist immerhin ein erster Entwurf, Änderungen also durchaus noch zu erwarten.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

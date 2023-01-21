@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.AmDorfgraben do
     <p>Der Fußweg soll je nach Fortschritt <.a name="2018-10-25-5-leeschenblick-und-fabriciusstrasse">des Kreisels mit der Fabriciusstraße</.a> ab Sommer 2020 angelegt werden. Wann der eigentliche Radweg kommen soll ist noch nicht bekannt.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

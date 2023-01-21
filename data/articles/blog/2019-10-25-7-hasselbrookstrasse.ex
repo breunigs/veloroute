@@ -24,10 +24,10 @@ defmodule Data.Article.Blog.Hasselbrookstrasse do
 
   def text(assigns) do
     ~H"""
-    <p>Die angedachten Maßnahmen auf der Hasselbrookstraße fallen vor allem in den Bereich „Verkehrsberuhigung“. Auf gesamter Länge wird Tempo 30 eingerichtet bzw. genauer die vorhandene Tempo-30-Zone der umliegenden Straßen erweitert. Die ampelfreien Kreuzungen werden enger gefasst um die Geschwindigkeiten zu reduzieren und um bessere Einsicht zu ermöglichen. Die Vorfahrt der Hasselbrookstraße wird aufgehoben und durch Rechts-vor-Links ersetzt.</p> <p>Das <.m bounds="10.051509,53.563657,10.056991,53.566921" ref="7">kurze Stück Hochbordradweg</.m> nahe der Haltestelle Hasselbrook entfällt. Ebenso soll <.m bounds="10.051509,53.563657,10.056991,53.566921" ref="7">die Fußampel</.m> durch einen Zebrastreifen ersetzt werden. Die Ampel an der <.m bounds="10.042712,53.56268,10.048194,53.565944" ref="7">Kreuzung mit der Ritterstraße</.m>  bleibt, jedoch soll hier eine Aufstellfläche für Radfahrende vor den KFZ eingerichtet werden. Bei Rot kann man sich also vor den KFZ aufstellen.</p> <p>Außerdem wird der Fahrbahnbelag erneuert und eine weitere StadtRAD Station eingerichtet. Anlehnbügel zum Abschließen des Fahrrads kommen ebenso an vielen Stellen hinzu.</p>
+    <p>Die angedachten Maßnahmen auf der Hasselbrookstraße fallen vor allem in den Bereich „Verkehrsberuhigung“. Auf gesamter Länge wird Tempo 30 eingerichtet bzw. genauer die vorhandene Tempo-30-Zone der umliegenden Straßen erweitert. Die ampelfreien Kreuzungen werden enger gefasst um die Geschwindigkeiten zu reduzieren und um bessere Einsicht zu ermöglichen. Die Vorfahrt der Hasselbrookstraße wird aufgehoben und durch Rechts-vor-Links ersetzt.</p> <p>Das <.m bounds="10.051509,53.563657,10.056991,53.566921">kurze Stück Hochbordradweg</.m> nahe der Haltestelle Hasselbrook entfällt. Ebenso soll <.m bounds="10.051509,53.563657,10.056991,53.566921">die Fußampel</.m> durch einen Zebrastreifen ersetzt werden. Die Ampel an der <.m bounds="10.042712,53.56268,10.048194,53.565944">Kreuzung mit der Ritterstraße</.m>  bleibt, jedoch soll hier eine Aufstellfläche für Radfahrende vor den KFZ eingerichtet werden. Bei Rot kann man sich also vor den KFZ aufstellen.</p> <p>Außerdem wird der Fahrbahnbelag erneuert und eine weitere StadtRAD Station eingerichtet. Anlehnbügel zum Abschließen des Fahrrads kommen ebenso an vielen Stellen hinzu.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

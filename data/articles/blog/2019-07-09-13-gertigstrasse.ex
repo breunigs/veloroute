@@ -35,14 +35,14 @@ defmodule Data.Article.Blog.Gertigstrasse do
     ~H"""
     <p>Die <.m bounds="10.01176,53.579645,10.019512,53.584261">Gertigstraße</.m> erlaubt dem Radverkehr momentan die Wahl auf den Hochbordradwegen oder der Fahrbahn zu fahren. Die Radwege sind sehr schmal, teils kurvig und häufig auch von Zufußgehenden belegt. Auf der Fahrbahn kommt man deutlich besser voran, muss sich aber mit den Autos bei 50 km/h Höchstgeschwindigkeit arrangieren.</p>
     <p>Die in einer Mitmachveranstaltung  bevorzugte Variante „Fahrradstraße“ wurde in einem ersten Entwurf detaillierter ausgearbeitet und wird auch so kommen. Da die Gertigstraße schon grob die richtige Form hat, sind nur lokale  Umbauten nötig. Die alten Radwege werden entfernt und dem Fußweg zugeschlagen. Auch die Schutzbügel gegen Falschparker entfallen zugunsten ordentlichen Stellbügeln für Fahrräder. Die Einmündungen bleiben gegenüber der Gertigstraße wartepflichtig, werden jedoch neu verfugt um dem Denkmalschutz Rechnung zu tragen. Am Anfang bzw. Ende der Gertigstraße wird ein kurzes Stück gepflastert um den Wechsel zu einer Fahrradstraße zu verdeutlichen. Wie in allen Fahrradstraßen reduziert sich das Höchsttempo auf 30 km/h.  </p>
-    <p>Verkehrsführung und Parkplätze bleiben im Wesentlichen gleich – auch Autos dürfen die Straße weiterhin befahren. Man hat jedoch den Mangel an Fahrradstellplätzen erkannt und ergänzt 86 Anlehnbügel. Auch eine StadtRAD Station kommt hinzu, auf <.m bounds="10.010817,53.581176,10.018665,53.582971" lon={10.0147491} lat={53.5819298} dir="forward">Höhe der Hausnummer 22</.m>.</p>
+    <p>Verkehrsführung und Parkplätze bleiben im Wesentlichen gleich – auch Autos dürfen die Straße weiterhin befahren. Man hat jedoch den Mangel an Fahrradstellplätzen erkannt und ergänzt 86 Anlehnbügel. Auch eine StadtRAD Station kommt hinzu, auf <.v bounds="10.010817,53.581176,10.018665,53.582971" lon={10.0147491} lat={53.5819298} dir="forward" ref={@ref}>Höhe der Hausnummer 22</.v>.</p>
     <p>Die <.m bounds="10.011304,53.580738,10.012674,53.581554">Einmündung in den Mühlenkamp</.m> gilt als bereits umgebaut, die in <.m bounds="10.018253,53.582678,10.019623,53.583494">die Barmbeker Straße</.m> wird getrennt geplant. Entsprechend endet die Fahrradstraße jeweils vorher.</p>
 
     <h4>Umleitung während der Bauzeit</h4>
     <p>In Richtung Komponistenviertel (Südosten) erfolgt die Umleitung über den <.m bounds="10.011374,53.578691,10.020555,53.581769">Hans-Henny-Jahnn Weg</.m>. In Ricthung Eppendorf (Nordwesten) über die <.m bounds="10.008709,53.583004,10.018511,53.587327">Semperstraße</.m>.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

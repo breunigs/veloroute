@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Kloevensteenweg do
     <h4>Pläne</h4> <p>Diese Kreuzung soll vorraussichtlich im Sommer 2021 zu einem Kreisverkehr umgebaut werden. Die Stummelradwege auf dem <.m bounds="9.763089,53.581203,9.766407,53.609231">Klövensteenweg</.m> werden entfernt und die <.m bounds="9.763089,53.579719,9.776531,53.581823">Alte Sülldorfer Landstraße</.m> wird in dieser Baumaßnahme bis zum <.m bounds="9.762458,53.579407,9.767208,53.580782">Rissener Busch</.m> zu einer Tempo-30-Zone umgebaut. Folgt man der Veloroute Richtung stadtauswärts, gibt es eine halbe Vorbeifahrmöglichkeit am Kreisel, die sich vermutlich gut nutzen lässt um rollend durchzukommen. In der Gegenrichtung hat man selbstverständlich den langen Weg durch den Kreisverkehr. Zebrastreifen an jeder Einmündung in den Kreisel erlauben zu Fuß Gehenden eine leichtere Querung.</p>
     <h4>Meinung</h4> <p>Ein Kreisverkehr ist gerade in Nebenzeiten sinnvoll – beim Abfahren der Route stand ich häufig grundlos an der roten Ampel. Außerdem wird durch die neue Anordnung klar wo der Radverkehr fahren soll, statt durch kurze Radwegstücke zu verwirren.</p>
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

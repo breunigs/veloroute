@@ -49,7 +49,7 @@ defmodule Data.Article.Blog.SFriedrichsberg do
     <p>In diesem Sinne ist es vorteilhaft für den Radverkehr, dass sich die Umsetztung solange hinausgezögert hat. So besteht immerhin die Chance, dass die Stadt Verbesserungen einbringt statt den unbrauchbaren Zustand auf Jahre zu zementieren. Eine zeitgemäße Planung würde den Friedrichsberger Park und Mühlenteichpark zusammenwachsen lassen, statt weiterhin riesige Flächen für den KFZ-Verkehr zu versiegeln. Wenigstens aber müssen die Radspuren ordentliche Breite erhalten und geschützt werden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

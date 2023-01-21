@@ -33,7 +33,7 @@ defmodule Article.DecoratorsTest do
            <a href="/lexikon/radfahrstreifen" class="ref" data-phx-link-state="push" data-phx-link="patch" title="Radfahrstreifen sind asphaltierte Radwege direkt neben den KFZ-Spuren">Radfahrstreifen</a>
            <a phx-click="[[&quot;push&quot;,{&quot;event&quot;:&quot;map-zoom-to&quot;}]]" phx-value-bounds="10.116543,53.606325,10.119479,53.607453">bounds-only</a>
            """) ==
-             Article.Decorators.html(FakeArticle, %{__changed__: %{}, render_target: :html})
+             Article.Decorators.html(FakeArticle)
   end
 
   defp multi_trim(str) do

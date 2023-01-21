@@ -70,7 +70,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
     <h3>Elbradweg (Südteil auf Hamburger Gebiet) <.icon>e</.icon></h3>
     <p>Auf der <strong>Nordseite</strong> setzt sich der Elbradweg im Wesentlichen aus der <.a name="freizeitroute-5">Freizeitroute 5</.a> im Osten und der <.a name="freizeitroute-8">Freizeitroute 8</.a> im Westen zusammen. In der Innenstadt verläuft der Elbradweg leicht anders, aber das Erkunden der genauen Führung sei dem Gast überlassen.</p>
 
-    <p>Die <strong>Südseite</strong> geht ab Finkenwerder wieder los, welches man mit der Fähre erreicht. Von dort folgt man größtenteils den Deichen bis man bei <.m bounds="9.753531,53.527322,9.794157,53.549089" lon={9.771628} lat={53.542871} dir="forward">Cranz</.m> die Landesgrenze erreicht.</p>
+    <p>Die <strong>Südseite</strong> geht ab Finkenwerder wieder los, welches man mit der Fähre erreicht. Von dort folgt man größtenteils den Deichen bis man bei <.v bounds="9.753531,53.527322,9.794157,53.549089" lon={9.771628} lat={53.542871} dir="forward" ref={@ref}>Cranz</.v> die Landesgrenze erreicht.</p>
 
     <p>Hinweis zu den Videos: in Fahrtrichtung Cranz fehlen Abschnitte im Video. Statt über die <.m bounds="9.826072,53.526433,9.84532,53.531481">Westerweiden</.m> führt der Weg am Neßdeich entlang (wie eingezeichnet).</p>
 
@@ -84,7 +84,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
     <p>Für Durchreisende ist der Abschnitt ab Finkenwerder ganz okay. Wer in Hamburg wohnt und ins Grüne will wird auf anderen Freizeitstrecken jedoch besser bedient.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

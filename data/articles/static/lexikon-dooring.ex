@@ -35,7 +35,7 @@ defmodule Data.Article.Static.LexikonDooring do
     <h4>Im Planungsbüro</h4>
     <p>Die sicherste Lösung ist es neben Radwegen keine Autoparkplätze anzulegen. So wird die Gefahr bereits bei der Planung ausgeschlossen, statt sich auf einen fehlerfreien Alltag zu verlassen.</p>
 
-    <p>Ist dies nicht möglich, muss ausreichend Sicherheitsabstand eingeplant werden. Dieser muss groß genug sein, sodass auch bei schlecht eingeparkten Autos keine Gefahr entsteht. Das ist in Hamburg leider häufig nicht der Fall, wie etwa in der <.m bounds="10.033395,53.564595,10.052846,53.577745" lon={10.038327} lat={53.572288} dir="forward" ref="13">Wagnerstraße</.m>.</p>
+    <p>Ist dies nicht möglich, muss ausreichend Sicherheitsabstand eingeplant werden. Dieser muss groß genug sein, sodass auch bei schlecht eingeparkten Autos keine Gefahr entsteht. Das ist in Hamburg leider häufig nicht der Fall, wie etwa in der <.v bounds="10.033395,53.564595,10.052846,53.577745" lon={10.038327} lat={53.572288} dir="forward" ref="13">Wagnerstraße</.v>.</p>
     """
   end
 end

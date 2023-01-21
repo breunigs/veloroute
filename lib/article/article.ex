@@ -11,7 +11,7 @@ defmodule Article do
           | :ampel
           | nil
 
-  @type assigns() :: %{:render_target => :html | :feed, optional(atom) => any}
+  @type assigns() :: %{optional(atom) => any}
   @type link() ::
           {binary(), binary()} | {binary(), binary(), binary()} | Phoenix.LiveView.Rendered.t()
 

@@ -89,12 +89,12 @@ defmodule Data.Article.Static.RSWTostedt do
     <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Tostedt ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen.</p>
 
     <h4>Harburg</h4>
-    <p>Die Machbarkeitsstudie schlägt nur eine mögliche Anbindung an den <.m bounds="9.985339,53.451653,9.996725,53.458833" lon={9.989574} lat={53.455961} dir="forward">Bahnhof Harburg</.m> vor. Die Abwägung gegenüber anderen Führungen soll zu einem späteren Zeitpunkt nachgeholt werden. Entsprechend hoch ist die Wahrscheinlichkeit, dass sich die Strecke hier nochmal ändert. Klar ist jedoch, dass die Landesgrenze am <.m bounds="9.96695,53.415797,9.980777,53.422998" lon={9.97459} lat={53.420477} dir="forward">Beetenweg</.m> überquert werden soll.</p>
+    <p>Die Machbarkeitsstudie schlägt nur eine mögliche Anbindung an den <.v bounds="9.985339,53.451653,9.996725,53.458833" lon={9.989574} lat={53.455961} dir="forward" ref={@ref}>Bahnhof Harburg</.v> vor. Die Abwägung gegenüber anderen Führungen soll zu einem späteren Zeitpunkt nachgeholt werden. Entsprechend hoch ist die Wahrscheinlichkeit, dass sich die Strecke hier nochmal ändert. Klar ist jedoch, dass die Landesgrenze am <.v bounds="9.96695,53.415797,9.980777,53.422998" lon={9.97459} lat={53.420477} dir="forward" ref={@ref}>Beetenweg</.v> überquert werden soll.</p>
 
     <h4>Seevetal</h4>
-    <p>Die bereits heute existierenden Wege sollen zu Fahrradstraßen ausgebaut werden. Ab <.m bounds="9.953244,53.390561,9.97101,53.39712" lon={9.96393} lat={53.393521} dir="forward">Sunderberge</.m> soll dann ein Zweirichtungsradweg durch den Wald führen. An der <.m bounds="9.944794,53.38735,9.95721,53.390911" lon={9.95059} lat={53.389164} dir="forward">Eddelsener Straße</.m> überlegt man den Radverkehr mit über die Bahnbrücke zu führen, um den Autoverkehr zu umgehen.</p>
+    <p>Die bereits heute existierenden Wege sollen zu Fahrradstraßen ausgebaut werden. Ab <.v bounds="9.953244,53.390561,9.97101,53.39712" lon={9.96393} lat={53.393521} dir="forward" ref={@ref}>Sunderberge</.v> soll dann ein Zweirichtungsradweg durch den Wald führen. An der <.v bounds="9.944794,53.38735,9.95721,53.390911" lon={9.95059} lat={53.389164} dir="forward" ref={@ref}>Eddelsener Straße</.v> überlegt man den Radverkehr mit über die Bahnbrücke zu führen, um den Autoverkehr zu umgehen.</p>
 
-    <p>Die Führung um – oder durch – <.m bounds="9.921445,53.373485,9.9652,53.387653" lon={9.927295} lat={53.378377} dir="forward">das Kieswerk</.m> hängt davon ab, ob es nach Westen erweitert wird. Falls ja, kann die eingezeichnete Führung so nicht umgesetzt werden. Die Alternativen wären:</p>
+    <p>Die Führung um – oder durch – <.v bounds="9.921445,53.373485,9.9652,53.387653" lon={9.927295} lat={53.378377} dir="forward" ref={@ref}>das Kieswerk</.v> hängt davon ab, ob es nach Westen erweitert wird. Falls ja, kann die eingezeichnete Führung so nicht umgesetzt werden. Die Alternativen wären:</p>
     <ul>
       <li>weiterer <.m bounds="9.918393,53.375942,9.922548,53.383031">Umweg nach Westen</.m> (+2,2km)</li>
       <li>östlich entlang der Bahn, sofern der Platz an der <.m bounds="9.929063,53.374061,9.937992,53.377731">Autobahnbrücke</.m> reicht (-600m)</li>
@@ -102,24 +102,24 @@ defmodule Data.Article.Static.RSWTostedt do
     </ul>
 
     <h4>Rosengarten</h4>
-    <p>Der Zweirichtungsradweg setzt sich bis <.m bounds="9.92174,53.363149,9.936985,53.371006" lon={9.929347} lat={53.367889} dir="forward">Klecken</.m> fort. Dort könnte die <.m bounds="9.927807,53.366462,9.930369,53.368049" lon={9.928847} lat={53.367258} dir="forward">Bürgermeister-Glade-Straße</.m> entlang der Bahn unterfahren werden. Im weiteren Verlauf sollen die Wege entlang der Bahn ausgebaut werden und durchgehend befahrbar werden. Sie sollen autofrei bleiben.</p>
+    <p>Der Zweirichtungsradweg setzt sich bis <.v bounds="9.92174,53.363149,9.936985,53.371006" lon={9.929347} lat={53.367889} dir="forward" ref={@ref}>Klecken</.v> fort. Dort könnte die <.v bounds="9.927807,53.366462,9.930369,53.368049" lon={9.928847} lat={53.367258} dir="forward" ref={@ref}>Bürgermeister-Glade-Straße</.v> entlang der Bahn unterfahren werden. Im weiteren Verlauf sollen die Wege entlang der Bahn ausgebaut werden und durchgehend befahrbar werden. Sie sollen autofrei bleiben.</p>
 
     <h4>Buchholz</h4>
-    <p>An der <.m bounds="9.895868,53.337974,9.907806,53.342144" lon={9.901296} lat={53.339939} dir="forward">Herrenheide</.m> wechselt der Schnellweg auf die östliche Bahnseite. Auch hier sollen die Wege zu Zweirichtungsradwegen ausgebaut werden. Über eine neu zu bauende Brücke beim Neubaugebiet „Buchholz 2025plus“ werden <.m bounds="9.883485,53.327411,9.889006,53.32923" lon={9.885062} lat={53.328699} dir="forward">Itzenbütteler Weg</.m> und <.m bounds="9.883485,53.327411,9.889006,53.32923" lon={9.885062} lat={53.328699} dir="forward">Am Radeland</.m> verbunden.</p>
+    <p>An der <.v bounds="9.895868,53.337974,9.907806,53.342144" lon={9.901296} lat={53.339939} dir="forward" ref={@ref}>Herrenheide</.v> wechselt der Schnellweg auf die östliche Bahnseite. Auch hier sollen die Wege zu Zweirichtungsradwegen ausgebaut werden. Über eine neu zu bauende Brücke beim Neubaugebiet „Buchholz 2025plus“ werden <.v bounds="9.883485,53.327411,9.889006,53.32923" lon={9.885062} lat={53.328699} dir="forward" ref={@ref}>Itzenbütteler Weg</.v> und <.v bounds="9.883485,53.327411,9.889006,53.32923" lon={9.885062} lat={53.328699} dir="forward" ref={@ref}>Am Radeland</.v> verbunden.</p>
 
-    <p>Über eine neue Querungsmöglichkeit soll die <.m bounds="9.881077,53.326815,9.884806,53.328348" lon={9.882768} lat={53.327762} dir="forward">Lindenstraße</.m> direkt erreichbar werden. Im Rahmen des „Stadtumbau West“ sollen die <.m bounds="9.864274,53.323382,9.88004,53.325652" lon={9.875674} lat={53.325058} dir="forward">Wege an der Bahn</.m> erneuert werden. In der Planung werden zwei Varianten angegeben:</p>
+    <p>Über eine neue Querungsmöglichkeit soll die <.v bounds="9.881077,53.326815,9.884806,53.328348" lon={9.882768} lat={53.327762} dir="forward" ref={@ref}>Lindenstraße</.v> direkt erreichbar werden. Im Rahmen des „Stadtumbau West“ sollen die <.v bounds="9.864274,53.323382,9.88004,53.325652" lon={9.875674} lat={53.325058} dir="forward" ref={@ref}>Wege an der Bahn</.v> erneuert werden. In der Planung werden zwei Varianten angegeben:</p>
     <ul>
-      <li>entlang der Bahn bis zum <.m bounds="9.842667,53.32008,9.867751,53.324099" lon={9.848677} lat={53.321641} dir="forward">Sprötzer Weg</.m> (Vorzugsvariante)</li>
-      <li>über die <.m bounds="9.859397,53.322576,9.871709,53.327111" lon={9.862566} lat={53.325447} dir="forward">Bremer Reihe</.m> entlang der vorhandenen Straßen</li>
+      <li>entlang der Bahn bis zum <.v bounds="9.842667,53.32008,9.867751,53.324099" lon={9.848677} lat={53.321641} dir="forward" ref={@ref}>Sprötzer Weg</.v> (Vorzugsvariante)</li>
+      <li>über die <.v bounds="9.859397,53.322576,9.871709,53.327111" lon={9.862566} lat={53.325447} dir="forward" ref={@ref}>Bremer Reihe</.v> entlang der vorhandenen Straßen</li>
     </ul>
 
-    <p>Im <.m bounds="9.826649,53.317206,9.85169,53.32271" lon={9.840152} lat={53.320694} dir="forward">Sprötzer Weg</.m> soll der vorhandene Zweirichtungsradweg verbreitert werden. Im Anschluss erreicht man über einen Seitenarm der <.m bounds="9.823888,53.317865,9.831437,53.320017" lon={9.828605} lat={53.319002} dir="forward">Buchholzer Straße</.m> den ehemaligen Bahndamm. Dieser soll ausgebaut werden durch eine neue Unterführung die <.m bounds="9.802168,53.311513,9.808468,53.315227" lon={9.805608} lat={53.313205} dir="forward">Hannoversche Straße</.m> queren.</p>
+    <p>Im <.v bounds="9.826649,53.317206,9.85169,53.32271" lon={9.840152} lat={53.320694} dir="forward" ref={@ref}>Sprötzer Weg</.v> soll der vorhandene Zweirichtungsradweg verbreitert werden. Im Anschluss erreicht man über einen Seitenarm der <.v bounds="9.823888,53.317865,9.831437,53.320017" lon={9.828605} lat={53.319002} dir="forward" ref={@ref}>Buchholzer Straße</.v> den ehemaligen Bahndamm. Dieser soll ausgebaut werden durch eine neue Unterführung die <.v bounds="9.802168,53.311513,9.808468,53.315227" lon={9.805608} lat={53.313205} dir="forward" ref={@ref}>Hannoversche Straße</.v> queren.</p>
 
     <h4>Tostedt</h4>
-    <p>Auf dem Bahndamm erreicht man die <.m bounds="9.769243,53.312472,9.776083,53.316824" lon={9.771586} lat={53.31474} dir="forward">Bundesstraße</.m> und folgt ihr dann auf einem Zweirichtungsradweg. Dieser reicht bis zum Ende des Radschnellwegs an der Kreuzung mit der <.m bounds="9.706877,53.279419,9.717683,53.284193" lon={9.712605} lat={53.281259} dir="forward">Bahnhofstraße</.m>.</p>
+    <p>Auf dem Bahndamm erreicht man die <.v bounds="9.769243,53.312472,9.776083,53.316824" lon={9.771586} lat={53.31474} dir="forward" ref={@ref}>Bundesstraße</.v> und folgt ihr dann auf einem Zweirichtungsradweg. Dieser reicht bis zum Ende des Radschnellwegs an der Kreuzung mit der <.v bounds="9.706877,53.279419,9.717683,53.284193" lon={9.712605} lat={53.281259} dir="forward" ref={@ref}>Bahnhofstraße</.v>.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

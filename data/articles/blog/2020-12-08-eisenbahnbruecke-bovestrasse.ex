@@ -51,7 +51,7 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
     </ul>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.Heykenaubrook do
     <p>Die <.abbr>HPA</.abbr> hat die Planung einer Bahnunterführung in Auftrag gegeben. Die Kurvenradien für die Veloroute sollen nach Möglichkeit großzügig ausfallen.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

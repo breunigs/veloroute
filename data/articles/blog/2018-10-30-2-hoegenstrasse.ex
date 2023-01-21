@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Hoegenstrasse do
     <p><s>Am nördlichen Ende soll der Übergang zum <.m bounds="9.933066,53.588584,9.938297,53.59261">Spannskamp</.m> verbessert werden und der Weg einen neuen Belag erhalten.</s> Der Umbau des Übergangs zum <.m bounds="9.933066,53.588584,9.938297,53.59261">Spannskamp</.m>s soll jetzt erst mit der Erschließung erfolgen – es ist unklar, wann das passiert (<.a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085">vgl. Drucksache 20-3247</.a>).</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.Rehrstieg do
     <p>Die Einmündung soll zu einem Kreisverkehr umgebaut werden. Der Radverkehr soll dabei im <.ref>Mischverkehr</.ref> fahren.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

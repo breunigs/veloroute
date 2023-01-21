@@ -36,12 +36,12 @@ defmodule Data.Article.Blog.Krausestrasse do
     <h4>Planung</h4>
     <p>Es ist vorgesehen durchgängige, meist 1,60m breite <.ref>Radfahrstreifen</.ref> zu bauen. In Richtung <.m bounds="10.050886,53.585427,10.052752,53.587292">Bramfelder Straße</.m> werden sie rund 2,0m breit. In diesem Kreuzungsbereich ist vorgesehen die Radfurten jeweils rot zu markieren. Die Radfahrstreifen verbleiben dabei jeweils rechts der KFZ-Spuren. Die ampelfreien Rechtsabbiegestreifen entfallen. Links angebogen werden kann nur <.ref>indirekt</.ref>.</p>
 
-    <p>An der <.m bounds="10.052607,53.584216,10.054338,53.585227" lon={10.053049} lat={53.584635} dir="forward" ref="FR2">Kreuzung mit dem Lämmersieth</.m> kann <.ref>direkt</.ref> oder <.ref>indirekt</.ref> abgebogen werden. An den Bushaltestellen vor bzw. nach der Kreuzung muss sich der Radverkehr in den KFZ-Strom einordnen oder hinter den Bussen warten. Entlang der Freizeitroute werden jeweils Aufstellflächen vor den Autos aufgemalt. </p>
+    <p>An der <.v bounds="10.052607,53.584216,10.054338,53.585227" lon={10.053049} lat={53.584635} dir="forward" ref="FR2">Kreuzung mit dem Lämmersieth</.v> kann <.ref>direkt</.ref> oder <.ref>indirekt</.ref> abgebogen werden. An den Bushaltestellen vor bzw. nach der Kreuzung muss sich der Radverkehr in den KFZ-Strom einordnen oder hinter den Bussen warten. Entlang der Freizeitroute werden jeweils Aufstellflächen vor den Autos aufgemalt. </p>
 
     <p>Es sind zahlreiche Fahrradanlehnbügel eingeplant. Auch die Fußwege werden etwas breiter.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

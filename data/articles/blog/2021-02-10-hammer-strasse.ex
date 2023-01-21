@@ -64,7 +64,7 @@ defmodule Data.Article.Blog.HammerStrasse do
     <p>Das keine Protected-Bike-Lane eingerichtet werden kann ist zwar schade, aber verständlich.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

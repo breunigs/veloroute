@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
     <p>Der Abschnitt taucht jedoch schon in der Baustellenkoordinierung mit einem Zeitfenster von zwei Monaten im Frühjahr 2023 auf. Der Termin ist noch nicht fix.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -49,7 +49,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
     <h4>Meinung</h4> <p>Die 2018 abgeschlossene Planung war für den Radverkehr katastrophal. Nur Mindestmaße von 1,60m gepaart mit ewig langer Führung zwischen zwei KFZ-Spuren, was selbst für Geübte unangenehm ist. Durch Engagement von Anjes Tjarks und seiner Belegschaft wurde die Planung nochmals überarbeitet und für den Radverkehr stark verbessert. Den Radfahrstreifen in Mittellage gibt's jetzt nur noch an einer Stelle, und dort auch deutlich breiter als zuvor. Den zusätzlichen Platz für die Radfahrstreifen nahm man meist von KFZ-Parkplätzen, manchmal leider auch von den Fußwegen.</p> <p>Insgesamt ist die Umgestaltung bezogen auf den Radverkehr solide. Im Vergleich zu den je 6 KFZ-Spuren pro Kreuzungsarm bleiben sie jedoch mikrig. Dies dürfte analog auch für die Aufenthaltsqualität an der Kreuzung gelten – war schlecht, bleibt schlecht, aber immerhin kommt man bald besser wieder von der Kreuzung weg. </p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

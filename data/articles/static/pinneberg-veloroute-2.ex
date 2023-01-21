@@ -84,8 +84,8 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
     <h3>Pinneberg: Veloroute 2 <.icon>pinneberg-2</.icon></h3>
     <p>Die Route besteht aus zwei nicht zusammenhängenden Abschnitten:</p>
     <ul>
-      <li>ab <.m bounds="9.790204,53.655989,9.810784,53.664688" lon={9.801969} lat={53.660208} dir="forward" ref="pinneberg-4">Zentrum</.m> Richtung <.m bounds="9.819153,53.648167,9.839253,53.657579" lon={9.822318} lat={53.652196} dir="forward" ref="pinneberg-4">Rellingen</.m> entlang des <.m bounds="9.801607,53.651476,9.820933,53.659716" lon={9.809094} lat={53.656459} dir="forward" ref="pinneberg-4">Fahltskamp</.m></li>
-      <li>ab <.m bounds="9.787746,53.648649,9.81019,53.6582" lon={9.800345} lat={53.653859} dir="forward" ref="pinneberg-4">Bahnhof</.m> Richtung <.m bounds="9.832466,53.625179,9.864767,53.639791">Halstenbek</.m> entlang der Bahn und durch <.m bounds="9.811031,53.642002,9.824747,53.650877" lon={9.814617} lat={53.645882} dir="forward" ref="pinneberg-4">Thesdorf</.m></li>
+      <li>ab <.v bounds="9.790204,53.655989,9.810784,53.664688" lon={9.801969} lat={53.660208} dir="forward" ref="pinneberg-4">Zentrum</.v> Richtung <.v bounds="9.819153,53.648167,9.839253,53.657579" lon={9.822318} lat={53.652196} dir="forward" ref="pinneberg-4">Rellingen</.v> entlang des <.v bounds="9.801607,53.651476,9.820933,53.659716" lon={9.809094} lat={53.656459} dir="forward" ref="pinneberg-4">Fahltskamp</.v></li>
+      <li>ab <.v bounds="9.787746,53.648649,9.81019,53.6582" lon={9.800345} lat={53.653859} dir="forward" ref="pinneberg-4">Bahnhof</.v> Richtung <.m bounds="9.832466,53.625179,9.864767,53.639791">Halstenbek</.m> entlang der Bahn und durch <.v bounds="9.811031,53.642002,9.824747,53.650877" lon={9.814617} lat={53.645882} dir="forward" ref="pinneberg-4">Thesdorf</.v></li>
     </ul>
 
     <h4>Auffindbarkeit</h4>
@@ -93,13 +93,13 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
 
 
     <h4>Befahrbarkeit</h4>
-    <p>Die Strecke ist größtenteils befestigt, nur im <.m bounds="9.797605,53.650342,9.80612,53.655075" lon={9.800858} lat={53.65339} dir="forward" ref="pinneberg-4">Fahlt</.m> sind die Wege aus feinem Grand und damit nur bedingt wetterfest. Dort befindet sich auch eine <.m bounds="9.800237,53.653186,9.801595,53.654221" lon={9.800625} lat={53.653774} dir="forward" ref="pinneberg-5">enge Brücke</.m> die für breite Lastenräder zum Problem werden könnte.</p>
+    <p>Die Strecke ist größtenteils befestigt, nur im <.v bounds="9.797605,53.650342,9.80612,53.655075" lon={9.800858} lat={53.65339} dir="forward" ref="pinneberg-4">Fahlt</.v> sind die Wege aus feinem Grand und damit nur bedingt wetterfest. Dort befindet sich auch eine <.v bounds="9.800237,53.653186,9.801595,53.654221" lon={9.800625} lat={53.653774} dir="forward" ref="pinneberg-5">enge Brücke</.v> die für breite Lastenräder zum Problem werden könnte.</p>
 
     <h4>Meinung</h4>
-    <p>Die Route ist gut nutzbar, auch wenn an manchen Stellen die gedachte Führung unklar ist. So gibt es etwa im <.m bounds="9.803929,53.657984,9.80698,53.659292" lon={9.804703} lat={53.658989} dir="forward" ref="pinneberg-5">Fahltskamp</.m> oder im <.m bounds="9.813601,53.645104,9.817125,53.646172" lon={9.815081} lat={53.645799} dir="forward" ref="pinneberg-5">Rehmen</.m> alte <.ref>Hochbordradwege</.ref>, die teils gar nicht erreichbar sind. Zudem sind sie unbequemer als die ebene <.ref>Fahrbahn</.ref>.</p>
+    <p>Die Route ist gut nutzbar, auch wenn an manchen Stellen die gedachte Führung unklar ist. So gibt es etwa im <.v bounds="9.803929,53.657984,9.80698,53.659292" lon={9.804703} lat={53.658989} dir="forward" ref="pinneberg-5">Fahltskamp</.v> oder im <.v bounds="9.813601,53.645104,9.817125,53.646172" lon={9.815081} lat={53.645799} dir="forward" ref="pinneberg-5">Rehmen</.v> alte <.ref>Hochbordradwege</.ref>, die teils gar nicht erreichbar sind. Zudem sind sie unbequemer als die ebene <.ref>Fahrbahn</.ref>.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

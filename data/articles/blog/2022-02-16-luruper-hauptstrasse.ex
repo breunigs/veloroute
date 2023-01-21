@@ -38,7 +38,7 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
 
     <p>Die Stadt hatte dazu eine Seite eingerichtet, auf der schriftliche Beiträge bis 31.03.2022 eingereicht werden konnten.</p>
 
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

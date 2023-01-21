@@ -60,17 +60,17 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
     <p>Zur Zeit sind die <.ref>Radfahrstreifen</.ref> Beim Schlump im Rahmen eines Verkehrsversuches temporär aufgebracht.</p>
 
     <h4>Planung</h4>
-    <p>Die temporären Radfahrstreifen werden dauerhaft übernommen. Um Falschparken auf den Radfahrstreifen zu reduzieren, werden zusätzliche Ladezonen eingerichtet. An der <.m bounds="9.973128,53.568597,9.974971,53.569749" lon={9.973826} lat={53.568914} dir="forward">Kreuzung mit der Bundesstraße</.m> werden die Radfurten rot gefärbt und Aufstelltaschen zum <.ref>indirekten Linksabbiegen</.ref> markiert. Die alten Radwegreste werden zu Fußwegen.</p>
+    <p>Die temporären Radfahrstreifen werden dauerhaft übernommen. Um Falschparken auf den Radfahrstreifen zu reduzieren, werden zusätzliche Ladezonen eingerichtet. An der <.v bounds="9.973128,53.568597,9.974971,53.569749" lon={9.973826} lat={53.568914} dir="forward" ref={@ref}>Kreuzung mit der Bundesstraße</.v> werden die Radfurten rot gefärbt und Aufstelltaschen zum <.ref>indirekten Linksabbiegen</.ref> markiert. Die alten Radwegreste werden zu Fußwegen.</p>
 
     <p>Nach aktuellem Stand ist für Ende 2024 ein Straßenumbau vorgesehen, wo bauliche Änderungen folgen könnten. Der Ausbau beschränkt sich vorerst auf Markierungsarbeiten, die zusammen mit einer Sielbaumaßnahme erledigt werden.</p>
 
     <h4>Meinung</h4>
     <p>Laut Auswertung haben die Radfahrstreifen ihr Ziel erreicht die Unfälle zu reduzieren. Es ist daher gut, das sie beibehalten werden. Leider bedeutet dies auch das ein effektiver Schutz vor Falschparkern in weite Ferne rückt. Die Ladezonen helfen dabei nur, wenn sie auch tatsächlich frei bleiben.</p>
 
-    <p>Problematisch bleibt das der Radfahrstreifen <.m bounds="9.970271,53.567353,9.973695,53.569121" lon={9.971536} lat={53.56815} dir="backward">Richtung Sternschanze</.m> einfach aufhört. Hier blockieren KFZ häufig die Weiterfahrt. Leider weichen deswegen viele Radfahrende illegal über den Fußweg aus.</p>
+    <p>Problematisch bleibt das der Radfahrstreifen <.v bounds="9.970271,53.567353,9.973695,53.569121" lon={9.971536} lat={53.56815} dir="backward" ref={@ref}>Richtung Sternschanze</.v> einfach aufhört. Hier blockieren KFZ häufig die Weiterfahrt. Leider weichen deswegen viele Radfahrende illegal über den Fußweg aus.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -96,16 +96,16 @@ defmodule Data.Article.Static.Freizeitroute5 do
     <h3>Freizeitroute 5 – Vier- und Marschlande <.icon>FR5</.icon></h3>
     <span class="updated">Länge rund 35km</span>
 
-    <p>Beginnend am <.m bounds="9.993132,53.549269,10.01548,53.556036" dir="forward" lat={53.5516} lon={10.0056}>Hauptbahnhof</.m> folgt man grob der <.m lat={53.5449} lon={10.0172} bounds="9.995601,53.536759,10.048165,53.552678" dir="forward">Amsinckstraße</.m> um über den <.m bounds="10.020288,53.527317,10.050496,53.536469" lat={53.53341} lon={10.03093} dir="forward">Entenweder Park</.m> auf den <.m dir="forward" lat={53.5203} lon={10.0571} bounds="9.998449,53.497936,10.10166,53.529217">Kaltehofer Deich</.m> zu kommen. Ab jetzt ist die Tour bis auf wenige Ausnahmen autofrei.</p>
+    <p>Beginnend am <.v bounds="9.993132,53.549269,10.01548,53.556036" dir="forward" lat={53.5516} lon={10.0056} ref={@ref}>Hauptbahnhof</.v> folgt man grob der <.v lat={53.5449} lon={10.0172} bounds="9.995601,53.536759,10.048165,53.552678" dir="forward" ref={@ref}>Amsinckstraße</.v> um über den <.v bounds="10.020288,53.527317,10.050496,53.536469" lat={53.53341} lon={10.03093} dir="forward" ref={@ref}>Entenweder Park</.v> auf den <.v dir="forward" lat={53.5203} lon={10.0571} bounds="9.998449,53.497936,10.10166,53.529217" ref={@ref}>Kaltehofer Deich</.v> zu kommen. Ab jetzt ist die Tour bis auf wenige Ausnahmen autofrei.</p>
 
-    <p>Nach Querung der <.m bounds="10.071488,53.496369,10.084494,53.501247" dir="forward" lat={53.4996} lon={10.0783}>Dove Elbe</.m> folgt man dem <.m lat={53.4926} lon={10.0770} dir="forward" bounds="10.008422,53.411938,10.303531,53.501498">Marschbahndamm</.m>. Entlang dieser ehemaligen Bahntrasse kommt man fast bis zum Ziel der Tour. <.m lat={53.4410} lon={10.3007} bounds="10.293833,53.439739,10.327467,53.454259" dir="forward">Ab Borghorst</.m> teilt sich die Route, entweder man fährt weiter in Richtung <.m bounds="10.287802,53.453666,10.335029,53.474048" dir="forward" lat={53.4567} lon={10.3162}>Escheburg</.m> wie im Video, oder man fährt über die <.m bounds="10.307092,53.435753,10.339602,53.44979">Besenhorster Sandberge</.m> nach Geesthacht.</p>
+    <p>Nach Querung der <.v bounds="10.071488,53.496369,10.084494,53.501247" dir="forward" lat={53.4996} lon={10.0783} ref={@ref}>Dove Elbe</.v> folgt man dem <.v lat={53.4926} lon={10.0770} dir="forward" bounds="10.008422,53.411938,10.303531,53.501498" ref={@ref}>Marschbahndamm</.v>. Entlang dieser ehemaligen Bahntrasse kommt man fast bis zum Ziel der Tour. <.v lat={53.4410} lon={10.3007} bounds="10.293833,53.439739,10.327467,53.454259" dir="forward" ref={@ref}>Ab Borghorst</.v> teilt sich die Route, entweder man fährt weiter in Richtung <.v bounds="10.287802,53.453666,10.335029,53.474048" dir="forward" lat={53.4567} lon={10.3162} ref={@ref}>Escheburg</.v> wie im Video, oder man fährt über die <.m bounds="10.307092,53.435753,10.339602,53.44979">Besenhorster Sandberge</.m> nach Geesthacht.</p>
 
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist zwar nicht beschildert, aber durch ihre durchgängigen Wege ist ihr nach dem Innenstadtbereich leicht zu folgen. Ab dem <.m lat={53.5295} lon={10.0442} dir="forward" bounds="10.031863,53.523829,10.057375,53.534823">Sperrwerk Billwerder Bucht</.m> gibt es im Wesentlichen nur noch drei Stellen an denen man nicht geradeaus dem Weg folgt:</p>
+    <p>Die Route ist zwar nicht beschildert, aber durch ihre durchgängigen Wege ist ihr nach dem Innenstadtbereich leicht zu folgen. Ab dem <.v lat={53.5295} lon={10.0442} dir="forward" bounds="10.031863,53.523829,10.057375,53.534823" ref={@ref}>Sperrwerk Billwerder Bucht</.v> gibt es im Wesentlichen nur noch drei Stellen an denen man nicht geradeaus dem Weg folgt:</p>
     <ul>
-      <li><.m bounds="10.068511,53.495066,10.085246,53.502282" dir="forward" lat={53.5000} lon={10.0785}>Querung der Dove Elbe</.m></li>
-      <li><.m lat={53.4135} lon={10.1824} bounds="10.176568,53.411341,10.188502,53.416497" dir="forward">Kehrtwende am ehemaligen Gleisdreieck</.m></li>
-      <li><.m lat={53.4410} lon={10.3007} bounds="10.293833,53.439739,10.327467,53.454259" dir="forward">die letzten Meter ab Borghorst</.m></li>
+      <li><.v bounds="10.068511,53.495066,10.085246,53.502282" dir="forward" lat={53.5000} lon={10.0785} ref={@ref}>Querung der Dove Elbe</.v></li>
+      <li><.v lat={53.4135} lon={10.1824} bounds="10.176568,53.411341,10.188502,53.416497" dir="forward" ref={@ref}>Kehrtwende am ehemaligen Gleisdreieck</.v></li>
+      <li><.v lat={53.4410} lon={10.3007} bounds="10.293833,53.439739,10.327467,53.454259" dir="forward" ref={@ref}>die letzten Meter ab Borghorst</.v></li>
     </ul>
 
     <h4>Befahrbarkeit</h4>
@@ -116,13 +116,13 @@ defmodule Data.Article.Static.Freizeitroute5 do
 
     <p>Einige Tipps:</p>
     <ul>
-      <li>bis zum Entenweder Park ist die <.a name="alltagsroute-9">Alltagsroute <.icon link={false}>9</.icon></.a> die bessere Wahl. Die <.m lat={53.5449} lon={10.0172} bounds="9.995601,53.536759,10.048165,53.552678" dir="forward">Amsinckstraße</.m> hat den Charakter einer innerstädtischen Autotrasse und bietet sonst wenig.</li>
-      <li>In <.m bounds="10.165931,53.394212,10.192045,53.404031">Zollenspieker</.m> kann mittels Fähre die Elbseite gewechselt werden. Dazu am <.m lat={53.4135} lon={10.1824} bounds="10.176568,53.411341,10.188502,53.416497" dir="forward">Gleisdreieck</.m> geradeaus fahren.</li>
+      <li>bis zum Entenweder Park ist die <.a name="alltagsroute-9">Alltagsroute <.icon link={false}>9</.icon></.a> die bessere Wahl. Die <.v lat={53.5449} lon={10.0172} bounds="9.995601,53.536759,10.048165,53.552678" dir="forward" ref={@ref}>Amsinckstraße</.v> hat den Charakter einer innerstädtischen Autotrasse und bietet sonst wenig.</li>
+      <li>In <.m bounds="10.165931,53.394212,10.192045,53.404031">Zollenspieker</.m> kann mittels Fähre die Elbseite gewechselt werden. Dazu am <.v lat={53.4135} lon={10.1824} bounds="10.176568,53.411341,10.188502,53.416497" dir="forward" ref={@ref}>Gleisdreieck</.v> geradeaus fahren.</li>
       <li>Für Rennrad-Fahrten ist der Hauptdeich direkt an der Elbe die angenehmere Strecke, da hier auch höhere Geschwindigkeiten möglich sind.</li>
     </ul>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.Pionierbruecke do
     <p>Die Brücke soll durch einen Neubau ersetzt werden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

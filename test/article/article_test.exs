@@ -9,7 +9,6 @@ defmodule ArticleTest do
           _content =
             Article.Decorators.html(art, %{
               __changed__: %{},
-              render_target: :html,
               search_query: nil,
               search_bounds: nil,
               limit_to_map_bounds: false
@@ -46,7 +45,7 @@ defmodule ArticleTest do
 
   test "articles with structured links use the tag" do
     render = fn art, gpx ->
-      %{current_page: art, gpx: gpx}
+      %{ref: art, gpx: gpx}
       |> Components.TagHelpers.structured_links()
       |> Util.render_heex()
     end

@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.Stresemannallee do
     <p>Die Stresemannallee soll ab dem 5. August 2019 umgebaut werden. Auf Höhe der <.m bounds="9.956442,53.582752,9.968593,53.586238">Troplowitzstraße</.m> wird der Zweirichtungsradweg zurückgebaut und durch je einen Schutzstreifen pro Fahrtrichtung ersetzt. Auf Höhe des <.m bounds="9.951925,53.590541,9.959034,53.592805">Lohkoppelweg</.m> reicht der Platz dafür nicht mehr aus und man wollte keine Parkplätze verlieren, sodass der Fahrräder hier im Mischverkehr mit den KFZ mitschwimmen müssen. Die Schutzstreifen werden mit 1,25m in absolutem Mindestmaß ausgeführt, sodass die KFZ die Überholabstände in der Regel wohl nicht einhalten werden.</p> <p>Die ursprüngliche Präsentation ist an mehreren Stellen veraltet: Der eingezeichnete Kreisel an der Einmündung beim <.m bounds="9.958202,53.585875,9.967731,53.599176">Grandweg</.m> wird nicht gebaut, es bleibt hier beim Rechts-vor-Links. Am <.m bounds="9.951925,53.590541,9.959034,53.592805">Lohkoppelweg</.m> wird es keine Verkehrsinsel zum „Schutz“ der Radfahrenden geben, die stattdessen im Reisverschlussprinzip in den Mischverkehr übergehen können.</p> <p>Zwischen <.m bounds="9.846771,53.580508,9.957629,53.632863">Eidelstedter Weg</.m> und <.m bounds="9.956442,53.582752,9.968593,53.586238">Troplowitzstraße</.m> bleibt der Zweirichtungsradweg vorerst erhalten. Dank eines Aufstellbereichs vor den KFZ kann man stadteinwärts aber brauchbar auf diesen wechseln. Vermutlich ist irgendwann Umgestaltung dieser Kreuzung geplant, sodass man diese erstmal so lässt. Leider gibt es bisher noch keine Anschlussplanung.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

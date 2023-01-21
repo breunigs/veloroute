@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.EilbekerWeg do
     <p>Der Radfahrstreifen wird verlängert und erhält eine neue Aufleitung auf den <.ref>Hochbordradweg</.ref> kurz vor der Kreuzung.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

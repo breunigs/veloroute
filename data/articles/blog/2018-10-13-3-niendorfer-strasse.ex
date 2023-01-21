@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.NiendorferStrasse do
     <p>Aktuell ist die Niendorfer Straße für Radfahrende nicht gut befahrbar. Man hat die Wahl zwischen viel zu schmalen Fahrradwegen, die auf Höhe der Bahnbrücke im Nichts enden oder der Fahrbahn, wo man von KFZ in hohem Tempo knapp überholt wird.</p> <p>In Zukunft wird die Straße je nach Platz mit 1,5m breiten Schutzstreifen ausgestattet, stückweise auch als Radfahrstreifen (1,5m – 2,25m, je nach Platz). Nur im Bereich der Bahnbrücke ist der Querschnitt so schmal, das weiterhin Mischverkehr herrscht. Stadtauswärts erhält der Radverkehr hier keine optische Hilfe, sondern er muss sich sicher in die KFZ Spur einfädeln. Mir ist nicht klar, warum die Engstelle einseitig zu Lasten der Radfahrende so dargestellt wird.</p> <p>Am <.m bounds="9.954156,53.601367,9.955811,53.605998">Rütersbarg</.m> wird die Kreuzung durch einen Kreisel ersetzt. Das sollte das Linksabbiegen im Vergleich zu jetzt viel sicherer machen. Das man durch einen haltenden Bus hier stadteinwärts blockiert wird, sollte bei aktuell vier Bussen pro Tag verschmerzbar sein.</p> <p>Geplant ist die Maßnahme ab Frühjahr 2019 umzusetzen.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

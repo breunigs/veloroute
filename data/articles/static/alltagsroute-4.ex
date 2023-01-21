@@ -90,54 +90,54 @@ defmodule Data.Article.Static.Alltagsroute4 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="4">Rathaus</.m></td>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="4">Rathaus</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.974848,53.554813,10.009154,53.586694" lon={10.000255} lat={53.571326} dir="forward" ref="4">Harvestehude</.m></td>
+        <td><.v bounds="9.974848,53.554813,10.009154,53.586694" lon={10.000255} lat={53.571326} dir="forward" ref="4">Harvestehude</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="9.982344,53.578684,10.012225,53.596683" lon={9.997799} lat={53.58716} dir="forward" ref="4">Eppendorf</.m></td>
+        <td><.v bounds="9.982344,53.578684,10.012225,53.596683" lon={9.997799} lat={53.58716} dir="forward" ref="4">Eppendorf</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR12</.icon>
           <.icon>FR1</.icon>
         </td>
-        <td><.m bounds="9.978373,53.581676,10.035228,53.624715" lon={9.995184} lat={53.5967} dir="forward" ref="4">Winterhude</.m></td>
+        <td><.v bounds="9.978373,53.581676,10.035228,53.624715" lon={9.995184} lat={53.5967} dir="forward" ref="4">Winterhude</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.98676,53.594237,10.025619,53.615897" lon={9.998388} lat={53.608649} dir="forward" ref="4">Alsterdorf</.m></td>
+        <td><.v bounds="9.98676,53.594237,10.025619,53.615897" lon={9.998388} lat={53.608649} dir="forward" ref="4">Alsterdorf</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>5</.icon>
         </td>
-        <td><.m bounds="9.949305,53.606392,10.045684,53.65759" lon={10.014844} lat={53.618825} dir="forward" ref="4">Flughafen</.m></td>
+        <td><.v bounds="9.949305,53.606392,10.045684,53.65759" lon={10.014844} lat={53.618825} dir="forward" ref="4">Flughafen</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.992711,53.615578,10.059315,53.652951" lon={10.025592} lat={53.634073} dir="forward" ref="4">Fuhlsbüttel</.m></td>
+        <td><.v bounds="9.992711,53.615578,10.059315,53.652951" lon={10.025592} lat={53.634073} dir="forward" ref="4">Fuhlsbüttel</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="9.995048,53.639135,10.036705,53.668201" lon={10.019096} lat={53.651482} dir="forward" ref="4">Langenhorn</.m></td>
+        <td><.v bounds="9.995048,53.639135,10.036705,53.668201" lon={10.019096} lat={53.651482} dir="forward" ref="4">Langenhorn</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.990504,53.655513,10.032161,53.684579" lon={10.01493} lat={53.674482} dir="forward" ref="4">Langenhorn Nord</.m></td>
+        <td><.v bounds="9.990504,53.655513,10.032161,53.684579" lon={10.01493} lat={53.674482} dir="forward" ref="4">Langenhorn Nord</.v></td>
       </tr>
       <tr>
         <td>
           <.icon bounds="9.952438,53.676444,10.05043,53.792362" lon={10.000503} lat={53.680041} dir="forward" name="rsw-bad-bramstedt">RSW</.icon>
         </td>
-        <td><.m bounds="9.977439,53.66203,10.038788,53.691304" lon={10.000972} lat={53.677668} dir="forward" ref="4">Ochsenzoll</.m></td>
+        <td><.v bounds="9.977439,53.66203,10.038788,53.691304" lon={10.000972} lat={53.677668} dir="forward" ref="4">Ochsenzoll</.v></td>
       </tr>
       <tr>
         <td>
@@ -145,11 +145,11 @@ defmodule Data.Article.Static.Alltagsroute4 do
           <.icon>norderstedt-2</.icon>
           <.icon>norderstedt-4</.icon>
         </td>
-        <td class="dir"><.m bounds="9.926336,53.672871,10.057243,53.770158" lon={10.000606} lat={53.679798} dir="forward" ref="4">(Norderstedt)</.m></td>
+        <td class="dir"><.v bounds="9.926336,53.672871,10.057243,53.770158" lon={10.000606} lat={53.679798} dir="forward" ref="4">(Norderstedt)</.v></td>
       </tr>
     </table>
 
-    <p>Die Alltagsroute 4 (auch: Veloroute 4) folgt zunächst der <.m bounds="9.98242,53.550409,10.024232,53.590927" lon={9.996538} lat={53.559824} dir="forward" ref="4">Alster auf der Westseite</.m>, wechselt an der <.m bounds="9.981299,53.572742,10.0159,53.599558" lon={9.99884} lat={53.57959} dir="forward" ref="4">Krugkoppelbrücke</.m> dann die Seite. Ab <.m bounds="9.975196,53.615062,10.0633,53.69858" lon={10.025965} lat={53.632249} dir="forward" ref="4">Fuhlsbüttel</.m> orientiert sie sich an der U-Bahn Linie 1 und erreicht über Nebenstraßen schließlich den <.m bounds="9.975455,53.65112,10.039861,53.698301" lon={10.001158} lat={53.677428} dir="forward" ref="4">Ochsenzoll</.m>. Der geplante <.a href="/rsw-bad-bramstedt">Radschnellweg nach Bad Bramstedt</.a> verläuft fast parallel, soll aber direkt neben den Gleisen und nahezu kreuzungsfrei verlaufen.</p>
+    <p>Die Alltagsroute 4 (auch: Veloroute 4) folgt zunächst der <.v bounds="9.98242,53.550409,10.024232,53.590927" lon={9.996538} lat={53.559824} dir="forward" ref="4">Alster auf der Westseite</.v>, wechselt an der <.v bounds="9.981299,53.572742,10.0159,53.599558" lon={9.99884} lat={53.57959} dir="forward" ref="4">Krugkoppelbrücke</.v> dann die Seite. Ab <.v bounds="9.975196,53.615062,10.0633,53.69858" lon={10.025965} lat={53.632249} dir="forward" ref="4">Fuhlsbüttel</.v> orientiert sie sich an der U-Bahn Linie 1 und erreicht über Nebenstraßen schließlich den <.v bounds="9.975455,53.65112,10.039861,53.698301" lon={10.001158} lat={53.677428} dir="forward" ref="4">Ochsenzoll</.v>. Der geplante <.a href="/rsw-bad-bramstedt">Radschnellweg nach Bad Bramstedt</.a> verläuft fast parallel, soll aber direkt neben den Gleisen und nahezu kreuzungsfrei verlaufen.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -158,10 +158,10 @@ defmodule Data.Article.Static.Alltagsroute4 do
     <p>Alle Wege sind befestigt und allwettertauglich. Sie sind bis auf wenige Ausnahmen asphaltiert.</p>
 
     <h4>Meinung</h4>
-    <p>Die <.m bounds="9.991681,53.558899,10.00515,53.593009" lon={9.999808} lat={53.57179} dir="forward" ref="4">Fahrradstraßen an der Alster</.m> sind das Aushängeschild der Velorouten Planung in Hamburg. Die <.m bounds="9.989903,53.592799,10.015337,53.614187" lon={9.994343} lat={53.597756} dir="forward" ref="4">Bebelallee</.m> und die noch nicht ausgebaute <.m bounds="9.989903,53.592799,10.015337,53.614187" lon={9.999008} lat={53.608785} dir="forward" ref="4">Rathenaustraße</.m> dagegen eine Zumutung. Die Führung über Nebenstraßen im Norden bietet zwar gute Anbindung, macht längere Distanzen jedoch etwas müßig. Der <.a href="/rsw-bad-bramstedt">geplante Radschnellweg</.a> stellt daher eine gute Ergänzung dar.</p>
+    <p>Die <.v bounds="9.991681,53.558899,10.00515,53.593009" lon={9.999808} lat={53.57179} dir="forward" ref="4">Fahrradstraßen an der Alster</.v> sind das Aushängeschild der Velorouten Planung in Hamburg. Die <.v bounds="9.989903,53.592799,10.015337,53.614187" lon={9.994343} lat={53.597756} dir="forward" ref="4">Bebelallee</.v> und die noch nicht ausgebaute <.v bounds="9.989903,53.592799,10.015337,53.614187" lon={9.999008} lat={53.608785} dir="forward" ref="4">Rathenaustraße</.v> dagegen eine Zumutung. Die Führung über Nebenstraßen im Norden bietet zwar gute Anbindung, macht längere Distanzen jedoch etwas müßig. Der <.a href="/rsw-bad-bramstedt">geplante Radschnellweg</.a> stellt daher eine gute Ergänzung dar.</p>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

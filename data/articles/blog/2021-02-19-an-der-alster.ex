@@ -41,11 +41,11 @@ defmodule Data.Article.Blog.AnDerAlster do
     <p>Die Nebenstraße wurde Ende 2018 etwas fahrradfreundlicher umgebaut, sodass der Radverkehr vornehmlich auf dem Asphalt, statt einem schmäleren Radweg daneben fährt. Im gleichen Zug wurden die Fuß- bzw. Radampeln abgeschaltet, sodass man hier größtenteils unterbrechungsfrei fahren kann. Leider nutzen viele Autofahrende die Strecke zum Ausweichen, sollte sich auf der Hauptstraße Stau gebildet haben. </p>
 
     <h4>Planung</h4>
-    <p>Die <.m bounds="10.00243,53.556592,10.004928,53.557646" lon={10.003373} lat={53.556885} dir="forward" ref="5">Nebenfahrbahn auf der man heute fährt</.m> soll in einer Vorabmaßnahme zu einer Fahrradstraße umgestaltet werden. Dazu wird die Führung auf <.m bounds="10.004046,53.557173,10.005693,53.557921" lon={10.004996} lat={53.557563} dir="forward" ref="5">Höhe der Alstertwiete</.m> so angepasst, dass KFZ eher auf die Hauptfahrbahn gelenkt werden. Zudem wird die Fahrradstraße auf gesamter Länge rot eingefärbt – erstmalig in Hamburg durch farbigen Asphalt, statt mit aufgetragenem Plastik. Die <.ref>Dooring-Zone</.ref> soll dabei klassisch schwarz bleiben, um den Gefahrenbereich zu verdeutlichen.</p>
+    <p>Die <.v bounds="10.00243,53.556592,10.004928,53.557646" lon={10.003373} lat={53.556885} dir="forward" ref="5">Nebenfahrbahn auf der man heute fährt</.v> soll in einer Vorabmaßnahme zu einer Fahrradstraße umgestaltet werden. Dazu wird die Führung auf <.v bounds="10.004046,53.557173,10.005693,53.557921" lon={10.004996} lat={53.557563} dir="forward" ref="5">Höhe der Alstertwiete</.v> so angepasst, dass KFZ eher auf die Hauptfahrbahn gelenkt werden. Zudem wird die Fahrradstraße auf gesamter Länge rot eingefärbt – erstmalig in Hamburg durch farbigen Asphalt, statt mit aufgetragenem Plastik. Die <.ref>Dooring-Zone</.ref> soll dabei klassisch schwarz bleiben, um den Gefahrenbereich zu verdeutlichen.</p>
 
-    <p>Nach der <.m bounds="10.010244,53.559391,10.01199,53.560316" lon={10.010903} lat={53.559896} dir="forward" ref="5">Schmilinskystraße</.m> wird eine KFZ-Spur in eine <.ref>Protected-Bike-Lane</.ref> umgewandelt. Diese geht nach der <.m bounds="10.012213,53.560333,10.014309,53.561839" lon={10.013308} lat={53.560923} dir="forward" ref="5">Lohmühlenstraße</.m> in die <.a name="2018-10-10-5-6-hohenfelder-bucht">Planung der Hohenfelder Bucht</.a> über.</p>
+    <p>Nach der <.v bounds="10.010244,53.559391,10.01199,53.560316" lon={10.010903} lat={53.559896} dir="forward" ref="5">Schmilinskystraße</.v> wird eine KFZ-Spur in eine <.ref>Protected-Bike-Lane</.ref> umgewandelt. Diese geht nach der <.v bounds="10.012213,53.560333,10.014309,53.561839" lon={10.013308} lat={53.560923} dir="forward" ref="5">Lohmühlenstraße</.v> in die <.a name="2018-10-10-5-6-hohenfelder-bucht">Planung der Hohenfelder Bucht</.a> über.</p>
 
-    <p>Die Einmündung der <.m bounds="10.012213,53.560333,10.014309,53.561839" lon={10.013308} lat={53.560923} dir="forward" ref="5">Lohmühlenstraße</.m> wird leicht angepasst. Auf der Alsterseite werden zu Lasten einer KFZ-Spur Aufstellflächen für den Fuß- und Radverkehr geschaffen, damit diese nicht mehr <em>auf</em> dem Radweg auf Grün warten müssen. Auf der Häuserseite wird die Führung in Richtung <.m bounds="10.014369,53.558068,10.01886,53.560157">Lohmühlenpark</.m> verdeutlicht, damit der Radverkehr nicht mehr unabsichtlich geisterradelt.</p>
+    <p>Die Einmündung der <.v bounds="10.012213,53.560333,10.014309,53.561839" lon={10.013308} lat={53.560923} dir="forward" ref="5">Lohmühlenstraße</.v> wird leicht angepasst. Auf der Alsterseite werden zu Lasten einer KFZ-Spur Aufstellflächen für den Fuß- und Radverkehr geschaffen, damit diese nicht mehr <em>auf</em> dem Radweg auf Grün warten müssen. Auf der Häuserseite wird die Führung in Richtung <.m bounds="10.014369,53.558068,10.01886,53.560157">Lohmühlenpark</.m> verdeutlicht, damit der Radverkehr nicht mehr unabsichtlich geisterradelt.</p>
 
     <p>Die Vorabmaßnahme kommt ohne große Eingriffe in die Raumaufteilung aus. Die vollständige Umplanung soll erst in späteren Jahren stattfinden.</p>
 
@@ -53,7 +53,7 @@ defmodule Data.Article.Blog.AnDerAlster do
     <p>Eine tolle Sache: Mitte 2021 beschlossen, bis Frühjahr 2022 geplant und umgesetzt werden soll ab Sommer 2022. Die Vorabmaßnahme wird die Situation für den Radverkehr in Fahrtrichtung stadtauswärts bereits verbessern. Detailprobleme sollen erst mit der vollständigen Umplanung angegangen werden, weswegen sich die Kritik dazu aktuell nicht lohnt. Leider bedeutet dies auch, dass der Radverkehr auf Alsterseite weiterhin ausharren muss.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end

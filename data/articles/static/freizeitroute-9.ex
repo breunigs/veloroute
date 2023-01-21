@@ -91,7 +91,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
     <h3>Freizeitroute 9 – Klövensteenradweg <.icon>FR9</.icon></h3>
     <span class="updated">Länge rund 24km</span>
 
-    <p>Von der <.m bounds="9.987476,53.54961,10.001777,53.560906" lon={9.993161} lat={53.557804} dir="forward">Binnenalster</.m> aus folgt man grob den S-Bahn Schienen und unterquert sie dann beim <.m bounds="9.929162,53.563593,9.940515,53.5714" lon={9.934005} lat={53.566843} dir="forward">Bahnhof Diebsteich</.m>. An Friedhöfen, Kleingärten und Parks vorbei erreicht man den <.m bounds="9.881421,53.570559,9.913948,53.587249" lon={9.893442} lat={53.583026} dir="forward">Altonaer Volkspark</.m>, den man großzügig durchquert. Mit <.m bounds="9.83294,53.569843,9.883251,53.584979" lon={9.859954} lat={53.577295} dir="forward">Osdorf</.m> und <.m bounds="9.804282,53.572897,9.839631,53.588847" lon={9.824689} lat={53.583626} dir="forward">Iserbrook</.m> hat man zunächst wieder eine stadtnahe Führung, landet aber schließlich in <.m bounds="9.763706,53.580968,9.819149,53.603492" lon={9.807323} lat={53.587222} dir="forward">landwirtschaftlich genutzten Feldern</.m>. Ziel der Tour ist der <.m bounds="9.740574,53.591092,9.772729,53.613255" lon={9.767843} lat={53.606789} dir="forward">Klövensteener Wald</.m>.</p>
+    <p>Von der <.v bounds="9.987476,53.54961,10.001777,53.560906" lon={9.993161} lat={53.557804} dir="forward" ref={@ref}>Binnenalster</.v> aus folgt man grob den S-Bahn Schienen und unterquert sie dann beim <.v bounds="9.929162,53.563593,9.940515,53.5714" lon={9.934005} lat={53.566843} dir="forward" ref={@ref}>Bahnhof Diebsteich</.v>. An Friedhöfen, Kleingärten und Parks vorbei erreicht man den <.v bounds="9.881421,53.570559,9.913948,53.587249" lon={9.893442} lat={53.583026} dir="forward" ref={@ref}>Altonaer Volkspark</.v>, den man großzügig durchquert. Mit <.v bounds="9.83294,53.569843,9.883251,53.584979" lon={9.859954} lat={53.577295} dir="forward" ref={@ref}>Osdorf</.v> und <.v bounds="9.804282,53.572897,9.839631,53.588847" lon={9.824689} lat={53.583626} dir="forward" ref={@ref}>Iserbrook</.v> hat man zunächst wieder eine stadtnahe Führung, landet aber schließlich in <.v bounds="9.763706,53.580968,9.819149,53.603492" lon={9.807323} lat={53.587222} dir="forward" ref={@ref}>landwirtschaftlich genutzten Feldern</.v>. Ziel der Tour ist der <.v bounds="9.740574,53.591092,9.772729,53.613255" lon={9.767843} lat={53.606789} dir="forward" ref={@ref}>Klövensteener Wald</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht ausgeschildert. Im Stadtbereich erschließt sich der Weg oft nicht und in den Grünflächen gibt es viele vergleichbare Wege zur Auswahl. Um der Strecke zu folgen ist daher ein Navi notwendig.</p>
@@ -104,11 +104,11 @@ defmodule Data.Article.Static.Freizeitroute9 do
 
     <ul>
       <li>Um den Bahnhof Diebsteich ist alles eine Schiebestrecke. Statt dem Umweg über die Plöner Straße kann man besser durch die <.m bounds="9.932024,53.568109,9.935787,53.569918">Unterführung</.m> schieben.</li>
-      <li>Die Ampelschaltungen am <.m bounds="9.917419,53.570301,9.926433,53.571956" lon={9.918299} lat={53.570861} dir="forward">Holstenkamp</.m> sind frech. Wer keine Probleme hat auf der Fahrbahn zu fahren spart viel Zeit.</li>
+      <li>Die Ampelschaltungen am <.v bounds="9.917419,53.570301,9.926433,53.571956" lon={9.918299} lat={53.570861} dir="forward" ref={@ref}>Holstenkamp</.v> sind frech. Wer keine Probleme hat auf der Fahrbahn zu fahren spart viel Zeit.</li>
     </ul>
 
     <h3>Externe Links</h3>
-    <.structured_links gpx={true}/>
+    <.structured_links ref={@ref} gpx={true}/>
     """
   end
 end

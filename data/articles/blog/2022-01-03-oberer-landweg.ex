@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.ObererLandweg do
     <p>Laut Haushaltsentwurf 2022 befindet sich der Abschnitt zur Zeit in Planung und könnte ab 2023 umgesetzt werden.</p>
 
     <h4>Quelle</h4>
-    <.structured_links/>
+    <.structured_links ref={@ref}/>
     """
   end
 end
