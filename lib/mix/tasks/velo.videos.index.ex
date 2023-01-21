@@ -67,7 +67,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
   defp named_track_segments(%Video.Source{} = source, base_osm_id) do
     source
-    |> Video.Source.timed_points()
+    |> Video.Source.timed_points_with_gpx()
     |> case do
       {:error, msg} ->
         IO.warn(msg)
@@ -76,7 +76,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
       points ->
         {osm_id, nodes, refs} =
           Enum.reduce(points, {base_osm_id, "", ""}, fn tp, {osm_id, nodes, refs} ->
-            node = Video.TimedPoint.to_osm_node(tp, osm_id)
+            node = Video.TimedPointWithGPX.to_osm_node(tp, osm_id)
             ref = "<nd ref='#{osm_id}' />"
             # refs need to be in right order, but for the nodes itself it doesn't matter
             {osm_id - 1, node <> nodes, refs <> ref}

@@ -72,20 +72,21 @@ defmodule Video.Source do
   end
 
   @doc """
-  Parse the GPX and returned the coordinates with timestamps relative to the video
+  Parse the GPX and returned the coordinates with timestamps relative to the
+  video, including GPS time and elevation.
   """
-  @spec timed_points(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
-  def timed_points(%__MODULE__{source: source, available_gpx: false}) do
+  @spec timed_points_with_gpx(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
+  def timed_points_with_gpx(%__MODULE__{source: source, available_gpx: false}) do
     {:error,
      "#{Video.Path.source_base(source)} has no GPX file available to extract time range from, try `gopro2gpx -s #{Video.Path.source(source)}`?"}
   end
 
-  def timed_points(%__MODULE__{} = self) do
+  def timed_points_with_gpx(%__MODULE__{} = self) do
     with line when is_list(line) <- parse_gpx(self) do
       start_time = hd(line).time
 
       Enum.map(line, fn point ->
-        %Video.TimedPoint{
+        %Video.TimedPointWithGPX{
           time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
           lat: point.lat,
           lon: point.lon,
@@ -96,6 +97,17 @@ defmodule Video.Source do
       |> assert_monotonic_increase(self)
       |> maybe_stretch_to_video(self)
       |> remove_unnecessary_points()
+    end
+  end
+
+  @doc """
+  Parse the GPX and returned the coordinates with timestamps relative to the
+  video. Excluding GPS data.
+  """
+  @spec timed_points(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
+  def timed_points(%__MODULE__{} = source) do
+    with list when is_list(list) <- timed_points_with_gpx(source) do
+      Enum.map(list, &Video.TimedPointWithGPX.to_timed_point(&1))
     end
   end
 
