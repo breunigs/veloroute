@@ -19,6 +19,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/max-brauer-allee"},
       {"Auftragsvergabe 1", "Dezember 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0b6ee459-7517-40a1-a3b4-6b52451b2099"},
       {"Baustellenkoordination", "September 2022",

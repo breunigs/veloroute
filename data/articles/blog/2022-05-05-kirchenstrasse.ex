@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Anjes Tjarks auf Twitter", "https://twitter.com/anjes_tjarks/status/1523761994113126402"},
       {"Erläuterungsbericht des LSBG zur Königstraße", "2022",
-       "https://lsbg.hamburg.de/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"}
     ]
   end
 

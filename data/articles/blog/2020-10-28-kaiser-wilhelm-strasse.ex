@@ -13,10 +13,11 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
 
   def links(_assigns) do
     [
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/kaiser-wilhelm-strasse"},
       {"Baustelleninfo", "Dezember 2022",
-       "https://lsbg.hamburg.de/contentblob/16763884/009df9fa68d435529fd2a79c9393f9f6/data/kaiser-wilhelm-strasse-%E2%80%93-massnahmen-stromnetz-%E2%80%93-11-22-bis-07-23.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16763884/009df9fa68d435529fd2a79c9393f9f6/data/kaiser-wilhelm-strasse-%E2%80%93-massnahmen-stromnetz-%E2%80%93-11-22-bis-07-23.pdf"},
       {"Anlieger/Baustelleninfo", "März 2022",
-       "https://lsbg.hamburg.de/contentblob/16047942/cb9a19c84f72fd360144e7d5771a8064/data/kaiser-wilhelm-strasse-teilrueckbau-und-instandsetzung-des-versorgungstunnels-%E2%80%93-04-22-bis-09-22.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16047942/cb9a19c84f72fd360144e7d5771a8064/data/kaiser-wilhelm-strasse-teilrueckbau-und-instandsetzung-des-versorgungstunnels-%E2%80%93-04-22-bis-09-22.pdf"},
       {"Lageplan",
        "https://fragdenstaat.de/anfrage/veloroute-12-umbau-der-kaiser-wilhelm-strae/#nachricht-538037"}
     ]

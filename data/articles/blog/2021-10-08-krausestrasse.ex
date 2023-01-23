@@ -16,12 +16,13 @@ defmodule Data.Article.Blog.Krausestrasse do
 
   def links(_assigns) do
     [
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/krausestrasse-bis-hammer-strasse"},
       {"Verzögerung Umbau", "November 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012204"},
       {"Erläuterungsbericht", "Oktober 2021",
-       "https://lsbg.hamburg.de/contentblob/15456350/8c3b5b46a6a645e33b28ea821f0b0ce4/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15456350/8c3b5b46a6a645e33b28ea821f0b0ce4/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-bericht.pdf"},
       {"Pläne/Karten", "Oktober 2021",
-       "https://lsbg.hamburg.de/contentblob/15456348/d2c6db9c38da707e1f95a20f7d6fd469/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-plaene.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15456348/d2c6db9c38da707e1f95a20f7d6fd469/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-plaene.pdf"}
     ]
   end
 

@@ -51,6 +51,8 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
 
   def links(_assigns) do
     [
+      {"Projektseite des LBSG",
+       "https://lsbg.hamburg.de/farmsener-weg-bis-august-krogmann-strasse"},
       {"Info zum Bauzeitraum", "April 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016251"},
       {"Erläuterungsbericht und Lagepläne",

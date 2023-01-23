@@ -24,18 +24,18 @@ defmodule Data.Article.Blog.KreuzungNeuerJungfernstieg do
       {"Pressemitteilung zum fertigen Umbau", "Juni 2022",
        "https://www.hamburg.de/bvm/medien/16264052/2022-06-15-bvm-westlicher-doppelknoten/"},
       {"Lageplan Sofortmaßnahmen 2022",
-       "https://lsbg.hamburg.de/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15967470/d37b8a2fb6bf06a0ffbaeeca3e958535/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbereicht Sofortmaßnahmen 2022",
-       "https://lsbg.hamburg.de/contentblob/15967472/ca493f883b83cebfc36945e1aac3343a/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15967472/ca493f883b83cebfc36945e1aac3343a/data/esplanade-neuer-jungfernstieg-kennedybruecke-alsterglacis-abgestimmte-planung-bericht.pdf"},
       {"Planungsziele", "Anjes Tjarks, Twitter, 2022",
        "https://twitter.com/anjes_tjarks/status/1495396904938754048"},
       {
         "Erläuterungsbericht 2019",
         "veraltet, wird so nicht umgesetzt",
-        "https://lsbg.hamburg.de/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
+        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12432130/ddb27d99abdccdacd7bad70c44ad3096/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-bericht.pdf"
       },
       {"Lageplan 2019", "veraltet, wird so nicht umgesetzt",
-       "https://lsbg.hamburg.de/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12432128/3e85e8095778bdb4b346996650c605ea/data/doppelknoten-esplanade-neuer-jungfernstieg-abstimmungsunterlage-plan.pdf"}
     ]
   end
 

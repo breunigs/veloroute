@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Lombardsbruecke do
   def links(_assigns) do
     [
       {"Infoseite der Stadt",
-       "https://lsbg.hamburg.de/konstruktive-ingenieurbauwerke/4460568/instandsetzung-lombardsbruecke/"}
+       "https://web.archive.org/web/20220929043504/https://lsbg.hamburg.de/konstruktive-ingenieurbauwerke/4460568/instandsetzung-lombardsbruecke/"}
     ]
   end
 

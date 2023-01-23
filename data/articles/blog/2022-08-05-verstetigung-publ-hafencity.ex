@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.VerstetigungPublHafencity do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "August 2022",
-       "https://lsbg.hamburg.de/contentblob/16395974/e1f1e78654bc95f99c486d463509082d/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16395974/e1f1e78654bc95f99c486d463509082d/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-bericht.pdf"},
       {"Lageplan", "August 2022",
-       "https://lsbg.hamburg.de/contentblob/16395972/2127019aa9f8bb742b3e131fb456d291/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16395972/2127019aa9f8bb742b3e131fb456d291/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-abgestimmte-planung-plan.pdf"},
       {"Pressemitteilung zur Verstetigung", "April 2022",
        "https://www.hamburg.de/bvm/medien/16117218/2022-03-30-bvm-pop-up-lane/"}
     ]

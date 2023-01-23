@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.RahlstedterStrasse do
 
   def text(assigns) do
     ~H"""
-    <p><strong>Stand 2020:</strong> Der Umbau ist mittlerweile abgeschlossen und die Radfahrsteifen lassen sich gut befahren.</p> <p>Die Rahlstedter Straße wird zur Zeit umgebaut. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p> <ul> <li> <.a href="https://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</.a> </li> <li> <.a href="https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</.a> </li> </ul>
+    <p><strong>Stand 2020:</strong> Der Umbau ist mittlerweile abgeschlossen und die Radfahrsteifen lassen sich gut befahren.</p> <p>Die Rahlstedter Straße wird zur Zeit umgebaut. Dabei werden die Radwege zukünftig als Fahrradstreifen mit je ca. 1,85m Breite auf der Straße geführt. Weitere Infos:</p> <ul> <li> <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9226512/95071f6ea281bc0314a6f074a1ba77c2/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</.a> </li> <li> <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9226508/b3beb118616b379360c224418335459f/data/veloroute-7-rahlstedter-strasse-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</.a> </li> </ul>
     """
   end
 end

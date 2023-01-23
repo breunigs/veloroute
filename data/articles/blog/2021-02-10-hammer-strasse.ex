@@ -11,9 +11,9 @@ defmodule Data.Article.Blog.HammerStrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/14873580/2e15aa1daa468d525066d61607ef09fc/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14873580/2e15aa1daa468d525066d61607ef09fc/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/14873568/e8f1cbf923603ceaa61db8061c4c0ab3/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14873568/e8f1cbf923603ceaa61db8061c4c0ab3/data/hammer-strasse-von-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan.pdf"}
     ]
   end
 

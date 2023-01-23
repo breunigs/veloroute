@@ -1,6 +1,3 @@
-# defmodule Mix.Tasks.Velo.Feeds do
-# end
-
 defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Mix.Task
   use Tesla

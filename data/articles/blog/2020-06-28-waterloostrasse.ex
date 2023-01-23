@@ -15,11 +15,11 @@ defmodule Data.Article.Blog.Waterloostrasse do
   def links(_assigns) do
     [
       {"Lageplan des Entwurfs",
-       "https://lsbg.hamburg.de/contentblob/13944178/b7056a8d4de8d0cd0a3e53863a1a47e2/data/veloroute-13-waterloostrasse-abstimmungsunterlage-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13944178/b7056a8d4de8d0cd0a3e53863a1a47e2/data/veloroute-13-waterloostrasse-abstimmungsunterlage-plan.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/13944176/04f3018f865fdb69d06daa3e13b5ca3b/data/veloroute-13-waterloostrasse-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13944176/04f3018f865fdb69d06daa3e13b5ca3b/data/veloroute-13-waterloostrasse-abstimmungsunterlage-bericht.pdf"},
       {"Baustellen Info August 2021",
-       "https://lsbg.hamburg.de/contentblob/15323570/d65db8bc4db0de8e864ed9e7470e15e3/data/waterloostrasse-veloroute-13-08-21-bis-03-22.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15323570/d65db8bc4db0de8e864ed9e7470e15e3/data/waterloostrasse-veloroute-13-08-21-bis-03-22.pdf"}
     ]
   end
 

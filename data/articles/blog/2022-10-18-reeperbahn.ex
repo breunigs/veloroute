@@ -63,13 +63,13 @@ defmodule Data.Article.Blog.Reeperbahn do
   def links(_assigns) do
     [
       {"Baustelleninfo", "November 2022",
-       "https://lsbg.hamburg.de/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"},
       {"Pressemitteilung", "Oktober 2022",
        "https://www.hamburg.de/bvm/medien/16586554/2022-10-17-bvm-radverkehr/"},
       {"Lageplan – Richtung Millerntor", "Oktober 2022",
-       "https://lsbg.hamburg.de/contentblob/16586856/d6de5326e1b7d32afda63a02e3a92b7d/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16586856/d6de5326e1b7d32afda63a02e3a92b7d/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht – Richtung Millerntor", "Oktober 2022",
-       "https://lsbg.hamburg.de/contentblob/16586854/d2291601fd5bb19dc742539bfbd24f6a/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16586854/d2291601fd5bb19dc742539bfbd24f6a/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"}
     ]
   end
 

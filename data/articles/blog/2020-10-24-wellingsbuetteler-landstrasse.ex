@@ -27,12 +27,11 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def links(_assigns) do
     [
-      {"Informationsseite der Stadt",
-       "https://lsbg.hamburg.de/wellingsbuetteler-landstrasse/14247548/wellingsbuetteler-landstrasse/"},
+      {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
       {"Erläuterungsbericht (2. Entwurf)",
-       "https://lsbg.hamburg.de/contentblob/15137380/3b55516f4cce539646078a61cbb4db44/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15137380/3b55516f4cce539646078a61cbb4db44/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-bericht.pdf"},
       {"Lagepläne (2. Entwurf)",
-       "https://lsbg.hamburg.de/contentblob/15137384/6074c525bf53e8f5a18cc6319de7b110/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15137384/6074c525bf53e8f5a18cc6319de7b110/data/wellingsbuetteler-landstrasse-abstimmungsunterlage-2-verschickung)-plan.pdf"},
       {"Präsentation zum 2. Entwurf", "enthält auch Abschätzungen zur Bauzeit",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010724"}
     ]

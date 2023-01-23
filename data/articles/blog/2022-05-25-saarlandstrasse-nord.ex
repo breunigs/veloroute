@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
   def links(_assigns) do
     [
       {"Lageplan", "1. Entwurf, 2022",
-       "https://lsbg.hamburg.de/contentblob/16202224/6a49db3da9493224b295e4fdf30fd3a6/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16202224/6a49db3da9493224b295e4fdf30fd3a6/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan.pdf"},
       {"Erläuterungsbericht", "1. Entwurf, 2022",
-       "https://lsbg.hamburg.de/contentblob/16202222/7990b422bdff3bde53dfc91eb5122f9b/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16202222/7990b422bdff3bde53dfc91eb5122f9b/data/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht.pdf"}
     ]
   end
 

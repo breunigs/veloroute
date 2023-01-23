@@ -12,9 +12,9 @@ defmodule Data.Article.Blog.Hoegerdamm do
   def links(_assigns) do
     [
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/15272744/92375049d4a9e8457398ae32e46fffeb/data/hoegerdamm-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15272744/92375049d4a9e8457398ae32e46fffeb/data/hoegerdamm-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/15272742/005843155bb13b25b0c1901ab81ad338/data/hoegerdamm-abgestimmte-planung-bericht.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15272742/005843155bb13b25b0c1901ab81ad338/data/hoegerdamm-abgestimmte-planung-bericht.pdf"}
     ]
   end
 

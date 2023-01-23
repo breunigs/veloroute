@@ -14,9 +14,9 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15046842/f7709bfca5eb56c795837c1d1db8485c/data/lerchenfeld-wartenau-abstimmungsunterlage-bericht.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15046848/515f7f6d8dee32bd0009ce2f9e5f9b2c/data/lerchenfeld-wartenau-abstimmungsunterlage-plan.pdf"}
     ]
   end
 

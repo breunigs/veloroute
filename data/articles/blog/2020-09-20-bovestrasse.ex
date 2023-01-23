@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.Bovestrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/14322164/275fdd9a6ecd04db5d2e9e5afb881c5a/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14322164/275fdd9a6ecd04db5d2e9e5afb881c5a/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-bericht.pdf"},
       {"Plan",
-       "https://lsbg.hamburg.de/contentblob/14322170/28a27688c7ace23e3a3072a6b3a41093/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14322170/28a27688c7ace23e3a3072a6b3a41093/data/bovestrasse-von-gehoelzweg-bis-juethornstrasse-abgestimmte-planung-plan.pdf"}
     ]
   end
 

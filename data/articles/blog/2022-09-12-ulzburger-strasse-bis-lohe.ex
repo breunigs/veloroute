@@ -75,6 +75,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
 
   def links(_assigns) do
     [
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/ulzburger-str-poppenbuetteler-chaussee"},
       {"Unterlagen 1. Entwurf", "2021",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017156"}
     ]

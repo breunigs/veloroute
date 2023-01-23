@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
   def links(_assigns) do
     [
       {"Erläuterungsbericht 1. Entwurf", "Dezember 2022",
-       "https://lsbg.hamburg.de/contentblob/16763902/4586b9fbca4f4b36a4920a40e728e657/data/louis-braille-platz-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16763902/4586b9fbca4f4b36a4920a40e728e657/data/louis-braille-platz-abstimmungsunterlage-bericht.pdf"},
       {"Lageplan/Karte 1. Entwurf", "Dezember 2022",
-       "https://lsbg.hamburg.de/contentblob/16763904/fc6d05e36eac3b3347c1928d5ad75c4b/data/louis-braille-platz-abstimmungsunterlage-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16763904/fc6d05e36eac3b3347c1928d5ad75c4b/data/louis-braille-platz-abstimmungsunterlage-plan.pdf"}
     ]
   end
 

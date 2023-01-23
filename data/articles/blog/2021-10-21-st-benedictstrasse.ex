@@ -47,11 +47,11 @@ defmodule Data.Article.Blog.StBenedictstrasse do
       {"Pressemitteilung Baufortschritt", "Oktober 2022",
        "https://www.hamburg.de/bvm/medien/16555684/2022-10-05-bvm-benedictstrasse/"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13867882/c88943a8627b3f07b6763579a735460d/data/st-benedictstrasse-abgestimmte-planung-bericht.pdf"},
       {"Lagepläne",
-       "https://lsbg.hamburg.de/contentblob/13867884/bb792c4b88c1f11f71dc4ec449e58f95/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13867884/bb792c4b88c1f11f71dc4ec449e58f95/data/st-benedictstrasse-abgestimmte-planung-plan.pdf"},
       {"Baustelleninfo", "August 2022",
-       "https://lsbg.hamburg.de/contentblob/16393158/da6670bd4619bed3e23f758d8525ee7e/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauphase-ab-august-2022.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16393158/da6670bd4619bed3e23f758d8525ee7e/data/st-benedictstrasse-%E2%80%93-umbaumassnahmen-bauphase-ab-august-2022.pdf"}
     ]
   end
 

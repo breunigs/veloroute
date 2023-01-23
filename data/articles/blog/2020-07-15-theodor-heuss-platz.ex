@@ -23,13 +23,13 @@ defmodule Data.Article.Blog.TheodorHeussPlatz do
     <h4>Meinung</h4> <p>Die eigene Rechtsabbiegerspur entlang der Veloroute ist überfällig. Enttäuschend ist das sie auf Kosten des bereits zu schmalen Fußwegs kommt. Leider wird nicht erwähnt warum KFZ nicht einfach auf die linke Spur unter der Brücke abbiegen, was mit einer Verkehrsinsel sichergestellt werden könnte.</p> <p>Alle weiteren Änderungen sind Geschmackssache, stellen aber keine echte Verbesserung dar. Mit 2,0m bleiben die Radfahrstreifen deutlich zu schmal um an dieser viel beradelten Stelle sicher überholen zu können.</p>
     <h4>Quelle</h4> <ul>
     <li>
-    <.a href="https://lsbg.hamburg.de/contentblob/14910976/89ea2860a329d901a759daeef3ee441d/data/theodor-heuss-platz-dammtordamm-abgestimmte-planung-plan.pdf">Lageplan</.a>
+    <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14910976/89ea2860a329d901a759daeef3ee441d/data/theodor-heuss-platz-dammtordamm-abgestimmte-planung-plan.pdf">Lageplan</.a>
     </li>
     <li>
-    <.a href="https://lsbg.hamburg.de/contentblob/14910978/40d9da8a8c4453e0c250a8591a5da5fb/data/theodor-heuss-platz-dammtordamm-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</.a>
+    <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14910978/40d9da8a8c4453e0c250a8591a5da5fb/data/theodor-heuss-platz-dammtordamm-abgestimmte-planung-bericht.pdf">Erläuterungsbericht</.a>
     </li>
     <li>
-    <.a href="https://lsbg.hamburg.de/contentblob/14926836/4cf69462e46772a8fa08a7c5f1634b3d/data/theodor-heuss-platz-kreuzungsumbau-03-2021-bis-08-2021.pdf">Anliegerinfo</.a> (März 2021)
+    <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14926836/4cf69462e46772a8fa08a7c5f1634b3d/data/theodor-heuss-platz-kreuzungsumbau-03-2021-bis-08-2021.pdf">Anliegerinfo</.a> (März 2021)
     </li>
     </ul> <p>Danke an den Einsender für den Hinweis auf dieses Vorhaben.</p>
     """

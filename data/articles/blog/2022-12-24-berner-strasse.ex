@@ -74,13 +74,13 @@ defmodule Data.Article.Blog.BernerStrasse do
       {"Pressemitteilung zum Baustart", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16807636/2023-01-02-bvm-grundinstandsetzung-berner-strasse/"},
       {"Baustelleninfo", "Dezember 2022",
-       "https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
       {"Planänderungen", "Juli 2022",
        "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
       {"Erläuterungsbericht", "Mai 2020",
-       "https://lsbg.hamburg.de/contentblob/13921876/faa2ceabee11e02f39b342955a8fb5ab/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13921876/faa2ceabee11e02f39b342955a8fb5ab/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-bericht.pdf"},
       {"Lageplan/Karte", "Mai 2020",
-       "https://lsbg.hamburg.de/contentblob/13921878/11d48ab96adaa467f755ab3c4d5a0e46/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-plaene.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13921878/11d48ab96adaa467f755ab3c4d5a0e46/data/berner-strasse-fasanenweg-zwischen-alter-zollweg-und-kriegkamp-abgestimmte-planung-plaene.pdf"}
     ]
   end
 

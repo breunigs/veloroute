@@ -13,11 +13,11 @@ defmodule Data.Article.Blog.SFriedrichsberg do
   def links(_assigns) do
     [
       {"Projektseite der Stadt zur Planung",
-       "https://lsbg.hamburg.de/projekte/5100484/krausestrasse-bis-hammer-strasse/"},
+       "https://lsbg.hamburg.de/krausestrasse-bis-hammer-strasse"},
       {"Erläuterungsbericht", "1. Entwurf, 2016",
-       "https://lsbg.hamburg.de/contentblob/7702886/cc4095bee357d71d7f02dc0d2887d1cd/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/7702886/cc4095bee357d71d7f02dc0d2887d1cd/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-bericht.pdf"},
       {"Lagepläne", "1. Entwurf, 2016",
-       "https://lsbg.hamburg.de/contentblob/7702888/f1d1a15664ba6590439a2b73a2f2da02/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-plaene.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/7702888/f1d1a15664ba6590439a2b73a2f2da02/data/krausestrasse-muehlenstrasse-brauhausstrasse-hammer-strasse-abstimmungsunterlage-plaene.pdf"}
     ]
   end
 

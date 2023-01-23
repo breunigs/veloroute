@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.ULangenhornMarkt do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/contentblob/13628332/217f8e1ec509c3c0c75ef499ae3b3df9/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13628332/217f8e1ec509c3c0c75ef499ae3b3df9/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-bericht.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/13628334/43369dab89338f0529279947ce1d5db6/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-plan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13628334/43369dab89338f0529279947ce1d5db6/data/veloroute-14-gehlengraben-kreuzung-tangstedter-landstr-abgestimmte-planung-plan.pdf"}
     ]
   end
 

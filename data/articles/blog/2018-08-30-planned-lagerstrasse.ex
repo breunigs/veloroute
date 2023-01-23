@@ -17,10 +17,10 @@ defmodule Data.Article.Blog.PlannedLagerstrasse do
     ~H"""
     <p><strong>Stand Mitte 2019: Diese Baumaßnahme wurde bereits umgesetzt.</strong></p> <p>Diese Kreuzung wird demnächst zu einem Kreisel umgebaut. Weitere Infos, auch zum Umbau im weiteren Verlauf Richtung U2 Christuskirche:</p> <ul>
     <li>
-    <.a href="https://lsbg.hamburg.de/contentblob/9146652/47c1206338310eb87de362b61d9cf08b/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</.a>
+    <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9146652/47c1206338310eb87de362b61d9cf08b/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-plaene.pdf">vorläufiger Lageplan</.a>
     </li>
     <li>
-    <.a href="https://lsbg.hamburg.de/contentblob/9146616/fe25634deb353f14f65c99eb4435d8d1/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</.a>
+    <.a href="https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9146616/fe25634deb353f14f65c99eb4435d8d1/data/veloroute-2-schanzenstrasse-weidenallee-abgestimmte-planung-bericht.pdf">Erläuterungsbericht zur Umgestaltung</.a>
     </li>
     </ul>
     """

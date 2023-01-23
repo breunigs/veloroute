@@ -30,12 +30,12 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
 
   def links(_assigns) do
     [
-      {"Infoseite der Stadt", "Pläne finden sich um Fließtext hinter „hier“ Links",
-       "https://lsbg.hamburg.de/stadtstrassen/5828548/max-brauer-allee/"},
+      {"Infoseite der Stadt",
+       "https://web.archive.org/web/20220929050940/https://lsbg.hamburg.de/stadtstrassen/5828548/max-brauer-allee/"},
       {"Baustelleninfo Juli 2021",
        "https://web.archive.org/web/20210725085155/https://lsbg.hamburg.de/contentblob/15174848/d7a7efa724941b75e17de3168a69f2c7/data/max-brauer-allee-1-bauabschnitt-juni-20.pdf"},
       {"überarbeiteter Lageplan (2021)",
-       "https://lsbg.hamburg.de/contentblob/15012542/311c6aa17781fe377bb2282069b713a9/data/max-brauer-allee-bericht-schlussverschickung-nachtrag.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15012542/311c6aa17781fe377bb2282069b713a9/data/max-brauer-allee-bericht-schlussverschickung-nachtrag.pdf"},
       {"Senator Anjes Tjarks zu Planänderungen", "Twitter",
        "https://twitter.com/anjes_tjarks/status/1418675570943139843"}
     ]

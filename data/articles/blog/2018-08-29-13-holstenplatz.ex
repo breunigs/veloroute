@@ -20,11 +20,11 @@ defmodule Data.Article.Blog.Holstenplatz do
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/15310052/78b267baa20992a8375a711b03e63f11/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15310052/78b267baa20992a8375a711b03e63f11/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-plan.pdf"},
       {"Erläuterungsbericht zu den Änderungen 2021",
-       "https://lsbg.hamburg.de/contentblob/15310050/fc0ba79d73e59dda9179f250ac15178c/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15310050/fc0ba79d73e59dda9179f250ac15178c/data/veloroute-13-holstenplatz-nachtrag-zur-abgestimmten-planung-bericht.pdf"},
       {"Erläuterungsbericht zu den Originalplänen von 2018",
-       "https://lsbg.hamburg.de/contentblob/11024280/40de1b0e8d33330964b21b4af96eedaa/data/veloroute-13-holstenplatz-abgestimmte-planung-bericht.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/11024280/40de1b0e8d33330964b21b4af96eedaa/data/veloroute-13-holstenplatz-abgestimmte-planung-bericht.pdf"}
     ]
   end
 

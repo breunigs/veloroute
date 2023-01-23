@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.HamburgerStrasse do
   def links(_assigns) do
     [
       {"Lageplan",
-       "https://lsbg.hamburg.de/contentblob/8562206/b5d77551bff25b2c761cf2e9ec6e3e10/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-plaene.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/8562206/b5d77551bff25b2c761cf2e9ec6e3e10/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-plaene.pdf"},
       {"Erläuterungsbericht zur Umgestaltung",
-       "https://lsbg.hamburg.de/contentblob/8562200/f1b507756545a32010ba75b0259c3e33/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/8562200/f1b507756545a32010ba75b0259c3e33/data/hamburger-strasse-von-lerchenfeld-bis-dehnhaide-abgestimmte-planung-bericht.pdf"},
       {"Infoseite der Stadt",
        "https://web.archive.org/web/20210124130710/https://lsbg.hamburg.de/stadtstrassen/13545886/hamburger-strasse-oberaltenallee/"}
     ]

@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.KreuzungNordschleswigerStrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht zum Umbau Ring 2", "Kreuzung Eulenkamp auf S16",
-       "https://lsbg.hamburg.de/contentblob/9537980/128746b1e22353babee56ef3f1b0a4fc/data/wandsbeker-alle-zw-tiroler-str-u-wandsegruenzug-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9537980/128746b1e22353babee56ef3f1b0a4fc/data/wandsbeker-alle-zw-tiroler-str-u-wandsegruenzug-abgestimmte-planung-bericht.pdf"},
       {"Lageplan ",
-       "https://lsbg.hamburg.de/contentblob/9537982/0a4f8a9c541a736dc2e385fed5e800f4/data/wandsbeker-alle-zw-tiroler-str-u-wandsegruenzug-abgestimmte-planung-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/9537982/0a4f8a9c541a736dc2e385fed5e800f4/data/wandsbeker-alle-zw-tiroler-str-u-wandsegruenzug-abgestimmte-planung-plan.pdf"},
       {"Infoseite der Stadt zum Baufortschritt",
        "https://web.archive.org/web/20190712020017/https://lsbg.hamburg.de/ring2-hamburg-nord/"}
     ]

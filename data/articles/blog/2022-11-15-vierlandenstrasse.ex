@@ -14,9 +14,9 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "November 2022",
-       "https://lsbg.hamburg.de/contentblob/12275556/0d16576522a6ea9bccc8ffec808bf97d/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12275556/0d16576522a6ea9bccc8ffec808bf97d/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-bericht.pdf"},
       {"Lageplan/Karte", "November 2022",
-       "https://lsbg.hamburg.de/contentblob/12275558/5cd94f216794ee9530afdbe3c61611bc/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-plaene.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12275558/5cd94f216794ee9530afdbe3c61611bc/data/vierlandenstrasse-von-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-plaene.pdf"}
     ]
   end
 

@@ -59,10 +59,6 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name}), do: []
 
   @spec extract({binary(), binary()}) :: [entry()]
-  defp extract({name, "https://lsbg.hamburg.de/contentblob" <> _rest = url}) do
-    [{:download, "#{name} #{name_from_url(url)}", url}]
-  end
-
   defp extract({name, "https://via-bus.hamburg.de/contentblob" <> _rest = url}) do
     [{:download, "#{name} #{name_from_url(url)}", url}]
   end
@@ -124,6 +120,31 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract({_name, "https://adfc-pinneberg.de/" <> _rest = url}) do
     last = url |> String.split("/") |> List.last()
     [{:capture, last, url}]
+  end
+
+  defp extract({name, "https://lsbg.hamburg.de/contentblob" <> _rest = url}) do
+    [{:download, "#{name} #{name_from_url(url)}", url}]
+  end
+
+  defp extract({name, "https://lsbg.hamburg.de/resource/blob/" <> _rest = url}) do
+    [{:download, "#{name} #{name_from_url(url)}", url}]
+  end
+
+  defp extract({_name, "https://lsbg.hamburg.de/" <> _rest = url}) do
+    attachments =
+      url
+      |> hrefs_from_url()
+      |> Enum.filter(&String.contains?(&1, "/resource/blob/"))
+      |> Enum.map(fn
+        "http://" <> _rest = all -> all
+        "https://" <> _rest = all -> all
+        "mailto:" <> _rest -> nil
+        all -> "https://lsbg.hamburg.de/" <> all
+      end)
+      |> Util.compact()
+      |> Enum.map(&{:download, name_from_url(&1), &1})
+
+    [{:capture, name_from_url(url), url} | attachments]
   end
 
   @evergabe_base "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/"

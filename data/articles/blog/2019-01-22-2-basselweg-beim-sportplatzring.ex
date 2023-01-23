@@ -13,13 +13,13 @@ defmodule Data.Article.Blog.BasselwegBeimSportplatzring do
   def links(_assigns) do
     [
       {"Bericht Hauptverkehrsstraße",
-       "https://lsbg.hamburg.de/contentblob/12272210/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12272210/d53370f94d440de26649c27f4a67b40a/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-bericht.pdf"},
       {"Lagepläne Hauptverkehrsstraße",
-       "https://lsbg.hamburg.de/contentblob/12272212/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-lageplan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12272212/e61f62e5dfc05b0996e1a65aa0ded8cc/data/sportplatzring-lueckenschluss-zweite-abstimmungsunterlage-lageplan.pdf"},
       {"Bericht Neubaugebiet / Basselweg",
-       "https://lsbg.hamburg.de/contentblob/12272214/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-bericht.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12272214/4cd3ed327d271b45e563eebbf3bfe152/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-bericht.pdf"},
       {"Lagepläne Neubaugebiet / Basselweg",
-       "https://lsbg.hamburg.de/contentblob/12272216/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-lageplan.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/12272216/4320aff53e8542a13ed4bef4e1a22e5c/data/erschliessung-stellingen-62-sportplatzring-zweite-abstimmungsunterlage-lageplan.pdf"}
     ]
   end
 

@@ -14,6 +14,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
+      {"Infoseite des LSBG", "https://lsbg.hamburg.de/elbgaustrasse"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Beteiligungsverfahren Elbgaustraße", "https://elbgaustrasse.beteiligung.hamburg/"},

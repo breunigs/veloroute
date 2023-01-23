@@ -16,10 +16,11 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def links(_assigns) do
     [
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
       {"Lageplan", "1. Entwurf, 2022",
-       "https://lsbg.hamburg.de/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"},
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"},
       {"Erläuterungsbericht", "1. Entwurf, 2022",
-       "https://lsbg.hamburg.de/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"}
+       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"}
     ]
   end
 
