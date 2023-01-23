@@ -399,7 +399,7 @@ defmodule Components.TagHelpers do
   end
 
   defp maybe_direct_link_archive("https://web.archive.org/" <> _rest = href) do
-    if(String.ends_with?(href, ".pdf")) do
+    if Regex.match?(~r|/web/[0-9]+/https?://|, href) do
       href
       |> String.replace("/https://", "if_/https://")
       |> String.replace("/http://", "if_/http://")
