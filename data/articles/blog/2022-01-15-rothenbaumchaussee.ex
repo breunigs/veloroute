@@ -51,7 +51,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Juli 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16337942/598e2584f661e41ccc2df3994a31c958/data/rothenbaumchaussee-radverkehrsanlagen-bushaltestellen-07-22-bis-mitte-2023.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634726/61be8b78c1656b833a227282e5c6adc6/rothenbaumchaussee-anliegerinformation-juli-2022-data.pdf"},
       {"Pressemitteilung zum Umbau", "Juli 2022",
        "https://www.hamburg.de/bvm/medien/16344462/2022-07-14-bvm-rothenbaumchaussee/"},
       {"Erläuterungsbericht",

@@ -6,11 +6,15 @@ defmodule Data.Article.Blog.Hoegerdamm do
   def title(), do: "Högerdamm (Freizeitroute 6)"
 
   def type(), do: :planned
+  def start(), do: ~d[2023-08]
+  def stop(), do: ~d[2024Q4]
 
   def tags(), do: ["FR6"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Umbau", "Januar 2023",
+       "https://www.hamburg.de/bvm/medien/16854704/2023-01-25-bvm-hoegerdamm/"},
       {"Lageplan",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15272744/92375049d4a9e8457398ae32e46fffeb/data/hoegerdamm-abgestimmte-planung-plan.pdf"},
       {"Erläuterungsbericht",

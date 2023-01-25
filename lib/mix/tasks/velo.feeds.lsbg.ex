@@ -3,8 +3,10 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   use Tesla
 
   @base "https://lsbg.hamburg.de"
-  @index "#{@base}/baumassnahmen-und-planungen"
+  @projects_page "#{@base}/baumassnahmen-und-planungen"
+  @shorts_page "#{@base}/downloads/anliegerinformationen"
   @path "data/auto_generated/feeds_seen/lsbg.json"
+
   @requirements ["app.start"]
 
   # plug Tesla.Middleware.FormUrlencoded
@@ -19,8 +21,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   def run(_) do
     status = load_status()
 
-    projects()
-    |> Stream.map(&details/1)
+    Stream.concat(list_projects(), list_shorts())
     |> Enum.reduce(
       {status, nil},
       fn
@@ -42,21 +43,41 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
     |> write_status_put()
   end
 
-  defp projects() do
-    with {:ok, %{body: body}} <- get(@index),
+  @typep detail :: %{text: binary(), links: binary(), checksum: binary(), source: binary()}
+
+  @spec list_shorts() :: [detail()] | {:error, binary()}
+  defp list_shorts() do
+    with {:ok, %{body: body}} <- get(@shorts_page),
+         {:ok, document} <- Floki.parse_fragment(body) do
+      document
+      |> Floki.find("a[href$=pdf]")
+      |> Enum.map(fn link ->
+        href = link |> Floki.attribute("href") |> absolute()
+        text = link |> Floki.text() |> String.trim()
+
+        %{text: text, links: "(Anliegerinfo)", checksum: md5(text), source: href}
+      end)
+      |> Enum.uniq()
+    else
+      error -> {:error, "failed to read shorts: #{inspect(error)}"}
+    end
+  end
+
+  @spec list_projects() :: Enumerable.t() | {:error, binary()}
+  defp list_projects() do
+    with {:ok, %{body: body}} <- get(@projects_page),
          {:ok, document} <- Floki.parse_fragment(body) do
       document
       |> Floki.find("a.map")
       |> Enum.map(&Floki.attribute(&1, "href"))
       |> Enum.map(&absolute/1)
       |> Enum.uniq()
+      |> Stream.map(&resolve_project/1)
     end
   end
 
-  @typep detail :: %{text: binary(), links: binary(), checksum: binary(), source: binary()}
-
-  @spec details(binary()) :: detail() | {:error, binary()}
-  defp details(link) do
+  @spec resolve_project(binary()) :: detail() | {:error, binary()}
+  defp resolve_project(link) do
     with {:ok, %{body: body}} <- get(link),
          {:ok, document} <- Floki.parse_fragment(body) do
       links =
@@ -74,7 +95,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
         |> Enum.reject(fn str -> str == "" end)
         |> Enum.join("\n\n")
 
-      check = :crypto.hash(:md5, text <> links) |> Base.encode16(case: :lower)
+      check = md5(text <> links)
       %{text: text, links: links, checksum: check, source: link}
     else
       error -> {:error, "failed to read/parse #{link}: #{inspect(error)}"}
@@ -150,5 +171,9 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
     json = Jason.encode!(status, pretty: true)
     File.write!(@path, json)
     status
+  end
+
+  defp md5(binary) do
+    :crypto.hash(:md5, binary) |> Base.encode16(case: :lower)
   end
 end
