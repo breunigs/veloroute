@@ -16,22 +16,6 @@ const fitBoundsOpt = {
   maxZoom: 17
 };
 
-const map = new mapboxgl.Map({
-  container: 'map',
-  maxBounds: settings.maxBounds.split(","),
-  bounds: settings.initial.split(","),
-  fitBoundsOptions: fitBoundsOpt,
-  minZoom: 9,
-  maxZoom: 19,
-  style: 'mapbox://styles/' + document.getElementById('map').dataset.style,
-  pitchWithRotate: false,
-  dragRotate: false,
-  touchPitch: false,
-  logoPosition: 'top-left',
-  attributionControl: false,
-});
-map.touchZoomRotate.disableRotation();
-map.addControl(new mapboxgl.AttributionControl(), 'top-right');
 
 let mapConfig = {}
 window.addEventListener("phx:map", e => {
@@ -344,24 +328,6 @@ const sendBounds = () => {
   }, 200);
 }
 
-map.on('mousemove', handleMapHover);
-map.on('click', handleMapClick);
-map.on('moveend', sendBounds);
-
-map.on('movestart', disableIndicatorAnimation);
-map.on('zoomstart', disableIndicatorAnimation);
-
-// for some reason click events don't fire on iOS and potentially other touch
-// devices
-let simulateClick = false;
-map.on('touchstart', () => simulateClick = true);
-map.on('touchmove', () => simulateClick = false);
-map.on('touchend', (evt) => {
-  if (simulateClick) handleMapClick(evt);
-});
-
-map.on('load', hidePreview);
-map.on('resize', hidePreview);
 
 let videoRoute = null
 let indicatorPolyline = null
@@ -372,17 +338,13 @@ window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
-let styleLoaded = false;
 
 function highlightRoute(x) {
   if (!videoRoute || !styleLoaded) return;
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
-map.on('style.load', () => {
-  styleLoaded = true;
-  highlightRoute()
-});
+
 
 function updateIndicatorPolyline(data) {
   if (!data) return
@@ -548,7 +510,69 @@ function polyline2geojson(str, precision) {
   };
 }
 
-window.map = map;
+// for some reason click events don't fire on iOS and potentially other touch
+// devices
+let simulateClick = false;
+
+function setupTouchDeviceClick() {
+  map.on('touchstart', () => simulateClick = true);
+  map.on('touchmove', () => simulateClick = false);
+  map.on('touchend', (evt) => {
+    if (simulateClick) handleMapClick(evt);
+  });
+
+  map.on('load', hidePreview);
+  map.on('resize', hidePreview);
+}
+
+let map = null;
+let styleLoaded = false;
+
+function setup() {
+  if (map && document.body.contains(window.map.getContainer())) return
+  if (map) {
+    console.warn("previous map present, but it got removed from DOM")
+    window.plausible('mapReset')
+    map.remove()
+  }
+
+  map = new mapboxgl.Map({
+    container: 'map',
+    maxBounds: settings.maxBounds.split(","),
+    bounds: settings.initial.split(","),
+    fitBoundsOptions: fitBoundsOpt,
+    minZoom: 9,
+    maxZoom: 19,
+    style: 'mapbox://styles/' + document.getElementById('map').dataset.style,
+    pitchWithRotate: false,
+    dragRotate: false,
+    touchPitch: false,
+    logoPosition: 'top-left',
+    attributionControl: false,
+  });
+  map.touchZoomRotate.disableRotation();
+  map.addControl(new mapboxgl.AttributionControl(), 'top-right');
+
+  map.on('mousemove', handleMapHover);
+  map.on('click', handleMapClick);
+  map.on('moveend', sendBounds);
+
+  map.on('movestart', disableIndicatorAnimation);
+  map.on('zoomstart', disableIndicatorAnimation);
+
+  styleLoaded = false;
+  map.on('style.load', () => {
+    styleLoaded = true;
+    highlightRoute()
+  });
+
+  setupTouchDeviceClick()
+
+  window.map = map;
+}
+
+setup()
+window.addEventListener("global:mounted", setup)
 
 let videoTimeInMs = 0;
 window.addEventListener("video:timeupdate", (e) => {

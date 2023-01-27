@@ -66,11 +66,11 @@ class CopyLinkButton {
   }
 
   onRemove() {
-    this._container.parentNode.removeChild(this._container);
-    this._map = undefined;
+    const parent = this.container.parentNode;
+    if (parent) parent.removeChild(this.container);
+    this.map = undefined;
   }
 }
-
 
 window.map.addControl(draw, 'top-left');
 window.map.addControl(new CopyLinkButton({}), 'top-left')

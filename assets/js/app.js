@@ -19,6 +19,7 @@ let Hooks = {};
 Hooks.control = {
   mounted() {
     console.log("mounted");
+    window.dispatchEvent(new Event("global:mounted"));
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
 
     if (!pushEventQueued) return;
