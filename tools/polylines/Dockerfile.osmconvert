@@ -1,8 +1,0 @@
-FROM debian:stable-slim
-
-RUN apt-get -y update && \
-  apt-get -y install osmctools && \
-  rm -rf /var/lib/apt/lists/*
-
-ENTRYPOINT ["/usr/bin/osmconvert"]
-

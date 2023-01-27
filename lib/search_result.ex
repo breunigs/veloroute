@@ -6,13 +6,12 @@ defmodule SearchResult do
           bounds: Geo.BoundingBox.t(),
           center: Geo.Point.t() | nil,
           relevance: float(),
-          polylines: [binary()],
           type: binary(),
           url: binary() | nil,
           subtext: binary() | nil
         }
 
-  @enforce_keys [:name, :bounds, :relevance, :type, :polylines]
+  @enforce_keys [:name, :bounds, :relevance, :type]
 
   defstruct @enforce_keys ++ [:url, :subtext, :center]
 
@@ -62,10 +61,17 @@ defmodule SearchResult do
   end
 
   def ping(sr) do
+    center =
+      with %{type: "poi", center: %{lat: lat, lon: lon}} <- sr do
+        %{lat: lat, lon: lon}
+      else
+        _ -> nil
+      end
+
     Phoenix.LiveView.JS.dispatch(%Phoenix.LiveView.JS{}, "map:ping",
       detail: %{
-        polylines: sr.polylines,
-        center: Map.take(sr.center || %{}, [:lat, :lon])
+        name: sr.name,
+        center: center
       }
     )
   end

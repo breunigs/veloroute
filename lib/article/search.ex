@@ -57,7 +57,6 @@ defmodule Article.Search do
         name: Article.Decorators.full_title(art),
         url: Article.Decorators.path(art),
         relevance: relevance,
-        polylines: Article.Decorators.polylines(art),
         type: type,
         subtext: subtext
       }

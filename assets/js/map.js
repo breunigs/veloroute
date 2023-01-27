@@ -229,82 +229,63 @@ const itemsUnderCursor = (evt) => {
 }
 
 let pingResetTimer = null;
+let pingFadeTimer = null;
 let pingIndicator = null;
 const pingHideDelaySeconds = 10;
 const pingHideTransitionSeconds = 3;
-const pingLayerDefaults = {
-  'type': 'line',
-  'source': 'ping',
-  'layout': {
-    'line-join': 'round',
-    'line-cap': 'round'
-  },
-}
-const pingLayerTransition = {
-  'duration': pingHideTransitionSeconds * 1000,
-  'delay': pingHideDelaySeconds * 1000,
-}
+const pingLayers = new Map([
+  ['ping-articles', 'title'],
+  ['ping-articles-bg', 'title'],
+  ['ping-street', 'name'],
+  ['ping-street-bg', 'name']
+])
 
-window.addEventListener("map:ping", showPing);
+window.addEventListener("map:ping", pingShow);
 
-function showPing(e) {
-  hidePing();
+function pingShow(e) {
+  if (pingFadeTimer) clearTimeout(pingFadeTimer)
+  if (pingResetTimer) clearTimeout(pingResetTimer)
+  pingCleanup();
 
-  if (e.detail.polylines && e.detail.polylines.length > 0) {
-    const geojson = {
-      type: 'FeatureCollection',
-      features: e.detail.polylines.map((pl, _idx) => polyline2geojson(pl, null))
+  if (e.detail.name) {
+    for (const [layer, field] of pingLayers) {
+      map.setLayoutProperty(layer, 'visibility', 'visible')
+      map.setFilter(layer, ['==', ['get', field], e.detail.name])
+      map.setPaintProperty(layer, 'line-opacity-transition', {})
+      map.setPaintProperty(layer, 'line-opacity', 1.0)
     }
-    console.log("ping: showing ", e.detail.polylines.length, "polylines")
+  }
 
-    map.addSource('ping', {
-      'type': 'geojson',
-      'data': geojson
-    });
-    map.addLayer(Object.assign({
-      'id': 'ping-fg',
-      'paint': {
-        'line-color': '#F47474',
-        'line-opacity-transition': pingLayerTransition,
-        'line-width': 2,
-        'line-dasharray': [2, 3],
-      }
-    }, pingLayerDefaults), "road-label");
-    map.addLayer(Object.assign({
-      'id': 'bing-bg',
-      'paint': {
-        'line-color': 'rgba(255,255,255,0.9)',
-        'line-opacity-transition': pingLayerTransition,
-        'line-width': 8,
-        'line-blur': 2,
-      }
-    }, pingLayerDefaults), "ping-fg");
-    map.setPaintProperty('ping-fg', 'line-opacity', 0.0)
-    map.setPaintProperty('bing-bg', 'line-opacity', 0.0)
-  } else if (e.detail.center) {
+  if (e.detail.center) {
     const center = e.detail.center;
-    const lngLat = new mapboxgl.LngLat(center.lon, center.lat);
-    console.log("ping: setting marker @", center)
-
+    const lngLat = new mapboxgl.LngLat(center.lon, center.lat)
     pingIndicator = new mapboxgl.Marker(genDiv('ping-indicator'))
       .setLngLat(lngLat)
       .addTo(map);
-    window.pingIndicator = pingIndicator;
-    // can't be in the same frame, else it'll be hidden instantly
-    setTimeout(() => pingIndicator.getElement().style.opacity = '0', 20)
   }
-  pingResetTimer = setTimeout(hidePing, (pingHideTransitionSeconds + pingHideDelaySeconds) * 1000);
+
+  pingFadeTimer = setTimeout(pingFadeout, pingHideDelaySeconds * 1000)
+  pingResetTimer = setTimeout(pingCleanup, (pingHideDelaySeconds + pingHideTransitionSeconds) * 1000)
 }
 
-function hidePing() {
-  if (pingResetTimer) clearTimeout(pingResetTimer)
-  pingResetTimer = null;
-  console.log("ping: hiding")
+function pingFadeout() {
+  if (pingIndicator) pingIndicator.getElement().style.opacity = '0'
+  for (const [layer, field] of pingLayers) {
+    map.setPaintProperty(layer, 'line-opacity-transition', {
+      'duration': pingHideTransitionSeconds * 1000,
+    })
+    map.setPaintProperty(layer, 'line-opacity', 0)
+  }
+}
 
-  if (map.getLayer('ping-fg')) map.removeLayer('ping-fg');
-  if (map.getLayer('bing-bg')) map.removeLayer('bing-bg');
-  if (map.getSource('ping')) map.removeSource('ping');
-  if (pingIndicator) pingIndicator.remove();
+function pingCleanup() {
+  if (pingIndicator) {
+    pingIndicator.remove()
+    pingIndicator = null
+  }
+  for (const [layer, field] of pingLayers) {
+    map.setLayoutProperty(layer, 'visibility', 'none')
+  }
 }
 
 const titleForItem = (item) => {

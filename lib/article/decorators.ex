@@ -157,15 +157,6 @@ defmodule Article.Decorators do
     end)
   end
 
-  def polylines(art) when is_module(art) do
-    ways =
-      Cache.Map.ways()
-      |> Map.Element.filter_by_tag(:name, art.name())
-      |> Map.Element.filter_by_tag(:type, "article")
-
-    Enum.map(ways, &Map.Way.to_polyline/1)
-  end
-
   @spec geo_center(Article.t()) :: Geo.Point.t() | nil
   def geo_center(art) when is_module(art) do
     bbox = bbox(art)
