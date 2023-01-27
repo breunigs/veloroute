@@ -57,7 +57,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
 
         %{text: text, links: "(Anliegerinfo)", checksum: md5(text), source: href}
       end)
-      |> Enum.uniq()
+      |> Enum.uniq_by(& &1.source)
     else
       error -> {:error, "failed to read shorts: #{inspect(error)}"}
     end

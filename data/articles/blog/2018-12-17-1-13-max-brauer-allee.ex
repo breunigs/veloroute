@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
   def name(), do: "#{created_at()}-1-13-max-brauer-allee"
   def created_at(), do: ~D[2018-12-17]
   def updated_at(), do: ~D[2022-03-31]
-  def start(), do: ~d[2023-03]
+  def start(), do: ~d[2023-05]
   def stop(), do: ~d[2024-11]
 
   def title(), do: "Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Veloroute 1 und 13)"
@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung", "Januar 2023",
+       "https://www.hamburg.de/bvm/medien/16859022/2023-01-27-bvm-bussonderstreifen/"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/max-brauer-allee"},
       {"Auftragsvergabe 1", "Dezember 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0b6ee459-7517-40a1-a3b4-6b52451b2099"},

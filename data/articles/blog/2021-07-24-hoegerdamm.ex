@@ -13,6 +13,8 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Januar 2023",
+       "https://lsbg.hamburg.de/resource/blob/656598/42bf85574b5bb2bc37507d7278ede77e/hoegerdamm-anliegerinformation-januar-2023-data.pdf"},
       {"Pressemitteilung zum Umbau", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16854704/2023-01-25-bvm-hoegerdamm/"},
       {"Lageplan",
