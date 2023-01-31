@@ -11,10 +11,6 @@ defmodule Map.Way do
 
   def style_tags, do: [:oneway, :color]
 
-  def to_polyline(%__MODULE__{nodes: nodes}) do
-    nodes |> Enum.map(&{&1.lon, &1.lat}) |> Geo.StreetPolyline.encode()
-  end
-
   @spec reverse(t()) :: t()
   def reverse(%__MODULE__{nodes: nodes} = w), do: %{w | nodes: Enum.reverse(nodes)}
 
