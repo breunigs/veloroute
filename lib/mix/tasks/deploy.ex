@@ -126,7 +126,8 @@ defmodule Mix.Tasks.Deploy do
 
     try do
       Process.sleep(500)
-      true = Enum.find_value(0..20, &try_to_query_release_container/1)
+      true = Enum.find_value(0..20, &wait_until_up/1)
+      true = Enum.all?(~w(/alltagsroute-1 /updates.atom), &report_status_200?/1)
     after
       Docker.stop_release()
     end
@@ -134,15 +135,12 @@ defmodule Mix.Tasks.Deploy do
     Task.await(container, :infinity)
   end
 
-  def try_to_query_release_container(trail) do
+  def wait_until_up(trail) do
     try do
-      {output, 0} = System.cmd("docker", ["port", Docker.container_name_release()])
-      port = output |> String.split(":") |> List.last() |> String.trim()
-
-      {:ok, response} = Tesla.get("http://localhost:#{port}/alltagsroute-1")
+      {:ok, response} = Tesla.get(get_docker_url("/"))
 
       if response.status == 200 do
-        IO.puts("✓ Image boots fine and replies with 200")
+        IO.puts("✓ Image booted")
         true
       else
         IO.puts("not yet (try=#{trail} code=#{response.status})…")
@@ -155,6 +153,27 @@ defmodule Mix.Tasks.Deploy do
         Process.sleep(1_000)
         false
     end
+  end
+
+  defp report_status_200?(path) do
+    {:ok, response} = Tesla.get(get_docker_url(path))
+
+    if response.status == 200 do
+      IO.puts("✓ 200 from #{path}")
+      true
+    else
+      IO.puts("! unexpected status #{response.status} from #{path}")
+      false
+    end
+  end
+
+  defp get_docker_url("/" <> path) do
+    "http://localhost:#{get_docker_port()}/#{path}"
+  end
+
+  defp get_docker_port do
+    {output, 0} = System.cmd("docker", ["port", Docker.container_name_release()])
+    output |> String.split(":") |> List.last() |> String.trim()
   end
 
   defp upload(%{skip_deploy: true}), do: nil

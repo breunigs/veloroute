@@ -70,7 +70,7 @@ defmodule Veloroute.MixProject do
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
       {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
-      {:floki, ">= 0.30.0", only: [:dev, :test]},
+      {:floki, ">= 0.30.0"},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:hackney, "~> 1.17"},
