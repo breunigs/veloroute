@@ -31,7 +31,7 @@ defmodule Article.DecoratorsTest do
            <a href="http://example.com" target="_blank">link</a>
            <a href="http://abendblatt.de" rel="nofollow" target="_blank">paid</a> [€]
            <a href="/lexikon/radfahrstreifen" class="ref" data-phx-link-state="push" data-phx-link="patch" title="Radfahrstreifen sind asphaltierte Radwege direkt neben den KFZ-Spuren">Radfahrstreifen</a>
-           <a phx-click="[[&quot;push&quot;,{&quot;event&quot;:&quot;map-zoom-to&quot;}]]" phx-value-bounds="10.116543,53.606325,10.119479,53.607453">bounds-only</a>
+           <a phx-click="[[&quot;dispatch&quot;,{&quot;detail&quot;:{&quot;name&quot;:&quot;bounds-only&quot;},&quot;event&quot;:&quot;map:ping&quot;,&quot;to&quot;:null}],[&quot;push&quot;,{&quot;event&quot;:&quot;map-zoom-to&quot;,&quot;value&quot;:{&quot;bounds&quot;:&quot;10.116543,53.606325,10.119479,53.607453&quot;}}]]">bounds-only</a>
            """) ==
              Article.Decorators.html(FakeArticle)
   end

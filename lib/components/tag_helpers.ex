@@ -97,16 +97,19 @@ defmodule Components.TagHelpers do
 
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
   attr :bounds, :string, required: true
+  attr :name, :string
   slot(:inner_block, required: true)
 
   def m(assigns) do
-    attr = %{
-      "phx-click" => Phoenix.LiveView.JS.push("map-zoom-to"),
-      "phx-value-bounds" => assigns.bounds
-    }
+    name = assigns[:name] || inner_text(assigns)
 
-    assigns = assign(assigns, :attr, attr)
-    ~H"<a {@attr}><%= render_block(@inner_block) %></a>"
+    js =
+      %Phoenix.LiveView.JS{}
+      |> Phoenix.LiveView.JS.dispatch("map:ping", detail: %{name: name})
+      |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: assigns.bounds})
+
+    assigns = assign(assigns, :js, js)
+    ~H"<a phx-click={@js}><%= render_block(@inner_block) %></a>"
   end
 
   defp ping(js, name) do
