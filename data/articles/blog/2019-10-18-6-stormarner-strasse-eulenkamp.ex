@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.StormarnerStrasseEulenkamp do
 
   def type(), do: :construction
   def start(), do: ~d[2021-03-22]
-  def stop(), do: ~d[2023-01-31]
+  def stop(), do: ~d[2023-03-31]
   def construction_site_id_hh(), do: [15014, 96778]
 
   def tags(), do: ["6", "w13"]
