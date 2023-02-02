@@ -6,7 +6,7 @@ defmodule Veloroute.Application do
   use Application
 
   def start(_type, _args) do
-    ensure_videos_are_mounted()
+    warn_if_videos_missing()
     Warmup.maybe()
     update_web_push_email()
 
@@ -42,18 +42,8 @@ defmodule Veloroute.Application do
     :ok
   end
 
-  defp ensure_videos_are_mounted do
-    if File.dir?(Settings.video_dir_abs()) do
-      rendered_path = Path.join(Settings.video_dir_abs(), "rendered")
-      asset_path = Path.join([:code.priv_dir(:veloroute), "static", Settings.video_serve_path()])
-
-      unless File.dir?(asset_path) do
-        IO.puts(:stderr, "Setting up video dir for serving through Phoenix")
-        File.rm(asset_path)
-        File.mkdir_p!(Path.dirname(asset_path))
-        File.ln_s!(rendered_path, asset_path)
-      end
-    else
+  defp warn_if_videos_missing do
+    if not File.dir?(Settings.video_dir_abs()) do
       IO.puts(
         :stderr,
         """

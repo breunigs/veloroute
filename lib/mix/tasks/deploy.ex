@@ -99,7 +99,6 @@ defmodule Mix.Tasks.Deploy do
       ~w(mix deps.compile),
       ~w(mix compile),
       ~w(mix velo.gpx.generate),
-      ["rm", "priv/static/#{Settings.video_serve_path()}"],
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),
       ~w(rm -rf priv/static/assets/)

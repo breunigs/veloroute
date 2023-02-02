@@ -1,20 +1,20 @@
 defmodule Video.ServePlug do
   use Plug.Builder
 
+  @serve_path Settings.video_serve_path()
+
   plug Plug.Static,
-    at: "/",
-    from: :veloroute,
+    at: "/#{@serve_path}",
+    from: Settings.video_target_dir_abs(),
     gzip: false,
     brotli: false,
     headers: %{
       "cache-control" => "public, max-age=31536000, immutable",
       "x-robots-tag" => "noindex"
-    },
-    only: [Settings.video_serve_path()]
+    }
 
   plug :maybe_not_found
 
-  @serve_path Settings.video_serve_path()
   def maybe_not_found(conn = %{request_path: "/#{@serve_path}/" <> _rest}, _opts) do
     conn
     |> put_resp_content_type("text/html")
