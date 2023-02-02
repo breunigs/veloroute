@@ -11,23 +11,50 @@ defmodule Mix.Tasks.Velo.Favicon.Raster do
 
     source_mod = modified(@source)
     variants = Enum.reject(@variants, fn size -> source_mod < modified(target(size)) end)
+    len = length(variants)
 
-    IO.puts("updating #{length(variants)} favicon rasters")
-    generate(variants)
+    if len > 0 do
+      IO.puts("updating #{len} favicon rasters")
+      generate(variants)
+    end
+
+    :ok = File.write(Path.join(@target, "manifest.json"), manifest())
+  end
+
+  @base_variant 48
+  defp manifest() do
+    icons =
+      Enum.map(@variants, fn variant ->
+        %{
+          src: "/favicons/#{variant}.png?vsn=1",
+          sizes: "#{variant}x#{variant}",
+          type: "image/png",
+          density: Float.round(String.to_integer(variant) / @base_variant, 2)
+        }
+      end)
+
+    %{
+      name: Settings.feed_author(),
+      icons: icons,
+      start_url: "/",
+      display: "standalone"
+    }
+    |> Jason.encode!()
   end
 
   defp generate([]), do: :ok
 
   defp generate(variants) do
-    Util.Cmd2.exec(~w(inkscape --shell),
-      stdin: inkscape_script(variants),
-      raise: true,
-      stdout: "",
-      stderr: ""
-    )
+    %{result: :ok} =
+      Util.Cmd2.exec(~w(inkscape --shell),
+        stdin: inkscape_script(variants),
+        raise: true,
+        stdout: "",
+        stderr: ""
+      )
 
     Parallel.each(variants, System.schedulers_online(), fn size ->
-      Util.Cmd2.exec(~w(optipng -quiet -o7) ++ [target(size)], raise: true)
+      %{result: :ok} = Util.Cmd2.exec(~w(optipng -quiet -o7) ++ [target(size)], raise: true)
     end)
   end
 
