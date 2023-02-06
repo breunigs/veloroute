@@ -73,6 +73,10 @@ defmodule Map.Parser do
 
       {attrs["id"], rel}
     end)
+    |> Map.reject(fn
+      {_k, %{tags: %{ignore: true}}} -> true
+      _ -> false
+    end)
   end
 
   @spec ways(any(), indexed_nodes) :: indexed_ways
