@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   @path "data/auto_generated/feeds_seen/sitzungsdienst.json"
   @requirements ["app.start"]
 
-  @typep result :: nonempty_list(binary())
+  @typep result :: {district :: binary(), type :: binary(), id :: binary(), desc :: binary()}
   @typep de_date :: binary()
 
   plug Tesla.Middleware.FormUrlencoded
@@ -50,8 +50,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   end
 
   @spec show(result()) :: result() | no_return()
-  defp show(result) do
-    [_, _, _, desc] = result
+  defp show({_, _, _, desc} = result) do
     IO.puts("\n#{desc}\n#{url(result)}")
 
     case IO.gets("Continue?") do
@@ -62,7 +61,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   end
 
   @spec url(result()) :: binary()
-  defp url([district, type, id, _desc]) do
+  defp url({district, type, id, _desc}) do
     Allris.url(district, type, id)
   end
 
@@ -73,7 +72,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     Stream.flat_map(@filter_keywords, fn keyword ->
       query(district, keyword, de_date_range)
     end)
-    |> Stream.uniq()
+    |> Stream.uniq_by(fn {_district, type, id, _desc} -> {type, id} end)
   end
 
   @spec query(binary(), binary(), binary()) :: [result()]
@@ -92,7 +91,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
       type = hd(Floki.attribute(elem, "name"))
       id = hd(Floki.attribute(elem, "value"))
       desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
-      [district, type, id, desc]
+      {district, type, id, desc}
     end)
   end
 
