@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   @path "data/auto_generated/feeds_seen/sitzungsdienst.json"
   @requirements ["app.start"]
 
-  @typep result :: {district :: binary(), type :: binary(), id :: binary(), desc :: binary()}
+  @typep result :: %{binary() => binary()}
   @typep de_date :: binary()
 
   plug Tesla.Middleware.FormUrlencoded
@@ -50,7 +50,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   end
 
   @spec show(result()) :: result() | no_return()
-  defp show({_, _, _, desc} = result) do
+  defp show(%{"desc" => desc} = result) do
     IO.puts("\n#{desc}\n#{url(result)}")
 
     case IO.gets("Continue?") do
@@ -61,18 +61,23 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   end
 
   @spec url(result()) :: binary()
-  defp url({district, type, id, _desc}) do
+  defp url(%{"district" => district, "type" => type, "id" => id}) do
     Allris.url(district, type, id)
   end
 
   @spec check_district(binary(), status()) :: Enumerable.t()
   defp check_district(district, status) do
-    de_date_range = "#{status[district]}-#{today()}"
+    # go a while back to ensure we don't get shown the same docs again, just
+    # because their discussion was posteponed and similar changes
+    [d, m, y] = String.split(status[district], ".") |> Enum.map(&String.to_integer/1)
+    date = Date.new!(y, m, d) |> Date.add(-30)
+    from = "#{date.day}.#{date.month}.#{date.year}"
+    de_date_range = "#{from}-#{today()}"
 
     Stream.flat_map(@filter_keywords, fn keyword ->
       query(district, keyword, de_date_range)
     end)
-    |> Stream.uniq_by(fn {_district, type, id, _desc} -> {type, id} end)
+    |> Stream.uniq_by(fn %{"type" => type, "id" => id} -> {type, id} end)
   end
 
   @spec query(binary(), binary(), binary()) :: [result()]
@@ -91,7 +96,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
       type = hd(Floki.attribute(elem, "name"))
       id = hd(Floki.attribute(elem, "value"))
       desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
-      {district, type, id, desc}
+      %{"district" => district, "type" => type, "id" => id, "desc" => desc}
     end)
   end
 

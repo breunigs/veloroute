@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
+      {"Bauvergabe, Abschnitt Neuländer Straße bis Neuländer Hauptdeich", "Februar 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/dd5a2515-763c-4038-81d5-d7b510272b89"},
       {"Pressemitteilung zum Baufortschritt", "September 2022",
        "https://www.hamburg.de/harburg/pressemeldungen/16492914/veloroute-11-knoten-hannoversche-neulaender-strasse-wieder-befahrbar/"},
       {"Bauzeiträume Harburg", "September 2022",

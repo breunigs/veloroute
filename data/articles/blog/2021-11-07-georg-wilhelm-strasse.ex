@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def start(), do: ~d[2021-08-02]
   def stop(), do: ~d[2023-11-12]
-  def construction_site_id_hh(), do: [13785, 292_964]
+  def construction_site_id_hh(), do: [13785, 292_964, 303_875]
 
   def type(), do: :construction
   def tags(), do: ["FR6"]
