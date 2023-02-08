@@ -1,3 +1,2 @@
 **
 !./_build/prod/*.tar.gz
-!./data/cache/*.dets

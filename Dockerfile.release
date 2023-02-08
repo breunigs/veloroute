@@ -10,7 +10,6 @@ FROM alpine:${ALPINE_VERSION} as runtime
 RUN apk add --no-cache ncurses-libs libstdc++ libgcc ffmpeg
 
 COPY --from=builder /build/ /app/
-COPY data/cache/ /app/data/cache/
 WORKDIR /app/
 EXPOSE 4000
 VOLUME "/app/build/videos"

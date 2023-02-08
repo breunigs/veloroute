@@ -183,7 +183,7 @@ defmodule Mix.Tasks.Deploy do
     Util.cmd([
       "sh",
       "-c",
-      "docker save '#{Docker.image_name_release()}' | bzip2 | ssh #{Settings.deploy_ssh_name()} 'bunzip2 | docker load'"
+      "docker save '#{Docker.image_name_release()}' | zstd -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
     ])
   end
 
