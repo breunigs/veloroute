@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
   def title(), do: "Bahnquerung Hafenbahn (Veloroute 10)"
 
   def type(), do: :intent
-  def tags(), do: ["10"]
+  def tags(), do: ["10", "H.04", "H.05"]
 
   def start(), do: ~d[2024]
 

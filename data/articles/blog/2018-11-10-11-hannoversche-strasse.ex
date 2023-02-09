@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def title(), do: "Hannoversche Straße (Veloroute 11)"
 
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2023-12-31]
+  def stop(), do: ~d[2024-02]
 
   def type(), do: :construction
   # commented out, as there's no entry for follow up construction yet
