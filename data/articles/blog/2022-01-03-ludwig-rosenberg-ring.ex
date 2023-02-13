@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
   def links(_assigns) do
     [
       {"Baustellenkoordination", "Januar 2023",
-       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1007110"},
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/to020.asp?TOLFDNR=1025381"},
       {"Haushaltsplan 2022 Bezirk Bergedorf (Entwurf)",
        "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"},
       {"Zeitungsartikel zur Umbauplanung", "März 2022",
