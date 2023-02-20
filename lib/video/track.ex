@@ -119,7 +119,12 @@ defmodule Video.Track do
           {:error, reason}
 
         {file, from, to}, acc ->
-          render_segment(fade_in_ms, tsvs[file], from, to, acc)
+          with %Video.TrimmedSource{} = tsv <- tsvs[file] do
+            render_segment(fade_in_ms, tsv, from, to, acc)
+          else
+            {:error, reason} -> {:error, reason}
+            nil -> {:error, "Could not find a TrimmedSourceVideo for #{file}."}
+          end
 
         other, _acc ->
           {:error,

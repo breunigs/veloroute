@@ -97,6 +97,9 @@ defmodule Video.Source do
       |> assert_monotonic_increase(self)
       |> maybe_stretch_to_video(self)
       |> remove_unnecessary_points()
+    else
+      {:error, error} -> {:error, "failed to parse GPX for #{self.source}:\n#{inspect(error)}"}
+      error -> {:error, "failed to parse GPX for #{self.source}:\n#{inspect(error)}"}
     end
   end
 
