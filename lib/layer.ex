@@ -1,5 +1,5 @@
 defmodule Layer do
-  @type route_group() :: :alltag | :freizeit | :rsw
+  @type route_group() :: :alltag | :freizeit | :rsw | :bezirk
 
   @type t() :: %Layer{
           name: binary(),

@@ -16830,10 +16830,8 @@
   <node id='-67817906' lat='53.56777769906' lon='9.9817013526' />
   <node id='-67817907' lat='53.56789875833' lon='9.98214123487' />
   <node id='-67817908' lat='53.56749097199' lon='9.98273133159' />
-  <node id='-67817913' lat='53.56796883874' lon='9.98413680911' />
-  <node id='-67817914' lat='53.56796883874' lon='9.98461960673' />
-  <node id='-67817915' lat='53.56766937621' lon='9.98469470859' />
-  <node id='-67817916' lat='53.56773466728' lon='9.98644914892' />
+  <node id='-67817915' lat='53.56715327623' lon='9.9840134275' />
+  <node id='-67817916' lat='53.5669477728' lon='9.98652961519' />
   <node id='-67817918' lat='53.56628990653' lon='9.98825668752' />
   <node id='-67817919' lat='53.56635362422' lon='9.98919546068' />
   <node id='-67817920' lat='53.56675823249' lon='9.99558447719' />
@@ -16936,6 +16934,10 @@
   <node id='-67818032' lat='53.63522403368' lon='9.96535061717' />
   <node id='-67818033' lat='53.63718330076' lon='9.96614454031' />
   <node id='-67818034' lat='53.6375395202' lon='9.96620891333' />
+  <node id='-68376937' lat='53.56727114829' lon='9.98304783762' />
+  <node id='-68376942' lat='53.56718194543' lon='9.9835199064' />
+  <node id='-68376946' lat='53.56688247733' lon='9.98449086607' />
+  <node id='-68376949' lat='53.56687929149' lon='9.98539745271' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -50460,9 +50462,11 @@
     <nd ref='-67817906' />
     <nd ref='-67817907' />
     <nd ref='-67817908' />
-    <nd ref='-67817913' />
-    <nd ref='-67817914' />
+    <nd ref='-68376937' />
+    <nd ref='-68376942' />
     <nd ref='-67817915' />
+    <nd ref='-68376946' />
+    <nd ref='-68376949' />
     <nd ref='-67817916' />
   </way>
   <way id='-20022884'>
@@ -64110,8 +64114,8 @@
     <member type='way' ref='-20022368' role='' />
     <member type='way' ref='-20022370' role='' />
     <member type='way' ref='-20022626' role='' />
-    <tag k='name' v='br-eimsbuettel-nord-sued' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-nord-sued' />
   </relation>
   <relation id='-102816'>
     <member type='way' ref='-20022623' role='' />
@@ -64121,15 +64125,15 @@
     <member type='way' ref='-20022432' role='' />
     <member type='way' ref='-19036565' role='' />
     <member type='way' ref='-20022698' role='' />
-    <tag k='name' v='br-eimsbuettel-sued' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-sued' />
   </relation>
   <relation id='-102830'>
     <member type='way' ref='-20022850' role='' />
     <member type='way' ref='-20022843' role='' />
     <member type='way' ref='-20022703' role='' />
-    <tag k='name' v='br-eimsbuettel-rotherbaum' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-rotherbaum' />
   </relation>
   <relation id='-102882'>
     <member type='way' ref='-20022848' role='' />
@@ -64139,25 +64143,25 @@
     <member type='way' ref='-20022836' role='forward' />
     <member type='way' ref='-20022747' role='' />
     <member type='way' ref='-20022745' role='' />
-    <tag k='name' v='br-eimsbuettel-isebek' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-isebek' />
   </relation>
   <relation id='-102928'>
     <member type='way' ref='-20022884' role='' />
     <member type='way' ref='-20022900' role='' />
     <member type='way' ref='-20022868' role='' />
-    <tag k='name' v='br-eimsbuettel-rotherbaumring' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-rotherbaumring' />
   </relation>
   <relation id='-102952'>
     <member type='way' ref='-20022913' role='' />
-    <tag k='name' v='br-eimsbuettel-eidelstedt' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-eidelstedt' />
   </relation>
   <relation id='-102972'>
     <member type='way' ref='-20022963' role='' />
-    <tag k='name' v='br-eimsbuettel-niendorf' />
     <tag k='ignore' v='yes' />
+    <tag k='name' v='br-eimsbuettel-niendorf' />
   </relation>
   <relation id='191882' version='1'>
     <member type='way' ref='238754832' role='' />

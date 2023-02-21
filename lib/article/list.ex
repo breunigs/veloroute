@@ -4,7 +4,8 @@ defmodule Article.List do
 
   @spec all :: t
   def all() do
-    Util.modules_with_prefix(Article.module_name())
+    Article.known_categories()
+    |> Enum.flat_map(&category/1)
   end
 
   @spec category(binary()) :: t
