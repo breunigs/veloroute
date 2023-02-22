@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
   def summary(),
     do: "Fahrbahn enger, Mischverkehr bleibt, extra Baumreihe. Mehr Maßnahmen gegen Falschfahrer."
 
-  def start(), do: ~d[2023Q2]
+  def start(), do: ~d[2024Q2]
 
   def type(), do: :planned
 
@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
       {"Lageplan", "1. Entwurf, 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"},
+       "https://web.archive.org/web/20220519164254/https://lsbg.hamburg.de/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"},
       {"Erläuterungsbericht", "1. Entwurf, 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"}
     ]
@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
     <p>Aus der Straße <.v bounds="9.989586,53.553871,9.993511,53.555314" lon={9.99103} lat={53.554704} dir="backward" ref="4">Neuer Jungfernstieg</.v> dürfen KFZ künftig nur noch rechts abbiegen. Es ist außerdem vorgesehen dort eine Tempo-20-Zone und eine KFZ-Einbahnstraße Richtung Süden einzurichten. Die Details dazu werden von einem anderen Amt erarbeitet und die Planung zum Jungfernstieg greift diese Vorschläge nur auf. Die Pläne zum Neuen Jungfernstieg sind noch nicht bekannt.</p>
 
-    <p>Am <.v bounds="9.993117,53.551624,9.995346,53.552726" lon={9.994928} lat={53.552167} dir="backward" ref="6">Ballindamm</.v> werden die KFZ-Abbiegebeziehungen für KFZ ebenfalls eingeschränkt, um den KFZ-Durchgangsverkehr bestmöglich zu reduzieren. Auch hier erwägt man dies mittels Pollern sicherzustellen.</p>
+    <p>Am <.v bounds="9.993117,53.551624,9.995346,53.552726" lon={9.994928} lat={53.552167} dir="backward" ref="6">Ballindamm</.v> werden die KFZ-Abbiegebeziehungen für KFZ ebenfalls eingeschränkt, um den KFZ-Durchgangsverkehr bestmöglich zu reduzieren.</p>
 
     <p>Gebaut wird zunächst an Kabeln und Leitungen im Boden. Im Anschluss sollen der Umbau von Jungfernstieg und Neuer Jungfernstieg aufeinander abgestimmt werden.</p>
 
