@@ -8,6 +8,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     "mpv",
     "--pause",
     "--no-resume-playback",
+    "--force-window=immediate",
     "--framedrop=no",
     "--audio=no",
     "--keep-open=yes",
