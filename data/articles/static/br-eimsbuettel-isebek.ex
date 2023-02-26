@@ -59,15 +59,27 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
 
   def links(_assigns) do
     [
-      {"Vorstellung Bezirksrouten Eimsbüttel",
+      {"Vorstellung Bezirksrouten Eimsbüttel", "Februar 2023, Details in Anhang IV",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008163"},
       {"Infoseite Eimsbüttels zu den Bezirksrouten",
        "https://www.hamburg.de/eimsbuettel/bezirksrouten/"}
     ]
   end
 
+  # TODO: links
   def text(assigns) do
     ~H"""
+    <p>Die Bezirksroute „Isebek“ in Eimsbüttel verläuft von der Waterloostraße (<.icon>13</.icon>) in Richtung Nordosten. Die Route orientiert sich dabei grob am namensgebenden Isebekkanal. An der Schäferkampsallee (<.icon>2</.icon>) und Bogenstraße (<.icon>3</.icon>) quert sie Hamburgs Velorouten. Sie endet an der Streekbrücke (<.icon>4</.icon>).</p>
+
+    <h4>Speziell für diese Route</h4>
+    <p>Die Vorplanung setzt meist auf drei Konzepte, um die Route für den Radverkehr zu verbessern:</p>
+    <ul>
+      <li><strong>Fahrradstraßen:</strong> Detailverbesserungen, die den Stellenwert des Radverkehrs hervorheben. Etwa Markierungen, Vorfahrt und durchgängig breite Fahrgasse. Vorgeschlagen für die Bellealliancestraße und den Abschnitt vom Grindelberg bis zum Mittelweg.</li>
+      <li><strong>Radfahrstreifen:</strong> Neu angelegt oder verbreitert, ggf. mit Trennelementen zum KFZ-Verkehr. Vorgeschlagen für Moorkamp, Schlankreye und dem bereits ausgebauten Abschnitt ab Frauenthal.</li>
+      <li><strong>KFZ-Einbahnstraßen:</strong> Um KFZ-Durchgangsverkehr von der Route fernzuhalten, sollen KFZ-Einbahnstraßen eingerichtet werden. Sie sind dabei so gelegt, dass eine durchgängige Fahrt entlang der Route für KFZ nicht möglich ist (etwa → – ←). Vorgeschlagen für Moorkamp/Schlankreye, und Innocentiastraße/Hagedornstraße.</li>
+    </ul>
+
+    <p>Für die Schäferkampsallee wird vorgeschlagen die südliche Nebenfahrbahn zu einem Zweirichtungsradweg umzubauen. Die Anschlüsse an Bellealliancestraße bzw. Moorkamp sollen dem angepasst werden um direkteres Queren zu ermöglichen. Als weniger attraktive Alternative werden Detailverbesserungen der heutigen Führung vorgeschlagen. Etwa breiterer Radweg auf Kosten des Fußweges auf der Nordseite, oder eine Fahrradstraße auf der Südseite.</p>
 
     <%= Data.Article.Shared.bezirksroute(:eimsbuettel) %>
 

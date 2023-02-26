@@ -25,12 +25,11 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
         parent_ref: __MODULE__,
         text: "von der Tiergartenstraße zum Alstervorland",
         videos: [
-          {"2023-02-19-bezirksrouten-eimsbuettel/GX015124", "00:00:03.437", "00:00:12.246"},
-          # could use a little self-cut near Bundesstraße (around 10s in) and a
-          # slightly earlier ending.
-          {"2023-02-19-bezirksrouten-eimsbuettel/GX015125", :start, :end},
-          {"2023-02-19-bezirksrouten-eimsbuettel/GX015126", :start, "00:00:05.339"},
-          {"2023-02-19-bezirksrouten-eimsbuettel/GX015126", "00:00:17.117", :end},
+          {"2023-02-25-eimsbuettel-br2/GX015237", "00:00:40.699", :end},
+          {"2023-02-25-eimsbuettel-br2/GX015238", :start, :end},
+          {"2023-02-25-eimsbuettel-br2/GX015239", :start, :end},
+          {"2023-02-25-eimsbuettel-br2/GX015240", :start, "00:00:08.208"},
+          {"2023-02-19-bezirksrouten-eimsbuettel/GX015126", "00:00:20.487", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015127", :start, "00:00:14.815"},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015129", :start, "00:00:11.645"}
         ]
