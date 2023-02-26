@@ -1,6 +1,10 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=p20230214
+# ARG RAV1E_VERSION=refs/tags/p20230214
+# ARG RAV1E_REPO=xiph
+ARG RAV1E_VERSION=3bd454f701741c8972276799f54048e35408c2ea
+ARG RAV1E_REPO=BlueSwordM
+
 ARG FFMPEG_VERSION=5.1.2
 ARG BLUR_VERSION=2de67ec0d476f6a2c3bc939dbfee8242239c2375
 
@@ -15,7 +19,7 @@ RUN  \
 
 RUN \
   cd /downloads/ && \
-  wget https://github.com/xiph/rav1e/archive/refs/tags/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
+  wget https://github.com/${RAV1E_REPO}/rav1e/archive/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
   tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
 
 RUN \
