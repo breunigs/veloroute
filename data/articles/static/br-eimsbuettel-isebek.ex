@@ -62,7 +62,9 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
       {"Vorstellung Bezirksrouten Eimsbüttel", "Februar 2023, Details in Anhang IV",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008163"},
       {"Infoseite Eimsbüttels zu den Bezirksrouten",
-       "https://www.hamburg.de/eimsbuettel/bezirksrouten/"}
+       "https://www.hamburg.de/eimsbuettel/bezirksrouten/"},
+      {"Beteiligungsverfahren", "abgeschlossen, 2021",
+       "https://bezirksrouten-eimsbuettel.beteiligung.hamburg/#/"}
     ]
   end
 
