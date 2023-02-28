@@ -59,6 +59,15 @@ defmodule Settings do
         outline: []
       },
       %Layer{
+        name: "Bezirksrouten",
+        route_group: :bezirk,
+        active: false,
+        line: ["br-line", "br-line-tunnel"],
+        icon: ["br-oneway"],
+        fill: [],
+        outline: []
+      },
+      %Layer{
         name: "Radschnellwege",
         route_group: :rsw,
         active: false,
