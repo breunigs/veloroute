@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Umbau", "Februar 2023",
+       "https://www.hamburg.de/bvm/medien/16946456/2023-02-28-bvm-willhemsburg/"},
       {"Baustelleninfo", "Januar 2023",
        "https://lsbg.hamburg.de/resource/blob/654120/3a087ec24f904c9d84657149f8706e40/georg-wilhelm-strasse-anliegerinformation-januar-2023-data.pdf"},
       {"Pressemitteilung zum Baustart",

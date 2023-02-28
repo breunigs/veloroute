@@ -22,7 +22,7 @@ defmodule Data.Article.Static.BrEimsbuettelEidelstedtNiendorf do
         from: "Lohkampstraße",
         to: "König-Heinrich-Weg",
         parent_ref: __MODULE__,
-        text: "von der Lohkampstraße zum König-Heinrich-Weg (→ Niendorf)",
+        text: "Bezirksroute Eimsbüttel „Eidelstedt“ → „Niendorf“",
         videos: [
           {"2023-02-25-eimsbuettel-br2/GX015253", "00:02:04.099", :end},
           {"2023-02-25-eimsbuettel-br2/GX015254", :start, :end},
@@ -39,7 +39,7 @@ defmodule Data.Article.Static.BrEimsbuettelEidelstedtNiendorf do
         from: "König-Heinrich-Weg",
         to: "Lohkampstraße",
         parent_ref: __MODULE__,
-        text: "vom König-Heinrich-Weg zur Lohkampstraße (→ Eidelstedt)",
+        text: "Bezirksroute Eimsbüttel „Niendorf“ → „Eidelstedt“",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015221", "00:01:24.734", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015222", :start, :end},

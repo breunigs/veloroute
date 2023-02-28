@@ -23,7 +23,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
         from: "Tiergartenstraße",
         to: "Alstervorland",
         parent_ref: __MODULE__,
-        text: "von der Tiergartenstraße zum Alstervorland",
+        text: "Bezirksroute Eimsbüttel „Rotherbaumring“ → Alstervorland",
         videos: [
           {"2023-02-25-eimsbuettel-br2/GX015237", "00:00:40.699", :end},
           {"2023-02-25-eimsbuettel-br2/GX015238", :start, :end},
@@ -42,7 +42,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
         from: "Alstervorland",
         to: "Tiergartenstraße",
         parent_ref: __MODULE__,
-        text: "vom Alstervorland zur Tiergartenstraße",
+        text: "Bezirksroute Eimsbüttel „Rotherbaumring“ → Tiergartenstraße",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015159", "00:00:13.413", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015160", :start, :end},

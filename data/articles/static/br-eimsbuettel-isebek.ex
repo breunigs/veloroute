@@ -9,7 +9,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
 
   def summary(),
     do:
-      "Die Bezirksroute „Isebek“ in Eimsbüttel verläuft von der Waterloostraße nach Nordenosten Richtung Streekbrücke."
+      "Die Bezirksroute „Isebek“ in Eimsbüttel verläuft von der Waterloostraße nach Nordosten Richtung Streekbrücke."
 
   def tags(), do: [id(), "br-eimsbuettel"]
 
@@ -23,7 +23,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
         from: "Waterloostraße",
         to: "Streekbrücke",
         parent_ref: __MODULE__,
-        text: "von der Waterloostraße zur Streekbrücke",
+        text: "Bezirksroute Eimsbüttel „Isebek“ → Streekbrücke",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015170", "00:01:19.646", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015171", :start, :end},
@@ -43,7 +43,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
         from: "Streekbrücke",
         to: "Waterloostraße",
         parent_ref: __MODULE__,
-        text: "von der Streekbrücke zur Waterloostraße",
+        text: "Bezirksroute Eimsbüttel „Isebek“ → Waterloostraße",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015177", "00:00:53.487", "00:01:12.039"},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015177", "00:01:18.478", :end},

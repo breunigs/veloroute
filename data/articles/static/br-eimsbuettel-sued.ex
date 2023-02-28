@@ -15,7 +15,6 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
 
   def tracks(),
     do: [
-      # TODO : gpx check
       %Video.Track{
         renderer: 3,
         group: "sued",
@@ -23,7 +22,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
         from: "Langenfelder Damm",
         to: "Tiergartenstraße",
         parent_ref: __MODULE__,
-        text: "vom Langenfelder Damm zur Tiergartenstraße",
+        text: "Bezirksroute Eimsbüttel „Süd“ → Tiergartenstraße",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015169", "00:01:12.606", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015170", :start, "00:01:02.596"},
@@ -32,8 +31,6 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015164", :start, "00:00:10.675"}
         ]
       },
-
-      ## GPX OK
       %Video.Track{
         renderer: 3,
         group: "sued",
@@ -41,7 +38,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
         from: "Tiergartenstraße",
         to: "Langenfelder Damm",
         parent_ref: __MODULE__,
-        text: "von der Tiergartenstraße zum Langenfelder Damm",
+        text: "Bezirksroute Eimsbüttel „Süd“ → Langenfelder Damm",
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015165", :start, :end},
           {"2021-08-01-freizeit9-anfang/GX012482", :start, :end},
@@ -65,7 +62,6 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
     ]
   end
 
-  # TODO links
   def text(assigns) do
     ~H"""
     <p>Die Bezirksroute „Süd“ in Eimsbüttel verbindet <.v bounds="9.973229,53.56279,9.981719,53.567371" lon={9.97769} lat={53.56373} dir="forward" ref="br-eimsbuettel-sued">Tiergartenstraße</.v> und <.v bounds="9.95012,53.561201,9.966466,53.56867" lon={9.959837} lat={53.564074} dir="forward" ref="br-eimsbuettel-sued">Schulterblatt</.v> in Ost-West Richtung. Dort knickt sie nach Norden ab und verläuft grob parallel zur <.v bounds="9.939885,53.564294,9.95721,53.573998" lon={9.949839} lat={53.569237} dir="forward" ref="br-eimsbuettel-sued">Kieler Straße</.v>. Am <.v bounds="9.933825,53.575375,9.944016,53.583987" lon={9.938682} lat={53.580075} dir="forward" ref="br-eimsbuettel-sued">Langenfelder Damm</.v> mündet sie in die Veloroute <.icon>2</.icon> bzw. den Radschnellweg <.icon>RSW</.icon> nach <.a name="rsw-elmshorn">Elmshorn</.a>.</p>
