@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
 
   @shortdoc "Generate GPX files for the articles that have a matching relation in the map"
   def run(_) do
+    IO.puts(:stderr, "generating GPX")
     Mix.Task.run("app.start")
     File.mkdir_p!(@out)
 

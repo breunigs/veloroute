@@ -21,11 +21,24 @@ defmodule VelorouteWeb.Live.Map do
     socket =
       socket
       |> assign(assigns)
+      |> filter_styles_by_env()
       |> update_server_route_groups()
       |> reset_layers_on_change()
       |> maybe_map_preview()
 
     {:ok, socket}
+  end
+
+  defp filter_styles_by_env(%{assigns: %{styles: styles}} = socket) do
+    env = Application.get_env(:veloroute, :env)
+
+    styles =
+      Enum.filter(styles, fn style ->
+        envs = Map.get(style, :only, [env])
+        Enum.member?(envs, env)
+      end)
+
+    assign(socket, :styles, styles)
   end
 
   @spec render(%{:styles => any, optional(any) => any}) :: Phoenix.LiveView.Rendered.t()

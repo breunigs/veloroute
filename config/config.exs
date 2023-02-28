@@ -36,7 +36,9 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :phoenix, static_compressors: [PhoenixBakery.Gzip, PhoenixBakery.Brotli]
+config :phoenix,
+  static_compressors: [PhoenixBakery.Gzip, PhoenixBakery.Brotli, Basemap.IgnorePbfDigester],
+  gzippable_exts: ~w(.js .map .css .txt .text .html .json .svg .eot .ttf .gpx .kml)
 
 config :tesla, adapter: Tesla.Adapter.Hackney
 
@@ -63,6 +65,10 @@ config :dart_sass,
 config :web_push_encryption, :vapid_details,
   public_key: PhoenixCredentials.web_push_public_key(),
   private_key: PhoenixCredentials.web_push_private_key()
+
+config :mime, :types, %{
+  "application/x-protobuf" => ["pbf"]
+}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

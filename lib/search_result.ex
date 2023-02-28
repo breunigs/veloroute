@@ -20,6 +20,11 @@ defmodule SearchResult do
     Enum.sort(a ++ b, &order/2)
   end
 
+  @spec sort([t()] | Enumerable.t()) :: [t()]
+  def sort(a) do
+    Enum.sort(a, &order/2)
+  end
+
   defp order(%__MODULE__{type: a, relevance: x}, %__MODULE__{type: b, relevance: x}) do
     type_to_num(a) >= type_to_num(b)
   end
@@ -62,7 +67,9 @@ defmodule SearchResult do
 
   def ping(sr) do
     center =
-      with %{type: "poi", center: %{lat: lat, lon: lon}} <- sr do
+      with %{lat: lat, lon: lon} <- sr.center,
+           %{minLat: minLat, maxLat: maxLat, minLon: minLon, maxLon: maxLon}
+           when maxLat - minLat < 0.0001 and maxLon - minLon < 0.0001 <- sr.bounds do
         %{lat: lat, lon: lon}
       else
         _ -> nil

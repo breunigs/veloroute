@@ -89,19 +89,20 @@ defmodule Mix.Tasks.Deploy do
   end
 
   defp make_release(_skip) do
+    Util.banner("Generating Assets")
+    Mix.Tasks.Velo.Assets.Prepare.run([])
+
     [
       ~w(mix setup),
-      ~w(mix esbuild default --minify),
-      ~w(mix sass default --no-source-map --style=compressed),
-      ~w(cp -r data/images/ priv/static/),
-      # reuse "test" environment so we don't have to compile "dev" for the container
-      ~w(MIX_ENV=test mix velo.favicon.raster),
       ~w(mix deps.compile),
       ~w(mix compile),
-      ~w(mix velo.gpx.generate),
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),
-      ~w(rm -rf priv/static/assets/)
+      # TODO there should be a better way to clean digests, but the digest clean
+      # methods don't clean up old digests
+      ~w(mv priv/static/assets/basemap priv/static/__basemap),
+      ~w(rm -rf priv/static/assets/),
+      ~w(mv priv/static/__basemap priv/static/assets/basemap)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
@@ -126,7 +127,20 @@ defmodule Mix.Tasks.Deploy do
     try do
       Process.sleep(500)
       true = Enum.find_value(0..20, &wait_until_up/1)
-      true = Enum.all?(~w(/alltagsroute-1 /updates.atom), &report_status_200?/1)
+
+      true =
+        Enum.all?(
+          ~w(
+            /alltagsroute-1
+            /updates.atom
+            /images/rss.svg
+            /assets/basemap/tiles/9/270/165.pbf.gz
+            /assets/basemap/styles/standard.json
+            /assets/app.js
+            /assets/app.css
+          ),
+          &report_status_200?/1
+        )
     after
       Docker.stop_release()
     end
@@ -178,12 +192,12 @@ defmodule Mix.Tasks.Deploy do
   defp upload(%{skip_deploy: true}), do: nil
 
   defp upload(_skip) do
-    Util.banner("copying to image to #{Settings.deploy_ssh_name()}")
+    Util.banner("copying image to #{Settings.deploy_ssh_name()}")
 
     Util.cmd([
       "sh",
       "-c",
-      "docker save '#{Docker.image_name_release()}' | zstd -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
+      "docker save '#{Docker.image_name_release()}' | zstd -12 -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
     ])
   end
 

@@ -1,14 +1,32 @@
 defmodule Settings do
   # max extent the user may navigate the map (min lon, min lat, max lon, max lat)
   def bounds, do: [8.9236, 53.1336, 10.8897, 53.9682]
+  # tiny debug area around Landungsbrücken for basemap testing
+  # def bounds, do: [9.95815, 53.54178, 9.97641, 53.54781]
+
   # start settings if no other map location/image is selected
   def initial,
     do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
   def mapbox_styles,
     do: [
-      %{name: "Karte", id: "breunigs/clbj46g53001114n25ayf1yqh", active: true},
-      %{name: "Satellitenbild", id: "breunigs/clbj5w269001514nuls82k7t7", active: false}
+      %{
+        name: "Karte (intern)",
+        id: "/assets/basemap/styles/standard.json",
+        active: true
+      },
+      %{
+        name: "Satellit (intern)",
+        id: "/assets/basemap/styles/satellite.json",
+        active: false
+      },
+      %{
+        name: "Mapbox: Karte",
+        id: "breunigs/clbj46g53001114n25ayf1yqh",
+        active: false
+      },
+      %{name: "Mapbox: Satellit", id: "breunigs/clbj5w269001514nuls82k7t7", active: false}
+      # only: [:dev]
     ]
 
   def mapbox_layers,
@@ -61,7 +79,14 @@ defmodule Settings do
   # no trailing slash
   def url, do: "https://veloroute.hamburg"
 
-  def street_polyline_source, do: "https://download.geofabrik.de/europe/germany-latest.osm.pbf"
+  def osm_data_source, do: "https://download.geofabrik.de/europe/germany-latest.osm.pbf"
+  def osm_data_source_max_age_days, do: 30 * 6
+
+  def osm_data_source_extra_shapes,
+    do: [
+      "https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip"
+      # "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_urban_areas.zip"
+    ]
 
   def feed_title, do: "veloroute.hamburg – Neue Artikel"
   def feed_author, do: "veloroute.hamburg"
@@ -79,7 +104,6 @@ defmodule Settings do
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
   def video_source_dir_abs, do: Path.join(video_dir_abs(), "source")
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
-  # Note: must be manually adjusted in robots.txt
   def video_serve_path, do: "videos-rendered"
 
   # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB

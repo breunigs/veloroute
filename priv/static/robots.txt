@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /videos-rendered/
+Disallow: /map/___hillshade/
+Disallow: /map/___satellite/
 Disallow: /map/___static/

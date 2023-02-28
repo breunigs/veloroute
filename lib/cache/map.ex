@@ -1,6 +1,9 @@
 defmodule Cache.Map do
-  @external_resource Map.Parser.default_map_path()
+  @source Map.Parser.default_map_path()
+  @external_resource @source
   @data Benchmark.measure("#{__MODULE__}: loading", &Map.Parser.load_default/0)
+
+  def source, do: @source
 
   def nodes, do: full_map().nodes
   def ways, do: full_map().ways

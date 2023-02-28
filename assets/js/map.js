@@ -29,6 +29,7 @@ const routeLayers = [
   'vr-line-off-none', 'vr-line-off-none-tunnel',
   'vr-line-off-p1', 'vr-line-off-p1-tunnel',
   'vr-line-off-m1', 'vr-line-off-m1-tunnel',
+  'br-line', 'br-line-tunnel',
   'fr-line', 'fr-line-tunnel',
   'rsw-line', 'rsw-line-tunnel',
   'extra-line'
@@ -536,6 +537,12 @@ function setup() {
     map.remove()
   }
 
+  let style = document.getElementById('map').dataset.style
+  if (style[0] != "/") {
+    style = "mapbox://styles/" + style
+  }
+  console.log("map: loading style", style)
+
   map = new mapboxgl.Map({
     container: 'map',
     maxBounds: settings.maxBounds.split(","),
@@ -543,7 +550,7 @@ function setup() {
     fitBoundsOptions: fitBoundsOpt,
     minZoom: 9,
     maxZoom: 19,
-    style: 'mapbox://styles/' + document.getElementById('map').dataset.style,
+    style: style,
     pitchWithRotate: false,
     dragRotate: false,
     touchPitch: false,

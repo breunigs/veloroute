@@ -1,4 +1,5 @@
 tools/*seen*.txt binary
+*.pbf binary
 data/map.osm binary
 data/auto_generated/feeds_seen/*.json binary
 data/auto_generated/street_polyline.ex binary

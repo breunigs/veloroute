@@ -1,0 +1,32 @@
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION} as builder
+
+RUN apk add --no-cache \
+  bash \
+  g++ \
+  make \
+  sqlite-dev \
+  unzip \
+  wget \
+  zlib-dev
+
+ARG TIPPECANOE_COMMIT=2.23.0
+ENV TIPPECANOE_COMMIT=$TIPPECANOE_COMMIT
+RUN wget --no-verbose --output-document /tmp/tippecanoe.zip https://github.com/felt/tippecanoe/archive/${TIPPECANOE_COMMIT}.zip \
+  && unzip -q -d /tmp/ /tmp/tippecanoe.zip \
+  && mv /tmp/tippecanoe-${TIPPECANOE_COMMIT} /build
+
+WORKDIR /build
+RUN  make -j && make install PREFIX=/result
+
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION} as runner
+
+
+RUN apk add --no-cache \
+  libgcc \
+  libstdc++ \
+  sqlite-libs \
+  zlib
+
+COPY --from=builder /result /usr/

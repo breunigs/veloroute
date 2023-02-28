@@ -10,7 +10,7 @@ defmodule Veloroute.MixProject do
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      dialyzer: [plt_add_apps: [:mix, :ex_unit]],
+      dialyzer: [plt_add_apps: [:mix, :ex_unit, :esbuild, :dart_sass]],
       releases: [
         prod: [
           include_executables_for: [:unix],
@@ -19,7 +19,8 @@ defmodule Veloroute.MixProject do
       ],
       preferred_cli_env: [
         test: :test,
-        dialyzer: :test
+        dialyzer: :test,
+        "velo.assets.prepare": :test
       ],
       aliases: aliases()
     ]
@@ -70,6 +71,7 @@ defmodule Veloroute.MixProject do
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
       {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
+      {:file_system, "~> 0.2", only: [:dev, :test]},
       {:floki, ">= 0.30.0"},
       {:fuzzy_compare, "~> 1.0"},
       {:gettext, "~> 0.11"},
@@ -78,8 +80,8 @@ defmodule Veloroute.MixProject do
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
       {:natural_order, "~> 0.2.0"},
-      {:phoenix_bakery, "~> 0.1.0", runtime: false},
-      {:phoenix_html, "~> 3.0"},
+      {:phoenix_bakery, "~> 0.1.2", runtime: false},
+      {:phoenix_html, "~> 3.2.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.18.1"},
       {:phoenix_pubsub, "~> 2.0"},

@@ -17,8 +17,7 @@ config :veloroute, VelorouteWeb.Endpoint,
       :install_and_run,
       [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
     },
-    # TODO: make this listen to actual changes in data/images/
-    images: {File, :cp_r!, ["data/images/", "priv/static/images/"]}
+    assets: {Mix.Tasks.Velo.Assets.Prepare, :run, [nil]}
   ]
 
 # ## SSL Support

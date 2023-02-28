@@ -1,8 +1,6 @@
 defmodule Maptiler do
   require Logger
 
-  @cache_path :"data/cache/geocode.dets"
-
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, "https://api.maptiler.com"
@@ -12,59 +10,56 @@ defmodule Maptiler do
     {"Cache-Control", "no-cache"}
   ]
 
-  plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.Query, key: Credentials.maptiler_api_key()
   plug Tesla.Middleware.JSON
   # for debugging help
-  plug Tesla.Middleware.Logger
+  # plug Tesla.Middleware.Logger
+  plug TeslaCache
 
-  def bounds(query, save: save) when query != "" do
-    try do
-      [minLon, minLat, maxLon, maxLat] =
-        geocode(query, save: save)
-        |> Map.fetch!("features")
-        |> hd()
-        |> Map.fetch!("bbox")
+  @bbox_str Settings.bounds() |> VelorouteWeb.VariousHelpers.to_string_bounds()
+  @language "de"
 
-      %{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
-    rescue
-      _err ->
-        Logger.warn("Failed to resolve #{query} on MapTiler")
-        nil
-    end
-  end
+  @spec search(binary | nil, nil | maybe_improper_list | map) :: [SearchResult.t()]
+  def search(query, bounds)
+  def search(nil, _), do: []
+  def search("", _), do: []
+  def search(query, nil), do: search(query, Settings.initial())
 
-  defp geocode(query, save: save) do
-    :dets.lookup(cache(), query)
-    |> case do
-      [{^query, body}] ->
-        body
-
-      _ ->
-        body = resolve(query)
-        if save, do: :dets.insert_new(cache(), {query, body})
-        body
-    end
-  end
-
-  defp resolve(query) do
-    bounds = Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")
-
-    [lon1, lat1, lon2, lat2] = Settings.bounds()
-    center = "#{(lat1 + lat2) / 2.0},#{(lon1 + lon2) / 2.0}"
-
-    Logger.info("Resolving MapTiler GeoCode query: #{query}")
+  def search(query, bounds) do
+    center = bounds |> Geo.BoundingBox.parse() |> Geo.CheapRuler.center()
+    center = "#{center.lon},#{center.lat}"
 
     query = URI.encode(query)
 
     {:ok, resp} =
-      get("/geocoding/#{query}.json", query: [proximity: center, bbox: bounds, limit: 1])
+      get("/geocoding/#{query}.json",
+        query: [proximity: center, bbox: @bbox_str, limit: 10, language: @language]
+      )
 
-    resp.body
-  end
+    Enum.map(resp.body["features"], fn feat ->
+      [lon, lat] = feat["center"]
+      bbox = Geo.BoundingBox.parse(feat["bbox"])
 
-  defp cache do
-    {:ok, table} = :dets.open_file(:maptiler_geocode, file: @cache_path, type: :set)
-    table
+      subtext =
+        feat["context"]
+        |> Enum.map(& &1["text"])
+        |> Enum.take(3)
+        |> Kernel.--(["Deutschland"])
+        |> Enum.join(", ")
+
+      # subtext =
+      #   feat["place_name"]
+      #   |> String.replace(~r/^#{Regex.escape(feat["text"])}, /, "")
+      #   |> String.replace(", Deutschland", "")
+
+      %SearchResult{
+        name: feat["text"],
+        subtext: subtext,
+        relevance: feat["relevance"],
+        bounds: bbox,
+        center: %Geo.Point{lon: lon, lat: lat},
+        type: List.first(feat["place_type"])
+      }
+    end)
   end
 end

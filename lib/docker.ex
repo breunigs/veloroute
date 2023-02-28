@@ -95,6 +95,8 @@ defmodule Docker do
         "GID=#{Util.group_id()}",
         "--build-arg",
         "RENDER_GID=#{Util.group_id("render")}",
+        "--build-arg",
+        "ALPINE_VERSION=#{ToolVersions.get(:alpine)}",
         "-t",
         img_name
       ],
@@ -116,13 +118,23 @@ defmodule Docker do
       "docker",
       "run",
       "--user",
-      "#{Util.user_id()}",
+      "#{Util.user_id()}:#{Util.group_id()}",
       "--rm",
       "--name",
       container_name,
       "--mount",
-      ~s|type=bind,source=#{cache_dir},target=/workdir|
+      "type=bind,source=#{cache_dir},target=/workdir"
     ]
+
+    extra_mounts =
+      Enum.flat_map(Keyword.get(opts, :mounts, %{}), fn {from, to} ->
+        from = Path.expand(from)
+        to = Path.expand(to)
+        ["--mount", "type=bind,source=#{from},target=#{to}"]
+      end)
+
+    args = args ++ extra_mounts
+    opts = Keyword.delete(opts, :mounts)
 
     args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
     args = if docker_supports_gpu(), do: args ++ ["--gpus", "all"], else: args

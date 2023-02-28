@@ -1,0 +1,18 @@
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION} as builder
+
+RUN apk add --no-cache unzip wget nodejs npm
+
+RUN cd /tmp \
+  && wget --no-verbose https://github.com/maputnik/editor/archive/refs/heads/master.zip \
+  && unzip -q -d /tmp/ master.zip \
+  && mv /tmp/editor-master /maputnik/ \
+  && rm master.zip
+
+WORKDIR /maputnik
+RUN npm install -ci --no-audit
+RUN sed -i 's|--progress=profile||' package.json \
+  && npm run build
+
+FROM alpine:${ALPINE_VERSION}
+COPY --from=builder /maputnik/build/build/ /editor/

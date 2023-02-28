@@ -1,0 +1,11 @@
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION}
+
+RUN apk add --no-cache nodejs npm gcompat
+RUN mkdir -p /build/
+WORKDIR /build/
+RUN npm install -ci -no-audit @mapbox/spritezero
+
+COPY spritezero.js /build/
+
+ENTRYPOINT ["/usr/bin/node", "/build/spritezero.js"]

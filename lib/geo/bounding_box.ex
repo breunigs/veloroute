@@ -15,18 +15,18 @@ defmodule Geo.BoundingBox do
             minLat: number(),
             maxLat: number()
           }
+          | t()
 
   defstruct @params
 
   @typep numberlist :: [float() | integer(), ...]
   @spec parse(binary | numberlist | [numberlist, ...] | map) :: nil | Geo.BoundingBox.t()
   def parse(%{"maxlat" => maxLat, "maxlon" => maxLon, "minlat" => minLat, "minlon" => minLon}) do
-    %__MODULE__{
-      minLon: minLon,
-      minLat: minLat,
-      maxLon: maxLon,
-      maxLat: maxLat
-    }
+    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  end
+
+  def parse(%{"ymax" => maxLat, "xmax" => maxLon, "ymin" => minLat, "xmin" => minLon}) do
+    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
   def parse(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do

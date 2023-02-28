@@ -1,9 +1,16 @@
 defmodule Util.Download do
+  @spec to_file(binary(), binary(), non_neg_integer()) :: :ok | {:error, atom | binary()}
   @doc """
   Downloads from the URL to the given path. The target path's partent
   directories must be present, but the file itself may not.
   """
   def to_file(url, file, allowed_redirects \\ 3) do
+    Benchmark.measure("downloading #{file}", fn ->
+      to_file_raw(url, file, allowed_redirects)
+    end)
+  end
+
+  defp to_file_raw(url, file, allowed_redirects) do
     {:ok, code, headers, ref} = :hackney.request(url)
 
     case code do
@@ -12,12 +19,17 @@ defmodule Util.Download do
         to_file(url, file, allowed_redirects - 1)
 
       200 ->
-        with {:ok, handle} <-
-               File.open(file <> "_tmp", [:write, :binary, :exclusive, :delayed_write]),
-             :ok <- stream_body(ref, handle),
-             :ok <- File.close(handle),
-             :ok <- File.rename(file <> "_tmp", file) do
-          :ok
+        tmp = "#{file}.#{System.unique_integer([:positive])}.tmp"
+
+        try do
+          with {:ok, handle} <- File.open(tmp, [:write, :binary, :exclusive, :delayed_write]),
+               :ok <- stream_body(ref, handle),
+               :ok <- File.close(handle),
+               :ok <- File.rename(tmp, file) do
+            :ok
+          end
+        after
+          File.rm(tmp)
         end
 
       code ->

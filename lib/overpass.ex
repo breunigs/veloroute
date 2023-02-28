@@ -13,9 +13,10 @@ defmodule Overpass do
   plug TeslaCache
 
   def akn_only_stations, do: (akn_stations() -- hochbahn_stations()) -- sbahn_stations()
-  def akn_only_map_names, do: akn_only_stations() |> map_names()
+  def akn_only_map_names(cleaner \\ nil), do: akn_only_stations() |> map_names(cleaner)
 
-  def sbahn_map_names, do: sbahn_stations() |> map_names()
+  def sbahn_map_names(cleaner \\ nil), do: sbahn_stations() |> map_names(cleaner)
+  def hochbahn_map_names(cleaner \\ nil), do: hochbahn_stations() |> map_names(cleaner)
 
   def sbahn_stations, do: query(station_query(@sbahn_operator))
   def hochbahn_stations, do: query(station_query(@hochbahn_operator))
@@ -24,6 +25,20 @@ defmodule Overpass do
   def query(data) do
     {:ok, resp} = get(@path, query: [data: data])
     resp.body["elements"] |> Enum.map(& &1["tags"]["name"]) |> Enum.uniq()
+  end
+
+  def station_icon_process_lua do
+    """
+    -- unfortunately tilemaker doesn't yet allow us to lookup nodes in relations,
+    -- which we need for this. The following list is ODbL licensed:
+    -- https://wiki.osmfoundation.org/wiki/Licence
+    -- generated via "iex -S mix" and "IO.puts Overpass.station_icon_process_lua()"
+    STATION_ICONS = {
+      akn = Set { #{akn_only_map_names()} },
+      sbahn = Set { #{sbahn_map_names()} },
+      hochbahn = Set { #{hochbahn_map_names()} }
+    }
+    """
   end
 
   def station_icon_data_styling do
@@ -37,13 +52,13 @@ defmodule Overpass do
       ["match", ["get", "maki"], ["ferry"], true, false],
       "ferry",
 
-      ["match", ["get", "name"], [#{akn_only_map_names()}], true, false],
+      ["match", ["get", "name"], [#{akn_only_map_names(:no_parens)}], true, false],
       "akn",
 
       ["match", ["get", "maki"], ["", "rail-metro"], true, false],
       "de-u-bahn",
 
-      ["match", ["get", "name"], [#{sbahn_map_names()}], true, false],
+      ["match", ["get", "name"], [#{sbahn_map_names(:no_parens)}], true, false],
       "de-s-bahn",
 
       ["match", ["get", "maki"], ["rail", "rail-light"], true, false],
@@ -99,9 +114,16 @@ defmodule Overpass do
     """
   end
 
-  def map_names(names) do
+  def map_names(names, cleaner \\ nil)
+
+  def map_names(names, :no_parens) do
     names
     |> Enum.map(&String.replace(&1, ~r{ \(.*}, ""))
+    |> map_names(nil)
+  end
+
+  def map_names(names, nil) do
+    names
     |> Enum.map(&"\"#{&1}\"")
     |> Enum.join(",")
   end

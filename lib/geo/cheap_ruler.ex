@@ -76,7 +76,7 @@ defmodule Geo.CheapRuler do
       ...> )
       %Geo.Point{lon: 1.5, lat: 2.5}
   """
-  @spec center(Geo.BoundingBox.like() | Geo.BoundingBox.t()) :: Geo.Point.t()
+  @spec center(Geo.BoundingBox.like()) :: Geo.Point.t()
   def center(bbox) do
     %Geo.Point{lon: (bbox.minLon + bbox.maxLon) / 2, lat: (bbox.minLat + bbox.maxLat) / 2}
   end
@@ -183,6 +183,30 @@ defmodule Geo.CheapRuler do
       maxLon: lon,
       maxLat: lat
     })
+  end
+
+  @spec bounds_to_center_zoom(Geo.BoundingBox.like()) :: %{
+          lat: float(),
+          lon: float(),
+          zoom: float()
+        }
+  def bounds_to_center_zoom(bbox) do
+    dist =
+      max(
+        Geo.CheapRuler.dist(
+          %{lat: bbox.minLat, lon: bbox.minLon},
+          %{lat: bbox.minLat, lon: bbox.maxLon}
+        ),
+        Geo.CheapRuler.dist(
+          %{lat: bbox.minLat, lon: bbox.minLon},
+          %{lat: bbox.maxLat, lon: bbox.minLon}
+        )
+      )
+
+    zoom = :math.log2(@zoom_factor / dist) |> max(1) |> min(24)
+
+    %{lat: lat, lon: lon} = center(bbox)
+    %{lat: lat, lon: lon, zoom: zoom}
   end
 
   @spec meters_per_pixel(number) :: float

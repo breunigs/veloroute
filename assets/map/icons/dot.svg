@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 19 19"
+   height="19"
+   width="19"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="dot.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="23"
+     inkscape:cx="13.152174"
+     inkscape:cy="7.4782609"
+     inkscape:window-width="1916"
+     inkscape:window-height="1046"
+     inkscape:window-x="0"
+     inkscape:window-y="14"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <title
+     id="title2">circle.svg</title>
+  <rect
+     fill="none"
+     x="0"
+     y="0"
+     width="19"
+     height="19"
+     id="rect4" />
+  <path
+     fill="#735139"
+     d="m 11.241609,13.5 c 0,0.961877 -0.779732,1.741609 -1.741609,1.741609 -0.9618772,0 -1.741609,-0.779732 -1.741609,-1.741609 0,-0.961877 0.7797318,-1.741609 1.741609,-1.741609 0.961877,0 1.741609,0.779732 1.741609,1.741609 z"
+     id="path6"
+     style="stroke-width:0.26794" />
+</svg>

@@ -65,6 +65,7 @@ defmodule Data.GeoJSON do
     |> add_overlap_info(:alltag)
     |> add_overlap_info(:freizeit)
     |> add_overlap_info(:rsw)
+    |> add_overlap_info(:bezirk)
     |> Enum.flat_map(&as_geojson(&1))
   end
 

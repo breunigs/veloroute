@@ -20,7 +20,9 @@ defmodule VelorouteWeb.Endpoint do
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   plug Video.ServePlug
+  plug Esri.Tiles
   plug Map.ReverseProxyPlug
+  plug Basemap.Plug
 
   # Serve at "/" the static files from "priv/static" directory.
   #

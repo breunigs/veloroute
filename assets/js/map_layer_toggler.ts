@@ -72,7 +72,7 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
 function maybeToggleLayers(map: MapboxMap, layers: mapLayer[] | undefined) {
   if (!layers) return
-  console.log("toggling map layer")
+  console.log("toggling map layer", layers)
 
   for (const layer of layers) {
     updateMapPrimitive(map, layer.icon, "icon", layer.active);
@@ -88,9 +88,11 @@ function maybeSwitchStyle(map: MapboxMap, styles: mapStyle[] | undefined) {
 
   for (const style of styles) {
     if (!style.active) continue
-    map.setStyle('mapbox://styles/' + style.id)
+    const selfHosted = style.id[0] == "/"
+    const path = selfHosted ? style.id : `mapbox://styles/${style.id}`
+    console.log("switching map style to", path)
+    map.setStyle(path)
     window.plausible('switchStyle')
-    console.log("switching map style")
   }
 
   return true

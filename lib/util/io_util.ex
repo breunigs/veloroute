@@ -31,6 +31,63 @@ defmodule Util.IO do
     |> Enum.uniq()
   end
 
+  @spec age_in_days(binary()) :: non_neg_integer() | :infinity
+  def age_in_days(file) do
+    current = :os.system_time(:second)
+
+    with {:ok, %{mtime: date}} <- File.stat(file, time: :posix) do
+      round((current - date) / (24 * 60 * 60))
+    else
+      _any -> :infinity
+    end
+  end
+
+  @doc """
+  returns true if first file/dor is newer than the second one
+  """
+  @spec newer?(binary(), binary()) :: bool() | :unknown
+  def newer?(file_a, file_b) do
+    with {:ok, %{mtime: date_a}} <- File.stat(file_a, time: :posix),
+         {:ok, %{mtime: date_b}} <- File.stat(file_b, time: :posix) do
+      date_a >= date_b
+    else
+      _ -> :unknown
+    end
+  end
+
+  @doc """
+  Returns true when the target is older than any of its dependencies
+  """
+  @spec stale?(binary() | Path.t(), [binary() | Path.t()]) :: boolean()
+  def stale?(target, dependencies) when is_binary(target) and is_list(dependencies) do
+    {oldest_target, _} = modification_times(target)
+
+    {_, newest_dep} =
+      dependencies
+      |> Enum.map(&modification_times/1)
+      |> Enum.reduce(fn {dmin, dmax}, {amin, amax} ->
+        {min(dmin, amin), max(dmax, amax)}
+      end)
+
+    newest_dep > oldest_target || oldest_target == :unknown
+  end
+
+  def modification_times(path) do
+    if !File.exists?(path) do
+      {:unknown, :unknown}
+    else
+      [path | Path.wildcard("#{path}/**/*")]
+      |> Enum.map(fn path ->
+        with {:ok, %{mtime: date}} <- File.stat(path, time: :posix) do
+          date
+        else
+          _ -> :unknown
+        end
+      end)
+      |> Enum.min_max()
+    end
+  end
+
   defp recurse_files(path) do
     case File.stat(path) do
       {:ok, %{type: :directory}} ->
