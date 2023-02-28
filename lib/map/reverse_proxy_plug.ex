@@ -2,7 +2,9 @@ defmodule Map.ReverseProxyPlug do
   @behaviour Plug
 
   def static_style() do
-    %{id: id} = Enum.find(Settings.mapbox_styles(), fn %{active: active} -> active end)
+    %{id: id} =
+      Enum.find(Settings.mapbox_styles(), fn %{id: id} -> String.starts_with?(id, "breunigs") end)
+
     id
   end
 
