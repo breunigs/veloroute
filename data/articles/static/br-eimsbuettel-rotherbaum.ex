@@ -15,7 +15,6 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
 
   def tracks(),
     do: [
-      # TODO: check gpx
       %Video.Track{
         renderer: 3,
         group: "rotherbaum",
@@ -30,7 +29,6 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
           {"2023-02-25-eimsbuettel-br2/GX015236", :start, "00:01:23.400"}
         ]
       },
-      # TODO: check gpx
       %Video.Track{
         renderer: 3,
         group: "rotherbaum",
@@ -56,15 +54,14 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
     ]
   end
 
-  # TODO: links
   def text(assigns) do
     ~H"""
-    <p>Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft vom Dammtor in Nord-Süd-Richtung entlang des Mittelweg und endet auf der Heilwigbrücke. Auf einem Teilstück teilt sie sich den Weg mit der Bezirksroute Isebek.</p>
+    <p>Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft vom <.v bounds="9.984348,53.558459,9.998315,53.565785" lon={9.990748} lat={53.560337} dir="forward" ref="br-eimsbuettel-rotherbaum">Dammtor</.v> in Nord-Süd-Richtung entlang des <.v bounds="9.984562,53.559162,10.003159,53.579949" lon={9.994316} lat={53.572317} dir="forward" ref="br-eimsbuettel-rotherbaum">Mittelweg</.v> und endet auf der <.v bounds="9.990061,53.579781,10.00024,53.587175" lon={9.993936} lat={53.584425} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v>. Auf einem Teilstück teilt sie sich den Weg mit der <.a name="br-eimsbuettel-isebek">Bezirksroute Isebek</.a>.</p>
 
     <h4>Speziell für diese Route</h4>
-    <p>Wo heute noch keine <.ref>Radfahrstreifen</.ref> sind, sollen sie eingerichtet werden. Wo zu wenig Platz für normalbreite Radfahrstreifen ist, werden als Alternative <.ref>Schutzstreifen</.ref> vorgeschlagen. Das wäre von Johnsallee bis Milchstraße der Fall.</p>
+    <p>Wo heute noch keine <.ref>Radfahrstreifen</.ref> sind, sollen sie eingerichtet werden. Wo zu wenig Platz für normalbreite Radfahrstreifen ist, werden als Alternative <.ref>Schutzstreifen</.ref> vorgeschlagen. Das wäre von <.v bounds="9.993365,53.566095,9.998871,53.570937" lon={9.995976} lat={53.566645} dir="forward" ref="br-eimsbuettel-rotherbaum">Johnsallee</.v> bis <.v bounds="9.993365,53.566095,9.998871,53.570937" lon={9.995238} lat={53.570308} dir="forward" ref="br-eimsbuettel-rotherbaum">Milchstraße</.v> der Fall.</p>
 
-    <p>Für die anderen Stellen werden Detailverbesserungen vorschlagen, wie etwa bessere Abgrenzung zu fahrenden und parkenden KFZ. Der letzte Abschnitt vor der Heilwigbrücke wird in der Planung nicht betrachtet.</p>
+    <p>Für die anderen Stellen werden Detailverbesserungen vorschlagen, wie etwa bessere Abgrenzung zu fahrenden und parkenden KFZ. Der <.v bounds="9.990474,53.580743,9.998193,53.586719" lon={9.993804} lat={53.583731} dir="forward" ref="br-eimsbuettel-rotherbaum">letzte Abschnitt vor der Heilwigbrücke</.v> wird in der Planung nicht betrachtet.</p>
 
     <%= Data.Article.Shared.bezirksroute(:eimsbuettel) %>
 
