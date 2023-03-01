@@ -20,7 +20,7 @@
     <script type="text/javascript" defer src={Routes.static_path(@conn, "/assets/link_helper.js")}></script>
   <% end %>
 
-  <% active_style = Enum.find(Settings.mapbox_styles, fn %{active: act} -> act end).id %>
+  <% active_style = Enum.find(Settings.map_styles, fn %{active: act} -> act end).id %>
   <%= if String.starts_with?(active_style, "/") do %>
     <link rel="preload" href={Routes.static_path(@conn, active_style)} as="fetch" crossorigin="anonymous">
     <link rel="preload" href={Routes.static_path(@conn, "/assets/basemap/tiles/metadata.json")} as="fetch" crossorigin="anonymous">

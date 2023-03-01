@@ -8,28 +8,33 @@ defmodule Settings do
   def initial,
     do: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809}
 
-  def mapbox_styles,
+  def map_styles,
     do: [
       %{
-        name: "Karte (intern)",
+        name: "Karte",
         id: "/assets/basemap/styles/standard.json",
         active: true
       },
       %{
-        name: "Satellit (intern)",
+        name: "Satellitenbild",
         id: "/assets/basemap/styles/satellite.json",
         active: false
       },
       %{
         name: "Mapbox: Karte",
         id: "breunigs/clbj46g53001114n25ayf1yqh",
-        active: false
+        active: false,
+        only: [:dev]
       },
-      %{name: "Mapbox: Satellit", id: "breunigs/clbj5w269001514nuls82k7t7", active: false}
-      # only: [:dev]
+      %{
+        name: "Mapbox: Satellit",
+        id: "breunigs/clbj5w269001514nuls82k7t7",
+        active: false,
+        only: [:dev]
+      }
     ]
 
-  def mapbox_layers,
+  def map_layers,
     do: [
       %Layer{
         name: "Artikel",
