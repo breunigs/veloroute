@@ -42,9 +42,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
   def links(_assigns) do
     [
       {"Auftragsvergabe", "Februar 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/cae7d48b-39bf-47bf-8c6e-187b1a404e18"},
-      {"Möglicher Bauzeitraum", "Stand Oktober 2022",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/4543c230-1b9b-4aee-bdd8-1e9979482c0e"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15956404/am-neumarkt/"},
       {"Planungsunterlagen",

@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
 
   def created_at(), do: ~D[2020-11-25]
   def updated_at(), do: ~D[2021-11-27]
-  def title(), do: "Gerichtsstraße"
+  def title(), do: "Gerichtsstraße (Veloroute 13)"
 
   def start(), do: ~d[2023-04-01]
   def stop(), do: ~d[2024-05-31]

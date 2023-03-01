@@ -10,11 +10,13 @@ defmodule Data.Article.Blog.VerstetigungPublHafencity do
   def type(), do: :planned
   def tags(), do: ["1GR"]
 
-  def start(), do: ~d[2022Q4]
-  def stop(), do: ~d[2022Q4]
+  def start(), do: ~d[2023-03-12]
+  def stop(), do: ~d[2023-03-24]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "März 2023",
+       "https://lsbg.hamburg.de/resource/blob/664710/1241d0f85b83eea6048c34429952db18/am-sandtorkai-brooktorkai-pop-up-bikelane-anliegerinformation-maerz-2023-data.pdf"},
       {"Erläuterungsbericht", "August 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16395974/e1f1e78654bc95f99c486d463509082d/data/pop-up-bikelane-am-sandtorkai-brooktorkai-verstetigung-bericht.pdf"},
       {"Lageplan", "August 2022",

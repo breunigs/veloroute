@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/kaiser-wilhelm-strasse"},
+      {"Auftragsvergabe", "Februar 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/f87dc9c0-9bfb-4bee-813c-23acc461032e"},
       {"Baustelleninfo", "Dezember 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16763884/009df9fa68d435529fd2a79c9393f9f6/data/kaiser-wilhelm-strasse-%E2%80%93-massnahmen-stromnetz-%E2%80%93-11-22-bis-07-23.pdf"},
       {"Anlieger/Baustelleninfo", "März 2022",

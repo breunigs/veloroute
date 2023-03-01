@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Holstenplatz do
   def updated_at(), do: ~D[2021-08-05]
   def title(), do: "Kreuzungen um den Holstenplatz (Veloroute 13)"
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def start(), do: ~d[2023-03-06]
   def stop(), do: ~d[2024-08-23]
@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.Holstenplatz do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Februar 2023",
+       "https://lsbg.hamburg.de/resource/blob/664836/3e2d04f1a4e8fc4e7ba0708a6e15ee92/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
       {"Ausschreibung Umbau",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/39f6c0a7-8734-4174-ad41-3baef66b9823"},
       {"Baustellenkoordination", "September 2022",
