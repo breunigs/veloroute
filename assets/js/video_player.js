@@ -175,7 +175,7 @@ function updateVideoElement() {
           options.abrEwmaDefaultEstimate = bwEstimate;
           options.testBandwidth = false;
           options.startLevel = -1;
-          console.debug("copying over previously eastimated bandwidth", bwEstimate);
+          console.debug("copying over previously estimated bandwidth", bwEstimate);
         }
 
         try {
@@ -221,6 +221,7 @@ function updateVideoElement() {
   `;
   video.innerHTML = innerHTML;
   video.autoplay = autoplay;
+  video.playbackRate = video.videoPlaybackRate;
   video.load();
   if (autoplay) video.play();
 }
@@ -421,11 +422,13 @@ videoOptions.addEventListener('touchstart', () => {
   passive: true
 });
 
+let videoPlaybackRate = 1.0;
 document.getElementById('playbackRate').addEventListener('click', event => {
   const rate = event.target.dataset.rate;
   if (!rate) return;
 
   video.playbackRate = rate;
+  videoPlaybackRate = rate;
 
   const prev = document.querySelector("#playbackRate a.active");
   if (prev) prev.classList.remove("active");
