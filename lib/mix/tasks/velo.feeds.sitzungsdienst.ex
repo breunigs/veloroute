@@ -68,7 +68,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   @spec check_district(binary(), status()) :: Enumerable.t()
   defp check_district(district, status) do
     # go a while back to ensure we don't get shown the same docs again, just
-    # because their discussion was posteponed and similar changes
+    # because their discussion was postponed and similar changes
     [d, m, y] = String.split(status[district], ".") |> Enum.map(&String.to_integer/1)
     date = Date.new!(y, m, d) |> Date.add(-30)
     from = "#{date.day}.#{date.month}.#{date.year}"
@@ -83,7 +83,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   @spec query(binary(), binary(), binary()) :: [result()]
   defp query(district, keyword, de_date_range) do
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
-    params = %{ajx: 1, to: 1, vo: 1, s: 1, q: keyword, d: de_date_range}
+    params = %{ajx: 1, to: 1, vo: 1, si: 1, q: keyword, d: de_date_range}
 
     # IO.puts(:stderr, "Searching #{district} for #{keyword} within #{de_date_range}")
     {:ok, %{body: body}} = post(url, params)

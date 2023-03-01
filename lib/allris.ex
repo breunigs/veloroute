@@ -13,6 +13,10 @@ defmodule Allris do
     "https://sitzungsdienst-#{district}.hamburg.de/bi/to020.asp?TOLFDNR=#{id}"
   end
 
+  def url(district, "SILFDNR", id) when district in @districts do
+    "https://sitzungsdienst-#{district}.hamburg.de/bi/to010.asp?SILFDNR=#{id}"
+  end
+
   def url_bv_hh(district, type, id)
 
   def url_bv_hh(district, "VOLFDNR", id) when district in @districts do
