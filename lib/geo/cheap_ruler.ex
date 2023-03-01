@@ -209,6 +209,42 @@ defmodule Geo.CheapRuler do
     %{lat: lat, lon: lon, zoom: zoom}
   end
 
+  @spec bounds_to_xyz(Geo.BoundingBox.like()) :: %{
+          x: integer,
+          y: integer,
+          zoom: pos_integer(),
+          str: binary()
+        }
+  @doc ~S"""
+  Returns the tile most likely to be displayed at the center for the bounding box
+
+  ## Examples
+
+      iex> Geo.CheapRuler.bounds_to_xyz(
+      ...>   %{maxLat: 53.715809, maxLon: 10.21779, minLat: 53.454363, minLon: 9.724553}
+      ...> )
+      %{x: 165, y: 270, zoom: 9, str: "9/270/165"}
+  """
+  def bounds_to_xyz(bbox) do
+    %{zoom: zoom, lat: lat, lon: lon} = bounds_to_center_zoom(bbox)
+    zoom = floor(zoom)
+    factor = :math.pow(2, zoom)
+
+    x =
+      floor(
+        (1 -
+           :math.log(
+             :math.tan(to_rad(lat)) +
+               1 / :math.cos(to_rad(lat))
+           ) / :math.pi()) /
+          2 * factor
+      )
+
+    y = floor((lon + 180) / 360 * factor)
+
+    %{x: x, y: y, zoom: zoom, str: "#{zoom}/#{y}/#{x}"}
+  end
+
   @spec meters_per_pixel(number) :: float
   def meters_per_pixel(zoom) do
     @zoom_factor / :math.pow(2, zoom + 8)
@@ -440,5 +476,9 @@ defmodule Geo.CheapRuler do
 
   defp to_deg(rad) do
     rad / :math.pi() * 180.0
+  end
+
+  defp to_rad(deg) do
+    deg * :math.pi() / 180.0
   end
 end

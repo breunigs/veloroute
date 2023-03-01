@@ -26,6 +26,7 @@
     <link rel="preload" href={Routes.static_path(@conn, "/assets/basemap/tiles/metadata.json")} as="fetch" crossorigin="anonymous">
     <link rel="preload" href={Routes.static_path(@conn, "/assets/basemap/fonts/Open Sans Regular/0-255.pbf")} as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href={Routes.static_path(@conn, "/assets/basemap/fonts/Open Sans Semi Bold/0-255.pbf")} as="fetch" fetchpriority="low" crossorigin="anonymous">
+    <link rel="preload" href={Routes.static_path(@conn, "/assets/basemap/tiles/#{Geo.CheapRuler.bounds_to_xyz(@map_bounds).str}.pbf")} as="fetch" fetchpriority="low" crossorigin="anonymous">
   <% else %>
     <link rel="preload" href="/map/fonts/v1/breunigs/Open%20Sans%20SemiBold,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
     <link rel="preload" href="/map/fonts/v1/breunigs/DIN%20Offc%20Pro%20Medium,Arial%20Unicode%20MS%20Regular/0-255.pbf?access_token=pk." as="fetch" fetchpriority="low" crossorigin="anonymous">
