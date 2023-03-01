@@ -98,11 +98,9 @@ defmodule Mix.Tasks.Deploy do
       ~w(mix compile),
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),
-      # TODO there should be a better way to clean digests, but the digest clean
-      # methods don't clean up old digests
-      ~w(mv priv/static/assets/basemap priv/static/__basemap),
-      ~w(rm -rf priv/static/assets/),
-      ~w(mv priv/static/__basemap priv/static/assets/basemap)
+      ~w(mix phx.digest.clean --all),
+      # until https://github.com/phoenixframework/phoenix/pull/5318
+      ~w(find priv/static -name "*.br" -not -wholename "*/assets/basemap/*" -delete)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
