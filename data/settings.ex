@@ -67,7 +67,7 @@ defmodule Settings do
         name: "Bezirksrouten",
         route_group: :bezirk,
         active: false,
-        line: ["br-line", "br-line-tunnel"],
+        line: ["br-line"],
         icon: ["br-oneway"],
         fill: [],
         outline: []

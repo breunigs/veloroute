@@ -37,6 +37,7 @@ let visibleMinZooms: { [id: string]: number; } = {};
 function minZoomForLayer(map: MapboxMap, layerName: string, minZoom: number): void {
   if (!visibleMinZooms[layerName]) {
     const layer = map.getLayer(layerName) as Layer;
+    if (!layer) console.error("undefined layerName", layerName)
     visibleMinZooms[layerName] = layer.minzoom || 1;
   }
 
