@@ -19,7 +19,7 @@ defmodule Basemap.Plug do
     from: {:veloroute, Path.join("priv/static", @path)},
     brotli: true,
     gzip: true,
-    headers: %{"cache-control" => "public, max-age=3600"}
+    headers: %{"cache-control" => "public, max-age=3600, immutable"}
 
   plug :fallback
 
