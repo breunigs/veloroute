@@ -3347,7 +3347,17 @@
         "icon-ignore-placement": true,
         "icon-optional": false,
         "text-optional": true,
-        "icon-size": {"stops": [[14, 0.25], [16, 0.4], [19, 0.85]]}
+        "icon-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          0.45,
+          16,
+          0.5,
+          19,
+          0.9
+        ]
       },
       "paint": {
         "text-color": "#ffffff",
@@ -3386,7 +3396,17 @@
         "icon-ignore-placement": true,
         "icon-optional": false,
         "text-optional": true,
-        "icon-size": {"stops": [[14, 0.25], [16, 0.4], [19, 0.85]]}
+        "icon-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          0.45,
+          16,
+          0.5,
+          19,
+          0.9
+        ]
       },
       "paint": {
         "text-color": "#ffffff",
@@ -3425,7 +3445,17 @@
         "icon-ignore-placement": true,
         "icon-optional": false,
         "text-optional": true,
-        "icon-size": {"stops": [[14, 0.25], [16, 0.4], [19, 0.85]]}
+        "icon-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          0.45,
+          16,
+          0.5,
+          19,
+          0.9
+        ]
       },
       "paint": {
         "text-color": "#ffffff",
@@ -3464,7 +3494,17 @@
         "icon-ignore-placement": true,
         "icon-optional": false,
         "text-optional": true,
-        "icon-size": {"stops": [[14, 0.25], [16, 0.4], [19, 0.85]]}
+        "icon-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          0.45,
+          16,
+          0.5,
+          19,
+          0.9
+        ]
       },
       "paint": {
         "text-color": "#ffffff",
