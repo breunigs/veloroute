@@ -7,8 +7,9 @@ defmodule Basemap.Project do
 
   @impl Basemap.Renderable
   def stale?() do
-    # TODO: should be stale when Data.GeoJSON code changes
-    Util.IO.stale?(target(:cache), [Cache.Map.source(), __ENV__.file])
+    geojson_source = Data.GeoJSON.__info__(:compile) |> Keyword.get(:source) |> to_string()
+    articles = Path.wildcard("data/articles/**/*.ex")
+    Util.IO.stale?(target(:cache), [Cache.Map.source(), __ENV__.file, geojson_source] ++ articles)
   end
 
   @impl Basemap.Renderable
