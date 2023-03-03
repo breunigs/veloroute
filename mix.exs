@@ -64,11 +64,11 @@ defmodule Veloroute.MixProject do
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
-      {:erlexec, "~> 1.0",
+      {:erlexec, "~> 2.0",
        only: [:dev, :test], system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
-      {:ex_aws, "~> 2.2.8", only: [:dev, :test]},
+      {:ex_aws, "~> 2.2.9", only: [:dev, :test]},
       {:file_system, "~> 0.2", only: [:dev, :test]},
       {:floki, ">= 0.30.0"},
       {:fuzzy_compare, "~> 1.0"},
@@ -90,7 +90,7 @@ defmodule Veloroute.MixProject do
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.6"},
       {:temp, "~> 0.4", only: [:dev, :test]},
-      {:tesla, "~> 1.4.0"},
+      {:tesla, "~> 1.5.0"},
       {:tqdm, "~> 0.0.2", only: [:dev, :test]},
       {:web_push_encryption, "~> 0.3"}
     ]
