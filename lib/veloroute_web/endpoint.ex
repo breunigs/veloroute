@@ -11,7 +11,6 @@ defmodule VelorouteWeb.Endpoint do
   ]
 
   plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   socket "/socket", VelorouteWeb.UserSocket,
     websocket: true,

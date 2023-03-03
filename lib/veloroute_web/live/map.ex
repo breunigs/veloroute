@@ -176,8 +176,10 @@ defmodule VelorouteWeb.Live.Map do
     id
   end
 
-  defp default_style?(assigns) do
-    active_style_id(assigns) == Map.ReverseProxyPlug.static_style()
+  defp default_style?(_assigns) do
+    # temporarily disabled until I implement proper static rendering
+    # active_style_id(assigns) == Map.ReverseProxyPlug.static_style()
+    true
   end
 
   defp maybe_map_preview(%{assigns: %{map_preview: _any}} = socket), do: socket

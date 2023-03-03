@@ -15,7 +15,6 @@ defmodule Mapbox do
     {"Cache-Control", "no-cache"}
   ]
 
-  plug Tesla.Middleware.Telemetry
   plug Tesla.Middleware.Query, access_token: secret_token()
   plug Tesla.Middleware.JSON, decode_content_types: ["application/vnd.geo+json"]
   plug TeslaCache

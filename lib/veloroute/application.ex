@@ -13,7 +13,6 @@ defmodule Veloroute.Application do
     # List all child processes to be supervised
     children = [
       Video.DiskPreloader,
-      VelorouteWeb.Telemetry,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
       Supervisor.child_spec(
