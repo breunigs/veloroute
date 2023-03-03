@@ -1,4 +1,5 @@
 defmodule VelorouteWeb.Live.VideoState do
+  use VelorouteWeb, :verified_routes
   require Logger
   import Guards
 
@@ -247,7 +248,7 @@ defmodule VelorouteWeb.Live.VideoState do
             when (state.direction == :forward and not is_nil(state.forward)) or
                    (state.direction == :backward and not is_nil(state.backward))
 
-  defguardp is_reversable(state)
+  defguardp is_reversible(state)
             when not is_nil(state.forward) and not is_nil(state.backward)
 
   @spec for_frontend(t()) :: keyword()
@@ -270,7 +271,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_route: %{id: route_id(state)},
       video_recording_dates: video.recording_dates(),
       video_recording_date: recording_date,
-      video_reversable: is_reversable(state),
+      video_reversible: is_reversible(state),
       video_poster: video_poster(video, start_from)
     ]
   end
@@ -284,7 +285,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_start: 0,
       video_start_gen: state.start_generation,
       video_poster: nil,
-      video_reversable: false
+      video_reversible: false
     ]
   end
 
@@ -293,12 +294,7 @@ defmodule VelorouteWeb.Live.VideoState do
           optional(atom()) => any()
         }) :: binary()
   defp video_poster(video, start_from) do
-    VelorouteWeb.Router.Helpers.image_extract_path(
-      VelorouteWeb.Endpoint,
-      :image,
-      video.hash,
-      start_from.time_offset_ms
-    )
+    ~p"/images/thumbnails/#{video.hash}/#{start_from.time_offset_ms}"
   end
 
   defp extract_start(state, art) when is_module(art) do
@@ -317,7 +313,7 @@ defmodule VelorouteWeb.Live.VideoState do
     %{state | start: start, start_generation: state.start_generation + incr}
   end
 
-  defp reverse_direction(%__MODULE__{} = state) when is_reversable(state) do
+  defp reverse_direction(%__MODULE__{} = state) when is_reversible(state) do
     %{state | direction: if(state.direction == :forward, do: :backward, else: :forward)}
   end
 
@@ -399,7 +395,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp update_direction_from_params(state, _params), do: state
 
-  defp maybe_fix_direction(state) when not has_video(state) and is_reversable(state),
+  defp maybe_fix_direction(state) when not has_video(state) and is_reversible(state),
     do: reverse_direction(state)
 
   defp maybe_fix_direction(state), do: state

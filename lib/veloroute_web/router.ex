@@ -7,9 +7,9 @@ defmodule VelorouteWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
+    plug :put_root_layout, {VelorouteWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :put_root_layout, {VelorouteWeb.LayoutView, :app}
   end
 
   scope "/", VelorouteWeb do
@@ -31,7 +31,6 @@ defmodule VelorouteWeb.Router do
     get "/article/0000-00-00-:page", PageController, :article_vs_page
     get "/routes/geo/route:suffix", PageController, :old_route_links
 
-    # note: must be manually adjusted in robots.txt
     get "/images/thumbnails/:hash/:timestamp", ImageExtractController, :image
 
     post "/js_errors", PageController, :js_errors

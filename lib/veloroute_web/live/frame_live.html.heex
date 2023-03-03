@@ -1,138 +1,91 @@
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, viewport-fit=cover"/>
-  <title><%= @page_title || Settings.page_title_long() %></title>
-  <%= csrf_meta_tag() %>
-  <link rel="canonical" href={@canonical_url}/>
+<.live_component
+  phx-update="ignore"
+  module={VelorouteWeb.Live.Map}
+  id="map"
+  map_bounds={@map_bounds}
+  video={@video}
+  current_page={@current_page}
+/>
 
-  <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
-  <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
-  <link rel="icon" type="image/png" size="48x48" href="/favicons/48.png?vsn=1">
-  <link rel="icon" type="image/png" size="192x192" href="/favicons/192.png?vsn=1">
-  <link rel="apple-touch-icon" href="/favicons/57.png?vsn=1">
-  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/152.png?vsn=1">
-  <link rel="apple-touch-icon" sizes="167x167" href="/favicons/167.png?vsn=1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/180.png?vsn=1">
-  <link rel="apple-touch-startup-image" href="/favicons/192.png?vsn=1">
-  <link rel="manifest" href="/favicons/manifest.json?vsn=1">
-  <link rel="alternate" type="application/atom+xml" href="/updates.atom" title={Settings.feed_title()}>
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta property="og:site_name" content={Settings.sitebar_name()}/>
-  <meta property="og:image:width" content="1280"/>
-  <%= if Settings.twitter_handle() != nil do %>
-    <meta property="twitter:site" content={Settings.twitter_handle()}/>
-  <% end %>
-  <meta name="twitter:card" content="summary_large_image" />
-  <%= if @article_original_date != nil do %>
-    <meta property="og:type" content="article"/>
-    <meta property="article:published_time" content={Date.to_iso8601(@article_original_date)}/>
-    <meta property="datePublished" content={Date.to_iso8601(@article_original_date)}>
-  <% end %>
-  <%= if @article_date != nil do %>
-    <meta property="article:modified_time" content={Date.to_iso8601(@article_date)}/>
-    <meta property="dateModified" content={Date.to_iso8601(@article_date)}/>
-  <% end %>
-  <%= %>
-  <meta property="og:title" content={@article_title}/>
-  <%= if @article_summary != nil && @article_summary != "" do %>
-    <meta property="og:description" content={@article_summary}/>
-  <% end %>
-  <meta property="og:image" content={@og_image} />
-  <link rel="me" href="https://norden.social/@VelorouteHamburg">
-  <%= VelorouteWeb.CSSInline.tag(:app) %>
-</head>
-<body>
-  <.live_component
-    phx-update="ignore"
-    module={VelorouteWeb.Live.Map}
-    id="map"
-    map_bounds={@map_bounds}
-    video={@video}
-    current_page={@current_page}
-  />
+<div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
+  <%# phx-ignore-attrneeded to toggle loading indicator from JS %>
+  <div id="videoPoster" phx-ignore-attr="class">
+    <video
+      id="videoInner"
+      muted
+      playsinline
+      preload="none"
+      poster={@video_poster}
+      phx-ignore-attr="poster"
+      phx-update="ignore"
+    ></video>
+  </div>
 
-  <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
-    <%# phx-ignore-attrneeded to toggle loading indicator from JS %>
-    <div id="videoPoster" phx-ignore-attr="class">
-      <video
-        id="videoInner"
-        muted
-        playsinline
-        preload="none"
-        poster={@video_poster}
-        phx-ignore-attr="poster"
-        phx-update="ignore"
-      ></video>
+  <%= VelorouteWeb.VariousHelpers.display_route(@video) %>
+  <span id="videoRecordingDate"><%= @video_recording_date %></span>
+
+  <div id="videoControls">
+    <button id="playpause" type="button" title="Video starten oder pausieren"></button>
+    <div id="progressWrapper">
+      <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
     </div>
+    <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
+    <div id="duration">
+      <span id="current"><%= Video.Timestamp.as_html(@video_start) %></span><span>
+      /
+      </span><span id="max"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
+    </div>
+    <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
+    <button id="reverse" type="button" title={if @video_reversible, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversible, do: "disabled"}></button>
+    <div id="videoOptions" phx-update="ignore">
+      <button type="button"></button>
+      <div>
+        <div class="column" id="videoQuality">
+          <strong>Qualität</strong>
+          <div id="videoQualityOptions"></div>
+        </div>
 
-    <%= display_route(@video) %>
-    <span id="videoRecordingDate"><%= @video_recording_date %></span>
-
-    <div id="videoControls">
-      <button id="playpause" type="button" title="Video starten oder pausieren"></button>
-      <div id="progressWrapper">
-        <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
-      </div>
-      <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
-      <div id="duration">
-        <span id="current"><%= Video.Timestamp.as_html(@video_start) %></span><span>
-        /
-        </span><span id="max"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
-      </div>
-      <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
-      <button id="reverse" type="button" title={if @video_reversable, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversable, do: "disabled"}></button>
-      <div id="videoOptions" phx-update="ignore">
-        <button type="button"></button>
-        <div>
-          <div class="column" id="videoQuality">
-            <strong>Qualität</strong>
-            <div id="videoQualityOptions"></div>
-          </div>
-
-          <div class="column" id="playbackRate">
-            <strong>Wiedergabe</strong>
-            <a data-rate="2.0">2.0 – schnell</a>
-            <a data-rate="1.5">1.5</a>
-            <a class="active" data-rate="1.0">1.0 – normal</a>
-            <a data-rate="0.75">0.75</a>
-            <a data-rate="0.5">0.5 – langsam</a>
-          </div>
+        <div class="column" id="playbackRate">
+          <strong>Wiedergabe</strong>
+          <a data-rate="2.0">2.0 – schnell</a>
+          <a data-rate="1.5">1.5</a>
+          <a class="active" data-rate="1.0">1.0 – normal</a>
+          <a data-rate="0.75">0.75</a>
+          <a data-rate="0.5">0.5 – langsam</a>
         </div>
       </div>
-      <button id="fullscreen" type="button" title="Video im Vollbild anzeigen"></button>
     </div>
+    <button id="fullscreen" type="button" title="Video im Vollbild anzeigen"></button>
   </div>
+</div>
 
-  <div id="sidebar" phx-hook="control">
-    <div id="switcher"><div></div></div>
-    <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
-    <div id="content" phx-hook="ScrollReset">
-      <%= if Map.get(@flash, "info") == 404 do %>
-        <p class="alert">
-          Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <Components.TagHelpers.mailto>mir schreibst</Components.TagHelpers.mailto> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
-        </p>
-      <% end %>
+<div id="sidebar" phx-hook="control">
+  <div id="switcher"><div></div></div>
+  <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
+  <div id="content" phx-hook="ScrollReset">
+    <%= if Map.get(@flash, "info") == 404 do %>
+      <p class="alert">
+        Die angeforderte Seite gibt es nicht (mehr?). Wenn Du <Components.TagHelpers.mailto>mir schreibst</Components.TagHelpers.mailto> wie Du hier her gekommen bist, kann ich den Fehler vielleicht beheben.
+      </p>
+    <% end %>
 
-      <Article.Renderer.render
-        ref={@current_page}
-        video_hash={@video_hash}
-        video_start={@video_start}
-        search_query={@search_query}
-        search_bounds={@search_bounds}
-        limit_to_map_bounds={@limit_to_map_bounds}
-      />
+    <Article.Renderer.render
+      ref={@current_page}
+      video_hash={@video_hash}
+      video_start={@video_start}
+      search_query={@search_query}
+      search_bounds={@search_bounds}
+      limit_to_map_bounds={@limit_to_map_bounds}
+    />
 
-      <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
-    </div>
+    <small id="impressum"><a href="https://blog.breunig.xyz/impressum.html" rel="nofollow">Impressum</a></small>
   </div>
+</div>
 
-  <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
-    <%
-    track = VelorouteWeb.Live.VideoState.current_track(@video)
-    ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
-    %>
-    <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
-  <% end %>
-
-</body>
+<%= if Application.get_env(:veloroute, :enable_link_helper) do %>
+  <%
+  track = VelorouteWeb.Live.VideoState.current_track(@video)
+  ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
+  %>
+  <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
+<% end %>

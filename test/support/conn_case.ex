@@ -27,6 +27,8 @@ defmodule VelorouteWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint VelorouteWeb.Endpoint
+
+      use VelorouteWeb, :verified_routes
     end
   end
 

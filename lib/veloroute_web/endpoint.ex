@@ -32,7 +32,7 @@ defmodule VelorouteWeb.Endpoint do
     from: :veloroute,
     gzip: true,
     brotli: true,
-    only: ~w(assets images geo favicons robots.txt)
+    only: VelorouteWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

@@ -1,4 +1,5 @@
 defmodule Article.Decorators do
+  use VelorouteWeb, :verified_routes
   use Phoenix.Component
   use Memoize
   import Guards
@@ -222,12 +223,13 @@ defmodule Article.Decorators do
       %{point: %{time_offset_ms: ms}} =
         Geo.CheapRuler.closest_point_on_line(rendered.coords(), center)
 
-      VelorouteWeb.Router.Helpers.image_extract_path(
-        VelorouteWeb.Endpoint,
-        :image,
-        rendered.hash(),
-        ms
-      )
+      # VelorouteWeb.Router.Helpers.image_extract_path(
+      #   VelorouteWeb.Endpoint,
+      #   :image,
+      #   rendered.hash(),
+      #   ms
+      # )
+      ~p"/images/thumbnails/#{rendered.hash()}/#{ms}"
     end
   end
 

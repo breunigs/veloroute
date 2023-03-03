@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
 
   def updated_at(), do: ~D[2023-02-01]
 
-  def title(), do: "Agathe-Lasch-Weg / Kreuzung Orthmarscher Kirchenweg (Alltagsroute 1)"
+  def title(), do: "Agathe-Lasch-Weg / Kreuzung Othmarscher Kirchenweg (Alltagsroute 1)"
 
   def summary(),
     do: "Anfang 2023 soll ein Kreisverkehr die Kreuzung ersetzen."

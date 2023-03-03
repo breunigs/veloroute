@@ -6,7 +6,7 @@ defmodule VelorouteWeb.PageController do
   def blog(conn, params) do
     conn
     |> put_status(301)
-    |> redirect(to: Routes.article_path(conn, VelorouteWeb.FrameLive, params["article"]))
+    |> redirect(to: ~p(/article/#{params["article"]}))
   end
 
   def event(conn, _params) do
@@ -38,7 +38,9 @@ defmodule VelorouteWeb.PageController do
   def article_vs_page(conn, params) do
     conn
     |> put_status(301)
-    |> redirect(to: Routes.page_path(conn, VelorouteWeb.FrameLive, params["page"]))
+    |> redirect(to: ~p(/#{params["page"]}))
+
+    # |> redirect(to: Routes.page_path(conn, VelorouteWeb.FrameLive, params["page"]))
   end
 
   def old_route_links(conn, %{"suffix" => suffix}) do
@@ -91,7 +93,7 @@ defmodule VelorouteWeb.PageController do
   end
 
   defp not_found_redir(conn) do
-    home = Routes.startpage_url(conn, VelorouteWeb.FrameLive, not_found: true)
+    home = ~p(/?not_found=true)
 
     conn
     |> put_status(404)

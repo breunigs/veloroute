@@ -11,7 +11,7 @@ defmodule VelorouteWeb.FeedController do
   def legacy(conn, _params) do
     conn
     |> put_status(301)
-    |> redirect(to: Routes.feed_path(conn, :feed))
+    |> redirect(to: ~p(/updates.atom))
   end
 
   defmemo(get(), do: build())

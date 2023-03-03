@@ -1,14 +1,8 @@
 defmodule VelorouteWeb.FrameLive do
   use VelorouteWeb, :live_view
-
   require Logger
-
-  alias VelorouteWeb.Router.Helpers, as: Routes
   import VelorouteWeb.VariousHelpers
-
   import Guards
-
-  alias Article
 
   @default_bounds struct(Geo.BoundingBox, Settings.initial())
   @initial_state [
@@ -251,16 +245,9 @@ defmodule VelorouteWeb.FrameLive do
   defp render_404(socket, reason) do
     Logger.error("Non-existing site was accessed (#{reason}): #{socket.assigns.current_url}")
 
-    url =
-      Routes.startpage_path(
-        VelorouteWeb.Endpoint,
-        VelorouteWeb.FrameLive,
-        url_query(socket)
-      )
-
     socket
     |> put_flash(:info, 404)
-    |> push_patch(to: url)
+    |> push_patch(to: ~p"/?#{url_query(socket)}")
   end
 
   defp set_bounds(socket, article, bounds_param)
@@ -391,7 +378,7 @@ defmodule VelorouteWeb.FrameLive do
 
     url =
       if Enum.member?(related_tracks, current_track) do
-        "/images/thumbnails/#{assigns.video_hash}/#{assigns.video_start}"
+        ~p"/images/thumbnails/#{assigns.video_hash}/#{assigns.video_start}"
       else
         bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
         ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)

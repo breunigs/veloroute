@@ -76,3 +76,11 @@ defimpl Jason.Encoder, for: Geo.BoundingBox do
   @precision 6
   defp r(float), do: Float.round(float, @precision)
 end
+
+defimpl Phoenix.HTML.Safe, for: Geo.BoundingBox do
+  def to_iodata(bounds) do
+    bounds
+    |> VelorouteWeb.VariousHelpers.to_string_bounds()
+    |> Plug.HTML.html_escape_to_iodata()
+  end
+end
