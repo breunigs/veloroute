@@ -113,7 +113,7 @@ defmodule Data.Article.Static.Startpage do
 
     <h3>Aktuelle Artikel</h3>
     <ol class="hide-bullets">
-      <.list_articles let={ref} refs={Article.List.recent()}>
+      <.list_articles :let={ref} refs={Article.List.recent()}>
         <.updated_at_time ref={ref} />
         <.article_link ref={ref}/>
       </.list_articles>

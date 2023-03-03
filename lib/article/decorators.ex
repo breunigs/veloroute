@@ -12,7 +12,7 @@ defmodule Article.Decorators do
   def text(art) do
     art
     |> html()
-    |> Phoenix.LiveView.HTMLTokenizer.tokenize("nofile", 0, [], [], :text)
+    |> Phoenix.LiveView.HTMLTokenizer.tokenize("nofile", 0, [], [], :text, "")
     |> elem(0)
     |> Enum.reverse()
     |> Enum.map(fn

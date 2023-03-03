@@ -32,7 +32,7 @@ defmodule Components.RelatedArticlesHelper do
       <h3>Verwandte Artikel</h3>
       <.soft_list refs={@related_static}/>
       <ol class="hide-bullets">
-        <TagHelpers.list_articles let={ref} refs={@related_dated}>
+        <TagHelpers.list_articles :let={ref} refs={@related_dated}>
           <TagHelpers.updated_at_time ref={ref} />
           <TagHelpers.article_link ref={ref}/>
         </TagHelpers.list_articles>
