@@ -10,9 +10,9 @@ defmodule Article.Search do
 
   @min_relevance 0.7
 
-  @spec search(Article.List.t(), binary | nil) :: [SearchResult.t()]
-  def search(_articles, nil), do: []
-  def search(articles, query) when is_binary(query), do: real_search(articles, String.trim(query))
+  @behaviour Search.Behaviour
+  @impl Search.Behaviour
+  def query(query, _bbox), do: real_search(Article.List.all(), query)
 
   defp real_search(_articles, ""), do: []
 
@@ -52,7 +52,7 @@ defmodule Article.Search do
 
       subtext = if art.created_at(), do: "Letzte Änderung #{Article.Decorators.updated_at(art)}"
 
-      %SearchResult{
+      %Search.Result{
         bounds: bounds,
         name: Article.Decorators.full_title(art),
         url: Article.Decorators.path(art),

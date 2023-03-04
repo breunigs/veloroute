@@ -19,14 +19,10 @@ defmodule Maptiler do
   @bbox_str Settings.bounds() |> VelorouteWeb.VariousHelpers.to_string_bounds()
   @language "de"
 
-  @spec search(binary | nil, nil | maybe_improper_list | map) :: [SearchResult.t()]
-  def search(query, bounds)
-  def search(nil, _), do: []
-  def search("", _), do: []
-  def search(query, nil), do: search(query, Settings.initial())
-
-  def search(query, bounds) do
-    center = bounds |> Geo.BoundingBox.parse() |> Geo.CheapRuler.center()
+  @behaviour Search.Behaviour
+  @impl Search.Behaviour
+  def query(query, bounds) do
+    center = Geo.CheapRuler.center(bounds)
     center = "#{center.lon},#{center.lat}"
 
     query = URI.encode(query)
@@ -52,7 +48,7 @@ defmodule Maptiler do
       #   |> String.replace(~r/^#{Regex.escape(feat["text"])}, /, "")
       #   |> String.replace(", Deutschland", "")
 
-      %SearchResult{
+      %Search.Result{
         name: feat["text"],
         subtext: subtext,
         relevance: feat["relevance"],

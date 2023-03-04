@@ -1,7 +1,7 @@
-defmodule SearchResult do
+defmodule Search.Result do
   use Phoenix.Component
 
-  @type t() :: %SearchResult{
+  @type t() :: %__MODULE__{
           name: binary(),
           bounds: Geo.BoundingBox.t(),
           center: Geo.Point.t() | nil,
@@ -14,11 +14,6 @@ defmodule SearchResult do
   @enforce_keys [:name, :bounds, :relevance, :type]
 
   defstruct @enforce_keys ++ [:url, :subtext, :center]
-
-  @spec sort_merge([t()], [t()]) :: [t()]
-  def sort_merge(a, b) do
-    Enum.sort(a ++ b, &order/2)
-  end
 
   @spec sort([t()] | Enumerable.t()) :: [t()]
   def sort(a) do
@@ -69,7 +64,7 @@ defmodule SearchResult do
     center =
       with %{lat: lat, lon: lon} <- sr.center,
            %{minLat: minLat, maxLat: maxLat, minLon: minLon, maxLon: maxLon}
-           when maxLat - minLat < 0.0001 and maxLon - minLon < 0.0001 <- sr.bounds do
+           when maxLat - minLat < 0.001 and maxLon - minLon < 0.001 <- sr.bounds do
         %{lat: lat, lon: lon}
       else
         _ -> nil

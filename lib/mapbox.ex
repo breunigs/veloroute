@@ -26,13 +26,9 @@ defmodule Mapbox do
   @search_language "de"
   @search_types ["postcode", "place", "locality", "neighborhood", "address", "poi"]
 
-  @spec search(binary | nil, nil | maybe_improper_list | map) :: [SearchResult.t()]
-  def search(query, bounds)
-  def search(nil, _), do: []
-  def search("", _), do: []
-  def search(query, nil), do: search(query, Settings.initial())
-
-  def search(query, bounds) do
+  @behaviour Search.Behaviour
+  @impl Search.Behaviour
+  def query(query, bounds) do
     bounds = Geo.BoundingBox.parse(bounds)
 
     center = Geo.CheapRuler.center(bounds || Settings.initial())
@@ -63,7 +59,7 @@ defmodule Mapbox do
 
       [lon, lat] = feat["center"]
 
-      %SearchResult{
+      %Search.Result{
         name: text,
         subtext: if(place_name_clean != "", do: place_name_clean),
         relevance: feat["relevance"] * 1.0,

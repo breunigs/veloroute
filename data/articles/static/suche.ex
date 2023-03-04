@@ -26,7 +26,7 @@ defmodule Data.Article.Static.Suche do
           <li>
             <div>
               <!-- relevance: <%= result.relevance %> type: <%= result.type %> -->
-              <%= SearchResult.to_html(result) %>
+              <%= Search.Result.to_html(result) %>
               <%= if result.subtext do %>
                 <div class="aside"><%= result.subtext %></div>
               <% end %>
@@ -40,18 +40,8 @@ defmodule Data.Article.Static.Suche do
   end
 
   defp combined_search(%{search_query: query, search_bounds: bounds}) do
-    [
-      fn ->
-        Esri.Search.search(query, bounds)
-        |> Enum.reject(fn %{type: type} -> type == "StreetName" end)
-      end,
-      fn -> Maptiler.search(query, bounds) end,
-      fn -> Article.Search.search(Article.List.all(), query) end
-    ]
-    |> Task.async_stream(& &1.(), ordered: true, timeout: 5_000)
-    |> Stream.flat_map(fn {:ok, list} -> list end)
-    |> Stream.reject(&is_nil/1)
-    |> SearchResult.sort()
+    [Article.Search, Maptiler, Esri.Search.NoStreets]
+    |> Search.Wrapper.query(query, bounds)
     |> Enum.take(15)
   end
 end
