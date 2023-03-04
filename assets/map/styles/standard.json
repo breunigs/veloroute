@@ -140,7 +140,8 @@
       "filter": [
         "all",
         ["in", "class", "river", "stream", "canal"],
-        ["==", "brunnel", "tunnel"]
+        ["==", "brunnel", "tunnel"],
+        ["==", "$type", "LineString"]
       ],
       "layout": {"line-cap": "round", "visibility": "none"},
       "paint": {
@@ -154,7 +155,11 @@
       "type": "line",
       "source": "merged",
       "source-layer": "waterway",
-      "filter": ["all", ["!in", "class", "canal", "river", "stream"]],
+      "filter": [
+        "all",
+        ["!in", "class", "canal", "river", "stream"],
+        ["==", "$type", "LineString"]
+      ],
       "layout": {"line-cap": "round", "visibility": "visible"},
       "paint": {
         "line-color": "#a0c8f0",
@@ -169,7 +174,8 @@
       "filter": [
         "all",
         ["in", "class", "canal", "stream"],
-        ["!=", "brunnel", "tunnel"]
+        ["!=", "brunnel", "tunnel"],
+        ["==", "$type", "LineString"]
       ],
       "layout": {"line-cap": "round", "visibility": "visible"},
       "paint": {
@@ -182,7 +188,12 @@
       "type": "line",
       "source": "merged",
       "source-layer": "waterway",
-      "filter": ["all", ["==", "class", "river"], ["!=", "brunnel", "tunnel"]],
+      "filter": [
+        "all",
+        ["==", "class", "river"],
+        ["==", "$type", "LineString"],
+        ["!=", "brunnel", "tunnel"]
+      ],
       "layout": {"line-cap": "round", "visibility": "visible"},
       "paint": {
         "line-color": "#a0c8f0",
@@ -194,6 +205,7 @@
       "type": "fill",
       "source": "merged",
       "source-layer": "water",
+      "minzoom": 7,
       "filter": ["all", ["!=", "brunnel", "tunnel"]],
       "layout": {"visibility": "visible"},
       "paint": {
@@ -3512,34 +3524,10 @@
       }
     },
     {
-      "id": "waterway-name",
+      "id": "water-name-line",
       "type": "symbol",
       "source": "merged",
       "source-layer": "waterway",
-      "minzoom": 13,
-      "filter": ["all", ["==", "$type", "LineString"], ["has", "name"]],
-      "layout": {
-        "symbol-placement": "line",
-        "symbol-spacing": 350,
-        "text-field": "{name}",
-        "text-font": ["Open Sans Regular"],
-        "text-max-width": 5,
-        "text-rotation-alignment": "map",
-        "text-size": 14,
-        "visibility": "visible",
-        "text-max-angle": 20
-      },
-      "paint": {
-        "text-color": "#3a4ca6",
-        "text-halo-color": "#fff",
-        "text-halo-width": 0
-      }
-    },
-    {
-      "id": "water-name-lakeline",
-      "type": "symbol",
-      "source": "merged",
-      "source-layer": "water_name",
       "filter": ["==", "$type", "LineString"],
       "layout": {
         "symbol-placement": "line",
@@ -3559,11 +3547,12 @@
       }
     },
     {
-      "id": "water-name-other",
+      "id": "water-name-point",
       "type": "symbol",
       "source": "merged",
-      "source-layer": "water_name",
-      "filter": ["all", ["==", "$type", "Point"], ["!in", "class", "ocean"]],
+      "source-layer": "waterway",
+      "minzoom": 14,
+      "filter": ["all", ["==", "$type", "Point"]],
       "layout": {
         "symbol-placement": "point",
         "symbol-spacing": 350,
@@ -3577,8 +3566,9 @@
       },
       "paint": {
         "text-color": "#3a4ca6",
-        "text-halo-color": "#fff",
-        "text-halo-width": 0
+        "text-halo-color": "#b7dbf5",
+        "text-halo-width": 1,
+        "text-halo-blur": 1
       }
     },
     {

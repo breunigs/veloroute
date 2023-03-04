@@ -401,12 +401,6 @@ function way_function(way)
   elseif waterway == "dam"       then way:Layer("building", isClosed)
   elseif waterway == "fuel"      then way:Layer("landcover", isClosed); way:Attribute("class", "commercial"); way:Attribute("subclass", waterway); SetMinZoom(way, 14)
   end
-  -- Set names on rivers
-  if WATERWAY_CLASSES[waterway] and not isClosed then
-    way:Layer("water_name", false)
-    way:Attribute("class", waterway)
-    SetNameAttributes(way)
-  end
 
   -- Set 'building' and associated
   if building~="" then way:Layer("building", true) end
@@ -433,7 +427,7 @@ function way_function(way)
     --  https://www.openstreetmap.org/way/25309134
     --  https://www.openstreetmap.org/way/24579306
     if way:Holds("name") and natural=="water" and water ~= "basin" and water ~= "wastewater" then
-      way:LayerAsCentroid("water_name")
+      way:LayerAsCentroid("waterway_detail")
       SetNameAttributes(way)
       SetMinZoomByArea(way)
       way:Attribute("class", class)

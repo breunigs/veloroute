@@ -64,10 +64,6 @@
 			"write_to": "water",
 			"index": true
 		},
-		"water_name": {
-			"minzoom": 14,
-			"maxzoom": 14
-		},
 		"aeroway": {
 			"minzoom": 9,
 			"maxzoom": 14

@@ -991,35 +991,10 @@
       }
     },
     {
-      "id": "waterway-name",
+      "id": "water-name-line",
       "type": "symbol",
       "source": "merged",
       "source-layer": "waterway",
-      "minzoom": 13,
-      "filter": ["all", ["==", "$type", "LineString"], ["has", "name"]],
-      "layout": {
-        "symbol-placement": "line",
-        "symbol-spacing": 350,
-        "text-field": "{name}",
-        "text-font": ["Open Sans Regular"],
-        "text-max-width": 5,
-        "text-rotation-alignment": "map",
-        "text-size": 14,
-        "visibility": "visible",
-        "text-max-angle": 20
-      },
-      "paint": {
-        "text-color": "hsl(230, 88%, 81%)",
-        "text-halo-color": "#000",
-        "text-halo-width": 0.5,
-        "text-halo-blur": 0.5
-      }
-    },
-    {
-      "id": "water-name-lakeline",
-      "type": "symbol",
-      "source": "merged",
-      "source-layer": "water_name",
       "filter": ["==", "$type", "LineString"],
       "layout": {
         "symbol-placement": "line",
@@ -1036,17 +1011,16 @@
         "text-color": "hsl(230, 88%, 81%)",
         "text-halo-color": "#000",
         "text-halo-width": 0.5,
-        "icon-halo-blur": 0.5,
-        "icon-halo-width": 0.5,
         "text-halo-blur": 0.5
       }
     },
     {
-      "id": "water-name-other",
+      "id": "water-name-point",
       "type": "symbol",
       "source": "merged",
-      "source-layer": "water_name",
-      "filter": ["all", ["==", "$type", "Point"], ["!in", "class", "ocean"]],
+      "source-layer": "waterway",
+      "minzoom": 14,
+      "filter": ["all", ["==", "$type", "Point"]],
       "layout": {
         "symbol-placement": "point",
         "symbol-spacing": 350,
