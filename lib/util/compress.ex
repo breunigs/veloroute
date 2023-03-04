@@ -5,9 +5,12 @@ defmodule Util.Compress do
       |> Enum.reject(&File.dir?/1)
       |> Enum.reject(fn path -> Path.extname(path) in [".gz", ".br"] end)
 
-    files
-    |> Tqdm.tqdm(total: length(files), description: "Compressing", clear: false)
-    |> Parallel.each(fn path ->
+    files =
+      if length(files) >= 5,
+        do: Tqdm.tqdm(files, total: length(files), description: "Compressing", clear: false),
+        else: files
+
+    Parallel.each(files, fn path ->
       data = File.read!(path)
       w1 = write_if_smaller(path <> ".gz", data, gzip(data))
       w2 = write_if_smaller(path <> ".br", data, brotli(data))
