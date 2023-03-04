@@ -53,6 +53,16 @@ defmodule Basemap.Tiles do
       <<31, 139, 8, 0, 250, 120, 24, 94, 0, 3, 147, 226, 227, 98, 143, 143, 79, 205, 45, 40, 169,
         212, 104, 80, 168, 96, 2, 0, 100, 113, 68, 54, 16, 0, 0, 0>>
 
+  @doc """
+  Returns a relative URL path to a tile most likely needed to render the given bounds
+  """
+  @spec tile_path_for_bounds(Geo.BoundingBox.like()) :: binary()
+  def tile_path_for_bounds(bounds) do
+    max_zoom = Basemap.OpenStreetMap.max_zoom()
+    name = Geo.CheapRuler.bounds_to_xyz(bounds, max_zoom).str
+    serve_path(name <> ".pbf")
+  end
+
   defp source_mbtiles(where) do
     [Basemap.OpenStreetMap.target(where), Basemap.Project.target(where)]
   end

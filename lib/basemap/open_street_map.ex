@@ -44,6 +44,13 @@ defmodule Basemap.OpenStreetMap do
   defp osm_source_name, do: "osm_source_#{Util.md5(Settings.osm_data_source())}.osm.pbf"
   defp bbox_extract_name, do: "osm_data_source.#{Enum.join(Settings.bounds(), ",")}.osm.pbf"
 
+  @max_zoom Path.join(__DIR__, "config.json")
+            |> File.read!()
+            |> Jason.decode!()
+            |> get_in(["settings", "maxzoom"])
+
+  def max_zoom, do: @max_zoom
+
   @impl Basemap.Renderable
   def render do
     if stale_osm_source?(), do: download_osm_source()

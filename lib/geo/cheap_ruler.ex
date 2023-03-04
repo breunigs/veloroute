@@ -209,7 +209,7 @@ defmodule Geo.CheapRuler do
     %{lat: lat, lon: lon, zoom: zoom}
   end
 
-  @spec bounds_to_xyz(Geo.BoundingBox.like()) :: %{
+  @spec bounds_to_xyz(Geo.BoundingBox.like(), max_zoom :: pos_integer()) :: %{
           x: integer,
           y: integer,
           zoom: pos_integer(),
@@ -221,13 +221,14 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.bounds_to_xyz(
-      ...>   %{maxLat: 53.715809, maxLon: 10.21779, minLat: 53.454363, minLon: 9.724553}
+      ...>   %{maxLat: 53.715809, maxLon: 10.21779, minLat: 53.454363, minLon: 9.724553},
+      ...>   14
       ...> )
       %{x: 165, y: 270, zoom: 9, str: "9/270/165"}
   """
-  def bounds_to_xyz(bbox) do
+  def bounds_to_xyz(bbox, max_zoom) do
     %{zoom: zoom, lat: lat, lon: lon} = bounds_to_center_zoom(bbox)
-    zoom = floor(zoom)
+    zoom = min(max_zoom, floor(zoom))
     factor = :math.pow(2, zoom)
 
     x =

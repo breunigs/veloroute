@@ -24,7 +24,7 @@ defmodule Basemap.Project do
                "--force",
                "--coalesce-densest-as-needed",
                "--extend-zooms-if-still-dropping",
-               "-d14",
+               "-d#{Basemap.OpenStreetMap.max_zoom()}",
                "--no-progress-indicator",
                "--output=#{target(:container)}"
              ] ++ geojsons,
