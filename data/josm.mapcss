@@ -35,7 +35,7 @@ node[type=warning], node[type=article] {
   symbol-shape: circle;
   symbol-fill-color: #EE3535;
   font-size: 10;
-  icon-image: eval(concat("./images/", tag("icon"), ".svg"));
+  icon-image: eval(concat("./../assets/map/icons/", tag("icon"), ".svg"));
 }
 
 node|z13-[target]::routing {
