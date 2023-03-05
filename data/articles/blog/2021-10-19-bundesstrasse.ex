@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def created_at(), do: ~D[2021-10-19]
 
-  def title(), do: "Bundesstraße (Rentzelstraße bis Verbindungsbahn, Bezirksroute B)"
+  def title(), do: "Bundesstraße (Rentzelstraße bis Verbindungsbahn)"
 
   def summary(), do: "Bundesstraße soll ab 2023 (vermutlich) zur Fahrradstraße umgebaut werden."
 

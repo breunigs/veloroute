@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.Holstenplatz do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Umbau", "Februar 2023",
+       "https://www.hamburg.de/bvm/medien/16960882/2023-03-03-bvm-holstenplatz/"},
       {"Baustelleninfo", "Februar 2023",
        "https://lsbg.hamburg.de/resource/blob/664836/3e2d04f1a4e8fc4e7ba0708a6e15ee92/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
       {"Ausschreibung Umbau",

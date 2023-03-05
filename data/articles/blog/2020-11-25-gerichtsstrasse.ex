@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
 
   def created_at(), do: ~D[2020-11-25]
   def updated_at(), do: ~D[2021-11-27]
-  def title(), do: "Gerichtsstraße (Veloroute 13)"
+  def title(), do: "Gerichtstraße (Veloroute 13)"
 
   def start(), do: ~d[2023-04-01]
   def stop(), do: ~d[2024-05-31]
@@ -33,7 +33,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
     <h4>Stand November 2021:</h4> <p>Der LSBG hat den fertigen Entwurf mit Plänen und Erläuterungen veröffentlicht. Der Artikel wurde entsprechend angepasst.</p>
     <h4>Alter Zustand</h4> <p>Der Abschnitt ist durch sehr unebenes Kopfsteinpflaster geprägt. Illegal abgestellte Fahrzeuge erschweren die Übersicht. In Richtung Max-Brauer-Allee muss man den Weg erraten, da das „gemeinsamer Fuß- und Radweg“ Schild überklebt ist.</p>
     <h4>Planung</h4> <p>Es ist vorgesehen auf beiden Seiten meist Längsparkplätze für KFZ einzurichten um die Parksituation zu ordnen. Die Fahrbahn wird nur im mittleren, rund 4,0m breiten Teil asphaltiert. An beiden Seiten schließen sich jeweils nochmal 0,75m Kopfsteinpflaster an, das man aus historischen Gründen behält. Diese Streifen mit Kopfsteinpflaster liegen im <.ref>Dooring</.ref>-Bereich der Parkplätze.</p>
-    <p>Die Gerichtsstraße hat künftig Vorfahrt vor anderen Nebenstraßen. Lediglich an der <.v bounds="9.93837,53.557578,9.941748,53.558351" lon={9.9401279} lat={53.5579567} dir="forward" ref={@ref}>Einmündung in die Haubachstraße</.v> muss Vorfahrt gewährt werden. Die Straße wird zu einer Fahrradstraße mit „Anlieger frei“ für KFZ. Die <.v bounds="9.937867,53.555017,9.944141,53.556453" lon={9.9422194} lat={53.5555027} dir="forward" ref={@ref}>Durchfahrt an der Max-Brauer-Allee</.v> wird für KFZ gesperrt – allerdings ist dies Teil des <.a name="2018-12-17-1-13-max-brauer-allee">Umbaus der Max-Brauer-Allee</.a>.</p>
+    <p>Die Gerichtstraße hat künftig Vorfahrt vor anderen Nebenstraßen. Lediglich an der <.v bounds="9.93837,53.557578,9.941748,53.558351" lon={9.9401279} lat={53.5579567} dir="forward" ref={@ref}>Einmündung in die Haubachstraße</.v> muss Vorfahrt gewährt werden. Die Straße wird zu einer Fahrradstraße mit „Anlieger frei“ für KFZ. Die <.v bounds="9.937867,53.555017,9.944141,53.556453" lon={9.9422194} lat={53.5555027} dir="forward" ref={@ref}>Durchfahrt an der Max-Brauer-Allee</.v> wird für KFZ gesperrt – allerdings ist dies Teil des <.a name="2018-12-17-1-13-max-brauer-allee">Umbaus der Max-Brauer-Allee</.a>.</p>
     <p>Geplant sind 123 Radanlehnbügel für normale Fahrräder, und 6 weitere für Lastenräder. Sie werden meist zwischen den Bäumen und damit hinter den KFZ-Parkplätzen installiert.</p>
     <h4>Meinung</h4> <p>Dieser Abschnitt ist so weit von einer komfortablen Veloroute entfernt, das jede Umplanung einen Gewinn darstellt. Der fertige Entwurf ist gut und ermöglicht komfortables Befahren der Veloroute. Entgegen der ersten Entwürfe ist die Fahrbahn jetzt breit genug um problemlos überholen zu können.</p>
     <p>Das man die Radanlehnbügel nur umständlich über Gehweg oder enge Parklücken erreicht ist verschmerzlich. Warum man dies jedoch auch für die Hälfte der Lastenradparkplätze vorsieht ist unverständlich. Immerhin: bei der anderen Hälfte ermöglicht ein ebenerdiger Bordstein bequemes Parken.</p>

@@ -41658,6 +41658,7 @@
     <nd ref='-22543939' />
     <nd ref='-22543937' />
     <nd ref='-22543931' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-10-21-st-benedictstrasse' />
     <tag k='type' v='article' />
   </way>
