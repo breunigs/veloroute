@@ -22,10 +22,7 @@ defmodule Veloroute.Application do
       Supervisor.child_spec(
         {Cachex, [name: :image_extract_cachex, limit: Settings.thumbnail_cache_entry_limit()]},
         id: :image_extract_cachex
-      ),
-      {Phoenix.PubSub, [name: Veloroute.PubSub, adapter: Phoenix.PubSub.PG2]}
-      # Starts a worker by calling: Veloroute.Worker.start_link(arg)
-      # {Veloroute.Worker, arg},
+      )
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
