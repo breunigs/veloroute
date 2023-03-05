@@ -3,6 +3,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Tesla
 
   @filter_keywords ~w(velo straße radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
+  # do not report all Sitzungen just because they have a location with an address
+  @filter_keywords_sitzungen_ignore ~w(straße)
 
   @path "data/auto_generated/feeds_seen/sitzungsdienst.json"
   @requirements ["app.start"]
@@ -82,8 +84,9 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec query(binary(), binary(), binary()) :: [result()]
   defp query(district, keyword, de_date_range) do
+    sitzungen = !(keyword in @filter_keywords_sitzungen_ignore)
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
-    params = %{ajx: 1, to: 1, vo: 1, si: 1, q: keyword, d: de_date_range}
+    params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}
 
     # IO.puts(:stderr, "Searching #{district} for #{keyword} within #{de_date_range}")
     {:ok, %{body: body}} = post(url, params)
