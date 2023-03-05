@@ -7,11 +7,11 @@ defmodule Veloroute.Application do
 
   def start(_type, _args) do
     warn_if_videos_missing()
-    Warmup.maybe()
     update_web_push_email()
 
     # List all child processes to be supervised
     children = [
+      Search.Meilisearch.Runner,
       Video.DiskPreloader,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
@@ -28,7 +28,9 @@ defmodule Veloroute.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Veloroute.Supervisor]
-    Supervisor.start_link(children, opts)
+    app = Supervisor.start_link(children, opts)
+    Warmup.maybe()
+    app
   end
 
   # Tell Phoenix to update the endpoint configuration

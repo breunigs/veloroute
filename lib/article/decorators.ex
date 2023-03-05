@@ -32,7 +32,12 @@ defmodule Article.Decorators do
     subtext =
       if art.created_at(),
         do: "Letzte Änderung #{Article.Decorators.updated_at(art)}",
-        else: route_group_name(art)
+        else: art.summary()
+
+    subtext =
+      if Util.present?(art.title()),
+        do: String.replace_leading(subtext, art.title(), "… "),
+        else: subtext
 
     %Search.Result{
       bounds: bounds,
@@ -42,16 +47,6 @@ defmodule Article.Decorators do
       type: type,
       subtext: subtext
     }
-  end
-
-  def route_group_name(art) do
-    case art.route_group() do
-      :alltag -> "Alltags- oder Veloroute"
-      :freizeit -> "Freizeitroute"
-      :rsw -> "Fahrradschnellweg (Metropolregion)"
-      :bezirk -> "Bezirksroute"
-      nil -> nil
-    end
   end
 
   def apply_with_assigns(art, fun, assigns \\ %{}) do
