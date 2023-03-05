@@ -13,20 +13,45 @@ defmodule Article.Decorators do
   def text(art) do
     art
     |> html()
-    |> Phoenix.LiveView.HTMLTokenizer.tokenize("nofile", 0, [], [], :text, "")
-    |> elem(0)
-    |> Enum.reverse()
-    |> Enum.map(fn
-      {:text, val, _pos} -> val
-      _any -> ""
-    end)
-    |> Enum.join(" ")
+    |> Floki.parse_fragment!()
+    |> Floki.find_and_update("[data-nosnippet=yes]", fn _in -> :delete end)
+    |> Floki.text(sep: " ")
   end
 
   def colored_circle_svg(art) do
     """
     <svg viewBox="0 0 460.185 460.177" width="19.142" height="19.142" xmlns="http://www.w3.org/2000/svg"><circle style="opacity:1;fill:#{art.color()};stroke:#fff;stroke-width:18.2788;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" cx="230.092" cy="230.088" r="220.953"/></svg>
     """
+  end
+
+  def search_result(art, relevance) do
+    bbox = Article.Decorators.bbox(art)
+    bounds = if bbox, do: bbox, else: Settings.initial()
+    type = if art.created_at(), do: "article", else: "page"
+
+    subtext =
+      if art.created_at(),
+        do: "Letzte Änderung #{Article.Decorators.updated_at(art)}",
+        else: route_group_name(art)
+
+    %Search.Result{
+      bounds: bounds,
+      name: Article.Decorators.full_title(art),
+      url: Article.Decorators.path(art),
+      relevance: relevance,
+      type: type,
+      subtext: subtext
+    }
+  end
+
+  def route_group_name(art) do
+    case art.route_group() do
+      :alltag -> "Alltags- oder Veloroute"
+      :freizeit -> "Freizeitroute"
+      :rsw -> "Fahrradschnellweg (Metropolregion)"
+      :bezirk -> "Bezirksroute"
+      nil -> nil
+    end
   end
 
   def apply_with_assigns(art, fun, assigns \\ %{}) do

@@ -45,22 +45,7 @@ defmodule Article.Search do
     end)
     |> clamp()
     |> Enum.reject(fn {_art, relevance} -> relevance < @min_relevance end)
-    |> Enum.map(fn {art, relevance} ->
-      bbox = Article.Decorators.bbox(art)
-      bounds = if bbox, do: bbox, else: Settings.initial()
-      type = if art.created_at(), do: "article", else: "page"
-
-      subtext = if art.created_at(), do: "Letzte Änderung #{Article.Decorators.updated_at(art)}"
-
-      %Search.Result{
-        bounds: bounds,
-        name: Article.Decorators.full_title(art),
-        url: Article.Decorators.path(art),
-        relevance: relevance,
-        type: type,
-        subtext: subtext
-      }
-    end)
+    |> Enum.map(fn {art, relevance} -> Article.Decorators.search_result(art, relevance) end)
   end
 
   defp consider_age(relevance, art) when is_module(art) do
