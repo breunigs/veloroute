@@ -257,7 +257,7 @@ function way_function(way)
   local man_made = way:Find("man_made")
   local boundary = way:Find("boundary")
   local isClosed = way:IsClosed()
-  local isArea = isClosed and SetToYes(way, "area")
+  local isArea = isClosed and (SetToYes(way, "area") or way:Find("type") == "multipolygon")
   local housenumber = way:Find("addr:housenumber")
   local write_name = false
 
