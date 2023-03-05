@@ -1,6 +1,6 @@
 defmodule ToolVersions do
   @path Path.join([__DIR__, "..", ".tool-versions"])
-  @extra_versions %{alpine: "3.16.0"}
+  @extra_versions %{alpine: "3.17.0"}
 
   @doc ~S"""
   Parses an asdf .tool-versions formatted string, and returns a map with atom keys
