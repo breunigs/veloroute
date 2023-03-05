@@ -40,8 +40,8 @@ defmodule Basemap.Tiles do
     File.rm_rf!(assets_path())
     File.rename!(target(:cache), assets_path())
 
-    Util.Compress.file_glob(assets_path("**/*.pbf"), false)
-    Util.Compress.file_glob(assets_path("**/*.json"), true)
+    Util.Compress.file_glob(assets_path("**/*.pbf"), false, "basemap tiles")
+    Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap tile metadata")
 
     :ok
   end

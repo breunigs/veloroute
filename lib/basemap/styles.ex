@@ -21,7 +21,7 @@ defmodule Basemap.Styles do
            target <- assets_path(Path.relative_to(path, source())),
            :ok <- File.mkdir_p(Path.dirname(target)),
            :ok <- File.write(target, minified) do
-        Util.Compress.file_glob(assets_path("**/*.json"))
+        Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap styles")
         :ok
       else
         error -> IO.puts(:stderr, "failed to minifiy JSON from #{path}: #{inspect(error)}")

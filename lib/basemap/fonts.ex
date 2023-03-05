@@ -14,7 +14,7 @@ defmodule Basemap.Fonts do
     File.cp_r!(@source, assets_path())
     create_font_index()
     File.cp_r!(@source, assets_path())
-    Util.Compress.file_glob(assets_path("**/*.pbf"), false)
+    Util.Compress.file_glob(assets_path("**/*.pbf"), false, "basemap fonts")
   end
 
   @impl Basemap.Servable

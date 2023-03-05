@@ -57,7 +57,7 @@ defmodule Basemap.Sprites do
         )
     end)
 
-    Util.Compress.file_glob(assets_path("**/*.json"))
+    Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap sprites")
   end
 
   defp missing_circles do

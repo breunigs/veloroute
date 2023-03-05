@@ -1,5 +1,7 @@
 defmodule Util.Compress do
-  def file_glob(path_glob, keep \\ true) do
+  def file_glob(path_glob, keep \\ true, desc \\ "") do
+    desc = String.trim("Compressing #{desc}")
+
     files =
       Path.wildcard(path_glob)
       |> Enum.reject(&File.dir?/1)
@@ -7,7 +9,7 @@ defmodule Util.Compress do
 
     files =
       if length(files) >= 5,
-        do: Tqdm.tqdm(files, total: length(files), description: "Compressing", clear: false),
+        do: Tqdm.tqdm(files, total: length(files), description: desc, clear: false),
         else: files
 
     Parallel.each(files, fn path ->
