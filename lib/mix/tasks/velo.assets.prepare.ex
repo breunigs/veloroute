@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   @requirements ["app.start"]
 
   @shortdoc "Preprocess custom assets"
-  def run(_args) do
+  def run(args) do
     copy_images()
     robots_txt()
 
@@ -12,8 +12,10 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     Mix.Tasks.Velo.Favicon.Raster.run(nil)
     Mix.Tasks.Velo.Gpx.Generate.run(nil)
 
-    Mix.Tasks.Esbuild.run(~w(default --minify))
-    Mix.Tasks.Sass.run(~w(default --no-source-map --style=compressed))
+    if :skip_esbuild not in args, do: Mix.Tasks.Esbuild.run(~w(default --minify))
+
+    if :skip_sass not in args,
+      do: Mix.Tasks.Sass.run(~w(default --no-source-map --style=compressed))
   end
 
   defp copy_images() do

@@ -17,7 +17,7 @@ config :veloroute, VelorouteWeb.Endpoint,
       :install_and_run,
       [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
     },
-    assets: {Mix.Tasks.Velo.Assets.Prepare, :run, [nil]}
+    assets: {Mix.Tasks.Velo.Assets.Prepare, :run, [[:skip_esbuild, :skip_sass]]}
   ]
 
 # ## SSL Support
