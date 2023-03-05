@@ -77,5 +77,5 @@ defmodule Search.Meilisearch.API do
     get("/tasks/#{uid}") |> await_finish()
   end
 
-  defp await_finish(other), do: %{error: inspect(other)}
+  defp await_finish(other), do: {:error, inspect(other)}
 end

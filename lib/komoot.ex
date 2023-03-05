@@ -7,7 +7,6 @@ defmodule Komoot do
   plug TeslaCache
 
   @language "de"
-  @debug true
 
   @behaviour Search.Behaviour
   @impl Search.Behaviour
@@ -21,7 +20,7 @@ defmodule Komoot do
       lang: @language
     ]
 
-    if @debug, do: IO.inspect({"QUERY PARAMS KOMOOT", params})
+    # IO.inspect({"QUERY PARAMS KOMOOT", params})
 
     {:ok, response} = get("/", query: params)
 
@@ -46,9 +45,7 @@ defmodule Komoot do
         type: props["type"] || feat["type"]
       }
 
-      if @debug do
-        IO.inspect(%{source: feat, result: result}, limit: :infinity)
-      end
+      # IO.inspect(%{source: feat, result: result}, limit: :infinity)
 
       result
     end)

@@ -91,10 +91,10 @@ defmodule Mix.Tasks.Deploy do
   defp make_release(_skip) do
     Util.banner("Generating Assets")
     Mix.Tasks.Velo.Assets.Prepare.run([])
+    Search.Meilisearch.Exe.ensure_downloaded()
 
     [
       ~w(mix setup),
-      ~w(mix deps.compile),
       ~w(mix compile),
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),
