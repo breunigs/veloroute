@@ -1,10 +1,15 @@
 defmodule Search.Meilisearch.Articles do
+  @behaviour Search.Meilisearch.Behaviour
+
+  @impl true
   def id(), do: :articles
 
+  @impl true
   def documents() do
     Article.List.all() |> Enum.map(&single/1)
   end
 
+  @impl true
   def params(query, lat, lon) do
     %{
       q: query,
@@ -16,8 +21,21 @@ defmodule Search.Meilisearch.Articles do
     }
   end
 
+  @impl true
   def format(%{"module" => mod} = _result) do
     Article.Decorators.search_result(String.to_existing_atom(mod), 1)
+  end
+
+  @impl true
+  def config() do
+    %{
+      # result will be rendered directly from the article
+      displayedAttributes: ~w(module),
+      # order is from most important to least important
+      searchableAttributes: ~w(title summary type_name text updated_at),
+      sortableAttributes: ~w(updated_at _geo),
+      synonyms: %{alltagsroute: ~w(veloroute), veloroute: ~w(alltagsroute)}
+    }
   end
 
   @spec single(Article.t()) :: map()
@@ -40,19 +58,6 @@ defmodule Search.Meilisearch.Articles do
       updated_at: art.updated_at() || art.created_at()
     }
     |> Util.compact()
-  end
-
-  def config() do
-    %{
-      # result will be rendered directly from the article
-      displayedAttributes: ~w(module),
-      # order is from most important to least important
-      searchableAttributes: ~w(title summary type_name text updated_at),
-      sortableAttributes: ~w(updated_at _geo),
-      # order is from most important to least important
-      # rankingRules: ~w(words typo proximity attribute sort exactness),
-      synonyms: %{alltagsroute: ~w(veloroute), veloroute: ~w(alltagsroute)}
-    }
   end
 
   defp module_id(mod, extra \\ nil) do
