@@ -40,7 +40,6 @@ defmodule Data.Article.Static.Suche do
   end
 
   defp combined_search(%{search_query: query, search_bounds: bounds}) do
-    # Article.Search,
     [Search.Meilisearch.Runner, Maptiler, Esri.Search.NoStreets]
     |> Search.Wrapper.query(query, bounds)
     |> Enum.take(15)

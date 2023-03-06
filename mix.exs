@@ -71,7 +71,6 @@ defmodule Veloroute.MixProject do
       {:ex_aws, "~> 2.2.9", only: [:dev, :test]},
       {:file_system, "~> 0.2", only: [:dev, :test]},
       {:floki, ">= 0.30.0"},
-      {:fuzzy_compare, "~> 1.0"},
       {:hackney, "~> 1.17"},
       {:jason, "~> 1.1"},
       {:libgraph, "~> 0.7"},

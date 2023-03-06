@@ -13,7 +13,6 @@ defmodule Warmup do
     Search.Meilisearch.Runner.boot()
 
     articles = Article.List.all()
-    Parallel.each(articles, &Article.Search.article_terms(&1))
     Parallel.each(articles, &Article.Decorators.related_tracks(&1))
     Parallel.each(articles, &Article.Decorators.bbox_self(&1))
 
