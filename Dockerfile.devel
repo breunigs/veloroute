@@ -2,13 +2,23 @@
 
 ARG ELIXIR_VERSION
 ARG ERLANG_VERSION
-ARG ALPINE_VERSION
+ARG DEBIAN_VERSION
 
-FROM hexpm/elixir:${ELIXIR_VERSION}-erlang-${ERLANG_VERSION}-alpine-${ALPINE_VERSION} AS base
+FROM hexpm/elixir:${ELIXIR_VERSION}-erlang-${ERLANG_VERSION}-debian-${DEBIAN_VERSION} AS base
 ENTRYPOINT [ "mix" ]
 ENV GIT_COMMIT="dockerfile dummy"
 
-RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg gcompat
+# RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg gcompat
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  brotli \
+  build-essential \
+  ffmpeg \
+  git \
+  inkscape \
+  nodejs \
+  npm \
+  optipng \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 ARG UID=1000
