@@ -1,14 +1,14 @@
-ARG ALPINE_VERSION
-FROM alpine:${ALPINE_VERSION} as builder
+ARG DEBIAN_VERSION
+FROM debian:${DEBIAN_VERSION} AS builder
 
-RUN apk add --no-cache \
-  bash \
-  g++ \
-  make \
-  sqlite-dev \
+RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
+  build-essential \
+  ca-certificates \
+  libsqlite3-dev \
   unzip \
   wget \
-  zlib-dev
+  zlib1g-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 ARG TIPPECANOE_COMMIT=2.23.0
 ENV TIPPECANOE_COMMIT=$TIPPECANOE_COMMIT
@@ -19,14 +19,11 @@ RUN wget --no-verbose --output-document /tmp/tippecanoe.zip https://github.com/f
 WORKDIR /build
 RUN  make -j && make install PREFIX=/result
 
-ARG ALPINE_VERSION
-FROM alpine:${ALPINE_VERSION} as runner
+ARG DEBIAN_VERSION
+FROM debian:${DEBIAN_VERSION} AS runner
 
-
-RUN apk add --no-cache \
-  libgcc \
-  libstdc++ \
-  sqlite-libs \
-  zlib
+RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
+  libsqlite3-0 \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /result /usr/

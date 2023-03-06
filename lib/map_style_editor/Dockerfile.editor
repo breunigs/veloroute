@@ -2,7 +2,6 @@ ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION} as builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
-  nodejs \
   npm \
   unzip \
   wget \
