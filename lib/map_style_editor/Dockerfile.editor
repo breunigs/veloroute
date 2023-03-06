@@ -1,7 +1,12 @@
-ARG ALPINE_VERSION
-FROM alpine:${ALPINE_VERSION} as builder
+ARG DEBIAN_VERSION
+FROM debian:${DEBIAN_VERSION} as builder
 
-RUN apk add --no-cache unzip wget nodejs npm
+RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
+  nodejs \
+  npm \
+  unzip \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
   && wget --no-verbose https://github.com/maputnik/editor/archive/refs/heads/master.zip \
@@ -14,5 +19,5 @@ RUN npm install -ci --no-audit
 RUN sed -i 's|--progress=profile||' package.json \
   && npm run build
 
-FROM alpine:${ALPINE_VERSION}
+FROM debian:${DEBIAN_VERSION}
 COPY --from=builder /maputnik/build/build/ /editor/
