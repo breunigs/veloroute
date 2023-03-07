@@ -34,14 +34,16 @@
 		"transportation": {
 			"minzoom": 4,
 			"maxzoom": 14,
-			"simplify_below": 13,
-			"simplify_level": 0.0003
+			"simplify_below": 14,
+			"simplify_level": 0.0002,
+			"combine_polygons_below": 15
 		},
 		"transportation_construction": {
 			"minzoom": 13,
 			"maxzoom": 14,
-			"simplify_below": 13,
-			"simplify_level": 0.0003
+			"simplify_below": 14,
+			"simplify_level": 0.0002,
+			"combine_polygons_below": 15
 		},
 		"building": {
 			"minzoom": 14,
@@ -50,9 +52,10 @@
 		"water": {
 			"minzoom": 6,
 			"maxzoom": 14,
-			"simplify_below": 12,
+			"simplify_below": 13,
 			"simplify_level": 0.0003,
-			"simplify_ratio": 2
+			"simplify_ratio": 2,
+			"combine_polygons_below": 15
 		},
 		"ocean": {
 			"minzoom": 0,
@@ -66,15 +69,16 @@
 		},
 		"aeroway": {
 			"minzoom": 9,
-			"maxzoom": 14
+			"maxzoom": 14,
+			"combine_polygons_below": 15
 		},
 		"landcover": {
 			"minzoom": 0,
 			"maxzoom": 14,
-			"simplify_below": 13,
+			"simplify_below": 12,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
-			"combine_polygons_below": 13
+			"combine_polygons_below": 15
 		}
 	},
 	"settings": {
@@ -82,10 +86,10 @@
 		"maxzoom": 14,
 		"basezoom": 14,
 		"include_ids": false,
-		"combine_below": 14,
-		"name": "Tilemaker to OpenMapTiles schema",
+		"combine_below": 15,
+		"name": "tilemaker veloroute.hamburg schema",
 		"version": "3.0",
-		"description": "Tile config based on OpenMapTiles schema",
+		"description": "",
 		"compress": "gzip",
 		"filemetadata": {
 			"tilejson": "2.0.0",

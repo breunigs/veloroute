@@ -82,7 +82,7 @@ end
 MAJOR_ROAD_VALUES = Set { "motorway", "trunk", "motorway_link", "trunk_link" }
 MAIN_ROAD_VALUES  = Set { "primary" }
 MID_ROAD_VALUES   = Set { "tertiary", "secondary", "primary_link" }
-MINOR_RAOD_VALUES = Set { "tertiary_link", "secondary_link", "unclassified", "residential", "road", "living_street" }
+MINOR_ROAD_VALUES = Set { "tertiary_link", "secondary_link", "unclassified", "residential", "road", "living_street" }
 TRACK_VALUES     = Set { "cycleway", "byway", "bridleway", "track" }
 PATH_VALUES      = Set { "footway", "path", "pedestrian" }
 LINK_VALUES      = Set { "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link" }
@@ -117,12 +117,11 @@ LANDCOVER_MAPPING = {
   playground="playground",
   quarry="rock",
   railway="railway",
-  residential="residential",
   sports_centre="sports_centre",
   wetland = "wetland"
 }
 -- which of the classes are usually large and should be drawn below
-LANDCOVER_DEMOTE = Set { "residential", "hospital", "commercial", "edu", "industrial", "sports_centre", "military" }
+LANDCOVER_DEMOTE = Set { "hospital", "commercial", "edu", "industrial", "sports_centre", "military" }
 
 -- POI
 POI_ALLOWED_OSM_TAGS = {
@@ -228,6 +227,8 @@ POI_ICON_MAPPER = {
 -- Replaced by the build process.
 KNOWN_ICONS = "%%REPLACE_WITH_ICONS%%"
 
+AEROWAY_CLASSES   = Set { "aerodrome", "taxiway", "runway" }
+RAILWAY_CLASSES   = Set { "rail", "subway", "tram" }
 WATER_CLASSES    = Set { "river", "riverbank", "stream", "canal", "drain", "ditch", "dock" }
 WATERWAY_CLASSES = Set { "stream", "river", "canal", "drain", "ditch" }
 
@@ -306,13 +307,15 @@ function way_function(way)
     elseif highway == "primary"   then              minzoom = 7 end
     if MAIN_ROAD_VALUES[highway]  then              minzoom = 9 end
     if MID_ROAD_VALUES[highway]   then              minzoom = 10 end
-    if MINOR_RAOD_VALUES[highway] then h = "minor"; minzoom = 11 end
+    if MINOR_ROAD_VALUES[highway] then h = "minor"; minzoom = 11 end
     if TRACK_VALUES[highway]      then h = "track"; minzoom = 12 end
     if PATH_VALUES[highway]       then h = "path" ; minzoom = 13 end
     if highway == "steps"         then              minzoom = 14 end
     if h=="service"               then              minzoom = 14 end
+
+    -- demote private
     local access = way:Find("access")
-    if access=="private" or access=="no" then     minzoom = 14 end
+    if minzoom and (access=="private" or access=="no") then minzoom = 14 end
 
     -- Links (ramp)
     local ramp=false
@@ -331,6 +334,7 @@ function way_function(way)
       else
         way:Layer("transportation", isArea)
       end
+      if isArea then minzoom = MAX(GetMinZoomByArea(way), minzoom) end
       SetMinZoom(way, minzoom)
       SetZOrder(way)
       way:Attribute("class", h)
@@ -348,7 +352,7 @@ function way_function(way)
   end
 
   -- Railways ('transportation')
-  if railway~="" then
+  if RAILWAY_CLASSES[railway] then
     way:Layer("transportation", isArea)
     way:Attribute("class", railway)
     SetZOrder(way)
@@ -381,10 +385,14 @@ function way_function(way)
   end
 
   -- 'Aeroway'
-  if aeroway~="" then
+  if AEROWAY_CLASSES[aeroway] then
     way:Layer("aeroway", isClosed)
     way:Attribute("class", aeroway)
     write_name = true
+  elseif aeroway == "fuel" then
+    way:Layer("landcover", isClosed)
+    way:Attribute("class", "commercial")
+    SetMinZoom(way, 14)
   end
 
   -- Set 'waterway' and associated
@@ -397,9 +405,16 @@ function way_function(way)
     way:Attribute("class", waterway)
     SetNameAttributes(way)
     SetBrunnelAttributes(way)
-  elseif waterway == "boatyard"  then way:Layer("landcover", isClosed); way:Attribute("class", "commercial"); way:Attribute("subclass", waterway); SetMinZoom(way, 12)
-  elseif waterway == "dam"       then way:Layer("building", isClosed)
-  elseif waterway == "fuel"      then way:Layer("landcover", isClosed); way:Attribute("class", "commercial"); way:Attribute("subclass", waterway); SetMinZoom(way, 14)
+  elseif waterway == "boatyard"  then
+    way:Layer("landcover", isClosed)
+    way:Attribute("class", "commercial")
+    SetMinZoom(way, 12)
+  elseif waterway == "fuel" then
+    way:Layer("landcover", isClosed)
+    way:Attribute("class", "commercial")
+    SetMinZoom(way, 14)
+  elseif waterway == "dam" then
+    way:Layer("building", isClosed)
   end
 
   -- Set 'building' and associated
@@ -594,7 +609,7 @@ end
 function SetBrunnelAttributes(obj)
   if     SetToYes(obj, "bridge") then obj:Attribute("brunnel", "bridge")
   elseif SetToYes(obj, "tunnel") then obj:Attribute("brunnel", "tunnel")
-  elseif SetToYes(obj, "ford")   then obj:Attribute("brunnel", "ford")
+  -- elseif SetToYes(obj, "ford")   then obj:Attribute("brunnel", "ford")
   end
 end
 
