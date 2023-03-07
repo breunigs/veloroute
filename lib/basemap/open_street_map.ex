@@ -2,6 +2,7 @@ defmodule Basemap.OpenStreetMap do
   use Basemap.Renderable
 
   @dockerfile Path.join(__DIR__, "Dockerfile.openstreetmap")
+  @dockerfile_statistics Path.join(__DIR__, "Dockerfile.geostats")
 
   @impl Basemap.Renderable
   def target(where), do: path(where, target_name())
@@ -50,6 +51,20 @@ defmodule Basemap.OpenStreetMap do
             |> get_in(["settings", "maxzoom"])
 
   def max_zoom, do: @max_zoom
+
+  def statistics do
+    ensure()
+
+    %{result: :ok, stdout: json} =
+      Docker.build_and_run(
+        @dockerfile_statistics,
+        [path(:container, target_name())],
+        name: "generating statistics for basemap",
+        stdout: ""
+      )
+
+    Jason.decode!(json)
+  end
 
   @impl Basemap.Renderable
   def render do

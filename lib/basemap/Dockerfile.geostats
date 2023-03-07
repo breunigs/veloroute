@@ -1,0 +1,16 @@
+ARG DEBIAN_VERSION
+FROM debian:${DEBIAN_VERSION}
+
+RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
+  ca-certificates \
+  git \
+  nodejs \
+  npm \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /build/
+WORKDIR /build/
+RUN npm install -g -ci -no-audit @mapbox/mapbox-geostats
+
+ENTRYPOINT ["/usr/local/bin/mapbox-geostats"]
+CMD ["--help"]
