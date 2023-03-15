@@ -261,7 +261,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "tunnel"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "butt",
@@ -600,7 +600,7 @@
         "all",
         ["==", "$type", "LineString"],
         ["==", "brunnel", "tunnel"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "round",
@@ -1094,7 +1094,7 @@
       "filter": [
         "all",
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "butt",
@@ -1423,7 +1423,7 @@
         "all",
         ["==", "$type", "LineString"],
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "round",
@@ -1922,7 +1922,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "bridge"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "butt",
@@ -2339,7 +2339,7 @@
         "all",
         ["==", "$type", "LineString"],
         ["==", "brunnel", "bridge"],
-        ["==", "class", "motorway"]
+        ["in", "class", "motorway", "trunk"]
       ],
       "layout": {
         "line-cap": "round",
@@ -3528,7 +3528,11 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "waterway",
-      "filter": ["==", "$type", "LineString"],
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["!=", "brunnel", "tunnel"]
+      ],
       "layout": {
         "symbol-placement": "line",
         "symbol-spacing": 450,
