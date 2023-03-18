@@ -212,7 +212,7 @@
           "interpolate",
           ["linear"],
           ["zoom"],
-          15,
+          14,
           "hsla(0, 89%, 63%, 0)",
           19,
           "hsl(0, 89%, 63%)"
@@ -226,7 +226,7 @@
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "filter": ["all"],
+      "filter": ["match", ["get", "layer"], ["-1"], true, false],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
@@ -238,13 +238,31 @@
           "interpolate",
           ["exponential", 1.5],
           ["zoom"],
-          0,
-          4,
-          19,
-          16
+          8,
+          1,
+          22,
+          1.5
         ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 14, 0.7],
-        "line-gap-width": 0
+        "line-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          8,
+          0,
+          14,
+          0.4,
+          18,
+          1
+        ],
+        "line-gap-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ]
       }
     },
     {
@@ -424,7 +442,8 @@
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "filter": ["all"],
+      "minzoom": 8,
+      "filter": ["match", ["get", "layer"], ["-1"], false, true],
       "layout": {
         "visibility": "visible",
         "line-cap": "butt",
@@ -432,8 +451,26 @@
       },
       "paint": {
         "line-color": "#ffffff",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 13, 1, 22, 2],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 13, 0, 14, 0.7],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          8,
+          1,
+          22,
+          1.5
+        ],
+        "line-opacity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          8,
+          0,
+          14,
+          0.4,
+          18,
+          1
+        ],
         "line-gap-width": [
           "interpolate",
           ["exponential", 1.5],
