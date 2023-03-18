@@ -201,6 +201,10 @@ window.addEventListener(`phx:bounds:adjust`, (e) => {
   map.fitBounds(e.detail, fitBoundsOpt);
 })
 
+const featureOpacity = (feature) => {
+  return feature.layer.paint['line-opacity'] || feature.layer.paint['fill-opacity'] || 1
+}
+
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
   let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
@@ -210,7 +214,7 @@ const itemsUnderCursor = (evt) => {
     const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
     routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
   }
-  return routes;
+  return routes.filter(r => featureOpacity(r) >= 0.15);
 }
 
 let pingResetTimer = null;
