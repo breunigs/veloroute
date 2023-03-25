@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
   def summary(),
     do: "Pop-Up-Bikelane wird in dauerhafte Radfahrstreifen umgewandelt. Änderungen gibt es kaum."
 
-  def start(), do: ~d[2023Q2]
-  def stop(), do: ~d[2023Q2]
+  def start(), do: ~d[2023-06]
+  def stop(), do: ~d[2023-06]
 
   def type(), do: :planned
 
@@ -46,12 +46,12 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
 
   def links(_assigns) do
     [
+      {"Lageplan und Erläuterung", "März 2023",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008294"},
       {"Pressemitteilung zur Verstetigung", "Juli 2022",
        "https://www.hamburg.de/bvm/medien/16341028/2022-07-13-bvm-pop-up-bikelane-hallerstrasse/"},
       {"Testauswertung mit Erläuterungsbericht", "Juli 2022",
-       "https://www.hamburg.de/contentblob/16328090/6b4b783311ea31cbe58024ac781eded6/data/endabgabe-hallerstrasse.pdf"},
-      {"Lageplan", "Mai 2021",
-       "https://web.archive.org/web/20210520052831/https://lsbg.hamburg.de/contentblob/15068828/81a50c1734756d0860feaf426cd3536e/data/hallerstrasse-pop-up-bikelane-abgestimmte-planung.pdf"}
+       "https://www.hamburg.de/contentblob/16328090/6b4b783311ea31cbe58024ac781eded6/data/endabgabe-hallerstrasse.pdf"}
     ]
   end
 

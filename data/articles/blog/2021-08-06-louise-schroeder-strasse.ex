@@ -45,6 +45,8 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung", "März 2023",
+       "https://www.hamburg.de/altona/pressemitteilung/17007528/umbau-louise-schroeder-strasse/"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht und Lageplan",
