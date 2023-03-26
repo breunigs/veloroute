@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Alsterradweg",
         direction: :forward,
         from: "Binnenalster",
@@ -23,7 +23,8 @@ defmodule Data.Article.Static.Freizeitroute1 do
         parent_ref: __MODULE__,
         text: "entlang der Alster zum Duvenstedter Brook",
         videos: [
-          {"2021-07-26-missing-parts-fr2-fr3/GX012415", :start, "00:00:11.178"},
+          {"2022-12-24-berner-strasse/GX015009", "00:00:01.869", "00:00:19.219"},
+          {"2021-07-26-missing-parts-fr2-fr3/GX012415", "00:00:01.235", "00:00:11.178"},
           {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:04.972", "00:00:06.039"},
           {"2021-09-26-velo6-rsw-ahrensburg/GX012983", "00:01:17.811", "00:01:35.762"},
           {"2021-05-29-freizeitroute1/GX011470", "00:00:24.524", :end},
@@ -31,8 +32,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
           {"2021-05-29-freizeitroute1/GX011473", :start, "00:00:15.349"},
           {"2021-05-29-freizeitroute1/GX011474", "00:00:26.860", :end},
           {"2021-05-29-freizeitroute1/GX011475", :start, :end},
-          # TODO: maybe cut part where I go wrong?,
-          {"2021-05-29-freizeitroute1/GX011476", :start, :end},
+          {"2021-05-29-freizeitroute1/GX011476", :start, "00:04:12.052"},
           {"2021-05-29-freizeitroute1/GX011477", "00:00:38.739", "00:03:21.968"},
           {"2021-05-29-freizeitroute1/GX011478", :start, "00:00:03.403"},
           {"2021-05-29-freizeitroute1/GX011479", "00:00:15.115", :end},
@@ -45,7 +45,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "Alsterradweg",
         direction: :backward,
         from: "Duvenstedter Brook",
@@ -69,8 +69,8 @@ defmodule Data.Article.Static.Freizeitroute1 do
           {"2021-05-29-freizeitroute1/GX011499", :start, :end},
           {"2021-05-29-freizeitroute1/GX011500", :start, "00:02:03.423"},
           {"2021-09-26-velo6-rsw-ahrensburg/GX012984", "00:00:02.736", "00:00:21.955"},
-          {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:08.442", "00:00:13.046"},
-          {"2021-07-26-missing-parts-fr2-fr3/GX012414", "00:00:10.844", :end}
+          {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:08.442", "00:00:13.647"},
+          {"2022-12-24-berner-strasse/GX015054", "00:00:29.530", "00:00:54.254"}
         ]
       }
     ]
