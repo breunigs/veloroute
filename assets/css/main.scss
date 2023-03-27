@@ -1185,21 +1185,3 @@ ul, ol {
   height: 1rem;
   vertical-align: sub;
 }
-
-#push-notifications {
-  display: block;
-  min-height: 4.6rem;
-}
-
-.push-action {
-  display: inline-block;
-  margin-top: 0.3rem;
-  margin-right: 1rem;
-}
-
-.push-action {
-  a.disabled, a.phx-click-loading {
-    cursor: progress;
-    color: #888;
-  }
-}
