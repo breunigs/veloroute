@@ -113,7 +113,7 @@ function attachHlsErrorHandler(obj, Hls) {
     }
 
     if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
-      console.warn('Hls encountered a fatal error. Destroying it and letting the browser use one of the fallbacks.', data);
+      console.warn('Hls encountered a fatal error. Destroying it and letting the browser use the fallback.', data);
       sendCurrentVideoTime('video-fatal-hls');
       videoMeta.start = videoTimeInMs;
       autoplay = true
@@ -214,7 +214,6 @@ function updateVideoElement() {
   // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
   const innerHTML = `
     <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
-    <source src="${path}fallback.webm${time}" type="video/webm; codecs=av1">
     <source src="${path}fallback.mp4${time}" type="video/mp4; codecs=avc1.64001E">
     <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
     ${preloads}

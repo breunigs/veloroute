@@ -380,18 +380,6 @@ defmodule Video.Renderer do
   # codec tag specification:
   # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
 
-  # vp9 levels: https://www.webmproject.org/vp9/levels/
-  #
-  # libvpx generates blurry videos, so can't easily use it for HQ. Additionally,
-  # hls.js locks all browsers to the initially selected codec, because of some
-  # bug in Safari.
-  # defp codec_vp9,
-  #   do: %{
-  #     codec:
-  #       ~w[libvpx-vp9 -row-mt:v:__INDEX__ 1 -tile-columns 4 -frame-parallel 1 -speed 1 -threads 2 -refs:v:__INDEX__ 5],
-  #     tag_as: "vp09.00.30.08"
-  #   }
-
   # codec tag specification:
   # https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter#av1
   # find seq_tier and seq_level_idx through:
@@ -517,7 +505,7 @@ defmodule Video.Renderer do
   defp variants do
     [
       # av1, with default quality as first entry
-      %{width: 1280, height: 720, bitrate: 4.5, fallback: :webm, codec: &codec_av1_rav1e/2},
+      %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_rav1e/2},
       %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_rav1e/2},
       %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_rav1e/2},
       # legacy codec

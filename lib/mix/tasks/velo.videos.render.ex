@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   use Mix.Task
   @requirements ["app.start"]
 
-  @shortdoc "Print commands to render videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
+  @shortdoc "Renders videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
   def run(filters) do
     Docker.build("tools/ffmpeg/Dockerfile.ffmpeg")
 
