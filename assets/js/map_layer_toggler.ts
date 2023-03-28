@@ -106,6 +106,9 @@ function updateMap(map: MapboxMap, data: mapEventDetail) {
     })
   } else {
     maybeToggleLayers(map, data.layers)
+    map.on('style.load', () => {
+      maybeToggleLayers(map, data.layers)
+    })
   }
 }
 
