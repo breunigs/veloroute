@@ -227,7 +227,11 @@ defmodule Mix.Tasks.Deploy do
 
   defp restart(_skip) do
     Util.banner("Restarting")
+    restart_service("veloroute-phoenix1.service")
+    restart_service("veloroute-phoenix2.service")
+  end
 
+  defp restart_service(name) do
     {_, 0} =
       System.cmd(
         "ssh",
@@ -236,7 +240,7 @@ defmodule Mix.Tasks.Deploy do
           "sudo",
           "/bin/systemctl",
           "restart",
-          "veloroute-phoenix1.service"
+          name
         ],
         into: IO.stream(:stdio, :line)
       )
@@ -251,8 +255,8 @@ defmodule Mix.Tasks.Deploy do
           Settings.deploy_ssh_name(),
           "sudo",
           "/bin/systemctl",
-          "restart",
-          "veloroute-phoenix2.service"
+          "is-active",
+          name
         ],
         into: IO.stream(:stdio, :line)
       )
