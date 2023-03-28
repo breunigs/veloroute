@@ -55,11 +55,11 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
 
     <p>Beim <b>direkten Abbiegen</b> ordnet man sich auf der Linksabbiegerspur ein und kommt in einem Zug in die gewünschte Straße. Dazu muss man jedoch die KFZ-Geradeausspuren queren. In der Grafik ist das der dunkelrote Pfad.</p>
 
-    <p>Beim <b>indirekten Abbiegen</b> fährt man zunächst geradeaus in die Kreuzung und wartet in einer Aufstelltasche. Ist die Straße frei bzw. die Ampel grün quert man nun die Straße und ist auch am Ziel. In der Grafik ist das der hellgründe Pfad.</p>
+    <p>Beim <b>indirekten Abbiegen</b> fährt man zunächst geradeaus in die Kreuzung und wartet in einer Aufstelltasche. Ist die Straße frei bzw. die Ampel grün quert man nun die Straße und ist auch am Ziel. In der Grafik ist das der hellgrüne Pfad.</p>
 
     <.roaddiagram src="abbiegen" alt="Eine Straßenansicht von oben (Vogelperspektive) die schematisch zeigt wie sich direktes und indirektes Linksabbiegen unterscheiden."/>
 
-    <p>Damit das Prinzip gut erkennbar ist, ist die Kreuzung in der Grafik kompakt gehalten. In der Praxis sind sie deutlich weitläufiger, weil sich der Autoverkehr sonst im Weg stünde.</p>
+    <p>Damit das Prinzip gut erkennbar ist, ist die Kreuzung in der Grafik kompakt gehalten. In <.v bounds="10.062198,53.578157,10.067061,53.579749" lon={10.063735} lat={53.57841} dir="forward" ref="6">der Praxis sind sie deutlich weitläufiger</.v>, weil sich der Autoverkehr sonst im Weg stünde.</p>
 
     <h4>Videobeispiele</h4>
     <p>Es gibt alle möglichen Kreuzungs-Varianten:</p>

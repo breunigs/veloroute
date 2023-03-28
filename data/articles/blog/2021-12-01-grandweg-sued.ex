@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.GrandwegSued do
   def tags(), do: ["3"]
 
   def start(), do: ~d[2021-09-13]
-  def stop(), do: ~d[2023-03-31]
+  def stop(), do: ~d[2023-08-11]
   def construction_site_id_hh(), do: [21848]
 
   def links(_assigns) do
