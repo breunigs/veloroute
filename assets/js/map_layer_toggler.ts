@@ -100,16 +100,9 @@ function maybeSwitchStyle(map: MapboxMap, styles: mapStyle[] | undefined) {
 }
 
 function updateMap(map: MapboxMap, data: mapEventDetail) {
-  if (maybeSwitchStyle(map, data.styles)) {
-    map.on('style.load', () => {
-      maybeToggleLayers(map, data.layers)
-    })
-  } else {
-    maybeToggleLayers(map, data.layers)
-    map.on('style.load', () => {
-      maybeToggleLayers(map, data.layers)
-    })
-  }
+  maybeSwitchStyle(map, data.styles)
+  map.on('style.load', () => { maybeToggleLayers(map, data.layers) })
+  maybeToggleLayers(map, data.layers)
 }
 
 export { updateMap }
