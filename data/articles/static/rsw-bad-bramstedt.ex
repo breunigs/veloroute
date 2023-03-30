@@ -14,6 +14,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def tags(), do: [id(), "rsw", "norderstedt"]
 
+  # TODO: insert velo4 from hohe liedt?
   def tracks(),
     do: [
       %Video.Track{
@@ -107,6 +108,8 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Vorzugsroute auf Hamburger Stadtgebiet", "März 2023",
+       "https://www.hamburg.de/hamburg-nord/pressemitteilungen-hamburg-nord/17016042/vorzugstrasse-radschnellweg/"},
       {"Sachstand Planung", "Juni 2022",
        "https://www.hamburg.de/hamburg-nord/planen-bauen-wohnen/16278304/sachstand-radschnellweg/"},
       {"Pressemitteilung zum Start der Detailplanungen", "Juni 2022",

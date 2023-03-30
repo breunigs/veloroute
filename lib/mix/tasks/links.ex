@@ -172,7 +172,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   # defp extract({_name, "https://twitter.com" <> _rest}), do: []
 
   defp extract({name, url}) do
-    path = URI.new!(url).path
+    path = URI.new!(url).path || "/"
 
     if String.ends_with?(path, ".pdf") do
       [{:download, "#{name} #{name_from_url(url)}", url}]

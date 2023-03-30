@@ -5,15 +5,18 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def updated_at(), do: ~D[2021-11-27]
   def title(), do: "Gerichtstraße (Veloroute 13)"
 
-  def start(), do: ~d[2023-04-01]
+  def start(), do: ~d[2023-04-17]
   def stop(), do: ~d[2024-05-31]
+  def construction_site_id_hh(), do: [345_446]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["13"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "März 2023",
+       "https://lsbg.hamburg.de/resource/blob/671508/cafd426c95f09cc7d35422ef499d3db9/gerichtstrasse-anliegerinformation-april-2023-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/gerichtstrasse"},
       {"Ausschreibung Umbau", "Januar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9918a22d-e3c3-4540-aab6-089a981e8df3"},
