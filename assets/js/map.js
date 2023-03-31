@@ -1,5 +1,6 @@
 import {
-  updateMap
+  maybeSwitchStyle,
+  maybeToggleLayers
 } from "./map_layer_toggler";
 
 if (!window.requestIdleCallback) {
@@ -21,7 +22,8 @@ let mapConfig = {}
 window.addEventListener("phx:map", e => {
   console.debug("updating map config", e.detail)
   Object.assign(mapConfig, e.detail)
-  updateMap(map, e.detail)
+  maybeSwitchStyle(map, mapConfig)
+  maybeToggleLayers(map, mapConfig)
 });
 
 // TODO: move to settings.ex
@@ -344,12 +346,24 @@ window.addEventListener("phx:video_meta", e => {
 });
 
 
-function highlightRoute(x) {
-  if (!videoRoute || !styleLoaded) return;
+function highlightRoute() {
+  if (!videoRoute) return
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
+let prevStyleName = ""
 
+function styleChangedHandler() {
+  // we might not get a "normal" event where the style is actually loaded
+  if (!map.isStyleLoaded()) return setTimeout(styleChangedHandler, 50)
+
+  const currStyleName = map.getStyle().name
+  if (prevStyleName == currStyleName) return
+  prevStyleName = currStyleName || ""
+
+  highlightRoute()
+  maybeToggleLayers(map, mapConfig)
+}
 
 function updateIndicatorPolyline(data) {
   if (!data) return
@@ -531,7 +545,6 @@ function setupTouchDeviceClick() {
 }
 
 let map = null;
-let styleLoaded = false;
 
 function setup() {
   if (map && document.body.contains(window.map.getContainer())) return
@@ -571,11 +584,8 @@ function setup() {
   map.on('movestart', disableIndicatorAnimation);
   map.on('zoomstart', disableIndicatorAnimation);
 
-  styleLoaded = false;
-  map.on('style.load', () => {
-    styleLoaded = true;
-    highlightRoute()
-  });
+  map.on('style.load', styleChangedHandler)
+  map.on('styledata', styleChangedHandler)
 
   setupTouchDeviceClick()
 

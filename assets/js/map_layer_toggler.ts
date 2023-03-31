@@ -71,11 +71,11 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
   });
 }
 
-function maybeToggleLayers(map: MapboxMap, layers: mapLayer[] | undefined) {
-  if (!layers) return
-  console.log("toggling map layer", layers)
+function maybeToggleLayers(map: MapboxMap, mapDetail: mapEventDetail) {
+  if (!mapDetail.layers) return
+  console.log("toggling map layer", mapDetail.layers)
 
-  for (const layer of layers) {
+  for (const layer of mapDetail.layers) {
     updateMapPrimitive(map, layer.icon, "icon", layer.active);
     updateMapPrimitive(map, layer.outline, "line", layer.active);
     updateMapPrimitive(map, layer.line, "line", layer.active, true);
@@ -84,10 +84,11 @@ function maybeToggleLayers(map: MapboxMap, layers: mapLayer[] | undefined) {
   }
 }
 
-function maybeSwitchStyle(map: MapboxMap, styles: mapStyle[] | undefined) {
-  if (typeof styles === "undefined") return false
 
-  for (const style of styles) {
+function maybeSwitchStyle(map: MapboxMap, mapDetail: mapEventDetail) {
+  if (!mapDetail.styles) return false
+
+  for (const style of mapDetail.styles) {
     if (!style.active) continue
     const selfHosted = style.id[0] == "/"
     const path = selfHosted ? style.id : `mapbox://styles/${style.id}`
@@ -99,10 +100,4 @@ function maybeSwitchStyle(map: MapboxMap, styles: mapStyle[] | undefined) {
   return true
 }
 
-function updateMap(map: MapboxMap, data: mapEventDetail) {
-  maybeSwitchStyle(map, data.styles)
-  map.on('style.load', () => { maybeToggleLayers(map, data.layers) })
-  maybeToggleLayers(map, data.layers)
-}
-
-export { updateMap }
+export { maybeSwitchStyle, maybeToggleLayers }
