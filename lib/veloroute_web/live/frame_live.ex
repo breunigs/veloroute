@@ -369,7 +369,7 @@ defmodule VelorouteWeb.FrameLive do
   defp update_og_image(%{assigns: %{current_page: nil}} = socket) do
     bounds = VelorouteWeb.VariousHelpers.to_string_bounds(Settings.bounds())
     url = ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
-    assign(socket, :og_image, url)
+    assign(socket, :og_image, make_absolute(url))
   end
 
   defp update_og_image(%{assigns: assigns} = socket) do
@@ -384,6 +384,15 @@ defmodule VelorouteWeb.FrameLive do
         ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
       end
 
-    assign(socket, :og_image, url)
+    assign(socket, :og_image, make_absolute(url))
+  end
+
+  defp make_absolute("/" <> path) do
+    if Application.get_env(:veloroute, :env) == :prod do
+      Settings.url() <> "/" <> path
+    else
+      cfg = Application.get_env(:veloroute, VelorouteWeb.Endpoint)
+      "http://#{cfg[:url][:host]}:#{cfg[:http][:port]}/#{path}"
+    end
   end
 end

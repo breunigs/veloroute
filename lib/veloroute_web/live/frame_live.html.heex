@@ -1,14 +1,21 @@
-<.live_component
-  phx-update="ignore"
-  module={VelorouteWeb.Live.Map}
-  id="map"
-  map_bounds={@map_bounds}
-  video={@video}
-  current_page={@current_page}
-/>
+<%= if @article_original_date != nil do %>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content={Date.to_iso8601(@article_original_date)}/>
+  <meta property="datePublished" content={Date.to_iso8601(@article_original_date)}>
+<% end %>
+<%= if @article_date != nil do %>
+  <meta property="article:modified_time" content={Date.to_iso8601(@article_date)}/>
+  <meta property="dateModified" content={Date.to_iso8601(@article_date)}/>
+<% end %>
+<%= %>
+<meta property="og:title" content={@article_title}/>
+<%= if @article_summary != nil && @article_summary != "" do %>
+  <meta property="og:description" content={@article_summary}/>
+<% end %>
+<meta property="og:image" content={@og_image} />
 
 <div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
-  <%# phx-ignore-attrneeded to toggle loading indicator from JS %>
+  <%# phx-ignore-attr needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-ignore-attr="class">
     <video
       id="videoInner"
