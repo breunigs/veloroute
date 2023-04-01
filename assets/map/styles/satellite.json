@@ -11,17 +11,20 @@
       "type": "vector",
       "url": "%%URL_TILES%%/metadata.json"
     },
-    "esri-arcgis-satellite": {
+    "esri_satellite": {
       "type": "raster",
-      "tiles": ["/map/___satellite?z={z}&y={y}&x={x}&r={r}"],
+      "tiles": ["/map/___esri_satellite?z={z}&y={y}&x={x}&r={r}"],
       "minzoom": 0,
       "maxzoom": 19,
-      "attribution": "%%ATTRIBUTION___satellite%%"
+      "attribution": "%%ATTRIBUTION___esri_satellite%%"
     },
-    "mapbox://mapbox.satellite": {
-      "url": "mapbox://mapbox.satellite",
+    "maptiler_satellite": {
       "type": "raster",
-      "tileSize": 256
+      "tiles": ["/map/___maptiler_satellite?z={z}&y={y}&x={x}&r={r}"],
+      "minzoom": 0,
+      "maxzoom": 20,
+      "tileSize": 512,
+      "attribution": "<a href=\"https://www.maptiler.com/copyright/\" target=\"_blank\">&copy; MapTiler</a>"
     }
   },
   "sprite": "%%URL_SPRITES%%/sprite",
@@ -30,7 +33,7 @@
     {
       "id": "satellite",
       "type": "raster",
-      "source": "mapbox://mapbox.satellite",
+      "source": "maptiler_satellite",
       "layout": {},
       "paint": {}
     },

@@ -8,6 +8,7 @@ defmodule MapStyleEditor.Server do
 
   plug Basemap.RelativePath
   plug Esri.Tiles
+  plug Maptiler.Tiles
 
   plug(:match)
   plug(:dispatch)

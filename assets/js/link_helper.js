@@ -1,3 +1,6 @@
+import MapboxDraw from "@mapbox/mapbox-gl-draw"
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
+
 const draw = new MapboxDraw({
   controls: {
     combine_features: false,
@@ -50,7 +53,7 @@ function logLink() {
 class CopyLinkButton {
   onAdd(map, cs) {
     this.map = map;
-    this.container = document.getElementsByClassName('mapboxgl-ctrl-group')[0];
+    this.container = document.querySelector('.maplibregl-ctrl-top-left .mapboxgl-ctrl-group');
     const button = this._createButton()
     this.container.appendChild(button);
     return this.container;

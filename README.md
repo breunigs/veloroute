@@ -26,13 +26,11 @@ The project mostly uses open source software to provide its functionality. There
 are notable exceptions:
 - video stabilization needs to happen on the camera, there is no tooling included
   to "deshake" videos.
-- the map display is coupled to tightly to [Mapbox](https://www.mapbox.com/), an
-  US company. The displayed routes are "baked into" the map and go through
-  Mapbox' processing pipeline. The JavaScript library to display the map is also
-  not open source (non-free, but source available). This also means that the map
-  style as shown on veloroute.hamburg is not shipped as part of this project.
-- the search results for streets, points of interest, etc. are also provided
-  through Mapbox.
+- the search results for streets, points of interest, etc. are provided through
+  [ESRI](https://www.esri.com/en-us/home) and
+  [Maptiler](https://www.maptiler.com/).
+- Satellite imagery is also provided through either of these two companies,
+  although a reverse proxy is used to conserve privacy.
 - display of street polyline (e.g. when clicking a search result) requires
   external tooling to provide OpenStreetMap extracts. This is currently provided
   by [Geofabrik GmbH](https://www.geofabrik.de/) as a service to the

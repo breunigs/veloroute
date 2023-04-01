@@ -11,7 +11,6 @@ if (!window.requestIdleCallback) {
 
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
-mapboxgl.accessToken = "pk.";
 
 const fitBoundsOpt = {
   maxZoom: 17
@@ -71,7 +70,7 @@ function renderIndicator() {
 
   prevIndicatorPos = pos;
 
-  const lngLat = new mapboxgl.LngLat(pos.lon, pos.lat);
+  const lngLat = new mlgl.LngLat(pos.lon, pos.lat);
 
   if (!indicator) {
     const rotated = genDiv('indicator-rotate');
@@ -79,7 +78,7 @@ function renderIndicator() {
     rotated.appendChild(genDiv('indicator-loc'));
     const el = genDiv('indicator');
     el.appendChild(rotated);
-    indicator = new mapboxgl.Marker(el)
+    indicator = new mlgl.Marker(el)
       .setLngLat(lngLat)
       .setRotation(pos.bearing * 1)
       .addTo(map);
@@ -176,7 +175,7 @@ const ensureIndicatorInView = (lngLat) => {
     return;
   }
 
-  let bbox = new mapboxgl.LngLatBounds(lngLat, lngLat)
+  let bbox = new mlgl.LngLatBounds(lngLat, lngLat)
 
   const minMs = videoTimeInMs - 4 * 1000
   const maxMs = videoTimeInMs + 15 * 1000
@@ -249,8 +248,8 @@ function pingShow(e) {
 
   if (e.detail.center) {
     const center = e.detail.center;
-    const lngLat = new mapboxgl.LngLat(center.lon, center.lat)
-    pingIndicator = new mapboxgl.Marker(genDiv('ping-indicator'))
+    const lngLat = new mlgl.LngLat(center.lon, center.lat)
+    pingIndicator = new mlgl.Marker(genDiv('ping-indicator'))
       .setLngLat(lngLat)
       .addTo(map);
   }
@@ -560,7 +559,7 @@ function setup() {
   let style = document.getElementById('map').dataset.style
   console.log("map: loading style", style)
 
-  map = new mapboxgl.Map({
+  map = new mlgl.Map({
     container: 'map',
     maxBounds: settings.maxBounds.split(","),
     bounds: settings.initial.split(","),
@@ -575,7 +574,7 @@ function setup() {
     attributionControl: false,
   });
   map.touchZoomRotate.disableRotation();
-  map.addControl(new mapboxgl.AttributionControl(), 'top-right');
+  map.addControl(new mlgl.AttributionControl(), 'top-right');
 
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);

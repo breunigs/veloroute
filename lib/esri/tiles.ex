@@ -1,14 +1,14 @@
 defmodule Esri.Tiles do
   @base "https://server.arcgisonline.com"
   @maps %{
-    "___hillshade" => "/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/",
-    "___satellite" => "/ArcGIS/rest/services/World_Imagery/MapServer/tile/"
+    "___esri_hillshade" => "/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/",
+    "___esri_satellite" => "/ArcGIS/rest/services/World_Imagery/MapServer/tile/"
   }
 
   @attribution [
-    {"___hillshade", "https://static.arcgis.com/attribution/Elevation/World_Hillshade",
+    {"___esri_hillshade", "https://static.arcgis.com/attribution/Elevation/World_Hillshade",
      "https://www.arcgis.com/home/item.html?id=1b243539f4514b6ba35e7d995890db1d"},
-    {"___satellite", "https://static.arcgis.com/attribution/World_Imagery",
+    {"___esri_satellite", "https://static.arcgis.com/attribution/World_Imagery",
      "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9"}
   ]
 

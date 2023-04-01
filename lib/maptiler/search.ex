@@ -1,4 +1,4 @@
-defmodule Maptiler do
+defmodule Maptiler.Search do
   require Logger
 
   use Tesla

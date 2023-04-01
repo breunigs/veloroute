@@ -43,9 +43,8 @@
   <script type="text/javascript" defer src={~p"/assets/video_player.js"} fetchpriority="low"></script>
 
   <%= if Application.get_env(:veloroute, :enable_link_helper) do %>
-    <link href='/map/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel='stylesheet' href='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
-    <script src='/map/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js' defer></script>
+    <link rel='stylesheet' href={~p"/assets/mapbox_compatibility_shim.css"} type='text/css' />
+    <link rel='stylesheet' href={~p"/assets/link_helper.css"} type='text/css' />
     <script type="text/javascript" defer src={~p"/assets/link_helper.js"}></script>
   <% end %>
 

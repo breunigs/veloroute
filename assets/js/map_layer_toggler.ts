@@ -1,4 +1,4 @@
-import { Map as MapboxMap, Layer } from "mapbox-gl";
+import { Map as MapboxMap } from "maplibre-gl";
 
 type mapLayer =
   {
@@ -36,7 +36,7 @@ function opacityRule(active: boolean, tunnel: boolean) {
 let visibleMinZooms: { [id: string]: number; } = {};
 function minZoomForLayer(map: MapboxMap, layerName: string, minZoom: number): void {
   if (!visibleMinZooms[layerName]) {
-    const layer = map.getLayer(layerName) as Layer;
+    const layer = map.getLayer(layerName);
     if (!layer) console.error("undefined layerName", layerName)
     visibleMinZooms[layerName] = layer.minzoom || 1;
   }

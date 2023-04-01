@@ -47,7 +47,7 @@ body {
   overflow: hidden;
   background-color: #EFE9E1;
 
-  &.preview .mapboxgl-canvas-container {
+  &.preview .maplibregl-canvas-container {
     visibility: hidden;
   }
 

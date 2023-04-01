@@ -1,108 +1,108 @@
-.mapboxgl-map {
+.maplibregl-map {
   font: 12px/20px Helvetica Neue, Arial, Helvetica, sans-serif;
   overflow: hidden;
   position: relative;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
-.mapboxgl-canvas {
+.maplibregl-canvas {
   position: absolute;
   left: 0;
   top: 0
 }
 
-.mapboxgl-map:-webkit-full-screen {
+.maplibregl-map:-webkit-full-screen {
   width: 100%;
   height: 100%
 }
 
-.mapboxgl-canvas-container.mapboxgl-interactive:active,
-.mapboxgl-ctrl-group button.mapboxgl-ctrl-compass:active {
+.maplibregl-canvas-container.maplibregl-interactive:active,
+.maplibregl-ctrl-group button.maplibregl-ctrl-compass:active {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing
 }
 
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate,
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate .mapboxgl-canvas {
+.maplibregl-canvas-container.maplibregl-touch-zoom-rotate,
+.maplibregl-canvas-container.maplibregl-touch-zoom-rotate .maplibregl-canvas {
   touch-action: pan-x pan-y
 }
 
-.mapboxgl-canvas-container.mapboxgl-touch-drag-pan,
-.mapboxgl-canvas-container.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+.maplibregl-canvas-container.maplibregl-touch-drag-pan,
+.maplibregl-canvas-container.maplibregl-touch-drag-pan .maplibregl-canvas {
   touch-action: pinch-zoom
 }
 
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
-.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan,
+.maplibregl-canvas-container.maplibregl-touch-zoom-rotate.maplibregl-touch-drag-pan .maplibregl-canvas {
   touch-action: none
 }
 
-.mapboxgl-ctrl-top-left,
-.mapboxgl-ctrl-top-right,
-.mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right {
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
   position: absolute;
   pointer-events: none;
   z-index: 2
 }
 
-.mapboxgl-ctrl-bottom-left {
+.maplibregl-ctrl-bottom-left {
   bottom: 0;
   left: 0
 }
 
-.mapboxgl-ctrl-bottom-right {
+.maplibregl-ctrl-bottom-right {
   right: 0;
   bottom: 0
 }
 
-.mapboxgl-ctrl-top-left {
+.maplibregl-ctrl-top-left {
   top: 0;
   left: 0
 }
 
-.mapboxgl-ctrl-top-right {
+.maplibregl-ctrl-top-right {
   top: 0;
   right: 0
 }
 
-.mapboxgl-ctrl {
+.maplibregl-ctrl {
   clear: both;
   pointer-events: auto;
   transform: translate(0)
 }
 
-.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+.maplibregl-ctrl-top-left .maplibregl-ctrl {
   margin: 2px 0 0 6px;
   float: left
 }
 
-.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+.maplibregl-ctrl-top-right .maplibregl-ctrl {
   margin: 10px 10px 0 0;
   float: right
 }
 
-.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl {
+.maplibregl-ctrl-bottom-left .maplibregl-ctrl {
   margin: 0 0 5px 4px;
   float: left
 }
 
-.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl {
   margin: 0 10px 10px 0;
   float: right
 }
 
-.mapboxgl-ctrl-group {
+.maplibregl-ctrl-group {
   border-radius: 4px;
   background: #fff
 }
 
-.mapboxgl-ctrl-group:not(:empty) {
+.maplibregl-ctrl-group:not(:empty) {
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .1)
 }
 
-a.mapboxgl-ctrl-logo {
+a.maplibregl-ctrl-logo {
   width: 88px;
   height: 23px;
   margin: 0 0 -4px -4px;
@@ -113,17 +113,17 @@ a.mapboxgl-ctrl-logo {
   background-image: url("/images/mapbox-ctrl-logo.svg")
 }
 
-a.mapboxgl-ctrl-logo.mapboxgl-compact {
+a.maplibregl-ctrl-logo.maplibregl-compact {
   width: 23px
 }
 
-.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+.maplibregl-ctrl.maplibregl-ctrl-attrib {
   padding: 0 5px;
   background-color: hsla(0, 0%, 100%, .5);
   margin: 0
 }
 
-.mapboxgl-ctrl-attrib.mapboxgl-compact {
+.maplibregl-ctrl-attrib.maplibregl-compact {
   min-height: 20px;
   padding: 0;
   margin: 2px;
@@ -132,26 +132,26 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   border-radius: 3px 12px 12px 3px
 }
 
-.mapboxgl-ctrl-attrib.mapboxgl-compact:hover {
+.maplibregl-ctrl-attrib.maplibregl-compact:hover {
   padding: 2px 24px 2px 4px;
   visibility: visible;
   margin-top: 2px
 }
 
-.mapboxgl-ctrl-bottom-left>.mapboxgl-ctrl-attrib.mapboxgl-compact:hover {
+.maplibregl-ctrl-bottom-left>.maplibregl-ctrl-attrib.maplibregl-compact:hover {
   padding: 2px 4px 2px 24px;
   border-radius: 12px 3px 3px 12px
 }
 
-.mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ctrl-attrib-inner {
+.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-inner {
   display: none
 }
 
-.mapboxgl-ctrl-attrib.mapboxgl-compact:hover .mapboxgl-ctrl-attrib-inner {
+.maplibregl-ctrl-attrib.maplibregl-compact:hover .maplibregl-ctrl-attrib-inner {
   display: block
 }
 
-.mapboxgl-ctrl-attrib.mapboxgl-compact:after {
+.maplibregl-ctrl-attrib.maplibregl-compact:after {
   content: "";
   cursor: pointer;
   position: absolute;
@@ -163,35 +163,35 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   border-radius: 12px
 }
 
-.mapboxgl-ctrl-bottom-right>.mapboxgl-ctrl-attrib.mapboxgl-compact:after {
+.maplibregl-ctrl-bottom-right>.maplibregl-ctrl-attrib.maplibregl-compact:after {
   bottom: 0;
   right: 0
 }
 
-.mapboxgl-ctrl-bottom-left>.mapboxgl-ctrl-attrib.mapboxgl-compact:after {
+.maplibregl-ctrl-bottom-left>.maplibregl-ctrl-attrib.maplibregl-compact:after {
   bottom: 0;
   left: 0
 }
 
-.mapboxgl-ctrl-top-right>.mapboxgl-ctrl-attrib.mapboxgl-compact:after {
+.maplibregl-ctrl-top-right>.maplibregl-ctrl-attrib.maplibregl-compact:after {
   top: 0;
   right: 0
 }
 
-.mapboxgl-ctrl-attrib a {
+.maplibregl-ctrl-attrib a {
   color: rgba(0, 0, 0, .75);
 }
 
-.mapboxgl-ctrl-attrib .mapbox-improve-map {
+.maplibregl-ctrl-attrib .mapbox-improve-map {
   font-weight: 700;
   margin-left: 2px
 }
 
-.mapboxgl-ctrl-attrib-button {
+.maplibregl-ctrl-attrib-button {
   display: none;
 }
 
-.mapboxgl-ctrl-group button {
+.maplibregl-ctrl-group button {
   width: 29px;
   height: 29px;
   display: block;
@@ -203,7 +203,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   cursor: pointer
 }
 
-.mapboxgl-ctrl button .mapboxgl-ctrl-icon {
+.maplibregl-ctrl button .maplibregl-ctrl-icon {
   display: block;
   width: 100%;
   height: 100%;
@@ -211,7 +211,7 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   background-position: 50%
 }
 
-.mapboxgl-marker {
+.maplibregl-marker {
   position: absolute;
   top: 0;
   left: 0;

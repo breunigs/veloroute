@@ -1,0 +1,46 @@
+.mapboxgl-ctrl-top-left {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  top: 0;
+  left: 0
+}
+
+.mapboxgl-ctrl {
+  clear: both;
+  pointer-events: auto;
+  transform: translate(0)
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+  margin: 10px 0 0 10px;
+  float: left
+}
+
+.mapboxgl-ctrl-group {
+  background: #fff
+}
+
+.mapboxgl-ctrl-group:not(:empty) {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .1)
+}
+
+.mapboxgl-ctrl-group button {
+  width: 29px;
+  height: 29px;
+  display: block;
+  padding: 0;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer
+}
+
+.mapboxgl-ctrl-group button+button {
+  border-top: 1px solid #ddd
+}
+
+.mapboxgl-ctrl button:not(:disabled):hover {
+  background-color: rgba(0, 0, 0, .05)
+}

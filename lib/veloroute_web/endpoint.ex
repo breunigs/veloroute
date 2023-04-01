@@ -20,6 +20,7 @@ defmodule VelorouteWeb.Endpoint do
 
   plug Video.ServePlug
   plug Esri.Tiles
+  plug Maptiler.Tiles
   plug Map.ReverseProxyPlug
   plug Basemap.Plug
 

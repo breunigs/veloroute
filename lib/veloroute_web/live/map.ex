@@ -58,7 +58,7 @@ defmodule VelorouteWeb.Live.Map do
 
       <div id="layerSwitcher">
         <button></button>
-        <div class="mapboxgl-ctrl-group">
+        <div class="maplibregl-ctrl-group">
           <%= for layer <- @layers do %>
             <button
               value={layer.name}
