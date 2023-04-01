@@ -3,13 +3,13 @@ defmodule Data.Article.Static.BrWandsbekW1 do
 
   def id(), do: "br-wandsbek-w1"
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Wandsbek – W1 – Eilbek ↔ Wolfsdorf (↔ Ahrensburg)"
+  def title(), do: "Bezirksroute Wandsbek – W1 – Eilbek ↔ Wulfsdorf (↔ Ahrensburg)"
 
   def color(), do: "#FF7575"
 
   def summary(),
     do:
-      "Die Vorschlag zur Bezirksroute „W1 – Eilbek ↔ Wolfsdorf (↔ Ahrensburg) in Wandsbek verläuft nach Nord-Osten."
+      "Die Vorschlag zur Bezirksroute „W1 – Eilbek ↔ Wulfsdorf (↔ Ahrensburg) in Wandsbek verläuft nach Nord-Osten."
 
   def tags(), do: [id(), "br-wandsbek"]
 
@@ -80,7 +80,7 @@ defmodule Data.Article.Static.BrWandsbekW1 do
 
   def text(assigns) do
     ~H"""
-    <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W1 – Eilbek ↔ Wolfsdorf (↔ Ahrensburg)“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
+    <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W1 – Eilbek ↔ Wulfsdorf (↔ Ahrensburg)“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

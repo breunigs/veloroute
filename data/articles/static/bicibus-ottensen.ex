@@ -31,12 +31,10 @@ defmodule Data.Article.Static.BicibusOttensen do
         parent_ref: __MODULE__,
         text: "Bicibus Ottensen",
         videos: [
-          {"2023-03-26-bicibus-elbchausee/GX015277", "00:00:02.502", :end},
-          {"2023-03-26-bicibus-elbchausee/GX015278", :start, :end},
-          {"2023-03-26-bicibus-elbchausee/GX015279", :start, "00:00:27.861"},
-          {"2023-03-26-bicibus-elbchausee/GX015273", "00:00:51.552", :end},
-          {"2023-03-26-bicibus-elbchausee/GX015274", :start, "00:00:30.731"},
-          {"2023-03-26-bicibus-elbchausee/GX015269", "00:00:36.436", "00:01:15.727"}
+          {"2023-03-31-bicibus2/speedup/GX015377.MP4_time_lapse.mkv", :start, "00:01:15.108"},
+          {"2023-03-31-bicibus2/speedup/GX015377.MP4_time_lapse.mkv", "00:01:20.881", :end},
+          {"2023-03-31-bicibus2/speedup/GX025377.MP4_time_lapse.mkv", :start, :end},
+          {"2023-03-31-bicibus2/speedup/GX035377.MP4_time_lapse.mkv", :start, :end}
         ]
       }
     ]
