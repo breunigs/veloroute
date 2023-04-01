@@ -351,15 +351,18 @@ function highlightRoute() {
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
-let prevStyleName = ""
+let highlightsAppliedToStyle = ""
+let highlightsTimeout = null
 
 function styleChangedHandler() {
-  // we might not get a "normal" event where the style is actually loaded
-  if (!map.isStyleLoaded()) return setTimeout(styleChangedHandler, 50)
+  // Applying the modifications on a partially loaded style might not work. We
+  // don't always get an event with the style fully loaded, so retry this way.
+  if (highlightsTimeout) clearTimeout(highlightsTimeout)
+  if (!map.isStyleLoaded()) setTimeout(styleChangedHandler, 50)
 
   const currStyleName = map.getStyle().name
-  if (prevStyleName == currStyleName) return
-  prevStyleName = currStyleName || ""
+  if (highlightsAppliedToStyle == currStyleName) return
+  highlightsAppliedToStyle = currStyleName
 
   highlightRoute()
   maybeToggleLayers(map, mapConfig)
@@ -555,9 +558,6 @@ function setup() {
   }
 
   let style = document.getElementById('map').dataset.style
-  if (style[0] != "/") {
-    style = "mapbox://styles/" + style
-  }
   console.log("map: loading style", style)
 
   map = new mapboxgl.Map({

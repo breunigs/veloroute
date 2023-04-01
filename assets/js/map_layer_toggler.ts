@@ -84,16 +84,16 @@ function maybeToggleLayers(map: MapboxMap, mapDetail: mapEventDetail) {
   }
 }
 
-
+let currentStyleId = document.getElementById('map')?.dataset.style
 function maybeSwitchStyle(map: MapboxMap, mapDetail: mapEventDetail) {
   if (!mapDetail.styles) return false
 
   for (const style of mapDetail.styles) {
     if (!style.active) continue
-    const selfHosted = style.id[0] == "/"
-    const path = selfHosted ? style.id : `mapbox://styles/${style.id}`
-    console.log("switching map style to", path)
-    map.setStyle(path)
+    if (style.id === currentStyleId) continue
+    console.log("switching map style to", style.id)
+    currentStyleId = style.id
+    map.setStyle(style.id)
     window.plausible('switchStyle')
   }
 
