@@ -20,28 +20,24 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     max_retries: 3,
     max_delay: 60_000
 
-  @seen "seen"
-  @seen_last_run "seen_last_run"
+  @shown_by_date "shown_by_date"
 
   @shortdoc "Checks for updates in Hamburg's Bezirksversammlungen"
   def run(_) do
-    status = show_all_districts(load_status())
-
-    Enum.reduce(Allris.districts(), %{}, &Map.put(&2, &1, today()))
-    |> Map.put(@seen, [])
-    |> Map.put(@seen_last_run, status[@seen_last_run])
+    load_status()
+    |> show_all_districts()
     |> write_status()
   end
 
   @spec show_all_districts(status()) :: status()
   defp show_all_districts(status) do
     results = Stream.flat_map(Allris.districts(), &check_district(&1, status))
-    seen = MapSet.new(status[@seen])
+    shown = status[@shown_by_date] |> Map.values() |> List.flatten() |> MapSet.new()
 
     results
     |> Enum.reduce({status, nil}, fn result, {status, task} ->
-      if MapSet.member?(seen, result) do
-        {write_status_put(status, result), task}
+      if MapSet.member?(shown, result_ident(result)) do
+        {status, task}
       else
         status = write_status_put(status, task)
         task = Task.async(fn -> show(result) end)
@@ -69,10 +65,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec check_district(binary(), status()) :: Enumerable.t()
   defp check_district(district, status) do
-    # go a while back to ensure we don't get shown the same docs again, just
-    # because their discussion was postponed and similar changes
     [d, m, y] = String.split(status[district], ".") |> Enum.map(&String.to_integer/1)
-    date = Date.new!(y, m, d) |> Date.add(-30)
+    date = Date.new!(y, m, d) |> Date.add(-2)
     from = "#{date.day}.#{date.month}.#{date.year}"
     de_date_range = "#{from}-#{today()}"
 
@@ -108,7 +102,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     "#{t.day}.#{t.month}.#{t.year}"
   end
 
-  @typep status :: %{binary() => de_date() | [result()]}
+  @typep shown :: %{Date.t() => [binary()]}
+  @typep status :: %{binary() => de_date() | shown()}
   @spec load_status() :: status
   defp load_status() do
     status =
@@ -124,8 +119,15 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
           %{}
       end
-      |> Map.put_new(@seen, [])
-      |> Map.put_new(@seen_last_run, [])
+      |> Map.put_new(@shown_by_date, %{})
+      |> Map.update!(@shown_by_date, fn shown ->
+        cleanup_before = Date.utc_today() |> Date.add(-60)
+
+        Enum.into(shown, %{}, fn {date, list} ->
+          {Date.from_iso8601!(date), list}
+        end)
+        |> Map.reject(fn {date, _list} -> Date.compare(date, cleanup_before) == :lt end)
+      end)
 
     Enum.reduce(Allris.districts(), status, &Map.put_new(&2, &1, today()))
   end
@@ -141,20 +143,20 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   defp write_status_put(status, nil), do: status
 
   defp write_status_put(status, result) do
+    ident = result_ident(result)
+    shown = Map.update(status[@shown_by_date], Date.utc_today(), [ident], fn l -> [ident | l] end)
+
     status
-    |> Map.put(@seen_last_run, [result | status[@seen_last_run]])
+    |> Map.put(@shown_by_date, shown)
     |> write_status()
   end
 
   @spec write_status(status()) :: status()
-  defp write_status(%{@seen => seen, @seen_last_run => seen_lr} = status) do
-    json =
-      status
-      |> Map.put(@seen, Enum.uniq(seen_lr ++ seen))
-      |> Map.delete(@seen_last_run)
-      |> Jason.encode!()
-
+  defp write_status(%{@shown_by_date => shown} = status) when is_map(shown) do
+    json = Jason.encode!(status)
     File.write!(@path, json)
     status
   end
+
+  defp result_ident(%{"type" => type, "id" => id}), do: "#{type}=#{id}"
 end
