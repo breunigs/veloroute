@@ -10,6 +10,6 @@ declare global {
     plausible: (eventName: string, options?: { meta?: any, props?: any }) => void;
     Socket: Socket;
     LiveSocket: LiveSocket;
-    sharedMaplibregl: maplibregl;
+    mlgl: maplibregl;
   }
 }
