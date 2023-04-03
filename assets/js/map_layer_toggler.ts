@@ -93,7 +93,7 @@ function maybeSwitchStyle(map: MapboxMap, mapDetail: mapEventDetail) {
     if (style.id === currentStyleId) continue
     console.log("switching map style to", style.id)
     currentStyleId = style.id
-    map.setStyle(style.id)
+    map.setStyle(style.id, { validate: false })
     window.plausible('switchStyle')
   }
 
