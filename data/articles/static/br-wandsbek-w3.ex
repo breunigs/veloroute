@@ -5,7 +5,7 @@ defmodule Data.Article.Static.BrWandsbekW3 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Wandsbek – W3 – Barmbek ↔ Höltigbaum"
 
-  def color(), do: "#FFFF75"
+  def color(), do: "#E8E86A"
 
   def summary(),
     do:
