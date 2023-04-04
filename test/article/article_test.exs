@@ -43,6 +43,16 @@ defmodule ArticleTest do
     assert [] == duplicated_links
   end
 
+  test "articles specify color in lower case hex" do
+    invalid_colors =
+      Article.List.all()
+      |> Enum.reject(fn art ->
+        art.color() == nil || String.match?(art.color(), ~r/^#([a-f0-9]{3}|[a-f0-9]{6})$/)
+      end)
+
+    assert [] == invalid_colors
+  end
+
   test "articles with structured links use the tag" do
     render = fn art, gpx ->
       %{ref: art, gpx: gpx}

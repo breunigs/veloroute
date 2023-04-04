@@ -2,16 +2,17 @@ defmodule Data.Article.Static.BrWandsbekW5 do
   use Article.Static
 
   def id(), do: "br-wandsbek-w5"
+  def display_id(), do: "W5"
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Wandsbek – W5 – City-Nord ↔ Rahlstedt"
 
-  def color(), do: "#89B375"
+  def color(), do: "#89b375"
 
   def summary(),
     do:
-      "Die Vorschlag zur Bezirksroute „W5 – City-Nord ↔ Rahlstedt“ in Wandsbek verläuft in Ost-West-Richtung zwischen den genannten Stadtteilen."
+      "Der Vorschlag zur Bezirksroute „W5 – City-Nord ↔ Rahlstedt“ in Wandsbek verläuft in Ost-West-Richtung zwischen den genannten Stadtteilen."
 
-  def tags(), do: [id(), "br-wandsbek"]
+  def tags(), do: [id(), display_id(), "br-wandsbek"]
 
   def tracks(),
     do: [
@@ -66,6 +67,8 @@ defmodule Data.Article.Static.BrWandsbekW5 do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Wandsbek – City-Nord ↔ Rahlstedt <.icon>W5</.icon></h3>
+
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W5 – City-Nord ↔ Rahlstedt“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
 
     <h4>Externe Links</h4>

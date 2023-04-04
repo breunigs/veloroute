@@ -2,8 +2,9 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
   use Article.Static
 
   def id(), do: "br-eimsbuettel-rotherbaumring"
+  def display_id(), do: "E7"
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Eimsbüttel – Rotherbaumring"
+  def title(), do: "Bezirksroute Eimsbüttel – E7 – Rotherbaumring"
 
   def color(), do: "#969696"
 
@@ -11,7 +12,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
     do:
       "Die Bezirksroute „Rotherbaumring“ in Eimsbüttel verläuft von der Tiergartenstraße in einem leichten Bogen über die Uni zur Außenalster."
 
-  def tags(), do: [id(), "br-eimsbuettel"]
+  def tags(), do: [id(), display_id(), "br-eimsbuettel"]
 
   def tracks(),
     do: [
@@ -67,6 +68,8 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaumring do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Eimsbüttel – Rotherbaumring <.icon>E7</.icon></h3>
+
     <p>Die Bezirksroute „Rotherbaumring“ in Eimsbüttel verläuft von der <.v bounds="9.974713,53.562156,9.984444,53.567735" lon={9.978932} lat={53.563793} dir="forward" ref={@ref}>Tiergartenstraße</.v> in einem leichten Bogen über <.v bounds="9.980029,53.562991,9.994006,53.57029" lon={9.984557} lat={53.566466} dir="forward" ref={@ref}>die Uni</.v> (Anschluss an <.icon>3</.icon>) zur <.v bounds="9.990491,53.563877,10.004468,53.571176" lon={10.000531} lat={53.567234} dir="forward" ref={@ref}>Außenalster</.v> (Anschluss an <.icon>4</.icon>).</p>
 
     <h4>Speziell für diese Route</h4>

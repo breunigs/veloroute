@@ -3950,7 +3950,7 @@
       "layout": {
         "text-size": ["-", 15, ["length", ["get", "display_id"]]],
         "symbol-sort-key": 8,
-        "icon-image": "circle_{color}",
+        "icon-image": "alltag_{color}",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [5, 10, 5, 10],
         "text-max-angle": 360,
@@ -3973,6 +3973,41 @@
         "text-color": "#ffffff",
         "text-halo-color": "hsla(0, 0%, 0%, 0.5)",
         "text-translate": [0, 0]
+      }
+    },
+    {
+      "id": "br-sign",
+      "type": "symbol",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 9,
+      "filter": [
+        "all",
+        ["==", ["get", "type"], "bezirk"],
+        ["!", ["has", "overlap_index"]],
+        ["<", ["length", ["get", "display_id"]], 5]
+      ],
+      "layout": {
+        "text-size": ["-", 12, ["length", ["get", "display_id"]]],
+        "icon-text-fit": "both",
+        "symbol-sort-key": 8,
+        "icon-image": "bezirk_{color}",
+        "icon-rotation-alignment": "viewport",
+        "text-max-angle": 360,
+        "symbol-spacing": 350,
+        "text-font": ["Open Sans Semi Bold"],
+        "symbol-placement": "line",
+        "visibility": "none",
+        "text-rotation-alignment": "viewport",
+        "text-field": ["to-string", ["get", "display_id"]],
+        "text-letter-spacing": 0.04,
+        "text-rotate": 0,
+        "icon-text-fit-padding": [4, 5, 6, 5]
+      },
+      "paint": {
+        "text-halo-width": 1,
+        "text-halo-color": "hsla(0, 0%, 0%, 0.5)",
+        "text-color": "hsl(0, 0%, 100%)"
       }
     },
     {

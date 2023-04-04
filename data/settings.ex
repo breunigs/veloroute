@@ -68,7 +68,7 @@ defmodule Settings do
         route_group: :bezirk,
         active: false,
         line: ["br-line"],
-        icon: ["br-oneway"],
+        icon: ["br-oneway", "br-sign"],
         fill: [],
         outline: []
       },

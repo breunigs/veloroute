@@ -2,16 +2,17 @@ defmodule Data.Article.Static.BrWandsbekW3 do
   use Article.Static
 
   def id(), do: "br-wandsbek-w3"
+  def display_id(), do: "W3"
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Wandsbek – W3 – Barmbek ↔ Höltigbaum"
 
-  def color(), do: "#E8E86A"
+  def color(), do: "#ffe717"
 
   def summary(),
     do:
-      "Die Vorschlag zur Bezirksroute „W3 – Barmbek ↔ Höltigbaum“ in Wandsbek verbindet die beiden genannten Stadtteile mit einem Bogen über Berne."
+      "Der Vorschlag zur Bezirksroute „W3 – Barmbek ↔ Höltigbaum“ in Wandsbek verbindet die beiden genannten Stadtteile mit einem Bogen über Berne."
 
-  def tags(), do: [id(), "br-wandsbek"]
+  def tags(), do: [id(), display_id(), "br-wandsbek"]
 
   def tracks(),
     do: [
@@ -65,6 +66,8 @@ defmodule Data.Article.Static.BrWandsbekW3 do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Wandsbek – Barmbek ↔ Höltigbaum <.icon>W3</.icon></h3>
+
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W3 – Barmbek ↔ Höltigbaum“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
 
     <h4>Externe Links</h4>

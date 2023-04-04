@@ -12,34 +12,10 @@ defmodule Data.Article.Blog.BernerStrasse do
   def stop(), do: ~d[2024-12]
 
   def type(), do: :construction
-  def tags(), do: []
+  def tags(), do: ["br-wandsbek-w3"]
 
   def tracks(),
     do: [
-      %Video.Track{
-        renderer: 3,
-        group: "main",
-        direction: :backward,
-        from: "Bargteheider Straße",
-        to: "Kriegkamp",
-        parent_ref: __MODULE__,
-        text: "Berner Straße → Fasanenweg → Berner Brücke",
-        videos: [
-          {"2022-12-24-berner-strasse/GX015042", :start, :end}
-        ]
-      },
-      %Video.Track{
-        renderer: 3,
-        group: "main",
-        direction: :forward,
-        from: "Kriegkamp",
-        to: "Bargteheider Straße",
-        parent_ref: __MODULE__,
-        text: "Berner Brücke → Fasanenweg → Berner Straße",
-        videos: [
-          {"2022-12-24-berner-strasse/GX015039", :start, "00:00:54.388"}
-        ]
-      },
       %Video.Track{
         renderer: 3,
         group: "detour",

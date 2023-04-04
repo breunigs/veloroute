@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BicibusOttensen do
   def route_group(), do: :bezirk
   def title(), do: "Bicibus Ottensen"
 
-  def color(), do: "#049EAB"
+  def color(), do: "#049eab"
 
   def summary(),
     do:

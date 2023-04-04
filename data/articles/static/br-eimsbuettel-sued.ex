@@ -2,8 +2,10 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
   use Article.Static
 
   def id(), do: "br-eimsbuettel-sued"
+  def display_id(), do: "E6"
+
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Eimsbüttel – Süd"
+  def title(), do: "Bezirksroute Eimsbüttel – E6 – Süd"
 
   def color(), do: "#969696"
 
@@ -11,7 +13,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
     do:
       "Die Bezirksroute „Süd“ in Eimsbüttel verläuft von der Tiergartenstraße nach Westen über das Schulterblatt, knickt dann leicht nördlich Richtung Langenfelder Damm ab."
 
-  def tags(), do: [id(), "br-eimsbuettel"]
+  def tags(), do: [id(), display_id(), "br-eimsbuettel"]
 
   def tracks(),
     do: [
@@ -64,6 +66,8 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Eimsbüttel – Süd <.icon>E6</.icon></h3>
+
     <p>Die Bezirksroute „Süd“ in Eimsbüttel verbindet <.v bounds="9.973229,53.56279,9.981719,53.567371" lon={9.97769} lat={53.56373} dir="forward" ref="br-eimsbuettel-sued">Tiergartenstraße</.v> und <.v bounds="9.95012,53.561201,9.966466,53.56867" lon={9.959837} lat={53.564074} dir="forward" ref="br-eimsbuettel-sued">Schulterblatt</.v> in Ost-West Richtung. Dort knickt sie nach Norden ab und verläuft grob parallel zur <.v bounds="9.939885,53.564294,9.95721,53.573998" lon={9.949839} lat={53.569237} dir="forward" ref="br-eimsbuettel-sued">Kieler Straße</.v>. Am <.v bounds="9.933825,53.575375,9.944016,53.583987" lon={9.938682} lat={53.580075} dir="forward" ref="br-eimsbuettel-sued">Langenfelder Damm</.v> mündet sie in die Veloroute <.icon>2</.icon> bzw. den Radschnellweg <.icon>RSW</.icon> nach <.a name="rsw-elmshorn">Elmshorn</.a>.</p>
 
     <h4>Speziell für diese Route</h4>

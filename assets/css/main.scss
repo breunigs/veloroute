@@ -703,6 +703,12 @@ $iconBorder: 0.13em;
     width: 1.5em;
   }
 
+  &.bezirk {
+    border-radius: 0% 0% 50% 50%;
+    min-width: 1.5em;
+    line-height: 1.25em;
+  }
+
   &.rsw {
     display: none;
   }

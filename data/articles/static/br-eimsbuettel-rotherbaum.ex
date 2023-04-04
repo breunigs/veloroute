@@ -2,8 +2,9 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
   use Article.Static
 
   def id(), do: "br-eimsbuettel-rotherbaum"
+  def display_id(), do: "E5"
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Eimsbüttel – Rotherbaum"
+  def title(), do: "Bezirksroute Eimsbüttel – E5 – Rotherbaum"
 
   def color(), do: "#969696"
 
@@ -11,7 +12,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
     do:
       "Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft in Nord-Süd-Richtung entlang des Mittelwegs. Beginn ab Dammtor, Ende auf der Heilwigbrücke."
 
-  def tags(), do: [id(), "br-eimsbuettel"]
+  def tags(), do: [id(), display_id(), "br-eimsbuettel"]
 
   def tracks(),
     do: [
@@ -56,6 +57,8 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Eimsbüttel – Rotherbaum <.icon>E5</.icon></h3>
+
     <p>Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft vom <.v bounds="9.984348,53.558459,9.998315,53.565785" lon={9.990748} lat={53.560337} dir="forward" ref="br-eimsbuettel-rotherbaum">Dammtor</.v> in Nord-Süd-Richtung entlang des <.v bounds="9.984562,53.559162,10.003159,53.579949" lon={9.994316} lat={53.572317} dir="forward" ref="br-eimsbuettel-rotherbaum">Mittelweg</.v> und endet auf der <.v bounds="9.990061,53.579781,10.00024,53.587175" lon={9.993936} lat={53.584425} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v>. Auf einem Teilstück teilt sie sich den Weg mit der <.a name="br-eimsbuettel-isebek">Bezirksroute Isebek</.a>.</p>
 
     <h4>Speziell für diese Route</h4>

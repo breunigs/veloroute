@@ -2,8 +2,9 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
   use Article.Static
 
   def id(), do: "br-eimsbuettel-isebek"
+  def display_id(), do: "E4"
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Eimsbüttel – Isebek"
+  def title(), do: "Bezirksroute Eimsbüttel – E4 – Isebek"
 
   def color(), do: "#969696"
 
@@ -11,7 +12,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
     do:
       "Die Bezirksroute „Isebek“ in Eimsbüttel verläuft von der Waterloostraße nach Nordosten Richtung Streekbrücke."
 
-  def tags(), do: [id(), "br-eimsbuettel"]
+  def tags(), do: [id(), display_id(), "br-eimsbuettel"]
 
   def tracks(),
     do: [
@@ -68,9 +69,10 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
     ]
   end
 
-  # TODO: links
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Eimsbüttel – Isebek <.icon>E4</.icon></h3>
+
     <p>Die Bezirksroute „Isebek“ in Eimsbüttel verläuft von der <.v bounds="9.951162,53.564718,9.974008,53.57302" lon={9.956766} lat={53.567132} dir="forward" ref="br-eimsbuettel-isebek">Waterloostraße</.v> (<.icon>13</.icon>) in Richtung Nordosten. Die Route orientiert sich dabei grob am namensgebenden <.m bounds="9.95901,53.57004,9.9868,53.580914">Isebekkanal</.m>. An der <.v bounds="9.953102,53.564784,9.969015,53.572782" lon={9.962984} lat={53.569116} dir="forward" ref="br-eimsbuettel-isebek">Schäferkampsallee</.v> (<.icon>2</.icon>) und <.v bounds="9.966298,53.569095,9.989158,53.579581" lon={9.972973} lat={53.574073} dir="forward" ref="br-eimsbuettel-isebek">Bogenstraße</.v> (<.icon>3</.icon>) quert sie Hamburgs Velorouten. Sie endet an der <.v bounds="9.986734,53.579872,10.004593,53.588298" lon={9.994955} lat={53.583546} dir="forward" ref="br-eimsbuettel-isebek">Streekbrücke</.v> (<.icon>4</.icon>).</p>
 
     <h4>Speziell für diese Route</h4>

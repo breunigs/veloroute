@@ -2,8 +2,9 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
   use Article.Static
 
   def id(), do: "br-eimsbuettel-nord-sued"
+  def display_id(), do: "E1"
   def route_group(), do: :bezirk
-  def title(), do: "Bezirksroute Eimsbüttel – Nord-Süd"
+  def title(), do: "Bezirksroute Eimsbüttel – E1 – Nord-Süd"
 
   def color(), do: "#969696"
 
@@ -11,7 +12,7 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
     do:
       "Die Bezirksroute „Nord-Süd“ in Eimsbüttel verläuft vom Glücksburger Platz bis nach Burgwedel."
 
-  def tags(), do: [id(), "br-eimsbuettel"]
+  def tags(), do: [id(), display_id(), "br-eimsbuettel"]
 
   def tracks(),
     do: [
@@ -87,6 +88,8 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
 
   def text(assigns) do
     ~H"""
+    <h3>Bezirksroute Eimsbüttel – Nord-Süd <.icon>E1</.icon></h3>
+
     <p>Die Bezirksroute „Nord-Süd“ in Eimsbüttel beginnt am <.v bounds="9.943479,53.567342,9.955551,53.572634" lon={9.949668} lat={53.569664} dir="forward" ref={@ref}>Glücksburger Platz</.v> und folgt grob der U2 bis <.v bounds="9.932576,53.589804,9.950399,53.602511" lon={9.943559} lat={53.593049} dir="forward" ref={@ref}>Hagenbecks Tierpark</.v>. Dort knickt sie leicht nach Westen ab und führt durch <.v bounds="9.876666,53.610462,9.962394,53.650796" lon={9.93425} lat={53.627539} dir="forward" ref={@ref}>Schnelsen</.v> bis nach <.v bounds="9.897464,53.638002,9.924717,53.653339" lon={9.90931} lat={53.648256} dir="forward" ref={@ref}>Burgwedel</.v>, wo die Route an der Landesgrenze zu <.v bounds="9.897028,53.649074,9.915632,53.66811" lon={9.907129} lat={53.652477} dir="forward" ref={@ref}>Bönningstedt</.v> endet.</p>
 
     <h4>Speziell für diese Route</h4>

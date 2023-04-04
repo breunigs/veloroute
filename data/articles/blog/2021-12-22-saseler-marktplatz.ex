@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.SaselerMarktplatz do
   def created_at(), do: ~D[2021-12-22]
   def title(), do: "Saseler Marktplatz (Veloroute 14)"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["14"]
 
   def start(), do: ~d[2022-02-14]
