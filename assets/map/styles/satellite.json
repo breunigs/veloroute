@@ -232,7 +232,7 @@
       "filter": ["match", ["get", "layer"], ["-1"], true, false],
       "layout": {
         "visibility": "visible",
-        "line-cap": "round",
+        "line-cap": "square",
         "line-join": "round"
       },
       "paint": {
