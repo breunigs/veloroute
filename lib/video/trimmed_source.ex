@@ -144,7 +144,7 @@ defmodule Video.TrimmedSource do
     end
   end
 
-  def extract(%__MODULE__{} = tsv, from, to, __options)
+  def extract(%__MODULE__{} = tsv, from, to, _options)
       when is_integer(from) and is_integer(to) and from > to do
     from_ts = Video.Timestamp.from_milliseconds(from)
     to_ts = Video.Timestamp.from_milliseconds(to)
@@ -152,6 +152,13 @@ defmodule Video.TrimmedSource do
     {:error,
      "#{tsv.source} is supposed to be cut from #{from_ts} to #{to_ts} – which doesn't work, obviously"}
   end
+
+  # better errors
+  def extract(%__MODULE__{}, from, _to, _options) when is_atom(from),
+    do: {:error, "Unknown option for 'from' field: #{inspect(from)}"}
+
+  def extract(%__MODULE__{}, _from, to, _options) when is_atom(to),
+    do: {:error, "Unknown option for 'to' field: #{inspect(to)}"}
 
   defp calc_t(interp, prev, next),
     do: (interp - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)

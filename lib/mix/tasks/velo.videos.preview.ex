@@ -25,6 +25,11 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
   defp list do
     IO.puts("""
+
+    ###########################################################
+    # Help
+    ###########################################################
+
     You can specify not-yet-generated videos by name and index. For example, this will preview the
     first track of the given article:
     BLUR=1 MIX_QUIET=1 mix velo.videos.preview Data.Article.Static.Alltagsroute12 0 | #{Util.cli_printer(@video_player)}
@@ -35,7 +40,6 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
     Below any generated, but not rendered videos will be shown. If there are none, try running:
     mix velo.videos.generate new
-
     """)
 
     Video.Generator.pending()
@@ -43,7 +47,10 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     |> Enum.each(fn rendered ->
       IO.puts("""
 
-      #{rendered.name}
+      ###########################################################
+      # #{rendered.name}
+      ###########################################################
+
       BLUR=1 MIX_QUIET=1 mix velo.videos.preview #{rendered.hash} | #{Util.cli_printer(@video_player)}
       """)
     end)

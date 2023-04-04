@@ -46,7 +46,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
       ###########################################################
       # #{track.text} / #{track.direction}
       # from #{track.parent_ref}
-      ##########################################################
+      ###########################################################
       """
 
       Video.Generator.save_from_track(track)
@@ -57,6 +57,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
         {:error, reason} ->
           IO.puts(:stderr, banner)
           IO.puts(:stderr, "Failed to generate:\n#{reason}")
+          nil
 
         other ->
           IO.puts(:stderr, banner)

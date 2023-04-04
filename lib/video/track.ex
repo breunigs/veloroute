@@ -119,8 +119,9 @@ defmodule Video.Track do
           {:error, reason}
 
         {file, from, to}, acc ->
-          with %Video.TrimmedSource{} = tsv <- tsvs[file] do
-            render_segment(fade_in_ms, tsv, from, to, acc)
+          with %Video.TrimmedSource{} = tsv <- tsvs[file],
+               {:ok, segment} <- render_segment(fade_in_ms, tsv, from, to, acc) do
+            segment
           else
             {:error, reason} -> {:error, reason}
             nil -> {:error, "Could not find a TrimmedSourceVideo for #{file}."}
@@ -166,20 +167,27 @@ defmodule Video.Track do
           }
       end
 
-    tsv = Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true)
-    from_ms = tsv.coord_from.time_offset_ms
-    to_ms = tsv.coord_to.time_offset_ms
+    Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true)
+    |> case do
+      {:error, reason} ->
+        {:error, reason}
 
-    rev_coords =
-      Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
-        new = Map.put(new, :time_offset_ms, new.time_offset_ms - from_ms + dur)
-        [new | rev_coords]
-      end)
+      tsv ->
+        from_ms = tsv.coord_from.time_offset_ms
+        to_ms = tsv.coord_to.time_offset_ms
 
-    recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
+        rev_coords =
+          Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
+            new = Map.put(new, :time_offset_ms, new.time_offset_ms - from_ms + dur)
+            [new | rev_coords]
+          end)
 
-    dur = dur + to_ms - from_ms
-    {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
+        recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
+
+        dur = dur + to_ms - from_ms
+        segment = {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
+        {:ok, segment}
+    end
   end
 
   @spec fade(t() | pos_integer()) :: fade()
