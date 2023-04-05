@@ -233,7 +233,7 @@
       "layout": {
         "visibility": "visible",
         "line-cap": "square",
-        "line-join": "round"
+        "line-join": "miter"
       },
       "paint": {
         "line-color": "#ffffff",
@@ -304,15 +304,14 @@
       }
     },
     {
-      "id": "br-line-tunnel",
+      "id": "br-line-off-none-tunnel",
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 0,
       "filter": [
         "all",
+        ["match", ["get", "offset"], [0], true, false],
         ["match", ["get", "type"], ["bezirk"], true, false],
-        ["match", ["get", "offset"], [0, 1], true, false],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
       "layout": {"line-join": "round"},
@@ -328,6 +327,60 @@
         ],
         "line-color": ["get", "color"],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+      }
+    },
+    {
+      "id": "br-line-off-p1-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "offset"], [1], true, false],
+        ["match", ["get", "type"], ["bezirk"], true, false],
+        ["match", ["get", "layer"], ["-1"], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ],
+        "line-color": ["get", "color"],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5],
+        "line-dasharray": [0, 1, 1]
+      }
+    },
+    {
+      "id": "br-line-off-m1-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "type"], ["bezirk"], true, false],
+        ["match", ["get", "layer"], ["-1"], true, false],
+        ["match", ["get", "offset"], [-1], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ],
+        "line-color": ["get", "color"],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5],
+        "line-dasharray": [1, 1]
       }
     },
     {
@@ -531,15 +584,14 @@
       }
     },
     {
-      "id": "br-line",
+      "id": "br-line-off-none",
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 0,
       "filter": [
         "all",
         ["match", ["get", "type"], ["bezirk"], true, false],
-        ["match", ["get", "offset"], [0, 1], true, false],
+        ["match", ["get", "offset"], [0], true, false],
         ["match", ["get", "layer"], ["-1"], false, true]
       ],
       "layout": {
@@ -548,6 +600,37 @@
         "line-join": "round"
       },
       "paint": {
+        "line-color": {"type": "identity", "property": "color"},
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+      }
+    },
+    {
+      "id": "br-line-off-m1",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "type"], ["bezirk"], true, false],
+        ["match", ["get", "offset"], [-1], true, false],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": {"type": "identity", "property": "color"},
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -558,7 +641,38 @@
           12
         ],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1],
-        "line-color": ["get", "color"]
+        "line-dasharray": [1, 1]
+      }
+    },
+    {
+      "id": "br-line-off-p1",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "type"], ["bezirk"], true, false],
+        ["match", ["get", "offset"], [1], true, false],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": {"type": "identity", "property": "color"},
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1],
+        "line-dasharray": [0, 1, 1]
       }
     },
     {
