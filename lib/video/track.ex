@@ -61,6 +61,21 @@ defmodule Video.Track do
   end
 
   @doc """
+  Check if any of the source videos were recorded on or after the given date.
+  Date format is 2020-11-23.
+  """
+  def newer?(%__MODULE__{videos: videos}, date) do
+    want = Date.from_iso8601!(date)
+
+    videos
+    |> Enum.map(&elem(&1, 0))
+    |> Enum.any?(fn <<date::binary-size(10)>> <> _rest ->
+      have = Date.from_iso8601!(date)
+      Date.compare(want, have) != :gt
+    end)
+  end
+
+  @doc """
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
