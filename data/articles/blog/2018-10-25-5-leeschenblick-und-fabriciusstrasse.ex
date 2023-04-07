@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.LeeschenblickUndFabriciusstrasse do
   def start(), do: ~d[2024]
   def stop(), do: ~d[2024]
 
-  def type(), do: :finished
+  def type(), do: :planned
   # def construction_site_id_hh(), do: [6745]
   def tags(), do: ["5"]
 

@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.BernerHeerweg do
 
   def type(), do: :intent
 
-  def tags(), do: ["6", "w18"]
+  def tags(), do: ["6", "w18", "br-wandsbek-w1"]
 
   def links(_assigns) do
     [

@@ -46,6 +46,20 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
           {"2022-01-29-rickling/GX013204", :start, :end},
           {"2022-01-29-rickling/GX013205", :start, "00:00:02.836"}
         ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "indirektes Abbiegen, vor Kreuzung",
+        direction: :forward,
+        from: "Neuer Pferdemarkt",
+        to: "Zum Grünen Jäger",
+        parent_ref: __MODULE__,
+        text: "indirekt Abbiegen, Aufstellfläche vor Kreuzung",
+        videos: [
+          {"2023-04-06-br-wandsbek/GX015542", "00:00:25.626", :end},
+          {"2023-04-06-br-wandsbek/GX015543", :start, :end},
+          {"2023-04-06-br-wandsbek/GX015544", :start, "00:00:02.803"}
+        ]
       }
     ]
 
@@ -70,9 +84,9 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
     }>Wilhelm-Metzger-Straße</.v>)</li>
     </ul>
 
-    <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.v bounds="9.975387,53.553634,9.983536,53.557482" lon={9.97973} lat={53.55578} dir="forward" ref="2">links</.v> oder <.v lon={10.00076} lat={53.55560} dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.v> des Radfahrstreifens sein, manchmal auch <.m bounds="9.961292,53.556184,9.966407,53.557824">direkt nach der Ampel</.m>.</p>
+    <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.v bounds="9.975387,53.553634,9.983536,53.557482" lon={9.97973} lat={53.55578} dir="forward" ref="2">links</.v> oder <.v lon={10.00076} lat={53.55560} dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.v> des Radfahrstreifens sein, manchmal auch <.v bounds="9.961292,53.556184,9.966407,53.557824" lon={9.964527} lat={53.556826} dir="forward" ref={name()}>direkt nach der Ampel</.v>.</p>
 
-    <p>Eine weitere Variante des Linksabiegens ist der <.ref>ARAS</.ref></p>
+    <p>Eine weitere Variante des Linksabbiegens ist der <.ref>ARAS</.ref></p>
     """
   end
 end

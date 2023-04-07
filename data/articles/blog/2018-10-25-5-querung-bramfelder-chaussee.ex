@@ -8,15 +8,25 @@ defmodule Data.Article.Blog.QuerungBramfelderChaussee do
 
   def type(), do: :planned
 
-  def tags(), do: ["5"]
+  def tags(), do: ["5", "br-wandsbek-w3"]
 
   def links(_assigns) do
-    []
+    [
+      {"Lagepläne und Erläuterungsbericht", "2018",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587"}
+    ]
   end
 
   def text(assigns) do
     ~H"""
-    <p><strong>Hinweis:</strong> Die Veloroute wird künftig durch die neue Straße <.m bounds="10.071774,53.614525,10.074022,53.615055">Am Dorfgraben</.m> geführt. Der Umbau der Ampel an diesem Knotenpunkt soll definitiv entfallen. Ob dies auch auf die sonstigen Verbesserungen zutrifft ist mir derzeit nicht bekannt. Für Details siehe bitte <.a name="2018-10-25-5-am-dorfgraben">Neue Führung durch „Am Dorfgraben“</.a>.</p> <p>Stadtauswärts muss man absteigen um die Ampel zur Querung der <.m bounds="10.058741,53.593319,10.090246,53.633302">Bramfelder Chaussee</.m> legal zu erreichen – die Ampel an der Südseite ist nämlich ohne Überweg ausgeführt. Indes bewertet die Polizei diese Kreuzung bzw. Stelle als Unfallschwerpunkt.</p> <p>In er aktuellen Planung wird der Radweg an dieser Engstelle etwas verbreitert und das kurze Stück bis zur Ampel im Zweirichtungsverkehr freigegeben. Das macht die Führung der Veloroute wenigstens StVo-konform, für eine wirkliche Verbesserung ist aber ein Umbau der Kreuzung notwendig.</p> <p>Auch ist die Breite von stellenweise nur 2,0m einer Veloroute unwürdig, wäre aber auch nur durch eine Reduktion der angrenzenden Grünfläche verbreiterbar.</p> <p><.a href="https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1008587">Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan</.a> (unter Anlagen. „08_LP (5).pdf“ für Lageplan)</p>
+    <h4>Alter Zustand</h4>
+    <p>Um von der Fabriciusstraße legal die <.v bounds="10.078214,53.617619,10.083614,53.620426" lon={10.080553} lat={53.619167} dir="forward" ref="br-wandsbek-w3">Bramfelder Chaussee</.v> zu queren, muss man absteigen und schieben. Wer der <.a href="/br-wandsbek-w3">Bezirksroute <.icon>W3</.icon></.a> folgen will, muss dies ein zweites Mal beim Queren der <.v bounds="10.078214,53.617619,10.083614,53.620426" lon={10.080655} lat={53.619002} dir="forward" ref="br-wandsbek-w3">Berner Chaussee</.v> tun.</p>
+
+    <h4>Planung</h4>
+    <p>In einer Planung von 2018 wird der Radweg an dieser Engstelle etwas verbreitert und das kurze Stück bis zur Ampel im Zweirichtungsverkehr freigegeben. Als die Pläne gemacht wurden, waren Bezirksrouten noch kein Thema, sodass diese nicht berücksichtigt wurde.</p>
+
+    <h4>Meinung</h4>
+    <p>Die Führung bleibt auch nach dem Umbau umständlich. Als Sofortmaßnahme willkommen, aber mittel- bis langfristig muss ein Vollumbau der Kreuzung erfolgen um die Querungsmöglichkeiten zu verbessern.</p>
     """
   end
 end

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.SFriedrichsberg do
 
   def type(), do: :planned
 
-  def tags(), do: ["6"]
+  def tags(), do: ["6", "br-wandsbek-w1", "FR3"]
 
   def links(_assigns) do
     [
