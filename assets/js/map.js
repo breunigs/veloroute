@@ -205,12 +205,16 @@ window.addEventListener(`phx:bounds:adjust`, (e) => {
 })
 
 const featureOpacity = (feature) => {
-  return feature.layer.paint['line-opacity'] || feature.layer.paint['fill-opacity'] || 1
+  const paint = feature.layer.paint
+  if (typeof paint['line-opacity'] != "undefined") return paint['line-opacity']
+  if (typeof paint['fill-opacity'] != "undefined") return paint['fill-opacity']
+  return 1
 }
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
   let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
+  routes = routes.filter(r => featureOpacity(r) >= 0.15);
   // be more lenient with click targets
   if (!routes.length) {
     const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
