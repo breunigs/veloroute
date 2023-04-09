@@ -53,6 +53,41 @@ defmodule Data.Article.Static.Startpage do
       <li><.icon autoplay={true} name="e"><span>Elbradweg (Südseite)</span></.icon></li>
     </ol>
 
+    <h4>Bezirke</h4>
+    <p>Bezirksrouten sollen das Hauptnetz der Velorouten ergänzen. Sie sind noch im frühen Planungsstadium und nicht für alle Bezirke ausgearbeitet.</p>
+    <table class="route-list">
+      <tr>
+        <th>Eimsbüttel</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="br-eimsbuettel-nord-sued">E1</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-niendorf">E2</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-eidelstedt">E3</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-isebek">E4</.icon>
+          </span>
+          <span>
+          <.icon autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
+          <.icon autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
+          <.icon autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
+          </span>
+        </td>
+      </tr><tr>
+        <th>Wandsbek</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="br-wandsbek-w1">W1</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w2">W2</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w3">W3</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w4">W4</.icon>
+          </span>
+          <span>
+            <.icon autoplay={true} name="br-wandsbek-w5">W5</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w8">W8</.icon>
+          </span>
+        </td>
+      </tr>
+    </table>
+
     <h4>Umland</h4>
     <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
 

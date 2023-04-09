@@ -19585,7 +19585,7 @@
   <node id='-77571707' lat='53.68489942768' lon='10.04568278253' />
   <node id='-77571713' lat='53.68503285918' lon='10.04570960462' />
   <node id='-77571718' lat='53.68650693142' lon='10.04581689298' />
-  <node id='-78166862' action='modify' lat='53.61915688586' lon='10.08021354407' />
+  <node id='-78166862' lat='53.61915688586' lon='10.08021354407' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -19702,10 +19702,10 @@
   <node id='7738000555559' version='1' lat='53.555559' lon='10.0007738' />
   <node id='7880005564631' version='1' lat='53.5564631' lon='10.000788' />
   <node id='7920005663199' version='1' lat='53.5663199' lon='10.000792' />
-  <node id='8011600061901' action='delete' version='1' lat='53.61901' lon='10.080116' />
-  <node id='8017000619007' action='delete' version='1' lat='53.619007' lon='10.08017' />
-  <node id='8034000619233' action='delete' version='1' lat='53.619233' lon='10.08034' />
-  <node id='8042800061912' action='modify' version='1' lat='53.61918363807' lon='10.0801007705' />
+  
+  
+  
+  <node id='8042800061912' version='1' lat='53.61918363807' lon='10.0801007705' />
   <node id='8197000610356' version='1' lat='53.610356' lon='10.0008197' />
   <node id='8284700057085' version='1' lat='53.57085' lon='10.082847' />
   <node id='8362000622588' version='1' lat='53.622588' lon='10.08362' />
@@ -20333,22 +20333,22 @@
   <node id='79530006481419' version='1' lat='53.64808863969' lon='10.00812063806' />
   <node id='79916000574809' version='1' lat='53.574809' lon='9.79916' />
   <node id='79920500057484' version='1' lat='53.57484' lon='9.799205' />
-  <node id='80004000619055' action='modify' version='1' lat='53.61899295269' lon='10.07992889815' />
-  <node id='80004000619096' action='delete' version='1' lat='53.619096' lon='10.080004' />
-  <node id='80052000619026' action='delete' version='1' lat='53.619026' lon='10.080052' />
-  <node id='80053000619124' action='modify' version='1' lat='53.61917809236' lon='10.08012005523' />
-  <node id='80106000618929' action='modify' version='1' lat='53.61899263836' lon='10.07987533002' />
+  <node id='80004000619055' version='1' lat='53.61899295269' lon='10.07992889815' />
+  
+  
+  <node id='80053000619124' version='1' lat='53.61917809236' lon='10.08012005523' />
+  <node id='80106000618929' version='1' lat='53.61899263836' lon='10.07987533002' />
   <node id='80116700057301' version='1' lat='53.57301' lon='9.801167' />
-  <node id='80122000619124' action='delete' version='1' lat='53.619124' lon='10.080122' />
-  <node id='80128000619122' action='delete' version='1' lat='53.619122' lon='10.080128' />
+  
+  
   <node id='80131500057307' version='1' lat='53.57307' lon='9.801315' />
   <node id='80132900057303' version='1' lat='53.57303' lon='9.801329' />
-  <node id='80216000619022' action='delete' version='1' lat='53.619022' lon='10.080216' />
-  <node id='80278000619217' action='modify' version='1' lat='53.61930609307' lon='10.08035041964' />
+  
+  <node id='80278000619217' version='1' lat='53.61930609307' lon='10.08035041964' />
   <node id='80364000619305' version='1' lat='53.619305' lon='10.080364' />
-  <node id='80405000619219' action='delete' version='1' lat='53.619219' lon='10.080405' />
-  <node id='80408000619143' action='modify' version='1' lat='53.61889003786' lon='10.08026852513' />
-  <node id='80433000619182' action='modify' version='1' lat='53.61923927418' lon='10.08065294114' />
+  
+  <node id='80408000619143' version='1' lat='53.61889003786' lon='10.08026852513' />
+  <node id='80433000619182' version='1' lat='53.61923927418' lon='10.08065294114' />
   <node id='80825000619165' version='1' lat='53.619165' lon='10.080825' />
   <node id='81136000566567' version='1' lat='53.566567' lon='9.81136' />
   <node id='81182100056428' version='1' lat='53.56428' lon='9.811821' />
@@ -67705,7 +67705,7 @@
     <tag k='name' v='2018-10-21-14-tonndorfer-hauptstrasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155103' action='modify' version='1'>
+  <way id='785155103' version='1'>
     <nd ref='80278000619217' />
     <nd ref='80433000619182' />
     <nd ref='80408000619143' />

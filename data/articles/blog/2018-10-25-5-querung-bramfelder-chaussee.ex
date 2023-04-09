@@ -27,6 +27,9 @@ defmodule Data.Article.Blog.QuerungBramfelderChaussee do
 
     <h4>Meinung</h4>
     <p>Die Führung bleibt auch nach dem Umbau umständlich. Als Sofortmaßnahme willkommen, aber mittel- bis langfristig muss ein Vollumbau der Kreuzung erfolgen um die Querungsmöglichkeiten zu verbessern.</p>
+
+    <h4>Quelle</h4>
+    <.structured_links ref={@ref}/>
     """
   end
 end
