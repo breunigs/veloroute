@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Denickestrasse do
       "Letzter Abschnitt ab Schüslerweg soll fahrradfreundlich umbebaut werden, bleibt aber Tempo-30-Zone."
 
   def start(), do: ~d[2022-08-29]
-  def stop(), do: ~d[2023-05-28]
+  def stop(), do: ~d[2023-12-31]
 
   # Kreuzung mit Weusthoffstraße vermutlich April-September 2023 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916
   def construction_site_id_hh(), do: [91363]

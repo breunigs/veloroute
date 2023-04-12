@@ -7,11 +7,10 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def title(), do: "Hannoversche Straße (Veloroute 11)"
 
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2024-02]
+  def stop(), do: ~d[2023-12-31]
 
   def type(), do: :construction
-  # commented out, as there's no entry for follow up construction yet
-  # def construction_site_id_hh(), do: [14079, 17581, 203_216]
+  def construction_site_id_hh(), do: [14079, 17581, 203_216, 350_393]
 
   def tags(), do: ["11", "H14", "H14.B"]
 

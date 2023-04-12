@@ -4,8 +4,6 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
   def name(), do: "#{created_at()}-1-13-max-brauer-allee"
   def created_at(), do: ~D[2018-12-17]
   def updated_at(), do: ~D[2022-03-31]
-  def start(), do: ~d[2023-05]
-  def stop(), do: ~d[2024-11]
 
   def title(), do: "Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Veloroute 1 und 13)"
 
@@ -13,7 +11,10 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
     do:
       "Verschiedene Führungen; teilweise auf Busspur; Schutz vor KFZ nicht überall. Kreuzungen deutlich besser."
 
-  def type(), do: :planned
+  def type(), do: :construction
+  def start(), do: ~d[2023-05-02]
+  def stop(), do: ~d[2024-06-15]
+  def construction_site_id_hh(), do: [351_238]
 
   def tags(), do: ["1", "13"]
 
