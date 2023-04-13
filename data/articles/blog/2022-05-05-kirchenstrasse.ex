@@ -2,23 +2,24 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   use Article.Default
 
   def created_at(), do: ~D[2022-05-05]
-  def title(), do: "Kirchenstraße (Veloroute 13)"
+  def updated_at(), do: ~D[2023-04-13]
+
+  def title(), do: "Kirchenstraße (Veloroute 12)"
   def summary(), do: "Keine Pläne. Bauzeitraum Frühjahr 2023 anvisiert."
 
   def type(), do: :intent
 
-  def start(), do: ~d[2023-03]
-  def stop(), do: ~d[2023-05]
+  def start(), do: ~d[2023Q4]
+  def stop(), do: ~d[2023Q4]
 
   def tags(), do: ["12"]
 
   def links(_assigns) do
     [
-      {"Baustellenkoordination", "September 2022",
-       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
-      {"Anjes Tjarks auf Twitter", "https://twitter.com/anjes_tjarks/status/1523761994113126402"},
-      {"Erläuterungsbericht des LSBG zur Königstraße", "2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16224442/0df518579cb81fd9aad17132d1760192/data/koenigstrasse-von-max-brauer-allee-bis-reeperbahn-%E2%80%93-abgestimmte-planung-plan.pdf"}
+      {"Lageplan", "März 2023",
+       "https://lsbg.hamburg.de/resource/blob/670410/202bf79de45ade0dd18159e7e29e5a13/veloroute-12-kirchenstrasse-abgestimmte-planung-plaene-data.pdf"},
+      {"Erläuterungsbericht", "März 2023",
+       "https://lsbg.hamburg.de/resource/blob/670406/9e2906f20d4f34166b65aa87354f9aab/veloroute-12-kirchenstrasse-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 
@@ -27,10 +28,13 @@ defmodule Data.Article.Blog.Kirchenstrasse do
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr hat in der Kirchenstraße keine eigenen Wege und teilt sich Straße im <.ref>Mischverkehr</.ref> mit den KFZ.</p>
 
-    <h4>Vorhaben</h4>
-    <p>Es gibt noch keine öffentlichen Pläne. Beim Planungsanfang stand eine Umsetzung als Fahrradstraße im Raum, wobei unklar ist ob es dabei geblieben ist. Der Erläuterungsbericht zum Umbau in der Königstraße erwähnt zusätzlich noch, dass künftig keine Linienbusse mehr durch die Königstraße fahren werden.</p>
+    <h4>Planung</h4>
+    <p>Die Straße soll Fahrradstraße werden. Aufgrund der vielen Bauvorhaben in der Umgebung setzt man auf schnell umsetzbare Änderungen, statt einem Vollumbau. Konkret soll neu asphaltiert und neu markiert werden, sodass die Fahrradstraße erkennbar wird.</p>
 
-    <p>Der Abschnitt taucht jedoch schon in der Baustellenkoordinierung mit einem Zeitfenster von zwei Monaten im Frühjahr 2023 auf. Der Termin ist noch nicht fix.</p>
+    <p>Der Radwegstummel zur Breiten Straße wird entfernt; es soll direkt auf der Fahrbahn abgebogen werden. Die Einmündung wird nicht umgebaut.</p>
+
+    <h4>Meinung</h4>
+    <p>Die Kirchenstraße selbst ist bereits heute gut zu befahren, das Problem sind ihre Anschlüsse. Mit dem Umbau der <.a name="2020-12-04-koenigstrasse">Königstraße</.a> löst sich die eine Seite. Dieser Umbau verbessert auf der anderen Seite immerhin die Fahrt in Richtung Fischmarkt. Von der Breiten Straße in die Kirchenstraße zu kommen bleibt jedoch vorerst ungelöst.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

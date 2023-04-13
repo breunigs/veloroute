@@ -23,9 +23,9 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
       {"Baustelleninfo", "Februar 2023",
        "https://lsbg.hamburg.de/resource/blob/634714/f7b2034e09eac3d58d7c6f69782cc12c/graf-johann-weg-veloroute-14-anliegerinformation-februar-2023-data.pdf"},
       {"Abschnitt Spanische Furt/Graf-Johann-Weg: Plan", "Oktober 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16564230/49bc87dd323e86ef6d2902e5c7bd1aac/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-plan.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634692/1461cf882cc92dfebd8a6bba3027a856/veloroute-14-spanische-furt-bis-heidlohstrasse-teilprojekt-graf-johann-weg-abgestimmte-planung-plan-data.pdf"},
       {"Abschnitt Spanische Furt/Graf-Johann-Weg: Bericht", "Oktober 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16564216/45049cf84272ad1f8da42e902b71cfa7/data/veloroute-14-spanische-furt-teilprojekt-graf-johann-weg-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634690/afaf384690602528a1f6a08cb467f27a/veloroute-14-spanische-furt-bis-heidlohstrasse-teilprojekt-graf-johann-weg-abgestimmte-planung-bericht-data.pdf"},
       {"Baustelleninfo Abschnitt Spanische Furt/Graf-Johann-Weg", "September 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16501850/e80ab8e2bf481f8904fa617f00834c00/data/graf-johann-weg-veloroute-14-10-22-bis-03-23.pdf"},
       {"Vergabeunterlagen Umbau", "Juli 2022",
@@ -33,9 +33,9 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
       {"Pressemitteilung zu Tempo-30 Heidlohstraße",
        "https://www.hamburg.de/bvm/medien/15595988/2021-11-12-bvm-heidlohstrasse/"},
       {"Erläuterungen zum ersten Entwurf", "Februar 2020",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13462690/98e53b0a2d1de123426264d4c696de47/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634686/b4ac10f4e734b4b5d85e9b9aaad9ee0b/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan erster Entwurf", "Februar 2020",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/13462694/13418947080d815ffe478c2cb0ab8db4/data/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-plan.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/634688/419ca450d661c8c411d790b693582e69/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

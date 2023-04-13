@@ -23,9 +23,9 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht (November 2021)",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15627666/0b66c62e5e9c3e67cfc4c9d646cd2793/data/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/597708/5b5dab4b95cc0fe88500791e24e9efe9/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne (November 2021)",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15627664/2d274b1d6f9927747c076a159fe6a0dc/data/veloroute-13-gerichtstrasse-abgestimmte-planung-plan.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/597710/1125d9570b1e49076134318146f1006e/veloroute-13-gerichtstrasse-abgestimmte-planung-plaene-data.pdf"},
       {"Präsentation zum Vorentwurf (September 2020)",
        "https://sitzungsdienst-altona.hamburg.de/bi//to020.asp?TOLFDNR=1031355"}
     ]

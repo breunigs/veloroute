@@ -19,11 +19,9 @@ defmodule Data.Article.Blog.ZOBHarburg do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16551808/397e26c533c773e2cf6c89bf13906fdd/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-bericht.pdf"},
-      {"Lageplan – 1. Abschnitt – 1. Blatt – Busbahnhof", "2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16551814/53163fdf6324038753edb3181727f77e/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-1.pdf"},
-      {"Lageplan – 1. Abschnitt – 2. Blatt – Bahnhof bis Schlachthofbrücke", "2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16551816/02158a5285c000e0e1b8ccb20288e1cf/data/veloroute-11-harburg-innenstadt-zob-harburg-abgestimmte-planung-plan-2.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634666/03bb1a5a5dd137979f2b451f2cb59e09/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-bericht-data.pdf"},
+      {"Lageplan – 1. Abschnitt", "2022",
+       "https://lsbg.hamburg.de/resource/blob/634668/e7f9d7a34208cd6584c3dee3ecd5e9c4/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-plaene-data.pdf"},
       {"Zeitungsartikel mit veralteter Visualisierung (2021)",
        "https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
       {"Zeitungsartikel zum Bauzeitraum (2021)",

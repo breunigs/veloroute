@@ -67,9 +67,9 @@ defmodule Data.Article.Blog.Reeperbahn do
       {"Pressemitteilung", "Oktober 2022",
        "https://www.hamburg.de/bvm/medien/16586554/2022-10-17-bvm-radverkehr/"},
       {"Lageplan – Richtung Millerntor", "Oktober 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16586856/d6de5326e1b7d32afda63a02e3a92b7d/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-plan.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634578/2997b79af16e28135491f597d09e6a23/reeperbahn-pop-up-bikelane-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht – Richtung Millerntor", "Oktober 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16586854/d2291601fd5bb19dc742539bfbd24f6a/data/reeperbahn-verkehrsversuch-radfahrstreifen-abgestimmte-planung-bericht.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/634576/b863ae973a780608b8aba1bc0422f8c1/reeperbahn-pop-up-bikelane-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

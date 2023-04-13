@@ -46,9 +46,9 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14735436/eb01cbb8f1af1dff264df7bb2ae213b8/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634066/0754dd65f495d8f179a4aa094b5ef0e0/beim-schlump-pop-up-bikelane-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14735432/850a83d7d289d86c7138a612c66ec170/data/beim-schlump-pop-up-bikelane-abgestimmt-planung-plan.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634068/66a2320ef4e912e251b8b3ea98e15431/beim-schlump-pop-up-bikelane-abgestimmte-planung-plan-data.pdf"},
       {"Auswertung des Versuchradwegs",
        "https://www.hamburg.de/contentblob/15502496/c135ea0beb75f4be7b183eddd5eb0890/data/evaluationsbericht-publ-beim-schlump.pdf"}
     ]

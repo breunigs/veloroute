@@ -17,9 +17,9 @@ defmodule Data.Article.Blog.HohenfelderBucht do
     [
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/hohenfelder-bucht"},
       {"abgestimmter Lageplan",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/11676036/af2c20b137dfedee3c0da0c4921e6173/data/hohenfelder-bucht-abgestimmte-planung-plan.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634172/a0461b5a5b98de231bd3341ce7185c2f/hohenfelder-bucht-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht zur Umgestaltung",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/11676030/a4b5eba8f88fcee157469e72b7857419/data/hohenfelder-bucht-abgestimmte-planung-bericht.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/634170/4bd1a7fad0e52f9935998cf39e4adfe9/hohenfelder-bucht-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

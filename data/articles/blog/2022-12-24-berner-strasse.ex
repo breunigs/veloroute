@@ -54,7 +54,11 @@ defmodule Data.Article.Blog.BernerStrasse do
       {"Baustelleninfo", "Dezember 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
       {"Planänderungen", "Juli 2022",
-       "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"}
+       "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
+      {"Erläuterungsbericht",
+       "https://lsbg.hamburg.de/resource/blob/634094/8d1ea707073392348346dad78f633afa/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-bericht-data.pdf"},
+      {"Lagepläne",
+       "https://lsbg.hamburg.de/resource/blob/634098/c26b9422430444ced684d1de72af5655/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-plaene-data.pdf"}
     ]
   end
 

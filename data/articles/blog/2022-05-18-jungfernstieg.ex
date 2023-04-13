@@ -17,10 +17,14 @@ defmodule Data.Article.Blog.Jungfernstieg do
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
-      {"Lageplan", "1. Entwurf, 2022",
-       "https://web.archive.org/web/20220519164254/https://lsbg.hamburg.de/contentblob/16184288/cf2de59f865d4641002b8341ecf7d7a8/data/jungfernstieg-abstimmungsunterlagen-plan.pdf"},
-      {"Erläuterungsbericht", "1. Entwurf, 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16184284/74d065f052c9830cd4f8dc52ff3ee0a4/data/jungfernstieg-abstimmungsunterlagen-bericht.pdf"}
+      {"Lageplan", "2. Entwurf, Dezember 2022",
+       "https://lsbg.hamburg.de/resource/blob/663172/ef49cb31b3de7fb46454e005324444fe/jungfernstieg-phase-2-abgestimmte-planung-plan-data.pdf"},
+      {"Erläuterungsbericht", "2. Entwurf, Dezember 2022",
+       "https://lsbg.hamburg.de/resource/blob/663174/f8686cdbb1b500f8843444a977acb98a/jungfernstieg-phase-2-abgestimmte-planung-bericht-data.pdf"},
+      {"Lageplan", "1. Entwurf, Mai 2022",
+       "https://lsbg.hamburg.de/resource/blob/597756/9768f38295acb37653171fc0e0b7bcfb/jungfernstieg-phase-2-abstimmungsunterlage-plan-data.pdf"},
+      {"Erläuterungsbericht", "1. Entwurf, Mai 2022",
+       "https://lsbg.hamburg.de/resource/blob/597754/4a50e8eeb747fc772c8796053fd51fe8/jungfernstieg-phase-2-abstimmungsunterlage-bericht-data.pdf"}
     ]
   end
 

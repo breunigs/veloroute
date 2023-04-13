@@ -20,9 +20,9 @@ defmodule Data.Article.Blog.Krausestrasse do
       {"Verzögerung Umbau", "November 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012204"},
       {"Erläuterungsbericht", "Oktober 2021",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15456350/8c3b5b46a6a645e33b28ea821f0b0ce4/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/597782/66697a9cdddff36117b6b226e2f642ec/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-bericht-data.pdf"},
       {"Pläne/Karten", "Oktober 2021",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15456348/d2c6db9c38da707e1f95a20f7d6fd469/data/krausestrasse-zwischen-bramfelder-strasse-und-osterbekkanal-abgestimmte-planung-plaene.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/597784/7c7411d5f1ea2f7763146b4688271710/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-plaene-data.pdf"}
     ]
   end
 

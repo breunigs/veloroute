@@ -28,11 +28,11 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
       {"Pressemitteilung zum Baustart",
        "https://www.hamburg.de/bvm/medien/16828174/2023-01-11-bvm-georg-wilhelm-strasse/"},
       {"Erläuterungsbericht",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/10111408/9277a6b41d043d6468c5ca3a642198ee/data/georg-wilhelm-strasse-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634128/b98cd0774228dcc1d161e08d5b6a5fed/georg-wilhelm-strasse-abgestimmte-planung-bericht-data.pdf"},
       {"Änderungen der überarbeiteten Fassung",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15717754/4c10155fedce8a2737d5420dfc93ab1b/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634132/cf43d37cd28f6c73341b284a3e92b172/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-bericht-data.pdf"},
       {"überarbeitete Lagepläne",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15717756/8e8fdb8c33110bed40c07befe279ec90/data/georg-wilhelm-strasse-ueberarbeitete-abgestimmte-planung-plaene.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/634134/941f58cc78600973b2ff05dab43273be/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-plaene-data.pdf"}
     ]
   end
 

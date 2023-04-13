@@ -52,9 +52,9 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "1. Entwurf",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15996822/b8417d2dc48e67460fbb1ad0b7111708/data/rodigallee-von-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-bericht.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/634584/87d9616343e82caa1555c98148e22f55/rodigallee-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan", "1. Entwurf",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/15996824/c2766f5efb5f47659d5c45ef94236b1d/data/rodigallee-von-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-plan.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/634588/af22e30d0ea266c216ebe0480dfc0d23/rodigallee-jenfelder-allee-bis-oejendorfer-damm-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 
