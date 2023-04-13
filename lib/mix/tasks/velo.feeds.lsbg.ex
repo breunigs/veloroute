@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   @base "https://lsbg.hamburg.de"
   @projects_page "#{@base}/baumassnahmen-und-planungen"
   @shorts_page "#{@base}/downloads/anliegerinformationen"
+  @plans_page "#{@base}/downloads/aktuelle-planungen"
   @path "data/auto_generated/feeds_seen/lsbg.json"
 
   @requirements ["app.start"]
@@ -21,7 +22,9 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   def run(_) do
     status = load_status()
 
-    Stream.concat(list_projects(), list_shorts())
+    list_projects()
+    |> Stream.concat(list_pdfs(@shorts_page, "Anliegerinfo"))
+    |> Stream.concat(list_pdfs(@plans_page, "Planungen"))
     |> Enum.reduce(
       {status, nil},
       fn
@@ -45,9 +48,9 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
 
   @typep detail :: %{text: binary(), links: binary(), checksum: binary(), source: binary()}
 
-  @spec list_shorts() :: [detail()] | {:error, binary()}
-  defp list_shorts() do
-    with {:ok, %{body: body}} <- get(@shorts_page),
+  @spec list_pdfs(binary(), binary()) :: [detail()] | {:error, binary()}
+  defp list_pdfs(page, extra) do
+    with {:ok, %{body: body}} <- get(page),
          {:ok, document} <- Floki.parse_fragment(body) do
       document
       |> Floki.find("a[href$=pdf]")
@@ -55,7 +58,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
         href = link |> Floki.attribute("href") |> absolute()
         text = link |> Floki.text() |> String.trim()
 
-        %{text: text, links: "(Anliegerinfo)", checksum: md5(text), source: href}
+        %{text: text, links: "(#{extra})", checksum: md5(text), source: href}
       end)
       |> Enum.uniq_by(& &1.source)
     else
