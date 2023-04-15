@@ -126,9 +126,13 @@ defmodule VelorouteWeb.FrameLive do
     socket = VelorouteWeb.Live.VideoState.maybe_update_video(socket, route, attr)
 
     socket =
-      if article,
-        do: push_patch(socket, to: article_path(socket, article)),
-        else: update_url_query(socket)
+      if article do
+        socket
+        |> assign(:tmp_last_article_set, article)
+        |> push_patch(to: article_path(socket, article))
+      else
+        update_url_query(socket)
+      end
 
     {:noreply, socket}
   end

@@ -177,6 +177,38 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|Zum Dubben (neue Führung|
   end
 
+  test "clicking on article with tracks selects video close to click position", %{conn: conn} do
+    article = "2023-04-15-bramfelder-strasse-bis-krausestrasse"
+    forward_video_hash = "bef5fb6f0cd3ce7a30ade62e6325904b"
+    pos = 10615
+
+    {:ok, view, _html} = live(conn, "/")
+
+    render_hook(view, "map-click", %{
+      article: article,
+      route: nil,
+      lon: 10.044114389514988,
+      lat: 53.58192508895843,
+      zoom: 15.493022774735785
+    })
+
+    path = assert_patch(view)
+    assert path =~ ~r{/article/#{article}}
+    assert path =~ ~r{video=#{forward_video_hash}}
+    assert path =~ ~r{pos=#{pos}}
+
+    html = render_patch(view, path)
+
+    # hack: don't quite know how to assert that URL didn't change, so we use the
+    # page's video thumbnail as alternative that should have the same content
+    assert_attribute(
+      html,
+      ~s(meta[property="og:image"),
+      "content",
+      &String.ends_with?(&1, "/images/thumbnails/#{forward_video_hash}/#{pos}")
+    )
+  end
+
   test "with an article shown, clicking on UNrelated route, switches", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2019-01-06-10-zum-dubben")
     assert html =~ ~s|Zum Dubben (neue Führung|
