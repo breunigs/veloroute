@@ -72,6 +72,22 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
   end
 
+  test "link on article in sidebar with own tracks sets video pos near article center", %{
+    conn: conn
+  } do
+    {:ok, view, html} = live(conn, "/changes")
+    assert html =~ ~s|<h3 id="lastChanges">|
+
+    view
+    |> element("a", "Bramfelder Straße (Barmbeker Markt bis Krausestraße")
+    |> render_click()
+
+    assert_push_event(view, :video_meta, %{
+      "hash" => "5995942c8e2bf76dd2e56339c6942566",
+      "start" => 50492
+    })
+  end
+
   test "clicking on route twice reverses image", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/alltagsroute-3")
 

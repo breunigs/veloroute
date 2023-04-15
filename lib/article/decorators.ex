@@ -150,19 +150,26 @@ defmodule Article.Decorators do
 
   @spec bbox_self(Article.t()) :: Geo.BoundingBox.t() | nil
   defmemo bbox_self(art) when is_module(art) do
-    # from map
+    # from map, manually defined area of interest
     ways = Map.Element.filter_by_tag(Cache.Map.ways(), :name, art.name())
-    rels = Map.Element.filter_by_tag(Cache.Map.relations(), :name, art.name())
-    bbox_map = Geo.CheapRuler.union(Map.Element.bbox(ways), Map.Element.bbox(rels))
+    bbox_map = Map.Element.bbox(ways)
 
-    # from tracks
-    bbox_tracks =
-      art.tracks()
-      |> Enum.map(&Video.Generator.get(&1))
-      |> Util.compact()
-      |> Enum.reduce(nil, &Geo.CheapRuler.union(&1.bbox(), &2))
+    if bbox_map do
+      bbox_map
+    else
+      # from map, without area of interest
+      rels = Map.Element.filter_by_tag(Cache.Map.relations(), :name, art.name())
+      bbox_map = Map.Element.bbox(rels)
 
-    Geo.CheapRuler.union(bbox_map, bbox_tracks)
+      # from tracks, in case they don't (closely) match the ideal path
+      bbox_tracks =
+        art.tracks()
+        |> Enum.map(&Video.Generator.get(&1))
+        |> Util.compact()
+        |> Enum.reduce(nil, &Geo.CheapRuler.union(&1.bbox(), &2))
+
+      Geo.CheapRuler.union(bbox_map, bbox_tracks)
+    end
   end
 
   @spec bbox_from_tags(Article.t()) :: Geo.BoundingBox.t() | nil
