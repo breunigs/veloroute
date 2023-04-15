@@ -5,9 +5,9 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   def updated_at(), do: ~D[2023-04-13]
 
   def title(), do: "Kirchenstraße (Veloroute 12)"
-  def summary(), do: "Keine Pläne. Bauzeitraum Frühjahr 2023 anvisiert."
+  def summary(), do: "Soll mit möglichst geringem Aufwand zu einer Fahrradstraße werden."
 
-  def type(), do: :intent
+  def type(), do: :planned
 
   def start(), do: ~d[2023Q4]
   def stop(), do: ~d[2023Q4]

@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.MeienredderEulenkrugstrasse do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Der Route kann ich Richtung Norden nicht gefolgt werden, da die Beschilderung das Linksabbiegen verbietet. Praktisch ist dies für kurze Fahrzeuge wie Fahrräder aber problemlos über die abgesenkte Mittelinsel möglich.</p>
+    <p>Der Route kann in Richtung Norden nicht gefolgt werden, da die Beschilderung das Linksabbiegen verbietet. Praktisch ist dies für kurze Fahrzeuge wie Fahrräder aber problemlos über die abgesenkte Mittelinsel möglich.</p>
 
     <h4>Planung</h4>
     <p>Der abgesenkte Teil der Mittelinsel und die Einmündung sollen verbreitert werden, damit der Lieferverkehr zur Gärtnerei nicht mehr durchs Wohngebiet fährt. Keine Änderungen für's Fahrrad.</p>
