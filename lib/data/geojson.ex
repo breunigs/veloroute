@@ -1,4 +1,6 @@
 defmodule Data.GeoJSON do
+  require Logger
+
   @spec to_feature_lists(Map.Parsed.t()) :: %{
           articles: %{features: list, type: binary()},
           markers: %{features: list, type: binary()},
@@ -22,34 +24,48 @@ defmodule Data.GeoJSON do
     map.ways()
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.map(&as_geojson(&1))
-    |> Enum.reject(&is_nil/1)
+    |> Util.compact()
   end
 
   defp article_polylabels(map) do
     map.ways()
     |> Map.Element.filter_by_tag(:type, "article")
-    |> Enum.reject(fn %Map.Way{tags: tags} -> Map.get(tags, :hide_from_map, false) end)
-    |> Enum.map(fn %Map.Way{nodes: nodes, tags: tags} ->
-      point = Geo.LongestLineLabel.calculate(nodes)
+    |> Enum.map(fn
+      %Map.Way{tags: %{hide_from_map: true}} ->
+        nil
 
-      {main, extra} = title_splitter(tags.article_title)
+      %Map.Way{
+        nodes: nodes,
+        tags: %{article_title: title, name: name, article_icon: icon}
+      } ->
+        point = Geo.LongestLineLabel.calculate(nodes)
 
-      %{
-        type: "Feature",
-        properties: %{
-          type: :article,
-          name: tags.name,
-          icon: tags.article_icon,
-          title: tags.article_title,
-          title_main: main,
-          title_extra: extra
-        },
-        geometry: %{
-          type: "Point",
-          coordinates: as_geojson_coord(point)
+        {main, extra} = title_splitter(title)
+
+        %{
+          type: "Feature",
+          properties: %{
+            type: :article,
+            name: name,
+            icon: icon,
+            title: title,
+            title_main: main,
+            title_extra: extra
+          },
+          geometry: %{
+            type: "Point",
+            coordinates: as_geojson_coord(point)
+          }
         }
-      }
+
+      %Map.Way{tags: tags} ->
+        Logger.error(
+          "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(tags)}"
+        )
+
+        nil
     end)
+    |> Util.compact()
   end
 
   defp routeless_ways(map) do
@@ -116,7 +132,11 @@ defmodule Data.GeoJSON do
   end
 
   defp as_geojson(w = %Map.Way{tags: %{type: "article"}}) do
-    raise "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
+    Logger.error(
+      "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
+    )
+
+    nil
   end
 
   defp as_geojson(%Map.Way{tags: %{type: "detour"}} = w) do
