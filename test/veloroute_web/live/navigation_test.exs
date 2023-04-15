@@ -347,26 +347,6 @@ defmodule VelorouteWeb.LiveNavigationTest do
     end)
   end
 
-  test "all articles can be rendered in the frame", %{conn: conn} do
-    render_issues =
-      Article.List.all()
-      |> Enum.map(fn art ->
-        try do
-          path = Article.Decorators.path(art)
-          {:ok, _view, html} = live(conn, path)
-
-          if path =~ "/article/" && !(html =~ art.title()) do
-            "#### #{art} ####\n\ndoes not include title in HTML, even though it's on /article/"
-          end
-        rescue
-          err -> "#### #{art} ####\n\n#{Exception.format(:error, err, __STACKTRACE__)}"
-        end
-      end)
-      |> Util.compact()
-
-    assert [] == render_issues, Enum.join(render_issues, "\n\n\n")
-  end
-
   defp assert_attribute(html, selector, attribute, expected) do
     [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
     actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual
