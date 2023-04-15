@@ -41,7 +41,8 @@ function logLink() {
 
   let text;
   if (pos) {
-    text = `<.v ${boundsStr} lon={${round(pos[0])}} lat={${round(pos[1])}} dir="${trackInfo.videoDir}" ref="${trackInfo.videoId || "@ref"}">`
+    const ref = trackInfo.videoId ? `"${trackInfo.videoId}"` : "{@ref}"
+    text = `<.v ${boundsStr} lon={${round(pos[0])}} lat={${round(pos[1])}} dir="${trackInfo.videoDir}" ref=${ref}>`
   } else {
     text = `<.m ${boundsStr}>`
   }
