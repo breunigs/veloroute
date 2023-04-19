@@ -578,6 +578,7 @@ function setup() {
     touchPitch: false,
     logoPosition: 'top-left',
     attributionControl: false,
+    validateStyle: false,
   });
   map.touchZoomRotate.disableRotation();
   map.addControl(new mlgl.AttributionControl(), 'top-right');
