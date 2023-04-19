@@ -124,11 +124,11 @@ function attachHlsErrorHandler(obj, Hls) {
         props: props
       });
     } else {
-      if (data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferStalledError") {
-        minAutoBitrate = Math.round(minAutoBitrate / 2)
-        window.hls.config.minAutoBitrate = minAutoBitrate
-        console.log("halfed minAutoBitrate to", minAutoBitrate)
-      }
+      // if (data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferStalledError") {
+      //   minAutoBitrate = Math.round(minAutoBitrate / 2)
+      //   window.hls.config.minAutoBitrate = minAutoBitrate
+      //   console.log("halfed minAutoBitrate to", minAutoBitrate)
+      // }
       console.log('Hls encountered an error', data);
       sendCurrentVideoTime();
       window.plausible('video-hls-error', {
