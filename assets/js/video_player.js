@@ -179,7 +179,11 @@ function updateVideoElement() {
         }
 
         try {
-          previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
+          if (window.hls.autoLevelEnabled) {
+            previouslyPlayingCodec = null;
+          } else {
+            previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
+          }
         } catch (error) {
           console.warn(error)
         }
