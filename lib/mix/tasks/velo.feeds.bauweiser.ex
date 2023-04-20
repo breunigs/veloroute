@@ -144,18 +144,22 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
         end)
 
       {:error, error} ->
-        IO.puts(:stderr, "failed to load seen Bauwiser IDs from #{@path} (#{inspect(error)})")
+        IO.puts(:stderr, "failed to load seen Bauweiser IDs from #{@path} (#{inspect(error)})")
         %{}
     end
   end
 
   defmemo module_to_path() do
     Path.wildcard("data/articles/blog/*.ex")
-    |> Enum.into(%{}, fn file ->
+    |> Enum.map(fn file ->
       code = File.read!(file)
-      [_all, mod] = Regex.run(~r/defmodule ([^\s]+) do/, code)
-      {String.to_existing_atom("Elixir." <> mod), %{path: file, code: code}}
+
+      with [_all, mod] <- Regex.run(~r/defmodule ([^\s]+) do/, code) do
+        {String.to_existing_atom("Elixir." <> mod), %{path: file, code: code}}
+      end
     end)
+    |> Util.compact()
+    |> Enum.into(%{})
   end
 
   defp update_article(_art, []), do: nil
