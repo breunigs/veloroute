@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def summary(),
     do:
-      "Letzter Abschnitt ab Schüslerweg soll fahrradfreundlich umbebaut werden, bleibt aber Tempo-30-Zone."
+      "Letzter Abschnitt ab Schüslerweg soll fahrradfreundlich umgebaut werden, bleibt aber Tempo-30-Zone."
 
   def start(), do: ~d[2022-08-29]
   def stop(), do: ~d[2023-12-31]
@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", "April 2023",
+       "https://www.hamburg.de/harburg/pressemeldungen/17053724/ausbau-veloroute-11-vollsperrung/"},
       {"Pressemitteilung zum Baustart", "August 2022",
        "https://www.hamburg.de/pressemeldungen-bezirke/16451342/ausbau-veloroute-11-denickestrasse-west/"},
       {"Bauvergabe ab Schüslerweg bis Triftstraße", "2022",

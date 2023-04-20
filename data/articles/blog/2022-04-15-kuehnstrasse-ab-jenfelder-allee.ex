@@ -18,9 +18,11 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
 
   def links(_assigns) do
     [
+      {"2. Entwurf, Pläne und Erläuterungen", "April 2023",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018604"},
       {"Problematik Kreuzung Jenfelder Allee", "September 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017324"},
-      {"Pläne und Erläuterungen", "September 2022",
+      {"1. Entwurf, Pläne und Erläuterungen", "September 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017326"},
       {"Möglicher Bautermin", "April 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016643"}
@@ -36,9 +38,7 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
     <p>Es ist vorgesehen beidseitig rund 1,85m breite <.ref>Radfahrstreifen</.ref> einzurichten. Die Einmündung <.v bounds="10.129781,53.583744,10.132448,53.584673" lon={10.131055} lat={53.584248} dir="backward" ref="7">Wöschenhof</.v> soll zu einer Gehwegüberfahrt umgebaut werden. Die Gehwege werden gepflastert. Auf der Südseite sollen dazu Grundstücke gekauft werden, um die Mindestbreiten zu erreichen. Bei Fahrradanlehnbügeln und Stellplätzen für Lastenräder setzt man niedrige Bordsteine ein.</p>
 
     <h5>Anschluss Jenfelder Allee</h5>
-    <p>Aus der Innenstadt kommend wird der schmale <.ref>Hochbordradweg</.ref> als Übergangslösung auf den Radfahrstreifen abgeleitet. Die Fahrbahn verengt sich hier von zwei auf eine Fahrspur. In der Gegenrichtung endet der Radfahrstreifen in der kombinierten Geradeaus- und Rechtsabbiegerspur.</p>
-
-    <p>Dies wird als nicht verkehrssicher angesehen, sodass die Kreuzung mit der <.v bounds="10.126022,53.581484,10.127903,53.583278" lon={10.126946} lat={53.58255} dir="backward" ref="7">Jenfelder Allee</.v> ebenfalls mit umgebaut werden muss. Ursprünglich war vorgesehen die gesamte Jenfelder Allee zu erneuern, was aber auf unbestimmte Zeit verschoben wurde. Stattdessen soll die Kreuzung getrennt geplant und umgebaut werden – nur wenn das gelingt, kann der beschriebene Umbau der Kuehnstraße erfolgen.</p>
+    <p>Die Kreuzung soll zeitgleich umgebaut werden, sodass ein sicherer Anschluss der Radfahrstreifen möglich ist. Sollte das nicht klappen, sind Übergangslösungen vorgesehen. Aus der Innenstadt kommend würde der schmale <.ref>Hochbordradweg</.ref> auf den Radfahrstreifen abgeleitet. Die Fahrbahn würde sich hier von zwei auf eine Fahrspur verengen. In der Gegenrichtung würde der Radfahrstreifen in der kombinierten Geradeaus- und Rechtsabbiegerspur enden.</p>
 
     <h4>Meinung</h4>
     <p>Man führt die Buslinien und das hohe KFZ Aufkommen an, um nicht am Status Quo rütteln zu müssen. Trotz Grundstückzukauf und Baumfällungen auf der Südseite bleiben dem Radverkehr nur unzeitgemäße Breiten, noch dazu ohne Trennung vom KFZ Verkehr. Mindestens die Bauweise „<.ref>Kopenhagener Radweg</.ref>“ sollte geprüft werden. Eine bessere Lösung erfordert weiträumige Planungen um die KFZ von der Veloroute wegzulenken. Besser als vorher ist es aber allemal.</p>
