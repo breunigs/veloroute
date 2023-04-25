@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.VerstetigungPublHafencity do
     do:
       "Bisheriger Versuchsradweg bleibt dauerhaft, Änderungen nur im Detail: Roteinfärbung an Kreuzungen, teils breiter, einige Trennelemente zu KFZ, Linksabbiegespuren."
 
-  def type(), do: :planned
+  def type(), do: :finished
   def tags(), do: ["1GR"]
 
   def start(), do: ~d[2023-03-12]

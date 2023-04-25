@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
 
   def type(), do: :planned
   def start(), do: ~d[2023-05]
-  def stop(), do: ~d[2024-07]
+  def stop(), do: ~d[2024-09]
 
   def tags(), do: ["radfahrstreifen"]
 
@@ -41,6 +41,8 @@ defmodule Data.Article.Blog.AmNeumarkt do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "April 2023",
+       "https://www.hamburg.de/wandsbek/strassenbaustellen/17081880/am-neumarkt/"},
       {"Auftragsvergabe", "Februar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/4543c230-1b9b-4aee-bdd8-1e9979482c0e"},
       {"Infoseite der Stadt",

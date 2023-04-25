@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.Koenigstrasse do
 
   def links(_assigns) do
     [
+      {"Auftragsvergabe Abschnitt 1, Max-Brauer-Allee bis Mörkenstraße", "April 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/7c241c00-b426-452e-a287-ef6d0fdea69e/details"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan", "2022",
