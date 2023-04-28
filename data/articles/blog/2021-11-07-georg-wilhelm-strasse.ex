@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
       "Radweg Richtung Norden wird neu gepflastert, in der Gegenrichtung ein Radfahrstreifen aufgemalt (von Mengestraße bis Pollhornweg)"
 
   def start(), do: ~d[2021-08-02]
-  def stop(), do: ~d[2023-11-12]
+  def stop(), do: ~d[2024-06-01]
   def construction_site_id_hh(), do: [13785, 292_964, 303_875]
 
   def type(), do: :construction

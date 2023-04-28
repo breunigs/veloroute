@@ -34,7 +34,7 @@
 		"transportation": {
 			"minzoom": 4,
 			"maxzoom": 14,
-			"simplify_below": 14,
+			"simplify_below": 13,
 			"simplify_level": 0.0002,
 			"combine_polygons_below": 15
 		},

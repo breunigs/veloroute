@@ -8,12 +8,14 @@ defmodule Data.Article.Blog.Pionierbruecke do
   def start(), do: ~d[2022-10]
   def stop(), do: ~d[2023-02]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["FR4"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung", "April 2023",
+       "https://www.hamburg.de/bergedorf/pressemitteilungen/17086040/einweihung-neue-pionierbruecke-bille-wanderweg/"},
       {"Zeitungsartikel zum Baufortschritt", "März 2022",
        "https://www.abendblatt.de/region/stormarn/reinbek/article234723011/Neue-Pionierbruecke-ist-da-und-bleibt-weiter-gesperrt.html"},
       {"Baustelleninfo", "Juni 2021",

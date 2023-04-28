@@ -12,7 +12,9 @@ defmodule Data.Article.Blog.EppendorferWeg do
 
   def links(_assigns) do
     [
-      {"Projektseite des LSBG", "https://lsbg.hamburg.de/eppendorfer-weg"}
+      {"Projektseite des LSBG", "https://lsbg.hamburg.de/eppendorfer-weg"},
+      {"Ausschreibung der Planung", "April 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ce09a307-edf0-4fb1-b972-0d26d40fa72b/details"}
     ]
   end
 
