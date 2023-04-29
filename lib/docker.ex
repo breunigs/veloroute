@@ -172,8 +172,9 @@ defmodule Docker do
   end
 
   def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
-    build(dockerfile)
-    run(dockerfile, extra_args, opts)
+    with %{result: :ok} <- build(dockerfile) do
+      run(dockerfile, extra_args, opts)
+    end
   end
 
   def mix(args, mix_env \\ "test")
