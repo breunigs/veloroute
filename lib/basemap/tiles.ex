@@ -78,7 +78,7 @@ defmodule Basemap.Tiles do
         "type" => "baselayer",
         "format" => "pbf",
         "tiles" => ["#{serve_url()}/{z}/{x}/{y}.pbf"],
-        "bounds" => String.split(old["bounds"], ","),
+        "bounds" => old["bounds"] |> String.split(",") |> Enum.map(&String.to_float/1),
         "name" => "merged #{Settings.sitebar_name()} tiles",
         "version" => "3.0",
         "description" =>
