@@ -213,6 +213,7 @@ const featureOpacity = (feature) => {
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
+  if (!map.isStyleLoaded()) return []
   let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
   routes = routes.filter(r => featureOpacity(r) >= 0.15);
   // be more lenient with click targets
@@ -353,6 +354,7 @@ window.addEventListener("phx:video_meta", e => {
 
 function highlightRoute() {
   if (!videoRoute) return
+  if (!map.isStyleLoaded()) return map.once('idle', highlightRoute)
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
