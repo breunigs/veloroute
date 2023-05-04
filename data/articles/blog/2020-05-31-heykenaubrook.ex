@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.Heykenaubrook do
   def icon(), do: :nocargo
 
   def type(), do: :intent
-  def start(), do: ~d[2024]
-  def stop(), do: ~d[2024]
+  def start(), do: ~d[2025]
+  def stop(), do: ~d[2025]
 
   def tags(), do: ["10", "H06"]
 

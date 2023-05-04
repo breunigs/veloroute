@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.Rehrstieg do
 
   def summary(),
     do:
-      "Rehrstieg/Striepenweg soll vom Januar bis August 2023 zu einem Kreisverkehr umgebaut werden"
+      "Rehrstieg/Striepenweg soll zu einem Kreisverkehr umgebaut werden"
 
   def type(), do: :construction
   def tags(), do: ["10", "H10.3"]

@@ -8,10 +8,11 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
     do:
       "Mindestens 3,60m breiter Zweirichtungsradweg in der Halskestraße bis zur Eisenbahnbrücke Unterer Landweg. Verbreiterung Rampe/Unterführung am S-Bahnhof Billwerder-Moorfleet."
 
-  def start(), do: ~d[2023]
-  def stop(), do: ~d[2024-08]
+  def start(), do: ~d[2023-04-17]
+  def stop(), do: ~d[2025-04-30]
+  def construction_site_id_hh(), do: [367_780]
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["9", "rsw-geesthacht", "M11.3"]
 
   def links(_assigns) do
