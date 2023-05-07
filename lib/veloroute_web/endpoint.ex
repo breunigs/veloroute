@@ -21,7 +21,7 @@ defmodule VelorouteWeb.Endpoint do
   plug Video.ServePlug
   plug Esri.Tiles
   plug Maptiler.Tiles
-  plug Map.ReverseProxyPlug
+  plug Basemap.Static.Plug
   plug Basemap.Plug
 
   # Serve at "/" the static files from "priv/static" directory.

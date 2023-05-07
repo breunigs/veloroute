@@ -11,6 +11,7 @@ defmodule Veloroute.Application do
     # List all child processes to be supervised
     children = [
       Search.Meilisearch.Runner,
+      Basemap.Static.Runner,
       Video.DiskPreloader,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,

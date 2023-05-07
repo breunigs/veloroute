@@ -12,6 +12,7 @@ if (!window.requestIdleCallback) {
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
+// keep in sync with basemap/static/runner.ex
 const fitBoundsOpt = {
   maxZoom: 17
 };
@@ -355,6 +356,7 @@ window.addEventListener("phx:video_meta", e => {
 function highlightRoute() {
   if (!videoRoute) return
   if (!map.isStyleLoaded()) return map.once('idle', highlightRoute)
+  // keep in sync with basemap/static/runner.ex
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
 }
 
@@ -550,8 +552,8 @@ function setupTouchDeviceClick() {
     if (simulateClick) handleMapClick(evt);
   });
 
-  map.on('load', hidePreview);
-  map.on('resize', hidePreview);
+  map.once('idle', hidePreview);
+  map.once('zoom', hidePreview);
 }
 
 let map = null;

@@ -50,7 +50,7 @@ defmodule Basemap.Servable do
   end
 
   def list do
-    [Basemap.Fonts, Basemap.Sprites, Basemap.Tiles, Basemap.Styles]
+    [Basemap.Styles, Basemap.Fonts, Basemap.Sprites, Basemap.Tiles]
   end
 
   def ensure do

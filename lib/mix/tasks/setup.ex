@@ -15,18 +15,14 @@ defmodule Mix.Tasks.Velo.Setup do
   end
 
   defp credentials_write do
-    username = ask("Mapbox.com Username?")
-    access_token = ask("Mapbox.com Access Token (starts with 'pk.')?")
-    secret_token = ask("Mapbox.com Secret Token (starts with 'sk.')?")
+    maptiler_api_key = ask("MapTiler API key?")
+    arcgis_api_key = ask("ArcGis API key?")
 
     code =
       quote do
         defmodule Credentials do
-          def mapbox_username(), do: unquote(username)
-          def mapbox_access_token(), do: unquote(access_token)
-          def mapbox_secret_token(), do: unquote(secret_token)
-
-          def maptiler_api_key(), do: "fixme"
+          def maptiler_api_key(), do: unquote(maptiler_api_key)
+          def arcgis_api_key(), do: unquote(arcgis_api_key)
         end
       end
       |> Macro.to_string()

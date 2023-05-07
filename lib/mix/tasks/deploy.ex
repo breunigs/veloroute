@@ -66,7 +66,6 @@ defmodule Mix.Tasks.Deploy do
 
     if !skip[:skip_deploy] && Cli.confirm(@confirm_msg) do
       rename_on_remote(skip)
-      update_mapbox(skip)
       restart(skip)
       true
     else
@@ -130,6 +129,7 @@ defmodule Mix.Tasks.Deploy do
         Enum.all?(
           ~w(
             /alltagsroute-1
+            /map/___static/9.988434,53.548873,9.996071,53.55198/720x493
             /updates.atom
             /images/rss.svg
             /assets/basemap/tiles/9/270/165.pbf.gz
@@ -212,15 +212,6 @@ defmodule Mix.Tasks.Deploy do
       Docker.image_name_release(),
       "veloroute.hamburg/v1:latest"
     ])
-  end
-
-  defp update_mapbox(%{skip_mapbox: true}), do: nil
-
-  defp update_mapbox(_skip) do
-    Util.banner("Updating Mapbox")
-    # TODO: need to make tippecanoe available in container
-    # Docker.mix("update_mapbox")
-    Mix.Tasks.Velo.Mapbox.Update.run(nil)
   end
 
   defp restart(%{skip_deploy: true}), do: nil

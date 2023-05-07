@@ -53,6 +53,8 @@ body {
 
   &.preview {
     cursor: wait;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 

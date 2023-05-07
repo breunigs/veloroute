@@ -75,6 +75,7 @@ defmodule Docker do
     )
   end
 
+  @spec build(binary()) :: Util.Cmd2.exec_result()
   def build(dockerfile) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
@@ -108,6 +109,7 @@ defmodule Docker do
     )
   end
 
+  @spec run(binary(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
   def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
@@ -171,6 +173,7 @@ defmodule Docker do
     |> String.replace(~r/[^a-zA-Z0-9]/, "")
   end
 
+  @spec build_and_run(binary(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
   def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     with %{result: :ok} <- build(dockerfile) do
       run(dockerfile, extra_args, opts)

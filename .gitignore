@@ -29,7 +29,8 @@ npm-debug.log
 /assets/node_modules/
 
 /priv/static/
-/priv/static/
+/priv/maplibre-native/
+/priv/meilisearch-*
 
 /tmp/
 
@@ -51,4 +52,3 @@ xref_graph.*
 data/auto_generated/link_mirror
 
 x264_lookahead.clbin
-priv/meilisearch-*

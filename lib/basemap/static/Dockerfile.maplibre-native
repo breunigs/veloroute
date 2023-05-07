@@ -1,22 +1,21 @@
 # specify which branch or commit sha to build
 ARG MLN_COMMIT=4c01b7ef1f19964167070c3ea008780b8df72182
 ARG DEBIAN_VERSION
-FROM debian:${DEBIAN_VERSION}
+FROM debian:${DEBIAN_VERSION} AS runner-base
 
-FROM debian:bullseye-slim AS runner-base
+# keep runtime dependencies in synx with Dockerfile.release
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
   ca-certificates \
   curl \
   && curl \
   -O http://archive.ubuntu.com/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_2.0.3-0ubuntu1_amd64.deb \
-  -O http://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu66_66.1-2ubuntu2_amd64.deb \
   && echo "1995dec9707f7e0d827ae49301d2ab20 libjpeg-turbo8_2.0.3-0ubuntu1_amd64.deb" | md5sum --check - \
-  && echo "9c4963f572de577f425bdfcb0e7c4c7f libicu66_66.1-2ubuntu2_amd64.deb" | md5sum --check - \
   && apt-get -y install --no-install-recommends \
   ./*.deb \
   libcurl4 \
   libglx0 \
+  libicu67 \
   libopengl0 \
   libpng16-16 \
   libuv1 \
@@ -51,6 +50,7 @@ RUN apt-get -y update \
   libgl1-mesa-dev \
   libgl1-mesa-dri \
   libglfw3-dev \
+  libicu-dev \
   libpng-dev \
   libuv1-dev \
   ninja-build \
@@ -61,14 +61,26 @@ WORKDIR /build/
 RUN cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 \
   && cmake --build build -j $(nproc 2>/dev/null)
 
-FROM runner-base as runner
-ENTRYPOINT [ "/workdir/mbgl-render" ]
-WORKDIR /workdir
-COPY --from=builder /build/build/bin/mbgl-render /workdir/mbgl-render
+COPY ./patch/. /build/
+RUN cmake --build build -j $(nproc 2>/dev/null)
 
-RUN ldd ./mbgl-render \
-  && /usr/bin/xvfb-run -a \
-  /workdir/mbgl-render --style https://raw.githubusercontent.com/maplibre/demotiles/gh-pages/style.json --output /tmp/out.png \
-  && echo d44ec9382869ceaee21de6ae10ae78f3 /tmp/out.png | md5sum --check - \
-  && rm /workdir/cache.sqlite \
-  && rm /tmp/out.png
+FROM runner-base as runner
+WORKDIR /build
+COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
+
+# RUN xvfb-run -a \
+#   ./mbgl-render \
+#   --style https://raw.githubusercontent.com/maplibre/demotiles/gh-pages/style.json \
+#   --output out.png \
+#   && rm cache.sqlite out.png
+
+# copy finicky libraries that are not easily installed in other hosts.
+# run executable like so:
+# LD_PRELOAD=$(ls *.so* | sed 's,lib,./lib,' | sed -z 's,\n, ,g') ./mbgl-render
+RUN cp \
+  /usr/lib/x86_64-linux-gnu/libjpeg.so.8 \
+  /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
+  /usr/lib/x86_64-linux-gnu/libicuuc.so.67 \
+  /usr/lib/x86_64-linux-gnu/libicudata.so.67 \
+  /usr/lib/x86_64-linux-gnu/libicui18n.so.67 \
+  .

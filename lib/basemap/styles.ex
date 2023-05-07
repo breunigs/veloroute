@@ -10,23 +10,43 @@ defmodule Basemap.Styles do
   @impl Basemap.Renderable
   def render() do
     Enum.each(list(), fn path ->
-      with {:ok, data} <- File.read(path),
-           # Always hardcode production URL here, since the active components of
-           # the devel servers can replace the URL. For production, we want to
-           # be able to directly serve these static files, though.
-           data = Basemap.RelativePath.hardcode(data, Settings.url()),
-           data = attribute(data),
-           {:ok, decoded} <- Jason.decode(data),
-           {:ok, minified} <- Jason.encode(decoded),
-           target <- assets_path(Path.relative_to(path, source())),
-           :ok <- File.mkdir_p(Path.dirname(target)),
-           :ok <- File.write(target, minified) do
-        Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap styles")
-        :ok
-      else
-        error -> IO.puts(:stderr, "failed to minifiy JSON from #{path}: #{inspect(error)}")
+      # serving
+      # Always hardcode production URL here, since the active components of the
+      # devel servers can replace the URL. For production, we want to be able to
+      # directly serve these static files, though.
+      case write(path, Settings.url()) do
+        :ok -> Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap styles")
+        {:error, reason} -> IO.puts(:stderr, reason)
+      end
+
+      # local rendering
+      localizer = fn data ->
+        data
+        |> String.replace("metadata.json", "metadata.json.local")
+        |> String.replace(".pbf", ".pbf.gz")
+      end
+
+      case write(path, "asset://", ".local", localizer) do
+        :ok -> :ok
+        {:error, reason} -> IO.puts(:stderr, reason)
       end
     end)
+  end
+
+  defp write(path, hardcode_url, suffix \\ "", modifier \\ & &1) do
+    with {:ok, data} <- File.read(path),
+         data = Basemap.RelativePath.hardcode(data, hardcode_url),
+         data = attribute(data),
+         data = modifier.(data),
+         {:ok, decoded} <- Jason.decode(data),
+         {:ok, minified} <- Jason.encode(decoded),
+         target <- assets_path(Path.relative_to(path, source())),
+         :ok <- File.mkdir_p(Path.dirname(target)),
+         :ok <- File.write(target <> suffix, minified) do
+      :ok
+    else
+      error -> {:error, "failed to minifiy JSON from #{path}: #{inspect(error)}"}
+    end
   end
 
   def list() do

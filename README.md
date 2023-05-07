@@ -194,12 +194,6 @@ cd veloroute
 ln -s /path/to/your/video/storage videos/
 ```
 
-Next, create a [Mapbox.com](https://account.mapbox.com/) account, which is used
-for storing and rendering the map shown to the user. Once you have created an
-account there, you'll need two tokens:
-- a public one, starting with `pk.` for showing the map to the users
-- a secret one, starting with `sk.` for updating the map on changes
-
 ```bash
 mix velo.setup
 ```

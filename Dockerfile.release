@@ -1,8 +1,17 @@
 ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION}
 
+# keep runtime dependencies in synx with Dockerfile.maplibre-native
 RUN apt-get update && apt-get install -y --no-install-recommends \
   ffmpeg \
+  libcurl4 \
+  libglx0 \
+  libicu67 \
+  libopengl0 \
+  libpng16-16 \
+  libuv1 \
+  xauth \
+  xvfb \
   && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=C.UTF-8

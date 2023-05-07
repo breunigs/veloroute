@@ -177,8 +177,7 @@ defmodule VelorouteWeb.Live.Map do
   end
 
   defp default_style?(_assigns) do
-    # temporarily disabled until I implement proper static rendering
-    # active_style_id(assigns) == Map.ReverseProxyPlug.static_style()
+    # TODO: support static rendering for other styles
     true
   end
 
@@ -204,7 +203,7 @@ defmodule VelorouteWeb.Live.Map do
       requestAnimationFrame(function(){
         var mapEl = document.getElementById("map")
         mapEl.classList.add("preview")
-        mapEl.style.backgroundImage = `url('/map/___static/[<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>]/${mapEl.clientWidth}x${mapEl.clientHeight}?attribution=false&setfilter=["==",["get", "route_id"],"<%= @video_route_id %>"]&layer_id=route-casing')`
+        mapEl.style.backgroundImage = `url('/map/___static/<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>/${mapEl.clientWidth}x${mapEl.clientHeight}?highlightRoute=<%= @video_route_id %>')`
       })
       </script>
     """

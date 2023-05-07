@@ -372,7 +372,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_og_image(%{assigns: %{current_page: nil}} = socket) do
     bounds = VelorouteWeb.VariousHelpers.to_string_bounds(Settings.bounds())
-    url = ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
+    url = ~s(/map/___static/#{bounds}/1280x720)
     assign(socket, :og_image, make_absolute(url))
   end
 
@@ -385,7 +385,7 @@ defmodule VelorouteWeb.FrameLive do
         ~p"/images/thumbnails/#{assigns.video_hash}/#{assigns.video_start}"
       else
         bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
-        ~s(/map/___static/[#{bounds}]/1280x720?attribution=true)
+        ~s(/map/___static/#{bounds}/1280x720)
       end
 
     assign(socket, :og_image, make_absolute(url))

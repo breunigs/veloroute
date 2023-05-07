@@ -19,18 +19,6 @@ defmodule Settings do
         name: "Satellitenbild",
         id: "/assets/basemap/styles/satellite.json",
         active: false
-      },
-      %{
-        name: "Mapbox: Karte",
-        id: "breunigs/clbj46g53001114n25ayf1yqh",
-        active: false,
-        only: [:dev]
-      },
-      %{
-        name: "Mapbox: Satellit",
-        id: "breunigs/clbj5w269001514nuls82k7t7",
-        active: false,
-        only: [:dev]
       }
     ]
 

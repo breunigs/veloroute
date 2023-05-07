@@ -89,5 +89,8 @@ defmodule Basemap.Tiles do
       |> Map.merge(Jason.decode!(old["json"]))
 
     File.write!(path, Jason.encode!(new))
+
+    new_local = Map.replace!(new, "tiles", ["asset://#{serve_path()}/{z}/{x}/{y}.pbf.gz"])
+    File.write!(path <> ".local", Jason.encode!(new_local))
   end
 end

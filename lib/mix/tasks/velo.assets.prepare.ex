@@ -11,6 +11,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     Mix.Tasks.Velo.Map.Ensure.run(nil)
     Mix.Tasks.Velo.Favicon.Raster.run(nil)
     Mix.Tasks.Velo.Gpx.Generate.run(nil)
+    Mix.Tasks.Velo.Map.StaticRenderer.run(nil)
 
     if :skip_esbuild not in args, do: Mix.Tasks.Esbuild.run(~w(default --minify))
 
