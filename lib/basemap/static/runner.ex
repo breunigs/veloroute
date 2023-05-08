@@ -73,9 +73,20 @@ defmodule Basemap.Static.Runner do
 
   @spec init(any) :: {:ok, state()}
   def init(_args \\ []) do
-    :ok = Basemap.Static.Exe.ensure(stale: :ok)
-    ports = Enum.map(0..(@parallelism - 1), fn _x -> open_port() end) |> Util.compact()
+    ports =
+      if enable?() do
+        :ok = Basemap.Static.Exe.ensure(stale: :ok)
+        Enum.map(0..(@parallelism - 1), fn _x -> open_port() end) |> Util.compact()
+      else
+        []
+      end
+
     {:ok, %{ports: ports, processing: %{}, queue: [], backoff: 1}}
+  end
+
+  defp enable?() do
+    Application.get_env(:phoenix, :serve_endpoints) ||
+      Application.get_env(:veloroute, :env) == :prod
   end
 
   def handle_call({:render, line, deadline}, from, state) do
