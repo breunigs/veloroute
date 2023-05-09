@@ -11,8 +11,8 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
   def type(), do: :planned
   def tags(), do: ["1"]
 
-  def start(), do: ~d[2023Q3]
-  def stop(), do: ~d[2023Q3]
+  def start(), do: ~d[2023-07]
+  def stop(), do: ~d[2023-12]
 
   def links(_assigns) do
     [
