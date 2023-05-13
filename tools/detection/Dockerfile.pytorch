@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:experimental
 
 # Start FROM Nvidia PyTorch image https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
-FROM nvcr.io/nvidia/pytorch:22.08-py3
+FROM nvcr.io/nvidia/pytorch:23.04-py3
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
@@ -12,10 +12,10 @@ RUN mkdir -p /root/.config/Ultralytics/
 # prevent YOLOv5 from downloading unnecessary assets
 RUN ln /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf /root/.config/Ultralytics/Arial.ttf
 
-RUN pip install imageio imageio-ffmpeg tqdm seaborn && \
+RUN pip install imageio imageio-ffmpeg tqdm seaborn gitpython && \
   rm -rf /root/.cache/pip
 
-ARG GIT_SHA=82bec4c8785e123bbea01f6f2d4215c2077ac81f
+ARG GIT_SHA=e382d4c37cd840337381e138ef71bb638d1bb16b
 RUN mkdir -p /root/.cache/torch/hub/ && \
   curl -L https://github.com/ultralytics/yolov5/archive/${GIT_SHA}.zip > /tmp/yolov5.zip && \
   unzip -D -q /tmp/yolov5.zip -d /root/.cache/torch/hub/ && \
