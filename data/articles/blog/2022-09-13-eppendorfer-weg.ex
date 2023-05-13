@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.EppendorferWeg do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/eppendorfer-weg"},
       {"Ausschreibung der Planung", "April 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ce09a307-edf0-4fb1-b972-0d26d40fa72b/details"}
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/1e884099-76ab-4ab9-9de7-2db73ee5a061"}
     ]
   end
 
