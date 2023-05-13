@@ -37,7 +37,10 @@ defmodule Util.Cmd2 do
          """}
       end
 
-    if do_raise && result != :ok && status[:user_abort], do: raise("User aborted")
+    if do_raise && result != :ok && status[:user_abort] do
+      IO.puts(:stderr, "User aborted")
+      System.halt(0)
+    end
 
     if do_raise && result != :ok,
       do: raise(elem(result, 1))
