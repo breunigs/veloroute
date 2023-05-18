@@ -10,8 +10,6 @@ defmodule Warmup do
   end
 
   def definitely() do
-    Search.Meilisearch.Runner.boot()
-
     articles = Article.List.all()
     Parallel.each(articles, &Article.Decorators.related_tracks(&1))
     Parallel.each(articles, &Article.Decorators.bbox_self(&1))

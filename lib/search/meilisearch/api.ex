@@ -15,22 +15,19 @@ defmodule Search.Meilisearch.API do
     end
   end
 
+  def delete_index(index) when is_atom(index) do
+    delete("/indexes/#{index}")
+    |> await_finish()
+  end
+
   def create_index(index) when is_atom(index) do
     post("/indexes", %{uid: index})
     |> await_finish()
-    |> case do
-      :ok -> :ok
-      {:error, reason} -> Logger.warn("MEILISEARCH: failed to create index: #{reason}")
-    end
   end
 
   def configure_index(index, config) when is_atom(index) and is_map(config) do
     patch("/indexes/#{index}/settings", config)
     |> await_finish()
-    |> case do
-      :ok -> :ok
-      {:error, reason} -> Logger.warn("MEILISEARCH: failed to configure index: #{reason}")
-    end
   end
 
   def index_documents(index, documents) when is_atom(index) and is_list(documents) do
@@ -38,10 +35,6 @@ defmodule Search.Meilisearch.API do
 
     post("/indexes/#{index}/documents", documents)
     |> await_finish()
-    |> case do
-      :ok -> :ok
-      {:error, reason} -> Logger.warn("MEILISEARCH: failed to index documents: #{reason}")
-    end
   end
 
   @spec search(atom, map()) :: list()

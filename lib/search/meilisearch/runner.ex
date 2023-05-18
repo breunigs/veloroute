@@ -21,6 +21,10 @@ defmodule Search.Meilisearch.Runner do
     GenServer.cast(__MODULE__, :boot)
   end
 
+  def index() do
+    GenServer.call(__MODULE__, :index, :infinity)
+  end
+
   def start_link(opts \\ []) do
     opts = Keyword.put_new(opts, :name, __MODULE__)
     state = %{print: false, indexers: @indexers}
@@ -48,6 +52,10 @@ defmodule Search.Meilisearch.Runner do
       end)
 
     {:reply, res, state}
+  end
+
+  def handle_call(:index, _from, state) do
+    {:reply, :ok, state |> ensure_started() |> index()}
   end
 
   def handle_call(term, _from, state) do
@@ -97,7 +105,6 @@ defmodule Search.Meilisearch.Runner do
     |> ensure_db_path()
     |> ensure_running()
     |> wait_until_healthy(max_tries: 10)
-    |> index()
   end
 
   defp ensure_running(%{port: port} = state) when not is_nil(port), do: state
@@ -161,17 +168,20 @@ defmodule Search.Meilisearch.Runner do
   defp index(%{indexers: []} = state), do: state
 
   defp index(%{indexers: [indexer | rest]} = state) do
-    Search.Meilisearch.API.create_index(indexer.id())
-    Search.Meilisearch.API.configure_index(indexer.id(), indexer.config())
+    Search.Meilisearch.API.delete_index(indexer.id())
+    :ok = Search.Meilisearch.API.create_index(indexer.id())
+    :ok = Search.Meilisearch.API.configure_index(indexer.id(), indexer.config())
 
     docs = indexer.documents()
-    Search.Meilisearch.API.index_documents(indexer.id(), docs)
+    :ok = Search.Meilisearch.API.index_documents(indexer.id(), docs)
 
     index(%{state | indexers: rest})
   end
 
   defp ensure_db_path(%{db_path: path} = state) when is_binary(path), do: state
-  defp ensure_db_path(state), do: Map.put(state, :db_path, Temp.path!("veloroute-meilisearch-db"))
+
+  defp ensure_db_path(state),
+    do: Map.put(state, :db_path, Path.join(:code.priv_dir(:veloroute), "meilisearch-db"))
 
   defp cleanup(%{db_path: path} = state) when is_binary(path) do
     File.rm_rf(path)
