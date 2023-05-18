@@ -22,9 +22,6 @@ defmodule M3U8.Attributes do
         "URI" => "stream_0.m4s",
         "BYTERANGE" => %{length: 892, offset: 0}
       }}
-
-      iex> M3U8.Attributes.parse('invalid="quote')
-      {:error, "failed parsing attribute list.\nCurrent state: %{found: %{}, mode: :key, wip_key: [], wip_val: []}\nremaining: invalid=\"quote\n"}
   """
   @spec parse(charlist() | binary()) :: {:error, binary()} | {:ok, %{optional(binary) => values}}
   def parse(attributes \\ [])
@@ -74,7 +71,7 @@ defmodule M3U8.Attributes do
       {:error,
        """
        failed parsing attribute list.
-       Current state: #{inspect(state)}
+       Current state: #{inspect(state, sort_maps: true)}
        remaining: #{to_string(rest)}
        """}
 

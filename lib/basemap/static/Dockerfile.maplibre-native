@@ -3,7 +3,7 @@ ARG MLN_COMMIT=4c01b7ef1f19964167070c3ea008780b8df72182
 ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
-# keep runtime dependencies in synx with Dockerfile.release
+# keep runtime dependencies in sync with Dockerfile.release
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
   ca-certificates \
@@ -15,7 +15,7 @@ RUN apt-get -y update \
   ./*.deb \
   libcurl4 \
   libglx0 \
-  libicu67 \
+  libicu[0-9]+$ \
   libopengl0 \
   libpng16-16 \
   libuv1 \
@@ -43,7 +43,7 @@ RUN apt-get -y update \
   ./*.deb \
   ccache \
   cmake \
-  g++-10 \
+  g++ \
   libc++-dev \
   libc++abi-dev \
   libcurl4-openssl-dev \
@@ -58,7 +58,7 @@ RUN apt-get -y update \
   && rm -rf /var/lib/apt/lists/*
 COPY --from=cloner /build/ /build/
 WORKDIR /build/
-RUN cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 \
+RUN cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
   && cmake --build build -j $(nproc 2>/dev/null)
 
 COPY ./patch/. /build/
