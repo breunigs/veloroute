@@ -3,6 +3,9 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
 
   def created_at(), do: ~D[2022-05-25]
 
+  def start(), do: ~d[2023-06]
+  def stop(), do: ~d[2025-08]
+
   def title(), do: "Saarlandstraße (nördlicher Teil, Alltagsroute 5N)"
 
   def summary(),
