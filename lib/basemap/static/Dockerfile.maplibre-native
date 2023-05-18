@@ -61,8 +61,11 @@ WORKDIR /build/
 RUN cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
   && cmake --build build -j $(nproc 2>/dev/null)
 
-COPY ./patch/. /build/
-RUN cmake --build build -j $(nproc 2>/dev/null)
+# ensure our patch files are considered newer than the previous build
+COPY ./patch/. /patch/
+RUN touch /patch/**/* \
+  && cp -r /patch/. /build/ \
+  && cmake --build build -j $(nproc 2>/dev/null)
 
 FROM runner-base as runner
 WORKDIR /build
