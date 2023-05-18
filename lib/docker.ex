@@ -220,7 +220,7 @@ defmodule Docker do
   @spec docker_supports_gpu() :: bool()
   defmemop docker_supports_gpu do
     {out, status} =
-      System.cmd("docker", ["run", "--gpus", "all", "hello-world"], stderr_to_stdout: true)
+      System.cmd("docker", ["run", "--rm", "--gpus", "all", "hello-world"], stderr_to_stdout: true)
 
     cond do
       status == 0 ->
