@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "9 Bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -23,20 +23,15 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         videos: [
-          {"2022-04-02-velo9/GX013399", "00:00:18.185", :end},
-          {"2022-04-02-velo9/GX013400", :start, :end},
-          {"2022-04-02-velo9/GX013401", :start, :end},
-          {"2022-04-02-velo9/GX013402", :start, :end},
-          {"2022-04-02-velo9/GX013403", :start, :end},
-          {"2022-04-02-velo9/GX013404", :start, :end},
-          {"2022-04-02-velo9/GX013405", :start, :end},
-          {"2022-04-02-velo9/GX013406", :start, :end},
-          {"2022-04-02-velo9/GX013407", :start, :end},
-          {"2022-04-02-velo9/GX013408", :start, :end},
-          {"2022-04-02-velo9/GX013409", :start, :end},
-          {"2022-04-02-velo9/GX013410", :start, :end},
-          {"2022-04-02-velo9/GX013411", :start, :end},
-          {"2022-04-02-velo9/GX013412", :start, "00:00:13.847"}
+          {"2023-05-21-vr12-vr9/GX015803", "00:00:15.346", :end},
+          {"2023-05-21-vr12-vr9/GX015804", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015805", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015806", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015807", :start, "00:00:01.535"},
+          {"2023-05-21-vr12-vr9/GX015807", "00:00:01.835", :end},
+          {"2023-05-21-vr12-vr9/GX015808", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015809", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015810", :start, "00:00:07.708"}
         ]
       },
       %Video.Track{
@@ -48,20 +43,17 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         videos: [
-          {"2022-04-02-velo9/GX013412", "00:00:26.226", :end},
-          {"2022-04-02-velo9/GX013413", :start, :end},
-          {"2022-04-02-velo9/GX013414", :start, :end},
-          {"2022-04-02-velo9/GX013415", :start, :end},
-          {"2022-04-02-velo9/GX013416", :start, :end},
-          {"2022-04-02-velo9/GX023416", :seamless, "00:00:22.589"},
-          {"2022-04-02-velo9/GX023416", "00:00:50.617", :end},
-          {"2022-04-02-velo9/GX013417", :start, :end},
-          {"2022-04-02-velo9/GX013418", :start, :end},
-          {"2022-04-02-velo9/GX013419", :start, :end},
-          {"2022-04-02-velo9/GX013420", :start, :end},
-          {"2022-04-02-velo9/GX013421", :start, :end},
-          {"2022-04-02-velo9/GX013422", :start, :end},
-          {"2022-04-02-velo9/GX013424", :start, "00:00:21.588"}
+          {"2023-05-21-vr12-vr9/GX015810", "00:00:18.285", :end},
+          {"2023-05-21-vr12-vr9/GX015811", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015812", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015813", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015814", :start, "00:03:40.721"},
+          {"2023-05-21-vr12-vr9/GX015816", "00:00:00.133", :end},
+          {"2023-05-21-vr12-vr9/GX015817", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015818", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015819", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015820", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015821", :start, "00:00:23.352"}
         ]
       }
     ]

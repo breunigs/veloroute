@@ -23,16 +23,12 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Altona",
         videos: [
-          {"2022-04-23-velo3-velo12altona/GX013521", "00:00:16.683", :end},
-          {"2022-04-23-velo3-velo12altona/GX013522", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013523", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013524", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013525", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013526", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013527", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013528", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013529", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013530", :start, "00:00:02.169"}
+          {"2023-05-21-vr12-vr9/GX015821", "00:00:25.020", :end},
+          {"2023-05-21-vr12-vr9/GX015822", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015823", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015824", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015825", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015826", :start, :end}
         ]
       },
       %Video.Track{
@@ -44,16 +40,19 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "von Altona in die Innenstadt",
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013567", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013568", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013569", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013571", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013572", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013573", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013574", :start, :end},
-          {"2021-06-27-veloroute9/GX012021", :start, "00:00:11.645"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013575", "00:00:13.146", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013576", :start, "00:00:39.740"}
+          {"2023-05-21-vr12-vr9/GX015789", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015790", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015791", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015792", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015793", :start, "00:00:05.772"},
+          {"2023-05-21-vr12-vr9/GX015795", "00:00:13.146", :end},
+          {"2023-05-21-vr12-vr9/GX015796", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015797", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015798", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015800", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015801", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015802", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015803", :start, "00:00:11.676"}
         ]
       }
     ]

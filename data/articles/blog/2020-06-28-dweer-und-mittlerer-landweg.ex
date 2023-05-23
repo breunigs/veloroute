@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.DweerUndMittlererLandweg do
   def title(), do: "Schranken am Dweerlandweg und Mittlerer Landweg (Veloroute 9)"
   def icon(), do: :nocargo
 
-  def type(), do: :issue
+  def type(), do: :finished
 
   def tags(), do: ["9"]
 

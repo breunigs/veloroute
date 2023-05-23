@@ -32,8 +32,10 @@ defmodule Data.Article.Static.Projekt do
 
     <h4>Technik und Lizenzen</h4>
     <p>Die Seite selbst steht unter einer <.a href="https://github.com/breunigs/veloroute">freien Lizenz auf Github</.a>. Mein Ziel ist es die Technik weitgehend von den Daten zu trennen, damit sie auch für andere Projekte verwendet werden kann. Bei Fragen <.mailto>schreib mir</.mailto> oder erstelle ein Ticket auf Github.</p>
-    <p>Die Videos werden von veloroute.hamburg bereitgestellt und sind <.a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY SA</.a> lizensiert. Ich hebe die Originale auf, die ich bei Bedarf gemeinfrei zur Verfügung stellen kann.</p>
-    <p>Die Kartendaten stammen aus der <.a href="https://www.openstreetmap.org">OpenStreetMap</.a> (ODbL). Die auf der Seite angezeigten Routen werden getrennt speziell für die Seite verwaltet und stehen wahlweise unter der ISC, ODbL oder CC-SA zur Verfügung.</p>
+
+    <p>Die Videos werden von veloroute.hamburg bereitgestellt und sind <.a href="https://de.wikipedia.org/wiki/Gemeinfreiheit">gemeinfrei</.a>. Ich freue mich natürlich über Namensnennung, auch wenn diese nicht notwendig ist.</p>
+
+    <p>Die Kartendaten stammen aus der <.a href="https://www.openstreetmap.org">OpenStreetMap</.a> (ODbL). Die auf der Seite angezeigten Routen werden getrennt speziell für die Seite verwaltet und sind <.a href="https://de.wikipedia.org/wiki/Gemeinfreiheit">gemeinfrei</.a>.</p>
 
     """
   end

@@ -6,6 +6,9 @@ defmodule Data.Article.Blog.AbrissCityHof do
   def title(), do: "Baustelle ehemaliger City-Hof"
 
   def type(), do: :construction
+  def start(), do: ~d[2019]
+  def stop(), do: ~d[2023-08-01]
+  def construction_site_id_hh(), do: [113_099]
 
   def tags(), do: ["9"]
 
