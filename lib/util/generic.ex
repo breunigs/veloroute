@@ -166,4 +166,18 @@ defmodule Util do
     end)
     |> Enum.join(" ")
   end
+
+  @doc """
+  Converts a string in the form of "1/2" or "0.5" to a proper float. Meant to
+  parse metadata output from ffprobe and the like.
+  """
+  @spec fraction_to_float(binary()) :: float()
+  def fraction_to_float(str) do
+    str
+    |> String.split("/", parts: 2)
+    |> case do
+      [num, denom] -> String.to_integer(num) / String.to_integer(denom)
+      [decimal] -> String.to_float(decimal)
+    end
+  end
 end

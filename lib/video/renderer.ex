@@ -11,7 +11,7 @@ defmodule Video.Renderer do
     ensure_min_version(rendered)
 
     blurred = if blur, do: blurs(rendered), else: settb(rendered)
-    filter = Enum.join(blurred ++ xfades(rendered), ";")
+    filter = Enum.join(blurred ++ time_lapse_corrects(rendered) ++ xfades(rendered), ";")
 
     filter =
       if start_from do
@@ -285,9 +285,24 @@ defmodule Video.Renderer do
   defp settb(rendered) do
     rendered.sources()
     |> Enum.with_index()
-    |> Parallel.map(2, fn {{_path, _from, _to}, idx} ->
+    |> Enum.map(fn {{_path, _from, _to}, idx} ->
       "[#{idx}]settb=AVTB[blur#{idx}]"
     end)
+  end
+
+  defp time_lapse_corrects(rendered) do
+    fps = Video.Constants.output_fps()
+
+    rendered.sources()
+    |> Enum.with_index()
+    |> Parallel.map(2, fn {{path, _from, _to}, idx} ->
+      meta = metadata(path)
+
+      if meta.pts_correction != 1 do
+        "[blur#{idx}]setpts=#{meta.pts_correction}*PTS,fps=#{fps},settb=AVTB[blur#{idx}]"
+      end
+    end)
+    |> Util.compact()
   end
 
   # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
@@ -306,10 +321,12 @@ defmodule Video.Renderer do
       sources
       |> Enum.with_index()
       |> Parallel.map(2, fn {{path, from, to}, idx} ->
+        meta = metadata(path)
+
         start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
-        to_in_s = if to == :end, do: duration_in_s(path), else: Video.Timestamp.in_seconds(to)
+        to_in_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
         segment_fade = if from == :seamless, do: 0, else: fade
-        segment_duration = Float.round(to_in_s - start_in_s, 3)
+        segment_duration = Float.round((to_in_s - start_in_s) * meta.pts_correction, 3)
 
         if segment_fade >= segment_duration,
           do:
@@ -348,7 +365,7 @@ defmodule Video.Renderer do
     end
   end
 
-  defp duration_in_s(path), do: metadata(path).duration
+  # defp duration_in_s(path), do: metadata(path).duration
 
   defp metadata(path) do
     path
@@ -367,7 +384,7 @@ defmodule Video.Renderer do
   # GOP=group of pictures, essentially when to insert a keyframe. The script
   # sets the max for this, i.e. there will be a keyframe at most every GOP_SIZE.
   # Ideally HLS_TIME * FPS = GOP_SIZE. https://video.stackexchange.com/a/24684
-  defp gop_size, do: round(hls_time() * Video.Source.fps())
+  defp gop_size, do: round(hls_time() * Video.Constants.output_fps())
 
   # The average bitrate is given in the variants above. This defined
   # how much the maximum bitrate may deviate from that (as a ratio)
@@ -411,7 +428,7 @@ defmodule Video.Renderer do
       Enum.find_value(@av1_ll_param_examples, @av1_ll_max_specified, fn ex ->
         dim_ok = info[:width] <= ex.width && info[:height] <= ex.height
 
-        if dim_ok && tiles <= ex.tiles && Video.Source.fps() <= ex.fps,
+        if dim_ok && tiles <= ex.tiles && Video.Constants.output_fps() <= ex.fps,
           do: ex.seq_level_idx
       end)
       |> to_string()

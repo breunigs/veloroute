@@ -248,7 +248,15 @@ defmodule Video.RendererTest do
     def sources() do
       # fake the metadata entries for these non-existing files
       prefix = File.cwd!() <> "/videos/source/"
-      default_meta = %Video.Metadata{duration: 60.0, fps: 30000 / 1001, time_base: 1 / 90000}
+
+      default_meta = %Video.Metadata{
+        duration: 60.0,
+        fps: 30000 / 1001,
+        time_base: 1 / 90000,
+        time_lapse: 5,
+        pts_correction: 1.0
+      }
+
       Video.Metadata.start_link()
       Video.Metadata.fake(prefix <> "1.mp4", default_meta)
       Video.Metadata.fake(prefix <> "2.mp4", %{default_meta | time_base: 1 / 1000})

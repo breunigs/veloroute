@@ -194,43 +194,13 @@ defmodule Video.Source do
 
   defp video_length_ms_fast(%__MODULE__{}), do: nil
 
-  @required_fps 29.97
-
-  def fps(), do: @required_fps
-
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}
   defp video_length_ms_slow(%__MODULE__{source: source}) do
     IO.puts(:stderr, "querying video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
-
-    # this selects the format length, not the video length. These can differ by
-    # some ms.
-    {out, 0} =
-      System.cmd(
-        "ffprobe",
-        [
-          "-v",
-          "error",
-          "-select_streams",
-          "v",
-          "-of",
-          "json=c=1",
-          "-show_entries",
-          "format=duration:stream=r_frame_rate",
-          path
-        ]
-      )
-
-    {:ok, parsed} = Jason.decode(out)
-
-    framerate = parsed["streams"] |> hd() |> get_in(["r_frame_rate"]) |> fps_to_float()
-    seconds = parsed["format"]["duration"] |> String.to_float()
+    seconds = Video.Metadata.for(path).duration
     ms = round(seconds * 1000)
-
-    if Float.round(framerate, 2) != Float.round(@required_fps, 2) do
-      raise "video #{source} uses #{framerate} instead of the expected #{@required_fps}"
-    end
 
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
@@ -332,15 +302,6 @@ defmodule Video.Source do
     else
       err ->
         {:error, "invalid date: #{inspect(err)}"}
-    end
-  end
-
-  defp fps_to_float(str) do
-    str
-    |> String.split("/", parts: 2)
-    |> case do
-      [num, denom] -> String.to_integer(num) / String.to_integer(denom)
-      [decimal] -> String.to_float(decimal)
     end
   end
 end

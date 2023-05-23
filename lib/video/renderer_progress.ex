@@ -4,7 +4,7 @@ defmodule Video.Renderer.Progress do
   defstruct @params
 
   def new(rendered) do
-    total_frames = round(rendered.length_ms() / 1000.0 * Video.Source.fps())
+    total_frames = round(rendered.length_ms() / 1000.0 * Video.Constants.output_fps())
     desc = "rendering #{rendered.hash()}"
 
     # immediately take 1 to force progress bar to show up

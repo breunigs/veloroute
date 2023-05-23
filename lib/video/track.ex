@@ -126,7 +126,7 @@ defmodule Video.Track do
   def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4] do
     tsvs = tsvs(videos)
     hsh = :crypto.hash_init(:md5)
-    fade_in_ms = round(default_fade() * 1000)
+    fade_in_ms = round(fade(renderer) * 1000)
 
     joined =
       Enum.reduce(videos, {0, [], [], hsh}, fn
@@ -182,27 +182,32 @@ defmodule Video.Track do
           }
       end
 
-    Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true)
-    |> case do
-      {:error, reason} ->
-        {:error, reason}
+    with %Video.TrimmedSource{} = tsv <-
+           Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true),
+         {:ok, meta} <- Video.Metadata.for(tsv) do
+      from_ms = tsv.coord_from.time_offset_ms
+      to_ms = tsv.coord_to.time_offset_ms
 
-      tsv ->
-        from_ms = tsv.coord_from.time_offset_ms
-        to_ms = tsv.coord_to.time_offset_ms
+      rev_coords =
+        Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
+          offset = round((new.time_offset_ms - from_ms) * meta.pts_correction)
+          new = Map.put(new, :time_offset_ms, dur + offset)
+          [new | rev_coords]
+        end)
 
-        rev_coords =
-          Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
-            new = Map.put(new, :time_offset_ms, new.time_offset_ms - from_ms + dur)
-            [new | rev_coords]
-          end)
+      recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
 
-        recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
+      dur = dur + round((to_ms - from_ms) * meta.pts_correction)
+      segment = {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
 
-        dur = dur + to_ms - from_ms
-        segment = {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
-        {:ok, segment}
+      {:ok, segment}
     end
+  end
+
+  @fade_frames 8
+  @spec default_fade :: float
+  def default_fade() do
+    @fade_frames / Video.Constants.output_fps()
   end
 
   @spec fade(t() | pos_integer()) :: fade()
@@ -211,13 +216,9 @@ defmodule Video.Track do
   """
   def fade(%__MODULE__{renderer: v}), do: fade(v)
   def fade(1), do: :none
-  def fade(version) when version in [2, 3, 4], do: default_fade()
-
-  @fade_frames 8
-  @spec default_fade :: float
-  def default_fade() do
-    @fade_frames / Video.Source.fps()
-  end
+  def fade(2), do: @fade_frames / 29.97
+  def fade(3), do: @fade_frames / 29.97
+  def fade(4), do: default_fade()
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()
   defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do

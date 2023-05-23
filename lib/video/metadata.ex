@@ -1,17 +1,27 @@
 defmodule Video.Metadata do
   use Agent
 
-  @type t :: %Video.Metadata{duration: float(), fps: float(), time_base: float()}
+  @type t :: %Video.Metadata{
+          duration: float(),
+          fps: float(),
+          time_base: float(),
+          time_lapse: pos_integer() | nil,
+          pts_correction: float()
+        }
   @typep state :: %{optional(binary) => t()}
 
-  @enforce_keys [:duration, :fps, :time_base]
+  @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
   defstruct @enforce_keys
 
   def start_link() do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
-  @spec for(binary) :: {:ok, t()} | {:error, binary()}
+  @spec for(binary | Video.TrimmedSource.t()) :: {:ok, t()} | {:error, binary()}
+  def for(%{source: source}) do
+    __MODULE__.for(Video.Path.source_rel_to_cwd(source))
+  end
+
   def for(video_path) when is_binary(video_path) do
     start_link()
     Agent.get_and_update(__MODULE__, &video_info(&1, video_path), :infinity)
@@ -67,30 +77,42 @@ defmodule Video.Metadata do
       "ffprobe",
       "-hide_banner",
       "-of",
-      "default=noprint_wrappers=1",
-      "-select_streams",
-      "v:0",
+      "json",
       "-show_entries",
-      "stream=r_frame_rate,time_base:format=duration",
+      "stream=r_frame_rate,time_base,duration,duration_ts,codec_tag_string:format=duration",
       video_path
     ]
 
-    Util.Cmd2.exec(cli, stdout: "", stderr: "")
-    |> case do
-      %{result: :ok, stdout: out} ->
-        [_, fr_num, fr_denom] = Regex.run(~r/^r_frame_rate=(\d+)\/(\d+)$/m, out)
-        [_, tb_num, tb_denom] = Regex.run(~r/^time_base=(\d+)\/(\d+)$/m, out)
-        [_, dur] = Regex.run(~r/^duration=([0-9\.]+)$/m, out)
+    with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: ""),
+         {:ok, %{"streams" => streams, "format" => format}} <- Jason.decode(out) do
+      indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
+      video = indexed["hvc1"] || indexed["FFV1"] || hd(streams)
 
-        {:ok,
-         %Video.Metadata{
-           fps: String.to_integer(fr_num) / String.to_integer(fr_denom),
-           time_base: String.to_integer(tb_num) / String.to_integer(tb_denom),
-           duration: String.to_float(dur)
-         }}
+      time_lapse =
+        with %{"duration_ts" => dur_ts, "duration" => dur} <- indexed["gpmd"] do
+          round(dur_ts / (String.to_float(dur) * 1000))
+        end
 
-      %{result: result} ->
-        result
+      fps = Util.fraction_to_float(video["r_frame_rate"])
+
+      default = Video.Constants.assumed_time_lapse_when_no_metadata()
+      desired = Video.Constants.desired_time_lapse()
+      fps_change = fps / Video.Constants.output_fps()
+      time_lapse_change = (time_lapse || default) / desired
+
+      {:ok,
+       %Video.Metadata{
+         fps: fps,
+         time_base: Util.fraction_to_float(video["time_base"]),
+         duration: String.to_float(format["duration"]),
+         time_lapse: time_lapse,
+         # due to FPS differences, we might need to speed up the video more/less
+         pts_correction: time_lapse_change / fps_change
+       }}
+    else
+      %{result: result} -> result
+      {:error, reason} -> {:error, reason}
+      {:ok, decode} -> {:error, "Unexpected ffprobe JSON: #{inspect(decode)}"}
     end
   end
 end
