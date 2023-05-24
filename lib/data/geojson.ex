@@ -249,7 +249,7 @@ defmodule Data.GeoJSON do
       end)
 
     # create map from way IDs to relation IDs that include that way,
-    # additionally collecting their roles
+    # additionally collecting their names and roles.
     ways_to_rels =
       rels_to_modify
       |> Enum.sort_by(fn %Map.Relation{tags: %{name: name}} -> name end, {:desc, NaturalOrder})
@@ -257,25 +257,30 @@ defmodule Data.GeoJSON do
         rel
         |> Map.Relation.way_members(@relevant_geojson_roles)
         |> Enum.reduce(acc, fn %{role: role, ref: %Map.Way{id: wid}}, acc ->
-          %{rels: rels, roles: roles} = acc[wid] || %{rels: [], roles: []}
-          name = Map.fetch!(rel.tags, :name)
-          Map.put(acc, wid, %{rels: [name | rels], roles: [role | roles]})
+          %{ids: ids, names: names, roles: roles} = acc[wid] || %{ids: [], names: [], roles: []}
+
+          Map.put(acc, wid, %{
+            ids: [rel.id | ids],
+            names: [Map.fetch!(rel.tags, :name) | names],
+            roles: [role | roles]
+          })
         end)
       end)
 
     # add offset/oneway to tags of ways
     Enum.map(rels_to_modify, fn rel ->
       modify_ways(rel, fn way ->
-        rels = ways_to_rels[way.id][:rels]
+        rel_ids = ways_to_rels[way.id][:ids]
+        rel_names = ways_to_rels[way.id][:names]
         roles = Enum.uniq(ways_to_rels[way.id][:roles])
-        index = Enum.find_index(rels, fn rel_name -> rel_name == rel.tags[:name] end)
+        index = Enum.find_index(rel_ids, fn rel_id -> rel_id == rel.id end)
 
-        offset = @offsets[{length(rels), index}] || 0
+        offset = @offsets[{length(rel_ids), index}] || 0
         oneway = length(roles) == 1 && hd(roles) in ["forward", "backward"]
         reverse = oneway && hd(roles) == "backward"
 
-        tags = %{offset: offset, title: relation_titles(rels)}
-        tags = if length(rels) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
+        tags = %{offset: offset, title: relation_titles(rel_names)}
+        tags = if length(rel_ids) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
         tags = if oneway, do: Map.put(tags, :oneway, true), else: tags
 
         way = if reverse, do: Map.Way.reverse(way), else: way
