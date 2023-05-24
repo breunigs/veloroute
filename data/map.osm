@@ -31817,6 +31817,7 @@
     <nd ref='-22532638' />
     <nd ref='-22532639' />
     <nd ref='-22532636' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-06-28-dweer-und-mittlerer-landweg' />
     <tag k='type' v='article' />
   </way>
@@ -57820,6 +57821,7 @@
     <nd ref='-86131036' />
     <nd ref='-86131037' />
     <nd ref='980350005552522' />
+    <tag k='name' v='2020-10-28-kaiser-wilhelm-strasse' />
     <tag k='oneway' v='yes' />
     <tag k='type' v='detour' />
   </way>

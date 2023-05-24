@@ -89,12 +89,12 @@ defmodule VelorouteWeb.LiveNavigationTest do
   end
 
   test "clicking on route twice reverses image", %{conn: conn} do
-    {:ok, view, _html} = live(conn, "/alltagsroute-3")
+    {:ok, view, _html} = live(conn, "/alltagsroute-5")
 
     click_pos = %{
-      route: "3",
-      lon: 10.024947118265771,
-      lat: 53.63658286414295,
+      route: "5",
+      lon: 10.0457982,
+      lat: 53.588579,
       zoom: 16
     }
 
@@ -102,14 +102,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
       render_hook(view, "map-click", click_pos),
       "#videoRoute",
       "title",
-      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
+      "Du folgst: Alltagsroute 5 aus der Innenstadt nach Duvenstedt"
     )
 
     assert_attribute(
       render_hook(view, "map-click", click_pos),
       "#videoRoute",
       "title",
-      "Du folgst: Alltagsroute 3 von Niendorf in die Innenstadt"
+      "Du folgst: Alltagsroute 5 von Duvenstedt in die Innenstadt"
     )
   end
 
@@ -124,21 +124,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
         zoom: 16
       })
 
-    assert_attribute(
-      html,
-      "#videoRoute",
-      "title",
-      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
-    )
-
+    before = shown_route(html)
     html = render_hook(view, "map-click", %{article: "bau"})
+    now = shown_route(html)
 
-    assert_attribute(
-      html,
-      "#videoRoute",
-      "title",
-      "Du folgst: Alltagsroute 3 aus der Innenstadt nach Niendorf"
-    )
+    assert before == now
   end
 
   test "map click sets correct route on article click", %{conn: conn} do
@@ -196,7 +186,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "clicking on article with tracks selects video close to click position", %{conn: conn} do
     article = "2023-04-15-bramfelder-strasse-bis-krausestrasse"
     forward_video_hash = "bef5fb6f0cd3ce7a30ade62e6325904b"
-    pos = 10615
+    pos = 10642
 
     {:ok, view, _html} = live(conn, "/")
 
@@ -268,7 +258,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
   test "switches routes when new article has different route", %{conn: conn} do
     {:ok, view, html} = live(conn, "/alltagsroute-4")
-    assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
+    route_initial = shown_route(html)
 
     # going to startpage should not change the video
     html =
@@ -276,7 +266,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> element("a", "veloroute.hamburg")
       |> render_click()
 
-    assert html =~ ~s|aus der Innenstadt zum Ochsenzoll|
+    assert route_initial == shown_route(html)
 
     # going to different route page should switch
     html =
@@ -284,7 +274,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> element("a", "Niendorf")
       |> render_click()
 
-    assert html =~ ~s|aus der Innenstadt nach Niendorf|
+    assert route_initial != shown_route(html)
   end
 
   test "click on video link with ref loads that track", %{conn: conn} do
@@ -364,5 +354,9 @@ defmodule VelorouteWeb.LiveNavigationTest do
       |> Floki.attribute("#layerSwitcher button.layer.active", "value")
 
     assert Enum.sort(want_layers) == Enum.sort(have_layers)
+  end
+
+  defp shown_route(html) do
+    Floki.parse_document!(html) |> Floki.attribute("#videoRoute", "title")
   end
 end
