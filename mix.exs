@@ -67,8 +67,6 @@ defmodule Veloroute.MixProject do
       {:erlexec, "~> 2.0",
        only: [:dev, :test], system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
-      {:ex_aws_s3, "~> 2.3.1", only: [:dev, :test]},
-      {:ex_aws, "~> 2.2.9", only: [:dev, :test]},
       {:file_system, "~> 0.2", only: [:dev, :test]},
       {:floki, ">= 0.30.0"},
       {:hackney, "~> 1.17"},
