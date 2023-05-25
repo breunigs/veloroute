@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Osterbekstrasse do
   def type(), do: :planned
   def tags(), do: ["FR2"]
 
-  def start(), do: ~d[2023]
-  def stop(), do: ~d[2023]
+  def start(), do: ~d[2023Q3]
+  def stop(), do: ~d[2025Q2]
 
   def links(_assigns) do
     [

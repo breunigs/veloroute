@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.VeddelerBogen do
   def links(_assigns) do
     [
       {"Ausschreibung Umbau", "Mai 2023",
-       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483"},
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/7caf74c4-1a20-4c61-8eb9-b6cc84373436"},
       {"Präsentation Veloroute 10 auf Wilhelmsburg", "Mai 2021",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260"}
     ]
