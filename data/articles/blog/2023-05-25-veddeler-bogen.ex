@@ -3,6 +3,10 @@ defmodule Data.Article.Blog.VeddelerBogen do
 
   def title(), do: "Veddeler Bogen (Veloroute 10)"
 
+  def summary(),
+    do:
+      "Fahrradstraße im Veddeler Bogen. Radweg nach Süden; Schutzstreifen nach Norden im Niedergeorgswerder Deich."
+
   def type(), do: :planned
 
   def tags(), do: ["10", "M12.1B Nord"]
