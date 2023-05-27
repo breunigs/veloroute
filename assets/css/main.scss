@@ -982,6 +982,9 @@ a {
   height: 2em;
   width: 2em;
   pointer-events: none;
+  // workaround for iOS Safari flickering the indicator while animating
+  // depending on rotation
+  transform: translateZ(0.00001px);
 
   &.animate {
     // NOTE: also update timeout in map.js

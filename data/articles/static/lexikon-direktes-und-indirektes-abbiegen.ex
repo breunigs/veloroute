@@ -29,7 +29,8 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
       "indirekten-linksabbiegen",
       "indirektes-linksabbiegen",
       "indirektes",
-      "direkt-links-abbiegen"
+      "direkt-links-abbiegen",
+      "indirekten-abbiegen"
     ]
 
   def tracks(),
