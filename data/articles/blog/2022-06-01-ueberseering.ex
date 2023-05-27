@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Ueberseering do
   def type(), do: :planned
   def construction_site_id_hh(), do: [31321]
   def start(), do: ~d[2022-03-01]
-  def stop(), do: ~d[2023-04-30]
+  def stop(), do: ~d[2023-08-31]
 
   def tags(), do: []
 
