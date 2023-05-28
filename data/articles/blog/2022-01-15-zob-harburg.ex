@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
       {"Lageplan – 1. Abschnitt", "2022",
        "https://lsbg.hamburg.de/resource/blob/634668/e7f9d7a34208cd6584c3dee3ecd5e9c4/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-plaene-data.pdf"},
       {"Zeitungsartikel mit veralteter Visualisierung (2021)",
-       "https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
+       "https://web.archive.org/web/20210305190832/https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
       {"Zeitungsartikel zum Bauzeitraum (2021)",
        "https://www.abendblatt.de/hamburg/harburg/article231356884/Harburgs-Zentraler-Busbahnhof-wird-drei-Jahre-geschlossen.html"},
       {"Bestätigung der Pläne des Verkehrssenators (2022)",

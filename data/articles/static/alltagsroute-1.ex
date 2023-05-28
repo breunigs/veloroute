@@ -89,7 +89,6 @@ defmodule Data.Article.Static.Alltagsroute1 do
           {"2023-05-19-vr1/GX015717", "00:00:48.215", :end},
           {"2023-05-19-vr1/GX015718", :start, :end},
           {"2023-05-19-vr1/GX015719", :start, "00:00:46.704"}
-
         ]
       },
       %Video.Track{

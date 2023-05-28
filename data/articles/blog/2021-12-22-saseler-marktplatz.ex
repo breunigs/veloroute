@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.SaselerMarktplatz do
       {"Lagepläne und Bauvergabe",
        "https://suche.transparenz.hamburg.de/dataset/neugestaltung-saseler-mark"},
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/15555824/saseler-markt/"}
+       "https://www.hamburg.de/wandsbek/strassenumbauten/15058054/neugestaltung-saseler-markt/"}
     ]
   end
 

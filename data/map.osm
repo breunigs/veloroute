@@ -68104,6 +68104,7 @@
     <nd ref='932776000596701' />
     <nd ref='932731000596732' />
     <nd ref='9324820005972' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-13-2-woerdemanns-weg' />
     <tag k='type' v='article' />
   </way>
@@ -68165,6 +68166,7 @@
     <nd ref='951205000625164' />
     <nd ref='951236000624' />
     <nd ref='951027000625152' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-13-3-paul-sorge-strasse' />
     <tag k='type' v='article' />
   </way>
