@@ -224,7 +224,7 @@ function updateVideoElement() {
   `;
   video.innerHTML = innerHTML;
   video.autoplay = autoplay;
-  video.playbackRate = video.videoPlaybackRate;
+  video.playbackRate = videoPlaybackRate;
   video.load();
   if (autoplay) video.play();
 }
