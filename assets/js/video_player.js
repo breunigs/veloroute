@@ -593,3 +593,27 @@ function inactivityDelay() {
     outer.classList.add("inactivity");
   }, 2000);
 }
+
+// keep in sync with video/constants.ex
+const videoFPS = 30000 / 1001
+let frameSeeked = false
+document.addEventListener("keyup", (e) => {
+  if (e.ctrlKey || e.shiftKey || e.altKey) return
+  if (!e.target || e.target.tagName == "INPUT") return
+  if (e.key != "." && e.key != ",") return
+
+  if (!frameSeeked) {
+    frameSeeked=true
+    userClickPlayOnce = true
+    setVideo();
+  }
+
+  if (e.key == "." && video.currentTime < video.duration) {
+    console.log("seek+")
+    seekToTime(videoTimeInMs + 1/videoFPS*1000)
+  }
+  if (e.key == "," && video.currentTime > 0) {
+    console.log("seek-")
+    seekToTime(videoTimeInMs - 1/videoFPS*1000)
+  }
+})
