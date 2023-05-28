@@ -468,7 +468,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
       {:error, reason} ->
         """
-        unexpected result: #{reason}
+        unexpected result: #{inspect(reason)}
           #{meta}
         """
     end
@@ -477,5 +477,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
   defp head_or_get(url) do
     result = head(url)
     if match?(@success, result), do: result, else: get(url)
+  rescue
+    err -> {:error, err}
   end
 end
