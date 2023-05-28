@@ -24,7 +24,7 @@
       "minzoom": 0,
       "maxzoom": 20,
       "tileSize": 512,
-      "attribution": "<a href=\"https://www.maptiler.com/copyright/\" target=\"_blank\">&copy; MapTiler</a>"
+      "attribution": "<a href=\"https://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap</a> <a href=\"https://www.maptiler.com/copyright/#:~:text=MapTiler%20Satellite\" target=\"_blank\">&copy; MapTiler</a>"
     }
   },
   "sprite": "%%URL_SPRITES%%/sprite",
