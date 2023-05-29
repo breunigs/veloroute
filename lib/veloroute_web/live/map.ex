@@ -52,9 +52,8 @@ defmodule VelorouteWeb.Live.Map do
 
     ~H"""
     <div>
-      <div phx-update="ignore" id={@id} data-style={@active_style_id}></div>
-
-      <%= @map_preview %>
+      <%= @preview_css %>
+      <div phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id} class={if @preview_css, do: "preview"}></div>
 
       <div id="layerSwitcher">
         <button></button>
@@ -181,31 +180,32 @@ defmodule VelorouteWeb.Live.Map do
     true
   end
 
-  defp maybe_map_preview(%{assigns: %{map_preview: _any}} = socket), do: socket
+  defp maybe_map_preview(%{assigns: %{preview_css: _any}} = socket), do: socket
 
   defp maybe_map_preview(%{assigns: assigns} = socket) do
-    html =
+    preview_css =
       if default_layers?(assigns) && default_style?(assigns) do
-        map_preview(assigns)
+        video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
+        bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
+
+        assigns = %{
+          video_route_id: video_route_id,
+          bounds: bounds,
+          sizes: [500, 700, 1000, 1300, 1600]
+        }
+
+        ~H"""
+        <style>
+        .preview{background: url("/map/___static/<%= @bounds %>/500x400?highlightRoute=<%= @video_route_id %>")}
+        <%= for size <- @sizes do %>
+        @media(min-width: <%= size %>px),(min-height: <%= size %>px){.preview{background: url("/map/___static/<%= @bounds %>/<%= size-300 %>x<%= max(300, size-500) %>?highlightRoute=<%= @video_route_id %>")}}
+        <% end %>
+        </style>
+        """
       else
-        ""
+        nil
       end
 
-    assign(socket, :map_preview, html)
-  end
-
-  defp map_preview(assigns) do
-    video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
-    assigns = assign(assigns, %{video_route_id: video_route_id})
-
-    ~H"""
-      <script async>
-      requestAnimationFrame(function(){
-        var mapEl = document.getElementById("map")
-        mapEl.classList.add("preview")
-        mapEl.style.backgroundImage = `url('/map/___static/<%= VelorouteWeb.VariousHelpers.to_string_bounds(@map_bounds) %>/${mapEl.clientWidth}x${mapEl.clientHeight}?highlightRoute=<%= @video_route_id %>')`
-      })
-      </script>
-    """
+    assign(socket, :preview_css, preview_css)
   end
 end
