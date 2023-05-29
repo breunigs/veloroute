@@ -129,7 +129,7 @@ defmodule Mix.Tasks.Deploy do
         Enum.all?(
           ~w(
             /alltagsroute-1
-            /map/___static/9.988434,53.548873,9.996071,53.55198/720x493
+            /map/___static/9.988434,53.548873,9/720x493
             /updates.atom
             /images/rss.svg
             /assets/basemap/tiles/9/270/165.pbf.gz

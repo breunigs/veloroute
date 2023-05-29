@@ -568,11 +568,13 @@ function setup() {
 
   let style = document.getElementById('map').dataset.style
   console.log("map: loading style", style)
+  const initial = settings.initial.split(",")
 
   map = new mlgl.Map({
     container: 'map',
     maxBounds: settings.maxBounds.split(","),
-    bounds: settings.initial.split(","),
+    center: initial.slice(0, 2),
+    zoom: initial[2],
     fitBoundsOptions: fitBoundsOpt,
     minZoom: 9,
     maxZoom: 19,

@@ -10,11 +10,14 @@ defmodule Basemap.Static.Plug do
   @seconds_per_day 24 * 60 * 60
 
   @impl Plug
-  def call(conn = %{path_info: ["map", "___static", bounds, dimension]}, _opts) do
-    with bbox when is_struct(bbox) <- Geo.BoundingBox.parse(bounds),
+  def call(conn = %{path_info: ["map", "___static", center_zoom, dimension]}, _opts) do
+    with [lon, lat, zoom] <- String.split(center_zoom, ",", parts: 3),
+         {lon, ""} <- Float.parse(lon),
+         {lat, ""} <- Float.parse(lat),
+         {zoom, ""} <- Float.parse(zoom),
          {width, height} <- parse_dimension(dimension),
          %{params: params, method: "GET"} <- Plug.Conn.fetch_query_params(conn) do
-      %{bounds: bbox, width: width, height: height}
+      %{lon: lon, lat: lat, zoom: zoom, width: width, height: height}
       |> add_optional_params(params)
       |> Basemap.Static.Runner.render()
       |> case do

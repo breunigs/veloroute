@@ -15,7 +15,9 @@ defmodule Basemap.Static.Runner do
   @max_backoff 5 * 60
 
   @type render_task :: %{
-          bounds: Geo.BoundingBox.like(),
+          lon: float(),
+          lat: float(),
+          zoom: float(),
           width: pos_integer(),
           height: pos_integer(),
           pixelRatio: pos_integer(),
@@ -39,10 +41,9 @@ defmodule Basemap.Static.Runner do
     line =
       Enum.join(
         [
-          task.bounds.minLon,
-          task.bounds.minLat,
-          task.bounds.maxLon,
-          task.bounds.maxLat,
+          task.lon,
+          task.lat,
+          task.zoom,
           task.pixelRatio,
           task.width,
           task.height,

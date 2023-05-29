@@ -186,19 +186,26 @@ defmodule VelorouteWeb.Live.Map do
     preview_css =
       if default_layers?(assigns) && default_style?(assigns) do
         video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
-        bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
+        cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
 
         assigns = %{
           video_route_id: video_route_id,
-          bounds: bounds,
-          sizes: [500, 700, 1000, 1300, 1600]
+          cz: cz,
+          sizes: [
+            {500, 500},
+            {700, 700},
+            {900, 700},
+            {1100, 900},
+            {1300, 1000},
+            {1600, 1200}
+          ]
         }
 
         ~H"""
         <style>
-        .preview{background: url("/map/___static/<%= @bounds %>/500x400?highlightRoute=<%= @video_route_id %>")}
-        <%= for size <- @sizes do %>
-        @media(min-width: <%= size %>px),(min-height: <%= size %>px){.preview{background: url("/map/___static/<%= @bounds %>/<%= size-300 %>x<%= max(300, size-500) %>?highlightRoute=<%= @video_route_id %>")}}
+        .preview{background: url("/map/___static/<%= @cz %>/500x400?highlightRoute=<%= @video_route_id %>")}
+        <%= for {w, h} <- @sizes do %>
+        @media(min-width: <%= w+300 %>px),(min-height: <%= h*1.5 %>px){.preview{background: url("/map/___static/<%= @cz %>/<%= w %>x<%= h %>?highlightRoute=<%= @video_route_id %>")}}
         <% end %>
         </style>
         """

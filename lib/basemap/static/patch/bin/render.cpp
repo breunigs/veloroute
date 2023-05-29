@@ -90,7 +90,7 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
         }
 
         auto args = split(line, ' ');
-        std::size_t expected = 10;
+        std::size_t expected = 9;
         if (args.size() != expected) {
             printError("invalid argument count. Expected " + std::to_string(expected) + ", but got " +
                        std::to_string(args.size()) + ". Line given: " + line);
@@ -98,10 +98,9 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
         }
 
         int cnt = 0;
-        double minLon = std::stod(args[cnt++]);
-        double minLat = std::stod(args[cnt++]);
-        double maxLon = std::stod(args[cnt++]);
-        double maxLat = std::stod(args[cnt++]);
+        double lon = std::stod(args[cnt++]);
+        double lat = std::stod(args[cnt++]);
+        double zoom = std::min(maxZoom, std::stod(args[cnt++]));
         uint32_t pixelRatio = std::stod(args[cnt++]);
         uint32_t width = std::stoi(args[cnt++]);
         uint32_t height = std::stoi(args[cnt++]);
@@ -135,11 +134,7 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
         const auto size = Size(width, height);
         frontend->setSize(size);
         map->setSize(size);
-
-        auto bounds = mbgl::LatLngBounds::hull(mbgl::LatLng{minLat, minLon}, mbgl::LatLng{maxLat, maxLon});
-        auto camera = map->cameraForLatLngBounds(bounds, mbgl::EdgeInsets());
-        auto zoom = camera.zoom.has_value() ? std::min(camera.zoom.value(), maxZoom) : camera.zoom;
-        map->jumpTo(CameraOptions().withCenter(camera.center).withZoom(zoom));
+        map->jumpTo(CameraOptions().withCenter(LatLng{lat, lon}).withZoom(zoom));
 
         {
             using namespace mbgl::style;
