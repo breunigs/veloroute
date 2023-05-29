@@ -26,7 +26,12 @@ defmodule VelorouteWeb.FrameLive do
       Application.get_env(:veloroute, :enable_drawing_tools) ||
         params["enable_drawing_tools"] == "1"
 
-    state = Keyword.put(@initial_state, :enable_drawing_tools, draw)
+    state =
+      Keyword.merge(@initial_state,
+        enable_drawing_tools: draw,
+        map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
+      )
+
     {:ok, assign(socket, state)}
   end
 
@@ -299,6 +304,8 @@ defmodule VelorouteWeb.FrameLive do
   defp set_bounds(socket, _article, _bounds_param) do
     socket
   end
+
+  defp update_map_bounds(%{assigns: %{map_bounds: bounds}} = socket, bounds), do: socket
 
   defp update_map_bounds(socket, bounds) when is_struct(bounds, Geo.BoundingBox) do
     socket
