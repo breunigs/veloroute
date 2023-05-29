@@ -65,4 +65,4 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :veloroute, enable_link_helper: true
+config :veloroute, enable_drawing_tools: true

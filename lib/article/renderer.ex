@@ -8,6 +8,7 @@ defmodule Article.Renderer do
   attr :video_start, :string, required: true
   attr :search_query, :string
   attr :search_bounds, :any
+  attr :enable_drawing_tools, :boolean, default: false
   attr :limit_to_map_bounds, :boolean, default: false
 
   def render(%{ref: art} = assigns) when is_module(art) do

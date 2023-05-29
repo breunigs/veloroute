@@ -17,13 +17,17 @@ defmodule VelorouteWeb.FrameLive do
     search_bounds: nil,
     tmp_last_article_set: nil,
     limit_to_map_bounds: false,
-    og_image: nil
+    og_image: nil,
+    enable_drawing_tools: false
   ]
 
-  def initial_state, do: @initial_state
+  def mount(params, _session, socket) do
+    draw =
+      Application.get_env(:veloroute, :enable_drawing_tools) ||
+        params["enable_drawing_tools"] == "1"
 
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, @initial_state)}
+    state = Keyword.put(@initial_state, :enable_drawing_tools, draw)
+    {:ok, assign(socket, state)}
   end
 
   def handle_info(:check_updates, socket) do

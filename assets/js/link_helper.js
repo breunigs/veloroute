@@ -5,7 +5,7 @@ const draw = new MapboxDraw({
   controls: {
     combine_features: false,
     uncombine_features: false,
-    line_string: false
+    line_string: true
   }
 });
 
@@ -63,7 +63,7 @@ class CopyLinkButton {
   _createButton() {
     const el = window.document.createElement('button')
     el.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_combine';
-    el.title = 'Copy Link';
+    el.title = 'Copy Video Ref Markup (internal usage)';
     el.addEventListener('click', logLink);
     this._setup = true;
     return el;
@@ -79,4 +79,5 @@ class CopyLinkButton {
 window.map.addControl(draw, 'top-left');
 window.map.addControl(new CopyLinkButton({}), 'top-left')
 
+document.querySelector(".mapbox-gl-draw_trash").title = "Alle Zeichnungen löschen"
 document.querySelector(".mapbox-gl-draw_trash").addEventListener("click", draw.deleteAll)

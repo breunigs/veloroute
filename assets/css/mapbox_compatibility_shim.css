@@ -44,3 +44,22 @@
 .mapboxgl-ctrl button:not(:disabled):hover {
   background-color: rgba(0, 0, 0, .05)
 }
+
+.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: pointer;
+}
+.mouse-move .maplibregl-canvas-container.maplibregl-interactive,
+.mode-direct_select.feature-vertex.mouse-move .maplibregl-canvas-container.maplibregl-interactive,
+.mode-direct_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+.mouse-add .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: crosshair;
+}
+.mouse-move.mode-direct_select .maplibregl-canvas-container.maplibregl-interactive,
+.mode-static.mouse-pointer  .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: grab;
+}
+.mode-direct_select.feature-midpoint.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: cell;
+}
