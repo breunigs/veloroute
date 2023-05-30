@@ -2,9 +2,6 @@ defmodule Basemap.Static.Runner do
   use GenServer
   require Logger
 
-  # keep in sync with map.js for bounds fitting
-  @max_zoom "17"
-
   # keep in sync with map.js for route highlighting
   @highlight_layer "route-highlight"
   @highlight_property "route_id"
@@ -205,7 +202,16 @@ defmodule Basemap.Static.Runner do
     [exe | args] = Basemap.Static.Exe.command_line()
 
     if File.exists?(exe) do
-      args = args ++ ["--style", style_path(), "--assets", asset_dir(), "--max-zoom", @max_zoom]
+      args =
+        args ++
+          [
+            "--style",
+            style_path(),
+            "--assets",
+            asset_dir(),
+            "--max-zoom",
+            Basemap.Constants.bounds_fitting_max_zoom()
+          ]
 
       port =
         Port.open(

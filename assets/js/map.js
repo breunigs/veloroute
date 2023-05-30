@@ -12,7 +12,7 @@ if (!window.requestIdleCallback) {
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
-// keep in sync with basemap/static/runner.ex
+// keep in sync with basemap/constants.ex
 const fitBoundsOpt = {
   maxZoom: 17
 };

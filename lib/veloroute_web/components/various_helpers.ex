@@ -95,9 +95,14 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
+  @doc """
+  Converts the given bounds into a center-zoom variant suitable for bounds
+  fitting.
+  """
   def to_string_center_zoom(bounds) do
     cz = Geo.CheapRuler.bounds_to_center_zoom(bounds)
-    Enum.join([cz.lon, cz.lat, round(cz.zoom)], ",")
+    zoom = min(Basemap.Constants.bounds_fitting_max_zoom(), round(cz.zoom))
+    Enum.join([cz.lon, cz.lat, zoom], ",")
   end
 
   def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
