@@ -27,7 +27,7 @@ defmodule Video.TrimmedSource do
   def new_from_path(name) when is_binary(name) do
     name
     |> Video.Source.new_from_path()
-    |> new_from_source
+    |> new_from_source()
   end
 
   def new_from_source(%Video.Source{} = source) do
@@ -150,7 +150,7 @@ defmodule Video.TrimmedSource do
     to_ts = Video.Timestamp.from_milliseconds(to)
 
     {:error,
-     "#{tsv.source} is supposed to be cut from #{from_ts} to #{to_ts} – which doesn't work, obviously"}
+     "#{tsv.source} is supposed to be cut from #{from_ts} to #{to_ts} – but “from” can't be later than ”to”"}
   end
 
   # better errors
@@ -185,9 +185,17 @@ defmodule Video.TrimmedSource do
   defp assert_valid(%__MODULE__{} = tsv) do
     {from_ms, to_ms} = in_ms(tsv)
 
-    if from_ms <= to_ms,
-      do: tsv,
-      else: {:error, "Invalid time range requested: from #{from_ms} >= to #{to_ms}"}
+    cond do
+      from_ms > to_ms ->
+        {:error, "Invalid time range requested: from #{from_ms} >= to #{to_ms}"}
+
+      length(tsv.coords_cut) < 2 ->
+        {:error,
+         "Time range resulted in less than two GPS points. Either the time is very short, or the GPX file is missing some points (e.g. due to no GPS fix)?"}
+
+      true ->
+        tsv
+    end
   end
 
   @doc """

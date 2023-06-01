@@ -210,7 +210,7 @@ defmodule Basemap.Static.Runner do
             "--assets",
             asset_dir(),
             "--max-zoom",
-            Basemap.Constants.bounds_fitting_max_zoom()
+            to_string(Basemap.Constants.bounds_fitting_max_zoom())
           ]
 
       port =

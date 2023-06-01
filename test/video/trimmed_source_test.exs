@@ -40,4 +40,8 @@ defmodule Video.TrimmedSourceTest do
 
     assert cut == Map.merge(cut, expected)
   end
+
+  test "fails when using videos with just less than 2 GPS points" do
+    assert {:error, _} = Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/3")
+  end
 end

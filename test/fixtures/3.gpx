@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="gopro2gpx" version="1.1" xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <trk><!-- desc == length of video in ms -->
+    <desc>9557</desc>
+    <name>Untitled</name>
+    <trkseg>
+      <trkpt lat="53.555492" lon="9.945764">
+        <ele>12.454000</ele>
+        <time>2023-05-20T12:03:39.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
