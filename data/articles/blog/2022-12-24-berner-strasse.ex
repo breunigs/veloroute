@@ -47,12 +47,12 @@ defmodule Data.Article.Blog.BernerStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Mai 2023",
+       "https://lsbg.hamburg.de/resource/blob/678556/da451f10619d0149e0251897a78fa124/fasanenweg-berner-strasse-anliegerinformation-mai-2023-data.pdf"},
       {"Pressemitteilung zum Baustart", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16807636/2023-01-02-bvm-grundinstandsetzung-berner-strasse/"},
       {"Erläuterungsbericht und Lagepläne/Karten", "Januar 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018072"},
-      {"Baustelleninfo", "Dezember 2022",
-       "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16792716/0c53c433729d4fd9ac32b8632f480b54/data/fasanenweg-berner-strasse-berner-bruecke-bis-alter-zollweg-grundinstandsetzung-01-23-bis-ende-24.pdf"},
       {"Planänderungen", "Juli 2022",
        "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
       {"Erläuterungsbericht",
