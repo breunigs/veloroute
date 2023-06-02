@@ -199,8 +199,8 @@ defmodule Video.Source do
   defp video_length_ms_slow(%__MODULE__{source: source}) do
     IO.puts(:stderr, "querying video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
-    seconds = Video.Metadata.for(path).duration
-    ms = round(seconds * 1000)
+    {:ok, meta} = Video.Metadata.for(path)
+    ms = round(meta.duration * 1000)
 
     gpx_path = Video.Path.gpx_rel_to_cwd(source)
 
