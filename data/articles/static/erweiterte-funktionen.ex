@@ -83,7 +83,7 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
 
     text =
       if is_module(video) do
-        "#{video.name} #{recording_date(video, timestamp)}"
+        "#{video.name} #{recording_date(video, timestamp)} #{position(video, timestamp)}"
       else
         "unbekannt"
       end
@@ -104,6 +104,12 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
   defp recording_date(video, timestamp) do
     Enum.reduce(video.recording_dates(), "", fn %{text: text, timestamp: ts}, acc ->
       if ts <= timestamp, do: text, else: acc
+    end)
+  end
+
+  defp position(video, timestamp) do
+    Enum.find_value(video.coords(), fn %{lon: lon, lat: lat, time_offset_ms: ts} ->
+      if ts >= timestamp, do: "lat#{lat} lon#{lon}"
     end)
   end
 
