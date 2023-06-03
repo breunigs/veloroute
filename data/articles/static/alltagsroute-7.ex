@@ -23,27 +23,30 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Rahlstedt",
         videos: [
-          {"2022-05-07-v10-v7-u-rodigallee/GX013734", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013735", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013736", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013737", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013739", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013740", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013741", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013743", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013744", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013745", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013746", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013747", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013748", :start, "00:00:25.526"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013752", "00:00:48.382", "00:01:38.265"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013764", "00:01:27.254", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013765", :start, "00:00:02.369"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013755", "00:00:00.934", "00:00:21.088"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013764", "00:00:09.543", "00:00:18.218"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013755", "00:00:29.096", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013756", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013757", :start, :end}
+          {"2023-06-03-vr10-vr7/GX015898", "00:00:16.650", :end},
+          {"2023-06-03-vr10-vr7/GX015899", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015900", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015901", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015902", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015903", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015904", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015905", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015906", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015907", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015908", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015909", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015910", :start, "00:00:35.936"},
+          {"2023-06-03-vr10-vr7/GX015910", "00:00:51.485", :end},
+          {"2023-06-03-vr10-vr7/GX015911", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015912", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015913", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015914", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015915", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015916", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015917", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015919", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015920", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015921", :start, "00:00:30.597"}
         ]
       },
       %Video.Track{
@@ -55,31 +58,21 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus Rahlstedt in die Innenstadt",
         videos: [
-          {"2022-05-07-v10-v7-u-rodigallee/GX013758", "00:00:01.101", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013759", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013760", :start, "00:00:03.203"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013762", "00:00:08.842", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013763", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013764", :start, "00:00:04.805"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013764", "00:00:42.476", "00:01:08.569"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013766", "00:00:05.472", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013767", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013768", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013769", :start, "00:00:47.514"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013770", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013778", "00:01:21.148", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013779", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013780", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013781", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013782", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013783", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013784", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013785", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013786", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013787", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013788", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013789", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013790", :start, "00:00:28.228"}
+          {"2023-06-03-vr10-vr7/GX015922", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015923", :start, "00:00:05.706"},
+          {"2023-06-03-vr10-vr7/GX015923", "00:00:10.010", :end},
+          {"2023-06-03-vr10-vr7/GX015924", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015925", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015926", :start, "00:00:32.099"},
+          {"2023-06-03-vr10-vr7/GX015928", "00:00:03.770", "00:00:37.371"},
+          {"2023-06-03-vr10-vr7/GX015929", "00:00:00.868", :end},
+          {"2023-06-03-vr10-vr7/GX015930", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015931", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015933", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015934", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015935", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015936", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015937", :start, "00:00:31.832"}
         ]
       },
       %Video.Track{
@@ -91,8 +84,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Jenfeld",
         videos: [
-          {"2022-05-07-v10-v7-u-rodigallee/GX013748", "00:00:25.559", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013749", :start, "00:00:17.251"}
+          {"2023-06-03-vr10-vr7/GX015926", "00:00:48.949", "00:01:53.614"}
         ]
       },
       %Video.Track{
@@ -104,9 +96,9 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus Jenfeld in die Innenstadt",
         videos: [
-          {"2022-05-07-v10-v7-u-rodigallee/GX013750", "00:00:02.436", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013751", :start, :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013752", :start, "00:00:36.470"}
+          {"2023-06-03-vr10-vr7/GX015926", "00:01:56.350", :end},
+          {"2023-06-03-vr10-vr7/GX015927", :start, :end},
+          {"2023-06-03-vr10-vr7/GX015928", :start, "00:00:03.670"}
         ]
       }
     ]
