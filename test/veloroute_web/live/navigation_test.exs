@@ -6,7 +6,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
   @video_hashes Data.Article.Static.Alltagsroute4.tracks()
                 |> Enum.map(fn t -> {t.direction, Video.Generator.get(t).hash()} end)
                 |> Enum.into(%{})
-  @video_starts %{forward: 425_307}
+  @video_starts %{forward: 425_307, backward: 222_072}
+  @video_direction :backward
 
   test "viewing non-existent redirects", %{conn: conn} do
     assert {:error, {:live_redirect, _whatever}} = live(conn, "/DoesNotExist")
@@ -43,13 +44,13 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ "<h3 itemprop=\"headline\">Kleekamp"
 
     assert_push_event(view, :video_meta, %{
-      "hash" => unquote(@video_hashes[:forward]),
-      "start" => unquote(@video_starts[:forward])
+      "hash" => unquote(@video_hashes[@video_direction]),
+      "start" => unquote(@video_starts[@video_direction])
     })
 
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=#{@video_starts[:forward]}&video=#{@video_hashes[:forward]}"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos=#{@video_starts[@video_direction]}&video=#{@video_hashes[@video_direction]}"
     )
   end
 
@@ -65,8 +66,8 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ "<h3 itemprop=\"headline\">Kleekamp"
 
     assert_push_event(view, :video_meta, %{
-      "hash" => unquote(@video_hashes[:forward]),
-      "start" => unquote(@video_starts[:forward])
+      "hash" => unquote(@video_hashes[@video_direction]),
+      "start" => unquote(@video_starts[@video_direction])
     })
 
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
