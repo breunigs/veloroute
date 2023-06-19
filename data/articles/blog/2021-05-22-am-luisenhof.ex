@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def title(), do: "Am Luisenhof"
 
-  def start(), do: ~d[2023]
+  def start(), do: ~d[2024]
 
   def type(), do: :planned
 
@@ -13,7 +13,9 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def links(_assigns) do
     [
-      {"Erläuterungen und Lageplan", "2022, fertiger Entwurf",
+      {"Erläuterungen und Lageplan", "2023, Überarbeitung",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018980"},
+      {"Erläuterungen und Lageplan", "2022, veralteter Entwurf",
        "https://via-bus.hamburg.de/contentblob/16224440/9dbb0168cfd3fba685218fc5e164d159/data/03-mb26-u-farmsen-schlussverschickung-ueberliegerplaetze.pdf"}
     ]
   end
@@ -28,7 +30,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
     <p>Die <.m bounds="10.112885,53.606964,10.115808,53.608041">Einmündung des Bramfelder Weges</.m> wird mit einer Ampel ausgestattet. Die Querung der Einmündung ist geradliniger als heute.</p>
 
-    <p>Zum Queren des Luisenhof ist auf der Ostseite eine kombinierte Rad/Fußfurt mit Mittelinsel vorgesehen. Auf der Westseite wird der Radverkehr auf einen <.ref>Radfahrstreifen</.ref> geleitet und beachtet von dort die KFZ-Ampel und quert ohne Mittelinsel. Queren zu Fuß ist auf dieser Seite nicht vorgesehen.</p>
+    <p>Zum Queren des Luisenhof sind auf der Ostseite eine Rad- und Fußfurt vorgesehen, jeweils mit eigener Ampel. Auf der Westseite erhält nur der Radverkehr eine Furt, die ohne Mittelinsel in einem Bogen auf den Hochbordradweg führt.</p>
 
     <h4>Meinung</h4>
     <p>Die Planung ist gut. Die Breite und Führung der neuen Radwege ist ansprechend. Konflikte mit anderen Verkehrsarten bleiben wie bisher minimal, bzw. werden sogar geringer weil alle genug Verkehrsfläche bekommen.</p>
