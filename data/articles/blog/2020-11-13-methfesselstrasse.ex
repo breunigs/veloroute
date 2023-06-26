@@ -10,23 +10,9 @@ defmodule Data.Article.Blog.Methfesselstrasse do
   def stop(), do: ~d[2023-07-31]
   def construction_site_id_hh(), do: [113_061]
 
-  def tags(), do: ["eimsbüttel", "articles"]
+  def tags(), do: ["eimsbüttel", "articles", "br-eimsbuettel-nord-sued"]
 
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 1,
-        group: "Methfesselstraße",
-        direction: :forward,
-        from: "Eidelstedter Weg",
-        to: "Müggenkampstraße",
-        parent_ref: __MODULE__,
-        text: "Methfesselstraße",
-        videos: [
-          {"2021-12-25-velo2-rsw-elmshorn/GX013083", "00:03:02.049", "00:03:18.365"}
-        ]
-      }
-    ]
+  def tracks(), do: []
 
   def links(_assigns) do
     [

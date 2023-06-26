@@ -54,7 +54,7 @@ defmodule Components.TagHelpers do
   end
 
   @doc """
-  m links modify the video or map position, but do otherwise not modify the current page
+  v links modify the video or map position, but do otherwise not modify the current page
   """
   @spec v(map()) :: Phoenix.LiveView.Rendered.t()
   attr :bounds, :string, required: true
@@ -66,7 +66,7 @@ defmodule Components.TagHelpers do
   attr :highlight, :string
   slot(:inner_block, required: true)
 
-  def v(assigns) when is_map_key(assigns, :lat) and is_map_key(assigns, :lon) do
+  def v(assigns) do
     attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to")}
 
     geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])

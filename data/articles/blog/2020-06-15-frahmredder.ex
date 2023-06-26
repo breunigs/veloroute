@@ -10,16 +10,14 @@ defmodule Data.Article.Blog.Frahmredder do
     do:
       "beidseitig je 1,75m breite Schutzstreifen geplant, ab Stadtbahnstraße Tempo-20 im Mischverkehr"
 
-  def type(), do: :planned
-  def start(), do: ~d[2023-03]
-  def stop(), do: ~d[2024-06]
+  def type(), do: :construction
+  def start(), do: ~d[2023-07-10]
+  def stop(), do: ~d[2024-12]
 
   def tags(), do: ["5", "W6.2"]
 
   def links(_assigns) do
     [
-      {"Bauzeitraum", "Stand Oktober 2022",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
       {"Pressemitteilung des Bezirks Wandsbek",
        "https://www.hamburg.de/wandsbek/pressemitteilungen/15851134/2022-02-04-neu-und-umbau-frahmredder-planung/"},
       {"Lagepläne und Erläuterungsbericht",

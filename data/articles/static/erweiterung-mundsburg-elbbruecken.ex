@@ -80,7 +80,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
 
     <p>Die Ampelschaltungen entlang der Route sind nicht auf den Radverkehr abgestimmt. Gerade im <.v bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward" ref={@ref}>Heidenkampsweg</.v> führt dies häufig zu einer roten Welle.</p>
 
-    <p>Die Führung ist entlang einer 4 bis 8-spurigen KFZ-Hauptstraße. Stellenweise sind 60 km/h als Höchstgeschwindigkeit erlaubt. Beides erhöht den Lärmpegel an dieser Strecke.</p>
+    <p>Die Führung ist entlang einer 4 bis 8-spurigen KFZ-Hauptstraße, was sich im hohen Lärmpegel bemerkbar macht.</p>
 
     <h4>Anschlüsse</h4>
     <p>Der neue Abschnitt bietet direkten Anschluss zu folgenden Routen:</p>

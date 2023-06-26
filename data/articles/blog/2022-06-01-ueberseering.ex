@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Ueberseering do
     do:
       "2m breite Radfahrstreifen, teils in Mittellage. Keine Trennung vom KFZ-Verkehr. Umbau nach U5."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def construction_site_id_hh(), do: [31321]
   def start(), do: ~d[2022-03-01]
   def stop(), do: ~d[2023-08-31]

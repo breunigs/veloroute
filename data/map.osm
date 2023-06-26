@@ -31872,6 +31872,7 @@
     <nd ref='-22532614' />
     <nd ref='-22532615' />
     <nd ref='-22532610' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-06-26-pappelallee' />
     <tag k='type' v='article' />
   </way>
@@ -32002,6 +32003,7 @@
     <nd ref='-22532839' />
     <nd ref='-22532840' />
     <nd ref='-22532833' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-09-20-bovestrasse' />
     <tag k='type' v='article' />
   </way>
@@ -44340,6 +44342,7 @@
     <nd ref='-23805062' />
     <nd ref='-23805063' />
     <nd ref='-23805059' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-12-02-rantzaustrasse' />
     <tag k='type' v='article' />
   </way>
@@ -69499,6 +69502,7 @@
     <nd ref='4227600056361' />
     <nd ref='37298000561833' />
     <nd ref='37051000561705' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-10-25-7-hasselbrookstrasse' />
     <tag k='type' v='article' />
   </way>
