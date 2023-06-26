@@ -23,6 +23,11 @@ defmodule Data.Article.Static.Alltagsroute3 do
         to: "Niendorf",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Niendorf",
+        historic: %{
+          "9059bbed2bac01ed48572b54a6aed52e" => "2023-05",
+          "96167454c3dc962cf41581d4e02ba00c" => "2022-04",
+          "308a0cda991f96cb4c45a0ca555cd04a" => "2021-06"
+        },
         videos: [
           {"2023-05-20-vr2-vr3/GX015733", "00:00:13.144", :end},
           {"2023-05-20-vr2-vr3/GX015734", :start, :end},
@@ -48,6 +53,11 @@ defmodule Data.Article.Static.Alltagsroute3 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "von Niendorf in die Innenstadt",
+        historic: %{
+          "2d42b9a61a359d8111b6fd3dbc68c0b4" => "2023-05",
+          "c18583754e3dfe53c4a742df0ca6fbc5" => "2022-07",
+          "efbc892523d5e09a52eda8587b66d22a" => "2021-06"
+        },
         videos: [
           {"2023-05-20-vr2-vr3/GX015748", "00:00:43.034", :end},
           {"2023-05-20-vr2-vr3/GX015749", :start, "00:00:48.081"},

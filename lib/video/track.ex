@@ -8,7 +8,8 @@ defmodule Video.Track do
     :videos,
     :group,
     :direction,
-    :renderer
+    :renderer,
+    :historic
   ]
 
   @type plain :: [
@@ -20,6 +21,8 @@ defmodule Video.Track do
         ]
   # 32*8=256
   @type hash :: <<_::256>>
+  # yyyy-mm = 7 chars. 7*8 = 56
+  @typep date_year_month :: <<_::56>>
 
   @type recording_dates :: [%{timestamp: non_neg_integer(), text: binary()}]
 
@@ -35,10 +38,11 @@ defmodule Video.Track do
           text: binary(),
           parent_ref: module() | binary(),
           videos: plain() | nil,
-          renderer: pos_integer()
+          renderer: pos_integer(),
+          historic: %{hash() => date_year_month()} | nil
         }
 
-  @enforce_keys @known_params -- [:via]
+  @enforce_keys @known_params -- [:via, :historic]
   defstruct @known_params
 
   @doc """

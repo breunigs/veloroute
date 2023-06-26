@@ -22,6 +22,10 @@ defmodule Data.Article.Static.Alltagsroute11 do
         to: "Eißendorf",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Eißendorf",
+        historic: %{
+          "2022-04" => "6c5ec4b87553c5a86fac6b206345e318",
+          "2021-07" => "b21da7f0c0224b1dffb37d34ae51648f"
+        },
         videos: [
           {"2022-04-23-velo3-velo12altona/GX013521", "00:00:16.683", :end},
           {"2022-04-23-velo3-velo12altona/GX013522", :start, :end},
@@ -56,6 +60,10 @@ defmodule Data.Article.Static.Alltagsroute11 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Eißendorf in die Innenstadt",
+        historic: %{
+          "2022-04" => "b4997cc9bce6de5126d1a2c294cc8265",
+          "2021-07" => "da9f1f6cfdee27f19a7a44778e7708f2"
+        },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013668", "00:00:08.108", :end},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013669", :start, :end},
@@ -97,6 +105,10 @@ defmodule Data.Article.Static.Alltagsroute11 do
         to: "Bürgerhaus Wilhelmsburg",
         parent_ref: __MODULE__,
         text: "von der Veddel zum Bürgerhaus Wilhelmsburg",
+        historic: %{
+          "2022-05" => "5d955ccf2971302202fe02fbdefe1616",
+          "2021-07" => "85e45f5b7958efca1803585db2256047"
+        },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013692", "00:00:06.506", :end},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013693", :start, "00:01:37.097"}
@@ -110,6 +122,10 @@ defmodule Data.Article.Static.Alltagsroute11 do
         to: "Veddel",
         parent_ref: __MODULE__,
         text: "vom Bürgerhaus Wilhelmsburg zur Veddel",
+        historic: %{
+          "2022-05" => "3c8980283b9a8d3730bb35a8e18e48fd",
+          "2021-07" => "f7bc9a5473aa1b8ec99b8a8635205521"
+        },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", "00:00:20.187", "00:01:15.642"},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013689", "00:00:01.935", :end},

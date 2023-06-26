@@ -10,7 +10,11 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
   def tags(), do: []
 
   def text(assigns) do
-    assigns = assigns |> assign(download_assigns(assigns)) |> assign(video_assigns(assigns))
+    assigns =
+      assigns
+      |> assign(download_assigns(assigns))
+      |> assign(video_assigns(assigns))
+      |> assign(historic_video_assigns(assigns))
 
     ~H"""
     <h4>Video-Bilder</h4>
@@ -22,6 +26,18 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
 
     <h4>Ganze Videos</h4>
     <p><a href={@video_download_path} rel="nofollow" download={@video_download_name}>Aktuelles Video in guter Qualität herunterladen</a>. Bitte nicht übertreiben und die Videos nacheinander herunterladen. Die Webseite ist nicht für den Massen-Download optimiert, weil ich den Aufwand dazu lieber in andere Sachen stecke.</p>
+
+    <h5>Historische Videos</h5>
+    <%= if @historic_videos == [] do %>
+      <p>Zu dieser Route sind keine älteren Aufnahmen bekannt.</p>
+    <% else %>
+      <p>Zu dieser Route (Abschnitt/Richtung) sind ältere Aufnahmen verfügbar:</p>
+      <ul>
+        <%= for {date, url, name} <- @historic_videos do %>
+          <li><a href={url} rel="nofollow" download={name}><%= date %> in guter Qualität herunterladen</a></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <p>Das Video-Format ist etwas ungewöhnlich. Mit <.a href="https://www.videolan.org/vlc/">VLC</.a> funktioniert es in jedem Fall.</p>
 
@@ -54,7 +70,9 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
     """
   end
 
-  defp video_assigns(%{video_hash: hash}) when valid_hash(hash) do
+  defp video_assigns(assigns, fallback_title \\ "unbekannt")
+
+  defp video_assigns(%{video_hash: hash}, fallback_title) when valid_hash(hash) do
     path = Video.RenderedTools.highest_quality_video_file(hash)
     path = Path.join(Settings.video_serve_path(), path)
 
@@ -65,7 +83,7 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
         date = Video.RenderedTools.most_recent_recording_month(video)
         "#{video.name()} bis #{date}"
       else
-        "unbekannt"
+        fallback_title
       end
       |> clean()
 
@@ -75,8 +93,11 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
     }
   end
 
-  defp video_assigns(_assigns),
-    do: %{video_download_path: "", video_download_name: "veloroute.hamburg_video_unbekannt.m4s"}
+  defp video_assigns(_assigns, fallback_title),
+    do: %{
+      video_download_path: "",
+      video_download_name: "veloroute.hamburg_video_#{fallback_title}.m4s"
+    }
 
   defp download_assigns(%{video_hash: hash, video_start: timestamp}) do
     video = Video.Generator.get(hash)
@@ -100,6 +121,26 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
       image_download_name: "veloroute.hamburg_foto_unbekannt.webp",
       image_download_path: "/images/video_poster.svg"
     }
+
+  defp historic_video_assigns(%{video_hash: current_hash}) do
+    hist =
+      Article.List.all()
+      |> Enum.flat_map(& &1.tracks())
+      |> Enum.find_value(fn track ->
+        if track.historic && Map.has_key?(track.historic, current_hash), do: track.historic
+      end)
+      |> Kernel.||(%{})
+      |> Enum.reject(fn {historic_hash, _date} -> historic_hash == current_hash end)
+      |> Enum.map(fn {historic_hash, date} ->
+        named = video_assigns(%{video_hash: historic_hash}, date)
+        {date, named.video_download_path, named.video_download_name}
+      end)
+      |> Enum.sort()
+
+    %{historic_videos: hist}
+  end
+
+  defp historic_video_assigns(_assigns), do: %{historic_videos: %{}}
 
   defp recording_date(video, timestamp) do
     Enum.reduce(video.recording_dates(), "", fn %{text: text, timestamp: ts}, acc ->

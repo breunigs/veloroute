@@ -22,6 +22,11 @@ defmodule Data.Article.Static.Alltagsroute7 do
         to: "Rahlstedt",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Rahlstedt",
+        historic: %{
+          "2046ce92ff9bf4e3d396a3f2e261378b" => "2023-06",
+          "1e21b87814bf4de2e0669e54c4fe4529" => "2022-05",
+          "68751759d62de45469662db5c6539ec3" => "2021-06"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015898", "00:00:16.650", :end},
           {"2023-06-03-vr10-vr7/GX015899", :start, :end},
@@ -57,6 +62,11 @@ defmodule Data.Article.Static.Alltagsroute7 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Rahlstedt in die Innenstadt",
+        historic: %{
+          "2abc0bce6fb61793d6b0d2694ad5b859" => "2023-06",
+          "f7ab6d8df65751aa2494d0001215b2d7" => "2022-05",
+          "1188d7f9dae4bbb328e4bb53de379938" => "2021-06"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015922", :start, :end},
           {"2023-06-03-vr10-vr7/GX015923", :start, "00:00:05.706"},
@@ -83,6 +93,11 @@ defmodule Data.Article.Static.Alltagsroute7 do
         to: "Jenfeld",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Jenfeld",
+        historic: %{
+          "a889ba648ecf800ca881e93a99431f84" => "2023-06",
+          "a5f008c59ead0045826f53f2af732c81" => "2022-05",
+          "ca14f6428dc1563838f47e470accb338" => "2021-06"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015926", "00:00:48.949", "00:01:53.614"}
         ]
@@ -95,6 +110,11 @@ defmodule Data.Article.Static.Alltagsroute7 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Jenfeld in die Innenstadt",
+        historic: %{
+          "ee0fd947498b1d9e3887993b44e27a6d" => "2023-06",
+          "965763fec57e8c331ce54d574036fd92" => "2022-05",
+          "a8f9a0ab4d908464c6705094c5d9b957" => "2021-06"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015926", "00:01:56.350", :end},
           {"2023-06-03-vr10-vr7/GX015927", :start, :end},

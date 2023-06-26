@@ -22,6 +22,11 @@ defmodule Data.Article.Static.Alltagsroute13 do
         to: "Hamm",
         parent_ref: __MODULE__,
         text: "innere Ringroute, im Uhrzeigersinn",
+        historic: %{
+          "e29ad9e22984ec8ea9c871aadca15443" => "2023-06",
+          "61efced8de5be9384b396cc574220cbe" => "2022-05",
+          "9f95ec4b17c4def92d9eed6e5bd1fdf" => "2021-07"
+        },
         videos: [
           {"2023-06-25-13im-14gg/GX016066", :start, :end},
           {"2023-06-25-13im-14gg/GX016067", :start, :end},
@@ -55,6 +60,11 @@ defmodule Data.Article.Static.Alltagsroute13 do
         to: "Altona",
         parent_ref: __MODULE__,
         text: "innere Ringroute, gegen Uhrzeigersinn",
+        historic: %{
+          "6dcbeca4acd6f5fdfc16c40446290db1" => "2023-06",
+          "389dcd7d37df5354bf21e20e13007b84" => "2022-05",
+          "b5ddde0ec8f7dde1de5b114ad3fa80fc" => "2021-07"
+        },
         videos: [
           {"2023-06-24-14im-13gg/GX016038", "00:00:04.104", "00:00:38.205"},
           {"2023-06-24-14im-13gg/GX016042", "00:00:36.036", :end},

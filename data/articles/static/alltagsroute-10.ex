@@ -22,6 +22,11 @@ defmodule Data.Article.Static.Alltagsroute10 do
         to: "Neugraben",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Neugraben",
+        historic: %{
+          "68237f112e08a6f5789aab8f94012e0f" => "2023-06",
+          "f1964c8fe5ee29abc54cebf0c317a47b" => "2022-05",
+          "66f557954990887bd48abc56f496cd47" => "2021-07"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015866", "00:00:33.667", :end},
           {"2023-06-03-vr10-vr7/GX015867", :start, :end},
@@ -46,6 +51,11 @@ defmodule Data.Article.Static.Alltagsroute10 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "von Neugraben in die Innenstadt",
+        historic: %{
+          "a03ee11a72a828fded2e4d98135e8a1d" => "2023-06",
+          "601d3041a6e9da1aaeccbacbea6eeb62" => "2022-05",
+          "a1e2dba44dfcd2b8e2df7343d1f6773a" => "2021-07"
+        },
         videos: [
           {"2023-06-03-vr10-vr7/GX015881", :start, "00:01:19.613"},
           {"2023-06-03-vr10-vr7/GX015882", "00:00:05.372", :end},

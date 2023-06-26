@@ -23,6 +23,11 @@ defmodule Data.Article.Static.Alltagsroute1 do
         to: "Rissen",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Rissen",
+        historic: %{
+          "b05f0d7755ab075d941b77121918930f" => "2023-05",
+          "7d3f8d6e0a969fdbc991207e0b991bad" => "2022-04",
+          "34ba5b0e9fa8e03e5beb5a243a9765f5" => "2021-06"
+        },
         videos: [
           {"2023-05-20-vr2-vr3/GX015761", "00:00:31.999", :end},
           {"2023-05-20-vr2-vr3/GX015762", :start, :end},
@@ -55,6 +60,11 @@ defmodule Data.Article.Static.Alltagsroute1 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Rissen in die Innenstadt",
+        historic: %{
+          "16dcd9bbc7fb5fbf4734af54ebef9f11" => "2023-05",
+          "a735c3683c40aa01fd3f01519628872d" => "2022-04",
+          "054abb2bb8fb4ede71bd63280610524b" => "2021-06"
+        },
         videos: [
           {"2023-05-19-vr1/GX015712", "00:02:42.130", :end},
           {"2023-05-19-vr1/GX025712", :seamless, :end},
@@ -84,6 +94,11 @@ defmodule Data.Article.Static.Alltagsroute1 do
         to: "Osdorfer Born",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Osdorfer Born",
+        historic: %{
+          "61a363ab12e68406847bcc2cebb9e516" => "2023-05",
+          "de9132e638235ffb2b1763b63710768a" => "2022-04",
+          "7be7c7ca7a2375acc2bc17992e56f356" => "2021-06"
+        },
         videos: [
           {"2023-05-19-vr1/GX015706", "00:00:12.677", "00:00:19.353"},
           {"2023-05-19-vr1/GX015717", "00:00:48.215", :end},
@@ -99,6 +114,11 @@ defmodule Data.Article.Static.Alltagsroute1 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "vom Osdorfer Born in die Innenstadt",
+        historic: %{
+          "1062786250344e742cd29b6e766a68b6" => "2023-05",
+          "1a92dba06dbd921b14de77d2394a33d4" => "2022-04",
+          "b5b6321df014f2eda37e81f267870ddf" => "2021-06"
+        },
         videos: [
           {"2023-05-19-vr1/GX015719", "00:00:50.040", :end},
           {"2023-05-19-vr1/GX015720", :start, "00:00:56.323"},

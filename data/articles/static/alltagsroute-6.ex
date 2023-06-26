@@ -22,6 +22,10 @@ defmodule Data.Article.Static.Alltagsroute6 do
         to: "Volksdorf",
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Volksdorf",
+        historic: %{
+          "2022-05" => "d0e15711298a41ecbefec751b3199a2f",
+          "2021-06" => "72143674b74709247f36b15a8f72d968"
+        },
         videos: [
           {"2022-04-30-velo5-u-12innenstadt/GX013576", "00:00:38.872", :end},
           {"2022-04-30-velo5-u-12innenstadt/GX013577", :start, :end},
@@ -54,6 +58,10 @@ defmodule Data.Article.Static.Alltagsroute6 do
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Volksdorf in die Innenstadt",
+        historic: %{
+          "2022-05" => "90460e690f3f5258649b1cdd9e3c4d75",
+          "2021-06" => "76ea19b0a672d5d88c4007fb2785c44b"
+        },
         videos: [
           {"2022-05-14-velo6-u-bundesstr/GX013870", "00:02:36.723", :end},
           {"2022-05-14-velo6-u-bundesstr/GX013871", :start, :end},
