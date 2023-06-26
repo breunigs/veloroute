@@ -132,6 +132,11 @@ defmodule VelorouteWeb.FrameLive do
     current = socket.assigns.current_page
     article = article || if route && !Article.List.related?(current, route), do: route
 
+    article =
+      if socket.assigns.current_page == Data.Article.Static.ErweiterteFunktionen,
+        do: nil,
+        else: article
+
     socket = VelorouteWeb.Live.VideoState.maybe_update_video(socket, route, attr)
 
     socket =
