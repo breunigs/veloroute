@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.Frahmredder do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juni 2023",
+       "https://www.hamburg.de/wandsbek/strassenbaustellen/17213952/rahlau/"},
       {"Pressemitteilung des Bezirks Wandsbek",
        "https://www.hamburg.de/wandsbek/pressemitteilungen/15851134/2022-02-04-neu-und-umbau-frahmredder-planung/"},
       {"Lagepläne und Erläuterungsbericht",
