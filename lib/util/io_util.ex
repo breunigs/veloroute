@@ -15,6 +15,23 @@ defmodule Util.IO do
   end
 
   @doc """
+  Calculates size of directory and all its containing files. Unreadable files
+  are ignored (= considered as if they were 0 bytes).
+  """
+  @spec dir_size(binary()) :: non_neg_integer()
+  def dir_size(path) do
+    path
+    |> tree()
+    |> Parallel.map(fn file ->
+      case File.stat(file) do
+        {:ok, %{size: size}} -> size
+        {:error, _reason} -> 0
+      end
+    end)
+    |> Enum.sum()
+  end
+
+  @doc """
   Takes a list of files and returns just the directories.
   """
   def filter_dirs(file_list) when is_list(file_list) do
