@@ -153,7 +153,7 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
-    Logger.warn(msg)
+    Logger.warning(msg)
 
     {:noreply, socket}
   end

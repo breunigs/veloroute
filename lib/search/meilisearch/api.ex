@@ -43,7 +43,7 @@ defmodule Search.Meilisearch.API do
       results
     else
       other ->
-        Logger.warn(
+        Logger.warning(
           "MEILISEARCH: failed to query for #{inspect(params)}. Result: #{inspect(other)}"
         )
 

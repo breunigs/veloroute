@@ -32,7 +32,7 @@ defmodule Basemap.Static.Plug do
           |> Plug.Conn.halt()
 
         {:error, reason} ->
-          Logger.warn("failed static render: #{reason}")
+          Logger.warning("failed static render: #{reason}")
           fallback(conn, 500)
       end
     else

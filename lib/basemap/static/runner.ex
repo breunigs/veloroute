@@ -98,12 +98,12 @@ defmodule Basemap.Static.Runner do
 
   def handle_info({port, {:data, "error" <> msg}}, state)
       when not is_map_key(state.processing, port) do
-    Logger.warn("#{inspect(port)}: #{msg}")
+    Logger.warning("#{inspect(port)}: #{msg}")
     {:noreply, state}
   end
 
   def handle_info({port, {:data, data}}, state) when not is_map_key(state.processing, port) do
-    Logger.warn("#{inspect(port)} send unexpected data; state #{inspect(state)}; #{data}")
+    Logger.warning("#{inspect(port)} send unexpected data; state #{inspect(state)}; #{data}")
 
     {:noreply, state}
   end
@@ -121,17 +121,17 @@ defmodule Basemap.Static.Runner do
       when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
-    if expired?(deadline), do: Logger.warn(msg), else: GenServer.reply(from, {:error, msg})
+    if expired?(deadline), do: Logger.warning(msg), else: GenServer.reply(from, {:error, msg})
     {:noreply, state |> free_port(port) |> maybe_start_render()}
   end
 
   def handle_info({port, {:exit_status, status}}, state) do
-    Logger.warn("#{inspect(port)}: exit_status #{inspect(status)}")
+    Logger.warning("#{inspect(port)}: exit_status #{inspect(status)}")
     {:noreply, replace_port(state, port)}
   end
 
   def handle_info({:DOWN, _ref, :port, port, :normal}, state) do
-    Logger.warn("#{inspect(port)}: received DOWN message")
+    Logger.warning("#{inspect(port)}: received DOWN message")
     {:noreply, replace_port(state, port)}
   end
 
@@ -141,7 +141,7 @@ defmodule Basemap.Static.Runner do
   end
 
   def handle_info(msg, state) do
-    Logger.warn("Unhandled message: #{inspect(msg)}\nstate: #{inspect(state)}")
+    Logger.warning("Unhandled message: #{inspect(msg)}\nstate: #{inspect(state)}")
     {:noreply, maybe_start_render(state)}
   end
 
@@ -189,7 +189,7 @@ defmodule Basemap.Static.Runner do
     if length(ports) < @parallelism do
       seconds = round(:math.pow(2, backoff))
       seconds = min(seconds, @max_backoff)
-      Logger.warn("restarting fail ##{backoff} static map renderer in #{seconds}s")
+      Logger.warning("restarting fail ##{backoff} static map renderer in #{seconds}s")
       Process.send_after(self(), :add_port, seconds * 1000)
     end
 
@@ -231,7 +231,7 @@ defmodule Basemap.Static.Runner do
     else
       if Application.get_env(:veloroute, :env) != :test,
         do:
-          Logger.warn(
+          Logger.warning(
             "#{exe} not found for static map renderer. Are all dependencies installed? #{Mix.env()}"
           )
 

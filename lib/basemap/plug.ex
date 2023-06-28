@@ -33,7 +33,7 @@ defmodule Basemap.Plug do
   def fallback(conn, _opts), do: conn
 
   defp serve(conn, pbf_fallback) do
-    Logger.warn("requested basemap file #{conn.request_path} not found")
+    Logger.warning("requested basemap file #{conn.request_path} not found")
 
     if Path.extname(conn.request_path) == ".pbf" && pbf_fallback do
       conn
@@ -46,7 +46,7 @@ defmodule Basemap.Plug do
   end
 
   defp not_found(conn) do
-    Logger.warn("requested basemap file #{conn.request_path} not found")
+    Logger.warning("requested basemap file #{conn.request_path} not found")
 
     conn
     |> send_resp(404, "file not found, try the homepage at #{Settings.url()}} ? ")

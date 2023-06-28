@@ -91,13 +91,13 @@ defmodule Esri.Tiles do
         |> Plug.Conn.halt()
       else
         {:ok, %{status: status}} ->
-          Logger.warn("got unexpected status=#{status} from #{url}")
+          Logger.warning("got unexpected status=#{status} from #{url}")
           # do not let frontend follow redirects
           status = if status >= 300 and status <= 399, do: 500, else: status
           fallback(conn, status)
 
         {:error, error} ->
-          Logger.warn("failed to read #{url} – #{inspect(error)}")
+          Logger.warning("failed to read #{url} – #{inspect(error)}")
           fallback(conn, 500)
       end
     else

@@ -11,7 +11,7 @@ defmodule Search.Meilisearch.Runner do
       GenServer.call(__MODULE__, {:search, query, bbox}, 1000)
     catch
       :exit, err ->
-        Logger.warn("MEILISEARCH #{inspect(err)}")
+        Logger.warning("MEILISEARCH #{inspect(err)}")
         []
     end
   end

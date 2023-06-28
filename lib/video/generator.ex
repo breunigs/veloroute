@@ -246,7 +246,7 @@ defmodule Video.Generator do
       iex> Video.Generator.start_from(Video.GeneratorTest.Example, %{lat: 53.5085, lon: 10.041})
       %{bearing: 310.0161346069299, lat: 53.5085, lon: 10.041000000000002, time_offset_ms: 150}
 
-      iex> last_coord = Video.GeneratorTest.Example.coords |> List.last()
+      iex> last_coord = Video.GeneratorTest.Example.coords() |> List.last()
       iex> Video.Generator.start_from(Video.GeneratorTest.Example, last_coord)
       %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
 
