@@ -592,6 +592,7 @@ body.fullscreen video, #videoOuter:fullscreen video {
     height: 0;
     user-select: none;
     background-image: url("/images/switcher.svg");
+    transition: background-image 0.2s ease-in-out;
     background-repeat: no-repeat;
     background-position: center center;
     width: $width;
@@ -599,6 +600,10 @@ body.fullscreen video, #videoOuter:fullscreen video {
     touch-action: pan-x;
     background-size: cover;
   }
+}
+
+.showSidebar #switcher div {
+  background-image: url("/images/switcher_rev.svg"), url("/images/switcher.svg");
 }
 
 $buttonSize: 1.8rem;
