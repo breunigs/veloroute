@@ -1,5 +1,8 @@
 name: Testing
 
+env:
+  MIX_ENV: test
+
 on:
   push:
 
@@ -32,34 +35,12 @@ jobs:
             ${{ runner.os }}-mix-
       - run: mix local.hex --force
       - run: mix deps.get
-      - run: mix test
 
-  dialyzer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup asdf
-        uses: asdf-vm/actions/setup@v1
-      - name: Cache asdf
-        uses: actions/cache@v2
-        with:
-          path: |
-            /home/runner/.asdf
-          key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
-          restore-keys: |
-            ${{ runner.os }}-asdf-
-      - name: Install dependencies in .tool-versions
-        uses: asdf-vm/actions/install@v1
-
-      - uses: actions/cache@v3
-        with:
-          path: |
-            deps
-            _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-
-      - run: mix local.hex --force
-      - run: mix deps.get
-      - run: mix dialyzer
+      - name: Compiles without warnings
+        run: mix compile --warnings-as-errors
+      - name: Check Formatting
+        run: mix format --check-formatted
+      - name: Run Tests
+        run: mix test
+      - name: Run Dialyzer
+        run: mix dialyzer
