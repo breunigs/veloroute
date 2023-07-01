@@ -60,7 +60,7 @@ defmodule M3U8.Attributes do
   defp t([?, | rest], %{mode: :value} = state),
     do: t(rest, %{value(state, &detect_value/1) | mode: :key})
 
-  defp t([chr | rest], %{mode: :value, wip_val: val} = state) when chr not in '", ',
+  defp t([chr | rest], %{mode: :value, wip_val: val} = state) when chr not in ~c"\", ",
     do: t(rest, %{state | wip_val: [chr | val]})
 
   # end of list

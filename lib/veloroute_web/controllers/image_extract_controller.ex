@@ -79,7 +79,7 @@ defmodule VelorouteWeb.ImageExtractController do
     result
   end
 
-  @ffmpeg_path :os.find_executable('ffmpeg')
+  @ffmpeg_path :os.find_executable(~c"ffmpeg")
   @ffmpeg_timeout_ms 60_000
   defp ffmpeg_no_cache(hash, ts, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
