@@ -45,6 +45,7 @@ jobs:
             ${{ runner.os }}-mix-
       - run: mix local.hex --force
       - run: mix deps.get
+      - run: mix deps.compile
       - name: Cache mix deps save
         uses: actions/cache/save@v3
         if: steps.cache-mix-deps.outputs.cache-hit != 'true'
