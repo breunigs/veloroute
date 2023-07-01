@@ -154,7 +154,15 @@ defmodule Docker do
             %{result: {:error, msg}}
 
           exp ->
-            %{result: {:error, inspect(exp)}}
+            %{
+              result:
+                {:error,
+                 """
+                 failed executing:
+                   CLI: #{Enum.join(args, " ")}
+                   Error: #{inspect(exp)}
+                 """}
+            }
         end
     after
       # Docker creates an empty dir when mounting the `extra_video_mount`. Since

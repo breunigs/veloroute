@@ -14,7 +14,13 @@ defmodule Util.Cmd2 do
   def exec(cli, opts) do
     {env, opts} = Keyword.pop(opts, :env, [])
     {do_raise, opts} = Keyword.pop(opts, :raise, false)
-    {stdout, opts} = Keyword.pop(opts, :stdout, IO.stream(:stdio, :line))
+
+    {stdout, opts} =
+      Keyword.pop_lazy(opts, :stdout, fn ->
+        :io.setopts(:standard_io, encoding: :latin1)
+        IO.binstream(:stdio, :line)
+      end)
+
     {stderr, opts} = Keyword.pop(opts, :stderr, IO.stream(:stderr, :line))
     {stdin, opts} = Keyword.pop(opts, :stdin, nil)
     {kill, opts} = Keyword.pop(opts, :kill, nil)
@@ -143,6 +149,9 @@ defmodule Util.Cmd2 do
       {:kill, _signal} ->
         :exec.stop_and_wait(monitor, 4_000)
         %{status: 142, stdout: stdoutacc, stderr: stderracc, user_abort: true}
+
+      other ->
+        raise("Received unexpected message while executing command: #{inspect(other)}")
     end
   end
 
@@ -159,7 +168,7 @@ defmodule Util.Cmd2 do
 
     {:ok, _trap} =
       System.trap_signal(signal, trap_ref, fn ->
-        IO.puts(:stderr, "\n\nreceived #{signal}, aborting…")
+        IO.puts(:stderr, "\n\nreceived #{signal}, aborting...")
         :ok = Process.send(us, {:kill, signal}, [])
         Process.sleep(5_000)
         :ok

@@ -101,9 +101,8 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     IO.puts(:stderr, "previewing #{rendered.hash()}: #{rendered.name()} from #{start_from_text}")
     cmd = Video.Renderer.preview_cmd(rendered, blur, start_from)
 
-    %{result: :ok} =
-      Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
-        name: "preview #{rendered.hash()}"
-      )
+    Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
+      name: "preview #{rendered.hash()}"
+    )
   end
 end
