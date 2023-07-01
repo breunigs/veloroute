@@ -7,7 +7,7 @@ on:
   push:
 
 jobs:
-  test:
+  prepare:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -58,9 +58,19 @@ jobs:
 
       - name: Compiles
         run: mix compile
-      - name: Check Formatting
-        run: mix format --check-formatted
-      - name: Run Tests
-        run: mix test
-      - name: Run Dialyzer
-        run: mix dialyzer
+
+  check-format:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - run: mix format --check-formatted
+  test:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - run: mix test
+  dialyzer:
+    runs-on: ubuntu-latest
+    needs: [prepare]
+    steps:
+      - run: mix dialyzer
