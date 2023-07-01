@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Velo.Setup do
 
   defp ask(question, opts \\ [])
 
-  defp ask(question, ["ci"]) do
+  defp ask(_question, ["ci"]) do
     "dummy-ci-value"
   end
 

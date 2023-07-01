@@ -61,5 +61,5 @@ jobs:
       - run: mix compile
       - run: mix format --check-formatted
       - run: mix velo.setup ci
-      - run: mix test
+      - run: mix test --exclude requires_mount
       - run: mix dialyzer
