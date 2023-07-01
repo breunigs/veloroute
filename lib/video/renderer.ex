@@ -439,29 +439,29 @@ defmodule Video.Renderer do
     "av01.0.#{ll}M.#{bit_depth}"
   end
 
-  @spec codec_av1_aom(map(), non_neg_integer()) :: map()
-  defp codec_av1_aom(info, idx) do
-    tiles_c = Integer.floor_div(info[:height], 1000)
-    tiles_r = max(1, tiles_c - 1)
-    tiles = 2 ** tiles_c * 2 ** tiles_r
+  # @spec codec_av1_aom(map(), non_neg_integer()) :: map()
+  # defp codec_av1_aom(info, idx) do
+  #   tiles_c = Integer.floor_div(info[:height], 1000)
+  #   tiles_r = max(1, tiles_c - 1)
+  #   tiles = 2 ** tiles_c * 2 ** tiles_r
 
-    %{
-      codec: [
-        "libaom-av1",
-        "-tile-columns:#{idx}",
-        "#{tiles_c}",
-        "-tile-rows:#{idx}",
-        "#{tiles_r}",
-        "-cpu-used:#{idx}",
-        "4",
-        "-lag-in-frames:#{idx}",
-        "48",
-        "-aom-params:#{idx}",
-        "enable-qm=1:sb-size=64:enable-keyframe-filtering=0:arnr-strength=1:aq-mode=1:deltaq-mode=1:sharpness=1:enable-chroma-deltaq=1:quant-b-adapt=1"
-      ],
-      tag_as: av1_codec_tag(info, tiles, 8)
-    }
-  end
+  #   %{
+  #     codec: [
+  #       "libaom-av1",
+  #       "-tile-columns:#{idx}",
+  #       "#{tiles_c}",
+  #       "-tile-rows:#{idx}",
+  #       "#{tiles_r}",
+  #       "-cpu-used:#{idx}",
+  #       "4",
+  #       "-lag-in-frames:#{idx}",
+  #       "48",
+  #       "-aom-params:#{idx}",
+  #       "enable-qm=1:sb-size=64:enable-keyframe-filtering=0:arnr-strength=1:aq-mode=1:deltaq-mode=1:sharpness=1:enable-chroma-deltaq=1:quant-b-adapt=1"
+  #     ],
+  #     tag_as: av1_codec_tag(info, tiles, 8)
+  #   }
+  # end
 
   @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
   defp codec_av1_rav1e(info, idx) do

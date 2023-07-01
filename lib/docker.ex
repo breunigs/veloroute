@@ -175,7 +175,7 @@ defmodule Docker do
     end
   end
 
-  defp clean_name(str, extra \\ "") do
+  defp clean_name(str, extra) do
     "#{str} #{extra}"
     |> String.trim()
     |> String.replace(~r/[^a-zA-Z0-9]/, "")
