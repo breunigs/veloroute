@@ -52,7 +52,7 @@ jobs:
             _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
 
-      - run: mix compile]
+      - run: mix compile
       - run: mix format --check-formatted
       - run: mix test
       - run: mix dialyzer
