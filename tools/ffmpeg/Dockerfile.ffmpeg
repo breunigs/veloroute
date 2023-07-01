@@ -49,87 +49,87 @@ COPY --from=downloader /downloads/blur/ /build/.
 RUN cmake . && make
 
 
-FROM debian:testing-slim AS ffmpeg-build
+# FROM debian:testing-slim AS ffmpeg-build
 
-RUN \
-  apt-get update \
-  && apt-get install -y --no-install-recommends \
-  autoconf \
-  automake \
-  binutils \
-  build-essential \
-  ca-certificates \
-  cmake \
-  curl \
-  frei0r-plugins-dev \
-  git \
-  libaom-dev \
-  libdav1d-dev \
-  libffmpeg-nvenc-dev \
-  libssl-dev \
-  libsvtav1enc-dev \
-  libtool \
-  libva-dev \
-  libvpx-dev \
-  libwebp-dev \
-  libx264-dev \
-  libx265-dev \
-  libzimg-dev \
-  make \
-  meson \
-  nasm \
-  ninja-build \
-  opencl-dev \
-  pkg-config \
-  yasm \
-  && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
-  && echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-  cargo/unstable \
-  cargo-c/unstable \
-  rustc/experimental \
-  && rm -rf /var/lib/apt/lists/*
+# RUN \
+#   apt-get update \
+#   && apt-get install -y --no-install-recommends \
+#   autoconf \
+#   automake \
+#   binutils \
+#   build-essential \
+#   ca-certificates \
+#   cmake \
+#   curl \
+#   frei0r-plugins-dev \
+#   git \
+#   libaom-dev \
+#   libdav1d-dev \
+#   libffmpeg-nvenc-dev \
+#   libssl-dev \
+#   libsvtav1enc-dev \
+#   libtool \
+#   libva-dev \
+#   libvpx-dev \
+#   libwebp-dev \
+#   libx264-dev \
+#   libx265-dev \
+#   libzimg-dev \
+#   make \
+#   meson \
+#   nasm \
+#   ninja-build \
+#   opencl-dev \
+#   pkg-config \
+#   yasm \
+#   && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
+#   && echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list \
+#   && apt-get update \
+#   && apt-get install -y --no-install-recommends \
+#   cargo/unstable \
+#   cargo-c/unstable \
+#   rustc/experimental \
+#   && rm -rf /var/lib/apt/lists/*
 
-ENV PREFIX=/build
-RUN mkdir ${PREFIX}
-ENV CFLAGS=-O3
-ENV CXXFLAGS="$CFLAGS"
-ENV LDFLAGS="$LDFLAGS -L${PREFIX}/lib"
-ENV LD_LIBRARY_PATH="${PREFIX}/lib"
-ENV PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
+# ENV PREFIX=/build
+# RUN mkdir ${PREFIX}
+# ENV CFLAGS=-O3
+# ENV CXXFLAGS="$CFLAGS"
+# ENV LDFLAGS="$LDFLAGS -L${PREFIX}/lib"
+# ENV LD_LIBRARY_PATH="${PREFIX}/lib"
+# ENV PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 
-COPY --from=downloader /downloads /downloads/
+# COPY --from=downloader /downloads /downloads/
 
-RUN cd /downloads/rav1e && \
-  RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
+# RUN cd /downloads/rav1e && \
+#   RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
 
-RUN cd /downloads/ffmpeg && \
-  ./configure \
-  --prefix="${PREFIX}" \
-  --extra-libs="-lm -lpthread" \
-  --extra-cflags="-I${PREFIX}/include -w -O3" \
-  --extra-ldflags="-L${PREFIX}/lib" \
-  --ld="g++" \
-  --enable-version3 \
-  --enable-gpl \
-  --enable-frei0r \
-  --enable-libaom \
-  --enable-libdav1d \
-  --enable-librav1e \
-  --enable-libsvtav1 \
-  --enable-libvpx \
-  --enable-libwebp \
-  --enable-libx264 \
-  --enable-libx265 \
-  --enable-libzimg \
-  --enable-opencl \
-  --enable-vaapi \
-  --disable-debug \
-  --disable-doc \
-  --disable-ffplay \
-  --disable-ffprobe && \
-  make -j $(nproc) && make install && make distclean
+# RUN cd /downloads/ffmpeg && \
+#   ./configure \
+#   --prefix="${PREFIX}" \
+#   --extra-libs="-lm -lpthread" \
+#   --extra-cflags="-I${PREFIX}/include -w -O3" \
+#   --extra-ldflags="-L${PREFIX}/lib" \
+#   --ld="g++" \
+#   --enable-version3 \
+#   --enable-gpl \
+#   --enable-frei0r \
+#   --enable-libaom \
+#   --enable-libdav1d \
+#   --enable-librav1e \
+#   --enable-libsvtav1 \
+#   --enable-libvpx \
+#   --enable-libwebp \
+#   --enable-libx264 \
+#   --enable-libx265 \
+#   --enable-libzimg \
+#   --enable-opencl \
+#   --enable-vaapi \
+#   --disable-debug \
+#   --disable-doc \
+#   --disable-ffplay \
+#   --disable-ffprobe && \
+#   make -j $(nproc) && make install && make distclean
 
 
 FROM debian:testing-slim AS runner
@@ -161,11 +161,12 @@ RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
   beignet-opencl-icd \
+  ffmpeg \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/lib/frei0r-1/
 COPY --from=blur /build/jsonblur.so /usr/lib/frei0r-1/
-COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
+# COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
 WORKDIR /workdir
 
 ARG RENDER_GID
