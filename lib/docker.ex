@@ -177,6 +177,10 @@ defmodule Docker do
   def build_and_run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     with %{result: :ok} <- build(dockerfile) do
       run(dockerfile, extra_args, opts)
+    else
+      err ->
+        IO.puts(:stderr, "failed to build #{dockerfile}: #{inspect(err)}")
+        err
     end
   end
 
@@ -220,7 +224,9 @@ defmodule Docker do
   @spec docker_supports_gpu() :: bool()
   defmemop docker_supports_gpu do
     {out, status} =
-      System.cmd("docker", ["run", "--rm", "--gpus", "all", "hello-world"], stderr_to_stdout: true)
+      System.cmd("docker", ["run", "--rm", "--gpus", "all", "hello-world"],
+        stderr_to_stdout: true
+      )
 
     cond do
       status == 0 ->
