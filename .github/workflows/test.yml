@@ -31,8 +31,6 @@ jobs:
           path: |
             /home/runner/.asdf
           key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
-          restore-keys: |
-            ${{ runner.os }}-asdf-
 
       - name: Cache mix deps restore
         uses: actions/cache/restore@v3
@@ -53,24 +51,8 @@ jobs:
             deps
             _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-mix-
 
-      - name: Compiles
-        run: mix compile
-
-  check-format:
-    runs-on: ubuntu-latest
-    needs: [prepare]
-    steps:
+      - run: mix compile]
       - run: mix format --check-formatted
-  test:
-    runs-on: ubuntu-latest
-    needs: [prepare]
-    steps:
       - run: mix test
-  dialyzer:
-    runs-on: ubuntu-latest
-    needs: [prepare]
-    steps:
       - run: mix dialyzer
