@@ -56,7 +56,10 @@ jobs:
             _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock', '**/.tool-versions') }}
 
+      - run: mkdir -p /home/runner/work/veloroute/veloroute/videos
+
       - run: mix compile
       - run: mix format --check-formatted
+      - run: mix velo.setup
       - run: mix test
       - run: mix dialyzer
