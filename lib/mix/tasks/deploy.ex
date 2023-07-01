@@ -85,6 +85,8 @@ defmodule Mix.Tasks.Deploy do
     Docker.mix("test --color")
     Util.banner("Dialyzer")
     Docker.mix("dialyzer")
+    Util.banner("Format Check")
+    Docker.mix("format --check-formatted")
   end
 
   defp make_release(_skip) do

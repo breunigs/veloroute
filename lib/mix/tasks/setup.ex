@@ -2,21 +2,21 @@ defmodule Mix.Tasks.Velo.Setup do
   use Mix.Task
 
   @shortdoc "Creates secrets and other initial config if it doesn't exist"
-  def run(_args) do
+  def run(args) do
     phx_credentials()
-    credentials()
+    credentials(args)
   end
 
   @creds_path "data/credentials.ex"
-  defp credentials do
+  defp credentials(args) do
     if !File.exists?(@creds_path),
-      do: credentials_write(),
+      do: credentials_write(args),
       else: IO.puts("#{@creds_path} already exists, not overwriting.")
   end
 
-  defp credentials_write do
-    maptiler_api_key = ask("MapTiler API key?")
-    arcgis_api_key = ask("ArcGis API key?")
+  defp credentials_write(args) do
+    maptiler_api_key = ask("MapTiler API key?", args)
+    arcgis_api_key = ask("ArcGis API key?", args)
 
     code =
       quote do
@@ -31,7 +31,13 @@ defmodule Mix.Tasks.Velo.Setup do
     File.write!(@creds_path, code)
   end
 
-  defp ask(question) do
+  defp ask(question, opts \\ [])
+
+  defp ask(_question, ["ci"]) do
+    "dummy-ci-value"
+  end
+
+  defp ask(question, []) do
     case IO.gets("\n" <> question <> "\n> ") do
       :eof ->
         ask(question)

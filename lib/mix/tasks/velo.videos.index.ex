@@ -60,7 +60,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   defp named_track_segments_task(x, base_osm_id) do
     Task.async(fn ->
       res = named_track_segments(x, base_osm_id)
-      IO.write('.')
+      IO.write(~c".")
       res
     end)
   end

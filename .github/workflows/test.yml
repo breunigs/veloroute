@@ -1,0 +1,82 @@
+name: Testing
+
+env:
+  MIX_ENV: test
+  SHELL: /bin/sh
+
+on:
+  push:
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup asdf
+        uses: asdf-vm/actions/setup@v1
+      - name: Cache asdf restore
+        id: cache-asdf
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            /home/runner/.asdf
+          key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
+          restore-keys: |
+            ${{ runner.os }}-asdf-
+      - name: Install dependencies in .tool-versions
+        uses: asdf-vm/actions/install@v1
+      - name: Cache asdf save
+        uses: actions/cache/save@v3
+        if: steps.cache-asdf.outputs.cache-hit != 'true'
+        with:
+          path: |
+            /home/runner/.asdf
+          key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
+
+      - name: Cache mix deps restore
+        uses: actions/cache/restore@v3
+        id: cache-mix-deps
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock', '.tool-versions') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
+      - run: mix local.hex --force
+      - run: mix deps.get
+      - run: mix deps.compile
+      - name: Cache mix deps save
+        uses: actions/cache/save@v3
+        if: steps.cache-mix-deps.outputs.cache-hit != 'true'
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock', '.tool-versions') }}
+
+      - run: mkdir -p /home/runner/work/veloroute/videos
+
+      - run: mix compile
+      - run: mix format --check-formatted
+      - run: mix velo.setup ci
+      - run: mix test --exclude requires_mount
+
+
+
+      - name: Restore PLT cache
+        uses: actions/cache@v3
+        id: plt_cache
+        with:
+          key: ${{ runner.os }}-dialyzer-${{ hashFiles('.tool-versions') }}
+          restore-keys: |
+            ${{ runner.os }}-dialyzer-
+          path: |
+            priv/plts
+
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+
+      - run: mix dialyzer --format github

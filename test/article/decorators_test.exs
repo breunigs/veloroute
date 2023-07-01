@@ -44,9 +44,9 @@ defmodule Article.DecoratorsTest do
 
   defp sorted_html(str) do
     str
-    |>    Floki.parse_fragment!()
+    |> Floki.parse_fragment!()
     |> Enum.map(fn
-      {tag, args, body} -> {tag, sorted_arguments(args),body}
+      {tag, args, body} -> {tag, sorted_arguments(args), body}
       other -> other
     end)
   end

@@ -47,6 +47,6 @@ defmodule Basemap.Static.Exe do
       |> Path.wildcard()
       |> Enum.join(":")
 
-    {'LD_PRELOAD', to_charlist(libs)}
+    {~c"LD_PRELOAD", to_charlist(libs)}
   end
 end

@@ -22,6 +22,7 @@ defmodule Video.TrackTest do
      }}
   ]
 
+  @tag requires_mount: true
   test "rendered hashes of old versions remain the same" do
     changed_hashes =
       Enum.flat_map(@tracks, fn {exp_hash, exp_dur, track} ->
