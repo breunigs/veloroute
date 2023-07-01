@@ -62,4 +62,21 @@ jobs:
       - run: mix format --check-formatted
       - run: mix velo.setup ci
       - run: mix test --exclude requires_mount
-      - run: mix dialyzer
+
+
+
+      - name: Restore PLT cache
+        uses: actions/cache@v3
+        id: plt_cache
+        with:
+          key: ${{ runner.os }}-dialyzer-${{ hashFiles('.tool-versions') }}
+          restore-keys: |
+            ${{ runner.os }}-dialyzer-
+          path: |
+            priv/plts
+
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+
+      - run: mix dialyzer --format github

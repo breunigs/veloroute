@@ -211,7 +211,7 @@ defmodule Video.Generator do
     end
     |> Macro.to_string()
     |> Code.format_string!()
-    |> Kernel.<>("\n")
+    |> Kernel.++(["\n"])
   end
 
   @doc """
