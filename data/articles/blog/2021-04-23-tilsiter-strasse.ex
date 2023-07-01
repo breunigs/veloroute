@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.TilsiterStrasse do
   def stop(), do: ~d[2023-06-30]
   def construction_site_id_hh(), do: [139_611]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["6", "w16.2", "w16"]
 

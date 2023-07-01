@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.EilbekerWeg do
   def start(), do: ~d[2023Q2]
   def stop(), do: ~d[2023Q2]
 
-  def type(), do: :planned
+  def type(), do: :finished
   def tags(), do: []
 
   def links(_assigns) do
