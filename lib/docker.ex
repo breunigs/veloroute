@@ -193,6 +193,9 @@ defmodule Docker do
       "run",
       "-e",
       "MIX_ENV=#{mix_env}",
+      # debug rebar3 crashes
+      # "-e",
+      # "DIAGNOSTIC=1",
       # erlexec needs a shell to be set, even though it's not used
       "-e",
       "SHELL=/bin/sh",
