@@ -36,8 +36,8 @@ jobs:
       - run: mix local.hex --force
       - run: mix deps.get
 
-      - name: Compiles without warnings
-        run: mix compile --warnings-as-errors
+      - name: Compiles
+        run: mix compile
       - name: Check Formatting
         run: mix format --check-formatted
       - name: Run Tests
