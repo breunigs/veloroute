@@ -12,21 +12,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup asdf
-        uses: asdf-vm/actions/setup@v1
-      - name: Cache asdf
-        uses: actions/cache@v3
-        with:
+      - name: Cache asdf restore
+        uses: actions/cache/restore@v3
+        with: &asdf_cache_cfg
           path: |
             /home/runner/.asdf
           key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
           restore-keys: |
             ${{ runner.os }}-asdf-
+      - name: Setup asdf
+        uses: asdf-vm/actions/setup@v1
+      - name: Cache asdf save
+        uses: actions/cache/save@v3
+        if: always()
+        with: *asdf_cache_cfg
       - name: Install dependencies in .tool-versions
         uses: asdf-vm/actions/install@v1
 
-      - uses: actions/cache@v3
-        with:
+      - name: Cache mix deps restore
+        uses: actions/cache/restore@v3
+        with: &mix_cache_cfg
           path: |
             deps
             _build
@@ -35,6 +40,11 @@ jobs:
             ${{ runner.os }}-mix-
       - run: mix local.hex --force
       - run: mix deps.get
+      - name: Cache mix deps save
+        uses: actions/cache/save@v3
+        if: always()
+        with: *mix_cache_cfg
+
 
       - name: Compiles
         run: mix compile
