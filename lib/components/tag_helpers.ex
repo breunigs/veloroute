@@ -49,7 +49,7 @@ defmodule Components.TagHelpers do
     assigns = assign(assigns, %{attrs: attrs, extra_text: extra_text})
 
     ~H"""
-    <a {@attrs}><%= render_block(@inner_block) %></a><%= @extra_text %>
+    <a {@attrs}><%= render_slot(@inner_block) %></a><%= @extra_text %>
     """
   end
 
@@ -92,7 +92,7 @@ defmodule Components.TagHelpers do
     attr = Map.update!(attr, "phx-click", &ping(&1, highlight))
 
     assigns = assign(assigns, :attr, attr)
-    ~H"<a {@attr}><%= render_block(@inner_block) %></a>"
+    ~H"<a {@attr}><%= render_slot(@inner_block) %></a>"
   end
 
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
@@ -109,7 +109,7 @@ defmodule Components.TagHelpers do
       |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: assigns.bounds})
 
     assigns = assign(assigns, :js, js)
-    ~H"<a phx-click={@js}><%= render_block(@inner_block) %></a>"
+    ~H"<a phx-click={@js}><%= render_slot(@inner_block) %></a>"
   end
 
   defp ping(js, name) do
@@ -124,7 +124,7 @@ defmodule Components.TagHelpers do
 
   def mailto(%{inner_block: _x, email: _e} = assigns) do
     ~H"""
-    <a href={"mailto:#{@email}"}><%= render_block(@inner_block) %></a>
+    <a href={"mailto:#{@email}"}><%= render_slot(@inner_block) %></a>
     """
   end
 
@@ -137,7 +137,7 @@ defmodule Components.TagHelpers do
       })
 
     ~H"""
-    <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"}><%= render_block(@inner_block) %></a>
+    <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"}><%= render_slot(@inner_block) %></a>
     """
   end
 
@@ -149,7 +149,7 @@ defmodule Components.TagHelpers do
 
   def mailto(%{inner_block: _x} = assigns) do
     ~H"""
-    <a href={"mailto:"<>Settings.email()}><%= render_block(@inner_block) %></a>
+    <a href={"mailto:"<>Settings.email()}><%= render_slot(@inner_block) %></a>
     """
   end
 
@@ -321,7 +321,7 @@ defmodule Components.TagHelpers do
       true ->
         ~H"""
         <a href={@href} data-phx-link-state="push" data-phx-link="patch" title={@summary}>
-          <span style={@style} class={@class}><%= @id %></span><%= render_block(@inner_block) %>
+          <span style={@style} class={@class}><%= @id %></span><%= render_slot(@inner_block) %>
         </a>
         """
     end
@@ -337,7 +337,7 @@ defmodule Components.TagHelpers do
 
   def no_mobile(assigns) do
     ~H"""
-    <span class="noMobile"><%= render_block(@inner_block) %></span>
+    <span class="noMobile"><%= render_slot(@inner_block) %></span>
     """
   end
 
@@ -418,7 +418,7 @@ defmodule Components.TagHelpers do
 
   def noindex(assigns) do
     ~H"""
-    <div data-nosnippet="yes"><%= render_block(@inner_block) %></div>
+    <div data-nosnippet="yes"><%= render_slot(@inner_block) %></div>
     """
   end
 
