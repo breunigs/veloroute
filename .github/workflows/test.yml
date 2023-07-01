@@ -2,6 +2,7 @@ name: Testing
 
 env:
   MIX_ENV: test
+  SHELL: /bin/sh
 
 on:
   push:
