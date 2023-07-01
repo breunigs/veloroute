@@ -15,6 +15,7 @@ jobs:
       - name: Setup asdf
         uses: asdf-vm/actions/setup@v1
       - name: Cache asdf restore
+        id: cache-asdf
         uses: actions/cache/restore@v3
         with:
           path: |
@@ -26,7 +27,7 @@ jobs:
         uses: asdf-vm/actions/install@v1
       - name: Cache asdf save
         uses: actions/cache/save@v3
-        if: always()
+        if: steps.cache-asdf.outputs.cache-hit != 'true'
         with:
           path: |
             /home/runner/.asdf
@@ -34,6 +35,7 @@ jobs:
 
       - name: Cache mix deps restore
         uses: actions/cache/restore@v3
+        id: cache-mix-deps
         with:
           path: |
             deps
@@ -45,7 +47,7 @@ jobs:
       - run: mix deps.get
       - name: Cache mix deps save
         uses: actions/cache/save@v3
-        if: always()
+        if: steps.cache-mix-deps.outputs.cache-hit != 'true'
         with:
           path: |
             deps
