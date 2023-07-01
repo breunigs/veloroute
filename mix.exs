@@ -87,7 +87,7 @@ defmodule Veloroute.MixProject do
       {:sweet_xml, "~> 0.6"},
       {:temp, "~> 0.4"},
       {:tesla, "~> 1.5.0"},
-      {:tqdm, "~> 0.0.2", only: [:dev, :test]}
+      {:tqdm, git: "https://github.com/ericentin/tqdm_elixir", only: [:dev, :test]}
     ]
   end
 end
