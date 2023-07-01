@@ -41,7 +41,7 @@ jobs:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('/home/runner/work/veloroute/mix.lock', '/home/runner/work/veloroute/.tool-versions') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock', '.tool-versions') }}
           restore-keys: |
             ${{ runner.os }}-mix-
       - run: mix local.hex --force
@@ -54,7 +54,7 @@ jobs:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('/home/runner/work/veloroute/mix.lock', '/home/runner/work/veloroute/.tool-versions') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock', '.tool-versions') }}
 
       - run: mkdir -p /home/runner/work/veloroute/videos
 
