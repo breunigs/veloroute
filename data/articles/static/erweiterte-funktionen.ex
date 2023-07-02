@@ -129,6 +129,7 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
       |> Enum.filter(fn track ->
         track.historic && Map.has_key?(track.historic, current_hash)
       end)
+      |> Enum.uniq()
       |> Enum.flat_map(fn track ->
         Enum.map(track.historic, fn {hash, date} -> {hash, date, track.text} end)
       end)
