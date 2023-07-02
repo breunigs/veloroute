@@ -105,7 +105,7 @@ defmodule Docker do
       raise: true,
       stdout: "",
       stderr: "",
-      name: "Building “#{name}”"
+      name: "Building \"#{name}\""
     )
   end
 
