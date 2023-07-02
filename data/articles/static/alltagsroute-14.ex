@@ -23,9 +23,9 @@ defmodule Data.Article.Static.Alltagsroute14 do
         parent_ref: __MODULE__,
         text: "äußere Ringroute im Uhrzeigersinn",
         historic: %{
-          "f0c8315afd3726285e4b5d01167f7496" => "2023-06",
-          "75438deba968649bfd45830870d975df" => "2022-05",
-          "62d159bb8ce5999fbf24260ee31c6333" => "2021-07"
+          "f0c8315afd3726285e4b5d01167f7496" => ~d[2023-06],
+          "75438deba968649bfd45830870d975df" => ~d[2022-05],
+          "62d159bb8ce5999fbf24260ee31c6333" => ~d[2021-07]
         },
         videos: [
           {"2023-06-17-vr14-halb/GX015946", "00:00:13.780", :end},
@@ -76,9 +76,9 @@ defmodule Data.Article.Static.Alltagsroute14 do
         parent_ref: __MODULE__,
         text: "äußere Ringroute gegen Uhrzeigersinn",
         historic: %{
-          "c279ffbdfe4ca539c2c78b9e53740802" => "2023-06",
-          "153c4ea447de3ea61e07a30fae6d0e5a" => "2022-05",
-          "7fb5070532080e77905e6f92dbc352a1" => "2021-07"
+          "c279ffbdfe4ca539c2c78b9e53740802" => ~d[2023-06],
+          "153c4ea447de3ea61e07a30fae6d0e5a" => ~d[2022-05],
+          "7fb5070532080e77905e6f92dbc352a1" => ~d[2021-07]
         },
         videos: [
           {"2023-06-25-13im-14gg/GX016100", :start, :end},

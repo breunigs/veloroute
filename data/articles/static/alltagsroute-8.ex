@@ -24,8 +24,8 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         historic: %{
-          "2022-05" => "31b6ed712bac45ba3f4fec9338e48722",
-          "2021-06" => "3158969df4651fbffffe9a7921c32fac"
+          "31b6ed712bac45ba3f4fec9338e48722" => ~d[2022-05],
+          "3158969df4651fbffffe9a7921c32fac" => ~d[2021-06]
         },
         videos: [
           {"2022-05-07-v10-v7-u-rodigallee/GX013734", :start, :end},
@@ -55,8 +55,8 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         historic: %{
-          "2022-05" => "c5255d6333a51c0198e152da0587fac8",
-          "2021-06" => "fef594acfa954c454f4ebb8f388b27ed"
+          "c5255d6333a51c0198e152da0587fac8" => ~d[2022-05],
+          "fef594acfa954c454f4ebb8f388b27ed" => ~d[2021-06]
         },
         videos: [
           {"2022-05-08-velo8/GX013820", "00:00:01.535", :end},
@@ -87,8 +87,8 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Mümmelmannsberg",
         historic: %{
-          "2022-05" => "ae36499378cc6c6a822f9189e3c71e46",
-          "2021-06" => "3b9ad829d244b5beab1b060e74e166db"
+          "ae36499378cc6c6a822f9189e3c71e46" => ~d[2022-05],
+          "3b9ad829d244b5beab1b060e74e166db" => ~d[2021-06]
         },
         videos: [
           {"2022-05-08-velo8/GX013831", "00:03:54.234", :end},
@@ -104,8 +104,8 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "vom Mümmelmannsberg in die Innenstadt",
         historic: %{
-          "2022-05" => "1f3e66277483a6b8bfcd4dc3069f6766",
-          "2021-06" => "0f4d948cf00d56ed23724235c9a5591f"
+          "1f3e66277483a6b8bfcd4dc3069f6766" => ~d[2022-05],
+          "0f4d948cf00d56ed23724235c9a5591f" => ~d[2021-06]
         },
         videos: [
           {"2022-05-08-velo8/GX023831", "00:00:55.044", "00:02:56.808"}

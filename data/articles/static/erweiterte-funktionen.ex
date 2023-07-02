@@ -126,13 +126,15 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
     hist =
       Article.List.all()
       |> Enum.flat_map(& &1.tracks())
-      |> Enum.find_value(fn track ->
-        if track.historic && Map.has_key?(track.historic, current_hash), do: track.historic
+      |> Enum.filter(fn track ->
+        track.historic && Map.has_key?(track.historic, current_hash)
       end)
-      |> Kernel.||(%{})
-      |> Enum.reject(fn {historic_hash, _date} -> historic_hash == current_hash end)
-      |> Enum.map(fn {historic_hash, date} ->
-        named = video_assigns(%{video_hash: historic_hash}, date)
+      |> Enum.flat_map(fn track ->
+        Enum.map(track.historic, fn {hash, date} -> {hash, date, track.text} end)
+      end)
+      |> Enum.reject(fn {historic_hash, _date, _text} -> historic_hash == current_hash end)
+      |> Enum.map(fn {historic_hash, date, text} ->
+        named = video_assigns(%{video_hash: historic_hash}, "#{date}-#{text}")
         {date, named.video_download_path, named.video_download_name}
       end)
       |> Enum.sort()

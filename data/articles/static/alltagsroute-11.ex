@@ -23,8 +23,8 @@ defmodule Data.Article.Static.Alltagsroute11 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Eißendorf",
         historic: %{
-          "2022-04" => "6c5ec4b87553c5a86fac6b206345e318",
-          "2021-07" => "b21da7f0c0224b1dffb37d34ae51648f"
+          "6c5ec4b87553c5a86fac6b206345e318" => ~d[2022-04],
+          "b21da7f0c0224b1dffb37d34ae51648f" => ~d[2021-07]
         },
         videos: [
           {"2022-04-23-velo3-velo12altona/GX013521", "00:00:16.683", :end},
@@ -61,8 +61,8 @@ defmodule Data.Article.Static.Alltagsroute11 do
         parent_ref: __MODULE__,
         text: "aus Eißendorf in die Innenstadt",
         historic: %{
-          "2022-04" => "b4997cc9bce6de5126d1a2c294cc8265",
-          "2021-07" => "da9f1f6cfdee27f19a7a44778e7708f2"
+          "b4997cc9bce6de5126d1a2c294cc8265" => ~d[2022-04],
+          "da9f1f6cfdee27f19a7a44778e7708f2" => ~d[2021-07]
         },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013668", "00:00:08.108", :end},
@@ -106,8 +106,8 @@ defmodule Data.Article.Static.Alltagsroute11 do
         parent_ref: __MODULE__,
         text: "von der Veddel zum Bürgerhaus Wilhelmsburg",
         historic: %{
-          "2022-05" => "5d955ccf2971302202fe02fbdefe1616",
-          "2021-07" => "85e45f5b7958efca1803585db2256047"
+          "5d955ccf2971302202fe02fbdefe1616" => ~d[2022-05],
+          "85e45f5b7958efca1803585db2256047" => ~d[2021-07]
         },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013692", "00:00:06.506", :end},
@@ -123,8 +123,8 @@ defmodule Data.Article.Static.Alltagsroute11 do
         parent_ref: __MODULE__,
         text: "vom Bürgerhaus Wilhelmsburg zur Veddel",
         historic: %{
-          "2022-05" => "3c8980283b9a8d3730bb35a8e18e48fd",
-          "2021-07" => "f7bc9a5473aa1b8ec99b8a8635205521"
+          "3c8980283b9a8d3730bb35a8e18e48fd" => ~d[2022-05],
+          "f7bc9a5473aa1b8ec99b8a8635205521" => ~d[2021-07]
         },
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", "00:00:20.187", "00:01:15.642"},

@@ -23,9 +23,9 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Altona",
         historic: %{
-          "359b4f5e3ed270488c9f4bb3c41879cb" => "2023-05",
-          "46744d4e32ca048d128cb0dcf1df673c" => "2022-04",
-          "aaa2dfe3fe041ee5983284e7cd349011" => "2021-06"
+          "359b4f5e3ed270488c9f4bb3c41879cb" => ~d[2023-05],
+          "46744d4e32ca048d128cb0dcf1df673c" => ~d[2022-04],
+          "aaa2dfe3fe041ee5983284e7cd349011" => ~d[2021-06]
         },
         videos: [
           {"2023-05-21-vr12-vr9/GX015821", "00:00:25.020", :end},
@@ -45,9 +45,9 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "von Altona in die Innenstadt",
         historic: %{
-          "ec081a60074bd5839aec7b13ce45ab3a" => "2023-05",
-          "4954c372030bde7d562eedc2d21bfd5f" => "2022-04",
-          "a5aa0cbc5c7e75039561772114010442" => "2021-06"
+          "ec081a60074bd5839aec7b13ce45ab3a" => ~d[2023-05],
+          "4954c372030bde7d562eedc2d21bfd5f" => ~d[2022-04],
+          "a5aa0cbc5c7e75039561772114010442" => ~d[2021-06]
         },
         videos: [
           {"2023-05-21-vr12-vr9/GX015789", :start, :end},

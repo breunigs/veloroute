@@ -1,4 +1,5 @@
 defmodule ArticleTest do
+  require Guards
   use ExUnit.Case, async: true
 
   test "all articles can be rendered" do
@@ -84,6 +85,24 @@ defmodule ArticleTest do
     assert [] == duplicated_tracks
   end
 
+  test "historic track reference has valid hash" do
+    broken =
+      Enum.reject(list_historic_tracks(), fn ref ->
+        Guards.valid_hash(ref.historic_hash)
+      end)
+
+    assert [] == broken
+  end
+
+  test "historic track reference has valid date" do
+    broken =
+      Enum.reject(list_historic_tracks(), fn ref ->
+        is_struct(ref.historic_date, Data.RoughDate)
+      end)
+
+    assert [] == broken
+  end
+
   test "newer articles have a summary" do
     missing_sumnmary =
       Article.List.all()
@@ -142,5 +161,16 @@ defmodule ArticleTest do
       |> Util.compact()
 
     assert [] == broken
+  end
+
+  defp list_historic_tracks do
+    Article.List.all()
+    |> Enum.flat_map(fn art -> Enum.map(art.tracks(), &{art, &1}) end)
+    |> Enum.flat_map(fn {art, track} ->
+      Enum.map(
+        track.historic || %{},
+        &%{article: art, text: track.text, historic_hash: elem(&1, 0), historic_date: elem(&1, 1)}
+      )
+    end)
   end
 end

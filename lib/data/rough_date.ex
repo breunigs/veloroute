@@ -116,3 +116,11 @@ defmodule Data.RoughDate do
     year
   end
 end
+
+defimpl String.Chars, for: Data.RoughDate do
+  def to_string(date), do: Data.RoughDate.to_str(date)
+end
+
+defimpl Phoenix.HTML.Safe, for: Data.RoughDate do
+  def to_iodata(date), do: date |> Data.RoughDate.to_str() |> Phoenix.HTML.Engine.html_escape()
+end

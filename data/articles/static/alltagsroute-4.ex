@@ -23,9 +23,9 @@ defmodule Data.Article.Static.Alltagsroute4 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Ochsenzoll",
         historic: %{
-          "278170ddb5c27153870dd9654679ff85" => "2023-06",
-          "dfbd93ce691204a0f6503ff6ccaadd3f" => "2022-03",
-          "e4cffabc1e73519e643f87466f40155d" => "2021-06"
+          "278170ddb5c27153870dd9654679ff85" => ~d[2023-06],
+          "dfbd93ce691204a0f6503ff6ccaadd3f" => ~d[2022-03],
+          "e4cffabc1e73519e643f87466f40155d" => ~d[2021-06]
         },
         videos: [
           {"2023-06-01-vr4/GX015834", "00:00:12.145", :end},
@@ -54,9 +54,9 @@ defmodule Data.Article.Static.Alltagsroute4 do
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll in die Innenstadt",
         historic: %{
-          "0893cfa96c222f3297c893e26527f5e6" => "2023-06",
-          "8f85eaf31ac2405b61747428818668b5" => "2022-03",
-          "70233271c23802b342c6a2f59d8b5552" => "2021-06"
+          "0893cfa96c222f3297c893e26527f5e6" => ~d[2023-06],
+          "8f85eaf31ac2405b61747428818668b5" => ~d[2022-03],
+          "70233271c23802b342c6a2f59d8b5552" => ~d[2021-06]
         },
         videos: [
           {"2023-06-01-vr4/GX015849", "00:00:00.801", :end},

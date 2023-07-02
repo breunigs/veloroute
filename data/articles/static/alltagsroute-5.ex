@@ -24,8 +24,8 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Duvenstedt",
         historic: %{
-          "e2af2b96121f8a6d64a7def8e6fa5ea6" => "2022-04",
-          "8f35f063edcc6c17f5e2cb22419b8b66" => "2021-09"
+          "e2af2b96121f8a6d64a7def8e6fa5ea6" => ~d[2022-04],
+          "8f35f063edcc6c17f5e2cb22419b8b66" => ~d[2021-09]
         },
         videos: [
           {"2022-04-30-velo5-u-12innenstadt/GX013576", "00:00:38.872", :end},
@@ -59,8 +59,8 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "von Duvenstedt in die Innenstadt",
         historic: %{
-          "4ad987f9aae61fb035d7317b944dea10" => "2022-04",
-          "34568a80252f5daab563eb9ebce3893e" => "2021-06"
+          "4ad987f9aae61fb035d7317b944dea10" => ~d[2022-04],
+          "34568a80252f5daab563eb9ebce3893e" => ~d[2021-06]
         },
         videos: [
           {"2022-04-30-velo5-u-12innenstadt/GX013599", :start, :end},
@@ -97,8 +97,8 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "Hamburger Meile zur City Nord",
         historic: %{
-          "0564511a98d53f27dd754ae1a4af11fa" => "2022-04",
-          "7cdaf2d2df2ac71669fab5292b882c95" => "2021-06"
+          "0564511a98d53f27dd754ae1a4af11fa" => ~d[2022-04],
+          "7cdaf2d2df2ac71669fab5292b882c95" => ~d[2021-06]
         },
         videos: [
           {"2022-04-30-velo5-u-12innenstadt/GX013615", :start, :end},
@@ -119,8 +119,8 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "City Nord zur Hamburger Meile",
         historic: %{
-          "495adb7cbe7ae5df22ef39eae21f65dc" => "2022-04",
-          "695e28731f9a008ea8fab77b48a12dc5" => "2021-06"
+          "495adb7cbe7ae5df22ef39eae21f65dc" => ~d[2022-04],
+          "695e28731f9a008ea8fab77b48a12dc5" => ~d[2021-06]
         },
         videos: [
           {"2022-04-30-velo5-u-12innenstadt/GX013622", :start, :end},

@@ -23,9 +23,9 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         historic: %{
-          "90542232243953b0fa05742042bb935c" => "2023-05",
-          "5f3fd921c2d6569012c2118a1a5e1d31" => "2022-04",
-          "567ae7e915fff4f8a5987f41b1d9f57f" => "2021-06"
+          "90542232243953b0fa05742042bb935c" => ~d[2023-05],
+          "5f3fd921c2d6569012c2118a1a5e1d31" => ~d[2022-04],
+          "567ae7e915fff4f8a5987f41b1d9f57f" => ~d[2021-06]
         },
         videos: [
           {"2023-05-21-vr12-vr9/GX015803", "00:00:15.346", :end},
@@ -48,9 +48,9 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         historic: %{
-          "6367ea206d3ed2850baad0a3910f0de7" => "2023-05",
-          "62ec2031bfb3e36f91731bc150672a5e" => "2022-04",
-          "e10fc9b56544e6792f2c36bbf479f7de" => "2021-06"
+          "6367ea206d3ed2850baad0a3910f0de7" => ~d[2023-05],
+          "62ec2031bfb3e36f91731bc150672a5e" => ~d[2022-04],
+          "e10fc9b56544e6792f2c36bbf479f7de" => ~d[2021-06]
         },
         videos: [
           {"2023-05-21-vr12-vr9/GX015810", "00:00:18.285", :end},

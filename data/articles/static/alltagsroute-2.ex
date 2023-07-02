@@ -23,9 +23,9 @@ defmodule Data.Article.Static.Alltagsroute2 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Eidelstedt",
         historic: %{
-          "ad83462646710e75b1d597806cf22223" => "2023-05",
-          "a62c9bb78695d8eda8d3bff8ac2d17be" => "2022-04",
-          "f329670c1f6a784ec835ef92cca96272" => "2021-06"
+          "ad83462646710e75b1d597806cf22223" => ~d[2023-05],
+          "a62c9bb78695d8eda8d3bff8ac2d17be" => ~d[2022-04],
+          "f329670c1f6a784ec835ef92cca96272" => ~d[2021-06]
         },
         videos: [
           {"2023-05-20-vr2-vr3/GX015761", "00:00:31.999", :end},
@@ -53,9 +53,9 @@ defmodule Data.Article.Static.Alltagsroute2 do
         parent_ref: __MODULE__,
         text: "von Eidelstedt in die Innenstadt",
         historic: %{
-          "6400d51dcd95cea2dd55bbb1713ed9ec" => "2023-05",
-          "b9fec80b3268dc0c19e6b281cec518a8" => "2022-04",
-          "93e9ec24a1550b4a5c0a92d8582e3432" => "2021-06"
+          "6400d51dcd95cea2dd55bbb1713ed9ec" => ~d[2023-05],
+          "b9fec80b3268dc0c19e6b281cec518a8" => ~d[2022-04],
+          "93e9ec24a1550b4a5c0a92d8582e3432" => ~d[2021-06]
         },
         videos: [
           {"2023-05-20-vr2-vr3/GX015776", "00:00:21.221", :end},
