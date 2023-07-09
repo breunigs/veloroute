@@ -31804,6 +31804,7 @@
     <nd ref='-22532807' />
     <nd ref='-22532584' />
     <nd ref='-22532585' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-06-19-haubachstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -68884,6 +68885,7 @@
     <nd ref='98684000510574' />
     <nd ref='987345000514395' />
     <nd ref='987109000514389' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-01-10-11-veringstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -69758,6 +69760,7 @@
     <nd ref='914426000623661' />
     <nd ref='912989000623568' />
     <nd ref='912677000623524' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-02-01-spanische-furt-heidlohstrasse' />
     <tag k='type' v='article' />
   </way>
