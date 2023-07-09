@@ -27,29 +27,22 @@ defmodule Data.Article.Static.Alltagsroute11 do
           "b21da7f0c0224b1dffb37d34ae51648f" => ~d[2021-07]
         },
         videos: [
-          {"2022-04-23-velo3-velo12altona/GX013521", "00:00:16.683", :end},
-          {"2022-04-23-velo3-velo12altona/GX013522", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013523", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013524", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013525", :start, :end},
-          {"2022-04-23-velo3-velo12altona/GX013526", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013651", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013652", :start, "00:00:09.176"},
-          {"2021-07-04-veloroute11/GX012108", "00:00:00.467", :end},
-          {"2021-07-04-veloroute11/GX012109", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013655", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013656", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013657", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013658", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013659", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013660", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013661", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013662", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013663", :start, "00:00:36.503"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013664", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013665", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013666", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013667", :start, "00:00:35.936"}
+          {"2023-07-09-vr11-und-erwrtng/GX010050", "00:00:14.181", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010051", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010052", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010053", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010054", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010055", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010056", :start, "00:00:02.936"},
+          {"2023-07-09-vr11-und-erwrtng/GX010056", "00:00:09.042", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010057", :start, "00:01:54.448"},
+          {"2023-07-09-vr11-und-erwrtng/GX010057", "00:02:06.126", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010058", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010059", :start, "00:00:05.873"},
+          {"2023-07-09-vr11-und-erwrtng/GX010060", "00:00:01.168", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010061", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010062", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010063", :start, "00:01:10.070"}
         ]
       },
       %Video.Track{
@@ -65,34 +58,28 @@ defmodule Data.Article.Static.Alltagsroute11 do
           "da9f1f6cfdee27f19a7a44778e7708f2" => ~d[2021-07]
         },
         videos: [
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013668", "00:00:08.108", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013669", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013670", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013671", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013672", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013673", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013674", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013675", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013676", :start, "00:00:08.141"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:04:09.916", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX023687", :seamless, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", :start, "00:00:16.917"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013693", "00:01:38.365", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013694", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013695", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013696", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013697", :start, "00:01:05.966"},
-          {"2021-07-04-veloroute11/GX012142", "00:00:00.167", :end},
-          {"2021-07-04-veloroute11/GX012143", :start, "00:00:37.738"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013698", "00:01:27.120", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013699", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013700", :start, "00:00:02.703"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013572", "00:00:02.302", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013573", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013574", :start, :end},
-          {"2021-06-27-veloroute9/GX012021", :start, "00:00:11.645"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013575", "00:00:13.146", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013576", :start, "00:00:39.740"}
+          {"2023-07-09-vr11-und-erwrtng/GX010063", "00:01:10.070", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010064", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010065", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010066", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010067", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010068", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010069", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010070", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010071", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010072", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010073", :start, "00:00:03.270"},
+          {"2023-07-09-vr11-und-erwrtng/GX010096", "00:00:02.336", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010097", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010098", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010099", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010100", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010101", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010102", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010103", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010104", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010105", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010106", :start, "00:00:33.734"}
         ]
       },
 
@@ -110,8 +97,9 @@ defmodule Data.Article.Static.Alltagsroute11 do
           "85e45f5b7958efca1803585db2256047" => ~d[2021-07]
         },
         videos: [
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013692", "00:00:06.506", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013693", :start, "00:01:37.097"}
+          {"2023-07-09-vr11-und-erwrtng/GX010092", "00:00:31.999", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010093", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010094", :start, "00:01:25.735"}
         ]
       },
       %Video.Track{
@@ -127,10 +115,9 @@ defmodule Data.Article.Static.Alltagsroute11 do
           "f7bc9a5473aa1b8ec99b8a8635205521" => ~d[2021-07]
         },
         videos: [
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013688", "00:00:20.187", "00:01:15.642"},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013689", "00:00:01.935", :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013690", :start, :end},
-          {"2022-05-01-velo11-u-velo10-ab-harburg/GX013691", :start, "00:00:06.206"}
+          {"2023-07-09-vr11-und-erwrtng/GX010074", "00:00:07.040", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010075", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010076", :start, "00:00:07.074"}
         ]
       }
     ]

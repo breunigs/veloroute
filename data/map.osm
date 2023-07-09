@@ -32647,6 +32647,7 @@
     <nd ref='-22533421' />
     <nd ref='-22533422' />
     <nd ref='-22533418' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-04-23-tilsiter-strasse' />
     <tag k='type' v='article' />
   </way>
@@ -45730,6 +45731,7 @@
     <nd ref='-37874205' />
     <nd ref='-37874206' />
     <nd ref='-37874201' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-10-18-6-stormarner-strasse-eulenkamp' />
     <tag k='type' v='article' />
   </way>
@@ -69396,6 +69398,7 @@
     <nd ref='102991000597847' />
     <nd ref='100845000597401' />
     <nd ref='97589000596714' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-10-24-6-tilsiter-strasse-eckerkoppel-w16' />
     <tag k='type' v='article' />
   </way>

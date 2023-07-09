@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
   def start(), do: ~d[2023-05]
   def stop(), do: ~d[2025-05]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def summary(),
     do:
@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juli 2023",
+       "https://lsbg.hamburg.de/resource/blob/682528/33da7c73b0e73be578858f51ad3067a8/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Erläuterungsbericht", "2022",
        "https://lsbg.hamburg.de/resource/blob/634666/03bb1a5a5dd137979f2b451f2cb59e09/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan – 1. Abschnitt", "2022",

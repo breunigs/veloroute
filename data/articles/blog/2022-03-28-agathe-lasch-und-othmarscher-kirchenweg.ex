@@ -8,14 +8,16 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
   def summary(),
     do: "Anfang 2023 soll ein Kreisverkehr die Kreuzung ersetzen."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["1"]
 
-  def start(), do: ~d[2023-07]
-  def stop(), do: ~d[2023-12]
+  def start(), do: ~d[2023-07-17]
+  def stop(), do: ~d[2023-11]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baustart", "Juli 2023",
+       "https://www.hamburg.de/altona/baustelleninfos/17233080/kreisverkehr-holmbrook-veloroutenausbau/"},
       {"2. Entwurf: Erläuterung und Lageplan", "Februar 2023",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013675"},
       {"1. Entwurf: Erläuterung und Lageplan", "April 2022",

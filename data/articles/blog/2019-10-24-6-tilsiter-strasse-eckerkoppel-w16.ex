@@ -27,6 +27,9 @@ defmodule Data.Article.Blog.TilsiterStrasseEckerkoppelW16 do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Juli 2023</h4>
+    <p>Berichten zufolge soll der Verkehrsversuch nicht stattfinden.</p>
+
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr teilt sich mit KFZ die Straße im <.ref>Mischverkehr</.ref>. Erlaubt sind meist 50 km/h, um die <.v bounds="10.099576,53.595674,10.104851,53.5993" lon={10.101412} lat={53.597368} dir="forward" ref="6">Walter-Heitmann-Straße</.v> 30 km/h.</p>
 

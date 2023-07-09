@@ -8,7 +8,8 @@ defmodule Data.Article.Static.Alltagsroute6 do
   def color(), do: "#2a3283"
 
   def summary(),
-    do: "Alltagsroute 6 führt vom Rathaus nach Volksdorf"
+    do:
+      "Alltagsroute 6 führt vom Rathaus nach Volksdorf. Dort schließt der künftige Radschnellweg nach Ahrensburg an."
 
   def tags(), do: [id()]
 
@@ -21,33 +22,30 @@ defmodule Data.Article.Static.Alltagsroute6 do
         from: "Innenstadt",
         to: "Volksdorf",
         parent_ref: __MODULE__,
-        text: "aus der Innenstadt nach Volksdorf",
+        text: "aus der Innenstadt nach Volksdorf und Ahrensburg",
         historic: %{
           "d0e15711298a41ecbefec751b3199a2f" => ~d[2022-05],
           "72143674b74709247f36b15a8f72d968" => ~d[2021-06]
         },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013576", "00:00:38.872", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013577", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013578", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013579", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013580", :start, "00:00:31.431"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013581", "00:00:22.256", "00:00:58.425"},
-          {"2022-05-14-velo6-u-bundesstr/GX013857", "00:00:16.316", "00:02:05.158"},
-          {"2022-05-14-velo6-u-bundesstr/GX013879", "00:00:23.223", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013880", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013881", :start, "00:00:02.803"},
-          {"2022-05-14-velo6-u-bundesstr/GX013860", "00:00:02.569", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013861", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013862", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013863", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013864", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013865", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013866", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013867", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013868", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013869", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013870", :start, "00:01:58.385"}
+          {"2023-07-08-vr6-rsw-ahr/GX010010", "00:00:06.907", :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010011", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010012", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010013", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010014", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010015", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010016", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010017", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010018", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010019", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010020", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010021", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010022", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010023", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010024", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010025", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010026", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010027", :start, "00:00:19.682"}
         ]
       },
       %Video.Track{
@@ -57,33 +55,32 @@ defmodule Data.Article.Static.Alltagsroute6 do
         from: "Volksdorf",
         to: "Innenstadt",
         parent_ref: __MODULE__,
-        text: "aus Volksdorf in die Innenstadt",
+        text: "aus Ahrensburg und Volksdorf in die Innenstadt",
         historic: %{
           "90460e690f3f5258649b1cdd9e3c4d75" => ~d[2022-05],
           "76ea19b0a672d5d88c4007fb2785c44b" => ~d[2021-06]
         },
         videos: [
-          {"2022-05-14-velo6-u-bundesstr/GX013870", "00:02:36.723", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013871", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013872", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013873", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013874", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013875", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013876", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013877", :start, "00:01:47.174"},
-          {"2022-05-14-velo6-u-bundesstr/GX013877", "00:01:47.741", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013878", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013879", :start, "00:00:03.403"},
-          {"2022-05-14-velo6-u-bundesstr/GX013884", "00:00:03.637", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013885", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013886", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013887", :start, "00:00:03.670"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013627", "00:00:27.594", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013628", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013629", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013630", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013631", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013632", :start, "00:00:09.042"}
+          {"2023-07-08-vr6-rsw-ahr/GX010028", "00:01:07.721", :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010029", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010030", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010031", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010032", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010033", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010034", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010035", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010036", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010037", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010038", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010039", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010040", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010041", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010042", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010043", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010044", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010045", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010046", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010047", :start, "00:00:11.511"}
         ]
       }
     ]

@@ -24,40 +24,47 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "veloroute",
         direction: :forward,
         from: "Mundsburg",
         to: "Elbbrücken",
         parent_ref: __MODULE__,
         text: "Fahrtrichtung Süden/Elbbrücken",
+        historic: %{
+          "be17ae4d8ea24a156b6655109e5a47c7" => "2022-01"
+        },
         videos: [
-          {"2022-01-19-neue-veloroute/GX013183", "00:00:01.168", :end},
-          {"2022-01-19-neue-veloroute/GX013184", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013185", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013186", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013187", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013188", :start, "00:00:31.064"}
+          {"2023-07-09-vr11-und-erwrtng/GX010085", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010086", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010087", :start, "00:00:01.935"},
+          {"2023-07-09-vr11-und-erwrtng/GX010087", "00:00:06.940", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010088", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010089", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010090", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010091", :start, "00:00:43.368"}
         ]
       },
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "veloroute",
         direction: :backward,
         from: "Elbbrücken",
         to: "Mundsburg",
         parent_ref: __MODULE__,
         text: "Fahrtrichtung Norden/Mundsburg",
+        historic: %{
+          "5b15cf42b0142b8cba7829d168ca37df" => "2022-01"
+        },
         videos: [
-          {"2021-04-17-freizeitrouten-6und-7/GX011306", "00:00:40.774", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011307", :start, "00:00:01.735"},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011129", "00:00:15.649", :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011130", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011131", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011132", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013178", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013179", :start, :end},
-          {"2022-01-19-neue-veloroute/GX013181", :start, :end}
+          {"2023-07-09-vr11-und-erwrtng/GX010077", "00:00:27.522", :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010078", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010079", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010080", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010081", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010082", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010083", :start, :end},
+          {"2023-07-09-vr11-und-erwrtng/GX010084", :start, :end}
         ]
       }
     ]
@@ -77,8 +84,6 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
 
     <h4>Aktueller Zustand</h4>
     <p>Die neue Veloroute ist bereits heute befahrbar und besteht aus <.ref>Hochbordradwegen</.ref> und einem kürzeren Abschnitt mit <.ref>Radfahrstreifen</.ref>. Die Wege sind meist 1,50m-1,60m breit, was den Mindestbreiten zum jeweiligen Bauzeitpunkt entspricht. Für Alltagsrouten strebt man künftig 2,50m Breite an, Bordsteine und andere Trennelemente nicht eingerechnet.</p>
-
-    <p>Die Ampelschaltungen entlang der Route sind nicht auf den Radverkehr abgestimmt. Gerade im <.v bounds="10.02397,53.540309,10.034974,53.552383" lon={10.026095} lat={53.550829} dir="forward" ref={@ref}>Heidenkampsweg</.v> führt dies häufig zu einer roten Welle.</p>
 
     <p>Die Führung ist entlang einer 4 bis 8-spurigen KFZ-Hauptstraße, was sich im hohen Lärmpegel bemerkbar macht.</p>
 
