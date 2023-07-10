@@ -32,7 +32,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
         parent_ref: __MODULE__,
         text: "Fahrtrichtung Süden/Elbbrücken",
         historic: %{
-          "be17ae4d8ea24a156b6655109e5a47c7" => "2022-01"
+          "be17ae4d8ea24a156b6655109e5a47c7" => ~d[2022-01]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010085", :start, :end},
@@ -54,7 +54,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
         parent_ref: __MODULE__,
         text: "Fahrtrichtung Norden/Mundsburg",
         historic: %{
-          "5b15cf42b0142b8cba7829d168ca37df" => "2022-01"
+          "5b15cf42b0142b8cba7829d168ca37df" => ~d[2022-01]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010077", "00:00:27.522", :end},
