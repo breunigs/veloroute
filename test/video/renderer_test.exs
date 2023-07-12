@@ -2,8 +2,6 @@ defmodule Video.RendererTest do
   use ExUnit.Case, async: true
 
   # test "produces correct video render commands" do
-  #   # silence warning
-  #   System.put_env("DISABLE_OPENCL", "1")
 
   #   cmd =
   #     Video.RendererTest.Example

@@ -538,19 +538,6 @@ defmodule Video.Renderer do
   end
 
   def variant_flags() do
-    # OpenCL can run out of memory on the GPU for some averse inputs it seems.
-    opencl =
-      if System.get_env("DISABLE_OPENCL", "0") == "1" do
-        ~w[-x264-params threads=4]
-      else
-        IO.puts(
-          :stderr,
-          "\nOpenCL is enabled. If you run out of GPU memory, set DISABLE_OPENCL=1"
-        )
-
-        ~w[-x264-params opencl=true]
-      end
-
     Enum.flat_map(variants(), fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
       ["-c:v:#{idx}"] ++
         codec ++
@@ -570,7 +557,7 @@ defmodule Video.Renderer do
           "-bufsize:#{idx}",
           "#{buf_size(rate)}M"
         ]
-    end) ++ opencl
+    end) ++ ~w[-x264-params threads=4]
   end
 
   defp encoder(tmp_dir) when is_binary(tmp_dir) do

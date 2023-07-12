@@ -1,11 +1,9 @@
 FROM debian:testing-slim AS downloader
 
-# ARG RAV1E_VERSION=refs/tags/p20230214
-# ARG RAV1E_REPO=xiph
-ARG RAV1E_VERSION=3bd454f701741c8972276799f54048e35408c2ea
-ARG RAV1E_REPO=BlueSwordM
+ARG RAV1E_VERSION=refs/tags/p20230704
+ARG RAV1E_REPO=xiph
 
-ARG FFMPEG_VERSION=5.1.2
+ARG FFMPEG_VERSION=6.0
 ARG BLUR_VERSION=3408b06fa2a30c092301cc2851c82de8fe453811
 
 RUN mkdir -p /downloads/
@@ -59,6 +57,8 @@ RUN \
   binutils \
   build-essential \
   ca-certificates \
+  cargo \
+  cargo-c \
   cmake \
   curl \
   frei0r-plugins-dev \
@@ -79,17 +79,9 @@ RUN \
   meson \
   nasm \
   ninja-build \
-  opencl-dev \
   pkg-config \
-  yasm \
-  && echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list \
-  && echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/sources.list \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-  cargo/unstable \
-  cargo-c/unstable \
-  rustc/experimental \
-  && rm -rf /var/lib/apt/lists/*
+  rustc \
+  yasm
 
 ENV PREFIX=/build
 RUN mkdir ${PREFIX}
@@ -123,14 +115,14 @@ RUN cd /downloads/ffmpeg && \
   --enable-libx264 \
   --enable-libx265 \
   --enable-libzimg \
-  --enable-opencl \
   --enable-vaapi \
   --disable-debug \
   --disable-doc \
   --disable-ffplay \
-  --disable-ffprobe && \
+  --disable-ffprobe \
+  --disable-asm && \
   make -j $(nproc) && make install && make distclean
-
+# --disable-asm is a workaround for https://fftrac-bg.ffmpeg.org/ticket/10405
 
 FROM debian:testing-slim AS runner
 RUN \
@@ -138,6 +130,7 @@ RUN \
   apt-get install -y --no-install-recommends \
   adduser \
   i965-va-driver \
+  libaom3 \
   libboost-iostreams1.74.0 \
   libc6 \
   libdav1d[0-9]+ \
@@ -151,16 +144,6 @@ RUN \
   libx264-[0-9]+ \
   libx265-[0-9]+ \
   libzimg2 \
-  mesa-opencl-icd \
-  ocl-icd-libopencl1 \
-  ocl-icd-opencl-dev \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN \
-  echo "deb http://deb.debian.org/debian unstable main" >> /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
-  beignet-opencl-icd \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/lib/frei0r-1/
