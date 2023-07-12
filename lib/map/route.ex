@@ -60,7 +60,7 @@ defmodule Map.Route do
           %{optional(binary()) => [Map.Way.t()]},
           Article.t()
         ) :: t()
-  defp find_single(track, graph, indexed, article) do
+  defp find_single(track, graph, indexed, art) do
     legs =
       [track.from, track.via, track.to]
       |> List.flatten()
@@ -69,7 +69,7 @@ defmodule Map.Route do
 
     {ways, nodes} =
       Enum.reduce(legs, {[], []}, fn [from, to], {ways, nodes} ->
-        leg = Graph.Pathfinding.dijkstra(graph, from, to) |> warn_on_nil_leg(track, to, from)
+        leg = Graph.Pathfinding.dijkstra(graph, from, to) |> warn_on_nil_leg(track, to, from, art)
         # this conveniently skips all named "targets" and only returns the actual ways
         next_ways = Enum.flat_map(leg, fn wid -> indexed[wid] || [] end) |> Util.compact()
         next_nodes = Enum.flat_map(next_ways, fn w -> Enum.slice(w.nodes, 1..-1) end)
@@ -84,24 +84,25 @@ defmodule Map.Route do
     nodes = [hd(hd(ways).nodes) | nodes]
 
     %__MODULE__{
-      name: article.name(),
-      group_title: article.title(),
+      name: art.name(),
+      group_title: art.title(),
       route_title: Video.Track.name(track),
       nodes: nodes
     }
   end
 
-  defp warn_on_nil_leg(leg, track, to, from)
+  defp warn_on_nil_leg(leg, track, to, from, article)
 
-  defp warn_on_nil_leg(nil, track, to, from) do
+  defp warn_on_nil_leg(nil, track, to, from, article) do
     throw("""
-    WARNING: No leg for '#{track.text}' from '#{from}' to '#{to}'.
+    WARNING on #{article}:
+        No leg for '#{track.text}' from '#{from}' to '#{to}'.
         Ensure the relation with 'name=#{track.parent_ref.id()}' contains a way where one of the nodes is tagged as 'target=#{from}' and/or 'target=#{to}' respectively.
         This particular route will be skipped and missing from the GPX file.
     """)
   end
 
-  defp warn_on_nil_leg(leg, _, _, _), do: leg
+  defp warn_on_nil_leg(leg, _, _, _, _), do: leg
 
   defp normalize(r) do
     for %{role: r, ref: %Map.Way{} = way} <- r.members do

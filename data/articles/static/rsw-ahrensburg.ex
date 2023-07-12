@@ -13,7 +13,16 @@ defmodule Data.Article.Static.RSWAhrensburg do
 
   def tags(), do: [id(), "rsw", "ahrensburg"]
 
-  def tracks(), do: Data.Article.Static.Alltagsroute6.tracks()
+  def tracks(),
+    do:
+      Data.Article.Static.Alltagsroute6.tracks()
+      |> Enum.map(fn
+        %{from: "Innenstadt"} = track ->
+          %{track | from: "Hamburg Volksdorf", to: "Ahrensburg Gewerbegebiet Süd"}
+
+        %{from: "Volksdorf"} = track ->
+          %{track | from: "Ahrensburg Gewerbegebiet Süd", to: "Hamburg Volksdorf"}
+      end)
 
   def links(_assigns) do
     [
