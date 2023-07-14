@@ -24,8 +24,9 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @shortdoc "Checks for updates in Hamburg's Bezirksversammlungen"
   def run(_) do
-    load_status()
-    |> show_all_districts()
+    status = load_status() |> show_all_districts()
+
+    Enum.reduce(Allris.districts(), status, &Map.put(&2, &1, today()))
     |> write_status()
   end
 
