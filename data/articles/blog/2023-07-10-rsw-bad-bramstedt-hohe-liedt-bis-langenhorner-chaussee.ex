@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.RswBadBramstedtHoheLiedtBisLangenhornerChaussee do
   def text(assigns) do
     ~H"""
     <h4>Vorstellung</h4>
-    <p>Die Planung soll am 17. Juni 2023, 18 Uhr im <.m bounds="9.996444,53.671403,9.99823,53.672369">ella Kulturhaus</.m> öffentlich vorgestellt werden. <.a href="https://www.hamburg.de/hamburg-nord/pressemitteilungen/17222690/radschnellweg-vorstellung-planung/">Weitere Informationen</.a>.</p>
+    <p>Die Planung soll am 17. Juli 2023, 18 Uhr im <.m bounds="9.996444,53.671403,9.99823,53.672369">ella Kulturhaus</.m> öffentlich vorgestellt werden. <.a href="https://www.hamburg.de/hamburg-nord/pressemitteilungen/17222690/radschnellweg-vorstellung-planung/">Weitere Informationen</.a>.</p>
 
     <h4>Alter Zustand</h4>
     <p>Die <.ref>Hochbordradwege</.ref> im <.v bounds="10.015687,53.668256,10.021982,53.670465" lon={10.018514} lat={53.669128} dir="backward" ref="4">Neubergerweg</.v> sind schmal, heruntergekommen und damit kaum befahrbar. In der <.v bounds="9.999254,53.668028,10.021792,53.67794" lon={10.012415} lat={53.675545} dir="backward" ref="4">Fibigerstraße</.v> fährt man im <.ref>Mischverkehr</.ref> mit den Autos. Am Straßenrand abgestellte Autos verhindern bei Gegenverkehr ein flüssiges Vorankommen. In der <.v bounds="9.998495,53.676334,10.004074,53.681774" lon={10.000533} lat={53.678482} dir="backward" ref="4">Langenhorner Chaussee</.v> gibt es eigene Radwege im Hochbord oder als <.ref>Radfahrstreifen</.ref>. Vorfahrt entlang des Radschnellweges gibt es bisher nicht.</p>

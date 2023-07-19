@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
   def stop(), do: ~d[2023-06-30]
   def construction_site_id_hh(), do: [36805]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["3"]
 

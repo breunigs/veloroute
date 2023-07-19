@@ -4,10 +4,10 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
   def created_at(), do: ~D[2022-01-12]
   def title(), do: "Karlshöhe / August-Krogmann-Straße"
 
-  def start(), do: ~d[2023]
-  def stop(), do: ~d[2024]
+  def start(), do: ~d[2023-07-23]
+  def stop(), do: ~d[2024-11]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def summary(),
     do:
@@ -19,10 +19,12 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juli 2023",
+       "https://lsbg.hamburg.de/resource/blob/683522/03f3f7820ae2e19d7ac4fe6d2db99e11/farmsener-weg-karlshoehe-saseler-chaussee-bis-carsten-reimers-ring-anliegerinformation-juli-2023-data.pdf"},
+      {"Detailänderungen Lagepläne", "Juli 2023",
+       "https://lsbg.hamburg.de/resource/blob/683520/f37632a41f69ec0b164b9d9c4bad5976/farmsener-weg-von-saseler-chaussee-bis-carsten-reimers-ring-angepasste-ausfuehrungsplanung--data.pdf"},
       {"Projektseite des LBSG",
        "https://lsbg.hamburg.de/farmsener-weg-bis-august-krogmann-strasse"},
-      {"Info zum Bauzeitraum", "April 2022",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016251"},
       {"Erläuterungsbericht und Lagepläne",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1015845"}
     ]

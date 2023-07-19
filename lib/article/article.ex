@@ -9,6 +9,7 @@ defmodule Article do
           | :changed_routing
           | :issue
           | :ampel
+          | :event
           | nil
 
   @type assigns() :: %{optional(atom) => any}

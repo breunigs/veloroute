@@ -113,7 +113,8 @@ defmodule Article.Decorators do
     ampel: "Unfaire Ampel",
     intent: "Vorhaben",
     issue: "Problemstelle",
-    finished: "Abgeschlossen"
+    finished: "Abgeschlossen",
+    event: "Veranstaltung"
   }
 
   @spec type_name(Article.t() | Article.article_type()) :: binary() | nil
