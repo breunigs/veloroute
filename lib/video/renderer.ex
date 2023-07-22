@@ -36,6 +36,8 @@ defmodule Video.Renderer do
         "ultrafast",
         "-qp",
         "17",
+        "-tune",
+        "zerolatency",
         "-an",
         "-f",
         "matroska",
@@ -295,7 +297,7 @@ defmodule Video.Renderer do
 
     rendered.sources()
     |> Enum.with_index()
-    |> Parallel.map(2, fn {{path, _from, _to}, idx} ->
+    |> Parallel.map(4, fn {{path, _from, _to}, idx} ->
       meta = metadata(path)
 
       if meta.pts_correction != 1 do

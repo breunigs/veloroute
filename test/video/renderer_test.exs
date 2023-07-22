@@ -221,6 +221,8 @@ defmodule Video.RendererTest do
              "ultrafast",
              "-qp",
              "17",
+             "-tune",
+             "zerolatency",
              "-an",
              "-f",
              "matroska",

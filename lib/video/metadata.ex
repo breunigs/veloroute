@@ -8,7 +8,8 @@ defmodule Video.Metadata do
           time_lapse: pos_integer() | nil,
           pts_correction: float()
         }
-  @typep state :: %{optional(binary) => t()}
+
+  @typep state :: %{optional(binary) => t() | boolean()}
 
   @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
   defstruct @enforce_keys
@@ -24,7 +25,29 @@ defmodule Video.Metadata do
 
   def for(video_path) when is_binary(video_path) do
     start_link()
-    Agent.get_and_update(__MODULE__, &video_info(&1, video_path), :infinity)
+
+    Agent.get_and_update(
+      __MODULE__,
+      fn state ->
+        val = state[video_path]
+        state = Map.put_new(state, video_path, :pending)
+        {val, state}
+      end,
+      :infinity
+    )
+    |> case do
+      nil ->
+        meta = run(video_path)
+        Agent.update(__MODULE__, &Map.put(&1, video_path, meta), :infinity)
+        meta
+
+      :pending ->
+        Process.sleep(100)
+        __MODULE__.for(video_path)
+
+      meta ->
+        meta
+    end
   end
 
   @spec can_use?(binary) :: boolean()
@@ -38,9 +61,10 @@ defmodule Video.Metadata do
       raise "can only use fake for testing"
     end
 
-    Agent.update(__MODULE__, fn state -> Map.put(state, path, val) end, :infinity)
+    Agent.update(__MODULE__, fn state -> Map.put(state, path, {:ok, val}) end, :infinity)
   end
 
+  @spec codec_info(state(), binary()) :: {boolean(), state()}
   defp codec_info(state, codec) when is_map_key(state, codec),
     do: {state[codec], state}
 
@@ -57,21 +81,7 @@ defmodule Video.Metadata do
     {can_use, Map.put(state, codec, can_use)}
   end
 
-  @spec video_info(state(), binary()) :: {{:ok, t()} | {:error, binary()}, state}
-  defp video_info(state, video_path) when is_map_key(state, video_path),
-    do: {{:ok, state[video_path]}, state}
-
-  defp video_info(state, video_path) do
-    case run(video_path) do
-      {:ok, val} ->
-        {{:ok, val}, Map.put(state, video_path, val)}
-
-      {:error, err} ->
-        IO.puts(:stderr, err)
-        {{:error, err}, state}
-    end
-  end
-
+  @spec run(binary()) :: {:ok, t()} | {:error, binary()}
   defp run(video_path) do
     cli = [
       "ffprobe",

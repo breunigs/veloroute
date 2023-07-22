@@ -109,8 +109,8 @@ defmodule Docker do
     )
   end
 
-  @spec run(binary(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
-  def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+  @spec run_cmd(binary(), list(binary()), keyword()) :: {[binary()], binary()}
+  def run_cmd(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
     container_name = clean_name("veloroute2#{name}", opts[:name])
@@ -120,7 +120,9 @@ defmodule Docker do
       "docker",
       "run",
       "--user",
-      "#{Util.user_id()}:#{Util.group_id()}",
+      "#{Util.user_id()}",
+      # commented out because it seems if this is set, it will be the ONLY group
+      # ":#{Util.group_id()}",
       "--rm",
       "--name",
       container_name,
@@ -136,11 +138,17 @@ defmodule Docker do
       end)
 
     args = args ++ extra_mounts
-    opts = Keyword.delete(opts, :mounts)
-
     args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
     args = if docker_supports_gpu(), do: args ++ ["--gpus", "all"], else: args
     args = args ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args
+
+    {args, container_name}
+  end
+
+  @spec run(binary(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
+  def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+    {args, container_name} = run_cmd(dockerfile, extra_args, opts)
+    opts = Keyword.delete(opts, :mounts)
 
     try do
       Util.Cmd2.exec(

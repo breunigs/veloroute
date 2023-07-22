@@ -4,20 +4,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
   import Guards
 
-  @video_player [
-    "mpv",
-    "--pause",
-    "--no-resume-playback",
-    "--force-window=immediate",
-    "--framedrop=no",
-    "--audio=no",
-    "--keep-open=yes",
-    "--demuxer-max-bytes=10G",
-    "--force-seekable=no",
-    "-"
-  ]
-
-  @shortdoc "Print commands to preview videos that are still missing. Set BLUR=1 to include blurs."
+  @shortdoc "Preview not yet rendered videos. Call without arguments for a list and help."
   def run(args) do
     Video.Dir.must_exist!()
     if args == [], do: list(), else: preview(args)
@@ -26,32 +13,45 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   defp list do
     IO.puts("""
 
-    ###########################################################
-    # Help
-    ###########################################################
+    ##############################################################################################
+    Help
+    ##############################################################################################
 
     You can specify not-yet-generated videos by name and index. For example, this will preview the
     first track of the given article:
-    BLUR=1 MIX_QUIET=1 mix velo.videos.preview Data.Article.Static.Alltagsroute12 0 | #{Util.cli_printer(@video_player)}
+    mix velo.videos.preview Data.Article.Static.Alltagsroute12 0
 
     You can also preview later parts of the videos by specifying a timestamp like so:
-    BLUR=1 MIX_QUIET=1 mix velo.videos.preview Data.Article.Static.Alltagsroute12 0 00:05:00.000
-    BLUR=1 MIX_QUIET=1 mix velo.videos.preview b02ba2966179568a3307afb13cac6783     00:05:00.000
+    mix velo.videos.preview Data.Article.Static.Alltagsroute12 0 00:05:00.000
+    mix velo.videos.preview b02ba2966179568a3307afb13cac6783     00:05:00.000
 
     Below any generated, but not rendered videos will be shown. If there are none, try running:
     mix velo.videos.generate new
+
+    ##############################################################################################
+    Options (environment variables)
+    ##############################################################################################
+
+    VELO_BLUR=1                 also preview the detected blurs. Recommended off, since it is slow.
+    VELO_HOST_FFMPEG=1          use ffmpeg executable from host. This is faster than running
+                                ffmpeg in docker, but might fail depending on your ffmpeg build.
+                                Recommended on if it works for you.
+    VELO_PREVIEW_TOOL=<shell>   By default "mpv" is used. You can specify any shell command here
+                                that can handle the video stream being piped to it. To save the
+                                video into a file, use VELO_PREVIEW_TOOL="cat > somefile"
+                                Recommendation is to install "mpv".
+
+    ##############################################################################################
+    Previews
+    ##############################################################################################
     """)
 
     Video.Generator.pending()
     |> Enum.sort_by(& &1.name)
     |> Enum.each(fn rendered ->
       IO.puts("""
-
-      ###########################################################
       # #{rendered.name}
-      ###########################################################
-
-      BLUR=1 MIX_QUIET=1 mix velo.videos.preview #{rendered.hash} | #{Util.cli_printer(@video_player)}
+      mix velo.videos.preview #{rendered.hash}
       """)
     end)
   end
@@ -95,14 +95,49 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   end
 
   defp stream_video(rendered, args) do
-    blur = System.get_env("BLUR", nil) == "1"
+    blur = System.get_env("VELO_BLUR", nil) == "1"
     start_from = List.first(args)
     start_from_text = start_from || "the start"
     IO.puts(:stderr, "previewing #{rendered.hash()}: #{rendered.name()} from #{start_from_text}")
     cmd = Video.Renderer.preview_cmd(rendered, blur, start_from)
 
-    Docker.build_and_run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
-      name: "preview #{rendered.hash()}"
-    )
+    if System.get_env("VELO_HOST_FFMPEG") == "1" do
+      exec_pipe(cmd)
+    else
+      dockerfile = "tools/ffmpeg/Dockerfile.ffmpeg"
+
+      with %{result: :ok} <- Docker.build(dockerfile),
+           {cmd, container_name} <- Docker.run_cmd(dockerfile, cmd) do
+        try do
+          exec_pipe(cmd)
+        after
+          System.cmd("docker", ["stop", "--time=0", container_name])
+        end
+      else
+        err -> IO.puts(:stderr, "failed to build tools/ffmpeg/Dockerfile.ffmpeg: #{inspect(err)}")
+      end
+    end
+  end
+
+  @default_player Util.cli_printer(~w[
+    mpv
+    --pause
+    --no-resume-playback
+    --force-window=immediate
+    --framedrop=no
+    --audio=no
+    --keep-open=yes
+    --demuxer-max-bytes=10G
+    --force-seekable=no
+    -
+  ])
+
+  @spec exec_pipe([binary()]) :: any
+  defp exec_pipe(cmd) do
+    player = System.get_env("VELO_PREVIEW_TOOL", @default_player)
+    # avoid using erlexec because it costs us some performance. Also
+    # isolating the commands like this doesn't require us to set
+    # MIX_QUIET=1 to avoid printing stuff to stdout.
+    "#{Util.cli_printer(cmd)} | #{player}" |> String.to_charlist() |> :os.cmd()
   end
 end
