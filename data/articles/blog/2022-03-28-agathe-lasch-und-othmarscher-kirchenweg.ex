@@ -12,7 +12,8 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
   def tags(), do: ["1"]
 
   def start(), do: ~d[2023-07-17]
-  def stop(), do: ~d[2023-11]
+  def stop(), do: ~d[2023-08-26]
+  def construction_site_id_hh(), do: [428_864]
 
   def links(_assigns) do
     [

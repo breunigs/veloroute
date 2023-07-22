@@ -24,30 +24,27 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Duvenstedt",
         historic: %{
+          "3e4199822d555e6cd92ca1a971b306c8" => ~d[2023-07],
           "e2af2b96121f8a6d64a7def8e6fa5ea6" => ~d[2022-04],
           "8f35f063edcc6c17f5e2cb22419b8b66" => ~d[2021-09]
         },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013576", "00:00:38.872", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013577", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013578", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013579", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013580", :start, "00:00:31.431"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013581", "00:00:22.256", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013582", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013583", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013584", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013585", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013586", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013587", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013588", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013591", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013592", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013594", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013595", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013596", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013597", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013598", :start, :end}
+          {"2023-07-22-vr5/GX016212", "00:00:02.903", :end},
+          {"2023-07-22-vr5/GX016213", :start, :end},
+          {"2023-07-22-vr5/GX016214", :start, :end},
+          {"2023-07-22-vr5/GX016215", :start, :end},
+          {"2023-07-22-vr5/GX016231", :start, :end},
+          {"2023-07-22-vr5/GX016232", :start, :end},
+          {"2023-07-22-vr5/GX016233", :start, :end},
+          {"2023-07-22-vr5/GX016234", :start, :end},
+          {"2023-07-22-vr5/GX016235", :start, :end},
+          {"2023-07-22-vr5/GX016236", :start, :end},
+          {"2023-07-22-vr5/GX016237", :start, :end},
+          {"2023-07-22-vr5/GX016238", :start, :end},
+          {"2023-07-22-vr5/GX016239", :start, :end},
+          {"2023-07-22-vr5/GX016240", :start, :end},
+          {"2023-07-22-vr5/GX016241", :start, :end},
+          {"2023-07-22-vr5/GX016242", :start, :end}
         ]
       },
       %Video.Track{
@@ -59,33 +56,27 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "von Duvenstedt in die Innenstadt",
         historic: %{
+          "4d16236f1880945ff73319526eff409f" => ~d[2023-07],
           "4ad987f9aae61fb035d7317b944dea10" => ~d[2022-04],
           "34568a80252f5daab563eb9ebce3893e" => ~d[2021-06]
         },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013599", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013600", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013601", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013602", :start, "00:02:08.695"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013603", "00:00:08.041", "00:00:54.454"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013603", "00:01:07.067", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013604", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013605", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013606", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013607", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013608", :start, "00:00:16.383"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013608", "00:00:17.951", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013609", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013611", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013612", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013614", :start, "00:00:03.070"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013626", "00:00:20.587", :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013627", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013628", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013629", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013630", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013631", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013632", :start, "00:00:09.042"}
+          {"2023-07-22-vr5/GX016243", "00:00:00.868", :end},
+          {"2023-07-22-vr5/GX016244", :start, :end},
+          {"2023-07-22-vr5/GX016245", :start, :end},
+          {"2023-07-22-vr5/GX016246", :start, :end},
+          {"2023-07-22-vr5/GX016247", :start, :end},
+          {"2023-07-22-vr5/GX016248", :start, :end},
+          {"2023-07-22-vr5/GX016249", :start, :end},
+          {"2023-07-22-vr5/GX016250", :start, :end},
+          {"2023-07-22-vr5/GX016251", :start, :end},
+          {"2023-07-22-vr5/GX016252", :start, :end},
+          {"2023-07-22-vr5/GX016253", :start, :end},
+          {"2023-07-22-vr5/GX016254", :start, :end},
+          {"2023-07-22-vr5/GX016255", :start, :end},
+          {"2023-07-22-vr5/GX016256", :start, :end},
+          {"2023-07-22-vr5/GX016257", :start, :end},
+          {"2023-07-22-vr5/GX016258", :start, "00:00:29.897"}
         ]
       },
       %Video.Track{
@@ -97,17 +88,23 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "Hamburger Meile zur City Nord",
         historic: %{
+          "b0b53d5543210c46fbfe2397291a7fa4" => ~d[2023-07],
           "0564511a98d53f27dd754ae1a4af11fa" => ~d[2022-04],
           "7cdaf2d2df2ac71669fab5292b882c95" => ~d[2021-06]
         },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013615", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013616", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013617", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013618", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013619", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013620", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013621", :start, :end}
+          {"2023-07-22-vr5/GX016216", :start, :end},
+          {"2023-07-22-vr5/GX016217", :start, :end},
+          {"2023-07-22-vr5/GX016218", :start, :end},
+          {"2023-07-22-vr5/GX016219", :start, :end},
+          {"2023-07-22-vr5/GX016220", :start, :end},
+          {"2023-07-22-vr5/GX016221", :start, :end},
+          {"2023-07-22-vr5/GX016222", :start, :end},
+          {"2023-07-22-vr5/GX016223", :start, "00:00:01.001"},
+          {"2023-07-22-vr5/GX016223", "00:00:05.072", "00:00:12.312"},
+          {"2023-07-22-vr5/GX016223", "00:00:18.418", :end},
+          {"2023-07-22-vr5/GX016224", :start, :end},
+          {"2023-07-22-vr5/GX016225", :start, "00:00:07.673"}
         ]
       },
       %Video.Track{
@@ -119,14 +116,17 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "City Nord zur Hamburger Meile",
         historic: %{
+          "f6524e1bfb7c5405dad1cdb01c7c386e" => ~d[2023-07],
           "495adb7cbe7ae5df22ef39eae21f65dc" => ~d[2022-04],
           "695e28731f9a008ea8fab77b48a12dc5" => ~d[2021-06]
         },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013622", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013624", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013625", :start, :end},
-          {"2022-04-30-velo5-u-12innenstadt/GX013626", :start, "00:00:19.987"}
+          {"2023-07-22-vr5/GX016225", "00:00:07.673", :end},
+          {"2023-07-22-vr5/GX016226", :start, :end},
+          {"2023-07-22-vr5/GX016227", :start, :end},
+          {"2023-07-22-vr5/GX016228", :start, :end},
+          {"2023-07-22-vr5/GX016229", :start, :end},
+          {"2023-07-22-vr5/GX016230", :start, :end}
         ]
       }
     ]
