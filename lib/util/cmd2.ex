@@ -33,6 +33,7 @@ defmodule Util.Cmd2 do
     # exceeded a timebox, so workaround it is.
     task = Task.async(fn -> exec_cmd2(cli, name, env, stdout, stderr, stdin, kill) end)
     status = Task.await(task, :infinity)
+    :io.setopts(:standard_io, encoding: :unicode)
 
     result =
       if status[:status] == 0 do
