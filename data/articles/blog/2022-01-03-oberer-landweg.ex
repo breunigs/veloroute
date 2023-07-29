@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.ObererLandweg do
   def start(), do: ~d[2023-05]
   def stop(), do: ~d[2024-04]
 
-  def type(), do: :intent
+  def type(), do: :construction
 
   def summary(),
     do: "Planung 2022, Umbau bis 2023"
@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.ObererLandweg do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel zum Umbaustart", "Juli 2023",
+       "https://www.abendblatt.de/hamburg/bergedorf/article239022931/Oberer-Landweg-Neun-Monate-Baustelle-fuer-die-Veloroute.html"},
       {"Baustellenkoordination", "Januar 2023",
        "https://sitzungsdienst-bergedorf.hamburg.de/bi/to020.asp?TOLFDNR=1025381"},
       {"Haushaltsplan 2022 Bezirk Bergedorf (Entwurf)",

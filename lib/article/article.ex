@@ -5,6 +5,7 @@ defmodule Article do
           :construction
           | :planned
           | :finished
+          | :outdated
           | :intent
           | :changed_routing
           | :issue

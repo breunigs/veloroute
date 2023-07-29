@@ -112,6 +112,7 @@ defmodule Article.Decorators do
     changed_routing: "Routenänderung",
     ampel: "Unfaire Ampel",
     intent: "Vorhaben",
+    outdated: "Veraltet",
     issue: "Problemstelle",
     finished: "Abgeschlossen",
     event: "Veranstaltung"

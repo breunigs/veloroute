@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
 
   def title(), do: "Ludwig-Rosenberg-Ring (Alltagsroute 8)"
 
-  def start(), do: ~d[2023-07]
+  def start(), do: ~d[2023-09]
   def stop(), do: ~d[2024-03]
 
   def type(), do: :intent

@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.SFriedrichsberg do
 
   def title(), do: "Kreuzung am S-Bahnhof Friedrichsberg (Veloroute 6)"
 
-  def type(), do: :planned
+  def type(), do: :outdated
 
   def tags(), do: ["6", "br-wandsbek-w1", "FR3"]
 
@@ -23,6 +23,9 @@ defmodule Data.Article.Blog.SFriedrichsberg do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Juli 2023</h4>
+    <p>Siehe <.a name="2021-10-08-krausestrasse">Artikel zur gesamten Krausestraße</.a> für die aktuelle Variante. Der untenstehende Artikel ist veraltet.</p>
+
     <h4>Alter Zustand</h4>
     <p>Die Kreuzung ist für den Radverkehr verwirrend und umständlich zu benutzen – der Veloroute geradeaus folgen bedeutet regelmäßig drei rote Ampeln. Zudem reichen die Aufstellflächen bereits beim heutigen Radaufkommen nicht aus. Viele Jahre nach Änderung der StVO hat die Stadt es immerhin geschafft die Streuscheiben in den Ampeln anzupassen, damit der Radverkehr nicht mehr die für ihn unbrauchbaren Ampeln auf den KFZ-Fahrspuren beachten muss.</p>
 
@@ -46,7 +49,7 @@ defmodule Data.Article.Blog.SFriedrichsberg do
       <li>Konflikte mit dem Busverkehr</li>
     </ul>
 
-    <p>In diesem Sinne ist es vorteilhaft für den Radverkehr, dass sich die Umsetztung solange hinausgezögert hat. So besteht immerhin die Chance, dass die Stadt Verbesserungen einbringt statt den unbrauchbaren Zustand auf Jahre zu zementieren. Eine zeitgemäße Planung würde den Friedrichsberger Park und Mühlenteichpark zusammenwachsen lassen, statt weiterhin riesige Flächen für den KFZ-Verkehr zu versiegeln. Wenigstens aber müssen die Radspuren ordentliche Breite erhalten und geschützt werden.</p>
+    <p>In diesem Sinne ist es vorteilhaft für den Radverkehr, dass sich die Umsetzung solange hinausgezögert hat. So besteht immerhin die Chance, dass die Stadt Verbesserungen einbringt statt den unbrauchbaren Zustand auf Jahre zu zementieren. Eine zeitgemäße Planung würde den Friedrichsberger Park und Mühlenteichpark zusammenwachsen lassen, statt weiterhin riesige Flächen für den KFZ-Verkehr zu versiegeln. Wenigstens aber müssen die Radspuren ordentliche Breite erhalten und geschützt werden.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
