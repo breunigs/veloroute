@@ -103,14 +103,30 @@ defmodule ArticleTest do
     assert [] == broken
   end
 
+  test "historic tracks includes track itself" do
+    broken =
+      Article.List.all()
+      |> Enum.flat_map(fn art -> Enum.map(art.tracks(), &{art, &1, Video.Generator.get(&1)}) end)
+      |> Enum.reject(fn {_art, track, _rendered} -> track.historic == nil end)
+      |> Enum.reject(fn {_art, track, rendered} ->
+        hash = rendered && rendered.hash()
+        Map.has_key?(track.historic, hash)
+      end)
+      |> Enum.map(fn {art, track, rendered} ->
+        "#{art} track '#{track.text}' should contain #{rendered && rendered.hash()}"
+      end)
+
+    assert [] == broken
+  end
+
   test "newer articles have a summary" do
-    missing_sumnmary =
+    missing_summary =
       Article.List.all()
       |> Enum.reject(fn art -> art.updated_at() == nil end)
       |> Enum.filter(fn art -> Date.compare(art.updated_at(), ~D[2022-01-01]) == :gt end)
       |> Enum.filter(fn art -> art.summary() == "" end)
 
-    assert [] == missing_sumnmary
+    assert [] == missing_summary
   end
 
   test "names consist of allowed characters only" do
