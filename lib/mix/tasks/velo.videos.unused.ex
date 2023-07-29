@@ -2,27 +2,31 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
   use Mix.Task
   @requirements ["app.start"]
 
-  @shortdoc "List unused/unreferenced rendererd videos"
+  @shortdoc "List unused/unreferenced rendered videos"
   def run(_args) do
     Video.Dir.must_exist!()
 
     in_dir = File.ls!(Settings.video_target_dir_abs()) |> MapSet.new()
     in_code = Video.Generator.all() |> Enum.map(& &1.hash()) |> MapSet.new()
 
-    in_articles =
+    {current, historic} =
       Article.List.all()
       |> Enum.flat_map(& &1.tracks())
-      |> Enum.flat_map(fn track ->
+      |> Enum.reduce({[], []}, fn track, {currs, hists} ->
         historic = Map.keys(track.historic || %{})
         current = Video.Generator.get(track)
 
-        if(current, do: [current.hash()], else: []) ++ historic
+        {[if(current, do: current.hash()) | currs], historic ++ hists}
       end)
-      |> MapSet.new()
+
+    current = current |> Util.compact() |> MapSet.new()
+    historic = historic |> MapSet.new()
+    in_articles = MapSet.union(current, historic)
 
     unreferenced = in_dir |> MapSet.difference(in_articles)
     unreachable = unreferenced |> MapSet.difference(in_code)
     with_link_only = unreferenced |> MapSet.difference(unreachable)
+    historic_only = historic |> MapSet.difference(current)
 
     rel_path = "./" <> Path.relative_to_cwd(Settings.video_target_dir_abs())
 
@@ -73,6 +77,28 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
       """)
     end
 
+    historic_only =
+      historic_only
+      |> Parallel.map(&{&1, count_variants(&1)})
+      |> Enum.filter(fn {_hash, num} -> num && num > 1 end)
+      |> Enum.map(&elem(&1, 0))
+
+    if length(historic_only) > 0 do
+      IO.puts("""
+
+      #####################################################################
+      The following video renders are only used as historic reference. It's
+      likely enough to only keep the highest quality for these, since they
+      are not directly playable in the browser by the user anymore.
+
+      To clean up:
+      mix velo.videos.delete_low_quality <HASH>
+      #####################################################################
+
+      #{Enum.join(historic_only, "\n")}
+      """)
+    end
+
     IO.puts("\n\n\nDone")
   end
 
@@ -87,5 +113,15 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
     end)
     |> Enum.sort_by(&elem(&1, 1), :desc)
     |> Enum.map(&elem(&1, 0))
+  end
+
+  defp count_variants(hash) do
+    with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
+         {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
+         variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
+      length(variants)
+    else
+      _ -> nil
+    end
   end
 end

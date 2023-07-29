@@ -1,12 +1,14 @@
 defmodule Cli do
-  def confirm(text) do
+  def confirm(text, default \\ true) do
+    prompt = if default, do: " [Y/n] ", else: " [y/N] "
+
     resp =
-      case IO.gets(text <> " [Y/n] ") do
+      case IO.gets(text <> prompt) do
         :eof -> ""
         {:error, _reason} -> "no"
-        dat -> String.downcase(dat) |> String.trim()
+        dat -> dat |> to_string() |> String.downcase() |> String.trim()
       end
 
-    resp == "" || resp == "y" || resp == "yes"
+    resp == "y" || resp == "yes" || (resp == "" && default)
   end
 end
