@@ -587,23 +587,20 @@ body.fullscreen video, #videoOuter:fullscreen video {
   touch-action: pan-x;
 
   div {
-    margin-left: calc($width / -2);
-    width: 0;
-    height: 0;
-    user-select: none;
-    background-image: url("/images/switcher.svg");
-    transition: background-image 0.2s ease-in-out;
+    background-image: url("/images/switcher2.svg");
+    background-position: left center;
     background-repeat: no-repeat;
-    background-position: center center;
-    width: $width;
+    background-size: 200% 100%;
     height: $height;
+    margin-left: calc($width / -2);
     touch-action: pan-x;
-    background-size: cover;
+    user-select: none;
+    width: $width;
   }
 }
 
 .showSidebar #switcher div {
-  background-image: url("/images/switcher_rev.svg"), url("/images/switcher.svg");
+  background-position: right center;
 }
 
 $buttonSize: 1.8rem;
