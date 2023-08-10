@@ -101,7 +101,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
     <p>Bushaltestellen werden jeweils zum Halt am Fahrbahnrand umgebaut. Man muss dann entweder hinter dem Bus warten oder ihn überholen, während Fahrgäste ein- und aussteigen.</p>
 
     <h4>Planung – Abweichungen</h4>
-    <p>Wenn nicht anders erwähnt, wird das oben erklärte Prinzip verwendet. Es gibt alledings einige Ausnahmen:</p>
+    <p>Wenn nicht anders erwähnt, wird das oben erklärte Prinzip verwendet. Es gibt allerdings einige Ausnahmen:</p>
 
     <ul>
       <li>Bis zum <.v bounds="10.076469,53.652934,10.077677,53.656572" lon={10.077073} lat={53.65624} group="fußweg" dir="forward" ref={@ref}>Minsbekweg</.v> gibt es einen 1,90m breiten Radfahrstreifen Richtung Norden. Die Aufleitung auf den Fußweg erfolgt nach dem Bushalt.</li>

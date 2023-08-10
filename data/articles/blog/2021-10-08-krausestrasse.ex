@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Krausestrasse do
 
   def summary(),
     do:
-      "Umbau Krausestraße verschiebt sich. Stattdessen 2023 vielleicht Versuchsradweg (Pop-Up Bikelane)"
+      "Umbau nicht vor 2026. In der Zwischenzeit werden stellenweise Radwege angelegt/aufgemalt, die aber nicht durchgängig sind."
 
   def type(), do: :planned
   def start(), do: ~d[2026]
