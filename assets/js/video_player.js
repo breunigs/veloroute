@@ -32,6 +32,7 @@ video.addEventListener('play', ensureVideoIsSet, {
 });
 video.addEventListener('pause', markPause);
 video.addEventListener('pause', updatePlaypause);
+video.addEventListener('pause', maybeShowLoadingIndicator);
 
 // 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
