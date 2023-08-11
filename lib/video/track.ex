@@ -21,8 +21,8 @@ defmodule Video.Track do
         ]
   # 32*8=256
   @type hash :: <<_::256>>
-
   @type recording_dates :: [%{timestamp: non_neg_integer(), text: binary()}]
+  @typep historic :: %{hash() => Data.RoughDate.t()}
 
   @type fade :: float() | :none | nil
   defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
@@ -37,7 +37,7 @@ defmodule Video.Track do
           parent_ref: module() | binary(),
           videos: plain() | nil,
           renderer: pos_integer(),
-          historic: %{hash() => Data.RoughDate.t()} | nil
+          historic: historic() | nil
         }
 
   @enforce_keys @known_params -- [:via, :historic]
@@ -76,6 +76,15 @@ defmodule Video.Track do
       Date.compare(want, have) != :gt
     end)
   end
+
+  @doc """
+  Return all historic videos for the given hash.
+  """
+  @spec historic_for(t(), hash()) :: historic()
+  def historic_for(%__MODULE__{historic: hist}, hash) when is_map_key(hist, hash),
+    do: Map.delete(hist, hash)
+
+  def historic_for(%__MODULE__{}, _hash), do: %{}
 
   @doc """
   Loads all references videos and turns them into a single stream of
