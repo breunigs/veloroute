@@ -557,7 +557,7 @@ $cyclistSize: 8rem;
 
   &.loading {
     &::after, &::before {
-      transition-delay: 500ms;
+      transition-delay: 1500ms;
       opacity: 1;
       animation-play-state: running;
     }

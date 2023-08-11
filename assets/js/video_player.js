@@ -21,6 +21,8 @@ video.addEventListener('loadeddata', maybeShowLoadingIndicator);
 video.addEventListener('stalled', maybeShowLoadingIndicator);
 video.addEventListener('waiting', maybeShowLoadingIndicator);
 video.addEventListener('playing', maybeShowLoadingIndicator);
+video.addEventListener('seeked', maybeShowLoadingIndicator);
+video.addEventListener('seeking', maybeShowLoadingIndicator);
 video.addEventListener('timeupdate', updateMetadata);
 video.addEventListener('timeupdate', updateProgressbar);
 video.addEventListener('progress', updateProgressbar);
@@ -351,7 +353,8 @@ function seekToTime(timeInMs) {
 }
 
 function maybeShowLoadingIndicator(evt) {
-  const showSpinner = !video.paused && !video.ended && video.readyState < 3
+  let showSpinner = !video.paused && !video.ended && video.readyState < 3
+  showSpinner = showSpinner || video.seeking
   poster.classList.toggle("loading", showSpinner)
 }
 
