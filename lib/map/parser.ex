@@ -6,19 +6,40 @@ defmodule Map.Parser do
   @typep indexed_relations :: %{optional(binary()) => Map.Relation.t()}
 
   def default_map_path, do: @default_map_path
-
   def load_default, do: load(default_map_path())
 
   def load(map_path) when is_binary(map_path) do
+    map_path |> read() |> parse()
+  end
+
+  def read(map_path) do
     raw = File.read!(map_path)
     parsed = Saxy.SimpleForm.parse_string(raw)
     {:ok, {"osm", _attr, children}} = parsed
+    children
+  end
 
-    children = Enum.reject(children, &is_deleted?(&1))
+  # x=Map.Parser.read("data/map.osm"); Benchmark.flamegraph("loading", fn -> Map.Parser.parse(x) end); nil
+  def parse(children) do
+    grouped =
+      Enum.reduce(children, %{"node" => [], "way" => [], "relation" => []}, fn
+        {tagName, attrList, children}, grouped ->
+          attrs = Enum.into(attrList, %{})
 
-    nodes = nodes(children)
-    ways = ways(children, nodes)
-    relations = relations(children, ways, nodes)
+          if attrs["action"] == "deleted" do
+            grouped
+          else
+            elem = {tagName, attrs, children}
+            Map.put(grouped, tagName, [elem | grouped[tagName]])
+          end
+
+        _other, grouped ->
+          grouped
+      end)
+
+    nodes = nodes(grouped["node"])
+    ways = ways(grouped["way"], nodes)
+    relations = relations(grouped["relation"], ways, nodes)
 
     %Map.Parsed{ways: filter_typed(ways), nodes: filter_typed(nodes), relations: relations}
   end
@@ -32,20 +53,11 @@ defmodule Map.Parser do
     end)
   end
 
-  defp is_deleted?({_tag, attrsList, _children}) do
-    Enum.member?(attrsList, {"action", "delete"})
-  end
-
-  defp is_deleted?(_), do: false
-
   @spec relations(any(), indexed_ways, indexed_nodes) :: indexed_relations
   defp relations(parsed, ways, nodes) do
     parsed
-    |> filter_by("relation")
-    |> Enum.into(%{}, fn w ->
-      {"relation", attrsList, children} = w
-
-      attrs = Enum.into(attrsList, %{})
+    |> Enum.reduce(%{}, fn w, relations ->
+      {"relation", attrs, children} = w
 
       members =
         children
@@ -71,7 +83,7 @@ defmodule Map.Parser do
         |> Map.Element.with_bbox()
         |> Map.Relation.purge_member_bbox()
 
-      {attrs["id"], rel}
+      Map.put(relations, attrs["id"], rel)
     end)
     |> Map.reject(fn
       {_k, %{tags: %{ignore: true}}} -> true
@@ -81,46 +93,40 @@ defmodule Map.Parser do
 
   @spec ways(any(), indexed_nodes) :: indexed_ways
   defp ways(parsed, nodes) do
-    parsed
-    |> filter_by("way")
-    |> Enum.into(%{}, fn w ->
-      {"way", attrsList, children} = w
-
-      attrs = Enum.into(attrsList, %{})
+    Enum.reduce(parsed, %{}, fn w, ways ->
+      {"way", attrs, children} = w
 
       nodes =
         children
         |> filter_by("nd")
         |> Enum.map(fn {"nd", [{"ref", ref}], _} -> nodes[ref] end)
-        |> ensure_right_hand_winding
+        |> ensure_right_hand_winding()
 
       if length(nodes) == 0, do: raise("Way without nodes: #{inspect(w)}")
 
-      {attrs["id"],
-       Map.Element.with_bbox(%Map.Way{
-         id: attrs["id"],
-         tags: tags(children),
-         nodes: nodes
-       })}
+      Map.put(
+        ways,
+        attrs["id"],
+        Map.Element.with_bbox(%Map.Way{
+          id: attrs["id"],
+          tags: tags(children),
+          nodes: nodes
+        })
+      )
     end)
   end
 
   @spec nodes(any()) :: indexed_nodes
   defp nodes(parsed) do
-    parsed
-    |> filter_by("node")
-    |> Enum.into(%{}, fn w ->
-      {"node", attrsList, children} = w
+    Enum.reduce(parsed, %{}, fn w, nodes ->
+      {"node", attrs, children} = w
 
-      attrs = Enum.into(attrsList, %{})
-
-      {attrs["id"],
-       %Map.Node{
-         id: attrs["id"],
-         tags: tags(children),
-         lon: to_f(attrs["lon"]),
-         lat: to_f(attrs["lat"])
-       }}
+      Map.put(nodes, attrs["id"], %Map.Node{
+        id: attrs["id"],
+        tags: tags(children),
+        lon: String.to_float(attrs["lon"]),
+        lat: String.to_float(attrs["lat"])
+      })
     end)
   end
 
@@ -145,16 +151,13 @@ defmodule Map.Parser do
   end
 
   defp tags(enum) do
-    enum
-    |> filter_by("tag")
-    |> Enum.into(%{}, fn {"tag", [{"k", key}, {"v", val}], _children} ->
-      {String.to_atom(key), weak_bool(val)}
-    end)
-  end
+    Enum.reduce(enum, %{}, fn
+      {"tag", [{"k", key}, {"v", val}], _children}, tags ->
+        Map.put(tags, String.to_atom(key), weak_bool(val))
 
-  defp to_f(str) do
-    {f, ""} = Float.parse(str)
-    f
+      _other_elem, tags ->
+        tags
+    end)
   end
 
   defp weak_bool("yes"), do: true
