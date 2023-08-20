@@ -337,7 +337,9 @@ function hideQualityChooser() {
   videoQuality.style.display = 'none';
 }
 
+let fixSeekForWrongVideoDuration = null
 function seekToTime(timeInMs) {
+  fixSeekForWrongVideoDuration = null
   timeInMs = Math.max(timeInMs, 0);
   const inSeconds = timeInMs / 1000.0;
 
@@ -349,12 +351,18 @@ function seekToTime(timeInMs) {
       pos: Math.round(timeInMs),
     })
   }
+  if (video.duration < inSeconds && video.currentTime < inSeconds) {
+    fixSeekForWrongVideoDuration = timeInMs
+    video.addEventListener('durationchange', () => {
+      if(fixSeekForWrongVideoDuration) seekToTime(fixSeekForWrongVideoDuration)
+    }, {  once: true })
+  }
   updateProgressbar();
 }
 
 function maybeShowLoadingIndicator(evt) {
   let showSpinner = !video.paused && !video.ended && video.readyState < 3
-  showSpinner = showSpinner || video.seeking
+  showSpinner = showSpinner || video.seeking || fixSeekForWrongVideoDuration
   poster.classList.toggle("loading", showSpinner)
 }
 
@@ -474,14 +482,14 @@ function reverseVideo() {
 function seekFromProgress(e) {
   const rect = this.getBoundingClientRect();
   const pos = (e.pageX - rect.left) / this.offsetWidth;
-  const max = Math.round(video.duration * 1000) || videoMeta.length_ms;
+  const max = videoMeta.length_ms || Math.round(video.duration * 1000);
 
   seekToTime(pos * max);
 };
 
 function updateProgressbar() {
-  const ms = videoTimeInMs;
-  const max = Math.round(video.duration * 1000) || videoMeta.length_ms;
+  const ms = fixSeekForWrongVideoDuration || videoTimeInMs;
+  const max = videoMeta.length_ms || Math.round(video.duration * 1000);
   const msText = ms2text(ms);
   const maxText = ms2text(max);
 
