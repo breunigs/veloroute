@@ -31935,6 +31935,7 @@
     <nd ref='-22532652' />
     <nd ref='-22532651' />
     <nd ref='-22532644' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-06-28-waterloostrasse' />
     <tag k='type' v='article' />
   </way>

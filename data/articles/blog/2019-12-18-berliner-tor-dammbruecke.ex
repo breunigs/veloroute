@@ -8,12 +8,14 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
   def start(), do: ~d[2023]
   def stop(), do: ~d[2028]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["8"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "August 2023",
+       "https://lsbg.hamburg.de/resource/blob/686460/b6bff8414fba446e31a9961cd8db174b/berlinertordammbruecke-anliegerinformation-august-2023-data.pdf"},
       {"Lageplan",
        "https://lsbg.hamburg.de/resource/blob/634088/f6034b058889bc37b879049515e2b080/berlinertordammbruecke-abstimmungsunterlage-plan-data.pdf"},
       {"Erläuterungsbericht",

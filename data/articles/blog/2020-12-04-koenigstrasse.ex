@@ -18,8 +18,10 @@ defmodule Data.Article.Blog.Koenigstrasse do
 
   def links(_assigns) do
     [
+      {"Auftragsvergabe Abschnitt 2, Mörkenstraße bis Reeperbahn", "August 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/db27136a-ff71-428c-bc2f-7919703f2c37"},
       {"Auftragsvergabe Abschnitt 1, Max-Brauer-Allee bis Mörkenstraße", "April 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/e8b677ea-7e74-4856-9af7-ac49dd515e5c"},
+       "https://web.archive.org/web/20230518145144/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e8b677ea-7e74-4856-9af7-ac49dd515e5c/details"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan", "2022",

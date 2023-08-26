@@ -22,9 +22,6 @@ defmodule Data.Article.Blog.Wagnerstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Infoveranstaltung</h4>
-    <p>Die Planung wird am 25. Mai 2023, 18 Uhr im <.m bounds="10.069644,53.570593,10.072656,53.572142" name="Am Alten Posthaus">Bürgersaal Wandsbek (Am Alten Posthaus 4, 22041 Hamburg)</.m> vorgestellt.</p>
-
     <h4>Alter Zustand</h4>
     <p>Stellenweise sind <.ref>Hochbordradwege</.ref> oder <.ref>Radfahrstreifen</.ref> vorhanden. Sie sind nicht durchgängig und verlaufen häufig im <.ref>Dooring</.ref>-Bereich.</p>
 
