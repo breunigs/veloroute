@@ -9,8 +9,7 @@ defmodule Video.ServePlug do
     gzip: false,
     brotli: false,
     headers: %{
-      "cache-control" => "public, max-age=31536000, immutable",
-      "x-robots-tag" => "noindex"
+      "cache-control" => "public, max-age=31536000, immutable"
     }
 
   plug :maybe_not_found

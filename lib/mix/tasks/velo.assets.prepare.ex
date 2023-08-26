@@ -28,10 +28,6 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   defp robots_txt() do
     File.write("priv/static/robots.txt", """
     User-agent: *
-    Disallow: /#{Settings.video_serve_path()}/
-    Disallow: /map/___hillshade/
-    Disallow: /map/___satellite/
-    Disallow: /map/___static/
     """)
   end
 end
