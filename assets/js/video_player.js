@@ -158,6 +158,7 @@ function updateVideoElement() {
         maxMaxBufferLength: 20, // seconds
         minAutoBitrate: minAutoBitrate,
         startPosition: videoMeta.start / 1000.0,
+        capLevelOnFPSDrop: true,
       };
 
       if (window.hls && window.hls.currentLevel) {
