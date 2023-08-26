@@ -234,6 +234,7 @@ defmodule VelorouteWeb.Live.VideoState do
     end
   end
 
+  defp parse_integer(nil), do: nil
   defp parse_integer(num) when is_integer(num), do: num
 
   defp parse_integer(num) when is_binary(num) do
