@@ -110,7 +110,6 @@ defmodule Video.Renderer do
                name: "ffmpeg render"
              ),
            :ok <- manually_tag_missing(tmp_path),
-           :ok <- create_fallbacks(tmp_dir),
            :ok <- move(tmp_path, target) do
         :ok
       end
@@ -183,34 +182,6 @@ defmodule Video.Renderer do
       {:error, err} ->
         {:error, err}
     end
-  end
-
-  defp create_fallbacks(tmp_dir) do
-    variants()
-    |> Enum.filter(&is_map_key(&1, :fallback))
-    |> Enum.map(fn %{index: idx, fallback: fb} ->
-      cmd =
-        @nice_render ++
-          [
-            "ffmpeg",
-            "-hide_banner",
-            "-loglevel",
-            "fatal",
-            "-i",
-            Path.join(tmp_dir, "stream_#{idx}.m4s"),
-            "-c:v",
-            "copy",
-            "-movflags",
-            "+faststart",
-            Path.join(tmp_dir, "fallback.#{fb}")
-          ]
-
-      Docker.run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
-        env: [],
-        name: "ffmpeg fallback #{fb}"
-      )
-    end)
-    |> collect_errors()
   end
 
   defp collect_errors(list) do
@@ -528,7 +499,7 @@ defmodule Video.Renderer do
       %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_rav1e/2},
       %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_rav1e/2},
       # legacy codec
-      %{width: 640, height: 360, bitrate: 4, fallback: :mp4, codec: &codec_avc/2},
+      %{width: 640, height: 360, bitrate: 4, codec: &codec_avc/2},
       %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
     ]
     |> Enum.with_index()

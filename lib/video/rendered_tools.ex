@@ -40,10 +40,9 @@ defmodule Video.RenderedTools do
       """
 
       to_delete =
-        (["fallback.mp4"] ++
-           Enum.flat_map(variants -- [best], fn var ->
-             [var.url, String.replace(var.url, ".m3u8", ".m4s")]
-           end))
+        Enum.flat_map(variants -- [best], fn var ->
+          [var.url, String.replace(var.url, ".m3u8", ".m4s")]
+        end)
         |> Enum.map(&Path.join([Settings.video_target_dir_abs(), hash, &1]))
 
       %{

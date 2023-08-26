@@ -127,11 +127,6 @@ function attachHlsErrorHandler(obj, Hls) {
         props: props
       });
     } else {
-      // if (data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferStalledError") {
-      //   minAutoBitrate = Math.round(minAutoBitrate / 2)
-      //   window.hls.config.minAutoBitrate = minAutoBitrate
-      //   console.log("halfed minAutoBitrate to", minAutoBitrate)
-      // }
       console.log('Hls encountered an error', data);
       sendCurrentVideoTime();
       window.plausible('video-hls-error', {
@@ -144,19 +139,12 @@ function attachHlsErrorHandler(obj, Hls) {
 function updateVideoElement() {
   if (!videoMeta.hash) return;
   console.debug('trying to play video for: ', videoMeta.hash)
-  const path = `/videos-rendered/${videoMeta.hash}/`;
-  const preloads = `
-    <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream.m3u8">
-    <link rel="preload" as="fetch" crossorigin="anonymous" href="${path}stream_0.m3u8">
-  `;
-
   if (canPlayHLS) {
     console.debug('native hls, doing nothing?')
   } else if (window.hls === false || typeof Promise === "undefined") {
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')
-    video.innerHTML = preloads;
     import('hls.js/dist/hls.light.min.js').then(Hls => {
       if (!Hls.isSupported()) return window.hls = false;
       console.debug('loading hls video stream');
@@ -204,7 +192,8 @@ function updateVideoElement() {
       window.hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
       window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
       window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
-      window.hls.loadSource(`${path}stream.m3u8`);
+      const path = document.getElementById("hlsJsUrl").getAttribute("href");
+      window.hls.loadSource(path);
       updatePlaypause();
       video.addEventListener('play', () => {
         if (!window.hls) return;
@@ -216,19 +205,9 @@ function updateVideoElement() {
   }
 
   console.debug('loading regular html video')
-  const time = `#t=${videoMeta.start / 1000.0}`;
-  // codec version for h264 can be determined through (Debian package: gpac)
-  // MP4Box -info fallback.mp4 2>&1 | grep RFC6381 | awk '{print $4}'
-  const innerHTML = `
-    <source src="${path}stream.m3u8${time}" type="application/x-mpegURL">
-    <source src="${path}fallback.mp4${time}" type="video/mp4; codecs=avc1.64001E">
-    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href="${path}fallback.mp4" target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
-    ${preloads}
-  `;
-  video.innerHTML = innerHTML;
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
-  video.load();
+  try { video.load(); } catch (e) { }
   if (autoplay) video.play();
 }
 
@@ -299,16 +278,6 @@ function updateQualityChooser() {
     const auto = window.hls.autoLevelEnabled;
 
     let duplicates = {};
-    let displayCodec = false;
-    for (let i = 0; i < window.hls.levels.length; i++) {
-      const h = window.hls.levels[i].height;
-      if (duplicates[h]) {
-        displayCodec = true;
-        break
-      }
-      duplicates[h] = true;
-    }
-
     let choosers = "";
     for (let i = window.hls.levels.length - 1; i >= 0; i--) {
       let classes = "eye"
@@ -323,7 +292,7 @@ function updateQualityChooser() {
       let name = `${window.hls.levels[i].height}p`;
       const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
 
-      if (displayCodec) name += ` <small>${codec.name}</small>`
+      name += ` <small>${codec.name}</small>`
       choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
     }
     choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
