@@ -3718,7 +3718,7 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "transportation",
-      "minzoom": 10,
+      "minzoom": 12,
       "filter": [
         "all",
         ["!=", ["geometry-type"], "Polygon"],
