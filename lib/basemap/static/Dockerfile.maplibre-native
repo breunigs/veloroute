@@ -1,32 +1,27 @@
 # specify which branch or commit sha to build
-ARG MLN_COMMIT=4c01b7ef1f19964167070c3ea008780b8df72182
+ARG MLN_COMMIT=09f17c0fc42453edd274392d528266a6b6130abf
 ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
 # keep runtime dependencies in sync with Dockerfile.release
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
-  ca-certificates \
-  curl \
-  && curl \
-  -O http://archive.ubuntu.com/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_2.0.3-0ubuntu1_amd64.deb \
-  && echo "1995dec9707f7e0d827ae49301d2ab20 libjpeg-turbo8_2.0.3-0ubuntu1_amd64.deb" | md5sum --check - \
-  && apt-get -y install --no-install-recommends \
-  ./*.deb \
   libcurl4 \
   libglx0 \
   libicu[0-9]+$ \
+  libjpeg62-turbo \
   libopengl0 \
   libpng16-16 \
   libuv1 \
+  libwebp[0-9]+$ \
   xauth \
   xvfb \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm *.deb
+  && rm -rf /var/lib/apt/lists/*
 
 FROM runner-base as cloner
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
+  ca-certificates \
   git \
   && rm -rf /var/lib/apt/lists/*
 ENV MLN_COMMIT=$MLN_COMMIT
@@ -36,11 +31,7 @@ RUN git clone --recurse-submodules -j8 https://github.com/maplibre/maplibre-nati
 
 FROM runner-base as builder
 RUN apt-get -y update \
-  && curl \
-  -O http://archive.ubuntu.com/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8-dev_2.0.3-0ubuntu1_amd64.deb \
-  && echo c19e6747893f44eec34abe40b29d7aca libjpeg-turbo8-dev_2.0.3-0ubuntu1_amd64.deb | md5sum --check - \
   && apt-get -y install --no-install-recommends \
-  ./*.deb \
   ccache \
   cmake \
   g++ \
@@ -51,8 +42,10 @@ RUN apt-get -y update \
   libgl1-mesa-dri \
   libglfw3-dev \
   libicu-dev \
+  libjpeg62-turbo-dev \
   libpng-dev \
   libuv1-dev \
+  libwebp-dev \
   ninja-build \
   pkg-config \
   && rm -rf /var/lib/apt/lists/*
@@ -71,17 +64,19 @@ FROM runner-base as runner
 WORKDIR /build
 COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 
-# RUN xvfb-run -a \
-#   ./mbgl-render \
-#   --style https://raw.githubusercontent.com/maplibre/demotiles/gh-pages/style.json \
-#   --output out.png \
-#   && rm cache.sqlite out.png
-
 # copy finicky libraries that are not easily installed in other hosts.
 # run executable like so:
-# LD_PRELOAD=$(ls *.so* | sed 's,lib,./lib,' | sed -z 's,\n, ,g') ./mbgl-render
+# LD_PRELOAD=$(ls *.so* | sed 's,lib,./lib,' | sed -z 's,\n, ,g')
+# echo '9.9711715 53.585086000000004 10.0 1 500 500 route-highlight route_id 11' | \
+#   xvfb-run -a \
+#   ./mbgl-render \
+#     --style priv/static/assets/basemap/styles/standard.json.local \
+#     --assets priv/static/ \
+#     --max-zoom 14
 RUN cp \
-  /usr/lib/x86_64-linux-gnu/libjpeg.so.8 \
+  /usr/lib/x86_64-linux-gnu/libwebp.so.6 \
+  /usr/lib/x86_64-linux-gnu/libwebp.so.6.0.2 \
+  /usr/lib/x86_64-linux-gnu/libjpeg.so.62 \
   /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
   /usr/lib/x86_64-linux-gnu/libicuuc.so.67 \
   /usr/lib/x86_64-linux-gnu/libicudata.so.67 \

@@ -21,14 +21,14 @@ defmodule Basemap.Static.Plug do
       |> add_optional_params(params)
       |> Basemap.Static.Runner.render()
       |> case do
-        {:ok, png} ->
+        {:ok, content_type, image} ->
           conn
-          |> Plug.Conn.put_resp_content_type("image/png")
+          |> Plug.Conn.put_resp_content_type(content_type, nil)
           |> Plug.Conn.put_resp_header(
             "cache-control",
             "public, max-age=#{@seconds_per_day}, immutable"
           )
-          |> Plug.Conn.send_resp(200, png)
+          |> Plug.Conn.send_resp(200, image)
           |> Plug.Conn.halt()
 
         {:error, reason} ->

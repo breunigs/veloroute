@@ -33,7 +33,7 @@ defmodule Basemap.Static.Runner do
   and pixelRatio.
   """
   @spec render(render_task(), non_neg_integer()) ::
-          {:ok, png :: binary()} | {:error, reason :: binary()}
+          {:ok, content_type :: binary(), image :: binary()} | {:error, reason :: binary()}
   def render(task, timeout \\ 5000) do
     line =
       Enum.join(
@@ -103,7 +103,9 @@ defmodule Basemap.Static.Runner do
   end
 
   def handle_info({port, {:data, data}}, state) when not is_map_key(state.processing, port) do
-    Logger.warning("#{inspect(port)} send unexpected data; state #{inspect(state)}; #{data}")
+    Logger.warning(
+      "#{inspect(port)} send unexpected data; state #{inspect(state)}; #{inspect(data)}"
+    )
 
     {:noreply, state}
   end
@@ -113,7 +115,20 @@ defmodule Basemap.Static.Runner do
       when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
-    if !expired?(deadline), do: GenServer.reply(from, {:ok, @png_header <> data})
+    if !expired?(deadline), do: GenServer.reply(from, {:ok, "image/png", @png_header <> data})
+    {:noreply, state |> free_port(port) |> maybe_start_render()}
+  end
+
+  @riff <<82, 73, 70, 70>>
+  @webp <<87, 69, 66, 80>>
+  def handle_info(
+        {port, {:data, @riff <> <<_size::binary-size(4)>> <> @webp <> _rest = data}},
+        state
+      )
+      when is_map_key(state.processing, port) do
+    %{^port => {from, _line, deadline}} = state.processing
+
+    if !expired?(deadline), do: GenServer.reply(from, {:ok, "image/webp", data})
     {:noreply, state |> free_port(port) |> maybe_start_render()}
   end
 
@@ -121,6 +136,14 @@ defmodule Basemap.Static.Runner do
       when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
+    if expired?(deadline), do: Logger.warning(msg), else: GenServer.reply(from, {:error, msg})
+    {:noreply, state |> free_port(port) |> maybe_start_render()}
+  end
+
+  def handle_info({port, {:data, data}}, state) when is_map_key(state.processing, port) do
+    %{^port => {from, _line, deadline}} = state.processing
+
+    msg = "Received data from mbgl-render that was not understood: #{inspect(data)}"
     if expired?(deadline), do: Logger.warning(msg), else: GenServer.reply(from, {:error, msg})
     {:noreply, state |> free_port(port) |> maybe_start_render()}
   end

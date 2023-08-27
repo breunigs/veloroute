@@ -2,13 +2,14 @@
 #include <mbgl/map/map_options.hpp>
 #include <mbgl/util/image.hpp>
 #include <mbgl/util/run_loop.hpp>
-
+#include <mbgl/util/premultiply.hpp>
 #include <mbgl/storage/network_status.hpp>
 #include <mbgl/gfx/headless_frontend.hpp>
-
 #include <mbgl/style/expression/dsl.hpp>
 #include <mbgl/style/filter.hpp>
 #include <mbgl/style/style.hpp>
+
+#include <webp/encode.h>
 
 #include <args.hxx>
 
@@ -18,12 +19,12 @@
 
 #define FIXED_WIDTH_UINT(value) char((value) >> 24), char((value) >> 16), char((value) >> 8), char((value) >> 0)
 
-bool file_exists(const std::string& name) {
+bool file_exists(const std::string &name) {
     std::ifstream f(name.c_str());
     return f.good();
 }
 
-std::vector<std::string> split(const std::string& s, char delim) {
+std::vector<std::string> split(const std::string &s, char delim) {
     std::vector<std::string> elems;
     std::stringstream ss(s);
     std::string item;
@@ -32,27 +33,27 @@ std::vector<std::string> split(const std::string& s, char delim) {
     }
     return elems;
 }
-void printError(const std::string& msg) {
-    const std::string prefix = "error";
+void printError(const std::string &msg) {
+    const std::string prefix = "error: ";
     const char length[4] = {FIXED_WIDTH_UINT(prefix.size() + msg.size())};
     std::cout.write(length, 4);
     std::cout << prefix << msg;
 }
 
-void die(const std::string& msg) {
+void die(const std::string &msg) {
     printError(msg);
     exit(1);
 }
 
-void printPNG(const std::string& png) {
-    const char length[4] = {FIXED_WIDTH_UINT(png.size())};
+void printImage(const std::string &img) {
+    const char length[4] = {FIXED_WIDTH_UINT(img.size())};
     std::cout.write(length, 4);
-    std::cout << png;
+    std::cout << img;
 }
 
 std::map<std::string, std::string> cache;
 std::list<std::string> cacheLRU;
-const int cacheCapacity = 100;
+const int cacheCapacity = 120;
 
 void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, uint32_t maxDimension) {
     using namespace mbgl;
@@ -75,17 +76,17 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
     mapPr2.getStyle().loadURL(style);
     frontPr2.render(mapPr2);
 
-    const std::array<HeadlessFrontend*, 2> frontends = {&frontPr1, &frontPr2};
-    const std::array<Map*, 2> maps = {&mapPr1, &mapPr2};
+    const std::array<HeadlessFrontend *, 2> frontends = {&frontPr1, &frontPr2};
+    const std::array<Map *, 2> maps = {&mapPr1, &mapPr2};
 
     std::string line;
     while (std::getline(std::cin, line)) {
         // ignore Erlang message length indicator and instead rely on newline detection
         line.erase(0, 4);
 
-        auto cachedPng = cache.find(line);
-        if (cachedPng != cache.end()) {
-            printPNG(cachedPng->second);
+        auto cachedImage = cache.find(line);
+        if (cachedImage != cache.end()) {
+            printImage(cachedImage->second);
             continue;
         }
 
@@ -154,7 +155,13 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
             t.detach();
             auto image = frontend->render((*map)).image;
             finished = true;
-            auto png = encodePNG(image);
+
+            const auto src = util::unpremultiply(image.clone());
+            uint8_t *webp_image;
+            auto webp_image_size = WebPEncodeLosslessRGBA(
+                src.data.get(), src.size.width, src.size.height, src.stride(), &webp_image);
+            auto img = std::string(webp_image, webp_image + webp_image_size);
+            WebPFree(webp_image);
 
             if (cache.size() >= cacheCapacity) {
                 // evict oldest element
@@ -163,17 +170,17 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
                 cacheLRU.erase(i);
             }
             cacheLRU.push_front(line);
-            cache[line] = png;
+            cache[line] = img;
 
-            printPNG(png);
-        } catch (std::exception& e) {
+            printImage(img);
+        } catch (std::exception &e) {
             printError("failed rendering " + std::string(e.what()));
             continue;
         }
     }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     args::ArgumentParser argumentParser("veloroute.hamburg static map render loop");
     args::HelpFlag helpFlag(argumentParser, "help", "Display this help menu", {"help"});
 
@@ -186,11 +193,11 @@ int main(int argc, char* argv[]) {
 
     try {
         argumentParser.ParseCLI(argc, argv);
-    } catch (const args::Help&) {
+    } catch (const args::Help &) {
         die(argumentParser.Help());
-    } catch (const args::ParseError& e) {
+    } catch (const args::ParseError &e) {
         die(e.what());
-    } catch (const args::ValidationError& e) {
+    } catch (const args::ValidationError &e) {
         die(e.what());
     }
 
