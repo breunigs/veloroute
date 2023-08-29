@@ -8,9 +8,8 @@ defmodule VelorouteWeb.ImageExtractController do
   def image(conn, %{"hash" => hash, "timestamp" => ts}) when valid_hash(hash) do
     with {ts_in_ms, ""} <- Integer.parse(ts),
          {:ok, ren} <- Video.Generator.get_error(hash),
-         true <- ren.length_ms() >= ts_in_ms,
          {format, header} <- image_support(conn),
-         {:ok, img} <- ffmpeg(hash, ts_in_ms, format) do
+         {:ok, img} <- ffmpeg(hash, ts_in_ms, ren.length_ms(), format) do
       conn
       |> put_resp_content_type(header)
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
@@ -44,12 +43,12 @@ defmodule VelorouteWeb.ImageExtractController do
     end || {:jpeg, "image/jpeg"}
   end
 
-  defp ffmpeg(hash, ts, format) do
+  defp ffmpeg(hash, ts, max_length, format) do
     key = "#{hash} #{ts} #{format}"
 
     {cache_status, result} =
       Cachex.fetch(:image_extract_cachex, key, fn ->
-        {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, format) end)
+        {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, max_length, format) end)
 
         case result do
           {:ok, img} ->
@@ -70,9 +69,16 @@ defmodule VelorouteWeb.ImageExtractController do
 
   @ffmpeg_path :os.find_executable(~c"ffmpeg")
   @ffmpeg_timeout_ms 60_000
-  defp ffmpeg_no_cache(hash, ts, format) do
+  defp ffmpeg_no_cache(hash, ts, max_length, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
     source_abs = Path.join(Settings.video_target_dir_abs(), source)
+
+    ts =
+      if ts >= 0.95 * max_length do
+        min(ts, actual_max_length(source_abs))
+      else
+        ts
+      end
 
     ffmpeg_args =
       List.flatten([
@@ -143,6 +149,27 @@ defmodule VelorouteWeb.ImageExtractController do
       {:abort_ffmpeg, ospid} ->
         res = System.cmd("kill", ["-9", to_string(ospid)])
         {:error, "timeout after #{@ffmpeg_timeout_ms}ms. Killed #{ospid}: #{inspect(res)}"}
+    end
+  end
+
+  @ffprobe_path to_string(:os.find_executable(~c"ffprobe"))
+  @frame_duration 1000.0 / Video.Constants.output_fps()
+  @spec actual_max_length(binary()) :: non_neg_integer() | nil
+  defp actual_max_length(file) do
+    with {string, 0} <-
+           System.cmd(@ffprobe_path, [
+             "-v",
+             "error",
+             "-show_entries",
+             "format=duration",
+             "-of",
+             "default=noprint_wrappers=1:nokey=1",
+             file
+           ]),
+         {float_in_seconds, "\n"} <- Float.parse(string) do
+      round(float_in_seconds * 1000.0 - @frame_duration)
+    else
+      _ -> nil
     end
   end
 end
