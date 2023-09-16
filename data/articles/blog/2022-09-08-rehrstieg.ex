@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.Rehrstieg do
   def type(), do: :planned
   def tags(), do: ["10", "H10.3"]
 
-  def start(), do: ~d[2023-01]
-  def stop(), do: ~d[2023-10]
+  def start(), do: ~d[2024Q1]
+  def stop(), do: ~d[2024Q3]
 
   def links(_assigns) do
     [

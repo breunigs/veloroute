@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo: Mengestraße bis Neuhöfer Straße", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/688502/5d71d5f8aead0243d6ba64dc2c9a1026/georg-wilhelm-strasse-mengestrasse-bis-neuhoefer-strasse-anliegerinformation-september-2023-data.pdf"},
       {"Pressemitteilung zum Umbau", "Februar 2023",
        "https://www.hamburg.de/bvm/medien/16946456/2023-02-28-bvm-willhemsburg/"},
       {"Baustelleninfo: Neuhöfer Straße bis Harburger Chaussee", "Februar 2023",

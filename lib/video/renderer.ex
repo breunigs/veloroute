@@ -541,7 +541,6 @@ defmodule Video.Renderer do
       -f hls
       -hls_playlist_type vod
       -sc_threshold 0
-      -movflags +faststart
       -pix_fmt yuv420p
       -hls_segment_type fmp4
       -master_pl_name stream.m3u8

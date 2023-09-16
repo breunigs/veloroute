@@ -41,6 +41,8 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
 
   def links(_assigns) do
     [
+      {"Baustellenplanung", "September 2023",
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1011076"},
       {"Hinweis des Bezirkamts Harburg auf Twitter",
        "https://twitter.com/BAHarburg/status/1471861350779523073"}
     ]
@@ -58,7 +60,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
     <h4>Vorhaben</h4>
     <p>Bereits seit einigen Jahren war angedacht eine weitere Bahnquerung zu schaffen. Dem Radverkehr könnte so eine direkte Verbindung zwischen <.v lon={9.979817} lat={53.465206} dir="forward" ref="10" bounds="9.979222,53.464637,9.982427,53.46752">Blohmstraße</.v> und <.v bounds="9.96703,53.467732,9.974075,53.470129" lon={9.967971} lat={53.469766} dir="backward" ref="10">Bostelbeker Hauptdeich</.v> angeboten werden.</p>
 
-    <p>Laut Bezirksamt Harburg wird bereits geplant und man hofft bis 2024 fertig gebaut zu haben. Bedingt durch die Bahnstrecke ist die Planung aufwendiger als sonst üblich.</p>
+    <p>Laut Bezirksamt Harburg wird bereits geplant und man hofft bis 2025 fertig gebaut zu haben. Bedingt durch die Bahnstrecke ist die Planung aufwendiger als sonst üblich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

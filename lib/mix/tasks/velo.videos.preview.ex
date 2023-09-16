@@ -88,7 +88,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   defp preview(args) do
     IO.puts(
       :stderr,
-      "cannot find video to review from params. Expected a [video_hash], or [module, index]. Got: #{inspect(args)}"
+      "cannot find video to preview from params. Expected a [video_hash], or [module, index]. Got: #{inspect(args)}"
     )
 
     exit({:shutdown, 1})

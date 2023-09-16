@@ -38,6 +38,9 @@ def traverse(url, processed = {})
 
     traverse(abs, processed) if abs.start_with?(BASE_URL) && abs.end_with?("/")
   end.compact
+rescue => e
+  warn e
+  []
 end
 
 pdfs = traverse(URI.join(BASE_URL, "/plaene"))

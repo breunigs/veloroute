@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/682528/9dc292bdbebbe266e6b726a2d09e5c61/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Bauvergabe, Abschnitt Neuländer Straße bis Neuländer Hauptdeich", "Februar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/dd5a2515-763c-4038-81d5-d7b510272b89"},
       {"Pressemitteilung zum Baufortschritt", "September 2022",
