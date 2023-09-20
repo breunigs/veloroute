@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Startpage do
     <p>Lust mit dem Rad zu fahren, aber nicht sicher wohin? veloroute.hamburg gibt Aufschluss über die offiziellen Radrouten der Stadt. Schau Dich etwas um und dann… fahr Rad!</p>
 
     <h4>Alltagsrouten</h4>
-    <p>Hamburg baut „Velorouten“ um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
+    <p>Hamburg baut „Velorouten“ (auch: Radrouten) um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
     <ol class="route-list">
       <li><.icon autoplay={true} name="1"><span>Rissen / Osdorfer Born</span></.icon></li>
       <li><.icon autoplay={true} name="2"><span>Eidelstedt</span></.icon></li>

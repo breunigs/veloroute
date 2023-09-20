@@ -137,7 +137,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
       </tr>
     </table>
 
-    <p>Vom Rathaus aus schlängelt sich die Alltagsroute 3 (auch: Veloroute 3) meist über Nebenstraßen nach <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf</.v>.</p>
+    <p>Vom Rathaus aus schlängelt sich die Alltagsroute 3 (auch: Veloroute 3 oder Radroute 3) meist über Nebenstraßen nach <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

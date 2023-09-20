@@ -46,7 +46,7 @@
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <button id="reverse" type="button" title={if @video_reversible, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversible, do: "disabled"}></button>
     <div id="videoOptions" phx-update="ignore">
-      <button type="button"></button>
+      <button type="button" aria-label="Video-Einstellungen"></button>
       <div>
         <div class="column" id="videoQuality">
           <strong>Qualität</strong>

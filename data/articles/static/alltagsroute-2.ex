@@ -137,7 +137,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
       </tr>
     </table>
 
-    <p>Vom Rathaus aus führt die Alltagsroute 2 (auch: Veloroute 2) in einem Bogen durch die Neustadt. In der <.v bounds="9.959199,53.553031,9.979629,53.562268" lon={9.968639} lat={53.557447} dir="forward" ref="2">Feldstraße</.v> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.v bounds="9.959199,53.566871,9.969102,53.572313" lon={9.963436} lat={53.569592} dir="forward" ref="2">Christuskirche</.v> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
+    <p>Vom Rathaus aus führt die Alltagsroute 2 (auch: Veloroute 2 oder Radroute 2) in einem Bogen durch die Neustadt. In der <.v bounds="9.959199,53.553031,9.979629,53.562268" lon={9.968639} lat={53.557447} dir="forward" ref="2">Feldstraße</.v> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.v bounds="9.959199,53.566871,9.969102,53.572313" lon={9.963436} lat={53.569592} dir="forward" ref="2">Christuskirche</.v> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

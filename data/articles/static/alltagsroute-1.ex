@@ -208,7 +208,7 @@ defmodule Data.Article.Static.Alltagsroute1 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 1 (auch: Veloroute 1) führt vom Rathaus grob in Richtung Westen. Sie macht dazu zunächst einen kleinen Umweg am Schanzenviertel vorbei. In Othmarschen teilt sich die Route:</p>
+    <p>Die Alltagsroute 1 (auch: Veloroute 1 oder Radroute 1) führt vom Rathaus grob in Richtung Westen. Sie macht dazu zunächst einen kleinen Umweg am Schanzenviertel vorbei. In Othmarschen teilt sich die Route:</p>
     <ul>
       <li><.icon link={false}>1</.icon> führt <.v bounds="9.737287,53.548968,9.885129,53.588181" lon={9.880805} lat={53.558266} dir="forward" ref="1">weiter nach Westen</.v> und endet in Rissen</li>
       <li><.icon name="1" link={false}>1a</.icon> knickt <.v bounds="9.847553,53.552424,9.904828,53.595271" lon={9.882076} lat={53.558455} dir="forward" ref="1">nach Norden</.v> ab und endet im Osdorfer Born</li>
