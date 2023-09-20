@@ -78,6 +78,18 @@ defmodule Video.Track do
   end
 
   @doc """
+  Returns the most recent recording date the video is made up of
+  """
+  @spec recording_date_max(t()) :: Date.t()
+  def recording_date_max(%__MODULE__{videos: videos}) do
+    videos
+    |> Enum.map(fn {<<date::binary-size(10)>> <> _rest, _start, _end} ->
+      Date.from_iso8601!(date)
+    end)
+    |> Enum.max()
+  end
+
+  @doc """
   Return all historic videos for the given hash.
   """
   @spec historic_for(t(), hash()) :: historic()

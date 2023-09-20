@@ -395,8 +395,8 @@ defmodule Components.TagHelpers do
 
     case length(links) do
       0 -> ~H""
-      1 -> ~H{<p><%= hd(@links) %></p>}
-      _ -> ~H{<ul><%= for link <- @links do %><li><%= link %></li><% end %></ul>}
+      1 -> ~H{<p class="links"><%= hd(@links) %></p>}
+      _ -> ~H{<ul class="links"><%= for link <- @links do %><li><%= link %></li><% end %></ul>}
     end
   end
 

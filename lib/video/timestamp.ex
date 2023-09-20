@@ -27,6 +27,25 @@ defmodule Video.Timestamp do
   end
 
   @doc """
+  Takes a timestamp and converts it to ISO8601 format:
+  https://en.wikipedia.org/wiki/ISO_8601#Durations
+
+    iex> Video.Timestamp.as_iso8601(1337)
+    "PT00H00M01S"
+
+    iex> Video.Timestamp.as_iso8601(4171008)
+    "PT01H09M31S"
+  """
+  def as_iso8601(timestamp) when valid_timestamp(timestamp) do
+    timestamp |> in_milliseconds() |> as_iso8601()
+  end
+
+  def as_iso8601(duration_in_ms) when is_integer(duration_in_ms) do
+    {hours, minutes, seconds, _milliseconds} = duration_split(duration_in_ms)
+    "PT#{pad_left(hours)}H#{pad_left(minutes)}M#{pad_left(seconds)}S"
+  end
+
+  @doc """
   Takes a duration in millisecond and returns it as an ffmpeg formatted timestamp
 
     iex> Video.Timestamp.from_milliseconds(1337)

@@ -10,11 +10,13 @@ defmodule Article.Decorators do
   end
 
   @spec text(Article.t()) :: binary()
-  def text(art) do
+  def text(art, extra_ignore \\ []) do
+    ignore = Enum.join(["[data-nosnippet=yes]" | extra_ignore], ",")
+
     art
     |> html()
     |> Floki.parse_fragment!()
-    |> Floki.find_and_update("[data-nosnippet=yes]", fn _in -> :delete end)
+    |> Floki.find_and_update(ignore, fn _in -> :delete end)
     |> Floki.text(sep: " ")
   end
 
