@@ -100,7 +100,20 @@ defmodule Settings do
 
   def twitter_handle, do: "@VelorouteHH"
   def deploy_ssh_name, do: "veloroute-deploy"
-  def deploy_video_mount_dir, do: "/home/veloroute-rclone/mount"
+
+  def deploy_video_copy_cmd,
+    do: [
+      "ssh",
+      deploy_ssh_name(),
+      "--",
+      "rclone",
+      "sync",
+      "--dry-run",
+      "--max-delete",
+      "15",
+      "hsbssh:veloroute/videos/rendered/",
+      "/home/veloroute-rendered-videos/"
+    ]
 
   def video_dir_rel, do: "videos"
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
