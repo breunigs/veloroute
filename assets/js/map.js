@@ -81,7 +81,7 @@ function renderIndicator() {
     rotated.appendChild(genDiv('indicator-loc'));
     const el = genDiv('indicator');
     el.appendChild(rotated);
-    indicator = new mlgl.Marker(el)
+    indicator = new mlgl.Marker({ element: el })
       .setLngLat(lngLat)
       .setRotation(pos.bearing * 1)
       .addTo(map);
