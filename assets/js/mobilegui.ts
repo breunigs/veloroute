@@ -1,16 +1,28 @@
 const cls = document.getElementsByTagName("body")[0].classList;
 const content = document.getElementById("content");
+let timeout: number | null;
 
 function showSidebar(pos?: number) {
-  cls.add("showSidebar");
+  cls.add("showSidebar", "animateSidebar");
   cls.remove("hideSidebar");
   stopScroll(pos)
+  disableAnimationAfter()
 }
 
 function hideSidebar(pos?: number) {
   cls.remove("showSidebar");
-  cls.add("hideSidebar");
+  cls.add("hideSidebar", "animateSidebar");
   stopScroll(pos)
+  disableAnimationAfter()
+}
+
+function disableAnimationAfter() {
+  if (timeout != null) window.clearTimeout(timeout)
+  timeout = window.setTimeout(() => {
+    cls.remove("animateSidebar");
+    timeout = null
+    // keep timeout in sync with main.scss
+  }, 300 + 33)
 }
 
 function stopScroll(pos?: number) {

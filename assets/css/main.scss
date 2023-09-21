@@ -39,6 +39,7 @@ body {
   display: block;
   left: 0;
   position: fixed;
+  contain: strict;
 }
 
 #map {
@@ -438,6 +439,7 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   flex-flow: column;
   z-index: 3;
   box-shadow: $sidebarBoxShadowNormal;
+  contain: size layout style;
 }
 
 @media (min-width: calc(3*$minWidth)) {
@@ -464,6 +466,9 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   }
 }
 
+// keep in sync with mobilegui.ts
+$sidebarAnimationDuration: 0.3s;
+
 body::before {
   content: '';
   position: absolute;
@@ -474,7 +479,7 @@ body::before {
   box-shadow: inset -3em 0 2em -2em rgba(0,0,0,0.7);
   pointer-events: none;
   z-index: 4;
-  transition: all 0.3s ease;
+  transition: all $sidebarAnimationDuration ease;
   opacity: 1;
 }
 
@@ -483,13 +488,12 @@ body.showSidebar::before {
 }
 
 .showSidebar #sidebar {
-  transition: all 0.3s ease;
   left: min(100vw - $minWidth, $mainWidth);
   box-shadow: 2em 0 2em 2em rgba(0,0,0,0.7);
 }
 
-.hideSidebar #sidebar {
-  transition: all 0.3s ease;
+.animateSidebar #sidebar {
+  transition: all $sidebarAnimationDuration ease;
 }
 
 #content {
@@ -505,6 +509,8 @@ body.showSidebar::before {
   -webkit-hyphens: auto;
   hyphens: auto;
   overscroll-behavior: contain;
+
+  contain: strict;
 
   p, ul, ol {
     line-height: 1.15rem;
