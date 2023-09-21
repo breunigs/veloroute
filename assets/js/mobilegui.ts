@@ -1,5 +1,9 @@
 const cls = document.getElementsByTagName("body")[0].classList;
 const content = document.getElementById("content");
+const passive = {
+  passive: true
+}
+
 let timeout: number | null;
 
 function showSidebar(pos?: number) {
@@ -37,7 +41,19 @@ function toggleSidebar(e: Event) {
   e.stopPropagation()
 }
 
+function showSidebarIfHidden(_e?: Event) {
+  if (cls.contains("hideSidebar")) {
+    showSidebar()
+    return true
+  }
+  return false
+}
+
+
 document.getElementById("switcher")!.addEventListener("click", toggleSidebar)
+const sidebar = document.getElementById("sidebar");
+sidebar!.addEventListener("click", showSidebarIfHidden)
+sidebar!.addEventListener("wheel", showSidebarIfHidden, passive)
 
 function detectswipe(el: string) {
   const ele = document.getElementById(el)
@@ -74,6 +90,8 @@ function detectswipe(el: string) {
         showSidebar(scrollStart);
         acted = true;
       }
+    } else if (eY > 0 && Math.abs(sX - eX) < maxY && Math.abs(sY - eY) > minX) {
+      acted = showSidebarIfHidden()
     } else {
       const target = event?.target
       if (target && (target as HTMLElement).tagName === 'INPUT') {
@@ -88,10 +106,7 @@ function detectswipe(el: string) {
     sX = t.screenX;
     sY = t.screenY;
     scrollStart = content!.scrollTop;
-  }, {
-    capture: false,
-    passive: true
-  });
+  }, passive);
 
   ele.addEventListener('touchmove', (e) => {
     const t = e.touches[0];
@@ -99,10 +114,7 @@ function detectswipe(el: string) {
     eY = t.screenY;
 
     act();
-  }, {
-    capture: false,
-    passive: true
-  });
+  }, passive);
 
   ele.addEventListener('touchend', (e) => {
     act(e);
@@ -112,10 +124,7 @@ function detectswipe(el: string) {
     eX = 0;
     eY = 0;
     acted = false;
-  }, {
-    capture: false,
-    passive: true
-  });
+  }, passive);
 }
 
 detectswipe("sidebar")
