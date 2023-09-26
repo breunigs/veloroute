@@ -73,6 +73,8 @@ defmodule VelorouteWeb.Live.VideoState do
         true -> {old_state.start, false}
       end
 
+    near_dbg = "(near: #{inspect(near)}, accurate: #{accurate})"
+
     new_state =
       old_state
       |> update_direction_from_params(params)
@@ -82,25 +84,27 @@ defmodule VelorouteWeb.Live.VideoState do
       cond do
         accurate && old_state.start == near &&
           !video_changes?(old_state, new_state) && !is_map_key(params, "dir") ->
-          Logger.debug("same position clicked again, reverse")
+          Logger.debug("same position clicked again, reverse #{near_dbg}")
 
           set_start(new_state, near)
           |> reverse_direction()
 
         accurate ->
-          Logger.debug("have new accurate position; updating")
+          Logger.debug("have new accurate position; updating #{near_dbg}")
           set_start(new_state, near)
 
         article && article.tracks() != [] ->
-          Logger.debug("have article with tracks, trying to start from article bbox")
+          Logger.debug("have article with tracks, trying to start from article bbox #{near_dbg}")
+
           set_start(new_state, near)
+          |> maybe_reverse_direction(params)
 
         # if there's an article only update the position if the article is
         # related to the shown route. This is usually the case if an article has
         # tagged the related route
         article && current_track(new_state) &&
             Util.overlap?(current_track(new_state).parent_ref.tags(), article.tags()) ->
-          Logger.debug("route is related to current article, updating position")
+          Logger.debug("route is related to current article, updating position #{near_dbg}")
           set_start(new_state, near)
 
         true ->
@@ -145,6 +149,10 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_track(%__MODULE__{direction: :forward, forward_track: fw}), do: fw
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
   def current_track(nil), do: nil
+
+  @spec current_video(t() | nil) :: Video.Generator.t() | nil
+  defp current_video(%__MODULE__{direction: :forward, forward: fw}), do: fw
+  defp current_video(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
   @spec current_rendered(t()) :: Video.Generator.t() | nil
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
@@ -254,7 +262,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   @spec for_frontend(t()) :: keyword()
   defp for_frontend(%__MODULE__{} = state) when has_video(state) do
-    video = if state.direction == :forward, do: state.forward, else: state.backward
+    video = current_video(state)
 
     start_from = Video.Generator.start_from(video, state.start)
     recording_date = Video.Generator.recording_date_for(video, start_from.time_offset_ms)
@@ -313,6 +321,18 @@ defmodule VelorouteWeb.Live.VideoState do
     incr = if seek, do: 1, else: 0
     %{state | start: start, start_generation: state.start_generation + incr}
   end
+
+  defp maybe_reverse_direction(%__MODULE__{} = state, %{"autoplay" => "true"})
+       when is_reversible(state) do
+    video = current_video(state)
+    start_from = Video.Generator.start_from(video, state.start)
+
+    if start_from.time_offset_ms >= 0.9 * video.length_ms(),
+      do: reverse_direction(state),
+      else: state
+  end
+
+  defp maybe_reverse_direction(%__MODULE__{} = state, _params), do: state
 
   defp reverse_direction(%__MODULE__{} = state) when is_reversible(state) do
     %{state | direction: if(state.direction == :forward, do: :backward, else: :forward)}
