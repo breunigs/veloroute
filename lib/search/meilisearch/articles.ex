@@ -34,7 +34,14 @@ defmodule Search.Meilisearch.Articles do
       # order is from most important to least important
       searchableAttributes: ~w(title summary type_name text updated_at),
       sortableAttributes: ~w(updated_at _geo),
-      synonyms: %{alltagsroute: ~w(veloroute), veloroute: ~w(alltagsroute)}
+      synonyms: %{
+        alltagsroute: ["veloroute"],
+        veloroute: ["alltagsroute"],
+        radroute: ["veloroute", "freizeitroute", "alltagsroute", "bezirksroute"],
+        radschnellweg: ["radroute plus", "radroute+"],
+        "radroute+": ["radschnellweg", "radroute plus"],
+        "radroute plus": ["radschnellweg", "radroute+"]
+      }
     }
   end
 
