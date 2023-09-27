@@ -247,8 +247,8 @@ function pingShow(e) {
 
   if (e.detail.name) {
     for (const [layer, field] of pingLayers) {
+      map.setFilter(layer, ['in', ['get', field], ["literal", e.detail.name.split(/,| und /)]])
       map.setLayoutProperty(layer, 'visibility', 'visible')
-      map.setFilter(layer, ['==', ['get', field], e.detail.name])
       map.setPaintProperty(layer, 'line-opacity-transition', {})
       map.setPaintProperty(layer, 'line-opacity', 1.0)
     }
