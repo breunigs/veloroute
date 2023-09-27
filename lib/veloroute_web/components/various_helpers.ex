@@ -61,7 +61,7 @@ defmodule VelorouteWeb.VariousHelpers do
         "@type": "SeekToAction",
         target:
           Article.Decorators.url(ref) <>
-            "/?video=#{rendered.hash()}&pos={seek_to_second_number}000",
+            "/?video=#{rendered.hash()}&pos_sec={seek_to_second_number}",
         "startOffset-input": "required name=seek_to_second_number"
       }
     }

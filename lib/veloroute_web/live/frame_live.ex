@@ -358,7 +358,13 @@ defmodule VelorouteWeb.FrameLive do
 
   defp url_query(%{assigns: assigns}) do
     bounds = to_string_bounds(assigns[:map_bounds])
-    query = %{"video" => assigns[:video_hash], "pos" => assigns[:video_start], "bounds" => bounds}
+
+    query = %{
+      "video" => assigns[:video_hash],
+      "pos" => assigns[:video_start],
+      "pos_sec" => if(assigns[:video_start], do: assigns[:video_start] / 1000.0),
+      "bounds" => bounds
+    }
 
     if blank?(assigns[:search_query]) do
       Map.delete(query, "search_query")

@@ -231,7 +231,7 @@ defmodule VelorouteWeb.Live.VideoState do
   @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::
           Video.Generator.indicator() | nil
   defp position_from_time(%{assigns: %{video: state}}, params) do
-    with pos <- parse_integer(params["pos"]),
+    with pos <- parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
          rendered <- current_rendered(state),
          true <- 0 <= pos && pos <= rendered.length_ms do
       Video.Generator.start_from(rendered, pos)
@@ -239,6 +239,17 @@ defmodule VelorouteWeb.Live.VideoState do
       _ ->
         Logger.debug("failed to get pos from params: #{inspect(params)}")
         nil
+    end
+  end
+
+  defp parse_float(nil), do: nil
+  defp parse_float(s) when is_number(s), do: s * 1.0
+
+  defp parse_float(s) when is_binary(s) do
+    with {num, ""} <- Float.parse(s) do
+      round(num * 1000)
+    else
+      _ -> nil
     end
   end
 
