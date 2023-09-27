@@ -155,65 +155,76 @@ defmodule Data.Article.Static.Alltagsroute11 do
           <.icon>12</.icon>
           <.icon>2</.icon>
         </td>
-        <td><.m bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</.m></td>
+        <td><.v bounds="9.977057,53.542542,9.99718,53.553605" lon={9.986901} lat={53.54872} dir="forward" ref="11">Rödingsmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>12</.icon>
         </td>
-        <td><.m bounds="9.9661435,53.5412334,9.9761435,53.5512334">Landungsbrücken</.m></td>
+        <td><.v bounds="9.957407,53.535802,9.976696,53.551442" lon={9.972308} lat={53.545537} dir="forward" ref="11">Landungsbrücken</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>12</.icon>
         </td>
-        <td><.m bounds="9.9663729,53.5457403,9.9668345,53.5459993">Alter Elbtunnel</.m></td>
+        <td><.v bounds="9.958137,53.521845,9.993724,53.549976" lon={9.966592} lat={53.544303} dir="forward" ref="11">Alter Elbtunnel</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9680097,53.5282526,9.9779,53.5371424">Hafen</.m></td>
+        <td><.v bounds="9.954913,53.520612,9.988097,53.546909" lon={9.96852} lat={53.535508} dir="forward" ref="11">Hafen</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9900452,53.5120979,9.9901452,53.5121979">Reiherstiegviertel</.m></td>
+        <td><.v bounds="9.969596,53.503746,9.996222,53.527843" lon={9.987412} lat={53.51533} dir="forward" ref="11">Reiherstiegviertel</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9914036,53.4830863,10.0046595,53.5004532">Wilhelmsburger Inselpark</.m></td>
+        <td><.v bounds="9.973268,53.478859,10.017935,53.51145" lon={9.997452} lat={53.495672} dir="forward" ref="11">Wilhelmsburger Inselpark</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>10</.icon>
         </td>
-        <td><.m bounds="9.9938767,53.4714464,9.9961153,53.4755551">Alte Harburger Elbbrücke</.m></td>
+        <td><.v bounds="9.973211,53.457654,10.020346,53.489013" lon={9.996038} lat={53.475209} dir="forward" ref="11">Alte Harburger Elbbrücke</.v></td>
       </tr>
       <tr>
         <td>
-          <.icon>10</.icon> <.m bounds="10.011765,53.5095885,10.0597062,53.5329804">Veddel</.m>
+          <.icon>10</.icon> <.v bounds="10.000199,53.506988,10.047087,53.534351" lon={10.0155} lat={53.520488} dir="backward" ref="11">Veddel</.v>
         </td>
-        <td><.m bounds="9.9897252,53.4555445,9.9908486,53.4564216">Bahnhof Harburg</.m></td>
+        <td><.v bounds="9.984519,53.45331,9.996765,53.462077" lon={9.988546} lat={53.45778} dir="forward" ref="11">Bahnhof Harburg</.v></td>
       </tr>
       <tr>
         <td class="dir"><.m bounds="9.9214907,53.3167401,10.1074035,53.4639106">(Seevetal)</.m></td>
-        <td><.m bounds="9.9651274,53.4487475,10.0067877,53.4753374">Harburg</.m></td>
+        <td><.v bounds="9.968763,53.452748,9.99928,53.465024" lon={9.984501} lat={53.459484} dir="forward" ref="11">Harburg</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9669587,53.4583205,9.9713544,53.4638611">TUHH</.m></td>
+        <td><.v bounds="9.957122,53.454716,9.984472,53.463618" lon={9.970439} lat={53.460433} dir="forward" ref="11">TUHH</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.8912454,53.4465814,9.9845052,53.4850189">Heimfeld</.m></td>
+        <td><.v bounds="9.934683,53.453683,9.973803,53.466567" lon={9.959735} lat={53.460863} dir="forward" ref="11">Heimfeld</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9066994,53.4140472,9.9770598,53.4614522">Eißendorf</.m></td>
+        <td><.v bounds="9.934683,53.453683,9.973803,53.466567" lon={9.947303} lat={53.457857} dir="forward" ref="11">Eißendorf</.v></td>
       </tr>
       <tr>
         <td></td>
         <td class="dir"><.m bounds="9.8044452,53.3347794,9.9580681,53.4579631">(Rosengarten)</.m></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 11 (auch: Veloroute 11 oder Radroute 11) führt vom Rathaus über <.v bounds="9.966664,53.476236,10.039598,53.528563" lon={9.997804} lat={53.496027} dir="forward" ref="11">Wilhelmsburg</.v> und <.v bounds="9.963366,53.448875,10.009879,53.476496" lon={9.988009} lat={53.457319} dir="forward" ref="11">Harburg</.v> nach <.v bounds="9.928056,53.444615,9.974061,53.468019" lon={9.952239} lat={53.458779} dir="forward" ref="11">Eißendorf</.v>. Auf Wilhelmsburg gibt es einen <.v bounds="9.966664,53.476236,10.039598,53.528563" lon={9.982593} lat={53.517019} dir="forward" ref="11">westlichen Ast</.v> über den <.v bounds="9.958137,53.521845,9.993724,53.549976" lon={9.966592} lat={53.544303} dir="forward" ref="11">alten Elbtunnel</.v> und einen <.v bounds="9.966664,53.476236,10.039598,53.528563" lon={10.005779} lat={53.515965} dir="forward" ref="11">östlichen Ast</.v> in Richtung <.v bounds="9.966664,53.476236,10.039598,53.528563" lon={10.015064} lat={53.521855} dir="backward" ref="11">Veddel</.v>.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Meist sind sie asphaltiert, es gibt aber auch kurze Abschnitte mit Kopfsteinpflaster. Der alte Elbtunnel ist ganztägig befahrbar. In der Nebenverkehrszeit stehen nur die seitlichen Personenaufzüge zur Verfügung.</p>
+
+    <h4>Meinung</h4>
+    <p>Gerade auf Wilhelmsburg macht die Route Spaß: wenig Kreuzungen und autofreie Abschnitte. Nördlich und südlich der Elbe trüben die noch nicht ausgebauten Abschnitte und schlechte Ampelschaltungen den Eindruck. Negativbeispiel ist die <.v bounds="9.982957,53.544552,9.987049,53.546294" lon={9.984063} lat={53.545369} dir="backward" ref="12">Schaartorbrücke</.v>, an der man zum Linksabbiegen mindestens drei Mal halten muss.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>
