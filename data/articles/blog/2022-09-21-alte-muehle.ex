@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.AlteMuehle do
   def text(assigns) do
     ~H"""
     <h4>Infoveranstaltung</h4>
-    <p>Am 29. Juni 2023 um 18:00 Uhr ist in der <.m name="Redder" bounds="10.107557,53.649191,10.115471,53.653077">Schule Redder (Aula), Redder 4, 22393 Hamburg</.m> ein Infoabend geplant.</p>
+    <p>Am 29. Juni 2023 um 18:00 Uhr ist in der <.m highlight="Redder" bounds="10.107557,53.649191,10.115471,53.653077">Schule Redder (Aula), Redder 4, 22393 Hamburg</.m> ein Infoabend geplant.</p>
 
     <h4>Alter Zustand</h4>
     <p>Die Alte Mühle liegt in einer Talsohle. Die Fahrbahn ist mit sehr unebenem Kopfsteinpflaster befestigt. Eine Schranke gegen den KFZ-Durchgangsverkehr zwingt zum Ausweichen auf den Gehweg. Durch den Restaurantbetrieb mit Terasse auf der anderen Straßenseite ist zudem reger Querungsverkehr zu Fuß.</p>

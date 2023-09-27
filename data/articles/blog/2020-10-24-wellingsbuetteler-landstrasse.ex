@@ -2,8 +2,12 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   use Article.Default
 
   def created_at(), do: ~D[2020-10-24]
-  def updated_at(), do: ~D[2021-06-07]
+  def updated_at(), do: ~D[2023-09-27]
   def title(), do: "Wellingsbütteler Landstraße"
+
+  def summary(),
+    do:
+      "Zweirichtungsradweg bis von Fuhlsbüttler Straße bis zur Stübeheide, sonst keine eigenen Radwege. Stübeheide soll als Ausweichroute zur Fahrradstraße aufgewertet werden."
 
   def type(), do: :planned
 
@@ -14,15 +18,15 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 3,
         group: "Wellingsbütteler Landstraße",
         direction: :forward,
-        from: "Fuhlsbütteler Straße",
-        to: "Grundlachs Twiete",
+        from: "Fuhlsbüttler Straße",
+        to: "Rolfinckstraße",
         parent_ref: __MODULE__,
         text: "Wellingsbütteler Landstraße",
         videos: [
-          {"2022-01-29-rickling/GX013208", "00:01:10.103", "00:02:15.441"}
+          {"2023-06-24-14im-13gg/GX016011", :start, :end}
         ]
       }
     ]
@@ -30,30 +34,37 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def links(_assigns) do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
-      {"Erläuterungsbericht (2. Entwurf)",
-       "https://lsbg.hamburg.de/resource/blob/598586/08311cfcbfb59e255d0cc11d79360aa6/wellingsbuetteler-landstrasse-abstimmungsunterlage-zweite-verschickung-bericht-data.pdf"},
-      {"Lagepläne (2. Entwurf)",
-       "https://lsbg.hamburg.de/resource/blob/598580/145fe825be5b23dc194615070aa67363/wellingsbuetteler-landstrasse-abstimmungsunterlage-zweite-verschickung-plan-data.pdf"},
-      {"Präsentation zum 2. Entwurf", "enthält auch Abschätzungen zur Bauzeit",
-       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1010724"}
+      {"Erläuterungsbericht (3. Entwurf)", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/690498/100f73fca0edf95e8530c121417feeb3/wellingsbuetteler-landstrasse-abstimmungsunterlage-dritte-verschickung-bericht-data.pdf"},
+      {"Lagepläne (3. Entwurf)", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/690504/a214fb95c0940613042f8e6fd7e86876/wellingsbuetteler-landstrasse-abstimmungsunterlage-dritte-verschickung-plan-data.pdf"}
     ]
   end
 
   def text(assigns) do
     ~H"""
-    <h4>Alter Zustand</h4> <p>In der <.m bounds="10.031161,53.625658,10.057393,53.636639">Wellingsbütteler Landstraße</.m> selbst gibt es im Stadtteil <.m bounds="10.033141,53.628026,10.049216,53.6317">Klein Borstel</.m> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<.ref>Fahrrad frei</.ref>). Die Höchstgeschwindigkeit beträgt 50 km/h. Im <.m bounds="10.029983,53.62536,10.032621,53.626527">Kreuzungsbereich mit der Fuhlsbütteler Landstraße</.m> gibt es schmale <.ref>Hochbordradwege</.ref>, die mit engen Kuren durch die Kreuzung führen.</p>
-    <h4>Planung</h4> <h5>Wesentliche Änderungen des zweiten Entwurfs:</h5> <ul>
-    <li>Die <.ref>Radfahrstreifen</.ref> werden bis zur <.m bounds="10.032924,53.629069,10.041573,53.631069">Einmündung Stübeheide</.m> verlängert. Dies erfordert die Fällung aller Bäume auf der Südseite zwischen U-Bahn und Stübeheide.</li>
-    <li>Die <.ref>Schutzstreifen</.ref> ab Stübeheide entfallen ersatzlos.</li>
-    <li>Baubeginn frühestens März 2022.</li>
-    </ul> <p><em>Der nachfolgende Artikel beschreibt den zweiten Entwurf.</em></p>
-    <p>Die Wellingsbütteler Landstraße soll komplett saniert werden – Kanäle, Versorgungsleitungen und Straßenbelag gemeinsam. Es ist vorgesehen dem Radverkehr zwischen <.m bounds="10.027247,53.625691,10.039097,53.630037">Fuhlsbütteler Straße und Stübeheide</.m> je einen <.ref>Radfahrstreifen</.ref> mit rund 1,60m Breite anzubieten. Die Regenrinne zählt dabei zum Radweg; zu Parkplätzen ist nochmal zusätzlicher Sicherheitsabstand vorgesehen.</p>
-    <p>Die Einmündung in die <.m bounds="10.032924,53.629069,10.041573,53.631069">Stübeheide</.m> wird so gestaltet, dass der Radverkehr diese leichter als Alternative verwenden kann. Ab der Stübeheide bleibt es wie heute bei <.ref>Mischverkehr</.ref> mit Tempo 50.</p>
-    <p>Im <.m bounds="10.028903,53.625167,10.033771,53.626293">Kreuzungsbereich mit der Fuhlsbütteler Straße</.m> orientiert sich die Führung an den vorhandenen Hochbordradwegen, welche jedoch so gut wie möglich verbreitert werden. Auch ist eine gut sichtbare Trennung vom Fußweg durch den Einbau von weißen Noppenplatten vorgesehen.</p>
-    <p>Zur U-Bahn Station Klein Borstel und in den <.m bounds="10.046698,53.633591,10.056424,53.63584">Kornweg</.m> sind jeweils Aufstellflächen für das <.ref>indirekte Linksabbiegen</.ref> vorgesehen. Anschließmöglichkeiten für Fahrräder werden im gesamten Baugebiet aufgestellt.</p>
-    <h4>Meinung</h4> <p>Die Planung holt noch mit das Beste aus einer schwierigen Situation. Eine KFZ-Einbahnstraße ist unrealistisch, weil die Strecke auch für Verbesserungen im Nahverkehr („Hamburg-Takt“) eingeplant sind. Die Hälfte der Bäume zu fällen ist auch wenig attraktiv.</p>
-    <p>Man fällt also nur die Bäume auf einem Teilstück, kann dadurch aber die Radfahrstreifen bis zu einer weniger befahrenen Straße verlängern. Diese ist offensichtlich als Alternativstrecke für diejenigen gedacht, die sich im Mischverkehr nicht wohlfühlen. Hier gilt zwar Tempo 30, aber eine Fahrradstraße ist momentan nicht geplant.</p>
-    <p>Abseits der groben Planung hat der zweite Entwurf noch Detailverbesserungen für den Radverkehr an einigen Stellen erreicht. Zum Beispiel wird die Querung am U-Bahnhof vergrößert um dem geplanten Radschnellweg gerecht zu werden. Zum Linksabbiegen in die Fuhlsbütteler Straße gibt's nun eine zweite Auffahrt, sodass die Kurven weniger eng ausfallen. Gut, auch wenn die Rampe nur auf mangelhafte Radwege führt.</p>
+
+    <h4>Alter Zustand</h4>
+    <p>In der <.m bounds="10.031161,53.625658,10.057393,53.636639">Wellingsbütteler Landstraße</.m> selbst gibt es im Stadtteil <.m bounds="10.033141,53.628026,10.049216,53.6317">Klein Borstel</.m> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<.ref>Fahrrad frei</.ref>). Die Höchstgeschwindigkeit beträgt 50 km/h.</p>
+
+    <h4>Planung</h4>
+    <p><em>Der nachfolgende Artikel beschreibt den dritten Entwurf. Die größte Änderung zum zweiten Entwurf ist die Verlegung von Radfahrstreifen auf einen Zweirichtungsradweg bis Stübeheide.</em></p>
+
+    <p>Die Wellingsbütteler Landstraße soll komplett saniert werden – Kanäle, Versorgungsleitungen und Straßenbelag gemeinsam. Es ist vorgesehen dem Radverkehr zwischen <.m bounds="10.027247,53.625691,10.039097,53.630037">Fuhlsbüttler Straße und Stübeheide</.m> auf der Nordseite <.ref>Hochbordradweg</.ref> für beide Richtungen mit rund 3,0m Breite anzubieten. An diesen schließt auch der geplante <.a name="rsw-bad-bramstedt">Radschnellweg („Radroute Plus“) nach Bad Bramstedt</.a> an.</p>
+
+    <p>Die Einmündung in die <.v bounds="10.035123,53.627871,10.042561,53.632043" lon={10.036734} lat={53.62955} dir="forward" ref={@ref}>Stübeheide</.v> wird so gestaltet, dass der Radverkehr diese leichter als Alternative verwenden kann. Ab der Stübeheide bleibt es wie heute bei <.ref>Mischverkehr</.ref> mit Tempo 50.</p>
+
+    <p>Der <.m bounds="10.028903,53.625167,10.033771,53.626293" highlight="Fuhlsbüttler Straße">Kreuzungsbereich mit der Fuhlsbüttler Straße</.m> ist nicht Teil der Planungen. Der Radwegstummel in Richtung Osten entfällt und wird stattdessen auf den nördlichen Radweg geleitet.</p>
+
+    <p>Zum <.ref>indirekten Linksabbiegen</.ref> in die <.v bounds="10.032508,53.628025,10.048541,53.635474" lon={10.035888} lat={53.629} dir="forward" ref={@ref}>Kleine Horst</.v>, die <.v bounds="10.035123,53.627871,10.042561,53.632043" lon={10.036734} lat={53.62955} dir="forward" ref={@ref}>Stübeheide</.v> und den <.v bounds="10.046086,53.632725,10.055236,53.636627" lon={10.05127} lat={53.634758} dir="forward" ref={@ref}>Kornweg</.v> wird eine Aufstellfläche vorgesehen. Am <.v bounds="10.044768,53.632281,10.048094,53.634065" lon={10.04587} lat={53.63309} dir="forward" ref={@ref}>Schluchtweg</.v>, <.v bounds="10.047067,53.632645,10.054372,53.636521" lon={10.050378} lat={53.634543} dir="forward" ref={@ref} highlight="Grüner Winkel">Grünen Winkel</.v> und an <.v bounds="10.05471,53.635025,10.060444,53.637945" lon={10.057191} lat={53.636569} dir="forward" ref={@ref}>Borstels Ende</.v> ist nur <.ref>direktes Linksabbiegen</.ref> möglich.</p>
+
+    <p>Anschließmöglichkeiten für Fahrräder werden im gesamten Baugebiet aufgestellt. Höhe <.v bounds="10.03854,53.630412,10.044065,53.633146" lon={10.041759} lat={53.631772} dir="forward" ref={@ref}>Hausnummer 136</.v> wird eine Mittelinsel gebaut um das Queren der Straße zu ermöglichen. Stellenweise werden die Gehwege breiter.</p>
+
+    <h4>Meinung</h4>
+    <p>Die Planung holt noch mit das Beste aus einer schwierigen Situation. Eine KFZ-Einbahnstraße ist unrealistisch, weil die Strecke auch für Verbesserungen im Nahverkehr („Hamburg-Takt“) eingeplant sind. Die Hälfte der Bäume zu fällen ist auch wenig attraktiv.</p>
+
+    <p>Man fällt also nur die Bäume auf einem Teilstück, kann dadurch aber einen Radweg bis zu einer weniger befahrenen Straße anbieten. Diese ist offensichtlich als Alternativstrecke für diejenigen gedacht, die sich im Mischverkehr nicht wohlfühlen. Heute nur Tempo-30-Zone soll sie in Zukunft zu einer Fahrradstraße aufgewertet werden.</p>
+
     <h4>Quellen</h4>
     <.structured_links ref={@ref}/>
     """

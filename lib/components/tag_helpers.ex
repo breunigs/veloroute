@@ -97,11 +97,11 @@ defmodule Components.TagHelpers do
 
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
   attr :bounds, :string, required: true
-  attr :name, :string
+  attr :highlight, :string
   slot(:inner_block, required: true)
 
   def m(assigns) do
-    name = assigns[:name] || inner_text(assigns)
+    name = assigns[:highlight] || inner_text(assigns)
 
     js =
       %Phoenix.LiveView.JS{}

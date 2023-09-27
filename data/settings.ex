@@ -108,7 +108,6 @@ defmodule Settings do
       "--",
       "rclone",
       "sync",
-      "--dry-run",
       "--max-delete",
       "15",
       "hsbssh:veloroute/videos/rendered/",
