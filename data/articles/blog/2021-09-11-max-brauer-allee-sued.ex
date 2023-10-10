@@ -10,14 +10,16 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
     do:
       "Durchgängige, mindestens 2m breite Radfahrstreifen, wo möglich durch Bordsteine vom KFZ-Verkehr getrennt. Führung zum Altonaer Balkon endlich verständlich. Bau frühestens 2023."
 
-  def start(), do: ~d[2023Q3]
-  def stop(), do: ~d[2025Q1]
+  def start(), do: ~d[2024-03-04]
+  def stop(), do: ~d[2024-11-15]
   def type(), do: :planned
 
   def tags(), do: ["1", "12"]
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", "Oktober 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/max-brauer-allee"},
       {"Lageplan", "Juli 2022",
        "https://lsbg.hamburg.de/resource/blob/634708/8ef3ae7af9ba39b71791a2bd31b10b09/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-plaene-data.pdf"},

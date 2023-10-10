@@ -8,7 +8,8 @@ defmodule Data.Article.Blog.Jungfernstieg do
   def summary(),
     do: "Fahrbahn enger, Mischverkehr bleibt, extra Baumreihe. Mehr Maßnahmen gegen Falschfahrer."
 
-  def start(), do: ~d[2024Q2]
+  def start(), do: ~d[2024-03-04]
+  def stop(), do: ~d[2024-11-11]
 
   def type(), do: :planned
 
@@ -16,6 +17,8 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", "Oktober 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/a71ec5ea-3fee-4417-bec1-f7c9aa44bfce"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
       {"Lageplan", "2. Entwurf, Dezember 2022",
        "https://lsbg.hamburg.de/resource/blob/663172/ef49cb31b3de7fb46454e005324444fe/jungfernstieg-phase-2-abgestimmte-planung-plan-data.pdf"},

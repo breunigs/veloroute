@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.Kirchenstrasse do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2023Q4]
-  def stop(), do: ~d[2023Q4]
+  def start(), do: ~d[2023-11-06]
+  def stop(), do: ~d[2023-12-01]
 
   def tags(), do: ["12"]
 

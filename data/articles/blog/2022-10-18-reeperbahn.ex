@@ -62,6 +62,8 @@ defmodule Data.Article.Blog.Reeperbahn do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Verkehrsversuch → Altona", "Oktober 2023",
+       "https://www.hamburg.de/bvm/medien/17403338/2023-10-09-bvm-radverkehr/"},
       {"Baustelleninfo", "November 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16641330/b904de9aa993de272d3a75494a52dff2/data/reeperbahn-einrichtung-neuer-radfahrstreifen-11-2022.pdf"},
       {"Pressemitteilung", "Oktober 2022",
@@ -79,9 +81,13 @@ defmodule Data.Article.Blog.Reeperbahn do
     <p>In der Reeperbahn gibt es meist keine eigenen Radwege, es muss im <.ref>Mischverkehr</.ref> bei Tempo 50 gefahren werden. Nur an den Enden der Straße sind kurze Stücke <.ref>Radfahrstreifen</.ref> (Richtung <.v bounds="9.953246,53.548897,9.957952,53.551295" lon={9.956457} lat={53.549823} dir="backward" ref={@ref}>Königstraße</.v>) bzw. <.ref>Hochbordradwege</.ref> (Richtung <.v bounds="9.966632,53.549256,9.972321,53.551787" lon={9.967142} lat={53.549884} dir="forward" ref={@ref}>Millerntorplatz</.v>) vorhanden.</p>
 
     <h4>Planung</h4>
-    <p>Je Fahrtrichtung soll jeweils eine der zwei Fahrspuren für den Rad- und Busverkehr reserviert werden. Zunächst soll dies nur in Richtung Millerntorplatz passieren, wofür bereits Pläne vorliegen.</p>
+    <p>Je Fahrtrichtung soll jeweils eine der zwei Fahrspuren für den Rad- und Busverkehr reserviert werden. Bisher ist dies nur in Richtung Millerntorplatz passiert, ab 16. Oktober 2023 soll das für die Gegenrichtung nachgeholt werden.</p>
 
+    <h5>Richtung Millterntorplatz</h5>
     <p>Wo <.v bounds="9.955653,53.549445,9.957007,53.550023" lon={9.956277} lat={53.549653} dir="forward" ref={@ref}>heute der Radfahrstreifen endet</.v>, wird der Radverkehr zunächst durch den Parkplatz geschickt. An <.v bounds="9.957206,53.549312,9.95856,53.54989" lon={9.957936} lat={53.549571} dir="forward" ref={@ref}>dessen Ende</.v> schließt der Radfahrstreifen an, der hier auch für HVV-Busse freigegeben ist. Der Bushalt <.v bounds="9.960708,53.549131,9.962062,53.549709" lon={9.961133} lat={53.549403} dir="forward" ref={@ref}>Davidstraße</.v> verbleibt rechts des Radweges. Ab Höhe <.v bounds="9.964452,53.549013,9.967907,53.550282" lon={9.964694} lat={53.549669} dir="forward" ref={@ref}>Taubenstraße</.v> ist der Radfahrstreifen auch für Reisebusse freigegeben.</p>
+
+    <h5>Richtung Altona</h5>
+    <p>Noch keine Pläne veröffentlicht. Es soll ein Radfahrstreifen eingerichtet werden.</p>
 
     <h4>Meinung</h4>
     <p>Endlich. Da nur Farbe aufgetragen wird, entscheidet die Regeltreue der Leute im Auto, ob das Radeln auf der Reeperbahn angenehmer wird. Da es nur ein Verkehrsversuch ist, sollte die Auswertung abgewartet werden. Denkbar sind alle möglichen Varianten – sowohl bessere als auch schlechtere für den Radverkehr.</p>
