@@ -226,6 +226,7 @@ $videoBarProgressHeight: 0.4rem;
     text-align: center;
     color: #888;
     margin: $videoBarBtnMargin 0;
+    min-width: 5.5em;
 
     #current {
       color: #fff;
