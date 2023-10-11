@@ -453,7 +453,6 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   }
 
   #sidebar {
-    left: max($minWidth, $mainWidth);
     position: fixed;
     transition: none !important;
   }
@@ -493,12 +492,13 @@ body.showSidebar::before {
 }
 
 .showSidebar #sidebar {
-  left: min(100vw - $minWidth, $mainWidth);
+  // i.e. move the sidebar to the left by the difference of "expanded" minus "collapsed" state
+  transform: translateX(calc(min(100vw - $minWidth, $mainWidth) - max($minWidth, $mainWidth)));
   box-shadow: 2em 0 2em 2em rgba(0,0,0,0.7);
 }
 
 .animateSidebar #sidebar {
-  transition: all $sidebarAnimationDuration ease;
+  transition: transform $sidebarAnimationDuration ease;
 }
 
 #content {
