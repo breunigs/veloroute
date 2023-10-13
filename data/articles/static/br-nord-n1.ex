@@ -14,8 +14,7 @@ defmodule Data.Article.Static.BrNordN1 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(),
-    do: []
+  def tracks(), do: []
 
   def links(_assigns) do
     [
@@ -26,7 +25,7 @@ defmodule Data.Article.Static.BrNordN1 do
 
   def text(assigns) do
     ~H"""
-    <h3>Bezirksroute Wandsbek – Horn ↔ Sasel <.icon>W2</.icon></h3>
+    <h3>Bezirksroute HH-Nord – Nord ↔ Süd <.icon>N1</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N1 – Nord ↔ Süd“ künftig verlaufen könnte.</p>
 

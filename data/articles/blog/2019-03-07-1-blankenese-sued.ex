@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.BlankeneseSued do
 
   def links(_assigns) do
     [
+      {"Bauzeiträume", "Oktober 2023",
+       "https://fragdenstaat.de/anfrage/planungsstand-zu-einem-teilstueck-der-veloroute-1-a22-vr-1-blankenese-sued/"},
       {"Dritter Entwurf (nur Kreuzung Elbchaussee / Manteuffelstraße / Mühlenberg)",
        "Januar 2023", "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013546"},
       {"Zweiter Entwurf (Bericht und Lagepläne)", "Oktober 2021",

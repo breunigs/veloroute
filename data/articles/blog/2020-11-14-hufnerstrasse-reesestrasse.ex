@@ -8,12 +8,14 @@ defmodule Data.Article.Blog.HufnerstrasseReesestrasse do
   def start(), do: ~d[2022Q2]
   def stop(), do: ~d[2023-08-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["5"]
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung", "Oktober 2023",
+       "https://www.hamburg.de/bvm/medien/17410972/2023-10-12-bvm-radverkehr/"},
       {"Erläuterungsbericht und Pläne (fertige Fassung)",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1011214"},
       {"Baustellenkoordination", "Juli 2022",
