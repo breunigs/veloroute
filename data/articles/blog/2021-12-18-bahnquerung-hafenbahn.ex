@@ -8,6 +8,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
   def tags(), do: ["10", "H.04", "H.05"]
 
   def start(), do: ~d[2024]
+  def stop(), do: ~d[2025]
 
   def tracks(),
     do: [

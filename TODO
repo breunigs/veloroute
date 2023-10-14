@@ -1,4 +1,0 @@
-TODO:
-
-deploy: check compression works, i.e. remove Basemap.IgnorePbfDigester or keep it and compress in some other fashion?
-assets: check they get updated/recompressed without rm -rf

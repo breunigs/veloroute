@@ -26,7 +26,7 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
       {"Baustelleninfo: Neuhöfer Straße bis Harburger Chaussee", "Februar 2023",
        "https://lsbg.hamburg.de/resource/blob/664806/07473997d201a9f92dd6a6dca1ff0aa3/georg-wilhelm-strasse-neuhoefer-strasse-bis-harburger-chaussee-anliegerinformation-februar-2023-data.pdf"},
       {"Baustelleninfo: Pollhornweg bis Mengestraße", "Januar 2023",
-       "https://lsbg.hamburg.de/resource/blob/654120/3a087ec24f904c9d84657149f8706e40/georg-wilhelm-strasse-pollhornweg-bis-mengestrasse-anliegerinformation-januar-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/691374/318441bb80ea412e3618fca1b5e16a6a/georg-wilhelm-strasse-pollhornweg-bis-mengestrasse-anliegerinformation-januar-2023-data.pdf"},
       {"Pressemitteilung zum Baustart",
        "https://www.hamburg.de/bvm/medien/16828174/2023-01-11-bvm-georg-wilhelm-strasse/"},
       {"Erläuterungsbericht",

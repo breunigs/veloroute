@@ -4,16 +4,16 @@ defmodule Data.Article.Blog.Denickestrasse do
   def name(), do: "#{created_at()}-11-denickestrasse"
   def created_at(), do: ~D[2019-01-09]
 
-  def title(), do: "Eißendorfer Straße bis Denickestraße (Veloroute 11)"
+  def title(), do: "Am Irrgarten bis Denickestraße (Veloroute 11)"
 
   def summary(),
     do:
       "Letzter Abschnitt ab Schüslerweg soll fahrradfreundlich umgebaut werden, bleibt aber Tempo-30-Zone."
 
   def start(), do: ~d[2022-08-29]
-  def stop(), do: ~d[2023-12-31]
+  def stop(), do: ~d[2024Q1]
 
-  # Kreuzung mit Weusthoffstraße vermutlich April-September 2023 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1009916
+  # Kreuzung mit Weusthoffstraße vermutlich Sommer 2024 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1011209
   def construction_site_id_hh(), do: [91363]
 
   def type(), do: :construction
