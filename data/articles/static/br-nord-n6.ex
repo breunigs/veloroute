@@ -14,7 +14,50 @@ defmodule Data.Article.Static.BrNordN6 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(), do: []
+  # note: W3 and N6 connect at the admin border of Barmbek/Barmfeld, hence the slight naming difference
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n6-main",
+  #       direction: :forward,
+  #       from: "UKE",
+  #       to: "Barmbek",
+  #       parent_ref: __MODULE__,
+  #       text: "vom UKE nach Barmfeld",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n6-main",
+  #       direction: :backward,
+  #       from: "Barmbek",
+  #       to: "UKE",
+  #       parent_ref: __MODULE__,
+  #       text: "von Barmfeld zum UKE",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n6-leg",
+  #       direction: :forward,
+  #       from: "Grasweg",
+  #       to: "Pestalozzistraße",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Grasweg zur Pestalozzistraße",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n6-leg",
+  #       direction: :backward,
+  #       from: "Pestalozzistraße",
+  #       to: "Grasweg",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Pestalozzistraße zum Grasweg",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

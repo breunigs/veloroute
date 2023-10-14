@@ -14,7 +14,29 @@ defmodule Data.Article.Static.BrNordN9 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(), do: []
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n9",
+  #       direction: :forward,
+  #       from: "Krohnstieg",
+  #       to: "Glashütte",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Krohnstieg nach Glashütte",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n9",
+  #       direction: :backward,
+  #       from: "Glashütte",
+  #       to: "Krohnstieg",
+  #       parent_ref: __MODULE__,
+  #       text: "von Glashütte zum Krohnstieg",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

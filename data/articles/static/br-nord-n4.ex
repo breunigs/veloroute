@@ -14,7 +14,29 @@ defmodule Data.Article.Static.BrNordN4 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(), do: []
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n4",
+  #       direction: :forward,
+  #       from: "Schöne Aussicht",
+  #       to: "Eulenkamp",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Schönen Aussicht zum Eulenkamp",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n4",
+  #       direction: :backward,
+  #       from: "Eulenkamp",
+  #       to: "Schöne Aussicht",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Eulenkamp zur Schönen Aussicht",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

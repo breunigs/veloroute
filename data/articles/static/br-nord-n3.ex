@@ -14,8 +14,49 @@ defmodule Data.Article.Static.BrNordN3 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(),
-    do: []
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n3-main",
+  #       direction: :forward,
+  #       from: "Lortzingstraße",
+  #       to: "Ohlsdorf",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Lortzingstraße nach Ohlsdorf",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n3-main",
+  #       direction: :backward,
+  #       from: "Ohlsdorf",
+  #       to: "Lortzingstraße",
+  #       parent_ref: __MODULE__,
+  #       text: "von Ohlsdorf zur Lortzingstraße",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n3-leg",
+  #       direction: :forward,
+  #       from: "Eulenkamp",
+  #       to: "Steilshooper Straße",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Eulenkamp zur Steilshooper Straße",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n3-leg",
+  #       direction: :backward,
+  #       from: "Steilshooper Straße",
+  #       to: "Eulenkamp",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Steilshooper Straße zum Eulenkamp",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

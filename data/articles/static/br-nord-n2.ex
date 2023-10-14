@@ -14,8 +14,49 @@ defmodule Data.Article.Static.BrNordN2 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(),
-    do: []
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n2-main",
+  #       direction: :forward,
+  #       from: "Hoheluftbrücke",
+  #       to: "Papenreye",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Hoheluftbrücke zur Papenreye",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n2-main",
+  #       direction: :backward,
+  #       from: "Papenreye",
+  #       to: "Hoheluftbrücke",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Papenreye zur Hoheluftbrücke",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n2-leg",
+  #       direction: :forward,
+  #       from: "Heilwigbrücke",
+  #       to: "Kümmellstraße",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Heilwigbrücke zur Kümmellstraße",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n2-leg",
+  #       direction: :backward,
+  #       from: "Kümmellstraße",
+  #       to: "Heilwigbrücke",
+  #       parent_ref: __MODULE__,
+  #       text: "von der Kümmellstraße zur Heilwigbrücke",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

@@ -14,7 +14,29 @@ defmodule Data.Article.Static.BrNordN1 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  def tracks(), do: []
+  # def tracks(),
+  #   do: [
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n1",
+  #       direction: :forward,
+  #       from: "Lübeckertordamm",
+  #       to: "Ochsenzoll",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Lübeckertordamm zum Ochsenzoll",
+  #       videos: []
+  #     },
+  #     %Video.Track{
+  #       renderer: 3,
+  #       group: "n1",
+  #       direction: :backward,
+  #       from: "Ochsenzoll",
+  #       to: "Lübeckertordamm",
+  #       parent_ref: __MODULE__,
+  #       text: "vom Ochsenzoll zum Lübeckertordamm",
+  #       videos: []
+  #     }
+  #   ]
 
   def links(_assigns) do
     [

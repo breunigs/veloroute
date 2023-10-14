@@ -21,7 +21,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
         group: "rotherbaum",
         direction: :forward,
         from: "Dammtor",
-        to: "Heilwigstraße",
+        to: "Heilwigbrücke",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Rotherbaum“ → Heilwigbrücke",
         videos: [
@@ -34,7 +34,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
         renderer: 3,
         group: "rotherbaum",
         direction: :backward,
-        from: "Heilwigstraße",
+        from: "Heilwigbrücke",
         to: "Dammtor",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Rotherbaum“ → Dammtor",
@@ -59,7 +59,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
     ~H"""
     <h3>Bezirksroute Eimsbüttel – Rotherbaum <.icon>E5</.icon></h3>
 
-    <p>Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft vom <.v bounds="9.984348,53.558459,9.998315,53.565785" lon={9.990748} lat={53.560337} dir="forward" ref="br-eimsbuettel-rotherbaum">Dammtor</.v> in Nord-Süd-Richtung entlang des <.v bounds="9.984562,53.559162,10.003159,53.579949" lon={9.994316} lat={53.572317} dir="forward" ref="br-eimsbuettel-rotherbaum">Mittelweg</.v> und endet auf der <.v bounds="9.990061,53.579781,10.00024,53.587175" lon={9.993936} lat={53.584425} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v>. Auf einem Teilstück teilt sie sich den Weg mit der <.a name="br-eimsbuettel-isebek">Bezirksroute Isebek</.a>.</p>
+    <p>Die Bezirksroute „Rotherbaum“ in Eimsbüttel verläuft vom <.v bounds="9.984348,53.558459,9.998315,53.565785" lon={9.990748} lat={53.560337} dir="forward" ref="br-eimsbuettel-rotherbaum">Dammtor</.v> in Nord-Süd-Richtung entlang des <.v bounds="9.984562,53.559162,10.003159,53.579949" lon={9.994316} lat={53.572317} dir="forward" ref="br-eimsbuettel-rotherbaum">Mittelweg</.v> und endet auf der <.v bounds="9.990061,53.579781,10.00024,53.587175" lon={9.993936} lat={53.584425} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v>. Dort schließt sie an einen Ast der Bezirksroute HH-Nord <.a name="br-nord-n2">N2: Alster ↔ Airport</.a> an. Auf einem Teilstück teilt sie sich den Weg mit der <.a name="br-eimsbuettel-isebek">Bezirksroute Isebek</.a>.</p>
 
     <h4>Speziell für diese Route</h4>
     <p>Wo heute noch keine <.ref>Radfahrstreifen</.ref> sind, sollen sie eingerichtet werden. Wo zu wenig Platz für normalbreite Radfahrstreifen ist, werden als Alternative <.ref>Schutzstreifen</.ref> vorgeschlagen. Das wäre von <.v bounds="9.993365,53.566095,9.998871,53.570937" lon={9.995976} lat={53.566645} dir="forward" ref="br-eimsbuettel-rotherbaum">Johnsallee</.v> bis <.v bounds="9.993365,53.566095,9.998871,53.570937" lon={9.995238} lat={53.570308} dir="forward" ref="br-eimsbuettel-rotherbaum">Milchstraße</.v> der Fall.</p>
