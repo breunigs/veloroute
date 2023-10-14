@@ -390,7 +390,7 @@ defmodule Components.TagHelpers do
           other
       end)
 
-    links = if assigns[:gpx], do: links ++ [Article.Decorators.gpx_links(art)], else: links
+    links = if assigns[:gpx], do: links ++ Article.Decorators.gpx_links(art), else: links
     assigns = %{links: links}
 
     case length(links) do

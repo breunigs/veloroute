@@ -70,16 +70,22 @@ defmodule Article.Decorators do
     end
   end
 
-  @spec gpx_links(module()) :: Phoenix.LiveView.Rendered.t()
+  @spec gpx_links(module()) :: [Phoenix.LiveView.Rendered.t()]
   def gpx_links(art) when is_module(art) do
     assigns = %{name: art.name()}
 
-    ~H"""
-    Route im
-    <a href={"/geo/#{@name}.gpx"} download={"#{@name}.gpx"}>GPX-Format</a>
-    bzw.
-    <a href={"/geo/#{@name}.kml"} download={"#{@name}.kml"}>KML-Format</a>
-    """
+    if length(art.tracks()) > 0 do
+      [
+        ~H"""
+        Route im
+        <a href={"/geo/#{@name}.gpx"} download={"#{@name}.gpx"}>GPX-Format</a>
+        bzw.
+        <a href={"/geo/#{@name}.kml"} download={"#{@name}.kml"}>KML-Format</a>
+        """
+      ]
+    else
+      []
+    end
   end
 
   @doc """
