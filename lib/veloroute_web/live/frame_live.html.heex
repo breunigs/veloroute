@@ -91,7 +91,7 @@
   </div>
 </div>
 
-<%= if Application.get_env(:veloroute, :enable_drawing_tools) do %>
+<%= if @enable_drawing_tools do %>
   <%
   track = VelorouteWeb.Live.VideoState.current_track(@video)
   ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
