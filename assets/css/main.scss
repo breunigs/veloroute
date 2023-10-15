@@ -602,6 +602,8 @@ body.fullscreen video, #videoOuter:fullscreen video {
   overflow: visible;
   touch-action: pan-x;
 
+  cursor: pointer;
+
   div {
     background-image: url("/images/switcher2.svg");
     background-position: left center;
