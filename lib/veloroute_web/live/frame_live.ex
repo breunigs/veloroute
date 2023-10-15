@@ -361,7 +361,6 @@ defmodule VelorouteWeb.FrameLive do
 
     query = %{
       "video" => assigns[:video_hash],
-      "pos" => assigns[:video_start],
       "pos_sec" => if(assigns[:video_start], do: assigns[:video_start] / 1000.0),
       "bounds" => bounds
     }
