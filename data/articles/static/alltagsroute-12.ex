@@ -88,7 +88,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="12">Rathaus</.v></td>
+        <td><.v bounds="9.985511,53.546587,10.000435,53.554119" lon={9.994228} lat={53.5505} dir="forward" ref="12" highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
@@ -96,31 +96,42 @@ defmodule Data.Article.Static.Alltagsroute12 do
           <.icon>11</.icon>
           <.icon>2</.icon>
         </td>
-        <td><.m bounds="9.9866263,53.5479641,9.9871242,53.548472">Rödingsmarkt</.m></td>
+        <td><.v bounds="9.979819,53.544806,9.994743,53.552337" lon={9.987516} lat={53.549008} dir="forward" ref="12">Rödingsmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>11</.icon>
         </td>
-        <td><.m bounds="9.9661435,53.5412334,9.9761435,53.5512334">Landungsbrücken</.m></td>
+        <td><.v bounds="9.964349,53.543146,9.979272,53.550677" lon={9.972639} lat={53.545563} dir="forward" ref="12">Landungsbrücken</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>11</.icon>
         </td>
-        <td><.m bounds="9.9663729,53.5457403,9.9668345,53.5459993">Alter Elbtunnel</.m></td>
+        <td><.v bounds="9.958412,53.54159,9.973336,53.549121" lon={9.969531} lat={53.546082} dir="forward" ref="12">Alter Elbtunnel</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9510767,53.5453571,9.9530303,53.546346">Fischmarkt</.m></td>
+        <td><.v bounds="9.946468,53.542192,9.961392,53.549723" lon={9.954723} lat={53.545729} dir="forward" ref="12">Fischmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="9.92758,53.5417787,9.9602617,53.5627471">Altona</.m></td>
+        <td><.v bounds="9.935817,53.545325,9.950741,53.552856" lon={9.936366} lat={53.549683} dir="forward" ref="12">Altona</.v></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 12 (auch: Veloroute 12 oder Radroute 12) führt vom Rathaus entlang der Elbe nach Altona</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Meist sind sie asphaltiert, es gibt aber auch kurze Abschnitte mit Kopfsteinpflaster.</p>
+
+    <h4>Meinung</h4>
+    <p>Die kurze Route ist in nur wenigen Abschnitten wirklich fahrradfreundlich. Sofern das Ziel nicht in unmittelbarer Nähe der Route befindet, kann man sie getrost ignorieren.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

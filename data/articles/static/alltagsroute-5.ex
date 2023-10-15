@@ -152,67 +152,91 @@ defmodule Data.Article.Static.Alltagsroute5 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="5">Rathaus</.v></td>
+        <td><.v bounds="9.982519,53.545759,10.013633,53.55792" lon={9.993806} lat={53.55096} dir="forward" ref="5" highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>6</.icon>
         </td>
-        <td><.m bounds="9.9974811,53.5497575,10.0264608,53.5652488">St. Georg</.m></td>
+        <td><.v bounds="9.988166,53.549291,10.035541,53.570707" lon={10.00817} lat={53.558734} dir="forward" ref="5">St. Georg</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>6</.icon>
         </td>
-        <td><.m bounds="10.0038075,53.5652488,10.0378378,53.582101">Uhlenhorst</.m></td>
+        <td><.v bounds="10.008254,53.558594,10.064174,53.587554" lon={10.024997} lat={53.568648} dir="forward" ref="5">Uhlenhorst</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0270067,53.5690949,10.0277571,53.5695479">Mundsburg</.m></td>
+        <td><.v bounds="10.008254,53.558594,10.064174,53.587554" lon={10.031848} lat={53.572135} dir="forward" ref="5">Hamburger Meile</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="10.0190335,53.5696406,10.057332,53.5853664">Barmbek-Süd</.m></td>
+        <td><.v bounds="10.020213,53.570726,10.054219,53.586163" lon={10.039445} lat={53.578668} dir="forward" ref="5">Barmbek-Süd</.v></td>
       </tr>
       <tr>
-        <td><.m bounds="10.0035957,53.5909785,10.0317813,53.6002849">Stadtpark</.m></td>
-        <td><.m bounds="10.0399416,53.5823864,10.0499416,53.5923864">Bahnhof Barmbek</.m></td>
+        <td><.v bounds="9.990573,53.579565,10.050525,53.606417" lon={10.032489} lat={53.593741} dir="forward" ref="5">Stadtpark</.v></td>
+        <td><.v bounds="10.024222,53.577397,10.064373,53.593791" lon={10.044584} lat={53.586575} dir="forward" ref="5">Bahnhof Barmbek</.v></td>
       </tr>
       <tr>
-        <td><.m bounds="10.0116846,53.593643,10.0316846,53.613643">City Nord</.m></td>
-        <td><.m bounds="10.0321363,53.5830349,10.0700204,53.6083635">Barmbek-Nord</.m></td>
+        <td><.v bounds="10.004079,53.596666,10.047279,53.616115" lon={10.029098} lat={53.604042} dir="forward" ref="5">City Nord</.v></td>
+        <td><.v bounds="10.023938,53.59136,10.080642,53.614938" lon={10.044369} lat={53.599221} dir="forward" ref="5">Barmbek-Nord</.v></td>
       </tr>
       <tr>
         <td>
-          <.icon>4</.icon> <.m bounds="9.9563463,53.6143894,10.0092691,53.6582832">Flughafen</.m>
+          <.icon>4</.icon> <.v bounds="9.941035,53.606256,10.037278,53.652622" lon={10.018998} lat={53.614844} dir="forward" ref="5">Flughafen</.v>
         </td>
-        <td><.m bounds="10.0431609,53.6013656,10.0742537,53.6205409">Steilshoop</.m></td>
+        <td><.v bounds="10.03323,53.601041,10.088375,53.622663" lon={10.063269} lat={53.611417} dir="forward" ref="5">Steilshoop</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0547826,53.5919627,10.1231403,53.6359402">Bramfeld</.m></td>
+        <td><.v bounds="10.050457,53.609667,10.105602,53.631288" lon={10.07513} lat={53.618863} dir="forward" ref="5">Bramfeld</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0564914,53.6283935,10.1118998,53.6476259">Wellingsbüttel</.m></td>
+        <td><.v bounds="10.058328,53.626782,10.116455,53.660951" lon={10.096322} lat={53.640164} dir="forward" ref="5">Wellingsbüttel</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0517108,53.6405808,10.1016828,53.6797629">Poppenbüttel</.m>
+        <td><.v bounds="10.053294,53.637465,10.111422,53.671634" lon={10.096484} lat={53.65258} dir="forward" ref="5">Poppenbüttel</.v>
           <.icon>14</.icon>
         </td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.1038415,53.6542993,10.1505365,53.6916966">Bergstedt</.m></td>
+        <td><.v bounds="10.06466,53.65537,10.150552,53.691535" lon={10.113857} lat={53.674322} dir="forward" ref="5">Bergstedt</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.1344308,53.6970479,10.1348092,53.6972659">Duvenstedt</.m></td>
+        <td><.v bounds="10.073114,53.682036,10.154135,53.720004" lon={10.11192} lat={53.701265} dir="forward" ref="5">Duvenstedt</.v></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 5 (auch: Veloroute 5 oder Radroute 5) führt vom <.v bounds="9.982519,53.545759,10.013633,53.55792" lon={9.993806} lat={53.55096} dir="forward" ref="5" highlight="Rathausmarkt">Rathaus</.v> entweder zum <.v bounds="9.941035,53.606256,10.037278,53.652622" lon={10.018998} lat={53.614844} dir="forward" ref="5">Flughafen</.v> oder ganz in den Norden nach <.v bounds="10.051116,53.64911,10.178574,53.725028" lon={10.111704} lat={53.695508} dir="forward" ref="5">Duvenstedt</.v>. Die Äste trennen sich nach dem <.v bounds="10.012908,53.569733,10.051036,53.584139" lon={10.032242} lat={53.572568} dir="forward" ref="5">Einkaufszentrum Hamburger Meile</.v>.</p>
+
+    <h5>Gemeinsamer Abschnitt</h5>
+    <p>Die Route folgt der <.v bounds="9.988623,53.552844,10.020534,53.569388" lon={10.00766} lat={53.558452} dir="forward" ref="5" highlight="An der Alster">Außenalster auf der Ostseite</.v>. Wahlweise kann auch stadtauswärts direkt an der Alster gefahren werden, was leicht umständlicher ist. Im Anschluss verläuft die Route entlang der Hauptverkehrsstraße <.v bounds="10.0061,53.560306,10.053304,53.581248" lon={10.023889} lat={53.567906} dir="forward" ref="5">Mundsburger Damm / Hamburger Straße / Oberaltenallee</.v>.</p>
+
+    <h5>Richtung Flughafen</h5>
+    <p>Die Route knickt hier ab und folgt der <.v bounds="10.019562,53.572101,10.047068,53.602124" lon={10.034224} lat={53.586002} dir="forward" ref="5" highlight="Adolph-Schönfelder-Straße,Schleidenstraße,Biedermannplatz,Saarlandstraße">Hauptverkehrsstraße in Richtung Stadtpark</.v>. Dort wechselt man auf einen <.v bounds="10.017709,53.592957,10.040274,53.61746" lon={10.029588} lat={53.603438} dir="forward" ref="5">autofreien Abschnitt</.v> bevor man wieder auf eine <.v bounds="10.014022,53.606718,10.030201,53.619073" lon={10.022339} lat={53.612264} dir="forward" ref="5" highlight="Sengelmannstraße">vom KFZ dominierte Straße</.v> gelangt. Via <.a name="alltagsroute-4">Alltagsroute 4</.a> bzw. <.a name="br-nord-n1">Bezirksroute Nord N1</.a> erfolgt die Weiterfahrt.</p>
+
+    <h5>Richtung Duvenstedt</h5>
+    <p>Man folgt der <.v bounds="10.022023,53.569685,10.056543,53.588874" lon={10.037815} lat={53.57637} dir="forward" ref="5" highlight="Hamburger Straße">Hauptverkehrstraße</.v> noch ein wenig, knickt dann Richtung <.v bounds="10.035228,53.577288,10.053687,53.593027" lon={10.044446} lat={53.586493} dir="forward" ref="5">U- und S-Bahnhof Barmbek</.v> ab. Auf größtenteils Nebenstraßen erreicht man <.v bounds="10.045616,53.603251,10.125043,53.643104" lon={10.072621} lat={53.616446} dir="forward" ref="5">Bramfeld</.v>. Dort gelangt man wieder auf die <.v bounds="10.065162,53.612867,10.129021,53.652993" lon={10.082795} lat={53.621065} dir="forward" ref="5" highlight="Bramfelder Chaussee,Saseler Chaussee">zuvor verlassene Hauptverkehrsstraße</.v>. Auf Höhe des <.v bounds="10.078355,53.64266,10.117201,53.671456" lon={10.096849} lat={53.651285} dir="forward" ref="5">S-Bahnhof Poppenbüttel</.v> wird die Route wieder auf Nebenstraßen und Wohnstraßen verlagert. So erreicht man schließlich <.v bounds="10.086043,53.673708,10.135107,53.710476" lon={10.111041} lat={53.695048} dir="forward" ref="5">Duvenstedt</.v>.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Asphalt und Betonplatten halten sich in etwa die Waage. Es gibt kurze Abschnitte mit Kopfsteinpflaster.</p>
+
+    <h4>Meinung</h4>
+    <p>Die ursprüngliche Idee war, die Routen abseits der KFZ-Hauptstraßen verlaufen zu lassen. Weniger Lärm- und Abgasbelastung einerseits, dem Autoverkehr keine Spur wegnehmen müssen andererseits. Das Konzept ging bei der Route nicht auf. Lange Abschnitte verlaufen an vierspuren Autoschneisen, auch in den Nebenstraßen dominiert häufig das Auto. Die Führung über die Nebenstraßen stellt auch häufig einen Umweg dar, für den man nur mäßige Radinfrastruktur erhält (<.v bounds="10.040056,53.596837,10.052131,53.603119" lon={10.044521} lat={53.59917} dir="forward" ref="5">viele schmale Schutzstreifen</.v>, <.v bounds="10.048642,53.602003,10.057001,53.605721" lon={10.052648} lat={53.603928} dir="forward" ref="5">unterbrochene Radwege</.v>).</p>
+
+    <p>Andererseits hat die Route mit der <.v bounds="10.017216,53.596828,10.038291,53.611129" lon={10.030781} lat={53.601319} dir="forward" ref="5">Strecke im Pergolenviertel</.v> auch einen der besten Radwege Hamburgs – gute Oberfläche, keine KFZ, genug Platz zum Klönen und Überholen.</p>
+
+    <p>Erwähnenswert ist auch die Versuchsstrecke <.v bounds="9.999015,53.556062,10.016522,53.562532" lon={10.00686} lat={53.558218} dir="forward" ref="5">An der Alster</.v> Richtung stadtauswärts. Regelmäßig setzt die Stadt hier kleine Verbesserungen um, die ohne großen Umbau auskommen. So hat sie die Qualität für den Radverkehr dort stetig erhöht, auch wenn noch einiges zu tun bleibt. Aber lieber kleine Verbesserungen heute, als einen großen Umbau der erst in Jahren – oder nie – kommt.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

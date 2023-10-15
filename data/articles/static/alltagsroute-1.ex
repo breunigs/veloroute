@@ -149,7 +149,7 @@ defmodule Data.Article.Static.Alltagsroute1 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.988972,53.547905,10.001451,53.552928" lon={9.993714} lat={53.551028} dir="forward" ref="1">Rathaus</.v></td>
+        <td><.v bounds="9.988972,53.547905,10.001451,53.552928" lon={9.993714} lat={53.551028} dir="forward" ref="1" highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
