@@ -91,7 +91,10 @@ defmodule VelorouteWeb.FrameLive do
   def handle_event("video-reverse", attr, socket) do
     Logger.debug("video-reverse #{inspect(attr)}")
 
-    {:noreply, VelorouteWeb.Live.VideoState.reverse(socket, attr)}
+    {:noreply,
+     socket
+     |> VelorouteWeb.Live.VideoState.reverse(attr)
+     |> update_url_query()}
   end
 
   @deprecated "removed from FE, should not be used after a while"
