@@ -14,17 +14,26 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
   def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
   def point_of_interest(), do: %{lon: 10.029203, lat: 53.603815, zoom: 16}
 
+  def links(_assigns),
+    do: [
+      {"offizielle Seite zu den Radschnellwegen",
+       "https://metropolregion.hamburg.de/radschnellwege/"},
+      {"Pressemitteilung zum Namen „Radroute Plus“", "September 2023",
+       "https://metropolregion.hamburg.de/presse/17358996/aus-radschnellweg-wird-radroute-plus/"}
+    ]
+
   def text(assigns) do
     ~H"""
     <.roaddiagram src="rsw" width={100} alt="Verkehrszeichen 350.1 „Radschnellweg“ aus der StVO" class="right"/>
 
-    <p>Ein Radschnellweg versucht längere Strecken mit dem Fahrrad attraktiv zu machen, indem er eine hohe Durchschnittsgeschwindigkeit ermöglicht. Dies wird durch Vorfahrt, genug Platz zum Überholen und gute Straßenbeläge erreicht. Stellenweise sind auch Bauwerke wie Tunnel oder Brücken vorgesehen, um eine direktere oder kreuzungsfreie Führung zu ermöglichen. In Hamburg heißen diese Strecken „Radroute Plus“.</p>
+    <p>Ein Radschnellweg (auch: Radroute Plus) versucht längere Strecken mit dem Fahrrad attraktiv zu machen, indem er eine hohe Durchschnittsgeschwindigkeit ermöglicht. Dies wird durch Vorfahrt, genug Platz zum Überholen und gute Straßenbeläge erreicht. Stellenweise sind auch Bauwerke wie Tunnel oder Brücken vorgesehen, um eine direktere oder kreuzungsfreie Führung zu ermöglichen. In Hamburg heißen diese Strecken „Radroute Plus“.</p>
 
     <p>Um Hamburg herum verlaufen diese sternförmig in umliegende Gemeinden. In der Trassenfindung wurden verschiedenste Aspekte gegeneinander abgewägt, um die auf der Seite dargestellten Vorzugstrassen zu finden. Eingeflossen sind unter anderem wo Menschen leben und arbeiten, Anschlüsse an Bahnhöfe, Naturschutz, vorhandene Wege, und auch Hinweise und Wünsche aus der Bevölkerung.</p>
 
     <p>In der Metropolregion Hamburg sind die Machbarkeitsstudien („Trassenfindung“) abgeschlossen. Die nächsten Schritte sind die Finanzierung und die Detailplanung der einzelnen Abschnitte, damit die gefundene Trasse Wirklichkeit wird.</p>
 
-    <p><.a href="https://metropolregion.hamburg.de/radschnellwege/">offizielle Seite zu den Radschnellwegen</.a></p>
+    <h3>Externe Links</h3>
+    <.structured_links ref={@ref}/>
     """
   end
 end

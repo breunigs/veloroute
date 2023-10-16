@@ -125,7 +125,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Bad Bramstedt ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) nach Bad Bramstedt ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
     <p>Das Video orientiert sich an der Vorzugsführung, muss aber bei Neubauabschnitten davon abweichen. Im unausgebauten Zustand stellt diese Führung nicht unbedingt die bequemste oder schnellste Verbindung bereit.</p>
 
     <h4>Hamburg</h4>

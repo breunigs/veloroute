@@ -155,9 +155,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
         <td><.v bounds="9.982519,53.545759,10.013633,53.55792" lon={9.993806} lat={53.55096} dir="forward" ref="5" highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
-        <td>
-          <.icon>6</.icon>
-        </td>
+        <td></td>
         <td><.v bounds="9.988166,53.549291,10.035541,53.570707" lon={10.00817} lat={53.558734} dir="forward" ref="5">St. Georg</.v></td>
       </tr>
       <tr>
@@ -172,6 +170,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
       </tr>
       <tr>
         <td>
+          <.icon>FR2</.icon>
           <.icon>13</.icon>
         </td>
         <td><.v bounds="10.020213,53.570726,10.054219,53.586163" lon={10.039445} lat={53.578668} dir="forward" ref="5">Barmbek-Süd</.v></td>
@@ -186,9 +185,9 @@ defmodule Data.Article.Static.Alltagsroute5 do
       </tr>
       <tr>
         <td>
-          <.icon>4</.icon> <.v bounds="9.941035,53.606256,10.037278,53.652622" lon={10.018998} lat={53.614844} dir="forward" ref="5">Flughafen</.v>
+          <.icon>FR11</.icon> <.icon>4</.icon> <.v bounds="9.941035,53.606256,10.037278,53.652622" lon={10.018998} lat={53.614844} dir="forward" ref="5">Flughafen</.v>
         </td>
-        <td><.v bounds="10.03323,53.601041,10.088375,53.622663" lon={10.063269} lat={53.611417} dir="forward" ref="5">Steilshoop</.v></td>
+        <td><.v bounds="10.03323,53.601041,10.088375,53.622663" lon={10.063269} lat={53.611417} dir="forward" ref="5">Steilshoop</.v> <.icon>FR11</.icon></td>
       </tr>
       <tr>
         <td></td>
@@ -206,7 +205,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.06466,53.65537,10.150552,53.691535" lon={10.113857} lat={53.674322} dir="forward" ref="5">Bergstedt</.v></td>
+        <td><.v bounds="10.06466,53.65537,10.150552,53.691535" lon={10.113857} lat={53.674322} dir="forward" ref="5">Bergstedt</.v> <.icon>FR1</.icon></td>
       </tr>
       <tr>
         <td></td>

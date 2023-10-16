@@ -89,7 +89,7 @@ defmodule Data.Article.Static.Startpage do
     </table>
 
     <h4>Umland</h4>
-    <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
+    <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ (auch: Radrouten Plus) sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
 
     <table class="route-list">
       <tr>

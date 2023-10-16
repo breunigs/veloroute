@@ -86,7 +86,7 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Tostedt ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) nach Tostedt ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen.</p>
 
     <h4>Harburg</h4>
     <p>Die Machbarkeitsstudie schlägt nur eine mögliche Anbindung an den <.v bounds="9.985339,53.451653,9.996725,53.458833" lon={9.989574} lat={53.455961} dir="forward" ref={@ref}>Bahnhof Harburg</.v> vor. Die Abwägung gegenüber anderen Führungen soll zu einem späteren Zeitpunkt nachgeholt werden. Entsprechend hoch ist die Wahrscheinlichkeit, dass sich die Strecke hier nochmal ändert. Klar ist jedoch, dass die Landesgrenze am <.v bounds="9.96695,53.415797,9.980777,53.422998" lon={9.97459} lat={53.420477} dir="forward" ref={@ref}>Beetenweg</.v> überquert werden soll.</p>

@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def start(), do: ~d[2023-10-04]
   def stop(), do: ~d[2024-10-06]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["12"]
 

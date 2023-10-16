@@ -37,7 +37,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Ahrensburg ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) nach Ahrensburg ist abgeschlossen. An einigen Stellen sind alternative Führungen im Gespräch und müssen noch genauer abgewägt werden. Die genaue Planung für die einzelnen Abschnitte ist ebenfalls noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
 
     <h4>Hamburg</h4>
     <p>Los geht der Schnellweg bereits ab dem <.v bounds="10.14417,53.637615,10.150893,53.646256" lon={10.146144} lat={53.639037} dir="forward" ref={@ref}>Haselkamp</.v> und folgt der <.a name="alltagsroute-6">Alltagsroute 6</.a> bis zur U-Bahn Station Volksdorf. Bis zum <.v bounds="10.156466,53.644487,10.161663,53.647907" lon={10.158019} lat={53.645727} dir="forward" ref={@ref}>Kreisel</.v> sind Fahrradstraßen angedacht, im <.v bounds="10.159653,53.64649,10.163835,53.650212" lon={10.160452} lat={53.647107} dir="forward" ref={@ref}>Uppenhof</.v> richtet man sich nach dem Projekt „autoarmes Volksdorf“.</p>

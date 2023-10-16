@@ -130,7 +130,7 @@ defmodule Data.Article.Static.RSWElmshorn do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> nach Elmshorn ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) nach Elmshorn ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
 
     <p>Der Radschnellweg beginnt in Hamburg an zwei unterschiedlichen Stellen und vereint sich erst in der <.v bounds="9.88323,53.598201,9.895067,53.606363" lon={9.890008} lat={53.601812} dir="forward" ref={@ref}>Elbgaustraße</.v>. Das lange Video orientiert sich am westlichen Arm und geht bis Elmshorn. Das Kurze zeigt den östlichen Arm nur ab/bis Elbgaustrase. Dort wo neue Brücken und Wege erst noch gebaut werden sollen weichen die Videos von der Trasse ab. Die in der Karte eingezeichnete Strecke ist die Vorzugsvariante. Sollte diesen in Teilen nicht umgesetzt werden können, wurden in der Planung auch Alternativen ausgearbeitet.</p>
 

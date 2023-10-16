@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.FahrradparkhausKellinghusenstrasse do
   def start(), do: ~d[2023-09]
   def stop(), do: ~d[2023-10]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["13"]
 

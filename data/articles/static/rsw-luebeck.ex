@@ -123,7 +123,7 @@ defmodule Data.Article.Static.RSWLuebeck do
 
   def text(assigns) do
     ~H"""
-    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> durch Lübeck ist größtenteils abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen. </p>
+    <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) durch Lübeck ist größtenteils abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung. Die Videos orientieren sich an der Vorzugstrasse, müssen bei geplanten neuen Wegen aber zwangsläufig von ihr abweichen. </p>
 
     <h4>Bad Schwartau</h4>
     <p>Anfang soll das <.v bounds="10.696619,53.916311,10.700832,53.92005" lon={10.698587} lat={53.918538} dir="forward" ref="rsw-luebeck">Stadtzentrum Bad Schwartaus</.v> sein. Vorgeschlagen wird das Kopfsteinpflaster zu ersetzen und eine Fahrradstraße einzurichten. Ab Höhe der Fabrik erscheint dies durch den hohen LKW-Anteil unrealistisch, sodass hier eine Tempo-20-Zone erwägt wird. Richtung Süden schließt sich der Weg an den <.v bounds="10.691162,53.910198,10.696742,53.913947" lon={10.694221} lat={53.912471} dir="forward" ref="rsw-luebeck">vorhandenen Zweirichtungsradweg</.v> auf der Ostseite der Landstraße an. Dieser soll auf 4,0m verbreitert werden.</p>
