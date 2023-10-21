@@ -14,49 +14,75 @@ defmodule Data.Article.Static.BrNordN2 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n2-main",
-  #       direction: :forward,
-  #       from: "Hoheluftbrücke",
-  #       to: "Papenreye",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Hoheluftbrücke zur Papenreye",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n2-main",
-  #       direction: :backward,
-  #       from: "Papenreye",
-  #       to: "Hoheluftbrücke",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Papenreye zur Hoheluftbrücke",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n2-leg",
-  #       direction: :forward,
-  #       from: "Heilwigbrücke",
-  #       to: "Kümmellstraße",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Heilwigbrücke zur Kümmellstraße",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n2-leg",
-  #       direction: :backward,
-  #       from: "Kümmellstraße",
-  #       to: "Heilwigbrücke",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Kümmellstraße zur Heilwigbrücke",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n2-main",
+        direction: :forward,
+        from: "Hoheluftbrücke",
+        to: "Papenreye",
+        parent_ref: __MODULE__,
+        text: "von der Hoheluftbrücke zur Papenreye",
+        videos: [
+          {"2023-10-17-brnord/GX016310", :start, :end},
+          {"2023-10-17-brnord/GX016311", :start, :end},
+          {"2023-10-17-brnord/GX016312", :start, "00:00:13.113"},
+          {"2023-10-18-brnord/GX016370", "00:00:10.410", :end},
+          {"2023-10-18-brnord/GX016371", :start, :end},
+          {"2023-10-18-brnord/GX016372", :start, :end},
+          {"2023-10-18-brnord/GX016373", :start, :end},
+          {"2023-10-18-brnord/GX016374", :start, :end},
+          {"2023-10-18-brnord/GX016375", :start, :end},
+          {"2023-10-18-brnord/GX016376", :start, "00:00:01.335"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n2-main",
+        direction: :backward,
+        from: "Papenreye",
+        to: "Hoheluftbrücke",
+        parent_ref: __MODULE__,
+        text: "von der Papenreye zur Hoheluftbrücke",
+        videos: [
+          {"2023-10-18-brnord/GX016378", :start, :end},
+          {"2023-10-18-brnord/GX016379", :start, "00:00:38.739"},
+          {"2023-10-18-brnord/GX016380", :start, :end},
+          {"2023-10-18-brnord/GX016381", :start, :end},
+          {"2023-10-18-brnord/GX016382", :start, :end},
+          {"2023-10-18-brnord/GX016383", :start, :end},
+          {"2023-10-18-brnord/GX016384", :start, "00:00:08.909"},
+          {"2023-10-18-brnord/GX016388", "00:00:09.526", "00:01:03.897"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n2-leg",
+        direction: :forward,
+        from: "Heilwigbrücke",
+        to: "Kümmellstraße",
+        parent_ref: __MODULE__,
+        text: "von der Heilwigbrücke zur Kümmellstraße",
+        videos: [
+          {"2023-10-18-brnord/GX016387", "00:00:27.022", :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n2-leg",
+        direction: :backward,
+        from: "Kümmellstraße",
+        to: "Heilwigbrücke",
+        parent_ref: __MODULE__,
+        text: "von der Kümmellstraße zur Heilwigbrücke",
+        videos: [
+          {"2023-10-18-brnord/GX016385", "00:00:01.368", :end},
+          {"2023-10-18-brnord/GX016386", :start, :end},
+          {"2023-10-18-brnord/GX016387", :start, "00:00:18.682"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [

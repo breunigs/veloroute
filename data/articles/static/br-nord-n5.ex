@@ -14,29 +14,52 @@ defmodule Data.Article.Static.BrNordN5 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n5",
-  #       direction: :forward,
-  #       from: "Krugkoppelbrücke",
-  #       to: "Eulenkamp",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Krugkoppelbrücke zum Eulenkamp",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n5",
-  #       direction: :backward,
-  #       from: "Eulenkamp",
-  #       to: "Krugkoppelbrücke",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Eulenkamp zur Krugkoppelbrücke",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n5",
+        direction: :forward,
+        from: "Krugkoppelbrücke",
+        to: "Eulenkamp",
+        parent_ref: __MODULE__,
+        text: "von der Krugkoppelbrücke zum Eulenkamp",
+        videos: [
+          {"2023-10-18-brnord/GX016418", "00:00:40.040", :end},
+          {"2023-10-18-brnord/GX016419", :start, :end},
+          {"2023-10-18-brnord/GX016420", :start, :end},
+          {"2023-10-18-brnord/GX016421", :start, :end},
+          {"2023-10-18-brnord/GX016422", :start, :end},
+          {"2023-10-18-brnord/GX016423", :start, :end},
+          {"2023-10-18-brnord/GX016424", :start, :end},
+          {"2023-10-18-brnord/GX016425", :start, :end},
+          {"2023-10-18-brnord/GX016426", :start, :end},
+          {"2023-10-18-brnord/GX016427", :start, "00:00:20.683"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n5",
+        direction: :backward,
+        from: "Eulenkamp",
+        to: "Krugkoppelbrücke",
+        parent_ref: __MODULE__,
+        text: "vom Eulenkamp zur Krugkoppelbrücke",
+        videos: [
+          {"2023-10-18-brnord/GX016427", "00:00:41.700", :end},
+          {"2023-10-18-brnord/GX016428", :start, :end},
+          {"2023-10-18-brnord/GX016429", :start, "00:00:20.120"},
+          {"2023-10-18-brnord/GX016411", "00:00:24.658", :end},
+          {"2023-10-18-brnord/GX016412", :start, :end},
+          {"2023-10-18-brnord/GX016413", :start, :end},
+          {"2023-10-18-brnord/GX016414", :start, :end},
+          {"2023-10-18-brnord/GX016415", :start, :end},
+          {"2023-10-18-brnord/GX016416", :start, :end},
+          {"2023-10-18-brnord/GX016417", :start, :end},
+          {"2023-10-18-brnord/GX016418", :start, "00:00:35.362"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [

@@ -14,29 +14,47 @@ defmodule Data.Article.Static.BrNordN7 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n7",
-  #       direction: :forward,
-  #       from: "Grandweg",
-  #       to: "Langenfort",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Grandweg zum Langenfort",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n7",
-  #       direction: :backward,
-  #       from: "Langenfort",
-  #       to: "Grandweg",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Langenfort zum Grandweg",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n7",
+        direction: :forward,
+        from: "Grandweg",
+        to: "Langenfort",
+        parent_ref: __MODULE__,
+        text: "vom Grandweg zum Langenfort",
+        videos: [
+          {"2023-10-18-brnord/GX016367", "00:00:24.353", :end},
+          {"2023-10-18-brnord/GX016368", :start, :end},
+          {"2023-10-18-brnord/GX016369", :start, :end},
+          {"2023-10-18-brnord/GX016370", :start, "00:00:08.408"},
+          {"2023-10-17-brnord/GX016312", "00:00:11.078", :end},
+          {"2023-10-17-brnord/GX016313", :start, "00:00:27.427"},
+          {"2023-10-17-brnord/GX016313", "00:00:27.361", :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n7",
+        direction: :backward,
+        from: "Langenfort",
+        to: "Grandweg",
+        parent_ref: __MODULE__,
+        text: "vom Langenfort zum Grandweg",
+        videos: [
+          {"2023-10-17-brnord/GX016314", "00:00:21.054", :end},
+          {"2023-10-17-brnord/GX016315", :start, :end},
+          {"2023-10-17-brnord/GX016316", :start, :end},
+          {"2023-10-17-brnord/GX016317", :start, :end},
+          {"2023-10-17-brnord/GX016318", :start, :end},
+          {"2023-10-17-brnord/GX016319", :start, :end},
+          {"2023-10-17-brnord/GX016320", :start, :end},
+          {"2023-10-17-brnord/GX016321", :start, :end},
+          {"2023-10-18-brnord/GX016367", :start, "00:00:21.017"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [

@@ -15,49 +15,85 @@ defmodule Data.Article.Static.BrNordN6 do
   def tags(), do: [id(), display_id(), "br-nord"]
 
   # note: W3 and N6 connect at the admin border of Barmbek/Barmfeld, hence the slight naming difference
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n6-main",
-  #       direction: :forward,
-  #       from: "UKE",
-  #       to: "Barmbek",
-  #       parent_ref: __MODULE__,
-  #       text: "vom UKE nach Barmfeld",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n6-main",
-  #       direction: :backward,
-  #       from: "Barmbek",
-  #       to: "UKE",
-  #       parent_ref: __MODULE__,
-  #       text: "von Barmfeld zum UKE",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n6-leg",
-  #       direction: :forward,
-  #       from: "Grasweg",
-  #       to: "Pestalozzistraße",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Grasweg zur Pestalozzistraße",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n6-leg",
-  #       direction: :backward,
-  #       from: "Pestalozzistraße",
-  #       to: "Grasweg",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Pestalozzistraße zum Grasweg",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n6-main",
+        direction: :forward,
+        from: "UKE",
+        to: "Barmbek",
+        parent_ref: __MODULE__,
+        text: "vom UKE nach Barmfeld",
+        videos: [
+          {"2023-10-18-brnord/GX016390", :start, :end},
+          {"2023-10-18-brnord/GX016391", :start, :end},
+          {"2023-10-18-brnord/GX016392", :start, :end},
+          {"2023-10-18-brnord/GX016393", :start, :end},
+          {"2023-10-18-brnord/GX016394", :start, :end},
+          {"2023-10-18-brnord/GX016395", :start, :end},
+          {"2023-10-18-brnord/GX016396", :start, :end},
+          {"2023-10-18-brnord/GX016397", :start, :end},
+          {"2023-10-18-brnord/GX016398", :start, :end},
+          {"2023-10-18-brnord/GX016399", :start, :end},
+          {"2023-10-18-brnord/GX016400", :start, :end}
+        ]
+      },
+      # %Video.Track{
+      #   renderer: 3,
+      #   group: "n6-main",
+      #   direction: :backward,
+      #   from: "Barmbek",
+      #   to: "UKE",
+      #   parent_ref: __MODULE__,
+      #   text: "von Barmfeld zum UKE",
+      #   videos: [
+      #     {"2023-10-18-brnord/GX016402", :start, :end},
+      #     {"2023-10-18-brnord/GX016403", :start, :end},
+      #     {"2023-10-18-brnord/GX016434", "00:00:00.467", "00:00:12.980"},
+      #     {"2023-10-18-brnord/GX016435", :start, :end},
+      #     {"2023-10-18-brnord/GX016436", :start, :end},
+      #     {"2023-10-18-brnord/GX016437", :start, "00:00:05.105"},
+      #     {"2023-10-18-brnord/GX016446", "00:00:29.563", :end},
+      #     {"2023-10-18-brnord/GX016447", :start, :end},
+      #     {"2023-10-18-brnord/GX016448", :start, "00:00:11.111"},
+      #     # TODO missing segment here
+      #     {"2023-10-18-brnord/GX016449", "00:00:00.734", :end},
+      #     {"2023-10-18-brnord/GX016450", :start, "00:00:18.014"}
+      #   ]
+      # },
+      %Video.Track{
+        renderer: 3,
+        group: "n6-leg",
+        direction: :forward,
+        from: "Grasweg",
+        to: "Pestalozzistraße",
+        parent_ref: __MODULE__,
+        text: "vom Grasweg zur Pestalozzistraße",
+        videos: [
+          {"2023-10-18-brnord/GX016439", "00:00:09.977", "00:00:32.366"},
+          {"2023-10-18-brnord/GX016439", "00:01:09.002", :end},
+          {"2023-10-18-brnord/GX016440", :start, :end},
+          {"2023-10-18-brnord/GX016441", :start, :end},
+          {"2023-10-18-brnord/GX016442", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n6-leg",
+        direction: :backward,
+        from: "Pestalozzistraße",
+        to: "Grasweg",
+        parent_ref: __MODULE__,
+        text: "von der Pestalozzistraße zum Grasweg",
+        videos: [
+          {"2023-10-18-brnord/GX016443", :start, :end},
+          {"2023-10-18-brnord/GX016444", :start, :end},
+          {"2023-10-18-brnord/GX016445", :start, :end},
+          {"2023-10-18-brnord/GX016446", :start, "00:00:27.355"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [
