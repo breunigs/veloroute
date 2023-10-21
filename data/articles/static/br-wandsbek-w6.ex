@@ -7,7 +7,8 @@ defmodule Data.Article.Static.BrWandsbekW6 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Wandsbek – W6 – Wellingsbüttel ↔ Volksdorf"
 
-  def color(), do: "#bc75d0"
+  # def color(), do: "#bc75d0"
+  def color(), do: "#969696"
 
   def summary(),
     do:
