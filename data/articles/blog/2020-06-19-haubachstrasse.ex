@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Haubachstrasse do
   def links(_assigns) do
     [
       {"Pressemitteilung zum Asphaltierung", "Februar 2023",
-       "https://www.hamburg.de/altona/baustelleninfos/16945750/umbau-veloroute-13-haubachstrasse/"},
+       "https://web.archive.org/web/20230301174925/https://www.hamburg.de/altona/baustelleninfos/16945750/umbau-veloroute-13-haubachstrasse/"},
       {"Pläne und Erläuterungen zur Erschließung Holsten-Quartier",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010111"},
       {"Pläne und Erläuterungen zum Umbau Haubachstraße",

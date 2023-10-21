@@ -70,7 +70,7 @@ defmodule Data.Article.Static.BrNordN6 do
     ~H"""
     <h3>Bezirksroute HH-Nord – Stadtpark-Süd <.icon>N6</.icon></h3>
 
-    <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N6 – Stadtpark-Süd“ künftig verlaufen könnte.</p>
+    <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N6 – Stadtpark-Süd“ künftig verlaufen könnte. Die eingezeichnete und gefahrene Strecke orientiert sich dabei am heute Möglichen. Sollte der Vorschlag des Planungsbüros so von der Politik akzeptiert werden, würden die Verbindungen am Eppendorfer Marktplatz und an der Stadthallenbrücke vermutlich überarbeitet.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

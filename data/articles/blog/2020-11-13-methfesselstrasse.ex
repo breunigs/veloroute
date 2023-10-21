@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.Methfesselstrasse do
 
   def title(), do: "Methfesselstraße"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2022-09-13]
   def stop(), do: ~d[2023-07-31]
   def construction_site_id_hh(), do: [113_061]

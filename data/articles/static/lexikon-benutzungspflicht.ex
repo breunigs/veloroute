@@ -8,7 +8,8 @@ defmodule Data.Article.Static.LexikonBenutzungspflicht do
     do:
       "Ist ein Radweg benutzungspflichtig, muss dieser benutzt werden – es gibt aber zahlreiche Ausnahmen, etwa zum Abbiegen."
 
-  def tags(), do: ["lexikon", "benutzungspflicht", "benutzungspflichtiger"]
+  def tags(),
+    do: ["lexikon", "benutzungspflicht", "benutzungspflichtiger", "benutzungspflichtige"]
 
   def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
   def point_of_interest(), do: %{lon: 10.031722, lat: 53.594882, zoom: 16}
