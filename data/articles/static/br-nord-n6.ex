@@ -39,29 +39,29 @@ defmodule Data.Article.Static.BrNordN6 do
           {"2023-10-18-brnord/GX016400", :start, :end}
         ]
       },
-      # %Video.Track{
-      #   renderer: 3,
-      #   group: "n6-main",
-      #   direction: :backward,
-      #   from: "Barmbek",
-      #   to: "UKE",
-      #   parent_ref: __MODULE__,
-      #   text: "von Barmfeld zum UKE",
-      #   videos: [
-      #     {"2023-10-18-brnord/GX016402", :start, :end},
-      #     {"2023-10-18-brnord/GX016403", :start, :end},
-      #     {"2023-10-18-brnord/GX016434", "00:00:00.467", "00:00:12.980"},
-      #     {"2023-10-18-brnord/GX016435", :start, :end},
-      #     {"2023-10-18-brnord/GX016436", :start, :end},
-      #     {"2023-10-18-brnord/GX016437", :start, "00:00:05.105"},
-      #     {"2023-10-18-brnord/GX016446", "00:00:29.563", :end},
-      #     {"2023-10-18-brnord/GX016447", :start, :end},
-      #     {"2023-10-18-brnord/GX016448", :start, "00:00:11.111"},
-      #     # TODO missing segment here
-      #     {"2023-10-18-brnord/GX016449", "00:00:00.734", :end},
-      #     {"2023-10-18-brnord/GX016450", :start, "00:00:18.014"}
-      #   ]
-      # },
+      %Video.Track{
+        renderer: 3,
+        group: "n6-main",
+        direction: :backward,
+        from: "Barmbek",
+        to: "UKE",
+        parent_ref: __MODULE__,
+        text: "von Barmfeld zum UKE",
+        videos: [
+          {"2023-10-18-brnord/GX016402", :start, :end},
+          {"2023-10-18-brnord/GX016403", :start, :end},
+          {"2023-10-18-brnord/GX016434", "00:00:00.467", "00:00:12.980"},
+          {"2023-10-18-brnord/GX016435", :start, :end},
+          {"2023-10-18-brnord/GX016436", :start, :end},
+          {"2023-10-18-brnord/GX016437", :start, "00:00:05.105"},
+          {"2023-10-18-brnord/GX016446", "00:00:29.563", :end},
+          {"2023-10-18-brnord/GX016447", :start, :end},
+          {"2023-10-18-brnord/GX016448", :start, "00:00:10.210"},
+          {"2023-10-22-br-nord-reg/GX016462", "00:00:03.070", "00:00:07.741"},
+          {"2023-10-18-brnord/GX016449", "00:00:04.104", :end},
+          {"2023-10-18-brnord/GX016450", :start, "00:00:18.014"}
+        ]
+      },
       %Video.Track{
         renderer: 3,
         group: "n6-leg",

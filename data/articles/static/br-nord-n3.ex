@@ -14,49 +14,85 @@ defmodule Data.Article.Static.BrNordN3 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n3-main",
-  #       direction: :forward,
-  #       from: "Lortzingstraße",
-  #       to: "Ohlsdorf",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Lortzingstraße nach Ohlsdorf",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n3-main",
-  #       direction: :backward,
-  #       from: "Ohlsdorf",
-  #       to: "Lortzingstraße",
-  #       parent_ref: __MODULE__,
-  #       text: "von Ohlsdorf zur Lortzingstraße",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n3-leg",
-  #       direction: :forward,
-  #       from: "Eulenkamp",
-  #       to: "Steilshooper Straße",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Eulenkamp zur Steilshooper Straße",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n3-leg",
-  #       direction: :backward,
-  #       from: "Steilshooper Straße",
-  #       to: "Eulenkamp",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Steilshooper Straße zum Eulenkamp",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n3-main",
+        direction: :forward,
+        from: "Lortzingstraße",
+        to: "Ohlsdorf",
+        parent_ref: __MODULE__,
+        text: "von der Lortzingstraße nach Ohlsdorf",
+        videos: [
+          {"2023-10-18-brnord/GX016410", "00:00:34.361", :end},
+          {"2023-10-18-brnord/GX016411", :start, "00:00:24.591"},
+          {"2023-10-18-brnord/GX016429", "00:00:20.053", :end},
+          {"2023-10-18-brnord/GX016430", :start, :end},
+          {"2023-10-18-brnord/GX016431", :start, :end},
+          {"2023-10-18-brnord/GX016432", :start, :end},
+          {"2023-10-18-brnord/GX016433", :start, "00:00:10.511"},
+          {"2023-10-23-brnrod/GX016531", "00:00:15.482", :end},
+          {"2023-10-23-brnrod/GX016532", :start, :end},
+          {"2023-10-23-brnrod/GX016533", :start, :end},
+          {"2023-10-23-brnrod/GX016534", :start, :end}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n3-main",
+        direction: :backward,
+        from: "Ohlsdorf",
+        to: "Lortzingstraße",
+        parent_ref: __MODULE__,
+        text: "von Ohlsdorf zur Lortzingstraße",
+        videos: [
+          {"2023-10-23-brnrod/GX016501", :start, :end},
+          {"2023-10-23-brnrod/GX016502", :start, :end},
+          {"2023-10-23-brnrod/GX016503", :start, :end},
+          {"2023-10-23-brnrod/GX016504", :start, :end},
+          {"2023-10-23-brnrod/GX016505", :start, :end},
+          {"2023-10-23-brnrod/GX016506", :start, :end},
+
+          # XXX
+          {"2023-10-23-brnrod/GX016507", :start, "00:00:05.572"},
+          {"2023-10-18-brnord/GX016406", "00:00:06.740", :end},
+          {"2023-10-18-brnord/GX016407", :start, :end},
+          {"2023-10-18-brnord/GX016408", :start, :end},
+          {"2023-10-18-brnord/GX016409", :start, :end},
+          {"2023-10-18-brnord/GX016410", :start, "00:00:31.358"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n3-leg",
+        direction: :forward,
+        from: "Eulenkamp",
+        to: "Steilshooper Straße",
+        parent_ref: __MODULE__,
+        text: "vom Eulenkamp zur Steilshooper Straße",
+        videos: [
+          {"2023-10-23-brnrod/GX016529", "00:00:14.481", "00:00:17.317"},
+          {"2023-10-23-brnrod/GX016529", "00:00:37.004", :end},
+          {"2023-10-23-brnrod/GX016530", :start, :end},
+          {"2023-10-23-brnrod/GX016531", :start, "00:00:09.007"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n3-leg",
+        direction: :backward,
+        from: "Steilshooper Straße",
+        to: "Eulenkamp",
+        parent_ref: __MODULE__,
+        text: "von der Steilshooper Straße zum Eulenkamp",
+        videos: [
+          {"2023-10-23-brnrod/GX016507", "00:00:10.744", :end},
+          {"2023-10-23-brnrod/GX016508", :start, :end},
+          {"2023-10-23-brnrod/GX016509", :start, :end}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [

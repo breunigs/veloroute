@@ -14,29 +14,46 @@ defmodule Data.Article.Static.BrNordN4 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n4",
-  #       direction: :forward,
-  #       from: "Schöne Aussicht",
-  #       to: "Eulenkamp",
-  #       parent_ref: __MODULE__,
-  #       text: "von der Schönen Aussicht zum Eulenkamp",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n4",
-  #       direction: :backward,
-  #       from: "Eulenkamp",
-  #       to: "Schöne Aussicht",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Eulenkamp zur Schönen Aussicht",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n4",
+        direction: :forward,
+        from: "Schöne Aussicht",
+        to: "Eulenkamp",
+        parent_ref: __MODULE__,
+        text: "von der Schönen Aussicht zum Eulenkamp",
+        videos: [
+          {"2023-10-23-brnrod/GX016521", "00:00:16.250", :end},
+          {"2023-10-23-brnrod/GX016522", :start, :end},
+          {"2023-10-23-brnrod/GX016523", :start, :end},
+          {"2023-10-23-brnrod/GX016524", :start, :end},
+          {"2023-10-23-brnrod/GX016525", :start, :end},
+          {"2023-10-23-brnrod/GX016526", :start, :end},
+          {"2023-10-23-brnrod/GX016527", :start, "00:00:29.129"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n4",
+        direction: :backward,
+        from: "Eulenkamp",
+        to: "Schöne Aussicht",
+        parent_ref: __MODULE__,
+        text: "vom Eulenkamp zur Schönen Aussicht",
+        videos: [
+          {"2023-10-23-brnrod/GX016514", :start, :end},
+          {"2023-10-23-brnrod/GX016515", :start, :end},
+          {"2023-10-23-brnrod/GX016516", :start, :end},
+          {"2023-10-23-brnrod/GX016517", :start, :end},
+          {"2023-10-23-brnrod/GX016518", :start, :end},
+          {"2023-10-23-brnrod/GX016519", :start, :end},
+          {"2023-10-23-brnrod/GX016520", :start, :end},
+          {"2023-10-23-brnrod/GX016521", :start, "00:00:15.415"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [
