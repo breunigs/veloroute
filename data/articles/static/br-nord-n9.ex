@@ -14,29 +14,38 @@ defmodule Data.Article.Static.BrNordN9 do
 
   def tags(), do: [id(), display_id(), "br-nord"]
 
-  # def tracks(),
-  #   do: [
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n9",
-  #       direction: :forward,
-  #       from: "Krohnstieg",
-  #       to: "Glashütte",
-  #       parent_ref: __MODULE__,
-  #       text: "vom Krohnstieg nach Glashütte",
-  #       videos: []
-  #     },
-  #     %Video.Track{
-  #       renderer: 3,
-  #       group: "n9",
-  #       direction: :backward,
-  #       from: "Glashütte",
-  #       to: "Krohnstieg",
-  #       parent_ref: __MODULE__,
-  #       text: "von Glashütte zum Krohnstieg",
-  #       videos: []
-  #     }
-  #   ]
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 3,
+        group: "n9",
+        direction: :forward,
+        from: "Krohnstieg",
+        to: "Glashütte",
+        parent_ref: __MODULE__,
+        text: "vom Krohnstieg nach Glashütte",
+        videos: [
+          {"2023-10-25-brnord/GX016590", "00:02:42.763", "00:03:24.471"},
+          {"2023-10-25-brnord/GX016584", "00:01:56.350", :end},
+          {"2023-10-25-brnord/GX016585", :start, :end},
+          {"2023-10-25-brnord/GX016586", :start, "00:00:09.710"}
+        ]
+      },
+      %Video.Track{
+        renderer: 3,
+        group: "n9",
+        direction: :backward,
+        from: "Glashütte",
+        to: "Krohnstieg",
+        parent_ref: __MODULE__,
+        text: "von Glashütte zum Krohnstieg",
+        videos: [
+          {"2023-10-25-brnord/GX016588", "00:00:04.337", "00:00:40.173"},
+          {"2023-10-25-brnord/GX016589", "00:00:12.346", :end},
+          {"2023-10-25-brnord/GX016590", :start, "00:02:42.797"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [
