@@ -4051,6 +4051,31 @@
       }
     },
     {
+      "id": "extra-line-text",
+      "type": "symbol",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 16,
+      "filter": ["match", ["get", "type"], ["detour", "planned"], true, false],
+      "layout": {
+        "symbol-placement": "line",
+        "text-field": "{title}",
+        "text-font": ["Open Sans Regular"],
+        "text-rotation-alignment": "map",
+        "text-size": 12,
+        "visibility": "visible",
+        "text-max-angle": 30,
+        "text-allow-overlap": true,
+        "text-ignore-placement": false,
+        "text-padding": 1
+      },
+      "paint": {
+        "text-color": "rgba(0, 0, 0, 0.8)",
+        "text-halo-color": "rgba(255,255, 255, 0.8)",
+        "text-halo-width": 2
+      }
+    },
+    {
       "id": "vr-sign",
       "type": "symbol",
       "source": "merged",
