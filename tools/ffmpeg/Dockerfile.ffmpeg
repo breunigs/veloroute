@@ -135,10 +135,11 @@ RUN \
   libc6 \
   libdav1d[0-9]+ \
   libsvtav1enc[0-9]+ \
+  libsvtav1enc1d[0-9]+ \
   libva-drm2 \
   libva2 \
   libvips42 \
-  libvpx7 \
+  libvpx[0-9]+ \
   libwebp[0-9]+ \
   libwebpmux3 \
   libx264-[0-9]+ \
