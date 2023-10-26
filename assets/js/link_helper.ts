@@ -5,11 +5,12 @@ const draw = new MapboxDraw({
   controls: {
     combine_features: false,
     uncombine_features: false,
-    line_string: true
+    line_string: true,
+    trash: false,
   }
 });
 
-function round(num) {
+function round(num: number) {
   return Math.round(num * 1000000) / 1000000;
 }
 
@@ -35,14 +36,14 @@ function logLink() {
     }
     if (type === 'Point') pos = feat.geometry.coordinates;
   }
-  const trackInfo = document.getElementById("linkInfoHelper").dataset;
+  const trackInfo = document.getElementById("linkInfoHelper")?.dataset;
 
   const boundsStr = `bounds="${round(bounds.minLon)},${round(bounds.minLat)},${round(bounds.maxLon)},${round(bounds.maxLat)}"`;
 
   let text;
   if (pos) {
-    const ref = trackInfo.videoId ? `"${trackInfo.videoId}"` : "{@ref}"
-    text = `<.v ${boundsStr} lon={${round(pos[0])}} lat={${round(pos[1])}} dir="${trackInfo.videoDir}" ref=${ref}>`
+    const ref = trackInfo?.videoId ? `"${trackInfo.videoId}"` : "{@ref}"
+    text = `<.v ${boundsStr} lon={${round(pos[0])}} lat={${round(pos[1])}} dir="${trackInfo?.videoDir}" ref=${ref}>`
   } else {
     text = `<.m ${boundsStr}>`
   }
@@ -51,33 +52,39 @@ function logLink() {
   navigator.clipboard.writeText(text);
 }
 
-class CopyLinkButton {
-  onAdd(map, cs) {
-    this.map = map;
-    this.container = document.querySelector('.maplibregl-ctrl-top-left .mapboxgl-ctrl-group');
-    const button = this._createButton()
-    this.container.appendChild(button);
-    return this.container;
-  }
+function onAdd(that: any, map: any, title: string, icon: string, action: () => void) {
+  that.map = map;
+  that.container = document.querySelector('.maplibregl-ctrl-top-left .mapboxgl-ctrl-group');
 
-  _createButton() {
-    const el = window.document.createElement('button')
-    el.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_combine';
-    el.title = 'Copy Video Ref Markup (internal usage)';
-    el.addEventListener('click', logLink);
-    this._setup = true;
-    return el;
+  const button = window.document.createElement('button')
+  button.className = `mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_${icon}`;
+  button.title = title;
+  button.addEventListener('click', action);
+
+  that.container.appendChild(button);
+  return that.container;
+}
+
+class CopyLinkButton {
+  onAdd(map: any) {
+    return onAdd(this, map, 'Copy Video Ref Markup (internal usage)', 'combine', logLink)
   }
 
   onRemove() {
-    const parent = this.container.parentNode;
-    if (parent) parent.removeChild(this.container);
-    this.map = undefined;
+    // not supported
+  }
+}
+
+class DeleteAllButton {
+  onAdd(map: any) {
+    return onAdd(this, map, 'Alle Zeichnungen löschen', 'trash', draw.deleteAll)
+  }
+
+  onRemove() {
+    // not supported
   }
 }
 
 window.map.addControl(draw, 'top-left');
-window.map.addControl(new CopyLinkButton({}), 'top-left')
-
-document.querySelector(".mapbox-gl-draw_trash").title = "Alle Zeichnungen löschen"
-document.querySelector(".mapbox-gl-draw_trash").addEventListener("click", draw.deleteAll)
+window.map.addControl(new DeleteAllButton(), 'top-left')
+window.map.addControl(new CopyLinkButton(), 'top-left')

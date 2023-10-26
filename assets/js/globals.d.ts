@@ -11,5 +11,6 @@ declare global {
     Socket: Socket;
     LiveSocket: LiveSocket;
     mlgl: maplibregl;
+    map: maplibregl.Map;
   }
 }
