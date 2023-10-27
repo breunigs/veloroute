@@ -394,9 +394,11 @@ defmodule VelorouteWeb.FrameLive do
     if art, do: Article.Decorators.path(art), else: "/"
   end
 
+  @default_center_zoom Settings.bounds()
+                       |> Geo.BoundingBox.parse()
+                       |> VelorouteWeb.VariousHelpers.to_string_center_zoom()
   defp update_og_image(%{assigns: %{current_page: nil}} = socket) do
-    bounds = VelorouteWeb.VariousHelpers.to_string_bounds(Settings.bounds())
-    url = ~s(/map/___static/#{bounds}/1280x720)
+    url = ~s(/map/___static/#{@default_center_zoom}/1280x720)
     assign(socket, :og_image, make_absolute(url))
   end
 
@@ -408,8 +410,8 @@ defmodule VelorouteWeb.FrameLive do
       if Enum.member?(related_tracks, current_track) do
         ~p"/images/thumbnails/#{assigns.video_hash}/#{assigns.video_start}"
       else
-        bounds = VelorouteWeb.VariousHelpers.to_string_bounds(assigns.map_bounds)
-        ~s(/map/___static/#{bounds}/1280x720)
+        center_zoom = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
+        ~s(/map/___static/#{center_zoom}/1280x720)
       end
 
     assign(socket, :og_image, make_absolute(url))
