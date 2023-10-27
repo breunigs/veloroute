@@ -162,7 +162,11 @@ defmodule Article.Decorators do
   @spec bbox_self(Article.t()) :: Geo.BoundingBox.t() | nil
   defmemo bbox_self(art) when is_module(art) do
     # from map, manually defined area of interest
-    ways = Map.Element.filter_by_tag(Cache.Map.ways(), :name, art.name())
+    ways =
+      Cache.Map.ways()
+      |> Map.Element.filter_by_tag(:name, art.name())
+      |> Map.Element.filter_by_tag(:type, "article")
+
     bbox_map = Map.Element.bbox(ways)
 
     if bbox_map do
