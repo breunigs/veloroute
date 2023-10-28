@@ -7,7 +7,7 @@ defmodule Data.Article.Static.BrWandsbekW3 do
   def title(), do: "Bezirksroute Wandsbek – W3 – Barmbek ↔ Höltigbaum"
 
   # def color(), do: "#ffe717"
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:
@@ -70,6 +70,8 @@ defmodule Data.Article.Static.BrWandsbekW3 do
     <h3>Bezirksroute Wandsbek – Barmbek ↔ Höltigbaum <.icon>W3</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W3 – Barmbek ↔ Höltigbaum“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:wandsbek) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

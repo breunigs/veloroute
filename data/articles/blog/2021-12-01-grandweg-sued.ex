@@ -6,12 +6,12 @@ defmodule Data.Article.Blog.GrandwegSued do
 
   def title(), do: "Stresemannallee / Grandweg (Veloroute 3)"
 
-  def type(), do: :construction
+  def type(), do: :planned
   def tags(), do: ["3"]
 
-  def start(), do: ~d[2021-09-13]
-  def stop(), do: ~d[2023-08-11]
-  def construction_site_id_hh(), do: [21848]
+  # def start(), do: ~d[2021-09-13]
+  # def stop(), do: ~d[2023-08-11]
+  # def construction_site_id_hh(), do: [21848]
 
   def links(_assigns) do
     [
@@ -28,6 +28,9 @@ defmodule Data.Article.Blog.GrandwegSued do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Oktober 2023</h4>
+    <p>Der Diagonaltrenner wurde noch nicht gebaut. Status bzw. neuer Bautermin unbekannt.</p>
+
     <h4>Stand Februar 2022</h4>
     <p>Die Planung wurde erneut überarbeitet: es soll zusätzlich ein Diagonaltrenner gebaut werden. Diese Neuplanung ist noch nicht ganz fertig, obwohl bereits gebaut wird. Entsprechend schnell soll es gehen: Anfang März soll alles abgeklärt sein. Der Artikel wurde entsprechend angepasst.</p>
 

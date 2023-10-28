@@ -3,16 +3,20 @@ defmodule Data.Article.Blog.HohenfelderBucht do
 
   def name(), do: "#{created_at()}-5-6-hohenfelder-bucht"
   def created_at(), do: ~D[2018-10-10]
-  def updated_at(), do: ~D[2023-10-26]
+  def updated_at(), do: ~D[2023-10-27]
 
   def title(), do: "Hohenfelder Bucht (Veloroute 5 und 6)"
+
+  def summary(),
+    do:
+      "Breitere und direktere Radwege im gesamten Baugebiet. Im Oktober 2023 wurde die Planung leicht angepasst, bleibt im Kern aber wie die ursprüngliche Version von 2018."
 
   def start(), do: ~d[2020-03-09]
   def stop(), do: ~d[2025-12-31]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [6381]
-  def tags(), do: ["5", "6"]
+  def tags(), do: ["5", "6", "FR2", "FR3", "br-nord-n1"]
 
   def links(_assigns) do
     [

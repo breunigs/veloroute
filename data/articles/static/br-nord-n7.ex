@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN7 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N7 – City-Nord"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -68,6 +68,8 @@ defmodule Data.Article.Static.BrNordN7 do
     <h3>Bezirksroute HH-Nord – City-Nord <.icon>N7</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N7 – City-Nord“ künftig verlaufen könnte.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

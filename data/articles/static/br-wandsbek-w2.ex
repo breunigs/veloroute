@@ -7,7 +7,7 @@ defmodule Data.Article.Static.BrWandsbekW2 do
   def title(), do: "Bezirksroute Wandsbek – W2 – Horn ↔ Sasel"
 
   # def color(), do: "#f1c775"
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:
@@ -72,6 +72,8 @@ defmodule Data.Article.Static.BrWandsbekW2 do
     <h3>Bezirksroute Wandsbek – Horn ↔ Sasel <.icon>W2</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W2 – Horn ↔ Sasel“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:wandsbek) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

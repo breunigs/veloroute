@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN6 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N6 – Stadtpark-Süd"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -107,6 +107,8 @@ defmodule Data.Article.Static.BrNordN6 do
     <h3>Bezirksroute HH-Nord – Stadtpark-Süd <.icon>N6</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N6 – Stadtpark-Süd“ künftig verlaufen könnte. Die eingezeichnete und gefahrene Strecke orientiert sich dabei am heute Möglichen. Sollte der Vorschlag des Planungsbüros so von der Politik akzeptiert werden, würden die Verbindungen am Eppendorfer Marktplatz und an der Stadthallenbrücke vermutlich überarbeitet.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

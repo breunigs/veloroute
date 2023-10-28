@@ -7,7 +7,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Eimsbüttel – E6 – Süd"
 
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:
@@ -83,6 +83,8 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
     </ul>
 
     <p>Da die <.v bounds="9.95019,53.562143,9.961856,53.567878" lon={9.957313} lat={53.564963} dir="forward" ref="br-eimsbuettel-sued">Eimsbütteler Straße</.v> teils und <.v bounds="9.963794,53.563015,9.978542,53.5665" lon={9.971351} lat={53.56395} dir="forward" ref="br-eimsbuettel-sued">Sternschanze</.v> ganz im Bezirk Altona liegen, ist dort eine Abstimmung notwendig.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:eimsbuettel) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

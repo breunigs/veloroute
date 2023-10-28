@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN3 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N3 – Barmbek ↔ Fuhlsbüttel"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -103,9 +103,26 @@ defmodule Data.Article.Static.BrNordN3 do
 
   def text(assigns) do
     ~H"""
-    <h3>Bezirksroute HH-Nord N3 – Barmbek ↔ Fuhlsbüttel“ <.icon>N3</.icon></h3>
-
+    <h3>Bezirksroute HH-Nord N3 – Barmbek ↔ Fuhlsbüttel <.icon>N3</.icon></h3>
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N3 – Barmbek ↔ Fuhlsbüttel“ künftig verlaufen könnte.</p>
+
+    <p>Von Süden hat die Route zwei Äste. Der eine beginnt am <.v bounds="10.023639,53.563958,10.065952,53.585827" lon={10.044109} lat={53.572055} dir="forward" ref="br-nord-n3">Eilbekkanal</.v> – also mit Lücke zur <.a name="br-wandsbek-w1">Bezirksroute Wandsbek W1</.a>, aber direktem Anschluss an die <.a name="alltagsroute-6">Radroute 6</.a>. Der andere startet vom <.v bounds="10.042516,53.574043,10.071541,53.587678" lon={10.065262} lat={53.578942} dir="forward" ref="br-nord-n3">Elsässer Platz</.v> und hat Anschluss an beide genannten Routen.</p>
+
+    <p>An der <.v bounds="10.031232,53.583997,10.064837,53.61692" lon={10.050127} lat={53.589395} dir="forward" ref="br-nord-n3">Steilshooper Straße</.v> treffen sich die Äste und führen gemeinsam via <.v bounds="10.035099,53.591044,10.051598,53.606789" lon={10.046748} lat={53.59766} dir="forward" ref="br-nord-n3">Otto-Speckter-Straße</.v> zur <.v bounds="10.021903,53.613281,10.046323,53.631651" lon={10.034428} lat={53.618104} dir="forward" ref="br-nord-n3">Fuhlsbüttler Straße</.v> nach Norden. Dort findet sie Anschluss an zahlreiche Routen wie die <.a name="br-nord-n8">Bezirksroute Nord N8</.a>, die <.a name="rsw-bad-bramstedt">Radroute Plus nach Bad Bramstedt</.a> und die Freizeitroute <.a name="FR11">2. Grüner Ring</.a>.</p>
+
+    <h4>Speziell zu dieser Route</h4>
+    <p>In der <.v bounds="10.021903,53.613281,10.046323,53.631651" lon={10.034428} lat={53.618104} dir="forward" ref="br-nord-n3">Fuhlsbüttler Straße</.v> werden die vorhandenen <.ref>Hochbordradwege</.ref> und <.ref>Radfahrstreifen</.ref> als vorerst ausreichend angesehen.</p>
+
+    <p>Ansonsten ist auf den meisten Abschnitten der Umbau als Fahrradstraße vorgesehen. Ausnahmen bilden vor allem die Kreuzungen:</p>
+    <ul>
+      <li><.v bounds="10.045029,53.589833,10.053033,53.592966" lon={10.048482} lat={53.59169} dir="forward" ref="br-nord-n3">Hellbrookstraße</.v>: verschiedene Maßnahmen sollen geprüft werden (Fahrradstraße, Kreisverkehre, <.ref>Modalfilter</.ref>, <.ref>Protected-Bike-Lane</.ref>).</li>
+      <li><.v bounds="10.04332,53.581354,10.051317,53.585592" lon={10.047261} lat={53.583487} dir="forward" ref="br-nord-n3">Bramfelder Straße</.v>: vollständiger Umbau. Es soll auch der <.a name="FR2">Osterbekradweg</.a> berücksichtigt werden. Auf den Radrouten soll der KFZ-Verkehr möglichst reduziert werden.</li>
+      <li><.v bounds="10.040978,53.569895,10.051459,53.575488" lon={10.044092} lat={53.572495} dir="forward" ref="br-nord-n3">Uferstraße</.v>: KFZ-Durchgangsverkehr soll unterbunden werden.</li>
+      <li><.v bounds="10.061278,53.5803,10.066078,53.582959" lon={10.063301} lat={53.581399} dir="forward" ref="br-nord-n3">Straßburger Platz</.v>: Radquerung soll verbessert werden.</li>
+      <li><.v bounds="10.05668,53.583887,10.06127,53.587267" lon={10.05954} lat={53.58562} dir="forward" ref="br-nord-n3">Osterbekbrücke</.v>: soll verbessert werden.</li>
+    </ul>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

@@ -7,7 +7,7 @@ defmodule Data.Article.Static.BrEimsbuettelNiendorf do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Eimsbüttel – E2 – Niendorf"
 
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:

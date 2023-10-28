@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN1 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N1 – Nord ↔ Süd"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -91,8 +91,18 @@ defmodule Data.Article.Static.BrNordN1 do
   def text(assigns) do
     ~H"""
     <h3>Bezirksroute HH-Nord – Nord ↔ Süd <.icon>N1</.icon></h3>
-
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N1 – Nord ↔ Süd“ künftig verlaufen könnte.</p>
+
+    <p>Sie beginnt an der <.v bounds="10.00972,53.554005,10.033782,53.567696" lon={10.02132} lat={53.559783} dir="forward" ref="br-nord-n1">Sechslingspforte</.v> und führt – wie ihr Name schon sagt – nach Norden. Sie verläuft westlich der <.a name="alltagsroute-5">Veloroute/Radroute 5</.a>, bzw. <.v bounds="9.989273,53.604493,10.03114,53.62206" lon={10.018001} lat={53.615397} dir="forward" ref="br-nord-n1">ab der Alster</.v> westlich der <.a name="alltagsroute-4">Veloroute/Radroute 4</.a>. Genau wie diese endet die N1 am <.v bounds="9.991922,53.675276,10.007864,53.685509" lon={10.000708} lat={53.678921} dir="forward" ref="br-nord-n1">Ochsenzoll</.v> und schließt an die <.a name="norderstedt-veloroute-2">Velorouten in Norderstedt</.a> bzw. den <.a name="rsw-bad-bramstedt">Radroute Plus/Radschnellweg nach Bad Bramstedt an.</.a></p>
+
+    <h4>Speziell für diese Route</h4>
+    <p>Bis zum Flughafen sollen die Führungsformen in etwa beibehalten werden. Verbesserungen ergeben sich aus Verbreiterung und allgemein der Sanierung. Für <.v bounds="10.012945,53.559124,10.02224,53.56598" lon={10.018703} lat={53.561518} dir="forward" ref="br-nord-n1">Ackermannstraße</.v>, <.v bounds="10.000661,53.582347,10.019264,53.592519" lon={10.011595} lat={53.586973} dir="forward" ref="br-nord-n1">Poßmoorweg</.v>, <.v bounds="10.004029,53.586788,10.027082,53.6035" lon={10.013513} lat={53.595578} dir="forward" ref="br-nord-n1">Otto-Wels-Straße</.v> und <.v bounds="9.993857,53.608479,10.030068,53.621895" lon={10.013238} lat={53.612573} dir="forward" ref="br-nord-n1">Rathenaustraße</.v> wird der Umbau zu Fahrradstraßen vorgeschlagen.</p>
+
+    <p>Für die <.v bounds="10.002818,53.620119,10.020637,53.629562" lon={10.012068} lat={53.623319} dir="forward" ref="br-nord-n1" highlight="Weg beim Jäger,Zeppelinstraße,Alsterkrugchaussee,Röntgenstraße">Großkreuzung am Flughafen</.v> wird ein vollständiger Umbau empfohlen.</p>
+
+    <p>Für die <.v bounds="9.997451,53.617599,10.030974,53.643726" lon={10.014007} lat={53.629934} dir="forward" ref="br-nord-n1">Alsterkrugchaussee</.v> sind <.ref>Protected-Bike-Lanes</.ref> vorgesehen, auf der <.v bounds="9.992936,53.626362,10.026459,53.652488" lon={10.014144} lat={53.638778} dir="forward" ref="br-nord-n1">Langenhorner Chaussee</.v> dagegen <.ref>Radfahrstreifen</.ref>. Die vielen Wohnstraßen in <.v bounds="9.982776,53.638648,10.027345,53.678072" lon={9.999951} lat={53.662359} dir="forward" ref="br-nord-n1">Langenhorn</.v> sollen zu Fahrradstraßen werden – idealerweise so, dass der Routenverlauf einfach erkennbar ist. Am <.v bounds="9.996305,53.673099,10.004423,53.681201" lon={10.001455} lat={53.676332} dir="forward" ref="br-nord-n1">Ochsenzoll</.v> soll die Route an die Planungen zum <.a name="rsw-bad-bramstedt">Radschnellweg</.a> bzw. zur <.a name="alltagsroute-4">Veloroute 4</.a> anschließen. </p>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

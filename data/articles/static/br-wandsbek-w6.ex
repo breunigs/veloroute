@@ -8,7 +8,7 @@ defmodule Data.Article.Static.BrWandsbekW6 do
   def title(), do: "Bezirksroute Wandsbek – W6 – Wellingsbüttel ↔ Volksdorf"
 
   # def color(), do: "#bc75d0"
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:
@@ -60,6 +60,8 @@ defmodule Data.Article.Static.BrWandsbekW6 do
     <h3>Bezirksroute Wandsbek – Wellingsbüttel ↔ Volksdorf <.icon>W6</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W6 – Wellingsbüttel ↔ Volksdorf“ künftig verlaufen könnte. Noch bis zum 30.04.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:wandsbek) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN2 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N2 – Alster ↔ Airport"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -94,8 +94,18 @@ defmodule Data.Article.Static.BrNordN2 do
   def text(assigns) do
     ~H"""
     <h3>Bezirksroute HH-Nord N2 – Alster ↔ Airport“ <.icon>N2</.icon></h3>
-
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N2 – Alster ↔ Airport“ künftig verlaufen könnte.</p>
+
+    <p>Die zwei südlichen Äste starten an der <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.976231} lat={53.578959} dir="forward" ref="br-nord-n2">Hoheluftbrücke</.v> bzw. <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.994171} lat={53.584747} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v> um kommen kurz vorm <.v bounds="9.97007,53.585677,10.000833,53.601976" lon={9.988103} lat={53.591379} dir="forward" ref="br-nord-n2">Eppendorfer Marktplatz</.v> zusammen. Über die <.v bounds="9.945288,53.591356,10.005616,53.627726" lon={9.97789} lat={53.607729} dir="forward" ref="br-nord-n2">Borsteler Chaussee</.v> führt die Route dann Richtung Flughafen, bzw. an die Kleingärten davor.</p>
+
+    <h4>Speziell für diese Route</h4>
+    <p>Für den Ast ab <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.994171} lat={53.584747} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v> werden Fahrradstraßen vorgeschlagen. Das bereits umgebaute Stück am <.v bounds="9.988831,53.586888,9.99326,53.589877" lon={9.991631} lat={53.5887} dir="forward" ref="br-nord-n2">Loogeplatz</.v> bliebe unverändert. Für den anderen Ast ab <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.976231} lat={53.578959} dir="forward" ref="br-nord-n2">Hoheluftbrücke</.v> bis <.v bounds="9.97007,53.585677,10.000833,53.601976" lon={9.988103} lat={53.591379} dir="forward" ref="br-nord-n2">Eppendorfer Marktplatz</.v> sind <.ref>Radfahrstreifen</.ref> oder <.ref>Schutzstreifen</.ref> vorgesehen.</p>
+
+    <p>Für den <.v bounds="9.97007,53.585677,10.000833,53.601976" lon={9.988103} lat={53.591379} dir="forward" ref="br-nord-n2">Eppendorfer Marktplatz</.v> gibt es <.a name="2023-10-28-eppendorfer-marktplatz">bereits detaillierte Pläne</.a>.</p>
+
+    <p>Bis zur <.v bounds="9.982127,53.60011,9.990808,53.606446" lon={9.987479} lat={53.602784} dir="forward" ref="br-nord-n2" highlight="Rosenbrook,Alsterkrugchaussee">B5</.v> sind Fahrradstraßen geplant. Die Kreuzung selbst soll natürlich auch überarbeitet werden, damit sie leichter gequert werden kann. Für die <.v bounds="9.945288,53.591356,10.005616,53.627726" lon={9.97789} lat={53.607729} dir="forward" ref="br-nord-n2">Borsteler Chaussee</.v> werden vom KFZ-Verkehr getrennte Wege vorgeschlagen, also etwa <.ref>Protected-Bike-Lanes</.ref> oder <.ref>Hochbordradwege</.ref>.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

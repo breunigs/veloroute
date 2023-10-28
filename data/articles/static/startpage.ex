@@ -66,9 +66,26 @@ defmodule Data.Article.Static.Startpage do
             <.icon autoplay={true} name="br-eimsbuettel-isebek">E4</.icon>
           </span>
           <span>
-          <.icon autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
-          <.icon autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
-          <.icon autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
+            <.icon autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
+          </span>
+        </td>
+      </tr><tr>
+        <th>Hamburg-Nord</th>
+        <td>
+          <span>
+            <.icon autoplay={true} name="br-nord-n1">N1</.icon>
+            <.icon autoplay={true} name="br-nord-n2">N2</.icon>
+            <.icon autoplay={true} name="br-nord-n3">N3</.icon>
+            <.icon autoplay={true} name="br-nord-n4">N4</.icon>
+            <.icon autoplay={true} name="br-nord-n5">N5</.icon>
+          </span>
+          <span>
+            <.icon autoplay={true} name="br-nord-n6">N6</.icon>
+            <.icon autoplay={true} name="br-nord-n7">N7</.icon>
+            <.icon autoplay={true} name="br-nord-n8">N8</.icon>
+            <.icon autoplay={true} name="br-nord-n9">N9</.icon>
           </span>
         </td>
       </tr><tr>
@@ -82,6 +99,8 @@ defmodule Data.Article.Static.Startpage do
           </span>
           <span>
             <.icon autoplay={true} name="br-wandsbek-w5">W5</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w6">W6</.icon>
+            <.icon autoplay={true} name="br-wandsbek-w7">W7</.icon>
             <.icon autoplay={true} name="br-wandsbek-w8">W8</.icon>
           </span>
         </td>

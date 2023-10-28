@@ -6,7 +6,7 @@ defmodule Data.Article.Static.BrNordN4 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N4 – Barmbek-Süd"
 
-  def color(), do: "#a8a8a8"
+  def color(), do: "#bf95ff"
 
   def summary(),
     do:
@@ -67,6 +67,8 @@ defmodule Data.Article.Static.BrNordN4 do
     <h3>Bezirksroute HH-Nord – Barmbek-Süd <.icon>N4</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N4 – Barmbek-Süd“ künftig verlaufen könnte.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:nord) %>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

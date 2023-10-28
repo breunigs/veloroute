@@ -7,7 +7,7 @@ defmodule Data.Article.Static.BrWandsbekW8 do
   def title(), do: "Bezirksroute Wandsbek – W8 – Billstedt ↔ Glashütte"
 
   # def color(), do: "#75a6f1"
-  def color(), do: "#969696"
+  def color(), do: "#caa8ff"
 
   def summary(),
     do:
@@ -96,6 +96,8 @@ defmodule Data.Article.Static.BrWandsbekW8 do
     <h3>Bezirksroute Wandsbek – Billstedt ↔ Glashütte <.icon>W8</.icon></h3>
 
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „W8 – Billstedt ↔ Glashütte“ künftig verlaufen könnte. Noch bis zum 30.08.2023 läuft ein Beteiligungsverfahren wo Rückmeldungen zum Routenverlauf gegeben werden können. Auch andere Anmerkungen zum Thema Fahrradverkehr sind möglich.</p>
+
+    <%= Data.Article.Shared.bezirksroute(:wandsbek) %>
 
     <h8>Externe Links</h8>
     <.structured_links ref={@ref} gpx={true}/>
