@@ -1,6 +1,7 @@
 defmodule VelorouteWeb.VariousHelpers do
   use VelorouteWeb, :verified_routes
   use Phoenix.HTML
+  require Logger
   import Guards
   import Phoenix.Component
 
@@ -33,7 +34,18 @@ defmodule VelorouteWeb.VariousHelpers do
 
     {title, desc} =
       if is_module(ref) && ref.route_group() != nil do
-        desc = Article.Decorators.text(ref, ["table.routing", ".links"])
+        # ignore render failures -- we don't care enough for the video
+        # description to break the page if this fails. Also, most errors should
+        # be caught by regular article rendering.
+        desc =
+          try do
+            Article.Decorators.text(ref, ["table.routing", ".links"])
+          rescue
+            e ->
+              Logger.error(Exception.format(:error, e, __STACKTRACE__))
+              ""
+          end
+
         desc = if String.length(desc) > 100, do: desc
         {"#{ref.title()}: #{text}", desc}
       else

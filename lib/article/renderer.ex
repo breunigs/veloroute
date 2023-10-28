@@ -1,6 +1,7 @@
 defmodule Article.Renderer do
   use Phoenix.Component
   import Guards
+  require Logger
 
   @spec render(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
@@ -12,29 +13,58 @@ defmodule Article.Renderer do
   attr :limit_to_map_bounds, :boolean, default: false
 
   def render(%{ref: art} = assigns) when is_module(art) do
-    body = art.text(assigns)
-    has_header = body.static |> List.first() |> String.starts_with?("<h3")
+    try_render(assigns, fn ->
+      body = art.text(assigns)
+      has_header = body.static |> List.first() |> String.starts_with?("<h3")
 
-    microdata =
-      if art.updated_at(),
-        do: %{
-          wrapper: [itemscope: "", itemtype: "https://schema.org/NewsArticle"],
-          title: [itemprop: "headline"]
-        }
+      microdata =
+        if art.updated_at(),
+          do: %{
+            wrapper: [itemscope: "", itemtype: "https://schema.org/NewsArticle"],
+            title: [itemprop: "headline"]
+          }
 
-    assigns = assign(assigns, %{body: body, has_header: has_header, microdata: microdata})
+      assigns = assign(assigns, %{body: body, has_header: has_header, microdata: microdata})
 
-    ~H"""
-      <div {@microdata[:wrapper] || %{}}>
-        <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @ref.title() %></h3>
-        <Components.TagHelpers.construction_duration_header ref={@ref}/>
+      ~H"""
+        <div {@microdata[:wrapper] || %{}}>
+          <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @ref.title() %></h3>
+          <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
-        <%= @body %>
-        <Components.TagHelpers.article_updated_at ref={@ref}/>
-        <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
-      </div>
+          <%= @body %>
+          <Components.TagHelpers.article_updated_at ref={@ref}/>
+          <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
+        </div>
 
-      <Components.RelatedArticlesHelper.related_articles ref={@ref}/>
-    """
+        <Components.RelatedArticlesHelper.related_articles ref={@ref}/>
+      """
+    end)
   end
+
+  # only ignore the errors in development to avoid reloading the page. Always
+  # rendering in other environments should yield errors during (integration)
+  # testing.
+  defp try_render(assigns, callback, env \\ Mix.env())
+
+  defp try_render(%{ref: art} = assigns, callback, :dev) do
+    try do
+      _ = Article.Decorators.html(art, assigns)
+      callback.()
+    rescue
+      e ->
+        pretty = Exception.format(:error, e, __STACKTRACE__)
+        Logger.error(pretty)
+
+        assigns = assign(assigns, pretty: pretty)
+
+        ~H"""
+        <h4>failed to render article</h4>
+        <tt><%= @ref %></tt>
+        <br><br>
+        <pre><%= @pretty %></pre>
+        """
+    end
+  end
+
+  defp try_render(_assigns, callback, _env), do: callback.()
 end
