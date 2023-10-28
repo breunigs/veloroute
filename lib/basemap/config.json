@@ -55,7 +55,7 @@
 			"simplify_below": 13,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
-			"combine_polygons_below": 15
+			"combine_polygons_below": 9
 		},
 		"ocean": {
 			"minzoom": 0,
