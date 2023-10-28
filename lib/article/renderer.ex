@@ -44,7 +44,7 @@ defmodule Article.Renderer do
   # only ignore the errors in development to avoid reloading the page. Always
   # rendering in other environments should yield errors during (integration)
   # testing.
-  defp try_render(assigns, callback, env \\ Mix.env())
+  defp try_render(assigns, callback, env \\ Application.get_env(:veloroute, :env))
 
   defp try_render(%{ref: art} = assigns, callback, :dev) do
     try do
