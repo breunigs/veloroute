@@ -16,7 +16,7 @@ defmodule Article.Decorators do
     art
     |> html()
     |> Floki.parse_fragment!()
-    |> Floki.find_and_update(ignore, fn _in -> :delete end)
+    |> Floki.filter_out(ignore)
     |> Floki.text(sep: " ")
   end
 

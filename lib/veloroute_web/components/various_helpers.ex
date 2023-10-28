@@ -26,6 +26,10 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
+  @video_metadata_stop_after ["Meinung", "Externe Links", "Planung"]
+                             |> Enum.map(&Regex.escape/1)
+                             |> Enum.join("|")
+
   def video_metadata(nil), do: nil
 
   def video_metadata(%VelorouteWeb.Live.VideoState{} = state) do
@@ -46,6 +50,7 @@ defmodule VelorouteWeb.VariousHelpers do
               ""
           end
 
+        desc = String.replace(desc, ~r/ (#{@video_metadata_stop_after})( .*|$)/, "")
         desc = if String.length(desc) > 100, do: desc
         {"#{ref.title()}: #{text}", desc}
       else
