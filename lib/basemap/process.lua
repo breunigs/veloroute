@@ -28,6 +28,8 @@ ZRES11 = 76.4
 ZRES12 = 38.2
 ZRES13 = 19.1
 
+MAXZOOM = 14
+
 MIN = math.min
 MAX = math.max
 
@@ -71,7 +73,7 @@ function node_function(node)
     node:Layer("place", false)
     node:Attribute("class", place)
     SetMinZoom(node, mz)
-    SetNameAttributes(node)
+    SetNameAttributes(node, mz)
     return
   end
 
@@ -340,8 +342,8 @@ function way_function(way)
       way:Attribute("class", h)
       SetBrunnelAttributes(way)
       if ramp then way:AttributeNumeric("ramp", 1) end
-      SetOnewayForBicycles(way)
-      SetNameAttributes(way)
+      SetOnewayForBicycles(way, MAX(14, minzoom))
+      SetNameAttributes(way, MAX(12, minzoom))
 
       if DEBUG then
         local ref = way:Find("ref")
@@ -381,7 +383,7 @@ function way_function(way)
     SetZOrder(way)
     SetMinZoom(way, 9)
     SetBrunnelAttributes(way)
-    SetNameAttributes(way)
+    SetNameAttributes(way, 9)
   end
 
   -- 'Aeroway'
@@ -403,7 +405,7 @@ function way_function(way)
       way:Layer("waterway_detail", false)
     end
     way:Attribute("class", waterway)
-    SetNameAttributes(way)
+    SetNameAttributes(way, 14)
     SetBrunnelAttributes(way)
   elseif waterway == "boatyard"  then
     way:Layer("landcover", isClosed)
@@ -432,7 +434,7 @@ function way_function(way)
     local class="lake"; if natural=="bay" then class="ocean" elseif waterway~="" then class="river" end
     if class=="ocean" and isClosed and (way:AreaIntersecting("ocean")/way:Area() > 0.98) then return end
     way:Layer("water",true)
-    SetMinZoomByArea(way)
+    local minZoom = SetMinZoomByArea(way)
     way:Attribute("class",class)
 
     -- we only want to show the names of actual lakes not every man-made basin that probably doesn't even have a name other than "basin"
@@ -443,8 +445,8 @@ function way_function(way)
     --  https://www.openstreetmap.org/way/24579306
     if way:Holds("name") and natural=="water" and water ~= "basin" and water ~= "wastewater" then
       way:LayerAsCentroid("waterway_detail")
-      SetNameAttributes(way)
-      SetMinZoomByArea(way)
+      SetNameAttributes(way, minZoom)
+      SetMinZoom(way, minZoom)
       way:Attribute("class", class)
     end
 
@@ -484,7 +486,7 @@ function way_function(way)
   if way:Holds("name") and (write_name or (building~="" and building~="apartments"))  then
     local area = way:Area()
     local minZoom = 18
-    if      area > 2500 then minZoom = 15
+    if     area > 2500 then minZoom = 15
     elseif area > 2000 then minZoom = 16
     elseif area > 1500 then minZoom = 17
     else                    minZoom = 18
@@ -492,7 +494,7 @@ function way_function(way)
     if write_name then minZoom = minZoom - 1 end
 
     way:LayerAsCentroid("poi")
-    SetNameAttributes(way)
+    SetNameAttributes(way, minZoom)
     SetMinZoom(way, minZoom)
     way:AttributeNumeric("minzoom", minZoom)
     -- intentionally no icon for ways, so that there's no "dot" when we mean an area
@@ -554,7 +556,7 @@ function MaybeWritePOI(obj)
 
   obj:LayerAsCentroid("poi")
   SetMinZoom(obj, minZoom)
-  SetNameAttributes(obj)
+  SetNameAttributes(obj, minZoom)
   obj:AttributeNumeric("minzoom", minZoom)
   obj:Attribute("icon", icon)
 
@@ -586,7 +588,7 @@ end
 
 function SetMinZoom(obj, minZoom)
   -- don't exceed the maxZoom as per config.json or the object will be dropped completely
-  obj:MinZoom(MIN(14, minZoom))
+  obj:MinZoom(MIN(MAXZOOM, minZoom))
 end
 
 function FindPOIKeyVal(obj)
@@ -600,10 +602,13 @@ function FindPOIKeyVal(obj)
 end
 
 -- Set name attributes on any object
-function SetNameAttributes(obj)
+function SetNameAttributes(obj, minZoom)
+  -- don't exceed the maxZoom as per config.json or the object will be dropped completely
+  if minZoom then minZoom = MIN(MAXZOOM, minZoom) end
+
   local name = obj:Find("name")
   if name == "" then name = obj:Find("name:de") end
-  if name ~= "" then obj:Attribute("name", name) end
+  if name ~= "" then obj:Attribute("name", name, minZoom) end
 end
 
 function SetBrunnelAttributes(obj)
@@ -613,15 +618,17 @@ function SetBrunnelAttributes(obj)
   end
 end
 
-function SetOnewayForBicycles(way)
+function SetOnewayForBicycles(way, minzoom)
   if DEBUG then
     way:Attribute("DEBUG_oneway:bicycle", way:Find("oneway:bicycle"))
     way:Attribute("DEBUG_oneway", way:Find("oneway"))
     way:Attribute("DEBUG_cycleway", way:Find("cycleway"))
   end
 
+  if minZoom then minZoom = MIN(MAXZOOM, minZoom) end
+
   if SetToYes(way, "oneway:bicycle") then
-    way:AttributeNumeric("oneway", 1)
+    way:AttributeNumeric("oneway", 1, minzoom)
     return
   end
 
@@ -629,14 +636,16 @@ function SetOnewayForBicycles(way)
      (not SetToNo(way, "oneway:bicycle")) and
      (not (way:Find("cycleway") == "opposite"))
      then
-    way:AttributeNumeric("oneway", 1)
+    way:AttributeNumeric("oneway", 1, minzoom)
   end
 end
 
 
 
 function SetMinZoomByArea(way)
-  SetMinZoom(way, GetMinZoomByArea(way))
+  local mz = GetMinZoomByArea(way)
+  SetMinZoom(way, mz)
+  return mz
 end
 
 function GetMinZoomByArea(way)
