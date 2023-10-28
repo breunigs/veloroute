@@ -34577,7 +34577,7 @@
     <tag k='name' v='2021-05-19-versuchsradweg-hallerstrasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20200791'>
+  <way id='-20200791' action='modify'>
     <nd ref='-97286754' />
     <nd ref='-97286755' />
     <nd ref='-97286756' />
@@ -34585,6 +34585,7 @@
     <nd ref='-97286758' />
     <nd ref='-97286759' />
     <nd ref='-97286754' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-05-21-gustav-seitz-weg' />
     <tag k='type' v='article' />
   </way>
@@ -62998,6 +62999,7 @@
     <nd ref='-102467062' />
     <nd ref='-102467054' />
     <nd ref='-102467053' />
+    <nd ref='-102467000' />
     <tag k='name' v='2023-10-28-eppendorfer-marktplatz' />
     <tag k='type' v='article' />
   </way>
