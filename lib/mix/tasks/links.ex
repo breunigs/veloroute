@@ -41,11 +41,12 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec already_mirrored() :: %{binary() => [binary()]}
   def already_mirrored() do
-    Path.join(@path, "*/*/")
+    Path.join(@path, "*/**/")
     |> Path.wildcard()
     |> Enum.map(&Path.relative_to(&1, @path))
     |> Enum.map(fn relpath ->
-      [dir, file] = Path.split(relpath)
+      dir = Path.dirname(relpath)
+      file = Path.basename(relpath)
       # we expect the md5 hash to be in 2nd place:
       # <date> <md5> <method> <name>.<ext>
       {dir, Enum.at(String.split(file, " "), 1)}
