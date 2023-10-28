@@ -872,7 +872,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "tunnel"],
-        ["in", "class", "rail", "subway"]
+        ["in", "class", "rail", "subway", "light_rail"]
       ],
       "paint": {
         "line-color": "rgba(189, 187, 187, 0.8)",
@@ -1761,7 +1761,7 @@
       "filter": [
         "all",
         ["==", "$type", "LineString"],
-        ["in", "class", "rail", "subway"],
+        ["in", "class", "rail", "subway", "light_rail"],
         ["has", "service"]
       ],
       "layout": {"visibility": "visible"},
@@ -1796,7 +1796,7 @@
       "filter": [
         "all",
         ["==", "$type", "LineString"],
-        ["in", "class", "rail", "subway"],
+        ["in", "class", "rail", "subway", "light_rail"],
         ["has", "service"]
       ],
       "layout": {"visibility": "visible"},
@@ -1833,7 +1833,7 @@
         ["==", "$type", "LineString"],
         ["!has", "service"],
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "rail", "subway"]
+        ["in", "class", "rail", "subway", "light_rail"]
       ],
       "paint": {
         "line-color": [
@@ -1867,7 +1867,7 @@
         ["==", "$type", "LineString"],
         ["!has", "service"],
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "rail", "subway"]
+        ["in", "class", "rail", "subway", "light_rail"]
       ],
       "layout": {"visibility": "visible"},
       "paint": {
@@ -1890,27 +1890,6 @@
           20,
           13
         ]
-      }
-    },
-    {
-      "id": "bridge-highway-area",
-      "type": "fill",
-      "source": "merged",
-      "source-layer": "transportation",
-      "minzoom": 14,
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["!in", "class", "pier", "bridge"],
-        ["==", "brunnel", "bridge"]
-      ],
-      "layout": {"visibility": "none"},
-      "paint": {
-        "fill-antialias": true,
-        "fill-color": "rgba(216, 21, 21, 0)",
-        "fill-opacity": {"stops": [[14, 0], [15, 1]]},
-        "fill-outline-color": "#cfcdca",
-        "fill-pattern": "stripes"
       }
     },
     {
@@ -2608,7 +2587,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "bridge"],
-        ["in", "class", "rail", "subway"],
+        ["in", "class", "rail", "subway", "light_rail"],
         ["!has", "service"]
       ],
       "paint": {
@@ -2642,7 +2621,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "bridge"],
-        ["in", "class", "rail", "subway"],
+        ["in", "class", "rail", "subway", "light_rail"],
         ["!has", "service"]
       ],
       "paint": {

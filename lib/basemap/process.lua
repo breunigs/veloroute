@@ -228,7 +228,7 @@ POI_ICON_MAPPER = {
 KNOWN_ICONS = "%%REPLACE_WITH_ICONS%%"
 
 AEROWAY_CLASSES   = Set { "aerodrome", "taxiway", "runway" }
-RAILWAY_CLASSES   = Set { "rail", "subway", "tram" }
+RAILWAY_CLASSES   = Set { "rail", "subway", "tram", "light_rail" }
 WATER_CLASSES    = Set { "river", "riverbank", "stream", "canal", "drain", "ditch", "dock" }
 WATERWAY_CLASSES = Set { "stream", "river", "canal", "drain", "ditch" }
 
