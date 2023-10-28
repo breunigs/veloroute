@@ -9,7 +9,7 @@ defmodule Article.Decorators do
     apply_with_assigns(art, :text, assigns) |> Util.render_heex()
   end
 
-  @spec text(Article.t()) :: binary()
+  @spec text(Article.t(), [binary()]) :: binary()
   def text(art, extra_ignore \\ []) do
     ignore = Enum.join(["[data-nosnippet=yes]" | extra_ignore], ",")
 
