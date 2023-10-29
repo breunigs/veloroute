@@ -24,7 +24,7 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
     ~H"""
     <p><.v bounds="9.999916,53.539131,10.010449,53.542032" lon={10.00548} lat={53.540836} dir="backward" ref="10">Videobeispiel Überseeallee in der HafenCity</.v></p>
 
-    <p>Als Kopenhagener Lösung beschreibt man Radwege, die sowohl vom Fußweg als auch von der KFZ-Spur durch einen Randstein abgetrennt sind. Im Vergleich zu anderen Varianten sind die Randsteine jeweils nur etwa halb so hoch. Der Radweg sitzt von der Höhe also „mittig“. Zur Verdeutlichung sind die Höhenunterschiede in der Schrägansicht stark übertrieben:</p>
+    <p>Als Kopenhagener Lösung beschreibt man Radwege, die sowohl vom Fußweg als auch von der KFZ-Spur durch einen Randstein abgetrennt sind. Im Vergleich zu anderen Varianten sind die Randsteine jeweils nur etwa halb so hoch. Der Radweg sitzt von der Höhe also „mittig“. Zur Verdeutlichung sind die Höhenunterschiede in den schematischen Darstellungen stark übertrieben:</p>
 
     <.roaddiagram src="iso_kopenhagen" alt="Schrägsicht auf einen Radweg im Kopenhagener Stil. Im Diagramm ist der Radweg rot gepflastert. Nicht maßstabgerecht, Sicherheitsabstände fehlen."/>
 

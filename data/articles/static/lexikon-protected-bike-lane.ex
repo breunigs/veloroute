@@ -31,7 +31,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
 
     <.roaddiagram src="pbl" alt="Eine Straßenansicht von oben (Vogelperspektive) die ein Beispiel einer Protected-Bike-Lane auf beiden Straßenseiten zeigt."/>
 
-    <p>Die Schrägansicht verdeutlicht die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
+    <p>Die schematischen Darstellungen verdeutlichen die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
 
     <.roaddiagram src="iso_pbl" alt="Schrägsicht auf einen geschützten Radfahrstreifen. Im Diagramm ist der Radweg rot gepflastert. Nicht maßstabgerecht, Sicherheitsabstände fehlen."/>
 

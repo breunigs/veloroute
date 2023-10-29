@@ -21,7 +21,7 @@ defmodule Data.Article.Static.LexikonRadfahrstreifen do
 
     <.roaddiagram src="radfahrstreifen" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wo Radfahrstreifen verlaufen und wie diese in Hamburg häufig gestaltet werden."/>
 
-    <p>Die vereinfachte Draufsicht entspricht was in Hamburg um 2020 häufig umgesetzt wurde: 2,30m Fußweg, 1,85m Radfahrstreifen (inkl. Kanalrinne), 3,25m Autospur und dann das ganze nochmal spiegelverkehrt für die Gegenrichtung. Die Schrägansicht verdeutlicht die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
+    <p>Die vereinfachte Draufsicht entspricht was in Hamburg um 2020 häufig umgesetzt wurde: 2,30m Fußweg, 1,85m Radfahrstreifen (inkl. Kanalrinne), 3,25m Autospur und dann das ganze nochmal spiegelverkehrt für die Gegenrichtung. Die schematischen Darstellungen verdeutlichen die Höhenunterschiede, die zur leichteren Erkennbarkeit stark übertrieben dargestellt sind:</p>
 
     <.roaddiagram src="iso_radfahrstreifen" alt="Schrägsicht auf einen Radfahrstreifen. Im Diagramm ist der Asphalt des Radwegs rot eingefärbt. Nicht maßstabgerecht, Sicherheitsabstände fehlen."/>
 

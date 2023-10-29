@@ -293,14 +293,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
 
-    assert_layers(html, ~w(Artikel Alltagsrouten Freizeitrouten))
+    assert_layers(html, ~w(Artikel Alltagsrouten Bezirksrouten Freizeitrouten))
 
     html =
       view
       |> element("a", "Wegbeziehung der Freizeitroute")
       |> render_click()
 
-    assert_layers(html, ~w(Artikel Alltagsrouten Freizeitrouten))
+    assert_layers(html, ~w(Artikel Alltagsrouten Bezirksrouten  Freizeitrouten))
   end
 
   test "article without route group shows :alltag", %{conn: conn} do

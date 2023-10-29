@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.AbrissCityHof do
   def type(), do: :construction
   def start(), do: ~d[2019]
   def stop(), do: ~d[2024-08-18]
-  def construction_site_id_hh(), do: [113_099, 379_418]
+  # def construction_site_id_hh(), do: [113_099, 379_418]
 
   def tags(), do: ["9"]
 

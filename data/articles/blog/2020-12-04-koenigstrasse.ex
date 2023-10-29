@@ -11,6 +11,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
 
   def start(), do: ~d[2023-10-04]
   def stop(), do: ~d[2024-10-06]
+  # def construction_site_id_hh(), do: [470_023]
 
   def type(), do: :construction
 
