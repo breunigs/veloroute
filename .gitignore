@@ -49,7 +49,7 @@ xref_graph.*
 .npm
 .cache
 # Lots of PDFs and ZIPs that don't belong into git
-data/auto_generated/link_mirror
+link_mirror
 
 x264_lookahead.clbin
 TODO

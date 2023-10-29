@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   use Mix.Task
   use Tesla
 
-  @path "data/auto_generated/link_mirror/"
+  @path "link_mirror/"
   @requirements ["app.start"]
 
   @wayback_timeout 120_000
