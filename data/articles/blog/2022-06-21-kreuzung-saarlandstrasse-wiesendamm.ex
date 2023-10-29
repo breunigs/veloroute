@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
     do: "Meist 2,0m breite Radfahrstreifen ohne Trennelemente neben bis zu vier KFZ-Spuren."
 
   def type(), do: :planned
-  def tags(), do: ["5N", "5"]
+  def tags(), do: ["5N", "5", "br-nord-n6"]
 
   def start(), do: ~d[2023-06]
   def stop(), do: ~d[2025-08]

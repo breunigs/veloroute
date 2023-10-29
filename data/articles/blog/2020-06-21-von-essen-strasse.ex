@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.VonEssenStrasse do
 
   def type(), do: :issue
 
-  def tags(), do: ["6"]
+  def tags(), do: ["6", "br-nord-n3"]
 
   def links(_assigns) do
     []

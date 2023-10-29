@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Osterbekstrasse do
       "Osterbekstrasse soll Fahrradstraße werden. In der Parkanlage vermutlich 4,0m breiter Radweg neben 3,0m breitem Gehweg."
 
   def type(), do: :planned
-  def tags(), do: ["FR2"]
+  def tags(), do: ["FR2", "br-nord-n5"]
 
   def start(), do: ~d[2023Q3]
   def stop(), do: ~d[2025Q2]

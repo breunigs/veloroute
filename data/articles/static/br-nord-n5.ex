@@ -71,8 +71,16 @@ defmodule Data.Article.Static.BrNordN5 do
   def text(assigns) do
     ~H"""
     <h3>Bezirksroute HH-Nord – Osterbek-Route <.icon>N5</.icon></h3>
-
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N5 – Osterbek-Route“ künftig verlaufen könnte.</p>
+
+    <p>Die Route beginnt an der <.v bounds="9.99655,53.576848,10.017361,53.584896" lon={9.999134} lat={53.579769} dir="forward" ref="br-nord-n5">Krugkoppelbrücke</.v>. Sie führt dann <em>teilweise</em> durch die <.v bounds="10.005577,53.578081,10.023036,53.585277" lon={10.015884} lat={53.582327} dir="forward" ref="br-nord-n5">Gertigstraße</.v> um den <.v bounds="10.005577,53.578081,10.023036,53.585277" lon={10.011414} lat={53.581546} dir="forward" ref="br-nord-n1">Mühlenkamp</.v> umgehen. Das ist im Video von 2023 falsch dargestellt.</p>
+
+    <p>Im Anschluss folgt sie der <.v bounds="10.016052,53.580047,10.053062,53.587827" lon={10.037178} lat={53.584715} dir="forward" ref="br-nord-n5" highlight="Osterbekstraße">Osterbek</.v> und ist deckungsgleich mit der <.a name="FR2">Osterbek Freizeitroute</.a>. Am <.v bounds="10.038403,53.579986,10.076375,53.591169" lon={10.04294} lat={53.584319} dir="forward" ref="br-nord-n5">Flachsland</.v> bleibt diese Route südlich des Kanals und führt via <.v bounds="10.038403,53.579986,10.076375,53.591169" lon={10.066465} lat={53.586963} dir="forward" ref="br-nord-n5">Alter Teichweg</.v> zur <.a name="6">Radroute 6</.a>.</p>
+
+    <h4>Speziell für diese Route</h4>
+    <p>Bereits umgebaute Abschnitte (<.v bounds="9.997733,53.576844,10.01019,53.583333" lon={10.000179} lat={53.580633} dir="forward" ref="br-nord-n5">Fernsicht</.v>, <.v bounds="10.005577,53.578081,10.023036,53.585277" lon={10.015884} lat={53.582327} dir="forward" ref="br-nord-n5">Gertigstraße</.v>, und <.v bounds="10.038403,53.579986,10.076375,53.591169" lon={10.066465} lat={53.586963} dir="forward" ref="br-nord-n5">Alter Teichweg</.v>) sollen so bleiben. Für die anderen Streckenabschnitte wird der Umbau zu Fahrradstraßen empfohlen.</p>
+
+    <p>An den Kreuzungen <.v bounds="10.017754,53.580711,10.021596,53.583522" lon={10.019228} lat={53.582433} dir="forward" ref="br-nord-n5">Barmbeker Straße / Bachstraße</.v> und <.v bounds="10.04557,53.582078,10.048409,53.584131" lon={10.046366} lat={53.582947} dir="forward" ref="br-nord-n5">Bramfelder Straße / Pfenningsbusch</.v> wird ein vollständiger Umbau vorgeschlagen.</p>
 
     <%= Data.Article.Shared.bezirksroute(:nord) %>
 

@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: []
+  def tags(), do: ["br-nord-n8"]
   def start(), do: ~d[2024Q3]
   def stop(), do: ~d[2027Q4]
 

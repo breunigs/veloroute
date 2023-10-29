@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.RswBadBramstedtHoheLiedtBisLangenhornerChaussee do
 
   def type(), do: :planned
 
-  def tags(), do: ["rsw-bad-bramstedt", "rsw", "n24", "4"]
+  def tags(), do: ["rsw-bad-bramstedt", "rsw", "n24", "4", "br-nord-n1"]
 
   def links(_assigns) do
     [

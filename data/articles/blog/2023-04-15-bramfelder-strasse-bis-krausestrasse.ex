@@ -1,7 +1,9 @@
 defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
   use Article.Default
 
-  def title(), do: "Bramfelder Straße (Barmbeker Markt bis Krausestraße, Freizeitroute 2)"
+  def title(),
+    do:
+      "Bramfelder Straße (Barmbeker Markt bis Krausestraße, Freizeitroute 2, Bezirksroute HH-Nord N3)"
 
   def summary(),
     do:
@@ -9,7 +11,7 @@ defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["FR2"]
+  def tags(), do: ["FR2", "br-nord-n3"]
 
   def tracks(),
     do: [
