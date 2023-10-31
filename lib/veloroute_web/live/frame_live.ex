@@ -130,13 +130,18 @@ defmodule VelorouteWeb.FrameLive do
     # if we have an article use that, but ignore the default article (i.e. the
     # startpage) when we have a route
     article = find_article(attr["article"])
-    route = if attr["article"] && article, do: article, else: find_article(attr["route"])
+
+    route =
+      if attr["article"] && article,
+        do: article,
+        else: find_most_relevant_article(attr["route"], socket.assigns)
+
     # if we don't have an article, switch to the route only if the current page is unrelated
     current = socket.assigns.current_page
     article = article || if route && !Article.List.related?(current, route), do: route
 
     article =
-      if socket.assigns.current_page == Data.Article.Static.ErweiterteFunktionen,
+      if current == Data.Article.Static.ErweiterteFunktionen,
         do: nil,
         else: article
 
@@ -336,6 +341,27 @@ defmodule VelorouteWeb.FrameLive do
 
   defp find_article(%{assigns: %{current_page: name}}) do
     Article.List.find_exact(name)
+  end
+
+  defp find_most_relevant_article(nil, _assigns), do: nil
+
+  defp find_most_relevant_article(routes, %{current_page: current}) do
+    arts = routes |> List.wrap() |> Enum.map(&find_article/1) |> Enum.uniq() |> Util.compact()
+
+    # when there's multiple routes being clicked, prefer keeping the current one,
+    # or at least select one that is somewhat related
+    sorted =
+      Enum.sort_by(
+        arts,
+        &{
+          &1 == current,
+          current.route_group() == &1.route_group(),
+          Article.List.overlap?(current, &1)
+        },
+        :desc
+      )
+
+    List.first(sorted)
   end
 
   defp article_path(socket, art) when is_module(art) do

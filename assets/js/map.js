@@ -312,20 +312,20 @@ const handleMapHover = (evt) => {
 const handleMapClick = (evt) => {
   const items = itemsUnderCursor(evt);
 
-  let route = null;
+  let routes = [];
   let article = null;
   items.forEach(r => {
     if (r.properties.route_id && routeLayers.includes(r.layer.id)) {
-      route = route || r.properties.route_id;
+      routes.push(r.properties.route_id)
     } else if (r.properties.name && (routeLayers + articleLayers).includes(r.layer.id)) {
       article = article || r.properties.name;
     }
   });
 
-  if (route === null && article === null) return;
+  if (routes == [] && article === null) return;
 
   window.pushEvent("map-click", {
-    route: route,
+    route: routes,
     article: article,
     lon: evt.lngLat.lng,
     lat: evt.lngLat.lat,
