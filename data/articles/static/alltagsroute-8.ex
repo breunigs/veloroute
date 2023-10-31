@@ -136,47 +136,51 @@ defmodule Data.Article.Static.Alltagsroute8 do
       </tr>
       <tr>
         <td>
+          <.icon>FR1</.icon>
+          <.icon>FR4</.icon>
           <.icon>7</.icon>
-          <.icon>9</.icon>
-        </td>
-        <td><.m bounds="10.0083377,53.5523647,10.0084377,53.5524647">Hauptbahnhof</.m></td>
+          <.icon>9</.icon></td>
+        <td><.v bounds="9.999532,53.549681,10.017545,53.556575" lon={10.007068} lat={53.551788} dir="forward" ref="7">Hauptbahnhof</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0203837,53.5571426,10.020621,53.5572954">Berliner Tor</.m></td>
+        <td><.v bounds="10.016678,53.546457,10.044401,53.561226" lon={10.024269} lat={53.553693} dir="forward" ref="8">Berliner Tor</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.m bounds="10.022745,53.5494664,10.0411521,53.5608608">Borgfelde</.m></td>
+        <td><.v bounds="10.023414,53.550082,10.044723,53.56092" lon={10.032518} lat={53.554878} dir="forward" ref="8">Borgfelde</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0376053,53.5377541,10.0707064,53.5661079">Hamm</.m></td>
+        <td><.v bounds="10.038368,53.545995,10.073167,53.563162" lon={10.048562} lat={53.556059} dir="forward" ref="8">Hamm</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.0661032,53.5366519,10.1086515,53.565535">Horn</.m></td>
+        <td><.v bounds="10.066028,53.539699,10.109812,53.560557" lon={10.087253} lat={53.551596} dir="forward" ref="8">Horn</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR4</.icon>
+          <.icon>FR11</.icon>
           <.icon>14</.icon>
         </td>
-        <td><.m bounds="10.0903342,53.5190615,10.168776,53.5673577">Billstedt</.m></td>
+        <td><.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref="8">Billstedt</.v></td>
       </tr>
       <tr>
-        <td><.m bounds="10.1450277,53.5231075,10.1550277,53.5331075">Mümmelmannsberg</.m></td>
-        <td><.m bounds="10.1526762,53.504713,10.1726762,53.524713">Boberg</.m></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.m bounds="10.1223665,53.4890274,10.2238906,53.5264217">Lohbrügge</.m></td>
+        <td><.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref="8">Mümmelmannsberg</.v></td>
+        <td><.v bounds="10.147086,53.501304,10.194571,53.520251" lon={10.167513} lat={53.513643} dir="forward" ref="8">Boberg</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="10.1704506,53.4677586,10.2662395,53.499341">Bergedorf</.m>
+        <td><.v bounds="10.172045,53.489406,10.220007,53.512848" lon={10.197305} lat={53.501236} dir="forward" ref="8">Lohbrügge</.v></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>
           <.icon>9</.icon>
+          <.icon>FR4</.icon>
         </td>
       </tr>
       <tr>
@@ -188,6 +192,19 @@ defmodule Data.Article.Static.Alltagsroute8 do
         <td class="dir"><.m bounds="10.2104116,53.4956643,10.3158619,53.5799592">(Reinbek)</.m></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 8 (auch: Veloroute 8 oder Radroute 8) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="8" highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>. In <.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref="8">Billstedt</.v> zweigt ein kurzer Ast ab, der auf direkterem Wege den <.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref="8">Mümmelmannsberg</.v> erreicht.</p>
+
+    <p>Die Route verläuft in etwa zu je einem Drittel entlang von <.v bounds="9.99941,53.54698,10.044909,53.562637" lon={10.009662} lat={53.551954} dir="forward" ref="8">Hauptverkehrsstraßen</.v>, durch <.v bounds="10.040469,53.544719,10.097003,53.562862" lon={10.058955} lat={53.555245} dir="forward" ref="8">Grünzüge</.v> und <.v bounds="10.155704,53.495123,10.207734,53.52261" lon={10.15957} lat={53.514657} dir="forward" ref="8">Wohnstraßen</.v>.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert.</p>
+
+    <h4>Meinung</h4>
+    <p>In bereits umgebauten Abschnitten macht die Route einen guten Eindruck. Viele Wege verlaufen dabei abseits des Autoverkehrs und sind daher ampelfrei. Das erlaubt gutes vorankommen. Leider sind diese Strecken nicht vollständig beleuchtet.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

@@ -147,40 +147,53 @@ defmodule Data.Article.Static.Alltagsroute7 do
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.986909,53.549043,10.000479,53.553078">Rathaus</.m>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="7" highlight="Rathausmarkt">Rathaus</.v>
         </td>
       </tr>
       <tr>
         <td>
+          <.icon>FR1</.icon>
+          <.icon>FR4</.icon>
           <.icon>8</.icon>
           <.icon>9</.icon></td>
-        <td><.m bounds="10.0083377,53.5523647,10.0084377,53.5524647">Hauptbahnhof</.m></td>
+        <td><.v bounds="9.999532,53.549681,10.017545,53.556575" lon={10.007068} lat={53.551788} dir="forward" ref="7">Hauptbahnhof</.v></td>
       </tr>
       <tr>
-        <td></td>
-        <td><.m bounds="10.0207948,53.5597006,10.0224092,53.5604826">Alsterschwimmhalle</.m></td>
-      </tr>
-      <tr>
-        <td><.icon>1</.icon></td>
-        <td><.m bounds="9.9549651,53.5431746,9.9902942,53.5638046">St. Pauli</.m></td>
+        <td><.icon>br-nord-n1</.icon></td>
+        <td><.v bounds="10.015691,53.554022,10.032917,53.562543" lon={10.022447} lat={53.55794} dir="forward" ref="7">Hohenfelde</.v></td>
       </tr>
       <tr>
         <td><.icon>13</.icon></td>
-        <td><.m bounds="10.0318304,53.5608608,10.0627028,53.5760196">Eilbek</.m></td>
+        <td><.v bounds="10.030704,53.557958,10.055372,53.571052" lon={10.043693} lat={53.563793} dir="forward" ref="7">Eilbek</.v></td>
       </tr>
       <tr>
-        <td></td>
-        <td><.m bounds="10.0617414,53.5666636,10.0717414,53.5766636">Wandsbek Markt</.m></td>
+        <td><.icon>br-wandsbek-w2</.icon></td>
+        <td><.v bounds="10.05379,53.563592,10.094062,53.577387" lon={10.071139} lat={53.569574} dir="forward" ref="7">Wandsbek Markt</.v></td>
       </tr>
       <tr>
-        <td><.icon>14</.icon> <.m bounds="10.1034487,53.5643859,10.1520039,53.5879648">Jenfeld</.m></td>
-        <td><.m bounds="10.098152,53.5759187,10.1430031,53.5979981">Tonndorf</.m> <.icon>14</.icon></td>
+        <td><.icon>14</.icon> <.v bounds="10.098043,53.565295,10.147663,53.582896" lon={10.12205} lat={53.574824} dir="forward" ref="7">Jenfeld</.v></td>
+        <td><.v bounds="10.115525,53.576405,10.148118,53.596693" lon={10.126294} lat={53.581843} dir="forward" ref="7">Tonndorf</.v> <.icon>14</.icon> <.icon>br-wandsbek-w8</.icon> <.icon>FR11</.icon></td>
       </tr>
       <tr>
         <td class="dir"><.m bounds="10.14752,53.5540497,10.2785664,53.5988388">(Barsbüttel)</.m></td>
-        <td><.m bounds="10.1233839,53.5762276,10.2219513,53.6383737">Rahlstedt</.m></td>
+        <td><.v bounds="10.145341,53.594407,10.160741,53.60604" lon={10.154252} lat={53.602163} dir="forward" ref="7">Rahlstedt</.v> <.icon>br-wandsbek-w5</.icon></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 7 (auch: Veloroute 7 oder Radroute 7) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="7" highlight="Rathausmarkt">Rathaus</.v> in Richtung Osten nach <.v bounds="10.098043,53.565295,10.147663,53.582896" lon={10.12205} lat={53.574824} dir="forward" ref="7">Jenfeld</.v>. Dort knickt ein Routenast leicht nach Norden ab und führt nach <.v bounds="10.145341,53.594407,10.160741,53.60604" lon={10.154252} lat={53.602163} dir="forward" ref="7">Rahlstedt</.v>.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert.</p>
+
+    <h4>Meinung</h4>
+    <p>Die Routenführung macht mehrere unintuitive 90° Knicke, die auch nach dem Umbau zur Radroute nicht ersichtlich sind.</p>
+
+    <p>Auf vielen Abschnitten konnte man sich nicht dazu durchringen, den KFZ-Verkehr auszusperren, was der Route abträglich ist. Negativbeispiel ist hier die <.v bounds="10.030874,53.555924,10.057076,53.56974" lon={10.044241} lat={53.563808} dir="forward" ref="7">Hasselbrookstraße</.v>. Sie wurde durch den Umbau eher noch schlechter, obwohl mit <.v bounds="10.030874,53.555924,10.057076,53.56974" lon={10.03778} lat={53.565642} dir="forward" ref="br-wandsbek-w1">Wandsbeker Chaussee</.v> und <.v bounds="10.030874,53.555924,10.057076,53.56974" lon={10.042256} lat={53.560732} dir="forward" ref="13">Sievekingsallee</.v> rund 4- bis 6-spurige Autotrassen vorhanden sind.</p>
+
+    <p>Der einzig wirklich gute Abschnitt bisher ist die <.v bounds="10.023861,53.556483,10.039209,53.563107" lon={10.029071} lat={53.559073} dir="forward" ref="7">Angerstraße</.v>, da sie als KFZ-Sackgasse vergleichsweise ruhig ist und trotzdem direkte Führung bietet.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

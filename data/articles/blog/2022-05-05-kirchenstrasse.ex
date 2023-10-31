@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   def title(), do: "Kirchenstraße (Veloroute 12)"
   def summary(), do: "Soll mit möglichst geringem Aufwand zu einer Fahrradstraße werden."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def start(), do: ~d[2023-11-13]
   def stop(), do: ~d[2023-12-11]
@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.Kirchenstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Oktober 2023",
+       "https://lsbg.hamburg.de/resource/blob/692948/7167107f7aa064a2e1c60058009bd9ae/kirchenstrasse-veloroute-12-anliegerinformation-oktober-2023-data.pdf"},
       {"Lageplan", "März 2023",
        "https://lsbg.hamburg.de/resource/blob/670410/202bf79de45ade0dd18159e7e29e5a13/veloroute-12-kirchenstrasse-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht", "März 2023",

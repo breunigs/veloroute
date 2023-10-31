@@ -1,8 +1,6 @@
 defmodule Data.Article.Blog.AmStadtrandMitte do
   use Article.Default
 
-  # def updated_at(), do: ~D[2022-09-20]
-
   def title(), do: "Am Stadtrand (Tilsiter Straße bis Friedrich-Ebert-Damm)"
 
   def summary(),
@@ -11,10 +9,15 @@ defmodule Data.Article.Blog.AmStadtrandMitte do
 
   def type(), do: :planned
 
+  def start(), do: ~d[2024-04]
+  def stop(), do: ~d[2024-11]
+
   def tags(), do: []
 
   def links(_assigns) do
     [
+      {"Möglicher Bauzeitraum", "Oktober 2023",
+       "https://www.hamburg.de/contentblob/17478198/45637de486c239222d1f49e5b6771152/data/oktober-26-2023-bezirksamt-wandsbek.pdf"},
       {"1. Entwurf, Pläne und Erläuterungen", "April 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018605"}
     ]

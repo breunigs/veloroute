@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
   def summary(),
     do: "Anfang 2023 soll ein Kreisverkehr die Kreuzung ersetzen."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["1"]
 
   def start(), do: ~d[2023-07-17]
