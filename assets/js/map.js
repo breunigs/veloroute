@@ -322,7 +322,7 @@ const handleMapClick = (evt) => {
     }
   });
 
-  if (routes == [] && article === null) return;
+  if (routes.length === 0 && article === null) return;
 
   window.pushEvent("map-click", {
     route: routes,
