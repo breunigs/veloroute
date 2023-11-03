@@ -10,12 +10,12 @@ defmodule Data.Article.Static.LexikonHochbordradweg do
   def tags(), do: ["lexikon", "hochbordradweg", "hochbordradwegen", "hochbordradwege"]
 
   def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5"))
-  def point_of_interest(), do: %{lon: 10.030456, lat: 53.572017, zoom: 16}
+  def point_of_interest(), do: %{lon: 9.989368, lat: 53.56359, zoom: 16}
 
   def text(assigns) do
     ~H"""
 
-    <p><.v bounds="9.986512,53.566867,10.034861,53.574044" lon={10.030745} lat={53.571782} dir="forward" ref="5">Videobeispiel eines Hochbordradweges an der Hamburger Meile</.v></p>
+    <p><.v bounds="9.986569,53.561244,9.991119,53.564687" lon={9.989368} lat={53.56359} dir="backward" ref="3">Videobeispiel Rothenbaumchaussee</.v> oder <.a href="/images/hochbordradweg.webp" target="_blank">Foto</.a></p>
 
     <p>Hochbordradwege werden auf dem gleichen Niveau wie die Fußwege geführt. Sie sind in Hamburg meist gepflastert und bei neuer Bauweise mit Noppenplatten vom Fußweg abgetrennt.</p>
     <p>Zur Breite: die roten Pflastersteine geben den Ausschlag, die Noppenplatten zählen nicht zum Radweg. Hamburg strebt eine Mindestbreite von 1,60m für diese Führungsform an, wobei diese bei „begründeten Ausnahmen“ unterschritten wird. Das ist etwa bei Bäumen oder bestehenden Häusern der Fall. Oft liest man auch von 1,625m breiten Radwegen, welche sich aus den 25cm breiten Pflastersteinen ergeben: man verbaut 6½ um das Mindestmaß zu erreichen.</p>

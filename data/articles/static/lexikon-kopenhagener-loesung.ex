@@ -17,12 +17,12 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
       "kopenhagener-stil"
     ]
 
-  def tracks(), do: Data.Article.Static.Alltagsroute10.tracks()
-  def point_of_interest(), do: %{lon: 10.004687, lat: 53.540797, zoom: 16}
+  def tracks(), do: Data.Article.Blog.ElbchausseeBisHohenzollernRing.tracks()
+  def point_of_interest(), do: %{lon: 9.870021, lat: 53.547406, zoom: 16}
 
   def text(assigns) do
     ~H"""
-    <p><.v bounds="9.999916,53.539131,10.010449,53.542032" lon={10.00548} lat={53.540836} dir="backward" ref="10">Videobeispiel Überseeallee in der HafenCity</.v></p>
+    <p><.v bounds="9.868346,53.545364,9.877389,53.548929" lon={9.870021} lat={53.547406} dir="forward" ref={@ref}>Videobeispiel Kopenhagener Radweg Elbchaussee</.v> oder <.a href="/images/kopenhagener_radweg.webp" target="_blank">Foto</.a></p>
 
     <p>Als Kopenhagener Lösung beschreibt man Radwege, die sowohl vom Fußweg als auch von der KFZ-Spur durch einen Randstein abgetrennt sind. Im Vergleich zu anderen Varianten sind die Randsteine jeweils nur etwa halb so hoch. Der Radweg sitzt von der Höhe also „mittig“. Zur Verdeutlichung sind die Höhenunterschiede in den schematischen Darstellungen stark übertrieben:</p>
 
