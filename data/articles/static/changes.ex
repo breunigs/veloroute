@@ -14,6 +14,7 @@ defmodule Data.Article.Static.Changes do
       <li><.a href="/updates.atom"><img src="/images/rss.svg"> RSS-Feed</.a> (benötigt einen <.a href="https://www.rss-readers.org/">Feedreader</.a>)</li>
       <li><.a href="https://twitter.com/VelorouteHH"><img src="/images/twitter.svg"> Twitter</.a></li>
       <li><.a href="https://norden.social/@VelorouteHamburg" rel="me"><img src="/images/mastodon.svg"> Mastodon</.a></li>
+      <li><.a href="https://bsky.app/profile/veloroutehh.bsky.social"><img src="/images/bluesky.webp"> Bluesky</.a></li>
       <li><.mailto subject="veloroute.hamburg Newsletter abonnieren" body={"Hallo,\n\nbitte halte mich zu neuen oder aktualisierten Artikeln auf dem Laufenden. Nimm dazu einfach diese E-Mail Adresse.\n\nDanke!"}><img src="/images/email.svg"> E-Mail Newsletter abonnieren</.mailto></li>
     </ul>
 

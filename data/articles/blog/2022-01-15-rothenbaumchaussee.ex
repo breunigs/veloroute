@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def stop(), do: ~d[2023-06-30]
   def construction_site_id_hh(), do: [86476]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def summary(),
     do:
