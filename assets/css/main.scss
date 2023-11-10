@@ -208,6 +208,10 @@ $videoBarProgressHeight: 0.4rem;
   #reverse {
     background: url("/images/reverse.svg") no-repeat center center;
     background-size: calc($videoBarHeight / 2.7);
+
+    text-indent: -100rem;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
 
   #skipBackward5 {
@@ -468,6 +472,12 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 
   #videoRecordingDate {
     display: block;
+  }
+
+  #reverse:not(.disabled) {
+    background-position: left center !important;
+    text-indent: 1.3rem !important;
+    width: auto !important;
   }
 }
 
