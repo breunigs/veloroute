@@ -452,6 +452,25 @@ defmodule Components.TagHelpers do
     end
   end
 
+  @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :ref, :atom, required: true
+
+  def construction_duration_paragraph(%{ref: art} = assigns) do
+    range = Data.RoughDate.range(art.start(), art.stop())
+    assigns = assign(assigns, range: range)
+
+    cond do
+      range == "" || art.type() == :finished ->
+        ~H""
+
+      true ->
+        ~H"""
+        <h4>Vermutete Bauzeit</h4>
+        <p><em><%= @range %></em> – der Zeitraum ist nur zur groben Orientierung. Durch Abstimmung der Baustellen untereinander („Baustellenkoordination“), politische Beschlüsse die eine Neuplanung erfordern, Personalmangel in den Ämtern und ähnlichem verschieben sich die Termine häufig. Für tagesaktuelle Infos siehe <.a href="https://www.hamburg.de/baustellen">hamburg.de/baustellen</.a>.</p>
+        """
+    end
+  end
+
   @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
 
