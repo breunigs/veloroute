@@ -8,6 +8,8 @@ defmodule Map.Relation do
           bbox: Geo.BoundingBox.t() | nil
         }
 
+  def style_tags, do: [:offset, :overlap_index, :overlap_route_ids, :layer]
+
   @spec purge_member_bbox(t()) :: t()
   def purge_member_bbox(%__MODULE__{members: mem} = r) do
     mem =

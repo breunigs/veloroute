@@ -8,7 +8,8 @@ defmodule Data.Article.Static.BrWandsbekW7 do
   def title(), do: "Bezirksroute Wandsbek – W7 – Farmsen ↔ Ohlstedt"
 
   # def color(), do: "#f175d0"
-  def color(), do: "#caa8ff"
+  def color(), do: "#b482ff"
+  def color_faded(), do: "#dac2ff"
 
   def summary(),
     do:

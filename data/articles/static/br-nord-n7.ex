@@ -6,7 +6,8 @@ defmodule Data.Article.Static.BrNordN7 do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Nord – N7 – City-Nord"
 
-  def color(), do: "#bf95ff"
+  def color(), do: "#b482ff"
+  def color_faded(), do: "#dac2ff"
 
   def summary(),
     do:

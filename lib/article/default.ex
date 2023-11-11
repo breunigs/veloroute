@@ -18,6 +18,7 @@ defmodule Article.Default do
       def id, do: nil
       def display_id, do: id()
       def color, do: nil
+      def color_faded, do: nil
       def route_group, do: nil
       def icon, do: type()
 

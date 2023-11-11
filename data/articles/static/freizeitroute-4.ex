@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
   def title(), do: "Billeradweg (FR4)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Freizeitroute 4 führt entlang der Bille zur Altmannbrücke"

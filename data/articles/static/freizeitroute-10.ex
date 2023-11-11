@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
   def title(), do: "Kollauradweg (FR10)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Freizeitroute 10 führt entlang der Kollau nach Wendlohe"

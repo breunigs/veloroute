@@ -159,24 +159,22 @@ defmodule Data.GeoJSON do
     }
   end
 
+  @way_tags_to_keep [
+                      :display_id,
+                      :name,
+                      :route_group,
+                      :route_id,
+                      :text,
+                      :title,
+                      :type
+                    ] ++ Map.Relation.style_tags() ++ Map.Way.style_tags()
+
   defp as_geojson(%Map.Way{} = w) do
     coords = Enum.map(w.nodes, &as_geojson_coord(&1))
 
     props =
       w.tags
-      |> Map.take([
-        :name,
-        :text,
-        :layer,
-        :type,
-        :route_group,
-        :display_id,
-        :offset,
-        :overlap_index,
-        :title,
-        :route_id
-        | Map.Way.style_tags()
-      ])
+      |> Map.take(@way_tags_to_keep)
       |> Map.put_new(:type, w.tags[:route_group])
       |> Map.put_new_lazy(:title, fn ->
         w.tags[:article_title] || w.tags[:titles] || w.tags[:text]
@@ -193,7 +191,6 @@ defmodule Data.GeoJSON do
   end
 
   # renders for relations
-  @relation_way_tags_to_keep [:oneway, :offset, :title, :overlap_index, :color, :layer]
   defp as_geojson(%Map.Relation{tags: %{name: "" <> _rest}} = r) do
     art = Article.List.find_exact(r.tags.name)
 
@@ -206,6 +203,7 @@ defmodule Data.GeoJSON do
 
     extra_rel_tags = %{
       color: art.color(),
+      color_faded: art.color_faded(),
       route_id: art.id(),
       display_id: art.display_id(),
       route_group: art.route_group(),
@@ -214,7 +212,6 @@ defmodule Data.GeoJSON do
 
     r
     |> Map.Relation.ways(@relevant_geojson_roles)
-    |> Enum.map(&Map.Element.keep_only_tags(&1, @relation_way_tags_to_keep))
     |> Enum.map(&Map.Element.add_new_tags(&1, extra_rel_tags))
     |> Enum.map(&as_geojson/1)
   end
@@ -283,6 +280,11 @@ defmodule Data.GeoJSON do
         tags = if length(rel_ids) >= 2, do: Map.put(tags, :overlap_index, index), else: tags
         tags = if oneway, do: Map.put(tags, :oneway, true), else: tags
 
+        tags =
+          if length(rel_ids) >= 2,
+            do: Map.put(tags, :overlap_route_ids, relation_route_ids(rel_names)),
+            else: tags
+
         way = if reverse, do: Map.Way.reverse(way), else: way
         Map.Element.add_new_tags(way, tags)
       end)
@@ -293,6 +295,16 @@ defmodule Data.GeoJSON do
     relation_names
     |> Enum.map(&Article.List.find_exact(&1).title())
     |> Enum.join("\n")
+  end
+
+  defp relation_route_ids(relation_names) when is_list(relation_names) do
+    joined =
+      relation_names
+      |> Enum.map(&Article.List.find_exact(&1).id())
+      |> Enum.join("|")
+
+    # can only substring search in style.json, so let's make that easy
+    "|#{joined}|"
   end
 
   defp modify_ways(%Map.Relation{} = r, fun) do

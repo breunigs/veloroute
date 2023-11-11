@@ -343,23 +343,11 @@ const sendBounds = () => {
   }, 200);
 }
 
-
-let videoRoute = null
 let indicatorPolyline = null
 
 window.addEventListener("phx:video_meta", e => {
-  videoRoute = e.detail.route || videoRoute
-  highlightRoute()
   updateIndicatorPolyline(e.detail.polyline)
 });
-
-
-function highlightRoute() {
-  if (!videoRoute) return
-  if (!map.isStyleLoaded()) return map.once('idle', highlightRoute)
-  // keep in sync with basemap/static/runner.ex
-  map.setFilter('route-highlight', ['==', ['get', 'route_id'], videoRoute.id])
-}
 
 let highlightsAppliedToStyle = ""
 let highlightsTimeout = null
@@ -374,7 +362,6 @@ function styleChangedHandler() {
   if (highlightsAppliedToStyle == currStyleName) return
   highlightsAppliedToStyle = currStyleName
 
-  highlightRoute()
   maybeToggleLayers(map, mapConfig)
 }
 

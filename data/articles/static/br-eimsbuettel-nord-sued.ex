@@ -6,7 +6,8 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
   def route_group(), do: :bezirk
   def title(), do: "Bezirksroute Eimsbüttel – E1 – Nord-Süd"
 
-  def color(), do: "#caa8ff"
+  def color(), do: "#b482ff"
+  def color_faded(), do: "#dac2ff"
 
   def summary(),
     do:

@@ -9,7 +9,7 @@ defmodule Map.Way do
           bbox: Geo.BoundingBox.t() | nil
         }
 
-  def style_tags, do: [:oneway, :color]
+  def style_tags, do: [:oneway, :color, :color_faded]
 
   @spec reverse(t()) :: t()
   def reverse(%__MODULE__{nodes: nodes} = w), do: %{w | nodes: Enum.reverse(nodes)}

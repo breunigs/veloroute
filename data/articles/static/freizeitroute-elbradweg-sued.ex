@@ -7,6 +7,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
   def title(), do: "Elbradweg (Südteil auf Hamburger Gebiet)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Radweg auf der Elbsüdseite ab Finkenwerder"

@@ -74,6 +74,13 @@ defmodule Basemap.Sprites do
     """
   end
 
+  defp generate_icon(:freizeit, "#" <> _rest = color) do
+    # rounded rect
+    """
+    <svg xmlns="http://www.w3.org/2000/svg" width="34.655" height="26.317" viewBox="0 0 833.111 632.654"><rect width="809.071" height="608.614" x="12.02" y="12.02" fill="#{color}" fill-opacity=".969" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="24.04" opacity=".996" ry="118.348"/></svg>
+    """
+  end
+
   defp generate_icon(_group, _color), do: nil
 
   defp missing_auto_generated do
@@ -82,8 +89,14 @@ defmodule Basemap.Sprites do
 
   defp auto_generated_icons do
     Article.List.all()
-    |> Enum.map(&{&1.route_group(), &1.color()})
+    |> Enum.flat_map(fn art ->
+      [
+        {art.route_group(), art.color()},
+        {art.route_group(), art.color_faded()}
+      ]
+    end)
     |> Enum.uniq()
+    |> Util.compact()
     |> Enum.map(fn {group, color} ->
       path = Path.join(target(:cache), "#{group}_#{color}.svg")
       icon = generate_icon(group, color)

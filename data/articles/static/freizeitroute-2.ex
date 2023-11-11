@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute2 do
   def title(), do: "Osterbekradweg (FR2)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Freizeitroute 2 entführt entlang der Osterbek zum Stellmoorer Tunneltal"

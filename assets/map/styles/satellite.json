@@ -807,14 +807,8 @@
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 12,
-      "filter": [
-        "match",
-        ["get", "route_id"],
-        ["needs-to-be-set"],
-        true,
-        false
-      ],
+      "minzoom": 8,
+      "filter": ["match", ["get", "route_id"], ["needs-to-be-set"], true, false],
       "layout": {
         "line-round-limit": 1,
         "line-miter-limit": 0,
@@ -826,14 +820,14 @@
           "interpolate",
           ["exponential", 1.5],
           ["zoom"],
-          0,
+          8,
           1,
           19,
           2
         ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 12, 0, 14, 0.9],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 12, 1, 14, 0.8],
         "line-color": "hsl(0, 0%, 100%)",
-        "line-dasharray": [3, 5],
+        "line-dasharray": [2, 2],
         "line-gap-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -1663,7 +1657,7 @@
         "text-size": 12,
         "icon-text-fit": "both",
         "symbol-sort-key": 8,
-        "icon-image": "fr_rect",
+        "icon-image": "freizeit_{color}",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [2, 5, 2, 5],
         "text-max-angle": 360,

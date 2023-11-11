@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
   def title(), do: "Klövensteenradweg (FR9)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Freizeitroute 9 führt zum Klövensteener Naturschutzgebiet"

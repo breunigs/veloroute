@@ -21,6 +21,7 @@ defmodule Article do
   @callback display_id() :: binary() | nil
   @callback route_group() :: Layer.route_group() | nil
   @callback color() :: color_hex()
+  @callback color_faded() :: color_hex()
   @callback name() :: binary()
   @callback icon() :: :nocargo | :stau | article_type()
 

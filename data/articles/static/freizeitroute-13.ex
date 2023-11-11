@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
   def title(), do: "Radweg „Dritte Meile“ (FR13)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Video und Beschreibung zur Freizeit Radroute „Dritte Meile“ (FR13)"

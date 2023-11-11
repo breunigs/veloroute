@@ -7,7 +7,8 @@ defmodule Data.Article.Static.BrWandsbekW8 do
   def title(), do: "Bezirksroute Wandsbek – W8 – Billstedt ↔ Glashütte"
 
   # def color(), do: "#75a6f1"
-  def color(), do: "#caa8ff"
+  def color(), do: "#b482ff"
+  def color_faded(), do: "#dac2ff"
 
   def summary(),
     do:

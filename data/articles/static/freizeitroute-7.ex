@@ -6,6 +6,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
   def title(), do: "Harburger Berge (FR7)"
 
   def color(), do: "#006106"
+  def color_faded(), do: "#77ba7b"
 
   def summary(),
     do: "Video und Beschreibung zur Freizeit Radroute „Harburger Berge“ (FR7)"

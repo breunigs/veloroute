@@ -11,7 +11,8 @@ defmodule VelorouteWeb.Live.Map do
     styles: Settings.map_styles(),
     layers: Settings.map_layers(),
     server_route_groups: @default_route_groups,
-    initial: true
+    initial: true,
+    highlight_route: nil
   }
   def mount(socket) do
     {:ok, assign(socket, @default_assigns)}
@@ -24,6 +25,7 @@ defmodule VelorouteWeb.Live.Map do
       |> filter_styles_by_env()
       |> update_server_route_groups()
       |> reset_layers_on_change()
+      |> highlight_route()
       |> maybe_map_preview()
 
     {:ok, socket}
@@ -95,7 +97,7 @@ defmodule VelorouteWeb.Live.Map do
     {:noreply, socket}
   end
 
-  @push_to_frontend [:layers, :styles]
+  @push_to_frontend [:layers, :styles, :highlight]
   defp push_changes(%{assigns: assigns} = socket) do
     updates =
       assigns
@@ -145,6 +147,17 @@ defmodule VelorouteWeb.Live.Map do
     Logger.debug("Server side layers: #{inspect(route_groups)}")
 
     assign(socket, server_route_groups: route_groups)
+  end
+
+  defp highlight_route(socket) do
+    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
+
+    if track && track.parent_ref do
+      assign(socket, highlight: track.parent_ref.id())
+    else
+      socket
+    end
+    |> push_changes()
   end
 
   defp reset_layers_on_change(socket) do
