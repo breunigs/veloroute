@@ -274,12 +274,14 @@ $videoBarProgressHeight: 0.4rem;
 }
 
 @media (min-width: calc(2*$minWidth)) {
-  #skipBackward5, #skipForward5 {
+  #layerSwitcher {
     display: block !important;
   }
 
-  #layerSwitcher {
-    display: block !important;
+  #reverse:not(.disabled) {
+    background-position: left center !important;
+    text-indent: 1.3rem !important;
+    width: auto !important;
   }
 }
 
@@ -474,10 +476,8 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
     display: block;
   }
 
-  #reverse:not(.disabled) {
-    background-position: left center !important;
-    text-indent: 1.3rem !important;
-    width: auto !important;
+  #skipBackward5, #skipForward5 {
+    display: block !important;
   }
 }
 
