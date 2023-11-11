@@ -69,7 +69,11 @@
 
 <div id="sidebar" phx-hook="control">
   <div id="switcher"><div></div></div>
-  <%= live_patch Settings.sitebar_name(), to: "/", class: "header" %>
+  <%= if @current_page == Data.Article.Static.Startpage do %>
+    <span class="header"><%= Settings.sitebar_name() %></span>
+  <% else %>
+    <%= live_patch Settings.sitebar_name(), to: "/", class: "header", title: "zurück zur Startseite" %>
+  <% end %>
   <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>
       <p class="alert">

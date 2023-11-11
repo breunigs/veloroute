@@ -699,15 +699,23 @@ $buttonBorder: 2px;
 }
 
 
-a.header {
+$headerSize: 2rem;
+.header {
   color: #fff;
-  line-height: 2em;
+  line-height: calc(1.5*$headerSize);
   display: block;
-  background: $darkBg;
+  background: url("/images/home.svg") calc($headerSize/2) center / 0 no-repeat $darkBg;
+  // visually centered by eyeballing it. The text is neither in the middle of
+  // the full header, nor the remaining space besides the home icon.
+  padding-left: $headerSize;
   text-align: center;
   font-weight: bold;
-  font-size: 1.6em;
+  font-size: $headerSize*0.7;
   text-decoration: none !important;
+}
+
+a.header {
+  background-size: $headerSize;
 }
 
 $iconSize: 1.5em;
