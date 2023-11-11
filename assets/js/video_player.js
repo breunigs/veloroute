@@ -382,6 +382,9 @@ function updateMetadata() {
   if (videoRecordingDateEl.textContent !== text) videoRecordingDateEl.textContent = text;
 }
 
+const passive = {
+  passive: true
+}
 const progress = document.getElementById("progress")
 const progressWrapper = document.getElementById("progressWrapper")
 const playpause = document.getElementById("playpause")
@@ -396,6 +399,10 @@ document.getElementById('skipForward5').addEventListener('click', () => seekToTi
 document.getElementById("reverse").addEventListener('click', reverseVideo);
 document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
 progressWrapper.addEventListener('click', seekFromProgress);
+progressWrapper.addEventListener('touchstart', scrubStart, passive);
+progressWrapper.addEventListener('touchmove', scrubMove, passive);
+progressWrapper.addEventListener('touchend', scrubEnd, passive);
+progressWrapper.addEventListener('touchcancel', scrubCancel, passive);
 playpause.addEventListener('click', togglePlayPause);
 poster.addEventListener('click', togglePlayPause);
 
@@ -457,8 +464,52 @@ function seekFromProgress(e) {
   seekToTime(pos * max);
 };
 
+let scrubStartTimeMs = null;
+let scrubTimeInMs = null;
+let scrubStartPos = null;
+let scrubVideoMax = null;
+let scrubSpaceRight = null;
+let scrubRAF = null;
+function scrubStart(e) {
+  scrubStartPos = e.touches[0].screenX;
+  scrubSpaceRight = window.screen.width - e.touches[0].screenX;
+  scrubStartTimeMs = fixSeekForWrongVideoDuration || videoTimeInMs;
+  scrubVideoMax = videoMeta.length_ms || Math.round(video.duration * 1000);
+}
+
+function scrubMove(e) {
+  const diff = e.touches[0].screenX - scrubStartPos
+  // scale by space available to finger. Most likely, it's towards the left of
+  // the screen, hence going backwards will scrub much faster than forward.
+  const normalized = diff / (diff > 0 ? scrubSpaceRight : scrubStartPos)
+  // the scaling factors are guessed. Considering video time still allows fast
+  // scrubbing for long videos.
+  const newTime = scrubStartTimeMs + normalized * 100000 * scrubVideoMax / 100000
+  scrubTimeInMs = Math.min(scrubVideoMax, Math.max(0, newTime));
+  if(scrubRAF !== null) return
+  scrubRAF = window.requestAnimationFrame(() => {
+    scrubRAF = null
+    if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
+    updateProgressbar()
+  })
+}
+
+function scrubEnd(e) {
+  if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
+  seekToTime(scrubTimeInMs)
+  scrubTimeInMs = null
+}
+
+function scrubCancel(e) {
+  if (scrubStartTimeMs === null || isNaN(scrubStartTimeMs)) return
+  seekToTime(scrubStartTimeMs)
+  scrubTimeInMs = null
+}
+
 function updateProgressbar() {
-  const ms = fixSeekForWrongVideoDuration || videoTimeInMs;
+  const ms = scrubTimeInMs !== null
+    ? scrubTimeInMs
+    : (fixSeekForWrongVideoDuration || videoTimeInMs);
   const max = videoMeta.length_ms || Math.round(video.duration * 1000);
   const msText = ms2text(ms);
   const maxText = ms2text(max);
