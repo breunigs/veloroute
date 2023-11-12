@@ -9,8 +9,10 @@ defmodule Basemap.Sprites do
 
   @impl Basemap.Renderable
   def stale?() do
-    stale_auto_generated?() || stale_icons?() ||
-      Util.IO.stale?(assets_path("sprite.json"), [target(:cache)])
+    Benchmark.measure("Basemap.Sprites.stale?", fn ->
+      stale_auto_generated?() || stale_icons?() ||
+        Util.IO.stale?(assets_path("sprite.json"), [target(:cache)])
+    end)
   end
 
   defp stale_icons? do
