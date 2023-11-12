@@ -131,6 +131,7 @@ defmodule Video.DiskPreloader do
   defp cat_from_disk(hash, time_offset_ms) do
     list_files(hash)
     |> Enum.filter(&String.ends_with?(&1, ".m3u8"))
+    |> Enum.sort()
     |> Enum.each(fn file -> GenServer.cast(__MODULE__, {:parse_m3u8, file, time_offset_ms}) end)
   end
 

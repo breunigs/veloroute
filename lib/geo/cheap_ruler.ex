@@ -335,7 +335,8 @@ defmodule Geo.CheapRuler do
         }
   def closest_point_on_line(line, point)
 
-  def closest_point_on_line(line, %{lon: lon, lat: lat}) when is_list(line) do
+  def closest_point_on_line(line, %{lon: lon, lat: lat})
+      when is_list(line) and is_float(lon) and is_float(lat) do
     [head | tail] = line
 
     Enum.reduce(tail, %{prev: head, dist: nil, point: nil, i: 0, index: 0, t: 0}, fn next, acc ->
