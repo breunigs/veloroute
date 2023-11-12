@@ -40,6 +40,12 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_info({ref, _result}, socket) when is_reference(ref) do
+    Process.demonitor(ref, [:flush])
+    Logger.debug("ignoring result of other async task (via #{inspect(ref)})")
+    {:noreply, socket}
+  end
+
   def handle_info(other, socket) do
     Logger.info("got unexpected info for: #{inspect(other)} at #{inspect(socket)}")
     {:noreply, socket}

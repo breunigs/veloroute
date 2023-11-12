@@ -10,6 +10,10 @@ defmodule Warmup do
   end
 
   def definitely() do
+    Task.async(fn ->
+      Parallel.each(Video.Generator.all(), &Video.Components.variants(&1.hash()))
+    end)
+
     articles = Article.List.all()
     Parallel.each(articles, &Article.Decorators.related_tracks(&1))
     Parallel.each(articles, &Article.Decorators.bbox_self(&1))

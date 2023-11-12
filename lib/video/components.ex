@@ -1,10 +1,11 @@
 defmodule Video.Components do
+  require Logger
   import Phoenix.Component
   import Guards
 
   @spec alternatives(Video.Track.hash(), non_neg_integer()) :: Phoenix.LiveView.Rendered.t()
   def alternatives(hash, start_in_ms) when valid_hash(hash) and is_integer(start_in_ms) do
-    variants = variants(hash)
+    variants = variants_timeout(hash)
 
     assigns = %{
       variants: variants,
@@ -24,9 +25,28 @@ defmodule Video.Components do
     """
   end
 
+  @variant_timeout_ms 100
+  @spec variants_timeout(Video.Track.hash()) :: list()
+  def variants_timeout(hash) do
+    Task.async(fn -> variants(hash) end)
+    |> Task.yield(@variant_timeout_ms)
+    |> case do
+      {:ok, variants} ->
+        variants
+
+      {:exit, reason} ->
+        Logger.warning("loading variants for #{hash} failed with #{inspect(reason)}")
+        []
+
+      nil ->
+        Logger.warning("loading variants #{hash} took longer than #{@variant_timeout_ms}ms")
+        []
+    end
+  end
+
   use Memoize
 
-  defmemop variants(hash) do
+  defmemo variants(hash) do
     prefix = "/#{Settings.video_serve_path()}/#{hash}/"
 
     with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
