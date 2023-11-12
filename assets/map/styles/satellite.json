@@ -600,7 +600,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -630,7 +630,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -661,7 +661,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -692,7 +692,11 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "hsl(140, 91%, 44%)",
+        "line-color": [
+          "coalesce",
+          ["get", "color_faded"],
+          ["literal", "hsl(140, 91%, 44%)"]
+        ],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -808,7 +812,13 @@
       "source": "merged",
       "source-layer": "routes",
       "minzoom": 8,
-      "filter": ["match", ["get", "route_id"], ["needs-to-be-set"], true, false],
+      "filter": [
+        "match",
+        ["get", "route_id"],
+        ["needs-to-be-set"],
+        true,
+        false
+      ],
       "layout": {
         "line-round-limit": 1,
         "line-miter-limit": 0,

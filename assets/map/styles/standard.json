@@ -2811,7 +2811,7 @@
           19,
           12
         ],
-        "line-color": ["get", "color"],
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
       }
     },
@@ -2837,7 +2837,7 @@
           19,
           12
         ],
-        "line-color": ["get", "color"],
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5],
         "line-dasharray": [0, 1, 1]
       }
@@ -2864,7 +2864,7 @@
           19,
           12
         ],
-        "line-color": ["get", "color"],
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5],
         "line-dasharray": [1, 1]
       }
@@ -2891,7 +2891,7 @@
           19,
           12
         ],
-        "line-color": ["get", "color"],
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
       }
     },
@@ -3074,7 +3074,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -3104,7 +3104,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -3135,7 +3135,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
@@ -3166,7 +3166,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": {"type": "identity", "property": "color"},
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
         "line-width": [
           "interpolate",
           ["exponential", 1.5],
