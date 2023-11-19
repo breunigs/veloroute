@@ -78,7 +78,8 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
   });
 }
 
-function maybeToggleLayers(map: MapboxMap, mapDetail: mapEventDetail) {
+function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
+  if (!map) return
   if (!mapDetail.layers) return
 
   const highlight = mapDetail.highlight || "no-route-set"
@@ -136,7 +137,8 @@ function fadeIcons(highlight: string): highlighterFunction {
 }
 
 let currentStyleId = document.getElementById('map')?.dataset.style
-function maybeSwitchStyle(map: MapboxMap, mapDetail: mapEventDetail) {
+function maybeSwitchStyle(map: MapboxMap | null, mapDetail: mapEventDetail) {
+  if (!map) return false
   if (!mapDetail.styles) return false
 
   for (const style of mapDetail.styles) {

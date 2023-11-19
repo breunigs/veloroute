@@ -1,12 +1,15 @@
-const cls = document.getElementsByTagName("body")[0].classList;
-const content = document.getElementById("content");
 const passive = {
   passive: true
 }
 
-let timeout: number | null;
+let timeout: number | null
+
+let cls: DOMTokenList | null
+let content: HTMLElement | null
+let sidebar: HTMLElement | null
 
 function showSidebar(pos?: number) {
+  if (!cls) return
   cls.add("showSidebar", "animateSidebar");
   cls.remove("hideSidebar");
   stopScroll(pos)
@@ -14,6 +17,7 @@ function showSidebar(pos?: number) {
 }
 
 function hideSidebar(pos?: number) {
+  if (!cls) return
   cls.remove("showSidebar");
   cls.add("hideSidebar", "animateSidebar");
   stopScroll(pos)
@@ -23,6 +27,7 @@ function hideSidebar(pos?: number) {
 function disableAnimationAfter() {
   if (timeout != null) window.clearTimeout(timeout)
   timeout = window.setTimeout(() => {
+    if (!cls) return
     cls.remove("animateSidebar");
     timeout = null
     // keep timeout in sync with main.scss
@@ -37,23 +42,19 @@ function stopScroll(pos?: number) {
 }
 
 function toggleSidebar(e: Event) {
+  if (!cls) return
   cls.contains("showSidebar") ? hideSidebar() : showSidebar()
   e.stopPropagation()
 }
 
 function showSidebarIfHidden(_e?: Event) {
+  if (!cls) return false
   if (cls.contains("hideSidebar")) {
     showSidebar()
     return true
   }
   return false
 }
-
-
-document.getElementById("switcher")!.addEventListener("click", toggleSidebar)
-const sidebar = document.getElementById("sidebar");
-sidebar!.addEventListener("click", showSidebarIfHidden)
-sidebar!.addEventListener("wheel", showSidebarIfHidden, passive)
 
 function detectswipe(el: string) {
   const ele = document.getElementById(el)
@@ -127,5 +128,20 @@ function detectswipe(el: string) {
   }, passive);
 }
 
-detectswipe("sidebar")
-detectswipe("switcher")
+function init() {
+  // i.e. no-reinit needed
+  if (sidebar === document.getElementById("sidebar")) return
+
+  cls = document.getElementsByTagName("body")[0].classList;
+  content = document.getElementById("content");
+  sidebar = document.getElementById("sidebar");
+
+  document.getElementById("switcher")!.addEventListener("click", toggleSidebar)
+  sidebar!.addEventListener("click", showSidebarIfHidden)
+  sidebar!.addEventListener("wheel", showSidebarIfHidden, passive)
+
+  detectswipe("sidebar")
+  detectswipe("switcher")
+}
+init()
+window.addEventListener("global:mounted", init)

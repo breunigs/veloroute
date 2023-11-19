@@ -547,11 +547,14 @@ function setupTouchDeviceClick() {
 let map = null;
 
 function setup() {
-  if (map && document.body.contains(window.map.getContainer())) return
   if (map) {
+    const realMapContainer = map.getContainer()
+    const pageMapContainer = document.getElementById("map")
+    if (realMapContainer === pageMapContainer) return
     console.warn("previous map present, but it got removed from DOM")
     window.plausible('mapReset')
-    map.remove()
+    pageMapContainer.parentNode.replaceChild(realMapContainer, pageMapContainer);
+    return
   }
 
   let style = document.getElementById('map').dataset.style

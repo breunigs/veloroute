@@ -14,27 +14,34 @@ window.addEventListener("phx:video_meta", e => {
   maybeTimeUpdate(e.detail)
 });
 
-const video = document.getElementById('videoInner');
-video.addEventListener('loadedmetadata', seekToStartTime);
-video.addEventListener('loadedmetadata', updateMetadata);
-video.addEventListener('loadeddata', maybeShowLoadingIndicator);
-video.addEventListener('stalled', maybeShowLoadingIndicator);
-video.addEventListener('waiting', maybeShowLoadingIndicator);
-video.addEventListener('playing', maybeShowLoadingIndicator);
-video.addEventListener('seeked', maybeShowLoadingIndicator);
-video.addEventListener('seeking', maybeShowLoadingIndicator);
-video.addEventListener('timeupdate', updateMetadata);
-video.addEventListener('timeupdate', updateProgressbar);
-video.addEventListener('progress', updateProgressbar);
-video.addEventListener('play', markPlay);
-video.addEventListener('play', updatePlaypause);
-video.addEventListener('play', () => timeUpdate());
-video.addEventListener('play', ensureVideoIsSet, {
-  once: true
-});
-video.addEventListener('pause', markPause);
-video.addEventListener('pause', updatePlaypause);
-video.addEventListener('pause', maybeShowLoadingIndicator);
+let video
+function initVideoElement() {
+  if (video === document.getElementById('videoInner')) return
+
+  video = document.getElementById('videoInner');
+  video.addEventListener('loadedmetadata', seekToStartTime);
+  video.addEventListener('loadedmetadata', updateMetadata);
+  video.addEventListener('loadeddata', maybeShowLoadingIndicator);
+  video.addEventListener('stalled', maybeShowLoadingIndicator);
+  video.addEventListener('waiting', maybeShowLoadingIndicator);
+  video.addEventListener('playing', maybeShowLoadingIndicator);
+  video.addEventListener('seeked', maybeShowLoadingIndicator);
+  video.addEventListener('seeking', maybeShowLoadingIndicator);
+  video.addEventListener('timeupdate', updateMetadata);
+  video.addEventListener('timeupdate', updateProgressbar);
+  video.addEventListener('progress', updateProgressbar);
+  video.addEventListener('play', markPlay);
+  video.addEventListener('play', updatePlaypause);
+  video.addEventListener('play', () => timeUpdate());
+  video.addEventListener('play', ensureVideoIsSet, {
+    once: true
+  });
+  video.addEventListener('pause', markPause);
+  video.addEventListener('pause', updatePlaypause);
+  video.addEventListener('pause', maybeShowLoadingIndicator);
+}
+initVideoElement()
+window.addEventListener("global:mounted", initVideoElement)
 
 // 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
@@ -200,7 +207,7 @@ function updateVideoElement() {
         if (!window.hls) return;
         console.debug("triggering hls.startLoad");
         window.hls.startLoad(-1);
-      });
+      }, { once: true });
     })
     return
   }
@@ -236,9 +243,7 @@ function seekToStartTime() {
   prevStartGen = videoMeta.start_gen;
 }
 
-const videoQuality = document.getElementById("videoQuality");
-const videoQualityOptions = document.getElementById("videoQualityOptions");
-videoQualityOptions.addEventListener('click', event => {
+function selectVideoQuality(event) {
   if (!window.hls) return hideQualityChooser();
 
   const level = event.target.dataset.level;
@@ -249,7 +254,7 @@ videoQualityOptions.addEventListener('click', event => {
   updateQualityChooser();
   window.hls.bufferController.flushBackBuffer();
   window.plausible('videoQualityChanged')
-});
+}
 
 const codecTranslate = {
   avc1: {
@@ -278,7 +283,6 @@ function updateQualityChooser() {
     const next = window.hls.loadLevel;
     const auto = window.hls.autoLevelEnabled;
 
-    let duplicates = {};
     let choosers = "";
     for (let i = window.hls.levels.length - 1; i >= 0; i--) {
       let classes = "eye"
@@ -324,8 +328,8 @@ function seekToTime(timeInMs) {
   if (video.duration < inSeconds && video.currentTime < inSeconds) {
     fixSeekForWrongVideoDuration = timeInMs
     video.addEventListener('durationchange', () => {
-      if(fixSeekForWrongVideoDuration) seekToTime(fixSeekForWrongVideoDuration)
-    }, {  once: true })
+      if (fixSeekForWrongVideoDuration) seekToTime(fixSeekForWrongVideoDuration)
+    }, { once: true })
   }
   updateProgressbar();
 }
@@ -382,50 +386,61 @@ function updateMetadata() {
   if (videoRecordingDateEl.textContent !== text) videoRecordingDateEl.textContent = text;
 }
 
+let progress
+let current
+let duration
+let outer
+let controls
+let poster
+let videoOptions
+let videoQuality
+let videoQualityOptions
+function initControls() {
+  // i.e. no re-init needed
+  if (progress === document.getElementById("progress")) return
+
+  progress = document.getElementById("progress")
+  const progressWrapper = document.getElementById("progressWrapper")
+  const playpause = document.getElementById("playpause")
+  current = document.getElementById("current")
+  duration = document.getElementById("max")
+  outer = document.getElementById('videoOuter')
+  controls = document.getElementById('videoControls')
+  poster = document.getElementById('videoPoster')
+  videoOptions = document.getElementById("videoOptions")
+  videoQuality = document.getElementById("videoQuality");
+  videoQualityOptions = document.getElementById("videoQualityOptions");
+
+  document.getElementById('skipBackward5').addEventListener('click', () => seekToTime(videoTimeInMs - 5000))
+  document.getElementById('skipForward5').addEventListener('click', () => seekToTime(videoTimeInMs + 5000))
+  document.getElementById("reverse").addEventListener('click', reverseVideo);
+  document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
+  progressWrapper.addEventListener('click', seekFromProgress);
+  progressWrapper.addEventListener('touchstart', scrubStart, passive);
+  progressWrapper.addEventListener('touchmove', scrubMove, passive);
+  progressWrapper.addEventListener('touchend', scrubEnd, passive);
+  progressWrapper.addEventListener('touchcancel', scrubCancel, passive);
+  playpause.addEventListener('click', togglePlayPause);
+  poster.addEventListener('click', togglePlayPause);
+
+  // provide a way to close the options menu by clicking the gear icon again
+  videoOptions.addEventListener('touchstart', hideVideoQualityOptions, passive);
+  videoQualityOptions.addEventListener('click', selectVideoQuality);
+  document.getElementById('playbackRate').addEventListener('click', selectPlaybackRate);
+}
+
+initControls()
+window.addEventListener("global:mounted", initControls)
+
 const passive = {
   passive: true
 }
-const progress = document.getElementById("progress")
-const progressWrapper = document.getElementById("progressWrapper")
-const playpause = document.getElementById("playpause")
-const current = document.getElementById("current")
-const duration = document.getElementById("max")
-const outer = document.getElementById('videoOuter')
-const controls = document.getElementById('videoControls')
-const poster = document.getElementById('videoPoster')
-const videoOptions = document.getElementById("videoOptions")
-document.getElementById('skipBackward5').addEventListener('click', () => seekToTime(videoTimeInMs - 5000))
-document.getElementById('skipForward5').addEventListener('click', () => seekToTime(videoTimeInMs + 5000))
-document.getElementById("reverse").addEventListener('click', reverseVideo);
-document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
-progressWrapper.addEventListener('click', seekFromProgress);
-progressWrapper.addEventListener('touchstart', scrubStart, passive);
-progressWrapper.addEventListener('touchmove', scrubMove, passive);
-progressWrapper.addEventListener('touchend', scrubEnd, passive);
-progressWrapper.addEventListener('touchcancel', scrubCancel, passive);
-playpause.addEventListener('click', togglePlayPause);
-poster.addEventListener('click', togglePlayPause);
 
-// provide a way to close the options menu by clicking the gear icon again
-videoOptions.addEventListener('touchstart', () => {
+function hideVideoQualityOptions() {
   const hide = window.getComputedStyle(videoQualityOptions).visibility == 'visible';
   videoOptions.classList.toggle("hidden", hide)
-}, {
-  passive: true
-});
+}
 
-let videoPlaybackRate = 1.0;
-document.getElementById('playbackRate').addEventListener('click', event => {
-  const rate = event.target.dataset.rate;
-  if (!rate) return;
-
-  video.playbackRate = rate;
-  videoPlaybackRate = rate;
-
-  const prev = document.querySelector("#playbackRate a.active");
-  if (prev) prev.classList.remove("active");
-  event.target.classList.add("active");
-});
 
 let wasPlaying = false;
 document.addEventListener("visibilitychange", () => {
@@ -439,6 +454,19 @@ document.addEventListener("visibilitychange", () => {
     if (wasPlaying) video.play();
   }
 }, false);
+
+let videoPlaybackRate = 1.0;
+function selectPlaybackRate(event) {
+  const rate = event.target.dataset.rate;
+  if (!rate) return;
+
+  video.playbackRate = rate;
+  videoPlaybackRate = rate;
+
+  const prev = document.querySelector("#playbackRate a.active");
+  if (prev) prev.classList.remove("active");
+  event.target.classList.add("active");
+}
 
 function togglePlayPause() {
   if (video.paused || video.ended) {
@@ -486,7 +514,7 @@ function scrubMove(e) {
   // scrubbing for long videos.
   const newTime = scrubStartTimeMs + normalized * 100000 * scrubVideoMax / 100000
   scrubTimeInMs = Math.min(scrubVideoMax, Math.max(0, newTime));
-  if(scrubRAF !== null) return
+  if (scrubRAF !== null) return
   scrubRAF = window.requestAnimationFrame(() => {
     scrubRAF = null
     if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
@@ -636,17 +664,17 @@ document.addEventListener("keyup", (e) => {
   if (e.key != "." && e.key != ",") return
 
   if (!frameSeeked) {
-    frameSeeked=true
+    frameSeeked = true
     userClickPlayOnce = true
     setVideo();
   }
 
   if (e.key == "." && video.currentTime < video.duration) {
     console.log("seek+")
-    seekToTime(videoTimeInMs + 1/videoFPS*1000)
+    seekToTime(videoTimeInMs + 1 / videoFPS * 1000)
   }
   if (e.key == "," && video.currentTime > 0) {
     console.log("seek-")
-    seekToTime(videoTimeInMs - 1/videoFPS*1000)
+    seekToTime(videoTimeInMs - 1 / videoFPS * 1000)
   }
 })
