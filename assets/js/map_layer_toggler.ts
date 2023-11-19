@@ -80,9 +80,10 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
 function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
   if (!map) return
-  if (!mapDetail.layers) return
-
   const highlight = mapDetail.highlight || "no-route-set"
+  map.setFilter('route-highlight', ['==', ['get', 'route_id'], highlight])
+
+  if (!mapDetail.layers) return
   for (const layer of mapDetail.layers) {
     updateMapPrimitive(map, layer.icon, "icon", layer.active, fadeIcons(highlight));
     updateMapPrimitive(map, layer.outline, "line", layer.active);
@@ -90,8 +91,6 @@ function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
     updateMapPrimitive(map, layer.line.map(l => `${l}-tunnel`), "line", layer.active, fadeLines(highlight), true);
     updateMapPrimitive(map, layer.fill, "fill", layer.active);
   }
-
-  map.setFilter('route-highlight', ['==', ['get', 'route_id'], highlight])
 }
 
 function fadeLines(highlight: string): highlighterFunction {
