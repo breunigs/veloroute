@@ -479,6 +479,10 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   #skipBackward5, #skipForward5 {
     display: block !important;
   }
+
+  .hideSidebar #sidebar {
+    cursor: auto !important;
+  }
 }
 
 // keep in sync with mobilegui.ts
@@ -535,6 +539,10 @@ body.showSidebar::before {
 
 .hideSidebar #content {
   pointer-events: none;
+}
+
+.hideSidebar #sidebar {
+  cursor: w-resize;
 }
 
 @keyframes spinner {
