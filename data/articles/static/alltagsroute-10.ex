@@ -95,7 +95,7 @@ defmodule Data.Article.Static.Alltagsroute10 do
     <table class="routing">
       <tr>
         <td></td>
-        <td rowspan="11" style="background-image: url(/images/route10.svg)">
+        <td rowspan="13" style="background-image: url(/images/route10.svg)">
           <.icon>10</.icon>
         </td>
         <td></td>
@@ -105,40 +105,59 @@ defmodule Data.Article.Static.Alltagsroute10 do
         <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="10" highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
+        <td><.icon>1GR</.icon></td>
+        <td><.v bounds="9.994898,53.5349,10.02677,53.551173" lon={10.00608} lat={53.54055} dir="forward" ref="10">HafenCity</.v></td>
+      </tr>
+      <tr>
+        <td>
+          <.icon>rsw-lueneburg</.icon>
+          <.icon>11</.icon>
+          <.icon>FR6</.icon>
+          <.icon>FR11</.icon>
+        </td>
+        <td><.v bounds="10.003899,53.517116,10.04876,53.543914" lon={10.020232} lat={53.524786} dir="forward" ref="10">Veddel</.v></td>
+      </tr>
+      <tr>
         <td></td>
-        <td><.m bounds="9.9803816,53.5300578,10.0315651,53.5469165">HafenCity</.m></td>
+        <td><.v bounds="10.006914,53.496028,10.041611,53.525479" lon={10.0212} lat={53.509739} dir="forward" ref="10">Niedergeorgswerder</.v></td>
+      </tr>
+      <tr>
+        <td><.icon>FR11</.icon></td>
+        <td><.v bounds="9.982587,53.471138,10.044783,53.503317" lon={10.01744} lat={53.486457} dir="forward" ref="10">Kirchdorf</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>11</.icon>
+          <.icon>FR6</.icon>
         </td>
-        <td><.m bounds="10.011765,53.5095885,10.0597062,53.5329804">Veddel</.m></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.m bounds="9.9948007,53.4678065,10.0348007,53.5078065">Kirchdorf</.m></td>
+        <td><.v bounds="9.968901,53.459236,10.012536,53.489947" lon={9.995871} lat={53.475326} dir="forward" ref="10">Alte Harburger Elbbrücke</.v></td>
       </tr>
       <tr>
         <td>
-          <.icon>11</.icon>
+          <.icon>FR6</.icon>
         </td>
-        <td><.m bounds="9.9938767,53.4714464,9.9961153,53.4755551">Alte Harburger Elbbrücke</.m></td>
+        <td><.v bounds="9.934425,53.452084,10.016485,53.479857" lon={9.985618} lat={53.466457} dir="forward" ref="10">Harburg Binnenhafen</.v></td>
+      </tr>
+      <tr>
+        <td>
+          <.icon>FR11</.icon>
+          <.icon>FR14</.icon>
+        </td>
+        <td><.v bounds="9.924809,53.461964,9.963757,53.480283" lon={9.939523} lat={53.471678} dir="forward" ref="10">Heimfeld</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.983502,53.5440542,9.9873381,53.5443446">Binnenhafen</.m></td>
+        <td><.v bounds="9.867189,53.462401,9.918748,53.492071" lon={9.884645} lat={53.473508} dir="forward" ref="10">Neuwiedenthal</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.8774298,53.472953,9.8775298,53.473053">Neuwiedenthal</.m></td>
+        <td><.v bounds="9.820314,53.457785,9.897137,53.487145" lon={9.854338} lat={53.474284} dir="forward" ref="10">Neugraben</.v></td>
       </tr>
       <tr>
-        <td></td>
-        <td><.m bounds="9.8569684,53.469918,9.8570684,53.470018">Neugraben</.m></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.m bounds="9.8193917,53.4747242,9.8194917,53.4748242">Fischbek</.m></td>
+        <td>
+          <.icon name="rsw-stade" bounds="9.820314,53.457785,9.897137,53.487145" lon={9.839442} lat={53.47481} dir="forward">RSW</.icon>
+        </td>
+        <td><.v bounds="9.820314,53.457785,9.897137,53.487145" lon={9.839442} lat={53.47481} dir="forward" ref="rsw-stade">Fischbek</.v></td>
       </tr>
       <tr>
         <td>
@@ -149,6 +168,21 @@ defmodule Data.Article.Static.Alltagsroute10 do
         </td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 10 (auch: Veloroute 10 oder Radroute 10) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="10" highlight="Rathausmarkt">Rathaus</.v> über die Elbinseln <.v bounds="10.003899,53.517116,10.04876,53.543914" lon={10.020232} lat={53.524786} dir="forward" ref="10">Veddel</.v> und <.v bounds="9.982587,53.471138,10.044783,53.503317" lon={10.01744} lat={53.486457} dir="forward" ref="10">Kirchdorf</.v> nach Süden. In <.v bounds="9.934425,53.452084,10.016485,53.479857" lon={9.985618} lat={53.466457} dir="forward" ref="10">Harburg</.v> knickt sie nach Westen ab und führt bis <.v bounds="9.820314,53.457785,9.897137,53.487145" lon={9.854338} lat={53.474284} dir="forward" ref="10">Neugraben</.v>. Dort schließt sie nahtlos an die <.a name="rsw-stade">Radroute Plus</.a> nach <.v bounds="9.38526,53.435238,9.920297,53.642004" lon={9.490194} lat={53.592411} dir="forward" ref="rsw-stade">Stade</.v> an.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert.</p>
+
+    <h4>Meinung</h4>
+    <p>Sofern man nicht an genau in einen der von der Route angebundenen Stadtteile möchte, ist man auf anderen Routen meist schneller. In Hamburg ist dies etwa die <.v bounds="9.989253,53.530646,10.044428,53.55536" lon={10.008659} lat={53.544733} dir="forward" ref="9">Radroute 9</.v>, auf Wilhelmsburg die <.v bounds="9.925024,53.469115,10.052357,53.542339" lon={9.997872} lat={53.495984} dir="forward" ref="11">Radroute 11</.v> und aus dem Westen die (geplante) <.v bounds="9.757953,53.460665,9.937051,53.576378" lon={9.873717} lat={53.496859} dir="backward" ref="rsw-stade">Radroute Plus von Stade</.v> bzw. eine Abwandlung der <.v bounds="9.884274,53.455264,10.00134,53.558152" lon={9.949894} lat={53.494546} dir="backward" ref="FR14">Freizeitroute 14</.v> durch den Hafen.</p>
+
+    <p>Auch ist die Route kaum ausgebaut (Stand Ende 2023). In vielen Abschnitten gibt es daher gar keine oder unbenutzbare Radwege, wie etwa <.v bounds="9.982231,53.472631,10.05017,53.524332" lon={10.019523} lat={53.489407} dir="forward" ref="10">auf Wilhelmsburg</.v>. Im Süden sind sogar mehrere fehlende Durchfahrtmöglichkeiten, die Umwege erfordern: <.v bounds="9.952802,53.460182,9.99538,53.479121" lon={9.977234} lat={53.466265} dir="forward" ref="10">An der Hafenbahn</.v>, <.v bounds="9.906721,53.469337,9.928368,53.47739" lon={9.915974} lat={53.472669} dir="forward" ref="10">am Heykenaubrook</.v>, <.v bounds="9.854872,53.469327,9.912212,53.477839" lon={9.903927} lat={53.473147} dir="forward" ref="10">am Dubben</.v> und <.v bounds="9.854872,53.472644,9.866931,53.477839" lon={9.861493} lat={53.474919} dir="forward" ref="10">am Gleisstieg</.v>.</p>
+
+    <p>Kurzum: aktuell präsentiert sich die Radroute 10 als wenig brauchbar.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

@@ -26293,7 +26293,6 @@
   <node id='3247620005925694' version='1' lat='53.59259168734' lon='10.03252447976' />
   <node id='3254860005600722' version='1' lat='53.5600722' lon='10.0325486' />
   <node id='3267950005917252' version='1' lat='53.59175703969' lon='10.03275460185' />
-  
   <node id='3271560005742895' version='1' lat='53.5742895' lon='10.0327156' />
   <node id='3279730005731143' version='1' lat='53.57307926089' lon='10.03290995278' />
   <node id='3280230005742348' version='1' lat='53.5742348' lon='10.0328023' />
@@ -46413,7 +46412,7 @@
     <tag k='name' v='2021-12-18-bahnquerung-hafenbahn' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20201287'>
+  <way id='-20201287' action='modify'>
     <nd ref='-97297203' />
     <nd ref='-97297204' />
     <nd ref='-97297205' />
@@ -46435,6 +46434,7 @@
     <nd ref='-97297221' />
     <nd ref='-97297222' />
     <nd ref='-97297203' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-12-22-saseler-marktplatz' />
     <tag k='type' v='article' />
   </way>

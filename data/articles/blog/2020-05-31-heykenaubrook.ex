@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Heykenaubrook do
   def created_at(), do: ~D[2020-05-31]
   def updated_at(), do: ~D[2022-03-29]
 
-  def title(), do: "Bahnübergang Heykenbaubrook (Veloroute 10)"
+  def title(), do: "Bahnübergang Heykenaubrook (Veloroute 10)"
   def summary(), do: "Es soll ein Tunnel unter der Bahn geplant werden."
   def icon(), do: :nocargo
 

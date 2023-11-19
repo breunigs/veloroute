@@ -93,30 +93,31 @@ defmodule Data.Article.Static.Alltagsroute12 do
       <tr>
         <td>
           <.icon>1</.icon>
-          <.icon>11</.icon>
           <.icon>2</.icon>
         </td>
         <td><.v bounds="9.979819,53.544806,9.994743,53.552337" lon={9.987516} lat={53.549008} dir="forward" ref="12">Rödingsmarkt</.v></td>
       </tr>
       <tr>
         <td>
-          <.icon>11</.icon>
+          <.icon>1GR</.icon>
         </td>
         <td><.v bounds="9.964349,53.543146,9.979272,53.550677" lon={9.972639} lat={53.545563} dir="forward" ref="12">Landungsbrücken</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR14</.icon>
           <.icon>11</.icon>
         </td>
         <td><.v bounds="9.958412,53.54159,9.973336,53.549121" lon={9.969531} lat={53.546082} dir="forward" ref="12">Alter Elbtunnel</.v></td>
       </tr>
       <tr>
-        <td></td>
+        <td><.icon>FR8</.icon></td>
         <td><.v bounds="9.946468,53.542192,9.961392,53.549723" lon={9.954723} lat={53.545729} dir="forward" ref="12">Fischmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
+          <.icon>1</.icon>
         </td>
         <td><.v bounds="9.935817,53.545325,9.950741,53.552856" lon={9.936366} lat={53.549683} dir="forward" ref="12">Altona</.v></td>
       </tr>

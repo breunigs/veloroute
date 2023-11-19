@@ -159,6 +159,8 @@ defmodule Data.Article.Static.Alltagsroute11 do
       </tr>
       <tr>
         <td>
+          <.icon>1GR</.icon>
+          <.icon>FR8</.icon>
           <.icon>12</.icon>
         </td>
         <td><.v bounds="9.957407,53.535802,9.976696,53.551442" lon={9.972308} lat={53.545537} dir="forward" ref="11">Landungsbrücken</.v></td>
@@ -170,7 +172,9 @@ defmodule Data.Article.Static.Alltagsroute11 do
         <td><.v bounds="9.958137,53.521845,9.993724,53.549976" lon={9.966592} lat={53.544303} dir="forward" ref="11">Alter Elbtunnel</.v></td>
       </tr>
       <tr>
-        <td></td>
+        <td>
+          <.icon>FR14</.icon>
+        </td>
         <td><.v bounds="9.954913,53.520612,9.988097,53.546909" lon={9.96852} lat={53.535508} dir="forward" ref="11">Hafen</.v></td>
       </tr>
       <tr>
@@ -183,6 +187,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
       </tr>
       <tr>
         <td>
+          <.icon>FR6</.icon>
           <.icon>10</.icon>
         </td>
         <td><.v bounds="9.973211,53.457654,10.020346,53.489013" lon={9.996038} lat={53.475209} dir="forward" ref="11">Alte Harburger Elbbrücke</.v></td>
@@ -195,7 +200,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
       </tr>
       <tr>
         <td class="dir"><.m bounds="9.9214907,53.3167401,10.1074035,53.4639106">(Seevetal)</.m></td>
-        <td><.v bounds="9.968763,53.452748,9.99928,53.465024" lon={9.984501} lat={53.459484} dir="forward" ref="11">Harburg</.v></td>
+        <td><.v bounds="9.968763,53.452748,9.99928,53.465024" lon={9.984501} lat={53.459484} dir="forward" ref="11">Harburg</.v> <.icon>FR7</.icon></td>
       </tr>
       <tr>
         <td></td>
@@ -206,7 +211,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         <td><.v bounds="9.934683,53.453683,9.973803,53.466567" lon={9.959735} lat={53.460863} dir="forward" ref="11">Heimfeld</.v></td>
       </tr>
       <tr>
-        <td></td>
+        <td><.icon>FR11</.icon></td>
         <td><.v bounds="9.934683,53.453683,9.973803,53.466567" lon={9.947303} lat={53.457857} dir="forward" ref="11">Eißendorf</.v></td>
       </tr>
       <tr>
@@ -224,7 +229,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
     <p>Alle Wege sind befestigt und allwettertauglich. Meist sind sie asphaltiert, es gibt aber auch kurze Abschnitte mit Kopfsteinpflaster. Der alte Elbtunnel ist ganztägig befahrbar. In der Nebenverkehrszeit stehen nur die seitlichen Personenaufzüge zur Verfügung.</p>
 
     <h4>Meinung</h4>
-    <p>Gerade auf Wilhelmsburg macht die Route Spaß: wenig Kreuzungen und autofreie Abschnitte. Nördlich und südlich der Elbe trüben die noch nicht ausgebauten Abschnitte und schlechte Ampelschaltungen den Eindruck. Negativbeispiel ist die <.v bounds="9.982957,53.544552,9.987049,53.546294" lon={9.984063} lat={53.545369} dir="backward" ref="12">Schaartorbrücke</.v>, an der man zum Linksabbiegen mindestens drei Mal halten muss.</p>
+    <p>Gerade auf Wilhelmsburg macht die Route Spaß: wenig Kreuzungen und autofreie Abschnitte. Nördlich und südlich der Elbe trüben die noch nicht ausgebauten Abschnitte und schlechte Ampelschaltungen den Eindruck. Negativbeispiel ist die <.v bounds="9.982957,53.544552,9.987049,53.546294" lon={9.984063} lat={53.545369} dir="backward" ref="11">Schaartorbrücke</.v>, an der man zum Linksabbiegen mindestens drei Mal halten muss.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>
