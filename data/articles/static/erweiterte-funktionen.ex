@@ -155,5 +155,5 @@ defmodule Data.Article.Static.ErweiterteFunktionen do
     end)
   end
 
-  defp clean(str), do: String.replace(str, ~r/[^a-zA-ZäüößÄÜÖẞ0-9_.-]+/, "_")
+  defp clean(str), do: String.replace(str, ~r/[^a-zA-ZäüößÄÜÖẞ0-9_.-]+/u, "_")
 end
