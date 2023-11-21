@@ -46412,7 +46412,7 @@
     <tag k='name' v='2021-12-18-bahnquerung-hafenbahn' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20201287' action='modify'>
+  <way id='-20201287'>
     <nd ref='-97297203' />
     <nd ref='-97297204' />
     <nd ref='-97297205' />

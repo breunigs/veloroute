@@ -113,61 +113,85 @@ defmodule Data.Article.Static.Alltagsroute13 do
       </tr>
       <tr>
         <td>
+          <.icon>FR9</.icon>
           <.icon>12</.icon>
+          <.icon>1</.icon>
         </td>
-        <td><.m bounds="9.92758,53.5417787,9.9602617,53.5627471">Altona</.m></td>
+        <td><.v bounds="9.908746,53.545425,9.971424,53.572528" lon={9.936885} lat={53.551477} dir="forward" ref="13">Altona</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>2</.icon>
         </td>
-        <td><.m bounds="9.9351095,53.5631662,9.9775009,53.5824343">Eimsbüttel</.m></td>
+        <td><.v bounds="9.922015,53.558148,9.985174,53.589129" lon={9.957934} lat={53.570483} dir="forward" ref="13">Eimsbüttel</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR10</.icon>
           <.icon>3</.icon>
         </td>
-        <td><.m bounds="9.9683983,53.586403,9.9709292,53.5880841">Hoheluft</.m></td>
+        <td><.v bounds="9.958302,53.570385,9.987567,53.58825" lon={9.968577} lat={53.580408} dir="forward" ref="13">Hoheluft</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.m bounds="9.9676637,53.5837055,9.9974094,53.6028033">Eppendorf</.m></td>
+        <td><.v bounds="9.973481,53.577894,10.001225,53.594674" lon={9.991695} lat={53.588725} dir="forward" ref="13">Eppendorf</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR1</.icon>
           <.icon>4</.icon>
         </td>
-        <td><.m bounds="9.9912541,53.575329,10.037075,53.6100971">Winterhude</.m></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.m bounds="10.0129797,53.5796362,10.0130948,53.5797767">Mühlenkamp</.m></td>
+        <td><.v bounds="9.977983,53.576811,10.024918,53.597336" lon={9.998228} lat={53.587997} dir="forward" ref="13">Winterhude</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR2</.icon>
+        </td>
+        <td><.v bounds="9.991957,53.576643,10.023977,53.591726" lon={10.010123} lat={53.583047} dir="forward" ref="13">Mühlenkamp</.v></td>
+      </tr>
+      <tr>
+        <td>
+          <.icon>FR3</.icon>
           <.icon>5</.icon>
         </td>
-        <td><.m bounds="10.0190335,53.5696406,10.057332,53.5853664">Barmbek-Süd</.m></td>
+        <td><.v bounds="10.018924,53.569386,10.049868,53.58425" lon={10.030236} lat={53.57584} dir="forward" ref="13">Barmbek-Süd</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>6</.icon>
         </td>
-        <td><.m bounds="10.0440274,53.5707023,10.0441274,53.5708023">Auenviertel</.m></td>
+        <td><.v bounds="10.021466,53.564426,10.053918,53.579398" lon={10.039528} lat={53.571211} dir="forward" ref="13">Auenviertel</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>7</.icon>
         </td>
-        <td><.m bounds="10.0318304,53.5608608,10.0627028,53.5760196">Eilbek</.m></td>
+        <td><.v bounds="10.034972,53.557082,10.058224,53.571732" lon={10.043822} lat={53.568031} dir="forward" ref="13">Eilbek</.v></td>
       </tr>
       <tr>
         <td>
+          <.icon>FR4</.icon>
           <.icon>8</.icon>
         </td>
-        <td><.m bounds="10.022745,53.5494664,10.0411521,53.5608608">Borgfelde</.m></td>
+        <td><.v bounds="10.030417,53.549632,10.06304,53.570118" lon={10.041338} lat={53.558788} dir="forward" ref="13">Borgfelde</.v></td>
       </tr>
     </table>
+
+    <p>Die Alltagsroute 13 (auch: Veloroute 13 oder Radroute 13) führt in einem Halbkreis durch die Kernstadt. Die Route verläuft in grob 3km Abstand um die Außenalster.</p>
+
+    <h4>Auffindbarkeit</h4>
+    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar. Da sich die Route selten an natürlichen Straßenverläufen orientiert, muss häufig unerwartet abgebogen werden.</p>
+
+    <h4>Befahrbarkeit</h4>
+    <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert.</p>
+
+    <h4>Meinung</h4>
+    <p>In ihrer Funktion als Querverbindung zwischen Stadtteilen wird die Route gerecht. Bedingt durch ihre Form ist sie aber selten für längere Abschnitte relevant.</p>
+
+    <p>Das ist auch gut so, denn die Route wird durch wild abgestellte KFZ geprägt, die die Verkehrssituation unübersichtlich machen. Gleichzeitig sind viele Ampeln nicht für den Radverkehr optimiert, sodass häufig lange gewartet werden muss. Durch das viele Abbiegen verliert man ebenfalls regelmäßig Geschwindigkeit. Zusammengenommen macht das die Route sowohl körperlich als auch geistig anstrengend.</p>
+
+    <p>Negativbeispiel ist der <.v bounds="9.998774,53.577451,10.023648,53.589693" lon={10.010992} lat={53.582084} dir="forward" ref="13">Mühlenkamp</.v>, der zwar als „ausgebaut“ gilt, aber keine sicheren Radwege bietet. Sie verlaufen in der <.ref>Dooring-Zone</.ref> und werden häufig illegal zugestellt.</p>
+
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>
