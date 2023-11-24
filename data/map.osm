@@ -22120,6 +22120,29 @@
   <node id='-107697935' action='modify' lat='53.62535000596' lon='10.13456448644' />
   <node id='-107697936' action='modify' lat='53.62624159406' lon='10.13451352447' />
   <node id='-107697939' action='modify' lat='53.62600016629' lon='10.13387497798' />
+  <node id='-107697940' action='modify' lat='53.57453736638' lon='10.07465599895' />
+  <node id='-107697941' action='modify' lat='53.57463929475' lon='10.07505296588' />
+  <node id='-107697942' action='modify' lat='53.57426980323' lon='10.0753855598' />
+  <node id='-107697943' action='modify' lat='53.57230125086' lon='10.07634042621' />
+  <node id='-107697944' action='modify' lat='53.57226939651' lon='10.07610439181' />
+  <node id='-107697945' action='modify' lat='53.57423795036' lon='10.07524608493' />
+  <node id='-107697946' action='modify' lat='53.57449277264' lon='10.07497786403' />
+  <node id='-107697957' action='modify' lat='53.59549121912' lon='10.12138007998' />
+  <node id='-107697958' action='modify' lat='53.59536387145' lon='10.1218306911' />
+  <node id='-107697959' action='modify' lat='53.59684108073' lon='10.12308596492' />
+  <node id='-107697960' action='modify' lat='53.59809221112' lon='10.12447266698' />
+  <node id='-107697961' action='modify' lat='53.59844079714' lon='10.1250010702' />
+  <node id='-107697962' action='modify' lat='53.59873049142' lon='10.12555896968' />
+  <node id='-107697963' action='modify' lat='53.59888807153' lon='10.12527197331' />
+  <node id='-107697964' action='modify' lat='53.59864294665' lon='10.12481331557' />
+  <node id='-107697965' action='modify' lat='53.59874163346' lon='10.12418836087' />
+  <node id='-107697966' action='modify' lat='53.59858882798' lon='10.12412667006' />
+  <node id='-107697967' action='modify' lat='53.59850924157' lon='10.12459605664' />
+  <node id='-107697968' action='modify' lat='53.59844079714' lon='10.1244941327' />
+  <node id='-107697969' action='modify' lat='53.59822591274' lon='10.12419372529' />
+  <node id='-107697970' action='modify' lat='53.5973313452' lon='10.12317716807' />
+  <node id='-107697971' action='modify' lat='53.59689519687' lon='10.12267559499' />
+  <node id='-107697972' action='modify' lat='53.59599582568' lon='10.12191384763' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -63478,6 +63501,39 @@
     <nd ref='-107697932' />
     <nd ref='-107697891' />
     <tag k='name' v='2023-11-23-berner-heerweg-neusurenland-bis-berner-allee' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20258288' action='modify'>
+    <nd ref='-107697940' />
+    <nd ref='-107697941' />
+    <nd ref='-107697942' />
+    <nd ref='-107697943' />
+    <nd ref='-107697944' />
+    <nd ref='-107697945' />
+    <nd ref='-107697946' />
+    <nd ref='-107697940' />
+    <tag k='_type' v='article' />
+    <tag k='name' v='2023-11-25-schaedlerstrasse' />
+  </way>
+  <way id='-20258349' action='modify'>
+    <nd ref='-107697957' />
+    <nd ref='-107697958' />
+    <nd ref='-107697959' />
+    <nd ref='-107697960' />
+    <nd ref='-107697961' />
+    <nd ref='-107697962' />
+    <nd ref='-107697963' />
+    <nd ref='-107697964' />
+    <nd ref='-107697965' />
+    <nd ref='-107697966' />
+    <nd ref='-107697967' />
+    <nd ref='-107697968' />
+    <nd ref='-107697969' />
+    <nd ref='-107697970' />
+    <nd ref='-107697971' />
+    <nd ref='-107697972' />
+    <nd ref='-107697957' />
+    <tag k='name' v='2023-11-24-kupferdamm-1' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
