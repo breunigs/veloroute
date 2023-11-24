@@ -169,14 +169,18 @@ defmodule Mix.Tasks.Deploy do
   end
 
   defp report_status_200?(path) do
-    {:ok, response} = Tesla.get(get_docker_url(path))
+    case Tesla.get(get_docker_url(path)) do
+      {:ok, %{status: 200}} ->
+        IO.puts("✓ 200 from #{path}")
+        true
 
-    if response.status == 200 do
-      IO.puts("✓ 200 from #{path}")
-      true
-    else
-      IO.puts("! unexpected status #{response.status} from #{path}")
-      false
+      {:ok, response} ->
+        IO.puts("! unexpected status #{response.status} from #{path}")
+        false
+
+      other ->
+        IO.puts("! unexpected reponse for #{path}: #{inspect(other)}")
+        false
     end
   end
 
@@ -262,6 +266,8 @@ defmodule Mix.Tasks.Deploy do
     Util.banner("Release: Preload Videos")
     Mix.Tasks.Velo.Videos.Preload.run(nil)
   end
+
+  defp mirror_links(%{skip_mirror: true}), do: nil
 
   defp mirror_links(_skip) do
     Util.banner("Release: Mirroring External Links")
