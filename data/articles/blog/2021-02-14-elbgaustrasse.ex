@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
+      {"Detailänderungen zum Baumerhalt", "November 2023",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008876"},
       {"fertiger Entwurf – Bericht", "Juni 2023",
        "https://lsbg.hamburg.de/resource/blob/681996/50a492fb16cde9a13fc6ca18b091db64/veloroute-14-elbgaustrasse-abgestimmte-planung-bericht-data.pdf"},
       {"fertiger Entwurf – Pläne", "Juni 2023",
