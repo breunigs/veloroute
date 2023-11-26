@@ -63540,14 +63540,14 @@
     <tag k='name' v='2023-11-24-kupferdamm-1' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20258428' action='modify'>
+  <way id='-20258428'>
     <nd ref='-107697973' />
     <nd ref='-107697974' />
     <nd ref='-107697975' />
     <nd ref='-107697976' />
     <nd ref='-107697973' />
-    <tag k='_type' v='article' />
     <tag k='name' v='2023-11-26-schlossstrasse-matthias-claudius-gymnasium' />
+    <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />

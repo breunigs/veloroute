@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
   def start(), do: ~d[2023-06]
   def stop(), do: ~d[2023-06]
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["popup"]
 
@@ -30,16 +30,18 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 3,
         group: "article",
         direction: :backward,
-        from: "",
-        to: "",
+        from: "Rothenbaumchaussee",
+        to: "Grindelberg",
         parent_ref: __MODULE__,
         text: "Hallerstraße Richtung Westen",
+        historic: %{
+          "936d92c42595877d0925a822fdb40837" => ~d[2021-06]
+        },
         videos: [
-          {"2021-06-19-veloroute6/GX011884", "00:00:02.002", :end},
-          {"2021-06-19-veloroute6/GX011885", :start, "00:00:13.447"}
+          {"2023-11-25-random/GX016709", "00:01:37.745", :end}
         ]
       }
     ]

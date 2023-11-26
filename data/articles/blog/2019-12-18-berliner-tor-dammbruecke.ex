@@ -8,6 +8,8 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
   def start(), do: ~d[2023]
   def stop(), do: ~d[2028]
 
+  # def construction_site_id_hh(), do: [577_833]
+
   def type(), do: :construction
 
   def tags(), do: ["8"]
