@@ -190,6 +190,13 @@ defmodule Video.RendererTest do
     assert [
              "nice",
              "-n15",
+             "--",
+             "chrt",
+             "--idle",
+             "0",
+             "ionice",
+             "-c",
+             "3",
              "ffmpeg",
              "-hide_banner",
              "-loglevel",

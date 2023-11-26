@@ -38,7 +38,8 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
         parent_ref: __MODULE__,
         text: "Hallerstraße Richtung Westen",
         historic: %{
-          "936d92c42595877d0925a822fdb40837" => ~d[2021-06]
+          "936d92c42595877d0925a822fdb40837" => ~d[2021-06],
+          "92018d4738876db5208b3c284e89d453" => ~d[2023-11]
         },
         videos: [
           {"2023-11-25-random/GX016709", "00:01:37.745", :end}

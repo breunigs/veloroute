@@ -24,7 +24,9 @@ defmodule Data.Article.Blog.SchlossstrasseMatthiasClaudiusGymnasium do
         to: "Wandsbeker Marktstraße",
         parent_ref: __MODULE__,
         text: "Schloßstraße Richtung Innenstadt",
-        historic: %{},
+        historic: %{
+          "9813a9c7694f90e2845f59ce77accdd5" => ~d[2023-11]
+        },
         videos: [
           {"2023-11-25-random/GX016693", "00:00:06.440", :end},
           {"2023-11-25-random/GX016694", "00:00:01.902", :end},
