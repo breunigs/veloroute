@@ -38,7 +38,9 @@ defmodule Data.Article.Blog.SchlossstrasseMatthiasClaudiusGymnasium do
   def links(_assigns) do
     [
       {"Erläuterung und Entwurf", "November 2023",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1019856"}
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1019856"},
+      {"Gerichtsurteil zum Parkplatz", "Juli 2023",
+       "https://justiz.hamburg.de/resource/blob/684078/d5f4bda3fb37c8b1752772f5b41286e8/5-k-4862-19-urteil-vom-11-07-2023-data.pdf"}
     ]
   end
 

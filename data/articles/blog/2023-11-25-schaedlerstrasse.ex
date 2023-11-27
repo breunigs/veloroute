@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.Schaedlerstrasse do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Die Einbahnstraße ist auch für den Radverkehr nur nach Norden befahrbar. Dies ist wahlweise auf der <.ref>Fahrbahn</.ref> oder einem <.ref>Hochbordradweg</.ref> möglich.</p>
+    <p>Die KFZ-Einbahnstraße ist für den Radverkehr nach Norden wahlweise auf der <.ref>Fahrbahn</.ref> oder einem <.ref>Hochbordradweg</.ref> möglich. In Richtung Süden muss auf einem geteilten Rad- und Fußweg gefahren werden.</p>
 
     <h4>Planung</h4>
     <p>Die linksseitige KFZ-Abstellfläche soll zu einem gegenläufigen <.ref>Radfahrstreifen</.ref> werden. Dazu wird an der <.m bounds="10.073893,53.573859,10.075866,53.575149">Rüterstraße</.m> eine Abbiegemöglichkeit geschaffen.</p>

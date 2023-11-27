@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Holstenplatz do
   def type(), do: :construction
 
   def start(), do: ~d[2023-03-06]
-  def stop(), do: ~d[2024-08-23]
+  def stop(), do: ~d[2024-08-31]
   def construction_site_id_hh(), do: [309_763, 410_165]
 
   def tags(), do: ["13"]

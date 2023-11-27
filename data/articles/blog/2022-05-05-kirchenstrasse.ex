@@ -9,9 +9,9 @@ defmodule Data.Article.Blog.Kirchenstrasse do
 
   def type(), do: :construction
 
-  def start(), do: ~d[2023-11-13]
-  def stop(), do: ~d[2023-12-11]
-  def construction_site_id_hh(), do: [532_784]
+  def start(), do: ~d[2023-11-20]
+  def stop(), do: ~d[2023-12-15]
+  # def construction_site_id_hh(), do: [532_784]
 
   def tags(), do: ["12"]
 
