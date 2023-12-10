@@ -1,5 +1,5 @@
 # specify which branch or commit sha to build
-ARG MLN_COMMIT=09f17c0fc42453edd274392d528266a6b6130abf
+ARG MLN_COMMIT=de1bcd1665800a3ff663a76e2f98c569407c0937
 ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
@@ -64,8 +64,10 @@ FROM runner-base as runner
 WORKDIR /build
 COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 
-# copy finicky libraries that are not easily installed in other hosts.
-# run executable like so:
+# Copy finicky libraries that are not easily installed in other hosts. We need
+# to do this because we base the devel or release image might drift from when we
+# last built this one.
+# Run the executable like so:
 # LD_PRELOAD=$(ls *.so* | sed 's,lib,./lib,' | sed -z 's,\n, ,g')
 # echo '9.9711715 53.585086000000004 10.0 1 500 500 route-highlight route_id 11' | \
 #   xvfb-run -a \
@@ -74,11 +76,7 @@ COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 #     --assets priv/static/ \
 #     --max-zoom 14
 RUN cp \
-  /usr/lib/x86_64-linux-gnu/libwebp.so.6 \
-  /usr/lib/x86_64-linux-gnu/libwebp.so.6.0.2 \
-  /usr/lib/x86_64-linux-gnu/libjpeg.so.62 \
   /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
-  /usr/lib/x86_64-linux-gnu/libicuuc.so.67 \
-  /usr/lib/x86_64-linux-gnu/libicudata.so.67 \
-  /usr/lib/x86_64-linux-gnu/libicui18n.so.67 \
   .
+
+RUN /build/mbgl-render --help

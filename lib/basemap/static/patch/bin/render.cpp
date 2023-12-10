@@ -194,7 +194,8 @@ int main(int argc, char *argv[]) {
     try {
         argumentParser.ParseCLI(argc, argv);
     } catch (const args::Help &) {
-        die(argumentParser.Help());
+        printError(argumentParser.Help());
+        exit(0);
     } catch (const args::ParseError &e) {
         die(e.what());
     } catch (const args::ValidationError &e) {
