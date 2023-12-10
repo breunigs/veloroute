@@ -160,10 +160,16 @@ defmodule Util.Cmd2 do
     end
   end
 
+  @spec to_string_or_inspect(any()) :: binary()
+  defp to_string_or_inspect(term) when term == [], do: ""
+
+  defp to_string_or_inspect([term | rest]) do
+    to_string_or_inspect(term) <> to_string_or_inspect(rest)
+  end
+
   defp to_string_or_inspect(term) do
-    if String.Chars.impl_for(term),
-      do: to_string(term),
-      else: inspect(term)
+    s = IO.chardata_to_string(term)
+    if String.valid?(s), do: s, else: hd(String.chunk(term, :valid))
   end
 
   defp stop_on_signal(signal) do
