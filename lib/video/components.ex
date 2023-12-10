@@ -27,7 +27,14 @@ defmodule Video.Components do
 
   @variant_timeout_ms 100
   @spec variants_timeout(Video.Track.hash()) :: list()
-  def variants_timeout(hash) do
+
+  if Application.compile_env(:veloroute, :env) == :test do
+    def variants_timeout(_hash), do: []
+  else
+    def variants_timeout(hash), do: variants_timeout_real(hash)
+  end
+
+  def variants_timeout_real(hash) do
     Task.async(fn -> variants(hash) end)
     |> Task.yield(@variant_timeout_ms)
     |> case do
