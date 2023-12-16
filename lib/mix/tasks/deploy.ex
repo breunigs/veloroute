@@ -245,7 +245,7 @@ defmodule Mix.Tasks.Deploy do
     # sleep 15s
     Process.sleep(15_000)
 
-    {_, 0} =
+    {_, exit_status} =
       System.cmd(
         "ssh",
         [
@@ -257,6 +257,8 @@ defmodule Mix.Tasks.Deploy do
         ],
         into: IO.stream(:stdio, :line)
       )
+
+    0 = exit_status
   end
 
   defp preload_videos(%{skip_deploy: true}), do: nil
