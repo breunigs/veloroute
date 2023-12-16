@@ -36,11 +36,11 @@ defmodule Data.GeoJSON do
 
       %Map.Way{
         nodes: nodes,
-        tags: %{article_title: title, name: name, article_icon: icon}
+        tags: tags = %{article_title: title, name: name, article_icon: icon}
       } ->
         point = Geo.LongestLineLabel.calculate(nodes)
 
-        {main, extra} = title_splitter(title)
+        {main, extra} = title_splitter(title, tags[:text])
 
         %{
           type: "Feature",
@@ -322,7 +322,8 @@ defmodule Data.GeoJSON do
     if type, do: "#{type}: #{way.tags[:article_title]}", else: way.tags[:article_title]
   end
 
-  defp title_splitter(title) do
+  @spec title_splitter(binary(), binary() | nil) :: {binary(), binary()}
+  defp title_splitter(title, custom_subtext) do
     with [main, extra] <- String.split(title, " (", parts: 2, trim: true) do
       extra =
         extra
@@ -332,9 +333,11 @@ defmodule Data.GeoJSON do
         |> String.replace(~r/\s+/, " ")
         |> String.trim()
 
+      extra = if custom_subtext != nil && custom_subtext != "", do: custom_subtext, else: extra
+
       {main, extra}
     else
-      _other -> {title, ""}
+      _other -> {title, custom_subtext || ""}
     end
   end
 end
