@@ -61,6 +61,15 @@ defmodule Article.List do
   @spec find_with_tags(binary | nil) :: Article.t() | nil
   def find_with_tags(key), do: find_with_tags(all(), key)
 
+  @spec find_similar(t, binary) :: [Article.t()]
+  def find_similar(list, key) do
+    list
+    |> Enum.map(fn art -> {art.name(), String.jaro_distance(art.name(), key)} end)
+    |> Enum.reject(fn {_name, dist} -> dist < 0.7 end)
+    |> Enum.sort_by(&elem(&1, 1), :asc)
+    |> Enum.map(&elem(&1, 0))
+  end
+
   @spec filter(t, binary, bool) :: t
   def filter(list, key, search_tags \\ false) when is_binary(key) do
     key = keyify(key)

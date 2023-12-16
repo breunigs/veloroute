@@ -33,9 +33,14 @@ defmodule Map.Enrich do
   end
 
   defp find_article_for(articles, w = %Map.Way{tags: %{name: name}}) do
-    Article.List.find_exact(articles, name) ||
+    art = Article.List.find_exact(articles, name)
+
+    if art == nil do
       {:error,
-       "Tried to find article for way.id=#{w.id} (tags: #{inspect(w.tags)}), but it does not seem to exist. Known articles: #{inspect(articles)}"}
+       "Tried to find article for way.id=#{w.id} (tags: #{inspect(w.tags)}), but it does not seem to exist. Similarly named articles: #{inspect(Article.List.find_similar(articles, name))}"}
+    else
+      art
+    end
   end
 
   defp find_article_for(_articles, w) do
