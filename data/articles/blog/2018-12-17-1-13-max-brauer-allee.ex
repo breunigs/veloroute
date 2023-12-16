@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Auftragsvergabe 2", "Dezember 2023",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/e40777a6-a3cb-4d92-a3b0-16ebf918f17f"},
       {"Baustelleninfo", "April 2023",
        "https://lsbg.hamburg.de/resource/blob/674208/c6d5fccd8b070dc6fa9ce6bb5b8afbc5/max-brauer-allee-eggerstedtstrasse-bis-goetheallee-anliegerinformation-mai-2023-data.pdf"},
       {"Pressemitteilung", "Januar 2023",
