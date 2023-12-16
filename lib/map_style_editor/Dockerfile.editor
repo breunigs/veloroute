@@ -16,7 +16,6 @@ RUN cd /tmp \
 WORKDIR /maputnik
 RUN npm install -ci --no-audit
 RUN sed -i 's|--progress=profile||' package.json \
-  && sed -i 's|NODE_OPTIONS=--openssl-legacy-provider||' package.json \
   && npm run build
 
 FROM debian:${DEBIAN_VERSION}
