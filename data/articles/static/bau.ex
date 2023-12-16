@@ -68,6 +68,7 @@ defmodule Data.Article.Static.Bau do
   defp articles(type, sorter, field) when is_atom(type) do
     Article.List.category("Blog")
     |> Enum.filter(fn art -> art.type() == type end)
+    |> Enum.filter(&Article.released?/1)
     |> Article.List.sort(sorter, field)
   end
 

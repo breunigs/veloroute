@@ -9,6 +9,7 @@ defmodule Components.RelatedArticlesHelper do
     grouped =
       art
       |> Article.List.related()
+      |> Enum.filter(&Article.released?/1)
       |> Enum.group_by(fn rel -> rel.created_at() == nil end)
 
     assigns =

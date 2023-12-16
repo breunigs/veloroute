@@ -48,6 +48,17 @@ defmodule Article do
   @known_categories ~w/Blog Static/
   def known_categories, do: @known_categories
 
+  @doc """
+  Articles are considered released, when their creation date is not in the
+  future. Static articles are always considered released. The intended use is to
+  hide unfinished articles in production without having to comment them out.
+  """
+  @spec released?(t()) :: boolean()
+  def released?(art) do
+    art.created_at() == nil ||
+      Date.compare(art.created_at(), Date.utc_today()) != :gt
+  end
+
   def has_category?(art, type) when type in @known_categories do
     art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
   end

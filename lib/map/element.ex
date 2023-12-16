@@ -55,4 +55,10 @@ defmodule Map.Element do
     tags = Map.take(tags, tags_to_keep)
     %{elem | tags: tags}
   end
+
+  @spec remove_tags(single(), list()) :: single()
+  def remove_tags(%{tags: tags} = elem, tags_to_delete) do
+    tags = Map.drop(tags, tags_to_delete)
+    %{elem | tags: tags}
+  end
 end

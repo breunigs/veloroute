@@ -17,6 +17,7 @@ defmodule Article.List do
   def recent(), do: recent(_min_arts = 4, _max_arts = 20, _max_days = 14)
 
   def recent(arts \\ category("Blog"), min, max, days) do
+    arts = Enum.filter(arts, &Article.released?/1)
     arts = Enum.sort_by(arts, & &1.updated_at(), {:desc, Date})
     always = Stream.take(arts, min)
 
