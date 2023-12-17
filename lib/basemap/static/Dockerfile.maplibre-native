@@ -19,15 +19,17 @@ RUN apt-get -y update \
   && rm -rf /var/lib/apt/lists/*
 
 FROM runner-base as cloner
+ARG MLN_COMMIT
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
   ca-certificates \
   git \
   && rm -rf /var/lib/apt/lists/*
-ENV MLN_COMMIT=$MLN_COMMIT
-RUN git clone --recurse-submodules -j8 https://github.com/maplibre/maplibre-native.git /build \
+RUN [ ! -z "${MLN_COMMIT}" ] \
+  && git clone https://github.com/maplibre/maplibre-native.git /build \
   && cd /build \
-  && git reset --hard ${MLN_COMMIT}
+  && git reset --hard ${MLN_COMMIT} \
+  && git submodule update --jobs 8 --init --recursive
 
 FROM runner-base as builder
 RUN apt-get -y update \

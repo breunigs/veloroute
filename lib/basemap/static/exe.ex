@@ -13,7 +13,7 @@ defmodule Basemap.Static.Exe do
 
   def stale?() do
     patches = __ENV__.file |> Path.dirname() |> Path.join("patch")
-    Util.IO.stale?(exe(), [@dockerfile, __ENV__.file, patches])
+    Util.IO.stale?(exe(), [@dockerfile, __ENV__.file, patches, ToolVersions.path()])
   end
 
   @spec build() :: :ok | {:error, binary()}

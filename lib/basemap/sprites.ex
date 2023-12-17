@@ -11,7 +11,7 @@ defmodule Basemap.Sprites do
   def stale?() do
     Benchmark.measure("Basemap.Sprites.stale?", fn ->
       stale_auto_generated?() || stale_icons?() ||
-        Util.IO.stale?(assets_path("sprite.json"), [target(:cache)])
+        Util.IO.stale?(assets_path("sprite.json"), [target(:cache), ToolVersions.path()])
     end)
   end
 

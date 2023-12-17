@@ -2,6 +2,9 @@ defmodule ToolVersions do
   @tool_path Path.join([__DIR__, "..", ".tool-versions"])
   @extra_versions %{debian: "bullseye-20230612-slim"}
 
+  @self_path __ENV__.file
+  def path, do: @self_path
+
   @doc ~S"""
   Parses an asdf .tool-versions formatted string, and returns a map with atom keys
 
@@ -26,7 +29,7 @@ defmodule ToolVersions do
   use Memoize
 
   defmemop get_cached do
-    @path
+    @tool_path
     |> File.read!()
     |> parse_tool_versions()
     |> Map.merge(@extra_versions)
