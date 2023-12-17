@@ -21,7 +21,10 @@ if File.exists?(creds_path),
 config :veloroute, VelorouteWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: PhoenixCredentials.secret_key_base(),
-  render_errors: [view: VelorouteWeb.ErrorView, accepts: ~w(html json)],
+  render_errors: [
+    formats: [html: VelorouteWeb.ErrorHTML],
+    layout: false
+  ],
   live_view: [signing_salt: PhoenixCredentials.live_view_signing_salt()]
 
 config :veloroute,
