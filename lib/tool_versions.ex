@@ -1,6 +1,6 @@
 defmodule ToolVersions do
-  @path Path.join([__DIR__, "..", ".tool-versions"])
-  @extra_versions %{debian: "bookworm-20231009-slim"}
+  @tool_path Path.join([__DIR__, "..", ".tool-versions"])
+  @extra_versions %{debian: "bullseye-20230612-slim"}
 
   @doc ~S"""
   Parses an asdf .tool-versions formatted string, and returns a map with atom keys

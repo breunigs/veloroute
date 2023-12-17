@@ -1,5 +1,5 @@
 # specify which branch or commit sha to build
-ARG MLN_COMMIT=de1bcd1665800a3ff663a76e2f98c569407c0937
+ARG MLN_COMMIT=3b6d4c5a9715b712c67fc5afc1a9f2ff2569cb20
 ARG DEBIAN_VERSION
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
@@ -76,7 +76,13 @@ COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 #     --assets priv/static/ \
 #     --max-zoom 14
 RUN cp \
+  /usr/lib/x86_64-linux-gnu/libicudata.so.67 \
+  /usr/lib/x86_64-linux-gnu/libicui18n.so.67 \
+  /usr/lib/x86_64-linux-gnu/libicuuc.so.67 \
+  /usr/lib/x86_64-linux-gnu/libjpeg.so.62 \
   /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
+  /usr/lib/x86_64-linux-gnu/libwebp.so.6 \
+  /usr/lib/x86_64-linux-gnu/libwebp.so.6.0.2 \
   .
 
 RUN /build/mbgl-render --help
