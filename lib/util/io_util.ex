@@ -95,7 +95,7 @@ defmodule Util.IO do
     else
       [path | Path.wildcard("#{path}/**/*")]
       |> Enum.map(fn path ->
-        with {:ok, %{mtime: date}} <- File.stat(path, time: :posix) do
+        with {:ok, %{mtime: date}} <- File.lstat(path, time: :posix) do
           date
         else
           _ -> :unknown

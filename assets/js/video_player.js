@@ -91,6 +91,7 @@ function markPlay() {
   })
   autoplay = false
   current.setAttribute("phx-update", "ignore")
+  videoMetadataEl.setAttribute("phx-update", "ignore")
 }
 
 function markPause() {
@@ -98,6 +99,7 @@ function markPause() {
     pos: videoTimeInMs
   })
   current.setAttribute("phx-update", "")
+  videoMetadataEl.setAttribute("phx-update", "")
 }
 
 function sendCurrentVideoTime(eventName) {
@@ -373,7 +375,7 @@ function setVideo() {
   updatePlaypause();
 }
 
-const videoRecordingDateEl = document.getElementById('videoRecordingDate');
+const videoMetadataEl = document.getElementById('videoRecordingDate');
 
 function updateMetadata() {
   if (!videoMeta.recording_dates) return;
@@ -383,7 +385,17 @@ function updateMetadata() {
     if (videoMeta.recording_dates[i].timestamp > videoTimeInMs) break;
     text = videoMeta.recording_dates[i].text;
   }
-  if (videoRecordingDateEl.textContent !== text) videoRecordingDateEl.textContent = text;
+
+  if (videoMeta.street_names) {
+    let name = "";
+    for (let i = 0; i < videoMeta.street_names.length; i += 1) {
+      if (videoMeta.street_names[i].timestamp > videoTimeInMs) break;
+      name = videoMeta.street_names[i].text;
+    }
+    if (name != "") text = `${name}, ${text}`
+  }
+
+  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
 }
 
 let progress

@@ -21,7 +21,7 @@ defmodule Video.Track do
         ]
   # 32*8=256
   @type hash :: <<_::256>>
-  @type recording_dates :: [%{timestamp: non_neg_integer(), text: binary()}]
+  @type timed_info :: [%{timestamp: non_neg_integer(), text: binary()}]
   @typep historic :: %{hash() => Data.RoughDate.t()}
 
   @type fade :: float() | :none | nil
@@ -102,7 +102,14 @@ defmodule Video.Track do
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
-  @spec render(t()) :: {hash(), [Video.TimedPoint.t()], recording_dates()} | {:error, binary()}
+  @spec render(t()) ::
+          {
+            hash(),
+            [Video.TimedPoint.t()],
+            recording_dates :: timed_info(),
+            street_names :: timed_info()
+          }
+          | {:error, binary()}
 
   # Experimentally determined time to add between two consecutive videos to
   # ensure that there's no long term drift. Not sure why it is needed, since
@@ -143,7 +150,10 @@ defmodule Video.Track do
         {dur, acc ++ coords, recording_dates}
       end)
 
-    {calc_hash(tsv_list, fade), coords, reverse_compact_recording_dates(recording_dates)}
+    hash = calc_hash(tsv_list, fade)
+
+    {hash, coords, reverse_compact_recording_dates(recording_dates),
+     compact_street_names(coords, hash)}
   end
 
   def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4] do
@@ -181,7 +191,10 @@ defmodule Video.Track do
 
     with {_dur, rev_coords, recording_dates, hsh} <- joined do
       hsh = hsh |> :crypto.hash_final() |> Base.encode16(case: :lower)
-      {hsh, Enum.reverse(rev_coords), reverse_compact_recording_dates(recording_dates)}
+      coords = Enum.reverse(rev_coords)
+
+      {hsh, coords, reverse_compact_recording_dates(recording_dates),
+       compact_street_names(coords, hsh)}
     end
   end
 
@@ -270,7 +283,7 @@ defmodule Video.Track do
   defp tsv_date(tsv),
     do: tsv.date |> Data.RoughDate.parse() |> Data.RoughDate.without_day()
 
-  @spec reverse_compact_recording_dates(recording_dates()) :: recording_dates()
+  @spec reverse_compact_recording_dates(timed_info()) :: timed_info()
   defp reverse_compact_recording_dates(dates) do
     Enum.reduce(dates, [], fn
       %{timestamp: dur, text: str}, [%{timestamp: _dur2, text: str} | rest] ->
@@ -279,5 +292,43 @@ defmodule Video.Track do
       entry, acc ->
         [entry | acc]
     end)
+  end
+
+  @min_street_duration_ms 1000
+  @spec compact_street_names([Video.TimedPoint.t()], hash()) :: timed_info()
+  defp compact_street_names(coords, hash) do
+    map_matcher = Application.get_env(:veloroute, :map_matcher)
+
+    with {:ok, matched} <- map_matcher.match(coords) do
+      matched
+      |> Enum.reduce(nil, fn
+        coord, nil ->
+          [%{timestamp: coord.time_offset_ms, text: coord.match_name}]
+
+        %{match_name: name}, [%{text: name} | _rest] = list ->
+          list
+
+        coord, [prev | rest] = list ->
+          # this might create repeated names, which we'll clear out later
+          list =
+            if coord.time_offset_ms - prev.timestamp < @min_street_duration_ms,
+              do: rest,
+              else: list
+
+          [%{timestamp: coord.time_offset_ms, text: coord.match_name} | list]
+      end)
+      |> Enum.reduce([], fn
+        # clear repeated names
+        cur, [prev | rest] = list ->
+          if cur.text == prev.text, do: [cur | rest], else: [cur | list]
+
+        cur, list ->
+          [cur | list]
+      end)
+    else
+      {:error, reason} ->
+        IO.puts(:stderr, "failed to generate street names for #{hash}: #{reason}")
+        []
+    end
   end
 end

@@ -109,7 +109,7 @@ $videoInfoOverlayPadding: 0.5rem;
   padding: $videoInfoOverlayPadding;
   // padding-top: 0.7rem;
   color: #fff;
-  max-width: 90%;
+  max-width: 48%;
   overflow-x: hidden;
   white-space: nowrap;
   box-sizing: border-box;
@@ -135,6 +135,9 @@ $videoInfoOverlayPadding: 0.5rem;
   right: 0;
   border-bottom-left-radius: $videoInfoOverlayPadding;
   display: none;
+
+  // for text-ellipsis on the left; quite a hack
+  direction: rtl;
 }
 
 $videoBarHeight: 2.6rem;

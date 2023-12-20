@@ -162,6 +162,8 @@ defmodule Util.Cmd2 do
 
   @spec to_string_or_inspect(any()) :: binary()
   defp to_string_or_inspect(term) when term == [], do: ""
+  defp to_string_or_inspect(nil), do: ""
+  defp to_string_or_inspect(atom) when is_atom(atom), do: ":#{atom}"
 
   defp to_string_or_inspect([term | rest]) do
     to_string_or_inspect(term) <> to_string_or_inspect(rest)

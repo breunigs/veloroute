@@ -277,6 +277,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
     start_from = Video.Generator.start_from(video, state.start)
     recording_date = Video.Generator.recording_date_for(video, start_from.time_offset_ms)
+    street_name = Video.Generator.street_name_for(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
     Video.DiskPreloader.warm(video.hash(), start_from)
@@ -291,6 +292,8 @@ defmodule VelorouteWeb.Live.VideoState do
       video_route: %{id: route_id(state)},
       video_recording_dates: video.recording_dates(),
       video_recording_date: recording_date,
+      video_street_names: video.street_names(),
+      video_street_name: street_name,
       video_reversible: is_reversible(state),
       video_poster: video_poster(video, start_from)
     ]

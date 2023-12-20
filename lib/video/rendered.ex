@@ -7,7 +7,8 @@ defmodule Video.Rendered do
   @callback sources() :: Video.Track.plain()
   @callback coords() :: [Video.TimedPoint.t()]
   @callback polyline() :: polyline()
-  @callback recording_dates() :: Video.Track.recording_dates()
+  @callback recording_dates() :: Video.Track.timed_info()
+  @callback street_names() :: Video.Track.timed_info()
   @callback rendered?() :: boolean()
   @callback renderer() :: pos_integer()
   @callback bbox() :: Geo.BoundingBox.t()

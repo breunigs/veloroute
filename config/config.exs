@@ -28,6 +28,7 @@ config :veloroute, VelorouteWeb.Endpoint,
   live_view: [signing_salt: PhoenixCredentials.live_view_signing_salt()]
 
 config :veloroute,
+  map_matcher: Basemap.MapMatcher.OSRM,
   env: Mix.env()
 
 # Configures Elixir's Logger

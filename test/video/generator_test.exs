@@ -25,6 +25,9 @@ defmodule Video.GeneratorTest do
       do: [%{timestamp: 0, text: "at start"}, %{timestamp: 10, text: "after ten ms"}]
 
     @impl Video.Rendered
+    def street_names(), do: recording_dates()
+
+    @impl Video.Rendered
     def coords(),
       do: [
         %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},

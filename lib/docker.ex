@@ -6,6 +6,8 @@ defmodule Docker do
   @container_name_detect "veloroute2detect"
   @container_name_release "veloroute2release"
 
+  @type dockerfile :: binary() | {:image, binary()}
+
   def line_stream, do: IO.stream(:stdio, :line)
 
   def build_devel_image() do
@@ -75,7 +77,7 @@ defmodule Docker do
     )
   end
 
-  @spec build(binary()) :: Util.Cmd2.exec_result()
+  @spec build(dockerfile()) :: Util.Cmd2.exec_result()
   def build(dockerfile) do
     "." <> name = Path.extname(dockerfile)
     img_name = "veloroute.hamburg/docker:#{name}"
@@ -109,10 +111,18 @@ defmodule Docker do
     )
   end
 
-  @spec run_cmd(binary(), list(binary()), keyword()) :: {[binary()], binary()}
+  @spec run_cmd(dockerfile(), list(binary()), keyword()) :: {[binary()], binary()}
   def run_cmd(dockerfile, extra_args \\ [], opts \\ [env: []]) do
-    "." <> name = Path.extname(dockerfile)
-    img_name = "veloroute.hamburg/docker:#{name}"
+    {img_name, name} =
+      case dockerfile do
+        {:image, img_name} ->
+          {img_name, String.replace(img_name, ~r/^.*\/|:.*$/, "")}
+
+        d when is_binary(d) ->
+          "." <> name = Path.extname(d)
+          {"veloroute.hamburg/docker:#{name}", name}
+      end
+
     container_name = clean_name("veloroute2#{name}", opts[:name])
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
 
@@ -140,47 +150,57 @@ defmodule Docker do
     args = args ++ extra_mounts
     args = if File.exists?("/dev/dri"), do: args ++ ["--device", "/dev/dri:/dev/dri"], else: args
     args = if docker_supports_gpu(), do: args ++ ["--gpus", "all"], else: args
+    args = args ++ Keyword.get(opts, :docker_args, [])
     args = args ++ extra_video_mount("/workdir") ++ [img_name] ++ extra_args
 
     {args, container_name}
   end
 
-  @spec run(binary(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
-  def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+  @spec run(dockerfile(), list(binary()), keyword()) :: {binary(), Util.Cmd2.exec_result()}
+  def run_with_name(dockerfile, extra_args \\ [], opts \\ [env: []]) do
     {args, container_name} = run_cmd(dockerfile, extra_args, opts)
-    opts = Keyword.delete(opts, :mounts)
+    opts = opts |> Keyword.delete(:mounts) |> Keyword.delete(:docker_args)
 
-    try do
-      Util.Cmd2.exec(
-        args,
-        opts ++ [raise: true, kill: "docker stop --time 2 #{container_name}"]
-      )
-    rescue
-      exp ->
-        case exp do
-          %RuntimeError{message: msg} ->
-            %{result: {:error, msg}}
+    res =
+      try do
+        Util.Cmd2.exec(
+          args,
+          opts ++ [raise: true, kill: "docker stop --time 2 #{container_name}"]
+        )
+      rescue
+        exp ->
+          case exp do
+            %RuntimeError{message: msg} ->
+              %{result: {:error, msg}}
 
-          exp ->
-            %{
-              result:
-                {:error,
-                 """
-                 failed executing:
-                   CLI: #{Enum.join(args, " ")}
-                   Error: #{inspect(exp)}
-                 """}
-            }
-        end
-    after
-      # Docker creates an empty dir when mounting the `extra_video_mount`. Since
-      # the outer folder is also mounted, the empty folder shows up on the host.
-      # If it's deleted on the host, it disappears from the container as well,
-      # breaking the container. Hence we can only delete this folder safely if
-      # there are no other containers running that use it. This would need a
-      # `flock` mechanism or similar, which is effort, so we just ignore this.
-      # File.rmdir(Path.join(cache_dir, "videos"))
-    end
+            exp ->
+              %{
+                result:
+                  {:error,
+                   """
+                   failed executing:
+                     CLI: #{Util.cli_printer(args)}
+                     Error: #{inspect(exp)}
+                   """}
+              }
+          end
+      after
+        # Docker creates an empty dir when mounting the `extra_video_mount`. Since
+        # the outer folder is also mounted, the empty folder shows up on the host.
+        # If it's deleted on the host, it disappears from the container as well,
+        # breaking the container. Hence we can only delete this folder safely if
+        # there are no other containers running that use it. This would need a
+        # `flock` mechanism or similar, which is effort, so we just ignore this.
+        # File.rmdir(Path.join(cache_dir, "videos"))
+      end
+
+    {container_name, res}
+  end
+
+  @spec run(dockerfile(), list(binary()), keyword()) :: Util.Cmd2.exec_result()
+  def run(dockerfile, extra_args \\ [], opts \\ [env: []]) do
+    {_, res} = run_with_name(dockerfile, extra_args, opts)
+    res
   end
 
   defp clean_name(str, extra) do

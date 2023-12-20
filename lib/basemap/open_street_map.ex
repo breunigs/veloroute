@@ -45,6 +45,9 @@ defmodule Basemap.OpenStreetMap do
   defp osm_source_name, do: "osm_source_#{Util.md5(Settings.osm_data_source())}.osm.pbf"
   defp bbox_extract_name, do: "osm_data_source.#{Enum.join(Settings.bounds(), ",")}.osm.pbf"
 
+  def target_extract(:cache), do: path(:cache, bbox_extract_name())
+  def target_extract(:container), do: path(:container, bbox_extract_name())
+
   @max_zoom Path.join(__DIR__, "config.json")
             |> File.read!()
             |> Jason.decode!()

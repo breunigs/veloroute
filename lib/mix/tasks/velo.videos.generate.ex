@@ -45,6 +45,9 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
 
   @spec generate((Video.Track.t() -> boolean())) :: [Video.Generator.t() | nil]
   defp generate(filter) do
+    Basemap.MapMatcher.OSRM.ensure()
+    Basemap.MapMatcher.OSRM.start_link()
+
     Article.List.all()
     |> Stream.flat_map(& &1.tracks())
     |> Stream.filter(filter)
