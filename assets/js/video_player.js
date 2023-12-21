@@ -46,7 +46,10 @@ window.addEventListener("global:mounted", initVideoElement)
 // 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
 
-const canPlayHLS = video.canPlayType('application/vnd.apple.mpegurl')
+// allow HLS direct play only on iOS/OSX devices, because I found Android phones
+// that claim they can parse m3u8 but then fail without fallback.
+const canPlayHLS = /iPad|iPhone|iPod|like Mac OS X|Macintosh/.test(navigator.userAgent)
+  && video.canPlayType('application/vnd.apple.mpegurl')
 
 let videoTimeInMs = 0;
 let rvfc = null
