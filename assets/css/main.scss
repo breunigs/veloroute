@@ -249,6 +249,57 @@ $videoBarProgressHeight: 0.4rem;
     cursor: pointer;
   }
 
+  #progressWrapper {
+    contain: layout;
+
+    #progressPreview {
+      // comment in to make it visible without hover
+      // visibility: visible !important; // toggle
+      // opacity: 1 !important; // toggle
+      opacity: 0;
+      visibility: collapse;
+
+      position: absolute;
+      // Position flush to the top of the video controls (i.e. full overlap)
+      top: -2*$videoBarBtnMargin;
+      // add device dependent gap. On touch devices leave more space so the
+      // finger doesn't obscure it
+      margin-top: -1.5rem;
+      @media (pointer: fine) {
+        margin-top: -0.2rem;
+      }
+      // i.e. center horizontally and move above video controls, depending on its height
+      transform: translateX(-50%) translateY(-100%);
+      width: 12rem;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      color: #fff;
+      text-align: center;
+      text-shadow: #000 0px 0px 1px, #000 0px 0px 1px,#000 0px 0px 1px,
+                   #000 0px 0px 1px, #000 0px 0px 1px,#000 0px 0px 1px;
+      -webkit-font-smoothing: antialiased;
+      transition: opacity 0.2s ease-in-out, visibility 0.2s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    // for devices with mouse
+    @media(hover: hover) {
+      &:hover #progressPreview {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    // for mobile, via JS
+    #progressPreview.enabled {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
   progress {
     width: 100%;
     height: $videoBarProgressHeight;

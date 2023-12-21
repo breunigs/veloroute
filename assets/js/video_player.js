@@ -383,23 +383,30 @@ const videoMetadataEl = document.getElementById('videoRecordingDate');
 
 function updateMetadata() {
   if (!videoMeta.recording_dates) return;
+  const { recDate, street } = metadataForTime(videoTimeInMs)
+  const text = street === "" ? recDate : recDate === "" ? street : `${street}, ${recDate}`
+  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
+}
 
-  let text = "";
-  for (let i = 0; i < videoMeta.recording_dates.length; i += 1) {
-    if (videoMeta.recording_dates[i].timestamp > videoTimeInMs) break;
-    text = videoMeta.recording_dates[i].text;
+function metadataForTime(timeInMs) {
+  let recDate = ""
+  let street = ""
+
+  if (videoMeta.recording_dates) {
+    for (let i = 0; i < videoMeta.recording_dates.length; i += 1) {
+      if (videoMeta.recording_dates[i].timestamp > timeInMs) break;
+      recDate = videoMeta.recording_dates[i].text;
+    }
   }
 
   if (videoMeta.street_names) {
-    let name = "";
     for (let i = 0; i < videoMeta.street_names.length; i += 1) {
-      if (videoMeta.street_names[i].timestamp > videoTimeInMs) break;
-      name = videoMeta.street_names[i].text;
+      if (videoMeta.street_names[i].timestamp > timeInMs) break;
+      street = videoMeta.street_names[i].text;
     }
-    if (name != "") text = `${name}, ${text}`
   }
 
-  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
+  return { recDate: recDate, street: street }
 }
 
 let progress
@@ -411,6 +418,7 @@ let poster
 let videoOptions
 let videoQuality
 let videoQualityOptions
+let progressPreviewEl
 function initControls() {
   // i.e. no re-init needed
   if (progress === document.getElementById("progress")) return
@@ -426,12 +434,16 @@ function initControls() {
   videoOptions = document.getElementById("videoOptions")
   videoQuality = document.getElementById("videoQuality");
   videoQualityOptions = document.getElementById("videoQualityOptions");
+  progressPreviewEl = document.getElementById("progressPreview")
+
 
   document.getElementById('skipBackward5').addEventListener('click', () => seekToTime(videoTimeInMs - 5000))
   document.getElementById('skipForward5').addEventListener('click', () => seekToTime(videoTimeInMs + 5000))
   document.getElementById("reverse").addEventListener('click', reverseVideo);
   document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
   progressWrapper.addEventListener('click', seekFromProgress);
+  progressWrapper.addEventListener('mousemove', previewProgress, passive);
+  progressWrapper.addEventListener('touchmove', previewProgress, passive);
   progressWrapper.addEventListener('touchstart', scrubStart, passive);
   progressWrapper.addEventListener('touchmove', scrubMove, passive);
   progressWrapper.addEventListener('touchend', scrubEnd, passive);
@@ -500,13 +512,42 @@ function reverseVideo() {
   })
 }
 
-function seekFromProgress(e) {
-  const rect = this.getBoundingClientRect();
-  const pos = (e.pageX - rect.left) / this.offsetWidth;
-  const max = videoMeta.length_ms || Math.round(video.duration * 1000);
+function timeFromProgressPosition(e) {
+  const max = videoMeta.length_ms || Math.round(video.duration * 1000)
+  const rect = e.target.getBoundingClientRect()
+  const pageX = e.pageX || e.changedTouches[0].pageX
+  let pos = (pageX - rect.left) / e.target.offsetWidth
+  // make snapping to start easier
+  if (pos < 0.01) pos = 0
+  const time = Math.max(0, Math.min(max, pos * max))
+  return [scrubTimeInMs || time, pos]
+}
 
-  seekToTime(pos * max);
+function seekFromProgress(e) {
+  const [time, _pos] = timeFromProgressPosition(e)
+  seekToTime(time);
 };
+
+let progressPreviewTime = 0
+let progressPreviewPos = 0.0
+let progressPreviewRAF = null
+function previewProgress(e) {
+  const [time, pos] = timeFromProgressPosition(e)
+  progressPreviewPos = pos
+  progressPreviewTime = time
+  if (progressPreviewRAF !== null) return
+  progressPreviewRAF = requestAnimationFrame(() => {
+    const time = progressPreviewTime;
+    const { recDate, street } = metadataForTime(time)
+    let text = '';
+    if (street !== "") text += `${street}<br>`
+    if (recDate !== "") text += `${recDate}<br>`
+    if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
+    progressPreviewEl.innerHTML = text
+    progressPreviewEl.style.left = (progressPreviewPos * 100) + '%'
+    progressPreviewRAF = null
+  })
+}
 
 let scrubStartTimeMs = null;
 let scrubTimeInMs = null;
@@ -519,6 +560,7 @@ function scrubStart(e) {
   scrubSpaceRight = window.screen.width - e.touches[0].screenX;
   scrubStartTimeMs = fixSeekForWrongVideoDuration || videoTimeInMs;
   scrubVideoMax = videoMeta.length_ms || Math.round(video.duration * 1000);
+  progressPreviewEl.classList.add("enabled")
 }
 
 function scrubMove(e) {
@@ -542,12 +584,14 @@ function scrubEnd(e) {
   if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
   seekToTime(scrubTimeInMs)
   scrubTimeInMs = null
+  progressPreviewEl.classList.remove("enabled")
 }
 
 function scrubCancel(e) {
   if (scrubStartTimeMs === null || isNaN(scrubStartTimeMs)) return
   seekToTime(scrubStartTimeMs)
   scrubTimeInMs = null
+  progressPreviewEl.classList.remove("enabled")
 }
 
 function updateProgressbar() {

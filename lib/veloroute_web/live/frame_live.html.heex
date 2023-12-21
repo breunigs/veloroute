@@ -38,6 +38,7 @@
   <div id="videoControls" data-nosnippet="yes">
     <button id="playpause" type="button" title="Video starten oder pausieren"></button>
     <div id="progressWrapper">
+      <div id="progressPreview" phx-update="ignore"></div>
       <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
     </div>
     <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
