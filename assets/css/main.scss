@@ -1034,8 +1034,8 @@ a {
 
 #indicator,
 #indicator-rotate {
-  height: 2em;
-  width: 2em;
+  height: 1.5rem;
+  width: 1.5rem;
   pointer-events: none;
   // workaround for iOS Safari flickering the indicator while animating
   // depending on rotation
@@ -1065,37 +1065,46 @@ a {
   margin-top: 0.5em;
 }
 
+$indicatorForeColor: #000;
+$indicatorShadowColor: #fff;
+$indicatorSize: 0.6rem;
 #indicator-loc {
   background: rgba(255, 255, 255, 0.5);
-  border-radius: 0.8em;
-  border: 0.2em solid #000;
-  box-shadow: 0 0 0.1em 0.1em #fff;
-  height: 0.8em;
-  left: 50%;
+  border-radius: $indicatorSize;
+  border: 0.2em solid $indicatorForeColor;
+  box-shadow: 0 0 0 calc($indicatorSize / 8) $indicatorShadowColor;
+  height: $indicatorSize;
+  width: $indicatorSize;
+
   position: absolute;
-  color: #000;
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 0.8em;
 }
 
 #indicator-dir {
-  &::before {
-    content: '▴';
-    font-size: 1.3em; // adjust translateY below as needed
+  $size: calc($indicatorSize/1.35);
+  &:before {
+    content: " ";
+    position: absolute;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size*1.4 solid $indicatorForeColor;
+    left: -1*$size;
+    top: 0.5px;
+    transform: scale(0.7);
   }
 
-  height: 2em;
+  width: 0;
+  height: 0;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-bottom: $size*1.4 solid $indicatorShadowColor;
+
   left: 50%;
-  position: relative;
-  top: 0%;
-  text-align: center;
-  text-shadow: 0.1em 0.0em 0.1em #fff,
-  0.1em -0.1em 0.1em #fff,
-  -0.1em 0.0em 0.1em #fff,
-  -0.1em -0.1em 0.1em #fff;
-  transform: translate(-50%, -45%);
-  width: 2em;
+  top: -0.5px;
+  position: absolute;
+  transform: translate(-50%, -50%);
   z-index: 10;
 }
 
