@@ -555,6 +555,7 @@ function updateProgressbar() {
     ? scrubTimeInMs
     : (fixSeekForWrongVideoDuration || videoTimeInMs);
   const max = videoMeta.length_ms || Math.round(video.duration * 1000);
+  if (isNaN(ms) || isNaN(max)) return
   const msText = ms2text(ms);
   const maxText = ms2text(max);
 
