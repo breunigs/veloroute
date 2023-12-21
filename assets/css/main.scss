@@ -190,7 +190,7 @@ $videoBarProgressHeight: 0.4rem;
       }
     }
 
-    &:not(.disabled):hover, &:not(.disabled):hover {
+    &:not(.disabled):hover {
       @media (hover: hover) {
         color: $red;
         filter: $redColorFilter;
