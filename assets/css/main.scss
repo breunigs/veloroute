@@ -109,7 +109,6 @@ $videoInfoOverlayPadding: 0.5rem;
   padding: $videoInfoOverlayPadding;
   // padding-top: 0.7rem;
   color: #fff;
-  max-width: 48%;
   overflow-x: hidden;
   white-space: nowrap;
   box-sizing: border-box;
@@ -125,6 +124,7 @@ $videoInfoOverlayPadding: 0.5rem;
 
 #videoRoute {
   left: 0;
+  max-width: 90%;
   border-bottom-right-radius: $videoInfoOverlayPadding;
   font-weight: bold;
   padding-left: $videoInfoOverlayPadding;
@@ -477,6 +477,11 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
 
   #videoRecordingDate {
     display: block;
+    max-width: 48%;
+  }
+
+  #videoRoute {
+    max-width: 48%;
   }
 
   #skipBackward5, #skipForward5 {
