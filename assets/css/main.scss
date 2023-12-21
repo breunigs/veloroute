@@ -251,6 +251,7 @@ $videoBarProgressHeight: 0.4rem;
 
   #progressWrapper {
     contain: layout;
+    -webkit-tap-highlight-color: transparent;
 
     #progressPreview {
       // comment in to make it visible without hover
