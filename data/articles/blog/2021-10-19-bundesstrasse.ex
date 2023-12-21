@@ -5,9 +5,9 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def title(), do: "Bundesstraße (Rentzelstraße bis Verbindungsbahn)"
 
-  def summary(), do: "Bundesstraße soll ab 2023 (vermutlich) zur Fahrradstraße umgebaut werden."
+  def summary(), do: "Bundesstraße soll zur Fahrradstraße umgebaut werden."
 
-  def start(), do: ~d[2023]
+  # def start(), do: ~d[2023]
 
   def type(), do: :planned
 

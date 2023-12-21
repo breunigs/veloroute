@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Burgstrasse do
   def links(_assigns) do
     [
       {"Ausschreibung Umbau", "Dezember 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/3d8d8576-675d-49ec-b71c-54942fde9762/details"}
+       "https://web.archive.org/web/20231216102515/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/3d8d8576-675d-49ec-b71c-54942fde9762/details"}
     ]
   end
 
