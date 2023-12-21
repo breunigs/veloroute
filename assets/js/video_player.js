@@ -166,6 +166,7 @@ function updateVideoElement() {
         autoStartLoad: true,
         enableWebVTT: false,
         lowLatencyMode: false,
+        capLevelToPlayerSize: true,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 20, // seconds
         minAutoBitrate: minAutoBitrate,
