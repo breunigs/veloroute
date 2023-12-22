@@ -279,8 +279,8 @@ $videoBarProgressHeight: 0.4rem;
 
       color: #fff;
       text-align: center;
-      text-shadow: #000 0px 0px 1px, #000 0px 0px 1px,#000 0px 0px 1px,
-                   #000 0px 0px 1px, #000 0px 0px 1px,#000 0px 0px 1px;
+      text-shadow: #000 0 0 0.1rem, #000 0 0 0.1rem,#000 0 0 0.1rem,
+                   #000 0 0 0.1rem, #000 0 0 0.1rem,#000 0 0 0.1rem;
       -webkit-font-smoothing: antialiased;
       transition: opacity 0.2s ease-in-out, visibility 0.2s;
       pointer-events: none;
