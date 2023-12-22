@@ -71,12 +71,16 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("map-bounds", _attr, socket), do: {:noreply, socket}
 
-  def handle_event("search", %{"value" => ""}, socket) do
-    {:noreply, socket}
-  end
-
   def handle_event("limit-to-map-bounds", _attr, socket) do
     {:noreply, assign(socket, :limit_to_map_bounds, !socket.assigns.limit_to_map_bounds)}
+  end
+
+  def handle_event("search", %{"search_query" => value}, socket) do
+    handle_event("search", %{"value" => value}, socket)
+  end
+
+  def handle_event("search", %{"value" => ""}, socket) do
+    {:noreply, socket}
   end
 
   @search_page "suche"
