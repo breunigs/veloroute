@@ -342,7 +342,7 @@ function seekToTime(timeInMs) {
 
 function maybeShowLoadingIndicator(evt) {
   let showSpinner = !video.paused && !video.ended && video.readyState < 3
-  showSpinner = showSpinner || video.seeking || fixSeekForWrongVideoDuration
+  showSpinner = showSpinner || (video.seeking && video.readyState < 3) || fixSeekForWrongVideoDuration
   poster.classList.toggle("loading", showSpinner)
 }
 
