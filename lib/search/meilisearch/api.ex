@@ -15,6 +15,16 @@ defmodule Search.Meilisearch.API do
     end
   end
 
+  @spec list_indexes() :: {:error, binary()} | {:ok, [binary()]}
+  def list_indexes() do
+    with {:ok, %{body: %{"results" => results}}} <- get("/indexes") do
+      indexes = Enum.map(results, &Map.get(&1, "uid"))
+      {:ok, indexes}
+    else
+      err -> {:error, "failed to get indexes: #{inspect(err)}"}
+    end
+  end
+
   def delete_index(index) when is_atom(index) do
     delete("/indexes/#{index}")
     |> await_finish()

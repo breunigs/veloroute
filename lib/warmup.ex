@@ -10,6 +10,8 @@ defmodule Warmup do
   end
 
   def definitely() do
+    Search.Meilisearch.Runner.boot()
+
     Task.async(fn ->
       Parallel.each(Video.Generator.all(), &Video.Components.variants(&1.hash()))
     end)
