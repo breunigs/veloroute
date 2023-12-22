@@ -528,23 +528,19 @@ function seekFromProgress(e) {
   seekToTime(time);
 };
 
-let progressPreviewTime = 0
-let progressPreviewPos = 0.0
 let progressPreviewRAF = null
 function previewProgress(e) {
-  const [time, pos] = timeFromProgressPosition(e)
-  progressPreviewPos = pos
-  progressPreviewTime = time
   if (progressPreviewRAF !== null) return
+
   progressPreviewRAF = requestAnimationFrame(() => {
-    const time = progressPreviewTime;
+    const [time, pos] = timeFromProgressPosition(e)
     const { recDate, street } = metadataForTime(time)
     let text = '';
     if (street !== "") text += `${street}<br>`
     if (recDate !== "") text += `${recDate}<br>`
     if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
     progressPreviewEl.innerHTML = text
-    progressPreviewEl.style.left = (progressPreviewPos * 100) + '%'
+    progressPreviewEl.style.left = (pos * 100) + '%'
     progressPreviewRAF = null
   })
 }
