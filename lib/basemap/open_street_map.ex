@@ -1,8 +1,9 @@
 defmodule Basemap.OpenStreetMap do
   use Basemap.Renderable
 
-  @dockerfile Path.join(__DIR__, "Dockerfile.openstreetmap")
-  @dockerfile_statistics Path.join(__DIR__, "Dockerfile.geostats")
+  @image_ref {:dockerfile, Path.join(__DIR__, "Dockerfile.openstreetmap")}
+  @container_ref_stats {"generating statistics for basemap",
+                        {:dockerfile, Path.join(__DIR__, "Dockerfile.geostats")}}
 
   @impl Basemap.Renderable
   def target(where), do: path(where, target_name())
@@ -58,13 +59,15 @@ defmodule Basemap.OpenStreetMap do
   def statistics do
     ensure()
 
+    :ok = Util.Docker.build(@container_ref_stats)
+
+    exec_opts = Util.Docker.default_exec_opts(@container_ref_stats, stdout: "")
+    command_args = [path(:container, target_name())]
+
     %{result: :ok, stdout: json} =
-      Docker.build_and_run(
-        @dockerfile_statistics,
-        [path(:container, target_name())],
-        name: "generating statistics for basemap",
-        stdout: ""
-      )
+      @container_ref_stats
+      |> Util.Docker.run_docker_cli(%{command_args: command_args})
+      |> Util.Cmd2.exec(exec_opts)
 
     Jason.decode!(json)
   end
@@ -115,11 +118,12 @@ defmodule Basemap.OpenStreetMap do
 
       File.mkdir_p!(dir)
 
-      %{result: :ok} =
-        Docker.build_and_run(
-          @dockerfile,
-          ["unzip", "-d", dir_c, "-j", "#{zip_c}"],
-          name: "unzipping extra shapes #{zip}"
+      :ok =
+        Util.Docker.build_and_run(
+          "unzipping extra shapes #{zip}",
+          @image_ref,
+          %{command_args: ["unzip", "-d", dir_c, "-j", "#{zip_c}"]},
+          []
         )
     end)
   end
@@ -139,11 +143,12 @@ defmodule Basemap.OpenStreetMap do
       "#{path(:container, osm_source_name())}"
     ]
 
-    %{result: :ok} =
-      Docker.build_and_run(
-        @dockerfile,
-        args,
-        name: "extracting bounding box with osmconvert"
+    :ok =
+      Util.Docker.build_and_run(
+        "extracting bounding box with osmconvert",
+        @image_ref,
+        %{command_args: args},
+        []
       )
 
     stats = File.stat!(path(:cache, bbox_extract_name()))
@@ -179,12 +184,7 @@ defmodule Basemap.OpenStreetMap do
 
     File.cp!(Path.join(__DIR__, "config.json"), path(:cache, "config.json"))
 
-    %{result: :ok} =
-      Docker.build_and_run(
-        @dockerfile,
-        args,
-        name: "creating map tiles"
-      )
+    :ok = Util.Docker.build_and_run("creating map tiles", @image_ref, %{command_args: args}, [])
   end
 
   defp remove_if_exists(file) do

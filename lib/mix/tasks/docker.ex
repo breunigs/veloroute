@@ -3,16 +3,7 @@ defmodule Mix.Tasks.Velo.Docker.BuildDevel do
 
   @shortdoc "Builds the image to run commands in. Only needs to be done once."
   def run(_) do
-    Docker.build_devel_image()
-  end
-end
-
-defmodule Mix.Tasks.Velo.Docker.BuildDetector do
-  use Mix.Task
-
-  @shortdoc "Builds the image to run the anonymization detector"
-  def run(_) do
-    Docker.build_detector_image()
+    :ok = Util.Docker.build_devel_image()
   end
 end
 
@@ -21,6 +12,6 @@ defmodule Mix.Tasks.Velo.Docker.Mix do
 
   @shortdoc "Runs a mix command in Docker context"
   def run(args) do
-    Docker.mix(args)
+    :ok = Util.Docker.mix(args)
   end
 end

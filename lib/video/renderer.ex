@@ -3,6 +3,9 @@ defmodule Video.Renderer do
 
   import Guards
 
+  @spec ffmpeg_image() :: Util.Docker.image_ref()
+  def ffmpeg_image(), do: {:dockerfile, "tools/ffmpeg/Dockerfile.ffmpeg"}
+
   @doc """
   Returns the commands to preview the given video(s).
   """
@@ -104,11 +107,12 @@ defmodule Video.Renderer do
              Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
            tmp_dir <- Path.basename(tmp_path),
            cmd <- render_cmd(rendered, tmp_dir),
-           %{result: :ok} <-
-             Docker.run("tools/ffmpeg/Dockerfile.ffmpeg", cmd,
+           :ok <-
+             Util.Docker.build_and_run(
+               {"rendering video", ffmpeg_image()},
+               %{command_args: cmd},
                env: [],
-               stderr: pbar,
-               name: "ffmpeg render"
+               stderr: pbar
              ),
            :ok <- manually_tag_missing(tmp_path),
            :ok <- move(tmp_path, target) do

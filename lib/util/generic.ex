@@ -16,30 +16,19 @@ defmodule Util do
     IO.puts("")
   end
 
-  def user_id(), do: cmd(["id", "-u"]) |> String.trim()
-  def group_id(), do: cmd(["id", "-g"]) |> String.trim()
-
-  def group_id(group_name) when is_binary(group_name) do
-    cmd(["getent", "group", group_name]) |> String.split(":") |> Enum.at(2)
+  def user_id() do
+    {out, 0} = System.cmd("id", ["-u"])
+    String.trim(out)
   end
 
-  def cmd([cmd | args], opts \\ []) do
-    System.cmd(cmd, args, opts)
-    |> case do
-      {out, 0} ->
-        out
+  def group_id() do
+    {out, 0} = System.cmd("id", ["-g"])
+    String.trim(out)
+  end
 
-      {_, code} ->
-        env =
-          Keyword.get(opts, :env)
-          |> List.wrap()
-          |> Enum.map(fn {k, v} -> "export #{k}=\"#{v}\"" end)
-          |> Enum.join("\n")
-
-        args = args |> Enum.map(fn arg -> "\"#{arg}\"" end) |> Enum.join(" ")
-
-        raise("FAILED (exit code #{code}):\n#{env}\n#{cmd} #{args}")
-    end
+  def group_id(group_name) when is_binary(group_name) do
+    {out, 0} = System.cmd("getent", ["group", group_name])
+    out |> String.split(":") |> Enum.at(2)
   end
 
   @spec overlap?(Enumerable.t(), Enumerable.t()) :: bool()

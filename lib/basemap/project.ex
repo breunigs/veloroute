@@ -1,6 +1,8 @@
 defmodule Basemap.Project do
   use Basemap.Renderable
-  @dockerfile "lib/basemap/Dockerfile.tippecanoe"
+
+  @container_ref {"converting project specific map data into tiles",
+                  {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}}
 
   @impl Basemap.Renderable
   def target(where), do: path(where, "project.mbtiles")
@@ -22,24 +24,22 @@ defmodule Basemap.Project do
   def render() do
     geojsons = write_geojson() |> Enum.map(fn {_host, container} -> container end)
 
-    with %{result: :ok} <-
-           Docker.build_and_run(
-             @dockerfile,
-             [
-               "/usr/bin/tippecanoe",
-               "--force",
-               "--coalesce-densest-as-needed",
-               "--extend-zooms-if-still-dropping",
-               "-d#{Basemap.OpenStreetMap.max_zoom()}",
-               "--no-progress-indicator",
-               "--output=#{target(:container)}"
-             ] ++ geojsons,
-             name: "converting project specific map data into tiles"
-           ) do
-      :ok
-    else
-      %{result: {:error, error}} -> {:error, error}
-    end
+    Util.Docker.build_and_run(
+      @container_ref,
+      %{
+        command_args:
+          [
+            "/usr/bin/tippecanoe",
+            "--force",
+            "--coalesce-densest-as-needed",
+            "--extend-zooms-if-still-dropping",
+            "-d#{Basemap.OpenStreetMap.max_zoom()}",
+            "--no-progress-indicator",
+            "--output=#{target(:container)}"
+          ] ++ geojsons
+      },
+      []
+    )
   end
 
   @spec write_geojson() :: [{host_path :: binary(), container_path :: binary()}]

@@ -58,14 +58,14 @@ defmodule Mix.Tasks.Deploy do
 
   @confirm_msg "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
   defp deploy_tar_gz(skip) do
-    make_release_image(skip)
-    ensure_container_runs(skip)
+    {image_ref, image_name} = make_release_image(skip)
+    ensure_container_runs(skip, image_ref)
 
-    IO.puts("Image: #{Docker.image_name_release()}")
-    upload(skip)
+    IO.puts("Image: #{image_name}")
+    upload(skip, image_name)
 
     if !skip[:skip_deploy] && Cli.confirm(@confirm_msg) do
-      rename_on_remote(skip)
+      rename_on_remote(skip, image_name)
       restart(skip)
       true
     else
@@ -75,18 +75,18 @@ defmodule Mix.Tasks.Deploy do
 
   defp make_build_env(_skip) do
     Util.banner("Creating Build Environment")
-    Docker.build_devel_image()
+    Util.Docker.build_devel_image()
   end
 
   defp test(%{skip_test: true}), do: nil
 
   defp test(_skip) do
     Util.banner("Unit tests")
-    Docker.mix("test --color")
+    :ok = Util.Docker.mix("test --color")
     Util.banner("Dialyzer")
-    Docker.mix("dialyzer")
+    :ok = Util.Docker.mix("dialyzer")
     Util.banner("Format Check")
-    Docker.mix("format --check-formatted")
+    :ok = Util.Docker.mix("format --check-formatted")
   end
 
   defp make_release(_skip) do
@@ -105,23 +105,39 @@ defmodule Mix.Tasks.Deploy do
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
-      ["MIX_ENV=" <> env, "mix" | cmd] -> Docker.mix(cmd, env)
-      ["mix" | cmd] -> Docker.mix(cmd, "prod")
-      other -> Util.cmd(other)
+      ["MIX_ENV=" <> env, "mix" | cmd] -> :ok = Util.Docker.mix(cmd, env)
+      ["mix" | cmd] -> :ok = Util.Docker.mix(cmd, "prod")
+      other -> Util.Cmd2.exec(other, raise: true)
     end)
     |> Enum.to_list()
   end
 
   defp make_release_image(_skip) do
     Util.banner("Building Release Image")
-    Docker.build_release_image()
+    image_ref = {:dockerfile, "Dockerfile.release"}
+    :ok = Util.Docker.build(image_ref)
+
+    image_name = Util.Docker.image_name("release-#{:os.system_time(:millisecond)}")
+    :ok = Util.Docker.retag(image_ref, image_name)
+
+    image_ref = [:remote | String.split(image_name, ":")] |> List.to_tuple()
+    {image_ref, image_name}
   end
 
-  defp ensure_container_runs(_skip) do
+  defp ensure_container_runs(_skip, release_image) do
     Util.banner("Testing the image can boot")
-    Docker.stop_release()
+    container_ref = {"release image test", release_image}
+    Util.Docker.stop(container_ref)
 
-    container = Task.async(&Docker.boot_release/0)
+    container =
+      Task.async(fn ->
+        Util.Docker.run(
+          container_ref,
+          %{docker_args: ["--pull", "never", "-p", "4000:4000"], mount_videos_in_dir: "/app"},
+          stdout: IO.stream(:stdio, :line),
+          slow_warn_message: false
+        )
+      end)
 
     try do
       Process.sleep(500)
@@ -142,7 +158,7 @@ defmodule Mix.Tasks.Deploy do
           &report_status_200?/1
         )
     after
-      Docker.stop_release()
+      Util.Docker.stop(container_ref)
     end
 
     Task.await(container, :infinity)
@@ -185,39 +201,34 @@ defmodule Mix.Tasks.Deploy do
   end
 
   defp get_docker_url("/" <> path) do
-    "http://localhost:#{get_docker_port()}/#{path}"
+    "http://localhost:4000/#{path}"
   end
 
-  defp get_docker_port do
-    {output, 0} = System.cmd("docker", ["port", Docker.container_name_release()])
-    output |> String.split(":") |> List.last() |> String.trim()
-  end
+  defp upload(%{skip_deploy: true}, _image_name), do: nil
 
-  defp upload(%{skip_deploy: true}), do: nil
-
-  defp upload(_skip) do
+  defp upload(_skip, image_name) do
     Util.banner("copying image to #{Settings.deploy_ssh_name()}")
 
-    Util.cmd([
-      "sh",
-      "-c",
-      "docker save '#{Docker.image_name_release()}' | zstd -12 -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
-    ])
+    {_out, 0} =
+      System.cmd("sh", [
+        "-c",
+        "docker save '#{image_name}' | zstd -12 -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
+      ])
   end
 
-  defp rename_on_remote(%{skip_deploy: true}), do: nil
+  defp rename_on_remote(%{skip_deploy: true}, _image_name), do: nil
 
-  defp rename_on_remote(_skip) do
+  defp rename_on_remote(_skip, image_name) do
     Util.banner("Renaming")
 
-    Util.cmd([
-      "ssh",
-      Settings.deploy_ssh_name(),
-      "docker",
-      "tag",
-      Docker.image_name_release(),
-      "veloroute.hamburg/v1:latest"
-    ])
+    {_out, 0} =
+      System.cmd("ssh", [
+        Settings.deploy_ssh_name(),
+        "docker",
+        "tag",
+        image_name,
+        "veloroute.hamburg/v1:latest"
+      ])
   end
 
   defp restart(%{skip_deploy: true}), do: nil

@@ -5,6 +5,7 @@ defmodule Basemap.Static.Exe do
   @exe "mbgl-render"
 
   @dockerfile Path.join(__DIR__, "Dockerfile.maplibre-native")
+  @image_ref {:dockerfile, @dockerfile}
 
   @spec ensure(Keyword.t()) :: :ok | {:error, binary()}
   def ensure(opts \\ [])
@@ -18,12 +19,15 @@ defmodule Basemap.Static.Exe do
 
   @spec build() :: :ok | {:error, binary()}
   def build() do
-    with %{result: :ok} <-
-           Docker.build_and_run(
-             @dockerfile,
-             # copy build artifacts to cache
-             ["/bin/cp", "-r", "/build/.", @container_path],
-             name: "building server side static tile renderer"
+    with :ok <-
+           Util.Docker.build_and_run(
+             "building server side static tile renderer",
+             @image_ref,
+             %{
+               # copy build artifacts to cache
+               command_args: ["/bin/cp", "-r", "/build/.", @container_path]
+             },
+             []
            ),
          File.rm_rf(Path.dirname(exe())),
          {:ok, _files} <- File.cp_r(@cache_path, Path.dirname(exe())) do

@@ -1,5 +1,6 @@
 defmodule Basemap.Sprites do
-  @dockerfile Path.join(__DIR__, "Dockerfile.spritezero")
+  @container_ref {"map sprite generation",
+                  {:dockerfile, Path.join(__DIR__, "Dockerfile.spritezero")}}
 
   @ratios [1, 2]
   @icon_source "assets/map/icons"
@@ -40,22 +41,22 @@ defmodule Basemap.Sprites do
       File.write!(path, icon)
     end)
 
-    Docker.build(@dockerfile)
-
     File.mkdir_p!(assets_path())
 
     Enum.each(@ratios, fn ratio ->
-      %{result: :ok} =
-        Docker.run(
-          @dockerfile,
-          [
-            "/target/",
-            "/source/",
-            "--unique",
-            "--ratio=#{ratio}"
-          ],
-          name: "generating map image sprites",
-          mounts: %{target(:cache) => "/source", assets_path() => "/target"}
+      :ok =
+        Util.Docker.build_and_run(
+          @container_ref,
+          %{
+            command_args: [
+              "/target/",
+              "/source/",
+              "--unique",
+              "--ratio=#{ratio}"
+            ],
+            mounts: %{target(:cache) => "/source", assets_path() => "/target"}
+          },
+          []
         )
     end)
 

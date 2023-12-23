@@ -1,8 +1,6 @@
 defmodule Util.Cmd2 do
-  @doc """
-  Uses ports to be able to pass on signals to the child process. Since the
-  VM eats SIGINT, it can only pass SIGINT and SIGTERM.
-  """
+  @type exec_opts :: Keyword.t()
+
   @type exec_result :: %{
           status: non_neg_integer(),
           stdout: any(),
@@ -10,10 +8,20 @@ defmodule Util.Cmd2 do
           user_abort: boolean(),
           result: :ok | {:error, binary()}
         }
+
+  @spec result_to_error(exec_result()) :: :ok | {:error, binary()}
+  def result_to_error(%{result: :ok}), do: :ok
+  def result_to_error(%{result: {:error, reason}}), do: {:error, reason}
+
+  @doc """
+  Uses ports to be able to pass on signals to the child process. Since the
+  VM eats SIGINT, it can only pass SIGINT and SIGTERM.
+  """
   @spec exec([any()], keyword()) :: exec_result()
   def exec(cli, opts) do
     {env, opts} = Keyword.pop(opts, :env, [])
     {do_raise, opts} = Keyword.pop(opts, :raise, false)
+    {slow_warn, opts} = Keyword.pop(opts, :slow_warn_message, true)
 
     {stdout, opts} =
       Keyword.pop_lazy(opts, :stdout, fn ->
@@ -31,7 +39,7 @@ defmodule Util.Cmd2 do
     # run in extra thread because since Erlang/OTP 26 we receive messages from a
     # GenServer, which is odd. It looks like a bug, but test case reduction
     # exceeded a timebox, so workaround it is.
-    task = Task.async(fn -> exec_cmd2(cli, name, env, stdout, stderr, stdin, kill) end)
+    task = Task.async(fn -> exec_cmd2(cli, name, env, stdout, stderr, stdin, kill, slow_warn) end)
     status = Task.await(task, :infinity)
     :io.setopts(:standard_io, encoding: :unicode)
 
@@ -66,14 +74,15 @@ defmodule Util.Cmd2 do
           Collectable.t(),
           Collectable.t(),
           binary() | nil,
-          binary() | nil
+          binary() | nil,
+          boolean()
         ) :: %{
           status: non_neg_integer(),
           stdout: any(),
           stderr: any(),
           user_abort: boolean()
         }
-  defp exec_cmd2([exe | params], name, env, stdout, stderr, stdin, kill) do
+  defp exec_cmd2([exe | params], name, env, stdout, stderr, stdin, kill, slow_warn) do
     {stdoutacc, stdout} = Collectable.into(stdout)
     {stderracc, stderr} = Collectable.into(stderr)
     exe = System.find_executable(exe) || exe
@@ -87,7 +96,7 @@ defmodule Util.Cmd2 do
     with {:ok, pid, monitor} <- :exec.run(args, opts) do
       untrap1 = stop_on_signal(:sigterm)
       untrap2 = stop_on_signal(:sigquit)
-      warner = Process.send_after(self(), {:slow_warn, name}, 5_000)
+      warner = if slow_warn, do: Process.send_after(self(), {:slow_warn, name}, 5_000)
 
       if stdin do
         :exec.send(pid, stdin)
@@ -106,7 +115,7 @@ defmodule Util.Cmd2 do
 
         status
       after
-        Process.cancel_timer(warner)
+        if slow_warn, do: Process.cancel_timer(warner)
       end
     else
       err -> %{status: 128, stdout: nil, stderr: "failed to exec: #{inspect(err)}"}

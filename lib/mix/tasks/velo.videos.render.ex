@@ -4,8 +4,6 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
   @shortdoc "Renders videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
   def run(filters) do
-    Docker.build("tools/ffmpeg/Dockerfile.ffmpeg")
-
     Video.Dir.must_exist!(fn ->
       filters |> find() |> Enum.sort_by(& &1.name) |> info() |> render()
     end)
@@ -58,10 +56,6 @@ defmodule Mix.Tasks.Velo.Videos.Render do
         {:error, reason} ->
           IO.puts(banner)
           IO.puts("failed: #{reason}")
-
-        %{result: {:error, reason}} ->
-          IO.puts(banner)
-          IO.puts(reason)
       end
     end)
   end

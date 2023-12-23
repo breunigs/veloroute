@@ -2,7 +2,8 @@ defmodule Basemap.Tiles do
   use Basemap.Renderable
   use Basemap.Servable
 
-  @dockerfile "lib/basemap/Dockerfile.tippecanoe"
+  @container_ref {"merging data sources into servable PBFs",
+                  {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}}
 
   @impl Basemap.Renderable
   def stale?() do
@@ -21,19 +22,22 @@ defmodule Basemap.Tiles do
 
     File.rm_rf!(target(:cache))
 
-    %{result: :ok} =
-      Docker.build_and_run(
-        @dockerfile,
-        [
-          "nice",
-          "-n10",
-          "/usr/bin/tile-join",
-          "--no-tile-size-limit",
-          "--no-tile-compression",
-          "--no-tile-stats",
-          "--output-to-directory=#{target(:container)}"
-        ] ++ source_mbtiles(:container),
-        name: "merging data sources into servable PBFs"
+    :ok =
+      Util.Docker.build_and_run(
+        @container_ref,
+        %{
+          command_args:
+            [
+              "nice",
+              "-n10",
+              "/usr/bin/tile-join",
+              "--no-tile-size-limit",
+              "--no-tile-compression",
+              "--no-tile-stats",
+              "--output-to-directory=#{target(:container)}"
+            ] ++ source_mbtiles(:container)
+        },
+        []
       )
 
     :ok = rewrite_metadata_json()

@@ -104,17 +104,18 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     if System.get_env("VELO_HOST_FFMPEG") == "1" do
       exec_pipe(cmd)
     else
-      dockerfile = "tools/ffmpeg/Dockerfile.ffmpeg"
+      full_ref = {"preview video", Video.Renderer.ffmpeg_image()}
 
-      with %{result: :ok} <- Docker.build(dockerfile),
-           {cmd, container_name} <- Docker.run_cmd(dockerfile, cmd) do
+      with :ok <- Util.Docker.build(full_ref) do
         try do
-          exec_pipe(cmd)
+          full_ref
+          |> Util.Docker.run_docker_cli(%{mount_videos_in_dir: "/workdir"})
+          |> exec_pipe()
         after
-          System.cmd("docker", ["stop", "--time=0", container_name])
+          Util.Docker.stop(full_ref)
         end
       else
-        err -> IO.puts(:stderr, "failed to build tools/ffmpeg/Dockerfile.ffmpeg: #{inspect(err)}")
+        {:error, reason} -> IO.puts(:stderr, reason)
       end
     end
   end

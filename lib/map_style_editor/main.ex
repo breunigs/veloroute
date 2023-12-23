@@ -1,11 +1,15 @@
 defmodule MapStyleEditor.Main do
-  @dockerfile "lib/map_style_editor/Dockerfile.editor"
+  @container_ref {"map style editor", {:dockerfile, "lib/map_style_editor/Dockerfile.editor"}}
 
   @dirname "map_style_editor"
   def path, do: "data/cache/#{@dirname}"
 
   def build do
-    Docker.build_and_run(@dockerfile, ["cp", "-r", "/editor/.", "/workdir/#{@dirname}"])
+    Util.Docker.build_and_run(
+      @container_ref,
+      %{command_args: ["cp", "-r", "/editor/.", "/workdir/#{@dirname}"]},
+      []
+    )
   end
 
   def serve(style: style, port: port) when is_binary(style) do

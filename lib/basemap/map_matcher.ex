@@ -46,7 +46,7 @@ defmodule Basemap.MapMatcher.OSRM do
   plug Tesla.Middleware.Timeout, timeout: @osrm_timeout_ms
   adapter(Tesla.Adapter.Hackney, recv_timeout: @osrm_timeout_ms)
 
-  @dockerimage {:image, "ghcr.io/project-osrm/osrm-backend:v5.27.1"}
+  @osrm_image_ref {:remote, "ghcr.io/project-osrm/osrm-backend", "v5.27.1"}
   @profile "mapmatching"
   @profile_lua Path.join(__DIR__, "#{@profile}.lua")
   @mounts %{@profile_lua => "/opt/#{@profile}.lua"}
@@ -77,28 +77,36 @@ defmodule Basemap.MapMatcher.OSRM do
     source = Path.join([".." | osm_source() |> Path.split() |> Enum.take(-2)])
     File.ln_s(source, target)
 
-    with %{result: :ok} <-
-           Docker.run(
-             @dockerimage,
-             ["osrm-extract", "-p", "/opt/#{@profile}.lua", "#{container_base()}.osm.pbf"],
-             name: "mapmatching prepare step 1",
-             mounts: @mounts
+    with :ok <-
+           Util.Docker.build_and_run(
+             "mapmatching prepare step 1",
+             @osrm_image_ref,
+             %{
+               command_args: [
+                 "osrm-extract",
+                 "-p",
+                 "/opt/#{@profile}.lua",
+                 "#{container_base()}.osm.pbf"
+               ],
+               mounts: @mounts
+             },
+             []
            ),
-         %{result: :ok} <-
-           Docker.run(
-             @dockerimage,
-             ["osrm-partition", "#{container_base()}.osrm"],
-             name: "mapmatching prepare step 2"
+         :ok <-
+           Util.Docker.build_and_run(
+             "mapmatching prepare step 2",
+             @osrm_image_ref,
+             %{command_args: ["osrm-partition", "#{container_base()}.osrm"]},
+             []
            ),
-         %{result: :ok} <-
-           Docker.run(
-             @dockerimage,
-             ["osrm-customize", "#{container_base()}.osrm"],
-             name: "mapmatching prepare step 3"
+         :ok <-
+           Util.Docker.build_and_run(
+             "mapmatching prepare step 3",
+             @osrm_image_ref,
+             %{command_args: ["osrm-customize", "#{container_base()}.osrm"]},
+             []
            ) do
       :ok
-    else
-      %{result: err} -> err
     end
   end
 
@@ -358,10 +366,12 @@ defmodule Basemap.MapMatcher.OSRM do
   defp ensure_started(%{started: true} = state), do: state
 
   defp ensure_started(state) do
-    {container_name, exec_result} =
-      Docker.run_with_name(
-        @dockerimage,
-        [
+    container_ref = {"OSRM map matching server", @osrm_image_ref}
+
+    Util.Docker.run(
+      container_ref,
+      %{
+        command_args: [
           "osrm-routed",
           "--algorithm",
           "mld",
@@ -369,34 +379,30 @@ defmodule Basemap.MapMatcher.OSRM do
           "--max-matching-size",
           "-1"
         ],
-        stdout: "",
-        stderr: "",
-        name: "osrmMapmatchingServer",
-        mounts: @mounts,
-        docker_args: ["-p", @osrm_port, "--detach"]
-      )
+        docker_args: ["-p", @osrm_port, "--detach"],
+        mounts: @mounts
+      },
+      stdout: "",
+      stderr: ""
+    )
+    |> case do
+      :ok ->
+        nil
 
-    error =
-      case exec_result do
-        %{result: :ok} ->
-          nil
+      {:error, reason} ->
+        if String.contains?(reason, "is already in use by container"),
+          do: nil,
+          else: raise(reason)
+    end
 
-        %{result: {:error, reason}} ->
-          if String.contains?(reason, "is already in use by container"), do: nil, else: reason
-      end
-
-    if error, do: raise(error)
-
-    %{state | started: true, container_name: container_name}
+    %{state | started: true, container_name: Util.Docker.names(container_ref).container}
     |> set_port()
     |> set_health()
   end
 
   @spec stop(state()) :: state()
   defp stop(%{container_name: name} = state) do
-    if name,
-      do: System.cmd("docker", ["stop", "--time", "0", name])
-
+    if name, do: Util.Docker.stop(name)
     %{state | healthy: false, port: nil, started: false}
   end
 

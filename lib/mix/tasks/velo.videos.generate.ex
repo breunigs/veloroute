@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Velo.Videos.Generate do
   use Mix.Task
   import Guards
+  @requirements ["app.start"]
 
   @shortdoc "Finds videos in routes and articles and generates their metadata"
   def run(["all"]) do
