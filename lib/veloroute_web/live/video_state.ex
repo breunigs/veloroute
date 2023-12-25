@@ -336,12 +336,14 @@ defmodule VelorouteWeb.Live.VideoState do
     %{state | start: start, start_generation: state.start_generation + incr}
   end
 
-  defp maybe_reverse_direction(%__MODULE__{} = state, %{"autoplay" => "true"})
+  defp maybe_reverse_direction(%__MODULE__{} = state, params)
        when is_reversible(state) do
     video = current_video(state)
     start_from = Video.Generator.start_from(video, state.start)
+    autoplay = params["autoplay"] == "true"
+    factor = if autoplay, do: 0.9, else: 0.99
 
-    if start_from.time_offset_ms >= 0.9 * video.length_ms(),
+    if start_from.time_offset_ms >= factor * video.length_ms(),
       do: reverse_direction(state),
       else: state
   end

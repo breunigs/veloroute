@@ -35,6 +35,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
     refute html =~ ~s|data-video-start="0"|
   end
 
+  test "initial render starts video at 0 even on articles", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/alltagsroute-6")
+    assert html =~ ~s|<span id="current">0:00</span>|
+  end
+
   test "map click on article renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
     refute html =~ "Kleekamp"
