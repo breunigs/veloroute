@@ -31,6 +31,12 @@ config :veloroute,
   map_matcher: Basemap.MapMatcher.OSRM,
   env: Mix.env()
 
+config :os_mon,
+  start_cpu_sup: false,
+  start_disksup: false,
+  start_memsup: false,
+  start_os_sup: false
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

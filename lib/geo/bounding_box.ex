@@ -59,6 +59,27 @@ defmodule Geo.BoundingBox do
   end
 
   def parse(nil), do: nil
+
+  def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
+    bounds
+  end
+
+  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]]),
+    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+
+  def to_string_bounds([minLon, minLat, maxLon, maxLat]),
+    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+
+  def to_string_bounds(%{
+        minLat: minLat,
+        minLon: minLon,
+        maxLat: maxLat,
+        maxLon: maxLon
+      }),
+      do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+
+  @precision 6
+  defp r(float), do: Float.round(float, @precision)
 end
 
 defimpl String.Chars, for: Geo.BoundingBox do
@@ -82,7 +103,7 @@ end
 defimpl Phoenix.HTML.Safe, for: Geo.BoundingBox do
   def to_iodata(bounds) do
     bounds
-    |> VelorouteWeb.VariousHelpers.to_string_bounds()
+    |> Geo.BoundingBox.to_string_bounds()
     |> Plug.HTML.html_escape_to_iodata()
   end
 end

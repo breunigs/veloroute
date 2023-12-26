@@ -23,6 +23,7 @@ defmodule Search.Wrapper do
       {:exit, :timeout} -> []
     end)
     |> Stream.reject(&is_nil/1)
+    |> Search.Result.merge_same()
     |> Search.Result.sort()
   end
 end

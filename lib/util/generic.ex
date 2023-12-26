@@ -145,13 +145,21 @@ defmodule Util do
 
   @doc """
   Takes a command as a list and applies some heuristics for shell copy&paste
+
+  ## Examples
+
+      iex> Util.cli_printer(["some", ~s|funny "arg's"|])
+      ~s|some 'funny "arg'"'"'s"'|
   """
   @spec cli_printer(Enum.t()) :: binary
   def cli_printer(cmd) do
     cmd
     |> Enum.map(fn arg ->
       arg = to_string(arg)
-      if String.match?(arg, ~r/^[a-zA-Z0-9_=.-]+$/) || arg == "|", do: arg, else: "'#{arg}'"
+
+      if String.match?(arg, ~r/^[a-zA-Z0-9_=.-]+$/) || arg == "|",
+        do: arg,
+        else: "'#{String.replace(arg, ~s|'|, ~s|'"'"'|)}'"
     end)
     |> Enum.join(" ")
   end

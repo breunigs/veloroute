@@ -161,25 +161,4 @@ defmodule VelorouteWeb.VariousHelpers do
     zoom = min(Basemap.Constants.bounds_fitting_max_zoom(), round(cz.zoom))
     Enum.join([cz.lon, cz.lat, zoom], ",")
   end
-
-  def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
-    bounds
-  end
-
-  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]]),
-    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
-
-  def to_string_bounds([minLon, minLat, maxLon, maxLat]),
-    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
-
-  def to_string_bounds(%{
-        minLat: minLat,
-        minLon: minLon,
-        maxLat: maxLat,
-        maxLon: maxLon
-      }),
-      do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
-
-  @precision 6
-  defp r(float), do: Float.round(float, @precision)
 end

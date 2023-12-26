@@ -16,7 +16,7 @@ defmodule Maptiler.Search do
   # plug Tesla.Middleware.Logger
   plug TeslaCache
 
-  @bbox_str Settings.bounds() |> VelorouteWeb.VariousHelpers.to_string_bounds()
+  @bbox_str Settings.bounds() |> Geo.BoundingBox.to_string_bounds()
   @language "de"
 
   @behaviour Search.Behaviour

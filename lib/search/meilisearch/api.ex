@@ -2,36 +2,60 @@ defmodule Search.Meilisearch.API do
   require Logger
   use Tesla
 
+  @index_timeout_ms 5 * 60 * 1000
+  @general_timeout_ms 500
+
   plug Tesla.Middleware.BaseUrl, "http://localhost:7700/"
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.BearerAuth, token: Search.Meilisearch.Shared.master_key()
-  plug Tesla.Middleware.Timeout, timeout: 2_000
+
+  @adapter_opts_general [adapter: [recv_timeout: @general_timeout_ms]]
+  @adapter_opts_index [adapter: [recv_timeout: @index_timeout_ms]]
 
   def healthy?() do
-    with {:ok, %{status: 200}} <- get("/health") do
+    with {:ok, %{status: 200}} <- get("/health", opts: @adapter_opts_general) do
       true
     else
       _ -> false
     end
   end
 
-  @spec list_indexes() :: {:error, binary()} | {:ok, [binary()]}
+  @spec list_indexes() :: {:error, %{binary() => integer()}} | {:ok, %{binary() => integer()}}
   def list_indexes() do
-    with {:ok, %{body: %{"results" => results}}} <- get("/indexes") do
-      indexes = Enum.map(results, &Map.get(&1, "uid"))
+    with {:ok, %{body: %{"results" => results}}} <-
+           get("/indexes", opts: @adapter_opts_general) do
+      indexes =
+        Enum.into(results, %{}, fn %{"uid" => uid} ->
+          with {:ok, count} <- get_index_doc_count(uid) do
+            {uid, count}
+          else
+            _ -> {uid, -1}
+          end
+        end)
+
       {:ok, indexes}
     else
       err -> {:error, "failed to get indexes: #{inspect(err)}"}
     end
   end
 
+  @spec get_index_doc_count(binary() | atom()) :: {:error, binary()} | {:ok, pos_integer()}
+  def get_index_doc_count(index) do
+    with {:ok, %{body: %{"numberOfDocuments" => count}}} <-
+           get("/indexes/#{index}/stats", opts: @adapter_opts_general) do
+      {:ok, count}
+    else
+      err -> {:error, "failed to get document count for index #{index}: #{inspect(err)}"}
+    end
+  end
+
   def delete_index(index) when is_atom(index) do
-    delete("/indexes/#{index}")
+    delete("/indexes/#{index}", opts: @adapter_opts_general)
     |> await_finish()
   end
 
   def create_index(index) when is_atom(index) do
-    post("/indexes", %{uid: index})
+    post("/indexes", %{uid: index}, opts: @adapter_opts_general)
     |> await_finish()
   end
 
@@ -43,18 +67,59 @@ defmodule Search.Meilisearch.API do
   def index_documents(index, documents) when is_atom(index) and is_list(documents) do
     Logger.debug("MEILISEARCH: adding #{length(documents)} into #{index}")
 
-    post("/indexes/#{index}/documents", documents)
+    post("/indexes/#{index}/documents", documents, opts: @adapter_opts_index)
+    |> await_finish()
+  end
+
+  @valid_content_types ["application/json", "application/x-ndjson", "text/csv"]
+  def index_documents(index, {content_type, blob})
+      when is_atom(index) and content_type in @valid_content_types and is_binary(blob) do
+    Logger.debug("MEILISEARCH: adding documents from blob into #{index}")
+
+    post("/indexes/#{index}/documents", blob,
+      headers: [{"content-type", content_type}],
+      opts: @adapter_opts_index
+    )
     |> await_finish()
   end
 
   @spec search(atom, map()) :: list()
   def search(index, params) when is_atom(index) do
-    with {:ok, %{body: %{"hits" => results}}} <- post("/indexes/#{index}/search", params) do
+    params = Map.put_new(params, "showRankingScore", true)
+
+    with {:ok, %{body: %{"hits" => results}}} <-
+           post("/indexes/#{index}/search", params, opts: @adapter_opts_general) do
       results
     else
       other ->
         Logger.warning(
           "MEILISEARCH: failed to query for #{inspect(params)}. Result: #{inspect(other)}"
+        )
+
+        []
+    end
+  end
+
+  @spec multi_search(%{atom() => map()}) :: %{atom() => list()}
+  def multi_search(queries) do
+    payload = %{
+      "queries" =>
+        Enum.map(queries, fn {index, params} ->
+          params
+          |> Map.put_new("showRankingScore", true)
+          |> Map.put("indexUid", index)
+        end)
+    }
+
+    with {:ok, %{body: %{"results" => results}}} <-
+           post("/multi-search", payload, opts: @adapter_opts_general) do
+      Enum.into(results, %{}, fn %{"indexUid" => index, "hits" => hits} ->
+        {String.to_existing_atom(index), hits}
+      end)
+    else
+      other ->
+        Logger.warning(
+          "MEILISEARCH: failed to multi-query for #{inspect(payload)}. Result: #{inspect(other)}"
         )
 
         []
@@ -77,7 +142,7 @@ defmodule Search.Meilisearch.API do
 
   defp await_finish(uid) when is_integer(uid) do
     Process.sleep(100)
-    get("/tasks/#{uid}") |> await_finish()
+    get("/tasks/#{uid}", opts: @adapter_opts_general) |> await_finish()
   end
 
   defp await_finish(other), do: {:error, inspect(other)}

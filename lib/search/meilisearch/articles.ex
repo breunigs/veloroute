@@ -22,8 +22,9 @@ defmodule Search.Meilisearch.Articles do
   end
 
   @impl true
-  def format(%{"module" => mod} = _result) do
-    Article.Decorators.search_result(String.to_existing_atom(mod), 1)
+  def format(%{"module" => mod} = result) do
+    relevance = Map.fetch!(result, "_rankingScore")
+    Article.Decorators.search_result(String.to_existing_atom(mod), relevance)
   end
 
   @impl true

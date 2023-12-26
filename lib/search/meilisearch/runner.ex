@@ -5,7 +5,8 @@ defmodule Search.Meilisearch.Runner do
   @health_check_seconds 1
   @queue_timeout_seconds 10
 
-  @indexers [Search.Meilisearch.Articles]
+  # @indexers [Search.Meilisearch.Articles, Search.Meilisearch.OSMNames]
+  @indexers [Search.Meilisearch.Articles, Search.Meilisearch.Nominatim]
   @behaviour Search.Behaviour
 
   @typep queued_task :: {:queued, non_neg_integer(), GenServer.from(), any()}
@@ -34,14 +35,25 @@ defmodule Search.Meilisearch.Runner do
     GenServer.cast(__MODULE__, :boot)
   end
 
+  @doc """
+  Indexes from any indexer that was not yet run
+  """
   def index() do
     GenServer.call(__MODULE__, :index, :infinity)
+  end
+
+  @doc """
+  Re-runs all existing indexers, but does not clean up stale data
+  """
+  def reindex() do
+    GenServer.call(__MODULE__, :reindex, :infinity)
   end
 
   def start_link(opts \\ []) do
     opts = Keyword.put_new(opts, :name, __MODULE__)
     is_dev = Application.get_env(:veloroute, :env) == :dev
     db_path = Path.join(:code.priv_dir(:veloroute), "meilisearch-db")
+    :ok = File.mkdir_p(db_path)
 
     state = %{
       debug: is_dev,
@@ -84,6 +96,11 @@ defmodule Search.Meilisearch.Runner do
     {:reply, :ok, index(state)}
   end
 
+  def handle_call(:reindex, _from, state) do
+    Logger.debug("MEILISEARCH | re-indexing")
+    {:reply, :ok, index(%{state | indexers: @indexers})}
+  end
+
   def handle_call(term, _from, state) do
     Logger.debug("MEILISEARCH | received unknown call: #{inspect(term)}")
     {:reply, nil, state}
@@ -110,6 +127,7 @@ defmodule Search.Meilisearch.Runner do
   def handle_info(:maybe_index, state) do
     state =
       with {:ok, have} <- Search.Meilisearch.API.list_indexes() do
+        have = have |> Map.reject(fn {_k, count} -> count <= 0 end) |> Map.keys()
         want = Enum.into(@indexers, %{}, &{to_string(&1.id()), &1})
         missing = Enum.reduce(have, want, &Map.delete(&2, &1))
         missing = Map.values(missing)
@@ -121,10 +139,9 @@ defmodule Search.Meilisearch.Runner do
           state
         end
       else
-        err ->
-          Logger.debug("MEILISEARCH | re-queuing index because: #{inspect(err)}")
-          Process.send_after(self(), :maybe_index, @health_check_seconds * 2 * 1000)
-          state
+        {:error, err} ->
+          Logger.debug("MEILISEARCH | reindexing everything because: #{inspect(err)}")
+          index(%{state | indexers: @indexers})
       end
 
     {:noreply, state}
@@ -174,10 +191,14 @@ defmodule Search.Meilisearch.Runner do
         [
           "--no-analytics",
           "--env",
-          # "development",
-          "production",
+          if(Application.get_env(:veloroute, :env) == :prod,
+            do: "production",
+            else: "development"
+          ),
           "--log-level",
           "WARN",
+          "--http-payload-size-limit",
+          "1Gb",
           "--db-path",
           state.db_path,
           "--master-key",
@@ -249,11 +270,20 @@ defmodule Search.Meilisearch.Runner do
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 
-    Enum.flat_map(@indexers, fn indexer ->
-      params = indexer.params(query, lat, lon)
-      results = Search.Meilisearch.API.search(indexer.id(), params)
-      Enum.map(results, &indexer.format/1)
+    lookup = Enum.into(@indexers, %{}, &{&1.id(), &1})
+
+    @indexers
+    |> Enum.into(%{}, fn indexer ->
+      {indexer.id(), indexer.params(query, lat, lon)}
     end)
+    |> Search.Meilisearch.API.multi_search()
+    |> Enum.flat_map(fn {index, results} ->
+      Enum.map(results, fn result ->
+        sr = lookup[index].format(result)
+        Map.put(sr, :source, inspect(result, pretty: true))
+      end)
+    end)
+    |> Util.compact()
   end
 
   @spec index(state()) :: state()

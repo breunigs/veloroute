@@ -6,7 +6,7 @@ defmodule Esri.Search do
 
   @path "/arcgis/rest/services/World/GeocodeServer/findAddressCandidates"
   @language "de"
-  @bbox_str Settings.bounds() |> VelorouteWeb.VariousHelpers.to_string_bounds()
+  @bbox_str Settings.bounds() |> Geo.BoundingBox.to_string_bounds()
 
   @debug false
 

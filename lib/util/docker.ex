@@ -70,9 +70,23 @@ defmodule Util.Docker do
           optional(:mount_videos_in_dir) => binary(),
           optional(:mounts) => docker_mounts(),
           optional(:environment) => docker_environment(),
-          optional(:docker_args) => [binary()],
+          optional(:docker_args) => [binary() | integer()],
           optional(:command_args) => [binary()]
         }
+  @known_docker_opts_keys [
+    :run_as_local_user,
+    :mount_videos_in_dir,
+    :mounts,
+    :environment,
+    :docker_args,
+    :command_args
+  ]
+  defp valid_docker_opts!(opts) when not is_map(opts), do: raise("docker_opts must be a map")
+
+  defp valid_docker_opts!(opts) do
+    unknown = Map.keys(opts) -- @known_docker_opts_keys
+    if unknown != [], do: raise("unknown docker_opts #{inspect(unknown)}")
+  end
 
   @doc """
   Returns standardized container and image names
@@ -187,7 +201,7 @@ defmodule Util.Docker do
     remote_url = "#{source}##{ref}"
 
     if image_exists?(img_name) do
-      {:ok, img_name}
+      :ok
     else
       Util.Cmd2.exec(
         ["docker", "build", remote_url, "-t", img_name],
@@ -250,11 +264,10 @@ defmodule Util.Docker do
   @spec run(full_ref(), docker_opts(), Util.Cmd2.exec_opts()) :: :ok | {:error, binary()}
   def run(full_ref, docker_opts, exec_opts) when is_full_ref(full_ref) do
     exec_opts = default_exec_opts(full_ref, exec_opts)
+    cli = run_docker_cli(full_ref, docker_opts)
 
     try do
-      run_docker_cli(full_ref, docker_opts)
-      |> Util.Cmd2.exec(exec_opts)
-      |> Util.Cmd2.result_to_error()
+      Util.Cmd2.exec(cli, exec_opts)
     after
       # Docker creates an empty dir when mounting the `extra_video_mount`. Since
       # the outer folder is also mounted, the empty folder shows up on the host.
@@ -264,6 +277,7 @@ defmodule Util.Docker do
       # `flock` mechanism or similar, which is effort, so we just ignore this.
       # File.rmdir(Path.join(cache_dir, "videos"))
     end
+    |> Util.Cmd2.result_to_error()
   end
 
   @doc """
@@ -271,6 +285,8 @@ defmodule Util.Docker do
   """
   @spec run_docker_cli(full_ref(), docker_opts()) :: [binary()]
   def run_docker_cli(full_ref, opts) when is_full_ref(full_ref) do
+    valid_docker_opts!(opts)
+
     %{image: img_name, container: container_name} = names(full_ref)
     opts = opts |> maybe_add_default_mounts() |> maybe_mount_videos()
 
@@ -291,14 +307,15 @@ defmodule Util.Docker do
     ]
     |> List.flatten()
     |> Util.compact()
+    |> Enum.map(&to_string/1)
   end
 
   @spec run_mounts_to_args(docker_mounts()) :: [binary()]
   defp run_mounts_to_args(mounts) when is_map(mounts) do
     Enum.flat_map(mounts, fn {from, to} ->
-      from = Path.expand(from)
-      to = Path.expand(to)
-      ["--mount", "type=bind,source=#{from},target=#{to}"]
+      from = Path.expand(from) |> String.replace(~s|"|, ~s|\\"|)
+      to = Path.expand(to) |> String.replace(~s|"|, ~s|\\"|)
+      ["--mount", "type=bind,\"source=#{from}\",\"target=#{to}\""]
     end)
   end
 
@@ -338,9 +355,8 @@ defmodule Util.Docker do
   """
   @spec default_exec_opts(full_ref(), Util.Cmd2.exec_opts()) :: Util.Cmd2.exec_opts()
   def default_exec_opts(full_ref, exec_opts \\ []) when is_full_ref(full_ref) do
-    docker_kill = "docker stop --time 2 #{names(full_ref).container}"
     env = [{"DOCKER_BUILDKIT", "1"}]
-    Keyword.merge([kill: docker_kill, env: env], exec_opts)
+    Keyword.merge([kill: docker_kill(full_ref), env: env, name: elem(full_ref, 0)], exec_opts)
   end
 
   @doc """
@@ -373,11 +389,11 @@ defmodule Util.Docker do
   Deletes a Docker network
   """
   @spec network_delete(name_or_id :: binary()) ::
-          {:ok, id :: binary()} | {:error, reason :: binary()}
+          :ok | {:error, reason :: binary()}
   def network_delete(name_or_id) when is_binary(name_or_id) do
     System.cmd("docker", ["network", "rm", name_or_id], stderr_to_stdout: true)
     |> case do
-      {out, 0} -> {:ok, out}
+      {_out, 0} -> :ok
       {err, code} -> {:error, "exit_status=#{code} #{err}"}
     end
   end
@@ -404,6 +420,38 @@ defmodule Util.Docker do
     |> case do
       {out, 0} -> {:ok, String.trim(out)}
       {err, code} -> {:error, "exit_status=#{code} #{err}"}
+    end
+  end
+
+  @doc """
+  Returns the time the container was created at in seconds since epoch (posix time)
+  """
+  @spec container_created_at(full_ref()) ::
+          {:ok, posix_time :: non_neg_integer()} | {:error, reason :: binary()}
+  def container_created_at(full_ref) when is_full_ref(full_ref) do
+    System.cmd(
+      "docker",
+      [
+        "inspect",
+        names(full_ref).container,
+        "--format",
+        "{{.Created}}"
+      ],
+      stderr_to_stdout: true
+    )
+    |> case do
+      {"", 0} ->
+        {:error, "container does not exist"}
+
+      {out, 0} ->
+        with {:ok, utc, 0} <- DateTime.from_iso8601(String.trim(out)) do
+          {:ok, DateTime.to_unix(utc)}
+        else
+          err -> {:error, "failed to parse docker timestamp: #{out} (inspect #{err})"}
+        end
+
+      {err, code} ->
+        {:error, "exit_status=#{code} #{err}"}
     end
   end
 
@@ -448,12 +496,26 @@ defmodule Util.Docker do
   end
 
   @doc """
+  Starts a named container
+  """
+  @spec start(full_ref()) :: :ok | {:error, binary()}
+  def start(full_ref) when is_full_ref(full_ref) do
+    Util.Cmd2.exec(
+      [
+        "docker",
+        "start",
+        "--attach",
+        names(full_ref).container
+      ],
+      kill: docker_kill(full_ref)
+    )
+    |> Util.Cmd2.result_to_error()
+  end
+
+  @doc """
   Stops a named container
   """
   @spec stop(full_ref()) :: :ok | {:error, binary()}
-  # def stop(full_ref) when is_full_ref(full_ref), do: stop(names(full_ref).container)
-
-  # def stop(container_name) when is_binary(container_name) do
   def stop(full_ref) when is_full_ref(full_ref) do
     container_name = names(full_ref).container
 
@@ -463,7 +525,48 @@ defmodule Util.Docker do
         :ok
 
       {out, status} ->
-        {:error, "failed to stop '#{container_name}' with status=#{status}: #{out}"}
+        {:error, "failed to stop '#{container_name}' with status=#{status}: #{String.trim(out)}"}
+    end
+  end
+
+  @doc """
+  Stops and removes a named container
+  """
+  @spec stop_and_remove(full_ref()) :: :ok | {:error, binary()}
+  def stop_and_remove(full_ref) do
+    container_name = names(full_ref).container
+
+    System.cmd("docker", ["rm", "--force", container_name], stderr_to_stdout: true)
+    |> case do
+      {_, 0} ->
+        :ok
+
+      {out, status} ->
+        {:error,
+         "failed to stop and remove '#{container_name}' with status=#{status}: #{String.trim(out)}"}
+    end
+  end
+
+  @doc """
+  Checks if the named container exists. Returns true, regardless if the
+  container is running or not.
+  """
+  @spec container_exists?(full_ref()) :: boolean()
+  def container_exists?(full_ref) when is_full_ref(full_ref) do
+    container_name = names(full_ref).container
+
+    System.cmd(
+      "docker",
+      ["ps", "--all", "--filter", "name=#{container_name}", "--format", "{{.ID}}"],
+      stderr_to_stdout: true
+    )
+    |> case do
+      {out, 0} ->
+        out != ""
+
+      err ->
+        Logger.warning("Failed to list docker containers: #{inspect(err)}")
+        false
     end
   end
 
@@ -472,6 +575,10 @@ defmodule Util.Docker do
   """
   def image_name(tag) do
     "veloroute.hamburg/docker:#{tag}"
+  end
+
+  defp docker_kill(full_ref) when is_full_ref(full_ref) do
+    "docker stop --time 2 #{names(full_ref).container}"
   end
 
   @doc """

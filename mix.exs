@@ -46,8 +46,8 @@ defmodule Veloroute.MixProject do
     ]
   end
 
-  defp extra_apps(:test), do: [:tqdm]
-  defp extra_apps(:dev), do: [:tqdm]
+  defp extra_apps(:test), do: [:tqdm, :os_mon]
+  defp extra_apps(:dev), do: [:tqdm, :os_mon]
   defp extra_apps(_), do: []
 
   # Specifies which paths to compile per environment.
@@ -61,6 +61,7 @@ defmodule Veloroute.MixProject do
     [
       {:atomex, "~> 0.5.1"},
       {:cachex, "~> 3.4"},
+      {:csv, "~> 3.2"},
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},

@@ -23,11 +23,11 @@ defmodule Data.Article.Static.Suche do
       <% else %>
       <ul>
         <%= for result <- @search_results do %>
+          <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
           <li>
             <div>
-              <!-- relevance: <%= result.relevance %> type: <%= result.type %> -->
               <%= Search.Result.to_html(result) %>
-              <%= if result.subtext do %>
+              <%= unless result.subtext in [nil, ""] do %>
                 <div class="aside"><%= result.subtext %></div>
               <% end %>
             </div>
@@ -40,8 +40,13 @@ defmodule Data.Article.Static.Suche do
   end
 
   defp combined_search(%{search_query: query, search_bounds: bounds}) do
-    [Search.Meilisearch.Runner, Maptiler.Search, Esri.Search.NoStreets]
+    # [Search.Meilisearch.Runner, Maptiler.Search, Esri.Search.NoStreets]
+    [Search.Meilisearch.Runner]
     |> Search.Wrapper.query(query, bounds)
     |> Enum.take(15)
+  end
+
+  defp debug?() do
+    Application.get_env(:veloroute, :env) != :prod
   end
 end

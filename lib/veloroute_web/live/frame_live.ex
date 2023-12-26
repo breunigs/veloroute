@@ -1,7 +1,6 @@
 defmodule VelorouteWeb.FrameLive do
   use VelorouteWeb, :live_view
   require Logger
-  import VelorouteWeb.VariousHelpers
   import Guards
 
   @default_bounds struct(Geo.BoundingBox, Settings.initial())
@@ -395,7 +394,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   defp url_query(%{assigns: assigns}) do
-    bounds = to_string_bounds(assigns[:map_bounds])
+    bounds = Geo.BoundingBox.to_string_bounds(assigns[:map_bounds])
 
     query = %{
       "video" => assigns[:video_hash],

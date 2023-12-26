@@ -8,16 +8,44 @@ defmodule Search.Result do
           relevance: float(),
           type: binary(),
           url: binary() | nil,
-          subtext: binary() | nil
+          subtext: binary() | nil,
+          source: binary() | nil
         }
 
   @enforce_keys [:name, :bounds, :relevance, :type]
 
-  defstruct @enforce_keys ++ [:url, :subtext, :center]
+  defstruct @enforce_keys ++ [:url, :subtext, :center, :source]
 
   @spec sort([t()] | Enumerable.t()) :: [t()]
   def sort(a) do
     Enum.sort(a, &order/2)
+  end
+
+  @spec merge_same([t()] | Enumerable.t()) :: [t()]
+  def merge_same(a) do
+    a
+    |> Enum.group_by(&{&1.name, &1.subtext, &1.type, &1.url})
+    |> Enum.map(fn
+      {_merge_key, [d1]} ->
+        d1
+
+      {_merge_key, [d1 | drest] = dall} ->
+        merged =
+          Enum.reduce(drest, d1, fn d2, d1 ->
+            %{
+              d1
+              | bounds: Geo.CheapRuler.union(d1.bounds, d2.bounds),
+                relevance: d1.relevance + d2.relevance,
+                source: d1.source <> "\n" <> d2.source
+            }
+          end)
+
+        %{
+          merged
+          | center: Geo.CheapRuler.center(merged.bounds),
+            relevance: merged.relevance / length(dall)
+        }
+    end)
   end
 
   defp order(%__MODULE__{type: a, relevance: x}, %__MODULE__{type: b, relevance: x}) do
@@ -79,7 +107,7 @@ defmodule Search.Result do
   end
 
   def zoom_to_bounds(js, %{bounds: bounds}) do
-    str = VelorouteWeb.VariousHelpers.to_string_bounds(bounds)
+    str = Geo.BoundingBox.to_string_bounds(bounds)
     Phoenix.LiveView.JS.push(js, "map-zoom-to", value: %{bounds: str})
   end
 end
