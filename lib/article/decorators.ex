@@ -70,6 +70,37 @@ defmodule Article.Decorators do
     end
   end
 
+  @doc """
+  Returns only the tracks that are directly defined on the article, rejecting
+  tracks imported from elsewhere.
+
+      iex> Data.Article.Static.LexikonSchutzstreifen
+      ...> |> Article.Decorators.own_tracks()
+      ...> |> length()
+      0
+
+      iex> Data.Article.Static.Alltagsroute3
+      ...> |> Article.Decorators.own_tracks()
+      ...> |> length()
+      2
+  """
+  @spec own_tracks(Article.t()) :: [Video.Track.t()]
+  def own_tracks(art) do
+    Enum.filter(art.tracks(), &(&1.parent_ref == art))
+  end
+
+  @spec street_names(Article.t()) :: [binary()]
+  def street_names(art) do
+    art
+    |> own_tracks()
+    |> Enum.map(&Video.Generator.get/1)
+    |> Util.compact()
+    |> Enum.flat_map(& &1.street_names())
+    |> Enum.map(& &1.text)
+    |> Enum.reject(&(&1 == ""))
+    |> Enum.uniq()
+  end
+
   @spec gpx_links(module()) :: [Phoenix.LiveView.Rendered.t()]
   def gpx_links(art) when is_module(art) do
     assigns = %{name: art.name()}

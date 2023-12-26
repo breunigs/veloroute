@@ -1,5 +1,6 @@
 defmodule Article.DecoratorsTest do
   use ExUnit.Case, async: true
+  doctest Article.Decorators
 
   defmodule FakeArticle do
     use Article.Default

@@ -32,7 +32,7 @@ defmodule Search.Meilisearch.Articles do
       # result will be rendered directly from the article
       displayedAttributes: ~w(module),
       # order is from most important to least important
-      searchableAttributes: ~w(title summary type_name text updated_at),
+      searchableAttributes: ~w(title summary type_name text streets updated_at),
       sortableAttributes: ~w(updated_at _geo),
       synonyms: %{
         alltagsroute: ["veloroute"],
@@ -61,6 +61,7 @@ defmodule Search.Meilisearch.Articles do
       summary: art.summary(),
       text: Article.Decorators.text(art),
       title: Article.Decorators.full_title(art),
+      streets: Article.Decorators.street_names(art),
       type_name: Article.Decorators.type_name(art),
       updated_at: art.updated_at() || art.created_at()
     }
