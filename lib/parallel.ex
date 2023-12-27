@@ -20,12 +20,12 @@ defmodule Parallel do
   @spec each(Enumerable.t(), (Enum.element() -> any())) :: :ok
   def each(enum, fun) do
     Task.async_stream(enum, fun, timeout: :infinity)
-    |> Enum.each(&Function.identity/1)
+    |> Stream.run()
   end
 
   @spec each(Enumerable.t(), pos_integer(), (Enum.element() -> any())) :: :ok
   def each(enum, limit, fun) do
     Task.async_stream(enum, fun, timeout: :infinity, max_concurrency: limit)
-    |> Enum.each(&Function.identity/1)
+    |> Stream.run()
   end
 end
