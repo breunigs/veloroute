@@ -78,7 +78,9 @@ defmodule Util do
   end
 
   @spec modules_with_prefix(binary()) :: [module()]
-  def modules_with_prefix("Elixir." <> _rest = namespace) do
+  use Memoize
+
+  defmemo modules_with_prefix("Elixir." <> _rest = namespace) do
     {:ok, list} = :application.get_key(:veloroute, :modules)
     Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(namespace)))
   end
