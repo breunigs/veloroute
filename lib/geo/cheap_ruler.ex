@@ -393,13 +393,10 @@ defmodule Geo.CheapRuler do
       ...> ])
       534.0011528314758
   """
-  def line_distance(line) when is_list(line) do
-    line
-    |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.reduce(0, fn [one, two], acc ->
-      acc + point2point_dist(one, two)
-    end)
-  end
+  def line_distance(line, len \\ 0)
+  def line_distance([a, b | l], len), do: line_distance([b | l], len + point2point_dist(a, b))
+  def line_distance([_], len), do: len
+  def line_distance([], len), do: len
 
   @spec point2point_dist(%{lat: number, lon: number}, %{lat: number, lon: number}) :: float
   @doc ~S"""
