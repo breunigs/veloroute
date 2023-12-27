@@ -77,7 +77,6 @@ defmodule Search.Meilisearch.Nominatim do
       {"" <> _wd, [_item] = items} -> items
       {"" <> _wd, items} -> [merge_items(items)]
     end)
-    |> dbg
   end
 
   @typep item :: %{
