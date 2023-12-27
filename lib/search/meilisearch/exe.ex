@@ -14,7 +14,7 @@ defmodule Search.Meilisearch.Exe do
       "aarch64" <> _ -> :aarch64
     end
 
-  @version "v1.5.1"
+  @version "v1.6.0-rc.3"
   filename = "meilisearch-#{os}-#{arch}"
   @url "https://github.com/meilisearch/meilisearch/releases/download/#{@version}/#{filename}"
   @exe "#{filename}-#{@version}"
@@ -28,6 +28,8 @@ defmodule Search.Meilisearch.Exe do
 
     :ok = File.chmod(path, 0o555)
   end
+
+  def version(), do: @version
 
   def path(), do: Path.join(to_string(:code.priv_dir(:veloroute)), @exe)
 end

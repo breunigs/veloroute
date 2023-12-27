@@ -3,8 +3,6 @@ defmodule Basemap.Nominatim do
   require Logger
 
   @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.3"}}
-  # toggle to false faster imports, but less rank accuracy
-  @import_wikipedia true
 
   def export(where \\ :cache), do: path(where, "nominatim.json")
   defp source(where), do: Basemap.OpenStreetMap.target_extract(where)
@@ -67,7 +65,7 @@ defmodule Basemap.Nominatim do
     environment = %{
       "PBF_PATH" => source(:container),
       "FREEZE" => "true",
-      "IMPORT_WIKIPEDIA" => "#{@import_wikipedia}",
+      "IMPORT_WIKIPEDIA" => "true",
       "IMPORT_STYLE" => "extratags",
       "POSTGRES_WORK_MEM" => "#{round_to_multiple_of_two(mem_bytes / 15)}B"
     }
@@ -217,7 +215,7 @@ defmodule Basemap.Nominatim do
         AND main2.linked_place_id IS NULL
         -- if we import Wikipedia, there will be entries for the entire world. So
         -- we filter it down to our area of interest again.
-        #{if @import_wikipedia, do: "AND main1.geometry && ST_MakeEnvelope(#{bbox}, 4326)"}
+        AND main1.geometry && ST_MakeEnvelope(#{bbox}, 4326)
 
       GROUP BY
         main1.osm_type,

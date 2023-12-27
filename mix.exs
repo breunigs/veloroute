@@ -61,7 +61,6 @@ defmodule Veloroute.MixProject do
     [
       {:atomex, "~> 0.5.1"},
       {:cachex, "~> 3.4"},
-      {:csv, "~> 3.2"},
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},

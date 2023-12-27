@@ -154,6 +154,7 @@ defmodule Mix.Tasks.Deploy do
             /assets/basemap/styles/standard.json
             /assets/app.js
             /assets/app.css
+            /suche?search_query=foobar
           ),
           &report_status_200?/1
         )
@@ -184,7 +185,7 @@ defmodule Mix.Tasks.Deploy do
     end
   end
 
-  defp report_status_200?(path) do
+  defp report_status_200?(path, retried \\ false) do
     case Tesla.get(get_docker_url(path)) do
       {:ok, %{status: 200}} ->
         IO.puts("✓ 200 from #{path}")
@@ -194,8 +195,11 @@ defmodule Mix.Tasks.Deploy do
         IO.puts("! unexpected status #{response.status} from #{path}")
         false
 
+      {:error, :timeout} ->
+        if retried, do: false, else: report_status_200?(path, true)
+
       other ->
-        IO.puts("! unexpected reponse for #{path}: #{inspect(other)}")
+        IO.puts("! unexpected response for #{path}: #{inspect(other)}")
         false
     end
   end

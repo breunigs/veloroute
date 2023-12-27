@@ -26,9 +26,6 @@ The project mostly uses open source software to provide its functionality. There
 are notable exceptions:
 - video stabilization needs to happen on the camera, there is no tooling included
   to "deshake" videos.
-- the search results for streets, points of interest, etc. are provided through
-  [ESRI](https://www.esri.com/en-us/home) and
-  [Maptiler](https://www.maptiler.com/).
 - Satellite imagery is also provided through either of these two companies,
   although a reverse proxy is used to conserve privacy.
 - display of street polyline (e.g. when clicking a search result) requires

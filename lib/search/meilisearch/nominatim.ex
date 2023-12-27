@@ -34,7 +34,7 @@ defmodule Search.Meilisearch.Nominatim do
   def format(result) do
     f = fn arg -> Map.fetch!(result, arg) end
 
-    human = lookup(result, ["type", ["extratags", "border_type"]])
+    human = lookup(result, [["extratags", "building"], "type", ["extratags", "border_type"]])
     bbox = Geo.BoundingBox.parse(f.("bbox"))
     addr = f.("address")
     names = f.("name")
@@ -42,6 +42,7 @@ defmodule Search.Meilisearch.Nominatim do
     name =
       ~w[name:de name alt_name old_name addr:housename official_name brand]
       |> Enum.map(&names[&1])
+      |> Kernel.++([f.("extratags")["branch"]])
       |> dedupe()
 
     subtext =

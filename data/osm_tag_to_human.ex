@@ -1,544 +1,390 @@
 defmodule Data.OsmTagToHuman do
+  @spec map() :: %{binary() => [binary()]}
   def map(),
     do: %{
-      "allotment_house" => ["Gartenhäuschen"],
-      "allotments" => ["Kleingärten", "Schrebergärten"],
-      "bakery" => ["Bäckerei", "Bäcker"],
-      "bench" => ["Sitzbank", "Parkbank"],
-      "bicycle_parking" => ["Fahrradparken"],
-      "bicycle_rental" => ["Fahrradverleih", "StadtRAD"],
-      "bicycle_repair_station" => ["Fahrradreparaturstation"],
-      "bus_station" => ["Bushaltestelle", "Bushalt", "Busbahnhof"],
-      "bus_stop" => ["Bushaltestelle", "Bushalt"],
-      "cafe" => ["Café", "Kaffee", "Kaffeehaus"],
-      "canal" => ["Kanal"],
-      "church" => ["Kirche"],
-      "cinema" => ["Kino", "Lichtspiele", "Lichtspielhaus"],
-      "clinic" => ["Klinik", "Krankenhaus"],
-      "clock" => ["Uhr"],
-      "clothes" => ["Bekleidungsgeschäft", "Kleiderladen", "Klamottenladen"],
-      "coffee" => ["Café", "Kaffee", "Kaffeehaus"],
-      "college" => ["Universität", "Hochschule"],
-      "community_centre" => [
-        "Gemeinschaftszentrum",
-        "Kulturhaus",
-        "Gemeindezentrum",
-        "Jugendfreizeiteinrichtung",
-        "Jugendzentrum"
-      ],
-      "compressed_air" => ["Luftpumpe"],
-      "courthouse" => ["Gericht"],
-      "crematorium" => ["Krematorium"],
-      "dancing_school" => ["Tanzschule", "Schule"],
-      "dentist" => ["Zahnarzt"],
-      "ditch" => ["Graben", "Wassergraben"],
-      "doctors" => ["Ärztehaus", "Ärzte", "Arzt"],
-      "drain" => ["Kanal", "Abwasserkanal"],
-      "drinking_water" => ["Trinkbrunnen", "Trinkwasser"],
-      "emergency_access_point" => ["Rettungspunkt"],
-      "farm" => ["Bauernhof", "Farm"],
-      "fast_food" => ["Imbiss", "Schnellimbiss", "Fast Food"],
-      "fire_station" => ["Feuerwehr", "Feuerwehrhaus"],
-      "flight_school" => ["Flugschule"],
-      "forest" => ["Wald", "Forst"],
-      "fountain" => ["Springbrunnen", "Brunnen"],
-      "hairdresser" => ["Friseur"],
-      "hamlet" => ["Siedlung", "Weiler"],
-      "hospital" => ["Krankenhaus", "Klinik"],
-      "hotel" => ["Hotel"],
-      "house" => ["Gebäude", "Haus"],
-      "kindergarten" => ["KiTa", "Kindergarten"],
-      "language_school" => ["Sprachschule"],
-      "letter_box" => ["Briefkasten"],
-      "library" => ["Bücherhalle", "Bibliothek"],
-      "parcel_locker" => ["Packstation", "Paketstation"],
-      "parking" => ["Parkplatz"],
-      "pharmacy" => ["Apotheke"],
-      "chemist" => ["Apotheke"],
-      "playground" => ["Spielplatz"],
-      "police" => ["Polizei"],
-      "port" => ["Hafen"],
-      "post_box" => ["Briefkasten"],
-      "post_office" => ["Postamt", "Post"],
-      "prison" => ["Gefängnis", "Justizvollzugsanstalt", "Knast"],
-      "restaurant" => ["Restaurant"],
-      "river" => ["Fluss"],
-      "school" => ["Schule", "Grundschule", "Realschule", "Gesamtschule"],
-      "stream" => ["Bach"],
-      "street_cabinet" => ["Straßenschrank", "Postablagekasten", "Schaltschrank"],
-      "suburb" => ["Stadtteil"],
-      "supermarket" => ["Supermarkt"],
-      "theatre" => ["Theater"],
-      "tool_rental" => ["Werkzeugverleih"],
-      "townhall" => ["Rathaus"],
-      "university" => ["Universität"],
-      "veterinary" => ["Tierarzt", "Veterinär"],
-      "village" => ["Dorf"],
-      #  5694 "service"
-      #  5432 "memorial"
-      #  5295 "track"
-      #  4848 "footway"
-      #  1861 "information"
-      #  1262 "company"
-      #  1260 "industrial"
-      #  1223 "water"
-      #  1206 "place_of_worship"
-      #  1197 "sports_centre"
-      #  1040 "artwork"
-      #  1036 "social_facility"
-      #  1012 "pedestrian"
-      #   962 "charging_station"
-      #   943 "works"
-      "vending_machine" => ["Verkaufsautomat"],
-      #   872 "commercial"
-      #   864 "access_point"
-      #   835 "administrative"
-      #   808 "trunk"
-      #   788 "bank"
-      #   767 "pitch"
-      #   748 "pub"
-      #   746 "car_repair"
-      #   733 "attraction"
-      #   732 "fuel"
-      #   681 "car"
-      "construction" => ["Baustelle"],
-      #   628 "stop"
-      #   538 "park"
-      #   536 "office"
-      #   523 "kiosk"
-      #   510 "milestone"
-      #   499 "beauty"
-      #   496 "florist"
-      #   458 "suction_point"
-      #   439 "proposed"
-      #   409 "convenience"
-      #   390 "locality"
-      #   385 "bar"
-      #   382 "farmyard"
-      "atm" => ["Geldautomat"],
-      "optician" => ["Optiker", "Brillenladen"],
-      "shoes" => ["Schuhgeschäft", "Schuhladen"],
-      #   334 "protected_area"
-      #   333 "farm"
-      #   331 "postal_code"
-      #   331 "bicycle"
-      #   331 "archaeological_site"
-      #   330 "bridge"
-      #   329 "government"
-      #   327 "motorway_junction"
-      #   326 "light_rail"
-      #   326 "insurance"
-      #   319 "furniture"
-      #   304 "cemetery"
-      "steps" => ["Treppe", "Stufen"],
-      "museum" => ["Museum"],
-      #   299 "driving_school"
-      #   294 "jewelry"
-      #   288 "apartments"
-      #   278 "abandoned"
-      "subway_entrance" => ["U/S-Bahn Eingang"],
-      #   274 "heritage"
-      #   272 "meadow"
-      #   271 "boundary_stone"
-      #   267 "platform"
-      #   265 "nature_reserve"
-      #   265 "library"
-      #   264 "fitness_centre"
-      #   260 "travel_agency"
-      #   258 "tailor"
-      #   258 "mobile_phone"
-      #   252 "apartment"
-      #   249 "car_wash"
-      #   232 "estate_agent"
-      #   228 "books"
-      #   222 "station"
-      #   221 "tree"
-      #   221 "garden"
-      #   219 "retail"
-      #   219 "beverages"
-      #   217 "cycleway"
-      "ice_cream" => ["Eisdiele"],
-      #   216 "association"
-      #   213 "peak"
-      #   210 "physiotherapist"
-      #   208 "doityourself"
-      #   206 "interior_decoration"
-      #   205 "guest_house"
-      "elevator" => ["Fahrstuhl", "Aufzug"],
-      #   202 "secondary_link"
-      #   200 "farmland"
-      #   198 "hearing_aids"
-      #   191 "lawyer"
-      #   188 "sport"
-      "butcher" => ["Fleischerei", "Metzgerei"],
-      #   182 "electronics"
-      #   175 "townhall"
-      "viewpoint" => ["Aussichtspunkt", "Aussichtsplatform"],
-      #   169 "parking_position"
-      #   158 "pet"
-      #   155 "marina"
-      #   153 "monitoring_station"
-      #   151 "pipeline"
-      #   151 "ambulance_station"
-      #   149 "halt"
-      #   145 "garden_centre"
-      "warehouse" => ["Lagerhalle", "Lagerhaus"],
-      #   142 "gift"
-      #   141 "variety_store"
-      #   138 "recycling"
-      "wastewater_plant" => ["Kläranlage"],
-      "pier" => ["Landungsbrücke", "Seebrücke"]
-      #   132 "funeral_directors"
-      #   129 "carpenter"
-      #   129 "car_rental"
-      #   128 "camp_site"
-      #   127 "plumber"
-      #   125 "grass"
-      #   125 "ferry_terminal"
-      #   123 "tertiary_link"
-      #   121 "college"
-      #   120 "tower"
-      #   119 "dry_cleaning"
-      #   118 "horse_riding"
-      #   117 "laundry"
-      #   117 "childcare"
-      #   116 "parking_entrance"
-      #   113 "water_tank"
-      #   113 "medical_supply"
-      #   113 "it"
-      #   113 "art"
-      #   110 "deli"
-      #   109 "tattoo"
-      #   109 "sports"
-      #   109 "building"
-      #   108 "wine"
-      #   107 "neighbourhood"
-      #   107 "isolated_dwelling"
-      #   107 "car_sharing"
-      #   103 "marketplace"
-      #   103 "camp_pitch"
-      #   102 "toys"
-      #   102 "pumping_station"
-      #   102 "computer"
-      #   101 "stationery"
-      #   101 "massage"
-      #    99 "water_park"
-      #    99 "nightclub"
-      #    98 "parking_space"
-      #    98 "greengrocer"
-      #    97 "square"
-      #    97 "sports_hall"
-      #    97 "mall"
-      #    96 "confectionery"
-      #    96 "arts_centre"
-      #    96 "alternative"
-      #    95 "taxi"
-      #    93 "taxiway"
-      #    92 "wood"
-      #    91 "wetland"
-      #    90 "tax_advisor"
-      #    90 "shelter"
-      #    90 "primary_link"
-      #    90 "hostel"
-      #    90 "electrician"
-      #    89 "cosmetics"
-      #    88 "public"
-      #    86 "photographer"
-      #    83 "copyshop"
-      #    82 "vacant"
-      #    82 "hardware"
-      #    79 "trunk_link"
-      #    78 "stone"
-      #    78 "bicycle_parking"
-      #    76 "newsagent"
-      #    76 "car_parts"
-      #    75 "water_works"
-      #    75 "quarry"
-      #    75 "painter"
-      #    74 "trade"
-      #    73 "toilets"
-      #    73 "seafood"
-      #    72 "razed"
-      #    72 "department_store"
-      #    71 "diplomatic"
-      #    69 "motorcycle"
-      #    69 "dyke"
-      #    68 "events_venue"
-      #    68 "employment_agency"
-      #    67 "fitness_station"
-      #    66 "signal_box"
-      #    66 "metal_construction"
-      #    66 "dog_park"
-      #    66 "adult_gaming_centre"
-      #    65 "psychotherapist"
-      #    65 "fountain"
-      #    64 "dance"
-      #    64 "coffee"
-      #    63 "town"
-      #    63 "kitchen"
-      #    63 "detached"
-      #    63 "alcohol"
-      #    62 "shoemaker"
-      #    62 "second_hand"
-      #    62 "railway"
-      #    62 "perfumery"
-      #    62 "hvac"
-      #    62 "caravan_site"
-      #    61 "music_school"
-      #    61 "advertising_agency"
-      #    60 "hangar"
-      #    60 "grave_yard"
-      #    60 "educational_institution"
-      #    60 "charity"
-      #    60 "casino"
-      #    60 "bed"
-      #    59 "wholesale"
-      #    59 "tomb"
-      #    59 "locksmith"
-      #    59 "lighthouse"
-      #    59 "chalet"
-      #    58 "outdoor_seating"
-      #    58 "ngo"
-      #    58 "golf_course"
-      #    58 "dormitory"
-      #    57 "ticket"
-      #    57 "photo"
-      #    57 "disused"
-      #    56 "rest_area"
-      #    55 "religion"
-      #    55 "musical_instrument"
-      #    55 "architect"
-      #    54 "tyres"
-      #    54 "slipway"
-      #    53 "quay"
-      #    53 "public_building"
-      #    53 "public_bookcase"
-      #    52 "gardener"
-      #    51 "fabric"
-      #    51 "courthouse"
-      #    50 "tobacco"
-      #    50 "political_party"
-      #    50 "embankment"
-      #    50 "defibrillator"
-      #    49 "tea"
-      #    49 "studio"
-      #    48 "windmill"
-      #    48 "swimming_pool"
-      #    48 "research"
-      #    48 "bookmaker"
-      #    47 "nursing_home"
-      #    47 "gallery"
-      #    47 "antiques"
-      #    46 "bunker"
-      #    45 "beach"
-      #    44 "outdoor"
-      #    43 "shed"
-      #    43 "music"
-      #    43 "gambling"
-      #    42 "scrub"
-      #    42 "orchard"
-      #    42 "glaziery"
-      #    42 "biergarten"
-      #    40 "roof"
-      #    40 "brownfield"
-      #    39 "vehicle_inspection"
-      #    39 "ruins"
-      #    39 "roofer"
-      #    39 "logistics"
-      #    38 "yard"
-      #    38 "plant_nursery"
-      #    36 "watermill"
-      #    36 "gate"
-      #    35 "weir"
-      #    35 "boat_rental"
-      #    34 "speech_therapist"
-      #    34 "runway"
-      #    34 "recreation_ground"
-      #    34 "podiatrist"
-      #    34 "miniature_golf"
-      #    34 "houseware"
-      #    34 "civic"
-      #    34 "caterer"
-      #    33 "stadium"
-      #    33 "services"
-      #    33 "picnic_site"
-      #    33 "newspaper"
-      #    33 "farm_auxiliary"
-      #    33 "builder"
-      #    32 "tram_stop"
-      #    32 "surveillance"
-      #    32 "ship"
-      #    32 "landfill"
-      #    32 "hut"
-      #    32 "fishing"
-      #    32 "brothel"
-      #    31 "telecommunication"
-      #    31 "stonemason"
-      #    31 "joiner"
-      #    31 "emergency_service"
-      #    30 "bag"
-      #    29 "water_well"
-      #    29 "paint"
-      #    29 "mast"
-      #    29 "islet"
-      #    29 "hifi"
-      #    29 "funeral_hall"
-      #    29 "consulting"
-      #    28 "physician"
-      #    28 "pastry"
-      #    28 "narrow_gauge"
-      #    28 "manor"
-      #    28 "grassland"
-      #    28 "castle"
-      #    27 "emergency_ward_entrance"
-      #    27 "common"
-      #    27 "accountant"
-      #    26 "therapist"
-      #    26 "post_depot"
-      #    26 "pet_grooming"
-      #    26 "occupational_therapist"
-      #    26 "life_ring"
-      #    26 "junction"
-      #    26 "heath"
-      #    26 "centre"
-      #    25 "water_tower"
-      #    25 "manhole"
-      #    25 "carpet"
-      #    25 "basin"
-      #    25 "agricultural_engines"
-      #    24 "travel_agent"
-      #    24 "stables"
-      #    24 "craft"
-      #    23 "spring"
-      #    23 "pottery"
-      #    23 "canteen"
-      #    23 "bathroom_furnishing"
-      #    23 "aerodrome"
-      #    22 "zoo"
-      #    22 "tanning_salon"
-      #    22 "sample_collection"
-      #    22 "photo_booth"
-      #    22 "phone"
-      #    22 "health_food"
-      #    22 "boutique"
-      #    21 "village_green"
-      #    21 "union"
-      #    21 "train_station"
-      #    21 "swimming_area"
-      #    21 "silo"
-      #    21 "reservoir_covered"
-      #    21 "motorcycle_parking"
-      #    21 "coworking"
-      #    21 "chapel"
-      #    21 "bicycle_repair_station"
-      #    20 "watches"
-      #    20 "upholsterer"
-      #    20 "prep_school"
-      #    20 "hide_bar"
-      #    20 "handicraft"
-      #    20 "beekeeper"
-      #    20 "bbq"
-      #    19 "lifeguard"
-      #    19 "island"
-      #    19 "cape"
-      #    19 "bare_rock"
-      #    19 "agrarian"
-      #    18 "window_construction"
-      #    18 "wayside_shrine"
-      #    18 "waste_basket"
-      #    18 "theme_park"
-      #    18 "telephone"
-      #    18 "pawnbroker"
-      #    18 "midwife"
-      #    18 "garages"
-      #    18 "e-cigarette"
-      #    18 "doctor"
-      #    18 "curtain"
-      #    18 "animal_training"
-      #    17 "terrace"
-      #    17 "telescope"
-      #    17 "service_station"
-      #    17 "motorway_link"
-      #    17 "greenfield"
-      #    17 "frame"
-      #    17 "cleaning"
-      #    17 "boatyard"
-      #    16 "technical_monument"
-      #    16 "storage_tank"
-      #    16 "social"
-      #    16 "social_centre"
-      #    16 "monument"
-      #    16 "miniature"
-      #    16 "greenhouse_horticulture"
-      #    16 "erotic"
-      #    16 "designated"
-      #    16 "baby_goods"
-      #    15 "waste_disposal"
-      #    15 "tiles"
-      #    15 "storage_rental"
-      #    15 "scout"
-      #    15 "sauna"
-      #    15 "notary"
-      #    15 "movable"
-      #    15 "motel"
-      #    15 "lighting"
-      #    15 "jeweller"
-      #    15 "crane"
-      #    15 "animal_shelter"
-      #    14 "window_blind"
-      #    14 "subway"
-      #    14 "stable"
-      #    14 "property_management"
-      #    14 "engineer"
-      #    14 "energy_supplier"
-      #    14 "barracks"
-      #    13 "rehabilitation"
-      #    13 "optometrist"
-      #    13 "historic"
-      #    13 "greenhouse"
-      #    13 "electronics_repair"
-      #    13 "counselling"
-      #    13 "clockmaker"
-      #    13 "brewery"
-      #    13 "bowling_alley"
-      #    12 "tiler"
-      #    12 "swingerclub"
-      #    12 "shoe_repair"
-      #    12 "scaffolder"
-      #    12 "religious"
-      #    12 "picnic_table"
-      #    12 "passing_place"
-      #    12 "motorcycle_repair"
-      #    12 "monastery"
-      #    12 "crossover"
-      #    12 "apron"
-      #    12 "appliance"
-      #    11 "video"
-      #    11 "trail_riding_station"
-      #    11 "sewing"
-      #    11 "sand"
-      #    11 "prison"
-      #    11 "parish_hall"
-      #    11 "manufacture"
-      #    11 "leather"
-      #    11 "laboratory"
-      #    11 "internet_cafe"
-      #    11 "helipad"
-      #    11 "fireplace"
-      #    11 "equestrian"
-      #    11 "animal_boarding"
-      #    10 "wayside_cross"
-      #    10 "rental"
-      #    10 "key_cutter"
-      #    10 "hunting_stand"
-      #    10 "give_box"
-      #    10 "forestry"
-      #    10 "flowerbed"
-      #    10 "fire_water_pond"
-      #    10 "financial"
-      #    10 "electrical"
-      #    10 "bridleway"
-      #    10 "blacksmith"
-      #    10 "barn"
+      "access_point" => ~w[Rettungspunkt],
+      "adult_gaming_centre" => ~w[Spielcasino Spielothek Spielhalle],
+      "advertising_agency" => ~w[Werbeagentur],
+      "aerodrome" => ~w[Flugplatz Flugfeld Landeplatz Flughafen],
+      "allotment_house" => ~w[Gartenhäuschen],
+      "allotments" => ~w[Kleingärten Schrebergärten],
+      "ambulance_station" => ~w[Rettungswache],
+      "antiques" => ~w[Antikgeschäft],
+      "apartment" => ~w[Wohngebäude Wohnhaus],
+      "apartments" => ~w[Wohngebäude Wohnhaus],
+      "apron" => ~w[Vorfeld],
+      "archaeological_site" => ~w[Archäologische Stätte],
+      "architect" => ~w[Architekturbüro Architekt],
+      "arts_centre" => ~w[Kunstzentrum],
+      "artwork" => ~w[Kunstwerk],
+      "association" => ~w[Interessengemeinschaft Verein],
+      "atm" => ~w[Geldautomat],
+      "attraction" => ~w[Sehenswürdigkeit Attraktion],
+      "bakery" => ~w[Bäckerei Bäcker],
+      "bank" => ~w[Bank-Filiale Bank],
+      "bar" => ~w[Bar],
+      "barn" => ~w[Scheune],
+      "basin" => ~w[Becken],
+      "beach" => ~w[Strand],
+      "beauty" => ~w[Kosmetik Kosmetiksalon Parfümerie],
+      "beekeeper" => ~w[Imkerei Imker],
+      "bench" => ~w[Sitzbank Parkbank],
+      "beverages" => ~w[Getränkemarkt],
+      "bicycle_parking" => ~w[Fahrradparken],
+      "bicycle_rental" => ~w[Fahrradverleih StadtRAD],
+      "bicycle_repair_station" => ~w[Fahrradreparaturstation],
+      "biergarten" => ~w[Biergarten],
+      "blacksmith" => ~w[Schmiede Schmied],
+      "boat_rental" => ~w[Bootsverleih],
+      "boatyard" => ~w[Werft],
+      "bookmaker" => ~w[Buchmacher],
+      "books" => ~w[Buchladen],
+      "boundary_stone" => ~w[Grenzstein],
+      "bowling_alley" => ~w[Kegelbahn],
+      "brewery" => ~w[Brauerei],
+      "bridge" => ~w[Brücke],
+      "bridleway" => ~w[Reitweg],
+      "brothel" => ~w[Bordell],
+      "brownfield" => ~w[Brachfläche],
+      "building" => ~w[Gebäude],
+      "bunker" => ~w[Bunker],
+      "bus_station" => ~w[Bushaltestelle Bushalt Busbahnhof],
+      "bus_stop" => ~w[Bushaltestelle Bushalt],
+      "butcher" => ~w[Fleischerei Metzgerei],
+      "cafe" => ~w[Café Kaffee Kaffeehaus],
+      "camp_pitch" => ~w[Campingplatz Zeltplatz],
+      "camp_site" => ~w[Campingplatz],
+      "canal" => ~w[Kanal],
+      "canteen" => ~w[Kantine],
+      "cape" => ~w[Kap],
+      "car_parts" => ~w[Autoersatzteilverkauf],
+      "car_rental" => ~w[Autovermietung],
+      "car_repair" => ~w[Autowerkstatt Autoreparatur],
+      "car_sharing" => ~w[Car Sharing],
+      "car_wash" => ~w[Autowaschanlage],
+      "caravan_site" => ~w[Campingplatz],
+      "carpenter" => ~w[Zimmerei Zimmerer],
+      "carpet" => ~w[Teppichfachgeschäft],
+      "casino" => ~w[Casino],
+      "castle" => ~w[Burg],
+      "caterer" => ~w[Caterer],
+      "cathedral" => ~w[Kathedrale],
+      "cemetery" => ~w[Friedhof],
+      "chapel" => ~w[Kapelle],
+      "charging_station" => ~w[Ladestation],
+      "charity" => ~w[Wohltätigkeitsverein],
+      "chemist" => ~w[Apotheke],
+      "childcare" => ~w[Kindergarten KiTa],
+      "church" => ~w[Kirche],
+      "cinema" => ~w[Kino Lichtspiele Lichtspielhaus],
+      "clinic" => ~w[Klinik Krankenhaus],
+      "clock" => ~w[Uhr],
+      "clockmaker" => ~w[Uhrmacher],
+      "clothes" => ~w[Bekleidungsgeschäft Kleiderladen Klamottenladen],
+      "coffee" => ~w[Café Kaffee Kaffeehaus],
+      "college" => ~w[Universität Hochschule],
+      "commercial" => ~w[Gewerbegebiet],
+      "community_centre" =>
+        ~w[Gemeinschaftszentrum Kulturhaus Gemeindezentrum Jugendfreizeiteinrichtung Jugendzentrum],
+      "company" => ~w[Firma Unternehmen],
+      "compressed_air" => ~w[Luftpumpe],
+      "computer" => ~w[Computerfachgeschäft],
+      "confectionery" => ~w[Süßwarengeschäft],
+      "construction" => ~w[Baustelle],
+      "convenience" => ~w[Tante-Emma-Laden Spätkauf Kiosk],
+      "copyshop" => ~w[Copyshop],
+      "cosmetics" => ~w[Kosmetikgeschäft],
+      "courthouse" => ~w[Gericht],
+      "coworking" => ~w[Coworking],
+      "crane" => ~w[Kran],
+      "crematorium" => ~w[Krematorium],
+      "cycleway" => ~w[Radweg Fahrradweg],
+      "dance" => ~w[Tanzsaal],
+      "dancing_school" => ~w[Tanzschule Schule],
+      "defibrillator" => ~w[Defibrillator],
+      "deli" => ~w[Feinkostladen],
+      "dentist" => ~w[Zahnarzt],
+      "department_store" => ~w[Kaufhaus Warenhaus],
+      "diplomatic" => ~w[Konsulatsbüro],
+      "ditch" => ~w[Graben Wassergraben],
+      "doctor" => ~w[Ärztehaus Ärzte Arzt],
+      "doctors" => ~w[Ärztehaus Ärzte Arzt],
+      "dog_park" => ~w[Hundepark],
+      "doityourself" => ~w[Baumarkt],
+      "dormitory" => ~w[Wohnheim],
+      "drain" => ~w[Kanal Abwasserkanal],
+      "drinking_water" => ~w[Trinkbrunnen Trinkwasser],
+      "driving_school" => ~w[Fahrschule],
+      "dry_cleaning" => ~w[Chemische Reinigung],
+      "dyke" => ~w[Deich],
+      "electrician" => ~w[Elektriker],
+      "electronics" => ~w[Elektrofachgeschäft],
+      "elevator" => ~w[Fahrstuhl Aufzug],
+      "embankment" => ~w[Böschung],
+      "emergency_access_point" => ~w[Rettungspunkt],
+      "employment_agency" => ~w[Arbeitsvermittlung Arbeitsamt],
+      "estate_agent" => ~w[Immobilienhändler Immobilienmakler Makler],
+      "events_venue" => ~w[Veranstaltungsort],
+      "farm" => ~w[Bauernhof Farm],
+      "farmland" => ~w[Acker Ackerfläche],
+      "farmyard" => ~w[Hofgelände Bauernhof],
+      "fast_food" => ~w[Imbiss Schnellimbiss Fast Food],
+      "ferry_terminal" => ~w[Schiffsanleger],
+      "fire_station" => ~w[Feuerwehr Feuerwehrhaus],
+      "fire_water_pond" => ~w[Löschwasserteich],
+      "fitness_centre" => ~w[Fitnessstudio],
+      "fitness_station" => ~w[Fitnessstation],
+      "flight_school" => ~w[Flugschule],
+      "florist" => ~w[Blumenladen Blumenhändler Florist],
+      "footway" => ~w[Fußweg],
+      "forest" => ~w[Wald Forst],
+      "fountain" => ~w[Springbrunnen Brunnen],
+      "fuel" => ~w[Tankstelle],
+      "funeral_directors" => ~w[Bestattungsunternehmen Bestatter],
+      "funeral_hall" => ~w[Trauerhalle],
+      "furniture" => ~w[Möbelgeschäft Möbelladen Möbel],
+      "gallery" => ~w[Galerie],
+      "gambling" => ~w[Casino],
+      "garden_centre" => ~w[Gartencenter Gärtnerei],
+      "garden" => ~w[Garten Grünfläche],
+      "gardener" => ~w[Gärtnerei],
+      "gate" => ~w[Tor Pforte],
+      "gift" => ~w[Geschenkladen],
+      "glaziery" => ~w[Glaserei],
+      "golf_course" => ~w[Golfplatz],
+      "government" => ~w[Behörde Amt],
+      "grass" => ~w[Wiese],
+      "grassland" => ~w[Wiese],
+      "grave_yard" => ~w[Friedhof],
+      "greenfield" => ~w[Wiese],
+      "greengrocer" => ~w[Obst- und Gemüsehandel],
+      "greenhouse" => ~w[Gewächshaus],
+      "guest_house" => ~w[Pension],
+      "hairdresser" => ~w[Friseur],
+      "halt" => ~w[Haltestelle],
+      "hamlet" => ~w[Siedlung Weiler],
+      "hangar" => ~w[Hanger],
+      "hardware" => ~w[Eisenwarenhandlung],
+      "hearing_aids" => ~w[Geschäft für Hörgeräte],
+      "heath" => ~w[Heideland],
+      "helipad" => ~w[Helikopterlandeplatz Helipad],
+      "horse_riding" => ~w[Reitplatz],
+      "hospital" => ~w[Krankenhaus Klinik],
+      "hostel" => ~w[Jugendherberge],
+      "hotel" => ~w[Hotel],
+      "house" => ~w[Gebäude Haus],
+      "houseware" => ~w[Haushaltswarenladen],
+      "hunting_stand" => ~w[Hochsitz],
+      "hut" => ~w[Hütte],
+      "hvac" => ~w[Heizungsbauer],
+      "ice_cream" => ~w[Eisdiele],
+      "industrial" => ~w[Industriegebiet],
+      "information" => ~w[Information Infotafel],
+      "insurance" => ~w[Versicherungsmakler],
+      "interior_decoration" => ~w[Geschäft für Inneneinrichtung],
+      "island" => ~w[Insel],
+      "isolated_dwelling" => ~w[Einzelsiedlung],
+      "jeweller" => ~w[Juwelier Juweliergeschäft Schmuckwarenladen],
+      "jewelry" => ~w[Juweliergeschäft Schmuckwarenladen Juwelier],
+      "junction" => ~w[Straßenkreuzung],
+      "kindergarten" => ~w[KiTa Kindergarten],
+      "kiosk" => ~w[Kiosk],
+      "kitchen" => ~w[Küchenstudio],
+      "landfill" => ~w[Mülldeponie Müllhalde],
+      "language_school" => ~w[Sprachschule],
+      "laundry" => ~w[Waschsalon Wäscherei],
+      "lawyer" => ~w[Anwaltsbüro],
+      "letter_box" => ~w[Briefkasten],
+      "library" => ~w[Bücherhalle Bibliothek],
+      "life_ring" => ~w[Rettungsring],
+      "lifeguard" => ~w[Rettungsschwimmer Strandwächter],
+      "light_rail" => ~w[Stadtbahn],
+      "lighthouse" => ~w[Leuchtturm],
+      "locksmith" => ~w[Schlüsseldienst Schlüsselladen Schlosser],
+      "mall" => ~w[Einkaufszentrum],
+      "manhole" => ~w[Einstiegsluke Kanaldeckel Gully],
+      "manor" => ~w[Landgut Rittergut Schloss Herrenhaus],
+      "marina" => ~w[Jachthafen],
+      "marketplace" => ~w[Marktplatz],
+      "massage" => ~w[Massagesalon],
+      "meadow" => ~w[Wiese Grünfläche],
+      "medical_supply" => ~w[Sanitätshaus],
+      "memorial" => ~w[Denkmal],
+      "metal_construction" => ~w[Metallverarbeitung],
+      "midwife" => ~w[Geburtshelfer Hebamme],
+      "milestone" => ~w[Kilometerstein Stationszeichen],
+      "miniature_golf" => ~w[Minigolf],
+      "mobile_phone" => ~w[Handy-Shop Handyladen Mobiltelefonladen],
+      "monastery" => ~w[Kloster],
+      "monitoring_station" => ~w[Messstation],
+      "monument" => ~w[Denkmal Monument],
+      "mosque" => ~w[Moschee],
+      "motel" => ~w[Motel Hotel],
+      "motorcycle_parking" => ~w[Motorradparkplatz],
+      "motorcycle_repair" => ~w[Motorradwerkstatt Motorradreparatur],
+      "motorcycle" => ~w[Motorradladen],
+      "museum" => ~w[Museum],
+      "music_school" => ~w[Musikschule],
+      "music" => ~w[Musikgeschäft],
+      "nature_reserve" => ~w[Naturschutzgebiet],
+      "newsagent" => ~w[Zeitungshändler],
+      "newspaper" => ~w[Zeitungshändler],
+      "nightclub" => ~w[Nachtclub],
+      "notary" => ~w[Notariat],
+      "nursing_home" => ~w[Pflegeheim Altenheim],
+      "office" => ~w[Bürogebäude],
+      "optician" => ~w[Optiker Brillenladen],
+      "optometrist" => ~w[Augenoptiker],
+      "orchard" => ~w[Obstplantage],
+      "painter" => ~w[Maler],
+      "parcel_locker" => ~w[Packstation Paketstation],
+      "parish_hall" => ~w[Gemeindehaus],
+      "park" => ~w[Park Grünanlage],
+      "parking_entrance" => ~w[Garageneinfahrt Einfahrt Parkhaus Einfahrt Tiefgarage],
+      "parking_space" => ~w[Parkplatz],
+      "parking" => ~w[Parkplatz],
+      "passing_place" => ~w[Ausweichstelle],
+      "pawnbroker" => ~w[Pfandleihe Pfandhaus],
+      "peak" => ~w[Gipfel],
+      "pedestrian" => ~w[Fußgängerzone],
+      "perfumery" => ~w[Parfümerie],
+      "pet" => ~w[Zoofachgeschäft],
+      "pharmacy" => ~w[Apotheke],
+      "phone" => ~w[Telefon],
+      "photo_booth" => ~w[Telefonzelle],
+      "photographer" => ~w[Fotograf Photograph],
+      "physiotherapist" => ~w[Krankengymnastik Physiotherapeut],
+      "picnic_site" => ~w[Picknickstelle],
+      "picnic_table" => ~w[Picknicktisch],
+      "pier" => ~w[Landungsbrücke Seebrücke],
+      "pipeline" => ~w[Pipeline],
+      "pitch" => ~w[Spielfeld],
+      "place_of_worship" => ~w[Andachtsort Kultstätte],
+      "plant_nursery" => ~w[Baumschule],
+      "platform" => ~w[Bahnsteig Bussteig],
+      "playground" => ~w[Spielplatz],
+      "plumber" => ~w[Klempnerei],
+      "podiatrist" => ~w[Fußpflege Podologe],
+      "police" => ~w[Polizei],
+      "political_party" => ~w[Parteibüro],
+      "port" => ~w[Hafen],
+      "post_box" => ~w[Briefkasten],
+      "post_office" => ~w[Postamt Post],
+      "pottery" => ~w[Töpferei],
+      "prison" => ~w[Gefängnis Justizvollzugsanstalt Knast],
+      "protected_area" => ~w[Naturschutzgebiet],
+      "psychotherapist" => ~w[Psychotherapeut],
+      "pub" => ~w[Kneipe Pub],
+      "public_bookcase" => ~w[Bücherregal],
+      "public_building" => ~w[Gebäude],
+      "pumping_station" => ~w[Pumpstation],
+      "quarry" => ~w[Steinbruch],
+      "quay" => ~w[Kai],
+      "recreation_ground" => ~w[Park],
+      "recycling" => ~w[Recyclingcontainer Wertstoffhof],
+      "reservoir_covered" => ~w[Wasserbehälter],
+      "residential" => ~w[Wohngebiet],
+      "rest_area" => ~w[Rastplatz],
+      "restaurant" => ~w[Restaurant],
+      "retail" => ~w[Einzelhandel],
+      "river" => ~w[Fluss],
+      "roofer" => ~w[Dachdecker],
+      "ruins" => ~w[Ruine],
+      "runway" => ~w[Rollbahn Landebahn Startbahn],
+      "sauna" => ~w[Sauna],
+      "scaffolder" => ~w[Gerüstbauer],
+      "school" => ~w[Schule Grundschule Realschule Gesamtschule],
+      "scrub" => ~w[Gestrüpp],
+      "seafood" => ~w[Fischgeschäft],
+      "second_hand" => ~w[Second Hand Laden],
+      "shed" => ~w[Schuppen],
+      "shelter" => ~w[Unterstand Wetterschutz],
+      "ship" => ~w[Schiff],
+      "shoemaker" => ~w[Schuhmacher],
+      "shoes" => ~w[Schuhgeschäft Schuhladen],
+      "signal_box" => ~w[Stellwerk],
+      "silo" => ~w[Silo],
+      "social_facility" => ~w[Sozialeinrichtung],
+      "sport" => ~w[Sportfachgeschäft],
+      "sports_centre" => ~w[Sportzentrum],
+      "sports_hall" => ~w[Turnhalle Sporthalle],
+      "sports" => ~w[Sportfachgeschäft],
+      "square" => ~w[Platz],
+      "stable" => ~w[Stall],
+      "stables" => ~w[Ställe],
+      "stadium" => ~w[Stadion],
+      "station" => ~w[Bahnstation],
+      "stationery" => ~w[Schreibwarengeschäft],
+      "steps" => ~w[Treppe Stufen],
+      "stone" => ~w[Stein],
+      "stonemason" => ~w[Steinmetz],
+      "stream" => ~w[Bach],
+      "street_cabinet" => ~w[Straßenschrank Postablagekasten Schaltschrank],
+      "suburb" => ~w[Stadtteil],
+      "subway_entrance" => ~w[U/S-Bahn Eingang],
+      "suction_point" => ~w[Ansaugstelle],
+      "supermarket" => ~w[Supermarkt],
+      "surveillance" => ~w[Überwachungskamera],
+      "swimming_area" => ~w[Schwimmbereich],
+      "synagogue" => ~w[Synagoge],
+      "tailor" => ~w[Schneider],
+      "tanning_salon" => ~w[Sonnenstudio],
+      "tattoo" => ~w[Tattoo-Studio],
+      "tax_advisor" => ~w[Steuerberatung Steuerberater],
+      "taxi" => ~w[Taxistand],
+      "taxiway" => ~w[Rollbahn Rollfeld],
+      "tea" => ~w[Teegeschäft],
+      "telephone" => ~w[Telefon],
+      "telescope" => ~w[Sternwarte],
+      "temple" => ~w[Tempel],
+      "terrace" => ~w[Terrasse],
+      "theatre" => ~w[Theater],
+      "theme_park" => ~w[Freizeitpark Themenpark],
+      "ticket" => ~w[Ticketautomat],
+      "tobacco" => ~w[Tabakladen],
+      "toilets" => ~w[Toiletten],
+      "tomb" => ~w[Grab],
+      "tool_rental" => ~w[Werkzeugverleih],
+      "tower" => ~w[Turm],
+      "town" => ~w[Stadt],
+      "townhall" => ~w[Rathaus],
+      "toys" => ~w[Spielwarenladen],
+      "track" => ~w[Wirtschaftsweg Feldweg Waldweg],
+      "trade" => ~w[Baustoffhandel],
+      "train_station" => ~w[Bahnhof Bahnhofsgebäude],
+      "tram_stop" => ~w[Straßenbahnhaltestelle Straßenbahnhalt],
+      "travel_agency" => ~w[Reisebüro],
+      "travel_agent" => ~w[Reisebüro],
+      "tree" => ~w[Baum],
+      "union" => ~w[Gewerkschaft],
+      "university" => ~w[Universität],
+      "variety_store" => ~w[1-Euro-Laden Sonderpostenmarkt],
+      "vehicle_inspection" => ~w[Fahrzeugkontrolle],
+      "vending_machine" => ~w[Verkaufsautomat],
+      "veterinary" => ~w[Tierarzt Veterinär],
+      "viewpoint" => ~w[Aussichtspunkt Aussichtsplattform],
+      "village_green" => ~w[Dorfwiese],
+      "village" => ~w[Dorf],
+      "warehouse" => ~w[Lagerhalle Lagerhaus],
+      "waste_basket" => ~w[Mülleimer Abfalleimer],
+      "wastewater_plant" => ~w[Kläranlage],
+      "watches" => ~w[Uhrenladen],
+      "water_park" => ~w[Wasserpark],
+      "water_tank" => ~w[Wasserbecken],
+      "water_tower" => ~w[Wasserturm],
+      "water_well" => ~w[Wasserbrunnen],
+      "water_works" => ~w[Wasserwerk],
+      "water" => ~w[Gewässer],
+      "watermill" => ~w[Wassermühle],
+      "wayside_chapel" => ~w[Kapellenbildstock],
+      "wayside_shrine" => ~w[Bildstock],
+      "weir" => ~w[Stauanlage Damm],
+      "wetland" => ~w[Feuchtgebiet],
+      "wholesale" => ~w[Großhandel Großmarkt],
+      "windmill" => ~w[Windmühle],
+      "wine" => ~w[Weinladen],
+      "wood" => ~w[Wald],
+      "works" => ~w[Fabrik],
+      "zoo" => ~w[Zoo]
     }
 end

@@ -9,7 +9,7 @@ defmodule Data.Article.Static.Suche do
   def tags(), do: []
 
   def text(assigns) do
-    assigns = assign(assigns, :search_results, combined_search(assigns))
+    assigns = assign(assigns, :search_results, search(assigns))
 
     ~H"""
     <h3><label for="query">Suche 🔎</label></h3>
@@ -23,8 +23,8 @@ defmodule Data.Article.Static.Suche do
       <% else %>
       <ul>
         <%= for result <- @search_results do %>
-          <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
           <li>
+            <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
             <div>
               <%= Search.Result.to_html(result) %>
               <%= unless result.subtext in [nil, ""] do %>
@@ -39,10 +39,13 @@ defmodule Data.Article.Static.Suche do
     """
   end
 
-  defp combined_search(%{search_query: query, search_bounds: bounds}) do
-    # [Search.Meilisearch.Runner, Maptiler.Search, Esri.Search.NoStreets]
-    [Search.Meilisearch.Runner]
-    |> Search.Wrapper.query(query, bounds)
+  defp search(%{search_query: query, search_bounds: bbox}) do
+    bbox = Geo.BoundingBox.parse(bbox) || Settings.initial()
+
+    Search.Meilisearch.Runner.query(query, bbox)
+    |> Enum.reject(&is_nil/1)
+    |> Search.Result.merge_same()
+    |> Search.Result.sort()
     |> Enum.take(15)
   end
 
