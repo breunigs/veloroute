@@ -2,6 +2,8 @@ defmodule Search.Meilisearch.Runner do
   require Logger
   use GenServer
 
+  import Guards
+
   @debug_meilisearch_output false
 
   @health_check_seconds 1
@@ -212,6 +214,10 @@ defmodule Search.Meilisearch.Runner do
             do: "production",
             else: "development"
           ),
+          # use all available cores for indexing as opposed to the 50% default,
+          # since we do not run indexing in production anyway
+          "--max-indexing-threads",
+          "#{System.schedulers_online()}",
           "--log-level",
           "WARN",
           "--http-payload-size-limit",
@@ -258,6 +264,7 @@ defmodule Search.Meilisearch.Runner do
     state =
       if expired?(queued_task) do
         Logger.warning("MEILISEARCH | queued task expired: #{inspect(task)}")
+        GenServer.reply(from, {:error, "the tasked #{inspect(task)} timed out"})
         %{state | queue: rest}
       else
         case handle_call(task, from, state) do
@@ -313,17 +320,38 @@ defmodule Search.Meilisearch.Runner do
   @spec index(state()) :: state()
   defp index(%{indexers: []} = state), do: state
 
-  defp index(%{indexers: [indexer | rest]} = state) do
+  defp index(%{indexers: indexers} = state) do
     no_indexing_in_prod!()
 
+    Parallel.map(indexers, &indexer_run(&1))
+    |> Enum.each(fn
+      {:ok, indexer} ->
+        Logger.debug("MEILISEARCH | indexed #{indexer} ✓")
+
+      {:error, indexer, reason} ->
+        Logger.error("MEILISEARCH | failed to index #{indexer}: #{reason}")
+    end)
+
+    queue =
+      Enum.reject(state.queue, fn {:queued, _deadline, from, task} ->
+        if task == :index, do: GenServer.reply(from, :ok)
+      end)
+
+    %{state | indexers: [], queue: queue}
+  end
+
+  @spec indexer_run(module()) :: {:ok, module()} | {:error, module(), binary()}
+  defp indexer_run(indexer) when is_module(indexer) do
     Search.Meilisearch.API.delete_index(indexer.id())
-    :ok = Search.Meilisearch.API.create_index(indexer.id())
-    :ok = Search.Meilisearch.API.configure_index(indexer.id(), indexer.config())
 
-    docs = indexer.documents()
-    :ok = Search.Meilisearch.API.index_documents(indexer.id(), docs)
-
-    index(%{state | indexers: rest})
+    with :ok <- Search.Meilisearch.API.create_index(indexer.id()),
+         :ok <- Search.Meilisearch.API.configure_index(indexer.id(), indexer.config()),
+         docs = indexer.documents(),
+         :ok <- Search.Meilisearch.API.index_documents(indexer.id(), docs) do
+      {:ok, indexer}
+    else
+      {:error, reason} -> {:error, indexer, reason}
+    end
   end
 
   @spec shutdown(state()) :: state()
