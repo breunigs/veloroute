@@ -295,8 +295,15 @@ defmodule Search.Meilisearch.Runner do
     end)
     |> Search.Meilisearch.API.multi_search()
     |> Enum.flat_map(fn {index, results} ->
+      indexer = lookup[index]
+
+      results =
+        if function_exported?(indexer, :maybe_merge, 1),
+          do: indexer.maybe_merge(results),
+          else: results
+
       Enum.map(results, fn result ->
-        sr = lookup[index].format(result)
+        sr = indexer.format(result)
         Map.put(sr, :source, inspect(result, pretty: true))
       end)
     end)

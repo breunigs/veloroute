@@ -31,7 +31,7 @@ defmodule Search.Meilisearch.Nominatim do
   # hide suburbs just tagged as a node
   def format(%{"class" => "place", "type" => "suburb", "id" => "N" <> _rest}), do: nil
 
-  def format(result) do
+  def format(result) when is_map(result) do
     f = fn arg -> Map.fetch!(result, arg) end
 
     human = lookup(result, [["extratags", "building"], "type", ["extratags", "border_type"]])
@@ -68,6 +68,78 @@ defmodule Search.Meilisearch.Nominatim do
     }
   end
 
+  @impl true
+  def maybe_merge(list) do
+    list
+    |> Enum.group_by(&get_in(&1, ["extratags", "wikidata"]))
+    |> Enum.flat_map(fn
+      {nil, items} -> items
+      {"" <> _wd, [_item] = items} -> items
+      {"" <> _wd, items} -> [merge_items(items)]
+    end)
+    |> dbg
+  end
+
+  @typep item :: %{
+           required(binary()) =>
+             float()
+             | binary()
+             | nil
+             | %{optional(binary()) => binary()}
+             | [binary()]
+         }
+
+  @spec merge_items([item]) :: item
+  defp merge_items(items) do
+    merged =
+      items
+      |> Enum.map(fn item ->
+        %{
+          item
+          | "address" => to_mapset(item, "address"),
+            "bbox" => Geo.BoundingBox.parse(item["bbox"]),
+            "extratags" => to_mapset(item, "extratags"),
+            "name" => to_mapset(item, "name"),
+            "parents_name" => to_mapset(item, "parents_name"),
+            "parents_postcode" => to_mapset(item, "parents_postcode")
+        }
+      end)
+      |> Enum.reduce(fn item, acc ->
+        %{
+          item
+          | "_rankingScore" => item["_rankingScore"] + acc["_rankingScore"],
+            "address" => intersect(item["address"], acc["address"]),
+            "bbox" => Geo.CheapRuler.union(item["bbox"], acc["bbox"]),
+            "extratags" => intersect(item["extratags"], acc["extratags"]),
+            "name" => intersect(item["name"], acc["name"]),
+            "parents_name" => intersect(item["parents_name"], acc["parents_name"]),
+            "parents_postcode" => intersect(item["parents_postcode"], acc["parents_postcode"]),
+            "id" => item["id"] <> ", " <> acc["id"],
+            "class" => if(item["class"] == acc["class"], do: item["class"], else: "multiple"),
+            "type" => if(item["type"] == acc["type"], do: item["type"], else: "multiple")
+        }
+      end)
+
+    %{
+      merged
+      | "_rankingScore" => merged["_rankingScore"] / length(items),
+        "bbox" => Geo.BoundingBox.to_string_bounds(merged["bbox"]),
+        "address" => into(merged["address"]),
+        "extratags" => into(merged["extratags"]),
+        "name" => into(merged["name"]),
+        "parents_name" => into([], merged["parents_name"]),
+        "parents_postcode" => into([], merged["parents_postcode"])
+    }
+  end
+
+  defp to_mapset(item, key), do: if(item[key], do: MapSet.new(item[key]))
+  defp intersect(ms1, nil), do: ms1
+  defp intersect(nil, ms2), do: ms2
+  defp intersect(ms1, ms2), do: MapSet.intersection(ms1, ms2)
+  defp into(into \\ %{}, ms)
+  defp into(_into, nil), do: nil
+  defp into(into, ms), do: Enum.into(ms, into)
+
   def dedupe(list) do
     list
     |> List.flatten()
@@ -97,7 +169,8 @@ defmodule Search.Meilisearch.Nominatim do
     }
   end
 
-  defp lookup(result, [key | rest]) do
+  @spec lookup(%{binary() => term()}, [binary() | [binary()]]) :: binary() | nil
+  defp lookup(result, [key | rest]) when is_map(result) do
     val = get_in(result, List.wrap(key))
 
     case Data.OsmTagToHuman.map()[val] do
@@ -108,5 +181,3 @@ defmodule Search.Meilisearch.Nominatim do
 
   defp lookup(_result, []), do: nil
 end
-
-# TODO: grab postcodes from parent's address fields instead of the top-level postcode?
