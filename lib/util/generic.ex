@@ -114,15 +114,11 @@ defmodule Util do
     |> Enum.uniq()
   end
 
+  @spec render_heex(Phoenix.LiveView.Rendered.t()) :: binary()
   def render_heex(heex) do
-    {_socket, diff, _components} =
-      Phoenix.LiveView.Diff.render(
-        %Phoenix.LiveView.Socket{},
-        heex,
-        Phoenix.LiveView.Diff.new_components()
-      )
-
-    diff |> Phoenix.LiveView.Diff.to_iodata() |> IO.iodata_to_binary()
+    heex
+    |> Phoenix.HTML.html_escape()
+    |> Phoenix.HTML.safe_to_string()
   end
 
   @doc """
