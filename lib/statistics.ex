@@ -1,11 +1,11 @@
 defmodule Statistics do
   def visible_video_distance_km() do
-    dist_m = Map.fetch!(all(), :distance_m)
+    dist_m = all().distance_m
     round(dist_m / 1000)
   end
 
   def visible_video_duration_h() do
-    dur_ms = Map.fetch!(all(), :duration_ms)
+    dur_ms = all().duration_ms
     round(dur_ms / (1000 * 60 * 60))
   end
 
