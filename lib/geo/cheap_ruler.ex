@@ -239,11 +239,11 @@ defmodule Geo.CheapRuler do
       ...>   %{maxLat: 53.715809, maxLon: 10.21779, minLat: 53.454363, minLon: 9.724553},
       ...>   14
       ...> )
-      %{x: 165, y: 270, zoom: 9, str: "9/270/165"}
+      %{x: 330, y: 540, zoom: 10, str: "10/540/330"}
   """
   def bounds_to_xyz(bbox, max_zoom) do
     %{zoom: zoom, lat: lat, lon: lon} = bounds_to_center_zoom(bbox)
-    zoom = min(max_zoom, floor(zoom))
+    zoom = min(max_zoom, round(zoom))
     factor = :math.pow(2, zoom)
 
     x =
