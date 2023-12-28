@@ -409,6 +409,9 @@ function metadataForTime(timeInMs) {
   return { recDate: recDate, street: street }
 }
 
+const passive = {
+  passive: true
+}
 let progress
 let current
 let duration
@@ -460,9 +463,7 @@ function initControls() {
 initControls()
 window.addEventListener("global:mounted", initControls)
 
-const passive = {
-  passive: true
-}
+
 
 function hideVideoQualityOptions() {
   const hide = window.getComputedStyle(videoQualityOptions).visibility == 'visible';
