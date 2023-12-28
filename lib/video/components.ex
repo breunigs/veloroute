@@ -15,8 +15,8 @@ defmodule Video.Components do
     }
 
     ~H"""
-    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@first_url} :if={@first_url}>
-    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@main_url} id="hlsJsUrl">
+    <link rel="prefetch" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@first_url} :if={@first_url}>
+    <link rel="prefetch" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@main_url} id="hlsJsUrl">
     <source src={"#{@main_url}#t=#{@start}"} type="application/x-mpegURL">
     <%= for {url, codec} <- @variants do %>
       <source src={"#{String.replace_suffix(url, ".m3u8", ".m4s")}#t=#{@start}"} type={"video/mp4; codecs=#{codec}"}>
