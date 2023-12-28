@@ -3,7 +3,7 @@ FROM debian:testing-slim AS downloader
 ARG RAV1E_VERSION=refs/tags/p20230704
 ARG RAV1E_REPO=xiph
 
-ARG FFMPEG_VERSION=6.0
+ARG FFMPEG_VERSION=6.1
 ARG BLUR_VERSION=3408b06fa2a30c092301cc2851c82de8fe453811
 
 RUN mkdir -p /downloads/
@@ -119,10 +119,8 @@ RUN cd /downloads/ffmpeg && \
   --disable-debug \
   --disable-doc \
   --disable-ffplay \
-  --disable-ffprobe \
-  --disable-asm && \
+  --disable-ffprobe && \
   make -j $(nproc) && make install && make distclean
-# --disable-asm is a workaround for https://fftrac-bg.ffmpeg.org/ticket/10405
 
 FROM debian:testing-slim AS runner
 RUN \
