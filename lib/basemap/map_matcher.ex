@@ -117,6 +117,8 @@ defmodule Basemap.MapMatcher.OSRM do
   """
   @impl Basemap.MapMatcher
   def match(points) do
+    start_link()
+
     coords =
       points
       |> Enum.map(fn %{lat: lat, lon: lon} -> "#{lon},#{lat}" end)
