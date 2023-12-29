@@ -616,7 +616,7 @@ function updateProgressbar() {
 }
 
 function updatePlaypause() {
-  outer.setAttribute('data-state', video.paused || video.ended ? 'play' : 'pause');
+  outer.setAttribute('data-state', !autoplay && (video.paused || video.ended) ? 'play' : 'pause');
 }
 
 const minuteInMs = 60 * 1000;
