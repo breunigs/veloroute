@@ -1093,6 +1093,9 @@ a {
   // depending on rotation
   transform: translateZ(0.00001px);
 
+  // undo hiding the map canvas when class=preview
+  visibility: visible;
+
   &.animate {
     // NOTE: also update timeout in map.js
     transition: linear 0.15s;
