@@ -8,6 +8,7 @@
 #include <mbgl/style/expression/dsl.hpp>
 #include <mbgl/style/filter.hpp>
 #include <mbgl/style/style.hpp>
+#include <unistd.h>
 
 #include <webp/encode.h>
 
@@ -45,15 +46,29 @@ void die(const std::string &msg) {
     exit(1);
 }
 
-void printImage(const std::string &img) {
-    const char length[4] = {FIXED_WIDTH_UINT(img.size())};
+void printImage(WebPMemoryWriter *wrt) { // take wrt and print?
+    const char length[4] = {FIXED_WIDTH_UINT(wrt->size)};
     std::cout.write(length, 4);
-    std::cout << img;
+    std::cout.write(reinterpret_cast<char *>(wrt->mem), wrt->size);
 }
 
-std::map<std::string, std::string> cache;
+std::map<std::string, WebPMemoryWriter> cache;
 std::list<std::string> cacheLRU;
 const int cacheCapacity = 120;
+
+WebPConfig webpConfig() {
+    WebPConfig config;
+    if (!WebPConfigPreset(&config, WEBP_PRESET_DRAWING, 70 /* compression level */)) {
+        die("failed to load webp present");
+    }
+    config.lossless = 1;
+    config.near_lossless = 40;
+    config.image_hint = WEBP_HINT_GRAPH;
+    if (!WebPValidateConfig(&config)) {
+        die("failed to validate webp config");
+    }
+    return config;
+}
 
 void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, uint32_t maxDimension) {
     using namespace mbgl;
@@ -79,6 +94,13 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
     const std::array<HeadlessFrontend *, 2> frontends = {&frontPr1, &frontPr2};
     const std::array<Map *, 2> maps = {&mapPr1, &mapPr2};
 
+    std::atomic_bool renderedAtLeastOnce = false;
+    auto config = webpConfig();
+    WebPPicture pic;
+    if (!WebPPictureInit(&pic)) {
+        die("failed to init webp");
+    }
+
     std::string line;
     while (std::getline(std::cin, line)) {
         // ignore Erlang message length indicator and instead rely on newline detection
@@ -86,7 +108,7 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
 
         auto cachedImage = cache.find(line);
         if (cachedImage != cache.end()) {
-            printImage(cachedImage->second);
+            printImage(&(cachedImage->second));
             continue;
         }
 
@@ -146,33 +168,50 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
         }
 
         try {
-            std::atomic_bool finished = false;
-            std::thread t([&finished]() {
-                std::this_thread::sleep_for(std::chrono::seconds(3));
-                if (finished) return;
-                die("Rendering timeout. Are all path references local?");
-            });
-            t.detach();
-            auto image = frontend->render((*map)).image;
-            finished = true;
+            if (!renderedAtLeastOnce) {
+                std::thread t([&renderedAtLeastOnce]() {
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
+                    if (renderedAtLeastOnce) return;
+                    die("Rendering timeout. Are all path references local?");
+                });
+                t.detach();
+            }
+            auto image = frontend->render(*map).image;
+            renderedAtLeastOnce = true;
 
-            const auto src = util::unpremultiply(image.clone());
-            uint8_t *webp_image;
-            auto webp_image_size = WebPEncodeLosslessRGBA(
-                src.data.get(), src.size.width, src.size.height, src.stride(), &webp_image);
-            auto img = std::string(webp_image, webp_image + webp_image_size);
-            WebPFree(webp_image);
+            pic.width = image.size.width;
+            pic.height = image.size.height;
+            pic.use_argb = true;
+
+            WebPMemoryWriter wrt;
+            pic.writer = WebPMemoryWrite;
+            pic.custom_ptr = &wrt;
+            WebPMemoryWriterInit(&wrt);
+
+            if (!WebPPictureImportRGBX(&pic, image.data.get(), image.stride())) {
+                WebPPictureFree(&pic);
+                printError("failed to import webp pic");
+                continue;
+            }
+
+            if (!WebPEncode(&config, &pic)) {
+                WebPPictureFree(&pic);
+                printError("failed to webp encode, WebPEncodingError=" + std::to_string(pic.error_code));
+                continue;
+            }
+            WebPPictureFree(&pic);
 
             if (cache.size() >= cacheCapacity) {
                 // evict oldest element
                 auto i = --cacheLRU.end();
+                WebPMemoryWriterClear(&(cache.find(*i)->second));
                 cache.erase(*i);
                 cacheLRU.erase(i);
             }
             cacheLRU.push_front(line);
-            cache[line] = img;
+            cache[line] = wrt;
 
-            printImage(img);
+            printImage(&wrt);
         } catch (std::exception &e) {
             printError("failed rendering " + std::string(e.what()));
             continue;
