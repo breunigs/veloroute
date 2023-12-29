@@ -209,11 +209,6 @@ function updateVideoElement() {
       const path = document.getElementById("hlsJsUrl").getAttribute("href");
       window.hls.loadSource(path);
       updatePlaypause();
-      video.addEventListener('play', () => {
-        if (!window.hls) return;
-        console.debug("triggering hls.startLoad");
-        window.hls.startLoad(-1);
-      }, { once: true });
     })
     return
   }
