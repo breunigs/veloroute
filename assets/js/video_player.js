@@ -498,7 +498,9 @@ function selectPlaybackRate(event) {
 }
 
 function togglePlayPause() {
-  if (video.paused || video.ended) {
+  if (!userClickPlayOnce) {
+    ensureVideoIsSet();
+  } else if (video.paused || video.ended) {
     video.play();
     maybeShowLoadingIndicator();
   } else {
