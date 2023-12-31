@@ -110,7 +110,7 @@ defmodule Video.Renderer do
            :ok <-
              Util.Docker.build_and_run(
                {"rendering video", ffmpeg_image()},
-               %{command_args: cmd},
+               %{command_args: cmd, mount_videos_in_dir: "/workdir/"},
                env: [],
                stderr: pbar
              ),
