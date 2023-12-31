@@ -45,12 +45,7 @@ defmodule VelorouteWeb.Live.Map do
 
   @spec render(%{:styles => any, optional(any) => any}) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
-    layer_click =
-      Phoenix.LiveView.JS.push("toggle-layer")
-      |> Phoenix.LiveView.JS.dispatch("plausible", detail: %{event: "toggleLayer"})
-
-    assigns =
-      assign(assigns, %{active_style_id: active_style_id(assigns), layer_click: layer_click})
+    assigns = assign(assigns, %{active_style_id: active_style_id(assigns)})
 
     ~H"""
     <div>
@@ -65,7 +60,10 @@ defmodule VelorouteWeb.Live.Map do
               value={layer.name}
               class={"layer #{if layer.active, do: "active"}"}
               phx-target={@myself}
-              phx-click={@layer_click}><%= layer.name %></button>
+              phx-click={
+                Phoenix.LiveView.JS.push("toggle-layer")
+                |> Phoenix.LiveView.JS.dispatch("plausible", detail: %{event: "toggleLayer"})
+              }><%= layer.name %></button>
           <% end %>
 
           <%= for style <- @styles do %>
