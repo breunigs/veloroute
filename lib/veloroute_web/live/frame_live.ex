@@ -331,6 +331,7 @@ defmodule VelorouteWeb.FrameLive do
   defp update_map_bounds(socket, bounds) when is_struct(bounds, Geo.BoundingBox) do
     socket
     |> push_event("bounds:adjust", bounds)
+    |> push_event("map:preload:tile", %{url: Basemap.Tiles.tile_path_for_bounds(bounds)})
     |> assign(map_bounds: bounds)
   end
 

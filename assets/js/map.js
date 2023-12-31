@@ -109,39 +109,14 @@ function renderIndicator() {
   // zoom in once, i.e. when user just clicks play when first visiting the site
   if (!mapActive && !zoomedInOnce && videoPlaying && map.getZoom() <= 13) {
     zoomedInOnce = true;
-    withPreload("flyTo", lngLat);
+    map.flyTo({
+      center: lngLat,
+      zoom: Math.max(map.getZoom(), 14),
+    });
     return;
   }
 
   ensureIndicatorInView(lngLat);
-}
-
-const withPreload = (action, lngLat) => {
-  switch (action) {
-    case "flyTo":
-      const opts = {
-        center: lngLat,
-        zoom: Math.max(map.getZoom(), 14),
-      }
-      map.flyTo({
-        ...opts,
-        preloadOnly: true
-      });
-      map.flyTo(opts);
-      break;
-
-    case "panTo":
-
-      map.panTo(lngLat, {
-        preloadOnly: true
-      })
-      map.panTo(lngLat)
-      break
-
-    default:
-      console.warn("unsupported withPreload action:", action)
-      debugger
-  }
 }
 
 const closestEquivalentAngle = (from, to) => {
@@ -172,9 +147,11 @@ const ensureIndicatorInView = (lngLat) => {
 
   if (!isVideoPlaying() || !indicatorPolyline) {
     isClose
-      ?
-      withPreload("panTo", lngLat) :
-      withPreload("flyTo", lngLat)
+      ? map.panTo(lngLat)
+      : map.flyTo({
+        center: lngLat,
+        zoom: Math.max(map.getZoom(), 14),
+      });
     return;
   }
 
@@ -203,6 +180,13 @@ const isVideoPlaying = () => {
 window.addEventListener(`phx:bounds:adjust`, (e) => {
   console.debug("adjusting bounds to", e.detail)
   map.fitBounds(e.detail, fitBoundsOpt);
+})
+
+const preloadAbortCtrl = new AbortController();
+const preloadAbortSignal = preloadAbortCtrl.signal;
+window.addEventListener(`phx:map:preload:tile`, (e) => {
+  preloadAbortCtrl.abort();
+  fetch(e.detail.url, { preloadAbortSignal })
 })
 
 const featureOpacity = (feature) => {
