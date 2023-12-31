@@ -336,7 +336,10 @@ const handleMapClick = (evt) => {
 let boundsTimeout = null;
 const sendBounds = () => {
   if (boundsTimeout) clearTimeout(boundsTimeout);
+
   boundsTimeout = setTimeout(() => {
+    if (map.isMoving() || map.isZooming()) return sendBounds();
+
     window.pushEvent("map-bounds", {
       bounds: map.getBounds().toArray()
     });
