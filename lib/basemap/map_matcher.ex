@@ -131,7 +131,7 @@ defmodule Basemap.MapMatcher.OSRM do
       overview: false,
       annotations: false,
       generate_hints: false,
-      radiuses: "#{@radius};" |> String.duplicate(length(points)) |> String.slice(0..-2)
+      radiuses: "#{@radius};" |> String.duplicate(length(points)) |> String.slice(0..-2//1)
     ]
 
     with {:ok, matches} <-

@@ -1,6 +1,6 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=refs/tags/p20230704
+ARG RAV1E_VERSION=refs/tags/v0.7.0
 ARG RAV1E_REPO=xiph
 
 ARG FFMPEG_VERSION=6.1

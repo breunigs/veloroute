@@ -37,6 +37,10 @@ defmodule Util.Download do
     end
   end
 
+  # Dialyzer complains about IO.binwrite never returning {:error, _}, which
+  # seems fishy, since as per Elixir's and Erlang's docs it might.
+  @dialyzer {:no_match, stream_body: 2}
+
   defp stream_body(ref, handle) do
     case :hackney.stream_body(ref) do
       {:ok, data} ->

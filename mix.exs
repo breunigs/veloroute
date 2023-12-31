@@ -21,7 +21,8 @@ defmodule Veloroute.MixProject do
         dialyzer: :test,
         "velo.assets.prepare": :test
       ],
-      aliases: aliases()
+      aliases: aliases(),
+      compilers: [:leex] ++ Mix.compilers()
     ]
   end
 

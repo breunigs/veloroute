@@ -58,7 +58,7 @@ defmodule Basemap.Styles do
   defp attribute(data) do
     Enum.reduce(Esri.Tiles.attribution(:from_api), data, fn {key, text}, data ->
       # encode as string but strip the quotes
-      text = text |> Jason.encode!() |> String.slice(1..-2)
+      text = text |> Jason.encode!() |> String.slice(1..-2//1)
       String.replace(data, "%%ATTRIBUTION#{key}%%", text)
     end)
   end

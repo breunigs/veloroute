@@ -72,7 +72,7 @@ defmodule Map.Route do
         leg = Graph.Pathfinding.dijkstra(graph, from, to) |> warn_on_nil_leg(track, to, from, art)
         # this conveniently skips all named "targets" and only returns the actual ways
         next_ways = Enum.flat_map(leg, fn wid -> indexed[wid] || [] end) |> Util.compact()
-        next_nodes = Enum.flat_map(next_ways, fn w -> Enum.slice(w.nodes, 1..-1) end)
+        next_nodes = Enum.flat_map(next_ways, fn w -> Enum.slice(w.nodes, 1..-1//1) end)
 
         {[next_ways | ways], [next_nodes | nodes]}
       end)

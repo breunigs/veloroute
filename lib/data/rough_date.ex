@@ -28,7 +28,7 @@ defmodule Data.RoughDate do
         %__MODULE__{year: get_year(date), quarter: quarter, month: nil, day: nil}
 
       String.match?(date, ~r/^20\d\d-[01]\d$/) ->
-        {month, ""} = date |> String.slice(5..-1) |> Integer.parse()
+        {month, ""} = date |> String.slice(5..-1//1) |> Integer.parse()
         %__MODULE__{year: get_year(date), quarter: nil, month: month - 1, day: nil}
 
       String.match?(date, ~r/^20\d\d$/) ->
@@ -58,7 +58,7 @@ defmodule Data.RoughDate do
   def range(d, d), do: "#{to_str(d)}"
 
   def range(%{year: y} = from, %{year: y} = to),
-    do: "#{to_str(from) |> String.slice(0..-6)} bis #{to_str(to)}"
+    do: "#{to_str(from) |> String.slice(0..-6//1)} bis #{to_str(to)}"
 
   def range(from, to), do: "#{to_str(from)} bis #{to_str(to)}"
 
