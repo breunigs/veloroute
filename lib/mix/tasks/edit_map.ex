@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.EditMap do
   use Mix.Task
   alias Mix.Tasks.Velo.Videos
+  @requirements ["app.start"]
 
   @josm_home "data/josmhome/"
   @josm_default_prefs "data/josm_default_prefs.xml"
