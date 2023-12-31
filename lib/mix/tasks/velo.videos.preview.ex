@@ -109,7 +109,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
       with :ok <- Util.Docker.build(full_ref) do
         try do
           full_ref
-          |> Util.Docker.run_docker_cli(%{mount_videos_in_dir: "/workdir"})
+          |> Util.Docker.run_docker_cli(%{mount_videos_in_dir: "/workdir", command_args: cmd})
           |> exec_pipe()
         after
           Util.Docker.stop(full_ref)
