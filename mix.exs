@@ -21,8 +21,7 @@ defmodule Veloroute.MixProject do
         dialyzer: :test,
         "velo.assets.prepare": :test
       ],
-      aliases: aliases(),
-      compilers: [:leex] ++ Mix.compilers()
+      aliases: aliases()
     ]
   end
 
@@ -32,7 +31,7 @@ defmodule Veloroute.MixProject do
   def application do
     [
       mod: {Veloroute.Application, []},
-      extra_applications: [:logger, :runtime_tools, :plug] ++ extra_apps(Mix.env())
+      extra_applications: [:logger, :runtime_tools, :plug, :os_mon] ++ extra_apps(Mix.env())
     ]
   end
 
@@ -47,8 +46,8 @@ defmodule Veloroute.MixProject do
     ]
   end
 
-  defp extra_apps(:test), do: [:tqdm, :os_mon]
-  defp extra_apps(:dev), do: [:tqdm, :os_mon]
+  defp extra_apps(:test), do: [:tqdm]
+  defp extra_apps(:dev), do: [:tqdm]
   defp extra_apps(_), do: []
 
   # Specifies which paths to compile per environment.
@@ -59,16 +58,20 @@ defmodule Veloroute.MixProject do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
+    is_dev = Mix.env() == :dev
+    is_test = Mix.env() == :test
+
     [
       {:atomex, "~> 0.5.1"},
       {:cachex, "~> 3.4"},
-      {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev},
+      {:dart_sass, "~> 0.5", runtime: is_dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:erlexec, "~> 2.0",
-       only: [:dev, :test], system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
-      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
-      {:file_system, "~> 1.0", only: [:dev, :test]},
+       runtime: is_dev || is_test,
+       system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
+      {:esbuild, "~> 0.2", runtime: is_dev},
+      {:file_system, "~> 1.0", runtime: is_dev || is_test},
       {:floki, ">= 0.30.0"},
       {:hackney, "~> 1.17"},
       {:jason, "~> 1.1"},
@@ -87,9 +90,9 @@ defmodule Veloroute.MixProject do
       {:temp, "~> 0.4"},
       {:tesla, "~> 1.8.0"},
       {:tqdm,
+       runtime: is_dev,
        git: "https://github.com/breunigs/tqdm_elixir",
-       branch: "elixir-1-15-fixes",
-       only: [:dev, :test]}
+       branch: "elixir-1-15-fixes"}
     ]
   end
 end
