@@ -178,10 +178,12 @@ defmodule Util.Cmd2 do
     to_string_or_inspect(term) <> to_string_or_inspect(rest)
   end
 
-  defp to_string_or_inspect(term) do
+  defp to_string_or_inspect(term) when is_binary(term) or is_list(term) do
     s = IO.chardata_to_string(term)
     if String.valid?(s), do: s, else: hd(String.chunk(term, :valid))
   end
+
+  defp to_string_or_inspect(term), do: to_string(term)
 
   defp stop_on_signal(signal) do
     us = self()
