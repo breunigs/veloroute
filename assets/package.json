@@ -7,6 +7,6 @@
     "maplibre-gl": "^3.6.2"
   },
   "devDependencies": {
-    "@types/phoenix_live_view": "^0.15.1"
+    "@types/phoenix_live_view": "^0.18.4"
   }
 }
