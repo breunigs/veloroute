@@ -308,7 +308,7 @@ defmodule Video.Generator do
       true ->
         rendered.coords()
         |> Stream.chunk_every(2, 1, :discard)
-        |> Stream.reject(fn [a, b] -> time >= a.time_offset_ms && time <= b.time_offset_ms end)
+        |> Stream.filter(fn [a, b] -> time >= a.time_offset_ms && time <= b.time_offset_ms end)
         |> Enum.find_value(fn [a, b] ->
           t = calc_t(time, a, b)
 
