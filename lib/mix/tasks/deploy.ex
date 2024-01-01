@@ -26,7 +26,6 @@ defmodule Mix.Tasks.Deploy do
   defp build_tar_gz(%{skip_build: true}), do: nil
 
   defp build_tar_gz(skip) do
-    make_build_env(skip)
     test(skip)
     with_free_port(fn -> make_release(skip) end)
   end
@@ -74,11 +73,6 @@ defmodule Mix.Tasks.Deploy do
     end
   end
 
-  defp make_build_env(_skip) do
-    Util.banner("Creating Build Environment")
-    Util.Docker.build_devel_image()
-  end
-
   defp test(%{skip_test: true}), do: nil
 
   defp test(_skip) do
@@ -100,9 +94,7 @@ defmodule Mix.Tasks.Deploy do
       ~w(mix compile),
       ~w(mix phx.digest),
       ~w(mix release --overwrite --quiet),
-      ~w(mix phx.digest.clean --all),
-      # until https://github.com/phoenixframework/phoenix/pull/5318
-      ~w(find priv/static -name "*.br" -not -wholename "*/assets/basemap/*" -delete)
+      ~w(mix phx.digest.clean --all)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
