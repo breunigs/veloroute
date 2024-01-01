@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Velo.Map.Style.Edit do
   use Mix.Task
+  require Logger
 
   @port 4001
   @requirements ["app.start"]
@@ -84,7 +85,7 @@ defmodule Mix.Tasks.Velo.Map.Style.Edit do
       end
 
     if from_json && from_file != from_json do
-      IO.puts(:stderr, """
+      Logger.error("""
       ================================================================================
       Invalid style config: #{path}
       The style specifies an ID "#{from_json}" whereas its filename is "#{from_file}".

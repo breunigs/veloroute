@@ -83,7 +83,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
     params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}
 
-    # IO.puts(:stderr, "Searching #{district} for #{keyword} within #{de_date_range}")
+    # Logger.debug("Searching #{district} for #{keyword} within #{de_date_range}")
     {:ok, %{body: body}} = post(url, params)
 
     html = Floki.parse_fragment!(body)

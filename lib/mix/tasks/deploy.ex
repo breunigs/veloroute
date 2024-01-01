@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Deploy do
   use Mix.Task
+  require Logger
   @requirements ["app.start"]
 
   @shortdoc "Builds the site using docker, then uploads it"
@@ -170,16 +171,16 @@ defmodule Mix.Tasks.Deploy do
       {:ok, response} = Tesla.get(get_docker_url("/"))
 
       if response.status == 200 do
-        IO.puts("✓ Image booted")
+        Logger.info("✓ Image booted")
         true
       else
-        IO.puts("not yet (try=#{trail} code=#{response.status})…")
+        Logger.info("not yet (try=#{trail} code=#{response.status})…")
         Process.sleep(1_000)
         false
       end
     rescue
       e ->
-        IO.puts("not yet (try=#{trail} err=#{inspect(e)})…")
+        Logger.info("not yet (try=#{trail} err=#{inspect(e)})…")
         Process.sleep(1_000)
         false
     end
@@ -188,18 +189,18 @@ defmodule Mix.Tasks.Deploy do
   defp report_status_200?(path, retried \\ false) do
     case Tesla.get(get_docker_url(path)) do
       {:ok, %{status: 200}} ->
-        IO.puts("✓ 200 from #{path}")
+        Logger.info("✓ 200 from #{path}")
         true
 
       {:ok, response} ->
-        IO.puts("! unexpected status #{response.status} from #{path}")
+        Logger.error("! unexpected status #{response.status} from #{path}")
         false
 
       {:error, :timeout} ->
         if retried, do: false, else: report_status_200?(path, true)
 
       other ->
-        IO.puts("! unexpected response for #{path}: #{inspect(other)}")
+        Logger.error("! unexpected response for #{path}: #{inspect(other)}")
         false
     end
   end

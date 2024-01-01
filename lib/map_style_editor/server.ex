@@ -1,4 +1,6 @@
 defmodule MapStyleEditor.Server do
+  require Logger
+
   @moduledoc """
   HTTP server providing the actual editor, the basemap, the styles and its
   sprites.
@@ -38,13 +40,13 @@ defmodule MapStyleEditor.Server do
       # update asset outside of normal asset pipeline to allow checking style
       # behaviour on dev server without having to restart it.
       File.cp!(local_path, Basemap.Styles.assets_path("#{name}.json"))
-      # IO.puts(:stderr, "saved #{local_path} from web editor")
+      # Logger.debug("saved #{local_path} from web editor")
       send_resp(conn, 201, "Created")
     else
       msg =
         "Tried writing style '#{name}.json', which doesn't exist.\nEnsure style id and filename are equal."
 
-      IO.puts(:stderr, msg)
+      Logger.error(msg)
       send_resp(conn, 404, msg)
     end
   end
@@ -69,7 +71,7 @@ defmodule MapStyleEditor.Server do
   defp serve_file(conn, path, fallback \\ nil)
 
   defp serve_file(conn, {:error, reason}, _fallback) do
-    IO.puts(:stderr, "invalid path given: #{reason}")
+    Logger.error("invalid path given: #{reason}")
     send_resp(conn, 500, "invalid path given: #{reason}")
   end
 
@@ -99,7 +101,7 @@ defmodule MapStyleEditor.Server do
         serve_compressed(conn, path, "br")
 
       fallback ->
-        IO.puts(:stderr, "path #{path} not found, using fallback")
+        Logger.warning("path #{path} not found, using fallback")
         send_resp(conn, 200, fallback)
 
       true ->

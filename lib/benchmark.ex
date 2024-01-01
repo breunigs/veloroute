@@ -1,11 +1,20 @@
 defmodule Benchmark do
-  require Logger
+  defmacro __using__(_opts) do
+    quote do
+      require Logger
+    end
+  end
 
-  def measure(name, function) do
-    {elapsed, val} = :timer.tc(function)
-    elapsed = elapsed / 1_000_000
-    if elapsed >= 0.1, do: Logger.info("#{name |> String.trim()} took #{elapsed}s")
-    val
+  defmacro measure(name, function) do
+    quote do
+      {elapsed, val} = :timer.tc(unquote(function))
+      elapsed = elapsed / 1_000_000
+
+      if elapsed >= 0.1,
+        do: Logger.info("#{String.trim(unquote(name))} took #{elapsed}s")
+
+      val
+    end
   end
 
   if Application.compile_env(:veloroute, :env) != :prod do

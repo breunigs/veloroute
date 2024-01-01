@@ -3,6 +3,7 @@ defmodule MapStyleEditor.WebSocket do
   Listen to file changes for any of the mapstyles and push them to the editor
   for updates
   """
+  require Logger
 
   @behaviour :cowboy_websocket
 
@@ -28,7 +29,7 @@ defmodule MapStyleEditor.WebSocket do
   def websocket_handle(:ping, state), do: {:reply, :pong, state}
 
   def websocket_handle(any, state) do
-    IO.puts(:stderr, "received unknown websocket text message: #{inspect(any)}")
+    Logger.warning("received unknown websocket text message: #{inspect(any)}")
     {:ok, state}
   end
 
@@ -41,7 +42,7 @@ defmodule MapStyleEditor.WebSocket do
     content = File.read!(path) |> Basemap.RelativePath.hardcode(url)
 
     if MapStyleEditor.Tracker.different?(path, content) do
-      IO.puts("#{path} was updated, pushing to web editor")
+      Logger.info("#{path} was updated, pushing to web editor")
       MapStyleEditor.Tracker.update(path, content)
       {:reply, {:text, content}, state}
     else
@@ -54,7 +55,7 @@ defmodule MapStyleEditor.WebSocket do
     do: {:ok, state}
 
   def websocket_info(info, state) do
-    IO.puts(:stderr, "Unknown message received: #{inspect(info)}")
+    Logger.warning("Unknown message received: #{inspect(info)}")
     {:ok, state}
   end
 end

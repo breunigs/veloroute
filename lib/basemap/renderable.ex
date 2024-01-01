@@ -18,7 +18,8 @@ defmodule Basemap.Renderable do
   @callback render() :: :ok | {:error, binary()}
 
   defmacro __using__(_opts) do
-    quote location: :keep do
+    quote do
+      use Benchmark
       @behaviour Basemap.Renderable
 
       def name(), do: Path.basename(unquote(__CALLER__.file), ".ex")

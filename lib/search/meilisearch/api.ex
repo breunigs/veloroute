@@ -65,7 +65,7 @@ defmodule Search.Meilisearch.API do
   end
 
   def index_documents(index, documents) when is_atom(index) and is_list(documents) do
-    Logger.debug("MEILISEARCH | index=#{index}: adding #{length(documents)} documents")
+    Logger.debug("index=#{index}: adding #{length(documents)} documents")
 
     post("/indexes/#{index}/documents", documents, opts: @adapter_opts_index)
     |> await_finish()
@@ -75,7 +75,7 @@ defmodule Search.Meilisearch.API do
   def index_documents(index, {content_type, blob})
       when is_atom(index) and content_type in @valid_content_types and is_binary(blob) do
     size = round(byte_size(blob) / 1024 / 1024)
-    Logger.debug("MEILISEARCH | index=#{index}: adding documents from #{size} MB blob")
+    Logger.debug("index=#{index}: adding documents from #{size} MB blob")
 
     post("/indexes/#{index}/documents", blob,
       headers: [{"content-type", content_type}],
@@ -93,9 +93,7 @@ defmodule Search.Meilisearch.API do
       results
     else
       other ->
-        Logger.warning(
-          "MEILISEARCH | failed to query for #{inspect(params)}. Result: #{inspect(other)}"
-        )
+        Logger.warning("failed to query for #{inspect(params)}. Result: #{inspect(other)}")
 
         []
     end
@@ -119,9 +117,7 @@ defmodule Search.Meilisearch.API do
       end)
     else
       other ->
-        Logger.warning(
-          "MEILISEARCH | failed to multi-query for #{inspect(payload)}. Result: #{inspect(other)}"
-        )
+        Logger.warning("failed to multi-query for #{inspect(payload)}. Result: #{inspect(other)}")
 
         []
     end

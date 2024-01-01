@@ -1,4 +1,6 @@
 defmodule Cache.Map do
+  use Benchmark
+
   @source Map.Parser.default_map_path()
   @external_resource @source
   @data Benchmark.measure("#{__MODULE__}: loading", &Map.Parser.load_default/0)

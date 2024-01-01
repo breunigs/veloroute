@@ -1,5 +1,6 @@
 defmodule Basemap.OpenStreetMap do
   use Basemap.Renderable
+  require Logger
 
   @image_ref {:dockerfile, Path.join(__DIR__, "Dockerfile.openstreetmap")}
   @container_ref_stats {"generating statistics for basemap",
@@ -82,7 +83,7 @@ defmodule Basemap.OpenStreetMap do
   end
 
   defp download_osm_source do
-    IO.puts(:stderr, "Downloading #{Settings.osm_data_source()}")
+    Logger.info("Downloading #{Settings.osm_data_source()}")
     path = path(:cache, osm_source_name())
     :ok = remove_if_exists(path <> ".bak")
     :ok = rename_if_exists(path, path <> ".bak")
@@ -112,7 +113,7 @@ defmodule Basemap.OpenStreetMap do
       zip_c = dir_c <> ".zip"
 
       if !File.exists?(zip) do
-        IO.puts("downloading extra shapes #{shape}")
+        Logger.info("downloading extra shapes #{shape}")
         :ok = Util.Download.to_file(shape, zip)
       end
 

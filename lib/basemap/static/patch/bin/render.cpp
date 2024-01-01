@@ -1,8 +1,9 @@
 #include <mbgl/map/map.hpp>
 #include <mbgl/map/map_options.hpp>
 #include <mbgl/util/image.hpp>
-#include <mbgl/util/run_loop.hpp>
+#include <mbgl/util/logging.hpp>
 #include <mbgl/util/premultiply.hpp>
+#include <mbgl/util/run_loop.hpp>
 #include <mbgl/storage/network_status.hpp>
 #include <mbgl/gfx/headless_frontend.hpp>
 #include <mbgl/style/expression/dsl.hpp>
@@ -34,11 +35,10 @@ std::vector<std::string> split(const std::string &s, char delim) {
     }
     return elems;
 }
+
 void printError(const std::string &msg) {
-    const std::string prefix = "error: ";
-    const char length[4] = {FIXED_WIDTH_UINT(prefix.size() + msg.size())};
-    std::cout.write(length, 4);
-    std::cout << prefix << msg;
+    using namespace mbgl;
+    Log::Error(Event::General, msg);
 }
 
 void die(const std::string &msg) {

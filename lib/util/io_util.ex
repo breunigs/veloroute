@@ -89,7 +89,7 @@ defmodule Util.IO do
     newest_dep > oldest_target || oldest_target == :unknown
   end
 
-  def modification_times(path) do
+  defp modification_times(path) do
     if !File.exists?(path) do
       {:unknown, :unknown}
     else

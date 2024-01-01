@@ -30,13 +30,13 @@ defmodule Search.Meilisearch.Runner do
       GenServer.call(__MODULE__, {:search, query, bbox}, 1000)
     catch
       :exit, err ->
-        Logger.warning("MEILISEARCH | #{inspect(err)}")
+        Logger.warning(inspect(err))
         []
     end
   end
 
   def boot() do
-    Logger.info("MEILISEARCH | sending boot event")
+    Logger.info("sending boot event")
     GenServer.cast(__MODULE__, :boot)
   end
 
@@ -92,7 +92,7 @@ defmodule Search.Meilisearch.Runner do
   end
 
   def handle_call({:search, _query, _bbox} = task, from, %{healthy: false} = state) do
-    Logger.warning("MEILISEARCH | not healthy, queuing search query")
+    Logger.warning("not healthy, queuing search query")
     state = %{state | queue: add_queued_task(state.queue, from, task)}
     {:noreply, state}
   end
@@ -106,24 +106,24 @@ defmodule Search.Meilisearch.Runner do
   end
 
   def handle_call(:reindex, _from, state) do
-    Logger.debug("MEILISEARCH | re-indexing")
+    Logger.debug("re-indexing")
     {:reply, :ok, index(%{state | indexers: @indexers})}
   end
 
   def handle_call(term, _from, state) do
-    Logger.warning("MEILISEARCH | received unknown call: #{inspect(term)}")
+    Logger.warning("received unknown call: #{inspect(term)}")
     {:reply, nil, state}
   end
 
   @impl GenServer
   @spec handle_cast(any(), state()) :: {:noreply, state()}
   def handle_cast(:boot, state) do
-    Logger.debug("MEILISEARCH | received boot event")
+    Logger.debug("received boot event")
     {:noreply, start(state)}
   end
 
   def handle_cast(term, state) do
-    Logger.warning("MEILISEARCH | received unknown cast: #{inspect(term)}")
+    Logger.warning("received unknown cast: #{inspect(term)}")
     {:noreply, state}
   end
 
@@ -142,14 +142,14 @@ defmodule Search.Meilisearch.Runner do
         missing = Map.values(missing)
 
         if missing != [] do
-          Logger.info("MEILISEARCH | adding missing indexes #{inspect(missing)}")
+          Logger.info("adding missing indexes #{inspect(missing)}")
           index(%{state | indexers: missing})
         else
           state
         end
       else
         {:error, err} ->
-          Logger.debug("MEILISEARCH | failed to check existing indexes #{inspect(err)}")
+          Logger.debug("failed to check existing indexes #{inspect(err)}")
           Process.send_after(self(), :maybe_index, 1000)
           state
       end
@@ -164,20 +164,18 @@ defmodule Search.Meilisearch.Runner do
 
   def handle_info({port, {:data, {_flag, text}}}, %{port: port} = state) do
     level = if String.contains?(String.downcase(text), "error"), do: :warning, else: :info
-    if level == :warning || state.debug, do: Logger.log(level, "MEILISEARCH | #{text}")
+    if level == :warning || state.debug, do: Logger.log(level, "#{text}")
     {:noreply, state}
   end
 
   def handle_info({port, {:exit_status, status}}, %{port: port} = state) do
-    Logger.warning(
-      "MEILISEARCH | exit code=#{status}, see above for errors or re-run with debug logs"
-    )
+    Logger.warning("exit code=#{status}, see above for errors or re-run with debug logs")
 
     {:stop, :normal, shutdown(state)}
   end
 
   def handle_info({:EXIT, port, _reason}, %{port: port} = state) do
-    Logger.warning("MEILISEARCH | exit2? #{inspect(state)}")
+    Logger.warning("exit2? #{inspect(state)}")
     {:stop, :normal, shutdown(state)}
   end
 
@@ -186,7 +184,7 @@ defmodule Search.Meilisearch.Runner do
   end
 
   def handle_info(term, state) do
-    Logger.warning("MEILISEARCH | received unknown info: #{inspect(term)}")
+    Logger.warning("received unknown info: #{inspect(term)}")
     {:noreply, state}
   end
 
@@ -198,7 +196,7 @@ defmodule Search.Meilisearch.Runner do
   end
 
   defp start_meilisearch(state) do
-    Logger.info("MEILISEARCH | starting")
+    Logger.info("starting")
     Search.Meilisearch.Exe.ensure_downloaded()
 
     # golfed version of https://hexdocs.pm/elixir/Port.html#module-zombie-operating-system-processes
@@ -259,11 +257,11 @@ defmodule Search.Meilisearch.Runner do
   @spec maybe_process_queue(state()) :: state()
   defp maybe_process_queue(%{queue: [queued_task | rest], healthy: true} = state) do
     {:queued, _deadline, from, task} = queued_task
-    Logger.debug("MEILISEARCH | processing queued task: #{inspect(task)}")
+    Logger.debug("processing queued task: #{inspect(task)}")
 
     state =
       if expired?(queued_task) do
-        Logger.warning("MEILISEARCH | queued task expired: #{inspect(task)}")
+        Logger.warning("queued task expired: #{inspect(task)}")
         GenServer.reply(from, {:error, "the tasked #{inspect(task)} timed out"})
         %{state | queue: rest}
       else
@@ -273,7 +271,7 @@ defmodule Search.Meilisearch.Runner do
             %{state | queue: rest}
 
           {:noreply, state} ->
-            Logger.warning("MEILISEARCH | queued task failed a 2nd time: #{inspect(task)}")
+            Logger.warning("queued task failed a 2nd time: #{inspect(task)}")
             %{state | queue: rest}
         end
       end
@@ -282,12 +280,12 @@ defmodule Search.Meilisearch.Runner do
   end
 
   defp maybe_process_queue(%{queue: queue, healthy: true} = state) when queue == [] do
-    # Logger.debug("MEILISEARCH | no queued items")
+    # Logger.debug("no queued items")
     state
   end
 
   defp maybe_process_queue(%{healthy: false} = state) do
-    Logger.debug("MEILISEARCH | can't process queued tasks, as still not healthy")
+    Logger.debug("can't process queued tasks, as still not healthy")
     state
   end
 
@@ -326,10 +324,10 @@ defmodule Search.Meilisearch.Runner do
     Parallel.map(indexers, &indexer_run(&1))
     |> Enum.each(fn
       {:ok, indexer} ->
-        Logger.debug("MEILISEARCH | indexed #{indexer} ✓")
+        Logger.debug("indexed #{indexer} ✓")
 
       {:error, indexer, reason} ->
-        Logger.error("MEILISEARCH | failed to index #{indexer}: #{reason}")
+        Logger.error("failed to index #{indexer}: #{reason}")
     end)
 
     queue =

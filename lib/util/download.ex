@@ -1,4 +1,6 @@
 defmodule Util.Download do
+  use Benchmark
+
   @spec to_file(binary(), binary(), non_neg_integer()) :: :ok | {:error, atom | binary()}
   @doc """
   Downloads from the URL to the given path. The target path's partent

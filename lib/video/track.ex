@@ -1,4 +1,6 @@
 defmodule Video.Track do
+  require Logger
+
   @known_params [
     :from,
     :via,
@@ -327,7 +329,7 @@ defmodule Video.Track do
       end)
     else
       {:error, reason} ->
-        IO.puts(:stderr, "failed to generate street names for #{hash}: #{reason}")
+        Logger.error("failed to generate street names for #{hash}: #{reason}")
         []
     end
   end

@@ -217,7 +217,7 @@ defmodule Data.GeoJSON do
   end
 
   defp as_geojson(%Map.Relation{} = r) do
-    IO.puts(:stderr, "skipping unsupported relation: #{r.id}")
+    Logger.warning("skipping unsupported relation: #{r.id}")
     nil
   end
 

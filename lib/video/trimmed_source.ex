@@ -1,4 +1,6 @@
 defmodule Video.TrimmedSource do
+  require Logger
+
   @known_params [
     :source,
     :date,
@@ -173,7 +175,7 @@ defmodule Video.TrimmedSource do
     |> Video.Source.new_from_folder()
     |> Parallel.map(&new_from_source/1)
     |> Enum.reject(fn
-      {:error, msg} -> IO.puts(:stderr, msg)
+      {:error, msg} -> Logger.warning(msg)
       _ -> false
     end)
   end

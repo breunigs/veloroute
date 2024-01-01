@@ -1,4 +1,6 @@
 defmodule Basemap.Sprites do
+  use Benchmark
+
   @container_ref {"map sprite generation",
                   {:dockerfile, Path.join(__DIR__, "Dockerfile.spritezero")}}
 

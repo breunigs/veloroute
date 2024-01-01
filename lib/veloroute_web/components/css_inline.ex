@@ -17,8 +17,8 @@ defmodule VelorouteWeb.CSSInline do
         Phoenix.HTML.raw("<style>#{css}</style>")
 
       {:error, reason} ->
-        IO.puts(:stderr, "CSS Failed to read #{path}: #{reason}.")
-        IO.puts(:stderr, "CSS will be loaded by the browser instead of inlined.")
+        Logger.warning("CSS Failed to read #{path}: #{reason}.")
+        Logger.warning("CSS will be loaded by the browser instead of inlined.")
         nil
     end
   end

@@ -1,4 +1,6 @@
 defmodule Util.Cmd2 do
+  require Logger
+
   @type exec_opts :: Keyword.t()
 
   @type exec_result :: %{
@@ -57,7 +59,7 @@ defmodule Util.Cmd2 do
       end
 
     if do_raise && result != :ok && status[:user_abort] do
-      IO.puts(:stderr, "User aborted")
+      Logger.info("User aborted")
       System.halt(0)
     end
 
@@ -147,7 +149,7 @@ defmodule Util.Cmd2 do
               128 + signal
 
             {:signal, signal, core} ->
-              IO.puts(:stderr, "\nChild received #{signal} signal and died (core: #{core})")
+              Logger.error("Child received #{signal} signal and died (core: #{core})")
               137
           end
 
@@ -157,7 +159,7 @@ defmodule Util.Cmd2 do
         %{status: reason, stdout: stdoutacc, stderr: stderracc, user_abort: false}
 
       {:slow_warn, cmd} ->
-        IO.puts(:stderr, "\n#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
+        Logger.info("#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
         receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
 
       {:kill, _signal} ->
@@ -192,7 +194,7 @@ defmodule Util.Cmd2 do
 
     {:ok, _trap} =
       System.trap_signal(signal, trap_ref, fn ->
-        IO.puts(:stderr, "\n\nreceived #{signal}, aborting...")
+        Logger.info("received #{signal}, aborting...")
         :ok = Process.send(us, {:kill, signal}, [])
         Process.sleep(5_000)
         :ok

@@ -1,4 +1,5 @@
 defmodule Basemap.Nominatim do
+  use Benchmark
   use Basemap.Renderable
   require Logger
 

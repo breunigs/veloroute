@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Velo.Assets.Prepare do
   use Mix.Task
+  require Logger
 
   @requirements ["app.start"]
 
@@ -20,7 +21,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   end
 
   defp copy_images() do
-    IO.puts(:stderr, "copying images")
+    Logger.info("copying images")
     File.mkdir_p!("priv/static/images/")
     File.cp_r!("data/images/", "priv/static/images/")
   end

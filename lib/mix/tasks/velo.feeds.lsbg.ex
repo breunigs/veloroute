@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   use Mix.Task
   use Tesla
+  require Logger
 
   @base "https://lsbg.hamburg.de"
   @projects_page "#{@base}/baumassnahmen-und-planungen"
@@ -29,7 +30,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
       {status, nil},
       fn
         {:error, reason}, acc ->
-          IO.puts(:stderr, reason)
+          Logger.error(reason)
           acc
 
         detail, {status, task} ->

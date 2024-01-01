@@ -1,6 +1,7 @@
 defmodule Basemap.Styles do
   use Basemap.Renderable
   use Basemap.Servable
+  require Logger
 
   def source(), do: "assets/map/styles"
 
@@ -16,7 +17,7 @@ defmodule Basemap.Styles do
       # directly serve these static files, though.
       case write(path, Settings.url()) do
         :ok -> Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap styles")
-        {:error, reason} -> IO.puts(:stderr, reason)
+        {:error, reason} -> Logger.error(reason)
       end
 
       # local rendering
@@ -28,7 +29,7 @@ defmodule Basemap.Styles do
 
       case write(path, "asset://", ".local", localizer) do
         :ok -> :ok
-        {:error, reason} -> IO.puts(:stderr, reason)
+        {:error, reason} -> Logger.error(reason)
       end
     end)
   end

@@ -11,6 +11,7 @@ end
 defmodule Mix.Tasks.Velo.Links.Mirror do
   use Mix.Task
   use Tesla
+  require Logger
 
   @path "link_mirror/"
   @requirements ["app.start"]
@@ -389,7 +390,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   defp log(file, text) do
     name = file |> Path.dirname() |> Path.basename()
-    IO.puts(:stderr, "\n#{name}: #{text}")
+    Logger.info("\n#{name}: #{text}")
   end
 end
 

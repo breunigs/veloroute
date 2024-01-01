@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Velo.Videos.Detect do
   use Mix.Task
+  require Logger
   @requirements ["app.start"]
   @container_ref {"detecting blurs", {:dockerfile, "tools/detection/Dockerfile.pytorch"}}
 
@@ -18,7 +19,7 @@ defmodule Mix.Tasks.Velo.Videos.Detect do
       :ok
     else
       {:error, reason} ->
-        IO.puts(:stderr, reason)
+        Logger.error(reason)
         exit(:failure)
     end
   end

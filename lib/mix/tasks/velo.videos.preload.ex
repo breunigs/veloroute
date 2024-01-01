@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Velo.Videos.Preload do
   use Mix.Task
+  require Logger
 
   @shortdoc "Run command that copies rendered videos onto server"
   def run(_) do
@@ -12,11 +13,11 @@ defmodule Mix.Tasks.Velo.Videos.Preload do
           IO.puts("✓ video sync")
 
         {msgs, exit_code} ->
-          IO.puts(:stderr, "FAILED video sync with exit code #{exit_code}:\n#{msgs}\n\n")
+          Logger.error("FAILED video sync with exit code #{exit_code}:\n#{msgs}\n\n")
       end
     rescue
       error ->
-        IO.puts(:stderr, "FAILED video sync:\n#{inspect(error)}\n\n")
+        Logger.error("FAILED video sync:\n#{inspect(error)}\n\n")
     end
   end
 end

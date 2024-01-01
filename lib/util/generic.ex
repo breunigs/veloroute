@@ -1,4 +1,58 @@
 defmodule Util do
+  @doc """
+  Shortens path to the given length, trying to smartly abbreviate directories or
+  drop them to fit the constraint.
+
+  ## Examples
+
+      iex> Util.shorten_path("lib/mix/tasks/velo.gpx.generate.ex")
+      "l/m/tasks/velo.gpx.generate.ex"
+
+      iex> Util.shorten_path("lib/mix/tasks/velo.map.static_renderer.ex")
+      "ta/velo.map.static_renderer.ex"
+
+      iex> Util.shorten_path("lib/veloroute_web/live/video_state.ex")
+      "l/velorout/live/video_state.ex"
+
+      iex> Util.shorten_path("short.ex")
+      "short.ex"
+
+      iex> Util.shorten_path(nil)
+      ""
+  """
+  @spec shorten_path(binary() | nil, pos_integer()) :: binary()
+  def shorten_path(path, path_length \\ 30) do
+    path = to_string(path)
+    segments = Path.split(path)
+    {base, dirs} = List.pop_at(segments, -1)
+    base = base || ""
+
+    base_len = String.length(base)
+
+    if base_len >= path_length - 1 || dirs == [] do
+      String.slice(base, -path_length..-1)
+    else
+      max_dirs_len = path_length - base_len
+      # guaranteed to be larger than 0, since the if condition checks that we
+      # have at least two characters available
+      max_dirs_count = floor(max_dirs_len / 2)
+      dirs = Enum.slice(dirs, -max_dirs_count..-1)
+      cur_dirs_len = String.length(Path.join(dirs)) + 1
+
+      {dirs, _cur_dirs_len} =
+        Enum.reduce(dirs, {[], cur_dirs_len}, fn
+          dir, {shortened, cur_dirs_len} ->
+            old_len = String.length(dir)
+            new_len = max(0, max_dirs_len - cur_dirs_len + old_len - 1)
+            dir = String.slice(dir, 0..new_len)
+            {[dir | shortened], cur_dirs_len - old_len + new_len + 1}
+        end)
+
+      dirs = Enum.reverse(dirs)
+      Path.join(dirs) |> Path.join(base)
+    end
+  end
+
   def present?(nil), do: false
   def present?(""), do: false
   def present?(_o), do: true

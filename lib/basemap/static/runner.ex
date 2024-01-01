@@ -96,9 +96,27 @@ defmodule Basemap.Static.Runner do
     {:noreply, state}
   end
 
-  def handle_info({port, {:data, "error" <> msg}}, state)
+  def handle_info({port, {:data, "ERROR: " <> msg}}, state)
+      when not is_map_key(state.processing, port) do
+    Logger.error("#{inspect(port)}: #{msg}")
+    {:noreply, state}
+  end
+
+  def handle_info({port, {:data, "WARNING: " <> msg}}, state)
       when not is_map_key(state.processing, port) do
     Logger.warning("#{inspect(port)}: #{msg}")
+    {:noreply, state}
+  end
+
+  def handle_info({port, {:data, "INFO: " <> msg}}, state)
+      when not is_map_key(state.processing, port) do
+    Logger.info("#{inspect(port)}: #{msg}")
+    {:noreply, state}
+  end
+
+  def handle_info({port, {:data, "DEBUG: " <> msg}}, state)
+      when not is_map_key(state.processing, port) do
+    Logger.debug("#{inspect(port)}: #{msg}")
     {:noreply, state}
   end
 

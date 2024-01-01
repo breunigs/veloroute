@@ -599,9 +599,8 @@ defmodule Util.Docker do
         false
 
       true ->
-        IO.puts(
-          :stderr,
-          "Looks like Docker cannot pass through a GPU. If nvidia-docker is not installed, this is to be expected, but the error message looks different this time: #{out}}"
+        Logger.info(
+          "Looks like Docker cannot pass through a GPU. If nvidia-docker is not installed, this is to be expected, but the error message looks different this time: #{out}"
         )
 
         false

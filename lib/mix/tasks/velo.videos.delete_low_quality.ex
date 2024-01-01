@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Velo.Videos.DeleteLowQuality do
   use Mix.Task
+  require Logger
   import Guards
   @requirements ["app.start"]
 
@@ -26,7 +27,7 @@ defmodule Mix.Tasks.Velo.Videos.DeleteLowQuality do
   end
 
   def run(args) do
-    IO.puts(:stderr, """
+    Logger.error("""
     Specify a hash of the video where you want low quality variants to be removed.
     If you are not sure which hash, try
 

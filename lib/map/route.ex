@@ -1,4 +1,5 @@
 defmodule Map.Route do
+  require Logger
   @enforce_keys [:name, :group_title, :route_title, :nodes]
   defstruct [:name, :group_title, :route_title, :nodes]
 
@@ -37,7 +38,7 @@ defmodule Map.Route do
         find_single(track, graph, indexed, art)
       catch
         error ->
-          IO.puts(:stderr, error)
+          Logger.warning(error)
           nil
       end
     end)

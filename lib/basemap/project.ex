@@ -1,4 +1,5 @@
 defmodule Basemap.Project do
+  use Benchmark
   use Basemap.Renderable
 
   @container_ref {"converting project specific map data into tiles",

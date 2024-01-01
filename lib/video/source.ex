@@ -1,4 +1,5 @@
 defmodule Video.Source do
+  require Logger
   import SweetXml
 
   @known_params [
@@ -158,7 +159,7 @@ defmodule Video.Source do
         {:cont, next}
 
       point, _prev ->
-        IO.puts(:stderr, """
+        Logger.error("""
           #{source}'s GPX file is invalid, the timestamps reset within the GPX file (around #{inspect(point)}). Check if it's a long video that was split up at 4 GB, where the GPX of the first video contains both parts anyway. The next segment of the video increases its most significant digit."
         """)
 
@@ -197,7 +198,7 @@ defmodule Video.Source do
   @spec video_length_ms_slow(t()) :: integer()
   @dialyzer {:nowarn_function, video_length_ms_slow: 1}
   defp video_length_ms_slow(%__MODULE__{source: source}) do
-    IO.puts(:stderr, "querying video to determine length of #{source}")
+    Logger.debug("querying video to determine length of #{source}")
     path = Video.Path.source_rel_to_cwd(source)
     {:ok, meta} = Video.Metadata.for(path)
     ms = round(meta.duration * 1000)
@@ -217,7 +218,7 @@ defmodule Video.Source do
       :ok
     else
       err ->
-        IO.puts(:stderr, "failed to write GPX file with video time for #{source}: #{err}")
+        Logger.error("failed to write GPX file with video time for #{source}: #{err}")
     end
 
     ms

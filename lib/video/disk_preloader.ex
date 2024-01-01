@@ -49,10 +49,10 @@ defmodule Video.DiskPreloader do
   def handle_cast({:cat_file, file}, state) do
     case File.read(file) do
       {:ok, _content} ->
-        Logger.debug("video preloader: preloaded #{file}")
+        Logger.debug("preloaded #{file}")
 
       {:error, reason} ->
-        Logger.debug("video preloader: failed to read #{file}: #{reason}")
+        Logger.debug("failed to read #{file}: #{reason}")
     end
 
     {:noreply, state}
@@ -63,19 +63,19 @@ defmodule Video.DiskPreloader do
       {:ok, f} ->
         case :file.pread(f, range.first, range.last - range.first) do
           {:ok, _data} ->
-            Logger.debug("video preloader: preloaded #{file} for #{inspect(range)}")
+            Logger.debug("preloaded #{file} for #{inspect(range)}")
 
           :eof ->
-            Logger.debug("video preloader: read #{file} past the end (tried #{inspect(range)})")
+            Logger.debug("read #{file} past the end (tried #{inspect(range)})")
 
           {:error, reason} ->
-            Logger.debug("video preloader: failed to pread #{file}: #{reason}")
+            Logger.debug("failed to pread #{file}: #{reason}")
         end
 
         :file.close(f)
 
       {:error, reason} ->
-        Logger.debug("video preloader: failed to open #{file}: #{reason}")
+        Logger.debug("failed to open #{file}: #{reason}")
     end
 
     {:noreply, state}
@@ -94,7 +94,7 @@ defmodule Video.DiskPreloader do
       end)
     else
       {:error, reason} ->
-        Logger.debug("video preloader: failed to parse m3u8 #{m3u8_path}: #{reason}")
+        Logger.debug("failed to parse m3u8 #{m3u8_path}: #{reason}")
     end
 
     {:noreply, state}
@@ -147,7 +147,7 @@ defmodule Video.DiskPreloader do
         []
 
       {:error, reason} ->
-        Logger.debug("video preloader: failed to read #{path}: #{reason}")
+        Logger.debug("failed to read #{path}: #{reason}")
         []
     end
   end

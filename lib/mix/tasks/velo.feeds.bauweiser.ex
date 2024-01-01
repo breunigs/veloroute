@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   use Mix.Task
   use Tesla
   use Memoize
+  require Logger
   import Guards
 
   @path "data/auto_generated/feeds_seen/bauweiser.json"
@@ -84,7 +85,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
       Enum.map(response.body, fn entry -> entry["id"] end)
     else
       e ->
-        IO.puts(:stderr, "Failed to retrieve list Bauweiser date=#{date}: #{inspect(e)}")
+        Logger.warning("Failed to retrieve list Bauweiser date=#{date}: #{inspect(e)}")
         []
     end
   end
@@ -105,7 +106,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
       }
     rescue
       e ->
-        IO.puts(:stderr, "Failed to retrieve Bauweiser id=#{id}: #{inspect(e)}")
+        Logger.warning("Failed to retrieve Bauweiser id=#{id}: #{inspect(e)}")
         nil
     end
   end
@@ -144,7 +145,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
         end)
 
       {:error, error} ->
-        IO.puts(:stderr, "failed to load seen Bauweiser IDs from #{@path} (#{inspect(error)})")
+        Logger.warning("failed to load seen Bauweiser IDs from #{@path} (#{inspect(error)})")
         %{}
     end
   end

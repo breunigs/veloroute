@@ -39,8 +39,11 @@ config :os_mon,
 
 # Configures Elixir's Logger
 config :logger, :default_formatter,
-  format: "$date $time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  # format: "$date $time [$level] $metadata $message\n",
+  format: {LogFormatter, :format},
+  metadata: [:request_id, :file, :line]
+
+config :logger, backends: [:console]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
@@ -50,8 +53,6 @@ config :phoenix,
   gzippable_exts: ~w(.js .map .css .txt .text .html .json .svg .eot .ttf .gpx .kml)
 
 config :tesla, adapter: Tesla.Adapter.Hackney
-
-config :logger, backends: [:console]
 
 config :reverse_proxy_plug, :http_client, ReverseProxyPlug.HTTPClient.Adapters.Tesla
 
