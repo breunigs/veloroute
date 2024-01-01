@@ -1,5 +1,6 @@
 defmodule VelorouteWeb.CSSInline do
   use Phoenix.Component
+  require Logger
 
   @path_prefix "./priv/static/assets"
 
