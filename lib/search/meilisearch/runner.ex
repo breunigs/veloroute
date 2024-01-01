@@ -233,7 +233,7 @@ defmodule Search.Meilisearch.Runner do
           :binary,
           :eof,
           :exit_status,
-          {:line, 16384},
+          {:line, 16_384},
           :stderr_to_stdout,
           {:args, args},
           {:cd, System.tmp_dir!()}

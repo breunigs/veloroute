@@ -9,9 +9,9 @@ defmodule Mix.Tasks.Velo.Setup do
 
   @creds_path "data/credentials.ex"
   defp credentials(args) do
-    if !File.exists?(@creds_path),
-      do: credentials_write(args),
-      else: IO.puts("#{@creds_path} already exists, not overwriting.")
+    if File.exists?(@creds_path),
+      do: IO.puts("#{@creds_path} already exists, not overwriting."),
+      else: credentials_write(args)
   end
 
   defp credentials_write(args) do

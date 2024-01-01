@@ -92,7 +92,8 @@ defmodule Veloroute.MixProject do
       {:tqdm,
        runtime: is_dev,
        git: "https://github.com/breunigs/tqdm_elixir",
-       branch: "elixir-1-15-fixes"}
+       branch: "elixir-1-15-fixes"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 end

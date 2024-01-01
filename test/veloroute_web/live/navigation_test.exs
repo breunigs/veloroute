@@ -90,7 +90,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     assert_push_event(view, :video_meta, %{
       "hash" => "5995942c8e2bf76dd2e56339c6942566",
-      "start" => 50492
+      "start" => 50_492
     })
   end
 

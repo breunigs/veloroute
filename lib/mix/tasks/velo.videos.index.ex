@@ -54,7 +54,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   end
 
   defp join_tasks(list) when is_list(list) do
-    list |> Enum.map(&Task.await(&1, :infinity)) |> Enum.join("\n\n")
+    Enum.map_join(list, "\n\n", &Task.await(&1, :infinity))
   end
 
   defp named_track_segments_task(x, base_osm_id) do

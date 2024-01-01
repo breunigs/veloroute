@@ -4,7 +4,7 @@ defmodule Video.TrackTest do
   @track_defaults %{group: "", direction: :forward, from: "", to: "", parent_ref: nil, text: ""}
 
   @tracks [
-    {"a38ca679d6dfe9f001054440ed1651c2", 22632,
+    {"a38ca679d6dfe9f001054440ed1651c2", 22_632,
      %{
        renderer: 1,
        videos: [
@@ -12,7 +12,7 @@ defmodule Video.TrackTest do
          {"2021-11-29-stephansplatz/GX013012", :start, :end}
        ]
      }},
-    {"e18277249b53ff4bff6e63f252a69996", 26054,
+    {"e18277249b53ff4bff6e63f252a69996", 26_054,
      %{
        renderer: 2,
        videos: [

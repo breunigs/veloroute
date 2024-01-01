@@ -14,7 +14,7 @@ defmodule Video.ServePlug do
 
   plug :maybe_not_found
 
-  def maybe_not_found(conn = %{request_path: "/#{@serve_path}/" <> _rest}, _opts) do
+  def maybe_not_found(%{request_path: "/#{@serve_path}/" <> _rest} = conn, _opts) do
     conn
     |> put_resp_content_type("text/html")
     |> put_resp_header("x-robots-tag", "noindex")

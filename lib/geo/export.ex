@@ -17,15 +17,11 @@ defmodule Geo.Export do
   end
 
   defp as_gpx_track_points(coords) when is_list(coords) do
-    coords
-    |> Enum.map(&coord2gpx/1)
-    |> Enum.join("\n")
+    Enum.map_join(coords, "\n", &coord2gpx/1)
   end
 
   defp as_gpx_track_points(%{polyline: poly, precision: precision}) do
-    Polyline.decode(poly, precision)
-    |> Enum.map(&coord2gpx/1)
-    |> Enum.join("\n")
+    Enum.map_join(Polyline.decode(poly, precision), "\n", &coord2gpx/1)
   end
 
   defp coord2gpx(%{lat: lat, lon: lon}) do

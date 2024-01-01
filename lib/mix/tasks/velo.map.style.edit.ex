@@ -64,7 +64,7 @@ defmodule Mix.Tasks.Velo.Map.Style.Edit do
 
     val = IO.gets("Select by number or name: ") |> String.trim()
 
-    if(is_map_key(options, val)) do
+    if is_map_key(options, val) do
       options[val]
     else
       IO.puts("invalid option selected: #{val}")

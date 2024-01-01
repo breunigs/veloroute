@@ -102,7 +102,7 @@ defmodule Map.Parser do
         |> Enum.map(fn {"nd", [{"ref", ref}], _} -> nodes[ref] end)
         |> ensure_right_hand_winding()
 
-      if length(nodes) == 0, do: raise("Way without nodes: #{inspect(w)}")
+      if nodes == [], do: raise("Way without nodes: #{inspect(w)}")
 
       Map.put(
         ways,

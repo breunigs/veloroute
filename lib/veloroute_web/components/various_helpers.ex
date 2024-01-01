@@ -27,8 +27,7 @@ defmodule VelorouteWeb.VariousHelpers do
   end
 
   @video_metadata_stop_after ["Meinung", "Externe Links", "Planung"]
-                             |> Enum.map(&Regex.escape/1)
-                             |> Enum.join("|")
+                             |> Enum.map_join("|", &Regex.escape/1)
 
   def video_metadata(nil), do: nil
 
@@ -68,8 +67,8 @@ defmodule VelorouteWeb.VariousHelpers do
       description: desc,
       thumbnailUrl: [
         ~p"/images/thumbnails/#{rendered.hash()}/0",
-        ~p"/images/thumbnails/#{rendered.hash()}/#{third * 1}",
-        ~p"/images/thumbnails/#{rendered.hash()}/#{third * 2}"
+        ~p"/images/thumbnails/#{rendered.hash()}/#{third}",
+        ~p"/images/thumbnails/#{rendered.hash()}/#{2 * third}"
       ],
       uploadDate: "#{date}T10:00:00+02:00",
       duration: Video.Timestamp.as_iso8601(rendered.length_ms()),

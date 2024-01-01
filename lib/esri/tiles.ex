@@ -45,8 +45,7 @@ defmodule Esri.Tiles do
         end)
         |> Util.compact()
         |> Enum.sort_by(& &1.score, :desc)
-        |> Enum.map(& &1.text)
-        |> Enum.join(", ")
+        |> Enum.map_join(", ", & &1.text)
 
       {key, ~s(<a href="#{source}">Esri, #{text}</a>)}
     end)

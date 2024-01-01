@@ -10,7 +10,7 @@ defmodule Basemap.Static.Plug do
   @seconds_per_day 24 * 60 * 60
 
   @impl Plug
-  def call(conn = %{path_info: ["map", "___static", center_zoom, dimension]}, _opts) do
+  def call(%{path_info: ["map", "___static", center_zoom, dimension]} = conn, _opts) do
     with [lon, lat, zoom] <- String.split(center_zoom, ",", parts: 3),
          {lon, ""} <- Float.parse(lon),
          {lat, ""} <- Float.parse(lat),

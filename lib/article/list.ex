@@ -168,7 +168,7 @@ defmodule Article.List do
       Enum.member?(downtags, tag)
     rescue
       FunctionClauseError ->
-        raise("not all tags of #{art} are strings: #{inspect(art.tags())}")
+        reraise("not all tags of #{art} are strings: #{inspect(art.tags())}", __STACKTRACE__)
     end
   end
 

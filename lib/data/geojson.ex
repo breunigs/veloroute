@@ -103,14 +103,14 @@ defmodule Data.GeoJSON do
   defp as_geojson(%Map.Way{tags: %{type: "article", hide_from_map: true}}), do: nil
 
   defp as_geojson(
-         w = %Map.Way{
+         %Map.Way{
            tags: %{
              type: "article",
              name: name,
              article_title: _title,
              article_type: type
            }
-         }
+         } = w
        ) do
     coords = Enum.map(w.nodes, &as_geojson_coord(&1))
 
@@ -131,7 +131,7 @@ defmodule Data.GeoJSON do
     }
   end
 
-  defp as_geojson(w = %Map.Way{tags: %{type: "article"}}) do
+  defp as_geojson(%Map.Way{tags: %{type: "article"}} = w) do
     Logger.error(
       "A way tagged as an article is missing some required fields. Normally these are auto-inserted from the article's definition. Does the article exist? \n #{inspect(w.tags)}"
     )
@@ -292,17 +292,11 @@ defmodule Data.GeoJSON do
   end
 
   defp relation_titles(relation_names) when is_list(relation_names) do
-    relation_names
-    |> Enum.map(&Article.List.find_exact(&1).title())
-    |> Enum.join("\n")
+    Enum.map_join(relation_names, "\n", &Article.List.find_exact(&1).title())
   end
 
   defp relation_route_ids(relation_names) when is_list(relation_names) do
-    joined =
-      relation_names
-      |> Enum.map(&Article.List.find_exact(&1).id())
-      |> Enum.join("|")
-
+    joined = Enum.map_join(relation_names, "|", &Article.List.find_exact(&1).id())
     # can only substring search in style.json, so let's make that easy
     "|#{joined}|"
   end

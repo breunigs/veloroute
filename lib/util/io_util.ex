@@ -90,9 +90,7 @@ defmodule Util.IO do
   end
 
   defp modification_times(path) do
-    if !File.exists?(path) do
-      {:unknown, :unknown}
-    else
+    if File.exists?(path) do
       [path | Path.wildcard("#{path}/**/*")]
       |> Enum.map(fn path ->
         with {:ok, %{mtime: date}} <- File.lstat(path, time: :posix) do
@@ -102,6 +100,8 @@ defmodule Util.IO do
         end
       end)
       |> Enum.min_max()
+    else
+      {:unknown, :unknown}
     end
   end
 

@@ -88,8 +88,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
         document
         |> Floki.find("article a")
         |> Enum.map(&Floki.attribute(&1, "href"))
-        |> Enum.map(&absolute/1)
-        |> Enum.join("\n")
+        |> Enum.map_join("\n", &absolute/1)
 
       text =
         document

@@ -55,7 +55,7 @@ defmodule Video.Source do
   end
 
   defp error_unless_valid_source(source_path) do
-    if Video.Path.is_source_path(source_path),
+    if Video.Path.source_path?(source_path),
       do: nil,
       else: {:error, "Not a valid source path: #{source_path}"}
   end
@@ -154,17 +154,18 @@ defmodule Video.Source do
 
   defp assert_monotonic_increase(line, %__MODULE__{source: source}) do
     # TODO: this can probably go now that we cut if this happens
-    Enum.reduce_while(line, 0, fn
-      %{time_offset_ms: next}, prev when prev <= next ->
-        {:cont, next}
+    _ =
+      Enum.reduce_while(line, 0, fn
+        %{time_offset_ms: next}, prev when prev <= next ->
+          {:cont, next}
 
-      point, _prev ->
-        Logger.error("""
-          #{source}'s GPX file is invalid, the timestamps reset within the GPX file (around #{inspect(point)}). Check if it's a long video that was split up at 4 GB, where the GPX of the first video contains both parts anyway. The next segment of the video increases its most significant digit."
-        """)
+        point, _prev ->
+          Logger.error("""
+            #{source}'s GPX file is invalid, the timestamps reset within the GPX file (around #{inspect(point)}). Check if it's a long video that was split up at 4 GB, where the GPX of the first video contains both parts anyway. The next segment of the video increases its most significant digit."
+          """)
 
-        {:halt, nil}
-    end)
+          {:halt, nil}
+      end)
 
     line
   end

@@ -18,7 +18,7 @@ defmodule Mix.Tasks.Deploy do
         {String.to_existing_atom(s), true}
       rescue
         ArgumentError ->
-          raise "Unknown build argument #{s}"
+          reraise "Unknown build argument #{s}", __STACKTRACE__
       end
     end)
   end

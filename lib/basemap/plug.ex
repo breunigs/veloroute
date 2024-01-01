@@ -23,13 +23,13 @@ defmodule Basemap.Plug do
 
   plug :fallback
 
-  def fallback(conn = %{request_path: @font_path <> _rest}, _opts),
+  def fallback(%{request_path: @font_path <> _rest} = conn, _opts),
     do: serve(conn, Basemap.Fonts.fallback())
 
-  def fallback(conn = %{request_path: @tile_path <> _rest}, _opts),
+  def fallback(%{request_path: @tile_path <> _rest} = conn, _opts),
     do: serve(conn, Basemap.Tiles.fallback())
 
-  def fallback(conn = %{request_path: @path <> _rest}, _ops), do: not_found(conn)
+  def fallback(%{request_path: @path <> _rest} = conn, _opts), do: not_found(conn)
   def fallback(conn, _opts), do: conn
 
   defp serve(conn, pbf_fallback) do

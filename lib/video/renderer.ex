@@ -539,7 +539,7 @@ defmodule Video.Renderer do
   end
 
   defp encoder(tmp_dir) when is_binary(tmp_dir) do
-    stream_map = variants() |> Enum.map(&"v:#{&1[:index]}") |> Enum.join(" ")
+    stream_map = Enum.map_join(variants(), " ", &"v:#{&1[:index]}")
 
     ~w[
       -an

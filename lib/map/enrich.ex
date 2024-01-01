@@ -30,7 +30,7 @@ defmodule Map.Enrich do
     end)
   end
 
-  defp find_article_for(articles, w = %Map.Way{tags: %{name: name}}) do
+  defp find_article_for(articles, %Map.Way{tags: %{name: name}} = w) do
     art = Article.List.find_exact(articles, name)
 
     if art == nil do

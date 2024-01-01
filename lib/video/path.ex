@@ -91,7 +91,7 @@ defmodule Video.Path do
   Returns if the path is either extension less or the extension is one
   of the valid source extensions.
   """
-  def is_source_path(path) do
+  def source_path?(path) do
     cond do
       String.ends_with?(path, @detections_suffix) -> false
       Enum.any?(@source_endings, &String.ends_with?(path, &1)) -> true

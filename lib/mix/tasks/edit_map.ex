@@ -65,14 +65,13 @@ defmodule Mix.Tasks.EditMap do
     mapcss =
       Article.List.all()
       |> Enum.reject(&is_nil(&1.color()))
-      |> Enum.map(fn art ->
+      |> Enum.map_join("\n", fn art ->
         """
         relation[name="#{art.name()}"] > way[!color] {
           colors: concat(prop(colors), " #{art.color()}");
         }
         """
       end)
-      |> Enum.join("\n")
 
     :ok = File.write(@route_colors_path, mapcss)
     IO.puts("Wrote #{@route_colors_path}")

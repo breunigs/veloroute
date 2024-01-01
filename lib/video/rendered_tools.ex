@@ -9,7 +9,7 @@ defmodule Video.RenderedTools do
   """
   @spec highest_quality_video_file(Video.Track.hash()) :: binary()
   def highest_quality_video_file(hash) when valid_hash(hash) do
-    with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
+    with path <- Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens),
          best <- determine_best_video(variants) do
@@ -28,7 +28,7 @@ defmodule Video.RenderedTools do
   keep that one.
   """
   def keep_highest_quality_video_only_actions(hash) when valid_hash(hash) do
-    with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
+    with path <- Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens),
          best <- determine_best_video(variants) do

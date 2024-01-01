@@ -205,15 +205,13 @@ defmodule Util do
   """
   @spec cli_printer(Enum.t()) :: binary
   def cli_printer(cmd) do
-    cmd
-    |> Enum.map(fn arg ->
+    Enum.map_join(cmd, " ", fn arg ->
       arg = to_string(arg)
 
       if String.match?(arg, ~r/^[a-zA-Z0-9_=.-]+$/) || arg == "|",
         do: arg,
         else: "'#{String.replace(arg, ~s|'|, ~s|'"'"'|)}'"
     end)
-    |> Enum.join(" ")
   end
 
   @doc """

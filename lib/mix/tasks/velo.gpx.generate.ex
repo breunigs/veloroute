@@ -85,7 +85,7 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
         <tessellate>1</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
         <coordinates>
-          #{Enum.map(nodes, fn n -> "#{n.lon},#{n.lat}" end) |> Enum.join(" ")}
+          #{Enum.map_join(nodes, " ", fn n -> "#{n.lon},#{n.lat}" end)}
         </coordinates>
       </LineString>
     </Placemark>
@@ -102,10 +102,8 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
   end
 
   defp as_gpx_track_points(nodes) do
-    nodes
-    |> Enum.map(fn node ->
+    Enum.map_join(nodes, "\n", fn node ->
       ~s(<trkpt lat="#{node.lat}" lon="#{node.lon}"></trkpt>)
     end)
-    |> Enum.join("\n")
   end
 end

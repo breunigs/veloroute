@@ -28,8 +28,7 @@ defmodule Basemap.Sprites do
     list =
       Path.wildcard("assets/map/icons/**/*.svg")
       |> Enum.map(&Path.basename(&1, ".svg"))
-      |> Enum.map(&"\"#{&1}\"")
-      |> Enum.join(", ")
+      |> Enum.map_join(", ", &"\"#{&1}\"")
 
     "Set {#{list}}"
   end

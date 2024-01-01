@@ -119,10 +119,7 @@ defmodule Basemap.MapMatcher.OSRM do
   def match(points) do
     start_link()
 
-    coords =
-      points
-      |> Enum.map(fn %{lat: lat, lon: lon} -> "#{lon},#{lat}" end)
-      |> Enum.join(";")
+    coords = Enum.map_join(points, ";", fn %{lat: lat, lon: lon} -> "#{lon},#{lat}" end)
 
     params = [
       overview: false,

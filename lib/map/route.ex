@@ -27,7 +27,7 @@ defmodule Map.Route do
   end
 
   @spec find(Map.Relation.t(), Article.t()) :: [t()]
-  defp find(r = %Map.Relation{}, art) do
+  defp find(%Map.Relation{} = r, art) do
     ways = normalize(r)
     indexed = Enum.group_by(ways, & &1.id)
     graph = Graph.add_edges(Graph.new(), edges(ways))

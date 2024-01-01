@@ -154,9 +154,7 @@ defmodule Video.Generator do
     with {hash, coords, rec_dates, street_names} <- Video.Track.render(track) do
       mod_name = Video.Generator.find_by_hash(hash)
 
-      if not is_nil(mod_name) do
-        mod_name
-      else
+      if is_nil(mod_name) do
         [{mod_name, _bytes}] =
           as_code(
             "dynamic_compile",
@@ -170,6 +168,8 @@ defmodule Video.Generator do
           |> Enum.join()
           |> Code.compile_string()
 
+        mod_name
+      else
         mod_name
       end
     end
@@ -308,14 +308,13 @@ defmodule Video.Generator do
       true ->
         rendered.coords()
         |> Stream.chunk_every(2, 1, :discard)
+        |> Stream.reject(fn [a, b] -> time >= a.time_offset_ms && time <= b.time_offset_ms end)
         |> Enum.find_value(fn [a, b] ->
-          if time >= a.time_offset_ms && time <= b.time_offset_ms do
-            t = calc_t(time, a, b)
+          t = calc_t(time, a, b)
 
-            Video.TimedPoint.interpolate(a, b, t)
-            |> Map.put(:bearing, Geo.CheapRuler.bearing(a, b))
-            |> Map.delete(:__struct__)
-          end
+          Video.TimedPoint.interpolate(a, b, t)
+          |> Map.put(:bearing, Geo.CheapRuler.bearing(a, b))
+          |> Map.delete(:__struct__)
         end)
     end || start_from(rendered, nil)
   end

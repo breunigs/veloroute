@@ -260,8 +260,8 @@ defmodule Video.RendererTest do
 
       default_meta = %Video.Metadata{
         duration: 60.0,
-        fps: 30000 / 1001,
-        time_base: 1 / 90000,
+        fps: 30_000 / 1001,
+        time_base: 1 / 90_000,
         time_lapse: 5,
         pts_correction: 1.0
       }

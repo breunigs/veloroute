@@ -123,9 +123,7 @@ defmodule Overpass do
   end
 
   def map_names(names, nil) do
-    names
-    |> Enum.map(&"\"#{&1}\"")
-    |> Enum.join(",")
+    Enum.map_join(names, ",", &"\"#{&1}\"")
   end
 
   def station_query(operator) do
