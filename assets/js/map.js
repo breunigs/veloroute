@@ -57,9 +57,8 @@ let zoomedInOnce = false;
 let prevIndicatorPos = {};
 
 function hidePreview() {
-  const mapEl = document.getElementById("map");
-  mapEl.style.backgroundImage = '';
-  mapEl.classList.remove("preview");
+  const elem = document.getElementById("mapPreview");
+  if (elem) elem.remove();
 }
 
 function renderIndicator() {
@@ -528,6 +527,7 @@ function setupTouchDeviceClick() {
   });
 
   map.once('idle', hidePreview);
+  map.once('move', hidePreview);
   map.once('zoom', hidePreview);
 }
 

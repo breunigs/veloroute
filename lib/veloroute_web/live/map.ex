@@ -49,8 +49,9 @@ defmodule VelorouteWeb.Live.Map do
 
     ~H"""
     <div>
-      <%= @preview_css %>
-      <div phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id} class={if @preview_css, do: "preview"}></div>
+      <div phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id}>
+        <%= @preview_image %>
+      </div>
 
       <div id="layerSwitcher">
         <button></button>
@@ -191,10 +192,10 @@ defmodule VelorouteWeb.Live.Map do
     true
   end
 
-  defp maybe_map_preview(%{assigns: %{preview_css: _any}} = socket), do: socket
+  defp maybe_map_preview(%{assigns: %{preview_image: _any}} = socket), do: socket
 
   defp maybe_map_preview(%{assigns: assigns} = socket) do
-    preview_css =
+    preview_image =
       if default_layers?(assigns) && default_style?(assigns) do
         video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
         cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
@@ -203,27 +204,29 @@ defmodule VelorouteWeb.Live.Map do
           video_route_id: video_route_id,
           cz: cz,
           sizes: [
-            {500, 500},
-            {700, 700},
-            {900, 700},
-            {1100, 900},
+            {1600, 1200},
             {1300, 1000},
-            {1600, 1200}
+            {1100, 900},
+            {900, 700},
+            {700, 700},
+            {500, 500}
           ]
         }
 
         ~H"""
-        <style>
-        .preview{background: url("/map/___static/<%= @cz %>/500x400?highlightRoute=<%= @video_route_id %>")}
-        <%= for {w, h} <- @sizes do %>
-        @media(min-width: <%= w+300 %>px),(min-height: <%= h*1.5 %>px){.preview{background: url("/map/___static/<%= @cz %>/<%= w %>x<%= h %>?highlightRoute=<%= @video_route_id %>")}}
-        <% end %>
-        </style>
+        <picture id="mapPreview">
+          <%= for {w, h} <- @sizes do %>
+            <source
+              media={"(min-width: #{w+300}px), (min-height: #{h*1.5}px)"}
+              srcset={"/map/___static/#{@cz}/#{w}x#{h}?highlightRoute=#{@video_route_id}"}>
+          <% end %>
+          <img src={"/map/___static/#{@cz}/500x500?highlightRoute=#{@video_route_id}"} fetchpriority="high">
+        </picture>
         """
       else
         nil
       end
 
-    assign(socket, :preview_css, preview_css)
+    assign(socket, :preview_image, preview_image)
   end
 end

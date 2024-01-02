@@ -42,21 +42,24 @@ body {
   contain: strict;
 }
 
+$mapBgColor: #EFE9E1;
+
 #map {
   top: 0;
   z-index: 1;
   overflow: hidden;
-  background-color: #EFE9E1;
+  background-color: $mapBgColor;
+}
 
-  &.preview .maplibregl-canvas-container {
-    visibility: hidden;
-  }
-
-  &.preview {
-    cursor: wait;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+#mapPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  cursor: wait;
+  // i.e. order is canvas < mapPreview < indicator
+  z-index: 1;
+  position: relative;
+  background: $mapBgColor;
 }
 
 #videoOuter {
@@ -1093,8 +1096,8 @@ a {
   // depending on rotation
   transform: translateZ(0.00001px);
 
-  // undo hiding the map canvas when class=preview
-  visibility: visible;
+  // i.e. order is canvas < mapPreview < indicator
+  z-index: 2;
 
   &.animate {
     // NOTE: also update timeout in map.js

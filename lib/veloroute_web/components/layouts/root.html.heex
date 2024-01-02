@@ -35,12 +35,11 @@
   <script type="text/javascript" defer src={~p"/assets/mbgl2.js"} fetchpriority="high"></script>
   <script type="text/javascript" defer
     src={~p"/assets/map.js"}
-    fetchpriority="high"
     data-max-bounds={Settings.bounds() |> Enum.map(&to_string/1) |> Enum.join(",")}
     data-initial={VelorouteWeb.VariousHelpers.to_string_center_zoom(@map_bounds)}
   ></script>
-  <script type="text/javascript" defer src={~p"/assets/liveview.js"}></script>
-  <script type="text/javascript" defer src={~p"/assets/app.js"}></script>
+  <script type="text/javascript" defer src={~p"/assets/liveview.js"} fetchpriority="low"></script>
+  <script type="text/javascript" defer src={~p"/assets/app.js"} fetchpriority="low"></script>
   <script type="text/javascript" defer src={~p"/assets/video_player.js"} fetchpriority="low"></script>
 
   <%= if @enable_drawing_tools do %>
