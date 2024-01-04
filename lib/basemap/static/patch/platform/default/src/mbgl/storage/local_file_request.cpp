@@ -25,7 +25,11 @@ void requestLocalFile(const std::string& path, const ActorRef<FileSourceRequest>
     if (result == 0 && (S_IFDIR & buf.st_mode)) {
         response.error = std::make_unique<Response::Error>(Response::Error::Reason::NotFound);
     } else if (result == -1 && errno == ENOENT) {
-        response.error = std::make_unique<Response::Error>(Response::Error::Reason::NotFound);
+        if (path.find("/fonts/") != std::string::npos) {
+            response.data = std::make_shared<std::string>("");
+        } else {
+            response.error = std::make_unique<Response::Error>(Response::Error::Reason::NotFound);
+        }
     } else {
         auto data = util::readFile(path);
         if (!data) {
