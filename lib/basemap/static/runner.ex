@@ -150,7 +150,7 @@ defmodule Basemap.Static.Runner do
     {:noreply, state |> free_port(port) |> maybe_start_render()}
   end
 
-  def handle_info({port, {:data, "error" <> msg}}, state)
+  def handle_info({port, {:data, "ERROR" <> msg}}, state)
       when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
