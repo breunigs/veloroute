@@ -19,7 +19,7 @@ defmodule Basemap.Renderable do
 
   defmacro __using__(_opts) do
     quote do
-      use Benchmark
+      require Benchmark
       @behaviour Basemap.Renderable
 
       def name(), do: Path.basename(unquote(__CALLER__.file), ".ex")

@@ -1,6 +1,6 @@
 defmodule Basemap.Nominatim do
-  use Benchmark
   use Basemap.Renderable
+  require Benchmark
   require Logger
 
   @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.3"}}

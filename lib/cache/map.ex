@@ -1,5 +1,5 @@
 defmodule Cache.Map do
-  use Benchmark
+  require Benchmark
 
   @source Map.Parser.default_map_path()
   @external_resource @source

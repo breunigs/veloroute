@@ -1,5 +1,5 @@
 defmodule Util.Download do
-  use Benchmark
+  require Benchmark
 
   @spec to_file(binary(), binary(), non_neg_integer()) :: :ok | {:error, atom | binary()}
   @doc """

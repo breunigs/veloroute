@@ -1,12 +1,8 @@
 defmodule Benchmark do
-  defmacro __using__(_opts) do
-    quote do
-      require Logger
-    end
-  end
-
   defmacro measure(name, function) do
     quote do
+      require Logger
+
       {elapsed, val} = :timer.tc(unquote(function))
       elapsed = elapsed / 1_000_000
 
