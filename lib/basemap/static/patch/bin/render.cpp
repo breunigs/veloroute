@@ -18,6 +18,7 @@
 #include <fstream>
 #include <list>
 #include <map>
+#include <chrono>
 
 #define FIXED_WIDTH_UINT(value) char((value) >> 24), char((value) >> 16), char((value) >> 8), char((value) >> 0)
 
@@ -46,7 +47,7 @@ void die(const std::string &msg) {
     exit(1);
 }
 
-void printImage(WebPMemoryWriter *wrt) { // take wrt and print?
+void printImage(WebPMemoryWriter *wrt) {
     const char length[4] = {FIXED_WIDTH_UINT(wrt->size)};
     std::cout.write(length, 4);
     std::cout.write(reinterpret_cast<char *>(wrt->mem), wrt->size);
@@ -68,6 +69,12 @@ WebPConfig webpConfig() {
         die("failed to validate webp config");
     }
     return config;
+}
+
+long currentTimeMs() {
+    auto time = std::chrono::system_clock::now().time_since_epoch();
+    auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(time);
+    return millis.count();
 }
 
 void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, uint32_t maxDimension) {
@@ -94,12 +101,24 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
     const std::array<HeadlessFrontend *, 2> frontends = {&frontPr1, &frontPr2};
     const std::array<Map *, 2> maps = {&mapPr1, &mapPr2};
 
-    std::atomic_bool renderedAtLeastOnce = false;
     auto config = webpConfig();
     WebPPicture pic;
     if (!WebPPictureInit(&pic)) {
         die("failed to init webp");
     }
+
+    std::atomic_long renderStartMs = currentTimeMs();
+    std::atomic_long renderFinishMs = currentTimeMs();
+
+    std::thread watchdog([&renderStartMs, &renderFinishMs]() {
+        while (true) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            if (renderStartMs + 3000 < renderFinishMs) {
+                die("watchdog detected +3s between render start and finish. Are all references local?");
+            }
+        }
+    });
+    watchdog.detach();
 
     std::string line;
     while (std::getline(std::cin, line)) {
@@ -168,16 +187,9 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
         }
 
         try {
-            if (!renderedAtLeastOnce) {
-                std::thread t([&renderedAtLeastOnce]() {
-                    std::this_thread::sleep_for(std::chrono::seconds(3));
-                    if (renderedAtLeastOnce) return;
-                    die("Rendering timeout. Are all path references local?");
-                });
-                t.detach();
-            }
+            renderStartMs = currentTimeMs();
             auto image = frontend->render(*map).image;
-            renderedAtLeastOnce = true;
+            renderFinishMs = currentTimeMs();
 
             pic.width = image.size.width;
             pic.height = image.size.height;
@@ -214,6 +226,7 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
             printImage(&wrt);
         } catch (std::exception &e) {
             printError("failed rendering " + std::string(e.what()));
+            renderFinishMs = currentTimeMs();
             continue;
         }
     }
