@@ -59,11 +59,11 @@ const int cacheCapacity = 120;
 
 WebPConfig webpConfig() {
     WebPConfig config;
-    if (!WebPConfigPreset(&config, WEBP_PRESET_DRAWING, 70 /* compression level */)) {
+    if (!WebPConfigPreset(&config, WEBP_PRESET_DRAWING, 60 /* quality level */)) {
         die("failed to load webp present");
     }
-    config.lossless = 1;
-    config.near_lossless = 40;
+    config.lossless = 0;
+    config.near_lossless = 0;
     config.image_hint = WEBP_HINT_GRAPH;
     if (!WebPValidateConfig(&config)) {
         die("failed to validate webp config");
