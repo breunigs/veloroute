@@ -56,9 +56,31 @@ let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
 let prevIndicatorPos = {};
 
-function hidePreview() {
+function hidePreview(evt) {
+  const [lon, lat, zoom] = settings.initial.split(",")
+  if (evt.type === "zoom" && (zoom * 1) === map.getZoom()) return;
+
+  if (evt.type === "move") {
+    const c = map.getCenter();
+    const maxDiff = 0.000001;
+    const diffLon = Math.abs(c.lng - lon);
+    const diffLat = Math.abs(c.lat - lat);
+    if (diffLon < maxDiff && diffLat < maxDiff) return;
+  }
+
+  map.off('idle', hidePreview)
+  map.off('move', hidePreview)
+  map.off('zoom', hidePreview)
+
   const elem = document.getElementById("mapPreview");
-  if (elem) elem.remove();
+  if (!elem) return
+
+  const img = elem.getElementsByTagName("img")[0];
+  if (!img) return elem.remove();
+
+  img.style.opacity = 0;
+  // keep in sync with main.css
+  setTimeout(() => elem.remove(), 150);
 }
 
 function renderIndicator() {
@@ -73,8 +95,9 @@ function renderIndicator() {
   prevIndicatorPos = pos;
 
   const lngLat = new mlgl.LngLat(pos.lon, pos.lat);
+  const firstRender = !indicator;
 
-  if (!indicator) {
+  if (firstRender) {
     const rotated = genDiv('indicator-rotate');
     rotated.appendChild(genDiv('indicator-dir'));
     rotated.appendChild(genDiv('indicator-loc'));
@@ -83,7 +106,11 @@ function renderIndicator() {
     indicator = new mlgl.Marker({ element: el })
       .setLngLat(lngLat)
       .setRotation(pos.bearing * 1)
-      .addTo(map);
+
+    requestAnimationFrame(() => {
+      indicator.addTo(map);
+      requestAnimationFrame(() => el.style.opacity = 1);
+    })
   }
 
   const mapActive = map.isMoving() || map.isZooming();
@@ -115,7 +142,7 @@ function renderIndicator() {
     return;
   }
 
-  ensureIndicatorInView(lngLat);
+  if (!firstRender) ensureIndicatorInView(lngLat);
 }
 
 const closestEquivalentAngle = (from, to) => {
@@ -526,9 +553,9 @@ function setupTouchDeviceClick() {
     if (simulateClick) handleMapClick(evt);
   });
 
-  map.once('idle', hidePreview);
-  map.once('move', hidePreview);
-  map.once('zoom', hidePreview);
+  map.on('idle', hidePreview);
+  map.on('move', hidePreview);
+  map.on('zoom', hidePreview);
 }
 
 let map = null;
