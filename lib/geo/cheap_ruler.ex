@@ -218,7 +218,7 @@ defmodule Geo.CheapRuler do
         )
       )
 
-    zoom = :math.log2(@zoom_factor / dist) |> max(1) |> min(24)
+    zoom = if dist == 0, do: 24, else: :math.log2(@zoom_factor / dist) |> max(1) |> min(24)
 
     %{lat: lat, lon: lon} = center(bbox)
     %{lat: lat, lon: lon, zoom: zoom}
