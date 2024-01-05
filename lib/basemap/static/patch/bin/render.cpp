@@ -211,6 +211,7 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
                 printError("failed to webp encode, WebPEncodingError=" + std::to_string(pic.error_code));
                 continue;
             }
+            printImage(&wrt);
             WebPPictureFree(&pic);
 
             if (cache.size() >= cacheCapacity) {
@@ -223,7 +224,6 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
             cacheLRU.push_front(line);
             cache[line] = wrt;
 
-            printImage(&wrt);
         } catch (std::exception &e) {
             printError("failed rendering " + std::string(e.what()));
             renderFinishMs = currentTimeMs();
