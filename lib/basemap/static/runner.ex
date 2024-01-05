@@ -7,7 +7,7 @@ defmodule Basemap.Static.Runner do
   @highlight_property "route_id"
 
   # how many render processes to spawn
-  @parallelism 2
+  @parallelism if Application.compile_env(:veloroute, :env) == :prod, do: 2, else: 1
   # maximum time in seconds to wait to try to restart a broken renderer process
   @max_backoff 5 * 60
 
