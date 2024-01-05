@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
   def title(), do: "Karlshöhe / August-Krogmann-Straße"
 
   def start(), do: ~d[2023-07-23]
-  def stop(), do: ~d[2024-12-20]
+  def stop(), do: ~d[2025-07-18]
   def construction_site_id_hh(), do: [425_147]
 
   def type(), do: :construction

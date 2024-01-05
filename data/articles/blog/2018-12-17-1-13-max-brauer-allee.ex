@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Auftragsvergabe 3", "Januar 2024",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0f1380ca-62f9-4a36-bfcc-866fe2bdaa26"},
       {"Auftragsvergabe 2", "Dezember 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/e40777a6-a3cb-4d92-a3b0-16ebf918f17f"},
       {"Baustelleninfo", "April 2023",

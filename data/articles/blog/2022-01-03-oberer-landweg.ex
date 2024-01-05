@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.ObererLandweg do
   def title(), do: "Oberer Landweg (Alltagsroute 9, RSW Geesthacht)"
 
   def start(), do: ~d[2023-08-07]
-  def stop(), do: ~d[2024-04-12]
+  def stop(), do: ~d[2024-05-06]
   def construction_site_id_hh(), do: [444_856]
 
   def type(), do: :construction

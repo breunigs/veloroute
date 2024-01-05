@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   def title(), do: "Kirchenstraße (Veloroute 12)"
   def summary(), do: "Soll mit möglichst geringem Aufwand zu einer Fahrradstraße werden."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2023-11-20]
   def stop(), do: ~d[2023-12-15]
