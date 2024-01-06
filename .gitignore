@@ -53,3 +53,4 @@ link_mirror
 
 x264_lookahead.clbin
 TODO
+flamegraph*.svg
