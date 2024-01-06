@@ -27,7 +27,14 @@ defmodule Video.Generator do
   def get(nil), do: nil
 
   def get(hash) when valid_hash(hash) do
-    rendered() |> Enum.find(fn mod -> String.ends_with?("#{mod}", hash) end)
+    try do
+      mod = String.to_existing_atom(@autogen_module_name <> hash)
+      if mod.rendered?(), do: mod, else: nil
+    rescue
+      ArgumentError ->
+        # i.e. doesn't exist
+        nil
+    end
   end
 
   def get(module) when is_atom(module), do: if(module.rendered?(), do: module, else: nil)

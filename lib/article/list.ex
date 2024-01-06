@@ -1,11 +1,16 @@
 defmodule Article.List do
   @type t :: Enumerable.t()
   import Guards
+  use Memoize
 
   @spec all :: t
   def all() do
     Article.known_categories()
     |> Enum.flat_map(&category/1)
+  end
+
+  defmemop all_indexed() do
+    all() |> Enum.group_by(& &1.name()) |> Enum.into(%{}, fn {k, [v]} -> {k, v} end)
   end
 
   @spec category(binary()) :: t
@@ -48,7 +53,13 @@ defmodule Article.List do
   def find_exact(_list, _key), do: nil
 
   @spec find_exact(binary | nil | Article.t()) :: Article.t() | nil
-  def find_exact(key), do: find_exact(all(), key)
+  def find_exact(key) when is_module(key) do
+    if Util.has_behaviour?(key, Article), do: key, else: nil
+  end
+
+  def find_exact(key) do
+    Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), dbg(key)) end)
+  end
 
   @spec find_with_tags(t, binary | nil) :: Article.t() | nil
   def find_with_tags(_list, nil), do: nil

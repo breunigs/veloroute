@@ -148,6 +148,22 @@ defmodule Util do
   end
 
   @doc """
+  Returns true if the module implements the behaviour.
+
+  ## Examples
+
+      iex> Util.has_behaviour?(Data.Article.Blog.LouisBraillePlatz, Article)
+      true
+  """
+  @spec has_behaviour?(nil | module(), module()) :: boolean()
+  def has_behaviour?(nil, _behaviour), do: false
+
+  def has_behaviour?(module, behaviour) when is_atom(module) do
+    function_exported?(module, :__info__, 1) &&
+      module.__info__(:attributes) |> Keyword.get(:behaviour, []) |> Enum.member?(behaviour)
+  end
+
+  @doc """
   Finds <a href="x"> in an HTML document. It ignores base tags even if present.
 
   ## Examples
