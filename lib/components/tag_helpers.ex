@@ -314,7 +314,7 @@ defmodule Components.TagHelpers do
            title={@summary}
            class="customicon"
         >
-          <img src="/images/rsw.svg" alt="Radschnellweg Symbol der StVO"/>
+          <img src="/images/rsw.svg" alt="Radschnellweg Symbol der StVO" loading="lazy"/>
         </a>
         """
 
