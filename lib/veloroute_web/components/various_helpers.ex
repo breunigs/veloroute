@@ -26,69 +26,6 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
-  @video_metadata_stop_after ["Meinung", "Externe Links", "Planung"]
-                             |> Enum.map_join("|", &Regex.escape/1)
-
-  def video_metadata(nil), do: nil
-
-  def video_metadata(%VelorouteWeb.Live.VideoState{} = state) do
-    track = VelorouteWeb.Live.VideoState.current_track(state)
-    %Video.Track{parent_ref: ref, text: text} = track
-
-    {title, desc} =
-      if is_module(ref) && ref.route_group() != nil do
-        # ignore render failures -- we don't care enough for the video
-        # description to break the page if this fails. Also, most errors should
-        # be caught by regular article rendering.
-        desc =
-          try do
-            Article.Decorators.text(ref, ["table.routing", ".links"])
-          rescue
-            e ->
-              Logger.error(Exception.format(:error, e, __STACKTRACE__))
-              ""
-          end
-
-        desc = String.replace(desc, ~r/ (#{@video_metadata_stop_after})( .*|$)/, "")
-        desc = if String.length(desc) > 100, do: desc
-        {"#{ref.title()}: #{text}", desc}
-      else
-        {text, ""}
-      end
-
-    rendered = Video.Generator.get(track)
-    third = round(rendered.length_ms() / 3)
-    date = track |> Video.Track.recording_date_max() |> Date.to_iso8601()
-
-    meta = %{
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      name: title,
-      description: desc,
-      thumbnailUrl: [
-        ~p"/images/thumbnails/#{rendered.hash()}/0",
-        ~p"/images/thumbnails/#{rendered.hash()}/#{third}",
-        ~p"/images/thumbnails/#{rendered.hash()}/#{2 * third}"
-      ],
-      uploadDate: "#{date}T10:00:00+02:00",
-      duration: Video.Timestamp.as_iso8601(rendered.length_ms()),
-      contentUrl: "/#{Settings.video_serve_path()}/#{rendered.hash()}/stream.m3u8",
-      potentialAction: %{
-        "@type": "SeekToAction",
-        target:
-          Article.Decorators.url(ref) <>
-            "/?video=#{rendered.hash()}&pos_sec={seek_to_second_number}",
-        "startOffset-input": "required name=seek_to_second_number"
-      }
-    }
-
-    assigns = %{json: meta |> Util.compact() |> Jason.encode!()}
-
-    ~H"""
-    <script type="application/ld+json"><%= Phoenix.HTML.raw(@json) %></script>
-    """
-  end
-
   @short_month_names [
     "Jan",
     "Feb",
