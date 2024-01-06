@@ -161,7 +161,7 @@ defmodule Data.Article.Static.Startpage do
 
     <h3><label for="query">Suche 🔎</label></h3>
     <form method="GET" action="/suche" onsubmit="return false" phx-submit="search">
-      <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="500" name="search_query" />
+      <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="250" name="search_query" />
       <input type="submit" style="display: none" />
     </form>
 
