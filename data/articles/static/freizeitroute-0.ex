@@ -25,6 +25,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
         to: "Alter Elbpark",
         parent_ref: __MODULE__,
         text: "im Uhrzeigersinn entlang der Wallanlagen",
+        end_action: :loop,
         videos: [
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012352", "00:00:08.642", "00:00:10.911"},
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012332", "00:00:03.737", :end},
@@ -59,6 +60,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
         to: "Alter Elbpark",
         parent_ref: __MODULE__,
         text: "gegen Uhrzeigersinn entlang der Wallanlagen",
+        end_action: :loop,
         videos: [
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012312", :start, :end},
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012313", :start, :end},

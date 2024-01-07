@@ -12,6 +12,8 @@ window.addEventListener("phx:video_meta", e => {
   maybeUpdatePoster(e.detail)
   setVideo()
   maybeTimeUpdate(e.detail)
+
+  video.loop = videoMeta.end_action == "loop";
 });
 
 let video

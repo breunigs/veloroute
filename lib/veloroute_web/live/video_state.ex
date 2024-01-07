@@ -274,6 +274,7 @@ defmodule VelorouteWeb.Live.VideoState do
   @spec for_frontend(t()) :: keyword()
   defp for_frontend(%__MODULE__{} = state) when has_video(state) do
     video = current_video(state)
+    track = current_track(state)
 
     start_from = Video.Generator.start_from(video, state.start)
     recording_date = Video.Generator.recording_date_for(video, start_from.time_offset_ms)
@@ -284,6 +285,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
     [
       video: state,
+      video_end_action: if(track, do: track.end_action),
       video_hash: video.hash(),
       video_start: start_from.time_offset_ms,
       video_start_gen: state.start_generation,
@@ -304,6 +306,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
     [
       video: state,
+      video_end_action: nil,
       video_hash: "",
       video_start: 0,
       video_start_gen: state.start_generation,

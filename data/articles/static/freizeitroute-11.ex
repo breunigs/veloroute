@@ -25,6 +25,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
         to: "Rüschpark",
         parent_ref: __MODULE__,
         text: "2. Grüner Ring im Uhrzeigersinn",
+        end_action: :loop,
         videos: [
           {"2021-08-04-fr13-fr14/GX012560", :start, :end},
           {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011420", :start, :end},
@@ -136,6 +137,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
         to: "Teufelsbrück",
         parent_ref: __MODULE__,
         text: "2. Grüner Ring gegen Uhrzeigersinn",
+        end_action: :loop,
         videos: [
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011558", :start, :end},
           {"2021-06-01-gruener-ring-gg-uhrzeiger/GX011559", :start, "00:00:03.270"},

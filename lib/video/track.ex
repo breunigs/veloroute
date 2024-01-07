@@ -11,7 +11,8 @@ defmodule Video.Track do
     :group,
     :direction,
     :renderer,
-    :historic
+    :historic,
+    :end_action
   ]
 
   @type plain :: [
@@ -25,6 +26,7 @@ defmodule Video.Track do
   @type hash :: <<_::256>>
   @type timed_info :: [%{timestamp: non_neg_integer(), text: binary()}]
   @typep historic :: %{hash() => Data.RoughDate.t()}
+  @type end_action :: :loop
 
   @type fade :: float() | :none | nil
   defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
@@ -39,10 +41,11 @@ defmodule Video.Track do
           parent_ref: module() | binary(),
           videos: plain() | nil,
           renderer: pos_integer(),
-          historic: historic() | nil
+          historic: historic() | nil,
+          end_action: end_action() | nil
         }
 
-  @enforce_keys @known_params -- [:via, :historic]
+  @enforce_keys @known_params -- [:via, :historic, :end_action]
   defstruct @known_params
 
   @doc """
