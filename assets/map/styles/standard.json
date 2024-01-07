@@ -4074,7 +4074,7 @@
         "all",
         ["==", ["get", "type"], "alltag"],
         ["!", ["has", "overlap_index"]],
-        ["match", ["get", "route_group"], ["alltag"], true, false],
+        ["==", ["get", "route_group"], "alltag"],
         ["<", ["length", ["get", "display_id"]], 5]
       ],
       "layout": {
@@ -4095,7 +4095,7 @@
           ["literal", [0, 0]]
         ],
         "text-rotation-alignment": "viewport",
-        "text-field": ["to-string", ["get", "display_id"]],
+        "text-field": "{display_id}",
         "visibility": "visible"
       },
       "paint": {
