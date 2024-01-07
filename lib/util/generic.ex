@@ -149,11 +149,6 @@ defmodule Util do
 
   @doc """
   Returns true if the module implements the behaviour.
-
-  ## Examples
-
-      iex> Util.has_behaviour?(Data.Article.Blog.LouisBraillePlatz, Article)
-      true
   """
   @spec has_behaviour?(nil | module(), module()) :: boolean()
   def has_behaviour?(nil, _behaviour), do: false
