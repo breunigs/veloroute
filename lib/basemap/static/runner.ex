@@ -57,6 +57,10 @@ defmodule Basemap.Static.Runner do
     :exit, reason -> {:error, inspect(reason)}
   end
 
+  def restart do
+    GenServer.call(__MODULE__, :restart, :infinity)
+  end
+
   def start_link(args \\ []) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
   end
@@ -94,6 +98,12 @@ defmodule Basemap.Static.Runner do
       |> maybe_start_render()
 
     {:noreply, state}
+  end
+
+  def handle_call(:restart, _from, state) do
+    Enum.each(state.ports, &Port.close/1)
+
+    {:reply, :ok, %{state | backoff: 0}}
   end
 
   def handle_info({port, {:data, "ERROR: " <> msg}}, state)
