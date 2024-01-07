@@ -33,6 +33,7 @@ defmodule Basemap.MapMatcher.OSRM do
   use Basemap.Renderable
   use GenServer
   use Tesla
+  require Logger
   @behaviour Basemap.MapMatcher
 
   plug Tesla.Middleware.JSON
@@ -63,7 +64,8 @@ defmodule Basemap.MapMatcher.OSRM do
 
   @impl Basemap.Renderable
   def stale?() do
-    Util.IO.stale?(target(:cache), [osm_source(), @profile_lua])
+    Path.join(target(:cache), "*.osrm.*") |> Path.wildcard() |> length() < 10 ||
+      Util.IO.stale?(target(:cache), [osm_source(), @profile_lua])
   end
 
   @impl Basemap.Renderable
@@ -78,7 +80,7 @@ defmodule Basemap.MapMatcher.OSRM do
     File.ln_s(source, target)
 
     with :ok <-
-           Util.Docker.build_and_run(
+           Util.Docker.run(
              "mapmatching prepare step 1",
              @osrm_image_ref,
              %{
@@ -93,14 +95,14 @@ defmodule Basemap.MapMatcher.OSRM do
              []
            ),
          :ok <-
-           Util.Docker.build_and_run(
+           Util.Docker.run(
              "mapmatching prepare step 2",
              @osrm_image_ref,
              %{command_args: ["osrm-partition", "#{container_base()}.osrm"]},
              []
            ),
          :ok <-
-           Util.Docker.build_and_run(
+           Util.Docker.run(
              "mapmatching prepare step 3",
              @osrm_image_ref,
              %{command_args: ["osrm-customize", "#{container_base()}.osrm"]},
@@ -292,8 +294,15 @@ defmodule Basemap.MapMatcher.OSRM do
 
   @impl GenServer
   def handle_info(:start, state) do
-    Process.send_after(self(), :health_check, @health_check_seconds * 1000)
-    {:noreply, ensure_started(state)}
+    case ensure() do
+      :ok ->
+        Process.send_after(self(), :health_check, @health_check_seconds * 1000)
+        {:noreply, ensure_started(state)}
+
+      {:error, reason} ->
+        Logger.error("failed to build OSRM: #{reason}")
+        {:noreply, state}
+    end
   end
 
   def handle_info(:health_check, %{started: false} = state) do
@@ -338,12 +347,17 @@ defmodule Basemap.MapMatcher.OSRM do
   @spec set_port(state()) :: state()
   defp set_port(%{started: true, port: nil, container_name: name} = state) do
     with %{result: :ok, stdout: stdout} <-
-           Util.Cmd2.exec(["docker", "port", name, @osrm_port], stdout: ""),
+           Util.Cmd2.exec(["docker", "port", name, @osrm_port], stdout: "", stderr: ""),
          [_, port_str] <- Regex.run(~r/:(\d+)$/, stdout),
          {port, ""} <- Integer.parse(port_str) do
       %{state | port: port}
     else
-      _ -> %{state | port: nil}
+      %{stderr: stderr} when stderr != "" ->
+        Logger.warning("docker port: #{stderr}")
+        %{state | port: nil}
+
+      _ ->
+        %{state | port: nil}
     end
   end
 

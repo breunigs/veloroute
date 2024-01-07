@@ -193,8 +193,10 @@ defmodule Util.Docker do
   def build(ref)
   def build({_container_desc, image_ref} = ref) when is_full_ref(ref), do: build(image_ref)
 
-  def build({:remote, image}),
-    do: {:error, "cannot build remote image #{image}, it will be automatically downloaded on use"}
+  def build({:remote, image, tag}),
+    do:
+      {:error,
+       "cannot build remote image #{image}:#{tag}, it will be automatically downloaded on use"}
 
   defmemo build({:git, source, ref} = image_ref) do
     img_name = names(image_ref).image
