@@ -1,7 +1,7 @@
 defmodule Data.Article.Static.LexikonBettelUndBedarfsampel do
   use Article.Static
 
-  def name(), do: "lexikon/bettel-Und-bedarfs-ampel"
+  def name(), do: "lexikon/bettel-und-bedarfs-ampel"
   def title(), do: "Lexikon · Bettel- und Bedarfsampel"
 
   def summary(),
