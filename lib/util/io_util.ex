@@ -81,7 +81,7 @@ defmodule Util.IO do
 
     {_, newest_dep} =
       dependencies
-      |> Enum.map(&modification_times/1)
+      |> Parallel.map(&modification_times/1)
       |> Enum.reduce(fn {dmin, dmax}, {amin, amax} ->
         {min(dmin, amin), max(dmax, amax)}
       end)
@@ -92,10 +92,9 @@ defmodule Util.IO do
   defp modification_times(path) do
     if File.exists?(path) do
       [path | Path.wildcard("#{path}/**/*")]
-      |> Enum.map(fn path ->
-        with {:ok, %{mtime: date}} <- File.lstat(path, time: :posix) do
-          date
-        else
+      |> Parallel.map(fn path ->
+        case File.lstat(path, time: :posix) do
+          {:ok, %{mtime: date}} -> date
           _ -> :unknown
         end
       end)

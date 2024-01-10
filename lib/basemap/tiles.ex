@@ -7,7 +7,7 @@ defmodule Basemap.Tiles do
 
   @impl Basemap.Renderable
   def stale?() do
-    Enum.any?(dependencies(), &apply(&1, :stale?, [])) || tiles_stale?()
+    Parallel.any?(dependencies(), & &1.stale?()) || tiles_stale?()
   end
 
   defp dependencies(), do: [Basemap.OpenStreetMap, Basemap.Project]
@@ -18,7 +18,7 @@ defmodule Basemap.Tiles do
 
   @impl Basemap.Renderable
   def render() do
-    Enum.each(dependencies(), &apply(&1, :ensure, []))
+    Parallel.each(dependencies(), & &1.ensure())
 
     File.rm_rf!(target(:cache))
 

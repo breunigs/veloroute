@@ -28,4 +28,11 @@ defmodule Parallel do
     Task.async_stream(enum, fun, timeout: :infinity, max_concurrency: limit)
     |> Stream.run()
   end
+
+  @spec any?(Enumerable.t(), (Enum.element() -> any())) :: boolean()
+  def any?(enum, fun) do
+    Task.async_stream(enum, fun, timeout: :infinity)
+    |> Stream.map(&elem(&1, 1))
+    |> Enum.any?()
+  end
 end

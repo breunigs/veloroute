@@ -54,7 +54,7 @@ defmodule Basemap.Servable do
   end
 
   def ensure do
-    Enum.each(list(), &apply(&1, :ensure, []))
+    Parallel.each(list(), 2, & &1.ensure())
   end
 
   def http_error(url) do
