@@ -1,6 +1,5 @@
 defmodule VelorouteWeb.VariousHelpers do
   use VelorouteWeb, :verified_routes
-  use Phoenix.HTML
   require Logger
   import Guards
   import Phoenix.Component
@@ -79,10 +78,17 @@ defmodule VelorouteWeb.VariousHelpers do
     id = article.display_id()
 
     if id && String.length(id) <= @max_route_icon_chars do
-      content_tag(:span, id,
-        style: "background: #{article.color()}",
-        class: "icon #{article.route_group()}"
-      )
+      assigns = %{
+        id: id,
+        color: article.color(),
+        route_group: article.route_group()
+      }
+
+      ~H"""
+      <span style={"background: #{@color}"} class={"icon #{@route_group}"}>
+        <%= @id %>
+      </span>
+      """
     else
       ""
     end
