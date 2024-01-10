@@ -213,6 +213,7 @@ const preloadAbortSignal = preloadAbortCtrl.signal;
 window.addEventListener(`phx:map:preload:tile`, (e) => {
   preloadAbortCtrl.abort();
   fetch(e.detail.url, { preloadAbortSignal })
+  if (e.detail.low_prio_url) fetch(e.detail.low_prio_url, { preloadAbortSignal, priority: 'low' })
 })
 
 const featureOpacity = (feature) => {

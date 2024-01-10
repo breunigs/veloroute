@@ -162,20 +162,23 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.buffer_bbox(
-      ...>   1000,
-      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1},
+      ...>   1000
       ...> )
       %Geo.BoundingBox{minLon: -0.015087116638538251,
         minLat: -0.008984923104452173,
         maxLon: 4.515087116638538,
         maxLat: 7.108984923104452}
   """
-  def buffer_bbox(buffer, %Geo.BoundingBox{
-        minLon: minLon,
-        minLat: minLat,
-        maxLon: maxLon,
-        maxLat: maxLat
-      })
+  def buffer_bbox(
+        %Geo.BoundingBox{
+          minLon: minLon,
+          minLat: minLat,
+          maxLon: maxLon,
+          maxLat: maxLat
+        },
+        buffer
+      )
       when is_float(buffer) or is_integer(buffer) do
     v = buffer / @ky
     h = buffer / @kx
@@ -192,12 +195,15 @@ defmodule Geo.CheapRuler do
   @zoom_factor 40_075_016.686 * @cos1
   @spec center_zoom_to_bounds(%{lat: number, lon: number, zoom: number}) :: Geo.BoundingBox.t()
   def center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}) do
-    buffer_bbox(@zoom_factor / :math.pow(2, zoom), %Geo.BoundingBox{
-      minLon: lon,
-      minLat: lat,
-      maxLon: lon,
-      maxLat: lat
-    })
+    buffer_bbox(
+      %Geo.BoundingBox{
+        minLon: lon,
+        minLat: lat,
+        maxLon: lon,
+        maxLat: lat
+      },
+      @zoom_factor / :math.pow(2, zoom)
+    )
   end
 
   @spec bounds_to_center_zoom(Geo.BoundingBox.like()) :: %{
