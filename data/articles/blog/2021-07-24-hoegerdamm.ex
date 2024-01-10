@@ -7,7 +7,8 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def type(), do: :construction
   def start(), do: ~d[2023-10-09]
-  def stop(), do: ~d[2025-02]
+  def stop(), do: ~d[2025-01-31]
+  def construction_site_id_hh(), do: [617_156]
 
   def tags(), do: ["FR6"]
 
