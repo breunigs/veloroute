@@ -9,7 +9,6 @@ defmodule VelorouteWeb.Live.VideoState do
     :backward,
     :backward_track,
     :start,
-    :start_generation,
     :direction
   ]
 
@@ -22,7 +21,6 @@ defmodule VelorouteWeb.Live.VideoState do
           forward_track: Video.Track.t() | nil,
           backward_track: Video.Track.t() | nil,
           start: Geo.Point.like() | nil,
-          start_generation: integer(),
           direction: :forward | :backward
         }
 
@@ -211,10 +209,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   @doc """
   Set the current video position from the given time in milliseconds in the
-  "pos" param. If seek is set to true, it will also increase the start time
-  generation to ensure the FE actually seeks the video. This should be set
-  to false if the position change was triggered by the FE and it already
-  seeked.
+  "pos" param.
   """
   def set_position(%{assigns: %{video: state}} = socket, params, seek: seek)
       when is_boolean(seek) do
@@ -288,7 +283,6 @@ defmodule VelorouteWeb.Live.VideoState do
       video_end_action: if(track, do: track.end_action),
       video_hash: video.hash(),
       video_start: start_from.time_offset_ms,
-      video_start_gen: state.start_generation,
       video_length_ms: video.length_ms(),
       video_polyline: video.polyline(),
       video_route: %{id: route_id(state)},
@@ -309,7 +303,6 @@ defmodule VelorouteWeb.Live.VideoState do
       video_end_action: nil,
       video_hash: "",
       video_start: 0,
-      video_start_gen: state.start_generation,
       video_poster: nil,
       video_reversible: false
     ]
@@ -335,8 +328,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp set_start(state, start, opts \\ [seek: true])
 
   defp set_start(%__MODULE__{} = state, start, seek: seek) when is_boolean(seek) do
-    incr = if seek, do: 1, else: 0
-    %{state | start: start, start_generation: state.start_generation + incr}
+    %{state | start: start}
   end
 
   defp maybe_reverse_direction(%__MODULE__{} = state, params)
@@ -455,7 +447,6 @@ defmodule VelorouteWeb.Live.VideoState do
       forward: nil,
       backward: nil,
       start: sett.position,
-      start_generation: 0,
       direction: sett.direction
     }
     |> update_from_tracks(default_tracks, sett.position)
