@@ -28,8 +28,12 @@ defmodule Search.Meilisearch.Nominatim do
   end
 
   @impl true
-  # hide suburbs just tagged as a node
-  def format(%{"class" => "place", "type" => "suburb", "id" => "N" <> _rest}), do: nil
+
+  # provide more sensible bounding box for suburbs just tagged as a node
+  def format(%{"class" => "place", "type" => "suburb", "id" => "N" <> rest} = result) do
+    bbox = result["bbox"] |> Geo.BoundingBox.parse() |> Geo.CheapRuler.buffer_bbox(1_000)
+    format(%{result | "bbox" => bbox, "id" => "fixed#{rest}"})
+  end
 
   def format(result) when is_map(result) do
     f = fn arg -> Map.fetch!(result, arg) end
