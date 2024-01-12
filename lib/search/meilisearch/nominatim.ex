@@ -18,9 +18,9 @@ defmodule Search.Meilisearch.Nominatim do
       q: query,
       limit: 10,
       sort: [
-        "importance:desc",
         "rank_search:asc",
         "rank_address:asc",
+        "importance:desc",
         "_geoPoint(#{lat}, #{lon}):asc",
         "admin_level:asc"
       ]
@@ -51,6 +51,7 @@ defmodule Search.Meilisearch.Nominatim do
 
     subtext =
       dedupe([
+        f.("extratags")["name:prefix"],
         human,
         f.("extratags")["operator"],
         "#{addr["street"]} #{addr["housenumber"]}",
@@ -164,9 +165,9 @@ defmodule Search.Meilisearch.Nominatim do
 
     %{
       displayedAttributes:
-        ~w(id class type name address parents_name parents_postcode extratags bbox),
+        ~w(id class type name address parents_name parents_postcode extratags bbox boost),
       # order is from most important to least important
-      searchableAttributes: ~w(name address type parents_name type extratags),
+      searchableAttributes: ~w(name boost address type parents_name type extratags),
       sortableAttributes: ~w(importance rank_search rank_address _geo admin_level),
       synonyms: synonyms
     }

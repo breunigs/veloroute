@@ -309,7 +309,7 @@ defmodule Search.Meilisearch.Runner do
 
       Enum.map(results, fn result ->
         sr = indexer.format(result)
-        Map.put(sr, :source, inspect(result, pretty: true))
+        if sr, do: Map.put(sr, :source, inspect(result, pretty: true))
       end)
     end)
     |> Util.compact()

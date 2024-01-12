@@ -166,6 +166,18 @@ defmodule Basemap.Nominatim do
         main1.name,
         main1.address,
         main1.extratags,
+        -- repeat name in boost for certain important objects
+        (CASE WHEN
+          (
+            main1.class = 'place'
+            AND main1.type IN ('borough', 'city', 'county', 'hamlet', 'island', 'islet', 'municipality', 'neighbourhood', 'plot', 'quarter', 'region', 'suburb', 'town', 'village')
+          ) OR (
+            main1.class = 'boundary'
+            AND main1.type = 'administrative'
+          )
+          THEN main1.name->'name'
+          ELSE ''
+        END) AS boost,
         -- generate Meilisearch format
         JSON_BUILD_OBJECT(
           'lng', ST_X(ST_Centroid(main1.centroid)),
