@@ -1,7 +1,6 @@
 import "./rvfc-polyfill"
 
 let prevVideo = null;
-let prevStartGen = null;
 let previouslyPlayingCodec = null;
 let autoplay = false;
 
@@ -234,16 +233,14 @@ function restorePreviousQuality() {
 }
 
 function seekToStartTime() {
-  if (Math.abs(videoTimeInMs - videoMeta.start) < 100 || prevStartGen == videoMeta.start_gen) {
+  if (Math.abs(videoTimeInMs - videoMeta.start) < 100) {
     video.autoplay = autoplay;
     return;
   }
-  console.debug("seeking to", videoMeta.start, "(from ", videoTimeInMs,
-    ", gen", prevStartGen, "→", videoMeta.start_gen, ")");
+  console.debug("seeking to", videoMeta.start, " from ", videoTimeInMs);
   if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
   video.autoplay = autoplay;
-  prevStartGen = videoMeta.start_gen;
 }
 
 function selectVideoQuality(event) {
