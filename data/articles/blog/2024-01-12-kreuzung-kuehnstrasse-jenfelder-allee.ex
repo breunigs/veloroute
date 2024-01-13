@@ -8,6 +8,9 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
     do:
       "2,5m breite Radfahrstreifen entlang der Radroute, die an Bushalten unterbrochen sind. Entlang der Bezirksroute 2,0m breite Hochbordradwege. In der Kreuzung indirektes Linksabbiegen und Rotfärbung."
 
+  def start(), do: ~d[2025]
+  def stop(), do: ~d[2025]
+
   def type(), do: :planned
   def tags(), do: ["7", "br-wandsbek-w8"]
 
@@ -37,7 +40,7 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
     <h4>Meinung</h4>
     <p>Die durchgängige Führung und breiteren Wege verbessern die Situation merklich. Leider hat man keine Lösung gefunden, damit sich Busse und Radverkehr nicht in die Quere kommen.</p>
 
-    <p>Dass man die gefährliche Ampelschaltung beibehält, damit der KFZ-Verkehr nicht zu lange warten muss ist unverständlich.</p>
+    <p>Dass man die gefährliche Ampelschaltung beibehält, damit der KFZ-Verkehr nicht zu lange warten muss, ist unverständlich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
