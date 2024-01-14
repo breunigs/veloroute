@@ -45,11 +45,11 @@ defmodule Components.TagHelpers do
           raise("<.a> link has an unknown href '#{href}' specified: #{inspect(assigns)}")
       end
 
-    attrs = Map.merge(Map.take(assigns, [:title, :href, :rel]), attrs)
+    attrs = Map.merge(Map.take(assigns, [:title, :href, :rel, :target]), attrs)
     assigns = assign(assigns, %{attrs: attrs, extra_text: extra_text})
 
     ~H"""
-    <a {@attrs}><%= render_slot(@inner_block) %></a><%= @extra_text %>
+    <a {@attrs} {@rest}><%= render_slot(@inner_block) %></a><%= @extra_text %>
     """
   end
 
