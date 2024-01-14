@@ -31,9 +31,11 @@ defmodule LogFormatter do
       |> Enum.map(fn s -> if is_binary(s), do: String.to_charlist(s), else: s end)
     rescue
       e ->
+        error = Exception.format(:error, e, __STACKTRACE__)
+
         [
           Logger.Formatter.format(@fallback, level, message, {date, time}, metadata),
-          Logger.Formatter.format(@failed, :error, inspect(e), {date, time},
+          Logger.Formatter.format(@failed, :error, error, {date, time},
             msg: message,
             metadata: metadata
           )
