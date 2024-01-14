@@ -14,7 +14,8 @@ defmodule Data.Article.Blog.SbahnPulverhof do
       {"Planfeststellungsverfahren 2 S-Bahn Linie 4 Hamburg",
        ~H"""
        Stadt Hamburg. Die relevanten Stellen befinden sich im <abbr title="DL Unterlage_01_Erlaeuterungsbericht → 20191021_S4_PFA2_Unterlage_1_E_Bericht.pdf">Erläuterungsbericht</abbr> Seiten 39ff, 84, 117, 122, 137 und den <abbr title="DL Unterlage_07_Bauwerksplaene → 7_1_7_EU_Pulverhof_041.pdf bzw. 7_1_8_EU_Pulverhof_042.PDF">Bauwerksplänen 7.1.7 und 7.1.8</abbr>.
-       """, "https://www.hamburg.de/bwi/np-aktuelle-planfeststellungsverfahren/13609674/s4/"},
+       """,
+       "https://web.archive.org/web/20230328080810/https://www.hamburg.de/bwi/np-aktuelle-planfeststellungsverfahren/13609674/s4/"},
       {"Stellungnahme der Behörden zur Planung",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1013886"}
     ]

@@ -20,7 +20,8 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
     [
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
-      {"Projektseite des LSBG", "https://lsbg.hamburg.de/max-brauer-allee"},
+      {"Projektseite des LSBG",
+       "https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
       {"Lageplan", "Juli 2022",
        "https://lsbg.hamburg.de/resource/blob/634708/8ef3ae7af9ba39b71791a2bd31b10b09/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht", "Juli 2022",

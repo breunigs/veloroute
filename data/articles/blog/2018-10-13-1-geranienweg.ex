@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.Geranienweg do
   def links(_assigns) do
     [
       {"Pressemitteilung zur Fertigstellung", "Oktober 2022",
-       "https://www.hamburg.de/altona/baustelleninfos/16569202/geranienweg-arbeiten-abgeschlossen/"},
+       "https://web.archive.org/web/20221010182439/https://www.hamburg.de/altona/baustelleninfos/16569202/geranienweg-arbeiten-abgeschlossen/"},
       {"Pressemitteilung zum Umbau",
-       "https://www.hamburg.de/altona/baustelleninfos/16299914/instandsetzung-geranienweg/"},
+       "https://web.archive.org/web/20220913162113/https://www.hamburg.de/altona/baustelleninfos/16299914/instandsetzung-geranienweg/"},
       {"Sachstand Velorouten", "März 2022; S. 8",
        "https://sitzungsdienst-altona.hamburg.de/bi//to020.asp?TOLFDNR=1037758"},
       {"Beschreibung Bebauungplan", "Juni 2018; Anlage 4, S. 35",

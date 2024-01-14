@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.UHornerRennbahn do
   def links(_assigns) do
     [
       {"Infoseite der Hochbahn zur U4 Horner Geest",
-       "https://www.schneller-durch-hamburg.de/u4-horner-geest"},
+       "https://schneller-durch-hamburg.de/u4-horner-geest"},
       {"E-Mail Austausch mit der Polizei Hamburg (nicht öffentlich)"}
     ]
   end

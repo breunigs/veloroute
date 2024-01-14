@@ -21,7 +21,7 @@ defmodule Data.Article.Blog.KreuzungGrandwegGrelckstrasse do
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007021"},
       {"Lageplan 2. Entwurf", "https://fragdenstaat.de/anfrage/umbau-des-knotens-behrmannplatz/"},
       {"U5 Haltestelle Lokstedt",
-       "https://www.schneller-durch-hamburg.de/u5-haltestelle-siemersplatz-behrmannplatz-online-dialog-auswertung"}
+       "https://schneller-durch-hamburg.de/u5-haltestelle-siemersplatz-behrmannplatz-online-dialog-auswertung"}
     ]
   end
 

@@ -16,13 +16,13 @@ defmodule Data.Article.Blog.Kloevensteenweg do
   def links(_assigns) do
     [
       {"Pressemitteilung zur Fertigstellung", "Oktober 2022",
-       "https://www.hamburg.de/altona/baustelleninfos/16558980/fertigstellung-alte-suelldorfer-landstrasse/"},
+       "https://web.archive.org/web/20221204052829/https://www.hamburg.de/altona/baustelleninfos/16558980/fertigstellung-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baufortschritt", "Juni 2022",
-       "https://www.hamburg.de/altona/baustelleninfos/16283628/dritte-bauphase-alte-suelldorfer-landstrasse/"},
+       "https://web.archive.org/web/20230926003025/https://www.hamburg.de/altona/baustelleninfos/16283628/dritte-bauphase-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baufortschritt", "Mai 2022",
-       "https://www.hamburg.de/altona/baustelleninfos/16218720/zweite-bauphase-alte-suelldorfer-landstrasse/"},
+       "https://web.archive.org/web/20230926002918/https://www.hamburg.de/altona/baustelleninfos/16218720/zweite-bauphase-alte-suelldorfer-landstrasse/"},
       {"Pressemitteilung zum Baubeginn", "2022",
-       "https://www.hamburg.de/altona/baustelleninfos/16083204/ausbau-veloroute-1-mit-grundinstandsetzung-rissen/"},
+       "https://web.archive.org/web/20220630041242/https://www.hamburg.de/altona/baustelleninfos/16083204/ausbau-veloroute-1-mit-grundinstandsetzung-rissen/"},
       {"Erläuterungsbericht zur Umgestaltung mit Lageplan",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010254"}
     ]

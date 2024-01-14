@@ -121,8 +121,7 @@ defmodule Data.Article.Static.RSWElmshorn do
        "https://metropolregion.hamburg.de/radschnellwege/15310058/mediathek-radschnellweg-elmshorn-hamburg/"},
       {"Autobahndeckel Altona", "https://www.hamburg.de/fernstrassen/deckel-altona/"},
       {"U-Bahn Linie 5 – Infos der Stadt", "https://www.hamburg.de/u5/"},
-      {"U-Bahn Linie 5 – Infos der Hochbahn",
-       "https://www.schneller-durch-hamburg.de/U5-Hamburg/"},
+      {"U-Bahn Linie 5 – Infos der Hochbahn", "https://schneller-durch-hamburg.de/U5-Hamburg/"},
       {"Unterlagen zur K22 Tornesch/Uetersen (2018)",
        "https://www.uvp-verbund.de/trefferanzeige?cmd=doShowObjectDetail&docuuid=4E5E17CE-677B-4E06-8D2A-49CE7E253F1E&plugid=/ingrid-group:ige-iplug-sh"}
     ]
