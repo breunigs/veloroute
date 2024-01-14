@@ -358,6 +358,11 @@ defmodule Components.TagHelpers do
         {text, "https://web.archive.org/" <> _rest = href, nil, bvhh} ->
           {text, maybe_direct_link_archive(href), "Archiv", bvhh}
 
+        {text, "https://web.archive.org/" <> _rest = href, %Phoenix.LiveView.Rendered{} = extra,
+         bvhh} ->
+          assigns = %{extra: extra}
+          {text, maybe_direct_link_archive(href), ~H{Archiv, <%= @extra %>}, bvhh}
+
         {text, "https://web.archive.org/" <> _rest = href, extra, bvhh} ->
           {text, maybe_direct_link_archive(href), "Archiv, #{extra}", bvhh}
 
