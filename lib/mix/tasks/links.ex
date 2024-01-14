@@ -200,6 +200,10 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp extract_sitzungsdienst({name, url}) do
     given = URI.new!(url)
 
+    pages = [{:capture, name, url}]
+    bvhh = Allris.convert_url_to_bvhh(url)
+    pages = if bvhh, do: [{:capture, name <> " BVHH", bvhh} | pages], else: pages
+
     extra =
       url
       |> hrefs_from_url()
@@ -219,7 +223,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
     # add the page capture last, to ensure we re-attempt to extract attachments
     # if any of the failed
-    extra ++ [{:capture, name, url}]
+    extra ++ pages
   end
 
   @spec extract_contentblob({binary(), binary()}) :: [entry()]
@@ -428,6 +432,11 @@ defmodule Mix.Tasks.Velo.Links.Check do
   end
 
   @success {:ok, %{status: 200}}
+
+  # Twitter prevents checks via bot, so don't even try
+  defp check({_source, _name, "https://twitter.com/" <> _rest}), do: nil
+  # ignore internal URLs
+  defp check({_source, _name, "/" <> _rest}), do: nil
 
   defp check({source, name, url}) do
     meta =
