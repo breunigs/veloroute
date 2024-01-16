@@ -7,8 +7,9 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
     do:
       "2,5m breite Radfahrstreifen. Die Kreuzungen am Ende der Lenhartzstraße bleiben unverändert."
 
-  def start(), do: ~d[2024Q1]
-  def stop(), do: ~d[2024Q1]
+  def start(), do: ~d[2024-04-15]
+  def stop(), do: ~d[2024-07-12]
+  def construction_site_id_hh(), do: [633_180]
 
   def type(), do: :planned
 
