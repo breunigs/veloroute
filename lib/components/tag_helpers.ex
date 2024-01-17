@@ -98,6 +98,7 @@ defmodule Components.TagHelpers do
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
   attr :bounds, :string, required: true
   attr :highlight, :string
+  attr :rest, :global
   slot(:inner_block, required: true)
 
   def m(assigns) do
@@ -109,7 +110,7 @@ defmodule Components.TagHelpers do
       |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: assigns.bounds})
 
     assigns = assign(assigns, :js, js)
-    ~H"<a phx-click={@js}><%= render_slot(@inner_block) %></a>"
+    ~H"<a phx-click={@js} {@rest}><%= render_slot(@inner_block) %></a>"
   end
 
   defp ping(js, name) do

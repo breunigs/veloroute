@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.RadroutePlusBadBramstedtAbschnittN25 do
 
   def links(_assigns) do
     [
+      {"öffentliche Vorstellung", "25.01.2024",
+       "https://www.hamburg.de/hamburg-nord/pressemitteilungen/18076666/radroute-plus-einladung/"},
       {"1. Entwurf", "Dezember 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013508"}
     ]
@@ -21,6 +23,9 @@ defmodule Data.Article.Blog.RadroutePlusBadBramstedtAbschnittN25 do
 
   def text(assigns) do
     ~H"""
+    <h4>Öffentliche Vorstellung</h4>
+    <p>Am 25.01.2024 um 18 Uhr wird die Planung in der <.m bounds="10.013784,53.653421,10.024,53.65855" title="Timmerloh 27-29, 22417 Hamburg">Fritz-Schumacher-Schule</.m> vorgestellt und diskutiert. Die Teilnahme ist ohne Anmeldung möglich.</p>
+
     <h4>Hintergrund</h4>
     <p>Das ehemalige Gütergleis entlang der U1 soll für die <.a name="rsw-bad-bramstedt">Radroute Plus nach Bad Bramstedt</.a> hergerichtet werden. Es handelt sich um eine neue Wegeverbindung, die bisher noch nicht existiert. Videoaufnahmen in diesem Abschnitt orientieren sich an vorhandenen, nahegelegenen Wegen. Diese werden <em>nicht</em> zur Radroute umgebaut.</p>
 
