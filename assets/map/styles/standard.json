@@ -4090,7 +4090,7 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 9,
+      "minzoom": 9.5,
       "filter": [
         "all",
         ["==", ["get", "type"], "alltag"],
@@ -4131,7 +4131,7 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 9,
+      "minzoom": 9.5,
       "filter": [
         "all",
         ["==", ["get", "type"], "bezirk"],
@@ -4166,7 +4166,7 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 9,
+      "minzoom": 9.5,
       "filter": [
         "all",
         ["==", ["get", "type"], "freizeit"],
@@ -4199,7 +4199,7 @@
       "type": "symbol",
       "source": "merged",
       "source-layer": "routes",
-      "minzoom": 9,
+      "minzoom": 9.5,
       "filter": [
         "all",
         ["match", ["get", "type"], ["rsw"], true, false],
