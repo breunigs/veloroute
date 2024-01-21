@@ -4014,12 +4014,33 @@
       "source": "merged",
       "source-layer": "place",
       "maxzoom": 14,
-      "filter": ["all", ["!=", "name", "Hamburg"]],
+      "filter": [
+        "all",
+        ["!=", ["get", "name"], "Hamburg"],
+        [
+          "any",
+          ["match", ["get", "class"], ["city", "town"], false, true],
+          ["<", ["zoom"], 12]
+        ]
+      ],
       "layout": {
         "text-field": "{name}",
-        "text-font": ["Open Sans Regular"],
+        "text-font": [
+          "match",
+          ["get", "class"],
+          ["town", "city"],
+          ["literal", ["Open Sans Semi Bold"]],
+          ["literal", ["Open Sans Regular"]]
+        ],
         "text-letter-spacing": 0.1,
         "text-max-width": 9,
+        "symbol-sort-key": [
+          "match",
+          ["get", "class"],
+          ["town", "city"],
+          ["literal", 8],
+          ["literal", 10]
+        ],
         "text-size": [
           "interpolate",
           ["cubic-bezier", 0.5, 0, 1, 1],
