@@ -100,7 +100,12 @@ defmodule VelorouteWeb.VariousHelpers do
   """
   def to_string_center_zoom(bounds) do
     cz = Geo.CheapRuler.bounds_to_center_zoom(bounds)
-    zoom = min(Basemap.Constants.bounds_fitting_max_zoom(), round(cz.zoom))
+
+    zoom =
+      round(cz.zoom)
+      |> max(Basemap.Constants.min_zoom())
+      |> min(Basemap.Constants.bounds_fitting_max_zoom())
+
     Enum.join([cz.lon, cz.lat, zoom], ",")
   end
 end

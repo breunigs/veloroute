@@ -35,12 +35,17 @@ defmodule Basemap.Static.Runner do
   @spec render(render_task(), non_neg_integer()) ::
           {:ok, content_type :: binary(), image :: binary()} | {:error, reason :: binary()}
   def render(task, timeout \\ 5000) do
+    zoom =
+      task.zoom
+      |> max(Basemap.Constants.min_zoom())
+      |> min(Basemap.Constants.bounds_fitting_max_zoom())
+
     line =
       Enum.join(
         [
           task.lon,
           task.lat,
-          task.zoom,
+          zoom,
           task.pixelRatio,
           task.width,
           task.height,

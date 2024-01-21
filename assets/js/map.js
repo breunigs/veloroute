@@ -582,6 +582,7 @@ function setup() {
     center: initial.slice(0, 2),
     zoom: initial[2],
     fitBoundsOptions: fitBoundsOpt,
+    // keep in sync with basemap/constants.ex
     minZoom: 9,
     maxZoom: 19,
     style: style,
