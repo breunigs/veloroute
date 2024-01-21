@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Umbaustart", "Januar 2024",
+       "https://www.hamburg.de/altona/pressemitteilung/18105036/umbau-reventlowstrasse-veloroute/"},
       {"Erläuterungen und Lagepläne fertiger Entwurf", "Mai 2023",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1014063"},
       {"Baustellenkoordination", "September 2022",

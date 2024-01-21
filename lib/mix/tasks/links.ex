@@ -16,7 +16,8 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   @path "link_mirror/"
   @requirements ["app.start"]
 
-  @wayback_timeout 120_000
+  @wayback_timeout 160_000
+  @download_timeout 60_000
 
   @type entry :: {atom(), binary(), binary()}
 
@@ -296,7 +297,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     base = Path.basename(file)
     log(file, base)
 
-    case get(url) do
+    case get(url, opts: [adapter: [recv_timeout: @download_timeout]]) do
       {:ok, %{status: 200} = response} ->
         File.write!(file, response.body)
         entry
