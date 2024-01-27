@@ -119,7 +119,12 @@ def process(item, model, outer_bar):
         target=lambda: detections.update(load_json_gzip(wip)))
     gzip_loader.start()
 
-    frames, frame_count = load_video(name)
+    try:
+        frames, frame_count = load_video(name)
+    except:
+        print(f"\nfailed to load video \"{name}\", skipping")
+        return gzip_loader
+
     gzip_loader.join()
 
     bytes_per_frame = math.floor(size / float(frame_count))
