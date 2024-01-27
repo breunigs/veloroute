@@ -14,6 +14,8 @@ RUN ln /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf /root/.config/Ultralytics
 
 RUN pip install imageio imageio-ffmpeg tqdm seaborn gitpython && \
   rm -rf /root/.cache/pip
+# hack because it runs into a timeout otherwise when opening the file
+RUN sed -i 's/etime = time.time() + 10.0/etime = time.time() + 100.0/' /usr/local/lib/python3.8/dist-packages/imageio_ffmpeg/_io.py
 
 ARG GIT_SHA=e382d4c37cd840337381e138ef71bb638d1bb16b
 RUN mkdir -p /root/.cache/torch/hub/ && \
