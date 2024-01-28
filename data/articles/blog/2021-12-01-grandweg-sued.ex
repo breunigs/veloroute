@@ -9,12 +9,14 @@ defmodule Data.Article.Blog.GrandwegSued do
   def type(), do: :planned
   def tags(), do: ["3", "br-nord-n7"]
 
-  # def start(), do: ~d[2021-09-13]
-  # def stop(), do: ~d[2023-08-11]
+  def start(), do: ~d[2024Q2]
+  def stop(), do: ~d[2024Q2]
   # def construction_site_id_hh(), do: [21848]
 
   def links(_assigns) do
     [
+      {"Geplanter Bautermine", "November 20223",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"Infoseite der Stadt zur Stresemannallee",
        "https://www.hamburg.de/eimsbuettel/stresemannallee"},
       {"Lageplan und Erläuterungsbericht",
@@ -28,9 +30,6 @@ defmodule Data.Article.Blog.GrandwegSued do
 
   def text(assigns) do
     ~H"""
-    <h4>Stand Oktober 2023</h4>
-    <p>Der Diagonaltrenner wurde noch nicht gebaut. Status bzw. neuer Bautermin unbekannt.</p>
-
     <h4>Stand Februar 2022</h4>
     <p>Die Planung wurde erneut überarbeitet: es soll zusätzlich ein Diagonaltrenner gebaut werden. Diese Neuplanung ist noch nicht ganz fertig, obwohl bereits gebaut wird. Entsprechend schnell soll es gehen: Anfang März soll alles abgeklärt sein. Der Artikel wurde entsprechend angepasst.</p>
 

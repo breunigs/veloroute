@@ -7,7 +7,8 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def summary(), do: "Bundesstraße soll zur Fahrradstraße umgebaut werden."
 
-  # def start(), do: ~d[2023]
+  def start(), do: ~d[2024Q2]
+  def stop(), do: ~d[2024Q3]
 
   def type(), do: :planned
 
@@ -47,7 +48,12 @@ defmodule Data.Article.Blog.Bundesstrasse do
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Geplanter Bautermine", "November 20223",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
+      {"Unterlagen des 1. Entwurfs",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007009"}
+    ]
   end
 
   def text(assigns) do
@@ -60,7 +66,10 @@ defmodule Data.Article.Blog.Bundesstrasse do
     <p>Der Bezirk plant zu diesem Entwurf noch eine Online-Umfrage einzurichten.</p>
     <h4>Meinung</h4> <p>Es ist schade das man die KFZ-Sackgasse so schnell verworfen hat, statt die Möglichkeiten genauer auszuloten. Mit Automatikpollern oder mit Blaulicht über den Radweg entstünden für die Rettungskräfte auch keine Umwege.</p>
     <p>Die halbseitige Sperrung wird den KFZ-Verkehr und dessen Lärm vermutlich trotzdem etwas verringern. Das muss sie aber auch, wenn der Radverkehr auf der Fahrbahn fahren soll.</p>
-    <h4>Quelle</h4> <p><.a href="https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007009">Unterlagen des ersten Entwurfs</.a></p>
+
+    <h4>Quelle</h4>
+    <.structured_links ref={@ref}/>
+
     """
   end
 end

@@ -10,6 +10,7 @@ defmodule Data.Article.Blog.Mansteinstrasse do
   def type(), do: :planned
 
   def start(), do: ~d[2024-07]
+  def stop(), do: ~d[2025Q2]
 
   def tags(), do: ["3", "13"]
 
@@ -34,6 +35,8 @@ defmodule Data.Article.Blog.Mansteinstrasse do
 
   def links(_assigns) do
     [
+      {"Geplanter Bautermine", "November 20223",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"2. Entwurf", "September 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008684"}
     ]

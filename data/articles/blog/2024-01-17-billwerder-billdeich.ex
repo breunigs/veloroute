@@ -12,6 +12,34 @@ defmodule Data.Article.Blog.BillwerderBilldeich do
 
   def tags(), do: ["FR4"]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 4,
+        group: "billwerder-billdeich",
+        direction: :backward,
+        from: "Ladenbeker Furtweg",
+        to: "Oberbillwerder",
+        parent_ref: __MODULE__,
+        text: "in Richtung Neubaugebiet",
+        videos: [
+          {"2024-01-27-bergedorf/GX016742", "00:04:55.569", "00:05:10.248"}
+        ]
+      },
+      %Video.Track{
+        renderer: 4,
+        group: "billwerder-billdeich",
+        direction: :forward,
+        from: "Oberbillwerder",
+        to: "Ladenbeker Furtweg",
+        parent_ref: __MODULE__,
+        text: "in Richtung Bergedorf",
+        videos: [
+          {"2024-01-27-bergedorf/GX016743", "00:00:21.350", "00:00:33.694"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"Lagepläne", "Januar 2024",
