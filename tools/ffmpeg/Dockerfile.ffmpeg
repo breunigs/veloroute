@@ -1,10 +1,10 @@
 FROM debian:testing-slim AS downloader
 
-ARG RAV1E_VERSION=refs/tags/v0.7.0
+ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
 ARG FFMPEG_VERSION=6.1
-ARG BLUR_VERSION=3408b06fa2a30c092301cc2851c82de8fe453811
+ARG BLUR_VERSION=ec85bf7288645caa884df346cf010d0caa47e78f
 
 RUN mkdir -p /downloads/
 
@@ -129,7 +129,7 @@ RUN \
   adduser \
   i965-va-driver \
   libaom3 \
-  libboost-iostreams1.74.0 \
+  libboost-iostreams1.83.0 \
   libc6 \
   libdav1d[0-9]+ \
   libsvtav1enc[0-9]+ \
