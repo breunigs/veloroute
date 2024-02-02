@@ -16,6 +16,10 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht des fertigen Entwurfs", "Januar 2024",
+       "https://lsbg.hamburg.de/resource/blob/701566/260cd03679f8dfca7aa78a7e2dca8227/burgstrasse-haltestelle-bethesdastrasse-abgestimme-planung-bericht-data.pdf"},
+      {"Lageplan des fertigen Entwurfs", "Januar 2024",
+       "https://lsbg.hamburg.de/resource/blob/701570/1283db498132302d9d52bb800613810c/burgstrasse-haltestelle-bethesdastrasse-abgestimmte-planung-plan-data.pdf"},
       {"Ausschreibung Umbau", "Dezember 2023",
        "https://web.archive.org/web/20231216102515/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/3d8d8576-675d-49ec-b71c-54942fde9762/details"}
     ]
@@ -29,7 +33,7 @@ defmodule Data.Article.Blog.Burgstrasse do
     <h4>Planung</h4>
     <p>Im Bereich der Radroute wird der Asphalt erneuert und der Radfahrstreifen auf 2,0m verbreitert. Die Kreuzung mit der <.v bounds="10.038178,53.555074,10.041867,53.559624" lon={10.039669} lat={53.557566} dir="backward" ref="13">Bethesdastraße</.v> erhält eine vollständige Ampel, was das Linksabbiegen vereinfacht.</p>
 
-    <p>In Richtung <.m bounds="10.03824,53.557451,10.040757,53.560364">Sievekingsallee</.m> wird der Radverkehr über die Haltefläche der verlegten Bushaltestelle geführt. Danach schließt sich eine 2,0m breite <.ref>Protected-Bike-Lane</.ref> an. In der Gegenrichtung wird der vorhandene Hochbordradweg leicht angepasst, bleibt aber mit 1,62m so breit wie heute. Er wird zwischen Wartefläche für Fahrgäste und dem Fußweg geführt.</p>
+    <p>In Richtung <.m bounds="10.03824,53.557451,10.040757,53.560364">Sievekingsallee</.m> wird der Radverkehr über die Haltefläche der verlegten Bushaltestelle geführt. Danach schließt ein 2,0m breiter <.ref>Radfahrstreifen</.ref> an. In der Gegenrichtung wird der vorhandene Hochbordradweg leicht angepasst, bleibt aber mit 1,62m so breit wie heute. Er wird zwischen Wartefläche für Fahrgäste und dem Fußweg geführt.</p>
 
     <p>In der Kreuzung mit der Sievekingsallee werden die Radwege so angepasst, dass <.ref>indirektes Linksabbiegen</.ref> eine klarere Aufstellfläche erhält. Zusätzlich werden weiße Noppenplatten zur besseren Trennung von Rad- und Fußweg ergänzt.</p>
 

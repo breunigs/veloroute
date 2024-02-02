@@ -13,8 +13,10 @@ const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
 // keep in sync with basemap/constants.ex
+const flyToSpeed = 0.7
 const fitBoundsOpt = {
-  maxZoom: 17
+  maxZoom: 17,
+  speed: flyToSpeed,
 };
 
 
@@ -138,6 +140,7 @@ function renderIndicator() {
     map.flyTo({
       center: lngLat,
       zoom: Math.max(map.getZoom(), 14),
+      speed: flyToSpeed,
     });
     return;
   }
@@ -177,6 +180,7 @@ const ensureIndicatorInView = (lngLat) => {
       : map.flyTo({
         center: lngLat,
         zoom: Math.max(map.getZoom(), 14),
+        speed: flyToSpeed,
       });
     return;
   }
@@ -196,6 +200,7 @@ const ensureIndicatorInView = (lngLat) => {
   map.fitBounds(bbox, {
     linear: isClose,
     maxZoom: map.getZoom(),
+    speed: flyToSpeed,
   });
 }
 
