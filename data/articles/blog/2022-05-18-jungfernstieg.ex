@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.Jungfernstieg do
     do: "Fahrbahn enger, Mischverkehr bleibt, extra Baumreihe. Mehr Maßnahmen gegen Falschfahrer."
 
   def start(), do: ~d[2024-03-04]
-  def stop(), do: ~d[2024-11-11]
+  def stop(), do: ~d[2025-04-11]
+  def construction_site_id_hh(), do: [642_126]
 
   def type(), do: :planned
 

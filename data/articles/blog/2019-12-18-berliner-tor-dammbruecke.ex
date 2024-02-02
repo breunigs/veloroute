@@ -18,8 +18,8 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
     [
       {"Pressemitteilung zum Baubeginn", "Januar 2024",
        "https://www.hamburg.de/bvm/medien/18050494/2024-01-09-bvm-berlinertordammbruecke/"},
-      {"Baustelleninfo", "August 2023",
-       "https://lsbg.hamburg.de/resource/blob/686460/b6bff8414fba446e31a9961cd8db174b/berlinertordammbruecke-anliegerinformation-august-2023-data.pdf"},
+      {"Baustelleninfo", "Dezember 2023",
+       "https://lsbg.hamburg.de/resource/blob/702282/1c41827fee0dc9caa3300823f2dcbf44/berlinertordammbruecke-anliegerinformation-dezember-2023-data.pdf"},
       {"Lageplan",
        "https://lsbg.hamburg.de/resource/blob/634088/f6034b058889bc37b879049515e2b080/berlinertordammbruecke-abstimmungsunterlage-plan-data.pdf"},
       {"Erläuterungsbericht",
