@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
 
   def title(), do: "Ludwig-Rosenberg-Ring (Radroute 8)"
 
-  def start(), do: ~d[2023-09]
-  def stop(), do: ~d[2024-03]
+  def start(), do: ~d[2024-02-26]
+  def stop(), do: ~d[2024-09-20]
+  def construction_site_id_hh(), do: [668_122]
 
   def type(), do: :planned
 
