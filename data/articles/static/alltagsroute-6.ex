@@ -25,8 +25,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
         text: "aus der Innenstadt nach Volksdorf und Ahrensburg",
         historic: %{
           "ccb2ebc8df134044c5b9356322b13853" => ~d[2023-07],
-          "d0e15711298a41ecbefec751b3199a2f" => ~d[2022-05],
-          "72143674b74709247f36b15a8f72d968" => ~d[2021-06]
+          "d0e15711298a41ecbefec751b3199a2f" => ~d[2022-05]
         },
         videos: [
           {"2023-07-08-vr6-rsw-ahr/GX010010", "00:00:06.907", :end},
@@ -59,8 +58,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
         text: "aus Ahrensburg und Volksdorf in die Innenstadt",
         historic: %{
           "ad11718b6d75961f72c3841eeff084ad" => ~d[2023-07],
-          "90460e690f3f5258649b1cdd9e3c4d75" => ~d[2022-05],
-          "76ea19b0a672d5d88c4007fb2785c44b" => ~d[2021-06]
+          "90460e690f3f5258649b1cdd9e3c4d75" => ~d[2022-05]
         },
         videos: [
           {"2023-07-08-vr6-rsw-ahr/GX010028", "00:01:07.721", :end},
