@@ -94,6 +94,7 @@ defmodule ArticleTest do
     assert [] == broken
   end
 
+  @tag requires_mount: true
   test "historic track reference exists on file system" do
     {:ok, known} = Settings.video_target_dir_abs() |> File.ls()
     known = MapSet.new(known)
