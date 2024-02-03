@@ -24,8 +24,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         text: "aus der Innenstadt nach Eißendorf",
         historic: %{
           "0418cd7dcedb68e4c370ed752d33cecb" => ~d[2023-07],
-          "6c5ec4b87553c5a86fac6b206345e318" => ~d[2022-04],
-          "b21da7f0c0224b1dffb37d34ae51648f" => ~d[2021-07]
+          "6c5ec4b87553c5a86fac6b206345e318" => ~d[2022-04]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010050", "00:00:14.181", :end},
@@ -56,8 +55,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         text: "aus Eißendorf in die Innenstadt",
         historic: %{
           "f8ae15e42784a7f58846dd631a34f0f1" => ~d[2023-07],
-          "b4997cc9bce6de5126d1a2c294cc8265" => ~d[2022-04],
-          "da9f1f6cfdee27f19a7a44778e7708f2" => ~d[2021-07]
+          "b4997cc9bce6de5126d1a2c294cc8265" => ~d[2022-04]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010063", "00:01:10.070", :end},
@@ -96,8 +94,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         text: "von der Veddel zum Bürgerhaus Wilhelmsburg",
         historic: %{
           "df8cc38b888ae9c65d70df36d9b779db" => ~d[2023-07],
-          "5d955ccf2971302202fe02fbdefe1616" => ~d[2022-05],
-          "85e45f5b7958efca1803585db2256047" => ~d[2021-07]
+          "5d955ccf2971302202fe02fbdefe1616" => ~d[2022-05]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010092", "00:00:31.999", :end},
@@ -115,8 +112,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         text: "vom Bürgerhaus Wilhelmsburg zur Veddel",
         historic: %{
           "a63faf1e4d34e8770ad599746ce522fe" => ~d[2023-07],
-          "3c8980283b9a8d3730bb35a8e18e48fd" => ~d[2022-05],
-          "f7bc9a5473aa1b8ec99b8a8635205521" => ~d[2021-07]
+          "3c8980283b9a8d3730bb35a8e18e48fd" => ~d[2022-05]
         },
         videos: [
           {"2023-07-09-vr11-und-erwrtng/GX010074", "00:00:07.040", :end},
