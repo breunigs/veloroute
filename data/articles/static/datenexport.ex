@@ -25,7 +25,7 @@ defmodule Data.Article.Static.Datenexport do
     <p>Videos lassen sich mit den Tasten , und . (Komma und Punkt) um Einzelbilder vor- bzw. zurückspulen. Ggf. mehrmals drücken, die verwendete Technik dazu ist nicht ganz ausgereift. Wenn es immer noch nicht klappt, einmal von Hand das Video kurz abspielen und wieder pausieren – danach sollte es gehen.</p>
 
     <h4>Ganze Videos</h4>
-    <p><a href={@video_download_path} rel="nofollow" download={@video_download_name}>Aktuelles Video in guter Qualität herunterladen</a>. Bitte nicht übertreiben und die Videos nacheinander herunterladen. Die Webseite ist nicht für den Massen-Download optimiert, weil ich den Aufwand dazu lieber in andere Sachen stecke.</p>
+    <p><a href={@video_download_path} rel="nofollow" download={@video_download_name}>Aktuelles Video in guter Qualität herunterladen</a> (<a href="#" data-text={@video_street_names} onclick="alert(this.dataset.text)">Straßennamen anzeigen</a>). Bitte nicht übertreiben und die Videos nacheinander herunterladen. Die Webseite ist nicht für den Massen-Download optimiert, weil ich den Aufwand dazu lieber in andere Sachen stecke.</p>
 
     <h5>Historische Videos</h5>
     <%= if @historic_videos == [] do %>
@@ -33,8 +33,12 @@ defmodule Data.Article.Static.Datenexport do
     <% else %>
       <p>Zu dieser Route (Abschnitt/Richtung) sind ältere Aufnahmen verfügbar:</p>
       <ul>
-        <%= for {date, url, name} <- @historic_videos do %>
-          <li><a href={url} rel="nofollow" download={name}><%= date %> in guter Qualität herunterladen</a></li>
+        <%= for {date, url, name, streets} <- @historic_videos do %>
+          <li>
+            <a href={url} rel="nofollow" download={name}><%= date %> in guter Qualität herunterladen</a>
+            <br>
+            (<a href="#" data-text={streets} onclick="alert(this.dataset.text)">Straßennamen anzeigen</a>)
+          </li>
         <% end %>
       </ul>
     <% end %>
@@ -89,14 +93,16 @@ defmodule Data.Article.Static.Datenexport do
 
     %{
       video_download_path: path,
-      video_download_name: "veloroute.hamburg_video_#{title}.m4s"
+      video_download_name: "veloroute.hamburg_video_#{title}.m4s",
+      video_street_names: street_names(video, title)
     }
   end
 
   defp video_assigns(_assigns, fallback_title),
     do: %{
       video_download_path: "",
-      video_download_name: "veloroute.hamburg_video_#{fallback_title}.m4s"
+      video_download_name: "veloroute.hamburg_video_#{fallback_title}.m4s",
+      video_street_names: street_names(nil, nil)
     }
 
   defp download_assigns(%{video_hash: hash, video_start: timestamp}) do
@@ -134,7 +140,7 @@ defmodule Data.Article.Static.Datenexport do
       |> Enum.uniq()
       |> Enum.map(fn {historic_hash, date, text} ->
         named = video_assigns(%{video_hash: historic_hash}, "#{date}-#{text}")
-        {date, named.video_download_path, named.video_download_name}
+        {date, named.video_download_path, named.video_download_name, named.video_street_names}
       end)
       |> Enum.sort()
 
@@ -156,4 +162,26 @@ defmodule Data.Article.Static.Datenexport do
   end
 
   defp clean(str), do: String.replace(str, ~r/[^a-zA-ZäüößÄÜÖẞ0-9_.-]+/u, "_")
+
+  defp street_names(nil, _title), do: "Für dieses Video sind leider keine Straßennamen bekannt"
+
+  defp street_names(video, title) do
+    video = Video.Generator.get(video)
+
+    names = if video, do: video.street_names(), else: []
+
+    names =
+      Enum.map(names, fn
+        %{timestamp: ts, text: street} ->
+          "#{Video.Timestamp.as_archival(ts)} #{if street == "", do: "?", else: street}"
+      end)
+
+    """
+    #{title}
+
+    © OpenStreetMap (ODbL) https://www.openstreetmap.org/about/
+
+    #{Enum.join(names, "\n")}
+    """
+  end
 end

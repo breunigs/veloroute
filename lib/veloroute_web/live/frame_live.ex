@@ -150,7 +150,7 @@ defmodule VelorouteWeb.FrameLive do
     article = article || if route && !Article.List.related?(current, route), do: route
 
     article =
-      if current == Data.Article.Static.ErweiterteFunktionen,
+      if current == Data.Article.Static.Datenexport,
         do: nil,
         else: article
 
