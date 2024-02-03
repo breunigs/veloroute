@@ -37,34 +37,40 @@ Hooks.FocusSearchField = {
     // this.el.select();
   }
 }
-Hooks.ScrollReset = {
-  hadPopState: false,
-  lastPage: undefined,
-  scrollPositions: {},
 
+let scrollPositionFromPopState = null;
+Hooks.ScrollReset = {
   saveScrollPos() {
-    // console.log("scroll", `this.scrollPositions[${window.location.pathname}]`, "=", this.el.scrollTop)
-    this.scrollPositions[window.location.pathname] = this.el.scrollTop
-    this.lastPage = window.location.pathname
+    // console.log("scroll", `saveScrollPos ${window.location.pathname}`, "=", this.el.scrollTop)
+    let state = history.state || {}
+    state.sidebarScroll = this.el.scrollTop
+    history.replaceState(state, "", window.location.href);
   },
 
   maybeRestoreScroll() {
-    let restore = this.scrollPositions[window.location.pathname]
-    if (restore === undefined) return
-    // it seemst the scrollTop is not always correctly updated, so change the
+    // console.log("scroll", "maybeRestoreScroll", scrollPositionFromPopState)
+    let restore = scrollPositionFromPopState
+    if (restore === null) return
+
+    // it seems the scrollTop is not always correctly updated, so change the
     // position by a tiny amount to force browsers to actually scroll. This
     // seems to fix the issue.
     if (this.el.scrollTop == restore) {
       restore += 1
     }
-    // console.log("scroll", "restoring", window.location.pathname, "to", restore)
-    this.el.scrollTop = restore
+    requestAnimationFrame(() => {
+      // console.log("scroll", "restoring", "to", restore)
+      this.el.scrollTop = restore
+    })
+    scrollPositionFromPopState = null
   },
 
   mounted() {
-    window.addEventListener("popstate", _event => {
-      // console.log("scroll", "popstate")
-      this.hadPopState = true
+    // console.log("scroll", "mounted")
+
+    window.addEventListener("popstate", event => {
+      // console.log("scroll", "popstate =", event.state.sidebarScroll)
+      scrollPositionFromPopState = event.state.sidebarScroll || 0
     });
 
     let scrollTimer = null
@@ -74,24 +80,13 @@ Hooks.ScrollReset = {
     }, {
       passive: true
     })
+
+    this.maybeRestoreScroll()
   },
 
   updated() {
-    // need to wait for new element to be updated before we can scroll
-    requestAnimationFrame(() => {
-      if (this.hadPopState) {
-        // console.log("scroll", "restoring because of popState")
-        this.maybeRestoreScroll()
-        this.hadPopState = false
-        return
-      }
-
-      if (this.lastPage != window.location.pathname) {
-        // console.log("scroll", "resetting on new page navigation")
-        this.scrollPositions[window.location.pathname] = 0
-        this.maybeRestoreScroll()
-      }
-    })
+    // console.log("scroll", "updated")
+    this.maybeRestoreScroll()
   }
 }
 
