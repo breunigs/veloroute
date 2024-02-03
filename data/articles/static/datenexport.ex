@@ -1,11 +1,11 @@
-defmodule Data.Article.Static.ErweiterteFunktionen do
+defmodule Data.Article.Static.Datenexport do
   use Article.Static
   import Guards
 
-  def title(), do: "Erweiterte Funktionen"
+  def title(), do: "Datenexport"
 
   def summary(),
-    do: "Erweiterte und experimentelle Funktionen für fortgeschrittene Nutzer"
+    do: "Datenexport und ähnliche Funktionen für die Weiterverarbeitung des Materials."
 
   def tags(), do: []
 

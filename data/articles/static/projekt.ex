@@ -21,9 +21,6 @@ defmodule Data.Article.Static.Projekt do
       <li>Verbessere die <.a href="https://learnosm.org/de/beginner/">OpenStreetMap</.a></li>
     </ul>
 
-    <h4>Datenexport</h4>
-    <p>Für spezielle Anwendungsfälle können Daten von veloroute.hamburg zur eigenen Weiterverwendung exportiert werden. Siehe dazu <.a name="erweiterte-funktionen">Erweiterte Funktionen</.a>.</p>
-
     <h4>Hintergrund</h4>
     <p>Als das Projekt 2018 begann, musste man schon sehr genau suchen um die Velorouten zu finden. Mittlerweile stellt die Stadt die Velorouten auf <.a href="https://fahrrad.hamburg/de/service/velorouten/">fahrrad.hamburg</.a> deutlich besser dar, detaillierte Informationen muss man aber nach wie vor bei den einzelnen Behörden und Ämtern abgrasen. Auch aus persönlichem Interesse dokumentiere ich daher Bauvorhaben oder Baustellen, so sie bekannt gemacht werden.</p>
 
