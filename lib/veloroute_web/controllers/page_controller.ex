@@ -53,6 +53,15 @@ defmodule VelorouteWeb.PageController do
     end
   end
 
+  def old_export_link(conn, params) do
+    query = URI.encode_query(params)
+    query = if query != "", do: "?" <> query
+
+    conn
+    |> put_status(301)
+    |> redirect(to: "/datenexport#{query}")
+  end
+
   def redir_plain_veloroute(conn, _params) do
     with [[_path, route]] <- Regex.scan(~r/^\/([1-9]|10|11|12|13|14)/, conn.request_path) do
       path = "/alltagsroute-#{route}"

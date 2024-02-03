@@ -179,17 +179,38 @@ defmodule Data.Article.Static.Startpage do
       <.a href="/changes#getNotified">Artikel abonnieren</.a>
     </p>
 
-    <h3>Pläne, Baustellen und Probleme</h3>
-    <p>…werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar. <.a href="/quality#anchorplans">Genauere Erklärung</.a></p>
-
-    <h3>Fachbegriffe</h3>
-    <p>Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken. <.a href="/lexikon/fahrbahn-und-nebenflaechen">Zum Lexikon</.a></p>
+    <h3>Weitere Funktionen</h3>
+    <ul>
+      <li>
+        <.a href="/quality#anchorplans"><strong>Pläne, Baustellen und Probleme</strong></.a><br>
+        …werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar.
+      </li>
+      <li>
+        <.a href="/lexikon/fahrbahn-und-nebenflaechen"><strong>Fachbegriffe / Lexikon</strong></.a><br>
+        Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken.
+      </li>
+      <li>
+        <.a name="projekt"><strong>Projektdetails</strong></.a><br>
+        Details zur Technik oder wie Du mithelfen kannst, findest Du dort.
+      </li>
+      <li>
+        <.a name="datenexport"><strong>Video / Datenexport</strong></.a><br>
+        Spezialfall? Kein Problem, die Seite macht die Weiterverwendung des Materials einfach.
+      </li>
+    </ul>
 
     <h3>Kontakt</h3>
     <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><.mailto/></p>
 
-    <h3>Details zum Projekt</h3>
-    <p><.a name="projekt">Willst Du mehr über das veloroute.hamburg Projekt erfahren?</.a></p>
+    <h3>Linkempfehlungen</h3>
+    <p>Es gibt weitere Webseiten, die sich dem Thema Rad und Mobilität in Hamburg annehmen, die ich sehenswert finde:</p>
+    <ul>
+      <li><.a href="https://fahrrad.hamburg">fahrrad.hamburg</.a> – Die offizielle Seite der Stadt, mit vielen Funktionen</li>
+      <li><.a href="https://www.arnewitte.de/">arnewitte.de</.a> – Blog zu Verkehrsplanung, Mobilität und Stadtentwicklung</li>
+      <li><.a href="https://hamburgize.com/">hamburgize.com</.a> – Blog zu Fahrradthemen</li>
+      <li><.a href="https://www.youtube.com/@FahrradstadtHH">Fahrradstadt Hamburg</.a> – Videokanal zum Fahrradalltag</li>
+      <li><.a href="https://www.nahverkehrhamburg.de/">nahverkehrhamburg.de</.a> – Nachrichten zu Nahverkehrsthemen der Region</li>
+    </ul>
     """
   end
 end
