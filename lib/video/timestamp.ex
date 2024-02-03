@@ -26,6 +26,17 @@ defmodule Video.Timestamp do
     timestamp |> in_milliseconds() |> as_html()
   end
 
+  @spec as_archival(integer() | t()) :: binary()
+  def as_archival(duration_in_ms) when is_integer(duration_in_ms) do
+    {hours, minutes, seconds, _ms} = duration_split(duration_in_ms)
+
+    "#{hours}h #{pad_left(minutes)}m #{pad_left(seconds)}s"
+  end
+
+  def as_archival(timestamp) when valid_timestamp(timestamp) do
+    timestamp |> in_milliseconds() |> as_archival()
+  end
+
   @doc """
   Takes a timestamp and converts it to ISO8601 format:
   https://en.wikipedia.org/wiki/ISO_8601#Durations

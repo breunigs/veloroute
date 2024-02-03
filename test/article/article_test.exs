@@ -94,6 +94,18 @@ defmodule ArticleTest do
     assert [] == broken
   end
 
+  test "historic track reference exists on file system" do
+    {:ok, known} = Settings.video_target_dir_abs() |> File.ls()
+    known = MapSet.new(known)
+
+    missing_files =
+      Enum.reject(list_historic_tracks(), fn ref ->
+        MapSet.member?(known, ref.historic_hash)
+      end)
+
+    assert [] == missing_files
+  end
+
   test "historic track reference has valid date" do
     broken =
       Enum.reject(list_historic_tracks(), fn ref ->
