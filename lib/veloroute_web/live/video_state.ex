@@ -75,8 +75,8 @@ defmodule VelorouteWeb.Live.VideoState do
 
     new_state =
       old_state
-      |> update_direction_from_params(params)
       |> update_from_tracks(tracks, near, accurate)
+      |> update_direction_from_params(params)
 
     new_state =
       cond do
