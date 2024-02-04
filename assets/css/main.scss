@@ -606,6 +606,12 @@ body.showSidebar::before {
   p, ul, ol {
     line-height: 1.15rem;
   }
+
+  @media (pointer: coarse) {
+    p {
+      line-height: 1.35rem;
+    }
+  }
 }
 
 .hideSidebar #content {
@@ -937,7 +943,11 @@ ol.route-list {
 
   li {
     margin: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
+    @media (pointer: fine) {
+      margin-bottom: 0.5rem;
+    }
+
     clear: all;
     break-inside: avoid-column;
   }
@@ -1015,6 +1025,11 @@ ol.hide-bullets {
 
   li {
     clear: both;
+
+    margin-bottom: 0.6rem;
+    @media (pointer: fine) {
+      margin-bottom: 0.4rem;
+    }
   }
 
   &:after {
@@ -1052,7 +1067,11 @@ table.route-list {
   }
 
   a {
-    margin: 0.3rem;
+    margin: 0.5rem;
+
+    @media (pointer: fine) {
+      margin: 0.3rem;
+    }
   }
 }
 
@@ -1328,7 +1347,11 @@ input[type=search] {
 .aside {
   color: #888;
   font-style: italic;
-  display: block;
+}
+
+a .aside {
+  // ensure .aside doesn't get underlined when nested in an link
+  display: inline-block;
 }
 
 ul, ol {
@@ -1338,6 +1361,20 @@ ul, ol {
 
     &:first-child + li.separator {
       display: none;
+    }
+  }
+}
+
+ul.spaced {
+  padding: 0;
+
+  li {
+    padding: 0.35rem 0;
+    margin: 0;
+    list-style-type: none;
+
+    + li {
+      border-top: 0.08rem solid #dedede;
     }
   }
 }

@@ -21,16 +21,11 @@ defmodule Data.Article.Static.Suche do
       <%= if @search_results == [] && @search_query != "" do %>
         <p>Leider keine Ergebnisse.</p>
       <% else %>
-      <ul>
+      <ul class="spaced">
         <%= for result <- @search_results do %>
           <li>
             <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
-            <div>
-              <%= Search.Result.to_html(result) %>
-              <%= unless result.subtext in [nil, ""] do %>
-                <div class="aside"><%= result.subtext %></div>
-              <% end %>
-            </div>
+            <%= Search.Result.to_html(result) %>
           </li>
         <% end %>
       </ul>
