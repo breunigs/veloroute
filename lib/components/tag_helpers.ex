@@ -67,7 +67,7 @@ defmodule Components.TagHelpers do
   slot(:inner_block, required: true)
 
   def v(assigns) do
-    attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to")}
+    attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to"), "class" => "video"}
 
     geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
 
@@ -103,6 +103,7 @@ defmodule Components.TagHelpers do
 
   def m(assigns) do
     name = assigns[:highlight] || inner_text(assigns)
+    assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
 
     js =
       %Phoenix.LiveView.JS{}

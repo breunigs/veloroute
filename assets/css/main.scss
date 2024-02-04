@@ -6,6 +6,7 @@ $darkBg: #333;
 $red: #e30513;
 // via https://codepen.io/sosuke/pen/Pjoqqp
 $redColorFilter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
+$linkColorFilterFromWhite: brightness(0) saturate(100%) invert(59%) sepia(0%) saturate(0%) hue-rotate(357deg) brightness(91%) contrast(88%);
 $darkBgHighlight: #666;
 $contentPad: 0.9rem;
 
@@ -1082,6 +1083,23 @@ a {
     font-style: italic;
     text-decoration-style: dotted;
     cursor: help;
+  }
+
+  &.video::after, &.map::after {
+    display: inline-block;
+    width: 0.8rem;
+    padding-left: 0.2rem;
+    filter: $linkColorFilterFromWhite;
+  }
+
+  &.video::after {
+    content: url("/images/eye.svg");
+    vertical-align: 4%;
+  }
+
+  &.map::after {
+    content: url("/images/map.svg");
+    vertical-align: -2%;
   }
 }
 
