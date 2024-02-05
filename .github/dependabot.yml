@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: mix
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       non-breaking-changes:
         update-types:
@@ -14,7 +14,7 @@ updates:
   - package-ecosystem: npm
     directory: /assets
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       non-breaking-changes:
         update-types:
