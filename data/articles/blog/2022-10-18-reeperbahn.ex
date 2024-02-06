@@ -20,16 +20,18 @@ defmodule Data.Article.Blog.Reeperbahn do
         renderer: 3,
         group: "Reeperbahn",
         direction: :backward,
-        from: "Millerntorplatz",
+        from: "Zeughausmarkt",
         to: "Königstraße",
         parent_ref: __MODULE__,
         text: "Reeperbahn (→ Königstraße)",
         historic: %{
-          "867354f5e18726bffc5b908c8d7a5011" => ~d[2024-01],
+          "787c27d9887187e8e6a1457399ff1096" => ~d[2024-01],
           "322392dfed058a65bca42323414afe0e" => ~d[2022-11]
         },
         videos: [
-          {"2024-01-27-bergedorf/GX016755", "00:00:04.972", "00:00:58.125"}
+          {"2024-01-27-bergedorf/GX016753", "00:00:55.455", :end},
+          {"2024-01-27-bergedorf/GX016754", :start, :end},
+          {"2024-01-27-bergedorf/GX016755", :start, "00:00:58.125"}
         ]
       },
       %Video.Track{
@@ -37,17 +39,17 @@ defmodule Data.Article.Blog.Reeperbahn do
         group: "Reeperbahn",
         direction: :forward,
         from: "Königstraße",
-        to: "Millerntorplatz",
+        to: "Zeughausmarkt",
         parent_ref: __MODULE__,
         text: "Reeperbahn (→ Millerntorplatz)",
         historic: %{
-          "b4a34a1a5af83f54db93df1f584aa0cd" => ~d[2024-01],
+          "b68370037794ba4112498cfba9cae052" => ~d[2024-01],
           "4b0adb7b8bc291cede31172f0941da1e" => ~d[2022-11]
         },
         videos: [
           {"2023-03-28-w1-w5-w8sud/GX015282", "00:00:15.415", "00:00:25.759"},
           {"2024-01-27-bergedorf/GX016736", "00:00:33.300", :end},
-          {"2024-01-27-bergedorf/GX016737", :start, "00:00:28.762"}
+          {"2024-01-27-bergedorf/GX016737", :start, "00:00:37.538"}
         ]
       }
     ]

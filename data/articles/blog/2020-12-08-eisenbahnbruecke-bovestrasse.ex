@@ -8,6 +8,8 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
   def summary(), do: "1,85m breite Radfahrstreifen zwischen Bus- und KFZ-Spuren."
 
   def start(), do: ~d[2020-12]
+  def stop(), do: ~d[2026-10-12]
+  def construction_site_id_hh(), do: [670_456]
 
   def type(), do: :construction
 
