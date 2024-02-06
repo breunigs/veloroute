@@ -18,6 +18,7 @@
   <%# phx-ignore-attr needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-ignore-attr="class">
     <video
+      aria-description="Video zeigt Radfahrt der Route. Ohne Ton."
       id="videoInner"
       muted
       playsinline
@@ -43,9 +44,9 @@
     </div>
     <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
     <div id="duration">
-      <span id="current"><%= Video.Timestamp.as_html(@video_start) %></span><span>
+      <span id="current" title="Videoposition"><%= Video.Timestamp.as_html(@video_start) %></span><span>
       /
-      </span><span id="max"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
+      </span><span id="max" title="Videolänge"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <button id="reverse" type="button" title={if @video_reversible, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversible, do: "disabled"}><%= if @video_reversible, do: "Umdrehen" %></button>
@@ -59,11 +60,11 @@
 
         <div class="column" id="playbackRate">
           <strong>Wiedergabe</strong>
-          <a data-rate="2.0">2.0 – schnell</a>
-          <a data-rate="1.5">1.5</a>
-          <a class="active" data-rate="1.0">1.0 – normal</a>
-          <a data-rate="0.75">0.75</a>
-          <a data-rate="0.5">0.5 – langsam</a>
+          <a role="checkbox" aria-checked="false" data-rate="2.0">2.0 – schnell</a>
+          <a role="checkbox" aria-checked="false" data-rate="1.5">1.5</a>
+          <a role="checkbox" aria-checked="true" class="active" data-rate="1.0">1.0 – normal</a>
+          <a role="checkbox" aria-checked="false" data-rate="0.75">0.75</a>
+          <a role="checkbox" aria-checked="false" data-rate="0.5">0.5 – langsam</a>
         </div>
       </div>
     </div>
@@ -76,7 +77,7 @@
   <%= if @current_page == Data.Article.Static.Startpage do %>
     <span class="header"><%= Settings.sitebar_name() %></span>
   <% else %>
-    <.link patch="/" class="header" title="zurück zur Startseite"><%= Settings.sitebar_name() %></.link>
+    <.link patch="/" class="header" title="zurück zur Startseite" aria-label="zurück zur Startseite von veloroute.hamburg"><%= Settings.sitebar_name() %></.link>
   <% end %>
   <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>

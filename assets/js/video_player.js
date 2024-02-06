@@ -487,8 +487,12 @@ function selectPlaybackRate(event) {
   videoPlaybackRate = rate;
 
   const prev = document.querySelector("#playbackRate a.active");
-  if (prev) prev.classList.remove("active");
+  if (prev) {
+    prev.classList.remove("active");
+    prev.setAttribute("aria-checked", "false");
+  }
   event.target.classList.add("active");
+  event.target.setAttribute("aria-checked", "true");
 }
 
 function togglePlayPause() {

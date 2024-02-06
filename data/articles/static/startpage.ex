@@ -207,7 +207,7 @@ defmodule Data.Article.Static.Startpage do
     <ul>
       <li><.a href="https://fahrrad.hamburg">fahrrad.hamburg</.a> – Die offizielle Seite der Stadt, mit vielen Funktionen</li>
       <li><.a href="https://www.arnewitte.de/">arnewitte.de</.a> – Blog zu Verkehrsplanung, Mobilität und Stadtentwicklung</li>
-      <li><.a href="https://hamburgize.com/">hamburgize.com</.a> – Blog zu Fahrradthemen</li>
+      <li><.a href="http://hamburgize.com/">hamburgize.com</.a> – Blog zu Fahrradthemen</li>
       <li><.a href="https://www.youtube.com/@FahrradstadtHH">Fahrradstadt Hamburg</.a> – Videokanal zum Fahrradalltag</li>
       <li><.a href="https://www.nahverkehrhamburg.de/">nahverkehrhamburg.de</.a> – Nachrichten zu Nahverkehrsthemen der Region</li>
     </ul>
