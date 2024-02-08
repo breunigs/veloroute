@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Baufortschritt", "Februar 2024",
+       "https://www.hamburg.de/bvm/medien/18176658/2024-02-07-bvm-hoegerdamm/"},
       {"Baustelleninfo", "Januar 2024",
        "https://lsbg.hamburg.de/resource/blob/702322/d3104af6a28444d5c58d19aaeaf65f71/hoegerdamm-anliegerinformation-januar-2024-data.pdf"},
       {"Pressemitteilung zum Straßenumbau", "Oktober 2023",
