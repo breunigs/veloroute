@@ -55,53 +55,53 @@ defmodule Data.Article.Static.Startpage do
 
     <h4>Bezirke</h4>
     <p>Bezirksrouten sollen das Hauptnetz der Velorouten ergänzen. Sie sind noch im frühen Planungsstadium und nicht für alle Bezirke ausgearbeitet.</p>
-    <table class="route-list">
-      <tr>
+    <table class="route-list" role="list">
+      <tr role="group">
         <th>Eimsbüttel</th>
         <td>
           <span>
-            <.icon autoplay={true} name="br-eimsbuettel-nord-sued">E1</.icon>
-            <.icon autoplay={true} name="br-eimsbuettel-niendorf">E2</.icon>
-            <.icon autoplay={true} name="br-eimsbuettel-eidelstedt">E3</.icon>
-            <.icon autoplay={true} name="br-eimsbuettel-isebek">E4</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-nord-sued">E1</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-niendorf">E2</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-eidelstedt">E3</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-isebek">E4</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
-            <.icon autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
-            <.icon autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
+            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
           </span>
         </td>
-      </tr><tr>
+      </tr><tr role="group">
         <th>Hamburg-Nord</th>
         <td>
           <span>
-            <.icon autoplay={true} name="br-nord-n1">N1</.icon>
-            <.icon autoplay={true} name="br-nord-n2">N2</.icon>
-            <.icon autoplay={true} name="br-nord-n3">N3</.icon>
-            <.icon autoplay={true} name="br-nord-n4">N4</.icon>
-            <.icon autoplay={true} name="br-nord-n5">N5</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n1">N1</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n2">N2</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n3">N3</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n4">N4</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n5">N5</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="br-nord-n6">N6</.icon>
-            <.icon autoplay={true} name="br-nord-n7">N7</.icon>
-            <.icon autoplay={true} name="br-nord-n8">N8</.icon>
-            <.icon autoplay={true} name="br-nord-n9">N9</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n6">N6</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n7">N7</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n8">N8</.icon>
+            <.icon role="listitem" autoplay={true} name="br-nord-n9">N9</.icon>
           </span>
         </td>
-      </tr><tr>
+      </tr><tr role="group">
         <th>Wandsbek</th>
         <td>
           <span>
-            <.icon autoplay={true} name="br-wandsbek-w1">W1</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w2">W2</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w3">W3</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w4">W4</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w1">W1</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w2">W2</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w3">W3</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w4">W4</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="br-wandsbek-w5">W5</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w6">W6</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w7">W7</.icon>
-            <.icon autoplay={true} name="br-wandsbek-w8">W8</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w5">W5</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w6">W6</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w7">W7</.icon>
+            <.icon role="listitem" autoplay={true} name="br-wandsbek-w8">W8</.icon>
           </span>
         </td>
       </tr>
@@ -110,57 +110,57 @@ defmodule Data.Article.Static.Startpage do
     <h4>Umland</h4>
     <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ (auch: Radrouten Plus) sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
 
-    <table class="route-list">
-      <tr>
+    <table class="route-list" role="list">
+      <tr role="group">
         <th>Pinneberg</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-elmshorn" bounds="9.76125,53.617704,9.873313,53.686535" lon={9.855594} lat={53.621113} dir="forward">RSW</.icon>
-            <.icon autoplay={true} name="pinneberg-1">1</.icon>
-            <.icon autoplay={true} name="pinneberg-2">2</.icon>
+            <.icon role="listitem" autoplay={true} name="rsw-elmshorn" bounds="9.76125,53.617704,9.873313,53.686535" lon={9.855594} lat={53.621113} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} name="pinneberg-1">1</.icon>
+            <.icon role="listitem" autoplay={true} name="pinneberg-2">2</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="pinneberg-3">3</.icon>
-            <.icon autoplay={true} name="pinneberg-4">4</.icon>
-            <.icon autoplay={true} name="pinneberg-5">5</.icon>
+            <.icon role="listitem" autoplay={true} name="pinneberg-3">3</.icon>
+            <.icon role="listitem" autoplay={true} name="pinneberg-4">4</.icon>
+            <.icon role="listitem" autoplay={true} name="pinneberg-5">5</.icon>
           </span>
         </td>
-      </tr><tr>
+      </tr><tr role="group">
         <th>Norderstedt</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-bad-bramstedt" bounds="9.967335,53.669097,10.062369,53.759085" lon={10.00096} lat={53.681306} dir="forward">RSW</.icon>
-            <.icon autoplay={true} name="norderstedt-1">1</.icon>
-            <.icon autoplay={true} name="norderstedt-2">2</.icon>
+            <.icon role="listitem" autoplay={true} name="rsw-bad-bramstedt" bounds="9.967335,53.669097,10.062369,53.759085" lon={10.00096} lat={53.681306} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} name="norderstedt-1">1</.icon>
+            <.icon role="listitem" autoplay={true} name="norderstedt-2">2</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="norderstedt-3">3</.icon>
-            <.icon autoplay={true} name="norderstedt-4">4</.icon>
+            <.icon role="listitem" autoplay={true} name="norderstedt-3">3</.icon>
+            <.icon role="listitem" autoplay={true} name="norderstedt-4">4</.icon>
           </span>
         </td>
-      </tr><tr>
+      </tr><tr role="group">
         <th>Ahrensburg</th>
         <td>
           <span>
-            <.icon autoplay={true} name="rsw-ahrensburg" bounds="10.143083,53.641867,10.288229,53.699555" lon={10.199777} lat={53.661468} dir="forward">RSW</.icon>
-            <.icon autoplay={true} name="ahrensburg-a2">2</.icon>
-            <.icon autoplay={true} name="ahrensburg-a3">3</.icon>
-            <.icon autoplay={true} name="ahrensburg-a4">4</.icon>
-            <.icon autoplay={true} name="ahrensburg-a5">5</.icon>
+            <.icon role="listitem" autoplay={true} name="rsw-ahrensburg" bounds="10.143083,53.641867,10.288229,53.699555" lon={10.199777} lat={53.661468} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a2">2</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a3">3</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a4">4</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a5">5</.icon>
           </span>
           <span>
-            <.icon autoplay={true} name="ahrensburg-a6">6</.icon>
-            <.icon autoplay={true} name="ahrensburg-a7">7</.icon>
-            <.icon autoplay={true} name="ahrensburg-a8">8</.icon>
-            <.icon autoplay={true} name="ahrensburg-a9">9</.icon>
-            <.icon autoplay={true} name="ahrensburg-a10">10</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a6">6</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a7">7</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a8">8</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a9">9</.icon>
+            <.icon role="listitem" autoplay={true} name="ahrensburg-a10">10</.icon>
           </span>
         </td>
       </tr>
     </table>
 
+    <form method="GET" action="/suche" onsubmit="return false" phx-submit="search" role="search">
     <h3><label for="query">Suche 🔎</label></h3>
-    <form method="GET" action="/suche" onsubmit="return false" phx-submit="search">
       <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="250" name="search_query" />
       <input type="submit" style="display: none" />
     </form>
@@ -180,7 +180,7 @@ defmodule Data.Article.Static.Startpage do
     </p>
 
     <h3>Weitere Funktionen</h3>
-    <ul>
+    <ul role="list" style="list-style-type: none; padding: 0">
       <li>
         <.a href="/quality#anchorplans"><strong>Pläne, Baustellen und Probleme</strong></.a><br>
         …werden beim Hereinzoomen in der Karte grau hinterlegt angezeigt und sind anklickbar.

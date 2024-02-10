@@ -77,7 +77,7 @@ defmodule Search.Result do
       phx-click={@ping}
     >
       <%= @name %><br>
-      <div class="aside" :if={@subtext}><%= @subtext %></div>
+      <aside :if={@subtext}><%= @subtext %></aside>
     </a>
     """
   end
@@ -89,7 +89,7 @@ defmodule Search.Result do
     ~H"""
     <a phx-click={@js}>
       <%= @name %><br>
-      <div class="aside" :if={@subtext}><%= @subtext %></div>
+      <aside :if={@subtext}><%= @subtext %></aside>
     </a>
     """
   end

@@ -7,6 +7,7 @@ let timeout: number | null
 let cls: DOMTokenList | null
 let content: HTMLElement | null
 let sidebar: HTMLElement | null
+let switcher: HTMLElement | null
 
 function showSidebar(pos?: number) {
   if (!cls) return
@@ -14,6 +15,8 @@ function showSidebar(pos?: number) {
   cls.remove("hideSidebar");
   stopScroll(pos)
   disableAnimationAfter()
+  switcher!.setAttribute("aria-expanded", "true");
+  switcher!.setAttribute("aria-checked", "true");
 }
 
 function hideSidebar(pos?: number) {
@@ -22,6 +25,8 @@ function hideSidebar(pos?: number) {
   cls.add("hideSidebar", "animateSidebar");
   stopScroll(pos)
   disableAnimationAfter()
+  switcher!.setAttribute("aria-expanded", "false");
+  switcher!.setAttribute("aria-checked", "false");
 }
 
 function disableAnimationAfter() {
@@ -135,8 +140,9 @@ function init() {
   cls = document.getElementsByTagName("body")[0].classList;
   content = document.getElementById("content");
   sidebar = document.getElementById("sidebar");
+  switcher = document.getElementById("switcher");
 
-  document.getElementById("switcher")!.addEventListener("click", toggleSidebar)
+  switcher!.addEventListener("click", toggleSidebar)
   sidebar!.addEventListener("click", showSidebarIfHidden)
   sidebar!.addEventListener("wheel", showSidebarIfHidden, passive)
 

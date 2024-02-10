@@ -6,10 +6,10 @@ defmodule Data.Article.Blog.Rehrstieg do
   def summary(),
     do: "Rehrstieg/Striepenweg soll zu einem Kreisverkehr umgebaut werden"
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["10", "H10.3"]
 
-  def start(), do: ~d[2024-01-29]
+  def start(), do: ~d[2024-02-26]
   def stop(), do: ~d[2024-07-01]
 
   def links(_assigns) do

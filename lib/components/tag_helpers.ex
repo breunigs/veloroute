@@ -216,7 +216,7 @@ defmodule Components.TagHelpers do
     <li :if={@hidden>0} class="aside"><%= @hidden %> gefiltert</li>
     <%= for {group, articles_for_group} <- @grouped do %>
       <%= if group != "" && group != nil do %>
-        <li class="separator"><%= group %></li>
+        <li class="separator" role="separator"><%= group %></li>
       <% end %>
       <%= for art <- articles_for_group do %>
         <li><%= render_slot(@inner_block, art) %></li>
@@ -263,6 +263,7 @@ defmodule Components.TagHelpers do
   attr :group, :string
   attr :autoplay, :boolean, default: false
   attr :link, :boolean, default: true
+  attr :rest, :global
   slot(:inner_block, required: true)
 
   def icon(assigns) do
@@ -284,6 +285,7 @@ defmodule Components.TagHelpers do
       assign(assigns, %{
         href: href,
         summary: art.summary(),
+        title: art.title(),
         style: "background: #{art.color()}",
         class: "icon #{art.route_group()}",
         id: art.display_id()
@@ -305,6 +307,8 @@ defmodule Components.TagHelpers do
            title={@summary}
            style={@style}
            class={@class}
+           aria-label={@title}
+           {@rest}
         ><%= @id %></a>
         """
 
@@ -314,7 +318,9 @@ defmodule Components.TagHelpers do
            data-phx-link-state="push"
            data-phx-link="patch"
            title={@summary}
+           aria-label={@title}
            class="customicon"
+           {@rest}
         >
           <img src="/images/rsw.svg" alt="Radschnellweg Symbol der StVO" loading="lazy"/>
         </a>
@@ -322,7 +328,7 @@ defmodule Components.TagHelpers do
 
       true ->
         ~H"""
-        <a href={@href} data-phx-link-state="push" data-phx-link="patch" title={@summary}>
+        <a href={@href} data-phx-link-state="push" data-phx-link="patch" title={@summary} aria-label={@title} {@rest}>
           <span style={@style} class={@class}><%= @id %></span><%= render_slot(@inner_block) %>
         </a>
         """
@@ -455,7 +461,7 @@ defmodule Components.TagHelpers do
         ~H{<span class="duration">Umbau abgeschlossen (Bauzeit <%= @range %>)</span>}
 
       true ->
-        ~H{<span class="duration">vermutete Bauzeit: <%= @range %></span>}
+        ~H{<span class="duration" aria-describedby="buildTimeGuess">vermutete Bauzeit: <%= @range %></span>}
     end
   end
 
@@ -471,7 +477,7 @@ defmodule Components.TagHelpers do
     else
       ~H"""
       <h4>Vermutete Bauzeit</h4>
-      <p><em><%= @range %></em> – der Zeitraum ist nur zur groben Orientierung. Durch Abstimmung der Baustellen untereinander („Baustellenkoordination“), politische Beschlüsse die eine Neuplanung erfordern, Personalmangel in den Ämtern und ähnlichem verschieben sich die Termine häufig. Für tagesaktuelle Infos siehe <.a href="https://www.hamburg.de/baustellen">hamburg.de/baustellen</.a>.</p>
+      <p><em><%= @range %></em> – <span id="buildTimeGuess">der Zeitraum ist nur zur groben Orientierung. Durch Abstimmung der Baustellen untereinander („Baustellenkoordination“), politische Beschlüsse die eine Neuplanung erfordern, Personalmangel in den Ämtern und ähnlichem verschieben sich die Termine häufig. Für tagesaktuelle Infos siehe <.a href="https://www.hamburg.de/baustellen">hamburg.de/baustellen</.a>.</span></p>
       """
     end
   end

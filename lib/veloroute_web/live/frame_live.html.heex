@@ -14,11 +14,12 @@
 <% end %>
 <meta property="og:image" content={@og_image} />
 
-<div id="videoOuter" data-state="play" phx-ignore-attr="data-state">
+<div id="videoOuter" data-state="play" phx-ignore-attr="data-state" role="region" aria-label="Videoplayer">
   <%# phx-ignore-attr needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-ignore-attr="class">
     <video
       aria-description="Video zeigt Radfahrt der Route. Ohne Ton."
+      aria-describedby="videoRoute"
       id="videoInner"
       muted
       playsinline
@@ -36,11 +37,11 @@
     <%= @video_recording_date %>
   </span>
 
-  <div id="videoControls" data-nosnippet="yes">
+  <div id="videoControls" data-nosnippet="yes" role="toolbar">
     <button id="playpause" type="button" title="Video starten oder pausieren"></button>
-    <div id="progressWrapper">
-      <div id="progressPreview" phx-update="ignore"></div>
-      <progress id="progress" value={@video_start} min="0" max={@video_length_ms}></progress>
+    <div id="progressWrapper" role="slider" aria-label="Suchleiste" aria-valuemin="0" aria-valuemax={@video_length_ms} aria-valuenow={@video_start} aria-describedby="progressPreview">
+      <div id="progressPreview" phx-update="ignore" role="tooltip"></div>
+      <progress id="progress" value={@video_start} min="0" max={@video_length_ms} aria-describedby="progressPreview"></progress>
     </div>
     <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
     <div id="duration">
@@ -50,21 +51,21 @@
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <button id="reverse" type="button" title={if @video_reversible, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversible, do: "disabled"}><%= if @video_reversible, do: "Umdrehen" %></button>
-    <div id="videoOptions" phx-update="ignore">
+    <div id="videoOptions" phx-update="ignore" role="menu" aria-orientation="horizontal">
       <button type="button" aria-label="Video-Einstellungen"></button>
       <div>
-        <div class="column" id="videoQuality">
+        <div class="column" id="videoQuality" aria-orientation="vertical" role="group">
           <strong>Qualität</strong>
           <div id="videoQualityOptions"></div>
         </div>
 
-        <div class="column" id="playbackRate">
+        <div class="column" id="playbackRate" aria-orientation="vertical" role="group">
           <strong>Wiedergabe</strong>
-          <a role="checkbox" aria-checked="false" data-rate="2.0">2.0 – schnell</a>
-          <a role="checkbox" aria-checked="false" data-rate="1.5">1.5</a>
-          <a role="checkbox" aria-checked="true" class="active" data-rate="1.0">1.0 – normal</a>
-          <a role="checkbox" aria-checked="false" data-rate="0.75">0.75</a>
-          <a role="checkbox" aria-checked="false" data-rate="0.5">0.5 – langsam</a>
+          <a role="menuitemradio" aria-checked="false" data-rate="2.0">2,0 – schnell</a>
+          <a role="menuitemradio" aria-checked="false" data-rate="1.5">1,5</a>
+          <a role="menuitemradio" aria-checked="true" class="active" data-rate="1.0">1,0 – normal</a>
+          <a role="menuitemradio" aria-checked="false" data-rate="0.75">0,75</a>
+          <a role="menuitemradio" aria-checked="false" data-rate="0.5">0,5 – langsam</a>
         </div>
       </div>
     </div>
@@ -72,13 +73,11 @@
   </div>
 </div>
 
-<div id="sidebar" phx-hook="control">
-  <div id="switcher"><div></div></div>
-  <%= if @current_page == Data.Article.Static.Startpage do %>
-    <span class="header"><%= Settings.sitebar_name() %></span>
-  <% else %>
-    <.link patch="/" class="header" title="zurück zur Startseite" aria-label="zurück zur Startseite von veloroute.hamburg"><%= Settings.sitebar_name() %></.link>
-  <% end %>
+<div id="sidebar" phx-hook="control" role="main">
+  <div id="switcher" role="switch" aria-checked="false" aria-expanded="false" aria-controls="sidebar" aria-label="Seitenleiste ein/ausklappen"><div></div></div>
+  <.link patch="/" class={"header #{if @current_page != Data.Article.Static.Startpage, do: "back"}"} title="zurück zur Startseite" aria-label={"zurück zur Startseite von #{Settings.sitebar_name()}"} role="heading" aria-level="1">
+    <img src="/images/header.svg" aria-label={Settings.sitebar_name()}/>
+  </.link>
   <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>
       <p class="alert">

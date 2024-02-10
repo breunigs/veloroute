@@ -8,7 +8,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
   def color(), do: "#97ba22"
 
   def summary(),
-    do: "Die Route führt vom Rathaus nach Jenfeld bzw. Rahlstedt."
+    do: "Alltagsroute 7 führt vom Rathaus nach Jenfeld bzw. Rahlstedt."
 
   def tags(), do: [id()]
 

@@ -286,8 +286,15 @@ function updateQualityChooser() {
     let choosers = "";
     for (let i = window.hls.levels.length - 1; i >= 0; i--) {
       let classes = "eye"
-      if (current == i) classes += " active";
-      if (next == i) classes += " next";
+      let checked = "false"
+      if (current == i) {
+        classes += " active";
+        checked = "true";
+      }
+      if (next == i) {
+        classes += " next";
+        checked = "mixed";
+      }
       const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
       const codecSet = window.hls.levels[i].codecSet;
       const codec = codecTranslate[codecSet] || {
@@ -298,7 +305,7 @@ function updateQualityChooser() {
       const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
 
       name += ` <small>${codec.name}</small>`
-      choosers += `<a data-level="${i}" class="${classes}" title="${title}">${name}</a>`
+      choosers += `<a data-level="${i}" class="${classes}" title="${title}" role="menuitemradio" aria-checked="${checked}">${name}</a>`
     }
     choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
 
@@ -407,6 +414,7 @@ const passive = {
   passive: true
 }
 let progress
+let progressWrapper
 let current
 let duration
 let outer
@@ -421,7 +429,7 @@ function initControls() {
   if (progress === document.getElementById("progress")) return
 
   progress = document.getElementById("progress")
-  const progressWrapper = document.getElementById("progressWrapper")
+  progressWrapper = document.getElementById("progressWrapper")
   const playpause = document.getElementById("playpause")
   current = document.getElementById("current")
   duration = document.getElementById("max")
@@ -613,6 +621,7 @@ function updateProgressbar() {
     current.innerText = msText;
     duration.innerText = maxText;
     progress.value = ms;
+    progressWrapper.setAttribute("aria-valuenow", ms)
     progress.max = max;
     progress.style.setProperty("--loaded", loaded + "%");
   });

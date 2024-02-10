@@ -48,12 +48,12 @@ defmodule VelorouteWeb.Live.Map do
     assigns = assign(assigns, %{active_style_id: active_style_id(assigns)})
 
     ~H"""
-    <div>
-      <div aria-description="Straßenkarte, die ausgewählte Radrouten anzeigt" phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id}>
+    <div role="region" aria-label="Straßenkarte, die ausgewählte Radrouten anzeigt">
+      <div phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id}>
         <%= @preview_image %>
       </div>
 
-      <div id="layerSwitcher">
+      <div id="layerSwitcher" role="menu">
         <button title="Routen und Kartenhintergründe auswählen"></button>
         <div class="maplibregl-ctrl-group">
           <%= for layer <- @layers do %>
@@ -61,7 +61,7 @@ defmodule VelorouteWeb.Live.Map do
               value={layer.name}
               class={"layer #{if layer.active, do: "active"}"}
               aria-checked={if layer.active, do: "true", else: "false"}
-              role="checkbox"
+              role="menuitemcheckbox"
               phx-target={@myself}
               phx-click={
                 Phoenix.LiveView.JS.push("toggle-layer")
@@ -74,7 +74,7 @@ defmodule VelorouteWeb.Live.Map do
               value={style.id}
               class={"style #{if style.active, do: "active"}"}
               aria-checked={if style.active, do: "true", else: "false"}
-              role="checkbox"
+              role="menuitemradio"
               phx-target={@myself}
               phx-click="switch-style"><%= style.name %></button>
           <% end %>

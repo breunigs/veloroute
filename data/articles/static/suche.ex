@@ -21,7 +21,7 @@ defmodule Data.Article.Static.Suche do
       <%= if @search_results == [] && @search_query != "" do %>
         <p>Leider keine Ergebnisse.</p>
       <% else %>
-      <ul class="spaced">
+      <ul class="spaced" role="list" aria-label="Suchergebnisse">
         <%= for result <- @search_results do %>
           <li>
             <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->

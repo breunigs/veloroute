@@ -788,8 +788,9 @@ $headerSize: 2rem;
 .header {
   color: #fff;
   line-height: calc(1.5*$headerSize);
+  height: calc(1.5*$headerSize);
+  background-color: $darkBg;
   display: block;
-  background: url("/images/home.svg") calc($headerSize/2) center / 0 no-repeat $darkBg;
   // visually centered by eyeballing it. The text is neither in the middle of
   // the full header, nor the remaining space besides the home icon.
   padding-left: $headerSize;
@@ -797,10 +798,17 @@ $headerSize: 2rem;
   font-weight: bold;
   font-size: $headerSize*0.7;
   text-decoration: none !important;
-}
+  text-align: center;
 
-a.header {
-  background-size: $headerSize;
+  &.back {
+    background: url("/images/home.svg") calc($headerSize/2) center / 0 no-repeat $darkBg;
+    background-size: $headerSize;
+  }
+
+  img {
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 $iconSize: 1.5em;
@@ -1247,6 +1255,9 @@ table.routing {
 
   a {
     color: #000;
+    &.video::after, &.map::after {
+      display: none;
+    }
   }
 
   tr,
@@ -1344,12 +1355,12 @@ input[type=search] {
   }
 }
 
-.aside {
+.aside, aside {
   color: #888;
   font-style: italic;
 }
 
-a .aside {
+a aside {
   // ensure .aside doesn't get underlined when nested in an link
   display: inline-block;
 }

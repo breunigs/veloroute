@@ -28,7 +28,7 @@ defmodule Article.Renderer do
       assigns = assign(assigns, %{body: body, has_header: has_header, microdata: microdata})
 
       ~H"""
-        <div {@microdata[:wrapper] || %{}}>
+        <article {@microdata[:wrapper] || %{}}>
           <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @ref.title() %></h3>
           <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
@@ -36,7 +36,7 @@ defmodule Article.Renderer do
           <Components.TagHelpers.construction_duration_paragraph ref={@ref}/>
           <Components.TagHelpers.article_updated_at ref={@ref}/>
           <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
-        </div>
+        </article>
 
         <Components.RelatedArticlesHelper.related_articles ref={@ref}/>
       """
