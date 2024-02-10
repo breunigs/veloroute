@@ -5,12 +5,12 @@ let pushEventQueued = [];
 
 function pushEvent(event, payload) {
   if (!pushEventHandle) {
-    console.log("Queueing", event, "until mounted:", payload);
+    // console.log("Queueing", event, "until mounted:", payload);
     pushEventQueued.push([event, payload]);
     return
   }
 
-  console.log("Pushing", event, payload);
+  // console.log("Pushing", event, payload);
   pushEventHandle(event, payload);
 }
 window.pushEvent = pushEvent;
@@ -18,13 +18,13 @@ window.pushEvent = pushEvent;
 let Hooks = {};
 Hooks.control = {
   mounted() {
-    console.log("mounted");
+    // console.log("mounted");
     window.dispatchEvent(new Event("global:mounted"));
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
 
     if (!pushEventQueued) return;
     for (let i = 0; i < pushEventQueued.length; i++) {
-      console.log("Pushing queued event ", pushEventQueued[i]);
+      // console.log("Pushing queued event ", pushEventQueued[i]);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
     pushEventQueued = null;
@@ -39,18 +39,27 @@ Hooks.FocusSearchField = {
 }
 
 let scrollPositionFromPopState = null;
+let scrollLastPage = window.location.pathname;
 Hooks.ScrollReset = {
   saveScrollPos() {
     // console.log("scroll", `saveScrollPos ${window.location.pathname}`, "=", this.el.scrollTop)
     let state = history.state || {}
     state.sidebarScroll = this.el.scrollTop
     history.replaceState(state, "", window.location.href);
+    scrollLastPage = window.location.pathname;
   },
 
   maybeRestoreScroll() {
     // console.log("scroll", "maybeRestoreScroll", scrollPositionFromPopState)
     let restore = scrollPositionFromPopState
-    if (restore === null) return
+    if (restore === null) {
+      requestAnimationFrame(() => {
+        // console.log("scroll", "maybeScrollToTop", scrollLastPage, window.location.pathname)
+        if (scrollLastPage != window.location.pathname) this.el.scrollTop = 0
+      })
+
+      return
+    }
 
     // it seems the scrollTop is not always correctly updated, so change the
     // position by a tiny amount to force browsers to actually scroll. This
@@ -61,6 +70,7 @@ Hooks.ScrollReset = {
     requestAnimationFrame(() => {
       // console.log("scroll", "restoring", "to", restore)
       this.el.scrollTop = restore
+      this.saveScrollPos()
     })
     scrollPositionFromPopState = null
   },
