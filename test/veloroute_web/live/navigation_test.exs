@@ -269,7 +269,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # going to startpage should not change the video
     html =
       view
-      |> element("a", "veloroute.hamburg")
+      |> element("a.header")
       |> render_click()
 
     assert route_initial == shown_route(html)
