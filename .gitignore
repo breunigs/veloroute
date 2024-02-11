@@ -54,3 +54,4 @@ link_mirror
 x264_lookahead.clbin
 TODO
 flamegraph*.svg
+data/auto_generated/bv_hh_attachment_cache.json
