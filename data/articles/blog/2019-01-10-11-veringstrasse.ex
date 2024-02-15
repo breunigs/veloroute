@@ -6,8 +6,8 @@ defmodule Data.Article.Blog.Veringstrasse do
   def updated_at(), do: ~D[2020-06-13]
   def title(), do: "Veringstraße (Veloroute 11)"
 
-  # def start(), do: ~d[2022-04-04]
-  # def stop(), do: ~d[2023-03-05]
+  def start(), do: ~d[2024-04]
+  def stop(), do: ~d[2024-06]
   # def construction_site_id_hh(), do: [33169]
 
   def type(), do: :planned
@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.Veringstrasse do
 
   def links(_assigns) do
     [
+      {"Baustellenübersicht", "Dezember 2023",
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1017325"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/mitte/strassenbau-und-verkehr/11703714/veloroute-veringstrasse/"},
       {"Ausschreibung Umbau",

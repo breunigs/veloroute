@@ -10,7 +10,7 @@ require 'net/https'
 
 EVERGABE_SEEN = File.join(__dir__, "./evergabe_seen.txt")
 PAGE_URL = "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/tabs/home"
-SEARCH_TERMS = %w(velo radverkehr).map { |w| URI.encode_www_form_component(w) }
+SEARCH_TERMS = ["velo", "radverkehr", "INST HVS"].map { |w| URI.encode_www_form_component(w) }
 
 def search_url(term)
   "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/project/public?cultureName=de-DE&pageIndex=0&pageSize=15&searchTerm=#{term}&sortExpression=biddingPeriod%20desc"
