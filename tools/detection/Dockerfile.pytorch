@@ -26,9 +26,8 @@ RUN mkdir -p /root/.cache/torch/hub/ && \
 COPY detector.py /workspace/
 
 ENTRYPOINT ["/workspace/detector.py"]
-CMD ["/videos/detect_latest.pt", "/videos/source/"]
 
 
 # example usage from project main dir:
 # DOCKER_BUILDKIT=1 docker build -f "tools/detection/Dockerfile.pytorch" "tools/detection/" --network host -t "veloroute.hamburg/docker:detector"
-# docker run --rm --gpus all --tty --name veloroute2detect --mount "type=bind,source=$(pwd)/videos/,target=/videos/" "veloroute.hamburg/docker:detector"
+# docker run --rm --gpus all --tty --name veloroute2detect --mount "type=bind,source=$(pwd)/videos/,target=/videos/" "veloroute.hamburg/docker:detector" "/videos/detect_latest.pt" "/videos/source/"

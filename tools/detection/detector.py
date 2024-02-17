@@ -211,10 +211,16 @@ def usage(extra=None):
 
 
 def parse_args():
-    if len(sys.argv) != 3:
-        usage(f"expected exactly 2 arguments, but got {len(sys.argv)-1}")
+    if len(sys.argv) != 3 and len(sys.argv) != 4:
+        usage(f"expected 2 or 3 arguments, but got {len(sys.argv)-1}")
     weights = os.path.expanduser(sys.argv[1])
     video_dir = os.path.expanduser(sys.argv[2])
+    if len(sys.argv) == 4:
+        device = sys.argv[3]
+    elif torch.cuda.is_available():
+        device = 'cuda'
+    else:
+        device = 'cpu'
 
     if not os.path.exists(weights):
         usage(f"{weights}: weights file doesn't exist")
@@ -225,7 +231,7 @@ def parse_args():
     if not os.path.isdir(video_dir):
         usage(f"{video_dir}: video path is not a folder")
 
-    return (weights, video_dir)
+    return (weights, video_dir, device)
 
 
 def handler(signum, _frame):
@@ -242,7 +248,7 @@ signal.signal(signal.SIGQUIT, handler)
 
 # startup
 os.nice(20)
-(weights, video_dir) = parse_args()
+(weights, video_dir, device) = parse_args()
 
 # find videos in background
 q = queue.Queue()
@@ -251,7 +257,8 @@ recurse_in_background(video_dir, q, bar)
 
 # load model
 model = torch.hub.load(f'ultralytics/yolov5', 'custom',
-                       path=weights, skip_validation=True)
+                       path=weights, skip_validation=True,
+                       device=torch.device(device))
 model.conf = THRESHOLD
 bar.refresh()
 

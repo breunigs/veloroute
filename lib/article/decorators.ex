@@ -6,7 +6,12 @@ defmodule Article.Decorators do
 
   @spec html(Article.t(), Article.assigns()) :: binary()
   def html(art, assigns \\ %{}) do
-    apply_with_assigns(art, :text, assigns) |> Util.render_heex()
+    main = apply_with_assigns(art, :text, assigns)
+
+    assigns = %{ref: art}
+    build = ~H"<Components.TagHelpers.construction_duration_paragraph ref={@ref}/>"
+
+    Util.render_heex(main) <> Util.render_heex(build)
   end
 
   @spec text(Article.t(), [binary()]) :: binary()

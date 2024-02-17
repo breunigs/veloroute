@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.VierlaenderDamm do
   use Article.Default
 
-  def title(), do: "Billhorner Röhrendamm, Vierländer Damm, Ausschläger Allee (Rohtenburgsort)"
+  def title(), do: "Billhorner Röhrendamm, Vierländer Damm, Ausschläger Allee (Rothenburgsort)"
 
   def summary(),
     do:
@@ -81,7 +81,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
     <p>Im Detail:</p>
 
     <h5>Richtung Tiefstack</h5>
-    <ol style="list-style-type: none; padding: 0;">
+    <ul>
       <li><.v bounds="10.031914,53.53603,10.035291,53.537621" lon={10.034525} lat={53.536465} dir="forward" ref={@ref}>bis Bushalt Billhorner Mühlenstraße</.v>: gepflasterter, 2,5m breiter Hochbordradweg. Höhe des Kiosks ist eine kurze Engstelle mit 2,0m Breite.</li>
       <li><.v bounds="10.035014,53.534643,10.03845,53.536589" lon={10.037715} lat={53.534928} dir="forward" ref={@ref}>bis Höhe Schule Marckmannstraße</.v>: asphaltierter, 2,5m breiter Radweg. Er verläuft rechts der KFZ-Parkplätze mit 1,8m Sicherheitsabstand gegen <.ref>Dooring</.ref>.</li>
       <li><.v bounds="10.038016,53.534036,10.041889,53.534889" lon={10.039521} lat={53.534325} dir="forward" ref={@ref} highlight="Billhorner Deich">bis Billhorner Deich</.v>: asphaltierter Radfahrstreifen. Anfangs mit 2,0m Breite, die sich in mehreren Schritten auf 1,7m verringert. Sicherheitsabstand zu KFZ-Parkplätzen rund 0,65m.</li>
@@ -90,7 +90,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
       <li><.v bounds="10.047614,53.532325,10.050751,53.533458" lon={10.049073} lat={53.532963} dir="forward" ref={@ref} highlight="Freihafenstraße">bis kurz vor Freihafenstraße</.v>: Es besteht die Wahl geradlinig im Mischverkehr weiterzufahren, oder diagonal auf einen Hochbordradweg zu wechseln. Dieser verläuft rechts der Baumreihe und wird 2,0m breit gepflastert.</li>
       <li><.v bounds="10.049854,53.532195,10.05194,53.533001" lon={10.050906} lat={53.532502} dir="forward" ref={@ref} highlight="Zollvereinsstraße">bis kurz vor Zollvereinsstraße</.v>: 1,8m breiter Radfahrstreifen.</li>
       <li><.v bounds="10.050977,53.531554,10.054878,53.532687" lon={10.052821} lat={53.532127} dir="forward" ref={@ref} highlight="Rothenburgstraße">bis kurz vor Rothenburgstraße</.v>: 1,5m breiter Schutzstreifen</li>
-    </ol>
+    </ul>
 
     <h5>Richtung Innenstadt</h5>
     <ul>
