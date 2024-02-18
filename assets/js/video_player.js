@@ -218,7 +218,7 @@ function updateVideoElement() {
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
   try { video.load(); } catch (e) { }
-  if (autoplay) video.play();
+  if (autoplay && !video.paused) video.play();
 }
 
 function restorePreviousQuality() {
