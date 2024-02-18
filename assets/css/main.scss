@@ -74,6 +74,39 @@ $mapBgColor: #EFE9E1;
   top: 50%;
   overflow: hidden;
   background: #333 url('/images/video_poster.svg') 50% 50% / contain no-repeat;
+
+  $background: rgba(0,0,0, 0.5);
+  &::before {
+    display: none;
+    pointer-events: none;
+
+    width: 4rem;
+    height: 4rem;
+
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: $background url("/images/play.svg") no-repeat 55% 52%/40%;
+  }
+
+  &[data-state="play"]::before {
+    background: $background url("/images/pause.svg") no-repeat 50% 50%/30%;
+  }
+
+  &.show::before {
+    display: block;
+  }
+
+  &.animate::before {
+    transition: transform 0.7s, opacity 0.7s;
+    transform: translate(-50%, -50%) scale(1.5);
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
 }
 
 body.fullscreen #videoOuter {

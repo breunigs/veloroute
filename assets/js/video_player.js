@@ -503,7 +503,17 @@ function selectPlaybackRate(event) {
   event.target.setAttribute("aria-checked", "true");
 }
 
-function togglePlayPause() {
+let togglePlayPauseAnimation = null;
+function togglePlayPause(e) {
+  if (e.target === video || e.target === poster) {
+    cancelAnimationFrame(togglePlayPauseAnimation);
+    outer.classList.remove("show", "animate");
+    togglePlayPauseAnimation = requestAnimationFrame(() => {
+      outer.classList.add("show")
+      togglePlayPauseAnimation = requestAnimationFrame(() => outer.classList.add("animate"))
+    })
+  }
+
   if (!userClickPlayOnce) {
     ensureVideoIsSet();
   } else if (video.paused || video.ended) {
