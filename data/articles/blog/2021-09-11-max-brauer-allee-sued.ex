@@ -11,13 +11,15 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
       "Durchgängige, mindestens 2m breite Radfahrstreifen, wo möglich durch Bordsteine vom KFZ-Verkehr getrennt. Führung zum Altonaer Balkon endlich verständlich. Bau frühestens 2023."
 
   def start(), do: ~d[2024-03-04]
-  def stop(), do: ~d[2024-11-15]
-  def type(), do: :planned
+  def stop(), do: ~d[2024-11-31]
+  def type(), do: :construction
 
   def tags(), do: ["1", "12"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Februar 2024",
+       "https://lsbg.hamburg.de/resource/blob/704598/358f7956a1883175c22d5c8c15f763b8/max-brauer-allee-pnp-palmaille-februar-2024-data.pdf"},
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
       {"Projektseite des LSBG",

@@ -7,8 +7,8 @@ defmodule Data.Article.Blog.Burgstrasse do
     do:
       "Kreuzung Bethesdastraße erhält vollständige Ampel, kurzes Stück Protected-Bike-Lane vor Kreuzung Sievekingsallee"
 
-  def start(), do: ~d[2024-03-04]
-  def stop(), do: ~d[2024-08-31]
+  def start(), do: ~d[2024-03-19]
+  def stop(), do: ~d[2024-09-31]
   def construction_site_id_hh(), do: [667_463]
 
   def type(), do: :planned
@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Februar 2024",
+       "https://lsbg.hamburg.de/resource/blob/704288/4b347ac92b44cd6d61c49a97f0ca7948/burgstrasse-anliegerinformation-februar-2024-data.pdf"},
       {"Erläuterungsbericht des fertigen Entwurfs", "Januar 2024",
        "https://lsbg.hamburg.de/resource/blob/701566/260cd03679f8dfca7aa78a7e2dca8227/burgstrasse-haltestelle-bethesdastrasse-abgestimme-planung-bericht-data.pdf"},
       {"Lageplan des fertigen Entwurfs", "Januar 2024",

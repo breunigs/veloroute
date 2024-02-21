@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.Rehrstieg do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Umbaustart", "Februar 2024",
+       "https://www.hamburg.de/harburg/pressemeldungen/18234646/umbau-kreuzung-rehrstieg-striepenweg/"},
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9699324e-a65c-46f9-85e5-78765245425a"},
       {"Lagepläne und Erläuterungsbericht",

@@ -12,12 +12,14 @@ defmodule Data.Article.Blog.Jungfernstieg do
   def stop(), do: ~d[2025-04-11]
   def construction_site_id_hh(), do: [642_126]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["3", "4"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Februar 2024",
+       "https://lsbg.hamburg.de/resource/blob/704608/6faeadb952456232c55c2c0fa603bfb7/jungfernstieg-umbau-februar-2024-data.pdf"},
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/a71ec5ea-3fee-4417-bec1-f7c9aa44bfce"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
