@@ -218,7 +218,7 @@ def parse_args():
     if len(sys.argv) == 4:
         device = sys.argv[3]
     elif torch.cuda.is_available():
-        device = 'cuda'
+        device = 'cuda:0'
     else:
         device = 'cpu'
 
