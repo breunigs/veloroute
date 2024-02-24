@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def title(), do: "Kaiser-Wilhelm-Straße (Veloroute 1 und 2)"
 
   def start(), do: ~d[2021-02-11]
-  def stop(), do: ~d[2024-06]
+  def stop(), do: ~d[2024-07]
 
   def type(), do: :construction
   # def construction_site_id_hh(), do: [14393]
@@ -15,8 +15,8 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/kaiser-wilhelm-strasse"},
-      {"Baustelleninfo", "August 2023",
-       "https://lsbg.hamburg.de/resource/blob/685500/872db92be3d91a87572429bc3be54f0a/kaiser-wilhelm-strasse-anliegerinformation-august-2023-data.pdf"},
+      {"Baustelleninfo", "Februar 2024",
+       "https://lsbg.hamburg.de/resource/blob/704982/23906a5bdf450578e5568e733f4ac304/kaiser-wilhelm-strasse-anliegerinformation-februar-2024-data.pdf"},
       {"Auftragsvergabe", "Februar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/f87dc9c0-9bfb-4bee-813c-23acc461032e"},
       {"Anlieger/Baustelleninfo", "März 2022",

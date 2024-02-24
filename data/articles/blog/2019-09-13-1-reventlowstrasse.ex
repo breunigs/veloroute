@@ -3,21 +3,23 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def name(), do: "#{created_at()}-1-reventlowstrasse"
   def created_at(), do: ~D[2019-09-13]
-  def updated_at(), do: ~D[2022-09-10]
-  def title(), do: "Reventlowstraße (Veloroute 1)"
+  def updated_at(), do: ~D[2024-02-22]
+  def title(), do: "Reventlowstraße (Radroute 1 – Demo 24.02. 11 Uhr)"
 
   def summary(),
     do:
-      "Umplanung mischt gute (Kreisel, PBL) und schlechte (RiM, Schutzstreifen) Ideen. Vielfältige Führungsformen. Umbau nicht vor 2024."
+      "Umplanung mischt gute (Kreisel, PBL) und schlechte (RiM, Schutzstreifen) Ideen. Vielfältige Führungsformen."
 
   def type(), do: :planned
-  def start(), do: ~d[2024-03-01]
-  def stop(), do: ~d[2025-04-01]
+  # def start(), do: ~d[2024-03-01]
+  # def stop(), do: ~d[2025-04-01]
 
   def tags(), do: ["1", "a12"]
 
   def links(_assigns) do
     [
+      {"ADFC-Demo-Aufruf zum planmäßigen Umbau", "Februar 2024",
+       "https://hamburg.adfc.de/neuigkeit/demo-aufruf-zum-24-februar-2024-fuer-den-planmaessigen-ausbau-der-veloroute-1"},
       {"Pressemitteilung Umbaustart", "Januar 2024",
        "https://www.hamburg.de/altona/pressemitteilung/18105036/umbau-reventlowstrasse-veloroute/"},
       {"Erläuterungen und Lagepläne fertiger Entwurf", "Mai 2023",
@@ -35,8 +37,15 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Historie – Stand Mai 2023</h4>
-    <p>Die erste Infoveranstaltung fand im August 2018 statt, damals noch mit Baubeginn Mitte 2020. Durch die zwischenzeitliche Einigung des <.a href="https://radentscheid-hamburg.de/">Radentscheids Hamburg</.a> mit dem Senat wurde der Entwurf nochmals überarbeitet. Auch an diesem Entwurf gab es nach Hinweisen aus der Politik nochmals Detailänderungen, die 2023 veröffentlicht wurden.</p>
+    <h4>Demonstration zum Umbau Reventlowstraße</h4>
+    <p>Der ADFC ruft zur einer Demonstration für den planmäßigen Umbau der Reventlowstraße auf. Treffpunkt ist Samstag, 24. Februar 2024 um 11 Uhr am <.m bounds="9.885767,53.556614,9.891191,53.561361">Beselerplatz</.m>.</p>
+
+    <p><.a href="https://hamburg.adfc.de/neuigkeit/demo-aufruf-zum-24-februar-2024-fuer-den-planmaessigen-ausbau-der-veloroute-1">Weitere Informationen</.a></p>
+
+    <h4>Historie – Stand Februar 2024</h4>
+    <p>Der Umbau ab Frühjahr 2024 war politisch bereits beschlossen. Wegen Baustellenkoordination und anderen Maßnahmen – wie etwa der Elbchaussee – ist eine Verschiebung nur um viele Jahre möglich. Eine Verschiebung bedeutet auch mehrere Millionen € zusätzlich.</p>
+
+    <p>Eine kurzfristig gebildete Interessensgemeinschaft um die Ansässigen in der <.v bounds="9.879538,53.557896,9.889129,53.560594" lon={9.880838} lat={53.559485} dir="forward" ref="1">Waitzstraße</.v> versucht den Umbau zu verhindern, zumindest zu diesem Zeitpunkt. Alle politischen Parteien außer  Bündnis 90/Die Grünen zogen ihre vorherige Zustimmung zum Umbau zurück.</p>
 
     <h4>Alter Zustand</h4>
     <p>Die Reventlowstraße enthält entlang der Veloroute kaum nutzbare <.ref>Hochbordradweg</.ref>-Stummel, die plötzlich <.v bounds="9.888232,53.554487,9.8942,53.558329" lon={9.889886} lat={53.556644} dir="backward" ref="1">aufhören (Richtung Süden)</.v> bzw. <.v bounds="9.888232,53.554487,9.8942,53.558329" lon={9.890289} lat={53.556447} dir="forward" ref="1">anfangen (Richtung Norden)</.v>. Im Wesentlichen muss der Radverkehr im <.ref>Mischverkehr</.ref> mit den KFZ fahren.</p>
