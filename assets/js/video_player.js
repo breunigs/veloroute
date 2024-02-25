@@ -4,15 +4,22 @@ let prevVideo = null;
 let previouslyPlayingCodec = null;
 let autoplay = false;
 
+let wasSocketDisconnected = false
+window.liveSocket.getSocket().onClose(e => {
+  console.debug("socket was closed, ignoring next video seekToStartTime")
+  wasSocketDisconnected = true
+})
+
 let videoMeta = {}
 window.addEventListener("phx:video_meta", e => {
   console.log("updating video meta", e.detail)
   Object.assign(videoMeta, e.detail)
   maybeUpdatePoster(e.detail)
-  setVideo()
+  setVideo(wasSocketDisconnected)
   maybeTimeUpdate(e.detail)
 
   video.loop = videoMeta.end_action == "loop";
+  wasSocketDisconnected = false
 });
 
 let video
@@ -365,7 +372,7 @@ function ensureVideoIsSet() {
   setVideo();
 }
 
-function setVideo() {
+function setVideo(avoidSeek) {
   if (autoplay) userClickPlayOnce = true;
   if (!userClickPlayOnce) return;
 
@@ -375,7 +382,7 @@ function setVideo() {
     return;
   }
 
-  seekToStartTime();
+  if (!avoidSeek) seekToStartTime();
   updateProgressbar();
   updatePlaypause();
 }
