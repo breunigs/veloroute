@@ -101,13 +101,7 @@ defmodule Allris do
           cache ->
             result = attachment_status_uncached(url)
             cache = Map.put(cache, url, result)
-
-            clean =
-              cache
-              |> Map.filter(fn {_key, val} -> val != :unknown end)
-              |> Jason.encode!()
-
-            File.write(@cache_path, clean)
+            File.write(@cache_path, Jason.encode!(cache))
 
             {result, cache}
         end,

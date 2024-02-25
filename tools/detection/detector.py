@@ -143,7 +143,8 @@ def process(item, model, outer_bar):
 
         frame_queue.put((index, frame))
 
-        if(time.time() - last_save >= SAVE_INTERVAL_SECONDS):
+        json_saver_alive = json_saver and json_saver.is_alive()
+        if(time.time() - last_save >= SAVE_INTERVAL_SECONDS and not json_saver_alive):
             if json_saver:
                 json_saver.join()
             json_saver = threading.Thread(

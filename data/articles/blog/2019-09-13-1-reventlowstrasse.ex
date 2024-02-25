@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
   def name(), do: "#{created_at()}-1-reventlowstrasse"
   def created_at(), do: ~D[2019-09-13]
   def updated_at(), do: ~D[2024-02-22]
-  def title(), do: "Reventlowstraße (Radroute 1 – Demo 24.02. 11 Uhr)"
+  def title(), do: "Reventlowstraße (Radroute 1)"
 
   def summary(),
     do:
@@ -37,11 +37,6 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Demonstration zum Umbau Reventlowstraße</h4>
-    <p>Der ADFC ruft zur einer Demonstration für den planmäßigen Umbau der Reventlowstraße auf. Treffpunkt ist Samstag, 24. Februar 2024 um 11 Uhr am <.m bounds="9.885767,53.556614,9.891191,53.561361">Beselerplatz</.m>.</p>
-
-    <p><.a href="https://hamburg.adfc.de/neuigkeit/demo-aufruf-zum-24-februar-2024-fuer-den-planmaessigen-ausbau-der-veloroute-1">Weitere Informationen</.a></p>
-
     <h4>Historie – Stand Februar 2024</h4>
     <p>Der Umbau ab Frühjahr 2024 war politisch bereits beschlossen. Wegen Baustellenkoordination und anderen Maßnahmen – wie etwa der Elbchaussee – ist eine Verschiebung nur um viele Jahre möglich. Eine Verschiebung bedeutet auch mehrere Millionen € zusätzlich.</p>
 
