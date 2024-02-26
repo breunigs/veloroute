@@ -91,7 +91,7 @@ def noop_thread():
     return noop
 
 
-def process_frame(model, frame_queue, detections):
+def process_frame(model, frame_queue, detections, result_names):
     while True:
         (index, frame) = frame_queue.get()
         if index == None:
@@ -99,12 +99,12 @@ def process_frame(model, frame_queue, detections):
             return
 
         results = model(frame, size=MODEL_TRAIN_SIZE)
-        formatted = [format_box(det, results.names) for det in results.xyxy[0]]
+        formatted = [format_box(det, result_names) for det in results.xyxy[0]]
         detections[str(index)] = formatted
         frame_queue.task_done()
 
 
-def process(item, model, outer_bar):
+def process(item, model, outer_bar, result_names):
     (name, size) = item
     (final, wip) = json_out_paths(name)
     if not os.path.exists(name):
@@ -132,7 +132,7 @@ def process(item, model, outer_bar):
 
     frame_queue = queue.Queue(maxsize=4)
     threading.Thread(
-        target=lambda: process_frame(model, frame_queue, detections)).start()
+        target=lambda: process_frame(model, frame_queue, detections, result_names)).start()
 
     json_saver = None
     last_save = time.time()
@@ -211,6 +211,32 @@ def usage(extra=None):
     sys.exit(1)
 
 
+def optimized_weights(weights):
+    weights_base = os.path.splitext(weights)[0]
+
+    if device == 'cpu':
+        return weights
+
+    weights_gpu =  weights_base + '.engine'
+    if os.path.exists(weights_gpu):
+        print("using GPU optimized weights (engine)")
+    else:
+        print("generating GPU optimized weights (engine)")
+        height = math.ceil(MODEL_TRAIN_SIZE / 16*9 / 32)*32
+
+        import subprocess
+        subprocess.check_call([
+            sys.executable, "/root/.cache/torch/hub/ultralytics_yolov5_master/export.py",
+            "--weights", weights,
+            "--include", "engine",
+            "--img", str(height), str(MODEL_TRAIN_SIZE),
+            "--device", device,
+            "--simplify",
+            "--batch", "1"
+        ])
+
+    return weights_gpu
+
 def parse_args():
     if len(sys.argv) != 3 and len(sys.argv) != 4:
         usage(f"expected 2 or 3 arguments, but got {len(sys.argv)-1}")
@@ -257,10 +283,19 @@ bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True)
 recurse_in_background(video_dir, q, bar)
 
 # load model
+weights_optim = optimized_weights(weights)
+
 model = torch.hub.load(f'ultralytics/yolov5', 'custom',
-                       path=weights, skip_validation=True,
+                       path=weights_optim, skip_validation=True,
                        device=torch.device(device))
 model.conf = THRESHOLD
+
+result_names = model.names
+if result_names[0] == 'class0':
+    result_names = torch.hub.load(f'ultralytics/yolov5', 'custom',
+                                  path=weights, skip_validation=True,
+                                  device=torch.device(device)).names
+
 bar.refresh()
 
 # process
@@ -277,7 +312,7 @@ while not abort:
     if not item:
         break
 
-    processed = process(item, model, bar)
+    processed = process(item, model, bar, result_names)
     q.task_done()
 
 bar.close()
