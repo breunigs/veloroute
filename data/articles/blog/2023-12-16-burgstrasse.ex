@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Burgstrasse do
       "Kreuzung Bethesdastraße erhält vollständige Ampel, kurzes Stück Protected-Bike-Lane vor Kreuzung Sievekingsallee"
 
   def start(), do: ~d[2024-03-19]
-  def stop(), do: ~d[2024-09-31]
+  def stop(), do: ~d[2024-09-08]
   def construction_site_id_hh(), do: [667_463]
 
   def type(), do: :planned
