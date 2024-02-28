@@ -3,12 +3,9 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def created_at(), do: ~D[2021-10-19]
 
-  def title(), do: "Bundesstraße (Rentzelstraße bis Verbindungsbahn)"
+  def title(), do: "Bundesstraße (Verbindungsbahn bis Rentzelstraße)"
 
   def summary(), do: "Bundesstraße soll zur Fahrradstraße umgebaut werden."
-
-  def start(), do: ~d[2024Q2]
-  def stop(), do: ~d[2024Q3]
 
   def type(), do: :planned
 
@@ -49,7 +46,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def links(_assigns) do
     [
-      {"Geplanter Bautermine", "November 20223",
+      {"Geplanter Bautermine", "November 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"Unterlagen des 1. Entwurfs",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007009"}
