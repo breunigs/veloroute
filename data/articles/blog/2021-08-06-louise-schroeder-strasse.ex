@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
 
   def start(), do: ~d[2022-06-01]
   def stop(), do: ~d[2024-05-31]
-  # def construction_site_id_hh(), do: [344_067]
+  def construction_site_id_hh(), do: [344_067]
 
   def type(), do: :construction
 
