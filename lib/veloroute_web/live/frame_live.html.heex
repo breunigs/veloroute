@@ -39,8 +39,8 @@
 
   <div id="videoControls" data-nosnippet="yes" role="toolbar">
     <button id="playpause" type="button" title="Video starten oder pausieren"></button>
-    <div id="progressWrapper" role="slider" aria-label="Suchleiste" aria-valuemin="0" aria-valuemax={@video_length_ms} aria-valuenow={@video_start} aria-describedby="progressPreview">
-      <div id="progressPreview" phx-update="ignore" role="tooltip"></div>
+    <div id="progressWrapper" role="slider" aria-label="Suchleiste" aria-valuemin="0" aria-valuemax={@video_length_ms} aria-valuenow={@video_start} aria-describedby="progressPreview" phx-update="ignore">
+      <div id="progressPreview" role="tooltip"></div>
       <progress id="progress" value={@video_start} min="0" max={@video_length_ms} aria-describedby="progressPreview"></progress>
     </div>
     <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>

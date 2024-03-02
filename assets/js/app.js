@@ -79,6 +79,7 @@ Hooks.ScrollReset = {
     // console.log("scroll", "mounted")
 
     window.addEventListener("popstate", event => {
+      if (!event.state) return
       // console.log("scroll", "popstate =", event.state.sidebarScroll)
       scrollPositionFromPopState = event.state.sidebarScroll || 0
     });

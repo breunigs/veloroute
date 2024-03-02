@@ -63,7 +63,7 @@ defmodule Allris do
   end
 
   @spec attachment_status(binary()) :: :ok | :missing | :unknown
-  if Application.compile_env(:veloroute, :env) == :prod do
+  if Application.compile_env(:veloroute, :env) in [:prod, :test] do
     use Memoize
 
     defmemop read_cache_once() do

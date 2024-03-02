@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Bundesstrasse2 do
 
   def links(_assigns) do
     [
-      {"fertiger Entwurf", "Februar 2023",
+      {"fertiger Entwurf", "Februar 2024",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009114"}
     ]
   end

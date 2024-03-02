@@ -358,6 +358,7 @@ function maybeUpdatePoster(changedMeta) {
   if (typeof changedMeta.poster === "undefined") return
 
   const url = (video.readyState >= 1 || !changedMeta.poster) ? "" : changedMeta.poster
+  if (video.poster == url) return
   console.debug("updating poster to", url)
   video.setAttribute("poster", url)
 }
