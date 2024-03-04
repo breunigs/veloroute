@@ -248,12 +248,12 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @spec hrefs_from_url(binary() | URI.t()) :: [binary()]
   def hrefs_from_url(url) do
-    {:ok, response} = get(url)
-
-    if response.status == 200 do
+    with {:ok, %{status: 200} = response} <- get(url) do
       Util.extract_href_from_html(response.body)
     else
-      []
+      resp ->
+        IO.puts(:stderr, "failed to extract links from #{url} – #{inspect(resp)}")
+        []
     end
   end
 
