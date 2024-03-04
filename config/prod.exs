@@ -13,8 +13,7 @@ config :veloroute, VelorouteWeb.Endpoint,
     rewrite_on: [:x_forwarded_proto, :x_forwarded_host, :x_forwarded_port],
     # added by nginx
     hsts: false
-  ],
-  use_url_from_settings: true
+  ]
 
 # Do not print debug messages in production
 config :logger,

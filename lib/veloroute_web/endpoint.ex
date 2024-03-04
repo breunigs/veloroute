@@ -51,14 +51,4 @@ defmodule VelorouteWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug VelorouteWeb.Router
-
-  def init(:supervisor, config) do
-    if Keyword.get(config, :use_url_from_settings, false) do
-      parsed = URI.new!(Settings.url())
-      url = [host: parsed.host, port: parsed.port, scheme: parsed.scheme]
-      {:ok, Keyword.put(config, :url, url)}
-    else
-      {:ok, config}
-    end
-  end
 end
