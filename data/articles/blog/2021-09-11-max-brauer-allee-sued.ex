@@ -11,7 +11,9 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
       "Durchgängige, mindestens 2m breite Radfahrstreifen, wo möglich durch Bordsteine vom KFZ-Verkehr getrennt. Führung zum Altonaer Balkon endlich verständlich. Bau frühestens 2023."
 
   def start(), do: ~d[2024-03-04]
-  def stop(), do: ~d[2024-11-30]
+  def stop(), do: ~d[2024-11-22]
+  def construction_site_id_hh(), do: [706_127]
+
   def type(), do: :construction
 
   def tags(), do: ["1", "12"]

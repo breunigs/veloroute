@@ -34,10 +34,10 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def links(_assigns) do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
-      {"Erläuterungsbericht (3. Entwurf)", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/690498/100f73fca0edf95e8530c121417feeb3/wellingsbuetteler-landstrasse-abstimmungsunterlage-dritte-verschickung-bericht-data.pdf"},
-      {"Lagepläne (3. Entwurf)", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/690504/a214fb95c0940613042f8e6fd7e86876/wellingsbuetteler-landstrasse-abstimmungsunterlage-dritte-verschickung-plan-data.pdf"}
+      {"Erläuterungsbericht (4. Entwurf/fertige Planung)", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/706660/9a1f9d493dd40892aceff6c3b8b75a95/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-bericht-data.pdf"},
+      {"Lagepläne (4. Entwurf/fertige Planung)", "September 2023",
+       "https://lsbg.hamburg.de/resource/blob/706662/b1887de79101499fc71065d4c3949b25/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-plan-data.pdf"}
     ]
   end
 
@@ -48,8 +48,6 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
     <p>In der <.m bounds="10.031161,53.625658,10.057393,53.636639">Wellingsbütteler Landstraße</.m> selbst gibt es im Stadtteil <.m bounds="10.033141,53.628026,10.049216,53.6317">Klein Borstel</.m> keine eigenen Radwege. Es stehen die Optionen offen auf der Fahrbahn mit den KFZ zu fahren oder auf den Fußwegen (<.ref>Fahrrad frei</.ref>). Die Höchstgeschwindigkeit beträgt 50 km/h.</p>
 
     <h4>Planung</h4>
-    <p><em>Der nachfolgende Artikel beschreibt den dritten Entwurf. Die größte Änderung zum zweiten Entwurf ist die Verlegung von Radfahrstreifen auf einen Zweirichtungsradweg bis Stübeheide.</em></p>
-
     <p>Die Wellingsbütteler Landstraße soll komplett saniert werden – Kanäle, Versorgungsleitungen und Straßenbelag gemeinsam. Es ist vorgesehen dem Radverkehr zwischen <.m bounds="10.027247,53.625691,10.039097,53.630037">Fuhlsbüttler Straße und Stübeheide</.m> auf der Nordseite <.ref>Hochbordradweg</.ref> für beide Richtungen mit rund 3,0m Breite anzubieten. An diesen schließt auch der geplante <.a name="rsw-bad-bramstedt">Radschnellweg („Radroute Plus“) nach Bad Bramstedt</.a> an.</p>
 
     <p>Die Einmündung in die <.v bounds="10.035123,53.627871,10.042561,53.632043" lon={10.036734} lat={53.62955} dir="forward" ref={@ref}>Stübeheide</.v> wird so gestaltet, dass der Radverkehr diese leichter als Alternative verwenden kann. Ab der Stübeheide bleibt es wie heute bei <.ref>Mischverkehr</.ref> mit Tempo 50.</p>
