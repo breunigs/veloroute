@@ -33,8 +33,7 @@
 
   <%= VelorouteWeb.VariousHelpers.display_route(@video) %>
   <span id="videoRecordingDate">
-    <%= if @video_street_name != "", do: "#{@video_street_name}," %>
-    <%= @video_recording_date %>
+    <%= if @video_street_name != "", do: "#{@video_street_name}, " %><%= @video_recording_date %>
   </span>
 
   <div id="videoControls" data-nosnippet="yes" role="toolbar">

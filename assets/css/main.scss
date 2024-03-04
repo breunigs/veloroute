@@ -355,6 +355,7 @@ $videoBarProgressHeight: 0.4rem;
     background: #000;
     background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
     user-select: none;
+    contain: strict;
 
     &::-webkit-progress-bar {
       background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
@@ -676,6 +677,7 @@ $cyclistSize: 8rem;
     opacity: 0;
     content: "";
     position: absolute;
+    pointer-events: none;
   }
 
   &::before {
@@ -1176,8 +1178,7 @@ a {
   opacity: 0;
 }
 
-#indicator,
-#indicator-rotate {
+#indicator, #indicator-rotate {
   height: 1.5rem;
   width: 1.5rem;
   pointer-events: none;
@@ -1188,9 +1189,15 @@ a {
   // i.e. order is canvas < mapPreview < indicator
   z-index: 2;
 
-  &.animate {
-    // NOTE: also update timeout in map.js
-    transition: linear 0.15s;
+  transition: linear 0.15s;
+  &.no-animation {
+    transition: none;
+  }
+}
+
+#map.moving {
+  #indicator, #indicator-rotate {
+    transition: none;
   }
 }
 

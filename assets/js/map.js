@@ -54,7 +54,6 @@ const genDiv = (id) => {
 
 let indicator = null;
 let videoWasPlaying = false;
-let indicatorAnimateTimer = null;
 let zoomedInOnce = false;
 let prevIndicatorPos = {};
 
@@ -111,22 +110,20 @@ function renderIndicator() {
 
     requestAnimationFrame(() => {
       indicator.addTo(map);
+      el.style.opacity = 0
       requestAnimationFrame(() => el.style.opacity = 1);
     })
   }
 
-  const mapActive = map.isMoving() || map.isZooming();
   const videoPlaying = isVideoPlaying();
   const dist = indicator.getLngLat().distanceTo(lngLat);
-  const animate = !mapActive && dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
-  indicator.getElement().classList.toggle("animate", animate);
+  const animate = dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
 
-  if (indicatorAnimateTimer) {
-    clearTimeout(indicatorAnimateTimer);
-    indicatorAnimateTimer = null;
+  if (!animate) {
+    const cls = indicator.getElement().classList;
+    cls.add("no-animation")
+    requestAnimationFrame(() => cls.remove("no-animation"));
   }
-  // NOTE: also update timeout in main.scss
-  if (animate) indicatorAnimateTimer = setTimeout(disableIndicatorAnimation, 150);
 
   videoWasPlaying = videoPlaying;
 
@@ -135,7 +132,7 @@ function renderIndicator() {
   indicator.setLngLat(lngLat);
 
   // zoom in once, i.e. when user just clicks play when first visiting the site
-  if (!mapActive && !zoomedInOnce && videoPlaying && map.getZoom() <= 13) {
+  if (!zoomedInOnce && videoPlaying && map.getZoom() <= 13 && !map.isMoving() && !map.isZooming()) {
     zoomedInOnce = true;
     map.flyTo({
       center: lngLat,
@@ -154,12 +151,8 @@ const closestEquivalentAngle = (from, to) => {
   return from + delta;
 }
 
-const disableIndicatorAnimation = () => {
-  if (!indicator) return;
-  indicator.getElement().classList.toggle("animate", false)
-  if (!indicatorAnimateTimer) return;
-  clearTimeout(indicatorAnimateTimer);
-  indicatorAnimateTimer = null;
+const updateMapMovingStatus = () => {
+  document.getElementById("map").classList.toggle("moving", map.isMoving())
 }
 
 const ensureIndicatorInView = (lngLat) => {
@@ -605,8 +598,8 @@ function setup() {
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
 
-  map.on('movestart', disableIndicatorAnimation);
-  map.on('zoomstart', disableIndicatorAnimation);
+  map.on('movestart', updateMapMovingStatus);
+  map.on('moveend', updateMapMovingStatus);
 
   map.on('style.load', styleChangedHandler)
   map.on('styledata', styleChangedHandler)

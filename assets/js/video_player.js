@@ -51,7 +51,7 @@ function initVideoElement() {
 initVideoElement()
 window.addEventListener("global:mounted", initVideoElement)
 
-// 3 MBit/s, i.e. not 240p. Halfed on every buffer stall.
+// 3 MBit/s, i.e. not 240p. Halved on every buffer stall.
 let minAutoBitrate = 3 * 1000 * 1000;
 
 // allow HLS direct play only on iOS/OSX devices, because I found Android phones
@@ -351,7 +351,7 @@ function seekToTime(timeInMs) {
 function maybeShowLoadingIndicator(evt) {
   let showSpinner = !video.paused && !video.ended && video.readyState < 3
   showSpinner = showSpinner || (video.seeking && video.readyState < 3) || fixSeekForWrongVideoDuration
-  poster.classList.toggle("loading", showSpinner)
+  poster.classList.toggle("loading", !!showSpinner)
 }
 
 function maybeUpdatePoster(changedMeta) {
@@ -636,11 +636,11 @@ function updateProgressbar() {
     loaded = end / max * 100;
   }
   window.requestAnimationFrame(() => {
-    current.innerText = msText;
-    duration.innerText = maxText;
+    if (current.textContent !== msText) current.textContent = msText;
+    if (duration.textContent !== maxText) duration.textContent = maxText;
     progress.value = ms;
     progressWrapper.setAttribute("aria-valuenow", ms)
-    progress.max = max;
+    if (progress.max !== max) progress.max = max;
     progress.style.setProperty("--loaded", loaded + "%");
   });
 }
