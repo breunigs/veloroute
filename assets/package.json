@@ -3,8 +3,8 @@
   "license": "MIT",
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "hls.js": "^1.4.14",
-    "maplibre-gl": "^4.0.0"
+    "hls.js": "^1.5.7",
+    "maplibre-gl": "^4.1.0"
   },
   "devDependencies": {
     "@types/phoenix_live_view": "^0.18.4"
