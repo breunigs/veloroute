@@ -8,11 +8,15 @@ defmodule Data.Article.Blog.AmRadelandWest do
       "Die Straße wird saniert, bleibt aber beim aktuellen Ansatz. D.h. Mischverkehr und wechselseitige KFZ-Parkplätze. Bushalte werden barrierefrei."
 
   def type(), do: :planned
+  def start(), do: ~d[2024-06]
+  def stop(), do: ~d[2025-10]
 
   def tags(), do: ["10", "FR6", "H13", "H.13"]
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", "März 2024",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/99679463-915e-4505-bd83-cf90b44c71ff"},
       {"fertiger Entwurf", "August 2021",
        "https://fragdenstaat.de/anfrage/lageplaene-und-erlaeuterungsbericht-fuer-am-radeland-west-h13/#nachricht-881831"}
     ]

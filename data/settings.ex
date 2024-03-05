@@ -96,9 +96,11 @@ defmodule Settings do
   def sitebar_name, do: "veloroute.hamburg"
   def page_title_short, do: "veloroute.hamburg · "
   def page_title_long, do: "veloroute.hamburg · Fahrradwege für Alltag und Freizeit"
-  def email, do: "stefan-veloroute@breunig.xyz"
+  def email, do: "mail@veloroute.hamburg"
 
   def twitter_handle, do: "@VelorouteHH"
+  def mastodon_url, do: "https://norden.social/@VelorouteHamburg"
+  def bluesky_url, do: "https://bsky.app/profile/veloroutehh.bsky.social"
   def deploy_ssh_name, do: "veloroute-deploy"
 
   def deploy_video_copy_cmd,

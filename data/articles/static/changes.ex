@@ -12,9 +12,15 @@ defmodule Data.Article.Static.Changes do
 
     <ul class="imgbullet">
       <li><.a href="/updates.atom"><img src="/images/rss.svg"> RSS-Feed</.a> (benötigt einen <.a href="https://www.rss-readers.org/">Feedreader</.a>)</li>
-      <li><.a href="https://twitter.com/VelorouteHH"><img src="/images/twitter.svg"> Twitter</.a></li>
-      <li><.a href="https://norden.social/@VelorouteHamburg" rel="me"><img src="/images/mastodon.svg"> Mastodon</.a></li>
-      <li><.a href="https://bsky.app/profile/veloroutehh.bsky.social"><img src="/images/bluesky.webp"> Bluesky</.a></li>
+      <%= if Settings.twitter_handle() != nil do %>
+        <li><.a href={"https://twitter.com/" <> String.slice(Settings.twitter_handle(), 1..-1//1)}><img src="/images/twitter.svg"> Twitter</.a></li>
+      <% end %>
+      <%= if Settings.mastodon_url() != nil do %>
+        <li><.a href={Settings.mastodon_url()} rel="me"><img src="/images/mastodon.svg"> Mastodon</.a></li>
+      <% end %>
+      <%= if Settings.bluesky_url() != nil do %>
+        <li><.a href={Settings.bluesky_url()}><img src="/images/bluesky.svg"> Bluesky</.a></li>
+      <% end %>
       <li><.mailto subject="veloroute.hamburg Newsletter abonnieren" body={"Hallo,\n\nbitte halte mich zu neuen oder aktualisierten Artikeln auf dem Laufenden. Nimm dazu einfach diese E-Mail Adresse.\n\nDanke!"}><img src="/images/email.svg"> E-Mail Newsletter abonnieren</.mailto></li>
     </ul>
 
