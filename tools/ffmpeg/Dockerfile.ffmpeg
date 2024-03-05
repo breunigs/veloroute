@@ -3,6 +3,9 @@ FROM debian:testing-slim AS downloader
 ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
+ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
+ARG SVTAV1_VERSION=c233913e82fa44caec4a0f08efabb861b2f81edf
+
 ARG FFMPEG_VERSION=6.1
 ARG BLUR_VERSION=ec85bf7288645caa884df346cf010d0caa47e78f
 
@@ -28,6 +31,10 @@ RUN \
 RUN cd /downloads/ && \
   wget https://github.com/breunigs/frei0r-blur-from-json/archive/${BLUR_VERSION}.tar.gz && \
   tar zxf ${BLUR_VERSION}.tar.gz && rm ${BLUR_VERSION}.tar.gz && mv frei0r-blur-from-json-${BLUR_VERSION} blur
+
+RUN cd /downloads/ && \
+  wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}.tar.gz && \
+  tar zxf ${SVTAV1_VERSION}.tar.gz && rm ${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
 
 FROM debian:testing-slim AS blur
 WORKDIR /build/
@@ -67,7 +74,6 @@ RUN \
   libdav1d-dev \
   libffmpeg-nvenc-dev \
   libssl-dev \
-  libsvtav1enc-dev \
   libtool \
   libva-dev \
   libvpx-dev \
@@ -95,6 +101,11 @@ COPY --from=downloader /downloads /downloads/
 
 RUN cd /downloads/rav1e && \
   RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
+
+RUN cd /downloads/svtav1/Build && \
+  cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} && \
+  make -j $(nproc) && \
+  make install
 
 RUN cd /downloads/ffmpeg && \
   ./configure \
@@ -132,8 +143,6 @@ RUN \
   libboost-iostreams1.83.0 \
   libc6 \
   libdav1d[0-9]+ \
-  libsvtav1enc[0-9]+ \
-  libsvtav1enc1d[0-9]+ \
   libva-drm2 \
   libva2 \
   libvips42 \
@@ -148,6 +157,7 @@ RUN \
 RUN mkdir -p /usr/lib/frei0r-1/
 COPY --from=blur /build/jsonblur.so /usr/lib/frei0r-1/
 COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
+COPY --from=ffmpeg-build /build/lib/libSvtAv1Enc.* /lib/x86_64-linux-gnu/
 WORKDIR /workdir
 
 ARG RENDER_GID

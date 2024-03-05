@@ -467,9 +467,9 @@ defmodule Video.Renderer do
   #     codec: [
   #       "libsvtav1",
   #       "-preset:#{idx}",
-  #       "4",
+  #       "1",
   #       "-svtav1-params:#{idx}",
-  #       "tune=0:enable-overlays=1:scd=1:scm=0:irefresh-type=1:tile-columns=#{tiles_c}:tile-rows=#{tiles_r}:enable-tf=0:film-grain=4"
+  #       "tune=0:enable-overlays=1:scm=0:irefresh-type=1:tile-columns=#{tiles_c}:tile-rows=#{tiles_r}"
   #     ],
   #     tag_as: av1_codec_tag(info, tiles, 8)
   #   }
