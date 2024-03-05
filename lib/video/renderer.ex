@@ -451,7 +451,7 @@ defmodule Video.Renderer do
         "-tiles:v:#{idx}",
         "#{tiles}",
         "-speed:v:#{idx}",
-        "3"
+        "2"
       ],
       tag_as: av1_codec_tag(info, tiles, 8)
     }
@@ -542,6 +542,9 @@ defmodule Video.Renderer do
     stream_map = Enum.map_join(variants(), " ", &"v:#{&1[:index]}")
 
     ~w[
+      -color_primaries bt709
+      -color_trc bt709
+      -colorspace bt709
       -an
       -f hls
       -hls_playlist_type vod
