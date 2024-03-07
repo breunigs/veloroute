@@ -209,7 +209,7 @@ defmodule Mix.Tasks.Deploy do
     {_out, 0} =
       System.cmd("sh", [
         "-c",
-        "docker save '#{image_name}' | zstd -12 -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
+        "docker save '#{image_name}' | zstd --adapt -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
       ])
   end
 
