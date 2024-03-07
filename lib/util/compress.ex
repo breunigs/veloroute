@@ -40,36 +40,10 @@ defmodule Util.Compress do
   ## Examples
 
       iex> Util.Compress.brotli("hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi hi")
-      <<161, 24, 2, 0, 32, 9, 130, 150, 22, 223, 4, 177, 13>>
+      <<27, 67, 0, 0, 36, 65, 208, 210, 226, 155, 32, 182, 1>>
   """
   def brotli(data) when is_binary(data) do
-    {:ok, tmp} = Temp.path("veloroute-compress-brotli")
-
-    try do
-      File.write!(tmp, data)
-
-      System.cmd("brotli", ["--quality=#{@brotli_compression_level}", "--stdout", tmp])
-      |> case do
-        {compressed, 0} -> compressed
-        {_out, exit_code} -> raise "Failed to compress with brotli (exit code #{exit_code})"
-      end
-    after
-      File.rm(tmp)
-    end
-
-    # Util.Cmd2.exec(
-    #   [
-    #     "brotli",
-    #     "--quality=#{@brotli_compression_level}",
-    #     "--stdout",
-    #     "-"
-    #   ],
-    #   stdin: data,
-    #   stdout: ""
-    # )
-    # |> case do
-    #   %{result: :ok, stdout: br} -> br
-    #   %{result: {:error, error}} -> raise "Failed to compress with brotli: #{error}"
-    # end
+    {:ok, br} = :brotli.encode(data, %{quality: @brotli_compression_level})
+    br
   end
 end

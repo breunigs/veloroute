@@ -63,6 +63,7 @@ defmodule Veloroute.MixProject do
 
     [
       {:atomex, "~> 0.5.1"},
+      {:brotli, "~> 0.3"},
       {:cachex, "~> 3.4"},
       {:dart_sass, "~> 0.5", runtime: is_dev},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},

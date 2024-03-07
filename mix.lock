@@ -1,5 +1,6 @@
 %{
   "atomex": {:hex, :atomex, "0.5.1", "706a8241fd6d1719b27a77b6d1192d2f85e6ecc78e6eadab29207d8cb9bb7ae5", [:mix], [{:xml_builder, "~> 2.1", [hex: :xml_builder, repo: "hexpm", optional: false]}], "hexpm", "6248891b5fcab8503982e090eedeeadb757a6311c2ef2e2998b874f7d319ab3f"},
+  "brotli": {:hex, :brotli, "0.3.2", "59cf45a399098516f1d34f70d8e010e5c9bf326659d3ef34c7cc56793339002b", [:rebar3], [], "hexpm", "9ec3ef9c753f80d0c657b4905193c55e5198f169fa1d1c044d8601d4d931a2ad"},
   "bunt": {:hex, :bunt, "1.0.0", "081c2c665f086849e6d57900292b3a161727ab40431219529f13c4ddcf3e7a44", [:mix], [], "hexpm", "dc5f86aa08a5f6fa6b8096f0735c4e76d54ae5c9fa2c143e5a1fc7c1cd9bb6b5"},
   "cachex": {:hex, :cachex, "3.6.0", "14a1bfbeee060dd9bec25a5b6f4e4691e3670ebda28c8ba2884b12fe30b36bf8", [:mix], [{:eternal, "~> 1.2", [hex: :eternal, repo: "hexpm", optional: false]}, {:jumper, "~> 1.0", [hex: :jumper, repo: "hexpm", optional: false]}, {:sleeplocks, "~> 1.1", [hex: :sleeplocks, repo: "hexpm", optional: false]}, {:unsafe, "~> 1.0", [hex: :unsafe, repo: "hexpm", optional: false]}], "hexpm", "ebf24e373883bc8e0c8d894a63bbe102ae13d918f790121f5cfe6e485cc8e2e2"},
   "castore": {:hex, :castore, "1.0.5", "9eeebb394cc9a0f3ae56b813459f990abb0a3dedee1be6b27fdb50301930502f", [:mix], [], "hexpm", "8d7c597c3e4a64c395980882d4bca3cebb8d74197c590dc272cfd3b6a6310578"},
