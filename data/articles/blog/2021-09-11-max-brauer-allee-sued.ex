@@ -31,7 +31,8 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
       {"Erläuterungsbericht", "Juli 2022",
        "https://lsbg.hamburg.de/resource/blob/634706/3db31879a15c1013be5c256c31d25c9c/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-bericht-data.pdf"},
       {"erster Entwurf im Transparenz Portal", "veraltet, September 2021",
-       "https://suche.transparenz.hamburg.de/dataset/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz"}
+       "https://suche.transparenz.hamburg.de/dataset/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz"},
+      {"Infoseite der Stadt", "https://lsbg.hamburg.de/max-brauer-allee"}
     ]
   end
 

@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   # H 14.A == Hannov. Straße Knoten Neul. Hauptdeich ("Kreisel?") -- ab 2024 + 13 Monate
   # H 14.B == Hannoversche Straße Nord -- Fertigstellung Ende 2023
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2024-02-29]
+  def stop(), do: ~d[2025-05-22]
 
   def type(), do: :construction
   def construction_site_id_hh(), do: [14079, 17581, 203_216, 350_393, 436_743]
@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
+      {"Bauvergabe Kreisel Neuländer Hauptdeich", "März 2024",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6ef021a3-6cf6-4bec-ae8c-5ef2782f52ba"},
       {"Baustelleninfo", "September 2023",
        "https://lsbg.hamburg.de/resource/blob/682528/9dc292bdbebbe266e6b726a2d09e5c61/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Bauvergabe, Abschnitt Neuländer Straße bis Neuländer Hauptdeich", "Februar 2023",

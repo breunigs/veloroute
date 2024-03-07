@@ -38,7 +38,9 @@ defmodule Data.Article.Blog.Koenigstrasse do
       {"veralteter Erläuterungsbericht des LSBG", "2020",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14709016/c7c3b200a22adcb1e70a84325e6b54d6/data/vr-12-koenigstrasse-abstimmungsunterlage-bericht.pdf"},
       {"Details zum Vorabradweg (Popup-Radweg)",
-       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011737"}
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1011737"},
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/bvm/medien/17376438/2023-09-22-bvm-strasse-der-zukunft/"}
     ]
   end
 

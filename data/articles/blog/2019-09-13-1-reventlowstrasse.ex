@@ -31,7 +31,9 @@ defmodule Data.Article.Blog.Reventlowstrasse do
       {"Neuerungen zur Planung", "August 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013065"},
       {"Erläuterungsbericht und Lagepläne des 1. Entwurfs", "November 2019",
-       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009394"}
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009394"},
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/altona/baustellen/18189462/reventlowstrasse/"}
     ]
   end
 
