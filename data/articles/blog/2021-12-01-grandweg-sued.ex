@@ -15,11 +15,13 @@ defmodule Data.Article.Blog.GrandwegSued do
 
   def links(_assigns) do
     [
+      {"fertiger Entwurf (Lageplan und Erläuterungsbericht)", "März 2024",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009145"},
       {"Geplanter Bautermine", "November 20223",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"Infoseite der Stadt zur Stresemannallee",
        "https://www.hamburg.de/eimsbuettel/stresemannallee"},
-      {"Lageplan und Erläuterungsbericht",
+      {"1. Entwurf (veraltet, Lageplan und Erläuterungsbericht)",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1007317"}
     ]
   end
@@ -31,7 +33,7 @@ defmodule Data.Article.Blog.GrandwegSued do
   def text(assigns) do
     ~H"""
     <h4>Stand Februar 2022</h4>
-    <p>Die Planung wurde erneut überarbeitet: es soll zusätzlich ein Diagonaltrenner gebaut werden. Diese Neuplanung ist noch nicht ganz fertig, obwohl bereits gebaut wird. Entsprechend schnell soll es gehen: Anfang März soll alles abgeklärt sein. Der Artikel wurde entsprechend angepasst.</p>
+    <p>Die Planung wurde erneut überarbeitet: es soll zusätzlich ein Diagonaltrenner gebaut werden.</p>
 
     <h4>Alter Zustand</h4>
     <p>Vom <.v bounds="9.960115,53.590877,9.961513,53.59218" lon={9.960137} lat={53.5917} dir="forward" ref="3">Henning-Wulf-Weg</.v> bis zur Kreuzung mit dem Grandweg wurde die Stresemannallee noch nicht umgebaut. Stadtauswärts findet sich dort noch ein alter <.ref>Hochbordradweg</.ref>, der jedoch nicht mehr erreichbar ist. In der Praxis fährt man hier bereits im <.ref>Mischverkehr</.ref>.</p>
