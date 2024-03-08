@@ -84,6 +84,19 @@ function hidePreview(evt) {
   setTimeout(() => elem.remove(), 150);
 }
 
+let resizeTimer
+function disableIndicatorAnimationOnce(event) {
+  if (!indicator) return
+  const cls = indicator.getElement().classList;
+  cls.add("no-animation")
+  if (event !== null) {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => cls.remove("no-animation"), 100)
+  } else {
+    requestAnimationFrame(() => cls.remove("no-animation"))
+  }
+}
+
 function renderIndicator() {
   const pos = getVideoPosition();
   if (!pos) return;
@@ -113,18 +126,15 @@ function renderIndicator() {
       el.style.opacity = 0
       requestAnimationFrame(() => el.style.opacity = 1);
     })
+
+    addEventListener("resize", disableIndicatorAnimationOnce)
   }
 
   const videoPlaying = isVideoPlaying();
   const dist = indicator.getLngLat().distanceTo(lngLat);
   const animate = dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
 
-  if (!animate) {
-    const cls = indicator.getElement().classList;
-    cls.add("no-animation")
-    requestAnimationFrame(() => cls.remove("no-animation"));
-  }
-
+  if (!animate) disableIndicatorAnimationOnce()
   videoWasPlaying = videoPlaying;
 
   const shortest = closestEquivalentAngle(indicator.getRotation(), pos.bearing);
