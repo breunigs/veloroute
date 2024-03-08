@@ -1,6 +1,13 @@
 defmodule Util.Compress do
-  def file_glob(path_glob, keep \\ true, desc \\ "") do
+  @spec file_glob(Path.t(), binary(), keep_source: boolean(), keep_large_compressed: boolean()) ::
+          :ok
+  def file_glob(path_glob, desc \\ "", opts \\ []) do
     desc = String.trim("Compressing #{desc}")
+
+    {keep_source, opts} = Keyword.pop(opts, :keep_source, false)
+    {keep_big, opts} = Keyword.pop(opts, :keep_large_compressed, false)
+    writer = if keep_big, do: &write_always/3, else: &write_if_smaller/3
+    [] = opts
 
     files =
       Path.wildcard(path_glob)
@@ -14,9 +21,9 @@ defmodule Util.Compress do
 
     Parallel.each(files, fn path ->
       data = File.read!(path)
-      w1 = write_if_smaller(path <> ".gz", data, gzip(data))
-      w2 = write_if_smaller(path <> ".br", data, brotli(data))
-      if !keep && w1 && w2, do: File.rm(path)
+      w1 = writer.(path <> ".gz", data, gzip(data))
+      w2 = writer.(path <> ".br", data, brotli(data))
+      if !keep_source && w1 && w2, do: File.rm(path)
     end)
   end
 
@@ -27,6 +34,11 @@ defmodule Util.Compress do
     else
       false
     end
+  end
+
+  defp write_always(path, _source, compressed) do
+    File.write(path, compressed)
+    true
   end
 
   def gzip(data) do

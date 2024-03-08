@@ -9,12 +9,16 @@ defmodule Basemap.Fonts do
 
   @impl Basemap.Renderable
   def render() do
-    File.mkdir_p!(assets_path())
     File.rm_rf!(assets_path())
+    File.mkdir_p!(assets_path())
     File.cp_r!(@source, assets_path())
     create_font_index()
     File.cp_r!(@source, assets_path())
-    Util.Compress.file_glob(assets_path("**/*.pbf"), false, "basemap fonts")
+
+    Util.Compress.file_glob(assets_path("**/*.pbf"), "basemap fonts",
+      keep_source: false,
+      keep_large_compressed: true
+    )
   end
 
   @impl Basemap.Servable

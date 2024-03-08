@@ -61,7 +61,7 @@ defmodule Basemap.Sprites do
         )
     end)
 
-    Util.Compress.file_glob(assets_path("**/*.json"), true, "basemap sprites")
+    Util.Compress.file_glob(assets_path("**/*.json"), "basemap sprites", keep_source: true)
   end
 
   defp generate_icon(:alltag, "#" <> _rest = color) do
