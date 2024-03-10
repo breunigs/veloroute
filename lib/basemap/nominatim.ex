@@ -27,7 +27,7 @@ defmodule Basemap.Nominatim do
   def debug() do
     File.mkdir_p!(Path.dirname(debug_path(:cache)))
     File.write!(debug_path(:cache), "container will not automatically exit while file exists")
-    render()
+    render(true)
     File.rm(debug_path(:cache))
   end
 
@@ -38,7 +38,10 @@ defmodule Basemap.Nominatim do
   timestamp to automatically re-create the container as needed.
   """
   @impl Basemap.Renderable
-  def render() do
+  def render(debug \\ false) do
+    # avoid unclean debug exits from hanging normal renders
+    if !debug && File.exists?(debug_path(:cache)), do: File.rm(debug_path(:cache))
+
     File.mkdir_p!(Path.dirname(query_path(:cache)))
     File.write!(query_path(:cache), query_sql())
 
@@ -165,7 +168,10 @@ defmodule Basemap.Nominatim do
         main1.admin_level,
         main1.name,
         main1.address,
-        main1.extratags,
+        slice(
+          main1.extratags,
+          ARRAY['border_type', 'branch', 'name:prefix', 'operator', 'wikidata']
+        ) AS extratags,
         -- repeat name in boost for certain important objects
         (CASE WHEN
           (
@@ -180,15 +186,15 @@ defmodule Basemap.Nominatim do
         END) AS boost,
         -- generate Meilisearch format
         JSON_BUILD_OBJECT(
-          'lng', ST_X(ST_Centroid(main1.centroid)),
-          'lat', ST_Y(ST_Centroid(main1.centroid))
+          'lng', ROUND((ST_X(ST_Centroid(main1.centroid)))::numeric, 6),
+          'lat', ROUND((ST_Y(ST_Centroid(main1.centroid)))::numeric, 6)
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-          ST_X(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))),
-          ST_Y(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))),
-          ST_X(ST_EndPoint(ST_BoundingDiagonal(main1.geometry))),
-          ST_Y(ST_EndPoint(ST_BoundingDiagonal(main1.geometry)))
+          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
+          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6)
         ) AS bbox,
         -- merge joined names for addresses
         ARRAY_REMOVE(
@@ -198,14 +204,14 @@ defmodule Basemap.Nominatim do
           ),
           NULL
         ) AS parents_name,
-        -- for debugging because of wrong postcode on main1 object
-        ARRAY_REMOVE(
+        -- grab from parents because of wrong postcode on main1 object itself
+        (SELECT (ARRAY_REMOVE(
           ARRAY_AGG(
             main2.address->'postcode'
             ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
           ),
           NULL
-        ) AS parents_postcode
+        ))[1]) AS parents_postcode
       FROM placex AS main1
 
       -- join self via helper table place_addressline to resolve addresses
@@ -221,7 +227,7 @@ defmodule Basemap.Nominatim do
 
       WHERE
         -- filter which results to keep for searching
-        (main1.name IS NOT NULL OR main1.type IN ('compressed_air'))
+        (main1.name IS NOT NULL OR main1.type IN ('compressed_air') OR main1.housenumber IS NOT NULL)
         -- auto-merged by Nominatim, so ignore
         -- see https://nominatim.org/release-docs/develop/develop/Database-Layout/#search-tables
         AND main1.linked_place_id IS NULL

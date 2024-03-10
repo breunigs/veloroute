@@ -342,7 +342,7 @@ defmodule Data.OsmTagToHuman do
       "telephone" => ~w[Telefon],
       "telescope" => ~w[Sternwarte],
       "temple" => ~w[Tempel],
-      "terrace" => ~w[Terrasse],
+      "terrace" => ~w[Reihenhaus],
       "tertiary_link" => ~w[Straße],
       "tertiary" => ~w[Straße],
       "theatre" => ~w[Theater],

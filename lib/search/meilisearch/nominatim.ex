@@ -49,19 +49,24 @@ defmodule Search.Meilisearch.Nominatim do
       |> Kernel.++([f.("extratags")["branch"]])
       |> dedupe()
 
-    subtext =
-      dedupe([
-        f.("extratags")["name:prefix"],
-        human,
-        f.("extratags")["operator"],
-        "#{addr["street"]} #{addr["housenumber"]}",
-        addr["suburb"],
-        addr["postcode"] || f.("parents_postcode"),
-        addr["city"],
-        f.("parents_name")
-      ])
+    street = "#{addr["street"]} #{addr["housenumber"]}"
+    name = if name == "", do: street, else: name
 
-    {name, subtext} = if name == "", do: {subtext, ""}, else: {name, subtext}
+    subtext =
+      dedupe(
+        [
+          f.("extratags")["name:prefix"],
+          human,
+          f.("extratags")["operator"],
+          "#{addr["street"]} #{addr["housenumber"]}",
+          addr["suburb"],
+          addr["postcode"] || f.("parents_postcode"),
+          addr["city"],
+          f.("parents_name")
+        ] -- [name]
+      )
+
+    {name, subtext} = if name == "", do: {subtext, nil}, else: {name, subtext}
 
     %Search.Result{
       bounds: bbox,

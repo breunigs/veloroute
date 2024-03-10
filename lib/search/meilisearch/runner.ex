@@ -195,13 +195,19 @@ defmodule Search.Meilisearch.Runner do
     |> maybe_index()
   end
 
+  @ulimit "ulimit -Sn 300000"
+
   defp start_meilisearch(state) do
     Logger.info("starting")
     Search.Meilisearch.Exe.ensure_downloaded()
 
-    # golfed version of https://hexdocs.pm/elixir/Port.html#module-zombie-operating-system-processes
     exe = Search.Meilisearch.Exe.path()
-    args = ["-c", ~s|#{exe} "$0" "$@"&P=$!;(read;kill -9 $P)<&0&M=$?;wait $P;kill -9 $M;exit $?|]
+
+    args = [
+      "-c",
+      # golfed version of https://hexdocs.pm/elixir/Port.html#module-zombie-operating-system-processes
+      ~s|#{@ulimit}; #{exe} "$0" "$@"&P=$!;(read;kill -9 $P)<&0&M=$?;wait $P;kill -9 $M;exit $?|
+    ]
 
     args =
       args ++
@@ -289,6 +295,7 @@ defmodule Search.Meilisearch.Runner do
     state
   end
 
+  @min_relevance 0.7
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 
@@ -313,6 +320,7 @@ defmodule Search.Meilisearch.Runner do
       end)
     end)
     |> Util.compact()
+    |> Enum.reject(fn %{relevance: rel} -> rel < @min_relevance end)
   end
 
   @spec index(state()) :: state()
