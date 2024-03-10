@@ -178,6 +178,7 @@ const ensureIndicatorInView = (lngLat) => {
   const isClose = distIndi <= 1.5 * distDiag;
 
   if (!isVideoPlaying() || !indicatorPolyline) {
+    disableIndicatorAnimationOnce()
     isClose
       ? map.panTo(lngLat)
       : map.flyTo({
