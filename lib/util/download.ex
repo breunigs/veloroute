@@ -13,13 +13,14 @@ defmodule Util.Download do
   end
 
   defp to_file_raw(url, file, allowed_redirects) do
-    {:ok, code, headers, ref} = :hackney.request(url)
+    {:ok, code, headers, ref} =
+      :hackney.request(:get, url, [], "",
+        follow_redirect: allowed_redirects >= 0,
+        max_redirect: allowed_redirects,
+        recv_timeout: :infinity
+      )
 
     case code do
-      x when x in [301, 302] and allowed_redirects > 0 ->
-        {_, url} = Enum.find(headers, fn {key, _val} -> String.downcase(key) == "location" end)
-        to_file(url, file, allowed_redirects - 1)
-
       200 ->
         tmp = "#{file}.#{System.unique_integer([:positive])}.tmp"
 
