@@ -235,15 +235,21 @@ const featureOpacity = (feature) => {
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
   if (!map.isStyleLoaded()) return []
-  let routes = map.queryRenderedFeatures(evt.point, clickableLayers);
+
+  // be lenient with click targets at first
+  const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
+  const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
+  let routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
   routes = routes.filter(r => featureOpacity(r) >= 0.15);
-  // be more lenient with click targets
-  if (!routes.length) {
-    const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
-    const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
-    routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
+
+  // but become strict if more than one matches
+  if (routes.length > 1) {
+    let routesStrict = map.queryRenderedFeatures(evt.point, clickableLayers);
+    routesStrict = routes.filter(r => featureOpacity(r) >= 0.15);
+    if (routesStrict >= 1) routes = routesStrict
   }
-  return routes.filter(r => featureOpacity(r) >= 0.15);
+
+  return routes
 }
 
 let pingResetTimer = null;
