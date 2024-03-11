@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def title(), do: "Ferdinandstor"
 
-  def start(), do: ~d[2021-07]
-  def stop(), do: ~d[2025]
+  def start(), do: ~d[2021-06-14]
+  def stop(), do: ~d[2025-10-31]
+  def construction_site_id_hh(), do: [16775, 718_592]
 
   def type(), do: :construction
 
