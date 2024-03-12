@@ -79,11 +79,32 @@ def load_video(name):
         frame_count = reader.count_frames()
 
     iter = enumerate(reader.iter_data())
-    bar = tqdm(iter, total=frame_count, desc=desc(
-        name), unit="frame", leave=False)
+    return iter, frame_count
 
-    return bar, frame_count
+def load_videos(file_queue, video_queue, outer_bar):
+    while not abort:
+        item = file_queue.get()
+        if not item:
+            video_queue.put(None)
+            continue
 
+        name, size = item
+
+        try:
+            frames, frame_count = load_video(name)
+        except:
+            print(f"\nfailed to load video \"{name}\", skipping")
+            outer_bar.total -= size
+            continue
+
+        (_final, wip) = json_out_paths(name)
+        detections = load_json_gzip(wip)
+
+        video_queue.put((name, size, frames, frame_count, detections))
+
+def load_videos_in_background(file_queue, video_queue, outer_bar):
+    threading.Thread(target=lambda: load_videos(
+        file_queue, video_queue, outer_bar), daemon=True).start()
 
 def noop_thread():
     noop = threading.Thread(target=print)
@@ -104,8 +125,8 @@ def process_frame(model, frame_queue, detections, result_names):
         frame_queue.task_done()
 
 
-def process(item, model, outer_bar, result_names):
-    (name, size) = item
+def process(video, model, outer_bar, result_names):
+    (name, size, frames, frame_count, detections) = video
     (final, wip) = json_out_paths(name)
     if not os.path.exists(name):
         outer_bar.total -= size
@@ -114,18 +135,8 @@ def process(item, model, outer_bar, result_names):
         # here to ensure we scan again.
         return noop_thread()
 
-    detections = dict()
-    gzip_loader = threading.Thread(
-        target=lambda: detections.update(load_json_gzip(wip)))
-    gzip_loader.start()
-
-    try:
-        frames, frame_count = load_video(name)
-    except:
-        print(f"\nfailed to load video \"{name}\", skipping")
-        return gzip_loader
-
-    gzip_loader.join()
+    frames = tqdm(frames, total=frame_count, desc=desc(
+        name), unit="frame", leave=False)
 
     bytes_per_frame = math.floor(size / float(frame_count))
     bytes_remain = size - frame_count*bytes_per_frame
@@ -278,9 +289,9 @@ os.nice(20)
 (weights, video_dir, device) = parse_args()
 
 # find videos in background
-q = queue.Queue()
-bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True)
-recurse_in_background(video_dir, q, bar)
+file_queue = queue.Queue()
+bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True, mininterval=1)
+recurse_in_background(video_dir, file_queue, bar)
 
 # load model
 weights_optim = optimized_weights(weights)
@@ -298,21 +309,25 @@ if result_names[0] == 'class0':
 
 bar.refresh()
 
+video_queue = queue.Queue(maxsize=1)
+load_videos_in_background(file_queue, video_queue, bar)
+
 # process
 processed = None
 while not abort:
-    item = q.get()
+    video = video_queue.get()
     # if at least one item was worked on, scan again in case more files have
     # been added
-    if not item and processed:
+    if not video and processed:
         processed.join()
         print(f"\nFinished, checking for new files…\n")
-        recurse_in_background(video_dir, q, bar)
-        item = q.get()
-    if not item:
+        recurse_in_background(video_dir, file_queue, bar)
+        video = video_queue.get()
+    if not video:
         break
 
-    processed = process(item, model, bar, result_names)
-    q.task_done()
+    processed = process(video, model, bar, result_names)
+    video_queue.task_done()
+    file_queue.task_done()
 
 bar.close()
