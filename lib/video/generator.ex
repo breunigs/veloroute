@@ -155,8 +155,7 @@ defmodule Video.Generator do
   Render the given trimmed sequence as a rendered video, but only make it
   available in the current runtime. No files are being written.
   """
-  @spec dynamic_compile(Video.Track.t()) ::
-          :ok | {:error, binary()} | {:error, list(), list()}
+  @spec dynamic_compile(Video.Track.t()) :: module() | {:error, binary()}
   def dynamic_compile(track) do
     with {hash, coords, rec_dates, street_names} <- Video.Track.render(track) do
       mod_name = Video.Generator.find_by_hash(hash)

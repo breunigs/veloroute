@@ -70,10 +70,9 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     with mod = String.to_atom("Elixir." <> in_art),
          {:module, art} <- Code.ensure_compiled(mod),
          {index, ""} when index >= 0 <- Integer.parse(in_index),
-         track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index) do
-      track
-      |> Video.Generator.dynamic_compile()
-      |> stream_video(tail)
+         track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index),
+         mod when is_module(mod) <- Video.Generator.dynamic_compile(track) do
+      stream_video(mod, tail)
     else
       error ->
         IO.puts(
@@ -94,7 +93,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     exit({:shutdown, 1})
   end
 
-  defp stream_video(rendered, args) do
+  defp stream_video(rendered, args) when is_module(rendered) do
     blur = System.get_env("VELO_BLUR", nil) == "1"
     start_from = List.first(args)
     start_from_text = start_from || "the start"
