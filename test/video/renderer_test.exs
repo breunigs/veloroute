@@ -188,15 +188,14 @@ defmodule Video.RendererTest do
       |> Video.Renderer.preview_cmd(true)
 
     assert [
-             "nice",
+             "/usr/bin/nice",
              "-n15",
-             "--",
-             "chrt",
+             "/usr/bin/chrt",
              "--idle",
              "0",
-             "ionice",
-             "-c",
-             "3",
+             "/usr/bin/ionice",
+             "--class",
+             "idle",
              "ffmpeg",
              "-hide_banner",
              "-loglevel",

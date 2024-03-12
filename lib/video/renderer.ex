@@ -24,7 +24,7 @@ defmodule Video.Renderer do
         filter
       end
 
-    nice(15) ++
+    Util.low_priority_cmd_prefix(15) ++
       ["ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
       inputs(rendered) ++
       [
@@ -56,7 +56,7 @@ defmodule Video.Renderer do
     filter = Enum.join(blurs ++ xfades, ";")
     filter = filter <> "[scale];[scale]scale=1080:608"
 
-    nice() ++
+    Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
       inputs(sources) ++
       [
@@ -129,7 +129,7 @@ defmodule Video.Renderer do
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
 
-    nice() ++
+    Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner"] ++
       inputs(rendered) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
   end
@@ -556,9 +556,5 @@ defmodule Video.Renderer do
       -hls_list_size 0] ++
       ["-g", gop_size(), "-hls_time", hls_time()] ++
       variant_flags() ++ ["-var_stream_map", stream_map, "#{tmp_dir}/stream_%v.m3u8"]
-  end
-
-  defp nice(level \\ 19) do
-    ["nice", "-n#{level}", "--", "chrt", "--idle", "0", "ionice", "-c", "3"]
   end
 end

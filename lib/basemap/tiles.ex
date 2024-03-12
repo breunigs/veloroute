@@ -27,15 +27,14 @@ defmodule Basemap.Tiles do
         @container_ref,
         %{
           command_args:
-            [
-              "nice",
-              "-n10",
-              "/usr/bin/tile-join",
-              "--no-tile-size-limit",
-              "--no-tile-compression",
-              "--no-tile-stats",
-              "--output-to-directory=#{target(:container)}"
-            ] ++ source_mbtiles(:container)
+            Util.low_priority_cmd_prefix(10) ++
+              [
+                "/usr/bin/tile-join",
+                "--no-tile-size-limit",
+                "--no-tile-compression",
+                "--no-tile-stats",
+                "--output-to-directory=#{target(:container)}"
+              ] ++ source_mbtiles(:container)
         },
         []
       )

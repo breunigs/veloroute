@@ -130,19 +130,19 @@ defmodule Basemap.OpenStreetMap do
   end
 
   defp extract_bbox() do
-    args = [
-      "nice",
-      "-n10",
-      "osmconvert",
-      "--complete-ways",
-      "--complete-multipolygons",
-      "--drop-version",
-      "--drop-author",
-      "-t=/tmp/osmconvert_tempfile",
-      "-b=#{Enum.join(Settings.bounds(), ",")}",
-      "-o=#{path(:container, bbox_extract_name())}",
-      "#{path(:container, osm_source_name())}"
-    ]
+    args =
+      Util.low_priority_cmd_prefix(10) ++
+        [
+          "osmconvert",
+          "--complete-ways",
+          "--complete-multipolygons",
+          "--drop-version",
+          "--drop-author",
+          "-t=/tmp/osmconvert_tempfile",
+          "-b=#{Enum.join(Settings.bounds(), ",")}",
+          "-o=#{path(:container, bbox_extract_name())}",
+          "#{path(:container, osm_source_name())}"
+        ]
 
     :ok =
       Util.Docker.build_and_run(
@@ -159,21 +159,21 @@ defmodule Basemap.OpenStreetMap do
   end
 
   defp render_tiles() do
-    args = [
-      "nice",
-      "-n10",
-      "tilemaker",
-      "--input",
-      path(:container, bbox_extract_name()),
-      "--output",
-      path(:container, target_name()),
-      "--bbox",
-      Enum.join(Settings.bounds(), ","),
-      "--config",
-      path(:container, "config.json"),
-      "--process",
-      path(:container, "process.lua")
-    ]
+    args =
+      Util.low_priority_cmd_prefix(10) ++
+        [
+          "tilemaker",
+          "--input",
+          path(:container, bbox_extract_name()),
+          "--output",
+          path(:container, target_name()),
+          "--bbox",
+          Enum.join(Settings.bounds(), ","),
+          "--config",
+          path(:container, "config.json"),
+          "--process",
+          path(:container, "process.lua")
+        ]
 
     lua =
       Path.join(__DIR__, "process.lua")

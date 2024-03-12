@@ -37,7 +37,7 @@ defmodule Util.Cmd2 do
     {name, opts} = Keyword.pop(opts, :name, hd(cli))
     if length(opts) > 0, do: raise("Unknown arguments: #{inspect(opts)}")
 
-    cli = Enum.map(cli, &to_string/1)
+    cli = Util.low_priority_cmd_prefix() ++ Enum.map(cli, &to_string/1)
     # run in extra thread because since Erlang/OTP 26 we receive messages from a
     # GenServer, which is odd. It looks like a bug, but test case reduction
     # exceeded a timebox, so workaround it is.

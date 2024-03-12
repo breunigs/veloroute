@@ -156,16 +156,23 @@ defmodule VelorouteWeb.ImageExtractController do
   @frame_duration 1000.0 / Video.Constants.output_fps()
   @spec actual_max_length(binary()) :: non_neg_integer() | nil
   defp actual_max_length(file) do
+    [exe | args] = Util.low_priority_cmd_prefix()
+
     with {string, 0} <-
-           System.cmd(@ffprobe_path, [
-             "-v",
-             "error",
-             "-show_entries",
-             "format=duration",
-             "-of",
-             "default=noprint_wrappers=1:nokey=1",
-             file
-           ]),
+           System.cmd(
+             exe,
+             args ++
+               [
+                 @ffprobe_path,
+                 "-v",
+                 "error",
+                 "-show_entries",
+                 "format=duration",
+                 "-of",
+                 "default=noprint_wrappers=1:nokey=1",
+                 file
+               ]
+           ),
          {float_in_seconds, "\n"} <- Float.parse(string) do
       round(float_in_seconds * 1000.0 - @frame_duration)
     else

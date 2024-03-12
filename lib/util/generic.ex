@@ -1,5 +1,21 @@
 defmodule Util do
   @doc """
+  Returns a list of shell commands to make the run command lowest prio
+  """
+  @spec low_priority_cmd_prefix(non_neg_integer()) :: [binary()]
+  def low_priority_cmd_prefix(niceness \\ 19) when niceness >= 1 and niceness <= 19,
+    do: [
+      "/usr/bin/nice",
+      "-n#{niceness}",
+      "/usr/bin/chrt",
+      "--idle",
+      "0",
+      "/usr/bin/ionice",
+      "--class",
+      "idle"
+    ]
+
+  @doc """
   Shortens path to the given length, trying to smartly abbreviate directories or
   drop them to fit the constraint.
 

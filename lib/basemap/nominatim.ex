@@ -74,6 +74,8 @@ defmodule Basemap.Nominatim do
       "POSTGRES_WORK_MEM" => "#{round_to_multiple_of_two(mem_bytes / 15)}B"
     }
 
+    [exe | args] = Util.low_priority_cmd_prefix()
+
     Util.Docker.run(
       @full_ref,
       %{
@@ -86,7 +88,7 @@ defmodule Basemap.Nominatim do
           "--shm-size",
           round_to_multiple_of_two(mem_bytes / 4),
           "--entrypoint",
-          "/usr/bin/chrt",
+          exe,
 
           # keep container around so we can re-run our SQL query without having
           # to re-import Nominatim
@@ -94,18 +96,7 @@ defmodule Basemap.Nominatim do
           "-v",
           "nominatim-data:/var/lib/postgresql/14/main"
         ],
-        command_args: [
-          "--idle",
-          "0",
-          "/usr/bin/nice",
-          "-n19",
-          "/usr/bin/ionice",
-          "--class",
-          "idle",
-          "bash",
-          "-c",
-          container_start_script()
-        ],
+        command_args: args ++ ["bash", "-c", container_start_script()],
         run_as_local_user: false
       },
       stdout: IO.stream(:stdio, :line)
