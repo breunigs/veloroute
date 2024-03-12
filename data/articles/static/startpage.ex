@@ -16,6 +16,9 @@ defmodule Data.Article.Static.Startpage do
 
     <h4>Alltagsrouten</h4>
     <p>Hamburg baut „Velorouten“ (auch: Radrouten) um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
+
+    <p><.show_route_group group={:alltag}>Kartenansicht</.show_route_group> oder Route auswählen:</p>
+
     <ol class="route-list">
       <li><.icon autoplay={true} name="1"><span>Rissen / Osdorfer Born</span></.icon></li>
       <li><.icon autoplay={true} name="2"><span>Eidelstedt</span></.icon></li>
@@ -32,8 +35,12 @@ defmodule Data.Article.Static.Startpage do
       <li><.icon autoplay={true} name="13"><span>innerer Ring</span></.icon></li>
       <li><.icon autoplay={true} name="14"><span>äußerer Ring</span></.icon></li>
     </ol>
+
     <h4>Freizeitrouten</h4>
     <p>Die Freizeitrouten führen durch Parks, Naturschutzgebiete und Wälder, zu Sehenswürdigkeiten und Ausflugszielen. Die Strecken sind klar auf Erholung ausgelegt – der Weg ist das Ziel.</p>
+
+    <p><.show_route_group group={:freizeit}>Kartenansicht</.show_route_group> oder Route auswählen:</p>
+
     <ol class="route-list">
       <li><.icon autoplay={true} name="1GR"><span>1. Grüner Ring</span></.icon></li>
       <li><.icon autoplay={true} name="FR1"><span>Alster</span></.icon></li>
@@ -53,8 +60,12 @@ defmodule Data.Article.Static.Startpage do
       <li><.icon autoplay={true} name="e"><span>Elbradweg (Südseite)</span></.icon></li>
     </ol>
 
+
     <h4>Bezirke</h4>
     <p>Bezirksrouten sollen das Hauptnetz der Velorouten ergänzen. Sie sind noch im frühen Planungsstadium und nicht für alle Bezirke ausgearbeitet.</p>
+
+    <p><.show_route_group group={:bezirk}>Kartenansicht</.show_route_group> oder Route auswählen:</p>
+
     <table class="route-list" role="list">
       <tr role="group">
         <th>Eimsbüttel</th>
@@ -109,6 +120,8 @@ defmodule Data.Article.Static.Startpage do
 
     <h4>Umland</h4>
     <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ (auch: Radrouten Plus) sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
+
+    <p><.show_route_group group={:alltag}>Kartenansicht Alltagsrouten</.show_route_group> oder <.show_route_group group={:rsw}>Kartenansicht Radschnellwege</.show_route_group> oder Route auswählen:</p>
 
     <table class="route-list" role="list">
       <tr role="group">

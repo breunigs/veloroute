@@ -118,6 +118,36 @@ defmodule Components.TagHelpers do
     Phoenix.LiveView.JS.dispatch(js, "map:ping", detail: %{name: name})
   end
 
+  @spec show_route_group(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :group, :atom, required: true
+  attr :rest, :global
+  slot(:inner_block, required: true)
+
+  def show_route_group(assigns) do
+    layer_name = Enum.find(Settings.map_layers(), &(&1.route_group == assigns.group)).name
+
+    routes =
+      Article.List.category("Static")
+      |> Enum.filter(&(&1.route_group() == assigns.group))
+
+    bbox =
+      routes
+      |> Enum.map(&Article.Decorators.bbox/1)
+      |> Geo.CheapRuler.union()
+
+    js =
+      Phoenix.LiveView.JS.push("show-routes", value: %{name: layer_name}, target: "#map")
+      |> Phoenix.LiveView.JS.dispatch("click", to: "#switcher")
+      |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: bbox})
+
+    assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
+    assigns = assign(assigns, :js, js)
+
+    ~H"""
+    <a phx-click={@js} {@rest}><%= render_slot(@inner_block) %></a>
+    """
+  end
+
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
   attr :email, :string
   attr :subject, :string

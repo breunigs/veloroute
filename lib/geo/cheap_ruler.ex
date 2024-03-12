@@ -81,6 +81,9 @@ defmodule Geo.CheapRuler do
     %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
   end
 
+  def union([bbox1, bbox2 | rest]), do: union([union(bbox1, bbox2) | rest])
+  def union([bbox]), do: bbox
+
   @doc ~S"""
   Finds center of given geo object
 

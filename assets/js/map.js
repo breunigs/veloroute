@@ -208,6 +208,7 @@ const isVideoPlaying = () => {
 
 window.addEventListener(`phx:bounds:adjust`, (e) => {
   console.debug("adjusting bounds to", e.detail)
+  disableIndicatorAnimationOnce()
   map.fitBounds(e.detail, fitBoundsOpt);
 })
 

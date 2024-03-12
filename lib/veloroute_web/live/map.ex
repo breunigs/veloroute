@@ -100,6 +100,16 @@ defmodule VelorouteWeb.Live.Map do
     {:noreply, socket}
   end
 
+  def handle_event("show-routes", %{"name" => selected}, %{assigns: %{layers: layers}} = socket) do
+    layers =
+      Enum.map(layers, fn %{name: name} = layer ->
+        %{layer | active: name == selected}
+      end)
+
+    socket = socket |> assign(:layers, layers) |> push_changes()
+    {:noreply, socket}
+  end
+
   @push_to_frontend [:layers, :styles, :highlight]
   defp push_changes(%{assigns: assigns} = socket) do
     updates =
