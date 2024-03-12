@@ -3,12 +3,6 @@ import {
   maybeToggleLayers
 } from "./map_layer_toggler";
 
-if (!window.requestIdleCallback) {
-  window.requestIdleCallback = function (x) {
-    window.setTimeout(x, 0);
-  }
-}
-
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
