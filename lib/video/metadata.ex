@@ -93,7 +93,10 @@ defmodule Video.Metadata do
       video_path
     ]
 
-    with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: ""),
+    name = video_path |> Path.split() |> Enum.take(-2) |> Enum.join("/") |> Path.rootname()
+    name = "ffprobe " <> name
+
+    with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
          {:ok, %{"streams" => streams, "format" => format}} <- Jason.decode(out) do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
       video = indexed["hvc1"] || indexed["FFV1"] || hd(streams)
