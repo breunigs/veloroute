@@ -1,5 +1,5 @@
 defmodule Video.Renderer do
-  @min_renderer_version 3
+  @min_renderer_version 5
 
   import Guards
 
@@ -12,9 +12,10 @@ defmodule Video.Renderer do
   def preview_cmd(rendered, blur, start_from \\ nil)
       when is_nil(start_from) or valid_timestamp(start_from) do
     ensure_min_version(rendered)
+    sources = Video.Track.normalize_video_tuples(rendered.sources())
 
-    blurred = if blur, do: blurs(rendered), else: settb(rendered)
-    filter = Enum.join(blurred ++ time_lapse_corrects(rendered) ++ xfades(rendered), ";")
+    blurred = if blur, do: blurs(sources), else: settb(sources)
+    filter = Enum.join(blurred ++ time_lapse_corrects(sources) ++ xfades(sources, rendered), ";")
 
     filter =
       if start_from do
@@ -26,7 +27,7 @@ defmodule Video.Renderer do
 
     Util.low_priority_cmd_prefix(15) ++
       ["ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
-      inputs(rendered) ++
+      inputs(sources) ++
       [
         "-filter_complex",
         filter,
@@ -51,6 +52,7 @@ defmodule Video.Renderer do
 
   @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
   def adhoc_cmd(sources) when is_list(sources) do
+    sources = Video.Track.normalize_video_tuples(sources)
     blurs = blurs(sources)
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
     filter = Enum.join(blurs ++ xfades, ";")
@@ -92,7 +94,7 @@ defmodule Video.Renderer do
     if rendered.renderer() < @min_renderer_version,
       do:
         raise(
-          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version 3."
+          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version #{@min_renderer_version}."
         )
   end
 
@@ -124,14 +126,15 @@ defmodule Video.Renderer do
   end
 
   def render_cmd(rendered, tmp_dir) do
-    filter = Enum.join(blurs(rendered) ++ xfades(rendered), ";")
+    sources = Video.Track.normalize_video_tuples(rendered.sources())
+    filter = Enum.join(blurs(sources) ++ xfades(sources, rendered), ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
 
     Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner"] ++
-      inputs(rendered) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
+      inputs(sources) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
   end
 
   defp manually_tag_missing(tmp_dir) do
@@ -207,11 +210,9 @@ defmodule Video.Renderer do
     end
   end
 
-  defp inputs(rendered) when is_module(rendered), do: inputs(rendered.sources())
-
   defp inputs(sources) when is_list(sources) do
     ["-hwaccel", "auto", "-re"] ++
-      Enum.flat_map(sources, fn {path, from, to} ->
+      Enum.flat_map(sources, fn {path, from, to, _opts} ->
         from = if from in [:start, :seamless], do: [], else: ["-ss", from]
         to = if to == :end, do: [], else: ["-to", to]
 
@@ -220,18 +221,16 @@ defmodule Video.Renderer do
   end
 
   # uses the jsonblur frei0r plugin for the input videos (e.g. [0]) and outputs
-  # them as blrs (e.g. [blur0]). Additionally it sets the timebase, see settb
+  # them as blurs (e.g. [blur0]). Additionally it sets the timebase, see settb
   # for details.
-  defp blurs(rendered) when is_module(rendered), do: blurs(rendered.sources())
-
   defp blurs(sources) when is_list(sources) do
     sources
     |> Enum.with_index()
-    |> Parallel.map(2, fn {{path, from, _to}, idx} ->
+    |> Parallel.map(2, fn {{path, from, _to, opts}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
       from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = blur_frame_skip(path, from)
-      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},settb=AVTB[blur#{idx}]"
+      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},#{vf(opts)}settb=AVTB[blur#{idx}]"
     end)
   end
 
@@ -260,20 +259,27 @@ defmodule Video.Renderer do
   # sets the timebase for all input videos (e.g. [0]) and outputs them as blurs
   # (e.g. [blur0]). This is sometimes required or ffmpeg will fail with
   # "different timebase".
-  defp settb(rendered) do
-    rendered.sources()
+  defp settb(sources) when is_list(sources) do
+    sources
     |> Enum.with_index()
-    |> Enum.map(fn {{_path, _from, _to}, idx} ->
-      "[#{idx}]settb=AVTB[blur#{idx}]"
+    |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
+      "[#{idx}]#{vf(opts)}settb=AVTB[blur#{idx}]"
     end)
   end
 
-  defp time_lapse_corrects(rendered) do
+  defp vf(opts) when is_list(opts) do
+    vf = Keyword.get(opts, :vf)
+    if vf, do: vf <> ","
+  end
+
+  defp vf({_path, _from, _to}), do: nil
+
+  defp time_lapse_corrects(sources) when is_list(sources) do
     fps = Video.Constants.output_fps()
 
-    rendered.sources()
+    sources
     |> Enum.with_index()
-    |> Parallel.map(4, fn {{path, _from, _to}, idx} ->
+    |> Parallel.map(4, fn {{path, _from, _to, _opts}, idx} ->
       meta = metadata(path)
 
       if meta.pts_correction != 1 do
@@ -286,11 +292,11 @@ defmodule Video.Renderer do
   # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
   # ("seamless") them as needed. It outputs a single, unnamed video at the end
   # of the filter graph.
+  defp xfades(sources, rendered) when is_list(sources) and is_module(rendered) do
+    xfades(sources, Video.Track.fade(rendered.renderer()), rendered.hash())
+  end
 
-  defp xfades(rendered),
-    do: xfades(rendered.sources(), Video.Track.fade(rendered.renderer()), rendered.hash())
-
-  defp xfades(sources, fade, hash) do
+  defp xfades(sources, fade, hash) when is_list(sources) do
     count = length(sources)
 
     if count == 1 do
@@ -298,7 +304,7 @@ defmodule Video.Renderer do
     else
       sources
       |> Enum.with_index()
-      |> Parallel.map(2, fn {{path, from, to}, idx} ->
+      |> Parallel.map(2, fn {{path, from, to, _opts}, idx} ->
         meta = metadata(path)
 
         start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)

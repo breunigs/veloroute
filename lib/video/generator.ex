@@ -163,7 +163,7 @@ defmodule Video.Generator do
       if is_nil(mod_name) do
         [{mod_name, _bytes}] =
           as_code(
-            "dynamic_compile",
+            "dynamic_compile_#{hash}",
             hash,
             track.videos,
             coords,

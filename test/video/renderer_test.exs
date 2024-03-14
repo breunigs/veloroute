@@ -216,7 +216,7 @@ defmodule Video.RendererTest do
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693360026693363:offset=0.7010663997330664",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693333333333336:offset=0.7010666666666666",
              "-pix_fmt",
              "yuv420p",
              "-s",
@@ -246,7 +246,7 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def length_ms(), do: 579
     @impl Video.Rendered
-    def renderer(), do: 3
+    def renderer(), do: 5
     @impl Video.Rendered
     def recording_dates(), do: [%{timestamp: 0, text: "Januar 2022"}]
     @impl Video.Rendered
@@ -270,8 +270,8 @@ defmodule Video.RendererTest do
       Video.Metadata.fake(prefix <> "2.mp4", %{default_meta | time_base: 1 / 1000})
 
       [
-        {"1.mp4", "00:00:58.692", "00:00:59.660"},
-        {"2.mp4", "00:00:36.904", "00:00:37.904"}
+        {"1.mp4", "00:00:58.692", "00:00:59.660", []},
+        {"2.mp4", "00:00:36.904", "00:00:37.904", []}
       ]
     end
 

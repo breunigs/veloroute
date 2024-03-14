@@ -15,13 +15,11 @@ defmodule Video.Track do
     :end_action
   ]
 
-  @type plain :: [
-          {
-            binary(),
-            Video.Timestamp.t() | :start | :seamless,
-            Video.Timestamp.t() | :end
-          }
-        ]
+  @typep start :: Video.Timestamp.t() | :start | :seamless
+  @typep stop :: Video.Timestamp.t() | :end
+  @typep video :: {binary(), start(), stop()} | {binary(), start(), stop(), [key: binary()]}
+  @type plain :: [video()]
+
   # 32*8=256
   @type hash :: <<_::256>>
   @type timed_info :: [%{timestamp: non_neg_integer(), text: binary()}]
@@ -39,7 +37,7 @@ defmodule Video.Track do
           direction: :forward | :backward,
           text: binary(),
           parent_ref: module() | binary(),
-          videos: plain() | nil,
+          videos: plain(),
           renderer: pos_integer(),
           historic: historic() | nil,
           end_action: end_action() | nil
@@ -161,7 +159,9 @@ defmodule Video.Track do
      compact_street_names(coords, hash)}
   end
 
-  def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4] do
+  def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4, 5] do
+    videos = normalize_video_tuples(videos)
+
     tsvs = tsvs(videos)
     hsh = :crypto.hash_init(:md5)
     fade_in_ms = round(fade(renderer) * 1000)
@@ -171,9 +171,9 @@ defmodule Video.Track do
         _any, {:error, reason} ->
           {:error, reason}
 
-        {file, from, to}, acc ->
+        {file, from, to, opts}, acc ->
           with %Video.TrimmedSource{} = tsv <- tsvs[file],
-               {:ok, segment} <- render_segment(fade_in_ms, tsv, from, to, acc) do
+               {:ok, segment} <- render_segment(fade_in_ms, tsv, from, to, opts, acc) do
             segment
           else
             {:error, reason} -> {:error, reason}
@@ -185,10 +185,13 @@ defmodule Video.Track do
            """
            Unexpected video segment definition. Expected a triple of
              {video_name, start_time, end_time}
+             or a 4-tuple of
+             {video_name, start_time, end_time, options}
            where
              video_name = relative path to video (may omit .MP4 file endings)
              start_time = :start or :seamless or a timestamp like hh:mm:ss.ms (e.g. 00:00:45.781)
              end_time   = :end or a timestamp
+             options    = a list like [vf: "some ffmpeg complex filter"]
            but got
              #{inspect(other)}
            """}
@@ -203,7 +206,30 @@ defmodule Video.Track do
     end
   end
 
-  defp render_segment(fade_in_ms, tsv, from, to, {dur, rev_coords, recording_dates, hsh}) do
+  def render(%__MODULE__{renderer: renderer} = track) do
+    {:error,
+     "Tried to render track with unknown renderer version: #{renderer}. Full track: #{inspect(track)}"}
+  end
+
+  @doc """
+  Takes a track or a list of videos and ensures all tuples are expanded to
+  include options field
+  """
+  @spec normalize_video_tuples(t() | [plain()]) :: t() | [plain()]
+  def normalize_video_tuples(%__MODULE__{videos: videos} = mod) do
+    %{mod | videos: normalize_video_tuples(videos)}
+  end
+
+  def normalize_video_tuples(videos) when is_list(videos) do
+    Enum.map(videos, fn tuple ->
+      case tuple_size(tuple) do
+        3 -> Tuple.append(tuple, [])
+        4 -> tuple
+      end
+    end)
+  end
+
+  defp render_segment(fade_in_ms, tsv, from, to, opts, {dur, rev_coords, recording_dates, hsh}) do
     {dur, rev_coords, hsh} =
       cond do
         rev_coords == [] ->
@@ -222,6 +248,9 @@ defmodule Video.Track do
             :crypto.hash_update(hsh, "fade #{fade_in_ms}")
           }
       end
+
+    vf = Keyword.get(opts, :vf)
+    hsh = if vf, do: :crypto.hash_update(hsh, "vf #{vf}"), else: hsh
 
     with %Video.TrimmedSource{} = tsv <-
            Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true),
@@ -260,6 +289,7 @@ defmodule Video.Track do
   def fade(2), do: @fade_frames / 29.97
   def fade(3), do: @fade_frames / 29.97
   def fade(4), do: default_fade()
+  def fade(5), do: default_fade()
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()
   defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
