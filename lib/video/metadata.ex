@@ -21,12 +21,16 @@ defmodule Video.Metadata do
 
   @spec for(binary | Video.TrimmedSource.t()) :: {:ok, t()} | {:error, binary()}
   def for(%{source: source}) do
-    __MODULE__.for(source)
+    __MODULE__.for(Video.Path.source_rel_to_cwd(source))
   end
 
   def for(video_path) when is_binary(video_path) do
     start_link()
-    video_path = Video.Path.source_rel_to_cwd(video_path)
+
+    video_path =
+      if Path.absname(video_path) == video_path,
+        do: Video.Path.source_rel_to_cwd(video_path),
+        else: video_path
 
     Agent.get_and_update(
       __MODULE__,
