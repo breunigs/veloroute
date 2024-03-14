@@ -255,7 +255,7 @@ defmodule Video.RendererTest do
     @impl Video.Rendered
     def sources() do
       # fake the metadata entries for these non-existing files
-      prefix = File.cwd!() <> "/videos/source/"
+      prefix = "videos/source/"
 
       default_meta = %Video.Metadata{
         duration: 60.0,

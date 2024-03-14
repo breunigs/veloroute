@@ -9,22 +9,24 @@ defmodule Video.Metadata do
           pts_correction: float()
         }
 
-  @typep state :: %{optional(binary) => t() | boolean()}
+  @typep state :: %{optional(binary) => {:ok, t()} | {:error, binary()} | boolean()}
 
+  @derive Jason.Encoder
   @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
   defstruct @enforce_keys
 
   def start_link() do
-    Agent.start_link(fn -> %{} end, name: __MODULE__)
+    Agent.start_link(fn -> read_json() end, name: __MODULE__)
   end
 
   @spec for(binary | Video.TrimmedSource.t()) :: {:ok, t()} | {:error, binary()}
   def for(%{source: source}) do
-    __MODULE__.for(Video.Path.source_rel_to_cwd(source))
+    __MODULE__.for(source)
   end
 
   def for(video_path) when is_binary(video_path) do
     start_link()
+    video_path = Video.Path.source_rel_to_cwd(video_path)
 
     Agent.get_and_update(
       __MODULE__,
@@ -38,7 +40,7 @@ defmodule Video.Metadata do
     |> case do
       nil ->
         meta = run(video_path)
-        Agent.update(__MODULE__, &Map.put(&1, video_path, meta), :infinity)
+        Agent.update(__MODULE__, &write_json(Map.put(&1, video_path, meta)), :infinity)
         meta
 
       :pending ->
@@ -94,7 +96,7 @@ defmodule Video.Metadata do
     ]
 
     name = video_path |> Path.split() |> Enum.take(-2) |> Enum.join("/") |> Path.rootname()
-    name = "ffprobe " <> name
+    name = "metadata for " <> name
 
     with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
          {:ok, %{"streams" => streams, "format" => format}} <- Jason.decode(out) do
@@ -127,5 +129,36 @@ defmodule Video.Metadata do
       {:error, reason} -> {:error, reason}
       {:ok, decode} -> {:error, "Unexpected ffprobe JSON: #{inspect(decode)}"}
     end
+  end
+
+  @json_path "data/cache/video_metadata.json"
+  @spec read_json() :: state()
+  def read_json() do
+    try do
+      data = File.read!(@json_path)
+      json = Jason.decode!(data)
+
+      Enum.into(json, %{}, fn {key, meta} ->
+        struct = Map.new(meta, fn {k, v} -> {String.to_existing_atom(k), v} end)
+        # ensure we have all keys
+        {key, {:ok, struct!(__MODULE__, struct)}}
+      end)
+    rescue
+      _ -> %{}
+    end
+  end
+
+  @spec write_json(state()) :: state()
+  defp write_json(state) do
+    cache =
+      Enum.reduce(state, %{}, fn
+        {path, {:ok, meta}}, acc -> Map.put(acc, path, meta)
+        _other, acc -> acc
+      end)
+
+    json = Jason.encode!(cache)
+    File.write(@json_path, json)
+
+    state
   end
 end
