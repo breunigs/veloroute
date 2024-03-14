@@ -16,69 +16,52 @@ defmodule Data.Article.Static.Freizeitroute10 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Kollauradweg",
         direction: :forward,
         from: "Stephansplatz",
         to: "Wendlohe",
         parent_ref: __MODULE__,
         text: "entlang der Kollau nach Wendlohe",
+        historic: %{
+          "01d3354bb413bc8174f23f31c0f2c72e" => ~d[2024-03],
+          "03f238d85f7f6530d4ce7c847bd46ea7" => ~d[2022-04]
+        },
         videos: [
-          {"2022-04-30-velo5-u-12innenstadt/GX013639", "00:00:01.935", "00:00:42.976"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:20.320", :end},
-          {"2021-08-01-freizeit9-anfang/GX012482", :start, "00:00:05.739"},
-          {"2021-08-07-fr10/GX012568", "00:00:43.277", :end},
-          {"2021-08-07-fr10/GX012569", :start, :end},
-          {"2021-08-07-fr10/GX012570", :start, :end},
-          {"2021-08-07-fr10/GX012571", :start, "00:00:04.371"},
-          {"2021-08-07-fr10/GX012574", :start, :end},
-          {"2021-08-07-fr10/GX012575", :start, :end},
-          {"2021-08-07-fr10/GX012576", :start, :end},
-          {"2021-08-07-fr10/GX012577", :start, "00:01:55.582"},
-          {"2021-08-07-fr10/GX012579", "00:00:01.502", :end},
-          {"2021-08-07-fr10/GX012580", :start, "00:00:34.501"},
-          {"2021-08-07-fr10/GX012593", "00:00:00.601", "00:00:05.005"},
-          {"2021-08-07-fr10/GX012580", "00:00:37.704", :end},
-          {"2021-08-07-fr10/GX012581", :start, "00:00:52.119"},
-          {"2021-08-07-fr10/GX012583", "00:00:02.135", :end},
-          {"2021-08-07-fr10/GX012584", :start, :end},
-          {"2021-08-07-fr10/GX012585", :start, "00:00:35.469"}
+          {"2024-03-13-fr10/GX016824", :start, :end},
+          {"2024-03-13-fr10/GX016825", :start, :end},
+          {"2024-03-13-fr10/GX016826", :start, :end},
+          {"2024-03-13-fr10/GX016827", :start, :end},
+          {"2024-03-13-fr10/GX016828", :start, :end},
+          {"2024-03-13-fr10/GX016829", :start, :end},
+          {"2024-03-13-fr10/GX016830", :start, :end},
+          {"2024-03-13-fr10/GX016831", :start, :end},
+          {"2024-03-13-fr10/GX016832", :start, :end},
+          {"2024-03-13-fr10/GX016833", :start, "00:00:46.370"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Kollauradweg",
         direction: :backward,
         from: "Wendlohe",
         to: "Stephansplatz",
         parent_ref: __MODULE__,
         text: "entlang der Kollau in die Innenstadt",
+        historic: %{
+          "a73f386aabeada9360881f4dd2f139fc" => ~d[2024-03],
+          "7f53e0a300ec78e9e181ef33bbf48f82" => ~d[2022-04]
+        },
         videos: [
-          {"2021-08-07-fr10/GX012587", "00:00:44.011", :end},
-          {"2021-08-07-fr10/GX012588", :start, "00:01:34.861"},
-          {"2021-08-07-fr10/GX012589", "00:00:00.434", :end},
-          {"2021-08-07-fr10/GX012590", :start, "00:01:14.908"},
-          {"2021-08-07-fr10/GX012591", "00:00:00.534", "00:00:04.304"},
-          {"2021-08-07-fr10/GX012591", "00:00:04.571", "00:00:06.974"},
-          {"2021-08-07-fr10/GX012591", "00:00:17.718", "00:00:33.567"},
-          {"2021-08-07-fr10/GX012592", "00:00:04.238", "00:01:04.031"},
-          {"2021-08-07-fr10/GX012593", "00:00:11.111", :end},
-          {"2021-08-07-fr10/GX012594", :start, :end},
-          {"2021-08-07-fr10/GX012595", :start, "00:00:42.509"},
-          {"2021-08-07-fr10/GX012597", "00:00:18.685", "00:00:36.203"},
-          {"2021-08-07-fr10/GX012598", "00:00:05.506", :end},
-          {"2021-08-07-fr10/GX012599", :start, :end},
-          {"2021-08-07-fr10/GX012600", :start, :end},
-          {"2021-08-07-fr10/GX012601", :start, :end},
-          {"2021-08-07-fr10/GX012602", :start, :end},
-          {"2021-08-07-fr10/GX012603", :start, :end},
-          {"2021-08-07-fr10/GX012604", :start, :end},
-          {"2021-08-07-fr10/GX012605", :start, :end},
-          {"2021-08-07-fr10/GX012606", :start, "00:00:21.855"},
-          {"2021-08-01-freizeit9-anfang/GX012469", "00:00:21.989", "00:00:27.194"},
-          {"2021-08-01-freizeit9-anfang/GX012472", "00:00:04.705", "00:00:11.178"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:05.539", "00:00:13.514"},
-          {"2022-04-30-velo5-u-12innenstadt/GX013639", "00:00:49.416", "00:01:27.087"}
+          {"2024-03-13-fr10/GX016833", "00:00:47.371", :end},
+          {"2024-03-13-fr10/GX016834", :start, :end},
+          {"2024-03-13-fr10/GX016835", :start, :end},
+          {"2024-03-13-fr10/GX016836", :start, "00:00:39.506"},
+          {"2024-03-13-fr10/GX016836", "00:01:13.140", :end},
+          {"2024-03-13-fr10/GX016837", :start, :end},
+          {"2024-03-13-fr10/GX016838", :start, :end},
+          {"2024-03-13-fr10/GX016839", :start, :end},
+          {"2024-03-13-fr10/GX016840", :start, "00:01:15.409"}
         ]
       }
     ]
@@ -109,11 +92,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
     <h4>Meinung</h4>
     <p>Wer es gemütlich angeht, kann an dieser Tour Gefallen finden. Die vielen Engstellen und vollen Wege verringern die Durchschnittsgeschwindigkeit merklich. Dafür bekommt man eine fast durchgehend grüne und autofreie Strecke geboten, die mit ihren zahlreichen Sitzgelegenheiten auch zum Verweilen einlädt. Wer lieber flotter unterwegs ist sucht sich besser eine andere Tour.</p>
 
-    <p>Einige Hinweise:</p>
-    <ul>
-      <li>Der Umweg über die <.v bounds="9.94834,53.590992,9.951335,53.595077" lon={9.950208} lat={53.593219} dir="forward" ref="FR4">Max-Tau-Straße</.v> lohnt sich nicht. Es ist besser durch den Park zu fahren.</li>
-      <li>Im <.v bounds="9.93609,53.656803,9.941178,53.660792" lon={9.938917} lat={53.658303} dir="forward" ref="FR4">Golfplatz</.v> wird die Straße zu einer Einbahnstraße. Die nahen Wege im Wald sind Reitwege. Wer hier weiter fährt muss einen anderen Rückweg einplanen.</li>
-    </ul>
+    <p>Ein Hinweis: Der Umweg über die <.v bounds="9.94834,53.590992,9.951335,53.595077" lon={9.950208} lat={53.593219} dir="forward" ref={@ref}>Max-Tau-Straße</.v> lohnt sich nicht. Es ist besser durch den Park zu fahren.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

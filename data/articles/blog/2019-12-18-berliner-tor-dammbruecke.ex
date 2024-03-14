@@ -16,7 +16,9 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def links(_assigns) do
     [
-      {"Pressemitteilung zum Baubeginn", "Januar 2024",
+      {"Pressemitteilung zum Baustart", "März 2024",
+       "https://www.hamburg.de/bvm/medien/18353678/2024-03-13-bvm-berlinertordammbruecke/"},
+      {"Pressemitteilung zu vorbereitenden Arbeiten", "Januar 2024",
        "https://www.hamburg.de/bvm/medien/18050494/2024-01-09-bvm-berlinertordammbruecke/"},
       {"Baustelleninfo", "Dezember 2023",
        "https://lsbg.hamburg.de/resource/blob/702282/1c41827fee0dc9caa3300823f2dcbf44/berlinertordammbruecke-anliegerinformation-dezember-2023-data.pdf"},

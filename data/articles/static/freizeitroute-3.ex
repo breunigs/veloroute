@@ -13,10 +13,12 @@ defmodule Data.Article.Static.Freizeitroute3 do
 
   def tags(), do: [id()]
 
+  @vf "curves=lighter"
+
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 4,
+        renderer: 5,
         group: "Wandseradweg",
         direction: :forward,
         from: "Ferdinandstor",
@@ -24,8 +26,8 @@ defmodule Data.Article.Static.Freizeitroute3 do
         parent_ref: __MODULE__,
         text: "entlang der Wandse nach Stapelfeld",
         historic: %{
-          "df11ae36d9951ad9af89f3a024c03ba0" => ~d[2021-07],
-          "a37ce733d1d505743d3e0d8a982e0a5a" => ~d[2024-03]
+          "505475ff97090aa05e06f85fb4d8e309" => ~d[2024-03],
+          "df11ae36d9951ad9af89f3a024c03ba0" => ~d[2021-07]
         },
         videos: [
           {"2024-03-11-fr3/GX016788", :start, :end},
@@ -38,15 +40,15 @@ defmodule Data.Article.Static.Freizeitroute3 do
           {"2024-03-11-fr3/GX016795", :start, "00:00:01.335"},
           {"2024-03-11-fr3/GX016795", "00:00:20.487", :end},
           {"2024-03-11-fr3/GX016796", :start, :end},
-          {"2024-03-11-fr3/GX016797", :start, :end},
-          {"2024-03-11-fr3/GX016798", :start, "00:00:15.148"},
-          {"2024-03-11-fr3/GX016799", "00:00:00.367", "00:02:26.747"},
-          {"2024-03-11-fr3/GX016801", "00:01:09.736", "00:01:21.148"},
-          {"2024-03-11-fr3/GX016800", "00:00:07.007", "00:01:08.054"}
+          {"2024-03-11-fr3/GX016797", :start, :end, vf: @vf},
+          {"2024-03-11-fr3/GX016798", :start, "00:00:15.148", vf: @vf},
+          {"2024-03-11-fr3/GX016799", "00:00:00.367", "00:02:26.747", vf: @vf},
+          {"2024-03-11-fr3/GX016801", "00:01:09.736", "00:01:21.148", vf: @vf},
+          {"2024-03-11-fr3/GX016800", "00:00:07.007", "00:01:08.054", vf: @vf}
         ]
       },
       %Video.Track{
-        renderer: 4,
+        renderer: 5,
         group: "Wandseradweg",
         direction: :backward,
         from: "Stapelfeld",
@@ -54,18 +56,18 @@ defmodule Data.Article.Static.Freizeitroute3 do
         parent_ref: __MODULE__,
         text: "entlang der Wandse in die Innenstadt",
         historic: %{
-          "05882acbf67df48775d33dab86ba447a" => ~d[2021-07],
-          "fa7f13a5391dfefa933bf6605e9582c1" => ~d[2024-03]
+          "0703de1dd5eaaa67299eef4afc2d3258" => ~d[2024-03],
+          "05882acbf67df48775d33dab86ba447a" => ~d[2021-07]
         },
         videos: [
-          {"2024-03-11-fr3/GX016801", "00:00:02.002", "00:01:07.768"},
-          {"2024-03-11-fr3/GX016802", "00:00:09.676", :end},
-          {"2024-03-11-fr3/GX016803", :start, :end},
-          {"2024-03-11-fr3/GX016804", :start, :end},
-          {"2024-03-11-fr3/GX016805", :start, "00:00:57.024"},
-          {"2024-03-11-fr3/GX016806", "00:00:04.771", :end},
-          {"2024-03-11-fr3/GX016807", :start, :end},
-          {"2024-03-11-fr3/GX016808", :start, :end},
+          {"2024-03-11-fr3/GX016801", "00:00:02.002", "00:01:07.768", vf: @vf},
+          {"2024-03-11-fr3/GX016802", "00:00:09.676", :end, vf: @vf},
+          {"2024-03-11-fr3/GX016803", :start, :end, vf: @vf},
+          {"2024-03-11-fr3/GX016804", :start, :end, vf: @vf},
+          {"2024-03-11-fr3/GX016805", :start, "00:00:57.024", vf: @vf},
+          {"2024-03-11-fr3/GX016806", "00:00:04.771", :end, vf: @vf},
+          {"2024-03-11-fr3/GX016807", :start, :end, vf: @vf},
+          {"2024-03-11-fr3/GX016808", :start, :end, vf: @vf},
           {"2024-03-11-fr3/GX016809", :start, :end},
           {"2024-03-11-fr3/GX016810", :start, :end},
           {"2024-03-11-fr3/GX016811", :start, :end},

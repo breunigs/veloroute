@@ -90,7 +90,7 @@ defmodule Data.Article.Blog.BeimSchlump do
 
     <p>An der <.m bounds="9.968597,53.567406,9.970196,53.568296" highlight="Schäferkampsallee">Bushaltestelle im Schäferkampsallee</.m> bleibt es bei einem Hochbordradweg. Er verläuft zwischen Gehweg und Wartefläche für Fahrgäste. Ein Trenngeländer zwischen Wartefläche und Radweg erlaubt das Queren an nur noch drei Stellen.</p>
 
-    <p>Eine Anbindung der <.a name="freizeitroute-10">Freizeitroute 10</.a> aus dem <.v bounds="9.968854,53.5655,9.972792,53.569076" lon={9.970228} lat={53.566872} dir="forward" ref="FR10">Sternschanzenpark</.v> erfolgt über den <.v bounds="9.96816,53.566044,9.973197,53.568522" lon={9.968829} lat={53.566972} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinen Schäferkamp</.v>. In der Gegenrichtung bleibt die Führung so wie heute.</p>
+    <p>Die Anbindung der <.a name="freizeitroute-10">Freizeitroute 10</.a> aus dem <.v bounds="9.968854,53.5655,9.972792,53.569076" lon={9.970228} lat={53.566872} dir="forward" ref="FR10">Sternschanzenpark</.v> über den <.v bounds="9.96816,53.566044,9.973197,53.568522" lon={9.968829} lat={53.566972} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinen Schäferkamp</.v> soll ausgeschildert werden.</p>
 
     <h4>Meinung</h4>
     <p>Ich habe an der Planung wenig auszusetzen. Der Umbau macht die Radfahrt komfortabler und die Führung leicht ersichtlich. Durch bessere Trennung vom KFZ-Verkehr bzw. den Fahrgästen erhöht sich die Sicherheit. Sofern die Ampelschaltungen wie versprochen funktionieren, sollten die Radfurten auch meist frei bleiben – von besonders dreisten Autofahrern und Autofahrerinnen mal abgesehen.</p>
