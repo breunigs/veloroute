@@ -156,7 +156,9 @@ const closestEquivalentAngle = (from, to) => {
 }
 
 const updateMapMovingStatus = () => {
-  document.getElementById("map").classList.toggle("moving", map.isMoving())
+  const moving = map.isMoving()
+  document.getElementById("map").classList.toggle("moving", moving)
+  if (moving) disableIndicatorAnimationOnce()
 }
 
 const ensureIndicatorInView = (lngLat) => {
