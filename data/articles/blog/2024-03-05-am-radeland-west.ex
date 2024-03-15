@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.AmRadelandWest do
       "Die Straße wird saniert, bleibt aber beim aktuellen Ansatz. D.h. Mischverkehr und wechselseitige KFZ-Parkplätze. Bushalte werden barrierefrei."
 
   def type(), do: :planned
-  def start(), do: ~d[2024-06]
-  def stop(), do: ~d[2025-10]
+  def start(), do: ~d[2024-05]
+  def stop(), do: ~d[2025-09]
 
   def tags(), do: ["10", "FR6", "H13", "H.13"]
 

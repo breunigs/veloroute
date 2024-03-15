@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Rehrstieg do
   def tags(), do: ["10", "H10.3"]
 
   def start(), do: ~d[2024-02-26]
-  def stop(), do: ~d[2024-09-27]
+  def stop(), do: ~d[2024-10-11]
   def construction_site_id_hh(), do: [693_006, 693_017]
 
   def links(_assigns) do
