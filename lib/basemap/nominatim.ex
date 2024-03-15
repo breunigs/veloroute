@@ -173,7 +173,7 @@ defmodule Basemap.Nominatim do
             AND main1.type = 'administrative'
           )
           THEN main1.name->'name'
-          ELSE ''
+          ELSE main1.housenumber
         END) AS boost,
         -- generate Meilisearch format
         JSON_BUILD_OBJECT(
@@ -237,6 +237,7 @@ defmodule Basemap.Nominatim do
         main1.type,
         main1.admin_level,
         main1.name,
+        main1.housenumber,
         main1.address,
         main1.extratags,
         main1.postcode,
