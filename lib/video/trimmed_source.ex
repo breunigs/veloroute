@@ -44,7 +44,7 @@ defmodule Video.TrimmedSource do
         coords_cut: coords,
         coord_from: coord_from,
         coord_to: coord_to,
-        duration_ms_uncut: Video.Source.video_length_ms(source),
+        duration_ms_uncut: Video.Metadata.length_ms!(source),
         hash_ident: ""
       }
       |> update_hash_ident()

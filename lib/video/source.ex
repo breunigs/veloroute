@@ -140,7 +140,7 @@ defmodule Video.Source do
   @spec maybe_stretch_to_video([Video.TimedPoint.t()], t()) :: [Video.TimedPoint.t()]
   defp maybe_stretch_to_video(timed_points, %__MODULE__{} = self) do
     if String.ends_with?(self.source, ".mkv") do
-      vid_len_ms = video_length_ms(self)
+      vid_len_ms = Video.Metadata.length_ms!(self)
       gpx_len_ms = List.last(timed_points).time_offset_ms
 
       Enum.map(timed_points, fn pt ->
@@ -168,61 +168,6 @@ defmodule Video.Source do
       end)
 
     line
-  end
-
-  @doc """
-  reads the length of a video. The result will be cached in the "desc" field of
-  the matching GPX of the video if it exists. Otherwise it will be calculated
-  from the video file (slow).
-  """
-  @spec video_length_ms(t()) :: integer()
-  def video_length_ms(%__MODULE__{} = self) do
-    video_length_ms_fast(self) || video_length_ms_slow(self)
-  end
-
-  @spec video_length_ms_fast(t()) :: integer() | nil
-  defp video_length_ms_fast(%__MODULE__{source: source, available_gpx: true}) do
-    gpx_path = Video.Path.gpx_rel_to_cwd(source)
-
-    with {:ok, content} <- File.read(gpx_path),
-         text when is_list(text) <- SweetXml.xpath(content, ~x"//trk/desc/text()"),
-         text <- List.to_string(text),
-         {duration, ""} <- Integer.parse(text) do
-      duration
-    else
-      _ -> nil
-    end
-  end
-
-  defp video_length_ms_fast(%__MODULE__{}), do: nil
-
-  @spec video_length_ms_slow(t()) :: integer()
-  @dialyzer {:nowarn_function, video_length_ms_slow: 1}
-  defp video_length_ms_slow(%__MODULE__{source: source}) do
-    Logger.debug("querying video to determine length of #{source}")
-    path = Video.Path.source_rel_to_cwd(source)
-    {:ok, meta} = Video.Metadata.for(path)
-    ms = round(meta.duration * 1000)
-
-    gpx_path = Video.Path.gpx_rel_to_cwd(source)
-
-    with {:ok, content} <- File.read(gpx_path),
-         {:ok, _len} <- File.copy(gpx_path, "#{gpx_path}_backup_without_time"),
-         content <-
-           String.replace(
-             content,
-             "<trk>",
-             "<trk><!-- desc == length of video in ms --><desc>#{ms}</desc>",
-             global: false
-           ),
-         :ok <- File.write(gpx_path, content) do
-      :ok
-    else
-      err ->
-        Logger.error("failed to write GPX file with video time for #{source}: #{err}")
-    end
-
-    ms
   end
 
   @typep gpx_point :: %{lat: float(), lon: float(), time: NaiveDateTime.t(), ele: float() | nil}

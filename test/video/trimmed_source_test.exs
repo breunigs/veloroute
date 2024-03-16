@@ -2,6 +2,7 @@ defmodule Video.TrimmedSourceTest do
   use ExUnit.Case, async: true
 
   test "extracts parts between two timestamps" do
+    Video.Metadata.fake()
     tsv = Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/1")
     cut = Video.TrimmedSource.extract(tsv, "00:00:00.200", "00:00:00.999")
 
@@ -22,6 +23,7 @@ defmodule Video.TrimmedSourceTest do
   end
 
   test "extrapolates end" do
+    Video.Metadata.fake()
     tsv = Video.TrimmedSource.new_from_path(File.cwd!() <> "/test/fixtures/1")
     cut = Video.TrimmedSource.extract(tsv, "00:00:00.200", "00:00:03.000", extrapolate_end: true)
 

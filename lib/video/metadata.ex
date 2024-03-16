@@ -19,7 +19,8 @@ defmodule Video.Metadata do
     Agent.start_link(fn -> read_json() end, name: __MODULE__)
   end
 
-  @spec for(binary | Video.TrimmedSource.t()) :: {:ok, t()} | {:error, binary()}
+  @spec for(binary | Video.TrimmedSource.t() | Video.Source.t()) ::
+          {:ok, t()} | {:error, binary()}
   def for(%{source: source}) do
     __MODULE__.for(Video.Path.source_rel_to_cwd(source))
   end
@@ -56,13 +57,39 @@ defmodule Video.Metadata do
     end
   end
 
+  @doc """
+  reads the length of a video
+  """
+  @spec length_ms!(binary | Video.TrimmedSource.t() | Video.Source.t()) :: integer()
+  def length_ms!(input) do
+    {:ok, meta} = __MODULE__.for(input)
+    round(meta.duration * 1000)
+  end
+
   @spec can_use?(binary) :: boolean()
   def can_use?(codec) do
     start_link()
     Agent.get_and_update(__MODULE__, &codec_info(&1, codec), :infinity)
   end
 
-  def fake(path, val) do
+  def fake() do
+    default_meta = %__MODULE__{
+      duration: 60.0,
+      fps: 30_000 / 1001,
+      time_base: 1 / 90_000,
+      time_lapse: 5,
+      pts_correction: 1.0
+    }
+
+    start_link()
+    fake("videos/source/1.mp4", default_meta)
+    fake("videos/source/2.mp4", %{default_meta | time_base: 1 / 1000})
+    fake("test/fixtures/1.MP4", default_meta)
+    fake("test/fixtures/2.MP4", default_meta)
+    fake("test/fixtures/3.MP4", default_meta)
+  end
+
+  defp fake(path, val) do
     if Mix.env() != :test do
       raise "can only use fake for testing"
     end
@@ -120,7 +147,7 @@ defmodule Video.Metadata do
       time_lapse_change = (time_lapse || default) / desired
 
       {:ok,
-       %Video.Metadata{
+       %__MODULE__{
          fps: fps,
          time_base: Util.fraction_to_float(video["time_base"]),
          duration: String.to_float(format["duration"]),
