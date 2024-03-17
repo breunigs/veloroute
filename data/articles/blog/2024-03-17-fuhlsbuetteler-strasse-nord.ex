@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.FuhlsbuettelerStrasseNord do
 
   def tags(), do: ["rsw-bad-bramstedt", "br-nord-n3", "br-nord-n8", "N26"]
 
+  def point_of_interest(), do: %{lon: 10.031908, lat: 53.625003, zoom: 17}
+
   def links(_assigns) do
     [
       {"1. Entwurf, Erläuterungen und Lagepläne", "März 2024",
@@ -42,7 +44,9 @@ defmodule Data.Article.Blog.FuhlsbuettelerStrasseNord do
     <p>Die <.v bounds="10.030502,53.623319,10.032979,53.62663" lon={10.032134} lat={53.625297} dir="forward" ref="br-nord-n3" highlight="Fuhlsbüttler Allee">Ostseite der Fuhlsbüttler Allee</.v> wird nicht umgestaltet.</p>
 
     <h4>Meinung</h4>
-    <p>Die grundlegende Idee des Zweirichtungsradwegs ist gut. Den Gehweg direkt an den KFZ-Lärm zu legen dürfte in der Praxis kaum funktionieren – Viele laufen vermutlich lieber auf dem Radweg. Sinnvoller wäre ein Durchlass der Lärmschutzwand an der Kreuzung. Immerhin ist der Fußverkehr auf dem Abschnitt gering.</p>
+    <p>Die grundlegende Idee des Zweirichtungsradwegs ist gut.</p>
+
+    <p>Den Gehweg direkt an den KFZ-Lärm zu legen dürfte in der Praxis kaum funktionieren – Viele laufen vermutlich lieber auf dem Radweg. Sinnvoller wäre ein Durchlass der Lärmschutzwand an der Kreuzung. Immerhin ist der Fußverkehr auf dem Abschnitt gering.</p>
 
     <p>Unverständlich ist, warum man den östlichen Radweg nicht ebenfalls anpasst. Mit nur 90cm Breite ist er selbst für normale Fahrräder zu schmal.</p>
 

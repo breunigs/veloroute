@@ -35,21 +35,20 @@ defmodule Data.Article.Static.Freizeitroute8 do
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Elbufer",
         direction: :backward,
         from: "Wedel",
         to: "Landungsbrücken",
         parent_ref: __MODULE__,
         text: "entlang des Elbufers zu den Landungsbrücken",
+        historic: %{
+          "7b95a92e2a5d490099cbcb52fa097be1" => ~d[2024-03],
+          "60e2159cf1eca918a4e19d9f098f84ef" => ~d[2021-08]
+        },
         videos: [
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011419", :start, :end},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX021419", :start, "00:00:03.136"},
-          {"2022-08-09-stade-rev/GX014442", "00:02:10.631", "00:03:01.114"},
-          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011549", "00:01:08.936", :end},
-          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011550", :start, "00:04:44.384"},
-          {"2021-05-30-gruener-ring-sued-uhrzeiger/GX011510", "00:00:16.216", "00:00:27.427"},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012487", "00:00:28.529", :end}
+          {"2024-03-16-fr8-gr1uhr/GX016867", "00:13:10.189", :end},
+          {"2024-03-16-fr8-gr1uhr/GX026867", :seamless, :end}
         ]
       }
     ]

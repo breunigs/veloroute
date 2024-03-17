@@ -5,7 +5,9 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
     do:
       "Sengelmannstraße – Rotbuchenstieg bis Rathenaustraße (Radroute 5, Radroute Plus Bad Bramstedt)"
 
-  def summary(), do: "Der Weg soll asphaltiert werden."
+  def summary(),
+    do:
+      "Konzept der Radwege bleibt wie heute. Sie sollen aber breiter werden, bzw. der Abschnitt mit Spielstraße zu einer Fahrradstraße werden."
 
   def type(), do: :planned
   def stop(), do: ~d[2030]
