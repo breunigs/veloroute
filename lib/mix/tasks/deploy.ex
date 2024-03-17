@@ -206,11 +206,41 @@ defmodule Mix.Tasks.Deploy do
   defp upload(_skip, image_name) do
     Util.banner("copying image to #{Settings.deploy_ssh_name()}")
 
+    Temp.track!()
+    {:ok, _fd, local_path} = Temp.open(%{prefix: "veloroute-image", suffix: ".tar"})
+    remote_path = "/tmp/veloroute-image-cache.img"
+    cmd_opts = [into: IO.stream(:stdio, :line)]
+
+    IO.puts("writing image locally")
+    {_out, 0} = System.cmd("docker", ["save", "--output=#{local_path}", image_name], cmd_opts)
+
+    IO.puts("syncing image to remote")
+
     {_out, 0} =
-      System.cmd("sh", [
-        "-c",
-        "docker save '#{image_name}' | zstd --adapt -T0 | ssh #{Settings.deploy_ssh_name()} 'unzstd | docker load'"
-      ])
+      System.cmd(
+        "rsync",
+        [
+          "--human-readable",
+          "--compress-choice=zstd",
+          "--compress",
+          "--partial",
+          "--progress",
+          local_path,
+          "#{Settings.deploy_ssh_name()}:#{remote_path}"
+        ],
+        cmd_opts
+      )
+
+    Temp.cleanup()
+
+    IO.puts("loading image on remote")
+
+    {_out, 0} =
+      System.cmd(
+        "ssh",
+        [Settings.deploy_ssh_name(), "docker", "load", "--input", remote_path],
+        cmd_opts
+      )
   end
 
   defp rename_on_remote(%{skip_deploy: true}, _image_name), do: nil
