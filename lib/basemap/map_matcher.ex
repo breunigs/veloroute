@@ -261,14 +261,14 @@ defmodule Basemap.MapMatcher.OSRM do
            started: boolean(),
            healthy: boolean(),
            port: non_neg_integer() | nil,
-           container_name: binary() | nil,
+           container: Util.Docker.full_ref() | nil,
            pid: pid()
          }
   @spec init(any) :: {:ok, state()}
   @impl GenServer
   def init(_args \\ []) do
     Process.flag(:trap_exit, true)
-    {:ok, %{started: false, healthy: false, port: nil, container_name: nil, pid: self()}}
+    {:ok, %{started: false, healthy: false, port: nil, container: nil, pid: self()}}
   end
 
   @spec handle_call(
@@ -345,7 +345,9 @@ defmodule Basemap.MapMatcher.OSRM do
   end
 
   @spec set_port(state()) :: state()
-  defp set_port(%{started: true, port: nil, container_name: name} = state) do
+  defp set_port(%{started: true, port: nil, container: full_ref} = state) do
+    name = Util.Docker.names(full_ref).container
+
     with %{result: :ok, stdout: stdout} <-
            Util.Cmd2.exec(["docker", "port", name, @osrm_port], stdout: "", stderr: ""),
          [_, port_str] <- Regex.run(~r/:(\d+)$/, stdout),
@@ -408,14 +410,14 @@ defmodule Basemap.MapMatcher.OSRM do
           else: raise(reason)
     end
 
-    %{state | started: true, container_name: Util.Docker.names(container_ref).container}
+    %{state | started: true, container: container_ref}
     |> set_port()
     |> set_health()
   end
 
   @spec stop(state()) :: state()
-  defp stop(%{container_name: name} = state) do
-    if name, do: Util.Docker.stop(name)
+  defp stop(%{container: full_ref} = state) do
+    if full_ref, do: Util.Docker.stop(full_ref)
     %{state | healthy: false, port: nil, started: false}
   end
 
