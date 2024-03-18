@@ -355,7 +355,7 @@ defmodule Basemap.MapMatcher.OSRM do
       %{state | port: port}
     else
       %{stderr: stderr} when stderr != "" ->
-        Logger.warning("docker port: #{stderr}")
+        Logger.debug("docker port: #{stderr}")
         %{state | port: nil}
 
       _ ->
@@ -383,6 +383,15 @@ defmodule Basemap.MapMatcher.OSRM do
   defp ensure_started(state) do
     container_ref = {"OSRM map matching server", @osrm_image_ref}
 
+    Task.async(fn -> start(container_ref) end)
+    Process.sleep(500)
+
+    %{state | started: true, container: container_ref}
+    |> set_port()
+    |> set_health()
+  end
+
+  defp start(container_ref) do
     Util.Docker.run(
       container_ref,
       %{
@@ -394,25 +403,14 @@ defmodule Basemap.MapMatcher.OSRM do
           "--max-matching-size",
           "-1"
         ],
-        docker_args: ["-p", @osrm_port, "--detach"],
+        docker_args: ["-p", @osrm_port],
         mounts: @mounts
       },
       stdout: "",
-      stderr: ""
+      stderr: "",
+      slow_warn_message: false,
+      raise: true
     )
-    |> case do
-      :ok ->
-        nil
-
-      {:error, reason} ->
-        if String.contains?(reason, "is already in use by container"),
-          do: nil,
-          else: raise(reason)
-    end
-
-    %{state | started: true, container: container_ref}
-    |> set_port()
-    |> set_health()
   end
 
   @spec stop(state()) :: state()
