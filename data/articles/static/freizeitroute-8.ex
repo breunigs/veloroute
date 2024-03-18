@@ -9,7 +9,8 @@ defmodule Data.Article.Static.Freizeitroute8 do
   def color_faded(), do: "#77ba7b"
 
   def summary(),
-    do: "Freizeitroute 8 führt entlang des Elbufers"
+    do:
+      "Freizeitroute 8 führt entlang des nördlichen Elbufers. In Övelgönne ist eine lange Schiebestrecke."
 
   def tags(), do: [id()]
 
