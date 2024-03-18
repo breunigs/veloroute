@@ -27,8 +27,12 @@ defmodule LogFormatter do
         message,
         ?\n
       ]
-      |> List.flatten()
-      |> Enum.map(fn s -> if is_binary(s), do: String.to_charlist(s), else: s end)
+      |> Enum.reduce([], fn
+        x, acc when is_binary(x) -> [String.to_charlist(x) | acc]
+        x, acc when is_list(x) -> Enum.reverse(x) ++ acc
+        x, acc -> [x | acc]
+      end)
+      |> Enum.reverse()
     rescue
       e ->
         error = Exception.format(:error, e, __STACKTRACE__)
