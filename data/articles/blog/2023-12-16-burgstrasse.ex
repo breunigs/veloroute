@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Umbau", "März 2024",
+       "https://www.hamburg.de/bvm/medien/18385964/2024-03-18-bvm-burgstrasse/"},
       {"Baustelleninfo", "Februar 2024",
        "https://lsbg.hamburg.de/resource/blob/704288/4b347ac92b44cd6d61c49a97f0ca7948/burgstrasse-anliegerinformation-februar-2024-data.pdf"},
       {"Erläuterungsbericht des fertigen Entwurfs", "Januar 2024",

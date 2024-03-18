@@ -16,53 +16,53 @@ defmodule Data.Article.Static.Freizeitroute14 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 2,
+        renderer: 5,
         group: "Alter Elbtunnel",
         direction: :forward,
         from: "Landungsbrücken",
         to: "Harburger Berge",
         parent_ref: __MODULE__,
         text: "von den Landungsbrücken in die Harburger Berge",
+        historic: %{
+          "88c91689b9d94320997ba36a25a4de1e" => ~d[2024-03],
+          "6c0d87a58b3ee203f19f16261ce7a6a6" => ~d[2022-03]
+        },
         videos: [
-          {"2021-07-04-veloroute11/GX012107", :start, :end},
-          {"2021-07-04-veloroute11/GX012108", :start, :end},
-          {"2021-07-04-veloroute11/GX012109", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012489", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012490", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012491", :start, "00:02:47.067"},
-          {"2022-03-20-tostedt/GX013305", "00:00:41.041", "00:02:05.058"},
-          {"2021-08-04-fr13-fr14/GX012547", "00:00:04.838", :end},
-          {"2021-08-04-fr13-fr14/GX012548", :start, :end},
-          {"2021-08-04-fr13-fr14/GX012549", :start, :end},
-          {"2021-08-04-fr13-fr14/GX012550", :start, :end}
+          {"2024-03-17-fr14/GX016893", "00:00:51.018", :end},
+          {"2024-03-17-fr14/GX016894", :start, "00:00:32.199"},
+          {"2024-03-17-fr14/GX016894", "00:00:42.910", :end},
+          {"2024-03-17-fr14/GX016895", :start, :end},
+          {"2024-03-17-fr14/GX016896", :start, "00:03:55.736"},
+          {"2024-03-17-fr14/GX016897", "00:00:00.167", :end},
+          {"2024-03-17-fr14/GX016898", :start, :end},
+          {"2024-03-17-fr14/GX016899", :start, "00:01:13.507"},
+          {"2024-03-17-fr14/GX016899", "00:01:34.761", "00:03:45.559"}
         ]
       },
       %Video.Track{
-        renderer: 2,
+        renderer: 5,
         group: "Alter Elbtunnel",
         direction: :backward,
         from: "Harburger Berge",
         to: "Landungsbrücken",
         parent_ref: __MODULE__,
         text: "aus den Harburger Bergen zu den Landungsbrücken",
+        historic: %{
+          "c31f1c2f57c40d79d5bc3f3f48cf0396" => ~d[2024-03],
+          "a62f87a1ceba8f93681c0383240779da" => ~d[2022-03]
+        },
         videos: [
-          {"2021-08-04-fr13-fr14/GX012540", "00:00:17.451", "00:01:25.385"},
-          {"2021-08-04-fr13-fr14/GX012541", "00:00:36.637", :end},
-          {"2021-08-04-fr13-fr14/GX012542", :start, :end},
-          {"2021-08-04-fr13-fr14/GX012543", :start, :end},
-          {"2021-08-04-fr13-fr14/GX012545", :start, :end},
-          {"2021-08-04-fr13-fr14/GX012546", :start, "00:00:09.176"},
-          {"2021-08-04-fr13-fr14/GX012546", "00:00:23.824", "00:01:24.885"},
-          {"2022-03-20-tostedt/GX013305", "00:02:06.426", :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012492", "00:00:17.284", :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012493", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012494", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012495", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012496", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012497", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012498", :start, :end},
-          {"2021-08-03-fr14-noerdlich-kattwyk/GX012499", :start, :end},
-          {"2021-07-04-veloroute11/GX012143", :start, :end}
+          {"2024-03-17-fr14/GX016899", "00:03:46.560", :end},
+          {"2024-03-17-fr14/GX016900", :start, :end},
+          {"2024-03-17-fr14/GX016901", :start, :end},
+          {"2024-03-17-fr14/GX016902", :start, :end},
+          {"2024-03-17-fr14/GX016903", :start, :end},
+          {"2024-03-17-fr14/GX016904", :start, "00:01:05.599"},
+          {"2024-03-17-fr14/GX016905", :start, :end},
+          {"2024-03-17-fr14/GX016906", :start, :end},
+          {"2024-03-17-fr14/GX016907", "00:00:03.737", "00:00:07.274"},
+          {"2024-03-17-fr14/GX016907", "00:00:17.851", "00:00:50.550"},
+          {"2024-03-17-fr14/GX016907", "00:00:55.923", :end}
         ]
       }
     ]

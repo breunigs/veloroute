@@ -52,7 +52,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "1. Grüner Ring",
         direction: :backward,
         from: "Alter Elbpark",
@@ -61,28 +61,33 @@ defmodule Data.Article.Static.Freizeitroute0 do
         parent_ref: __MODULE__,
         text: "gegen Uhrzeigersinn entlang der Wallanlagen",
         end_action: :loop,
+        historic: %{
+          "6d1d6e1e622ea219ef0e28bd0ef557fd" => ~d[2024-03],
+          "3b9a13385e69b6b3bf18724083610d21" => ~d[2021-07]
+        },
         videos: [
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012312", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012313", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012314", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012315", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012316", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012317", :start, "00:00:03.203"},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012355", "00:00:03.837", "00:00:22.189"},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012317", "00:00:20.220", :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012318", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012319", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012320", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012321", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012322", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012323", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012324", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012325", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012326", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012327", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012328", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012329", :start, :end},
-          {"2021-07-17-gruenerring1-11whburg-haubach/GX012330", :start, :end}
+          {"2024-03-17-fr14/GX016926", :start, :end},
+          {"2024-03-17-fr14/GX016927", :start, :end},
+          {"2024-03-17-fr14/GX016928", :start, "00:00:03.937"},
+          {"2024-03-17-fr14/GX016909", "00:00:02.402", :end},
+          {"2024-03-17-fr14/GX016910", :start, :end},
+          {"2024-03-17-fr14/GX016911", :start, :end},
+          {"2024-03-17-fr14/GX016912", :start, "00:00:34.835"},
+          {"2024-03-17-fr14/GX016912", "00:00:39.039", :end},
+          {"2024-03-17-fr14/GX016913", :start, :end},
+          {"2024-03-17-fr14/GX016914", :start, :end},
+          {"2023-05-21-vr12-vr9/GX015819", :start, "00:00:01.068"},
+          {"2024-03-17-fr14/GX016915", :start, :end},
+          {"2024-03-17-fr14/GX016916", :start, :end},
+          {"2024-03-17-fr14/GX016917", :start, :end},
+          {"2024-03-17-fr14/GX016918", :start, :end},
+          {"2024-03-17-fr14/GX016919", :start, :end},
+          {"2024-03-17-fr14/GX016920", :start, :end},
+          {"2024-03-17-fr14/GX016921", :start, :end},
+          {"2024-03-17-fr14/GX016922", :start, :end},
+          {"2024-03-17-fr14/GX016923", :start, :end},
+          {"2024-03-17-fr14/GX016924", :start, :end},
+          {"2024-03-17-fr14/GX016925", :start, "00:00:14.214"}
         ]
       }
     ]

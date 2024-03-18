@@ -16,22 +16,22 @@ defmodule Data.Article.Static.Freizeitroute8 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Elbufer",
         direction: :forward,
         from: "Landungsbrücken",
         to: "Wedel",
         parent_ref: __MODULE__,
         text: "entang des Elbufers nach Wedel",
+        historic: %{
+          "62e9f25ffe6c00e278f8765ba1007212" => ~d[2024-03],
+          "c3f8c3dd40473f54ae901a4c049bf0fb" => ~d[2022-08]
+        },
         videos: [
-          {"2021-06-13-veloroute-5-5a-und-13rein/GX011836", :start, "00:00:10.911"},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011416", "00:00:01.068", :end},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011417", :start, "00:00:56.390"},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011417", "00:01:21.048",
-           "00:04:35.242"},
-          {"2022-08-09-stade-rev/GX014442", "00:01:06.400", "00:02:03.023"},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011418", "00:01:27.087", :end},
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX021418", :start, "00:00:43.477"}
+          {"2024-03-17-fr14/GX016930", :start, :end},
+          {"2024-03-17-fr14/GX016931", :start, :end},
+          {"2024-03-17-fr14/GX016932", :start, "00:00:05.239"},
+          {"2024-03-16-fr8-gr1uhr/GX016867", "00:00:11.678", "00:13:08.087"}
         ]
       },
       %Video.Track{
