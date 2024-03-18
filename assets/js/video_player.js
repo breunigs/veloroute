@@ -217,6 +217,7 @@ function updateVideoElement() {
       const path = document.getElementById("hlsJsUrl").getAttribute("href");
       window.hls.loadSource(path);
       updatePlaypause();
+      video.loop = videoMeta.end_action == "loop";
     })
     return
   }
