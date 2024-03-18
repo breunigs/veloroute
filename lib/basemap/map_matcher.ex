@@ -350,7 +350,7 @@ defmodule Basemap.MapMatcher.OSRM do
 
     with %{result: :ok, stdout: stdout} <-
            Util.Cmd2.exec(["docker", "port", name, @osrm_port], stdout: "", stderr: ""),
-         [_, port_str] <- Regex.run(~r/:(\d+)$/, stdout),
+         [_, port_str] <- Regex.run(~r/^[0-9.]+:(\d+)$/m, stdout),
          {port, ""} <- Integer.parse(port_str) do
       %{state | port: port}
     else
