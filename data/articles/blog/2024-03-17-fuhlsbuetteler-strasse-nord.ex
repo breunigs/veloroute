@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.FuhlsbuettelerStrasseNord do
 
     <p>Da der Radwegstummel auf der <.v bounds="10.03039,53.625142,10.032839,53.627114" lon={10.031661} lat={53.6259} dir="forward" ref="br-nord-n8" highlight="Wellingsbütteler Landstraße">Südseite der Wellingsbütteler Landstraße</.v> entfällt, wird auf der Südseite der Kreuzung auch keine Querungsmöglichkeit für den Radverkehr mehr vorgesehen.</p>
 
-    <p>Die <.v bounds="10.030502,53.623319,10.032979,53.62663" lon={10.032134} lat={53.625297} dir="forward" ref="br-nord-n3" highlight="Fuhlsbüttler Allee">Ostseite der Fuhlsbüttler Allee</.v> wird nicht umgestaltet.</p>
+    <p>Die <.v bounds="10.030502,53.623319,10.032979,53.62663" lon={10.032134} lat={53.625297} dir="forward" ref="br-nord-n3" highlight="Fuhlsbüttler Straße">Ostseite der Fuhlsbüttler Straße</.v> wird nicht umgestaltet.</p>
 
     <h4>Meinung</h4>
     <p>Die grundlegende Idee des Zweirichtungsradwegs ist gut.</p>
