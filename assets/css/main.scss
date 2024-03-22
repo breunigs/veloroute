@@ -97,6 +97,18 @@ $mapBgColor: #EFE9E1;
     background: $background url("/images/pause.svg") no-repeat 50% 50%/30%;
   }
 
+  &.skipBackward5::before {
+    background: $background url("/images/skip_backward_5.svg") no-repeat 38% 50%/55%;
+  }
+
+  &.skipForward5::before {
+    background: $background url("/images/skip_forward_5.svg") no-repeat 62% 50%/55%;
+  }
+
+  &.reverse::before {
+    background: $background url("/images/reverse.svg") no-repeat 50% 50%/45%;
+  }
+
   &.show::before {
     display: block;
   }

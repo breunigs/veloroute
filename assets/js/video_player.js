@@ -449,8 +449,8 @@ function initControls() {
   progressPreviewEl = document.getElementById("progressPreview")
 
 
-  document.getElementById('skipBackward5').addEventListener('click', () => seekToTime(videoTimeInMs - 5000))
-  document.getElementById('skipForward5').addEventListener('click', () => seekToTime(videoTimeInMs + 5000))
+  document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
+  document.getElementById('skipForward5').addEventListener('click', () => { actionIcon("skipForward5"); seekToTime(videoTimeInMs + 5000) })
   document.getElementById("reverse").addEventListener('click', reverseVideo);
   document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
   progressWrapper.addEventListener('click', seekFromProgress);
@@ -510,15 +510,19 @@ function selectPlaybackRate(event) {
   event.target.setAttribute("aria-checked", "true");
 }
 
-let togglePlayPauseAnimation = null;
+let toggleActionIconAnimation = null;
+function actionIcon(customIcon) {
+  cancelAnimationFrame(toggleActionIconAnimation);
+  outer.classList.remove("show", "animate", "skipBackward5", "skipForward5", "reverse");
+  toggleActionIconAnimation = requestAnimationFrame(() => {
+    outer.classList.add("show", customIcon)
+    toggleActionIconAnimation = requestAnimationFrame(() => outer.classList.add("animate"))
+  })
+}
+
 function togglePlayPause(e) {
   if (e.target === video || e.target === poster) {
-    cancelAnimationFrame(togglePlayPauseAnimation);
-    outer.classList.remove("show", "animate");
-    togglePlayPauseAnimation = requestAnimationFrame(() => {
-      outer.classList.add("show")
-      togglePlayPauseAnimation = requestAnimationFrame(() => outer.classList.add("animate"))
-    })
+    actionIcon()
   }
 
   if (!userClickPlayOnce) {
@@ -536,6 +540,7 @@ function reverseVideo() {
   window.pushEvent('video-reverse', {
     pos: Math.round(videoTimeInMs)
   })
+  actionIcon("reverse")
 }
 
 function timeFromProgressPosition(e) {
