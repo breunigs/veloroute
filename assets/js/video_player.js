@@ -51,9 +51,6 @@ function initVideoElement() {
 initVideoElement()
 window.addEventListener("global:mounted", initVideoElement)
 
-// 3 MBit/s, i.e. not 240p. Halved on every buffer stall.
-let minAutoBitrate = 3 * 1000 * 1000;
-
 // allow HLS direct play only on iOS/OSX devices, because I found Android phones
 // that claim they can parse m3u8 but then fail without fallback.
 const canPlayHLS = /iPad|iPhone|iPod|like Mac OS X|Macintosh/.test(navigator.userAgent)
@@ -177,7 +174,6 @@ function updateVideoElement() {
         capLevelToPlayerSize: true,
         maxBufferLength: 10, // seconds
         maxMaxBufferLength: 20, // seconds
-        minAutoBitrate: minAutoBitrate,
         startPosition: videoMeta.start / 1000.0,
         capLevelOnFPSDrop: true,
       };

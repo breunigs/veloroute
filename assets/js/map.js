@@ -606,7 +606,7 @@ function setup() {
     validateStyle: false,
   });
   map.touchZoomRotate.disableRotation();
-  map.addControl(new mlgl.AttributionControl(), 'top-right');
+  map.addControl(new mlgl.AttributionControl({ compact: null }), 'top-right');
 
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
