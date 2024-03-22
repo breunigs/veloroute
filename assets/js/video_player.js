@@ -378,6 +378,8 @@ function setVideo(avoidSeek) {
   if (autoplay) userClickPlayOnce = true;
   if (!userClickPlayOnce) return;
 
+  progressWrapper.setAttribute("phx-update", "ignore");
+
   if (prevVideo !== videoMeta.hash) {
     prevVideo = videoMeta.hash;
     updateVideoElement();
