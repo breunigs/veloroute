@@ -22839,6 +22839,11 @@
   <node id='-127165555' action='modify' lat='53.57099519958' lon='9.72996532381' />
   <node id='-127165556' action='modify' lat='53.57127871101' lon='9.7301423496' />
   <node id='-127165557' action='modify' lat='53.57138701824' lon='9.73021208704' />
+  <node id='-127168342' action='modify' lat='53.54608337332' lon='9.96648251474' />
+  <node id='-127168343' action='modify' lat='53.54606424886' lon='9.96622502267' />
+  <node id='-127168344' action='modify' lat='53.54609931036' lon='9.96477126539' />
+  <node id='-127168345' action='modify' lat='53.54614393404' lon='9.96339260995' />
+  <node id='-127168346' action='modify' lat='53.5461474689' lon='9.96332090533' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -39156,9 +39161,8 @@
     <nd ref='95141830005465348' />
     <nd ref='95113350005464843' />
   </way>
-  <way id='-20200962'>
-    <nd ref='96328140005463581' />
-    <nd ref='-97290349' />
+  <way id='-20200962' action='modify'>
+    <nd ref='-127168346' />
     <nd ref='-97290350' />
     <nd ref='-97290351' />
     <nd ref='-97290352' />
@@ -54007,10 +54011,9 @@
     <nd ref='-97301541' />
     <tag k='layer' v='-1' />
   </way>
-  <way id='-20201815'>
+  <way id='-20201815' action='modify'>
     <nd ref='-97301542' />
     <nd ref='-97287048' />
-    <nd ref='9667060005460846' />
   </way>
   <way id='-20201816'>
     <nd ref='-97301543' />
@@ -59594,13 +59597,12 @@
     <nd ref='-97304632' />
     <tag k='layer' v='-1' />
   </way>
-  <way id='-20202259'>
+  <way id='-20202259' action='modify'>
     <nd ref='-97304632' />
     <nd ref='9579320005459024' />
     <nd ref='95998460005461507' />
     <nd ref='96134450005462896' />
     <nd ref='96302440005463772' />
-    <nd ref='96328140005463581' />
   </way>
   <way id='-20202260'>
     <nd ref='-97304630' />
@@ -65173,6 +65175,43 @@
     <tag k='name' v='2024-03-17-fuhlsbuetteler-strasse-nord' />
     <tag k='type' v='article' />
   </way>
+  <way id='-20373373' action='modify'>
+    <nd ref='-97287048' />
+    <nd ref='-127168342' />
+    <nd ref='-127168343' />
+    <nd ref='-127168344' />
+    <nd ref='-127168345' />
+    <nd ref='-127168346' />
+  </way>
+  <way id='-20373379' action='modify'>
+    <nd ref='96328140005463581' />
+    <nd ref='-97290349' />
+    <nd ref='-127168346' />
+  </way>
+  <way id='-20373384' action='modify'>
+    <nd ref='96302440005463772' />
+    <nd ref='963020005465114' />
+  </way>
+  <way id='-20373385' action='modify'>
+    <nd ref='96916490005460339' />
+    <nd ref='-97297163' />
+    <nd ref='-97297164' />
+    <nd ref='-97297165' />
+    <nd ref='-97297166' />
+    <nd ref='-97297167' />
+    <nd ref='-97297168' />
+    <nd ref='96327840005464914' />
+    <nd ref='9631240005465117' />
+    <nd ref='963020005465114' />
+  </way>
+  <way id='-20373402' action='modify'>
+    <nd ref='-97287048' />
+    <nd ref='9667060005460846' />
+  </way>
+  <way id='-20373405' action='modify'>
+    <nd ref='96302440005463772' />
+    <nd ref='96328140005463581' />
+  </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
     <nd ref='99533190005505785' />
@@ -70514,16 +70553,7 @@
     <nd ref='-97301554' />
     <nd ref='974431200064513' />
   </way>
-  <way id='596083295' version='1'>
-    <nd ref='96916490005460339' />
-    <nd ref='-97297163' />
-    <nd ref='-97297164' />
-    <nd ref='-97297165' />
-    <nd ref='-97297166' />
-    <nd ref='-97297167' />
-    <nd ref='-97297168' />
-    <nd ref='96327840005464914' />
-    <nd ref='9631240005465117' />
+  <way id='596083295' action='modify' version='1'>
     <nd ref='963020005465114' />
     <nd ref='96252630005464939' />
     <nd ref='9621870005464818' />
@@ -77066,15 +77096,22 @@
     <member type='way' ref='-20200950' role='' />
     <tag k='name' v='freizeitroute-7' />
   </relation>
-  <relation id='-107117'>
+  <relation id='-107117' action='modify'>
     <member type='way' ref='-20200964' role='forward' />
     <member type='way' ref='-20200965' role='forward' />
+    <member type='way' ref='-20201016' role='forward' />
+    <member type='way' ref='299269832' role='forward' />
+    <member type='way' ref='-20373402' role='backward' />
+    <member type='way' ref='-20373373' role='forward' />
+    <member type='way' ref='596083296' role='forward' />
+    <member type='way' ref='-20200962' role='forward' />
+    <member type='way' ref='-20373379' role='' />
+    <member type='way' ref='-20373405' role='' />
+    <member type='way' ref='-20373384' role='forward' />
     <member type='way' ref='596083295' role='forward' />
     <member type='way' ref='-20202260' role='forward' />
     <member type='way' ref='-20202261' role='forward' />
     <member type='way' ref='-20200959' role='forward' />
-    <member type='way' ref='596083296' role='forward' />
-    <member type='way' ref='-20200962' role='forward' />
     <member type='way' ref='-20202259' role='forward' />
     <member type='way' ref='-20202258' role='forward' />
     <member type='way' ref='-20202257' role='forward' />
@@ -77198,13 +77235,14 @@
     <member type='way' ref='-20201920' role='forward' />
     <tag k='name' v='erster-gruener-ring' />
   </relation>
-  <relation id='-107120'>
+  <relation id='-107120' action='modify'>
     <member type='way' ref='-20200964' role='forward' />
     <member type='way' ref='-20200965' role='forward' />
     <member type='way' ref='-20201016' role='forward' />
     <member type='way' ref='299269832' role='forward' />
     <member type='way' ref='596083296' role='forward' />
     <member type='way' ref='-20200963' role='forward' />
+    <member type='way' ref='-20373402' role='' />
     <member type='way' ref='-20201815' role='' />
     <member type='way' ref='-20201816' role='' />
     <member type='way' ref='572466611' role='' />
@@ -79459,7 +79497,7 @@
     <member type='way' ref='607482355' role='' />
     <tag k='name' v='alltagsroute-10' />
   </relation>
-  <relation id='233959' version='1'>
+  <relation id='233959' action='modify' version='1'>
     <member type='way' ref='-20200783' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='19410612' role='' />
@@ -79485,6 +79523,7 @@
     <member type='way' ref='-20200986' role='forward' />
     <member type='way' ref='596083296' role='forward' />
     <member type='way' ref='-20200963' role='forward' />
+    <member type='way' ref='-20373402' role='' />
     <member type='way' ref='-20201815' role='' />
     <member type='way' ref='-20201816' role='' />
     <member type='way' ref='572466611' role='' />
@@ -79523,7 +79562,7 @@
     <member type='way' ref='-20200935' role='' />
     <tag k='name' v='alltagsroute-11' />
   </relation>
-  <relation id='2238410' version='1'>
+  <relation id='2238410' action='modify' version='1'>
     <member type='way' ref='-20200783' role='' />
     <member type='way' ref='19410223' role='' />
     <member type='way' ref='19410612' role='' />
@@ -79540,6 +79579,7 @@
     <member type='way' ref='-20201966' role='forward' />
     <member type='way' ref='-20200982' role='forward' />
     <member type='way' ref='-20200965' role='forward' />
+    <member type='way' ref='-20373385' role='forward' />
     <member type='way' ref='596083295' role='forward' />
     <member type='way' ref='-20202260' role='forward' />
     <member type='way' ref='-20202261' role='forward' />
@@ -79551,6 +79591,7 @@
     <member type='way' ref='-20201967' role='forward' />
     <member type='way' ref='-20201282' role='forward' />
     <member type='way' ref='-20201283' role='forward' />
+    <member type='way' ref='-20373405' role='forward' />
     <member type='way' ref='-20202259' role='forward' />
     <member type='way' ref='-20202258' role='forward' />
     <member type='way' ref='-20202257' role='forward' />

@@ -66,6 +66,15 @@ defmodule Video.Metadata do
     round(meta.duration * 1000)
   end
 
+  @spec length_ms(binary | Video.TrimmedSource.t() | Video.Source.t()) :: integer() | nil
+  def length_ms(input) do
+    with {:ok, meta} <- __MODULE__.for(input) do
+      round(meta.duration * 1000)
+    else
+      _ -> nil
+    end
+  end
+
   @spec can_use?(binary) :: boolean()
   def can_use?(codec) do
     start_link()

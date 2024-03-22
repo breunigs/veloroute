@@ -75,7 +75,7 @@ defmodule VelorouteWeb.ImageExtractController do
 
     ts =
       if ts >= 0.95 * max_length do
-        min(ts, actual_max_length(source_abs))
+        min(ts, Video.Metadata.length_ms(source_abs))
       else
         ts
       end
@@ -149,34 +149,6 @@ defmodule VelorouteWeb.ImageExtractController do
       {:abort_ffmpeg, ospid} ->
         res = System.cmd("kill", ["-9", to_string(ospid)])
         {:error, "timeout after #{@ffmpeg_timeout_ms}ms. Killed #{ospid}: #{inspect(res)}"}
-    end
-  end
-
-  @ffprobe_path to_string(:os.find_executable(~c"ffprobe"))
-  @frame_duration 1000.0 / Video.Constants.output_fps()
-  @spec actual_max_length(binary()) :: non_neg_integer() | nil
-  defp actual_max_length(file) do
-    [exe | args] = Util.low_priority_cmd_prefix()
-
-    with {string, 0} <-
-           System.cmd(
-             exe,
-             args ++
-               [
-                 @ffprobe_path,
-                 "-v",
-                 "error",
-                 "-show_entries",
-                 "format=duration",
-                 "-of",
-                 "default=noprint_wrappers=1:nokey=1",
-                 file
-               ]
-           ),
-         {float_in_seconds, "\n"} <- Float.parse(string) do
-      round(float_in_seconds * 1000.0 - @frame_duration)
-    else
-      _ -> nil
     end
   end
 end
