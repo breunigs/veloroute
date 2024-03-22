@@ -56,16 +56,6 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end)
   end
 
-  defp preview([hash | tail]) when valid_hash(hash) do
-    rendered = Video.Generator.find_by_hash(hash)
-
-    if rendered == nil do
-      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
-    else
-      stream_video(rendered, tail)
-    end
-  end
-
   defp preview(["Data.Article." <> _rest = in_art, in_index | tail] = args) do
     with mod = String.to_atom("Elixir." <> in_art),
          {:module, art} <- Code.ensure_compiled(mod),
@@ -81,6 +71,16 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
         )
 
         exit({:shutdown, 1})
+    end
+  end
+
+  defp preview([hash | tail]) when valid_hash(hash) do
+    rendered = Video.Generator.find_by_hash(hash)
+
+    if rendered == nil do
+      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
+    else
+      stream_video(rendered, tail)
     end
   end
 
