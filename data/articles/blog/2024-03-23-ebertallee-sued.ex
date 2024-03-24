@@ -46,6 +46,7 @@ defmodule Data.Article.Blog.EbertalleeSued do
         to: "Notkestraße",
         parent_ref: __MODULE__,
         text: "ab Halbmondsweg nach Norden",
+        end_action: :reverse,
         historic: %{
           "137abd58c9b4e6f00b76ae37693acecf" => ~d[2024-03]
         },

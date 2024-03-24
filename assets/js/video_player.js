@@ -38,6 +38,7 @@ function initVideoElement() {
   video.addEventListener('timeupdate', updateMetadata);
   video.addEventListener('timeupdate', updateProgressbar);
   video.addEventListener('progress', updateProgressbar);
+  video.addEventListener('ended', maybeExecEndAction);
   video.addEventListener('play', markPlay);
   video.addEventListener('play', updatePlaypause);
   video.addEventListener('play', () => timeUpdate());
@@ -83,6 +84,15 @@ function maybeTimeUpdate(changedMeta) {
   timeUpdate(null, {
     mediaTime: changedMeta.start / 1000
   })
+}
+
+function maybeExecEndAction() {
+  console.log("video ended, action:", videoMeta.end_action)
+
+  if (videoMeta.end_action == "reverse") {
+    autoplay = true
+    reverseVideo()
+  }
 }
 
 window.addEventListener(`phx:video:autoplay`, (e) => {
