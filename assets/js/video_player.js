@@ -200,11 +200,24 @@ function cacheVideoPosterReset() {
   video.setAttribute("poster", "")
 }
 
+let canPlayThroughEvtListener = null
 function updateVideoElement() {
   if (!videoMeta.hash) return;
   console.debug('trying to play video for: ', videoMeta.hash)
   if (canPlayHLS) {
-    console.debug('native hls, doing nothing?')
+    console.debug('native hls; hacking around first frame flash')
+    if (video.readyState === 0) {
+      // only re-use video poster when it's loaded
+      outer.style.backgroundImage = `url("${videoMeta.poster}")`
+      outer.style.backgroundSize = 'cover'
+    }
+    video.style.visibility = 'hidden'
+    if (canPlayThroughEvtListener) video.removeEventListener(canPlayThroughEvtListener)
+    canPlayThroughEvtListener = video.addEventListener('canplaythrough', () => {
+      video.style.visibility = 'visible'
+      outer.style.backgroundImage = null
+      outer.style.backgroundSize = null
+    }, { once: true });
   } else if (window.hls === false || typeof Promise === "undefined") {
     console.debug('hls.js not supported, using fallback')
   } else {
