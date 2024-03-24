@@ -143,6 +143,7 @@ function attachHlsErrorHandler(obj, Hls) {
     }
 
     if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
+      cacheVideoPoster();
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use the fallback.', data);
       sendCurrentVideoTime('video-fatal-hls');
       videoMeta.start = videoTimeInMs;
@@ -161,6 +162,42 @@ function attachHlsErrorHandler(obj, Hls) {
       });
     }
   });
+}
+
+let cacheVideoPosterTimeout = null
+let cacheVideoPosterPos = null
+function cacheVideoPoster() {
+  // for some reason iOS is extremely slow, making the experience worse
+  if (canPlayHLS) return
+
+  // do not attempt to cache if the video likely doesn't have a valid image
+  if (video.readyState < 4 && !video.ended) return
+
+  const curPos = `${prevVideo} ${video.currentTime}`
+  if (cacheVideoPosterPos === curPos) return
+  cacheVideoPosterPos = curPos
+
+  clearTimeout(cacheVideoPosterTimeout)
+
+  let canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  let ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  let image = canvas.toDataURL("image/jpeg");
+  if (image.length < 100) return console.log("not setting background image, as export seems broken")
+  video.setAttribute("poster", image)
+
+  cacheVideoPosterTimeout = setTimeout(() => {
+    if (!document.startViewTransition) return cacheVideoPosterReset();
+    document.startViewTransition(cacheVideoPosterReset)
+  }, 3000)
+}
+
+function cacheVideoPosterReset() {
+  video.setAttribute("poster", "")
 }
 
 function updateVideoElement() {
@@ -362,12 +399,12 @@ function maybeShowLoadingIndicator(evt) {
 }
 
 function maybeUpdatePoster(changedMeta) {
-  if (typeof changedMeta.poster === "undefined") return
+  if (typeof changedMeta.poster === "undefined" || !changedMeta.poster) return
+  if (video.readyState >= 1) return
 
-  const url = (video.readyState >= 1 || !changedMeta.poster) ? "" : changedMeta.poster
-  if (video.poster == url) return
-  console.debug("updating poster to", url)
-  video.setAttribute("poster", url)
+  if (video.poster == changedMeta.poster) return
+  console.debug("updating poster to", changedMeta.poster)
+  video.setAttribute("poster", changedMeta.poster)
 }
 
 let userClickPlayOnce = false;
@@ -387,6 +424,7 @@ function setVideo(avoidSeek) {
   progressWrapper.setAttribute("phx-update", "ignore");
 
   if (prevVideo !== videoMeta.hash) {
+    cacheVideoPoster();
     prevVideo = videoMeta.hash;
     updateVideoElement();
     return;
@@ -547,10 +585,11 @@ function togglePlayPause(e) {
 }
 
 function reverseVideo() {
+  actionIcon("reverse")
+  cacheVideoPoster()
   window.pushEvent('video-reverse', {
     pos: Math.round(videoTimeInMs)
   })
-  actionIcon("reverse")
 }
 
 function timeFromProgressPosition(e) {
