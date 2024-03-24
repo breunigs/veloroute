@@ -229,6 +229,8 @@ $videoBarProgressHeight: 0.4rem;
     vertical-align: middle;
     cursor: pointer;
     position: relative;
+    -webkit-user-select: none;
+    user-select: none;
 
     &.disabled {
       cursor: default;
@@ -303,6 +305,8 @@ $videoBarProgressHeight: 0.4rem;
     height: $videoBarHeight - 4*$videoBarBtnMargin;
     margin: 2*$videoBarBtnMargin $videoBarBtnMargin;
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   #progressWrapper {
