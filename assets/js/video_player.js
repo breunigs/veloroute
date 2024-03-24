@@ -670,17 +670,18 @@ function scrubMove(e) {
 }
 
 function scrubEnd(e) {
+  progressPreviewEl.classList.remove("enabled")
   if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
   seekToTime(scrubTimeInMs)
   scrubTimeInMs = null
-  progressPreviewEl.classList.remove("enabled")
+
 }
 
 function scrubCancel(e) {
+  progressPreviewEl.classList.remove("enabled")
   if (scrubStartTimeMs === null || isNaN(scrubStartTimeMs)) return
   seekToTime(scrubStartTimeMs)
   scrubTimeInMs = null
-  progressPreviewEl.classList.remove("enabled")
 }
 
 function updateProgressbar() {
