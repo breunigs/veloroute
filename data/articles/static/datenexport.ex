@@ -78,7 +78,11 @@ defmodule Data.Article.Static.Datenexport do
 
   defp video_assigns(%{video_hash: hash}, fallback_title) when valid_hash(hash) do
     path = Video.RenderedTools.highest_quality_video_file(hash)
-    path = Path.join(Settings.video_serve_path(), path)
+
+    path =
+      [Settings.video_serve_host(), Settings.video_serve_path(), path]
+      |> Util.compact()
+      |> Path.join()
 
     video = Video.Generator.find_by_hash(hash)
 

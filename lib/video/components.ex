@@ -9,7 +9,8 @@ defmodule Video.Components do
 
     assigns = %{
       variants: variants,
-      main_url: "/#{Settings.video_serve_path()}/#{hash}/stream.m3u8",
+      main_url:
+        "#{Settings.video_serve_host()}/#{Settings.video_serve_path()}/#{hash}/stream.m3u8",
       first_url: if(length(variants) > 0, do: variants |> List.first() |> elem(0)),
       start: start_in_ms / 1000.0
     }
@@ -54,7 +55,7 @@ defmodule Video.Components do
   use Memoize
 
   defmemo variants(hash) do
-    prefix = "/#{Settings.video_serve_path()}/#{hash}/"
+    prefix = "#{Settings.video_serve_host()}/#{Settings.video_serve_path()}/#{hash}/"
 
     with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
