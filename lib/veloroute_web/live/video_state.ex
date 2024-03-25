@@ -92,7 +92,7 @@ defmodule VelorouteWeb.Live.VideoState do
           set_start(new_state, near)
 
         params["autoplay"] == "true" ->
-          set_start(new_state, nil)
+          set_start(%{new_state | direction: :forward}, nil)
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox #{near_dbg}")
