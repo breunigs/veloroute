@@ -14,7 +14,8 @@ defmodule Video.Renderer do
     ensure_min_version(rendered)
     sources = Video.Track.normalize_video_tuples(rendered.sources())
 
-    blurred = if blur, do: blurs(sources), else: settb(sources)
+    prefix = "scale=640:-1,"
+    blurred = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
     filter = Enum.join(blurred ++ time_lapse_corrects(sources) ++ xfades(sources, rendered), ";")
 
     filter =
@@ -33,8 +34,6 @@ defmodule Video.Renderer do
         filter,
         "-pix_fmt",
         "yuv420p",
-        "-s",
-        "640x480",
         "-c:v",
         "libx264",
         "-preset",
@@ -53,10 +52,9 @@ defmodule Video.Renderer do
   @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
-    blurs = blurs(sources)
+    blurs = blurs(sources, "scale=1080:-1,")
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
     filter = Enum.join(blurs ++ xfades, ";")
-    filter = filter <> "[scale];[scale]scale=1080:608"
 
     Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
@@ -127,7 +125,7 @@ defmodule Video.Renderer do
 
   def render_cmd(rendered, tmp_dir) do
     sources = Video.Track.normalize_video_tuples(rendered.sources())
-    filter = Enum.join(blurs(sources) ++ xfades(sources, rendered), ";")
+    filter = Enum.join(blurs(sources, nil) ++ xfades(sources, rendered), ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
@@ -223,14 +221,15 @@ defmodule Video.Renderer do
   # uses the jsonblur frei0r plugin for the input videos (e.g. [0]) and outputs
   # them as blurs (e.g. [blur0]). Additionally it sets the timebase, see settb
   # for details.
-  defp blurs(sources) when is_list(sources) do
+  defp blurs(sources, prefix) when is_list(sources) do
     sources
     |> Enum.with_index()
     |> Parallel.map(2, fn {{path, from, _to, opts}, idx} ->
       detections = Video.Path.detections_rel_to_cwd(path)
       from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = blur_frame_skip(path, from)
-      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},#{vf(opts)}settb=AVTB[blur#{idx}]"
+
+      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},#{prefix}#{vf(opts)}settb=AVTB[blur#{idx}]"
     end)
   end
 
@@ -259,11 +258,11 @@ defmodule Video.Renderer do
   # sets the timebase for all input videos (e.g. [0]) and outputs them as blurs
   # (e.g. [blur0]). This is sometimes required or ffmpeg will fail with
   # "different timebase".
-  defp settb(sources) when is_list(sources) do
+  defp settb(sources, prefix) when is_list(sources) do
     sources
     |> Enum.with_index()
     |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
-      "[#{idx}]#{vf(opts)}settb=AVTB[blur#{idx}]"
+      "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB[blur#{idx}]"
     end)
   end
 
