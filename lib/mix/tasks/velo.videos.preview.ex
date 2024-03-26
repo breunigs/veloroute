@@ -97,11 +97,12 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     blur = System.get_env("VELO_BLUR", nil) == "1"
     start_from = List.first(args)
     start_from_text = start_from || "the start"
-    IO.puts(:stderr, "previewing #{rendered.hash()}: #{rendered.name()} from #{start_from_text}")
+    info = "previewing #{rendered.hash()} – #{rendered.name()} from #{start_from_text}"
+    IO.puts(:stderr, info)
     cmd = Video.Renderer.preview_cmd(rendered, blur, start_from)
 
     if System.get_env("VELO_HOST_FFMPEG") == "1" do
-      exec_pipe(cmd)
+      exec_pipe(cmd, info)
     else
       full_ref = {"preview video", Video.Renderer.ffmpeg_image()}
 
@@ -109,7 +110,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
         try do
           full_ref
           |> Util.Docker.run_docker_cli(%{mount_videos_in_dir: "/workdir", command_args: cmd})
-          |> exec_pipe()
+          |> exec_pipe(info)
         after
           Util.Docker.stop(full_ref)
         end
@@ -132,9 +133,10 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     -
   ])
 
-  @spec exec_pipe([binary()]) :: any
-  defp exec_pipe(cmd) do
-    player = System.get_env("VELO_PREVIEW_TOOL", @default_player)
+  @spec exec_pipe([binary()], binary()) :: any
+  defp exec_pipe(cmd, info) do
+    title = Util.cli_printer(["--title=#{info}"])
+    player = System.get_env("VELO_PREVIEW_TOOL", "#{@default_player} #{title}")
     # avoid using erlexec because it costs us some performance. Also
     # isolating the commands like this doesn't require us to set
     # MIX_QUIET=1 to avoid printing stuff to stdout.
