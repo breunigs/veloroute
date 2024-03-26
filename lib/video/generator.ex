@@ -157,13 +157,13 @@ defmodule Video.Generator do
   """
   @spec dynamic_compile(Video.Track.t()) :: module() | {:error, binary()}
   def dynamic_compile(track) do
-    with {hash, coords, rec_dates, street_names} <- Video.Track.render(track) do
+    with {hash, coords, rec_dates, street_names} <- Video.Track.render(track, street_names: false) do
       mod_name = Video.Generator.find_by_hash(hash)
 
       if is_nil(mod_name) do
         [{mod_name, _bytes}] =
           as_code(
-            "dynamic_compile_#{hash}",
+            "dynamic_compile",
             hash,
             track.videos,
             coords,

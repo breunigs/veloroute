@@ -101,11 +101,22 @@ defmodule Video.Track do
 
   def historic_for(%__MODULE__{}, _hash), do: %{}
 
+  @type render_opts :: [street_names: boolean()]
+  @typep render_opts_priv :: %{required(atom()) => term()}
+  @default_render_opts [street_names: true]
+  @spec render_opts(render_opts()) :: render_opts_priv()
+  defp render_opts(opts) do
+    @default_render_opts
+    |> Keyword.merge(opts)
+    |> Keyword.validate!(@default_render_opts)
+    |> Enum.into(%{})
+  end
+
   @doc """
   Loads all references videos and turns them into a single stream of
   coordinates. It also calculates the hash for these.
   """
-  @spec render(t()) ::
+  @spec render(t(), render_opts()) ::
           {
             hash(),
             [Video.TimedPoint.t()],
@@ -114,12 +125,15 @@ defmodule Video.Track do
           }
           | {:error, binary()}
 
+  def render(t, opts \\ [])
+
   # Experimentally determined time to add between two consecutive videos to
   # ensure that there's no long term drift. Not sure why it is needed, since
   # it's necessary even though we use the video length to determine where to
   # start the next coordinates from.
   @video_concat_bump_ms 85
-  def render(%__MODULE__{videos: videos, renderer: renderer} = t) when renderer <= 2 do
+  def render(%__MODULE__{videos: videos, renderer: renderer} = t, opts) when renderer <= 2 do
+    opts = render_opts(opts)
     tsvs = tsvs(videos)
 
     tsv_list =
@@ -156,10 +170,11 @@ defmodule Video.Track do
     hash = calc_hash(tsv_list, fade)
 
     {hash, coords, reverse_compact_recording_dates(recording_dates),
-     compact_street_names(coords, hash)}
+     compact_street_names(coords, hash, opts)}
   end
 
-  def render(%__MODULE__{videos: videos, renderer: renderer}) when renderer in [3, 4, 5] do
+  def render(%__MODULE__{videos: videos, renderer: renderer}, opts) when renderer in [3, 4, 5] do
+    opts = render_opts(opts)
     videos = normalize_video_tuples(videos)
 
     tsvs = tsvs(videos)
@@ -202,11 +217,11 @@ defmodule Video.Track do
       coords = Enum.reverse(rev_coords)
 
       {hsh, coords, reverse_compact_recording_dates(recording_dates),
-       compact_street_names(coords, hsh)}
+       compact_street_names(coords, hsh, opts)}
     end
   end
 
-  def render(%__MODULE__{renderer: renderer} = track) do
+  def render(%__MODULE__{renderer: renderer} = track, _opts) do
     {:error,
      "Tried to render track with unknown renderer version: #{renderer}. Full track: #{inspect(track)}"}
   end
@@ -330,8 +345,10 @@ defmodule Video.Track do
   end
 
   @min_street_duration_ms 1000
-  @spec compact_street_names([Video.TimedPoint.t()], hash()) :: timed_info()
-  defp compact_street_names(coords, hash) do
+  @spec compact_street_names([Video.TimedPoint.t()], hash(), render_opts_priv()) :: timed_info()
+  defp compact_street_names(_coords, _hash, %{street_names: false}), do: []
+
+  defp compact_street_names(coords, hash, _opts) do
     map_matcher = Application.get_env(:veloroute, :map_matcher)
 
     with {:ok, matched} <- map_matcher.match(coords) do
