@@ -19,6 +19,7 @@ defmodule Veloroute.MixProject do
       preferred_cli_env: [
         test: :test,
         dialyzer: :test,
+        credo: :test,
         "velo.assets.prepare": :test
       ],
       aliases: aliases()
