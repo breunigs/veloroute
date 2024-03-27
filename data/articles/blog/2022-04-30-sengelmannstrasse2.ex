@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
   def type(), do: :construction
 
   def start(), do: ~d[2022-02]
-  def stop(), do: ~d[2024]
+  def stop(), do: ~d[2024-07-31]
 
   def tags(), do: ["5N", "5", "rsw-bad-bramstedt"]
 

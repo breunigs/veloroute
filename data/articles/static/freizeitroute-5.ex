@@ -16,68 +16,48 @@ defmodule Data.Article.Static.Freizeitroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Vier und Marschlande",
         direction: :forward,
         from: "Hauptbahnhof",
         to: "Besenhorster Sandberge",
         parent_ref: __MODULE__,
         text: "vom Hauptbahnhof nach Borghorst",
+        historic: %{
+          "b6249061bc668b3e3f29f19b11aa93e5" => ~d[2024-03],
+          "862de23b22ca3ff53056fb393d19e8fd" => ~d[2021-06]
+        },
         videos: [
-          {"2021-06-27-veloroute9/GX012024", "00:00:31.999", :end},
-          {"2021-06-27-veloroute9/GX012025", :start, :end},
-          {"2021-06-27-veloroute9/GX012026", :start, "00:00:11.612"},
-          {"2021-04-03-freizeitroute-5-realtime/GX011113.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX011114.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX011115.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX011116.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX011117.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX021117.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX031117.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX041117.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX051117.MP4_time_lapse.mkv", :start,
-           "00:00:27.661"},
-          {"2021-04-03-freizeitroute-5-realtime/GX011118.MP4_time_lapse.mkv", "00:00:01.502",
-           :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX021118.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX011119.MP4_time_lapse.mkv", "00:00:00.400",
-           :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX021119.MP4_time_lapse.mkv", :start, :end},
-          {"2021-04-03-freizeitroute-5-realtime/GX031119.MP4_time_lapse.mkv", :start, :end}
+          {"2024-03-26-fr5/GX016951", :start, :end},
+          {"2024-03-26-fr5/GX016952", :start, :end},
+          {"2024-03-26-fr5/GX016953", :start, :end},
+          {"2024-03-26-fr5/GX016954", :start, :end},
+          {"2024-03-26-fr5/GX016955", :start, :end},
+          {"2024-03-26-fr5/GX016956", :start, :end},
+          {"2024-03-26-fr5/GX016957", :start, :end},
+          {"2024-03-26-fr5/GX016958", :start, :end},
+          {"2024-03-26-fr5/GX016959", :start, :end},
+          {"2024-03-26-fr5/GX026959", :seamless, "00:03:09.823"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Vier und Marschlande",
         direction: :backward,
         from: "Besenhorster Sandberge",
         to: "Hauptbahnhof",
         parent_ref: __MODULE__,
         text: "von Borghorst zum Hauptbahnhof",
+        historic: %{
+          "e329c963972ba3ac1c70b751b8e9c543" => ~d[2024-03],
+          "ab75c85609385bce7a2f443dadd4ff0e" => ~d[2021-06]
+        },
         videos: [
-          {"2021-04-03-freizeitroute-5-realtime/GX011120.MP4_time_lapse.mkv", :start,
-           "00:01:00.928"},
-          {"2021-04-03-freizeitroute-5-realtime/GX011121.MP4_time_lapse.mkv", "00:00:00.434",
-           :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011122", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011123", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011124", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011125", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011126", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX021126", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011127", :start, :end},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011128", :start, "00:00:07.241"},
-          {"2021-04-03-freizeitroute-5-zeitraffer/GX011129", :start, "00:00:15.048"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011307", "00:00:00.234", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011308", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011309", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011310", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011311", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011312", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011313", :start, "00:00:14.114"},
-          {"2021-06-27-veloroute9/GX012038", "00:00:04.805", :end},
-          {"2021-06-27-veloroute9/GX012039", :start, :end},
-          {"2021-06-27-veloroute9/GX012040", :start, "00:00:01.835"}
+          {"2024-03-26-fr5/GX016960", :start, "00:00:38.872"},
+          {"2024-03-26-fr5/GX016961", "00:00:01.201", :end},
+          {"2024-03-26-fr5/GX016962", :start, "00:01:17.744"},
+          {"2024-03-26-fr5/GX016962", "00:01:26.587", :end},
+          {"2024-03-26-fr5/GX016963", :start, "00:00:10.342"}
         ]
       }
     ]

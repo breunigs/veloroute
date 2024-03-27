@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.BarrierearmerAlsterradweg do
     do:
       "Bis 2025 sollen vom Lattenkamp bis Ohlsdorf Treppen und steile Anstiege ersetzt werden oder Alternativen bekommen"
 
-  def type(), do: :intent
+  def type(), do: :construction
   def tags(), do: ["FR1"]
 
   def links(_assigns) do

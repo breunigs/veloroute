@@ -16,62 +16,51 @@ defmodule Data.Article.Static.Freizeitroute1 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Alsterradweg",
         direction: :forward,
         from: "Binnenalster",
         to: "Duvenstedter Brook",
         parent_ref: __MODULE__,
         text: "entlang der Alster zum Duvenstedter Brook",
+        historic: %{
+          "ae2a9895017b96968a0c5a29fe7df610" => ~d[2024-03],
+          "8c596cdd73de542a7ff968d8c4473090" => ~d[2022-12]
+        },
         videos: [
-          {"2022-12-24-berner-strasse/GX015009", "00:00:01.869", "00:00:19.219"},
-          {"2021-07-26-missing-parts-fr2-fr3/GX012415", "00:00:01.235", "00:00:11.178"},
-          {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:04.972", "00:00:06.039"},
-          {"2021-09-26-velo6-rsw-ahrensburg/GX012983", "00:01:17.811", "00:01:35.762"},
-          {"2021-05-29-freizeitroute1/GX011470", "00:00:24.524", :end},
-          {"2021-05-29-freizeitroute1/GX011471", :start, "00:00:00.634"},
-          {"2021-05-29-freizeitroute1/GX011473", :start, "00:00:15.349"},
-          {"2021-05-29-freizeitroute1/GX011474", "00:00:26.860", :end},
-          {"2021-05-29-freizeitroute1/GX011475", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011476", :start, "00:04:12.052"},
-          {"2021-05-29-freizeitroute1/GX011477", "00:00:38.739", "00:03:21.968"},
-          {"2021-05-29-freizeitroute1/GX011478", :start, "00:00:03.403"},
-          {"2021-05-29-freizeitroute1/GX011479", "00:00:15.115", :end},
-          {"2021-05-29-freizeitroute1/GX011480", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011481", :start, "00:00:01.301"},
-          {"2021-05-29-freizeitroute1/GX011483", "00:00:06.874", :end},
-          {"2021-05-29-freizeitroute1/GX011484", :start, "00:00:16.283"},
-          {"2021-05-29-freizeitroute1/GX011484", "00:00:43.810", "00:01:44.605"},
-          {"2021-05-29-freizeitroute1/GX011485", "00:00:03.203", "00:03:27.708"}
+          {"2024-03-14-fr12-fr1a/GX016842", :start, "00:01:37.764"},
+          {"2024-03-14-fr12-fr1a/GX016842", "00:01:40.100", :end},
+          {"2024-03-14-fr12-fr1a/GX016843", :start, :end},
+          {"2024-03-14-fr12-fr1a/GX016844", :start, :end},
+          {"2024-03-14-fr12-fr1a/GX016845", :start, "00:00:04.371"},
+          {"2024-03-27-fr1/GX016987", "00:00:32.199", :end},
+          {"2024-03-27-fr1/GX016988", :start, :end},
+          {"2024-03-27-fr1/GX016989", :start, "00:07:36.890"},
+          {"2024-03-27-fr1/GX016989", "00:07:46.866", "00:09:22.429"},
+          {"2024-03-27-fr1/GX016990", :start, "00:02:07.527"},
+          {"2024-03-27-fr1/GX016990", "00:02:20.207", :end}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Alsterradweg",
         direction: :backward,
         from: "Duvenstedter Brook",
         to: "Binnenalster",
         parent_ref: __MODULE__,
         text: "entlang der Alster in die Innenstadt",
+        historic: %{
+          "6c63cd3a50ccf9f25431236c6fe204ca" => ~d[2024-03],
+          "e64adc61c39975395e7407819a1471d7" => ~d[2022-12]
+        },
         videos: [
-          {"2021-05-29-freizeitroute1/GX011485", "00:03:29.276", :end},
-          {"2021-05-29-freizeitroute1/GX011487", :start, "00:01:17.678"},
-          {"2021-05-29-freizeitroute1/GX011489", "00:01:13.040", "00:01:46.707"},
-          {"2021-05-29-freizeitroute1/GX011490", "00:00:01.134", :end},
-          {"2021-05-29-freizeitroute1/GX011491", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011492", :start, "00:01:21.214"},
-          {"2021-05-29-freizeitroute1/GX011493", "00:00:12.880", :end},
-          {"2021-05-29-freizeitroute1/GX011494", :start, :end},
-          {"2021-05-29-freizeitroute1/GX021494", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011495", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011496", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011497", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011498", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011499", :start, :end},
-          {"2021-05-29-freizeitroute1/GX011500", :start, "00:02:03.423"},
-          {"2021-09-26-velo6-rsw-ahrensburg/GX012984", "00:00:02.736", "00:00:21.955"},
-          {"2021-09-26-velo6-rsw-ahrensburg/GX012988", "00:00:08.442", "00:00:13.647"},
-          {"2022-12-24-berner-strasse/GX015054", "00:00:29.530", "00:00:54.254"}
+          {"2024-03-27-fr1/GX016991", "00:00:01.935", "00:04:20.560"},
+          {"2024-03-27-fr1/GX016991", "00:04:23.363", :end},
+          {"2024-03-27-fr1/GX016992", :start, "00:00:03.837"},
+          {"2024-03-27-fr1/GX016992", "00:00:11.812", "00:02:04.191"},
+          {"2024-03-14-fr12-fr1a/GX016853", "00:00:10.777", :end},
+          {"2024-03-14-fr12-fr1a/GX016854", :start, :end},
+          {"2024-03-14-fr12-fr1a/GX016855", :start, :end}
         ]
       }
     ]

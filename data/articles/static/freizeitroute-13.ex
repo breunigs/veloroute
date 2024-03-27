@@ -44,7 +44,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
         from: "Harburger Berge",
         to: "Finkenwerder",
         parent_ref: __MODULE__,
-        text: "durchs alte Land nach Finkenwerder",
+        text: "durchs Alte Land nach Finkenwerder",
         videos: [
           {"2021-08-04-fr13-fr14/GX012551.MP4_time_lapse.mkv", "00:00:10.010", :end},
           {"2021-08-04-fr13-fr14/GX022551.MP4_time_lapse.mkv", :start, :end},

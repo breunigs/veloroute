@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
     do:
       "Umplanung mischt gute (Kreisel, PBL) und schlechte (RiM, Schutzstreifen) Ideen. Vielfältige Führungsformen."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def start(), do: ~d[2024-03-01]
   def stop(), do: ~d[2025-04-01]
 

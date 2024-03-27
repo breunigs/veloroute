@@ -1,8 +1,8 @@
 defmodule Data.Article.Blog.Wagnerstrasse do
   use Article.Default
 
-  def start(), do: ~d[2024-03]
-  def stop(), do: ~d[2025-11]
+  def start(), do: ~d[2024-08-01]
+  def stop(), do: ~d[2024-12-31]
   def title(), do: "Wagnerstraße (Eilenau bis Wandsbeker Chausse, Veloroute 13, Bezirksroute W1)"
 
   def summary(),

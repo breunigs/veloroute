@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def title(), do: "Am Luisenhof"
 
   def start(), do: ~d[2024-07-15]
-  def stop(), do: ~d[2025-03-31]
+  def stop(), do: ~d[2025-03-22]
   def construction_site_id_hh(), do: [677_843]
 
   def type(), do: :planned
@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def links(_assigns) do
     [
+      {"Bauvergabe", "März 2024",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/02842548-8a4f-4c5a-b3e8-226d28b107cd/details"},
       {"Erläuterungen und Lageplan", "2023, Überarbeitung",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018980"},
       {"Erläuterungen und Lageplan", "2022, veralteter Entwurf",
