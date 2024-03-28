@@ -168,6 +168,29 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("video-ended", %{"action" => "play"}, %{assigns: assigns} = socket) do
+    current_track = VelorouteWeb.Live.VideoState.current_track(assigns.video)
+    current_rendered = VelorouteWeb.Live.VideoState.current_rendered(assigns.video)
+
+    socket =
+      with %{action: :play} = action <- Map.get(current_track, :end_action),
+           %{lat: lat, lon: lon} when is_module(current_rendered) <-
+             List.last(current_rendered.coords()) do
+        socket
+        |> VelorouteWeb.Live.VideoState.maybe_update_video(action.route, %{
+          "group" => action.group,
+          "direction" => to_string(action.direction),
+          "lat" => lat,
+          "lon" => lon
+        })
+        |> maybe_autoplay(true)
+      else
+        _ -> socket
+      end
+
+    {:noreply, socket}
+  end
+
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
     Logger.warning(msg)

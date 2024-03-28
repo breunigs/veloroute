@@ -151,10 +151,6 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
   def current_track(nil), do: nil
 
-  @spec current_video(t() | nil) :: Video.Generator.t() | nil
-  defp current_video(%__MODULE__{direction: :forward, forward: fw}), do: fw
-  defp current_video(%__MODULE__{direction: :backward, backward: bw}), do: bw
-
   @spec current_rendered(t()) :: Video.Generator.t() | nil
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
@@ -271,7 +267,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   @spec for_frontend(t()) :: keyword()
   defp for_frontend(%__MODULE__{} = state) when has_video(state) do
-    video = current_video(state)
+    video = current_rendered(state)
     track = current_track(state)
 
     start_from = Video.Generator.start_from(video, state.start)
@@ -336,7 +332,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp maybe_reverse_direction(%__MODULE__{} = state, params)
        when is_reversible(state) do
-    video = current_video(state)
+    video = current_rendered(state)
     start_from = Video.Generator.start_from(video, state.start)
     autoplay = params["autoplay"] == "true"
     factor = if autoplay, do: 0.9, else: 0.99

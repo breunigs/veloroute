@@ -17,7 +17,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
     do: [
       %Video.Track{
         renderer: 3,
-        group: "8 Bergedorf",
+        group: "bergedorf",
         direction: :forward,
         from: "Innenstadt",
         to: "Bergedorf",
@@ -43,7 +43,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
       },
       %Video.Track{
         renderer: 3,
-        group: "8 Bergedorf",
+        group: "bergedorf",
         direction: :backward,
         from: "Bergedorf",
         to: "Innenstadt",
@@ -73,7 +73,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
         renderer: 3,
-        group: "8 Mümmelmannsberg",
+        group: "mümmelmannsberg",
         direction: :forward,
         from: "Innenstadt",
         to: "Mümmelmannsberg",
@@ -89,12 +89,13 @@ defmodule Data.Article.Static.Alltagsroute8 do
       },
       %Video.Track{
         renderer: 3,
-        group: "8 Mümmelmannsberg",
+        group: "mümmelmannsberg",
         direction: :backward,
         from: "Mümmelmannsberg",
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "vom Mümmelmannsberg in die Innenstadt",
+        end_action: %{action: :play, route: __MODULE__, group: "bergedorf", direction: :backward},
         historic: %{
           "a53d40087ef8bfc2ff0542c448f06153" => ~d[2023-07],
           "1f3e66277483a6b8bfcd4dc3069f6766" => ~d[2022-05]

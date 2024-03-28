@@ -39,6 +39,7 @@ function initVideoElement() {
   video.addEventListener('timeupdate', updateProgressbar);
   video.addEventListener('progress', updateProgressbar);
   video.addEventListener('ended', maybeExecEndAction);
+  video.addEventListener('ended', updatePlaypause);
   video.addEventListener('play', markPlay);
   video.addEventListener('play', updatePlaypause);
   video.addEventListener('play', () => timeUpdate());
@@ -87,11 +88,15 @@ function maybeTimeUpdate(changedMeta) {
 }
 
 function maybeExecEndAction() {
-  console.log("video ended, action:", videoMeta.end_action)
+  const end = videoMeta.end_action
+  console.debug("video ended, action:", end)
 
-  if (videoMeta.end_action == "reverse") {
+  if (end === "reverse") {
     autoplay = true
     reverseVideo()
+  } else if (typeof end === "object" && end.action) {
+    cacheVideoPoster()
+    window.pushEvent("video-ended", { action: end.action })
   }
 }
 

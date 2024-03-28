@@ -24,7 +24,13 @@ defmodule Video.Track do
   @type hash :: <<_::256>>
   @type timed_info :: [%{timestamp: non_neg_integer(), text: binary()}]
   @typep historic :: %{hash() => Data.RoughDate.t()}
-  @type end_action :: :loop | :reverse
+  @typep play_action :: %{
+           action: :play,
+           route: module(),
+           group: binary(),
+           direction: :forward | :backward
+         }
+  @type end_action :: :loop | :reverse | play_action()
 
   @type fade :: float() | :none | nil
   defguard valid_fade(val) when val == :none or (is_float(val) and val >= 0)
