@@ -90,14 +90,23 @@ function maybeTimeUpdate(changedMeta) {
 function maybeExecEndAction() {
   const end = videoMeta.end_action
   console.debug("video ended, action:", end)
+  let term = null
 
   if (end === "reverse") {
     autoplay = true
     reverseVideo()
+    term = end
   } else if (typeof end === "object" && end.action) {
     cacheVideoPoster()
     window.pushEvent("video-ended", { action: end.action })
+    term = end.action
   }
+
+  if (term) window.plausible('video-end-action', {
+    props: {
+      action: term
+    }
+  })
 }
 
 window.addEventListener(`phx:video:autoplay`, (e) => {
