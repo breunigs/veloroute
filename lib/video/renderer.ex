@@ -483,7 +483,7 @@ defmodule Video.Renderer do
   # ffmpeg itself manages avc tags
   @spec codec_avc(map(), non_neg_integer()) :: map()
   defp codec_avc(_info, idx),
-    do: %{codec: ["libx264", "-preset:v:#{idx}", "veryslow", "-refs:v:#{idx}", "5"]}
+    do: %{codec: ["libx264", "-preset:v:#{idx}", "veryslow"]}
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.
