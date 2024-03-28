@@ -92,6 +92,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
           "0564511a98d53f27dd754ae1a4af11fa" => ~d[2022-04],
           "7cdaf2d2df2ac71669fab5292b882c95" => ~d[2021-06]
         },
+        end_action: :reverse,
         videos: [
           {"2023-07-22-vr5/GX016216", :start, :end},
           {"2023-07-22-vr5/GX016217", :start, :end},
@@ -115,6 +116,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
         to: "Hamburger Meile",
         parent_ref: __MODULE__,
         text: "City Nord zur Hamburger Meile",
+        end_action: %{action: :play, route: __MODULE__, group: "5", direction: :forward},
         historic: %{
           "f6524e1bfb7c5405dad1cdb01c7c386e" => ~d[2023-07],
           "495adb7cbe7ae5df22ef39eae21f65dc" => ~d[2022-04],

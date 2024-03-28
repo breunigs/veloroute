@@ -1,8 +1,8 @@
-defmodule Data.Article.Blog.AnDerAlsterKonsulat do
+defmodule Data.Article.Blog.AlsteruferKonsulat do
   use Article.Default
 
   def title(),
-    do: "An der Alster – vor ehemaligem US-Konsulat (Radroute 4, Freizeitroute FR1)"
+    do: "Alsterufer – vor ehemaligem US-Konsulat (Radroute 4, Freizeitroute FR1)"
 
   def summary(),
     do:

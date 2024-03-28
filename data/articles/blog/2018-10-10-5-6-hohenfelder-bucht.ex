@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.HohenfelderBucht do
   def stop(), do: ~d[2025-07-31]
 
   def type(), do: :construction
-  def construction_site_id_hh(), do: [6381]
+  # def construction_site_id_hh(), do: [6381]
   def tags(), do: ["5", "6", "FR2", "FR3", "br-nord-n1"]
 
   def links(_assigns) do
