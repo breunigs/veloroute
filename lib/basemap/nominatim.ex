@@ -124,6 +124,7 @@ defmodule Basemap.Nominatim do
       --dbname=nominatim \
       --no-align \
       --tuples-only \
+      --variable=ON_ERROR_STOP=1 \
       --output=#{export(:container)} \
       --file=#{query_path(:container)}
 
