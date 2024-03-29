@@ -130,6 +130,7 @@ defmodule Basemap.Nominatim do
 
     # maybe keep shell open if we want to debug
     if [ -f "#{debug_path(:container)}" ]; then
+      rm "#{debug_path(:container)}"
       echo "Keeping container alive for debugging. Exec into it like so:"
       echo "    docker exec -unominatim -it #{Util.Docker.names(@full_ref).container} psql"
       echo "and export from the REPL like so:"
