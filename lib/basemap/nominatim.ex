@@ -138,6 +138,7 @@ defmodule Basemap.Nominatim do
       echo "   \\pset format unaligned"
       echo "   \\o #{export(:container)}"
       echo "followed by the full query."
+      echo "The original query is in #{query_path(:container)}"
       sleep 1d
       exit $?
     fi
