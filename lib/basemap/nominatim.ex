@@ -149,103 +149,187 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
+    WITH
+      -- combo is basically "placex", joined with extra information from linked
+      -- tables. Some columns are already condensed to avoid code repetition.
+      combo AS (
+        SELECT
+          CONCAT(main1.osm_type, main1.osm_id) AS id,
+          main1.place_id,
+          main1.importance,
+          main1.rank_address,
+          main1.rank_search,
+          main1.class,
+          main1.type,
+          main1.admin_level,
+          main1.name,
+          main1.housenumber,
+          main1.address,
+          main1.extratags,
+          main1.centroid,
+          main1.geometry,
+          -- merge joined names for addresses
+          ARRAY_REMOVE(ARRAY_AGG(
+            main2.name->'name'
+            ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
+          ), NULL) AS parents_name,
+          -- grab from parents because of wrong postcode on main1 object itself
+          (SELECT (ARRAY_REMOVE(
+            ARRAY_AGG(
+              main2.address->'postcode'
+              ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
+            ),
+            NULL
+          ))[1]) AS parents_postcode
+        FROM placex AS main1
+        LEFT JOIN place_addressline AS help1
+        ON help1.isaddress = TRUE AND help1.place_id = main1.place_id
+        LEFT JOIN place_addressline AS help2
+        ON help2.isaddress = TRUE AND help2.place_id = main1.parent_place_id AND help1.place_id IS NULL
+        LEFT JOIN placex AS main2
+        ON COALESCE(help1.address_place_id, help2.address_place_id) = main2.place_id
+        WHERE
+          -- filter which results to keep for searching
+          (main1.name IS NOT NULL OR main1.type IN ('compressed_air') OR main1.housenumber IS NOT NULL)
+          -- auto-merged by Nominatim, so ignore
+          -- see https://nominatim.org/release-docs/develop/develop/Database-Layout/#search-tables
+          AND main1.linked_place_id IS NULL
+          AND main2.linked_place_id IS NULL
+          -- if we import Wikipedia, there will be entries for the entire world. So
+          -- we filter it down to our area of interest again.
+          AND main1.geometry && ST_MakeEnvelope(#{bbox}, 4326)
+        GROUP BY
+          main1.osm_type,
+          main1.osm_id,
+          main1.place_id,
+          main1.importance,
+          main1.rank_address,
+          main1.rank_search,
+          main1.class,
+          main1.type,
+          main1.admin_level,
+          main1.name,
+          main1.housenumber,
+          main1.address,
+          main1.extratags,
+          main1.centroid,
+          main1.geometry
+      ),
+      -- interpol is an expanded version of "location_property_osmline", which
+      -- contains house number interpolation ways.
+      interpol AS (
+        SELECT
+          parent_place_id,
+          hn::text,
+          CASE
+            WHEN geometrytype(linegeo) = 'POINT' THEN linegeo
+            ELSE ST_LineInterpolatePoint(linegeo, (hn - startnumber) / (endnumber - startnumber))
+          END AS centroid
+        FROM (
+          SELECT
+            parent_place_id,
+            startnumber,
+            endnumber::float,
+            linegeo,
+            generate_series(startnumber, endnumber, step) AS hn
+          FROM location_property_osmline
+        ) AS tmp
+      )
+
+    -- convert to JSON and fix incorrect escaping of backslashes
     SELECT
       regexp_replace(row_to_json(reduced)::TEXT, '\\\\', '\\', 'g')
     FROM (
+      -- this converts the raw "combo" into a suitable format for export
       SELECT
-        CONCAT(main1.osm_type, main1.osm_id) AS id,
-        main1.importance,
-        main1.rank_address,
-        main1.rank_search,
-        main1.class,
-        main1.type,
-        main1.admin_level,
-        main1.name,
-        main1.address,
+        combo.id,
+        combo.importance,
+        combo.rank_address,
+        combo.rank_search,
+        combo.class,
+        combo.type,
+        combo.admin_level,
+        combo.name,
+        combo.address,
         slice(
-          main1.extratags,
+          combo.extratags,
           ARRAY['border_type', 'branch', 'name:prefix', 'operator', 'wikidata']
         ) AS extratags,
         -- repeat name in boost for certain important objects
         (CASE WHEN
           (
-            main1.class = 'place'
-            AND main1.type IN ('borough', 'city', 'county', 'hamlet', 'island', 'islet', 'municipality', 'neighbourhood', 'plot', 'quarter', 'region', 'suburb', 'town', 'village')
+            combo.class = 'place'
+            AND combo.type IN ('borough', 'city', 'county', 'hamlet', 'island', 'islet', 'municipality', 'neighbourhood', 'plot', 'quarter', 'region', 'suburb', 'town', 'village')
           ) OR (
-            main1.class = 'boundary'
-            AND main1.type = 'administrative'
+            combo.class = 'boundary'
+            AND combo.type = 'administrative'
           )
-          THEN main1.name->'name'
-          ELSE main1.housenumber
+          THEN combo.name->'name'
+          ELSE combo.housenumber
         END) AS boost,
         -- generate Meilisearch format
-        JSON_BUILD_OBJECT(
-          'lng', ROUND((ST_X(ST_Centroid(main1.centroid)))::numeric, 6),
-          'lat', ROUND((ST_Y(ST_Centroid(main1.centroid)))::numeric, 6)
+        JSONB_BUILD_OBJECT(
+          'lng', ROUND((ST_X(ST_Centroid(combo.centroid)))::numeric, 6),
+          'lat', ROUND((ST_Y(ST_Centroid(combo.centroid)))::numeric, 6)
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
-          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(main1.geometry))))::numeric, 6)
+          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
+          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6)
         ) AS bbox,
-        -- merge joined names for addresses
-        ARRAY_REMOVE(
-          ARRAY_AGG(
-            main2.name->'name'
-            ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
-          ),
-          NULL
-        ) AS parents_name,
-        -- grab from parents because of wrong postcode on main1 object itself
-        (SELECT (ARRAY_REMOVE(
-          ARRAY_AGG(
-            main2.address->'postcode'
-            ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
-          ),
-          NULL
-        ))[1]) AS parents_postcode
-      FROM placex AS main1
+        combo.parents_name,
+        combo.parents_postcode
+      FROM combo
 
-      -- join self via helper table place_addressline to resolve addresses
-      -- * parent_place_id is a fallback, since some low-rank POIs don't have
-      --   direct entries
-      -- * isaddress is a tie breaker when there's competing addresses
-      LEFT JOIN place_addressline AS help1
-      ON help1.isaddress = TRUE AND help1.place_id = main1.place_id
-      LEFT JOIN place_addressline AS help2
-      ON help2.isaddress = TRUE AND help2.place_id = main1.parent_place_id AND help1.place_id IS NULL
-      LEFT JOIN placex AS main2
-      ON COALESCE(help1.address_place_id, help2.address_place_id) = main2.place_id
 
-      WHERE
-        -- filter which results to keep for searching
-        (main1.name IS NOT NULL OR main1.type IN ('compressed_air') OR main1.housenumber IS NOT NULL)
-        -- auto-merged by Nominatim, so ignore
-        -- see https://nominatim.org/release-docs/develop/develop/Database-Layout/#search-tables
-        AND main1.linked_place_id IS NULL
-        AND main2.linked_place_id IS NULL
-        -- if we import Wikipedia, there will be entries for the entire world. So
-        -- we filter it down to our area of interest again.
-        AND main1.geometry && ST_MakeEnvelope(#{bbox}, 4326)
+      UNION
 
+
+      -- this builds "placex" style house number results from interpolated housenumbers
+      SELECT
+        CONCAT(combo.id, '-interpol', interpol.hn) AS id,
+        -- same importance/ranks as other house numbers
+        0.00000999999999995449 AS importance,
+        30 AS rank_address,
+        30 AS rank_search,
+        -- the parent is always a street, so won't have more detailed tags
+        'building' AS class,
+        'house' AS type,
+        combo.admin_level,
+        NULL AS name,
+        hstore(ARRAY[
+          'street', combo.name->'name',
+          'housenumber', interpol.hn
+        ]) AS address,
+        ''::hstore AS extratags,
+        interpol.hn AS boost,
+        -- generate Meilisearch format
+        JSONB_BUILD_OBJECT(
+          'lng', ROUND(ST_X(interpol.centroid)::numeric, 6),
+          'lat', ROUND(ST_Y(interpol.centroid)::numeric, 6)
+        ) AS _geo,
+        -- generate as string because we need to create an Elixir struct anyway
+        CONCAT_WS(',',
+            ROUND((ST_X(interpol.centroid))::numeric, 6),
+            ROUND((ST_Y(interpol.centroid))::numeric, 6),
+            ROUND((ST_X(interpol.centroid))::numeric, 6),
+            ROUND((ST_Y(interpol.centroid))::numeric, 6)
+          ) AS bbox,
+        combo.parents_name,
+        combo.parents_postcode
+      FROM combo
+      INNER JOIN interpol ON interpol.parent_place_id = combo.place_id
+      WHERE combo.name->'name' IS NOT NULL
       GROUP BY
-        main1.osm_type,
-        main1.osm_id,
-        main1.importance,
-        main1.rank_address,
-        main1.rank_search,
-        main1.class,
-        main1.type,
-        main1.admin_level,
-        main1.name,
-        main1.housenumber,
-        main1.address,
-        main1.extratags,
-        main1.postcode,
-        main1.centroid,
-        main1.geometry
+        combo.id,
+        combo.admin_level,
+        combo.name,
+        combo.parents_name,
+        combo.parents_postcode,
+        interpol.hn,
+        interpol.centroid
     ) reduced;
     """
   end
