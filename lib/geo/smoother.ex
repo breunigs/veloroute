@@ -73,7 +73,7 @@ defmodule Geo.Smoother do
   @doc """
   Takes a polyline and cutoff range in meters within which it will consider
   coordinates for smoothing. Put differently, it will smooth a coordinate using
-  the preceeding/following coordinates within `range_in_meters` until the cutoff
+  the preceding/following coordinates within `range_in_meters` until the cutoff
   is met. Larger values mean more smoothing, but less accuracy. The coordinates
   are weighted by their distance, i.e. close coordinates have more influence
   than the ones further away.
@@ -113,7 +113,7 @@ defmodule Geo.Smoother do
   def average_in_distance(coords, range_in_meters) do
     Enum.map_reduce(coords, {[], coords}, fn
       coord, {prev, [coord | next]} ->
-        # find neighbars in range and smooth over them
+        # find neighbors in range and smooth over them
         prev_in_range = take_while_in_range(coord, prev, range_in_meters)
         next_in_range = take_while_in_range(coord, next, range_in_meters)
         smoothed = weighted_average(coord, prev_in_range ++ next_in_range, range_in_meters)
@@ -126,7 +126,7 @@ defmodule Geo.Smoother do
   @spec take_while_in_range(Geo.Point.like(), [Geo.Point.like()], float()) :: [coord_dist]
   defp take_while_in_range(from, coords, range_in_meters) do
     Enum.reduce_while(coords, [], fn coord, acc ->
-      dist = Geo.CheapRuler.dist(coord, from)
+      dist = Geo.CheapRuler.point2point_dist(coord, from)
 
       if dist > range_in_meters,
         do: {:halt, acc},
