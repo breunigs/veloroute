@@ -35,19 +35,19 @@ MAX = math.max
 
 -- Process node tags
 node_keys = { "addr:housenumber","aerialway","aeroway","amenity","highway","historic","leisure","natural","office","place","railway","shop","sport","tourism","waterway" }
-function node_function(node)
+function node_function()
   -- Write 'housenumber'
-  local housenumber = node:Find("addr:housenumber")
+  local housenumber = Find("addr:housenumber")
   if housenumber~="" then
-    node:Layer("housenumber", false)
-    node:Attribute("housenumber", housenumber)
+    Layer("housenumber", false)
+    Attribute("housenumber", housenumber)
   end
 
   -- Write 'place'
-  local place = node:Find("place")
+  local place = Find("place")
   if place ~= "" then
     local mz = 13
-    local pop = tonumber(node:Find("population")) or 0
+    local pop = tonumber(Find("population")) or 0
 
     if     place == "continent"     then mz=0
     elseif place == "country"       then
@@ -70,14 +70,14 @@ function node_function(node)
     elseif place == "square"        then return
     end
 
-    node:Layer("place", false)
-    node:Attribute("class", place)
-    SetMinZoom(node, mz)
-    SetNameAttributes(node, mz)
+    Layer("place", false)
+    Attribute("class", place)
+    SetMinZoom(mz)
+    SetNameAttributes(mz)
     return
   end
 
-  MaybeWritePOI(node)
+  MaybeWritePOI()
 end
 
 -- Process way tags
@@ -236,62 +236,62 @@ WATERWAY_CLASSES = Set { "stream", "river", "canal", "drain", "ditch" }
 
 -- Scan relations for use in ways
 
-function relation_scan_function(relation)
-  if relation:Find("type")=="boundary" and relation:Find("boundary")=="administrative" then
-    relation:Accept()
+function relation_scan_function()
+  if Find("type")=="boundary" and Find("boundary")=="administrative" then
+    Accept()
   end
 end
 
 -- Process way tags
 
-function way_function(way)
-  local route    = way:Find("route")
-  local highway  = way:Find("highway")
-  local waterway = way:Find("waterway")
-  local water    = way:Find("water")
-  local building = way:Find("building")
-  local natural  = way:Find("natural")
-  local landuse  = way:Find("landuse")
-  local leisure  = way:Find("leisure")
-  local amenity  = way:Find("amenity")
-  local aeroway  = way:Find("aeroway")
-  local railway  = way:Find("railway")
-  local tourism  = way:Find("tourism")
-  local man_made = way:Find("man_made")
-  local boundary = way:Find("boundary")
-  local isClosed = way:IsClosed()
-  local isArea = isClosed and (SetToYes(way, "area") or way:Find("type") == "multipolygon")
-  local housenumber = way:Find("addr:housenumber")
+function way_function()
+  local route    = Find("route")
+  local highway  = Find("highway")
+  local waterway = Find("waterway")
+  local water    = Find("water")
+  local building = Find("building")
+  local natural  = Find("natural")
+  local landuse  = Find("landuse")
+  local leisure  = Find("leisure")
+  local amenity  = Find("amenity")
+  local aeroway  = Find("aeroway")
+  local railway  = Find("railway")
+  local tourism  = Find("tourism")
+  local man_made = Find("man_made")
+  local boundary = Find("boundary")
+  local isClosed = IsClosed()
+  local isArea = isClosed and (SetToYes("area") or Find("type") == "multipolygon")
+  local housenumber = Find("addr:housenumber")
   local write_name = false
 
   -- Miscellaneous preprocessing
-  if SetToYes(way, "disused") then return end
+  if SetToYes("disused") then return end
   if highway == "proposed" then return end
   if AEROWAY_BUILDINGS[aeroway] then building="yes"; aeroway="" end
-  if landuse == "meadow" and way:Find("meadow")=="agricultural" then landuse="farmland" end
+  if landuse == "meadow" and Find("meadow")=="agricultural" then landuse="farmland" end
 
   -- Boundaries within relations
   local admin_level = 11
   local isBoundary = false
   while true do
-    local rel = way:NextRelation()
+    local rel = NextRelation()
     if not rel then break end
     isBoundary = true
-    admin_level = MIN(admin_level, tonumber(way:FindInRelation("admin_level")) or 11)
+    admin_level = MIN(admin_level, tonumber(FindInRelation("admin_level")) or 11)
   end
 
   -- Boundaries in ways
   if boundary=="administrative" then
-    admin_level = MIN(admin_level, tonumber(way:Find("admin_level")) or 11)
+    admin_level = MIN(admin_level, tonumber(Find("admin_level")) or 11)
     isBoundary = true
   end
 
   -- Administrative boundaries
   -- https://openmaptiles.org/schema/#boundary
-  if isBoundary and admin_level >= 4 and admin_level <= 6 and not SetToYes(way, "maritime") then
-    way:Layer("boundary",false)
-    if DEBUG then way:AttributeNumeric("DEBUG_admin_level", admin_level) end
-    SetMinZoom(way, 0)
+  if isBoundary and admin_level >= 4 and admin_level <= 6 and not SetToYes("maritime") then
+    Layer("boundary",false)
+    if DEBUG then AttributeNumeric("DEBUG_admin_level", admin_level) end
+    SetMinZoom(0)
   end
 
   -- Roads ('transportation')
@@ -299,7 +299,7 @@ function way_function(way)
     local construction = false
     if highway == "construction" then
       construction = true
-      highway = way:Find("construction")
+      highway = Find("construction")
     end
 
     local h = highway
@@ -316,7 +316,7 @@ function way_function(way)
     if h=="service"               then              minzoom = 14 end
 
     -- demote private
-    local access = way:Find("access")
+    local access = Find("access")
     if minzoom and (access=="private" or access=="no") then minzoom = 14 end
 
     -- Links (ramp)
@@ -332,110 +332,110 @@ function way_function(way)
     -- Write to layer
     if minzoom then
       if construction then
-        way:Layer("transportation_construction", isArea)
+        Layer("transportation_construction", isArea)
       else
-        way:Layer("transportation", isArea)
+        Layer("transportation", isArea)
       end
-      if isArea then minzoom = MAX(GetMinZoomByArea(way), minzoom) end
-      SetMinZoom(way, minzoom)
-      SetZOrder(way)
-      way:Attribute("class", h)
-      SetBrunnelAttributes(way)
-      if ramp then way:AttributeNumeric("ramp", 1) end
-      SetOnewayForBicycles(way, MAX(14, minzoom))
-      SetNameAttributes(way, MAX(12, minzoom))
+      if isArea then minzoom = MAX(GetMinZoomByArea(), minzoom) end
+      SetMinZoom(minzoom)
+      SetZOrder()
+      Attribute("class", h)
+      SetBrunnelAttributes()
+      if ramp then AttributeNumeric("ramp", 1) end
+      SetOnewayForBicycles(MAX(14, minzoom))
+      SetNameAttributes(MAX(12, minzoom))
 
       if DEBUG then
-        local ref = way:Find("ref")
-        if ref~="" then way:Attribute("DEBUG_ref",ref) end
-        way:Attribute("DEBUG_highway",highway)
+        local ref = Find("ref")
+        if ref~="" then Attribute("DEBUG_ref",ref) end
+        Attribute("DEBUG_highway",highway)
       end
     end
   end
 
   -- Railways ('transportation')
   if RAILWAY_CLASSES[railway] then
-    way:Layer("transportation", isArea)
-    way:Attribute("class", railway)
-    SetZOrder(way)
-    SetBrunnelAttributes(way)
-    -- SetNameAttributes(way)
-    if way:Holds("service") then
-      way:AttributeNumeric("service", 1)
-      SetMinZoom(way, 12)
+    Layer("transportation", isArea)
+    Attribute("class", railway)
+    SetZOrder()
+    SetBrunnelAttributes()
+    -- SetNameAttributes()
+    if Holds("service") then
+      AttributeNumeric("service", 1)
+      SetMinZoom(12)
     else
-      SetMinZoom(way, 9)
+      SetMinZoom(9)
     end
   end
 
   -- Pier
   if man_made=="pier" or man_made=="bridge" then
-    way:Layer("transportation", isClosed)
-    SetZOrder(way)
-    way:Attribute("class", man_made)
-    SetMinZoomByArea(way)
+    Layer("transportation", isClosed)
+    SetZOrder()
+    Attribute("class", man_made)
+    SetMinZoomByArea()
   end
 
   -- 'Ferry'
   if route=="ferry" then
-    way:Layer("transportation", false)
-    way:Attribute("class", "ferry")
-    SetZOrder(way)
-    SetMinZoom(way, 9)
-    SetBrunnelAttributes(way)
-    SetNameAttributes(way, 9)
+    Layer("transportation", false)
+    Attribute("class", "ferry")
+    SetZOrder()
+    SetMinZoom(9)
+    SetBrunnelAttributes()
+    SetNameAttributes(9)
   end
 
   -- 'Aeroway'
   if AEROWAY_CLASSES[aeroway] then
-    way:Layer("aeroway", isClosed)
-    way:Attribute("class", aeroway)
+    Layer("aeroway", isClosed)
+    Attribute("class", aeroway)
     write_name = true
   elseif aeroway == "fuel" then
-    way:Layer("landcover", isClosed)
-    way:Attribute("class", "commercial")
-    SetMinZoom(way, 14)
+    Layer("landcover", isClosed)
+    Attribute("class", "commercial")
+    SetMinZoom(14)
   end
 
   -- Set 'waterway' and associated
   if WATERWAY_CLASSES[waterway] and not isClosed then
-    if waterway == "river" and way:Holds("name") then
-      way:Layer("waterway", false)
+    if waterway == "river" and Holds("name") then
+      Layer("waterway", false)
     else
-      way:Layer("waterway_detail", false)
+      Layer("waterway_detail", false)
     end
-    way:Attribute("class", waterway)
-    SetNameAttributes(way, 14)
-    SetBrunnelAttributes(way)
+    Attribute("class", waterway)
+    SetNameAttributes(14)
+    SetBrunnelAttributes()
   elseif waterway == "boatyard"  then
-    way:Layer("landcover", isClosed)
-    way:Attribute("class", "commercial")
-    SetMinZoom(way, 12)
+    Layer("landcover", isClosed)
+    Attribute("class", "commercial")
+    SetMinZoom(12)
   elseif waterway == "fuel" then
-    way:Layer("landcover", isClosed)
-    way:Attribute("class", "commercial")
-    SetMinZoom(way, 14)
+    Layer("landcover", isClosed)
+    Attribute("class", "commercial")
+    SetMinZoom(14)
   elseif waterway == "dam" then
-    way:Layer("building", isClosed)
+    Layer("building", isClosed)
   end
 
   -- Set 'building' and associated
-  if building~="" then way:Layer("building", true) end
+  if building~="" then Layer("building", true) end
 
   -- Set 'housenumber'
   if housenumber~="" then
-    way:LayerAsCentroid("housenumber", false)
-    way:Attribute("housenumber", housenumber)
+    LayerAsCentroid("housenumber")
+    Attribute("housenumber", housenumber)
   end
 
   -- Set 'water'
   if natural=="water" or natural=="bay" or leisure=="swimming_pool" or landuse=="reservoir" or landuse=="basin" or WATER_CLASSES[waterway] then
-    if SetToYes(way, "covered") or not isClosed then return end
+    if SetToYes("covered") or not isClosed then return end
     local class="lake"; if natural=="bay" then class="ocean" elseif waterway~="" then class="river" end
-    if class=="ocean" and isClosed and (way:AreaIntersecting("ocean")/way:Area() > 0.98) then return end
-    way:Layer("water",true)
-    local minZoom = SetMinZoomByArea(way)
-    way:Attribute("class",class)
+    if class=="ocean" and isClosed and (AreaIntersecting("ocean")/Area() > 0.98) then return end
+    Layer("water",true)
+    local minZoom = SetMinZoomByArea()
+    Attribute("class",class)
 
     -- we only want to show the names of actual lakes not every man-made basin that probably doesn't even have a name other than "basin"
     -- examples for which we don't want to show a name:
@@ -443,11 +443,11 @@ function way_function(way)
     --  https://www.openstreetmap.org/way/27201902
     --  https://www.openstreetmap.org/way/25309134
     --  https://www.openstreetmap.org/way/24579306
-    if way:Holds("name") and natural=="water" and water ~= "basin" and water ~= "wastewater" then
-      way:LayerAsCentroid("waterway_detail")
-      SetNameAttributes(way, minZoom)
-      SetMinZoom(way, minZoom)
-      way:Attribute("class", class)
+    if Holds("name") and natural=="water" and water ~= "basin" and water ~= "wastewater" then
+      LayerAsCentroid("waterway_detail")
+      SetNameAttributes(minZoom)
+      SetMinZoom(minZoom)
+      Attribute("class", class)
     end
 
     return -- in case we get any landuse processing
@@ -462,29 +462,29 @@ function way_function(way)
   if l=="" then l=aeroway end
   if LANDCOVER_MAPPING[l] then
     local class = LANDCOVER_MAPPING[l]
-    way:Layer("landcover", true)
+    Layer("landcover", true)
     -- need to keep areas at relatively high zoom level to ensure "green areas"
     -- get combined properly and don't vanish when zooming out.
-    local minZoom = GetMinZoomByArea(way)-1
-    SetMinZoom(way, minZoom)
-    way:Attribute("class", class)
+    local minZoom = GetMinZoomByArea()-1
+    SetMinZoom(minZoom)
+    Attribute("class", class)
 
     -- promote small objects on high zooms only. This should hopefully allow
     -- merging polygons at low zooms where it's not noticable.
     if not LANDCOVER_DEMOTE[class] and minZoom >= 10 then
-      way:ZOrder(1)
-      if DEBUG then way:AttributeNumeric("DEBUG_zorder", 1) end
+      ZOrder(1)
+      if DEBUG then AttributeNumeric("DEBUG_zorder", 1) end
     end
-    if DEBUG then way:AttributeNumeric("minZoom", minZoom) end
+    if DEBUG then AttributeNumeric("minZoom", minZoom) end
     write_name = true
   end
 
 -- POIs
-  if MaybeWritePOI(way) then return end
+  if MaybeWritePOI() then return end
 
   -- Catch-all
-  if way:Holds("name") and (write_name or (building~="" and building~="apartments"))  then
-    local area = way:Area()
+  if Holds("name") and (write_name or (building~="" and building~="apartments"))  then
+    local area = Area()
     local minZoom = 18
     if     area > 2500 then minZoom = 15
     elseif area > 2000 then minZoom = 16
@@ -493,18 +493,18 @@ function way_function(way)
     end
     if write_name then minZoom = minZoom - 1 end
 
-    way:LayerAsCentroid("poi")
-    SetNameAttributes(way, minZoom)
-    SetMinZoom(way, minZoom)
-    way:AttributeNumeric("minzoom", minZoom)
+    LayerAsCentroid("poi")
+    SetNameAttributes(minZoom)
+    SetMinZoom(minZoom)
+    AttributeNumeric("minzoom", minZoom)
     -- intentionally no icon for ways, so that there's no "dot" when we mean an area
-    way:Attribute("icon", "")
+    Attribute("icon", "")
 
     if DEBUG then
-      way:Attribute("DEBUG_catchall", "yes")
+      Attribute("DEBUG_catchall", "yes")
       local str = "no"
       if write_name then str = "yes" end
-      way:Attribute("DEBUG_write_name", str)
+      Attribute("DEBUG_write_name", str)
     end
   end
 end
@@ -526,56 +526,56 @@ end
 -- Common functions
 
 -- Write a way centroid to POI layer
-function MaybeWritePOI(obj)
-  local key, val = FindPOIKeyVal(obj)
+function MaybeWritePOI()
+  local key, val = FindPOIKeyVal()
   if not key then return false end
 
   local minZoom = POI_MIN_ZOOM[val] or 18
-  if minZoom == "byArea" then minZoom = GetMinZoomByArea(obj)+1 end
+  if minZoom == "byArea" then minZoom = GetMinZoomByArea()+1 end
 
   local icon = POI_ICON_MAPPER[val] or val
   if icon == "restaurant" then
-    local detail = "restaurant_"..obj:Find("cuisine")
+    local detail = "restaurant_"..Find("cuisine")
     if KNOWN_ICONS[detail] then
       icon = detail
     end
   elseif icon == "airport" then
-    if obj:Find("aerodrome:type") ~= "international" then
+    if Find("aerodrome:type") ~= "international" then
       icon = "airfield"
     end
   elseif icon == "pitch" then
-    local sport = obj:Find("sport")
+    local sport = Find("sport")
     if KNOWN_ICONS[sport] then icon = sport end
   elseif key == "railway" then
-    icon = FindTrainOperatorIcon(obj) or icon
-  elseif icon == "bicycle_share" and IsStadtrad(obj) then
+    icon = FindTrainOperatorIcon() or icon
+  elseif icon == "bicycle_share" and IsStadtrad() then
     icon = "stadtrad"
   end
 
   if not KNOWN_ICONS[icon] then icon = "dot" end
 
-  obj:LayerAsCentroid("poi")
-  SetMinZoom(obj, minZoom)
-  SetNameAttributes(obj, minZoom)
-  obj:AttributeNumeric("minzoom", minZoom)
-  obj:Attribute("icon", icon)
+  LayerAsCentroid("poi")
+  SetMinZoom(minZoom)
+  SetNameAttributes(minZoom)
+  AttributeNumeric("minzoom", minZoom)
+  Attribute("icon", icon)
 
   if DEBUG then
-    obj:Attribute("DEBUG_KEY", key)
-    obj:Attribute("DEBUG_VAL", val)
+    Attribute("DEBUG_KEY", key)
+    Attribute("DEBUG_VAL", val)
   end
 
   return true
 end
 
-function IsStadtrad(obj)
-  local network = string.lower(obj:Find("network"))
+function IsStadtrad()
+  local network = string.lower(Find("network"))
   if network == "call a bike" or string.starts_with(network, "stadtrad") then return true end
 
-  local operator = string.lower(obj:Find("operator"))
+  local operator = string.lower(Find("operator"))
   if string.starts_with(operator, "deutsche bahn connect") then return true end
 
-  local brand = string.lower(obj:Find("brand"))
+  local brand = string.lower(Find("brand"))
   if brand == "stadtrad hamburg" or brand == "call a bike" then return true end
 
   return false
@@ -586,14 +586,14 @@ function string.starts_with(str, prefix)
 end
 
 
-function SetMinZoom(obj, minZoom)
+function SetMinZoom(minZoom)
   -- don't exceed the maxZoom as per config.json or the object will be dropped completely
-  obj:MinZoom(MIN(MAXZOOM, minZoom))
+  MinZoom(MIN(MAXZOOM, minZoom))
 end
 
-function FindPOIKeyVal(obj)
+function FindPOIKeyVal()
   for key, allowed_values in pairs(POI_ALLOWED_OSM_TAGS) do
-    local val = obj:Find(key)
+    local val = Find(key)
     if allowed_values[val] or (val ~= "" and allowed_values["*"]) then
       return key, val
     end
@@ -602,54 +602,54 @@ function FindPOIKeyVal(obj)
 end
 
 -- Set name attributes on any object
-function SetNameAttributes(obj, minZoom)
+function SetNameAttributes(minZoom)
   -- don't exceed the maxZoom as per config.json or the object will be dropped completely
   if minZoom then minZoom = MIN(MAXZOOM, minZoom) end
 
-  local name = obj:Find("name")
-  if name == "" then name = obj:Find("name:de") end
-  if name ~= "" then obj:Attribute("name", name, minZoom) end
+  local name = Find("name")
+  if name == "" then name = Find("name:de") end
+  if name ~= "" then Attribute("name", name, minZoom) end
 end
 
-function SetBrunnelAttributes(obj)
-  if     SetToYes(obj, "bridge") then obj:Attribute("brunnel", "bridge")
-  elseif SetToYes(obj, "tunnel") then obj:Attribute("brunnel", "tunnel")
-  -- elseif SetToYes(obj, "ford")   then obj:Attribute("brunnel", "ford")
+function SetBrunnelAttributes()
+  if     SetToYes("bridge") then Attribute("brunnel", "bridge")
+  elseif SetToYes("tunnel") then Attribute("brunnel", "tunnel")
+  -- elseif SetToYes("ford")   then Attribute("brunnel", "ford")
   end
 end
 
 function SetOnewayForBicycles(way, minzoom)
   if DEBUG then
-    way:Attribute("DEBUG_oneway:bicycle", way:Find("oneway:bicycle"))
-    way:Attribute("DEBUG_oneway", way:Find("oneway"))
-    way:Attribute("DEBUG_cycleway", way:Find("cycleway"))
+    Attribute("DEBUG_onebicycle", Find("onebicycle"))
+    Attribute("DEBUG_oneway", Find("oneway"))
+    Attribute("DEBUG_cycleway", Find("cycleway"))
   end
 
   if minZoom then minZoom = MIN(MAXZOOM, minZoom) end
 
-  if SetToYes(way, "oneway:bicycle") then
-    way:AttributeNumeric("oneway", 1, minzoom)
+  if SetToYes("onebicycle") then
+    AttributeNumeric("oneway", 1, minzoom)
     return
   end
 
-  if SetToYes(way, "oneway") and
-     (not SetToNo(way, "oneway:bicycle")) and
-     (not (way:Find("cycleway") == "opposite"))
+  if SetToYes("oneway") and
+     (not SetToNo("onebicycle")) and
+     (not (Find("cycleway") == "opposite"))
      then
-    way:AttributeNumeric("oneway", 1, minzoom)
+    AttributeNumeric("oneway", 1, minzoom)
   end
 end
 
 
 
-function SetMinZoomByArea(way)
-  local mz = GetMinZoomByArea(way)
-  SetMinZoom(way, mz)
+function SetMinZoomByArea()
+  local mz = GetMinZoomByArea()
+  SetMinZoom(mz)
   return mz
 end
 
-function GetMinZoomByArea(way)
-  local area=way:Area()
+function GetMinZoomByArea()
+  local area=Area()
   if area>ZRES5^2  then return 6  end
   if area>ZRES6^2  then return 7  end
   if area>ZRES7^2  then return 8  end
@@ -671,8 +671,8 @@ STATION_ICONS = {
   sbahn = Set { "Neuwiedenthal","Veddel","Hammerbrook","Berliner Tor","Friedrichsberg","Hasselbrook","Bahrenfeld","Klein Flottbek (Botanischer Garten)","Hochkamp","Heimfeld","Harburg","Wilhelmsburg","Neukloster","Rübenkamp (City Nord)","Langenfelde","Wedel","Rissen","Iserbrook","Fischbek","Neu Wulmstorf","Halstenbek","Stellingen","Eidelstedt","Billwerder-Moorfleet","Bergedorf","Reinbek","Blankenese","Buxtehude","Harburg Rathaus","Poppenbüttel","Wellingsbüttel","Hoheneichen","Kornweg (Klein Borstel)","Ohlsdorf","Landwehr","Krupunder","Hamburg Airport (Flughafen)","Sternschanze (Messe)","Holstenstraße","Hamburg-Altona","Königstraße","Reeperbahn","Neugraben","Hamburg Hauptbahnhof","Jungfernstieg","Elbgaustraße","Wandsbeker Chaussee","Barmbek","Stadthausbrücke","Rothenburgsort","Aumühle","Othmarschen","Landungsbrücken","Alte Wöhr (Stadtpark)","Hamburg Dammtor / Universität","Tiefstack","Nettelnburg","Allermöhe","Mittlerer Landweg","Wohltorf","Agathenburg","Dollern","Horneburg","Pinneberg","Thesdorf","Sülldorf","Stade","Elbbrücken" },
   hochbahn = Set { "Hamburger Straße","Dehnhaide","Kiwittsmoor","Meiendorfer Weg","Wandsbek-Gartenstadt","Uhlandstraße","Barmbek","Baumwall (Elbphilharmonie)","Rödingsmarkt","Hagendeel","Großhansdorf","Hagenbecks Tierpark","Legienstraße","Rennbahnstraße","Billstedt","Bauerberg","Lübecker Straße","Berliner Tor","Neubertstraße","U Hamburger Straße","Rathausstraße","Alsterarkaden","Alstertor/Hermannstraße","Buckhorn","Hoisbüttel","Horner Rennbahn","U/S Landungsbrücken","Burgstraße","Rauhes Haus","Schlump","Eppendorfer Baum","Sierichstraße","Borgweg (Stadtpark)","Ochsenzoll","Mümmelmannsberg","Merkenstraße","Steinfurther Allee","Habichtstraße","Norderstedt Mitte","Sternschanze (Messe)","Klosterstern","Hammer Straße","Brauhausstraße","Mundsburg","Mühlendamm","Berlinertordamm","Lutterothstraße","Christuskirche","Osterstraße","Emilienstraße","Messehallen","Gänsemarkt (Oper)","Feldstraße (Heiligengeistfeld)","Lohmühlenstraße","Wartenau","Ritterstraße","Straßburger Straße","Alter Teichweg","Dammtorstraße","Plan","Saarlandstraße","Sengelmannstraße (City Nord)","Alsterdorf","Hudtwalckerstraße","Langenhorn Nord","Langenhorn Markt","Fuhlsbüttel Nord","Fuhlsbüttel","Klein Borstel","Meßberg","Rathaus","Steinstraße","Buschweg","HafenCity Universität","Mühlendamm / Lübeckertordamm","Kleine Rosenstraße","Goernestraße","Kleine Reichenstraße / Brandstwiete","Brandstwiete / Speicherstadt","Rathausmarkt","Petrikirche","Mönckebergstraße","Stephansplatz (Oper/CCH)","Alsterhaus","Alsterpavillion","Reesendamm","Ballindamm","Petrikirche/Bergstraße","Rathausmarkt/Alter Wall","Jungfernstieg","Alsterufer","Alstertor/Ferdinandsstraße","Gänsemarkt","Valentinskamp","Finanzbehörde","ABC-Straße","Neue ABC-Straße","Drehbahn","Johannes-Brahms-Platz","Caffamacherreihe","Schmalenbeck","Westphalensweg","Hallerstraße","Ahrensburg West","Kiekut","Buchenkamp","Landungsbrücken","Hauptbahnhof Süd","Farmsen","U-Stephansplatz","Joachim-Mähl-Straße","Richtweg","Klosterwall","Lange Mühren","Johanniswall","BeimStrohhause/Berliner Tor","Beim Strohhause","Kurt-Schill-Weg","U-Rödingsmarkt","Borgweg","Wandsbeker Chaussee","Rückertstraße","Ohlsdorf","Lattenkamp","Lattenkamp (Sporthalle)","Börnestraße","Menckesallee","Seumestraße","Ohlstedt","Lübeckertordamm","Lübeckertordamm Steinhauerdamm","Hauptbahnhof Nord","Ruckteschellweg","Wagnerstraße","Wandsbek Markt","Trabrennbahn","Berne","Volksdorf","Ahrensburg Ost","Niendorf Markt","Alter Teichweg / Tondernstieg","Alter Teichweg / Gravensteiner Weg","Tondernstraße / Gravensteiner Weg","St. Pauli","Steintorwall","Garstedt","Beim Strohhause / Hammerbrookstraße","Niendorf Nord","Schippelsweg","Überseequartier","Hoheluftbrücke","Loogeplatz","Kriegkamp","Berner Heerweg","Markthalle","Elbbrücken","Kandinskyallee","Lindenplatz","Beim Berliner Tor","Helma-Steinbach-Weg","Fibigerstraße","Speckstraße","Staatsoper","Lübecker Straße / Mühlendamm","U-Bahn Steinfurther Allee","Wandrahmsteg","TriBühne Norderstedt","Baakenwerder Straße","Hammer Kirche","Versmannstraße","Rathausmarkt/Schleusenbrücke","Oldenfelde","Kellinghusenstraße" }
 }
-function FindTrainOperatorIcon(obj)
-  local name = obj:Find("name")
+function FindTrainOperatorIcon()
+  local name = Find("name")
   for operator, stations in pairs(STATION_ICONS) do
     if stations[name] then return operator end
   end
@@ -683,26 +683,26 @@ end
 -- See https://imposm.org/docs/imposm3/latest/mapping.html#wayzorder for details.
 -- See https://github.com/omniscale/imposm3/blob/53bb80726ca9456e4a0857b38803f9ccfe8e33fd/mapping/columns.go#L251
 HIGHWAY_CLASS = { motorway=9, trunk=8, primary=6, secondary=5, tertiary=4 }
-function SetZOrder(way)
+function SetZOrder()
   local zOrder = 0
 
-  local bridge = way:Find("bridge")
-  local tunnel = way:Find("tunnel")
+  local bridge = Find("bridge")
+  local tunnel = Find("tunnel")
   if bridge ~= "" and bridge ~= "no" then
     zOrder = zOrder + 10
   elseif tunnel ~= "" and tunnel ~= "no" then
     zOrder = zOrder - 10
   end
 
-  local layer = tonumber(way:Find("layer")) or 0
+  local layer = tonumber(Find("layer")) or 0
   layer = MIN(layer, 7)
   layer = MAX(layer, -7)
   zOrder = zOrder + layer * 10
 
-  local highway = way:Find("highway")
+  local highway = Find("highway")
   local hwClass = HIGHWAY_CLASS[highway] or 3
   zOrder = zOrder + hwClass
-  way:ZOrder(zOrder)
+  ZOrder(zOrder)
 end
 
 function Cut(input, sep)
@@ -715,13 +715,13 @@ function Cut(input, sep)
   return input, "", false
 end
 
-function SetToYes(obj, key)
-  local value = obj:Find(key)
+function SetToYes(key)
+  local value = Find(key)
   return value == "1" or value == "yes"
 end
 
 
-function SetToNo(obj, key)
-  local value = obj:Find(key)
+function SetToNo(key)
+  local value = Find(key)
   return value == "0" or value == "no"
 end
