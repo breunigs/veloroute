@@ -139,6 +139,7 @@ defmodule Basemap.MapMatcher.OSRM do
         [points, matches]
         |> List.zip()
         |> Enum.map(fn {p, m} -> Map.merge(p, m) end)
+        |> Enum.map(&fallback/1)
 
       {:ok, merged}
     else
@@ -146,6 +147,13 @@ defmodule Basemap.MapMatcher.OSRM do
       other -> {:error, inspect(other)}
     end
   end
+
+  defp fallback(%{match_name: ""} = match) do
+    area_name = GenServer.call(__MODULE__, {:containing_area, match}, :infinity)
+    %{match | match_name: area_name || ""}
+  end
+
+  defp fallback(match), do: match
 
   @doc """
   Generates a debug OSM file that renders the given coordinates and which street
@@ -262,20 +270,21 @@ defmodule Basemap.MapMatcher.OSRM do
            healthy: boolean(),
            port: non_neg_integer() | nil,
            container: Util.Docker.full_ref() | nil,
-           pid: pid()
+           pid: pid(),
+           areas: [Basemap.Nominatim.area()] | nil
          }
   @spec init(any) :: {:ok, state()}
   @impl GenServer
   def init(_args \\ []) do
     Process.flag(:trap_exit, true)
-    {:ok, %{started: false, healthy: false, port: nil, container: nil, pid: self()}}
+    {:ok, %{started: false, healthy: false, port: nil, container: nil, pid: self(), areas: nil}}
   end
 
   @spec handle_call(
-          {:query, binary(), Keyword.t()},
+          {:query, binary(), Keyword.t()} | {:containing_area, Geo.Point.like()},
           GenServer.from(),
           state()
-        ) :: {:noreply, state()}
+        ) :: {:noreply, state()} | {:reply, binary() | nil, state()}
   @impl GenServer
   def handle_call({:query, path, params}, from, %{healthy: true} = state) do
     match_with_osrm(from, path, params, state)
@@ -287,6 +296,15 @@ defmodule Basemap.MapMatcher.OSRM do
     Process.send_after(self(), {:query, from, path, params}, 0)
 
     {:noreply, state}
+  end
+
+  def handle_call({:containing_area, _point} = cmd, from, %{areas: nil} = state) do
+    handle_call(cmd, from, %{state | areas: Basemap.Nominatim.areas()})
+  end
+
+  def handle_call({:containing_area, point}, _from, %{areas: areas} = state) do
+    area = Enum.find(areas, &Geo.CheapRuler.inside_bbox?(point, &1.bbox))
+    {:reply, if(area, do: area.name), state}
   end
 
   @spec handle_info(atom() | {:query, GenServer.from(), binary(), Keyword.t()}, state()) ::

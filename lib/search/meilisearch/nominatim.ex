@@ -8,7 +8,7 @@ defmodule Search.Meilisearch.Nominatim do
   @impl true
   def documents() do
     Basemap.Nominatim.ensure()
-    source = Basemap.Nominatim.export()
+    source = Basemap.Nominatim.export(:search)
     {"application/x-ndjson", File.read!(source)}
   end
 

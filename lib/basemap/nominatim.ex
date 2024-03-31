@@ -4,11 +4,15 @@ defmodule Basemap.Nominatim do
   require Logger
 
   @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.3"}}
+  @queries [:search, :area]
 
-  def export(where \\ :cache), do: path(where, "nominatim.json")
+  def export(query, where \\ :cache) when query in @queries,
+    do: path(where, "export_#{query}.json")
+
   defp source(where), do: Basemap.OpenStreetMap.target_extract(where)
   defp debug_path(where), do: path(where, "ENABLE_DEBUG")
-  defp query_path(where), do: path(where, "export.sql")
+  defp query_path(query, where) when query in @queries, do: path(where, "export_#{query}.sql")
+  defp script_path(where), do: path(where, "export.bash")
 
   defp source_updated_at() do
     case File.stat(source(:cache), time: :posix) do
@@ -20,7 +24,46 @@ defmodule Basemap.Nominatim do
   @impl Basemap.Renderable
   def stale?() do
     Benchmark.measure("Basemap.Nominatim.stale?", fn ->
-      Util.IO.stale?(export(:cache), [source(:cache), __ENV__.file])
+      depends = [source(:cache), __ENV__.file]
+      Enum.any?(@queries, &Util.IO.stale?(export(&1, :cache), depends))
+    end)
+  end
+
+  @doc """
+  Returns list of areas that are useful to describe a route path taken. The
+  bounding boxes might overlap, and are an approximation only anyway. Most
+  specific result is on top.
+  """
+  @type area :: %{
+          name: binary(),
+          class: binary(),
+          type: binary(),
+          bbox: Geo.BoundingBox.t()
+        }
+  @spec areas() :: [area()]
+  def areas() do
+    ensure()
+
+    export(:area)
+    |> File.read!()
+    |> Jason.decode!(keys: :atoms)
+    |> Enum.map(fn a ->
+      # name clean ups:
+      # - everything in brackets (...)
+      # - remove e.V. and variants
+      # - remove quotes, but not their contents
+      # - expand Klgv.
+      # - remove numbers from "Kleingartenverein 1234"
+      name =
+        a.name
+        |> String.replace(~r/\s*\(.*?\)/, "")
+        |> String.replace(~r/\s*e\.\s?V\./, "")
+        |> String.replace(~r/[„“"]/, "")
+        |> String.replace("Klgv.", "Kleingartenverein")
+        |> String.replace(~r/Kleingartenverein \d+/, "Kleingartenverein")
+
+      bbox = Geo.BoundingBox.parse(a.bbox)
+      %{a | name: name, bbox: bbox}
     end)
   end
 
@@ -42,8 +85,9 @@ defmodule Basemap.Nominatim do
     # avoid unclean debug exits from hanging normal renders
     if !debug && File.exists?(debug_path(:cache)), do: File.rm(debug_path(:cache))
 
-    File.mkdir_p!(Path.dirname(query_path(:cache)))
-    File.write!(query_path(:cache), query_sql())
+    File.mkdir_p!(path(:cache, ""))
+    Enum.each(@queries, fn query -> File.write!(query_path(query, :cache), query_sql(query)) end)
+    File.write!(script_path(:cache), export_script())
 
     source = source_updated_at()
 
@@ -96,14 +140,29 @@ defmodule Basemap.Nominatim do
           "-v",
           "nominatim-data:/var/lib/postgresql/14/main"
         ],
-        command_args: args ++ ["bash", "-c", container_start_script()],
+        command_args: args ++ ["bash", script_path(:container)],
         run_as_local_user: false
       },
       stdout: IO.stream(:stdio, :line)
     )
   end
 
-  defp container_start_script() do
+  defp export_script() do
+    queries =
+      Enum.map_join(@queries, "\n\n", fn query ->
+        """
+        sudo --preserve-env --user=nominatim -- \
+          psql \
+          --dbname=nominatim \
+          --no-align \
+          --tuples-only \
+          --variable=ON_ERROR_STOP=1 \
+          --output=#{export(query, :container)} \
+          --file=#{query_path(query, :container)} \
+          &
+        """
+      end)
+
     """
     set -euo pipefail
 
@@ -113,20 +172,14 @@ defmodule Basemap.Nominatim do
       /app/config.sh
       /app/init.sh
     else
-      echo "already ran Nominatim import, just rerunning query"
+      echo "already ran Nominatim import, just rerunning queries"
     fi
     touch /finished
 
     # export
     service postgresql start
-    sudo --preserve-env --user=nominatim -- \
-      psql \
-      --dbname=nominatim \
-      --no-align \
-      --tuples-only \
-      --variable=ON_ERROR_STOP=1 \
-      --output=#{export(:container)} \
-      --file=#{query_path(:container)}
+    #{queries}
+    wait
 
     # maybe keep shell open if we want to debug
     if [ -f "#{debug_path(:container)}" ]; then
@@ -136,16 +189,17 @@ defmodule Basemap.Nominatim do
       echo "and export from the REPL like so:"
       echo "   \\pset tuples_only"
       echo "   \\pset format unaligned"
-      echo "   \\o #{export(:container)}"
+      echo "   \\o #{path(:container, "export_*.json")}"
       echo "followed by the full query."
-      echo "The original query is in #{query_path(:container)}"
+      echo "The original queries are in #{path(:container, "export_*.sql")}"
       sleep 1d
       exit $?
     fi
     """
   end
 
-  defp query_sql() do
+  # extracts all objects that should be searchable
+  defp query_sql(:search) do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
@@ -331,6 +385,39 @@ defmodule Basemap.Nominatim do
         interpol.hn,
         interpol.centroid
     ) reduced;
+    """
+  end
+
+  # extracts all areas which might be useful for matching GPS coords to names
+  defp query_sql(:area) do
+    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
+
+    """
+    -- convert to JSON and fix incorrect escaping of backslashes
+    SELECT
+      regexp_replace(array_to_json(array_agg(areas))::TEXT, '\\\\', '\\', 'g')
+    FROM (
+      SELECT
+        name->'name' AS name,
+        class,
+        type,
+        CONCAT_WS(',',
+          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
+          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
+          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(geometry))))::numeric, 6)
+        ) AS bbox
+      FROM placex
+      WHERE
+        importance >= 0.15
+        AND name->'name' IS NOT NULL
+        AND ST_Area(geometry, true) >= 5000
+        AND geometry && ST_MakeEnvelope(#{bbox}, 4326)
+        AND class IN ('landuse', 'leisure', 'natural')
+        AND type IN ('allotments', 'farmland', 'forest', 'meadow', 'garden', 'nature_reserve', 'park', 'wood')
+      -- put most specific items on top
+      ORDER BY importance ASC, ST_Area(geometry, true) ASC
+    ) areas;
     """
   end
 
