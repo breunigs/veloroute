@@ -16,42 +16,45 @@ defmodule Data.Article.Static.Freizeitroute7 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Harburger Berge",
         direction: :forward,
         from: "Harburger Rathaus",
         to: "Harburger Berge",
         parent_ref: __MODULE__,
         text: "vom Harburger Rathaus in die Harburger Berge",
+        historic: %{
+          "53788aa9b7f9d5e55ae0c10ab8b532c2" => ~d[2024-03],
+          "9c89119a863209d6cbacac9911a81bb7" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-17-freizeitrouten-6und-7/GX011284", "00:00:01.869", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011285", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011286", :start, "00:00:15.782"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011287", "00:00:00.400", "00:01:15.242"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011288", "00:00:01.401", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011289", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011290", :start, "00:00:29.830"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011291", "00:00:00.901", "00:00:47.681"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011292", "00:00:04.004", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011293", :start, "00:01:42.002"},
-          {"2021-04-17-freizeitrouten-6und-7/GX011294", "00:00:02.769", "00:00:15.482"}
+          {"2024-03-30-fr6-fr7/GX017016", "00:00:28.462", :end},
+          {"2024-03-30-fr6-fr7/GX017017", :start, "00:01:06.433"},
+          {"2024-03-30-fr6-fr7/GX017019", "00:07:06.159", "00:07:13.099"},
+          {"2024-03-30-fr6-fr7/GX017017", "00:01:14.775", "00:01:43.770"},
+          {"2024-03-30-fr6-fr7/GX017017", "00:01:52.346", "00:07:45.565"},
+          {"2024-03-30-fr6-fr7/GX017017", "00:07:55.275", :end}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Harburger Berge",
         direction: :backward,
         from: "Harburger Berge",
         to: "Harburger Rathaus",
         parent_ref: __MODULE__,
         text: "von den Harburger Bergen zum Harburger Rathaus",
+        historic: %{
+          "44bfb25e78ea6b0e384602f3970e1a2f" => ~d[2024-03],
+          "bee14c93babd1e32fcbb131eedf34fd5" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-17-freizeitrouten-6und-7/GX011294", "00:00:17.784", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011295", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX021295", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011296", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011297", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011298", :start, :end}
+          {"2024-03-30-fr6-fr7/GX017018", :start, :end},
+          {"2024-03-30-fr6-fr7/GX017019", :start, "00:06:56.082"},
+          {"2024-03-30-fr6-fr7/GX017019", "00:07:24.210", :end},
+          {"2024-03-30-fr6-fr7/GX017020", :start, :end},
+          {"2024-03-30-fr6-fr7/GX017021", :start, :end},
+          {"2024-03-30-fr6-fr7/GX017022", :start, :end}
         ]
       }
     ]

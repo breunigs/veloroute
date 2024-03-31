@@ -3,7 +3,8 @@ defmodule Data.Article.Blog.MartinistrasseOst do
 
   def title(), do: "Martinistraße Ost (Bezirksroute Nord 6)"
 
-  def start(), do: ~d[2024Q2]
+  def start(), do: ~d[2024-10]
+  def stop(), do: ~d[2025-08]
 
   def type(), do: :planned
 
@@ -14,7 +15,9 @@ defmodule Data.Article.Blog.MartinistrasseOst do
 
   def links(_assigns) do
     [
-      {"Lageplan und Erläuterungsbericht", "Oktober 2023",
+      {"fertiger Entwurf, Lageplan und Erläuterungsbericht", "März 2023",
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013888"},
+      {"1. Entwurf, Lageplan und Erläuterungsbericht", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013221"}
     ]
   end
