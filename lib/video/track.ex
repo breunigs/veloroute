@@ -351,6 +351,7 @@ defmodule Video.Track do
   end
 
   @min_street_duration_ms 1000
+  @max_gap_removal_duration_ms 2000
   @spec compact_street_names([Video.TimedPoint.t()], hash(), render_opts_priv()) :: timed_info()
   defp compact_street_names(_coords, _hash, %{street_names: false}), do: []
 
@@ -366,22 +367,25 @@ defmodule Video.Track do
         %{match_name: name}, [%{text: name} | _rest] = list ->
           list
 
-        coord, [prev | rest] = list ->
-          # this might create repeated names, which we'll clear out later
-          list =
-            if coord.time_offset_ms - prev.timestamp < @min_street_duration_ms,
-              do: rest,
-              else: list
+        # remove short gaps if current and previous name are the same
+        coord, [%{text: ""} = gap, prev | rest]
+        when coord.match_name == prev.text and
+               coord.time_offset_ms - gap.timestamp < @max_gap_removal_duration_ms ->
+          [prev | rest]
 
+        # remove street names only visible for a very short duration.
+        # this might create repeated names, which we'll clear out later
+        coord, [prev | rest]
+        when coord.time_offset_ms - prev.timestamp < @min_street_duration_ms ->
+          [%{timestamp: coord.time_offset_ms, text: coord.match_name} | rest]
+
+        coord, list ->
           [%{timestamp: coord.time_offset_ms, text: coord.match_name} | list]
       end)
       |> Enum.reduce([], fn
         # clear repeated names
-        cur, [prev | rest] = list ->
-          if cur.text == prev.text, do: [cur | rest], else: [cur | list]
-
-        cur, list ->
-          [cur | list]
+        cur, [prev | rest] when cur.text == prev.text -> [cur | rest]
+        cur, list -> [cur | list]
       end)
     else
       {:error, reason} ->
