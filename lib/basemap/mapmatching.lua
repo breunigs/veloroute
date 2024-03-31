@@ -1,10 +1,11 @@
 local bicycle = require('bicycle')
 
 function process_way(profile, way, result)
-  local name = way:get_value_by_key("name")
+  local name = way:get_value_by_key("name") or way:get_value_by_key("bridge:name")
   if name
   and way:get_value_by_key("fee") ~= "yes"
   and way:get_value_by_key("amenity") ~= "parking" then
+    result.name = name
     bicycle.process_way(profile, way, result)
   end
 end
