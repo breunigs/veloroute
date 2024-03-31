@@ -234,8 +234,7 @@ RAILWAY_CLASSES   = Set { "rail", "subway", "tram", "light_rail" }
 WATER_CLASSES    = Set { "river", "riverbank", "stream", "canal", "drain", "ditch", "dock" }
 WATERWAY_CLASSES = Set { "stream", "river", "canal", "drain", "ditch" }
 
--- Scan relations for use in ways
-
+-- Select relations which are available to scan for from ways and nodes
 function relation_scan_function()
   if Find("type")=="boundary" and Find("boundary")=="administrative" then
     Accept()
@@ -243,7 +242,6 @@ function relation_scan_function()
 end
 
 -- Process way tags
-
 function way_function()
   local route    = Find("route")
   local highway  = Find("highway")
@@ -662,16 +660,34 @@ function GetMinZoomByArea()
 end
 
 
--- unfortunately tilemaker doesn't yet allow us to lookup nodes in relations,
--- which we need for this. The following list is ODbL licensed:
--- https://wiki.osmfoundation.org/wiki/Licence
--- generated via "iex -S mix" and "Overpass.station_icon_process_lua()"
+-- unfortunately the station nodes are not always tagged with the operator.
+-- Sometimes there's a station relation which links to the operator network, but
+-- that requires nested lookups from station node → station relation → operatior
+-- relation(s) → (matching by name) stops.
+
+-- The following list is ODbL licensed:
+-- https://wiki.osmfoundation.org/wiki/Licence generated via "iex -S mix" and
+-- "Overpass.station_icon_process_lua()"
 STATION_ICONS = {
   akn = Set { "Hörgensweg","Boostedt","Meeschensee","Bönningstedt","Quickborn","Haslohfurth","Neumünster Süd","Holstentherme","Nützen","Sparrieshoop","Barmstedt","Moorbekhalle (Schulzentrum Nord)","Großenaspe","Bad Bramstedt","Bad Bramstedt Kurhaus","Lentföhrden","Neumünster","Friedrichsgabe","Quickborner Straße","Ulzburg Süd","Ellerau","Kaltenkirchen Süd","Wiemersdorf","Quickborn Süd","Henstedt-Ulzburg","Kaltenkirchen","dodenhof","Hasloh","Tanneneck","Burgwedel","Schnelsen","Elmshorn","Langenmoor","Bokholt","Voßloch","Barmstedt Brunnenstraße","Langeln","Alveslohe","Eidelstedt Zentrum" },
   sbahn = Set { "Neuwiedenthal","Veddel","Hammerbrook","Berliner Tor","Friedrichsberg","Hasselbrook","Bahrenfeld","Klein Flottbek (Botanischer Garten)","Hochkamp","Heimfeld","Harburg","Wilhelmsburg","Neukloster","Rübenkamp (City Nord)","Langenfelde","Wedel","Rissen","Iserbrook","Fischbek","Neu Wulmstorf","Halstenbek","Stellingen","Eidelstedt","Billwerder-Moorfleet","Bergedorf","Reinbek","Blankenese","Buxtehude","Harburg Rathaus","Poppenbüttel","Wellingsbüttel","Hoheneichen","Kornweg (Klein Borstel)","Ohlsdorf","Landwehr","Krupunder","Hamburg Airport (Flughafen)","Sternschanze (Messe)","Holstenstraße","Hamburg-Altona","Königstraße","Reeperbahn","Neugraben","Hamburg Hauptbahnhof","Jungfernstieg","Elbgaustraße","Wandsbeker Chaussee","Barmbek","Stadthausbrücke","Rothenburgsort","Aumühle","Othmarschen","Landungsbrücken","Alte Wöhr (Stadtpark)","Hamburg Dammtor / Universität","Tiefstack","Nettelnburg","Allermöhe","Mittlerer Landweg","Wohltorf","Agathenburg","Dollern","Horneburg","Pinneberg","Thesdorf","Sülldorf","Stade","Elbbrücken" },
   hochbahn = Set { "Hamburger Straße","Dehnhaide","Kiwittsmoor","Meiendorfer Weg","Wandsbek-Gartenstadt","Uhlandstraße","Barmbek","Baumwall (Elbphilharmonie)","Rödingsmarkt","Hagendeel","Großhansdorf","Hagenbecks Tierpark","Legienstraße","Rennbahnstraße","Billstedt","Bauerberg","Lübecker Straße","Berliner Tor","Neubertstraße","U Hamburger Straße","Rathausstraße","Alsterarkaden","Alstertor/Hermannstraße","Buckhorn","Hoisbüttel","Horner Rennbahn","U/S Landungsbrücken","Burgstraße","Rauhes Haus","Schlump","Eppendorfer Baum","Sierichstraße","Borgweg (Stadtpark)","Ochsenzoll","Mümmelmannsberg","Merkenstraße","Steinfurther Allee","Habichtstraße","Norderstedt Mitte","Sternschanze (Messe)","Klosterstern","Hammer Straße","Brauhausstraße","Mundsburg","Mühlendamm","Berlinertordamm","Lutterothstraße","Christuskirche","Osterstraße","Emilienstraße","Messehallen","Gänsemarkt (Oper)","Feldstraße (Heiligengeistfeld)","Lohmühlenstraße","Wartenau","Ritterstraße","Straßburger Straße","Alter Teichweg","Dammtorstraße","Plan","Saarlandstraße","Sengelmannstraße (City Nord)","Alsterdorf","Hudtwalckerstraße","Langenhorn Nord","Langenhorn Markt","Fuhlsbüttel Nord","Fuhlsbüttel","Klein Borstel","Meßberg","Rathaus","Steinstraße","Buschweg","HafenCity Universität","Mühlendamm / Lübeckertordamm","Kleine Rosenstraße","Goernestraße","Kleine Reichenstraße / Brandstwiete","Brandstwiete / Speicherstadt","Rathausmarkt","Petrikirche","Mönckebergstraße","Stephansplatz (Oper/CCH)","Alsterhaus","Alsterpavillion","Reesendamm","Ballindamm","Petrikirche/Bergstraße","Rathausmarkt/Alter Wall","Jungfernstieg","Alsterufer","Alstertor/Ferdinandsstraße","Gänsemarkt","Valentinskamp","Finanzbehörde","ABC-Straße","Neue ABC-Straße","Drehbahn","Johannes-Brahms-Platz","Caffamacherreihe","Schmalenbeck","Westphalensweg","Hallerstraße","Ahrensburg West","Kiekut","Buchenkamp","Landungsbrücken","Hauptbahnhof Süd","Farmsen","U-Stephansplatz","Joachim-Mähl-Straße","Richtweg","Klosterwall","Lange Mühren","Johanniswall","BeimStrohhause/Berliner Tor","Beim Strohhause","Kurt-Schill-Weg","U-Rödingsmarkt","Borgweg","Wandsbeker Chaussee","Rückertstraße","Ohlsdorf","Lattenkamp","Lattenkamp (Sporthalle)","Börnestraße","Menckesallee","Seumestraße","Ohlstedt","Lübeckertordamm","Lübeckertordamm Steinhauerdamm","Hauptbahnhof Nord","Ruckteschellweg","Wagnerstraße","Wandsbek Markt","Trabrennbahn","Berne","Volksdorf","Ahrensburg Ost","Niendorf Markt","Alter Teichweg / Tondernstieg","Alter Teichweg / Gravensteiner Weg","Tondernstraße / Gravensteiner Weg","St. Pauli","Steintorwall","Garstedt","Beim Strohhause / Hammerbrookstraße","Niendorf Nord","Schippelsweg","Überseequartier","Hoheluftbrücke","Loogeplatz","Kriegkamp","Berner Heerweg","Markthalle","Elbbrücken","Kandinskyallee","Lindenplatz","Beim Berliner Tor","Helma-Steinbach-Weg","Fibigerstraße","Speckstraße","Staatsoper","Lübecker Straße / Mühlendamm","U-Bahn Steinfurther Allee","Wandrahmsteg","TriBühne Norderstedt","Baakenwerder Straße","Hammer Kirche","Versmannstraße","Rathausmarkt/Schleusenbrücke","Oldenfelde","Kellinghusenstraße" }
 }
+OPERATOR_NAMES = {
+  akn = Set { "AKN" },
+  hochbahn = Set { "Hamburger Hochbahn AG" },
+  sbahn = Set { "S-Bahn Hamburg GmbH" },
+}
 function FindTrainOperatorIcon()
+  local operator = Find("operator")
+  for icon, names in pairs(OPERATOR_NAMES) do
+    if names[operator] then return icon end
+  end
+
+  if Find("station") == "subway" then
+    return "hochbahn"
+  end
+
   local name = Find("name")
   for operator, stations in pairs(STATION_ICONS) do
     if stations[name] then return operator end
