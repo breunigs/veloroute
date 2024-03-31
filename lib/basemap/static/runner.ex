@@ -173,6 +173,10 @@ defmodule Basemap.Static.Runner do
     {:noreply, state |> free_port(port) |> maybe_start_render()}
   end
 
+  def handle_info({_port, {:data, "INFO: {mbgl-render}[General]:" <> _rest}}, state) do
+    {:noreply, maybe_start_render(state)}
+  end
+
   def handle_info({port, {:data, data}}, state) when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
