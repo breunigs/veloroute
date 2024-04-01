@@ -55,7 +55,7 @@ defmodule Basemap.MapMatcher.OSRM do
   @health_check_seconds 1
   @osrm_port "5000"
 
-  @radius 10
+  @radius 9
 
   @working_basename "osmextract"
 
@@ -303,7 +303,12 @@ defmodule Basemap.MapMatcher.OSRM do
   end
 
   def handle_call({:containing_area, point}, _from, %{areas: areas} = state) do
-    area = Enum.find(areas, &Geo.CheapRuler.inside_bbox?(point, &1.bbox))
+    area =
+      Enum.find(areas, fn area ->
+        Geo.CheapRuler.inside_bbox?(point, area.bbox) &&
+          Geo.CheapRuler.inside_polygon_euclid?(point, area.geometry)
+      end)
+
     {:reply, if(area, do: area.name), state}
   end
 

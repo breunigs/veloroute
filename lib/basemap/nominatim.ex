@@ -38,7 +38,8 @@ defmodule Basemap.Nominatim do
           name: binary(),
           class: binary(),
           type: binary(),
-          bbox: Geo.BoundingBox.t()
+          bbox: Geo.BoundingBox.t(),
+          geometry: [[Geo.Point.t()]]
         }
   @spec areas() :: [area()]
   def areas() do
@@ -48,23 +49,34 @@ defmodule Basemap.Nominatim do
     |> File.read!()
     |> Jason.decode!(keys: :atoms)
     |> Enum.map(fn a ->
-      # name clean ups:
-      # - everything in brackets (...)
-      # - remove e.V. and variants
-      # - remove quotes, but not their contents
-      # - expand Klgv.
-      # - remove numbers from "Kleingartenverein 1234"
       name =
         a.name
+        # remove everything in brackets (...)
         |> String.replace(~r/\s*\(.*?\)/, "")
+        # remove e.V. and variants
         |> String.replace(~r/\s*e\.\s?V\./, "")
+        # remove quotes, but not their contents
         |> String.replace(~r/[„“"]/, "")
+        # expand Klgv.
         |> String.replace("Klgv.", "Kleingartenverein")
+        # remove numbers from "Kleingartenverein 1234"
         |> String.replace(~r/Kleingartenverein \d+/, "Kleingartenverein")
 
       bbox = Geo.BoundingBox.parse(a.bbox)
-      %{a | name: name, bbox: bbox}
+      geometry = remap_geojson(a.geometry)
+      %{a | name: name, bbox: bbox, geometry: geometry}
     end)
+  end
+
+  defp remap_geojson(%{type: "Polygon", coordinates: polygon}) do
+    # a polygon is a list of multiple rings, with the first one being the
+    # "outer" ring, and the subsequent ones the "holes"
+    Enum.map(polygon, &Enum.map(&1, fn [lon, lat] -> %Geo.Point{lat: lat, lon: lon} end))
+  end
+
+  defp remap_geojson(%{type: "MultiPolygon", coordinates: multi}) do
+    # a multi polygon is a list of polygons
+    Enum.flat_map(multi, &remap_geojson(%{type: "Polygon", coordinates: &1}))
   end
 
   def debug() do
@@ -396,6 +408,8 @@ defmodule Basemap.Nominatim do
 
     """
     \\set precision 0.000001
+    -- expand areas slightly to still be able to name paths alongside it
+    \\set expand_in_meter 10
 
     SELECT
       -- convert to JSON and fix incorrect escaping of backslashes
@@ -410,7 +424,12 @@ defmodule Basemap.Nominatim do
           ST_YMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
           ST_XMax(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
           ST_YMax(ST_ReducePrecision(ST_Envelope(geometry), :precision))
-        ) AS bbox
+        ) AS bbox,
+        ST_AsGeoJSON (
+          ST_ReducePrecision(
+            ST_Buffer(geometry::geography, :expand_in_meter)::geometry,
+          :precision)
+        )::jsonb AS geometry
       FROM placex
       WHERE
         importance >= 0.15

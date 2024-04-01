@@ -1,4 +1,5 @@
 defmodule Geo.CheapRuler do
+  require Integer
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016
 
   @type point() :: %{:lat => float(), :lon => float(), optional(atom()) => any()}
@@ -387,6 +388,75 @@ defmodule Geo.CheapRuler do
       %{point: {prev, next}, t: t} = m ->
         point = Geo.Interpolate.point(prev, next, t)
         %{m | point: point}
+    end
+  end
+
+  @doc ~S"""
+  Checks if a coordinate is contained within a (multi)polygon. Expects the polygon
+  to have the same start and end coordinate already. MultiPolygons are lists of
+  polygons.
+
+  ## Examples
+
+    iex> polygon = [
+    ...>   %{lat: 53.6193621197, lon: 10.02495735347},
+    ...>   %{lat: 53.61865255279, lon: 10.02397030056},
+    ...>   %{lat: 53.61802888771, lon: 10.02253263652},
+    ...>   %{lat: 53.61748476423, lon: 10.02342849433},
+    ...>   %{lat: 53.61848709152, lon: 10.02518802345},
+    ...>   %{lat: 53.61857618613, lon: 10.02517193019},
+    ...>   %{lat: 53.61879892183, lon: 10.02569227874},
+    ...>   %{lat: 53.61903120209, lon: 10.02567082107},
+    ...>   %{lat: 53.61921893451, lon: 10.02555280387},
+    ...>   %{lat: 53.6193621197, lon: 10.02495735347}
+    ...> ]
+    ...>
+    ...> inside1 = %{lat: 53.61912984126, lon: 10.025233621}
+    ...> inside2 = %{lat: 53.6185284569, lon: 10.02513169706}
+    ...> outside = %{lat: 53.61855073055, lon: 10.02524971426}
+    ...>
+    ...> Enum.map([inside1, inside2, outside], &Geo.CheapRuler.inside_polygon_euclid?(&1, polygon))
+    [true, true, false]
+  """
+  @typep polygon :: [Geo.Point.like()]
+  @spec inside_polygon_euclid?(Geo.Point.like(), polygon() | [polygon()]) :: boolean()
+  def inside_polygon_euclid?(coord, [first | _rest] = multi) when is_list(first) do
+    inside = Enum.count(multi, &inside_polygon_euclid?(coord, &1))
+    Integer.is_odd(inside)
+  end
+
+  def inside_polygon_euclid?(coord, [first | _rest] = polygon) when is_map(first) do
+    if List.first(polygon) != List.last(polygon),
+      do: raise("invalid polygon: expected first and last coord to be the same")
+
+    outside = Enum.min_by(polygon, & &1.lon)
+    outside = %{outside | lon: outside.lon - 0.001}
+
+    intersections =
+      polygon
+      |> Enum.chunk_every(2, 1, :discard)
+      |> Enum.count(fn [prev, next] ->
+        o1 = orientation_euclid(coord, outside, prev)
+        o2 = orientation_euclid(coord, outside, next)
+        o3 = orientation_euclid(prev, next, coord)
+        o4 = orientation_euclid(prev, next, outside)
+
+        # intersects? (ignoring colinear edge cases)
+        o1 != o2 && o3 != o4
+      end)
+
+    Integer.is_odd(intersections)
+  end
+
+  defp orientation_euclid(coord, prev, next) do
+    area =
+      (next.lat - prev.lat) * (coord.lon - prev.lon) -
+        (coord.lat - prev.lat) * (next.lon - prev.lon)
+
+    case area do
+      a when a > 0 -> :clockwise
+      a when a < 0 -> :counter
+      _a -> :colinear
     end
   end
 

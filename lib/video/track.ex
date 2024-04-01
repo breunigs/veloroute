@@ -350,8 +350,8 @@ defmodule Video.Track do
     end)
   end
 
-  @min_street_duration_ms 1000
-  @max_gap_removal_duration_ms 2000
+  @min_street_duration_ms 2000
+  @max_gap_removal_duration_ms 2500
   @spec compact_street_names([Video.TimedPoint.t()], hash(), render_opts_priv()) :: timed_info()
   defp compact_street_names(_coords, _hash, %{street_names: false}), do: []
 
@@ -377,7 +377,9 @@ defmodule Video.Track do
         # this might create repeated names, which we'll clear out later
         coord, [prev | rest]
         when coord.time_offset_ms - prev.timestamp < @min_street_duration_ms ->
-          [%{timestamp: coord.time_offset_ms, text: coord.match_name} | rest]
+          # special case start of video: extend 2nd name to start
+          ts = if prev.timestamp == 0, do: 0, else: coord.time_offset_ms
+          [%{timestamp: ts, text: coord.match_name} | rest]
 
         coord, list ->
           [%{timestamp: coord.time_offset_ms, text: coord.match_name} | list]
