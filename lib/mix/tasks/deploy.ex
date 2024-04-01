@@ -137,7 +137,7 @@ defmodule Mix.Tasks.Deploy do
       true = Enum.find_value(0..20, &wait_until_up/1)
 
       true =
-        Enum.all?(
+        Parallel.map(
           ~w(
             /alltagsroute-1
             /map/___static/9.988434,53.548873,9/720x493
@@ -151,6 +151,7 @@ defmodule Mix.Tasks.Deploy do
           ),
           &report_status_200?/1
         )
+        |> Enum.all?()
     after
       Util.Docker.stop(container_ref)
     end
