@@ -203,6 +203,8 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
+    \\set precision 0.000001
+
     WITH
       -- combo is basically "placex", joined with extra information from linked
       -- tables. Some columns are already condensed to avoid code repetition.
@@ -323,15 +325,15 @@ defmodule Basemap.Nominatim do
         END) AS boost,
         -- generate Meilisearch format
         JSONB_BUILD_OBJECT(
-          'lng', ROUND((ST_X(ST_Centroid(combo.centroid)))::numeric, 6),
-          'lat', ROUND((ST_Y(ST_Centroid(combo.centroid)))::numeric, 6)
+          'lng', ST_X(ST_ReducePrecision(combo.centroid, :precision)),
+          'lat', ST_Y(ST_ReducePrecision(combo.centroid, :precision))
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
-          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(combo.geometry))))::numeric, 6)
+          ST_XMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_YMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_XMax(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_YMax(ST_ReducePrecision(ST_Envelope(geometry), :precision))
         ) AS bbox,
         combo.parents_name,
         combo.parents_postcode
@@ -361,15 +363,15 @@ defmodule Basemap.Nominatim do
         interpol.hn AS boost,
         -- generate Meilisearch format
         JSONB_BUILD_OBJECT(
-          'lng', ROUND(ST_X(interpol.centroid)::numeric, 6),
-          'lat', ROUND(ST_Y(interpol.centroid)::numeric, 6)
+          'lng', ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
+          'lat', ST_Y(ST_ReducePrecision(interpol.centroid, :precision))
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-            ROUND((ST_X(interpol.centroid))::numeric, 6),
-            ROUND((ST_Y(interpol.centroid))::numeric, 6),
-            ROUND((ST_X(interpol.centroid))::numeric, 6),
-            ROUND((ST_Y(interpol.centroid))::numeric, 6)
+            ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
+            ST_Y(ST_ReducePrecision(interpol.centroid, :precision)),
+            ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
+            ST_Y(ST_ReducePrecision(interpol.centroid, :precision))
           ) AS bbox,
         combo.parents_name,
         combo.parents_postcode
@@ -393,8 +395,10 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
-    -- convert to JSON and fix incorrect escaping of backslashes
+    \\set precision 0.000001
+
     SELECT
+      -- convert to JSON and fix incorrect escaping of backslashes
       regexp_replace(array_to_json(array_agg(areas))::TEXT, '\\\\', '\\', 'g')
     FROM (
       SELECT
@@ -402,10 +406,10 @@ defmodule Basemap.Nominatim do
         class,
         type,
         CONCAT_WS(',',
-          ROUND((ST_X(ST_StartPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_StartPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
-          ROUND((ST_X(ST_EndPoint(ST_BoundingDiagonal(geometry))))::numeric, 6),
-          ROUND((ST_Y(ST_EndPoint(ST_BoundingDiagonal(geometry))))::numeric, 6)
+          ST_XMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_YMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_XMax(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
+          ST_YMax(ST_ReducePrecision(ST_Envelope(geometry), :precision))
         ) AS bbox
       FROM placex
       WHERE
