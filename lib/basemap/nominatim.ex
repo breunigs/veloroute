@@ -191,22 +191,28 @@ defmodule Basemap.Nominatim do
     # export
     service postgresql start
     #{queries}
-    wait
 
     # maybe keep shell open if we want to debug
     if [ -f "#{debug_path(:container)}" ]; then
       rm "#{debug_path(:container)}"
-      echo "Keeping container alive for debugging. Exec into it like so:"
+      echo "Container is live for debugging. Exec into it like so:"
       echo "    docker exec -unominatim -it #{Util.Docker.names(@full_ref).container} psql"
       echo "and export from the REPL like so:"
       echo "   \\pset tuples_only"
       echo "   \\pset format unaligned"
       echo "   \\o #{path(:container, "export_*.json")}"
       echo "followed by the full query."
+      echo "Exit by CTRL+\\\\"
+      echo ""
       echo "The original queries are in #{path(:container, "export_*.sql")}"
+      echo "They are being executed in the background."
+      wait
+      echo "Original queries have finished execution."
       sleep 1d
       exit $?
     fi
+
+    wait
     """
   end
 
