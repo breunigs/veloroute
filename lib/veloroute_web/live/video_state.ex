@@ -226,9 +226,8 @@ defmodule VelorouteWeb.Live.VideoState do
           Video.Generator.indicator() | nil
   defp position_from_time(%{assigns: %{video: state}}, params) do
     with pos <- parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
-         rendered <- current_rendered(state),
-         true <- 0 <= pos && pos <= rendered.length_ms do
-      Video.Generator.start_from(rendered, pos)
+         rendered <- current_rendered(state) do
+      Video.Generator.start_from(rendered, pos |> max(0) |> min(rendered.length_ms))
     else
       _ ->
         Logger.debug("failed to get pos from params: #{inspect(params)}")
