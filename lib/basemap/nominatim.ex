@@ -215,8 +215,6 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
-    \\set precision 0.000001
-
     WITH
       -- combo is basically "placex", joined with extra information from linked
       -- tables. Some columns are already condensed to avoid code repetition.
@@ -331,21 +329,23 @@ defmodule Basemap.Nominatim do
           ) OR (
             combo.class = 'boundary'
             AND combo.type = 'administrative'
+          ) OR (
+            combo.class = 'highway'
           )
           THEN combo.name->'name'
           ELSE combo.housenumber
         END) AS boost,
         -- generate Meilisearch format
         JSONB_BUILD_OBJECT(
-          'lng', ST_X(ST_ReducePrecision(combo.centroid, :precision)),
-          'lat', ST_Y(ST_ReducePrecision(combo.centroid, :precision))
+          'lng', ST_X(combo.centroid),
+          'lat', ST_Y(combo.centroid)
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-          ST_XMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_YMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_XMax(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_YMax(ST_ReducePrecision(ST_Envelope(geometry), :precision))
+          ST_XMin(ST_Envelope(geometry)),
+          ST_YMin(ST_Envelope(geometry)),
+          ST_XMax(ST_Envelope(geometry)),
+          ST_YMax(ST_Envelope(geometry))
         ) AS bbox,
         combo.parents_name,
         combo.parents_postcode
@@ -375,15 +375,15 @@ defmodule Basemap.Nominatim do
         interpol.hn AS boost,
         -- generate Meilisearch format
         JSONB_BUILD_OBJECT(
-          'lng', ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
-          'lat', ST_Y(ST_ReducePrecision(interpol.centroid, :precision))
+          'lng', ST_X(interpol.centroid),
+          'lat', ST_Y(interpol.centroid)
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-            ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
-            ST_Y(ST_ReducePrecision(interpol.centroid, :precision)),
-            ST_X(ST_ReducePrecision(interpol.centroid, :precision)),
-            ST_Y(ST_ReducePrecision(interpol.centroid, :precision))
+            ST_X(interpol.centroid),
+            ST_Y(interpol.centroid),
+            ST_X(interpol.centroid),
+            ST_Y(interpol.centroid)
           ) AS bbox,
         combo.parents_name,
         combo.parents_postcode
@@ -407,7 +407,6 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
 
     """
-    \\set precision 0.000001
     -- expand areas slightly to still be able to name paths alongside it
     \\set expand_in_meter 10
 
@@ -420,15 +419,13 @@ defmodule Basemap.Nominatim do
         class,
         type,
         CONCAT_WS(',',
-          ST_XMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_YMin(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_XMax(ST_ReducePrecision(ST_Envelope(geometry), :precision)),
-          ST_YMax(ST_ReducePrecision(ST_Envelope(geometry), :precision))
+          ST_XMin(ST_Envelope(geometry)),
+          ST_YMin(ST_Envelope(geometry)),
+          ST_XMax(ST_Envelope(geometry)),
+          ST_YMax(ST_Envelope(geometry))
         ) AS bbox,
         ST_AsGeoJSON (
-          ST_ReducePrecision(
-            ST_Buffer(geometry::geography, :expand_in_meter)::geometry,
-          :precision)
+          ST_Buffer(geometry::geography, :expand_in_meter)::geometry
         )::jsonb AS geometry
       FROM placex
       WHERE

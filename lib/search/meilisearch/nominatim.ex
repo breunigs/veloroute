@@ -35,6 +35,14 @@ defmodule Search.Meilisearch.Nominatim do
     format(%{result | "bbox" => bbox, "id" => "fixed#{rest}"})
   end
 
+  # export bug, bbox shouldn't be empty string.
+  def format(%{"bbox" => ""} = result) do
+    case Application.get_env(:veloroute, :env) do
+      :prod -> nil
+      _other -> raise "invalid search result without bbox: #{inspect(result)}"
+    end
+  end
+
   def format(result) when is_map(result) do
     f = fn arg -> Map.fetch!(result, arg) end
 
