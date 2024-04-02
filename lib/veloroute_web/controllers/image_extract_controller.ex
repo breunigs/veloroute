@@ -69,16 +69,12 @@ defmodule VelorouteWeb.ImageExtractController do
 
   @ffmpeg_path :os.find_executable(~c"ffmpeg")
   @ffmpeg_timeout_ms 60_000
+  @ffmpeg_allow_seeking_past_end_s 60
   defp ffmpeg_no_cache(hash, ts, max_length, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
     source_abs = Path.join(Settings.video_target_dir_abs(), source)
 
-    ts =
-      if ts >= 0.95 * max_length do
-        min(ts, Video.Metadata.length_ms(source_abs))
-      else
-        ts
-      end
+    ts = min(ts, max_length + @ffmpeg_allow_seeking_past_end_s * 1000)
 
     ffmpeg_args =
       List.flatten([
@@ -87,6 +83,9 @@ defmodule VelorouteWeb.ImageExtractController do
         ["-ss", Video.Timestamp.from_milliseconds(ts)],
         "-noaccurate_seek",
         ["-i", source_abs],
+        # allow seeking past end of video, to hide the length differences seen
+        # by various tools
+        ["-vf", "tpad=stop_mode=clone:stop_duration=#{@ffmpeg_allow_seeking_past_end_s}"],
         ["-frames:v", "1"],
         ffmpeg_format_args(format),
         "-"
