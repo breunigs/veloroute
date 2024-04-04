@@ -225,7 +225,8 @@ defmodule VelorouteWeb.Live.VideoState do
   @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::
           Video.Generator.indicator() | nil
   defp position_from_time(%{assigns: %{video: state}}, params) do
-    with pos <- parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
+    with pos when not is_nil(pos) <-
+           parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
          rendered <- current_rendered(state) do
       Video.Generator.start_from(rendered, pos |> max(0) |> min(rendered.length_ms))
     else
