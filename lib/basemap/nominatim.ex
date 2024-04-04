@@ -237,7 +237,10 @@ defmodule Basemap.Nominatim do
           main1.name,
           main1.housenumber,
           main1.address,
-          main1.extratags,
+          SLICE(
+            main1.extratags,
+            ARRAY['border_type', 'branch', 'name:prefix', 'operator', 'wikidata']
+          ) AS extratags,
           main1.centroid,
           main1.geometry,
           -- merge joined names for addresses
@@ -314,19 +317,17 @@ defmodule Basemap.Nominatim do
     FROM (
       -- this converts the raw "combo" into a suitable format for export
       SELECT
-        combo.id,
-        combo.importance,
-        combo.rank_address,
-        combo.rank_search,
+        -- limit max length of ID column for Meilisearch
+        SUBSTRING(STRING_AGG(combo.id, '-'), 0, 500) AS id,
+        AVG(combo.importance) AS importance,
+        AVG(combo.rank_address) AS rank_address,
+        AVG(combo.rank_search) AS rank_search,
         combo.class,
         combo.type,
         combo.admin_level,
         combo.name,
         combo.address,
-        slice(
-          combo.extratags,
-          ARRAY['border_type', 'branch', 'name:prefix', 'operator', 'wikidata']
-        ) AS extratags,
+        HSTORE(STRING_AGG(NULLIF(combo.extratags::TEXT, ''), ',')) AS extratags,
         -- repeat name in boost for certain important objects
         (CASE WHEN
           (
@@ -343,19 +344,28 @@ defmodule Basemap.Nominatim do
         END) AS boost,
         -- generate Meilisearch format
         JSONB_BUILD_OBJECT(
-          'lng', ST_X(combo.centroid),
-          'lat', ST_Y(combo.centroid)
+          'lng', ST_X(ST_CENTROID(ST_UNION(combo.centroid))),
+          'lat', ST_Y(ST_CENTROID(ST_UNION(combo.centroid)))
         ) AS _geo,
         -- generate as string because we need to create an Elixir struct anyway
         CONCAT_WS(',',
-          ST_XMin(ST_Envelope(geometry)),
-          ST_YMin(ST_Envelope(geometry)),
-          ST_XMax(ST_Envelope(geometry)),
-          ST_YMax(ST_Envelope(geometry))
+          ST_XMin(ST_Envelope(ST_UNION(geometry))),
+          ST_YMin(ST_Envelope(ST_UNION(geometry))),
+          ST_XMax(ST_Envelope(ST_UNION(geometry))),
+          ST_YMax(ST_Envelope(ST_UNION(geometry)))
         ) AS bbox,
         combo.parents_name,
         combo.parents_postcode
       FROM combo
+      GROUP BY
+        combo.class,
+        combo.type,
+        combo.admin_level,
+        combo.name,
+        combo.address,
+        combo.housenumber,
+        combo.parents_name,
+        combo.parents_postcode
 
 
       UNION
