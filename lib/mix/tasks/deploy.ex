@@ -190,11 +190,11 @@ defmodule Mix.Tasks.Deploy do
         false
 
       {:error, :timeout} when retried ->
-        report_status_200?(path, true)
-
-      {:error, :timeout} ->
         Logger.error("! timeout for #{path} (retried once)")
         false
+
+      {:error, :timeout} ->
+        report_status_200?(path, true)
 
       other ->
         Logger.error("! unexpected response for #{path}: #{inspect(other)}")
