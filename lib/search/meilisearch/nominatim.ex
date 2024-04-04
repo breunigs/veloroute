@@ -149,7 +149,14 @@ defmodule Search.Meilisearch.Nominatim do
     }
   end
 
-  defp to_mapset(item, key), do: if(item[key], do: MapSet.new(item[key]))
+  defp to_mapset(item, key) do
+    case item[key] do
+      nil -> nil
+      val when is_list(val) or is_map(val) -> MapSet.new(val)
+      val -> MapSet.new([val])
+    end
+  end
+
   defp intersect(ms1, nil), do: ms1
   defp intersect(nil, ms2), do: ms2
   defp intersect(ms1, ms2), do: MapSet.intersection(ms1, ms2)
