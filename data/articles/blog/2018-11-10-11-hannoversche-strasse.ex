@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung Umbau Kreisel", "April 2024",
+       "https://www.hamburg.de/harburg/pressemeldungen/18429130/ausbau-der-velorouten-10-und-11/"},
       {"Bauvergabe Kreisel Neuländer Hauptdeich", "März 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6ef021a3-6cf6-4bec-ae8c-5ef2782f52ba"},
       {"Baustelleninfo", "September 2023",
