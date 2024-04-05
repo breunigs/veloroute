@@ -15,8 +15,11 @@ defmodule Video.Metadata do
   @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
   defstruct @enforce_keys
 
-  def start_link() do
-    Agent.start_link(fn -> read_json() end, name: __MODULE__)
+  def start() do
+    case Agent.start(fn -> read_json() end, name: __MODULE__) do
+      {:ok, _pid} -> :ok
+      {:error, {:already_started, _pid}} -> :ok
+    end
   end
 
   @spec for(binary | Video.TrimmedSource.t() | Video.Source.t()) ::
@@ -26,7 +29,7 @@ defmodule Video.Metadata do
   end
 
   def for(video_path) when is_binary(video_path) do
-    start_link()
+    start()
 
     video_path =
       if Path.absname(video_path) == video_path,
@@ -77,7 +80,7 @@ defmodule Video.Metadata do
 
   @spec can_use?(binary) :: boolean()
   def can_use?(codec) do
-    start_link()
+    start()
     Agent.get_and_update(__MODULE__, &codec_info(&1, codec), :infinity)
   end
 
@@ -90,7 +93,7 @@ defmodule Video.Metadata do
       pts_correction: 1.0
     }
 
-    start_link()
+    start()
     fake("videos/source/1.mp4", default_meta)
     fake("videos/source/2.mp4", %{default_meta | time_base: 1 / 1000})
     fake("test/fixtures/1.MP4", default_meta)
