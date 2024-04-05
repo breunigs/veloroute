@@ -6,7 +6,7 @@ ARG RAV1E_REPO=xiph
 ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
 ARG SVTAV1_VERSION=c233913e82fa44caec4a0f08efabb861b2f81edf
 
-ARG FFMPEG_VERSION=6.1
+ARG FFMPEG_VERSION=7.0
 ARG BLUR_VERSION=ec85bf7288645caa884df346cf010d0caa47e78f
 
 RUN mkdir -p /downloads/
