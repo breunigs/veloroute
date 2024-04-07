@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zu Vollsperrungen", "April 2024",
+       "https://www.hamburg.de/bvm/medien/18488076/2024-04-05-bvm-berlinertordammbruecke/"},
       {"Pressemitteilung zum Baustart", "März 2024",
        "https://www.hamburg.de/bvm/medien/18353678/2024-03-13-bvm-berlinertordammbruecke/"},
       {"Pressemitteilung zu vorbereitenden Arbeiten", "Januar 2024",

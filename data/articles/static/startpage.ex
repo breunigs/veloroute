@@ -200,7 +200,7 @@ defmodule Data.Article.Static.Startpage do
       </li>
       <li>
         <.a href="/lexikon/fahrbahn-und-nebenflaechen"><strong>Fachbegriffe / Lexikon</strong></.a><br>
-        Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagsprache decken.
+        Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagssprache decken.
       </li>
       <li>
         <.a name="projekt"><strong>Projektdetails</strong></.a><br>

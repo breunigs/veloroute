@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Billeradweg",
         direction: :forward,
         from: "Altmannbrücke",
@@ -24,30 +24,29 @@ defmodule Data.Article.Static.Freizeitroute4 do
         to: "Bergedorfer Gehölz",
         parent_ref: __MODULE__,
         text: "entlang der Bille ins Bergedorfer Gehölz",
+        historic: %{
+          "ae60c74c4d2111438483bdd0ec8cf15d" => ~d[2024-04],
+          "d092b1f75d8ca412f00846abcfa80f2e" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-25-freizeitroute4/GX011378", :start, "00:01:02.562"},
-          {"2021-04-25-freizeitroute4/GX011379", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011380", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011381", :start, "00:01:01.895"},
-          {"2021-04-25-freizeitroute4/GX011381", "00:01:06.633", :end},
-          {"2021-04-25-freizeitroute4/GX011382", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011383", :start, "00:00:04.338"},
-          {"2021-04-25-freizeitroute4/GX011384", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011385", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011386", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011387", :start, "00:01:37.164"},
-          {"2021-04-25-freizeitroute4/GX011388", "00:00:09.109", "00:02:54.574"},
-          {"2021-04-25-freizeitroute4/GX011388", "00:03:11.825", :end},
-          {"2021-04-25-freizeitroute4/GX011389", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011390", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011391", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011392", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011393", :start, "00:00:09.276"},
-          {"2021-04-25-freizeitroute4/GX011394", "00:00:00.467", "00:02:27.214"}
+          {"2024-04-06-fr4/GX017044", "00:00:10.010", "00:00:51.251"},
+          {"2024-04-06-fr4/GX017046", "00:00:23.690", :end},
+          {"2024-04-06-fr4/GX017047", :start, :end},
+          {"2024-04-06-fr4/GX017048", :start, "00:01:11.772"},
+          {"2024-04-06-fr4/GX017049", :start, "00:00:04.671"},
+          {"2024-04-06-fr4/GX017050", :start, :end},
+          {"2024-04-06-fr4/GX017051", :start, "00:05:41.441"},
+          {"2024-04-06-fr4/GX017052", "00:00:00.534", :end},
+          {"2024-04-06-fr4/GX017053", :start, :end},
+          {"2024-04-06-fr4/GX017054", :start, :end},
+          {"2024-04-06-fr4/GX017055", :start, :end},
+          {"2024-04-06-fr4/GX017058", :start, :end},
+          {"2024-04-06-fr4/GX017059", :start, "00:02:03.991"},
+          {"2024-04-06-fr4/GX017059", "00:02:08.829", "00:02:27.547"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Billeradweg",
         direction: :backward,
         from: "Bergedorfer Gehölz",
@@ -55,47 +54,65 @@ defmodule Data.Article.Static.Freizeitroute4 do
         to: "Altmannbrücke",
         parent_ref: __MODULE__,
         text: "entlang der Bille in die Innenstadt",
+        historic: %{
+          "413cb39f99e638336509ee528b8e5a6d" => ~d[2024-04],
+          "e7adf4febe427d8f5e6cdf4a90357a33" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-25-freizeitroute4/GX011394", "00:03:07.054", "00:03:52.899"},
-          {"2021-04-25-freizeitroute4/GX011395", "00:00:01.902", :end},
-          {"2021-04-25-freizeitroute4/GX011396", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011397", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011398", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011399", :start, "00:00:26.159"},
-          {"2021-04-25-freizeitroute4/GX011400", "00:00:00.901", :end},
-          {"2021-04-25-freizeitroute4/GX011401", :start, "00:04:34.908"},
-          {"2021-04-25-freizeitroute4/GX021401", "00:02:55.675", :end},
-          {"2021-04-25-freizeitroute4/GX031401", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011402", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011403", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011404", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011405", :start, :end},
-          {"2021-04-25-freizeitroute4/GX011406", :start, "00:00:13.881"}
+          {"2024-04-06-fr4/GX017060", "00:00:29.029", :end},
+          {"2024-04-06-fr4/GX017061", :start, "00:00:26.527"},
+          {"2024-04-06-fr4/GX017062", "00:00:01.235", "00:04:44.151"},
+          {"2024-04-06-fr4/GX017062", "00:09:54.194", :end},
+          {"2024-04-06-fr4/GX017063", :start, :end},
+          {"2024-04-06-fr4/GX017064", :start, :end},
+          {"2024-04-06-fr4/GX017065", :start, :end},
+          {"2024-04-06-fr4/GX017066", :start, :end},
+          {"2024-04-06-fr4/GX017067", :start, :end},
+          {"2024-04-06-fr4/GX017068", :start, :end}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Walter-Hammer-Weg",
         direction: :forward,
         from: "Walter-Hammer-Weg West",
         to: "Walter-Hammer-Weg Ost",
         parent_ref: __MODULE__,
         text: "Walter-Hammer-Weg Richtung Osten (Nebenstrecke FR4)",
+        end_action: %{
+          action: :play,
+          route: __MODULE__,
+          group: "Billeradweg",
+          direction: :forward
+        },
+        historic: %{
+          "f79f4ce74c6658ff7dccd40d2be41a51" => ~d[2024-04],
+          "327f571058c788d6c7652aa7ee915255" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-25-freizeitroute4/GX011401", "00:04:34.941", :end},
-          {"2021-04-25-freizeitroute4/GX021401", :start, "00:01:16.743"}
+          {"2024-04-06-fr4/GX017062", "00:06:27.587", "00:07:50.603"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Walter-Hammer-Weg",
         direction: :backward,
         from: "Walter-Hammer-Weg Ost",
         to: "Walter-Hammer-Weg West",
         parent_ref: __MODULE__,
         text: "Walter-Hammer-Weg Richtung Westen (Nebenstrecke FR4)",
+        end_action: %{
+          action: :play,
+          route: __MODULE__,
+          group: "Billeradweg",
+          direction: :backward
+        },
+        historic: %{
+          "fc0f2a110cc3015d659c6a78522e0bb0" => ~d[2024-04],
+          "85ccd74b8a2167063c1f4cf12e45b62d" => ~d[2021-04]
+        },
         videos: [
-          {"2021-04-25-freizeitroute4/GX021401", "00:01:18.111", "00:02:55.675"}
+          {"2024-04-06-fr4/GX017062", "00:08:32.979", "00:09:57.030"}
         ]
       }
     ]
