@@ -315,7 +315,8 @@ function way_function()
 
     -- demote private
     local access = Find("access")
-    if minzoom and (access=="private" or access=="no") then minzoom = 14 end
+    local isPrivate = access=="private" or access=="no"
+    if minzoom and isPrivate then minzoom = 14 end
 
     -- Links (ramp)
     local ramp=false
@@ -342,6 +343,7 @@ function way_function()
       if ramp then AttributeNumeric("ramp", 1) end
       SetOnewayForBicycles(MAX(14, minzoom))
       SetNameAttributes(MAX(12, minzoom))
+      if isPrivate then Attribute("access", "private") end
 
       if DEBUG then
         local ref = Find("ref")

@@ -1327,6 +1327,38 @@
       }
     },
     {
+      "id": "highway-2-private",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "transportation",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["!in", "brunnel", "bridge", "tunnel"],
+        ["in", "class", "service"],
+        ["==", "access", "private"]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": ["literal", "#F7EBEB"],
+        "line-opacity": ["step", ["zoom"], 0, 14, 1],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          14,
+          0.5,
+          18,
+          12
+        ]
+      }
+    },
+    {
       "id": "highway-1-bg",
       "type": "line",
       "source": "merged",
@@ -1352,6 +1384,54 @@
         ],
         "line-gap-width": 0,
         "line-opacity": ["step", ["zoom"], 0, 13, 0.75]
+      }
+    },
+    {
+      "id": "highway-1-private",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "transportation",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["!in", "brunnel", "bridge", "tunnel"],
+        ["in", "class", "path"],
+        ["==", "access", "private"]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "miter",
+        "line-cap": "butt"
+      },
+      "paint": {
+        "line-color": ["literal", "#F7EBEB"],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          13,
+          0.5,
+          14,
+          1,
+          15,
+          1,
+          18,
+          4
+        ],
+        "line-dasharray": [
+          "step",
+          ["zoom"],
+          ["literal", [1, 0]],
+          15,
+          ["literal", [1.75, 1]],
+          16,
+          ["literal", [1, 0.75]],
+          17,
+          ["literal", [1, 0.5]]
+        ],
+        "line-gap-width": 0,
+        "line-blur": 0
       }
     },
     {
@@ -1615,7 +1695,8 @@
         "all",
         ["==", "$type", "LineString"],
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "service"]
+        ["in", "class", "service"],
+        ["!has", "access"]
       ],
       "layout": {
         "line-cap": "round",
@@ -1623,7 +1704,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "#fff",
+        "line-color": ["literal", "#fff"],
         "line-opacity": ["step", ["zoom"], 0, 14, 1],
         "line-width": [
           "interpolate",
@@ -1646,7 +1727,8 @@
         "all",
         ["==", "$type", "LineString"],
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "path"]
+        ["in", "class", "path"],
+        ["!has", "access"]
       ],
       "layout": {
         "visibility": "visible",
