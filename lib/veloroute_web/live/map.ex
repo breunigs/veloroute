@@ -27,6 +27,7 @@ defmodule VelorouteWeb.Live.Map do
       |> reset_layers_on_change()
       |> highlight_route()
       |> maybe_map_preview()
+      |> push_changes()
 
     {:ok, socket}
   end
@@ -170,7 +171,6 @@ defmodule VelorouteWeb.Live.Map do
     else
       socket
     end
-    |> push_changes()
   end
 
   defp reset_layers_on_change(socket) do
@@ -182,7 +182,6 @@ defmodule VelorouteWeb.Live.Map do
 
       socket
       |> assign(:layers, layers)
-      |> push_changes()
     else
       socket
     end
