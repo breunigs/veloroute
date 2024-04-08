@@ -200,45 +200,35 @@ defmodule VelorouteWeb.Live.Map do
     id
   end
 
-  defp default_style?(_assigns) do
-    # TODO: support static rendering for other styles
-    true
-  end
-
   defp maybe_map_preview(%{assigns: %{preview_image: _any}} = socket), do: socket
 
   defp maybe_map_preview(%{assigns: assigns} = socket) do
-    preview_image =
-      if default_layers?(assigns) && default_style?(assigns) do
-        video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
-        cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
+    video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
+    cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
 
-        assigns = %{
-          video_route_id: video_route_id,
-          cz: cz,
-          sizes: [
-            {1600, 1200},
-            {1300, 1000},
-            {1100, 900},
-            {900, 700},
-            {700, 700},
-            {500, 500}
-          ]
-        }
+    assigns = %{
+      video_route_id: video_route_id,
+      cz: cz,
+      sizes: [
+        {1600, 1200},
+        {1300, 1000},
+        {1100, 900},
+        {900, 700},
+        {700, 700},
+        {500, 500}
+      ]
+    }
 
-        ~H"""
-        <picture id="mapPreview">
-          <%= for {w, h} <- @sizes do %>
-            <source
-              media={"(min-width: #{w+300}px), (min-height: #{h*1.5}px)"}
-              srcset={"/map/___static/#{@cz}/#{w}x#{h}?highlightRoute=#{@video_route_id}"}>
-          <% end %>
-          <img src={"/map/___static/#{@cz}/500x500?highlightRoute=#{@video_route_id}"} fetchpriority="high">
-        </picture>
-        """
-      else
-        nil
-      end
+    preview_image = ~H"""
+    <picture id="mapPreview">
+      <%= for {w, h} <- @sizes do %>
+        <source
+          media={"(min-width: #{w+300}px), (min-height: #{h*1.5}px)"}
+          srcset={"/map/___static/#{@cz}/#{w}x#{h}?highlightRoute=#{@video_route_id}"}>
+      <% end %>
+      <img src={"/map/___static/#{@cz}/500x500?highlightRoute=#{@video_route_id}"} fetchpriority="high">
+    </picture>
+    """
 
     assign(socket, :preview_image, preview_image)
   end
