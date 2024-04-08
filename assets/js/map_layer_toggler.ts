@@ -84,7 +84,7 @@ function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], highlight])
 
   if (!mapDetail.layers) return
-  for (const layer of mapDetail.layers) {
+  for (const layer of mapDetail.layers.reverse()) {
     updateMapPrimitive(map, layer.icon, "icon", layer.active, fadeIcons(highlight));
     updateMapPrimitive(map, layer.outline, "line", layer.active);
     updateMapPrimitive(map, layer.line, "line", layer.active, fadeLines(highlight), true);
