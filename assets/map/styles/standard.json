@@ -4116,13 +4116,6 @@
         ],
         "text-letter-spacing": 0.1,
         "text-max-width": 9,
-        "symbol-sort-key": [
-          "match",
-          ["get", "class"],
-          ["town", "city"],
-          ["literal", 8],
-          ["literal", 10]
-        ],
         "text-size": [
           "interpolate",
           ["cubic-bezier", 0.5, 0, 1, 1],
@@ -4182,7 +4175,6 @@
       ],
       "layout": {
         "text-size": ["-", 15, ["length", ["get", "display_id"]]],
-        "symbol-sort-key": 8,
         "icon-image": "alltag_{color}",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [5, 10, 5, 10],
@@ -4223,7 +4215,6 @@
       "layout": {
         "text-size": ["-", 12, ["length", ["get", "display_id"]]],
         "icon-text-fit": "both",
-        "symbol-sort-key": 8,
         "icon-image": "bezirk_{color}",
         "icon-rotation-alignment": "viewport",
         "text-max-angle": 360,
@@ -4257,7 +4248,6 @@
       "layout": {
         "text-size": 12,
         "icon-text-fit": "both",
-        "symbol-sort-key": 8,
         "icon-image": "freizeit_{color}",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [2, 5, 2, 5],
@@ -4290,7 +4280,6 @@
       ],
       "layout": {
         "text-size": ["-", 15, ["length", ["get", "display_id"]]],
-        "symbol-sort-key": 8,
         "icon-image": "rsw",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [5, 10, 5, 10],
@@ -4370,7 +4359,6 @@
       "layout": {
         "icon-image": ["to-string", ["get", "icon"]],
         "icon-ignore-placement": true,
-        "symbol-sort-key": 10,
         "icon-size": ["interpolate", ["linear"], ["zoom"], 14.5, 1, 22, 2],
         "visibility": "none"
       },
