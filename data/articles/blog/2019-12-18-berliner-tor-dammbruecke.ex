@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def type(), do: :construction
 
-  def tags(), do: ["8"]
+  def tags(), do: ["8", "FR4"]
 
   def links(_assigns) do
     [

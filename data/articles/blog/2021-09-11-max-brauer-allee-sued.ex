@@ -20,8 +20,8 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo – Ehrenbergstraße", "März 2024",
-       "https://lsbg.hamburg.de/resource/blob/708638/df2fed56d7c6367d9ba9e7a7fe2bd98d/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
+      {"Baustelleninfo – Ehrenbergstraße", "April 2024",
+       "https://lsbg.hamburg.de/resource/blob/708638/3133dbfccf00effd795cf06d2bbc7849/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
       {"Baustelleninfo – Max-Brauer-Allee", "Februar 2024",
        "https://lsbg.hamburg.de/resource/blob/704598/358f7956a1883175c22d5c8c15f763b8/max-brauer-allee-pnp-palmaille-februar-2024-data.pdf"},
       {"Ausschreibung Umbau", "Oktober 2023",

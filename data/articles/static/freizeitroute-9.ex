@@ -16,64 +16,66 @@ defmodule Data.Article.Static.Freizeitroute9 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Klövensteenradweg",
         direction: :forward,
         from: "Binnenalster",
         to: "Klövensteen",
         parent_ref: __MODULE__,
         text: "von der Binnenalster in den Klövensteen",
+        historic: %{
+          "9625541ead77a037b9140ce62c8ee21a" => ~d[2024-04],
+          "5141851d916405c80b47caff151cb4f9" => ~d[2022-06]
+        },
         videos: [
-          {"2022-06-04-v4-v7-random/GX014184", "00:00:27.327", :end},
-          {"2022-06-04-v4-v7-random/GX014213", :start, :end},
-          {"2022-06-04-v4-v7-random/GX014214", :start, :end},
-          {"2022-06-04-v4-v7-random/GX014215", :start, :end},
-          {"2022-06-04-v4-v7-random/GX014216", :start, "00:00:59.059"},
-          {"2021-08-01-freizeit9-anfang/GX012471", "00:00:23.457", :end},
-          {"2021-08-01-freizeit9-anfang/GX012482", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012483", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012484", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012485", :start, :end},
-          {"2021-08-08-fr9/GX012616", :start, :end},
-          {"2021-08-08-fr9/GX012617", :start, :end},
-          {"2021-08-08-fr9/GX012618", :start, "00:00:17.818"},
-          {"2021-08-08-fr9/GX012619", :start, :end},
-          {"2021-08-08-fr9/GX012620", :start, :end},
-          {"2021-08-08-fr9/GX012621", :start, :end},
-          {"2021-08-08-fr9/GX012622", :start, "00:00:01.568"},
-          {"2021-08-08-fr9/GX012627", "00:01:44.571", "00:01:52.346"},
-          {"2021-08-08-fr9/GX012622", "00:00:10.611", "00:04:11.718"},
-          {"2021-08-08-fr9/GX012623", "00:00:03.003", :end},
-          {"2021-08-08-fr9/GX012624", :start, :end}
+          {"2024-03-26-fr5/GX016966", "00:00:32.766", :end},
+          {"2024-03-26-fr5/GX016967", :start, :end},
+          {"2024-03-26-fr5/GX016968", :start, :end},
+          {"2024-03-26-fr5/GX016969", :start, :end},
+          {"2024-03-26-fr5/GX016970", :start, "00:00:41.508"},
+          {"2024-03-26-fr5/GX016971", :start, :end},
+          {"2024-03-26-fr5/GX016972", :start, :end},
+          {"2024-03-26-fr5/GX016973", "00:00:02.302", "00:00:33.500"},
+          {"2024-03-26-fr5/GX016973", "00:01:04.031", "00:01:17.244"},
+          {"2024-04-08-fr9/GX017120", "00:00:16.950", "00:00:35.102"},
+          {"2024-04-08-fr9/GX017121", "00:00:06.874", :end},
+          {"2024-04-08-fr9/GX017122", :start, :end},
+          {"2024-04-08-fr9/GX017123", :start, :end},
+          {"2024-04-08-fr9/GX017124", :start, "00:00:23.056"},
+          {"2024-04-08-fr9/GX017126", "00:00:00.133", :end},
+          {"2024-04-08-fr9/GX017127", :start, :end},
+          {"2024-04-08-fr9/GX017128", :start, :end},
+          {"2024-04-08-fr9/GX017129", :start, :end},
+          {"2024-04-08-fr9/GX017130", :start, "00:00:01.235"},
+          {"2024-04-08-fr9/GX017133", "00:00:00.767", "00:06:16.243"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "Klövensteenradweg",
         direction: :backward,
         from: "Klövensteen",
         to: "Binnenalster",
         parent_ref: __MODULE__,
+        historic: %{
+          "1fde148676643b8cb4a8adde007df9e1" => ~d[2024-04],
+          "8d37ba4ceb1c8d968ddfb053dedc0309" => ~d[2022-06]
+        },
         text: "vom Klövensteen zur Binnenalster",
         videos: [
-          {"2021-08-08-fr9/GX012625", :start, :end},
-          {"2021-08-08-fr9/GX012626", :start, :end},
-          {"2021-08-08-fr9/GX012627", :start, "00:01:37.698"},
-          {"2021-08-08-fr9/GX012628", "00:00:02.402", :end},
-          {"2021-08-08-fr9/GX012629", :start, :end},
-          {"2021-08-08-fr9/GX012630", :start, :end},
-          {"2021-08-08-fr9/GX012631", :start, :end},
-          {"2021-08-08-fr9/GX012632", :start, :end},
-          {"2021-08-08-fr9/GX012633", :start, "00:00:40.107"},
-          {"2021-08-01-freizeit9-anfang/GX012465", "00:00:26.493", :end},
-          {"2021-08-01-freizeit9-anfang/GX012466", :start, "00:00:16.884"},
-          {"2021-08-01-freizeit9-anfang/GX012467", "00:00:00.033", :end},
-          {"2021-08-01-freizeit9-anfang/GX012468", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012469", :start, "00:00:15.215"},
-          {"2022-06-04-v4-v7-random/GX014182", "00:00:32.466", :end},
-          {"2022-06-04-v4-v7-random/GX014183", :start, :end},
-          {"2022-06-04-v4-v7-random/GX014211", :start, :end},
-          {"2022-06-04-v4-v7-random/GX014212", :start, "00:00:01.835"}
+          {"2024-04-08-fr9/GX017133", "00:06:17.611", :end},
+          {"2024-04-08-fr9/GX017134", :start, "00:00:01.401"},
+          {"2024-04-08-fr9/GX017141", "00:00:00.968", :end},
+          {"2024-04-08-fr9/GX017142", :start, :end},
+          {"2024-04-08-fr9/GX017143", :start, :end},
+          {"2024-04-08-fr9/GX017144", :start, :end},
+          {"2024-04-08-fr9/GX017145", :start, :end},
+          {"2024-04-08-fr9/GX017146", :start, :end},
+          {"2024-04-08-fr9/GX017147", :start, :end},
+          {"2024-04-08-fr9/GX017148", :start, :end},
+          {"2024-04-08-fr9/GX017149", :start, :end},
+          {"2024-04-08-fr9/GX017150", :start, :end},
+          {"2024-04-08-fr9/GX017151", :start, "00:00:03.737"}
         ]
       }
     ]
@@ -104,7 +106,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
     <p>Wirklich schön wird die Tour erst nach dem Bahnhof Diebsteich. Davor führt die Tour durch überfüllte Parkwege oder an autolastigen Strecken an ihnen vorbei. Danach kommt man aber gut durchs Grün und kann die Route auch leicht anpassen. Viele der Wald- und Feldwege im Klövensteen sind gut ausgebaut und können zu einer längeren Tour kombiniert werden. Einige Hinweise:</p>
 
     <ul>
-      <li>Um den Bahnhof Diebsteich ist alles eine Schiebestrecke. Statt dem Umweg über die Plöner Straße kann man besser durch die <.m bounds="9.932024,53.568109,9.935787,53.569918">Unterführung</.m> schieben.</li>
+      <li>Um den Bahnhof Diebsteich ist alles eine Schiebestrecke.</li>
       <li>Die Ampelschaltungen am <.v bounds="9.917419,53.570301,9.926433,53.571956" lon={9.918299} lat={53.570861} dir="forward" ref={@ref}>Holstenkamp</.v> sind frech. Wer keine Probleme hat auf der Fahrbahn zu fahren spart viel Zeit.</li>
     </ul>
 
