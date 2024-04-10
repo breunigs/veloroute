@@ -52,7 +52,7 @@ defmodule Video.Renderer do
   @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
-    blurs = blurs(sources, "scale=1080:-1,")
+    blurs = blurs(sources, "scale=1920:1080,")
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
     filter = Enum.join(blurs ++ xfades, ";")
 
