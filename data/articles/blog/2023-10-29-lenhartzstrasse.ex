@@ -49,6 +49,8 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "April 2024",
+       "https://lsbg.hamburg.de/resource/blob/709148/86901df50a6ccfd506602ee3bade870b/lenhartzstrasse-adhoc-massnahme-radverkehr-april-2024-data.pdf"},
       {"Erläuterungsbericht", "Oktober 2023",
        "https://lsbg.hamburg.de/resource/blob/690802/63d51859243af0d35bdd70d7304273de/lenhartzstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "Oktober  2023",
