@@ -122,7 +122,7 @@ defmodule Settings do
   def video_target_dir_abs, do: Path.join(video_dir_abs(), "rendered")
   def video_serve_path, do: "videos-rendered"
   # full URL up until host and TLD, no trailing slash. Or nil for "same".
-  def video_serve_host(), do: "https://p.qp.vc"
+  def video_serve_host(), do: "https://veloroute.hamburg"
 
   # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB
   def thumbnail_cache_entry_limit, do: 1000
