@@ -640,6 +640,9 @@ body.showSidebar::before {
 #content {
   padding: $contentPad;
   padding-top: 0;
+  // in case the mobile browser is b0rk and doesn't properly collapse the
+  // address bar on scroll. Not beautiful, but better than cutting off content.
+  padding-bottom: 4 * $contentPad;
   min-width: $minWidth;
   box-sizing: border-box;
   width: 100%;
