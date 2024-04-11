@@ -103,18 +103,19 @@ defmodule Settings do
   def bluesky_url, do: "https://bsky.app/profile/veloroutehh.bsky.social"
   def deploy_ssh_name, do: "veloroute-deploy"
 
-  def deploy_video_copy_cmd,
-    do: [
-      "ssh",
-      deploy_ssh_name(),
-      "--",
-      "rclone",
-      "sync",
-      "--max-delete",
-      "15",
-      "hsbssh:veloroute/videos/rendered/",
-      "/home/veloroute-rendered-videos/"
-    ]
+  @spec deploy_video_copy_cmd() :: [binary()] | nil
+  def deploy_video_copy_cmd, do: nil
+  # do: [
+  #   "ssh",
+  #   deploy_ssh_name(),
+  #   "--",
+  #   "rclone",
+  #   "sync",
+  #   "--max-delete",
+  #   "15",
+  #   "hsbssh:veloroute/videos/rendered/",
+  #   "/home/veloroute-rendered-videos/"
+  # ]
 
   def video_dir_rel, do: "videos"
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())
