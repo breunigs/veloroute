@@ -17,42 +17,46 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Elbradweg Süd",
         direction: :forward,
         from: "Finkenwerder",
-        to: "Cranz",
+        to: "Borstel",
         parent_ref: __MODULE__,
         text: "Elbradweg ab Finkenweder",
+        historic: %{
+          "3871272769ef8a607b4332a051745262" => ~d[2024-04],
+          "7e58a9c61c3d8106a07214588825796f" => ~d[2021-08]
+        },
+        end_action: :reverse,
         videos: [
-          {"2021-08-04-fr13-fr14/GX012514", :start, "00:00:11.078"},
-          {"2021-08-14-fr13-und-11alt/GX012639", "00:02:30.317", "00:02:43.830"},
-          # TODO: gap
-          {"2021-08-14-fr13-und-11alt/GX012657", "00:00:58.592", "00:01:35.162"},
-          # TODO: gap
-          {"2021-08-14-fr13-und-11alt/GX012641", :start, "00:00:19.653"},
-          {"2021-08-14-fr13-und-11alt/GX012643", "00:00:00.534", :end},
-          {"2021-08-14-fr13-und-11alt/GX012644", :start, "00:01:47.074"},
-          {"2021-08-14-fr13-und-11alt/GX012645", "00:00:07.508", "00:00:15.649"},
-          {"2021-08-14-fr13-und-11alt/GX012646", "00:00:03.737", "00:02:25.512"}
+          {"2024-04-10-fr13-u-elb/GX017154", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017155", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017156", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017157", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017158", :start, "00:05:14.251"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Elbradweg Süd",
         direction: :backward,
-        from: "Cranz",
+        from: "Borstel",
         to: "Finkenwerder",
         parent_ref: __MODULE__,
-        text: "Elbradweg ab Cranz",
+        text: "Elbradweg ab Borstel",
+        historic: %{
+          "967981da5bfa348075fd35516dfd591e" => ~d[2024-04],
+          "d90ee60af08f7df0d75c0f1fbb1bb73b" => ~d[2021-08]
+        },
         videos: [
-          {"2021-08-14-fr13-und-11alt/GX012646", "00:02:25.879", :end},
-          {"2021-08-14-fr13-und-11alt/GX022646", :start, :end},
-          {"2021-08-14-fr13-und-11alt/GX012647", :start, "00:03:30.343"},
-          {"2021-08-14-fr13-und-11alt/GX012656", "00:01:02.329", :end},
-          {"2021-08-14-fr13-und-11alt/GX012657", :start, "00:00:24.591"},
-          {"2021-08-14-fr13-und-11alt/GX012657", "00:01:37.664", "00:02:38.125"},
-          {"2021-08-04-fr13-fr14/GX012513", "00:01:12.406", :end}
+          {"2024-04-10-fr13-u-elb/GX017158", "00:05:14.251", :end},
+          {"2024-04-10-fr13-u-elb/GX017159", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017160", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017161", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017162", :start, :end},
+          {"2024-04-10-fr13-u-elb/GX017163", :start, "00:01:22.049"},
+          {"2024-04-10-fr13-u-elb/GX017178", "00:00:44.678", "00:00:51.585"}
         ]
       }
     ]

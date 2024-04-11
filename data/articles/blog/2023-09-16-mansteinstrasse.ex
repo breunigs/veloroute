@@ -35,6 +35,8 @@ defmodule Data.Article.Blog.Mansteinstrasse do
 
   def links(_assigns) do
     [
+      {"fertiger Entwurf", "April 2024",
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009212"},
       {"Geplanter Bautermine", "November 20223",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"2. Entwurf", "September 2023",
