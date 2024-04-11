@@ -191,6 +191,11 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("impressum", _params, socket) do
+    text = "#{Credentials.impressum_address()}\n\n#{Settings.email()}"
+    {:noreply, push_event(socket, "impressum", %{text: text})}
+  end
+
   def handle_event(ident, attr, socket) do
     msg = "Received unknown/unparsable event '#{ident}': #{inspect(attr)}"
     Logger.warning(msg)

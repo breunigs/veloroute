@@ -18,11 +18,15 @@ defmodule Mix.Tasks.Velo.Setup do
     maptiler_api_key = ask("MapTiler API key?", args)
     arcgis_api_key = ask("ArcGis API key?", args)
 
+    impressum =
+      ask("Imprint/Impressum Address (semi hidden to avoid proliferating it too much)?", args)
+
     code =
       quote do
         defmodule Credentials do
           def maptiler_api_key(), do: unquote(maptiler_api_key)
           def arcgis_api_key(), do: unquote(arcgis_api_key)
+          def impressum_address(), do: unquote(impressum)
         end
       end
       |> Macro.to_string()

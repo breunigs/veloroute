@@ -147,5 +147,7 @@ window.liveSocket = liveSocket;
 // liveSocket.disableDebug()
 // liveSocket.enableLatencySim(2000)
 
+window.addEventListener("phx:impressum", (e) => alert(e.detail.text))
+
 import "./mobilegui"
 import "./plausible"
