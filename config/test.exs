@@ -7,7 +7,8 @@ config :veloroute, VelorouteWeb.Endpoint,
   server: false
 
 config :veloroute,
-  map_matcher: Basemap.MapMatcher.NoOp
+  map_matcher: Basemap.MapMatcher.NoOp,
+  disk_preload: false
 
 # Print only warnings and errors during test
 # config :logger, level: :debug

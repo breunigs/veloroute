@@ -29,6 +29,7 @@ config :veloroute, VelorouteWeb.Endpoint,
 
 config :veloroute,
   map_matcher: Basemap.MapMatcher.OSRM,
+  disk_preload: true,
   env: Mix.env()
 
 config :os_mon,

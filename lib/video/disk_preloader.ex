@@ -13,10 +13,16 @@ defmodule Video.DiskPreloader do
   # for every millisecond step, which is very likely cached already.
   @timestamp_accuracy_ms 10_000
 
+  @enabled Application.compile_env!(:veloroute, :disk_preload)
+
   @spec warm(hash(), %{:time_offset_ms => non_neg_integer(), optional(any) => any}) :: :ok
   def warm(hash, %{time_offset_ms: time_offset_ms}) when valid_hash(hash) do
-    time_offset_ms = div(time_offset_ms, @timestamp_accuracy_ms) * @timestamp_accuracy_ms
-    GenServer.cast(__MODULE__, {:dir, hash, time_offset_ms})
+    if @enabled do
+      time_offset_ms = div(time_offset_ms, @timestamp_accuracy_ms) * @timestamp_accuracy_ms
+      GenServer.cast(__MODULE__, {:dir, hash, time_offset_ms})
+    else
+      :ok
+    end
   end
 
   @spec start_link(keyword) :: :ignore | {:error, any} | {:ok, pid}
