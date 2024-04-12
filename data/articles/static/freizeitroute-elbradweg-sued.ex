@@ -77,8 +77,6 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
 
     <p>Die <strong>Südseite</strong> geht ab Finkenwerder wieder los, welches man mit der Fähre erreicht. Von dort folgt man größtenteils den Deichen bis man bei <.v bounds="9.753531,53.527322,9.794157,53.549089" lon={9.771628} lat={53.542871} dir="forward" ref={@ref}>Cranz</.v> die Landesgrenze erreicht.</p>
 
-    <p>Hinweis zu den Videos: in Fahrtrichtung Cranz fehlen Abschnitte im Video. Statt über die <.m bounds="9.826072,53.526433,9.84532,53.531481">Westerweiden</.m> führt der Weg am Neßdeich entlang (wie eingezeichnet).</p>
-
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist mit einem geschwungenen, blauen „e“ (Buchstabe E) ausgeschildert. Leider sind diese recht spärlich und über die Jahre verblichen, sodass man sie leicht übersieht.</p>
 
