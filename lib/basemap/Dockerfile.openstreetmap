@@ -5,7 +5,7 @@ RUN apt-get -y update \
   brotli \
   findutils \
   gzip \
-  osmctools \
+  osmium-tool \
   tilemaker \
   unzip \
   && rm -rf /var/lib/apt/lists/*

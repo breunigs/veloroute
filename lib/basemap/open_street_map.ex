@@ -133,27 +133,30 @@ defmodule Basemap.OpenStreetMap do
     args =
       Util.low_priority_cmd_prefix(10) ++
         [
-          "osmconvert",
-          "--complete-ways",
-          "--complete-multipolygons",
-          "--drop-version",
-          "--drop-author",
-          "-t=/tmp/osmconvert_tempfile",
-          "-b=#{Enum.join(Settings.bounds(), ",")}",
-          "-o=#{path(:container, bbox_extract_name())}",
-          "#{path(:container, osm_source_name())}"
+          "osmium",
+          "extract",
+          "--bbox",
+          Enum.join(Settings.bounds(), ","),
+          "--clean=version",
+          "--clean=timestamp",
+          "--clean=changeset",
+          "--clean=uid",
+          "--clean=user",
+          "--output",
+          path(:container, bbox_extract_name()),
+          path(:container, osm_source_name())
         ]
 
     :ok =
       Util.Docker.build_and_run(
-        "extracting bounding box with osmconvert",
+        "extracting bounding box with osmium",
         @image_ref,
         %{command_args: args},
         []
       )
 
     stats = File.stat!(path(:cache, bbox_extract_name()))
-    if stats.size == 0, do: raise("osmconvert seemingly failed, output size is 0")
+    if stats.size == 0, do: raise("osmium seemingly failed, output size is 0")
 
     :ok
   end
