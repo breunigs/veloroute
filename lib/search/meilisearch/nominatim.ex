@@ -89,11 +89,21 @@ defmodule Search.Meilisearch.Nominatim do
   @impl true
   def maybe_merge(list) do
     list
-    |> Enum.group_by(&get_in(&1, ["extratags", "wikidata"]))
+    |> Enum.group_by(fn
+      %{"extratags" => %{"wikidata" => "" <> wikidata}} ->
+        wikidata
+
+      %{"name" => %{"name" => "" <> name}, "parents_name" => pns, "class" => class} = item ->
+        housenum = get_in(item, ["address", "housenumber"])
+        {name, Enum.slice(pns, -2..-1), class, housenum}
+
+      _ ->
+        nil
+    end)
     |> Enum.flat_map(fn
       {nil, items} -> items
-      {"" <> _wd, [_item] = items} -> items
-      {"" <> _wd, items} -> [merge_items(items)]
+      {_, [item]} -> [item]
+      {_, items} -> [merge_items(items)]
     end)
   end
 
