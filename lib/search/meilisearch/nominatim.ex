@@ -132,7 +132,7 @@ defmodule Search.Meilisearch.Nominatim do
             "parents_postcode" => intersect(item["parents_postcode"], acc["parents_postcode"]),
             "id" => item["id"] <> ", " <> acc["id"],
             "class" => if(item["class"] == acc["class"], do: item["class"], else: "multiple"),
-            "type" => if(item["type"] == acc["type"], do: item["type"], else: "multiple")
+            "type" => merge_types(item["type"], acc["type"])
         }
       end)
 
@@ -143,9 +143,22 @@ defmodule Search.Meilisearch.Nominatim do
         "address" => into(merged["address"]),
         "extratags" => into(merged["extratags"]),
         "name" => into(merged["name"]),
-        "parents_name" => into([], merged["parents_name"]),
         "parents_postcode" => into([], merged["parents_postcode"])
     }
+  end
+
+  @multiple_type "multiple"
+  defp merge_types(a, a), do: a
+  defp merge_types(@multiple_type, _b), do: @multiple_type
+  defp merge_types(_a, @multiple_type), do: @multiple_type
+
+  defp merge_types(a, b) do
+    with [named | _rest] <- Data.OsmTagToHuman.map()[a],
+         [^named | _rest] <- Data.OsmTagToHuman.map()[b] do
+      a
+    else
+      _ -> @multiple_type
+    end
   end
 
   defp to_mapset(item, key) do
