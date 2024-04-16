@@ -117,7 +117,6 @@ defmodule Search.Meilisearch.Nominatim do
             "bbox" => Geo.BoundingBox.parse(item["bbox"]),
             "extratags" => to_mapset(item, "extratags"),
             "name" => to_mapset(item, "name"),
-            "parents_name" => to_mapset(item, "parents_name"),
             "parents_postcode" => to_mapset(item, "parents_postcode")
         }
       end)
@@ -155,6 +154,10 @@ defmodule Search.Meilisearch.Nominatim do
       val when is_list(val) or is_map(val) -> MapSet.new(val)
       val -> MapSet.new([val])
     end
+  end
+
+  defp intersect(l1, l2) when is_list(l1) and is_list(l2) do
+    Enum.filter(l1, &Enum.member?(l2, &1))
   end
 
   defp intersect(ms1, nil), do: ms1
