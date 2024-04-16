@@ -69,8 +69,8 @@ defmodule Search.Meilisearch.Nominatim do
           "#{addr["street"]} #{addr["housenumber"]}",
           addr["suburb"],
           addr["postcode"] || f.("parents_postcode"),
-          addr["city"],
-          f.("parents_name")
+          f.("parents_name"),
+          addr["city"]
         ] -- [name]
       )
 
