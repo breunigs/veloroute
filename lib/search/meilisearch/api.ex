@@ -60,6 +60,8 @@ defmodule Search.Meilisearch.API do
   end
 
   def configure_index(index, config) when is_atom(index) and is_map(config) do
+    config = Map.put(config, :searchCutoffMs, round(@general_timeout_ms * 4 / 5))
+
     patch("/indexes/#{index}/settings", config)
     |> await_finish()
   end
