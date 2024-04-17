@@ -15,13 +15,13 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
   def links(_assigns) do
     [
       {"Erläuterungsbericht fertiger Entwurf", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/702296/33df823ea7b3c8b21f5de3b0a0258baf/louis-braille-platz-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784252/618885a6f8c6eb852af4a40c1c633b50/louis-braille-platz-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan/Karte fertiger Entwurf", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/702300/1ba2c5838d3607568b3abc0b4a87b6ed/louis-braille-platz-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784254/b628ad8a6736db281fc426c9fbdaa817/louis-braille-platz-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht 1. Entwurf", "Dezember 2022",
-       "https://lsbg.hamburg.de/resource/blob/654202/cdda952a274dcff79c18214f9d84324d/louis-braille-platz-abstimmungsunterlage-bericht-data.pdf"},
+       "https://web.archive.org/web/20230413211548if_/https://lsbg.hamburg.de/resource/blob/654202/cdda952a274dcff79c18214f9d84324d/louis-braille-platz-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan/Karte 1. Entwurf", "Dezember 2022",
-       "https://lsbg.hamburg.de/resource/blob/654204/c4d7c341117a2a57ff69fe22b1bc7bee/louis-braille-platz-abstimmungsunterlage-plan-data.pdf"}
+       "https://web.archive.org/web/20230413211608if_/https://lsbg.hamburg.de/resource/blob/654204/c4d7c341117a2a57ff69fe22b1bc7bee/louis-braille-platz-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

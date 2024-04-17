@@ -24,9 +24,9 @@ defmodule Data.Article.Blog.HohenfelderBucht do
       {"Änderungen", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013307"},
       {"abgestimmter Lageplan", "2018",
-       "https://lsbg.hamburg.de/resource/blob/634172/a0461b5a5b98de231bd3341ce7185c2f/hohenfelder-bucht-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783358/39544f704bacd68eee1df389c96b2e19/hohenfelder-bucht-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht zur Umgestaltung", "2018",
-       "https://lsbg.hamburg.de/resource/blob/634170/4bd1a7fad0e52f9935998cf39e4adfe9/hohenfelder-bucht-abgestimmte-planung-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/783356/291b78555f5327b00b81bae99ce3e8c7/hohenfelder-bucht-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

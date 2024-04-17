@@ -16,16 +16,16 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/671508/8bb5c2a541b16519f2c56d1675608157/gerichtstrasse-anliegerinformation-september-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783250/1da590f5f518bdcf6bc071710a6bde81/gerichtstrasse-anliegerinformation-september-2023-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/gerichtstrasse"},
       {"Ausschreibung Umbau", "Januar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9918a22d-e3c3-4540-aab6-089a981e8df3"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht (November 2021)",
-       "https://lsbg.hamburg.de/resource/blob/597708/5b5dab4b95cc0fe88500791e24e9efe9/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783230/fd488abf2674ebf70b9940239d9d4764/veloroute-13-gerichtstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne (November 2021)",
-       "https://lsbg.hamburg.de/resource/blob/597710/1125d9570b1e49076134318146f1006e/veloroute-13-gerichtstrasse-abgestimmte-planung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783232/8cb04b17fbd90f11160995640ab41c35/veloroute-13-gerichtstrasse-abgestimmte-planung-plaene-data.pdf"},
       {"Präsentation zum Vorentwurf (September 2020)",
        "https://sitzungsdienst-altona.hamburg.de/bi//to020.asp?TOLFDNR=1031355"}
     ]

@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
   def links(_assigns) do
     [
       {"Pressemitteilung zum Baustart", "Juli 2023",
-       "https://www.hamburg.de/altona/baustelleninfos/17233080/kreisverkehr-holmbrook-veloroutenausbau/"},
+       "https://web.archive.org/web/20231028131956/https://www.hamburg.de/altona/baustelleninfos/17233080/kreisverkehr-holmbrook-veloroutenausbau/"},
       {"2. Entwurf: Erläuterung und Lageplan", "Februar 2023",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013675"},
       {"1. Entwurf: Erläuterung und Lageplan", "April 2022",

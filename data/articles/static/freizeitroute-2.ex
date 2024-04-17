@@ -83,7 +83,8 @@ defmodule Data.Article.Static.Freizeitroute2 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294574/radtour-city-alster-osterbekkanal-volksdorfer-wald/"},
-      {"Komoot Routenplaner: entlang der Osterbek", "https://www.komoot.de/tour/227466998"},
+      {"Komoot Routenplaner: entlang der Osterbek",
+       "https://www.komoot.com/de-de/tour/227466998"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9056480"}
     ]
   end

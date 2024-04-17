@@ -69,7 +69,7 @@ defmodule Data.Article.Static.Freizeitroute1 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294566/radtour-city-alster-wohlsdorfer-wald-duvenstedter-brook/"},
-      {"Komoot Routenplaner: entlang der Alster", "https://www.komoot.de/tour/253561892"},
+      {"Komoot Routenplaner: entlang der Alster", "https://www.komoot.com/de-de/tour/253561892"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9040865"}
     ]
   end

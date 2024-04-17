@@ -21,17 +21,15 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
   def links(_assigns) do
     [
       {"Baustelleninfo – Ehrenbergstraße", "April 2024",
-       "https://lsbg.hamburg.de/resource/blob/708638/3133dbfccf00effd795cf06d2bbc7849/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
-      {"Baustelleninfo – Max-Brauer-Allee", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/704598/358f7956a1883175c22d5c8c15f763b8/max-brauer-allee-pnp-palmaille-februar-2024-data.pdf"},
+       "https://web.archive.org/web/20240328141531if_/https://lsbg.hamburg.de/resource/blob/708638/df2fed56d7c6367d9ba9e7a7fe2bd98d/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
       {"Projektseite des LSBG",
        "https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
       {"Lageplan", "Juli 2022",
-       "https://lsbg.hamburg.de/resource/blob/634708/8ef3ae7af9ba39b71791a2bd31b10b09/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783616/cf8c4044e5c906fab75a410082804be6/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht", "Juli 2022",
-       "https://lsbg.hamburg.de/resource/blob/634706/3db31879a15c1013be5c256c31d25c9c/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783614/766f634230037e763fddc4e67c93eef4/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-bericht-data.pdf"},
       {"erster Entwurf im Transparenz Portal", "veraltet, September 2021",
        "https://suche.transparenz.hamburg.de/dataset/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz"},
       {"Infoseite der Stadt", "https://lsbg.hamburg.de/max-brauer-allee"}

@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.MariaLouisenStrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634682/6a395193262761fa1d367a43b0f8ab55/veloroute-13-maria-louisen-strasse-sierichstrasse-bis-dorotheenstrasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784378/8bf23d78d7e3d05f4c5dc601016710e3/veloroute-13-maria-louisen-strasse-sierichstrasse-bis-dorotheenstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634684/0a320594c444f489973005e048957ddf/veloroute-13-maria-louisen-strasse-sierichstrasse-bis-dorotheenstrasse-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784380/dc32cb70045290180f3b66ed38931bb8/veloroute-13-maria-louisen-strasse-sierichstrasse-bis-dorotheenstrasse-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

@@ -21,17 +21,17 @@ defmodule Data.Article.Blog.Holstenplatz do
       {"Pressemitteilung zum Umbau", "Februar 2023",
        "https://www.hamburg.de/bvm/medien/16960882/2023-03-03-bvm-holstenplatz/"},
       {"Baustelleninfo", "Februar 2023",
-       "https://lsbg.hamburg.de/resource/blob/664836/3e2d04f1a4e8fc4e7ba0708a6e15ee92/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784464/ab9a0637dc157568f9e79fbca79988ed/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
       {"Ausschreibung Umbau",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/39f6c0a7-8734-4174-ad41-3baef66b9823"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634680/78cd904a47ea0f5b709936daae2822bc/veloroute-13-holstenplatz-abgestimmte-planung-nachtrag-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784372/b3755b2ded7039014fa8c35f76b52492/veloroute-13-holstenplatz-abgestimmte-planung-nachtrag-plan-data.pdf"},
       {"Erläuterungsbericht zu den Änderungen 2021",
-       "https://lsbg.hamburg.de/resource/blob/634678/1f6c15ed71337679befa6925b6d566c7/veloroute-13-holstenplatz-abgestimmte-planung-nachtrag-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784370/09dfa146b275aa54e6aefccb247d0a7e/veloroute-13-holstenplatz-abgestimmte-planung-nachtrag-bericht-data.pdf"},
       {"Erläuterungsbericht zu den Originalplänen von 2018",
-       "https://lsbg.hamburg.de/resource/blob/634674/1882ef0a8fa248fe7885d876bc0b638e/veloroute-13-holstenplatz-abgestimmte-planung-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784374/351f121be968278ac7227f8f9cf4ddc4/veloroute-13-holstenplatz-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

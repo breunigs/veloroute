@@ -44,9 +44,9 @@ defmodule Data.Article.Blog.HammerLandstrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634142/651c25c866fc4f45e7b60d01d3ebd19a/hammer-landstrasse-horner-landstrasse-diagonalstrasse-bis-culinstrasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784184/56dbd1cb4fd5b4a4d2bf5f1981e53798/hammer-landstrasse-horner-landstrasse-diagonalstrasse-bis-culinstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Pläne des ersten Entwurfs",
-       "https://lsbg.hamburg.de/resource/blob/634144/2e73533a18eb356864ceb9144153757c/hammer-landstrasse-horner-landstrasse-diagonalstrasse-bis-culinstrasse-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784186/dffaa7077dbc9173afb6f81f37cbc5b6/hammer-landstrasse-horner-landstrasse-diagonalstrasse-bis-culinstrasse-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

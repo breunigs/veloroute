@@ -71,7 +71,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426798/veloroute-12/"},
-      {"Komoot Routenplaner: nach Altona", "https://www.komoot.de/tour/225148542"},
+      {"Komoot Routenplaner: nach Altona", "https://www.komoot.com/de-de/tour/225148542"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/2238410"}
     ]
   end

@@ -19,13 +19,13 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
   def links(_assigns) do
     [
       {"2. Entwurf: Lageplan", "November 2023",
-       "https://lsbg.hamburg.de/resource/blob/694634/d395ea3b48fe937b33ea074922ff50d0/saarlandstrasse-jahnring-bis-u-saarlandstrasse-zweite-verschickung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784298/63926bcfe317cec76a91b34d76a57618/saarlandstrasse-jahnring-bis-u-saarlandstrasse-zweite-verschickung-bericht-data.pdf"},
       {"2. Entwurf: Erläuterungsbericht", "November 2023",
-       "https://lsbg.hamburg.de/resource/blob/694638/82c1c5edf297781090cb24035c4c38eb/saarlandstrasse-jahnring-bis-u-saarlandstrasse-zweite-verschickung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784300/cca79323aa381417b7d9cf1988ec48b3/saarlandstrasse-jahnring-bis-u-saarlandstrasse-zweite-verschickung-plan-data.pdf"},
       {"1. Entwurf: Lageplan", "veraltet, 2022",
-       "https://lsbg.hamburg.de/resource/blob/634612/d4e53afad51dfef41055083a3dfe4580/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784304/b2611e739891f75cd6c0575e50a01438/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-plan-data.pdf"},
       {"1. Entwurf: Erläuterungsbericht", "veraltet, 2022",
-       "https://lsbg.hamburg.de/resource/blob/634610/6ba28bd17dad8705339d75c2e88ef300/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784302/bffb2fc6b60188f749402d38bef405cb/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abstimmungsunterlage-bericht-data.pdf"}
     ]
   end
 

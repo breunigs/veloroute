@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.StaderStrasse do
   def links(_assigns) do
     [
       {"1. Entwurf, Bericht", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634640/a512719139047dca86c68e9d82d47743/stader-strasse-moorburger-bogen-bis-moorburger-strasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784322/5264e4a9eb614a6d27e8a3dd90035507/stader-strasse-moorburger-bogen-bis-moorburger-strasse-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Lagepläne", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634642/5e0194f37e36f89f8d010add40a9c23b/stader-strasse-moorburger-bogen-bis-moorburger-strasse-abstimmungsunterlage-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784324/e210577151d81b72f283ff141ef38790/stader-strasse-moorburger-bogen-bis-moorburger-strasse-abstimmungsunterlage-plaene-data.pdf"}
     ]
   end
 

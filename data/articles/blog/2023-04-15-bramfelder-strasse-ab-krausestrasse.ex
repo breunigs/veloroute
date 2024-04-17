@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.BramfelderStrasseAbKrausestrasse do
   def links(_assigns) do
     [
       {"1. Entwurf, Bericht", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634112/35aa3548af982d6618ba849bc48f46d4/bramfelder-strasse-krausestrasse-bis-fabriciusstrasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784124/a328b22c60b2c62c3871a298ec9ed491/bramfelder-strasse-krausestrasse-bis-fabriciusstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Lagepläne", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634114/61fc943d42fed45518a1df9d337bc45f/bramfelder-strasse-krausestrasse-bis-fabriciusstrasse-abstimmungsunterlage-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784126/993e49cd9f7402ed8d37b464d337b818/bramfelder-strasse-krausestrasse-bis-fabriciusstrasse-abstimmungsunterlage-plaene-data.pdf"}
     ]
   end
 

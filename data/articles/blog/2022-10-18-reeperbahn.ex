@@ -57,9 +57,9 @@ defmodule Data.Article.Blog.Reeperbahn do
   def links(_assigns) do
     [
       {"Lageplan – Richtung Altona", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/691758/b0d6b6c0b0554a783e2ab8fd1f0f6dc0/reeperbahn-stadtauswaerts-verkehrsversuch-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784286/94cbaa0b5c45327c6d91b427734dc54c/reeperbahn-stadtauswaerts-verkehrsversuch-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht – Richtung Altona", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/691746/0d51eba9cb9bd9ca83d037bd5cfe80a6/reeperbahn-stadtauswaerts-verkehrsversuch-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784284/7b89f04b80206ab337a0ac8f730a8d39/reeperbahn-stadtauswaerts-verkehrsversuch-abgestimmte-planung-bericht-data.pdf"},
       {"Pressemitteilung Verkehrsversuch → Altona", "Oktober 2023",
        "https://www.hamburg.de/bvm/medien/17403338/2023-10-09-bvm-radverkehr/"},
       {"Baustelleninfo", "November 2022",
@@ -67,9 +67,9 @@ defmodule Data.Article.Blog.Reeperbahn do
       {"Pressemitteilung", "Oktober 2022",
        "https://www.hamburg.de/bvm/medien/16586554/2022-10-17-bvm-radverkehr/"},
       {"Lageplan – Richtung Millerntor", "Oktober 2022",
-       "https://lsbg.hamburg.de/resource/blob/634578/2997b79af16e28135491f597d09e6a23/reeperbahn-pop-up-bikelane-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784282/d5468b2e6cbd3281f59ed63f73d714f0/reeperbahn-pop-up-bikelane-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht – Richtung Millerntor", "Oktober 2022",
-       "https://lsbg.hamburg.de/resource/blob/634576/b863ae973a780608b8aba1bc0422f8c1/reeperbahn-pop-up-bikelane-abgestimmte-planung-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784280/a8c3cc3b2384bcbba74617379cedea49/reeperbahn-pop-up-bikelane-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

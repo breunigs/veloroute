@@ -23,11 +23,11 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
       {"Pressemitteilung zu vorbereitenden Arbeiten", "Januar 2024",
        "https://www.hamburg.de/bvm/medien/18050494/2024-01-09-bvm-berlinertordammbruecke/"},
       {"Baustelleninfo", "Dezember 2023",
-       "https://lsbg.hamburg.de/resource/blob/702282/1c41827fee0dc9caa3300823f2dcbf44/berlinertordammbruecke-anliegerinformation-dezember-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784426/bd8dd03fedcdce83f2e9c378efbbb046/berlinertordammbruecke-anliegerinformation-dezember-2023-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634088/f6034b058889bc37b879049515e2b080/berlinertordammbruecke-abstimmungsunterlage-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784106/4d7a5af7cf36968263a9a4e0efde3af3/berlinertordammbruecke-abstimmungsunterlage-plan-data.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634086/b40b0b9ed7c71a5ecfe5e9fec2d2f594/berlinertordammbruecke-abstimmungsunterlage-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784104/7695df6881faf3decef4bbf4783ad040/berlinertordammbruecke-abstimmungsunterlage-bericht-data.pdf"}
     ]
   end
 

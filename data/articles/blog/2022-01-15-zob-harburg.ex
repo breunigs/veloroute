@@ -20,11 +20,11 @@ defmodule Data.Article.Blog.ZOBHarburg do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/682528/e5305f08ac81009acc1a80009e31e8ec/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Erläuterungsbericht", "2022",
-       "https://lsbg.hamburg.de/resource/blob/634666/03bb1a5a5dd137979f2b451f2cb59e09/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784358/6be53ea4ecd55afb26e2db86fa61b343/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan – 1. Abschnitt", "2022",
-       "https://lsbg.hamburg.de/resource/blob/634668/e7f9d7a34208cd6584c3dee3ecd5e9c4/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784360/657b189d6bcc96128617c3480b74bdb5/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-plaene-data.pdf"},
       {"Zeitungsartikel mit veralteter Visualisierung (2021)",
        "https://web.archive.org/web/20210305190832/https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
       {"Zeitungsartikel zum Bauzeitraum (2021)",

@@ -18,11 +18,11 @@ defmodule Data.Article.Blog.Kirchenstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692948/7167107f7aa064a2e1c60058009bd9ae/kirchenstrasse-veloroute-12-anliegerinformation-oktober-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784474/0232b5bb40104fd8551058793477ab1e/kirchenstrasse-veloroute-12-anliegerinformation-oktober-2023-data.pdf"},
       {"Lageplan", "März 2023",
-       "https://lsbg.hamburg.de/resource/blob/670410/202bf79de45ade0dd18159e7e29e5a13/veloroute-12-kirchenstrasse-abgestimmte-planung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784368/d274305eef556a5464658afeec5fb810/veloroute-12-kirchenstrasse-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht", "März 2023",
-       "https://lsbg.hamburg.de/resource/blob/670406/9e2906f20d4f34166b65aa87354f9aab/veloroute-12-kirchenstrasse-abgestimmte-planung-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784366/ea37b14dbac6eccf5e04d1e8fc7d27dd/veloroute-12-kirchenstrasse-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

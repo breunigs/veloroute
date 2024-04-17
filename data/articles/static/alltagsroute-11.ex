@@ -126,7 +126,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426790/veloroute-11/"},
-      ~H{Komoot Routenplaner: <.a href="https://www.komoot.de/tour/225145133">ab Rathaus</.a> oder <.a href="https://www.komoot.de/tour/229606335">ab der Veddel</.a> nach Eißendorf},
+      ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/225145133">ab Rathaus</.a> oder <.a href="https://www.komoot.com/de-de/tour/229606335">ab der Veddel</.a> nach Eißendorf},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/233959"}
     ]
   end

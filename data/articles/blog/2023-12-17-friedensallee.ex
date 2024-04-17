@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Friedensallee do
   def stop(), do: ~d[2024-03-31]
   def construction_site_id_hh(), do: [599_026]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: []
 
@@ -54,7 +54,7 @@ defmodule Data.Article.Blog.Friedensallee do
   def links(_assigns) do
     [
       {"Baustellen Info", "Dezember 2023",
-       "https://www.hamburg.de/contentblob/17697784/04e0099b5305334e239d5c2c440685fc/data/anwohnerinfo-friedensallee.pdf"}
+       "https://web.archive.org/web/20231216170757if_/https://www.hamburg.de/contentblob/17697784/04e0099b5305334e239d5c2c440685fc/data/anwohnerinfo-friedensallee.pdf"}
     ]
   end
 

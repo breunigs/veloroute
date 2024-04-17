@@ -69,7 +69,7 @@ defmodule Data.Article.Static.Freizeitroute13 do
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294588/radtour-finkenwerder-dritte-meile-harburger-berge/"},
       {"Komoot Routenplaner: entlang der „Dritten Meile“",
-       "https://www.komoot.de/tour/227483156"},
+       "https://www.komoot.com/de-de/tour/227483156"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9069490"}
     ]
   end

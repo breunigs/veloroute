@@ -61,9 +61,9 @@ defmodule Data.Article.Blog.EbertalleeSued do
   def links(_assigns) do
     [
       {"Lageplan, fertiger Entwurf", "März 2024",
-       "https://lsbg.hamburg.de/resource/blob/708360/c31356103f3443bd06d7ead17d3aef7f/ebertallee-adhoc-radfahrstreifen-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784144/611305f5d4fdeef958fd938094e2fdc5/ebertallee-adhoc-radfahrstreifen-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungen, fertiger Entwurf", "März 2024",
-       "https://lsbg.hamburg.de/resource/blob/708358/3be33799197adccfeb9208e8096c3dcc/ebertallee-adhoc-radfahrstreifen-abgestimmte-planung-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784142/4cc4250defaca588b76dc6226702ba36/ebertallee-adhoc-radfahrstreifen-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

@@ -77,7 +77,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418914/veloroute-2/"},
-      {"Komoot Routenplaner: nach Eidelstedt", "https://www.komoot.de/tour/204274161"},
+      {"Komoot Routenplaner: nach Eidelstedt", "https://www.komoot.com/de-de/tour/204274161"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/194841"}
     ]
   end

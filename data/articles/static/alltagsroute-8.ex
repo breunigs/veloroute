@@ -112,7 +112,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426726/veloroute-8/"},
-      ~H{Komoot Routenplaner: <.a href="https://www.komoot.de/tour/229546496">zum Mümmelmannsberg</.a> oder <.a href="https://www.komoot.de/tour/225134445">nach Bergedorf</.a>},
+      ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/229546496">zum Mümmelmannsberg</.a> oder <.a href="https://www.komoot.com/de-de/tour/225134445">nach Bergedorf</.a>},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/229623"}
     ]
   end

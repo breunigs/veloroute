@@ -55,9 +55,9 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
       {"Pressemitteilung zum Umbau", "Juli 2022",
        "https://www.hamburg.de/bvm/medien/16344462/2022-07-14-bvm-rothenbaumchaussee/"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634592/1b72a8b74784c288ff08de56d9b6d75b/rothenbaumchaussee-hallerstrasse-bis-moorweidenstrasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784292/5f9823a1a0fbcdbcabe7d58c3fdb0228/rothenbaumchaussee-hallerstrasse-bis-moorweidenstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634594/1f7e78d3b4122fe20a8d02fcb9323c2b/rothenbaumchaussee-hallerstrasse-bis-moorweidenstrasse-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784294/19d04c5c9de74f82c0f76d988f85bf11/rothenbaumchaussee-hallerstrasse-bis-moorweidenstrasse-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

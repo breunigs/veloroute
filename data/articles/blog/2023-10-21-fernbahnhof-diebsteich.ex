@@ -17,9 +17,9 @@ defmodule Data.Article.Blog.FernbahnhofDiebsteich do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692606/14b5bf7563f810e162a68f3311dece67/fernbahnhof-altona-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784088/1b10abb7cd6f24ae353b012d6258ba7b/fernbahnhof-altona-abstimmungsunterlage-bericht-data.pdf"},
       {"Lagepläne", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692608/1cfaf7cffd95cebddcdf02efd5bfdb5b/fernbahnhof-altona-abstimmungsunterlage-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784090/0ecceb167cac93fbc48c82d9a99cc145/fernbahnhof-altona-abstimmungsunterlage-plaene-data.pdf"}
     ]
   end
 

@@ -58,15 +58,15 @@ defmodule Data.Article.Blog.Krausestrasse do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/krausestrasse-bis-hammer-strasse"},
       {"Zwischenlösung – Erläuterung", "Juli 2023",
-       "https://lsbg.hamburg.de/resource/blob/684746/4904d4bea86896f7d46dc00e7f56fc2d/krausestrasse-abgestimmte-planung-kenntnisnahmeverschickung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783516/18ca276235863fce55b5968e6a306a1d/krausestrasse-abgestimmte-planung-kenntnisnahmeverschickung-bericht-data.pdf"},
       {"Zwischenlösung – Pläne", "Juli 2023",
-       "https://lsbg.hamburg.de/resource/blob/684744/4aaa9d8ee7e4c01cf20213fb1fd4f625/krausestrasse-abgestimmte-planung-kenntnisnahmeverschickung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783518/84b2a3dcb1579b03a35e6182cba62e7d/krausestrasse-abgestimmte-planung-kenntnisnahmeverschickung-plaene-data.pdf"},
       {"Verzögerung Umbau", "November 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012204"},
       {"Erläuterungsbericht", "Oktober 2021",
-       "https://lsbg.hamburg.de/resource/blob/597782/66697a9cdddff36117b6b226e2f642ec/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783520/d59814eccf96f46e623d79c26fd961c0/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-bericht-data.pdf"},
       {"Pläne/Karten", "Oktober 2021",
-       "https://lsbg.hamburg.de/resource/blob/597784/7c7411d5f1ea2f7763146b4688271710/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/783522/788f2353781aac9463981b50e6d873bc/krausestrasse-bramfelder-strasse-bis-osterbekkanal-abgestimmte-planung-plaene-data.pdf"}
     ]
   end
 

@@ -17,9 +17,9 @@ defmodule Data.Article.Blog.GarstedterWeg do
   def links(_assigns) do
     [
       {"1. Entwurf, Erläuterungsbericht", "Januar 2023",
-       "https://lsbg.hamburg.de/resource/blob/654212/89469f28a331df7d7e0bd5b90d1a8dd6/veloroute-14-garstedter-weg-abschnitt-nord-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784382/8a2db564da8b6cbd2cafabc6c0800122/veloroute-14-garstedter-weg-abschnitt-nord-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Lageplan", "Januar 2023",
-       "https://lsbg.hamburg.de/resource/blob/654214/391aef85e34c53d68af77ddf49a2c769/veloroute-14-garstedter-weg-abschnitt-nord-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784384/1a716fa35d477a2502567c641dd34053/veloroute-14-garstedter-weg-abschnitt-nord-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

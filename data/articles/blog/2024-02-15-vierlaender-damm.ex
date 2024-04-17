@@ -7,9 +7,10 @@ defmodule Data.Article.Blog.VierlaenderDamm do
     do:
       "Erstmals erkennbare und durchgängige Radwege. Komplizierte Planung mit guten und mäßig Abschnitten für den Radverkehr, aber insgesamt faire Aufteilung unter den Verkehrsarten."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
-  def start(), do: ~d[2024]
+  def start(), do: ~d[2024-04-22]
+  def stop(), do: ~d[2025-05]
 
   def tags(), do: ["FR5"]
 
@@ -51,12 +52,14 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baustart", "April 2024",
+       "https://www.hamburg.de/bvm/medien/18533074/2024-04-16-bvm-rothenburgsort/"},
       {"Möglicher Baustart", "Februar 2024",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1017554"},
       {"Lageplan", "1. Entwurf, April 2021",
        "http://www.via-bus.de/contentblob/15032948/ad10d351d791270e024ead44e9dcf90b/data/mb3-lageplan-haltestellen-rothenburgsort.pdf"},
       {"Erläuterungsbericht", "1. Entwurf, Februar 2021",
-       "http://www.via-bus.de/contentblob/15030614/ef0af43aa5513c0c0d2591bb536f0ff8/data/56-mb3-bushaltestellen-rothenburgsort-erstverschickung.pdf"}
+       "https://web.archive.org/web/20240215205255/http://www.via-bus.de/contentblob/15030614/ef0af43aa5513c0c0d2591bb536f0ff8/data/56-mb3-bushaltestellen-rothenburgsort-erstverschickung.pdf"}
     ]
   end
 

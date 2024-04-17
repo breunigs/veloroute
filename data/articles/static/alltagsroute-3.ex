@@ -80,7 +80,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418922/veloroute-3/"},
-      {"Komoot Routenplaner: nach Niendorf", "https://www.komoot.de/tour/204275386"},
+      {"Komoot Routenplaner: nach Niendorf", "https://www.komoot.com/de-de/tour/204275386"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/194840"}
     ]
   end

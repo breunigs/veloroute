@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
       {"Bauvergabe Kreisel Neuländer Hauptdeich", "März 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6ef021a3-6cf6-4bec-ae8c-5ef2782f52ba"},
       {"Baustelleninfo", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/682528/9dc292bdbebbe266e6b726a2d09e5c61/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Bauvergabe, Abschnitt Neuländer Straße bis Neuländer Hauptdeich", "Februar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/dd5a2515-763c-4038-81d5-d7b510272b89"},
       {"Pressemitteilung zum Baufortschritt", "September 2022",

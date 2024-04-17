@@ -14,9 +14,9 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
   def links(_assigns) do
     [
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634516/77a9dc8dc53c070bc64083e39e22a735/lerchenfeld-wartenau-hamburger-strasse-bis-wandsbeker-chaussee-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784248/d08b0319d36fb6e5ce7b598d738e5c85/lerchenfeld-wartenau-hamburger-strasse-bis-wandsbeker-chaussee-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634518/1e40ab33b6591d7a928d5795aefb7747/lerchenfeld-wartenau-hamburger-strasse-bis-wandsbeker-chaussee-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784250/0e11e2a88b8543bc9d4dca356f9c48b8/lerchenfeld-wartenau-hamburger-strasse-bis-wandsbeker-chaussee-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

@@ -50,11 +50,11 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "April 2024",
-       "https://lsbg.hamburg.de/resource/blob/709148/86901df50a6ccfd506602ee3bade870b/lenhartzstrasse-adhoc-massnahme-radverkehr-april-2024-data.pdf"},
+       "https://web.archive.org/web/20240410103735if_/https://lsbg.hamburg.de/resource/blob/709148/86901df50a6ccfd506602ee3bade870b/lenhartzstrasse-adhoc-massnahme-radverkehr-april-2024-data.pdf"},
       {"Erläuterungsbericht", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/690802/63d51859243af0d35bdd70d7304273de/lenhartzstrasse-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784244/18d5141d9cf92cce755d2d6f80351856/lenhartzstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "Oktober  2023",
-       "https://lsbg.hamburg.de/resource/blob/690804/5a4c4e69d27c599c0a7b97fea9a7978a/lenhartzstrasse-abgestimmte-planung-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784246/e548d9cfe13af6184fe8b46b98989f5d/lenhartzstrasse-abgestimmte-planung-plan-data.pdf"}
     ]
   end
 

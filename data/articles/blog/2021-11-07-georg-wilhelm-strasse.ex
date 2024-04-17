@@ -20,21 +20,21 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo: Mengestraße bis Neuhöfer Straße", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/688502/5d71d5f8aead0243d6ba64dc2c9a1026/georg-wilhelm-strasse-mengestrasse-bis-neuhoefer-strasse-anliegerinformation-september-2023-data.pdf"},
+       "https://web.archive.org/web/20230921083029if_/https://lsbg.hamburg.de/resource/blob/688502/cbd7324b28143d931e98fbac3969be35/georg-wilhelm-strasse-mengestrasse-bis-neuhoefer-strasse-anliegerinformation-september-2023-data.pdf"},
       {"Pressemitteilung zum Umbau", "Februar 2023",
        "https://www.hamburg.de/bvm/medien/16946456/2023-02-28-bvm-willhemsburg/"},
       {"Baustelleninfo: Neuhöfer Straße bis Harburger Chaussee", "Februar 2023",
-       "https://lsbg.hamburg.de/resource/blob/664806/07473997d201a9f92dd6a6dca1ff0aa3/georg-wilhelm-strasse-neuhoefer-strasse-bis-harburger-chaussee-anliegerinformation-februar-2023-data.pdf"},
+       "https://web.archive.org/web/20230410130958if_/https://lsbg.hamburg.de/resource/blob/664806/07473997d201a9f92dd6a6dca1ff0aa3/georg-wilhelm-strasse-neuhoefer-strasse-bis-harburger-chaussee-anliegerinformation-februar-2023-data.pdf"},
       {"Baustelleninfo: Pollhornweg bis Mengestraße", "Januar 2023",
-       "https://lsbg.hamburg.de/resource/blob/691374/318441bb80ea412e3618fca1b5e16a6a/georg-wilhelm-strasse-pollhornweg-bis-mengestrasse-anliegerinformation-januar-2023-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784446/3f79359ca9dfb4c2001dd380892e7b84/georg-wilhelm-strasse-pollhornweg-bis-mengestrasse-anliegerinformation-januar-2023-data.pdf"},
       {"Pressemitteilung zum Baustart",
        "https://www.hamburg.de/bvm/medien/16828174/2023-01-11-bvm-georg-wilhelm-strasse/"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634128/b98cd0774228dcc1d161e08d5b6a5fed/georg-wilhelm-strasse-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784168/7d1503a0485f2ca10b1da559f16c61b9/georg-wilhelm-strasse-abgestimmte-planung-bericht-data.pdf"},
       {"Änderungen der überarbeiteten Fassung",
-       "https://lsbg.hamburg.de/resource/blob/634132/cf43d37cd28f6c73341b284a3e92b172/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784164/1258e0913eda7992fbf84489850b8d01/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-bericht-data.pdf"},
       {"überarbeitete Lagepläne",
-       "https://lsbg.hamburg.de/resource/blob/634134/941f58cc78600973b2ff05dab43273be/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784166/8c18e6d959eb1654987d047ca3478d17/georg-wilhelm-strasse-abgestimmte-planung-nachtrag-plaene-data.pdf"}
     ]
   end
 

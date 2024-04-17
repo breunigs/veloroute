@@ -85,7 +85,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294576/radtour-city-wilhelmsburg-harburger-stadtpark/"},
-      {"Komoot Routenplaner: über die Elbbrücken", "https://www.komoot.de/tour/227478472"},
+      {"Komoot Routenplaner: über die Elbbrücken", "https://www.komoot.com/de-de/tour/227478472"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/8847600"}
     ]
   end

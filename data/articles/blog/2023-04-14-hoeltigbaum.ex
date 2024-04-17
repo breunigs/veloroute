@@ -14,9 +14,9 @@ defmodule Data.Article.Blog.Hoeltigbaum do
   def links(_assigns) do
     [
       {"1. Entwurf, Erläuterungsbericht", "Dezember 2016",
-       "https://lsbg.hamburg.de/resource/blob/634166/0532c3505429d692b0ce6d5d35a234db/hoeltigbaum-bremer-strasse-eichberg-bis-alter-zollweg-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784208/27bae9886d3e27b4761517e4a53eea24/hoeltigbaum-bremer-strasse-eichberg-bis-alter-zollweg-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Lagepläne", "Dezember 2016",
-       "https://lsbg.hamburg.de/resource/blob/634168/7fd3d1952772c4f5204a6b55c9bfd277/hoeltigbaum-bremer-strasse-eichberg-bis-alter-zollweg-abstimmungsunterlage-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784210/60365399c2e0ba809b9f168a52f9d876/hoeltigbaum-bremer-strasse-eichberg-bis-alter-zollweg-abstimmungsunterlage-plaene-data.pdf"}
     ]
   end
 

@@ -121,7 +121,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426818/veloroute-14/"},
       {"Komoot Routenplaner: nach Othmarschen nach Billstedt",
-       "https://www.komoot.de/tour/225149829"},
+       "https://www.komoot.com/de-de/tour/225149829"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/8349004"}
     ]
   end

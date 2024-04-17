@@ -22,9 +22,9 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
       {"Detailanpassungen der Planung", "Dezember 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017917"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/634506/4512e9b7d4a019bb7e7cf775dd53563d/juethornstrasse-rodigallee-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784232/8b7c814f37565b25bee45400d429e88c/juethornstrasse-rodigallee-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/634508/c567335a112371245620bbe0c559ac50/juethornstrasse-rodigallee-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-plaene-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784234/8fea4149cf536d213d0a61aac9a7f9a3/juethornstrasse-rodigallee-bovestrasse-bis-jenfelder-allee-abstimmungsunterlage-plaene-data.pdf"}
     ]
   end
 

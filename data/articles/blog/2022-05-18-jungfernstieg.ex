@@ -21,18 +21,18 @@ defmodule Data.Article.Blog.Jungfernstieg do
       {"Pressemitteilung zum Umbaustart", "Februar 2024",
        "https://www.hamburg.de/bvm/medien/18282764/2024-02-29-bvm-jungfernstieg/"},
       {"Baustelleninfo", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/704608/6faeadb952456232c55c2c0fa603bfb7/jungfernstieg-umbau-februar-2024-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783412/c5c25367e99ea1b5bc9c12479b8d68d3/jungfernstieg-umbau-februar-2024-data.pdf"},
       {"Ausschreibung Umbau", "Oktober 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/a71ec5ea-3fee-4417-bec1-f7c9aa44bfce"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/jungfernstieg"},
       {"Lageplan", "2. Entwurf, Dezember 2022",
-       "https://lsbg.hamburg.de/resource/blob/663172/ef49cb31b3de7fb46454e005324444fe/jungfernstieg-phase-2-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783406/909a747db313331284547e8542aa0712/jungfernstieg-phase-2-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht", "2. Entwurf, Dezember 2022",
-       "https://lsbg.hamburg.de/resource/blob/663174/f8686cdbb1b500f8843444a977acb98a/jungfernstieg-phase-2-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783404/2be5875a027a2b435af90702274c63fa/jungfernstieg-phase-2-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "1. Entwurf, Mai 2022",
-       "https://lsbg.hamburg.de/resource/blob/597756/9768f38295acb37653171fc0e0b7bcfb/jungfernstieg-phase-2-abstimmungsunterlage-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783410/242b11d53d376a0c975bbd3a7d005a38/jungfernstieg-phase-2-abstimmungsunterlage-plan-data.pdf"},
       {"Erläuterungsbericht", "1. Entwurf, Mai 2022",
-       "https://lsbg.hamburg.de/resource/blob/597754/4a50e8eeb747fc772c8796053fd51fe8/jungfernstieg-phase-2-abstimmungsunterlage-bericht-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/783408/04b45a21dcc4e901e3dfebf3c396bb0a/jungfernstieg-phase-2-abstimmungsunterlage-bericht-data.pdf"}
     ]
   end
 

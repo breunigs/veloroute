@@ -35,9 +35,9 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
       {"Erläuterungsbericht (4. Entwurf/fertige Planung)", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/706660/9a1f9d493dd40892aceff6c3b8b75a95/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783748/b26121b66aba18998129ae9554a2938f/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne (4. Entwurf/fertige Planung)", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/706662/b1887de79101499fc71065d4c3949b25/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/783750/0b9e5cc1d423fb0b9adde53368a644c9/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-plan-data.pdf"}
     ]
   end
 

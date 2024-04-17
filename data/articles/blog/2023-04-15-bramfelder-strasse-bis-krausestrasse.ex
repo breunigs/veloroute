@@ -48,9 +48,9 @@ defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
   def links(_assigns) do
     [
       {"1. Entwurf, Bericht", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634116/ff93dd7498f96c0ae4426d7b79ddd84e/bramfelder-strasse-barmbeker-markt-bis-krausestrasse-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784128/024067401f3824e092d94d0648507419/bramfelder-strasse-barmbeker-markt-bis-krausestrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Lagepläne", "2017",
-       "https://lsbg.hamburg.de/resource/blob/634118/335007588f27085626c245a93852554d/bramfelder-strasse-barmbeker-markt-bis-krausestrasse-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784130/af45de84b3de80635cee6ada721052c8/bramfelder-strasse-barmbeker-markt-bis-krausestrasse-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

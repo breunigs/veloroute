@@ -12,9 +12,9 @@ defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Juni 2022, Entwurf",
-       "https://lsbg.hamburg.de/resource/blob/634614/2fc66b6b5720fd3eb87537733ccb7f4c/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784306/d11e66567ee6a59e1312d2e2cf7e94a0/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan", "Juni 2022, Entwurf",
-       "https://lsbg.hamburg.de/resource/blob/634616/561559482c6b8fb6b454bd70fd421a35/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784308/8c61bd0667c2d5bd4052952a9461257f/saarlandstrasse-kreuzung-wiesendamm-abstimmungsunterlage-plan-data.pdf"}
     ]
   end
 

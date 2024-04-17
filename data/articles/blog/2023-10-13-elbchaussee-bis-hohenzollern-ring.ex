@@ -53,9 +53,9 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/688802/1a273a14e89ce5bb8859e734054e6abd/elbchaussee-hohenzollernring-bis-betty-levi-passage-abstimmungsunterlage-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/782918/615d07d98be290ccbbd910bc44b79dae/elbchaussee-hohenzollernring-bis-betty-levi-passage-abstimmungsunterlage-bericht-data.pdf"},
       {"Karte", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/688804/da207925899c0d88b45586aa5ec5fb7d/elbchaussee-hohenzollernring-bis-betty-levi-passage-abstimmungsunterlage-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/782920/0ee01f3d0b127c55c3230f82f0517b18/elbchaussee-hohenzollernring-bis-betty-levi-passage-abstimmungsunterlage-plan-data.pdf"},
       {"Infoseite der Stadt", "https://lsbg.hamburg.de/elbchaussee"}
     ]
   end

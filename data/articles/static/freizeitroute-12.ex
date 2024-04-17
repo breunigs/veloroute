@@ -63,7 +63,8 @@ defmodule Data.Article.Static.Freizeitroute12 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294586/radtour-alsterlauf-tarpenbek-langenhorn/"},
-      {"Komoot Routenplaner: entlang der Tarpenbek", "https://www.komoot.de/tour/227482526"},
+      {"Komoot Routenplaner: entlang der Tarpenbek",
+       "https://www.komoot.com/de-de/tour/227482526"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/5821671"}
     ]
   end

@@ -16,13 +16,13 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692868/d13a24fae74e765c9a84702605f3481c/eppendorfer-marktplatz-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784150/c55912d7a77bd6bcda86665d1d308865/eppendorfer-marktplatz-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "Oktober  2023",
-       "https://lsbg.hamburg.de/resource/blob/692870/20368ce87f3feffc1771ddac6301cecd/eppendorfer-marktplatz-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784152/d0a03b758111229c80e06c3ec23dbc42/eppendorfer-marktplatz-abgestimmte-planung-plan-data.pdf"},
       # {"Lagepläne und Erläuterungsbericht", "2023",
       #  "https://suche.transparenz.hamburg.de/dataset/busbeschleunigung-eppendorfer-marktplatz"},
       {"Auswertung Beteiligungsprozess und veraltete Pläne", "2018",
-       "http://www.via-bus.de/beteiligungsprozess-eppendorfer-marktplatz/"}
+       "https://web.archive.org/web/20231026172652/http://www.via-bus.de/beteiligungsprozess-eppendorfer-marktplatz/"}
     ]
   end
 

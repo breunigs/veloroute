@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
   def links(assigns) do
     [
       {"Plan", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692616/2c542c265b1b7626fd259cda430dbd55/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784396/6a4df157837cbb9703464da793fbac7e/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-plan-data.pdf"},
       {"Bericht", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692614/87f1938ead8793dfa9af25b47bd513a3/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784394/d2d4d0d8b4a8def4050ab5eb262e160b/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-bericht-data.pdf"},
       ~H{Siehe auch: <.a name="2020-02-01-spanische-furt-heidlohstrasse">ältere, verworfene Planungen</.a>}
     ]
   end

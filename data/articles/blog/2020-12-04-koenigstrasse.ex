@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/702270/1f9e45c4f98f9b77ff40a48244d68dc9/koenigstrasse-anliegerinformation-2-ba-februar-2024-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784476/98f07a0b558b4377095c22c676963775/koenigstrasse-anliegerinformation-2-ba-februar-2024-data.pdf"},
       {"Auftragsvergabe Abschnitt 2, Mörkenstraße bis Reeperbahn", "August 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/db27136a-ff71-428c-bc2f-7919703f2c37"},
       {"Auftragsvergabe Abschnitt 1, Max-Brauer-Allee bis Mörkenstraße", "April 2023",
@@ -28,9 +28,9 @@ defmodule Data.Article.Blog.Koenigstrasse do
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan", "2022",
-       "https://lsbg.hamburg.de/resource/blob/634514/02d26689c4330c1dfa7b460063831538/veloroute-12-koenigstrasse-max-brauer-allee-bis-reeperbahn-abgestimmte-planung-plaene-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783624/ea387e6d8bc444f348d5f04121a99118/veloroute-12-koenigstrasse-max-brauer-allee-bis-reeperbahn-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht des LSBG", "2022",
-       "https://lsbg.hamburg.de/resource/blob/634512/d5c8543aed65e3ff6acb9923c2e85f87/veloroute-12-koenigstrasse-max-brauer-allee-bis-reeperbahn-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/783622/16bb8f5b45a3fcf46b1f864373b8bc5a/veloroute-12-koenigstrasse-max-brauer-allee-bis-reeperbahn-abgestimmte-planung-bericht-data.pdf"},
       {"veralteter Lageplan 1", "2020, Max-Brauer-Allee bis Elmenhorststraße",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/14709018/92aa529400e37c930df274ef190e69ab/data/vr-12-koenigstrasse-abstimmungsunterlage-plan-1.pdf"},
       {"veralteter Lageplan 2", "2020, Elmenhorststraße bis Reeperbahn",

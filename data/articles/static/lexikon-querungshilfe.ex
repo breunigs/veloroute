@@ -15,7 +15,7 @@ defmodule Data.Article.Static.LexikonQuerungshilfe do
       {"ADFC „Verkehrsrecht für Radfahrende“",
        "https://www.adfc.de/artikel/verkehrsrecht-fuer-radfahrende/"},
       {"Broschüre des LSBG zu Begriffen der Verkehrsplanung",
-       "https://lsbg.hamburg.de/resource/blob/17516/83583926bd56cf60859cb1bc25fae2fe/broschuere-verkehrsplanung-kurze-begriffserlaeuterungen-3-auflage-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/782656/9b8cdefd946cb90c800202a499254777/broschuere-verkehrsplanung-kurze-begriffserlaeuterungen-3-auflage-data.pdf"}
     ]
   end
 

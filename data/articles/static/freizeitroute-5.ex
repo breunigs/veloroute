@@ -67,7 +67,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294596/radtour-city-elbpark-entenwerder-vier-und-marschlande/"},
       {"Komoot Routenplaner: durch die Vier- und Marschlande",
-       "https://www.komoot.de/tour/227477342"},
+       "https://www.komoot.com/de-de/tour/227477342"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/8847599"}
     ]
   end

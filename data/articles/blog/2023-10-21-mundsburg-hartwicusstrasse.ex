@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.MundsburgHartwicusstrasse do
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692610/c435c98fabcc3803d73ff2c02c2fdb14/mundsburger-damm-24-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784262/b092e0aa91596d11d3e149d7f01f3441/mundsburger-damm-24-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne", "Oktober 2023",
-       "https://lsbg.hamburg.de/resource/blob/692612/5801481e34f18cba6d2791191d4577f6/mundsburger-damm-24-abgestimmte-planung-plan-data.pdf"}
+       "https://lsbg.hamburg.de/resource/blob/784264/026fb215a02016f34ea39574fe8b6ef2/mundsburger-damm-24-abgestimmte-planung-plan-data.pdf"}
     ]
   end
 

@@ -228,7 +228,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
-      {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.de/tour/227481906"},
+      {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.com/de-de/tour/227481906"},
       ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>}
     ]
   end

@@ -71,7 +71,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294590/radtour-alter-elbtunnel-hafen-harburger-berge/"},
-      {"Komoot Routenplaner", "https://www.komoot.de/tour/227483916"},
+      {"Komoot Routenplaner", "https://www.komoot.com/de-de/tour/227483916"},
       {"Ausflugsziel: Freilichtmuseum Kiekeberg", "https://www.kiekeberg-museum.de/"},
       {"Ausflugsziel: Wildpark Schwarze Berge", "https://www.wildpark-schwarze-berge.de/"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9064655"}

@@ -85,7 +85,7 @@ defmodule Data.Article.Static.Alltagsroute10 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426738/veloroute-10/"},
-      {"Komoot Routenplaner: nach Neugraben", "https://www.komoot.de/tour/225135899"},
+      {"Komoot Routenplaner: nach Neugraben", "https://www.komoot.com/de-de/tour/225135899"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/231965"}
     ]
   end

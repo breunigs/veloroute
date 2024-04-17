@@ -16,11 +16,11 @@ defmodule Data.Article.Blog.VerstetigungPublHafencity do
   def links(_assigns) do
     [
       {"Baustelleninfo", "März 2023",
-       "https://lsbg.hamburg.de/resource/blob/664710/1241d0f85b83eea6048c34429952db18/am-sandtorkai-brooktorkai-pop-up-bikelane-anliegerinformation-maerz-2023-data.pdf"},
+       "https://web.archive.org/web/20230411015754if_/https://lsbg.hamburg.de/resource/blob/664710/1241d0f85b83eea6048c34429952db18/am-sandtorkai-brooktorkai-pop-up-bikelane-anliegerinformation-maerz-2023-data.pdf"},
       {"Erläuterungsbericht", "August 2022",
-       "https://lsbg.hamburg.de/resource/blob/634644/fdbb4cc499c9678279b321ac33fdf599/am-sandtorkai-brooktorkai-pop-up-bikelane-verstetigung-abgestimmte-planung-bericht-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784082/d82b462f3347d710b8f0cdee89a034af/am-sandtorkai-brooktorkai-pop-up-bikelane-verstetigung-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "August 2022",
-       "https://lsbg.hamburg.de/resource/blob/634646/2f7626f5bda9239eaed7b365b048684a/am-sandtorkai-brooktorkai-pop-up-bikelane-verstetigung-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784084/6a06328b36b0de140d75baac9165f8f7/am-sandtorkai-brooktorkai-pop-up-bikelane-verstetigung-abgestimmte-planung-plan-data.pdf"},
       {"Pressemitteilung zur Verstetigung", "April 2022",
        "https://www.hamburg.de/bvm/medien/16117218/2022-03-30-bvm-pop-up-lane/"}
     ]

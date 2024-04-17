@@ -72,7 +72,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426734/veloroute-9/"},
-      {"Komoot Routenplaner: nach Bergedorf", "https://www.komoot.de/tour/225135288"},
+      {"Komoot Routenplaner: nach Bergedorf", "https://www.komoot.com/de-de/tour/225135288"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/229823"}
     ]
   end

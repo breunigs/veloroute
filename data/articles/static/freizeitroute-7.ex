@@ -63,7 +63,8 @@ defmodule Data.Article.Static.Freizeitroute7 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294578/radtour-harburg-harburger-berge/"},
-      {"Komoot Routenplaner: in die Harburger Berge", "https://www.komoot.de/tour/227478972"},
+      {"Komoot Routenplaner: in die Harburger Berge",
+       "https://www.komoot.com/de-de/tour/227478972"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9064960"}
     ]
   end
