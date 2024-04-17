@@ -3,10 +3,11 @@ defmodule Article.List do
   import Guards
   use Memoize
 
+  @known_categories Article.known_categories()
+
   @spec all :: t
   def all() do
-    Article.known_categories()
-    |> Enum.flat_map(&category/1)
+    Enum.flat_map(@known_categories, &category/1)
   end
 
   defmemop all_indexed() do
@@ -14,7 +15,6 @@ defmodule Article.List do
   end
 
   @spec category(binary()) :: t
-  @known_categories Article.known_categories()
   def category(type) when type in @known_categories do
     Util.modules_with_prefix(Article.module_name() <> type <> ".")
   end

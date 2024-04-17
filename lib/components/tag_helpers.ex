@@ -433,6 +433,9 @@ defmodule Components.TagHelpers do
           other
       end)
 
+    if assigns[:gpx] && !Article.has_category?(art, "Static"),
+      do: raise("GPX requested in structured_links for non-Static article #{art}")
+
     links = if assigns[:gpx], do: links ++ Article.Decorators.gpx_links(art), else: links
     assigns = %{links: links}
 

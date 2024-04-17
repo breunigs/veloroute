@@ -78,7 +78,7 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
     <p>Der Radweg ist gut. Unverständlich ist, warum wieder auf minderwertiges Pflaster gesetzt wird, wenn in anderen Abschnitten bereits besser befahrbarer Asphalt verbaut wurde. Die zahlreichen Rampen an denen die Oberfläche wechselt sind dann besonders unkomfortabel.</p>
 
     <h4>Externe Links</h4>
-    <.structured_links ref={@ref} gpx={true}/>
+    <.structured_links ref={@ref}/>
     """
   end
 end
