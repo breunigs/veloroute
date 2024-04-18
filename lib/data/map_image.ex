@@ -66,10 +66,7 @@ defmodule Data.MapImage do
         "id" => @ident,
         "source" => @ident,
         "type" => "raster",
-        "minzoom" => 14,
-        "paint" => %{
-          "raster-opacity" => ["interpolate", ["linear"], ["zoom"], 14, 0, 16, 1]
-        }
+        "minzoom" => 14
       }
     }
   end

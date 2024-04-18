@@ -75,6 +75,26 @@ defmodule ArticleTest do
     assert [] == missing_tag
   end
 
+  test "articles with map_image use map_image_toggle (and vice versa)" do
+    bork =
+      Article.List.all()
+      |> Enum.map(fn art ->
+        html = Article.Decorators.html(art)
+
+        needs_tag = !!art.map_image()
+        has_tag = String.contains?(html, ~s|type="checkbox" name="toggle-map-image"|)
+
+        cond do
+          needs_tag == has_tag -> nil
+          needs_tag -> "#{art} is missing a <.map_image_toggle …/> tag"
+          has_tag -> "#{art} has a <.map_image_toggle …/> tag but no map_image"
+        end
+      end)
+      |> Util.compact()
+
+    assert [] == bork
+  end
+
   test "no duplicated tracks" do
     duplicated_tracks =
       Article.List.all()

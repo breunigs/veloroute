@@ -399,11 +399,14 @@ window.addEventListener("phx:show_map_image", e => {
 
     map.addSource(e.detail.ident, e.detail.source)
 
+    let minZoom = e.detail.layer.minzoom
+    let fadeIn = ["interpolate", ["linear"], ["zoom"], minZoom, 0, minZoom + 3, 1]
+
     // workaround for the map flickering on load otherwise
     e.detail.layer.paint = { "raster-opacity": 0 }
     map.addLayer(e.detail.layer)
     showMapImageWorker = setTimeout(() => {
-      map.setPaintProperty(e.detail.ident, "raster-opacity", 1, { validate: false })
+      map.setPaintProperty(e.detail.ident, "raster-opacity", fadeIn, { validate: false })
     }, 350)
 
     attribution.options.customAttribution = e.detail.attribution
