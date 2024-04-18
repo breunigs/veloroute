@@ -44,6 +44,8 @@ defmodule Article do
   @callback text(assigns()) :: Phoenix.LiveView.Rendered.t()
   @callback links(assigns()) :: [link()]
 
+  @callback map_image() :: nil | Data.MapImage.t()
+
   def module_name, do: "Elixir.Data.Article."
   @known_categories ~w/Blog Static/
   def known_categories, do: @known_categories

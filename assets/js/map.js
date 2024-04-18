@@ -375,6 +375,41 @@ window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
+
+let showMapImageWorker = null
+window.addEventListener("phx:show_map_image", e => {
+  if (showMapImageWorker) clearTimeout(showMapImageWorker)
+
+  const layer = map.getLayer(e.detail.ident)
+  const source = map.getSource(e.detail.ident)
+
+  const cleanup = () => {
+    if (layer) map.removeLayer(e.detail.ident)
+    if (source) map.removeSource(e.detail.ident)
+    attribution.options.customAttribution = ''
+  }
+
+  if (e.detail.action === "delete") {
+    if (layer) map.setPaintProperty(e.detail.ident, "raster-opacity", 0, { validate: false })
+    // allow enough time to fade out
+    showMapImageWorker = setTimeout(cleanup, 350)
+  } else if (e.detail.action === "update") {
+    // assume that we only get update events if there are actual changes
+    cleanup()
+
+    map.addSource(e.detail.ident, e.detail.source)
+
+    // workaround for the map flickering on load otherwise
+    e.detail.layer.paint = { "raster-opacity": 0 }
+    map.addLayer(e.detail.layer)
+    showMapImageWorker = setTimeout(() => {
+      map.setPaintProperty(e.detail.ident, "raster-opacity", 1, { validate: false })
+    }, 350)
+
+    attribution.options.customAttribution = e.detail.attribution
+  }
+});
+
 let highlightsAppliedToStyle = ""
 let highlightsTimeout = null
 
@@ -572,6 +607,7 @@ function setupTouchDeviceClick() {
 }
 
 let map = null;
+let attribution = null;
 
 function setup() {
   if (map) {
@@ -606,7 +642,8 @@ function setup() {
     validateStyle: false,
   });
   map.touchZoomRotate.disableRotation();
-  map.addControl(new mlgl.AttributionControl({ compact: null }), 'top-right');
+  attribution = new mlgl.AttributionControl({ compact: null })
+  map.addControl(attribution, 'top-right');
 
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);

@@ -12,7 +12,8 @@ defmodule ArticleTest do
               __changed__: %{},
               search_query: nil,
               search_bounds: nil,
-              limit_to_map_bounds: false
+              limit_to_map_bounds: false,
+              show_map_image: false
             })
 
           nil

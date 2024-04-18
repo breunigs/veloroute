@@ -56,6 +56,7 @@ defmodule Article.Decorators do
       search_query: nil,
       search_bounds: nil,
       limit_to_map_bounds: false,
+      show_map_image: false,
       enable_drawing_tools: false,
       ref: art
     }

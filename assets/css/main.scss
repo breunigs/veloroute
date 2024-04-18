@@ -1455,3 +1455,15 @@ ul.spaced {
   height: 1rem;
   vertical-align: sub;
 }
+
+.headlineForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  form, input, label {
+    cursor: pointer;
+    color: #888;
+    accent-color: #888;
+  }
+}

@@ -16,6 +16,7 @@ defmodule VelorouteWeb.FrameLive do
     search_bounds: nil,
     tmp_last_article_set: nil,
     limit_to_map_bounds: false,
+    show_map_image: false,
     og_image: nil,
     enable_drawing_tools: false
   ]
@@ -72,6 +73,15 @@ defmodule VelorouteWeb.FrameLive do
 
   def handle_event("limit-to-map-bounds", _attr, socket) do
     {:noreply, assign(socket, :limit_to_map_bounds, !socket.assigns.limit_to_map_bounds)}
+  end
+
+  def handle_event("toggle-map-image", _attr, socket) do
+    socket =
+      socket
+      |> assign(:show_map_image, !socket.assigns.show_map_image)
+      |> update_map_image()
+
+    {:noreply, socket}
   end
 
   def handle_event("search", %{"search_query" => value}, socket) do
@@ -300,6 +310,7 @@ defmodule VelorouteWeb.FrameLive do
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
+    |> update_map_image()
   end
 
   defp set_content(socket, _article), do: render_404(socket, "article not found")
@@ -377,6 +388,13 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_map_bounds(socket, %{}), do: socket
   defp update_map_bounds(socket, nil), do: socket
+
+  defp update_map_image(socket) do
+    show = socket.assigns.show_map_image
+    art = socket.assigns.current_page
+    data = Data.MapImage.for_frontend(if art && show, do: art.map_image())
+    Phoenix.LiveView.push_event(socket, :show_map_image, data)
+  end
 
   defp find_article(nil), do: nil
 

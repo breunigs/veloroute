@@ -22,6 +22,8 @@ defmodule Article.Default do
       def route_group, do: nil
       def icon, do: type()
 
+      def map_image(), do: nil
+
       defoverridable Article
 
       use Phoenix.Component
