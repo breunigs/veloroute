@@ -56,10 +56,8 @@ defmodule Data.Article.Blog.UFarmsen do
 
     <div class="headlineForm">
       <h4>Planung</h4>
-      <.map_image_toggle checked={@show_map_image}>genauen Lageplan anzeigen</.map_image_toggle>
+      <.map_image_toggle checked={@show_map_image}/>
     </div>
-
-
     <p><.v bounds="10.117184,53.604829,10.122262,53.608175" lon={10.119636} lat={53.605719} dir="forward" ref="6">Entlang der Alltagsroute</.v> ändert sich wenig: es bleibt möglich mit dem Rad rechts abzubiegen, ohne an der Ampel halten zu müssen. Die <.v bounds="10.118968,53.605945,10.119893,53.606486" lon={10.119556} lat={53.606425} dir="backward" ref="6">Dreiecksinsel</.v> entfällt, sodass der Radweg hier geradlinig wird. Linksabbiegen ist jeweils nur <.ref>indirekt</.ref> möglich.</p>
 
     <p>Auf der <.v bounds="10.115564,53.605793,10.120876,53.608256" lon={10.117747} lat={53.607121} dir="forward" ref="br-wandsbek-w5" highlight="August-Krogmann-Straße">Nordseite der August-Krogmann-Straße</.v> ist ein Zweirichtungsradweg vorgesehen. Er beginnt bzw. endet jeweils nach den Kreuzungen des <.v bounds="10.118368,53.605486,10.121078,53.607438" lon={10.120191} lat={53.606331} dir="forward" ref="br-wandsbek-w5">Rahlstedter Weg</.v> bzw. <.v bounds="10.115051,53.606518,10.117844,53.608271" lon={10.116671} lat={53.607525} dir="backward" ref="FR2">Am Luisenhof</.v>, sodass in beide Richtungen gequert werden darf. An den Bushaltestellen führt er zwischen Ein-/Ausstiegsbereich und Fußweg hindurch. Der Hintergrund ist, das es auf dieser Seite hohe Bedarfe Richtung Osten gibt, gerade durch Schulkinder.</p>
