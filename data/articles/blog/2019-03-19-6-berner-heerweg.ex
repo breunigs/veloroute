@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.BernerHeerweg do
     do:
       "2,5m breite gepflasterte Hochbordradwege. Fahrt entlang der Freizeitroute 2 diesmal mitbedacht. 30 Bäume und 22 Fahrradbügel kommen neu hinzu."
 
-  def start(), do: ~d[2025]
-  def stop(), do: ~d[2026]
+  # def start(), do: ~d[2025]
+  # def stop(), do: ~d[2026]
 
   def type(), do: :planned
 
