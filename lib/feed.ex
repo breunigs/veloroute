@@ -29,6 +29,7 @@ defmodule Feed do
       |> Article.Decorators.html()
       |> Floki.parse_fragment!()
       |> Floki.find_and_update("a:not([href])", fn {"a", _attrs} -> {"i", []} end)
+      |> Floki.filter_out("form")
       |> Floki.raw_html()
 
     full_title = Article.Decorators.full_title(art)
