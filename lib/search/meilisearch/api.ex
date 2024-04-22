@@ -3,7 +3,7 @@ defmodule Search.Meilisearch.API do
   use Tesla
 
   @index_timeout_ms 5 * 60 * 1000
-  @general_timeout_ms 500
+  @general_timeout_ms 1500
 
   plug Tesla.Middleware.BaseUrl, "http://localhost:7700/"
   plug Tesla.Middleware.JSON
