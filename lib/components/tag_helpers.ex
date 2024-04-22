@@ -155,7 +155,12 @@ defmodule Components.TagHelpers do
 
   def map_image_toggle(assigns) do
     ~H"""
-    <form {@rest} class="noMobile">
+    <form {@rest} class="noMobile" title={
+    "Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
+    Sind sie komplett schwarz oder fehlen ganz, ist Dein Gerät zu schwach.
+
+    Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.feed_author()}.
+    "}>
       <input type="checkbox" name="toggle-map-image" value="toggle-map-image" id="toggle-map-image" phx-change="toggle-map-image" checked={if(@checked, do: "checked")}>
       <label for="toggle-map-image"><%= render_slot(@inner_block) || "genauen Lageplan anzeigen" %></label>
     </form>

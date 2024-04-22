@@ -18,10 +18,13 @@ defmodule Data.MapImage do
   @spec new(
           Article.t(),
           attribution :: {binary(), binary()},
+          index :: non_neg_integer() | binary() | nil,
           {topLeft :: Geo.Point.like(), topRight :: Geo.Point.like(),
            bottomRight :: Geo.Point.like(), bottomLeft :: Geo.Point.like()}
         ) :: t()
-  def new(art, {attr_name, attr_link}, {tl, tr, br, bl})
+  def new(art, attribution, index \\ nil, coordinates)
+
+  def new(art, {attr_name, attr_link}, index, {tl, tr, br, bl})
       when is_module(art) do
     %__MODULE__{
       coordinates: {
@@ -37,43 +40,35 @@ defmodule Data.MapImage do
           Settings.video_serve_host(),
           Settings.video_serve_path(),
           "map_images",
-          art.name() <> ".webp"
+          "#{art.name()}#{if index, do: "_#{index}"}.webp"
         ]
         |> Util.compact()
         |> Path.join()
     }
   end
 
-  @ident "map-image"
+  @spec for_frontend(nil | t() | [t()]) :: %{map_images: [map()]}
+  def for_frontend(%__MODULE__{} = map_image), do: for_frontend([map_image])
+  def for_frontend(nil), do: for_frontend([])
 
-  @spec for_frontend(t()) :: map()
-  def for_frontend(%__MODULE__{coordinates: {tl, tr, br, bl}, attribution: attrib, path: path}) do
-    %{
-      "ident" => @ident,
-      "action" => "update",
-      "attribution" => attrib,
-      "source" => %{
-        "type" => "image",
-        "url" => path,
-        "coordinates" => [
-          [tl.lon, tl.lat],
-          [tr.lon, tr.lat],
-          [br.lon, br.lat],
-          [bl.lon, bl.lat]
-        ]
-      },
-      "layer" => %{
-        "id" => @ident,
-        "source" => @ident,
-        "type" => "raster",
-        "minzoom" => 14
-      }
-    }
+  def for_frontend(list) when is_list(list) do
+    %{map_images: Enum.map(list, &for_frontend_single/1)}
   end
 
-  def for_frontend(nil),
-    do: %{
-      "ident" => @ident,
-      "action" => "delete"
+  defp for_frontend_single(%__MODULE__{
+         coordinates: {tl, tr, br, bl},
+         attribution: attrib,
+         path: path
+       }) do
+    %{
+      "attribution" => attrib,
+      "url" => path,
+      "coordinates" => [
+        [tl.lon, tl.lat],
+        [tr.lon, tr.lat],
+        [br.lon, br.lat],
+        [bl.lon, bl.lat]
+      ]
     }
+  end
 end

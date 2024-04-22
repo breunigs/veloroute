@@ -375,49 +375,100 @@ window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
+
+const showMapImageMinZoom = 14
+const showMapImageFadeIn = ["interpolate", ["linear"], ["zoom"], showMapImageMinZoom, 0, showMapImageMinZoom + 3, 1]
 let showMapImageAction = null
-let showMapImageWorker = null
+let showMapImagesWorker = null
+let showMapImageLayers = []
 
 window.addEventListener("phx:show_map_image", e => {
-  showMapImageAction = e
-  showMapImage()
+  showMapImageAction = e.detail.map_images
+  showMapImages()
 });
 
-function showMapImage() {
-  if (!showMapImageAction) return
-  if (showMapImageWorker) clearTimeout(showMapImageWorker)
 
-  const layer = map.getLayer(showMapImageAction.detail.ident)
-  const source = map.getSource(showMapImageAction.detail.ident)
+function showMapImages() {
+  if (!showMapImageAction) return
+  if (showMapImagesWorker) clearTimeout(showMapImagesWorker)
+
+  console.log(showMapImageAction)
+
+  // const layer = map.getLayer("map-image-${index}")
+  // const source = map.getSource("map-image-${index}")
 
   const cleanup = () => {
-    if (layer) map.removeLayer(showMapImageAction.detail.ident)
-    if (source) map.removeSource(showMapImageAction.detail.ident)
+    for (let id of showMapImageLayers) {
+      map.removeLayer(id)
+      map.removeSource(id)
+    }
+    showMapImageLayers = []
     attribution.options.customAttribution = ''
   }
 
-  if (showMapImageAction.detail.action === "delete") {
-    if (layer) map.setPaintProperty(showMapImageAction.detail.ident, "raster-opacity", 0, { validate: false })
+  if (showMapImageAction.length === 0) {
+    for (let id of showMapImageLayers) {
+      map.setPaintProperty(id, "raster-opacity", 0, { validate: false })
+    }
     // allow enough time to fade out
-    showMapImageWorker = setTimeout(cleanup, 350)
-  } else if (showMapImageAction.detail.action === "update") {
-    // assume that we only get update events if there are actual changes
-    cleanup()
+    showMapImagesWorker = setTimeout(cleanup, 350)
+    return
+  }
 
-    map.addSource(showMapImageAction.detail.ident, showMapImageAction.detail.source)
+  cleanup()
+  let attribs = new Set()
+  for (let mapImage of showMapImageAction) {
+    const id = `map-image-${mapImage.url}`
+    map.addSource(id, {
+      type: 'image',
+      url: mapImage.url,
+      coordinates: mapImage.coordinates,
+    })
 
-    let minZoom = showMapImageAction.detail.layer.minzoom
-    let fadeIn = ["interpolate", ["linear"], ["zoom"], minZoom, 0, minZoom + 3, 1]
+    map.addLayer({
+      id: id,
+      source: id,
+      type: 'raster',
+      minzoom: showMapImageMinZoom,
+      paint: {
+        // workaround for the map flickering on load otherwise
+        "raster-opacity": 0
+      }
+    })
 
-    // workaround for the map flickering on load otherwise
-    showMapImageAction.detail.layer.paint = { "raster-opacity": 0 }
-    map.addLayer(showMapImageAction.detail.layer)
-    showMapImageWorker = setTimeout(() => {
-      map.setPaintProperty(showMapImageAction.detail.ident, "raster-opacity", fadeIn, { validate: false })
+    attribs.add(mapImage.attribution)
+
+    showMapImagesWorker = setTimeout(() => {
+      map.setPaintProperty(id, "raster-opacity", showMapImageFadeIn, { validate: false })
     }, 350)
 
-    attribution.options.customAttribution = showMapImageAction.detail.attribution
+    showMapImageLayers.push(id)
+    attribution.options.customAttribution = Array.from(attribs).join(" ")
   }
+
+
+  // if (showMapImageAction.action === "delete") {
+  //   if (layer) map.setPaintProperty("map-image-${index}", "raster-opacity", 0, { validate: false })
+  //   // allow enough time to fade out
+  //   showMapImagesWorker = setTimeout(cleanup, 350)
+  // } else if (showMapImageAction.action === "update") {
+  //   // assume that we only get update events if there are actual changes
+  //   cleanup()
+
+  //   map.addSource("map-image-${index}", showMapImageAction.source)
+
+  //   let minZoom = showMapImageAction.layer.minzoom
+  //   let fadeIn = ["interpolate", ["linear"], ["zoom"], minZoom, 0, minZoom + 3, 1]
+
+  //   // workaround for the map flickering on load otherwise
+  //   showMapImageAction.layer.paint = { "raster-opacity": 0 }
+  //   map.addLayer(showMapImageAction.layer)
+  //   showMapImagesWorker = setTimeout(() => {
+  //     map.setPaintProperty("map-image-${index}", "raster-opacity", fadeIn, { validate: false })
+  //   }, 350)
+
+  //   attribution.options.customAttribution = showMapImageAction.attribution
+  // }
 }
 
 let highlightsAppliedToStyle = ""
@@ -434,7 +485,7 @@ function styleChangedHandler() {
   highlightsAppliedToStyle = currStyleName
 
   maybeToggleLayers(map, mapConfig)
-  showMapImage()
+  showMapImages()
 }
 
 function updateIndicatorPolyline(data) {
