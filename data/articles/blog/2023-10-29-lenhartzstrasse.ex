@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
   def stop(), do: ~d[2024-08-19]
   def construction_site_id_hh(), do: [633_180]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 

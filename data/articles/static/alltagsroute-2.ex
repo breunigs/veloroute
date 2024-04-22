@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "2",
         direction: :forward,
         from: "Innenstadt",
@@ -23,29 +23,29 @@ defmodule Data.Article.Static.Alltagsroute2 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Eidelstedt",
         historic: %{
+          "187b020a4d6df00848ee785ffebbd4c9" => ~d[2024-04],
           "ad83462646710e75b1d597806cf22223" => ~d[2023-05],
           "a62c9bb78695d8eda8d3bff8ac2d17be" => ~d[2022-04],
           "f329670c1f6a784ec835ef92cca96272" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-20-vr2-vr3/GX015761", "00:00:31.999", :end},
-          {"2023-05-20-vr2-vr3/GX015762", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015763", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015764", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015765", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015766", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015767", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015768", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015769", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015770", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015771", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015772", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015773", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015774", :start, :end}
+          {"2024-04-07-fr2/GX017109", "00:00:33.267", :end},
+          {"2024-04-07-fr2/GX017110", :start, :end},
+          {"2024-04-07-fr2/GX017111", :start, "00:00:21.588"},
+          {"2024-04-21-vr2-rand/GX017217", "00:00:28.729", :end},
+          {"2024-04-21-vr2-rand/GX017218", :start, :end},
+          {"2024-04-21-vr2-rand/GX017219", :start, :end},
+          {"2024-04-21-vr2-rand/GX017220", :start, :end},
+          {"2024-04-21-vr2-rand/GX017221", "00:00:00.200", :end},
+          {"2024-04-21-vr2-rand/GX017222", :start, :end},
+          {"2024-04-21-vr2-rand/GX017223", :start, :end},
+          {"2024-04-21-vr2-rand/GX017224", :start, :end},
+          {"2024-04-21-vr2-rand/GX017225", :start, :end},
+          {"2024-04-21-vr2-rand/GX017226", :start, "00:00:04.337"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "2",
         direction: :backward,
         from: "Eidelstedt",
@@ -53,22 +53,22 @@ defmodule Data.Article.Static.Alltagsroute2 do
         parent_ref: __MODULE__,
         text: "von Eidelstedt in die Innenstadt",
         historic: %{
+          "817f77cc3dd91ce9ef5003ba3d0a9628" => ~d[2024-04],
           "6400d51dcd95cea2dd55bbb1713ed9ec" => ~d[2023-05],
           "b9fec80b3268dc0c19e6b281cec518a8" => ~d[2022-04],
           "93e9ec24a1550b4a5c0a92d8582e3432" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-20-vr2-vr3/GX015776", "00:00:21.221", :end},
-          {"2023-05-20-vr2-vr3/GX015777", :start, "00:00:44.077"},
-          {"2023-05-20-vr2-vr3/GX015779", "00:00:00.968", :end},
-          {"2023-05-20-vr2-vr3/GX015780", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015781", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015782", :start, "00:00:50.918"},
-          {"2023-05-20-vr2-vr3/GX015729", "00:00:47.180", :end},
-          {"2023-05-20-vr2-vr3/GX015730", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015731", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015732", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015733", :start, "00:00:13.811"}
+          {"2024-04-21-vr2-rand/GX017227", :start, :end},
+          {"2024-04-21-vr2-rand/GX017228", :start, :end},
+          {"2024-04-21-vr2-rand/GX017229", :start, :end},
+          {"2024-04-21-vr2-rand/GX017230", :start, :end},
+          {"2024-04-21-vr2-rand/GX017231", :start, "00:00:02.236"},
+          {"2024-04-21-vr2-rand/GX017231", "00:00:08.976", :end},
+          {"2024-04-21-vr2-rand/GX017232", :start, :end},
+          {"2024-04-21-vr2-rand/GX017233", :start, :end},
+          {"2024-04-21-vr2-rand/GX017234", :start, :end},
+          {"2024-04-21-vr2-rand/GX017235", :start, :end}
         ]
       }
     ]
