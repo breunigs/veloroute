@@ -244,8 +244,16 @@ defmodule Video.Track do
   def normalize_video_tuples(videos) when is_list(videos) do
     Enum.map(videos, fn tuple ->
       case tuple_size(tuple) do
-        3 -> Tuple.append(tuple, [])
-        4 -> tuple
+        3 ->
+          Tuple.append(tuple, [])
+
+        4 ->
+          tuple
+
+        other ->
+          raise(
+            "video segment definition has invalid tuple (length=#{other}, allowed=3,4): #{inspect(tuple)}"
+          )
       end
     end)
   end
