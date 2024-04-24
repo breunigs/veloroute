@@ -53,14 +53,19 @@ defmodule Basemap.Nominatim do
         a.name
         # remove everything in brackets (...)
         |> String.replace(~r/\s*\(.*?\)/, "")
-        # remove e.V. and variants
-        |> String.replace(~r/\s*e\.\s?V\./, "")
+        # remove e.V. and variants, including preceding numbers
+        |> String.replace(~r/(von )?[0-9 -]*\s*e\.\s?V\./, "")
         # remove quotes, but not their contents
-        |> String.replace(~r/[„“"]/, "")
+        |> String.replace(~r/[„“"]/u, "")
+        # remove spaced dashes
+        |> String.replace(~r/ [–-] /u, " ")
         # expand Klgv.
         |> String.replace("Klgv.", "Kleingartenverein")
         # remove numbers from "Kleingartenverein 1234"
         |> String.replace(~r/Kleingartenverein \d+/, "Kleingartenverein")
+        # remove superfluous whitespace
+        |> String.replace(~r/\s+/, " ")
+        |> String.trim()
 
       bbox = Geo.BoundingBox.parse(a.bbox)
       geometry = remap_geojson(a.geometry)
