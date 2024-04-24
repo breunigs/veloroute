@@ -223,7 +223,7 @@ defmodule Basemap.Nominatim do
 
   # extracts all objects that should be searchable
   defp query_sql(:search) do
-    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
+    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds(), ",")
 
     """
     WITH
@@ -425,7 +425,7 @@ defmodule Basemap.Nominatim do
 
   # extracts all areas which might be useful for matching GPS coords to names
   defp query_sql(:area) do
-    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds())
+    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds(), ",")
 
     """
     -- expand areas slightly to still be able to name paths alongside it

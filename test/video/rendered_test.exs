@@ -1,6 +1,6 @@
-defmodule Video.GeneratorTest do
+defmodule Video.RenderedTest do
   use ExUnit.Case, async: true
-  doctest Video.Generator
+  doctest Video.Rendered
 
   defmodule Example do
     @behaviour Video.Rendered
@@ -52,5 +52,16 @@ defmodule Video.GeneratorTest do
 
     @impl Video.Rendered
     def bbox(), do: Geo.CheapRuler.bbox(coords())
+  end
+
+  test "all vanity names are unique" do
+    duplicated_vanities =
+      Video.Generator.all()
+      |> Enum.map(&Video.Rendered.vanity/1)
+      |> Enum.reduce(%{}, fn vanity, acc -> Map.update(acc, vanity, 1, &(&1 + 1)) end)
+      |> Map.filter(fn {_vanity, count} -> count > 1 end)
+      |> Map.keys()
+
+    assert [] == duplicated_vanities
   end
 end

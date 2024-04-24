@@ -75,7 +75,7 @@ defmodule Video.Renderer do
       ]
   end
 
-  @spec render(Video.Generator.t()) :: :ok | {:error, binary} | Util.Cmd2.exec_result()
+  @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.Cmd2.exec_result()
   def render(rendered) do
     ensure_min_version(rendered)
 

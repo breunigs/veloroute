@@ -60,7 +60,7 @@ defmodule Video.RenderedTools do
   Returns the human readable name of the most recent recording tht makes up the
   video.
   """
-  @spec most_recent_recording_month(Video.Track.hash() | nil | Video.Generator.t()) :: binary()
+  @spec most_recent_recording_month(Video.Track.hash() | nil | Video.Rendered.t()) :: binary()
   def most_recent_recording_month(nil), do: "unbekannt"
 
   def most_recent_recording_month(hash) when valid_hash(hash),

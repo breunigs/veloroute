@@ -53,9 +53,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
       "start" => unquote(@video_starts[@video_direction])
     })
 
+    vanity = @video_hashes[@video_direction] |> Video.Generator.get() |> Video.Rendered.vanity()
+
     assert_patched(
       view,
-      "/article/2018-04-08-4-kleekamp?bounds=9.724553%2C53.454363%2C10.21779%2C53.715809&pos_sec=#{@video_starts[@video_direction] / 1000.0}&video=#{@video_hashes[@video_direction]}"
+      "/article/2018-04-08-4-kleekamp?bounds=9.724553-53.454363-10.21779-53.715809&pos_sec=#{@video_starts[@video_direction] / 1000.0}&video=#{vanity}"
     )
   end
 
@@ -192,6 +194,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "clicking on article with tracks selects video close to click position", %{conn: conn} do
     article = "2023-04-15-bramfelder-strasse-bis-krausestrasse"
     forward_video_hash = "bef5fb6f0cd3ce7a30ade62e6325904b"
+    forward_video_abbrev = String.slice(forward_video_hash, 0, Video.Rendered.vanity_id_length())
     pos_sec = 10.642
 
     {:ok, view, _html} = live(conn, "/")
@@ -206,7 +209,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
     path = assert_patch(view)
     assert path =~ ~r{/article/#{article}}
-    assert path =~ ~r{video=#{forward_video_hash}}
+    assert path =~ ~r{video=#{forward_video_abbrev}}
     assert path =~ ~r{pos_sec=#{pos_sec}}
 
     html = render_patch(view, path)

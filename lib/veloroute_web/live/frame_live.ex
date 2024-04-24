@@ -452,7 +452,7 @@ defmodule VelorouteWeb.FrameLive do
     bounds = Geo.BoundingBox.to_string_bounds(assigns[:map_bounds])
 
     query = %{
-      "video" => assigns[:video_hash],
+      "video" => assigns[:video_vanity] || assigns[:video_hash],
       "pos_sec" => if(assigns[:video_start], do: assigns[:video_start] / 1000.0),
       "bounds" => bounds
     }

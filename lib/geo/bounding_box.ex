@@ -42,7 +42,7 @@ defmodule Geo.BoundingBox do
   end
 
   def parse(bounds) when is_binary(bounds) do
-    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ","),
+    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ~r/[-,]/),
          {minLon, ""} <- Float.parse(minLon),
          {minLat, ""} <- Float.parse(minLat),
          {maxLon, ""} <- Float.parse(maxLon),
@@ -60,23 +60,27 @@ defmodule Geo.BoundingBox do
 
   def parse(nil), do: nil
 
-  def to_string_bounds(bounds) when is_binary(bounds) and bounds != "" do
-    bounds
+  def to_string_bounds(bounds, delimiter \\ "-")
+
+  def to_string_bounds(bounds, delimiter) when is_binary(bounds) and bounds != "" do
+    if String.contains?(bounds, delimiter) do
+      bounds
+    else
+      bounds |> parse() |> to_string_bounds(delimiter)
+    end
   end
 
-  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]]),
-    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]], delimiter),
+    do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
 
-  def to_string_bounds([minLon, minLat, maxLon, maxLat]),
-    do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  def to_string_bounds([minLon, minLat, maxLon, maxLat], delimiter),
+    do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
 
-  def to_string_bounds(%{
-        minLat: minLat,
-        minLon: minLon,
-        maxLat: maxLat,
-        maxLon: maxLon
-      }),
-      do: "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+  def to_string_bounds(
+        %{minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon},
+        delimiter
+      ),
+      do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
 
   @precision 6
   defp r(float), do: Float.round(float, @precision)
@@ -84,7 +88,7 @@ end
 
 defimpl String.Chars, for: Geo.BoundingBox do
   def to_string(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}) do
-    "#{r(minLon)},#{r(minLat)},#{r(maxLon)},#{r(maxLat)}"
+    "#{r(minLon)}-#{r(minLat)}-#{r(maxLon)}-#{r(maxLat)}"
   end
 
   @precision 6

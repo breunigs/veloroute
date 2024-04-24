@@ -16,8 +16,8 @@ defmodule VelorouteWeb.Live.VideoState do
   defstruct @known_params
 
   @type t :: %__MODULE__{
-          forward: Video.Generator.t() | nil,
-          backward: Video.Generator.t() | nil,
+          forward: Video.Rendered.t() | nil,
+          backward: Video.Rendered.t() | nil,
           forward_track: Video.Track.t() | nil,
           backward_track: Video.Track.t() | nil,
           start: Geo.Point.like() | nil,
@@ -151,7 +151,7 @@ defmodule VelorouteWeb.Live.VideoState do
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
   def current_track(nil), do: nil
 
-  @spec current_rendered(t()) :: Video.Generator.t() | nil
+  @spec current_rendered(t()) :: Video.Rendered.t() | nil
   def current_rendered(%__MODULE__{direction: :forward, forward: fw}), do: fw
   def current_rendered(%__MODULE__{direction: :backward, backward: bw}), do: bw
 
@@ -223,12 +223,12 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::
-          Video.Generator.indicator() | nil
+          Video.Rendered.indicator() | nil
   defp position_from_time(%{assigns: %{video: state}}, params) do
     with pos when not is_nil(pos) <-
            parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
          rendered <- current_rendered(state) do
-      Video.Generator.start_from(rendered, pos |> max(0) |> min(rendered.length_ms))
+      Video.Rendered.start_from(rendered, pos |> max(0) |> min(rendered.length_ms))
     else
       _ ->
         Logger.debug("failed to get pos from params: #{inspect(params)}")
@@ -270,9 +270,9 @@ defmodule VelorouteWeb.Live.VideoState do
     video = current_rendered(state)
     track = current_track(state)
 
-    start_from = Video.Generator.start_from(video, state.start)
-    recording_date = Video.Generator.recording_date_for(video, start_from.time_offset_ms)
-    street_name = Video.Generator.street_name_for(video, start_from.time_offset_ms)
+    start_from = Video.Rendered.start_from(video, state.start)
+    recording_date = Video.Rendered.recording_date_for(video, start_from.time_offset_ms)
+    street_name = Video.Rendered.street_name_for(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
     Video.DiskPreloader.warm(video.hash(), start_from)
@@ -281,6 +281,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video: state,
       video_end_action: if(track, do: track.end_action),
       video_hash: video.hash(),
+      video_vanity: Video.Rendered.vanity(video),
       video_start: start_from.time_offset_ms,
       video_length_ms: video.length_ms(),
       video_polyline: video.polyline(),
@@ -301,13 +302,14 @@ defmodule VelorouteWeb.Live.VideoState do
       video: state,
       video_end_action: nil,
       video_hash: "",
+      video_vanity: "",
       video_start: 0,
       video_poster: nil,
       video_reversible: false
     ]
   end
 
-  @spec video_poster(Video.Generator.t(), %{
+  @spec video_poster(Video.Rendered.t(), %{
           :time_offset_ms => integer(),
           optional(atom()) => any()
         }) :: binary()
@@ -333,7 +335,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp maybe_reverse_direction(%__MODULE__{} = state, params)
        when is_reversible(state) do
     video = current_rendered(state)
-    start_from = Video.Generator.start_from(video, state.start)
+    start_from = Video.Rendered.start_from(video, state.start)
     autoplay = params["autoplay"] == "true"
     factor = if autoplay, do: 0.9, else: 0.99
 
