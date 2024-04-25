@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Oberbillwerder1 do
   def summary(),
     do: "Vollsperrung zwecks Kampfmittelsuche für Oberbillwerder"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["9"]
 

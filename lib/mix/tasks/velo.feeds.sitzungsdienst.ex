@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Mix.Task
   use Tesla
 
-  @filter_keywords ~w(velo straße radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
+  @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
   # do not report all Sitzungen just because they have a location with an address
   @filter_keywords_sitzungen_ignore ~w(straße)
 

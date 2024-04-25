@@ -43,9 +43,6 @@ defmodule Data.Article.Blog.KreuzungHaldesdorferStrasseSteilshooperAllee do
     <h4>Alter Zustand</h4>
     <p>Im Kreuzungsbereich sind <.ref>Hochbordradwege</.ref> mit Breiten von 1,0m bis 1,5m vorhanden.</p>
 
-    <h5>Hinweis zum Video Freizeitroute 11</h5>
-    <p>Die im Video von 2021 gezeigte Führung wurde mittlerweile angepasst. Sie verläuft nicht mehr durch den <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.090802} lat={53.606585} dir="forward" ref="FR11">Kleingartenverein „Gut-Grün“</.v> sondern länger entlang der <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.091681} lat={53.607031} dir="backward" ref="br-wandsbek-w5">Steilshooper Allee</.v>. Der in der Karte angezeigte Verlauf ist richtig.</p>
-
     <div class="headlineForm">
       <h4>Planung</h4>
       <.map_image_toggle checked={@show_map_image}/>

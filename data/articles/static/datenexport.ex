@@ -51,7 +51,7 @@ defmodule Data.Article.Static.Datenexport do
     <p><a onmousedown="map.redraw();this.href=map.getCanvas().toDataURL('image/webp');this.download=`veloroute.hamburg_karte_${map.getCenter()}.webp`" rel="nofollow">Aktuellen Karten-Ausschnitt herunterladen</a></p>
 
     <p>
-      Die Lizenz vom gewählten Karten-Hintergrund ab:
+      Die Lizenz hängt vom gewählten Karten-Hintergrund ab:
       <a href="#" onclick="let hrefs=[...document.querySelectorAll('.maplibregl-ctrl-attrib-inner a')].map(l => l.href);let text=document.querySelector('.maplibregl-ctrl-attrib-inner').innerText;alert(`${text}\n${hrefs.join('\n')}`);return false" rel="nofollow">Aktuellen Lizenztext anzeigen</a>
     </p>
 
