@@ -13,18 +13,20 @@ defmodule Data.MapImage do
           path: binary()
         }
 
+  @type attribution :: {name :: binary(), link :: binary()}
+
   import Guards
 
   @spec new(
           Article.t(),
-          attribution :: {binary(), binary()},
+          attribution :: attribution() | [attribution()],
           index :: non_neg_integer() | binary() | nil,
           {topLeft :: Geo.Point.like(), topRight :: Geo.Point.like(),
            bottomRight :: Geo.Point.like(), bottomLeft :: Geo.Point.like()}
         ) :: t()
   def new(art, attribution, index \\ nil, coordinates)
 
-  def new(art, {attr_name, attr_link}, index, {tl, tr, br, bl})
+  def new(art, attribution, index, {tl, tr, br, bl})
       when is_module(art) do
     %__MODULE__{
       coordinates: {
@@ -33,7 +35,7 @@ defmodule Data.MapImage do
         Geo.Point.from_params(br),
         Geo.Point.from_params(bl)
       },
-      attribution: ~s|<a href="#{attr_link}">#{attr_name}</a>|,
+      attribution: attrib_to_link(attribution),
       path:
         [
           # a hack, but it works for now
@@ -70,5 +72,13 @@ defmodule Data.MapImage do
         [bl.lon, bl.lat]
       ]
     }
+  end
+
+  defp attrib_to_link(list) when is_list(list) do
+    list |> Enum.map(&attrib_to_link/1) |> Enum.join(" | ")
+  end
+
+  defp attrib_to_link({attr_name, attr_link}) do
+    ~s|<a href="#{attr_link}">#{attr_name}</a>|
   end
 end

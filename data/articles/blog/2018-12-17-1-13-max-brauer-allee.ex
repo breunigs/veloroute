@@ -13,8 +13,9 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def type(), do: :construction
   def start(), do: ~d[2023-05-02]
-  def stop(), do: ~d[2024-06-15]
-  def construction_site_id_hh(), do: [351_238, 401_765]
+  def stop(), do: ~d[2025-03-28]
+
+  def construction_site_id_hh(), do: [779_744, 351_238, 401_765]
 
   def tags(), do: ["1", "13"]
 

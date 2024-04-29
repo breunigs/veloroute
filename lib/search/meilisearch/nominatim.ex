@@ -55,6 +55,7 @@ defmodule Search.Meilisearch.Nominatim do
       ~w[name:de name alt_name old_name addr:housename official_name brand]
       |> Enum.map(&names[&1])
       |> Kernel.++([f.("extratags")["branch"]])
+      |> Kernel.++([f.("extratags")["operator"]])
       |> dedupe()
 
     street = "#{addr["street"]} #{addr["housenumber"]}"
