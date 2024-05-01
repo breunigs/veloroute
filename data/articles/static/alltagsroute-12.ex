@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "12",
         direction: :forward,
         from: "Innenstadt",
@@ -23,21 +23,21 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Altona",
         historic: %{
+          "3f7904f58d32a09609c24fb4acefdd1c" => ~d[2024-04],
           "359b4f5e3ed270488c9f4bb3c41879cb" => ~d[2023-05],
           "46744d4e32ca048d128cb0dcf1df673c" => ~d[2022-04],
           "aaa2dfe3fe041ee5983284e7cd349011" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-21-vr12-vr9/GX015821", "00:00:25.020", :end},
-          {"2023-05-21-vr12-vr9/GX015822", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015823", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015824", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015825", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015826", :start, :end}
+          {"2024-04-30-fr3/GX017317", "00:00:27.861", :end, vf: "curves=lighter"},
+          {"2024-04-30-fr3/GX017318", :start, "00:00:09.977"},
+          {"2024-04-21-vr2-rand/GX017237", "00:00:15.516", :end},
+          {"2024-04-21-vr2-rand/GX017238", :start, :end},
+          {"2024-04-21-vr2-rand/GX017239", :start, "00:00:16.580"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "12",
         direction: :backward,
         from: "Altona",
@@ -45,24 +45,22 @@ defmodule Data.Article.Static.Alltagsroute12 do
         parent_ref: __MODULE__,
         text: "von Altona in die Innenstadt",
         historic: %{
+          "85d7ff61d5178af134916ce650f69d81" => ~d[2024-04],
           "ec081a60074bd5839aec7b13ce45ab3a" => ~d[2023-05],
           "4954c372030bde7d562eedc2d21bfd5f" => ~d[2022-04],
           "a5aa0cbc5c7e75039561772114010442" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-21-vr12-vr9/GX015789", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015790", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015791", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015792", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015793", :start, "00:00:05.772"},
-          {"2023-05-21-vr12-vr9/GX015795", "00:00:13.146", :end},
-          {"2023-05-21-vr12-vr9/GX015796", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015797", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015798", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015800", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015801", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015802", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015803", :start, "00:00:11.676"}
+          {"2024-04-30-fr3/GX017283", "00:00:02.135", :end},
+          {"2024-04-30-fr3/GX017284", :start, :end},
+          {"2024-04-30-fr3/GX017285", :start, :end},
+          {"2024-04-30-fr3/GX017286", :start, :end},
+          {"2024-04-30-fr3/GX017287", :start, :end},
+          {"2024-04-30-fr3/GX017288", :start, :end},
+          {"2024-04-30-fr3/GX017289", :start, :end},
+          {"2024-04-30-fr3/GX017290", :start, :end},
+          {"2024-04-30-fr3/GX017291", :start, :end},
+          {"2024-04-30-fr3/GX017292", :start, "00:00:32.766"}
         ]
       }
     ]

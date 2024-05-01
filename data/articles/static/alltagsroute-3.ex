@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "3",
         direction: :forward,
         from: "Innenstadt",
@@ -24,29 +24,31 @@ defmodule Data.Article.Static.Alltagsroute3 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Niendorf",
         historic: %{
+          "d9e9efbdc9a228d8d37b402645fa66ed" => ~d[2024-04],
           "9059bbed2bac01ed48572b54a6aed52e" => ~d[2023-05],
           "96167454c3dc962cf41581d4e02ba00c" => ~d[2022-04],
           "308a0cda991f96cb4c45a0ca555cd04a" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-20-vr2-vr3/GX015733", "00:00:13.144", :end},
-          {"2023-05-20-vr2-vr3/GX015734", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015735", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015736", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015738", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015739", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015740", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015742", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015743", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015744", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015745", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015746", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015747", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015748", :start, "00:00:43.034"}
+          {"2024-04-30-fr3/GX017292", "00:00:31.098", :end, vf: "curves=lighter"},
+          {"2024-04-30-fr3/GX017293", :start, :end},
+          {"2024-04-30-fr3/GX017294", :start, :end},
+          {"2024-04-30-fr3/GX017295", :start, "00:00:02.236"},
+          {"2024-04-30-fr3/GX017295", "00:00:04.404", :end},
+          {"2024-04-30-fr3/GX017296", :start, :end},
+          {"2024-04-30-fr3/GX017297", :start, :end},
+          {"2024-04-30-fr3/GX017298", :start, :end},
+          {"2024-04-30-fr3/GX017299", :start, :end},
+          {"2024-04-30-fr3/GX017300", :start, :end},
+          {"2024-04-30-fr3/GX017301", :start, :end},
+          {"2024-04-30-fr3/GX017302", :start, :end},
+          {"2024-04-30-fr3/GX017303", :start, :end},
+          {"2024-04-30-fr3/GX017304", :start, :end},
+          {"2024-04-30-fr3/GX017305", :start, "00:00:02.669"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "3",
         direction: :backward,
         from: "Niendorf",
@@ -54,24 +56,26 @@ defmodule Data.Article.Static.Alltagsroute3 do
         parent_ref: __MODULE__,
         text: "von Niendorf in die Innenstadt",
         historic: %{
+          "f81c8ec0d6b476bb5c08222c973b0173" => ~d[2024-04],
           "2d42b9a61a359d8111b6fd3dbc68c0b4" => ~d[2023-05],
           "c18583754e3dfe53c4a742df0ca6fbc5" => ~d[2022-07],
           "efbc892523d5e09a52eda8587b66d22a" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-20-vr2-vr3/GX015748", "00:00:43.034", :end},
-          {"2023-05-20-vr2-vr3/GX015749", :start, "00:00:48.081"},
-          {"2023-05-20-vr2-vr3/GX015751", "00:00:04.505", :end},
-          {"2023-05-20-vr2-vr3/GX015752", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015753", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015754", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015755", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015756", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015757", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015758", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015759", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015760", :start, :end},
-          {"2023-05-20-vr2-vr3/GX015761", :start, "00:00:35.028"}
+          {"2024-04-30-fr3/GX017305", "00:00:02.669", :end},
+          {"2024-04-30-fr3/GX017306", :start, :end},
+          {"2024-04-30-fr3/GX017307", :start, :end},
+          {"2024-04-30-fr3/GX017308", :start, :end},
+          {"2024-04-30-fr3/GX017309", :start, :end},
+          {"2024-04-30-fr3/GX017310", :start, :end},
+          {"2024-04-30-fr3/GX017311", :start, "00:01:00.627"},
+          {"2024-04-30-fr3/GX017311", "00:01:06.233", :end},
+          {"2024-04-30-fr3/GX017312", :start, :end},
+          {"2024-04-30-fr3/GX017313", :start, :end},
+          {"2024-04-30-fr3/GX017314", :start, :end},
+          {"2024-04-30-fr3/GX017315", :start, :end},
+          {"2024-04-30-fr3/GX017316", :start, :end},
+          {"2024-04-30-fr3/GX017317", :start, "00:00:30.024"}
         ]
       }
     ]
