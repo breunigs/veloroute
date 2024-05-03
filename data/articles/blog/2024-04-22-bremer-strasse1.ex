@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.BremerStrasse1 do
       "Meist 2,0m breite Radfahrsteifen mit 1,6m breiten Engstellen. Stadteinwärts teilweise 3,5m breite Fahrradstraße als Nebenfahrbahn. Problemstelle vorm Neuen Friedhof Harburg wird nicht umgebaut."
 
   def type(), do: :planned
-  # def start(), do: ~d[]
+  def start(), do: ~d[2025-10]
   # def stop(), do: ~d[]
 
   def tags(), do: []

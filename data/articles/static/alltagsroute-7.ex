@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "7",
         direction: :forward,
         from: "Innenstadt",
@@ -23,39 +23,31 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Rahlstedt",
         historic: %{
+          "c64e3ba31cb5f066b59057ca159ff9fe" => ~d[2024-05],
           "2046ce92ff9bf4e3d396a3f2e261378b" => ~d[2023-06],
           "1e21b87814bf4de2e0669e54c4fe4529" => ~d[2022-05],
           "68751759d62de45469662db5c6539ec3" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015898", "00:00:16.650", :end},
-          {"2023-06-03-vr10-vr7/GX015899", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015900", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015901", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015902", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015903", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015904", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015905", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015906", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015907", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015908", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015909", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015910", :start, "00:00:35.936"},
-          {"2023-06-03-vr10-vr7/GX015910", "00:00:51.485", :end},
-          {"2023-06-03-vr10-vr7/GX015911", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015912", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015913", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015914", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015915", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015916", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015917", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015919", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015920", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015921", :start, "00:00:30.597"}
+          {"2024-05-02-vr7/GX017365", :start, :end, vf: "rotate=enable='gte(t,3)':angle=-0.8/t"},
+          {"2024-05-02-vr7/GX017366", :start, :end},
+          {"2024-05-02-vr7/GX017367", :start, :end},
+          {"2024-05-02-vr7/GX017368", :start, :end},
+          {"2024-05-02-vr7/GX017369", :start, :end},
+          {"2024-05-02-vr7/GX017370", "00:00:01.301", :end},
+          {"2024-05-02-vr7/GX017371", :start, :end},
+          {"2024-05-02-vr7/GX017372", :start, :end},
+          {"2024-05-02-vr7/GX017373", :start, :end},
+          {"2024-05-02-vr7/GX017374", :start, :end},
+          {"2024-05-02-vr7/GX017375", :start, :end},
+          {"2024-05-02-vr7/GX017376", :start, :end},
+          {"2024-05-02-vr7/GX017377", :start, :end},
+          {"2024-05-02-vr7/GX017378", :start, :end},
+          {"2024-05-02-vr7/GX017379", :start, "00:00:17.014"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "7",
         direction: :backward,
         from: "Rahlstedt",
@@ -63,30 +55,35 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus Rahlstedt in die Innenstadt",
         historic: %{
+          "385eac401930d2bad4563e7e7962fa45" => ~d[2024-05],
           "2abc0bce6fb61793d6b0d2694ad5b859" => ~d[2023-06],
           "f7ab6d8df65751aa2494d0001215b2d7" => ~d[2022-05],
           "1188d7f9dae4bbb328e4bb53de379938" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015922", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015923", :start, "00:00:05.706"},
-          {"2023-06-03-vr10-vr7/GX015923", "00:00:10.010", :end},
-          {"2023-06-03-vr10-vr7/GX015924", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015925", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015926", :start, "00:00:32.099"},
-          {"2023-06-03-vr10-vr7/GX015928", "00:00:03.770", "00:00:37.371"},
-          {"2023-06-03-vr10-vr7/GX015929", "00:00:00.868", :end},
-          {"2023-06-03-vr10-vr7/GX015930", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015931", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015933", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015934", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015935", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015936", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015937", :start, "00:00:31.832"}
+          {"2024-05-02-vr7/GX017379", "00:00:19.349", :end},
+          {"2024-05-02-vr7/GX017380", :start, :end},
+          {"2024-05-02-vr7/GX017381", :start, :end},
+          {"2024-05-02-vr7/GX017382", :start, :end},
+          {"2024-05-02-vr7/GX017383", :start, :end},
+          {"2024-05-02-vr7/GX017384", :start, "00:00:01.735"},
+          {"2024-05-02-vr7/GX017389", "00:00:01.835", "00:01:22.082"},
+          {"2024-05-02-vr7/GX017389", "00:01:30.691", :end},
+          {"2024-05-02-vr7/GX017390", :start, :end},
+          {"2024-05-02-vr7/GX017391", :start, :end},
+          {"2024-05-02-vr7/GX017392", :start, :end},
+          {"2024-05-02-vr7/GX017393", :start, :end},
+          {"2024-05-02-vr7/GX017394", :start, :end},
+          {"2024-05-02-vr7/GX017395", :start, :end},
+          {"2024-05-02-vr7/GX017396", :start, :end},
+          {"2024-05-02-vr7/GX017397", :start, :end},
+          {"2024-05-02-vr7/GX017398", :start, "00:00:12.279"},
+          {"2023-07-15-vr8/GX016168", "00:00:08.775", :end},
+          {"2023-06-03-vr10-vr7/GX015937", :start, "00:00:31.398"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "7j",
         direction: :forward,
         from: "Innenstadt",
@@ -94,31 +91,36 @@ defmodule Data.Article.Static.Alltagsroute7 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Jenfeld",
         historic: %{
+          "79aa46902611427455012c6fa7c3f36a" => ~d[2024-05],
           "a889ba648ecf800ca881e93a99431f84" => ~d[2023-06],
           "a5f008c59ead0045826f53f2af732c81" => ~d[2022-05],
           "ca14f6428dc1563838f47e470accb338" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015926", "00:00:48.949", "00:01:53.614"}
+          {"2024-05-02-vr7/GX017385", "00:00:01.235", :end},
+          {"2024-05-02-vr7/GX017386", :start, "00:00:32.693"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "7j",
         direction: :backward,
         from: "Jenfeld",
         to: "Innenstadt",
         parent_ref: __MODULE__,
         text: "aus Jenfeld in die Innenstadt",
+        end_action: %{action: :play, route: __MODULE__, group: "7", direction: :backward},
         historic: %{
+          "d1694d04ad11a835d9942a87fb9e09cc" => ~d[2024-05],
           "ee0fd947498b1d9e3887993b44e27a6d" => ~d[2023-06],
           "965763fec57e8c331ce54d574036fd92" => ~d[2022-05],
           "a8f9a0ab4d908464c6705094c5d9b957" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015926", "00:01:56.350", :end},
-          {"2023-06-03-vr10-vr7/GX015927", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015928", :start, "00:00:03.670"}
+          {"2024-05-02-vr7/GX017386", "00:00:43.368", :end},
+          {"2024-05-02-vr7/GX017387", :start, :end},
+          {"2024-05-02-vr7/GX017388", :start, :end},
+          {"2024-05-02-vr7/GX017389", :start, "00:00:01.835"}
         ]
       }
     ]
