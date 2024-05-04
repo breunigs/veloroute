@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
   def start(), do: ~d[2025Q2]
   # def stop(), do: ~d[]
 
-  def tags(), do: []
+  def tags(), do: ["5"]
 
   @attrib {"Bezirksamt Hamburg-Nord",
            "https://www.hamburg.de/hamburg-nord/dezernat-wirtschaft-bauen-umwelt/"}
@@ -26,7 +26,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
 
   def links(_assigns) do
     [
-      {"1. Entwurf, Lageplan und Erläuterung",
+      {"1. Entwurf, Lageplan und Erläuterung", "Mai 2024",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014004"}
     ]
   end

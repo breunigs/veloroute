@@ -151,7 +151,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 9 (auch: Veloroute 9 oder Radroute 9) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="9" highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>. Dies passiert zu einem großen Teil auf autofreien wegen an Industriegebieten oder Grünflächen. Letztere sind nachts nicht beleuchtet. Einen großen Teil der Strecke teilt sie sich mit der <.a name="rsw-geesthacht">Radroute Plus nach Geesthacht</.a></p>
+    <p>Die Alltagsroute 9 (auch: Veloroute 9 oder Radroute 9) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="9" highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>. Dies passiert zu einem großen Teil auf autofreien wegen an Industriegebieten oder Grünflächen. Letztere sind nachts nicht beleuchtet. Einen großen Teil der Strecke teilt sie sich mit der <.a name="rsw-geesthacht">Radroute Plus nach Geesthacht</.a>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

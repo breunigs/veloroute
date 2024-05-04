@@ -53,8 +53,9 @@ defmodule Video.Renderer do
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
     blurs = blurs(sources, "scale=1920:1080,")
+    tlc = time_lapse_corrects(sources)
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
-    filter = Enum.join(blurs ++ xfades, ";")
+    filter = Enum.join(blurs ++ tlc ++ xfades, ";")
 
     Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
@@ -125,7 +126,10 @@ defmodule Video.Renderer do
 
   def render_cmd(rendered, tmp_dir) do
     sources = Video.Track.normalize_video_tuples(rendered.sources())
-    filter = Enum.join(blurs(sources, nil) ++ xfades(sources, rendered), ";")
+    blurs = blurs(sources, nil)
+    tlc = time_lapse_corrects(sources)
+    xfades = xfades(sources, rendered)
+    filter = Enum.join(blurs ++ tlc ++ xfades, ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"

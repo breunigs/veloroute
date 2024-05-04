@@ -280,7 +280,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # going to different route page should switch
     html =
       view
-      |> element("a", "Niendorf")
+      |> element("a[href^=\"/alltagsroute-3\"]")
       |> render_click()
 
     assert route_initial != shown_route(html)

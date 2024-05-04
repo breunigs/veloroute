@@ -64,6 +64,7 @@ defmodule Components.TagHelpers do
   attr :dir, :string, values: ["forward", "backward"]
   attr :group, :string
   attr :highlight, :string
+  attr :rest, :global
   slot(:inner_block, required: true)
 
   def v(assigns) do
@@ -90,8 +91,13 @@ defmodule Components.TagHelpers do
 
     highlight = Map.get_lazy(assigns, :highlight, fn -> inner_text(assigns) end)
     attr = Map.update!(attr, "phx-click", &ping(&1, highlight))
+    # if a highlight is present, assume the inner text might need translation
+    attr =
+      if Map.has_key?(assigns, :highlight),
+        do: attr,
+        else: Map.merge(attr, %{translate: "no", lang: hd(Settings.supported_languages())})
 
-    assigns = assign(assigns, :attr, attr)
+    assigns = assign(assigns, :attr, Map.merge(attr, assigns[:rest] || %{}))
     ~H"<a {@attr}><%= render_slot(@inner_block) %></a>"
   end
 
@@ -345,7 +351,7 @@ defmodule Components.TagHelpers do
         assigns = assign(assigns, :content, if(content != "", do: content, else: id))
 
         ~H"""
-        <span style={@style} class={@class}><%= @content %></span>
+        <span style={@style} class={@class} translate="no"><%= @content %></span>
         """
 
       art.display_id() == content || art.id() == content ->
@@ -401,6 +407,7 @@ defmodule Components.TagHelpers do
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
   attr :gpx, :boolean, default: false
+  attr :lang, :string, default: hd(Settings.supported_languages())
 
   def structured_links(%{ref: art} = assigns) do
     links =
@@ -455,7 +462,9 @@ defmodule Components.TagHelpers do
     if assigns[:gpx] && !Article.has_category?(art, "Static"),
       do: raise("GPX requested in structured_links for non-Static article #{art}")
 
-    links = if assigns[:gpx], do: links ++ Article.Decorators.gpx_links(art), else: links
+    links =
+      if assigns[:gpx], do: links ++ Article.Decorators.gpx_links(art, assigns.lang), else: links
+
     assigns = %{links: links}
 
     case length(links) do

@@ -17,7 +17,7 @@ defmodule Data.Article.Static.BicibusOttensen do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "bicibus-ottensen",
         direction: :forward,
         from: "Max-Brauer-Schule",
@@ -31,10 +31,7 @@ defmodule Data.Article.Static.BicibusOttensen do
         parent_ref: __MODULE__,
         text: "Bicibus Ottensen",
         videos: [
-          {"2023-03-31-bicibus2/speedup/GX015377.MP4_time_lapse.mkv", :start, "00:01:15.108"},
-          {"2023-03-31-bicibus2/speedup/GX015377.MP4_time_lapse.mkv", "00:01:20.881", :end},
-          {"2023-03-31-bicibus2/speedup/GX025377.MP4_time_lapse.mkv", :start, :end},
-          {"2023-03-31-bicibus2/speedup/GX035377.MP4_time_lapse.mkv", :start, :end}
+          {"2024-05-03-bici2/GX017403", "00:07:21.174", "00:31:47.339"}
         ]
       }
     ]

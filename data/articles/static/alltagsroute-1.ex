@@ -87,27 +87,27 @@ defmodule Data.Article.Static.Alltagsroute1 do
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "1a",
         direction: :forward,
         from: "Innenstadt",
         to: "Osdorfer Born",
         parent_ref: __MODULE__,
-        text: "aus der Innenstadt zum Osdorfer Born",
+        text: "von Othmarschen zum Osdorfer Born",
         historic: %{
+          "d9c4e5b885c5f4eec817e5cd2dead124" => ~d[2024-05],
           "61a363ab12e68406847bcc2cebb9e516" => ~d[2023-05],
           "de9132e638235ffb2b1763b63710768a" => ~d[2022-04],
           "7be7c7ca7a2375acc2bc17992e56f356" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-19-vr1/GX015706", "00:00:12.677", "00:00:19.353"},
-          {"2023-05-19-vr1/GX015717", "00:00:48.215", :end},
-          {"2023-05-19-vr1/GX015718", :start, :end},
-          {"2023-05-19-vr1/GX015719", :start, "00:00:46.704"}
+          {"2024-05-03-vr1/GX017414", "00:02:11.431", "00:03:59.606"},
+          {"2024-05-03-vr1/GX017415", "00:00:00.601", :end},
+          {"2024-05-03-vr1/GX017416", :start, "00:01:01.228"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "1a",
         direction: :backward,
         from: "Osdorfer Born",
@@ -115,15 +115,18 @@ defmodule Data.Article.Static.Alltagsroute1 do
         parent_ref: __MODULE__,
         text: "vom Osdorfer Born in die Innenstadt",
         historic: %{
+          "3324e2932c57f5457a6f8890a23221c2" => ~d[2024-05],
           "1062786250344e742cd29b6e766a68b6" => ~d[2023-05],
           "1a92dba06dbd921b14de77d2394a33d4" => ~d[2022-04],
           "b5b6321df014f2eda37e81f267870ddf" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-19-vr1/GX015719", "00:00:50.040", :end},
-          {"2023-05-19-vr1/GX015720", :start, "00:00:56.323"},
-          {"2023-05-19-vr1/GX015721", "00:00:00.901", :end},
-          {"2023-05-19-vr1/GX015722", :start, "00:01:23.066"}
+          {"2024-05-03-vr1/GX017416", "00:01:26.736", "00:02:30.984"},
+          {"2024-05-03-vr1/GX017416", "00:02:34.187", :end},
+          {"2024-05-03-vr1/GX017417", :start, :end},
+          {"2024-05-03-vr1/GX017418", :start, "00:00:48.916"},
+          {"2024-05-03-vr1/GX017418", "00:01:02.963", :end},
+          {"2024-05-03-vr1/GX017424", :start, "00:00:01.835"}
         ]
       }
     ]

@@ -18,10 +18,12 @@ defmodule VelorouteWeb.FrameLive do
     limit_to_map_bounds: false,
     show_map_image: false,
     og_image: nil,
-    enable_drawing_tools: false
+    enable_drawing_tools: false,
+    lang_user_set: false,
+    lang: nil
   ]
 
-  def mount(params, _session, socket) do
+  def mount(params, session, socket) do
     draw =
       Application.get_env(:veloroute, :enable_drawing_tools) ||
         params["enable_drawing_tools"] == "1"
@@ -29,6 +31,8 @@ defmodule VelorouteWeb.FrameLive do
     state =
       Keyword.merge(@initial_state,
         enable_drawing_tools: draw,
+        lang: session["lang"],
+        lang_user_set: session["lang_user_set"],
         map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
       )
 
@@ -456,6 +460,12 @@ defmodule VelorouteWeb.FrameLive do
       "pos_sec" => if(assigns[:video_start], do: assigns[:video_start] / 1000.0),
       "bounds" => bounds
     }
+
+    query =
+      if assigns[:lang] &&
+           (assigns[:lang] != hd(Settings.supported_languages()) || assigns[:lang_user_set]),
+         do: Map.put(query, "lang", assigns[:lang]),
+         else: query
 
     if blank?(assigns[:search_query]) do
       Map.delete(query, "search_query")

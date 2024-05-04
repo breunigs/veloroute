@@ -58,7 +58,8 @@ defmodule Article.Decorators do
       limit_to_map_bounds: false,
       show_map_image: false,
       enable_drawing_tools: false,
-      ref: art
+      ref: art,
+      lang: hd(Settings.supported_languages())
     }
 
     assigns = Map.merge(default, assigns)
@@ -107,8 +108,27 @@ defmodule Article.Decorators do
     |> Enum.uniq()
   end
 
-  @spec gpx_links(module()) :: [Phoenix.LiveView.Rendered.t()]
-  def gpx_links(art) when is_module(art) do
+  @spec gpx_links(module(), binary()) :: [Phoenix.LiveView.Rendered.t()]
+  def gpx_links(art, "en") when is_module(art) do
+    assigns = %{name: art.name()}
+
+    if length(art.tracks()) > 0 do
+      [
+        ~H"""
+        <span lang="en">
+        Route in
+        <a href={"/geo/#{@name}.gpx"} download={"#{@name}.gpx"}>GPX format</a>
+        or
+        <a href={"/geo/#{@name}.kml"} download={"#{@name}.kml"}>KML format</a>
+        </span>
+        """
+      ]
+    else
+      []
+    end
+  end
+
+  def gpx_links(art, _other) when is_module(art) do
     assigns = %{name: art.name()}
 
     if length(art.tracks()) > 0 do

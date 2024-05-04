@@ -136,6 +136,15 @@ defmodule Data.Article.Static.Freizeitroute11 do
       }
     ]
 
+  def links(%{lang: "en"} = assigns) do
+    [
+      {"official site of the city",
+       "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
+      {"Komoot route planner: outer ring route", "https://www.komoot.com/tour/227481906"},
+      ~H{route in OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">part 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">part 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">part 3</.a>}
+    ]
+  end
+
   def links(assigns) do
     [
       {"Detailseite der Stadt",
@@ -143,6 +152,36 @@ defmodule Data.Article.Static.Freizeitroute11 do
       {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.com/de-de/tour/227481906"},
       ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>}
     ]
+  end
+
+  def text(%{lang: "en"} = assigns) do
+    ~H"""
+    <h3 lang="en">Leisure route “<span translate="no" lang="de">2. Grüner Ring</span>” (2nd green ring) <.icon>FR11</.icon></h3>
+    <span class="updated" lang="en">length approx. 100km</span>
+
+    <p lang="en">Apart from the ferry connection between <span translate="no" lang="de">Rüschpark</span> and <span translate="no" lang="de">Teufelsbrück</span> you can cycle through or around all of <span translate="no" lang="de">Hamburg</span> and <span translate="no" lang="de">Harburg</span>.</p>
+
+    <p lang="en">Clockwise starting from <.v bounds="9.851468,53.539706,9.870508,53.553705" lon={9.863568} lat={53.547208} dir="forward" ref={@ref}>Teufelsbrück</.v> (→ connects to <.a name="freizeitroute-8">leisure route FR8</.a>) you cycle through <.v bounds="9.854671,53.548388,9.865148,53.557919" lon={9.859542} lat={53.550814} dir="forward" ref={@ref}>Wesselhoeftpark</.v>, <.v bounds="9.854671,53.548388,9.865148,53.557919" lon={9.861281} lat={53.5556} dir="forward" ref={@ref}>Westerpark</.v>, pass by <.v bounds="9.853567,53.55741,9.86569,53.566104" lon={9.857711} lat={53.560788} dir="forward" ref={@ref}>Loki-Schmidt-Garten</.v>, to reach <.v bounds="9.866235,53.574012,9.881239,53.582162" lon={9.872404} lat={53.577378} dir="forward" ref={@ref}>Lise-Meitner-Park</.v> through various green areas and, after a road crossing, <.v bounds="9.883239,53.5703,9.91343,53.586437" lon={9.892362} lat={53.582245} dir="forward" ref={@ref}>Altonaer Volkspark</.v> (→ <.a name="freizeitroute-9">FR 9</.a>).</p>
+    <p lang="en">From Volkspark you pass under the <.v bounds="9.91073,53.587385,9.925203,53.594185" lon={9.916667} lat={53.589595} dir="forward" ref={@ref}>motorway and rails</.v>, then through garden plots into the <.v bounds="9.919061,53.602563,9.956312,53.618992" lon={9.933204} lat={53.613957} dir="forward" ref={@ref}>Niendorfer Gehege</.v> (→ <.a name="freizeitroute-10">FR 10</.a>). Via <.v bounds="9.955991,53.608678,10.00089,53.621816" lon={9.975431} lat={53.618639} dir="forward" ref={@ref}>garden plots</.v> next to the airport (→ <.a name="freizeitroute-12">FR 12</.a>) you reach the <.v bounds="9.988016,53.605423,10.03233,53.622647" lon={10.004034} lat={53.612817} dir="forward" ref={@ref}>Alster</.v> (→ <.a name="freizeitroute-1">FR 1</.a>) and cross it to arrive at <.v bounds="10.02749,53.611334,10.088789,53.633001" lon={10.037264} lat={53.619833} dir="forward" ref={@ref} lang="en">Ohlsdorf cemetary</.v>.</p>
+
+    <p lang="en">Passing by <.v bounds="10.041797,53.609313,10.072183,53.620469" lon={10.068135} lat={53.618523} dir="forward" ref={@ref}>Steilshoop</.v> through green areas you get to the <.v bounds="10.090684,53.596093,10.103055,53.607322" lon={10.09632} lat={53.604114} dir="forward" ref={@ref}>Osterbek</.v> (→ <.a name="freizeitroute-2">FR 2</.a>) and in <span lang="de" translate="no">Tonndorf</span> the <.v bounds="10.098075,53.580045,10.117876,53.590363" lon={10.109535} lat={53.585979} dir="forward" ref={@ref}>Wandse</.v> (→ <.a name="freizeitroute-3">FR 3</.a>). After weaving through <.v bounds="10.106034,53.570443,10.143152,53.584543" lon={10.125261} lat={53.577663} dir="forward" ref={@ref}>Jenfeld</.v>, you'll find spacious green in <.v bounds="10.131008,53.546987,10.156868,53.56712" lon={10.144001} lat={53.562685} dir="forward" ref={@ref}>Öjendorfer Park</.v>. Alongside the <span lang="de" translate="no">Schleemer Bach</span> you'll reach the <.v bounds="10.098589,53.531245,10.126185,53.544762" lon={10.112726} lat={53.533625} dir="forward" ref={@ref}>Bille</.v> (→ <.a name="freizeitroute-4">FR 4</.a>). The next target is the <.v bounds="10.102072,53.486168,10.182988,53.526137" lon={10.140335} lat={53.511157} dir="forward" ref={@ref}>Boberger Niederung</.v>, and from there almost in a straight line towards the <.v bounds="10.082945,53.479021,10.132834,53.490622" lon={10.102589} lat={53.483961} dir="forward" ref={@ref}>Dove Elbe</.v> (→ <.a name="freizeitroute-5">FR 5</.a>).</p>
+    <p lang="en">The tour now makes a turn, following the <span lang="de" translate="no">Elbe</span> downriver <.v bounds="10.02178,53.528625,10.034956,53.536789" lon={10.025892} lat={53.53218} dir="forward" ref={@ref} lang="en">to cross it</.v> near the city center. It takes you across <.v bounds="10.007671,53.521237,10.034862,53.533568" lon={10.02122} lat={53.527237} dir="forward" ref={@ref}>Veddel</.v> and <.v bounds="9.974523,53.468133,10.060155,53.524281" lon={10.042857} lat={53.494946} dir="forward" ref={@ref}>Wilhelmsburg</.v> (→ <.a name="freizeitroute-6">FR 6</.a>), passing the <.v bounds="9.991622,53.439671,10.050979,53.472508" lon={10.012905} lat={53.458} dir="forward" ref={@ref}>Neuländer See</.v> towards <.v bounds="9.965153,53.435419,9.987681,53.452427" lon={9.979077} lat={53.450359} dir="forward" ref={@ref}>Harburger Stadtpark</.v>.</p>
+    <p lang="en">Passing through <span lang="de" translate="no">Eißendorf</span> and the <.v bounds="9.924443,53.453719,9.95028,53.471033" lon={9.941844} lat={53.461819} dir="forward" ref={@ref}>Heimfelder Holz</.v> (→ <.a name="freizeitroute-7">FR 7</.a>) you'll reach <.v bounds="9.836318,53.476357,9.90998,53.521681" lon={9.903525} lat={53.484055} dir="forward" ref={@ref}>Dritte Meile</.v> in the area of <span lang="de" translate="no">Altes Land</span> (→ <.a name="freizeitroute-14">FR 14</.a>). Near the end you'll pass through <.v bounds="9.844071,53.524436,9.889127,53.546172" lon={9.877899} lat={53.528461} dir="forward" ref={@ref}>Finkenwerder</.v> (→ <.a name="freizeitroute-13">FR 13</.a>) and finally to <.v bounds="9.857705,53.53993,9.866148,53.543285" lon={9.863281} lat={53.541299} dir="forward" ref={@ref} lang="en">ferry dock <span lang="de" translate="no">Rüschpark</span></.v>.</p>
+
+    <h4 lang="en">Following the route</h4>
+    <p lang="en"><img src="/images/logo_zweiter_gruener_ring.svg" style="float:left; padding: 3px 10px 10px 0; width: 100px" alt="Logo of the 2nd green ring"/>The route has continuous signage and easy to follow. On signposts the route is shown as “white 11 on red background”. More commonly you'll see the logo shown here. It's placed on street lamps, backsides of other signs, barriers and even trash cans. Sometimes just as a smaller variant with a white arrow on green background.</p>
+    <p lang="en">Unfortunately, there are still some places where the route isn't obvious. A map can help. Rule of thumb: if there were junctions and you haven't seen the logo in a while, you probably took a wrong turn.</p>
+    <p lang="en">There are multiple versions of this tour, so the signposts and GPS routes from the internet don't always match. The variant shown on veloroute.hamburg follows the signposts, whenever that is reasonably possible.</p>
+
+    <h4 lang="en">Comfort / Quality</h4>
+    <p lang="en">The segments vary a lot: from smooth asphalt, to well made fine gravel paths, to bad trails – you'll find them all on this route. Therefore parts of the route are not suitable for rainy conditions. The same idea also applies to the available space. Some parts are crowded, some are narrow and sometimes you won't meet anybody for a while. Pedestrians have the right of way in all of Hamburg's green spaces, so yield or get off your bike if necessary.</p>
+
+    <h4 lang="en">Opinion</h4>
+    <p lang="en">Being Hamburg's sole route with decent signage, the 2nd green ring is very suited as a tour for beginners. More advanced cyclists can also complete the tour in a single day and enjoy the varied landscape. The tour isn't perfect and requires you to get off your bike at various barriers and non-lowered curbs. Nonetheless it is one of the best leisure routes Hamburg has to offer.</p>
+
+    <h3 lang="en">External links</h3>
+    <.structured_links ref={@ref} gpx={true} lang="en"/>
+    """
   end
 
   def text(assigns) do

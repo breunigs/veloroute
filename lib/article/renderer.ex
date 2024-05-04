@@ -8,6 +8,7 @@ defmodule Article.Renderer do
   attr :video_hash, :string, required: true
   attr :video_start, :string, required: true
   attr :map_bounds, :any
+  attr :lang, :string
   attr :search_query, :string
   attr :search_bounds, :any
   attr :enable_drawing_tools, :boolean, default: false
