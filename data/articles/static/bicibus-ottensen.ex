@@ -30,6 +30,7 @@ defmodule Data.Article.Static.BicibusOttensen do
         to: "Max-Brauer-Schule",
         parent_ref: __MODULE__,
         text: "Bicibus Ottensen",
+        end_action: :loop,
         videos: [
           {"2024-05-03-bici2/GX017403", "00:07:21.174", "00:31:47.339"}
         ]

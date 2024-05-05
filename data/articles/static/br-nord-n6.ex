@@ -87,6 +87,7 @@ defmodule Data.Article.Static.BrNordN6 do
         to: "Grasweg",
         parent_ref: __MODULE__,
         text: "von der Pestalozzistraße zum Grasweg",
+        end_action: %{action: :play, route: __MODULE__, group: "n6-main", direction: :backward},
         videos: [
           {"2023-10-18-brnord/GX016443", :start, :end},
           {"2023-10-18-brnord/GX016444", :start, :end},

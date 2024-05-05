@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
   def start(), do: ~d[2024-07-29]
   def stop(), do: ~d[2024-10-18]
 
-  def tags(), do: ["N6"]
+  def tags(), do: ["br-nord-n6"]
 
   def map_image do
     Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
 
     <p>Es werden zahlreiche Radanschließbügel ergänzt, vor allem wo heute die Falschparker stehen.</p>
 
-    <p>Anmerkung: Die <.ref>Fahrbahn</.ref> wird durchgängig von der <.v bounds="9.998992,53.590986,10.006602,53.594558" lon={10.000166} lat={53.593603} dir="forward" ref="br-nord-n6">Buchenstraße</.v> bis zur <.m bounds="10.013138,53.586091,10.019013,53.590773">Barmbeker Straßenbrücke</.m> komplett saniert. Wegen der <.ref>Benutzungspflicht</.ref> ist dies für den Radverkehr jedoch zweitrangig.</p>
+    <p>Anmerkung: Die <.ref>Fahrbahn</.ref> wird von der <.v bounds="9.998992,53.590986,10.006602,53.594558" lon={10.000166} lat={53.593603} dir="forward" ref="br-nord-n6">Buchenstraße</.v> bis zur <.m bounds="10.013138,53.586091,10.019013,53.590773">Barmbeker Straßenbrücke</.m> durchgängig saniert. Wegen der <.ref>Benutzungspflicht</.ref> ist dies für den Radverkehr jedoch zweitrangig.</p>
 
     <h4>Meinung</h4>
     <p>Rad- und Fußverkehr sollen sich auf enge und holprige Wege quetschen, während für den Autoverkehr eine noch gut erhaltene Fahrbahn neu gemacht wird. Da auch keine Busspur eingerichtet wird, meint Hamburg es wohl nicht so ernst mit der Verbesserung des Nahverkehrs.</p>

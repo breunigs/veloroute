@@ -9,6 +9,8 @@ defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
   def type(), do: :planned
   def tags(), do: ["5N", "5", "br-nord-n6"]
 
+  def start(), do: ~d[2030]
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Juni 2022, Entwurf",
