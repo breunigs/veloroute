@@ -702,6 +702,7 @@ function setup() {
     logoPosition: 'top-left',
     attributionControl: false,
     validateStyle: false,
+    cancelPendingTileRequestsWhileZooming: false,
   });
   map.touchZoomRotate.disableRotation();
   attribution = new mlgl.AttributionControl({ compact: null })
