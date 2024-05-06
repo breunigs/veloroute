@@ -22,29 +22,39 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   @shortdoc "Checks for updates in Hamburg's LSBG"
   def run(_) do
     status = load_status()
+    linked = already_linked_from_articles()
 
     list_projects()
     |> Stream.concat(list_pdfs(@shorts_page, "Anliegerinfo"))
     |> Stream.concat(list_pdfs(@plans_page, "Planungen"))
-    |> Enum.reduce(
-      {status, nil},
-      fn
-        {:error, reason}, acc ->
-          Logger.error(reason)
-          acc
-
-        detail, {status, task} ->
-          if status[detail.source] == detail.checksum do
-            # already seen and no changes
-            {status, task}
-          else
-            status = write_status_put(status, task)
-            task = Task.async(fn -> show(detail) end)
-            {status, task}
-          end
-      end
-    )
+    |> Stream.reject(fn
+      {:error, reason} -> Logger.error(reason)
+      _detail -> false
+    end)
+    # already seen and no changes
+    |> Stream.reject(fn detail -> status[detail.source] == detail.checksum end)
+    # already linked
+    |> Stream.reject(fn detail -> Enum.member?(linked, detail.source) end)
+    |> Enum.reduce({status, nil}, fn detail, {status, task} ->
+      status = write_status_put(status, task)
+      task = Task.async(fn -> show(detail) end)
+      {status, task}
+    end)
     |> write_status_put()
+  end
+
+  @spec already_linked_from_articles() :: [binary()]
+  defp already_linked_from_articles() do
+    Article.List.all()
+    |> Enum.flat_map(&Article.Decorators.apply_with_assigns(&1, :links))
+    |> Enum.map(fn
+      {_text, _date, url} -> url
+      {_text, url} -> url
+      {_text} -> nil
+      %Phoenix.LiveView.Rendered{} -> nil
+    end)
+    |> Enum.uniq()
+    |> Util.compact()
   end
 
   @typep detail :: %{text: binary(), links: binary(), checksum: binary(), source: binary()}
