@@ -141,7 +141,7 @@ def process(video, model, outer_bar, result_names):
     bytes_per_frame = math.floor(size / float(frame_count))
     bytes_remain = size - frame_count*bytes_per_frame
 
-    frame_queue = queue.Queue(maxsize=4)
+    frame_queue = queue.Queue(maxsize=64)
     threading.Thread(
         target=lambda: process_frame(model, frame_queue, detections, result_names)).start()
 
@@ -309,7 +309,7 @@ if result_names[0] == 'class0':
 
 bar.refresh()
 
-video_queue = queue.Queue(maxsize=1)
+video_queue = queue.Queue(maxsize=3)
 load_videos_in_background(file_queue, video_queue, bar)
 
 # process
