@@ -48079,6 +48079,7 @@
     <nd ref='-143591532' />
     <nd ref='-143591524' />
     <nd ref='-143591521' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2022-03-28-agathe-lasch-und-othmarscher-kirchenweg' />
     <tag k='type' v='article' />
   </way>
@@ -79614,7 +79615,7 @@
     <tag k='group' v='5' />
     <tag k='name' v='alltagsroute-5' />
   </relation>
-  <relation id='227477' version='1'>
+  <relation id='227477' action='modify' version='1'>
     <member type='way' ref='238754832' role='' />
     <member type='way' ref='19410366' role='forward' />
     <member type='way' ref='19729394' role='forward' />
@@ -79622,6 +79623,9 @@
     <member type='way' ref='-20435102' role='forward' />
     <member type='way' ref='-20435849' role='forward' />
     <member type='way' ref='-20435850' role='forward' />
+    <member type='way' ref='605706283' role='forward' />
+    <member type='way' ref='-20436585' role='forward' />
+    <member type='way' ref='-20435121' role='forward' />
     <member type='way' ref='214920906' role='forward' />
     <member type='way' ref='605733844' role='forward' />
     <member type='way' ref='-20435103' role='forward' />
@@ -79631,12 +79635,9 @@
     <member type='way' ref='605716896' role='forward' />
     <member type='way' ref='-20435076' role='forward' />
     <member type='way' ref='-20436586' role='forward' />
-    <member type='way' ref='605706283' role='forward' />
-    <member type='way' ref='-20436585' role='forward' />
-    <member type='way' ref='-20435121' role='forward' />
-    <member type='way' ref='605706281' role='forward' />
-    <member type='way' ref='-20435122' role='forward' />
     <member type='way' ref='-20436580' role='forward' />
+    <member type='way' ref='-20435122' role='forward' />
+    <member type='way' ref='605706281' role='forward' />
     <member type='way' ref='-20435056' role='forward' />
     <member type='way' ref='-20435882' role='' />
     <member type='way' ref='-20435883' role='' />
@@ -79662,33 +79663,33 @@
     <member type='way' ref='-20436284' role='forward' />
     <member type='way' ref='602001142' role='forward' />
     <member type='way' ref='-20435602' role='forward' />
-    <member type='way' ref='-20436298' role='forward' />
-    <member type='way' ref='606133599' role='forward' />
     <member type='way' ref='-20435113' role='forward' />
     <member type='way' ref='606243440' role='forward' />
     <member type='way' ref='-20436287' role='forward' />
     <member type='way' ref='-20435112' role='forward' />
-    <member type='way' ref='606117445' role='forward' />
-    <member type='way' ref='-20435110' role='forward' />
-    <member type='way' ref='-20435109' role='forward' />
+    <member type='way' ref='606133599' role='forward' />
+    <member type='way' ref='-20436298' role='forward' />
     <member type='way' ref='-20435057' role='forward' />
+    <member type='way' ref='-20435109' role='forward' />
+    <member type='way' ref='-20435110' role='forward' />
+    <member type='way' ref='606117445' role='forward' />
     <member type='way' ref='606117442' role='' />
     <member type='way' ref='-20434970' role='forward' />
     <member type='way' ref='-20436415' role='forward' />
-    <member type='way' ref='606119088' role='forward' />
     <member type='way' ref='-20436477' role='forward' />
+    <member type='way' ref='606119088' role='forward' />
     <member type='way' ref='-20435055' role='forward' />
     <member type='way' ref='606119084' role='forward' />
     <member type='way' ref='62285448' role='' />
     <member type='way' ref='550868324' role='forward' />
     <member type='way' ref='-20435903' role='forward' />
     <member type='way' ref='-20435902' role='forward' />
-    <member type='way' ref='-20435904' role='forward' />
-    <member type='way' ref='-20435905' role='forward' />
     <member type='way' ref='-20434969' role='forward' />
-    <member type='way' ref='-20436497' role='' />
-    <member type='way' ref='606127298' role='' />
+    <member type='way' ref='-20435905' role='forward' />
+    <member type='way' ref='-20435904' role='forward' />
     <member type='way' ref='-20436524' role='' />
+    <member type='way' ref='606127298' role='' />
+    <member type='way' ref='-20436497' role='' />
     <tag k='name' v='alltagsroute-6' />
   </relation>
   <relation id='228035' version='1'>

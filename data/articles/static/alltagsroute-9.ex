@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "9 Bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -23,24 +23,25 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         historic: %{
+          "2b20b4188c88397e498b71b7b4afea60" => ~d[2024-05],
           "90542232243953b0fa05742042bb935c" => ~d[2023-05],
           "5f3fd921c2d6569012c2118a1a5e1d31" => ~d[2022-04],
           "567ae7e915fff4f8a5987f41b1d9f57f" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-21-vr12-vr9/GX015803", "00:00:15.346", :end},
-          {"2023-05-21-vr12-vr9/GX015804", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015805", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015806", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015807", :start, "00:00:01.535"},
-          {"2023-05-21-vr12-vr9/GX015807", "00:00:01.835", :end},
-          {"2023-05-21-vr12-vr9/GX015808", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015809", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015810", :start, "00:00:07.708"}
+          {"2024-05-02-vr7/GX017365", :start, "00:00:25.192",
+           vf: "rotate=enable='gte(t,3)':angle=-0.8/t"},
+          {"2024-05-06-vr9/GX017440", "00:00:00.701", :end},
+          {"2024-05-06-vr9/GX017441", :start, :end},
+          {"2024-05-06-vr9/GX017442", :start, :end},
+          {"2024-05-06-vr9/GX017443", :start, :end},
+          {"2024-05-06-vr9/GX017444", :start, :end},
+          {"2024-05-06-vr9/GX017445", :start, :end},
+          {"2024-05-06-vr9/GX017447", :start, "00:00:10.675"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "9 Bergedorf",
         direction: :backward,
         from: "Bergedorf",
@@ -48,22 +49,23 @@ defmodule Data.Article.Static.Alltagsroute9 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         historic: %{
+          "cb6d5b72f7c74ae524e057636029d75b" => ~d[2024-05],
           "6367ea206d3ed2850baad0a3910f0de7" => ~d[2023-05],
           "62ec2031bfb3e36f91731bc150672a5e" => ~d[2022-04],
           "e10fc9b56544e6792f2c36bbf479f7de" => ~d[2021-06]
         },
         videos: [
-          {"2023-05-21-vr12-vr9/GX015810", "00:00:18.285", :end},
-          {"2023-05-21-vr12-vr9/GX015811", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015812", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015813", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015814", :start, "00:03:40.721"},
-          {"2023-05-21-vr12-vr9/GX015816", "00:00:00.133", :end},
-          {"2023-05-21-vr12-vr9/GX015817", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015818", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015819", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015820", :start, :end},
-          {"2023-05-21-vr12-vr9/GX015821", :start, "00:00:23.352"}
+          {"2024-05-06-vr9/GX017447", "00:00:22.018", "00:00:29.263"},
+          {"2024-05-06-vr9/GX017450", "00:00:02.102", :end},
+          {"2024-05-06-vr9/GX017451", :start, :end},
+          {"2024-05-06-vr9/GX017452", :start, "00:00:57.190"},
+          {"2024-05-06-vr9/GX017453", :start, :end},
+          {"2024-05-06-vr9/GX017454", :start, :end},
+          {"2024-05-06-vr9/GX017455", :start, :end},
+          {"2024-05-06-vr9/GX017456", :start, :end},
+          {"2024-05-06-vr9/GX017457", :start, :end},
+          {"2024-05-06-vr9/GX017458", :start, "00:00:19.019"},
+          {"2024-05-02-vr7/GX017398", "00:00:31.465", "00:00:39.706"}
         ]
       }
     ]
