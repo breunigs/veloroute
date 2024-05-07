@@ -1,28 +1,30 @@
 defmodule Mix.Tasks.Velo.Gpx.Generate do
   use Mix.Task
   require Logger
+  require Benchmark
 
   @out File.cwd!() <> "/priv/static/geo/"
   @requirements ["app.start"]
 
   @shortdoc "Generate GPX files for the articles that have a matching relation in the map"
   def run(_) do
-    Logger.info("generating GPX")
-    File.mkdir_p!(@out)
+    Benchmark.measure("generating GPX", fn ->
+      File.mkdir_p!(@out)
 
-    Cache.Map.relations()
-    |> Enum.flat_map(fn {_id, rel} ->
-      case Map.Route.from_relation(rel) do
-        {:ok, routes} ->
-          routes
+      Cache.Map.relations()
+      |> Parallel.flat_map(fn {_id, rel} ->
+        case Map.Route.from_relation(rel) do
+          {:ok, routes} ->
+            routes
 
-        {:error, msg} ->
-          Logger.warning(msg)
-          []
-      end
+          {:error, msg} ->
+            Logger.warning(msg)
+            []
+        end
+      end)
+      |> Enum.group_by(fn route -> route.name end)
+      |> Enum.each(fn {_name, routes} -> write(routes) end)
     end)
-    |> Enum.group_by(fn route -> route.name end)
-    |> Enum.each(fn {_name, routes} -> write(routes) end)
   end
 
   defp write(routes)
