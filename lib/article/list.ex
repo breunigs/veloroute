@@ -11,7 +11,7 @@ defmodule Article.List do
   end
 
   defmemop all_indexed() do
-    all() |> Enum.group_by(& &1.name()) |> Enum.into(%{}, fn {k, [v]} -> {k, v} end)
+    all() |> Enum.into(%{}, fn art -> {art.name(), art} end)
   end
 
   @spec category(binary()) :: t
