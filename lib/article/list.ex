@@ -58,7 +58,8 @@ defmodule Article.List do
   end
 
   def find_exact(key) do
-    Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), key) end)
+    mod = Article.module_from_name(key)
+    mod || Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), key) end)
   end
 
   @spec find_with_tags(t, binary | nil) :: Article.t() | nil

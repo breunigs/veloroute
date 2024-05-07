@@ -46,8 +46,10 @@ defmodule Article do
 
   @callback map_image() :: nil | Data.MapImage.t() | [Data.MapImage.t()]
 
-  def module_name, do: "Elixir.Data.Article."
+  @module_prefix "Elixir.Data.Article."
   @known_categories ~w/Blog Static/
+  @known_prefixes Enum.map(@known_categories, &(@module_prefix <> &1 <> "."))
+  def module_name, do: @module_prefix
   def known_categories, do: @known_categories
 
   @doc """
@@ -63,6 +65,28 @@ defmodule Article do
 
   def has_category?(art, type) when type in @known_categories do
     art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
+  end
+
+  @doc """
+  Tries to find the module for the name of the article. It doesn't actually look
+  up the matching article, but guesses from the name to the module. It therefore
+  might return nil if an article's name doesn't use the auto-generated style.
+  """
+  @spec module_from_name(binary()) :: nil | t()
+  def module_from_name(name) do
+    abbrev = String.replace(name, ~r/\brsw\b/, &String.upcase/1)
+    camel_case = String.replace(abbrev, ~r/^\w|-\w/, &String.upcase(String.last(&1)))
+    no_date = String.slice(camel_case, 8..-1//1)
+    candidates = for prefix <- @known_prefixes, mod <- [camel_case, no_date], do: prefix <> mod
+
+    Enum.find_value(candidates, fn str ->
+      try do
+        mod = String.to_existing_atom(str)
+        if mod.name() == name, do: mod
+      rescue
+        _ -> nil
+      end
+    end)
   end
 
   def auto_generate_name(mod) do

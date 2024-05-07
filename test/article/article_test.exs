@@ -2,6 +2,17 @@ defmodule ArticleTest do
   require Guards
   use ExUnit.Case, async: true
 
+  test "articles can be found by their name" do
+    assert Data.Article.Blog.AbrissCityHof ==
+             Article.module_from_name(Data.Article.Blog.AbrissCityHof.name())
+
+    assert Data.Article.Static.Freizeitroute1 ==
+             Article.module_from_name(Data.Article.Static.Freizeitroute1.name())
+
+    assert Data.Article.Static.RSWStade ==
+             Article.module_from_name(Data.Article.Static.RSWStade.name())
+  end
+
   test "all articles can be rendered" do
     render_issues =
       Article.List.all()
