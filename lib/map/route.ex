@@ -28,7 +28,7 @@ defmodule Map.Route do
 
   @spec find(Map.Relation.t(), Article.t()) :: [t()]
   defp find(%Map.Relation{} = r, art) do
-    ways = normalize(r)
+    ways = normalize(r, art)
     indexed = Enum.group_by(ways, & &1.id)
     graph = Graph.add_edges(Graph.new(), edges(ways))
 
@@ -105,7 +105,20 @@ defmodule Map.Route do
 
   defp warn_on_nil_leg(leg, _, _, _, _), do: leg
 
-  defp normalize(r) do
+  defp normalize(r, art) do
+    # if there are multiple target nodes with the same name, from the graph's
+    # perspective one can teleport between these nodes. To reduce the chance of
+    # these "teleports" from being picked by the graph finding, we only split on
+    # targets/vias which are necessary for this article.
+    targets =
+      art.tracks()
+      |> Enum.flat_map(&[&1.from, &1.via, &1.to])
+      |> List.flatten()
+      |> Enum.uniq()
+      |> Util.compact()
+
+    matcher = fn tags -> tags[:target] in targets end
+
     for %{role: r, ref: %Map.Way{} = way} <- r.members do
       case r do
         "forward" -> way
@@ -114,7 +127,7 @@ defmodule Map.Route do
       end
     end
     |> List.flatten()
-    |> Enum.flat_map(&Map.Way.split_on_tagged_nodes/1)
+    |> Enum.flat_map(&Map.Way.split_on_tagged_nodes(&1, matcher))
   end
 
   defp reverse(%Map.Way{id: id} = way), do: %{Map.Way.reverse(way) | id: id <> "_reversed"}
