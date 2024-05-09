@@ -36,10 +36,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
     <h4>Alter Zustand</h4>
     <p>In der Einbahnstraße teilen sich Fahrrad und KFZ die Fahrbahn im <.ref>Mischverkehr</.ref>.</p>
 
-    <div class="headlineForm">
-      <h4>Planung</h4>
-      <.map_image_toggle checked={@show_map_image}/>
-    </div>
+    <.h4_planning checked={@show_map_image}/>
     <p>Die Straße wird für den Radverkehr in beide Richtungen freigegeben. Sie bleibt KFZ-Einbahnstraße. Die <.ref>Fahrbahn</.ref> soll 4,75m betragen, damit Fahrrad/Bus im Gegenverkehr sicher aneinander vorbeikommen.</p>
 
     <p>Es kommen erstmals Sitzbänke und Fahrrad-Anschließmöglichkeiten hinzu. Das KFZ-Parken wird durch Parkbuchten geordnet.</p>

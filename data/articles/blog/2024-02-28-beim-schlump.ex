@@ -124,10 +124,7 @@ defmodule Data.Article.Blog.BeimSchlump do
 
     <p>In der Schäferkampsallee wird der Radweg durch die Wartefläche für Fahrgäste geleitet.</p>
 
-    <div class="headlineForm">
-      <h4>Planung</h4>
-      <.map_image_toggle checked={@show_map_image}/>
-    </div>
+    <.h4_planning checked={@show_map_image}/>
     <h5>Straßenzug Beim Schlump</h5>
     <p>Im Kreuzungsbereich ab <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.969197} lat={53.567138} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinem Schäferkamp</.v> beginnen 2,5m breite <.ref>Protected-Bike-Lanes</.ref>. Sie führen geradlinig über die <.v bounds="9.968752,53.566778,9.97175,53.568565" lon={9.97019} lat={53.567413} dir="backward" ref={@ref} highlight="Schäferkampsallee,Schröderstiftstraße">Kreuzung mit der Schäferkampsallee</.v>. Ihre Breite ändert sich im weiteren Verlauf leicht (+- 25cm). An der Kreuzung mit <.v bounds="9.972386,53.568173,9.976846,53.570479" lon={9.973906} lat={53.56905} dir="backward" ref={@ref}>Bundesstraße</.v> und <.v bounds="9.97535,53.57006,9.979101,53.572713" lon={9.97733} lat={53.571201} dir="backward" ref={@ref}>Bogenstraße</.v> bleiben Engstellen mit 1,6m Breite.</p>
 

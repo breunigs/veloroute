@@ -74,10 +74,7 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
     <h4>Alter Zustand</h4>
     <p>In der <.v bounds="9.981022,53.558728,9.98421,53.560671" lon={9.983428} lat={53.558221} dir="forward" ref={@ref}>Jungiusstraße</.v> befinden sich beidseitig <.ref>Radfahrstreifen</.ref> mit rund 1,95m Breite. Sie wurden vor einigen Jahren provisorisch angelegt. An der <.v bounds="9.981022,53.558728,9.98421,53.560671" lon={9.982347} lat={53.559564} dir="forward" ref={@ref} highlight="Bei den Kirchhöfen">Einmündung Bei den Kirchhöfen</.v> ändert sich die Führung auf einen Zweirichtungsradweg auf Parkseite. In <.v bounds="9.981022,53.558728,9.98421,53.560671" lon={9.98193} lat={53.559915} dir="backward" ref={@ref} highlight="Bei den Kirchhöfen">Richtung Innenstadt</.v> ist deswegen zweimaliges Queren mit engen Kurven notwendig.</p>
 
-    <div class="headlineForm">
-      <h4>Planung</h4>
-      <.map_image_toggle checked={@show_map_image}/>
-    </div>
+    <.h4_planning checked={@show_map_image}/>
     <p>In <.v bounds="9.980967,53.556859,9.985521,53.560384" lon={9.983561} lat={53.558031} dir="forward" ref={@ref}>Richtung Messe</.v> wird der Radfahrstreifen auf 2,25m verbreitert. Rechts von ihm befinden sich KFZ-Parkplätze.</p>
 
     <p>In <.v bounds="9.980967,53.556859,9.985521,53.560384" lon={9.982085} lat={53.559597} dir="backward" ref={@ref}>Richtung Innenstadt</.v> wird ein 2,50m breiter <.ref>Hochbordradweg</.ref> gepflastert. Dieser geht <.v bounds="9.981788,53.55691,9.986053,53.559443" lon={9.983229} lat={53.558229} dir="backward" ref={@ref}>auf der Brücke</.v> über die Parkanlagen in einen Radfahrstreifen über. Da die Kreuzung mit dem Gorch-Fock-Wall frühestens 2025 umgebaut werden soll, wird dort wieder eine Rampe auf den Altbestand angelegt.</p>

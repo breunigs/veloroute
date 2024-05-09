@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Holstenplatz do
   def updated_at(), do: ~D[2021-08-05]
   def title(), do: "Kreuzungen um den Holstenplatz (Veloroute 13)"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2023-03-13]
   def stop(), do: ~d[2024-04-30]

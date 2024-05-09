@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
   def stop(), do: ~d[2024-09-20]
   def construction_site_id_hh(), do: [668_122]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def summary(),
     do:
