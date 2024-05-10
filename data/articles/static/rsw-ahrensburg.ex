@@ -14,15 +14,52 @@ defmodule Data.Article.Static.RSWAhrensburg do
   def tags(), do: [id(), "rsw", "ahrensburg"]
 
   def tracks(),
-    do:
-      Data.Article.Static.Alltagsroute6.tracks()
-      |> Enum.map(fn
-        %{from: "Innenstadt"} = track ->
-          %{track | from: "Hamburg Volksdorf", to: "Ahrensburg Gewerbegebiet Süd"}
-
-        %{from: "Volksdorf"} = track ->
-          %{track | from: "Ahrensburg Gewerbegebiet Süd", to: "Hamburg Volksdorf"}
-      end)
+    do: [
+      %Video.Track{
+        renderer: 5,
+        group: "rsw",
+        direction: :forward,
+        from: "Volksdorf",
+        to: "Ahrensburg Gewerbegebiet Süd",
+        parent_ref: __MODULE__,
+        text: "von Volksdorf nach Ahrensburg",
+        historic: %{
+          "890a0e6361e79c966427c65040707336" => ~d[2023-07]
+        },
+        videos: [
+          {"2023-07-08-vr6-rsw-ahr/GX010024", "00:02:21.842", :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010025", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010026", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010027", :start, "00:00:19.682"}
+        ]
+      },
+      %Video.Track{
+        renderer: 5,
+        group: "rsw",
+        direction: :backward,
+        from: "Ahrensburg Gewerbegebiet Süd",
+        to: "Volksdorf",
+        parent_ref: __MODULE__,
+        text: "aus Ahrensburg nach Volksdorf",
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Alltagsroute6,
+          group: "6",
+          direction: :backward
+        },
+        historic: %{
+          "184215a017abc0950f134f07d81c96d8" => ~d[2023-07]
+        },
+        videos: [
+          {"2023-07-08-vr6-rsw-ahr/GX010028", "00:01:07.721", :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010029", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010030", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010031", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010032", :start, :end},
+          {"2023-07-08-vr6-rsw-ahr/GX010033", :start, "00:03:30.911"}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [

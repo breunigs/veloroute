@@ -41,11 +41,6 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def text(assigns) do
     ~H"""
-    <h4>Historie – Stand Februar 2024</h4>
-    <p>Der Umbau ab Frühjahr 2024 war politisch bereits beschlossen. Wegen Baustellenkoordination und anderen Maßnahmen – wie etwa der Elbchaussee – ist eine Verschiebung nur um viele Jahre möglich. Eine Verschiebung bedeutet auch mehrere Millionen € zusätzlich.</p>
-
-    <p>Eine kurzfristig gebildete Interessensgemeinschaft um die Ansässigen in der <.v bounds="9.879538,53.557896,9.889129,53.560594" lon={9.880838} lat={53.559485} dir="forward" ref="1">Waitzstraße</.v> versucht den Umbau zu verhindern, zumindest zu diesem Zeitpunkt. Alle politischen Parteien außer  Bündnis 90/Die Grünen zogen ihre vorherige Zustimmung zum Umbau zurück.</p>
-
     <h4>Alter Zustand</h4>
     <p>Die Reventlowstraße enthält entlang der Veloroute kaum nutzbare <.ref>Hochbordradweg</.ref>-Stummel, die plötzlich <.v bounds="9.888232,53.554487,9.8942,53.558329" lon={9.889886} lat={53.556644} dir="backward" ref="1">aufhören (Richtung Süden)</.v> bzw. <.v bounds="9.888232,53.554487,9.8942,53.558329" lon={9.890289} lat={53.556447} dir="forward" ref="1">anfangen (Richtung Norden)</.v>. Im Wesentlichen muss der Radverkehr im <.ref>Mischverkehr</.ref> mit den KFZ fahren.</p>
 
