@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
   && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
-  && wget --no-verbose https://github.com/maputnik/editor/archive/refs/heads/master.zip \
+  && wget --no-verbose https://github.com/maplibre/maputnik/archive/refs/heads/main.zip \
   && unzip -q -d /tmp/ master.zip \
   && mv /tmp/editor-master /maputnik/ \
   && rm master.zip
