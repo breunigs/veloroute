@@ -30,7 +30,7 @@ node[type=marker] {
   text-anchor-vertical: center;
 }
 
-node[type=warning], node[type=article] {
+node|z15-[type=warning], node|z15-[type=article] {
   symbol-size: 17;
   symbol-shape: circle;
   symbol-fill-color: #EE3535;
@@ -38,7 +38,7 @@ node[type=warning], node[type=article] {
   icon-image: eval(concat("./../assets/map/icons/", tag("icon"), ".svg"));
 }
 
-node|z13-[target]::routing {
+node|z15-[target]::routing {
   font-size: 15;
   text-halo-radius: 1;
   text: target;
@@ -175,7 +175,12 @@ area[type=article] {
   color: #888;
   width: 1;
   casing-width: 0;
-  text: prop(name);
+  text: "";
+  text-position: center;
+}
+
+area|z18-[type=article] {
+  text: name;
 }
 
 area[type=article][hide_from_map=yes] {
