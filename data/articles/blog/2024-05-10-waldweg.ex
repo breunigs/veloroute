@@ -47,6 +47,8 @@ defmodule Data.Article.Blog.Waldweg do
 
   def links(_assigns) do
     [
+      {"Hintergrund Aufhebung Gehwegradeln", "Januar 2024",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/to020.asp?TOLFDNR=1058010"},
       {"1. Entwurf, Erläuterungen", "September 2018",
        "https://lsbg.hamburg.de/resource/blob/784398/a780bc938087942fa43e8887ecd1194e/waldweg-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Pläne", "September 2018",
@@ -59,9 +61,11 @@ defmodule Data.Article.Blog.Waldweg do
     <h4>Alter Zustand</h4>
     <p>Es sind keine eigenen Radwege vorhanden.</p>
 
-    <p>Es darf auf der asphaltierten <.ref>Fahrbahn</.ref> bei Tempo-50 im <.ref>Mischverkehr</.ref> gefahren werden.</p>
+    <p>Es darf nur auf der asphaltierten <.ref>Fahrbahn</.ref> bei Tempo-50 im <.ref>Mischverkehr</.ref> gefahren werden.</p>
 
-    <p>Die unterschiedlich breiten Gehwege sind mit <.ref>Fahrrad frei</.ref> beschildert und dürfen daher auch in Schrittgeschwindigkeit benutzt werden. Mit teilweise nur 1,5m Breite sind sie bereits für reinen Fußverkehr eher schmal. Sie sind teils gepflastert, teils mit feinem Schotter (Grand) befestigt.</p>
+    <p>Die unterschiedlich breiten Gehwege <em>waren</em> mit <.ref>Fahrrad frei</.ref> beschildert und durften daher auch in Schrittgeschwindigkeit benutzt werden. Mit teilweise nur 1,5m Breite sind sie bereits für reinen Fußverkehr eher schmal. Sie sind teils gepflastert, teils mit feinem Schotter (Grand) befestigt.</p>
+
+    <p>Die Freigabe für Gehwegradeln wurde 2024 nach Unfällen und Beschwerden aufgehoben.</p>
 
     <h4>Planung (2018)</h4>
     <p>Fahrbahn und Gehwege werden saniert. Letztere sollen teilweise breiter werden. Sie behalten ihre gemischten Beläge in Grand bzw. Pflastersteinen. Die Bushaltestellen werden barrierefrei ausgebaut.</p>
@@ -74,7 +78,7 @@ defmodule Data.Article.Blog.Waldweg do
 
     <p>An den jeweiligen Enden der Schutzstreifen sind keine Überleitungen auf den Gehweg vorgesehen, da der Radverkehr auf der Fahrbahn weiterfahren soll.</p>
 
-    <p><.ref>Fahrrad frei</.ref> wird fast im gesamten Planungsgebiet aufgehoben. Einzige Ausnahme: die abgesetzten Geh- bzw. Wanderwege <.v bounds="10.148618,53.651374,10.162166,53.655242" lon={10.159397} lat={53.653543} dir="backward" ref={@ref}>auf der Nordseite ab Volksdorf</.v> bis <.v bounds="10.148618,53.651374,10.162166,53.655242" lon={10.151289} lat={53.653362} dir="backward" ref={@ref}>Bushalt Rögenfeld</.v>.</p>
+    <p><.ref>Fahrrad frei</.ref> wird auch nach dem Umbau nicht mehr angeordnet. Einzige Ausnahme: die abgesetzten Geh- bzw. Wanderwege <.v bounds="10.148618,53.651374,10.162166,53.655242" lon={10.159397} lat={53.653543} dir="backward" ref={@ref}>auf der Nordseite ab Volksdorf</.v> bis <.v bounds="10.148618,53.651374,10.162166,53.655242" lon={10.151289} lat={53.653362} dir="backward" ref={@ref}>Bushalt Rögenfeld</.v>.</p>
 
     <h4>Meinung</h4>
     <p>Diese ältere, grauenhafte Planung zeigt wie sehr sich die Qualität für den Radverkehr in den letzten Jahren verbessert hat. 10-Jährige Kinder bei Tempo-50 in den Mischverkehr werfen würde heute niemand mehr ernsthaft bei einem Umbau vorschlagen. Das Schutzstreifen ungeeignet sind und knappes Überholen fördern hat sich dagegen noch nicht überall herumgesprochen.</p>
