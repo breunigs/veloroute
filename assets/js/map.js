@@ -377,7 +377,8 @@ window.addEventListener("phx:video_meta", e => {
 
 
 const showMapImageMinZoom = 14
-const showMapImageFadeIn = ["interpolate", ["linear"], ["zoom"], showMapImageMinZoom, 0, showMapImageMinZoom + 3, 1]
+const showMapImageMaxZoom = showMapImageMinZoom + 3
+const showMapImageFadeIn = ["interpolate", ["linear"], ["zoom"], showMapImageMinZoom, 0, showMapImageMaxZoom, 1]
 let showMapImageAction = null
 let showMapImagesWorker = null
 let showMapImageLayers = []
@@ -391,11 +392,6 @@ window.addEventListener("phx:show_map_image", e => {
 function showMapImages() {
   if (!showMapImageAction) return
   if (showMapImagesWorker) clearTimeout(showMapImagesWorker)
-
-  console.log(showMapImageAction)
-
-  // const layer = map.getLayer("map-image-${index}")
-  // const source = map.getSource("map-image-${index}")
 
   const cleanup = () => {
     for (let id of showMapImageLayers) {
@@ -417,7 +413,12 @@ function showMapImages() {
 
   cleanup()
   let attribs = new Set()
+  let bbox = null
+
   for (let mapImage of showMapImageAction) {
+    bbox ||= new mlgl.LngLatBounds(mapImage.coordinates[0], mapImage.coordinates[1])
+    bbox = mapImage.coordinates.reduce((bbox, coord) => bbox.extend(coord), bbox);
+
     const id = `map-image-${mapImage.url}`
     map.addSource(id, {
       type: 'image',
@@ -446,29 +447,14 @@ function showMapImages() {
     attribution.options.customAttribution = Array.from(attribs).join(" ")
   }
 
-
-  // if (showMapImageAction.action === "delete") {
-  //   if (layer) map.setPaintProperty("map-image-${index}", "raster-opacity", 0, { validate: false })
-  //   // allow enough time to fade out
-  //   showMapImagesWorker = setTimeout(cleanup, 350)
-  // } else if (showMapImageAction.action === "update") {
-  //   // assume that we only get update events if there are actual changes
-  //   cleanup()
-
-  //   map.addSource("map-image-${index}", showMapImageAction.source)
-
-  //   let minZoom = showMapImageAction.layer.minzoom
-  //   let fadeIn = ["interpolate", ["linear"], ["zoom"], minZoom, 0, minZoom + 3, 1]
-
-  //   // workaround for the map flickering on load otherwise
-  //   showMapImageAction.layer.paint = { "raster-opacity": 0 }
-  //   map.addLayer(showMapImageAction.layer)
-  //   showMapImagesWorker = setTimeout(() => {
-  //     map.setPaintProperty("map-image-${index}", "raster-opacity", fadeIn, { validate: false })
-  //   }, 350)
-
-  //   attribution.options.customAttribution = showMapImageAction.attribution
-  // }
+  const current = map.getZoom()
+  const desired = Math.max(showMapImageMaxZoom, current)
+  if (current < desired)
+    map.flyTo({
+      center: bbox.getCenter(),
+      zoom: desired,
+      speed: flyToSpeed,
+    });
 }
 
 let highlightsAppliedToStyle = ""
