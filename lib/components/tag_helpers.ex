@@ -175,16 +175,23 @@ defmodule Components.TagHelpers do
 
   @spec h4_planning(map()) :: Phoenix.LiveView.Rendered.t()
   attr :checked, :boolean
+  attr :ref, :atom, required: true
   attr :rest, :global
   slot(:inner_block)
 
   def h4_planning(assigns) do
-    ~H"""
-    <div class="headlineForm">
+    if assigns.ref.map_image do
+      ~H"""
+      <div class="headlineForm">
+        <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
+        <.map_image_toggle checked={@checked}/>
+      </div>
+      """
+    else
+      ~H"""
       <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
-      <.map_image_toggle checked={@checked}/>
-    </div>
-    """
+      """
+    end
   end
 
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()

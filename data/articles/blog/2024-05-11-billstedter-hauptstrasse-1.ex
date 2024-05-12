@@ -43,7 +43,7 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
     <h4>Alter Zustand</h4>
     <p>Es sind beidseitig rund 1,6m breite <.ref>Radfahrstreifen</.ref> vorhanden.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Es sind beidseitig rund 2,5m breite <.ref>Radfahrstreifen</.ref> bzw. 2,25m breite <.ref>Protected-Bike-Lanes</.ref> vorgesehen. Die Trennsteine werden für Einfahrten, Einmündungen und bei KFZ-Parkplätzen rechts des Radwegs unterbrochen.</p>
 
     <p>Auf <.v bounds="10.10192,53.537984,10.106929,53.54026" lon={10.103921} lat={53.539273} dir="backward" ref="8">Höhe des Platzes</.v> soll in Straßenmitte eine neue Baumreihe gepflanzt werden. Diese wird gepflastert und dient auch als Sprunginsel, damit die Straße zu Fuß leichter gequert werden kann. Entsprechend ist in diesem Bereich ein Radfahrstreifen geplant. Die KFZ-Parkplätze auf der Nordseite bleiben in etwa wie heute, wofür einige Bäume gefällt werden.</p>

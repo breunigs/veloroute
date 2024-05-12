@@ -86,7 +86,9 @@ defmodule ArticleTest do
     assert [] == missing_tag
   end
 
-  test "articles with map_image use map_image_toggle (and vice versa)" do
+  test "articles with map_image use map_image_toggle" do
+    default_tag = "<.h4_planning ref={@ref} checked={@show_map_image}/>"
+
     bork =
       Article.List.all()
       |> Enum.map(fn art ->
@@ -95,11 +97,8 @@ defmodule ArticleTest do
         needs_tag = !!art.map_image()
         has_tag = String.contains?(html, ~s|type="checkbox" name="toggle-map-image"|)
 
-        cond do
-          needs_tag == has_tag -> nil
-          needs_tag -> "#{art} is missing a <.map_image_toggle …/> tag"
-          has_tag -> "#{art} has a <.map_image_toggle …/> tag but no map_image"
-        end
+        if needs_tag && !has_tag,
+          do: "#{art} is missing a <.map_image_toggle …/> or #{default_tag} tag"
       end)
       |> Util.compact()
 

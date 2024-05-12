@@ -90,7 +90,7 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
     <h4>Alter Zustand</h4>
     <p>Die beidseitigen <.ref>Hochbordradwege</.ref> haben wechselnde Breiten. Teils sind es 2,0m, teils nur 1,0m. Die Beläge wechseln zwischen altem und modernem Pflaster – und sind in die Jahre gekommen.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Rad- und Gehwege werden neu gepflastert. Beide werden stellenweise verbreitert. In <.v bounds="9.96363,53.551774,9.967543,53.556608" lon={9.966992} lat={53.552439} dir="forward" ref={@ref}>Richtung Norden</.v> sind überwiegend 1,75m bis 2,0m geplant. In <.v bounds="9.96363,53.551774,9.967543,53.556608" lon={9.96429} lat={53.555847} dir="backward" ref={@ref}>Richtung Süden</.v> anfangs noch 2,0m, <.v bounds="9.96363,53.551774,9.967543,53.556608" lon={9.964972} lat={53.553677} dir="backward" ref={@ref}>später</.v> bleibt es bei den heutigen 1,0m Breite. Teilstücke in beide Richtungen sind mit 2,5m geplant.</p>
 
     <p>Wenn beim Ausbau festgestellt wird, dass wichtige Baumwurzeln einen Ausbau verhindern, werden die Wege ggf. schmaler.</p>

@@ -34,7 +34,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
     <h4>Alter Zustand</h4>
     <p>Entlang der Barmbeker Straße sind rund 1,25m bis 1,5m breite <.ref>Hochbordradwege</.ref> vorhanden. <.v bounds="10.005231,53.590353,10.00919,53.592162" lon={10.007815} lat={53.591393} dir="backward" ref="br-nord-n6">Falschparker</.v> reduzieren die nutzbare Breite weiter.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Bushaltestellen sollen barrierefrei ausgebaut werden. Im Zuge dessen werden die Rad- und Gehwege im Kreuzungsbereich und um die Haltestellen neu gepflastert. Die Warteflächen für Fahrgäste werden etwas breiter, Fuß- und Radweg behalten aber in etwa ihre heutigen Maße.</p>
 
     <p>Es werden zahlreiche Radanschließbügel ergänzt, vor allem wo heute die Falschparker stehen.</p>

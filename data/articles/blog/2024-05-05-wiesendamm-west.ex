@@ -70,7 +70,7 @@ defmodule Data.Article.Blog.WiesendammWest do
 
     <p><.v bounds="10.010602,53.586818,10.03583,53.591603" lon={10.032761} lat={53.588126} dir="backward" ref="br-nord-n6">Richtung Bahnhof Borgweg</.v> gibt es einen rund 1,0m breiten Hochbordradweg in der Dooring-Zone. Ab <.v bounds="10.011317,53.5883,10.021055,53.591582" lon={10.019416} lat={53.589539} dir="backward" ref="br-nord-n6">Wiesenstieg</.v> wird dieser auf einen 1,5m breiten Radfahrstreifen überführt, der <.v bounds="10.011317,53.5883,10.021055,53.591582" lon={10.019416} lat={53.589539} dir="backward" ref="br-nord-n6">kurz darauf</.v> wieder endet. Bis zum Barmbeker Weg ist dann wieder Mischverkehr, da der alte Hochbordradweg weder erreichbar noch wegen der darauf parkenden Autos nutzbar ist.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Im gesamten Abschnitt werden Radfahrstreifen vorgesehen. Wegen Baumerhalt werden sie 1,85m bis 2,5m breit. Um Dooring-Unfällen vorzubeugen sind 50cm Sicherheitsabstand geplant.</p>
 
     <p>An Bushalten wird der Radweg unterbrochen, sodass man entweder im KFZ-Verkehr vorbeifahren oder hinter dem Bus warten muss. An Enden des Planungsgebiets werden gut sichtbare Überleitungen auf die vorhandenen Radwege gebaut.</p>

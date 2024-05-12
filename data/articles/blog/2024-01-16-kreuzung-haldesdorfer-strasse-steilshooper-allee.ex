@@ -43,7 +43,7 @@ defmodule Data.Article.Blog.KreuzungHaldesdorferStrasseSteilshooperAllee do
     <h4>Alter Zustand</h4>
     <p>Im Kreuzungsbereich sind <.ref>Hochbordradwege</.ref> mit Breiten von 1,0m bis 1,5m vorhanden.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>In der <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.090275} lat={53.607411} dir="forward" ref="br-wandsbek-w5">Steilshooper Allee</.v> sind 2,0m breite Hochbordradwege geplant, die nur in die jeweilige Fahrtrichtung befahren werden dürfen. Sie sollen wieder gepflastert werden. Ausnahme: von Steilshoop kommend soll der Radweg <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.088473} lat={53.60742}dir="backward" ref="br-wandsbek-w5">kurz vor der Kreuzung</.v> als 2,5m breiter <.ref>Kopenhagener Radweg</.ref> geführt werden.</p>
 
     <p>In der bereits umgebauten Haldesdorfer Straße soll <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.089276} lat={53.60736} dir="backward" ref="br-wandsbek-w2" highlight="Haldesdorfer Straße">die Querungsfurt</.v> künftig direkt in den <.ref>Radfahrstreifen</.ref> übergehen. <.v bounds="10.085991,53.605429,10.096415,53.608972" lon={10.089103} lat={53.606943} dir="forward" ref="br-wandsbek-w2" highlight="Haldesdorfer Straße">Aus der Haldesdorfer Straße kommend</.v> wird man kurz vorher auf den Hochbordradweg aufgeleitet. Rechts abbiegen ist dann ohne an der Ampel zu warten möglich.</p>

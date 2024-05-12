@@ -97,7 +97,7 @@ defmodule Data.Article.Blog.BremerStrasse1 do
 
     <p>Die Oberflächen und Breiten wechseln. Es gibt <.v bounds="9.967399,53.449284,9.974333,53.45404" lon={9.971418} lat={53.451649} dir="forward" ref={@ref}>2,0m breite, gepflasterte Abschnitte</.v>, aber auch <.v bounds="9.943741,53.438894,9.956166,53.445528" lon={9.946879} lat={53.441342} dir="backward" ref={@ref}>1,7m breite, asphaltierte Rad/Gehwege</.v> in der <.ref>Dooring-Zone</.ref>.</p>
 
-    <.h4_planning checked={@show_map_image}/>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <h5>bis Neuer Friedhof Harburg</h5>
     <p>Vom <.v bounds="9.954521,53.444409,9.976924,53.454795" lon={9.971621} lat={53.451763} dir="forward" ref={@ref}>Gottschalkring</.v> bis <.v bounds="9.954521,53.444409,9.976924,53.454795" lon={9.959158} lat={53.447298} dir="forward" ref={@ref} highlight="Dahlengrund">Höhe Dahlengrund</.v> sind durchgängige, meist 2,0m breite, gepflasterte <.ref>Hochbordradwege</.ref> geplant. An Bushaltestellen verbleiben Engstellen mit rund 1,6m.</p>
 
