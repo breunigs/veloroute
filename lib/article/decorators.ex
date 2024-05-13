@@ -59,7 +59,7 @@ defmodule Article.Decorators do
       show_map_image: false,
       enable_drawing_tools: false,
       ref: art,
-      lang: hd(Settings.supported_languages())
+      lang: Settings.default_language()
     }
 
     assigns = Map.merge(default, assigns)
@@ -166,9 +166,14 @@ defmodule Article.Decorators do
   @doc """
   Returns the canonical URL for a given article
   """
-  @spec url(Article.t()) :: binary()
-  def url(art) do
-    Settings.url() <> path(art)
+  @spec url(Article.t(), Article.language() | nil) :: binary()
+  def url(art, lang \\ nil) do
+    query =
+      if lang && length(art.languages()) >= 2,
+        do: "?lang=#{lang}",
+        else: ""
+
+    Settings.url() <> path(art) <> query
   end
 
   @type_names %{

@@ -9,9 +9,13 @@ defmodule Data.Article.Static.Freizeitroute11 do
   def color(), do: "#006106"
   def color_faded(), do: "#77ba7b"
 
-  def summary(),
+  def summary("de"),
     do:
-      "Der Radroute entlang des zweiten grünen Rings führt einmal ganz im Kreis um die inneren Stadtteile herum. Gesamtlänge rund 100km."
+      "Die Radroute entlang des zweiten grünen Rings führt einmal ganz im Kreis um die inneren Stadtteile herum. Gesamtlänge rund 100km."
+
+  def summary("en"),
+    do:
+      "The “second green ring” route goes around the inner districts in a large circle. Total length approx. 100km."
 
   def tags(), do: [id()]
 
@@ -153,6 +157,8 @@ defmodule Data.Article.Static.Freizeitroute11 do
       ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>}
     ]
   end
+
+  def languages(), do: ~w[de en]
 
   def text(%{lang: "en"} = assigns) do
     ~H"""

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={hd(Settings.supported_languages())}>
+<html lang={Settings.default_language()}>
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -7,7 +7,9 @@
   <title><%= @page_title || Settings.page_title_long() %></title>
   <meta name="csrf-token" content={Phoenix.Controller.get_csrf_token()} />
   <link rel="canonical" href={@canonical_url}/>
-
+  <%= for {lang, url} <- @alternate_urls do %>
+    <link rel="alternate" hreflang={lang} href={url} />
+  <% end %>
   <link rel="icon" type="image/png" size="16x16" href="/favicons/16.png?vsn=1">
   <link rel="icon" type="image/png" size="32x32" href="/favicons/32.png?vsn=1">
   <link rel="icon" type="image/png" size="48x48" href="/favicons/48.png?vsn=1">

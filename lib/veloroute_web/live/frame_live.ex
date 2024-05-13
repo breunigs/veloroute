@@ -308,6 +308,7 @@ defmodule VelorouteWeb.FrameLive do
       prev_page: socket.assigns.current_page,
       current_page: art,
       canonical_url: canonical(art),
+      alternate_urls: alternate(art, socket.assigns.lang),
       page_title: page_title,
       article_original_date: art.created_at(),
       article_date: art.updated_at(),
@@ -463,7 +464,7 @@ defmodule VelorouteWeb.FrameLive do
 
     query =
       if assigns[:lang] &&
-           (assigns[:lang] != hd(Settings.supported_languages()) || assigns[:lang_user_set]),
+           (assigns[:lang] != Settings.default_language() || assigns[:lang_user_set]),
          do: Map.put(query, "lang", assigns[:lang]),
          else: query
 
@@ -491,6 +492,16 @@ defmodule VelorouteWeb.FrameLive do
 
   defp canonical(art) do
     if art, do: Article.Decorators.path(art), else: "/"
+  end
+
+  defp alternate(nil, _lang), do: %{}
+
+  defp alternate(art, lang) when is_module(art) do
+    art.languages()
+    |> List.delete(lang)
+    |> Enum.into(%{}, fn lang ->
+      {lang, Article.Decorators.path(art) <> "?lang=#{lang}"}
+    end)
   end
 
   @default_center_zoom Settings.bounds()

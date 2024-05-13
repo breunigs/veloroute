@@ -117,8 +117,7 @@ defmodule Settings do
   #   "/home/veloroute-rendered-videos/"
   # ]
 
-  # first language marks the default
-  def supported_languages(), do: ["de", "en"]
+  def default_language(), do: "de"
 
   def video_dir_rel, do: "videos"
   def video_dir_abs, do: Path.join(File.cwd!(), video_dir_rel())

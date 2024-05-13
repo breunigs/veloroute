@@ -12,6 +12,7 @@ defmodule Article do
           | :ampel
           | :event
           | nil
+  @type language() :: <<_::16>>
 
   @type assigns() :: %{optional(atom) => any}
   @type link() ::
@@ -36,6 +37,7 @@ defmodule Article do
 
   @callback title() :: binary()
   @callback summary() :: binary()
+  @callback summary(language()) :: binary()
   @callback tags() :: [binary()]
 
   @callback tracks() :: [Video.Track.t()]
@@ -45,6 +47,8 @@ defmodule Article do
   @callback links(assigns()) :: [link()]
 
   @callback map_image() :: nil | Data.MapImage.t() | [Data.MapImage.t()]
+
+  @callback languages() :: [language()]
 
   @module_prefix "Elixir.Data.Article."
   @known_categories ~w/Blog Static/

@@ -173,6 +173,22 @@ defmodule ArticleTest do
     assert [] == missing_summary
   end
 
+  test "articles have per-language summaries" do
+    missing_summaries =
+      Article.List.all()
+      |> Enum.filter(fn art ->
+        summary_count =
+          art.languages()
+          |> Enum.map(&art.summary(&1))
+          |> Enum.uniq()
+          |> length()
+
+        summary_count != length(art.languages())
+      end)
+
+    assert [] == missing_summaries
+  end
+
   test "names consist of allowed characters only" do
     bad_names =
       Article.List.all()

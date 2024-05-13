@@ -4,10 +4,15 @@ defmodule Data.Article.Static.Startpage do
   def name(), do: ""
   def title(), do: ""
 
-  def summary(),
+  def summary("de"),
     do: "Alltags-, Freizeit- und Radschnellwege in der Metropolregion Hamburg"
 
+  def summary("en"),
+    do: "Commuter, leisure and long distance priority cycle routes in Hamburg's metropolitan area"
+
   def tags(), do: []
+
+  def languages(), do: ~w[de en]
 
   def text(assigns) do
     assigns = assign(assigns, :de, assigns.lang == "de")

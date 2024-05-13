@@ -19,12 +19,14 @@ defmodule VelorouteWeb.SitemapController do
   end
 
   defp urls() do
-    Enum.map(Article.List.all(), fn art ->
+    Enum.flat_map(Article.List.all(), fn art ->
       date_tag =
         if art.updated_at(),
           do: "<lastmod>#{Date.to_iso8601(art.updated_at())}</lastmod>"
 
-      "<url><loc>#{Article.Decorators.url(art)}</loc>#{date_tag}</url>"
+      Enum.map(art.languages(), fn lang ->
+        "<url><loc>#{Article.Decorators.url(art, lang)}</loc>#{date_tag}</url>"
+      end)
     end)
   end
 end

@@ -95,7 +95,7 @@ defmodule Components.TagHelpers do
     attr =
       if Map.has_key?(assigns, :highlight),
         do: attr,
-        else: Map.merge(attr, %{translate: "no", lang: hd(Settings.supported_languages())})
+        else: Map.merge(attr, %{translate: "no", lang: Settings.default_language()})
 
     assigns = assign(assigns, :attr, Map.merge(attr, assigns[:rest] || %{}))
     ~H"<a {@attr}><%= render_slot(@inner_block) %></a>"
@@ -428,7 +428,7 @@ defmodule Components.TagHelpers do
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
   attr :gpx, :boolean, default: false
-  attr :lang, :string, default: hd(Settings.supported_languages())
+  attr :lang, :string, default: Settings.default_language()
 
   def structured_links(%{ref: art} = assigns) do
     links =
