@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute4 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "4",
         direction: :forward,
         from: "Innenstadt",
@@ -23,30 +23,30 @@ defmodule Data.Article.Static.Alltagsroute4 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Ochsenzoll",
         historic: %{
+          "4d106cddfdbba91f554aea00d2ec949f" => ~d[2024-05],
           "278170ddb5c27153870dd9654679ff85" => ~d[2023-06],
           "dfbd93ce691204a0f6503ff6ccaadd3f" => ~d[2022-03],
           "e4cffabc1e73519e643f87466f40155d" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-01-vr4/GX015834", "00:00:12.145", :end},
-          {"2023-06-01-vr4/GX015835", :start, :end},
-          {"2023-06-01-vr4/GX015836", :start, "00:01:20.280"},
-          {"2023-06-01-vr4/GX015836", "00:01:21.915", :end},
-          {"2023-06-01-vr4/GX015837", :start, :end},
-          {"2023-06-01-vr4/GX015839", :start, :end},
-          {"2023-06-01-vr4/GX015840", :start, :end},
-          {"2023-06-01-vr4/GX015841", :start, :end},
-          {"2023-06-01-vr4/GX015842", :start, :end},
-          {"2023-06-01-vr4/GX015843", :start, :end},
-          {"2023-06-01-vr4/GX015844", :start, :end},
-          {"2023-06-01-vr4/GX015845", :start, :end},
-          {"2023-06-01-vr4/GX015846", :start, :end},
-          {"2023-06-01-vr4/GX015847", :start, :end},
-          {"2023-06-01-vr4/GX015848", :start, :end}
+          {"2024-05-12-vr4/GX017513_stabilized.mahony.MP4", :start, :end},
+          {"2024-05-12-vr4/GX017514_stabilized.mahony.MP4", :start, :end},
+          {"2024-05-12-vr4/GX017515", :start, :end},
+          {"2024-05-12-vr4/GX017516", :start, :end},
+          {"2024-05-12-vr4/GX017517", :start, :end},
+          {"2024-05-12-vr4/GX017518", :start, :end},
+          {"2024-05-12-vr4/GX017519", :start, :end},
+          {"2024-05-12-vr4/GX017520", :start, :end},
+          {"2024-05-12-vr4/GX017521", :start, :end},
+          {"2024-05-12-vr4/GX017522", :start, :end},
+          {"2024-05-12-vr4/GX017523", :start, :end},
+          {"2024-05-12-vr4/GX017524", :start, :end},
+          {"2024-05-12-vr4/GX017525", :start, :end},
+          {"2024-05-12-vr4/GX017526", :start, "00:00:14.345"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "4",
         direction: :backward,
         from: "Ochsenzoll",
@@ -54,24 +54,19 @@ defmodule Data.Article.Static.Alltagsroute4 do
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll in die Innenstadt",
         historic: %{
+          "936005060db2ccff2679c9aeaa9f1eb0" => ~d[2024-05],
           "0893cfa96c222f3297c893e26527f5e6" => ~d[2023-06],
           "8f85eaf31ac2405b61747428818668b5" => ~d[2022-03],
           "70233271c23802b342c6a2f59d8b5552" => ~d[2021-06]
         },
         videos: [
-          {"2023-06-01-vr4/GX015849", "00:00:00.801", :end},
-          {"2023-06-01-vr4/GX015850", :start, :end},
-          {"2023-06-01-vr4/GX015851", :start, :end},
-          {"2023-06-01-vr4/GX015852", :start, :end},
-          {"2023-06-01-vr4/GX015853", :start, :end},
-          {"2023-06-01-vr4/GX015855", :start, :end},
-          {"2023-06-01-vr4/GX015856", :start, :end},
-          {"2023-06-01-vr4/GX015857", :start, :end},
-          {"2023-06-01-vr4/GX015858", :start, :end},
-          {"2023-06-01-vr4/GX015859", :start, :end},
-          {"2023-06-01-vr4/GX015860", :start, :end},
-          {"2023-06-01-vr4/GX015862", :start, :end},
-          {"2023-06-01-vr4/GX015863", :start, "00:00:15.282"}
+          {"2024-05-12-vr4/GX017526", "00:00:20.349", :end},
+          {"2024-05-12-vr4/GX017527", :start, :end},
+          {"2024-05-12-vr4/GX017528", :start, :end},
+          {"2024-05-12-vr4/GX017529", :start, :end},
+          {"2024-05-12-vr4/GX017530", :start, :end},
+          {"2024-05-12-vr4/GX017531", :start, :end},
+          {"2024-05-12-vr4/GX017532", :start, "00:00:51.708"}
         ]
       }
     ]

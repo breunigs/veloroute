@@ -4,10 +4,9 @@ defmodule VelorouteWeb.LiveNavigationTest do
   @endpoint VelorouteWeb.Endpoint
 
   @video_hashes Data.Article.Static.Alltagsroute4.tracks()
-                |> Enum.map(fn t -> {t.direction, Video.Generator.get(t).hash()} end)
-                |> Enum.into(%{})
-  @video_starts %{forward: 425_307, backward: 222_072}
-  @video_direction :backward
+                |> Enum.into(%{}, fn t -> {t.direction, Video.Generator.get(t).hash()} end)
+  @video_starts %{forward: 364_931, backward: 231_234}
+  @video_direction :forward
 
   test "viewing non-existent redirects", %{conn: conn} do
     assert {:error, {:live_redirect, _whatever}} = live(conn, "/DoesNotExist")
