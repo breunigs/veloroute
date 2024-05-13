@@ -65,7 +65,7 @@ defmodule Video.Source do
        when is_binary(source_path) and is_boolean(available_gpx) and
               is_boolean(available_detections) do
     %__MODULE__{
-      source: Video.Path.source_base(source_path),
+      source: Video.Path.source(source_path),
       available_detections: available_detections,
       available_gpx: available_gpx,
       date: date_from_path(source_path)
@@ -79,7 +79,7 @@ defmodule Video.Source do
   @spec timed_points_with_gpx(t()) :: [Video.TimedPoint.t()] | {:error, binary()}
   def timed_points_with_gpx(%__MODULE__{source: source, available_gpx: false}) do
     {:error,
-     "#{Video.Path.source_base(source)} has no GPX file available to extract time range from, try `gopro2gpx -s #{Video.Path.source(source)}`?"}
+     "#{Video.Path.source_base_with_ending(source)} has no GPX file available to extract time range from, try `gopro2gpx -s #{Video.Path.source(source)}`?"}
   end
 
   def timed_points_with_gpx(%__MODULE__{} = self) do

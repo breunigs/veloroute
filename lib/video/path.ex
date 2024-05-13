@@ -2,7 +2,13 @@ defmodule Video.Path do
   import Guards
 
   @detections_suffix ".json.gz"
-  @source_endings [".MP4", ".mkv"]
+  @source_endings [
+    ".MP4",
+    ".mkv",
+    "_stabilized.complementary.MP4",
+    "_stabilized.mahony.MP4",
+    "_stabilized.vqf.MP4"
+  ]
   @gpx_ending ".gpx"
 
   @video_out_m3u8 "stream.m3u8"
@@ -33,10 +39,14 @@ defmodule Video.Path do
     if has_extension?(path), do: path, else: path <> hd(@source_endings)
   end
 
+  @source_endings_len Enum.sort_by(@source_endings, &byte_size/1, :desc)
   def gpx(path) when is_binary(path) do
     ext = file_extension(path)
     path = abs_path(path)
-    if ext == "", do: path <> @gpx_ending, else: String.replace_suffix(path, ext, @gpx_ending)
+
+    if ext == "",
+      do: path <> @gpx_ending,
+      else: String.replace(path, @source_endings_len, @gpx_ending)
   end
 
   def gpx_rel_to_cwd(path) when is_binary(path) do
@@ -63,16 +73,17 @@ defmodule Video.Path do
     detections(path) |> rel_to_cwd()
   end
 
-  def source_base(path) when is_binary(path) do
-    path
-    |> source_base_with_ending()
-    |> String.replace_suffix(hd(@source_endings), "")
-  end
-
   def source_base_with_ending(path) when is_binary(path) do
     path
     |> source()
     |> Path.relative_to(Settings.video_source_dir_abs())
+  end
+
+  def source_base(path) when is_binary(path) do
+    base = source_base_with_ending(path)
+    default_ext = hd(@source_endings)
+    ext = file_extension(path)
+    if ext == default_ext, do: String.replace_suffix(base, ext, ""), else: base
   end
 
   def source_rel_to_cwd(path) when is_binary(path) do

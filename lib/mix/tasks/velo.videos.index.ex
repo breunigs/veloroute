@@ -82,10 +82,12 @@ defmodule Mix.Tasks.Velo.Videos.Index do
             {osm_id - 1, node <> nodes, refs <> ref}
           end)
 
+        path = Video.Path.source_base(source.source)
+
         """
           <way id='#{osm_id}'>
             #{refs}
-            <tag k='gpx:name' v='#{source.source}' />
+            <tag k='gpx:name' v='#{path}' />
             <tag k='oneway' v='yes' />
           </way>
           #{nodes}
