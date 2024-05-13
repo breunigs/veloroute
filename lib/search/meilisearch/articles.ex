@@ -6,7 +6,7 @@ defmodule Search.Meilisearch.Articles do
 
   @impl true
   def documents() do
-    Article.List.all() |> Enum.map(&single/1)
+    Article.List.all() |> Enum.reject(&(&1.title() == "")) |> Enum.map(&single/1)
   end
 
   @impl true
