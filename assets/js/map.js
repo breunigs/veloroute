@@ -449,12 +449,19 @@ function showMapImages() {
 
   const current = map.getZoom()
   const desired = Math.max(showMapImageMaxZoom, current)
-  if (current < desired)
-    map.flyTo({
-      center: bbox.getCenter(),
-      zoom: desired,
-      speed: flyToSpeed,
-    });
+  if (current >= desired) return
+  const viewport = map.getBounds()
+  const s = Math.max(viewport.getSouth(), bbox.getSouth())
+  const w = Math.max(viewport.getWest(), bbox.getWest())
+  const n = Math.min(viewport.getNorth(), bbox.getNorth())
+  const e = Math.min(viewport.getEast(), bbox.getEast())
+  if (s < n && w < e) bbox = new mlgl.LngLatBounds([w, s, e, n]);
+
+  map.flyTo({
+    center: bbox.getCenter(),
+    zoom: desired,
+    speed: flyToSpeed,
+  });
 }
 
 let highlightsAppliedToStyle = ""
