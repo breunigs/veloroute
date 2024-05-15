@@ -31,6 +31,10 @@ defmodule Data.Article.Static.BicibusOttensen do
         parent_ref: __MODULE__,
         text: "Bicibus Ottensen",
         end_action: :loop,
+        historic: %{
+          "aa99eb79a0541af2d7af17a2645a6521" => ~d[2024-05],
+          "c13adccaf08a3a7d54a56628c56fa735" => ~d[2023-03]
+        },
         videos: [
           {"2024-05-03-bici2/GX017403", "00:07:21.174", "00:31:47.339"}
         ]

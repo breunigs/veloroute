@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "bergedorf",
         direction: :forward,
         from: "Innenstadt",
@@ -24,25 +24,30 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Bergedorf",
         historic: %{
+          "e36dff1301f3936ad565252243507d58" => ~d[2024-05],
           "30120b94cadb07b40e25f16363238821" => ~d[2023-07],
           "31b6ed712bac45ba3f4fec9338e48722" => ~d[2022-05]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015898", "00:00:16.650", "00:00:34.134"},
-          {"2023-07-15-vr8/GX016147", "00:00:42.843", :end},
-          {"2023-07-15-vr8/GX016148", :start, :end},
-          {"2023-07-15-vr8/GX016149", :start, :end},
-          {"2023-07-15-vr8/GX016150", :start, :end},
-          {"2023-07-15-vr8/GX016151", :start, "00:00:41.775"},
-          {"2023-07-15-vr8/GX016153", "00:00:49.917", :end},
-          {"2023-07-15-vr8/GX016154", :start, :end},
-          {"2023-07-15-vr8/GX016155", :start, :end},
-          {"2023-07-15-vr8/GX016156", :start, :end},
-          {"2023-07-15-vr8/GX016157", :start, "00:00:19.453"}
+          {"2024-05-02-vr7/GX017365_stabilized.vqf.MP4", :start, :end},
+          {"2024-05-02-vr7/GX017366", :start, "00:00:03.136"},
+          {"2024-05-14-vr8/GX017539", "00:00:02.569", :end},
+          {"2024-05-14-vr8/GX017540", :start, :end},
+          {"2024-05-14-vr8/GX017541", :start, :end},
+          {"2024-05-14-vr8/GX017542", :start, :end},
+          {"2024-05-14-vr8/GX017543", :start, :end},
+          {"2024-05-14-vr8/GX017544", :start, :end},
+          {"2024-05-14-vr8/GX017545", :start, :end},
+          {"2024-05-14-vr8/GX017546", :start, "00:00:06.506"},
+          {"2024-05-14-vr8/GX017546", "00:03:13.927", :end},
+          {"2024-05-14-vr8/GX017547", :start, :end},
+          {"2024-05-14-vr8/GX017548", :start, :end},
+          {"2024-05-14-vr8/GX017549", :start, :end},
+          {"2024-05-14-vr8/GX017550", "00:00:01.535", "00:00:21.350"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "bergedorf",
         direction: :backward,
         from: "Bergedorf",
@@ -50,29 +55,33 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus Bergedorf in die Innenstadt",
         historic: %{
+          "44ffad87c98e5e14744a05ae8b11e16f" => ~d[2024-05],
           "487633ba1bb5e87ff942d0cc1ab94b91" => ~d[2023-07],
           "c5255d6333a51c0198e152da0587fac8" => ~d[2022-05]
         },
         videos: [
-          {"2023-07-15-vr8/GX016157", "00:00:31.131", :end},
-          {"2023-07-15-vr8/GX016158", :start, :end},
-          {"2023-07-15-vr8/GX016159", :start, :end},
-          {"2023-07-15-vr8/GX016160", :start, :end},
-          {"2023-07-15-vr8/GX016161", :start, :end},
-          {"2023-07-15-vr8/GX016162", :start, :end},
-          {"2023-07-15-vr8/GX016163", :start, :end},
-          {"2023-07-15-vr8/GX016164", :start, :end},
-          {"2023-07-15-vr8/GX016165", :start, :end},
-          {"2023-07-15-vr8/GX016166", :start, :end},
-          {"2023-07-15-vr8/GX016167", :start, :end},
-          {"2023-07-15-vr8/GX016168", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015937", :start, "00:00:31.832"}
+          {"2024-05-14-vr8/GX017553", "00:00:15.679", :end},
+          {"2024-05-14-vr8/GX017554", :start, :end},
+          {"2024-05-14-vr8/GX017555", :start, :end},
+          {"2024-05-14-vr8/GX017556", :start, :end},
+          {"2024-05-14-vr8/GX017557", :start, :end},
+          {"2024-05-14-vr8/GX017558", :start, :end},
+          {"2024-05-14-vr8/GX017559", :start, :end},
+          {"2024-05-14-vr8/GX017568", :start, :end},
+          {"2024-05-14-vr8/GX017569", :start, "00:00:16.817"},
+          {"2024-05-14-vr8/GX017569", "00:00:40.307", :end},
+          {"2024-05-14-vr8/GX017570", :start, :end},
+          {"2024-05-14-vr8/GX017571", :start, :end},
+          {"2024-05-14-vr8/GX017572", :start, :end},
+          {"2024-05-14-vr8/GX017573", :start, :end},
+          {"2024-05-14-vr8/GX017574", :start, :end},
+          {"2024-05-14-vr8/GX017575", :start, "00:00:28.022"}
         ]
       },
 
       # videos are only the short segments, GPX should be the full tracks
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "mümmelmannsberg",
         direction: :forward,
         from: "Innenstadt",
@@ -80,15 +89,16 @@ defmodule Data.Article.Static.Alltagsroute8 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt zum Mümmelmannsberg",
         historic: %{
+          "63491a31c5418a9e950766329cdb734e" => ~d[2024-05],
           "951dd9670ae619864a3a2bc4d907ceb5" => ~d[2023-07],
           "ae36499378cc6c6a822f9189e3c71e46" => ~d[2022-05]
         },
         videos: [
-          {"2023-07-15-vr8/GX016151", "00:00:37.838", "00:02:27.948"}
+          {"2024-05-14-vr8/GX017546", "00:00:06.506", "00:01:44.371"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "mümmelmannsberg",
         direction: :backward,
         from: "Mümmelmannsberg",
@@ -97,13 +107,12 @@ defmodule Data.Article.Static.Alltagsroute8 do
         text: "vom Mümmelmannsberg in die Innenstadt",
         end_action: %{action: :play, route: __MODULE__, group: "bergedorf", direction: :backward},
         historic: %{
+          "8f02723b27d9907024845aa2d5f68774" => ~d[2024-05],
           "a53d40087ef8bfc2ff0542c448f06153" => ~d[2023-07],
           "1f3e66277483a6b8bfcd4dc3069f6766" => ~d[2022-05]
         },
         videos: [
-          {"2023-07-15-vr8/GX016151", "00:02:29.716", :end},
-          {"2023-07-15-vr8/GX016152", :start, :end},
-          {"2023-07-15-vr8/GX016153", :start, "00:00:42.543"}
+          {"2024-05-14-vr8/GX017546", "00:01:44.371", "00:03:09.990"}
         ]
       }
     ]

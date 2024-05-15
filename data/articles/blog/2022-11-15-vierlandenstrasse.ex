@@ -8,8 +8,42 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
 
   def type(), do: :planned
   def tags(), do: []
-  def start(), do: ~d[2023Q3]
-  def stop(), do: ~d[2023Q3]
+
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 5,
+        group: "x",
+        direction: :forward,
+        from: "Bergedorfer Straße",
+        to: "Sander Damm",
+        parent_ref: __MODULE__,
+        text: "Vierlandenstraße nach Süden",
+        historic: %{
+          "bedd0c93c6c0547314a2ef9e47e35911" => ~d[2024-05]
+        },
+        end_action: :reverse,
+        videos: [
+          {"2024-05-14-vr8/GX017551", "00:00:11.612", :end},
+          {"2024-05-14-vr8/GX017552", :start, "00:00:01.034"}
+        ]
+      },
+      %Video.Track{
+        renderer: 5,
+        group: "x",
+        direction: :backward,
+        from: "Sander Damm",
+        to: "Bergedorfer Straße",
+        parent_ref: __MODULE__,
+        text: "Vierlandenstraße nach Norden",
+        historic: %{
+          "02f0e898f3e9494d5b1a6de9c90245d3" => ~d[2024-05]
+        },
+        videos: [
+          {"2024-05-14-vr8/GX017552", "00:00:01.034", :end}
+        ]
+      }
+    ]
 
   def links(_assigns) do
     [
