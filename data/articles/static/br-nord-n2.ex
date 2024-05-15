@@ -94,7 +94,7 @@ defmodule Data.Article.Static.BrNordN2 do
 
   def text(assigns) do
     ~H"""
-    <h3>Bezirksroute HH-Nord N2 – Alster ↔ Airport“ <.icon>N2</.icon></h3>
+    <h3>Bezirksroute HH-Nord N2 – Alster ↔ Airport <.icon>N2</.icon></h3>
     <p>Bei der gezeigten Führung handelt es sich um einen Vorschlag wie die Bezirksroute „N2 – Alster ↔ Airport“ künftig verlaufen könnte.</p>
 
     <p>Die zwei südlichen Äste starten an der <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.976231} lat={53.578959} dir="forward" ref="br-nord-n2">Hoheluftbrücke</.v> bzw. <.v bounds="9.965009,53.575781,10.001209,53.591971" lon={9.994171} lat={53.584747} dir="forward" ref="br-eimsbuettel-rotherbaum">Heilwigbrücke</.v> um kommen kurz vorm <.v bounds="9.97007,53.585677,10.000833,53.601976" lon={9.988103} lat={53.591379} dir="forward" ref="br-nord-n2">Eppendorfer Marktplatz</.v> zusammen. Über die <.v bounds="9.945288,53.591356,10.005616,53.627726" lon={9.97789} lat={53.607729} dir="forward" ref="br-nord-n2">Borsteler Chaussee</.v> führt die Route dann Richtung Flughafen, bzw. an die Kleingärten davor.</p>

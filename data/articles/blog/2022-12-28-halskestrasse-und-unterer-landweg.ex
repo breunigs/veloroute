@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
 
   def start(), do: ~d[2023-04-17]
   def stop(), do: ~d[2025-04-30]
-  def construction_site_id_hh(), do: [367_780, 607_122]
+  def construction_site_id_hh(), do: [367_780, 607_122, 637_612]
 
   def type(), do: :construction
   def tags(), do: ["9", "rsw-geesthacht", "M11.3"]

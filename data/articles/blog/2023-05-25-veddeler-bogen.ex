@@ -7,12 +7,12 @@ defmodule Data.Article.Blog.VeddelerBogen do
     do:
       "Fahrradstraße im Veddeler Bogen. Radweg nach Süden; Schutzstreifen nach Norden im Niedergeorgswerder Deich."
 
+  def start(), do: ~d[2023-08-01]
+  def stop(), do: ~d[2024-05-31]
+  def construction_site_id_hh(), do: [798_729]
   def type(), do: :construction
 
   def tags(), do: ["10", "M12.1B Nord"]
-
-  def start(), do: ~d[2023-09]
-  def stop(), do: ~d[2024-08]
 
   def links(_assigns) do
     [
