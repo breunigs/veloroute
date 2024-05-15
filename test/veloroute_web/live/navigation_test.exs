@@ -39,6 +39,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|<span id="current" title="Videoposition">0:00</span>|
   end
 
+  test "initial render honors bounds param even on blog articles", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/article/2018-04-08-4-kleekamp?bounds=1-2-3-4")
+    assert html =~ ~s|/map/___static/2.0,3.0|
+  end
+
   test "map click on article renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
     refute html =~ "Kleekamp"

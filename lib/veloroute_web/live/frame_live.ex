@@ -344,6 +344,10 @@ defmodule VelorouteWeb.FrameLive do
     socket
   end
 
+  defp set_bounds(%{assigns: %{prev_page: nil}} = socket, _art, _bounds_param) do
+    socket
+  end
+
   defp set_bounds(socket, art, _bounds_param) when is_module(art) do
     prev_bbox = socket.assigns.map_bounds
     next_bbox = Article.Decorators.bbox(art)
