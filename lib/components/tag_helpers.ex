@@ -97,6 +97,16 @@ defmodule Components.TagHelpers do
         do: attr,
         else: Map.merge(attr, %{translate: "no", lang: Settings.default_language()})
 
+    query =
+      attr
+      |> Enum.reduce(%{}, fn
+        {"phx-value-" <> k, v}, query -> Map.put(query, k, v)
+        _other, query -> query
+      end)
+      |> URI.encode_query()
+
+    attr = Map.merge(attr, %{onclick: "return false", href: "?event=map-zoom-to&#{query}"})
+
     assigns = assign(assigns, :attr, Map.merge(attr, assigns[:rest] || %{}))
     ~H"<a {@attr}><%= render_slot(@inner_block) %></a>"
   end
@@ -116,8 +126,10 @@ defmodule Components.TagHelpers do
       |> Phoenix.LiveView.JS.dispatch("map:ping", detail: %{name: name})
       |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: assigns.bounds})
 
-    assigns = assign(assigns, :js, js)
-    ~H"<a phx-click={@js} {@rest}><%= render_slot(@inner_block) %></a>"
+    href = "?bounds=#{Geo.BoundingBox.to_string_bounds(assigns.bounds)}"
+    assigns = assign(assigns, %{js: js, href: href})
+
+    ~H"<a phx-click={@js} href={@href} onclick='return false' {@rest}><%= render_slot(@inner_block) %></a>"
   end
 
   defp ping(js, name) do

@@ -24,17 +24,20 @@ defmodule Feed do
   end
 
   defp article(art) do
+    url = Article.Decorators.url(art)
+
     content =
       art
       |> Article.Decorators.html()
       |> Floki.parse_fragment!()
+      |> Floki.attr("a[href^=\"?\"]", "href", fn query -> "#{url}#{query}" end)
       |> Floki.find_and_update("a:not([href])", fn {"a", _attrs} -> {"i", []} end)
+      |> Floki.find_and_update("a, div, p", &remove_web_attributes/1)
       |> Floki.filter_out("form")
       |> Floki.raw_html()
 
     full_title = Article.Decorators.full_title(art)
     {:ok, date, _} = DateTime.from_iso8601(Date.to_iso8601(art.updated_at()) <> " 00:00:00Z")
-    url = Article.Decorators.url(art)
 
     Entry.new(url, date, full_title)
     |> Entry.content(content, type: "html")
@@ -43,6 +46,18 @@ defmodule Feed do
     |> maybe_add_summary(art)
     |> Entry.link(url, rel: "alternate", type: "text/html")
     |> Entry.build()
+  end
+
+  defp remove_web_attributes({tag, attrs}) do
+    {tag, remove_web_attributes(attrs)}
+  end
+
+  @remove_attr ["onclick", "phx-click", "target", "translate", "language", "class"]
+  @remove_attr_prefix ["phx-value-", "data-phx-"]
+  defp remove_web_attributes(list) when is_list(list) do
+    Enum.reject(list, fn {key, _val} ->
+      key in @remove_attr || String.starts_with?(key, @remove_attr_prefix)
+    end)
   end
 
   defp maybe_add_location(entry, art) do

@@ -36,7 +36,8 @@ defmodule VelorouteWeb.FrameLive do
         map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
       )
 
-    {:ok, assign(socket, state)}
+    socket = socket |> assign(state) |> maybe_run_events_from_url(params)
+    {:ok, socket}
   end
 
   def handle_info(:check_updates, socket) do
@@ -535,4 +536,18 @@ defmodule VelorouteWeb.FrameLive do
       "http://#{cfg[:url][:host]}:#{cfg[:http][:port]}/#{path}"
     end
   end
+
+  @supported_events_from_url ["map-zoom-to"]
+  defp maybe_run_events_from_url(socket, %{event: event} = params)
+       when event in @supported_events_from_url do
+    {:noreply, socket} = handle_event(event, params, socket)
+    socket
+  end
+
+  defp maybe_run_events_from_url(socket, %{event: event}) do
+    Logger.info("got unsupported URL event: #{event}")
+    socket
+  end
+
+  defp maybe_run_events_from_url(socket, _params), do: socket
 end
