@@ -109,7 +109,7 @@ defmodule VelorouteWeb.Live.VideoState do
           set_start(new_state, near)
 
         true ->
-          Logger.debug("no position information, not changing")
+          Logger.debug("no position information, not changing #{near_dbg}")
           new_state
       end
 
@@ -440,7 +440,10 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defmemop new() do
     sett = Settings.start_image()
-    default_tracks = Article.List.find_exact(sett.article_id).tracks()
+
+    default_tracks =
+      Article.List.find_exact(sett.article_id).tracks()
+      |> Enum.filter(&(&1.direction == sett.direction))
 
     %__MODULE__{
       forward_track: nil,

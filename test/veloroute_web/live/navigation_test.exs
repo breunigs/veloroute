@@ -28,10 +28,10 @@ defmodule VelorouteWeb.LiveNavigationTest do
     |> render_click() =~ "Artikel zu Veloroute 7"
   end
 
-  test "initial render sets video", %{conn: conn} do
-    {:ok, _view, html} = live(conn, "/")
-    refute html =~ ~s|data-video-hash=""|
-    refute html =~ ~s|data-video-start="0"|
+  test "initial render selects video near the start", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/")
+    # i.e. from 0 ms to 19999ms
+    assert view |> element("progress") |> render() =~ ~r{value="1?\d?\d?\d?\d"}
   end
 
   test "initial render starts video at 0 even on articles", %{conn: conn} do
