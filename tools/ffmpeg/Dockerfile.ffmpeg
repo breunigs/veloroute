@@ -100,6 +100,7 @@ ENV PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 COPY --from=downloader /downloads /downloads/
 
 RUN cd /downloads/rav1e && \
+  sed -i 's/cap_underflow: false,/cap_underflow: true,/' src/rate.rs && \
   RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
 
 RUN cd /downloads/svtav1/Build && \
