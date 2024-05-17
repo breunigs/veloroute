@@ -23161,6 +23161,10 @@
   <node id='-152944904' lat='53.53724376609' lon='10.03366112173' />
   <node id='-152944908' lat='53.53751793959' lon='10.03347336709' />
   <node id='-152944913' lat='53.53758170062' lon='10.0337737745' />
+  <node id='-153902175' action='modify' lat='53.57434943211' lon='9.94220852315' />
+  <node id='-153902176' action='modify' lat='53.57376333659' lon='9.94282543123' />
+  <node id='-153902177' action='modify' lat='53.57384296961' lon='9.94306683004' />
+  <node id='-153902178' action='modify' lat='53.57439084073' lon='9.94246601522' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -66012,6 +66016,15 @@
     <nd ref='-151991983' />
     <nd ref='-151991965' />
     <tag k='name' v='2024-05-12-neuer-jungfernstieg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20499542' action='modify'>
+    <nd ref='-153902175' />
+    <nd ref='-153902176' />
+    <nd ref='-153902177' />
+    <nd ref='-153902178' />
+    <nd ref='-153902175' />
+    <tag k='name' v='2024-05-17-schule-rellinger-strasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
