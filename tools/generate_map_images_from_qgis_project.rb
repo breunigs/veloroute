@@ -75,7 +75,7 @@ def load_project(project_path)
         : File.join(project_path, "..", image_path_relative)
     )
     image_base_name = File.basename(image_path_relative, ".*")
-    _name, index = image_base_name.split("_")
+    _name, index = image_base_name.sub("_modified", "").split("_")
 
     next warn("# skipping layer #{layer_name}: doesn't look like georeferenced layer") if layer_name != image_base_name
     next warn("# skipping layer #{layer_name}: image not found at #{image_path_abs}") unless File.exist?(image_path_abs)
