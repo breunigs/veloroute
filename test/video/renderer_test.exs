@@ -185,7 +185,7 @@ defmodule Video.RendererTest do
   test "produces correct video preview commands" do
     cmd =
       Video.RendererTest.Example
-      |> Video.Renderer.preview_cmd(true)
+      |> Video.Renderer.preview_cmd(true, false)
 
     assert [
              "/usr/bin/nice",

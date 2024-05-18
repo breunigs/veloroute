@@ -9,14 +9,17 @@ defmodule Video.Renderer do
   @doc """
   Returns the commands to preview the given video(s).
   """
-  def preview_cmd(rendered, blur, start_from \\ nil)
+  def preview_cmd(rendered, blur, burn_filenames, start_from \\ nil)
       when is_nil(start_from) or valid_timestamp(start_from) do
     ensure_min_version(rendered)
     sources = Video.Track.normalize_video_tuples(rendered.sources())
 
     prefix = "scale=640:-1,"
     blurred = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
-    filter = Enum.join(blurred ++ time_lapse_corrects(sources) ++ xfades(sources, rendered), ";")
+    burned = if burn_filenames, do: burn_in_filename(sources), else: []
+    time_lapsed = time_lapse_corrects(sources)
+    cross_fades = xfades(sources, rendered)
+    filter = Enum.join(blurred ++ burned ++ time_lapsed ++ cross_fades, ";")
 
     filter =
       if start_from do
@@ -267,6 +270,16 @@ defmodule Video.Renderer do
     |> Enum.with_index()
     |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
       "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB[blur#{idx}]"
+    end)
+  end
+
+  defp burn_in_filename(sources) do
+    sources
+    |> Enum.with_index()
+    |> Enum.map(fn {{path, _from, _to, _opts}, idx} ->
+      text = String.replace(path, ~r{[^A-Za-z0-9_.-]}, "")
+
+      "[blur#{idx}]drawtext=fontcolor=white:x=5:y=5:shadowx=1:shadowy=1:text='#{text}'[blur#{idx}]"
     end)
   end
 

@@ -33,6 +33,7 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     ##############################################################################################
 
     VELO_BLUR=1                 also preview the detected blurs. Recommended off, since it is slow.
+    VELO_BURN=0                 burn in filename of segment. Default on.
     VELO_HOST_FFMPEG=1          use ffmpeg executable from host. This is faster than running
                                 ffmpeg in docker, but might fail depending on your ffmpeg build.
                                 Recommended on if it works for you.
@@ -95,11 +96,12 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
 
   defp stream_video(rendered, args) when is_module(rendered) do
     blur = System.get_env("VELO_BLUR", nil) == "1"
+    burn = System.get_env("VELO_BURN", "1") == "1"
     start_from = List.first(args)
     start_from_text = start_from || "the start"
     info = "previewing #{rendered.hash()} – #{rendered.name()} from #{start_from_text}"
     IO.puts(:stderr, info)
-    cmd = Video.Renderer.preview_cmd(rendered, blur, start_from)
+    cmd = Video.Renderer.preview_cmd(rendered, blur, burn, start_from)
 
     if System.get_env("VELO_HOST_FFMPEG") == "1" do
       exec_pipe(cmd, info)
