@@ -8,32 +8,36 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
       "Engere Fahrbahn mit Tempo-25 und KFZ-Einbahnstraße Richtung Gänsemarkt. Radverkehr ausschließlich auf der Fahrbahn. Alter Radweg wird zum Gehweg."
 
   def type(), do: :planned
-  def start(), do: ~d[2024Q3]
-  def stop(), do: ~d[2024-12]
+  def start(), do: ~d[2024-07-15]
+  def stop(), do: ~d[2025-09-30]
 
   def tags(), do: ["4", "1GR", "FR1"]
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", "Mai 2024",
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/5042dadf-7efd-4ef9-981d-5127a1c12775"},
       {"Lagepläne und Erläuterungen, fertiger Entwurf", "Mai 2024",
        "https://fragdenstaat.de/anfrage/neuer-jungfernstieg/#nachricht-902407"}
     ]
   end
 
+  @attrib {"Ingenieurpartnerschaft Diercks Schröder", "https://www.ids-hh.de/kontakt/"}
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      [
-        {"Bruun & Möllers GmbH & Co.", "https://www.bm-la.de/kontakt"},
-        {"Ingenieurpartnerschaft Diercks Schröder", "https://www.ids-hh.de/kontakt/"}
-      ],
-      {
-        %{lat: 53.554621877, lon: 9.990216915},
-        %{lat: 53.557846271, lon: 9.992627205},
-        %{lat: 53.557476384, lon: 9.994030108},
-        %{lat: 53.554251360, lon: 9.991623515}
-      }
-    )
+    [
+      Data.MapImage.new(__MODULE__, @attrib, 1, {
+        %{lat: 53.554446481, lon: 9.990439730},
+        %{lat: 53.556068846, lon: 9.991991914},
+        %{lat: 53.555834219, lon: 9.992686438},
+        %{lat: 53.554211854, lon: 9.991134254}
+      }),
+      Data.MapImage.new(__MODULE__, @attrib, 2, {
+        %{lat: 53.556062886, lon: 9.991542699},
+        %{lat: 53.557777513, lon: 9.992552582},
+        %{lat: 53.557466326, lon: 9.994048813},
+        %{lat: 53.555751699, lon: 9.993038930}
+      })
+    ]
   end
 
   def text(assigns) do

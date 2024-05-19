@@ -15,7 +15,7 @@ defmodule Data.Article.Static.Alltagsroute10 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "10",
         direction: :forward,
         from: "Innenstadt",
@@ -23,28 +23,28 @@ defmodule Data.Article.Static.Alltagsroute10 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Neugraben",
         historic: %{
+          "c00df68cbe53215d492f90159599535d" => ~d[2024-05],
           "68237f112e08a6f5789aab8f94012e0f" => ~d[2023-06],
           "f1964c8fe5ee29abc54cebf0c317a47b" => ~d[2022-05],
           "66f557954990887bd48abc56f496cd47" => ~d[2021-07]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015866", "00:00:33.667", :end},
-          {"2023-06-03-vr10-vr7/GX015867", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015868", :start, "00:00:32.933"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013714", "00:00:34.301", "00:00:47.681"},
-          {"2023-06-03-vr10-vr7/GX015870", "00:00:28.695", :end},
-          {"2023-06-03-vr10-vr7/GX015871", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015872", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015873", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015874", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015875", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015877", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015878", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015880", :start, :end}
+          {"2024-05-18-vr10/GX017610", "00:00:26.960", :end},
+          {"2024-05-18-vr10/GX017611", :start, :end},
+          {"2024-05-18-vr10/GX017612", :start, :end},
+          {"2024-05-18-vr10/GX017613", :start, :end},
+          {"2024-04-23-gr2/GX017268", :start, "00:00:34.434"},
+          {"2024-05-18-vr10/GX017614", "00:00:42.209", :end},
+          {"2024-05-18-vr10/GX017615", :start, :end},
+          {"2024-05-18-vr10/GX017616", :start, :end},
+          {"2024-05-18-vr10/GX017617", :start, :end},
+          {"2024-05-18-vr10/GX017618", :start, :end},
+          {"2024-05-18-vr10/GX017619", :start, "00:01:18.845"},
+          {"2024-05-18-vr10/GX017621", "00:00:05.973", "00:01:34.075"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "10",
         direction: :backward,
         from: "Neugraben",
@@ -52,31 +52,26 @@ defmodule Data.Article.Static.Alltagsroute10 do
         parent_ref: __MODULE__,
         text: "von Neugraben in die Innenstadt",
         historic: %{
+          "e6a8a43ec8cd9ef182522b5f383784cc" => ~d[2024-05],
           "a03ee11a72a828fded2e4d98135e8a1d" => ~d[2023-06],
           "601d3041a6e9da1aaeccbacbea6eeb62" => ~d[2022-05],
           "a1e2dba44dfcd2b8e2df7343d1f6773a" => ~d[2021-07]
         },
         videos: [
-          {"2023-06-03-vr10-vr7/GX015881", :start, "00:01:19.613"},
-          {"2023-06-03-vr10-vr7/GX015882", "00:00:05.372", :end},
-          {"2023-06-03-vr10-vr7/GX015883", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015884", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015885", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015886", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015887", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015888", :start, "00:01:55.482"},
-          {"2023-06-03-vr10-vr7/GX015889", "00:00:07.441", :end},
-          {"2023-06-03-vr10-vr7/GX015890", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015891", :start, "00:00:10.177"},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013726", "00:00:00.467", :end},
-          {"2022-05-07-v10-v7-u-rodigallee/GX013727", :start, "00:00:02.369"},
-          {"2023-06-03-vr10-vr7/GX015892", "00:00:02.803", :end},
-          {"2023-06-03-vr10-vr7/GX015893", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015894", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015895", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015896", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015897", :start, :end},
-          {"2023-06-03-vr10-vr7/GX015898", :start, "00:00:13.914"}
+          {"2024-05-18-vr10/GX017621", "00:01:43.750", "00:03:08.121"},
+          {"2024-05-18-vr10/GX017622", :start, :end},
+          {"2024-05-18-vr10/GX017623", :start, :end},
+          {"2024-05-18-vr10/GX017624", :start, :end},
+          {"2024-05-18-vr10/GX017625", :start, :end},
+          {"2024-05-18-vr10/GX017626", :start, "00:02:51.638"},
+          {"2024-04-21-vr2-rand/GX017209", "00:00:00.033", "00:00:09.343"},
+          {"2024-05-18-vr10/GX017627", "00:00:25.926", :end},
+          {"2024-05-18-vr10/GX017628", :start, :end},
+          {"2024-05-18-vr10/GX017629", :start, :end},
+          {"2024-05-18-vr10/GX017630", :start, :end},
+          {"2024-05-18-vr10/GX017631", :start, :end},
+          {"2024-05-18-vr10/GX017632", :start, :end},
+          {"2024-05-18-vr10/GX017633", :start, "00:00:28.356"}
         ]
       }
     ]
