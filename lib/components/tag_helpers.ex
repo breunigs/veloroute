@@ -192,7 +192,7 @@ defmodule Components.TagHelpers do
   slot(:inner_block)
 
   def h4_planning(assigns) do
-    if assigns.ref.map_image do
+    if assigns.ref.map_image() do
       ~H"""
       <div class="headlineForm">
         <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
@@ -297,7 +297,7 @@ defmodule Components.TagHelpers do
     articles = Enum.to_list(articles)
     filtered = if filter, do: Enum.filter(articles, filter), else: articles
     hidden = length(articles) - length(filtered)
-    grouped = Util.ordered_group_by(filtered, grouper || (& &1.updated_at.year))
+    grouped = Util.ordered_group_by(filtered, grouper || (& &1.updated_at().year))
     assigns = assign(assigns, %{grouped: grouped, hidden: hidden})
 
     ~H"""

@@ -1,12 +1,15 @@
 defmodule Mix.Tasks.Velo.Videos.Unused do
   use Mix.Task
+  import Guards
   @requirements ["app.start"]
 
   @shortdoc "List unused/unreferenced rendered videos"
   def run(_args) do
     Video.Dir.must_exist!()
 
-    in_dir = File.ls!(Settings.video_target_dir_abs()) |> MapSet.new()
+    in_dir =
+      File.ls!(Settings.video_target_dir_abs()) |> Enum.filter(&valid_hash/1) |> MapSet.new()
+
     in_code = Video.Generator.all() |> Enum.map(& &1.hash()) |> MapSet.new()
 
     {current, historic} =

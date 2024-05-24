@@ -114,7 +114,7 @@ defmodule Data.Article.Static.Datenexport do
 
     text =
       if is_module(video) do
-        "#{video.name} #{recording_date(video, timestamp)} #{position(video, timestamp)}"
+        "#{video.name()} #{recording_date(video, timestamp)} #{position(video, timestamp)}"
       else
         "unbekannt"
       end

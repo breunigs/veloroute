@@ -15,20 +15,20 @@ defmodule Data.GeoJSON do
   end
 
   defp markers(map) do
-    map.nodes()
+    map.nodes
     |> Map.Element.filter_by_tag(:type, ["marker", "warning"])
     |> Enum.map(&as_geojson(&1))
   end
 
   defp articles(map) do
-    map.ways()
+    map.ways
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.map(&as_geojson(&1))
     |> Util.compact()
   end
 
   defp article_polylabels(map) do
-    map.ways()
+    map.ways
     |> Map.Element.filter_by_tag(:type, "article")
     |> Enum.map(fn
       %Map.Way{tags: %{hide_from_map: true}} ->
@@ -69,14 +69,14 @@ defmodule Data.GeoJSON do
   end
 
   defp routeless_ways(map) do
-    map.ways()
+    map.ways
     |> Map.Element.filter_by_tag(:type, ["detour", "planned"])
     |> Enum.map(&as_geojson(&1))
   end
 
   @relevant_geojson_roles ["forward", "backward", ""]
   defp routes(map) do
-    map.relations()
+    map.relations
     |> Map.values()
     |> add_overlap_info(:alltag)
     |> add_overlap_info(:freizeit)

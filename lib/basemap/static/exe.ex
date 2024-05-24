@@ -33,7 +33,6 @@ defmodule Basemap.Static.Exe do
          {:ok, _files} <- File.cp_r(@cache_path, Path.dirname(exe())) do
       :ok
     else
-      %{result: result} -> result
       {:error, posix, file} -> {:error, "#{posix} #{file}"}
       error -> error
     end

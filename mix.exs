@@ -85,12 +85,12 @@ defmodule Veloroute.MixProject do
       {:phoenix, "~> 1.7.11"},
       {:plug_cowboy, "~> 2.3"},
       {:polyline, "~> 1.3"},
-      {:reverse_proxy_plug, "~> 2.1"},
+      {:reverse_proxy_plug, "~> 3.0"},
       {:saxy, "~> 1.0"},
       {:stream_split, "~> 0.1.0"},
-      {:sweet_xml, "~> 0.6"},
+      {:sweet_xml, "~> 0.7"},
       {:temp, "~> 0.4"},
-      {:tesla, "~> 1.8.0"},
+      {:tesla, "~> 1.9.0"},
       {:tqdm, runtime: is_dev, git: "https://github.com/breunigs/tqdm_elixir", branch: "updates"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]

@@ -91,7 +91,7 @@ defmodule Video.Rendered do
   def start_from(rendered, point_or_time)
 
   def start_from(rendered, nil) do
-    [a, b | _rest] = rendered.coords
+    [a, b | _rest] = rendered.coords()
     Map.put(a, :bearing, Geo.CheapRuler.bearing(a, b))
   end
 
@@ -120,16 +120,16 @@ defmodule Video.Rendered do
 
   def start_from(rendered, point) do
     %{point: %{lon: lon, lat: lat}, t: t, index: idx} =
-      Geo.CheapRuler.closest_point_on_line(rendered.coords, point)
+      Geo.CheapRuler.closest_point_on_line(rendered.coords(), point)
 
     {idx, time} =
-      if idx == length(rendered.coords) - 1 do
-        {idx - 1, Enum.at(rendered.coords, idx).time_offset_ms}
+      if idx == length(rendered.coords()) - 1 do
+        {idx - 1, Enum.at(rendered.coords(), idx).time_offset_ms}
       else
         {idx, nil}
       end
 
-    [prev, next] = Enum.slice(rendered.coords, idx..(idx + 1))
+    [prev, next] = Enum.slice(rendered.coords(), idx..(idx + 1))
     bearing = Geo.CheapRuler.bearing(prev, next)
     time = time || prev.time_offset_ms + t * (next.time_offset_ms - prev.time_offset_ms)
 

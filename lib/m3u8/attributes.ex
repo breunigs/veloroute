@@ -9,7 +9,7 @@ defmodule M3U8.Attributes do
   ## Examples
 
       iex> M3U8.Attributes.parse(
-      ...>   'BANDWIDTH=4950000,RESOLUTION=1280x720,CODECS="av01.0.08M.08"'
+      ...>   ~s|BANDWIDTH=4950000,RESOLUTION=1280x720,CODECS="av01.0.08M.08"|
       ...> )
       {:ok, %{
         "BANDWIDTH" => 4950000,
@@ -17,7 +17,7 @@ defmodule M3U8.Attributes do
         "RESOLUTION" => %{height: 720, width: 1280}
       }}
 
-      iex> M3U8.Attributes.parse('URI="stream_0.m4s",BYTERANGE="892@0"')
+      iex> M3U8.Attributes.parse(~s|URI="stream_0.m4s",BYTERANGE="892@0"|)
       {:ok, %{
         "URI" => "stream_0.m4s",
         "BYTERANGE" => %{length: 892, offset: 0}

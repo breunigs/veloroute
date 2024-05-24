@@ -314,7 +314,7 @@ defmodule VelorouteWeb.Live.VideoState do
           optional(atom()) => any()
         }) :: binary()
   defp video_poster(video, start_from) do
-    ~p"/images/thumbnails/#{video.hash}/#{start_from.time_offset_ms}"
+    ~p"/images/thumbnails/#{video.hash()}/#{start_from.time_offset_ms}"
   end
 
   defp extract_start(state, art) when is_module(art) do
