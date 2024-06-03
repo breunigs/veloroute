@@ -9,8 +9,6 @@ defmodule Data.Article.Static.Suche do
   def tags(), do: []
 
   def text(assigns) do
-    assigns = assign(assigns, :search_results, search(assigns))
-
     ~H"""
     <h3><label for="query">Suche 🔎</label></h3>
     <form method="GET" action="/suche" onsubmit="return false">
@@ -18,30 +16,33 @@ defmodule Data.Article.Static.Suche do
     </form>
 
     <.noindex>
-      <%= if @search_results == [] && @search_query != "" do %>
-        <p>Leider keine Ergebnisse.</p>
-      <% else %>
-      <ul class="spaced" role="list" aria-label="Suchergebnisse">
-        <%= for result <- @search_results do %>
-          <li>
-            <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
-            <%= Search.Result.to_html(result) %>
-          </li>
-        <% end %>
-      </ul>
-      <% end %>
+      <.async_result :let={search_results} assign={@search_results}>
+        <:loading><p>Lädt…</p></:loading>
+        <:failed :let={error}>
+          <p>Fehler in der Suchfunktion:</p>
+          <tt><%= inspect(error) %></tt>
+        </:failed>
+        <.results results={search_results} query={@search_query}/>
+      </.async_result>
     </.noindex>
     """
   end
 
-  defp search(%{search_query: query, search_bounds: bbox}) do
-    bbox = Geo.BoundingBox.parse(bbox) || Settings.initial()
+  defp results(%{results: sr, query: sq} = assigns) when sr == [] and sq != "" do
+    ~H{<p>Leider keine Ergebnisse.</p>}
+  end
 
-    Search.Meilisearch.Runner.query(query, bbox)
-    |> Enum.reject(&is_nil/1)
-    |> Search.Result.merge_same()
-    |> Search.Result.sort()
-    |> Enum.take(15)
+  defp results(%{results: sr} = assigns) when is_list(sr) do
+    ~H"""
+    <ul class="spaced" role="list" aria-label="Suchergebnisse">
+      <%= for result <- @results do %>
+        <li>
+          <!-- <%= if debug?(), do: {:safe, (result.source)} %> -->
+          <%= Search.Result.to_html(result) %>
+        </li>
+      <% end %>
+    </ul>
+    """
   end
 
   defp debug?() do

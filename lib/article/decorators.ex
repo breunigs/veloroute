@@ -54,7 +54,7 @@ defmodule Article.Decorators do
     default = %{
       __changed__: %{},
       search_query: nil,
-      search_bounds: nil,
+      search_results: Phoenix.LiveView.AsyncResult.ok([]),
       limit_to_map_bounds: false,
       show_map_image: false,
       enable_drawing_tools: false,

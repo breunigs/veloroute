@@ -10,7 +10,7 @@ defmodule Article.Renderer do
   attr :map_bounds, :any
   attr :lang, :string
   attr :search_query, :string
-  attr :search_bounds, :any
+  attr :search_results, :any
   attr :enable_drawing_tools, :boolean, default: false
   attr :limit_to_map_bounds, :boolean, default: false
   attr :show_map_image, :boolean, default: false

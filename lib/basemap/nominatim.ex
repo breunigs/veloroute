@@ -360,7 +360,11 @@ defmodule Basemap.Nominatim do
           ST_YMax(ST_Envelope(ST_UNION(geometry)))
         ) AS bbox,
         combo.parents_name,
-        combo.parents_postcode
+        combo.parents_postcode,
+        CASE
+          WHEN '#{Settings.boost_search_results_within()}' = ANY(combo.parents_name) THEN 1
+          ELSE 30
+        END AS rank_boosted_areas
       FROM combo
       GROUP BY
         combo.class,
@@ -407,7 +411,11 @@ defmodule Basemap.Nominatim do
             ST_Y(interpol.centroid)
           ) AS bbox,
         combo.parents_name,
-        combo.parents_postcode
+        combo.parents_postcode,
+        CASE
+          WHEN '#{Settings.boost_search_results_within()}' = ANY(combo.parents_name) THEN 1
+          ELSE 30
+        END AS rank_boosted_areas
       FROM combo
       INNER JOIN interpol ON interpol.parent_place_id = combo.place_id
       WHERE combo.name->'name' IS NOT NULL

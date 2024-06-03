@@ -21,17 +21,16 @@ defmodule Search.Meilisearch.Runner do
            queue: [queued_task()]
          }
 
-  @spec query(binary() | nil, Geo.BoundingBox.like()) :: [Search.Result.t()]
-  def query(nil, _bbox), do: []
-  def query("", _bbox), do: []
+  @spec query(binary() | nil, Geo.BoundingBox.like()) ::
+          {:ok, [Search.Result.t()]} | {:error, binary()}
+  def query(nil, _bbox), do: {:ok, []}
+  def query("", _bbox), do: {:ok, []}
 
   def query(query, bbox) do
     try do
-      GenServer.call(__MODULE__, {:search, query, bbox}, 1000)
+      GenServer.call(__MODULE__, {:search, query, bbox}, :infinity)
     catch
-      :exit, err ->
-        Logger.warning(inspect(err))
-        []
+      :exit, err -> {:error, inspect(err)}
     end
   end
 
@@ -299,29 +298,38 @@ defmodule Search.Meilisearch.Runner do
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 
-    lookup = Enum.into(@indexers, %{}, &{&1.id(), &1})
-
     @indexers
     |> Enum.into(%{}, fn indexer ->
       {indexer.id(), indexer.params(query, lat, lon)}
     end)
     |> Search.Meilisearch.API.multi_search()
-    |> Enum.flat_map(fn {index, results} ->
-      indexer = lookup[index]
-
-      results =
-        if function_exported?(indexer, :maybe_merge, 1),
-          do: indexer.maybe_merge(results),
-          else: results
-
-      Enum.map(results, fn result ->
-        sr = indexer.format(result)
-        if sr, do: Map.put(sr, :source, inspect(result, pretty: true))
-      end)
-    end)
-    |> Util.compact()
-    |> Enum.reject(fn %{relevance: rel} -> rel < @min_relevance end)
+    |> post_process()
   end
+
+  defp post_process({:ok, list}) do
+    lookup = Enum.into(@indexers, %{}, &{&1.id(), &1})
+
+    {:ok,
+     Enum.flat_map(list, fn {index, results} ->
+       indexer = lookup[index]
+
+       results =
+         if function_exported?(indexer, :maybe_merge, 1),
+           do: indexer.maybe_merge(results),
+           else: results
+
+       Enum.map(results, fn result ->
+         sr = indexer.format(result)
+         if sr, do: Map.put(sr, :source, inspect(result, pretty: true))
+       end)
+     end)
+     |> Util.compact()
+     |> Enum.reject(fn %{relevance: rel} -> rel < @min_relevance end)
+     |> Search.Result.merge_same()
+     |> Search.Result.sort()}
+  end
+
+  defp post_process({:error, reason}), do: {:error, reason}
 
   @spec index(state()) :: state()
   defp index(%{indexers: []} = state), do: state

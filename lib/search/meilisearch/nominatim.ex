@@ -17,13 +17,7 @@ defmodule Search.Meilisearch.Nominatim do
     %{
       q: query,
       limit: 10,
-      sort: [
-        "rank_search:asc",
-        "rank_address:asc",
-        "importance:desc",
-        "_geoPoint(#{lat}, #{lon}):asc",
-        "admin_level:asc"
-      ]
+      sort: ["_geoPoint(#{lat}, #{lon}):asc"]
     }
   end
 
@@ -81,7 +75,7 @@ defmodule Search.Meilisearch.Nominatim do
       bounds: bbox,
       center: Geo.CheapRuler.center(bbox),
       name: name,
-      relevance: f.("_rankingScore"),
+      relevance: f.("_rankingScore") + (30 - f.("rank_boosted_areas")) / 1000,
       type: if(f.("class") in ["place"], do: "poi", else: ""),
       subtext: subtext
     }
@@ -212,11 +206,25 @@ defmodule Search.Meilisearch.Nominatim do
 
     %{
       displayedAttributes:
-        ~w(id class type name address parents_name parents_postcode extratags bbox boost),
+        ~w(id class type name address parents_name parents_postcode extratags bbox boost rank_boosted_areas rank_search rank_address importance),
       # order is from most important to least important
       searchableAttributes: ~w(name boost address type parents_name type extratags),
-      sortableAttributes: ~w(importance rank_search rank_address _geo admin_level),
-      synonyms: synonyms
+      sortableAttributes:
+        ~w(importance rank_search rank_address rank_boosted_areas _geo admin_level),
+      synonyms: synonyms,
+      proximityPrecision: "byAttribute",
+      rankingRules: ~w(words
+        typo
+        proximity
+        attribute
+        rank_boosted_areas:asc
+        rank_search:asc
+        rank_address:asc
+        importance:desc
+        admin_level:asc
+        sort
+        exactness
+      )
     }
   end
 

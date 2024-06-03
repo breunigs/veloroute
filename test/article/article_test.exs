@@ -22,7 +22,7 @@ defmodule ArticleTest do
             Article.Decorators.html(art, %{
               __changed__: %{},
               search_query: nil,
-              search_bounds: nil,
+              search_results: Phoenix.LiveView.AsyncResult.ok([]),
               limit_to_map_bounds: false,
               show_map_image: false
             })

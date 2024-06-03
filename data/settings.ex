@@ -78,6 +78,8 @@ defmodule Settings do
       position: %{lat: 53.55044, lon: 9.99440}
     }
 
+  def boost_search_results_within, do: "Hamburg"
+
   # no trailing slash
   def url, do: "https://veloroute.hamburg"
 

@@ -3,6 +3,9 @@ defmodule VelorouteWeb.FrameLive do
   require Logger
   import Guards
 
+  @search_page Data.Article.Static.Suche
+  @search_page_name @search_page.name()
+
   @default_bounds struct(Geo.BoundingBox, Settings.initial())
   @initial_state [
     prev_page: nil,
@@ -12,8 +15,8 @@ defmodule VelorouteWeb.FrameLive do
     article_date: nil,
     article_title: nil,
     article_summary: nil,
-    search_query: nil,
-    search_bounds: nil,
+    search_query: "",
+    search_results: nil,
     tmp_last_article_set: nil,
     limit_to_map_bounds: false,
     show_map_image: false,
@@ -36,7 +39,12 @@ defmodule VelorouteWeb.FrameLive do
         map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
       )
 
-    socket = socket |> assign(state) |> maybe_run_events_from_url(params)
+    socket =
+      socket
+      |> assign(state)
+      |> maybe_run_events_from_url(params)
+      |> search(params["search_query"])
+
     {:ok, socket}
   end
 
@@ -89,27 +97,12 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_event("search", %{"search_query" => value}, socket) do
-    handle_event("search", %{"value" => value}, socket)
+  def handle_event("search", %{"search_query" => query}, socket) do
+    {:noreply, search(socket, query) |> show_search_page()}
   end
 
-  def handle_event("search", %{"value" => ""}, socket) do
-    {:noreply, socket}
-  end
-
-  @search_page "suche"
   def handle_event("search", %{"value" => query}, socket) do
-    query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
-    search_article = Article.List.find_exact(@search_page)
-
-    socket =
-      socket
-      |> assign(:search_query, query || "")
-      |> assign(:search_bounds, socket.assigns[:map_bounds])
-
-    socket = push_patch(socket, to: article_path(socket, search_article))
-
-    {:noreply, socket}
+    {:noreply, search(socket, query) |> show_search_page()}
   end
 
   def handle_event("video-reverse", attr, socket) do
@@ -267,9 +260,9 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
-  def handle_params(%{"page" => @search_page, "search_query" => query} = params, nil, socket) do
+  def handle_params(%{"page" => @search_page_name, "search_query" => query} = params, nil, socket) do
     params
-    |> Map.put("article", @search_page)
+    |> Map.put("article", @search_page_name)
     |> handle_params(nil, assign(socket, :search_query, query))
   end
 
@@ -327,6 +320,25 @@ defmodule VelorouteWeb.FrameLive do
     socket
     |> put_flash(:info, 404)
     |> push_patch(to: ~p"/?#{url_query(socket)}")
+  end
+
+  defp search(socket, query) do
+    query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
+    bbox = Geo.BoundingBox.parse(socket.assigns[:map_bounds]) || Settings.initial()
+
+    querier = fn ->
+      with {:ok, results} <- Search.Meilisearch.Runner.query(query, bbox) do
+        {:ok, %{search_results: results}}
+      end
+    end
+
+    socket
+    |> assign(:search_query, query)
+    |> assign_async(:search_results, querier)
+  end
+
+  defp show_search_page(socket) do
+    push_patch(socket, to: article_path(socket, @search_page))
   end
 
   defp set_bounds(socket, article, bounds_param)

@@ -3,7 +3,7 @@ defmodule Search.Meilisearch.API do
   use Tesla
 
   @index_timeout_ms 5 * 60 * 1000
-  @general_timeout_ms 1500
+  @general_timeout_ms 10_000
 
   plug Tesla.Middleware.BaseUrl, "http://localhost:7700/"
   plug Tesla.Middleware.JSON
@@ -101,7 +101,7 @@ defmodule Search.Meilisearch.API do
     end
   end
 
-  @spec multi_search(%{atom() => map()}) :: %{atom() => list()}
+  @spec multi_search(%{atom() => map()}) :: {:ok, %{atom() => list()}} | {:error, binary()}
   def multi_search(queries) do
     payload = %{
       "queries" =>
@@ -114,14 +114,13 @@ defmodule Search.Meilisearch.API do
 
     with {:ok, %{body: %{"results" => results}}} <-
            post("/multi-search", payload, opts: @adapter_opts_general) do
-      Enum.into(results, %{}, fn %{"indexUid" => index, "hits" => hits} ->
-        {String.to_existing_atom(index), hits}
-      end)
+      {:ok,
+       Enum.into(results, %{}, fn %{"indexUid" => index, "hits" => hits} ->
+         {String.to_existing_atom(index), hits}
+       end)}
     else
       other ->
-        Logger.warning("failed to multi-query for #{inspect(payload)}. Result: #{inspect(other)}")
-
-        []
+        {:error, "failed to multi-query for #{inspect(payload)}. Result: #{inspect(other)}"}
     end
   end
 
