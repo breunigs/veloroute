@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Rugenbarg do
 
   def type(), do: :planned
   def start(), do: ~d[2024-06-17]
-  def stop(), do: ~d[2025-02-23]
+  def stop(), do: ~d[2025-02-02]
 
   def tags(), do: []
 

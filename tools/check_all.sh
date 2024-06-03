@@ -14,9 +14,5 @@ echo
 echo "Baustellen & Sitzungsdienst:"
 (cd .. && mix do velo.feeds.bauweiser, velo.feeds.sitzungsdienst, velo.feeds.lsbg)
 
-echo ""
-echo "manuell:"
-echo "* https://www.steg-hamburg.de/veloroute-altona.html"
-
 cd ..
 mix list_potentially_outdated

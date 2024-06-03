@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
     do: "Meist 2,5m breite geschützte Radfahrstreifen; Hochbordradwege an zwei Stellen."
 
   def start(), do: ~d[2023-10-04]
-  def stop(), do: ~d[2024-11-30]
+  def stop(), do: ~d[2025-04-01]
   def construction_site_id_hh(), do: [470_023, 674_377]
 
   def type(), do: :construction
