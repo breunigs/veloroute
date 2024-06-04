@@ -439,20 +439,21 @@ defmodule VelorouteWeb.Live.VideoState do
   use Memoize
 
   defmemop new() do
-    sett = Settings.start_image()
-
-    default_tracks =
-      Article.List.find_exact(sett.article_id).tracks()
-      |> Enum.filter(&(&1.direction == sett.direction))
+    %{direction: dir, position: pos, article_id: art} = Settings.start_image()
+    default_tracks = Article.List.find_exact(art).tracks()
 
     %__MODULE__{
       forward_track: nil,
       backward_track: nil,
       forward: nil,
       backward: nil,
-      start: sett.position,
-      direction: sett.direction
+      start: pos,
+      direction: dir
     }
-    |> update_from_tracks(default_tracks, sett.position)
+    |> update_from_tracks(default_tracks, pos)
+    |> case do
+      %{direction: ^dir} = state -> state
+      state -> reverse_direction(state)
+    end
   end
 end
