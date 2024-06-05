@@ -483,7 +483,11 @@ function way_function()
   if MaybeWritePOI() then return end
 
   -- Catch-all
-  if Holds("name") and (write_name or (building~="" and building~="apartments"))  then
+  if Holds("name") and (
+    write_name
+    or (building~="" and building~="apartments")
+    or Find("place") == "square"
+  ) then
     local area = Area()
     local minZoom = 18
     if     area > 2500 then minZoom = 15
