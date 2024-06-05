@@ -43,6 +43,15 @@ function node_function()
     Attribute("housenumber", housenumber)
   end
 
+  -- Mini Roundabout
+  if Find("highway") == "mini_roundabout" then
+    Layer("transportation", false)
+    local minZoom = 15
+    SetMinZoom(minZoom)
+    SetZOrder()
+    AttributeNumeric("mini_roundabout", 1)
+  end
+
   -- Write 'place'
   local place = Find("place")
   if place ~= "" then

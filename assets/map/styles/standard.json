@@ -1327,6 +1327,30 @@
       }
     },
     {
+      "id": "highway-2-round-casing-copy",
+      "type": "circle",
+      "source": "merged",
+      "source-layer": "transportation",
+      "minzoom": 15,
+      "filter": ["all", ["has", "mini_roundabout"]],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "circle-radius": {"stops": [[15, 5], [22, 600]], "base": 2},
+        "circle-opacity": ["interpolate", ["linear"], ["zoom"], 15, 0, 15.5, 1],
+        "circle-color": "rgba(0, 0, 0, 0)",
+        "circle-stroke-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          15,
+          1,
+          22,
+          2
+        ],
+        "circle-stroke-color": "#d6d9e6"
+      }
+    },
+    {
       "id": "highway-2-private",
       "type": "line",
       "source": "merged",
@@ -1715,6 +1739,45 @@
           18,
           12
         ]
+      }
+    },
+    {
+      "id": "highway-2-round",
+      "type": "circle",
+      "source": "merged",
+      "source-layer": "transportation",
+      "minzoom": 15,
+      "filter": ["all", ["has", "mini_roundabout"]],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "circle-radius": {"stops": [[15, 5], [22, 600]], "base": 2},
+        "circle-opacity": ["interpolate", ["linear"], ["zoom"], 15, 0, 15.5, 1],
+        "circle-color": "#fff",
+        "circle-stroke-width": {"stops": [[6, 0], [10, 0]]}
+      }
+    },
+    {
+      "id": "highway-2-round-cutout",
+      "type": "circle",
+      "source": "merged",
+      "source-layer": "transportation",
+      "minzoom": 15,
+      "filter": ["all", ["has", "mini_roundabout"]],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "circle-radius": {"stops": [[15, 0], [22, 250]], "base": 2},
+        "circle-opacity": ["interpolate", ["linear"], ["zoom"], 15, 0, 15.5, 1],
+        "circle-color": "#E6E4E0",
+        "circle-stroke-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          15,
+          1,
+          22,
+          2
+        ],
+        "circle-stroke-color": "#d6d9e6"
       }
     },
     {
