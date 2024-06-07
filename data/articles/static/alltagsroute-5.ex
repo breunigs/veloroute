@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Alltagsroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "5",
         direction: :forward,
         from: "Innenstadt",
@@ -24,31 +24,31 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "aus der Innenstadt nach Duvenstedt",
         historic: %{
+          "75bec604005ee1e1bd856b4936ceaf23" => ~d[2024-06],
           "3e4199822d555e6cd92ca1a971b306c8" => ~d[2023-07],
           "e2af2b96121f8a6d64a7def8e6fa5ea6" => ~d[2022-04],
           "8f35f063edcc6c17f5e2cb22419b8b66" => ~d[2021-09]
         },
         videos: [
-          {"2023-07-22-vr5/GX016212", "00:00:02.903", :end},
-          {"2023-07-22-vr5/GX016213", :start, :end},
-          {"2023-07-22-vr5/GX016214", :start, :end},
-          {"2023-07-22-vr5/GX016215", :start, :end},
-          {"2023-07-22-vr5/GX016231", :start, :end},
-          {"2023-07-22-vr5/GX016232", :start, :end},
-          {"2023-07-22-vr5/GX016233", :start, :end},
-          {"2023-07-22-vr5/GX016234", :start, :end},
-          {"2023-07-22-vr5/GX016235", :start, :end},
-          {"2023-07-22-vr5/GX016236", :start, :end},
-          {"2023-07-22-vr5/GX016237", :start, :end},
-          {"2023-07-22-vr5/GX016238", :start, :end},
-          {"2023-07-22-vr5/GX016239", :start, :end},
-          {"2023-07-22-vr5/GX016240", :start, :end},
-          {"2023-07-22-vr5/GX016241", :start, :end},
-          {"2023-07-22-vr5/GX016242", :start, :end}
+          {"2024-06-06-vr5/GX017638", "00:00:16.717", :end},
+          {"2024-06-06-vr5/GX017639", :start, :end},
+          {"2024-06-06-vr5/GX017640", :start, :end},
+          {"2024-06-06-vr5/GX017641", :start, :end},
+          {"2024-06-06-vr5/GX017642", :start, :end},
+          {"2024-06-06-vr5/GX017643", :start, :end},
+          {"2024-06-06-vr5/GX017657", :start, :end},
+          {"2024-06-06-vr5/GX017658", :start, :end},
+          {"2024-06-06-vr5/GX017659", :start, :end},
+          {"2024-06-06-vr5/GX017660", :start, "00:00:24.258"},
+          {"2024-06-06-vr5/GX017660", "00:00:28.295", :end},
+          {"2024-06-06-vr5/GX017661", :start, :end},
+          {"2024-06-06-vr5/GX017662", :start, :end},
+          {"2024-06-06-vr5/GX017663", :start, :end},
+          {"2024-06-06-vr5/GX017664", :start, "00:03:31.836"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "5",
         direction: :backward,
         from: "Duvenstedt",
@@ -56,31 +56,33 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "von Duvenstedt in die Innenstadt",
         historic: %{
+          "34c78a47e7aad8e508362ccddff7f40b" => ~d[2024-06],
           "4d16236f1880945ff73319526eff409f" => ~d[2023-07],
           "4ad987f9aae61fb035d7317b944dea10" => ~d[2022-04],
           "34568a80252f5daab563eb9ebce3893e" => ~d[2021-06]
         },
         videos: [
-          {"2023-07-22-vr5/GX016243", "00:00:00.868", :end},
-          {"2023-07-22-vr5/GX016244", :start, :end},
-          {"2023-07-22-vr5/GX016245", :start, :end},
-          {"2023-07-22-vr5/GX016246", :start, :end},
-          {"2023-07-22-vr5/GX016247", :start, :end},
-          {"2023-07-22-vr5/GX016248", :start, :end},
-          {"2023-07-22-vr5/GX016249", :start, :end},
-          {"2023-07-22-vr5/GX016250", :start, :end},
-          {"2023-07-22-vr5/GX016251", :start, :end},
-          {"2023-07-22-vr5/GX016252", :start, :end},
-          {"2023-07-22-vr5/GX016253", :start, :end},
-          {"2023-07-22-vr5/GX016254", :start, :end},
-          {"2023-07-22-vr5/GX016255", :start, :end},
-          {"2023-07-22-vr5/GX016256", :start, :end},
-          {"2023-07-22-vr5/GX016257", :start, :end},
-          {"2023-07-22-vr5/GX016258", :start, "00:00:29.897"}
+          {"2024-06-06-vr5/GX017664", "00:03:32.879", :end},
+          {"2024-06-06-vr5/GX017665", :start, :end},
+          {"2024-06-06-vr5/GX017666", :start, :end},
+          {"2024-06-06-vr5/GX017667", :start, "00:02:41.261"},
+          {"2024-06-06-vr5/GX017668", :start, :end},
+          {"2024-06-06-vr5/GX017669", :start, :end},
+          {"2024-06-06-vr5/GX017670", :start, :end},
+          {"2024-06-06-vr5/GX017671", :start, :end},
+          {"2024-06-06-vr5/GX017672", :start, :end},
+          {"2024-06-06-vr5/GX017673", :start, :end},
+          {"2024-06-06-vr5/GX017674", :start, :end},
+          {"2024-06-06-vr5/GX017675", :start, :end},
+          {"2024-06-06-vr5/GX017676", :start, :end},
+          {"2024-06-06-vr5/GX017677", :start, :end},
+          {"2024-06-06-vr5/GX017678", :start, :end},
+          {"2024-06-06-vr5/GX017679", :start, :end},
+          {"2024-06-06-vr5/GX017680", :start, "00:00:11.676"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "5N",
         direction: :forward,
         from: "Hamburger Meile",
@@ -88,28 +90,23 @@ defmodule Data.Article.Static.Alltagsroute5 do
         parent_ref: __MODULE__,
         text: "Hamburger Meile zur City Nord",
         historic: %{
+          "eeab93a8f01949422474881b775189f1" => ~d[2024-06],
           "b0b53d5543210c46fbfe2397291a7fa4" => ~d[2023-07],
           "0564511a98d53f27dd754ae1a4af11fa" => ~d[2022-04],
           "7cdaf2d2df2ac71669fab5292b882c95" => ~d[2021-06]
         },
         end_action: :reverse,
         videos: [
-          {"2023-07-22-vr5/GX016216", :start, :end},
-          {"2023-07-22-vr5/GX016217", :start, :end},
-          {"2023-07-22-vr5/GX016218", :start, :end},
-          {"2023-07-22-vr5/GX016219", :start, :end},
-          {"2023-07-22-vr5/GX016220", :start, :end},
-          {"2023-07-22-vr5/GX016221", :start, :end},
-          {"2023-07-22-vr5/GX016222", :start, :end},
-          {"2023-07-22-vr5/GX016223", :start, "00:00:01.001"},
-          {"2023-07-22-vr5/GX016223", "00:00:05.072", "00:00:12.312"},
-          {"2023-07-22-vr5/GX016223", "00:00:18.418", :end},
-          {"2023-07-22-vr5/GX016224", :start, :end},
-          {"2023-07-22-vr5/GX016225", :start, "00:00:07.673"}
+          {"2024-06-06-vr5/GX017644", :start, :end},
+          {"2024-06-06-vr5/GX017645", :start, :end},
+          {"2024-06-06-vr5/GX017646", :start, :end},
+          {"2024-06-06-vr5/GX017647", :start, :end},
+          {"2024-06-06-vr5/GX017648", :start, :end},
+          {"2024-06-06-vr5/GX017649", :start, "00:00:01.001"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "5N",
         direction: :backward,
         from: "City Nord",
@@ -118,17 +115,20 @@ defmodule Data.Article.Static.Alltagsroute5 do
         text: "City Nord zur Hamburger Meile",
         end_action: %{action: :play, route: __MODULE__, group: "5", direction: :forward},
         historic: %{
+          "4039ae0d2dfbae34b70b8da5a187cf8d" => ~d[2024-06],
           "f6524e1bfb7c5405dad1cdb01c7c386e" => ~d[2023-07],
           "495adb7cbe7ae5df22ef39eae21f65dc" => ~d[2022-04],
           "695e28731f9a008ea8fab77b48a12dc5" => ~d[2021-06]
         },
         videos: [
-          {"2023-07-22-vr5/GX016225", "00:00:07.673", :end},
-          {"2023-07-22-vr5/GX016226", :start, :end},
-          {"2023-07-22-vr5/GX016227", :start, :end},
-          {"2023-07-22-vr5/GX016228", :start, :end},
-          {"2023-07-22-vr5/GX016229", :start, :end},
-          {"2023-07-22-vr5/GX016230", :start, :end}
+          {"2024-06-06-vr5/GX017649", "00:00:01.001", :end},
+          {"2024-06-06-vr5/GX017650", :start, :end},
+          {"2024-06-06-vr5/GX017651", :start, :end},
+          {"2024-06-06-vr5/GX017652", :start, :end},
+          {"2024-06-06-vr5/GX017653", :start, :end},
+          {"2024-06-06-vr5/GX017654", :start, :end},
+          {"2024-06-06-vr5/GX017655", :start, :end},
+          {"2024-06-06-vr5/GX017656", :start, :end}
         ]
       }
     ]
