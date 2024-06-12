@@ -10,17 +10,11 @@ $linkColorFilterFromWhite: brightness(0) saturate(100%) invert(59%) sepia(0%) sa
 $darkBgHighlight: #666;
 $contentPad: 0.9rem;
 
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  touch-action: manipulation;
-}
-
 html,
 body>div {
   overflow: hidden;
   overscroll-behavior: none;
+  touch-action: none;
 }
 
 body {
@@ -29,6 +23,7 @@ body {
   background: #333;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 0.9em;
+  margin: 0;
 }
 
 
@@ -564,6 +559,7 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
   z-index: 3;
   box-shadow: $sidebarBoxShadowNormal;
   contain: size layout style;
+  touch-action: none;
 }
 
 @media (min-width: calc(3*$minWidth)) {
@@ -652,8 +648,9 @@ body.showSidebar::before {
 
   -webkit-hyphens: auto;
   hyphens: auto;
-  overscroll-behavior: contain;
 
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   contain: strict;
 
   p, ul, ol {
@@ -938,6 +935,7 @@ abbr {
 h3,
 h4 {
   margin-top: 1em;
+  margin-bottom: 0;
 }
 
 h3 {
@@ -950,6 +948,7 @@ h4 {
 
 h5 {
   margin-top: 0.5em;
+  margin-bottom: 0;
   font-size: 0.9rem;
   font-weight: normal;
   font-style: italic;
@@ -1141,6 +1140,7 @@ table.route-list {
 p, form {
   text-align: justify;
   margin-top: 0.6rem;
+  margin-bottom: 0;
 }
 
 h5 + p {
