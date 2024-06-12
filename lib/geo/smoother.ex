@@ -1,6 +1,4 @@
 defmodule Geo.Smoother do
-  @typep coord_dist :: [Geo.Point.like()]
-
   @doc """
   Smooth the given polyline with sensible settings and encode it as binary
   polyline suitable for passing to the frontend. The JS implementation only
@@ -93,58 +91,56 @@ defmodule Geo.Smoother do
       ...> %{lat: 53.550728, lon: 9.994151}, %{lat: 53.550713, lon: 9.994180},
       ...> %{lat: 53.550700, lon: 9.994205}], 15.0)
       [
-        %{lat: 53.550935402185864, lon: 9.993853659506811},
+        %{lat: 53.55093540218586, lon: 9.993853659506811},
         %{lat: 53.550913319343586, lon: 9.993889060855963},
-        %{lat: 53.55087641183799, lon: 9.993944100086667},
-        %{lat: 53.55083124900452, lon: 9.994007224526493},
+        %{lat: 53.55087641183799, lon: 9.993944100086669},
+        %{lat: 53.55083124900453, lon: 9.994007224526495},
         %{lat: 53.55080706000847, lon: 9.994040496573183},
-        %{lat: 53.55079534011066, lon: 9.99405624638512},
-        %{lat: 53.55079115826207, lon: 9.994061873356417},
-        %{lat: 53.55079028159536, lon: 9.994063080640775},
-        %{lat: 53.55079010151522, lon: 9.994063321860299},
-        %{lat: 53.550788163250914, lon: 9.994066085984363},
+        %{lat: 53.55079534011067, lon: 9.99405624638512},
+        %{lat: 53.550791158262086, lon: 9.994061873356419},
+        %{lat: 53.55079028159536, lon: 9.994063080640776},
+        %{lat: 53.55079010151522, lon: 9.994063321860297},
+        %{lat: 53.55078816325091, lon: 9.994066085984363},
         %{lat: 53.550780844634836, lon: 9.994077002907744},
-        %{lat: 53.55076735405407, lon: 9.994097127443393},
-        %{lat: 53.55075232901658, lon: 9.994119545995215},
-        %{lat: 53.55073993441643, lon: 9.99413870892748},
+        %{lat: 53.55076735405408, lon: 9.994097127443395},
+        %{lat: 53.55075232901659, lon: 9.994119545995215},
+        %{lat: 53.55073993441644, lon: 9.99413870892748},
         %{lat: 53.55072684539607, lon: 9.994159412578323}
-       ]
+      ]
   """
+  @compile {:inline, sum_while_in_range: 4}
   def average_in_distance(coords, range_in_meters) do
     Enum.map_reduce(coords, {[], coords}, fn
       coord, {prev, [coord | next]} ->
-        # find neighbors in range and smooth over them
-        prev_in_range = take_while_in_range(coord, prev, range_in_meters)
-        next_in_range = take_while_in_range(coord, next, range_in_meters)
-        smoothed = weighted_average(coord, prev_in_range ++ next_in_range, range_in_meters)
-        # map the smoothed coordinate and move the original one from "next" to "prev"
-        {smoothed, {[coord | prev], next}}
+        # move the current coord from "next" to "prev".
+        prev = [coord | prev]
+
+        # find neighbors in range and smooth over them.
+        {sum_lats, sum_lons, sum_weights} =
+          {0.0, 0.0, 0.0}
+          |> sum_while_in_range(coord, prev, range_in_meters)
+          |> sum_while_in_range(coord, next, range_in_meters)
+
+        # map the smoothed coordinate
+        smoothed = %{coord | lat: sum_lats / sum_weights, lon: sum_lons / sum_weights}
+        {smoothed, {prev, next}}
     end)
     |> elem(0)
   end
 
-  @spec take_while_in_range(Geo.Point.like(), [Geo.Point.like()], float()) :: [coord_dist]
-  defp take_while_in_range(from, coords, range_in_meters) do
-    Enum.reduce_while(coords, [], fn coord, acc ->
+  @typep sums() :: {float(), float(), float()}
+  @spec sum_while_in_range(sums(), Geo.Point.like(), [Geo.Point.like()], float()) :: sums()
+  defp sum_while_in_range(sums, from, coords, range_in_meters) do
+    Enum.reduce_while(coords, sums, fn coord, {sum_lat, sum_lon, sum_weight} ->
       dist = Geo.CheapRuler.point2point_dist(coord, from)
 
-      if dist > range_in_meters,
-        do: {:halt, acc},
-        else: {:cont, [{coord, dist} | acc]}
-    end)
-  end
-
-  @spec weighted_average(Geo.Point.like(), [coord_dist], float) :: Geo.Point.like()
-  defp weighted_average(coord, coord_dists, range_in_meters) do
-    coord_dists = [{coord, 0}] ++ coord_dists
-
-    {sum_lat, sum_lon, sum_weight} =
-      Enum.reduce(coord_dists, {0, 0, 0}, fn {coord, dist}, {sum_lat, sum_lon, sum_weight} ->
+      if dist > range_in_meters do
+        {:halt, {sum_lat, sum_lon, sum_weight}}
+      else
         weight = range_in_meters - dist
-        {sum_lat + coord.lat * weight, sum_lon + coord.lon * weight, sum_weight + weight}
-      end)
-
-    %{coord | lat: sum_lat / sum_weight, lon: sum_lon / sum_weight}
+        {:cont, {sum_lat + coord.lat * weight, sum_lon + coord.lon * weight, sum_weight + weight}}
+      end
+    end)
   end
 
   @spec cut_corners([Geo.Point.like()], non_neg_integer()) :: [Geo.Point.like()]
