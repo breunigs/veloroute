@@ -143,6 +143,7 @@ defmodule Geo.Smoother do
     end)
   end
 
+  require Integer
   @spec cut_corners([Geo.Point.like()], non_neg_integer()) :: [Geo.Point.like()]
   @doc """
   A single iteration replaces every point with two new ones. These points are
@@ -152,28 +153,46 @@ defmodule Geo.Smoother do
 
   ## Examples
 
-      iex> Geo.Smoother.cut_corners([%{lat: 1, lon: 1}, %{lat: 2, lon: 2}], 1)
-      [%{lat: 1, lon: 1}, %{lat: 1.25, lon: 1.25}, %{lat: 1.75, lon: 1.75}, %{lat: 2, lon: 2}]
+  iex> Geo.Smoother.cut_corners([%{lat: 1, lon: 1}, %{lat: 2, lon: 2}], 1)
+  [%{lat: 1, lon: 1}, %{lat: 1.25, lon: 1.25}, %{lat: 1.75, lon: 1.75}, %{lat: 2, lon: 2}]
+
+  iex> Geo.Smoother.cut_corners([%{lat: 1, lon: 1}, %{lat: 2, lon: 2}], 3)
+  [
+    %{lat: 1, lon: 1},
+    %{lat: 1.015625, lon: 1.015625},
+    %{lat: 1.046875, lon: 1.046875},
+    %{lon: 1.09375, lat: 1.09375},
+    %{lon: 1.15625, lat: 1.15625},
+    %{lon: 1.234375, lat: 1.234375},
+    %{lon: 1.328125, lat: 1.328125},
+    %{lon: 1.4375, lat: 1.4375},
+    %{lon: 1.5625, lat: 1.5625},
+    %{lon: 1.671875, lat: 1.671875},
+    %{lon: 1.765625, lat: 1.765625},
+    %{lon: 1.84375, lat: 1.84375},
+    %{lon: 1.90625, lat: 1.90625},
+    %{lon: 1.953125, lat: 1.953125},
+    %{lon: 1.984375, lat: 1.984375},
+    %{lat: 2, lon: 2}
+  ]
   """
   # we place new points on both sides, so the valid range is (0, 0.5]. This
   # value was experimentally chosen and gives good results.
   @cut_corner_dist 0.25
-  def cut_corners(coords, iterations)
-  def cut_corners(coords, 0), do: coords
+  def cut_corners(coords, iterations),
+    do: cut_corners(coords, iterations, Integer.is_odd(iterations))
 
-  def cut_corners(coords, iterations) when iterations > 0 do
-    cut =
-      coords
-      |> Enum.chunk_every(2, 1, :discard)
-      |> Enum.flat_map(fn [prev, next] ->
-        [
-          Geo.Interpolate.point(prev, next, @cut_corner_dist),
-          Geo.Interpolate.point(prev, next, 1 - @cut_corner_dist)
-        ]
+  defp cut_corners(coords, 0, false), do: coords
+  defp cut_corners(coords, 0, true), do: Enum.reverse(coords)
+
+  defp cut_corners(coords, iterations, needs_reverse) when iterations > 0 do
+    {cut, last_coord} =
+      Enum.reduce(tl(coords), {[hd(coords)], hd(coords)}, fn next, {cut, prev} ->
+        p1 = Geo.Interpolate.point(prev, next, @cut_corner_dist)
+        p2 = Geo.Interpolate.point(prev, next, 1 - @cut_corner_dist)
+        {[p2, p1 | cut], next}
       end)
 
-    cut = [hd(coords) | cut] ++ [List.last(coords)]
-
-    cut_corners(cut, iterations - 1)
+    cut_corners([last_coord | cut], iterations - 1, needs_reverse)
   end
 end
