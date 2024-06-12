@@ -57,22 +57,25 @@ defmodule Video.RenderedTools do
   end
 
   @doc """
-  Returns the human readable name of the most recent recording tht makes up the
+  Returns the human readable name of the most recent recording that makes up the
   video.
   """
-  @spec most_recent_recording_month(Video.Track.hash() | nil | Video.Rendered.t()) :: binary()
-  def most_recent_recording_month(nil), do: "unbekannt"
+  @spec most_recent_recording_month(Video.Track.hash() | nil | Video.Rendered.t(), binary()) ::
+          binary()
+  def most_recent_recording_month(input, lang \\ Settings.default_language())
+  def most_recent_recording_month(nil, "de"), do: "unbekannt"
+  def most_recent_recording_month(nil, "en"), do: "unknown"
 
-  def most_recent_recording_month(hash) when valid_hash(hash),
-    do: most_recent_recording_month(Video.Generator.find_by_hash(hash))
+  def most_recent_recording_month(hash, lang) when valid_hash(hash),
+    do: most_recent_recording_month(Video.Generator.find_by_hash(hash), lang)
 
-  def most_recent_recording_month(rendered) when is_module(rendered) do
+  def most_recent_recording_month(rendered, lang) when is_module(rendered) do
     rendered.sources()
     |> Enum.map(&elem(&1, 0))
     |> Enum.map(&String.slice(&1, 0..9))
     |> Enum.max()
     |> Data.RoughDate.parse()
-    |> Data.RoughDate.without_day()
+    |> Data.RoughDate.without_day(lang)
   end
 
   @codec_factors %{"" => 1, "avc1" => 1, "hvc1" => 1.2, "av01" => 1.3}

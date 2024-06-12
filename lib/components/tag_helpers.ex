@@ -245,15 +245,19 @@ defmodule Components.TagHelpers do
 
   @spec updated_at_time(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string
 
   def updated_at_time(%{ref: art} = assigns) when is_module(art) do
     if art.updated_at() == nil do
       ~H{}
     else
+      lang = assigns[:lang] || Settings.default_language()
+      rd = Data.RoughDate.from_full_date(art.updated_at())
+
       assigns =
         assign(assigns, %{
-          long: VelorouteWeb.VariousHelpers.long_date(art.updated_at()),
-          short: VelorouteWeb.VariousHelpers.short_date(art.updated_at()),
+          long: Data.RoughDate.to_str(rd, lang),
+          short: Data.RoughDate.short(rd, lang),
           machine: Date.to_string(art.updated_at())
         })
 
@@ -265,15 +269,16 @@ defmodule Components.TagHelpers do
 
   @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string, default: Settings.default_language()
   attr :class, :string, default: ""
   slot(:inner_block)
 
-  def article_link(%{ref: art} = assigns) when is_module(art) do
+  def article_link(%{ref: art, lang: lang} = assigns) when is_module(art) do
     assigns =
       assign(assigns, %{
         href: Article.Decorators.path(art),
-        summary: art.summary(),
-        title: Article.Decorators.full_title(art)
+        summary: art.summary(lang),
+        title: Article.Decorators.full_title(art, lang)
       })
 
     ~H"""
@@ -531,9 +536,11 @@ defmodule Components.TagHelpers do
 
   @spec construction_duration(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string
 
-  def construction_duration(%{ref: ref}) when is_module(ref) do
-    assigns = %{duration: Data.RoughDate.range(ref.start(), ref.stop())}
+  def construction_duration(%{ref: ref} = assigns) when is_module(ref) do
+    lang = assigns[:lang] || Settings.default_language()
+    assigns = %{duration: Data.RoughDate.range(ref.start(), ref.stop(), lang)}
 
     ~H"""
     <span class="duration"><%= @duration %></span>
@@ -542,9 +549,11 @@ defmodule Components.TagHelpers do
 
   @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string
 
   def construction_duration_header(%{ref: art} = assigns) do
-    range = Data.RoughDate.range(art.start(), art.stop())
+    lang = assigns[:lang] || Settings.default_language()
+    range = Data.RoughDate.range(art.start(), art.stop(), lang)
     assigns = assign(assigns, range: range)
 
     cond do
@@ -561,9 +570,11 @@ defmodule Components.TagHelpers do
 
   @spec construction_duration_header(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string
 
   def construction_duration_paragraph(%{ref: art} = assigns) do
-    range = Data.RoughDate.range(art.start(), art.stop())
+    lang = assigns[:lang] || Settings.default_language()
+    range = Data.RoughDate.range(art.start(), art.stop(), lang)
     assigns = assign(assigns, range: range)
 
     if range == "" || art.type() == :finished do

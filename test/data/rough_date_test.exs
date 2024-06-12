@@ -17,14 +17,14 @@ defmodule Data.RoughDateTest do
     a = %RoughDate{year: 2019, quarter: nil, month: nil}
     b = %RoughDate{year: 2020, quarter: nil, month: nil}
 
-    assert RoughDate.range(a, b) == "2019 bis 2020"
-    assert RoughDate.range(a, @unknown) == "ab 2019"
-    assert RoughDate.range(@unknown, b) == "bis 2020"
-    assert RoughDate.range(a, a) == "2019"
+    assert RoughDate.range(a, b, "de") == "2019 bis 2020"
+    assert RoughDate.range(a, @unknown, "de") == "ab 2019"
+    assert RoughDate.range(@unknown, b, "de") == "bis 2020"
+    assert RoughDate.range(a, a, "de") == "2019"
 
     a = %RoughDate{year: 2020, quarter: nil, month: 6}
     b = %RoughDate{year: 2020, quarter: nil, month: 8}
-    assert RoughDate.range(a, b) == "Juli bis September 2020"
+    assert RoughDate.range(a, b, "de") == "Juli bis September 2020"
   end
 
   test "compares decently" do
@@ -57,9 +57,9 @@ defmodule Data.RoughDateTest do
   end
 
   test "converts to text" do
-    assert RoughDate.parse("2019") |> RoughDate.to_str() == "2019"
-    assert RoughDate.parse("2019Q2") |> RoughDate.to_str() == "Frühjahr 2019"
-    assert RoughDate.parse("2019-07") |> RoughDate.to_str() == "Juli 2019"
+    assert RoughDate.parse("2019") |> RoughDate.to_str("de") == "2019"
+    assert RoughDate.parse("2019Q2") |> RoughDate.to_str("de") == "Frühjahr 2019"
+    assert RoughDate.parse("2019-07") |> RoughDate.to_str("de") == "Juli 2019"
   end
 
   test "parses exact dates" do

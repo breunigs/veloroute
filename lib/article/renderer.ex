@@ -8,7 +8,7 @@ defmodule Article.Renderer do
   attr :video_hash, :string, required: true
   attr :video_start, :string, required: true
   attr :map_bounds, :any
-  attr :lang, :string
+  attr :lang, :string, required: true
   attr :search_query, :string
   attr :search_results, :any
   attr :enable_drawing_tools, :boolean, default: false
@@ -40,7 +40,7 @@ defmodule Article.Renderer do
           <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
         </article>
 
-        <Components.RelatedArticlesHelper.related_articles ref={@ref}/>
+        <Components.RelatedArticlesHelper.related_articles ref={@ref} lang={@lang}/>
       """
     end)
   end

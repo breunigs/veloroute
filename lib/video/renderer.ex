@@ -277,7 +277,7 @@ defmodule Video.Renderer do
     sources
     |> Enum.with_index()
     |> Enum.map(fn {{path, _from, _to, _opts}, idx} ->
-      text = String.replace(path, ~r{[^A-Za-z0-9_.-]}, "")
+      text = String.replace(path, ~r{[^A-Za-z0-9_./-]}, "")
 
       "[blur#{idx}]drawtext=fontcolor=white:x=5:y=5:shadowx=1:shadowy=1:text='#{text}'[blur#{idx}]"
     end)

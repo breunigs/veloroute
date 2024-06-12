@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def title(), do: "Gerichtstraße (Veloroute 13)"
 
   def start(), do: ~d[2023-04-17]
-  def stop(), do: ~d[2024-05-31]
+  # def stop(), do: ~d[2024-05-31]
   def construction_site_id_hh(), do: [345_446]
 
   def type(), do: :construction

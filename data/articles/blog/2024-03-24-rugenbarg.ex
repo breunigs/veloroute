@@ -63,6 +63,8 @@ defmodule Data.Article.Blog.Rugenbarg do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juni 2024",
+       "https://lsbg.hamburg.de/resource/blob/894318/e61d43df0f42467c63c3f53ced8a055f/rugenbarg-instandsetzung-juni-2024-data.pdf"},
       {"Ausschreibung Umbau (neu gepflasterete Rad/Gehwege)", "April 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/8371e4ff-1dc3-4992-97f8-a28693df5884"},
       {"Ausschreibung Umbau (Fahrbahn + asphaltierte Rad/Gehwege)", "März 2024",

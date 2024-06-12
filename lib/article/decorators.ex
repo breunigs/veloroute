@@ -66,9 +66,9 @@ defmodule Article.Decorators do
     apply(art, fun, [assigns])
   end
 
-  @spec full_title(Article.t()) :: binary()
-  def full_title(art) do
-    tn = type_name(art)
+  @spec full_title(Article.t(), Article.language()) :: binary()
+  def full_title(art, lang \\ Settings.default_language()) do
+    tn = type_name(art, lang)
 
     cond do
       String.contains?(art.title(), ":") -> art.title()
@@ -177,21 +177,21 @@ defmodule Article.Decorators do
   end
 
   @type_names %{
-    construction: "Baustelle",
-    planned: "Planung",
-    changed_routing: "Routenänderung",
-    ampel: "Unfaire Ampel",
-    intent: "Vorhaben",
-    outdated: "Veraltet",
-    issue: "Problemstelle",
-    finished: "Abgeschlossen",
-    event: "Veranstaltung"
+    construction: %{"de" => "Baustelle", "en" => "Construction"},
+    planned: %{"de" => "Planung", "en" => "Planning"},
+    changed_routing: %{"de" => "Routenänderung", "en" => "Route Change"},
+    ampel: %{"de" => "Unfaire Ampel", "en" => "Unfair traffic light"},
+    intent: %{"de" => "Vorhaben", "en" => "Intent"},
+    outdated: %{"de" => "Veraltet", "en" => "Outdated"},
+    issue: %{"de" => "Problemstelle", "en" => "Problematic area"},
+    finished: %{"de" => "Abgeschlossen", "en" => "Completed"},
+    event: %{"de" => "Veranstaltung", "en" => "Event"}
   }
 
-  @spec type_name(Article.t() | Article.article_type()) :: binary() | nil
-  def type_name(type) when is_map_key(@type_names, type), do: @type_names[type]
-  def type_name(nil), do: nil
-  def type_name(art), do: type_name(art.type())
+  @spec type_name(Article.t() | Article.article_type(), Article.language()) :: binary() | nil
+  def type_name(type, lang) when is_map_key(@type_names, type), do: @type_names[type][lang]
+  def type_name(nil, _lang), do: nil
+  def type_name(art, lang) when is_module(art), do: type_name(art.type(), lang)
 
   @doc """
   Calculate bounding box for the given article.

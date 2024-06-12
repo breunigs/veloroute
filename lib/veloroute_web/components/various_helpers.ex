@@ -25,44 +25,6 @@ defmodule VelorouteWeb.VariousHelpers do
     end
   end
 
-  @short_month_names [
-    "Jan",
-    "Feb",
-    "Mär",
-    "Apr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Okt",
-    "Nov",
-    "Dez"
-  ]
-
-  # TODO: unify with RoughDate?
-  @long_month_names [
-    "Januar",
-    "Februrar",
-    "März",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "August",
-    "September",
-    "Oktober",
-    "November",
-    "Dezember"
-  ]
-  def short_date(%Date{day: day, month: month}) do
-    "#{day}. #{Enum.at(@short_month_names, month - 1)}"
-  end
-
-  def long_date(%Date{day: day, month: month, year: year}) do
-    "#{day}. #{Enum.at(@long_month_names, month - 1)} #{year}"
-  end
-
   def route_icon(id) when is_binary(id) do
     ref =
       Article.List.find_exact(id) ||

@@ -4,6 +4,7 @@ defmodule Components.RelatedArticlesHelper do
 
   @spec related_articles(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string, required: true
 
   def related_articles(%{ref: art} = assigns) do
     grouped =
@@ -28,14 +29,24 @@ defmodule Components.RelatedArticlesHelper do
   defp related_list(%{related_static: [], related_dated: []} = assigns), do: ~H""
 
   defp related_list(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :headline,
+        case assigns[:lang] do
+          "de" -> "Verwandte Artikel"
+          "en" -> "Related articles"
+        end
+      )
+
     ~H"""
     <TagHelpers.noindex>
-      <h3>Verwandte Artikel</h3>
+      <h3><%= @headline %></h3>
       <.soft_list refs={@related_static}/>
       <ol class="hide-bullets">
         <TagHelpers.list_articles :let={ref} refs={@related_dated}>
-          <TagHelpers.updated_at_time ref={ref} />
-          <TagHelpers.article_link ref={ref}/>
+          <TagHelpers.updated_at_time ref={ref} lang={@lang} />
+          <TagHelpers.article_link ref={ref} lang={@lang} />
         </TagHelpers.list_articles>
       </ol>
     </TagHelpers.noindex>

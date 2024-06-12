@@ -63,7 +63,7 @@ defmodule Search.Meilisearch.Articles do
       text: Article.Decorators.text(art),
       title: Article.Decorators.full_title(art),
       streets: Article.Decorators.street_names(art),
-      type_name: Article.Decorators.type_name(art),
+      type_name: Article.Decorators.type_name(art, Settings.default_language()),
       updated_at: art.updated_at() || art.created_at()
     }
     |> Util.compact()

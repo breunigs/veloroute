@@ -6,11 +6,11 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   def title(), do: "Nartenstraße (Veloroute 10)"
 
-  def start(), do: ~d[2021-02-15]
+  # def start(), do: ~d[2021-02-15]
   # def stop(), do: ~d[2022-10-30]
 
-  def type(), do: :finished
-  def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]
+  def type(), do: :planned
+  # def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]
   # H01.c: Veritaskai/Kanalplatz 18.Okt21-26.Aug22
   # H01.b: Nartenstraße Jan23-Dez23
   def tags(), do: ["10", "H01", "H01.b"]

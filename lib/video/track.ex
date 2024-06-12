@@ -345,7 +345,10 @@ defmodule Video.Track do
   end
 
   defp tsv_date(tsv),
-    do: tsv.date |> Data.RoughDate.parse() |> Data.RoughDate.without_day()
+    do:
+      tsv.date
+      |> Data.RoughDate.parse()
+      |> Data.RoughDate.without_day(Settings.default_language())
 
   @spec reverse_compact_recording_dates(timed_info()) :: timed_info()
   defp reverse_compact_recording_dates(dates) do

@@ -7,9 +7,10 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
     do:
       "2,25m breiter Radfahrstreifen Richtung Messe; 2,50m breiter Hochbordradweg Richtung Innenstadt. Kreuzung am Planten un Blomen wird umgestaltet; die am Gorch-Fock-Wall noch nicht."
 
-  def type(), do: :planned
-  def start(), do: ~d[2024-06-03]
+  def type(), do: :construction
+  def start(), do: ~d[2024-06-10]
   def stop(), do: ~d[2024-09-20]
+  def construction_site_id_hh(), do: [836_450]
 
   def tags(), do: []
 

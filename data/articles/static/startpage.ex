@@ -222,8 +222,8 @@ defmodule Data.Article.Static.Startpage do
     <% end %>
     <ol class="hide-bullets">
       <.list_articles :let={ref} refs={Article.List.recent()}>
-        <.updated_at_time ref={ref} />
-        <.article_link ref={ref}/>
+        <.updated_at_time ref={ref} lang={@lang}/>
+        <.article_link ref={ref} lang={@lang}/>
       </.list_articles>
     </ol>
 

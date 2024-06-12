@@ -312,7 +312,7 @@ defmodule Data.GeoJSON do
   end
 
   defp full_article_title(way) do
-    type = Article.Decorators.type_name(way.tags[:article_type])
+    type = Article.Decorators.type_name(way.tags[:article_type], Settings.default_language())
     if type, do: "#{type}: #{way.tags[:article_title]}", else: way.tags[:article_title]
   end
 

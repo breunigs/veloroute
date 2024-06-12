@@ -88,7 +88,7 @@ defmodule Data.Article.Static.Datenexport do
 
     title =
       if video do
-        date = Video.RenderedTools.most_recent_recording_month(video)
+        date = Video.RenderedTools.most_recent_recording_month(video, "de")
         "#{video.name()} bis #{date}"
       else
         fallback_title
