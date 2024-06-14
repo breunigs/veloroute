@@ -17,10 +17,12 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo - Nachtrag", "Juni 2024",
-       "https://lsbg.hamburg.de/resource/blob/876348/e7c2185cfaaf6c3daa60cc22d2ee7eeb/burgstrasse-anliegerinformation-ii-mai-2024-data.pdf"},
-      {"Baustelleninfo", "Mai 2024",
-       "https://lsbg.hamburg.de/resource/blob/875082/f8c847f243871e9aceb25e238340b533/burgstrasse-anliegerinformation-mai-2024-data.pdf"},
+      {"Baustelleninfo", "Juni 2024",
+       "https://lsbg.hamburg.de/resource/blob/895954/bac503fc5d7fddbcf5ccba5ef311b412/burgstrasse-anliegerinformation-juni-2024-data.pdf"},
+      # {"Baustelleninfo - Nachtrag", "Juni 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/876348/e7c2185cfaaf6c3daa60cc22d2ee7eeb/burgstrasse-anliegerinformation-ii-mai-2024-data.pdf"},
+      # {"Baustelleninfo", "Mai 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/875082/f8c847f243871e9aceb25e238340b533/burgstrasse-anliegerinformation-mai-2024-data.pdf"},
       {"Pressemitteilung zum Umbau", "März 2024",
        "https://www.hamburg.de/bvm/medien/18385964/2024-03-18-bvm-burgstrasse/"},
       # {"Baustelleninfo", "Februar 2024",
