@@ -31,6 +31,6 @@ defmodule LangPlug do
   use Memoize
 
   defmemop all_languages() do
-    Article.List.all() |> Enum.flat_map(& &1.languages) |> Enum.uniq()
+    Article.List.all() |> Enum.flat_map(& &1.languages()) |> Enum.uniq()
   end
 end

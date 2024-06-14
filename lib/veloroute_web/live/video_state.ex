@@ -37,7 +37,7 @@ defmodule VelorouteWeb.Live.VideoState do
          src when is_list(src) <- rendered.sources(),
          obj when not is_nil(obj) <- Article.List.find_by_sources(src) do
       # sort so that the desired track is on top
-      tracks = obj.tracks |> Enum.sort_by(fn t -> t.videos() != src end)
+      tracks = obj.tracks() |> Enum.sort_by(fn t -> t.videos != src end)
 
       state = socket.assigns[:video] || new()
       state = update_from_tracks(state, tracks, nil)
@@ -228,7 +228,7 @@ defmodule VelorouteWeb.Live.VideoState do
     with pos when not is_nil(pos) <-
            parse_integer(params["pos"]) || parse_float(params["pos_sec"]),
          rendered <- current_rendered(state) do
-      Video.Rendered.start_from(rendered, pos |> max(0) |> min(rendered.length_ms))
+      Video.Rendered.start_from(rendered, pos |> max(0) |> min(rendered.length_ms()))
     else
       _ ->
         Logger.debug("failed to get pos from params: #{inspect(params)}")
@@ -274,7 +274,7 @@ defmodule VelorouteWeb.Live.VideoState do
     recording_date = Video.Rendered.recording_date_for(video, start_from.time_offset_ms)
     street_name = Video.Rendered.street_name_for(video, start_from.time_offset_ms)
 
-    Logger.debug("video=#{video.hash}, starting from #{start_from.time_offset_ms}")
+    Logger.debug("video=#{video.hash()}, starting from #{start_from.time_offset_ms}")
     Video.DiskPreloader.warm(video.hash(), start_from)
 
     [

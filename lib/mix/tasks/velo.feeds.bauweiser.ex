@@ -113,7 +113,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
 
   defp articles_with_ids() do
     Article.List.category("Blog")
-    |> Enum.reject(&(&1.construction_site_id_hh == []))
+    |> Enum.reject(&(&1.construction_site_id_hh() == []))
   end
 
   defp dig(j, terms) do
