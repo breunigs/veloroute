@@ -195,6 +195,32 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|Zum Dubben (neue Führung|
   end
 
+  test "honors bounds param from URL", %{conn: conn} do
+    {:ok, _view, html} =
+      live(
+        conn,
+        "/?bounds=9.894765-53.552683-9.901446-53.554215&pos_sec=269.04&video=34379-alltagsroute-1"
+      )
+
+    # i.e. map preview is center of bounds
+    assert html =~ "/map/___static/9.8981055,53.553449,16"
+  end
+
+  test "honors video and pos_sec params from URL", %{conn: conn} do
+    {:ok, _view, html} =
+      live(
+        conn,
+        "/?bounds=9.894765-53.552683-9.901446-53.554215&pos_sec=269.04&video=34379-alltagsroute-1"
+      )
+
+    assert_attribute(
+      html,
+      "video",
+      "poster",
+      "/images/thumbnails/343799351ddb76ccb212673cffe25934/269040"
+    )
+  end
+
   test "clicking on article with tracks selects video close to click position", %{conn: conn} do
     article = "2023-04-15-bramfelder-strasse-bis-krausestrasse"
     forward_video_hash = "bef5fb6f0cd3ce7a30ade62e6325904b"
