@@ -215,12 +215,12 @@ defmodule Search.Meilisearch.Nominatim do
       proximityPrecision: "byAttribute",
       rankingRules: ~w(words
         typo
-        proximity
         attribute
         rank_boosted_areas:asc
         rank_search:asc
         rank_address:asc
         importance:desc
+        proximity
         admin_level:asc
         sort
         exactness

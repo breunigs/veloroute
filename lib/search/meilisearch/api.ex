@@ -101,13 +101,15 @@ defmodule Search.Meilisearch.API do
     end
   end
 
-  @spec multi_search(%{atom() => map()}) :: {:ok, %{atom() => list()}} | {:error, binary()}
-  def multi_search(queries) do
+  @spec multi_search(%{atom() => map()}, float()) ::
+          {:ok, %{atom() => list()}} | {:error, binary()}
+  def multi_search(queries, min_relevance) do
     payload = %{
       "queries" =>
         Enum.map(queries, fn {index, params} ->
           params
           |> Map.put_new("showRankingScore", true)
+          |> Map.put_new("rankingScoreThreshold", min_relevance)
           |> Map.put("indexUid", index)
         end)
     }

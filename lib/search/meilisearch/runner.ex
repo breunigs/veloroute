@@ -294,7 +294,7 @@ defmodule Search.Meilisearch.Runner do
     state
   end
 
-  @min_relevance 0.7
+  @min_relevance 0.5
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 
@@ -302,7 +302,7 @@ defmodule Search.Meilisearch.Runner do
     |> Enum.into(%{}, fn indexer ->
       {indexer.id(), indexer.params(query, lat, lon)}
     end)
-    |> Search.Meilisearch.API.multi_search()
+    |> Search.Meilisearch.API.multi_search(@min_relevance)
     |> post_process()
   end
 
@@ -324,7 +324,6 @@ defmodule Search.Meilisearch.Runner do
        end)
      end)
      |> Util.compact()
-     |> Enum.reject(fn %{relevance: rel} -> rel < @min_relevance end)
      |> Search.Result.merge_same()
      |> Search.Result.sort()}
   end
