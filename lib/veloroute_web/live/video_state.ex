@@ -44,8 +44,8 @@ defmodule VelorouteWeb.Live.VideoState do
 
       socket
       # finalize happens in set_position
-      |> Phoenix.Component.assign(for_frontend(state))
-      |> set_position(params, seek: true)
+      |> Phoenix.Component.assign(:video, state)
+      |> set_position(params)
     else
       _ -> maybe_update_video(socket, article, Map.delete(params, "video"))
     end
@@ -84,20 +84,20 @@ defmodule VelorouteWeb.Live.VideoState do
           !video_changes?(old_state, new_state) && !is_map_key(params, "dir") ->
           Logger.debug("same position clicked again, reverse #{near_dbg}")
 
-          set_start(new_state, near)
+          %{new_state | start: near}
           |> reverse_direction()
 
         accurate ->
           Logger.debug("have new accurate position; updating #{near_dbg}")
-          set_start(new_state, near)
+          %{new_state | start: near}
 
         params["autoplay"] == "true" ->
-          set_start(%{new_state | direction: :forward}, nil)
+          %{new_state | direction: :forward, start: nil}
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox #{near_dbg}")
 
-          set_start(new_state, near)
+          %{new_state | start: near}
           |> maybe_reverse_direction(params)
 
         # if there's an article only update the position if the article is
@@ -106,7 +106,7 @@ defmodule VelorouteWeb.Live.VideoState do
         article && current_track(new_state) &&
             Util.overlap?(current_track(new_state).parent_ref.tags(), article.tags()) ->
           Logger.debug("route is related to current article, updating position #{near_dbg}")
-          set_start(new_state, near)
+          %{new_state | start: near}
 
         true ->
           Logger.debug("no position information, not changing #{near_dbg}")
@@ -172,8 +172,7 @@ defmodule VelorouteWeb.Live.VideoState do
     assigns =
       assigns[:video]
       |> Kernel.||(new())
-      |> Map.merge(%{forward: nil, backward: nil})
-      |> set_start(nil)
+      |> Map.merge(%{forward: nil, backward: nil, start: nil})
       |> for_frontend()
 
     finalize(socket, assigns)
@@ -210,12 +209,11 @@ defmodule VelorouteWeb.Live.VideoState do
   Set the current video position from the given time in milliseconds in the
   "pos" param.
   """
-  def set_position(%{assigns: %{video: state}} = socket, params, seek: seek)
-      when is_boolean(seek) do
+  def set_position(%{assigns: %{video: state}} = socket, params) do
     point = position_from_time(socket, params)
 
     if point do
-      assigns = state |> set_start(point, seek: seek) |> for_frontend()
+      assigns = for_frontend(%{state | start: point})
       finalize(socket, assigns)
     else
       socket
@@ -318,18 +316,11 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   defp extract_start(state, art) when is_module(art) do
-    set_start(state, Geo.CheapRuler.center(art.bbox()))
+    %{state | start: Geo.CheapRuler.center(art.bbox())}
   end
 
   defp extract_start(%__MODULE__{} = state, params) do
-    set_start(state, Geo.Point.from_params(params))
-  end
-
-  @spec set_start(t(), Geo.Point.like() | nil, seek: boolean()) :: t()
-  defp set_start(state, start, opts \\ [seek: true])
-
-  defp set_start(%__MODULE__{} = state, start, seek: seek) when is_boolean(seek) do
-    %{state | start: start}
+    %{state | start: Geo.Point.from_params(params)}
   end
 
   defp maybe_reverse_direction(%__MODULE__{} = state, params)

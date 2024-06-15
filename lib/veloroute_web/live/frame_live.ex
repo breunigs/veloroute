@@ -120,7 +120,7 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply,
      socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
+     |> VelorouteWeb.Live.VideoState.set_position(attr)
      |> update_url_query()}
   end
 
@@ -129,7 +129,7 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply,
      socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
+     |> VelorouteWeb.Live.VideoState.set_position(attr)
      |> update_url_query()}
   end
 
@@ -138,7 +138,7 @@ defmodule VelorouteWeb.FrameLive do
 
     {:noreply,
      socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr, seek: false)
+     |> VelorouteWeb.Live.VideoState.set_position(attr)
      |> autoplay()
      |> update_url_query()}
   end
