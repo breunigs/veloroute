@@ -8,14 +8,14 @@ defmodule Data.Article.Static.Alltagsroute13 do
   def color(), do: "#f28801"
 
   def summary(),
-    do: "Alltagsroute 13 führt ringförmig im Uhrzeigersinn von Altona nach Borgefelde"
+    do: "Alltagsroute 13 führt ringförmig im Uhrzeigersinn von Altona nach Borgfelde"
 
   def tags(), do: [id()]
 
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "13",
         direction: :forward,
         from: "Altona",
@@ -23,32 +23,26 @@ defmodule Data.Article.Static.Alltagsroute13 do
         parent_ref: __MODULE__,
         text: "innere Ringroute, im Uhrzeigersinn",
         historic: %{
+          "c8ca2338f8a1f2f3e154e66d2e09b422" => ~d[2024-06],
           "e29ad9e22984ec8ea9c871aadca15443" => ~d[2023-06],
           "61efced8de5be9384b396cc574220cbe" => ~d[2022-05]
         },
         videos: [
-          {"2023-06-25-13im-14gg/GX016066", :start, :end},
-          {"2023-06-25-13im-14gg/GX016067", :start, :end},
-          {"2023-06-25-13im-14gg/GX016068", :start, :end},
-          {"2023-06-25-13im-14gg/GX016069", :start, :end},
-          {"2023-06-25-13im-14gg/GX016070", :start, :end},
-          {"2023-06-25-13im-14gg/GX016071", :start, :end},
-          {"2023-06-25-13im-14gg/GX016072", :start, :end},
-          {"2023-06-25-13im-14gg/GX016073", :start, :end},
-          {"2023-06-25-13im-14gg/GX016074", :start, :end},
-          {"2023-06-25-13im-14gg/GX016075", :start, :end},
-          {"2023-06-25-13im-14gg/GX016076", :start, :end},
-          {"2023-06-25-13im-14gg/GX016077", :start, :end},
-          {"2023-06-25-13im-14gg/GX016078", :start, :end},
-          {"2023-06-25-13im-14gg/GX016079", :start, :end},
-          {"2023-06-25-13im-14gg/GX016080", :start, :end},
-          {"2023-06-25-13im-14gg/GX016081", :start, :end},
-          {"2023-06-25-13im-14gg/GX016082", :start, :end},
-          {"2023-06-25-13im-14gg/GX016083", :start, :end},
-          {"2023-06-25-13im-14gg/GX016084", :start, :end},
-          {"2023-06-25-13im-14gg/GX016085", :start, :end},
-          {"2023-06-25-13im-14gg/GX016086", :start, :end},
-          {"2023-06-25-13im-14gg/GX016088", :start, :end}
+          {"2024-06-16-13im-14gg/GX017689", :start, :end},
+          {"2024-06-16-13im-14gg/GX017690", :start, :end},
+          {"2024-06-16-13im-14gg/GX017691", :start, :end},
+          {"2024-06-16-13im-14gg/GX017692", :start, :end},
+          {"2024-06-16-13im-14gg/GX017693", :start, :end},
+          {"2024-06-16-13im-14gg/GX017694", :start, :end},
+          {"2024-06-16-13im-14gg/GX017695", :start, :end},
+          {"2024-06-16-13im-14gg/GX017696", :start, :end},
+          {"2024-06-16-13im-14gg/GX017697", :start, :end},
+          {"2024-06-16-13im-14gg/GX017698", :start, :end},
+          {"2024-06-16-13im-14gg/GX017699", :start, :end},
+          {"2024-06-16-13im-14gg/GX017700", :start, :end},
+          {"2024-06-16-13im-14gg/GX017701", :start, :end},
+          {"2024-06-16-13im-14gg/GX017702", :start, :end},
+          {"2024-06-16-13im-14gg/GX017703", :start, "00:00:02.002"}
         ]
       },
       %Video.Track{
@@ -96,7 +90,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426810/veloroute-13/"},
-      {"Komoot Routenplaner: von Altona nach Borgefelde",
+      {"Komoot Routenplaner: von Altona nach Borgfelde",
        "https://www.komoot.com/de-de/tour/225149264"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/2238764"}
     ]
