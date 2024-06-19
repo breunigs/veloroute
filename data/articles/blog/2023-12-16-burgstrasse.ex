@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Burgstrasse do
   def stop(), do: ~d[2024-09-08]
   def construction_site_id_hh(), do: [667_463]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["13"]
 
