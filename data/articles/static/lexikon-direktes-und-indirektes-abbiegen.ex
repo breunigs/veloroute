@@ -83,7 +83,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
     <p>Es gibt alle möglichen Kreuzungs-Varianten:</p>
     <ul>
       <li><.v bounds="10.096749,53.537778,10.12086,53.54550" lon={10.1092239} lat={53.5417533} dir="forward" ref="14">nur direktes Abbiegen</.v></li>
-      <li><.v bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="backward" ref="14">nur indirektes Abbiegen</.v></li>
+      <li><.v bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="forward" ref="14">nur indirektes Abbiegen</.v></li>
       <li>beides (<.v bounds="9.992882,53.60424,9.999811,53.606458" lon={9.9972532} lat={53.6046497} dir="forward" ref="4">direkt</.v> bzw. indirekt über die <.v bounds="9.996751,53.604899,9.999158,53.606016" lon={9.9972532} lat={53.6046497} dir="forward" ref={name()
     }>Wilhelm-Metzger-Straße</.v>)</li>
     </ul>

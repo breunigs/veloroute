@@ -412,9 +412,14 @@ defmodule VelorouteWeb.Live.VideoState do
     |> maybe_fix_direction()
   end
 
-  defp update_direction_from_params(state, %{"dir" => dir})
-       when dir in ["forward", "backward"] do
-    %{state | direction: String.to_existing_atom(dir)}
+  defp update_direction_from_params(state, %{"dir" => "forward"})
+       when not is_nil(state.forward) do
+    %{state | direction: :forward}
+  end
+
+  defp update_direction_from_params(state, %{"dir" => "backward"})
+       when not is_nil(state.backward) do
+    %{state | direction: :backward}
   end
 
   defp update_direction_from_params(state, _params), do: state
