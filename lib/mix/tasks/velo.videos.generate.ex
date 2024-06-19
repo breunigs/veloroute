@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Velo.Videos.Generate do
   def run(["new"]) do
     existing =
       Video.Generator.all()
-      |> Enum.filter(& &1.rendered?)
+      |> Enum.filter(& &1.rendered?())
       |> Enum.map(&{{&1.renderer(), &1.sources()}, true})
       |> Enum.into(%{})
 

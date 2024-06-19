@@ -44,8 +44,8 @@ defmodule Mix.Tasks.Velo.Videos.Render do
       banner = """
 
       ###########################################################
-      # Name: #{rendered.name}
-      # Hash: #{rendered.hash}
+      # Name: #{rendered.name()}
+      # Hash: #{rendered.hash()}
       ##########################################################
       """
 
