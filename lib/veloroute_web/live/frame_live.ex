@@ -253,7 +253,7 @@ defmodule VelorouteWeb.FrameLive do
     socket =
       socket
       |> set_content(article)
-      |> set_bounds(article, Map.get(params, "bounds"))
+      |> maybe_update_bounds_from_article_bbox(article, params)
       |> update_og_image()
       |> assign(:tmp_last_article_set, article)
 
@@ -341,26 +341,22 @@ defmodule VelorouteWeb.FrameLive do
     push_patch(socket, to: article_path(socket, @search_page))
   end
 
-  defp set_bounds(socket, article, bounds_param)
+  defp maybe_update_bounds_from_article_bbox(socket, article, params)
 
-  defp set_bounds(%{assigns: %{map_bounds: @default_bounds}} = socket, article, bounds_param)
-       when is_binary(bounds_param) do
-    parsed = Geo.BoundingBox.parse(bounds_param)
+  defp maybe_update_bounds_from_article_bbox(socket, _art, params)
+       when is_map_key(params, "bounds"),
+       do: socket
 
-    if parsed != nil,
-      do: update_map_bounds(socket, parsed),
-      else: set_bounds(socket, article, nil)
-  end
+  defp maybe_update_bounds_from_article_bbox(socket, nil, _params), do: socket
 
-  defp set_bounds(%{assigns: %{prev_page: art}} = socket, art, _bounds_param) do
-    socket
-  end
+  defp maybe_update_bounds_from_article_bbox(
+         %{assigns: %{prev_page: art}} = socket,
+         art,
+         _params
+       ),
+       do: socket
 
-  defp set_bounds(%{assigns: %{prev_page: nil}} = socket, _art, _bounds_param) do
-    socket
-  end
-
-  defp set_bounds(socket, art, _bounds_param) when is_module(art) do
+  defp maybe_update_bounds_from_article_bbox(socket, art, _params) when is_module(art) do
     prev_bbox = socket.assigns.map_bounds
     next_bbox = Article.Decorators.bbox(art)
 
@@ -381,10 +377,6 @@ defmodule VelorouteWeb.FrameLive do
       true ->
         socket
     end
-  end
-
-  defp set_bounds(socket, _article, _bounds_param) do
-    socket
   end
 
   defp update_map_bounds(%{assigns: %{map_bounds: bounds}} = socket, bounds), do: socket
