@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.AbrissCityHof do
 
   def updated_at(), do: ~D[2023-10-14]
 
-  def title(), do: "Neues Quartier am Klosterwall (Veloroute 9)"
+  def title(), do: "Johann-Kontor am Klosterwall (Veloroute 9)"
 
   def summary(),
     do: "2,5m breiter Hochbordradweg nach Fertigstellung des neuen Klosterwall Quartiers"

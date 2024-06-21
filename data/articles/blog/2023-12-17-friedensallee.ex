@@ -10,43 +10,48 @@ defmodule Data.Article.Blog.Friedensallee do
   def stop(), do: ~d[2024-03-31]
   def construction_site_id_hh(), do: [599_026]
 
-  def type(), do: :finished
+  def type(), do: :construction
 
   def tags(), do: []
 
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "friedensallee",
         direction: :forward,
-        from: "Barnerstraße",
+        from: "Alma-Wartenberg-Platz",
         to: "Von-Sauer-Straße",
         parent_ref: __MODULE__,
         text: "Friedensallee Richtung Autobahn",
         historic: %{
+          "3b7833aead638e9137eeed85762aadba" => ~d[2024-06],
           "5278e5201c8a37d11cf5feb9f650e088" => ~d[2021-09]
         },
         videos: [
-          {"2021-07-15-14uhr-und-13gg/GX012231", "00:00:00.934", :end},
-          {"2021-07-15-14uhr-und-13gg/GX012232", :start, "00:00:18.085"},
-          {"2021-09-25-velo1-velo14-changed-routing-flottbek/GX012928", "00:00:13.847",
-           "00:00:55.589"}
+          {"2024-06-20-14im-13gg/GX017784", "00:00:36.970", :end},
+          {"2024-06-20-14im-13gg/GX017785", :start, :end},
+          {"2024-06-20-14im-13gg/GX017786", :start, :end}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "friedensallee",
         direction: :backward,
         from: "Von-Sauer-Straße",
-        to: "Barnerstraße",
+        to: "Alma-Wartenberg-Platz",
         parent_ref: __MODULE__,
         text: "Friedensallee Richtung Ottensen",
         historic: %{
+          "39cd122cd509258f8c457e21a9df5ee3" => ~d[2024-06],
           "79c419d561e0c13ab2674dde201eb42d" => ~d[2021-07]
         },
         videos: [
-          {"2021-07-10-13uhr-14gg/GX012221", "00:00:06.173", :end}
+          {"2024-06-18-14gg/GX017778", "00:00:06.173", :end},
+          {"2024-06-18-14gg/GX017779", :start, :end},
+          {"2024-06-18-14gg/GX017780", :start, :end},
+          {"2024-06-18-14gg/GX017781", :start, :end},
+          {"2024-06-18-14gg/GX017782", :start, "00:00:08.674"}
         ]
       }
     ]

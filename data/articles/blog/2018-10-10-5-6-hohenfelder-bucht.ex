@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.HohenfelderBucht do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juli 2024",
+       "https://lsbg.hamburg.de/resource/blob/902444/de19bdc94297b6150e156feda9d9b37f/hohenfelder-bucht-anliegerinformation-juli-2024-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/hohenfelder-bucht"},
       {"Änderungen", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013307"},

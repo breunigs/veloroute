@@ -51,6 +51,10 @@ defmodule Data.Article.Blog.BorgfelderStrasse do
 
   def links(_assigns) do
     [
+      {"fertiger Entwurf – Erläuterungen", "Mai 2024",
+       "https://lsbg.hamburg.de/resource/blob/903400/ce4fd5c347d38c644abe9bd506f1da66/borgfelder-strasse-abgestimmte-planung-bericht-data.pdf"},
+      {"fertiger Entwurf – Karte", "Mai 2024",
+       "https://lsbg.hamburg.de/resource/blob/903404/f2afdee1c610aece9d487e4e620d78cf/borgfelder-strasse-abgestimmte-planung-plan-data.pdf"},
       {"1. Entwurf (Karten und Erläuterung)", "August 2023",
        "https://fragdenstaat.de/anfrage/borgfelder-strasse/#nachricht-906941"},
       {"Schiene Plus – Präsentation", "April 2024",
