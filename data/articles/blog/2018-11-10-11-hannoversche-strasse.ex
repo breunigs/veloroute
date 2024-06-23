@@ -20,12 +20,14 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juni 2024",
+       "https://lsbg.hamburg.de/resource/blob/784454/7352392db667dfa5879101337e3dcd4c/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       {"Pressemitteilung Umbau Kreisel", "April 2024",
        "https://www.hamburg.de/harburg/pressemeldungen/18429130/ausbau-der-velorouten-10-und-11/"},
       {"Bauvergabe Kreisel Neuländer Hauptdeich", "März 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6ef021a3-6cf6-4bec-ae8c-5ef2782f52ba"},
-      {"Baustelleninfo", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
+      # {"Baustelleninfo", "September 2023",
+      #  "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Bauvergabe, Abschnitt Neuländer Straße bis Neuländer Hauptdeich", "Februar 2023",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/dd5a2515-763c-4038-81d5-d7b510272b89"},
       {"Pressemitteilung zum Baufortschritt", "September 2022",

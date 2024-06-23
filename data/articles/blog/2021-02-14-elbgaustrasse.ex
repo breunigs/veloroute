@@ -19,7 +19,11 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
-      {"Detailänderungen zum Baumerhalt", "November 2023",
+      {"Detailänderungen zum Baumerhalt – Lageplan", "Juni 2024",
+       "https://lsbg.hamburg.de/resource/blob/906186/4468a3a4efb7d00eea19b180dd5b57a5/veloroute-14-elbgaustrasse-abgestimmte-planung-nachtrag-plaene-data.pdf"},
+      {"Detailänderungen zum Baumerhalt – Bericht", "Juni 2024",
+       "https://lsbg.hamburg.de/resource/blob/906172/cbb53d355a8491f033f70b70d16bb9b9/veloroute-14-elbgaustrasse-abgestimmte-planung-nachtrag-bericht-data.pdf"},
+      {"Detailänderungen zum Baumerhalt – Präsentation", "November 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008876"},
       {"fertiger Entwurf – Bericht", "Juni 2023",
        "https://lsbg.hamburg.de/resource/blob/783058/ca6d36dd7901cbd4a3f191c60e20e73c/veloroute-14-elbgaustrasse-abgestimmte-planung-bericht-data.pdf"},
