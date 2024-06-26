@@ -208,7 +208,8 @@ defmodule Search.Meilisearch.Nominatim do
       displayedAttributes:
         ~w(id class type name address parents_name parents_postcode extratags bbox boost rank_boosted_areas rank_search rank_address importance),
       # order is from most important to least important
-      searchableAttributes: ~w(name boost address type parents_name type extratags),
+      searchableAttributes:
+        ~w(name boost address type parents_name parents_postcode type extratags),
       sortableAttributes:
         ~w(importance rank_search rank_address rank_boosted_areas _geo admin_level),
       synonyms: synonyms,
