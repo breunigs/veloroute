@@ -343,6 +343,7 @@ defmodule Search.Meilisearch.Runner do
 
       {:error, indexer, reason} ->
         Logger.error("failed to index #{indexer}: #{reason}")
+        raise("index failure, see error message above")
     end)
 
     queue =
