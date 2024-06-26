@@ -14,10 +14,10 @@ defmodule Mix.Tasks.ListPotentiallyOutdated do
 
       cond do
         started_already && art.type() == :planned ->
-          IO.puts("#{art.name}: maybe started already, but is still “planned“")
+          IO.puts("#{art.name()}: maybe started already, but is still “planned“")
 
         ended_already && art.type() == :construction ->
-          IO.puts("#{art.name}: maybe ended already, but is still “construction”")
+          IO.puts("#{art.name()}: maybe ended already, but is still “construction”")
 
         true ->
           nil
