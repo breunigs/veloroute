@@ -44,7 +44,7 @@ config :logger, :default_formatter,
   format: {LogFormatter, :format},
   metadata: [:request_id, :file, :line]
 
-config :logger, backends: [:console]
+config :logger, backends: [:console], truncate: :infinity
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
