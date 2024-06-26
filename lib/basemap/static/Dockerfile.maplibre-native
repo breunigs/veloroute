@@ -1,6 +1,7 @@
 # specify which branch or commit sha to build
 ARG MLN_COMMIT=3b6d4c5a9715b712c67fc5afc1a9f2ff2569cb20
 ARG DEBIAN_VERSION
+ARG LOW_PRIO="/usr/bin/chrt --idle 0 /usr/bin/nice -n19 /usr/bin/ionice --class idle"
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
 # keep runtime dependencies in sync with Dockerfile.release
@@ -32,6 +33,7 @@ RUN [ ! -z "${MLN_COMMIT}" ] \
   && git submodule update --jobs 8 --init --recursive
 
 FROM runner-base as builder
+ARG LOW_PRIO
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
   ccache \
@@ -53,22 +55,23 @@ RUN apt-get -y update \
   && rm -rf /var/lib/apt/lists/*
 COPY --from=cloner /build/ /build/
 WORKDIR /build/
-RUN cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-  && cmake --build build -j $(nproc 2>/dev/null)
+RUN ${LOW_PRIO} cmake . -B build -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+  && ${LOW_PRIO} cmake --build build -j $(nproc 2>/dev/null)
 
 # ensure our patch files are considered newer than the previous build
 COPY ./patch/. /patch/
 RUN touch /patch/**/* \
   && cp -r /patch/. /build/ \
-  && cmake --build build -j $(nproc 2>/dev/null)
+  && ${LOW_PRIO} cmake --build build -j $(nproc 2>/dev/null)
 
 FROM runner-base as runner
 WORKDIR /build
 COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 
 # Copy finicky libraries that are not easily installed in other hosts. We need
-# to do this because we base the devel or release image might drift from when we
-# last built this one.
+# to do this because the devel or release image might update libraries, but we
+# won't automatically rebuild the mbgl-render one.
+#
 # Run the executable like so:
 # LD_PRELOAD=$(ls *.so* | sed 's,lib,./lib,' | sed -z 's,\n, ,g')
 # echo '9.9711715 53.585086000000004 10.0 1 500 500 route-highlight route_id 11' | \
@@ -78,13 +81,11 @@ COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 #     --assets priv/static/ \
 #     --max-zoom 14
 RUN cp \
-  /usr/lib/x86_64-linux-gnu/libicudata.so.67 \
-  /usr/lib/x86_64-linux-gnu/libicui18n.so.67 \
-  /usr/lib/x86_64-linux-gnu/libicuuc.so.67 \
-  /usr/lib/x86_64-linux-gnu/libjpeg.so.62 \
-  /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
-  /usr/lib/x86_64-linux-gnu/libwebp.so.6 \
-  /usr/lib/x86_64-linux-gnu/libwebp.so.6.0.2 \
+  /usr/lib/x86_64-linux-gnu/libicui18n.so* \
+  /usr/lib/x86_64-linux-gnu/libicuuc.so* \
+  /usr/lib/x86_64-linux-gnu/libjpeg.so* \
+  /usr/lib/x86_64-linux-gnu/libpng16.so* \
+  /usr/lib/x86_64-linux-gnu/libwebp.so* \
   .
 
 RUN /build/mbgl-render --help
