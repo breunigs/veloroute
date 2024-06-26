@@ -247,7 +247,12 @@ defmodule Basemap.Nominatim do
           main1.address,
           SLICE(
             main1.extratags,
-            ARRAY['border_type', 'branch', 'name:prefix', 'operator', 'wikidata']
+            ARRAY['border_type', 'branch', 'name:prefix','wikidata']
+          ) || (
+           -- remove likely addresses from operator field (Foobar GmbH, Bazstreet 123)
+           HSTORE('operator', REGEXP_REPLACE(main1.extratags->'operator', 'mbH, .*', 'mbH'))
+           -- but do not include NULL values
+           - 'operator=>null'::HSTORE
           ) AS extratags,
           main1.centroid,
           main1.geometry,
