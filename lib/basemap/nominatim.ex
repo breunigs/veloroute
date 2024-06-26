@@ -7,7 +7,7 @@ defmodule Basemap.Nominatim do
   @queries [:search, :area]
 
   def export(query, where \\ :cache) when query in @queries,
-    do: path(where, "export_#{query}.json")
+    do: path(where, "export_#{query}.json.gz")
 
   defp source(where), do: Basemap.OpenStreetMap.target_extract(where)
   defp debug_path(where), do: path(where, "ENABLE_DEBUG")
@@ -168,17 +168,20 @@ defmodule Basemap.Nominatim do
   end
 
   defp export_script() do
+    sudo = "sudo --preserve-env --user=nominatim"
+
     queries =
       Enum.map_join(@queries, "\n\n", fn query ->
         """
-        sudo --preserve-env --user=nominatim -- \
+        #{sudo} -- \
           psql \
-          --dbname=nominatim \
-          --no-align \
-          --tuples-only \
-          --variable=ON_ERROR_STOP=1 \
-          --output=#{export(query, :container)} \
-          --file=#{query_path(query, :container)} \
+            --dbname=nominatim \
+            --no-align \
+            --tuples-only \
+            --variable=ON_ERROR_STOP=1 \
+            --file=#{query_path(query, :container)} \
+          | gzip --fast \
+          | #{sudo} -- tee #{export(query, :container)} > /dev/null \
           &
         """
       end)

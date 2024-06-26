@@ -66,6 +66,11 @@ defmodule Search.Meilisearch.API do
     |> await_finish()
   end
 
+  defguardp valid_content_type(ct)
+            when ct in ["application/json", "application/x-ndjson", "text/csv"]
+
+  defguardp valid_content_encoding(ce) when ce in ["gzip"]
+
   def index_documents(index, documents) when is_atom(index) and is_list(documents) do
     Logger.debug("index=#{index}: adding #{length(documents)} documents")
 
@@ -73,14 +78,27 @@ defmodule Search.Meilisearch.API do
     |> await_finish()
   end
 
-  @valid_content_types ["application/json", "application/x-ndjson", "text/csv"]
+  def index_documents(index, {content_type, content_encoding, blob})
+      when is_atom(index) and valid_content_type(content_type) and
+             valid_content_encoding(content_encoding) and is_binary(blob) do
+    index_documents(
+      index,
+      [{"content-type", content_type}, {"content-encoding", content_encoding}],
+      blob
+    )
+  end
+
   def index_documents(index, {content_type, blob})
-      when is_atom(index) and content_type in @valid_content_types and is_binary(blob) do
+      when is_atom(index) and valid_content_type(content_type) and is_binary(blob) do
+    index_documents(index, [{"content-type", content_type}], blob)
+  end
+
+  defp index_documents(index, headers, blob) do
     size = round(byte_size(blob) / 1024 / 1024)
     Logger.debug("index=#{index}: adding documents from #{size} MB blob")
 
     post("/indexes/#{index}/documents", blob,
-      headers: [{"content-type", content_type}],
+      headers: headers,
       opts: @adapter_opts_index
     )
     |> await_finish()

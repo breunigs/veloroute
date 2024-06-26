@@ -9,7 +9,12 @@ defmodule Search.Meilisearch.Nominatim do
   def documents() do
     Basemap.Nominatim.ensure()
     source = Basemap.Nominatim.export(:search)
-    {"application/x-ndjson", File.read!(source)}
+
+    if Path.extname(source) == ".gz" do
+      {"application/x-ndjson", "gzip", File.read!(source)}
+    else
+      {"application/x-ndjson", File.read!(source)}
+    end
   end
 
   @impl true
