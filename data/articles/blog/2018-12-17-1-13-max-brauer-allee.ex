@@ -21,6 +21,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2024-06],
+       "https://lsbg.hamburg.de/resource/blob/926470/ae2ed7290d2daa9536e21b7c7ab48fea/max-brauer-allee-goetheallee-bis-paul-nevermann-platz-anliegerinformation-juni-2024-data.pdf"},
       {"Auftragsvergabe 3", "Januar 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0f1380ca-62f9-4a36-bfcc-866fe2bdaa26"},
       {"Auftragsvergabe 2", "Dezember 2023",

@@ -17,13 +17,17 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 5,
         group: "norderstedt 1",
         direction: :forward,
         from: "Schmuggelstieg",
         to: "Meeschensee",
         parent_ref: __MODULE__,
         text: "vom Schmuggelstieg nach Meeschensee",
+        historic: %{
+          "2e67a99712b02fb6b41d9d67f7f4f13d" => ~d[2024-06],
+          "c1493a80a4ae432682c996c445f9fe85" => ~d[2022-05]
+        },
         videos: [
           {"2022-05-28-norderstedt/GX014068", "00:00:12.246", :end},
           {"2022-05-28-norderstedt/GX014069", :start, :end},
@@ -34,7 +38,8 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
           {"2022-05-28-norderstedt/GX014083", "00:00:01.268", :end},
           {"2022-05-28-norderstedt/GX014084", :start, "00:01:44.304"},
           {"2022-05-28-norderstedt/GX014085", "00:00:18.585", :end},
-          {"2022-05-28-norderstedt/GX014086", :start, "00:01:54.014"}
+          {"2022-05-28-norderstedt/GX014086", :start, "00:00:03.537"},
+          {"2024-06-23-rick/GX017850", "00:01:15.542", "00:02:47.367"}
         ]
       },
       %Video.Track{

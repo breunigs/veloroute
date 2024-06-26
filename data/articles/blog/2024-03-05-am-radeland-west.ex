@@ -7,14 +7,17 @@ defmodule Data.Article.Blog.AmRadelandWest do
     do:
       "Die Straße wird saniert, bleibt aber beim aktuellen Ansatz. D.h. Mischverkehr und wechselseitige KFZ-Parkplätze. Bushalte werden barrierefrei."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def start(), do: ~d[2024-06-17]
   def stop(), do: ~d[2025-09]
+  # def construction_site_id_hh(), do: [862308]
 
   def tags(), do: ["10", "FR6", "H13", "H.13"]
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt zum Umbau",
+       "https://www.hamburg.de/harburg/verkehr/18661244/ausbau-veloroute-10-bostelbek"},
       {"Pressemitteilung Umbaustart", "Mai 2024",
        "https://www.hamburg.de/harburg/pressemeldungen/18661706/ausbau-veloroute-10-in-bostelbek/"},
       {"Ausschreibung Umbau", "März 2024",

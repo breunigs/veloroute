@@ -16,7 +16,9 @@ defmodule Article do
 
   @type assigns() :: %{optional(atom) => any}
   @type link() ::
-          {binary(), binary()} | {binary(), binary(), binary()} | Phoenix.LiveView.Rendered.t()
+          {binary(), binary()}
+          | {binary(), binary() | Data.RoughDate.t(), binary()}
+          | Phoenix.LiveView.Rendered.t()
 
   @callback id() :: binary() | nil
   @callback display_id() :: binary() | nil
