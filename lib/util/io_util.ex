@@ -73,6 +73,18 @@ defmodule Util.IO do
   end
 
   @doc """
+  Returns true if the file is missing or has zero bytes
+  """
+  @spec absent?(binary() | Path.t()) :: boolean()
+  def absent?(path) do
+    with {:ok, %File.Stat{size: size}} when size > 0 <- File.stat(path) do
+      false
+    else
+      _ -> true
+    end
+  end
+
+  @doc """
   Returns true when the target is older than any of its dependencies
   """
   @spec stale?(binary() | Path.t(), [binary() | Path.t()]) :: boolean()

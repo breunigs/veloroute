@@ -25,7 +25,10 @@ defmodule Basemap.Nominatim do
   def stale?() do
     Benchmark.measure("Basemap.Nominatim.stale?", fn ->
       depends = [source(:cache), __ENV__.file]
-      Enum.any?(@queries, &Util.IO.stale?(export(&1, :cache), depends))
+      paths = Enum.map(@queries, &export(&1, :cache))
+      # additional zero-byte-check required because the script can create empty
+      # files if aborted
+      Enum.any?(paths, &Util.IO.absent?/1) || Enum.any?(paths, &Util.IO.stale?(&1, depends))
     end)
   end
 
