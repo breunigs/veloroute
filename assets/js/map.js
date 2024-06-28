@@ -114,6 +114,8 @@ function renderIndicator() {
     indicator = new mlgl.Marker({ element: el })
       .setLngLat(lngLat)
       .setRotation(pos.bearing * 1)
+      .setPitchAlignment("map")
+      .setRotationAlignment("map")
 
     requestAnimationFrame(() => {
       indicator.addTo(map);
