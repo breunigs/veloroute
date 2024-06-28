@@ -1,4 +1,14 @@
 defmodule Data.OsmTagToHuman do
+  @spec name(binary() | nil) :: binary() | nil
+  def name(nil), do: nil
+
+  def name(tag) do
+    case Data.OsmTagToHuman.map()[tag] do
+      [name | _secondary_names] -> name
+      nil -> nil
+    end
+  end
+
   @spec map() :: %{binary() => [binary()]}
   def map(),
     do: %{

@@ -95,7 +95,8 @@ defmodule Search.Meilisearch.Nominatim do
 
       %{"name" => %{"name" => "" <> name}, "parents_name" => pns, "class" => class} = item ->
         housenum = get_in(item, ["address", "housenumber"])
-        {name, Enum.slice(pns, -2..-1), class, housenum}
+        type = Data.OsmTagToHuman.name(item["type"])
+        {name, Enum.slice(pns, -2..-1), class, housenum, type}
 
       _ ->
         nil
@@ -163,11 +164,13 @@ defmodule Search.Meilisearch.Nominatim do
   defp merge_types(_a, @multiple_type), do: @multiple_type
 
   defp merge_types(a, b) do
-    with [named | _rest] <- Data.OsmTagToHuman.map()[a],
-         [^named | _rest] <- Data.OsmTagToHuman.map()[b] do
+    name_a = Data.OsmTagToHuman.name(a)
+    name_b = Data.OsmTagToHuman.name(b)
+
+    if name_a && name_a == name_b do
       a
     else
-      _ -> @multiple_type
+      @multiple_type
     end
   end
 
@@ -237,11 +240,7 @@ defmodule Search.Meilisearch.Nominatim do
   @spec lookup(%{binary() => term()}, [binary() | [binary()]]) :: binary() | nil
   defp lookup(result, [key | rest]) when is_map(result) do
     val = get_in(result, List.wrap(key))
-
-    case Data.OsmTagToHuman.map()[val] do
-      [x | _rest] -> x
-      _ -> lookup(result, rest)
-    end
+    Data.OsmTagToHuman.name(val) || lookup(result, rest)
   end
 
   defp lookup(_result, []), do: nil
