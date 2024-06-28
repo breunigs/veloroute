@@ -5,10 +5,10 @@ defmodule Data.Article.Blog.AmNeumarkt do
 
   def title(), do: "Am Neumarkt"
 
-  def type(), do: :construction
-  def start(), do: ~d[2023-05-15]
-  def stop(), do: ~d[2025-09-30]
-  def construction_site_id_hh(), do: [363_502]
+  def type(), do: :intent
+  # def start(), do: ~d[2023-05-15]
+  # def stop(), do: ~d[2025-09-30]
+  # def construction_site_id_hh(), do: [363_502]
 
   def tags(), do: ["radfahrstreifen"]
 

@@ -8,8 +8,12 @@ defmodule Data.Article.Static.Freizeitroute14 do
   def color(), do: "#006106"
   def color_faded(), do: "#77ba7b"
 
-  def summary(),
+  def summary("de"),
     do: "Video und Beschreibung zur Freizeit Radroute „Alter Elbtunnel“ (FR14)"
+
+  def summary("en"),
+    do:
+      "Video and description for leisure cycling route 14 “Alter Elbtunnel” (old Elbe tunnel) (FR14)"
 
   def tags(), do: [id()]
 

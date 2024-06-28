@@ -320,6 +320,7 @@ defmodule Components.TagHelpers do
 
   @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
   attr :name, :string
+  attr :lang, :string, default: Settings.default_language()
   slot(:inner_block, required: true)
 
   def ref(assigns) do
@@ -328,7 +329,7 @@ defmodule Components.TagHelpers do
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
     assigns
-    |> Map.merge(%{ref: art, class: "ref"})
+    |> Map.merge(%{ref: art, class: "ref", lang: assigns.lang})
     |> article_link()
   end
 

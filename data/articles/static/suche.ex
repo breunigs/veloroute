@@ -10,21 +10,23 @@ defmodule Data.Article.Static.Suche do
 
   def text(assigns) do
     ~H"""
-    <h3><label for="query">Suche 🔎</label></h3>
-    <form method="GET" action="/suche" onsubmit="return false">
-      <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="250" phx-hook="FocusSearchField" autofocus="autofocus" name="search_query" value={@search_query}/>
-    </form>
+    <search>
+      <h3><label for="query">Suche 🔎</label></h3>
+      <form method="GET" action="/suche" onsubmit="return false">
+        <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…" phx-keyup="search" phx-debounce="250" phx-hook="FocusSearchField" autofocus="autofocus" name="search_query" value={@search_query}/>
+      </form>
 
-    <.noindex>
-      <.async_result :let={search_results} assign={@search_results}>
-        <:loading><p>Lädt…</p></:loading>
-        <:failed :let={error}>
-          <p>Fehler in der Suchfunktion:</p>
-          <tt><%= inspect(error) %></tt>
-        </:failed>
-        <.results results={search_results} query={@search_query}/>
-      </.async_result>
-    </.noindex>
+      <.noindex>
+        <.async_result :let={search_results} assign={@search_results}>
+          <:loading><p>Lädt…</p></:loading>
+          <:failed :let={error}>
+            <p>Fehler in der Suchfunktion:</p>
+            <tt><%= inspect(error) %></tt>
+          </:failed>
+          <.results results={search_results} query={@search_query}/>
+        </.async_result>
+      </.noindex>
+    </search>
     """
   end
 
