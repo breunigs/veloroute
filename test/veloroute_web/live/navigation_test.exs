@@ -49,6 +49,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert html =~ ~s|/map/___static/10.025547,53.63463,15|
   end
 
+  test "initial render can load video without position timestamp", %{conn: conn} do
+    {:ok, _view, _html} =
+      live(conn, "/article/2018-04-08-4-kleekamp?video=d763295b172404e6733296718edd6740")
+  end
+
   test "map click on article renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
     refute html =~ "Kleekamp"

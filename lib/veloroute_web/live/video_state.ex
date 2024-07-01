@@ -45,7 +45,7 @@ defmodule VelorouteWeb.Live.VideoState do
       socket
       # finalize happens in set_position
       |> Phoenix.Component.assign(:video, state)
-      |> set_position(params)
+      |> set_position(params, true)
     else
       _ -> maybe_update_video(socket, article, Map.delete(params, "video"))
     end
@@ -192,9 +192,7 @@ defmodule VelorouteWeb.Live.VideoState do
   def reverse(%{assigns: %{video: nil}} = socket, _params), do: socket
 
   def reverse(%{assigns: %{video: state}} = socket, params) do
-    # old style JS will send lat/lon in the params directly instead of time
-    # can be cleaned up after 2022-06-01
-    point = position_from_time(socket, params) || params
+    point = position_from_time(socket, params)
 
     assigns =
       state
@@ -209,8 +207,15 @@ defmodule VelorouteWeb.Live.VideoState do
   Set the current video position from the given time in milliseconds in the
   "pos" param.
   """
-  def set_position(%{assigns: %{video: state}} = socket, params) do
-    point = position_from_time(socket, params)
+  def set_position(%{assigns: %{video: state}} = socket, params, fallback \\ false) do
+    point =
+      cond do
+        pos = position_from_time(socket, params) -> pos
+        !fallback -> nil
+        state.start -> state.start
+        ren = current_rendered(state) -> Video.Rendered.start_from(ren, 0)
+        true -> nil
+      end
 
     if point do
       assigns = for_frontend(%{state | start: point})
