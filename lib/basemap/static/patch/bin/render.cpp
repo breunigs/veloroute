@@ -53,10 +53,6 @@ void printImage(WebPMemoryWriter *wrt) {
     std::cout.write(reinterpret_cast<char *>(wrt->mem), wrt->size);
 }
 
-std::map<std::string, WebPMemoryWriter> cache;
-std::list<std::string> cacheLRU;
-const int cacheCapacity = 120;
-
 WebPConfig webpConfig() {
     WebPConfig config;
     if (!WebPConfigPreset(&config, WEBP_PRESET_DRAWING, 60 /* quality level */)) {
@@ -124,12 +120,6 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
     while (std::getline(std::cin, line)) {
         // ignore Erlang message length indicator and instead rely on newline detection
         line.erase(0, 4);
-
-        auto cachedImage = cache.find(line);
-        if (cachedImage != cache.end()) {
-            printImage(&(cachedImage->second));
-            continue;
-        }
 
         auto args = split(line, ' ');
         std::size_t expected = 9;
@@ -213,17 +203,6 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
             }
             printImage(&wrt);
             WebPPictureFree(&pic);
-
-            if (cache.size() >= cacheCapacity) {
-                // evict oldest element
-                auto i = --cacheLRU.end();
-                WebPMemoryWriterClear(&(cache.find(*i)->second));
-                cache.erase(*i);
-                cacheLRU.erase(i);
-            }
-            cacheLRU.push_front(line);
-            cache[line] = wrt;
-
         } catch (std::exception &e) {
             printError("failed rendering " + std::string(e.what()));
             renderFinishMs = currentTimeMs();

@@ -56,8 +56,29 @@ defmodule Basemap.Static.Runner do
         " "
       )
 
-    deadline = :os.system_time(:millisecond) + timeout
-    GenServer.call(__MODULE__, {:render, line <> "\n", deadline}, timeout)
+    {cache_status, result} =
+      Cachex.fetch(:basemap_static_render_cachex, line, fn ->
+        deadline = :os.system_time(:millisecond) + timeout
+
+        {elapsed, result} =
+          :timer.tc(fn ->
+            GenServer.call(__MODULE__, {:render, line <> "\n", deadline}, timeout)
+          end)
+
+        case result do
+          {:ok, content_type, image} ->
+            Logger.debug("static map render for '#{line}' took #{elapsed / 1_000}ms")
+            {:commit, {:ok, content_type, image}}
+
+          {:error, reason} ->
+            Logger.debug("static map render for '#{line}' failed: #{reason}")
+            {:ignore, {:error, reason}}
+        end
+      end)
+
+    # effectively make this a LRU
+    if cache_status == :ok, do: Cachex.touch(:basemap_static_render_cachex, line)
+    result
   catch
     :exit, reason -> {:error, inspect(reason)}
   end

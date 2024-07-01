@@ -130,6 +130,7 @@ defmodule Settings do
   def video_serve_host(), do: "https://veloroute.hamburg"
 
   # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB
-  def thumbnail_cache_entry_limit, do: 1000
-  def map_cache_entry_limit, do: 1000
+  def video_thumbnail_cache_entry_limit, do: 1000
+  def external_map_cache_entry_limit, do: 1000
+  def static_map_cache_entry_limit, do: 200
 end

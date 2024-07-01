@@ -17,12 +17,18 @@ defmodule Veloroute.Application do
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
       Supervisor.child_spec(
-        {Cachex, name: :tesla_cache_cachex, limit: Settings.map_cache_entry_limit()},
+        {Cachex, name: :tesla_cache_cachex, limit: Settings.external_map_cache_entry_limit()},
         id: :tesla_cache_cachex
       ),
       Supervisor.child_spec(
-        {Cachex, [name: :image_extract_cachex, limit: Settings.thumbnail_cache_entry_limit()]},
+        {Cachex,
+         [name: :image_extract_cachex, limit: Settings.video_thumbnail_cache_entry_limit()]},
         id: :image_extract_cachex
+      ),
+      Supervisor.child_spec(
+        {Cachex,
+         [name: :basemap_static_render_cachex, limit: Settings.static_map_cache_entry_limit()]},
+        id: :basemap_static_render_cachex
       )
     ]
 
