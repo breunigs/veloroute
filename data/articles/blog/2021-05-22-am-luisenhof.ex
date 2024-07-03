@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2024-07],
+       "https://lsbg.hamburg.de/resource/blob/932490/ef7418bd833543d10b779a236eb8003c/u-farmsen-ueberlieger-juli-2024-data.pdf"},
       {"Bauvergabe", "März 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/02842548-8a4f-4c5a-b3e8-226d28b107cd/details"},
       {"Erläuterungen und Lageplan", "2023, Überarbeitung",
