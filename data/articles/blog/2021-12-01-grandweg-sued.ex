@@ -9,9 +9,9 @@ defmodule Data.Article.Blog.GrandwegSued do
   def type(), do: :planned
   def tags(), do: ["3", "br-nord-n7"]
 
-  def start(), do: ~d[2024Q2]
-  def stop(), do: ~d[2024Q2]
-  # def construction_site_id_hh(), do: [21848]
+  def start(), do: ~d[2024-07-08]
+  def stop(), do: ~d[2024-07-12]
+  def construction_site_id_hh(), do: [867_828]
 
   def links(_assigns) do
     [

@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def type(), do: :planned
 
   def tags(), do: ["br-nord-n8"]
-  def start(), do: ~d[2024Q3]
+  def start(), do: ~d[2024-08]
   def stop(), do: ~d[2027Q4]
 
   def tracks(),
@@ -34,6 +34,8 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def links(_assigns) do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
+      {"Zeitungsartikel zum Umbaustart", ~d[2024-07],
+       "https://www.abendblatt.de/hamburg/hamburg-nord/article406718077/bauarbeiten-starten-wellingsbuetteler-landstrasse-wird-gesperrt.html"},
       {"Erläuterungsbericht (4. Entwurf/fertige Planung)", "September 2023",
        "https://lsbg.hamburg.de/resource/blob/783748/b26121b66aba18998129ae9554a2938f/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne (4. Entwurf/fertige Planung)", "September 2023",
