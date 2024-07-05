@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   @shortdoc "Renders videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
   def run(filters) do
     Video.Dir.must_exist!(fn ->
-      filters |> find() |> Enum.sort_by(& &1.name) |> info() |> render()
+      filters |> find() |> Enum.sort_by(& &1.name()) |> info() |> render()
     end)
   end
 
