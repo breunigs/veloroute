@@ -174,7 +174,14 @@ defmodule Video.Metadata do
     end
   end
 
-  @json_path "data/cache/video_metadata.json"
+  parameters =
+    Video.Constants.__info__(:functions)
+    |> Keyword.filter(fn {_fun, arity} -> arity == 0 end)
+    |> Keyword.keys()
+    |> Enum.sort()
+    |> Enum.map(&apply(Video.Constants, &1, []))
+
+  @json_path "data/cache/video_metadata_#{Enum.join(parameters, "_")}.json"
   @spec read_json() :: state()
   def read_json() do
     try do
