@@ -366,13 +366,13 @@ defmodule Video.Track do
   @spec compact_street_names([Video.TimedPoint.t()], hash(), render_opts_priv()) :: timed_info()
   defp compact_street_names(_coords, _hash, %{street_names: false}), do: []
 
-  defp compact_street_names(coords, hash, _opts) do
+  defp compact_street_names(coords, hash, _opts) when is_list(coords) do
     map_matcher = Application.get_env(:veloroute, :map_matcher)
 
     with {:ok, matched} <- map_matcher.match(coords) do
       matched
-      |> Enum.reduce(nil, fn
-        coord, nil ->
+      |> Enum.reduce([], fn
+        coord, list when list == [] ->
           [%{timestamp: coord.time_offset_ms, text: coord.match_name}]
 
         %{match_name: name}, [%{text: name} | _rest] = list ->
