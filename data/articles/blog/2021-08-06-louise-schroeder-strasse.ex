@@ -18,28 +18,35 @@ defmodule Data.Article.Blog.LouiseSchroederStrasse do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Louise-Schroeder-Straße",
         direction: :forward,
-        from: "",
-        to: "",
+        from: "Holstenstraße",
+        to: "Große Bergstraße",
         parent_ref: __MODULE__,
         text: "Louise-Schroeder-Straße nach Altona",
+        historic: %{
+          "346b85f94b3d8ba92da7f2347b146fc0" => ~d[2024-07],
+          "17eb593f020ef8c3573d4116518dc9cc" => ~d[2021-06]
+        },
         videos: [
-          {"2021-06-22-velo7-und-pauli-altona/GX011953", :start, "00:00:22.022"}
+          {"2024-07-05-indir-links/GX010006", :start, "00:02:02.322"}
         ]
       },
       %Video.Track{
-        renderer: 1,
+        renderer: 5,
         group: "Louise-Schroeder-Straße",
         direction: :backward,
-        from: "",
-        to: "",
+        from: "Große Bergstraße",
+        to: "Holstenstraße",
         parent_ref: __MODULE__,
         text: "Louise-Schroeder-Straße nach St. Pauli",
+        historic: %{
+          "af05c9d9962def1253db57ae81f272f3" => ~d[2024-07],
+          "ae4740e7032c06828f669fa3ac210af0" => ~d[2021-05]
+        },
         videos: [
-          {"2021-05-01-freizeit8-und-ring-nord-uhrzeiger/GX011414", "00:00:06.139",
-           "00:00:24.057"}
+          {"2024-07-05-indir-links/GX010003", "00:00:46.446", :end}
         ]
       }
     ]

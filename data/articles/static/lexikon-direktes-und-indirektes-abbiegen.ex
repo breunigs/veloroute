@@ -44,7 +44,7 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
         from: "Bebelallee",
         to: "Rathenaustraße",
         parent_ref: __MODULE__,
-        text: "indirekt aus der Bebelalle in die Rathenaustraße abbiegen",
+        text: "indirekt aus der Bebelallee in die Rathenaustraße abbiegen",
         videos: [
           {"2022-01-29-rickling/GX013202", "00:00:10.511", :end},
           {"2022-01-29-rickling/GX013204", :start, :end},
@@ -64,8 +64,36 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
           {"2023-04-06-br-wandsbek/GX015543", :start, :end},
           {"2023-04-06-br-wandsbek/GX015544", :start, "00:00:02.803"}
         ]
+      },
+      %Video.Track{
+        renderer: 5,
+        group: "indirektes Abbiegen ohne eigene Ampel",
+        direction: :forward,
+        from: "Holstenstraße",
+        to: "Haubachstraße",
+        parent_ref: __MODULE__,
+        text: "indirektes Linksabbiegen am Holstenplatz",
+        videos: [
+          {"2024-07-05-indir-links/GX010008", "00:03:05.185", "00:03:38.885"}
+        ]
+      },
+      %Video.Track{
+        renderer: 5,
+        group: "indirektes Abbiegen mit eigener Ampel",
+        direction: :backward,
+        from: "Holstenstraße",
+        to: "Holstenplatz",
+        parent_ref: __MODULE__,
+        text: "indirektes Linksabbiegen am Holstenplatz",
+        videos: [
+          {"2024-07-05-indir-links/GX010011", "00:00:40.908", "00:00:51.285"},
+          {"2024-07-05-indir-links/GX010011", "00:01:16.443", :end},
+          {"2024-07-05-indir-links/GX010012", :start, "00:00:16.850"}
+        ]
       }
     ]
+
+  def point_of_interest(), do: %{lon: 9.947984, lat: 53.560759, zoom: 17}
 
   def text(assigns) do
     ~H"""
@@ -79,18 +107,24 @@ defmodule Data.Article.Static.LexikonDirketesUndIndirektesAbbiegen do
 
     <p>Damit das Prinzip gut erkennbar ist, ist die Kreuzung in der Grafik kompakt gehalten. In <.v bounds="10.062198,53.578157,10.067061,53.579749" lon={10.063735} lat={53.57841} dir="forward" ref="6">der Praxis sind sie deutlich weitläufiger</.v>, weil sich der Autoverkehr sonst im Weg stünde.</p>
 
-    <h4>Videobeispiele</h4>
-    <p>Es gibt alle möglichen Kreuzungs-Varianten:</p>
+    <h4>Videobeispiele – Indirektes Linksabbiegen</h4>
+    <p><.v bounds="9.945579,53.560091,9.94893,53.562355" lon={9.947833} lat={53.56091} dir="forward" ref={@ref}><strong>Videobeispiel zum indirekten Linksabbiegen</strong></.v> am Beispiel Holstenplatz ohne Zeitraffer. Man achte auch auf die Anderen im Video – sie biegen ebenfalls indirekt links ab. Von dieser Aufstelltasche sieht man nur noch die <.v bounds="9.945579,53.560091,9.94893,53.562355" lon={9.94721} lat={53.561306}dir="forward" ref={@ref}>Fuß-Ampel auf der anderen Straßenseite</.v>. Man darf also weiterfahren sobald alle Spuren frei sind (2x Rad, 4x KFZ und 1x Fuß). Wenn man eine Kreuzung nicht kennt oder viel los ist, kann sie natürlich als Hilfe beachtet werden.</p>
+
+    <p>Die <.v bounds="9.945579,53.560091,9.94893,53.562355" lon={9.946627} lat={53.561549} dir="backward" ref={@ref}><strong>andere Fahrtrichtung</strong></.v> funktioniert ähnlich. Hier muss die <.v bounds="9.945579,53.560091,9.94893,53.562355" lon={9.946965} lat={53.561276} dir="backward" ref={@ref}>Fahrradampel auf der kleinen Verkehrsinsel</.v> beachtet werden. Das Video ist ohne Zeitraffer, aber die Wartezeiten wurden herausgeschnitten. Als Sonderlösung für den Holstenplatz folgt dann noch <.v bounds="9.945579,53.560091,9.94893,53.562355" lon={9.947308} lat={53.56125} dir="backward" ref={@ref}>eine zweite Fahrradampel</.v>. Sie ist jedoch auf die erste abgestimmt, sodass man an ihr nicht nochmal halten muss.</p>
+
+    <h4>Videobeispiele – weitere Kreuzungsdesigns</h4>
+
+    <p>Je nach Kreuzung unterscheiden sich die Möglichkeiten zum Abbiegen und wo die Aufstelltasche untergebracht ist. Videos im Zeitraffer:</p>
     <ul>
       <li><.v bounds="10.096749,53.537778,10.12086,53.54550" lon={10.1092239} lat={53.5417533} dir="forward" ref="14">nur direktes Abbiegen</.v></li>
-      <li><.v bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="forward" ref="14">nur indirektes Abbiegen</.v></li>
+      <li><.v bounds="9.866879,53.585889,9.8773,53.58922" lon={9.8738435} lat={53.5873562} dir="backward" ref="14">nur indirektes Abbiegen</.v></li>
       <li>beides (<.v bounds="9.992882,53.60424,9.999811,53.606458" lon={9.9972532} lat={53.6046497} dir="forward" ref="4">direkt</.v> bzw. indirekt über die <.v bounds="9.996751,53.604899,9.999158,53.606016" lon={9.9972532} lat={53.6046497} dir="forward" ref={name()
     }>Wilhelm-Metzger-Straße</.v>)</li>
     </ul>
 
     <p>Die Aufstelltaschen können dabei im Kreuzungsbereich <.v bounds="9.975387,53.553634,9.983536,53.557482" lon={9.97973} lat={53.55578} dir="forward" ref="2">links</.v> oder <.v lon={10.00076} lat={53.55560} dir="forward" bounds="9.997479,53.554666,10.003883,53.556719" ref="6">rechts</.v> des Radfahrstreifens sein, manchmal auch <.v bounds="9.961292,53.556184,9.966407,53.557824" lon={9.964527} lat={53.556826} dir="forward" ref={name()}>direkt nach der Ampel</.v>.</p>
 
-    <p>Eine weitere Variante des Linksabbiegens ist der <.ref>ARAS</.ref></p>
+    <p>Eine weitere Variante des Linksabbiegens ist der <.ref>ARAS</.ref>.</p>
     """
   end
 end
