@@ -57,6 +57,7 @@ defmodule Util.Download do
         end
 
       :done ->
+        :hackney.close(ref)
         :ok
 
       {:error, reason} ->

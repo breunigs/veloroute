@@ -37,6 +37,7 @@ defmodule Basemap.OpenStreetMap do
 
     stale ||
       Util.IO.stale?(path(:cache, target_name()), [
+        path(:cache, bbox_extract_name()),
         Path.join(__DIR__, "config.json"),
         Path.join(__DIR__, "process.lua"),
         __ENV__.file

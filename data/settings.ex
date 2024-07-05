@@ -84,7 +84,7 @@ defmodule Settings do
   def url, do: "https://veloroute.hamburg"
 
   def osm_data_source, do: "https://download.geofabrik.de/europe/germany-latest.osm.pbf"
-  def osm_data_source_max_age_days, do: 30 * 6
+  def osm_data_source_max_age_days, do: 30 * 2
 
   def osm_data_source_extra_shapes,
     do: [
