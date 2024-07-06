@@ -54,6 +54,22 @@ defmodule VelorouteWeb.LiveNavigationTest do
       live(conn, "/article/2018-04-08-4-kleekamp?video=d763295b172404e6733296718edd6740")
   end
 
+  test "picks video near point of interest", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/lexikon/fahrbahn-und-nebenflaechen")
+
+    html =
+      view
+      |> element("a", "Direktes und Indirektes Abbiegen")
+      |> render_click()
+
+    assert_attribute(
+      html,
+      "#videoRoute",
+      "title",
+      fn title -> String.contains?(title, "Holstenplatz") end
+    )
+  end
+
   test "map click on article renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
     refute html =~ "Kleekamp"

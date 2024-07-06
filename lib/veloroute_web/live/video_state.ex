@@ -54,6 +54,15 @@ defmodule VelorouteWeb.Live.VideoState do
   def maybe_update_video(%{assigns: assigns} = socket, article, params) do
     old_state = assigns[:video] || new()
 
+    {near, accurate} =
+      cond do
+        p = Geo.Point.from_params(params) -> {p, true}
+        p = maybe_article_center(article) -> {p, false}
+        true -> {old_state.start, false}
+      end
+
+    near_dbg = "(near: #{inspect(near)}, accurate: #{accurate})"
+
     tracks =
       if is_module(article),
         do: Article.Decorators.related_tracks(article),
@@ -64,14 +73,7 @@ defmodule VelorouteWeb.Live.VideoState do
         do: Enum.filter(tracks, &(&1.group == params["group"])),
         else: tracks
 
-    {near, accurate} =
-      cond do
-        p = Geo.Point.from_params(params) -> {p, true}
-        p = maybe_article_center(article) -> {p, false}
-        true -> {old_state.start, false}
-      end
-
-    near_dbg = "(near: #{inspect(near)}, accurate: #{accurate})"
+    tracks = maybe_filter_tracks_by_point_of_interest(tracks, article, accurate)
 
     new_state =
       old_state
@@ -115,6 +117,24 @@ defmodule VelorouteWeb.Live.VideoState do
 
     finalize(socket, for_frontend(new_state))
   end
+
+  defp maybe_filter_tracks_by_point_of_interest(tracks, article, accurate)
+
+  defp maybe_filter_tracks_by_point_of_interest(tracks, article, false) when is_module(article) do
+    poi_bbox = Article.Decorators.bbox_point_of_interest(article)
+
+    tracks
+    |> Enum.filter(fn track ->
+      rendered = Video.Generator.get(track)
+      if rendered, do: Geo.CheapRuler.overlap?(poi_bbox, rendered.bbox())
+    end)
+    |> case do
+      [] -> tracks
+      filtered -> filtered
+    end
+  end
+
+  defp maybe_filter_tracks_by_point_of_interest(tracks, _article, _accurate), do: tracks
 
   defp finalize(socket, assigns) do
     socket
