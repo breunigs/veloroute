@@ -6,8 +6,8 @@ ARG RAV1E_REPO=xiph
 ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
 ARG SVTAV1_VERSION=c233913e82fa44caec4a0f08efabb861b2f81edf
 
-ARG FFMPEG_VERSION=7.0
-ARG BLUR_VERSION=ec85bf7288645caa884df346cf010d0caa47e78f
+ARG FFMPEG_VERSION=7.0.1
+ARG BLUR_VERSION=e5311fc5d58e1e56414f57285046cb26921e5f84
 
 RUN mkdir -p /downloads/
 
@@ -25,7 +25,7 @@ RUN \
 
 RUN \
   cd /downloads/ && \
-  wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
+  wget https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
   tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
 
 RUN cd /downloads/ && \
@@ -48,6 +48,7 @@ RUN apt-get update \
   libboost-iostreams-dev \
   libvips-dev \
   make \
+  rapidjson-dev \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=downloader /downloads/blur/ /build/.
