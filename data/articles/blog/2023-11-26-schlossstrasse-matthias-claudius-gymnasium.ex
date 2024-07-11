@@ -7,10 +7,11 @@ defmodule Data.Article.Blog.SchlossstrasseMatthiasClaudiusGymnasium do
     do:
       "Breiter Radweg statt Parkplatz nachdem es zu vielen Beinahe-Unfällen durch unachtsames Ausparken kam"
 
-  def start(), do: ~d[2024-07]
-  def stop(), do: ~d[2024-08]
+  def start(), do: ~d[2024-07-18]
+  def stop(), do: ~d[2024-08-30]
+  def construction_site_id_hh(), do: [885_611]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 

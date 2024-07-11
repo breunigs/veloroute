@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def type(), do: :construction
 
   def construction_site_id_hh(),
-    do: [14079, 17581, 203_216, 350_393, 436_743, 786_667, 838_726, 838_695]
+    do: [14079, 17581, 203_216, 350_393, 436_743, 786_667, 838_726, 838_695, 890_787]
 
   def tags(), do: ["11", "H14", "H14.B", "H14.A"]
 

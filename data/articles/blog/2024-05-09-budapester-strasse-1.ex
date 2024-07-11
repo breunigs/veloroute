@@ -7,11 +7,11 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
     do:
       "Hochbordradwege werden neu gepflastert und teilweise verbreitert. Oft sind 1,75m bis 2,0m Breite vorgesehen. In Richtung Süden bleibt eine lange Engstelle mit nur 1,0m Breite."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 
-  def start(), do: ~d[2024-07-15]
+  def start(), do: ~d[2024-07-22]
   def stop(), do: ~d[2025-02-01]
 
   def tracks(),
@@ -80,6 +80,8 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juli 2024",
+       "https://lsbg.hamburg.de/resource/blob/936084/bfb3499b1da21110b9728771fd31bdfc/budapester-strasse-geh-und-radwege-anliegerinformation-juli-2024-data.pdf"},
       {"Ausschreibung Umbau", "Mai 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/32fdcd04-6561-4d25-a3e7-4c816a11bc43/details"}
     ]
