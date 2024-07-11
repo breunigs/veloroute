@@ -64,4 +64,19 @@ defmodule Video.RenderedTest do
 
     assert [] == duplicated_vanities
   end
+
+  test "all street names contain only sensible characters" do
+    uncommon_street_names =
+      Enum.reduce(Video.Generator.all(), %{}, fn rendered, acc ->
+        uncommon_names =
+          Enum.reduce(rendered.street_names(), [], fn %{text: text}, acc ->
+            ok = Regex.match?(~r/^[a-z0-9äöüßé()\s'.+\/-]*$/ui, text)
+            if ok, do: acc, else: [text | acc]
+          end)
+
+        if uncommon_names != [], do: Map.put(acc, rendered, uncommon_names), else: acc
+      end)
+
+    assert %{} == uncommon_street_names
+  end
 end

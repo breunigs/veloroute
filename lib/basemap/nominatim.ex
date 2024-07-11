@@ -50,6 +50,7 @@ defmodule Basemap.Nominatim do
 
     export(:area)
     |> File.read!()
+    |> Util.Compress.gunzip()
     |> Jason.decode!(keys: :atoms)
     |> Enum.map(fn a ->
       name =

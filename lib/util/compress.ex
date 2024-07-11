@@ -41,6 +41,10 @@ defmodule Util.Compress do
     true
   end
 
+  def gunzip(data) do
+    :zlib.gunzip(data)
+  end
+
   def gzip(data) do
     :zlib.gzip(data)
   end
