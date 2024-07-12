@@ -18,6 +18,8 @@ defmodule VelorouteWeb.Router do
     get "/sitemap.xml", SitemapController, :sitemap
     get "/routes/geo/updates.atom", FeedController, :legacy
 
+    get "/_health", PageController, :health
+
     for num <- 1..14 do
       get "/#{num}", PageController, :redir_plain_veloroute
     end

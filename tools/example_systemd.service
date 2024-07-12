@@ -22,7 +22,16 @@ ExecStart=/usr/bin/docker run \
           --mount type=bind,source=/path/to/videos,target=/app/videos/rendered/ \
           -p=127.0.0.1:11371:4000/tcp \
           veloroute.hamburg/v1:latest
+ExecStartPost=/bin/sh -c "until /usr/bin/curl --output /dev/null --silent --fail http://localhost:11371/_health; do sleep 1; printf .; done; echo booted"
+
+# time until websockets will be closed. Should be large enough to allow the load
+# balancer in front to route requests to another instance.
+ExecStop=-/usr/bin/docker exec veloroute1 /app/bin/prod rpc 'Veloroute.health_shutdown()'
+ExecStop=-/usr/bin/sleep 120
+# actual shutdown
 ExecStop=/usr/bin/docker stop veloroute1
+
+TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target

@@ -93,6 +93,11 @@ defmodule VelorouteWeb.PageController do
     send_resp(conn, 204, "")
   end
 
+  def health(conn, _params) do
+    msg = Application.get_env(:veloroute, :health, "ok")
+    send_resp(conn, 200, msg)
+  end
+
   defp not_found_redir(conn) do
     home = ~p(/?not_found=true)
 

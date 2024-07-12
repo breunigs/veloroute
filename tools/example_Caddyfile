@@ -41,6 +41,8 @@ veloroute.hamburg {
 			}
 		}
 
+		redir /_health /
+
 		# using two reverse proxies for deploying without losing requests
 		reverse_proxy * localhost:11371 localhost:11372 {
 			flush_interval -1
@@ -48,6 +50,10 @@ veloroute.hamburg {
 			lb_try_duration 1s
 			lb_try_interval 250ms
 			fail_duration 1.5s
+
+			health_uri /_health
+			health_interval 1s
+			health_body "ok"
 		}
 	}
 }

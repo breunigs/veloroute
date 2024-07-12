@@ -56,7 +56,7 @@ defmodule Mix.Tasks.Deploy do
     end
   end
 
-  @confirm_msg "\n\nReady. Do you want to restart the service now? This takes about 3 minutes."
+  @confirm_msg "\n\nReady. Do you want to restart the service now? This takes about 10 minutes."
   defp deploy_tar_gz(skip) do
     {image_ref, image_name} = make_release_image(skip)
     ensure_container_runs(skip, image_ref)
@@ -285,9 +285,9 @@ defmodule Mix.Tasks.Deploy do
         into: IO.stream(:stdio, :line)
       )
 
-    # sleep 15s
-    Process.sleep(15_000)
-
+    # a ExecStartPost in the systemd service file checks for the service to have
+    # started successfully. This is just a verification to halt the deployment
+    # should things have gone wrong.
     {_, exit_status} =
       System.cmd(
         "ssh",
