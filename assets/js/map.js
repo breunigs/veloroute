@@ -467,12 +467,9 @@ function showMapImages() {
 }
 
 let highlightsAppliedToStyle = ""
-let highlightsTimeout = null
-
 function styleChangedHandler() {
   // Applying the modifications on a partially loaded style might not work. We
   // don't always get an event with the style fully loaded, so retry this way.
-  if (highlightsTimeout) clearTimeout(highlightsTimeout)
   if (!map.isStyleLoaded()) setTimeout(styleChangedHandler, 50)
 
   const currStyleName = map.getStyle().name
