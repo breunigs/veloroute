@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
         from: "Fuhlsbüttler Straße",
         to: "Rolfinckstraße",
         parent_ref: __MODULE__,
-        text: "Wellingsbütteler Landstraße",
+        text: "Wellingsbütteler Landstraße/Weg",
         videos: [
           {"2023-06-24-14im-13gg/GX016011", :start, :end}
         ]
