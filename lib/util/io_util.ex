@@ -84,36 +84,70 @@ defmodule Util.IO do
     end
   end
 
+  @typep path_like :: binary() | Path.t()
+  @typep path_likes :: path_like() | [path_like()]
+
   @doc """
-  Returns true when the target is older than any of its dependencies
+  Returns a reason if the target is older than the dependencies. Reason will be
+  nil if the target is newer.
   """
-  @spec stale?(binary() | Path.t(), [binary() | Path.t()]) :: boolean()
-  def stale?(target, dependencies) when is_binary(target) and is_list(dependencies) do
-    {oldest_target, _} = modification_times(target)
-
-    {_, newest_dep} =
-      dependencies
-      |> Parallel.map(&modification_times/1)
-      |> Enum.reduce(fn {dmin, dmax}, {amin, amax} ->
-        {min(dmin, amin), max(dmax, amax)}
-      end)
-
-    newest_dep > oldest_target || oldest_target == :unknown
+  @spec stale_reason(path_likes(), path_likes()) :: binary() | nil
+  def stale_reason(target, dependencies) do
+    case staleness(target, dependencies) do
+      {true, reason} -> reason
+      {false, _reason} -> nil
+    end
   end
 
-  defp modification_times(path) do
-    if File.exists?(path) do
-      [path | Path.wildcard("#{path}/**/*")]
-      |> Parallel.map(fn path ->
-        case File.lstat(path, time: :posix) do
-          {:ok, %{mtime: date}} -> date
-          _ -> :unknown
-        end
-      end)
-      |> Enum.min_max()
-    else
-      {:unknown, :unknown}
+  @doc """
+  Returns true when the target is older than any of its dependencies. It also returns
+  an explanation as to why.
+  """
+  @spec staleness(path_likes(), path_likes()) :: {stale? :: boolean(), reason :: binary()}
+  def staleness(target, dependencies) do
+    target_mod = modification_times(target)
+    dep_mod = modification_times(dependencies)
+
+    tgt = Path.relative_to_cwd(target_mod.oldest.path)
+    dep = Path.relative_to_cwd(dep_mod.newest.path)
+
+    cond do
+      target_mod == nil ->
+        {true, "target #{Path.relative_to_cwd(target)} doesn't exist"}
+
+      dep_mod == nil ->
+        deps = dependencies |> Enum.map(&Path.relative_to_cwd/1) |> Enum.join(", ")
+        {false, "none of the dependencies (#{deps}) exist"}
+
+      target_mod.oldest.mtime < dep_mod.newest.mtime ->
+        {true, "target #{tgt} is older than newest dependency #{dep}"}
+
+      true ->
+        {false, "targets are newer than newest dependency (#{dep})"}
     end
+  end
+
+  defp modification_times(paths) do
+    paths
+    |> List.wrap()
+    |> Parallel.flat_map(&include_descendants/1)
+    |> Enum.map(fn path ->
+      with {:ok, %{mtime: mtime}} <- File.lstat(path, time: :posix) do
+        %{mtime: mtime, path: path}
+      end
+    end)
+    |> Enum.reduce(%{oldest: nil, newest: nil}, fn file, %{oldest: oldest, newest: newest} ->
+      %{
+        oldest: if(oldest && file.mtime < oldest.mtime, do: file) || oldest || file,
+        newest: if(newest && file.mtime > newest.mtime, do: file) || newest || file
+      }
+    end)
+  end
+
+  defp include_descendants(path) do
+    if File.dir?(path),
+      do: [path | Path.wildcard("#{path}/**/*")],
+      else: [path]
   end
 
   defp recurse_files(path) do

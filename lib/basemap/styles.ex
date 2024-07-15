@@ -6,7 +6,7 @@ defmodule Basemap.Styles do
   def source(), do: "assets/map/styles"
 
   @impl Basemap.Renderable
-  def stale?(), do: Util.IO.stale?(assets_path(), [source()])
+  def staleness(), do: Util.IO.staleness(assets_path(), [source()])
 
   @impl Basemap.Renderable
   def render() do

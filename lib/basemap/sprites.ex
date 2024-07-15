@@ -11,18 +11,24 @@ defmodule Basemap.Sprites do
   use Basemap.Servable
 
   @impl Basemap.Renderable
-  def stale?() do
-    Benchmark.measure("Basemap.Sprites.stale?", fn ->
-      stale_auto_generated?() || stale_icons?() ||
-        Util.IO.stale?(assets_path("sprite.json"), [target(:cache), ToolVersions.path()])
-    end)
-  end
+  def staleness() do
+    missing_auto_gen = missing_auto_generated()
 
-  defp stale_icons? do
-    Util.IO.stale?(target(:cache), [@icon_source])
-  end
+    cond do
+      missing_auto_gen != [] ->
+        {true, "missing these auto generated files: #{Enum.join(missing_auto_gen, ", ")}"}
 
-  defp stale_auto_generated?, do: missing_auto_generated() != []
+      reason = Util.IO.stale_reason(target(:cache), [@icon_source]) ->
+        {true, "icons: #{reason}"}
+
+      reason =
+          Util.IO.stale_reason(assets_path("sprite.json"), [target(:cache), ToolVersions.path()]) ->
+        {true, "sprite.json: #{reason}"}
+
+      true ->
+        {false, "all icons are newer than their source, and so is the sprite.json index"}
+    end
+  end
 
   def list_for_lua() do
     list =

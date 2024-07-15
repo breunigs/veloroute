@@ -10,38 +10,60 @@ defmodule Basemap.OpenStreetMap do
   def target(where), do: path(where, target_name())
 
   @impl Basemap.Renderable
-  def stale?() do
-    stale_osm_source?() || stale_bbox_extract?() || stale_extra_shapes?() || stale_tiles?()
+  def staleness() do
+    miss_extra = missing_extra_shapes()
+
+    cond do
+      miss_extra != [] ->
+        {true, "Missing extra shapes: #{Enum.join(miss_extra, ", ")}"}
+
+      outdated_osm_source?() ->
+        {true, "OSM source file is older than #{Settings.osm_data_source_max_age_days()}"}
+
+      !File.exists?(path(:cache, target_name())) ->
+        {true, "missing Tilemaker result SQLite database"}
+
+      tiny_tilemaker_result?() ->
+        {true, "Tilemaker result SQLite database is so tiny, it's probably from a broken run"}
+
+      reason = stale_reason_bbox_extract() ->
+        {true, "bbox extract: #{reason}"}
+
+      reason = stale_reason_tiles() ->
+        {true, "tiles: #{reason}"}
+
+      true ->
+        {false,
+         "OSM source is up to date, all extra shapes are present, and source <= bbox <= tiles (including config/code files to generate those)"}
+    end
   end
 
-  defp stale_osm_source?() do
+  defp outdated_osm_source?() do
     Util.IO.age_in_days(path(:cache, osm_source_name())) > Settings.osm_data_source_max_age_days()
   end
 
-  defp stale_bbox_extract?() do
-    Util.IO.stale?(path(:cache, bbox_extract_name()), [path(:cache, osm_source_name())])
+  defp stale_reason_bbox_extract() do
+    Util.IO.stale_reason(path(:cache, bbox_extract_name()), path(:cache, osm_source_name()))
   end
 
-  defp stale_extra_shapes?(), do: missing_extra_shapes() != []
-
-  defp stale_tiles?() do
+  defp tiny_tilemaker_result? do
     # if tilemaker fails, it'll output an empty sqlite file. So rerender if the
     # file is very small. If our extract is extremely tiny, rerendering should be
     # so fast that it doesn't matter if it was fast anyway.
-    stale =
-      with {:ok, %{size: size}} <- File.stat(path(:cache, target_name())) do
-        size <= 100_000
-      else
-        _ -> true
-      end
+    with {:ok, %{size: size}} <- File.stat(path(:cache, target_name())) do
+      size <= 100_000
+    else
+      _ -> true
+    end
+  end
 
-    stale ||
-      Util.IO.stale?(path(:cache, target_name()), [
-        path(:cache, bbox_extract_name()),
-        Path.join(__DIR__, "config.json"),
-        Path.join(__DIR__, "process.lua"),
-        __ENV__.file
-      ])
+  defp stale_reason_tiles do
+    Util.IO.stale_reason(path(:cache, target_name()), [
+      path(:cache, bbox_extract_name()),
+      Path.join(__DIR__, "config.json"),
+      Path.join(__DIR__, "process.lua"),
+      __ENV__.file
+    ])
   end
 
   def target_name(), do: "osm.mbtiles"
@@ -76,10 +98,10 @@ defmodule Basemap.OpenStreetMap do
 
   @impl Basemap.Renderable
   def render do
-    if stale_osm_source?(), do: download_osm_source()
+    if outdated_osm_source?(), do: download_osm_source()
     download_missing_shapes()
-    if stale_bbox_extract?(), do: extract_bbox()
-    if stale_tiles?(), do: render_tiles()
+    if stale_reason_bbox_extract(), do: extract_bbox()
+    if stale_reason_tiles(), do: render_tiles()
     :ok
   end
 

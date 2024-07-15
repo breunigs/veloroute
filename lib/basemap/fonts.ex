@@ -5,7 +5,7 @@ defmodule Basemap.Fonts do
   @source "assets/map/fonts"
 
   @impl Basemap.Renderable
-  def stale?(), do: Util.IO.stale?(assets_path(), [@source])
+  def staleness(), do: Util.IO.staleness(assets_path(), [@source])
 
   @impl Basemap.Renderable
   def render() do

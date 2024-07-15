@@ -6,15 +6,26 @@ defmodule Basemap.Tiles do
                   {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}}
 
   @impl Basemap.Renderable
-  def stale?() do
-    Parallel.any?(dependencies(), & &1.stale?()) || tiles_stale?()
+  def staleness() do
+    stale_deps =
+      Enum.filter(dependencies(), fn dep ->
+        {stale, _reason} = dep.staleness()
+        stale
+      end)
+
+    cond do
+      stale_deps != [] ->
+        {true, "outdated dependencies: #{Enum.join(stale_deps, ", ")}"}
+
+      reason = Util.IO.stale_reason(assets_path(), source_mbtiles(:cache)) ->
+        {true, "tiles: #{reason}"}
+
+      true ->
+        {false, "dependencies and tiles are up to date"}
+    end
   end
 
   defp dependencies(), do: [Basemap.OpenStreetMap, Basemap.Project]
-
-  defp tiles_stale?() do
-    Util.IO.stale?(assets_path(), source_mbtiles(:cache))
-  end
 
   @impl Basemap.Renderable
   def render() do

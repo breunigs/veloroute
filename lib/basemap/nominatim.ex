@@ -22,14 +22,15 @@ defmodule Basemap.Nominatim do
   end
 
   @impl Basemap.Renderable
-  def stale?() do
-    Benchmark.measure("Basemap.Nominatim.stale?", fn ->
-      depends = [source(:cache), __ENV__.file]
-      paths = Enum.map(@queries, &export(&1, :cache))
-      # additional zero-byte-check required because the script can create empty
-      # files if aborted
-      Enum.any?(paths, &Util.IO.absent?/1) || Enum.any?(paths, &Util.IO.stale?(&1, depends))
-    end)
+  def staleness() do
+    depends = [source(:cache), __ENV__.file]
+    paths = Enum.map(@queries, &export(&1, :cache))
+
+    if Enum.any?(paths, &Util.IO.absent?/1) do
+      {true, "some artifacts were 0 bytes, indicating an aborted previous run"}
+    else
+      Util.IO.staleness(paths, depends)
+    end
   end
 
   @doc """

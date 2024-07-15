@@ -8,9 +8,9 @@ defmodule Basemap.Renderable do
   @callback target(:container | :cache) :: Path.t()
 
   @doc """
-  Should return true if the tiles are outdated.
+  Should return true if artifacts need updating.
   """
-  @callback stale?() :: boolean()
+  @callback staleness() :: {stale? :: boolean(), reason :: binary()}
 
   @doc """
   Render/create the tiles.
@@ -27,9 +27,13 @@ defmodule Basemap.Renderable do
       def path(:container, extra), do: Path.join("/workdir/basemap/#{name()}", extra)
 
       def ensure() do
-        Benchmark.measure("rendering basemap #{name()}", fn ->
-          if stale?(), do: render(), else: :ok
-        end)
+        ident = "basemap #{name()}"
+        {stale, reason} = Benchmark.measure("#{ident} staleness check", &staleness/0)
+
+        if stale do
+          Logger.info("#{ident} is stale because #{reason}")
+          Benchmark.measure("#{ident} rendering", &render/0)
+        end
       end
 
       @impl Basemap.Renderable

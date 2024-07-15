@@ -63,9 +63,14 @@ defmodule Basemap.MapMatcher.OSRM do
   defp container_base, do: Path.join(target(:container), @working_basename)
 
   @impl Basemap.Renderable
-  def stale?() do
-    Path.join(target(:cache), "*.osrm.*") |> Path.wildcard() |> length() < 10 ||
-      Util.IO.stale?(target(:cache), [osm_source(), @profile_lua])
+  def staleness() do
+    file_count = Path.join(target(:cache), "*.osrm.*") |> Path.wildcard() |> length()
+
+    if file_count < 10 do
+      {true, "less OSRM temp files than expected"}
+    else
+      Util.IO.staleness(target(:cache), [osm_source(), @profile_lua])
+    end
   end
 
   @impl Basemap.Renderable

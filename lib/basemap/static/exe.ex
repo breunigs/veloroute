@@ -1,4 +1,6 @@
 defmodule Basemap.Static.Exe do
+  require Benchmark
+
   @dir_name "maplibre-native"
   @cache_path "./data/cache/#{@dir_name}"
   @container_path "/workdir/#{@dir_name}/"
@@ -9,12 +11,23 @@ defmodule Basemap.Static.Exe do
 
   @spec ensure(Keyword.t()) :: :ok | {:error, binary()}
   def ensure(opts \\ [])
-  def ensure(stale: :ok), do: if(File.exists?(exe()), do: :ok, else: build())
-  def ensure(_opts), do: if(stale?(), do: build(), else: :ok)
+  def ensure(stale: :ok), do: if(File.exists?(exe()), do: :ok, else: ensure([]))
 
-  def stale?() do
+  def ensure(_opts) do
+    {stale, reason} = Benchmark.measure("#{__MODULE__} staleness check", &staleness/0)
+
+    if stale do
+      Logger.info("static map renderer exe is stale because #{reason}")
+      Benchmark.measure("#{__MODULE__} building", &build/0)
+    else
+      :ok
+    end
+  end
+
+  def staleness() do
     patches = __ENV__.file |> Path.dirname() |> Path.join("patch")
-    Util.IO.stale?(exe(), [@dockerfile, __ENV__.file, patches, ToolVersions.path()])
+    dependencies = [@dockerfile, __ENV__.file, patches, ToolVersions.path()]
+    Util.IO.staleness(exe(), dependencies)
   end
 
   @spec build() :: :ok | {:error, binary()}

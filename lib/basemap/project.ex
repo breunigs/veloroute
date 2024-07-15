@@ -9,16 +9,14 @@ defmodule Basemap.Project do
   def target(where), do: path(where, "project.mbtiles")
 
   @impl Basemap.Renderable
-  def stale?() do
-    Benchmark.measure("Basemap.Project.stale?", fn ->
-      geojson_source = Data.GeoJSON.__info__(:compile) |> Keyword.get(:source) |> to_string()
-      articles = Path.wildcard("data/articles/**/*.ex")
+  def staleness() do
+    geojson_source = Data.GeoJSON.__info__(:compile) |> Keyword.get(:source) |> to_string()
+    articles = Path.wildcard("data/articles/**/*.ex")
 
-      Util.IO.stale?(
-        target(:cache),
-        [Cache.Map.source(), __ENV__.file, geojson_source] ++ articles
-      )
-    end)
+    Util.IO.staleness(
+      target(:cache),
+      [Cache.Map.source(), __ENV__.file, geojson_source] ++ articles
+    )
   end
 
   @impl Basemap.Renderable
