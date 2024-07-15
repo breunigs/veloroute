@@ -17,24 +17,20 @@ defmodule Data.Article.Static.Suche do
       </form>
 
       <.noindex>
-        <.async_result :let={search_results} assign={@search_results}>
-          <:loading><p>Lädt…</p></:loading>
+        <.async_result :let={results} assign={@search_results}>
+          <:loading><.render query={@search_query} loading={true}/></:loading>
           <:failed :let={error}>
             <p>Fehler in der Suchfunktion:</p>
             <tt><%= inspect(error) %></tt>
           </:failed>
-          <.results results={search_results} query={@search_query}/>
+          <.render results={results} query={@search_query} loading={!!@search_results.loading}/>
         </.async_result>
       </.noindex>
     </search>
     """
   end
 
-  defp results(%{results: sr, query: sq} = assigns) when sr == [] and sq != "" do
-    ~H{<p>Leider keine Ergebnisse.</p>}
-  end
-
-  defp results(%{results: sr} = assigns) when is_list(sr) do
+  defp render(%{results: sr} = assigns) when is_list(sr) and sr != [] do
     ~H"""
     <ul class="spaced" role="list" aria-label="Suchergebnisse">
       <%= for result <- @results do %>
@@ -45,6 +41,18 @@ defmodule Data.Article.Static.Suche do
       <% end %>
     </ul>
     """
+  end
+
+  defp render(%{query: ""} = assigns) do
+    ~H{}
+  end
+
+  defp render(%{loading: true} = assigns) do
+    ~H{<p>Lädt…</p>}
+  end
+
+  defp render(assigns) do
+    ~H{<p>Leider keine Ergebnisse.</p>}
   end
 
   defp debug?() do
