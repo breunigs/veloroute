@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.GrandwegSued do
 
   def title(), do: "Stresemannallee / Grandweg (Veloroute 3)"
 
-  def type(), do: :planned
+  def type(), do: :finished
   def tags(), do: ["3", "br-nord-n7"]
 
   def start(), do: ~d[2024-07-08]

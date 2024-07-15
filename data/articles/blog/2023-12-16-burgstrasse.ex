@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.Burgstrasse do
       {"Erläuterungsbericht des fertigen Entwurfs", "Januar 2024",
        "https://lsbg.hamburg.de/resource/blob/784132/c684499032450166f0a31d8ac9bd6ba9/burgstrasse-haltestelle-bethesdastrasse-abgestimme-planung-bericht-data.pdf"},
       {"Lageplan des fertigen Entwurfs", "Januar 2024",
-       "https://lsbg.hamburg.de/resource/blob/701570/1283db498132302d9d52bb800613810c/burgstrasse-haltestelle-bethesdastrasse-abgestimmte-planung-plan-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/784134/23c4dd9ffc32a85e6fd2e25b92224b2e/burgstrasse-haltestelle-bethesdastrasse-abgestimmte-planung-plan-data.pdf"},
       {"Ausschreibung Umbau", "Dezember 2023",
        "https://web.archive.org/web/20231216102515/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/3d8d8576-675d-49ec-b71c-54942fde9762/details"}
     ]

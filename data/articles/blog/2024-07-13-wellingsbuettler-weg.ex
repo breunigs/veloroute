@@ -67,7 +67,7 @@ defmodule Data.Article.Blog.WellingsbuettlerWeg do
 
     <p>Die geplanten KFZ-Parkplätze sollten jedoch (teilweise) durch Lieferzonen bzw. weitere Baumstandorte ersetzt werden. Auf den Privatgrundstücken ist genug Platz zum Abstellen von privaten Fahrzeugen.</p>
 
-    <h4>Links</h4>
+    <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
     """
   end

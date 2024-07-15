@@ -13,6 +13,7 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
 
   def start(), do: ~d[2024-07-22]
   def stop(), do: ~d[2025-02-01]
+  def construction_site_id_hh(), do: [900_555]
 
   def tracks(),
     do: [
