@@ -45,7 +45,7 @@ defmodule Data.Article.Static.LexikonQuerungshilfe do
 
     <.roaddiagram src="mittelinsel" alt="Vogelperspektive auf eine Mittelinsel als Querungshilfe für den Fußverkehr"/>
 
-    <h4>Einengungen / Gehwegnasen</h4>
+    <h4 id="gehwegnase">Einengungen / Gehwegnasen</h4>
     <p><.v bounds="9.85947,53.556683,9.864797,53.558608" lon={9.860814} lat={53.557531} dir="backward" ref="1">Gehwegnasen oder Gehwegvorstreckungen</.v> werden meist in Wohnstraßen gebaut, damit die am Straßenrand parkenden KFZ keine undurchsichtige Wand bilden. Durch die freie Sicht auf die Fahrbahn kann leicht ohne stehen zu bleiben gequert werden.</p>
 
     <.roaddiagram src="gehwegnase" alt="Vogelperspektive auf eine Gehwegnase ohne Einengung der Fahrbahn"/>
