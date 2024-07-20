@@ -664,6 +664,10 @@ body.showSidebar::before {
   }
 }
 
+.noHyphens {
+  hyphens: none;
+}
+
 .hideSidebar #content {
   pointer-events: none;
 }

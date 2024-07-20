@@ -210,36 +210,42 @@ defmodule Components.TagHelpers do
   attr :email, :string
   attr :subject, :string
   attr :body, :string
+  attr :rest, :global
   slot(:inner_block)
-
-  def mailto(%{inner_block: _x, email: _e} = assigns) do
-    ~H"""
-    <a href={"mailto:#{@email}"}><%= render_slot(@inner_block) %></a>
-    """
-  end
 
   def mailto(%{inner_block: _x, subject: subject, body: body} = assigns) do
     assigns =
       Map.merge(assigns, %{
-        email: Settings.email(),
+        email: Map.get(assigns, :email) || Settings.email(),
         subject: URI.encode(subject),
         body: URI.encode(body)
       })
 
+    assigns =
+      if assigns |> inner_text() |> String.contains?("@"),
+        do: assign(assigns, :rest, Map.put_new(assigns.rest, "class", "noHyphens")),
+        else: assigns
+
     ~H"""
-    <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"}><%= render_slot(@inner_block) %></a>
+    <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"} {@rest}><%= render_slot(@inner_block) %></a>
+    """
+  end
+
+  def mailto(%{inner_block: _x, email: _e} = assigns) do
+    ~H"""
+    <a href={"mailto:#{@email}"} {@rest}><%= render_slot(@inner_block) %></a>
     """
   end
 
   def mailto(%{inner_block: []} = assigns) do
     ~H"""
-    <a href={"mailto:"<>Settings.email()}><%= Settings.email() %></a>
+    <a href={"mailto:"<>Settings.email()} class="noHyphens" {@rest}><%= Settings.email() %></a>
     """
   end
 
   def mailto(%{inner_block: _x} = assigns) do
     ~H"""
-    <a href={"mailto:"<>Settings.email()}><%= render_slot(@inner_block) %></a>
+    <a href={"mailto:"<>Settings.email()} {@rest}><%= render_slot(@inner_block) %></a>
     """
   end
 
