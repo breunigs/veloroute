@@ -145,7 +145,9 @@ defmodule Data.Article.Static.Freizeitroute11 do
       {"official site of the city",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
       {"Komoot route planner: outer ring route", "https://www.komoot.com/tour/227481906"},
-      ~H{route in OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">part 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">part 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">part 3</.a>}
+      ~H{route in OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">part 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">part 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">part 3</.a>},
+      {"PDF Hiking Map “Wanderkarte Abenteuer Grünes Netz”",
+       "https://www.hamburg.de/resource/blob/280246/9d57872ce3c795ddeaadc77179f69e3f/wanderkarte-abent-gruen-barrierefreie-datei-data.pdf"}
     ]
   end
 
@@ -154,7 +156,9 @@ defmodule Data.Article.Static.Freizeitroute11 do
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
       {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.com/de-de/tour/227481906"},
-      ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>}
+      ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>},
+      {"PDF Wanderkarte Abenteuer Grünes Netz",
+       "https://www.hamburg.de/resource/blob/280246/9d57872ce3c795ddeaadc77179f69e3f/wanderkarte-abent-gruen-barrierefreie-datei-data.pdf"}
     ]
   end
 
@@ -179,7 +183,17 @@ defmodule Data.Article.Static.Freizeitroute11 do
     <p lang="en">Unfortunately, there are still some places where the route isn't obvious. A map can help. Rule of thumb: if there were junctions and you haven't seen the logo in a while, you probably took a wrong turn.</p>
     <p lang="en">There are multiple versions of this tour, so the signposts and GPS routes from the internet don't always match. The variant shown on veloroute.hamburg follows the signposts, whenever that is reasonably possible.</p>
 
-    <h4 lang="en">Comfort / Quality</h4>
+    <h4 lang="en">Printed map</h4>
+    <img src="/images/wanderkarte_fr11.svg" style="float: right; height: 10.2rem; margin: -0.5rem 0 0.1rem 0.6rem" alt="front cover of the Wanderkarte – Abenteuer Grünes Netz" title="front cover of the Wanderkarte – Abenteuer Grünes Netz | © BUKEA/Studio Käfig"/>
+    <p lang="en">The printed <em lang="de">Wanderkarte – Abenteuer Grünes Netz</em> can be found in Hamburgs <.search query="Bücherhalle Bücherhallen Hamburg" lang="de">Bücherhallen</.search>, its <.search query="Kundenzentrum Bezirksamt" lang="de">Kundenzentren</.search>, in the <.m bounds="9.996022,53.495824,10.008629,53.501451" lon={10.004101} lat={53.497537}>foyer of <span lang="de">Behörde für Umwelt, Klima, Energie und Agrarwirtschaft</span></.m> and many art, culture and social venues. You can also order it via <.mailto email="publikationen@bukea.hamburg.de" subject="Wanderkarte Abenteuer Grünes Netz bestellen" body="Guten Tag,
+
+    ich möchte gerne die Wanderkarte Abenteuer Grünes Netz bestellen. Meine Adresse lautet:
+
+    (address here)
+
+    Vielen Dank">publikationen@bukea.hamburg.de</.mailto>.</p>
+
+    <h4 lang="en" style="clear: both">Comfort / Quality</h4>
     <p lang="en">The segments vary a lot: from smooth asphalt, to well made fine gravel paths, to bad trails – you'll find them all on this route. Therefore parts of the route are not suitable for rainy conditions. The same idea also applies to the available space. Some parts are crowded, some are narrow and sometimes you won't meet anybody for a while. Pedestrians have the right of way in all of Hamburg's green spaces, so yield or get off your bike if necessary.</p>
 
     <h4 lang="en">Opinion</h4>
@@ -203,12 +217,21 @@ defmodule Data.Article.Static.Freizeitroute11 do
     <p>Durch Eißendorf und das <.v bounds="9.924443,53.453719,9.95028,53.471033" lon={9.941844} lat={53.461819} dir="forward" ref={@ref}>Heimfelder Holz</.v> (→ <.a name="freizeitroute-7">FR 7</.a>) erreicht man die <.v bounds="9.836318,53.476357,9.90998,53.521681" lon={9.903525} lat={53.484055} dir="forward" ref={@ref}>Dritte Meile</.v> im Alten Land (→ <.a name="freizeitroute-14">FR 14</.a>). Kurz vorm Ziel kommt man durch <.v bounds="9.844071,53.524436,9.889127,53.546172" lon={9.877899} lat={53.528461} dir="forward" ref={@ref}>Finkenwerder</.v> (→ <.a name="freizeitroute-13">FR 13</.a>) und den schließlich zum <.v bounds="9.857705,53.53993,9.866148,53.543285" lon={9.863281} lat={53.541299} dir="forward" ref={@ref}>Fähranleger Rüschpark</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
-
     <p><img src="/images/logo_zweiter_gruener_ring.svg" style="float:left; padding: 3px 10px 10px 0; width: 100px" alt="Logo des zweiten Grünen Rings"/>Die Tour ist durchgehend beschildert und leicht zu finden. An den Wegweisern ist die Tour als „weiße 11 auf rotem Grund“ ausgezeichnet. Viel häufiger trifft man jedoch das abgebildete Logo an. Es klebt an Laternen, Schranken, Rückseiten von Schildern und sogar Mülleimern. Teilweise auch in verkürzter Form als weißer Pfeil auf grünem Grund.</p>
     <p>Leider gibt es dennoch einige nicht direkt ersichtliche Stellen. Eine Karte kann daher hilfreich sein. Faustregel: wenn es Abzweigungen gab und man das Logo nun länger nicht mehr gesehen hat, hat man sich verfahren.</p>
     <p>Es gibt mehrere Versionen der Tour, d.h. die aufgestellten Schilder und die GPS-Tourdaten im Internet stimmen nicht immer überein. Die von veloroute.hamburg orientieren sich an den Schildern, sofern man diesen sinnvoll folgen kann.</p>
 
-    <h4>Befahrbarkeit</h4>
+    <h4>Papierkarte</h4>
+    <img src="/images/wanderkarte_fr11.svg" style="float: right; height: 10.2rem; margin: -0.5rem 0 0.1rem 0.5rem" alt="Deckblatt der Wanderkarte Abenteuer Grünes Netz" title="Deckblatt der Wanderkarte Abenteuer Grünes Netz | © BUKEA/Studio Käfig"/>
+    <p>Die gedruckte <em>Wanderkarte – Abenteuer Grünes Netz</em> findet sich in Hamburgs <.search query="Bücherhalle Bücherhallen Hamburg">Bücherhallen</.search>, den <.search query="Kundenzentrum Bezirksamt">Kundenzentren der Stadt</.search>, im <.m bounds="9.996022,53.495824,10.008629,53.501451" lon={10.004101} lat={53.497537}>Foyer der Behörde für Umwelt, Klima, Energie und Agrarwirtschaft</.m> und weiteren Kunst-, Kultur- und Sozialeinrichtungen. Sie kann auch über <.mailto email="publikationen@bukea.hamburg.de" subject="Wanderkarte Abenteuer Grünes Netz bestellen" body="Guten Tag,
+
+    ich möchte gerne die Wanderkarte Abenteuer Grünes Netz bestellen. Meine Adresse lautet:
+
+
+
+    Vielen Dank">publikationen@bukea.hamburg.de</.mailto> bestellt werden.</p>
+
+    <h4 style="clear: both">Befahrbarkeit</h4>
     <p>Die Abschnitte gestalten sich höchst unterschiedlich: von erstklassigem Asphalt über gute Feinschotter-Wege bis hin zu schlimmen Trampelpfaden ist auf der Tour alles vorhanden. Insgesamt ist sie daher nur bedingt regensicher. Diese Vielfalt gilt auch für's Platzangebot. Manche Abschnitte sind voll, andere eng und manchmal ist man auch lange alleine auf weiter Flur.</p>
 
     <h4>Meinung</h4>

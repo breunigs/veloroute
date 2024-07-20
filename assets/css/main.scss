@@ -1171,11 +1171,13 @@ a {
     cursor: help;
   }
 
-  &.video::after, &.map::after {
-    display: inline-block;
-    width: 0.8rem;
-    padding-left: 0.2rem;
-    filter: $linkColorFilterFromWhite;
+  &.video, &.map, &.search {
+    &::after {
+      display: inline-block;
+      width: 0.8rem;
+      padding-left: 0.2rem;
+      filter: $linkColorFilterFromWhite;
+    }
   }
 
   &.video::after {
@@ -1186,6 +1188,11 @@ a {
   &.map::after {
     content: url("/images/map.svg");
     vertical-align: -2%;
+  }
+
+  &.search::after {
+    content: url("/images/search.svg");
+    width: 0.7rem;
   }
 }
 

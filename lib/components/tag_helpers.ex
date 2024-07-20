@@ -114,6 +114,8 @@ defmodule Components.TagHelpers do
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
   attr :bounds, :string, required: true
   attr :highlight, :string
+  attr :lat, :float
+  attr :lon, :float
   attr :rest, :global
   slot(:inner_block, required: true)
 
@@ -121,12 +123,34 @@ defmodule Components.TagHelpers do
     name = assigns[:highlight] || inner_text(assigns)
     assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
 
+    ping =
+      if Map.has_key?(assigns, :lat) && Map.has_key?(assigns, :lon),
+        do: %{name: name, center: %{lat: assigns.lat, lon: assigns.lon}},
+        else: %{name: name}
+
     js =
       %Phoenix.LiveView.JS{}
-      |> Phoenix.LiveView.JS.dispatch("map:ping", detail: %{name: name})
+      |> Phoenix.LiveView.JS.dispatch("map:ping", detail: ping)
       |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: assigns.bounds})
 
     href = "?bounds=#{Geo.BoundingBox.to_string_bounds(assigns.bounds)}"
+    assigns = assign(assigns, %{js: js, href: href})
+
+    ~H"<a phx-click={@js} href={@href} onclick='return false' {@rest}><%= render_slot(@inner_block) %></a>"
+  end
+
+  @spec search(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :query, :string
+  attr :rest, :global
+  slot(:inner_block, required: true)
+
+  def search(assigns) do
+    query = assigns[:query] || inner_text(assigns)
+    assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "search"))
+
+    js = Phoenix.LiveView.JS.push("search", value: %{value: query})
+
+    href = "/?" <> URI.encode_query(search_query: query)
     assigns = assign(assigns, %{js: js, href: href})
 
     ~H"<a phx-click={@js} href={@href} onclick='return false' {@rest}><%= render_slot(@inner_block) %></a>"
