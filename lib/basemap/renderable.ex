@@ -26,6 +26,7 @@ defmodule Basemap.Renderable do
       def path(:cache, extra), do: Path.join("data/cache/basemap/#{name()}", extra)
       def path(:container, extra), do: Path.join("/workdir/basemap/#{name()}", extra)
 
+      @spec ensure() :: :ok | {:error, reason :: binary()}
       def ensure() do
         ident = "basemap #{name()}"
         {stale, reason} = Benchmark.measure("#{ident} staleness check", &staleness/0)
@@ -33,7 +34,7 @@ defmodule Basemap.Renderable do
         if stale do
           Logger.info("#{ident} is stale because #{reason}")
           Benchmark.measure("#{ident} rendering", &render/0)
-        end
+        end || :ok
       end
 
       @impl Basemap.Renderable
