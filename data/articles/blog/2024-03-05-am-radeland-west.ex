@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.AmRadelandWest do
 
   def type(), do: :construction
   def start(), do: ~d[2024-06-17]
-  def stop(), do: ~d[2025-09]
-  # def construction_site_id_hh(), do: [862308]
+  def stop(), do: ~d[2025-07-30]
+  def construction_site_id_hh(), do: [862_308]
 
   def tags(), do: ["10", "FR6", "H13", "H.13"]
 
