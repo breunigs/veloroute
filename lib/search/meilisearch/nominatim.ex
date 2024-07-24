@@ -47,8 +47,9 @@ defmodule Search.Meilisearch.Nominatim do
 
     human = lookup(result, [["extratags", "building"], "type", ["extratags", "border_type"]])
     bbox = Geo.BoundingBox.parse(f.("bbox"))
-    addr = f.("address")
     names = f.("name")
+    addr = f.("address")
+    street = "#{addr["street"]} #{addr["housenumber"]}"
 
     name =
       ~w[name:de name alt_name old_name addr:housename official_name brand]
@@ -57,8 +58,12 @@ defmodule Search.Meilisearch.Nominatim do
       |> Kernel.++([f.("extratags")["operator"]])
       |> dedupe()
 
-    street = "#{addr["street"]} #{addr["housenumber"]}"
-    name = if name == "", do: street, else: name
+    name =
+      cond do
+        !blank?(name) -> name
+        result["type"] in ~w[office building public_building house apartment apartments] -> street
+        true -> human
+      end
 
     subtext =
       dedupe(
@@ -66,7 +71,7 @@ defmodule Search.Meilisearch.Nominatim do
           f.("extratags")["name:prefix"],
           human,
           f.("extratags")["operator"],
-          "#{addr["street"]} #{addr["housenumber"]}",
+          street,
           addr["suburb"],
           addr["postcode"] || f.("parents_postcode"),
           f.("parents_name"),
@@ -74,7 +79,7 @@ defmodule Search.Meilisearch.Nominatim do
         ] -- [name]
       )
 
-    {name, subtext} = if name == "", do: {subtext, nil}, else: {name, subtext}
+    {name, subtext} = if blank?(name), do: {subtext, nil}, else: {name, subtext}
 
     %Search.Result{
       bounds: bbox,
@@ -193,10 +198,11 @@ defmodule Search.Meilisearch.Nominatim do
   defp into(_into, nil), do: nil
   defp into(into, ms), do: Enum.into(ms, into)
 
+  @spec dedupe([binary() | nil]) :: binary()
   def dedupe(list) do
     list
     |> List.flatten()
-    |> Enum.reject(fn e -> e == nil || String.trim(e) == "" end)
+    |> Enum.reject(&blank?/1)
     |> Enum.map(&String.trim/1)
     |> Enum.uniq()
     |> Enum.join(", ")
@@ -244,4 +250,8 @@ defmodule Search.Meilisearch.Nominatim do
   end
 
   defp lookup(_result, []), do: nil
+
+  defp blank?(nil), do: true
+  defp blank?(""), do: true
+  defp blank?(str) when is_binary(str), do: String.trim(str) == ""
 end

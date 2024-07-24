@@ -3,7 +3,7 @@ defmodule Basemap.Nominatim do
   require Benchmark
   require Logger
 
-  @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.3"}}
+  @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.4"}}
   @queries [:search, :area]
 
   def export(query, where \\ :cache) when query in @queries,
