@@ -100,7 +100,7 @@ defmodule Util.Docker do
       %{container: "veloroute2-bar-sha-desc", image: "veloroute.hamburg/docker:bar-sha"}
 
       iex> Util.Docker.names({"desc", {:remote, "example.com/foo/bar", "tag"}})
-      %{container: "veloroute2-bar-desc", image: "example.com/foo/bar:tag"}
+      %{container: "veloroute2-bar-tag-desc", image: "example.com/foo/bar:tag"}
 
       iex> Util.Docker.names({:remote, "example.com/foo/bar", "tag"})
       %{image: "example.com/foo/bar:tag"}
@@ -113,7 +113,8 @@ defmodule Util.Docker do
     res =
       case image_ref do
         {:remote, img_name, tag} ->
-          %{image: "#{img_name}:#{tag}", container: img_name |> String.split("/") |> List.last()}
+          base = img_name |> String.split("/") |> List.last()
+          %{image: "#{img_name}:#{tag}", container: base <> "-#{tag}"}
 
         {:git, source, sha} ->
           name = Path.basename(source, ".git") |> String.downcase()
