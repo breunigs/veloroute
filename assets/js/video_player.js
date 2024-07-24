@@ -20,6 +20,8 @@ window.addEventListener("phx:video_meta", e => {
 
   video.loop = videoMeta.end_action == "loop";
   wasSocketDisconnected = false
+
+  if (preloadedHlsJs) updateVideoElement(true)
 });
 
 let video
@@ -85,6 +87,7 @@ function maybeTimeUpdate(changedMeta) {
   timeUpdate(null, {
     mediaTime: changedMeta.start / 1000
   })
+  updateProgressbar()
 }
 
 function maybeExecEndAction() {
@@ -214,11 +217,18 @@ function cacheVideoPosterReset() {
   video.setAttribute("poster", "")
 }
 
+window.addEventListener("map:initialLoad", (e) => {
+  updateVideoElement(true)
+})
+
 let canPlayThroughEvtListener = null
-function updateVideoElement() {
+let preloadedHlsJs = null
+let preloadedHlsJsPath = null
+function updateVideoElement(preloadOnly) {
   if (!videoMeta.hash) return;
   console.debug('trying to play video for: ', videoMeta.hash)
   if (canPlayHLS) {
+    if (preloadOnly) return
     console.debug('native hls; hacking around first frame flash')
     if (video.readyState === 0) {
       // only re-use video poster when it's loaded
@@ -233,6 +243,7 @@ function updateVideoElement() {
       outer.style.backgroundSize = null
     }, { once: true });
   } else if (window.hls === false || typeof Promise === "undefined") {
+    if (preloadOnly) return
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')
@@ -240,6 +251,15 @@ function updateVideoElement() {
       if (!Hls.isSupported()) return window.hls = false;
       console.debug('loading hls video stream');
       Hls = Hls.default;
+
+      const path = document.getElementById("hlsJsUrl").getAttribute("href");
+
+      if (preloadOnly && (window.hls || preloadedHlsJsPath === path)) return
+      if (window.hls && window.hls.url === path) {
+        video.playbackRate = videoPlaybackRate
+        if (autoplay) video.play()
+        return
+      }
 
       let options = {
         autoStartLoad: true,
@@ -250,6 +270,7 @@ function updateVideoElement() {
         maxMaxBufferLength: 20, // seconds
         startPosition: videoMeta.start / 1000.0,
         capLevelOnFPSDrop: true,
+        startFragPrefetch: true,
       };
 
       if (window.hls && window.hls.currentLevel) {
@@ -275,17 +296,41 @@ function updateVideoElement() {
         window.hls.destroy();
       }
 
-      window.hls = new Hls(options);
-      window.hls.attachMedia(video);
-      attachHlsErrorHandler(hls, Hls);
-      window.hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
-      window.hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      window.hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
-      window.hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
-      window.hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
-      window.hls.on(Hls.Events.DESTROYING, hideQualityChooser);
-      const path = document.getElementById("hlsJsUrl").getAttribute("href");
-      window.hls.loadSource(path);
+      let hls
+      if (preloadedHlsJsPath === path) {
+        console.log("using HLS.js preload")
+        hls = preloadedHlsJs
+        preloadedHlsJs = null
+        preloadedHlsJsPath = null
+      } else {
+        if (preloadedHlsJs) {
+          console.log("destroying unused HLS.js preload")
+          preloadedHlsJs.destroy()
+          preloadedHlsJs = null
+          preloadedHlsJsPath = null
+        }
+
+        console.log("creating HLS.js from scratch")
+        hls = new Hls(options);
+        attachHlsErrorHandler(hls, Hls);
+        hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
+        hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+        hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
+        hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
+        hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
+        hls.on(Hls.Events.DESTROYING, hideQualityChooser);
+        hls.loadSource(path);
+      }
+
+      if (preloadOnly) {
+        console.log("saving HLS.js preload")
+        preloadedHlsJs = hls
+        preloadedHlsJsPath = path
+        return
+      }
+
+      window.hls = hls
+      hls.attachMedia(video)
       updatePlaypause();
       video.loop = videoMeta.end_action == "loop";
     })
@@ -398,6 +443,8 @@ function hideQualityChooser() {
 
 let fixSeekForWrongVideoDuration = null
 function seekToTime(timeInMs) {
+  maybeSwitchToPreloadedHlsJs()
+
   fixSeekForWrongVideoDuration = null
   timeInMs = Math.max(timeInMs, 0);
   const inSeconds = timeInMs / 1000.0;
@@ -446,7 +493,11 @@ function ensureVideoIsSet() {
 
 function setVideo(avoidSeek) {
   if (autoplay) userClickPlayOnce = true;
-  if (!userClickPlayOnce) return;
+  if (!userClickPlayOnce) {
+    console.log("setVideo", avoidSeek, preloadedHlsJs, !!window.hls)
+    if (!avoidSeek && (preloadedHlsJs || window.hls)) seekToStartTime()
+    return
+  }
 
   progressWrapper.setAttribute("phx-update", "ignore");
 
@@ -460,6 +511,16 @@ function setVideo(avoidSeek) {
   if (!avoidSeek) seekToStartTime();
   updateProgressbar();
   updatePlaypause();
+}
+
+function maybeSwitchToPreloadedHlsJs() {
+  const path = document.getElementById("hlsJsUrl").getAttribute("href")
+  if (preloadedHlsJsPath !== path) return
+  if (window.hls || window.hls === false) return
+  if (!preloadedHlsJs) return
+
+  progressWrapper.setAttribute("phx-update", "ignore")
+  updateVideoElement()
 }
 
 const videoMetadataEl = document.getElementById('videoRecordingDate');

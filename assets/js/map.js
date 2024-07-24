@@ -654,10 +654,6 @@ function setupTouchDeviceClick() {
   map.on('touchend', (evt) => {
     if (simulateClick) handleMapClick(evt);
   });
-
-  map.on('idle', hidePreview);
-  map.on('move', hidePreview);
-  map.on('zoom', hidePreview);
 }
 
 let map = null;
@@ -709,6 +705,12 @@ function setup() {
 
   map.on('style.load', styleChangedHandler)
   map.on('styledata', styleChangedHandler)
+
+  map.on('idle', hidePreview);
+  map.on('move', hidePreview);
+  map.on('zoom', hidePreview);
+
+  map.once('idle', () => window.dispatchEvent(new CustomEvent("map:initialLoad")))
 
   setupTouchDeviceClick()
 
