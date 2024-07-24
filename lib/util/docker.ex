@@ -510,7 +510,8 @@ defmodule Util.Docker do
         "--attach",
         names(full_ref).container
       ],
-      kill: docker_kill(full_ref)
+      kill: docker_kill(full_ref),
+      name: "starting #{elem(full_ref, 0)}"
     )
     |> Util.Cmd2.result_to_error()
   end

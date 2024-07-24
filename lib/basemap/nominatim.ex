@@ -165,7 +165,8 @@ defmodule Basemap.Nominatim do
         command_args: args ++ ["bash", script_path(:container)],
         run_as_local_user: false
       },
-      stdout: IO.stream(:stdio, :line)
+      stdout: IO.stream(:stdio, :line),
+      name: elem(@full_ref, 0)
     )
   end
 
