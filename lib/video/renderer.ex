@@ -379,7 +379,7 @@ defmodule Video.Renderer do
 
   # length of a single segment in seconds. Quality usually switches between
   # segments. https://ffmpeg.org/ffmpeg-formats.html#hls-2
-  defp hls_time, do: 4
+  defp hls_time, do: 1
 
   # GOP=group of pictures, essentially when to insert a keyframe. The script
   # sets the max for this, i.e. there will be a keyframe at most every GOP_SIZE.
