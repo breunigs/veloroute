@@ -43,6 +43,7 @@ defmodule Data.OsmTagToHuman do
       "bicycle_parking" => ~w[Fahrradparken],
       "bicycle_rental" => ~w[Fahrradverleih StadtRAD],
       "bicycle_repair_station" => ~w[Fahrradreparaturstation],
+      "bicycle_tube" => ~w[Fahrradschlauch Schlauch],
       "biergarten" => ~w[Biergarten],
       "blacksmith" => ~w[Schmiede Schmied],
       "boat_rental" => ~w[Bootsverleih],

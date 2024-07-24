@@ -252,7 +252,7 @@ defmodule Basemap.Nominatim do
           main1.address,
           SLICE(
             main1.extratags,
-            ARRAY['border_type', 'branch', 'name:prefix','wikidata']
+            ARRAY['border_type', 'branch', 'name:prefix', 'vending', 'wikidata']
           ) || (
            -- remove likely addresses from operator field (Foobar GmbH, Bazstreet 123)
            HSTORE('operator', REGEXP_REPLACE(main1.extratags->'operator', 'mbH, .*', 'mbH'))
@@ -283,7 +283,8 @@ defmodule Basemap.Nominatim do
         ON COALESCE(help1.address_place_id, help2.address_place_id) = main2.place_id
         WHERE
           -- filter which results to keep for searching
-          (main1.name IS NOT NULL OR main1.type IN ('compressed_air') OR main1.housenumber IS NOT NULL)
+              (main1.name->'name' IS NOT NULL OR main1.type IN ('compressed_air') OR main1.housenumber IS NOT NULL)
+          AND (main1.name->'name' IS NOT NULL OR main1.extratags IS NULL OR main1.extratags->'vending' IS NULL OR main1.extratags->'vending' IN ('bicycle_tube'))
           -- auto-merged by Nominatim, so ignore
           -- see https://nominatim.org/release-docs/develop/develop/Database-Layout/#search-tables
           AND main1.linked_place_id IS NULL
