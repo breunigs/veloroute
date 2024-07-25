@@ -55,3 +55,6 @@ x264_lookahead.clbin
 TODO
 flamegraph*.svg
 data/auto_generated/bv_hh_attachment_cache.json
+
+# auto generated via Mix.Tasks.Velo.Assets.Prepare
+priv/static/robots.txt
