@@ -7,7 +7,10 @@ defmodule Article.List do
 
   @spec all :: t
   def all() do
-    Enum.flat_map(@known_categories, &category/1)
+    articles = Enum.flat_map(@known_categories, &category/1)
+    #  avoid n+1 loading issue for callers
+    Code.ensure_all_loaded(articles)
+    articles
   end
 
   defmemop all_indexed() do
