@@ -4,7 +4,7 @@ ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
 ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
-ARG SVTAV1_VERSION=c233913e82fa44caec4a0f08efabb861b2f81edf
+ARG SVTAV1_VERSION=37a5609bcc20bbf40203b8c4736d906af1a259d3
 
 ARG FFMPEG_VERSION=7.0.1
 ARG BLUR_VERSION=e5311fc5d58e1e56414f57285046cb26921e5f84
@@ -104,10 +104,8 @@ RUN cd /downloads/rav1e && \
   sed -i 's/cap_underflow: false,/cap_underflow: true,/' src/rate.rs && \
   RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
 
-RUN cd /downloads/svtav1/Build && \
-  cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${PREFIX} && \
-  make -j $(nproc) && \
-  make install
+RUN cd /downloads/svtav1/Build/linux && \
+  ./build.sh --native --static --no-dec --no-apps --release --enable-lto --prefix=${PREFIX} --install
 
 RUN cd /downloads/ffmpeg && \
   ./configure \
