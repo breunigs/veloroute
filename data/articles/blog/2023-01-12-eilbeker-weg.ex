@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.EilbekerWeg do
   def stop(), do: ~d[2023Q2]
 
   def type(), do: :finished
-  def tags(), do: []
+  def tags(), do: ["br-wandsbek-w1"]
 
   def links(_assigns) do
     [

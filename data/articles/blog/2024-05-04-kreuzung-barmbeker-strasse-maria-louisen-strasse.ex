@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
     do:
       "Rad- und Gehwege werden beim Ausbau der Bushaltestelle neu gepflastert, bleiben aber wie bisher zu eng."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def start(), do: ~d[2024-07-29]
   def stop(), do: ~d[2024-10-18]
 
@@ -24,6 +24,8 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", "Juli 2024",
+       "https://lsbg.hamburg.de/resource/blob/945586/2832e88d2884dc5ed3e9e3bbd8f7fd3d/barmbeker-strasse-anliegerinformation-juli-2024-data.pdf"},
       {"Ausschreibung Umbau", "Mai 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/006b4e40-f4d0-4535-945c-01996f0222c6"}
     ]

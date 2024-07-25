@@ -494,7 +494,6 @@ function ensureVideoIsSet() {
 function setVideo(avoidSeek) {
   if (autoplay) userClickPlayOnce = true;
   if (!userClickPlayOnce) {
-    console.log("setVideo", avoidSeek, preloadedHlsJs, !!window.hls)
     if (!avoidSeek && (preloadedHlsJs || window.hls)) seekToStartTime()
     return
   }

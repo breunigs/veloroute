@@ -12,6 +12,22 @@ defmodule Data.Article.Blog.Eilbektal do
   def type(), do: :planned
   def tags(), do: ["FV-W051"]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 5,
+        group: "article",
+        direction: :forward,
+        from: "Mühlenstraße",
+        to: "Friedrichsberger Straße",
+        parent_ref: __MODULE__,
+        text: "Eilbektal (stadteinwärts)",
+        videos: [
+          {"2024-05-09-vr6/GX017487", :start, "00:00:25.192"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"2. Entwurf, Lageplan und Erläuterung", "April 2024",
