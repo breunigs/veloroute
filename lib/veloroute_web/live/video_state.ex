@@ -89,6 +89,10 @@ defmodule VelorouteWeb.Live.VideoState do
           %{new_state | start: near}
           |> reverse_direction()
 
+        accurate && article && tracks == [] ->
+          Logger.debug("have new accurate position; but article has no tracks, ignoring")
+          new_state
+
         accurate ->
           Logger.debug("have new accurate position; updating #{near_dbg}")
           %{new_state | start: near}

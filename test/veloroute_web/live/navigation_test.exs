@@ -91,6 +91,32 @@ defmodule VelorouteWeb.LiveNavigationTest do
     )
   end
 
+  test "map click on article without (related) videos doesn't change video", %{conn: conn} do
+    assert art =
+             Article.List.category("Blog")
+             |> Stream.filter(&Article.Decorators.bbox_self/1)
+             |> Stream.filter(fn art -> Article.Decorators.related_tracks(art) == [] end)
+             |> Enum.at(0)
+
+    {:ok, view, _html} = live(conn, "/")
+    # consume any initial push event
+    assert_push_event(view, :video_meta, _payload)
+
+    art_center = Article.Decorators.geo_center(art)
+
+    render_hook(view, "map-click", %{
+      "article" => art.name(),
+      "lat" => art_center.lat,
+      "lon" => art_center.lon,
+      "route" => [],
+      "zoom" => 16
+    })
+
+    # check there was no further push event
+    %{proxy: {ref, _topic, _}} = view
+    refute_receive {^ref, {:push_event, :video_meta, _payload}}
+  end
+
   test "link on article in sidebar renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/changes")
     assert html =~ ~s|<h3 id="lastChanges">|
