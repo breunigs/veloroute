@@ -5,8 +5,19 @@ defmodule Search.Meilisearch.Articles do
   def id(), do: :articles
 
   @impl true
+  def updated_at() do
+    sources()
+    |> Enum.map(& &1.compiled_at())
+    |> Enum.reduce(fn d1, d2 -> if DateTime.compare(d1, d2) == :gt, do: d1, else: d2 end)
+  end
+
+  @impl true
   def documents() do
-    Article.List.all() |> Enum.reject(&(&1.title() == "")) |> Enum.map(&single/1)
+    Enum.map(sources(), &single/1)
+  end
+
+  defp sources() do
+    Enum.reject(Article.List.all(), &(&1.title() == ""))
   end
 
   @impl true

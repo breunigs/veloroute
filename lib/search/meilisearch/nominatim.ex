@@ -5,10 +5,22 @@ defmodule Search.Meilisearch.Nominatim do
   @impl true
   def id(), do: :nominatim
 
+  defp source, do: Basemap.Nominatim.export(:search)
+
+  @impl true
+  def updated_at() do
+    with {:ok, %{mtime: posix}} <- File.stat(source(), time: :posix),
+         {:ok, datetime} <- DateTime.from_unix(posix) do
+      datetime
+    else
+      _ -> DateTime.utc_now()
+    end
+  end
+
   @impl true
   def documents() do
     Basemap.Nominatim.ensure()
-    source = Basemap.Nominatim.export(:search)
+    source = source()
 
     if Path.extname(source) == ".gz" do
       {"application/x-ndjson", "gzip", File.read!(source)}

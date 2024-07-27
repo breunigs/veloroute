@@ -24,6 +24,8 @@ defmodule Article.Default do
       def map_image(), do: nil
       def languages(), do: [Settings.default_language()]
 
+      def compiled_at(), do: unquote(Macro.escape(DateTime.utc_now()))
+
       defoverridable Article
 
       use Phoenix.Component

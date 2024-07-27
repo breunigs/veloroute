@@ -20,17 +20,26 @@ defmodule Search.Meilisearch.API do
     end
   end
 
-  @spec list_indexes() :: {:error, %{binary() => integer()}} | {:ok, %{binary() => integer()}}
+  @type index_list :: %{binary() => %{documents: integer(), updated_at: DateTime.t()}}
+  @spec list_indexes() :: {:error, reason :: binary()} | {:ok, index_list}
   def list_indexes() do
     with {:ok, %{body: %{"results" => results}}} <-
            get("/indexes", opts: @adapter_opts_general) do
       indexes =
-        Enum.into(results, %{}, fn %{"uid" => uid} ->
-          with {:ok, count} <- get_index_doc_count(uid) do
-            {uid, count}
-          else
-            _ -> {uid, -1}
-          end
+        Enum.into(results, %{}, fn %{"uid" => uid, "updatedAt" => update_at} ->
+          datetime =
+            case DateTime.from_iso8601(update_at) do
+              {:ok, datetime, _utc_offset} -> datetime
+              _ -> DateTime.new!(~D[1970-01-01], ~T[00:00:00.000], "Etc/UTC")
+            end
+
+          doc_count =
+            case get_index_doc_count(uid) do
+              {:ok, count} -> count
+              _ -> -1
+            end
+
+          {uid, %{documents: doc_count, updated_at: datetime}}
         end)
 
       {:ok, indexes}

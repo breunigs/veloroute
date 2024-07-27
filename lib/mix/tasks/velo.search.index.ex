@@ -4,6 +4,6 @@ defmodule Mix.Tasks.Velo.Search.Index do
 
   @shortdoc "Updates Search Index"
   def run(_) do
-    Search.Meilisearch.Runner.index()
+    Search.Meilisearch.Runner.index_outdated()
   end
 end

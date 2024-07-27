@@ -42,16 +42,9 @@ defmodule Search.Meilisearch.Runner do
   @doc """
   Indexes from any indexer that was not yet run
   """
-  def index() do
+  def index_outdated() do
     no_indexing_in_prod!()
-    GenServer.call(__MODULE__, :index, :infinity)
-  end
-
-  @doc """
-  Re-runs all existing indexers, but does not clean up stale data
-  """
-  def reindex() do
-    GenServer.call(__MODULE__, :reindex, :infinity)
+    GenServer.call(__MODULE__, :index_outdated, :infinity)
   end
 
   def start_link(opts \\ []) do
@@ -100,13 +93,9 @@ defmodule Search.Meilisearch.Runner do
     {:reply, search(query, bbox), state}
   end
 
-  def handle_call(:index, _from, state) do
-    {:reply, :ok, index(state)}
-  end
-
-  def handle_call(:reindex, _from, state) do
-    Logger.debug("re-indexing")
-    {:reply, :ok, index(%{state | indexers: @indexers})}
+  def handle_call(:index_outdated, _from, state) do
+    {_result, state} = index_outdated(state)
+    {:reply, :ok, state}
   end
 
   def handle_call(term, _from, state) do
@@ -132,32 +121,22 @@ defmodule Search.Meilisearch.Runner do
     {:noreply, state |> set_health_status() |> maybe_process_queue()}
   end
 
-  def handle_info(:maybe_index, %{healthy: true} = state) do
+  def handle_info(:index_outdated_once_healthy, %{healthy: true} = state) do
     state =
-      with {:ok, have} <- Search.Meilisearch.API.list_indexes() do
-        have = have |> Map.reject(fn {_k, count} -> count <= 0 end) |> Map.keys()
-        want = Enum.into(@indexers, %{}, &{to_string(&1.id()), &1})
-        missing = Enum.reduce(have, want, &Map.delete(&2, &1))
-        missing = Map.values(missing)
-
-        if missing != [] do
-          Logger.info("adding missing indexes #{inspect(missing)}")
-          index(%{state | indexers: missing})
-        else
+      case index_outdated(state) do
+        {:ok, state} ->
           state
-        end
-      else
-        {:error, err} ->
-          Logger.debug("failed to check existing indexes #{inspect(err)}")
-          Process.send_after(self(), :maybe_index, 1000)
+
+        {:error, state} ->
+          Process.send_after(self(), :index_outdated_once_healthy, 1000)
           state
       end
 
     {:noreply, state}
   end
 
-  def handle_info(:maybe_index, state) do
-    Process.send_after(self(), :maybe_index, 1000)
+  def handle_info(:index_outdated_once_healthy, state) do
+    Process.send_after(self(), :index_outdated_once_healthy, 1000)
     {:noreply, state}
   end
 
@@ -187,11 +166,42 @@ defmodule Search.Meilisearch.Runner do
     {:noreply, state}
   end
 
+  defp outdated?(indexer, meili_index_meta)
+  defp outdated?(_indexer, nil), do: true
+  defp outdated?(_indexer, %{documents: count}) when count <= 0, do: true
+
+  defp outdated?(indexer, %{updated_at: index_at}) when is_module(indexer) do
+    # In production, it's likely that:
+    # 1) source files are absent
+    # 2) file times were modified and don't reflect recency
+    # 3) outdated search index beats re-indexing on container/app start
+    # Hence we don't check for outdated in prod.
+    !in_prod?() && DateTime.compare(index_at, indexer.updated_at()) == :lt
+  end
+
+  @spec index_outdated(state()) :: {:ok | :error, state()}
+  defp index_outdated(state) do
+    with {:ok, have} <- Search.Meilisearch.API.list_indexes() do
+      missing = Enum.filter(@indexers, &outdated?(&1, have[to_string(&1.id())]))
+
+      if missing != [] do
+        Logger.info("updating outdated indexes #{inspect(missing)}")
+        {:ok, index(%{state | indexers: missing})}
+      else
+        {:ok, state}
+      end
+    else
+      {:error, err} ->
+        Logger.debug("failed to check existing indexes #{inspect(err)}")
+        {:error, state}
+    end
+  end
+
   defp start(state) do
     state
     |> start_meilisearch()
     |> set_health_status()
-    |> maybe_index()
+    |> index_outdated_once_healthy()
   end
 
   @ulimit "ulimit -Sn 300000"
@@ -254,8 +264,8 @@ defmodule Search.Meilisearch.Runner do
     %{state | healthy: Search.Meilisearch.API.healthy?()}
   end
 
-  defp maybe_index(state) do
-    Process.send_after(self(), :maybe_index, 0)
+  defp index_outdated_once_healthy(state) do
+    Process.send_after(self(), :index_outdated_once_healthy, 0)
     state
   end
 
@@ -348,7 +358,7 @@ defmodule Search.Meilisearch.Runner do
 
     queue =
       Enum.reject(state.queue, fn {:queued, _deadline, from, task} ->
-        if task == :index, do: GenServer.reply(from, :ok)
+        if task == :index_outdated, do: GenServer.reply(from, :ok)
       end)
 
     %{state | indexers: [], queue: queue}
@@ -385,7 +395,8 @@ defmodule Search.Meilisearch.Runner do
   defp expired?({:queued, deadline, _from, _task}), do: :os.system_time(:millisecond) > deadline
 
   defp no_indexing_in_prod! do
-    if Application.get_env(:veloroute, :env) == :prod,
-      do: raise("cannot index search items in production")
+    if in_prod?(), do: raise("cannot index search items in production")
   end
+
+  defp in_prod?(), do: Application.get_env(:veloroute, :env) == :prod
 end
