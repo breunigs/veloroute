@@ -8,7 +8,9 @@ defmodule Data.Article.Static.LexikonQuerungshilfe do
     do:
       "Querungshilfen erleichtern das Queren einer Straße oder den Wechsel der Straßenseite. Beispiele sind Zebrastreifen oder Verkehrsinseln in Straßenmitte."
 
-  def tags(), do: ~w(lexikon querungshilfe sprunginsel mittelinsel zebrastreifen straßeneinengung)
+  def tags(),
+    do:
+      ~w(lexikon querungshilfe sprunginsel mittelinsel mittelinseln zebrastreifen straßeneinengung)
 
   def links(_assigns) do
     [

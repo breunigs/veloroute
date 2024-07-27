@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.EppendorferWeg do
     <p>Der LSBG möchte die Bevölkerung mit in Planung einbeziehen und lädt daher zu mehreren Beteiligungsveranstaltungen. Fertig geplant sein soll bis 2025; wann gebaut wird ist noch offen.</p>
 
     <h4>Vorabmaßnahme</h4>
-    <p>In einer einfach umzusetzenden Maßnahme werden <.ref>Querungshilfen</.ref> in Form von Mittelinseln gebaut. Dabei sollen auch Sitzbänke und Radanlehnbügel aufgestellt werden. Die Fahrradfurten bzw. <.ref name="lexikon/aras">Aufstellflächen vor den KFZ</.ref> sollen rot eingefärbt werden. Gebaut werden soll Ende 2024/Anfang 2025.</p>
+    <p>In einer einfach umzusetzenden Maßnahme werden <.ref>Mittelinseln</.ref> gebaut. Dabei sollen auch Sitzbänke und Radanlehnbügel aufgestellt werden. Die Fahrradfurten bzw. <.ref name="lexikon/aras">Aufstellflächen vor den KFZ</.ref> sollen rot eingefärbt werden. Gebaut werden soll Ende 2024/Anfang 2025.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
