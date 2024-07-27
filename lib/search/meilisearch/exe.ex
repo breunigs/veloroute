@@ -22,11 +22,13 @@ defmodule Search.Meilisearch.Exe do
   def ensure_downloaded() do
     path = path()
 
-    unless File.exists?(path) do
+    if File.exists?(path) do
+      :ok
+    else
       :ok = Util.Download.to_file(@url, path)
+      :ok = File.chmod(path, 0o555)
+      :ok
     end
-
-    :ok = File.chmod(path, 0o555)
   end
 
   def version(), do: @version

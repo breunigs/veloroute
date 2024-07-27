@@ -1,2 +1,2 @@
 **
-!./_build/prod/*.tar.gz
+!_build/tmp_release_build/

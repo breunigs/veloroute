@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV LANG=C.UTF-8
 
-ADD ./_build/prod/prod-*.tar.gz /app/
+ADD --chmod=0777 _build/tmp_release_build /app/
 
 WORKDIR /app/
 EXPOSE 4000

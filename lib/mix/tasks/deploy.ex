@@ -91,9 +91,9 @@ defmodule Mix.Tasks.Deploy do
 
     [
       ~w(mix setup),
-      ~w(mix compile),
       ~w(mix phx.digest),
-      ~w(mix release --overwrite --quiet),
+      ~w(rm -rf _build/tmp_release_build/),
+      ~w(mix release --overwrite --quiet --path _build/tmp_release_build),
       ~w(mix phx.digest.clean --all)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
@@ -108,7 +108,15 @@ defmodule Mix.Tasks.Deploy do
   defp make_release_image(_skip) do
     Util.banner("Building Release Image")
     image_ref = {:dockerfile, "Dockerfile.release"}
-    :ok = Util.Docker.build(image_ref)
+
+    case Util.Docker.build(image_ref) do
+      :ok ->
+        :ok
+
+      {:error, reason} ->
+        IO.puts("FAILED to build docker image (#{inspect(image_ref)}):\n#{reason}")
+        raise "failed to build image, see above for Docker build messages"
+    end
 
     image_name = Util.Docker.image_name("release-#{:os.system_time(:millisecond)}")
     :ok = Util.Docker.retag(image_ref, image_name)

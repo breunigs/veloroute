@@ -13,7 +13,7 @@ defmodule Veloroute.MixProject do
       releases: [
         prod: [
           include_executables_for: [:unix],
-          steps: [:assemble, :tar]
+          steps: [:assemble]
         ]
       ],
       preferred_cli_env: [
