@@ -112,10 +112,10 @@ defmodule Util.IO do
     dep = Path.relative_to_cwd(dep_mod.newest.path)
 
     cond do
-      target_mod == nil ->
+      target_mod.oldest == nil ->
         {true, "target #{Path.relative_to_cwd(target)} doesn't exist"}
 
-      dep_mod == nil ->
+      dep_mod.newest == nil ->
         deps = dependencies |> Enum.map(&Path.relative_to_cwd/1) |> Enum.join(", ")
         {false, "none of the dependencies (#{deps}) exist"}
 
@@ -127,7 +127,9 @@ defmodule Util.IO do
     end
   end
 
-  defp modification_times(paths) do
+  @typep file_time :: %{path: binary(), mtime: integer()} | nil
+  @spec modification_times(binary() | [binary()]) :: %{oldest: file_time(), newest: file_time()}
+  def modification_times(paths) do
     paths
     |> List.wrap()
     |> Parallel.flat_map(&include_descendants/1)
