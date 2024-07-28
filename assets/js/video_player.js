@@ -291,9 +291,6 @@ function updateVideoElement(preloadOnly) {
         } catch (error) {
           console.warn(error)
         }
-
-        // don't leak previous instance
-        window.hls.destroy();
       }
 
       let hls
@@ -329,8 +326,12 @@ function updateVideoElement(preloadOnly) {
         return
       }
 
-      window.hls = hls
       hls.attachMedia(video)
+
+      // clean up previous instance only after attaching the new one, to ensure a smooth(er) transition
+      if (window.hls) window.hls.destroy()
+      window.hls = hls
+
       updatePlaypause();
       video.loop = videoMeta.end_action == "loop";
     })
