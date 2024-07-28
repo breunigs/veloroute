@@ -1,4 +1,5 @@
 import "./rvfc-polyfill"
+import Hls from "hls.js/dist/hls.light.min.js"
 
 let prevVideo = null;
 let previouslyPlayingCodec = null;
@@ -143,7 +144,7 @@ function sendCurrentVideoTime(eventName) {
   })
 }
 
-function attachHlsErrorHandler(obj, Hls) {
+function attachHlsErrorHandler(obj) {
   obj.on(Hls.Events.ERROR, function (event, data) {
     let props = {
       type: data.type,
@@ -247,94 +248,91 @@ function updateVideoElement(preloadOnly) {
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')
-    import('hls.js/dist/hls.light.min.js').then(Hls => {
-      if (!Hls.isSupported()) return window.hls = false;
-      console.debug('loading hls video stream');
-      Hls = Hls.default;
+    if (!Hls.isSupported()) return window.hls = false;
+    console.debug('loading hls video stream');
 
-      const path = document.getElementById("hlsJsUrl").getAttribute("href");
+    const path = document.getElementById("hlsJsUrl").getAttribute("href");
 
-      if (preloadOnly && (window.hls || preloadedHlsJsPath === path)) return
-      if (window.hls && window.hls.url === path) {
-        video.playbackRate = videoPlaybackRate
-        if (autoplay) video.play()
-        return
+    if (preloadOnly && (window.hls || preloadedHlsJsPath === path)) return
+    if (window.hls && window.hls.url === path) {
+      video.playbackRate = videoPlaybackRate
+      if (autoplay) video.play()
+      return
+    }
+
+    let options = {
+      autoStartLoad: true,
+      enableWebVTT: false,
+      lowLatencyMode: false,
+      capLevelToPlayerSize: true,
+      maxBufferLength: 10, // seconds
+      maxMaxBufferLength: 20, // seconds
+      startPosition: videoMeta.start / 1000.0,
+      capLevelOnFPSDrop: true,
+      startFragPrefetch: true,
+    };
+
+    if (window.hls && window.hls.currentLevel) {
+      const bwEstimate = window.hls.bandwidthEstimate;
+      if (typeof bwEstimate === "number") {
+        options.abrEwmaDefaultEstimate = bwEstimate;
+        options.testBandwidth = false;
+        options.startLevel = -1;
+        console.debug("copying over previously estimated bandwidth", bwEstimate);
       }
 
-      let options = {
-        autoStartLoad: true,
-        enableWebVTT: false,
-        lowLatencyMode: false,
-        capLevelToPlayerSize: true,
-        maxBufferLength: 10, // seconds
-        maxMaxBufferLength: 20, // seconds
-        startPosition: videoMeta.start / 1000.0,
-        capLevelOnFPSDrop: true,
-        startFragPrefetch: true,
-      };
-
-      if (window.hls && window.hls.currentLevel) {
-        const bwEstimate = window.hls.bandwidthEstimate;
-        if (typeof bwEstimate === "number") {
-          options.abrEwmaDefaultEstimate = bwEstimate;
-          options.testBandwidth = false;
-          options.startLevel = -1;
-          console.debug("copying over previously estimated bandwidth", bwEstimate);
+      try {
+        if (window.hls.autoLevelEnabled) {
+          previouslyPlayingCodec = null;
+        } else {
+          previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
         }
-
-        try {
-          if (window.hls.autoLevelEnabled) {
-            previouslyPlayingCodec = null;
-          } else {
-            previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
-          }
-        } catch (error) {
-          console.warn(error)
-        }
+      } catch (error) {
+        console.warn(error)
       }
+    }
 
-      let hls
-      if (preloadedHlsJsPath === path) {
-        console.log("using HLS.js preload")
-        hls = preloadedHlsJs
+    let hls
+    if (preloadedHlsJsPath === path) {
+      console.log("using HLS.js preload")
+      hls = preloadedHlsJs
+      preloadedHlsJs = null
+      preloadedHlsJsPath = null
+    } else {
+      if (preloadedHlsJs) {
+        console.log("destroying unused HLS.js preload")
+        preloadedHlsJs.destroy()
         preloadedHlsJs = null
         preloadedHlsJsPath = null
-      } else {
-        if (preloadedHlsJs) {
-          console.log("destroying unused HLS.js preload")
-          preloadedHlsJs.destroy()
-          preloadedHlsJs = null
-          preloadedHlsJsPath = null
-        }
-
-        console.log("creating HLS.js from scratch")
-        hls = new Hls(options);
-        attachHlsErrorHandler(hls, Hls);
-        hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
-        hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-        hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
-        hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
-        hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
-        hls.on(Hls.Events.DESTROYING, hideQualityChooser);
-        hls.loadSource(path);
       }
 
-      if (preloadOnly) {
-        console.log("saving HLS.js preload")
-        preloadedHlsJs = hls
-        preloadedHlsJsPath = path
-        return
-      }
+      console.log("creating HLS.js from scratch")
+      hls = new Hls(options);
+      attachHlsErrorHandler(hls);
+      hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
+      hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
+      hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
+      hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
+      hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
+      hls.on(Hls.Events.DESTROYING, hideQualityChooser);
+      hls.loadSource(path);
+    }
 
-      hls.attachMedia(video)
+    if (preloadOnly) {
+      console.log("saving HLS.js preload")
+      preloadedHlsJs = hls
+      preloadedHlsJsPath = path
+      return
+    }
 
-      // clean up previous instance only after attaching the new one, to ensure a smooth(er) transition
-      if (window.hls) window.hls.destroy()
-      window.hls = hls
+    hls.attachMedia(video)
 
-      updatePlaypause();
-      video.loop = videoMeta.end_action == "loop";
-    })
+    // clean up previous instance only after attaching the new one, to ensure a smooth(er) transition
+    if (window.hls) window.hls.destroy()
+    window.hls = hls
+
+    updatePlaypause();
+    video.loop = videoMeta.end_action == "loop";
     return
   }
 
