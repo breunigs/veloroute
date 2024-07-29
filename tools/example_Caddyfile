@@ -25,12 +25,21 @@ veloroute.hamburg {
 			header Content-Type application/rss+xml*
 			header Content-Type image/svg+xml*
 			header Content-Type application/vnd.apple.mpegurl
+			header Content-Type audio/x-mpegurl
+			header Content-Type application/x-mpegURL
 		}
 	}
 
 	route {
 		file_server /google-some-hash-here.html {
 			root /srv/google-verification
+		}
+
+		@playlistFiles {
+			path *.m3u8
+		}
+		header @playlistFiles {
+			Content-Type application/x-mpegURL
 		}
 
 		route /videos-rendered/* {
