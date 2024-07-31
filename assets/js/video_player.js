@@ -325,10 +325,8 @@ function updateVideoElement(preloadOnly) {
       return
     }
 
-    hls.attachMedia(video)
-
-    // clean up previous instance only after attaching the new one, to ensure a smooth(er) transition
     if (window.hls) window.hls.destroy()
+    hls.attachMedia(video)
     window.hls = hls
 
     updatePlaypause();
