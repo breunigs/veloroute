@@ -153,6 +153,11 @@ ARGV.each do |project_path|
     thr.join && thr[:output]
   end
 
+  puts <<~ELIXIR
+      <.h4_planning ref={@ref} checked={@show_map_image}/>
+
+  ELIXIR
+
   if code.size == 1
     puts <<~ELIXIR
       def map_image do
