@@ -35,7 +35,7 @@ defmodule Data.MapImage do
         Geo.Point.from_params(br),
         Geo.Point.from_params(bl)
       },
-      attribution: attrib_to_link(attribution),
+      attribution: attribution,
       path:
         [
           # a hack, but it works for now
@@ -63,7 +63,7 @@ defmodule Data.MapImage do
          path: path
        }) do
     %{
-      "attribution" => attrib,
+      "attribution" => attrib_to_link(attrib),
       "url" => path,
       "coordinates" => [
         [tl.lon, tl.lat],

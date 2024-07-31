@@ -191,18 +191,14 @@ defmodule Components.TagHelpers do
   end
 
   @spec map_image_toggle(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :checked, :boolean
+  attr :checked, :boolean, required: true
+  attr :title, :string, required: true
   attr :rest, :global
   slot(:inner_block)
 
   def map_image_toggle(assigns) do
     ~H"""
-    <form {@rest} class="noMobile" title={
-    "Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
-    Sind sie komplett schwarz oder fehlen ganz, ist Dein Gerät zu schwach.
-
-    Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.feed_author()}.
-    "}>
+    <form {@rest} class="noMobile" title={@title}>
       <input type="checkbox" name="toggle-map-image" value="toggle-map-image" id="toggle-map-image" phx-change="toggle-map-image" checked={if(@checked, do: "checked")}>
       <label for="toggle-map-image"><%= render_slot(@inner_block) || "genauen Lageplan anzeigen" %></label>
     </form>
@@ -217,10 +213,30 @@ defmodule Components.TagHelpers do
 
   def h4_planning(assigns) do
     if assigns.ref.map_image() do
+      title =
+        """
+        Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
+        Sind sie komplett schwarz oder fehlen ganz, ist Dein Gerät zu schwach.
+
+        Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.feed_author()}:
+        """
+
+      title =
+        assigns.ref.map_image()
+        |> List.wrap()
+        |> Enum.flat_map(&List.wrap(&1.attribution))
+        |> Enum.uniq()
+        |> Enum.reduce(title, fn {name, link}, title ->
+          title <> "• #{name}\n   #{link}\n"
+        end)
+        |> String.trim()
+
+      assigns = assign(assigns, :title, title)
+
       ~H"""
       <div class="headlineForm">
         <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
-        <.map_image_toggle checked={@checked}/>
+        <.map_image_toggle checked={@checked} title={@title}/>
       </div>
       """
     else
