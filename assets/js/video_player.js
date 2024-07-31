@@ -145,10 +145,10 @@ function sendCurrentVideoTime(eventName) {
 }
 
 let hlsJsTriedMediaRecovery
-function attachHlsErrorHandler(obj) {
+function attachHlsErrorHandler(hls) {
   hlsJsTriedMediaRecovery = false
 
-  obj.on(Hls.Events.ERROR, function (event, data) {
+  hls.on(Hls.Events.ERROR, function (event, data) {
     let props = {
       type: data.type,
       details: data.details,
@@ -156,9 +156,7 @@ function attachHlsErrorHandler(obj) {
       triedRecovery: hlsJsTriedMediaRecovery,
     }
 
-    if (window.hls && window.hls.url) {
-      props.video = window.hls.url.split("/").slice(-2)[0]
-    }
+    if (hls.url) props.video = window.hls.url.split("/").slice(-2)[0]
 
     try {
       const details = window.hls.levels[window.hls.currentLevel]
@@ -180,9 +178,9 @@ function attachHlsErrorHandler(obj) {
       sendCurrentVideoTime('video-fatal-hls');
       videoMeta.start = videoTimeInMs;
       autoplay = true
-      window.hls = false;
-      obj.destroy();
-      updateVideoElement();
+      window.hls.destroy()
+      window.hls = false
+      updateVideoElement()
       props.fallback = true
     } else {
       console.log('Hls encountered an error', data);
@@ -256,12 +254,12 @@ function updateVideoElement(preloadOnly) {
       outer.style.backgroundImage = null
       outer.style.backgroundSize = null
     }, { once: true });
-  } else if (window.hls === false || typeof Promise === "undefined") {
+  } else if (window.hls === false || typeof Promise === "undefined" || !Hls.isSupported()) {
+    window.hls = false
     if (preloadOnly) return
     console.debug('hls.js not supported, using fallback')
   } else {
     console.debug('no native hls, trying to load hls.js')
-    if (!Hls.isSupported()) return window.hls = false;
     console.debug('loading hls video stream');
 
     const path = document.getElementById("hlsJsUrl").getAttribute("href");
@@ -321,7 +319,7 @@ function updateVideoElement(preloadOnly) {
 
       console.log("creating HLS.js from scratch")
       hls = new Hls(options);
-      attachHlsErrorHandler(hls);
+      attachHlsErrorHandler(hls)
       hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
       hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
@@ -338,8 +336,11 @@ function updateVideoElement(preloadOnly) {
       return
     }
 
-    if (window.hls) window.hls.destroy()
+    properVideoIsLoaded = true
     hls.attachMedia(video)
+
+    // clean up previous instance only after attaching the new one, to ensure a smooth(er) transition
+    if (window.hls) window.hls.destroy()
     window.hls = hls
 
     updatePlaypause();
@@ -347,6 +348,7 @@ function updateVideoElement(preloadOnly) {
     return
   }
 
+  properVideoIsLoaded = true
   console.debug('loading regular html video')
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
@@ -491,19 +493,19 @@ function maybeUpdatePoster(changedMeta) {
   video.setAttribute("poster", changedMeta.poster)
 }
 
-let userClickPlayOnce = false;
+let properVideoIsLoaded = false;
 
 function ensureVideoIsSet() {
-  if (userClickPlayOnce) return
-  userClickPlayOnce = true
+  if (properVideoIsLoaded) return
+  properVideoIsLoaded = true
   console.log("video was not set, doing so now");
   autoplay = true
   setVideo();
 }
 
 function setVideo(avoidSeek) {
-  if (autoplay) userClickPlayOnce = true;
-  if (!userClickPlayOnce) {
+  if (autoplay) properVideoIsLoaded = true;
+  if (!properVideoIsLoaded) {
     if (!avoidSeek && (preloadedHlsJs || window.hls)) seekToStartTime()
     return
   }
@@ -670,7 +672,7 @@ function togglePlayPause(e) {
     actionIcon()
   }
 
-  if (!userClickPlayOnce) {
+  if (!properVideoIsLoaded) {
     ensureVideoIsSet();
   } else if (video.paused || video.ended) {
     video.play();
@@ -901,7 +903,7 @@ document.addEventListener("keyup", (e) => {
 
   if (!frameSeeked) {
     frameSeeked = true
-    userClickPlayOnce = true
+    properVideoIsLoaded = true
     setVideo();
   }
 
