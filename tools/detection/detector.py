@@ -119,7 +119,12 @@ def process_frame(model, frame_queue, detections, result_names):
             frame_queue.task_done()
             return
 
-        results = model(frame, size=MODEL_TRAIN_SIZE)
+        try:
+            results = model(frame, size=MODEL_TRAIN_SIZE)
+        except:
+            print('\n\n\nModel evaluation failed. See error message below for hopefully more details. Run `mix help velo.videos.detect` for potential options.\n')
+            raise
+
         formatted = [format_box(det, result_names) for det in results.xyxy[0]]
         detections[str(index)] = formatted
         frame_queue.task_done()
@@ -226,6 +231,9 @@ def optimized_weights(weights):
     weights_base = os.path.splitext(weights)[0]
 
     if device == 'cpu':
+        return weights
+
+    if 'NO_OPTIMIZED_GPU_WEIGHTS' in os.environ and os.environ['NO_OPTIMIZED_GPU_WEIGHTS'] == '1':
         return weights
 
     weights_gpu =  weights_base + '.engine'
