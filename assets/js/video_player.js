@@ -144,24 +144,38 @@ function sendCurrentVideoTime(eventName) {
   })
 }
 
+let hlsJsTriedMediaRecovery
 function attachHlsErrorHandler(obj) {
+  hlsJsTriedMediaRecovery = false
+
   obj.on(Hls.Events.ERROR, function (event, data) {
     let props = {
       type: data.type,
       details: data.details,
+      fallback: false,
+      triedRecovery: hlsJsTriedMediaRecovery,
+    }
+
+    if (window.hls && window.hls.url) {
+      props.video = window.hls.url.split("/").slice(-2)[0]
     }
 
     try {
-      const details = window.hls.levels[window.hls.currentLevel];
-      props.bitrate = `${details.bitrate}`;
-      props.dimension = `${details.width}x${details.height}`;
-      props.codec = details.codecSet;
-    } catch (error) {
-      props.error = "HLS has no current level"
+      const details = window.hls.levels[window.hls.currentLevel]
+      props.dimension = `${details.width}x${details.height}`
+      props.codec = details.codecSet
+    } catch {
+      props.dimension = 'no-hls-level'
+      props.codec = 'no-hls-level'
     }
 
-    if (data.fatal || data.type === Hls.ErrorTypes.MEDIA_ERROR && data.details === "bufferAppendError") {
-      cacheVideoPoster();
+    const isFatalMediaError = data.fatal && data.type == Hls.ErrorTypes.MEDIA_ERROR
+    if (isFatalMediaError && !hlsJsTriedMediaRecovery) {
+      hlsJsTriedMediaRecovery = true
+      cacheVideoPoster()
+      hls.recoverMediaError()
+    } else if (isFatalMediaError) {
+      cacheVideoPoster()
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use the fallback.', data);
       sendCurrentVideoTime('video-fatal-hls');
       videoMeta.start = videoTimeInMs;
@@ -169,16 +183,15 @@ function attachHlsErrorHandler(obj) {
       window.hls = false;
       obj.destroy();
       updateVideoElement();
-      window.plausible('video-hls-error-fatal', {
-        props: props
-      });
+      props.fallback = true
     } else {
       console.log('Hls encountered an error', data);
       sendCurrentVideoTime();
-      window.plausible('video-hls-error', {
-        props: props
-      });
     }
+
+    let eventName = 'video-hls-error'
+    if (data.fatal) eventName += '-fatal'
+    window.plausible(eventName, { props: props });
   });
 }
 
