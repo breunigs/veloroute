@@ -17,6 +17,8 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def tags(), do: ~w(lexikon schutzstreifen)
 
+  def languages(), do: ~w[de en]
+
   def text(%{lang: "en"} = assigns) do
     ~H"""
     <p lang="en"><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="3">Example video of “<span translate="no" lang="de">Schutzsstreifen</span>” in <span translate="no" lang="de">Stresemannallee</span></.v> or <.a href="/images/schutzstreifen.webp" target="_blank">example photo</.a></p>

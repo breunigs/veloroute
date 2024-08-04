@@ -146,6 +146,8 @@ defmodule Data.Article.Static.Alltagsroute3 do
     """
   end
 
+  def languages(), do: ~w[de en]
+
   def text(%{lang: "en"} = assigns) do
     ~H"""
     <.route/>

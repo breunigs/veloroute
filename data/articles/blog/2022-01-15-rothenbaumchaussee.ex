@@ -4,11 +4,11 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   def created_at(), do: ~D[2022-01-15]
   def title(), do: "Rothenbaumchaussee"
 
-  def start(), do: ~d[2022-07-18]
-  def stop(), do: ~d[2023-06-30]
-  def construction_site_id_hh(), do: [86476]
+  # def start(), do: ~d[2022-07-18]
+  # def stop(), do: ~d[2023-06-30]
+  # def construction_site_id_hh(), do: [86476]
 
-  def type(), do: :finished
+  def type(), do: :planned
 
   def summary(),
     do:
@@ -63,6 +63,9 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand 2024</h4>
+    <p>Die Kreuzung <.v bounds="9.98641,53.571167,9.992364,53.573996" lon={9.988491} lat={53.573149} dir="backward" ref={@ref}>Hallerstraße/Rothenbaumchaussee</.v> wurde bisher nicht umgebaut. Es ist kein neuer Termin bekannt.</p>
+
     <h4>Alter Zustand</h4>
     <p>Im Bauabschnitt in Fahrtrichtung Norden gibt es stellenweise schmale, unebene <.ref>Hochbordradwege</.ref>. Vor dem <.v bounds="9.98783,53.567592,9.989415,53.569216" lon={9.988588} lat={53.567933} dir="forward" ref={@ref}>Museum für Völkerkunde</.v> endet dieser ohne ersichtliche Alternative. In Fahrtrichtung Süden muss mit den KFZ im <.ref>Mischverkehr</.ref> gefahren werden.</p>
 
@@ -81,9 +84,6 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
     <p>Die fehlenden Hinweise wie links abgebogen werden kann sind jedoch fragwürdig. Es ist davon auszugehen Unerfahrene illegal auf den Fußweg fahren werden um die Fußampel zu nutzen. Erfahrenen wird das direkte Linksabbiegen jedoch erschwert, weil der Radfahrstreifen kaum legal verlassen werden darf. Dabei wäre hier in den meisten Fällen nur eine Anpassung der Markierungen notwendig, und damit sehr einfach.</p>
 
     <p>Da man auch an den KFZ-Parkplätzen zwischen den Bäumen festhält, lässt sich keine ordentliche Trennung vom KFZ-Verkehr herstellen. An ähnlichen Straßen führt dies zu gefährdendem Falschparken auf den Radwegen. Es ist zu hoffen das diese zumindest noch an den Kreuzungsbereichen nachgerüstet wird.</p>
-
-    <h4>Umbau</h4>
-    <p>Der Umbau war ursprünglich für 2021 vorgesehen, was allerdings nicht passiert ist. Man ging von einer 14 monatigen Bauzeit aus. Ein neuer Termin ist mir noch nicht bekannt.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

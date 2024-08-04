@@ -94,6 +94,8 @@ defmodule Data.Article.Static.Freizeitroute14 do
     ]
   end
 
+  def languages(), do: ~w[de en]
+
   def text(%{lang: "en"} = assigns) do
     ~H"""
     <h3 lang="en">Leisure Route 14 – Old <span lang="de">Elbe</span> tunnel <.icon>FR14</.icon></h3>
