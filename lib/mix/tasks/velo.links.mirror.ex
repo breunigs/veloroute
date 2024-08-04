@@ -1,13 +1,3 @@
-defmodule Mix.Tasks.Velo.Links do
-  def extract_links_from_heex(%Phoenix.LiveView.Rendered{} = heex) do
-    heex
-    |> Util.render_heex()
-    |> Util.extract_href_from_html()
-    |> Stream.with_index()
-    |> Stream.map(fn {href, index} -> {"nested_heex_#{index}", href} end)
-  end
-end
-
 defmodule Mix.Tasks.Velo.Links.Mirror do
   use Mix.Task
   use Tesla
@@ -164,7 +154,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex) do
     heex
-    |> Mix.Tasks.Velo.Links.extract_links_from_heex()
+    |> Util.extract_links_from_heex()
+    |> Enum.with_index()
+    |> Enum.map(fn {href, index} -> {"nested_heex_#{index}", href} end)
     |> Enum.flat_map(&extract/1)
   end
 
@@ -396,100 +388,5 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp log(file, text) do
     name = file |> Path.dirname() |> Path.basename()
     Logger.info("\n#{name}: #{text}")
-  end
-end
-
-defmodule Mix.Tasks.Velo.Links.Check do
-  use Mix.Task
-  use Tesla
-
-  @requirements ["app.start"]
-
-  @shortdoc "Check structured links for 404s"
-  def run(_) do
-    Article.List.all()
-    |> Enum.flat_map(fn art ->
-      art
-      |> Article.Decorators.apply_with_assigns(:links)
-      |> Enum.flat_map(&extract/1)
-      |> Enum.map(&Tuple.insert_at(&1, 0, art))
-    end)
-    |> Enum.reject(&archive_org?/1)
-    |> Tqdm.tqdm(description: "checking")
-    |> Parallel.map(4, &check/1)
-    |> Util.compact()
-    |> Enum.each(&IO.puts/1)
-  end
-
-  defp extract({name, _extra, url}), do: List.wrap({name, url})
-  defp extract({_name, _url} = entry), do: List.wrap(entry)
-  defp extract({_text}), do: []
-
-  defp extract(%Phoenix.LiveView.Rendered{} = heex),
-    do: Mix.Tasks.Velo.Links.extract_links_from_heex(heex)
-
-  defp archive_org?({_source, _name, url}) do
-    String.starts_with?(url, "https://web.archive.org/")
-  end
-
-  @success {:ok, %{status: 200}}
-
-  # Twitter prevents checks via bot, so don't even try
-  defp check({_source, _name, "https://twitter.com/" <> _rest}), do: nil
-  # ignore internal URLs
-  defp check({_source, _name, "/" <> _rest}), do: nil
-
-  defp check({source, name, url}) do
-    meta =
-      String.trim("""
-        SOURCE: #{source}
-        NAME:   #{name}
-        LINK:   #{url}
-      """)
-
-    case head_or_get(url) do
-      {:ok, %{status: 200}} ->
-        nil
-
-      {:ok, %{status: 302} = resp} ->
-        new_path = Tesla.get_header(resp, "location")
-        result = head_or_get(new_path)
-
-        if match?(@success, result) do
-          nil
-        else
-          """
-          broken redirect chain:
-          #{meta}
-                  → #{Tesla.get_header(resp, "location")}
-          """
-        end
-
-      {:ok, %{status: 301} = resp} ->
-        """
-        perma-redirects:
-        #{meta}
-                → #{Tesla.get_header(resp, "location")}
-        """
-
-      {:ok, %{status: s}} ->
-        """
-        unexpected result: #{s}
-          #{meta}
-        """
-
-      {:error, reason} ->
-        """
-        unexpected result: #{inspect(reason)}
-          #{meta}
-        """
-    end
-  end
-
-  defp head_or_get(url) do
-    result = head(url)
-    if match?(@success, result), do: result, else: get(url)
-  rescue
-    err -> {:error, err}
   end
 end

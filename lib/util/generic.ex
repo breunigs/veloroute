@@ -175,6 +175,16 @@ defmodule Util do
   end
 
   @doc """
+  Given a HEEX string, will extract all HTML links from it.
+  """
+  @spec extract_links_from_heex(Phoenix.LiveView.Rendered.t()) :: [binary()]
+  def extract_links_from_heex(%Phoenix.LiveView.Rendered{} = heex) do
+    heex
+    |> Util.render_heex()
+    |> Util.extract_href_from_html()
+  end
+
+  @doc """
   Finds <a href="x"> in an HTML document. It ignores base tags even if present.
 
   ## Examples

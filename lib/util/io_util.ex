@@ -1,5 +1,23 @@
 defmodule Util.IO do
   @doc """
+  Returns true if the user answered the acknowledged the given question. Pass
+  `false` as the 2nd parameter to make the input check default to "no" if no
+  specific letter is typed.
+  """
+  @spec yes?(binary(), boolean()) :: boolean()
+  def yes?(question, yes_is_default \\ true) do
+    opts = if yes_is_default, do: "[Y/n]", else: "[y/N]"
+    answer = String.trim(IO.gets("#{question} #{opts} "))
+
+    cond do
+      answer == "" -> yes_is_default
+      answer in ["y", "Y"] -> true
+      answer in ["n", "N"] -> false
+      true -> yes?(question, yes_is_default)
+    end
+  end
+
+  @doc """
   Takes a path and recursively list all files, returning the list with paths
   including the given path as a prefix. Symlinks, devices, etc. are not being
   followed.
