@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Gertigstrasse do
   def links(_assigns) do
     [
       {"Pressemitteilung Fertigstellung", "Oktober 2022",
-       "https://www.hamburg.de/bvm/medien/16647266/2022-11-07-bvm-veloroute-13/"},
+       "https://web.archive.org/web/20240221180442/https://www.hamburg.de/bvm/medien/16647266/2022-11-07-bvm-veloroute-13/"},
       {"Baustelleninfo", "September 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16535924/bed291eb16849f8c88a139e7a04f0bff/data/gertigstrasse-bauzeitverlaengerung-sept-2022.pdf"},
       {"Pressemitteilung Bauankündigung",

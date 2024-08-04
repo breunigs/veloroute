@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.RathenaustrasseNordOst do
   def links(_assigns) do
     [
       {"1. Entwurf, Erläuterungen und Lagepläne", "März 2024",
-       "https://www.hamburg.de/hamburg-nord/planen-bauen-wohnen/18274952/detailplaene-dritter-abschnitt/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/detailplaene-zweiter-abschnitt-848068"},
       {"Übersichtsseite Planung Radroute Plus Bad Bramstedt",
-       "https://www.hamburg.de/hamburg-nord/radschnellweg"}
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/themen/planen-bauen-wohnen/fachbereich-tiefbau/nachhaltige-mobilitaet/radroute-plus"}
     ]
   end
 

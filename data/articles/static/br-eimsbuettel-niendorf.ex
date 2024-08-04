@@ -60,7 +60,7 @@ defmodule Data.Article.Static.BrEimsbuettelNiendorf do
       {"Vorstellung Bezirksrouten Eimsbüttel", "Februar 2023, Details in Anhang II",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008163"},
       {"Infoseite Eimsbüttels zu den Bezirksrouten",
-       "https://www.hamburg.de/eimsbuettel/bezirksrouten/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/bezirksrouten-60458"},
       {"Beteiligungsverfahren", "abgeschlossen, 2021",
        "https://bezirksrouten-eimsbuettel.beteiligung.hamburg/#/"}
     ]

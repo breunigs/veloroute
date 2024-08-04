@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
       {"ADFC-Demo-Aufruf zum planmäßigen Umbau", "Februar 2024",
        "https://hamburg.adfc.de/neuigkeit/demo-aufruf-zum-24-februar-2024-fuer-den-planmaessigen-ausbau-der-veloroute-1"},
       {"Pressemitteilung Umbaustart", "Januar 2024",
-       "https://www.hamburg.de/altona/pressemitteilung/18105036/umbau-reventlowstrasse-veloroute/"},
+       "https://web.archive.org/web/20240325043747/https://www.hamburg.de/altona/pressemitteilung/18105036/umbau-reventlowstrasse-veloroute/"},
       {"Erläuterungen und Lagepläne fertiger Entwurf", "Mai 2023",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1014063"},
       {"Baustellenkoordination", "September 2022",
@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
       {"Erläuterungsbericht und Lagepläne des 1. Entwurfs", "November 2019",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009394"},
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/altona/baustellen/18189462/reventlowstrasse/"}
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/themen/verkehr/baustellen/reventlowstrasse-767752"}
     ]
   end
 

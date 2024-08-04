@@ -13,13 +13,13 @@ defmodule Data.Article.Blog.Schlueterstrasse do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zur Schlüterstraße",
-       "https://www.hamburg.de/eimsbuettel/schlueterstrasse/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/schlueterstrasse-60836"},
       {"Lageplan Teil 1",
-       "https://www.hamburg.de/contentblob/11629636/62fc4ca330cd1f5ddae1071e1ba5e3f4/data/karte1-schlueterstrasse.pdf"},
+       "https://www.hamburg.de/resource/blob/60828/5cdd0ac0a124b341714bf70c233903df/karte1-schlueterstrasse-pdf-data.pdf"},
       {"Lageplan Teil 2",
-       "https://www.hamburg.de/contentblob/11629638/93d40af55f48014a892dd97311c6925f/data/karte2-schlueterstrasse.pdf"},
+       "https://www.hamburg.de/resource/blob/60830/08f1a2d6255819275c5b618d452f320f/karte2-schlueterstrasse-pdf-data.pdf"},
       {"Lageplan Teil 3",
-       "https://www.hamburg.de/contentblob/11629644/426453acd67a3be976f0a4e3864eadde/data/karte3-schlueterstrasse.pdf"}
+       "https://www.hamburg.de/resource/blob/60832/83ec8bb310097ee712fc0f02db22a61f/karte3-schlueterstrasse-pdf-data.pdf"}
     ]
   end
 

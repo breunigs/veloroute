@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-neuer-jungfernstieg-948302"},
       {"Ausschreibung Umbau", "Mai 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/5042dadf-7efd-4ef9-981d-5127a1c12775"},
       {"Lagepläne und Erläuterungen, fertiger Entwurf", "Mai 2024",

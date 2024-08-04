@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.StadteingangElbbruecken do
       {"Enwurf Bebauungsplan Elbbrücken-Ost", "Dezember 2022",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1016344"},
       {"Pressemitteilung Huckepackbahnhof", "Februar 2015",
-       "https://www.hamburg.de/pressearchiv-fhh/4445388/2014-02-03-bwvi-huckepackbahnhof/"}
+       "https://web.archive.org/web/20221205180704/https://www.hamburg.de/pressearchiv-fhh/4445388/2014-02-03-bwvi-huckepackbahnhof/"}
     ]
   end
 

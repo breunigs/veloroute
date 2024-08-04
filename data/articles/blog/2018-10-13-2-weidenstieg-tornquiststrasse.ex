@@ -15,17 +15,17 @@ defmodule Data.Article.Blog.WeidenstiegTornquiststrasse do
   def links(_assigns) do
     [
       {"Übersichts-PDF mit allen Änderungen",
-       "https://www.hamburg.de/contentblob/11395594/152cc297f049103dff89583effeaf122/data/fokus-biweto2018-03.pdf"},
+       "https://web.archive.org/web/20221217110559/https://www.hamburg.de/contentblob/11395594/152cc297f049103dff89583effeaf122/data/fokus-biweto2018-03.pdf"},
       {"Infoseite der Stadt zum Weidenstieg und Tornquiststraße",
-       "https://www.hamburg.de/eimsbuettel/bismarckstrasse/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/bismarckstrasse-60550"},
       {"Weidenstieg bis Doormannsweg", "stadtauswärts",
-       "https://www.hamburg.de/contentblob/10844928/f547c768ea5df0438b2e41df42720ae1/data/schlussverschickung-weidenstieg.pdf"},
+       "https://web.archive.org/web/20221217110559/https://www.hamburg.de/contentblob/10844928/f547c768ea5df0438b2e41df42720ae1/data/schlussverschickung-weidenstieg.pdf"},
       {"Plan Tornquiststraße ab Doormannsweg", "stadtauswärts",
-       "https://www.hamburg.de/contentblob/10844926/47dd4e57afa9515d170c1afde21fc3c6/data/schlussverschickung-blatt3-tornquiststr-heussweg-doormannsweg.pdf"},
+       "https://web.archive.org/web/20221217110559/https://www.hamburg.de/contentblob/10844926/47dd4e57afa9515d170c1afde21fc3c6/data/schlussverschickung-blatt3-tornquiststr-heussweg-doormannsweg.pdf"},
       {"Plan Kreuzung Emilienstraße", "stadtauswärts",
-       "https://www.hamburg.de/contentblob/10844924/fc6778cea27ce38fcdf74751fe2c0580/data/schlussverschickung-blatt2-tornquiststr-heussweg-doormannsweg.pdf"},
+       "https://web.archive.org/web/20221217110559/https://www.hamburg.de/contentblob/10844924/fc6778cea27ce38fcdf74751fe2c0580/data/schlussverschickung-blatt2-tornquiststr-heussweg-doormannsweg.pdf"},
       {"Plan Kreisel Heußweg", "stadtauswärts",
-       "https://www.hamburg.de/contentblob/10844916/486a1fbba9351d310b8773fc21d2301e/data/schlussverschickung-blatt1-tornquiststr-heussweg-doormannsweg.pdf"}
+       "https://web.archive.org/web/20221217110559/https://www.hamburg.de/contentblob/10844916/486a1fbba9351d310b8773fc21d2301e/data/schlussverschickung-blatt1-tornquiststr-heussweg-doormannsweg.pdf"}
     ]
   end
 

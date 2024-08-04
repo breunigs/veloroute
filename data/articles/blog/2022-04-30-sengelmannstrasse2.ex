@@ -20,9 +20,9 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
   def links(_assigns) do
     [
       {"Erläuterungen und Lagepläne aus einem anderen Verfahren", "März 2024",
-       "https://www.hamburg.de/hamburg-nord/planen-bauen-wohnen/18274952/detailplaene-dritter-abschnitt/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/detailplaene-zweiter-abschnitt-848068"},
       {"Übersichtsseite Planung Radroute Plus Bad Bramstedt",
-       "https://www.hamburg.de/hamburg-nord/radschnellweg"}
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/themen/planen-bauen-wohnen/fachbereich-tiefbau/nachhaltige-mobilitaet/radroute-plus"}
     ]
   end
 

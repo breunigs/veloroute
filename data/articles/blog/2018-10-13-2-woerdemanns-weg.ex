@@ -18,17 +18,17 @@ defmodule Data.Article.Blog.WoerdemannsWeg do
       {"Pressemitteilung Fertigstellung", "Dezember 2022",
        "https://www.hamburg.de/eimsbuettel/pressemitteilungen/16749468/2022-12-05-eimsbuettel-woerdemannsweg/"},
       {"Infoseite der Stadt zum Wördemanns Weg",
-       "https://www.hamburg.de/eimsbuettel/woerdemannsweg/"},
+       "https://web.archive.org/web/20240619223154/https://www.hamburg.de/eimsbuettel/woerdemannsweg/"},
       {"Lageplan 1",
-       "https://www.hamburg.de/contentblob/9260570/8698b22b4907664bb69d4f8f9c6ce7a5/data/d-woerdemannsweg-lageplan01.pdf"},
+       "https://web.archive.org/web/20221206181124/https://www.hamburg.de/contentblob/9260570/8698b22b4907664bb69d4f8f9c6ce7a5/data/d-woerdemannsweg-lageplan01.pdf"},
       {"Lageplan 2",
-       "https://www.hamburg.de/contentblob/13929732/1fd3d03349358a07e8c27348c697e236/data/d-woerdemannsweg-lageplan02.pdf"},
+       "https://web.archive.org/web/20240619230215/https://www.hamburg.de/contentblob/13929732/1fd3d03349358a07e8c27348c697e236/data/d-woerdemannsweg-lageplan02.pdf"},
       {"Lageplan 3",
-       "https://www.hamburg.de/contentblob/13929734/9b0c27fd46228bdd50c9987a52359e08/data/d-woerdemannsweg-lageplan03.pdf"},
+       "https://web.archive.org/web/20240619223416/https://www.hamburg.de/contentblob/13929734/9b0c27fd46228bdd50c9987a52359e08/data/d-woerdemannsweg-lageplan03.pdf"},
       {"Lageplan 4",
-       "https://www.hamburg.de/contentblob/13929736/94fc06b8adb2b9b02e60e46d3c5978a9/data/d-woerdemannsweg-lageplan04.pdf"},
+       "https://web.archive.org/web/20221206181124/https://www.hamburg.de/contentblob/13929736/94fc06b8adb2b9b02e60e46d3c5978a9/data/d-woerdemannsweg-lageplan04.pdf"},
       {"Lageplan 5",
-       "https://www.hamburg.de/contentblob/13929738/0a66ee5d9068c39c9fca4e3f30dda9af/data/d-woerdemannsweg-lageplan05.pdf"}
+       "https://web.archive.org/web/20240619233528/https://www.hamburg.de/contentblob/13929738/0a66ee5d9068c39c9fca4e3f30dda9af/data/d-woerdemannsweg-lageplan05.pdf"}
     ]
   end
 

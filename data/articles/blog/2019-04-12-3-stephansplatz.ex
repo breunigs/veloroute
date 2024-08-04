@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Stephansplatz do
   def links(_assigns) do
     [
       {"Pressemitteilung zur Fertigstellung",
-       "https://www.hamburg.de/bvm/medien/15616728/2021-11-21-bvm-esplanade/"},
+       "https://web.archive.org/web/20230307092133/https://www.hamburg.de/bvm/medien/15616728/2021-11-21-bvm-esplanade/"},
       {"Infoseite des LSBGs zum Umbau",
        "https://web.archive.org/web/20220929051033/https://lsbg.hamburg.de/esplanade/13287196/umbau-esplanade"},
       {"Baustelleninfo",

@@ -15,9 +15,9 @@ defmodule Data.Article.Blog.LangenfelderDamm do
   def links(_assigns) do
     [
       {"Präsentation zum Umbau, mit vorläufigen Lageplänen", "S. 49,58 ff",
-       "https://www.hamburg.de/contentblob/11244408/57799f9cd35ca253b23c0d1a504cfd3c/data/praesentation-langenfelder-damm.pdf"},
+       "https://web.archive.org/web/20221217094738/https://www.hamburg.de/contentblob/11244408/57799f9cd35ca253b23c0d1a504cfd3c/data/praesentation-langenfelder-damm.pdf"},
       {"Infoseite der Stadt zum Langenfelder Damm",
-       "https://www.hamburg.de/eimsbuettel/langenfelderdamm/"}
+       "https://web.archive.org/web/20231210142313/https://www.hamburg.de/eimsbuettel/langenfelderdamm/"}
     ]
   end
 

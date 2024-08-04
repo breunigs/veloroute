@@ -16,9 +16,9 @@ defmodule Data.Article.Blog.PaulSorgeStrasse do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zur Paul-Sorge-Straße",
-       "https://www.hamburg.de/eimsbuettel/paulsorgestrasse/"},
+       "https://web.archive.org/web/20230307105025/https://www.hamburg.de/eimsbuettel/paulsorgestrasse/"},
       {"Präsentation mit Planausschnitten",
-       "https://www.hamburg.de/contentblob/11687976/5b8b69991f6e66c19d033be1ca914e1a/data/planung-paulsorgestrasse20180827.pdf"}
+       "https://web.archive.org/web/20221217100915/https://www.hamburg.de/contentblob/11687976/5b8b69991f6e66c19d033be1ca914e1a/data/planung-paulsorgestrasse20180827.pdf"}
     ]
   end
 

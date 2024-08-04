@@ -18,11 +18,11 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
   def links(_assigns) do
     [
       {"Pressemitteilung zur Vollendung des 1. Abschnitts",
-       "https://www.hamburg.de/harburg/pressemeldungen/15684754/fertigstellung-teilabschnitt-veloroute-10-binnenhafen/"},
+       "https://web.archive.org/web/20240305083212/https://www.hamburg.de/harburg/pressemeldungen/15684754/fertigstellung-teilabschnitt-veloroute-10-binnenhafen/"},
       {"Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan",
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005979"},
       {"Infoseite der Stadt mit Baustelleninfo",
-       "https://www.hamburg.de/harburg/pressemeldungen/15450444/ausbau-veloroute-10/"}
+       "https://web.archive.org/web/20220708023930/https://www.hamburg.de/harburg/pressemeldungen/15450444/ausbau-veloroute-10/"}
     ]
   end
 

@@ -114,13 +114,15 @@ defmodule Data.Article.Static.RSWElmshorn do
   def links(_assigns) do
     [
       {"offizielle Seite zu den Radschnellwegen",
-       "https://metropolregion.hamburg.de/radschnellwege/"},
+       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Elmshorn",
        "https://metropolregion.hamburg.de/radschnellwege/15310038/radschnellweg-elmshorn-hamburg/"},
       {"Pläne und Berichte",
        "https://metropolregion.hamburg.de/radschnellwege/15310058/mediathek-radschnellweg-elmshorn-hamburg/"},
-      {"Autobahndeckel Altona", "https://www.hamburg.de/fernstrassen/deckel-altona/"},
-      {"U-Bahn Linie 5 – Infos der Stadt", "https://www.hamburg.de/u5/"},
+      {"Autobahndeckel Altona",
+       "https://web.archive.org/web/20240223194637/https://www.hamburg.de/fernstrassen/deckel-altona/"},
+      {"U-Bahn Linie 5 – Infos der Stadt",
+       "https://www.hamburg.de/verkehr/bus-bahn/u-bahn/u5-411270"},
       {"U-Bahn Linie 5 – Infos der Hochbahn", "https://schneller-durch-hamburg.de/U5-Hamburg/"},
       {"Unterlagen zur K22 Tornesch/Uetersen (2018)",
        "https://www.uvp-verbund.de/trefferanzeige?cmd=doShowObjectDetail&docuuid=4E5E17CE-677B-4E06-8D2A-49CE7E253F1E&plugid=/ingrid-group:ige-iplug-sh"}

@@ -20,9 +20,9 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
       {"alte Seite zum Planfeststellungsverfahren S-Bahn Linie 4, Abschnitt 1",
        "https://web.archive.org/web/20180416164831/http://www.hamburg.de/bwvi/np-aktuelle-planfeststellungsverfahren/9023850/s4/"},
       {"Erläuterungsbericht (ab Seite 47 bzw. 80)",
-       "https://www.hamburg.de/contentblob/8856684/62b79ef7235d53051e410c7bf1ba500e/data/unterlage-01-erlaeuterungsbericht.zip"},
+       "https://web.archive.org/web/20220110202448/https://www.hamburg.de/contentblob/8856684/62b79ef7235d53051e410c7bf1ba500e/data/unterlage-01-erlaeuterungsbericht.zip"},
       {"Lagepläne (im ZIP: 3_6_LP.pdf)",
-       "https://www.hamburg.de/contentblob/8856692/a67ec269d1372d60b3349bedc9e5a4e0/data/unterlage-03-lageplaene-und-karten.zip"}
+       "https://web.archive.org/web/20220110202628/https://www.hamburg.de/contentblob/8856692/a67ec269d1372d60b3349bedc9e5a4e0/data/unterlage-03-lageplaene-und-karten.zip"}
     ]
   end
 

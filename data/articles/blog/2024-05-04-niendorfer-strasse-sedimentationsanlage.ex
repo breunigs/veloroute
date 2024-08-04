@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.NiendorferStrasseSedimentationsanlage do
   def links(_assigns) do
     [
       {"Baustellenbeschreibung", "Mai 2024",
-       "https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026"}
+       "https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen"}
     ]
   end
 

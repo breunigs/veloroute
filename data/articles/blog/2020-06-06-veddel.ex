@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Veddel do
   def links(_assigns) do
     [
       {"Infoseite der Stadt", "Pläne als Download am Ende der Seite",
-       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/"},
+       "https://web.archive.org/web/20240302155201/https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/"},
       {"Artikel Abendblatt zum Baustart",
        "https://www.abendblatt.de/hamburg/article231627585/Ausbau-der-Veloroute-10-auf-der-Veddel-hat-begonnen.html"}
     ]

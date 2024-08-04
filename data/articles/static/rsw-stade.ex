@@ -131,7 +131,7 @@ defmodule Data.Article.Static.RSWStade do
   def links(_assigns) do
     [
       {"offizielle Seite zu den Radschnellwegen",
-       "https://metropolregion.hamburg.de/radschnellwege/"},
+       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Stade",
        "https://metropolregion.hamburg.de/radschnellwege/15307278/radschnellweg-stade-hamburg/"},
       {"Pläne und Berichte",

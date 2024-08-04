@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Holstenplatz do
   def links(_assigns) do
     [
       {"Pressemitteilung zur früheren Fertigstellung", "März 2024",
-       "https://www.hamburg.de/bvm/medien/18435512/2024-03-27-bvm-holstenplatz/"},
+       "https://web.archive.org/web/20240328141107/https://www.hamburg.de/bvm/medien/18435512/2024-03-27-bvm-holstenplatz/"},
       {"Pressemitteilung zum Umbau", "Februar 2023",
        "https://www.hamburg.de/bvm/medien/16960882/2023-03-03-bvm-holstenplatz/"},
       {"Baustelleninfo", "Februar 2023",

@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.QuerungKornweide do
       {"Planungsstand Anfang Oktober 2020",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483"},
       {"Infoseite der Stadt", "noch keine Pläne für diese Maßnahme",
-       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848"}
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/veloroute-10-ausbau-veddel-wilhelmsburg-67750"}
     ]
   end
 

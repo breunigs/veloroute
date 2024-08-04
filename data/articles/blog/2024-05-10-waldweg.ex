@@ -48,7 +48,7 @@ defmodule Data.Article.Blog.Waldweg do
   def links(_assigns) do
     [
       {"Hintergrund Aufhebung Gehwegradeln", "Januar 2024",
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/to020.asp?TOLFDNR=1058010"},
+       "https://web.archive.org/web/20240511082742/https://sitzungsdienst-wandsbek.hamburg.de/bi/to020.asp?TOLFDNR=1058010"},
       {"1. Entwurf, Erläuterungen", "September 2018",
        "https://lsbg.hamburg.de/resource/blob/784398/a780bc938087942fa43e8887ecd1194e/waldweg-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf, Pläne", "September 2018",

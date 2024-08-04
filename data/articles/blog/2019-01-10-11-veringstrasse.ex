@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.Veringstrasse do
       {"Baustellenübersicht", "Dezember 2023",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1017325"},
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/11703714/veloroute-veringstrasse/"},
+       "https://web.archive.org/web/20220107185002/https://www.hamburg.de/mitte/strassenbau-und-verkehr/11703714/veloroute-veringstrasse/"},
       {"Ausschreibung Umbau",
        "https://web.archive.org/web/20220107185253/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/d7119001-147d-4714-bf39-630994f93d8c/details"}
     ]

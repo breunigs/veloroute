@@ -71,7 +71,7 @@ defmodule Data.Article.Static.RSWGeesthacht do
   def links(_assigns) do
     [
       {"offizielle Seite zu den Radschnellwegen",
-       "https://metropolregion.hamburg.de/radschnellwege/"},
+       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Geesthacht",
        "https://metropolregion.hamburg.de/radschnellwege/15310118/radschnellweg-geesthacht-hamburg/"},
       {"Pläne und Berichte",

@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.FischtreppePopppenbuettelerSchleuse do
   def links(_assigns) do
     [
       {"Pressemitteilung Wandsbek",
-       "https://www.hamburg.de/wandsbek/pressemitteilungen/15525166/2021-10-26-fischdurchgaengigkeit-poppenbuetteler-schleuse/"}
+       "https://web.archive.org/web/20230531024222/https://www.hamburg.de/wandsbek/pressemitteilungen/15525166/2021-10-26-fischdurchgaengigkeit-poppenbuetteler-schleuse/"}
     ]
   end
 

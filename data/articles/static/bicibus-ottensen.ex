@@ -43,9 +43,9 @@ defmodule Data.Article.Static.BicibusOttensen do
 
   def links(_assigns) do
     [
-      {"Infoseite zum Bicibus VCD Nord", "https://nord.vcd.org/themen/bicibus"},
+      {"Infoseite zum Bicibus VCD Nord", "https://nord.vcd.org/bicibus"},
       {"Flugblatt Bicibus",
-       "https://nord.vcd.org/fileadmin/user_upload/Nord/Nord/BICIBUS/flyer_bicibus_page7.jpg"}
+       "https://nord.vcd.org/fileadmin/user_upload/Nord/OG-Bicibus/flyer_bicibus_page7.jpg"}
     ]
   end
 
@@ -53,7 +53,7 @@ defmodule Data.Article.Static.BicibusOttensen do
     ~H"""
     <p>Der Bicibus ist eine geführte Fahrradtour mit festem Fahrplan, der jeden (Schul-) Freitag fährt. So lernen die Kleinen wie man mit dem Fahrrad zur Schule kommt und die Großen hoffentlich, dass sich die Verkehrsplanung ändern muss, damit die Kinder auch ohne Polizeibegleitung sicher durch die Stadt kommen.</p>
 
-    <p>Der Bicibus wird vom <.a href="https://nord.vcd.org/themen/bicibus">VCD Nord</.a> organisiert. Mithilfe ist gern gesehen – für Kontaktdetails siehe bitte beim VCD.</p>
+    <p>Der Bicibus wird vom <.a href="https://nord.vcd.org/bicibus">VCD Nord</.a> organisiert. Mithilfe ist gern gesehen – für Kontaktdetails siehe bitte beim VCD.</p>
 
     <h4>Fahrplan</h4>
     <p>Jeden Schul-Freitag:</p>

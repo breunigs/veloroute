@@ -20,9 +20,9 @@ defmodule Data.Article.Blog.FahrradparkhausKellinghusenstrasse do
       {"Lageplan", "April 2023",
        "https://lsbg.hamburg.de/resource/blob/784240/c0233fd197cd9bf303b341443caf6210/kellinghusenstrasse-anbindung-fahrradparkhaus-abgestimmte-planung-plan-data.pdf"},
       {"Infoseite des Parkhausbetreibers",
-       "https://www.pr.hamburg/b-r-anlagen/fahrradparkhaus-kellinghusenstrasse/"},
+       "https://www.radkultur.hamburg/unsere-radparkangebote"},
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/fahrradfahren-in-hamburg/14222654/fahrradparkhaus-kellinghusen/"}
+       "https://web.archive.org/web/20230924092651/https://www.hamburg.de/fahrradfahren-in-hamburg/14222654/fahrradparkhaus-kellinghusen/"}
     ]
   end
 

@@ -55,6 +55,8 @@ defmodule Data.Article.Blog.Steinstrasse do
 
   def links(_assigns) do
     [
+      {"Infoseite zum Umbau Kontorhausviertel",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-kontorhausviertel-948242"},
       {"1. Entwurf – Erläuterungen", "April 2024",
        "https://lsbg.hamburg.de/resource/blob/900826/732687281e2c951fa184c52798a373ec/steinstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf – Karte", "April 2024",
@@ -62,7 +64,7 @@ defmodule Data.Article.Blog.Steinstrasse do
       {"Bürgerbeteiligung Domachse (abgeschlossen)", "2023",
        "https://domachse.beteiligung.hamburg/"},
       {"Pressemitteilung Umgestaltung Burchhardplatz", "2021",
-       "https://www.hamburg.de/pressearchiv-fhh/15445552/2021-09-28-bsw-umgestaltung-borchardplatz/"}
+       "https://web.archive.org/web/20240621091318/https://www.hamburg.de/pressearchiv-fhh/15445552/2021-09-28-bsw-umgestaltung-borchardplatz/"}
     ]
   end
 

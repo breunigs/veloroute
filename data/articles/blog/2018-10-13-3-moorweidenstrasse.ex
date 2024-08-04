@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Moorweidenstrasse do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zur Schlüterstraße und dem Teilstück in der Rothenbaumchaussee",
-       "https://www.hamburg.de/eimsbuettel/schlueterstrasse/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/schlueterstrasse-60836"},
       {"vorläufiger Lageplan",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004339"}
     ]

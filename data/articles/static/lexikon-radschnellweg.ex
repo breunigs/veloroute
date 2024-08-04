@@ -17,7 +17,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
   def links(_assigns),
     do: [
       {"offizielle Seite zu den Radschnellwegen",
-       "https://metropolregion.hamburg.de/radschnellwege/"},
+       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Pressemitteilung zum Namen „Radroute Plus“", "September 2023",
        "https://metropolregion.hamburg.de/presse/17358996/aus-radschnellweg-wird-radroute-plus/"}
     ]

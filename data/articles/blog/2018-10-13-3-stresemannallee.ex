@@ -16,19 +16,19 @@ defmodule Data.Article.Blog.Stresemannallee do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zur Stresemannallee",
-       "https://www.hamburg.de/eimsbuettel/stresemannallee"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/stresemannallee-60886"},
       {"Abschnitt 1, Troplowitzstraße bis ca. Deepenstöcken",
-       "https://www.hamburg.de/contentblob/9223530/3bdbed19c752ec9780590bd6acddce33/data/stresemannallee-abschnitt1.pdf"},
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/9223530/3bdbed19c752ec9780590bd6acddce33/data/stresemannallee-abschnitt1.pdf"},
       {"Abschnitt 2, ca. Herlingsburg bis Glockenblumenweg",
-       "https://www.hamburg.de/contentblob/9223532/9a0355d58cd8def86a911ab7bd634b7a/data/stresemannallee-abschnitt2.pdf"},
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/9223532/9a0355d58cd8def86a911ab7bd634b7a/data/stresemannallee-abschnitt2.pdf"},
       {"Abschnitt 3, Glockenblumenweg bis Veilchenweg",
-       "https://www.hamburg.de/contentblob/9223534/645c6b8c111e91fdfe3e8d6324b9e0fb/data/stresemannallee-abschnitt3.pdf"},
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/9223534/645c6b8c111e91fdfe3e8d6324b9e0fb/data/stresemannallee-abschnitt3.pdf"},
       {"Abschnitt 4, ca. Veilchenweg bis Lohkoppelweg",
-       "https://www.hamburg.de/contentblob/9223536/ab1d259583e77b52e843283e5e4f5760/data/stresemannallee-abschnitt4.pdf"},
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/9223536/ab1d259583e77b52e843283e5e4f5760/data/stresemannallee-abschnitt4.pdf"},
       {"Abschnitt 5, ca. Lohkoppelweg bis Henning-Wulf-Weg",
-       "https://www.hamburg.de/contentblob/9223538/2c126896680dcede1d55146f58053e23/data/stresemannallee-abschnitt5.pdf"},
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/9223538/2c126896680dcede1d55146f58053e23/data/stresemannallee-abschnitt5.pdf"},
       {"Abschnitt 6, Henning-Wulf-Weg bis Grandweg",
-       "https://www.hamburg.de/contentblob/12775642/c580e219163522bf964a7245d860a1d6/data/stresemannallee-abschnitt6.pdf"}
+       "https://web.archive.org/web/20221218112257/https://www.hamburg.de/contentblob/12775642/c580e219163522bf964a7245d860a1d6/data/stresemannallee-abschnitt6.pdf"}
     ]
   end
 

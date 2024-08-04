@@ -28,7 +28,8 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
 
   def links(_assigns) do
     [
-      {"Infoseite der Stadt", "https://www.hamburg.de/bvm/mobilwandel2035/"}
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/mobilwandel2035-191382"}
     ]
   end
 

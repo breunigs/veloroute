@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
       {"Vergabeunterlagen Umbau", "Juli 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/ef58f192-1b19-40b5-94f4-a411a16ee71b/details"},
       {"Pressemitteilung zu Tempo-30 Heidlohstraße",
-       "https://www.hamburg.de/bvm/medien/15595988/2021-11-12-bvm-heidlohstrasse/"},
+       "https://web.archive.org/web/20220630040758/https://www.hamburg.de/bvm/medien/15595988/2021-11-12-bvm-heidlohstrasse/"},
       {"Erläuterungen zum ersten Entwurf", "Februar 2020",
        "https://lsbg.hamburg.de/resource/blob/784390/65f24536e269482020cb6da4c2d3ac5d/veloroute-14-spanische-furt-bis-heidlohstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan erster Entwurf", "Februar 2020",

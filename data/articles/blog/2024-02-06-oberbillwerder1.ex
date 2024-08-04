@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Oberbillwerder1 do
   def links(_assigns) do
     [
       {"Pressemitteilung", "Februar 2024",
-       "https://www.hamburg.de/bergedorf/18153924/kampfmittelsondierung-oberbillwerder/"}
+       "https://web.archive.org/web/20240206185246/https://www.hamburg.de/bergedorf/18153924/kampfmittelsondierung-oberbillwerder/"}
     ]
   end
 

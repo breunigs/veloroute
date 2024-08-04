@@ -113,7 +113,7 @@ defmodule Data.Article.Static.RSWLuebeck do
   def links(_assigns) do
     [
       {"offizielle Seite zu den Radschnellwegen",
-       "https://metropolregion.hamburg.de/radschnellwege/"},
+       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Lübeck",
        "https://metropolregion.hamburg.de/radschnellwege/15307314/radschnellweg-luebeck/"},
       {"Pläne und Berichte",

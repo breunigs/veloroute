@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
       {"Zeitungsartikel mit veralteter Visualisierung (2021)",
        "https://web.archive.org/web/20210305190832/https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
       {"Zeitungsartikel zum Bauzeitraum (2021)",
-       "https://www.abendblatt.de/hamburg/harburg/article231356884/Harburgs-Zentraler-Busbahnhof-wird-drei-Jahre-geschlossen.html"},
+       "https://www.abendblatt.de/hamburg/harburg/article402627419/harburgs-zentraler-busbahnhof-wird-drei-jahre-geschlossen.html"},
       {"Bestätigung der Pläne des Verkehrssenators (2022)",
        "https://twitter.com/anjes_tjarks/status/1482231808209129474"}
     ]

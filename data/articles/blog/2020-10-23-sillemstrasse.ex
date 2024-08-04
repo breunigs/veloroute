@@ -20,7 +20,8 @@ defmodule Data.Article.Blog.Sillemstrasse do
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008865"},
       {"Erläuterungsbericht und Pläne des ersten Entwurfs", "Mai 2021",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006604"},
-      {"Infoseite der Stadt", "https://www.hamburg.de/eimsbuettel/sillemstrasse/"}
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/sillemstrasse-60852"}
     ]
   end
 

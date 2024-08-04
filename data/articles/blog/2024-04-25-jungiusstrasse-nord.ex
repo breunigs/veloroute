@@ -16,8 +16,10 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-jungiusstrasse-948398"},
       {"Bauvergabe inkl. Lageplan und Beschreibung", "April 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/bcb2052b-ea66-40a2-952f-993ae768e457"}
+       "https://web.archive.org/web/20240425081402/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/bcb2052b-ea66-40a2-952f-993ae768e457"}
     ]
   end
 

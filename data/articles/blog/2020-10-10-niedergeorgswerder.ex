@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Niedergeorgswerder do
       {"Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi//to020.asp?TOLFDNR=1028260"},
       {"Infoseite der Stadt", "noch keine Pläne für diese Maßnahme",
-       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/"},
+       "https://web.archive.org/web/20240302155201/https://www.hamburg.de/mitte/strassenbau-und-verkehr/13884848/"},
       {"Planungsstand Anfang Oktober 2020",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1013483"}
     ]

@@ -84,7 +84,7 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
       {"Baustelleninfo", "Juli 2024",
        "https://lsbg.hamburg.de/resource/blob/936084/bfb3499b1da21110b9728771fd31bdfc/budapester-strasse-geh-und-radwege-anliegerinformation-juli-2024-data.pdf"},
       {"Ausschreibung Umbau", "Mai 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/32fdcd04-6561-4d25-a3e7-4c816a11bc43/details"}
+       "https://web.archive.org/web/20240509065037/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/32fdcd04-6561-4d25-a3e7-4c816a11bc43/details"}
     ]
   end
 

@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/umgestaltung-halskestrasse-948424"},
       {"Bauvergabe", "Dezember 2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/3f07b42a-bc28-4b03-bb8d-e736d73daf8b"}
     ]

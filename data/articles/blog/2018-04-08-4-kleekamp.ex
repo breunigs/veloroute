@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.Kleekamp do
       {"Erläuterungsbericht zum Schlussentwurf",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1008211"},
       {"Beschreibung der Bauabschnitte und -zeiten",
-       "https://www.hamburg.de/hamburg-nord/14243888/"}
+       "https://web.archive.org/web/20230925235208/https://www.hamburg.de/hamburg-nord/14243888/"}
     ]
   end
 

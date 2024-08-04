@@ -16,13 +16,13 @@ defmodule Data.Article.Blog.NiendorferStrasse do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zur Niendorfer Straße",
-       "https://www.hamburg.de/eimsbuettel/niendorferstrasse/"},
+       "https://web.archive.org/web/20240503222003/https://www.hamburg.de/eimsbuettel/niendorferstrasse/"},
       {"Abschnitt 1, Rütersbarg bis vor Bahnbrücke",
-       "https://www.hamburg.de/contentblob/11283742/3f910482a9f157bba00f9ba2ec615297/data/karte1-niendorferstrasse.pdf"},
+       "https://web.archive.org/web/20221217095753/https://www.hamburg.de/contentblob/11283742/3f910482a9f157bba00f9ba2ec615297/data/karte1-niendorferstrasse.pdf"},
       {"Abschnitt 2, ab Bahnbrücke",
-       "https://www.hamburg.de/contentblob/11283744/4d436df71d5d3133b686d459d9b7e9c5/data/karte2-niendorferstrasse.pdf"},
+       "https://web.archive.org/web/20221217095753/https://www.hamburg.de/contentblob/11283744/4d436df71d5d3133b686d459d9b7e9c5/data/karte2-niendorferstrasse.pdf"},
       {"Abschnitt 3, bis Kollaustraße",
-       "https://www.hamburg.de/contentblob/11574420/bfee5024d06df69c42fc44cad2108df7/data/karte3-niendorferstrasse.pdf"}
+       "https://web.archive.org/web/20221217095753/https://www.hamburg.de/contentblob/11574420/bfee5024d06df69c42fc44cad2108df7/data/karte3-niendorferstrasse.pdf"}
     ]
   end
 

@@ -56,7 +56,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
       {"Baustelleninfo", "Juni 2024",
        "https://lsbg.hamburg.de/resource/blob/885484/96087f06180ac52e335a7e7528ab9b99/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
       {"Pressemitteilung zum Baustart", "April 2024",
-       "https://www.hamburg.de/bvm/medien/18533074/2024-04-16-bvm-rothenburgsort/"},
+       "https://web.archive.org/web/20240523021928/https://www.hamburg.de/bvm/medien/18533074/2024-04-16-bvm-rothenburgsort/"},
       {"Möglicher Baustart", "Februar 2024",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1017554"},
       {"Lageplan, überarbeiteter fertiger Entwurf", "Mai 2024",

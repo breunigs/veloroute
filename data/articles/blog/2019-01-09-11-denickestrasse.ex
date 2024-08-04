@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   def links(_assigns) do
     [
       {"Pressemitteilung geplante Sperrungen Denickestraße", "April 2024",
-       "https://www.hamburg.de/harburg/pressemeldungen/18482700/ausbau-veloroute-11-eissendorf/"},
+       "https://web.archive.org/web/20240410052703/https://www.hamburg.de/harburg/pressemeldungen/18482700/ausbau-veloroute-11-eissendorf/"},
       {"Vergabe Umbau Kreuzung mit Weusthoffstraße", "Januar 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/8de47908-9a0a-446c-9f06-4d5ebe977a3d"},
       {"Pressemitteilung zum Baufortschritt", "April 2023",
@@ -39,7 +39,7 @@ defmodule Data.Article.Blog.Denickestrasse do
     und Pläne zum 1. Entwurf", "Lagepläne Blatt 9, 10 und 11 sind noch aktuell",
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1005134"},
       {"Pressemitteilung Umbaut zwischen Thörlstraße und Riepenhausenweg", "2021",
-       "https://www.hamburg.de/harburg/pressemeldungen/15030832/ausbau-veloroute-11/"}
+       "https://web.archive.org/web/20240305063114/https://www.hamburg.de/harburg/pressemeldungen/15030832/ausbau-veloroute-11/"}
     ]
   end
 

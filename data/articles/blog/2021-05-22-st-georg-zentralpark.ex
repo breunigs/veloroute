@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
     [
       {"Infoseite der Stadt zum Ausbau der Veloroute 8",
        "„Sichere Querungen an der Adenauerallee und dem Nagelsweg“",
-       "https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/"},
+       "https://web.archive.org/web/20221218111715/https://www.hamburg.de/mitte/strassenbau-und-verkehr/14892540/veloroute-08-ausbau/"},
       {"Hinweise der Polizei zur Unfallhäufung",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1011801"},
       {"Umbau des Zentralparks",

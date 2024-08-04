@@ -18,12 +18,8 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
     [
       {"Baustelleninfo", "Juli 2024",
        "https://lsbg.hamburg.de/resource/blob/934028/f6f512412612c8bdabb05e1af6712959/berlinertordammbruecke-anliegerinformation-juli-2024-data.pdf"},
-      # {"Baustelleninfo", "Mai 2024",
-      #  "https://lsbg.hamburg.de/resource/blob/862562/40ec00accf85e5270a33d3157345e8a1/berlinertordammbruecke-anliegerinformation-mai-2024-data.pdf"},
-      {"Pressemitteilung zu Vollsperrungen", "April 2024",
-       "https://www.hamburg.de/bvm/medien/18488076/2024-04-05-bvm-berlinertordammbruecke/"},
       {"Pressemitteilung zum Baustart", "März 2024",
-       "https://www.hamburg.de/bvm/medien/18353678/2024-03-13-bvm-berlinertordammbruecke/"},
+       "https://web.archive.org/web/20240501114605/https://www.hamburg.de/bvm/medien/18353678/2024-03-13-bvm-berlinertordammbruecke/"},
       {"Pressemitteilung zu vorbereitenden Arbeiten", "Januar 2024",
        "https://www.hamburg.de/bvm/medien/18050494/2024-01-09-bvm-berlinertordammbruecke/"},
       {"Lageplan",

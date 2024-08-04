@@ -15,15 +15,15 @@ defmodule Data.Article.Blog.Hoegenstrasse do
   def links(_assigns) do
     [
       {"Präsentation zum Umbau, mit vorläufigen Lageplänen",
-       "https://www.hamburg.de/contentblob/9223346/09c5a4f1dae49706ebcefdb84f69d483/data/hoegenstrasse-buergerinfo310517.pdf"},
+       "https://web.archive.org/web/20240617075149/https://www.hamburg.de/contentblob/9223346/09c5a4f1dae49706ebcefdb84f69d483/data/hoegenstrasse-buergerinfo310517.pdf"},
       {"Infoseite der Stadt zur Högenstraße",
-       "https://www.hamburg.de/eimsbuettel/hoegenstrasse/"},
+       "https://web.archive.org/web/20240617101259/https://www.hamburg.de/eimsbuettel/hoegenstrasse/"},
       {"Lageplan Teil 1 (Langenfelder Damm bis Vehrenkampstraße)",
-       "https://www.hamburg.de/contentblob/9223422/d6d6e4f077af409945339b0f160a3f68/data/hoegenstrasse-vereinfachter-lageplan1.pdf"},
+       "https://web.archive.org/web/20240617151605/https://www.hamburg.de/contentblob/9223422/d6d6e4f077af409945339b0f160a3f68/data/hoegenstrasse-vereinfachter-lageplan1.pdf"},
       {"Lageplan Teil 2 (Vehrenkampstraße bis Schrebergärten)",
-       "https://www.hamburg.de/contentblob/9223424/a05864f7b2ee3440be75b34ad39b178f/data/hoegenstrasse-vereinfachter-lageplan2.pdf"},
+       "https://web.archive.org/web/20240617061952/https://www.hamburg.de/contentblob/9223424/a05864f7b2ee3440be75b34ad39b178f/data/hoegenstrasse-vereinfachter-lageplan2.pdf"},
       {"Lageplan Teil 3 (Schrebergärten bis Spannkamp)",
-       "https://www.hamburg.de/contentblob/9223426/cff64fe5711adaad6d2b0e106a6d5571/data/hoegenstrasse-vereinfachter-lageplan3.pdf"},
+       "https://web.archive.org/web/20240617045322/https://www.hamburg.de/contentblob/9223426/cff64fe5711adaad6d2b0e106a6d5571/data/hoegenstrasse-vereinfachter-lageplan3.pdf"},
       {"Änderungen der ursprünglichen Planung (29.10.2018)",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1004085"}
     ]
