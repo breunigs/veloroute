@@ -9,11 +9,12 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
     do:
       "Zweirichtungsradweg bis von Fuhlsbüttler Straße bis zur Stübeheide, sonst keine eigenen Radwege. Stübeheide soll als Ausweichroute zur Fahrradstraße aufgewertet werden."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["br-nord-n8"]
-  def start(), do: ~d[2024-08]
-  def stop(), do: ~d[2027Q4]
+  def start(), do: ~d[2024-08-05]
+  def stop(), do: ~d[2026-07-31]
+  def construction_site_id_hh(), do: [916_925]
 
   def tracks(),
     do: [

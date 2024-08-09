@@ -17,8 +17,10 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", "Juni 2024",
-       "https://web.archive.org/web/20240614123750/https://lsbg.hamburg.de/resource/blob/895954/bac503fc5d7fddbcf5ccba5ef311b412/burgstrasse-anliegerinformation-juni-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2024-07],
+       "https://lsbg.hamburg.de/resource/blob/943756/449ad40d984093215c2d4377b7e1abbc/burgstrasse-anliegerinformation-juli-2024-data.pdf"},
+      # {"Baustelleninfo", "Juni 2024",
+      #  "https://web.archive.org/web/20240614123750/https://lsbg.hamburg.de/resource/blob/895954/bac503fc5d7fddbcf5ccba5ef311b412/burgstrasse-anliegerinformation-juni-2024-data.pdf"},
       # {"Baustelleninfo - Nachtrag", "Juni 2024",
       #  "https://lsbg.hamburg.de/resource/blob/876348/e7c2185cfaaf6c3daa60cc22d2ee7eeb/burgstrasse-anliegerinformation-ii-mai-2024-data.pdf"},
       # {"Baustelleninfo", "Mai 2024",

@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.ObererLandweg do
   def stop(), do: ~d[2024-07-19]
   def construction_site_id_hh(), do: [444_856]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def summary(),
     do:
