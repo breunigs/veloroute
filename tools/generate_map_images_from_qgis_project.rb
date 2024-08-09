@@ -20,10 +20,6 @@ def extract(path, nth, direction)
   pixels.sum / pixels.size.to_f / raw.scan("gray").size if pixels
 end
 
-def scan(path, nth, direction, at_end)
-  extract(path, nth, direction, at_end)
-end
-
 # how many cols/rows to scan to find the pixels
 MAX_SCAN = 5
 def pixel_ratios(image_path)
