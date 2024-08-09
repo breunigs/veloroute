@@ -1171,28 +1171,26 @@ a {
     cursor: help;
   }
 
-  &.video, &.map, &.search {
-    &::after {
-      display: inline-block;
-      width: 0.8rem;
-      padding-left: 0.2rem;
-      filter: $linkColorFilterFromWhite;
-    }
+  &.search, &.map, &.video {
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    background-size: 0.85rem;
+    padding-right: 1.05rem;
   }
 
-  &.video::after {
-    content: url("/images/eye.svg");
-    vertical-align: 4%;
+  &.search {
+    background-image: url("/images/search.svg");
+    background-size: 0.7rem;
+    padding-right: 0.95rem;
   }
 
-  &.map::after {
-    content: url("/images/map.svg");
-    vertical-align: -2%;
+  &.map {
+    background-image: url("/images/map.svg");
   }
 
-  &.search::after {
-    content: url("/images/search.svg");
-    width: 0.7rem;
+  &.video {
+    background-image: url("/images/eye_grey.svg");
+    background-position-y: 57%;
   }
 }
 
