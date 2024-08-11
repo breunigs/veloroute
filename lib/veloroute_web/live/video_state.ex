@@ -155,7 +155,7 @@ defmodule VelorouteWeb.Live.VideoState do
         Map.put(updates, String.replace_prefix("#{key}", "video_", ""), val)
       end)
 
-    Logger.debug("push updates for #{inspect(updates, printable_limit: 100)}")
+    Logger.debug("push updates for #{inspect(Map.keys(updates))}")
 
     if map_size(updates) > 0,
       do: Phoenix.LiveView.push_event(socket, :video_meta, updates),
