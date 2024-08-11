@@ -28,9 +28,16 @@ end
 
 def traverse(url, processed = {})
   return [] if processed.key?(url)
+
+  req = OpenURI.open_uri(url) and print "."
+  if req.status != ["200", "OK"]
+    puts "\ngot #{x.status} on #{url} – waiting for a bit"
+    sleep 10
+    return traverse(url, processed)
+  end
   processed[url] = true
-  raw_html = OpenURI.open_uri(url).read and print "."
-  ff = Nokogiri::HTML::fragment(raw_html)
+
+  ff = Nokogiri::HTML::fragment(req.read)
   ff.css("#main a").flat_map do |link|
     abs = abs_url(link)
     next if abs.nil?
