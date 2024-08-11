@@ -322,8 +322,12 @@ defmodule Geo.CheapRuler do
       ...>   ],
       ...>   %{lon: 10.04289976489, lat: 53.59004976324}
       ...> )
-      %{index: 1, t: 0.7728627602842454, dist: 20.34681678169861,
-        point: %Video.TimedPoint{lon: 10.042897081160916, lat: 53.58986695564232, time_offset_ms: 277}}
+      %{
+        dist: 20.34681678169861,
+        before: %Video.TimedPoint{lon: 10.03971050427,     lat: 53.58988354712,    time_offset_ms: 200},
+        point:  %Video.TimedPoint{lon: 10.042897081160916, lat: 53.58986695564232, time_offset_ms: 277},
+        after:  %Video.TimedPoint{lon: 10.04383358673,     lat: 53.58986207956,    time_offset_ms: 300}
+      }
 
   It does not extend beyond line start/end points:
 
@@ -334,14 +338,19 @@ defmodule Geo.CheapRuler do
       ...>   ],
       ...>   %{lat: 53.5505342, lon: 9.9944973}
       ...> )
-      %{index: 0, t: 1.0, dist: 8.092672677012276, point: %{lat: 53.550572, lon: 9.994393}}
+      %{
+        dist: 8.092672677012276,
+        before: %{lat: 53.550598, lon: 9.994402},
+        point:  %{lat: 53.550572, lon: 9.994393},
+        after:  %{lat: 53.550572, lon: 9.994393}
+      }
 
   """
   @spec closest_point_on_line([Geo.Point.like()], Geo.Point.like()) :: %{
-          point: Geo.Point.like(),
-          index: integer(),
           dist: float(),
-          t: float()
+          before: Geo.Point.like(),
+          point: Geo.Point.like(),
+          after: Geo.Point.like()
         }
   def closest_point_on_line(line, point)
 
@@ -350,7 +359,7 @@ defmodule Geo.CheapRuler do
     [head | tail] = line
 
     dist = point2point_dist(head, pt)
-    acc = %{prev: head, dist: dist * dist, i: 0, index: 0, t_start: head, t_end: head, t: 0.0}
+    acc = %{prev: head, dist: dist * dist, i: 0, before: head, after: head, t: 0.0}
 
     acc =
       Enum.reduce(tail, acc, fn next, acc ->
@@ -380,15 +389,15 @@ defmodule Geo.CheapRuler do
         if dist >= acc.dist do
           next_acc
         else
-          %{next_acc | dist: dist, index: acc.i, t: t, t_start: acc.prev, t_end: next}
+          %{next_acc | dist: dist, t: t, before: acc.prev, after: next}
         end
       end)
 
     %{
       dist: :math.sqrt(acc.dist),
-      index: acc.index,
-      t: acc.t,
-      point: Geo.Interpolate.point(acc.t_start, acc.t_end, acc.t)
+      before: acc.before,
+      point: Geo.Interpolate.point(acc.before, acc.after, acc.t),
+      after: acc.after
     }
   end
 
@@ -478,7 +487,7 @@ defmodule Geo.CheapRuler do
   def line_distance([_], len), do: len
   def line_distance([], len), do: len
 
-  @spec point2point_dist(%{lat: number, lon: number}, %{lat: number, lon: number}) :: float
+  @spec point2point_dist(Geo.Point.like(), Geo.Point.like()) :: float
   @doc ~S"""
   Returns the distance in meters between two line
 

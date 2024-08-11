@@ -119,25 +119,14 @@ defmodule Video.Rendered do
   end
 
   def start_from(rendered, point) do
-    %{point: %{lon: lon, lat: lat}, t: t, index: idx} =
+    %{point: point, before: before, after: aft} =
       Geo.CheapRuler.closest_point_on_line(rendered.coords(), point)
 
-    {idx, time} =
-      if idx == length(rendered.coords()) - 1 do
-        {idx - 1, Enum.at(rendered.coords(), idx).time_offset_ms}
-      else
-        {idx, nil}
-      end
-
-    [prev, next] = Enum.slice(rendered.coords(), idx..(idx + 1))
-    bearing = Geo.CheapRuler.bearing(prev, next)
-    time = time || prev.time_offset_ms + t * (next.time_offset_ms - prev.time_offset_ms)
-
     %{
-      lon: lon,
-      lat: lat,
-      bearing: bearing,
-      time_offset_ms: round(time)
+      lon: point.lon,
+      lat: point.lat,
+      bearing: Geo.CheapRuler.bearing(before, aft),
+      time_offset_ms: point.time_offset_ms
     }
   end
 
