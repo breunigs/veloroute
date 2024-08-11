@@ -345,52 +345,51 @@ defmodule Geo.CheapRuler do
         }
   def closest_point_on_line(line, point)
 
-  def closest_point_on_line(line, %{lon: lon, lat: lat})
+  def closest_point_on_line(line, %{lon: lon, lat: lat} = pt)
       when is_list(line) and is_float(lon) and is_float(lat) do
     [head | tail] = line
 
-    acc = %{prev: head, dist: nil, point: nil, i: 0, index: 0, t: 0.0}
+    dist = point2point_dist(head, pt)
+    acc = %{prev: head, dist: dist * dist, i: 0, index: 0, t_start: head, t_end: head, t: 0.0}
 
-    Enum.reduce(tail, acc, fn next, acc ->
-      x = acc.prev.lon
-      y = acc.prev.lat
-      dx = (next.lon - x) * @kx
-      dy = (next.lat - y) * @ky
+    acc =
+      Enum.reduce(tail, acc, fn next, acc ->
+        x = acc.prev.lon
+        y = acc.prev.lat
+        dx = (next.lon - x) * @kx
+        dy = (next.lat - y) * @ky
 
-      {x, y, t} =
-        if dx == 0.0 && dy == 0.0 do
-          {x, y, 0.0}
-        else
-          (((lon - x) * @kx * dx + (lat - y) * @ky * dy) / (dx * dx + dy * dy))
-          |> case do
-            t when t > 1.0 -> {next.lon, next.lat, 1.0}
-            t when t > 0.0 -> {x + dx / @kx * t, y + dy / @ky * t, t}
-            _t -> {x, y, 0.0}
+        {x, y, t} =
+          if dx == 0.0 && dy == 0.0 do
+            {x, y, 0.0}
+          else
+            (((lon - x) * @kx * dx + (lat - y) * @ky * dy) / (dx * dx + dy * dy))
+            |> case do
+              t when t > 1.0 -> {next.lon, next.lat, 1.0}
+              t when t > 0.0 -> {x + dx / @kx * t, y + dy / @ky * t, t}
+              _t -> {x, y, 0.0}
+            end
           end
+
+        dx = (lon - x) * @kx
+        dy = (lat - y) * @ky
+        dist = dx * dx + dy * dy
+
+        next_acc = %{acc | i: acc.i + 1, prev: next}
+
+        if dist >= acc.dist do
+          next_acc
+        else
+          %{next_acc | dist: dist, index: acc.i, t: t, t_start: acc.prev, t_end: next}
         end
+      end)
 
-      dx = (lon - x) * @kx
-      dy = (lat - y) * @ky
-      dist = dx * dx + dy * dy
-
-      next_acc = %{acc | i: acc.i + 1, prev: next}
-
-      if acc.dist && dist >= acc.dist do
-        next_acc
-      else
-        %{next_acc | dist: dist, point: {acc.prev, next}, index: acc.i, t: t}
-      end
-    end)
-    |> Map.take([:point, :index, :dist, :t])
-    |> Map.update!(:dist, &:math.sqrt(&1))
-    |> case do
-      %{point: nil} = m ->
-        %{m | point: head}
-
-      %{point: {prev, next}, t: t} = m ->
-        point = Geo.Interpolate.point(prev, next, t)
-        %{m | point: point}
-    end
+    %{
+      dist: :math.sqrt(acc.dist),
+      index: acc.index,
+      t: acc.t,
+      point: Geo.Interpolate.point(acc.t_start, acc.t_end, acc.t)
+    }
   end
 
   @doc ~S"""
