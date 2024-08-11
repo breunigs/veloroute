@@ -305,9 +305,16 @@ defmodule Geo.CheapRuler do
     do: point2point_dist(from, to)
 
   @doc ~S"""
-  It finds the closest point of a line to another given point. Optionally you
-  can pass the bearing and how strongly to consider it. Default is to ignore
-  the bearing.
+  It finds the closest point of a line to another given point. Distances are
+  expected and returned in meters. It will return the first point if there
+  are multiple with the same distance.
+
+  All points within `epsilon` meters are considered to be close. The default
+  value of 0.0 looks for a point exactly on the line and will do an exhaustive
+  search if needed. For larger values, only the first line segments within
+  `point` + `epsilon` are considered. If the line doesn't intersect that area
+  more than once, the returned point is still optimal. This is a performance
+  improvement if the closest point is near the beginning of the line.
 
   ## Examples
 
@@ -329,6 +336,25 @@ defmodule Geo.CheapRuler do
         after:  %Video.TimedPoint{lon: 10.04383358673,     lat: 53.58986207956,    time_offset_ms: 300}
       }
 
+  Non-zero epsilon still finds good candidates (all points from the example
+  are within 100m from each other):
+
+      iex> Geo.CheapRuler.closest_point_on_line(
+      ...>   [
+      ...>     %{lat: 53.0001, lon: 9.9999},
+      ...>     %{lat: 53.0002, lon: 9.9999},
+      ...>     %{lat: 53.0004, lon: 9.9999}
+      ...>   ],
+      ...>   %{lat: 53.0003, lon: 9.9999},
+      ...>   100.0
+      ...> )
+      %{
+        dist: 0.0,
+        before: %{lat: 53.0002, lon: 9.9999},
+        point:  %{lat: 53.0003, lon: 9.9999},
+        after:  %{lat: 53.0004, lon: 9.9999}
+      }
+
   It does not extend beyond line start/end points:
 
       iex> Geo.CheapRuler.closest_point_on_line(
@@ -345,24 +371,45 @@ defmodule Geo.CheapRuler do
         after:  %{lat: 53.550572, lon: 9.994393}
       }
 
+  Returns the first point given if there are multiple candidates:
+
+      iex> Geo.CheapRuler.closest_point_on_line(
+      ...>   [
+      ...>     %{lat: 53.550598, lon: 9.994402, time_offset_ms: 100},
+      ...>     %{lat: 53.550598, lon: 9.994402, time_offset_ms: 200}
+      ...>   ],
+      ...>   %{lat: 53.550598, lon: 9.994402}
+      ...> )
+      %{
+        dist: 0.0,
+        before: %{lat: 53.550598, lon: 9.994402, time_offset_ms: 100},
+        point:  %{lat: 53.550598, lon: 9.994402},
+        after:  %{lat: 53.550598, lon: 9.994402, time_offset_ms: 100}
+      }
   """
-  @spec closest_point_on_line([Geo.Point.like()], Geo.Point.like()) :: %{
+  @spec closest_point_on_line(
+          line :: [Geo.Point.like()],
+          point :: Geo.Point.like(),
+          epsilon :: float() | non_neg_integer()
+        ) :: %{
           dist: float(),
           before: Geo.Point.like(),
           point: Geo.Point.like(),
           after: Geo.Point.like()
         }
-  def closest_point_on_line(line, point)
+  def closest_point_on_line(line, point, eps \\ 0.0)
 
-  def closest_point_on_line(line, %{lon: lon, lat: lat} = pt)
-      when is_list(line) and is_float(lon) and is_float(lat) do
+  def closest_point_on_line(line, %{lon: lon, lat: lat} = pt, epsilon)
+      when is_list(line) and is_float(lon) and is_float(lat) and epsilon >= 0.0 do
     [head | tail] = line
+    # ensure it's a float to avoid conversions in the loop
+    eps2 = epsilon * epsilon * 1.0
 
     dist = point2point_dist(head, pt)
-    acc = %{prev: head, dist: dist * dist, i: 0, before: head, after: head, t: 0.0}
+    acc = %{prev: head, dist: dist * dist, before: head, after: head, t: 0.0}
 
     acc =
-      Enum.reduce(tail, acc, fn next, acc ->
+      Enum.reduce_while(tail, acc, fn next, acc ->
         x = acc.prev.lon
         y = acc.prev.lat
         dx = (next.lon - x) * @kx
@@ -384,12 +431,15 @@ defmodule Geo.CheapRuler do
         dy = (lat - y) * @ky
         dist = dx * dx + dy * dy
 
-        next_acc = %{acc | i: acc.i + 1, prev: next}
+        next_acc = %{acc | prev: next}
 
         if dist >= acc.dist do
-          next_acc
+          # Stop if we have a suitable candidate and the "next" point is again
+          # outside the epsilon range
+          break = if acc.dist <= eps2 && dist > eps2, do: :halt, else: :cont
+          {break, next_acc}
         else
-          %{next_acc | dist: dist, t: t, before: acc.prev, after: next}
+          {:cont, %{next_acc | dist: dist, t: t, before: acc.prev, after: next}}
         end
       end)
 

@@ -395,6 +395,10 @@ defmodule VelorouteWeb.Live.VideoState do
   # info is available.
   @first_group_bonus 5
 
+  # Consider points within this radius close enough and forgo searching the
+  # whole track for slightly better candidates
+  @search_radius_meters 5
+
   # if we have a position, change the tracks default order by closeness to the position
   defp update_from_tracks(state, tracks, near_position, accurate_position)
        when is_map(near_position) do
@@ -409,7 +413,7 @@ defmodule VelorouteWeb.Live.VideoState do
         else
           dist =
             rendered.coords()
-            |> Geo.CheapRuler.closest_point_on_line(near_position)
+            |> Geo.CheapRuler.closest_point_on_line(near_position, @search_radius_meters)
             |> Map.fetch!(:dist)
 
           dist =

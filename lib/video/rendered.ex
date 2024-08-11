@@ -118,9 +118,10 @@ defmodule Video.Rendered do
     end || start_from(rendered, nil)
   end
 
+  @search_radius_meters 10
   def start_from(rendered, point) do
     %{point: point, before: before, after: aft} =
-      Geo.CheapRuler.closest_point_on_line(rendered.coords(), point)
+      Geo.CheapRuler.closest_point_on_line(rendered.coords(), point, @search_radius_meters)
 
     %{
       lon: point.lon,

@@ -312,6 +312,7 @@ defmodule Article.Decorators do
   article's bbox.
   """
   @spec start_image_path(Article.t()) :: binary() | nil
+  @search_radius_m 50
   def start_image_path(art) do
     with [track | _rest] <- article_with_tracks(art).tracks(),
          bbox when is_map(bbox) <- bbox(art),
@@ -319,7 +320,7 @@ defmodule Article.Decorators do
       center = Geo.CheapRuler.center(bbox)
 
       %{point: %{time_offset_ms: ms}} =
-        Geo.CheapRuler.closest_point_on_line(rendered.coords(), center)
+        Geo.CheapRuler.closest_point_on_line(rendered.coords(), center, @search_radius_m)
 
       # VelorouteWeb.Router.Helpers.image_extract_path(
       #   VelorouteWeb.Endpoint,
