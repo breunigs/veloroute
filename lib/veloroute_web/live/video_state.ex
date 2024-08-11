@@ -352,16 +352,27 @@ defmodule VelorouteWeb.Live.VideoState do
     %{state | start: Geo.Point.from_params(params)}
   end
 
-  defp maybe_reverse_direction(%__MODULE__{} = state, params)
+  defp maybe_reverse_direction(%__MODULE__{start: %{lat: _, lon: _}} = state, params)
        when is_reversible(state) do
     video = current_rendered(state)
-    start_from = Video.Rendered.start_from(video, state.start)
-    autoplay = params["autoplay"] == "true"
-    factor = if autoplay, do: 0.9, else: 0.99
 
-    if start_from.time_offset_ms >= factor * video.length_ms(),
-      do: reverse_direction(state),
-      else: state
+    [first | tail] = video.coords()
+    last = List.last(tail)
+
+    dist_first = Geo.CheapRuler.point2point_dist(state.start, first)
+    dist_last = Geo.CheapRuler.point2point_dist(state.start, last)
+
+    if dist_first > dist_last do
+      start_from = Video.Rendered.start_from(video, state.start)
+      autoplay = params["autoplay"] == "true"
+      factor = if autoplay, do: 0.9, else: 0.99
+
+      if start_from.time_offset_ms >= factor * video.length_ms(),
+        do: reverse_direction(state),
+        else: state
+    else
+      state
+    end
   end
 
   defp maybe_reverse_direction(%__MODULE__{} = state, _params), do: state
