@@ -77,7 +77,7 @@ defmodule Mix.Tasks.Deploy do
 
   defp test(_skip) do
     Util.banner("Unit tests")
-    :ok = Util.Docker.mix("test --color")
+    :ok = Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}")
     Util.banner("Dialyzer")
     :ok = Util.Docker.mix("dialyzer")
     Util.banner("Format Check")
