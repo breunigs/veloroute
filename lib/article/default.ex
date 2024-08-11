@@ -3,6 +3,7 @@ defmodule Article.Default do
     quote location: :keep do
       @behaviour Article
 
+      require Data.RoughDate
       import Data.RoughDate, only: [sigil_d: 2]
 
       def name(), do: unquote(Article.auto_generate_name(__CALLER__.module))

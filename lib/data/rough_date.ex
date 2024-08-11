@@ -12,8 +12,9 @@ defmodule Data.RoughDate do
       ~w(January February March April May June July August September October November December)
   }
 
-  @spec sigil_d(binary(), []) :: Data.RoughDate.t()
-  def sigil_d(str, []), do: Data.RoughDate.parse(str)
+  defmacro sigil_d({_name, _meta, [str]}, []) do
+    Macro.escape(Data.RoughDate.parse(str))
+  end
 
   def zero(), do: parse(nil)
 
