@@ -77,11 +77,11 @@ defmodule Mix.Tasks.Deploy do
 
   defp test(_skip) do
     Util.banner("Unit tests")
-    :ok = Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}")
+    Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}") |> raise_on_error()
     Util.banner("Dialyzer")
-    :ok = Util.Docker.mix("dialyzer")
+    Util.Docker.mix("dialyzer") |> raise_on_error()
     Util.banner("Format Check")
-    :ok = Util.Docker.mix("format --check-formatted")
+    Util.Docker.mix("format --check-formatted") |> raise_on_error()
   end
 
   defp make_release(_skip) do
@@ -99,10 +99,17 @@ defmodule Mix.Tasks.Deploy do
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
     |> Stream.each(fn
       ["MIX_ENV=" <> env, "mix" | cmd] -> :ok = Util.Docker.mix(cmd, env)
-      ["mix" | cmd] -> :ok = Util.Docker.mix(cmd, "prod")
+      ["mix" | cmd] -> Util.Docker.mix(cmd, "prod") |> raise_on_error()
       other -> Util.Cmd2.exec(other, raise: true)
     end)
     |> Enum.to_list()
+  end
+
+  defp raise_on_error(:ok), do: :ok
+
+  defp raise_on_error({:error, reason}) do
+    IO.puts(reason)
+    raise "failed"
   end
 
   defp make_release_image(_skip) do

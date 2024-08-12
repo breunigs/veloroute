@@ -53,6 +53,7 @@ defmodule Util.Cmd2 do
          """
          FAILED #{name} with status=#{status[:status]}
          CLI: #{Util.cli_printer(cli)}
+         ENV: #{Util.cli_printer(Enum.map(env, fn {k, v} -> "#{k}=#{v}" end))}
          STDOUT: #{to_string_or_inspect(status[:stdout])}
          STDERR: #{to_string_or_inspect(status[:stderr])}
          """}
