@@ -24,6 +24,8 @@ defmodule Mix.Tasks.Velo.Videos.Detect do
   end
 
   defp real_run(device, env) do
+    IO.puts("Detection can take a while. Press CTRL+\\ for graceful termination.")
+
     with :ok <-
            Util.Docker.build_and_run(
              @container_ref,
@@ -39,7 +41,7 @@ defmodule Mix.Tasks.Velo.Videos.Detect do
                    device
                  ])
              },
-             []
+             slow_warn_message: false
            ) do
       :ok
     else

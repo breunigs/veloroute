@@ -97,8 +97,9 @@ def load_videos(file_queue, video_queue, outer_bar):
 
         try:
             frames, frame_count, resolution = load_video(name)
-        except:
-            print(f"\nfailed to load video \"{name}\", skipping")
+        except Exception as e:
+            print(f"\nfailed to load video \"{name}\", skipping:")
+            print(getattr(e, 'message', repr(e)))
             outer_bar.total -= file_size
             continue
 
@@ -248,9 +249,9 @@ def choose_weights(weights):
 
     weights_gpu =  weights_base + '.engine'
     if os.path.exists(weights_gpu):
-        print("using GPU optimized weights (engine)")
+        print("\nusing GPU optimized weights (engine)")
     else:
-        print("generating GPU optimized weights (engine)")
+        print("\ngenerating GPU optimized weights (engine)")
         height = optimized_model_height()
 
         import subprocess
@@ -300,7 +301,8 @@ def load_model_path(weights, device):
     if weights in loaded_models:
         return loaded_models[weights]
 
-    loaded_models[weights] = torch.hub.load(f'ultralytics/yolov5', 'custom',
+    print(f"\nloading model {weights}")
+    loaded_models[weights] = torch.hub.load('ultralytics/yolov5', 'custom',
                                 path=weights, skip_validation=True,
                                 device=torch.device(device))
     return loaded_models[weights]
@@ -339,9 +341,9 @@ os.nice(20)
 
 # find videos in background
 file_queue = queue.Queue()
+print('searching videos…')
 bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True, mininterval=1)
 recurse_in_background(video_dir, file_queue, bar)
-bar.refresh()
 
 video_queue = queue.Queue(maxsize=3)
 load_videos_in_background(file_queue, video_queue, bar)

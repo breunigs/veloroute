@@ -45,29 +45,33 @@ defmodule Util.Cmd2 do
     status = Task.await(task, :infinity)
     :io.setopts(:standard_io, encoding: :unicode)
 
-    result =
-      if status[:status] == 0 do
-        :ok
-      else
-        {:error,
-         """
-         FAILED #{name} with status=#{status[:status]}
-         CLI: #{Util.cli_printer(cli)}
-         ENV: #{Util.cli_printer(Enum.map(env, fn {k, v} -> "#{k}=#{v}" end))}
-         STDOUT: #{to_string_or_inspect(status[:stdout])}
-         STDERR: #{to_string_or_inspect(status[:stderr])}
-         """}
-      end
+    cond do
+      status[:status] == 0 ->
+        Map.put(status, :result, :ok)
 
-    if do_raise && result != :ok && status[:user_abort] do
-      Logger.info("User aborted")
-      System.halt(0)
+      status[:user_abort] ->
+        Logger.info("User aborted, exiting")
+        Logger.flush()
+        System.halt(0)
+
+      !do_raise ->
+        Map.put(status, :result, error_result(name, cli, env, status))
+
+      true ->
+        {:error, reason} = error_result(name, cli, env, status)
+        raise(reason)
     end
+  end
 
-    if do_raise && result != :ok,
-      do: raise(elem(result, 1))
-
-    Map.put(status, :result, result)
+  defp error_result(name, cli, env, status) do
+    {:error,
+     """
+     FAILED #{name} with status=#{status[:status]}
+     CLI: #{Util.cli_printer(cli)}
+     ENV: #{Util.cli_printer(Enum.map(env, fn {k, v} -> "#{k}=#{v}" end))}
+     STDOUT: #{to_string_or_inspect(status[:stdout])}
+     STDERR: #{to_string_or_inspect(status[:stderr])}
+     """}
   end
 
   @spec exec_cmd2(
