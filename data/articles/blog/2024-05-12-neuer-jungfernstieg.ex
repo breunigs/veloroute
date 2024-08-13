@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
 
   def type(), do: :construction
   def start(), do: ~d[2024-07-15]
-  def stop(), do: ~d[2025-09-30]
+  def stop(), do: ~d[2025-08-31]
+  def construction_site_id_hh(), do: [939_336]
 
   def tags(), do: ["4", "1GR", "FR1"]
 
