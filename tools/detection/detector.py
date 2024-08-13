@@ -30,6 +30,10 @@ VIDEO_EXTENSIONS = [".mkv", ".MP4"]
 # how often to save when inferring
 SAVE_INTERVAL_SECONDS = 60
 
+# if allowed, will create optimized GPU weights on first usage. These moderately
+# improve detection speed but only work for a subset of image sizes. They will be
+# stored at the same location as the given input weights.
+OPTIMIZE = os.environ.get('NO_OPTIMIZED_GPU_WEIGHTS') != '1'
 
 def desc(path):
     path, file = os.path.split(path)
@@ -74,12 +78,13 @@ def load_video(name):
     reader = imageio.get_reader(name)
 
     meta = reader.get_meta_data()
+    resolution = meta['size']
     frame_count = round(meta['duration'] * meta['fps'])
     if frame_count == 0:
         frame_count = reader.count_frames()
 
     iter = enumerate(reader.iter_data())
-    return iter, frame_count
+    return iter, frame_count, resolution
 
 def load_videos(file_queue, video_queue, outer_bar):
     while not abort:
@@ -88,19 +93,19 @@ def load_videos(file_queue, video_queue, outer_bar):
             video_queue.put(None)
             continue
 
-        name, size = item
+        name, file_size = item
 
         try:
-            frames, frame_count = load_video(name)
+            frames, frame_count, resolution = load_video(name)
         except:
             print(f"\nfailed to load video \"{name}\", skipping")
-            outer_bar.total -= size
+            outer_bar.total -= file_size
             continue
 
         (_final, wip) = json_out_paths(name)
         detections = load_json_gzip(wip)
 
-        video_queue.put((name, size, frames, frame_count, detections))
+        video_queue.put((name, file_size, resolution, frames, frame_count, detections))
 
 def load_videos_in_background(file_queue, video_queue, outer_bar):
     threading.Thread(target=lambda: load_videos(
@@ -111,8 +116,7 @@ def noop_thread():
     noop.start()
     return noop
 
-
-def process_frame(model, frame_queue, detections, result_names):
+def process_frame(model, frame_queue, detections):
     while True:
         (index, frame) = frame_queue.get()
         if index == None:
@@ -121,20 +125,21 @@ def process_frame(model, frame_queue, detections, result_names):
 
         try:
             results = model(frame, size=MODEL_TRAIN_SIZE)
-        except:
-            print('\n\n\nModel evaluation failed. See error message below for hopefully more details. Run `mix help velo.videos.detect` for potential options.\n')
-            raise
+        except Exception as e:
+            print(f'\n\n\nModel evaluation failed. Run `mix help velo.videos.detect` for potential options. The specific error was:')
+            print(getattr(e, 'message', repr(e)))
+            exit(1)
 
-        formatted = [format_box(det, result_names) for det in results.xyxy[0]]
+        formatted = [format_box(det, model.names) for det in results.xyxy[0]]
         detections[str(index)] = formatted
         frame_queue.task_done()
 
 
-def process(video, model, outer_bar, result_names):
-    (name, size, frames, frame_count, detections) = video
+def process(video, model, outer_bar):
+    (name, file_size, _resolution, frames, frame_count, detections) = video
     (final, wip) = json_out_paths(name)
     if not os.path.exists(name):
-        outer_bar.total -= size
+        outer_bar.total -= file_size
 
         # the files were probably moved in the meantime. Return a truthy value
         # here to ensure we scan again.
@@ -143,12 +148,13 @@ def process(video, model, outer_bar, result_names):
     frames = tqdm(frames, total=frame_count, desc=desc(
         name), unit="frame", leave=False)
 
-    bytes_per_frame = math.floor(size / float(frame_count))
-    bytes_remain = size - frame_count*bytes_per_frame
+    bytes_per_frame = math.floor(file_size / float(frame_count))
+    bytes_remain = file_size - frame_count*bytes_per_frame
 
     frame_queue = queue.Queue(maxsize=64)
-    threading.Thread(
-        target=lambda: process_frame(model, frame_queue, detections, result_names)).start()
+    processor = threading.Thread(
+        target=lambda: process_frame(model, frame_queue, detections))
+    processor.start()
 
     json_saver = None
     last_save = time.time()
@@ -156,6 +162,9 @@ def process(video, model, outer_bar, result_names):
         outer_bar.update(bytes_per_frame)
         if str(index) in detections:
             continue
+
+        if not processor.is_alive():
+            exit(1)
 
         frame_queue.put((index, frame))
 
@@ -171,6 +180,8 @@ def process(video, model, outer_bar, result_names):
         if abort:
             break
 
+    if not processor.is_alive():
+        exit(1)
     frame_queue.put((None, None))
     frame_queue.join()
 
@@ -226,14 +237,13 @@ def usage(extra=None):
         f"Usage:\n{sys.argv[0]} <path/to/weights.pt> <path/to/videos/folder>")
     sys.exit(1)
 
+def optimized_model_height():
+    return math.ceil(MODEL_TRAIN_SIZE / 16*9 / 32)*32
 
-def optimized_weights(weights):
+def choose_weights(weights):
     weights_base = os.path.splitext(weights)[0]
 
     if device == 'cpu':
-        return weights
-
-    if 'NO_OPTIMIZED_GPU_WEIGHTS' in os.environ and os.environ['NO_OPTIMIZED_GPU_WEIGHTS'] == '1':
         return weights
 
     weights_gpu =  weights_base + '.engine'
@@ -241,7 +251,7 @@ def optimized_weights(weights):
         print("using GPU optimized weights (engine)")
     else:
         print("generating GPU optimized weights (engine)")
-        height = math.ceil(MODEL_TRAIN_SIZE / 16*9 / 32)*32
+        height = optimized_model_height()
 
         import subprocess
         subprocess.check_call([
@@ -285,6 +295,37 @@ def handler(signum, _frame):
     global abort
     abort = True
 
+loaded_models = dict()
+def load_model_path(weights, device):
+    if weights in loaded_models:
+        return loaded_models[weights]
+
+    loaded_models[weights] = torch.hub.load(f'ultralytics/yolov5', 'custom',
+                                path=weights, skip_validation=True,
+                                device=torch.device(device))
+    return loaded_models[weights]
+
+def load_model(weights, device, optimize):
+    optimized = choose_weights(weights) if optimize else weights
+
+    model = load_model_path(optimized, device)
+    model.conf = THRESHOLD
+
+    if model.names[0] == 'class0':
+        model.names = load_model_path(weights, device).names
+
+    return model
+
+def can_use_optimized_weights(video):
+    (_name, _file_size, resolution, _frames, _frame_count, _detections) = video
+    (vw, vh) = resolution
+
+    mw = MODEL_TRAIN_SIZE
+    mh = optimized_model_height()
+
+    scaled_h = vh * (mw / vw)
+
+    return scaled_h <= mh
 
 # graceful shutdown
 abort = False
@@ -300,21 +341,6 @@ os.nice(20)
 file_queue = queue.Queue()
 bar = tqdm(iter, total=0, desc="all videos", unit="B", unit_scale=True, mininterval=1)
 recurse_in_background(video_dir, file_queue, bar)
-
-# load model
-weights_optim = optimized_weights(weights)
-
-model = torch.hub.load(f'ultralytics/yolov5', 'custom',
-                       path=weights_optim, skip_validation=True,
-                       device=torch.device(device))
-model.conf = THRESHOLD
-
-result_names = model.names
-if result_names[0] == 'class0':
-    result_names = torch.hub.load(f'ultralytics/yolov5', 'custom',
-                                  path=weights, skip_validation=True,
-                                  device=torch.device(device)).names
-
 bar.refresh()
 
 video_queue = queue.Queue(maxsize=3)
@@ -334,7 +360,9 @@ while not abort:
     if not video:
         break
 
-    processed = process(video, model, bar, result_names)
+    optimize = OPTIMIZE and can_use_optimized_weights(video)
+    model = load_model(weights, device, optimize)
+    processed = process(video, model, bar)
     video_queue.task_done()
     file_queue.task_done()
 
