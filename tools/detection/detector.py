@@ -206,7 +206,7 @@ def recurse(folder, queue, bar):
 
         # walk newer folders first to hide slow remote file system enumeration
         # while already processing the first videos
-        subdirs.sort(reverse=True)
+        subdirs.sort(key=lambda sdir: os.path.getmtime(os.path.join(parent, sdir)), reverse=True)
 
         for name in files:
             (_, ext) = os.path.splitext(name)
