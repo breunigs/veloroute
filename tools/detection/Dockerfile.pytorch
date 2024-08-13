@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:experimental
 
 # Start FROM Nvidia PyTorch image https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
-FROM nvcr.io/nvidia/pytorch:23.04-py3
+FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && \
+RUN echo "deb https://ppa.launchpadcontent.net/ubuntuhandbook1/ffmpeg7/ubuntu/ jammy main" > /etc/apt/sources.list.d/modern-ffmpeg.list && \
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5738AE8480447DDF && \
+  apt-get update && \
   apt-get install --no-install-recommends -y ffmpeg && \
   rm -rf /var/lib/apt/lists/*
 
@@ -12,20 +14,27 @@ RUN mkdir -p /root/.config/Ultralytics/
 # prevent YOLOv5 from downloading unnecessary assets
 RUN ln /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf /root/.config/Ultralytics/Arial.ttf
 
-RUN pip install imageio imageio-ffmpeg tqdm seaborn gitpython && \
-  rm -rf /root/.cache/pip
+RUN pip install --no-cache \
+  imageio \
+  imageio-ffmpeg \
+  tqdm \
+  opencv-python==4.8.0.74 \
+  ultralytics==8.2.76
 # hack because it runs into a timeout otherwise when opening the file
-RUN sed -i 's/etime = time.time() + 10.0/etime = time.time() + 100.0/' /usr/local/lib/python3.8/dist-packages/imageio_ffmpeg/_io.py
+RUN sed -i 's/etime = time.time() + 10.0/etime = time.time() + 100.0/' /usr/local/lib/python3.10/dist-packages/imageio_ffmpeg/_io.py
+ENV IMAGEIO_FFMPEG_EXE=/usr/bin/ffmpeg
 
-ARG GIT_SHA=e382d4c37cd840337381e138ef71bb638d1bb16b
+ARG GIT_SHA=19ce90290c6bd013b69dbe037e8ef1bc3d3c32d0
 RUN mkdir -p /root/.cache/torch/hub/ && \
   curl -L https://github.com/ultralytics/yolov5/archive/${GIT_SHA}.zip > /tmp/yolov5.zip && \
   unzip -D -q /tmp/yolov5.zip -d /root/.cache/torch/hub/ && \
   mv /root/.cache/torch/hub/yolov5-${GIT_SHA} /root/.cache/torch/hub/ultralytics_yolov5_master
+ENV YOLO_AUTOINSTALL=False
+ENV YOLOv5_AUTOINSTALL=False
 
 COPY detector.py /workspace/
 
-ENTRYPOINT ["/workspace/detector.py"]
+ENTRYPOINT ["/usr/bin/python", "/workspace/detector.py"]
 
 
 # example usage from project main dir:
