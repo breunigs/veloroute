@@ -99,6 +99,7 @@ defmodule Settings do
   def page_title_short, do: "veloroute.hamburg · "
   def page_title_long, do: "veloroute.hamburg · Fahrradwege für Alltag und Freizeit"
   def email, do: "mail@veloroute.hamburg"
+  def email_name, do: "Stefan Breunig"
 
   def twitter_handle, do: "@VelorouteHH"
   def mastodon_url, do: "https://norden.social/@VelorouteHamburg"

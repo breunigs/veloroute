@@ -246,6 +246,12 @@ defmodule Components.TagHelpers do
     end
   end
 
+  defp maybe_disable_hyphens(assigns) do
+    if assigns |> inner_text() |> String.contains?("@"),
+      do: assign(assigns, :rest, Map.put_new(assigns.rest, "class", "noHyphens")),
+      else: assigns
+  end
+
   @spec mailto(map()) :: Phoenix.LiveView.Rendered.t()
   attr :email, :string
   attr :subject, :string
@@ -255,16 +261,13 @@ defmodule Components.TagHelpers do
 
   def mailto(%{inner_block: _x, subject: subject, body: body} = assigns) do
     assigns =
-      Map.merge(assigns, %{
-        email: Map.get(assigns, :email) || Settings.email(),
+      assigns
+      |> Map.merge(%{
+        email: Map.get(assigns, :email) || "#{Settings.email_name()} <#{Settings.email()}>",
         subject: URI.encode(subject),
         body: URI.encode(body)
       })
-
-    assigns =
-      if assigns |> inner_text() |> String.contains?("@"),
-        do: assign(assigns, :rest, Map.put_new(assigns.rest, "class", "noHyphens")),
-        else: assigns
+      |> maybe_disable_hyphens()
 
     ~H"""
     <a href={"mailto:#{@email}?subject=#{@subject}&body=#{@body}"} {@rest}><%= render_slot(@inner_block) %></a>
@@ -272,6 +275,8 @@ defmodule Components.TagHelpers do
   end
 
   def mailto(%{inner_block: _x, email: _e} = assigns) do
+    assigns = maybe_disable_hyphens(assigns)
+
     ~H"""
     <a href={"mailto:#{@email}"} {@rest}><%= render_slot(@inner_block) %></a>
     """
@@ -279,13 +284,15 @@ defmodule Components.TagHelpers do
 
   def mailto(%{inner_block: []} = assigns) do
     ~H"""
-    <a href={"mailto:"<>Settings.email()} class="noHyphens" {@rest}><%= Settings.email() %></a>
+    <a href={"mailto:#{Settings.email_name()} <#{Settings.email()}>" } class="noHyphens" {@rest}><%= Settings.email() %></a>
     """
   end
 
   def mailto(%{inner_block: _x} = assigns) do
+    assigns = maybe_disable_hyphens(assigns)
+
     ~H"""
-    <a href={"mailto:"<>Settings.email()} {@rest}><%= render_slot(@inner_block) %></a>
+    <a href={"mailto:#{Settings.email_name()} <#{Settings.email()}>"} {@rest}><%= render_slot(@inner_block) %></a>
     """
   end
 
