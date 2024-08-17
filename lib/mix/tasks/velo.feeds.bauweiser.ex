@@ -150,19 +150,6 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
     end
   end
 
-  defmemo module_to_path() do
-    Path.wildcard("data/articles/blog/*.ex")
-    |> Enum.map(fn file ->
-      code = File.read!(file)
-
-      with [_all, mod] <- Regex.run(~r/defmodule ([^\s]+) do/, code) do
-        {String.to_existing_atom("Elixir." <> mod), %{path: file, code: code}}
-      end
-    end)
-    |> Util.compact()
-    |> Enum.into(%{})
-  end
-
   defp update_article(_art, []), do: nil
 
   defp update_article(art, relevant) when is_module(art) do
@@ -176,7 +163,8 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
         nil
 
       new_start || new_stop ->
-        %{path: path, code: code} = module_to_path()[art]
+        path = Util.module_source_path(art)
+        code = File.read!(path)
 
         code = if new_stop, do: replace_with_fallback(code, :stop, new_stop), else: code
         code = if new_start, do: replace_with_fallback(code, :start, new_start), else: code

@@ -10,7 +10,7 @@ defmodule Basemap.Project do
 
   @impl Basemap.Renderable
   def staleness() do
-    geojson_source = Data.GeoJSON.__info__(:compile) |> Keyword.get(:source) |> to_string()
+    geojson_source = Util.module_source_path(Data.GeoJSON)
     articles = Path.wildcard("data/articles/**/*.ex")
 
     Util.IO.staleness(

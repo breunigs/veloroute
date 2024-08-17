@@ -1,5 +1,16 @@
 defmodule Util do
   @doc """
+  Given a module, it returns the path where the module is defined
+
+      iex> Util.module_source_path(Util)
+      File.cwd!() <> "/lib/util/generic.ex"
+  """
+  @spec module_source_path(module()) :: binary()
+  def module_source_path(module) when is_atom(module) and not is_nil(module) do
+    module.__info__(:compile) |> Keyword.get(:source) |> to_string()
+  end
+
+  @doc """
   Returns a list of shell commands to make the run command lowest prio
   """
   @spec low_priority_cmd_prefix(non_neg_integer()) :: [binary()]

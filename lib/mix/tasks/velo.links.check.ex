@@ -132,7 +132,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
   defp auto_replace(module, original, replacement)
        when is_module(module) and is_binary(original) and
               is_binary(replacement) do
-    path = path(module)
+    path = Util.module_source_path(module)
     input = File.read!(path)
     url_replace_regex = ~r/(?<=[\s"{(])#{Regex.escape(original)}(?=[\s"})])/
     output = String.replace(input, url_replace_regex, replacement)
@@ -145,7 +145,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
   end
 
   defp show(entry) do
-    entry = Map.put(entry, :path, path(entry.source))
+    entry = Map.put(entry, :path, Util.module_source_path(entry.source))
     entry = Map.put(entry, :status, entry.source.type())
 
     keys = Map.keys(entry)
@@ -171,9 +171,5 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
       IO.puts("#{prefix}: #{suffix}")
     end)
-  end
-
-  defp path(module) when is_module(module) do
-    module.__info__(:compile) |> Keyword.get(:source) |> to_string
   end
 end
