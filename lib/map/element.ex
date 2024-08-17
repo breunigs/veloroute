@@ -4,9 +4,17 @@ defmodule Map.Element do
   @type indexed_collection() :: %{binary() => single()}
   @typep flexible_collection() :: collection() | indexed_collection()
 
+  @compile {:inline, filter_by_tag: 3}
   @spec filter_by_tag(flexible_collection(), atom(), binary() | [binary()]) :: [single()]
+  def filter_by_tag(map, tag, value) when is_map(map) and is_atom(tag) and is_binary(value) do
+    Enum.reduce(map, [], fn {_id, elem}, acc ->
+      if elem.tags[tag] == value, do: [elem | acc], else: acc
+    end)
+    |> Enum.reverse()
+  end
+
   def filter_by_tag(map, tag, value) when is_map(map),
-    do: map |> Map.values() |> filter_by_tag(tag, value)
+    do: map |> Map.values() |> filter_by_tag(tag, List.wrap(value))
 
   def filter_by_tag(list, tag, value) when is_binary(value),
     do: filter_by_tag(list, tag, List.wrap(value))
