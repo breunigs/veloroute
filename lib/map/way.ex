@@ -9,6 +9,8 @@ defmodule Map.Way do
           bbox: Geo.BoundingBox.t() | nil
         }
 
+  def get_and_update(way, :tags, fun), do: Map.get_and_update(way, :tags, fun)
+
   def style_tags, do: [:oneway, :color, :color_faded]
 
   @spec reverse(t()) :: t()

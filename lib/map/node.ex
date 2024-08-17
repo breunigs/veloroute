@@ -8,6 +8,8 @@ defmodule Map.Node do
 
   @enforce_keys [:lon, :lat]
   defstruct [:id, :lon, :lat, :tags]
+
+  def get_and_update(node, :tags, fun), do: Map.get_and_update(node, :tags, fun)
 end
 
 defimpl Geo.Interpolate, for: Map.Node do
