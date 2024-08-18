@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Veringstrasse do
   def title(), do: "Veringstraße (Veloroute 11)"
 
   def start(), do: ~d[2024-05-21]
-  def stop(), do: ~d[2024-08-09]
+  def stop(), do: ~d[2024-10-07]
   def construction_site_id_hh(), do: [803_402]
 
   def type(), do: :construction
