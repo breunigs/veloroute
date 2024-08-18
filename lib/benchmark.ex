@@ -37,6 +37,10 @@ defmodule Benchmark do
       |> String.to_charlist()
       |> :os.cmd()
 
+      "sort \"#{filename}.out\" | uniq -c | sort -n -k1 | sort -k2 | awk '{print $2, \"\", $1}' | ./deps/eflame/stack_to_flame.sh > \"#{filename}_sorted.svg\""
+      |> String.to_charlist()
+      |> :os.cmd()
+
       File.rm("#{filename}.out")
       x
     end
