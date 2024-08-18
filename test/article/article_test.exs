@@ -176,14 +176,12 @@ defmodule ArticleTest do
   test "articles have per-language summaries" do
     missing_summaries =
       Article.List.all()
-      |> Enum.filter(fn art ->
-        summary_count =
-          art.languages()
-          |> Enum.map(&art.summary(&1))
-          |> Enum.uniq()
-          |> length()
+      |> Enum.reject(fn art ->
+        summaries = Enum.map(art.languages(), &art.summary(&1))
+        count = summaries |> Enum.uniq() |> length()
+        empty = Enum.all?(summaries, &(&1 == ""))
 
-        summary_count != length(art.languages())
+        empty || count == length(art.languages())
       end)
 
     assert [] == missing_summaries
