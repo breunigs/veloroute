@@ -9,7 +9,9 @@ defmodule Search.Meilisearch.Nominatim do
 
   @impl true
   def updated_at() do
-    with {:ok, %{mtime: posix}} <- File.stat(source(), time: :posix),
+    depends = [source(), Util.module_source_path(Data.OsmTagToHuman), __ENV__.file]
+
+    with %{newest: %{mtime: posix}} <- Util.IO.modification_times(depends),
          {:ok, datetime} <- DateTime.from_unix(posix) do
       datetime
     else
