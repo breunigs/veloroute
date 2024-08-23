@@ -222,6 +222,7 @@ defmodule Search.Meilisearch.Nominatim do
     |> Enum.join(", ")
   end
 
+  @abbreviations %{"Str." => ["Straße"]}
   @impl true
   def config() do
     # i.e. invert the map
@@ -231,6 +232,8 @@ defmodule Search.Meilisearch.Nominatim do
           Map.update(acc, human, [tag], &[tag | &1])
         end)
       end)
+
+    synonyms = Map.merge(synonyms, @abbreviations)
 
     %{
       displayedAttributes:
