@@ -12,6 +12,8 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
 
   def tags(), do: ["1", "A22", "A022.2", "A22.2"]
 
+  def start(), do: ~d[2027Q2]
+
   def links(_assigns) do
     [
       {"Bauzeiträume", "Oktober 2023",

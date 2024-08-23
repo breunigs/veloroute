@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Manteuffelstrasse do
       "Die Manteuffelstraße wird Fahrradstraße. Die Humannstraße wird KFZ-Einbahnstraße in Richtung Blankenese und teils ebenfalls Fahrradstraße. Die Radroute erhält durchgängig Vorfahrt."
 
   def type(), do: :planned
-  def start(), do: ~d[2024-06]
+  def start(), do: ~d[2024-10]
 
   def tags(), do: ["1", "A22", "A22.1", "A022.1"]
 

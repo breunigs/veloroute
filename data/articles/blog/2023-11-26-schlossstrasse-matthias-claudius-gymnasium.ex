@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.SchlossstrasseMatthiasClaudiusGymnasium do
 
   def start(), do: ~d[2024-07-18]
   def stop(), do: ~d[2024-08-30]
-  def construction_site_id_hh(), do: [885_611]
+  def construction_site_id_hh(), do: [885_611, 894_133]
 
   def type(), do: :construction
 

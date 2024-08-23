@@ -8,12 +8,14 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
   def start(), do: ~d[2021-02-11]
   def stop(), do: ~d[2024-07]
 
-  def type(), do: :construction
+  def type(), do: :finished
   # def construction_site_id_hh(), do: [14393]
   def tags(), do: ["1", "2"]
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel zur Fertigstellung", ~d[2024-08],
+       "https://www.abendblatt.de/hamburg/hamburg-mitte/article407026877/kaiser-wilhelm-strasse-wieder-frei-aufatmen-in-hamburger-city.html"},
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/kaiser-wilhelm-strasse"},
       {"Baustelleninfo", ~d[2024-06],
        "https://lsbg.hamburg.de/resource/blob/783452/c417c82f48a755c3bec1f54d17eb2550/kaiser-wilhelm-strasse-anliegerinformation-juni-2024-data.pdf"},

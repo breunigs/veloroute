@@ -636,7 +636,7 @@ defmodule Components.TagHelpers do
     else
       ~H"""
       <h4>Vermutete Bauzeit</h4>
-      <p><em><%= @range %></em> – <span id="buildTimeGuess">der Zeitraum ist nur zur groben Orientierung. Durch Abstimmung der Baustellen untereinander („Baustellenkoordination“), politische Beschlüsse die eine Neuplanung erfordern, Personalmangel in den Ämtern und ähnlichem verschieben sich die Termine häufig. Für tagesaktuelle Infos siehe <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de → Verkehr → Stau & Baustellen</.a>.</span></p>
+      <p><em><%= @range %></em> – <span id="buildTimeGuess">der Zeitraum ist nur zur groben Orientierung. Durch Abstimmung der Baustellen untereinander („Baustellenkoordination“), politische Beschlüsse die eine Neuplanung erfordern, Personalmangel in den Ämtern und ähnlichem verschieben sich die Termine häufig. Für tagesaktuelle Infos siehe <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de/baustellen</.a>.</span></p>
       """
     end
   end

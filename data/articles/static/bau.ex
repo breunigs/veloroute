@@ -32,7 +32,7 @@ defmodule Data.Article.Static.Bau do
     ~H"""
     <p>Die Zeitangaben zu den Baustellen und geplanten Baumaßnahmen stellt meist nur eine grobe Orientierung dar. In der Praxis verschieben sich die genauen Termine durch Baustellenkoordination oder wenn es Streit um Vorhaben gibt. Auch bekomme ich längst nicht alle Änderungen mit – wenn du Fehler findest, bitte <.mailto>schreib mir</.mailto> und ich korrigiere das.</p>
 
-    <p>Für tagesaktuelle Baustelleninfos, siehe auch <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de → Verkehr → Stau & Baustellen</.a>.</p>
+    <p>Für tagesaktuelle Baustelleninfos, siehe auch <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de/baustellen</.a>.</p>
 
     <form>
       <input type="checkbox" name="limit-to-map-bounds" value="limit-to-map-bounds" id="limit-to-map-bounds" phx-change="limit-to-map-bounds" {@checkbox_attr}>
