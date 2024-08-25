@@ -126,8 +126,8 @@ defmodule Util.IO do
     target_mod = modification_times(target)
     dep_mod = modification_times(dependencies)
 
-    tgt = Path.relative_to_cwd(target_mod.oldest.path)
-    dep = Path.relative_to_cwd(dep_mod.newest.path)
+    tgt = if target_mod.oldest, do: Path.relative_to_cwd(target_mod.oldest.path)
+    dep = if dep_mod.newest, do: Path.relative_to_cwd(dep_mod.newest.path)
 
     cond do
       target_mod.oldest == nil ->
@@ -154,6 +154,8 @@ defmodule Util.IO do
     |> Enum.map(fn path ->
       with {:ok, %{mtime: mtime}} <- File.lstat(path, time: :posix) do
         %{mtime: mtime, path: path}
+      else
+        _ -> nil
       end
     end)
     |> Enum.reduce(%{oldest: nil, newest: nil}, fn file, %{oldest: oldest, newest: newest} ->
