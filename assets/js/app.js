@@ -18,7 +18,6 @@ window.pushEvent = pushEvent;
 let Hooks = {};
 Hooks.control = {
   mounted() {
-    // console.log("mounted");
     window.dispatchEvent(new Event("global:mounted"));
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
 
@@ -34,7 +33,6 @@ Hooks.FocusSearchField = {
   mounted() {
     this.el.focus();
     this.el.selectionStart = this.el.selectionEnd = this.el.value.length;
-    // this.el.select();
   }
 }
 
@@ -98,25 +96,6 @@ Hooks.ScrollReset = {
   updated() {
     // console.log("scroll", "updated")
     this.maybeRestoreScroll()
-  }
-}
-
-Hooks.LazyLoadJS = {
-  mounted() {
-    this.el.pushEvent = (event, args) => {
-      this.pushEventTo(this.el, event, args)
-    }
-    this.check()
-  },
-  reconnected() {
-    this.check()
-  },
-  check() {
-    const path = this.el.dataset.lazyLoadJs;
-    import(path).then(() => {
-      const cb = this.el.dataset.lazyLoadCallback;
-      if (cb) window[cb](this.el);
-    })
   }
 }
 
