@@ -234,7 +234,7 @@ defmodule Search.Meilisearch.Runner do
           "--log-level",
           "WARN",
           "--http-payload-size-limit",
-          "1Gb",
+          "10Gb",
           "--db-path",
           state.db_path,
           "--master-key",
