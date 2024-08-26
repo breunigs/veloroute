@@ -9,13 +9,29 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
       "2,5m breite Radfahrstreifen entlang der Radroute, die an Bushalten unterbrochen sind. Entlang der Bezirksroute 2,0m breite Hochbordradwege. In der Kreuzung indirektes Linksabbiegen und Rotfärbung."
 
   def start(), do: ~d[2025]
-  def stop(), do: ~d[2025]
+  def stop(), do: ~d[2026]
 
   def type(), do: :planned
   def tags(), do: ["7", "br-wandsbek-w8"]
 
+  @attrib [
+    {"SHP Ingenieure", "https://www.shp-ingenieure.de/"},
+    {"Bezirksamt Wandsbek, Fachamt Management des öffentlichen Raumes",
+     "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/ihr-bezirksamt/aufgaben-und-struktur/dezernat-wirtschaft-bauen-umwelt-75138"}
+  ]
+  def map_image do
+    Data.MapImage.new(__MODULE__, @attrib, {
+      %{lat: 53.581787035, lon: 10.125138048},
+      %{lat: 53.583184164, lon: 10.127097343},
+      %{lat: 53.582622593, lon: 10.128233480},
+      %{lat: 53.581225464, lon: 10.126274185}
+    })
+  end
+
   def links(_assigns) do
     [
+      {"fertiger Entwurf; Lageplan und Erläuterung", ~d[2024-08],
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021206"},
       {"1. Entwurf; Lageplan und Erläuterung", "Januar 2024",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1020094"}
     ]
@@ -26,7 +42,7 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr wird meist auf 1,0m bis 1,5m breiten <.ref>Hochbordradwegen</.ref> zur Kreuzung hingeführt. Die Furten über die Kreuzung liegen dabei leicht versetzt, sodass sich jeweils S-Kurven ergeben.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Entlang der Radroute 7 sollen 2,5m breite Radfahrstreifen aufgemalt werden. Sie führen geradlinig über die Kreuzung.</p>
 
     <p>Die Bushaltestellen verschieben sich jeweils hinter die Kreuzung. Der Radfahrstreifen wird für die Aufstellfläche der Busse unterbrochen. Man muss dann entweder hinter dem Bus warten, oder sich in den KFZ-Verkehr einordnen um vorbeizufahren.</p>
