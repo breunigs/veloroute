@@ -17,9 +17,9 @@ defmodule Feed do
 
   defp articles() do
     Article.List.category("Blog")
-    |> Article.List.sort(:asc)
+    |> Article.List.sort(:desc)
     |> Enum.reject(&(Date.compare(&1.updated_at(), Date.utc_today()) == :gt))
-    |> Enum.take(-10)
+    |> Enum.take(10)
     |> Enum.map(&article/1)
   end
 
