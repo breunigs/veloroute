@@ -9,6 +9,8 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   @wayback_timeout 160_000
   @download_timeout 60_000
 
+  @bauweiser_prefix "bauweiser_"
+
   @type entry :: {atom(), binary(), binary()}
 
   @shortdoc "Mirrors structured links for articles"
@@ -18,8 +20,15 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     Article.List.all()
     |> Stream.flat_map(fn art ->
       seen = mirrored[art.name()] || []
+      links = Article.Decorators.apply_with_assigns(art, :links)
 
-      Article.Decorators.apply_with_assigns(art, :links)
+      construction =
+        Enum.map(
+          art.construction_site_id_hh(),
+          &{"#{@bauweiser_prefix}#{&1}", Mix.Tasks.Velo.Feeds.Bauweiser.url_for_id(&1)}
+        )
+
+      (links ++ construction)
       |> Stream.reject(&seen?(&1, seen))
       |> Stream.flat_map(&extract/1)
       |> Stream.reject(&seen?(&1, seen))
@@ -158,6 +167,10 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     |> Enum.with_index()
     |> Enum.map(fn {href, index} -> {"nested_heex_#{index}", href} end)
     |> Enum.flat_map(&extract/1)
+  end
+
+  defp extract({@bauweiser_prefix <> _rest = name, url}) do
+    [{:download, "#{name}.json", url}]
   end
 
   # ignores

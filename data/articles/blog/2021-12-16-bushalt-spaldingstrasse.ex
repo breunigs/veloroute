@@ -12,9 +12,9 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   def links(_assigns) do
     [
       {"Erläuterungen zum 1. Entwurf",
-       "https://via-bus.hamburg.de/contentblob/15694444/b898b9d559fd00970b6a08e013e7ce65/data/57-mb3-bushaltestellen-spaldingstrasse-erstverschickung.pdf"},
+       "https://web.archive.org/web/20240305081810/https://via-bus.hamburg.de/contentblob/15694444/b898b9d559fd00970b6a08e013e7ce65/data/57-mb3-bushaltestellen-spaldingstrasse-erstverschickung.pdf"},
       {"Lageplan 1. Entwurf",
-       "https://via-bus.hamburg.de/contentblob/15694450/bc240509cf25755ff6820b7214add613/data/metrobus-3-vereinfachter-lageplan-zur-erstverschickung-haltestellen-spaldingstrasse.pdf"}
+       "https://web.archive.org/web/20240616103610/https://via-bus.hamburg.de/contentblob/15694450/bc240509cf25755ff6820b7214add613/data/metrobus-3-vereinfachter-lageplan-zur-erstverschickung-haltestellen-spaldingstrasse.pdf"}
     ]
   end
 

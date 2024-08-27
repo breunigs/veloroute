@@ -636,8 +636,8 @@ defmodule Components.TagHelpers do
     else
       if lang == "en" do
         ~H"""
-        <h4>Suspected construction period</h4>
-        <p><em><%= @range %></em> – <span id="buildTimeGuess">the estimate is a rough guide only. Due to coordination of construction times, political decisions which require re-planning, shortage of staff and similar reasons, the actual construction period changes often. For daily updated infos, see <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de/baustellen</.a>.</span></p>
+        <h4 lang="en">Suspected construction period</h4>
+        <p lang="en"><em><%= @range %></em> – <span id="buildTimeGuess">the estimate is a rough guide only. Due to coordination of construction times, political decisions which require re-planning, shortage of staff and similar reasons, the actual construction period changes often. For daily updated infos, see <.a href="https://www.hamburg.de/verkehr/stau-und-baustellen/baustellen-826026">hamburg.de/baustellen</.a>.</span></p>
         """
       else
         ~H"""

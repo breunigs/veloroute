@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.WiesendammWest do
   def tags(), do: ["br-nord-n6"]
 
   @attrib {"Bezirksamt Hamburg-Nord",
-           "https://www.hamburg.de/hamburg-nord/dezernat-wirtschaft-bauen-umwelt/"}
+           "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
   def map_image do
     [
       Data.MapImage.new(__MODULE__, @attrib, 1, {

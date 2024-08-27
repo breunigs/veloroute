@@ -4,14 +4,27 @@ defmodule Mix.Tasks.Velo.Links.Check do
   use Memoize
   import Guards
 
+  @timeout_ms 2 * 60 * 1_000
+  plug Tesla.Middleware.Timeout, timeout: @timeout_ms
+  adapter(Tesla.Adapter.Hackney, recv_timeout: @timeout_ms)
+
   @requirements ["app.start"]
 
   @shortdoc "Check structured links for 404s"
   def run(_) do
     Article.List.all()
     |> Stream.flat_map(fn art ->
-      art
-      |> Article.Decorators.apply_with_assigns(:links)
+      links = Article.Decorators.apply_with_assigns(art, :links)
+
+      map_image =
+        art.map_image()
+        |> Kernel.||([])
+        |> List.wrap()
+        |> Enum.map(& &1.attribution)
+        |> List.flatten()
+        |> Enum.uniq()
+
+      (links ++ map_image)
       |> Enum.flat_map(&extract/1)
       |> Enum.map(&Map.put(&1, :source, art))
     end)
@@ -96,7 +109,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
       {:error, reason} ->
         Map.merge(entry, %{
           archive: Util.ArchiveOrg.mirror(url),
-          reason: "unexpected error: #{reason}"
+          reason: "unexpected error: #{inspect(reason)}"
         })
     end
   end

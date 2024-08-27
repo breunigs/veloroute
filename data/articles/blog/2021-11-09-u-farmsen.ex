@@ -19,9 +19,9 @@ defmodule Data.Article.Blog.UFarmsen do
       {"1. Entwurf, Lageplan und Erläuterungsbericht", "Oktober 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1019655"},
       {"Präsentation zum Umbau",
-       "https://via-bus.hamburg.de/contentblob/15542692/738ee06d41a71392fa2108465cedcd68/data/praesentation-online-dialogrunde-vom-11-08-2021.pdf"},
+       "https://web.archive.org/web/20240518131205/https://via-bus.hamburg.de/contentblob/15542692/738ee06d41a71392fa2108465cedcd68/data/praesentation-online-dialogrunde-vom-11-08-2021.pdf"},
       {"Dokumentation zur Online-Dialogrunde",
-       "https://via-bus.hamburg.de/contentblob/15542682/aee1379cbb674d255d0dcc376ea1b401/data/dokumentation-online-dialogrunde-vom-11-08-2021.pdf"}
+       "https://web.archive.org/web/20240517235009/https://via-bus.hamburg.de/contentblob/15542682/aee1379cbb674d255d0dcc376ea1b401/data/dokumentation-online-dialogrunde-vom-11-08-2021.pdf"}
     ]
   end
 

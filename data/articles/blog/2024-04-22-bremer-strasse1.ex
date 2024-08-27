@@ -87,7 +87,11 @@ defmodule Data.Article.Blog.BremerStrasse1 do
   end
 
   def links(_assigns) do
-    [{"Infoseite der Stadt", "https://lsbg.hamburg.de/bremer-strasse"}]
+    [
+      {"Pressemitteilung zum Umbaustart", ~d[2024-08],
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/2024-08-27-bvm-bremer-strasse-959526"},
+      {"Infoseite der Stadt", "https://lsbg.hamburg.de/bremer-strasse"}
+    ]
   end
 
   def text(assigns) do

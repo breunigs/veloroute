@@ -1,15 +1,16 @@
 defmodule Data.Article.Blog.Wagnerstrasse do
   use Article.Default
 
-  def start(), do: ~d[2024-08-01]
-  def stop(), do: ~d[2024-12-31]
-  def title(), do: "Wagnerstraße (Eilenau bis Wandsbeker Chausse, Veloroute 13, Bezirksroute W1)"
+  def title(), do: "Wagnerstraße (Eilenau bis Wandsbeker Chaussee, Veloroute 13, Bezirksroute W1)"
 
   def summary(),
     do:
       "2,0m breite Radfahrstreifen. Ein kurzes Stück wird Hochbordradweg gegen Kurvenschneiden durch KFZ."
 
-  def type(), do: :planned
+  def start(), do: ~d[2024-08-26]
+  def stop(), do: ~d[2024-12-13]
+  def construction_site_id_hh(), do: [959_154]
+  def type(), do: :construction
 
   def tags(), do: ["13", "br-wandsbek-w1"]
 

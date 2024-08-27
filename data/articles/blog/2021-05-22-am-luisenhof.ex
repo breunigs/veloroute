@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
       {"Erläuterungen und Lageplan", "2023, Überarbeitung",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018980"},
       {"Erläuterungen und Lageplan", "2022, veralteter Entwurf",
-       "https://via-bus.hamburg.de/contentblob/16224440/9dbb0168cfd3fba685218fc5e164d159/data/03-mb26-u-farmsen-schlussverschickung-ueberliegerplaetze.pdf"}
+       "https://web.archive.org/web/20240527122028/https://via-bus.hamburg.de/contentblob/16224440/9dbb0168cfd3fba685218fc5e164d159/data/03-mb26-u-farmsen-schlussverschickung-ueberliegerplaetze.pdf"}
     ]
   end
 

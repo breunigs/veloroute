@@ -17,6 +17,10 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.Timeout, timeout: 60_000
 
+  def url_for_id(id) do
+    "#{@base}id/#{id}"
+  end
+
   @shortdoc "Checks for updates in Bauweiser and updates articles that reference the IDs"
   def run(_) do
     seen_ids = load_seen()
@@ -59,7 +63,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
         def stop(), do: ~d[#{upd[:stop]}]
         def construction_site_id_hh(), do: [#{id}]
         velo: #{upd[:velo]}
-        curl -s https://bauweiser.hamburg.de/api/steckbriefeweb/id/#{upd[:id]} | jq
+        curl -s #{url_for_id(upd[:id])} | jq
       """)
 
       case IO.gets("Continue?") do

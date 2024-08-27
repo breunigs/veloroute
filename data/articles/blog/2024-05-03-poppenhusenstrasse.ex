@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
   def tags(), do: ["5"]
 
   @attrib {"Bezirksamt Hamburg-Nord",
-           "https://www.hamburg.de/hamburg-nord/dezernat-wirtschaft-bauen-umwelt/"}
+           "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
   def map_image do
     Data.MapImage.new(__MODULE__, @attrib, {
       %{lat: 53.585472656, lon: 10.042321296},
