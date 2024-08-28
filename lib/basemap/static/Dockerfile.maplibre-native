@@ -1,18 +1,19 @@
 # specify which branch or commit sha to build
-ARG MLN_COMMIT=3b6d4c5a9715b712c67fc5afc1a9f2ff2569cb20
+ARG MLN_COMMIT=ff2c1e8e73e6ead8e11556bfb8b838939b94ea6a
 ARG DEBIAN_VERSION
 ARG LOW_PRIO="/usr/bin/chrt --idle 0 /usr/bin/nice -n19 /usr/bin/ionice --class idle"
 FROM debian:${DEBIAN_VERSION} AS runner-base
 
 # keep runtime dependencies in sync with Dockerfile.release
-RUN apt-get -y update \
-  && apt-get -y install --no-install-recommends \
-  libcurl4 \
-  libglx0 \
+RUN \
+  sed -i 's/bookworm/testing/g' /etc/apt/sources.list.d/debian.sources \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
   libicu[0-9]+$ \
+  libcurl4t64 \
   libjpeg62-turbo \
   libopengl0 \
-  libpng16-16 \
+  libpng16-16t64 \
   libuv1 \
   libwebp[0-9]+$ \
   xauth \
