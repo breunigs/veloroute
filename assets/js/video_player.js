@@ -11,20 +11,6 @@ window.liveSocket.getSocket().onClose(e => {
   wasSocketDisconnected = true
 })
 
-let videoMeta = {}
-window.addEventListener("phx:video_meta", e => {
-  console.log("updating video meta", e.detail)
-  Object.assign(videoMeta, e.detail)
-  maybeUpdatePoster(e.detail)
-  setVideo(wasSocketDisconnected)
-  maybeTimeUpdate(e.detail)
-
-  video.loop = videoMeta.end_action == "loop";
-  wasSocketDisconnected = false
-
-  if (preloadedHlsJs) updateVideoElement(true)
-});
-
 let video
 function initVideoElement() {
   if (video === document.getElementById('videoInner')) return
@@ -55,6 +41,21 @@ function initVideoElement() {
 }
 initVideoElement()
 window.addEventListener("global:mounted", initVideoElement)
+
+const posterURL = video.poster.split("/")
+let videoMeta = { hash: posterURL.at(-2), start: posterURL.at(-1) }
+window.addEventListener("phx:video_meta", e => {
+  console.log("updating video meta", e.detail)
+  Object.assign(videoMeta, e.detail)
+  maybeUpdatePoster(e.detail)
+  setVideo(wasSocketDisconnected)
+  maybeTimeUpdate(e.detail)
+
+  video.loop = videoMeta.end_action == "loop";
+  wasSocketDisconnected = false
+
+  if (preloadedHlsJs) updateVideoElement(true)
+});
 
 // allow HLS direct play only on iOS/OSX devices, because I found Android phones
 // that claim they can parse m3u8 but then fail without fallback.
