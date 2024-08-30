@@ -17,6 +17,9 @@ RUN \
   xvfb \
   && rm -rf /var/lib/apt/lists/*
 
+# map-libre-native shader cache
+RUN mkdir -p /.cache && chmod og+wr -R /.cache/
+
 ENV LANG=C.UTF-8
 
 ADD --chmod=0777 _build/tmp_release_build /app/
