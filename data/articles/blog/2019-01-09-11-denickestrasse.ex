@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.Denickestrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Vollsperrung im September/Oktober 2024", ~d[2024-08],
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/aktuelles/pressemeldungen/vollsperrung-denickestrasse-960428"},
       {"Pressemitteilung geplante Sperrungen Denickestraße", "April 2024",
        "https://web.archive.org/web/20240410052703/https://www.hamburg.de/harburg/pressemeldungen/18482700/ausbau-veloroute-11-eissendorf/"},
       {"Vergabe Umbau Kreuzung mit Weusthoffstraße", "Januar 2024",

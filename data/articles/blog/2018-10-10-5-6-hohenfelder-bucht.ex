@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.HohenfelderBucht do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", ~d[2024-08],
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/alsterbruecken-sind-fertiggestellt-treppenanlage-am-ostufer-im-bau-960066"},
       {"Baustelleninfo", "Juli 2024",
        "https://lsbg.hamburg.de/resource/blob/902444/de19bdc94297b6150e156feda9d9b37f/hohenfelder-bucht-anliegerinformation-juli-2024-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/hohenfelder-bucht"},
