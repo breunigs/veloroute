@@ -77,7 +77,8 @@ defmodule Map.Parser do
     {:ok, %{state | active: {:nodes, node}}}
   end
 
-  def handle_event(:end_element, "node", %{active: {:nodes, :deleted}} = state), do: {:ok, state}
+  def handle_event(:end_element, "node", %{active: {:nodes, :deleted}} = state),
+    do: {:ok, %{state | active: nil}}
 
   def handle_event(:end_element, "node", %{active: {:nodes, elem}} = state) do
     {:ok, %{state | nodes: Map.put(state.nodes, elem.id, elem), active: nil}}
