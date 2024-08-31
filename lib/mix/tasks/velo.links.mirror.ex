@@ -15,11 +15,10 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @shortdoc "Mirrors structured links for articles"
   def run(_) do
-    mirrored = already_mirrored()
-
     Article.List.all()
-    |> Stream.flat_map(fn art ->
-      seen = mirrored[art.name()] || []
+    |> Task.async_stream(&{&1, already_mirrored(&1)}, timeout: :infinity, ordered: false)
+    |> Stream.map(&elem(&1, 1))
+    |> Stream.flat_map(fn {art, seen} ->
       links = Article.Decorators.apply_with_assigns(art, :links)
 
       construction =
@@ -28,7 +27,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
           &{"#{@bauweiser_prefix}#{&1}", Mix.Tasks.Velo.Feeds.Bauweiser.url_for_id(&1)}
         )
 
-      (links ++ construction)
+      Stream.concat(links, construction)
       |> Stream.reject(&seen?(&1, seen))
       |> Stream.flat_map(&extract/1)
       |> Stream.reject(&seen?(&1, seen))
@@ -40,19 +39,17 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     |> Enum.map(&grab_and_archive(&1))
   end
 
-  @spec already_mirrored() :: %{binary() => [binary()]}
-  def already_mirrored() do
-    Path.join(@path, "*/**/")
+  @spec already_mirrored(atom()) :: [binary()]
+  def already_mirrored(art) do
+    Path.join([@path, art.name(), "**"])
     |> Path.wildcard()
     |> Enum.map(&Path.relative_to(&1, @path))
     |> Enum.map(fn relpath ->
-      dir = Path.dirname(relpath)
       file = Path.basename(relpath)
       # we expect the md5 hash to be in 2nd place:
       # <date> <md5> <method> <name>.<ext>
-      {dir, Enum.at(String.split(file, " "), 1)}
+      Enum.at(String.split(file, " "), 1)
     end)
-    |> Enum.group_by(&elem(&1, 0), &elem(&1, 1))
   end
 
   @spec extract({binary(), binary(), binary()}) :: [entry()]
