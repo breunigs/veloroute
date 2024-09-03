@@ -47,8 +47,10 @@ defmodule Data.Article.Blog.BernerStrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", "Mai 2023",
-       "https://lsbg.hamburg.de/resource/blob/784428/110dfdb496c7273a479f8e3b358ce862/fasanenweg-berner-strasse-anliegerinformation-mai-2023-data.pdf"},
+      {"Baustelleninfo", ~d[2024-09],
+       "https://lsbg.hamburg.de/resource/blob/961996/ceee123a94f1ae729698475730970d7f/berner-strasse-fasanenweg-berner-bruecke-anliegerinformation-august-2024-data.pdf"},
+      # {"Baustelleninfo", "Mai 2023",
+      #  "https://lsbg.hamburg.de/resource/blob/784428/110dfdb496c7273a479f8e3b358ce862/fasanenweg-berner-strasse-anliegerinformation-mai-2023-data.pdf"},
       {"Pressemitteilung zum Baustart", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16807636/2023-01-02-bvm-grundinstandsetzung-berner-strasse/"},
       {"Erläuterungsbericht und Lagepläne/Karten", "Januar 2023",

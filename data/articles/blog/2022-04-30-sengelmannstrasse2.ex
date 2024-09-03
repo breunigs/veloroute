@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
 
   def type(), do: :construction
 
-  def start(), do: ~d[2022-02]
+  def start(), do: ~d[2024-02-12]
   def stop(), do: ~d[2024-09-15]
   def construction_site_id_hh(), do: [393_350]
 

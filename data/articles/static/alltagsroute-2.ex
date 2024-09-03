@@ -7,8 +7,10 @@ defmodule Data.Article.Static.Alltagsroute2 do
 
   def color(), do: "#b2211d"
 
-  def summary(),
-    do: "Alltagsroute 2 führt vom Rathaus nach Eidelstedt"
+  def languages(), do: ~w[de en]
+
+  def summary("de"), do: "Alltagsroute 2 führt vom Rathaus nach Eidelstedt"
+  def summary("en"), do: "Commuter route 2 connects town hall and Eidelstedt"
 
   def tags(), do: [id()]
 
@@ -73,6 +75,15 @@ defmodule Data.Article.Static.Alltagsroute2 do
       }
     ]
 
+  def links(%{lang: "en"} = _assigns) do
+    [
+      {"official info page of the city",
+       "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418914/veloroute-2/"},
+      {"Komoot route planner: towards Eidelstedt", "https://www.komoot.com/de-de/tour/204274161"},
+      {"route in the OpenStreetMap", "https://www.openstreetmap.org/relation/194841"}
+    ]
+  end
+
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
@@ -82,9 +93,9 @@ defmodule Data.Article.Static.Alltagsroute2 do
     ]
   end
 
-  def text(assigns) do
+  defp routing(assigns) do
     ~H"""
-     <table class="routing">
+    <table class="routing">
       <tr>
         <td></td>
         <td rowspan="9" style="background-image: url(/images/route2.svg)">
@@ -136,6 +147,34 @@ defmodule Data.Article.Static.Alltagsroute2 do
         <td class="dir"><.m bounds="9.827003,53.605329,9.903607,53.640796">(Halstenbek)</.m></td>
       </tr>
     </table>
+    """
+  end
+
+  def text(%{lang: "en"} = assigns) do
+    ~H"""
+    <.routing/>
+
+    <p lang="en">Daily commuter route 2 (in German: <span lang="de" translate="no">Veloroute 2</span> or <span lang="de" translate="no">Radroute 2</span>) starts at Hamburg's town hall and passes through <span lang="de" translate="no">Neustadt</span> in an arc. It makes a right turn in <.v bounds="9.959199,53.553031,9.979629,53.562268" lon={9.968639} lat={53.557447} dir="forward" ref="2">Feldstraße</.v> and passes through the <span lang="de" translate="no">Schanzenviertel</span>. After <.v bounds="9.959199,53.566871,9.969102,53.572313" lon={9.963436} lat={53.569592} dir="forward" ref="2">Christuskirche</.v> the route uses various side streets, which roughly run in parallel to the car-heavy <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> and <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m>.</p>
+
+    <h4 lang="en">Following the route</h4>
+    <p lang="en">There is no signage for this route. You'll need a satnav or learn the route by heart.</p>
+
+    <h4 lang="en">Comfort / Quality</h4>
+    <p lang="en">All paths are suitable for all weather conditions. You'll ride mostly on asphalt, although there are some sections with flattened cobblestone.</p>
+
+    <h4 lang="en">Opinion</h4>
+    <p>The route is so-so. As an adult, you're unlikely to run into issues and will have a decent travel despite the many traffic lights. Unfortunately most parts are not kid-friendly, like the already modernized <.v bounds="9.960613,53.56667,9.967385,53.570781" lon={9.965245} lat={53.566681} dir="forward" ref="2">Weidenallee</.v>.</p>
+
+    <p>Most common issue on the route are close passes by drivers and opposite car traffic reducing rider comfort. Only part of that is due to individual misbehaviour. Often it was lacking political will to properly reduce car traffic on this cycle route.</p>
+
+    <h4>Externe Links</h4>
+    <.structured_links ref={@ref} gpx={true} lang="en"/>
+    """
+  end
+
+  def text(assigns) do
+    ~H"""
+    <.routing/>
 
     <p>Vom Rathaus aus führt die Alltagsroute 2 (auch: Veloroute 2 oder Radroute 2) in einem Bogen durch die Neustadt. In der <.v bounds="9.959199,53.553031,9.979629,53.562268" lon={9.968639} lat={53.557447} dir="forward" ref="2">Feldstraße</.v> knickt die Route Richtung Norden ab und durchquert das Schanzenviertel. Nach der <.v bounds="9.959199,53.566871,9.969102,53.572313" lon={9.963436} lat={53.569592} dir="forward" ref="2">Christuskirche</.v> führt die Route über verschiedene Nebenstraßen, die grob parallel zur <.m bounds="9.942344,53.566354,9.968208,53.574782">Fruchtallee</.m> bzw. <.m bounds="9.908829,53.570999,9.945344,53.602926">Kieler Straße</.m> verlaufen.</p>
 
@@ -148,7 +187,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
     <h4>Meinung</h4>
     <p>Die Route ist durchwachsen. Als Erwachsener kommt man trotz vieler Ampeln gut durch und wird in der Regel keine Probleme haben. Allerdings sind die wenigsten Abschnitte kindgerecht, wie z.B. die bereits umgebaute <.v bounds="9.960613,53.56667,9.967385,53.570781" lon={9.965245} lat={53.566681} dir="forward" ref="2">Weidenallee</.v>.</p>
 
-    <p>Häufigstes Problem auf der Strecke sind zu dicht vorbeifahrende oder entgegenkommende Autos, die den Fahrkomfort senken. Das ist teilweise dem Fehlverhalten der Beteiligten zuzuschreiben. Oft fehlte auch der politische Mut den KFZ-Verkehr auf andere Straßen zu verlagern.</p>
+    <p>Häufigstes Problem auf der Strecke sind zu dicht vorbeifahrende oder entgegenkommende Autos, die den Fahrkomfort senken. Das ist teilweise dem Fehlverhalten der Beteiligten zuzuschreiben. Oft fehlte auch der politische Mut den KFZ-Verkehr auf der Radroute zu verringern.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>
