@@ -4,6 +4,9 @@ defmodule Mix.Tasks.Velo.Links.Check do
   use Memoize
   import Guards
 
+  # URLs that indicate a "404" but send a different status code
+  @fake_404s ["fbhh-evergabe.web.hamburg.de/evergabe.bieter/ErrorMessage.aspx"]
+
   @timeout_ms 2 * 60 * 1_000
   plug Tesla.Middleware.Timeout, timeout: @timeout_ms
   adapter(Tesla.Adapter.Hackney, recv_timeout: @timeout_ms)
@@ -85,13 +88,22 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
       {:ok, %{status: 302} = resp} ->
         new_path = Tesla.get_header(resp, "location")
-        result = head_or_get(new_path)
+        is_fake_404 = Enum.any?(@fake_404s, &String.contains?(new_path, &1))
 
-        if !match?(@success, result) do
+        if is_fake_404 do
           Map.merge(entry, %{
             archive: Util.ArchiveOrg.mirror(url),
-            reason: "broken redirect chain (→ #{abs_location_header(resp, url)})"
+            reason: "not found (→ #{abs_location_header(resp, url)})"
           })
+        else
+          result = head_or_get(new_path)
+
+          if !match?(@success, result) do
+            Map.merge(entry, %{
+              archive: Util.ArchiveOrg.mirror(url),
+              reason: "broken redirect chain (→ #{abs_location_header(resp, url)})"
+            })
+          end
         end
 
       {:ok, %{status: 301} = resp} ->
