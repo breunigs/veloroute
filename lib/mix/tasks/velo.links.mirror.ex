@@ -148,14 +148,26 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @evergabe_base "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/"
   defp extract({name, @evergabe_base <> "eva/supplierportal/fhh/subproject/" <> rest = url}) do
-    # page: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details
-    # PDFs: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/projectFilesZip
+    # perma: https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6c498877-0a5a-47ef-a647-e2f6217aa687
+    # page:  https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/details
+    # PDFs:  https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/subproject/e88e2ab6-cea1-4adf-898e-08f8f7e1ca86/projectFilesZip
     zips =
       @evergabe_base <>
         "api/supplier/subproject/" <>
         String.replace(rest, "/details", "/projectFilesZip")
 
     [{:download, "evergabe #{name}.zip", zips}, {:capture, "evergabe #{name}", url}]
+  end
+
+  defp extract({name, @evergabe_base <> _rest = url}) do
+    with {:ok, response} <- get(url) do
+      source = URI.parse(url)
+      target = URI.parse(Tesla.get_header(response, "location"))
+      target_abs = URI.merge(source, target) |> to_string()
+      extract({name, target_abs})
+    else
+      _ -> [{:capture, "evergabe deeplink #{name}", url}]
+    end
   end
 
   defp extract(%Phoenix.LiveView.Rendered{} = heex) do
