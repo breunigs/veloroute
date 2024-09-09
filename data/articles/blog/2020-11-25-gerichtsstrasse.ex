@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
        "https://lsbg.hamburg.de/resource/blob/783250/1da590f5f518bdcf6bc071710a6bde81/gerichtstrasse-anliegerinformation-september-2023-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/gerichtstrasse"},
       {"Ausschreibung Umbau", "Januar 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9918a22d-e3c3-4540-aab6-089a981e8df3"},
+       "https://web.archive.org/web/20230111171218/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9918a22d-e3c3-4540-aab6-089a981e8df3"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Erläuterungsbericht (November 2021)",

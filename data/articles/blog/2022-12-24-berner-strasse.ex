@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.BernerStrasse do
       "Bis auf eine Ausnahme durchgängige Radfahrstreifen. 2,0m Breite im nördlichen Teil, 1,85m im südlichen."
 
   def start(), do: ~d[2023-01-09]
-  def stop(), do: ~d[2024-12]
+  def stop(), do: ~d[2025-11-25]
+  def construction_site_id_hh(), do: [975_658]
 
   def type(), do: :construction
   def tags(), do: ["br-wandsbek-w3"]

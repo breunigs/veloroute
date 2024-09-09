@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   def stop(), do: ~d[2024-10-31]
 
   # Kreuzung mit Weusthoffstraße vermutlich Sommer 2024 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1011209
-  def construction_site_id_hh(), do: [91363, 748_772, 748_765, 885_611]
+  def construction_site_id_hh(), do: [91363, 748_772, 748_765, 885_611, 973_302]
 
   def type(), do: :construction
 
@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.Denickestrasse do
       {"Pressemitteilung geplante Sperrungen Denickestraße", "April 2024",
        "https://web.archive.org/web/20240410052703/https://www.hamburg.de/harburg/pressemeldungen/18482700/ausbau-veloroute-11-eissendorf/"},
       {"Vergabe Umbau Kreuzung mit Weusthoffstraße", "Januar 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/8de47908-9a0a-446c-9f06-4d5ebe977a3d"},
+       "https://web.archive.org/web/20240125171900/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/8de47908-9a0a-446c-9f06-4d5ebe977a3d"},
       {"Pressemitteilung zum Baufortschritt", "April 2023",
        "https://www.hamburg.de/harburg/pressemeldungen/17053724/ausbau-veloroute-11-vollsperrung/"},
       {"Pressemitteilung zum Baustart", "August 2022",

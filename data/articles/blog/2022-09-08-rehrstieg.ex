@@ -17,8 +17,8 @@ defmodule Data.Article.Blog.Rehrstieg do
     [
       {"Pressemitteilung Umbaustart", "Februar 2024",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/umbau-kreuzung-rehrstieg-striepenweg-803186"},
-      {"Ausschreibung Umbau", "Oktober 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9699324e-a65c-46f9-85e5-78765245425a"},
+      # {"Ausschreibung Umbau", "Oktober 2023",
+      #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9699324e-a65c-46f9-85e5-78765245425a"},
       {"Lagepläne und Erläuterungsbericht",
        "https://fragdenstaat.de/anfrage/umbau-rehrstieg-striepenweg/#nachricht-771287"},
       {"Möglicher Bauzeitraum", "September 2022",

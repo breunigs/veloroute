@@ -41,6 +41,9 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
 
     User-agent: GPTBot
     Disallow: /
+
+    User-agent: Applebot-Extended
+    Disallow: /
     """)
   end
 end

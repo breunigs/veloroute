@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.Holstenplatz do
       {"Baustelleninfo", "Februar 2023",
        "https://lsbg.hamburg.de/resource/blob/784464/ab9a0637dc157568f9e79fbca79988ed/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
       {"Ausschreibung Umbau",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/39f6c0a7-8734-4174-ad41-3baef66b9823"},
+       "https://web.archive.org/web/20221226144038/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/39f6c0a7-8734-4174-ad41-3baef66b9823"},
       {"Baustellenkoordination", "September 2022",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1013155"},
       {"Lageplan",

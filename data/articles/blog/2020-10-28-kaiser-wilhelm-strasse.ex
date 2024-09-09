@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
       {"Baustelleninfo", "Februar 2024",
        "https://lsbg.hamburg.de/resource/blob/783452/91e1211932f9c4cac64552e609113b50/kaiser-wilhelm-strasse-anliegerinformation-februar-2024-data.pdf"},
       {"Auftragsvergabe", "Februar 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/f87dc9c0-9bfb-4bee-813c-23acc461032e"},
+       "https://web.archive.org/web/20230301184525/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/f87dc9c0-9bfb-4bee-813c-23acc461032e"},
       {"Anlieger/Baustelleninfo", "März 2022",
        "https://web.archive.org/web/https://lsbg.hamburg.de/contentblob/16047942/cb9a19c84f72fd360144e7d5771a8064/data/kaiser-wilhelm-strasse-teilrueckbau-und-instandsetzung-des-versorgungstunnels-%E2%80%93-04-22-bis-09-22.pdf"},
       {"Lageplan",

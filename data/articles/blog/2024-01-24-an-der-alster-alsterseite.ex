@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.AnDerAlsterAlsterseite do
   def links(_assigns) do
     [
       {"Ausschreibung Planungsarbeit", "Januar 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/81cf665c-1923-40d2-a228-2c46c508914f"}
+       "https://web.archive.org/web/20240124170348/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/81cf665c-1923-40d2-a228-2c46c508914f"}
     ]
   end
 

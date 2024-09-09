@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.AmStadtrandMitte do
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/strassenbaustellen-im-bezirk-wandsbek/am-stadtrand-76724"},
       {"Bauvergabe", "Juni 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/3d2e1f29-d54f-45c2-a6c1-fe8ddd397b1d"},
+       "https://web.archive.org/web/20240603110458/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/3d2e1f29-d54f-45c2-a6c1-fe8ddd397b1d/details"},
       {"1. Entwurf, Pläne und Erläuterungen", "April 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018605"}
     ]

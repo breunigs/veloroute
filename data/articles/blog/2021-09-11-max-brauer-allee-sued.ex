@@ -22,8 +22,8 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
     [
       {"Baustelleninfo – Ehrenbergstraße", "April 2024",
        "https://web.archive.org/web/20240328141531if_/https://lsbg.hamburg.de/resource/blob/708638/df2fed56d7c6367d9ba9e7a7fe2bd98d/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
-      {"Ausschreibung Umbau", "Oktober 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
+      # {"Ausschreibung Umbau", "Oktober 2023",
+      #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
       {"Projektseite des LSBG",
        "https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
       {"Lageplan", "Juli 2022",

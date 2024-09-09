@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.EppendorferWeg do
       {"Vorabmaßnahmen – Plan", "Juli 2024",
        "https://lsbg.hamburg.de/resource/blob/947216/9784cce4c249a20421cce6a8835357da/eppendorfer-weg-veloroute-13-ad-hoc-massnahmen-abgestimmte-planung-plan-data.pdf"},
       {"Ausschreibung der Planung", "April 2023",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/1e884099-76ab-4ab9-9de7-2db73ee5a061"}
+       "https://web.archive.org/web/20230518144918/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/1e884099-76ab-4ab9-9de7-2db73ee5a061"}
     ]
   end
 

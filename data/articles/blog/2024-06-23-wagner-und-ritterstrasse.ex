@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
       {"Baustelleninfo", ~d[2024-09],
        "https://lsbg.hamburg.de/resource/blob/961982/611df58907101d84385d1091bc3bf051/ritterstrasse-wagnerstrasse-anliegerinformation-september-2024-data.pdf"},
       {"Ausschreibung Umbau", "Juni 2024",
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/52a39480-2461-436d-a12c-3c44ecca0f66"}
+       "https://web.archive.org/web/20240623081222/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/52a39480-2461-436d-a12c-3c44ecca0f66"}
     ]
   end
 

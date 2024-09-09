@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
 
   @attrib [
     {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-    {"Battenberg & Koch", "https://bkplan.de"},
+    {"Battenberg & Koch", "https://www.bkplan.de/"},
     {"Fichtner Water & Transportation", "https://www.fwt.fichtner.de/kontakt/inland"},
     {"iwb Ingenieure", "https://www.iwb-ingenieure.de/"}
   ]
