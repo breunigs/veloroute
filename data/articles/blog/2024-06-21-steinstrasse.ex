@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.Steinstrasse do
       "Beidseitig 2m breite Hochbordradwege. Straße wird zur Allee mit deutlich schmalerer Fahrbahn. Aufenthaltsqualität nach Umbau ähnlich zur Mönckebergstraße."
 
   def type(), do: :planned
-  def start(), do: ~d[2025Q3]
-  def stop(), do: ~d[2026Q3]
+  def start(), do: ~d[2026Q1]
+  def stop(), do: ~d[2027Q1]
 
   def tags(), do: []
 
@@ -57,6 +57,10 @@ defmodule Data.Article.Blog.Steinstrasse do
     [
       {"Infoseite zum Umbau Kontorhausviertel",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-kontorhausviertel-948242"},
+      {"fertiger Entwurf – Erläuterungen", ~d[2024-09],
+       "https://lsbg.hamburg.de/resource/blob/965880/8e303c3728d0c2ba8b8b33d571e1856a/steinstrasse-abgestimmte-planung-bericht-data.pdf"},
+      {"fertiger Entwurf – Karte", ~d[2024-09],
+       "https://lsbg.hamburg.de/resource/blob/965882/7d4aa9dc95460f8563d2e018e6cd8068/steinstrasse-abgestimmte-planung-plan-data.pdf"},
       {"1. Entwurf – Erläuterungen", "April 2024",
        "https://lsbg.hamburg.de/resource/blob/900826/732687281e2c951fa184c52798a373ec/steinstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf – Karte", "April 2024",
@@ -68,12 +72,19 @@ defmodule Data.Article.Blog.Steinstrasse do
     ]
   end
 
+  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
-      %{lat: 53.550402066, lon: 9.997257860},
-      %{lat: 53.550316565, lon: 10.005445512},
-      %{lat: 53.549315626, lon: 10.005408415},
-      %{lat: 53.549401127, lon: 9.997220763}
+    #   Data.MapImage.new(__MODULE__, @attrib, {
+    #     %{lat: 53.550402066, lon: 9.997257860},
+    #     %{lat: 53.550316565, lon: 10.005445512},
+    #     %{lat: 53.549315626, lon: 10.005408415},
+    #     %{lat: 53.549401127, lon: 9.997220763}
+    #   })
+    Data.MapImage.new(__MODULE__, @attrib, 2, {
+      %{lat: 53.550448520, lon: 9.997032567},
+      %{lat: 53.550367867, lon: 10.005353293},
+      %{lat: 53.549448049, lon: 10.005319435},
+      %{lat: 53.549528702, lon: 9.996998710}
     })
   end
 

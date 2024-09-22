@@ -35,6 +35,8 @@ defmodule Data.Article.Blog.BusbahnhofRahlstedt do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", ~d[2024-09],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/6988d199-1e38-42e4-8b00-1cddf1697ac5"},
       {"Infoseite der Hochbahn", ~d[2024-07],
        "https://www.hochbahn.de/de/projekte/busanlage-rahlstedt"},
       {"Infoseite der Stadt", ~d[2024-07],

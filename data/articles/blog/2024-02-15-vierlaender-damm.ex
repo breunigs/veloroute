@@ -12,6 +12,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def start(), do: ~d[2024-04-22]
   def stop(), do: ~d[2025-05]
+  # def construction_site_id_hh(), do: [882875]
 
   def tags(), do: ["FR5"]
 
@@ -54,9 +55,11 @@ defmodule Data.Article.Blog.VierlaenderDamm do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2024-09],
-       "https://lsbg.hamburg.de/resource/blob/885484/a92a2d15093fcd561f551841ccebdea9/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
-      {"Baustelleninfo", "Juni 2024",
-       "https://lsbg.hamburg.de/resource/blob/885484/96087f06180ac52e335a7e7528ab9b99/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/885484/63f351d4fab3b1442eb795c1a3d31586/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-september-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-09],
+      #  "https://lsbg.hamburg.de/resource/blob/885484/a92a2d15093fcd561f551841ccebdea9/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
+      # {"Baustelleninfo", "Juni 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/885484/96087f06180ac52e335a7e7528ab9b99/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
       {"Pressemitteilung zum Baustart", "April 2024",
        "https://web.archive.org/web/20240523021928/https://www.hamburg.de/bvm/medien/18533074/2024-04-16-bvm-rothenburgsort/"},
       {"Möglicher Baustart", "Februar 2024",
