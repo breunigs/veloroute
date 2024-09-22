@@ -339,7 +339,37 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end
   end
 
-  defp grab({:capture, file, "https://twitter.com" <> _ = url} = entry, _retries) do
+  defp grab({:capture, _file, "https://twitter.com" <> _} = entry, _retries) do
+    entry
+    |> chrome_pdf()
+    |> screenshot()
+  end
+
+  defp grab({:capture, _f, "https://fbhh-evergabe.web.hamburg.de" <> _} = entry, _retries) do
+    entry
+    |> chrome_pdf()
+    |> screenshot()
+  end
+
+  defp grab({:capture, file, url} = entry, _retries) do
+    log(file, "#{Path.basename(file)}.pdf")
+
+    {out, exit_code} =
+      System.cmd("cutycapt", [
+        "--url=#{url}",
+        "--out=#{file}.pdf",
+        "--delay=1000",
+        "--print-backgrounds=on"
+      ])
+
+    if exit_code != 0,
+      do: log(file, "page capture failed:\n#{out}\n\n\n")
+
+    screenshot(entry)
+  end
+
+  @spec chrome_pdf(entry()) :: entry()
+  defp chrome_pdf({_type, file, url} = entry) do
     log(file, "#{Path.basename(file)}.pdf")
 
     {out, exit_code} =
@@ -358,21 +388,29 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
       )
 
     if exit_code != 0,
-      do: log(file, "page capture failed:\n#{out}\n\n\n")
+      do: log(file, "chrome page capture failed:\n#{out}\n\n\n")
 
     entry
   end
 
-  defp grab({:capture, file, url} = entry, _retries) do
-    log(file, "#{Path.basename(file)}.pdf")
+  @spec screenshot(entry()) :: entry()
+  defp screenshot({_type, file, url} = entry) do
+    log(file, "#{Path.basename(file)}.png")
 
     {out, exit_code} =
-      System.cmd("cutycapt", [
-        "--url=#{url}",
-        "--out=#{file}.pdf",
-        "--delay=1000",
-        "--print-backgrounds=on"
-      ])
+      System.cmd(
+        "chromium",
+        [
+          "--temp-profile",
+          "--headless",
+          "--disable-gpu",
+          "--run-all-compositor-stages-before-draw",
+          "--virtual-time-budget=15000",
+          "--screenshot=#{file}.png",
+          "--window-size=1920x5000",
+          url
+        ]
+      )
 
     if exit_code != 0,
       do: log(file, "page capture failed:\n#{out}\n\n\n")
