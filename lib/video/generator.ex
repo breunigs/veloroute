@@ -69,7 +69,7 @@ defmodule Video.Generator do
       |> Enum.sort()
       |> List.first()
 
-    if mod.rendered?(), do: mod
+    if mod && mod.rendered?(), do: mod
   end
 
   def get(_any), do: nil

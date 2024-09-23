@@ -428,6 +428,17 @@ defmodule VelorouteWeb.LiveNavigationTest do
     end)
   end
 
+  test "can render incorrect URLs", %{conn: conn} do
+    [
+      {"malformed video vanity", "/?video=21db2-br-wandsbek-w7|",
+       "21db20586cc50256d79176bdb195c29a"}
+    ]
+    |> Enum.each(fn {_desc, path, expected} ->
+      {:ok, _view, html} = live(conn, path)
+      assert html =~ expected
+    end)
+  end
+
   defp assert_attribute(html, selector, attribute, expected) do
     [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
     actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual

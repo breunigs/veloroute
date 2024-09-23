@@ -33,7 +33,8 @@ defmodule VelorouteWeb.Live.VideoState do
   """
   def maybe_update_video(socket, article, %{"video" => hash} = params)
       when valid_hash_or_vanity(hash) do
-    with rendered when not is_nil(rendered) <- Video.Generator.get(hash),
+    with clean_hash <- String.replace(hash, ~r/[^a-z0-9_-]/, ""),
+         rendered when not is_nil(rendered) <- Video.Generator.get(clean_hash),
          src when is_list(src) <- rendered.sources(),
          obj when not is_nil(obj) <- Article.List.find_by_sources(src) do
       # sort so that the desired track is on top
