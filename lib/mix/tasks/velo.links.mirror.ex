@@ -160,9 +160,10 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   end
 
   defp extract({name, @evergabe_base <> _rest = url}) do
-    with {:ok, response} <- get(url) do
+    with {:ok, response} <- get(url),
+         redirect when is_binary(redirect) <- Tesla.get_header(response, "location") do
       source = URI.parse(url)
-      target = URI.parse(Tesla.get_header(response, "location"))
+      target = URI.parse(redirect)
       target_abs = URI.merge(source, target) |> to_string()
       extract({name, target_abs})
     else

@@ -1,6 +1,11 @@
 defmodule Mix.Tasks.Velo.Links.Check do
   use Mix.Task
   use Tesla
+
+  plug Tesla.Middleware.Headers, [
+    {"user-agent", "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0"}
+  ]
+
   use Memoize
   import Guards
 
@@ -111,6 +116,11 @@ defmodule Mix.Tasks.Velo.Links.Check do
           new_url: abs_location_header(resp, url),
           reason: "perma redirect"
         })
+
+      {:ok, %{status: 429}} ->
+        IO.puts("got 429 on #{url}, sleeping 5")
+        Process.sleep(5_000)
+        check(entry)
 
       {:ok, %{status: status}} ->
         Map.merge(entry, %{
