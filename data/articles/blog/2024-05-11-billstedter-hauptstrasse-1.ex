@@ -9,7 +9,9 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
 
   def type(), do: :planned
 
-  def stop(), do: ~d[2025-08-18]
+  def start(), do: ~d[2024-09-20]
+  def stop(), do: ~d[2026-01-15]
+  def construction_site_id_hh(), do: [1_013_172]
 
   def tags(), do: ["8"]
 

@@ -8,10 +8,20 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
       "Breitere Rad- und Gehwege. Neue, direktere Verbindungen und Querungsmöglichkeiten für Fuß und Rad. "
 
   def start(), do: ~d[2025Q2]
+  def stop(), do: ~d[2026]
 
   def type(), do: :planned
 
   def tags(), do: ["br-nord-n2", "br-nord-n6", "br-nord-n7"]
+
+  def map_image do
+    Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
+      %{lat: 53.594705882, lon: 9.986387817},
+      %{lat: 53.594654870, lon: 9.992339386},
+      %{lat: 53.591646344, lon: 9.992264983},
+      %{lat: 53.591697356, lon: 9.986313414}
+    })
+  end
 
   def links(_assigns) do
     [
@@ -31,7 +41,7 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr wird meist auf schmalen <.ref>Hochbordradwegen</.ref> geführt. Diese verlaufen ohne ordentliche Trennung neben ebenfalls schmalen Gehwegen. Die Querungsmöglichkeiten sind selten und teilweise unklar. Je nach Start und Ziel müssen Umwege gefahren werden, weil die Straßen entweder Einbahnstraßen sind, oder das Linksabbiegen nur von der <.ref>Fahrbahn</.ref> aus möglich ist. Nur mit tiefgehender Ortskenntnis ist der Bereich brauchbar zu befahren.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Im Planungsgebiet wird jede Straße in beide Richtungen befahrbar. Ausnahme bleibt ein Stück der <.v bounds="9.9856,53.591849,9.991747,53.595365" lon={9.988222} lat={53.593589} dir="backward" ref="br-nord-n6">Eppendorfer Landstraße</.v>, das nicht umgebaut wird. Dort ist weiterhin nur die Fahrt nach Süden erlaubt.</p>
 
     <p>Neue Querungsmöglichkeiten:</p>

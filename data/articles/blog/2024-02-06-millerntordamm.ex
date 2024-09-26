@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.Millerntordamm do
 
   def links(_assigns) do
     [
+      {"Blogpost zum Baufortschritt", ~d[2024-09],
+       "https://hamburgize.blogspot.com/2024/09/hamburg-stpauli-begradigung-des-radwegs.html"},
       {"Lageplan", "Februar 2024",
        "https://fragdenstaat.de/anfrage/budapester-strasse-millerntordamm/"}
     ]

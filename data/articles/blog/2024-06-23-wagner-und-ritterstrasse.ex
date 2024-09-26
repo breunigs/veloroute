@@ -3,6 +3,7 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
 
   def start(), do: ~d[2024-09-26]
   def stop(), do: ~d[2024-11-03]
+  def construction_site_id_hh(), do: [986_653]
 
   def title(),
     do: "Wagnerstraße (nördlicher Teil) und Ritterstraße (Radroute 13)"
@@ -11,7 +12,7 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
     do:
       "Asphalt wird erneuert ohne die Aufteilung der Straße zu ändern. Teilweise werden Schutzstreifen statt Radfahrstreifen neu aufgemalt."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["13"]
 

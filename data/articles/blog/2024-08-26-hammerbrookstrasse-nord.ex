@@ -37,8 +37,8 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
 
   def links(_assigns) do
     [
-      {"Ausschreibung Umbau", ~d[2024-08],
-       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/aa0e89c9-e8f6-465d-98b0-2017b4fc8757"}
+      # {"Ausschreibung Umbau", ~d[2024-08],
+      #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/aa0e89c9-e8f6-465d-98b0-2017b4fc8757"}
     ]
   end
 

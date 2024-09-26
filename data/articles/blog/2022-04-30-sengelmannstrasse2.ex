@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
 
   def links(_assigns) do
     [
+      {"Blogpost Brückenbau U5", ~d[2024-09],
+       "https://schneller-durch-hamburg.de/u5-sengelmannstrasse-bruecken-u5-u1"},
       {"Erläuterungen und Lagepläne aus einem anderen Verfahren", "März 2024",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/detailplaene-zweiter-abschnitt-848068"},
       {"Übersichtsseite Planung Radroute Plus Bad Bramstedt",
