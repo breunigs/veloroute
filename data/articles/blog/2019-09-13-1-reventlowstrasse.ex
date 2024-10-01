@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
 
   def type(), do: :construction
   def start(), do: ~d[2024-03-01]
-  def stop(), do: ~d[2024-11-03]
+  def stop(), do: ~d[2024-12-18]
 
   def tags(), do: ["1", "a12"]
 

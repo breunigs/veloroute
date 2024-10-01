@@ -10,6 +10,11 @@ defmodule Data.Article.Blog.EppendorferWeg do
   def type(), do: :intent
   def tags(), do: ["13"]
 
+  # Eppendorfer Weg / Ad-hoc Maßnahme -- LSBG
+  # def start(), do: ~d[2024-11-01]
+  # def stop(), do: ~d[2024-12-31]
+  # def construction_site_id_hh(), do: [989018]
+
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/eppendorfer-weg"},

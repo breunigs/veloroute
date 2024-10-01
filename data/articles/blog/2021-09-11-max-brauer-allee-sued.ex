@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
 
   def links(_assigns) do
     [
+      {"Lückenschluss Jessenstraße", ~d[2024-10],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1015670"},
       {"Baustelleninfo – Ehrenbergstraße", "April 2024",
        "https://web.archive.org/web/20240328141531if_/https://lsbg.hamburg.de/resource/blob/708638/df2fed56d7c6367d9ba9e7a7fe2bd98d/ehrenbergstrasse-anliegerinfo-maerz-2024-data.pdf"},
       # {"Ausschreibung Umbau", "Oktober 2023",
@@ -38,6 +40,9 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Oktober 2024</h4>
+    <p>Der Umbau geht voran. In einer zusätzlichen Planung wurde der <.ref>Radfahrstreifen</.ref> in der <.m bounds="9.941184,53.549729,9.945947,53.551374">Jessenstraße</.m> durchgängig. Der alte Hochbordradweg soll noch zum Gehweg werden.</p>
+
     <h4>Stand Juli 2022</h4>
     <p>Der fertige Entwurf wurde veröffentlicht und der Artikel entsprechend angepasst. Im Vergleich zum ersten Entwurf wurde im Wesentlichen nur die Führung Richtung <.m bounds="9.932798,53.545513,9.936585,53.546578">Kaistraße</.m> geändert:</p>
     <ul>
