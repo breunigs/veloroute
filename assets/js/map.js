@@ -319,6 +319,8 @@ const titleForItem = (item) => {
   return null
 }
 
+const collator = new Intl.Collator('de', { numeric: true, sensitivity: 'base' })
+
 const handleMapHover = (evt) => {
   const items = itemsUnderCursor(evt);
   const canvas = map.getCanvas()
@@ -331,7 +333,7 @@ const handleMapHover = (evt) => {
   }
 
   canvas.style.cursor = 'pointer';
-  canvas.title = [...new Set(titles)].join("\n")
+  canvas.title = [...new Set(titles)].sort(collator.compare).join("\n")
 }
 
 const handleMapClick = (evt) => {
