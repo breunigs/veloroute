@@ -45,8 +45,9 @@ SEARCH_TERMS.each do |term|
 end
 
 projects.uniq.each do |proj|
-  next if seen[proj["projectNumber"]] == proj["publicationDate"]
-  seen[proj["projectNumber"]] = proj["publicationDate"]
+  # using bidding period as marker, since the publication date changes for minor updates
+  next if seen[proj["projectNumber"]] == proj["biddingPeriod"]
+  seen[proj["projectNumber"]] = proj["biddingPeriod"]
   puts <<~DOC
     #{"="*60}
     #{proj["title"]}
