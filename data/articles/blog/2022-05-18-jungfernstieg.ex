@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zum Baufortschritt", ~d[2024-10],
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/2024-10-01-bvm-jungfernstieg-972656"},
       {"Pressemitteilung zum Umbaustart", "Februar 2024",
        "https://web.archive.org/web/20240320035836/https://www.hamburg.de/bvm/medien/18282764/2024-02-29-bvm-jungfernstieg/"},
       {"Baustelleninfo", "Februar 2024",

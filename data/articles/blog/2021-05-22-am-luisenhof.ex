@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def created_at(), do: ~D[2021-05-22]
 
-  def title(), do: "Am Luisenhof"
+  def title(), do: "Am Luisenhof – Busüberlieger (Bezirksroute Wandsbek W5)"
 
   def start(), do: ~d[2024-07-15]
   def stop(), do: ~d[2025-03-31]
@@ -12,6 +12,19 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def type(), do: :construction
 
   def tags(), do: ["br-wandsbek-w5"]
+
+  @attrib [
+    {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+    {"LEHNE Ingenieurgesellschaft mbH für Bauen und Umwelt", "https://www.lehne-ing.de/kontakt"}
+  ]
+  def map_image do
+    Data.MapImage.new(__MODULE__, @attrib, {
+      %{lat: 53.607313198, lon: 10.111803808},
+      %{lat: 53.608036482, lon: 10.115421484},
+      %{lat: 53.607325617, lon: 10.115825668},
+      %{lat: 53.606602333, lon: 10.112207992}
+    })
+  end
 
   def links(_assigns) do
     [
@@ -31,7 +44,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr wird auf <.ref>Hochbordradwegen</.ref> unterschiedlicher Breiten, Oberflächen und Ebenheiten geführt.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Im Zuge der Busbeschleunigung werden am Luisenhof Warteflächen für Busse angelegt. Der <.ref>Hochbordradweg</.ref> im Süden bleibt in seiner Lage im Wesentlichen gleich, wird aber auf 2,0m verbreitert. Der Radweg auf der Nordseite wird ebenfalls so breit, in seinem Verlauf aber deutlich nach Norden verschoben. Dies gilt analog auch für die Fußwege, die auf rund 2,65m verbreitert werden.</p>
 
     <p>Die <.m bounds="10.112885,53.606964,10.115808,53.608041">Einmündung des Bramfelder Weges</.m> wird mit einer Ampel ausgestattet. Die Querung der Einmündung ist geradliniger als heute.</p>

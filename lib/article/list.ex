@@ -82,7 +82,7 @@ defmodule Article.List do
     list
     |> Enum.map(fn art -> {art.name(), String.jaro_distance(art.name(), key)} end)
     |> Enum.reject(fn {_name, dist} -> dist < 0.7 end)
-    |> Enum.sort_by(&elem(&1, 1), :asc)
+    |> Enum.sort_by(&elem(&1, 1), :desc)
     |> Enum.map(&elem(&1, 0))
   end
 
