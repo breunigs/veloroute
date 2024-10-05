@@ -3,8 +3,8 @@ defmodule Data.Article.Blog.MartinistrasseOst do
 
   def title(), do: "Martinistraße Ost (Bezirksroute Nord 6)"
 
-  def start(), do: ~d[2024-10]
-  def stop(), do: ~d[2025-08]
+  def start(), do: ~d[2025-01]
+  def stop(), do: ~d[2025-09]
 
   def type(), do: :planned
 

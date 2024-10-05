@@ -33,4 +33,11 @@ defmodule Data.Article.Shared do
     <p>In den nächsten Jahren wird das Routenkonzept fertiggestellt und politisch beschlossen. Erst im Anschluss wird über viele Jahre in Detailplanungen die Abschnitte für den Radverkehr hergerichtet. Diese werden dann häufig als eigener Artikel auf <em>veloroute.hamburg</em> vorgestellt werden.</p>
     """
   end
+
+  def bezirksroute_links(:nord, _assigns) do
+    [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/bezirksrouten-72172"}
+    ]
+  end
 end

@@ -59,11 +59,11 @@ defmodule Data.Article.Static.BrNordN8 do
       }
     ]
 
-  def links(_assigns) do
+  def links(assigns) do
     [
       {"Entwurf Radverkehrskonzept", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013264"}
-    ]
+    ] ++ Data.Article.Shared.bezirksroute_links(:nord, assigns)
   end
 
   def text(assigns) do

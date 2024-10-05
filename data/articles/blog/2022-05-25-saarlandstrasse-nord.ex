@@ -3,8 +3,8 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
 
   def updated_at(), do: ~D[2024-04-29]
 
-  def start(), do: ~d[2025-07]
-  def stop(), do: ~d[2025-07]
+  def start(), do: ~d[2025-06]
+  def stop(), do: ~d[2027-12]
 
   def title(), do: "Saarlandstraße (nördlicher Teil, Alltagsroute 5N, Bezirksroute Nord N6)"
 

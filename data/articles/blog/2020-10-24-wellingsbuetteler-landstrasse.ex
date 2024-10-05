@@ -13,8 +13,8 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
 
   def tags(), do: ["br-nord-n8"]
   def start(), do: ~d[2024-08-05]
-  def stop(), do: ~d[2026-07-31]
-  def construction_site_id_hh(), do: [916_925]
+  def stop(), do: ~d[2027-12-31]
+  # def construction_site_id_hh(), do: [916_925]
 
   def tracks(),
     do: [

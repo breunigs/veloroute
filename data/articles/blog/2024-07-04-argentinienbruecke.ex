@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Argentinienbruecke do
     do:
       "In Richtung Wilhelmsburg wird eine Protected-Bike-Lane angelegt, sodass der zweimalige Umweg über die Ampel entfällt."
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["11"]
 

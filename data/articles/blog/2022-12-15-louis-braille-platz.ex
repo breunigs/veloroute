@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
 
   def type(), do: :planned
   def tags(), do: ["13"]
-  def start(), do: ~d[2025]
-  def stop(), do: ~d[2025]
+  def start(), do: ~d[2025-03]
+  def stop(), do: ~d[2025-11]
 
   def links(_assigns) do
     [

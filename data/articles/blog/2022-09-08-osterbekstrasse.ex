@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Osterbekstrasse do
   use Article.Default
   def created_at(), do: ~D[2022-09-08]
-  def title(), do: "Osterbekstrassse (Freizeitroute 2)"
+  def title(), do: "Osterbekstraße (Freizeitroute 2)"
 
   def summary(),
     do:
@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Osterbekstrasse do
   def type(), do: :planned
   def tags(), do: ["FR2", "br-nord-n5"]
 
-  def start(), do: ~d[2023Q3]
-  def stop(), do: ~d[2025Q2]
+  def start(), do: ~d[2025-01]
+  def stop(), do: ~d[2025-12]
 
   def links(_assigns) do
     [

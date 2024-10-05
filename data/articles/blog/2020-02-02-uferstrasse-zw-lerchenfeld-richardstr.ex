@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/radroute6-uferstrasse-951440"},
       {"Fertige Planung", "2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012181"},
       {"1. Entwurf", "2020, veraltet",

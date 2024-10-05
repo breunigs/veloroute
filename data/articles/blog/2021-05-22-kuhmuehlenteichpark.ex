@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def title(), do: "Kuhmühlenteichpark (Veloroute 6)"
 
-  def start(), do: ~d[2025-01]
-  def stop(), do: ~d[2025-09]
+  def start(), do: ~d[2025-07]
+  def stop(), do: ~d[2026-02]
 
   def type(), do: :planned
 

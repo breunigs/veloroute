@@ -37,7 +37,7 @@ SEARCH_TERMS.each do |term|
     res = https.request(req)
     json = JSON.parse(res.body)
 
-    projects += json["projects"]
+    projects += json["projects"] || []
   rescue => e
     pp e
     binding.pry

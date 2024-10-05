@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.WiesendammWest do
       "(fast) durchgängige Radfahrstreifen. Wegen Baumerhalt Breite von 1,85m bis 2,50m. Mehr Abstellbügel und Parkbänke."
 
   def type(), do: :planned
-  def start(), do: ~d[2025Q1]
-  def stop(), do: ~d[2026Q3]
+  def start(), do: ~d[2025-01]
+  def stop(), do: ~d[2026-06]
 
   def tags(), do: ["br-nord-n6"]
 
