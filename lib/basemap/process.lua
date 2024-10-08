@@ -279,25 +279,29 @@ function way_function()
 
   -- Boundaries within relations
   local admin_level = 11
-  local isBoundary = false
+  local is_boundary = false
+  local boundary_names = {}
   while true do
     local rel = NextRelation()
     if not rel then break end
-    isBoundary = true
+    is_boundary = true
     admin_level = MIN(admin_level, tonumber(FindInRelation("admin_level")) or 11)
+    local bname = FindInRelation("name"):gsub("|", " ")
+    if bname ~= "" then table.insert(boundary_names, bname); end
   end
 
   -- Boundaries in ways
   if boundary=="administrative" then
     admin_level = MIN(admin_level, tonumber(Find("admin_level")) or 11)
-    isBoundary = true
+    is_boundary = true
   end
 
   -- Administrative boundaries
   -- https://openmaptiles.org/schema/#boundary
-  if isBoundary and admin_level >= 4 and admin_level <= 6 and not SetToYes("maritime") then
+  if is_boundary and admin_level >= 4 and admin_level <= 10 and not SetToYes("maritime") then
     Layer("boundary",false)
-    if DEBUG then AttributeNumeric("DEBUG_admin_level", admin_level) end
+    AttributeNumeric("admin_level", admin_level)
+    Attribute("name", "|" .. table.concat(boundary_names, "|") .. "|")
     SetMinZoom(0)
   end
 

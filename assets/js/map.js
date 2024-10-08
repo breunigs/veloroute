@@ -257,10 +257,12 @@ let pingIndicator = null;
 const pingHideDelaySeconds = 10;
 const pingHideTransitionSeconds = 3;
 const pingLayers = new Map([
-  ['ping-articles', 'title'],
-  ['ping-articles-bg', 'title'],
-  ['ping-street', 'name'],
-  ['ping-street-bg', 'name']
+  ['ping-articles', ['title', false]],
+  ['ping-articles-bg', ['title', false]],
+  ['ping-street', ['name', false]],
+  ['ping-street-bg', ['name', false]],
+  ['ping-boundary', ['name', true]],
+  ['ping-boundary-bg', ['name', true]],
 ])
 
 window.addEventListener("map:ping", pingShow);
@@ -271,8 +273,11 @@ function pingShow(e) {
   pingCleanup();
 
   if (e.detail.name) {
-    for (const [layer, field] of pingLayers) {
-      const filter = ['in', ['get', field], ["literal", e.detail.name.split(/,\s*| & | und |\s*\/\s*/)]];
+    for (const [layer, [field, substrSearch]] of pingLayers) {
+      const names = e.detail.name.split(/,\s*| & | und |\s*\/\s*/)
+      const filterExact = ['in', ['get', field], ["literal", names]]
+      const filterSubstr = ['in', `|${names[0]}|`, ['get', field]]
+      const filter = substrSearch ? filterSubstr : filterExact
       map.setFilter(layer, filter)
       map.setLayoutProperty(layer, 'visibility', 'visible')
       map.setPaintProperty(layer, 'line-opacity-transition', {})

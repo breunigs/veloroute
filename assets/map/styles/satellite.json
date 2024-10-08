@@ -125,6 +125,7 @@
       "type": "line",
       "source": "merged",
       "source-layer": "boundary",
+      "filter": ["all", ["<=", "admin_level", 6]],
       "layout": {"line-join": "round", "visibility": "visible"},
       "paint": {
         "line-color": [
@@ -879,6 +880,25 @@
       }
     },
     {
+      "id": "ping-boundary-bg",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "boundary",
+      "minzoom": 0,
+      "layout": {
+        "line-round-limit": 1,
+        "line-miter-limit": 0,
+        "line-join": "round",
+        "line-cap": "round",
+        "visibility": "none"
+      },
+      "paint": {
+        "line-width": 8,
+        "line-color": "hsla(0, 0%, 100%, 0.9)",
+        "line-blur": 2
+      }
+    },
+    {
       "id": "ping-street-bg",
       "type": "line",
       "source": "merged",
@@ -913,6 +933,25 @@
         "line-color": "hsla(0, 0%, 100%, 0.9)",
         "line-width": 8,
         "line-blur": 2
+      }
+    },
+    {
+      "id": "ping-boundary",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "boundary",
+      "minzoom": 0,
+      "layout": {
+        "line-round-limit": 1,
+        "line-miter-limit": 0,
+        "line-join": "round",
+        "line-cap": "round",
+        "visibility": "none"
+      },
+      "paint": {
+        "line-width": 2,
+        "line-color": "#f47474",
+        "line-dasharray": [2, 3]
       }
     },
     {
