@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Millerntordamm do
 
   def type(), do: :construction
 
-  def tags(), do: []
+  def tags(), do: ["bundesstraße-4"]
 
   @tracks Data.Article.Blog.Reeperbahn.tracks()
   @forward @tracks

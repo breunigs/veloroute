@@ -7,8 +7,8 @@ defmodule Data.Article.Blog.Friedensallee do
     do: "Hochbordradwege und Gehwege sollen saniert werden. Breite unverändert."
 
   def start(), do: ~d[2023-11-22]
-  def stop(), do: ~d[2024-03-31]
-  def construction_site_id_hh(), do: [599_026]
+  # def stop(), do: ~d[2024-03-31]
+  # def construction_site_id_hh(), do: [599_026]
 
   def type(), do: :construction
 
@@ -69,10 +69,10 @@ defmodule Data.Article.Blog.Friedensallee do
     <p>Die <.ref>Hochbordradwege</.ref> in der Friedensallee im Baugebiet sind häufig schmaler als ein Fahrrad. Sie werden von Baumwurzeln unterbrochen. Sie verlaufen teils in der <.ref>Dooring</.ref> Zone. Die Gehwege neben dem Radweg sind häufig zu schmal, um zu zweit nebeneinander zu gehen. Kurzum: Die Radwege sind unbenutzbar.</p>
 
     <h4>Vorhaben</h4>
-    <p>Die „<.ref>Nebenflächen</.ref>“ sollen neue Oberflächen erhalten.</p>
+    <p>Der ehemalige Radweg entfällt und wird komplett zum Gehweg mit  <.ref>Fahrrad frei</.ref>. Eigene Radwege auf der <.ref>Fahrbahn</.ref> werden nicht angelegt.</p>
 
     <h4>Meinung</h4>
-    <p>Ohne Pläne schwer zu beurteilen. In vielen Abschnitten sollte der Hochbordradweg zu Gunsten des Fußwegs entfallen. Die Fahrbahn müsste dann entsprechend für den Radverkehr hergerichtet werden – was aber wohl nicht bei dieser Sanierung passiert.</p>
+    <p>Dass die jeweils zu schmalen Geh- und Radwege zu einem reinem Gehweg werden, ist sinnvoll. Dann sollten aber im gleichen Zug <.ref>Radfahrstreifen</.ref> markiert werden – oder Alternativ die Strecke zur Tempo-30-Zone umgebaut werden. Warum das nicht vorher oder mindestens gleichzeitig passiert, ist unverständlich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
