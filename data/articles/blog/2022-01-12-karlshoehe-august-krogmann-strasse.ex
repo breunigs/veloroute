@@ -20,8 +20,10 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", "Juni 2024",
-       "https://lsbg.hamburg.de/resource/blob/881306/635882845a53abac9cf2dca161b33f4d/farmsener-weg-karlshoehe-anliegerinformation-juni-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2024-10],
+       "https://lsbg.hamburg.de/resource/blob/976038/3e7bff4bdc3a9728bb64a96a94f2971c/farmsener-weg-karlshoehe-anliegerinformation-oktober-2024-data.pdf"},
+      # {"Baustelleninfo", "Juni 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/881306/635882845a53abac9cf2dca161b33f4d/farmsener-weg-karlshoehe-anliegerinformation-juni-2024-data.pdf"},
       # {"Baustelleninfo", "Mai 2024",
       #  "https://lsbg.hamburg.de/resource/blob/867248/465197d25d8447665f772f4aa5833e4f/farmsener-weg-karlshoehe-anliegerinformation-mai-2024-data.pdf"},
       # {"Baustelleninfo", "Februar 2024",

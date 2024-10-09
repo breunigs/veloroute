@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def start(), do: ~d[2024-04-22]
   def stop(), do: ~d[2025-05]
-  # def construction_site_id_hh(), do: [882875]
+  def construction_site_id_hh(), do: [882_875, 1_024_062]
 
   def tags(), do: ["FR5"]
 
