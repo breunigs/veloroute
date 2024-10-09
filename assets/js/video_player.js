@@ -101,7 +101,7 @@ function maybeExecEndAction() {
     autoplay = true
     reverseVideo()
     term = end
-  } else if (typeof end === "object" && end.action) {
+  } else if (typeof end === "object" && end && end.action) {
     cacheVideoPoster()
     window.pushEvent("video-ended", { action: end.action })
     term = end.action
