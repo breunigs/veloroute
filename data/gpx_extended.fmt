@@ -1,0 +1,28 @@
+# example usage:
+# exiftool -extractEmbedded -ignoreMinorErrors -printFormat <THIS_FILE> -binary -textOut gpx <VIDEO1> <VIDEO2> …
+#
+#[HEAD]<?xml version="1.0" encoding="utf-8"?>
+#[HEAD]<gpx version="1.0"
+#[HEAD] xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+#[HEAD] xmlns="http://www.topografix.com/GPX/1/0"
+#[HEAD] xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd"
+#[HEAD] creator="ExifTool $ExifToolVersion with extended veloroute.hamburg format">
+#[HEAD]<metadata>
+#[HEAD]  <name>$filename#</name>
+#[HEAD]  <desc>$duration# sec runtime @ @ $rate# real time</desc>
+#[HEAD]  <author>$model @ $firmwareversion</author>
+#[HEAD]</metadata>
+#[HEAD]<trk>
+#[HEAD]<trkseg>
+#[IF] $gpslatitude $gpslongitude $gpsdatetime
+#[BODY]<trkpt lat="$gpslatitude#" lon="$gpslongitude#">
+#[BODY]  <time>${gpsdatetime#;my ($ss)=/\.\d+/g;DateFmt("%Y-%m-%dT%H:%M:%SZ");s/Z/${ss}Z/ if $ss}</time>
+#[BODY]  <ele>$gpsaltitude#</ele>
+#[BODY]  <hdop>$GPSHPositioningError#</hdop>
+#[BODY]  <accel z="${accelerometer;$_=(split ' ')[0]}" x="${accelerometer;$_=(split ' ')[1]}" y="${accelerometer;$_=(split ' ')[2]}"/>
+#[BODY]  <gyro z="${gyroscope;$_=(split ' ')[0]}" x="${gyroscope;$_=(split ' ')[1]}" y="${gyroscope;$_=(split ' ')[2]}"/>
+#[BODY]  <speed gps2dkmh="${gpsspeed#;$_=3.6*$_}" gps3dkmh="${gpsspeed3d#;$_=3.6*$_}">$gpsspeed3d#</speed>
+#[BODY]</trkpt>
+#[TAIL]</trkseg>
+#[TAIL]</trk>
+#[TAIL]</gpx>
