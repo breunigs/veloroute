@@ -9,8 +9,9 @@
 #[HEAD] creator="ExifTool $ExifToolVersion with extended veloroute.hamburg format">
 #[HEAD]<metadata>
 #[HEAD]  <name>$filename#</name>
-#[HEAD]  <desc>$duration# sec runtime @ @ $rate# real time</desc>
+#[HEAD]  <desc>$duration# sec runtime @ $rate# real time</desc>
 #[HEAD]  <author>$model @ $firmwareversion</author>
+#[HEAD]  <speedup>${rate#;s/[^0-9.]//g}</speedup>
 #[HEAD]</metadata>
 #[HEAD]<trk>
 #[HEAD]<trkseg>
