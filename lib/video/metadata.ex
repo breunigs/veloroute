@@ -144,7 +144,7 @@ defmodule Video.Metadata do
     with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
          {:ok, %{"streams" => streams, "format" => format}} <- Jason.decode(out) do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
-      video = indexed["hvc1"] || indexed["FFV1"] || hd(streams)
+      video = indexed["hvc1"] || indexed["FFV1"] || indexed["av01"] || hd(streams)
 
       time_lapse =
         with %{"duration_ts" => dur_ts, "duration" => dur} <- indexed["gpmd"] do
