@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.NiendorferStrasseSedimentationsanlage do
 
   def type(), do: :construction
   def start(), do: ~d[2024-05-02]
-  def stop(), do: ~d[2024-09-30]
+  def stop(), do: ~d[2024-12-31]
   def construction_site_id_hh(), do: [784_209]
 
   def tags(), do: ["3"]
