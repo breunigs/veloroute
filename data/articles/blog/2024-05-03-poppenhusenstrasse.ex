@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
       "Straße wird für den Radverkehr in beide Richtungen freigegeben. Fahrbahn wird etwas breiter und das Parken mit Parkbuchten und Fahrrad-Anschließbügeln neu sortiert."
 
   def type(), do: :planned
-  def start(), do: ~d[2025-04]
+  def start(), do: ~d[2025-03]
   def stop(), do: ~d[2026-06]
 
   def tags(), do: ["5"]
@@ -16,16 +16,27 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
   @attrib {"Bezirksamt Hamburg-Nord",
            "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
   def map_image do
-    Data.MapImage.new(__MODULE__, @attrib, {
-      %{lat: 53.585472656, lon: 10.042321296},
-      %{lat: 53.586870805, lon: 10.044577814},
-      %{lat: 53.586668720, lon: 10.044933286},
-      %{lat: 53.585270630, lon: 10.042676616}
+    # Schlussverschickung
+    Data.MapImage.new(__MODULE__, @attrib, "v2", {
+      %{lat: 53.585475233, lon: 10.042285170},
+      %{lat: 53.586888743, lon: 10.044584153},
+      %{lat: 53.586676261, lon: 10.044955215},
+      %{lat: 53.585262750, lon: 10.042656232}
     })
+
+    # 1. Entwurf
+    # Data.MapImage.new(__MODULE__, @attrib, {
+    #   %{lat: 53.585472656, lon: 10.042321296},
+    #   %{lat: 53.586870805, lon: 10.044577814},
+    #   %{lat: 53.586668720, lon: 10.044933286},
+    #   %{lat: 53.585270630, lon: 10.042676616}
+    # })
   end
 
   def links(_assigns) do
     [
+      {"fertiger Entwurf, Lageplan und Erläuterung", ~d[2024-10],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014419"},
       {"1. Entwurf, Lageplan und Erläuterung", "Mai 2024",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014004"}
     ]

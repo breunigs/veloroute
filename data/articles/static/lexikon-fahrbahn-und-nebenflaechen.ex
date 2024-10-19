@@ -12,6 +12,7 @@ defmodule Data.Article.Static.LexikonFahrbahnUndNebenflaechen do
       "lexikon",
       "fahrbahn-und-nebenflaechen",
       "fahrbahn",
+      "fahrbahnen",
       "nebenflächen"
     ]
 
