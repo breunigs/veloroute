@@ -343,12 +343,14 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   defp grab({:capture, _file, "https://twitter.com" <> _} = entry, _retries) do
     entry
     |> chrome_pdf()
+    |> singlefile()
     |> screenshot()
   end
 
   defp grab({:capture, _f, "https://fbhh-evergabe.web.hamburg.de" <> _} = entry, _retries) do
     entry
     |> chrome_pdf()
+    |> singlefile()
     |> screenshot()
   end
 
@@ -366,7 +368,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     if exit_code != 0,
       do: log(file, "page capture failed:\n#{out}\n\n\n")
 
-    screenshot(entry)
+    entry
+    |> singlefile()
+    |> screenshot()
   end
 
   @spec chrome_pdf(entry()) :: entry()
@@ -415,6 +419,19 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
     if exit_code != 0,
       do: log(file, "page capture failed:\n#{out}\n\n\n")
+
+    entry
+  end
+
+  @spec singlefile(entry()) :: entry()
+  defp singlefile({_type, file, url} = entry) do
+    {out, exit_code} = System.cmd("docker", ["run", "capsulecode/singlefile", url])
+
+    if exit_code == 0 do
+      File.write("#{file}.html", out)
+    else
+      log(file, "single file page capture failed:\n#{out}\n\n\n")
+    end
 
     entry
   end
