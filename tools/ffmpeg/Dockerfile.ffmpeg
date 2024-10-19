@@ -102,7 +102,7 @@ COPY --from=downloader /downloads /downloads/
 
 RUN cd /downloads/rav1e && \
   sed -i 's/cap_underflow: false,/cap_underflow: true,/' src/rate.rs && \
-  RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --library-type staticlib
+  RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --libdir ${PREFIX}/lib --library-type staticlib
 
 RUN cd /downloads/svtav1/Build/linux && \
   ./build.sh --native --static --no-dec --no-apps --release --enable-lto --prefix=${PREFIX} --install
