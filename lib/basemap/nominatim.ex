@@ -5,6 +5,7 @@ defmodule Basemap.Nominatim do
 
   @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.4"}}
   @queries [:prepare, :search, :area]
+  @queries_blocking [:prepare]
 
   def export(query, where \\ :cache) when query in @queries,
     do: path(where, "export_#{query}.json.gz")
@@ -185,7 +186,7 @@ defmodule Basemap.Nominatim do
             --file=#{query_path(query, :container)} \
           | gzip --fast \
           | #{sudo} -- tee #{export(query, :container)} > /dev/null \
-          &
+          #{if !(query in @queries_blocking), do: "&"}
         """
       end)
 
