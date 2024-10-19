@@ -138,7 +138,8 @@ defmodule Video.Source do
   # therefore we just stretch them to fit.
   @spec maybe_stretch_to_video([Video.TimedPoint.t()], t()) :: [Video.TimedPoint.t()]
   defp maybe_stretch_to_video(timed_points, %__MODULE__{} = self) do
-    if String.ends_with?(self.source, ".mkv") do
+    if String.ends_with?(self.source, ".mkv") || String.ends_with?(self.source, "_stabilized.MP4") do
+      IO.puts("stretching GPX for #{self.source}")
       vid_len_ms = Video.Metadata.length_ms!(self)
       gpx_len_ms = List.last(timed_points).time_offset_ms
 
