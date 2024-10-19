@@ -48,11 +48,11 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     """)
 
     Video.Generator.pending()
-    |> Enum.sort_by(& &1.name)
+    |> Enum.sort_by(& &1.name())
     |> Enum.each(fn rendered ->
       IO.puts("""
-      # #{rendered.name}
-      mix velo.videos.preview #{rendered.hash}
+      # #{rendered.name()}
+      mix velo.videos.preview #{rendered.hash()}
       """)
     end)
   end
