@@ -43,7 +43,7 @@ defmodule Data.Article.Blog.FreiraumOttensen do
       %Video.Track{
         renderer: 5,
         group: "2",
-        direction: :backward,
+        direction: :forward,
         from: "Behringstraße",
         to: "Eulerstraße",
         parent_ref: __MODULE__,
@@ -59,7 +59,7 @@ defmodule Data.Article.Blog.FreiraumOttensen do
       %Video.Track{
         renderer: 5,
         group: "2",
-        direction: :forward,
+        direction: :backward,
         from: "Lobuschstraße",
         to: "Behringstraße",
         parent_ref: __MODULE__,
