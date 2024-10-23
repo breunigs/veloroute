@@ -5,8 +5,8 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def title(), do: "Kuhmühlenteichpark (Veloroute 6)"
 
-  def start(), do: ~d[2025-07]
-  def stop(), do: ~d[2026-02]
+  # def start(), do: ~d[2025-07]
+  # def stop(), do: ~d[2026-02]
 
   def type(), do: :planned
 
@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def links(_assigns) do
     [
+      {"NDR: Führung der Route soll nochmals geprüft werden", ~d[2024-10],
+       "https://www.ndr.de/nachrichten/hamburg/Bezirk-Hamburg-Nord-Geplante-Veloroute-6-auf-Pruefstand,veloroute128.html"},
       {"2. Entwurf, Erläuterungen und Lageplan", "März 2024",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013864"},
       {"1. Entwurf, Erläuterungen und Lageplan", "Juni 2021",

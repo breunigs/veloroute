@@ -8,11 +8,15 @@ defmodule Data.Article.Blog.KreiselKanalplatz do
       "Ein Kreisverkehr soll das Abbiegen von bzw. in die Schloßstraße einfacher machen. Die alten Hochbordradwege werden dazu teilweise entfernt."
 
   def type(), do: :planned
+  def start(), do: ~d[2025-05]
+  def stop(), do: ~d[2025-12]
 
   def tags(), do: ["10", "FR6"]
 
   def links(_assigns) do
     [
+      {"Baustellenkoordinierung", ~d[2024-10],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012246"},
       {"fertiger Entwurf", "Januar 2022",
        "https://fragdenstaat.de/anfrage/lageplan-und-erlaeuterungsbericht-kreisverkehr-harburger-schlossstrasse/"}
     ]
