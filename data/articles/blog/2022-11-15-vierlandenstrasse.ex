@@ -9,6 +9,8 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
   def type(), do: :planned
   def tags(), do: []
 
+  def start(), do: ~d[2025Q4]
+
   def tracks(),
     do: [
       %Video.Track{

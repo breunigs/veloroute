@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.EppendorferWeg do
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/eppendorfer-weg"},
+      {"Vorabmaßnahmen – Baustelleninfo", ~d[2024-10],
+       "https://lsbg.hamburg.de/resource/blob/982622/642aa2eb109461800da8ed6942ddd514/eppendorfer-weg-anliegerinformation-oktober-2024-data.pdf"},
       {"Vorabmaßnahmen – Bericht", "Juli 2024",
        "https://lsbg.hamburg.de/resource/blob/947214/2cd6313a383b002143c69b8773cadde0/eppendorfer-weg-veloroute-13-ad-hoc-massnahmen-abgestimmte-planung-bericht-data.pdf"},
       {"Vorabmaßnahmen – Plan", "Juli 2024",

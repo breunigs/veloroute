@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.UHornerRennbahn do
   def stop(), do: ~d[2026-12-31]
   def construction_site_id_hh(), do: [7145]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["8"]
 

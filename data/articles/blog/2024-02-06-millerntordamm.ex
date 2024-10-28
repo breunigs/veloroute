@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Millerntordamm do
   def summary(),
     do: "Hochbordradweg wird meist auf Kosten der Fußwege auf 2,0m verbreitert"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["bundesstraße-4"]
 
