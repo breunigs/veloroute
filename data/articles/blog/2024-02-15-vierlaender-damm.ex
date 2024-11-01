@@ -54,8 +54,10 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2024-09],
-       "https://lsbg.hamburg.de/resource/blob/885484/63f351d4fab3b1442eb795c1a3d31586/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-september-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2024-10],
+       "https://lsbg.hamburg.de/resource/blob/984538/e832755a5115ff63c56cbddc55ec98f0/billhorner-roehrendamm-anliegerinformation-oktober-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-09],
+      #  "https://lsbg.hamburg.de/resource/blob/885484/63f351d4fab3b1442eb795c1a3d31586/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-september-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-09],
       #  "https://lsbg.hamburg.de/resource/blob/885484/a92a2d15093fcd561f551841ccebdea9/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-juni-2024-data.pdf"},
       # {"Baustelleninfo", "Juni 2024",

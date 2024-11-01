@@ -9,12 +9,14 @@ defmodule Data.Article.Blog.TilsiterStrasse3 do
     do:
       "Möglicherweise soll der gegenläufige Radfahrstreifen zur Protected-Bike-Lane umgebaut werden."
 
-  def type(), do: :intent
+  def type(), do: :finished
 
   def tags(), do: ["6", "w16"]
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel Anwohnermeinungen nach Fertigstellung", ~d[2024-11],
+       "https://www.abendblatt.de/hamburg/wandsbek/article407566970/tilsiter-strasse-poller-sorgen-fuer-probleme-anwohner-veraergert.html"},
       {"Vorschlag Nachrüstung Trennelemente", "Oktober 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1019654"}
     ]
