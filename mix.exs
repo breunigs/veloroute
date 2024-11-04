@@ -81,7 +81,7 @@ defmodule Veloroute.MixProject do
       {:memoize, "~> 1.4"},
       {:natural_order, "~> 0.3.0"},
       {:phoenix_bakery, "~> 0.1.2", runtime: false},
-      {:phoenix_live_view, "~> 0.18"},
+      {:phoenix_live_view, "~> 1.0.0-rc.7"},
       {:phoenix, "~> 1.7.11"},
       {:plug_cowboy, "~> 2.3"},
       {:polyline, "~> 1.3"},
