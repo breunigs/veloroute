@@ -254,7 +254,7 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> set_content(article)
       |> maybe_update_bounds_from_article_bbox(article, params)
-      |> update_og_image()
+      |> maybe_update_og_image()
       |> assign(:tmp_last_article_set, article)
 
     {:noreply, socket}
@@ -513,15 +513,20 @@ defmodule VelorouteWeb.FrameLive do
     end)
   end
 
+  defguardp page_changed(socket)
+            when socket.assigns.current_page != socket.assigns.prev_page
+
   @default_center_zoom Settings.bounds()
                        |> Geo.BoundingBox.parse()
                        |> VelorouteWeb.VariousHelpers.to_string_center_zoom()
-  defp update_og_image(%{assigns: %{current_page: nil}} = socket) do
+  defp maybe_update_og_image(socket) when not page_changed(socket), do: socket
+
+  defp maybe_update_og_image(%{assigns: %{current_page: nil}} = socket) do
     url = ~s(/map/___static/#{@default_center_zoom}/1280x720)
     assign(socket, :og_image, make_absolute(url))
   end
 
-  defp update_og_image(%{assigns: assigns} = socket) do
+  defp maybe_update_og_image(%{assigns: assigns} = socket) do
     related_tracks = Article.Decorators.related_tracks(assigns.current_page)
     current_track = VelorouteWeb.Live.VideoState.current_track(assigns.video)
 

@@ -300,7 +300,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # page's video thumbnail as alternative that should have the same content
     assert_attribute(
       html,
-      ~s(meta[property="og:image"),
+      ~s(meta[property="og:image"]),
       "content",
       &String.ends_with?(&1, "/images/thumbnails/#{forward_video_hash}/#{round(pos_sec * 1000)}")
     )
