@@ -23,6 +23,7 @@ defmodule VelorouteWeb.Live.Map do
       socket
       |> assign(assigns)
       |> filter_styles_by_env()
+      |> assign_active_style_id()
       |> update_server_route_groups()
       |> reset_layers_on_change()
       |> highlight_route()
@@ -46,7 +47,7 @@ defmodule VelorouteWeb.Live.Map do
 
   @spec render(%{:styles => any, optional(any) => any}) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
-    assigns = assign(assigns, %{active_style_id: active_style_id(assigns)})
+    assigns = assign_active_style_id(assigns)
 
     ~H"""
     <div role="region" aria-label="Straßenkarte, die ausgewählte Radrouten anzeigt">
@@ -193,9 +194,15 @@ defmodule VelorouteWeb.Live.Map do
          socket.assigns[key] != @default_assigns[key])
   end
 
-  defp active_style_id(%{assigns: assigns}), do: active_style_id(assigns)
+  def assign_active_style_id(%Phoenix.LiveView.Socket{assigns: %{styles: styles}} = socket) do
+    assign(socket, :active_style_id, active_style_id(styles))
+  end
 
-  defp active_style_id(%{styles: styles}) do
+  def assign_active_style_id(%{styles: styles} = assigns) do
+    assign(assigns, :active_style_id, active_style_id(styles))
+  end
+
+  defp active_style_id(styles) do
     %{id: id} = Enum.find(styles, fn %{active: active} -> active end)
     id
   end
