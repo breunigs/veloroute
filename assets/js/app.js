@@ -16,6 +16,9 @@ function pushEvent(event, payload) {
 window.pushEvent = pushEvent;
 
 let Hooks = {};
+/**
+ * @type {import("phoenix_live_view").ViewHook}
+ */
 Hooks.control = {
   mounted() {
     window.dispatchEvent(new Event("global:mounted"));
@@ -29,6 +32,10 @@ Hooks.control = {
     pushEventQueued = null;
   }
 }
+
+/**
+ * @type {import("phoenix_live_view").ViewHook}
+ */
 Hooks.FocusSearchField = {
   mounted() {
     this.el.focus();
@@ -38,6 +45,9 @@ Hooks.FocusSearchField = {
 
 let scrollPositionFromPopState = null;
 let scrollLastPage = window.location.pathname;
+/**
+ * @type {import("phoenix_live_view").ViewHook}
+ */
 Hooks.ScrollReset = {
   saveScrollPos() {
     // console.log("scroll", `saveScrollPos ${window.location.pathname}`, "=", this.el.scrollTop)
