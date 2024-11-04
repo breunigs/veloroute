@@ -52,6 +52,9 @@ defmodule Article do
 
   @callback languages() :: [language()]
 
+  @callback microdata?() :: boolean()
+  @callback microdata(atom()) :: [itemscope: binary(), itemtype: binary(), itemprop: binary()]
+
   @module_prefix "Elixir.Data.Article."
   @known_categories ~w/Blog Static/
   @known_prefixes Enum.map(@known_categories, &(@module_prefix <> &1 <> "."))

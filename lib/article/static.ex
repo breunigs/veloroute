@@ -5,6 +5,9 @@ defmodule Article.Static do
 
       def created_at, do: nil
       def type, do: nil
+
+      def microdata?(), do: false
+      def microdata(_), do: []
     end
   end
 end

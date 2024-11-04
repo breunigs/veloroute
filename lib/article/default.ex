@@ -27,6 +27,10 @@ defmodule Article.Default do
 
       def compiled_at(), do: unquote(Macro.escape(DateTime.utc_now()))
 
+      def microdata?(), do: true
+      def microdata(:wrapper), do: [itemscope: "", itemtype: "https://schema.org/NewsArticle"]
+      def microdata(:title), do: [itemprop: "headline"]
+
       defoverridable Article
 
       use Phoenix.Component

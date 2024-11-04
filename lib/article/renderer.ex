@@ -19,25 +19,17 @@ defmodule Article.Renderer do
     try_render(assigns, fn ->
       body = art.text(assigns)
       has_header = body.static |> List.first() |> String.starts_with?("<h3")
-
-      microdata =
-        if art.updated_at(),
-          do: %{
-            wrapper: [itemscope: "", itemtype: "https://schema.org/NewsArticle"],
-            title: [itemprop: "headline"]
-          }
-
-      assigns = assign(assigns, %{body: body, has_header: has_header, microdata: microdata})
+      assigns = assign(assigns, %{body: body, has_header: has_header})
 
       ~H"""
-        <article {@microdata[:wrapper] || %{}}>
-          <h3 {@microdata[:title] || %{}} :if={!@has_header}><%= @ref.title() %></h3>
+        <article {@ref.microdata(:wrapper)}>
+          <h3 {@ref.microdata(:title)} :if={!@has_header}><%= @ref.title() %></h3>
           <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
           <%= @body %>
           <Components.TagHelpers.construction_duration_paragraph ref={@ref} lang={@lang}/>
           <Components.TagHelpers.article_updated_at ref={@ref}/>
-          <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@microdata != %{}}/>
+          <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@ref.microdata?()}/>
         </article>
 
         <Components.RelatedArticlesHelper.related_articles ref={@ref} lang={@lang}/>
