@@ -745,10 +745,12 @@ body.fullscreen video, #videoOuter:fullscreen video {
   $height: 68px;
 
   position: absolute;
-  position: sticky;
-  top: calc(50vh - $height / 2);
+  top: 50%;
+  top: 50vh;
+  margin-top: calc($height * -1);
   left: 0;
-  height: 0;
+  height: $height;
+  width: $width;
   overflow: visible;
   touch-action: pan-x;
 
