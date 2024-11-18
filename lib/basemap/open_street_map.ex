@@ -165,6 +165,7 @@ defmodule Basemap.OpenStreetMap do
           "--clean=changeset",
           "--clean=uid",
           "--clean=user",
+          "--overwrite",
           "--output",
           path(:container, bbox_extract_name()),
           path(:container, osm_source_name())
