@@ -74,8 +74,6 @@ defmodule Data.Article.Static.RSWGeesthacht do
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Geesthacht",
        "https://metropolregion.hamburg.de/radschnellwege/15310118/radschnellweg-geesthacht-hamburg/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15310162/mediathek-radschnellweg-geesthacht-hamburg/"},
       {"Informationen zum Neubaugebiet Oberbillwerder",
        "https://www.oberbillwerder-hamburg.de/masterplan-2022/"}
     ]

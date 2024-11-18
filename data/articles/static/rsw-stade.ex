@@ -133,9 +133,7 @@ defmodule Data.Article.Static.RSWStade do
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Stade",
-       "https://metropolregion.hamburg.de/radschnellwege/15307278/radschnellweg-stade-hamburg/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15307294/mediathek-radschnellweg-stade-hamburg/"}
+       "https://metropolregion.hamburg.de/radschnellwege/15307278/radschnellweg-stade-hamburg/"}
     ]
   end
 

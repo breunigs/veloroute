@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def title(), do: "Am Luisenhof – Busüberlieger (Bezirksroute Wandsbek W5)"
 
   def start(), do: ~d[2024-07-15]
-  def stop(), do: ~d[2025-03-31]
+  def stop(), do: ~d[2025-08-15]
   def construction_site_id_hh(), do: [677_843]
 
   def type(), do: :construction
@@ -28,8 +28,10 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2024-07],
-       "https://lsbg.hamburg.de/resource/blob/932490/01bfdd46689cf3d140bd213fd589d691/u-farmsen-ueberlieger-juli-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2024-11],
+       "https://lsbg.hamburg.de/resource/blob/932490/24ba151ad95c9d94da49c702447f903e/u-farmsen-ueberlieger-november-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-07],
+      #  "https://lsbg.hamburg.de/resource/blob/932490/01bfdd46689cf3d140bd213fd589d691/u-farmsen-ueberlieger-juli-2024-data.pdf"},
       {"Bauvergabe", "März 2024",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/02842548-8a4f-4c5a-b3e8-226d28b107cd/details"},
       {"Erläuterungen und Lageplan", "2023, Überarbeitung",

@@ -117,9 +117,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Bad bramstedt",
-       "https://metropolregion.hamburg.de/radschnellwege/15303660/radschnellweg-bad-bramstedt-hamburg/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15303686/radschnellweg-bad-bramstedt-hamburg-mediathek/"}
+       "https://metropolregion.hamburg.de/radschnellwege/15303660/radschnellweg-bad-bramstedt-hamburg/"}
     ]
   end
 

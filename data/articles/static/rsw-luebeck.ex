@@ -115,9 +115,7 @@ defmodule Data.Article.Static.RSWLuebeck do
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Lübeck",
-       "https://metropolregion.hamburg.de/radschnellwege/15307314/radschnellweg-luebeck/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15307342/mediathek-radschnellweg-luebeck/"}
+       "https://metropolregion.hamburg.de/radschnellwege/15307314/radschnellweg-luebeck/"}
     ]
   end
 

@@ -97,8 +97,6 @@ defmodule Data.Article.Static.RSWLueneburg do
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Lüneburg",
        "https://metropolregion.hamburg.de/radschnellwege/15310310/radschnellweg-lueneburg-hamburg/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15310408/mediathek-radschnellweg-lueneburg-hamburg/"},
       {"Infos zum Elbinselquartier auf Wilhelmsburg",
        "https://www.iba-hamburg.de/de/projekte/elbinselquartier/uebersicht"}
     ]

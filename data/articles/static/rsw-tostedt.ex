@@ -76,8 +76,6 @@ defmodule Data.Article.Static.RSWTostedt do
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Tostedt",
        "https://metropolregion.hamburg.de/radschnellwege/15307158/radschnellweg-tostedt-hamburg/"},
-      {"Pläne und Berichte",
-       "https://metropolregion.hamburg.de/radschnellwege/15307408/mediathek-radschnellweg-tostedt-hamburg/"},
       {"Infoseite Buchholz 2025plus", "https://buchholz2025plus.de/"},
       {"Infoseite Bucholz Stadtumbau West",
        "https://www.buchholz.de/portal/seiten/foerderprogramm-stadtumbau-west-903000665-20101.html"}
