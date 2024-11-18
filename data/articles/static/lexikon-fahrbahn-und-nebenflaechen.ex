@@ -18,7 +18,15 @@ defmodule Data.Article.Static.LexikonFahrbahnUndNebenflaechen do
 
   def text(assigns) do
     ~H"""
-    <p>„Straße“ meint immer alles, also salopp von Hauswand bis Hauswand. Die Fahrbahn bezeichnet das Stück zwischen den Bordsteinen, die heute meist geteert wird. Die KFZ-Fahrspuren sind immer Teil der Fahrbahn, auch Radfahrstreifen zählen zur Fahrbahn. Als Nebenflächen bezeichnet man alles vom Randstein bis zur Hauswand, also Fußwege oder Hochbordradwege. Auch die in Hamburg häufig anzutreffenden „Baum/Parkplatz“-Streifen zählen zu den Nebenflächen.</p>
+    <p><em>Straße</em> meint immer alles, also von Hauswand bis Hauswand.</p>
+
+    <p>Direkt an den Häusern schließen die <em>Nebenflächen</em> an. Sie enthalten Gehwege, <.ref>Hochbordradwege</.ref>, <.ref>Kopenhagener Radwege</.ref>, Grünstreifen oder Abstellmöglichkeiten für Fahrräder und Autos. Die Nebenflächen enden in der Regel am Randstein der Trumme (Regenablauf).</p>
+
+    <p>Der meist asphaltiere Teil zwischen den Randsteinen heißt <em>Fahrbahn</em>. KFZ-Fahrspuren sind immer Teil der Fahrbahn, auch Fahrrad-<.ref>Schutzstreifen</.ref> (schmale, gestrichelte Linie) sind es.</p>
+
+    <p><.ref>Radfahrstreifen</.ref> sind <em>Sonderwege</em>: sie sind rechtlich weder Teil der Fahrbahn, noch der Nebenflächen. Das gilt so auch für <.ref>Protected-Bike-Lanes</.ref>.</p>
+
+    <p>In der Praxis bezeichnet man Schutzstreifen und Radfahrstreifen als <em>fahrbahnnah</em>. Protected-Bike-Lanes, Kopenhagener Radwege und Hochbordradwege dagegen als <em>fahrbahnbegleitend</em>.</p>
 
     <.roaddiagram src="fahrbahn-und-nebenflaechen" alt="Eine Straßenansicht von oben (Vogelperspektive), die den Unterschied zwischen Nebenflächen und Fahrbahn verdeutlicht."/>
     """
