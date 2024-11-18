@@ -49,22 +49,22 @@
       </span><span id="max" title="Videolänge"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
-    <button id="reverse" type="button" title={if @video_reversible, do: "Fahrtrichtung umdrehen", else: "Video in die andere Fahrtrichtung leider nicht verfügbar"} class={if !@video_reversible, do: "disabled"}><%= if @video_reversible, do: "Umdrehen" %></button>
+    <Video.Components.reverse_button lang={@lang} video_reversible={@video_reversible} />
     <div id="videoOptions" phx-update="ignore" role="menu" aria-orientation="horizontal">
       <button type="button" aria-label="Video-Einstellungen"></button>
       <div>
         <div class="column" id="videoQuality" aria-orientation="vertical" role="group">
-          <strong>Qualität</strong>
+          <strong><%= if @lang == "en" do %>Quality<% else %>Qualität<% end %></strong>
           <div id="videoQualityOptions"></div>
         </div>
 
         <div class="column" id="playbackRate" aria-orientation="vertical" role="group">
-          <strong>Wiedergabe</strong>
-          <a role="menuitemradio" aria-checked="false" data-rate="2.0">2,0 – schnell</a>
+          <strong><%= if @lang == "en" do %>Speed<% else %>Wiedergabe<% end %></strong>
+          <a role="menuitemradio" aria-checked="false" data-rate="2.0">2,0 – <%= if @lang == "en" do %>fast<% else %>schnell<% end %></a>
           <a role="menuitemradio" aria-checked="false" data-rate="1.5">1,5</a>
           <a role="menuitemradio" aria-checked="true" class="active" data-rate="1.0">1,0 – normal</a>
           <a role="menuitemradio" aria-checked="false" data-rate="0.75">0,75</a>
-          <a role="menuitemradio" aria-checked="false" data-rate="0.5">0,5 – langsam</a>
+          <a role="menuitemradio" aria-checked="false" data-rate="0.5">0,5 – <%= if @lang == "en" do %>slow<% else %>langsam<% end %></a>
         </div>
       </div>
     </div>

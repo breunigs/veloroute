@@ -23,7 +23,8 @@ defmodule VelorouteWeb.FrameLive do
     og_image: nil,
     enable_drawing_tools: false,
     lang_user_set: false,
-    lang: nil
+    lang: nil,
+    page_title: Settings.page_title_long()
   ]
 
   def mount(params, session, socket) do

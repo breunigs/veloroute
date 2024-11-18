@@ -1,7 +1,36 @@
 defmodule Video.Components do
   require Logger
-  import Phoenix.Component
+  use Phoenix.Component
   import Guards
+
+  attr :lang, :string, required: true
+  attr :video_reversible, :boolean, required: true
+  @spec reverse_button(map()) :: Phoenix.LiveView.Rendered.t()
+  def reverse_button(assigns) do
+    is_en = assigns.lang == "en"
+    rev = assigns.video_reversible
+
+    {text, class, title} =
+      cond do
+        rev && is_en ->
+          {"Reverse", "", "Reverse cycling direction"}
+
+        rev && !is_en ->
+          {"Umdrehen", "", "Fahrtrichtung umdrehen"}
+
+        !rev && is_en ->
+          {"", "disabled", "Video in the opposite direction not available"}
+
+        !rev && !is_en ->
+          {"", "disabled", "Video in die andere Fahrtrichtung leider nicht verfügbar"}
+      end
+
+    assigns = assign(assigns, %{title: title, text: text, class: class})
+
+    ~H"""
+    <button id="reverse" type="button" title={@title} class={@class}><%= @text %></button>
+    """
+  end
 
   @spec alternatives(Video.Track.hash(), non_neg_integer()) :: Phoenix.LiveView.Rendered.t()
   def alternatives(hash, start_in_ms) when valid_hash(hash) and is_integer(start_in_ms) do
