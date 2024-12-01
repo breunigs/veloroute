@@ -14,6 +14,18 @@ defmodule VelorouteWeb.Live.Map do
     initial: true,
     highlight_route: nil
   }
+
+  @static_map_sizes [
+    {1600, 1200},
+    {1300, 1000},
+    {1100, 900},
+    {900, 700},
+    {700, 700},
+    {500, 500}
+  ]
+
+  def static_map_sizes, do: @static_map_sizes
+
   def mount(socket) do
     {:ok, assign(socket, @default_assigns)}
   end
@@ -216,14 +228,7 @@ defmodule VelorouteWeb.Live.Map do
     assigns = %{
       video_route_id: video_route_id,
       cz: cz,
-      sizes: [
-        {1600, 1200},
-        {1300, 1000},
-        {1100, 900},
-        {900, 700},
-        {700, 700},
-        {500, 500}
-      ]
+      sizes: @static_map_sizes
     }
 
     preview_image = ~H"""

@@ -45,9 +45,12 @@ defmodule Basemap.Static.Plug do
     conn
   end
 
+  @pixel_ratio 1
+  def default_pixel_ratio, do: @pixel_ratio
+
   defp add_optional_params(parsed, params) do
     parsed
-    |> Map.put(:pixelRatio, int_param(params, "r", 1))
+    |> Map.put(:pixelRatio, int_param(params, "r", @pixel_ratio))
     |> Map.put(:highlightRoute, Map.get(params, "highlightRoute", "_"))
   end
 

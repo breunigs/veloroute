@@ -21,5 +21,24 @@ defmodule Warmup do
     Parallel.each(articles, &Article.Decorators.bbox_self(&1))
 
     Statistics.all()
+
+    initial_static_map_images()
+  end
+
+  defp initial_static_map_images() do
+    cz = Settings.initial() |> Geo.CheapRuler.bounds_to_center_zoom_limited()
+    video_route_id = VelorouteWeb.Live.VideoState.default_route_id()
+
+    Parallel.each(VelorouteWeb.Live.Map.static_map_sizes(), fn {w, h} ->
+      Basemap.Static.Runner.render(%{
+        lon: cz.lon,
+        lat: cz.lat,
+        zoom: cz.zoom,
+        width: w,
+        height: h,
+        pixelRatio: Basemap.Static.Plug.default_pixel_ratio(),
+        highlightRoute: video_route_id
+      })
+    end)
   end
 end

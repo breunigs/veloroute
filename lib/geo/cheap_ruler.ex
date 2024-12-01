@@ -234,6 +234,26 @@ defmodule Geo.CheapRuler do
     %{lat: lat, lon: lon, zoom: zoom}
   end
 
+  @doc """
+  Converts the given bounds into a center-zoom variant with zoom rounded and
+  limited to sensible value.
+  """
+  @spec bounds_to_center_zoom_limited(Geo.BoundingBox.like()) :: %{
+          lat: float(),
+          lon: float(),
+          zoom: float()
+        }
+  def bounds_to_center_zoom_limited(bounds) do
+    cz = bounds_to_center_zoom(bounds)
+
+    zoom =
+      round(cz.zoom)
+      |> max(Basemap.Constants.min_zoom())
+      |> min(Basemap.Constants.bounds_fitting_max_zoom())
+
+    %{cz | zoom: zoom * 1.0}
+  end
+
   @spec bounds_to_xyz(Geo.BoundingBox.like(), max_zoom :: pos_integer()) :: %{
           x: integer,
           y: integer,
