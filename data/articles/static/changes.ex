@@ -12,9 +12,6 @@ defmodule Data.Article.Static.Changes do
 
     <ul class="imgbullet">
       <li><.a href="/updates.atom"><img src="/images/rss.svg"> RSS-Feed</.a> (benötigt einen <.a href="https://www.rss-readers.org/">Feedreader</.a>)</li>
-      <%= if Settings.twitter_handle() != nil do %>
-        <li><.a href={"https://twitter.com/" <> String.slice(Settings.twitter_handle(), 1..-1//1)}><img src="/images/twitter.svg"> Twitter</.a></li>
-      <% end %>
       <%= if Settings.mastodon_url() != nil do %>
         <li><.a href={Settings.mastodon_url()} rel="me"><img src="/images/mastodon.svg"> Mastodon</.a></li>
       <% end %>

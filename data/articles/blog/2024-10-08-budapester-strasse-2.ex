@@ -7,11 +7,11 @@ defmodule Data.Article.Blog.BudapesterStrasse2 do
     do:
       "Hochbordradwege werden neu gepflastert und teilweise verbreitert. Die Breiten reichen von 1,2m bis 2,5m, wobei Breiten ab 2,0m überwiegen."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["bundesstraße-4"]
 
-  def start(), do: ~d[2024-12]
+  def start(), do: ~d[2024-12-09]
   def stop(), do: ~d[2025-03]
 
   def tracks(), do: Data.Article.Blog.BudapesterStrasse1.tracks()
@@ -28,6 +28,8 @@ defmodule Data.Article.Blog.BudapesterStrasse2 do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2024-11],
+       "https://lsbg.hamburg.de/resource/blob/993638/50578a9589b239723ec34d8104af5267/budapester-strasse-geh-und-radwege-anliegerinformation-november-2024-data.pdf"},
       {"Lageplan", ~d[2024-10],
        "https://fragdenstaat.de/anfrage/budapester-strasse-millerntorplatz-millerntordamm-glacischaussee/"}
     ]
