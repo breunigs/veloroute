@@ -43,11 +43,37 @@ defmodule VelorouteWeb.ImageExtractController do
     end || {:jpeg, "image/jpeg"}
   end
 
+  require Cachex.Spec
+
+  def cache_child_spec() do
+    Supervisor.child_spec(
+      {Cachex,
+       [
+         name: __MODULE__,
+         hooks: [
+           Cachex.Spec.hook(module: Cachex.Limit.Accessed),
+           Cachex.Spec.hook(
+             module: Cachex.Limit.Scheduled,
+             args: {
+               # setting cache max size
+               Settings.video_thumbnail_cache_entry_limit(),
+               # options for `Cachex.prune/3`
+               [],
+               # options for `Cachex.Limit.Scheduled`
+               []
+             }
+           )
+         ]
+       ]},
+      id: __MODULE__
+    )
+  end
+
   defp ffmpeg(hash, ts, max_length, format) do
     key = "#{hash} #{ts} #{format}"
 
-    {cache_status, result} =
-      Cachex.fetch(:image_extract_cachex, key, fn ->
+    {_cache_status, result} =
+      Cachex.fetch(__MODULE__, key, fn ->
         {elapsed, result} = :timer.tc(fn -> ffmpeg_no_cache(hash, ts, max_length, format) end)
 
         case result do
@@ -60,9 +86,6 @@ defmodule VelorouteWeb.ImageExtractController do
             {:ignore, other}
         end
       end)
-
-    # effectively make this a LRU
-    if cache_status == :ok, do: Cachex.touch(:image_extract_cachex, key)
 
     result
   end

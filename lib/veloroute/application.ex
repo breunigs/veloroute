@@ -16,20 +16,9 @@ defmodule Veloroute.Application do
       Video.DiskPreloader,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
-      Supervisor.child_spec(
-        {Cachex, name: :tesla_cache_cachex, limit: Settings.external_map_cache_entry_limit()},
-        id: :tesla_cache_cachex
-      ),
-      Supervisor.child_spec(
-        {Cachex,
-         [name: :image_extract_cachex, limit: Settings.video_thumbnail_cache_entry_limit()]},
-        id: :image_extract_cachex
-      ),
-      Supervisor.child_spec(
-        {Cachex,
-         [name: :basemap_static_render_cachex, limit: Settings.static_map_cache_entry_limit()]},
-        id: :basemap_static_render_cachex
-      )
+      TeslaCache.child_spec(),
+      VelorouteWeb.ImageExtractController.cache_child_spec(),
+      Basemap.Static.Runner.cache_child_spec()
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

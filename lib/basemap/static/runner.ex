@@ -21,6 +21,32 @@ defmodule Basemap.Static.Runner do
           highlightRoute: binary()
         }
 
+  require Cachex.Spec
+
+  def cache_child_spec() do
+    Supervisor.child_spec(
+      {Cachex,
+       [
+         name: :basemap_static_render_cachex,
+         hooks: [
+           Cachex.Spec.hook(module: Cachex.Limit.Accessed),
+           Cachex.Spec.hook(
+             module: Cachex.Limit.Scheduled,
+             args: {
+               # setting cache max size
+               Settings.static_map_cache_entry_limit(),
+               # options for `Cachex.prune/3`
+               [],
+               # options for `Cachex.Limit.Scheduled`
+               []
+             }
+           )
+         ]
+       ]},
+      id: :basemap_static_render_cachex
+    )
+  end
+
   defp asset_dir(), do: Path.join(to_string(:code.priv_dir(:veloroute)), "static/")
 
   defp style_path() do
@@ -56,7 +82,7 @@ defmodule Basemap.Static.Runner do
         " "
       )
 
-    {cache_status, result} =
+    {_cache_status, result} =
       Cachex.fetch(:basemap_static_render_cachex, line, fn ->
         deadline = :os.system_time(:millisecond) + timeout
 
@@ -76,8 +102,6 @@ defmodule Basemap.Static.Runner do
         end
       end)
 
-    # effectively make this a LRU
-    if cache_status == :ok, do: Cachex.touch(:basemap_static_render_cachex, line)
     result
   catch
     :exit, reason -> {:error, inspect(reason)}

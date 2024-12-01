@@ -2,8 +2,31 @@ defmodule TeslaCache do
   @behaviour Tesla.Middleware
   @ttl :timer.hours(24)
 
+  require Cachex.Spec
+
+  def child_spec() do
+    Supervisor.child_spec(
+      {Cachex,
+       name: __MODULE__,
+       hooks: [
+         Cachex.Spec.hook(
+           module: Cachex.Limit.Scheduled,
+           args: {
+             # setting cache max size
+             Settings.external_map_cache_entry_limit(),
+             # options for `Cachex.prune/3`
+             [],
+             # options for `Cachex.Limit.Scheduled`
+             []
+           }
+         )
+       ]},
+      id: __MODULE__
+    )
+  end
+
   def call(env, next, _opts) do
-    {:ok, resp} = Cachex.get(:tesla_cache_cachex, cache_key(env))
+    {:ok, resp} = Cachex.get(__MODULE__, cache_key(env))
 
     cond do
       is_nil(resp) ->
@@ -20,15 +43,15 @@ defmodule TeslaCache do
 
   defp fetch(env, next) do
     key = cache_key(env)
-    {cache_status, resp} = Cachex.fetch(:tesla_cache_cachex, key, run(env, next), ttl: @ttl)
-    if cache_status == :ok, do: Cachex.touch(:tesla_cache_cachex, key)
+    {cache_status, resp} = Cachex.fetch(__MODULE__, key, run(env, next), expire: @ttl)
+    if cache_status == :ok, do: Cachex.touch(__MODULE__, key)
     resp
   end
 
   defp background_update(env, next) do
     Task.start(fn ->
       with {:commit, resp} <- run(env, next).() do
-        Cachex.put(:tesla_cache_cachex, cache_key(env), resp, ttl: @ttl)
+        Cachex.put(__MODULE__, cache_key(env), resp, expire: @ttl)
       end
     end)
   end
