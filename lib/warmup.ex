@@ -23,6 +23,7 @@ defmodule Warmup do
     Statistics.all()
 
     initial_static_map_images()
+    initial_video_poster()
   end
 
   defp initial_static_map_images() do
@@ -39,6 +40,14 @@ defmodule Warmup do
         pixelRatio: Basemap.Static.Plug.default_pixel_ratio(),
         highlightRoute: video_route_id
       })
+    end)
+  end
+
+  defp initial_video_poster() do
+    Task.start_link(fn ->
+      with {hash, ts} <- VelorouteWeb.Live.VideoState.default_video_poster() do
+        VelorouteWeb.ImageExtractController.extract(hash, ts, ts, :webp)
+      end
     end)
   end
 end

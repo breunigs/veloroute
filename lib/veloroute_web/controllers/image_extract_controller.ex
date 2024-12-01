@@ -9,7 +9,7 @@ defmodule VelorouteWeb.ImageExtractController do
     with {ts_in_ms, ""} <- Integer.parse(ts),
          {:ok, ren} <- Video.Generator.get_error(hash),
          {format, header} <- image_support(conn),
-         {:ok, img} <- ffmpeg(hash, ts_in_ms, ren.length_ms(), format) do
+         {:ok, img} <- extract(hash, ts_in_ms, ren.length_ms(), format) do
       conn
       |> put_resp_content_type(header)
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
@@ -69,7 +69,9 @@ defmodule VelorouteWeb.ImageExtractController do
     )
   end
 
-  defp ffmpeg(hash, ts, max_length, format) do
+  @spec extract(Video.Track.hash(), non_neg_integer(), non_neg_integer(), :webp | :jpeg) ::
+          {:ok, binary()} | {:error, binary()}
+  def extract(hash, ts, max_length, format) do
     key = "#{hash} #{ts} #{format}"
 
     {_cache_status, result} =

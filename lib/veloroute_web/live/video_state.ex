@@ -175,6 +175,18 @@ defmodule VelorouteWeb.Live.VideoState do
     new() |> route_id()
   end
 
+  @spec default_video_poster() ::
+          {hash :: Video.Track.hash(), time_offset_ms :: non_neg_integer()} | nil
+  def default_video_poster() do
+    state = new()
+    video = current_rendered(state)
+
+    if video do
+      start_from = Video.Rendered.start_from(video, state.start)
+      {video.hash(), start_from.time_offset_ms}
+    end
+  end
+
   @spec current_track(t() | nil) :: Video.Track.t() | nil
   def current_track(%__MODULE__{direction: :forward, forward_track: fw}), do: fw
   def current_track(%__MODULE__{direction: :backward, backward_track: bw}), do: bw
