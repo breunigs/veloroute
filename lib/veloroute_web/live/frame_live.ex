@@ -249,6 +249,7 @@ defmodule VelorouteWeb.FrameLive do
           socket
           |> update_map_bounds(params)
           |> VelorouteWeb.Live.VideoState.maybe_update_video(article, params)
+          |> VelorouteWeb.Live.VideoState.maybe_preload_video_poster()
           |> maybe_autoplay(params["autoplay"] == "true")
 
     socket =

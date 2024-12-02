@@ -44,7 +44,7 @@ defmodule Warmup do
   end
 
   defp initial_video_poster() do
-    Task.start_link(fn ->
+    Task.start(fn ->
       with {hash, ts} <- VelorouteWeb.Live.VideoState.default_video_poster() do
         VelorouteWeb.ImageExtractController.extract(hash, ts, ts, :webp)
       end

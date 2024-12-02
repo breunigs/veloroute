@@ -266,6 +266,35 @@ defmodule VelorouteWeb.Live.VideoState do
     end
   end
 
+  def maybe_preload_video_poster(%{assigns: %{video_hash: hash, video_start: start_ms}} = socket) do
+    if !test_env?() && !Phoenix.LiveView.connected?(socket) && valid_hash(hash) &&
+         start_ms != nil && !probably_robot?(socket) do
+      Logger.debug("video poster async load start #{hash} #{start_ms}")
+
+      Task.start(VelorouteWeb.ImageExtractController, :extract, [
+        hash,
+        start_ms,
+        start_ms,
+        :webp
+      ])
+    end
+
+    socket
+  end
+
+  def maybe_preload_video_poster(socket), do: socket
+
+  defp test_env?() do
+    Application.get_env(:veloroute, :env) == :test
+  end
+
+  defp probably_robot?(socket) do
+    ua = Phoenix.LiveView.get_connect_info(socket, :user_agent) |> String.downcase()
+
+    ["http://", "https://", "bot", "ows.eu/owler", "python-requests", "okhttp"]
+    |> Enum.any?(&String.contains?(ua, &1))
+  end
+
   @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::
           Video.Rendered.indicator() | nil
   defp position_from_time(%{assigns: %{video: state}}, params) do
