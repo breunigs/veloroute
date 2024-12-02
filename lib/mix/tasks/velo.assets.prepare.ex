@@ -33,17 +33,27 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     User-agent: *
     Allow: /
 
-    User-agent: Amazonbot
+    User-agent: AhrefsBot
+    Crawl-Delay: 600
+
+    User-agent: AhrefsBot
+    Disallow: /live/websocket
     Disallow: /images/thumbnails/
+    Disallow: /map/___static/
+    Disallow: /assets/basemap/
+
+    User-agent: Amazonbot
+    User-agent: Applebot-Extended
+    User-agent: barkrowler
+    User-agent: DataForSeoBot
+    User-agent: GPTBot
+    User-agent: meta-externalagent
+    User-agent: PerplexityBot
+    User-agent: turnitinbot
+    Disallow: /
 
     User-agent: GPTBot-User
     Allow: /
-
-    User-agent: GPTBot
-    Disallow: /
-
-    User-agent: Applebot-Extended
-    Disallow: /
     """)
   end
 end
