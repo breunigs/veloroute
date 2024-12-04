@@ -43,12 +43,26 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     Disallow: /assets/basemap/
 
     User-agent: Amazonbot
+    User-agent: anthropic-ai
     User-agent: Applebot-Extended
     User-agent: barkrowler
+    User-agent: Claude-Web
+    User-agent: ClaudeBot
     User-agent: DataForSeoBot
+    User-agent: dotbot
+    User-agent: Google-Extended
     User-agent: GPTBot
+    User-Agent: ImagesiftBot
     User-agent: meta-externalagent
     User-agent: PerplexityBot
+    User-Agent: SemrushBot
+    User-agent: SemrushBot-BA
+    User-agent: SemrushBot-FT
+    User-agent: SemrushBot-OCOB
+    User-agent: SemrushBot-SI
+    User-agent: SemrushBot-SWA
+    User-agent: SiteAuditBot
+    User-agent: SplitSignalBot
     User-agent: turnitinbot
     Disallow: /
 
