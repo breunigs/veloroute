@@ -12,13 +12,13 @@ defmodule Veloroute.Application do
     # List all child processes to be supervised
     children = [
       Search.Meilisearch.Runner,
+      Basemap.Static.Runner.cache_child_spec(),
       Basemap.Static.Runner,
       Video.DiskPreloader,
       # Start the endpoint when the application starts
       VelorouteWeb.Endpoint,
       TeslaCache.child_spec(),
-      VelorouteWeb.ImageExtractController.cache_child_spec(),
-      Basemap.Static.Runner.cache_child_spec()
+      VelorouteWeb.ImageExtractController.cache_child_spec()
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

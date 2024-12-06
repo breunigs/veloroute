@@ -5,7 +5,12 @@ ARG ERLANG_VERSION
 ARG DEBIAN_VERSION
 
 FROM hexpm/elixir:${ELIXIR_VERSION}-erlang-${ERLANG_VERSION}-debian-${DEBIAN_VERSION} AS base
-ENTRYPOINT [ "mix" ]
+ENTRYPOINT [ \
+  "/usr/bin/chrt", "--idle", "0", \
+  "/usr/bin/nice", "-n19", \
+  "/usr/bin/ionice", "--class", "idle", \
+  "mix" \
+  ]
 ENV GIT_COMMIT="dockerfile dummy"
 
 # RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg gcompat
