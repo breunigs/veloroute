@@ -29,7 +29,8 @@ def pixel_ratios(image_path)
     left ||= extract(image_path, nth, :col)
   end
 
-  {lat: left, lon: top}
+
+  {left: left, top: top, rotation: left > top ? :clockwise : :anticlockwise}
 end
 
 def read_project_zip(project_path)
@@ -107,20 +108,28 @@ end
 def calculate_map_image(layer)
   pr = pixel_ratios(layer.fetch(:image_path))
   bbox = layer.fetch(:bbox)
-  index = layer.fetch(:index) ? "#{layer.fetch(:index)}, " : ""
+  index = layer.fetch(:index) ? "\"#{layer.fetch(:index)}\", " : ""
+
+  coords = case pr[:rotation]
+  when :clockwise
+    <<~ELIXIR
+      %{lat: #{round(bbox[:max_lat])}, lon: #{locate(bbox, :lon, pr[:top])}},
+      %{lat: #{locate(bbox, :lat, pr[:left])}, lon: #{round(bbox[:max_lon])}},
+      %{lat: #{round(bbox[:min_lat])}, lon: #{locate(bbox, :lon, 1-pr[:top])}},
+      %{lat: #{locate(bbox, :lat, 1-pr[:left])}, lon: #{round(bbox[:min_lon])}}
+    ELIXIR
+  when :anticlockwise
+    <<~ELIXIR
+      %{lat: #{locate(bbox, :lat, 1-pr[:left])}, lon: #{round(bbox[:min_lon])}},
+      %{lat: #{round(bbox[:max_lat])}, lon: #{locate(bbox, :lon, pr[:top])}},
+      %{lat: #{locate(bbox, :lat, pr[:left])}, lon: #{round(bbox[:max_lon])}},
+      %{lat: #{round(bbox[:min_lat])}, lon: #{locate(bbox, :lon, 1-pr[:top])}}
+    ELIXIR
+  end
 
   <<~ELIXIR
     Data.MapImage.new(__MODULE__, @attrib, #{index}{
-      %{lat: #{round(bbox[:max_lat])}, lon: #{locate(bbox, :lon, pr[:lon])}},
-      %{lat: #{locate(bbox, :lat, pr[:lat])}, lon: #{round(bbox[:max_lon])}},
-      %{lat: #{round(bbox[:min_lat])}, lon: #{locate(bbox, :lon, 1-pr[:lon])}},
-      %{lat: #{locate(bbox, :lat, 1-pr[:lat])}, lon: #{round(bbox[:min_lon])}},
-      # ↑ original's top left corner is top-center in rotated image (i.e. clockwise rotation)
-      # ↓ original's top right corner is top-center in rotated image (i.e. counterclockwise)
-      #%{lat: #{locate(bbox, :lat, 1-pr[:lat])}, lon: #{round(bbox[:min_lon])}},
-      #%{lat: #{round(bbox[:max_lat])}, lon: #{locate(bbox, :lon, pr[:lon])}},
-      #%{lat: #{locate(bbox, :lat, pr[:lat])}, lon: #{round(bbox[:max_lon])}},
-      #%{lat: #{round(bbox[:min_lat])}, lon: #{locate(bbox, :lon, 1-pr[:lon])}},
+      #{coords.strip.split("\n").join("\n  ")}
     })
   ELIXIR
 end
