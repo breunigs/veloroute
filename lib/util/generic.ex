@@ -256,7 +256,7 @@ defmodule Util do
     Enum.map_join(cmd, " ", fn arg ->
       arg = to_string(arg)
 
-      if String.match?(arg, ~r/^[a-zA-Z0-9_=.-]+$/) || arg == "|",
+      if String.match?(arg, ~r/^[a-zA-Z0-9_=.:-]+$/) || arg == "|",
         do: arg,
         else: "'#{String.replace(arg, ~s|'|, ~s|'"'"'|)}'"
     end)
