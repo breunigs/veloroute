@@ -14,6 +14,7 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
       "kopenhagener-lösung",
       "kopenhagener-radweg",
       "kopenhagener-radwege",
+      "kopenhagener-radwegen",
       "kopenhagener-stil"
     ]
 

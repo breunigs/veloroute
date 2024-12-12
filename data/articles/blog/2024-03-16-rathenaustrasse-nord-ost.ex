@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.RathenaustrasseNordOst do
 
   def links(_assigns) do
     [
+      {"Verkehrsuntersuchung zu einer möglichen Fahrradstraße", ~d[2024-12],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014657"},
       {"1. Entwurf, Erläuterungen und Lagepläne", "März 2024",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/detailplaene-zweiter-abschnitt-848068"},
       {"Übersichtsseite Planung Radroute Plus Bad Bramstedt",
@@ -39,7 +41,7 @@ defmodule Data.Article.Blog.RathenaustrasseNordOst do
     <p>Die <.v bounds="10.028886,53.61847,10.03197,53.620674" lon={10.029811} lat={53.619482} dir="forward" ref="rsw-bad-bramstedt" highlight="Alsterdorfer Straße,Im Grünen Grunde">Kreuzung Alsterdorfer Straße / Im Grünen Grunde</.v> wird komplett umgestaltet. Die <.v bounds="10.026927,53.618519,10.032655,53.620294" lon={10.029821} lat={53.61953} dir="backward" ref="rsw-bad-bramstedt">Einfahrt in die Rathenaustraße</.v> wird von hier nur noch für den Radverkehr möglich sein. Er erhält dazu eine eigene Verbindung zum <.v bounds="10.029075,53.618716,10.032144,53.621099" lon={10.030712} lat={53.619687} dir="forward" ref="rsw-bad-bramstedt" highlight="Im Grünen Grunde">Grünen Grunde</.v>. Dort gibt es zusätzlich eine Mittelinsel, damit beim Linksabbiegen je nur eine Fahrtrichtung beachtet werden muss. Der KFZ-Verkehr muss dagegen vollständig auf die <.m bounds="10.028464,53.618041,10.03337,53.620098">Alsterdorfer Straße</.m> wechseln und von dort nochmals links abbiegen.</p>
 
     <h4>Meinung</h4>
-    <p>Die Planung sorgt mit der Umgestaltung der <.v bounds="10.028886,53.61847,10.03197,53.620674" lon={10.029811} lat={53.619482} dir="forward" ref="rsw-bad-bramstedt" highlight="Alsterdorfer Straße,Im Grünen Grunde">Kreuzung Alsterdorfer Straße / Im Grünen Grunde</.v> dafür, dass die Fahrt entlang der Radroute Plus mit dem KFZ unattraktiv wird. Da diese mit Abstand die größte Störquelle im Abschnitt sind, wird die Fahrt künftig deutlich angenehmer. Dass die Vorfahrtsregelung dadurch auch viel einfacher wird ist ebenfalls hervorragend.</p>
+    <p>Die Planung sorgt mit der Umgestaltung der <.v bounds="10.028886,53.61847,10.03197,53.620674" lon={10.029811} lat={53.619482} dir="forward" ref="rsw-bad-bramstedt" highlight="Alsterdorfer Straße,Im Grünen Grunde">Kreuzung Alsterdorfer Straße / Im Grünen Grunde</.v> dafür, dass die Fahrt entlang der Radroute Plus mit dem KFZ unattraktiv wird. Da diese mit Abstand die größte Störquelle im Abschnitt sind, wird die Fahrt künftig deutlich angenehmer. Dass die Vorfahrtsregelung dadurch auch viel einfacher wird, ist ebenfalls hervorragend.</p>
 
     <p>Es bleiben Details: Warum wird die Rathenaustraße keine echte KFZ-Einbahnstraße? Dadurch könnte die alsterseitige Grünfläche vergrößert werden und der KFZ-Verkehr weiter reduziert werden. Auch eine Vorfahrt entlang der Radroute <.v bounds="10.029075,53.618716,10.032144,53.621099" lon={10.030712} lat={53.619687} dir="forward" ref="rsw-bad-bramstedt" highlight="Im Grünen Grunde">Im Grünen Grunde</.v> erscheint denkbar.</p>
 

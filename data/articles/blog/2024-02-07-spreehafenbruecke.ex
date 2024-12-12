@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Spreehafenbruecke do
   def type(), do: :construction
 
   def start(), do: ~d[2024-02-19]
-  def stop(), do: ~d[2024-12-19]
+  def stop(), do: ~d[2025-01-31]
   def construction_site_id_hh(), do: [663_513]
 
   def tags(), do: ["11"]

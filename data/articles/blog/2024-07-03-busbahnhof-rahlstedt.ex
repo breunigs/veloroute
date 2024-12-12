@@ -4,7 +4,8 @@ defmodule Data.Article.Blog.BusbahnhofRahlstedt do
   def title(), do: "Busbahnhof Rahlstedt (Radroute 7)"
 
   def start(), do: ~d[2024-05]
-  def stop(), do: ~d[2026-09]
+  def stop(), do: ~d[2026-12-31]
+  def construction_site_id_hh(), do: [1_211_186]
 
   def summary(),
     do:
