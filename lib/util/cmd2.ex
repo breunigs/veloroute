@@ -167,10 +167,6 @@ defmodule Util.Cmd2 do
         Logger.info("#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
         receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
 
-      {:kill, _signal} ->
-        :exec.stop_and_wait(monitor, 4_000)
-        %{status: 142, stdout: stdoutacc, stderr: stderracc, user_abort: true}
-
       other ->
         raise("Received unexpected message while executing command: #{inspect(other)}")
     end
@@ -193,19 +189,33 @@ defmodule Util.Cmd2 do
   defp to_string_or_inspect(term), do: to_string(term)
 
   defp stop_on_signal(signal) do
-    us = self()
     trap_ref = make_ref()
     untrap = fn -> System.untrap_signal(signal, trap_ref) end
 
     {:ok, _trap} =
       System.trap_signal(signal, trap_ref, fn ->
         Logger.info("received #{signal}, aborting...")
-        :ok = Process.send(us, {:kill, signal}, [])
-        Process.sleep(5_000)
+
+        ospids = :exec.which_children()
+        Enum.each(ospids, &:exec.stop/1)
+        # allow graceful shutdowns
+        if length(ospids) > 0, do: wait_on_children()
+
         :ok
       end)
 
     untrap
+  end
+
+  @max_wait_seconds 4.0
+  defp wait_on_children(started \\ nil) do
+    started = started || :erlang.timestamp()
+    Process.sleep(100)
+
+    waited_sec = :timer.now_diff(:erlang.timestamp(), started) / 1_000_000
+
+    if waited_sec < @max_wait_seconds && length(:exec.which_children()) > 0,
+      do: wait_on_children(started)
   end
 
   defp validate_env(enum) do
