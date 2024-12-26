@@ -8,7 +8,7 @@ defmodule Mix.Tasks.Velo.Videos.Preload do
 
   @shortdoc "Run command that copies rendered videos onto server"
   def run(_) do
-    case Settings.deploy_video_copy_cmd() do
+    case Settings.r(:deploy_video_copy_cmd) do
       nil -> IO.puts("No video copy/preload command configured, skipping")
       [exe | cmd] -> copy(exe, cmd)
       cmd -> IO.puts("video copy command was not understood: #{inspect(cmd)}")

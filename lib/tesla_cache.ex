@@ -13,7 +13,7 @@ defmodule TeslaCache do
            module: Cachex.Limit.Scheduled,
            args: {
              # setting cache max size
-             Settings.external_map_cache_entry_limit(),
+             Settings.r(:external_map_cache_entry_limit),
              # options for `Cachex.prune/3`
              [],
              # options for `Cachex.Limit.Scheduled`

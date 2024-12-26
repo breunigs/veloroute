@@ -4,9 +4,9 @@ defmodule Basemap.RelativePath do
   this tiny, setting up an out-of-bands tile server makes no sense. Thus we
   would like to update tiles alongside our normal assets.
 
-  For production, our source of truth is in Settings.url(). For development,
-  it's either in the config/dev.exs for VelorouteWeb.Endpoint, or the hardcoded
-  ports for the style editor in Mix.Tasks.Velo.Map.Style.Edit.
+  For production, our source of truth is in config/settings.exs :url option. For
+  development, it's either in the config/dev.exs for VelorouteWeb.Endpoint, or
+  the hardcoded ports for the style editor in Mix.Tasks.Velo.Map.Style.Edit.
 
   The general strategy is: use the placeholder in all source files not written
   in Elixir, which is the tile generator's config.json and all the different
@@ -28,10 +28,10 @@ defmodule Basemap.RelativePath do
       end)
 
     # replace URL for dynamic invocations even if we hardcoded the production URL during asset generation
-    if url == Settings.url(), do: input, else: String.replace(input, Settings.url(), url)
+    if url == Settings.r(:url), do: input, else: String.replace(input, Settings.r(:url), url)
   end
 
-  def parameterize(input, url \\ Settings.url()) when is_binary(input) and is_binary(url) do
+  def parameterize(input, url \\ Settings.r(:url)) when is_binary(input) and is_binary(url) do
     Enum.reduce(Basemap.Servable.list(), input, fn servable, input ->
       name = String.upcase(servable.name())
       url = servable.serve_url(url)

@@ -7,7 +7,7 @@ defmodule LangPlug do
   @impl Plug
   def call(conn, _opts) do
     {user_set, lang} = fetch_lang(conn)
-    lang = lang || Settings.default_language()
+    lang = lang || Settings.r(:default_language)
 
     conn
     |> Plug.Conn.put_session("lang", lang)

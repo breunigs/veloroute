@@ -1,5 +1,6 @@
 defmodule Geo.CheapRuler do
   require Integer
+  require Settings
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016
 
   @type point() :: %{:lat => float(), :lon => float(), optional(atom()) => any()}
@@ -8,7 +9,7 @@ defmodule Geo.CheapRuler do
     if Mix.env() == :test do
       53.551
     else
-      [_, lat1, _, lat2] = Settings.bounds()
+      [_, lat1, _, lat2] = Settings.c(:bounds)
       (lat1 + lat2) / 2.0
     end
 
@@ -641,7 +642,7 @@ defmodule Geo.CheapRuler do
 
       [a, b], line ->
         pieces = ceil(dist(a, b) / max_dist)
-        segmented = Enum.map(pieces..1, fn n -> Geo.Interpolate.point(a, b, n / pieces) end)
+        segmented = Enum.map(pieces..1//-1, fn n -> Geo.Interpolate.point(a, b, n / pieces) end)
         segmented ++ line
     end)
     |> Enum.reverse()

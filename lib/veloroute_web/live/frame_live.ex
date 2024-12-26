@@ -1,12 +1,13 @@
 defmodule VelorouteWeb.FrameLive do
   use VelorouteWeb, :live_view
   require Logger
+  require Settings
   import Guards
 
   @search_page Data.Article.Static.Suche
   @search_page_name @search_page.name()
 
-  @default_bounds struct(Geo.BoundingBox, Settings.initial())
+  @default_bounds struct(Geo.BoundingBox, Settings.c(:initial))
   @initial_state [
     prev_page: nil,
     current_page: nil,
@@ -24,7 +25,7 @@ defmodule VelorouteWeb.FrameLive do
     enable_drawing_tools: false,
     lang_user_set: false,
     lang: nil,
-    page_title: Settings.page_title_long()
+    page_title: Settings.c(:page_title_long)
   ]
 
   def mount(params, session, socket) do
@@ -201,7 +202,7 @@ defmodule VelorouteWeb.FrameLive do
   end
 
   def handle_event("impressum", _params, socket) do
-    text = "#{Credentials.impressum_address()}\n\n#{Settings.email()}"
+    text = "#{Credentials.impressum_address()}\n\n#{Settings.r(:email)}"
     {:noreply, push_event(socket, "impressum", %{text: text})}
   end
 
@@ -296,8 +297,8 @@ defmodule VelorouteWeb.FrameLive do
 
     page_title =
       if full_title == "",
-        do: Settings.page_title_long(),
-        else: Settings.page_title_short() <> full_title
+        do: Settings.r(:page_title_long),
+        else: Settings.r(:page_title_short) <> full_title
 
     socket
     |> assign(
@@ -326,7 +327,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp search(socket, query) do
     query = if query && query != "", do: String.trim(query), else: socket.assigns.search_query
-    bbox = Geo.BoundingBox.parse(socket.assigns[:map_bounds]) || Settings.initial()
+    bbox = Geo.BoundingBox.parse(socket.assigns[:map_bounds]) || Settings.r(:initial)
 
     querier = fn ->
       with {:ok, results} <- Search.Meilisearch.Runner.query(query, bbox) do
@@ -475,7 +476,7 @@ defmodule VelorouteWeb.FrameLive do
 
     query =
       if assigns[:lang] &&
-           (assigns[:lang] != Settings.default_language() || assigns[:lang_user_set]),
+           (assigns[:lang] != Settings.r(:default_language) || assigns[:lang_user_set]),
          do: Map.put(query, "lang", assigns[:lang]),
          else: query
 
@@ -518,7 +519,7 @@ defmodule VelorouteWeb.FrameLive do
   defguardp page_changed(socket)
             when socket.assigns.current_page != socket.assigns.prev_page
 
-  @default_center_zoom Settings.bounds()
+  @default_center_zoom Settings.c(:bounds)
                        |> Geo.BoundingBox.parse()
                        |> VelorouteWeb.VariousHelpers.to_string_center_zoom()
   defp maybe_update_og_image(socket) when not page_changed(socket), do: socket
@@ -545,7 +546,7 @@ defmodule VelorouteWeb.FrameLive do
 
   defp make_absolute("/" <> path) do
     if Application.get_env(:veloroute, :env) == :prod do
-      Settings.url() <> "/" <> path
+      Settings.r(:url) <> "/" <> path
     else
       cfg = Application.get_env(:veloroute, VelorouteWeb.Endpoint)
       "http://#{cfg[:url][:host]}:#{cfg[:http][:port]}/#{path}"

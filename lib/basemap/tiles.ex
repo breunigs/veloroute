@@ -93,10 +93,10 @@ defmodule Basemap.Tiles do
         "format" => "pbf",
         "tiles" => ["#{serve_url()}/{z}/{x}/{y}.pbf"],
         "bounds" => old["bounds"] |> String.split(",") |> Enum.map(&String.to_float/1),
-        "name" => "merged #{Settings.sitebar_name()} tiles",
+        "name" => "merged #{Settings.r(:sitebar_name)} tiles",
         "version" => "3.0",
         "description" =>
-          "tiles made from OpenStreetMap and project data for #{Settings.sitebar_name()}",
+          "tiles made from OpenStreetMap and project data for #{Settings.r(:sitebar_name)}",
         "minzoom" => String.to_integer(old["minzoom"]),
         "maxzoom" => String.to_integer(old["maxzoom"])
       }

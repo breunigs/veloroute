@@ -1,7 +1,7 @@
 import Config
 
 if config_env() == :prod do
-  parsed = URI.new!(Settings.url())
+  parsed = URI.new!(Settings.r(:url))
 
   config :veloroute, VelorouteWeb.Endpoint,
     url: [host: parsed.host, port: parsed.port, scheme: parsed.scheme]

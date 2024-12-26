@@ -142,7 +142,7 @@ defmodule Basemap.MapMatcher.OSRM do
            GenServer.call(__MODULE__, {:query, coords, params}, :infinity) do
       merged =
         [points, matches]
-        |> List.zip()
+        |> Enum.zip()
         |> Enum.map(fn {p, m} -> Map.merge(p, m) end)
         |> Enum.map(&fallback/1)
 

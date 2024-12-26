@@ -525,7 +525,7 @@ defmodule VelorouteWeb.Live.VideoState do
   use Memoize
 
   defmemop new() do
-    %{direction: dir, position: pos, article_id: art} = Settings.start_image()
+    %{direction: dir, position: pos, article_id: art} = Settings.r(:start_image)
     default_tracks = Article.List.find_exact(art).tracks()
 
     %__MODULE__{

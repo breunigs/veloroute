@@ -1,8 +1,10 @@
 defmodule Components.TagHelpers do
   use Phoenix.Component
+  require Settings
   import Guards
 
-  @paywall_hostnames ["abendblatt.de", "www.abendblatt.de"]
+  @paywall_hostnames Settings.c(:paywall_hostnames)
+  @default_language Settings.c(:default_language)
 
   @doc """
   a links change the current page and may point to internal or external pages
@@ -95,7 +97,7 @@ defmodule Components.TagHelpers do
     attr =
       if Map.has_key?(assigns, :highlight),
         do: attr,
-        else: Map.merge(attr, %{translate: "no", lang: Settings.default_language()})
+        else: Map.merge(attr, %{translate: "no", lang: @default_language})
 
     query =
       attr
@@ -166,7 +168,7 @@ defmodule Components.TagHelpers do
   slot(:inner_block, required: true)
 
   def show_route_group(assigns) do
-    layer_name = Enum.find(Settings.map_layers(), &(&1.route_group == assigns.group)).name
+    layer_name = Enum.find(Settings.r(:map_layers), &(&1.route_group == assigns.group)).name
 
     routes =
       Article.List.category("Static")
@@ -218,7 +220,7 @@ defmodule Components.TagHelpers do
         Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
         Sind sie komplett schwarz oder fehlen ganz, ist Dein Gerät zu schwach.
 
-        Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.feed_author()}:
+        Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.r(:feed_author)}:
         """
 
       title =
@@ -263,7 +265,7 @@ defmodule Components.TagHelpers do
     assigns =
       assigns
       |> Map.merge(%{
-        email: Map.get(assigns, :email) || "#{Settings.email_name()} <#{Settings.email()}>",
+        email: Map.get(assigns, :email) || "#{Settings.r(:email_name)} <#{Settings.r(:email)}>",
         subject: URI.encode(subject),
         body: URI.encode(body)
       })
@@ -284,7 +286,7 @@ defmodule Components.TagHelpers do
 
   def mailto(%{inner_block: []} = assigns) do
     ~H"""
-    <a href={"mailto:#{Settings.email_name()} <#{Settings.email()}>" } class="noHyphens" {@rest}><%= Settings.email() %></a>
+    <a href={"mailto:#{Settings.r(:email_name)} <#{Settings.r(:email)}>" } class="noHyphens" {@rest}><%= Settings.r(:email) %></a>
     """
   end
 
@@ -292,7 +294,7 @@ defmodule Components.TagHelpers do
     assigns = maybe_disable_hyphens(assigns)
 
     ~H"""
-    <a href={"mailto:#{Settings.email_name()} <#{Settings.email()}>"} {@rest}><%= render_slot(@inner_block) %></a>
+    <a href={"mailto:#{Settings.r(:email_name)} <#{Settings.r(:email)}>"} {@rest}><%= render_slot(@inner_block) %></a>
     """
   end
 
@@ -304,7 +306,7 @@ defmodule Components.TagHelpers do
     if art.updated_at() == nil do
       ~H{}
     else
-      lang = assigns[:lang] || Settings.default_language()
+      lang = assigns[:lang] || @default_language
       rd = Data.RoughDate.from_full_date(art.updated_at())
 
       assigns =
@@ -322,7 +324,7 @@ defmodule Components.TagHelpers do
 
   @spec article_link(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
-  attr :lang, :string, default: Settings.default_language()
+  attr :lang, :string, default: @default_language
   attr :class, :string, default: ""
   slot(:inner_block)
 
@@ -373,7 +375,7 @@ defmodule Components.TagHelpers do
 
   @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
   attr :name, :string
-  attr :lang, :string, default: Settings.default_language()
+  attr :lang, :string, default: @default_language
   slot(:inner_block, required: true)
 
   def ref(assigns) do
@@ -499,7 +501,7 @@ defmodule Components.TagHelpers do
   @spec structured_links(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
   attr :gpx, :boolean, default: false
-  attr :lang, :string, default: Settings.default_language()
+  attr :lang, :string, default: @default_language
 
   def structured_links(%{ref: art} = assigns) do
     links =
@@ -593,7 +595,7 @@ defmodule Components.TagHelpers do
   attr :lang, :string
 
   def construction_duration(%{ref: ref} = assigns) when is_module(ref) do
-    lang = assigns[:lang] || Settings.default_language()
+    lang = assigns[:lang] || @default_language
     assigns = %{duration: Data.RoughDate.range(ref.start(), ref.stop(), lang)}
 
     ~H"""
@@ -606,7 +608,7 @@ defmodule Components.TagHelpers do
   attr :lang, :string
 
   def construction_duration_header(%{ref: art} = assigns) do
-    lang = assigns[:lang] || Settings.default_language()
+    lang = assigns[:lang] || @default_language
     range = Data.RoughDate.range(art.start(), art.stop(), lang)
     assigns = assign(assigns, range: range)
 
@@ -627,7 +629,7 @@ defmodule Components.TagHelpers do
   attr :lang, :string
 
   def construction_duration_paragraph(%{ref: art} = assigns) do
-    lang = assigns[:lang] || Settings.default_language()
+    lang = assigns[:lang] || @default_language
     range = Data.RoughDate.range(art.start(), art.stop(), lang)
     assigns = assign(assigns, range: range)
 

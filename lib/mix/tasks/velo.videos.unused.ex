@@ -8,7 +8,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
     Video.Dir.must_exist!()
 
     in_dir =
-      File.ls!(Settings.video_target_dir_abs()) |> Enum.filter(&valid_hash/1) |> MapSet.new()
+      File.ls!(Settings.r(:video_target_dir_abs)) |> Enum.filter(&valid_hash/1) |> MapSet.new()
 
     in_code = Video.Generator.all() |> Enum.map(& &1.hash()) |> MapSet.new()
 
@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
     with_link_only = unreferenced |> MapSet.difference(unreachable)
     historic_only = historic |> MapSet.difference(current)
 
-    rel_path = "./" <> Path.relative_to_cwd(Settings.video_target_dir_abs())
+    rel_path = "./" <> Path.relative_to_cwd(Settings.r(:video_target_dir_abs))
 
     broken =
       MapSet.difference(in_code, in_dir)
@@ -108,7 +108,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
   defp with_size(enum_with_hashes) do
     enum_with_hashes
     |> Parallel.map(fn hash ->
-      path = Path.join(Settings.video_target_dir_abs(), hash)
+      path = Path.join(Settings.r(:video_target_dir_abs), hash)
       size = Float.round(Util.IO.dir_size(path) / 1024.0 / 1024.0 / 1024.0, 2)
       display = size |> :erlang.float_to_binary(decimals: 2) |> String.pad_leading(7)
 
@@ -119,7 +119,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
   end
 
   defp count_variants(hash) do
-    with path = Path.join([Settings.video_target_dir_abs(), hash, "stream.m3u8"]),
+    with path = Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
       length(variants)

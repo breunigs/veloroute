@@ -340,8 +340,8 @@ defmodule Util.Docker do
   defp maybe_mount_videos(%{mount_videos_in_dir: container_base_path} = opts)
        when is_binary(container_base_path) do
     video_mount =
-      with {:ok, real} <- File.read_link(Settings.video_dir_rel()) do
-        target_path = Path.join(container_base_path, Settings.video_dir_rel())
+      with {:ok, real} <- File.read_link(Settings.r(:video_dir_rel)) do
+        target_path = Path.join(container_base_path, Settings.r(:video_dir_rel))
         %{real => target_path}
       else
         _ -> %{}

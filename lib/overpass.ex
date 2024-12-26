@@ -127,7 +127,7 @@ defmodule Overpass do
   end
 
   def station_query(operator) do
-    [minLon, minLat, maxLon, maxLat] = Settings.bounds()
+    [minLon, minLat, maxLon, maxLat] = Settings.r(:bounds)
 
     """
     [out:json][timeout:25];

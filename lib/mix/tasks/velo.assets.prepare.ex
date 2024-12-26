@@ -28,7 +28,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
 
   defp robots_txt() do
     File.write("priv/static/robots.txt", """
-    sitemap: #{Settings.url()}/sitemap.xml
+    sitemap: #{Settings.r(:url)}/sitemap.xml
 
     User-agent: *
     Allow: /

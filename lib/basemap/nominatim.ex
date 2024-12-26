@@ -259,7 +259,7 @@ defmodule Basemap.Nominatim do
   defp to_boost_search_result(name) do
     """
     CASE
-      WHEN '#{Settings.boost_search_results_within()}' = ANY(#{name}) THEN 1
+      WHEN '#{Settings.r(:boost_search_results_within)}' = ANY(#{name}) THEN 1
       ELSE 30
     END
     """
@@ -267,7 +267,7 @@ defmodule Basemap.Nominatim do
   end
 
   defp query_sql(:prepare) do
-    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds(), ",")
+    bbox = Geo.BoundingBox.to_string_bounds(Settings.r(:bounds), ",")
 
     """
     -- combo is basically "placex", joined with extra information from linked
@@ -539,7 +539,7 @@ defmodule Basemap.Nominatim do
 
   # extracts all areas which might be useful for matching GPS coords to names
   defp query_sql(:area) do
-    bbox = Geo.BoundingBox.to_string_bounds(Settings.bounds(), ",")
+    bbox = Geo.BoundingBox.to_string_bounds(Settings.r(:bounds), ",")
 
     """
     -- expand areas slightly to still be able to name paths alongside it

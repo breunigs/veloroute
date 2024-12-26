@@ -37,10 +37,10 @@ defmodule Veloroute.Application do
   end
 
   defp warn_if_videos_missing do
-    if not File.dir?(Settings.video_dir_abs()) do
+    if not File.dir?(Settings.r(:video_dir_abs)) do
       Logger.error("""
       Video directory does not appear to be mounted.
-      Expected #{Settings.video_dir_abs()} is not a directory.
+      Expected #{Settings.r(:video_dir_abs)} is not a directory.
       Mount the videos into the docker container, or ensure they
       and the thumbnails are served outside of this container.
       """)

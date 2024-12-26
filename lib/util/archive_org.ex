@@ -5,7 +5,7 @@ defmodule Util.ArchiveOrg do
   @base "https://web.archive.org"
 
   plug Tesla.Middleware.BaseUrl, @base
-  plug Tesla.Middleware.Headers, [{"user-agent", Settings.email()}]
+  plug Tesla.Middleware.Headers, [{"user-agent", Settings.r(:email)}]
   plug Tesla.Middleware.JSON
 
   @timeout_ms 2 * 60 * 1_000

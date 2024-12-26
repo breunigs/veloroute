@@ -4,13 +4,13 @@ defmodule Feed do
   # alias VelorouteWeb.Router.Helpers, as: Routes
 
   def build() do
-    Feed.new(Settings.url(), DateTime.utc_now(), Settings.feed_title())
-    |> Feed.author(Settings.feed_author(), email: Settings.email())
-    |> Feed.link(Settings.url() <> "/updates.atom", rel: "self")
+    Feed.new(Settings.r(:url), DateTime.utc_now(), Settings.r(:feed_title))
+    |> Feed.author(Settings.r(:feed_author), email: Settings.r(:email))
+    |> Feed.link(Settings.r(:url) <> "/updates.atom", rel: "self")
     |> Feed.entries(articles())
     |> Feed.build(%{
       "xmlns:georss" => "http://www.georss.org/georss",
-      "xml:base" => Settings.url()
+      "xml:base" => Settings.r(:url)
     })
     |> Atomex.generate_document()
   end
@@ -84,7 +84,7 @@ defmodule Feed do
     img_path = Article.Decorators.start_image_path(article)
 
     if is_binary(img_path) do
-      Entry.link(entry, Settings.url() <> img_path, rel: "enclosure", type: "image/jpeg")
+      Entry.link(entry, Settings.r(:url) <> img_path, rel: "enclosure", type: "image/jpeg")
     else
       entry
     end

@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     IO.puts("Finding videos…")
     current_year = Date.utc_today().year
 
-    Settings.video_source_dir_abs()
+    Settings.r(:video_source_dir_abs)
     |> Video.Source.new_from_folder()
     |> Enum.reduce({%{}, %{}, %{}}, fn video, {ids, tracks, exists} ->
       case video do

@@ -15,7 +15,7 @@ defmodule Basemap.Styles do
       # Always hardcode production URL here, since the active components of the
       # devel servers can replace the URL. For production, we want to be able to
       # directly serve these static files, though.
-      case write(path, Settings.url()) do
+      case write(path, Settings.r(:url)) do
         :ok ->
           Util.Compress.file_glob(assets_path("**/*.json"), "basemap styles", keep_source: true)
 

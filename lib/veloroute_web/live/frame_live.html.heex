@@ -15,7 +15,7 @@
 <meta property="og:image" content={@og_image} />
 
 <div id="videoOuter" data-state="play" class="" phx-ignore-attr="data-state class style" role="region" aria-label="Videoplayer">
-  <%# phx-ignore-attr needed to toggle loading indicator from JS %>
+  <% # phx-ignore-attr needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-ignore-attr="class">
     <video
       aria-description="Video zeigt Radfahrt der Route. Ohne Ton."
@@ -74,8 +74,8 @@
 
 <div id="sidebar" phx-hook="control" role="main">
   <div id="switcher" role="switch" aria-checked="false" aria-expanded="false" aria-controls="sidebar" aria-label="Seitenleiste ein/ausklappen"><div></div></div>
-  <.link patch="/" class={"header #{if @current_page != Data.Article.Static.Startpage, do: "back"}"} title="zurück zur Startseite" aria-label={"zurück zur Startseite von #{Settings.sitebar_name()}"} role="heading" aria-level="1">
-    <img src="/images/header.svg" aria-label={Settings.sitebar_name()}/>
+  <.link patch="/" class={"header #{if @current_page != Data.Article.Static.Startpage, do: "back"}"} title="zurück zur Startseite" aria-label={"zurück zur Startseite von #{Settings.r(:sitebar_name)}"} role="heading" aria-level="1">
+    <img src="/images/header.svg" aria-label={Settings.r(:sitebar_name)}/>
   </.link>
   <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>

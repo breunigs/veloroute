@@ -80,7 +80,7 @@ defmodule Data.Article.Static.Datenexport do
     path = Video.RenderedTools.highest_quality_video_file(hash)
 
     path =
-      [Settings.video_serve_host(), Settings.video_serve_path(), path]
+      [Settings.r(:video_serve_host), Settings.r(:video_serve_path), path]
       |> Util.compact()
       |> Path.join()
 

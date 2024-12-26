@@ -22,7 +22,7 @@ defmodule MapStyleEditor.Main do
   end
 
   def url(port) do
-    pos = Settings.bounds() |> Geo.BoundingBox.parse() |> Geo.CheapRuler.bounds_to_center_zoom()
+    pos = Settings.r(:bounds) |> Geo.BoundingBox.parse() |> Geo.CheapRuler.bounds_to_center_zoom()
     "http://localhost:#{port}##{pos.zoom}/#{pos.lat}/#{pos.lon}"
   end
 

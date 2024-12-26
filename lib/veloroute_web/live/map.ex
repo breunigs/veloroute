@@ -1,15 +1,17 @@
 defmodule VelorouteWeb.Live.Map do
   use VelorouteWeb, :live_component
   require Logger
+  require Settings
 
-  @default_route_groups Settings.map_layers()
+  @default_route_groups Settings.c(:map_layers)
+                        |> Enum.map(&struct!(Layer, &1))
                         |> Enum.filter(fn %Layer{active: a} -> a end)
                         |> Enum.map(fn %Layer{route_group: rg} -> rg end)
                         |> Enum.uniq()
 
   @default_assigns %{
-    styles: Settings.map_styles(),
-    layers: Settings.map_layers(),
+    styles: Settings.c(:map_styles),
+    layers: Settings.c(:map_layers),
     server_route_groups: @default_route_groups,
     initial: true,
     highlight_route: nil
@@ -146,7 +148,7 @@ defmodule VelorouteWeb.Live.Map do
       else: socket
   end
 
-  @default_visibility Settings.map_layers()
+  @default_visibility Settings.c(:map_layers)
                       |> Enum.into(%{}, fn %{name: name, active: active} ->
                         {name, active}
                       end)

@@ -27,7 +27,7 @@ defmodule Article.Decorators do
 
   def search_result(art, relevance) do
     bbox = Article.Decorators.bbox(art)
-    bounds = if bbox, do: bbox, else: Settings.initial()
+    bounds = if bbox, do: bbox, else: Settings.r(:initial)
     type = if art.created_at(), do: "article", else: "page"
 
     subtext =
@@ -59,7 +59,7 @@ defmodule Article.Decorators do
       show_map_image: false,
       enable_drawing_tools: false,
       ref: art,
-      lang: Settings.default_language()
+      lang: Settings.r(:default_language)
     }
 
     assigns = Map.merge(default, assigns)
@@ -67,7 +67,7 @@ defmodule Article.Decorators do
   end
 
   @spec full_title(Article.t(), Article.language()) :: binary()
-  def full_title(art, lang \\ Settings.default_language()) do
+  def full_title(art, lang \\ Settings.r(:default_language)) do
     tn = type_name(art, lang)
 
     cond do
@@ -173,7 +173,7 @@ defmodule Article.Decorators do
         do: "?lang=#{lang}",
         else: ""
 
-    Settings.url() <> path(art) <> query
+    Settings.r(:url) <> path(art) <> query
   end
 
   @type_names %{

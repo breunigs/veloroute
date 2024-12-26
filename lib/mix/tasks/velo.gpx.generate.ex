@@ -44,12 +44,12 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
     <?xml version="1.0" encoding="UTF-8"?>
       <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
       <Document>
-      <name>#{route.group_title} – #{Settings.page_title_long()}</name>
+      <name>#{route.group_title} – #{Settings.r(:page_title_long)}</name>
       <visibility>1</visibility>
       <open>1</open>
       <atom:author xml:lang="de">
-        <atom:name>#{Settings.feed_author()}</atom:name>
-        <atom:uri>#{Settings.url()}</atom:uri>
+        <atom:name>#{Settings.r(:feed_author)}</atom:name>
+        <atom:uri>#{Settings.r(:url)}</atom:uri>
       </atom:author>
       #{routes_kml |> Enum.join("\n\n")}
       </Document></kml>
@@ -62,12 +62,12 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
     <?xml version="1.0" encoding="UTF-8"?>
     <gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1">
     <metadata>
-      <name>#{route.group_title} – #{Settings.page_title_long()}</name>
+      <name>#{route.group_title} – #{Settings.r(:page_title_long)}</name>
       <author>
-        <name>#{Settings.feed_author()}</name>
-        <link href="#{Settings.url()}"><text>#{Settings.page_title_long()}</text></link>
+        <name>#{Settings.r(:feed_author)}</name>
+        <link href="#{Settings.r(:url)}"><text>#{Settings.r(:page_title_long)}</text></link>
       </author>
-      <link href="#{Settings.url()}/#{route.name}"><text>Detailseite zu dieser Veloroute</text></link>
+      <link href="#{Settings.r(:url)}/#{route.name}"><text>Detailseite zu dieser Veloroute</text></link>
       <time>#{DateTime.utc_now() |> DateTime.to_iso8601()}</time>
     </metadata>
     #{routes_gpx |> Enum.join("\n\n")}

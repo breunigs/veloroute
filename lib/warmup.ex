@@ -27,7 +27,7 @@ defmodule Warmup do
   end
 
   defp initial_static_map_images() do
-    cz = Settings.initial() |> Geo.CheapRuler.bounds_to_center_zoom_limited()
+    cz = Settings.r(:initial) |> Geo.CheapRuler.bounds_to_center_zoom_limited()
     video_route_id = VelorouteWeb.Live.VideoState.default_route_id()
 
     Parallel.each(VelorouteWeb.Live.Map.static_map_sizes(), fn {w, h} ->

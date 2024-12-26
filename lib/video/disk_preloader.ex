@@ -112,8 +112,10 @@ defmodule Video.DiskPreloader do
 
     state =
       Enum.reduce(state, %{}, fn
-        {_key, updated}, acc when updated < fresh_after -> acc
-        {key, updated}, acc -> Map.put(acc, key, updated)
+        {key, updated}, acc ->
+          if DateTime.compare(updated, fresh_after) == :lt,
+            do: acc,
+            else: Map.put(acc, key, updated)
       end)
 
     cleanup_periodically()
@@ -143,7 +145,7 @@ defmodule Video.DiskPreloader do
 
   @spec list_files(hash()) :: [binary()]
   defp list_files(hash) do
-    path = Path.join(Settings.video_target_dir_abs(), hash)
+    path = Path.join(Settings.r(:video_target_dir_abs), hash)
 
     case File.ls(path) do
       {:ok, list} ->

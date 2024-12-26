@@ -23,7 +23,7 @@ defmodule Article.Default do
       def icon, do: type()
 
       def map_image(), do: nil
-      def languages(), do: [Settings.default_language()]
+      def languages(), do: [Settings.r(:default_language)]
 
       def compiled_at(), do: unquote(Macro.escape(DateTime.utc_now()))
 
@@ -56,7 +56,7 @@ defmodule Article.Default do
 
       !s0 && s1 ->
         quote do
-          def summary(), do: summary(Settings.default_language())
+          def summary(), do: summary(Settings.r(:default_language))
         end
 
       !s0 && !s1 ->

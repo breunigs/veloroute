@@ -245,7 +245,7 @@ defmodule Video.Track do
     Enum.map(videos, fn tuple ->
       case tuple_size(tuple) do
         3 ->
-          Tuple.append(tuple, [])
+          Tuple.insert_at(tuple, 3, [])
 
         4 ->
           tuple
@@ -351,7 +351,7 @@ defmodule Video.Track do
     do:
       tsv.date
       |> Data.RoughDate.parse()
-      |> Data.RoughDate.without_day(Settings.default_language())
+      |> Data.RoughDate.without_day(Settings.r(:default_language))
 
   @spec reverse_compact_recording_dates(timed_info()) :: timed_info()
   defp reverse_compact_recording_dates(dates) do

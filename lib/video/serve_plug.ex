@@ -1,11 +1,12 @@
 defmodule Video.ServePlug do
   use Plug.Builder
+  require Settings
 
-  @serve_path Settings.video_serve_path()
+  @serve_path Settings.c(:video_serve_path)
 
   plug Plug.Static,
     at: "/#{@serve_path}",
-    from: Settings.video_target_dir_abs(),
+    from: Settings.c(:video_target_dir_abs),
     gzip: false,
     brotli: false,
     headers: %{
@@ -22,8 +23,8 @@ defmodule Video.ServePlug do
     <html lang="de">
     <body>
     <h1>Datei nicht gefunden</h1>
-    <p>Die Datei gibt's nicht (mehr). Wenn Du über <a href="#{Settings.url()}">#{Settings.sitebar_name()}</a> auf dieser Fehlerseite gelandet bist, <a href="mailto:#{Settings.email()}">schreib mir bitte</a> wie. Dann kann ich den Fehler evtl. beheben.</p>
-    <p><strong><a href="#{Settings.url()}">zur vollständigen Seite</a></strong></p>
+    <p>Die Datei gibt's nicht (mehr). Wenn Du über <a href="#{Settings.r(:url)}">#{Settings.r(:sitebar_name)}</a> auf dieser Fehlerseite gelandet bist, <a href="mailto:#{Settings.r(:email)}">schreib mir bitte</a> wie. Dann kann ich den Fehler evtl. beheben.</p>
+    <p><strong><a href="#{Settings.r(:url)}">zur vollständigen Seite</a></strong></p>
     </body>
     </html>
     """)

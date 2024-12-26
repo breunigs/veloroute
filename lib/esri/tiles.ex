@@ -14,7 +14,7 @@ defmodule Esri.Tiles do
 
   def attribution(:from_api) do
     client = Tesla.client([])
-    bounds = Settings.bounds() |> Geo.BoundingBox.parse()
+    bounds = Settings.r(:bounds) |> Geo.BoundingBox.parse()
 
     Parallel.map(@attribution, fn {key, url, source} ->
       {:ok, %{status: 200, body: body}} = Tesla.get(client, url, query: [f: "json"])

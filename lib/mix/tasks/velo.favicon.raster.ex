@@ -34,7 +34,7 @@ defmodule Mix.Tasks.Velo.Favicon.Raster do
       end)
 
     %{
-      name: Settings.feed_author(),
+      name: Settings.r(:feed_author),
       icons: icons,
       start_url: "/",
       display: "standalone"

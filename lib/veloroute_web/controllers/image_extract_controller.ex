@@ -56,7 +56,7 @@ defmodule VelorouteWeb.ImageExtractController do
              module: Cachex.Limit.Scheduled,
              args: {
                # setting cache max size
-               Settings.video_thumbnail_cache_entry_limit(),
+               Settings.r(:video_thumbnail_cache_entry_limit),
                # options for `Cachex.prune/3`
                [],
                # options for `Cachex.Limit.Scheduled`
@@ -97,7 +97,7 @@ defmodule VelorouteWeb.ImageExtractController do
   @ffmpeg_allow_seeking_past_end_s 60
   defp ffmpeg_no_cache(hash, ts, max_length, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
-    source_abs = Path.join(Settings.video_target_dir_abs(), source)
+    source_abs = Path.join(Settings.r(:video_target_dir_abs), source)
 
     ts = min(ts, max_length + @ffmpeg_allow_seeking_past_end_s * 1000)
 

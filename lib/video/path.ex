@@ -51,7 +51,7 @@ defmodule Video.Path do
   end
 
   def target(hash) when valid_hash(hash) do
-    Path.join(Settings.video_target_dir_abs(), hash)
+    Path.join(Settings.r(:video_target_dir_abs), hash)
   end
 
   def target_rel_to_cwd(hash) when valid_hash(hash) do
@@ -113,7 +113,7 @@ defmodule Video.Path do
   def source_base_with_ending(path) when is_binary(path) do
     path
     |> source()
-    |> Path.relative_to(Settings.video_source_dir_abs())
+    |> Path.relative_to(Settings.r(:video_source_dir_abs))
   end
 
   def source_base(path) when is_binary(path) do
@@ -133,7 +133,7 @@ defmodule Video.Path do
 
   def abs_path("/" <> _rest = path), do: path
 
-  def abs_path(path), do: Path.join(Settings.video_source_dir_abs(), path)
+  def abs_path(path), do: Path.join(Settings.r(:video_source_dir_abs), path)
 
   def stem(path) do
     Path.basename(path, Path.extname(path))

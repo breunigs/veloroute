@@ -39,8 +39,8 @@ defmodule Data.MapImage do
       path:
         [
           # a hack, but it works for now
-          Settings.video_serve_host(),
-          Settings.video_serve_path(),
+          Settings.r(:video_serve_host),
+          Settings.r(:video_serve_path),
           "map_images",
           "#{art.name()}#{if index, do: "_#{index}"}.webp"
         ]

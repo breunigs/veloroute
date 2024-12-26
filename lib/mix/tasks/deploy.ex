@@ -225,7 +225,7 @@ defmodule Mix.Tasks.Deploy do
   defp upload(%{skip_deploy: true}, _image_name), do: nil
 
   defp upload(_skip, image_name) do
-    Util.banner("copying image to #{Settings.deploy_ssh_name()}")
+    Util.banner("copying image to #{Settings.r(:deploy_ssh_name)}")
 
     Temp.track!()
     {:ok, _fd, local_path} = Temp.open(%{prefix: "veloroute-image", suffix: ".tar"})
@@ -249,7 +249,7 @@ defmodule Mix.Tasks.Deploy do
             "--partial",
             "--progress",
             local_path,
-            "#{Settings.deploy_ssh_name()}:#{remote_path}"
+            "#{Settings.r(:deploy_ssh_name)}:#{remote_path}"
           ],
           cmd_opts
         )
@@ -262,7 +262,7 @@ defmodule Mix.Tasks.Deploy do
     {_out, 0} =
       System.cmd(
         "ssh",
-        [Settings.deploy_ssh_name(), "docker", "load", "--input", remote_path],
+        [Settings.r(:deploy_ssh_name), "docker", "load", "--input", remote_path],
         cmd_opts
       )
   end
@@ -274,7 +274,7 @@ defmodule Mix.Tasks.Deploy do
 
     {_out, 0} =
       System.cmd("ssh", [
-        Settings.deploy_ssh_name(),
+        Settings.r(:deploy_ssh_name),
         "docker",
         "tag",
         image_name,
@@ -295,7 +295,7 @@ defmodule Mix.Tasks.Deploy do
       System.cmd(
         "ssh",
         [
-          Settings.deploy_ssh_name(),
+          Settings.r(:deploy_ssh_name),
           "sudo",
           "/bin/systemctl",
           "restart",
@@ -311,7 +311,7 @@ defmodule Mix.Tasks.Deploy do
       System.cmd(
         "ssh",
         [
-          Settings.deploy_ssh_name(),
+          Settings.r(:deploy_ssh_name),
           "sudo",
           "/bin/systemctl",
           "is-active",

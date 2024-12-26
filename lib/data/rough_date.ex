@@ -63,7 +63,6 @@ defmodule Data.RoughDate do
     %__MODULE__{year: year, quarter: nil, month: month - 1, day: day}
   end
 
-  # def range(from, to, lang \\ Settings.default_language())
   def range(from, to, lang)
 
   def range(%__MODULE__{year: nil}, %__MODULE__{year: nil}, _lang), do: ""
@@ -155,13 +154,13 @@ defmodule Data.RoughDate do
 end
 
 defimpl String.Chars, for: Data.RoughDate do
-  def to_string(date), do: Data.RoughDate.to_str(date, Settings.default_language())
+  def to_string(date), do: Data.RoughDate.to_str(date, Settings.r(:default_language))
 end
 
 defimpl Phoenix.HTML.Safe, for: Data.RoughDate do
   def to_iodata(date) do
     date
-    |> Data.RoughDate.to_str(Settings.default_language())
+    |> Data.RoughDate.to_str(Settings.r(:default_language))
     |> Phoenix.HTML.Engine.html_escape()
   end
 end

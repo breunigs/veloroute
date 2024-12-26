@@ -18,7 +18,7 @@ defmodule Basemap.OpenStreetMap do
         {true, "Missing extra shapes: #{Enum.join(miss_extra, ", ")}"}
 
       outdated_osm_source?() ->
-        {true, "OSM source file is older than #{Settings.osm_data_source_max_age_days()}"}
+        {true, "OSM source file is older than #{Settings.r(:osm_data_source_max_age_days)}"}
 
       !File.exists?(path(:cache, target_name())) ->
         {true, "missing Tilemaker result SQLite database"}
@@ -39,7 +39,8 @@ defmodule Basemap.OpenStreetMap do
   end
 
   defp outdated_osm_source?() do
-    Util.IO.age_in_days(path(:cache, osm_source_name())) > Settings.osm_data_source_max_age_days()
+    Util.IO.age_in_days(path(:cache, osm_source_name())) >
+      Settings.r(:osm_data_source_max_age_days)
   end
 
   defp stale_reason_bbox_extract() do
@@ -67,8 +68,8 @@ defmodule Basemap.OpenStreetMap do
   end
 
   def target_name(), do: "osm.mbtiles"
-  defp osm_source_name, do: "osm_source_#{Util.md5(Settings.osm_data_source())}.osm.pbf"
-  defp bbox_extract_name, do: "osm_data_source.#{Enum.join(Settings.bounds(), ",")}.osm.pbf"
+  defp osm_source_name, do: "osm_source_#{Util.md5(Settings.r(:osm_data_source))}.osm.pbf"
+  defp bbox_extract_name, do: "osm_data_source.#{Enum.join(Settings.r(:bounds), ",")}.osm.pbf"
 
   def target_extract(:cache), do: path(:cache, bbox_extract_name())
   def target_extract(:container), do: path(:container, bbox_extract_name())
@@ -106,16 +107,16 @@ defmodule Basemap.OpenStreetMap do
   end
 
   defp download_osm_source do
-    Logger.info("Downloading #{Settings.osm_data_source()}")
+    Logger.info("Downloading #{Settings.r(:osm_data_source)}")
     path = path(:cache, osm_source_name())
     :ok = remove_if_exists(path <> ".bak")
     :ok = rename_if_exists(path, path <> ".bak")
     :ok = File.mkdir_p(Path.dirname(path))
-    :ok = Util.Download.to_file(Settings.osm_data_source(), path)
+    :ok = Util.Download.to_file(Settings.r(:osm_data_source), path)
   end
 
   defp missing_extra_shapes do
-    Enum.filter(Settings.osm_data_source_extra_shapes(), fn shape ->
+    Enum.filter(Settings.r(:osm_data_source_extra_shapes), fn shape ->
       # since we expect to extract the zip, check the folder instead
       dir = path(:cache, Path.basename(Path.rootname(shape)))
 
@@ -159,7 +160,7 @@ defmodule Basemap.OpenStreetMap do
           "osmium",
           "extract",
           "--bbox",
-          Enum.join(Settings.bounds(), ","),
+          Enum.join(Settings.r(:bounds), ","),
           "--clean=version",
           "--clean=timestamp",
           "--clean=changeset",
@@ -195,7 +196,7 @@ defmodule Basemap.OpenStreetMap do
           "--output",
           path(:container, target_name()),
           "--bbox",
-          Enum.join(Settings.bounds(), ","),
+          Enum.join(Settings.r(:bounds), ","),
           "--config",
           path(:container, "config.json"),
           "--process",

@@ -10,7 +10,7 @@ defmodule Video.Dir do
   end
 
   def present? do
-    Settings.video_source_dir_abs()
+    Settings.r(:video_source_dir_abs)
     |> File.stat()
     |> case do
       {:ok, %{type: :directory}} ->
@@ -21,7 +21,7 @@ defmodule Video.Dir do
 
       any ->
         {:error,
-         "#{Settings.video_source_dir_abs()} should point to video data, but it's not accessible: #{inspect(any)}"}
+         "#{Settings.r(:video_source_dir_abs)} should point to video data, but it's not accessible: #{inspect(any)}"}
     end
   end
 end

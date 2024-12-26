@@ -19,7 +19,7 @@ defmodule Basemap.Servable do
       # use production path by default, which we'll replace upon serving the for
       # development modes. In production the file serving can happen without
       # that logic.
-      def serve_url(url \\ Settings.url(), extra \\ ""), do: Path.join(url, serve_path(extra))
+      def serve_url(url \\ Settings.r(:url), extra \\ ""), do: Path.join(url, serve_path(extra))
 
       def assets_path(extra \\ ""), do: "priv/static" <> serve_path(extra)
     end
