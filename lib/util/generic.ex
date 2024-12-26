@@ -262,6 +262,22 @@ defmodule Util do
     end)
   end
 
+  def default_player_cmd(title \\ "", path \\ "-") do
+    [
+      "mpv",
+      "--pause",
+      "--no-resume-playback",
+      "--force-window=immediate",
+      "--framedrop=no",
+      "--audio=no",
+      "--keep-open=yes",
+      "--demuxer-max-bytes=10G",
+      "--force-seekable=no",
+      "--title=#{title}",
+      path
+    ]
+  end
+
   @doc """
   Converts a string in the form of "1/2" or "0.5" to a proper float. Meant to
   parse metadata output from ffprobe and the like.

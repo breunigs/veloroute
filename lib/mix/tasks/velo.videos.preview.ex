@@ -122,23 +122,10 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end
   end
 
-  @default_player Util.cli_printer(~w[
-    mpv
-    --pause
-    --no-resume-playback
-    --force-window=immediate
-    --framedrop=no
-    --audio=no
-    --keep-open=yes
-    --demuxer-max-bytes=10G
-    --force-seekable=no
-    -
-  ])
-
   @spec exec_pipe([binary()], binary()) :: any
   defp exec_pipe(cmd, info) do
-    title = Util.cli_printer(["--title=#{info}"])
-    player = System.get_env("VELO_PREVIEW_TOOL", "#{@default_player} #{title}")
+    default_player = Util.default_player_cmd(info) |> Util.cli_printer()
+    player = System.get_env("VELO_PREVIEW_TOOL", default_player)
     # avoid using erlexec because it costs us some performance. Also
     # isolating the commands like this doesn't require us to set
     # MIX_QUIET=1 to avoid printing stuff to stdout.
