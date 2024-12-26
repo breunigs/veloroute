@@ -17,7 +17,7 @@ defmodule Video.Track do
 
   @typep start :: Video.Timestamp.t() | :start | :seamless
   @typep stop :: Video.Timestamp.t() | :end
-  @typep video :: {binary(), start(), stop()} | {binary(), start(), stop(), [key: binary()]}
+  @typep video :: {binary(), start(), stop()} | {binary(), start(), stop(), [{atom(), binary()}]}
   @type plain :: [video()]
 
   # 32*8=256
@@ -236,7 +236,7 @@ defmodule Video.Track do
   Takes a track or a list of videos and ensures all tuples are expanded to
   include options field
   """
-  @spec normalize_video_tuples(t() | [plain()]) :: t() | [plain()]
+  @spec normalize_video_tuples(t() | plain()) :: t() | plain()
   def normalize_video_tuples(%__MODULE__{videos: videos} = mod) do
     %{mod | videos: normalize_video_tuples(videos)}
   end
@@ -305,6 +305,9 @@ defmodule Video.Track do
 
   @fade_frames 8
   @spec default_fade :: float
+  @doc """
+  Returns the fade duration in seconds
+  """
   def default_fade() do
     @fade_frames / Video.Constants.output_fps()
   end
