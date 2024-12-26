@@ -163,6 +163,12 @@ defmodule Util.Cmd2 do
 
         %{status: reason, stdout: stdoutacc, stderr: stderracc, user_abort: false}
 
+      {:silent_termination, _reason} ->
+        :exec.stop(monitor)
+        stdoutacc = stdout.(stdoutacc, :done)
+        stderracc = stderr.(stderracc, :done)
+        %{status: 0, stdout: stdoutacc, stderr: stderracc, user_abort: false}
+
       {:slow_warn, cmd} ->
         Logger.info("#{cmd} is slow. Press CTRL+\\ to attempt graceful termination")
         receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
