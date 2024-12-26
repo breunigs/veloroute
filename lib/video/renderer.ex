@@ -52,6 +52,102 @@ defmodule Video.Renderer do
       ]
   end
 
+  @join_surround_ms 1000
+  @spec join_preview_cmds(
+          [
+            {video1 :: binary(), video2 :: binary(), video1_stop :: non_neg_integer(),
+             video2_start :: non_neg_integer()}
+          ],
+          fade_duration_seconds :: float(),
+          temp_dir :: binary()
+        ) ::
+          {preview_video_fifo :: binary(), [temporary_fifos :: binary()],
+           [commands_to_run_in_parallel :: binary()]}
+  def join_preview_cmds(timestamps, fade_duration, dir) do
+    {width, height, stack_filter} = stacker(length(timestamps))
+
+    ffmpeg = Util.low_priority_cmd_prefix() ++ ["ffmpeg", "-hide_banner", "-loglevel", "warning"]
+
+    {outs, cmds} =
+      timestamps
+      |> Enum.with_index()
+      |> Enum.map(fn {{v1, v2, stop1, start2}, idx} ->
+        start1 = max(0, stop1 - @join_surround_ms)
+        stop2 = start2 + @join_surround_ms
+
+        videos = [
+          {v1, Video.Timestamp.from_milliseconds(start1),
+           Video.Timestamp.from_milliseconds(stop1)},
+          {v2, Video.Timestamp.from_milliseconds(start2),
+           Video.Timestamp.from_milliseconds(stop2)}
+        ]
+
+        sources = Video.Track.normalize_video_tuples(videos)
+
+        prefix =
+          "scale=#{width}:#{height},drawtext=fontcolor=white:fontsize=128:x=10:y=10:shadowx=3:shadowy=3:text='#{idx + 1}',"
+
+        scaled = settb(sources, prefix)
+        tlc = time_lapse_corrects(sources)
+        xfades = xfades(sources, fade_duration, "join-preview")
+        filter = Enum.join(scaled ++ tlc ++ xfades, ";")
+
+        ident = videos |> inspect() |> String.replace(~r/[^a-z0-9:.-]+/, "_")
+        out = Path.join(dir, ident)
+
+        cmd =
+          List.flatten([
+            ffmpeg,
+            inputs(sources),
+            ["-filter_complex", filter],
+            "-y",
+            ["-f", "yuv4mpegpipe"],
+            ["-vcodec", "rawvideo"],
+            out
+          ])
+
+        {out, cmd}
+      end)
+      |> Enum.unzip()
+
+    out = Path.join(dir, "preview.mkv")
+
+    stacker =
+      List.flatten([
+        ffmpeg,
+        Enum.flat_map(outs, &["-i", &1]),
+        if(stack_filter, do: ["-filter_complex", stack_filter], else: []),
+        ["-pix_fmt", "yuv420p"],
+        ["-c:v", "libx264"],
+        ["-preset", "ultrafast"],
+        ["-qp", "17"],
+        ["-tune", "zerolatency"],
+        ["-f", "matroska"],
+        "-an",
+        "-y",
+        out
+      ])
+
+    {out, outs, [stacker | cmds]}
+  end
+
+  defp stacker(1), do: {1920, 1080, nil}
+  defp stacker(2), do: {960, 540, "xstack=inputs=2:layout=0_0|w0_0"}
+  # 2x2 grid
+  defp stacker(3), do: {960, 540, "xstack=inputs=3:layout=0_0|w0_0|0_h0"}
+  defp stacker(4), do: {960, 540, "xstack=inputs=4:layout=0_0|w0_0|0_h0|w0_h0"}
+  # 3x2 grid
+  defp stacker(5), do: {960, 540, "xstack=inputs=5:layout=0_0|w0_0|0_h0|w0_h0|w0+w1_0"}
+  defp stacker(6), do: {960, 540, "xstack=inputs=6:layout=0_0|w0_0|0_h0|w0_h0|w0+w1_0|w0+w1_h0"}
+  # 3x3 grid
+  @row0_w3 "0_0|w0_0|w0+w1_0"
+  @row1_w3 "0_h0|w0_h0|w0+w1_h0"
+  @row2_w3 "0_h0+h1|w0_h0+h1|w0+w1_h0+h1"
+  @row01_w3 "#{@row0_w3}|#{@row1_w3}"
+  defp stacker(7), do: {640, 360, "xstack=inputs=7:layout=#{@row01_w3}|0_h0+h1"}
+  defp stacker(8), do: {640, 360, "xstack=inputs=8:layout=#{@row01_w3}|0_h0+h1|w0_h0+h1"}
+  defp stacker(9), do: {640, 360, "xstack=inputs=9:layout=#{@row01_w3}|#{@row2_w3}"}
+
   @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
