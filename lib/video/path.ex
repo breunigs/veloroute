@@ -13,6 +13,43 @@ defmodule Video.Path do
 
   @video_out_m3u8 "stream.m3u8"
 
+  @str_digits %{
+    "1" => 1,
+    "2" => 2,
+    "3" => 3,
+    "4" => 4,
+    "5" => 5,
+    "6" => 6,
+    "7" => 7,
+    "8" => 8,
+    "9" => 9
+  }
+
+  @doc """
+  Checks if the first video can be continued seamlessly in the second video.
+  These splits usually happen due to file size limitations and are recorded
+  without interruption (i.e. they're different from two videos where the user
+  pressed to start/stop button in between).
+
+      iex> Video.Path.seamless?("2020-10-10/GX01234", "2020-10-10/GX02234")
+      true
+
+      iex> Video.Path.seamless?("2020-10-10/GX02234", "2020-10-10/GX01234")
+      false
+
+      iex> Video.Path.seamless?("2020-10-10/GX01234", "2020-10-10/GX01235")
+      false
+
+      iex> Video.Path.seamless?("1111-11-11/GX01234", "2222-22-22/GX02234")
+      false
+  """
+  @spec seamless?(binary(), binary()) :: boolean()
+  def seamless?(path1, path2) do
+    sig_num1 = path1 |> stem() |> String.graphemes() |> Enum.find_value(&@str_digits[&1])
+    sig_num2 = path2 |> stem() |> String.graphemes() |> Enum.find_value(&@str_digits[&1])
+    Path.dirname(path1) == Path.dirname(path2) && sig_num1 && sig_num2 && sig_num1 + 1 == sig_num2
+  end
+
   def target(hash) when valid_hash(hash) do
     Path.join(Settings.video_target_dir_abs(), hash)
   end
@@ -97,6 +134,10 @@ defmodule Video.Path do
   def abs_path("/" <> _rest = path), do: path
 
   def abs_path(path), do: Path.join(Settings.video_source_dir_abs(), path)
+
+  def stem(path) do
+    Path.basename(path, Path.extname(path))
+  end
 
   @doc """
   Returns if the path is either extension less or the extension is one

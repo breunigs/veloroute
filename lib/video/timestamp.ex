@@ -72,6 +72,18 @@ defmodule Video.Timestamp do
   end
 
   @doc """
+  Takes a duration in seconds and returns it as an ffmpeg formatted timestamp
+
+    iex> Video.Timestamp.from_seconds(1.337)
+    "00:00:01.337"
+
+    iex> Video.Timestamp.from_seconds(4171.008)
+    "01:09:31.008"
+  """
+  @spec from_seconds(float()) :: t()
+  def from_seconds(duration_in_s), do: from_milliseconds(round(duration_in_s * 1000))
+
+  @doc """
   Takes a timed point and returns the ffmpeg timestamp
 
     iex> %Video.TimedPoint{time_offset_ms: 1337, lat: 0, lon: 0}

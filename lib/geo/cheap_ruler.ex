@@ -183,7 +183,7 @@ defmodule Geo.CheapRuler do
         },
         buffer
       )
-      when is_float(buffer) or is_integer(buffer) do
+      when is_number(buffer) do
     v = buffer / @ky
     h = buffer / @kx
 
