@@ -26,14 +26,21 @@ defmodule Mix.Tasks.Velo.Videos.GuessMerges do
     """)
   end
 
-  def run(args) do
-    opts = Joiner.Options.new()
+  @env Application.compile_env(:veloroute, :env)
+  if @env != :prod do
+    def run(args) do
+      opts = Joiner.Options.new()
 
-    Joiner.OpenAIClip.ensure_started()
-    Joiner.Preview.prepare()
+      Joiner.OpenAIClip.ensure_started()
+      Joiner.Preview.prepare()
 
-    Video.Dir.must_exist!(fn ->
-      Joiner.Pipeline.run(args, opts)
-    end)
+      Video.Dir.must_exist!(fn ->
+        Joiner.Pipeline.run(args, opts)
+      end)
+    end
+  else
+    def run(_args) do
+      raise "Feature not available in #{@env}, use another MIX_ENV"
+    end
   end
 end

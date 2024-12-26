@@ -52,8 +52,9 @@ defmodule Veloroute.MixProject do
   defp extra_apps(_), do: []
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "data", "test/support"]
-  defp elixirc_paths(_), do: ["lib", "data"]
+  defp elixirc_paths(:dev), do: ["lib", "data", "lib_cli"]
+  defp elixirc_paths(:test), do: ["lib", "data", "lib_cli", "test/support"]
+  defp elixirc_paths(:prod), do: ["lib", "data"]
 
   # Specifies your project dependencies.
   #
