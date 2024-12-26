@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
     do:
       "Rad- und Gehwege werden beim Ausbau der Bushaltestelle neu gepflastert, bleiben aber wie bisher zu eng."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-07-29]
   def stop(), do: ~d[2024-10-18]
 

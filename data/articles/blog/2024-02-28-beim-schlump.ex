@@ -61,51 +61,85 @@ defmodule Data.Article.Blog.BeimSchlump do
       }
     ]
 
-  @attrib {"LSBG Hamburg (S1)",
-           "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"}
+  @attrib [
+    {"LSBG Hamburg (SP2)",
+     "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"},
+    {"wfw nord consult Ingenieurgesellschaft mbH", "https://www.wfwnc.de/kontakt/kontakt/"}
+  ]
   def map_image do
     [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.568531572, lon: 9.969353362},
-        %{lat: 53.567315869, lon: 9.972055968},
-        %{lat: 53.566291144, lon: 9.970749665},
-        %{lat: 53.567506780, lon: 9.968046008}
+      # Schlussverschickung
+      Data.MapImage.new(__MODULE__, @attrib, "v2_1", {
+        %{lat: 53.568977206, lon: 9.968605381},
+        %{lat: 53.568941725, lon: 9.972290426},
+        %{lat: 53.566601682, lon: 9.972227805},
+        %{lat: 53.566637163, lon: 9.968542761}
       }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.567897989, lon: 9.969993981},
-        %{lat: 53.569058843, lon: 9.969990249},
-        %{lat: 53.569059058, lon: 9.971035121},
-        %{lat: 53.567900000, lon: 9.971039048}
+      Data.MapImage.new(__MODULE__, @attrib, "v2_2", {
+        %{lat: 53.568423510, lon: 9.971304340},
+        %{lat: 53.569793458, lon: 9.974252211},
+        %{lat: 53.569073912, lon: 9.975200289},
+        %{lat: 53.567703964, lon: 9.972252418}
       }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.567942030, lon: 9.970614531},
-        %{lat: 53.569216033, lon: 9.973337286},
-        %{lat: 53.568868893, lon: 9.973798134},
-        %{lat: 53.567594587, lon: 9.971076176}
+      Data.MapImage.new(__MODULE__, @attrib, "v2_3", {
+        %{lat: 53.569278637, lon: 9.973816883},
+        %{lat: 53.571027303, lon: 9.976619898},
+        %{lat: 53.570667217, lon: 9.977257034},
+        %{lat: 53.568918551, lon: 9.974454019}
       }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.569170726, lon: 9.973186911},
-        %{lat: 53.569714038, lon: 9.974264084},
-        %{lat: 53.569218170, lon: 9.974973783},
-        %{lat: 53.568674799, lon: 9.973896788}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 5, {
-        %{lat: 53.569463893, lon: 9.974322699},
-        %{lat: 53.570680474, lon: 9.976234855},
-        %{lat: 53.570462910, lon: 9.976627087},
-        %{lat: 53.569246467, lon: 9.974714989}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 6, {
-        %{lat: 53.570626572, lon: 9.976002423},
-        %{lat: 53.571681960, lon: 9.977411783},
-        %{lat: 53.571475406, lon: 9.977850170},
-        %{lat: 53.570419975, lon: 9.976441717}
+      Data.MapImage.new(__MODULE__, @attrib, "v2_4", {
+        %{lat: 53.570689523, lon: 9.976091059},
+        %{lat: 53.571793533, lon: 9.977612765},
+        %{lat: 53.571578348, lon: 9.978055024},
+        %{lat: 53.570474337, lon: 9.976533318}
       })
+
+      # 1. Verschickung
+      # Data.MapImage.new(__MODULE__, @attrib, 1, {
+      #   %{lat: 53.568531572, lon: 9.969353362},
+      #   %{lat: 53.567315869, lon: 9.972055968},
+      #   %{lat: 53.566291144, lon: 9.970749665},
+      #   %{lat: 53.567506780, lon: 9.968046008}
+      # }),
+      # Data.MapImage.new(__MODULE__, @attrib, 2, {
+      #   %{lat: 53.567897989, lon: 9.969993981},
+      #   %{lat: 53.569058843, lon: 9.969990249},
+      #   %{lat: 53.569059058, lon: 9.971035121},
+      #   %{lat: 53.567900000, lon: 9.971039048}
+      # }),
+      # Data.MapImage.new(__MODULE__, @attrib, 3, {
+      #   %{lat: 53.567942030, lon: 9.970614531},
+      #   %{lat: 53.569216033, lon: 9.973337286},
+      #   %{lat: 53.568868893, lon: 9.973798134},
+      #   %{lat: 53.567594587, lon: 9.971076176}
+      # }),
+      # Data.MapImage.new(__MODULE__, @attrib, 4, {
+      #   %{lat: 53.569170726, lon: 9.973186911},
+      #   %{lat: 53.569714038, lon: 9.974264084},
+      #   %{lat: 53.569218170, lon: 9.974973783},
+      #   %{lat: 53.568674799, lon: 9.973896788}
+      # }),
+      # Data.MapImage.new(__MODULE__, @attrib, 5, {
+      #   %{lat: 53.569463893, lon: 9.974322699},
+      #   %{lat: 53.570680474, lon: 9.976234855},
+      #   %{lat: 53.570462910, lon: 9.976627087},
+      #   %{lat: 53.569246467, lon: 9.974714989}
+      # }),
+      # Data.MapImage.new(__MODULE__, @attrib, 6, {
+      #   %{lat: 53.570626572, lon: 9.976002423},
+      #   %{lat: 53.571681960, lon: 9.977411783},
+      #   %{lat: 53.571475406, lon: 9.977850170},
+      #   %{lat: 53.570419975, lon: 9.976441717}
+      # })
     ]
   end
 
   def links(_assigns) do
     [
+      {"fertiger Entwurf – Bericht", ~d[2024-12],
+       "https://lsbg.hamburg.de/resource/blob/1004284/95ffa832ed7f3ec5194c831dc347be27/beim-schlump-abgestimmte-planung-bericht-data.pdf"},
+      {"fertiger Entwurf – Lagepläne", ~d[2024-12],
+       "https://lsbg.hamburg.de/resource/blob/1004290/99331d84dad2735ac0e2b953309a1e35/beim-schlump-abgestimmte-planung-plan-data.pdf"},
       {"1. Entwurf – Bericht", "Februar 2024",
        "https://lsbg.hamburg.de/resource/blob/845884/6b59de5edb767ef8698f30b93c583696/beim-schlump-abstimmungsunterlage-bericht-data.pdf"},
       {"1. Entwurf – Lagepläne", "Februar 2024",
@@ -126,9 +160,9 @@ defmodule Data.Article.Blog.BeimSchlump do
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <h5>Straßenzug Beim Schlump</h5>
-    <p>Im Kreuzungsbereich ab <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.969197} lat={53.567138} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinem Schäferkamp</.v> beginnen 2,5m breite <.ref>Protected-Bike-Lanes</.ref>. Sie führen geradlinig über die <.v bounds="9.968752,53.566778,9.97175,53.568565" lon={9.97019} lat={53.567413} dir="backward" ref={@ref} highlight="Schäferkampsallee,Schröderstiftstraße">Kreuzung mit der Schäferkampsallee</.v>. Ihre Breite ändert sich im weiteren Verlauf leicht (+- 25cm). An der Kreuzung mit <.v bounds="9.972386,53.568173,9.976846,53.570479" lon={9.973906} lat={53.56905} dir="backward" ref={@ref}>Bundesstraße</.v> und <.v bounds="9.97535,53.57006,9.979101,53.572713" lon={9.97733} lat={53.571201} dir="backward" ref={@ref}>Bogenstraße</.v> bleiben Engstellen mit 1,6m Breite.</p>
+    <p>Im Kreuzungsbereich ab <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.969197} lat={53.567138} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinem Schäferkamp</.v> beginnen 2,5m breite <.ref>Protected-Bike-Lanes</.ref>. Sie führen geradlinig über die <.v bounds="9.968752,53.566778,9.97175,53.568565" lon={9.97019} lat={53.567413} dir="backward" ref={@ref} highlight="Schäferkampsallee,Schröderstiftstraße">Kreuzung mit der Schäferkampsallee</.v>. Ihre Breite ändert sich im weiteren Verlauf leicht (+- 25cm). An der Kreuzung mit <.v bounds="9.972386,53.568173,9.976846,53.570479" lon={9.973906} lat={53.56905} dir="backward" ref={@ref}>Bundesstraße</.v> und <.v bounds="9.97535,53.57006,9.979101,53.572713" lon={9.97733} lat={53.571201} dir="backward" ref={@ref}>Bogenstraße</.v> bleiben Engstellen mit 1,85m Breite.</p>
 
-    <p>An Bushalten, Einmündungen und bei KFZ-Parkplätzen in der Baumreihe wird der Radweg unterbrochen bzw. als <.ref>Radfahrstreifen</.ref> ausgeführt. Wer an einem wartenden Bus vorbei möchte, muss sich in den Autoverkehr einordnen.</p>
+    <p>An Bushalten, Einmündungen und bei KFZ-Parkplätzen in der Baumreihe wird der Radweg unterbrochen bzw. als <.ref>Radfahrstreifen</.ref> oder <.ref>Schutzstreifen</.ref> ausgeführt. Wer an einem wartenden Bus vorbei möchte, muss sich in den Autoverkehr einordnen.</p>
 
     <h5>Kreuzung Schäferkampsallee</h5>
     <p>Die <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.970821} lat={53.567822} dir="forward" ref={@ref}>Bushaltestelle U-Schlump im Beim Schlump</.v> wird in die Straßenmitte verlegt. Die Gestaltung ist dann ähnlich zum <.v bounds="9.98713,53.556208,9.990939,53.559088" lon={9.988407} lat={53.55696} dir="forward" ref="3">Bushalt Stephansplatz</.v>. Für den Radverkehr ist das Linksabbiegen in die <.v bounds="9.970073,53.567219,9.971905,53.568676" lon={9.970791} lat={53.567948} dir="forward" ref="FR10">Gustav-Falke-Straße</.v> weiterhin <.ref>indirekt</.ref> möglich. Für den KFZ-Verkehr ist nur noch die Ausfahrt aus ihr gestattet.</p>

@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.NeueStrasse do
 
   def links(_assigns) do
     [
+      {"Baufortschritt", ~d[2024-12],
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/aktuelles/pressemeldungen/strassenbauarbeiten-vollsperrung-neue-strasse-1004646"},
       {"Pressemitteilung zum Umbau", ~d[2024-10],
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/aktuelles/pressemeldungen/vollsperrung-neue-strasse-980960"},
       {"hamburg.de/baustellen", ~d[2024-10],

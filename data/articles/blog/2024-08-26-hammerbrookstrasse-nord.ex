@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
   def start(), do: ~d[2024-09-30]
   def stop(), do: ~d[2025-03]
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["8", "FR4"]
 
   @attrib [
@@ -37,6 +37,8 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-der-hammerbrookstrasse-nord-und-des-lindenplatzes-1003890"}
       # {"Ausschreibung Umbau", ~d[2024-08],
       #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/aa0e89c9-e8f6-465d-98b0-2017b4fc8757"}
     ]

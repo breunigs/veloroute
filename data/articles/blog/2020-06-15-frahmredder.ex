@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Frahmredder do
 
   def type(), do: :construction
   def start(), do: ~d[2023-07-10]
-  def stop(), do: ~d[2024-12-20]
+  def stop(), do: ~d[2025-01-31]
   def construction_site_id_hh(), do: [410_625]
 
   def tags(), do: ["5", "W6.2"]

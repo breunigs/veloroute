@@ -20,8 +20,10 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", "Juni 2024",
-       "https://lsbg.hamburg.de/resource/blob/784454/7352392db667dfa5879101337e3dcd4c/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2024-12],
+       "https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
+      # {"Baustelleninfo", "Juni 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/784454/7352392db667dfa5879101337e3dcd4c/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       {"Pressemitteilung Umbau Kreisel", "April 2024",
        "https://web.archive.org/web/20240520025307/https://www.hamburg.de/harburg/pressemeldungen/18429130/ausbau-der-velorouten-10-und-11/"},
       {"Bauvergabe Kreisel Neuländer Hauptdeich", "März 2024",

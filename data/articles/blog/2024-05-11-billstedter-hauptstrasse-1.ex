@@ -35,6 +35,8 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-der-billstedter-hauptstrasse-vr-8-1003918"},
       {"Ausschreibung Umbau", "Mai 2024",
        "https://web.archive.org/web/20240511081145/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/e57e41bd-8b1e-4ffd-a8a6-dc8b1e2c702e"}
     ]
