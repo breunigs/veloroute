@@ -15,7 +15,7 @@ RUN \
   libuv1 \
   xauth \
   xvfb \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* /var/cache/ /var/log
 
 # map-libre-native shader cache
 RUN mkdir -p /.cache && chmod og+wr -R /.cache/

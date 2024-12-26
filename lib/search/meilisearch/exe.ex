@@ -34,4 +34,10 @@ defmodule Search.Meilisearch.Exe do
   def version(), do: @version
 
   def path(), do: Path.join(to_string(:code.priv_dir(:veloroute)), @exe)
+
+  def purge_old_data!() do
+    Path.wildcard("priv/meilisearch-*")
+    |> Enum.reject(&String.contains?(&1, version()))
+    |> Enum.each(&File.rm_rf!/1)
+  end
 end

@@ -86,6 +86,7 @@ defmodule Mix.Tasks.Deploy do
 
   defp make_release(_skip) do
     Util.banner("Generating Assets")
+    Search.Meilisearch.Exe.purge_old_data!()
     Mix.Tasks.Velo.Assets.Prepare.run([])
     Mix.Tasks.Velo.Search.Index.run([])
 
