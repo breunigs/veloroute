@@ -84,7 +84,7 @@ def load_project(project_path)
       max_lat: layer.css("wgs84extent ymax").first.content.to_f,
     }
 
-    index = "\"#{index}\"" if index && index !~ /^[0-9]+$/
+    index = "\"#{index}\"" if index && index !~ /^[1-9][0-9]*$/
 
     {image_path: image_path_abs, bbox: bbox, index: index}
   end.compact
@@ -108,7 +108,7 @@ end
 def calculate_map_image(layer)
   pr = pixel_ratios(layer.fetch(:image_path))
   bbox = layer.fetch(:bbox)
-  index = layer.fetch(:index) ? "\"#{layer.fetch(:index)}\", " : ""
+  index = layer.fetch(:index) ? "#{layer.fetch(:index)}, " : ""
 
   coords = case pr[:rotation]
   when :clockwise
