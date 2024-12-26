@@ -1,0 +1,101 @@
+defmodule Joiner.Options do
+  @type metric() :: Joiner.FfmpegMetrics.metric() | :clip | :distance | :speed_diff | :weighted
+  @type weights() :: %{metric() => float()}
+
+  @non_metric_cols [:v1_end, :v2_start, :v1_pos, :v2_pos, :speed]
+  @type table_columns :: :v1_end | :v2_start | :speed | metric()
+
+  def non_weight_table_columns(), do: @non_metric_cols
+
+  @type t :: %__MODULE__{
+          fade_duration_ms: non_neg_integer(),
+          geo_max_dist_m: float(),
+          geo_max_bearing_deg: float(),
+          visual_image_height: non_neg_integer(),
+          visual_compare_metric: Joiner.FfmpegMetrics.metric(),
+          visual_prune_below: float(),
+          visual_top_percent: float(),
+          visual_max_candidates: pos_integer(),
+          openai_clip_prune_below: float(),
+          openai_clip_top_percent: float(),
+          weights: weights(),
+          user_max_candidates: pos_integer()
+        }
+
+  @enforce_keys [
+    :fade_duration_ms,
+    :geo_max_dist_m,
+    :geo_max_bearing_deg,
+    :visual_image_height,
+    :visual_compare_metric,
+    :visual_prune_below,
+    :visual_top_percent,
+    :visual_max_candidates,
+    :openai_clip_prune_below,
+    :openai_clip_top_percent,
+    :weights,
+    :user_max_candidates
+  ]
+  defstruct @enforce_keys
+
+  def new(),
+    do: %__MODULE__{
+      # how long the fade should take, in milliseconds
+      fade_duration_ms: round(Video.Track.default_fade() * 1000.0),
+
+      ### GPS track matching
+      # how close two GPS points must be each other to be considered
+      # "overlapping" (and thus a potential video joing point)
+      geo_max_dist_m: 15.0,
+      # how strongly must two GPS tracks aim in the same direction to be
+      # considered "overlapping". 180° would consider even tracks in the
+      # opposite direction to be allowed, 90° would allow intersections shaped
+      # like a +. The lower, the more closely the tracks must share the same
+      # direction.
+      geo_max_bearing_deg: 25.0,
+
+      ### visual candidate search
+      # To conserve computing power, videos will be downscaled to this size
+      # before applying the (cheaper) visual compare metric.
+      visual_image_height: 270,
+      # Which visual compare metric to use. Must be supported bei
+      # `Joiner.FfmpegMetrics`.
+      visual_compare_metric: :xpsnr,
+      # Completely ignore candidates that result in a metric value lower than
+      # this. The raw result is normalized by fade_duration_ms and
+      # visual_image_height. However, it is before the metric is normalized for
+      # the final selection (i.e. its range is not bounded from [0.0, 1.0]).
+      visual_prune_below: 0.17,
+      # Within a single visual comparison of a segment, take only the top-n%
+      # candidates and discard the rest. This avoids passing too many candidates
+      # down the more expensive OpenAI filter, if there are a lot of matches not
+      # caught by the static visual_prune_below limit.
+      visual_top_percent: 10.0,
+      # If the above two settings didn't remove enough candidates, still only
+      # take the maximum specified here.
+      visual_max_candidates: 20,
+
+      ### visual candidate refinement
+      # Ignore all results for which OpenAI CLIP model results in a cosine
+      # similarity lower than this.
+      openai_clip_prune_below: 0.85,
+      # Within a single visual refinement run, only take the top n% candidates
+      # and discard the rest.
+      openai_clip_top_percent: 5.0,
+
+      ### final selections
+      # to compute the order in which results are presented to the user, specify
+      # the weight of various statistics.
+      weights: %{
+        clip: 0.7,
+        xpsnr: 0.1,
+        distance: 0.05,
+        speed_diff: 0.15
+      },
+      # assuming there's more results, how many to present to the user
+      user_max_candidates: 5
+    }
+
+  @spec fade_duration_s(t()) :: float()
+  def fade_duration_s(%{fade_duration_ms: ms}), do: ms / 1000.0
+end

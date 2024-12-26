@@ -17,6 +17,7 @@ ENV GIT_COMMIT="dockerfile dummy"
 RUN apt-get update && apt-get install -y --no-install-recommends \
   brotli \
   build-essential \
+  cargo \
   ffmpeg \
   git \
   inkscape \
