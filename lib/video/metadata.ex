@@ -60,19 +60,40 @@ defmodule Video.Metadata do
     end
   end
 
+  @spec frame_duration_s(t(), non_neg_integer()) :: float()
+  def frame_duration_s(%{fps: fps}, frame_count \\ 1), do: 1.0 / fps * frame_count
+
+  def frame_duration_ms(meta, frame_count \\ 1),
+    do: round(frame_duration_s(meta, frame_count) * 1000.0)
+
+  @spec frame_count_between(t(), float(), float()) :: non_neg_integer()
+  def frame_count_between(%{duration: dur, fps: fps}, start_ts, stop_ts)
+      when is_float(start_ts) and is_float(stop_ts) and start_ts < stop_ts do
+    start_lim = max(start_ts, 0.0)
+    frame_duration = 1.0 / fps
+    stop_lim = min(stop_ts, dur - frame_duration)
+    floor(fps * (stop_lim - start_lim))
+  end
+
+  def approx_frame_count(%{duration: dur, fps: fps}), do: round(dur - 1.0 / fps)
+
   @doc """
   reads the length of a video
   """
-  @spec length_ms!(binary | Video.TrimmedSource.t() | Video.Source.t()) :: integer()
+  @spec length_ms!(binary | Video.TrimmedSource.t() | Video.Source.t() | t()) :: integer()
+  def length_ms!(%{duration: seconds}) when is_float(seconds), do: round(seconds * 1000.0)
+
   def length_ms!(input) do
     {:ok, meta} = __MODULE__.for(input)
-    round(meta.duration * 1000)
+    round(meta.duration * 1000.0)
   end
 
-  @spec length_ms(binary | Video.TrimmedSource.t() | Video.Source.t()) :: integer() | nil
+  @spec length_ms(binary | Video.TrimmedSource.t() | Video.Source.t() | t()) :: integer() | nil
+  def length_ms(%{duration: seconds}) when is_float(seconds), do: round(seconds * 1000.0)
+
   def length_ms(input) do
     with {:ok, meta} <- __MODULE__.for(input) do
-      round(meta.duration * 1000)
+      round(meta.duration * 1000.0)
     else
       _ -> nil
     end
