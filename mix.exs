@@ -97,7 +97,7 @@ defmodule Veloroute.MixProject do
       # auto video join
       # Ortex 0.1.10 and newer require Rust 1.64+. However, Debian Bookworm as
       # our base image only has Rust 1.63.
-      {:ortex, "0.1.9", only: [:dev, :test]},
+      {:ortex, "0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
       {:scholar, "~> 0.3.0", only: [:dev, :test]}
     ]
