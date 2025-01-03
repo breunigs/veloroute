@@ -240,16 +240,16 @@ defmodule Video.Generator do
         @impl Video.Rendered
         def rendered?(), do: unquote(rendered)
         @impl Video.Rendered
-        def bbox(), do: unquote(bbox)
+        def bbox(), do: unquote(Macro.escape(bbox))
         @impl Video.Rendered
         def renderer(), do: unquote(renderer)
         @impl Video.Rendered
-        def recording_dates(), do: unquote(recording_dates)
+        def recording_dates(), do: unquote(Macro.escape(recording_dates))
         @impl Video.Rendered
         # names derived from OpenStreetMap data, thus ODbL https://osmfoundation.org/wiki/Licence
         def street_names(), do: unquote(street_names)
         @impl Video.Rendered
-        def coords(), do: unquote(coords)
+        def coords(), do: unquote(Macro.escape(coords))
         @impl Video.Rendered
         def polyline(), do: unquote(Macro.escape(polyline))
       end
