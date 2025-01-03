@@ -111,7 +111,11 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
       with :ok <- Util.Docker.build(full_ref) do
         try do
           full_ref
-          |> Util.Docker.run_docker_cli(%{mount_videos_in_dir: "/workdir", command_args: cmd})
+          |> Util.Docker.run_docker_cli(%{
+            mount_videos_in_dir: "/workdir",
+            command_args: cmd,
+            docker_args: ["--attach=STDERR", "--attach=STDOUT"]
+          })
           |> exec_pipe(info)
         after
           Util.Docker.stop(full_ref)
@@ -126,9 +130,11 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   defp exec_pipe(cmd, info) do
     default_player = Util.default_player_cmd(info) |> Util.cli_printer()
     player = System.get_env("VELO_PREVIEW_TOOL", default_player)
-    # avoid using erlexec because it costs us some performance. Also
-    # isolating the commands like this doesn't require us to set
-    # MIX_QUIET=1 to avoid printing stuff to stdout.
-    "#{Util.cli_printer(cmd)} | #{player}" |> String.to_charlist() |> :os.cmd()
+
+    Util.Cmd2.exec(["sh", "-c", "#{Util.cli_printer(cmd)} | #{player}"],
+      slow_warn_message: false,
+      stdout: :passthrough,
+      stderr: :passthrough
+    )
   end
 end

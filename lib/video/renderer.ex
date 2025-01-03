@@ -30,7 +30,7 @@ defmodule Video.Renderer do
       end
 
     Util.low_priority_cmd_prefix(15) ++
-      ["ffmpeg", "-hide_banner", "-loglevel", "fatal"] ++
+      ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
       inputs(sources) ++
       [
         "-filter_complex",

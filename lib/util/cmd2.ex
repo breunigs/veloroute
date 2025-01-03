@@ -74,8 +74,8 @@ defmodule Util.Cmd2 do
           [binary()],
           binary(),
           Enum.t(),
-          Collectable.t(),
-          Collectable.t(),
+          Collectable.t() | :passthrough,
+          Collectable.t() | :passthrough,
           binary() | nil,
           binary() | nil,
           boolean()
@@ -86,13 +86,14 @@ defmodule Util.Cmd2 do
           user_abort: boolean()
         }
   defp exec_cmd2([exe | params], name, env, stdout, stderr, stdin, kill, slow_warn) do
-    {stdoutacc, stdout} = Collectable.into(stdout)
-    {stderracc, stderr} = Collectable.into(stderr)
+    {stdoutacc, stdout_coll} = collectible(:stdio, stdout)
+    {stderracc, stderr_coll} = collectible(:stderr, stderr)
     exe = System.find_executable(exe) || exe
     args = Enum.map([exe | params], &String.to_charlist/1)
     opts = [:stdout, :stderr, :monitor, {:env, validate_env(env)}]
     opts = if kill, do: [{:kill, kill}, {:kill_timeout, 3} | opts], else: opts
     opts = if stdin, do: [:stdin | opts], else: opts
+    opts = if :passthrough in [stdout, stderr], do: [:pty | opts], else: opts
 
     :ok = Application.ensure_started(:erlexec)
 
@@ -107,7 +108,7 @@ defmodule Util.Cmd2 do
       end
 
       try do
-        status = receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc)
+        status = receive_cmd2(pid, monitor, stdout_coll, stdoutacc, stderr_coll, stderracc)
         # only untrap if there were no signals, since we block the received
         # signal to prevent VM shutdown and would wait until the timeout,
         # essentially deadlocking.
@@ -124,6 +125,19 @@ defmodule Util.Cmd2 do
       err -> %{status: 128, stdout: nil, stderr: "failed to exec: #{inspect(err)}"}
     end
   end
+
+  defp collectible(device, io)
+
+  defp collectible(device, :passthrough) do
+    {device,
+     fn
+       device, {_mode, data} -> IO.write(data) && device
+       device, :done -> device
+       device, :halt -> device
+     end}
+  end
+
+  defp collectible(_device, target), do: Collectable.into(target)
 
   defp receive_cmd2(pid, monitor, stdout, stdoutacc, stderr, stderracc) do
     receive do
