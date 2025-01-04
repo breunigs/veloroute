@@ -45,15 +45,20 @@ defmodule Joiner.UI do
   defp table_formatter(val) when is_float(val), do: rnd(val * 100.0, 2) <> "%"
   defp table_formatter(val), do: to_string(val)
 
-  @spec input_with_preview([Joiner.Segment.t()], Joiner.Options.t(), binary() | nil) ::
+  @spec input_with_preview(
+          [Joiner.Segment.t()],
+          Joiner.Options.t(),
+          binary() | nil,
+          binary() | nil
+        ) ::
           pos_integer() | :none
-  def input_with_preview(segments, opts, title) do
+  def input_with_preview(segments, opts, title, custom_player) do
     preview = Joiner.Preview.start_render!(segments, opts)
 
     case read_valid_input(length(segments)) do
       :preview ->
-        Joiner.Preview.start_player!(preview, title)
-        input_with_preview(segments, opts, title)
+        Joiner.Preview.start_player!(preview, title, custom_player)
+        input_with_preview(segments, opts, title, custom_player)
 
       other ->
         Joiner.Preview.stop(preview)

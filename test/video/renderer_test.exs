@@ -199,7 +199,7 @@ defmodule Video.RendererTest do
              "ffmpeg",
              "-hide_banner",
              "-loglevel",
-             "fatal",
+             "error",
              "-hwaccel",
              "auto",
              "-re",

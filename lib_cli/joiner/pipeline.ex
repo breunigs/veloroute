@@ -108,7 +108,13 @@ defmodule Joiner.Pipeline do
     val =
       try do
         video_player_title = title <> " | #{Settings.r(:sitebar_name)} Join Preview"
-        Joiner.UI.input_with_preview(candidates, opts, video_player_title)
+
+        Joiner.UI.input_with_preview(
+          candidates,
+          opts,
+          video_player_title,
+          opts.preview_player_custom
+        )
       after
         Joiner.Preview.stop()
       end

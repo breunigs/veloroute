@@ -29,27 +29,26 @@ defmodule Video.Renderer do
         filter
       end
 
-    Util.low_priority_cmd_prefix(15) ++
-      ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
-      inputs(sources) ++
-      [
-        "-filter_complex",
-        filter,
-        "-pix_fmt",
-        "yuv420p",
-        "-c:v",
-        "libx264",
-        "-preset",
-        "ultrafast",
-        "-qp",
-        "17",
-        "-tune",
-        "zerolatency",
-        "-an",
-        "-f",
-        "matroska",
-        "-"
-      ]
+    rife_fps_fix = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
+
+    [
+      Util.low_priority_cmd_prefix(15),
+      "ffmpeg",
+      "-hide_banner",
+      ["-loglevel", "error"],
+      inputs(sources),
+      ["-filter_complex", filter],
+      ["-pix_fmt", "yuv420p"],
+      ["-c:v", "libx264"],
+      ["-preset", "ultrafast"],
+      ["-qp", "17"],
+      ["-tune", "zerolatency"],
+      "-an",
+      rife_fps_fix,
+      ["-f", "matroska"],
+      "-"
+    ]
+    |> List.flatten()
   end
 
   @join_surround_ms 1000
@@ -59,11 +58,12 @@ defmodule Video.Renderer do
              video2_start :: non_neg_integer()}
           ],
           fade_duration_seconds :: float(),
-          temp_dir :: binary()
+          temp_dir :: binary(),
+          blur :: boolean()
         ) ::
           {preview_video_fifo :: binary(), [temporary_fifos :: binary()],
            [commands_to_run_in_parallel :: binary()]}
-  def join_preview_cmds(timestamps, fade_duration, dir) do
+  def join_preview_cmds(timestamps, fade_duration, dir, blur) do
     {width, height, stack_filter} = stacker(length(timestamps))
 
     ffmpeg = Util.low_priority_cmd_prefix() ++ ["ffmpeg", "-hide_banner", "-loglevel", "warning"]
@@ -84,13 +84,17 @@ defmodule Video.Renderer do
 
         sources = Video.Track.normalize_video_tuples(videos)
 
-        prefix =
-          "scale=#{width}:#{height},drawtext=fontcolor=white:fontsize=128:x=10:y=10:shadowx=3:shadowy=3:text='#{idx + 1}',"
-
-        scaled = settb(sources, prefix)
+        prefix = "scale=#{width}:#{height},"
+        scaled = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
         tlc = time_lapse_corrects(sources)
         xfades = xfades(sources, fade_duration, "join-preview")
-        filter = Enum.join(scaled ++ tlc ++ xfades, ";")
+
+        # draw number after RIFE to avoid artifacts
+        style = "fontcolor=white:fontsize=128:x=10:y=10:shadowx=3:shadowy=3"
+        ident = ",drawtext=#{style}:text='#{idx + 1}'"
+        xfades_with_ident = List.update_at(xfades, -1, &(&1 <> ident))
+
+        filter = Enum.join(scaled ++ tlc ++ xfades_with_ident, ";")
 
         ident = videos |> inspect() |> String.replace(~r/[^a-z0-9:.-]+/, "_")
         out = Path.join(dir, ident)
@@ -100,7 +104,9 @@ defmodule Video.Renderer do
             ffmpeg,
             inputs(sources),
             ["-filter_complex", filter],
+            ["-r", Video.Constants.output_fps_s()],
             "-y",
+            ["-pix_fmt", "yuv420p"],
             ["-f", "yuv4mpegpipe"],
             ["-vcodec", "rawvideo"],
             out
@@ -171,6 +177,8 @@ defmodule Video.Renderer do
         "-qp",
         "17",
         "-an",
+        "-r",
+        Video.Constants.output_fps_s(),
         "adhoc.mp4"
       ]
   end
@@ -232,10 +240,11 @@ defmodule Video.Renderer do
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
+    fix_pts = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
 
     Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner"] ++
-      inputs(sources) ++ ["-filter_complex", filter] ++ encoder(tmp_dir)
+      inputs(sources) ++ ["-filter_complex", filter] ++ fix_pts ++ encoder(tmp_dir)
   end
 
   defp manually_tag_missing(tmp_dir) do
@@ -404,64 +413,192 @@ defmodule Video.Renderer do
   # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
   # ("seamless") them as needed. It outputs a single, unnamed video at the end
   # of the filter graph.
-  defp xfades(sources, rendered) when is_list(sources) and is_module(rendered) do
-    xfades(sources, Video.Track.fade(rendered.renderer()), rendered.hash())
+  @spec xfades(Video.Track.plain(), module()) :: [binary()]
+  defp xfades(sources, _rendered) when length(sources) == 1 do
+    ["[blur0]copy"]
   end
 
-  defp xfades(sources, fade, hash) when is_list(sources) do
+  defp xfades(sources, rendered) when is_list(sources) and is_module(rendered) do
+    fade = Video.Track.fade(rendered.renderer())
+
+    if rife?(rendered),
+      do: rife(sources, fade, rendered.hash()),
+      else: crossfade(sources, fade, rendered.hash())
+  end
+
+  @spec xfades(Video.Track.plain(), float(), binary()) :: [binary()]
+  defp xfades(sources, fade, hash) do
+    if length(sources) == 1, do: ["[blur0]copy"], else: rife(sources, fade, hash)
+  end
+
+  defp rife?(rendered), do: rendered.renderer() >= 6
+
+  @spec crossfade(Video.Track.plain(), float(), binary()) :: [binary()]
+  defp crossfade(sources, fade, hash) when length(sources) >= 2 do
     count = length(sources)
 
-    if count == 1 do
-      ["[blur0]copy"]
-    else
-      sources
-      |> Enum.with_index()
-      |> Parallel.map(2, fn {{path, from, to, _opts}, idx} ->
-        meta = metadata(path)
+    sources
+    |> with_durations(fade, hash)
+    |> Enum.reduce({0, []}, fn
+      %{duration: dur, index: idx, fade_prev: fprev, fade_next: fnext}, {total, filter_graph} ->
+        new_duration = total + dur - fnext
 
-        start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
-        to_in_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
-        segment_fade = if from == :seamless, do: 0, else: fade
-        segment_duration = Float.round((to_in_s - start_in_s) * meta.pts_correction, 3)
+        prev = if idx == 1, do: "[blur0]", else: "[fade#{idx - 1}]"
+        next = "[blur#{idx}]"
 
-        if segment_fade >= segment_duration,
-          do:
-            raise(
-              "hash=#{hash} segment=#{idx} is #{segment_duration}s long, but segment fade is #{segment_fade}s. Reduce the fade duration or change the segment."
-            )
+        xfade =
+          cond do
+            idx == 0 -> nil
+            fprev == 0 -> "#{prev}#{next}concat=n=2:v=1:a=0"
+            true -> "#{prev}#{next}xfade=transition=fade:duration=#{fade}:offset=#{total}"
+          end
 
-        {segment_duration, idx, segment_fade}
-      end)
-      |> Enum.reduce({0, []}, fn
-        {dur, idx, segment_fade}, {total, filter_graph} ->
-          new_duration = total + dur - segment_fade
+        xfade =
+          cond do
+            xfade == nil -> nil
+            idx == count - 1 -> xfade
+            true -> "#{xfade}[fade#{idx}]"
+          end
 
-          prev = if idx == 1, do: "[blur0]", else: "[fade#{idx - 1}]"
-          next = "[blur#{idx}]"
-
-          xfade =
-            cond do
-              idx == 0 -> nil
-              segment_fade == 0 -> "#{prev}#{next}concat=n=2:v=1:a=0"
-              true -> "#{prev}#{next}xfade=transition=fade:duration=#{fade}:offset=#{total}"
-            end
-
-          xfade =
-            cond do
-              xfade == nil -> nil
-              idx == count - 1 -> xfade
-              true -> "#{xfade}[fade#{idx}]"
-            end
-
-          filter_graph = if xfade, do: [xfade | filter_graph], else: filter_graph
-          {new_duration, filter_graph}
-      end)
-      |> elem(1)
-      |> Enum.reverse()
-    end
+        filter_graph = if xfade, do: [xfade | filter_graph], else: filter_graph
+        {new_duration, filter_graph}
+    end)
+    |> elem(1)
+    |> Enum.reverse()
   end
 
-  # defp duration_in_s(path), do: metadata(path).duration
+  @spec rife(Video.Track.plain(), float(), binary()) :: [binary()]
+  defp rife(sources, fade, hash) when length(sources) >= 2 do
+    # using these filters introduces subtle PTS rounding errors, which might
+    # result in semi-duplicated frames in RIFE, where video1 is updated at
+    # 166.833ms and video2 at 166.834ms, resulting in two output frames when we
+    # want just one. So we reset PTS often to work around these rounding errors.
+    fix_pts = "setpts=N/(#{Video.Constants.output_fps_s()})/TB"
+
+    {filters, concats} =
+      sources
+      |> with_durations(fade, hash)
+      |> Enum.map(fn %{index: idx} = video ->
+        # inputs
+        inp = "[blur#{idx}]"
+        pprev = "[rife#{idx - 1}next]"
+
+        # outputs / temp
+        prev = "[rife#{idx}prev]"
+        main = "[rife#{idx}main]"
+        next = "[rife#{idx}next]"
+        join = "[join#{idx - 1}_#{idx}]"
+
+        # Timestamps are absolute to start of video.
+        #
+        # ts_prev needs to be extended by 1 frame because of how the segment
+        # filter works. Essentially, it puts the frame at the timestamp into the
+        # latter segment. Since we merge the last segment of the previous video
+        # (i.e. has extra frame) with the first segment of the next video (i.e.
+        # no extra frame), we'd end up with a 1 frame difference without this.
+        ts_prev = if video.fade_prev > 0, do: video.fade_prev + video.frame_s
+        ts_next = if video.fade_next > 0, do: video.duration - video.fade_next
+
+        # We want the older crossfade and the newer RIFE to match frames
+        # perfectly. Otherwise code elsewhere would need to handle the drift of
+        # video and GPS data.
+        extra_fade = if ts_prev && !video.prev_at_end, do: video.frame_s, else: 0.0
+        ts_prev = if extra_fade > 0, do: ts_prev + video.frame_s, else: ts_prev
+        # prepare for next segment
+        ts_next = if ts_next && !video.at_end, do: ts_next - video.frame_s, else: ts_next
+
+        # split stream into 2 or 3 segments with meaningful names
+        f_split =
+          case {ts_prev, ts_next} do
+            {nil, nil} -> nil
+            {tsp, nil} -> "#{inp}segment=timestamps=#{tsp}#{prev}#{main}"
+            {nil, tsn} -> "#{inp}segment=timestamps=#{tsn}#{main}#{next}"
+            {tsp, tsn} -> "#{inp}segment=timestamps=#{tsp}|#{tsn}#{prev}#{main}#{next}"
+          end
+
+        # reset PTS for all streams that were created
+        f_resets = [
+          if(ts_prev, do: "#{prev}#{fix_pts}#{prev}"),
+          if(f_split, do: "#{main}#{fix_pts}#{main}"),
+          if(ts_next, do: "#{next}#{fix_pts}#{next}")
+        ]
+
+        # transition if needed. Duration is optimized to avoid ratio=0.0 or
+        # ratio>=1.0 frames.
+        fade_dur = fade + extra_fade + video.frame_s / 2.0
+        frei0r = "frei0r=filter_name=rife_transition:filter_params=#{fade_dur}"
+        # frei0r = frei0r <> "||0|1" # debug
+        f_trans = if ts_prev, do: "#{pprev}#{prev}#{frei0r}#{join}"
+
+        # put everything together, only taking streams that actually exist
+        filters = [f_split, f_resets, f_trans]
+        concats = [if(f_trans, do: join), if(f_split, do: main, else: inp)]
+        {filters, concats}
+      end)
+      |> Enum.unzip()
+
+    filters = filters |> List.flatten() |> Util.compact()
+    concats = concats |> List.flatten() |> Util.compact()
+
+    filters ++ ["#{Enum.join(concats)}concat=n=#{length(concats)},#{fix_pts}"]
+  end
+
+  @spec with_durations(Video.Track.plain(), float(), binary()) :: [
+          %{
+            path: binary(),
+            from: float(),
+            to: float(),
+            at_end: boolean(),
+            duration: float(),
+            fade_prev: float(),
+            index: non_neg_integer(),
+            frame_s: float(),
+            fade_next: float(),
+            prev_at_end: boolean()
+          }
+        ]
+  defp with_durations(sources, fade, hash) when is_list(sources) do
+    sources
+    |> Enum.with_index()
+    |> Parallel.map(&with_duration_single(&1, fade, hash))
+    |> List.insert_at(0, nil)
+    |> Enum.chunk_every(3, 1)
+    |> Enum.map(fn
+      [nil, cur, next] -> %{cur | fade_next: next.fade_prev, prev_at_end: false}
+      [prev, cur, next] -> %{cur | fade_next: next.fade_prev, prev_at_end: prev.at_end}
+      [prev, cur] -> %{cur | fade_next: 0, prev_at_end: prev.at_end}
+    end)
+  end
+
+  defp with_duration_single({{path, from, to, _opts}, idx}, fade, hash) do
+    meta = metadata(path)
+
+    start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
+    to_in_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
+    segment_fade = if from == :seamless || idx == 0, do: 0, else: fade
+    segment_duration = Float.round((to_in_s - start_in_s) * meta.pts_correction, 3)
+
+    if segment_fade >= segment_duration,
+      do:
+        raise(
+          "hash=#{hash} #{path} #{from}→#{to} is #{Float.round(segment_duration, 3)}s long, but segment fade is #{segment_fade}s. Reduce the fade duration or change the segment."
+        )
+
+    %{
+      path: path,
+      from: from,
+      to: to,
+      at_end: to == :end,
+      duration: segment_duration,
+      fade_prev: segment_fade,
+      index: idx,
+      frame_s: Video.Metadata.frame_duration_s(meta),
+
+      # need to be set later
+      fade_next: :not_set,
+      prev_at_end: :not_set
+    }
+  end
 
   defp metadata(path) do
     path

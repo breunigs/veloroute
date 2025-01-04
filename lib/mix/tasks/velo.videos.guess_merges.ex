@@ -30,6 +30,9 @@ defmodule Mix.Tasks.Velo.Videos.GuessMerges do
   if @env != :prod do
     def run(args) do
       opts = Joiner.Options.new()
+      opts = %{opts | preview_blur: System.get_env("VELO_BLUR", nil) == "1"}
+      opts = %{opts | preview_player_custom: System.get_env("VELO_PREVIEW_TOOL")}
+      opts = %{opts | preview_use_host_ffmpeg: System.get_env("VELO_HOST_FFMPEG") == "1"}
 
       Joiner.OpenAIClip.ensure_started()
       Joiner.Preview.prepare()

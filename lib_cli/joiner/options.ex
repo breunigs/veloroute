@@ -19,7 +19,10 @@ defmodule Joiner.Options do
           openai_clip_prune_below: float(),
           openai_clip_top_percent: float(),
           weights: weights(),
-          user_max_candidates: pos_integer()
+          user_max_candidates: pos_integer(),
+          preview_blur: boolean(),
+          preview_player_custom: binary() | nil,
+          preview_use_host_ffmpeg: boolean()
         }
 
   @enforce_keys [
@@ -34,7 +37,10 @@ defmodule Joiner.Options do
     :openai_clip_prune_below,
     :openai_clip_top_percent,
     :weights,
-    :user_max_candidates
+    :user_max_candidates,
+    :preview_blur,
+    :preview_player_custom,
+    :preview_use_host_ffmpeg
   ]
   defstruct @enforce_keys
 
@@ -93,7 +99,12 @@ defmodule Joiner.Options do
         speed_diff: 0.15
       },
       # assuming there's more results, how many to present to the user
-      user_max_candidates: 5
+      user_max_candidates: 5,
+
+      ### miscellaneous options
+      preview_blur: false,
+      preview_player_custom: nil,
+      preview_use_host_ffmpeg: true
     }
 
   @spec fade_duration_s(t()) :: float()

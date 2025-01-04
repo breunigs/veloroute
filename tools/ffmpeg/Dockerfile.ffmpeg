@@ -6,7 +6,7 @@ ARG RAV1E_REPO=xiph
 ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
 ARG SVTAV1_VERSION=37a5609bcc20bbf40203b8c4736d906af1a259d3
 
-ARG FFMPEG_VERSION=7.1
+# ARG FFMPEG_VERSION=7.1
 ARG BLUR_VERSION=e5311fc5d58e1e56414f57285046cb26921e5f84
 
 RUN mkdir -p /downloads/
@@ -23,10 +23,15 @@ RUN \
   wget https://github.com/${RAV1E_REPO}/rav1e/archive/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
   tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
 
-RUN \
-  cd /downloads/ && \
-  wget https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
-  tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
+# RUN \
+#   cd /downloads/ && \
+#   wget https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
+#   tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
+RUN cd /downloads/ && \
+  wget https://github.com/breunigs/ffmpeg/archive/refs/heads/frei0r-mixers.tar.gz && \
+  tar zxf frei0r-mixers.tar.gz && rm frei0r-mixers.tar.gz && mv *-frei0r-mixers ffmpeg
+
+
 
 RUN cd /downloads/ && \
   wget https://github.com/breunigs/frei0r-blur-from-json/archive/${BLUR_VERSION}.tar.gz && \
@@ -74,6 +79,9 @@ RUN \
   libaom-dev \
   libdav1d-dev \
   libffmpeg-nvenc-dev \
+  libfontconfig1-dev \
+  libfreetype-dev \
+  libharfbuzz-dev \
   libssl-dev \
   libtool \
   libva-dev \
@@ -119,6 +127,9 @@ RUN cd /downloads/ffmpeg && \
   --enable-frei0r \
   --enable-libaom \
   --enable-libdav1d \
+  --enable-libfontconfig \
+  --enable-libfreetype \
+  --enable-libharfbuzz \
   --enable-librav1e \
   --enable-libsvtav1 \
   --enable-libvpx \
@@ -132,6 +143,8 @@ RUN cd /downloads/ffmpeg && \
   --disable-ffplay \
   --disable-ffprobe && \
   make -j $(nproc) && make install && make distclean
+
+
 
 FROM debian:testing-slim AS runner
 RUN \

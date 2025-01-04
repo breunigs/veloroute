@@ -179,7 +179,8 @@ defmodule Video.Track do
      compact_street_names(coords, hash, opts)}
   end
 
-  def render(%__MODULE__{videos: videos, renderer: renderer}, opts) when renderer in [3, 4, 5] do
+  def render(%__MODULE__{videos: videos, renderer: renderer}, opts)
+      when renderer in [3, 4, 5, 6] do
     opts = render_opts(opts)
     videos = normalize_video_tuples(videos)
 
@@ -322,6 +323,7 @@ defmodule Video.Track do
   def fade(3), do: @fade_frames / 29.97
   def fade(4), do: default_fade()
   def fade(5), do: default_fade()
+  def fade(6), do: default_fade()
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()
   defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
