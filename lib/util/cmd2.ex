@@ -131,9 +131,12 @@ defmodule Util.Cmd2 do
   defp collectible(device, :passthrough) do
     {device,
      fn
-       device, {_mode, data} -> IO.write(data) && device
-       device, :done -> device
-       device, :halt -> device
+       device, {_mode, data} ->
+         IO.write(data)
+         device
+
+       device, _other ->
+         device
      end}
   end
 
