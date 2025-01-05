@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Velo.Map.Debug do
     save_geojson(@path)
     |> Enum.each(fn %{name: name, geojson: geojson} ->
       path = Path.join(@path, "#{name}_no_coords.geojson")
-      File.write!(path, Jason.encode!(remove_coords(geojson), pretty: true))
+      File.write!(path, JSON.encode!(remove_coords(geojson)))
     end)
 
     IO.puts("Debug GeoJSON has been put in #{@path}")
@@ -25,7 +25,7 @@ defmodule Mix.Tasks.Velo.Map.Debug do
   defp save_geojson(dir) do
     Enum.map(data_as_geojson(), fn {name, geojson} ->
       geojson_path = Path.join(dir, "#{name}.geojson")
-      File.write!(geojson_path, Jason.encode!(geojson))
+      File.write!(geojson_path, JSON.encode!(geojson))
       %{name: name, geojson: geojson, geojson_path: geojson_path}
     end)
   end

@@ -95,9 +95,9 @@ defimpl String.Chars, for: Geo.BoundingBox do
   defp r(float), do: Float.round(float, @precision)
 end
 
-defimpl Jason.Encoder, for: Geo.BoundingBox do
-  def encode(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}, opts) do
-    Jason.Encode.list([r(minLon), r(minLat), r(maxLon), r(maxLat)], opts)
+defimpl JSON.Encoder, for: Geo.BoundingBox do
+  def encode(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}, encoder) do
+    encoder.([r(minLon), r(minLat), r(maxLon), r(maxLat)], encoder)
   end
 
   @precision 6

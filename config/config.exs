@@ -46,8 +46,7 @@ config :logger, :default_formatter,
 
 config :logger, backends: [:console], truncate: :infinity
 
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
+config :phoenix, :json_library, JSON
 
 config :phoenix,
   static_compressors: [PhoenixBakery.Gzip, PhoenixBakery.Brotli, Basemap.IgnorePbfDigester],

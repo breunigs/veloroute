@@ -42,8 +42,8 @@ defmodule Basemap.Styles do
          data = Basemap.RelativePath.hardcode(data, hardcode_url),
          data = attribute(data),
          data = modifier.(data),
-         {:ok, decoded} <- Jason.decode(data),
-         {:ok, minified} <- Jason.encode(decoded),
+         {:ok, decoded} <- JSON.decode(data),
+         minified <- JSON.encode!(decoded),
          target <- assets_path(Path.relative_to(path, source())),
          :ok <- File.mkdir_p(Path.dirname(target)),
          :ok <- File.write(target <> suffix, minified) do
@@ -62,7 +62,7 @@ defmodule Basemap.Styles do
   defp attribute(data) do
     Enum.reduce(Esri.Tiles.attribution(:from_api), data, fn {key, text}, data ->
       # encode as string but strip the quotes
-      text = text |> Jason.encode!() |> String.slice(1..-2//1)
+      text = text |> JSON.encode!() |> String.slice(1..-2//1)
       String.replace(data, "%%ATTRIBUTION#{key}%%", text)
     end)
   end

@@ -55,7 +55,7 @@ defmodule Article.DecoratorsTest do
   defp sorted_arguments(list) do
     list
     |> Enum.map(fn
-      {"phx-click", json} -> json |> Jason.decode!() |> Enum.sort()
+      {"phx-click", json} -> json |> JSON.decode!() |> Enum.sort()
       other -> other
     end)
     |> Enum.sort()

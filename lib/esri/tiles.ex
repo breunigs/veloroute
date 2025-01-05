@@ -19,7 +19,7 @@ defmodule Esri.Tiles do
     Parallel.map(@attribution, fn {key, url, source} ->
       {:ok, %{status: 200, body: body}} = Tesla.get(client, url, query: [f: "json"])
       body = with "\uFEFF" <> no_bom <- body, do: no_bom, else: (_ -> body)
-      {:ok, json} = Jason.decode(body)
+      {:ok, json} = JSON.decode(body)
 
       text =
         json["contributors"]
@@ -58,7 +58,7 @@ defmodule Esri.Tiles do
     Parallel.map(@maps, fn {key, path} ->
       url = @base <> String.replace(path, "/tile/", "")
       {:ok, %{status: 200, body: body}} = Tesla.get(client, url, query: [f: "json"])
-      {:ok, json} = Jason.decode(body)
+      {:ok, json} = JSON.decode(body)
 
       {key, Map.fetch!(json, "copyrightText")}
     end)

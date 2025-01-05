@@ -11,7 +11,7 @@ defmodule Video.Metadata do
 
   @typep state :: %{optional(binary) => {:ok, t()} | {:error, binary()} | boolean()}
 
-  @derive Jason.Encoder
+  @derive JSON.Encoder
   @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
   defstruct @enforce_keys
 
@@ -163,7 +163,7 @@ defmodule Video.Metadata do
     name = "metadata for " <> name
 
     with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
-         {:ok, %{"streams" => streams, "format" => format}} <- Jason.decode(out) do
+         {:ok, %{"streams" => streams, "format" => format}} <- JSON.decode(out) do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
       video = indexed["hvc1"] || indexed["FFV1"] || indexed["av01"] || hd(streams)
 
@@ -207,7 +207,7 @@ defmodule Video.Metadata do
   def read_json() do
     try do
       data = File.read!(@json_path)
-      json = Jason.decode!(data)
+      json = JSON.decode!(data)
 
       Enum.into(json, %{}, fn {key, meta} ->
         struct = Map.new(meta, fn {k, v} -> {String.to_existing_atom(k), v} end)
@@ -227,7 +227,7 @@ defmodule Video.Metadata do
         _other, acc -> acc
       end)
 
-    json = Jason.encode!(cache)
+    json = JSON.encode!(cache)
     File.write(@json_path, json)
 
     state

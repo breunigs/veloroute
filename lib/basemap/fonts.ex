@@ -34,7 +34,7 @@ defmodule Basemap.Fonts do
       |> Path.wildcard()
       |> Enum.filter(&File.dir?/1)
       |> Enum.map(&Path.basename/1)
-      |> Jason.encode!()
+      |> JSON.encode!()
 
     File.write!(assets_path() <> ".json", fonts)
   end

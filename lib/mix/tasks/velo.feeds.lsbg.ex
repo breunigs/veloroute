@@ -155,7 +155,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   @spec load_status() :: status()
   defp load_status() do
     with {:ok, raw} <- File.read(@path),
-         {:ok, doc} <- Jason.decode(raw) do
+         {:ok, doc} <- JSON.decode(raw) do
       doc
     else
       err ->
@@ -181,7 +181,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
 
   @spec write_status(status()) :: status()
   defp write_status(status) do
-    json = Jason.encode!(status, pretty: true)
+    json = JSON.encode!(status)
     File.write!(@path, json)
     status
   end

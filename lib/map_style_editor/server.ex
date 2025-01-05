@@ -21,7 +21,7 @@ defmodule MapStyleEditor.Server do
 
   get "/styles" do
     files = [MapStyleEditor.Tracker.style()]
-    send_resp(conn, 200, Jason.encode!(files))
+    send_resp(conn, 200, JSON.encode!(files))
   end
 
   get "/styles/*path" do

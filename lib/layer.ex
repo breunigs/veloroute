@@ -12,6 +12,6 @@ defmodule Layer do
         }
 
   @enforce_keys [:name, :route_group, :active, :line, :icon, :fill, :outline]
-  @derive Jason.Encoder
+  @derive JSON.Encoder
   defstruct @enforce_keys
 end

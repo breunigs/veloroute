@@ -77,7 +77,6 @@ defmodule Veloroute.MixProject do
       {:file_system, "~> 1.0", runtime: is_dev || is_test},
       {:floki, ">= 0.30.0"},
       {:hackney, "~> 1.17"},
-      {:jason, "~> 1.1"},
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
       {:natural_order, "~> 0.3.0"},

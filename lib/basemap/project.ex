@@ -51,11 +51,11 @@ defmodule Basemap.Project do
     |> Enum.map(fn {name, geojson} ->
       # without coordinates, useful for debugging
       path = path(:cache, "#{name}_no_coords.geojson")
-      File.write!(path, Jason.encode!(remove_coords(geojson), pretty: true))
+      File.write!(path, JSON.encode!(remove_coords(geojson)))
 
       # with coords, for further processing
       path = path(:cache, "#{name}.geojson")
-      File.write!(path, Jason.encode!(geojson))
+      File.write!(path, JSON.encode!(geojson))
 
       {path, path(:container, "#{name}.geojson")}
     end)

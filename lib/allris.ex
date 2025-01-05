@@ -55,7 +55,7 @@ defmodule Allris do
 
   defp read_cache() do
     with {:ok, data} <- File.read(@cache_path),
-         {:ok, cache} <- Jason.decode(data) do
+         {:ok, cache} <- JSON.decode(data) do
       Enum.into(cache, %{}, fn {k, v} -> {k, String.to_existing_atom(v)} end)
     else
       _ -> %{}
@@ -101,7 +101,7 @@ defmodule Allris do
           cache ->
             result = attachment_status_uncached(url)
             cache = Map.put(cache, url, result)
-            File.write(@cache_path, Jason.encode!(cache))
+            File.write(@cache_path, JSON.encode!(cache))
 
             {result, cache}
         end,

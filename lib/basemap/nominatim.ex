@@ -53,7 +53,8 @@ defmodule Basemap.Nominatim do
     export(:area)
     |> File.read!()
     |> Util.Compress.gunzip()
-    |> Jason.decode!(keys: :atoms)
+    |> JSON.decode!()
+    |> keys_to_atoms()
     |> Enum.map(fn a ->
       name =
         a.name
@@ -78,6 +79,16 @@ defmodule Basemap.Nominatim do
       %{a | name: name, bbox: bbox, geometry: geometry}
     end)
   end
+
+  defp keys_to_atoms(map) when is_map(map) do
+    Enum.into(map, %{}, fn {k, v} -> {String.to_existing_atom(k), keys_to_atoms(v)} end)
+  end
+
+  defp keys_to_atoms(list) when is_list(list) do
+    Enum.map(list, &keys_to_atoms/1)
+  end
+
+  defp keys_to_atoms(obj), do: obj
 
   defp remap_geojson(%{type: "Polygon", coordinates: polygon}) do
     # a polygon is a list of multiple rings, with the first one being the

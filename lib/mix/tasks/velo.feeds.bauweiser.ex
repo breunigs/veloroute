@@ -77,7 +77,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   end
 
   defp write_seen(%{} = seen) do
-    json = Jason.encode!(seen)
+    json = JSON.encode!(seen)
     File.write!(@path, json)
     seen
   end
@@ -143,7 +143,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   defp load_seen() do
     case File.read(@path) do
       {:ok, file} ->
-        Jason.decode!(file)
+        JSON.decode!(file)
         |> Enum.into(%{}, fn {k, v} ->
           {String.to_integer(k), date(v)}
         end)

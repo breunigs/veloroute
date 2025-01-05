@@ -39,7 +39,7 @@ defmodule Mix.Tasks.Velo.Favicon.Raster do
       start_url: "/",
       display: "standalone"
     }
-    |> Jason.encode!()
+    |> JSON.encode!()
   end
 
   defp generate([]), do: :ok

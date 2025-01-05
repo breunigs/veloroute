@@ -76,7 +76,7 @@ defmodule Basemap.OpenStreetMap do
 
   @max_zoom Path.join(__DIR__, "config.json")
             |> File.read!()
-            |> Jason.decode!()
+            |> JSON.decode!()
             |> get_in(["settings", "maxzoom"])
 
   def max_zoom, do: @max_zoom
@@ -94,7 +94,7 @@ defmodule Basemap.OpenStreetMap do
       |> Util.Docker.run_docker_cli(%{command_args: command_args})
       |> Util.Cmd2.exec(exec_opts)
 
-    Jason.decode!(json)
+    JSON.decode!(json)
   end
 
   @impl Basemap.Renderable

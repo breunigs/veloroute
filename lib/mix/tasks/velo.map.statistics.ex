@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Velo.Map.Statistics do
   @shortdoc "Shows statistics about the fields of the basemap"
   def run(_) do
     Basemap.OpenStreetMap.statistics()
-    |> Jason.encode!(pretty: true)
+    |> JSON.encode!()
     |> IO.puts()
   end
 end

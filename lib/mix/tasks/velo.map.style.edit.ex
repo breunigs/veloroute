@@ -77,7 +77,7 @@ defmodule Mix.Tasks.Velo.Map.Style.Edit do
 
     from_json =
       with {:ok, data} <- File.read(path),
-           {:ok, json} <- Jason.decode(data),
+           {:ok, json} <- JSON.decode(data),
            id <- get_in(json, ["id"]) do
         id
       else

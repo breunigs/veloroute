@@ -83,7 +83,7 @@ defmodule Basemap.Tiles do
 
   defp rewrite_metadata_json() do
     path = path(:cache, "metadata.json")
-    old = path |> File.read!() |> Jason.decode!()
+    old = path |> File.read!() |> JSON.decode!()
 
     new =
       %{
@@ -100,11 +100,11 @@ defmodule Basemap.Tiles do
         "minzoom" => String.to_integer(old["minzoom"]),
         "maxzoom" => String.to_integer(old["maxzoom"])
       }
-      |> Map.merge(Jason.decode!(old["json"]))
+      |> Map.merge(JSON.decode!(old["json"]))
 
-    File.write!(path, Jason.encode!(new))
+    File.write!(path, JSON.encode!(new))
 
     new_local = Map.replace!(new, "tiles", ["asset://#{serve_path()}/{z}/{x}/{y}.pbf.gz"])
-    File.write!(path <> ".local", Jason.encode!(new_local))
+    File.write!(path <> ".local", JSON.encode!(new_local))
   end
 end

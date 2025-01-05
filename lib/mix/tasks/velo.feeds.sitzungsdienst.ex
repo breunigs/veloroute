@@ -110,7 +110,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     status =
       case File.read(@path) do
         {:ok, file} ->
-          Jason.decode!(file)
+          JSON.decode!(file)
 
         {:error, error} ->
           IO.puts(
@@ -154,7 +154,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec write_status(status()) :: status()
   defp write_status(%{@shown_by_date => shown} = status) when is_map(shown) do
-    json = Jason.encode!(status)
+    json = JSON.encode!(status)
     File.write!(@path, json)
     status
   end
