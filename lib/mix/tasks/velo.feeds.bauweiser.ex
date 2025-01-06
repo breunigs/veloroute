@@ -16,6 +16,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauweiser do
   plug Tesla.Middleware.BaseUrl, @base
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.Timeout, timeout: 60_000
+  adapter(Tesla.Adapter.Hackney, ssl_options: [{:verify, :verify_none}])
 
   def url_for_id(id) do
     "#{@base}id/#{id}"

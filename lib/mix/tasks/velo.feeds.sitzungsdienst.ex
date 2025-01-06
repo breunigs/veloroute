@@ -20,6 +20,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     max_retries: 3,
     max_delay: 60_000
 
+  adapter(Tesla.Adapter.Hackney, ssl_options: [{:verify, :verify_none}])
+
   @shown_by_date "shown_by_date"
 
   @shortdoc "Checks for updates in Hamburg's Bezirksversammlungen"
@@ -154,10 +156,16 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec write_status(status()) :: status()
   defp write_status(%{@shown_by_date => shown} = status) when is_map(shown) do
-    json = JSON.encode!(status)
+    json = status |> map_keys_to_str() |> JSON.encode!()
     File.write!(@path, json)
     status
   end
 
   defp result_ident(%{"type" => type, "id" => id}), do: "#{type}=#{id}"
+
+  defp map_keys_to_str(map) when is_map(map) do
+    Enum.into(map, %{}, fn {k, v} -> {"#{k}", map_keys_to_str(v)} end)
+  end
+
+  defp map_keys_to_str(other), do: other
 end
