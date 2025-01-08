@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def title(), do: "Am Luisenhof – Busüberlieger (Bezirksroute Wandsbek W5)"
 
   def start(), do: ~d[2024-07-15]
-  def stop(), do: ~d[2025-08-15]
+  def stop(), do: ~d[2025-10-19]
   def construction_site_id_hh(), do: [677_843]
 
   def type(), do: :construction

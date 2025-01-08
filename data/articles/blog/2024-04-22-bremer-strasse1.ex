@@ -143,7 +143,9 @@ defmodule Data.Article.Blog.BremerStrasse1 do
        "https://lsbg.hamburg.de/resource/blob/972286/532882e94025e592e7318c74769c2abd/bremer-strasse-aenderung-zur-schlussverschickung-plan-data.pdf"},
       {"Pressemitteilung zum Umbaustart", ~d[2024-08],
        "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/2024-08-27-bvm-bremer-strasse-959526"},
-      {"Infoseite der Stadt", "https://lsbg.hamburg.de/bremer-strasse"}
+      {"Infoseite Harburgs",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/grunderneuerung-bremer-strasse-943366"},
+      {"Infoseite des LSBG", "https://lsbg.hamburg.de/bremer-strasse"}
     ]
   end
 
