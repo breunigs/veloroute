@@ -50,9 +50,9 @@
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <Video.Components.reverse_button lang={@lang} video_reversible={@video_reversible} />
-    <div id="videoOptions" phx-update="ignore" role="menu" aria-orientation="horizontal">
-      <button type="button" aria-label="Video-Einstellungen"></button>
-      <div>
+    <div id="videoOptions" phx-update="ignore">
+      <button type="button" aria-label="Video-Einstellungen" aria-haspopup="true" aria-controls="videoOptionsMenu"></button>
+      <div role="menu" aria-orientation="horizontal" id="videoOptionsMenu">
         <div class="column" id="videoQuality" aria-orientation="vertical" role="group">
           <strong><%= if @lang == "en" do %>Quality<% else %>Qualität<% end %></strong>
           <div id="videoQualityOptions"></div>

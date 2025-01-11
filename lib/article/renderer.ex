@@ -19,11 +19,12 @@ defmodule Article.Renderer do
     try_render(assigns, fn ->
       body = art.text(assigns)
       has_header = body.static |> List.first() |> String.starts_with?("<h3")
-      assigns = assign(assigns, %{body: body, has_header: has_header})
+      has_title = assigns.ref.title() != ""
+      assigns = assign(assigns, %{body: body, insert_h3: !has_header && has_title})
 
       ~H"""
         <article {@ref.microdata(:wrapper)}>
-          <h3 {@ref.microdata(:title)} :if={!@has_header}><%= @ref.title() %></h3>
+          <h3 {@ref.microdata(:title)} :if={@insert_h3}><%= @ref.title() %></h3>
           <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
           <%= @body %>

@@ -69,9 +69,9 @@ defmodule VelorouteWeb.Live.Map do
         <%= @preview_image %>
       </div>
 
-      <div id="layerSwitcher" role="menu">
-        <button title="Routen und Kartenhintergründe auswählen"></button>
-        <div class="maplibregl-ctrl-group">
+      <div id="layerSwitcher">
+        <button title="Routen und Kartenhintergründe auswählen" aria-haspopup="true" aria-controls="layerSwitcherMenu"></button>
+        <div class="maplibregl-ctrl-group" id="layerSwitcherMenu" role="menu">
           <%= for layer <- @layers do %>
             <button
               value={layer.name}
