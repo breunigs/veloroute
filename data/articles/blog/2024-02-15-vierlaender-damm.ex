@@ -54,10 +54,12 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2024-11],
-       "https://lsbg.hamburg.de/resource/blob/985810/b9817a457204b7f6865566eec4239b3a/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-november-2024-data.pdf"},
-      {"Baustelleninfo", ~d[2024-10],
-       "https://lsbg.hamburg.de/resource/blob/984538/e832755a5115ff63c56cbddc55ec98f0/billhorner-roehrendamm-anliegerinformation-oktober-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2025-01],
+       "https://lsbg.hamburg.de/resource/blob/984538/4c805f97b33d388715245c9dd4b20d02/billhorner-roehrendamm-hst-thiedingreihe-anliegerinformation-oktober-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-11],
+      #  "https://lsbg.hamburg.de/resource/blob/985810/b9817a457204b7f6865566eec4239b3a/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-november-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-10],
+      #  "https://lsbg.hamburg.de/resource/blob/984538/e832755a5115ff63c56cbddc55ec98f0/billhorner-roehrendamm-anliegerinformation-oktober-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-09],
       #  "https://lsbg.hamburg.de/resource/blob/885484/63f351d4fab3b1442eb795c1a3d31586/vierlaender-damm-billhorner-roehrendamm-mb3-haltestelle-thiedingreihe-september-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-09],
