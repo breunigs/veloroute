@@ -138,5 +138,33 @@ window.liveSocket = liveSocket;
 
 window.addEventListener("phx:impressum", (e) => alert(e.detail.text))
 
+let loadedScripts = []
+let pendingScripts = {}
+window.addEventListener("js:load", (e) => {
+  const { url, callback } = e.detail;
+  if (url in loadedScripts) return callback()
+  if (url in pendingScripts) return pendingScripts["url"].addEventListener("load", callback)
+
+  const cleanup = () => {
+    loadedScripts.push(url)
+    delete pendingScripts[url]
+  }
+
+  const script = document.createElement("script")
+  script.src = url
+  script.onload = () => {
+    cleanup()
+    callback()
+  }
+  script.onerror = () => {
+    cleanup()
+    console.error(`Failed to load script: ${url}`)
+  }
+  document.head.appendChild(script)
+
+  pendingScripts[url] = script
+
+})
+
 import "./mobilegui"
 import "./plausible"

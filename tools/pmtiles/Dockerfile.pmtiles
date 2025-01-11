@@ -1,0 +1,25 @@
+# ARG DEBIAN_VERSION
+# FROM debian:${DEBIAN_VERSION}
+
+# PMTiles needs a relatively recent Go
+FROM debian:testing-slim
+
+
+ARG PM_TILES_RELEASE=v1.23.1
+
+WORKDIR /workdir
+RUN mkdir -p /workdir/
+
+RUN apt-get update \
+  && apt-get install --yes --no-install-recommends \
+  ca-certificates \
+  gdal-bin \
+  golang \
+  && go install github.com/protomaps/go-pmtiles@${PM_TILES_RELEASE} \
+  && apt-get remove 'golang*' --yes \
+  && cp /root/go/bin/go-pmtiles / \
+  && rm -rf /var/lib/apt/lists/* /root/go
+
+COPY convert.sh /
+ENTRYPOINT ["/convert.sh"]
+

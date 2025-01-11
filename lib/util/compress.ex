@@ -45,6 +45,21 @@ defmodule Util.Compress do
     :zlib.gunzip(data)
   end
 
+  @spec unzip(binary(), [binary()] | nil) ::
+          {:ok, %{(file_name :: binary()) => data :: binary()}}
+          | {:error, reason :: binary()}
+  def unzip(data, files \\ nil) do
+    args = [:memory]
+    args = if files, do: [{:file_list, files} | args], else: args
+
+    :zip.extract(data, args)
+    |> case do
+      {:ok, list} -> {:ok, Enum.into(list, %{}, fn {f, d} -> {to_string(f), d} end)}
+      {:error, {_name, reason}} -> {:error, "#{inspect(reason)}"}
+      {:error, reason} -> {:error, "#{inspect(reason)}"}
+    end
+  end
+
   def gzip(data) do
     :zlib.gzip(data)
   end

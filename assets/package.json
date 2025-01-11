@@ -4,7 +4,8 @@
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
     "hls.js": "^1.5.17",
-    "maplibre-gl": "^4.7.1"
+    "maplibre-gl": "^4.7.1",
+    "pmtiles": "^4.1.0"
   },
   "devDependencies": {
     "@types/phoenix_live_view": "^0.20.0"

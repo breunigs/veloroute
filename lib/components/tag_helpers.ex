@@ -225,9 +225,7 @@ defmodule Components.TagHelpers do
 
       title =
         assigns.ref.map_image()
-        |> List.wrap()
-        |> Enum.flat_map(&List.wrap(&1.attribution))
-        |> Enum.uniq()
+        |> Data.MapImage.attribution()
         |> Enum.reduce(title, fn {name, link}, title ->
           title <> "• #{name}\n   #{link}\n"
         end)

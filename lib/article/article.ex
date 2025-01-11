@@ -48,7 +48,8 @@ defmodule Article do
   @callback text(assigns()) :: Phoenix.LiveView.Rendered.t()
   @callback links(assigns()) :: [link()]
 
-  @callback map_image() :: nil | Data.MapImage.t() | [Data.MapImage.t()]
+  @type attribution :: {name :: binary(), link :: binary()}
+  @callback map_image() :: nil | Data.MapImage.t() | [Data.MapImage.t()] | Data.MapImage.plain()
 
   @callback languages() :: [language()]
 

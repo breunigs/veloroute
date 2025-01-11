@@ -24,13 +24,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
     |> Stream.flat_map(fn art ->
       links = Article.Decorators.apply_with_assigns(art, :links)
 
-      map_image =
-        art.map_image()
-        |> Kernel.||([])
-        |> List.wrap()
-        |> Enum.map(& &1.attribution)
-        |> List.flatten()
-        |> Enum.uniq()
+      map_image = art.map_image() |> Data.MapImage.attribution()
 
       (links ++ map_image)
       |> Enum.flat_map(&extract/1)

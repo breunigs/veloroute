@@ -60,7 +60,7 @@ config :esbuild,
   version: "0.20.1",
   default: [
     args:
-      ~w(js/app.js js/liveview.ts js/mbgl2.ts js/map.js js/video_player.js js/link_helper.ts --bundle --target=chrome96,firefox96,safari15,edge119 --outdir=../priv/static/assets --color=true),
+      ~w(js/app.js js/liveview.ts js/mbgl2.ts js/pmtiles.ts js/map.js js/video_player.js js/link_helper.ts --bundle --target=chrome96,firefox96,safari15,edge119 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]

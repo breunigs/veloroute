@@ -397,6 +397,89 @@ window.addEventListener("phx:show_map_image", e => {
   showMapImages()
 });
 
+function maybeZoomToBbox(bbox) {
+  const current = map.getZoom()
+  const desired = Math.max(showMapImageMaxZoom, current)
+  if (current >= desired) return
+  const viewport = map.getBounds()
+  const s = Math.max(viewport.getSouth(), bbox.getSouth())
+  const w = Math.max(viewport.getWest(), bbox.getWest())
+  const n = Math.min(viewport.getNorth(), bbox.getNorth())
+  const e = Math.min(viewport.getEast(), bbox.getEast())
+  if (s < n && w < e) bbox = new mlgl.LngLatBounds([w, s, e, n]);
+
+  map.flyTo({
+    center: bbox.getCenter(),
+    zoom: desired,
+    speed: flyToSpeed,
+  });
+}
+
+function addMapImageLayer(id) {
+  map.addLayer({
+    id: id,
+    source: id,
+    type: 'raster',
+    minzoom: showMapImageMinZoom,
+    paint: {
+      // workaround for the map flickering on load otherwise
+      "raster-opacity": 0
+    }
+  })
+
+  showMapImagesWorker = setTimeout(() => {
+    map.setPaintProperty(id, "raster-opacity", showMapImageFadeIn, { validate: false })
+  }, 350)
+
+  showMapImageLayers.push(id)
+}
+
+function showClassicMapImages() {
+  let attribs = new Set()
+  let bbox = null
+
+  for (let mapImage of showMapImageAction) {
+    bbox ||= new mlgl.LngLatBounds(mapImage.coordinates[0], mapImage.coordinates[1])
+    bbox = mapImage.coordinates.reduce((bbox, coord) => bbox.extend(coord), bbox);
+
+    const id = `map-image-${mapImage.url}`
+    map.addSource(id, {
+      type: 'image',
+      url: mapImage.url,
+      coordinates: mapImage.coordinates,
+    })
+
+    addMapImageLayer(id)
+    attribs.add(mapImage.attribution)
+    attribution.options.customAttribution = Array.from(attribs).join(" ")
+  }
+
+  maybeZoomToBbox(bbox)
+}
+
+function showPMTilesImages(pmtile) {
+  window.dispatchEvent(new CustomEvent("js:load", {
+    detail: {
+      url: pmtile.pmtiles,
+      callback: () => {
+        const id = "mapimage-pmtiles";
+        map.addSource(id, {
+          type: "raster",
+          url: `pmtiles://${pmtile.url}`,
+          minzoom: showMapImageMinZoom,
+          attribution: pmtile.attribution,
+        });
+        addMapImageLayer(id)
+
+        map.once('sourcedata', () => {
+          const bounds = map.getSource(id).bounds
+          const bbox = new mlgl.LngLatBounds(bounds)
+          maybeZoomToBbox(bbox)
+        });
+      }
+    }
+  }));
+}
 
 function showMapImages() {
   if (!showMapImageAction) return
@@ -421,56 +504,12 @@ function showMapImages() {
   }
 
   cleanup()
-  let attribs = new Set()
-  let bbox = null
 
-  for (let mapImage of showMapImageAction) {
-    bbox ||= new mlgl.LngLatBounds(mapImage.coordinates[0], mapImage.coordinates[1])
-    bbox = mapImage.coordinates.reduce((bbox, coord) => bbox.extend(coord), bbox);
-
-    const id = `map-image-${mapImage.url}`
-    map.addSource(id, {
-      type: 'image',
-      url: mapImage.url,
-      coordinates: mapImage.coordinates,
-    })
-
-    map.addLayer({
-      id: id,
-      source: id,
-      type: 'raster',
-      minzoom: showMapImageMinZoom,
-      paint: {
-        // workaround for the map flickering on load otherwise
-        "raster-opacity": 0
-      }
-    })
-
-    attribs.add(mapImage.attribution)
-
-    showMapImagesWorker = setTimeout(() => {
-      map.setPaintProperty(id, "raster-opacity", showMapImageFadeIn, { validate: false })
-    }, 350)
-
-    showMapImageLayers.push(id)
-    attribution.options.customAttribution = Array.from(attribs).join(" ")
+  if (showMapImageAction[0].pmtiles) {
+    return showPMTilesImages(showMapImageAction[0])
   }
 
-  const current = map.getZoom()
-  const desired = Math.max(showMapImageMaxZoom, current)
-  if (current >= desired) return
-  const viewport = map.getBounds()
-  const s = Math.max(viewport.getSouth(), bbox.getSouth())
-  const w = Math.max(viewport.getWest(), bbox.getWest())
-  const n = Math.min(viewport.getNorth(), bbox.getNorth())
-  const e = Math.min(viewport.getEast(), bbox.getEast())
-  if (s < n && w < e) bbox = new mlgl.LngLatBounds([w, s, e, n]);
-
-  map.flyTo({
-    center: bbox.getCenter(),
-    zoom: desired,
-    speed: flyToSpeed,
-  });
+  showClassicMapImages(showMapImageAction)
 }
 
 let highlightsAppliedToStyle = ""
