@@ -435,11 +435,20 @@ function addMapImageLayer(id) {
 }
 
 function showPMTilesImages(pmtile) {
+  const id = "mapimage-pmtiles";
+  const zoom = () => {
+    const bounds = map.getSource(id).bounds
+    if (!bounds) {
+      return map.once('sourcedata', zoom);
+    }
+    const bbox = new mlgl.LngLatBounds(bounds)
+    maybeZoomToBbox(bbox)
+  };
+
   window.dispatchEvent(new CustomEvent("js:load", {
     detail: {
       url: pmtile.pmtiles,
       callback: () => {
-        const id = "mapimage-pmtiles";
         map.addSource(id, {
           type: "raster",
           url: `pmtiles://${pmtile.url}`,
@@ -448,11 +457,7 @@ function showPMTilesImages(pmtile) {
         });
         addMapImageLayer(id)
 
-        map.once('sourcedata', () => {
-          const bounds = map.getSource(id).bounds
-          const bbox = new mlgl.LngLatBounds(bounds)
-          maybeZoomToBbox(bbox)
-        });
+        map.once('sourcedata', zoom);
       }
     }
   }));
