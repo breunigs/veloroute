@@ -2,8 +2,8 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "hls.js": "^1.5.17",
+    "@mapbox/mapbox-gl-draw": "^1.5.0",
+    "hls.js": "^1.5.19",
     "maplibre-gl": "^4.7.1",
     "pmtiles": "^4.1.0"
   },
