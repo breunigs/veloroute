@@ -68,28 +68,8 @@ defmodule Data.Article.Blog.BorgfelderStrasse do
     ]
   end
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, "1_v2", {
-        %{lat: 53.554491595, lon: 10.027009572},
-        %{lat: 53.554939950, lon: 10.032493115},
-        %{lat: 53.554036991, lon: 10.032704084},
-        %{lat: 53.553588636, lon: 10.027220541}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "2_v2", {
-        %{lat: 53.554944313, lon: 10.032408556},
-        %{lat: 53.555159984, lon: 10.035144007},
-        %{lat: 53.553393071, lon: 10.035538982},
-        %{lat: 53.553177400, lon: 10.032803531}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "3_v2", {
-        %{lat: 53.555273336, lon: 10.034836419},
-        %{lat: 53.555699270, lon: 10.040239274},
-        %{lat: 53.554795901, lon: 10.040443742},
-        %{lat: 53.554369967, lon: 10.035040887}
-      })
-    ]
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def text(assigns) do

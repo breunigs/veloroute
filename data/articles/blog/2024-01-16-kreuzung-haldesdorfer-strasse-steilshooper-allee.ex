@@ -26,16 +26,7 @@ defmodule Data.Article.Blog.KreuzungHaldesdorferStrasseSteilshooperAllee do
   end
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-      {
-        %{lat: 53.607812022, lon: 10.087428552},
-        %{lat: 53.607343328, lon: 10.091804023},
-        %{lat: 53.606690322, lon: 10.091605088},
-        %{lat: 53.607158913, lon: 10.087229986}
-      }
-    )
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def text(assigns) do

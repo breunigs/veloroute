@@ -17,52 +17,8 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
 
   def tracks(), do: Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse.tracks()
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, "01", {
-        %{lat: 53.569265497, lon: 10.084527033},
-        %{lat: 53.569213717, lon: 10.090357166},
-        %{lat: 53.568265844, lon: 10.090326900},
-        %{lat: 53.568317624, lon: 10.084496768}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "02", {
-        %{lat: 53.569010690, lon: 10.090360292},
-        %{lat: 53.568915450, lon: 10.095666081},
-        %{lat: 53.568357086, lon: 10.095634485},
-        %{lat: 53.568452326, lon: 10.090328695}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "03", {
-        %{lat: 53.569020549, lon: 10.095376520},
-        %{lat: 53.570254898, lon: 10.102308658},
-        %{lat: 53.569808291, lon: 10.102534636},
-        %{lat: 53.568573942, lon: 10.095602497}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "04", {
-        %{lat: 53.571212091, lon: 10.101836480},
-        %{lat: 53.571940140, lon: 10.106015343},
-        %{lat: 53.570035826, lon: 10.106956619},
-        %{lat: 53.569307778, lon: 10.102777755}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "05", {
-        %{lat: 53.571258083, lon: 10.106366677},
-        %{lat: 53.571189796, lon: 10.111916962},
-        %{lat: 53.570301493, lon: 10.111881597},
-        %{lat: 53.570369780, lon: 10.106331312}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "06", {
-        %{lat: 53.571264484, lon: 10.111923197},
-        %{lat: 53.571210043, lon: 10.117249403},
-        %{lat: 53.570762087, lon: 10.117229912},
-        %{lat: 53.570816528, lon: 10.111903706}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "07", {
-        %{lat: 53.571269256, lon: 10.117180538},
-        %{lat: 53.571211428, lon: 10.123970089},
-        %{lat: 53.570756740, lon: 10.123950994},
-        %{lat: 53.570814568, lon: 10.117161444}
-      })
-    ]
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

@@ -60,16 +60,8 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
     ]
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"},
-      {
-        %{lat: 53.560346062, lon: 9.982205888},
-        %{lat: 53.557869760, lon: 9.984091870},
-        %{lat: 53.557608613, lon: 9.983119732},
-        %{lat: 53.560085108, lon: 9.981234560}
-      }
-    )
+    {name(),
+     [{"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"}]}
   end
 
   def text(assigns) do

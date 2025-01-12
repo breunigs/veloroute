@@ -81,59 +81,12 @@ defmodule Data.Article.Blog.VierlaenderDamm do
     ]
   end
 
-  @attrib {"LSBG Hamburg (S1)",
-           "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.538165316, lon: 10.034097351},
-        %{lat: 53.536753698, lon: 10.036885783},
-        %{lat: 53.535503475, lon: 10.035093934},
-        %{lat: 53.536915042, lon: 10.032305280}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.536356335, lon: 10.035562150},
-        %{lat: 53.534948630, lon: 10.038323078},
-        %{lat: 53.534646837, lon: 10.037887679},
-        %{lat: 53.536054728, lon: 10.035126655}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.535098079, lon: 10.037994753},
-        %{lat: 53.534867186, lon: 10.041207405},
-        %{lat: 53.534036682, lon: 10.041038442},
-        %{lat: 53.534267603, lon: 10.037825692}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.534534460, lon: 10.040963914},
-        %{lat: 53.534240206, lon: 10.044845551},
-        %{lat: 53.533687856, lon: 10.044727095},
-        %{lat: 53.533982259, lon: 10.040845286}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "5a", {
-        %{lat: 53.534144577, lon: 10.044697125},
-        %{lat: 53.533557044, lon: 10.047427968},
-        %{lat: 53.533176211, lon: 10.047196392},
-        %{lat: 53.533763824, lon: 10.044465087}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "5b", {
-        %{lat: 53.533556919, lon: 10.047428468},
-        %{lat: 53.533052150, lon: 10.049770578},
-        %{lat: 53.532671218, lon: 10.049538241},
-        %{lat: 53.533176001, lon: 10.047195981}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 6, {
-        %{lat: 53.533051786, lon: 10.049726392},
-        %{lat: 53.532652279, lon: 10.051478987},
-        %{lat: 53.532266661, lon: 10.051228966},
-        %{lat: 53.532665747, lon: 10.049477319}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 7, {
-        %{lat: 53.532682158, lon: 10.051323841},
-        %{lat: 53.531891806, lon: 10.054972120},
-        %{lat: 53.531509143, lon: 10.054737416},
-        %{lat: 53.532299582, lon: 10.051089084}
-      })
-    ]
+    {name(),
+     [
+       {"LSBG Hamburg (S1)",
+        "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"}
+     ]}
   end
 
   def text(assigns) do

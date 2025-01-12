@@ -434,29 +434,6 @@ function addMapImageLayer(id) {
   showMapImageLayers.push(id)
 }
 
-function showClassicMapImages() {
-  let attribs = new Set()
-  let bbox = null
-
-  for (let mapImage of showMapImageAction) {
-    bbox ||= new mlgl.LngLatBounds(mapImage.coordinates[0], mapImage.coordinates[1])
-    bbox = mapImage.coordinates.reduce((bbox, coord) => bbox.extend(coord), bbox);
-
-    const id = `map-image-${mapImage.url}`
-    map.addSource(id, {
-      type: 'image',
-      url: mapImage.url,
-      coordinates: mapImage.coordinates,
-    })
-
-    addMapImageLayer(id)
-    attribs.add(mapImage.attribution)
-    attribution.options.customAttribution = Array.from(attribs).join(" ")
-  }
-
-  maybeZoomToBbox(bbox)
-}
-
 function showPMTilesImages(pmtile) {
   window.dispatchEvent(new CustomEvent("js:load", {
     detail: {
@@ -504,12 +481,7 @@ function showMapImages() {
   }
 
   cleanup()
-
-  if (showMapImageAction[0].pmtiles) {
-    return showPMTilesImages(showMapImageAction[0])
-  }
-
-  showClassicMapImages(showMapImageAction)
+  return showPMTilesImages(showMapImageAction[0])
 }
 
 let highlightsAppliedToStyle = ""

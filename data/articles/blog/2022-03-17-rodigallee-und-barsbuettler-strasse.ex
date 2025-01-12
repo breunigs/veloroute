@@ -50,29 +50,8 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
       }
     ]
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
-
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, "08", {
-        %{lat: 53.571644720, lon: 10.123987784},
-        %{lat: 53.571602573, lon: 10.127988907},
-        %{lat: 53.570009078, lon: 10.127939440},
-        %{lat: 53.570051225, lon: 10.123938316}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "09", {
-        %{lat: 53.571362027, lon: 10.127913881},
-        %{lat: 53.571297674, lon: 10.133552282},
-        %{lat: 53.570760731, lon: 10.133529455},
-        %{lat: 53.570825084, lon: 10.127891053}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "10", {
-        %{lat: 53.571755116, lon: 10.133568696},
-        %{lat: 53.571710004, lon: 10.138002168},
-        %{lat: 53.570210496, lon: 10.137955677},
-        %{lat: 53.570255608, lon: 10.133522204}
-      })
-    ]
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

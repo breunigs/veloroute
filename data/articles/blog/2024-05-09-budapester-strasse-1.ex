@@ -61,22 +61,8 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
       }
     ]
 
-  @attrib {"LSBG Hamburg (B1)", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.556655249, lon: 9.964669351},
-        %{lat: 53.553809957, lon: 9.965392082},
-        %{lat: 53.553731050, lon: 9.964514088},
-        %{lat: 53.556576245, lon: 9.963790340}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.554071590, lon: 9.965181695},
-        %{lat: 53.552131603, lon: 9.967524766},
-        %{lat: 53.551869614, lon: 9.966910669},
-        %{lat: 53.553809308, lon: 9.964566438}
-      })
-    ]
+    {name(), [{"LSBG Hamburg (B1)", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

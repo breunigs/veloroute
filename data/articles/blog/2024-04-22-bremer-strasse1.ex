@@ -57,82 +57,13 @@ defmodule Data.Article.Blog.BremerStrasse1 do
       }
     ]
 
-  @attrib [
-    {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
-    {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
-  ]
   def map_image do
-    [
-      # Schlussverschickung
-      # Data.MapImage.new(__MODULE__, @attrib, 0, {
-      #   %{lat: 53.439149306, lon: 9.937228884},
-      #   %{lat: 53.443013454, lon: 9.948000977},
-      #   %{lat: 53.441807974, lon: 9.949219075},
-      #   %{lat: 53.437944450, lon: 9.938446852}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, "1a", {
-      #   %{lat: 53.443454625, lon: 9.947558149},
-      #   %{lat: 53.446279696, lon: 9.955436978},
-      #   %{lat: 53.444973079, lon: 9.956758804},
-      #   %{lat: 53.442146336, lon: 9.948880655}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, "1b", {
-      #   %{lat: 53.446279696, lon: 9.955436978},
-      #   %{lat: 53.448988819, lon: 9.963020395},
-      #   %{lat: 53.447679948, lon: 9.964339629},
-      #   %{lat: 53.444973079, lon: 9.956758804}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 2, {
-      #   %{lat: 53.448910706, lon: 9.963101003},
-      #   %{lat: 53.452066884, lon: 9.971946596},
-      #   %{lat: 53.451539537, lon: 9.972475263},
-      #   %{lat: 53.448382503, lon: 9.963632605}
-      # })
-
-      # Schlussverschickung – Änderungen
-      Data.MapImage.new(__MODULE__, @attrib, "v2_1", {
-        %{lat: 53.439148284, lon: 9.937209861},
-        %{lat: 53.441322592, lon: 9.943391202},
-        %{lat: 53.440211287, lon: 9.944492916},
-        %{lat: 53.438036979, lon: 9.938311575}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_2", {
-        %{lat: 53.440547973, lon: 9.943566177},
-        %{lat: 53.442392210, lon: 9.948654191},
-        %{lat: 53.441903067, lon: 9.949154270},
-        %{lat: 53.440058831, lon: 9.944066257}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_3", {
-        %{lat: 53.442921246, lon: 9.948115732},
-        %{lat: 53.445208320, lon: 9.954475937},
-        %{lat: 53.444467696, lon: 9.955226788},
-        %{lat: 53.442180622, lon: 9.948866584}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_4", {
-        %{lat: 53.445432662, lon: 9.953795810},
-        %{lat: 53.447099303, lon: 9.958469111},
-        %{lat: 53.446475529, lon: 9.959096725},
-        %{lat: 53.444808887, lon: 9.954423424}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_5", {
-        %{lat: 53.446911047, lon: 9.957668971},
-        %{lat: 53.448874082, lon: 9.963146782},
-        %{lat: 53.448529989, lon: 9.963495017},
-        %{lat: 53.446566955, lon: 9.958017206}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_6", {
-        %{lat: 53.448839919, lon: 9.963182248},
-        %{lat: 53.450404901, lon: 9.967558662},
-        %{lat: 53.450074092, lon: 9.967892628},
-        %{lat: 53.448509110, lon: 9.963516214}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_7", {
-        %{lat: 53.450335783, lon: 9.967366206},
-        %{lat: 53.452004297, lon: 9.972031503},
-        %{lat: 53.451506253, lon: 9.972534257},
-        %{lat: 53.449837738, lon: 9.967868960}
-      })
-    ]
+    # Schlussverschickung
+    {name(),
+     [
+       {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
+     ]}
   end
 
   def links(_assigns) do

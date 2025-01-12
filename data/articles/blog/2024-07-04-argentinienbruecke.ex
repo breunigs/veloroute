@@ -18,20 +18,12 @@ defmodule Data.Article.Blog.Argentinienbruecke do
   def tags(), do: ["11"]
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      [
-        {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
-        {"Hamburg Port Authority AöR",
-         "https://www.hamburg-port-authority.de/de/info-port/contact-center"}
-      ],
-      {
-        %{lat: 53.528264747, lon: 9.973417247},
-        %{lat: 53.528466845, lon: 9.977698491},
-        %{lat: 53.527961601, lon: 9.977766903},
-        %{lat: 53.527759504, lon: 9.973485659}
-      }
-    )
+    {name(),
+     [
+       {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
+       {"Hamburg Port Authority AöR",
+        "https://www.hamburg-port-authority.de/de/info-port/contact-center"}
+     ]}
   end
 
   def links(_assigns) do

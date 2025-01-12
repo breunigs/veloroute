@@ -61,77 +61,13 @@ defmodule Data.Article.Blog.BeimSchlump do
       }
     ]
 
-  @attrib [
-    {"LSBG Hamburg (SP2)",
-     "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"},
-    {"wfw nord consult Ingenieurgesellschaft mbH", "https://www.wfwnc.de/kontakt/kontakt/"}
-  ]
   def map_image do
-    [
-      # Schlussverschickung
-      Data.MapImage.new(__MODULE__, @attrib, "v2_1", {
-        %{lat: 53.568977206, lon: 9.968605381},
-        %{lat: 53.568941725, lon: 9.972290426},
-        %{lat: 53.566601682, lon: 9.972227805},
-        %{lat: 53.566637163, lon: 9.968542761}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_2", {
-        %{lat: 53.568423510, lon: 9.971304340},
-        %{lat: 53.569793458, lon: 9.974252211},
-        %{lat: 53.569073912, lon: 9.975200289},
-        %{lat: 53.567703964, lon: 9.972252418}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_3", {
-        %{lat: 53.569278637, lon: 9.973816883},
-        %{lat: 53.571027303, lon: 9.976619898},
-        %{lat: 53.570667217, lon: 9.977257034},
-        %{lat: 53.568918551, lon: 9.974454019}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "v2_4", {
-        %{lat: 53.570689523, lon: 9.976091059},
-        %{lat: 53.571793533, lon: 9.977612765},
-        %{lat: 53.571578348, lon: 9.978055024},
-        %{lat: 53.570474337, lon: 9.976533318}
-      })
-
-      # 1. Verschickung
-      # Data.MapImage.new(__MODULE__, @attrib, 1, {
-      #   %{lat: 53.568531572, lon: 9.969353362},
-      #   %{lat: 53.567315869, lon: 9.972055968},
-      #   %{lat: 53.566291144, lon: 9.970749665},
-      #   %{lat: 53.567506780, lon: 9.968046008}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 2, {
-      #   %{lat: 53.567897989, lon: 9.969993981},
-      #   %{lat: 53.569058843, lon: 9.969990249},
-      #   %{lat: 53.569059058, lon: 9.971035121},
-      #   %{lat: 53.567900000, lon: 9.971039048}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 3, {
-      #   %{lat: 53.567942030, lon: 9.970614531},
-      #   %{lat: 53.569216033, lon: 9.973337286},
-      #   %{lat: 53.568868893, lon: 9.973798134},
-      #   %{lat: 53.567594587, lon: 9.971076176}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 4, {
-      #   %{lat: 53.569170726, lon: 9.973186911},
-      #   %{lat: 53.569714038, lon: 9.974264084},
-      #   %{lat: 53.569218170, lon: 9.974973783},
-      #   %{lat: 53.568674799, lon: 9.973896788}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 5, {
-      #   %{lat: 53.569463893, lon: 9.974322699},
-      #   %{lat: 53.570680474, lon: 9.976234855},
-      #   %{lat: 53.570462910, lon: 9.976627087},
-      #   %{lat: 53.569246467, lon: 9.974714989}
-      # }),
-      # Data.MapImage.new(__MODULE__, @attrib, 6, {
-      #   %{lat: 53.570626572, lon: 9.976002423},
-      #   %{lat: 53.571681960, lon: 9.977411783},
-      #   %{lat: 53.571475406, lon: 9.977850170},
-      #   %{lat: 53.570419975, lon: 9.976441717}
-      # })
-    ]
+    {name(),
+     [
+       {"LSBG Hamburg (SP2)",
+        "https://lsbg.hamburg.de/ueber-uns/unsere-geschaeftsbereiche/geschaeftsbereich-strassen"},
+       {"wfw nord consult Ingenieurgesellschaft mbH", "https://www.wfwnc.de/kontakt/kontakt/"}
+     ]}
   end
 
   def links(_assigns) do

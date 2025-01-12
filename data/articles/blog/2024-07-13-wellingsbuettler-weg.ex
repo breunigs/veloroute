@@ -24,28 +24,8 @@ defmodule Data.Article.Blog.WellingsbuettlerWeg do
 
   def tracks, do: Data.Article.Blog.WellingsbuettelerLandstrasse.tracks()
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.637209903, lon: 10.056883017},
-        %{lat: 53.638981158, lon: 10.063592020},
-        %{lat: 53.638229477, lon: 10.064158253},
-        %{lat: 53.636458222, lon: 10.057449250}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.639069357, lon: 10.063326908},
-        %{lat: 53.642098123, lon: 10.074861452},
-        %{lat: 53.641680622, lon: 10.075174159},
-        %{lat: 53.638651856, lon: 10.063639614}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.642026660, lon: 10.074740100},
-        %{lat: 53.642952325, lon: 10.078256158},
-        %{lat: 53.640975007, lon: 10.079738680},
-        %{lat: 53.640049342, lon: 10.076222622}
-      })
-    ]
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def text(assigns) do

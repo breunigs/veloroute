@@ -13,26 +13,13 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
   def type(), do: :construction
   def tags(), do: ["8", "FR4"]
 
-  @attrib [
-    {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"},
-    {"Bezirksamt Hamburg-Mitte, Fachamt Management des öffentlichen Raumes",
-     "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/bezirksamt/bezirksamtsstruktur/dezernat-wirtschaft-bauen-umwelt-66718"}
-  ]
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.553182950, lon: 10.019320047},
-        %{lat: 53.551761273, lon: 10.020431072},
-        %{lat: 53.551433634, lon: 10.019242982},
-        %{lat: 53.552855311, lon: 10.018131957}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.551715428, lon: 10.020020880},
-        %{lat: 53.550535751, lon: 10.020939698},
-        %{lat: 53.550415971, lon: 10.020504046},
-        %{lat: 53.551595649, lon: 10.019585229}
-      })
-    ]
+    {name(),
+     [
+       {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"},
+       {"Bezirksamt Hamburg-Mitte, Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/bezirksamt/bezirksamtsstruktur/dezernat-wirtschaft-bauen-umwelt-66718"}
+     ]}
   end
 
   def links(_assigns) do

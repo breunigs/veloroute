@@ -15,12 +15,7 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
   def tags(), do: ["br-nord-n2", "br-nord-n6", "br-nord-n7"]
 
   def map_image do
-    Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
-      %{lat: 53.594705882, lon: 9.986387817},
-      %{lat: 53.594654870, lon: 9.992339386},
-      %{lat: 53.591646344, lon: 9.992264983},
-      %{lat: 53.591697356, lon: 9.986313414}
-    })
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

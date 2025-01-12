@@ -72,20 +72,8 @@ defmodule Data.Article.Blog.Steinstrasse do
     ]
   end
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    #   Data.MapImage.new(__MODULE__, @attrib, {
-    #     %{lat: 53.550402066, lon: 9.997257860},
-    #     %{lat: 53.550316565, lon: 10.005445512},
-    #     %{lat: 53.549315626, lon: 10.005408415},
-    #     %{lat: 53.549401127, lon: 9.997220763}
-    #   })
-    Data.MapImage.new(__MODULE__, @attrib, 2, {
-      %{lat: 53.550448520, lon: 9.997032567},
-      %{lat: 53.550367867, lon: 10.005353293},
-      %{lat: 53.549448049, lon: 10.005319435},
-      %{lat: 53.549528702, lon: 9.996998710}
-    })
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def text(assigns) do

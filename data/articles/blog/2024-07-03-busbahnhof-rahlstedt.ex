@@ -15,23 +15,12 @@ defmodule Data.Article.Blog.BusbahnhofRahlstedt do
 
   def tags(), do: ["7"]
 
-  @attrib {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-           "https://moingenieure.de/kontakt/"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.603618599, lon: 10.152542341},
-        %{lat: 53.604524232, lon: 10.154033682},
-        %{lat: 53.603384826, lon: 10.155998754},
-        %{lat: 53.602479193, lon: 10.154507413}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.605382362, lon: 10.154702599},
-        %{lat: 53.606524601, lon: 10.156606763},
-        %{lat: 53.606019742, lon: 10.157467159},
-        %{lat: 53.604877503, lon: 10.155562994}
-      })
-    ]
+    {name(),
+     [
+       {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
+        "https://moingenieure.de/kontakt/"}
+     ]}
   end
 
   def links(_assigns) do

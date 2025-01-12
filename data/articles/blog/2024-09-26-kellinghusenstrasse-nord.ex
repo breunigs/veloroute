@@ -30,19 +30,11 @@ defmodule Data.Article.Blog.KellinghusenstrasseNord do
     ]
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      [
-        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-        {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
-      ],
-      {
-        %{lat: 53.590889296, lon: 9.990872031},
-        %{lat: 53.593314458, lon: 9.991730533},
-        %{lat: 53.593072171, lon: 9.993671150},
-        %{lat: 53.590647010, lon: 9.992812648}
-      }
-    )
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
+     ]}
   end
 
   def links(_assigns) do

@@ -13,47 +13,12 @@ defmodule Data.Article.Blog.WiesendammWest do
 
   def tags(), do: ["br-nord-n6"]
 
-  @attrib {"Bezirksamt Hamburg-Nord",
-           "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.590231812, lon: 10.013486649},
-        %{lat: 53.590209656, lon: 10.016596032},
-        %{lat: 53.589774648, lon: 10.016587428},
-        %{lat: 53.589796784, lon: 10.013478155}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.590165223, lon: 10.016559285},
-        %{lat: 53.589547864, lon: 10.020195654},
-        %{lat: 53.589176426, lon: 10.020016928},
-        %{lat: 53.589793404, lon: 10.016380081}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.589543046, lon: 10.020112394},
-        %{lat: 53.589153812, lon: 10.023406821},
-        %{lat: 53.588751751, lon: 10.023271412},
-        %{lat: 53.589141120, lon: 10.019977291}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.589130105, lon: 10.023323267},
-        %{lat: 53.588719790, lon: 10.026817274},
-        %{lat: 53.588397194, lon: 10.026709304},
-        %{lat: 53.588807186, lon: 10.023215298}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 5, {
-        %{lat: 53.588734244, lon: 10.026765032},
-        %{lat: 53.588316515, lon: 10.030275234},
-        %{lat: 53.587970029, lon: 10.030157774},
-        %{lat: 53.588388090, lon: 10.026648529}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 6, {
-        %{lat: 53.588332256, lon: 10.030220423},
-        %{lat: 53.588163386, lon: 10.032225333},
-        %{lat: 53.587818511, lon: 10.032142970},
-        %{lat: 53.587987578, lon: 10.030137700}
-      })
-    ]
+    {name(),
+     [
+       {"Bezirksamt Hamburg-Nord",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
+     ]}
   end
 
   def links(_assigns) do

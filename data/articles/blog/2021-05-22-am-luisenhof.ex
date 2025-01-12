@@ -13,17 +13,13 @@ defmodule Data.Article.Blog.AmLuisenhof do
 
   def tags(), do: ["br-wandsbek-w5"]
 
-  @attrib [
-    {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-    {"LEHNE Ingenieurgesellschaft mbH für Bauen und Umwelt", "https://www.lehne-ing.de/kontakt"}
-  ]
   def map_image do
-    Data.MapImage.new(__MODULE__, @attrib, {
-      %{lat: 53.607313198, lon: 10.111803808},
-      %{lat: 53.608036482, lon: 10.115421484},
-      %{lat: 53.607325617, lon: 10.115825668},
-      %{lat: 53.606602333, lon: 10.112207992}
-    })
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"LEHNE Ingenieurgesellschaft mbH für Bauen und Umwelt",
+        "https://www.lehne-ing.de/kontakt"}
+     ]}
   end
 
   def links(_assigns) do

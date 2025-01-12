@@ -49,7 +49,7 @@ defmodule Article do
   @callback links(assigns()) :: [link()]
 
   @type attribution :: {name :: binary(), link :: binary()}
-  @callback map_image() :: nil | Data.MapImage.t() | [Data.MapImage.t()] | Data.MapImage.plain()
+  @callback map_image() :: nil | Data.MapImage.plain()
 
   @callback languages() :: [language()]
 

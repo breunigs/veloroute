@@ -12,12 +12,7 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
   def tags(), do: ["10"]
 
   def map_image do
-    Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
-      %{lat: 53.547820666, lon: 9.997521945},
-      %{lat: 53.543821561, lon: 9.998633909},
-      %{lat: 53.543704823, lon: 9.997449633},
-      %{lat: 53.547703927, lon: 9.996337669}
-    })
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

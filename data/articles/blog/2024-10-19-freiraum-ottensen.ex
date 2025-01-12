@@ -71,40 +71,14 @@ defmodule Data.Article.Blog.FreiraumOttensen do
       }
     ]
 
-  @attrib [
-    {"Bezirksamt Altona – Fachamt öffentlicher Raum",
-     "https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/bezirksamt/dezernat-wirtschaft-bauen-umwelt-50986"},
-    {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-     "https://moingenieure.de/kontakt/"}
-  ]
-
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.551882688, lon: 9.925597826},
-        %{lat: 53.552467990, lon: 9.930663473},
-        %{lat: 53.551839690, lon: 9.930869759},
-        %{lat: 53.551254388, lon: 9.925804112}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.552496877, lon: 9.929787173},
-        %{lat: 53.553270676, lon: 9.930784773},
-        %{lat: 53.552970166, lon: 9.931444827},
-        %{lat: 53.552196367, lon: 9.930447227}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.550523772, lon: 9.929112951},
-        %{lat: 53.552459723, lon: 9.929286249},
-        %{lat: 53.552418597, lon: 9.930563609},
-        %{lat: 53.550482646, lon: 9.930390310}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.553745216, lon: 9.929065170},
-        %{lat: 53.552668337, lon: 9.930346803},
-        %{lat: 53.552508125, lon: 9.929965604},
-        %{lat: 53.553585003, lon: 9.928683971}
-      })
-    ]
+    {name(),
+     [
+       {"Bezirksamt Altona – Fachamt öffentlicher Raum",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/bezirksamt/dezernat-wirtschaft-bauen-umwelt-50986"},
+       {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
+        "https://moingenieure.de/kontakt/"}
+     ]}
   end
 
   def links(_assigns) do

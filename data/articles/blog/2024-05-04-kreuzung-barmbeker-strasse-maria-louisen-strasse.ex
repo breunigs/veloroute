@@ -14,12 +14,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
   def tags(), do: ["br-nord-n6"]
 
   def map_image do
-    Data.MapImage.new(__MODULE__, {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}, {
-      %{lat: 53.591930253, lon: 10.006314062},
-      %{lat: 53.591433160, lon: 10.008371167},
-      %{lat: 53.591025840, lon: 10.008091760},
-      %{lat: 53.591523035, lon: 10.006034718}
-    })
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

@@ -218,7 +218,6 @@ defmodule Components.TagHelpers do
       title =
         """
         Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
-        Sind sie komplett schwarz oder fehlen ganz, ist Dein Gerät zu schwach.
 
         Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.r(:feed_author)}:
         """

@@ -50,31 +50,9 @@ defmodule Data.Article.Blog.HoheStrasse do
       }
     ]
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    [
-      # Schlussverschickung
-      # Data.MapImage.new(__MODULE__, @attrib, {
-      #   %{lat: 53.450848251, lon: 9.968988257},
-      #   %{lat: 53.454205801, lon: 9.978375348},
-      #   %{lat: 53.451360979, lon: 9.981244507},
-      #   %{lat: 53.448002957, lon: 9.971858310}
-      # })
-
-      # Schlussverschickung – Änderungen
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.450848691, lon: 9.968834457},
-        %{lat: 53.452734900, lon: 9.974099204},
-        %{lat: 53.451463140, lon: 9.975384605},
-        %{lat: 53.449576932, lon: 9.970119858}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.451782352, lon: 9.974526652},
-        %{lat: 53.452215197, lon: 9.980868823},
-        %{lat: 53.451259261, lon: 9.981054326},
-        %{lat: 53.450826417, lon: 9.974712155}
-      })
-    ]
+    # Schlussverschickung – Änderungen
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

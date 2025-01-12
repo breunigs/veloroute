@@ -14,18 +14,13 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
   def type(), do: :planned
   def tags(), do: ["7", "br-wandsbek-w8"]
 
-  @attrib [
-    {"SHP Ingenieure", "https://shp-ingenieure.de/"},
-    {"Bezirksamt Wandsbek, Fachamt Management des öffentlichen Raumes",
-     "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/ihr-bezirksamt/aufgaben-und-struktur/dezernat-wirtschaft-bauen-umwelt-75138"}
-  ]
   def map_image do
-    Data.MapImage.new(__MODULE__, @attrib, {
-      %{lat: 53.581787035, lon: 10.125138048},
-      %{lat: 53.583184164, lon: 10.127097343},
-      %{lat: 53.582622593, lon: 10.128233480},
-      %{lat: 53.581225464, lon: 10.126274185}
-    })
+    {name(),
+     [
+       {"SHP Ingenieure", "https://shp-ingenieure.de/"},
+       {"Bezirksamt Wandsbek, Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/ihr-bezirksamt/aufgaben-und-struktur/dezernat-wirtschaft-bauen-umwelt-75138"}
+     ]}
   end
 
   def links(_assigns) do

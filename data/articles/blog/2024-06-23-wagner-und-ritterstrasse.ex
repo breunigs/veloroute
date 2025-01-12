@@ -25,49 +25,12 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
     ]
   end
 
-  @attrib [
-    {"LSBG Hamburg – S2", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-    {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"}
-  ]
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.565586950, lon: 10.045881616},
-        %{lat: 53.563909331, lon: 10.046285119},
-        %{lat: 53.563832981, lon: 10.045386679},
-        %{lat: 53.565510599, lon: 10.044983176}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.566958861, lon: 10.045487381},
-        %{lat: 53.565280654, lon: 10.045896767},
-        %{lat: 53.565208838, lon: 10.045063834},
-        %{lat: 53.566887046, lon: 10.044654449}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.567634822, lon: 10.045133958},
-        %{lat: 53.566893030, lon: 10.045371551},
-        %{lat: 53.566806065, lon: 10.044601555},
-        %{lat: 53.567547857, lon: 10.044363961}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.572983125, lon: 10.038418052},
-        %{lat: 53.570918803, lon: 10.040175768},
-        %{lat: 53.570763313, lon: 10.039657832},
-        %{lat: 53.572827636, lon: 10.037900116}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 5, {
-        %{lat: 53.574170901, lon: 10.037407455},
-        %{lat: 53.572273316, lon: 10.039013268},
-        %{lat: 53.572119979, lon: 10.038499357},
-        %{lat: 53.574017564, lon: 10.036893544}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 6, {
-        %{lat: 53.575163541, lon: 10.036057531},
-        %{lat: 53.573900683, lon: 10.037680393},
-        %{lat: 53.573599930, lon: 10.037016640},
-        %{lat: 53.574862788, lon: 10.035393778}
-      })
-    ]
+    {name(),
+     [
+       {"LSBG Hamburg – S2", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"}
+     ]}
   end
 
   def text(assigns) do

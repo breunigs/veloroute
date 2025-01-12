@@ -15,22 +15,9 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
 
   def tags(), do: ["8"]
 
-  @attrib {"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.540195687, lon: 10.102666526},
-        %{lat: 53.539037993, lon: 10.104990569},
-        %{lat: 53.538694763, lon: 10.104506557},
-        %{lat: 53.539852550, lon: 10.102182305}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.539056975, lon: 10.104989416},
-        %{lat: 53.537884869, lon: 10.107324348},
-        %{lat: 53.537528114, lon: 10.106817107},
-        %{lat: 53.538700158, lon: 10.104482370}
-      })
-    ]
+    {name(),
+     [{"SBI beratende Ingenieure für BAU-VERKEHR-VERMESSUNGS GmbH", "https://www.sbi.de/"}]}
   end
 
   def links(_assigns) do

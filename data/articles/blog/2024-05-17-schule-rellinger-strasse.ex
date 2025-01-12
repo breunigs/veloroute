@@ -21,17 +21,11 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
   end
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      {"Bezirksamt Eimsbüttel, Dezernat Wirtschaft, Bauen und Umwelt",
-       "https://www.hamburg.de/eimsbuettel/dezernat-wirtschaft-bauen-umwelt/80034/fachamt-management-des-oeffentlichen-raumes/"},
-      {
-        %{lat: 53.574825578, lon: 9.942529664},
-        %{lat: 53.573794858, lon: 9.943564576},
-        %{lat: 53.573581853, lon: 9.942963311},
-        %{lat: 53.574612572, lon: 9.941928400}
-      }
-    )
+    {name(),
+     [
+       {"Bezirksamt Eimsbüttel, Dezernat Wirtschaft, Bauen und Umwelt",
+        "https://www.hamburg.de/eimsbuettel/dezernat-wirtschaft-bauen-umwelt/80034/fachamt-management-des-oeffentlichen-raumes/"}
+     ]}
   end
 
   def text(assigns) do

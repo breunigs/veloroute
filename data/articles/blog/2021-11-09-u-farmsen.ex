@@ -26,16 +26,7 @@ defmodule Data.Article.Blog.UFarmsen do
   end
 
   def map_image do
-    Data.MapImage.new(
-      __MODULE__,
-      {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-      {
-        %{lat: 53.608514700, lon: 10.116357685},
-        %{lat: 53.606766183, lon: 10.121572328},
-        %{lat: 53.605360886, lon: 10.120233261},
-        %{lat: 53.607109356, lon: 10.115019048}
-      }
-    )
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def summary(),

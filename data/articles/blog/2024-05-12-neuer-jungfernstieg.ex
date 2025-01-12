@@ -25,22 +25,8 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
     ]
   end
 
-  @attrib {"Ingenieurpartnerschaft Diercks Schröder", "https://www.ids-hh.de/kontakt/"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.554446481, lon: 9.990439730},
-        %{lat: 53.556068846, lon: 9.991991914},
-        %{lat: 53.555834219, lon: 9.992686438},
-        %{lat: 53.554211854, lon: 9.991134254}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.556062886, lon: 9.991542699},
-        %{lat: 53.557777513, lon: 9.992552582},
-        %{lat: 53.557466326, lon: 9.994048813},
-        %{lat: 53.555751699, lon: 9.993038930}
-      })
-    ]
+    {name(), [{"Ingenieurpartnerschaft Diercks Schröder", "https://www.ids-hh.de/kontakt/"}]}
   end
 
   def text(assigns) do

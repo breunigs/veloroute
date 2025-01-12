@@ -23,18 +23,13 @@ defmodule Data.Article.Blog.FrohmestrasseNord do
     ]
   end
 
-  @attrib [
-    {"Bezirksamt Eimsbüttel – Fachamt Management des öffentlichen Raumes",
-     "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/ihr-bezirksamt/fachamt-management-des-oeffentlichen-raumes-58482"},
-    {"BPR Ingenieure GmbH & Co. KG", "https://www.bpr-ingenieurbuero.de/kontakt/"}
-  ]
   def map_image do
-    Data.MapImage.new(__MODULE__, @attrib, {
-      %{lat: 53.636455791, lon: 9.918358119},
-      %{lat: 53.631933786, lon: 9.921765989},
-      %{lat: 53.631687401, lon: 9.920836524},
-      %{lat: 53.636209406, lon: 9.917428653}
-    })
+    {name(),
+     [
+       {"Bezirksamt Eimsbüttel – Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/ihr-bezirksamt/fachamt-management-des-oeffentlichen-raumes-58482"},
+       {"BPR Ingenieure GmbH & Co. KG", "https://www.bpr-ingenieurbuero.de/kontakt/"}
+     ]}
   end
 
   def text(assigns) do

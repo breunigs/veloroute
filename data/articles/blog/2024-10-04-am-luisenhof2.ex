@@ -11,23 +11,8 @@ defmodule Data.Article.Blog.AmLuisenhof2 do
 
   def tags(), do: ["br-wandsbek-w5"]
 
-  @attrib {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
-
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.606616317, lon: 10.109038946},
-        %{lat: 53.607126781, lon: 10.112036997},
-        %{lat: 53.606725216, lon: 10.112232008},
-        %{lat: 53.606214751, lon: 10.109233958}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.606167597, lon: 10.106759677},
-        %{lat: 53.606715318, lon: 10.109871113},
-        %{lat: 53.606205949, lon: 10.110127650},
-        %{lat: 53.605658227, lon: 10.107016214}
-      })
-    ]
+    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do

@@ -33,27 +33,14 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
     ]
   end
 
-  @attrib [
-    {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-    {"Battenberg & Koch", "https://www.bkplan.de/"},
-    {"Fichtner Water & Transportation", "https://www.fwt.fichtner.de/kontakt/inland"},
-    {"iwb Ingenieure", "https://www.iwb-ingenieure.de/"}
-  ]
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.599828317, lon: 10.032422347},
-        %{lat: 53.59410691, lon: 10.03328210},
-        %{lat: 53.59396707, lon: 10.03078955},
-        %{lat: 53.599695271, lon: 10.029926345}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.59410691, lon: 10.03328210},
-        %{lat: 53.589191559, lon: 10.034031035},
-        %{lat: 53.58905956, lon: 10.03153574},
-        %{lat: 53.59396707, lon: 10.03078955}
-      })
-    ]
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Battenberg & Koch", "https://www.bkplan.de/"},
+       {"Fichtner Water & Transportation", "https://www.fwt.fichtner.de/kontakt/inland"},
+       {"iwb Ingenieure", "https://www.iwb-ingenieure.de/"}
+     ]}
   end
 
   def text(assigns) do

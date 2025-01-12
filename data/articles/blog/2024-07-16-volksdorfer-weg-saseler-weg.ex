@@ -13,40 +13,8 @@ defmodule Data.Article.Blog.VolksdorferWegSaselerWeg do
 
   def tags(), do: ["br-wandsbek-w6"]
 
-  @attrib {"BRW Ingenieurpartnerschaft mbB", "https://brw-ip.de/"}
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.646513726, lon: 10.131675548},
-        %{lat: 53.647707628, lon: 10.137215398},
-        %{lat: 53.647283028, lon: 10.137477275},
-        %{lat: 53.646089127, lon: 10.131937425}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.647883349, lon: 10.136535374},
-        %{lat: 53.648402975, lon: 10.138937665},
-        %{lat: 53.647802964, lon: 10.139309632},
-        %{lat: 53.647283338, lon: 10.136907342}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.648732441, lon: 10.142884506},
-        %{lat: 53.649150386, lon: 10.144665565},
-        %{lat: 53.648399323, lon: 10.145168023},
-        %{lat: 53.647981378, lon: 10.143386963}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.649537868, lon: 10.146186176},
-        %{lat: 53.649458439, lon: 10.152434697},
-        %{lat: 53.648691378, lon: 10.152384923},
-        %{lat: 53.648770808, lon: 10.146136402}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 5, {
-        %{lat: 53.649281315, lon: 10.152130086},
-        %{lat: 53.649211263, lon: 10.156368433},
-        %{lat: 53.648376898, lon: 10.156315586},
-        %{lat: 53.648446950, lon: 10.152077239}
-      })
-    ]
+    {name(), [{"BRW Ingenieurpartnerschaft mbB", "https://brw-ip.de/"}]}
   end
 
   def links(_assigns) do

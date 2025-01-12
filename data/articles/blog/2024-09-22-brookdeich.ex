@@ -14,36 +14,12 @@ defmodule Data.Article.Blog.Brookdeich do
   def type(), do: :planned
   def tags(), do: ["rsw-geesthacht"]
 
-  @attrib {"Bezirksamt Bergedorf, Fachamt Management des öffentlichen Raumes",
-           "https://www.hamburg.de/politik-und-verwaltung/bezirke/bergedorf/bezirksamt/dezernat-wirtschaft-bauen-umwelt-56028"}
-
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, 1, {
-        %{lat: 53.479434020, lon: 10.229466896},
-        %{lat: 53.478884629, lon: 10.232933753},
-        %{lat: 53.478486273, lon: 10.232755229},
-        %{lat: 53.479035663, lon: 10.229288372}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 2, {
-        %{lat: 53.478943175, lon: 10.232157578},
-        %{lat: 53.478299717, lon: 10.235541858},
-        %{lat: 53.478009883, lon: 10.235386114},
-        %{lat: 53.478653341, lon: 10.232001834}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 3, {
-        %{lat: 53.478378118, lon: 10.235262783},
-        %{lat: 53.477713177, lon: 10.238698059},
-        %{lat: 53.477337720, lon: 10.238492886},
-        %{lat: 53.478002660, lon: 10.235057610}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, 4, {
-        %{lat: 53.477877037, lon: 10.238432871},
-        %{lat: 53.477454607, lon: 10.241218581},
-        %{lat: 53.477092125, lon: 10.241063107},
-        %{lat: 53.477514555, lon: 10.238277397}
-      })
-    ]
+    {name(),
+     [
+       {"Bezirksamt Bergedorf, Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/bergedorf/bezirksamt/dezernat-wirtschaft-bauen-umwelt-56028"}
+     ]}
   end
 
   def links(_assigns) do

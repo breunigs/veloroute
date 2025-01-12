@@ -13,93 +13,14 @@ defmodule Data.Article.Blog.RswBadBramstedtHoheLiedtBisLangenhornerChaussee do
 
   def tags(), do: ["rsw-bad-bramstedt", "rsw", "n24", "4", "br-nord-n1"]
 
-  @attrib [
-    {"Bezirksamt Hamburg-Nord",
-     "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"},
-    {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-     "https://moingenieure.de/kontakt/"}
-  ]
   def map_image do
-    [
-      Data.MapImage.new(__MODULE__, @attrib, "01", {
-        %{lat: 53.679505313, lon: 9.999835438},
-        %{lat: 53.681578600, lon: 10.000787935},
-        %{lat: 53.681445998, lon: 10.001606901},
-        %{lat: 53.679372710, lon: 10.000654404}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "02", {
-        %{lat: 53.679733926, lon: 10.000705656},
-        %{lat: 53.676912865, lon: 10.001476767},
-        %{lat: 53.676850555, lon: 10.000832083},
-        %{lat: 53.679671616, lon: 10.000060972}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "03", {
-        %{lat: 53.677106427, lon: 10.001048823},
-        %{lat: 53.677752153, lon: 10.003735460},
-        %{lat: 53.677395019, lon: 10.003980807},
-        %{lat: 53.676749293, lon: 10.001294170}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "04", {
-        %{lat: 53.677541472, lon: 10.003593900},
-        %{lat: 53.676871203, lon: 10.007801667},
-        %{lat: 53.676639177, lon: 10.007695786},
-        %{lat: 53.677309446, lon: 10.003488020}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "05", {
-        %{lat: 53.676871658, lon: 10.007803111},
-        %{lat: 53.676203050, lon: 10.012015845},
-        %{lat: 53.675827927, lon: 10.011846184},
-        %{lat: 53.676496535, lon: 10.007633450}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "06", {
-        %{lat: 53.676081157, lon: 10.011811947},
-        %{lat: 53.675026029, lon: 10.014102765},
-        %{lat: 53.674798432, lon: 10.013803862},
-        %{lat: 53.675853560, lon: 10.011513044}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "07", {
-        %{lat: 53.675022571, lon: 10.014099914},
-        %{lat: 53.673964851, lon: 10.016384783},
-        %{lat: 53.673690029, lon: 10.016022335},
-        %{lat: 53.674747749, lon: 10.013737466}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "08", {
-        %{lat: 53.673977824, lon: 10.016298930},
-        %{lat: 53.672284715, lon: 10.016812353},
-        %{lat: 53.672217968, lon: 10.016187998},
-        %{lat: 53.673911077, lon: 10.015674576}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "09", {
-        %{lat: 53.672285179, lon: 10.016812154},
-        %{lat: 53.670160138, lon: 10.017457752},
-        %{lat: 53.670074186, lon: 10.016655403},
-        %{lat: 53.672199227, lon: 10.016009805}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "10", {
-        %{lat: 53.668964950, lon: 10.016389334},
-        %{lat: 53.670357020, lon: 10.016450573},
-        %{lat: 53.670345298, lon: 10.017067682},
-        %{lat: 53.668953229, lon: 10.017006442}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "11", {
-        %{lat: 53.669016063, lon: 10.015784591},
-        %{lat: 53.669744123, lon: 10.020460797},
-        %{lat: 53.669159326, lon: 10.020721473},
-        %{lat: 53.668431266, lon: 10.016045267}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "12", {
-        %{lat: 53.669576675, lon: 10.020539762},
-        %{lat: 53.670012688, lon: 10.023354688},
-        %{lat: 53.669695634, lon: 10.023495245},
-        %{lat: 53.669259622, lon: 10.020680319}
-      }),
-      Data.MapImage.new(__MODULE__, @attrib, "13", {
-        %{lat: 53.670102906, lon: 10.023246019},
-        %{lat: 53.669773003, lon: 10.025847519},
-        %{lat: 53.669383834, lon: 10.025706509},
-        %{lat: 53.669713737, lon: 10.023105009}
-      })
-    ]
+    {name(),
+     [
+       {"Bezirksamt Hamburg-Nord",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"},
+       {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
+        "https://moingenieure.de/kontakt/"}
+     ]}
   end
 
   def links(_assigns) do

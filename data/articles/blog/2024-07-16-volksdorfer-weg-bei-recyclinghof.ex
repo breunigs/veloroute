@@ -12,12 +12,7 @@ defmodule Data.Article.Blog.VolksdorferWegBeiRecyclinghof do
   def tags(), do: ["br-wandsbek-w6"]
 
   def map_image do
-    Data.MapImage.new(__MODULE__, {"BRW Ingenieurpartnerschaft mbB", "https://brw-ip.de/"}, {
-      %{lat: 53.645888037, lon: 10.129844313},
-      %{lat: 53.646204649, lon: 10.131303090},
-      %{lat: 53.645690012, lon: 10.131621838},
-      %{lat: 53.645373399, lon: 10.130163061}
-    })
+    {name(), [{"BRW Ingenieurpartnerschaft mbB", "https://brw-ip.de/"}]}
   end
 
   def links(_assigns) do

@@ -16,14 +16,8 @@ defmodule Data.Article.Blog.BudapesterStrasse2 do
 
   def tracks(), do: Data.Article.Blog.BudapesterStrasse1.tracks()
 
-  @attrib {"LSBG Hamburg (B1)", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
   def map_image do
-    Data.MapImage.new(__MODULE__, @attrib, {
-      %{lat: 53.552423011, lon: 9.967208061},
-      %{lat: 53.550919463, lon: 9.970717878},
-      %{lat: 53.550274033, lon: 9.969934530},
-      %{lat: 53.551777582, lon: 9.966424713}
-    })
+    {name(), [{"LSBG Hamburg (B1)", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
   end
 
   def links(_assigns) do
