@@ -24,7 +24,12 @@ gdal_translate \
 
 echo
 echo "adding lower resolutions"
-gdaladdo -r cubic -minsize 1024 output.mbtiles
+gdaladdo \
+  -r cubic \
+  -minsize 1024 \
+  -oo TILE_FORMAT=WEBP \
+  -oo QUALITY=60 \
+  output.mbtiles
 
 echo
 echo "converting to PMTiles"
