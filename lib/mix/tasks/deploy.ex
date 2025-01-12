@@ -156,7 +156,6 @@ defmodule Mix.Tasks.Deploy do
         Parallel.map(
           ~w(
             /alltagsroute-1
-            /map/___static/9.988434,53.548873,9/720x493
             /updates.atom
             /images/rss.svg
             /assets/basemap/tiles/9/270/165.pbf.gz
@@ -164,6 +163,7 @@ defmodule Mix.Tasks.Deploy do
             /assets/app.js
             /assets/app.css
             /suche?search_query=foobar
+            /map/___static/9.988434,53.548873,9/720x493
           ),
           &report_status_200?/1
         )

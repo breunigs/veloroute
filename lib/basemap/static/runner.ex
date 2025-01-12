@@ -60,7 +60,7 @@ defmodule Basemap.Static.Runner do
   """
   @spec render(render_task(), non_neg_integer()) ::
           {:ok, content_type :: binary(), image :: binary()} | {:error, reason :: binary()}
-  def render(task, timeout \\ 5000) do
+  def render(task, timeout \\ 10000) do
     zoom =
       task.zoom
       |> max(Basemap.Constants.min_zoom())
@@ -88,7 +88,11 @@ defmodule Basemap.Static.Runner do
 
         {elapsed, result} =
           :timer.tc(fn ->
-            GenServer.call(__MODULE__, {:render, line <> "\n", deadline}, timeout)
+            try do
+              GenServer.call(__MODULE__, {:render, line <> "\n", deadline}, timeout)
+            catch
+              :exit, reason -> {:error, inspect(reason)}
+            end
           end)
 
         case result do
@@ -103,8 +107,6 @@ defmodule Basemap.Static.Runner do
       end)
 
     result
-  catch
-    :exit, reason -> {:error, inspect(reason)}
   end
 
   def restart do

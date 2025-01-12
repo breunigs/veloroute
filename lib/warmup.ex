@@ -31,15 +31,19 @@ defmodule Warmup do
     video_route_id = VelorouteWeb.Live.VideoState.default_route_id()
 
     Parallel.each(VelorouteWeb.Live.Map.static_map_sizes(), fn {w, h} ->
-      Basemap.Static.Runner.render(%{
-        lon: cz.lon,
-        lat: cz.lat,
-        zoom: cz.zoom,
-        width: w,
-        height: h,
-        pixelRatio: Basemap.Static.Plug.default_pixel_ratio(),
-        highlightRoute: video_route_id
-      })
+      {:ok, _content_type, _img_data} =
+        Basemap.Static.Runner.render(
+          %{
+            lon: cz.lon,
+            lat: cz.lat,
+            zoom: cz.zoom,
+            width: w,
+            height: h,
+            pixelRatio: Basemap.Static.Plug.default_pixel_ratio(),
+            highlightRoute: video_route_id
+          },
+          30_000
+        )
     end)
   end
 

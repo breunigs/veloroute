@@ -109,8 +109,8 @@ void mapRenderLoop(std::string style, std::string asset_root, double maxZoom, ui
     std::thread watchdog([&renderStartMs, &renderFinishMs]() {
         while (true) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
-            if (renderStartMs + 3000 < renderFinishMs) {
-                die("watchdog detected +3s between render start and finish. Are all references local?");
+            if (renderStartMs + 10000 < renderFinishMs) {
+                die("watchdog detected +10s between render start and finish. Are all references local?");
             }
         }
     });
