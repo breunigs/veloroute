@@ -144,7 +144,6 @@ config :veloroute, Settings, %{
 
   # various video related paths
   video_dir_rel: "videos",
-  video_dir_abs: Path.join(File.cwd!(), "videos"),
-  video_source_dir_abs: Path.join(Path.join(File.cwd!(), "videos"), "source"),
-  video_target_dir_abs: Path.join(Path.join(File.cwd!(), "videos"), "rendered")
+  video_source_dir_rel: Path.join("videos", "source"),
+  video_target_dir_rel: Path.join("videos", "rendered")
 }

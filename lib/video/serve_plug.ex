@@ -6,7 +6,7 @@ defmodule Video.ServePlug do
 
   plug Plug.Static,
     at: "/#{@serve_path}",
-    from: Settings.c(:video_target_dir_abs),
+    from: Settings.c(:video_target_dir_rel),
     gzip: false,
     brotli: false,
     headers: %{
