@@ -715,6 +715,12 @@ function setup() {
     validateStyle: false,
     cancelPendingTileRequestsWhileZooming: false,
   });
+
+  map.addControl(new mlgl.NavigationControl({
+    showZoom: true,
+    showCompass: false,
+  }), 'bottom-right');
+
   map.touchZoomRotate.disableRotation();
   attribution = new mlgl.AttributionControl({ compact: null })
   map.addControl(attribution, 'top-right');
