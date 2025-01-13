@@ -813,9 +813,10 @@ $buttonBorder: 2px;
 
     button {
       width: 100%;
-      padding: 8px 8px 6px 4px;
+      padding: 6px 8px 6px 4px;
       text-align: left;
       color: #000;
+      white-space: nowrap;
 
       &.layer + .style, &.style + .layer {
         border-top: 1px solid #999;

@@ -192,6 +192,30 @@ defmodule Components.TagHelpers do
     """
   end
 
+  attr :checked, :boolean, required: true
+  attr :ref, :atom, required: true
+  attr :lang, :string
+  attr :rest, :global
+  slot(:inner_block)
+
+  def map_image_toggle_layer_switcher(assigns) do
+    if assigns.ref.map_image() do
+      assigns = map_toggle_title(assigns)
+
+      ~H"""
+        <button
+          title={@title}
+          value="map_image_toggle"
+          class={"style #{if @checked, do: "active"}"}
+          aria-checked={if @checked, do: "true", else: "false"}
+          role="menuitemradio"
+          phx-click="toggle-map-image"><%= if @lang == "en" do %>exact site map<% else %>genauer Lageplan<% end %></button>
+      """
+    else
+      ~H""
+    end
+  end
+
   @spec map_image_toggle(map()) :: Phoenix.LiveView.Rendered.t()
   attr :checked, :boolean, required: true
   attr :title, :string, required: true
@@ -215,22 +239,7 @@ defmodule Components.TagHelpers do
 
   def h4_planning(assigns) do
     if assigns.ref.map_image() do
-      title =
-        """
-        Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
-
-        Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.r(:feed_author)}:
-        """
-
-      title =
-        assigns.ref.map_image()
-        |> Data.MapImage.attribution()
-        |> Enum.reduce(title, fn {name, link}, title ->
-          title <> "• #{name}\n   #{link}\n"
-        end)
-        |> String.trim()
-
-      assigns = assign(assigns, :title, title)
+      assigns = map_toggle_title(assigns)
 
       ~H"""
       <div class="headlineForm">
@@ -243,6 +252,31 @@ defmodule Components.TagHelpers do
       <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
       """
     end
+  end
+
+  defp map_toggle_title(assigns) do
+    title =
+      if assigns[:lang] == "en",
+        do: """
+        Site map only visible on high zoom – once buildings are shown.
+
+        They are made by planning offices and departments, not by #{Settings.r(:feed_author)}:
+        """,
+        else: """
+        Pläne nur auf hohen Zoomstufen sichtbar – sobald Häuser angezeigt werden.
+
+        Die Pläne sind von Ämtern und Planungsbüros, nicht von #{Settings.r(:feed_author)}:
+        """
+
+    title =
+      assigns.ref.map_image()
+      |> Data.MapImage.attribution()
+      |> Enum.reduce(title, fn {name, link}, title ->
+        title <> "• #{name}\n   #{link}\n"
+      end)
+      |> String.trim()
+
+    assign(assigns, :title, title)
   end
 
   defp maybe_disable_hyphens(assigns) do
