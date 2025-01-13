@@ -200,7 +200,7 @@ defmodule Components.TagHelpers do
 
   def map_image_toggle(assigns) do
     ~H"""
-    <form {@rest} class="noMobile" title={@title}>
+    <form {@rest} title={@title}>
       <input type="checkbox" name="toggle-map-image" value="toggle-map-image" id="toggle-map-image" phx-change="toggle-map-image" checked={if(@checked, do: "checked")}>
       <label for="toggle-map-image"><%= render_slot(@inner_block) || "genauen Lageplan anzeigen" %></label>
     </form>
