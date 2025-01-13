@@ -766,6 +766,7 @@ body.fullscreen video, #videoOuter:fullscreen video {
   width: $width;
   overflow: visible;
   touch-action: pan-x;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   cursor: pointer;
 
