@@ -767,6 +767,7 @@ body.fullscreen video, #videoOuter:fullscreen video {
     height: $height;
     margin-left: calc($width / -2);
     touch-action: pan-x;
+    -webkit-user-select: none;
     user-select: none;
     width: $width;
   }
@@ -1208,6 +1209,11 @@ a {
   }
 }
 
+.maplibregl-ctrl-top-left, #indicator, #videoOuter, #map {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 #indicator {
   opacity: 0;
 }
@@ -1334,10 +1340,9 @@ table.routing {
     }
   }
 
-  tr,
-  td,
-  th {
+  tr, td, th {
     padding: 0;
+    overflow-x: hidden;
   }
 
   // this will control the size of the abstract route rendering, since it needs
