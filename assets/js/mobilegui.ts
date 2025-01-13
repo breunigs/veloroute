@@ -76,6 +76,9 @@ function detectswipe(el: string) {
   let scrollStart = 0;
   let acted = false;
 
+  let selected = false;
+  let heldIntervalCheck: ReturnType<typeof setInterval> | null = null
+
   const act = (event?: TouchEvent) => {
     if (acted) return;
 
@@ -85,6 +88,8 @@ function detectswipe(el: string) {
       console.debug("swiped x", sX - eX, "swiped y", sY - eY)
 
       if (eX > sX) {
+        if (selected) return;
+
         // swiped right
         hideSidebar(scrollStart);
         acted = true;
@@ -107,18 +112,32 @@ function detectswipe(el: string) {
     }
   }
 
+  const clearHeld = () => {
+    if (heldIntervalCheck) {
+      clearTimeout(heldIntervalCheck)
+      heldIntervalCheck = null
+    }
+  }
+
   ele.addEventListener('touchstart', (e) => {
     const t = e.touches[0];
     sX = t.screenX;
     sY = t.screenY;
     scrollStart = content!.scrollTop;
+    selected = false;
+
+    // workaround for iOS which doesn't support selectstart event
+    heldIntervalCheck = setInterval(() => {
+      selected = selected || window.getSelection()?.toString() != ""
+      if (selected) clearHeld();
+    }, 100);
   }, passive);
 
   ele.addEventListener('touchmove', (e) => {
     const t = e.touches[0];
     eX = t.screenX;
     eY = t.screenY;
-
+    clearHeld();
     act();
   }, passive);
 
@@ -130,7 +149,12 @@ function detectswipe(el: string) {
     eX = 0;
     eY = 0;
     acted = false;
+    selected = false;
+
+    clearHeld();
   }, passive);
+
+  addEventListener("selectstart", (_e) => { selected = true });
 }
 
 function init() {
