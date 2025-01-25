@@ -9,11 +9,13 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
 
   def type(), do: :planned
   def tags(), do: ["13"]
-  def start(), do: ~d[2025-03]
-  def stop(), do: ~d[2025-11]
+  # def start(), do: ~d[2025-03]
+  # def stop(), do: ~d[2025-11]
 
   def links(_assigns) do
     [
+      {"Politik blockiert Umbau", ~d[2025-01],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014770"},
       {"Erläuterungsbericht fertiger Entwurf", "Februar 2024",
        "https://lsbg.hamburg.de/resource/blob/784252/618885a6f8c6eb852af4a40c1c633b50/louis-braille-platz-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan/Karte fertiger Entwurf", "Februar 2024",

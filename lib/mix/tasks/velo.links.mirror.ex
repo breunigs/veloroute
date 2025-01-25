@@ -3,6 +3,8 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   use Tesla
   require Logger
 
+  adapter(Tesla.Adapter.Hackney, ssl_options: [{:verify, :verify_none}])
+
   @path "link_mirror/"
   @requirements ["app.start"]
 

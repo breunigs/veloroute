@@ -46,6 +46,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     User-agent: anthropic-ai
     User-agent: Applebot-Extended
     User-agent: barkrowler
+    User-agent: BLEXBot
     User-agent: Claude-Web
     User-agent: ClaudeBot
     User-agent: DataForSeoBot
@@ -54,16 +55,22 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     User-agent: GPTBot
     User-Agent: ImagesiftBot
     User-agent: meta-externalagent
+    User-agent: MJ12bot
     User-agent: PerplexityBot
+    User-agent: SemrushBot
     User-Agent: SemrushBot
     User-agent: SemrushBot-BA
     User-agent: SemrushBot-FT
     User-agent: SemrushBot-OCOB
     User-agent: SemrushBot-SI
     User-agent: SemrushBot-SWA
+    User-Agent: Seobility
     User-agent: SiteAuditBot
     User-agent: SplitSignalBot
     User-agent: turnitinbot
+    User-Agent: VelenPublicWebCrawler
+    User-agent: Yandex
+    User-agent:Twitterbot
     Disallow: /
 
     User-agent: GPTBot-User
