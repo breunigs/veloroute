@@ -28,6 +28,16 @@ defmodule VelorouteWeb.LiveNavigationTest do
     |> render_click() =~ "Artikel zu Veloroute 7"
   end
 
+  test "clicking RSW link shows RSW video", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/")
+
+    view
+    |> element("a[class=ref]", "Radschnellwege")
+    |> render_click()
+    |> shown_route()
+    |> hd() =~ "Radschnellweg"
+  end
+
   test "initial render selects video near the start", %{conn: conn} do
     {:ok, view, _html} = live(conn, "/")
     # i.e. from 0 ms to 19999ms

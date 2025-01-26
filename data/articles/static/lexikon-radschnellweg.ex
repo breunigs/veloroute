@@ -11,7 +11,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
   def tags(),
     do: ["lexikon", "radschnellweg", "rsw", "radschnellwege", "radroute+", "radroute-plus"]
 
-  def tracks(), do: Data.Article.Static.Alltagsroute5.tracks() |> Enum.filter(&(&1.group == "5N"))
+  def tracks(), do: Data.Article.Static.RSWBadBramstedt.tracks()
   def point_of_interest(), do: %{lon: 10.029203, lat: 53.603815, zoom: 16}
 
   def links(_assigns),
