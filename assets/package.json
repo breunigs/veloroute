@@ -8,6 +8,6 @@
     "pmtiles": "^4.1.0"
   },
   "devDependencies": {
-    "@types/phoenix_live_view": "^0.20.0"
+    "@types/phoenix_live_view": "^1.0.0"
   }
 }
