@@ -98,7 +98,7 @@ defmodule Veloroute.MixProject do
       # our base image only has Rust 1.63.
       {:ortex, "0.1.9", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
-      {:scholar, "~> 0.3.0", only: [:dev, :test]}
+      {:scholar, "~> 0.4.0", only: [:dev, :test]}
     ]
   end
 end
