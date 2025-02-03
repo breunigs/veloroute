@@ -7,7 +7,7 @@ defmodule Joiner.Visual do
          :ok <- Joiner.OpenAIClip.ensure_started() do
       results =
         metrics
-        |> top_fades(fade_frames, opts)
+        |> top_fades(fade_frames, Joiner.Segment.start_end?(segment), opts)
         |> tap(&Logger.debug("found #{length(&1)} visual candidates, refining…"))
         |> Enum.take(opts.visual_max_candidates)
         |> Task.async_stream(
@@ -33,7 +33,9 @@ defmodule Joiner.Visual do
           max_concurrency: 2
         )
         |> Stream.map(&elem(&1, 1))
-        |> Stream.reject(&(&1.metrics.clip < opts.openai_clip_prune_below))
+        |> Stream.reject(fn seg ->
+          seg.metrics.clip < opts.openai_clip_prune_below && !Joiner.Segment.start_end?(seg)
+        end)
         |> Enum.sort_by(& &1.metrics.clip, :desc)
 
       top_ratio = 1.0 - opts.openai_clip_top_percent / 100.0
@@ -51,7 +53,12 @@ defmodule Joiner.Visual do
     |> Joiner.Video.set_duration(fade_frames, :frames)
   end
 
-  @spec top_fades(list(list(float())), fade_frames :: pos_integer(), opts :: Joiner.Options.t()) ::
+  @spec top_fades(
+          list(list(float())),
+          fade_frames :: pos_integer(),
+          keep_start_end :: boolean(),
+          opts :: Joiner.Options.t()
+        ) ::
           [
             {
               metric_sum :: float(),
@@ -59,39 +66,55 @@ defmodule Joiner.Visual do
               video2_frame_offset :: non_neg_integer()
             }
           ]
-  defp top_fades(metrics, fade_frames, opts) when is_integer(fade_frames) do
+  defp top_fades(metrics, fade_frames, keep_start_end, opts) when is_integer(fade_frames) do
     inner_loop_length = length(hd(metrics))
 
-    2..fade_frames
-    |> Enum.reduce([List.flatten(metrics)], fn _, l ->
-      # consecutively drop inner+1 frames, to jump forward to the next frame for
-      # both video1 and video2. Results approximately a matrix where each column
-      # represents a potential fade.
-      [Enum.drop(hd(l), inner_loop_length + 1) | l]
-    end)
-    |> Enum.zip()
-    |> Enum.with_index()
-    |> Enum.map(fn {frame_metrics, idx} ->
-      sum = Tuple.sum(frame_metrics) / opts.visual_image_height / fade_frames
-      ^fade_frames = tuple_size(frame_metrics)
+    candidates =
+      2..fade_frames
+      |> Enum.reduce([List.flatten(metrics)], fn _, l ->
+        # consecutively drop inner+1 frames, to jump forward to the next frame for
+        # both video1 and video2. Results approximately a matrix where each column
+        # represents a potential fade.
+        [Enum.drop(hd(l), inner_loop_length + 1) | l]
+      end)
+      |> Enum.zip()
+      |> Enum.with_index()
+      |> Enum.map(fn {frame_metrics, idx} ->
+        sum = Tuple.sum(frame_metrics) / opts.visual_image_height / fade_frames
+        ^fade_frames = tuple_size(frame_metrics)
 
-      v1offset = Integer.floor_div(idx, inner_loop_length)
-      v2offset = Integer.mod(idx, inner_loop_length)
-      {sum, v1offset, v2offset}
-    end)
+        v1offset = Integer.floor_div(idx, inner_loop_length)
+        v2offset = Integer.mod(idx, inner_loop_length)
+        {sum, v1offset, v2offset}
+      end)
+      |> normalize_metric()
+
+    candidates
     |> Enum.reject(&(elem(&1, 0) < opts.visual_prune_below))
     |> Enum.sort_by(&elem(&1, 0), :desc)
-    |> normalize_metric()
     |> take_top_percent(opts)
     |> remove_overlapping_offsets(fade_frames)
+    |> maybe_add_start_end(candidates, keep_start_end)
+    |> Enum.map(&Tuple.delete_at(&1, 0))
   end
+
+  defp maybe_add_start_end(filtered, [first | rest], true) do
+    start_end =
+      Enum.reduce(rest, first, fn {_, _, v1o, v2o} = candidate, {_, _, a1o, _} = acc ->
+        if v1o > a1o && v2o == 0, do: candidate, else: acc
+      end)
+
+    [start_end | filtered] |> Enum.uniq() |> Enum.sort_by(&elem(&1, 0), :desc)
+  end
+
+  defp maybe_add_start_end(filtered, _, _), do: filtered
 
   # this function assumes that the first entries are the most desirable
   defp remove_overlapping_offsets(candidates, fade_frames) do
     Enum.reduce(candidates, [], fn
-      {_sum, v1o, v2o} = c, candidates ->
+      {_sum, _sum_norm, v1o, v2o} = c, candidates ->
         overlap =
-          Enum.any?(candidates, fn {_, c1o, c2o} ->
+          Enum.any?(candidates, fn {_, _, c1o, c2o} ->
             abs(c1o - v1o) <= fade_frames && abs(c2o - v2o) <= fade_frames
           end)
 
@@ -103,9 +126,9 @@ defmodule Joiner.Visual do
   # this function expects the list to be already sorted
   defp take_top_percent(candidates, opts) do
     top_ratio = 1.0 - opts.visual_top_percent / 100.0
-    min_val = with [{best, _, _} | _] <- candidates, do: best * top_ratio
+    min_val = with [{_, best_norm, _, _} | _] <- candidates, do: best_norm * top_ratio
 
-    Enum.take_while(candidates, &(elem(&1, 0) >= min_val))
+    Enum.take_while(candidates, &(elem(&1, 1) >= min_val))
   end
 
   defp normalize_metric([]), do: []
@@ -115,7 +138,7 @@ defmodule Joiner.Visual do
     diff = max - min
 
     candidates
-    |> Enum.map(fn {sum, v1offset, v2offset} -> {(sum - min) / diff, v1offset, v2offset} end)
+    |> Enum.map(fn {sum, v1offset, v2offset} -> {sum, (sum - min) / diff, v1offset, v2offset} end)
   end
 
   defp fade_frames(%{from: %{meta: %{fps: fps}}, to: %{meta: %{fps: fps}}}, opts) do

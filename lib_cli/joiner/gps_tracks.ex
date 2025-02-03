@@ -21,7 +21,7 @@ defmodule Joiner.GpsTracks do
   polyline2.
   """
   @spec start_end(Joiner.Segment.t(), Joiner.Options.t()) :: Joiner.Segment.t() | nil
-  def start_end(%{from: %{polyline: poly1} = v1, to: %{polyline: poly2}} = segment, opts) do
+  def start_end(%{from: %{polyline: poly1}, to: %{polyline: poly2}} = segment, opts) do
     poly_rev1 = Enum.reverse(poly1)
 
     if Geo.CheapRuler.point2point_dist(hd(poly_rev1), hd(poly2)) <= opts.geo_max_dist_m do
@@ -30,28 +30,11 @@ defmodule Joiner.GpsTracks do
       prev = min_duration_within(poly_rev1, mid, opts)
       next = min_duration_within(poly2, mid, opts)
 
-      from = %{segment.from | start: prev, stop: match_video_length(v1, poly_rev1)}
+      from = %{segment.from | start: prev, stop: hd(poly_rev1)}
       to = %{segment.to | start: hd(poly2), stop: next}
       Joiner.Segment.set_from_to(segment, from, to)
     end
   end
-
-  @spec match_video_length(Joiner.Video.t(), [Geo.Point.like()]) :: Geo.Point.like()
-  defp match_video_length(video, rev_polyline)
-
-  defp match_video_length(video, [stop, prev | _rest]) do
-    stop_ms = video.meta.duration * 1000
-    t = (stop_ms - prev.time_offset_ms) / (stop.time_offset_ms - prev.time_offset_ms)
-    mod = stop.__struct__
-
-    cond do
-      t < 1.0 -> mod.interpolate(prev, stop, t)
-      t > 1.0 -> mod.extrapolate(prev, stop, t)
-      true -> stop
-    end
-  end
-
-  defp match_video_length(_video, [stop]), do: stop
 
   @doc """
   Given two GPS tracks, it will return segments where the two tracks are close

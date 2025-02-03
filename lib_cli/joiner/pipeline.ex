@@ -85,6 +85,7 @@ defmodule Joiner.Pipeline do
           %{ident: binary(), stop: Video.Timestamp.t() | :end | :FIXME},
           %{ident: binary(), start: Video.Timestamp.t() | :start | :FIXME}
         }
+
   defp select_candidate(candidates, opts) do
     {thead, tbody, tfoot} =
       candidates
@@ -209,7 +210,6 @@ defmodule Joiner.Pipeline do
           []
       end
     end)
-    |> Stream.reject(&(&1.metrics.clip < opts.openai_clip_prune_below))
     |> Stream.take(opts.user_max_candidates)
     # we only do visual refinement for the first GpsTrack overlap segment if
     # possible. However, if the first segment didn't yield enough candidates the

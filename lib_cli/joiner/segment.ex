@@ -164,6 +164,11 @@ defmodule Joiner.Segment do
   @spec video_path(t(), sel()) :: binary()
   def video_path(seg, video) when sel(video), do: Map.fetch!(seg, video).source.source
 
+  @spec start_end?(t()) :: boolean()
+  def start_end?(seg) do
+    Joiner.Video.at_end?(seg.from) && Joiner.Video.at_start?(seg.to)
+  end
+
   @max_assumed_speed 40.0
   @doc """
   Calculates the average speed of each video and stores their normalized diff in

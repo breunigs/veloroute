@@ -18,7 +18,7 @@ defmodule Joiner.Video do
     with %Video.Source{} = source <- Video.Source.new_from_path(path),
          {:ok, meta} <- Video.Metadata.for(source),
          polyline when is_list(polyline) <- Video.Source.timed_points_with_gpx(source) do
-      to = List.last(polyline)
+      polyline = match_video_length(polyline, meta)
 
       {:ok,
        %__MODULE__{
@@ -27,9 +27,25 @@ defmodule Joiner.Video do
          meta: meta,
          polyline: polyline,
          start: hd(polyline),
-         stop: to
+         stop: List.last(polyline)
        }}
     end
+  end
+
+  defp match_video_length(polyline, meta) do
+    mod = hd(polyline).__struct__
+    stop_ms = meta.duration * 1000 - Video.Metadata.frame_duration_ms(meta)
+    cut_rev = polyline |> Enum.reverse() |> Enum.drop_while(&(&1.time_offset_ms > stop_ms))
+    [last1, last2 | rest] = cut_rev
+
+    t = 1.0 - (last1.time_offset_ms - stop_ms) / (last1.time_offset_ms - last2.time_offset_ms)
+
+    if t > 1.0 do
+      [mod.extrapolate(last2, last1, t) | cut_rev]
+    else
+      [mod.interpolate(last2, last1, t), last2 | rest]
+    end
+    |> Enum.reverse()
   end
 
   @spec merge(t(), t()) :: t()
@@ -68,9 +84,10 @@ defmodule Joiner.Video do
 
   @spec at_end?(t()) :: boolean()
   def at_end?(video) do
-    dur_ms = round(video.meta.duration * 1000)
+    frame_dur = frame_duration_ms(video)
+    dur_ms = round(video.meta.duration * 1000) - frame_dur
     stop_ms = video.stop.time_offset_ms
-    abs(stop_ms - dur_ms) < frame_duration_ms(video)
+    abs(stop_ms - dur_ms) < frame_dur
   end
 
   @doc """
@@ -123,7 +140,7 @@ defmodule Joiner.Video do
     target_ms = video.start.time_offset_ms + ms
 
     polyline_rev =
-      Enum.reduce_while(video.polyline, [hd(video.polyline)], fn
+      Enum.reduce_while(tl(video.polyline), [hd(video.polyline)], fn
         coord, prev when coord.time_offset_ms == target_ms -> {:halt, [coord | prev]}
         coord, prev when coord.time_offset_ms < target_ms -> {:cont, [coord | prev]}
         coord, prev -> {:halt, [interpol(hd(prev), coord, target_ms) | prev]}
@@ -158,6 +175,6 @@ defmodule Joiner.Video do
 
   defp interpol(prev, next, target_ms) do
     t = (target_ms - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
-    Geo.Interpolate.point(prev, next, t)
+    Video.TimedPointWithGPX.interpolate(prev, next, t)
   end
 end
