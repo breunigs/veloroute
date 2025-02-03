@@ -35,7 +35,7 @@ defmodule Joiner.Pipeline do
         selections
         |> Enum.chunk_every(2, 2, :discard)
         |> Enum.map(fn [start, stop] ->
-          {start.ident, start.start, stop.stop}
+          {start.ident || stop.ident || :FIXME, start.start, stop.stop}
         end)
         |> make_consecutive_videos_seamless()
         |> inspect(limit: :infinity, pretty: true)
@@ -68,14 +68,16 @@ defmodule Joiner.Pipeline do
       :stop ->
         Enum.reverse(selections)
 
-      candidates when is_list(candidates) ->
+      candidates when is_list(candidates) and length(candidates) > 0 ->
         {from, to} = select_candidate(candidates, opts)
         selections = [to, from | selections]
         selector(opts, selections)
 
       other ->
         Logger.error("Received unexpected message in selector thread: #{inspect(other)}")
-        selector(opts, selections)
+        from = %{ident: nil, stop: :FIXME}
+        to = %{ident: nil, start: :FIXME}
+        selector(opts, [to, from | selections])
     end
   end
 
