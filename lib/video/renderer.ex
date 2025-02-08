@@ -341,7 +341,7 @@ defmodule Video.Renderer do
       from = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_milliseconds(from)
       blur_frame_skip = blur_frame_skip(path, from)
 
-      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},#{prefix}#{vf(opts)}settb=AVTB[blur#{idx}]"
+      "[#{idx}]frei0r=jsonblur:#{detections}|#{blur_frame_skip},#{prefix}#{vf(opts)}settb=AVTB,setsar=1:1[blur#{idx}]"
     end)
   end
 
@@ -374,7 +374,7 @@ defmodule Video.Renderer do
     sources
     |> Enum.with_index()
     |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
-      "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB[blur#{idx}]"
+      "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB,setsar=1:1[blur#{idx}]"
     end)
   end
 
