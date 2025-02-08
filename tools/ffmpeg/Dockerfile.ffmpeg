@@ -8,6 +8,7 @@ ARG SVTAV1_VERSION=37a5609bcc20bbf40203b8c4736d906af1a259d3
 
 # ARG FFMPEG_VERSION=7.1
 ARG BLUR_VERSION=e5311fc5d58e1e56414f57285046cb26921e5f84
+ARG RIFE_VERSION=eb269eea16d9c53cf8a9c3762f61b76d67c39696
 
 RUN mkdir -p /downloads/
 
@@ -15,6 +16,7 @@ RUN  \
   apt-get update && \
   apt-get install -y --no-install-recommends \
   ca-certificates \
+  git \
   wget \
   && rm -rf /var/lib/apt/lists/*
 
@@ -32,7 +34,6 @@ RUN cd /downloads/ && \
   tar zxf frei0r-mixers.tar.gz && rm frei0r-mixers.tar.gz && mv *-frei0r-mixers ffmpeg
 
 
-
 RUN cd /downloads/ && \
   wget https://github.com/breunigs/frei0r-blur-from-json/archive/${BLUR_VERSION}.tar.gz && \
   tar zxf ${BLUR_VERSION}.tar.gz && rm ${BLUR_VERSION}.tar.gz && mv frei0r-blur-from-json-${BLUR_VERSION} blur
@@ -40,6 +41,12 @@ RUN cd /downloads/ && \
 RUN cd /downloads/ && \
   wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}.tar.gz && \
   tar zxf ${SVTAV1_VERSION}.tar.gz && rm ${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
+
+RUN cd /downloads/ && \
+  git clone https://github.com/breunigs/frei0r-rife-transition --recurse-submodules rife && \
+  cd rife && \
+  git reset --hard ${RIFE_VERSION}
+
 
 FROM debian:testing-slim AS blur
 WORKDIR /build/
@@ -59,6 +66,23 @@ RUN apt-get update \
 COPY --from=downloader /downloads/blur/ /build/.
 RUN cmake . && make
 
+FROM debian:testing-slim AS rife
+WORKDIR /build/
+
+RUN apt-get update \
+  && apt-get install --yes --no-install-recommends \
+  bash \
+  cmake \
+  frei0r-plugins-dev \
+  g++ \
+  git \
+  libvulkan-dev \
+  libwebp-dev \
+  make \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY --from=downloader /downloads/rife/ /build/.
+RUN ./build.sh
 
 FROM debian:testing-slim AS ffmpeg-build
 
@@ -160,6 +184,7 @@ RUN \
   libva2 \
   libvips42 \
   libvpx[0-9]+ \
+  libvulkan[0-9]+ \
   libwebp[0-9]+ \
   libwebpmux3 \
   libx264-[0-9]+ \
@@ -169,6 +194,7 @@ RUN \
 
 RUN mkdir -p /usr/lib/frei0r-1/
 COPY --from=blur /build/jsonblur.so /usr/lib/frei0r-1/
+COPY --from=rife /build/rife_transition.so /usr/lib/frei0r-1/
 COPY --from=ffmpeg-build /build/bin/ffmpeg /usr/bin/
 COPY --from=ffmpeg-build /build/lib/libSvtAv1Enc.* /lib/x86_64-linux-gnu/
 WORKDIR /workdir
