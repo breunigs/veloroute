@@ -24,7 +24,7 @@ defmodule Video.Renderer do
     filter =
       if start_from do
         start_from = "#{Video.Timestamp.in_milliseconds(start_from)}ms"
-        filter <> "[trim];[trim]trim=start=#{start_from}"
+        filter <> "[trim];[trim]trim=start=#{start_from},setpts=PTS-STARTPTS"
       else
         filter
       end
