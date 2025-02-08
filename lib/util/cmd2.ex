@@ -38,7 +38,11 @@ defmodule Util.Cmd2 do
     if length(opts) > 0, do: raise("Unknown arguments: #{inspect(opts)}")
 
     cli = Util.low_priority_cmd_prefix() ++ Enum.map(cli, &to_string/1)
-    status = exec_cmd2(cli, name, env, stdout, stderr, stdin, kill, slow_warn)
+    # run in extra thread because since Erlang/OTP 26 we receive messages from a
+    # GenServer, which is odd. It looks like a bug, but test case reduction
+    # exceeded a timebox, so workaround it is.
+    task = Task.async(fn -> exec_cmd2(cli, name, env, stdout, stderr, stdin, kill, slow_warn) end)
+    status = Task.await(task, :infinity)
     :io.setopts(:standard_io, encoding: :unicode)
 
     cond do
