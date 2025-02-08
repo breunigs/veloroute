@@ -247,7 +247,7 @@ defmodule Video.Generator do
         def recording_dates(), do: unquote(Macro.escape(recording_dates))
         @impl Video.Rendered
         # names derived from OpenStreetMap data, thus ODbL https://osmfoundation.org/wiki/Licence
-        def street_names(), do: unquote(street_names)
+        def street_names(), do: unquote(Macro.escape(street_names))
         @impl Video.Rendered
         def coords(), do: unquote(Macro.escape(coords))
         @impl Video.Rendered
