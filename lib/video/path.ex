@@ -4,6 +4,7 @@ defmodule Video.Path do
   @detections_suffix ".json.gz"
   @source_endings [
     ".MP4",
+    ".MP4_time_lapse.mkv",
     ".mkv",
     "_stabilized.complementary.MP4",
     "_stabilized.mahony.MP4",
