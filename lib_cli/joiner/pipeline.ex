@@ -68,6 +68,9 @@ defmodule Joiner.Pipeline do
       :stop ->
         Enum.reverse(selections)
 
+      [{:no_candidates, from, to}] ->
+        selector(opts, [to, from | selections])
+
       candidates when is_list(candidates) and length(candidates) > 0 ->
         {from, to} = select_candidate(candidates, opts)
         selections = [to, from | selections]
@@ -75,9 +78,7 @@ defmodule Joiner.Pipeline do
 
       other ->
         Logger.error("Received unexpected message in selector thread: #{inspect(other)}")
-        from = %{ident: nil, stop: :FIXME}
-        to = %{ident: nil, start: :FIXME}
-        selector(opts, [to, from | selections])
+        selector(opts, selections)
     end
   end
 
@@ -187,7 +188,7 @@ defmodule Joiner.Pipeline do
   end
 
   @spec find_candidates_pair([Joiner.Video.t()], Joiner.Options.t()) ::
-          [Joiner.Segment.t()]
+          [Joiner.Segment.t()] | [tuple()]
   def find_candidates_pair([v1, v2], opts) do
     # with preloaded videos, this should not fail
     {:ok, segment} = Joiner.Segment.new(v1, v2)
@@ -216,7 +217,20 @@ defmodule Joiner.Pipeline do
     # next segment is looked at. We therefore need to sort again.
     |> Enum.sort_by(& &1.metrics.weighted, :desc)
     |> remove_overlapping_segments()
+    |> maybe_set_fallback(segment)
   end
+
+  defp maybe_set_fallback([], segment) do
+    [
+      {
+        :no_candidates,
+        %{ident: segment.from.ident, stop: :FIXME},
+        %{ident: segment.to.ident, start: :FIXME}
+      }
+    ]
+  end
+
+  defp maybe_set_fallback(candidates, _seg), do: candidates
 
   defp inc_pbar_each(stream, id) do
     Stream.each(stream, fn _v -> Owl.ProgressBar.inc(id: id) end)
