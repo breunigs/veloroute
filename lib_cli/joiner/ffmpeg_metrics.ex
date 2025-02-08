@@ -41,7 +41,7 @@ defmodule Joiner.FfmpegMetrics do
     offsets
     |> Parallel.map(fn offset ->
       substart1 = Joiner.Video.offset_start_timestamp(video1, offset, :frames)
-      subframes1 = min(interval, frames1 - offset)
+      subframes1 = min(interval, max(1, frames1 - offset))
       ffmpeg({path1, substart1, subframes1}, v2, opts)
     end)
     |> Enum.reduce_while({:ok, []}, fn
@@ -55,7 +55,8 @@ defmodule Joiner.FfmpegMetrics do
     ffmpeg({path1, start1, frames1}, v2, opts)
   end
 
-  defp ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts) do
+  defp ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts)
+       when frames1 > 0 and frames2 > 0 do
     {mf, extra_frames} = metric_filters(opts)
 
     cmd =
