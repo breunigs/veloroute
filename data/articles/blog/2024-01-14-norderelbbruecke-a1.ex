@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.NorderelbbrueckeA1 do
   def stop(), do: ~d[2032]
 
   def type(), do: :intent
-  def tags(), do: ["FR5"]
+  def tags(), do: ["FR5", "radroute-21"]
 
   def links(_assigns) do
     [

@@ -36,7 +36,16 @@ config :veloroute, Settings, %{
       outline: ["article-areas bg outline", "article-areas bg outline dash"]
     },
     %{
-      name: "Alltagsrouten",
+      name: "Radrouten (ab 2025)",
+      route_group: :radroute,
+      active: false,
+      line: ["rr-line-off-p1", "rr-line-off-m1", "rr-line-off-none"],
+      icon: ["rr-oneway", "rr-sign"],
+      fill: [],
+      outline: []
+    },
+    %{
+      name: "Velorouten (vor 2024)",
       route_group: :alltag,
       active: true,
       line: ["vr-line-off-p1", "vr-line-off-m1", "vr-line-off-none"],

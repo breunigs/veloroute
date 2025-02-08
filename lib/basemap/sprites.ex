@@ -16,7 +16,7 @@ defmodule Basemap.Sprites do
 
     cond do
       missing_auto_gen != [] ->
-        {true, "missing these auto generated files: #{Enum.join(missing_auto_gen, ", ")}"}
+        {true, "missing these auto generated files: #{inspect(missing_auto_gen)}"}
 
       reason = Util.IO.stale_reason(target(:cache), [@icon_source]) ->
         {true, "icons: #{reason}"}
@@ -76,6 +76,8 @@ defmodule Basemap.Sprites do
     <svg viewBox="0 0 460.185 460.177" width="19.142" height="19.142" xmlns="http://www.w3.org/2000/svg"><circle style="opacity:1;fill:#{color};stroke:#fff;stroke-width:18.2788;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" cx="230.092" cy="230.088" r="220.953"/></svg>
     """
   end
+
+  defp generate_icon(:radroute, color), do: generate_icon(:alltag, color)
 
   defp generate_icon(:bezirk, "#" <> _rest = color) do
     # crest

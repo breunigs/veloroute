@@ -3,7 +3,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
 
   def id(), do: "11"
   def route_group(), do: :alltag
-  def title(), do: "Alltagsroute 11"
+  def title(), do: "Veloroute 11"
 
   def color(), do: "#00a0e2"
 
@@ -90,7 +90,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         renderer: 3,
         group: "11 Veddel",
         direction: :forward,
-        from: "Veddel",
+        from: "Wilhelmsburger Brücke",
         to: "Bürgerhaus Wilhelmsburg",
         parent_ref: __MODULE__,
         text: "von der Veddel zum Bürgerhaus Wilhelmsburg",
@@ -109,7 +109,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
         group: "11 Veddel",
         direction: :backward,
         from: "Bürgerhaus Wilhelmsburg",
-        to: "Veddel",
+        to: "Wilhelmsburger Brücke",
         parent_ref: __MODULE__,
         text: "vom Bürgerhaus Wilhelmsburg zur Veddel",
         historic: %{

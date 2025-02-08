@@ -72,7 +72,7 @@ defmodule Data.GeoJSONTest do
                      route_group: :alltag,
                      color: "#7d8b2f",
                      route_id: "1",
-                     title: "Alltagsroute 1"
+                     title: "Veloroute 1"
                    }
                  },
                  %{
@@ -81,7 +81,7 @@ defmodule Data.GeoJSONTest do
                      route_group: :alltag,
                      color: "#000000",
                      route_id: "1",
-                     title: "Alltagsroute 1"
+                     title: "Veloroute 1"
                    }
                  },
                  %{

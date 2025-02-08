@@ -3,7 +3,7 @@ defmodule Data.Article.Static.Alltagsroute1 do
 
   def id(), do: "1"
   def route_group(), do: :alltag
-  def title(), do: "Alltagsroute 1"
+  def title(), do: "Veloroute 1"
 
   def color(), do: "#7d8b2f"
 

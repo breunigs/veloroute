@@ -3070,6 +3070,34 @@
       }
     },
     {
+      "id": "rr-line-off-p1-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 6,
+      "filter": [
+        "all",
+        ["match", ["get", "offset"], [1], true, false],
+        ["match", ["get", "type"], ["radroute"], true, false],
+        ["match", ["get", "layer"], ["-1"], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-color": ["get", "color"],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-dasharray": [0, 1, 1],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+      }
+    },
+    {
       "id": "vr-line-off-m1-tunnel",
       "type": "line",
       "source": "merged",
@@ -3098,6 +3126,34 @@
       }
     },
     {
+      "id": "rr-line-off-m1-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        ["match", ["get", "offset"], [-1], true, false],
+        ["match", ["get", "type"], ["radroute"], true, false],
+        ["match", ["get", "layer"], ["-1"], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-color": ["get", "color"],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-dasharray": [1, 1],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+      }
+    },
+    {
       "id": "vr-line-off-none-tunnel",
       "type": "line",
       "source": "merged",
@@ -3123,6 +3179,34 @@
         ],
         "line-color": ["get", "color"],
         "line-opacity": 0.5
+      }
+    },
+    {
+      "id": "rr-line-off-none-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 6,
+      "filter": [
+        "all",
+        ["==", ["get", "offset"], 0],
+        ["==", ["get", "type"], "radroute"],
+        ["==", ["to-number", ["get", "overlap_index"]], 0],
+        ["match", ["get", "layer"], ["-1"], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-color": ["get", "color"],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
       }
     },
     {
@@ -3356,6 +3440,37 @@
       }
     },
     {
+      "id": "rr-line-off-p1",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "offset"], [1], true, false],
+        ["match", ["get", "type"], ["radroute"], true, false],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": {"type": "identity", "property": "color"},
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-dasharray": [0, 1, 1],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+      }
+    },
+    {
       "id": "vr-line-off-m1",
       "type": "line",
       "source": "merged",
@@ -3386,6 +3501,37 @@
       }
     },
     {
+      "id": "rr-line-off-m1",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "offset"], [-1], true, false],
+        ["match", ["get", "type"], ["radroute"], true, false],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": {"type": "identity", "property": "color"},
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-dasharray": [1, 1],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+      }
+    },
+    {
       "id": "vr-line-off-none",
       "type": "line",
       "source": "merged",
@@ -3413,6 +3559,37 @@
           19,
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ]
+      }
+    },
+    {
+      "id": "rr-line-off-none",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["==", ["get", "offset"], 0],
+        ["==", ["get", "type"], "radroute"],
+        ["==", ["to-number", ["get", "overlap_index"]], 0],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": {"type": "identity", "property": "color"},
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
       }
     },
     {
@@ -3640,6 +3817,61 @@
         "text-field": "",
         "text-font": [],
         "visibility": "visible",
+        "text-line-height": 1.2,
+        "icon-anchor": "center",
+        "text-padding": 4,
+        "icon-image": "triangle",
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "icon-optional": false,
+        "text-optional": true,
+        "icon-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14,
+          0.45,
+          16,
+          0.5,
+          19,
+          0.9
+        ]
+      },
+      "paint": {
+        "text-color": "#ffffff",
+        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
+      }
+    },
+    {
+      "id": "rr-oneway",
+      "type": "symbol",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["has", "oneway"],
+        [
+          "match",
+          ["get", "type"],
+          ["radroute", "detour", "planned"],
+          true,
+          false
+        ]
+      ],
+      "layout": {
+        "text-size": 25,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true,
+        "text-max-angle": 180,
+        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
+        "symbol-placement": "line",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "map",
+        "text-keep-upright": false,
+        "text-field": "",
+        "text-font": [],
+        "visibility": "none",
         "text-line-height": 1.2,
         "icon-anchor": "center",
         "text-padding": 4,
@@ -4294,6 +4526,46 @@
         "text-rotation-alignment": "viewport",
         "text-field": "{display_id}",
         "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-width": 1,
+        "text-color": "#ffffff",
+        "text-halo-color": "hsla(0, 0%, 0%, 0.5)",
+        "text-translate": [0, 0]
+      }
+    },
+    {
+      "id": "rr-sign",
+      "type": "symbol",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 9.5,
+      "filter": [
+        "all",
+        ["==", ["get", "type"], "radroute"],
+        ["!", ["has", "overlap_index"]],
+        ["==", ["get", "route_group"], "radroute"],
+        ["<", ["length", ["get", "display_id"]], 5]
+      ],
+      "layout": {
+        "text-size": ["-", 15, ["length", ["get", "display_id"]]],
+        "icon-image": "radroute_{color}",
+        "icon-rotation-alignment": "viewport",
+        "icon-text-fit-padding": [5, 10, 5, 10],
+        "text-max-angle": 360,
+        "symbol-spacing": 380,
+        "text-font": ["Open Sans Semi Bold"],
+        "symbol-placement": "line",
+        "text-offset": [
+          "match",
+          ["get", "route_id"],
+          ["10", "11", "12", "13", "14"],
+          ["literal", [-0.05, 0]],
+          ["literal", [0, 0]]
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-field": "{display_id}",
+        "visibility": "none"
       },
       "paint": {
         "text-halo-width": 1,

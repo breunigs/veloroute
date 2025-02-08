@@ -176,14 +176,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
       render_hook(view, "map-click", click_pos),
       "#videoRoute",
       "title",
-      "Du folgst: Alltagsroute 5 aus der Innenstadt nach Duvenstedt"
+      "Du folgst: Veloroute 5 aus der Innenstadt nach Duvenstedt"
     )
 
     assert_attribute(
       render_hook(view, "map-click", click_pos),
       "#videoRoute",
       "title",
-      "Du folgst: Alltagsroute 5 von Duvenstedt in die Innenstadt"
+      "Du folgst: Veloroute 5 von Duvenstedt in die Innenstadt"
     )
   end
 
@@ -209,7 +209,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     {:ok, view, _html} = live(conn, "/")
 
     html = render_hook(view, "map-click", %{article: "2018-10-13-3-paul-sorge-strasse"})
-    assert html =~ "Du folgst: Alltagsroute 3"
+    assert html =~ "Du folgst: Veloroute 3"
   end
 
   test "handles route click after article without route", %{conn: conn} do
@@ -224,7 +224,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
         zoom: 16
       })
 
-    assert html =~ "Du folgst: Alltagsroute 5"
+    assert html =~ "Du folgst: Veloroute 5"
   end
 
   test "handles article click after article without route", %{conn: conn} do
@@ -350,11 +350,11 @@ defmodule VelorouteWeb.LiveNavigationTest do
       })
 
     # article
-    assert html =~ ~s|<h3>Alltagsroute 10</h3>|
+    assert html =~ ~s|<h3>Veloroute 10</h3>|
     # video
-    assert html =~ ~s|Du folgst: Alltagsroute 10|
+    assert html =~ ~s|Du folgst: Veloroute 10|
     # layer selector
-    assert_layers(html, ~w(Artikel Alltagsrouten))
+    assert_layers(html, ~w(Artikel Velorouten))
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
@@ -393,20 +393,20 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do
     {:ok, view, html} = live(conn, "/article/2021-11-09-u-farmsen")
 
-    assert_layers(html, ~w(Artikel Alltagsrouten Bezirksrouten Freizeitrouten))
+    assert_layers(html, ~w(Artikel Bezirksrouten Freizeitrouten Velorouten))
 
     html =
       view
       |> element("a", "Wegbeziehung der Freizeitroute")
       |> render_click()
 
-    assert_layers(html, ~w(Artikel Alltagsrouten Bezirksrouten  Freizeitrouten))
+    assert_layers(html, ~w(Artikel Bezirksrouten Freizeitrouten Velorouten))
   end
 
   test "article without route group shows :alltag", %{conn: conn} do
     {:ok, _view, html} = live(conn, "/lexikon/kopenhagener-loesung")
 
-    assert_layers(html, ~w(Artikel Alltagsrouten))
+    assert_layers(html, ~w(Artikel Velorouten))
   end
 
   test "article without specific videos uses map og:image", %{conn: conn} do
