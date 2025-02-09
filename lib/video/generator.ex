@@ -37,7 +37,8 @@ defmodule Video.Generator do
 
   def get(module) when is_module(module), do: if(module.rendered?(), do: module, else: nil)
 
-  def get(%Video.Track{historic: hist}) when is_map(hist) and not is_map_key(hist, "") do
+  def get(%Video.Track{historic: hist})
+      when is_map(hist) and not is_map_key(hist, "") and map_size(hist) > 0 do
     {hash, _date} =
       Enum.reduce(hist, fn {hash, date}, {prev_hash, prev_date} ->
         if Data.RoughDate.compare(prev_date, date) == :gt,
