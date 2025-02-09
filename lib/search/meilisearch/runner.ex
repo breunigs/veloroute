@@ -54,7 +54,7 @@ defmodule Search.Meilisearch.Runner do
     db_path =
       Path.join(:code.priv_dir(:veloroute), "meilisearch-db-#{Search.Meilisearch.Exe.version()}")
 
-    :ok = File.mkdir_p(db_path)
+    create_db_path(db_path)
 
     state = %{
       debug: @debug_meilisearch_output && is_dev,
@@ -164,6 +164,20 @@ defmodule Search.Meilisearch.Runner do
   def handle_info(term, state) do
     Logger.warning("received unknown info: #{inspect(term)}")
     {:noreply, state}
+  end
+
+  defp create_db_path(db_path) do
+    case File.mkdir_p(db_path) do
+      :ok ->
+        :ok
+
+      err ->
+        msg = "failed to create DB path `#{db_path}`: #{inspect(err)}"
+
+        if Application.get_env(:veloroute, :env) == :prod,
+          do: raise(msg),
+          else: Logger.warning(msg)
+    end
   end
 
   defp outdated?(indexer, meili_index_meta)
