@@ -354,7 +354,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # video
     assert html =~ ~s|Du folgst: Veloroute 10|
     # layer selector
-    assert_layers(html, ~w(Artikel Velorouten))
+    assert_layers(html, ["Artikel", "Velorouten (vor 2024)"])
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
