@@ -8,7 +8,7 @@ ARG SVTAV1_VERSION=37a5609bcc20bbf40203b8c4736d906af1a259d3
 
 # ARG FFMPEG_VERSION=7.1
 ARG BLUR_VERSION=e5311fc5d58e1e56414f57285046cb26921e5f84
-ARG RIFE_VERSION=eb269eea16d9c53cf8a9c3762f61b76d67c39696
+ARG RIFE_VERSION=ed9e00781d0a9a727838437d6938afdbd49a8cbd
 
 RUN mkdir -p /downloads/
 
@@ -190,6 +190,7 @@ RUN \
   libx264-[0-9]+ \
   libx265-[0-9]+ \
   libzimg2 \
+  mesa-vulkan-drivers \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/lib/frei0r-1/
