@@ -13,6 +13,7 @@ defmodule Joiner.GpsTracks do
     if(s, do: [s | o], else: o)
     |> merge_overlaps(opts)
     |> Enum.reject(&(&1.duration_ms < opts.fade_duration_ms))
+    |> Enum.flat_map(&split_long_segments(&1, opts))
     |> Enum.sort_by(& &1.duration_ms, :desc)
   end
 
@@ -46,7 +47,8 @@ defmodule Joiner.GpsTracks do
     Enum.reduce(with_bearing(poly1), [], fn p1, matches ->
       Enum.reduce(with_bearing(poly2), matches, fn p2, matches ->
         # i.e. find all matching points
-        if within_dist?(p1, p2, opts) && within_bearing?(p1, p2, opts) do
+        if within_dist?(p1, p2, opts) && within_bearing?(p1, p2, opts) &&
+             valid_self_overlap?(segment, p1, p2, opts) do
           [{p1, p2} | matches]
         else
           matches
@@ -80,6 +82,29 @@ defmodule Joiner.GpsTracks do
       Joiner.Segment.set_from_to(segment, from, to)
     end)
   end
+
+  defp split_long_segments(segment, opts)
+
+  defp split_long_segments(%{duration_ms: dur} = seg, opts)
+       when dur < opts.geo_max_segment_length_ms,
+       do: [seg]
+
+  defp split_long_segments(segment, opts) do
+    with {:ok, f1, f2} <- Joiner.Video.split(segment.from),
+         {:ok, t1, t2} <- Joiner.Video.split(segment.to),
+         {:ok, s1} <- Joiner.Segment.new(f1, t1),
+         {:ok, s2} <- Joiner.Segment.new(f2, t2) do
+      Enum.flat_map([s1, s2], &split_long_segments(&1, opts))
+    else
+      {:error, _reason} -> segment
+    end
+  end
+
+  defp valid_self_overlap?(%{from: x, to: x}, p1, p2, opts) do
+    abs(p1.time_offset_ms - p2.time_offset_ms) > opts.geo_min_time_diff_self_join_ms
+  end
+
+  defp valid_self_overlap?(_segment, _p1, _p2, _opts), do: true
 
   @spec merge_overlaps([Joiner.Segment.t()], Joiner.Options.t()) :: [Joiner.Segment.t()]
   defp merge_overlaps(segments, opts, merged \\ [])

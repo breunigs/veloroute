@@ -11,6 +11,8 @@ defmodule Joiner.Options do
           fade_duration_ms: non_neg_integer(),
           geo_max_dist_m: float(),
           geo_max_bearing_deg: float(),
+          geo_min_time_diff_self_join_ms: non_neg_integer(),
+          geo_max_segment_length_ms: non_neg_integer(),
           visual_image_height: non_neg_integer(),
           visual_compare_metric: Joiner.FfmpegMetrics.metric(),
           visual_prune_below: float(),
@@ -29,6 +31,8 @@ defmodule Joiner.Options do
     :fade_duration_ms,
     :geo_max_dist_m,
     :geo_max_bearing_deg,
+    :geo_min_time_diff_self_join_ms,
+    :geo_max_segment_length_ms,
     :visual_image_height,
     :visual_compare_metric,
     :visual_prune_below,
@@ -59,6 +63,15 @@ defmodule Joiner.Options do
       # like a +. The lower, the more closely the tracks must share the same
       # direction.
       geo_max_bearing_deg: 25.0,
+      # How many milliseconds the track needs to be apart to be considered for
+      # self joins. Should be large enough so that the previous or next few
+      # frames are not considered to be overlapping, but short enough to not
+      # exclude "quick fixes" like a double U-turn.
+      geo_min_time_diff_self_join_ms: 10_000,
+      # How long a segment is allowed to be before being split up into multiple
+      # segments. This avoids a long segment comparing the start of video1 with
+      # the end of video2, even if those two are very far apart.
+      geo_max_segment_length_ms: 3_000,
 
       ### visual candidate search
       # To conserve computing power, videos will be downscaled to this size

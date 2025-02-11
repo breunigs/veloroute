@@ -58,6 +58,22 @@ defmodule Joiner.Video do
     %{v1 | start: start, stop: stop, polyline: polyline}
   end
 
+  @spec split(t()) :: {:ok, t(), t()} | {:error, binary()}
+  def split(video) when length(video.polyline) < 2, do: {:error, "polyline too short"}
+
+  def split(video) do
+    half = round(duration_ms(video) / 2 + video.start.time_offset_ms)
+    # TODO: reduce instead so "prev" is reversed?
+    {prev, next} = Enum.split_while(video.polyline, fn pt -> pt.time_offset_ms < half end)
+    mid = interpol(List.last(prev), hd(next), half)
+
+    {
+      :ok,
+      %{video | stop: mid, polyline: prev ++ [mid]},
+      %{video | start: mid, polyline: [mid | next]}
+    }
+  end
+
   @spec overlap?(t(), t()) :: boolean()
   def overlap?(v1, v2) when v1.source != v2.source, do: false
 
