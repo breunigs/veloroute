@@ -143,8 +143,8 @@ defmodule Video.Renderer do
   defp stacker(3), do: {960, 540, "xstack=inputs=3:layout=0_0|w0_0|0_h0"}
   defp stacker(4), do: {960, 540, "xstack=inputs=4:layout=0_0|w0_0|0_h0|w0_h0"}
   # 3x2 grid
-  defp stacker(5), do: {960, 540, "xstack=inputs=5:layout=0_0|w0_0|0_h0|w0_h0|w0+w1_0"}
-  defp stacker(6), do: {960, 540, "xstack=inputs=6:layout=0_0|w0_0|0_h0|w0_h0|w0+w1_0|w0+w1_h0"}
+  defp stacker(5), do: {960, 540, "xstack=inputs=5:layout=0_0|w0_0|w0+w1_0|0_h0|w0_h0"}
+  defp stacker(6), do: {960, 540, "xstack=inputs=6:layout=0_0|w0_0|w0+w1_0|0_h0|w0_h0|w0+w1_h0"}
   # 3x3 grid
   @row0_w3 "0_0|w0_0|w0+w1_0"
   @row1_w3 "0_h0|w0_h0|w0+w1_h0"
