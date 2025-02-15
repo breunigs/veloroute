@@ -1,6 +1,8 @@
 defmodule Joiner.Preview do
   require Logger
 
+  @type handle :: {binary(), binary()}
+
   def prepare() do
     if System.get_env("VELO_HOST_FFMPEG") != "1" do
       full_ref = {"preview video", Video.Renderer.ffmpeg_image()}
@@ -11,11 +13,12 @@ defmodule Joiner.Preview do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 
+  @spec start_render!([Joiner.Segment.t()], Joiner.Options.t()) :: handle()
   def start_render!(segments, opts) do
     dir = Temp.mkdir!(%{prefix: "veloroute_join_preview"})
     fade_s = Joiner.Options.fade_duration_s(opts)
 
-    {out_fifo, cmds} =
+    {out_file, cmds} =
       Enum.map(segments, fn seg ->
         {Joiner.Segment.video_path(seg, :from), Joiner.Segment.video_path(seg, :to),
          Joiner.Segment.stop_ms(seg, :from), Joiner.Segment.start_ms(seg, :to)}
@@ -29,19 +32,20 @@ defmodule Joiner.Preview do
       restart: :transient
     )
 
-    {out_fifo, dir}
+    {out_file, dir}
   end
 
-  def start_player!({out_fifo, dir}, title, custom_player) do
+  @spec start_player!(handle(), binary(), binary()) :: any()
+  def start_player!({out_file, _dir}, title, custom_player) do
     Logger.info("video preview – starting – #{title}")
 
     Task.Supervisor.start_child(
       __MODULE__,
       fn ->
         if custom_player do
-          "cat #{out_fifo} | #{custom_player}" |> String.to_charlist() |> :os.cmd() |> IO.puts()
+          "cat #{out_file} | #{custom_player}" |> String.to_charlist() |> :os.cmd() |> IO.puts()
         else
-          Util.default_player_cmd(title, out_fifo)
+          Util.default_player_cmd(title, out_file)
           |> Util.Cmd2.exec(stdout: "", stderr: "", slow_warn_message: false)
           |> Util.Cmd2.result_to_error()
           |> case do
@@ -50,14 +54,14 @@ defmodule Joiner.Preview do
           end
         end
 
-        stop({out_fifo, dir})
         Logger.info("video preview – stopped – #{title}")
       end,
       restart: :transient
     )
   end
 
-  def stop({_out_fifo, dir}) do
+  @spec stop(handle()) :: :ok
+  def stop({_out_file, dir}) do
     File.rm_rf(dir)
     stop()
   end
@@ -70,12 +74,12 @@ defmodule Joiner.Preview do
     end)
   end
 
-  defp create_fifos!({out_fifo, tmp_fifos, cmds}) do
-    Enum.each([out_fifo | tmp_fifos], fn fifo ->
+  defp create_fifos!({out_file, tmp_fifos, cmds}) do
+    Enum.each(tmp_fifos, fn fifo ->
       {_, 0} = System.cmd("mkfifo", [fifo])
     end)
 
-    {out_fifo, cmds}
+    {out_file, cmds}
   end
 
   defp start_render_tasks(cmds, dir, host_ffmpeg) do

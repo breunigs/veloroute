@@ -47,18 +47,17 @@ defmodule Joiner.UI do
 
   @spec input_with_preview(
           [Joiner.Segment.t()],
+          any(),
           Joiner.Options.t(),
           binary() | nil,
           binary() | nil
         ) ::
           pos_integer() | :none
-  def input_with_preview(segments, opts, title, custom_player) do
-    preview = Joiner.Preview.start_render!(segments, opts)
-
+  def input_with_preview(segments, preview, opts, title, custom_player) do
     case read_valid_input(length(segments)) do
       :preview ->
         Joiner.Preview.start_player!(preview, title, custom_player)
-        input_with_preview(segments, opts, title, custom_player)
+        input_with_preview(segments, preview, opts, title, custom_player)
 
       other ->
         Joiner.Preview.stop(preview)

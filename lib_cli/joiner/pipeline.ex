@@ -21,7 +21,6 @@ defmodule Joiner.Pipeline do
       |> Enum.chunk_every(2, 1, :discard)
       |> Stream.map(&find_candidates_pair(&1, opts))
       |> inc_pbar_each(pbar)
-      |> Stream.each(&Logger.debug("#{length(&1)} candidates remain for user selection"))
       |> Stream.map(&send(selector.pid, &1))
       |> Stream.run()
 
@@ -71,8 +70,8 @@ defmodule Joiner.Pipeline do
       [{:no_candidates, from, to}] ->
         selector(opts, [to, from | selections])
 
-      candidates when is_list(candidates) and length(candidates) > 0 ->
-        {from, to} = select_candidate(candidates, opts)
+      {candidates, preview} when is_list(candidates) and length(candidates) > 0 ->
+        {from, to} = select_candidate(candidates, preview, opts)
         selections = [to, from | selections]
         selector(opts, selections)
 
@@ -82,12 +81,12 @@ defmodule Joiner.Pipeline do
     end
   end
 
-  @spec select_candidate([Joiner.Segment.t()], Joiner.Options.t()) :: {
+  @spec select_candidate([Joiner.Segment.t()], Joiner.Preview.handle(), Joiner.Options.t()) :: {
           %{ident: binary(), stop: Video.Timestamp.t() | :end | :FIXME},
           %{ident: binary(), start: Video.Timestamp.t() | :start | :FIXME}
         }
 
-  defp select_candidate(candidates, opts) do
+  defp select_candidate(candidates, preview, opts) do
     {thead, tbody, tfoot} =
       candidates
       |> Enum.map(&Joiner.Segment.table_data(&1))
@@ -115,6 +114,7 @@ defmodule Joiner.Pipeline do
 
         Joiner.UI.input_with_preview(
           candidates,
+          preview,
           opts,
           video_player_title,
           opts.preview_player_custom
@@ -283,8 +283,14 @@ defmodule Joiner.Pipeline do
     # next segment is looked at. We therefore need to sort again.
     |> Enum.sort_by(& &1.metrics.weighted, :desc)
     |> remove_overlapping_segments()
+    |> with_preview(opts)
     |> maybe_set_fallback(segment)
   end
+
+  defp with_preview([], _opts), do: []
+
+  defp with_preview(candidates, opts),
+    do: {candidates, Joiner.Preview.start_render!(candidates, opts)}
 
   defp maybe_set_fallback([], segment) do
     [
