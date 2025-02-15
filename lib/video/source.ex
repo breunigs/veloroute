@@ -135,21 +135,42 @@ defmodule Video.Source do
   end
 
   # for some videos the absolute GPX timestamps do not match the video duration,
-  # therefore we just stretch them to fit.
+  # therefore we just stretch them to fit. For others we adjust by time_lapse.
   @spec maybe_stretch_to_video([Video.TimedPoint.t()], t()) :: [Video.TimedPoint.t()]
   defp maybe_stretch_to_video(timed_points, %__MODULE__{} = self) do
-    if String.ends_with?(self.source, ".mkv") || String.ends_with?(self.source, "_stabilized.MP4") do
-      IO.puts("stretching GPX for #{self.source}")
-      vid_len_ms = Video.Metadata.length_ms!(self)
-      gpx_len_ms = List.last(timed_points).time_offset_ms
+    {:ok, %{duration: video_len_s, time_lapse: time_lapse}} = Video.Metadata.for(self)
+    vid_len_ms = video_len_s * 1000
+    gpx_len_ms = List.last(timed_points).time_offset_ms
+    gpx_is_realtime = abs(gpx_len_ms / vid_len_ms - time_lapse) < 1.0
 
-      Enum.map(timed_points, fn pt ->
-        ratio = pt.time_offset_ms / gpx_len_ms
-        %{pt | time_offset_ms: round(vid_len_ms * ratio)}
-      end)
-    else
-      timed_points
+    cond do
+      String.ends_with?(self.source, ".mkv") ||
+          String.ends_with?(self.source, "_stabilized.MP4") ->
+        IO.puts("stretching GPX for #{self.source}")
+
+        Enum.map(timed_points, fn pt ->
+          ratio = pt.time_offset_ms / gpx_len_ms
+          %{pt | time_offset_ms: round(vid_len_ms * ratio)}
+        end)
+
+      gpx_is_realtime ->
+        Enum.map(timed_points, fn pt ->
+          %{pt | time_offset_ms: round(pt.time_offset_ms / time_lapse)}
+        end)
+
+      true ->
+        timed_points
     end
+    |> tap(fn tp ->
+      # assert that timed points match the *video* regardless of time lapse or
+      # other legacy/broken files
+      if abs(List.last(tp).time_offset_ms - vid_len_ms) > 5_000 &&
+           Application.get_env(:veloroute, :env) == :dev do
+        require IEx
+        IEx.pry()
+        raise "video and GPS don't match?"
+      end
+    end)
   end
 
   defp assert_monotonic_increase(line, %__MODULE__{source: source}) do

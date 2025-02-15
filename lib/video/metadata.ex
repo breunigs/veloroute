@@ -170,7 +170,7 @@ defmodule Video.Metadata do
       time_lapse =
         with %{"duration_ts" => dur_ts, "duration" => dur} <- indexed["gpmd"] do
           round(dur_ts / (String.to_float(dur) * 1000))
-        end
+        end || 1
 
       fps = Util.fraction_to_float(video["r_frame_rate"])
 
