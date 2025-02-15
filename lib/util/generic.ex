@@ -271,8 +271,13 @@ defmodule Util do
       "--framedrop=no",
       "--audio=no",
       "--keep-open=yes",
+      "--demuxer-seekable-cache=yes",
+      # backward seek
+      "--demuxer-max-back-bytes=100M",
+      # forward seek
       "--demuxer-max-bytes=10G",
       "--force-seekable=no",
+      "--osd-level=3",
       "--title=#{title}",
       path
     ]
