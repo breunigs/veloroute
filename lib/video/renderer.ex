@@ -526,7 +526,8 @@ defmodule Video.Renderer do
         # transition if needed. Duration is optimized to avoid ratio=0.0 or
         # ratio>=1.0 frames.
         fade_dur = fade + extra_fade + video.frame_s / 2.0
-        frei0r = "frei0r=filter_name=rife_transition:filter_params=#{fade_dur}"
+        # needs GPU, as CPU path in NCNN/RIFE is broken
+        frei0r = "frei0r=filter_name=rife_transition:filter_params=#{fade_dur}||0"
         # frei0r = frei0r <> "||0|1" # debug
         f_trans = if ts_prev, do: "#{pprev}#{prev}#{frei0r}#{join}"
 
