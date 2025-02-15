@@ -57,6 +57,52 @@ defmodule Video.Timestamp do
   end
 
   @doc """
+  Takes a human readable duration and returns it as a timestamp.
+
+    iex> Video.Timestamp.from_string_duration("1h32m23s500ms")
+    "01:32:23.500"
+
+    iex> Video.Timestamp.from_string_duration("10s")
+    "00:00:10.000"
+
+    iex> Video.Timestamp.from_string_duration("1250ms")
+    "00:00:01.250"
+
+    iex> Video.Timestamp.from_string_duration("invalid")
+    nil
+
+    iex> Video.Timestamp.from_string_duration("foo123s")
+    nil
+  """
+  @unit_to_ms %{
+    "ms" => 1,
+    "s" => 1000,
+    "m" => 60 * 1000,
+    "h" => 60 * 60 * 1000
+  }
+  @spec from_string_duration(binary()) :: t() | nil
+  def from_string_duration(duration) when is_binary(duration) do
+    duration
+    |> String.split(~r/ms|s|m|h/, include_captures: true, trim: true)
+    |> Enum.chunk_every(2)
+    |> Enum.reduce(0, fn
+      group, sum ->
+        with false <- is_nil(sum),
+             [val, unit] <- group,
+             conv <- @unit_to_ms[unit],
+             {int, ""} <- Integer.parse(val) do
+          sum + int * conv
+        else
+          _ -> nil
+        end
+    end)
+    |> case do
+      nil -> nil
+      ms -> from_milliseconds(ms)
+    end
+  end
+
+  @doc """
   Takes a duration in millisecond and returns it as an ffmpeg formatted timestamp
 
     iex> Video.Timestamp.from_milliseconds(1337)

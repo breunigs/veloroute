@@ -160,6 +160,7 @@ defmodule Joiner.Pipeline do
 
   @spec load([binary()]) :: {:ok, [Joiner.Video.t()]} | {:error, reason :: binary()}
   def load(videos) do
+    videos = parse_args(videos)
     pbar = "#{__MODULE__}.load"
 
     Owl.ProgressBar.start(
@@ -184,6 +185,71 @@ defmodule Joiner.Pipeline do
       {_videos, errors} ->
         errs = errors |> Enum.reverse() |> Enum.join("\n")
         {:error, "failed to load some videos:\n#{errs}"}
+    end
+  end
+
+  @doc """
+  Takes a list of videos or timestamps and groups them properly
+
+    iex> Joiner.Pipeline.parse_args(~w[foo/bar bar/baz])
+    [
+      {"foo/bar", :start, :end},
+      {"bar/baz", :start, :end}
+    ]
+
+    iex> Joiner.Pipeline.parse_args(~w[foo/bar 3s 00:00:05.000 bar/baz start 99s])
+    [
+      {"foo/bar", "00:00:03.000", "00:00:05.000"},
+      {"bar/baz", :start, "00:01:39.000"}
+    ]
+
+    iex> Joiner.Pipeline.parse_args(~w[])
+    []
+
+    iex> {:error, reason} = Joiner.Pipeline.parse_args(~w[foo/bar 1s 2s 3s])
+    iex> String.contains?(reason, "too many")
+    true
+  """
+  @spec parse_args([binary()]) ::
+          [
+            {binary(), :start | Video.Timestamp.t(), :end | Video.Timestamp.t()}
+          ]
+          | {:error, reason :: binary()}
+  def parse_args([first | rest]) do
+    Enum.reduce(rest, [[first]], fn v_or_ts, [prev | rest] ->
+      case parse_ts(v_or_ts) do
+        nil -> [[v_or_ts], prev | rest]
+        ts -> [[ts | prev] | rest]
+      end
+    end)
+    |> Enum.reduce_while([], fn
+      [video], list ->
+        {:cont, [{video, :start, :end} | list]}
+
+      [start, video], list ->
+        {:cont, [{video, start, :end} | list]}
+
+      [stop, start, video], list ->
+        {:cont, [{video, start, stop} | list]}
+
+      other, _list ->
+        {:halt, {:error, "found too many timestamps for video: #{inspect(Enum.reverse(other))}"}}
+    end)
+  end
+
+  def parse_args([]), do: []
+
+  def parse_ts("start"), do: :start
+  def parse_ts("seamless"), do: :start
+  def parse_ts("00:00:00.000"), do: :start
+  def parse_ts("0s"), do: :start
+  def parse_ts("end"), do: :end
+
+  def parse_ts(ts) do
+    if Video.Timestamp.valid?(ts) do
+      ts
+    else
+      Video.Timestamp.from_string_duration(ts)
     end
   end
 

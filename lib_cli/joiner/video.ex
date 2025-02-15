@@ -11,8 +11,10 @@ defmodule Joiner.Video do
   @enforce_keys [:ident, :source, :meta, :polyline, :start, :stop]
   defstruct @enforce_keys
 
-  @spec load(binary()) :: {:ok, t()} | {:error, binary()}
-  def load(ident_or_path) do
+  @type input :: {binary(), :start | Video.Timestamp.t(), :end, Video.Timestamp.t()} | binary()
+
+  @spec load(input() | {:error, binary()}) :: {:ok, t()} | {:error, binary()}
+  def load({ident_or_path, start, stop}) do
     path = Video.Path.source(ident_or_path)
 
     with %Video.Source{} = source <- Video.Source.new_from_path(path),
@@ -20,17 +22,30 @@ defmodule Joiner.Video do
          polyline when is_list(polyline) <- Video.Source.timed_points_with_gpx(source) do
       polyline = match_video_length(polyline, meta)
 
-      {:ok,
-       %__MODULE__{
-         ident: ident_or_path,
-         source: source,
-         meta: meta,
-         polyline: polyline,
-         start: hd(polyline),
-         stop: List.last(polyline)
-       }}
+      video = %__MODULE__{
+        ident: ident_or_path,
+        source: source,
+        meta: meta,
+        polyline: polyline,
+        start: hd(polyline),
+        stop: List.last(polyline)
+      }
+
+      # stop point first to avoid having to do arithmetic
+      video = set_duration(video, ts_to_ms(stop), :milliseconds)
+      video = advance_start(video, ts_to_ms(start), :milliseconds)
+
+      {:ok, video}
     end
   end
+
+  def load({:error, reason}), do: {:error, reason}
+
+  def load(ident_or_path) when is_binary(ident_or_path), do: load({ident_or_path, :start, :stop})
+
+  defp ts_to_ms(:start), do: 0
+  defp ts_to_ms(:end), do: :end
+  defp ts_to_ms(ts), do: Video.Timestamp.in_milliseconds(ts)
 
   defp match_video_length(polyline, meta) do
     mod = hd(polyline).__struct__
@@ -113,7 +128,7 @@ defmodule Joiner.Video do
   @spec advance_start(t(), non_neg_integer(), :frames | :milliseconds) :: t()
   def advance_start(video, value, unit)
 
-  def advance_start(video, 0, :frames), do: video
+  def advance_start(video, 0, _unit), do: video
 
   def advance_start(video, frames, :frames) when is_integer(frames) and frames > 0 do
     ms = Video.Metadata.frame_duration_ms(video.meta, frames)
@@ -144,8 +159,10 @@ defmodule Joiner.Video do
   Move the "stop" point to match the duration from the start point. It shortens
   the polyline as needed.
   """
-  @spec set_duration(t(), number(), atom()) :: t()
+  @spec set_duration(t(), number() | :end, :frames | :milliseconds) :: t()
   def set_duration(video, value, units)
+
+  def set_duration(video, :end, _unit), do: video
 
   def set_duration(video, frames, :frames) do
     ms = Video.Metadata.frame_duration_ms(video.meta, frames)
