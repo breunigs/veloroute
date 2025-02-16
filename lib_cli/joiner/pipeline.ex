@@ -42,6 +42,9 @@ defmodule Joiner.Pipeline do
 
       Owl.LiveScreen.update(:selector, result)
       Owl.IO.puts(result)
+    else
+      {:error, reason} ->
+        Owl.IO.puts("failed to load videos: #{reason}")
     end
 
     Owl.LiveScreen.await_render()
