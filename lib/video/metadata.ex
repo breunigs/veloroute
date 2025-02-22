@@ -204,7 +204,11 @@ defmodule Video.Metadata do
     |> Enum.sort()
     |> Enum.map(&apply(Video.Constants, &1, []))
 
-  @json_path "data/cache/video_metadata_#{Enum.join(parameters, "_")}.json"
+  hash =
+    :crypto.hash(:md5, Enum.join(parameters, " "))
+    |> Base.encode16(case: :lower)
+
+  @json_path "data/cache/video_metadata_#{hash}.json"
   @spec read_json() :: state()
   def read_json() do
     try do
@@ -217,7 +221,12 @@ defmodule Video.Metadata do
         {key, {:ok, struct!(__MODULE__, struct)}}
       end)
     rescue
-      _ -> %{}
+      File.Error ->
+        write_json(%{})
+
+      err ->
+        IO.warn("failed to read video metadata JSON: #{inspect(err)}")
+        write_json(%{})
     end
   end
 
