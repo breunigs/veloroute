@@ -163,7 +163,8 @@ defmodule Video.Metadata do
     name = "metadata for " <> name
 
     with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
-         {:ok, %{"streams" => streams, "format" => format}} <- JSON.decode(out) do
+         {:ok, %{"streams" => streams, "format" => format}} <- JSON.decode(out),
+         {:format, %{"duration" => duration}} <- {:format, format} do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
       video = indexed["hvc1"] || indexed["FFV1"] || indexed["av01"] || hd(streams)
 
@@ -183,15 +184,16 @@ defmodule Video.Metadata do
        %__MODULE__{
          fps: fps,
          time_base: Util.fraction_to_float(video["time_base"]),
-         duration: String.to_float(format["duration"]),
+         duration: String.to_float(duration),
          time_lapse: time_lapse,
          # due to FPS differences, we might need to speed up the video more/less
          pts_correction: time_lapse_change / fps_change
        }}
     else
       %{result: result} -> result
+      {:format, format} -> {:error, "Missing metadata. Got: #{inspect(format)} @ #{video_path}"}
       {:error, reason} -> {:error, reason}
-      {:ok, decode} -> {:error, "Unexpected ffprobe JSON: #{inspect(decode)}"}
+      {:ok, decode} -> {:error, "Unexpected ffprobe JSON: #{inspect(decode)} @ #{video_path}"}
     end
   end
 
