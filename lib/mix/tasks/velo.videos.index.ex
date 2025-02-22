@@ -12,32 +12,33 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   defp real_run() do
     IO.puts("Finding videos…")
     current_year = Date.utc_today().year
+    exist = Path.wildcard(osm_index_path("*"))
 
     Settings.r(:video_source_dir_abs)
-    |> Video.Source.new_from_folder()
-    |> Enum.reduce({%{}, %{}, %{}}, fn video, {ids, tracks, exists} ->
-      case video do
-        %{available_gpx: false, name: source} ->
-          IO.puts("skipping #{source} as it doesn't have a GPX file")
-          {ids, tracks}
+    |> Video.Source.new_from_folder(fn folder ->
+      year = folder |> Path.basename() |> String.slice(0, 4)
 
-        %{date: %{year: year}} ->
-          exists = Map.put_new_lazy(exists, year, fn -> File.exists?(osm_index_path(year)) end)
-
-          if !exists[year] || year == current_year do
-            ids = Map.update(ids, year, -1, fn prev -> prev - @max_ids_per_single_track end)
-            task = named_track_segments_task(video, ids[year])
-            tracks = Map.update(tracks, year, [task], fn list -> [task | list] end)
-
-            {ids, tracks, exists}
-          else
-            {ids, tracks, exists}
-          end
+      with {year, ""} <- Integer.parse(year) do
+        year == current_year || !(osm_index_path(year) in exist)
+      else
+        _ -> true
       end
     end)
-    |> elem(1)
-    |> Enum.each(fn {year, tasks} ->
-      osm = tasks |> join_tasks() |> wrap()
+    |> Enum.filter(fn %{available_gpx: has_gpx, source: source} ->
+      if !has_gpx, do: IO.puts("skipping #{source} as it doesn't have a GPX file")
+      has_gpx
+    end)
+    |> Enum.group_by(fn %{date: %{year: year}} -> year end)
+    |> Enum.reject(fn {year, _sources} ->
+      year != current_year && osm_index_path(year) in exist
+    end)
+    |> Enum.each(fn {year, sources} ->
+      osm =
+        sources
+        |> named_track_segments_parallel()
+        |> Enum.map(&elem(&1, 1))
+        |> wrap()
+
       :ok = File.write(osm_index_path(year), osm)
       IO.puts("Wrote #{osm_index_path(year)}")
     end)
@@ -53,16 +54,20 @@ defmodule Mix.Tasks.Velo.Videos.Index do
     |> String.trim()
   end
 
-  defp join_tasks(list) when is_list(list) do
-    Enum.map_join(list, "\n\n", &Task.await(&1, :infinity))
-  end
-
-  defp named_track_segments_task(x, base_osm_id) do
-    Task.async(fn ->
-      res = named_track_segments(x, base_osm_id)
-      IO.write(~c".")
-      res
-    end)
+  defp named_track_segments_parallel(sources) do
+    sources
+    |> Enum.with_index()
+    |> Task.async_stream(
+      fn {source, idx} ->
+        base_osm_id = -1 * (idx + 1) * @max_ids_per_single_track
+        osm = named_track_segments(source, base_osm_id)
+        IO.write(~c".")
+        osm
+      end,
+      timeout: :infinity,
+      ordered: false,
+      max_concurrency: 3
+    )
   end
 
   defp named_track_segments(%Video.Source{} = source, base_osm_id) do

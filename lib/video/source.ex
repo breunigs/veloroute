@@ -39,12 +39,12 @@ defmodule Video.Source do
       )
   end
 
-  @spec new_from_folder(binary) :: list(t())
+  @spec new_from_folder(binary, Util.IO.descent_folder()) :: list(t())
   @doc """
   Recursively finds all valid source videos within the given folder
   """
-  def new_from_folder(source_folder) do
-    all_files = Util.IO.tree(source_folder) |> MapSet.new()
+  def new_from_folder(source_folder, descent_folder_fn \\ nil) do
+    all_files = Util.IO.tree(source_folder, descent_folder_fn) |> MapSet.new()
 
     all_files
     |> Parallel.map(&new_from_path(&1, all_files))

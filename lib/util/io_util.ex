@@ -21,11 +21,15 @@ defmodule Util.IO do
   Takes a path and recursively list all files, returning the list with paths
   including the given path as a prefix. Symlinks, devices, etc. are not being
   followed.
+
+  May pass a descent_folder/1 which receives the path of a folder, and must
+  return true if the folder should be scanned.
   """
-  @spec tree(binary()) :: [binary()]
-  def tree(path) do
+  @type descent_folder :: (binary() -> boolean()) | nil
+  @spec tree(binary(), descent_folder) :: [binary()]
+  def tree(path, descent_folder_fn \\ nil) do
     path
-    |> recurse_files()
+    |> recurse_files(descent_folder_fn)
     |> case do
       list when is_list(list) -> list
       mapset -> MapSet.to_list(mapset)
@@ -172,16 +176,19 @@ defmodule Util.IO do
       else: [path]
   end
 
-  defp recurse_files(path) do
+  defp recurse_files(path, descent_folder_fn) do
     case File.stat(path) do
       {:ok, %{type: :directory}} ->
-        case File.ls(path) do
-          {:ok, list} ->
-            list
-            |> Enum.map(&Path.join(path, &1))
-            |> Enum.reduce(MapSet.new(), fn item, files ->
-              merge(files, recurse_files(item))
-            end)
+        with true <- !descent_folder_fn || descent_folder_fn.(path),
+             {:ok, list} <- File.ls(path) do
+          list
+          |> Enum.map(&Path.join(path, &1))
+          |> Enum.reduce(MapSet.new(), fn item, files ->
+            merge(files, recurse_files(item, descent_folder_fn))
+          end)
+        else
+          false ->
+            []
 
           {:error, reason} ->
             IO.warn("Failed to read #{path}: #{reason}")
