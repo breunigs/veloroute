@@ -279,7 +279,10 @@ function pingShow(e) {
     for (const [layer, [field, substrSearch]] of pingLayers) {
       const names = e.detail.name.split(/,\s*| & | und |\s*\/\s*/)
       const filterExact = ['in', ['get', field], ["literal", names]]
-      const filterSubstr = ['in', `|${names[0]}|`, ['get', field]]
+      const filterSubstr = [
+        "any",
+        ...names.map(name => ['in', `|${name}|`, ['get', field]])
+      ]
       const filter = substrSearch ? filterSubstr : filterExact
       map.setFilter(layer, filter)
       map.setLayoutProperty(layer, 'visibility', 'visible')
