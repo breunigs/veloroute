@@ -1,16 +1,17 @@
 defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
   use Article.Default
 
-  def title(), do: "Kreuzung Spanische Furt mit Holsteiner Chaussee (Alltagsroute 14)"
+  def title(), do: "Kreuzung Spanische Furt mit Holsteiner Chaussee (Radroute 19)"
 
   def summary(),
     do:
       "Radverkehr und Fahrgastbereich der Bushaltestellen werden entzerrt. Nach Norden Radweg rechts des Bushalts, nach Süden zwischen wartendem Bus und KFZ-Fahrbahn."
 
-  def start(), do: ~d[2024]
-  def stop(), do: ~d[2024]
+  def start(), do: ~d[2025-03-03]
+  def stop(), do: ~d[2025-11-14]
+  def construction_site_id_hh(), do: [1_243_487]
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["radroute-19", "14"]
 
   def links(assigns) do

@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
   def created_at(), do: ~D[2018-12-17]
   def updated_at(), do: ~D[2022-03-31]
 
-  def title(), do: "Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Veloroute 1 und 13)"
+  def title(), do: "Max-Brauer-Allee (Busbahnhof bis Holstenstraße, Radrouten 7 und 14)"
 
   def summary(),
     do:

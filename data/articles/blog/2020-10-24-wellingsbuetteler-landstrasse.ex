@@ -35,8 +35,16 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def links(_assigns) do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
+      {"Baustelleninfo", ~d[2025-02],
+       "https://lsbg.hamburg.de/resource/blob/1023080/141a6e5497d1109e883844037a2f3f86/wellingsbuettler-weg-anliegerinformation-februar-2025-data.pdf"},
+      {"Baustelleninfo", ~d[2024-07],
+       "https://lsbg.hamburg.de/resource/blob/931050/e96198ba0f5bd5b6b2c68c4af1036a01/wellingsbuetteler-landstrasse-anliegerinformation-juli-2024-data.pdf"},
       {"Zeitungsartikel zum Umbaustart", ~d[2024-07],
        "https://www.abendblatt.de/hamburg/hamburg-nord/article406718077/bauarbeiten-starten-wellingsbuetteler-landstrasse-wird-gesperrt-01.html"},
+      {"Änderungen Vorplatz U-Klein Borstel – Bericht", ~d[2024-02],
+       "https://lsbg.hamburg.de/resource/blob/1022040/e3bb7fcad2a76c152cbe64b59dd88dec/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-nachtrag-bericht-data.pdf"},
+      {"Änderungen Vorplatz U-Klein Borstel – Karte", ~d[2024-02],
+       "https://lsbg.hamburg.de/resource/blob/1022046/d1b768a5626cf3efe77497c2d73aed39/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-nachtrag-plan-data.pdf"},
       {"Erläuterungsbericht (4. Entwurf/fertige Planung)", "September 2023",
        "https://lsbg.hamburg.de/resource/blob/783748/b26121b66aba18998129ae9554a2938f/wellingsbuetteler-landstrasse-fuhlsbuettler-strasse-bis-borstels-ende-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne (4. Entwurf/fertige Planung)", "September 2023",

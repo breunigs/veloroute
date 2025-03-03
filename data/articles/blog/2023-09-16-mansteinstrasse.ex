@@ -7,10 +7,11 @@ defmodule Data.Article.Blog.Mansteinstrasse do
     do:
       "Tempo-30, mehr Abstellmöglichkeiten für Fahrräder und Querungsmöglichkeiten der Straßenseite"
 
-  def type(), do: :planned
+  def type(), do: :construction
 
-  def start(), do: ~d[2024-07]
-  def stop(), do: ~d[2025Q2]
+  def start(), do: ~d[2025-03-03]
+  def stop(), do: ~d[2025-09-30]
+  def construction_site_id_hh(), do: [1_302_757]
 
   def tags(), do: ["3", "13"]
 

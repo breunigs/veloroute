@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.AbrissCityHof do
 
   def updated_at(), do: ~D[2023-10-14]
 
-  def title(), do: "Johann-Kontor am Klosterwall (Veloroute 9)"
+  def title(), do: "Johann-Kontor am Klosterwall (Radroute 2, 1. Grüner Ring)"
 
   def summary(),
     do: "2,5m breiter Hochbordradweg nach Fertigstellung des neuen Klosterwall Quartiers"
@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.AbrissCityHof do
   def stop(), do: ~d[2024-08-18]
   # def construction_site_id_hh(), do: [113_099, 379_418]
 
-  def tags(), do: ["radroute-2", "9"]
+  def tags(), do: ["radroute-2", "9", "1GR"]
 
   def links(_assigns) do
     [

@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def created_at(), do: ~D[2019-12-18]
 
-  def title(), do: "Berlinertordammbrücke (Veloroute 8)"
+  def title(), do: "Berlinertordammbrücke (Radrouten 1, 9 und 12, sowie Freizeitroute 4)"
 
   def start(), do: ~d[2023]
   def stop(), do: ~d[2028]
@@ -16,8 +16,10 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", "Juli 2024",
-       "https://lsbg.hamburg.de/resource/blob/934028/f6f512412612c8bdabb05e1af6712959/berlinertordammbruecke-anliegerinformation-juli-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2025-01],
+       "https://lsbg.hamburg.de/resource/blob/1011852/e8e62a9d1918d5828a3ee4858da7ebc0/berlinertordammbruecke-anliegerinformation-januar-2025-data.pdf"},
+      # {"Baustelleninfo", "Juli 2024",
+      #  "https://lsbg.hamburg.de/resource/blob/934028/f6f512412612c8bdabb05e1af6712959/berlinertordammbruecke-anliegerinformation-juli-2024-data.pdf"},
       {"Pressemitteilung zum Baustart", "März 2024",
        "https://web.archive.org/web/20240501114605/https://www.hamburg.de/bvm/medien/18353678/2024-03-13-bvm-berlinertordammbruecke/"},
       {"Pressemitteilung zu vorbereitenden Arbeiten", "Januar 2024",

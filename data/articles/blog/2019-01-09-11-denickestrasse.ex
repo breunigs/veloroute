@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   def name(), do: "#{created_at()}-11-denickestrasse"
   def created_at(), do: ~D[2019-01-09]
 
-  def title(), do: "Am Irrgarten bis Denickestraße (Veloroute 11)"
+  def title(), do: "Am Irrgarten bis Denickestraße (Radroute 13)"
 
   def summary(),
     do:

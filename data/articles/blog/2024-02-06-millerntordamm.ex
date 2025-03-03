@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Millerntordamm do
   use Article.Default
 
-  def title(), do: "Millerntordamm"
+  def title(), do: "Millerntordamm (Radroute 1)"
 
   def summary(),
     do: "Hochbordradweg wird meist auf Kosten der Fußwege auf 2,0m verbreitert"
@@ -9,16 +9,6 @@ defmodule Data.Article.Blog.Millerntordamm do
   def type(), do: :finished
 
   def tags(), do: ["radroute-1", "bundesstraße-4"]
-
-  @tracks Data.Article.Blog.Reeperbahn.tracks()
-  @forward @tracks
-           |> Enum.find(fn track -> track.direction == :forward end)
-           |> Map.replace!(:text, "Millerntordamm (→ Michel)")
-  @backward @tracks
-            |> Enum.find(fn track -> track.direction == :backward end)
-            |> Map.replace!(:text, "Millerntordamm (→ Heiligengeistfeld)")
-
-  def tracks(), do: [@forward, @backward]
 
   def links(_assigns) do
     [

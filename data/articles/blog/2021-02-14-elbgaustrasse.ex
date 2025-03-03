@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
   def created_at(), do: ~D[2021-02-14]
   def updated_at(), do: ~D[2023-06-23]
 
-  def title(), do: "Elbgaustraße (Veloroute 14)"
+  def title(), do: "Elbgaustraße (Radroute 18)"
 
   def summary(),
     do:

@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.TilsiterStrasse2 do
   def created_at(), do: ~D[2022-05-14]
   def updated_at(), do: ~D[2023-11-27]
 
-  def title(), do: "Tilsiter Straße (Ost, ab Voßkulenweg, Veloroute 6)"
+  def title(), do: "Tilsiter Straße (Ost, ab Voßkulenweg, Radroute 6)"
   def summary(), do: "Beidseitig Schutzstreifen geplant."
 
   def type(), do: :planned

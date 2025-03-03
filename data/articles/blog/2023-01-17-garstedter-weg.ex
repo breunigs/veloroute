@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.GarstedterWeg do
   use Article.Default
 
   def title(),
-    do: "Garstedter Weg (Alltagsroute 14)"
+    do: "Garstedter Weg (Radroute 19)"
 
   def summary(),
     do:

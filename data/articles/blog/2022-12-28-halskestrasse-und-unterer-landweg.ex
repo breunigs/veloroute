@@ -2,15 +2,15 @@ defmodule Data.Article.Blog.HalskestrasseUndUntererLandweg do
   use Article.Default
 
   def title(),
-    do: "Halskestraße und Unterer Landweg (Veloroute 9 / RSW Geesthacht)"
+    do: "Halskestraße und Unterer Landweg (Radroute 2 / Radroute 20 / RSW Geesthacht)"
 
   def summary(),
     do:
       "Mindestens 3,60m breiter Zweirichtungsradweg in der Halskestraße bis zur Eisenbahnbrücke Unterer Landweg. Verbreiterung Rampe/Unterführung am S-Bahnhof Billwerder-Moorfleet."
 
   def start(), do: ~d[2023-04-17]
-  def stop(), do: ~d[2025-04-30]
-  def construction_site_id_hh(), do: [367_780, 607_122, 637_612]
+  def stop(), do: ~d[2025-06-30]
+  def construction_site_id_hh(), do: [367_780, 607_122, 637_612, 1_328_788]
 
   def type(), do: :construction
   def tags(), do: ["radroute-20", "radroute-2", "9", "rsw-geesthacht", "M11.3"]

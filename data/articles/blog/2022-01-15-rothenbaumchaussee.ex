@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
   use Article.Default
 
   def created_at(), do: ~D[2022-01-15]
-  def title(), do: "Rothenbaumchaussee"
+  def title(), do: "Rothenbaumchaussee (Radroute 14)"
 
   # def start(), do: ~d[2022-07-18]
   # def stop(), do: ~d[2023-06-30]

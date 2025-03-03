@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.SbahnPulverhof do
 
   def created_at(), do: ~D[2020-12-08]
 
-  def title(), do: "Unterführung künftige S-Bahn-Station „Pulverhof“ (Veloroute 14)"
+  def title(), do: "Unterführung künftige S-Bahn-Station „Pulverhof“ (Radroute 20)"
 
   def type(), do: :planned
 

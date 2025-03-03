@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.BeimSchlump do
   use Article.Default
 
-  def title(), do: "Beim Schlump (Freizeitroute 10)"
+  def title(), do: "Beim Schlump (Radrouten 2, 3 und 14, sowie Freizeitroute 10)"
 
   def summary(),
     do:

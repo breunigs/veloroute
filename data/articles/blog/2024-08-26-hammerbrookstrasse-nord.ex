@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.HammerbrookstrasseNord do
   use Article.Default
 
-  def title(), do: "Hammerbrookstraße – Nord (Radroute 8, Freizeitroute 4)"
+  def title(), do: "Hammerbrookstraße – Nord (Radroute 1, Freizeitroute 4)"
 
   def summary(),
     do:

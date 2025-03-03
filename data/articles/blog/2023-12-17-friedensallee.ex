@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Friedensallee do
 
   def type(), do: :construction
 
-  def tags(), do: ["radroute-7"]
+  def tags(), do: ["radroute-7", "A03"]
 
   def tracks(),
     do: [

@@ -2,7 +2,8 @@ defmodule Data.Article.Blog.KellinghusenstrasseNord do
   use Article.Default
 
   def title(),
-    do: "Kellinghusenstraße – Schrammsweg bis Winterhuder Brücke (Bezirksroute Nord N6)"
+    do:
+      "Kellinghusenstraße – Schrammsweg bis Winterhuder Brücke (Radroute 16, Bezirksroute Nord N6)"
 
   def summary(),
     do:

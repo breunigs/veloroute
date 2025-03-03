@@ -1,7 +1,8 @@
 defmodule Data.Article.Blog.BudapesterStrasse2 do
   use Article.Default
 
-  def title(), do: "Budapester Straße (Glacischaussee bis Clemens-Schultz-Straße)"
+  def title(),
+    do: "Budapester Straße (Glacischaussee bis Clemens-Schultz-Straße, Radroute 1 und 15)"
 
   def summary(),
     do:

@@ -37964,7 +37964,7 @@
     <tag k='name' v='2021-07-07-u-horner-rennbahn' />
     <tag k='type' v='detour' />
   </way>
-  <way id='-20435041'>
+  <way id='-20435041' action='modify'>
     <nd ref='-143580480' />
     <nd ref='-143580486' />
     <nd ref='-143580481' />
@@ -37973,6 +37973,7 @@
     <nd ref='-143580484' />
     <nd ref='-143580485' />
     <nd ref='-143580480' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-07-07-u-horner-rennbahn' />
     <tag k='type' v='article' />
   </way>
@@ -65243,7 +65244,7 @@
     <tag k='name' v='2023-11-26-schlossstrasse-matthias-claudius-gymnasium' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20436812'>
+  <way id='-20436812' action='modify'>
     <nd ref='-143600673' />
     <nd ref='-143600674' />
     <nd ref='-143600675' />
@@ -65252,6 +65253,7 @@
     <nd ref='-143600678' />
     <nd ref='-143600679' />
     <nd ref='-143600673' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2023-12-16-burgstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -65684,7 +65686,7 @@
     <tag k='name' v='2024-01-24-an-der-alster-alsterseite' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20436839'>
+  <way id='-20436839' action='modify'>
     <nd ref='-143600957' />
     <nd ref='-143600958' />
     <nd ref='-143600959' />
@@ -65692,10 +65694,11 @@
     <nd ref='-143600961' />
     <nd ref='-143600962' />
     <nd ref='-143600957' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2024-02-06-millerntordamm' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20436840'>
+  <way id='-20436840' action='modify'>
     <nd ref='-143600963' />
     <nd ref='-143600964' />
     <nd ref='-143600965' />
@@ -65710,6 +65713,7 @@
     <nd ref='-143600974' />
     <nd ref='-143600975' />
     <nd ref='-143600963' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2024-02-06-millerntordamm' />
     <tag k='type' v='article' />
   </way>

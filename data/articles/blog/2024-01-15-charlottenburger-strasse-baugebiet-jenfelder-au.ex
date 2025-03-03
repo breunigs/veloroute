@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.CharlottenburgerStrasseBaugebietJenfelderAu do
   use Article.Default
 
-  def title(), do: "Charlottenburger Straße am Baugebiet Jenfelder Au (Radroute 14)"
+  def title(), do: "Charlottenburger Straße am Baugebiet Jenfelder Au (Radroute 20)"
 
   def summary(),
     do:

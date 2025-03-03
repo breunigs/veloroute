@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.QuerungDehnhaide do
 
   def created_at(), do: ~D[2020-06-21]
 
-  def title(), do: "Querung Dehnhaide (Veloroute 5)"
+  def title(), do: "Querung Dehnhaide (Radroute 5)"
 
   def type(), do: :ampel
 

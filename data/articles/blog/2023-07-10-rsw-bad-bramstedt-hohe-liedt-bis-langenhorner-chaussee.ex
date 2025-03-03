@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.RswBadBramstedtHoheLiedtBisLangenhornerChaussee do
   use Article.Default
 
-  def title(), do: "Langenhorner Chaussee – Hohe Liedt (Radschnellweg Bad Bramstedt, Veloroute 4)"
+  def title(), do: "Langenhorner Chaussee – Hohe Liedt (Radschnellweg Bad Bramstedt, Radroute 4)"
 
   def updated_at(), do: ~D[2024-11-18]
 

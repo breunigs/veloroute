@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
   def title(), do: "Spanische Furt bis Heidlohstraße (Veloroute 14)"
 
   def summary(),
-    do: "Verschiedene Lösungen der Einzelabschnitte. Umbau Spanische Furt ab Oktover 2022."
+    do: "Verschiedene Lösungen der Einzelabschnitte. Umbau Spanische Furt ab Oktober 2022."
 
   def start(), do: ~d[2022-10]
   def stop(), do: ~d[2023-12]

@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
   def created_at(), do: ~D[2021-09-11]
   def updated_at(), do: ~D[2022-07-17]
 
-  def title(), do: "Max-Brauer-Allee Süd (Velorouten 1 und 12)"
+  def title(), do: "Max-Brauer-Allee Süd (Radrouten 1 und 14)"
 
   def summary(),
     do:

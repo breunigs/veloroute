@@ -3,13 +3,15 @@ defmodule Data.Article.Blog.HamburgsNeuesRadnetz do
 
   def title(), do: "Hamburgs gibt sich neues Ziel für Radnetz"
 
-  def summary(), do: "Hamburg hat sein Radnetz ohne Ankündigung erweitert und überarbeitet. "
+  def summary(), do: "Hamburg hat sein Radnetz ohne Ankündigung erweitert und überarbeitet."
 
   def type(), do: :changed_routing
   def tags(), do: []
 
   def links(_assigns) do
     [
+      {"Präsentation der Stadt zum Radnetz – Bezirk Harburg", ~d[2025-03],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012436"},
       {"Radnetz auf offiziellen Seite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/radnetz-1014730"},
       {"Radnetz der offiziellen Seite (Vollbild)",

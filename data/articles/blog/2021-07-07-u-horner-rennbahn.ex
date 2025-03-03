@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.UHornerRennbahn do
 
   def created_at(), do: ~D[2021-07-07]
 
-  def title(), do: "U4 Ausfädelung Horner Rennbahn (Alltagsroute 8)"
+  def title(), do: "U4 Ausfädelung Horner Rennbahn (Radroute 8)"
 
   def start(), do: ~d[2020-04-01]
   def stop(), do: ~d[2026-12-31]

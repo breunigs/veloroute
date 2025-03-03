@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Hoegerdamm do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-01],
-       "https://lsbg.hamburg.de/resource/blob/1007206/bf9207264b44d481e9bf52ffb79ded3a/recha-luebke-damm-anliegerinformation-januar-2025-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/1007206/bd5f76d3beae72fb4995086436b93c51/recha-luebke-damm-anliegerinformation-januar-2025-data.pdf"},
       {"Pressemitteilung Baufortschritt", "Februar 2024",
        "https://web.archive.org/web/20240516083617/https://www.hamburg.de/bvm/medien/18176658/2024-02-07-bvm-hoegerdamm/"},
       {"Baustelleninfo", "Januar 2024",

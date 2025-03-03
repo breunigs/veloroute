@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def created_at(), do: ~D[2020-12-04]
   def updated_at(), do: ~D[2022-06-01]
 
-  def title(), do: "Königstraße (Veloroute 13)"
+  def title(), do: "Königstraße (Radroute 1)"
 
   def summary(),
     do: "Meist 2,5m breite geschützte Radfahrstreifen; Hochbordradwege an zwei Stellen."

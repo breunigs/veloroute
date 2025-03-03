@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
 
   def updated_at(), do: ~D[2024-12-12]
 
-  def title(), do: "Rodigallee (Ost) und Barsbüttler Straße"
+  def title(), do: "Rodigallee (Ost) und Barsbüttler Straße (Radroute 20)"
 
   def summary(),
     do:

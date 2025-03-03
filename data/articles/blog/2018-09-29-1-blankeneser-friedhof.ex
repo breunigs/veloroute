@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.BlankeneserFriedhof do
   def created_at(), do: ~D[2018-09-29]
   def updated_at(), do: ~D[2022-01-03]
 
-  def title(), do: "Friedhof Blankenese (Alltagsroute 1)"
+  def title(), do: "Friedhof Blankenese (Radroute 1)"
   def icon(), do: :nocargo
 
   def summary(),

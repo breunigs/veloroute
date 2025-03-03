@@ -12,6 +12,10 @@ defmodule Data.Article.Blog.FarmsenerLandstrasse1 do
 
   def links(_assigns) do
     [
+      {"Fertiger Entwurf – Erläuterungen", ~d[2025-02],
+       "https://lsbg.hamburg.de/resource/blob/1024136/7da42b914a7249b33a815471cc4ec231/farmsener-landstrasse-zweirichtungsradweg-abgestimmte-planung-bericht-data.pdf"},
+      {"Fertiger Entwurf – Karte", ~d[2025-02],
+       "https://lsbg.hamburg.de/resource/blob/1024140/f77dae0a488ff6c91c0a796eaf6b719e/farmsener-landstrasse-zweirichtungsradweg-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungen und Karten, 1. Entwurf", ~d[2025-01],
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1022004"}
     ]

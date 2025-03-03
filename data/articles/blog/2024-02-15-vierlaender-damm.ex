@@ -54,8 +54,10 @@ defmodule Data.Article.Blog.VierlaenderDamm do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2025-01],
-       "https://lsbg.hamburg.de/resource/blob/984538/4c805f97b33d388715245c9dd4b20d02/billhorner-roehrendamm-hst-thiedingreihe-anliegerinformation-oktober-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2025-03],
+       "https://lsbg.hamburg.de/resource/blob/1016102/7d173a0b73561e339988ca33a0365927/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-februar-2025-data.pdf"},
+      # {"Baustelleninfo", ~d[2025-01],
+      #  "https://lsbg.hamburg.de/resource/blob/984538/4c805f97b33d388715245c9dd4b20d02/billhorner-roehrendamm-hst-thiedingreihe-anliegerinformation-oktober-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-11],
       #  "https://lsbg.hamburg.de/resource/blob/985810/b9817a457204b7f6865566eec4239b3a/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-november-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-10],

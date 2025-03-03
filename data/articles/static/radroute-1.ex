@@ -124,6 +124,11 @@ defmodule Data.Article.Static.Radroute1 do
       <tr>
         <td></td>
         <td><.graph icon={:straight} ref={@ref}/></td>
+        <td class="dim"><.v bounds="9.688964,53.552864,9.781822,53.598774" lon={9.703862} lat={53.582275} dir="forward" ref={@ref}>Wedel</.v></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><.graph icon={:straight} ref={@ref}/></td>
         <td><.v bounds="9.733138,53.574751,9.780336,53.593962" lon={9.758658} lat={53.583422} dir="forward" ref={@ref}>Rissen</.v></td>
       </tr>
       <tr>
