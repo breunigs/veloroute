@@ -360,7 +360,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     log(file, "#{Path.basename(file)}.pdf")
 
     {out, exit_code} =
-      System.cmd("cutycapt", [
+      System.cmd("timeout", [
+        "120s",
+        "cutycapt",
         "--url=#{url}",
         "--out=#{file}.pdf",
         "--delay=1000",
