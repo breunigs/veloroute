@@ -81,9 +81,11 @@ defmodule Feed do
   end
 
   defp maybe_add_image(entry, article) do
-    img_path = Article.Decorators.start_image_path(article)
+    img_path =
+      Article.Decorators.start_image_path(article) || Article.Decorators.map_image(article) ||
+        ~s(/map/___static/#{VelorouteWeb.VariousHelpers.to_string_center_zoom(Settings.r(:initial))}/1280x720)
 
-    if is_binary(img_path) do
+    if img_path do
       Entry.link(entry, Settings.r(:url) <> img_path, rel: "enclosure", type: "image/jpeg")
     else
       entry

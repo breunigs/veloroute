@@ -334,6 +334,19 @@ defmodule Article.Decorators do
       #   ms
       # )
       ~p"/images/thumbnails/#{rendered.hash()}/#{ms}"
+    else
+      _ -> nil
+    end
+  end
+
+  @doc """
+  Returns a medium sized map image if the given article has a bounding box
+  """
+  @spec map_image(Article.t()) :: binary() | nil
+  def map_image(art) do
+    with %{} = bbox <- bbox(art) do
+      center_zoom = VelorouteWeb.VariousHelpers.to_string_center_zoom(bbox)
+      ~s(/map/___static/#{center_zoom}/1280x720)
     end
   end
 
