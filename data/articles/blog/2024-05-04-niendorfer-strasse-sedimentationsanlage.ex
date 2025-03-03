@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.NiendorferStrasseSedimentationsanlage do
     do:
       "Wegen Bau einer Regenwasserreinigungsanlage wird der Radverkehr nach Norden über den Heckenrosenweg umgeleitet."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-05-02]
   def stop(), do: ~d[2025-01-24]
   def construction_site_id_hh(), do: [784_209]

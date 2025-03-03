@@ -6,10 +6,10 @@ defmodule Data.Article.Blog.Schaedlerstrasse do
   def summary(),
     do: "KFZ-Einbahnstraße erhält gegenläufigen Radfahrstreifen."
 
-  def start(), do: ~d[2024Q3]
-  def stop(), do: ~d[2024Q3]
+  # def start(), do: ~d[2024Q3]
+  # def stop(), do: ~d[2024Q3]
 
-  def type(), do: :planned
+  def type(), do: :intent
 
   def tags(), do: []
 
@@ -41,6 +41,9 @@ defmodule Data.Article.Blog.Schaedlerstrasse do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Frühjahr 2025</h4>
+    <p>Laut Aussage der Verwaltung ist die Planung zurückgestellt. Wegen Bedenken der Polizei beim Anschluss an die <.m bounds="10.073834,53.571452,10.078626,53.573522">Schloßstraße</.m>, soll bei einem Umbau auch die Kreuzung angepasst werden. Diese Planung muss aber erst noch erfolgen.</p>
+
     <h4>Alter Zustand</h4>
     <p>Die KFZ-Einbahnstraße ist für den Radverkehr nach Norden wahlweise auf der <.ref>Fahrbahn</.ref> oder einem <.ref>Hochbordradweg</.ref> möglich. In Richtung Süden muss auf einem geteilten Rad- und Fußweg gefahren werden.</p>
 

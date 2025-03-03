@@ -11,8 +11,8 @@ defmodule Data.Article.Blog.BlankeneserFriedhof do
   def summary(),
     do: "Friedhofsdurchfahrt soll getrennter Rad- und Fußweg werden"
 
-  def start(), do: ~d[2023Q2]
-  def stop(), do: ~d[2023Q3]
+  # def start(), do: ~d[2023Q2]
+  # def stop(), do: ~d[2023Q3]
 
   def type(), do: :intent
 

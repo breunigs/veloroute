@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Veringstrasse do
   def stop(), do: ~d[2024-10-07]
   def construction_site_id_hh(), do: [803_402]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["11"]
 

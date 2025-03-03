@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Spreehafenbruecke do
 
   def updated_at(), do: ~D[2024-02-21]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2024-02-19]
   def stop(), do: ~d[2025-01-31]

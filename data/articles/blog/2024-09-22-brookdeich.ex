@@ -9,9 +9,9 @@ defmodule Data.Article.Blog.Brookdeich do
       "Umgestaltung zur Fahrradstraße bringt Vorrang an Kreuzungen und Einmündungen. Private KFZ sollen wieder auf Privatgrund parken um Platz zu schaffen."
 
   def start(), do: ~d[2024-09-23]
-  def stop(), do: ~d[2025-03]
+  def stop(), do: ~d[2025-04-30]
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["rsw-geesthacht"]
 
   def map_image do
@@ -24,6 +24,8 @@ defmodule Data.Article.Blog.Brookdeich do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel Baufortschritt", ~d[2025-02],
+       "https://www.abendblatt.de/hamburg/bergedorf/article408403274/viel-befahrener-knotenpunkt-in-bergedorf-wird-gesperrt.html"},
       {"Unterlagen Umbau", ~d[2024-09],
        "https://fragdenstaat.de/anfrage/brookdeich/#nachricht-936449"},
       {"privater Blogpost zum Umbaustart", ~d[2024-09],
