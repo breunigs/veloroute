@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.EditMap do
+defmodule Mix.Tasks.Velo.Map.Edit do
   use Mix.Task
   alias Mix.Tasks.Velo.Videos
   @requirements ["app.start"]
@@ -8,27 +8,36 @@ defmodule Mix.Tasks.EditMap do
   @session_path "data/cache/map_session.jos"
   @route_colors_path "data/cache/route_colors.mapcss"
 
-  @shortdoc "Prepares data for viewing and opens map in JOSM"
+  def run(["postprocess"]) do
+    IO.puts("Cleaning up map.osm…")
+    remove_osm_history()
+    IO.puts("Updating GPX…")
+    Mix.Tasks.Velo.Gpx.Generate.run([])
+  end
+
+  @shortdoc "Allows editing map in JOSM"
   def run(_) do
     generate_mapcss()
     write_josm_session()
 
-    {_stream, 0} =
-      System.cmd(
-        "josm",
+    commands =
+      [
+        ["export", "JAVA_OPTS=-Djosm.home=#{Path.absname(@josm_home)}"],
         [
+          "josm",
           "--offline=osm_api,josm_website,certificates",
           "--load-preferences=#{Path.absname(@josm_default_prefs)}",
           @session_path
         ],
-        env: [{"JAVA_OPTS", "-Djosm.home=#{Path.absname(@josm_home)}"}]
-      )
+        ["mix", "velo.map.edit", "postprocess"]
+      ]
+      |> Enum.map(&Util.cli_printer/1)
+      |> Enum.join(" && ")
 
-    remove_osm_history()
-
-    # run in extra process to ensure we recompile after map update
-    IO.puts("Updating GPX…")
-    {_stream, 0} = System.cmd("mix", ["velo.gpx.generate"], into: IO.stream(:stdio, :line))
+    # ideally we could just `exec`, but BEAM doesn't expose that without NIFs :()
+    bash = "(#{commands}) &"
+    IO.puts("running: #{bash}")
+    bash |> String.to_charlist() |> :os.cmd() |> IO.puts()
   end
 
   defp remove_osm_history() do
