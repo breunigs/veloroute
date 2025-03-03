@@ -171,14 +171,13 @@ defmodule Video.Metadata do
       time_lapse =
         with %{"duration_ts" => dur_ts, "duration" => dur} <- indexed["gpmd"] do
           round(dur_ts / (String.to_float(dur) * 1000))
-        end || 1
+        end || Video.Constants.assumed_time_lapse_when_no_metadata()
 
       fps = Util.fraction_to_float(video["r_frame_rate"])
 
-      default = Video.Constants.assumed_time_lapse_when_no_metadata()
       desired = Video.Constants.desired_time_lapse()
       fps_change = fps / Video.Constants.output_fps()
-      time_lapse_change = (time_lapse || default) / desired
+      time_lapse_change = time_lapse / desired
 
       {:ok,
        %__MODULE__{
