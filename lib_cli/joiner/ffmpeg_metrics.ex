@@ -19,40 +19,13 @@ defmodule Joiner.FfmpegMetrics do
     path1 = Joiner.Segment.video_path(segment, :from)
     path2 = Joiner.Segment.video_path(segment, :to)
 
+    start1 = Joiner.Segment.start_timestamp(segment, :from)
     start2 = Joiner.Segment.start_timestamp(segment, :to)
 
     frames1 = Joiner.Segment.frame_count_between(segment, :from)
     frames2 = Joiner.Segment.frame_count_between(segment, :to)
 
-    parallel({segment.from, path1, frames1}, {path2, start2, frames2}, opts)
-  end
-
-  @min_outer_video_loop 15
-
-  # only XPSNR is parallelized because the other algorithms are SIMD optimized
-  # and utilize the CPU perfectly
-  defp parallel({video1, path1, frames1}, v2, %{visual_compare_metric: :xpsnr} = opts) do
-    cpus = round(System.schedulers_online() / 2.0)
-    interval = max(@min_outer_video_loop, ceil(frames1 / cpus))
-
-    offsets = 0..frames1//interval |> Enum.reverse()
-    Logger.debug("parallelizing metric calculation on #{length(offsets)} ffmpeg instances")
-
-    offsets
-    |> Parallel.map(fn offset ->
-      substart1 = Joiner.Video.offset_start_timestamp(video1, offset, :frames)
-      subframes1 = min(interval, max(1, frames1 - offset))
-      ffmpeg({path1, substart1, subframes1}, v2, opts)
-    end)
-    |> Enum.reduce_while({:ok, []}, fn
-      {:ok, part}, {:ok, whole} -> {:cont, {:ok, part ++ whole}}
-      {:error, reason}, _whole -> {:halt, {:error, reason}}
-    end)
-  end
-
-  defp parallel({video1, path1, frames1}, v2, opts) do
-    start1 = Joiner.Video.offset_start_timestamp(video1, 0, :frames)
-    ffmpeg({path1, start1, frames1}, v2, opts)
+    ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts)
   end
 
   defp ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts)
