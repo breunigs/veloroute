@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.MariaLouisenStrasse do
   def start(), do: ~d[2026-06]
   def stop(), do: ~d[2027-06]
 
-  def tags(), do: ["13"]
+  def tags(), do: ["radroute-17", "13"]
 
   def links(_assigns) do
     [

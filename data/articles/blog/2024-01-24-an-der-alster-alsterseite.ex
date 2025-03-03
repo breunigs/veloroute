@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.AnDerAlsterAlsterseite do
   def type(), do: :intent
   def start(), do: ~d[2025-09]
 
-  def tags(), do: ["5", "6", "FR2", "FR3"]
+  def tags(), do: ["radroute-9", "5", "6", "FR2", "FR3"]
 
   def links(_assigns) do
     [

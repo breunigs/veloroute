@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Heykenaubrook do
   def start(), do: ~d[2025]
   def stop(), do: ~d[2025]
 
-  def tags(), do: ["10", "H06"]
+  def tags(), do: ["radroute-10", "10", "H06"]
 
   def links(_assigns) do
     [

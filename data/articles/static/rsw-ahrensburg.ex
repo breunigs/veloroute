@@ -2,14 +2,14 @@ defmodule Data.Article.Static.RSWAhrensburg do
   use Article.Static
 
   def id(), do: "rsw-ahrensburg"
-  def route_group(), do: :rsw
-  def title(), do: "Radschnellweg nach Ahrensburg"
+  def route_group(), do: :radroute
+  def title(), do: "Radroute Plus nach Ahrensburg"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
 
   def summary(),
     do:
-      "Beschreibung und Video zum geplanten Radschnellweg HH-Volksdorf ↔ Ahrensburg (Vorzugsstrecke)"
+      "Beschreibung und Video zum geplanten Radroute Plus HH-Volksdorf ↔ Ahrensburg (Vorzugsstrecke)"
 
   def tags(), do: [id(), "rsw", "ahrensburg"]
 
@@ -17,7 +17,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
     do: [
       %Video.Track{
         renderer: 5,
-        group: "rsw",
+        group: "radroute",
         direction: :forward,
         from: "Volksdorf",
         to: "Ahrensburg Gewerbegebiet Süd",
@@ -35,7 +35,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
       },
       %Video.Track{
         renderer: 5,
-        group: "rsw",
+        group: "radroute",
         direction: :backward,
         from: "Ahrensburg Gewerbegebiet Süd",
         to: "Volksdorf",

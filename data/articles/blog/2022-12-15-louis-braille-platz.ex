@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
     do: "Platzneugestaltung vor U-Hamburger Straße bringt Zweirichtungs-Hochbordradweg mit sich."
 
   def type(), do: :planned
-  def tags(), do: ["13"]
+  def tags(), do: ["radroute-17", "13"]
   # def start(), do: ~d[2025-03]
   # def stop(), do: ~d[2025-11]
 

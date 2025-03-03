@@ -131,7 +131,11 @@ defmodule Video.Track do
           }
           | {:error, binary()}
 
-  def render(t, opts \\ [])
+  def render(track, opts \\ [])
+
+  def render(%__MODULE__{videos: []}, _opts) do
+    {:error, "track has no videos"}
+  end
 
   # Experimentally determined time to add between two consecutive videos to
   # ensure that there's no long term drift. Not sure why it is needed, since

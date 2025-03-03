@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.BernerHeerweg do
 
   def type(), do: :planned
 
-  def tags(), do: ["6", "w18", "br-wandsbek-w1", "FR2"]
+  def tags(), do: ["radroute-20", "radroute-6", "6", "w18", "br-wandsbek-w1", "FR2"]
 
   def links(_assigns) do
     [

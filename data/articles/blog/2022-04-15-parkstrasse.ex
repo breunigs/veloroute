@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Parkstrasse do
 
   def created_at(), do: ~D[2022-04-15]
 
-  def title(), do: "Parkstraße / Groß Flottbeker Straße (Alltagsroute 1 und 14)"
+  def title(), do: "Bau Fernwärmeleitung (Radroute 1 und 18)"
   def summary(), do: "Baustelle Fernwärmeleitung"
 
   def start(), do: ~d[2022-01-18]
@@ -12,14 +12,22 @@ defmodule Data.Article.Blog.Parkstrasse do
 
   def type(), do: :construction
 
-  def tags(), do: ["1", "14"]
+  def tags(), do: ["radroute-1", "radroute-18", "1", "14"]
 
-  def tracks(), do: []
+  def links(_assigns) do
+    [
+      {"Infoseite der Energiewerke",
+       "https://unternehmen.hamburger-energiewerke.de/energiewende/energiepark-hafen/baustelleninformationen"}
+    ]
+  end
 
   def text(assigns) do
     ~H"""
     <h4>Baustelle</h4>
-    <p>Bau einer Fernwärmeleitung. Die Umleitungen sind ausgeschildert.</p>
+    <p>Bau einer Fernwärmeleitung. Die Umleitungen sind teilweise ausgeschildert, ändern sich aber häufig.</p>
+
+    <h4>Externe Links</h4>
+    <.structured_links ref={@ref}/>
     """
   end
 end

@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.KreiselKanalplatz do
   def start(), do: ~d[2025-05]
   def stop(), do: ~d[2025-12]
 
-  def tags(), do: ["10", "FR6"]
+  def tags(), do: ["radroute-10", "10", "FR6"]
 
   def links(_assigns) do
     [

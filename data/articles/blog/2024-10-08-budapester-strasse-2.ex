@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.BudapesterStrasse2 do
 
   def type(), do: :construction
 
-  def tags(), do: ["bundesstraße-4"]
+  def tags(), do: ["radroute-1", "radroute-15", "bundesstraße-4"]
 
   def start(), do: ~d[2024-12-09]
   def stop(), do: ~d[2025-03]

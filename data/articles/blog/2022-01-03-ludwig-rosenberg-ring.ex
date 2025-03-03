@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.LudwigRosenbergRing do
     do:
       "Es sollen für einen kurzen Abschnitt 2,25m breite Kopenhagener Radwege gebaut werden. Die Engstelle an der Bushaltestelle Sander Markt bleibt."
 
-  def tags(), do: ["8"]
+  def tags(), do: ["radroute-8", "8"]
 
   def links(_assigns) do
     [

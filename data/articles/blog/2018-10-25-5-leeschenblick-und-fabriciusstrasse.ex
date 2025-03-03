@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.LeeschenblickUndFabriciusstrasse do
 
   def type(), do: :planned
   # def construction_site_id_hh(), do: [6745]
-  def tags(), do: ["5"]
+  def tags(), do: ["radroute-5", "5"]
 
   def links(_assigns) do
     [

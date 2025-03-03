@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
   def stop(), do: ~d[2026-01-15]
   def construction_site_id_hh(), do: [1_013_172]
 
-  def tags(), do: ["8"]
+  def tags(), do: ["radroute-8", "8"]
 
   def map_image do
     {name(),

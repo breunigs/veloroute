@@ -2,14 +2,14 @@ defmodule Data.Article.Static.RSWLuebeck do
   use Article.Static
 
   def id(), do: "rsw-luebeck"
-  def route_group(), do: :rsw
+  def route_group(), do: :alltag
   def name(), do: id()
-  def title(), do: "Radschnellweg durch Lübeck"
+  def title(), do: "Radroute Plus durch Lübeck"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
 
   def summary(),
-    do: "Beschreibung und Video zum Radschnellweg Lübeck (Bad Schwartau ↔ Groß Grönau)"
+    do: "Beschreibung und Video zum Radroute Plus Lübeck (Bad Schwartau ↔ Groß Grönau)"
 
   def tags(), do: [id(), "rsw"]
 
@@ -17,12 +17,12 @@ defmodule Data.Article.Static.RSWLuebeck do
     do: [
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Lübeck",
+        group: "Radroute Plus Lübeck",
         direction: :forward,
         from: "Bad Schwartau",
         to: "Groß Grönau",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Bad Schwartau → Groß Grönau",
+        text: "künftige Radroute Plus Bad Schwartau → Groß Grönau",
         videos: [
           {"2022-08-30-rsw-luebeck/GX014654", :start, :end},
           {"2022-08-30-rsw-luebeck/GX014655", :start, :end},
@@ -50,12 +50,12 @@ defmodule Data.Article.Static.RSWLuebeck do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Lübeck",
+        group: "Radroute Plus Lübeck",
         direction: :backward,
         from: "Groß Grönau",
         to: "Bad Schwartau",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Groß Grönau → Bad Schwartau",
+        text: "künftige Radroute Plus Groß Grönau → Bad Schwartau",
         videos: [
           {"2022-08-30-rsw-luebeck/GX014682", "00:02:52.805", :end},
           {"2022-08-30-rsw-luebeck/GX014683", :start, :end},

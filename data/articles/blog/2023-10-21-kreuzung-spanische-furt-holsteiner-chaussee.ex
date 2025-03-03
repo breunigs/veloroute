@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
   def stop(), do: ~d[2024]
 
   def type(), do: :planned
-  def tags(), do: ["14"]
+  def tags(), do: ["radroute-19", "14"]
 
   def links(assigns) do
     [

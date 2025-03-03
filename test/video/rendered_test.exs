@@ -70,7 +70,7 @@ defmodule Video.RenderedTest do
       Enum.reduce(Video.Generator.all(), %{}, fn rendered, acc ->
         uncommon_names =
           Enum.reduce(rendered.street_names(), [], fn %{text: text}, acc ->
-            ok = Regex.match?(~r/^[a-z0-9äöüßé()\s'.+\/-]*$/ui, text)
+            ok = Regex.match?(~r/^[a-z0-9äöüßéâ()\s'.+\/-]*$/ui, text)
             if ok, do: acc, else: [text | acc]
           end)
 

@@ -3,7 +3,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
 
   def id(), do: "norderstedt-1"
   def display_id(), do: "1"
-  def route_group(), do: :alltag
+  def route_group(), do: :radroute
   def title(), do: "Norderstedt: Veloroute 1"
 
   def color(), do: "#d14a1f"

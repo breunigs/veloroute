@@ -3,7 +3,7 @@ defmodule Data.Article.Static.AhrensburgA8 do
 
   def id(), do: "ahrensburg-a8"
   def display_id(), do: "8"
-  def route_group(), do: :alltag
+  def route_group(), do: :radroute
   def title(), do: "Ahrensburg: Veloroute A8"
 
   def color(), do: "#02dedd"

@@ -3,7 +3,9 @@ defmodule Data.Article.Static.Alltagsroute8 do
 
   def id(), do: "8"
   def route_group(), do: :alltag
-  def title(), do: "Veloroute 8"
+  def title(), do: "Veloroute 8 (veraltet)"
+  def created_at(), do: ~D[2018-01-01]
+  def updated_at(), do: ~D[2024-12-31]
 
   def color(), do: "#e20612"
 
@@ -128,6 +130,10 @@ defmodule Data.Article.Static.Alltagsroute8 do
 
   def text(assigns) do
     ~H"""
+    <h4>Neues Radnetz ab 2025</h4>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-8">Radroute 8 (äußere Stadtteile)</.a> bzw. <.a name="radroute-1">Radroute 1 (innere Stadtteile)</.a> wechseln?</p>
+
+    <h4>Alte Beschreibung</h4>
     <table class="routing">
       <tr>
         <td></td>

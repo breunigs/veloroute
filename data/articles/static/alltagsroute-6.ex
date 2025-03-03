@@ -3,7 +3,9 @@ defmodule Data.Article.Static.Alltagsroute6 do
 
   def id(), do: "6"
   def route_group(), do: :alltag
-  def title(), do: "Veloroute 6"
+  def title(), do: "Veloroute 6 (veraltet)"
+  def created_at(), do: ~D[2018-01-01]
+  def updated_at(), do: ~D[2024-12-31]
 
   def color(), do: "#2a3283"
 
@@ -26,7 +28,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
         end_action: %{
           action: :play,
           route: Data.Article.Static.RSWAhrensburg,
-          group: "rsw",
+          group: "radroute",
           direction: :forward
         },
         historic: %{
@@ -95,6 +97,10 @@ defmodule Data.Article.Static.Alltagsroute6 do
 
   def text(assigns) do
     ~H"""
+    <h4>Neues Radnetz ab 2025</h4>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-6">Radroute 6</.a> wechseln?</p>
+
+    <h4>Alte Beschreibung</h4>
     <table class="routing">
       <tr>
         <td></td>

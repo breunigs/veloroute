@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.GodeffroystrasseUndGaetgensstrasse do
   def type(), do: :planned
   def start(), do: ~d[2026]
 
-  def tags(), do: ["1", "A22", "A022.3", "A22.3"]
+  def tags(), do: ["radroute-1", "1", "A22", "A022.3", "A22.3"]
 
   def links(_assigns) do
     [

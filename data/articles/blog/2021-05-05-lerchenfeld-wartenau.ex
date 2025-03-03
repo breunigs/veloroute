@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def type(), do: :planned
 
-  def tags(), do: ["6"]
+  def tags(), do: ["radroute-6", "6"]
 
   def links(_assigns) do
     [

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.EppendorferWeg do
       "Zunächst Beteiligung der Interessensgruppen und Bevölkerung. Planung soll bis Ende 2025 fertig werden."
 
   def type(), do: :intent
-  def tags(), do: ["13"]
+  def tags(), do: ["radroute-16", "radroute-3", "13"]
 
   # Eppendorfer Weg / Ad-hoc Maßnahme -- LSBG
   # def start(), do: ~d[2024-11-01]

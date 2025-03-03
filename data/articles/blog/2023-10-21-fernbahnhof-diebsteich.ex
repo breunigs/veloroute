@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.FernbahnhofDiebsteich do
 
   def type(), do: :planned
 
-  def tags(), do: ["rsw-elmshorn", "FR9"]
+  def tags(), do: ["rsw-elmshorn", "FR9", "radroute-concept-c"]
 
   def start(), do: ~d[2024Q4]
   def stop(), do: ~d[2026Q4]

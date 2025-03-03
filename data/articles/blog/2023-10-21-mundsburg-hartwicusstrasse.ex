@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.MundsburgHartwicusstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["5", "6"]
+  def tags(), do: ["radroute-5", "radroute-6", "5", "6"]
 
   def start(), do: ~d[2026Q1]
   def stop(), do: ~d[2026Q1]

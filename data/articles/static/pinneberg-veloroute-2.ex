@@ -3,7 +3,7 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
 
   def id(), do: "pinneberg-2"
   def display_id(), do: "2"
-  def route_group(), do: :alltag
+  def route_group(), do: :radroute
   def title(), do: "Pinneberg: Veloroute 2"
 
   def color(), do: "#0186d0"

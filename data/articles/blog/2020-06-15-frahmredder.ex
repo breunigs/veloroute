@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Frahmredder do
   def stop(), do: ~d[2025-01-31]
   def construction_site_id_hh(), do: [410_625]
 
-  def tags(), do: ["5", "W6.2"]
+  def tags(), do: ["radroute-5", "5", "W6.2"]
 
   def links(_assigns) do
     [

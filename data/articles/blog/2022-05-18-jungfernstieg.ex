@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def type(), do: :construction
 
-  def tags(), do: ["3", "4"]
+  def tags(), do: ["radroute-4", "radroute-3", "radroute-7", "3", "4"]
 
   def links(_assigns) do
     [

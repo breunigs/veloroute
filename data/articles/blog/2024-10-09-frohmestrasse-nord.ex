@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.FrohmestrasseNord do
 
   def start(), do: ~d[2025Q3]
 
-  def tags(), do: ["br-eimsbuettel-nord-sued"]
+  def tags(), do: ["br-eimsbuettel-nord-sued", "radroute-concept-d"]
 
   def links(_assigns) do
     [

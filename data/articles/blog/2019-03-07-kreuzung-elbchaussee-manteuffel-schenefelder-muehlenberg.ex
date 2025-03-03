@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
 
   def type(), do: :planned
 
-  def tags(), do: ["1", "A22", "A022.2", "A22.2"]
+  def tags(), do: ["radroute-1", "1", "A22", "A022.2", "A22.2"]
 
   def start(), do: ~d[2027Q2]
 

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Schlueterstrasse do
 
   def type(), do: :planned
   def construction_site_id_hh(), do: [8623]
-  def tags(), do: ["3"]
+  def tags(), do: ["radroute-3", "3"]
 
   def links(_assigns) do
     [

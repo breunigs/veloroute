@@ -2901,41 +2901,6 @@
       }
     },
     {
-      "id": "rsw-line-tunnel",
-      "type": "line",
-      "source": "merged",
-      "source-layer": "routes",
-      "minzoom": 6,
-      "filter": [
-        "all",
-        ["match", ["get", "type"], ["rsw"], true, false],
-        ["match", ["get", "layer"], ["-1"], true, false]
-      ],
-      "layout": {"line-join": "round"},
-      "paint": {
-        "line-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          0,
-          1,
-          19,
-          ["case", ["boolean", ["feature-state", "selected"], false], 10, 7]
-        ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5],
-        "line-color": ["get", "color"],
-        "line-gap-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          0,
-          0.1,
-          19,
-          2
-        ]
-      }
-    },
-    {
       "id": "br-line-off-none-tunnel",
       "type": "line",
       "source": "merged",
@@ -3053,7 +3018,7 @@
         ["match", ["get", "type"], ["alltag"], true, false],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
-      "layout": {"line-join": "round"},
+      "layout": {"line-join": "round", "visibility": "none"},
       "paint": {
         "line-color": ["get", "color"],
         "line-width": [
@@ -3094,7 +3059,7 @@
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
         "line-dasharray": [0, 1, 1],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+        "line-opacity": 0.5
       }
     },
     {
@@ -3109,7 +3074,7 @@
         ["match", ["get", "type"], ["alltag"], true, false],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
-      "layout": {"line-join": "round"},
+      "layout": {"line-join": "round", "visibility": "none"},
       "paint": {
         "line-color": ["get", "color"],
         "line-width": [
@@ -3150,7 +3115,7 @@
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
         "line-dasharray": [1, 1],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+        "line-opacity": 0.5
       }
     },
     {
@@ -3166,7 +3131,7 @@
         ["==", ["to-number", ["get", "overlap_index"]], 0],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
-      "layout": {"line-join": "round"},
+      "layout": {"line-join": "round", "visibility": "none"},
       "paint": {
         "line-width": [
           "interpolate",
@@ -3191,6 +3156,7 @@
         "all",
         ["==", ["get", "offset"], 0],
         ["==", ["get", "type"], "radroute"],
+        ["!=", ["get", "status"], "concept"],
         ["==", ["to-number", ["get", "overlap_index"]], 0],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
@@ -3206,7 +3172,37 @@
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
         "line-color": ["get", "color"],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 0.5]
+        "line-opacity": 0.5
+      }
+    },
+    {
+      "id": "rr-line-off-none-concept-tunnel",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 6,
+      "filter": [
+        "all",
+        ["==", ["get", "offset"], 0],
+        ["==", ["get", "type"], "radroute"],
+        ["==", ["get", "status"], "concept"],
+        ["==", ["to-number", ["get", "overlap_index"]], 0],
+        ["match", ["get", "layer"], ["-1"], true, false]
+      ],
+      "layout": {"line-join": "round"},
+      "paint": {
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ],
+        "line-color": ["get", "color"],
+        "line-opacity": 0.5,
+        "line-dasharray": [0, 2.5]
       }
     },
     {
@@ -3246,44 +3242,6 @@
           2,
           19,
           12
-        ]
-      }
-    },
-    {
-      "id": "rsw-line",
-      "type": "line",
-      "source": "merged",
-      "source-layer": "routes",
-      "filter": [
-        "all",
-        ["match", ["get", "type"], ["rsw"], true, false],
-        ["match", ["get", "layer"], ["-1"], false, true]
-      ],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round"
-      },
-      "paint": {
-        "line-color": {"type": "identity", "property": "color"},
-        "line-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          0,
-          1,
-          19,
-          ["case", ["boolean", ["feature-state", "selected"], false], 10, 7]
-        ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1],
-        "line-gap-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          0,
-          0.1,
-          19,
-          2
         ]
       }
     },
@@ -3421,7 +3379,7 @@
         ["match", ["get", "layer"], ["-1"], false, true]
       ],
       "layout": {
-        "visibility": "visible",
+        "visibility": "none",
         "line-cap": "butt",
         "line-join": "round"
       },
@@ -3466,8 +3424,7 @@
           19,
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
-        "line-dasharray": [0, 1, 1],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+        "line-dasharray": [0, 1, 1]
       }
     },
     {
@@ -3482,7 +3439,7 @@
         ["match", ["get", "layer"], ["-1"], false, true]
       ],
       "layout": {
-        "visibility": "visible",
+        "visibility": "none",
         "line-cap": "butt",
         "line-join": "round"
       },
@@ -3527,8 +3484,7 @@
           19,
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
-        "line-dasharray": [1, 1],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+        "line-dasharray": [1, 1]
       }
     },
     {
@@ -3544,7 +3500,7 @@
         ["match", ["get", "layer"], ["-1"], false, true]
       ],
       "layout": {
-        "visibility": "visible",
+        "visibility": "none",
         "line-cap": "round",
         "line-join": "round"
       },
@@ -3562,13 +3518,14 @@
       }
     },
     {
-      "id": "rr-line-off-none",
+      "id": "rr-line-off-none-concept",
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
       "filter": [
         "all",
         ["==", ["get", "offset"], 0],
+        ["==", ["get", "status"], "concept"],
         ["==", ["get", "type"], "radroute"],
         ["==", ["to-number", ["get", "overlap_index"]], 0],
         ["match", ["get", "layer"], ["-1"], false, true]
@@ -3589,7 +3546,40 @@
           19,
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1]
+        "line-opacity": 1,
+        "line-blur": 0,
+        "line-dasharray": [0, 2.5]
+      }
+    },
+    {
+      "id": "rr-line-off-none",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["==", ["get", "offset"], 0],
+        ["!=", ["get", "status"], "concept"],
+        ["==", ["get", "type"], "radroute"],
+        ["==", ["to-number", ["get", "overlap_index"]], 0],
+        ["match", ["get", "layer"], ["-1"], false, true]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": ["get", "color"],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+        ]
       }
     },
     {
@@ -3669,16 +3659,7 @@
           0.5
         ],
         "line-color": "hsl(0, 0%, 100%)",
-        "line-dasharray": [2, 2],
-        "line-gap-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          0,
-          0,
-          19,
-          ["match", ["get", "route_group"], ["rsw"], 7, 0]
-        ]
+        "line-dasharray": [2, 2]
       }
     },
     {
@@ -3816,7 +3797,7 @@
         "text-keep-upright": false,
         "text-field": "",
         "text-font": [],
-        "visibility": "visible",
+        "visibility": "none",
         "text-line-height": 1.2,
         "icon-anchor": "center",
         "text-padding": 4,
@@ -3871,56 +3852,7 @@
         "text-keep-upright": false,
         "text-field": "",
         "text-font": [],
-        "visibility": "none",
-        "text-line-height": 1.2,
-        "icon-anchor": "center",
-        "text-padding": 4,
-        "icon-image": "triangle",
-        "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
-        "icon-optional": false,
-        "text-optional": true,
-        "icon-size": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          14,
-          0.45,
-          16,
-          0.5,
-          19,
-          0.9
-        ]
-      },
-      "paint": {
-        "text-color": "#ffffff",
-        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
-      }
-    },
-    {
-      "id": "rsw-oneway",
-      "type": "symbol",
-      "source": "merged",
-      "source-layer": "routes",
-      "minzoom": 14,
-      "filter": [
-        "all",
-        ["has", "oneway"],
-        ["match", ["get", "type"], ["rsw"], true, false]
-      ],
-      "layout": {
-        "text-size": 25,
-        "text-allow-overlap": true,
-        "text-ignore-placement": true,
-        "text-max-angle": 180,
-        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
-        "symbol-placement": "line",
-        "text-rotation-alignment": "map",
-        "text-pitch-alignment": "map",
-        "text-keep-upright": false,
-        "text-field": "",
-        "text-font": [],
-        "visibility": "none",
+        "visibility": "visible",
         "text-line-height": 1.2,
         "icon-anchor": "center",
         "text-padding": 4,
@@ -4470,6 +4402,35 @@
       }
     },
     {
+      "id": "rr-text-concept",
+      "type": "symbol",
+      "source": "merged",
+      "source-layer": "routes",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", ["get", "status"], "concept"],
+        ["==", ["get", "type"], "radroute"]
+      ],
+      "layout": {
+        "symbol-placement": "line",
+        "text-field": "{text}",
+        "text-font": ["Open Sans Regular"],
+        "text-rotation-alignment": "map",
+        "text-size": 12,
+        "visibility": "visible",
+        "text-max-angle": 30,
+        "text-allow-overlap": true,
+        "text-ignore-placement": false,
+        "text-padding": 1
+      },
+      "paint": {
+        "text-color": "rgba(0, 0, 0, 0.8)",
+        "text-halo-color": "rgba(255,255, 255, 0.8)",
+        "text-halo-width": 2
+      }
+    },
+    {
       "id": "extra-line-text",
       "type": "symbol",
       "source": "merged",
@@ -4525,7 +4486,7 @@
         ],
         "text-rotation-alignment": "viewport",
         "text-field": "{display_id}",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "text-halo-width": 1,
@@ -4565,7 +4526,7 @@
         ],
         "text-rotation-alignment": "viewport",
         "text-field": "{display_id}",
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-width": 1,
@@ -4648,12 +4609,13 @@
       "minzoom": 9.5,
       "filter": [
         "all",
-        ["match", ["get", "type"], ["rsw"], true, false],
+        ["match", ["get", "type"], "radroute", true, false],
         ["!", ["has", "overlap_index"]],
-        ["match", ["get", "route_group"], ["rsw"], true, false]
+        ["match", ["get", "route_group"], "radroute", true, false],
+        ["match", ["slice", ["get", "route_id"], 0, 4], "rsw-", true, false]
       ],
       "layout": {
-        "text-size": ["-", 15, ["length", ["get", "display_id"]]],
+        "text-size": ["-", 15, ["length", ["get", "r"]]],
         "icon-image": "rsw",
         "icon-rotation-alignment": "viewport",
         "icon-text-fit-padding": [5, 10, 5, 10],
@@ -4661,7 +4623,7 @@
         "symbol-spacing": 450,
         "text-font": ["Open Sans Semi Bold"],
         "symbol-placement": "line",
-        "visibility": "none",
+        "visibility": "visible",
         "text-offset": [
           "match",
           ["get", "route_id"],

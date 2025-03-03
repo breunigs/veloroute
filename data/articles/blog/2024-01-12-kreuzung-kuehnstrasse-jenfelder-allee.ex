@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
   def stop(), do: ~d[2026]
 
   def type(), do: :planned
-  def tags(), do: ["7", "br-wandsbek-w8"]
+  def tags(), do: ["radroute-7", "7", "br-wandsbek-w8"]
 
   def map_image do
     {name(),

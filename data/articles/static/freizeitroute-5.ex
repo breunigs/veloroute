@@ -5,8 +5,8 @@ defmodule Data.Article.Static.Freizeitroute5 do
   def route_group(), do: :freizeit
   def title(), do: "Vier und Marschlande (FR5)"
 
-  def color(), do: "#006106"
-  def color_faded(), do: "#77ba7b"
+  def color(), do: RouteColors.freizeit_normal()
+  def color_faded(), do: RouteColors.freizeit_faded()
 
   def summary(),
     do: "Freizeitroute 5 führt durch die Vier- und Marschlande nach Borghorst"

@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.StaderStrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["FR11"]
+  def tags(), do: ["radroute-11", "FR11"]
 
   def tracks(), do: []
 

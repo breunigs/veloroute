@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.UFarmsen do
     do: "Straßen um U-Bahnhof Farmsen (Radroute 6, Freizeitroute 2, Bezirksrouten W5 und W8)"
 
   def type(), do: :planned
-  def tags(), do: ["FR2", "6", "br-wandsbek-w5", "br-wandsbek-w8"]
+  def tags(), do: ["radroute-20", "radroute-6", "FR2", "6", "br-wandsbek-w5", "br-wandsbek-w8"]
 
   def start(), do: ~d[2026]
   def stop(), do: ~d[2028]

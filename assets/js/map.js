@@ -27,6 +27,7 @@ const routeLayers = [
   'rr-line-off-none', 'rr-line-off-none-tunnel',
   'rr-line-off-p1', 'rr-line-off-p1-tunnel',
   'rr-line-off-m1', 'rr-line-off-m1-tunnel',
+  'rr-line-off-none-concept',
   'vr-line-off-none', 'vr-line-off-none-tunnel',
   'vr-line-off-p1', 'vr-line-off-p1-tunnel',
   'vr-line-off-m1', 'vr-line-off-m1-tunnel',
@@ -34,7 +35,6 @@ const routeLayers = [
   'br-line-off-p1', 'br-line-off-p1-tunnel',
   'br-line-off-m1', 'br-line-off-m1-tunnel',
   'fr-line', 'fr-line-tunnel',
-  'rsw-line', 'rsw-line-tunnel',
   'extra-line'
 ];
 const articleLayers = ['article-areas title', 'article-areas bg'];

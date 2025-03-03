@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.EbertalleeSued do
   def start(), do: ~d[2026]
   def stop(), do: ~d[2026]
 
-  def tags(), do: []
+  def tags(), do: ["radroute-7"]
 
   def tracks(),
     do: [

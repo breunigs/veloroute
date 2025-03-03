@@ -6,8 +6,8 @@ defmodule Data.Article.Static.Freizeitroute0 do
   def name(), do: "erster-gruener-ring"
   def title(), do: "1. Grüner Ring (1GR)"
 
-  def color(), do: "#006106"
-  def color_faded(), do: "#77ba7b"
+  def color(), do: RouteColors.freizeit_normal()
+  def color_faded(), do: RouteColors.freizeit_faded()
 
   def summary(),
     do: "Video und Beschreibung zur Freizeit Radroute „1. Grüner Ring“"
@@ -115,7 +115,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
     <p>Die Route ist meist gepflastert und hat stellenweise sogar Winterdienst. Allerdings machen die vielen Ampeln eine durchgehende Fahrt unmöglich. Man kann stellenweise in die Parks oder auf den Deich ausweichen, allerdings muss man dann schieben.</p>
 
     <h4>Meinung</h4>
-    <p>Ich muss davon abraten diese Route mit dem Fahrrad abzufahren. Man fährt an Autotrassen am Grün vorbei und wird durch häufige und schlecht geschaltene Ampeln ausgebremst. Zu Fuß ist diese Tour eher zu empfehlen. Als Verbindungsstrecke zwischen anderen Zielen oder um Freizeitrouten zu verknüpfen taugt sie aber.</p>
+    <p>Ich muss davon abraten diese Route mit dem Fahrrad abzufahren. Man fährt an Autotrassen am Grün vorbei und wird durch häufige und schlecht geschaltete Ampeln ausgebremst. Zu Fuß ist diese Tour eher zu empfehlen. Als Verbindungsstrecke zwischen anderen Zielen oder um Freizeitrouten zu verknüpfen taugt sie aber.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

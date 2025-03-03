@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
       "Meist Protected-Bike-Lanes mit 2,0m Breite. Bus-Spur stadteinwärts. Führung an Bushaltestellen unterschiedlich und nicht immer ideal."
 
   def type(), do: :planned
-  def tags(), do: ["14", "rodigallee", "br-wandsbek-w8"]
+  def tags(), do: ["radroute-20", "14", "rodigallee", "br-wandsbek-w8"]
 
   def start(), do: ~d[2025-05]
   def stop(), do: ~d[2029-09]

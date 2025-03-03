@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.OthmarscherMuehlenweg do
 
   def type(), do: :planned
 
-  def tags(), do: ["1"]
+  def tags(), do: ["radroute-1", "1"]
 
   def start(), do: ~d[2024]
   def stop(), do: ~d[2024]

@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
   def start(), do: ~d[2024Q4]
   def stop(), do: ~d[2024Q4]
 
-  def tags(), do: ["4", "FR1"]
+  def tags(), do: ["radroute-4", "4", "FR1"]
 
   def links(_assigns) do
     [

@@ -2,15 +2,15 @@ defmodule Data.Article.Static.RSWBadBramstedt do
   use Article.Static
 
   def id(), do: "rsw-bad-bramstedt"
-  def route_group(), do: :rsw
-  def title(), do: "Radschnellweg nach Bad Bramstedt"
+  def route_group(), do: :radroute
+  def title(), do: "Radroute Plus nach Bad Bramstedt"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
   def start(), do: ~d[2025]
 
   def summary(),
     do:
-      "Beschreibung und Video zum geplanten Radschnellweg HH-Sengelmannstraße ↔ Bad Bramstedt (Vorzugsstrecke)"
+      "Beschreibung und Video zur geplanten Radroute Plus HH-Sengelmannstraße ↔ Bad Bramstedt (Vorzugsstrecke)"
 
   def tags(), do: [id(), "rsw", "norderstedt"]
 
@@ -19,12 +19,12 @@ defmodule Data.Article.Static.RSWBadBramstedt do
     do: [
       %Video.Track{
         renderer: 1,
-        group: "Radschnellweg Bad Bramstedt",
+        group: "Radroute Plus Bad Bramstedt",
         direction: :forward,
-        from: "Hamburg Sengelmannstraße",
+        from: "City Nord RSW",
         to: "Bad Bramstedt",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg HH-Sengelmannstraße → Bad Bramstedt",
+        text: "künftige Radroute Plus HH-Sengelmannstraße → Bad Bramstedt",
         videos: [
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011787", "00:00:56.423", :end},
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011788", :start, :end},
@@ -60,12 +60,12 @@ defmodule Data.Article.Static.RSWBadBramstedt do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Bad Bramstedt",
+        group: "Radroute Plus Bad Bramstedt",
         direction: :backward,
         from: "Bad Bramstedt",
-        to: "Hamburg Sengelmannstraße",
+        to: "City Nord RSW",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Bad Bramstedt → HH-Sengelmannstraße",
+        text: "künftige Radroute Plus Bad Bramstedt → HH-Sengelmannstraße",
         videos: [
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014379", "00:00:04.805", :end},
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014380", :start, :end},

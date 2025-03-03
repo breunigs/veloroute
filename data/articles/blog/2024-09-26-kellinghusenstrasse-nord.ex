@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.KellinghusenstrasseNord do
   def type(), do: :planned
   def start(), do: ~d[2027Q2]
 
-  def tags(), do: ["br-nord-n6"]
+  def tags(), do: ["radroute-16", "br-nord-n6"]
 
   def tracks(),
     do: [

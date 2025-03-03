@@ -10,8 +10,10 @@ defmodule Data.Article.Blog.NorderelbbrueckeA1 do
   def start(), do: ~d[2026]
   def stop(), do: ~d[2032]
 
+  def icon(), do: :gap
+
   def type(), do: :intent
-  def tags(), do: ["FR5", "radroute-21"]
+  def tags(), do: ["radroute-22", "FR5", "radroute-21"]
 
   def links(_assigns) do
     [

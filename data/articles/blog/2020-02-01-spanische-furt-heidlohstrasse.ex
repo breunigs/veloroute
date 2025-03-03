@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
 
   def type(), do: :construction
 
-  def tags(), do: ["14"]
+  def tags(), do: ["radroute-19", "14"]
 
   def links(_assigns) do
     [

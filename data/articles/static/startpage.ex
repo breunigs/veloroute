@@ -33,24 +33,37 @@ defmodule Data.Article.Static.Startpage do
       <h4 lang="en">Commuter routes</h4>
       <p lang="en">Hamburg builds “<span lang="de">Velorouten</span>” (also: <span lang="de">Radrouten</span>) to get easily from A to B in daily life – any time of the day and year. Construction is ongoing, but the routes are already often better than the most direct way.</p>
 
-      <p lang="en"><.show_route_group group={:alltag}>Map view</.show_route_group> or pick a route:</p>
+      <p lang="en"><.show_route_group group={:radroute}>Map view</.show_route_group> or pick a route:</p>
     <% end %>
 
     <ol class="route-list">
-      <li><.icon autoplay={true} name="1"><span translate="no">Rissen / Osdorfer Born</span></.icon></li>
-      <li><.icon autoplay={true} name="2"><span translate="no">Eidelstedt</span></.icon></li>
-      <li><.icon autoplay={true} name="3"><span translate="no">Niendorf</span></.icon></li>
-      <li><.icon autoplay={true} name="4"><span translate="no">Langenhorn</span></.icon></li>
-      <li><.icon autoplay={true} name="5"><span translate="no">Duvenstedt</span></.icon></li>
-      <li><.icon autoplay={true} name="6"><span translate="no">Volksdorf</span></.icon></li>
-      <li><.icon autoplay={true} name="7"><span translate="no">Rahlstedt / Jenfeld</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay={true} name="8"><span translate="no">Bergedorf / Mümmelmannsberg</span></.icon></li>
-      <li><.icon autoplay={true} name="9"><span translate="no">Bergedorf</span></.icon></li>
-      <li><.icon autoplay={true} name="10"><span translate="no">Neugraben</span></.icon></li>
-      <li><.icon autoplay={true} name="11"><span translate="no">Eißendorf</span></.icon></li>
-      <li><.icon autoplay={true} name="12"><span translate="no">Altona</span></.icon></li>
-      <li><.icon autoplay={true} name="13"><span translate="no">innerer Ring</span></.icon></li>
-      <li><.icon autoplay={true} name="14"><span translate="no">äußerer Ring</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-1"><span translate="no" style="hyphens: none">Rissen – Billstedt</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-2"><span translate="no" style="hyphens: none">Eidelstedt – Bergedorf</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-3"><span translate="no" style="hyphens: none">Niendorf – Veddel</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-4"><span translate="no" style="hyphens: none">Ochsenzoll – Sinstorf</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-5"><span translate="no" style="hyphens: none">Duvenstedt – Mundsburg</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-6"><span translate="no" style="hyphens: none">Jungfernstieg – Volksdorf</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-7"><span translate="no" style="hyphens: none">Schenefeld – Rahlstedt</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-8"><span translate="no" style="hyphens: none">Barmbek-Nord – Bergedorf</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-9"><span translate="no" style="hyphens: none">Krugkoppelbrücke – Berliner Tor</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-10"><span translate="no">Neu Wulmstorf – Alte Harburger Elbbrücke</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-11"><span translate="no" style="hyphens: none">Hafen – Stader Straße</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-12"><span translate="no" style="hyphens: none">Alsterdorf – Wilhelmsburg</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-13"><span translate="no" style="hyphens: none">Eißendorf – Seevetal</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-14"><span translate="no" style="hyphens: none">Altona – Alstervorland</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-15"><span translate="no" style="hyphens: none">Christuskirche – Alter Elbtunnel</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-16"><span translate="no" style="hyphens: none">Altona – Winterhude</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-17"><span translate="no" style="hyphens: none">UKE – Hamm</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-18"><span translate="no" style="hyphens: none">Eidelstedt – Neugraben</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-19"><span translate="no">Eidelstedt – Langenhorner Markt</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-20"><span translate="no" style="hyphens: none">Sasel – Tatenberg</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-21"><span translate="no" style="hyphens: none">Hafen – Moorfleet</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-22"><span translate="no">Hamm – Zollenspieker (Fähre)</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-23"><span translate="no">Veddel – Alte Harburger Elbbrücke</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-concept-a"><span translate="no" style="hyphens: none">Blankenese – Hauptbahnhof</span></.icon></li>
+      <li><.icon autoplay={false} name="radroute-concept-b"><span translate="no" style="hyphens: none">(angedacht) Stellingen – Othmarschen</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-concept-c"><span translate="no">(angedacht) Diebsteich – Sternschanze</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-concept-d"><span translate="no" style="hyphens: none">Burgwedel – Niendorfer Marktplatz</span></.icon></li>
     </ol>
 
     <%= if @de do %>
@@ -152,12 +165,12 @@ defmodule Data.Article.Static.Startpage do
       <h4>Umland</h4>
       <p>Auch umliegende Gemeinden schaffen Vorzugsrouten für's Rad. „<.ref>Radschnellwege</.ref>“ (auch: Radrouten Plus) sollen die Metropolregion besser verbinden, sind bisher aber noch in der Planung und nicht befahrbar.</p>
 
-      <p><.show_route_group group={:alltag}>Kartenansicht Alltagsrouten</.show_route_group> oder <.show_route_group group={:rsw}>Kartenansicht Radschnellwege</.show_route_group> oder Route auswählen:</p>
+      <p><.show_route_group group={:radroute}>Kartenansicht Alltagsrouten</.show_route_group> oder Route auswählen:</p>
     <% else %>
       <h4 lang="en">Surroundings</h4>
       <p lang="en">Municipalities around Hamburg also develop priority cycle routes. “<.ref name="Radschnellweg">Cycle highways</.ref>” (also: <span translate="no">Radrouten Plus</span>) are meant to interconnect the metropolitan area, but are currently in planning and aren't usable yet.</p>
 
-      <p lang="en"><.show_route_group group={:alltag}>Map view commuter routes</.show_route_group> or <.show_route_group group={:rsw}>map view cycle highways</.show_route_group> or pick a route:</p>
+      <p lang="en"><.show_route_group group={:radroute}>Map view commuter routes</.show_route_group> or pick a route:</p>
     <% end %>
 
     <table class="route-list" role="list">

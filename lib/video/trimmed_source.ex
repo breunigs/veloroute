@@ -95,7 +95,9 @@ defmodule Video.TrimmedSource do
     else
       rev_coords =
         if Keyword.get(options, :extrapolate_end) && to_ms > hd(rev_coords).time_offset_ms do
-          [last1, last2 | _rest] = rev_coords
+          last1 = hd(rev_coords)
+          last2 = Enum.find(rev_coords, &(&1.time_offset_ms < last1.time_offset_ms))
+
           t = calc_t(to_ms, last2, last1)
           extrap = Video.TimedPoint.extrapolate(last2, last1, t)
           [extrap | rev_coords]
@@ -193,7 +195,7 @@ defmodule Video.TrimmedSource do
 
       length(tsv.coords_cut) < 2 ->
         {:error,
-         "Time range resulted in less than two GPS points. Either the time is very short, or the GPX file is missing some points (e.g. due to no GPS fix)?"}
+         "Time range resulted in less than two GPS points. Either the time is very short, or the GPX file is missing some points (e.g. due to no GPS fix)? #{tsv.source}"}
 
       true ->
         tsv

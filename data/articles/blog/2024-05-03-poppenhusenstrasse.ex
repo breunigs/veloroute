@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
   def start(), do: ~d[2025-03]
   def stop(), do: ~d[2026-06]
 
-  def tags(), do: ["5"]
+  def tags(), do: ["radroute-5", "5"]
 
   def map_image do
     # Schlussverschickung

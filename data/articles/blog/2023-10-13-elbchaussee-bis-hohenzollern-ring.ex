@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
   def type(), do: :planned
 
-  def tags(), do: []
+  def tags(), do: ["radroute-concept-a"]
   def start(), do: ~d[2025Q2]
   def stop(), do: ~d[2025Q2]
 

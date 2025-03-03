@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Grelckstrasse do
 
   def type(), do: :intent
 
-  def tags(), do: ["3"]
+  def tags(), do: ["radroute-3", "3"]
 
   def links(_assigns) do
     []

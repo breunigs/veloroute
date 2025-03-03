@@ -13,6 +13,7 @@ defmodule Video.Path do
   @gpx_ending ".gpx"
 
   @video_out_m3u8 "stream.m3u8"
+  @video_default_m3u8 "stream_0.m3u8"
 
   @str_digits %{
     "1" => 1,
@@ -57,6 +58,10 @@ defmodule Video.Path do
 
   def target_rel_to_cwd(hash) when valid_hash(hash) do
     hash |> target() |> rel_to_cwd()
+  end
+
+  def default_m3u8(hash) when valid_hash(hash) do
+    Path.join(target(hash), @video_default_m3u8)
   end
 
   def fully_rendered?(hash) when valid_hash(hash) do

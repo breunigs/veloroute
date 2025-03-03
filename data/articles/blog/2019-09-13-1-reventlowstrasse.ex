@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
   def start(), do: ~d[2024-03-01]
   def stop(), do: ~d[2024-12-18]
 
-  def tags(), do: ["1", "a12"]
+  def tags(), do: ["radroute-concept-b", "radroute-1", "1", "a12"]
 
   def tracks(), do: Data.Article.Blog.EbertalleeSued.tracks()
 

@@ -2,13 +2,13 @@ defmodule Data.Article.Static.RSWGeesthacht do
   use Article.Static
 
   def id(), do: "rsw-geesthacht"
-  def route_group(), do: :rsw
-  def title(), do: "Radschnellweg nach Geesthacht"
+  def route_group(), do: :radroute
+  def title(), do: "Radroute Plus nach Geesthacht"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
 
   def summary(),
-    do: "Beschreibung und Video zum Radschnellweg HH-Tiefstack ↔ Geesthacht (Vorzugsstrecke)"
+    do: "Beschreibung und Video zum Radroute Plus HH-Tiefstack ↔ Geesthacht (Vorzugsstrecke)"
 
   def tags(), do: [id(), "rsw"]
 
@@ -16,12 +16,12 @@ defmodule Data.Article.Static.RSWGeesthacht do
     do: [
       %Video.Track{
         renderer: 1,
-        group: "Radschnellweg Geesthacht",
+        group: "Radroute Plus Geesthacht",
         direction: :forward,
-        from: "Hamburg Tiefstack",
+        from: "Oberer Landweg",
         to: "Geesthacht Bergedorfer Straße",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg HH-Tiefstack → Geesthacht",
+        text: "künftige Radroute Plus HH-Tiefstack → Geesthacht",
         videos: [
           {"2021-06-27-veloroute9/GX012027", "00:03:10.891", :end},
           {"2021-06-27-veloroute9/GX022027", :start, "00:03:10.390"},
@@ -44,12 +44,12 @@ defmodule Data.Article.Static.RSWGeesthacht do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Geesthacht",
+        group: "Radroute Plus Geesthacht",
         direction: :backward,
         from: "Geesthacht Bergedorfer Straße",
-        to: "Hamburg Tiefstack",
+        to: "Oberer Landweg",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Geesthacht → HH-Tiefstack",
+        text: "künftige Radroute Plus Geesthacht → HH-Tiefstack",
         videos: [
           {"2022-08-14-geesthacht-rev/GX014557", "00:00:56.590", "00:01:00.994"},
           {"2022-08-14-geesthacht-rev/GX014560", :start, "00:00:08.775"},

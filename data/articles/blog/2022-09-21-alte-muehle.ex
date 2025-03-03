@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.AlteMuehle do
   def start(), do: ~d[2024]
   def stop(), do: ~d[2024]
 
-  def tags(), do: ["5", "W08"]
+  def tags(), do: ["radroute-5", "5", "W08"]
 
   def links(_assigns) do
     [

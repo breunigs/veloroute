@@ -155,7 +155,7 @@ defmodule Mix.Tasks.Deploy do
       true =
         Parallel.map(
           ~w(
-            /alltagsroute-1
+            /radroute-1
             /updates.atom
             /images/rss.svg
             /assets/basemap/tiles/9/270/165.pbf.gz

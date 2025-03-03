@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
     do:
       "Lückenschluss Rothenbaumchaussee: zwischen Moorweiden- und Hallerstraße sollen Radfahrstreifen aufgemalt werden"
 
-  def tags(), do: []
+  def tags(), do: ["radroute-14"]
 
   def tracks(),
     do: [

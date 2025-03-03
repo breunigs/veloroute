@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.TonndorferHauptstrasse do
 
   def type(), do: :planned
 
-  def tags(), do: ["14"]
+  def tags(), do: ["radroute-20", "14"]
 
   def links(_assigns) do
     []

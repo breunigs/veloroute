@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
   def start(), do: ~d[2024]
   def stop(), do: ~d[2025]
 
-  def tags(), do: ["7", "w25"]
+  def tags(), do: ["radroute-7", "7", "w25"]
 
   def links(_assigns) do
     [

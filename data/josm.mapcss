@@ -164,6 +164,10 @@ way[type=planned] {
   dashes: 5;
 }
 
+way[status=concept] {
+  dashes: 4,10;
+}
+
 relation[name^=rsw] > way {
   dashes: 5;
 }

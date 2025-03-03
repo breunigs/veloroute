@@ -80,7 +80,6 @@ defmodule Data.GeoJSON do
     |> Map.values()
     |> add_overlap_info(:alltag)
     |> add_overlap_info(:freizeit)
-    |> add_overlap_info(:rsw)
     |> add_overlap_info(:bezirk)
     |> add_overlap_info(:radroute)
     |> Enum.flat_map(&as_geojson(&1))
@@ -167,7 +166,8 @@ defmodule Data.GeoJSON do
                       :route_id,
                       :text,
                       :title,
-                      :type
+                      :type,
+                      :status
                     ] ++ Map.Relation.style_tags() ++ Map.Way.style_tags()
 
   defp as_geojson(%Map.Way{} = w) do

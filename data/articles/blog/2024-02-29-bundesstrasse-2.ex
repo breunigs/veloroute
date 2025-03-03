@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Bundesstrasse2 do
 
   def type(), do: :planned
 
-  def tags(), do: ["Bezirksroute B", "Eimsbüttel"]
+  def tags(), do: ["radroute-14", "Bezirksroute B", "Eimsbüttel"]
   def start(), do: ~d[2024-11-18]
   def stop(), do: ~d[2025-07-31]
   def construction_site_id_hh(), do: [1_166_009]

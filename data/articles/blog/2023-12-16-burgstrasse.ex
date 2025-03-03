@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Burgstrasse do
 
   def type(), do: :finished
 
-  def tags(), do: ["13"]
+  def tags(), do: ["radroute-17", "13"]
 
   def links(_assigns) do
     [

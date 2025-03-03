@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
 
   def type(), do: :planned
 
-  def tags(), do: ["5N", "5", "br-nord-n6"]
+  def tags(), do: ["radroute-12", "5N", "5", "br-nord-n6"]
 
   def links(_assigns) do
     [

@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
 
   def construction_site_id_hh(), do: [779_744, 351_238, 401_765]
 
-  def tags(), do: ["1", "13"]
+  def tags(), do: ["radroute-7", "radroute-14", "1", "13"]
 
   def links(_assigns) do
     [

@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
   def stop(), do: ~d[2025-02-28]
   def construction_site_id_hh(), do: [926_026]
 
-  def tags(), do: ["6", "N17.1", "FR3"]
+  def tags(), do: ["radroute-6", "6", "N17.1", "FR3"]
 
   def links(_assigns) do
     [

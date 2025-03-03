@@ -2,13 +2,13 @@ defmodule Data.Article.Static.RSWLueneburg do
   use Article.Static
 
   def id(), do: "rsw-lueneburg"
-  def route_group(), do: :rsw
-  def title(), do: "Radschnellweg nach Lüneburg"
+  def route_group(), do: :radroute
+  def title(), do: "Radroute Plus nach Lüneburg"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
 
   def summary(),
-    do: "Beschreibung und Video zum Radschnellweg HH-Veddel ↔ Lüneburg (Vorzugsstrecke)"
+    do: "Beschreibung und Video zum Radroute Plus HH-Veddel ↔ Lüneburg (Vorzugsstrecke)"
 
   def tags(), do: [id(), "rsw"]
 
@@ -16,12 +16,12 @@ defmodule Data.Article.Static.RSWLueneburg do
     do: [
       %Video.Track{
         renderer: 1,
-        group: "Radschnellweg Lüneburg",
+        group: "Radroute Plus Lüneburg",
         direction: :forward,
-        from: "Hamburg Elbbrücken",
+        from: "Seevetal",
         to: "Lüneburg Zeltberg",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg HH-Elbbrücken → Lüneburg",
+        text: "künftige Radroute Plus HH-Elbbrücken → Lüneburg",
         videos: [
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012366", "00:00:57.491", "00:01:13.040"},
           {"2021-05-02-gruener-ring-sued-uhrzeigersinn/GX011460.MP4_time_lapse.mkv",
@@ -55,12 +55,12 @@ defmodule Data.Article.Static.RSWLueneburg do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Lüneburg",
+        group: "Radroute Plus Lüneburg",
         direction: :backward,
         from: "Lüneburg Zeltberg",
-        to: "Hamburg Elbbrücken",
+        to: "Seevetal",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Lüneburg → HH-Elbbrücken",
+        text: "künftige Radroute Plus Lüneburg → HH-Elbbrücken",
         videos: [
           {"2022-08-11-rsw-luene-rev/GX014483", "00:00:10.244", :end},
           {"2022-08-11-rsw-luene-rev/GX014484", "00:00:00.734", :end},

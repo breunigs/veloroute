@@ -26,7 +26,7 @@ defmodule Article do
   @callback color() :: color_hex()
   @callback color_faded() :: color_hex()
   @callback name() :: binary()
-  @callback icon() :: :nocargo | :stau | article_type()
+  @callback icon() :: :nocargo | :stau | :gap | article_type()
 
   @callback created_at() :: Date.t() | nil
   @callback updated_at() :: Date.t() | nil

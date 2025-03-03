@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Krausestrasse do
   def type(), do: :planned
   def start(), do: ~d[2026]
 
-  def tags(), do: ["FR2", "6", "br-wandsbek-w1"]
+  def tags(), do: ["radroute-6", "FR2", "6", "br-wandsbek-w1"]
 
   def tracks(),
     do: [

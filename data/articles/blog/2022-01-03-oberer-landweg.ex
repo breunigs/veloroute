@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.ObererLandweg do
     do:
       "Beidseitig Zweirichtungsradwege unter der S-Bahn und auf der gesamten Westseite. Fuß- und Radverkehr bekommen mehr Platz als heute. Klarere Querungsmöglichkeiten und meist eigene Radampeln."
 
-  def tags(), do: ["9", "rsw-geesthacht", "rsw"]
+  def tags(), do: ["radroute-2", "9", "rsw-geesthacht", "rsw"]
 
   def links(_assigns) do
     [

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Brookgraben do
 
   def type(), do: :issue
 
-  def tags(), do: ["14"]
+  def tags(), do: ["radroute-19", "14"]
 
   def links(_assigns) do
     []

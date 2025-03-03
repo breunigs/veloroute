@@ -38,8 +38,8 @@ config :veloroute, Settings, %{
     %{
       name: "Radrouten (ab 2025)",
       route_group: :radroute,
-      active: false,
-      line: ["rr-line-off-p1", "rr-line-off-m1", "rr-line-off-none"],
+      active: true,
+      line: ["rr-line-off-p1", "rr-line-off-m1", "rr-line-off-none", "rr-line-off-none-concept"],
       icon: ["rr-oneway", "rr-sign"],
       fill: [],
       outline: []
@@ -47,7 +47,7 @@ config :veloroute, Settings, %{
     %{
       name: "Velorouten (vor 2024)",
       route_group: :alltag,
-      active: true,
+      active: false,
       line: ["vr-line-off-p1", "vr-line-off-m1", "vr-line-off-none"],
       icon: ["vr-oneway", "vr-sign"],
       fill: [],
@@ -70,23 +70,14 @@ config :veloroute, Settings, %{
       icon: ["br-oneway", "br-sign"],
       fill: [],
       outline: []
-    },
-    %{
-      name: "Radschnellwege",
-      route_group: :rsw,
-      active: false,
-      line: ["rsw-line"],
-      icon: ["rsw-oneway", "rsw-sign"],
-      fill: [],
-      outline: []
     }
   ],
 
   # the start video/image to display if the user visits the start page
   start_image: %{
-    article_id: "11",
-    direction: :forward,
-    position: %{lat: 53.55044, lon: 9.99440}
+    article_id: "radroute-1",
+    direction: :backward,
+    position: %{lat: 53.550536, lon: 9.994864}
   },
 
   # city/area/region name that will have its results boosted over the ones

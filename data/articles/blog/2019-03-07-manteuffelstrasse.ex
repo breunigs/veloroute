@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Manteuffelstrasse do
   def stop(), do: ~d[2025-06-30]
   def construction_site_id_hh(), do: [1_139_944]
 
-  def tags(), do: ["1", "A22", "A22.1", "A022.1"]
+  def tags(), do: ["radroute-1", "1", "A22", "A22.1", "A022.1"]
 
   def links(_assigns) do
     [

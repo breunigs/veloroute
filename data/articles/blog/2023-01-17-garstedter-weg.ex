@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.GarstedterWeg do
   def stop(), do: ~d[2025]
 
   def type(), do: :planned
-  def tags(), do: ["14"]
+  def tags(), do: ["radroute-19", "14"]
 
   def links(_assigns) do
     [

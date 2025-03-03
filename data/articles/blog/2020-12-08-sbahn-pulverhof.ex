@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.SbahnPulverhof do
 
   def type(), do: :planned
 
-  def tags(), do: ["14", "s4"]
+  def tags(), do: ["radroute-20", "14", "s4"]
 
   def links(assigns) do
     [

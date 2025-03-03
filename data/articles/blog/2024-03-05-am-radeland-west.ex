@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.AmRadelandWest do
   def stop(), do: ~d[2025-07-30]
   def construction_site_id_hh(), do: [862_308]
 
-  def tags(), do: ["10", "FR6", "H13", "H.13"]
+  def tags(), do: ["radroute-10", "10", "FR6", "H13", "H.13"]
 
   def links(_assigns) do
     [

@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.TilsiterStrasse3 do
 
   def type(), do: :finished
 
-  def tags(), do: ["6", "w16"]
+  def tags(), do: ["radroute-6", "6", "w16"]
 
   def links(_assigns) do
     [

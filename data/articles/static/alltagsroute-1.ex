@@ -3,13 +3,15 @@ defmodule Data.Article.Static.Alltagsroute1 do
 
   def id(), do: "1"
   def route_group(), do: :alltag
-  def title(), do: "Veloroute 1"
+  def title(), do: "Veloroute 1 (veraltet)"
+  def created_at(), do: ~D[2018-01-01]
+  def updated_at(), do: ~D[2024-12-31]
 
   def color(), do: "#7d8b2f"
 
   def summary(),
     do:
-      "Alltagsroute 1 führt vom Rathaus nach Rissen bzw. zum Osdorfer Born. Die Route spaltet sich in Othmarschen."
+      "Alltagsroute 1 führte vom Rathaus nach Rissen bzw. zum Osdorfer Born. Die Route spaltet sich in Othmarschen."
 
   def tags(), do: [id(), "1a"]
 
@@ -142,6 +144,10 @@ defmodule Data.Article.Static.Alltagsroute1 do
 
   def text(assigns) do
     ~H"""
+    <h4>Neues Radnetz ab 2025</h4>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-1">Radroute 1 (Rissen)</.a> bzw. <.a name="radroute-7">Radroute 7 (Osdorfer Born)</.a> wechseln?</p>
+
+    <h4>Alte Beschreibung</h4>
     <table class="routing">
       <tr>
         <td></td>
@@ -211,7 +217,7 @@ defmodule Data.Article.Static.Alltagsroute1 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 1 (auch: Veloroute 1 oder Radroute 1) führt vom Rathaus grob in Richtung Westen. Sie macht dazu zunächst einen kleinen Umweg am Schanzenviertel vorbei. In Othmarschen teilt sich die Route:</p>
+    <p>Die Veloroute 1 führt vom Rathaus grob in Richtung Westen. Sie macht dazu zunächst einen kleinen Umweg am Schanzenviertel vorbei. In Othmarschen teilt sich die Route:</p>
     <ul>
       <li><.icon link={false}>1</.icon> führt <.v bounds="9.737287,53.548968,9.885129,53.588181" lon={9.880805} lat={53.558266} dir="forward" ref="1">weiter nach Westen</.v> und endet in Rissen</li>
       <li><.icon name="1" link={false}>1a</.icon> knickt <.v bounds="9.847553,53.552424,9.904828,53.595271" lon={9.882076} lat={53.558455} dir="forward" ref="1">nach Norden</.v> ab und endet im Osdorfer Born</li>

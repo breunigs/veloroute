@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
   def stop(), do: ~d[2025-08-31]
   def construction_site_id_hh(), do: [939_336]
 
-  def tags(), do: ["4", "1GR", "FR1"]
+  def tags(), do: ["radroute-4", "4", "1GR", "FR1"]
 
   def links(_assigns) do
     [

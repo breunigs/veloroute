@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Wagnerstrasse do
   def construction_site_id_hh(), do: [959_154]
   def type(), do: :construction
 
-  def tags(), do: ["13", "br-wandsbek-w1"]
+  def tags(), do: ["radroute-17", "13", "br-wandsbek-w1"]
 
   def links(_assigns) do
     [

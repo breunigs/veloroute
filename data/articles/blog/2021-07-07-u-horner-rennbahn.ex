@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.UHornerRennbahn do
 
   def type(), do: :finished
 
-  def tags(), do: ["8"]
+  def tags(), do: ["radroute-8", "8"]
 
   def links(_assigns) do
     [

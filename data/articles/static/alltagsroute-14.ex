@@ -3,7 +3,9 @@ defmodule Data.Article.Static.Alltagsroute14 do
 
   def id(), do: "14"
   def route_group(), do: :alltag
-  def title(), do: "Veloroute 14"
+  def title(), do: "Veloroute 14 (veraltet)"
+  def created_at(), do: ~D[2018-01-01]
+  def updated_at(), do: ~D[2024-12-31]
 
   def color(), do: "#fdb801"
 
@@ -124,6 +126,10 @@ defmodule Data.Article.Static.Alltagsroute14 do
 
   def text(assigns) do
     ~H"""
+    <h4>Neues Radnetz ab 2025</h4>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-18">Radroute 18 (Westen)</.a>, <.a name="radroute-19">Radroute 19 (Nordwesten)</.a>, <.a name="radroute-20">Radroute 20 (Osten)</.a> wechseln? Das Stück zwischen Langenhorner Markt und Poppenbüttel ist nicht mehr Teil des bezirksübergreifenden Netzes.</p>
+
+    <h4>Alte Beschreibung</h4>
     <table class="routing">
       <tr>
         <td></td>

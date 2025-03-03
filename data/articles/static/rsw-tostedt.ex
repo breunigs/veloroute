@@ -2,14 +2,14 @@ defmodule Data.Article.Static.RSWTostedt do
   use Article.Static
 
   def id(), do: "rsw-tostedt"
-  def route_group(), do: :rsw
+  def route_group(), do: :radroute
   def name(), do: id()
-  def title(), do: "Radschnellweg nach Tostedt"
+  def title(), do: "Radroute Plus nach Tostedt"
 
-  def color(), do: "#000000"
+  def color(), do: RouteColors.rsw()
 
   def summary(),
-    do: "Beschreibung und Video zum Radschnellweg Tostedt ↔ HH-Harburg"
+    do: "Beschreibung und Video zum Radroute Plus Tostedt ↔ HH-Harburg"
 
   def tags(), do: [id(), "rsw"]
 
@@ -17,12 +17,12 @@ defmodule Data.Article.Static.RSWTostedt do
     do: [
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Tostedt",
+        group: "Radroute Plus Tostedt",
         direction: :forward,
-        from: "Harburg Bahnhof",
+        from: "Harburger Berge",
         to: "Tostedt",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Harburg Bahnhof → Tostedt",
+        text: "künftige Radroute Plus Harburg Bahnhof → Tostedt",
         videos: [
           {"2022-05-18-rsw-tostedt/GX013972", :start, :end},
           {"2022-05-18-rsw-tostedt/GX013973", :start, :end},
@@ -42,12 +42,12 @@ defmodule Data.Article.Static.RSWTostedt do
       },
       %Video.Track{
         renderer: 3,
-        group: "Radschnellweg Tostedt",
+        group: "Radroute Plus Tostedt",
         direction: :backward,
         from: "Tostedt",
-        to: "Harburg Bahnhof",
+        to: "Harburger Berge",
         parent_ref: __MODULE__,
-        text: "künftiger Radschnellweg Tostedt → Harburg Bahnhof",
+        text: "künftige Radroute Plus Tostedt → Harburg Bahnhof",
         videos: [
           {"2022-08-20-tostedt-rev/GX014595", "00:00:01.635", "00:02:37.257"},
           {"2022-08-20-tostedt-rev/GX014597", "00:00:00.300", "00:00:30.530"},
@@ -72,7 +72,7 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def links(_assigns) do
     [
-      {"offizielle Seite zu den Radschnellwegen",
+      {"offizielle Seite zu den Radroute Plus",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Tostedt",
        "https://metropolregion.hamburg.de/radschnellwege/15307158/radschnellweg-tostedt-hamburg/"},

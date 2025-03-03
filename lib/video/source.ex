@@ -135,42 +135,21 @@ defmodule Video.Source do
   end
 
   # for some videos the absolute GPX timestamps do not match the video duration,
-  # therefore we just stretch them to fit. For others we adjust by time_lapse.
+  # therefore we just stretch them to fit.
   @spec maybe_stretch_to_video([Video.TimedPoint.t()], t()) :: [Video.TimedPoint.t()]
   defp maybe_stretch_to_video(timed_points, %__MODULE__{} = self) do
-    {:ok, %{duration: video_len_s, time_lapse: time_lapse}} = Video.Metadata.for(self)
-    vid_len_ms = video_len_s * 1000
-    gpx_len_ms = List.last(timed_points).time_offset_ms
-    gpx_is_realtime = abs(gpx_len_ms / vid_len_ms - time_lapse) < 1.0
+    if String.ends_with?(self.source, ".mkv") || String.ends_with?(self.source, "_stabilized.MP4") do
+      IO.puts("stretching GPX for #{self.source}")
+      vid_len_ms = Video.Metadata.length_ms!(self)
+      gpx_len_ms = List.last(timed_points).time_offset_ms
 
-    cond do
-      String.ends_with?(self.source, ".mkv") ||
-          String.ends_with?(self.source, "_stabilized.MP4") ->
-        IO.puts("stretching GPX for #{self.source}")
-
-        Enum.map(timed_points, fn pt ->
-          ratio = pt.time_offset_ms / gpx_len_ms
-          %{pt | time_offset_ms: round(vid_len_ms * ratio)}
-        end)
-
-      gpx_is_realtime ->
-        Enum.map(timed_points, fn pt ->
-          %{pt | time_offset_ms: round(pt.time_offset_ms / time_lapse)}
-        end)
-
-      true ->
-        timed_points
+      Enum.map(timed_points, fn pt ->
+        ratio = pt.time_offset_ms / gpx_len_ms
+        %{pt | time_offset_ms: round(vid_len_ms * ratio)}
+      end)
+    else
+      timed_points
     end
-    |> tap(fn tp ->
-      # assert that timed points match the *video* regardless of time lapse or
-      # other legacy/broken files
-      if abs(List.last(tp).time_offset_ms - vid_len_ms) > 5_000 &&
-           Application.get_env(:veloroute, :env) == :dev do
-        require IEx
-        IEx.pry()
-        raise "video and GPS don't match?"
-      end
-    end)
   end
 
   defp assert_monotonic_increase(line, %__MODULE__{source: source}) do
@@ -212,31 +191,77 @@ defmodule Video.Source do
 
   @spec parse_gpx_xml(String.t()) :: list(gpx_point)
   defp parse_gpx_xml(xml) do
-    xml
-    |> xpath(~x"//trkseg/trkpt"l)
-    |> Enum.map(fn trkpt ->
-      %{
-        lat: trkpt |> xpath(~x"./@lat"f),
-        lon: trkpt |> xpath(~x"./@lon"f),
-        time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date(),
-        ele: trkpt |> xpath(~x"./ele/text()"s) |> parse_gpx_ele()
-      }
-    end)
-    |> Enum.reduce_while([], fn
-      # the GPX exporter has a bug where it exports all track points for the
-      # first video, even if it is split across multiple videos that each have
-      # their own GPX tracks. When this happens, the timestamps also reset
-      # again. We detect this here and simply drop all remaining points, which
-      # are duplicated anyway.
-      next, [] ->
-        {:cont, [next]}
+    parsed =
+      xpath(xml, ~x"/gpx",
+        creator: ~x"./@creator"s,
+        name: ~x"./metadata/name/text()"s,
+        desc: ~x"./metadata/desc/text()"s,
+        speedup: ~x"./metadata/speedup/text()"s,
+        points: ~x"//trkseg/trkpt"l
+      )
 
-      next, [prev | _rest] = list ->
-        if NaiveDateTime.compare(next.time, prev.time) == :lt,
-          do: {:halt, list},
-          else: {:cont, [next | list]}
-    end)
-    |> Enum.reverse()
+    points_rev =
+      parsed.points
+      |> Enum.map(fn trkpt ->
+        %{
+          lat: trkpt |> xpath(~x"./@lat"f),
+          lon: trkpt |> xpath(~x"./@lon"f),
+          time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date(),
+          ele: trkpt |> xpath(~x"./ele/text()"s) |> parse_gpx_ele()
+        }
+      end)
+      |> Enum.reduce_while([], fn
+        # the GPX exporter has a bug where it exports all track points for the
+        # first video, even if it is split across multiple videos that each have
+        # their own GPX tracks. When this happens, the timestamps also reset
+        # again. We detect this here and simply drop all remaining points, which
+        # are duplicated anyway.
+        next, [] ->
+          {:cont, [next]}
+
+        next, [prev | _rest] = list ->
+          if NaiveDateTime.compare(next.time, prev.time) == :lt,
+            do: {:halt, list},
+            else: {:cont, [next | list]}
+      end)
+
+    points = Enum.reverse(points_rev)
+
+    with "ExifTool" <> _rest <- parsed.creator do
+      [dur_str, _] = String.split(parsed.desc, " ", parts: 2)
+      {video_dur_s, ""} = Float.parse(dur_str)
+      {speedup, ""} = Integer.parse(parsed.speedup)
+      head = hd(points)
+      start_time = head.time
+
+      # make timestamps diff be in video time, instead of real time. This is
+      # because the old extractor was in video time.
+      points =
+        Enum.map(points, fn point ->
+          dur_real_time = NaiveDateTime.diff(point.time, start_time, :nanosecond)
+          video_time = NaiveDateTime.add(start_time, round(dur_real_time / speedup), :nanosecond)
+          %{point | time: video_time}
+        end)
+
+      # ExifTool parsing has an offset for some reason. The GPS duration is
+      # usually longer than the video duration, and cutting off this extra time
+      # at the start fixes the offset (determined experimentally.)
+      gps_start = hd(points).time
+      gps_stop = hd(points_rev).time
+      gps_dur_s = NaiveDateTime.diff(gps_stop, gps_start, :millisecond) / 1000.0
+      offset_ms = round((gps_dur_s - video_dur_s * speedup) * 1000)
+
+      if offset_ms > 0 do
+        new_time = NaiveDateTime.add(head.time, offset_ms, :millisecond)
+        new_head = %{head | time: new_time}
+        new_tail = Enum.drop_while(tl(points), &NaiveDateTime.before?(&1.time, new_time))
+        [new_head | new_tail]
+      else
+        points
+      end
+    else
+      _ -> points
+    end
   end
 
   @spec parse_gpx_date(binary()) :: NaiveDateTime.t()

@@ -272,7 +272,12 @@ defmodule Article.Decorators do
         |> Enum.uniq()
         |> Util.compact()
 
-    List.wrap(groups)
+    groups = List.wrap(groups)
+
+    # hack: do not show Veloroutes, as they are deprectated
+    if :alltag in groups && :radroute in groups,
+      do: List.delete(groups, :alltag),
+      else: groups
   end
 
   @spec updated_at(Article.t()) :: binary() | nil

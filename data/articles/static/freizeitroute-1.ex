@@ -5,8 +5,8 @@ defmodule Data.Article.Static.Freizeitroute1 do
   def route_group(), do: :freizeit
   def title(), do: "Alsterradweg (FR1)"
 
-  def color(), do: "#006106"
-  def color_faded(), do: "#77ba7b"
+  def color(), do: RouteColors.freizeit_normal()
+  def color_faded(), do: RouteColors.freizeit_faded()
 
   def summary(),
     do: "Freizeitroute 1 führt entlang der Alster zum Duvenstedter Brook"

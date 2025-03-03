@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
   def start(), do: ~d[2025Q3]
   def stop(), do: ~d[2025Q4]
 
-  def tags(), do: ["10"]
+  def tags(), do: ["radroute-concept-a", "radroute-3", "10"]
 
   def map_image do
     {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}

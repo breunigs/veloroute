@@ -55,7 +55,7 @@ defmodule Joiner.Options do
 
       ### GPS track matching
       # how close two GPS points must be each other to be considered
-      # "overlapping" (and thus a potential video joing point)
+      # "overlapping" (and thus a potential video joining point)
       geo_max_dist_m: 15.0,
       # how strongly must two GPS tracks aim in the same direction to be
       # considered "overlapping". 180° would consider even tracks in the

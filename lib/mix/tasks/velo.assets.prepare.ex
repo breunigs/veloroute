@@ -8,6 +8,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   def run(args) do
     copy_images()
     robots_txt()
+    Components.GraphIcon.generate_all()
 
     Mix.Tasks.Velo.Map.Ensure.run(nil)
     Mix.Tasks.Velo.Favicon.Raster.run(nil)

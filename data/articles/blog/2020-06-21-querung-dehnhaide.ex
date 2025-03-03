@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.QuerungDehnhaide do
 
   def type(), do: :ampel
 
-  def tags(), do: ["5"]
+  def tags(), do: ["radroute-5", "5"]
 
   def links(_assigns) do
     []

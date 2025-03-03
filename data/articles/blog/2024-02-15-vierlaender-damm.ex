@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
   def stop(), do: ~d[2025-02-28]
   def construction_site_id_hh(), do: [882_875, 1_024_062]
 
-  def tags(), do: ["FR5"]
+  def tags(), do: ["radroute-22", "FR5"]
 
   def tracks(),
     do: [

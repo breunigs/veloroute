@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
     do:
       "Jahre alte Planung soll umgesetzt werden. Schmale Radfahrstreifen verlaufen ungeschützt über die riesige Kreuzung."
 
-  def tags(), do: ["11", "rsw-lueneburg", "rsw-tostedt", "FR11"]
+  def tags(), do: ["radroute-13", "radroute-4", "11", "rsw-lueneburg", "rsw-tostedt", "FR11"]
 
   def links(_assigns) do
     [

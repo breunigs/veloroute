@@ -904,7 +904,7 @@ $iconBorder: 0.13em;
     padding: 0 0.2rem;
   }
 
-  &.alltag {
+  &.alltag, &.radroute {
     border-radius: 50%;
     width: 1.5em;
   }
@@ -913,10 +913,6 @@ $iconBorder: 0.13em;
     border-radius: 0% 0% 50% 50%;
     min-width: 1.5em;
     line-height: 1.25em;
-  }
-
-  &.rsw {
-    display: none;
   }
 }
 
@@ -1058,7 +1054,7 @@ ol.route-list {
     width: calc(100% - 3.3em);
   }
 
-  span.alltag + span {
+  span.alltag + span, span.radroute + span {
     width: calc(100% - $iconSize - 2*$iconBorder - 0.2em);
   }
 
@@ -1087,7 +1083,7 @@ li.separator {
 }
 
 
-ol.hide-bullets {
+.hide-bullets {
   list-style-type: none;
   padding: 0;
 
@@ -1335,6 +1331,81 @@ p.alert {
   background: #ECD0D0;
   padding: $contentPad;
   margin: 0 calc(-1*$contentPad);
+}
+
+table.routing2  {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
+
+  a {
+    color: #000;
+    &.video::after, &.map::after {
+      display: none;
+    }
+  }
+
+  // this will control the size of the abstract route rendering, since it needs
+  // to match in cell height for the different sub-icons to line up.
+  $table-cell-height: 24px;
+
+  tr, td, th {
+    padding: 0;
+    height: $table-cell-height;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: calc($table-cell-height/2);
+  }
+
+  td:nth-child(2) {
+    width: $table-cell-height*2.5;
+    height: $table-cell-height;
+    overflow-y: hidden;
+    text-align: center;
+    svg, img {
+      // get rid of 1px gaps
+      scale: 1.05;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  $main-route-icon-size: 1.5em;
+
+  td:first-child {
+    text-align: right;
+  }
+
+  td.dir {
+    opacity: 0.3;
+  }
+
+  td.dim {
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  .icon, .customicon {
+    margin: 0 0.2em;
+  }
+
+  .customicon {
+    border: 0.13em solid transparent;
+    vertical-align: middle;
+    display: inline-block;
+    height: 1.45em;
+  }
+
+  // i.e. center column that displays the route
+  tr:first-child td:nth-child(2) .icon {
+    font-size: 120%;
+    line-height: 1.6rem;
+    width: $main-route-icon-size;
+    height: $main-route-icon-size;
+  }
 }
 
 table.routing {

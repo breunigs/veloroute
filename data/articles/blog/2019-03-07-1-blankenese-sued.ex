@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.BlankeneseSued do
 
   def type(), do: :planned
 
-  def tags(), do: ["1", "A22"]
+  def tags(), do: ["radroute-concept-a", "radroute-1", "1", "A22"]
 
   def links(_assigns) do
     []

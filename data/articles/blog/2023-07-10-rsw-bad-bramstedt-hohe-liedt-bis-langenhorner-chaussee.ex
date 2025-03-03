@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.RswBadBramstedtHoheLiedtBisLangenhornerChaussee do
 
   def type(), do: :planned
 
-  def tags(), do: ["rsw-bad-bramstedt", "rsw", "n24", "4", "br-nord-n1"]
+  def tags(), do: ["radroute-4", "rsw-bad-bramstedt", "rsw", "n24", "4", "br-nord-n1"]
 
   def map_image do
     {name(),

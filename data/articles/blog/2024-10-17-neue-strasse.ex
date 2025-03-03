@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.NeueStrasse do
 
   def type(), do: :construction
 
-  def tags(), do: ["10", "FR6"]
+  def tags(), do: ["radroute-10", "10", "FR6"]
 
   def links(_assigns) do
     [

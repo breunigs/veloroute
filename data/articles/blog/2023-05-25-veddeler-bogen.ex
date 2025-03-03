@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.VeddelerBogen do
   def construction_site_id_hh(), do: [798_729]
   def type(), do: :finished
 
-  def tags(), do: ["10", "M12.1B Nord"]
+  def tags(), do: ["radroute-23", "10", "M12.1B Nord"]
 
   def links(_assigns) do
     [

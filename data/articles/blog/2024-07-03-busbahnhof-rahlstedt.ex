@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.BusbahnhofRahlstedt do
 
   def type(), do: :construction
 
-  def tags(), do: ["7"]
+  def tags(), do: ["radroute-7", "7"]
 
   def map_image do
     {name(),

@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
   def type(), do: :planned
   def stop(), do: ~d[2030]
 
-  def tags(), do: ["5", "5N", "rsw-bad-bramstedt", "N26"]
+  def tags(), do: ["radroute-12", "radroute-4", "5", "5N", "rsw-bad-bramstedt", "N26"]
 
   def links(_assigns) do
     [

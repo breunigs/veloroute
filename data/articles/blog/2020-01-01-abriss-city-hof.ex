@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.AbrissCityHof do
   def stop(), do: ~d[2024-08-18]
   # def construction_site_id_hh(), do: [113_099, 379_418]
 
-  def tags(), do: ["9"]
+  def tags(), do: ["radroute-2", "9"]
 
   def links(_assigns) do
     [

@@ -9,6 +9,17 @@ defmodule M3U8.Utils do
           codec: binary()
         }
 
+  @spec duration_ms([M3U8.Tokenizer.valid_token()]) :: non_neg_integer()
+  def duration_ms(tokens) do
+    tokens
+    |> Enum.reduce(0.0, fn
+      {:extinf, %{duration: in_s}}, sum -> sum + in_s
+      _other, sum -> sum
+    end)
+    |> Kernel.*(1000)
+    |> Kernel.round()
+  end
+
   @spec variants([M3U8.Tokenizer.valid_token()]) :: [variant()]
   def variants(tokens) do
     tokens

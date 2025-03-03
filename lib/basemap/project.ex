@@ -11,11 +11,12 @@ defmodule Basemap.Project do
   @impl Basemap.Renderable
   def staleness() do
     geojson_source = Util.module_source_path(Data.GeoJSON)
+    colors_source = Util.module_source_path(RouteColors)
     articles = Path.wildcard("data/articles/**/*.ex")
 
     Util.IO.staleness(
       target(:cache),
-      [Cache.Map.source(), __ENV__.file, geojson_source] ++ articles
+      [Cache.Map.source(), __ENV__.file, geojson_source, colors_source] ++ articles
     )
   end
 
