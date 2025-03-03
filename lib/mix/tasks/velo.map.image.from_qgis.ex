@@ -53,7 +53,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
       {:error,
        """
        Usage:
-         mix mix velo.map.image.from_qgis <article name> <qgis_project.qgz>
+         mix velo.map.image.from_qgis <qgis_project.qgz> <article name>
        got these arguments: #{inspect(other)})
        """}
 
@@ -69,6 +69,8 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
       else
         {:ok, data}
       end
+    else
+      error -> {:error, "failed to read project file at #{path}: #{inspect(error)}"}
     end
   end
 
@@ -138,7 +140,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
   end
 
   defp qt_checked?({_tag_name, attrs, _children}) do
-    Enum.member?(attrs, {"checked", "Qt::Unchecked"})
+    Enum.member?(attrs, {"checked", "Qt::Checked"})
   end
 
   defp attr({_tag_name, attrs, _children}, attr) do
