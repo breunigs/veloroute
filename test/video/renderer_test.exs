@@ -216,7 +216,7 @@ defmodule Video.RendererTest do
              "-i",
              "videos/source/2.mp4",
              "-filter_complex",
-             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,scale=640:-1,settb=AVTB[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,scale=640:-1,settb=AVTB[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693333333333336:offset=0.7010666666666666",
+             "[0]frei0r=jsonblur:videos/source/1.mp4.json.gz|1760,scale=640:-1,settb=AVTB,setsar=1:1[blur0];[1]frei0r=jsonblur:videos/source/2.mp4.json.gz|1106,scale=640:-1,settb=AVTB,setsar=1:1[blur1];[blur0][blur1]xfade=transition=fade:duration=0.26693333333333336:offset=0.7010666666666666",
              "-pix_fmt",
              "yuv420p",
              "-c:v",
