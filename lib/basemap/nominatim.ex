@@ -81,7 +81,7 @@ defmodule Basemap.Nominatim do
   end
 
   defp keys_to_atoms(map) when is_map(map) do
-    Enum.into(map, %{}, fn {k, v} -> {String.to_existing_atom(k), keys_to_atoms(v)} end)
+    Enum.into(map, %{}, fn {k, v} -> {String.to_atom(k), keys_to_atoms(v)} end)
   end
 
   defp keys_to_atoms(list) when is_list(list) do
