@@ -11,7 +11,7 @@ defmodule Joiner.Video do
   @enforce_keys [:ident, :source, :meta, :polyline, :start, :stop]
   defstruct @enforce_keys
 
-  @type input :: {binary(), :start | Video.Timestamp.t(), :end, Video.Timestamp.t()} | binary()
+  @type input :: {binary(), :start | Video.Timestamp.t(), :end | Video.Timestamp.t()} | binary()
 
   @spec load(input() | {:error, binary()}) :: {:ok, t()} | {:error, binary()}
   def load({ident_or_path, start, stop}) do
@@ -41,7 +41,7 @@ defmodule Joiner.Video do
 
   def load({:error, reason}), do: {:error, reason}
 
-  def load(ident_or_path) when is_binary(ident_or_path), do: load({ident_or_path, :start, :stop})
+  def load(ident_or_path) when is_binary(ident_or_path), do: load({ident_or_path, :start, :end})
 
   defp ts_to_ms(:start), do: 0
   defp ts_to_ms(:end), do: :end

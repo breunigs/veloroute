@@ -8,7 +8,10 @@ defmodule Joiner.Visual do
       results =
         metrics
         |> top_fades(fade_frames, Joiner.Segment.start_end?(segment), opts)
-        |> tap(&Logger.debug("found #{length(&1)} visual candidates, refining…"))
+        |> tap(fn
+          [] -> Logger.debug("no candidates remain in this segment")
+          candidates -> Logger.debug("found #{length(candidates)} visual candidates, refining…")
+        end)
         |> Enum.take(opts.visual_max_candidates)
         |> Task.async_stream(
           fn {candidate_metric_val, f1offset, f2offset} ->
@@ -41,6 +44,7 @@ defmodule Joiner.Visual do
       top_ratio = 1.0 - opts.openai_clip_top_percent / 100.0
       min_val = with [best | _] <- results, do: best.metrics.clip * top_ratio
       results = Enum.take_while(results, &(&1.metrics.clip >= min_val))
+      Logger.debug("#{length(results)} remain after refinement")
 
       {:ok, results}
     end
