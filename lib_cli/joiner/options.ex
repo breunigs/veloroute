@@ -106,10 +106,10 @@ defmodule Joiner.Options do
       # to compute the order in which results are presented to the user, specify
       # the weight of various statistics.
       weights: %{
-        clip: 0.7,
-        xpsnr: 0.1,
-        distance: 0.05,
-        speed_diff: 0.15
+        clip: 0.68,
+        xpsnr: 0.09,
+        distance: 0.09,
+        speed_diff: 0.14
       },
       # assuming there's more results, how many to present to the user
       user_max_candidates: 5,
