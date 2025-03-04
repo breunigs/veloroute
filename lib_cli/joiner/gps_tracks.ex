@@ -40,12 +40,32 @@ defmodule Joiner.GpsTracks do
   @doc """
   Given two GPS tracks, it will return segments where the two tracks are close
   to each other and aim in roughly the same direction (similar bearing).
+
+  This approach is dominated by O(n * log(m) + m * log(m)), where n and m are
+  the length of the polylines. The sort on the found neighbors is usually
+  negligible, because there are so few. So not really suitable for very long
+  tracks, but fast enough in practice.
   """
   @spec overlapping(Joiner.Segment.t(), Joiner.Options.t()) :: [Joiner.Segment.t()]
   def overlapping(%{from: %{polyline: poly1}, to: %{polyline: poly2}} = segment, opts) do
-    # this is n*m, so not suitable for really long tracks
+    # O(m log(m))
+    lookup = poly2 |> with_bearing() |> Enum.map(&{{&1.lat, &1.lon}, &1}) |> :kdtree.from_list()
+
+    # kdtree uses Haversine to determine neighbors, which is slightly different
+    # from the distance algorithm from CheapRuler. For consistency, a small
+    # correction factor is used to ensure no potential candidates are excluded.
+    # Also kdtree expects km as a distance unit.
+    neighbor_dist = ceil(opts.geo_max_dist_m / 1000.0 * 1.1)
+
+    # O(n)
     Enum.reduce(with_bearing(poly1), [], fn p1, matches ->
-      Enum.reduce(with_bearing(poly2), matches, fn p2, matches ->
+      lookup
+      # O(log(m))
+      |> :kdtree.nearby({p1.lat, p1.lon}, neighbor_dist)
+      |> Enum.map(&elem(&1, 1))
+      # O(m' log(m')) with m' being the neighbor count within dist
+      |> Enum.sort_by(& &1.time_offset_ms)
+      |> Enum.reduce(matches, fn p2, matches ->
         # i.e. find all matching points
         if within_dist?(p1, p2, opts) && within_bearing?(p1, p2, opts) &&
              valid_self_overlap?(segment, p1, p2, opts) do
