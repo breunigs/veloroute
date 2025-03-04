@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
 
   def links(_assigns) do
     [
+      {"Politik blockiert Umbau nicht mehr", ~d[2025-02],
+       "https://www.abendblatt.de/hamburg/hamburg-nord/article408394749/barmbek-umbau-aufregung-um-louis-braille-platz-alles-hing-nur-an-zwei-parkplaetzen.html"},
       {"Politik blockiert Umbau", ~d[2025-01],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014770"},
       {"Erläuterungsbericht fertiger Entwurf", "Februar 2024",
