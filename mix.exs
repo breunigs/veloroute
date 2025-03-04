@@ -84,7 +84,7 @@ defmodule Veloroute.MixProject do
       {:phoenix_live_view, "~> 1.0.0-rc.7"},
       {:phoenix, "~> 1.7.11"},
       {:plug_cowboy, "~> 2.3"},
-      {:polyline, git: "https://github.com/breunigs/polyline_ex", branch: "optimize-decode2"},
+      {:polyline, "~> 1.6"},
       {:reverse_proxy_plug, "~> 3.0"},
       {:saxy, "~> 1.0"},
       {:stream_split, "~> 0.1.0"},
