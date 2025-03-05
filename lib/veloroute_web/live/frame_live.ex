@@ -189,7 +189,7 @@ defmodule VelorouteWeb.FrameLive do
         socket
         |> VelorouteWeb.Live.VideoState.maybe_update_video(action.route, %{
           "group" => action.group,
-          "direction" => to_string(action.direction),
+          "dir" => to_string(action.direction),
           "lat" => lat,
           "lon" => lon
         })
