@@ -26,6 +26,12 @@ defmodule Data.Article.Static.RadrouteConceptD do
         historic: %{
           "cbc93c1dce23a0e9e64bcaa6604d05d8" => ~d[2025-02]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute3,
+          group: "3",
+          direction: :forward
+        },
         videos: [
           {"2025-02-28-schnelsen/GX018349", :start, :end, vf: "curves=lighter"},
           {"2025-02-28-schnelsen/GX018350", :start, :end, vf: "curves=lighter"},

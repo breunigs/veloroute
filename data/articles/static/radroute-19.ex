@@ -25,6 +25,12 @@ defmodule Data.Article.Static.Radroute19 do
         historic: %{
           "a5d1ef2ff2b9c4272e225c1acb76282d" => ~d[2024-06]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute18,
+          group: "18",
+          direction: :forward
+        },
         videos: [
           {"2024-06-16-13im-14gg/GX017729", :start, "00:00:16.413"},
           {"2024-06-16-13im-14gg/GX017730", :start, "00:00:52.609"},

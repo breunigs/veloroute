@@ -26,6 +26,12 @@ defmodule Data.Article.Static.Radroute4 do
         historic: %{
           "f8afb4160450776b7c4fed1b86b8f60c" => ~d[2025-02]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.RSWTostedt,
+          group: "Radroute Plus Tostedt",
+          direction: :forward
+        },
         videos: [
           {"2024-05-12-vr4/GX017526", "00:00:26.593", "00:00:40.332"},
           {"2024-05-12-vr4/GX017527", :start, "00:02:20.779"},

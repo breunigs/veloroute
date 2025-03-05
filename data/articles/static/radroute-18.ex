@@ -26,6 +26,12 @@ defmodule Data.Article.Static.Radroute18 do
         historic: %{
           "d1732d3542f7b475e9c3e0d835fa0412" => ~d[2025-02]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute19,
+          group: "19",
+          direction: :forward
+        },
         videos: [
           {"2025-02-12-west/GX018038", "00:07:18.204", :end},
           {"2025-02-12-west/GX018039", :start, :end},
@@ -48,9 +54,10 @@ defmodule Data.Article.Static.Radroute18 do
         parent_ref: __MODULE__,
         text: "von Eidelstedt nach Neugraben",
         historic: %{
-          "0c5b92cec349a1e9bc0c86a226b19e6a" => ~d[2025-02]
+          "cf98fd0805ff35555754050ccf0ae555" => ~d[2025-02]
         },
         videos: [
+          {"2024-06-18-14gg/GX017766", "00:01:17.729", "00:01:43.884"},
           {"2024-06-18-14gg/GX017767", :start, "00:00:30.991"},
           {"2024-06-18-14gg/GX017768", "00:00:00.067", "00:00:34.328"},
           {"2024-06-18-14gg/GX017769", "00:00:00.067", "00:00:21.718"},

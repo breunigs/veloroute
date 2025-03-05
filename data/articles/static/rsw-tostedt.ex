@@ -48,6 +48,12 @@ defmodule Data.Article.Static.RSWTostedt do
         to: "Harburger Berge",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Tostedt → Harburg Bahnhof",
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute4,
+          group: "4",
+          direction: :backward
+        },
         videos: [
           {"2022-08-20-tostedt-rev/GX014595", "00:00:01.635", "00:02:37.257"},
           {"2022-08-20-tostedt-rev/GX014597", "00:00:00.300", "00:00:30.530"},

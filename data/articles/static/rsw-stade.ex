@@ -17,7 +17,7 @@ defmodule Data.Article.Static.RSWStade do
     do: [
       %Video.Track{
         renderer: 1,
-        group: "Radschnellweg Stade (via Neugraben)",
+        group: "Radroute Plus Stade (via Neugraben)",
         direction: :forward,
         from: "Neu Wulmstorf",
         to: "Stade Am Güterbahnhof",

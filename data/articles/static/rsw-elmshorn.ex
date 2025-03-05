@@ -102,6 +102,12 @@ defmodule Data.Article.Static.RSWElmshorn do
         to: "Hamburg Langenfelder Damm",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus HH Elbgaustraße → HH Langenfelder Damm",
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute2,
+          group: "2",
+          direction: :forward
+        },
         videos: [
           {"2021-12-25-velo2-rsw-elmshorn/GX013087", "00:01:28.322", :end},
           {"2021-12-25-velo2-rsw-elmshorn/GX013088", "00:00:01.034", :end},

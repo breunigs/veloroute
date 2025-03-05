@@ -47,6 +47,12 @@ defmodule Data.Article.Static.Radroute10 do
         historic: %{
           "70bd69d9989b09fb6317ba885bcf7f2e" => ~d[2025-02]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.RSWStade,
+          group: "Radroute Plus Stade (via Neugraben)",
+          direction: :backward
+        },
         videos: [
           {"2024-05-18-vr10/GX017618", "00:00:50.150", "00:04:32.117"},
           {"2024-05-18-vr10/GX017619", "00:00:00.501", "00:01:13.574"},
