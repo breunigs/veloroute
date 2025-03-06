@@ -27,7 +27,7 @@ const routeLayers = [
   'rr-line-off-none', 'rr-line-off-none-tunnel',
   'rr-line-off-p1', 'rr-line-off-p1-tunnel',
   'rr-line-off-m1', 'rr-line-off-m1-tunnel',
-  'rr-line-off-none-concept',
+  'rr-line-off-none-concept', 'rr-line-off-none-concept-tunnel',
   'vr-line-off-none', 'vr-line-off-none-tunnel',
   'vr-line-off-p1', 'vr-line-off-p1-tunnel',
   'vr-line-off-m1', 'vr-line-off-m1-tunnel',
