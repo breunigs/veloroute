@@ -94,7 +94,6 @@ defmodule Veloroute.MixProject do
       {:tqdm, runtime: is_dev, git: "https://github.com/breunigs/tqdm_elixir", branch: "updates"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       # auto video join
-      {:kdtree, "~> 1.0", only: [:dev, :test]},
       # Ortex 0.1.10 and newer require Rust 1.64+. However, Debian Bookworm as
       # our base image only has Rust 1.63.
       {:ortex, "0.1.9", only: [:dev, :test]},
