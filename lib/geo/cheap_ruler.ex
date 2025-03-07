@@ -1,6 +1,8 @@
 defmodule Geo.CheapRuler do
   require Integer
   require Settings
+  @compile {:inline, to_deg: 1, to_rad: 1}
+
   # via https://blog.mapbox.com/fast-geodesic-approximations-with-cheap-ruler-106f229ad016
 
   @type point() :: %{:lat => float(), :lon => float(), optional(atom()) => any()}
@@ -604,11 +606,11 @@ defmodule Geo.CheapRuler do
     dx = (lon2 - lon1) * @kx
     dy = (lat2 - lat1) * @ky
 
-    if dx == 0 && dy == 0 do
+    if dx == 0.0 && dy == 0.0 do
       0.0
     else
       bear = :math.atan2(dx, dy) |> to_deg()
-      if bear < 0, do: bear + 360, else: bear
+      if bear < 0.0, do: bear + 360.0, else: bear
     end
   end
 
