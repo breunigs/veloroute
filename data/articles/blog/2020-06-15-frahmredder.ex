@@ -4,13 +4,13 @@ defmodule Data.Article.Blog.Frahmredder do
   def created_at(), do: ~D[2020-06-15]
   def updated_at(), do: ~D[2022-02-11]
 
-  def title(), do: "Frahmredder (Alltagsroute 5)"
+  def title(), do: "Frahmredder (Radroute 5)"
 
   def summary(),
     do:
       "beidseitig je 1,75m breite Schutzstreifen geplant, ab Stadtbahnstraße Tempo-20 im Mischverkehr"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2023-07-10]
   def stop(), do: ~d[2025-01-31]
   def construction_site_id_hh(), do: [410_625]

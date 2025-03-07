@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
 
   def links(assigns) do
     [
+      {"Baustelleinfo", ~d[2025-03],
+       "https://lsbg.hamburg.de/resource/blob/1023246/7af86214565c332b71f083cecdb718ac/spanische-furt-holsteiner-chaussee-anliegerinformation-februar-2025-data.pdf"},
       {"Plan", "Oktober 2023",
        "https://lsbg.hamburg.de/resource/blob/784396/6a4df157837cbb9703464da793fbac7e/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-plan-data.pdf"},
       {"Bericht", "Oktober 2023",
