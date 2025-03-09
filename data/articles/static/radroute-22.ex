@@ -136,7 +136,7 @@ defmodule Data.Article.Static.Radroute22 do
       </tr>
     </table>
 
-    <p>Radroute 20 führt von Hamm, über den <.v bounds="10.033424,53.487731,10.098779,53.536209" lon={10.056651} lat={53.520778} dir="forward" ref={@ref}>Kaltehofe-Hauptdeich</.v> und den <.v bounds="10.068157,53.425379,10.181042,53.480759" lon={10.099798} lat={53.463937} dir="forward" ref={@ref} highlight="Tatenberger Marschbahndamm,Ochsenwerder Marschbahndamm,Kirchwerder Marschbahndamm">ehemaligen Marschbahndamm</.v> zur Zollenspieker Fähre. Die Fähre ist nicht Teil des HVVs und benötigt eigene Fahrkarten, die während der Überfahrt verkauft werden.</p>
+    <p>Radroute 22 führt von Hamm, über den <.v bounds="10.033424,53.487731,10.098779,53.536209" lon={10.056651} lat={53.520778} dir="forward" ref={@ref}>Kaltehofe-Hauptdeich</.v> und den <.v bounds="10.068157,53.425379,10.181042,53.480759" lon={10.099798} lat={53.463937} dir="forward" ref={@ref} highlight="Tatenberger Marschbahndamm,Ochsenwerder Marschbahndamm,Kirchwerder Marschbahndamm">ehemaligen Marschbahndamm</.v> zur Zollenspieker Fähre. Die Fähre ist nicht Teil des HVVs und benötigt eigene Fahrkarten, die während der Überfahrt verkauft werden.</p>
 
     <p>Der Marschbahndamm ist eher familienfreundlich. Für Radsport ist die Fahrt <.m bounds="10.049144,53.393714,10.208133,53.486015" highlight="Spadenländer Hauptdeich,Gauerter Hauptdeich,Overwerder Hauptdeich,Warwischer Hauptdeich,Hower Hauptdeich,Zollenspieker-Hauptdeich">direkt am Deich</.m> besser geeignet. Bitte achtet auf parkende Autos und schaut nach vorne – eure Bestzeiten sind zweitrangig.</p>
 

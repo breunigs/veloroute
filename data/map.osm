@@ -5502,7 +5502,7 @@
   <node id='-143584685' lat='53.49533812276' lon='9.95456546277' />
   <node id='-143584686' lat='53.49531897539' lon='9.95442330569' />
   <node id='-143584687' lat='53.49536365259' lon='9.9543052885' />
-  <node id='-143584688' lat='53.49545619807' lon='9.95420872897' />
+  <node id='-143584688' action='modify' lat='53.49542588147' lon='9.95422482222' />
   <node id='-143584689' lat='53.495626928' lon='9.95405584306' />
   <node id='-143584690' lat='53.49580723082' lon='9.95390832156' />
   <node id='-143584691' lat='53.49585031192' lon='9.95392977923' />
@@ -9225,9 +9225,6 @@
   <node id='-143588365' lat='53.53127209131' lon='10.02082405329' />
   <node id='-143588366' lat='53.52442258793' lon='10.01471398115' />
   <node id='-143588367' lat='53.52286152424' lon='10.0148775959' />
-  <node id='-143588368' lat='53.45736666322' lon='9.98923634827' />
-  <node id='-143588369' lat='53.45752117685' lon='9.99060628653' />
-  <node id='-143588370' lat='53.45755311758' lon='9.99289689302' />
   <node id='-143588371' lat='53.45699734544' lon='9.99255893469' />
   <node id='-143588372' lat='53.45626908128' lon='9.99260185003' />
   <node id='-143588373' lat='53.45550247393' lon='9.99283788443' />
@@ -9449,7 +9446,6 @@
   <node id='-143588601' lat='53.52266538105' lon='10.0148802942' />
   <node id='-143588602' lat='53.52203710951' lon='10.01492320955' />
   <node id='-143588603' lat='53.52148537098' lon='10.01495003164' />
-  <node id='-143588604' lat='53.45759782498' lon='9.99174892366' />
   <node id='-143588606' lat='53.42455192139' lon='10.0334358108' />
   <node id='-143588607' lat='53.42051447914' lon='10.03602683008' />
   <node id='-143588608' lat='53.42047611683' lon='10.03621994913' />
@@ -24232,7 +24228,7 @@
   <node id='-188923149' lat='53.57789768477' lon='10.00387787282' />
   <node id='-188923150' lat='53.57895191072' lon='10.0036311096' />
   <node id='-188923151' lat='53.58074511801' lon='10.00324948725' />
-  <node id='-188923691' lat='53.47167379897' lon='9.93873102694' />
+  <node id='-188923691' action='modify' lat='53.47167379897' lon='9.93875248461' />
   <node id='-188923692' lat='53.47167893945' lon='9.93842270212' />
   <node id='-188923695' lat='53.47639075787' lon='9.93757366598' />
   <node id='-188923696' lat='53.47649611534' lon='9.93761658132' />
@@ -25217,6 +25213,9 @@
   <node id='-204676078' action='modify' lat='53.56296052379' lon='9.95861827791' />
   <node id='-204676079' action='modify' lat='53.56334604468' lon='9.95938538969' />
   <node id='-204676080' action='modify' lat='53.56378572538' lon='9.96076404512' />
+  <node id='-206290207' action='modify' lat='53.52548371564' lon='9.97391357884' />
+  <node id='-206290240' action='modify' lat='53.46471361169' lon='9.92775946587' />
+  <node id='-206290253' action='modify' lat='53.46448527345' lon='9.92687970132' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -40843,14 +40842,8 @@
     <nd ref='97779140004608864' />
     <nd ref='9769635000460797' />
   </way>
-  <way id='-20435184'>
-    <nd ref='-143583461' />
-    <nd ref='-143583462' />
-    <nd ref='-143583463' />
-    <nd ref='-143583464' />
-    <nd ref='-143583465' />
-    <nd ref='-143583466' />
-    <nd ref='-143583467' />
+  <way id='-20435184' action='modify'>
+    <nd ref='-206290253' />
     <nd ref='-143583468' />
     <nd ref='-143583469' />
     <nd ref='-143583470' />
@@ -42025,7 +42018,7 @@
     <nd ref='-143584616' />
     <nd ref='-143584615' />
   </way>
-  <way id='-20435239'>
+  <way id='-20435239' action='modify'>
     <nd ref='-143584628' />
     <nd ref='-143584644' />
     <nd ref='-143584645' />
@@ -42072,45 +42065,6 @@
     <nd ref='-143584686' />
     <nd ref='-143584687' />
     <nd ref='-143584688' />
-    <nd ref='-143584689' />
-    <nd ref='-143584690' />
-    <nd ref='-143584691' />
-    <nd ref='-143584692' />
-    <nd ref='-143601388' />
-    <nd ref='-143601389' />
-    <nd ref='-143584693' />
-    <nd ref='-143584694' />
-    <nd ref='-143584695' />
-    <nd ref='-143584696' />
-    <nd ref='-143584697' />
-    <nd ref='-143584698' />
-    <nd ref='-143584699' />
-    <nd ref='-143584700' />
-    <nd ref='-143584701' />
-    <nd ref='-143584702' />
-    <nd ref='-143584703' />
-    <nd ref='-143584704' />
-    <nd ref='-143584705' />
-    <nd ref='-143584706' />
-    <nd ref='-143584707' />
-    <nd ref='-143584708' />
-    <nd ref='-143584709' />
-    <nd ref='-143584710' />
-    <nd ref='-143584711' />
-    <nd ref='-143584712' />
-    <nd ref='-143584713' />
-    <nd ref='-143584714' />
-    <nd ref='-143584715' />
-    <nd ref='-143584716' />
-    <nd ref='-143584717' />
-    <nd ref='-143584718' />
-    <nd ref='-143584719' />
-    <nd ref='-143584720' />
-    <nd ref='-143584721' />
-    <nd ref='-143584722' />
-    <nd ref='-143584723' />
-    <nd ref='-143584724' />
-    <nd ref='-188923727' />
   </way>
   <way id='-20435240'>
     <nd ref='-143584791' />
@@ -42170,11 +42124,7 @@
     <nd ref='96205670004705047' />
     <nd ref='9625311000470492' />
   </way>
-  <way id='-20435244'>
-    <nd ref='93239290004717415' />
-    <nd ref='-143584805' />
-    <nd ref='-143584809' />
-    <nd ref='-143584806' />
+  <way id='-20435244' action='modify'>
     <nd ref='-143584804' />
     <nd ref='-143584807' />
     <nd ref='-143584808' />
@@ -48522,11 +48472,6 @@
     <nd ref='9939810004701734' />
     <nd ref='9938440004702257' />
     <nd ref='9937084000470347' />
-  </way>
-  <way id='-20435493'>
-    <nd ref='-143580529' />
-    <nd ref='-188924926' />
-    <nd ref='-143590511' />
   </way>
   <way id='-20435494'>
     <nd ref='-143581927' />
@@ -69670,7 +69615,7 @@
     <nd ref='-143584615' />
     <nd ref='-143584614' />
   </way>
-  <way id='-20676355'>
+  <way id='-20676355' action='modify'>
     <nd ref='-188923763' />
     <nd ref='-188923764' />
     <nd ref='-188923765' />
@@ -69695,12 +69640,7 @@
     <nd ref='-188923784' />
     <nd ref='-188923785' />
     <nd ref='-188923786' />
-    <nd ref='-188923787' />
-    <nd ref='-188923788' />
-    <nd ref='-188923789' />
-    <nd ref='-188923790' />
-    <nd ref='-188923791' />
-    <nd ref='-188923792' />
+    <nd ref='-206290207' />
   </way>
   <way id='-20676396'>
     <nd ref='-188923792' />
@@ -69795,14 +69735,6 @@
     <nd ref='-188924910' />
     <nd ref='-188924911' />
     <nd ref='-188924912' />
-    <nd ref='-143588371' />
-  </way>
-  <way id='-20676786'>
-    <nd ref='-143590511' />
-    <nd ref='-143588368' />
-    <nd ref='-143588369' />
-    <nd ref='-143588604' />
-    <nd ref='-143588370' />
     <nd ref='-143588371' />
   </way>
   <way id='-20676790'>
@@ -71995,6 +71927,91 @@
     <nd ref='-204676066' />
     <tag k='name' v='2025-03-06-max-brauer-allee-nord' />
     <tag k='type' v='article' />
+  </way>
+  <way id='-20746472' action='modify'>
+    <nd ref='-143584689' />
+    <nd ref='-143584690' />
+    <nd ref='-143584691' />
+    <nd ref='-143584692' />
+    <nd ref='-143601388' />
+    <nd ref='-143601389' />
+    <nd ref='-143584693' />
+    <nd ref='-143584694' />
+    <nd ref='-143584695' />
+    <nd ref='-143584696' />
+    <nd ref='-143584697' />
+    <nd ref='-143584698' />
+    <nd ref='-143584699' />
+    <nd ref='-143584700' />
+    <nd ref='-143584701' />
+    <nd ref='-143584702' />
+    <nd ref='-143584703' />
+    <nd ref='-143584704' />
+    <nd ref='-143584705' />
+    <nd ref='-143584706' />
+    <nd ref='-143584707' />
+    <nd ref='-143584708' />
+    <nd ref='-143584709' />
+    <nd ref='-143584710' />
+    <nd ref='-143584711' />
+    <nd ref='-143584712' />
+    <nd ref='-143584713' />
+    <nd ref='-143584714' />
+    <nd ref='-143584715' />
+    <nd ref='-143584716' />
+    <nd ref='-143584717' />
+    <nd ref='-143584718' />
+    <nd ref='-143584719' />
+    <nd ref='-143584720' />
+    <nd ref='-143584721' />
+    <nd ref='-143584722' />
+    <nd ref='-143584723' />
+    <nd ref='-143584724' />
+    <nd ref='-188923727' />
+  </way>
+  <way id='-20746474' action='modify'>
+    <nd ref='-143584688' />
+    <nd ref='-143584689' />
+    <tag k='layer' v='-1' />
+  </way>
+  <way id='-20746502' action='modify'>
+    <nd ref='-188923789' />
+    <nd ref='-188923790' />
+    <nd ref='-188923791' />
+    <nd ref='-188923792' />
+  </way>
+  <way id='-20746512' action='modify'>
+    <nd ref='-206290207' />
+    <nd ref='-188923787' />
+    <nd ref='-188923788' />
+    <nd ref='-188923789' />
+    <tag k='layer' v='-1' />
+  </way>
+  <way id='-20746528' action='modify'>
+    <nd ref='93239290004717415' />
+    <nd ref='-143584805' />
+    <nd ref='-143584809' />
+    <nd ref='-143584806' />
+  </way>
+  <way id='-20746532' action='modify'>
+    <nd ref='-143584806' />
+    <nd ref='-143584804' />
+    <tag k='layer' v='-1' />
+  </way>
+  <way id='-20746583' action='modify'>
+    <nd ref='-143583461' />
+    <nd ref='-143583462' />
+    <nd ref='-143583463' />
+    <nd ref='-143583464' />
+    <nd ref='-143583465' />
+    <nd ref='-143583466' />
+    <nd ref='-206290240' />
+  </way>
+  <way id='-20746587' action='modify'>
+    <nd ref='-206290240' />
+    <nd ref='-143583467' />
+    <nd ref='-206290253' />
+    <tag k='layer' v='-1' />
   </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
@@ -83417,7 +83434,7 @@
     <member type='way' ref='-20435597' role='' />
     <tag k='name' v='freizeitroute-6' />
   </relation>
-  <relation id='-107187'>
+  <relation id='-107187' action='modify'>
     <member type='way' ref='-20435181' role='backward' />
     <member type='way' ref='-20435179' role='forward' />
     <member type='way' ref='-20435183' role='backward' />
@@ -83426,6 +83443,8 @@
     <member type='way' ref='-20435382' role='' />
     <member type='way' ref='-20435381' role='' />
     <member type='way' ref='-20435246' role='' />
+    <member type='way' ref='-20746583' role='' />
+    <member type='way' ref='-20746587' role='' />
     <member type='way' ref='-20435184' role='' />
     <tag k='name' v='freizeitroute-7' />
   </relation>
@@ -83586,7 +83605,7 @@
     <member type='way' ref='-20723606' role='forward' />
     <tag k='name' v='erster-gruener-ring' />
   </relation>
-  <relation id='-107191'>
+  <relation id='-107191' action='modify'>
     <member type='way' ref='-20435198' role='forward' />
     <member type='way' ref='-20435199' role='forward' />
     <member type='way' ref='-20435250' role='forward' />
@@ -83614,6 +83633,8 @@
     <member type='way' ref='-20676352' role='forward' />
     <member type='way' ref='-20435238' role='forward' />
     <member type='way' ref='-20435239' role='' />
+    <member type='way' ref='-20746474' role='' />
+    <member type='way' ref='-20746472' role='' />
     <member type='way' ref='-20676316' role='' />
     <member type='way' ref='-20435385' role='' />
     <member type='way' ref='-20435384' role='' />
@@ -83621,6 +83642,8 @@
     <member type='way' ref='-20435241' role='forward' />
     <member type='way' ref='-20435242' role='' />
     <member type='way' ref='-20435249' role='' />
+    <member type='way' ref='-20746528' role='' />
+    <member type='way' ref='-20746532' role='' />
     <member type='way' ref='-20435244' role='' />
     <member type='way' ref='-20435246' role='' />
     <member type='way' ref='-20435247' role='' />
@@ -86130,9 +86153,11 @@
     <member type='way' ref='-20676117' role='backward' />
     <tag k='name' v='radroute-9' />
   </relation>
-  <relation id='-107603'>
+  <relation id='-107603' action='modify'>
     <member type='way' ref='-20676278' role='' />
     <member type='way' ref='-20676281' role='' />
+    <member type='way' ref='-20746472' role='' />
+    <member type='way' ref='-20746474' role='' />
     <member type='way' ref='-20435239' role='' />
     <member type='way' ref='-20435237' role='forward' />
     <member type='way' ref='-20435238' role='forward' />
@@ -86141,6 +86166,8 @@
     <member type='way' ref='-20435938' role='forward' />
     <member type='way' ref='-20676450' role='forward' />
     <member type='way' ref='-20676355' role='' />
+    <member type='way' ref='-20746512' role='' />
+    <member type='way' ref='-20746502' role='' />
     <member type='way' ref='-20676396' role='' />
     <member type='way' ref='-20435234' role='forward' />
     <member type='way' ref='-20435233' role='forward' />
