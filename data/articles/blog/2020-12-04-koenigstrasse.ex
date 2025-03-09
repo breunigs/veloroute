@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def stop(), do: ~d[2025-04-01]
   def construction_site_id_hh(), do: [470_023, 674_377]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-1", "12"]
 
