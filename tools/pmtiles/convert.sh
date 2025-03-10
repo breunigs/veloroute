@@ -29,7 +29,14 @@ gdaladdo \
   -minsize 1024 \
   -oo TILE_FORMAT=WEBP \
   -oo QUALITY=60 \
-  output.mbtiles
+  output.mbtiles \
+|| \
+gdaladdo \
+  -r cubic \
+  -oo TILE_FORMAT=WEBP \
+  -oo QUALITY=60 \
+  output.mbtiles \
+  2 4 8 16 32 64 128
 
 echo
 echo "converting to PMTiles"
