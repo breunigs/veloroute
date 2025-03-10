@@ -44,6 +44,7 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
     <?xml version="1.0" encoding="UTF-8"?>
       <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
       <Document>
+      <!-- Lizenz: gemeinfrei -->
       <name>#{route.group_title} – #{Settings.r(:page_title_long)}</name>
       <visibility>1</visibility>
       <open>1</open>
@@ -61,6 +62,7 @@ defmodule Mix.Tasks.Velo.Gpx.Generate do
     """
     <?xml version="1.0" encoding="UTF-8"?>
     <gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1">
+    <!-- Lizenz: gemeinfrei -->
     <metadata>
       <name>#{route.group_title} – #{Settings.r(:page_title_long)}</name>
       <author>
