@@ -25247,6 +25247,76 @@
   <node id='-207904382' action='modify' lat='53.59033332859' lon='10.0128257221' />
   <node id='-207904389' action='modify' lat='53.5908618818' lon='10.0129169172' />
   <node id='-207904395' action='modify' lat='53.59080138509' lon='10.01145243108' />
+  <node id='-209518500' action='modify' lat='53.58111442487' lon='10.02265870035' />
+  <node id='-209518501' action='modify' lat='53.58092015345' lon='10.02255141199' />
+  <node id='-209518502' action='modify' lat='53.58083416418' lon='10.02266942918' />
+  <node id='-209518503' action='modify' lat='53.58086919687' lon='10.02300738752' />
+  <node id='-209518504' action='modify' lat='53.5810539142' lon='10.02307712495' />
+  <node id='-209518515' action='modify' lat='53.58090104474' lon='10.02414464414' />
+  <node id='-209518516' action='modify' lat='53.58078639228' lon='10.02411245763' />
+  <node id='-209518517' action='modify' lat='53.58075772912' lon='10.02415537298' />
+  <node id='-209518518' action='modify' lat='53.58061122821' lon='10.02426266134' />
+  <node id='-209518519' action='modify' lat='53.58063033706' lon='10.02448260248' />
+  <node id='-209518520' action='modify' lat='53.58079594667' lon='10.02453624666' />
+  <node id='-209518521' action='modify' lat='53.58088193602' lon='10.02434312761' />
+  <node id='-209518522' action='modify' lat='53.58007299225' lon='10.02178430021' />
+  <node id='-209518523' action='modify' lat='53.58017490728' lon='10.02185940206' />
+  <node id='-209518524' action='modify' lat='53.58033733384' lon='10.02138733327' />
+  <node id='-209518525' action='modify' lat='53.58022904953' lon='10.02108692586' />
+  <node id='-209518526' action='modify' lat='53.57932454623' lon='10.02205252111' />
+  <node id='-209518527' action='modify' lat='53.57943601775' lon='10.02231537759' />
+  <node id='-209518528' action='modify' lat='53.58002840434' lon='10.02161800325' />
+  <node id='-209518529' action='modify' lat='53.57858882681' lon='10.02284645498' />
+  <node id='-209518530' action='modify' lat='53.57847416808' lon='10.02257823408' />
+  <node id='-209518531' action='modify' lat='53.57836906397' lon='10.02269088686' />
+  <node id='-209518532' action='modify' lat='53.57848053802' lon='10.02298056543' />
+  <node id='-209518534' action='modify' lat='53.57839135881' lon='10.02177357137' />
+  <node id='-209518535' action='modify' lat='53.57835313909' lon='10.0216931051' />
+  <node id='-209518536' action='modify' lat='53.57826395961' lon='10.02181648672' />
+  <node id='-209518537' action='modify' lat='53.57830854937' lon='10.02188622415' />
+  <node id='-209518542' action='modify' lat='53.57862704631' lon='10.02152144372' />
+  <node id='-209518543' action='modify' lat='53.57858882681' lon='10.02144097745' />
+  <node id='-209518544' action='modify' lat='53.57849964782' lon='10.02156435907' />
+  <node id='-209518545' action='modify' lat='53.57854423734' lon='10.0216340965' />
+  <node id='-209518546' action='modify' lat='53.57894872579' lon='10.02110838354' />
+  <node id='-209518547' action='modify' lat='53.57891050657' lon='10.02102791727' />
+  <node id='-209518548' action='modify' lat='53.57882132827' lon='10.02115129888' />
+  <node id='-209518549' action='modify' lat='53.57886591744' lon='10.02122103631' />
+  <node id='-209518550' action='modify' lat='53.57935002546' lon='10.02062558591' />
+  <node id='-209518551' action='modify' lat='53.57931180661' lon='10.02054511964' />
+  <node id='-209518552' action='modify' lat='53.57922262915' lon='10.02066850126' />
+  <node id='-209518553' action='modify' lat='53.5792672179' lon='10.02073823869' />
+  <node id='-209518554' action='modify' lat='53.57992967382' lon='10.01995503366' />
+  <node id='-209518555' action='modify' lat='53.57989145549' lon='10.01987456739' />
+  <node id='-209518556' action='modify' lat='53.57980227926' lon='10.019997949' />
+  <node id='-209518557' action='modify' lat='53.5798468674' lon='10.02006768644' />
+  <node id='-209518558' action='modify' lat='53.57877159571' lon='10.01984042537' />
+  <node id='-209518559' action='modify' lat='53.57873097083' lon='10.01974685642' />
+  <node id='-209518560' action='modify' lat='53.57856689799' lon='10.01994894255' />
+  <node id='-209518561' action='modify' lat='53.57860752303' lon='10.02004251149' />
+  <node id='-209518565' action='modify' lat='53.57769065846' lon='10.02081334054' />
+  <node id='-209518566' action='modify' lat='53.57760784765' lon='10.02090453565' />
+  <node id='-209518567' action='modify' lat='53.57765243811' lon='10.02099573076' />
+  <node id='-209518568' action='modify' lat='53.57750911148' lon='10.02115129888' />
+  <node id='-209518569' action='modify' lat='53.57757281226' lon='10.0212746805' />
+  <node id='-209518570' action='modify' lat='53.57776709906' lon='10.02104401052' />
+  <node id='-209518571' action='modify' lat='53.57734494185' lon='10.021646913' />
+  <node id='-209518572' action='modify' lat='53.5773151765' lon='10.02157217046' />
+  <node id='-209518573' action='modify' lat='53.57709837878' lon='10.02181708126' />
+  <node id='-209518574' action='modify' lat='53.57712814428' lon='10.0218918238' />
+  <node id='-209518576' action='modify' lat='53.5796621432' lon='10.02505391568' />
+  <node id='-209518577' action='modify' lat='53.57941531433' lon='10.02493589848' />
+  <node id='-209518578' action='modify' lat='53.57933091445' lon='10.02521216601' />
+  <node id='-209518579' action='modify' lat='53.57935161632' lon='10.02539992064' />
+  <node id='-209518580' action='modify' lat='53.5795443025' lon='10.02542942494' />
+  <node id='-209518581' action='modify' lat='53.57955226472' lon='10.02606779069' />
+  <node id='-209518582' action='modify' lat='53.57929269558' lon='10.02595513791' />
+  <node id='-209518583' action='modify' lat='53.57922422002' lon='10.02667933434' />
+  <node id='-209518584' action='modify' lat='53.57952360072' lon='10.02671420306' />
+  <node id='-209518586' action='modify' lat='53.57948180929' lon='10.02732355363' />
+  <node id='-209518587' action='modify' lat='53.57930797308' lon='10.02732293555' />
+  <node id='-209518588' action='modify' lat='53.57930741551' lon='10.02776782208' />
+  <node id='-209518589' action='modify' lat='53.57948125171' lon='10.02776844016' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -47830,7 +47900,7 @@
     <tag k='name' v='2021-09-11-max-brauer-allee-sued' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20435454'>
+  <way id='-20435454' action='modify'>
     <nd ref='-143589943' />
     <nd ref='-143589942' />
     <nd ref='956156000459335' />
@@ -47847,6 +47917,7 @@
     <nd ref='95062000458339' />
     <nd ref='95584000459128' />
     <nd ref='-143589943' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-01-09-11-denickestrasse' />
     <tag k='type' v='article' />
   </way>
@@ -72073,6 +72144,151 @@
     <tag k='name' v='2025-03-10-barmbeker-strasse' />
     <tag k='type' v='article' />
   </way>
+  <way id='-20761280' action='modify'>
+    <nd ref='-209518500' />
+    <nd ref='-209518501' />
+    <nd ref='-209518502' />
+    <nd ref='-209518503' />
+    <nd ref='-209518504' />
+    <nd ref='-209518500' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761313' action='modify'>
+    <nd ref='-209518515' />
+    <nd ref='-209518516' />
+    <nd ref='-209518517' />
+    <nd ref='-209518518' />
+    <nd ref='-209518519' />
+    <nd ref='-209518520' />
+    <nd ref='-209518521' />
+    <nd ref='-209518515' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761322' action='modify'>
+    <nd ref='-209518522' />
+    <nd ref='-209518523' />
+    <nd ref='-209518524' />
+    <nd ref='-209518525' />
+    <nd ref='-209518526' />
+    <nd ref='-209518527' />
+    <nd ref='-209518528' />
+    <nd ref='-209518522' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761331' action='modify'>
+    <nd ref='-209518529' />
+    <nd ref='-209518530' />
+    <nd ref='-209518531' />
+    <nd ref='-209518532' />
+    <nd ref='-209518529' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761337' action='modify'>
+    <nd ref='-209518534' />
+    <nd ref='-209518535' />
+    <nd ref='-209518536' />
+    <nd ref='-209518537' />
+    <nd ref='-209518534' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761344' action='modify'>
+    <nd ref='-209518542' />
+    <nd ref='-209518543' />
+    <nd ref='-209518544' />
+    <nd ref='-209518545' />
+    <nd ref='-209518542' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761345' action='modify'>
+    <nd ref='-209518546' />
+    <nd ref='-209518547' />
+    <nd ref='-209518548' />
+    <nd ref='-209518549' />
+    <nd ref='-209518546' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761346' action='modify'>
+    <nd ref='-209518550' />
+    <nd ref='-209518551' />
+    <nd ref='-209518552' />
+    <nd ref='-209518553' />
+    <nd ref='-209518550' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761347' action='modify'>
+    <nd ref='-209518554' />
+    <nd ref='-209518555' />
+    <nd ref='-209518556' />
+    <nd ref='-209518557' />
+    <nd ref='-209518554' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761348' action='modify'>
+    <nd ref='-209518558' />
+    <nd ref='-209518559' />
+    <nd ref='-209518560' />
+    <nd ref='-209518561' />
+    <nd ref='-209518558' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761351' action='modify'>
+    <nd ref='-209518565' />
+    <nd ref='-209518566' />
+    <nd ref='-209518567' />
+    <nd ref='-209518568' />
+    <nd ref='-209518569' />
+    <nd ref='-209518570' />
+    <nd ref='-209518565' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761359' action='modify'>
+    <nd ref='-209518571' />
+    <nd ref='-209518572' />
+    <nd ref='-209518573' />
+    <nd ref='-209518574' />
+    <nd ref='-209518571' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761365' action='modify'>
+    <nd ref='-209518576' />
+    <nd ref='-209518577' />
+    <nd ref='-209518578' />
+    <nd ref='-209518579' />
+    <nd ref='-209518580' />
+    <nd ref='-209518576' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761372' action='modify'>
+    <nd ref='-209518581' />
+    <nd ref='-209518582' />
+    <nd ref='-209518583' />
+    <nd ref='-209518584' />
+    <nd ref='-209518581' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20761378' action='modify'>
+    <nd ref='-209518586' />
+    <nd ref='-209518587' />
+    <nd ref='-209518588' />
+    <nd ref='-209518589' />
+    <nd ref='-209518586' />
+    <tag k='name' v='2025-03-11-fahrradparken-komponistenviertel' />
+    <tag k='type' v='article' />
+  </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
     <nd ref='99533190005505785' />
@@ -81955,7 +82171,7 @@
     <tag k='name' v='2019-01-08-10-binnenhafen-harburg' />
     <tag k='type' v='article' />
   </way>
-  <way id='785155116' version='1'>
+  <way id='785155116' action='modify' version='1'>
     <nd ref='-143589945' />
     <nd ref='968119000460846' />
     <nd ref='970152000460405' />
@@ -81971,6 +82187,7 @@
     <nd ref='970136000460543' />
     <nd ref='-143589944' />
     <nd ref='-143589945' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2019-01-09-11-denickestrasse' />
     <tag k='type' v='article' />
   </way>

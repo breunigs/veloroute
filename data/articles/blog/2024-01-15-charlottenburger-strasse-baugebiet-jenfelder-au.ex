@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.CharlottenburgerStrasseBaugebietJenfelderAu do
   def start(), do: ~d[2023Q4]
   def stop(), do: ~d[2024Q1]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["radroute-20", "14"]
 
   def links(_assigns) do

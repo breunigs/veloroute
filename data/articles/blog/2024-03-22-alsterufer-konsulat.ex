@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
       "Fahrradstraße soll durchgängig werden. Durchfahrt weiterhin nur für den Radverkehr möglich."
 
   def type(), do: :planned
-  def start(), do: ~d[2024Q4]
-  def stop(), do: ~d[2024Q4]
+  # def start(), do: ~d[2024Q4]
+  # def stop(), do: ~d[2024Q4]
 
   def tags(), do: ["radroute-4", "4", "FR1"]
 

@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   def name(), do: "#{created_at()}-11-denickestrasse"
   def created_at(), do: ~D[2019-01-09]
 
-  def title(), do: "Am Irrgarten bis Denickestraße (Radroute 13)"
+  def title(), do: "Denickestraße (Radroute 13)"
 
   def summary(),
     do:
@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Denickestrasse do
   # Kreuzung mit Weusthoffstraße vermutlich Sommer 2024 https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1011209
   def construction_site_id_hh(), do: [91363, 748_772, 748_765, 885_611, 973_302]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-13", "11"]
 

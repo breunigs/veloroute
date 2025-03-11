@@ -9,13 +9,16 @@ defmodule Data.Article.Blog.MaxBrauerAlleeNord do
     do:
       "Radweg soll beidseitig breiter werden. Südseite meist als Kopenhagener Radweg, Nordseite klassisch Hochbord. An Kreuzungen indirektes Linksabbiegen."
 
-  def start(), do: ~d[2027]
+  def start(), do: ~d[2027Q2]
+  def stop(), do: ~d[2028Q3]
 
   def type(), do: :planned
   def tags(), do: ["radroute-14", "radroute-concept-c", "br-eimsbuettel-sued"]
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht und Karte – 1. Entwurf", ~d[2025-03],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1016402"},
       {"Öffentlichkeitsbeteiligung zur Umgestaltung", ~d[2025-03],
        "https://max-brauer-allee.beteiligung.hamburg/#/"}
     ]

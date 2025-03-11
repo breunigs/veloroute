@@ -71,6 +71,12 @@ defmodule Data.Article.Static.Datenexport do
 
     <h4>Höhere Qualität?</h4>
     <p>Die Videos auf der Webseite sind stark komprimiert, damit sie für jeden gut abspielbar sind. Das geht nicht ohne Qualitätsverluste. <.mailto>Auf Anfrage</.mailto> kann ich hochwertigere Versionen erstellen. <.a href="/images/quality_compare.webp" target="_blank">Vergleichsbild öffnen</.a> (links: Originalqualität, rechts: wie auf der Webseite veröffentlicht).</p>
+
+    <p>Einzelbilder mit höherer Qualität sind auch auf <.a href="https://api.panoramax.xyz/#focus=map&map=9.93/53.5561/10.1042">Panoramax</.a> verfügbar. Panoramax ist ein französisches Projekt für frei verfügbare Straßenfotos.</p>
+
+    <h4>Routen GPX</h4>
+    <p><a href="/export-all-gpx" rel="nofollow" target="_blank">GPX- und KML Dateien für alle Routen herunterladen</a>. Lizenz ist <.a href="https://de.wikipedia.org/wiki/Gemeinfreiheit">gemeinfrei</.a>, aber über Namensnennung zu „veloroute.hamburg“ freue ich mich.</p>
+
     """
   end
 

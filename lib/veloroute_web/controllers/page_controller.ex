@@ -9,6 +9,23 @@ defmodule VelorouteWeb.PageController do
     |> redirect(to: ~p(/article/#{params["article"]}))
   end
 
+  def export_all_gpx(conn, _params) do
+    with {:ok, name, zip} <- Geo.Export.zip_all_gpx_kml() do
+      send_download(conn, {:binary, zip},
+        filename: name,
+        disposition: :attachment,
+        content_type: "application/zip"
+      )
+    else
+      {:error, reason} ->
+        Logger.error("failed to generate GPX ZIP: #{inspect(reason)}")
+
+        conn
+        |> put_status(500)
+        |> html("Failed to generate ZIP File. Try again later or ask #{Settings.r(:email)}")
+    end
+  end
+
   def event(conn, _params) do
     with {:ok, body, _conn} <- Plug.Conn.read_body(conn) do
       Logger.debug("plausible event: #{body}")
