@@ -51,14 +51,20 @@ defmodule Joiner.Video do
     mod = hd(polyline).__struct__
     stop_ms = meta.duration * 1000 - Video.Metadata.frame_duration_ms(meta)
     cut_rev = polyline |> Enum.reverse() |> Enum.drop_while(&(&1.time_offset_ms > stop_ms))
-    [last1, last2 | rest] = cut_rev
+
+    {last1, last2} =
+      Enum.reduce_while(tl(cut_rev), hd(cut_rev), fn prev, last ->
+        if last.time_offset_ms == prev.time_offset_ms,
+          do: {:cont, last},
+          else: {:halt, {last, prev}}
+      end)
 
     t = 1.0 - (last1.time_offset_ms - stop_ms) / (last1.time_offset_ms - last2.time_offset_ms)
 
     if t > 1.0 do
       [mod.extrapolate(last2, last1, t) | cut_rev]
     else
-      [mod.interpolate(last2, last1, t), last2 | rest]
+      [mod.interpolate(last2, last1, t) | tl(cut_rev)]
     end
     |> Enum.reverse()
   end
