@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.WandsbekerBahnhofstrasse do
 
   def created_at(), do: ~D[2022-05-14]
 
-  def title(), do: "Wandsbeker Bahnhofstraße (Alltagsroute 7)"
+  def title(), do: "Wandsbeker Bahnhofstraße (Radroute 7)"
   def summary(), do: "Möglicher Bautermin in 2025. Noch keine Pläne bekannt."
 
   def start(), do: ~d[2025]

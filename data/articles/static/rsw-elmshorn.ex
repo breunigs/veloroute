@@ -16,28 +16,30 @@ defmodule Data.Article.Static.RSWElmshorn do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 6,
         group: "Radroute Plus Elmshorn (ab Diebsteich)",
         direction: :forward,
-        from: "Hamburg Diebsteich",
+        from: "Hamburg Langenfelder Damm",
         to: "Elmshorn Wasserstraße",
         parent_ref: __MODULE__,
-        text: "künftige Radroute Plus HH-Diebsteich → Elmshorn",
+        text: "künftige Radroute Plus Langenfelder Damm → Elmshorn",
+        historic: %{
+          "f51094b235f7b7dafa7759eeb39ac905" => ~d[2021-09]
+        },
         videos: [
-          {"2021-09-11-rsw-elmshorn/GX012803", "00:01:05.966", :end},
-          {"2021-09-11-rsw-elmshorn/GX012804", :start, :end},
-          {"2021-09-11-rsw-elmshorn/GX012805", :start, :end},
-          {"2021-09-11-rsw-elmshorn/GX012806", :start, :end},
-          {"2021-09-11-rsw-elmshorn/GX012807", :start, :end},
-          {"2021-09-11-rsw-elmshorn/GX012808", :start, "00:00:01.235"},
-          {"2021-09-11-rsw-elmshorn/GX012808", "00:00:23.290", "00:01:15.542"},
-          {"2021-09-11-rsw-elmshorn/GX012809", "00:00:01.001", :end},
-          {"2021-09-11-rsw-elmshorn/GX012810", :start, "00:03:20.467"},
-          {"2021-09-11-rsw-elmshorn/GX012811", "00:00:14.281", "00:00:30.664"},
-          {"2021-09-11-rsw-elmshorn/GX012811", "00:01:30.757", "00:01:45.772"},
-          {"2021-09-11-rsw-elmshorn/GX012811", "00:01:56.583", "00:02:00.420"},
-          {"2021-09-11-rsw-elmshorn/GX012812", "00:00:01.368", "00:01:26.653"},
-          {"2021-09-11-rsw-elmshorn/GX012813", "00:00:12.379", :end},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013083", "00:03:50.831", "00:04:03.225",
+           vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013084", "00:00:17.482", :end, vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013085", :start, :end, vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013086", :start, :end, vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013087", :start, "00:01:00.294",
+           vf: "curves=lighter"},
+          {"2021-09-11-rsw-elmshorn/GX012810", "00:00:20.554", "00:03:31.878"},
+          {"2021-09-11-rsw-elmshorn/GX012811", :start, "00:00:31.492"},
+          {"2021-09-11-rsw-elmshorn/GX012811", "00:01:31.340", "00:01:45.772"},
+          {"2021-09-11-rsw-elmshorn/GX012811", "00:01:56.583", "00:02:00.797"},
+          {"2021-09-11-rsw-elmshorn/GX012812", "00:00:01.601", "00:01:27.504"},
+          {"2021-09-11-rsw-elmshorn/GX012813", "00:00:13.077", :end},
           {"2021-09-11-rsw-elmshorn/GX012814", :start, "00:00:02.436"},
           {"2021-09-11-rsw-elmshorn/GX012814", "00:00:24.825", "00:01:09.236"},
           {"2021-09-11-rsw-elmshorn/GX012816", "00:00:13.213", :end},
@@ -46,73 +48,38 @@ defmodule Data.Article.Static.RSWElmshorn do
           {"2021-09-11-rsw-elmshorn/GX012819", :start, :end},
           {"2021-09-11-rsw-elmshorn/GX012820", :start, :end},
           {"2021-09-11-rsw-elmshorn/GX012821", :start, :end},
-          {"2021-09-11-rsw-elmshorn/GX012822", :start, "00:02:01.088"},
-          {"2021-09-11-rsw-elmshorn/GX012822", "00:02:19.673", :end}
+          {"2021-09-11-rsw-elmshorn/GX012822", :start, "00:02:01.731"},
+          {"2021-09-11-rsw-elmshorn/GX012822", "00:02:20.112", :end}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "Radroute Plus Elmshorn (ab Diebsteich)",
         direction: :backward,
         from: "Elmshorn Wasserstraße",
-        to: "Hamburg Diebsteich",
+        to: "Hamburg Langenfelder Damm",
         parent_ref: __MODULE__,
-        text: "künftige Radroute Plus Elmshorn → HH-Diebsteich",
+        text: "künftige Radroute Plus Elmshorn → Langenfelder Damm",
+        historic: %{
+          "89b158bcfe2d570ac850a46441c947e6" => ~d[2022-08]
+        },
         videos: [
           {"2022-08-13-rsw-elmshorn-rev/GX014526", :start, :end},
           {"2022-08-13-rsw-elmshorn-rev/GX014527", :start, :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014528", :start, "00:00:37.037"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014530", "00:00:01.101", "00:00:19.319"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:01.735", "00:00:31.398"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014528", :start, "00:00:37.497"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014530", "00:00:01.301", "00:00:19.449"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:01.602", "00:00:31.398"},
           {"2022-02-27-pinneberg/GX013243", "00:00:01.635", "00:00:19.319"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:47.047", "00:03:43.523"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:00:01.368", "00:00:50.584"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:01:02.863", "00:03:18.331"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014534", "00:00:01.935", "00:03:08.922"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014535", :start, :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014536", :start, :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014537", :start, "00:01:16.076"},
-          {"2022-08-13-rsw-elmshorn-rev/GX014539", "00:00:00.968", :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014540", :start, :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014541", :start, :end},
-          {"2022-08-13-rsw-elmshorn-rev/GX014542", :start, "00:00:36.336"}
-        ]
-      },
-      %Video.Track{
-        renderer: 1,
-        group: "Radroute Plus Elmshorn (ab Langenfelder Damm)",
-        direction: :forward,
-        from: "Hamburg Langenfelder Damm",
-        to: "Hamburg Elbgaustraße",
-        parent_ref: __MODULE__,
-        text: "künftige Radroute Plus HH Langenfelder Damm → HH Elbgaustraße",
-        videos: [
-          {"2021-12-25-velo2-rsw-elmshorn/GX013083", "00:03:50.831", "00:03:59.806"},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013084", "00:00:14.281", :end},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013085", :start, :end},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013086", :start, :end},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013087", :start, "00:00:50.918"}
-        ]
-      },
-      %Video.Track{
-        renderer: 1,
-        group: "Radroute Plus Elmshorn (ab Langenfelder Damm)",
-        direction: :backward,
-        from: "Hamburg Elbgaustraße",
-        to: "Hamburg Langenfelder Damm",
-        parent_ref: __MODULE__,
-        text: "künftige Radroute Plus HH Elbgaustraße → HH Langenfelder Damm",
-        end_action: %{
-          action: :play,
-          route: Data.Article.Static.Radroute2,
-          group: "2",
-          direction: :forward
-        },
-        videos: [
-          {"2021-12-25-velo2-rsw-elmshorn/GX013087", "00:01:28.322", :end},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013088", "00:00:01.034", :end},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013089", :start, "00:00:20.087"},
-          {"2021-12-25-velo2-rsw-elmshorn/GX013089", "00:01:00.561", "00:02:59.613"}
+          {"2022-08-13-rsw-elmshorn-rev/GX014531", "00:00:47.047", "00:03:43.579"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:00:01.168", "00:00:50.584"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014533", "00:01:03.584", "00:03:18.626"},
+          {"2022-08-13-rsw-elmshorn-rev/GX014534", "00:00:02.002", "00:03:05.815"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013087", "00:01:28.322", :end, vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013088", "00:00:01.034", :end, vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013089", :start, "00:00:20.087",
+           vf: "curves=lighter"},
+          {"2021-12-25-velo2-rsw-elmshorn/GX013089", "00:01:00.561", "00:02:59.613",
+           vf: "curves=lighter"}
         ]
       }
     ]
@@ -137,14 +104,9 @@ defmodule Data.Article.Static.RSWElmshorn do
     ~H"""
     <p>Die Trassenfindung für einen möglichen <.ref>Radschnellweg</.ref> (auch: Radroute Plus) nach Elmshorn ist abgeschlossen. Die genaue Planung für die einzelnen Abschnitte ist noch offen, entsprechend gibt es auch keinen Zeithorizont zur Umsetzung.</p>
 
-    <p>Der Radschnellweg beginnt in Hamburg an zwei unterschiedlichen Stellen und vereint sich erst in der <.v bounds="9.88323,53.598201,9.895067,53.606363" lon={9.890008} lat={53.601812} dir="forward" ref={@ref}>Elbgaustraße</.v>. Das lange Video orientiert sich am westlichen Arm und geht bis Elmshorn. Das Kurze zeigt den östlichen Arm nur ab/bis Elbgaustrase. Dort wo neue Brücken und Wege erst noch gebaut werden sollen weichen die Videos von der Trasse ab. Die in der Karte eingezeichnete Strecke ist die Vorzugsvariante. Sollte diesen in Teilen nicht umgesetzt werden können, wurden in der Planung auch Alternativen ausgearbeitet.</p>
+    <p>Der Radschnellweg beginnt in Hamburg an zwei unterschiedlichen Stellen und vereint sich erst in der <.v bounds="9.88323,53.598201,9.895067,53.606363" lon={9.890008} lat={53.601812} dir="forward" ref={@ref}>Elbgaustraße</.v>. Für den westlichen Arm über Fernbahnhof Diebsteich, siehe <.a name="radroute-concept-c">den Artikel zur noch nicht nummerierten Radroute</.a>. Dort wo neue Brücken und Wege erst noch gebaut werden sollen weichen die Videos von der Trasse ab. Die in der Karte eingezeichnete Strecke ist die Vorzugsvariante. Sollte diesen in Teilen nicht umgesetzt werden können, wurden in der Planung auch Alternativen ausgearbeitet.</p>
 
-    <h4>Hamburg – Westlicher Arm</h4>
-    <p>Ab dem künftigen <.v bounds="9.932179,53.566228,9.936053,53.57052" lon={9.933123} lat={53.567272} dir="forward" ref={@ref}>Fernbahnhof Diebsteich</.v> käme man via Fahrradstraßen zum <.v bounds="9.905415,53.569786,9.924592,53.574445" lon={9.922476} lat={53.570868} dir="forward" ref={@ref}>Holstenkamp</.v>. Im ersten Abschnitt soll ein schmaler Zweirichtungsradweg auf der Südseite ergänzt werden, der sich nach <.v bounds="9.917098,53.570341,9.919687,53.571486" lon={9.918268} lat={53.570864} dir="forward" ref={@ref}>der Kreuzung</.v> jedoch wieder aufspaltet. Da der Holstenkamp beim Bau des Autobahndeckel eine Verbindung zur Luruper Chaussee erhalten soll, wird mit deutlich mehr KFZ Verkehr gerechnet. Die Planung dazu erfolgt im Rahmen des Deckelbaus, angepeilt ist Mitte 2020er Jahre.</p>
-
-    <p>Um dem Volkspark herum sind Fahrradstraßen angedacht, ab dem <.v bounds="9.893036,53.583709,9.89976,53.593764" lon={9.895265} lat={53.585007} dir="forward" ref={@ref}>Hellgrundweg</.v> ein Zweirichtungsradweg auf der Friedhofsseite. Im Rahmen des Baus der U-Bahn Station „Arenen / Volkspark“ soll auch eine Unter- bzw. Überführung des <.v bounds="9.896275,53.592183,9.899914,53.593662" lon={9.898623} lat={53.592856} dir="forward" ref={@ref}>Farnhornstieg</.v> geprüft werden. Bis dahin soll die Ampel verbessert werden. Die Wege durch die <.v bounds="9.887028,53.592545,9.899774,53.601438" lon={9.896974} lat={53.596083} dir="forward" ref={@ref}>Grünanlagen</.v> sollen so gut es geht verbreitert werden, wobei weiterhin mit viel Fußverkehr zu rechnen ist.</p>
-
-    <h4>Hamburg – Östlicher Arm</h4>
+    <h4>Hamburg</h4>
     <p>Von der <.a name="alltagsroute-2">Alltagsroute 2</.a> fährt man weiter gerade aus um die <.v bounds="9.929076,53.582676,9.934327,53.585482" lon={9.933267} lat={53.58345} dir="forward" ref={@ref}>Warnstedtstraße</.v> zu erreichen. In diesen Abschnitten sind schmale <.ref>Hochbordradwege</.ref>, <.ref>Kopenhagener Lösung</.ref> o.ä. vorgesehen. Die <.v bounds="9.917948,53.584467,9.930435,53.590734" lon={9.92911} lat={53.585196} dir="forward" ref={@ref}>Randstraße</.v> soll zu einer Fahrradstraße werden, wobei das <.v bounds="9.925391,53.58569,9.927657,53.586772" lon={9.926503} lat={53.586185} dir="forward" ref={@ref}>KFZ-freie Stück</.v> erhalten bleiben soll. Kurz vor der Einmündung des <.v lon={9.920557} lat={53.589599} dir="forward" bounds="9.918529,53.588798,9.923046,53.590503" ref={@ref}>Försterweg</.v> wird der Schnellweg auf einen Zweirichtungsradweg umgelenkt, der auf der Seite der S-Bahn Station verlaufen soll. Die Detailplanung soll mit dem Bau der U-Bahn Station für die U5 erfolgen.</p>
 
     <p>Der Zweirichtungsradweg würde auf der Südseite des <.v bounds="9.904335,53.590621,9.918884,53.592441" lon={9.917908} lat={53.590932} dir="forward" ref={@ref}>Binsbarg</.v> verlaufen. Allerdings nur, wenn dies für den KFZ-Verkehr vertretbar ist, was noch geprüft werden muss. Für die <.v bounds="9.903529,53.591987,9.905289,53.595679" lon={9.904208} lat={53.593362} dir="forward" ref={@ref}>Schnackenburgallee</.v> sind beidseitige Einrichtungsradwege angedacht; mit Hilfe von Mittelinseln käme man leichter in die <.v bounds="9.889783,53.595008,9.90513,53.6019" lon={9.904039} lat={53.595564} dir="forward" ref={@ref}>Fangdieckstraße</.v>. Diese soll Fahrradstraße werden, wozu noch eine Möglichkeit gefunden werden muss den KFZ-Schleichverkehr auszusperren.</p>

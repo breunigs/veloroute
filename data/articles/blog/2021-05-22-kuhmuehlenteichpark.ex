@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def created_at(), do: ~D[2021-05-22]
 
-  def title(), do: "Kuhmühlenteichpark (Veloroute 6)"
+  def title(), do: "Kuhmühlenteichpark (Radroute 6)"
 
   # def start(), do: ~d[2025-07]
   # def stop(), do: ~d[2026-02]

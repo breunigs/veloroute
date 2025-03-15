@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.Schlueterstrasse do
   def name(), do: "#{created_at()}-3-schlueterstrasse"
   def created_at(), do: ~D[2018-10-13]
 
-  def title(), do: "Schlüterstraße (Veloroute 3)"
+  def title(), do: "Schlüterstraße (Radroute 3)"
 
   def type(), do: :planned
   def construction_site_id_hh(), do: [8623]

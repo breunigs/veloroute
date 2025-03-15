@@ -4,14 +4,14 @@ defmodule Data.Article.Blog.Stresemannallee do
   def name(), do: "#{created_at()}-3-stresemannallee"
   def created_at(), do: ~D[2018-10-13]
 
-  def title(), do: "Stresemannallee (Veloroute 3)"
+  def title(), do: "Stresemannallee (Radroute 3)"
 
   def start(), do: ~d[2019-08-05]
   def stop(), do: ~d[2020-12-20]
 
   def type(), do: :finished
 
-  def tags(), do: ["3"]
+  def tags(), do: ["radroute-3", "3"]
 
   def links(_assigns) do
     [

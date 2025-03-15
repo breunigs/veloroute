@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
   def created_at(), do: ~D[2020-02-01]
   def updated_at(), do: ~D[2022-07-23]
 
-  def title(), do: "Spanische Furt bis Heidlohstraße (Veloroute 14)"
+  def title(), do: "Spanische Furt bis Heidlohstraße (Radroute 19)"
 
   def summary(),
     do: "Verschiedene Lösungen der Einzelabschnitte. Umbau Spanische Furt ab Oktober 2022."

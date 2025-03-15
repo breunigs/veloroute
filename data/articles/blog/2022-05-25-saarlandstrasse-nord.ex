@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
   def start(), do: ~d[2025-06]
   def stop(), do: ~d[2027-12]
 
-  def title(), do: "Saarlandstraße (nördlicher Teil, Alltagsroute 5N, Bezirksroute Nord N6)"
+  def title(), do: "Saarlandstraße (nördlicher Teil, Radroute 12, Bezirksroute Nord N6)"
 
   def summary(),
     do:

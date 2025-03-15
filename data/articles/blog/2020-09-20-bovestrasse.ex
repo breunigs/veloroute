@@ -3,14 +3,14 @@ defmodule Data.Article.Blog.Bovestrasse do
 
   def created_at(), do: ~D[2020-09-20]
 
-  def title(), do: "Bovestraße (Veloroute 7)"
+  def title(), do: "Bovestraße (Radroute 7)"
 
   def start(), do: ~d[2021-07-01]
   def stop(), do: ~d[2022-05-31]
 
   def type(), do: :finished
   def construction_site_id_hh(), do: [15556]
-  def tags(), do: ["7", "br-wandsbek-w2"]
+  def tags(), do: ["radroute-7", "7", "br-wandsbek-w2"]
 
   def links(_assigns) do
     [

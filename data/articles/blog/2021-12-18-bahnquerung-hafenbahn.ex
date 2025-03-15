@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
   use Article.Default
 
   def updated_at(), do: ~D[2024-10-23]
-  def title(), do: "Bahnquerung Hafenbahn (Veloroute 10)"
+  def title(), do: "Bahnquerung Hafenbahn (Radroute 10)"
 
   def type(), do: :intent
   def tags(), do: ["radroute-10", "10", "H.04", "H.05"]

@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.HohenfelderBucht do
   def created_at(), do: ~D[2018-10-10]
   def updated_at(), do: ~D[2023-10-27]
 
-  def title(), do: "Hohenfelder Bucht (Veloroute 5 und 6)"
+  def title(), do: "Hohenfelder Bucht (Radrouten 6 und 9, Bezirksroute Nord N1)"
 
   def summary(),
     do:

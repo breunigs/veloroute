@@ -235,7 +235,7 @@ defmodule Data.Article.Static.Alltagsroute14 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 14 (auch: Veloroute 14, Radroute 14 oder äußere Ringroute) dem Namen nach in einem runden Bogen ab Othmarschen bis nach Billstedt. Dadurch stellt sie Querverbindungen zwischen den äußeren Stadtteilen und anderen Alltagsrouten bereit.</p>
+    <p>Die Veloroute 14 oder äußere Ringroute dem Namen nach in einem runden Bogen ab Othmarschen bis nach Billstedt. Dadurch stellt sie Querverbindungen zwischen den äußeren Stadtteilen und anderen Alltagsrouten bereit.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

@@ -1,14 +1,14 @@
 defmodule Data.Article.Blog.EppendorferWeg do
   use Article.Default
 
-  def title(), do: "Eppendorfer Weg (Alltagsroute 13)"
+  def title(), do: "Eppendorfer Weg (Radroute 16)"
 
   def summary(),
     do:
       "Zunächst Beteiligung der Interessensgruppen und Bevölkerung. Planung soll bis Ende 2025 fertig werden."
 
   def type(), do: :intent
-  def tags(), do: ["radroute-16", "radroute-3", "13"]
+  def tags(), do: ["radroute-16", "radroute-3", "radroute-2", "13"]
 
   # Eppendorfer Weg / Ad-hoc Maßnahme -- LSBG
   # def start(), do: ~d[2024-11-01]

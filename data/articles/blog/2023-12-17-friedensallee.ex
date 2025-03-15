@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Friedensallee do
   use Article.Default
 
-  def title(), do: "Friedensallee"
+  def title(), do: "Friedensallee (Radroute 7)"
 
   def summary(),
     do: "Hochbordradwege und Gehwege sollen saniert werden. Breite unverändert."

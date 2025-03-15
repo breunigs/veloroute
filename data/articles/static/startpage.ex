@@ -23,7 +23,7 @@ defmodule Data.Article.Static.Startpage do
       <p>Lust mit dem Rad zu fahren, aber nicht sicher wohin? veloroute.hamburg gibt Aufschluss über die offiziellen Radrouten der Stadt. Schau Dich etwas um und dann… fahr Rad!</p>
 
       <h4>Alltagsrouten</h4>
-      <p>Hamburg baut „Velorouten“ (auch: Radrouten) um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
+      <p>Hamburg baut „Radrouten“ um im Alltag gut von A nach B zu kommen – zu jeder Tages- und Jahreszeit. Gebaut wird noch, aber oft sind diese Strecken heute schon besser als der offensichtliche Weg.</p>
 
       <p><.show_route_group group={:alltag}>Kartenansicht</.show_route_group> oder Route auswählen:</p>
     <% else %>
@@ -61,9 +61,10 @@ defmodule Data.Article.Static.Startpage do
       <li><.icon autoplay={true} name="radroute-22"><span translate="no">Hamm – Zollenspieker (Fähre)</span></.icon></li>
       <li><.icon autoplay={true} name="radroute-23"><span translate="no">Veddel – Alte Harburger Elbbrücke</span></.icon></li>
       <li><.icon autoplay={true} name="radroute-concept-a"><span translate="no" style="hyphens: none">Blankenese – Hauptbahnhof</span></.icon></li>
-      <li><.icon autoplay={false} name="radroute-concept-b"><span translate="no" style="hyphens: none">(angedacht) Stellingen – Othmarschen</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-concept-c"><span translate="no">(angedacht) Diebsteich – Sternschanze</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-concept-c"><span translate="no">Elbgaustraße – Sternschanze</span></.icon></li>
       <li><.icon autoplay={true} name="radroute-concept-d"><span translate="no" style="hyphens: none">Burgwedel – Niendorfer Marktplatz</span></.icon></li>
+      <li><.icon autoplay={true} name="radroute-concept-e"><span translate="no">Osdorfer Born – Deckel Altona</span></.icon></li>
+      <li><.icon autoplay={false} name="radroute-concept-b"><span translate="no" style="hyphens: none">(angedacht) Stellingen – Othmarschen</span></.icon></li>
     </ol>
 
     <%= if @de do %>

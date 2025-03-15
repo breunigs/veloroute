@@ -3,13 +3,13 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
 
   def created_at(), do: ~D[2020-06-08]
   def updated_at(), do: ~D[2021-10-16]
-  def title(), do: "Otto-Brenner-Straße (Veloroute 10)"
+  def title(), do: "Otto-Brenner-Straße (Radroute 23)"
 
   def type(), do: :planned
   def start(), do: ~d[2025]
   def stop(), do: ~d[2025]
 
-  def tags(), do: ["10", "M12.2"]
+  def tags(), do: ["radroute-23", "10", "M12.2"]
 
   def links(_assigns) do
     [

@@ -177,7 +177,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 13 (auch: Veloroute 13 oder Radroute 13) führt in einem Halbkreis durch die Kernstadt. Die Route verläuft in grob 3km Abstand um die Außenalster.</p>
+    <p>Die Veloroute 13 oder innere Ringroute führt in einem Halbkreis durch die Kernstadt. Die Route verläuft in grob 3km Abstand um die Außenalster.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar. Da sich die Route selten an natürlichen Straßenverläufen orientiert, muss häufig unerwartet abgebogen werden.</p>

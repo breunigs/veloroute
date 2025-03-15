@@ -158,7 +158,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
     ~H"""
     <.route/>
 
-    <p lang="en">Starting at <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="3" highlight="Rathausmarkt">Hamburg's town hall</.v>, commuter route 3 (also called <span translate="no" lang="de">Veloroute 3</span> or <span translate="no" lang="de">Radroute 3</span>) weaves itself through side streets towards <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3" translate="no" lang="de">Niendorf</.v>.</p>
+    <p lang="en">Starting at <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="3" highlight="Rathausmarkt">Hamburg's town hall</.v>, commuter route 3 (also called <span translate="no" lang="de">Veloroute 3</span>) weaves itself through side streets towards <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3" translate="no" lang="de">Niendorf</.v>.</p>
 
     <h4 lang="en">Following the route</h4>
     <p lang="en">There is no signage for this route. You'll need a satnav or learn the route by heart.</p>
@@ -180,7 +180,7 @@ defmodule Data.Article.Static.Alltagsroute3 do
     ~H"""
     <.route/>
 
-    <p>Vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="3" highlight="Rathausmarkt">Rathaus</.v> aus schlängelt sich die Alltagsroute 3 (auch: Veloroute 3 oder Radroute 3) meist über Nebenstraßen nach <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf</.v>.</p>
+    <p>Vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="3" highlight="Rathausmarkt">Rathaus</.v> aus schlängelt sich die Veloroute 3 meist über Nebenstraßen nach <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref="3">Niendorf</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

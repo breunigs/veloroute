@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.KarlshoeheAugustKrogmannStrasse do
   use Article.Default
 
   def created_at(), do: ~D[2022-01-12]
-  def title(), do: "Karlshöhe / August-Krogmann-Straße"
+  def title(), do: "Karlshöhe / August-Krogmann-Straße (Bezirksroute W8)"
 
   def start(), do: ~d[2023-08-19]
   def stop(), do: ~d[2025-07-18]

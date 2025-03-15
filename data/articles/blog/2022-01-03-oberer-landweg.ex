@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.ObererLandweg do
   def created_at(), do: ~D[2022-01-03]
   def updated_at(), do: ~D[2023-10-25]
 
-  def title(), do: "Oberer Landweg (Alltagsroute 9, RSW Geesthacht)"
+  def title(), do: "Oberer Landweg (Radroute 2, RSW Geesthacht)"
 
   def start(), do: ~d[2023-08-07]
   def stop(), do: ~d[2024-07-19]

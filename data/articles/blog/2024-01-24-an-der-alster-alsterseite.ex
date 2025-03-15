@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.AnDerAlsterAlsterseite do
   use Article.Default
 
-  def title(), do: "An der Alster (Alsterseite; Radrouten 5 und 6, Freizeitrouten 2 und 3)"
+  def title(), do: "An der Alster (Alsterseite; Radrouten 2 und 9, Freizeitrouten 2 und 3)"
 
   def summary(),
     do:

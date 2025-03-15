@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.DeckelAltona do
   def links(_assigns) do
     [
       {"Öffentlichkeitsbeteiligung zur Gestaltung des Autobahndeckels", ~d[2025-01],
-       "https://bauleitplanung.hamburg.de/verfahren/e4d9f2cc-ecd2-4ceb-9b16-190e9e869a22/public/detail#"},
+       "https://web.archive.org/web/20250212181046/https://bauleitplanung.hamburg.de/verfahren/e4d9f2cc-ecd2-4ceb-9b16-190e9e869a22/public/detail"},
       {"Infoseite des Freiraums-Planungsbüro",
        "https://arbos-landscape.de/project/parklandschaft-auf-dem-deckel-der-bundesautobahn-7-hamburg"}
     ]

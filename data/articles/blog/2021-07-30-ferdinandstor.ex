@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def created_at(), do: ~D[2021-07-30]
 
-  def title(), do: "Ferdinandstor"
+  def title(), do: "Ferdinandstor (Radrouten 2 und 6, Freizeitrouten 2 und 3)"
 
   def start(), do: ~d[2021-06-14]
   def stop(), do: ~d[2025-10-31]
@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def type(), do: :construction
 
-  def tags(), do: ["5", "6", "FR2", "FR3"]
+  def tags(), do: ["radroute-2", "radroute-6", "5", "6", "FR2", "FR3"]
 
   def tracks(), do: []
 

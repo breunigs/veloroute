@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.KreuzungGaertnerstrasse do
   def name(), do: "#{created_at()}-3-kreuzung-gaertnerstrasse"
   def created_at(), do: ~D[2018-09-19]
 
-  def title(), do: "Kreuzung Gärtnerstraße (Veloroute 3)"
+  def title(), do: "Kreuzung Gärtnerstraße (Radroute 3)"
 
   def type(), do: :ampel
 

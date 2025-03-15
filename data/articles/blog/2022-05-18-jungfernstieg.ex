@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
 
   def created_at(), do: ~D[2022-05-18]
 
-  def title(), do: "Jungfernstieg (Alltagsrouten 3 und 4)"
+  def title(), do: "Jungfernstieg (Radrouten 3, 4 und 7)"
 
   def summary(),
     do: "Fahrbahn enger, Mischverkehr bleibt, extra Baumreihe. Mehr Maßnahmen gegen Falschfahrer."

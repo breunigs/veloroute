@@ -177,7 +177,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 6 (auch: Veloroute 6 oder Radroute 6) führt vom <.v bounds="9.982519,53.545759,10.013633,53.55792" lon={9.993806} lat={53.55096} dir="forward" ref="5" highlight="Rathausmarkt">Rathaus</.v> nach <.v bounds="10.132608,53.628871,10.179795,53.663148" lon={10.162516} lat={53.648981} dir="forward" ref="6">Volksdorf</.v>. Dort schließt nahtlos die  <.a name="rsw-ahrensburg">Radroute Plus (Radschnellweg) nach Ahrensburg</.a> an.</p>
+    <p>Die Veloroute 6 führt vom <.v bounds="9.982519,53.545759,10.013633,53.55792" lon={9.993806} lat={53.55096} dir="forward" ref="5" highlight="Rathausmarkt">Rathaus</.v> nach <.v bounds="10.132608,53.628871,10.179795,53.663148" lon={10.162516} lat={53.648981} dir="forward" ref="6">Volksdorf</.v>. Dort schließt nahtlos die  <.a name="rsw-ahrensburg">Radroute Plus (Radschnellweg) nach Ahrensburg</.a> an.</p>
 
     <p>Auf dem Weg dorthin folgt die Route zunächst der <.v bounds="9.977257,53.549596,10.031798,53.572229" lon={10.010782} lat={53.559773} dir="forward" ref="6" highlight="An der Alster,Ballindamm">Ostseite der Alster</.v> und dem <.v bounds="10.010748,53.562984,10.07377,53.583406" lon={10.041073} lat={53.571486} dir="forward" ref="6">Eilbekkanal</.v>.</p>
 

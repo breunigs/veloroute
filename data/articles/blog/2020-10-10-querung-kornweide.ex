@@ -3,13 +3,13 @@ defmodule Data.Article.Blog.QuerungKornweide do
 
   def created_at(), do: ~D[2020-10-10]
   def updated_at(), do: ~D[2021-10-16]
-  def title(), do: "Querung Kornweide (Veloroute 10)"
+  def title(), do: "Querung Kornweide (Radroute 23)"
 
   def start(), do: ~d[2022Q3]
 
   def type(), do: :changed_routing
 
-  def tags(), do: ["10", "M12.2"]
+  def tags(), do: ["radroute-23", "10", "M12.2"]
 
   def links(_assigns) do
     [

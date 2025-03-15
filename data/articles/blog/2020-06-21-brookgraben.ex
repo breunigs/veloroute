@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Brookgraben do
 
   def created_at(), do: ~D[2020-06-21]
 
-  def title(), do: "Brookgraben (Veloroute 14)"
+  def title(), do: "Brookgraben (Radroute 19)"
   def icon(), do: :nocargo
 
   def type(), do: :issue

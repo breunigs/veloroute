@@ -127,7 +127,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 12 (auch: Veloroute 12 oder Radroute 12) führt vom Rathaus entlang der Elbe nach Altona</p>
+    <p>Die Veloroute 12 führt vom Rathaus entlang der Elbe nach Altona.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

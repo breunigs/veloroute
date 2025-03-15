@@ -188,7 +188,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
       </tr>
     </table>
 
-    <p>Die Alltagsroute 7 (auch: Veloroute 7 oder Radroute 7) führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="7" highlight="Rathausmarkt">Rathaus</.v> in Richtung Osten nach <.v bounds="10.098043,53.565295,10.147663,53.582896" lon={10.12205} lat={53.574824} dir="forward" ref="7">Jenfeld</.v>. Dort knickt ein Routenast leicht nach Norden ab und führt nach <.v bounds="10.145341,53.594407,10.160741,53.60604" lon={10.154252} lat={53.602163} dir="forward" ref="7">Rahlstedt</.v>.</p>
+    <p>Die Veloroute 7 führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="7" highlight="Rathausmarkt">Rathaus</.v> in Richtung Osten nach <.v bounds="10.098043,53.565295,10.147663,53.582896" lon={10.12205} lat={53.574824} dir="forward" ref="7">Jenfeld</.v>. Dort knickt ein Routenast leicht nach Norden ab und führt nach <.v bounds="10.145341,53.594407,10.160741,53.60604" lon={10.154252} lat={53.602163} dir="forward" ref="7">Rahlstedt</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
