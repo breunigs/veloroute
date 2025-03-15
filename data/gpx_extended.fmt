@@ -20,6 +20,7 @@
 #[BODY]  <time>${gpsdatetime#;my ($ss)=/\.\d+/g;DateFmt("%Y-%m-%dT%H:%M:%SZ");s/Z/${ss}Z/ if $ss}</time>
 #[BODY]  <ele>$gpsaltitude#</ele>
 #[BODY]  <hdop>$GPSHPositioningError#</hdop>
+#[BODY]  <dop>$GPSDOP#</dop>
 #[BODY]  <accel z="${accelerometer;$_=(split ' ')[0]}" x="${accelerometer;$_=(split ' ')[1]}" y="${accelerometer;$_=(split ' ')[2]}"/>
 #[BODY]  <gyro z="${gyroscope;$_=(split ' ')[0]}" x="${gyroscope;$_=(split ' ')[1]}" y="${gyroscope;$_=(split ' ')[2]}"/>
 #[BODY]  <speed gps2dkmh="${gpsspeed#;$_=3.6*$_}" gps3dkmh="${gpsspeed3d#;$_=3.6*$_}">$gpsspeed3d#</speed>
