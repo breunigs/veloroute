@@ -20,8 +20,6 @@ defmodule Data.Article.Static.Radroute18 do
         group: "18",
         direction: :backward,
         from: "Francoper Straße",
-        # benutze existierende Brücke
-        via: ["Aue Hauptdeich"],
         to: "Eidelstedt Zentrum",
         parent_ref: __MODULE__,
         text: "von Neugraben nach Eidelstedt",
@@ -52,8 +50,6 @@ defmodule Data.Article.Static.Radroute18 do
         group: "18",
         direction: :forward,
         from: "Eidelstedt Zentrum",
-        # benutze existierende Brücke
-        via: ["Aue Hauptdeich"],
         to: "Francoper Straße",
         parent_ref: __MODULE__,
         text: "von Eidelstedt nach Neugraben",

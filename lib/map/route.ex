@@ -132,7 +132,7 @@ defmodule Map.Route do
 
   defp reverse(%Map.Way{id: id} = way), do: %{Map.Way.reverse(way) | id: id <> "_reversed"}
 
-  @spec edges([Map.Way.t()]) :: [{binary(), binary()}]
+  @spec edges([Map.Way.t()]) :: [{binary(), binary(), Graph.Edge.edge_opts()}]
   defp edges(ways) do
     first_node_index = Enum.group_by(ways, &hd(&1.nodes).id, & &1.id)
 
@@ -142,11 +142,13 @@ defmodule Map.Route do
       from = hd(way.nodes).tags[:target]
       to = last.tags[:target]
 
-      edges = if from, do: [{from, way.id} | edges], else: edges
-      edges = if to, do: [{way.id, to} | edges], else: edges
+      weight = if way.tags[:status] == "concept", do: 2, else: 1
+
+      edges = if from, do: [{from, way.id, weight: weight} | edges], else: edges
+      edges = if to, do: [{way.id, to, weight: weight} | edges], else: edges
 
       unnamed_connections = if(!to, do: first_node_index[last.id]) || []
-      edges = Enum.reduce(unnamed_connections, edges, &[{way.id, &1} | &2])
+      edges = Enum.reduce(unnamed_connections, edges, &[{way.id, &1, weight: weight} | &2])
 
       edges
     end)
