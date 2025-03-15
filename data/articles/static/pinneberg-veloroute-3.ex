@@ -21,6 +21,12 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
         direction: :forward,
         from: "Pinneberg Zentrum",
         to: "Schenefeld",
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.RadverkehrskonzeptSchenefeld,
+          group: "4",
+          direction: :forward
+        },
         parent_ref: __MODULE__,
         text: "vom Pinnebergs Zentrum nach Schenefeld",
         videos: [
