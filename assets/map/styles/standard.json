@@ -3189,7 +3189,11 @@
         ["==", ["to-number", ["get", "overlap_index"]], 0],
         ["match", ["get", "layer"], ["-1"], true, false]
       ],
-      "layout": {"line-join": "round"},
+      "layout": {
+        "line-join": "round",
+        "visibility": "visible",
+        "line-cap": "round"
+      },
       "paint": {
         "line-width": [
           "interpolate",
@@ -3200,7 +3204,7 @@
           19,
           ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
         ],
-        "line-color": ["get", "color"],
+        "line-color": {"type": "identity", "property": "color"},
         "line-opacity": 0.5,
         "line-dasharray": [0, 2.5]
       }
