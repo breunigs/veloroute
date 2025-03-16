@@ -42,8 +42,9 @@ def desc(path):
 
 
 def json_out_paths(path):
-    out = path + '.json.gz'
-    return (out, out + '_wip')
+    out_gz = path + '.json.gz'
+    out_zst = path + '.json.zst'
+    return (out_gz, out_zst, out_gz + '_wip')
 
 
 def format_box(detection, names):
@@ -103,7 +104,7 @@ def load_videos(file_queue, video_queue, outer_bar):
             outer_bar.total -= file_size
             continue
 
-        (_final, wip) = json_out_paths(name)
+        (_final_gz, _final_zst, wip) = json_out_paths(name)
         detections = load_json_gzip(wip)
 
         video_queue.put((name, file_size, resolution, frames, frame_count, detections))
@@ -138,7 +139,7 @@ def process_frame(model, frame_queue, detections):
 
 def process(video, model, outer_bar):
     (name, file_size, _resolution, frames, frame_count, detections) = video
-    (final, wip) = json_out_paths(name)
+    (final_gz, _final_zst, wip) = json_out_paths(name)
     if not os.path.exists(name):
         outer_bar.total -= file_size
 
@@ -191,7 +192,7 @@ def process(video, model, outer_bar):
             json_saver.join()
         save_json_gzip(detections, wip)
         if not abort:
-            os.rename(wip, final)
+            os.rename(wip, final_gz)
     json_finisher = threading.Thread(target=finalizer)
     json_finisher.start()
 
@@ -213,8 +214,8 @@ def recurse(folder, queue, bar):
             if not ext in VIDEO_EXTENSIONS:
                 continue
 
-            final, _wip = json_out_paths(name)
-            if final in files:
+            final_gz, final_zst, _wip = json_out_paths(name)
+            if (final_gz in files) or (final_zst in files):
                 continue
 
             full = os.path.join(parent, name)
