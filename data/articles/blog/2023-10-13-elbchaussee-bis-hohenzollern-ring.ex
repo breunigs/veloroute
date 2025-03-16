@@ -18,6 +18,8 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-03],
+       "https://lsbg.hamburg.de/resource/blob/1037750/881a3f198316f1100fae51103a753d09/elbchaussee-betty-levi-passage-bis-hohenzollernring-anliegerinformation-maerz-2025-data.pdf"},
       {"Erläuterungsbericht – fertiger Entwurf", ~d[2025-03],
        "https://lsbg.hamburg.de/resource/blob/1030424/73709d5a4f76e14dc46476592913bfa4/elbchaussee-hohenzollernring-bis-betty-levi-passage-abgestimmte-planung-bericht-data.pdf"},
       {"Karte – fertiger Entwurf", ~d[2025-03],

@@ -129,6 +129,7 @@ defmodule Data.Article.Static.RadrouteConceptC do
     <h4>Befahrbarkeit</h4>
     <p>Die Route ist kaum praktisch befahrbar:</p>
     <ul>
+      <li>Umweg bis Fertigstellung des <.v bounds="9.895102,53.568985,9.922014,53.579298" lon={9.903111} lat={53.574709} dir="forward" ref={@ref}>Autobahndeckel Altonas</.v></li>
       <li>Umfahrung des <.v bounds="9.946119,53.562096,9.957584,53.569389" lon={9.951147} lat={53.566361} dir="forward" ref={@ref}>Alsenplatz</.v> ist umständlich</li>
       <li><.v bounds="9.959138,53.557922,9.971335,53.564589" lon={9.962637} lat={53.559827} dir="forward" ref="radroute-concept-c" highlight="Lerchenstraße">Einbahnstraße Lerchenstraße</.v> ist Richtung Innenstadt eine Schiebestrecke</li>
       <li>die meisten Abschnitte haben (sehr unebenes) Kopfsteinpflaster</li>

@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.InnenstadtHarburg do
   def name(), do: "#{created_at()}-11-innenstadt-harburg"
   def created_at(), do: ~D[2018-08-30]
 
-  def title(), do: "Innenstadt Harburg (Veloroute 11)"
+  def title(), do: "Innenstadt Harburg (Radroute 13)"
 
   def type(), do: :planned
 

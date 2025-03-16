@@ -166,7 +166,7 @@ defmodule Data.Article.Static.Radroute7 do
       <tr>
         <td></td>
         <td><.graph icon={:tunnel} ref={@ref}/></td>
-        <td><.v bounds="9.924716,53.55131,9.94703,53.562043" lon={9.934513} lat={53.555604} dir="forward" ref={@ref}>Lessing-Tunnel</.v></td>
+        <td><.v bounds="9.924716,53.55131,9.94703,53.562043" lon={9.934513} lat={53.555604} dir="forward" ref={@ref}>Lessingtunnel</.v></td>
       </tr>
       <tr>
         <td><.icon>radroute-16</.icon><.icon>radroute-14</.icon></td>

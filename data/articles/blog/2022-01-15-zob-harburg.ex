@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def created_at(), do: ~D[2022-01-15]
   def updated_at(), do: ~D[2022-10-05]
-  def title(), do: "Busbahnhof Harburg und anliegende Kreuzungen"
+  def title(), do: "Busbahnhof Harburg und anliegende Kreuzungen (Radrouten 4 und 13)"
 
   def start(), do: ~d[2023-05]
   def stop(), do: ~d[2026-08-31]

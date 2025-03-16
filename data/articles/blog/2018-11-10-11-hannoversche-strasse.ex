@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def name(), do: "#{created_at()}-11-hannoversche-strasse"
   def created_at(), do: ~D[2018-11-10]
 
-  def title(), do: "Hannoversche Straße (Veloroute 11)"
+  def title(), do: "Hannoversche Straße (Radroute 4)"
 
   # H 14.A == Hannov. Straße Knoten Neul. Hauptdeich ("Kreisel?") -- ab 2024 + 13 Monate
   # H 14.B == Hannoversche Straße Nord -- Fertigstellung Ende 2023
