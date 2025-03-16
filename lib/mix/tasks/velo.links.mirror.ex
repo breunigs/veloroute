@@ -17,7 +17,19 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
 
   @shortdoc "Mirrors structured links for articles"
   def run(_) do
+    now = :os.system_time(:second)
+
     Article.List.all()
+    |> Stream.reject(fn art ->
+      last_edit =
+        art.__info__(:compile)
+        |> Keyword.get(:source)
+        |> File.stat!(time: :posix)
+        |> Map.fetch!(:mtime)
+
+      edited_days_ago = (now - last_edit) / 60 / 60 / 24
+      edited_days_ago > 14
+    end)
     |> Task.async_stream(&{&1, already_mirrored(&1)}, timeout: :infinity, ordered: false)
     |> Stream.map(&elem(&1, 1))
     |> Stream.flat_map(fn {art, seen} ->
