@@ -8,7 +8,7 @@
 #include <mbgl/util/compression.hpp>
 
 #if defined(_WIN32) && !defined(S_ISDIR)
-#define S_ISDIR(m) (((m)&S_IFMT) == S_IFDIR)
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
 #endif
 
 namespace mbgl {
@@ -17,7 +17,9 @@ inline bool is_compressed(const std::string& v) {
     return (((uint8_t)v[0]) == 0x1f) && (((uint8_t)v[1]) == 0x8b);
 }
 
-void requestLocalFile(const std::string& path, const ActorRef<FileSourceRequest>& req) {
+void requestLocalFile(const std::string& path,
+                      const ActorRef<FileSourceRequest>& req,
+                      const std::optional<std::pair<uint64_t, uint64_t>>& dataRange) {
     Response response;
     struct stat buf;
     int result = stat(path.c_str(), &buf);
@@ -31,7 +33,7 @@ void requestLocalFile(const std::string& path, const ActorRef<FileSourceRequest>
             response.error = std::make_unique<Response::Error>(Response::Error::Reason::NotFound);
         }
     } else {
-        auto data = util::readFile(path);
+        auto data = util::readFile(path, dataRange);
         if (!data) {
             response.error = std::make_unique<Response::Error>(Response::Error::Reason::Other,
                                                                std::string("Cannot read file ") + path);

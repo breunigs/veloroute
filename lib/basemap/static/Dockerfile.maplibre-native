@@ -1,5 +1,5 @@
 # specify which branch or commit sha to build
-ARG MLN_COMMIT=ff2c1e8e73e6ead8e11556bfb8b838939b94ea6a
+ARG MLN_COMMIT=296ce07394e77faa882bef31a267d62748e8d783
 ARG DEBIAN_VERSION
 ARG LOW_PRIO="/usr/bin/chrt --idle 0 /usr/bin/nice -n19 /usr/bin/ionice --class idle"
 FROM debian:${DEBIAN_VERSION} AS runner-base
@@ -37,9 +37,11 @@ FROM runner-base as builder
 ARG LOW_PRIO
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
+  ca-certificates \
   ccache \
   cmake \
   g++ \
+  git \
   libc++-dev \
   libc++abi-dev \
   libcurl4-openssl-dev \
@@ -82,6 +84,7 @@ COPY --from=builder /build/build/bin/mbgl-render /build/mbgl-render
 #     --assets priv/static/ \
 #     --max-zoom 14
 RUN cp \
+  /usr/lib/x86_64-linux-gnu/libicudata.so* \
   /usr/lib/x86_64-linux-gnu/libicui18n.so* \
   /usr/lib/x86_64-linux-gnu/libicuuc.so* \
   /usr/lib/x86_64-linux-gnu/libjpeg.so* \
