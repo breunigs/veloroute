@@ -156,12 +156,12 @@ defmodule Data.Article.Static.Radroute7 do
       <tr>
         <td></td>
         <td><.graph icon={:straight} ref={@ref}/></td>
-        <td><.v bounds="9.883958,53.553057,9.926561,53.57738" lon={9.897802} lat={53.565734} dir="forward" ref={@ref}>Bahrenfeld</.v></td>
+        <td><.v bounds="9.883958,53.553057,9.926561,53.57738" lon={9.904803} lat={53.562624} dir="forward" ref={@ref}>Bahrenfeld</.v></td>
       </tr>
       <tr>
         <td></td>
         <td><.graph icon={:straight} ref={@ref}/></td>
-        <td><.v bounds="9.910939,53.546744,9.940556,53.555464" lon={9.93064} lat={53.5505} dir="forward" ref={@ref}>Ottensen</.v></td>
+        <td><.v bounds="9.906117,53.546694,9.940621,53.56497" lon={9.919695} lat={53.556476} dir="forward" ref={@ref}>Ottensen</.v></td>
       </tr>
       <tr>
         <td></td>

@@ -71,7 +71,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     User-agent: turnitinbot
     User-Agent: VelenPublicWebCrawler
     User-agent: Yandex
-    User-agent:Twitterbot
+    User-agent: Twitterbot
     Disallow: /
 
     User-agent: GPTBot-User
