@@ -184,7 +184,7 @@ defmodule Basemap.Static.Runner do
 
   def handle_info({port, {:data, data}}, state) when not is_map_key(state.processing, port) do
     Logger.warning(
-      "#{inspect(port)} send unexpected data; state #{inspect(state)}; #{inspect(data)}"
+      "#{inspect(port)} sent unexpected data; state #{inspect(state)}; #{inspect(data)}"
     )
 
     {:noreply, state}
@@ -216,8 +216,13 @@ defmodule Basemap.Static.Runner do
       when is_map_key(state.processing, port) do
     %{^port => {from, _line, deadline}} = state.processing
 
-    if expired?(deadline), do: Logger.warning(msg), else: GenServer.reply(from, {:error, msg})
-    {:noreply, state |> free_port(port) |> maybe_start_render()}
+    if ignorable_error?(msg) do
+      Logger.debug("(ignored) #{msg}")
+      {:noreply, state}
+    else
+      if expired?(deadline), do: Logger.warning(msg), else: GenServer.reply(from, {:error, msg})
+      {:noreply, state |> free_port(port) |> maybe_start_render()}
+    end
   end
 
   def handle_info({_port, {:data, "INFO: {mbgl-render}[General]:" <> _rest}}, state) do
@@ -254,6 +259,10 @@ defmodule Basemap.Static.Runner do
 
   @spec append(state(), item()) :: state()
   defp append(state, item), do: %{state | queue: state.queue ++ [item]}
+
+  defp ignorable_error?(msg) do
+    String.contains?(msg, "paths outside valid range of coordinate_type")
+  end
 
   @spec maybe_start_render(state()) :: state()
   defp maybe_start_render(%{ports: [port | ports], queue: [item | queue]} = state) do

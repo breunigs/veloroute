@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
   zlib1g-dev \
   && rm -rf /var/lib/apt/lists/*
 
-ARG TIPPECANOE_COMMIT=2.23.0
+ARG TIPPECANOE_COMMIT=2.75.1
 ENV TIPPECANOE_COMMIT=$TIPPECANOE_COMMIT
 RUN wget --no-verbose --output-document /tmp/tippecanoe.zip https://github.com/felt/tippecanoe/archive/${TIPPECANOE_COMMIT}.zip \
   && unzip -q -d /tmp/ /tmp/tippecanoe.zip \
