@@ -1,7 +1,7 @@
 defmodule Video.Path do
   import Guards
 
-  @detections_suffix ".json.gz"
+  @detections_suffixes [".json.gz", ".json.zst"]
   @source_endings [
     ".MP4",
     ".MP4_time_lapse.mkv",
@@ -78,7 +78,8 @@ defmodule Video.Path do
   end
 
   def source(path) when is_binary(path) do
-    path = path |> abs_path() |> String.replace_suffix(@detections_suffix, "")
+    path = abs_path(path)
+    path = Enum.reduce(@detections_suffixes, path, &String.replace_suffix(&2, &1, ""))
     if has_extension?(path), do: path, else: path <> hd(@source_endings)
   end
 
@@ -99,14 +100,15 @@ defmodule Video.Path do
   def detections(path) when is_binary(path) do
     path =
       cond do
-        String.ends_with?(path, @detections_suffix) ->
+        Enum.any?(@detections_suffixes, &String.ends_with?(path, &1)) ->
           path
 
         has_extension?(path) ->
-          path <> @detections_suffix
+          # i.e. some_vid.MP4 -- ffmpeg plugin will determine the detection extension
+          path
 
         true ->
-          path <> hd(@source_endings) <> @detections_suffix
+          path <> hd(@source_endings)
       end
 
     abs_path(path)
@@ -151,12 +153,17 @@ defmodule Video.Path do
   """
   def source_path?(path) do
     cond do
-      String.ends_with?(path, @detections_suffix) -> false
+      Enum.any?(@detections_suffixes, &String.ends_with?(path, &1)) -> false
       Enum.any?(@source_endings, &String.ends_with?(path, &1)) -> true
       !has_extension?(path) -> true
       true -> false
     end
   end
+
+  @doc """
+  Returns valid file path endings that mark video source files.
+  """
+  def source_endings, do: @source_endings
 
   @doc """
   Returns true if the path has a file extension
