@@ -20,4 +20,7 @@ defmodule RouteColors do
 
   def freizeit_normal(), do: "#006106"
   def freizeit_faded(), do: "#00b30b"
+
+  def bezirk_normal(), do: "#b482ff"
+  def bezirk_faded(), do: "#dac2ff"
 end

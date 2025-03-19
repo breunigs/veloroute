@@ -18,9 +18,8 @@ defmodule Article.Renderer do
   def render(%{ref: art} = assigns) when is_module(art) do
     try_render(assigns, fn ->
       body = art.text(assigns)
-      has_header = body.static |> List.first() |> String.starts_with?("<h3")
       has_title = assigns.ref.title() != ""
-      assigns = assign(assigns, %{body: body, insert_h3: !has_header && has_title})
+      assigns = assign(assigns, %{body: body, insert_h3: !has_header?(body) && has_title})
 
       ~H"""
         <article {@ref.microdata(:wrapper)}>
@@ -36,6 +35,13 @@ defmodule Article.Renderer do
         <Components.RelatedArticlesHelper.related_articles ref={@ref} lang={@lang}/>
       """
     end)
+  end
+
+  defp has_header?(body) do
+    start = List.first(body.static)
+
+    String.starts_with?(start, "<h3") ||
+      (String.starts_with?(start, "<!--") && String.contains?(start, "<h3"))
   end
 
   # only ignore the errors in development to avoid reloading the page. Always

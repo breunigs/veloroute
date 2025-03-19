@@ -70,7 +70,7 @@ defmodule Data.Article.Static.BrEimsbuettelEidelstedt do
     ~H"""
     <h3>Bezirksroute Eimsbüttel – Eidelstedt <.icon>E3</.icon></h3>
 
-    <p>Die Bezirksroute „Eidelstedt“ verbindet den Stadtteil mit dem <.v bounds="9.911016,53.601417,9.959618,53.625074" lon={9.930162} lat={53.613314} dir="forward" ref={@ref}>Niendorfer Gehege</.v>. Über die äußere Ringroute <.icon>14</.icon> und die <.a name="br-eimsbuettel-nord-sued">Bezirksroute Nord-Süd</.a> besteht Anschluss an den Rest der Stadt.</p>
+    <p>Die Bezirksroute „Eidelstedt“ verbindet den Stadtteil mit dem <.v bounds="9.911016,53.601417,9.959618,53.625074" lon={9.930162} lat={53.613314} dir="forward" ref={@ref}>Niendorfer Gehege</.v>. Über die Radroute <.icon>radroute-18</.icon> und die <.a name="br-eimsbuettel-nord-sued">Bezirksroute Nord-Süd</.a> besteht Anschluss an den Rest der Stadt.</p>
 
     <h4>Speziell für diese Route</h4>
     <p>Das Planungsbüro schlägt vor, die meisten Abschnitte als Fahrradstraßen herzurichten. Das meint häufig Vorfahrt, aufgeräumteres KFZ-Parken, geradlinige Führung und andere kleinere Maßnahmen, die das Radfahren verbessern sollen. Die Fahrradstraßen würden KFZ weiter erlauben („KFZ frei“).</p>
