@@ -124,8 +124,8 @@ defmodule VelorouteWeb.Live.Map do
 
   def handle_event("show-routes", %{"name" => selected}, %{assigns: %{layers: layers}} = socket) do
     layers =
-      Enum.map(layers, fn %{name: name} = layer ->
-        %{layer | active: name == selected}
+      Enum.map(layers, fn %{name: name, route_group: rg} = layer ->
+        %{layer | active: name == selected || rg == nil}
       end)
 
     socket = socket |> assign(:layers, layers) |> push_changes()
