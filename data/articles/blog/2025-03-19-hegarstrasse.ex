@@ -67,7 +67,7 @@ defmodule Data.Article.Blog.Hegarstrasse do
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Fahrbahn soll zu einem 3,5m breiten Zweirichtungsradweg werden. Er wird asphaltiert. KFZ bleiben zwischen und <.v bounds="9.909669,53.559747,9.911337,53.560753" lon={9.910292} lat={53.560268} dir="backward" ref={@ref}>Zöllnerstraße</.v> und <.v bounds="9.911461,53.559768,9.914043,53.561009" lon={9.912505} lat={53.56026} dir="backward" ref={@ref}>Bahrenfelder Kirchenweg</.v> draußen.</p>
 
-    <p>Der Gehweg auf der Bahnseite wird gepflastert. Zum Schutz der Baumwurzeln erfolgt dies mit einem Metallgitter, indem kleine Pflastersteine gelegt werden („TTE-System“. Siehe z.B. <.v bounds="10.013608,53.565017,10.018834,53.568994" lon={10.016452} lat={53.566264} dir="forward" ref="FR2">Radweg am Schwanenwik</.v>). Außerhalb der Baumstämme soll der Gehweg 3,55m breit werden. </p>
+    <p>Der Gehweg auf der Bahnseite wird gepflastert. Zum Schutz der Baumwurzeln erfolgt dies mit einem Metallgitter, in das kleine Pflastersteine gelegt werden („TTE-System“. Siehe z.B. <.v bounds="10.013608,53.565017,10.018834,53.568994" lon={10.016452} lat={53.566264} dir="forward" ref="FR2">Radweg am Schwanenwik</.v>). Außerhalb der Baumstämme soll der Gehweg 3,55m breit werden. </p>
 
     <p>Auf der Häuserseite werden die Fahrrad-Parkplätze deutlich erhöht. Dabei sollen sowohl einfache Radanlehnbügel, doppelstöckige Systeme und Fahrradboxen aufgestellt werden. Es ist auch vorgesehen E-Bikes laden zu können. Der ehemalige Gehweg entfällt auf dieser Seite.</p>
 

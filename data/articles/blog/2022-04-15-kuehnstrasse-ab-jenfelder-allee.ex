@@ -11,13 +11,15 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
       "1,85m breite Radfahrstreifen. Umbau nur möglich, wenn die Kreuzung mit der Jenfelder Allee ebenfalls mit angepasst wird."
 
   def type(), do: :planned
-  def start(), do: ~d[2024]
-  def stop(), do: ~d[2025]
+  def start(), do: ~d[2025Q2]
+  # def stop(), do: ~d[2025]
 
   def tags(), do: ["radroute-7", "7", "w25"]
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/kuehnstrasse-438218"},
       {"2. Entwurf, Pläne und Erläuterungen", "April 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018604"},
       {"Problematik Kreuzung Jenfelder Allee", "September 2022",

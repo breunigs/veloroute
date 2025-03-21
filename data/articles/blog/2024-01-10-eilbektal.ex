@@ -12,6 +12,8 @@ defmodule Data.Article.Blog.Eilbektal do
   def type(), do: :planned
   def tags(), do: ["FV-W051"]
 
+  def start(), do: ~d[2025Q2]
+
   def tracks(),
     do: [
       %Video.Track{
@@ -30,6 +32,8 @@ defmodule Data.Article.Blog.Eilbektal do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/eilbektal-954434"},
       {"2. Entwurf, Lageplan und Erläuterung", "April 2024",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1020742"},
       {"1. Entwurf, Lageplan und Erläuterung", "Januar 2024",

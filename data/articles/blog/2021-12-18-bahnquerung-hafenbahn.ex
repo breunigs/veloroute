@@ -39,6 +39,8 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
 
   def links(_assigns) do
     [
+      {"Hintergründe zum Umsetzungstopp", ~d[2025-03],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012674"},
       {"Baustellenübersicht Harburg", ~d[2024-10],
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012246"},
       # {"Baustellenplanung", "September 2023",

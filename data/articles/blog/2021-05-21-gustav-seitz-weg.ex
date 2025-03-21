@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.GustavSeitzWeg do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zum Umbau",
-       "https://web.archive.org/web/20220429162558/https://www.hamburg.de/wandsbek/strassenbaustellen/16009606/gustav-seitz-weg/"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/gustav-seitz-weg-438214"},
       {"Bauvergabe mit aktuellem Lageplan",
        "https://suche.transparenz.hamburg.de/dataset/hwsp-radwege-veloroute-5-w31-gustav-seitz-weg-strassenbauarbeiten"},
       {"Veralteter Entwurf und Lageplan",

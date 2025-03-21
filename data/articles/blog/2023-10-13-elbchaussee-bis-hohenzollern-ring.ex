@@ -14,6 +14,9 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
   def start(), do: ~d[2025-04]
   def stop(), do: ~d[2029-04]
 
+  # Vorarbeiten HH Wasser
+  # def construction_site_id_hh(), do: [1374090]
+
   def tracks(), do: []
 
   def links(_assigns) do

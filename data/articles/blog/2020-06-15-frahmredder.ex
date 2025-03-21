@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.Frahmredder do
   def links(_assigns) do
     [
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/strassenbaustellen-im-bezirk-wandsbek/frahmredder-76736"},
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/frahmredder-438212"},
       {"Baustelleninfo", "Juli 2023",
        "https://www.hamburg.de/wandsbek/strassenbaustellen/17213952/frahmredder/"},
       {"Pressemitteilung des Bezirks Wandsbek",

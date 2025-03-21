@@ -25,6 +25,8 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
 
   def links(_assigns) do
     [
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/kuehnstrasse-jenfelder-allee-438216"},
       {"fertiger Entwurf; Lageplan und Erläuterung", ~d[2024-08],
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021206"},
       {"1. Entwurf; Lageplan und Erläuterung", "Januar 2024",
