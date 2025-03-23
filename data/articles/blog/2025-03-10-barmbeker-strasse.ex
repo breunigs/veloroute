@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.BarmbekerStrasse do
 
   def summary(),
     do:
-      "Offene Bauweise der U5 macht Neubar der Straße notwendig. Hochbahn gibt Ideen für mögliche Aufteilung."
+      "Offene Bauweise der U5 macht Neubau der Straße notwendig. Hochbahn gibt Ideen für mögliche Aufteilung."
 
   def type(), do: :intent
 

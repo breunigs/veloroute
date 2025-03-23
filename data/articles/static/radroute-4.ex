@@ -240,7 +240,7 @@ defmodule Data.Article.Static.Radroute4 do
 
     <p>Die Radroute selbst verläuft in Nord-Süd-Richtung. Sie quert die Norderelbe durch den Alten Elbtunnel und die Süderelbe über die Alte Harburger Elbbrücke.</p>
 
-    <img src="/images/radroute4sign.webp" width="78" height="326" style="float:right;shape-outside:url(/images/radroute4sign.webp);shape-margin: 0.5rem;margin-left:0.6rem;" />
+    <img src="/images/radroute4sign.webp" width="78" height="326" style="float:right;shape-outside:url(/images/radroute4sign.webp);shape-margin: 0.5rem;margin-left:0.6rem;" alt="Wegweiser für Radroute 4"/>
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nur um die Alster herum  beschildert. Für die meisten Abschnitte benötigt man daher Navi oder Ortskenntnis.</p>
 

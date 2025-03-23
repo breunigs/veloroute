@@ -13,7 +13,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
   def start(), do: ~d[2025-03]
   def stop(), do: ~d[2027-05]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-18", "hochbordradweg", "fahrrad-frei", "14"]
 

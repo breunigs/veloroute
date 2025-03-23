@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.FernbahnhofDiebsteich do
     do:
       "Westseite: Schmaler Zweirichtungsradweg oder Fahrbahnradeln. Keine Durchfahrt für private KFZ. Komplizierte Ampel an der Unterführung. Ostseite: Tempo-50 im Mischverkehr. Kreisel an der Unterführung. Zweirichtungsradweg endet mit gelungener Aufleitung in der Unterführung."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["rsw-elmshorn", "FR9", "radroute-concept-c"]
 
