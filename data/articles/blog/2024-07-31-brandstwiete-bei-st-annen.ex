@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
   use Article.Default
 
-  def title(), do: "Brandstwiete / Bei St. Annen (Radroute 10)"
+  def title(), do: "Brandstwiete / Bei St. Annen (Radroute 3)"
 
   def summary(), do: "In Ad-Hoc-Maßnahme soll Radfahrstreifen Richtung HafenCity angelegt werden."
 

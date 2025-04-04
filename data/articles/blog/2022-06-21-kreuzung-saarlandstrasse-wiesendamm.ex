@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
   use Article.Default
   def created_at(), do: ~D[2022-06-21]
-  def title(), do: "Kreuzung Saarlandstraße/Wiesendamm (Alltagsroute 5N)"
+  def title(), do: "Kreuzung Saarlandstraße/Wiesendamm (Radroute 12)"
 
   def summary(),
     do: "Meist 2,0m breite Radfahrstreifen ohne Trennelemente neben bis zu vier KFZ-Spuren."

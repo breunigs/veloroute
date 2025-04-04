@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
   def type(), do: :planned
   def tags(), do: []
 
-  def start(), do: ~d[2024-03]
+  def start(), do: ~d[2027]
 
   def tracks(),
     do: [
@@ -73,6 +73,14 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
       }
     ]
 
+  def map_image do
+    {name(),
+     [
+       {"BPR beratende Ingenieure mbB", "https://www.bpr-ingenieurbuero.de/kontakt/"},
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Projektseite des LSBG", "https://lsbg.hamburg.de/ulzburger-str-poppenbuetteler-chaussee"},
@@ -89,7 +97,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
     <h4>Aufteilung</h4>
     <p>Die Planung betrifft den gesamten Straßenzug <.v bounds="10.075281,53.652212,10.078347,53.664536" lon={10.077009} lat={53.659646} group="fußweg" dir="forward" ref={@ref}>Ulzburger Straße</.v>, <.v bounds="10.075069,53.662859,10.091321,53.672637" lon={10.081341} lat={53.668045} group="fußweg" dir="forward" ref={@ref}>Poppenbütteler Berg</.v>, <.v bounds="10.089248,53.671521,10.101427,53.697021" lon={10.095088} lat={53.681083} group="fußweg" dir="forward" ref={@ref}>Lemsahler Landstraße</.v>, <.v bounds="10.09814,53.696219,10.106431,53.708795" lon={10.103428} lat={53.701261} dir="forward" group="fußweg" ref={@ref}>Poppenbütteler Chaussee</.v> und <.v bounds="10.104076,53.708084,10.110594,53.71479" lon={10.107853} lat={53.711575} group="fußweg" dir="forward" ref={@ref}>Lohe</.v>. Die Pläne und Projekte zur Umsetzung sind nach den Straßennamen aufgeteilt, d.h. es gibt je Straße eine eigene Projektnummer. Nur Lohe als kurzes Teilstück wurde der Poppenbütteler Chausee zugeschlagen.</p>
 
-    <h4>Planung – Prinzip</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}>Planung – Prinzip</.h4_planning>
     <p>Man wollte entlang des gesamten Straßenzugs eine einheitliche Führung herstellen. Außerdem sollten möglichst viele der Straßenbäume erhalten bleiben. Mit diesen Vorgaben war eine eigene Radführung nicht umsetzbar, zumindest nicht ohne erheblichen Zukauf von Grundstücken.</p>
 
     <p>Man entschied sich den Radverkehr auf den Fußwegen mittels <.ref>Fahrrad frei</.ref> zu führen und diese wo nötig zu verbreitern. An Kreuzungen soll der Radverkehr dagegen im Sichtfeld des Autoverkehrs fahren und wird durch Behelfsrampen auf meist rund 2,0m breite <.ref>Radfahrstreifen</.ref> abgeleitet. Nach der Kreuzung gibt es wieder eine Rampe um auf den Fußweg zu gelangen. Aufstellflächen zum Linksabbiegen werden nicht markiert, es obliegt den Radfahrenden sich geeignet aufzustellen.</p>
@@ -100,7 +108,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
 
     <p>Bushaltestellen werden jeweils zum Halt am Fahrbahnrand umgebaut. Man muss dann entweder hinter dem Bus warten oder ihn überholen, während Fahrgäste ein- und aussteigen.</p>
 
-    <h4>Planung – Abweichungen</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}>Planung – Abweichungen</.h4_planning>
     <p>Wenn nicht anders erwähnt, wird das oben erklärte Prinzip verwendet. Es gibt allerdings einige Ausnahmen:</p>
 
     <ul>

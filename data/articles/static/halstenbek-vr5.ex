@@ -11,7 +11,7 @@ defmodule Data.Article.Static.HalstenbekVR5 do
     do:
       "Die Veloroute 5 verbindet Bickbargen mit der Radroute Plus Elmshorn. Von dort geht es entweder nach Schenefeld oder Lurup."
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Spreehafenbruecke do
   use Article.Default
 
-  def title(), do: "Spreehafenbrücke (Radroute 11)"
+  def title(), do: "Spreehafenbrücke (Radroute 4)"
 
   def summary(),
     do:
@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Spreehafenbruecke do
   def stop(), do: ~d[2025-01-31]
   def construction_site_id_hh(), do: [663_513]
 
-  def tags(), do: ["11"]
+  def tags(), do: ["radroute-4", "11"]
 
   def links(_assigns) do
     [

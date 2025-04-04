@@ -3,16 +3,19 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def created_at(), do: ~D[2021-05-05]
 
-  def title(), do: "Lerchenfeld und Wartenau (kreuzt Veloroute 6)"
+  def title(), do: "Lerchenfeld und Wartenau (Radroute 6)"
 
-  def start(), do: ~d[2025]
+  def start(), do: ~d[2025-03-17]
+  def stop(), do: ~d[2027]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-6", "6"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo Wartenaubrücke", ~d[2025-03],
+       "https://lsbg.hamburg.de/resource/blob/1041004/7be96b05d0dd6681049076543a149afb/wartenaubruecke-anliegerinformation-maerz-2025-data.pdf"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/resource/blob/784248/d08b0319d36fb6e5ce7b598d738e5c85/lerchenfeld-wartenau-hamburger-strasse-bis-wandsbeker-chaussee-abstimmungsunterlage-bericht-data.pdf"},
       {"Lageplan",

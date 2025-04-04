@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
 
   def title(),
     do:
-      "Sengelmannstraße – Rotbuchenstieg bis Rathenaustraße (Radroute 5, Radroute Plus Bad Bramstedt)"
+      "Sengelmannstraße – Rotbuchenstieg bis Rathenaustraße (Radrouten 4 und 12, Radroute Plus Bad Bramstedt)"
 
   def summary(),
     do:

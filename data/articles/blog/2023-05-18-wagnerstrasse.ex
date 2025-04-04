@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Wagnerstrasse do
   use Article.Default
 
-  def title(), do: "Wagnerstraße (Eilenau bis Wandsbeker Chaussee, Veloroute 13, Bezirksroute W1)"
+  def title(), do: "Wagnerstraße (Eilenau bis Wandsbeker Chaussee, Radroute 17, Bezirksroute W1)"
 
   def summary(),
     do:

@@ -35,10 +35,12 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
   def links(_assigns) do
     [
       {"Informationsseite der Stadt", "https://lsbg.hamburg.de/strassenzug-wellingsbuettel"},
-      {"Baustelleninfo", ~d[2025-02],
-       "https://lsbg.hamburg.de/resource/blob/1023080/141a6e5497d1109e883844037a2f3f86/wellingsbuettler-weg-anliegerinformation-februar-2025-data.pdf"},
-      {"Baustelleninfo", ~d[2024-07],
-       "https://lsbg.hamburg.de/resource/blob/931050/e96198ba0f5bd5b6b2c68c4af1036a01/wellingsbuetteler-landstrasse-anliegerinformation-juli-2024-data.pdf"},
+      {"Baustelleninfo", ~d[2025-04],
+       "https://lsbg.hamburg.de/resource/blob/1049614/0d0162583e87542cfecf90737b22d0ef/wellingsbuetteler-landstrasse-baufelderweiterung-anliegerinfo-april-2025-data.pdf"},
+      # {"Baustelleninfo", ~d[2025-02],
+      #  "https://lsbg.hamburg.de/resource/blob/1023080/141a6e5497d1109e883844037a2f3f86/wellingsbuettler-weg-anliegerinformation-februar-2025-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-07],
+      #  "https://lsbg.hamburg.de/resource/blob/931050/e96198ba0f5bd5b6b2c68c4af1036a01/wellingsbuetteler-landstrasse-anliegerinformation-juli-2024-data.pdf"},
       {"Zeitungsartikel zum Umbaustart", ~d[2024-07],
        "https://www.abendblatt.de/hamburg/hamburg-nord/article406718077/bauarbeiten-starten-wellingsbuetteler-landstrasse-wird-gesperrt-01.html"},
       {"Änderungen Vorplatz U-Klein Borstel – Bericht", ~d[2024-02],

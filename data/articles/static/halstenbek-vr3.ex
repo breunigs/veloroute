@@ -10,7 +10,7 @@ defmodule Data.Article.Static.HalstenbekVR3 do
   def summary(),
     do: "Die Veloroute 3 würde von Rellingen Kellerstraße zum Zentrum Krupunders führen"
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

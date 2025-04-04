@@ -10,12 +10,21 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     do:
       "2,0m breite Hochbordradwege. An Engstellen soll auf Fahrbahn gewechselt werden; Gehwege bleiben mit Schritttempo erlaubt."
 
-  def start(), do: ~d[2025-03]
-  def stop(), do: ~d[2027-05]
+  def start(), do: ~d[2025-05-29]
+  def stop(), do: ~d[2027-05-09]
+  def construction_site_id_hh(), do: [1_386_246]
 
   def type(), do: :construction
 
   def tags(), do: ["radroute-18", "hochbordradweg", "fahrrad-frei", "14"]
+
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"BPR beratende Ingenieure mbB", "https://www.bpr-ingenieurbuero.de/kontakt/"}
+     ]}
+  end
 
   def links(_assigns) do
     [
@@ -45,7 +54,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     <h4>Alter Zustand</h4>
     <p>Die Veloroute wird meist auf <.ref>Hochbordradwegen</.ref> geführt. Sie sind unterschiedlich breit und zwischen <.v bounds="9.86729,53.590468,9.889278,53.595495" lon={9.881915} lat={53.5924746} dir="forward" ref={@ref}>1,50m</.v> und <.v bounds="9.879594,53.600217,9.901582,53.605243" lon={9.8920342} lat={53.6029526} dir="forward" ref={@ref}>70 cm</.v> ist alles dabei. Die Radwege werden durch <.v bounds="9.879594,53.600217,9.901582,53.605243" lon={9.8927414} lat={53.6034238} dir="backward" ref={@ref}>Bushaltestellen geführt</.v>, vor Kreuzungen zu <.v bounds="9.871183,53.589339,9.893171,53.594367" lon={9.8823888} lat={53.59287} dir="forward" ref={@ref}>gemeinsamen Fuß- und Radwegen</.v> oder an <.v bounds="9.88384,53.602302,9.905828,53.607329" lon={9.895432} lat={53.604179} dir="forward" ref={@ref}>Engstellen zu einem „Fahrrad frei“</.v>. Altersbedingt sind die Radwege eher uneben und daher schlecht zu befahren.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Der erste Entwurf sieht von der <.v bounds="9.871325,53.587523,9.885014,53.590653" lon={9.8775202} lat={53.5894187} dir="forward" ref={@ref}>Elly-See-Straße</.v> bis <.v bounds="9.885822,53.600751,9.89364,53.602538" lon={9.8900402} lat={53.601743} dir="forward" ref={@ref}>kurz vor den Eisenbahnbrücken</.v> durchgehende, 2,0m breite <.ref>Hochbordradwege</.ref> vor (LSBG Lagepläne 1 bis 5).</p>
     <p>Vor den Brücken endet der Radweg. Der Radverkehr darf wahlweise auf der Fahrbahn im <.ref>Mischverkehr</.ref> oder im Schritttempo auf dem Gehweg weiterfahren. Im Bereich der <.v bounds="9.889175,53.602158,9.899717,53.604568" lon={9.8926452} lat={53.6033872} dir="backward" ref={@ref}>Bushaltestellen S-Elbgaustraße</.v> sind wieder 2,0m breite Hochbordradwege geplant. Sie enden kurz nach dem Redingskamp; wieder mit Wahl ob Fahrbahn oder Gehweg. (LSBG Lagepläne 5 und 6).</p>
 

@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Argentinienbruecke do
   use Article.Default
 
-  def title(), do: "Argentinienbrücke (Radroute 11)"
+  def title(), do: "Argentinienbrücke (Radroute 4)"
 
   def updated_at(), do: ~D[2024-08-09]
 
@@ -15,7 +15,7 @@ defmodule Data.Article.Blog.Argentinienbruecke do
 
   def type(), do: :finished
 
-  def tags(), do: ["11"]
+  def tags(), do: ["radroute-4", "11"]
 
   def map_image do
     {name(),

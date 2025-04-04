@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.NeueStrasse do
     do: "Neue Straße – Am Soldatenfriedhof bis Buxtehuder Straße (Radroute 10, Freizeitroute 6)"
 
   def start(), do: ~d[2024-10-28]
-  def stop(), do: ~d[2025-03-28]
+  def stop(), do: ~d[2025-05-16]
   def construction_site_id_hh(), do: [1_122_273]
 
   def summary(), do: "Abschnitt soll abgeflachtes Pflaster bekommen."

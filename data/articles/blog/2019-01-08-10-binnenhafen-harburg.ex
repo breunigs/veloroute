@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
   def name(), do: "#{created_at()}-10-binnenhafen-harburg"
   def created_at(), do: ~D[2019-01-08]
 
-  def title(), do: "Nartenstraße (Veloroute 10)"
+  def title(), do: "Nartenstraße (Radroute 10)"
 
   # def start(), do: ~d[2021-02-15]
   # def stop(), do: ~d[2022-10-30]

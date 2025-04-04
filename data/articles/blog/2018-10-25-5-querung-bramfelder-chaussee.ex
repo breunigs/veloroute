@@ -4,11 +4,11 @@ defmodule Data.Article.Blog.QuerungBramfelderChaussee do
   def name(), do: "#{created_at()}-5-querung-bramfelder-chaussee"
   def created_at(), do: ~D[2018-10-25]
 
-  def title(), do: "Querung Bramfelder Chaussee, Höhe Fabriciusstraße (Veloroute 5)"
+  def title(), do: "Querung Bramfelder Chaussee, Höhe Fabriciusstraße (Radroute 5)"
 
   def type(), do: :planned
 
-  def tags(), do: ["5", "br-wandsbek-w3"]
+  def tags(), do: ["radroute-5", "5", "br-wandsbek-w3"]
 
   def links(_assigns) do
     [

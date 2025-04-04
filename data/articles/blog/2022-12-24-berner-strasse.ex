@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.BernerStrasse do
   use Article.Default
 
   def title(),
-    do: "Berner Straße / Fasanenweg / Berner Brücke"
+    do: "Berner Straße / Fasanenweg / Berner Brücke (Bezirksroute Wandsbek W3)"
 
   def summary(),
     do:
@@ -15,36 +15,7 @@ defmodule Data.Article.Blog.BernerStrasse do
   def type(), do: :construction
   def tags(), do: ["br-wandsbek-w3"]
 
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 3,
-        group: "detour",
-        direction: :backward,
-        from: "Bargteheider Straße",
-        to: "Kriegkamp",
-        parent_ref: __MODULE__,
-        text: "Umleitung Richtung Norden",
-        videos: [
-          {"2022-12-24-berner-strasse/GX015032", :start, :end},
-          {"2022-12-24-berner-strasse/GX015033", :start, "00:01:11.038"}
-        ]
-      },
-      %Video.Track{
-        renderer: 3,
-        group: "detour",
-        direction: :forward,
-        from: "Kriegkamp",
-        to: "Bargteheider Straße",
-        parent_ref: __MODULE__,
-        text: "Umleitung Richtung Süden",
-        videos: [
-          {"2022-12-24-berner-strasse/GX015043", :start, "00:00:49.550"},
-          {"2022-12-24-berner-strasse/GX015043", "00:01:06.199", :end},
-          {"2022-12-24-berner-strasse/GX015044", :start, "00:00:28.356"}
-        ]
-      }
-    ]
+  def tracks(), do: []
 
   def links(_assigns) do
     [

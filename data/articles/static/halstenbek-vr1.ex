@@ -11,7 +11,7 @@ defmodule Data.Article.Static.HalstenbekVR1 do
     do:
       "Die Veloroute 1 würde die beiden Stadtzentren (Halstenbek und Krupunder) miteinander verbinden."
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

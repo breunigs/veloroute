@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.HamburgsRadampeln do
 
   def summary(),
     do:
-      "Die oft überraschend platzierten Ampeln verlangen höchste Aufmerksamkeit oder Ortskenntnis um nicht bei aus Versehen bei Rot zu fahren. Außerdem sind sie winzig und kaum erkennbar."
+      "Die oft überraschend platzierten Ampeln verlangen höchste Aufmerksamkeit oder Ortskenntnis um nicht aus Versehen bei Rot zu fahren. Außerdem sind sie winzig und kaum erkennbar."
 
   def type(), do: nil
   def tags(), do: []
@@ -50,11 +50,11 @@ defmodule Data.Article.Blog.HamburgsRadampeln do
 
     <img src="/images/ampelhd.webp" width="1169" height="1515" alt="Die kleinen Radampeln haben vier Felder: oben ein blau/weiß leuchtendes Fahrradsymbol. Rot+Gelb Felder leuchten vollständig bis auf den schwarzen Pfeil. Das Grün-Feld ist schwarz mit leuchtendem grünen Pfeil. Zusätzlich gibt es eine große Radampel die weiter oben angebracht ist, und einen leuchtenden Pfeil+Fahrradsymbol hat." style="max-width:300px; height: auto; float: right;margin-left: 0.5rem;shape-outside:url(/images/ampelhd.webp);shape-margin: 0.5rem;"/>
     <h5>Besser ablesbare Ampeln</h5>
-    <p>Diese Ampel aus Heidelberg erkennt man auch von weitem – selbst bei blendender Sonne oder beschlagener Brille. Zusätzlich bleibt die große Ampel oben links auch dann lesbar, wenn Wartende die kleinen Ampeln verdecken.</p>
+    <p>Die abgebildete Ampel aus Heidelberg erkennt man auch von weitem – selbst bei blendender Sonne oder beschlagener Brille. Zusätzlich bleibt die große Ampel oben links auch dann lesbar, wenn Wartende die kleinen Ampeln verdecken.</p>
 
     <h4>Forderungen – langfristig</h4>
     <h5>Weniger Ampeln</h5>
-    <p>Kreisverkehre, Tempo 20, Zebrastreifen oder <.ref>Querungshilfen</.ref> können Ampeln überflüssig machen. Das verbessert das Vorankommen für alle.</p>
+    <p>Kreisverkehre, Tempo 20, Zebrastreifen oder andere <.ref>Querungshilfen</.ref> können Ampeln überflüssig machen. Das verbessert das Vorankommen für alle.</p>
 
     <p><.ref name="modalfilter">Durchfahrtssperren</.ref> halten KFZ-Bequemlichkeitsverkehr fern – denn nur mit Autoverkehr braucht man Ampeln. Das ist auch gegen die „Umweg“-Jammerer durchzusetzen. Große Autotrassen kann man auch nur alle paar 100m sicher queren und muss dann oft warten. Wenn Fuß und Rad diese Umwege schaffen, dann jemand im Auto erst recht.</p>
 

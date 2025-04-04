@@ -11,7 +11,7 @@ defmodule Data.Article.Static.HalstenbekVR4 do
     do:
       "Die Veloroute 4 stellt den Anschluss vom Bickbargen zum Radnetz Hamburgs her. Sie führt nördlich der Bahn zu einer Bezirksroute in Eimsbüttel."
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

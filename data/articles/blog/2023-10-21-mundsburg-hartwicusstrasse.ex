@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.MundsburgHartwicusstrasse do
   use Article.Default
 
-  def title(), do: "Mundsburg / Hartwicusstraße (Alltagsroute 5 und 6)"
+  def title(), do: "Mundsburg / Hartwicusstraße (Radrouten 5 und 6)"
 
   def summary(), do: "Radweg wird im Zuge eines Hausbaus auf einem kurzen Stück breiter."
 

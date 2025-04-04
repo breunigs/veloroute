@@ -10,7 +10,7 @@ defmodule Data.Article.Static.HalstenbekVR6 do
   def summary(),
     do: "Die Veloroute 6 verbindet das Zentrum Halstenbeks mit Schenefeld"
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

@@ -10,7 +10,7 @@ defmodule Data.Article.Static.HalstenbekVR2 do
   def summary(),
     do: "Die Veloroute 2 würde Halstenbeks Hauptstraße mit Pinnebergs Veloroute 2 verbinden"
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

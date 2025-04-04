@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   # H 14.A == Hannov. Straße Knoten Neul. Hauptdeich ("Kreisel?") -- ab 2024 + 13 Monate
   # H 14.B == Hannoversche Straße Nord -- Fertigstellung Ende 2023
   def start(), do: ~d[2021-01-04]
-  def stop(), do: ~d[2025-05-22]
+  def stop(), do: ~d[2025-05-30]
 
   def type(), do: :construction
 

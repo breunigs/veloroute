@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.VeddelerBogen do
   use Article.Default
 
-  def title(), do: "Veddeler Bogen (Veloroute 10)"
+  def title(), do: "Veddeler Bogen (Radroute 23)"
 
   def summary(),
     do:

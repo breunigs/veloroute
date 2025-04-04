@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.SaselheiderStrasse do
   use Article.Default
 
   def created_at(), do: ~D[2021-12-11]
-  def title(), do: "Saselheider Straße (Veloroute 6)"
+  def title(), do: "Saselheider Straße (Radroute 6)"
 
   def type(), do: :issue
   def tags(), do: ["radroute-6", "6"]

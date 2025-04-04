@@ -10,7 +10,7 @@ defmodule Data.Article.Static.HalstenbekVR7 do
   def summary(),
     do: "Die Veloroute 7 verbindet Halstenbeks Zentrum mit Waldenau-Datum"
 
-  def tags(), do: [id()]
+  def tags(), do: [id(), "halstenbek"]
 
   def tracks(),
     do: [

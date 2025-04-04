@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.LeeschenblickUndFabriciusstrasse do
   def name(), do: "#{created_at()}-5-leeschenblick-und-fabriciusstrasse"
   def created_at(), do: ~D[2018-10-25]
   def updated_at(), do: ~D[2020-02-01]
-  def title(), do: "Fabriciusstraße (Veloroute 5)"
+  def title(), do: "Fabriciusstraße (Radroute 5)"
 
   def start(), do: ~d[2024]
   def stop(), do: ~d[2024]

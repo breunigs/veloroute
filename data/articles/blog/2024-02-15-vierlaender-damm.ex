@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
   def type(), do: :construction
 
   def start(), do: ~d[2024-04-22]
-  def stop(), do: ~d[2025-02-28]
+  def stop(), do: ~d[2025-07-15]
   def construction_site_id_hh(), do: [882_875, 1_024_062]
 
   def tags(), do: ["radroute-22", "FR5"]
@@ -55,7 +55,9 @@ defmodule Data.Article.Blog.VierlaenderDamm do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-03],
-       "https://lsbg.hamburg.de/resource/blob/1016102/7d173a0b73561e339988ca33a0365927/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-februar-2025-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/1016102/bd58dbbc8e9ec540a8111ad1b080caa0/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-maerz-2025-data.pdf"},
+      #  {"Baustelleninfo", ~d[2025-03],
+      #  "https://lsbg.hamburg.de/resource/blob/1016102/7d173a0b73561e339988ca33a0365927/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-februar-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2025-01],
       #  "https://lsbg.hamburg.de/resource/blob/984538/4c805f97b33d388715245c9dd4b20d02/billhorner-roehrendamm-hst-thiedingreihe-anliegerinformation-oktober-2024-data.pdf"},
       # {"Baustelleninfo", ~d[2024-11],
