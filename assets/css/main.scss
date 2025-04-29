@@ -666,6 +666,10 @@ body.showSidebar::before {
   touch-action: pan-y;
   contain: strict;
 
+  p {
+    text-wrap: pretty;
+  }
+
   p, ul, ol {
     line-height: 1.15rem;
   }
