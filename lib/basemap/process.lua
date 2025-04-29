@@ -390,12 +390,12 @@ function way_function()
   end
 
   -- 'Ferry'
-  if route=="ferry" then
+  local access=Find("access")
+  if route=="ferry" and access~="no" and access~="permit" and Find("bicycle")~="no" then
     Layer("transportation", false)
     Attribute("class", "ferry")
     SetZOrder()
     SetMinZoom(9)
-    SetBrunnelAttributes()
     SetNameAttributes(9)
   end
 
