@@ -9,6 +9,7 @@ shift
 
 echo
 echo "combining all input images"
+rm -f mosaic.vrt
 gdalbuildvrt mosaic.vrt "$@"
 
 echo
