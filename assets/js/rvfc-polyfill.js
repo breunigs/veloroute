@@ -27,4 +27,6 @@ if (!('requestVideoFrameCallback' in HTMLVideoElement.prototype)) {
     cancelAnimationFrame(this._rvfcpolyfillmap[now])
     delete this._rvfcpolyfillmap[now]
   }
+
+  window.plausible('no-request-video-frame-callback')
 }
