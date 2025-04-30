@@ -27,7 +27,7 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Die <.ref>Hochbordradwege</.ref> um die Kreuzung sind meist 1,25m breit. Auch die angrenzenden Gehwege sind zu schmal.</p>
+    <p>Die <.ref>Hochbordradwege</.ref> um die Kreuzung sind meist 1,25m breit. Auch die angrenzenden Gehwege sind schmal.</p>
 
     <p>Viele Ampeln haben lange Wartezeiten für Rad- und Fußverkehr. Die Aufstellbereiche sind vor allem unter der U-Bahn zu klein. Zudem sind die Ampeln je nach Fahrtrichtung häufig auf eine „rote Welle“ geschaltet.</p>
 
@@ -61,7 +61,7 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
 
     <p>Die geplanten Begradigungen der Radwege und die Verbreiterung der Gehwege sind sinnvoll – ebenso die neue Begrünung. Leider gibt es diese Verbesserungen nur an einigen Stellen und nicht flächendeckend.</p>
 
-    <p>Leider verlaufen die geplanten Radfahrstreifen häufig zwischen KFZ-Spur (links) und KFZ-Parkplätzen (rechts). Im <.v bounds="10.008117,53.55014,10.030998,53.559879" lon={10.01602} lat={53.555491} dir="backward" ref="radroute-7">Steindamm</.v> dieses Konzept schlecht – hier könnte es ähnlich problematisch werden. Weitere Schwachstellen der Maßnahmen sind Slalomführung um die Einmündungen <.m bounds="10.042315,53.581083,10.045566,53.582633">Stückenstraße und Haferkamp</.m>. Zumindest im <.v bounds="10.042024,53.578863,10.04384,53.579619" lon={10.043329} lat={53.579162} dir="forward" ref="br-nord-n4">Kurvenbereich Dehnhaide</.v> sollten Trennelemente ergänzt werden, um das Schneiden der Kurve durch KFZ zu verhindern.</p>
+    <p>Leider verlaufen die geplanten Radfahrstreifen häufig zwischen KFZ-Spur (links) und KFZ-Parkplätzen (rechts). Im <.v bounds="10.008117,53.55014,10.030998,53.559879" lon={10.01602} lat={53.555491} dir="backward" ref="radroute-7">Steindamm</.v> funktioniert dieses Konzept schlecht – hier könnte es ähnlich problematisch werden. Weitere Schwachstellen der Maßnahmen sind Slalomführung um die Einmündungen <.m bounds="10.042315,53.581083,10.045566,53.582633">Stückenstraße und Haferkamp</.m>. Zumindest im <.v bounds="10.042024,53.578863,10.04384,53.579619" lon={10.043329} lat={53.579162} dir="backward" ref="br-nord-n4">Kurvenbereich Dehnhaide</.v> sollten Trennelemente ergänzt werden, um das Schneiden der Kurve durch KFZ zu verhindern.</p>
 
     <p>Trotz aller Kritik: es wird besser als vorher. Auch <.v bounds="10.00184,53.556333,10.013899,53.56121" lon={10.00463} lat={53.557383} dir="forward" ref="radroute-6">An der Alster</.v> wurde die Infrastruktur Stück für Stück verbessert – vielleicht gelingt das auch hier.</p>
 

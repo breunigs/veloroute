@@ -14,8 +14,14 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
 
   def start(), do: ~d[2027Q2]
 
+  def map_image do
+    {name(), [{"IPO Hamburg GmbH", "https://www.ipogmbh.de/kontakt/"}]}
+  end
+
   def links(_assigns) do
     [
+      {"Vierter Entwurf", ~d[2025-04],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1016561"},
       {"geplante Änderungen für vierten Entwurf", ~d[2024-08],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1015530"},
       {"Bauzeiträume", "Oktober 2023",
@@ -43,7 +49,7 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
     <h4>Alter Zustand</h4>
     <p>Um die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref="1">Kreuzung mit der Elbchaussee</.v> zu queren muss man Richtung Blankenese über zwei Verkehrsinseln bzw. Ampeln fahren. In der Gegenrichtung ist (normalerweise) eine Fahrt geradeaus problemlos möglich. Die Ampelschaltzeiten favorisieren klar die KFZ-Hauptstraßen.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref="1">Kreuzung mit der Elbchaussee</.v> erhält ein für Hamburg neues Konzept:</p>
     <ul>
       <li><strong>Entlang der Veloroute:</strong> Die Querung der Elbchaussee erfolgt geradlinig. Die Durchfahrt zum Mühlenberg wird für KFZ gesperrt. Die Ausnahme für Busse in Manteuffelstraße bleibt bestehen.</li>
