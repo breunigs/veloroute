@@ -45,6 +45,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
   @spec parse_args([binary()]) ::
           {:ok, proj_qgz :: binary(), article_name :: binary()} | {:error, binary()}
   defp parse_args([proj, name]) when is_binary(name) and is_binary(proj) do
+    name = String.replace_suffix(name, ".ex", "")
     {:ok, proj, name}
   end
 
