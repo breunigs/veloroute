@@ -5,6 +5,8 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
     do:
       "Sengelmannstraße – Rotbuchenstieg bis Rathenaustraße (Radrouten 4 und 12, Radroute Plus Bad Bramstedt)"
 
+  def updated_at(), do: ~D[2025-05-02]
+
   def summary(),
     do:
       "Konzept der Radwege bleibt wie heute. Sie sollen aber breiter werden, bzw. der Abschnitt mit Spielstraße zu einer Fahrradstraße werden."
@@ -13,9 +15,12 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
   def stop(), do: ~d[2030]
 
   def tags(), do: ["radroute-12", "radroute-4", "5", "5N", "rsw-bad-bramstedt", "N26"]
+  def map_image(), do: Data.Article.Blog.FuhlsbuettelerStrasseNord.map_image()
 
   def links(_assigns) do
     [
+      {"2. Entwurf, Erläuterungen und Lagepläne", ~d[2025-05],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1015194"},
       {"1. Entwurf, Erläuterungen und Lagepläne", "März 2024",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/detailplaene-zweiter-abschnitt-848068"},
       {"Übersichtsseite Planung Radroute Plus Bad Bramstedt",
@@ -25,6 +30,9 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Mai 2025</h4>
+    <p>Der überarbeitete zweite Entwurf wurde veröffentlicht, der den bisherigen Planungsansatz beibehält. Die <.v bounds="10.019446,53.61062,10.025427,53.614151" lon={10.021101} lat={53.612782} dir="backward" ref="rsw-bad-bramstedt">Nebenstraße</.v> wird Tempo-30-Zone statt Fahrradstraße. Die Fahrt vom <.m bounds="10.021478,53.610481,10.024602,53.611865">Heilholtkamp</.m> zum <.m bounds="10.021478,53.610481,10.024602,53.611865">Alsterdorfer Markt</.m> wird erstmals legal möglich.</p>
+
     <h4>Alter Zustand</h4>
     <p>Meist wird der Radverkehr auf <.ref>Hochbordradwegen</.ref> geführt. Deren Breite reicht von 1,5m bis 2,75m im Zweirichtungsverkehr.</p>
 
@@ -32,12 +40,12 @@ defmodule Data.Article.Blog.Sengelmannstrasse3 do
 
     <p>In Richtung Innenstadt wird der Radverkehr über <.v bounds="10.019446,53.61062,10.025427,53.614151" lon={10.021101} lat={53.612782} dir="backward" ref="rsw-bad-bramstedt">eine verkehrsberuhigte Nebenstraße</.v> („Spielstraße“) geführt.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <h5>Strecke Richtung Flughafen</h5>
     <p>Auf der <.v bounds="10.017293,53.608021,10.027327,53.615921" lon={10.022918} lat={53.611592} dir="forward" ref="rsw-bad-bramstedt">Ostseite der Straße</.v> bleibt es beim Hochbordradweg, der mit 2,0m bis 3,0m unterschiedlich breit ausfällt. Er wird durchgängig. <.v bounds="10.014377,53.613005,10.022043,53.615751" lon={10.020061} lat={53.614066} dir="forward" ref="rsw-bad-bramstedt">Der Abschnitt Zweirichtungsradweg</.v> entfällt, d.h. es darf nur noch richtungstreu gefahren werden.</p>
 
     <h5>Strecke Richtung Stadtpark</h5>
-    <p>Auf der <.v bounds="10.016852,53.608989,10.025997,53.615923" lon={10.020854} lat={53.612868} dir="backward" ref="rsw-bad-bramstedt">Westseite der Straße</.v> bleibt es anfangs beim Hochbordradweg. Dessen Breiten schwanken mit 2,45m bis 3,0m weniger. Die Führung über die Nebenstraße ab <.v bounds="10.020063,53.609671,10.025401,53.613746" lon={10.021023} lat={53.612816} dir="backward" ref="rsw-bad-bramstedt" highlight="Dorothea-Kasten-Straße">Höhe Dorothea-Kasten-Straße</.v> bleibt. Die Nebenstraße zur Fahrradstraße umgestaltet.</p>
+    <p>Auf der <.v bounds="10.016852,53.608989,10.025997,53.615923" lon={10.020854} lat={53.612868} dir="backward" ref="rsw-bad-bramstedt">Westseite der Straße</.v> bleibt es anfangs beim Hochbordradweg. Dessen Breiten schwanken mit 2,45m bis 3,0m weniger. Die Führung über die Nebenstraße ab <.v bounds="10.020063,53.609671,10.025401,53.613746" lon={10.021023} lat={53.612816} dir="backward" ref="rsw-bad-bramstedt" highlight="Dorothea-Kasten-Straße">Höhe Dorothea-Kasten-Straße</.v> bleibt. Die Nebenstraße zur Tempo-30-Zone umgestaltet.</p>
 
     <h5>Kreuzung Alsterdorfer Straße</h5>
     <p>An der <.v bounds="10.017995,53.612863,10.02174,53.614912" lon={10.020291} lat={53.613867} dir="forward" ref="rsw-bad-bramstedt" highlight="Alsterdorfer Straße">Kreuzung mit der Alsterdorfer Straße</.v> wird <.ref>indirektes Linksabbiegen</.ref> über Aufstelltaschen im Kreuzungsbereich ermöglicht.</p>

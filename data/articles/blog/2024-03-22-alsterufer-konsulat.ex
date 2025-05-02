@@ -8,14 +8,23 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
     do:
       "Fahrradstraße soll durchgängig werden. Durchfahrt weiterhin nur für den Radverkehr möglich."
 
-  def type(), do: :planned
-  # def start(), do: ~d[2024Q4]
+  def type(), do: :construction
+  def start(), do: ~d[2025-05-05]
   # def stop(), do: ~d[2024Q4]
+
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
+     ]}
+  end
 
   def tags(), do: ["radroute-4", "4", "FR1"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-05],
+       "https://lsbg.hamburg.de/resource/blob/1053712/fd43b7aa2ae9fe11f2725ddb81d07fe5/alsterufer-anliegerinformation-april-2025-data.pdf"},
       {"Lageplan, fertiger Entwurf", "März 2024",
        "https://lsbg.hamburg.de/resource/blob/784080/f11ab2c8a059bb0574de9664019d0650/alsterufer-alsterfahrradachse-us-konsulat-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungen, fertiger Entwurf", "März 2024",
@@ -28,7 +37,7 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
     <h4>Alter Zustand</h4>
     <p>Wegen der Straßensperrung vor dem ehemaligen US-Konsulat verschwenkt die Fahrradstraße auf einen schmaleren Fahrradweg.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Fahrradstraße soll durchgängig werden. Die Durchfahrt wird auch in Zukunft dem Radverkehr vorbehalten. Der alte Radweg wird teils zur Grünfläche, teils Fußweg.</p>
 
     <h4>Meinung</h4>
