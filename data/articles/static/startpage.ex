@@ -282,7 +282,13 @@ defmodule Data.Article.Static.Startpage do
       <p>Es gibt weitere Webseiten, die sich dem Thema Rad und Mobilität in Hamburg annehmen, die ich sehenswert finde:</p>
       <ul>
         <li><.a href="https://fahrrad.hamburg">fahrrad.hamburg</.a> – Die offizielle Seite der Stadt, mit vielen Funktionen</li>
-        <li><.a href="https://www.arnewitte.de/">arnewitte.de</.a> – Blog zu Verkehrsplanung, Mobilität und Stadtentwicklung</li>
+        <%= if @device_os == "iOS" do %>
+          <li><.a href="https://apps.apple.com/app/organic-maps/id1567437057" translate="no">Organic Maps</.a> – Smartphone App mit gutem Fahrrad-Routing</li>
+        <% end %>
+        <%= if @device_os == "Android" do %>
+          <li><.a href="https://play.google.com/store/apps/details?id=app.organicmaps&amp;hl=de" translate="no">Organic Maps</.a> – Smartphone App mit gutem Fahrrad-Routing</li>
+        <% end %>
+        <li><.a href="https://brouter.de/brouter-web/#map=11/53.5816/10.0313/standard" translate="no">brouter.de</.a> – Routenplaner mit Profilen für jeden Fahrradtyp</li>
         <li><.a href="http://hamburgize.com/">hamburgize.com</.a> – Blog zu Fahrradthemen</li>
         <li><.a href="https://www.youtube.com/@FahrradstadtHH">Fahrradstadt Hamburg</.a> – Videokanal zum Fahrradalltag</li>
         <li><.a href="https://www.nahverkehrhamburg.de/">nahverkehrhamburg.de</.a> – Nachrichten zu Nahverkehrsthemen der Region</li>
@@ -321,7 +327,13 @@ defmodule Data.Article.Static.Startpage do
       <p lang="en">These are websites on the general topic of cycling and mobility in Hamburg, which are worth seeing:</p>
       <ul lang="en">
         <li><.a href="https://fahrrad.hamburg" translate="no">fahrrad.hamburg</.a> – the city's official site, with many features</li>
-        <li><.a href="https://www.arnewitte.de/" translate="no">arnewitte.de</.a> – Blog on traffic planning, mobility and urban development</li>
+        <%= if @device_os == "iOS" do %>
+          <li><.a href="https://apps.apple.com/app/organic-maps/id1567437057" translate="no">Organic Maps</.a> – smartphone app with proper bicycle routing</li>
+        <% end %>
+        <%= if @device_os == "Android" do %>
+          <li><.a href="https://play.google.com/store/apps/details?id=app.organicmaps&hl=en"  translate="no">Organic Maps</.a> – smartphone app with proper bicycle routing</li>
+        <% end %>
+        <li><.a href="https://brouter.de/brouter-web/#map=11/53.5816/10.0313/standard" translate="no">brouter.de</.a> – Route planner with high customizability</li>
         <li><.a href="http://hamburgize.com/" translate="no">hamburgize.com</.a> – Blog on cycling</li>
         <li><.a href="https://www.youtube.com/@FahrradstadtHH" translate="no">Fahrradstadt Hamburg</.a> – Video channel on daily biking</li>
         <li><.a href="https://www.nahverkehrhamburg.de/" translate="no">nahverkehrhamburg.de</.a> – News on short-distance traffic of the metropolitan area</li>

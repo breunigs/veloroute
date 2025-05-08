@@ -24,6 +24,7 @@ defmodule VelorouteWeb.FrameLive do
     og_image: nil,
     enable_drawing_tools: false,
     lang_user_set: false,
+    device_os: nil,
     lang: nil,
     page_title: Settings.c(:page_title_long)
   ]
@@ -33,8 +34,15 @@ defmodule VelorouteWeb.FrameLive do
       Application.get_env(:veloroute, :enable_drawing_tools) ||
         params["enable_drawing_tools"] == "1"
 
+    device_os =
+      case UAParser.parse(get_connect_info(socket, :user_agent)) do
+        %{os: %{family: x}} -> x
+        _ -> nil
+      end
+
     state =
       Keyword.merge(@initial_state,
+        device_os: device_os,
         enable_drawing_tools: draw,
         lang: session["lang"],
         lang_user_set: session["lang_user_set"],

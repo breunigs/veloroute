@@ -58,6 +58,7 @@ defmodule Article.Decorators do
       limit_to_map_bounds: false,
       show_map_image: false,
       enable_drawing_tools: false,
+      device_os: "Android",
       ref: art,
       lang: Settings.r(:default_language)
     }
