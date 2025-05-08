@@ -18,7 +18,6 @@ end
 
 seen = {}
 seen = YAML.load_file(EVERGABE_SEEN) if File.exist?(EVERGABE_SEEN)
-needs_save = false
 
 projects = []
 
@@ -37,7 +36,7 @@ SEARCH_TERMS.each do |term|
     res = https.request(req)
     json = JSON.parse(res.body)
 
-    projects += json["projects"] || []
+    projects += json["results"] || raise("no results field?")
   rescue => e
     pp e
     binding.pry

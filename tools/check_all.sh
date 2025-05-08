@@ -11,8 +11,7 @@ echo "viabus:"
 ./viabus_check_updates.rb
 
 echo
-echo "Baustellen & Sitzungsdienst:"
-(cd .. && mix do velo.feeds.bauweiser, velo.feeds.sitzungsdienst, velo.feeds.lsbg)
+(cd .. && mix do velo.feeds.bauweiser, velo.feeds.sitzungsdienst, velo.feeds.lsbg, velo.feeds.bauleistung)
 
 cd ..
 mix list_potentially_outdated
