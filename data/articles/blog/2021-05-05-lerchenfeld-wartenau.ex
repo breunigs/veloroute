@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def links(_assigns) do
     [
+      {"Präsentation zur möglichen Planüberarbeitung", ~d[2025-05],
+       "https://fragdenstaat.de/anfrage/ems-hh-strassenzug-lerchenfeld-wartenau/#nachricht-996958"},
       {"Baustelleninfo Wartenaubrücke", ~d[2025-03],
        "https://lsbg.hamburg.de/resource/blob/1041004/7be96b05d0dd6681049076543a149afb/wartenaubruecke-anliegerinformation-maerz-2025-data.pdf"},
       {"Erläuterungsbericht",

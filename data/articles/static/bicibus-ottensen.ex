@@ -14,6 +14,8 @@ defmodule Data.Article.Static.BicibusOttensen do
 
   def tags(), do: [id()]
 
+  def point_of_interest(), do: %{lon: 9.922745, lat: 53.55464, zoom: 15}
+
   def tracks(),
     do: [
       %Video.Track{

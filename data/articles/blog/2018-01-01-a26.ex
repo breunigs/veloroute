@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.A26 do
   def created_at(), do: ~D[2018-01-01]
 
   def start(), do: ~d[2018]
-  def stop(), do: ~d[2025Q2]
+  # def stop(), do: ~d[2025Q2]
 
   def title(), do: "A26 (Freizeitroute 11 und 13)"
 

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Rugenbarg do
     do:
       "Alter Hochbordradweg und Gehweg sollen stellenweise gemeinsamer Geh- und Radweg werden. Teils werden die Wege asphaltiert, teils nur neu gepflastert."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-07-15]
   def stop(), do: ~d[2025-02-28]
   def construction_site_id_hh(), do: [939_394]

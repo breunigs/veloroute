@@ -38801,7 +38801,7 @@
     <nd ref='-143598555' />
     <nd ref='-143598550' />
   </way>
-  <way id='-20435024'>
+  <way id='-20435024' action='modify'>
     <nd ref='-143580323' />
     <nd ref='-143600028' />
     <nd ref='-143580324' />
@@ -38819,6 +38819,7 @@
     <nd ref='-143580330' />
     <nd ref='-143580331' />
     <nd ref='-143580323' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2020-01-01-abriss-city-hof' />
     <tag k='type' v='article' />
   </way>
