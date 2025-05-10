@@ -248,20 +248,24 @@ defmodule Basemap.Nominatim do
   defp to_meili_geo(name) do
     """
     JSONB_BUILD_OBJECT(
-    'lng', ST_X(ST_CENTROID(#{name})),
-    'lat', ST_Y(ST_CENTROID(#{name}))
+    'lng', ROUND(ST_X(ST_CENTROID(#{name}))::numeric, 5),
+    'lat', ROUND(ST_Y(ST_CENTROID(#{name}))::numeric, 5)
     )
     """
     |> String.replace("\n", " ")
   end
 
+  defp to_importance(value) do
+    "ROUND(#{value}*100000)"
+  end
+
   defp to_elixir_bbox(name) do
     """
     CONCAT_WS(',',
-      ST_XMin(#{name}),
-      ST_YMin(#{name}),
-      ST_XMax(#{name}),
-      ST_YMax(#{name})
+      ROUND(ST_XMin(#{name})::numeric, 5),
+      ROUND(ST_YMin(#{name})::numeric, 5),
+      ROUND(ST_XMax(#{name})::numeric, 5),
+      ROUND(ST_YMax(#{name})::numeric, 5)
     )
     """
     |> String.replace("\n", " ")
@@ -281,6 +285,21 @@ defmodule Basemap.Nominatim do
     bbox = Geo.BoundingBox.to_string_bounds(Settings.r(:bounds), ",")
 
     """
+    -- stable array unique
+    CREATE OR REPLACE FUNCTION array_unique(anyarray) RETURNS anyarray AS
+    $body$
+    SELECT
+      array_agg(distinct_value ORDER BY first_index)
+    FROM (
+      SELECT value AS distinct_value, min(index) AS first_index
+      FROM unnest($1) WITH ORDINALITY AS input(value, index)
+      GROUP BY value
+    ) AS unique_input
+    ;
+    $body$
+    LANGUAGE 'sql' IMMUTABLE STRICT;
+
+
     -- combo is basically "placex", joined with extra information from linked
     -- tables. Some columns are already condensed to avoid code repetition.
     --
@@ -299,7 +318,7 @@ defmodule Basemap.Nominatim do
         main1.admin_level,
         main1.name,
         main1.housenumber,
-        main1.address,
+        main1.address - ARRAY['country', '_inherited'] AS address,
         SLICE(
           main1.extratags,
           ARRAY['border_type', 'branch', 'name:prefix', 'vending', 'wikidata']
@@ -313,10 +332,10 @@ defmodule Basemap.Nominatim do
         main1.centroid,
         main1.geometry,
         -- merge joined names for addresses
-        ARRAY_REMOVE(ARRAY_AGG(
+        array_unique(ARRAY_REMOVE(ARRAY_AGG(
           main2.name->'name'
           ORDER BY help1.cached_rank_address DESC, help2.cached_rank_address DESC
-        ), NULL) AS parents_name,
+        ), NULL)) AS parents_name,
         -- grab from parents because of wrong postcode on main1 object itself
         (SELECT (ARRAY_REMOVE(
           ARRAY_AGG(
@@ -406,7 +425,7 @@ defmodule Basemap.Nominatim do
       SELECT
         -- limit max length of ID column for Meilisearch
         SUBSTRING(STRING_AGG(combo.id, '-'), 0, 500) AS id,
-        AVG(combo.importance) AS importance,
+        #{to_importance("AVG(combo.importance)")} AS importance,
         ROUND(AVG(combo.rank_address)) AS rank_address,
         ROUND(AVG(combo.rank_search)) AS rank_search,
         combo.class,
@@ -453,7 +472,7 @@ defmodule Basemap.Nominatim do
       SELECT
         CONCAT(combo.id, '-interpol', interpol.hn) AS id,
         -- same importance/ranks as other house numbers
-        0.00000999999999995449 AS importance,
+        #{to_importance(0.00000999999999995449)} AS importance,
         30 AS rank_address,
         30 AS rank_search,
         -- the parent is always a street, so won't have more detailed tags
@@ -495,7 +514,7 @@ defmodule Basemap.Nominatim do
       SELECT
         -- limit max length of ID column for Meilisearch
         SUBSTRING(STRING_AGG(intersections.id, '_'), 0, 500) AS id,
-        MIN(intersections.importance) AS importance,
+        #{to_importance("MIN(intersections.importance)")} AS importance,
         MIN(intersections.rank_address) AS rank_address,
         MIN(intersections.rank_search) AS rank_search,
         'intersection' AS class,
