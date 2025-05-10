@@ -143,7 +143,7 @@ let pendingScripts = {}
 window.addEventListener("js:load", (e) => {
   const { url, callback } = e.detail;
   if (url in loadedScripts) return callback()
-  if (url in pendingScripts) return pendingScripts["url"].addEventListener("load", callback)
+  if (url in pendingScripts) return pendingScripts[url].addEventListener("load", callback)
 
   const cleanup = () => {
     loadedScripts.push(url)
