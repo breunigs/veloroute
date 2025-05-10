@@ -17,10 +17,11 @@ defmodule Data.MapImage do
     |> Enum.uniq()
   end
 
-  @spec for_frontend(either()) :: %{map_images: [map()]}
-  def for_frontend(nil), do: %{map_images: []}
+  @spec for_frontend(either(), boolean(), boolean()) :: %{map_images: [map()]}
+  def for_frontend(nil, show, zoom), do: %{map_images: [], show: show, zoom: zoom}
+  def for_frontend(_any, false, zoom), do: %{map_images: [], show: false, zoom: zoom}
 
-  def for_frontend({pm_tiles, attrib}),
+  def for_frontend({pm_tiles, attrib}, show, zoom),
     do: %{
       map_images: [
         %{
@@ -28,7 +29,9 @@ defmodule Data.MapImage do
           "url" => url_path("#{pm_tiles}.pmtiles"),
           "pmtiles" => ~p"/assets/pmtiles.js"
         }
-      ]
+      ],
+      show: show,
+      zoom: zoom
     }
 
   defp attrib_to_link(list) when is_list(list) do

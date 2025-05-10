@@ -399,8 +399,11 @@ let showMapImagesWorker = null
 let showMapImageLayers = []
 
 window.addEventListener("phx:show_map_image", e => {
-  showMapImageAction = e.detail.map_images
+  showMapImageAction = e.detail
   showMapImages()
+
+  const expire = e.detail.show ? "Fri, 31 Dec 9999" : "Thu, 01 Jan 1970"
+  document.cookie = `show_map_image=1; expires=${expire} 00:00:00 GMT; SameSite=Strict; Secure`;
 });
 
 function maybeZoomToBbox(bbox) {
@@ -440,8 +443,18 @@ function addMapImageLayer(id) {
   showMapImageLayers.push(id)
 }
 
-function showPMTilesImages(pmtile) {
+function showPMTilesImages() {
+  // PMTiles has a bug that doesn't trigger the map's normal idle event,
+  // preventing the preview from being hidden when map images are toggled on at
+  // load
+  if (!map.loaded()) {
+    map.once('idle', () => showPMTilesImages())
+    return
+  }
+
   const id = "mapimage-pmtiles";
+  const pmtile = showMapImageAction.map_images[0]
+
   const zoom = () => {
     const bounds = map.getSource(id).bounds
     if (!bounds) {
@@ -463,7 +476,7 @@ function showPMTilesImages(pmtile) {
         });
         addMapImageLayer(id)
 
-        map.once('sourcedata', zoom);
+        if (showMapImageAction.zoom) map.once('sourcedata', zoom);
       }
     }
   }));
@@ -482,7 +495,7 @@ function showMapImages() {
     attribution.options.customAttribution = ''
   }
 
-  if (showMapImageAction.length === 0) {
+  if (showMapImageAction.map_images.length === 0) {
     for (let id of showMapImageLayers) {
       map.setPaintProperty(id, "raster-opacity", 0, { validate: false })
     }
@@ -492,7 +505,7 @@ function showMapImages() {
   }
 
   cleanup()
-  return showPMTilesImages(showMapImageAction[0])
+  return showPMTilesImages()
 }
 
 let highlightsAppliedToStyle = ""

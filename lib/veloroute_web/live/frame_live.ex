@@ -46,6 +46,7 @@ defmodule VelorouteWeb.FrameLive do
         enable_drawing_tools: draw,
         lang: session["lang"],
         lang_user_set: session["lang_user_set"],
+        show_map_image: !!session["show_map_image"],
         map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
       )
 
@@ -320,7 +321,7 @@ defmodule VelorouteWeb.FrameLive do
       article_title: if(full_title == "", do: page_title, else: full_title),
       article_summary: art.summary()
     )
-    |> update_map_image()
+    |> update_map_image(false)
   end
 
   defp set_content(socket, _article), do: render_404(socket, "article not found")
@@ -414,10 +415,10 @@ defmodule VelorouteWeb.FrameLive do
   defp update_map_bounds(socket, %{}), do: socket
   defp update_map_bounds(socket, nil), do: socket
 
-  defp update_map_image(socket) do
+  defp update_map_image(socket, zoom \\ true) do
     show = socket.assigns.show_map_image
     art = socket.assigns.current_page
-    data = Data.MapImage.for_frontend(if art && show, do: art.map_image())
+    data = Data.MapImage.for_frontend(if(art, do: art.map_image()), show, zoom)
     Phoenix.LiveView.push_event(socket, :show_map_image, data)
   end
 
