@@ -418,7 +418,7 @@ defmodule VelorouteWeb.FrameLive do
   defp update_map_image(socket, zoom \\ true) do
     show = socket.assigns.show_map_image
     art = socket.assigns.current_page
-    data = Data.MapImage.for_frontend(if(art, do: art.map_image()), show, zoom)
+    data = Data.MapImage.for_frontend(art, show, zoom)
     Phoenix.LiveView.push_event(socket, :show_map_image, data)
   end
 

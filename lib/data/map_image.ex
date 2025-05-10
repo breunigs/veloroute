@@ -1,5 +1,8 @@
 defmodule Data.MapImage do
   use VelorouteWeb, :verified_routes
+  import Guards
+
+  @empty %{attribution: nil, url: nil, loader_url: nil, show: false, zoom: true}
 
   @type attribution :: {name :: binary(), link :: binary()}
 
@@ -10,26 +13,24 @@ defmodule Data.MapImage do
   def attribution(nil), do: []
   def attribution({_pmtiles_name, attribs}), do: List.wrap(attribs)
 
-  def attribution(map_images) do
-    map_images
-    |> List.wrap()
-    |> Enum.flat_map(&List.wrap(&1.attribution))
-    |> Enum.uniq()
-  end
+  @spec for_frontend(either() | Article.t(), boolean(), boolean()) :: %{
+          attribution: binary() | nil,
+          url: binary() | nil,
+          loader_url: binary() | nil,
+          show: boolean(),
+          zoom: boolean()
+        }
+  def for_frontend(nil, show, zoom), do: %{@empty | show: show, zoom: zoom}
+  def for_frontend(_any, false, zoom), do: %{@empty | show: false, zoom: zoom}
 
-  @spec for_frontend(either(), boolean(), boolean()) :: %{map_images: [map()]}
-  def for_frontend(nil, show, zoom), do: %{map_images: [], show: show, zoom: zoom}
-  def for_frontend(_any, false, zoom), do: %{map_images: [], show: false, zoom: zoom}
+  def for_frontend(art, show, zoom) when is_module(art),
+    do: for_frontend(art.map_image(), show, zoom)
 
   def for_frontend({pm_tiles, attrib}, show, zoom),
     do: %{
-      map_images: [
-        %{
-          "attribution" => attrib_to_link(attrib),
-          "url" => url_path("#{pm_tiles}.pmtiles"),
-          "pmtiles" => ~p"/assets/pmtiles.js"
-        }
-      ],
+      attribution: attrib_to_link(attrib),
+      url: url_path("#{pm_tiles}.pmtiles"),
+      loader_url: ~p"/assets/map_image.js",
       show: show,
       zoom: zoom
     }

@@ -3,6 +3,8 @@ import {
   maybeToggleLayers
 } from "./map_layer_toggler";
 
+import "./map_image_stub"
+
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
@@ -390,124 +392,6 @@ window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
-
-const showMapImageMinZoom = 14
-const showMapImageMaxZoom = showMapImageMinZoom + 3
-const showMapImageFadeIn = ["interpolate", ["linear"], ["zoom"], showMapImageMinZoom, 0, showMapImageMaxZoom, 1]
-let showMapImageAction = null
-let showMapImagesWorker = null
-let showMapImageLayers = []
-
-window.addEventListener("phx:show_map_image", e => {
-  showMapImageAction = e.detail
-  showMapImages()
-
-  const expire = e.detail.show ? "Fri, 31 Dec 9999" : "Thu, 01 Jan 1970"
-  document.cookie = `show_map_image=1; expires=${expire} 00:00:00 GMT; SameSite=Strict; Secure`;
-});
-
-function maybeZoomToBbox(bbox) {
-  const current = map.getZoom()
-  const desired = Math.max(showMapImageMaxZoom, current)
-  if (current >= desired) return
-  const viewport = map.getBounds()
-  const s = Math.max(viewport.getSouth(), bbox.getSouth())
-  const w = Math.max(viewport.getWest(), bbox.getWest())
-  const n = Math.min(viewport.getNorth(), bbox.getNorth())
-  const e = Math.min(viewport.getEast(), bbox.getEast())
-  if (s < n && w < e) bbox = new mlgl.LngLatBounds([w, s, e, n]);
-
-  map.flyTo({
-    center: bbox.getCenter(),
-    zoom: desired,
-    speed: flyToSpeed,
-  });
-}
-
-function addMapImageLayer(id) {
-  map.addLayer({
-    id: id,
-    source: id,
-    type: 'raster',
-    minzoom: showMapImageMinZoom,
-    paint: {
-      // workaround for the map flickering on load otherwise
-      "raster-opacity": 0
-    }
-  })
-
-  showMapImagesWorker = setTimeout(() => {
-    map.setPaintProperty(id, "raster-opacity", showMapImageFadeIn, { validate: false })
-  }, 350)
-
-  showMapImageLayers.push(id)
-}
-
-function showPMTilesImages() {
-  // PMTiles has a bug that doesn't trigger the map's normal idle event,
-  // preventing the preview from being hidden when map images are toggled on at
-  // load
-  if (!map.loaded()) {
-    map.once('idle', () => showPMTilesImages())
-    return
-  }
-
-  const id = "mapimage-pmtiles";
-  const pmtile = showMapImageAction.map_images[0]
-
-  const zoom = () => {
-    const bounds = map.getSource(id).bounds
-    if (!bounds) {
-      return map.once('sourcedata', zoom);
-    }
-    const bbox = new mlgl.LngLatBounds(bounds)
-    maybeZoomToBbox(bbox)
-  };
-
-  window.dispatchEvent(new CustomEvent("js:load", {
-    detail: {
-      url: pmtile.pmtiles,
-      callback: () => {
-        map.addSource(id, {
-          type: "raster",
-          url: `pmtiles://${pmtile.url}`,
-          minzoom: showMapImageMinZoom,
-          attribution: pmtile.attribution,
-        });
-        addMapImageLayer(id)
-
-        if (showMapImageAction.zoom) map.once('sourcedata', zoom);
-      }
-    }
-  }));
-}
-
-function showMapImages() {
-  if (!showMapImageAction) return
-  if (showMapImagesWorker) clearTimeout(showMapImagesWorker)
-
-  const cleanup = () => {
-    for (let id of showMapImageLayers) {
-      if (map.getLayer(id)) map.removeLayer(id)
-      if (map.getSource(id)) map.removeSource(id)
-    }
-    showMapImageLayers = []
-    attribution.options.customAttribution = ''
-  }
-
-  if (showMapImageAction.map_images.length === 0) {
-    for (let id of showMapImageLayers) {
-      map.setPaintProperty(id, "raster-opacity", 0, { validate: false })
-    }
-    // allow enough time to fade out
-    showMapImagesWorker = setTimeout(cleanup, 350)
-    return
-  }
-
-  cleanup()
-  return showPMTilesImages()
-}
-
 let highlightsAppliedToStyle = ""
 function styleChangedHandler() {
   // Applying the modifications on a partially loaded style might not work. We
@@ -519,7 +403,7 @@ function styleChangedHandler() {
   highlightsAppliedToStyle = currStyleName
 
   maybeToggleLayers(map, mapConfig)
-  showMapImages()
+  if (window.showMapImage) window.showMapImage()
 }
 
 function updateIndicatorPolyline(data) {
@@ -699,8 +583,6 @@ function setupTouchDeviceClick() {
 }
 
 let map = null;
-let attribution = null;
-
 function setup() {
   if (map) {
     const realMapContainer = map.getContainer()
@@ -741,8 +623,7 @@ function setup() {
   }), 'bottom-right');
 
   map.touchZoomRotate.disableRotation();
-  attribution = new mlgl.AttributionControl({ compact: null })
-  map.addControl(attribution, 'top-right');
+  map.addControl(new mlgl.AttributionControl({ compact: null }), 'top-right');
 
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
