@@ -14,6 +14,7 @@ defmodule Article.Renderer do
   attr :enable_drawing_tools, :boolean, default: false
   attr :limit_to_map_bounds, :boolean, default: false
   attr :show_map_image, :boolean, default: false
+  attr :device_os, :string, default: ""
 
   def render(%{ref: art} = assigns) when is_module(art) do
     try_render(assigns, fn ->
