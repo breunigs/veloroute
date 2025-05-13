@@ -1,6 +1,12 @@
 import MapboxDraw from "@mapbox/mapbox-gl-draw"
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
+MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
+MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
+MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
+MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
+MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
+
 const draw = new MapboxDraw({
   controls: {
     combine_features: false,
@@ -54,7 +60,7 @@ function logLink() {
 
 function onAdd(that: any, map: any, title: string, icon: string, action: () => void) {
   that.map = map;
-  that.container = document.querySelector('.maplibregl-ctrl-top-left .mapboxgl-ctrl-group');
+  that.container = document.querySelector('.maplibregl-ctrl-top-left .maplibregl-ctrl-group');
 
   const button = window.document.createElement('button')
   button.className = `mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_${icon}`;
