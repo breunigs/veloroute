@@ -43,9 +43,15 @@ defmodule Search.Meilisearch.Nominatim do
   @impl true
 
   # provide more sensible bounding box for suburbs just tagged as a node
-  def format(%{"class" => "place", "type" => "suburb", "id" => "N" <> rest} = result) do
-    bbox = result["bbox"] |> Geo.BoundingBox.parse() |> Geo.CheapRuler.buffer_bbox(1_000)
-    format(%{result | "bbox" => bbox, "id" => "fixed#{rest}"})
+  def format(%{"class" => "place", "type" => "suburb"} = result) do
+    bbox = result["bbox"] |> bbox()
+
+    bbox =
+      if Geo.BoundingBox.area(bbox) <= 0.000001 do
+        Geo.CheapRuler.buffer_bbox(bbox, 1_000)
+      end || bbox
+
+    format(%{result | "bbox" => bbox})
   end
 
   # export bug, bbox shouldn't be empty string.
@@ -60,7 +66,7 @@ defmodule Search.Meilisearch.Nominatim do
     f = fn arg -> Map.fetch!(result, arg) end
 
     human = lookup(result, [["extratags", "building"], "type", ["extratags", "border_type"]])
-    bbox = Geo.BoundingBox.parse(f.("bbox"))
+    bbox = bbox(f.("bbox"))
     names = f.("name")
     addr = f.("address")
     street = "#{addr["street"]} #{addr["housenumber"]}"
@@ -144,7 +150,7 @@ defmodule Search.Meilisearch.Nominatim do
         %{
           item
           | "address" => to_mapset(item, "address"),
-            "bbox" => Geo.BoundingBox.parse(item["bbox"]),
+            "bbox" => bbox(item["bbox"]),
             "extratags" => to_mapset(item, "extratags"),
             "name" => to_mapset(item, "name"),
             "parents_postcode" => to_mapset(item, "parents_postcode")
@@ -160,7 +166,7 @@ defmodule Search.Meilisearch.Nominatim do
             "name" => intersect(item["name"], acc["name"]),
             "parents_name" => intersect(item["parents_name"], acc["parents_name"]),
             "parents_postcode" => intersect(item["parents_postcode"], acc["parents_postcode"]),
-            "id" => item["id"] <> ", " <> acc["id"],
+            "id" => "#{item["id"]}, #{acc["id"]}",
             "class" => if(item["class"] == acc["class"], do: item["class"], else: "multiple"),
             "type" => merge_types(item["type"], acc["type"])
         }
@@ -271,4 +277,11 @@ defmodule Search.Meilisearch.Nominatim do
   defp blank?(nil), do: true
   defp blank?(""), do: true
   defp blank?(str) when is_binary(str), do: String.trim(str) == ""
+
+  defp bbox(polyline) do
+    [{minLon, minLat}, {maxLon, maxLat}] =
+      Polyline.decode(polyline, Basemap.Nominatim.polyline_precision())
+
+    %Geo.BoundingBox{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}
+  end
 end

@@ -60,6 +60,14 @@ defmodule Geo.BoundingBox do
 
   def parse(nil), do: nil
 
+  @doc """
+  Calculates approximate area of the bounding box
+  """
+  @spec area(t()) :: number()
+  def area(%__MODULE__{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}) do
+    (maxLon - minLon) * (maxLat - minLat)
+  end
+
   def to_string_bounds(bounds, delimiter \\ "-")
 
   def to_string_bounds(bounds, delimiter) when is_binary(bounds) and bounds != "" do

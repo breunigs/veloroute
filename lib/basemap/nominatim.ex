@@ -248,8 +248,8 @@ defmodule Basemap.Nominatim do
   defp to_meili_geo(name) do
     """
     JSONB_BUILD_OBJECT(
-    'lng', ROUND(ST_X(ST_CENTROID(#{name}))::numeric, 5),
-    'lat', ROUND(ST_Y(ST_CENTROID(#{name}))::numeric, 5)
+      'lng', ROUND(ST_X(ST_CENTROID(#{name}))::numeric, 5),
+      'lat', ROUND(ST_Y(ST_CENTROID(#{name}))::numeric, 5)
     )
     """
     |> String.replace("\n", " ")
@@ -259,14 +259,16 @@ defmodule Basemap.Nominatim do
     "ROUND(#{value}*100000)"
   end
 
+  def polyline_precision(), do: 5
+
   defp to_elixir_bbox(name) do
     """
-    CONCAT_WS(',',
-      ROUND(ST_XMin(#{name})::numeric, 5),
-      ROUND(ST_YMin(#{name})::numeric, 5),
-      ROUND(ST_XMax(#{name})::numeric, 5),
-      ROUND(ST_YMax(#{name})::numeric, 5)
-    )
+    ST_AsEncodedPolyline(ST_SetSRID(
+      ST_MakeLine(
+        ST_MakePoint(ST_XMin(#{name}), ST_YMin(#{name})),
+        ST_MakePoint(ST_XMax(#{name}), ST_YMax(#{name}))
+      ),
+    4326), #{polyline_precision()})
     """
     |> String.replace("\n", " ")
   end
@@ -424,7 +426,8 @@ defmodule Basemap.Nominatim do
       -- this converts the raw "combo" into a suitable format for export
       SELECT
         -- limit max length of ID column for Meilisearch
-        SUBSTRING(STRING_AGG(combo.id, '-'), 0, 500) AS id,
+        --SUBSTRING(STRING_AGG(combo.id, '-'), 0, 500) AS id,
+        (ROW_NUMBER() OVER())*10+1 AS id,
         #{to_importance("AVG(combo.importance)")} AS importance,
         ROUND(AVG(combo.rank_address)) AS rank_address,
         ROUND(AVG(combo.rank_search)) AS rank_search,
@@ -470,7 +473,8 @@ defmodule Basemap.Nominatim do
 
       -- this builds "placex" style house number results from interpolated housenumbers
       SELECT
-        CONCAT(combo.id, '-interpol', interpol.hn) AS id,
+        -- CONCAT(combo.id, '-interpol', interpol.hn) AS id,
+        (ROW_NUMBER() OVER())*10+2 AS id,
         -- same importance/ranks as other house numbers
         #{to_importance(0.00000999999999995449)} AS importance,
         30 AS rank_address,
@@ -513,7 +517,8 @@ defmodule Basemap.Nominatim do
       -- artificial POIs for intersections
       SELECT
         -- limit max length of ID column for Meilisearch
-        SUBSTRING(STRING_AGG(intersections.id, '_'), 0, 500) AS id,
+        -- SUBSTRING(STRING_AGG(intersections.id, '_'), 0, 500) AS id,
+        (ROW_NUMBER() OVER())*10+3 AS id,
         #{to_importance("MIN(intersections.importance)")} AS importance,
         MIN(intersections.rank_address) AS rank_address,
         MIN(intersections.rank_search) AS rank_search,
