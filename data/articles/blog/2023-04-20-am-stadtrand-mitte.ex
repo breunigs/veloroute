@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.AmStadtrandMitte do
     do:
       "2,0m breite Radfahrstreifen statt 1,2m breiter Hochbordradwege. Kreuzungen werden nicht umgebaut."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-08-19]
   def stop(), do: ~d[2025-05-02]
   def construction_site_id_hh(), do: [958_969]
