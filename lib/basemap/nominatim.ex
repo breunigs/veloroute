@@ -74,10 +74,16 @@ defmodule Basemap.Nominatim do
         |> String.replace(~r/\s+/, " ")
         |> String.trim()
 
-      bbox = Geo.BoundingBox.parse(a.bbox)
+      bbox = polyline_to_bbox(a.bbox)
       geometry = remap_geojson(a.geometry)
       %{a | name: name, bbox: bbox, geometry: geometry}
     end)
+  end
+
+  @spec polyline_to_bbox(binary()) :: Geo.BoundingBox.t()
+  def polyline_to_bbox(polyline) do
+    [{minLon, minLat}, {maxLon, maxLat}] = Polyline.decode(polyline, polyline_precision())
+    %Geo.BoundingBox{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}
   end
 
   defp keys_to_atoms(map) when is_map(map) do

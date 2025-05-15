@@ -44,7 +44,7 @@ defmodule Search.Meilisearch.Nominatim do
 
   # provide more sensible bounding box for suburbs just tagged as a node
   def format(%{"class" => "place", "type" => "suburb"} = result) do
-    bbox = result["bbox"] |> bbox()
+    bbox = Basemap.Nominatim.polyline_to_bbox(result["bbox"])
 
     bbox =
       if Geo.BoundingBox.area(bbox) <= 0.000001 do
@@ -64,9 +64,9 @@ defmodule Search.Meilisearch.Nominatim do
 
   def format(result) when is_map(result) do
     f = fn arg -> Map.fetch!(result, arg) end
-
     human = lookup(result, [["extratags", "building"], "type", ["extratags", "border_type"]])
-    bbox = bbox(f.("bbox"))
+    bbox = f.("bbox")
+    bbox = if is_binary(bbox), do: Basemap.Nominatim.polyline_to_bbox(bbox), else: bbox
     names = f.("name")
     addr = f.("address")
     street = "#{addr["street"]} #{addr["housenumber"]}"
@@ -150,7 +150,7 @@ defmodule Search.Meilisearch.Nominatim do
         %{
           item
           | "address" => to_mapset(item, "address"),
-            "bbox" => bbox(item["bbox"]),
+            "bbox" => Basemap.Nominatim.polyline_to_bbox(item["bbox"]),
             "extratags" => to_mapset(item, "extratags"),
             "name" => to_mapset(item, "name"),
             "parents_postcode" => to_mapset(item, "parents_postcode")
@@ -175,7 +175,7 @@ defmodule Search.Meilisearch.Nominatim do
     %{
       merged
       | "_rankingScore" => merged["_rankingScore"] / length(items),
-        "bbox" => Geo.BoundingBox.to_string_bounds(merged["bbox"]),
+        "bbox" => merged["bbox"],
         "address" => into(merged["address"]),
         "extratags" => into(merged["extratags"]),
         "name" => into(merged["name"]),
@@ -277,11 +277,4 @@ defmodule Search.Meilisearch.Nominatim do
   defp blank?(nil), do: true
   defp blank?(""), do: true
   defp blank?(str) when is_binary(str), do: String.trim(str) == ""
-
-  defp bbox(polyline) do
-    [{minLon, minLat}, {maxLon, maxLat}] =
-      Polyline.decode(polyline, Basemap.Nominatim.polyline_precision())
-
-    %Geo.BoundingBox{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}
-  end
 end
