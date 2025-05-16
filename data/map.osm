@@ -26261,6 +26261,12 @@
   <node id='-230676472' action='modify' lat='53.54668578768' lon='10.00353723496' />
   <node id='-230676473' action='modify' lat='53.54662363405' lon='10.00379204482' />
   <node id='-230676474' action='modify' lat='53.54677344008' lon='10.00402003258' />
+  <node id='-232306720' action='modify' lat='53.57469343932' lon='10.06705194443' />
+  <node id='-232306721' action='modify' lat='53.57461380791' lon='10.0670707199' />
+  <node id='-232306722' action='modify' lat='53.57460903002' lon='10.06825893849' />
+  <node id='-232306723' action='modify' lat='53.57461699317' lon='10.06863981217' />
+  <node id='-232306724' action='modify' lat='53.57469503195' lon='10.06863712996' />
+  <node id='-232306735' action='modify' lat='53.5746743278' lon='10.06784856051' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -74739,6 +74745,17 @@
     <nd ref='-230676474' />
     <nd ref='-230676471' />
     <tag k='name' v='2025-05-01-willy-brandt-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20861290' action='modify'>
+    <nd ref='-232306720' />
+    <nd ref='-232306721' />
+    <nd ref='-232306722' />
+    <nd ref='-232306723' />
+    <nd ref='-232306724' />
+    <nd ref='-232306735' />
+    <nd ref='-232306720' />
+    <tag k='name' v='2025-05-16-kattunbleiche' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
