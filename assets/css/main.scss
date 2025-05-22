@@ -661,6 +661,7 @@ body.showSidebar::before {
 
   -webkit-hyphens: auto;
   hyphens: auto;
+  hyphenate-limit-chars: 8 4 4;
 
   overscroll-behavior: contain;
   touch-action: pan-y;

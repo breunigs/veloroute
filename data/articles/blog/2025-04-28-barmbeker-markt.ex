@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
 
   def links(_assigns) do
     [
+      {"Präsentation zur Planung", ~d[2025-04],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/to010.asp?SILFDNR=1003276"},
       {"Lageplan und Erläuterungen", ~d[2025-04],
        "https://fragdenstaat.de/anfrage/baumassnahme-knoten-351-dehnhaide-barmbeker-markt/#nachricht-995588"}
     ]
