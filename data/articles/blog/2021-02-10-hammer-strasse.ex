@@ -10,6 +10,8 @@ defmodule Data.Article.Blog.HammerStrasse do
 
   def links(_assigns) do
     [
+      {"Anfrage zu möglichen Umsetzungstermin", ~d[2025-05],
+       "https://fragdenstaat.de/anfrage/hammer-strasse/#nachricht-1003170"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/resource/blob/784188/9b4af7231107376353cb073f9d6302ac/hammer-strasse-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan",
