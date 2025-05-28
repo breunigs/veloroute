@@ -11,6 +11,7 @@ defmodule Article.Renderer do
   attr :lang, :string, required: true
   attr :search_query, :string
   attr :search_results, :any
+  attr :appointments, :any
   attr :enable_drawing_tools, :boolean, default: false
   attr :limit_to_map_bounds, :boolean, default: false
   attr :show_map_image, :boolean, default: false

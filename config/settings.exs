@@ -84,6 +84,12 @@ config :veloroute, Settings, %{
   # outside of it. Should be written like it is in OpenStreetMap data.
   boost_search_results_within: "Hamburg",
 
+  # city slug from criticalmass.in, used to show next rides
+  critical_mass_city_slug: "hamburg",
+
+  # which timezone to use for calendar comparions
+  timezone: "Europe/Berlin",
+
   # no trailing slash, absolute URL to the project
   url: "https://veloroute.hamburg",
   # full URL up until host and TLD, no trailing slash. Or nil for "same".

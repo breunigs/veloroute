@@ -12,6 +12,7 @@ defmodule VelorouteWeb.FrameLive do
     prev_page: nil,
     current_page: nil,
     map_bounds: @default_bounds,
+    appointments: [],
     article_original_date: nil,
     article_date: nil,
     article_title: nil,
@@ -47,7 +48,8 @@ defmodule VelorouteWeb.FrameLive do
         lang: session["lang"],
         lang_user_set: session["lang_user_set"],
         show_map_image: !!session["show_map_image"],
-        map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds
+        map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds,
+        appointments: Appointments.List.current()
       )
 
     socket =

@@ -60,7 +60,8 @@ defmodule Article.Decorators do
       enable_drawing_tools: false,
       device_os: "Android",
       ref: art,
-      lang: Settings.r(:default_language)
+      lang: Settings.r(:default_language),
+      appointments: Appointments.List.current()
     }
 
     assigns = Map.merge(default, assigns)

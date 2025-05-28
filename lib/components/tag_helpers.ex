@@ -126,9 +126,10 @@ defmodule Components.TagHelpers do
     assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
 
     ping =
-      if Map.has_key?(assigns, :lat) && Map.has_key?(assigns, :lon),
-        do: %{name: name, center: %{lat: assigns.lat, lon: assigns.lon}},
-        else: %{name: name}
+      if Map.has_key?(assigns, :lat) && assigns.lat &&
+           Map.has_key?(assigns, :lon) && assigns.lon,
+         do: %{name: name, center: %{lat: assigns.lat, lon: assigns.lon}},
+         else: %{name: name}
 
     js =
       %Phoenix.LiveView.JS{}

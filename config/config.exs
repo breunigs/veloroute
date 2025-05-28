@@ -38,6 +38,8 @@ config :os_mon,
   start_memsup: false,
   start_os_sup: false
 
+config :elixir, :time_zone_database, Tz.TimeZoneDatabase
+
 # Configures Elixir's Logger
 config :logger, :default_formatter,
   # format: "$date $time [$level] $metadata $message\n",
