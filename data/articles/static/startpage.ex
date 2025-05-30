@@ -330,7 +330,6 @@ defmodule Data.Article.Static.Startpage do
       <h3 lang="en">Contact</h3>
       <p lang="en">Mistakes? Wishes? Old pictures? Write to me:<br><.mailto/></p>
 
-
       <h3 lang="en">Events</h3>
       <ul>
         <%= for appointment <- @appointments do %>

@@ -15,7 +15,7 @@ defmodule Appointments.Appointment do
   @spec outdated?(t()) :: boolean()
   def outdated?(appointment) do
     {:ok, now} = DateTime.now(Settings.r(:timezone))
-    cutoff = DateTime.add(now, 12, :hour)
+    cutoff = DateTime.add(now, -12, :hour)
     DateTime.compare(cutoff, appointment.date_time) == :gt
   end
 
