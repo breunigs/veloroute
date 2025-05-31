@@ -4,6 +4,10 @@ defmodule Appointments.CriticalMassAPI do
   plug Tesla.Middleware.BaseUrl, "https://criticalmass.in/api"
   plug Tesla.Middleware.JSON
 
+  plug Tesla.Middleware.Headers, [
+    {"user-agent", "mail@veloroute.hamburg -- event calendar"}
+  ]
+
   @timeout_ms 5 * 60 * 1000
   @adapter_opts_general [adapter: [recv_timeout: @timeout_ms]]
 
@@ -15,13 +19,15 @@ defmodule Appointments.CriticalMassAPI do
   def appointments_dummy() do
     [
       %Appointments.Appointment{
-        title: "Example Event",
+        title: "Example Critical Mass",
         location: "Michelwiese",
-        description: "Immer spaßig diese CM!",
+        location_long: nil,
+        description: "Immer spaßig diese Example CM!",
         url: "https://criticalmass.in/hamburg",
         date_time: DateTime.utc_now(),
         lat: 53.546835,
-        lon: 9.978936
+        lon: 9.978936,
+        highlight: false
       }
     ]
   end
@@ -90,11 +96,13 @@ defmodule Appointments.CriticalMassAPI do
       %Appointments.Appointment{
         title: title,
         location: entry["location"],
+        location_long: nil,
         description: entry["description"] || get_in(metadata, [title, :description]),
         date_time: date_time,
         lat: entry["latitude"],
         lon: entry["longitude"],
-        url: "https://criticalmass.in/#{slug}/#{machine_date}"
+        url: "https://criticalmass.in/#{slug}/#{machine_date}",
+        highlight: false
       }
     else
       _ -> nil

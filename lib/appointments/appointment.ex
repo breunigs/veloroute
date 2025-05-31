@@ -2,14 +2,16 @@ defmodule Appointments.Appointment do
   @type t() :: %__MODULE__{
           title: binary(),
           location: binary(),
+          location_long: binary() | nil,
           description: binary(),
           date_time: DateTime.t(),
           url: binary(),
           lat: float() | nil,
-          lon: float() | nil
+          lon: float() | nil,
+          highlight: boolean()
         }
 
-  @enforce_keys [:title, :location, :description, :date_time, :url]
+  @enforce_keys [:title, :location, :description, :date_time, :url, :highlight, :location_long]
   defstruct @enforce_keys ++ [:lat, :lon]
 
   @spec outdated?(t()) :: boolean()
@@ -22,27 +24,58 @@ defmodule Appointments.Appointment do
   use Phoenix.Component
 
   def html(apt, lang) when is_binary(lang) do
-    assigns = %{
+    assigns = build_assigns(apt, lang)
+
+    ~H"""
+    <li class={@class}>
+      <time title={@human_long} datetime={@machine_date_time}><%= @human_short %></time>
+      <Components.TagHelpers.a href={@apt.url} title={@apt.description}>{@apt.title}</Components.TagHelpers.a>
+      –
+      <span title={@apt.location_long || @apt.location}>
+        <%= if @bounds do %>
+          <Components.TagHelpers.m lat={@apt.lat} lon={@apt.lon} bounds={@bounds}>{@apt.location}</Components.TagHelpers.m>
+        <% else %>
+          {@apt.location}
+        <% end %>
+      </span>
+    </li>
+    """
+  end
+
+  def html_long(apt, lang) when is_binary(lang) do
+    assigns = build_assigns(apt, lang)
+
+    ~H"""
+    <h4>{@apt.title}    <%= if @apt.highlight do %><div style="float:right;font-size: 3rem;margin-top: -1rem; height: 2rem">⭐</div><% end %></h4>
+    <dl class={@class}>
+      <dt><%= if @de, do: "Zeit", else: "Date" %></dt><dd><time datetime={@machine_date_time}><%= @human_long %></time></dd>
+      <dt><%= if @de, do: "Ort", else: "Place" %></dt>
+      <dd lang="de">
+        <%= if @bounds do %>
+          <Components.TagHelpers.m lat={@apt.lat} lon={@apt.lon} bounds={@bounds}>{@apt.location_long || @apt.location}</Components.TagHelpers.m>
+        <% else %>
+          {@apt.location_long || @apt.location}
+        <% end %>
+      </dd>
+      <dt><%= if @de, do: "Webseite", else: "Website" %></dt>
+      <dd><Components.TagHelpers.a href={@apt.url}>{@base_url}</Components.TagHelpers.a></dd>
+    </dl>
+    <p lang="de"><%= @apt.description %></p>
+    """
+  end
+
+  defp build_assigns(apt, lang) do
+    %{
       apt: apt,
+      de: lang == "de",
+      class: if(apt.highlight, do: "highlight"),
+      base_url: base_url(apt),
       machine_date: machine_date(apt),
       machine_date_time: DateTime.to_string(apt.date_time),
       human_short: format_date_time(apt, "%d.%m. – %H:%M", "%d.%m.", lang),
       human_long: format_date_time(apt, "%A, %d.%m.%Y – %H:%M", "%A, %d.%m.%Y", lang),
       bounds: bounding_box(apt)
     }
-
-    ~H"""
-    <li>
-      <time title={@human_long} datetime={@machine_date_time}><%= @human_short %></time>
-      <Components.TagHelpers.a href={@apt.url} title={@apt.description}>{@apt.title}</Components.TagHelpers.a>
-      –
-      <%= if @bounds do %>
-        <Components.TagHelpers.m lat={@apt.lat} lon={@apt.lon} bounds={@bounds}>{@apt.location}</Components.TagHelpers.m>
-      <% else %>
-        {@apt.location}
-      <% end %>
-    </li>
-    """
   end
 
   def bounding_box(%{lat: lat, lon: lon}) when is_number(lat) and is_number(lon) do
@@ -51,6 +84,16 @@ defmodule Appointments.Appointment do
   end
 
   def bounding_box(_), do: nil
+
+  defp base_url(apt) do
+    %{host: host, path: path} = URI.parse(apt.url)
+
+    case byte_size(path) do
+      1 -> host
+      len when len in 2..30 -> "#{host}#{path}"
+      _ -> host
+    end
+  end
 
   defp machine_date(appt), do: Calendar.strftime(appt.date_time, "%Y-%m-%d")
 

@@ -1,6 +1,7 @@
-defmodule Appointments.CriticalMassUpdater do
+defmodule Appointments.Updater do
   use GenServer
   @interval :timer.hours(24)
+  @sources [Appointments.CriticalMassAPI, Appointments.ADFCAPI, Appointments.Static]
 
   @cache_key :critical_mass_cache
 
@@ -23,7 +24,12 @@ defmodule Appointments.CriticalMassUpdater do
   end
 
   def handle_info(:update, state) do
-    Cachex.put(@cache_key, :events, Appointments.CriticalMassAPI.appointments())
+    appts =
+      @sources
+      |> Parallel.flat_map(fn source -> source.appointments() end)
+      |> Enum.sort_by(& &1.date_time, DateTime)
+
+    Cachex.put(@cache_key, :events, appts)
 
     schedule()
     {:noreply, state}

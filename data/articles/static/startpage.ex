@@ -279,11 +279,12 @@ defmodule Data.Article.Static.Startpage do
       <p>Fehler? Wünsche? Alte Bilder? Schreib mir:<br><.mailto/></p>
 
       <h3>Termine</h3>
-      <ul>
+      <ol role="list" style="list-style-type: none; padding: 0">
         <%= for appointment <- @appointments do %>
           <%= Appointments.Appointment.html(appointment, @lang) %>
         <% end %>
-      </ul>
+      </ol>
+      <.a name="termine"><strong>mehr Termindetails anzeigen</strong></.a>
 
       <h3>Linkempfehlungen</h3>
       <p>Es gibt weitere Webseiten, die sich dem Thema Rad und Mobilität in Hamburg annehmen, die ich sehenswert finde:</p>
@@ -331,11 +332,12 @@ defmodule Data.Article.Static.Startpage do
       <p lang="en">Mistakes? Wishes? Old pictures? Write to me:<br><.mailto/></p>
 
       <h3 lang="en">Events</h3>
-      <ul>
+      <ol role="list" style="list-style-type: none; padding: 0">
         <%= for appointment <- @appointments do %>
           <%= Appointments.Appointment.html(appointment, @lang) %>
         <% end %>
-      </ul>
+      </ol>
+      <.a name="termine"><strong>Show more event details</strong></.a>
 
       <h3 lang="en">Link recommendations</h3>
       <p lang="en">These are websites on the general topic of cycling and mobility in Hamburg, which are worth seeing:</p>

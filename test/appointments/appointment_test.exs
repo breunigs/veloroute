@@ -6,16 +6,18 @@ defmodule Appointments.AppointmentTest do
   setup do
     {:ok, now} = DateTime.now("Etc/UTC")
     future = DateTime.add(now, 13, :hour)
-    past = DateTime.add(now, 11, :hour)
+    past = DateTime.add(now, -13, :hour)
 
     base_appointment = %Appointment{
       title: "Test Event",
       location: "Test Location",
+      location_long: "Long Test Location",
       description: "Test Description",
       date_time: now,
       url: "https://example.com",
       lat: 13.37,
-      lon: 13.37
+      lon: 13.37,
+      highlight: false
     }
 
     {:ok, base: base_appointment, now: now, future: future, past: past}
@@ -23,7 +25,7 @@ defmodule Appointments.AppointmentTest do
 
   test "outdated?/1 returns true for appointments before cutoff", %{base: base, past: past} do
     appt = %{base | date_time: past}
-    assert Appointment.outdated?(appt) == true
+    assert Appointment.outdated?(appt)
   end
 
   test "outdated?/1 returns false for appointments after cutoff", %{base: base, future: future} do
@@ -42,11 +44,13 @@ defmodule Appointments.AppointmentTest do
     appt = %Appointment{
       title: "No Location",
       location: "N/A",
+      location_long: "N/A",
       description: "No coordinates",
       date_time: DateTime.utc_now(),
       url: "https://example.com",
       lat: nil,
-      lon: nil
+      lon: nil,
+      highlight: false
     }
 
     assert Appointment.bounding_box(appt) == nil

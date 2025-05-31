@@ -19,8 +19,8 @@ defmodule Veloroute.Application do
       VelorouteWeb.Endpoint,
       TeslaCache.child_spec(),
       VelorouteWeb.ImageExtractController.cache_child_spec(),
-      Appointments.CriticalMassUpdater,
-      Appointments.CriticalMassUpdater.cache_child_spec()
+      Appointments.Updater,
+      Appointments.Updater.cache_child_spec()
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

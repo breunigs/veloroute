@@ -671,7 +671,7 @@ body.showSidebar::before {
     text-wrap: pretty;
   }
 
-  p, ul, ol {
+  p, ul, ol, dl, dt, dd {
     line-height: 1.15rem;
   }
 
@@ -1572,5 +1572,33 @@ ul.spaced {
     cursor: pointer;
     color: #888;
     accent-color: #888;
+  }
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+  margin: 0;
+  margin-top: 0rem;
+  margin-bottom: 0.6rem;
+
+  &.highlight dt {
+    font-weight: bold;
+  }
+}
+
+dt {
+  grid-column-start: 1;
+
+}
+
+dd {
+  grid-column-start: 2;
+  margin-left: 0.8rem;
+}
+
+li.highlight {
+  time, a:first-of-type {
+    font-weight: bold;
   }
 }
