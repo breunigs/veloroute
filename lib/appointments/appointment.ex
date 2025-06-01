@@ -61,6 +61,7 @@ defmodule Appointments.Appointment do
       <dd><Components.TagHelpers.a href={@apt.url}>{@base_url}</Components.TagHelpers.a></dd>
     </dl>
     <p lang="de"><%= @apt.description %></p>
+    <script type="application/ld+json"><%= Phoenix.HTML.raw(@jsonld) %></script>
     """
   end
 
@@ -74,8 +75,36 @@ defmodule Appointments.Appointment do
       machine_date_time: DateTime.to_string(apt.date_time),
       human_short: format_date_time(apt, "%d.%m. – %H:%M", "%d.%m.", lang),
       human_long: format_date_time(apt, "%A, %d.%m.%Y – %H:%M", "%A, %d.%m.%Y", lang),
-      bounds: bounding_box(apt)
+      bounds: bounding_box(apt),
+      jsonld: jsonld(apt)
     }
+  end
+
+  defp jsonld(apt) do
+    location = %{
+      "@type": "Place",
+      name: apt.location_long || apt.location,
+      geo:
+        if(apt.lat && apt.lon,
+          do: %{
+            "@type": "GeoCoordinates",
+            latitude: apt.lat,
+            longitude: apt.lon
+          }
+        )
+    }
+
+    JSON.encode!(%{
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: apt.title,
+      startDate: DateTime.to_string(apt.date_time),
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      location: Util.compact(location),
+      description: apt.description,
+      url: apt.url
+    })
   end
 
   def bounding_box(%{lat: lat, lon: lon}) when is_number(lat) and is_number(lon) do
