@@ -10,6 +10,8 @@ defmodule Data.Article.Static.Termine do
 
   def languages(), do: ~w[de en]
 
+  def forced_map_layers(), do: ["Termine"]
+
   def text(assigns) do
     assigns = assign(assigns, :de, assigns.lang == "de")
 

@@ -357,6 +357,18 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert_layers(html, ["Artikel", "Radrouten (ab 2025)"])
   end
 
+  test "shows appointments layer on appointments page", %{conn: conn} do
+    {:ok, view, html} = live(conn, "/")
+    assert_layers(html, ["Artikel", "Radrouten (ab 2025)"])
+
+    html =
+      view
+      |> element("a[href^=\"/termine\"]")
+      |> render_click()
+
+    assert_layers(html, ["Artikel", "Radrouten (ab 2025)", "Termine"])
+  end
+
   test "switches routes when new article has different route", %{conn: conn} do
     {:ok, view, html} = live(conn, "/radroute-4")
     route_initial = shown_route(html)

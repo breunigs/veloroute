@@ -34,6 +34,16 @@ defmodule VelorouteWeb.PageController do
     send_resp(conn, 204, "")
   end
 
+  def appointments_geojson(conn, params) do
+    lang = if params["lang"] == "en", do: "en", else: "de"
+    json = JSON.encode!(Appointments.List.current_geojson(lang))
+
+    conn
+    |> put_resp_header("content-type", "application/geo+json")
+    |> put_resp_header("cache-control", "public, max-age=7200, immutable")
+    |> send_resp(200, json)
+  end
+
   def quality(conn, params) do
     name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
 

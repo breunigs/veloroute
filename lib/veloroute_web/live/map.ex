@@ -40,6 +40,7 @@ defmodule VelorouteWeb.Live.Map do
       |> assign_active_style_id()
       |> update_server_route_groups()
       |> reset_layers_on_change()
+      |> maybe_enable_forced_layers()
       |> highlight_route()
       |> maybe_map_preview()
       |> push_changes()
@@ -206,6 +207,19 @@ defmodule VelorouteWeb.Live.Map do
     else
       socket
     end
+  end
+
+  defp maybe_enable_forced_layers(%{assigns: assigns} = socket) do
+    if function_exported?(assigns.current_page, :forced_map_layers, 0) do
+      forced = assigns.current_page.forced_map_layers()
+
+      layers =
+        Enum.map(assigns.layers, fn %{name: name, active: active} = layer ->
+          %{layer | active: if(name in forced, do: true, else: active)}
+        end)
+
+      socket |> assign(:layers, layers) |> push_changes()
+    end || socket
   end
 
   defp updated?(socket, key) do

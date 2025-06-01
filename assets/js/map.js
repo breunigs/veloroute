@@ -39,7 +39,7 @@ const routeLayers = [
   'fr-line', 'fr-line-tunnel',
   'extra-line'
 ];
-const articleLayers = ['article-areas title', 'article-areas bg'];
+const articleLayers = ['article-areas title', 'article-areas bg', 'appointments'];
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers),
   validate: false,

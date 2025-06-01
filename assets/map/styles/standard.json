@@ -11,6 +11,10 @@
       "type": "vector",
       "url": "%%URL_TILES%%/metadata.json",
       "attribution": "<a href=\"https://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap</a>"
+    },
+    "appointments": {
+      "type": "geojson",
+      "data": "%%URL_APPOINTMENTS%%"
     }
   },
   "sprite": "%%URL_SPRITES%%/sprite",
@@ -4655,6 +4659,37 @@
       "filter": ["match", ["get", "name"], ["does-not-exist"], true, false],
       "layout": {"line-join": "round", "visibility": "none"},
       "paint": {"line-color": "hsl(320, 100%, 56%)"}
+    },
+    {
+      "id": "appointments",
+      "type": "symbol",
+      "source": "appointments",
+      "minzoom": 11,
+      "layout": {
+        "text-size": 12,
+        "icon-offset": [0, -15],
+        "icon-image": "large_marker",
+        "text-font": ["Open Sans Semi Bold"],
+        "text-offset": [0, 0],
+        "text-field": [
+          "format",
+          ["to-string", ["get", "title"]],
+          {},
+          "\n",
+          {},
+          ["to-string", ["get", "date"]],
+          {"text-color": "#555"}
+        ],
+        "text-anchor": "top",
+        "icon-optional": false,
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1,
+        "icon-translate": [0, 0],
+        "text-translate": [0, 2]
+      }
     },
     {
       "id": "article-areas title",

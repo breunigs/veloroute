@@ -23,6 +23,28 @@ defmodule Appointments.Appointment do
 
   use Phoenix.Component
 
+  def geojson(apt, lang) when is_binary(lang) and is_float(apt.lat) and is_float(apt.lon) do
+    date = format_date_time(apt, "%a, %d.%m.%Y – %H:%M", "%A, %d.%m.%Y", lang)
+
+    %{
+      type: "Feature",
+      geometry: %{
+        type: "Point",
+        coordinates: [apt.lon, apt.lat]
+      },
+      properties: %{
+        name: Data.Article.Static.Termine.name(),
+        title: apt.title,
+        date: date,
+        location: apt.location_long || apt.location,
+        description: apt.description,
+        url: apt.url
+      }
+    }
+  end
+
+  def geojson(_apt, lang) when is_binary(lang), do: nil
+
   def html(apt, lang) when is_binary(lang) do
     assigns = build_assigns(apt, lang)
 
@@ -127,13 +149,18 @@ defmodule Appointments.Appointment do
   defp machine_date(appt), do: Calendar.strftime(appt.date_time, "%Y-%m-%d")
 
   defp format_date_time(%{date_time: dt}, date_time, date_only, lang) do
+    names = fn day_of_week ->
+      {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"}
+      |> elem(day_of_week - 1)
+    end
+
+    abbrev = fn day_of_week -> String.slice(names.(day_of_week), 0..1) end
+
     opts =
       if lang == "de" do
         [
-          day_of_week_names: fn day_of_week ->
-            {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"}
-            |> elem(day_of_week - 1)
-          end
+          day_of_week_names: names,
+          abbreviated_day_of_week_names: abbrev
         ]
       end || []
 

@@ -25,6 +25,10 @@
       "maxzoom": 20,
       "tileSize": 512,
       "attribution": "<a href=\"https://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap</a> <a href=\"https://www.maptiler.com/copyright/#:~:text=MapTiler%20Satellite\" target=\"_blank\">&copy; MapTiler</a>"
+    },
+    "appointments": {
+      "type": "geojson",
+      "data": "%%URL_APPOINTMENTS%%"
     }
   },
   "sprite": "%%URL_SPRITES%%/sprite",
@@ -2001,6 +2005,39 @@
       "filter": ["match", ["get", "name"], ["does-not-exist"], true, false],
       "layout": {"line-join": "round", "visibility": "none"},
       "paint": {"line-color": "hsl(320, 100%, 56%)"}
+    },
+    {
+      "id": "appointments",
+      "type": "symbol",
+      "source": "appointments",
+      "minzoom": 11,
+      "layout": {
+        "text-size": 12,
+        "icon-offset": [0, -15],
+        "text-font": ["Open Sans Semi Bold"],
+        "text-offset": [0, 0],
+        "text-field": [
+          "format",
+          ["to-string", ["get", "title"]],
+          {},
+          "\n",
+          {},
+          ["to-string", ["get", "date"]],
+          {"text-color": "#ccc"}
+        ],
+        "text-anchor": "top",
+        "icon-optional": false,
+        "visibility": "none",
+        "icon-image": "large_marker"
+      },
+      "paint": {
+        "text-halo-color": "#000",
+        "text-halo-width": 1,
+        "icon-translate": [0, 0],
+        "text-translate": [0, 2],
+        "text-halo-blur": 0.5,
+        "text-color": "#fff"
+      }
     },
     {
       "id": "article-areas title",

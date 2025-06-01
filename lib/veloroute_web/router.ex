@@ -26,6 +26,7 @@ defmodule VelorouteWeb.Router do
     get "/routes/geo/updates.atom", FeedController, :legacy
 
     get "/_health", PageController, :health
+    get "/termine.geojson", PageController, :appointments_geojson
 
     for num <- 1..14 do
       get "/#{num}", PageController, :redir_plain_veloroute

@@ -31,6 +31,8 @@ defmodule Article.Default do
       def microdata(:wrapper), do: [itemscope: "", itemtype: "https://schema.org/NewsArticle"]
       def microdata(:title), do: [itemprop: "headline"]
 
+      def forced_map_layers(), do: []
+
       defoverridable Article
 
       use Phoenix.Component

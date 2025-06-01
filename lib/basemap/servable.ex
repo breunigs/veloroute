@@ -1,4 +1,14 @@
 defmodule Basemap.Servable do
+  @callback serve_path() :: binary()
+  @callback serve_path(extra :: binary()) :: binary()
+
+  @callback assets_path() :: binary()
+  @callback assets_path(extra :: binary()) :: binary()
+
+  @callback serve_url() :: binary()
+  @callback serve_url(url :: binary()) :: binary()
+  @callback serve_url(url :: binary(), extra :: binary()) :: binary()
+
   @doc """
   Specifies a servable fallback in case a (sub)item for a particular detail is
   not available. For example, it might be an empty map tile instead of serving a
@@ -11,16 +21,19 @@ defmodule Basemap.Servable do
     quote location: :keep do
       @behaviour Basemap.Servable
 
+      @impl Basemap.Servable
       def serve_path(extra \\ "")
       def serve_path("http://" <> _ = extra), do: Basemap.Servable.http_error(extra)
       def serve_path("https://" <> _ = extra), do: Basemap.Servable.http_error(extra)
       def serve_path(extra), do: Basemap.Servable.serve_path(List.flatten([name(), extra]))
 
+      @impl Basemap.Servable
       # use production path by default, which we'll replace upon serving the for
       # development modes. In production the file serving can happen without
       # that logic.
       def serve_url(url \\ Settings.r(:url), extra \\ ""), do: Path.join(url, serve_path(extra))
 
+      @impl Basemap.Servable
       def assets_path(extra \\ ""), do: "priv/static" <> serve_path(extra)
     end
   end
@@ -50,7 +63,7 @@ defmodule Basemap.Servable do
   end
 
   def list do
-    [Basemap.Styles, Basemap.Fonts, Basemap.Sprites, Basemap.Tiles]
+    [Basemap.Styles, Basemap.Fonts, Basemap.Sprites, Basemap.Tiles, Basemap.Appointments]
   end
 
   def ensure do

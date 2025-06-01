@@ -17,16 +17,26 @@ defmodule Basemap.Renderable do
   """
   @callback render() :: :ok | {:error, binary()}
 
+  @doc """
+  Re-renders when needed. Should check for updated dependencies before
+  rendering.
+  """
+  @callback ensure() :: :ok | {:error, reason :: binary()}
+
+  @callback name() :: binary()
+
   defmacro __using__(_opts) do
     quote do
       require Benchmark
       @behaviour Basemap.Renderable
 
+      @impl Basemap.Renderable
       def name(), do: Path.basename(unquote(__CALLER__.file), ".ex")
+
       def path(:cache, extra), do: Path.join("data/cache/basemap/#{name()}", extra)
       def path(:container, extra), do: Path.join("/workdir/basemap/#{name()}", extra)
 
-      @spec ensure() :: :ok | {:error, reason :: binary()}
+      @impl Basemap.Renderable
       def ensure() do
         ident = "basemap #{name()}"
         {stale, reason} = Benchmark.measure("#{ident} staleness check", &staleness/0)

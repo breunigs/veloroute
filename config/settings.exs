@@ -36,6 +36,15 @@ config :veloroute, Settings, %{
       outline: ["article-areas bg outline", "article-areas bg outline dash"]
     },
     %{
+      name: "Termine",
+      route_group: :termine,
+      active: false,
+      line: [],
+      icon: ["appointments"],
+      fill: [],
+      outline: []
+    },
+    %{
       name: "Radrouten (ab 2025)",
       route_group: :radroute,
       active: true,
