@@ -27,7 +27,8 @@ defmodule Appointments.CriticalMassAPI do
         date_time: DateTime.utc_now(),
         lat: 53.546835,
         lon: 9.978936,
-        highlight: false
+        highlight: false,
+        map_only: false
       }
     ]
   end
@@ -90,19 +91,26 @@ defmodule Appointments.CriticalMassAPI do
     with {:ok, date_time} <- DateTime.from_unix(entry["date_time"]),
          date_time = DateTime.shift_zone!(date_time, Settings.r(:timezone)),
          true <- entry["enabled"],
+         l when is_binary(l) <- entry["location"],
+         l when l != "" <- entry["location"],
+         false <- String.contains?(entry["location"], "://"),
          title when is_binary(title) <- clean_title(entry["title"], date_time),
          slug when is_binary(slug) <- entry["slug"] || get_in(metadata, [title, :slug]),
          machine_date <- Calendar.strftime(date_time, "%Y-%m-%d") do
+      loc_short = String.replace(entry["location"], ~r/\s+\(.*$/, "")
+      loc_long = if loc_short != entry["location"], do: entry["location"]
+
       %Appointments.Appointment{
         title: title,
-        location: entry["location"],
-        location_long: nil,
+        location: loc_short,
+        location_long: loc_long,
         description: entry["description"] || get_in(metadata, [title, :description]),
         date_time: date_time,
         lat: entry["latitude"],
         lon: entry["longitude"],
         url: "https://criticalmass.in/#{slug}/#{machine_date}",
-        highlight: false
+        highlight: false,
+        map_only: false
       }
     else
       _ -> nil

@@ -8,10 +8,20 @@ defmodule Appointments.Appointment do
           url: binary(),
           lat: float() | nil,
           lon: float() | nil,
-          highlight: boolean()
+          highlight: boolean(),
+          map_only: boolean()
         }
 
-  @enforce_keys [:title, :location, :description, :date_time, :url, :highlight, :location_long]
+  @enforce_keys [
+    :title,
+    :location,
+    :description,
+    :date_time,
+    :url,
+    :highlight,
+    :location_long,
+    :map_only
+  ]
   defstruct @enforce_keys ++ [:lat, :lon]
 
   @spec outdated?(t()) :: boolean()

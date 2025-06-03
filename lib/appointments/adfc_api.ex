@@ -33,7 +33,8 @@ defmodule Appointments.ADFCAPI do
         date_time: DateTime.utc_now(),
         lat: 53.557470,
         lon: 10.009714,
-        highlight: false
+        highlight: false,
+        map_only: false
       }
     ]
   end
@@ -91,7 +92,8 @@ defmodule Appointments.ADFCAPI do
         lat: entry["latitude"],
         lon: entry["longitude"],
         url: "https://touren-termine.adfc.de/radveranstaltung/#{entry["cSlug"]}",
-        highlight: false
+        highlight: false,
+        map_only: false
       }
     else
       _ -> nil

@@ -4664,7 +4664,7 @@
       "id": "appointments",
       "type": "symbol",
       "source": "appointments",
-      "minzoom": 11,
+      "minzoom": 10,
       "layout": {
         "text-size": 12,
         "icon-offset": [0, -15],

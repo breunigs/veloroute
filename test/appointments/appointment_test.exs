@@ -17,7 +17,8 @@ defmodule Appointments.AppointmentTest do
       url: "https://example.com",
       lat: 13.37,
       lon: 13.37,
-      highlight: false
+      highlight: false,
+      map_only: false
     }
 
     {:ok, base: base_appointment, now: now, future: future, past: past}
@@ -50,7 +51,8 @@ defmodule Appointments.AppointmentTest do
       url: "https://example.com",
       lat: nil,
       lon: nil,
-      highlight: false
+      highlight: false,
+      map_only: false
     }
 
     assert Appointment.bounding_box(appt) == nil

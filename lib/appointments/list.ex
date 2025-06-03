@@ -1,12 +1,14 @@
 defmodule Appointments.List do
   def current() do
     Appointments.Updater.cached()
-    |> Enum.reject(&Appointments.Appointment.outdated?/1)
+    |> not_outdated()
+    |> not_map_only()
   end
 
   def current_geojson(lang) when is_binary(lang) do
     feats =
-      current()
+      Appointments.Updater.cached()
+      |> not_outdated()
       |> Enum.map(&Appointments.Appointment.geojson(&1, lang))
       |> Util.compact()
 
@@ -14,5 +16,13 @@ defmodule Appointments.List do
       type: "FeatureCollection",
       features: feats
     }
+  end
+
+  defp not_outdated(list) do
+    Enum.reject(list, &Appointments.Appointment.outdated?/1)
+  end
+
+  defp not_map_only(list) do
+    Enum.reject(list, & &1.map_only)
   end
 end
