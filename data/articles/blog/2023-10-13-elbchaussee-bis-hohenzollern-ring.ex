@@ -21,6 +21,8 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-06],
+       "https://lsbg.hamburg.de/resource/blob/1068158/e565ee2419d500bf79d89bf9691e5551/elbchaussee-anliegerinformation-sperrung-ab-10-juni-juni-2025-data.pdf"},
       {"Baustelleninfo", ~d[2025-03],
        "https://lsbg.hamburg.de/resource/blob/1037750/881a3f198316f1100fae51103a753d09/elbchaussee-betty-levi-passage-bis-hohenzollernring-anliegerinformation-maerz-2025-data.pdf"},
       {"Erläuterungsbericht – fertiger Entwurf", ~d[2025-03],
