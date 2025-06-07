@@ -1,5 +1,7 @@
 defmodule Appointments.Updater do
   use GenServer
+  require Logger
+
   @interval :timer.hours(24)
   @sources [Appointments.CriticalMassAPI, Appointments.ADFCAPI, Appointments.Static]
 
@@ -24,12 +26,17 @@ defmodule Appointments.Updater do
   end
 
   def handle_info(:update, state) do
-    appts =
-      @sources
-      |> Parallel.flat_map(fn source -> source.appointments() end)
-      |> Enum.sort_by(& &1.date_time, DateTime)
+    try do
+      appts =
+        @sources
+        |> Parallel.flat_map(fn source -> source.appointments() end)
+        |> Enum.sort_by(& &1.date_time, DateTime)
 
-    Cachex.put(@cache_key, :events, appts)
+      Cachex.put(@cache_key, :events, appts)
+    rescue
+      e ->
+        Logger.error("#{__MODULE__} failed to update: #{inspect(e)}")
+    end
 
     schedule()
     {:noreply, state}

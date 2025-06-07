@@ -74,6 +74,10 @@ defmodule Appointments.ADFCAPI do
       |> Enum.map(&to_appointment/1)
       |> Util.compact()
       |> Enum.take(@max_events)
+    else
+      resp ->
+        Logger.warning("Received unexpected response: #{inspect(resp)}")
+        []
     end
   end
 
