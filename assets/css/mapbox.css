@@ -185,3 +185,15 @@
 .maplibregl-ctrl button:disabled .maplibregl-ctrl-icon {
   opacity: 0.25;
 }
+
+.maplibregl-map.mouse-move {
+  cursor: move;
+}
+
+.maplibregl-map.mouse-add {
+  cursor: crosshair;
+}
+
+.maplibregl-map.mouse-pointer {
+  cursor: pointer;
+}
