@@ -17,7 +17,7 @@ defmodule Appointments.ADFCAPI do
     Application.get_env(:veloroute, :env) == :prod
   end
 
-  @spec appointments() :: [Appointments.Appointment.t()]
+  @spec appointments() :: [Appointments.Appointment.t()] | nil
   def appointments() do
     if enabled?(), do: appointments_real(), else: appointments_dummy()
   end
@@ -77,7 +77,7 @@ defmodule Appointments.ADFCAPI do
     else
       resp ->
         Logger.warning("Received unexpected response: #{inspect(resp)}")
-        []
+        nil
     end
   end
 

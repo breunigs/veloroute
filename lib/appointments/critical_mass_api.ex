@@ -11,7 +11,7 @@ defmodule Appointments.CriticalMassAPI do
   @timeout_ms 5 * 60 * 1000
   @adapter_opts_general [adapter: [recv_timeout: @timeout_ms]]
 
-  @spec appointments() :: [Appointments.Appointment.t()]
+  @spec appointments() :: [Appointments.Appointment.t()] | nil
   def appointments() do
     if enabled?(), do: appointments_real(), else: appointments_dummy()
   end
@@ -54,6 +54,10 @@ defmodule Appointments.CriticalMassAPI do
       list
       |> Enum.map(&to_appointment(&1, city_metadata))
       |> Util.compact()
+    else
+      resp ->
+        Logger.warning("Received unexpected response: #{inspect(resp)}")
+        nil
     end
   end
 
@@ -84,6 +88,10 @@ defmodule Appointments.CriticalMassAPI do
         _unparsable, acc ->
           acc
       end)
+    else
+      resp ->
+        Logger.warning("Received unexpected  for city metadata response: #{inspect(resp)}")
+        %{}
     end
   end
 

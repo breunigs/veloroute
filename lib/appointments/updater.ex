@@ -7,6 +7,8 @@ defmodule Appointments.Updater do
 
   @cache_key :critical_mass_cache
 
+  @type cache :: %{atom() => [Appointments.Appointment.t()]}
+
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
@@ -25,17 +27,32 @@ defmodule Appointments.Updater do
     end
   end
 
+  @empty_cache Enum.into(@sources, %{}, &{&1, []})
+
   def handle_info(:update, state) do
     try do
+      cache =
+        with {:ok, cache} <- Cachex.get(@cache_key, :sources) do
+          update_cache(cache || @empty_cache)
+        else
+          _ ->
+            update_cache(@empty_cache)
+        end
+
+      Cachex.put(@cache_key, :cache, cache)
+
       appts =
-        @sources
-        |> Parallel.flat_map(fn source -> source.appointments() end)
+        cache
+        |> Map.values()
+        |> List.flatten()
         |> Enum.sort_by(& &1.date_time, DateTime)
 
       Cachex.put(@cache_key, :events, appts)
     rescue
       e ->
-        Logger.error("#{__MODULE__} failed to update: #{inspect(e)}")
+        Logger.error(
+          "#{__MODULE__} failed to update: #{inspect(e)}:\n#{Exception.format_stacktrace(__STACKTRACE__)}"
+        )
     end
 
     schedule()
@@ -48,5 +65,14 @@ defmodule Appointments.Updater do
 
   defp schedule do
     Process.send_after(self(), :update, @interval)
+  end
+
+  @spec update_cache(cache()) :: cache()
+  defp update_cache(cache) when is_map(cache) do
+    cache
+    |> Parallel.map(fn {source, old_appointments} ->
+      {source, source.appointments() || old_appointments}
+    end)
+    |> Enum.into(%{})
   end
 end
