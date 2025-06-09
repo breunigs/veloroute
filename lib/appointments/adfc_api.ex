@@ -71,7 +71,7 @@ defmodule Appointments.ADFCAPI do
              opts: @adapter_opts_general
            ) do
       list
-      |> Enum.map(&to_appointment/1)
+      |> Parallel.map(&to_appointment/1)
       |> Util.compact()
       |> Enum.take(@max_events)
     else
@@ -86,7 +86,8 @@ defmodule Appointments.ADFCAPI do
          date_time = DateTime.shift_zone!(date_time, Settings.r(:timezone)),
          false <- entry["isCancelled"],
          true <- entry["cLedByTourGuide"],
-         "Published" <- entry["cStatus"] do
+         "Published" <- entry["cStatus"],
+         true <- allowed_event?(entry["eventItemId"]) do
       %Appointments.Appointment{
         title: "ADFC Tour: #{entry["title"]}",
         location: simplify_location(entry["startLocation"]),
@@ -101,6 +102,30 @@ defmodule Appointments.ADFCAPI do
       }
     else
       _ -> nil
+    end
+  end
+
+  defp allowed_event?(event_id) when is_binary(event_id) and event_id != "" do
+    with {:ok, %{body: %{"eventItem" => details}}} when is_map(details) <-
+           get("/eventItems/#{event_id}", opts: @adapter_opts_general) do
+      no_registration_needed = details["maximum"] == 0
+
+      (no_registration_needed || details["canRegister"]) &&
+        valid_closing_date?(details["closingDate"])
+    else
+      _ -> false
+    end
+  end
+
+  defp valid_closing_date?(nil), do: true
+  defp valid_closing_date?(""), do: true
+
+  defp valid_closing_date?(date_string) do
+    with {:ok, date_time, 0} <- DateTime.from_iso8601(date_string) do
+      now = DateTime.now!(Settings.r(:timezone))
+      DateTime.compare(date_time, now) != :lt
+    else
+      _ -> false
     end
   end
 
