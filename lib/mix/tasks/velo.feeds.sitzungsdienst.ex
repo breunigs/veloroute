@@ -20,7 +20,9 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     max_retries: 3,
     max_delay: 60_000
 
-  adapter(Tesla.Adapter.Hackney, ssl_options: [{:verify, :verify_none}])
+  adapter(Tesla.Adapter.Hackney,
+    ssl_options: [verify_fun: {fn _cert, _valid, acc -> {:valid, acc} end, []}]
+  )
 
   @shown_by_date "shown_by_date"
 
