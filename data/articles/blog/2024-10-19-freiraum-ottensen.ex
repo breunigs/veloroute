@@ -8,7 +8,8 @@ defmodule Data.Article.Blog.FreiraumOttensen do
       "Die Verkehrsplanung zum autoarmen Zentrum Ottensens wurde abgeschlossen. Freiraumplanung („Gestaltung“) nach wie vor offen."
 
   def type(), do: :planned
-  def start(), do: ~d[2025Q4]
+  def start(), do: ~d[2026-03]
+  def start(), do: ~d[2026-07]
 
   def tags(), do: []
 

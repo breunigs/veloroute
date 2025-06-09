@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Friedensallee do
     do: "Hochbordradwege und Gehwege sollen saniert werden. Breite unverändert."
 
   def start(), do: ~d[2023-11-22]
-  # def stop(), do: ~d[2024-03-31]
+  def stop(), do: ~d[2026-06]
   # def construction_site_id_hh(), do: [599_026]
 
   def type(), do: :construction

@@ -8,11 +8,11 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
     do:
       "Meist asphaltierte „Kopenhagener Radwege“ mit 2,0m Breite. An Bushaltestellen wird der Radweg unterbrochen."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-concept-a"]
   def start(), do: ~d[2025-04]
-  def stop(), do: ~d[2029-04]
+  def stop(), do: ~d[2030-03]
 
   # Vorarbeiten HH Wasser
   # def construction_site_id_hh(), do: [1374090]

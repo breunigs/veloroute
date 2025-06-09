@@ -9,10 +9,10 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
       "Veloroute 1 wird im südlichen Blankenese meist Fahrradstraße; die Kreuzungen an Eichendorffstraße und Elbchaussee deutlich fahrradfreundlicher."
 
   def type(), do: :planned
+  def start(), do: ~d[2027-03]
+  def stop(), do: ~d[2027-09]
 
   def tags(), do: ["radroute-1", "1", "A22", "A022.2", "A22.2"]
-
-  def start(), do: ~d[2027Q2]
 
   def map_image do
     {name(), [{"IPO Hamburg GmbH", "https://www.ipogmbh.de/kontakt/"}]}
