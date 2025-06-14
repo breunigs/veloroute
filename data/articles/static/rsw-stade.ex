@@ -128,6 +128,8 @@ defmodule Data.Article.Static.RSWStade do
 
   def links(_assigns) do
     [
+      {"Präsentation zum Planungsstand", ~d[2025-06],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012998"},
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Stade",

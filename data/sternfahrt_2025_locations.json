@@ -1,9 +1,25 @@
 {
-  "last_change_date": "2025-06-01",
-  "source_data_date": "2025-05-21",
+  "last_change_date": "2025-06-14",
+  "source_data_date": "2025-06-10",
   "event_date": "2025-06-22",
-  "source": "https://fahrradsternfahrt.hamburg/wp-content/uploads/2025/05/Sternfahrt_ROUTENPLAN_21Mai25-1-1448x2048.png.webp",
+  "source": "https://fahrradsternfahrt.hamburg/wp-content/uploads/2025/06/Sternfahrt_ROUTENPLAN_10Juni25.png",
   "starting_points": [
+    {
+      "place": "Kehrwiederspitze",
+      "place_detail": "Haus Nr. 1",
+      "time": "10:45",
+      "address": "Kehrwiederspitze 1, 20457 Hamburg",
+      "lat": 53.543243,
+      "lon": 9.9830026
+    },
+    {
+      "place": "Deichtorplatz",
+      "place_detail": "Deichtorhallen",
+      "time": "10:40",
+      "address": "Deichtorstraße 1, 20095 Hamburg",
+      "lat": 53.547304,
+      "lon": 10.005784
+    },
     {
       "place": "Neumünster",
       "place_detail": "Großflecken",

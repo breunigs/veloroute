@@ -82,6 +82,8 @@ defmodule Data.Article.Static.Radroute18 do
 
   def links(_assigns) do
     [
+      {"Präsentation zum Planungsstand", ~d[2025-05],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012998"},
       {"Fahrplan Elbfähre (Linie 64)",
        "https://geofox.hvv.de/web/de/connections?execute=true&start=Teufelsbr%C3%BCck&startCity=Hamburg&startType=STATION&destination=R%C3%BCschpark&destinationCity=Hamburg&destinationType=STATION&timeIsDeparture=1&wayBy=train&forVisitors=1&useStationPosition=1"}
     ]

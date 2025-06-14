@@ -96,7 +96,10 @@ defmodule Data.Article.Static.Radroute11 do
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Präsentation zum Planungsstand", ~d[2025-04],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012691"}
+    ]
   end
 
   def text(assigns) do
