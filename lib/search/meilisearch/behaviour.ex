@@ -6,7 +6,7 @@ defmodule Search.Meilisearch.Behaviour do
               | {content_type :: binary(), content_encoding :: binary(), payload :: binary()}
   @callback params(binary(), float(), float()) :: %{atom => list(binary) | binary | integer}
   @callback format(%{binary => any}) :: Search.Result.t() | nil
-  @callback config() :: %{atom => list(binary) | %{atom => list(binary)} | binary}
+  @callback config() :: %{atom => list(binary) | %{atom => list(binary) | boolean} | binary}
   @callback updated_at() :: DateTime.t()
 
   @callback maybe_merge([%{required(binary) => any()}]) :: [%{required(binary) => any()}]

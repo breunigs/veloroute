@@ -262,7 +262,8 @@ defmodule Search.Meilisearch.Nominatim do
         admin_level:asc
         sort
         exactness
-      )
+      ),
+      typoTolerance: %{disableOnNumbers: true}
     }
   end
 

@@ -14,7 +14,7 @@ defmodule Search.Meilisearch.Exe do
       "aarch64" <> _ -> :aarch64
     end
 
-  @version "v1.14.0"
+  @version "v1.15.0"
   filename = "meilisearch-#{os}-#{arch}"
   @url "https://github.com/meilisearch/meilisearch/releases/download/#{@version}/#{filename}"
   @exe "#{filename}-#{@version}"
