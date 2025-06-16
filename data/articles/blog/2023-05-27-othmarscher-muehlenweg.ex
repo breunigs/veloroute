@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.OthmarscherMuehlenweg do
   use Article.Default
 
-  def title(), do: "Othmarscher Mühlenweg (Veloroute 1)"
+  def title(), do: "Othmarscher Mühlenweg (Radroute 1)"
 
   def summary(),
     do: "Einmündung wird rechtwinklig, bleibt aber rechts vor links."

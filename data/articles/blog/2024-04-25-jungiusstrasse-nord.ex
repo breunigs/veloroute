@@ -26,7 +26,7 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 5,
+        renderer: 6,
         group: "x",
         direction: :forward,
         from: "Gorch-Fock-Wall",
@@ -34,14 +34,18 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
         parent_ref: __MODULE__,
         text: "ab Jungiusstraße zur Messe",
         historic: %{
+          "2e032a0a196a4a21c7d3f2787fba360e" => ~d[2025-06],
           "5a1c927632860e1802880f2d51d25860" => ~d[2021-08]
         },
         videos: [
-          {"2021-08-01-freizeit9-anfang/GX012481", "00:00:13.113", "00:00:39.006"}
+          {"2025-06-15-rando/GX018515", "00:00:03.813", :end},
+          {"2025-06-15-rando/GX018516", :start, :end},
+          {"2025-06-15-rando/GX018517", :start, "00:00:01.367"},
+          {"2025-06-15-rando/GX018519", "00:00:01.669", "00:00:16.787"}
         ]
       },
       %Video.Track{
-        renderer: 5,
+        renderer: 6,
         group: "x",
         direction: :backward,
         from: "Messeplatz",
@@ -49,12 +53,16 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
         parent_ref: __MODULE__,
         text: "ab St. Petersburger Straße zum Gorch-Fock-Wall",
         historic: %{
+          "068561d45a8ffb67019939ac628699d0" => ~d[2025-06],
           "492cd0ba0211923385001fdd98988d92" => ~d[2021-08]
         },
         videos: [
-          {"2021-08-01-freizeit9-anfang/GX012472", "00:00:19.820", :end},
-          {"2021-08-01-freizeit9-anfang/GX012473", :start, :end},
-          {"2021-08-01-freizeit9-anfang/GX012474", :start, :end}
+          {"2025-06-15-rando/GX018500", "00:00:17.473", :end},
+          {"2025-06-15-rando/GX018501", :start, :end},
+          {"2025-06-15-rando/GX018502", :start, :end},
+          {"2025-06-15-rando/GX018503", :start, :end},
+          {"2025-06-15-rando/GX018504", :start, :end},
+          {"2025-06-15-rando/GX018505", :start, "00:00:01.913"}
         ]
       }
     ]

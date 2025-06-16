@@ -24,6 +24,7 @@ defmodule Data.Article.Static.Radroute17 do
         parent_ref: __MODULE__,
         text: "vom UKE nach Hamm",
         historic: %{
+          "e0066291c967c52a0e8eb904cb3a5d46" => ~d[2025-06],
           "05894a2ed20453acdb96288ee0dfd087" => ~d[2025-02]
         },
         videos: [
@@ -37,9 +38,11 @@ defmodule Data.Article.Static.Radroute17 do
           {"2025-02-16-mitte/GX018084", :start, :end},
           {"2025-02-16-mitte/GX018085", :start, :end},
           {"2025-02-16-mitte/GX018086", :start, :end},
-          {"2025-02-16-mitte/GX018087", :start, :end},
-          {"2025-02-16-mitte/GX018088", :start, :end},
-          {"2025-02-16-mitte/GX018089", :start, :end},
+          {"2025-02-16-mitte/GX018087", :start, "00:00:00.968"},
+          {"2025-06-15-rando/GX018528", "00:00:00.601", :end},
+          {"2025-06-15-rando/GX018529", :start, :end},
+          {"2025-06-15-rando/GX018530", :start, "00:00:15.115"},
+          {"2025-02-16-mitte/GX018089", "00:00:15.782", :end},
           {"2025-02-16-mitte/GX018090", :start, :end},
           {"2025-02-16-mitte/GX018091", :start, "00:00:12.579"}
         ]
@@ -53,13 +56,16 @@ defmodule Data.Article.Static.Radroute17 do
         parent_ref: __MODULE__,
         text: "von Hamm zum UKE",
         historic: %{
+          "2788220b644820c6e7be25989f2d43b5" => ~d[2025-06],
           "95e4081d3405c78a6e9a5b6f422f2572" => ~d[2025-02]
         },
         videos: [
-          {"2025-02-16-mitte/GX018091", "00:00:12.579", :end},
-          {"2025-02-16-mitte/GX018092", :start, :end},
-          {"2025-02-16-mitte/GX018093", :start, :end},
-          {"2025-02-16-mitte/GX018094", :start, "00:00:33.540"},
+          {"2025-02-16-mitte/GX018091", "00:00:12.579", "00:00:48.916"},
+          {"2025-06-15-rando/GX018522", "00:00:18.619", :end},
+          {"2025-06-15-rando/GX018523", :start, :end},
+          {"2025-06-15-rando/GX018524", :start, :end},
+          {"2025-06-15-rando/GX018525", "00:00:00.501", "00:00:17.317"},
+          {"2025-02-16-mitte/GX018094", "00:00:27.594", "00:00:33.540"},
           {"2025-02-16-mitte/GX018095", :start, :end},
           {"2025-02-16-mitte/GX018096", :start, "00:00:04.561"},
           {"2024-06-20-14im-13gg/GX017824", "00:00:03.570", "00:00:09.408"},
