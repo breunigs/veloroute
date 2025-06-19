@@ -1,13 +1,13 @@
 {
-  "last_change_date": "2025-06-14",
-  "source_data_date": "2025-06-10",
+  "last_change_date": "2025-06-19",
+  "source_data_date": "2025-06-18",
   "event_date": "2025-06-22",
-  "source": "https://fahrradsternfahrt.hamburg/wp-content/uploads/2025/06/Sternfahrt_ROUTENPLAN_10Juni25.png",
+  "source": "https://fahrradsternfahrt.hamburg/wp-content/uploads/2025/06/Sternfahrt_ROUTENPLAN_18Juni25.png",
   "starting_points": [
     {
       "place": "Kehrwiederspitze",
       "place_detail": "Haus Nr. 1",
-      "time": "10:45",
+      "time": "11:00",
       "address": "Kehrwiederspitze 1, 20457 Hamburg",
       "lat": 53.543243,
       "lon": 9.9830026
@@ -15,7 +15,7 @@
     {
       "place": "Deichtorplatz",
       "place_detail": "Deichtorhallen",
-      "time": "10:40",
+      "time": "11:05",
       "address": "Deichtorstraße 1, 20095 Hamburg",
       "lat": 53.547304,
       "lon": 10.005784
@@ -27,6 +27,14 @@
       "address": "Großflecken, 24534 Neumünster",
       "lat": 54.071641,
       "lon": 9.986326
+    },
+    {
+      "place": "Büchen",
+      "place_detail": "Bürgerplatz",
+      "time": "9:45",
+      "address": "Amtsplatz, 21514 Büchen",
+      "lat": 53.48011,
+      "lon": 10.61695
     },
     {
       "place": "Bad Bramstedt",
@@ -583,7 +591,7 @@
     {
       "place": "Sasel Markt",
       "place_detail": "Vicelinkirche",
-      "time": "13:00",
+      "time": "12:30",
       "address": "Saseler Markt 8, 22393 Hamburg",
       "lat": 53.653937,
       "lon": 10.112550

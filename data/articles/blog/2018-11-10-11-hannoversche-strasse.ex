@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def start(), do: ~d[2021-01-04]
   def stop(), do: ~d[2025-05-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def construction_site_id_hh(),
     do: [14079, 17581, 203_216, 350_393, 436_743, 786_667, 838_726, 838_695, 890_787]
