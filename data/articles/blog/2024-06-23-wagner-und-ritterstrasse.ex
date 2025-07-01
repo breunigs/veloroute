@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
     do:
       "Asphalt wird erneuert ohne die Aufteilung der Straße zu ändern. Teilweise werden Schutzstreifen statt Radfahrstreifen neu aufgemalt."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-17", "13"]
 

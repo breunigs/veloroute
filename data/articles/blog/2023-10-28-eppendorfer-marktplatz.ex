@@ -5,12 +5,12 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
 
   def summary(),
     do:
-      "Breitere Rad- und Gehwege. Neue, direktere Verbindungen und Querungsmöglichkeiten für Fuß und Rad. "
+      "Breitere Rad- und Gehwege. Neue, direktere Verbindungen und Querungsmöglichkeiten für Fuß und Rad."
 
-  def start(), do: ~d[2025-07]
+  def start(), do: ~d[2025-07-07]
   def stop(), do: ~d[2026-12]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["br-nord-n2", "br-nord-n6", "br-nord-n7"]
 
@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
 
   def links(_assigns) do
     [
+      {"Baustelleinfo", ~d[2025-06],
+       "https://lsbg.hamburg.de/resource/blob/1071620/606b3c54a2e2c3db91c7e73d5a0963f3/eppendorfer-marktplatz-anliegerinformation-juni-2025-data.pdf"},
       {"Erläuterungsbericht", "Oktober 2023",
        "https://lsbg.hamburg.de/resource/blob/784150/c55912d7a77bd6bcda86665d1d308865/eppendorfer-marktplatz-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", "Oktober  2023",

@@ -3,8 +3,8 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
 
   def updated_at(), do: ~D[2024-04-29]
 
-  def start(), do: ~d[2025-06]
-  def stop(), do: ~d[2027-12]
+  def start(), do: ~d[2025-06-30]
+  def stop(), do: ~d[2027-10]
 
   def title(), do: "Saarlandstraße (nördlicher Teil, Radroute 12, Bezirksroute Nord N6)"
 
@@ -12,12 +12,14 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
     do:
       "Mischverkehr beim Stadtpark; Protected-Bike-Lane U-Bahn ↔ Hellbrookstraße; sonst 2m breite Hochbordradwege"
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-12", "5N", "5", "br-nord-n6"]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-06],
+       "https://lsbg.hamburg.de/resource/blob/1073500/c7762c84ab0918da0d283590a613ad04/saarlandstrasse-anliegerinformation-juni-2025-data.pdf"},
       {"fertiger Entwurf: Lageplan", "April 2024",
        "https://lsbg.hamburg.de/resource/blob/849998/0ea51745d993b76a305e4fb77838b460/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abgestimmte-planung-plan-data.pdf"},
       {"fertiger Entwurf: Erläuterungsbericht", "April 2024",

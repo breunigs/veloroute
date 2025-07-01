@@ -8,8 +8,9 @@ defmodule Data.Article.Blog.KreiselKanalplatz do
       "Ein Kreisverkehr soll das Abbiegen von bzw. in die Schloßstraße einfacher machen. Die alten Hochbordradwege werden dazu teilweise entfernt."
 
   def type(), do: :construction
-  def start(), do: ~d[2025-06-16]
-  def stop(), do: ~d[2025-10-31]
+  def start(), do: ~d[2025-06-23]
+  def stop(), do: ~d[2025-11-23]
+  def construction_site_id_hh(), do: [1_548_747]
 
   def map_image do
     {name(), [{"Bezirksamt Harburg H/MR21", "https://www.hamburg.de/service/info/11333191/"}]}

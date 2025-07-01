@@ -2,7 +2,7 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
   use Article.Default
 
   def title(),
-    do: "Louis-Braille-Platz (Veloroute 13)"
+    do: "Louis-Braille-Platz (Radroute 17)"
 
   def summary(),
     do: "Platzneugestaltung vor U-Hamburger Straße bringt Zweirichtungs-Hochbordradweg mit sich."

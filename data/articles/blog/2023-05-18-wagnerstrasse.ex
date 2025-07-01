@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Wagnerstrasse do
   def start(), do: ~d[2024-08-26]
   def stop(), do: ~d[2025-03-31]
   def construction_site_id_hh(), do: [959_154]
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-17", "13", "br-wandsbek-w1"]
 
