@@ -13,6 +13,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          true <- !File.exists?(out_path) || confirm_overwrite(out_path),
          {:ok, data} <- read_project_file(proj),
          {:ok, tifs} <- find_tifs(data, Path.dirname(proj)),
+         true <- maybe_modify_tifs(tifs),
          :ok <- to_pmtiles(tifs, name) do
       has_name = Article.module_from_name(name)
       if !has_name, do: Logger.warning("no article with the name #{name} found")
@@ -32,6 +33,13 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
     else
       {:error, reason} -> IO.puts("failed to convert:\n#{reason}")
     end
+  end
+
+  defp maybe_modify_tifs(tifs) do
+    IO.puts("There are #{length(tifs)} usable images – please remove any unneccessary borders")
+    Enum.each(tifs, fn tif -> IO.puts("  gimp '#{tif}'") end)
+
+    Cli.confirm("Continue?")
   end
 
   defp confirm_overwrite(path) do
@@ -86,7 +94,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
       |> Enum.map(fn f -> f |> Path.absname(relative_to) |> Path.expand() end)
       |> case do
         [] -> {:error, "no visible layers found"}
-        list -> {:ok, list}
+        list -> {:ok, Enum.uniq(list)}
       end
     else
       {:error, %Saxy.ParseError{} = err} -> {:error, "XML parse failed: #{inspect(err)}"}
