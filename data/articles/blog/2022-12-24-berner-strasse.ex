@@ -17,6 +17,15 @@ defmodule Data.Article.Blog.BernerStrasse do
 
   def tracks(), do: []
 
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Fichtner Water & Transportation", "https://www.fwt.fichtner.de/kontakt/inland"},
+       {"iwb Ingenieure", "https://www.iwb-ingenieure.de/"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2024-09],
@@ -41,7 +50,7 @@ defmodule Data.Article.Blog.BernerStrasse do
     <h4>Alter Zustand</h4>
     <p>Im <.v bounds="10.141255,53.620216,10.149968,53.628467" lon={10.142348} lat={53.628048} dir="forward" ref={@ref}>nördlichen Teil</.v> sind schmale, holprige <.ref>Hochbordradwege</.ref> vorhanden. Die spitzen Randsteine an Straßeneinmündungen sind eine Unfallgefahr. Ab dem <.v bounds="10.147667,53.614058,10.15469,53.621595" lon={10.149331} lat={53.620078} dir="forward" ref={@ref}>Bargkoppelweg</.v> muss der Radverkehr im <.ref>Mischverkehr</.ref> auf der Fahrbahn fahren, allerdings fehlt eine Überleitung vom Radweg.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Entlang des Straßenzugs in Richtung Süden sind zunächst 2,0m breite <.ref>Radfahrstreifen</.ref> vorgesehen, teilweise mit aufgeklebten Bordsteinen als Abtrennung zur KFZ-Spur. Ab der Einmündung <.v bounds="10.145684,53.617513,10.154186,53.623448"  lon={10.149331} lat={53.620078} dir="forward" ref={@ref}>Bargkoppelweg</.v> werden sie auf 1,6m Mindestbreite reduziert. Um die Einmündung <.v bounds="10.146817,53.616344,10.15532,53.622279" lon={10.149834} lat={53.619234} dir="forward" ref={@ref}>Greifenberger Straße</.v> ist ein 1,4m breiter <.ref>Schutzstreifen</.ref> geplant. Im Anschluss folgt wieder ein Radfahrstreifen mit rund 1,85m Breite.</p>
 
     <p>An der Kreuzung mit dem <.v bounds="10.138302,53.624498,10.146837,53.63036" lon={10.141882} lat={53.628606} dir="forward" ref={@ref}>Kriegkamp</.v> ist nur <.ref>indirektes Linksabbiegen</.ref> vorgesehen. Im Kriegkamp selbst gibt es Schutzstreifen-Stummel um die Führung zu verdeutlichen.</p>

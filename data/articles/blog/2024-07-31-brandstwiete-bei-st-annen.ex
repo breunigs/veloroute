@@ -5,9 +5,9 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
 
   def summary(), do: "In Ad-Hoc-Maßnahme soll Radfahrstreifen Richtung HafenCity angelegt werden."
 
-  def type(), do: :planned
-  def start(), do: ~d[2025Q3]
-  def stop(), do: ~d[2025Q4]
+  def type(), do: :construction
+  def start(), do: ~d[2025-07-14]
+  def stop(), do: ~d[2025-08-02]
 
   def tags(), do: ["radroute-concept-a", "radroute-3", "10"]
 
@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-07],
+       "https://lsbg.hamburg.de/resource/blob/1076930/cb234845ad043017e92b29774a5d0bcc/brandstwiete-st-annen-anliegerinformation-juli-2025-data.pdf"},
       {"fertiger Entwurf: Erläuterungsbericht", ~d[2024-07],
        "https://lsbg.hamburg.de/resource/blob/948888/22cf7ac69c30dee5415c13aa41ee7f7d/brandstwiete-bei-st-annen-ad-hoc-massnahme-radverkehr-abgestimmte-planung-bericht-data.pdf"},
       {"fertiger Entwurf: Karte", ~d[2024-07],

@@ -22,10 +22,14 @@ defmodule Data.Article.Blog.QuerungKornweide do
     ]
   end
 
+  def map_image, do: Data.Article.Blog.OttoBrennerStrasse.map_image()
+
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4> <p>Momentan quert die Veloroute noch direkt an der Einmündung mit der Otto-Brenner-Straße die Kornweide. Dort gibt es für beide Fahrtrichtungen Bettelampeln um sicher über die Kornweide zu kommen. In Fahrtrichtung Süden gibt es alternativ eine weitere Bettelampel auf <.v lon={10.0068663} lat={53.4808685} dir="backward" bounds="10.005918,53.480448,10.007937,53.481072" ref={@ref}>Höhe des Alten Deichs</.v>.</p>
-    <h4>Planung</h4> <p>Es ist angedacht stattdessen die Straßen <.m bounds="10.0081,53.482441,10.010108,53.482842">Am Callabrack</.m> und <.m bounds="10.006974,53.480889,10.0081,53.482623">Alter Deich</.m> zu Fahrradstraßen umzubauen und den Radverkehr so zur vorhandenen Bettelampel zu führen. An der Kreuzung <.v bounds="10.00721,53.481737,10.012042,53.48323" lon={10.0096162} lat={53.4825554} dir="forward" ref={@ref}>Kreuzung Am Callabrack / Otto-Brenner-Straße</.v> ist vorgesehen durch eine breite Mittelinsel dem Radverkehr das Linksabbiegen in zwei Zügen zu ermöglichen. Auf der Otto-Brenner-Straße schließen Radfahrstreifen an. Die Einmündung der Nebenstraße ist als Gehwegüberfahrt geplant.</p>
+
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
+    <p>Es ist angedacht stattdessen die Straßen <.m bounds="10.0081,53.482441,10.010108,53.482842">Am Callabrack</.m> und <.m bounds="10.006974,53.480889,10.0081,53.482623">Alter Deich</.m> zu Fahrradstraßen umzubauen und den Radverkehr so zur vorhandenen Bettelampel zu führen. An der Kreuzung <.v bounds="10.00721,53.481737,10.012042,53.48323" lon={10.0096162} lat={53.4825554} dir="forward" ref={@ref}>Kreuzung Am Callabrack / Otto-Brenner-Straße</.v> ist vorgesehen durch eine breite Mittelinsel dem Radverkehr das Linksabbiegen in zwei Zügen zu ermöglichen. Auf der Otto-Brenner-Straße schließen Radfahrstreifen an. Die Einmündung der Nebenstraße ist als Gehwegüberfahrt geplant.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
