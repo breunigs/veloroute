@@ -14,6 +14,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          {:ok, data} <- read_project_file(proj),
          {:ok, tifs} <- find_tifs(data, Path.dirname(proj)),
          true <- maybe_modify_tifs(tifs),
+         tifs = Enum.reverse(tifs),
          :ok <- to_pmtiles(tifs, name) do
       has_name = Article.module_from_name(name)
       if !has_name, do: Logger.warning("no article with the name #{name} found")
