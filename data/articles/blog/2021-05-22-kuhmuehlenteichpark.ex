@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
 
   def links(_assigns) do
     [
+      {"Mögliche andere Führungsverläufe (Stellungnahme BVM)", ~d[2025-07],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi//vo020.asp?VOLFDNR=1015301"},
       {"NDR: Führung der Route soll nochmals geprüft werden", ~d[2024-10],
        "https://www.ndr.de/nachrichten/hamburg/Bezirk-Hamburg-Nord-Geplante-Veloroute-6-auf-Pruefstand,veloroute128.html"},
       {"2. Entwurf, Erläuterungen und Lageplan", "März 2024",

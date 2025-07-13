@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.SteinstrasseOst do
 
   def summary(),
     do:
-      "Nordseite behält 1,5m schmalen Radweg, doe Südseite behält den rund 1,75m breiten Radfahrstreifen."
+      "Nordseite bekommt 1,5m schmalen Radweg, die Südseite behält den rund 1,75m breiten Radfahrstreifen."
 
   def type(), do: :planned
   # def start(), do: ~d[2026Q1]
