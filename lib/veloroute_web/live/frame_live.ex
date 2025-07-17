@@ -212,6 +212,17 @@ defmodule VelorouteWeb.FrameLive do
     {:noreply, socket}
   end
 
+  def handle_event("switch_language", %{"lang" => lang}, %{assigns: assigns} = socket) do
+    art = assigns.current_page
+
+    if Enum.member?(art.languages(), lang) do
+      socket = assign(socket, :lang, lang)
+      {:noreply, socket}
+    else
+      {:noreply, socket}
+    end
+  end
+
   def handle_event("impressum", _params, socket) do
     text = "#{Credentials.impressum_address()}\n\n#{Settings.r(:email)}"
     {:noreply, push_event(socket, "impressum", %{text: text})}

@@ -142,6 +142,38 @@ defmodule Components.TagHelpers do
     ~H"<a phx-click={@js} href={@href} onclick='return false' {@rest}><%= render_slot(@inner_block) %></a>"
   end
 
+  @spec language_switcher(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :ref, :atom, required: true
+  attr :current_lang, :string
+  attr :rest, :global
+
+  def language_switcher(assigns) do
+    ~H"""
+    <%= for lang <- @ref.languages(), lang != @current_lang do %>
+      <Components.TagHelpers.language_switch_link lang={lang} {@rest}/> &middot;
+    <% end %>
+    """
+  end
+
+  @spec language_switch_link(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :lang, :string, required: true
+  attr :rest, :global
+
+  def language_switch_link(assigns) do
+    copy = %{"en" => "Prefer English?", "de" => "Lieber auf Deutsch?"}[assigns.lang]
+    copy = copy || "Switch to #{assigns.lang}"
+    assigns = assign(assigns, copy: copy)
+
+    ~H"""
+    <a {@rest}
+      onclick="return false"
+      href={"?lang=#{@lang}"}
+      phx-click={Phoenix.LiveView.JS.push("switch_language", value: %{lang: @lang})}>
+      {@copy}
+    </a>
+    """
+  end
+
   @spec search(map()) :: Phoenix.LiveView.Rendered.t()
   attr :query, :string
   attr :rest, :global
@@ -684,6 +716,7 @@ defmodule Components.TagHelpers do
 
   @spec article_updated_at(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
+  attr :lang, :string, required: true
 
   def article_updated_at(%{ref: art} = assigns) do
     if art.updated_at() do
@@ -698,6 +731,7 @@ defmodule Components.TagHelpers do
 
       ~H"""
         <div class="artfooter">
+          <.no_mobile><.language_switcher ref={@ref} current_lang={@lang}/></.no_mobile>
           <.mailto subject={@subject} body={@body}>Fehler melden</.mailto>
           &middot;
           <time class="updated" datetime={@machine} itemprop="dateModified" content={@machine}>Letzte Änderung <%= @human %></time>

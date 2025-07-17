@@ -30,7 +30,7 @@ defmodule Article.Renderer do
 
           <%= @body %>
           <Components.TagHelpers.construction_duration_paragraph ref={@ref} lang={@lang}/>
-          <Components.TagHelpers.article_updated_at ref={@ref}/>
+          <Components.TagHelpers.article_updated_at ref={@ref} lang={@lang}/>
           <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@ref.microdata?()}/>
         </article>
 

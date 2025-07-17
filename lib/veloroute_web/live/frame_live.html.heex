@@ -99,7 +99,10 @@
       appointments={@appointments}
     />
 
-    <small id="impressum"><a phx-click={Phoenix.LiveView.JS.push("impressum")}>Impressum</a></small>
+    <small id="impressum">
+      <Components.TagHelpers.language_switcher ref={@current_page} current_lang={@lang}/>
+      <a phx-click={Phoenix.LiveView.JS.push("impressum")}>Impressum</a>
+    </small>
   </div>
 </div>
 
