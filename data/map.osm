@@ -26525,6 +26525,27 @@
   <node id='-245410055' action='modify' lat='53.56547908898' lon='9.89879160851' />
   <node id='-245410056' action='modify' lat='53.56556351651' lon='9.89825784892' />
   <node id='-245410064' action='modify' lat='53.5656320142' lon='9.89784747094' />
+  <node id='-247053288' action='modify' lat='53.55175020658' lon='10.0057165271' />
+  <node id='-247053289' action='modify' lat='53.55175976753' lon='10.00572859704' />
+  <node id='-247053290' action='modify' lat='53.55189043356' lon='10.00670492113' />
+  <node id='-247053291' action='modify' lat='53.55205615574' lon='10.00804066122' />
+  <node id='-247053292' action='modify' lat='53.55227924228' lon='10.0099986738' />
+  <node id='-247053293' action='modify' lat='53.55240353284' lon='10.0099986738' />
+  <node id='-247053294' action='modify' lat='53.55230155087' lon='10.00907062948' />
+  <node id='-247053295' action='modify' lat='53.55237485043' lon='10.00895261228' />
+  <node id='-247053296' action='modify' lat='53.55257881377' lon='10.00889360368' />
+  <node id='-247053297' action='modify' lat='53.55255331841' lon='10.00872194231' />
+  <node id='-247053298' action='modify' lat='53.55281145826' lon='10.00865756929' />
+  <node id='-247053299' action='modify' lat='53.55279233684' lon='10.00843226373' />
+  <node id='-247053300' action='modify' lat='53.55240671977' lon='10.00858246744' />
+  <node id='-247053301' action='modify' lat='53.55237803737' lon='10.0084537214' />
+  <node id='-247053302' action='modify' lat='53.55224737285' lon='10.00832497537' />
+  <node id='-247053303' action='modify' lat='53.5521963817' lon='10.00802456796' />
+  <node id='-247053304' action='modify' lat='53.5519573599' lon='10.00617920816' />
+  <node id='-247053305' action='modify' lat='53.55198285563' lon='10.00607728422' />
+  <node id='-247053306' action='modify' lat='53.55189521401' lon='10.00536918104' />
+  <node id='-247053328' action='modify' lat='53.5515908548' lon='10.0055006133' />
+  <node id='-247053336' action='modify' lat='53.55163865968' lon='10.00574067101' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -75233,6 +75254,32 @@
     <nd ref='-245410064' />
     <nd ref='-245410030' />
     <tag k='name' v='2025-07-15-autobahn-7-bahrenfeld' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20921218' action='modify'>
+    <nd ref='-247053328' />
+    <nd ref='-247053336' />
+    <nd ref='-247053288' />
+    <nd ref='-247053289' />
+    <nd ref='-247053290' />
+    <nd ref='-247053291' />
+    <nd ref='-247053292' />
+    <nd ref='-247053293' />
+    <nd ref='-247053294' />
+    <nd ref='-247053295' />
+    <nd ref='-247053296' />
+    <nd ref='-247053297' />
+    <nd ref='-247053298' />
+    <nd ref='-247053299' />
+    <nd ref='-247053300' />
+    <nd ref='-247053301' />
+    <nd ref='-247053302' />
+    <nd ref='-247053303' />
+    <nd ref='-247053304' />
+    <nd ref='-247053305' />
+    <nd ref='-247053306' />
+    <nd ref='-247053328' />
+    <tag k='name' v='2025-07-17-steintorbruecke' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

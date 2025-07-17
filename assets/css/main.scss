@@ -38,6 +38,10 @@ body {
   contain: strict;
 }
 
+#videoOuter {
+  view-transition-name: match-element;
+}
+
 $mapBgColor: #EFE9E1;
 
 #map {

@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Autobahn7Bahrenfeld do
   use Article.Default
 
-  def title(), do: "A7 Anschlussstelle Bahrenfeld"
+  def title(), do: "A7 Anschlussstelle Bahrenfeld (Radroute 7)"
 
   def summary(),
     do:
