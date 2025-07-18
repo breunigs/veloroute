@@ -228,7 +228,13 @@ defmodule Search.Meilisearch.Nominatim do
     |> Enum.join(", ")
   end
 
-  @abbreviations %{"Str." => ["Straße"]}
+  @synonyms %{
+    "Str." => ["Straße"],
+    "Strasse" => ["Straße"],
+    "Straße" => ["Strasse"],
+    "ß" => ["ss"],
+    "ss" => ["ß"]
+  }
   @impl true
   def config() do
     # i.e. invert the map
@@ -239,7 +245,7 @@ defmodule Search.Meilisearch.Nominatim do
         end)
       end)
 
-    synonyms = Map.merge(synonyms, @abbreviations)
+    synonyms = Map.merge(synonyms, @synonyms)
 
     %{
       displayedAttributes:

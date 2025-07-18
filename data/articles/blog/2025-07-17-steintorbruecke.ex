@@ -20,6 +20,8 @@ defmodule Data.Article.Blog.Steintorbruecke do
     ]
   end
 
+  def point_of_interest(), do: %{lon: 10.0073647, lat: 53.5520514, zoom: 17}
+
   def map_image do
     {name(),
      [

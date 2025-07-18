@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
 
   def type(), do: :planned
   def start(), do: ~d[2025-08-04]
-  def stop(), do: ~d[2026-04-30]
+  def stop(), do: ~d[2026-04-26]
 
   def tags(), do: ["radroute-3", "radroute-2"]
 
@@ -62,6 +62,8 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-07],
+       "https://lsbg.hamburg.de/resource/blob/1081784/67f609d2d40128f981204d2412f9bcb6/willy-brandt-strasse-anliegerinformation-juli-2025-data.pdf"},
       {"Bauvergabe mit Lageplan", ~d[2025-04],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/e39994f7-fe6a-4624-b2ff-aecf0b6da6fa/details"}
     ]
