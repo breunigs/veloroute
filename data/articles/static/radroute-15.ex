@@ -17,20 +17,23 @@ defmodule Data.Article.Static.Radroute15 do
     do: [
       %Video.Track{
         renderer: 6,
-        group: "12",
+        group: "15",
         direction: :forward,
         from: "Christuskirche",
         to: "Landungsbrücken",
         parent_ref: __MODULE__,
         text: "von der Christuskirche (U2) zu den Landungsbrücken",
         historic: %{
+          "9e575c75a9f18ba53ae863eb7c9cb9dc" => ~d[2025-07],
           "9b837d0415f314347a4e1fafedb0260d" => ~d[2025-02]
         },
         videos: [
           {"2025-02-16-mitte/GX018055", "00:00:37.060", :end, vf: "curves=lighter"},
           {"2025-02-16-mitte/GX018056", :start, :end, vf: "curves=lighter"},
           {"2025-02-16-mitte/GX018057", :start, :end, vf: "curves=lighter"},
-          {"2025-02-16-mitte/GX018058", :start, :end, vf: "curves=lighter"},
+          {"2025-02-16-mitte/GX018058", :start, "00:00:03.904", vf: "curves=lighter"},
+          {"2025-07-20-random/GX018547", "00:00:29.530", "00:00:57.090"},
+          {"2025-02-16-mitte/GX018058", "00:00:46.895", :end, vf: "curves=lighter"},
           {"2025-02-16-mitte/GX018059", :start, :end, vf: "curves=lighter"},
           {"2025-02-16-mitte/GX018060", "00:00:00.434", :end, vf: "curves=lighter"},
           {"2025-02-16-mitte/GX018061", :start, "00:00:01.134", vf: "curves=lighter"}
@@ -38,7 +41,7 @@ defmodule Data.Article.Static.Radroute15 do
       },
       %Video.Track{
         renderer: 6,
-        group: "12",
+        group: "15",
         direction: :backward,
         from: "Landungsbrücken",
         to: "Christuskirche",

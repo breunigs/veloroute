@@ -216,7 +216,11 @@ defmodule VelorouteWeb.FrameLive do
     art = assigns.current_page
 
     if Enum.member?(art.languages(), lang) do
-      socket = assign(socket, :lang, lang)
+      socket =
+        socket
+        |> assign(:lang, lang)
+        |> update_url_query
+
       {:noreply, socket}
     else
       {:noreply, socket}

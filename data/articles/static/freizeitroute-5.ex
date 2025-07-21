@@ -16,7 +16,7 @@ defmodule Data.Article.Static.Freizeitroute5 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 5,
+        renderer: 6,
         group: "Vier und Marschlande",
         direction: :forward,
         from: "Hauptbahnhof",
@@ -24,18 +24,21 @@ defmodule Data.Article.Static.Freizeitroute5 do
         parent_ref: __MODULE__,
         text: "vom Hauptbahnhof nach Borghorst",
         historic: %{
+          "45cc5d0556eec77563541c12e8007324" => ~d[2025-07],
           "b6249061bc668b3e3f29f19b11aa93e5" => ~d[2024-03],
           "862de23b22ca3ff53056fb393d19e8fd" => ~d[2021-06]
         },
         videos: [
-          {"2024-03-26-fr5/GX016951", :start, :end},
-          {"2024-03-26-fr5/GX016952", :start, :end},
-          {"2024-03-26-fr5/GX016953", :start, :end},
-          {"2024-03-26-fr5/GX016954", :start, :end},
-          {"2024-03-26-fr5/GX016955", :start, :end},
-          {"2024-03-26-fr5/GX016956", :start, :end},
-          {"2024-03-26-fr5/GX016957", :start, :end},
-          {"2024-03-26-fr5/GX016958", :start, :end},
+          {"2024-03-26-fr5/GX016951", :start, "00:00:13.377"},
+          {"2024-03-26-fr5/GX016952", :start, "00:00:01.368"},
+          {"2025-03-01-west/GX018370", "00:00:07.961", "00:00:14.428"},
+          {"2025-03-01-west/GX018371", :start, :end},
+          {"2025-03-01-west/GX018372", :start, "00:00:01.702"},
+          {"2024-03-26-fr5/GX016956", "00:00:00.634", "00:00:02.302"},
+          {"2024-03-26-fr5/GX016957", :start, "00:00:02.703"},
+          {"2024-01-27-bergedorf/GX016740", "00:00:02.169", "00:00:07.007"},
+          {"2025-07-20-random/GX018555", "00:01:08.635", "00:01:36.341"},
+          {"2024-03-26-fr5/GX016958", "00:00:05.572", :end},
           {"2024-03-26-fr5/GX016959", :start, :end},
           {"2024-03-26-fr5/GX026959", :seamless, "00:03:09.823"}
         ]

@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.BudapesterStrasse2 do
     do:
       "Hochbordradwege werden neu gepflastert und teilweise verbreitert. Die Breiten reichen von 1,2m bis 2,5m, wobei Breiten ab 2,0m überwiegen."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-1", "radroute-15", "bundesstraße-4"]
 

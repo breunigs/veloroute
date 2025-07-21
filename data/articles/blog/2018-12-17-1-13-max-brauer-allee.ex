@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
     do:
       "Verschiedene Führungen; teilweise auf Busspur; Schutz vor KFZ nicht überall. Kreuzungen deutlich besser."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2023-05-02]
   def stop(), do: ~d[2025-03-28]
 

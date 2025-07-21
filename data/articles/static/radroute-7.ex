@@ -204,14 +204,14 @@ defmodule Data.Article.Static.Radroute7 do
         <td><.v bounds="10.015691,53.554022,10.032917,53.562543" lon={10.022447} lat={53.55794} dir="forward" ref={@ref}>Hohenfelde</.v></td>
       </tr>
       <tr>
-        <td></td>
-        <td><.graph icon={:underpass} ref={@ref}/></td>
-        <td class="dim"><.v bounds="10.069079,53.565952,10.079392,53.571986" lon={10.072597} lat={53.569186} dir="forward" ref={@ref} highlight="Robert-Schuman-Brücke">Robert-Schuman-Brücke (Ring 2)</.v></td>
-      </tr>
-      <tr>
         <td><.icon>radroute-17</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="10.030704,53.557958,10.055372,53.571052" lon={10.043693} lat={53.563793} dir="forward" ref={@ref}>Eilbek</.v></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><.graph icon={:underpass} ref={@ref}/></td>
+        <td class="dim"><.v bounds="10.069079,53.565952,10.079392,53.571986" lon={10.072597} lat={53.569186} dir="forward" ref={@ref} highlight="Robert-Schuman-Brücke">Robert-Schuman-Brücke (Ring 2)</.v></td>
       </tr>
       <tr>
         <td><.icon>br-wandsbek-w2</.icon><.icon>radroute-8</.icon></td>
@@ -238,8 +238,9 @@ defmodule Data.Article.Static.Radroute7 do
 
     <p>Radroute 7 verläuft in Ost-West Richtung und verbindet <.v bounds="9.835515,53.585905,9.866588,53.602117" lon={9.839939} lat={53.594863} dir="forward" ref={@ref}>Schenefeld</.v> (Vorort) mit <.v bounds="10.145341,53.594407,10.160741,53.60604" lon={10.154252} lat={53.602163} dir="forward" ref={@ref}>Rahlstedt</.v> (Ortsteil). Die Route quert die Alster am <.v bounds="9.981551,53.539851,10.041784,53.576141" lon={9.992399} lat={53.553296} dir="forward" ref={@ref}>Jungfernstieg</.v> – wodurch sie eine leichte Bogenform erhält.</p>
 
+    <.roaddiagram src="radroute-07-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 07" class="right"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
+    <p>Die Route ist im Zentrum von etwa <.v bounds="9.93142,53.548879,9.961036,53.557599" lon={9.947007} lat={53.555567} dir="forward" ref={@ref}>Altona-Altstadt</.v> bis <.v bounds="10.030704,53.557958,10.055372,53.571052" lon={10.043693} lat={53.563793} dir="forward" ref={@ref}>Eilbek</.v> beschildert. Weiter außerhalb benötigt man Ortskenntnis oder ein Navi.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Die Route verläuft größtenteils auf befestigten Wegen. Ausnahme ist der <.v bounds="9.861843,53.566464,9.890328,53.585628" lon={9.87419} lat={53.575726} dir="forward" ref={@ref}>Lise-Meitner-Park</.v>, dessen sandige Wege nicht wetterfest sind.</p>

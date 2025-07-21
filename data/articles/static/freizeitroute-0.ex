@@ -17,7 +17,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 5,
+        renderer: 6,
         group: "1. Grüner Ring",
         direction: :forward,
         from: "Alter Elbpark",
@@ -27,6 +27,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
         text: "im Uhrzeigersinn entlang der Wallanlagen",
         end_action: :loop,
         historic: %{
+          "ac7a4a2b68d913fea551026389286eb7" => ~d[2025-03],
           "861d51b4e28aaf9672747886af57cb6f" => ~d[2024-03],
           "e8975618b6fd00327000773350ced41d" => ~d[2021-07]
         },
@@ -41,10 +42,11 @@ defmodule Data.Article.Static.Freizeitroute0 do
           {"2024-03-16-fr8-gr1uhr/GX016874", :start, :end},
           {"2024-03-16-fr8-gr1uhr/GX016875", :start, :end},
           {"2024-03-16-fr8-gr1uhr/GX016876", :start, :end},
-          {"2024-03-16-fr8-gr1uhr/GX016877", :start, :end},
-          {"2024-03-16-fr8-gr1uhr/GX016878", :start, :end},
-          {"2024-03-16-fr8-gr1uhr/GX016879", :start, :end},
-          {"2024-03-16-fr8-gr1uhr/GX016880", :start, :end},
+          {"2024-03-16-fr8-gr1uhr/GX016877", :start, "00:00:15.930"},
+          {"2025-03-01-west/GX018370", "00:00:09.299", "00:00:14.428"},
+          {"2025-03-01-west/GX018371", :start, :end},
+          {"2025-03-01-west/GX018372", :start, "00:00:11.712"},
+          {"2024-03-16-fr8-gr1uhr/GX016880", "00:00:15.883", :end},
           {"2024-03-16-fr8-gr1uhr/GX016881", :start, :end},
           {"2024-03-16-fr8-gr1uhr/GX016882", :start, :end},
           {"2024-03-16-fr8-gr1uhr/GX016883", :start, :end},

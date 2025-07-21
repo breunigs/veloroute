@@ -39941,7 +39941,7 @@
     <nd ref='1097590007074425' />
     <nd ref='10978180007074897' />
   </way>
-  <way id='-20435073'>
+  <way id='-20435073' action='modify'>
     <nd ref='-143581254' />
     <nd ref='-143581255' />
     <nd ref='-143581256' />
@@ -39958,6 +39958,7 @@
     <nd ref='-143581267' />
     <nd ref='-143590560' />
     <nd ref='-143581254' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-07-24-hoegerdamm' />
     <tag k='type' v='article' />
   </way>
@@ -48659,7 +48660,7 @@
     <nd ref='-143589783' />
     <nd ref='4648960005865085' />
   </way>
-  <way id='-20435451'>
+  <way id='-20435451' action='modify'>
     <nd ref='-143589785' />
     <nd ref='-143589786' />
     <nd ref='-143589787' />
@@ -48673,6 +48674,7 @@
     <nd ref='-143589795' />
     <nd ref='-143589796' />
     <nd ref='-143589785' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2021-09-07-grelckstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -67569,7 +67571,7 @@
     <tag k='name' v='2024-05-05-wiesendamm-west' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20474173'>
+  <way id='-20474173' action='modify'>
     <nd ref='-149162920' />
     <nd ref='-149162921' />
     <nd ref='-149162922' />
@@ -67595,6 +67597,7 @@
     <nd ref='-149162942' />
     <nd ref='-149162943' />
     <nd ref='-149162920' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2024-05-09-budapester-strasse-1' />
     <tag k='type' v='article' />
   </way>
@@ -68400,7 +68403,7 @@
     <nd ref='97438460005282099' />
     <nd ref='9739790005281941' />
   </way>
-  <way id='-20619228'>
+  <way id='-20619228' action='modify'>
     <nd ref='-176728167' />
     <nd ref='-176728168' />
     <nd ref='-176728169' />
@@ -68417,6 +68420,7 @@
     <nd ref='-176728292' />
     <nd ref='-176728173' />
     <nd ref='-176728167' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2024-10-08-budapester-strasse-2' />
     <tag k='type' v='article' />
   </way>

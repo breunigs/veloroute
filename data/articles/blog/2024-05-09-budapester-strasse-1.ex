@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
     do:
       "Hochbordradwege werden neu gepflastert und teilweise verbreitert. Oft sind 1,75m bis 2,0m Breite vorgesehen. In Richtung Süden bleibt eine lange Engstelle mit nur 1,0m Breite."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-15", "bundesstraße-4"]
 

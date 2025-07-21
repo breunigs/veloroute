@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def title(), do: "Recha-Lübke-Damm (Freizeitroute 6)"
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2023-10-09]
   def stop(), do: ~d[2025-02-28]
   def construction_site_id_hh(), do: [617_156]
@@ -14,8 +14,10 @@ defmodule Data.Article.Blog.Hoegerdamm do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2025-03],
-       "https://lsbg.hamburg.de/resource/blob/1007206/7a7ef45f8374ac3a5599aae696303c11/recha-luebke-damm-anliegerinformation-maerz-2025-data.pdf"},
+      {"Pressemitteilung zur Fertigstellung", ~d[2025-06],
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/recha-luebke-damm-fertiggestellt-1075128"},
+      # {"Baustelleninfo", ~d[2025-03],
+      #  "https://lsbg.hamburg.de/resource/blob/1007206/7a7ef45f8374ac3a5599aae696303c11/recha-luebke-damm-anliegerinformation-maerz-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2025-01],
       #  "https://lsbg.hamburg.de/resource/blob/1007206/bd5f76d3beae72fb4995086436b93c51/recha-luebke-damm-anliegerinformation-januar-2025-data.pdf"},
       {"Pressemitteilung Baufortschritt", "Februar 2024",
