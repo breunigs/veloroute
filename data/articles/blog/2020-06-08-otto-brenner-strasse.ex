@@ -6,8 +6,8 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
   def title(), do: "Otto-Brenner-Straße (Radroute 23)"
 
   def type(), do: :planned
-  def start(), do: ~d[2025-07-14]
-  def stop(), do: ~d[2026-10-31]
+  def start(), do: ~d[2026-03-01]
+  def stop(), do: ~d[2027-08-31]
   def construction_site_id_hh(), do: [1_439_880]
 
   def tags(), do: ["radroute-23", "10", "M12.2"]

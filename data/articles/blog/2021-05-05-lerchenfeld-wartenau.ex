@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo: Wartenaubrücke", ~d[2025-07],
+       "https://lsbg.hamburg.de/resource/blob/1041004/11a83b1bffb8f2fe870b40d49c9d979b/wartenaubruecke-anliegerinformation-mai-2025-data.pdf"},
       {"überarbeitete Lagepläne und Präsentation", ~d[2025-05],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/to010.asp?SILFDNR=1003276"},
       {"Präsentation zur möglichen Planüberarbeitung", ~d[2025-05],
