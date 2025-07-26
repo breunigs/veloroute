@@ -3586,7 +3586,7 @@
           0,
           2,
           19,
-          ["case", ["boolean", ["feature-state", "selected"], false], 16, 12]
+          12
         ]
       }
     },
@@ -3794,41 +3794,32 @@
         ["match", ["get", "type"], ["alltag", "detour", "planned"], true, false]
       ],
       "layout": {
-        "text-size": 25,
-        "text-allow-overlap": true,
-        "text-ignore-placement": true,
-        "text-max-angle": 180,
-        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
+        "symbol-spacing": {"stops": [[14, 50], [22, 500]], "base": 1},
         "symbol-placement": "line",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "text-field": "",
-        "text-font": [],
-        "visibility": "none",
-        "text-line-height": 1.2,
+        "visibility": "visible",
         "icon-anchor": "center",
-        "text-padding": 4,
-        "icon-image": "triangle",
+        "icon-image": "sharrows",
         "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
+        "icon-ignore-placement": false,
         "icon-optional": false,
         "text-optional": true,
         "icon-size": [
           "interpolate",
-          ["linear"],
+          ["exponential", 1.5],
           ["zoom"],
           14,
-          0.45,
-          16,
-          0.5,
+          0.25,
           19,
-          0.9
-        ]
-      },
-      "paint": {
-        "text-color": "#ffffff",
-        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
+          0.82
+        ],
+        "icon-rotation-alignment": "map",
+        "icon-pitch-alignment": "map",
+        "icon-keep-upright": false,
+        "symbol-avoid-edges": true,
+        "icon-padding": 20
       }
     },
     {
@@ -3849,41 +3840,32 @@
         ]
       ],
       "layout": {
-        "text-size": 25,
-        "text-allow-overlap": true,
-        "text-ignore-placement": true,
-        "text-max-angle": 180,
-        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
+        "symbol-spacing": {"stops": [[14, 50], [22, 500]], "base": 1},
         "symbol-placement": "line",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "text-field": "",
-        "text-font": [],
         "visibility": "visible",
-        "text-line-height": 1.2,
         "icon-anchor": "center",
-        "text-padding": 4,
-        "icon-image": "triangle",
+        "icon-image": "sharrows",
         "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
+        "icon-ignore-placement": false,
         "icon-optional": false,
         "text-optional": true,
         "icon-size": [
           "interpolate",
-          ["linear"],
+          ["exponential", 1.5],
           ["zoom"],
           14,
-          0.45,
-          16,
-          0.5,
+          0.25,
           19,
-          0.9
-        ]
-      },
-      "paint": {
-        "text-color": "#ffffff",
-        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
+          0.82
+        ],
+        "icon-rotation-alignment": "map",
+        "icon-pitch-alignment": "map",
+        "icon-keep-upright": false,
+        "symbol-avoid-edges": true,
+        "icon-padding": 20
       }
     },
     {
@@ -3898,41 +3880,32 @@
         ["match", ["get", "type"], ["bezirk"], true, false]
       ],
       "layout": {
-        "text-size": 25,
-        "text-allow-overlap": true,
-        "text-ignore-placement": true,
-        "text-max-angle": 180,
-        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
+        "symbol-spacing": {"stops": [[14, 50], [22, 500]], "base": 1},
         "symbol-placement": "line",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "text-field": "",
-        "text-font": [],
-        "visibility": "none",
-        "text-line-height": 1.2,
+        "visibility": "visible",
         "icon-anchor": "center",
-        "text-padding": 4,
-        "icon-image": "triangle",
+        "icon-image": "sharrows",
         "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
+        "icon-ignore-placement": false,
         "icon-optional": false,
         "text-optional": true,
         "icon-size": [
           "interpolate",
-          ["linear"],
+          ["exponential", 1.5],
           ["zoom"],
           14,
-          0.45,
-          16,
-          0.5,
+          0.25,
           19,
-          0.9
-        ]
-      },
-      "paint": {
-        "text-color": "#ffffff",
-        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
+          0.82
+        ],
+        "icon-rotation-alignment": "map",
+        "icon-pitch-alignment": "map",
+        "icon-keep-upright": false,
+        "symbol-avoid-edges": true,
+        "icon-padding": 20
       }
     },
     {
@@ -3947,41 +3920,32 @@
         ["match", ["get", "type"], ["freizeit"], true, false]
       ],
       "layout": {
-        "text-size": 25,
-        "text-allow-overlap": true,
-        "text-ignore-placement": true,
-        "text-max-angle": 180,
-        "symbol-spacing": ["interpolate", ["linear"], ["zoom"], 0, 10, 22, 45],
+        "symbol-spacing": {"stops": [[14, 50], [22, 500]], "base": 1},
         "symbol-placement": "line",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "text-field": "",
-        "text-font": [],
-        "visibility": "none",
-        "text-line-height": 1.2,
+        "visibility": "visible",
         "icon-anchor": "center",
-        "text-padding": 4,
-        "icon-image": "triangle",
+        "icon-image": "sharrows",
         "icon-allow-overlap": true,
-        "icon-ignore-placement": true,
+        "icon-ignore-placement": false,
         "icon-optional": false,
         "text-optional": true,
         "icon-size": [
           "interpolate",
-          ["linear"],
+          ["exponential", 1.5],
           ["zoom"],
           14,
-          0.45,
-          16,
-          0.5,
+          0.25,
           19,
-          0.9
-        ]
-      },
-      "paint": {
-        "text-color": "#ffffff",
-        "text-halo-color": "hsla(0, 0%, 0%, 0.4)"
+          0.82
+        ],
+        "icon-rotation-alignment": "map",
+        "icon-pitch-alignment": "map",
+        "icon-keep-upright": false,
+        "symbol-avoid-edges": true,
+        "icon-padding": 20
       }
     },
     {
