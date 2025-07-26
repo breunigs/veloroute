@@ -162,11 +162,15 @@ defmodule Components.TagHelpers do
   def language_switch_link(assigns) do
     copy = %{"en" => "Prefer English?", "de" => "Lieber auf Deutsch?"}[assigns.lang]
     copy = copy || "Switch to #{assigns.lang}"
-    assigns = assign(assigns, copy: copy)
+
+    cookie =
+      "document.cookie='lang=#{assigns.lang}; expires=Fri, 31 Dec 9999 00:00:00 GMT; SameSite=Strict'; return false"
+
+    assigns = assign(assigns, copy: copy, cookie: cookie)
 
     ~H"""
     <a {@rest}
-      onclick="return false"
+      onclick={@cookie}
       href={"?lang=#{@lang}"}
       phx-click={Phoenix.LiveView.JS.push("switch_language", value: %{lang: @lang})}>
       {@copy}

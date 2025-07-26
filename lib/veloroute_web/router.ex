@@ -3,17 +3,20 @@ defmodule VelorouteWeb.Router do
 
   import Phoenix.LiveView.Router
 
-  defp read_cookie(conn, cookie_name) do
+  defp read_cookies(conn, cookie_names) do
     conn = Plug.Conn.fetch_cookies(conn)
-    value = conn.cookies[to_string(cookie_name)]
-    Plug.Conn.put_session(conn, cookie_name, value)
+
+    Enum.reduce(cookie_names, conn, fn cookie_name, conn ->
+      value = conn.cookies[to_string(cookie_name)]
+      Plug.Conn.put_session(conn, cookie_name, value)
+    end)
   end
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :read_cookie, :show_map_image
+    plug :read_cookies, [:show_map_image, :lang]
     plug :put_root_layout, {VelorouteWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers

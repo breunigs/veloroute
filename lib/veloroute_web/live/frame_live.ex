@@ -24,7 +24,6 @@ defmodule VelorouteWeb.FrameLive do
     show_map_image: false,
     og_image: nil,
     enable_drawing_tools: false,
-    lang_user_set: false,
     device_os: nil,
     lang: nil,
     page_title: Settings.c(:page_title_long)
@@ -46,7 +45,6 @@ defmodule VelorouteWeb.FrameLive do
         device_os: device_os,
         enable_drawing_tools: draw,
         lang: session["lang"],
-        lang_user_set: session["lang_user_set"],
         show_map_image: !!session["show_map_image"],
         map_bounds: Geo.BoundingBox.parse(params["bounds"]) || @default_bounds,
         appointments: Appointments.List.current()
@@ -499,12 +497,6 @@ defmodule VelorouteWeb.FrameLive do
       "pos_sec" => if(assigns[:video_start], do: assigns[:video_start] / 1000.0),
       "bounds" => bounds
     }
-
-    query =
-      if assigns[:lang] &&
-           (assigns[:lang] != Settings.r(:default_language) || assigns[:lang_user_set]),
-         do: Map.put(query, "lang", assigns[:lang]),
-         else: query
 
     if blank?(assigns[:search_query]) do
       Map.delete(query, "search_query")

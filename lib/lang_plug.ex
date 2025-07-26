@@ -6,26 +6,28 @@ defmodule LangPlug do
 
   @impl Plug
   def call(conn, _opts) do
-    {user_set, lang} = fetch_lang(conn)
-    lang = lang || Settings.r(:default_language)
+    lang =
+      [
+        from_params(conn),
+        Plug.Conn.get_session(conn, "lang"),
+        from_accept_language_header(conn),
+        Settings.r(:default_language)
+      ]
+      |> dbg
+      |> List.flatten()
+      |> Util.compact()
+      |> Enum.find(&Enum.member?(all_languages(), &1))
 
-    conn
-    |> Plug.Conn.put_session("lang", lang)
-    |> Plug.Conn.put_session("lang_user_set", user_set)
+    Plug.Conn.put_session(conn, "lang", lang)
   end
 
-  defp fetch_lang(conn) do
-    with %{params: %{"lang" => lang}} <- conn,
-         true <- Enum.member?(all_languages(), lang) do
-      {true, lang}
-    else
-      _ ->
-        {false,
-         conn
-         |> Plug.Conn.get_req_header("accept-language")
-         |> Enum.flat_map(&String.split(&1, ~r/[_,;-]/))
-         |> Enum.find(&Enum.member?(all_languages(), &1))}
-    end
+  defp from_params(%{params: %{"lang" => lang}} = _conn), do: lang
+  defp from_params(_conn), do: nil
+
+  defp from_accept_language_header(conn) do
+    conn
+    |> Plug.Conn.get_req_header("accept-language")
+    |> Enum.flat_map(&String.split(&1, ~r/[_,;-]/))
   end
 
   use Memoize
