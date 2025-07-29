@@ -13,7 +13,6 @@ defmodule LangPlug do
         from_accept_language_header(conn),
         Settings.r(:default_language)
       ]
-      |> dbg
       |> List.flatten()
       |> Util.compact()
       |> Enum.find(&Enum.member?(all_languages(), &1))
