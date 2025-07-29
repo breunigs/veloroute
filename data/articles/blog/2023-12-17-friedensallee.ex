@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Friedensallee do
   def stop(), do: ~d[2026-06]
   # def construction_site_id_hh(), do: [599_026]
 
-  def type(), do: :construction
+  def type(), do: :intent
 
   def tags(), do: ["radroute-7", "A03"]
 

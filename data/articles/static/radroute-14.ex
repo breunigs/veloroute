@@ -114,8 +114,9 @@ defmodule Data.Article.Static.Radroute14 do
 
     <p>Die Route verläuft diagonal (Südwest ↔ Nordost) vom <.v bounds="9.915341,53.541753,9.952843,53.547672" lon={9.9363} lat={53.546423} dir="forward" ref={@ref}>Altonaer Balkon</.v> bis zum <.v bounds="9.995769,53.565999,10.00638,53.580131" lon={9.99874} lat={53.573198} dir="forward" ref={@ref}>Alstervorland</.v>. Sie stellt damit eine Querverbindung in den zentrumsnahen, westlichen Stadtteilen her. Sie verläuft fast parallel zur <.a name="radroute-16">Radroute 16</.a>, die ein paar Blöcke weiter nördlich liegt.</p>
 
+    <.roaddiagram src="radroute-14-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 14" class="right"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist nicht beschildert. Da man aber immer auf dem selben Straßenzug bleibt und nie abbiegen muss, kann man ihr auch ohne Ortskenntnis gut folgen. (<em>In Navi Stimme:</em> „Dem Straßenverlauf folgen“).</p>
+    <p>Die Route ist teilweise beschildert (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Da man immer auf dem selben Straßenzug bleibt und nie abbiegen muss, kann man ihr aber auch ohne Schilder gut folgen.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Meist asphaltiert, teils gepflastert und nur an einer Bushaltestelle über Kopfsteinpflaster.</p>

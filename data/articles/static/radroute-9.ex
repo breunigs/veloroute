@@ -110,8 +110,9 @@ defmodule Data.Article.Static.Radroute9 do
 
     <p>Radroute 9 verläuft größtenteils am östlichen Ufer der Außenalster. Auf Höhe des Lohmühlenpark knickt die Route Richtung Berliner Tor ab.</p>
 
+    <.roaddiagram src="radroute-09-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 9" class="right"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist praktisch nicht beschildert – bisher gibt es nur einen Wegweiser <.v bounds="9.995227,53.577166,10.001575,53.582297" lon={9.99915} lat={53.579967} dir="forward" ref={@ref}>auf der Krugkoppelbrücke</.v>. Da sie sich aber an der Außenalster entlang schmiegt, ist sie auch ohne Hilfsmittel leicht zu finden. Lediglich die <.v bounds="10.009838,53.557806,10.019329,53.564167" lon={10.01371} lat={53.561542} dir="forward" ref={@ref}>Abzweigung zum Lohmühlenpark</.v> muss man kennen.</p>
+    <p>Die Route ist praktisch nicht beschildert – bisher gibt es nur einige Wegweiser <.v bounds="9.995227,53.577166,10.001575,53.582297" lon={9.99915} lat={53.579967} dir="forward" ref={@ref}>um die Alster</.v> (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Da sie sich aber an der Außenalster entlang schmiegt, ist sie auch ohne Hilfsmittel leicht zu finden. Lediglich die <.v bounds="10.009838,53.557806,10.019329,53.564167" lon={10.01371} lat={53.561542} dir="forward" ref={@ref}>Abzweigung zum Lohmühlenpark</.v> muss man kennen.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Größenteils sind die Radwege asphaltiert, teils kommt Pflaster zum Einsatz. Die selten verwendeten Metallgitter dienen dem Wurzelschutz der Bäume.</p>

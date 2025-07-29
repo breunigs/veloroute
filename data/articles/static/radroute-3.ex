@@ -186,7 +186,7 @@ defmodule Data.Article.Static.Radroute3 do
 
     <.roaddiagram src="radroute-03-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 03" class="right"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route soll bis Ende 2025 von <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref={@ref}>Niendorf</.v> bis zur <.v bounds="9.986669,53.550813,9.999086,53.556134" lon={9.992185} lat={53.553435} dir="forward" ref={@ref}>Neustadt</.v> beschildert werden. Für die Fahrt weiter in Richtung Süden benötigt man entweder Ortskenntnis oder ein Navi.</p>
+    <p>Die Route soll bis Ende 2025 von <.v bounds="9.943576,53.62753,9.959497,53.644837" lon={9.952295} lat={53.635892} dir="forward" ref={@ref}>Niendorf</.v> bis zur <.v bounds="9.986669,53.550813,9.999086,53.556134" lon={9.992185} lat={53.553435} dir="forward" ref={@ref}>Neustadt</.v> beschildert werden (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Für die Fahrt weiter in Richtung Süden benötigt man entweder Ortskenntnis oder ein Navi.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Asphaltierte Abschnitte überwiegen deutlich. Die Fahrt <.v bounds="10.007657,53.520421,10.029471,53.534909" lon={10.017893} lat={53.528092} dir="forward" ref={@ref}>Am Moldauhafen</.v> ist zwar schon heute möglich, aber weil der <.v bounds="10.006272,53.518344,10.025731,53.52786" lon={10.012246} lat={53.523055} dir="forward" ref={@ref}>Anschluss am südlichen Ende</.v> zu umständlich ist, bisher nicht zu empfehlen. Bis der geplante Radweg gebaut wird, empfiehlt sich die Fahrt über die Neue Elbbrücke auf der <.a name="radroute-12">Radroute 12</.a>.</p>

@@ -240,7 +240,7 @@ defmodule Data.Article.Static.Radroute7 do
 
     <.roaddiagram src="radroute-07-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 07" class="right"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist im Zentrum von etwa <.v bounds="9.93142,53.548879,9.961036,53.557599" lon={9.947007} lat={53.555567} dir="forward" ref={@ref}>Altona-Altstadt</.v> bis <.v bounds="10.030704,53.557958,10.055372,53.571052" lon={10.043693} lat={53.563793} dir="forward" ref={@ref}>Eilbek</.v> beschildert. Weiter außerhalb benötigt man Ortskenntnis oder ein Navi.</p>
+    <p>Die Route ist im Zentrum von etwa <.v bounds="9.93142,53.548879,9.961036,53.557599" lon={9.947007} lat={53.555567} dir="forward" ref={@ref}>Altona-Altstadt</.v> bis <.v bounds="10.030704,53.557958,10.055372,53.571052" lon={10.043693} lat={53.563793} dir="forward" ref={@ref}>Eilbek</.v> beschildert (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Weiter außerhalb benötigt man Ortskenntnis oder ein Navi.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Die Route verläuft größtenteils auf befestigten Wegen. Ausnahme ist der <.v bounds="9.861843,53.566464,9.890328,53.585628" lon={9.87419} lat={53.575726} dir="forward" ref={@ref}>Lise-Meitner-Park</.v>, dessen sandige Wege nicht wetterfest sind.</p>

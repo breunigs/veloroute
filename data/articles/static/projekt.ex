@@ -22,6 +22,7 @@ defmodule Data.Article.Static.Projekt do
 
     <h4 lang="en">Helping</h4>
     <ul>
+      <li><.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">upload photos of Radroute signposts</.a></li>
       <li>report (completed) constructions</li>
       <li>Improve the <.a href="https://learnosm.org/en/beginner/">OpenStreetMap</.a></li>
     </ul>
@@ -62,6 +63,7 @@ defmodule Data.Article.Static.Projekt do
 
     <h4>Helfen</h4>
     <ul>
+      <li><.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Fotos von Radweg Wegweisern machen</.a></li>
       <li>Melde (abgeschlossene) Umbauten</li>
       <li>Verbessere die <.a href="https://learnosm.org/de/beginner/">OpenStreetMap</.a></li>
     </ul>
