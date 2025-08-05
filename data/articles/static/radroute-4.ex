@@ -242,7 +242,7 @@ defmodule Data.Article.Static.Radroute4 do
 
     <img src="/images/radroute4sign.webp" width="78" height="326" style="float:right;shape-outside:url(/images/radroute4sign.webp);shape-margin: 0.5rem;margin-left:0.6rem;" alt="Wegweiser für Radroute 4"/>
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist um die Alster herum beschildert (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Für die meisten Abschnitte benötigt man daher Navi oder Ortskenntnis.</p>
+    <p>Die Route ist nur um die Alster herum beschildert (<.a href="https://veloroute.hamburg/crowdsourcing/upload" rel="nofollow">Wo genau? Hilf mit!</.a>). Für die meisten Abschnitte benötigt man daher Navi oder Ortskenntnis.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Am häufigsten sind die Oberflächen asphaltiert, aber auch modernes Betonsteinpflaster kommt zum Einsatz. Bis auf eine Ausbaulücke in <.v bounds="9.976827,53.434736,9.999982,53.455868" lon={9.983349} lat={53.445397} dir="backward" ref={@ref}>Wilstorf</.v> ist die Route bereits heute in beide Richtungen durchgängig befahrbar.</p>

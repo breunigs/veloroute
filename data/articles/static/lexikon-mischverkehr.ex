@@ -9,8 +9,8 @@ defmodule Data.Article.Static.LexikonMischverkehr do
 
   def tags(), do: ["lexikon", "mischverkehr"]
 
-  def tracks(), do: Data.Article.Static.Alltagsroute1.tracks()
-  def point_of_interest(), do: %{lon: 9.989528, lat: 53.54839, zoom: 16}
+  def tracks(), do: Data.Article.Static.Radroute1.tracks()
+  def point_of_interest(), do: %{lon: 9.98968, lat: 53.5484, zoom: 16}
 
   def text(assigns) do
     ~H"""

@@ -8,6 +8,7 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
   def type(), do: :construction
   def start(), do: ~d[2025-07-14]
   def stop(), do: ~d[2025-08-02]
+  def construction_site_id_hh(), do: [1_447_366]
 
   def tags(), do: ["radroute-concept-a", "radroute-3", "10"]
 

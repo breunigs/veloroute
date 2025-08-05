@@ -12,7 +12,7 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
     do:
       "Schutzstreifen are part of a single lane and marked by a dashed line. They may be temporarily used by motorized vehicles to avoid opposite traffic. Cars must leave 1.5m space when overtaking, independent of the dashed line."
 
-  def tracks(), do: Data.Article.Static.Alltagsroute3.tracks()
+  def tracks(), do: Data.Article.Static.Radroute3.tracks()
   def point_of_interest(), do: %{lon: 9.955712, lat: 53.584148, zoom: 16}
 
   def tags(), do: ~w(lexikon schutzstreifen)
@@ -21,9 +21,12 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def text(%{lang: "en"} = assigns) do
     ~H"""
-    <p lang="en"><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="3">Example video of “<span translate="no" lang="de">Schutzsstreifen</span>” in <span translate="no" lang="de">Stresemannallee</span></.v> or <.a href="/images/schutzstreifen.webp" target="_blank">example photo</.a></p>
+    <p lang="en"><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="radroute-3">Example video of “<span translate="no" lang="de">Schutzsstreifen</span>” in <span translate="no" lang="de">Stresemannallee</span></.v></p>
 
-    <p lang="en"><span translate="no" lang="de">Schutzsstreifen</span> are a smaller variant of <.ref>Radfahrstreifen</.ref> and worse in every regard. They are part of a single lane and marked by a dashed line – it's usually very narrow. The space right of the dashed line may be used by cars and trucks to avoid opposite traffic if there's otherwise not enough space. Overtaking cyclists is only permitted if there's at least 1.5m side clearance possible.</p>
+    <p lang="en"><span translate="no" lang="de">Schutzsstreifen</span> are a smaller variant of <.ref>Radfahrstreifen</.ref> and worse in every regard.</p>
+    <.a href="/images/schutzstreifen.webp" target="_blank"><img src="/images/schutzstreifen.webp" width="2704" height="1520" alt="Example of a Schutzstreifens." style="max-width:100%; height: auto; margin-top: .6rem;"/></.a>
+
+    <p>They are part of a single lane and marked by a dashed line – it's usually very narrow. The space right of the dashed line may be used by cars and trucks to avoid opposite traffic if there's otherwise not enough space. Overtaking cyclists is only permitted if there's at least 1.5m side clearance possible.</p>
 
     <.roaddiagram src="schutzstreifen" alt="Bird's eye view on a street with Schutzsstreifen on both sides. It shows how the road is to be used for car/car and truck/truck situations."/>
 
@@ -36,9 +39,13 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def text(assigns) do
     ~H"""
-    <p><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="3">Videobeispiel Schutzstreifen Stresemannallee</.v> oder <.a href="/images/schutzstreifen.webp" target="_blank">Foto</.a></p>
+    <p><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="radroute-3">Videobeispiel Schutzstreifen Stresemannallee</.v></p>
 
-    <p>Schutzstreifen sind die kleinere Variante des <.ref>Radfahrstreifens</.ref> und in jeder Hinsicht schlechter gestellt. Sie sind durch eine schmale, gestrichelte Linie gekennzeichnet. Sie sind meist sehr schmal und breite Fahrzeuge dürfen sie mitbenutzen um Gegenverkehr auszuweichen. Beim Überholen müssen zwischen Auto und Fahrrad mindestens 1,5m Seitenabstand gehalten werden – unabhängig vom Verlauf der Linie.</p>
+    <p>Schutzstreifen sind die kleinere Variante des <.ref>Radfahrstreifens</.ref> und in jeder Hinsicht schlechter gestellt.</p>
+
+    <.a href="/images/schutzstreifen.webp" target="_blank"><img src="/images/schutzstreifen.webp" width="2704" height="1520" alt="Beispiel eines Schutzstreifens." style="max-width:100%; height: auto; margin-top: .6rem;"/></.a>
+
+    <p>Sie sind durch eine schmale, gestrichelte Linie gekennzeichnet. Sie sind meist sehr schmal und breite Fahrzeuge dürfen sie mitbenutzen um Gegenverkehr auszuweichen. Beim Überholen müssen zwischen Auto und Fahrrad mindestens 1,5m Seitenabstand gehalten werden – unabhängig vom Verlauf der Linie.</p>
 
     <.roaddiagram src="schutzstreifen" alt="Eine Straßenansicht von oben (Vogelperspektive) die zeigt wie Schutzstreifen aussehen. Es sind Begegnungsverkehr PKW/PKW und LKW/LKW dargestellt."/>
 

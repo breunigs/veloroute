@@ -12,8 +12,11 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
   def type(), do: :planned
   def tags(), do: ["rodigallee", "br-wandsbek-w2"]
 
-  def start(), do: ~d[2025-05]
-  def stop(), do: ~d[2029-09]
+  def start(), do: ~d[2025-08-27]
+  # nur westlicher Teil bis Holstenhofweg
+  def stop(), do: ~d[2027-12-10]
+  # def stop(), do: ~d[2029-09]
+  def construction_site_id_hh(), do: [1_423_694]
 
   def tracks(), do: Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse.tracks()
 

@@ -7,8 +7,9 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
     do:
       "Breitere Rad- und Gehwege. Neue, direktere Verbindungen und Querungsmöglichkeiten für Fuß und Rad."
 
-  def start(), do: ~d[2025-07-07]
-  def stop(), do: ~d[2026-12]
+  def start(), do: ~d[2025-07-01]
+  def stop(), do: ~d[2026-12-31]
+  def construction_site_id_hh(), do: [1_424_835]
 
   def type(), do: :construction
 

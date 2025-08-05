@@ -392,14 +392,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
 
   test "click on video link with ref loads that track", %{conn: conn} do
     {:ok, view, html} = live(conn, "/lexikon/direktes-und-indirektes-abbiegen")
-    refute html =~ ~s|äußere Ringroute|
+    refute html =~ ~s|Radroute 20|
 
     html =
       view
       |> element("a", "nur direktes Abbiegen")
       |> render_click()
 
-    assert html =~ ~s|äußere Ringroute|
+    assert html =~ ~s|Radroute 20|
   end
 
   test "article with multiple route group shows all, even after selecting video", %{conn: conn} do

@@ -9,13 +9,13 @@ defmodule Data.Article.Static.LexikonRadfahrstreifen do
 
   def tags(), do: ["lexikon", "radfahrstreifen", "radfahrstreifens"]
 
-  def tracks(), do: Data.Article.Static.Alltagsroute13.tracks()
+  def tracks(), do: Data.Article.Static.Radroute16.tracks()
   def point_of_interest(), do: %{lon: 9.9503139, lat: 53.564714, zoom: 16}
 
   @spec text(any) :: Phoenix.LiveView.Rendered.t()
   def text(assigns) do
     ~H"""
-    <p><.v bounds="9.944998,53.563638,9.954255,53.565782" lon={9.9503139} lat={53.564714} ref="13" dir="backward">Videobeispiel eines Radfahrstreifen in der Alsenstraße</.v></p>
+    <p><.v bounds="9.944998,53.563638,9.954255,53.565782" lon={9.9503139} lat={53.564714} ref="radroute-16" dir="backward">Videobeispiel eines Radfahrstreifen in der Alsenstraße</.v></p>
 
     <p>Radfahrstreifen werden auf dem gleichen Niveau geführt wie die KFZ-Fahrspuren und durch einen weißen „Breitstrich“ von diesen abgegrenzt. KFZ dürfen den Radfahrstreifen nicht benutzen – befahren, halten oder parken sind verboten. Die einzige Ausnahme ist um Einfahrten oder Parkplätze rechts des Radfahrstreifens zu erreichen; man spricht hier häufig von „überfahren“.</p>
 
