@@ -13,6 +13,14 @@ defmodule Data.Article.Blog.StaderStrasse do
 
   def tracks(), do: []
 
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"wfw nord consult Ingenieurgesellschaft mbH", "https://www.wfwnc.de/kontakt/kontakt/"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"1. Entwurf, Bericht", "2017",
@@ -27,7 +35,7 @@ defmodule Data.Article.Blog.StaderStrasse do
     <h4>Alter Zustand</h4>
     <p>Entlang der Stader Straße wird der Radverkehr auf schmalen <.ref>Hochbordradwegen</.ref> geführt. <.v bounds="9.936771,53.469671,9.941836,53.472885" lon={9.939149} lat={53.470946} dir="backward" ref="FR11">Höhe des 2. Grünen Ring</.v> als Zweirichtungsradweg, damit das Waldstück erreicht werden kann.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Entlang der Stader Straße wechseln sich Hochbordradwege und Radfahrstreifen ab. Letztere kommen immer dann zum Einsatz wenn Bushaltestellen, Kreuzungen oder Ampel-Querungen vorhanden sind. Häufig sind Mindestmaße von 1,60m Breite vorgesehen. Am Waldweg zum 2. Grünen Ring soll eine direkte Querungsmöglichkeit geschaffen werden. Im <.v bounds="9.936321,53.470421,9.943616,53.476657" lon={9.937645} lat={53.474154} dir="backward" ref="FR11">Moorburger Bogen</.v> soll der Radverkehr im <.ref>Mischverkehr</.ref> fahren.</p>
 
     <p>Entlang der Stader Straße ist Linksabbiegen nur <.ref>indirekt</.ref> vorgesehen. Am Moorburger Bogen sind <.ref>Radfahrstreifen in Mittellage</.ref> vorgesehen. Das Abbiegen aus den Nebenstraßen erfolgt im Mischverkehr.</p>

@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.UferstrasseZwLerchenfeldRichardstr do
     do:
       "Mehr Platz und bessere Oberflächen im Planungsabschnitt. Fahrradstraße leider nicht mehr durchgängig."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-08-12]
   def stop(), do: ~d[2025-02-28]
   def construction_site_id_hh(), do: [926_026]

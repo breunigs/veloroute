@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.BrandstwieteBeiStAnnen do
 
   def summary(), do: "In Ad-Hoc-Maßnahme soll Radfahrstreifen Richtung HafenCity angelegt werden."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2025-07-14]
   def stop(), do: ~d[2025-08-02]
   def construction_site_id_hh(), do: [1_447_366]

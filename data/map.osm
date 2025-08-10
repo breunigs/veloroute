@@ -62197,7 +62197,7 @@
     <tag k='name' v='2023-04-18-walddoerferstrasse-abschnitt-3' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20436536'>
+  <way id='-20436536' action='modify'>
     <nd ref='-143598302' />
     <nd ref='-143598314' />
     <nd ref='-143598303' />
@@ -62212,6 +62212,7 @@
     <nd ref='-143598312' />
     <nd ref='-143598313' />
     <nd ref='-143598302' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2023-04-20-am-stadtrand-mitte' />
     <tag k='type' v='article' />
   </way>

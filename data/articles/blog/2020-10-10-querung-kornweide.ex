@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.QuerungKornweide do
   def updated_at(), do: ~D[2021-10-16]
   def title(), do: "Querung Kornweide (Radroute 23)"
 
-  def start(), do: ~d[2022Q3]
+  # def start(), do: ~d[2022Q3]
 
   def type(), do: :changed_routing
 

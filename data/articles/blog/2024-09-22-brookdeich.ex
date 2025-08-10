@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Brookdeich do
   def start(), do: ~d[2024-09-23]
   def stop(), do: ~d[2025-04-30]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["rsw-geesthacht"]
 
   def map_image do
