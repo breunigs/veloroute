@@ -80,7 +80,8 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
 function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
   if (!map) return
-  const highlight = mapDetail.highlight || "no-route-set"
+  const highlight = mapDetail.highlight || document.getElementById('map')?.dataset.highlight || "no-route-set"
+
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], highlight])
 
   if (!mapDetail.layers) return
