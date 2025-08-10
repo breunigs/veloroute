@@ -362,12 +362,26 @@ defmodule Article.Decorators do
   defmemo related_tracks(art) when is_module(art) do
     case art.tracks() do
       [] ->
-        Article.List.category("Static")
-        |> Article.List.with_tracks()
-        |> Article.List.related(art)
-        |> Article.List.overlap(art)
-        |> Stream.flat_map(& &1.tracks())
-        |> Enum.uniq()
+        tracks =
+          Article.List.category("Static")
+          |> Article.List.with_tracks()
+          |> Article.List.related(art)
+          |> Article.List.overlap(art)
+          |> Stream.flat_map(& &1.tracks())
+          |> Enum.uniq()
+
+        # hack: do not show Veloroutes, as they are deprectated
+        {alltag, radroute} =
+          Enum.reduce(tracks, {false, false}, fn track, {alltag, radroute} ->
+            rg = track.parent_ref.route_group()
+            {alltag || rg == :alltag, radroute || rg == :radroute}
+          end)
+
+        if alltag && radroute do
+          Enum.reject(tracks, &(&1.parent_ref.route_group() == :alltag))
+        else
+          tracks
+        end
 
       tracks ->
         tracks
