@@ -172,6 +172,7 @@ defmodule Components.TagHelpers do
     <a {@rest}
       onclick={@cookie}
       href={"?lang=#{@lang}"}
+      lang={@lang}
       phx-click={Phoenix.LiveView.JS.push("switch_language", value: %{lang: @lang})}>
       {@copy}
     </a>
@@ -725,20 +726,34 @@ defmodule Components.TagHelpers do
   def article_updated_at(%{ref: art} = assigns) do
     if art.updated_at() do
       assigns =
-        assign(assigns, %{
-          human: Article.Decorators.updated_at(art),
+        assigns
+        |> assign(%{
           machine: Date.to_string(art.updated_at()),
-          machine_created: Date.to_string(art.created_at()),
-          subject: "Fehler im Artikel \"#{art.title()}\"",
-          body: "Moin,\n\nim Artikel \"#{art.title()}\" stimmt etwas nicht:\n\n"
+          machine_created: Date.to_string(art.created_at())
         })
+        |> assign(
+          if(assigns.lang == "de",
+            do: %{
+              human: "Letzte Änderung #{Article.Decorators.updated_at(art, assigns.lang)}",
+              subject: "Fehler im Artikel \"#{art.title()}\"",
+              body: "Moin,\n\nim Artikel \"#{art.title()}\" stimmt etwas nicht:\n\n",
+              report_error: "Fehler melden"
+            },
+            else: %{
+              human: "Last change #{Article.Decorators.updated_at(art, assigns.lang)}",
+              subject: "Mistake in article \"#{art.title()}\"",
+              body: "Hi,\n\nthere's something amiss in \"#{art.title()}\":\n\n",
+              report_error: "Report mistake"
+            }
+          )
+        )
 
       ~H"""
-        <div class="artfooter">
+        <div class="artfooter" lang={@lang}>
           <.no_mobile><.language_switcher ref={@ref} current_lang={@lang}/></.no_mobile>
-          <.mailto subject={@subject} body={@body}>Fehler melden</.mailto>
+          <.mailto subject={@subject} body={@body}>{@report_error}</.mailto>
           &middot;
-          <time class="updated" datetime={@machine} itemprop="dateModified" content={@machine}>Letzte Änderung <%= @human %></time>
+          <time class="updated" datetime={@machine} itemprop="dateModified" content={@machine}><%= @human %></time>
           <span itemprop="datePublished" content={@machine_created}></span>
         </div>
       """

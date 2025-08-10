@@ -282,10 +282,11 @@ defmodule Article.Decorators do
       else: groups
   end
 
-  @spec updated_at(Article.t()) :: binary() | nil
-  def updated_at(art) when is_module(art) do
+  @spec updated_at(Article.t(), binary()) :: binary() | nil
+  def updated_at(art, lang \\ "de") when is_module(art) do
     d = art.updated_at()
-    if d, do: "#{d.day}.#{d.month}.#{d.year}"
+    sep = if lang == "en", do: "/", else: "."
+    if d, do: "#{d.day}#{sep}#{d.month}#{sep}#{d.year}"
   end
 
   @doc """
