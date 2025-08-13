@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Mansteinstrasse do
     do:
       "Tempo-30, mehr Abstellmöglichkeiten für Fahrräder und Querungsmöglichkeiten der Straßenseite"
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2025-03-03]
   def stop(), do: ~d[2025-09-30]
@@ -36,12 +36,16 @@ defmodule Data.Article.Blog.Mansteinstrasse do
 
   def links(_assigns) do
     [
+      {"Pressemitteilung zur Fertigstellung", ~d[2025-08],
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/aktuelles/pressemeldungen/ruhebaenke-unter-dbaeumen-als-highlight-mansteinstrasse-puenktlich-fertig-n--1086900"},
       {"fertiger Entwurf", "April 2024",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009212"},
       {"Geplanter Bautermine", "November 20223",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"2. Entwurf", "September 2023",
-       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008684"}
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008684"},
+      {"Infoseite der Stadt",
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/mansteinstrasse-799234"}
     ]
   end
 

@@ -26546,6 +26546,19 @@
   <node id='-247053306' action='modify' lat='53.55189521401' lon='10.00536918104' />
   <node id='-247053328' action='modify' lat='53.5515908548' lon='10.0055006133' />
   <node id='-247053336' action='modify' lat='53.55163865968' lon='10.00574067101' />
+  <node id='-248703184' action='modify' lat='53.56427478353' lon='9.96187984675' />
+  <node id='-248703185' action='modify' lat='53.5641345976' lon='9.96200322837' />
+  <node id='-248703186' action='modify' lat='53.56420787667' lon='9.96221512288' />
+  <node id='-248703187' action='modify' lat='53.56404220208' lon='9.96235996217' />
+  <node id='-248703188' action='modify' lat='53.56412344643' lon='9.96256917447' />
+  <node id='-248703189' action='modify' lat='53.56424929522' lon='9.96244847506' />
+  <node id='-248703190' action='modify' lat='53.56431142296' lon='9.96251016587' />
+  <node id='-248703191' action='modify' lat='53.56449621264' lon='9.96316462487' />
+  <node id='-248703192' action='modify' lat='53.56464276939' lon='9.96302515' />
+  <node id='-248703193' action='modify' lat='53.56457108409' lon='9.96277302235' />
+  <node id='-248703194' action='modify' lat='53.56456630506' lon='9.96248334378' />
+  <node id='-248703195' action='modify' lat='53.56448187554' lon='9.96230631799' />
+  <node id='-248703196' action='modify' lat='53.56436080649' lon='9.96213733882' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -75286,6 +75299,24 @@
     <nd ref='-247053306' />
     <nd ref='-247053328' />
     <tag k='name' v='2025-07-17-steintorbruecke' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20928735' action='modify'>
+    <nd ref='-248703184' />
+    <nd ref='-248703185' />
+    <nd ref='-248703186' />
+    <nd ref='-248703187' />
+    <nd ref='-248703188' />
+    <nd ref='-248703189' />
+    <nd ref='-248703190' />
+    <nd ref='-248703191' />
+    <nd ref='-248703192' />
+    <nd ref='-248703193' />
+    <nd ref='-248703194' />
+    <nd ref='-248703195' />
+    <nd ref='-248703196' />
+    <nd ref='-248703184' />
+    <tag k='name' v='2025-08-13-ampel-altonaer-strasse-bartelsstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

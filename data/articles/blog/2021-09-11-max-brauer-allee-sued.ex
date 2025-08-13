@@ -1,25 +1,26 @@
 defmodule Data.Article.Blog.MaxBrauerAlleeSued do
   use Article.Default
 
-  def created_at(), do: ~D[2021-09-11]
-  def updated_at(), do: ~D[2022-07-17]
+  def updated_at(), do: ~D[2025-08-13]
 
   def title(), do: "Max-Brauer-Allee Süd (Radrouten 1 und 14)"
 
   def summary(),
     do:
-      "Durchgängige, mindestens 2m breite Radfahrstreifen, wo möglich durch Bordsteine vom KFZ-Verkehr getrennt. Führung zum Altonaer Balkon endlich verständlich. Bau frühestens 2023."
+      "Bisherige Planung wegen des Schellfischtunnels gestoppt. LSBG arbeitet an einer Zwischenlösung, die sich ohne Tiefbau umsetzen lässt."
 
-  def start(), do: ~d[2024-03-04]
+  # def start(), do: ~d[2024-03-04]
   # def stop(), do: ~d[2024-11-22]
-  def construction_site_id_hh(), do: [706_127]
+  # def construction_site_id_hh(), do: [706_127]
 
-  def type(), do: :construction
+  def type(), do: :intent
 
   def tags(), do: ["radroute-concept-a", "radroute-1", "radroute-14", "1", "12"]
 
   def links(_assigns) do
     [
+      {"Baustopp wegen Schellfischtunnel", ~d[2025-08],
+       "https://fragdenstaat.de/anfrage/braamkamp-alsterkrugchaussee-b-73-u-max-brauer-allee/#nachricht-1023336"},
       {"Lückenschluss Jessenstraße", ~d[2024-10],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1015670"},
       {"Baustelleninfo – Ehrenbergstraße", "April 2024",
@@ -40,6 +41,9 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand August 2025</h4>
+    <p>Der Umbau wurde auf unbestimmte Zeit verschoben. Als Grund wird der <.a href="https://de.wikipedia.org/wiki/Schellfischtunnel">Schellfischtunnel</.a> angeführt, der unter der Straße verläuft. Wegen ihm sind Tiefbaumaßnahmen schwierig. Der LSBG arbeitet an einer leichter umsetzbaren Zwischenlösung.</p>
+
     <h4>Stand Oktober 2024</h4>
     <p>Der Umbau geht voran. In einer zusätzlichen Planung wurde der <.ref>Radfahrstreifen</.ref> in der <.m bounds="9.941184,53.549729,9.945947,53.551374">Jessenstraße</.m> durchgängig. Der alte Hochbordradweg soll noch zum Gehweg werden.</p>
 

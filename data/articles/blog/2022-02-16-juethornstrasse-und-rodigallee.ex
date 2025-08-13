@@ -26,6 +26,8 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-08],
+       "https://lsbg.hamburg.de/resource/blob/1090250/d7a0c3aec1c90ffc31b929398dc71f68/rodigallee-juethornstrasse-1-ba-anliegerinformation-august-2025-data.pdf"},
       {"fertiger Entwurf – Erläuterungsbericht", ~d[2024-12],
        "https://lsbg.hamburg.de/resource/blob/999388/a7354ccf6a0eeb48c004a282e14ae9c5/rodigallee-juethornstrasse-bovestrasse-bis-holstenhofweg-abgestimmte-planung-bericht-data.pdf"},
       {"fertiger Entwurf – Karte", ~d[2024-12],
