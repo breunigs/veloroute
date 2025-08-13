@@ -3,8 +3,10 @@ FROM debian:testing-slim AS downloader
 ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
-ARG SVTAV1_REPO=https://github.com/gianni-rosato/svt-av1-psy
-ARG SVTAV1_VERSION=37a5609bcc20bbf40203b8c4736d906af1a259d3
+# ARG SVTAV1_REPO=https://gitlab.com/AOMediaCodec/SVT-AV1/-
+# ARG SVTAV1_VERSION=v3.1.0
+ARG SVTAV1_REPO=https://github.com/BlueSwordM/svt-av1-psyex
+ARG SVTAV1_VERSION=d1dbfba23beb1ff7a7f5129fd303e4cf5d397eb0
 
 # ARG FFMPEG_VERSION=7.1
 ARG BLUR_VERSION=2febf37aed95188ef829cfe156aad016a51a54a6
@@ -38,15 +40,24 @@ RUN cd /downloads/ && \
   wget https://github.com/breunigs/frei0r-blur-from-json/archive/${BLUR_VERSION}.tar.gz && \
   tar zxf ${BLUR_VERSION}.tar.gz && rm ${BLUR_VERSION}.tar.gz && mv frei0r-blur-from-json-${BLUR_VERSION} blur
 
+#github
 RUN cd /downloads/ && \
   wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}.tar.gz && \
   tar zxf ${SVTAV1_VERSION}.tar.gz && rm ${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
+#gitlab
+# RUN cd /downloads/ && \
+#   wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}/SVT-AV1-${SVTAV1_VERSION}.tar.gz && \
+#   tar zxf SVT-AV1-${SVTAV1_VERSION}.tar.gz && rm SVT-AV1-${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
+
 
 RUN cd /downloads/ && \
   git clone https://github.com/breunigs/frei0r-rife-transition --recurse-submodules rife && \
   cd rife && \
   git reset --hard ${RIFE_VERSION}
 
+RUN mkdir -p cd /downloads/pgo && \
+  cd /downloads/pgo && \
+  wget https://veloroute.hamburg/videos/rendered/svtav1pgo.y4m
 
 FROM debian:testing-slim AS blur
 WORKDIR /build/
@@ -137,7 +148,15 @@ RUN cd /downloads/rav1e && \
   RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --libdir ${PREFIX}/lib --library-type staticlib
 
 RUN cd /downloads/svtav1/Build/linux && \
-  ./build.sh --native --static --no-dec --no-apps --release --enable-lto --prefix=${PREFIX} --install
+  ./build.sh \
+  --native \
+  --static \
+  --release \
+  --enable-lto \
+  --enable-pgo \
+  --pgo-videos=/downloads/pgo \
+  --prefix=${PREFIX} \
+  --install
 
 RUN cd /downloads/ffmpeg && \
   ./configure \
