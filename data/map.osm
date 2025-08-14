@@ -26559,6 +26559,37 @@
   <node id='-248703194' action='modify' lat='53.56456630506' lon='9.96248334378' />
   <node id='-248703195' action='modify' lat='53.56448187554' lon='9.96230631799' />
   <node id='-248703196' action='modify' lat='53.56436080649' lon='9.96213733882' />
+  <node id='-250353044' action='modify' lat='53.57313263777' lon='9.93595361173' />
+  <node id='-250353045' action='modify' lat='53.57294788583' lon='9.93581950128' />
+  <node id='-250353046' action='modify' lat='53.57284276798' lon='9.93587314546' />
+  <node id='-250353047' action='modify' lat='53.57278224547' lon='9.93610917985' />
+  <node id='-250353048' action='modify' lat='53.57281728483' lon='9.93622183263' />
+  <node id='-250353049' action='modify' lat='53.57283002641' lon='9.9364203161' />
+  <node id='-250353050' action='modify' lat='53.57280772864' lon='9.93656515539' />
+  <node id='-250353051' action='modify' lat='53.5728746219' lon='9.93661343515' />
+  <node id='-250353052' action='modify' lat='53.57285550955' lon='9.93690311372' />
+  <node id='-250353053' action='modify' lat='53.57295744198' lon='9.93692457139' />
+  <node id='-250353054' action='modify' lat='53.57300522272' lon='9.93652224004' />
+  <node id='-250353055' action='modify' lat='53.57312626703' lon='9.93640958726' />
+  <node id='-250353056' action='modify' lat='53.57361999678' lon='9.93675827444' />
+  <node id='-250353057' action='modify' lat='53.57555663587' lon='9.93822276056' />
+  <node id='-250353058' action='modify' lat='53.57575730229' lon='9.93891477048' />
+  <node id='-250353059' action='modify' lat='53.57650262634' lon='9.93825494707' />
+  <node id='-250353060' action='modify' lat='53.57652492216' lon='9.93833004892' />
+  <node id='-250353061' action='modify' lat='53.57663281782' lon='9.93823650688' />
+  <node id='-250353062' action='modify' lat='53.57667064095' lon='9.93817146331' />
+  <node id='-250353063' action='modify' lat='53.57662843829' lon='9.93803768814' />
+  <node id='-250353064' action='modify' lat='53.57610129964' lon='9.93809937894' />
+  <node id='-250353065' action='modify' lat='53.57592611615' lon='9.93823348939' />
+  <node id='-250353066' action='modify' lat='53.57558530256' lon='9.93802427709' />
+  <node id='-250353067' action='modify' lat='53.57402771764' lon='9.93681191862' />
+  <node id='-250353068' action='modify' lat='53.57323138417' lon='9.93623792589' />
+  <node id='-250353075' action='modify' lat='53.57618968501' lon='9.93841320142' />
+  <node id='-250353082' action='modify' lat='53.57662584741' lon='9.93821069565' />
+  <node id='-250353089' action='modify' lat='53.57563785652' lon='9.93849903077' />
+  <node id='-250353099' action='modify' lat='53.57539259674' lon='9.93872165412' />
+  <node id='-250353104' action='modify' lat='53.57541648575' lon='9.93880212039' />
+  <node id='-250353115' action='modify' lat='53.57563626392' lon='9.93859559029' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -75317,6 +75348,42 @@
     <nd ref='-248703196' />
     <nd ref='-248703184' />
     <tag k='name' v='2025-08-13-ampel-altonaer-strasse-bartelsstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-20936252' action='modify'>
+    <nd ref='-250353044' />
+    <nd ref='-250353045' />
+    <nd ref='-250353046' />
+    <nd ref='-250353047' />
+    <nd ref='-250353048' />
+    <nd ref='-250353049' />
+    <nd ref='-250353050' />
+    <nd ref='-250353051' />
+    <nd ref='-250353052' />
+    <nd ref='-250353053' />
+    <nd ref='-250353054' />
+    <nd ref='-250353055' />
+    <nd ref='-250353056' />
+    <nd ref='-250353057' />
+    <nd ref='-250353089' />
+    <nd ref='-250353099' />
+    <nd ref='-250353104' />
+    <nd ref='-250353115' />
+    <nd ref='-250353058' />
+    <nd ref='-250353059' />
+    <nd ref='-250353060' />
+    <nd ref='-250353061' />
+    <nd ref='-250353082' />
+    <nd ref='-250353062' />
+    <nd ref='-250353063' />
+    <nd ref='-250353075' />
+    <nd ref='-250353064' />
+    <nd ref='-250353065' />
+    <nd ref='-250353066' />
+    <nd ref='-250353067' />
+    <nd ref='-250353068' />
+    <nd ref='-250353044' />
+    <tag k='name' v='2025-08-14-grosse-bahnstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
