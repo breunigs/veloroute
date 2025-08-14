@@ -42,8 +42,17 @@ defmodule Search.Meilisearch.Nominatim do
 
   @impl true
 
+  # export bug, bbox shouldn't be empty string.
+  def format(%{"bbox" => ""} = result) do
+    case Application.get_env(:veloroute, :env) do
+      :prod -> nil
+      _other -> raise "invalid search result without bbox: #{inspect(result)}"
+    end
+  end
+
   # provide more sensible bounding box for suburbs just tagged as a node
-  def format(%{"class" => "place", "type" => "suburb"} = result) do
+  def format(%{"class" => "place", "type" => "suburb", "bbox" => bbox} = result)
+      when is_binary(bbox) do
     bbox = Basemap.Nominatim.polyline_to_bbox(result["bbox"])
 
     bbox =
@@ -52,14 +61,6 @@ defmodule Search.Meilisearch.Nominatim do
       end || bbox
 
     format(%{result | "bbox" => bbox})
-  end
-
-  # export bug, bbox shouldn't be empty string.
-  def format(%{"bbox" => ""} = result) do
-    case Application.get_env(:veloroute, :env) do
-      :prod -> nil
-      _other -> raise "invalid search result without bbox: #{inspect(result)}"
-    end
   end
 
   def format(result) when is_map(result) do
