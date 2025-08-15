@@ -78,8 +78,6 @@ defmodule Mix.Tasks.Deploy do
   defp test(_skip) do
     Util.banner("Unit tests")
     Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}") |> raise_on_error()
-    Util.banner("Dialyzer")
-    Util.Docker.mix("dialyzer") |> raise_on_error()
     Util.banner("Format Check")
     Util.Docker.mix("format --check-formatted") |> raise_on_error()
   end

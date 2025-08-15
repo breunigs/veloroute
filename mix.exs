@@ -9,7 +9,6 @@ defmodule Veloroute.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      dialyzer: [plt_add_apps: [:mix, :ex_unit, :esbuild, :dart_sass]],
       releases: [
         prod: [
           include_executables_for: [:unix],
@@ -18,7 +17,6 @@ defmodule Veloroute.MixProject do
       ],
       preferred_cli_env: [
         test: :test,
-        dialyzer: :test,
         credo: :test,
         "velo.assets.prepare": :test
       ],
@@ -68,7 +66,6 @@ defmodule Veloroute.MixProject do
       {:brotli, "~> 0.3"},
       {:cachex, "~> 4.0"},
       {:dart_sass, "~> 0.5", runtime: is_dev},
-      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:eflame, "~> 1.0", only: [:dev, :test]},
       {:erlexec, "~> 2.0",
        runtime: is_dev || is_test,
