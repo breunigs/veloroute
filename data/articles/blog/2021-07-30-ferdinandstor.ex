@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Beidseitig waren <.ref>Hochbordradwege</.ref> vorhanden. Seit Sommer 2021 erneuert die Deutsche Bahn die Brücke, sodass sich die genauer Führung immer mal wieder ändert.</p>
+    <p>Beidseitig waren <.ref>Hochbordradwege</.ref> vorhanden. Seit Sommer 2021 erneuert die Deutsche Bahn die Brücke, sodass sich die genaue Führung immer mal wieder ändert.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Auf der <.v bounds="10.000008,53.555662,10.003289,53.557319" lon={10.001107} lat={53.555802} dir="backward" ref="radroute-2">Seite der Kunsthalle</.v> wird ein 2,5m breiter Hochbordradweg neben einem 2,5m breiten Gehweg angelegt. Zum Schutz vor KFZ werden Metallbügel aufgestellt.</p>

@@ -451,7 +451,9 @@ defmodule VelorouteWeb.Live.VideoState do
     first_group = Enum.find_value(tracks, & &1.group)
 
     sorted =
-      Enum.sort_by(tracks, fn track ->
+      tracks
+      |> reject_unrendered()
+      |> Enum.sort_by(fn track ->
         rendered = Video.Generator.get(track)
 
         if is_nil(rendered) do
@@ -500,6 +502,13 @@ defmodule VelorouteWeb.Live.VideoState do
         direction: closest.direction
     }
     |> maybe_fix_direction()
+  end
+
+  defp reject_unrendered(tracks) do
+    Enum.filter(tracks, fn track ->
+      rendered = Video.Generator.get(track)
+      rendered && rendered.rendered?
+    end)
   end
 
   defp update_direction_from_params(state, %{"dir" => "forward"})
