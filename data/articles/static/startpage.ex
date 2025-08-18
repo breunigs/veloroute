@@ -159,6 +159,16 @@ defmodule Data.Article.Static.Startpage do
             <.icon role="listitem" autoplay={true} name="br-wandsbek-w8">W8</.icon>
           </span>
         </td>
+      </tr><tr role="group">
+        <th translate="no">Bergedorf</th>
+        <td>
+          <span>
+            <.icon role="listitem" autoplay={true} name="br-bergedorf-a">BA</.icon>
+          </span>
+          <span>
+            <.icon role="listitem" autoplay={true} name="br-bergedorf-b">BB</.icon>
+          </span>
+        </td>
       </tr>
     </table>
 

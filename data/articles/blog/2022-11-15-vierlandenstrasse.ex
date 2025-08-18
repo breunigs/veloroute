@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
     do: "Protected-Bike-Lane geplant, allerdings mit Lücken für Bushalt und Parkplätze."
 
   def type(), do: :planned
-  def tags(), do: []
+  def tags(), do: ["br-bergedorf-a"]
 
   def start(), do: ~d[2025Q4]
 
@@ -47,6 +47,14 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
       }
     ]
 
+  def map_image do
+    {name(),
+     [
+       {"Ingenieurgemeinschaft Reese + Wulff GmbH", "https://www.ing-reese-wulff.de/kontakt/"},
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "November 2022",
@@ -61,7 +69,7 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
     <h4>Alter Zustand</h4>
     <p>Im Abschnitt stehen beidseitig <.ref>Hochbordradwege</.ref> zur Verfügung.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Es sollen beidseitig <.ref>Radfahrstreifen</.ref> mit rund 2,0m Breite eingerichtet werden, die stellenweise durch 30cm breite Randsteine vom KFZ-Verkehr abgetrennt sind (<.ref>Protected-Bike-Lane</.ref>). Wegen Bushaltestellen, Einfahrten und Einmündungen sind die Randsteine nicht durchgängig. Busse halten auf dem Radfahrstreifen.</p>
 
     <p>Zum Linksabbiegen in die <.m bounds="10.208368,53.485606,10.210725,53.48649">Dietrich-Schreyge-Straße</.m> und die <.m bounds="10.209448,53.48514,10.211806,53.486024">Rektor-Ritter-Straße</.m> sind Verkehrsinseln in der Straßenmitte vorgesehen, sodass man in zwei Schritten abbiegen kann. An den anderen Einmündungen werden keine Querungshilfen eingerichtet.</p>

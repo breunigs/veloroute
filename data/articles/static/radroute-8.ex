@@ -23,6 +23,7 @@ defmodule Data.Article.Static.Radroute8 do
         parent_ref: __MODULE__,
         text: "von Barmbek Nord nach Bergedorf",
         historic: %{
+          "739627605b441309d1e16f7342568008" => ~d[2025-08],
           "fbcc3b07dab335e8b35129159163f818" => ~d[2025-02]
         },
         videos: [
@@ -44,8 +45,12 @@ defmodule Data.Article.Static.Radroute8 do
           {"2024-05-14-vr8/GX017546", "00:03:13.355", :end},
           {"2024-05-14-vr8/GX017547", :start, "00:00:14.615"},
           {"2024-05-14-vr8/GX017548", :start, "00:00:43.836"},
-          {"2024-05-14-vr8/GX017549", :start, "00:00:19.716"},
-          {"2024-05-14-vr8/GX017550", "00:00:01.502", :end}
+          {"2024-05-14-vr8/GX017549", :start, "00:00:04.238"},
+          {"2023-07-15-vr8/GX016155", "00:00:03.904", "00:00:05.705"},
+          {"2023-07-15-vr8/GX016156", :start, "00:00:01.568"},
+          {"2025-08-16-br-berge/GX018600", "00:00:01.935", :end},
+          {"2025-08-16-br-berge/GX018601", :start, "00:00:08.061"},
+          {"2024-05-14-vr8/GX017550", "00:00:08.307", :end}
         ]
       },
       %Video.Track{
@@ -57,10 +62,13 @@ defmodule Data.Article.Static.Radroute8 do
         parent_ref: __MODULE__,
         text: "von Bergedorf nach  Barmbek Nord",
         historic: %{
+          "345aa92f06b7547f3b8cc7815ac8e4fe" => ~d[2025-08],
           "13d5a8bb0718446abcd5ae482fe3d202" => ~d[2025-02]
         },
         videos: [
-          {"2024-05-14-vr8/GX017553", "00:00:14.345", "00:00:51.041"},
+          {"2024-05-14-vr8/GX017553", "00:00:14.345", "00:00:37.067"},
+          {"2025-08-16-br-berge/GX018598", "00:00:02.968", "00:00:14.548"},
+          {"2024-05-14-vr8/GX017553", "00:00:46.613", "00:00:51.041"},
           {"2024-05-14-vr8/GX017554", :start, :end},
           {"2024-05-14-vr8/GX017555", :start, "00:00:46.370"},
           {"2024-05-14-vr8/GX017556", :start, "00:00:16.347"},
@@ -154,7 +162,7 @@ defmodule Data.Article.Static.Radroute8 do
         <td class="dim"><.v bounds="10.168678,53.506087,10.185731,53.515019" lon={10.174072} lat={53.510332} dir="forward" ref={@ref}>Bergedorfer Straße</.v></td>
       </tr>
       <tr>
-        <td><.icon>FR4</.icon></td>
+        <td><.icon>FR4</.icon><.icon>BB</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="10.180341,53.486074,10.226321,53.514403" lon={10.198667} lat={53.500763} dir="forward" ref={@ref}>Lohbrügge</.v></td>
       </tr>

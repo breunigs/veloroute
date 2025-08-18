@@ -73,7 +73,7 @@ defmodule Data.Article.Blog.GrosseBahnstrasse do
     <h4>Meinung</h4>
     <p>Mit der KFZ-Einbahnstraße fällt der meiste KFZ-Schleichverkehr weg. Dennoch sollte die Stadt es sich offenhalten, nachträglich eine <.ref name="Modalfilter">Durchfahrtssperre</.ref> zu errichten. Das Schilder gerne ignoriert werden, hat man ja minütlich am Jungfernstieg gesehen.</p>
 
-    <p>Abseits der Details schafft die Stadt mit der Umplanung aber was sie möchte – den neue Fernbahnhof gut an Eimsbüttel anbinden. Dazu tragen sowohl Große Bahnstraße als auch der Zweirichtungsradweg in der Kiele Straße gleich viel bei.</p>
+    <p>Abseits der Details schafft die Stadt mit der Umplanung aber was sie möchte – den neuen Fernbahnhof gut an Eimsbüttel anbinden. Dazu tragen sowohl Große Bahnstraße als auch der Zweirichtungsradweg in der Kiele Straße gleich viel bei.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

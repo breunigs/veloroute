@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.EisenbahnbrueckeBovestrasse do
   def created_at(), do: ~D[2020-12-08]
   def updated_at(), do: ~D[2022-01-10]
 
-  def title(), do: "Eisenbahnbrücke Bovestraße (Veloroute 7)"
+  def title(), do: "Eisenbahnbrücke Bovestraße (Radroute 7)"
   def summary(), do: "1,85m breite Radfahrstreifen zwischen Bus- und KFZ-Spuren."
 
   def start(), do: ~d[2020-12]

@@ -34,6 +34,15 @@ defmodule Data.Article.Shared do
     """
   end
 
+  def bezirksroute(:bergedorf, assigns) do
+    ~H"""
+    <h4>Bezirksrouten allgemein</h4>
+    <p>Bezirksrouten ergänzen die stadtweiten Radrouten. Sie sollen Lücken im Radnetz schließen und lokale Bedarfe abdecken. In Bergedorf gab es dazu 2017 eine Untersuchung, die 2025 als „Zielnetz“ veröffentlicht wurde. Die Routen folgen den Vorschlägen des Vorentwurfs.</p>
+
+    <p>Die vorgeschlagenen Bezirksrouten in Bergedorf weisen noch Lücken oder schlecht befahrbare Wege auf. Dennoch sind sie bereits heute zu einem großen Teil befahrbar und wo nicht, gibt es noch akzeptable ortsnahe Alternativen.</p>
+    """
+  end
+
   def bezirksroute_links(:nord, _assigns) do
     [
       {"Infoseite der Stadt",

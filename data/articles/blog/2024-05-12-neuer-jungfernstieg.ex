@@ -7,9 +7,9 @@ defmodule Data.Article.Blog.NeuerJungfernstieg do
     do:
       "Engere Fahrbahn mit Tempo-25 und KFZ-Einbahnstraße Richtung Gänsemarkt. Radverkehr ausschließlich auf der Fahrbahn. Alter Radweg wird zum Gehweg."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2024-07-15]
-  def stop(), do: ~d[2025-08-31]
+  def stop(), do: ~d[2025-08-17]
   def construction_site_id_hh(), do: [939_336]
 
   def tags(), do: ["radroute-4", "4", "1GR", "FR1"]

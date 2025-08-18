@@ -15,13 +15,17 @@ defmodule Data.Article.Static.RSWGeesthacht do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 1,
+        renderer: 6,
         group: "Radroute Plus Geesthacht",
         direction: :forward,
         from: "Oberer Landweg",
         to: "Geesthacht Bergedorfer Straße",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus HH-Tiefstack → Geesthacht",
+        historic: %{
+          "00d8442f16647087b4c7106689aa7b37" => ~d[2025-08],
+          "886b4a6c860ee9097b5ce41aafdd74b0" => ~d[2021-09]
+        },
         videos: [
           {"2021-06-27-veloroute9/GX012027", "00:03:10.891", :end},
           {"2021-06-27-veloroute9/GX022027", :start, "00:03:10.390"},
@@ -31,8 +35,9 @@ defmodule Data.Article.Static.RSWGeesthacht do
           {"2021-09-19-rsw-geesthacht-velo9/GX012889", "00:00:49.750", :end},
           {"2021-09-19-rsw-geesthacht-velo9/GX012890", :start, "00:00:26.760"},
           {"2021-09-19-rsw-geesthacht-velo9/GX012892", :start, "00:00:13.113"},
-          {"2021-09-19-rsw-geesthacht-velo9/GX012894", "00:00:00.334", :end},
-          {"2021-09-19-rsw-geesthacht-velo9/GX012895", :start, :end},
+          {"2021-09-19-rsw-geesthacht-velo9/GX012894", "00:00:00.334", "00:01:18.560"},
+          {"2025-08-16-br-berge/GX018596", "00:00:55.231", "00:01:22.199"},
+          {"2021-09-19-rsw-geesthacht-velo9/GX012895", "00:00:10.476", :end},
           {"2021-09-19-rsw-geesthacht-velo9/GX012896", :start, :end},
           {"2021-09-19-rsw-geesthacht-velo9/GX012897", :start, "00:03:07.654"},
           {"2021-09-19-rsw-geesthacht-velo9/GX012905", "00:00:01.735", "00:00:29.096"},
@@ -43,13 +48,17 @@ defmodule Data.Article.Static.RSWGeesthacht do
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "Radroute Plus Geesthacht",
         direction: :backward,
         from: "Geesthacht Bergedorfer Straße",
         to: "Oberer Landweg",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Geesthacht → HH-Tiefstack",
+        historic: %{
+          "9f9def65c3244cd42afec538141c03a4" => ~d[2025-08],
+          "478007ad4a923eacd22770b26c577b6f" => ~d[2022-08]
+        },
         videos: [
           {"2022-08-14-geesthacht-rev/GX014557", "00:00:56.590", "00:01:00.994"},
           {"2022-08-14-geesthacht-rev/GX014560", :start, "00:00:08.775"},
@@ -57,7 +66,10 @@ defmodule Data.Article.Static.RSWGeesthacht do
           {"2022-08-14-geesthacht-rev/GX014560", "00:00:42.509", "00:03:25.906"},
           {"2022-08-14-geesthacht-rev/GX014562", "00:00:01.635", "00:01:34.895"},
           {"2021-09-19-rsw-geesthacht-velo9/GX012906", "00:02:16.737", "00:03:02.516"},
-          {"2022-08-14-geesthacht-rev/GX014565", "00:02:09.062", :end},
+          {"2022-08-14-geesthacht-rev/GX014565", "00:02:09.062", "00:03:03.914"},
+          {"2025-08-16-br-berge/GX018596", "00:01:27.697", "00:01:51.634"},
+          {"2025-08-16-br-berge/GX018597", "00:00:08.452", "00:00:12.980"},
+          {"2022-08-14-geesthacht-rev/GX014565", "00:03:31.678", :end},
           {"2022-08-14-geesthacht-rev/GX014566", :start, :end},
           {"2022-08-14-geesthacht-rev/GX014567", :start, "00:00:24.725"},
           {"2022-08-14-geesthacht-rev/GX014567", "00:00:35.602", "00:00:46.146"},
