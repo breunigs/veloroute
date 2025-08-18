@@ -630,6 +630,38 @@
       "layout": {"visibility": "none"}
     },
     {
+      "id": "br-line-off-none-concept",
+      "type": "line",
+      "source": "merged",
+      "source-layer": "routes",
+      "filter": [
+        "all",
+        ["match", ["get", "type"], ["bezirk"], true, false],
+        ["match", ["get", "offset"], [0], true, false],
+        ["match", ["get", "layer"], ["-1"], false, true],
+        ["==", ["get", "status"], "concept"]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": ["coalesce", ["get", "color_faded"], ["get", "color"]],
+        "line-width": [
+          "interpolate",
+          ["exponential", 1.5],
+          ["zoom"],
+          0,
+          2,
+          19,
+          12
+        ],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 11, 0, 20, 1],
+        "line-dasharray": [0, 2.5]
+      }
+    },
+    {
       "id": "br-line-off-none",
       "type": "line",
       "source": "merged",
@@ -638,7 +670,8 @@
         "all",
         ["match", ["get", "type"], ["bezirk"], true, false],
         ["match", ["get", "offset"], [0], true, false],
-        ["match", ["get", "layer"], ["-1"], false, true]
+        ["match", ["get", "layer"], ["-1"], false, true],
+        ["!=", ["get", "status"], "concept"]
       ],
       "layout": {
         "visibility": "visible",

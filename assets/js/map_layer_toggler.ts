@@ -57,6 +57,8 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
   layerNames.forEach(layerName => {
     const isTunnel = layerName.indexOf("tunnel") >= 0
+    if (isTunnel && !map.style.hasLayer(layerName)) return
+
     const opacity = opacityRule(active, isTunnel)
     minZoomForLayer(map, layerName, minZoom)
 
