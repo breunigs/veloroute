@@ -35,7 +35,6 @@ defmodule Appointments.CriticalMassAPI do
 
   def appointments_real() do
     [minLon, minLat, maxLon, maxLat] = Settings.r(:bounds)
-    city_metadata = city_metadata()
 
     Logger.info("Updating CriticalMass appointments")
 
@@ -47,12 +46,13 @@ defmodule Appointments.CriticalMassAPI do
                bbSouthLatitude: minLat,
                bbNorthLatitude: maxLat,
                orderDirection: :desc,
-               orderBy: :dateTime
+               orderBy: :dateTime,
+               extended: true
              ],
              opts: @adapter_opts_general
            ) do
       list
-      |> Enum.map(&to_appointment(&1, city_metadata))
+      |> Enum.map(&to_appointment/1)
       |> Util.compact()
     else
       resp ->
@@ -65,37 +65,7 @@ defmodule Appointments.CriticalMassAPI do
     Application.get_env(:veloroute, :env) == :prod
   end
 
-  defp city_metadata() do
-    Logger.info("Updating CriticalMass city metadata")
-
-    [minLon, minLat, maxLon, maxLat] = Settings.r(:bounds)
-
-    with {:ok, %{body: list}} when is_list(list) <-
-           get("/city",
-             query: [
-               bbWestLongitude: minLon,
-               bbEastLongitude: maxLon,
-               bbSouthLatitude: minLat,
-               bbNorthLatitude: maxLat,
-               size: 100
-             ],
-             opts: @adapter_opts_general
-           ) do
-      Enum.reduce(list, %{}, fn
-        %{"title" => title, "slugs" => [%{"slug" => slug} | _], "description" => desc}, acc ->
-          Map.put(acc, title, %{slug: slug, description: desc})
-
-        _unparsable, acc ->
-          acc
-      end)
-    else
-      resp ->
-        Logger.warning("Received unexpected  for city metadata response: #{inspect(resp)}")
-        %{}
-    end
-  end
-
-  defp to_appointment(entry, metadata) do
+  def to_appointment(entry) do
     with {:ok, date_time} <- DateTime.from_unix(entry["date_time"]),
          date_time = DateTime.shift_zone!(date_time, Settings.r(:timezone)),
          true <- entry["enabled"],
@@ -103,7 +73,8 @@ defmodule Appointments.CriticalMassAPI do
          l when l != "" <- entry["location"],
          false <- String.contains?(entry["location"], "://"),
          title when is_binary(title) <- clean_title(entry["title"], date_time),
-         slug when is_binary(slug) <- entry["slug"] || get_in(metadata, [title, :slug]),
+         slug when is_binary(slug) <-
+           entry["slug"] || get_in(entry, ["city", "main_slug", "slug"]),
          machine_date <- Calendar.strftime(date_time, "%Y-%m-%d") do
       loc_short = String.replace(entry["location"], ~r/\s+\(.*$/, "")
       loc_long = if loc_short != entry["location"], do: entry["location"]
@@ -112,7 +83,7 @@ defmodule Appointments.CriticalMassAPI do
         title: title,
         location: loc_short,
         location_long: loc_long,
-        description: entry["description"] || get_in(metadata, [title, :description]),
+        description: entry["description"] || get_in(entry, ["city", "description"]),
         date_time: date_time,
         lat: entry["latitude"],
         lon: entry["longitude"],
