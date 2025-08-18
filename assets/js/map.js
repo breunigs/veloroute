@@ -403,7 +403,7 @@ function styleChangedHandler() {
   highlightsAppliedToStyle = currStyleName
 
   maybeToggleLayers(map, mapConfig)
-  if (window.showMapImage) window.showMapImage()
+  window.dispatchEvent(new CustomEvent("map:styleSwitched"))
 }
 
 function updateIndicatorPolyline(data) {
