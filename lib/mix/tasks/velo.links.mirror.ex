@@ -326,32 +326,32 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     base = Path.basename(file)
     log(file, base)
 
-    case get(url, opts: [adapter: [recv_timeout: @download_timeout]]) do
-      {:ok, %{status: 200} = response} ->
-        File.write!(file, response.body)
-        entry
+    {http_code, exit_status} =
+      System.cmd("curl", [
+        "--silent",
+        "--show-error",
+        "--location",
+        "--retry",
+        "#{retries}",
+        "--retry-all-errors",
+        "--fail",
+        "--max-time",
+        "#{@download_timeout / 1000}",
+        "--output",
+        file,
+        "--write-out",
+        "%{http_code}",
+        url
+      ])
 
-      {:ok, %{status: 302} = response} ->
-        location =
-          response.headers
-          |> Enum.find_value(fn {k, v} -> if String.downcase(k) == "location", do: v end)
-
-        if location do
-          grab({:download, file, location}, retries - 1)
-        else
-          log(file, "got a 302 without location while downloading '#{base}': #{url}")
-        end
-
-        entry
-
-      {:ok, %{status: status}} ->
-        log(file, "got a #{status} trying to download '#{base}': #{url}")
-        entry
-
-      {:error, reason} ->
-        log(file, "failed to download '#{base}' because '#{inspect(reason)}': #{url}")
-        entry
+    if http_code != "200" || exit_status != 0 do
+      log(
+        file,
+        "failed to download '#{base}' from #{url}, http_code=#{http_code} exit_status=#{exit_status} (see above for error)"
+      )
     end
+
+    entry
   end
 
   defp grab({:capture, _file, "https://twitter.com" <> _} = entry, _retries) do
