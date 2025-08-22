@@ -1,8 +1,6 @@
 defmodule Data.Article.Blog.LerchenfeldWartenau do
   use Article.Default
 
-  def created_at(), do: ~D[2021-05-05]
-
   def title(), do: "Lerchenfeld und Wartenau (Radroute 6)"
 
   def start(), do: ~d[2025-03-17]
@@ -23,6 +21,8 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht", ~d[2025-08],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/to020.asp?TOLFDNR=1036654"},
       {"Baustelleninfo: Wartenaubrücke", ~d[2025-07],
        "https://lsbg.hamburg.de/resource/blob/1041004/11a83b1bffb8f2fe870b40d49c9d979b/wartenaubruecke-anliegerinformation-mai-2025-data.pdf"},
       {"überarbeitete Lagepläne und Präsentation", ~d[2025-05],

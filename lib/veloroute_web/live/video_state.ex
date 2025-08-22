@@ -507,7 +507,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp reject_unrendered(tracks) do
     Enum.filter(tracks, fn track ->
       rendered = Video.Generator.get(track)
-      rendered && rendered.rendered?
+      rendered && rendered.rendered?()
     end)
   end
 

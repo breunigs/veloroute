@@ -4,7 +4,9 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
   def updated_at(), do: ~D[2024-04-29]
 
   def start(), do: ~d[2025-06-30]
-  def stop(), do: ~d[2027-10]
+  def stop(), do: ~d[2027-12-30]
+
+  def construction_site_id_hh(), do: [1_431_004]
 
   def title(), do: "Saarlandstraße (nördlicher Teil, Radroute 12, Bezirksroute Nord N6)"
 

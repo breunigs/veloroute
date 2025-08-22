@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Ferdinandstor do
 
   def start(), do: ~d[2021-06-14]
   def stop(), do: ~d[2026Q3]
-  def construction_site_id_hh(), do: [16775, 718_592]
+  # def construction_site_id_hh(), do: [16775, 718_592]
 
   def type(), do: :construction
 
