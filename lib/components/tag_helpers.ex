@@ -164,7 +164,7 @@ defmodule Components.TagHelpers do
     copy = copy || "Switch to #{assigns.lang}"
 
     cookie =
-      "document.cookie='lang=#{assigns.lang}; expires=Fri, 31 Dec 9999 00:00:00 GMT; SameSite=Strict'; return false"
+      "document.cookie='lang=#{assigns.lang}; expires=Fri, 31 Dec 9999 00:00:00 GMT; SameSite=Strict; Secure'; return false"
 
     assigns = assign(assigns, copy: copy, cookie: cookie)
 
