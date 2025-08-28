@@ -38,7 +38,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
 
     <.a href="/images/pbl.webp" target="_blank"><img src="/images/pbl.webp" width="3733" height="2508" alt="Beispiel einer Protected-Bike-Lane an einer Zufahrt. Die Lücke ist rot markiert, das Ende bzw. Beginn der Pflastersteine mit einem orangenen Mini-Poller." style="max-width:100%; height: auto; margin-top: .6rem;"/></.a>
 
-    <p>Ihr Hauptvorteil liegt im besseren Fahrgefühl, da die Chancen sinkt das Autofahrende die Spur illegal mitbenutzen oder darauf parken. In Hamburg sind häufig noch kleine, orangefarbene Poller darauf angebracht, um die Sichtbarkeit zu erhöhen.</p>
+    <p>Ihr  Hauptvorteil liegt im besseren Fahrgefühl, da die Chance sinkt das Autofahrende die Spur illegal mitbenutzen oder darauf parken. In Hamburg sind häufig noch kleine, orangefarbene Poller darauf angebracht, um die Sichtbarkeit zu erhöhen.</p>
 
     <.roaddiagram src="pbl" alt="Eine Straßenansicht von oben (Vogelperspektive) die ein Beispiel einer Protected-Bike-Lane auf beiden Straßenseiten zeigt."/>
 
