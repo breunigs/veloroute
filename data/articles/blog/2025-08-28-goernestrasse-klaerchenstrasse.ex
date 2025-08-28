@@ -3,7 +3,8 @@ defmodule Data.Article.Blog.GoernestrasseKlaerchenstrasse do
 
   def title(), do: "Klärchenstraße / Goernestraße – östlich der U-Bahn (Radroute 17)"
 
-  def summary(), do: ""
+  def summary(),
+    do: "… sollen zur Fahrradstraße hergerichtet werden. Außer am Leinpfad mit Vorrang."
 
   def type(), do: :planned
   def tags(), do: ["radroute-17"]
