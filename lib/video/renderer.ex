@@ -205,22 +205,32 @@ defmodule Video.Renderer do
   end
 
   defp render_run(rendered, target) do
-    pbar = Video.Renderer.Progress.new(rendered)
     cache_dir = Path.join([File.cwd!(), "data", "cache"])
     Temp.track!()
 
     try do
-      with :ok <- File.mkdir_p(cache_dir),
+      with pbar1 = Video.Renderer.Progress.new(rendered, 1),
+           :ok <- File.mkdir_p(cache_dir),
            {:ok, tmp_path} <-
              Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
            tmp_dir <- Path.basename(tmp_path),
-           cmd <- render_cmd(rendered, tmp_dir),
+           {pass1, pass2} <- render_cmd(rendered, tmp_dir),
            :ok <-
              Util.Docker.build_and_run(
-               {"rendering video #{rendered.hash()}", ffmpeg_image()},
-               %{command_args: cmd, mount_videos_in_dir: "/workdir/"},
+               {"rendering video #{rendered.hash()} -- pass 1", ffmpeg_image()},
+               %{command_args: pass1, mount_videos_in_dir: "/workdir/"},
                env: [],
-               stderr: pbar
+               stderr: pbar1,
+               slow_warn_message: false
+             ),
+           pbar2 = Video.Renderer.Progress.new(rendered, 2),
+           :ok <-
+             Util.Docker.build_and_run(
+               {"rendering video #{rendered.hash()} -- pass 2", ffmpeg_image()},
+               %{command_args: pass2, mount_videos_in_dir: "/workdir/"},
+               env: [],
+               stderr: pbar2,
+               slow_warn_message: false
              ),
            :ok <- manually_tag_missing(tmp_path),
            :ok <- move(tmp_path, target) do
@@ -242,9 +252,27 @@ defmodule Video.Renderer do
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
     fix_pts = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
 
-    Util.low_priority_cmd_prefix() ++
-      ["ffmpeg", "-hide_banner"] ++
-      inputs(sources) ++ ["-filter_complex", filter] ++ fix_pts ++ encoder(tmp_dir)
+    cmd =
+      [
+        Util.low_priority_cmd_prefix(),
+        ["ffmpeg", "-hide_banner"],
+        ["-err_detect", "explode"],
+        inputs(sources),
+        ["-filter_complex", filter],
+        ["-g", gop_size()],
+        fix_pts,
+        ["-color_primaries", "bt709"],
+        ["-color_trc", "bt709"],
+        ["-colorspace", "bt709"],
+        "-an",
+        ["-sc_threshold", "0"],
+        ["-pix_fmt", "yuv420p"]
+      ]
+
+    pass1 = List.flatten([cmd, "-pass", "1", variant_flags(tmp_dir), output_none()])
+    pass2 = List.flatten([cmd, "-pass", "2", variant_flags(tmp_dir), output_hls(tmp_dir)])
+
+    {pass1, pass2}
   end
 
   defp manually_tag_missing(tmp_dir) do
@@ -278,7 +306,10 @@ defmodule Video.Renderer do
   defp move(tmp_dir, target) do
     with :ok <- File.mkdir_p(target),
          {:ok, files} <- File.ls(tmp_dir) do
-      Enum.map(files, fn file ->
+      files
+      |> Enum.reject(&String.ends_with?(&1, ".log"))
+      |> Enum.reject(&String.ends_with?(&1, ".log.mbtree"))
+      |> Enum.map(fn file ->
         source = Path.join(tmp_dir, file)
         target = Path.join(target, file)
         move_file(source, target)
@@ -697,44 +728,73 @@ defmodule Video.Renderer do
   #   }
   # end
 
-  @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
-  defp codec_av1_rav1e(info, idx) do
-    tiles = Integer.floor_div(info[:height], 135)
-
-    %{
-      codec: [
-        "librav1e",
-        "-tiles:v:#{idx}",
-        "#{tiles}",
-        "-speed:v:#{idx}",
-        "2"
-      ],
-      tag_as: av1_codec_tag(info, tiles, 8)
-    }
-  end
-
-  # @spec codec_av1_svt(map(), non_neg_integer()) :: map()
-  # defp codec_av1_svt(info, idx) do
-  #   tiles_c = Integer.floor_div(info[:height], 1000)
-  #   tiles_r = max(1, tiles_c - 1)
-  #   tiles = 2 ** tiles_c * 2 ** tiles_r
+  # @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
+  # defp codec_av1_rav1e(info, idx) do
+  #   tiles = Integer.floor_div(info[:height], 135)
 
   #   %{
   #     codec: [
-  #       "libsvtav1",
-  #       "-preset:#{idx}",
-  #       "2",
-  #       "-svtav1-params:#{idx}",
-  #       "tune=2:enable-overlays=1:enable-dlf=2:scm=0:tile-columns=#{tiles_c}:tile-rows=#{tiles_r}"
+  #       "librav1e",
+  #       "-tiles:v:#{idx}",
+  #       "#{tiles}",
+  #       "-speed:v:#{idx}",
+  #       "2"
   #     ],
   #     tag_as: av1_codec_tag(info, tiles, 8)
   #   }
   # end
 
+  @spec codec_av1_svt(map(), non_neg_integer()) :: map()
+  defp codec_av1_svt(info, idx) do
+    {tiles, cols, rows} =
+      if info[:height] >= 1080,
+        do: {2, 0, 1},
+        else: {1, 0, 0}
+
+    params =
+      %{
+        tune: 0,
+        "enable-dlf": 2,
+        scm: 0,
+        "tile-columns": cols,
+        "tile-rows": rows,
+        "enable-variance-boost": 1,
+        "variance-boost-strength": 4,
+        # VBR
+        rc: 1,
+        tbr: "#{info[:bitrate]}m",
+        # max bit rate is only supported on CRF
+        mbr: "0",
+        "maxsection-pct": 120,
+        "undershoot-pct": 20,
+        "overshoot-pct": 5,
+        # not supported multipass
+        # "enable-overlays": 1,
+        "enable-tf": 0,
+        "enable-qm": 1,
+        "qm-min": 1,
+        "qp-scale-compress-strength": 1,
+        sharpness: 1
+      }
+      |> Enum.map(fn {k, v} -> "#{k}=#{v}" end)
+      |> Enum.join(":")
+
+    %{
+      codec: [
+        "libsvtav1",
+        "-preset:#{idx}",
+        "1",
+        "-svtav1-params:#{idx}",
+        params
+      ],
+      tag_as: av1_codec_tag(info, tiles, 8)
+    }
+  end
+
   # ffmpeg itself manages avc tags
   @spec codec_avc(map(), non_neg_integer()) :: map()
   defp codec_avc(_info, idx),
-    do: %{codec: ["libx264", "-preset:v:#{idx}", "veryslow"]}
+    do: %{codec: ["libx264", "-preset:v:#{idx}", "veryslow", "-x264-params:#{idx}", "threads=4"]}
 
   # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
   # the tag. The one given here is a fallback.
@@ -753,12 +813,15 @@ defmodule Video.Renderer do
   #   %{codec: specific ++ ["-tag:v:#{idx}", "hvc1"], tag_as: "hvc1.1.4.L186.B01"}
   # end
 
-  defp variants do
+  defp variants() do
     [
       # av1, with default quality as first entry
-      %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_rav1e/2},
-      %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_rav1e/2},
-      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_rav1e/2},
+      # %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_rav1e/2},
+      # %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_rav1e/2},
+      # %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_rav1e/2}
+      %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_svt/2},
+      %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_svt/2},
+      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_svt/2},
       # legacy codec
       %{width: 640, height: 360, bitrate: 4, codec: &codec_avc/2},
       %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
@@ -771,46 +834,40 @@ defmodule Video.Renderer do
     end)
   end
 
-  def variant_flags() do
-    Enum.flat_map(variants(), fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
-      ["-c:v:#{idx}"] ++
-        codec ++
-        [
-          "-flags",
-          "+cgop",
-          "-map",
-          "[out#{idx}]",
-          "-s:#{idx}",
-          "#{w}x#{h}",
-          "-metadata:s:v:#{idx}",
-          "title=\"#{h}p\"",
-          "-b:v:#{idx}",
-          "#{rate}M",
-          "-maxrate:#{idx}",
-          "#{max_bitrate(rate)}M",
-          "-bufsize:#{idx}",
-          "#{buf_size(rate)}M"
-        ]
-    end) ++ ~w[-x264-params threads=4]
+  def variant_flags(tmp_dir) do
+    variants()
+    |> Enum.flat_map(fn %{width: w, height: h, bitrate: rate, index: idx, codec: codec} ->
+      [
+        ["-c:v:#{idx}", codec],
+        ["-flags", "+cgop"],
+        ["-map", "[out#{idx}]"],
+        ["-s:#{idx}", "#{w}x#{h}"],
+        ["-metadata:s:v:#{idx}", "title=\"#{h}p\""],
+        ["-b:v:#{idx}", "#{rate}M"],
+        ["-maxrate:#{idx}", "#{max_bitrate(rate)}M"],
+        ["-bufsize:#{idx}", "#{buf_size(rate)}M"],
+        ["-passlogfile:#{idx}", "#{tmp_dir}/pass1_idx#{idx}.log"]
+      ]
+    end)
   end
 
-  defp encoder(tmp_dir) when is_binary(tmp_dir) do
+  defp output_hls(tmp_dir) when is_binary(tmp_dir) do
     stream_map = Enum.map_join(variants(), " ", &"v:#{&1[:index]}")
 
-    ~w[
-      -color_primaries bt709
-      -color_trc bt709
-      -colorspace bt709
-      -an
-      -f hls
-      -hls_playlist_type vod
-      -sc_threshold 0
-      -pix_fmt yuv420p
-      -hls_segment_type fmp4
-      -master_pl_name stream.m3u8
-      -hls_flags single_file+independent_segments
-      -hls_list_size 0] ++
-      ["-g", gop_size(), "-hls_time", hls_time()] ++
-      variant_flags() ++ ["-var_stream_map", stream_map, "#{tmp_dir}/stream_%v.m3u8"]
+    [
+      ["-f", "hls"],
+      ["-hls_playlist_type", "vod"],
+      ["-hls_segment_type", "fmp4"],
+      ["-master_pl_name", "stream.m3u8"],
+      ["-hls_flags", "single_file+independent_segments"],
+      ["-hls_list_size", "0"],
+      ["-hls_time", hls_time()],
+      ["-var_stream_map", stream_map],
+      "#{tmp_dir}/stream_%v.m3u8"
+    ]
+  end
+
+  defp output_none() do
+    ~w[-f null /dev/null]
   end
 end

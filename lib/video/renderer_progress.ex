@@ -3,9 +3,9 @@ defmodule Video.Renderer.Progress do
   @enforce_keys @params
   defstruct @params
 
-  def new(rendered) do
+  def new(rendered, pass) do
     total_frames = round(rendered.length_ms() / 1000.0 * Video.Constants.output_fps())
-    desc = "rendering #{rendered.hash()}"
+    desc = "rendering pass #{pass} #{rendered.hash()}"
 
     # immediately take 1 to force progress bar to show up
     {_taken, stream} =

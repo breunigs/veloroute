@@ -3,10 +3,10 @@ FROM debian:testing-slim AS downloader
 ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
-# ARG SVTAV1_REPO=https://gitlab.com/AOMediaCodec/SVT-AV1/-
-# ARG SVTAV1_VERSION=v3.1.0
-ARG SVTAV1_REPO=https://github.com/BlueSwordM/svt-av1-psyex
-ARG SVTAV1_VERSION=d1dbfba23beb1ff7a7f5129fd303e4cf5d397eb0
+ARG SVTAV1_REPO=https://gitlab.com/AOMediaCodec/SVT-AV1/-
+ARG SVTAV1_VERSION=b14641af46f23577ac5f248d28fb7b410ef6ea8e
+# ARG SVTAV1_REPO=https://github.com/BlueSwordM/svt-av1-psyex
+# ARG SVTAV1_VERSION=d1dbfba23beb1ff7a7f5129fd303e4cf5d397eb0
 
 # ARG FFMPEG_VERSION=7.1
 ARG BLUR_VERSION=2febf37aed95188ef829cfe156aad016a51a54a6
@@ -32,8 +32,9 @@ RUN \
 #   wget https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
 #   tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
 RUN cd /downloads/ && \
-  wget https://github.com/breunigs/ffmpeg/archive/refs/heads/frei0r-mixers.tar.gz && \
-  tar zxf frei0r-mixers.tar.gz && rm frei0r-mixers.tar.gz && mv *-frei0r-mixers ffmpeg
+  wget https://github.com/breunigs/ffmpeg/archive/refs/heads/frei0r-mixers-svt-multipass.tar.gz && \
+  tar zxf frei0r-mixers-svt-multipass.tar.gz && rm frei0r-mixers-svt-multipass.tar.gz && mv *-frei0r-mixers-svt-multipass ffmpeg && \
+  echo "force rebuild 1"
 
 
 RUN cd /downloads/ && \
@@ -41,13 +42,13 @@ RUN cd /downloads/ && \
   tar zxf ${BLUR_VERSION}.tar.gz && rm ${BLUR_VERSION}.tar.gz && mv frei0r-blur-from-json-${BLUR_VERSION} blur
 
 #github
-RUN cd /downloads/ && \
-  wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}.tar.gz && \
-  tar zxf ${SVTAV1_VERSION}.tar.gz && rm ${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
-#gitlab
 # RUN cd /downloads/ && \
-#   wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}/SVT-AV1-${SVTAV1_VERSION}.tar.gz && \
-#   tar zxf SVT-AV1-${SVTAV1_VERSION}.tar.gz && rm SVT-AV1-${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
+#   wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}.tar.gz && \
+#   tar zxf ${SVTAV1_VERSION}.tar.gz && rm ${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
+#gitlab
+RUN cd /downloads/ && \
+  wget ${SVTAV1_REPO}/archive/${SVTAV1_VERSION}/SVT-AV1-${SVTAV1_VERSION}.tar.gz && \
+  tar zxf SVT-AV1-${SVTAV1_VERSION}.tar.gz && rm SVT-AV1-${SVTAV1_VERSION}.tar.gz && mv *-${SVTAV1_VERSION} svtav1
 
 
 RUN cd /downloads/ && \
