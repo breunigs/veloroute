@@ -8,14 +8,10 @@ defmodule Git do
   def from_env(), do: maybe_nil(System.get_env("GIT_COMMIT"))
 
   defp from_git() do
-    System.cmd("git", ["rev-parse", "HEAD"])
-    |> case do
-      {sha, 0} -> maybe_nil(sha)
-      _ -> nil
-    end
-    |> case do
-      nil -> nil
-      sha -> if dirty?(), do: "#{sha}-#{DateTime.utc_now()}", else: sha
+    with true <- File.exists?(".git"),
+         {sha, 0} <- System.cmd("git", ["rev-parse", "HEAD"]),
+         sha when is_binary(sha) <- maybe_nil(sha) do
+      if dirty?(), do: "#{sha}-#{DateTime.utc_now()}", else: sha
     end
   end
 
