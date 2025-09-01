@@ -6,8 +6,7 @@ FROM debian:${DEBIAN_VERSION} AS runner-base
 
 # keep runtime dependencies in sync with Dockerfile.release
 RUN \
-  sed -i 's/bookworm/testing/g' /etc/apt/sources.list.d/debian.sources \
-  && apt-get update \
+  apt-get update \
   && apt-get install -y --no-install-recommends \
   libicu[0-9]+$ \
   libcurl4t64 \

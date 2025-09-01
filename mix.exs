@@ -15,13 +15,12 @@ defmodule Veloroute.MixProject do
           steps: [:assemble]
         ]
       ],
-      preferred_cli_env: [
-        test: :test,
-        credo: :test,
-        "velo.assets.prepare": :test
-      ],
       aliases: aliases()
     ]
+  end
+
+  def cli do
+    [preferred_envs: [test: :test, credo: :test, "velo.assets.prepare": :test]]
   end
 
   # Configuration for the OTP application.
@@ -93,9 +92,7 @@ defmodule Veloroute.MixProject do
       {:ua_parser, "~> 1.8"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       # auto video join
-      # Ortex 0.1.10 and newer require Rust 1.64+. However, Debian Bookworm as
-      # our base image only has Rust 1.63.
-      {:ortex, "0.1.9", only: [:dev, :test]},
+      {:ortex, "~> 0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
       {:scholar, "~> 0.3.0", only: [:dev, :test]}
     ]

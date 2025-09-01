@@ -46,7 +46,7 @@ config :logger, :default_formatter,
   format: {LogFormatter, :format},
   metadata: [:request_id, :file, :line]
 
-config :logger, backends: [:console], truncate: :infinity
+config :logger, truncate: :infinity
 
 config :phoenix, :json_library, JSON
 

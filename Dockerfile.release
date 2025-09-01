@@ -3,9 +3,8 @@ FROM debian:${DEBIAN_VERSION}
 
 # keep runtime dependencies in sync with Dockerfile.maplibre-native
 RUN \
-  sed -i 's/bookworm/testing/g' /etc/apt/sources.list.d/debian.sources \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends -t testing \
+  apt-get update \
+  && apt-get install -y --no-install-recommends \
   ffmpeg \
   libcurl4t64 \
   libglx0 \
