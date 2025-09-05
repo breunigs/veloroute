@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.Eilbektal do
     do:
       "Nordseite: Ehemaliger Radweg wird wieder hergerichtet. Südseite: Gehwege werden breiter. Nur noch 1 KFZ-Spur und neue Querungshilfen."
 
-  def type(), do: :planned
+  def type(), do: :finished
   def tags(), do: ["FV-W051"]
 
   def start(), do: ~d[2025Q2]

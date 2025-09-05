@@ -12,10 +12,10 @@ defmodule Data.Article.Blog.HohenfelderBucht do
       "Breitere und direktere Radwege im gesamten Baugebiet. Im Oktober 2023 wurde die Planung leicht angepasst, bleibt im Kern aber wie die ursprüngliche Version von 2018."
 
   def start(), do: ~d[2020-03-09]
-  def stop(), do: ~d[2025-07-31]
+  def stop(), do: ~d[2025-12-31]
 
   def type(), do: :construction
-  # def construction_site_id_hh(), do: [6381]
+  def construction_site_id_hh(), do: [6381]
   def tags(), do: ["radroute-9", "5", "6", "FR2", "FR3", "br-nord-n1"]
 
   def links(_assigns) do

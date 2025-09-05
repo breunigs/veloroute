@@ -8,10 +8,10 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
       "Radverkehr und Fahrgastbereich der Bushaltestellen werden entzerrt. Nach Norden Radweg rechts des Bushalts, nach Süden zwischen wartendem Bus und KFZ-Fahrbahn."
 
   def start(), do: ~d[2025-03-03]
-  def stop(), do: ~d[2025-11-14]
+  def stop(), do: ~d[2025-09-01]
   def construction_site_id_hh(), do: [1_243_487]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["radroute-19", "14"]
 
   def links(assigns) do

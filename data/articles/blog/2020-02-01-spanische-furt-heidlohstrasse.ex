@@ -10,11 +10,11 @@ defmodule Data.Article.Blog.SpanischeFurtHeidlohstrasse do
     do: "Verschiedene Lösungen der Einzelabschnitte. Umbau Spanische Furt ab Oktober 2022."
 
   def start(), do: ~d[2022-10]
-  def stop(), do: ~d[2023-12]
+  def stop(), do: ~d[2025-08]
   # Graf-Johann-Weg
   # def construction_site_id_hh(), do: [121136]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-19", "14"]
 

@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Bundesstrasse2 do
 
   def tags(), do: ["radroute-14", "Bezirksroute B", "Eimsbüttel"]
   def start(), do: ~d[2024-11-18]
-  def stop(), do: ~d[2025-08-31]
+  def stop(), do: ~d[2025-09-05]
   def construction_site_id_hh(), do: [1_166_009]
 
   def tracks(), do: Data.Article.Blog.Bundesstrasse.tracks()
