@@ -55,7 +55,7 @@ config :veloroute, Settings, %{
         "rr-line-off-none-concept",
         "rr-line-off-none-concept-tunnel"
       ],
-      icon: ["rr-oneway", "rr-sign"],
+      icon: ["rr-oneway", "rr-sign", "rsw-sign"],
       fill: [],
       outline: []
     },
