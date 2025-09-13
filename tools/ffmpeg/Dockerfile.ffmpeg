@@ -121,7 +121,6 @@ RUN \
   libssl-dev \
   libtool \
   libva-dev \
-  libvpx-dev \
   libwebp-dev \
   libx264-dev \
   libx265-dev \
@@ -176,7 +175,6 @@ RUN cd /downloads/ffmpeg && \
   --enable-libharfbuzz \
   --enable-librav1e \
   --enable-libsvtav1 \
-  --enable-libvpx \
   --enable-libwebp \
   --enable-libx264 \
   --enable-libx265 \
@@ -203,7 +201,6 @@ RUN \
   libva-drm2 \
   libva2 \
   libvips42 \
-  libvpx[0-9]+ \
   libvulkan[0-9]+ \
   libwebp[0-9]+ \
   libwebpmux3 \
