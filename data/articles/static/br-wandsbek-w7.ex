@@ -65,6 +65,7 @@ defmodule Data.Article.Static.BrWandsbekW7 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643589"},
       {"Beteiligungsverfahren", "2023", "https://radverkehr-wandsbek.beteiligung.hamburg"}
     ]
   end

@@ -48,6 +48,7 @@ defmodule Data.Article.Static.AhrensburgA10 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643536"},
       {"Radverkehrsseite der Stadt Ahrensburg",
        "https://www.ahrensburg.de/Bauen-Umwelt-Klimaschutz/Stra%C3%9Fenwesen/Radverkehr/"}
     ]

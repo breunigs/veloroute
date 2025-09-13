@@ -72,6 +72,10 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner: Bahnhof ↔ Halstenbek",
+       "https://ridewithgps.com/routes/52643631"},
+      {"Ride With GPS Routenplaner: Zentrum ↔ Rellingen",
+       "https://ridewithgps.com/routes/52643630"},
       {"Broschüre zu Pinnebergs Velorouten", "2022, PDF",
        "https://web.archive.org/web/20220916120424if_/https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
       {"Stadt Pinneberg zur Ausschilderung",

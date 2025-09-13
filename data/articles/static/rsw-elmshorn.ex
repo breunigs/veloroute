@@ -86,6 +86,7 @@ defmodule Data.Article.Static.RSWElmshorn do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643670"},
       {"Probleme bei Umsetzung zwischen Halstenbek und Pinneberg", ~d[2025-05],
        "https://www.ndr.de/nachrichten/schleswig-holstein/Enttaeuschung-nach-Aus-fuer-Radschnellweg-zwischen-Elmshorn-und-Hamburg,regionnorderstedtnews2832.html"},
       {"offizielle Seite zu den Radschnellwegen",

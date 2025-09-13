@@ -97,6 +97,7 @@ defmodule Data.Article.Static.Freizeitroute0 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt", "https://www.hamburg.de/freizeit-radtouren/8628594/radtouren/"},
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643592"},
       {"Komoot Routenplaner: 1. Grüner Ring", "https://www.komoot.com/de-de/tour/227484667"},
       {"„Kunstmeile“ Hamburg (Marketing- und Infoseite)", "https://kunstmeile-hamburg.de/"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/9038695"}

@@ -54,7 +54,10 @@ defmodule Data.Article.Static.RadrouteConceptE do
     ]
 
   def links(_assigns) do
-    [{"Marketingseite der Science City Bahrenfeld", "https://www.sciencecity.hamburg/"}]
+    [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643657"},
+      {"Marketingseite der Science City Bahrenfeld", "https://www.sciencecity.hamburg/"}
+    ]
   end
 
   def text(assigns) do

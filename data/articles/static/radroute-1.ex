@@ -115,7 +115,9 @@ defmodule Data.Article.Static.Radroute1 do
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643422"}
+    ]
   end
 
   def text(assigns) do

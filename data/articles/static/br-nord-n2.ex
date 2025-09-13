@@ -87,6 +87,9 @@ defmodule Data.Article.Static.BrNordN2 do
 
   def links(assigns) do
     [
+      {"Ride With GPS Routenplaner: zur Papenreye", "https://ridewithgps.com/routes/52643568"},
+      {"Ride With GPS Routenplaner: zur Heilwigbrücke",
+       "https://ridewithgps.com/routes/52643569"},
       {"Entwurf Radverkehrskonzept", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013264"}
     ] ++ Data.Article.Shared.bezirksroute_links(:nord, assigns)

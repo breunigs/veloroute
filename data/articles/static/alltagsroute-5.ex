@@ -139,7 +139,9 @@ defmodule Data.Article.Static.Alltagsroute5 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426674/veloroute-5/"},
-      ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/228654173">zum Flughafen</.a> oder <.a href="https://www.komoot.com/de-de/tour/204278537">nach Duvenstedt</.a>},
+      {"Ride With GPS Routenplaner: nach Duvenstedt", "https://ridewithgps.com/routes/52643543"},
+      {"Ride With GPS Routenplaner: zur City Nord", "https://ridewithgps.com/routes/52643542"},
+      ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/228654173" rel="nofollow">zum Flughafen</.a> oder <.a href="https://www.komoot.com/de-de/tour/204278537" rel="nofollow">nach Duvenstedt</.a>},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/226032"}
     ]
   end

@@ -63,6 +63,7 @@ defmodule Data.Article.Static.FreizeitrouteElbradwegSued do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643591"},
       {"Detailseite der Stadt",
        "https://www.hamburg.de/mit-dem-rad-durch-hamburg/318124/radtour-elberadweg/"},
       {"Info/Werbeseite zum gesamten Elbradweg (inkl. GPS Daten)", "https://www.elberadweg.de/"},

@@ -68,6 +68,7 @@ defmodule Data.Article.Static.BrBergedorfB do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643556"},
       {"Bezirksrouten Bergedorf Zielnetz", ~d[2025-08],
        "https://suche.transparenz.hamburg.de/dataset/bezirksradrouten-hamburg-bergedorf-finales-zielnetz1"}
     ]

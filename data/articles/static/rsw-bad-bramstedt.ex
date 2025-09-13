@@ -108,6 +108,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643668"},
       {"Pressemitteilung zur Vorzugsroute auf Hamburger Stadtgebiet", "März 2023",
        "https://www.hamburg.de/hamburg-nord/pressemitteilungen/17016042/vorzugstrasse-radschnellweg/"},
       {"Sachstand Planung", "Juni 2022",

@@ -81,6 +81,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
     [
       {"official info page of the city",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418914/veloroute-2/"},
+      {"Ride With GPS route planner", "https://ridewithgps.com/routes/52643538"},
       {"Komoot route planner: towards Eidelstedt", "https://www.komoot.com/de-de/tour/204274161"},
       {"route in the OpenStreetMap", "https://www.openstreetmap.org/relation/194841"}
     ]
@@ -90,6 +91,7 @@ defmodule Data.Article.Static.Alltagsroute2 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418914/veloroute-2/"},
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643538"},
       {"Komoot Routenplaner: nach Eidelstedt", "https://www.komoot.com/de-de/tour/204274161"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/194841"}
     ]

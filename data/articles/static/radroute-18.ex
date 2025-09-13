@@ -82,6 +82,7 @@ defmodule Data.Article.Static.Radroute18 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643644"},
       {"Präsentation zum Planungsstand", ~d[2025-05],
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012998"},
       {"Fahrplan Elbfähre (Linie 64)",

@@ -14,6 +14,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643593"},
       {"Pressemitteilung BVM",
        "https://www.hamburg.de/bvm/medien/15646102/2021-11-29-bvm-radverkehr/"},
       {"Bündnis für den Fuß- und Radverkehr",

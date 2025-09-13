@@ -84,6 +84,10 @@ defmodule Data.Article.Static.AhrensburgA4 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner: Rosenweg ↔ Ahrensfelde",
+       "https://ridewithgps.com/routes/52643526"},
+      {"Ride With GPS Routenplaner: Heimgarten ↔ Lilienweg",
+       "https://ridewithgps.com/routes/52643527"},
       {"Radverkehrsseite der Stadt Ahrensburg",
        "https://www.ahrensburg.de/Bauen-Umwelt-Klimaschutz/Stra%C3%9Fenwesen/Radverkehr/"}
     ]

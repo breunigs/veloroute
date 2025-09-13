@@ -68,6 +68,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643607"},
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294584/radtour-city-sternschanzenpark-niendorfer-gehege/"},
       {"Komoot Routenplaner: entlang der Kollau", "https://www.komoot.com/de-de/tour/227481122"},

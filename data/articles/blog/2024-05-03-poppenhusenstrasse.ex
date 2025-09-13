@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
       "Straße wird für den Radverkehr in beide Richtungen freigegeben. Fahrbahn wird etwas breiter und das Parken mit Parkbuchten und Fahrrad-Anschließbügeln neu sortiert."
 
   def type(), do: :planned
-  def start(), do: ~d[2025-03]
-  def stop(), do: ~d[2026-06]
+  def start(), do: ~d[2026]
+  def stop(), do: ~d[2026]
 
   def tags(), do: ["radroute-5", "5"]
 

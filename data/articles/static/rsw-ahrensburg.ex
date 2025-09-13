@@ -63,6 +63,7 @@ defmodule Data.Article.Static.RSWAhrensburg do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643667"},
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Ahrensburg",

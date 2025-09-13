@@ -97,6 +97,10 @@ defmodule Data.Article.Static.Radroute11 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner: Argentinienbrücke ↔ Stader Straße",
+       "https://ridewithgps.com/routes/52643635"},
+      {"Ride With GPS Routenplaner: Reiherstieg-Hauptdeich ↔ Neuhöfer Damm",
+       "https://ridewithgps.com/routes/52643636"},
       {"Präsentation zum Planungsstand", ~d[2025-04],
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012691"}
     ]

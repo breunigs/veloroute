@@ -52,7 +52,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute2 do
     ]
 
   def links(_assigns) do
-    []
+    [{"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643624"}]
   end
 
   def text(assigns) do

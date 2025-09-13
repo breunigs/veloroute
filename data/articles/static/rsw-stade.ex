@@ -128,6 +128,10 @@ defmodule Data.Article.Static.RSWStade do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner: Stade ↔ Neugraben",
+       "https://ridewithgps.com/routes/52643675"},
+      {"Ride With GPS Routenplaner: Buxtehude ↔ Finkenwerder",
+       "https://ridewithgps.com/routes/52643676"},
       {"Präsentation zum Planungsstand", ~d[2025-06],
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1012998"},
       {"offizielle Seite zu den Radschnellwegen",

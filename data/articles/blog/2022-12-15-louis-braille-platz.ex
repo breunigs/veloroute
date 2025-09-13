@@ -17,6 +17,8 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-09],
+       "https://lsbg.hamburg.de/resource/blob/1096550/03f56e63a39f795b94d99f2764c2c425/louis-braille-platz-anliegerinformation-september-2025-data.pdf"},
       {"Politik blockiert Umbau nicht mehr", ~d[2025-02],
        "https://www.abendblatt.de/hamburg/hamburg-nord/article408394749/barmbek-umbau-aufregung-um-louis-braille-platz-alles-hing-nur-an-zwei-parkplaetzen.html"},
       {"Politik blockiert Umbau", ~d[2025-01],

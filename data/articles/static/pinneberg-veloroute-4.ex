@@ -53,6 +53,7 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643633"},
       {"Broschüre zu Pinnebergs Velorouten", "2022, PDF",
        "https://web.archive.org/web/20220916120424if_/https://pinneberg.de/fileadmin/user_upload/faltblatt-veloroute-stand03-2022.pdf"},
       {"Stadt Pinneberg zur Ausschilderung",

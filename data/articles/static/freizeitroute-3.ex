@@ -78,6 +78,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643597"},
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294592/radtour-city-eilbekkanal-wandse-gruenzug/"},
       {"Komoot Routenplaner: entlang der Wandse", "https://www.komoot.com/de-de/tour/227474867"},

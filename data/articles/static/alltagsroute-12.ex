@@ -69,6 +69,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643551"},
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426798/veloroute-12/"},
       {"Komoot Routenplaner: nach Altona", "https://www.komoot.com/de-de/tour/225148542"},

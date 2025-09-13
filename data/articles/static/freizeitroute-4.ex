@@ -121,6 +121,9 @@ defmodule Data.Article.Static.Freizeitroute4 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6294594/radtour-city-geesthang-boberger-niederung-bergedorf/"},
+      {"Ride With GPS Routenplaner: Hauptstrecke", "https://ridewithgps.com/routes/52643598"},
+      {"Ride With GPS Routenplaner: Nebenstrecke Walter-Hammer-Weg",
+       "https://ridewithgps.com/routes/52643599"},
       {"Komoot Routenplaner: entlang der Bille", "https://www.komoot.com/de-de/tour/227476622"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/223231"}
     ]

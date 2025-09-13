@@ -99,6 +99,9 @@ defmodule Data.Article.Static.BrNordN6 do
 
   def links(assigns) do
     [
+      {"Ride With GPS Routenplaner: UKE ↔ Bramfeld", "https://ridewithgps.com/routes/52643575"},
+      {"Ride With GPS Routenplaner: Grasweg ↔ Pestalozzistraße",
+       "https://ridewithgps.com/routes/52643576"},
       {"Entwurf Radverkehrskonzept", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013264"},
       {"Untersuchung Erweiterung Stadtpark", "September 2022",

@@ -78,6 +78,7 @@ defmodule Data.Article.Static.RSWTostedt do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643677"},
       {"offizielle Seite zu den Radroute Plus",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Tostedt",

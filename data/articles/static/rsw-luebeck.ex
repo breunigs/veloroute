@@ -112,6 +112,7 @@ defmodule Data.Article.Static.RSWLuebeck do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643672"},
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Lübeck",

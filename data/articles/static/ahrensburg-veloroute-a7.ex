@@ -86,6 +86,9 @@ defmodule Data.Article.Static.AhrensburgA7 do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner: Brauner Hirsch ↔ Gewerbegebiet",
+       "https://ridewithgps.com/routes/52643531"},
+      {"Ride With GPS Routenplaner: Hagener Allee", "https://ridewithgps.com/routes/52643532"},
       {"Radverkehrsseite der Stadt Ahrensburg",
        "https://www.ahrensburg.de/Bauen-Umwelt-Klimaschutz/Stra%C3%9Fenwesen/Radverkehr/"}
     ]

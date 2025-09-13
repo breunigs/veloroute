@@ -90,6 +90,7 @@ defmodule Data.Article.Static.Alltagsroute6 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426692/veloroute-6/"},
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643544"},
       {"Komoot Routenplaner: nach Volksdorf", "https://www.komoot.com/de-de/tour/204279360"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/227477"}
     ]

@@ -130,6 +130,10 @@ defmodule Data.Article.Static.Alltagsroute11 do
     [
       {"Detailseite der Stadt",
        "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426790/veloroute-11/"},
+      {"Ride With GPS Routenplaner: Innenstadt ↔ Eißendorf",
+       "https://ridewithgps.com/routes/52643549"},
+      {"Ride With GPS Routenplaner: Veddel ↔ Bürgerhaus Wilhelmsburg",
+       "https://ridewithgps.com/routes/52643550"},
       ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/225145133">ab Rathaus</.a> oder <.a href="https://www.komoot.com/de-de/tour/229606335">ab der Veddel</.a> nach Eißendorf},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/233959"}
     ]

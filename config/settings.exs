@@ -156,7 +156,7 @@ config :veloroute, Settings, %{
   default_language: "de",
 
   # which links to tag with a [€] marker
-  paywall_hostnames: ["abendblatt.de", "www.abendblatt.de"],
+  paywall_hostnames: ["abendblatt.de", "www.abendblatt.de", "komoot.com"],
 
   # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB
   video_thumbnail_cache_entry_limit: 1000,

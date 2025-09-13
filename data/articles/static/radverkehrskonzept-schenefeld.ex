@@ -315,6 +315,7 @@ defmodule Data.Article.Static.RadverkehrskonzeptSchenefeld do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/collections/6022279"},
       {"Verkehrsentwicklungskonzept Schenefeld 2035", ~d[2022-08],
        "https://www.stadt-schenefeld.de/rathaus/planen-bauen/verkehrsentwicklung/bericht.pdf?cid=cdm"},
       {"Radverkehrskonzept", ~d[2020-01],

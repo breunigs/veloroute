@@ -56,6 +56,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
 
   def links(_assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643565"},
       {"Vorstellung Bezirksrouten Eimsbüttel", "Februar 2023, Details in Anhang VI",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008163"},
       {"Infoseite Eimsbüttels zu den Bezirksrouten",

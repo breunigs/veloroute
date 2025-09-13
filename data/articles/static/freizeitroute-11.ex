@@ -142,6 +142,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
 
   def links(%{lang: "en"} = assigns) do
     [
+      {"Ride With GPS Routeplanner", "https://ridewithgps.com/routes/52643679"},
       {"official site of the city",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
       {"Komoot route planner: outer ring route", "https://www.komoot.com/tour/227481906"},
@@ -153,6 +154,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
 
   def links(assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643679"},
       {"Detailseite der Stadt",
        "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
       {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.com/de-de/tour/227481906"},

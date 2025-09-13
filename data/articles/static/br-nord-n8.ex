@@ -61,6 +61,7 @@ defmodule Data.Article.Static.BrNordN8 do
 
   def links(assigns) do
     [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643579"},
       {"Entwurf Radverkehrskonzept", "Oktober 2023",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1013264"}
     ] ++ Data.Article.Shared.bezirksroute_links(:nord, assigns)

@@ -88,11 +88,49 @@ defmodule Data.Article.Static.Radroute3 do
           {"2024-04-30-fr3/GX017304", :start, :end},
           {"2024-04-30-fr3/GX017305", :start, "00:00:02.669"}
         ]
+      },
+      %Video.Track{
+        renderer: 6,
+        group: "brücken",
+        direction: :forward,
+        from: "Elbbrücken",
+        to: "Versmannstraße",
+        parent_ref: __MODULE__,
+        text: "Abzweig zur Billhorner Brücke",
+        historic: %{
+          "cde14b4f3f760ed5b06f3230cdb7983a" => ~d[2024-05]
+        },
+        videos: [
+          {"2024-05-18-vr10/GX017627", "00:00:55.144", "00:01:23.600"}
+        ]
+      },
+      %Video.Track{
+        renderer: 6,
+        group: "brücken",
+        direction: :backward,
+        from: "Versmannstraße",
+        to: "Elbbrücken",
+        parent_ref: __MODULE__,
+        text: "Abzweig von Billhorner Brücke",
+        historic: %{
+          "7debe952c525f343e5a36cc164e58a2e" => ~d[2025-05]
+        },
+        videos: [
+          {"2024-05-18-vr10/GX017613", "00:00:58.380", "00:01:22.399"}
+        ],
+        end_action: %{
+          action: :play,
+          route: __MODULE__,
+          group: "3",
+          direction: :backward
+        }
       }
     ]
 
   def links(_assigns) do
-    []
+    [
+      {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643492"}
+    ]
   end
 
   def text(assigns) do
