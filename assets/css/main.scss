@@ -120,7 +120,7 @@ $mapBgColor: #EFE9E1;
   }
 }
 
-body.fullscreen #videoOuter {
+body.fullscreen #videoOuter, .maplibregl-pseudo-fullscreen {
   top: 0;
   left: 0;
   width: 100vw;
@@ -128,6 +128,12 @@ body.fullscreen #videoOuter {
   height: -webkit-fill-available;
   position: fixed;
   z-index: 11;
+}
+
+.maplibregl-pseudo-fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 11 !important;
 }
 
 #videoOuter:hover, #videoOuter[data-state="play"] {

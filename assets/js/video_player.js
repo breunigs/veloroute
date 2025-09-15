@@ -828,6 +828,7 @@ function toggleFullscreen() {
   const fullscreenElement =
     document.fullscreenElement ||
     document.webkitFullscreenElement ||
+    (video.webkitSupportsPresentationMode && video.webkitSetPresentationMode == 'fullscreen') ||
     document.body.classList.contains("fullscreen");
   if (fullscreenElement) {
     exitFullscreen();
@@ -839,8 +840,8 @@ function toggleFullscreen() {
 function launchIntoFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
-  } else if (video.webkitSetPresentationMode) {
-    video.webkitSetPresentationMode('fullscreen');
+  } else if (video.webkitSupportsPresentationMode && properVideoIsLoaded) {
+    video.webkitSetPresentationMode('fullscreen')
   } else if (element.webkitRequestFullscreen && !isTouch()) {
     element.webkitRequestFullscreen();
   } else {

@@ -615,13 +615,24 @@ function setup() {
     attributionControl: false,
     validateStyle: false,
     cancelPendingTileRequestsWhileZooming: false,
+    locale: {
+      'FullscreenControl.Enter': 'Karte im Vollbild anzeigen',
+      'FullscreenControl.Exit': 'Vollbild verlassen',
+    }
   });
+
+  const fullscreenScreenCtrl = new mlgl.FullscreenControl()
+  fullscreenScreenCtrl.on('fullscreenstart', () => {
+    if (isVideoPlaying()) video.pause()
+    disableIndicatorAnimationOnce()
+  })
+  fullscreenScreenCtrl.on('fullscreenend', disableIndicatorAnimationOnce)
 
   map.addControl(new mlgl.NavigationControl({
     showZoom: true,
     showCompass: false,
   }), 'bottom-right');
-  map.addControl(new mlgl.FullscreenControl(), 'top-right');
+  map.addControl(fullscreenScreenCtrl, 'top-right');
 
   map.touchZoomRotate.disableRotation();
   map.addControl(new mlgl.AttributionControl({ compact: null }), 'top-left');
