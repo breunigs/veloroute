@@ -4,13 +4,16 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   def created_at(), do: ~D[2021-12-16]
   def title(), do: "Bushalt Spaldingstraße (Freizeitroute 6)"
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["FR6"]
 
-  def start(), do: ~d[2024]
+  def start(), do: ~d[2025-10]
+  def stop(), do: ~d[2026-05]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-09],
+       "https://lsbg.hamburg.de/resource/blob/1098090/4c127911c579519cba5555e66e37fe04/amsinckstrasse-anliegerinformation-september-2025-data.pdf"},
       {"Erläuterung – fertiger Entwurf", ~d[2022-06],
        "https://lsbg.hamburg.de/resource/blob/1081620/5ae34fce7566a50c45ceea9964f29f0d/amsinckstrasse-west-mb-3-abgestimmte-planung-bericht-data.pdf"},
       {"Karte – fertiger Entwurf", ~d[2022-06],
