@@ -7,8 +7,9 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   def type(), do: :construction
   def tags(), do: ["FR6"]
 
-  def start(), do: ~d[2025-10]
-  def stop(), do: ~d[2026-05]
+  def start(), do: ~d[2025-10-01]
+  def stop(), do: ~d[2026-05-31]
+  def construction_site_id_hh(), do: [1_735_023]
 
   def links(_assigns) do
     [

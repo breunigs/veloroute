@@ -1,7 +1,7 @@
 defmodule Data.Article.Blog.Hermannstal do
   use Article.Default
 
-  def title(), do: "Hermannstal – westlich der Manshardstraße (Radroute 11)"
+  def title(), do: "Hermannstal – westlich der Manshardstraße (Radroute 1)"
 
   def summary(),
     do:

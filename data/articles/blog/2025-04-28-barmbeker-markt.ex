@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
       "Rad- und Gehwege sollen mit kleineren Maßnahmen verbessert werden. Das gelingt teilweise, behält den Charakter der Kreuzung als Autobahn aber leider bei."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-03]
-  def stop(), do: ~d[2027-01]
+  def start(), do: ~d[2026-09]
+  def stop(), do: ~d[2027-09]
 
   def tags(), do: ["radroute-5", "br-nord-n4"]
 
@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht", ~d[2025-09],
+       "https://lsbg.hamburg.de/resource/blob/1099970/c747d22669ac1c20eaaf166f5fd638db/barmbeker-markt-abgestimmte-planung-bericht-data.pdf"},
       {"Präsentation zur Planung", ~d[2025-04],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/to010.asp?SILFDNR=1003276"},
       {"Lageplan und Erläuterungen", ~d[2025-04],
