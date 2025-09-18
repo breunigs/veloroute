@@ -122,7 +122,7 @@ defmodule Search.Meilisearch.Nominatim do
       %{"name" => %{"name" => "" <> name}, "parents_name" => pns, "class" => class} = item ->
         housenum = get_in(item, ["address", "housenumber"])
         type = Data.OsmTagToHuman.name(item["type"])
-        {name, Enum.slice(pns, -2..-1), class, housenum, type}
+        {name, Enum.slice(pns || [], -2..-1), class, housenum, type}
 
       _ ->
         nil
