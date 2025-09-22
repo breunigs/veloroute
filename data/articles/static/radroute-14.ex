@@ -22,16 +22,15 @@ defmodule Data.Article.Static.Radroute14 do
         parent_ref: __MODULE__,
         text: "vom Altonaer Balkon zum Alstervorland",
         historic: %{
+          "6c8e8028c5e5b87c3120624d1d3d3b34" => ~d[2025-09],
           "fd316c8ee8c0feefb66a0ce53460c073" => ~d[2025-02]
         },
         videos: [
-          {"2025-02-10-innenstadt/GX018015", :start, "00:00:02.754"},
-          {"2025-02-06-whburg/GX017911", "00:00:02.860", :end},
-          {"2025-02-06-whburg/GX017912", :start, "00:00:08.527"},
-          {"2025-02-06-whburg/GX017913", "00:00:00.033", "00:00:17.000"},
-          {"2025-02-06-whburg/GX017913", "00:00:21.720", "00:00:40.820"},
-          {"2025-02-06-whburg/GX017914", :start, "00:00:00.467"},
-          {"2025-02-10-innenstadt/GX017993", :start, :end},
+          {"2025-09-20-random/GX018629", "00:00:22.839", :end},
+          {"2025-09-20-random/GX018630", :start, "00:00:08.694"},
+          {"2025-09-20-random/GX018631", :start, :end},
+          {"2025-09-20-random/GX018632", :seamless, "00:00:16.694"},
+          {"2025-02-10-innenstadt/GX017993", "00:00:01.502", :end},
           {"2025-02-10-innenstadt/GX017994", :start, :end},
           {"2025-02-10-innenstadt/GX017995", :start, :end},
           {"2025-02-10-innenstadt/GX017996", :start, :end},
@@ -47,6 +46,7 @@ defmodule Data.Article.Static.Radroute14 do
         parent_ref: __MODULE__,
         text: "vom Alstervorland zum Altonaer Balkon",
         historic: %{
+          "7504b47b1ba610a9fdc4223b957848e7" => ~d[2025-09],
           "8191ae0430e7d7ed7187931f0c018fa8" => ~d[2025-02]
         },
         videos: [
@@ -56,12 +56,12 @@ defmodule Data.Article.Static.Radroute14 do
           {"2025-02-10-innenstadt/GX018005", :start, "00:00:09.787"},
           {"2025-02-10-innenstadt/GX018006", :start, :end},
           {"2025-02-10-innenstadt/GX018007", :start, :end},
-          {"2025-02-10-innenstadt/GX018008", :start, :end},
-          {"2025-02-10-innenstadt/GX018009", :start, :end},
-          {"2025-02-10-innenstadt/GX018010", :start, :end},
-          {"2025-02-10-innenstadt/GX018011", :start, :end},
-          {"2025-02-10-innenstadt/GX018012", :start, :end},
-          {"2025-02-10-innenstadt/GX018013", :start, "00:00:12.279"}
+          {"2025-02-10-innenstadt/GX018008", :start, "00:00:07.674"},
+          {"2025-09-20-random/GX018671", "00:00:01.835", :end},
+          {"2025-09-20-random/GX018672", :start, :end},
+          {"2025-09-20-random/GX018673", :start, "00:00:17.134"},
+          {"2025-09-20-random/GX018674", :start, :end},
+          {"2025-09-20-random/GX018675", :start, "00:00:18.053"}
         ]
       }
     ]

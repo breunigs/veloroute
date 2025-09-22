@@ -23,9 +23,9 @@ defmodule Data.Article.Blog.Hermannstal do
   def map_image do
     {name(),
      [
-       {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
-       {"Bezirksamt Hamburg-Nord, Fachamt Management des öffentlichen Raumes",
-        "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"}
+       {"Schmeck · Junker Ingenieurgesellschaft mbH", "https://schmeck-junker.de/kontakt/"},
+       {"Bezirksamt Hamburg-Mitte, Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/bezirksamt/bezirksamtsstruktur/dezernat-wirtschaft-bauen-umwelt-66718"}
      ]}
   end
 

@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Jungfernstieg do
   def stop(), do: ~d[2025-06-07]
   def construction_site_id_hh(), do: [642_126]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-4", "radroute-3", "radroute-7", "3", "4"]
 

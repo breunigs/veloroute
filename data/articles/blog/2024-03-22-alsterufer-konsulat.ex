@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
     do:
       "Fahrradstraße soll durchgängig werden. Durchfahrt weiterhin nur für den Radverkehr möglich."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2025-05-05]
   def stop(), do: ~d[2025-10-24]

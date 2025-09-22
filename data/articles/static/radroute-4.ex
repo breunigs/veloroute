@@ -24,6 +24,7 @@ defmodule Data.Article.Static.Radroute4 do
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll nach Sinstorf",
         historic: %{
+          "37449a5d24d05da65975f308499e830f" => ~d[2025-09],
           "f8afb4160450776b7c4fed1b86b8f60c" => ~d[2025-02]
         },
         end_action: %{
@@ -38,10 +39,13 @@ defmodule Data.Article.Static.Radroute4 do
           {"2024-05-12-vr4/GX017528", :start, "00:01:30.639"},
           {"2024-05-12-vr4/GX017529", :start, :end},
           {"2024-05-12-vr4/GX017530", :start, "00:00:13.044"},
-          {"2024-05-12-vr4/GX017531", :start, "00:01:50.575"},
-          {"2025-02-10-innenstadt/GX017997", "00:00:16.355", :end},
-          {"2025-02-10-innenstadt/GX017998", :start, :end},
-          {"2025-02-10-innenstadt/GX017999", :start, :end},
+          {"2024-05-12-vr4/GX017531", :start, "00:01:25.279"},
+          {"2025-09-20-random/GX018648", "00:00:27.733", :end},
+          {"2025-09-20-random/GX018649", :start, :end},
+          {"2025-09-20-random/GX018650", :start, "00:00:16.401"},
+          {"2025-09-20-random/GX018665", "00:00:10.274", :end},
+          {"2025-09-20-random/GX018666", :start, "00:00:04.814"},
+          {"2025-09-20-random/GX018667", "00:00:01.835", "00:00:02.269"},
           {"2025-02-10-innenstadt/GX018000", :start, :end},
           {"2025-02-10-innenstadt/GX018001", :start, "00:00:04.429"},
           {"2025-02-20-harburg/GX018176", "00:00:22.288", :end},
@@ -75,6 +79,7 @@ defmodule Data.Article.Static.Radroute4 do
         parent_ref: __MODULE__,
         text: "von Sinstorf zum Ochsenzoll",
         historic: %{
+          "8a216415b1869fb174b44f4965640489" => ~d[2025-09],
           "2ecd7dacb71c343047a2592f093cb4f2" => ~d[2025-02]
         },
         videos: [
@@ -99,8 +104,12 @@ defmodule Data.Article.Static.Radroute4 do
           {"2025-02-20-harburg/GX018210", :start, :end},
           {"2025-02-20-harburg/GX018211", :start, "00:00:26.454"},
           {"2025-02-10-innenstadt/GX018001", "00:00:23.234", :end},
-          {"2025-02-10-innenstadt/GX018002", :start, "00:02:30.695"},
-          {"2024-05-12-vr4/GX017516", "00:00:52.151", :end},
+          {"2025-02-10-innenstadt/GX018002", :start, "00:00:02.536"},
+          {"2025-09-20-random/GX018635", "00:00:01.735", "00:00:40.307"},
+          {"2025-02-10-innenstadt/GX018002", "00:00:47.514", "00:00:54.388"},
+          {"2025-09-20-random/GX018635", "00:00:48.248", :end},
+          {"2025-09-20-random/GX018636", :start, "00:01:27.387"},
+          {"2024-05-12-vr4/GX017516", "00:01:18.145", :end},
           {"2024-05-12-vr4/GX017517", :start, "00:00:18.482"},
           {"2024-05-12-vr4/GX017518", :start, "00:00:45.403"},
           {"2024-05-12-vr4/GX017519", :start, "00:00:16.513"},
