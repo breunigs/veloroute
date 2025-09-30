@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
   def stop(), do: ~d[2025-09-19]
   def construction_site_id_hh(), do: [1_463_930]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["radroute-1", "8", "FR4"]
 
   def map_image do
