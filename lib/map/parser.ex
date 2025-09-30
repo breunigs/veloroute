@@ -107,7 +107,8 @@ defmodule Map.Parser do
 
   def handle_event(:end_element, "nd", state), do: {:ok, state}
 
-  def handle_event(:end_element, "way", %{active: {:ways, :deleted}} = state), do: {:ok, state}
+  def handle_event(:end_element, "way", %{active: {:ways, :deleted}} = state),
+    do: {:ok, %{state | active: nil}}
 
   def handle_event(:end_element, "way", %{active: {:ways, way}} = state) do
     way = %{way | nodes: ensure_right_hand_winding(way.nodes)}
