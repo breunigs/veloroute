@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2025-10],
+       "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/freie-fahrt-fuer-die-veddel-und-den-wilhelmsburger-osten--1103440"},
       {"Erläuterungsbericht und Karten", ~d[2025-07],
        "https://fragdenstaat.de/anfrage/otto-brenner-strasse-veloroute-10-neuenfelder-strasse-bis-kornweide-1/#nachricht-1014279"},
       {"Präsentation Veloroute 10 auf Wilhelmsburg (Mai 2021)",
