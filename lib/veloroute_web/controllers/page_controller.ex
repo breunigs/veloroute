@@ -44,6 +44,15 @@ defmodule VelorouteWeb.PageController do
     |> send_resp(200, json)
   end
 
+  def well_known_404(conn, _params) do
+    send_resp(conn, 404, "this .well-known is known to not be configured")
+  end
+
+  def tarpit(conn, _params) do
+    Process.sleep(10_000)
+    send_resp(conn, 404, "Not Found")
+  end
+
   def quality(conn, params) do
     name = Regex.replace(~r/^[0-9-]+/, params["article"], "")
 

@@ -289,10 +289,16 @@ defmodule VelorouteWeb.Live.VideoState do
   end
 
   defp probably_robot?(socket) do
-    ua = Phoenix.LiveView.get_connect_info(socket, :user_agent) |> String.downcase()
+    ua = Phoenix.LiveView.get_connect_info(socket, :user_agent)
 
-    ["http://", "https://", "bot", "ows.eu/owler", "python-requests", "okhttp"]
-    |> Enum.any?(&String.contains?(ua, &1))
+    if is_binary(ua) do
+      ua = String.downcase(ua)
+
+      ["http://", "https://", "bot", "ows.eu/owler", "python-requests", "okhttp"]
+      |> Enum.any?(&String.contains?(ua, &1))
+    else
+      true
+    end
   end
 
   @spec position_from_time(Phoenix.LiveView.Socket.t(), %{binary() => binary()}) ::

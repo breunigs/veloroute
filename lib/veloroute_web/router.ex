@@ -52,6 +52,13 @@ defmodule VelorouteWeb.Router do
     get "/images/thumbnails/:hash/:timestamp", ImageExtractController, :image
 
     post "/js_errors", PageController, :js_errors
+
+    get "/.well-known/*subpage", PageController, :well_known_404
+    get "/wp-admin/*subpage", PageController, :tarpit
+    get "/wp-content/*subpage", PageController, :tarpit
+    get "/wp-includes/*subpage", PageController, :tarpit
+    get "/wp/*subpage", PageController, :tarpit
+    get "/wordpress/*subpage", PageController, :tarpit
   end
 
   scope "/", VelorouteWeb do
