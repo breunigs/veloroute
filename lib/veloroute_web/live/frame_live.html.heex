@@ -75,7 +75,7 @@
 <div id="sidebar" phx-hook="control" role="main">
   <div id="switcher" role="switch" aria-checked="false" aria-expanded="false" aria-controls="sidebar" aria-label="Seitenleiste ein/ausklappen"><div></div></div>
   <.link patch="/" class={"header #{if @current_page != Data.Article.Static.Startpage, do: "back"}"} title="zurück zur Startseite" aria-label={"zurück zur Startseite von #{Settings.r(:sitebar_name)}"} role="heading" aria-level="1">
-    <img src="/images/header.svg" aria-label={Settings.r(:sitebar_name)}/>
+    <img src="/images/header.svg?vsn=1" aria-label={Settings.r(:sitebar_name)}/>
   </.link>
   <div id="content" phx-hook="ScrollReset">
     <%= if Map.get(@flash, "info") == 404 do %>

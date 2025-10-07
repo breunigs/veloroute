@@ -72,7 +72,7 @@ $mapBgColor: #EFE9E1;
 #videoOuter {
   top: 50%;
   overflow: hidden;
-  background: #333 url('/images/video_poster.svg') 50% 50% / contain no-repeat;
+  background: #333 url('/images/video_poster.svg?vsn=1') 50% 50% / contain no-repeat;
 
   $background: rgba(0,0,0, 0.5);
   &::before {
@@ -89,23 +89,23 @@ $mapBgColor: #EFE9E1;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background: $background url("/images/play.svg") no-repeat 55% 52%/40%;
+    background: $background url("/images/play.svg?vsn=1") no-repeat 55% 52%/40%;
   }
 
   &[data-state="play"]::before {
-    background: $background url("/images/pause.svg") no-repeat 50% 50%/30%;
+    background: $background url("/images/pause.svg?vsn=1") no-repeat 50% 50%/30%;
   }
 
   &.skipBackward5::before {
-    background: $background url("/images/skip_backward_5.svg") no-repeat 38% 50%/55%;
+    background: $background url("/images/skip_backward_5.svg?vsn=1") no-repeat 38% 50%/55%;
   }
 
   &.skipForward5::before {
-    background: $background url("/images/skip_forward_5.svg") no-repeat 62% 50%/55%;
+    background: $background url("/images/skip_forward_5.svg?vsn=1") no-repeat 62% 50%/55%;
   }
 
   &.reverse::before {
-    background: $background url("/images/reverse.svg") no-repeat 50% 50%/45%;
+    background: $background url("/images/reverse.svg?vsn=1") no-repeat 50% 50%/45%;
   }
 
   &.show::before {
@@ -262,17 +262,17 @@ $videoBarProgressHeight: 0.4rem;
   }
 
   #playpause {
-    background: url("/images/play.svg") no-repeat center center;
+    background: url("/images/play.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 3);
   }
 
   #fullscreen {
-    background: url("/images/fullscreen.svg") no-repeat center center;
+    background: url("/images/fullscreen.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.7);
   }
 
   #reverse {
-    background: url("/images/reverse.svg") no-repeat center center;
+    background: url("/images/reverse.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.7);
 
     text-indent: -100rem;
@@ -281,12 +281,12 @@ $videoBarProgressHeight: 0.4rem;
   }
 
   #skipBackward5 {
-    background: url("/images/skip_backward_5.svg") no-repeat center center;
+    background: url("/images/skip_backward_5.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.2);
   }
 
   #skipForward5 {
-    background: url("/images/skip_forward_5.svg") no-repeat center center;
+    background: url("/images/skip_forward_5.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.2);
   }
 
@@ -410,7 +410,7 @@ $videoBarProgressHeight: 0.4rem;
 }
 
 #videoOuter[data-state="pause"] #playpause {
-  background: url("/images/pause.svg") no-repeat center center;
+  background: url("/images/pause.svg?vsn=1") no-repeat center center;
   background-size: calc($videoBarHeight / 4);
 }
 
@@ -443,7 +443,7 @@ $videoBarProgressHeight: 0.4rem;
 
 #videoOptions {
   button {
-    background: url("/images/gear.svg") no-repeat center center;
+    background: url("/images/gear.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.7);
   }
 
@@ -521,16 +521,16 @@ $videoBarProgressHeight: 0.4rem;
     }
 
     &.next::before {
-      background-image: url("/images/hourglass.svg");
+      background-image: url("/images/hourglass.svg?vsn=1");
       background-size: 0.6rem;
     }
 
     &.active::before {
-      background-image: url("/images/checkmark.svg");
+      background-image: url("/images/checkmark.svg?vsn=1");
     }
 
     &.active.eye::before {
-      background-image: url("/images/eye.svg");
+      background-image: url("/images/eye.svg?vsn=1");
       background-size: 0.8rem;
     }
 
@@ -786,7 +786,7 @@ body.fullscreen video, #videoOuter:fullscreen video {
   cursor: pointer;
 
   div {
-    background-image: url("/images/switcher2.svg");
+    background-image: url("/images/switcher2.svg?vsn=1");
     background-position: left center;
     background-repeat: no-repeat;
     background-size: 200% 100%;
@@ -818,7 +818,7 @@ $buttonBorder: 2px;
   height: $buttonSize;
 
   > button {
-    background-image: url("/images/layers.svg");
+    background-image: url("/images/layers.svg?vsn=1");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 70%;
@@ -860,7 +860,7 @@ $buttonBorder: 2px;
         background-size: 0.8rem;
       }
       &.active::before {
-        background-image: url("/images/checkmark.svg");
+        background-image: url("/images/checkmark.svg?vsn=1");
         filter: brightness(0) saturate(100%);
       }
 
@@ -889,7 +889,7 @@ $headerSize: 2rem;
   text-align: center;
 
   &.back {
-    background: url("/images/home.svg") calc($headerSize/2) center / 0 no-repeat $darkBg;
+    background: url("/images/home.svg?vsn=1") calc($headerSize/2) center / 0 no-repeat $darkBg;
     background-size: $headerSize;
   }
 
@@ -1208,17 +1208,17 @@ a {
   }
 
   &.search {
-    background-image: url("/images/search.svg");
+    background-image: url("/images/search.svg?vsn=1");
     background-size: 0.7rem;
     padding-right: 0.95rem;
   }
 
   &.map {
-    background-image: url("/images/map.svg");
+    background-image: url("/images/map.svg?vsn=1");
   }
 
   &.video {
-    background-image: url("/images/eye_grey.svg");
+    background-image: url("/images/eye_grey.svg?vsn=1");
     background-position-y: 57%;
   }
 }
