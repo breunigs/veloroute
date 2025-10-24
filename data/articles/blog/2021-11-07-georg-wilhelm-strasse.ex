@@ -19,8 +19,9 @@ defmodule Data.Article.Blog.GeorgWilhelmStrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2025-07],
-       "https://lsbg.hamburg.de/resource/blob/784446/d9f57cd3ed353a28a39e71c1d57f7e55/georg-wilhelm-strasse-baustopp-zwischen-kuckuckshorn-und-kurdamm-anliegerinformation-juli-2025-data.pdf"},
+      {"Baustelleninfo", ~d[2025-10],
+       "https://lsbg.hamburg.de/resource/blob/784446/e34d0b3cba89b0501c10f260b15f9f7e/georg-wilhelm-strasse-fortsetzung-bauarbeiten-zwischen-kuckuckshorn-und-kurdamm-anliegerinformation-oktober-2025-data.pdf"},
+      #  "https://lsbg.hamburg.de/resource/blob/784446/d9f57cd3ed353a28a39e71c1d57f7e55/georg-wilhelm-strasse-baustopp-zwischen-kuckuckshorn-und-kurdamm-anliegerinformation-juli-2025-data.pdf"},
       # {"Baustelleninfo: Mengestraße bis Neuhöfer Straße", "September 2023",
       #  "https://web.archive.org/web/20230921083029if_/https://lsbg.hamburg.de/resource/blob/688502/cbd7324b28143d931e98fbac3969be35/georg-wilhelm-strasse-mengestrasse-bis-neuhoefer-strasse-anliegerinformation-september-2023-data.pdf"},
       {"Pressemitteilung zum Umbau", "Februar 2023",

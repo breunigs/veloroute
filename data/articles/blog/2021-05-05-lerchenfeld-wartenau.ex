@@ -21,6 +21,8 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def links(_assigns) do
     [
+      {"Bauvergabe", ~d[2025-10],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/d2b91f43-3c05-4e0a-8392-cede362832fe"},
       {"Erläuterungsbericht", ~d[2025-08],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/to020.asp?TOLFDNR=1036654"},
       {"Baustelleninfo: Wartenaubrücke", ~d[2025-07],

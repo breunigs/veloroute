@@ -8,7 +8,7 @@ defmodule Data.Article.Static.LexikonModalfilter do
     do:
       "Modalfilter verhindern die Benutzung eines Weges von bestimmten Verkehrsarten, z.B. mit dem Auto."
 
-  def tags(), do: ["lexikon", "modalfilter", "diagonaltrenner"]
+  def tags(), do: ["lexikon", "modalfilter", "diagonaltrenner", "umlaufsperren"]
 
   def tracks(), do: Data.Article.Static.Radroute7.tracks()
   def point_of_interest(), do: %{lon: 9.947352, lat: 53.555635, zoom: 16}

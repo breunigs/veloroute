@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.KreiselKanalplatz do
     do:
       "Ein Kreisverkehr soll das Abbiegen von bzw. in die Schloßstraße einfacher machen. Die alten Hochbordradwege werden dazu teilweise entfernt."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2025-06-23]
   def stop(), do: ~d[2025-11-23]
   def construction_site_id_hh(), do: [1_548_747]
