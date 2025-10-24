@@ -15,9 +15,13 @@ function pushEvent(event, payload) {
 }
 window.pushEvent = pushEvent;
 
-let Hooks = {};
 /**
- * @type {import("phoenix_live_view").ViewHook}
+ * @type {import("phoenix_live_view").HooksOptions}
+ */
+let Hooks = {};
+
+/**
+ * @type {import("phoenix_live_view").Hook}
  */
 Hooks.control = {
   mounted() {
@@ -34,7 +38,7 @@ Hooks.control = {
 }
 
 /**
- * @type {import("phoenix_live_view").ViewHook}
+ * @type {import("phoenix_live_view").Hook}
  */
 Hooks.FocusSearchField = {
   mounted() {
@@ -46,7 +50,7 @@ Hooks.FocusSearchField = {
 let scrollPositionFromPopState = null;
 let scrollLastPage = window.location.pathname;
 /**
- * @type {import("phoenix_live_view").ViewHook}
+ * @type {import("phoenix_live_view").Hook}
  */
 Hooks.ScrollReset = {
   saveScrollPos() {

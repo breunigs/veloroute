@@ -785,10 +785,8 @@ defmodule Components.TagHelpers do
   end
 
   defp inner_text(assigns) do
-    [%{inner_block: fun}] = assigns.inner_block
-
-    fun.(nil, nil)
-    |> Phoenix.HTML.Safe.to_iodata()
+    ~H{<%= render_slot(@inner_block) %>}
+    |> Phoenix.LiveView.Engine.safe_to_iodata()
     |> IO.iodata_to_binary()
   end
 end
