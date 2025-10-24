@@ -12,6 +12,7 @@ ENTRYPOINT [ \
   "mix" \
   ]
 ENV GIT_COMMIT="dockerfile dummy"
+ENV MIX_OS_DEPS_COMPILE_PARTITION_COUNT=4
 
 # RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg gcompat
 RUN apt-get update && apt-get install -y --no-install-recommends \
