@@ -27048,6 +27048,33 @@
   <node id='-265294173' action='modify' lat='53.6019933941' lon='9.98707651824' />
   <node id='-265294174' action='modify' lat='53.60216687797' lon='9.98782485455' />
   <node id='-265294175' action='modify' lat='53.60261729606' lon='9.98762100667' />
+  <node id='-266956037' action='modify' lat='53.47094054631' lon='9.90299462736' />
+  <node id='-266956038' action='modify' lat='53.47090222952' lon='9.90418552816' />
+  <node id='-266956039' action='modify' lat='53.47102995203' lon='9.90418552816' />
+  <node id='-266956040' action='modify' lat='53.47102995203' lon='9.90298926294' />
+  <node id='-266956041' action='modify' lat='53.47114170891' lon='9.90158378541' />
+  <node id='-266956042' action='modify' lat='53.47122153508' lon='9.9015194124' />
+  <node id='-266956043' action='modify' lat='53.47192719185' lon='9.90158914983' />
+  <node id='-266956044' action='modify' lat='53.47193357783' lon='9.90136384428' />
+  <node id='-266956045' action='modify' lat='53.47251469804' lon='9.90136384428' />
+  <node id='-266956046' action='modify' lat='53.47284037732' lon='9.90127264917' />
+  <node id='-266956047' action='modify' lat='53.47322033332' lon='9.90114390314' />
+  <node id='-266956048' action='modify' lat='53.4736609503' lon='9.90088641107' />
+  <node id='-266956049' action='modify' lat='53.47378866451' lon='9.90133165777' />
+  <node id='-266956050' action='modify' lat='53.47408879139' lon='9.90112780988' />
+  <node id='-266956051' action='modify' lat='53.47393872821' lon='9.90048407972' />
+  <node id='-266956052' action='modify' lat='53.47349492125' lon='9.90074157178' />
+  <node id='-266956053' action='modify' lat='53.47302237347' lon='9.90097224176' />
+  <node id='-266956054' action='modify' lat='53.47272862491' lon='9.90108489454' />
+  <node id='-266956055' action='modify' lat='53.47200063057' lon='9.90109562337' />
+  <node id='-266956056' action='modify' lat='53.47128858894' lon='9.90096687734' />
+  <node id='-266956057' action='modify' lat='53.47123111421' lon='9.900923962' />
+  <node id='-266956058' action='modify' lat='53.47144185452' lon='9.89958822191' />
+  <node id='-266956059' action='modify' lat='53.47127581679' lon='9.8994970268' />
+  <node id='-266956060' action='modify' lat='53.47105868954' lon='9.90084349573' />
+  <node id='-266956061' action='modify' lat='53.47089903645' lon='9.90077912271' />
+  <node id='-266956062' action='modify' lat='53.47080643738' lon='9.9017286247' />
+  <node id='-266956063' action='modify' lat='53.47097247695' lon='9.90171789587' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -76490,6 +76517,38 @@
     <nd ref='-265294175' />
     <nd ref='-265294171' />
     <tag k='name' v='2025-10-25-eppendorfer-muehlenteich-park' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21005999' action='modify'>
+    <nd ref='-266956037' />
+    <nd ref='-266956038' />
+    <nd ref='-266956039' />
+    <nd ref='-266956040' />
+    <nd ref='-266956041' />
+    <nd ref='-266956042' />
+    <nd ref='-266956043' />
+    <nd ref='-266956044' />
+    <nd ref='-266956045' />
+    <nd ref='-266956046' />
+    <nd ref='-266956047' />
+    <nd ref='-266956048' />
+    <nd ref='-266956049' />
+    <nd ref='-266956050' />
+    <nd ref='-266956051' />
+    <nd ref='-266956052' />
+    <nd ref='-266956053' />
+    <nd ref='-266956054' />
+    <nd ref='-266956055' />
+    <nd ref='-266956056' />
+    <nd ref='-266956057' />
+    <nd ref='-266956058' />
+    <nd ref='-266956059' />
+    <nd ref='-266956060' />
+    <nd ref='-266956061' />
+    <nd ref='-266956062' />
+    <nd ref='-266956063' />
+    <nd ref='-266956037' />
+    <tag k='name' v='2025-10-26-waltershofer-strasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

@@ -20,10 +20,10 @@ defmodule Data.Article.Blog.OsterfeldstrasseLokstedterWeg do
         renderer: 6,
         group: "x",
         direction: :forward,
-        from: "Rissen",
-        to: "Öjendorf",
+        from: "Tarpenbekstraße",
+        to: "Kollaustraße",
         parent_ref: __MODULE__,
-        text: "von Rissen nach Öjendorf",
+        text: "Lokstedter Weg → Osterfeldstraße",
         historic: %{
           "356d05ef110a8bcfcff6c23c29b305d6" => ~d[2023-10]
         },
