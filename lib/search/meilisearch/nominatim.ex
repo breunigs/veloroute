@@ -229,25 +229,8 @@ defmodule Search.Meilisearch.Nominatim do
     |> Enum.join(", ")
   end
 
-  @synonyms %{
-    "Str." => ["Straße"],
-    "Strasse" => ["Straße"],
-    "Straße" => ["Strasse"],
-    "ß" => ["ss"],
-    "ss" => ["ß"]
-  }
   @impl true
   def config() do
-    # i.e. invert the map
-    synonyms =
-      Enum.reduce(Data.OsmTagToHuman.map(), %{}, fn {tag, humans}, acc ->
-        Enum.reduce(humans, acc, fn human, acc ->
-          Map.update(acc, human, [tag], &[tag | &1])
-        end)
-      end)
-
-    synonyms = Map.merge(synonyms, @synonyms)
-
     %{
       displayedAttributes:
         ~w(id class type name address parents_name parents_postcode extratags bbox boost rank_boosted_areas rank_search rank_address importance),
@@ -256,11 +239,12 @@ defmodule Search.Meilisearch.Nominatim do
         ~w(name boost address type parents_name parents_postcode type extratags),
       sortableAttributes:
         ~w(importance rank_search rank_address rank_boosted_areas _geo admin_level),
-      synonyms: synonyms,
       proximityPrecision: "byAttribute",
+      stopWords: ["straße", "Straße"],
       rankingRules: ~w(words
         typo
         attribute
+        exactness
         rank_boosted_areas:asc
         rank_search:asc
         rank_address:asc
@@ -268,8 +252,16 @@ defmodule Search.Meilisearch.Nominatim do
         proximity
         admin_level:asc
         sort
-        exactness
       ),
+      pagination: %{
+        maxTotalHits: 500
+      },
+      localizedAttributes: [
+        %{
+          locales: ["deu"],
+          attributePatterns: ["name", "boost", "parents_name", "extratags"]
+        }
+      ],
       typoTolerance: %{disableOnNumbers: true}
     }
   end

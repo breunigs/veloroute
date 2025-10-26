@@ -318,7 +318,7 @@ defmodule Search.Meilisearch.Runner do
     state
   end
 
-  @min_relevance 0.5
+  @min_relevance 0.4
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 

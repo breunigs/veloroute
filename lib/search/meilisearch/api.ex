@@ -50,11 +50,18 @@ defmodule Search.Meilisearch.API do
 
   @spec get_index_doc_count(binary() | atom()) :: {:error, binary()} | {:ok, pos_integer()}
   def get_index_doc_count(index) do
-    with {:ok, %{body: %{"numberOfDocuments" => count}}} <-
-           get("/indexes/#{index}/stats", opts: @adapter_opts_general) do
+    with {:ok, %{"numberOfDocuments" => count}} <- get_index_stats(index) do
       {:ok, count}
     else
       err -> {:error, "failed to get document count for index #{index}: #{inspect(err)}"}
+    end
+  end
+
+  def get_index_stats(index) do
+    with {:ok, %{body: stats}} <- get("/indexes/#{index}/stats", opts: @adapter_opts_general) do
+      {:ok, stats}
+    else
+      err -> {:error, "failed to get stats for index #{index}: #{inspect(err)}"}
     end
   end
 
@@ -68,11 +75,20 @@ defmodule Search.Meilisearch.API do
     |> await_finish()
   end
 
+  def compact_index(index) when is_atom(index) do
+    post("/indexes/#{index}/compact", %{}, opts: @adapter_opts_general)
+    |> await_finish()
+  end
+
   def configure_index(index, config) when is_atom(index) and is_map(config) do
     config = Map.put(config, :searchCutoffMs, round(@general_timeout_ms * 4 / 5))
 
     patch("/indexes/#{index}/settings", config)
     |> await_finish()
+  end
+
+  def get_index_configuration(index) when is_atom(index) do
+    get("/indexes/#{index}/settings")
   end
 
   defguardp valid_content_type(ct)
@@ -134,10 +150,15 @@ defmodule Search.Meilisearch.API do
     payload = %{
       "queries" =>
         Enum.map(queries, fn {index, params} ->
-          params
-          |> Map.put_new("showRankingScore", true)
-          |> Map.put_new("rankingScoreThreshold", min_relevance)
-          |> Map.put("indexUid", index)
+          Map.merge(
+            params,
+            %{
+              "locales" => ["deu"],
+              "showRankingScore" => true,
+              "rankingScoreThreshold" => min_relevance,
+              "indexUid" => index
+            }
+          )
         end)
     }
 
@@ -172,5 +193,6 @@ defmodule Search.Meilisearch.API do
     get("/tasks/#{uid}", opts: @adapter_opts_general) |> await_finish()
   end
 
+  defp await_finish({:error, reason}), do: {:error, reason}
   defp await_finish(other), do: {:error, inspect(other)}
 end

@@ -3,7 +3,7 @@ defmodule Basemap.Nominatim do
   require Benchmark
   require Logger
 
-  @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "4.4"}}
+  @full_ref {"Nominatim", {:remote, "mediagis/nominatim", "5.1"}}
   @queries [:prepare, :search, :area]
   @queries_blocking [:prepare]
 
@@ -212,6 +212,7 @@ defmodule Basemap.Nominatim do
 
     # similar to upstream start.sh but with our user id
     if [ ! -f "/finished" ]; then
+      userdel $(getent passwd 1000 | cut -d: -f1)
       useradd --create-home nominatim --uid #{Util.user_id()}
       /app/config.sh
       /app/init.sh

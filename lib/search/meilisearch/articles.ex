@@ -52,13 +52,15 @@ defmodule Search.Meilisearch.Articles do
         radroute: ["veloroute", "freizeitroute", "alltagsroute", "bezirksroute"],
         radschnellweg: ["radroute plus", "radroute+"],
         "radroute+": ["radschnellweg", "radroute plus"],
-        "radroute plus": ["radschnellweg", "radroute+"],
-        "Str.": ["Straße"],
-        Strasse: ["Straße"],
-        Straße: ["Strasse"],
-        ß: ["ss"],
-        ss: ["ß"]
-      }
+        "radroute plus": ["radschnellweg", "radroute+"]
+      },
+      stopWords: ["straße", "Straße"],
+      localizedAttributes: [
+        %{
+          locales: ["deu"],
+          attributePatterns: ["summary", "text", "title", "streets", "type_name"]
+        }
+      ]
     }
   end
 
