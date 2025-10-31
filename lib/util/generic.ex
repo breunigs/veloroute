@@ -234,7 +234,8 @@ defmodule Util do
     try do
       with :ok <- File.write(path, content),
            Code.compiler_options(ignore_module_conflict: true),
-           {:ok, _modules, _warnings} <- Kernel.ParallelCompiler.compile([path], []) do
+           {:ok, _modules, _warnings} <-
+             Kernel.ParallelCompiler.compile([path], return_diagnostics: true) do
         :ok
       end
     after
