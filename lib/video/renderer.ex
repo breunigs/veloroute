@@ -760,6 +760,7 @@ defmodule Video.Renderer do
         "tile-rows": rows,
         "enable-variance-boost": 1,
         "variance-boost-strength": 4,
+        "ac-bias": 1.0,
         # VBR
         rc: 1,
         tbr: "#{info[:bitrate]}m",

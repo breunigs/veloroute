@@ -4,7 +4,7 @@ ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
 
 ARG SVTAV1_REPO=https://gitlab.com/AOMediaCodec/SVT-AV1/-
-ARG SVTAV1_VERSION=b14641af46f23577ac5f248d28fb7b410ef6ea8e
+ARG SVTAV1_VERSION=b8f0f823badf67ae7ba7563cab6fdabfbf70cca1
 # ARG SVTAV1_REPO=https://github.com/BlueSwordM/svt-av1-psyex
 # ARG SVTAV1_VERSION=d1dbfba23beb1ff7a7f5129fd303e4cf5d397eb0
 
