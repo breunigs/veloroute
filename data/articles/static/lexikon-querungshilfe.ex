@@ -10,7 +10,7 @@ defmodule Data.Article.Static.LexikonQuerungshilfe do
 
   def tags(),
     do:
-      ~w(lexikon querungshilfe querungshilfen sprunginsel mittelinsel mittelinseln zebrastreifen straßeneinengung gehwegnasen)
+      ~w(lexikon querungshilfe querungshilfen sprunginsel mittelinsel mittelinseln zebrastreifen straßeneinengung gehwegnasen gehwegnase)
 
   def links(_assigns) do
     [
