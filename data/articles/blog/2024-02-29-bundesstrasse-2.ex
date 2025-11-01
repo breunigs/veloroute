@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Bundesstrasse2 do
     do:
       "Beidseitig sollen 1,75m breite Radfahrstreifen aufgemalt werden. KFZ-Parken wird entsprechend neu sortiert."
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["radroute-14", "Bezirksroute B", "Eimsbüttel"]
   def start(), do: ~d[2024-11-18]
