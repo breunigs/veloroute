@@ -1,32 +1,40 @@
 defmodule Data.Article.Blog.ZOBHarburg do
   use Article.Default
 
-  def created_at(), do: ~D[2022-01-15]
-  def updated_at(), do: ~D[2022-10-05]
+  def updated_at(), do: ~D[2025-11-07]
   def title(), do: "Busbahnhof Harburg und anliegende Kreuzungen (Radrouten 4 und 13)"
 
   def start(), do: ~d[2023-05]
-  def stop(), do: ~d[2026-08-31]
-  def construction_site_id_hh(), do: [586_843]
-  # def construction_site_id_hh(), do: [586843]
+  def stop(), do: ~d[2027Q1]
+  # def construction_site_id_hh(), do: [586_843]
 
   def type(), do: :construction
 
   def summary(),
     do:
-      "Jahre alte Planung soll umgesetzt werden. Schmale Radfahrstreifen verlaufen ungeschützt über die riesige Kreuzung."
+      "Doppelkreuzung erhält breitere Radwege, mit klaren und kurzen Furten. Radroute+ Lüneburg wird brauchbar durchgebunden."
 
-  def tags(), do: ["radroute-13", "radroute-4", "11", "rsw-lueneburg", "rsw-tostedt", "FR11"]
+  def tags(), do: ["radroute-13", "radroute-4", "FR11"]
+
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Ingenieurbüro Münster GmbH", "https://ib-muenster.de/kontakt/"}
+     ]}
+  end
 
   def links(_assigns) do
     [
+      {"2. Entwurf, nördlicher Teil, Lagepläne und Präsentation", ~d[2025-11],
+       "https://fragdenstaat.de/anfrage/doppelknoten-am-zob-harburg/#nachricht-1058297"},
       {"Baustelleninfo", ~d[2024-12],
        "https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       # {"Baustelleninfo", "Februar 2024",
       #  "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Erläuterungsbericht", "2022",
        "https://lsbg.hamburg.de/resource/blob/784358/6be53ea4ecd55afb26e2db86fa61b343/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-bericht-data.pdf"},
-      {"Lageplan – 1. Abschnitt", "2022",
+      {"Lageplan – südlicher Abschnitt", "2022",
        "https://lsbg.hamburg.de/resource/blob/784360/657b189d6bcc96128617c3480b74bdb5/veloroute-11-harburger-innenstadt-zob-harburg-abgestimmte-planung-plaene-data.pdf"},
       {"Zeitungsartikel mit veralteter Visualisierung (2021)",
        "https://web.archive.org/web/20210305190832/https://www.elbe-wochenblatt.de/2021/02/12/heftige-kritik-am-geplanten-umbau-des-harburger-busbahnhofs/"},
@@ -39,47 +47,58 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def text(assigns) do
     ~H"""
-    <h4>Stand Oktober 2022</h4>
-    <p>Die Planungsunterlagen wurden veröffentlicht und der Artikel entsprechend angepasst.</p>
-
     <h4>Alter Zustand</h4>
-    <p>Die Kreuzung vorm Busbahnhof wird vom Autoverkehr dominiert. Wer zu Fuß unterwegs ist und auf ebenerdige Wege angewiesen ist, muss teils riesige Umwege in Kauf nehmen: der <.v bounds="9.989281,53.457167,9.992087,53.457861" lon={9.989458} lat={53.457387} dir="forward" ref="rsw-lueneburg">Walter-Dudek-Brücke</.v> fehlt eine solche Querungsmöglichkeit.</p>
+    <p>Die Kreuzung vorm Busbahnhof wird vom Autoverkehr dominiert. Wer zu Fuß unterwegs ist und auf ebenerdige Wege angewiesen ist, muss teils riesige Umwege in Kauf nehmen: der <.v bounds="9.989281,53.457167,9.992087,53.457861" lon={9.989458} lat={53.457387} dir="forward" ref="radroute-13">Walter-Dudek-Brücke</.v> fehlt eine solche Querungsmöglichkeit.</p>
 
-    <p>Dem Radverkehr machen die Ampelschaltungen zu schaffen. Die Fahrt entlang der <.a name="alltagsroute-11">Alltagsroute 11</.a> von der <.v bounds="9.986975,53.456788,9.988792,53.457455" lon={9.987975} lat={53.457055} dir="backward" ref="11">Moorstraße</.v> auf die <.v bounds="9.988803,53.457817,9.990229,53.458536" lon={9.989208} lat={53.457934} dir="backward" ref="11">Hannoversche Brücke</.v> dauert knapp zwei Minuten, für nur rund 150m. Die Radwege selbst sind <.ref>Hochbordradwege</.ref>, aber ein Großteil der Wege besteht aus den langen Querungsfurten.</p>
+    <p>Dem Radverkehr machen die Ampelschaltungen zu schaffen. Die Fahrt von der <.v bounds="9.986975,53.456788,9.988792,53.457455" lon={9.987975} lat={53.457055} dir="forward" ref="radroute-13">Moorstraße</.v> auf die <.v bounds="9.988803,53.457817,9.990229,53.458536" lon={9.989208} lat={53.457934} dir="backward" ref="radroute-4">Hannoversche Brücke</.v> dauert knapp zwei Minuten, für nur rund 150m. Die Radwege selbst sind <.ref>Hochbordradwege</.ref>, aber ein Großteil der Wege besteht aus den langen Querungsfurten.</p>
+
     <p>Am Busbahnhof wiederum fehlen Busstiege um die hohe Anzahl der hier haltenden Busse abfertigen zu können.</p>
 
-    <p>In Richtung Schlachthofbrücke gibt es meist <.ref>Hochbordradwege</.ref>, die teils für beide Richtungen freigegeben sind. Ausnahme: <.v bounds="9.987512,53.454469,9.992079,53.457617" lon={9.990594} lat={53.455038} dir="backward" ref="rsw-tostedt">vor dem Busbahnhof und Zugbahnhof </.v> gibt es nur einen geteilten Rad- und Fußweg auf der Stadtseite. Der Radweg auf Bahnseite endet vor dem Bahnhof.</p>
+    <p>In <.v bounds="9.987247,53.454171,9.992275,53.458378" lon={9.989372} lat={53.456003} dir="forward" ref="radroute-4" highlight="Schlachthofbrücke">Richtung Schlachthofbrücke</.v> gibt es meist <.ref>Hochbordradwege</.ref>, die teils für beide Richtungen freigegeben sind. Ausnahme: <.v bounds="9.987512,53.454469,9.992079,53.457617" lon={9.990594} lat={53.455038} dir="backward" ref="rsw-tostedt">vor dem Busbahnhof und Zugbahnhof </.v> gibt es nur einen geteilten Rad- und Fußweg auf der Stadtseite. Der Radweg auf Bahnseite endet vor dem Bahnhof.</p>
 
-    <h4>Planung</h4>
-    <p>Die Planung ist bereits älter und soll vor allem die Situation für den Busverkehr verbessern. Sie wurde in zwei Abschnitte aufgeteilt: von der <.v bounds="9.99062,53.453352,9.992999,53.455082" lon={9.991602} lat={53.454027} dir="forward" ref="rsw-tostedt">Brücke über den Seevekanal</.v> bis einschließlich des <.v bounds="9.988104,53.455951,9.990621,53.457435" lon={9.988852} lat={53.457105} dir="forward" ref="rsw-tostedt">Busbahnhofs</.v> ist Abschnitt 1. Diese Planung wurde bereits abgeschlossen. Die <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.98893} lat={53.45813} dir="forward" ref="11">große Kreuzung</.v> („Doppelknoten“) ist Abschnitt 2 und liegt nur als Entwurf vor, könnte also noch angepasst werden.</p>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
+    <p>Das Gebiet ist in zwei eigene Planungs-Abschnitte aufgeteilt:</p>
+    <ul>
+      <li><.m bounds="9.988158,53.453375,9.992964,53.45735">südlicher Teil samt Busbahnhof</.m> (bereits im Umbau)</li>
+      <li><.m bounds="9.986705,53.45694,9.991479,53.459298">nördlicher Teil mit Walter-Dudek-Brücke</.m> (noch in Planung)</li>
+    </ul>
+    <p>Zur Vereinfachung werden beide Abschnitte zusammen betrachtet. Die Beschreibung orientiert sich an den Radrouten.</p>
 
-    <h5>Doppelknoten (Abschnitt 2, Entwurf)</h5>
-    <p>Es sind 1,60m bis 2,0m breite <.ref>Radfahrstreifen</.ref> geplant. Eine Trennung zum KFZ-Verkehr erfolgt nicht, auch Kurvenschneiden wird nicht verhindert. Linksabbiegen ist bis auf eine Ausnahme nur <.ref>indirekt</.ref> vorgesehen.</p>
+    <h5>Radroute 4 → Süden</h5>
+    <p>Der <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.989553} lat={53.458397} dir="forward" ref="radroute-4">heute vorhandene Radfahrstreifen</.v> wird verbreitert (3,8m). Kurz vor der Kreuzung erfolgt eine Aufleitung auf einen Hochbordradweg (3,0m), an den ein Zweirichtungsradweg (4,0m) anschließt. Auf diesem quert man die Hannoversche Straße zweimal, da die einzige Querungsmöglichkeit in Richtung Harburg „zwischen“ die Brücken gelegt wurde.</p>
 
-    <p>Entlang der Veloroute 11 Richtung Harburg quert man zunächst die <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.989262} lat={53.458262} dir="forward" ref="11">KFZ-Rechtsabbieger auf der Brücke</.v>, dann die Spuren der <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.988851} lat={53.458098} dir="forward" ref="11">Buxtehuder Straße</.v>. Auf der anderen Straßenseite angekommen, ordnet man sich auf einem <.ref>Schutzstreifen</.ref> gemeinsam mit den KFZ auf der Rechtsabbieger Spur ein. In der <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.988535} lat={53.457421} dir="forward" ref="11">Moorstraße</.v> schließt wieder ein Radfahrstreifen an. In die andere Richtung <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.988293} lat={53.4571} dir="backward" ref="11">startet</.v> man von einem <.ref>Radfahrstreifen in Mittellage</.ref> und biegt dann <.ref>direkt</.ref> in einem großen Bogen nach links ab. Dann nochmal <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.989118} lat={53.457689} dir="backward" ref="11">rechts abbiegen</.v> und man folgt wie heute der <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.98941} lat={53.458059} dir="backward" ref="11">Hannoverschen Straße</.v>.</p>
+    <p>Auf der <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.988558} lat={53.457647} dir="forward" ref="radroute-4">Seite des Seevekanals</.v> fährt man auf einem Hochbordradweg (2,5m) und quert die <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.988542} lat={53.457282} dir="forward" ref="radroute-4">Moorstraße</.v>. Im <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.988769} lat={53.456899} dir="forward" ref="radroute-4">Bereich des Busbahnhofs</.v> fährt man auf einer Protected-Bike-Lane (2,0m), danach auf einem Radfahrstreifen (1,6m – 2,0m). Dieser geht <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.990152} lat={53.455175} dir="forward" ref="radroute-4">in einen Hochbordradweg</.v> (1,75m – 2,0m) über.</p>
 
-    <p>Entlang des künftigen Radschnellweg nach Tostedt quert man die <.v bounds="9.987878,53.456819,9.990353,53.458594" lon={9.988851} lat={53.458098} dir="forward" ref="11">Buxtehuder Straße</.v> genau wie im vorigen Absatz beschrieben. Statt rechts in die Moorstraße abzubiegen, fährt man gerade aus auf einem Radfahrstreifen in Mittellage weiter. In der Gegenrichtung bleibt der Radfahrstreifen rechts der KFZ-Spuren.</p>
+    <h5>Radroute 4 → Norden</h5>
+    <p>Vom <.v bounds="9.987182,53.453472,9.992602,53.459157" lon={9.991823} lat={53.453975} dir="backward" ref="radroute-4">Hochbordradweg</.v> (1,6m breit) kommend wird man auf einen Radfahrstreifen (2,0m) abgeleitet. Auf <.m bounds="9.988448,53.45525,9.991067,53.456521">Höhe der Einfahrt zum Phoenix-Center</.m> gibt es eine Engstelle (1,5m). Der Radfahrstreifen ist im Bereich des Busbahnhofs teilweise überdacht und führt an den weitläufigen Zufahrten der Busse vorbei. Trennelemente sind nicht vorgesehen.</p>
 
-    <p>Entlang des künftigen Radschnellweg nach Lüneburg entfällt die Führung auf der Bahnseite. D.h. man quert zunächst wie vorher beschrieben, biegt dann aber zusätzlich nochmal indirekt links ab um die Walter-Dudek-Brücke zu erreichen. Die Gegenrichtung ist deutlich einfacher: zwei mal rechts abbiegen.</p>
+    <p>Ab der <.v bounds="9.987213,53.456239,9.993878,53.459058" lon={9.989094} lat={53.457114} dir="backward"  ref="radroute-4">Walter-Dudek-Brücke</.v> schließt ein Zweirichtungsradweg (4,0m) an, den man vorzeitig verlässt um dem Hochbordradweg (3,0m) in der <.v bounds="9.986404,53.456855,9.993068,53.459674" lon={9.989431} lat={53.458057} dir="backward" ref="radroute-4">Hannoverschen Straße</.v> zu folgen. Dieser geht in eine <.ref>Protected-Bike-Lane</.ref> (3,3m) über, die sich zum bereits heute vorhandenen Radfahrstreifen verengt.</p>
 
-    <p>Zwischen den <.v bounds="9.98858,53.457216,9.990344,53.458257" lon={9.989153} lat={53.457595} dir="backward" ref="11">beiden Brücken und Bahngleis</.v> soll ein Fahrradparkhaus entstehen. Eine Fußampel soll das ebenerdige Queren der <.v bounds="9.988797,53.456933,9.990562,53.457975" lon={9.98914} lat={53.4575} dir="forward" ref="rsw-lueneburg">Walter-Dudek-Brücke</.v> ermöglichen.</p>
+    <h5>Radroute 13 → Osten</h5>
+    <p>Von den Hochbordradwegen (1,0m) in der <.v bounds="9.985283,53.45617,9.99434,53.458952" lon={9.987451} lat={53.456993} dir="forward" ref="radroute-13">Moorstraße</.v> wird auf eine Protected-Bike-Lane (3,0m) vor der Kreuzung geleitet. Die Furt (2,0m – 3,0m) führt kerzengerade zur <.v bounds="9.985283,53.45617,9.99434,53.458952" lon={9.98917} lat={53.457194} dir="forward" ref="radroute-13">Walter-Dudek-Brücke</.v>. Der Hochbordradweg (2,5m) verengt sich zum Altbestand (1,0m) hin.</p>
 
-    <h5>Busbahnhof und Zugbahnhof (Abschnitt 1, Planung abgeschlossen)</h5>
-    <p>Zwischen heutigem <.m bounds="9.988877,53.456468,9.990531,53.457379">Busbahnhof</.m> und dem <.m bounds="9.986535,53.455713,9.98908,53.457055">Phoenix Center</.m> soll in der Straßenmitte weitere Bushaltestellen entstehen. Ein gemeinsames Dach soll dabei beide Busstiege überspannen, unter dem auch der KFZ-Verkehr in Richtung der Kreuzung geführt wird.</p>
+    <h5>Radroute 13 → Westen</h5>
+    <p>Am Altbestand (1,0m) auf der <.v bounds="9.985283,53.45617,9.99434,53.458952" lon={9.990802} lat={53.457661} dir="backward" ref="radroute-13">Walter-Dudek-Brücke</.v> schließt ein Hochbordradweg (2,5m) neben einem neuen Grünstreifen an. Um geradeaus in die <.v bounds="9.985283,53.45617,9.99434,53.458952" lon={9.988111} lat={53.457297} dir="backward" ref="radroute-13">Moorstraße</.v> zu kommen, muss man zunächst nach Norden abbiegen. Über einen Zweirichtungsradweg (4,0m) wechselt man die Straßenseite und kommt dann auf einem Hochbordradweg (2,5m) wieder zurück nach Süden. Schließlich biegt man in die Moorstraße ab wo der Radweg an den Altbestand (1,0m) abschließt.</p>
 
-    <p>Für den Radverkehr sind 1,60m bis 2,0m breite <.ref>Radfahrstreifen</.ref> vorgesehen. An einer Engstelle sogar nur 1,50m. Bis auf ein kurzes Stück nach der großen Kreuzung auf <.v bounds="9.985416,53.455697,9.990053,53.457591" lon={9.988877} lat={53.457046} dir="forward" ref="rsw-tostedt">der Seite des Phoenix Center</.v> ist keine Trennung vom KFZ-Verkehr vorgesehen. Der Radfahrstreifen nach Norden ist dabei durchgängig bis zur <.v bounds="9.987853,53.456458,9.992908,53.457892" lon={9.990521} lat={53.457543} dir="backward" ref="rsw-lueneburg">Walter-Dudek-Brücke</.v>.</p>
+    <h5>Radroute+ Lüneburg</h5>
+    <p>Die Route ist eine Kombination aus Radroute 4 und 13.</p>
 
-    <h5>Um die Schlachthofbrücke (Abschnitt 1, Planung abgeschlossen)</h5>
-    <p>In Fahrtrichtung Tostedt wird man ab <.v bounds="9.987512,53.454469,9.992079,53.457617" lon={9.990055} lat={53.455359} dir="forward" ref="rsw-tostedt">Höhe Einfahrt Bahnhof</.v> auf den vorhandenen Hochbordradweg aufgeleitet. Linksabbiegen zum Bahnhof ist nur <.ref>direkt</.ref> möglich, wer sich das nicht traut muss absteigen und über die Fußampel schieben. In der Gegenrichtung wird man vor der <.v bounds="9.987688,53.45423,9.992254,53.457378" lon={9.991322} lat={53.45444} dir="backward" ref="rsw-tostedt">Schlachthofbrücke</.v> auf den Radfahrstreifen geleitet. Die Einfahrt zum Bahnhof ist als Radfahrstreifen in Mittellage geplant.</p>
+    <p>In Richtung Hamburg bleibt man im Wesentlichen auf dem gleichen Hochbordradweg (1,0m → 2,5m → 4,0m → 3,0m). Danach schließt eine Protected-Bike-Lane (3,3m) an.</p>
 
-    <p>Die Breiten fallen mit 1,63m bis 2,0m unterschiedlich aus.</p>
+    <p>In Richtung Lüneburg kommt man vom Radfahrstreifen (3,8m), über ein Stück Hochbordradweg (3,0m) zum Zweirichtungsradweg (4,0m). Dieser ist durchgängig bis zum Busbahnhof durchgängig. Dort schließt ein Hochbordradweg (2,5m) an den Altbestand (1,0m) auf der Brücke an.</p>
 
     <h4>Meinung</h4>
-    <p>Die Situation auf dem Doppelknoten ist katastrophal – man wirft den Radverkehr ungeschützt in eine bis zu 8-spurige Kreuzung. Beim Rechtsabbiegen in die Moorburger Straße reicht es noch nicht mal für eigene Wege – ein Alibi-Schutzstreifen soll's richten. Die Führung entlang des Radschnellwegs nach Lüneburg ist so umständlich, dass eine angedachte neue Brücke über die Bahngleise weiter nördlich praktisch zur Pflicht wird.</p>
+    <p>Man merkt, dass sich die Stadt höhere Standards setzt. Der vorige Entwurf für den nördlichen Teil war katastrophal, der aktuelle ist gut. Der südliche Teil liegt irgendwo dazwischen. Da dieser bereits umgebaut wird, sind leider keine Änderungen zu erwarten. Im Detail:</p>
 
-    <p>Die Führung entlang des Radschnellwegs Tostedt hat ähnliche Probleme. Radfahrstreifen mit nur 1,60m Breite oder in Mittellage – immerhin nicht beides gleichzeitig. Das man dem Radverkehr eine Engstelle aufbürdet nur um eine KFZ-Ampel unterzubringen zeigt klar die Prioritäten der Planung. Fairerweise muss man sagen, dass zum Zeitpunkt der Planung dieser Abschnitt noch nicht als Radschnellweg gedacht war.</p>
+    <h5>Nördlicher Teil</h5>
+    <p>Die Lösung für die Radroute+ Lüneburg ist gelungen. Auch sonst schafft es die Planung, Rad- und KFZ-Verkehr voneinander zu trennen und die Furten möglichst kurz zu halten. Anders als im vorigen Entwurf haben damit auch Kinder und Anfänger eine Chance die Kreuzung zu benutzen.</p>
 
-    <p>Positiv ist, dass man erstmals entlang der Hannoverschen Straße nach Norden durchfahren kann ohne die Straßenseite wechseln zu müssen. Dass die undurchsichtigen Zweirichtungs-Radwege entfallen ist ebenfalls gut. Und obwohl auch die neue Führung der Veloroute 11 sicher nicht optimal ist, sind die Kurvenradien deutlich angenehmer zu befahren als heute.</p>
+    <p>Allerdings entfernt man auch direkte Querungsmöglichkeiten und zwingt den Radverkehr zu Zick-Zack-Fahrten. Die Präsentation beschreibt das als „intuitive Radverkehrsführung“ – naja. Immerhin ist genug Platz, um gut um die Kurve zu kommen. Sofern die Ampelschaltung halbwegs passt, spart man dann trotzdem erheblich Zeit.</p>
+
+    <h5>Südlicher Teil</h5>
+    <p>Der Radweg endet nicht mehr an der Zufahrt zum Bahnhof – sehr gut. Bis auf Ausnahmen sind auch die Breiten ansprechend. Schade ist, dass man auf Trennelemente zum KFZ-Verkehr verzichtet. Das man dem Radverkehr eine Engstelle aufbürdet, nur um eine KFZ-Ampel unterzubringen, zeigt noch die Prioritäten der Planung.</p>
+
+    <p>Die Fahrt durch den Busbahnhof wird unangenehm: der Radfahrstreifen verläuft zwischen KFZ-Spuren links und Busspuren bzw. Bushalten rechts. Das fehlender Schulterblick eine häufige Unfallursache ist, war auch damals schon bekannt. Die Planung versagt hier, dem Radverkehr trotzdem sichere Wege anzubieten.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
