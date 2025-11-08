@@ -14,9 +14,9 @@
 <% end %>
 <meta property="og:image" content={@og_image} />
 
-<div id="videoOuter" data-state="play" class="" phx-ignore-attr="data-state class style" role="region" aria-label="Videoplayer">
-  <% # phx-ignore-attr needed to toggle loading indicator from JS %>
-  <div id="videoPoster" phx-ignore-attr="class">
+<div id="videoOuter" data-state="play" class="" phx-mounted={JS.ignore_attributes(["data-state", "class", "style"])} role="region" aria-label="Videoplayer">
+  <% # ignore_attributes needed to toggle loading indicator from JS %>
+  <div id="videoPoster" phx-mounted={JS.ignore_attributes(["class"])}>
     <video
       aria-description="Video zeigt Radfahrt der Route. Ohne Ton."
       aria-describedby="videoRoute"
@@ -25,7 +25,7 @@
       playsinline
       preload="none"
       poster={@video_poster}
-      phx-ignore-attr="poster style"
+      phx-mounted={JS.ignore_attributes(["poster", "style"])}
     >
     <%= Video.Components.alternatives(@video_hash, @video_start) %>
     </video>

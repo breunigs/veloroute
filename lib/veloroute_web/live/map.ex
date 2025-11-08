@@ -66,7 +66,7 @@ defmodule VelorouteWeb.Live.Map do
 
     ~H"""
     <div role="region" aria-label="Straßenkarte, die ausgewählte Radrouten anzeigt">
-      <div phx-update="ignore" phx-ignore-attr="class" id={@id} data-style={@active_style_id} data-highlight={@highlight}>
+      <div phx-update="ignore" phx-mounted={JS.ignore_attributes(["class"])} id={@id} data-style={@active_style_id} data-highlight={@highlight}>
         <%= @preview_image %>
       </div>
 
