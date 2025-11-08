@@ -40,6 +40,33 @@ defmodule Appointments.ADFCAPI do
   end
 
   def appointments_real() do
+    queries = [
+      [eventType: "Radtour"],
+      [
+        eventType: "Termin",
+        includedTags: [
+          # Fahrrad-Demo
+          1,
+          # Sternfahrt
+          2,
+          # Wandertour
+          22,
+          # Wanderung
+          23,
+          # Kidical Mass
+          61
+        ]
+      ]
+    ]
+
+    Parallel.flat_map(queries, &search/1)
+    |> Enum.sort_by(& &1["beginning"])
+    |> Stream.map(&to_appointment/1)
+    |> Stream.reject(&is_nil/1)
+    |> Enum.take(@max_events)
+  end
+
+  defp search(query_params) do
     [minLon, minLat, _maxLon, _maxLat] = Settings.r(:bounds)
     center = Settings.r(:bounds) |> Geo.BoundingBox.parse() |> Geo.CheapRuler.center()
 
@@ -51,29 +78,26 @@ defmodule Appointments.ADFCAPI do
 
     today = Settings.r(:timezone) |> DateTime.now!() |> Calendar.strftime("%Y-%m-%d")
 
-    Logger.info("Updating ADFC appointments")
+    Logger.info("Updating ADFC appointments #{inspect(query_params)}")
 
     with {:ok, %{body: %{"items" => list}}} when is_list(list) <-
            get("/eventItems/search",
-             query: [
-               eventType: "Radtour",
-               beginning: today,
-               includeSubsidiary: "false",
-               show: "list",
-               sort: "date",
-               limit: @max_events * 4,
-               offset: 0,
-               fromNow: false,
-               distance: round(radius_m / 1000.0),
-               lat: center.lat,
-               lng: center.lon
-             ],
+             query:
+               [
+                 beginning: today,
+                 includeSubsidiary: "false",
+                 show: "list",
+                 sort: "date",
+                 limit: @max_events * 4,
+                 offset: 0,
+                 fromNow: false,
+                 distance: round(radius_m / 1000.0),
+                 lat: center.lat,
+                 lng: center.lon
+               ] ++ query_params,
              opts: @adapter_opts_general
            ) do
       list
-      |> Parallel.map(&to_appointment/1)
-      |> Util.compact()
-      |> Enum.take(@max_events)
     else
       resp ->
         Logger.warning("Received unexpected response: #{inspect(resp)}")
@@ -84,12 +108,12 @@ defmodule Appointments.ADFCAPI do
   defp to_appointment(entry) do
     with {:ok, date_time, 0} <- DateTime.from_iso8601(entry["beginning"]),
          date_time = DateTime.shift_zone!(date_time, Settings.r(:timezone)),
-         false <- entry["isCancelled"],
-         true <- entry["cLedByTourGuide"],
          "Published" <- entry["cStatus"],
-         true <- allowed_event?(entry["eventItemId"]) do
+         false <- entry["isCancelled"],
+         true <- beginner_friendly?(entry),
+         true <- accepts_more_people?(entry) do
       %Appointments.Appointment{
-        title: "ADFC Tour: #{entry["title"]}",
+        title: title(entry),
         location: simplify_location(entry["startLocation"]),
         location_long: clean_double_plz(entry["startLocation"]),
         description: "#{entry["cShortDescription"]} (Veranstalter: #{entry["cUnitName"]})",
@@ -105,7 +129,17 @@ defmodule Appointments.ADFCAPI do
     end
   end
 
-  defp allowed_event?(event_id) when is_binary(event_id) and event_id != "" do
+  defp title(%{"eventType" => "Termin"} = entry), do: entry["title"]
+  defp title(%{"eventType" => "Radtour"} = entry), do: "ADFC Tour: #{entry["title"]}"
+
+  defp beginner_friendly?(%{"eventType" => "Termin"}), do: true
+  defp beginner_friendly?(%{"cLedByTourGuide" => true}), do: true
+  defp beginner_friendly?(_entry), do: false
+
+  defp accepts_more_people?(%{"eventType" => "Termin"}), do: true
+
+  defp accepts_more_people?(%{"eventItemId" => event_id})
+       when is_binary(event_id) and event_id != "" do
     with {:ok, %{body: %{"eventItem" => details}}} when is_map(details) <-
            get("/eventItems/#{event_id}", opts: @adapter_opts_general) do
       no_registration_needed = details["maximum"] == 0
