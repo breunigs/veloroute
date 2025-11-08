@@ -10,10 +10,12 @@ window.addEventListener("phx:show_map_image", update)
 const flyToSpeed = 0.7
 
 const map = window.map
+const originalMaxZoom = map.getMaxZoom()
 
 const minZoom = 14
-const maxZoom = minZoom + 3
-const fadeInRule = ["interpolate", ["linear"], ["zoom"], minZoom, 0, maxZoom, 1]
+const maxZoomMap = Math.max(originalMaxZoom, 20)
+const maxZoomOnShow = minZoom + 3
+const fadeInRule = ["interpolate", ["linear"], ["zoom"], minZoom, 0, maxZoomOnShow, 1]
 const layerName = "mapimage-pmtiles";
 let imageData: ShowMapImageEventDetail | null = null;
 let worker: ReturnType<typeof setTimeout> | null = null;
@@ -22,13 +24,15 @@ function update(event: Event) {
   imageData = (event as CustomEvent<ShowMapImageEventDetail>).detail
   show()
 
+  map.setMaxZoom(imageData.show ? maxZoomMap : originalMaxZoom)
+
   const expire = imageData.show ? "Fri, 31 Dec 9999" : "Thu, 01 Jan 1970"
   document.cookie = `show_map_image=1; expires=${expire} 00:00:00 GMT; SameSite=Strict; Secure`;
 }
 
 function maybeZoomToBbox(bbox: maplibregl.LngLatBounds) {
   const current = map.getZoom()
-  const desired = Math.max(maxZoom, current)
+  const desired = Math.max(maxZoomOnShow, current)
   if (current >= desired) return
 
   const viewport = map.getBounds()
