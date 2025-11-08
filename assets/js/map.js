@@ -40,6 +40,7 @@ const routeLayers = [
   'extra-line'
 ];
 const articleLayers = ['article-areas title', 'article-areas bg', 'appointments'];
+const clickableSource = 'merged'
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers),
   validate: false,
@@ -238,7 +239,7 @@ const featureOpacity = (feature) => {
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
-  if (!map.isStyleLoaded()) return []
+  if (!map.getSource(clickableSource)?.loaded()) return []
 
   // be lenient with click targets at first
   const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
