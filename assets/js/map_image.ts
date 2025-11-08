@@ -2,9 +2,7 @@ import { Protocol } from "pmtiles";
 const protocol = new Protocol({ metadata: true });
 window.mlgl.addProtocol('pmtiles', protocol.tile);
 
-window.addEventListener("map:styleSwitched", show)
 window.addEventListener("phx:show_map_image", update)
-
 
 // keep in sync with basemap/constants.ex
 const flyToSpeed = 0.7

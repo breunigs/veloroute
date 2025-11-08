@@ -1,4 +1,5 @@
 import { Map as MapboxMap } from "maplibre-gl";
+import type { StyleSpecification } from "maplibre-gl";
 
 // toggle if MapLibre should verify the expressions we pass to it. Disable for
 // production deploy for a slight performance improvement.
@@ -148,11 +149,31 @@ function maybeSwitchStyle(map: MapboxMap | null, mapDetail: mapEventDetail) {
     if (style.id === currentStyleId) continue
     console.log("switching map style to", style.id)
     currentStyleId = style.id
-    map.setStyle(style.id, { validate: false })
+    map.setStyle(style.id, { validate: false, transformStyle: keepPMTiles })
     window.plausible('switchStyle')
   }
 
   return true
+}
+
+function keepPMTiles(
+  previousStyle: StyleSpecification | undefined,
+  nextStyle: StyleSpecification
+): StyleSpecification {
+  if (!previousStyle) return nextStyle
+
+  const pmtileLayers = previousStyle.layers.filter(layer => {
+    return layer.id.includes('pmtiles')
+  });
+  nextStyle.layers.push(...pmtileLayers)
+
+  for (const [key, source] of Object.entries(previousStyle.sources)) {
+    if (source.type === 'raster' && source.url?.startsWith('pmtiles://')) {
+      nextStyle.sources[key] = source
+    }
+  }
+
+  return nextStyle
 }
 
 export { maybeSwitchStyle, maybeToggleLayers }
