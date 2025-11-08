@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
     do:
       "Radfahrstreifen werden verbreitert und teilweise als Protected-Bike-Lane hergerichtet. Platz an der Möllner Landstraße wird umgestaltet, bleibt durch den Erhalt der KFZ-Parkplätze aber hässlich."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def start(), do: ~d[2024-09-20]
   def stop(), do: ~d[2026-01-15]
