@@ -1,9 +1,10 @@
 defmodule Basemap.Tiles do
   use Basemap.Renderable
   use Basemap.Servable
+  require Logger
 
-  @container_ref {"merging data sources into servable PBFs",
-                  {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}}
+  @combine_container {"merging data sources", {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}}
+  # @convert_container {"converting to MLT", {:dockerfile, "lib/basemap/Dockerfile.mlt"}}
 
   @impl Basemap.Renderable
   def staleness() do
@@ -35,7 +36,7 @@ defmodule Basemap.Tiles do
 
     :ok =
       Util.Docker.build_and_run(
-        @container_ref,
+        @combine_container,
         %{
           command_args:
             Util.low_priority_cmd_prefix(10) ++
@@ -44,17 +45,29 @@ defmodule Basemap.Tiles do
                 "--no-tile-size-limit",
                 "--no-tile-compression",
                 "--no-tile-stats",
+                # "--output=#{target(:container, "merged.mbtiles")}"
                 "--output-to-directory=#{target(:container)}"
               ] ++ source_mbtiles(:container)
         },
         []
       )
+      |> print_error()
+
+    # MLT converter is not production ready:
+    # "Specified geometry type is not (yet) supported: GeometryCollection"
+    # :ok =
+    #   Util.Docker.build_and_run(
+    #     @convert_container,
+    #     %{command_args: [target(:container)]},
+    #     []
+    #   )
+    #   |> print_error()
 
     :ok = rewrite_metadata_json()
     File.rm_rf!(assets_path())
     File.rename!(target(:cache), assets_path())
 
-    Util.Compress.file_glob(assets_path("**/*.pbf"), "basemap tiles")
+    Util.Compress.file_glob(assets_path("**/*.{pbf,mlt}"), "basemap tiles")
     Util.Compress.file_glob(assets_path("**/*.json"), "basemap tile metadata", keep_source: true)
 
     :ok
@@ -106,5 +119,12 @@ defmodule Basemap.Tiles do
 
     new_local = Map.replace!(new, "tiles", ["asset://#{serve_path()}/{z}/{x}/{y}.pbf.gz"])
     File.write!(path <> ".local", JSON.encode!(new_local))
+  end
+
+  defp print_error(:ok), do: :ok
+
+  defp print_error({:error, reason}) do
+    Logger.error(reason)
+    {:error, "see above"}
   end
 end

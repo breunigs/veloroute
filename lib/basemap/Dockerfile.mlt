@@ -1,0 +1,64 @@
+ARG DEBIAN_VERSION
+ARG LOW_PRIO="/usr/bin/chrt --idle 0 /usr/bin/nice -n19 /usr/bin/ionice --class idle"
+FROM debian:${DEBIAN_VERSION}
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  ca-certificates \
+  default-jre \
+  maven \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /build/
+COPY mlt-converter/pom.xml /build/
+
+RUN cd /build/ \
+  && mvn dependency:go-offline
+
+COPY mlt-converter/ /build/
+
+RUN cd /build/ \
+  && ${LOW_PRIO} mvn package -DskipTests \
+  && mv /build/target/mlt-converter*.jar /mlt-converter.jar
+
+ENTRYPOINT [ \
+  "/usr/bin/chrt", "--idle", "0", \
+  "/usr/bin/nice", "-n19", \
+  "/usr/bin/ionice", "--class", "idle", \
+  "/usr/bin/java", \
+  "-Dcom.google.protobuf.use_unsafe_pre22_gencode", \
+  "-cp", "mlt-converter.jar", \
+  "Converter" \
+  ]
+
+
+# ARG DEBIAN_VERSION
+# FROM debian:${DEBIAN_VERSION}
+
+# # MLT is short for Maplibre Tile
+
+# ARG MLT_VERSION=6287bb59f60352c5250728c0c603528acbfc5858
+
+# RUN apt-get update \
+#   && apt-get install -y --no-install-recommends \
+#   ca-certificates \
+#   default-jre \
+#   wget \
+#   && rm -rf /var/lib/apt/lists/*
+
+# RUN mkdir -p /build/
+
+# RUN cd /build/ && \
+#   wget https://github.com/maplibre/maplibre-tile-spec/archive/${MLT_VERSION}.tar.gz -O mlt.tar.gz && \
+#   tar zxf mlt.tar.gz && rm mlt.tar.gz && mv mlt* mlt
+
+# RUN cd /build/mlt/java \
+#   && ./gradlew cli
+
+# ENTRYPOINT [ \
+#   "/usr/bin/java", \
+#   "-jar", "/build/mlt/java/mlt-cli/build/libs/encode.jar", \
+#   "--outlines", "ALL", \
+#   "--verbose" \
+#   ]
+# # --mvt input.pbf --mlt output.pbf
