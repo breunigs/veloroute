@@ -14,12 +14,14 @@ defmodule Data.Article.Blog.HohenfelderBucht do
   def start(), do: ~d[2020-03-09]
   def stop(), do: ~d[2025-12-31]
 
-  def type(), do: :construction
+  def type(), do: :finished
   def construction_site_id_hh(), do: [6381]
   def tags(), do: ["radroute-9", "5", "6", "FR2", "FR3", "br-nord-n1"]
 
   def links(_assigns) do
     [
+      {"NDR Artikel zur Fertigstellung", ~d[2025-11],
+       "https://www.ndr.de/nachrichten/hamburg/nach-fuenf-jahren-umgebaute-hohenfelder-bucht-ist-fertig,hohenfelder-bucht-100.html"},
       {"Baustelleninfo", ~d[2025-01],
        "https://lsbg.hamburg.de/resource/blob/1013942/361de5945b864be79b87a9ae87773979/hohenfelder-bucht-buchtstrasse-anliegerinformation-januar-2025-data.pdf"},
       {"Pressemitteilung zum Baufortschritt", ~d[2024-08],

@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.OttoBrennerStrasse do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", ~d[2025-11],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/6493d3da-c78f-4d9b-a2b4-3f1d4083f29f"},
       {"Baustelleninfo", ~d[2025-10],
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/freie-fahrt-fuer-die-veddel-und-den-wilhelmsburger-osten--1103440"},
       {"Erläuterungsbericht und Karten", ~d[2025-07],

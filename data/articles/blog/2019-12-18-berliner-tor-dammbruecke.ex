@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
   def title(), do: "Berlinertordammbrücke (Radrouten 1, 9 und 12, sowie Freizeitroute 4)"
 
   def start(), do: ~d[2023]
-  def stop(), do: ~d[2028]
+  def stop(), do: ~d[2028-06]
 
   # def construction_site_id_hh(), do: [577_833]
 
