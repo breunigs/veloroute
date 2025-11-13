@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.Hopfenmarkt do
 
   def summary(),
     do:
-      "Platz soll etwas mehr zum Verweilen einladen. Direktere Fahrtbeziehungen für den Radverkehr und breiterer Radwege."
+      "Platz soll etwas mehr zum Verweilen einladen. Direktere Fahrtbeziehungen für den Radverkehr und breitere Radwege."
 
   def type(), do: :planned
 
