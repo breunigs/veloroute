@@ -55,7 +55,7 @@ defmodule Video.Components do
     """
   end
 
-  @variant_timeout_ms 100
+  @variant_timeout_ms 10
   @spec variants_timeout(Video.Track.hash()) :: list()
 
   if Application.compile_env(:veloroute, :env) == :test do
