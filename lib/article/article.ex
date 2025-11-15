@@ -78,6 +78,15 @@ defmodule Article do
     art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
   end
 
+  def subcategory(art) do
+    art.name()
+    |> String.split("/")
+    |> case do
+      [subcategory, _name] -> subcategory
+      _ -> nil
+    end
+  end
+
   def auto_generate_name(mod) do
     pascalized = module_name_pascalized(mod)
     with_date = has_category?(mod, "Blog")

@@ -140,6 +140,37 @@ defmodule Util do
   end
 
   @doc """
+  Works like Map.put. However, if there are two keys with different values, it
+  will set the value to nil instead.
+
+  ## Examples
+
+      iex> %{}
+      ...> |> Util.map_put_uniq(:a, 1)
+      ...> |> Util.map_put_uniq(:a, 1)
+      ...> |> Util.map_put_uniq(:b, 2)
+      ...> |> Util.map_put_uniq([:b, :c], 3)
+      %{a: 1, b: nil, c: 3}
+  """
+  @spec map_put_uniq(map(), any(), any()) :: map()
+  def map_put_uniq(map, key_or_keys, value)
+
+  def map_put_uniq(map, nil, _val), do: map
+  def map_put_uniq(map, [], _val), do: map
+
+  def map_put_uniq(map, [hd | list], val) do
+    map
+    |> map_put_uniq(hd, val)
+    |> map_put_uniq(list, val)
+  end
+
+  def map_put_uniq(map, key, val) when is_map_key(map, key) do
+    if map[key] == val, do: map, else: %{map | key => nil}
+  end
+
+  def map_put_uniq(map, key, val), do: Map.put(map, key, val)
+
+  @doc """
   Works like Enum.group_by, but keeps the group order the same as the elements come in. For this
   to work the elements need to already be sorted by the key being grouped by.
 

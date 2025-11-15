@@ -11,11 +11,11 @@ defmodule Data.Article.Static.LexikonKopenagenerLoesung do
   def tags(),
     do: [
       "lexikon",
-      "kopenhagener-lösung",
-      "kopenhagener-radweg",
-      "kopenhagener-radwege",
-      "kopenhagener-radwegen",
-      "kopenhagener-stil"
+      "kopenhagener lösung",
+      "kopenhagener radweg",
+      "kopenhagener radwege",
+      "kopenhagener radwegen",
+      "kopenhagener stil"
     ]
 
   def tracks(), do: Data.Article.Blog.ElbchausseeBisHohenzollernRing.tracks()

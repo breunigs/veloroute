@@ -442,7 +442,8 @@ defmodule Components.TagHelpers do
 
   def ref(assigns) do
     name = assigns[:name] || inner_text(assigns)
-    art = Article.List.category("Static") |> Article.List.find_with_tags(name)
+    art = Article.List.find_exact(String.downcase(name))
+    art = art || Article.List.find_exact(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
     assigns
@@ -482,10 +483,10 @@ defmodule Components.TagHelpers do
     content = inner_text(assigns)
     id = id_from_attr || content
 
-    art = Article.List.category("Static") |> Article.List.find_with_tags(id)
+    art = Article.List.find_exact(id)
 
     unless is_module(art),
-      do: raise("Icon refs '#{id}', but no Static article with such a tag or name found")
+      do: raise("Icon refs '#{id}', but no article with such a id/name/display_id")
 
     query = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
     query = if assigns[:autoplay], do: Map.put(query, :autoplay, true), else: query

@@ -10,7 +10,7 @@ defmodule Data.Article.Static.LexikonFahrradFrei do
   def tags(),
     do: [
       "lexikon",
-      "fahrrad-frei"
+      "fahrrad frei"
     ]
 
   def tracks(), do: Data.Article.Static.Radroute18.tracks()

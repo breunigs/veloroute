@@ -2,6 +2,7 @@ defmodule Data.Article.Static.LexikonRadschnellweg do
   use Article.Static
 
   def name(), do: "lexikon/radschnellweg"
+  def display_id(), do: "RSW"
   def title(), do: "Lexikon · Radschnellweg (Radroute Plus)"
 
   def summary(),

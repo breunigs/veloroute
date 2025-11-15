@@ -14,15 +14,21 @@ defmodule Article.List do
   end
 
   defmemop all_indexed() do
-    put_uniq = fn acc, key, val ->
-      Map.update(acc, key, val, fn prev -> if prev == val, do: val end)
-    end
+    main =
+      Enum.reduce(all(), %{}, fn art, acc ->
+        Util.map_put_uniq(acc, [art.id(), art.name()], art)
+      end)
 
-    Enum.reduce(all(), %{}, fn art, acc ->
-      acc
-      |> put_uniq.(art.name(), art)
-      |> put_uniq.(art.id(), art)
-    end)
+    fallback =
+      Enum.reduce(all(), %{}, fn art, acc ->
+        acc = Util.map_put_uniq(acc, art.display_id(), art)
+
+        if Article.subcategory(art),
+          do: Util.map_put_uniq(acc, art.tags(), art),
+          else: acc
+      end)
+
+    Map.merge(fallback, main)
   end
 
   @spec category(binary()) :: t
