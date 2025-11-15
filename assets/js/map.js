@@ -278,9 +278,10 @@ function pingShow(e) {
   if (pingResetTimer) clearTimeout(pingResetTimer)
   pingCleanup();
 
-  if (e.detail.name) {
+  if ("name" in e.detail) {
+    const source = e.detail.name || e.target.innerText
+    const names = source.split(/,\s*| & | und |\s*\/\s*/)
     for (const [layer, [field, substrSearch]] of pingLayers) {
-      const names = e.detail.name.split(/,\s*| & | und |\s*\/\s*/)
       const filterExact = ['in', ['get', field], ["literal", names]]
       const filterSubstr = [
         "any",

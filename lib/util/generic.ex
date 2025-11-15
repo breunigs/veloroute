@@ -116,6 +116,12 @@ defmodule Util do
   @doc """
   Returns true if enum1 and enum2 have at least one element in common
   """
+  def overlap?(%{__struct__: MapSet} = ms1, enum2) do
+    Enum.any?(enum2, fn el2 ->
+      MapSet.member?(ms1, el2)
+    end)
+  end
+
   def overlap?(enum1, enum2) do
     Enum.any?(enum1, fn el1 ->
       Enum.member?(enum2, el1)
@@ -124,8 +130,9 @@ defmodule Util do
 
   @spec compact(Enumerable.t() | map()) :: Enumerable.t()
   def compact(%{} = map) do
-    Enum.reject(map, fn {_k, v} -> is_nil(v) end)
-    |> Enum.into(%{})
+    Enum.reduce(map, %{}, fn {k, v}, acc ->
+      if is_nil(v), do: acc, else: Map.put(acc, k, v)
+    end)
   end
 
   def compact(list) do

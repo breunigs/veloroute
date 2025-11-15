@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          true <- maybe_modify_tifs(tifs),
          tifs = Enum.reverse(tifs),
          :ok <- to_pmtiles(tifs, name) do
-      has_name = Article.module_from_name(name)
+      has_name = Article.List.find_exact(name)
       if !has_name, do: Logger.warning("no article with the name #{name} found")
       name_ref = if has_name, do: "name()", else: "#{name}"
 

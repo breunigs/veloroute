@@ -14,7 +14,15 @@ defmodule Article.List do
   end
 
   defmemop all_indexed() do
-    all() |> Enum.into(%{}, fn art -> {art.name(), art} end)
+    put_uniq = fn acc, key, val ->
+      Map.update(acc, key, val, fn prev -> if prev == val, do: val end)
+    end
+
+    Enum.reduce(all(), %{}, fn art, acc ->
+      acc
+      |> put_uniq.(art.name(), art)
+      |> put_uniq.(art.id(), art)
+    end)
   end
 
   @spec category(binary()) :: t
@@ -61,8 +69,7 @@ defmodule Article.List do
   end
 
   def find_exact(key) do
-    mod = Article.module_from_name(key)
-    mod || Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), key) end)
+    Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), key) end)
   end
 
   @spec find_with_tags(t, binary | nil) :: Article.t() | nil
@@ -118,7 +125,7 @@ defmodule Article.List do
   """
   @spec related(t, Article.t()) :: t
   def related(list, art) when is_module(art) do
-    tags = art.tags()
+    tags = MapSet.new(art.tags())
 
     list
     |> Stream.reject(fn other -> other == art end)
@@ -126,7 +133,13 @@ defmodule Article.List do
   end
 
   @spec related(Article.t()) :: t()
-  def related(art), do: related(all(), art)
+  def related(art) do
+    Map.take(by_tags(), art.tags())
+    |> Map.values()
+    |> Enum.reduce(MapSet.new(), &MapSet.union/2)
+    |> MapSet.delete(art)
+    |> MapSet.to_list()
+  end
 
   @doc """
   Returns true if the given articles share at least one tag and not both
@@ -185,6 +198,15 @@ defmodule Article.List do
       FunctionClauseError ->
         reraise("not all tags of #{art} are strings: #{inspect(art.tags())}", __STACKTRACE__)
     end
+  end
+
+  @spec by_tags() :: %{binary() => MapSet.t()}
+  defmemop by_tags() do
+    Enum.reduce(all(), %{}, fn art, acc ->
+      Enum.reduce(art.tags(), acc, fn tag, acc ->
+        Map.update(acc, tag, MapSet.new([art]), &MapSet.put(&1, art))
+      end)
+    end)
   end
 
   @typep sorter() :: :desc | :asc

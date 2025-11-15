@@ -70,47 +70,42 @@ defmodule Components.TagHelpers do
   slot(:inner_block, required: true)
 
   def v(assigns) do
-    attr = %{"phx-click" => Phoenix.LiveView.JS.push("map-zoom-to"), "class" => "video"}
+    art = Article.List.find_exact(assigns[:ref])
+    if is_nil(art), do: raise("missing attribute 'ref' on link '#{inner_text(assigns)}'")
+    art_with_tracks = Article.Decorators.article_with_tracks(art)
 
-    geo = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
+    value = %{
+      article: art_with_tracks.name(),
+      bounds: assigns.bounds,
+      lat: assigns.lat,
+      lon: assigns.lon,
+      dir: assigns.dir
+    }
 
-    # add article only if a video is referenced. Otherwise it might show the
-    # video for that article starting from 0:00, instead of just moving the map.
-    attr =
-      if Map.keys(geo) != [:bounds] do
-        art = Article.List.find_exact(assigns[:ref])
-        if is_nil(art), do: raise("missing attribute 'ref' on link '#{inner_text(assigns)}'")
-        art_with_tracks = Article.Decorators.article_with_tracks(art)
-        Map.put(attr, "phx-value-article", art_with_tracks.name())
-      else
-        attr
-      end
+    value =
+      if assigns[:group],
+        do: Map.put(value, :group, assigns.group),
+        else: value
 
-    attr =
-      Enum.reduce(geo, attr, fn {key, val}, acc ->
-        Map.put(acc, "phx-value-#{key}", val)
-      end)
+    click_handler =
+      Phoenix.LiveView.JS.push("map-zoom-to", value: value)
+      |> ping(assigns[:highlight])
 
-    highlight = Map.get_lazy(assigns, :highlight, fn -> inner_text(assigns) end)
-    attr = Map.update!(attr, "phx-click", &ping(&1, highlight))
+    attr = %{
+      "phx-click" => click_handler,
+      "href" => "?event=map-zoom-to&#{URI.encode_query(value)}",
+      "onclick" => "return false",
+      "class" => "video"
+    }
+
     # if a highlight is present, assume the inner text might need translation
     attr =
       if Map.has_key?(assigns, :highlight),
         do: attr,
         else: Map.merge(attr, %{translate: "no", lang: @default_language})
 
-    query =
-      attr
-      |> Enum.reduce(%{}, fn
-        {"phx-value-" <> k, v}, query -> Map.put(query, k, v)
-        _other, query -> query
-      end)
-      |> URI.encode_query()
-
-    attr = Map.merge(attr, %{onclick: "return false", href: "?event=map-zoom-to&#{query}"})
-
-    assigns = assign(assigns, :attr, Map.merge(attr, assigns[:rest] || %{}))
-    ~H"<a {@attr}><%= render_slot(@inner_block) %></a>"
+    assigns = assign(assigns, :attr, attr)
+    ~H"<a {@attr} {@rest}><%= render_slot(@inner_block) %></a>"
   end
 
   @spec m(map()) :: Phoenix.LiveView.Rendered.t()
@@ -122,14 +117,12 @@ defmodule Components.TagHelpers do
   slot(:inner_block, required: true)
 
   def m(assigns) do
-    name = assigns[:highlight] || inner_text(assigns)
     assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
 
     ping =
-      if Map.has_key?(assigns, :lat) && assigns.lat &&
-           Map.has_key?(assigns, :lon) && assigns.lon,
-         do: %{name: name, center: %{lat: assigns.lat, lon: assigns.lon}},
-         else: %{name: name}
+      if assigns[:lat] && assigns[:lon],
+        do: %{name: assigns[:highlight], center: %{lat: assigns.lat, lon: assigns.lon}},
+        else: %{name: assigns[:highlight]}
 
     js =
       %Phoenix.LiveView.JS{}
