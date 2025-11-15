@@ -4,10 +4,10 @@ defmodule Benchmark do
       require Logger
 
       {elapsed, val} = :timer.tc(unquote(function))
-      elapsed = elapsed / 1_000_000
+      in_ms = elapsed / 1000
 
-      if elapsed >= 0.1,
-        do: Logger.info("#{String.trim(unquote(name))} took #{elapsed}s")
+      if in_ms >= 20,
+        do: Logger.info("#{unquote(name)} took #{Phoenix.Logger.duration(elapsed * 1000)}")
 
       val
     end
@@ -18,10 +18,10 @@ defmodule Benchmark do
   if Application.compile_env(:veloroute, :env) != :prod do
     def measure_devel(name, function) do
       {elapsed, val} = :timer.tc(function)
-      elapsed = elapsed / 1_000_000
+      in_ms = elapsed / 1000
 
-      if elapsed >= 0.1,
-        do: Logger.info("#{String.trim(name)} took #{elapsed}s")
+      if in_ms >= 20,
+        do: Logger.info("#{name} took #{Phoenix.Logger.duration(elapsed * 1000)}")
 
       val
     end
