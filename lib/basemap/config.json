@@ -9,7 +9,8 @@
 			"maxzoom": 14,
 			"simplify_below": 12,
 			"simplify_level": 0.0003,
-			"simplify_ratio": 2
+			"simplify_ratio": 2,
+			"simplify_algorithm": "visvalingam"
 		},
 		"poi": {
 			"minzoom": 12,
@@ -55,7 +56,8 @@
 			"simplify_below": 13,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
-			"combine_polygons_below": 9
+			"combine_polygons_below": 9,
+			"simplify_algorithm": "visvalingam"
 		},
 		"ocean": {
 			"minzoom": 0,
@@ -65,7 +67,8 @@
 			"simplify_level": 0.0001,
 			"simplify_ratio": 2,
 			"write_to": "water",
-			"index": true
+			"index": true,
+			"simplify_algorithm": "visvalingam"
 		},
 		"aeroway": {
 			"minzoom": 9,
@@ -78,7 +81,8 @@
 			"simplify_below": 12,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
-			"combine_polygons_below": 15
+			"combine_polygons_below": 15,
+			"simplify_algorithm": "visvalingam"
 		}
 	},
 	"settings": {

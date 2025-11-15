@@ -26,6 +26,8 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def links(_assigns) do
     [
+      {"Artikel der Hochbahn zum Baufortschritt", ~d[2025-11],
+       "https://dialog.hochbahn.de/allgemein/zob-harburg-der-neubau-geht-in-die-naechste-runde/"},
       {"2. Entwurf, nördlicher Teil, Lagepläne und Präsentation", ~d[2025-11],
        "https://fragdenstaat.de/anfrage/doppelknoten-am-zob-harburg/#nachricht-1058297"},
       {"Baustelleninfo", ~d[2024-12],
