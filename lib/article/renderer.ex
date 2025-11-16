@@ -7,7 +7,6 @@ defmodule Article.Renderer do
   attr :ref, :atom, required: true
   attr :video_hash, :string, required: true
   attr :video_start, :string, required: true
-  attr :map_bounds, :any
   attr :lang, :string, required: true
   attr :search_query, :string
   attr :search_results, :any
