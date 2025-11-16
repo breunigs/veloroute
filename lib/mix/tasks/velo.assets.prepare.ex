@@ -56,6 +56,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     User-agent: GPTBot
     User-Agent: ImagesiftBot
     User-agent: meta-externalagent
+    User-agent: meta-webindexer
     User-agent: MJ12bot
     User-agent: PerplexityBot
     User-agent: SemrushBot
