@@ -199,28 +199,34 @@ defmodule Components.TagHelpers do
   slot(:inner_block, required: true)
 
   def show_route_group(assigns) do
-    layer_name = Enum.find(Settings.r(:map_layers), &(&1.route_group == assigns.group)).name
+    assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
+    assigns = assign(assigns, :js, show_route_groups_js(assigns.group))
+
+    ~H"""
+    <a phx-click={@js} {@rest}><%= render_slot(@inner_block) %></a>
+    """
+  end
+
+  use Memoize
+
+  defmemop show_route_groups_js(group) do
+    layer_name = Enum.find(Settings.r(:map_layers), &(&1.route_group == group)).name
 
     routes =
-      Article.List.category("Static")
-      |> Enum.filter(&(&1.route_group() == assigns.group))
+      Article.Index.find(:all, [
+        :intersect,
+        {:all, :category, ["Static"]},
+        {:all, :route_group, [group]}
+      ])
 
     bbox =
       routes
       |> Enum.map(&Article.Decorators.bbox/1)
       |> Geo.CheapRuler.union()
 
-    js =
-      Phoenix.LiveView.JS.push("show-routes", value: %{name: layer_name}, target: "#map")
-      |> Phoenix.LiveView.JS.dispatch("click", to: "#switcher")
-      |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: bbox})
-
-    assigns = assign(assigns, :rest, Map.put_new(assigns.rest, "class", "map"))
-    assigns = assign(assigns, :js, js)
-
-    ~H"""
-    <a phx-click={@js} {@rest}><%= render_slot(@inner_block) %></a>
-    """
+    Phoenix.LiveView.JS.push("show-routes", value: %{name: layer_name}, target: "#map")
+    |> Phoenix.LiveView.JS.dispatch("click", to: "#switcher")
+    |> Phoenix.LiveView.JS.push("map-zoom-to", value: %{bounds: bbox})
   end
 
   attr :checked, :boolean, required: true

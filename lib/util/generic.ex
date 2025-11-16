@@ -201,7 +201,10 @@ defmodule Util do
 
   defmemo modules_with_prefix("Elixir." <> _rest = namespace) do
     {:ok, list} = :application.get_key(:veloroute, :modules)
-    Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(namespace)))
+    modules = Enum.filter(list, &(&1 |> Atom.to_string() |> String.starts_with?(namespace)))
+    #  avoid n+1 loading issue for callers
+    Code.ensure_all_loaded(modules)
+    modules
   end
 
   def md5(input) do

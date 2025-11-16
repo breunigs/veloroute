@@ -1,5 +1,5 @@
 defmodule Article.List do
-  @type t :: Enumerable.t()
+  @type t :: Enumerable.t(Article.t())
   import Guards
   use Memoize
 
@@ -7,28 +7,7 @@ defmodule Article.List do
 
   @spec all :: t
   def all() do
-    articles = Enum.flat_map(@known_categories, &category/1)
-    #  avoid n+1 loading issue for callers
-    Code.ensure_all_loaded(articles)
-    articles
-  end
-
-  defmemop all_indexed() do
-    main =
-      Enum.reduce(all(), %{}, fn art, acc ->
-        Util.map_put_uniq(acc, [art.id(), art.name()], art)
-      end)
-
-    fallback =
-      Enum.reduce(all(), %{}, fn art, acc ->
-        acc = Util.map_put_uniq(acc, art.display_id(), art)
-
-        if Article.subcategory(art),
-          do: Util.map_put_uniq(acc, art.tags(), art),
-          else: acc
-      end)
-
-    Map.merge(fallback, main)
+    Enum.flat_map(@known_categories, &category/1)
   end
 
   @spec category(binary()) :: t
@@ -38,20 +17,25 @@ defmodule Article.List do
 
   def recent(), do: recent(_min_arts = 4, _max_arts = 20, _max_days = 14)
 
-  def recent(arts \\ category("Blog"), min, max, days) do
-    arts = Enum.filter(arts, &Article.released?/1)
-    arts = Enum.sort_by(arts, & &1.updated_at(), {:desc, Date})
-    always = Stream.take(arts, min)
+  def recent(min, max, days) do
+    {always, rest} =
+      sorted_blog_posts()
+      |> Enum.sort_by(& &1.updated_at(), {:desc, Date})
+      |> Stream.filter(&Article.released?/1)
+      |> StreamSplit.take_and_drop(min)
 
     extra =
-      arts
-      |> Stream.drop(min)
+      rest
       |> Stream.take(max - min)
       |> Stream.take_while(fn art ->
         Article.Decorators.updated_n_days_ago(art) <= days
       end)
 
     Stream.concat(always, extra)
+  end
+
+  defmemop sorted_blog_posts() do
+    Enum.sort_by(category("Blog"), & &1.updated_at(), {:desc, Date})
   end
 
   @spec find_exact(t, binary | Article.t() | nil) :: Article.t() | nil
@@ -75,20 +59,17 @@ defmodule Article.List do
   end
 
   def find_exact(key) do
-    Map.get_lazy(all_indexed(), key, fn -> find_exact(all(), key) end)
+    Article.Index.find(:sole, :handle, [key]) ||
+      Article.Index.find(:sole, :display_id, [key]) ||
+      Article.Index.find(
+        :sole,
+        [
+          :intersect,
+          {:all, :category, ["Static"]},
+          {:all, :tags, [key]}
+        ]
+      )
   end
-
-  @spec find_with_tags(t, binary | nil) :: Article.t() | nil
-  def find_with_tags(_list, nil), do: nil
-
-  def find_with_tags(list, key) when is_binary(key) do
-    list
-    |> filter(key, true)
-    |> Enum.at(0)
-  end
-
-  @spec find_with_tags(binary | nil) :: Article.t() | nil
-  def find_with_tags(key), do: find_with_tags(all(), key)
 
   @spec find_similar(t, binary) :: [Article.t()]
   def find_similar(list, key) do
@@ -114,9 +95,6 @@ defmodule Article.List do
     |> Stream.uniq()
   end
 
-  @spec filter(binary) :: t
-  def filter(key), do: filter(all(), key)
-
   @doc """
   Returns only articles that have videos
   """
@@ -140,9 +118,7 @@ defmodule Article.List do
 
   @spec related(Article.t()) :: t()
   def related(art) do
-    Map.take(by_tags(), art.tags())
-    |> Map.values()
-    |> Enum.reduce(MapSet.new(), &MapSet.union/2)
+    Article.Index.find(:all, :tags, art.tags())
     |> MapSet.delete(art)
     |> MapSet.to_list()
   end
@@ -190,10 +166,7 @@ defmodule Article.List do
   """
   @spec find_by_sources(Video.Track.plain()) :: Article.t() | nil
   def find_by_sources(sources) do
-    all()
-    |> Enum.find(fn art ->
-      Enum.any?(art.tracks(), fn %{videos: videos} -> videos == sources end)
-    end)
+    Article.Index.find(:any, :sources, [sources])
   end
 
   defp has_tag?(art, tag) when is_binary(tag) do
@@ -204,15 +177,6 @@ defmodule Article.List do
       FunctionClauseError ->
         reraise("not all tags of #{art} are strings: #{inspect(art.tags())}", __STACKTRACE__)
     end
-  end
-
-  @spec by_tags() :: %{binary() => MapSet.t()}
-  defmemop by_tags() do
-    Enum.reduce(all(), %{}, fn art, acc ->
-      Enum.reduce(art.tags(), acc, fn tag, acc ->
-        Map.update(acc, tag, MapSet.new([art]), &MapSet.put(&1, art))
-      end)
-    end)
   end
 
   @typep sorter() :: :desc | :asc

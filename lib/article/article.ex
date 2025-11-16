@@ -78,13 +78,8 @@ defmodule Article do
     art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
   end
 
-  def subcategory(art) do
-    art.name()
-    |> String.split("/")
-    |> case do
-      [subcategory, _name] -> subcategory
-      _ -> nil
-    end
+  def category(art) do
+    art |> Module.split() |> Enum.at(2)
   end
 
   def auto_generate_name(mod) do

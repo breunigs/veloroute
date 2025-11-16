@@ -24,11 +24,14 @@ defmodule Appointments.Appointment do
   ]
   defstruct @enforce_keys ++ [:lat, :lon]
 
-  @spec outdated?(t()) :: boolean()
-  def outdated?(appointment) do
-    {:ok, now} = DateTime.now(Settings.r(:timezone))
-    cutoff = DateTime.add(now, -12, :hour)
+  @spec outdated?(t(), DateTime.t()) :: boolean()
+  def outdated?(appointment, cutoff \\ cutoff_date()) do
     DateTime.compare(cutoff, appointment.date_time) == :gt
+  end
+
+  def cutoff_date() do
+    {:ok, now} = DateTime.now(Settings.r(:timezone))
+    DateTime.add(now, -12, :hour)
   end
 
   use Phoenix.Component

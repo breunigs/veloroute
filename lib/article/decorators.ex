@@ -299,9 +299,15 @@ defmodule Article.Decorators do
   def article_with_tracks(art) when is_module(art) do
     case art.tracks() do
       [] ->
-        Article.List.category("Static")
-        |> Article.List.with_tracks()
-        |> Article.List.related(art)
+        Article.Index.find(
+          :all,
+          [
+            :intersect,
+            {:all, :category, ["Static"]},
+            {:all, :has_tracks?, [true]},
+            {:all, :tags, art.tags()}
+          ]
+        )
         |> Article.List.overlap(art)
         |> Enum.at(0)
         |> Kernel.||(art)
@@ -363,11 +369,18 @@ defmodule Article.Decorators do
     case art.tracks() do
       [] ->
         tracks =
-          Article.List.category("Static")
-          |> Article.List.with_tracks()
-          |> Article.List.related(art)
+          Article.Index.find(
+            :all,
+            [
+              :intersect,
+              {:all, :category, ["Static"]},
+              {:all, :has_tracks?, [true]},
+              {:all, :tags, art.tags()}
+            ]
+          )
           |> Article.List.overlap(art)
-          |> Stream.flat_map(& &1.tracks())
+          |> Article.List.overlap(art)
+          |> Enum.flat_map(& &1.tracks())
           |> Enum.uniq()
 
         # hack: do not show Veloroutes, as they are deprectated

@@ -146,6 +146,14 @@ defmodule VelorouteWeb.LiveNavigationTest do
     assert_patched(view, "/article/2018-04-08-4-kleekamp")
   end
 
+  test "can view startpage with basic params", %{conn: conn} do
+    {:ok, _view, _html} =
+      live(
+        conn,
+        "/?bounds=9.406749%2C53.460784%2C10.535594%2C53.709427&pos=3666&video=6c5ec4b87553c5a86fac6b206345e318"
+      )
+  end
+
   test "link on article in sidebar with own tracks sets video pos near article center", %{
     conn: conn
   } do

@@ -19,7 +19,8 @@ defmodule Appointments.List do
   end
 
   defp not_outdated(list) do
-    Enum.reject(list, &Appointments.Appointment.outdated?/1)
+    cutoff = Appointments.Appointment.cutoff_date()
+    Enum.reject(list, &Appointments.Appointment.outdated?(&1, cutoff))
   end
 
   defp not_map_only(list) do

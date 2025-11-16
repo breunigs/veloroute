@@ -70,4 +70,4 @@ config :phoenix, :plug_init_mode, :runtime
 
 config :veloroute, enable_drawing_tools: true
 
-config :phoenix_live_view, debug_heex_annotations: true
+config :phoenix_live_view, debug_heex_annotations: false
