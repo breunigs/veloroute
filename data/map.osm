@@ -27096,6 +27096,29 @@
   <node id='-270283934' action='modify' lat='53.54716707681' lon='9.98832910985' />
   <node id='-270283935' action='modify' lat='53.54756230352' lon='9.98851954669' />
   <node id='-270283936' action='modify' lat='53.54755274163' lon='9.98857855529' />
+  <node id='-271945798' action='modify' lat='53.55252224352' lon='9.96690362558' />
+  <node id='-271945799' action='modify' lat='53.55242344877' lon='9.96673330531' />
+  <node id='-271945800' action='modify' lat='53.55197966707' lon='9.96743738383' />
+  <node id='-271945801' action='modify' lat='53.55160360357' lon='9.96825009316' />
+  <node id='-271945802' action='modify' lat='53.55093273623' lon='9.96975481242' />
+  <node id='-271945803' action='modify' lat='53.55113033247' lon='9.96992379159' />
+  <node id='-271945804' action='modify' lat='53.55152074167' lon='9.96895283192' />
+  <node id='-271945805' action='modify' lat='53.55199082144' lon='9.96777265996' />
+  <node id='-271945806' action='modify' lat='53.55243062016' lon='9.96714770526' />
+  <node id='-273607739' action='modify' lat='53.54993996532' lon='9.95630620837' />
+  <node id='-273607740' action='modify' lat='53.54957025798' lon='9.95617746234' />
+  <node id='-273607741' action='modify' lat='53.5494810178' lon='9.95823739886' />
+  <node id='-273607742' action='modify' lat='53.54927703953' lon='9.96118782878' />
+  <node id='-273607743' action='modify' lat='53.54937902879' lon='9.96272205234' />
+  <node id='-273607744' action='modify' lat='53.54981566752' lon='9.9673837316' />
+  <node id='-273607745' action='modify' lat='53.54999414629' lon='9.9673837316' />
+  <node id='-273607746' action='modify' lat='53.55006107564' lon='9.96900378585' />
+  <node id='-273607747' action='modify' lat='53.55023317918' lon='9.96896623492' />
+  <node id='-273607748' action='modify' lat='53.55013756619' lon='9.96691702724' />
+  <node id='-273607749' action='modify' lat='53.54967224654' lon='9.96238945842' />
+  <node id='-273607750' action='modify' lat='53.54960850372' lon='9.96155260921' />
+  <node id='-273607751' action='modify' lat='53.54964674942' lon='9.95979308009' />
+  <node id='-273607752' action='modify' lat='53.54967862081' lon='9.9586343658' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -55024,7 +55047,7 @@
     <nd ref='-143594700' />
     <nd ref='-143594701' />
   </way>
-  <way id='-20435834'>
+  <way id='-20435834' action='modify'>
     <nd ref='-143594702' />
     <nd ref='-143594703' />
     <nd ref='-143594704' />
@@ -55041,7 +55064,7 @@
     <nd ref='-143594715' />
     <nd ref='-143594702' />
     <tag k='hide_from_map' v='yes' />
-    <tag k='name' v='2022-10-18-reeperbahn' />
+    <tag k='name' v='2025-11-20-reeperbahn-verstetigung' />
     <tag k='type' v='article' />
   </way>
   <way id='-20435835'>
@@ -76596,6 +76619,39 @@
     <nd ref='-270283936' />
     <nd ref='-270283914' />
     <tag k='name' v='2025-11-09-hopfenmarkt' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21028826' action='modify'>
+    <nd ref='-271945798' />
+    <nd ref='-271945799' />
+    <nd ref='-271945800' />
+    <nd ref='-271945801' />
+    <nd ref='-271945802' />
+    <nd ref='-271945803' />
+    <nd ref='-271945804' />
+    <nd ref='-271945805' />
+    <nd ref='-271945806' />
+    <nd ref='-271945798' />
+    <tag k='name' v='2025-11-18-budapester-strasse-3' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21036444' action='modify'>
+    <nd ref='-273607739' />
+    <nd ref='-273607740' />
+    <nd ref='-273607741' />
+    <nd ref='-273607742' />
+    <nd ref='-273607743' />
+    <nd ref='-273607744' />
+    <nd ref='-273607745' />
+    <nd ref='-273607746' />
+    <nd ref='-273607747' />
+    <nd ref='-273607748' />
+    <nd ref='-273607749' />
+    <nd ref='-273607750' />
+    <nd ref='-273607751' />
+    <nd ref='-273607752' />
+    <nd ref='-273607739' />
+    <tag k='name' v='2025-11-20-reeperbahn-verstetigung' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
