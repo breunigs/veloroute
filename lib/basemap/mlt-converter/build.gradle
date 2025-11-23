@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.gradleup.shadow' version '9.2.2'
+}
+
+group = 'hamburg.veloroute'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri('https://maven.ecc.no/releases/')
+    }
+}
+
+dependencies {
+    implementation ':mlt-core'
+    implementation 'no.ecc.vectortile:java-vector-tile:1.3.22'
+}
+
+application {
+    mainClass = 'Converter'
+}
+
+tasks.shadowJar {
+    archiveBaseName.set('mlt-converter')
+    mergeServiceFiles()
+}

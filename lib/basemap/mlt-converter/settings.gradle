@@ -1,0 +1,2 @@
+rootProject.name = 'mlt-converter'
+includeBuild("/maplibre-tile-spec/java/mlt-core")

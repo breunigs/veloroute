@@ -20,7 +20,6 @@ defmodule Article.List do
   def recent(min, max, days) do
     {always, rest} =
       sorted_blog_posts()
-      |> Enum.sort_by(& &1.updated_at(), {:desc, Date})
       |> Stream.filter(&Article.released?/1)
       |> StreamSplit.take_and_drop(min)
 

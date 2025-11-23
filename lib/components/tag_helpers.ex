@@ -784,6 +784,11 @@ defmodule Components.TagHelpers do
     """
   end
 
+  defp inner_text(%{inner_block: [%{inner_block: %{static: static}}]})
+       when is_list(static) do
+    Enum.join(static)
+  end
+
   defp inner_text(assigns) do
     ~H{<%= render_slot(@inner_block) %>}
     |> Phoenix.LiveView.Engine.safe_to_iodata()

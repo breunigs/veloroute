@@ -54,7 +54,8 @@ defmodule Basemap.Tiles do
       |> print_error()
 
     # MLT converter is not production ready:
-    # "Specified geometry type is not (yet) supported: GeometryCollection"
+    # on vanilla: "Specified geometry type is not (yet) supported: GeometryCollection"
+    # maplibre-gl-js also complains about FastPfor not being implemented, even if disabled
     # :ok =
     #   Util.Docker.build_and_run(
     #     @convert_container,
@@ -104,6 +105,8 @@ defmodule Basemap.Tiles do
         "scheme" => "xyz",
         "type" => "baselayer",
         "format" => "pbf",
+        # "encoding" => "mlt",
+        # "tiles" => ["#{serve_url()}/{z}/{x}/{y}.mlt"],
         "tiles" => ["#{serve_url()}/{z}/{x}/{y}.pbf"],
         "bounds" => old["bounds"] |> String.split(",") |> Enum.map(&String.to_float/1),
         "name" => "merged #{Settings.r(:sitebar_name)} tiles",

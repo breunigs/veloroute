@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.lang.Math;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,13 +40,13 @@ public class Converter {
         "transportation", optimization,
         "routes", optimization,
         "building", optimization);
-    var config = new ConversionConfig(true, true, optimizations);
+    var config = new ConversionConfig(false, true, true, optimizations);
 
     int total = pbfFiles.size();
     AtomicInteger counter = new AtomicInteger(0);
     final int barWidth = 40; // width of the progress bar
 
-    var coreCount = Runtime.getRuntime().availableProcessors() / 3;
+    var coreCount = Math.floor(Runtime.getRuntime().availableProcessors() / 2.7);
     System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", String.valueOf(coreCount));
     pbfFiles.parallelStream().forEach(pbfPath -> {
       try {
