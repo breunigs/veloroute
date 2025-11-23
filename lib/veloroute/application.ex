@@ -11,6 +11,7 @@ defmodule Veloroute.Application do
 
     # List all child processes to be supervised
     children = [
+      Util.UserAgent,
       Search.Meilisearch.Runner,
       Article.Index,
       Basemap.Static.Runner.cache_child_spec(),

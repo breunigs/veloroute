@@ -34,11 +34,7 @@ defmodule VelorouteWeb.FrameLive do
       Application.get_env(:veloroute, :enable_drawing_tools) ||
         params["enable_drawing_tools"] == "1"
 
-    device_os =
-      case UAParser.parse(get_connect_info(socket, :user_agent)) do
-        %{os: %{family: x}} -> x
-        _ -> nil
-      end
+    device_os = socket |> get_connect_info(:user_agent) |> Util.UserAgent.device_os()
 
     state =
       Keyword.merge(@initial_state,
