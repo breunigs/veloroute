@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.FarmsenerLandstrasse1 do
     <p>Im Abschnitt ist nur ein kurzes Stück <.ref>Hochbordradweg</.ref> vorm Saseler Weg vorhanden. Ansonsten muss überall auf der <.ref>Fahrbahn</.ref> geradelt werden.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Zwischen <.v bounds="10.159512,53.649549,10.162809,53.651448" lon={10.161451} lat={53.650238} dir="backward" ref="br-wandsbek-w6">Halenreie</.v> und <.v bounds="10.156182,53.64812,10.15882,53.649538" lon={10.15809} lat={53.648931} dir="backward" ref="br-wandsbek-w6">Saseler Weg</.v> soll auf der nördlichen Straßenseite ein Zweirichtungsradweg angelegt werden.</p>
+    <p>Zwischen <.v bounds="10.159512,53.649549,10.162809,53.651448" lon={10.161451} lat={53.650238} dir="backward" ref={BrWandsbekW6}>Halenreie</.v> und <.v bounds="10.156182,53.64812,10.15882,53.649538" lon={10.15809} lat={53.648931} dir="backward" ref={BrWandsbekW6}>Saseler Weg</.v> soll auf der nördlichen Straßenseite ein Zweirichtungsradweg angelegt werden.</p>
 
     <p>Beim Kreisel ist ein Übergang auf den Gehweg mit <.ref>Fahrrad frei</.ref> vorgesehen. Am Saseler Weg soll dagegen auf die <.ref>Fahrbahn</.ref> gewechselt werden, wozu ein Stummel-<.ref>Schutzstreifen</.ref> aufgemalt wird.</p>
 

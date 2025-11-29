@@ -64,7 +64,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
     <p><strong><.v bounds="9.873897,53.596214,9.896794,53.601449" lon={9.8870968} lat={53.5988063} dir="forward" ref={@ref}>Kreuzung Langbargheide</.v>:</strong> Auch hier wird der Radweg hinter den Bushaltestellen geführt, die Querung der Nebenstraßen erfolgt geradlinig. Von der Veloroute weg steht indirektes Linksabbiegen zur Verfügung, aus den Nebenstraßen nur Direktes. (LSBG Lageplan 4).</p>
 
-    <p><strong><.v bounds="9.886982,53.600127,9.892587,53.602508" lon={9.8899406} lat={53.6016387} dir="forward" ref={@ref}>Querung Radschnellweg</.v>:</strong> Für den <.a name="rsw-elmshorn">Radschnellweg Elmshorn</.a> verbreitern sich die Radwege auf 4,0m. Die Querung der Elbgaustraße ist kurz vor den Eisenbahnbrücken vorgesehen. (LSBG Lageplan 5).</p>
+    <p><strong><.v bounds="9.886982,53.600127,9.892587,53.602508" lon={9.8899406} lat={53.6016387} dir="forward" ref={@ref}>Querung Radschnellweg</.v>:</strong> Für den <.a ref={RSWElmshorn}>Radschnellweg Elmshorn</.a> verbreitern sich die Radwege auf 4,0m. Die Querung der Elbgaustraße ist kurz vor den Eisenbahnbrücken vorgesehen. (LSBG Lageplan 5).</p>
 
     <p><strong><.v bounds="9.889175,53.602158,9.899717,53.604568" lon={9.8926452} lat={53.6033872} dir="backward" ref={@ref}>Bushaltestellen S-Elbgaustraße</.v>:</strong> Die Fahrgäste bekommen 3,0m breite Warteflächen. Der Radweg verläuft dahinter. Ausnahme: an der Haltestelle kurz vor den Bahnbrücken in Fahrtrichtung Lurup führt ein <.ref>Radfahrstreifen</.ref> links am Bus vorbei. (LSBG Lageplan 5).</p>
 

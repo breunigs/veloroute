@@ -85,7 +85,7 @@ defmodule Data.Article.Blog.BudapesterStrasse1 do
     <p>Wenn beim Ausbau festgestellt wird, dass wichtige Baumwurzeln einen Ausbau verhindern, werden die Wege ggf. schmaler.</p>
 
     <h4>Meinung</h4>
-    <p>Das ohne kompletten Umbau Engstellen verbleiben, ist verständlich. Für die lange Strecke mit unbrauchbaren 1,0m Breite hätte die Gestaltungsfreude höher ausfallen müssen. Da sich hinter den KFZ-Schrägparkplätzen direkt nochmal ein KFZ-Längsparkstreifen befindet, ist es auch kein Platzproblem. Der LSBG hatte bei der <.a name="2022-05-25-saarlandstrasse-nord">Planung zur Saarlandstraße</.a> bereits festgestellt, dass bei langsamem Ausparken auf Sicherheitsabstände bzw. Maßnahmen verzichtet werden kann. Warum nicht hier?</p>
+    <p>Das ohne kompletten Umbau Engstellen verbleiben, ist verständlich. Für die lange Strecke mit unbrauchbaren 1,0m Breite hätte die Gestaltungsfreude höher ausfallen müssen. Da sich hinter den KFZ-Schrägparkplätzen direkt nochmal ein KFZ-Längsparkstreifen befindet, ist es auch kein Platzproblem. Der LSBG hatte bei der <.a ref={SaarlandstrasseNord}>Planung zur Saarlandstraße</.a> bereits festgestellt, dass bei langsamem Ausparken auf Sicherheitsabstände bzw. Maßnahmen verzichtet werden kann. Warum nicht hier?</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

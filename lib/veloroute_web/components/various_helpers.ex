@@ -11,7 +11,7 @@ defmodule VelorouteWeb.VariousHelpers do
 
     if is_module(ref) do
       assigns = %{
-        href: Article.Decorators.path(ref),
+        href: ref.path(),
         title: "Du folgst: #{ref.title()} #{text}",
         icon: route_icon(ref),
         text: text

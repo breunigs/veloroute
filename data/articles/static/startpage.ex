@@ -37,34 +37,34 @@ defmodule Data.Article.Static.Startpage do
     <% end %>
 
     <ol class="route-list">
-      <li><.icon autoplay={true} name="radroute-1"><span translate="no" style="hyphens: none">Rissen – Billstedt</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-2"><span translate="no" style="hyphens: none">Eidelstedt – Bergedorf</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-3"><span translate="no" style="hyphens: none">Niendorf – Veddel</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-4"><span translate="no" style="hyphens: none">Ochsenzoll – Sinstorf</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-5"><span translate="no" style="hyphens: none">Duvenstedt – Mundsburg</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-6"><span translate="no" style="hyphens: none">Jungfernstieg – Volksdorf</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-7"><span translate="no" style="hyphens: none">Schenefeld – Rahlstedt</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-8"><span translate="no" style="hyphens: none">Barmbek-Nord – Bergedorf</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-9"><span translate="no" style="hyphens: none">Krugkoppelbrücke – Berliner Tor</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-10"><span translate="no">Neu Wulmstorf – Alte Harburger Elbbrücke</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-11"><span translate="no" style="hyphens: none">Hafen – Stader Straße</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-12"><span translate="no" style="hyphens: none">Alsterdorf – Wilhelmsburg</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-13"><span translate="no" style="hyphens: none">Eißendorf – Seevetal</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-14"><span translate="no" style="hyphens: none">Altona – Alstervorland</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-15"><span translate="no" style="hyphens: none">Christuskirche – Alter Elbtunnel</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-16"><span translate="no" style="hyphens: none">Altona – Winterhude</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-17"><span translate="no" style="hyphens: none">UKE – Hamm</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-18"><span translate="no" style="hyphens: none">Eidelstedt – Neugraben</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-19"><span translate="no">Eidelstedt – Langenhorner Markt</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-20"><span translate="no" style="hyphens: none">Sasel – Tatenberg</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-21"><span translate="no" style="hyphens: none">Hafen – Moorfleet</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-22"><span translate="no">Hamm – Zollenspieker (Fähre)</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-23"><span translate="no">Veddel – Alte Harburger Elbbrücke</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-concept-a"><span translate="no" style="hyphens: none">Blankenese – Hauptbahnhof</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-concept-c"><span translate="no">Elbgaustraße – Sternschanze</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-concept-d"><span translate="no" style="hyphens: none">Burgwedel – Niendorfer Marktplatz</span></.icon></li>
-      <li><.icon autoplay={true} name="radroute-concept-e"><span translate="no">Osdorfer Born – Deckel Altona</span></.icon></li>
-      <li><.icon autoplay={false} name="radroute-concept-b"><span translate="no" style="hyphens: none">(angedacht) Stellingen – Othmarschen</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute1}><span translate="no" style="hyphens: none">Rissen – Billstedt</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute2}><span translate="no" style="hyphens: none">Eidelstedt – Bergedorf</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute3}><span translate="no" style="hyphens: none">Niendorf – Veddel</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute4}><span translate="no" style="hyphens: none">Ochsenzoll – Sinstorf</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute5}><span translate="no" style="hyphens: none">Duvenstedt – Mundsburg</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute6}><span translate="no" style="hyphens: none">Jungfernstieg – Volksdorf</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute7}><span translate="no" style="hyphens: none">Schenefeld – Rahlstedt</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute8}><span translate="no" style="hyphens: none">Barmbek-Nord – Bergedorf</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute9}><span translate="no" style="hyphens: none">Krugkoppelbrücke – Berliner Tor</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute10}><span translate="no">Neu Wulmstorf – Alte Harburger Elbbrücke</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute11}><span translate="no" style="hyphens: none">Hafen – Stader Straße</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute12}><span translate="no" style="hyphens: none">Alsterdorf – Wilhelmsburg</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute13}><span translate="no" style="hyphens: none">Eißendorf – Seevetal</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute14}><span translate="no" style="hyphens: none">Altona – Alstervorland</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute15}><span translate="no" style="hyphens: none">Christuskirche – Alter Elbtunnel</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute16}><span translate="no" style="hyphens: none">Altona – Winterhude</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute17}><span translate="no" style="hyphens: none">UKE – Hamm</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute18}><span translate="no" style="hyphens: none">Eidelstedt – Neugraben</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute19}><span translate="no">Eidelstedt – Langenhorner Markt</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute20}><span translate="no" style="hyphens: none">Sasel – Tatenberg</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute21}><span translate="no" style="hyphens: none">Hafen – Moorfleet</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute22}><span translate="no">Hamm – Zollenspieker (Fähre)</span></.icon></li>
+      <li><.icon autoplay={true} ref={Radroute23}><span translate="no">Veddel – Alte Harburger Elbbrücke</span></.icon></li>
+      <li><.icon autoplay={true} ref={RadrouteConceptA}><span translate="no" style="hyphens: none">Blankenese – Hauptbahnhof</span></.icon></li>
+      <li><.icon autoplay={true} ref={RadrouteConceptC}><span translate="no">Elbgaustraße – Sternschanze</span></.icon></li>
+      <li><.icon autoplay={true} ref={RadrouteConceptD}><span translate="no" style="hyphens: none">Burgwedel – Niendorfer Marktplatz</span></.icon></li>
+      <li><.icon autoplay={true} ref={RadrouteConceptE}><span translate="no">Osdorfer Born – Deckel Altona</span></.icon></li>
+      <li><.icon autoplay={false} ref={RadrouteConceptB}><span translate="no" style="hyphens: none">(angedacht) Stellingen – Othmarschen</span></.icon></li>
     </ol>
 
     <%= if @de do %>
@@ -80,22 +80,22 @@ defmodule Data.Article.Static.Startpage do
     <% end %>
 
     <ol class="route-list">
-      <li><.icon autoplay={true} name="1GR"><span translate="no">1. Grüner Ring</span></.icon></li>
-      <li><.icon autoplay={true} name="FR1"><span translate="no">Alster</span></.icon></li>
-      <li><.icon autoplay={true} name="FR2"><span translate="no">Osterbek</span></.icon></li>
-      <li><.icon autoplay={true} name="FR3"><span translate="no">Wandse</span></.icon></li>
-      <li><.icon autoplay={true} name="FR4"><span translate="no">Bille</span></.icon></li>
-      <li><.icon autoplay={true} name="FR5"><span translate="no">Vier- und Marschlande</span></.icon></li>
-      <li><.icon autoplay={true} name="FR6"><span translate="no">Elbbrücken</span></.icon></li>
-      <li><.icon autoplay={true} name="FR7"><span translate="no">Harburger Berge</span></.icon></li>
-      <li style="break-before: column;"><.icon autoplay={true} name="FR8"><span translate="no">Elbufer (Nordseite)</span></.icon></li>
-      <li><.icon autoplay={true} name="FR9"><span translate="no">Klövensteen</span></.icon></li>
-      <li><.icon autoplay={true} name="FR10"><span translate="no">Kollau</span></.icon></li>
-      <li><.icon autoplay={true} name="FR11"><span translate="no">2. Grüner Ring</span></.icon></li>
-      <li><.icon autoplay={true} name="FR12"><span translate="no">Tarpenbek</span></.icon></li>
-      <li><.icon autoplay={true} name="FR13"><span translate="no">Dritte Meile</span></.icon></li>
-      <li><.icon autoplay={true} name="FR14"><span translate="no">Alter Elbtunnel</span></.icon></li>
-      <li><.icon autoplay={true} name="e"><span translate="no">Elbradweg (Südseite)</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute0}><span translate="no">1. Grüner Ring</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute1}><span translate="no">Alster</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute2}><span translate="no">Osterbek</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute3}><span translate="no">Wandse</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute4}><span translate="no">Bille</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute5}><span translate="no">Vier- und Marschlande</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute6}><span translate="no">Elbbrücken</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute7}><span translate="no">Harburger Berge</span></.icon></li>
+      <li style="break-before: column;"><.icon autoplay={true} ref={Freizeitroute8}><span translate="no">Elbufer (Nordseite)</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute9}><span translate="no">Klövensteen</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute10}><span translate="no">Kollau</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute11}><span translate="no">2. Grüner Ring</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute12}><span translate="no">Tarpenbek</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute13}><span translate="no">Dritte Meile</span></.icon></li>
+      <li><.icon autoplay={true} ref={Freizeitroute14}><span translate="no">Alter Elbtunnel</span></.icon></li>
+      <li><.icon autoplay={true} ref={FreizeitrouteElbradwegSued}><span translate="no">Elbradweg (Südseite)</span></.icon></li>
     </ol>
 
     <%= if @de do %>
@@ -115,58 +115,58 @@ defmodule Data.Article.Static.Startpage do
         <th translate="no">Eimsbüttel</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-nord-sued">E1</.icon>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-niendorf">E2</.icon>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-eidelstedt">E3</.icon>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-isebek">E4</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelNordSued}>E1</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelNiendorf}>E2</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelEidelstedt}>E3</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelIsebek}>E4</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-rotherbaum">E5</.icon>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-sued">E6</.icon>
-            <.icon role="listitem" autoplay={true} name="br-eimsbuettel-rotherbaumring">E7</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelRotherbaum}>E5</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelSued}>E6</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrEimsbuettelRotherbaumring}>E7</.icon>
           </span>
         </td>
       </tr><tr role="group">
         <th translate="no">Hamburg-Nord</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-nord-n1">N1</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n2">N2</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n3">N3</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n4">N4</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n5">N5</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN1}>N1</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN2}>N2</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN3}>N3</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN4}>N4</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN5}>N5</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-nord-n6">N6</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n7">N7</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n8">N8</.icon>
-            <.icon role="listitem" autoplay={true} name="br-nord-n9">N9</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN6}>N6</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN7}>N7</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN8}>N8</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrNordN9}>N9</.icon>
           </span>
         </td>
       </tr><tr role="group">
         <th translate="no">Wandsbek</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w1">W1</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w2">W2</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w3">W3</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w4">W4</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW1}>W1</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW2}>W2</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW3}>W3</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW4}>W4</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w5">W5</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w6">W6</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w7">W7</.icon>
-            <.icon role="listitem" autoplay={true} name="br-wandsbek-w8">W8</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW5}>W5</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW6}>W6</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW7}>W7</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrWandsbekW8}>W8</.icon>
           </span>
         </td>
       </tr><tr role="group">
         <th translate="no">Bergedorf</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-bergedorf-a">BA</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrBergedorfA}>BA</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="br-bergedorf-b">BB</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrBergedorfB}>BB</.icon>
           </span>
         </td>
       </tr>
@@ -179,7 +179,7 @@ defmodule Data.Article.Static.Startpage do
       <p><.show_route_group group={:radroute}>Kartenansicht Alltagsrouten</.show_route_group> oder Route auswählen:</p>
     <% else %>
       <h4 lang="en">Surroundings</h4>
-      <p lang="en">Municipalities around Hamburg also develop priority cycle routes. “<.ref name="Radschnellweg">Cycle highways</.ref>” (also: <span translate="no">Radrouten Plus</span>) are meant to interconnect the metropolitan area, but are currently in planning and aren't usable yet.</p>
+      <p lang="en">Municipalities around Hamburg also develop priority cycle routes. “<.ref ref={LexikonRadschnellweg}>Cycle highways</.ref>” (also: <span translate="no">Radrouten Plus</span>) are meant to interconnect the metropolitan area, but are currently in planning and aren't usable yet.</p>
 
       <p lang="en"><.show_route_group group={:radroute}>Map view commuter routes</.show_route_group> or pick a route:</p>
     <% end %>
@@ -189,45 +189,45 @@ defmodule Data.Article.Static.Startpage do
         <th translate="no">Pinneberg</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="rsw-elmshorn" bounds="9.76125,53.617704,9.873313,53.686535" lon={9.855594} lat={53.621113} dir="forward">RSW</.icon>
-            <.icon role="listitem" autoplay={true} name="pinneberg-1">1</.icon>
-            <.icon role="listitem" autoplay={true} name="pinneberg-2">2</.icon>
+            <.icon role="listitem" autoplay={true} ref={RSWElmshorn} bounds="9.76125,53.617704,9.873313,53.686535" lon={9.855594} lat={53.621113} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} ref={PinnebergVeloroute1}>1</.icon>
+            <.icon role="listitem" autoplay={true} ref={PinnebergVeloroute2}>2</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="pinneberg-3">3</.icon>
-            <.icon role="listitem" autoplay={true} name="pinneberg-4">4</.icon>
-            <.icon role="listitem" autoplay={true} name="pinneberg-5">5</.icon>
+            <.icon role="listitem" autoplay={true} ref={PinnebergVeloroute3}>3</.icon>
+            <.icon role="listitem" autoplay={true} ref={PinnebergVeloroute4}>4</.icon>
+            <.icon role="listitem" autoplay={true} ref={PinnebergVeloroute5}>5</.icon>
           </span>
         </td>
       </tr><tr role="group">
         <th translate="no">Norderstedt</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="rsw-bad-bramstedt" bounds="9.967335,53.669097,10.062369,53.759085" lon={10.00096} lat={53.681306} dir="forward">RSW</.icon>
-            <.icon role="listitem" autoplay={true} name="norderstedt-1">1</.icon>
-            <.icon role="listitem" autoplay={true} name="norderstedt-2">2</.icon>
+            <.icon role="listitem" autoplay={true} ref={RSWBadBramstedt} bounds="9.967335,53.669097,10.062369,53.759085" lon={10.00096} lat={53.681306} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} ref={NorderstedtVeloroute1}>1</.icon>
+            <.icon role="listitem" autoplay={true} ref={NorderstedtVeloroute2}>2</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="norderstedt-3">3</.icon>
-            <.icon role="listitem" autoplay={true} name="norderstedt-4">4</.icon>
+            <.icon role="listitem" autoplay={true} ref={NorderstedtVeloroute3}>3</.icon>
+            <.icon role="listitem" autoplay={true} ref={NorderstedtVeloroute4}>4</.icon>
           </span>
         </td>
       </tr><tr role="group">
         <th translate="no">Ahrensburg</th>
         <td>
           <span>
-            <.icon role="listitem" autoplay={true} name="rsw-ahrensburg" bounds="10.143083,53.641867,10.288229,53.699555" lon={10.199777} lat={53.661468} dir="forward">RSW</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a2">2</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a3">3</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a4">4</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a5">5</.icon>
+            <.icon role="listitem" autoplay={true} ref={RSWAhrensburg} bounds="10.143083,53.641867,10.288229,53.699555" lon={10.199777} lat={53.661468} dir="forward">RSW</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA2}>2</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA3}>3</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA4}>4</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA5}>5</.icon>
           </span>
           <span>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a6">6</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a7">7</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a8">8</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a9">9</.icon>
-            <.icon role="listitem" autoplay={true} name="ahrensburg-a10">10</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA6}>6</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA7}>7</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA8}>8</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA9}>9</.icon>
+            <.icon role="listitem" autoplay={true} ref={AhrensburgA10}>10</.icon>
           </span>
         </td>
       </tr>
@@ -276,11 +276,11 @@ defmodule Data.Article.Static.Startpage do
           Die Verkehrsplanung kennt viele Konzepte und Begriffe, die sich nicht immer mit der Alltagssprache decken.
         </li>
         <li>
-          <.a name="projekt"><strong>Projektdetails</strong></.a><br>
+          <.a ref={Projekt}><strong>Projektdetails</strong></.a><br>
           Details zur Technik oder wie Du mithelfen kannst, findest Du dort.
         </li>
         <li>
-          <.a name="datenexport"><strong>Video / Datenexport</strong></.a><br>
+          <.a ref={Datenexport}><strong>Video / Datenexport</strong></.a><br>
           Spezialfall? Kein Problem, die Seite macht die Weiterverwendung des Materials einfach.
         </li>
       </ul>
@@ -294,7 +294,7 @@ defmodule Data.Article.Static.Startpage do
           <%= Appointments.Appointment.html(appointment, @lang) %>
         <% end %>
       </ol>
-      <.a name="termine"><strong>mehr Termindetails anzeigen</strong></.a>
+      <.a ref={Termine}><strong>mehr Termindetails anzeigen</strong></.a>
 
       <h3>Linkempfehlungen</h3>
       <p>Es gibt weitere Webseiten, die sich dem Thema Rad und Mobilität in Hamburg annehmen, die ich sehenswert finde:</p>
@@ -329,11 +329,11 @@ defmodule Data.Article.Static.Startpage do
           Traffic planning has many concepts and terms, which may differ from everyday language.
         </li>
         <li>
-          <.a name="projekt"><strong>the project in detail</strong></.a><br>
+          <.a ref={Projekt}><strong>the project in detail</strong></.a><br>
           If you want to learn more about the technology used or how to help.
         </li>
         <li>
-          <.a name="datenexport"><strong>video / data export </strong></.a><br>
+          <.a ref={Datenexport}><strong>video / data export </strong></.a><br>
           Special case? No problem, the site makes further use of the source material easy.
         </li>
       </ul>
@@ -347,7 +347,7 @@ defmodule Data.Article.Static.Startpage do
           <%= Appointments.Appointment.html(appointment, @lang) %>
         <% end %>
       </ol>
-      <.a name="termine"><strong>Show more event details</strong></.a>
+      <.a ref={Termine}><strong>Show more event details</strong></.a>
 
       <h3 lang="en">Link recommendations</h3>
       <p lang="en">These are websites on the general topic of cycling and mobility in Hamburg, which are worth seeing:</p>

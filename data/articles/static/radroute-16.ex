@@ -141,7 +141,7 @@ defmodule Data.Article.Static.Radroute16 do
       </tr>
     </table>
 
-    <p>Radroute 16 verläuft vom <.v bounds="9.921524,53.540571,9.962418,53.572968" lon={9.935969} lat={53.552669} dir="forward" ref={@ref}>Bahnhof Altona</.v> in nordöstliche Richtung nach <.v bounds="9.971149,53.579917,10.012186,53.606714" lon={9.993815} lat={53.592938} dir="forward" ref={@ref}>Winterhude</.v>. Sie stellt damit eine Querverbindung in den zentrumsnahen, westlichen Stadtteilen her. Sie verläuft fast parallel zur <.a name="radroute-14">Radroute 14</.a>, die ein paar Blöcke südlicher liegt.</p>
+    <p>Radroute 16 verläuft vom <.v bounds="9.921524,53.540571,9.962418,53.572968" lon={9.935969} lat={53.552669} dir="forward" ref={@ref}>Bahnhof Altona</.v> in nordöstliche Richtung nach <.v bounds="9.971149,53.579917,10.012186,53.606714" lon={9.993815} lat={53.592938} dir="forward" ref={@ref}>Winterhude</.v>. Sie stellt damit eine Querverbindung in den zentrumsnahen, westlichen Stadtteilen her. Sie verläuft fast parallel zur <.a ref={Radroute14}>Radroute 14</.a>, die ein paar Blöcke südlicher liegt.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -150,7 +150,7 @@ defmodule Data.Article.Static.Radroute16 do
     <p>Alle Wege sind befestigt und allwettertauglich. Meist fährt man auf Asphalt, nur sehr kurze Abschnitte sind mit modernem Betonpflaster ausgelegt.</p>
 
     <h4>Meinung</h4>
-    <p>An bereits ausgebauten Stellen ist die Route gut zu befahren. Leider fehlen noch viele Abschnitte, allen voran der <.a name="2022-09-13-eppendorfer-weg">Eppendorfer Weg</.a>. Die Planungen dafür wurden zwar gestartet, aber es werden noch Jahre bis zum Umbau vergehen. Bis dahin werden die Wildparker von der Polizei geduldet – vermutlich weil sonst noch mehr gerast würde.</p>
+    <p>An bereits ausgebauten Stellen ist die Route gut zu befahren. Leider fehlen noch viele Abschnitte, allen voran der <.a ref={EppendorferWeg}>Eppendorfer Weg</.a>. Die Planungen dafür wurden zwar gestartet, aber es werden noch Jahre bis zum Umbau vergehen. Bis dahin werden die Wildparker von der Polizei geduldet – vermutlich weil sonst noch mehr gerast würde.</p>
 
 
     <h4>Externe Links</h4>

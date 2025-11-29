@@ -10,7 +10,7 @@ defmodule Components.TagHelpers do
   a links change the current page and may point to internal or external pages
   """
   attr :href, :string
-  attr :name, :string
+  attr :ref, :atom
   attr :rel, :string
   attr :rest, :global
   slot(:inner_block, required: true)
@@ -19,11 +19,11 @@ defmodule Components.TagHelpers do
     do:
       raise("Link contains both href and name, but you should pick only one: #{inspect(assigns)}")
 
-  def a(%{name: name} = assigns) do
-    art = Article.List.find_exact(name)
+  def a(%{ref: ref} = assigns) do
+    art = Article.List.find_exact(ref)
 
     if is_nil(art),
-      do: raise("Tried to find article by name '#{name}', but no such article exists")
+      do: raise("Tried to find article by name '#{ref}', but no such article exists")
 
     article_link(Map.put(assigns, :ref, art))
   end
@@ -62,7 +62,7 @@ defmodule Components.TagHelpers do
   attr :bounds, :string, required: true
   attr :lat, :float, required: true
   attr :lon, :float, required: true
-  attr :ref, :any, required: true
+  attr :ref, :atom, required: true
   attr :dir, :string, values: ["forward", "backward"]
   attr :group, :string
   attr :highlight, :string
@@ -399,7 +399,7 @@ defmodule Components.TagHelpers do
   def article_link(%{ref: art, lang: lang} = assigns) when is_module(art) do
     assigns =
       assign(assigns, %{
-        href: Article.Decorators.path(art),
+        href: art.path(),
         summary: art.summary(lang),
         title: Article.Decorators.full_title(art, lang)
       })
@@ -442,14 +442,13 @@ defmodule Components.TagHelpers do
   end
 
   @spec ref(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :name, :string
+  attr :ref, :atom
   attr :lang, :string, default: @default_language
   slot(:inner_block, required: true)
 
   def ref(assigns) do
-    name = assigns[:name] || inner_text(assigns)
-    art = Article.List.find_exact(String.downcase(name))
-    art = art || Article.List.find_exact(name)
+    name = assigns[:ref] || String.downcase(inner_text(assigns))
+    art = Article.List.find_exact(name)
     unless is_module(art), do: raise("Failed to find a ref for #{name}")
 
     assigns
@@ -472,29 +471,46 @@ defmodule Components.TagHelpers do
     end
   end
 
+  @spec icon_only(map()) :: Phoenix.LiveView.Rendered.t()
+  attr :ref, :atom
+  slot(:inner_block, required: true)
+
+  def icon_only(assigns) do
+    content = inner_text(assigns)
+    id = assigns[:ref] || content
+    art = Article.List.find_exact(id)
+
+    assigns =
+      assign(assigns, %{
+        style: "background: #{art.color()}",
+        class: "icon #{art.route_group()}"
+      })
+
+    ~H"""
+    <span style={@style} class={@class} translate="no"><%= render_slot(@inner_block) %></span>
+    """
+  end
+
   @spec icon(map()) :: Phoenix.LiveView.Rendered.t()
-  attr :name, :string
+  attr :ref, :atom
   attr :bounds, :string
   attr :lat, :float
   attr :lon, :float
   attr :dir, :string, values: ["forward", "backward"]
-  attr :group, :string
   attr :autoplay, :boolean, default: false
-  attr :link, :boolean, default: true
   attr :rest, :global
   slot(:inner_block, required: true)
 
   def icon(assigns) do
-    id_from_attr = assigns[:name]
     content = inner_text(assigns)
-    id = id_from_attr || content
+    id = assigns[:ref] || content
 
     art = Article.List.find_exact(id)
 
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no article with such a id/name/display_id")
 
-    query = Map.take(assigns, [:bounds, :lat, :lon, :dir, :group])
+    query = Map.take(assigns, [:bounds, :lat, :lon, :dir])
     query = if assigns[:autoplay], do: Map.put(query, :autoplay, true), else: query
 
     href = Article.Decorators.path(art, query)
@@ -510,13 +526,6 @@ defmodule Components.TagHelpers do
       })
 
     cond do
-      !assigns[:link] ->
-        assigns = assign(assigns, :content, if(content != "", do: content, else: id))
-
-        ~H"""
-        <span style={@style} class={@class} translate="no"><%= @content %></span>
-        """
-
       art.display_id() == content || art.id() == content ->
         ~H"""
         <a href={@href}

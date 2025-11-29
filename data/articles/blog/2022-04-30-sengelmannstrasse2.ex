@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.Sengelmannstrasse2 do
     <h4>Planung</h4>
     <p>Im Zuge des Baus der U5 wird die Sengelmannstraße tiefer gelegt. Dabei werden auch die Radwege auf 2,0m verbreitert. In Richtung Flughafen bleiben unter der Brücke Engstellen – der Radweg wird hier 1,60m und der Fußweg 1,70m.</p>
 
-    <p>Die <.v bounds="10.02215,53.608175,10.027486,53.61149" lon={10.023953} lat={53.610166} dir="backward" ref="rsw-bad-bramstedt">Ausfahrt aus der Nebenstraße</.v> verschiebt sich etwas nach Norden.</p>
+    <p>Die <.v bounds="10.02215,53.608175,10.027486,53.61149" lon={10.023953} lat={53.610166} dir="backward" ref={RSWBadBramstedt}>Ausfahrt aus der Nebenstraße</.v> verschiebt sich etwas nach Norden.</p>
 
     <h4>Meinung</h4>
     <p>Die verbleibende Engstelle ist ärgerlich, aber ohne Brückenneubau vermutlich nicht lösbar. Ansonsten sind die 2,0m Breite angenehm, auch wenn der gesamte Streckenzug asphaltierte Radwege verdient.</p>

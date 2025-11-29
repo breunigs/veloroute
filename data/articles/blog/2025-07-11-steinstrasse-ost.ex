@@ -40,7 +40,7 @@ defmodule Data.Article.Blog.SteinstrasseOst do
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Planung behält den bisherigen Ansatz im Wesentlichen bei. Der Hochbordradweg auf der Nordseite wird auf 1,5m verbreitert und erreicht damit nicht die vorgeschriebenen Mindestbreiten. Der Radfahrstreifen auf der Südseite bleibt wie heute.</p>
 
-    <p>Angepasst wird der Anschluss an die <.a name="2024-06-21-steinstrasse">umgeplante Steinstraße</.a>. Dadurch wird die Aufstelltasche zum Linksabbiegen in Richtung <.m bounds="10.004418,53.548889,10.006212,53.550555">Johanniswall</.m> nun links vom geradeaus fahrenden Radverkehr platziert.</p>
+    <p>Angepasst wird der Anschluss an die <.a ref={Steinstrasse}>umgeplante Steinstraße</.a>. Dadurch wird die Aufstelltasche zum Linksabbiegen in Richtung <.m bounds="10.004418,53.548889,10.006212,53.550555">Johanniswall</.m> nun links vom geradeaus fahrenden Radverkehr platziert.</p>
 
     <p>Das Linksabbiegen in <.m bounds="10.004412,53.549672,10.00573,53.551179">Lange Mühren</.m> ist weiterhin nicht vorgesehen.</p>
 

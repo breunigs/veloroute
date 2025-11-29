@@ -117,7 +117,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
 
     <h5 lang="en">Suggested alternatives for problematic sections</h5>
     <ul lang="en">
-      <li><.v bounds="9.964756,53.514518,9.977424,53.52642" lon={9.971491} lat={53.521606} dir="forward" ref={@ref} lang="de" translate="no">Roßdamm</.v>: to the south, simply follow the road and don't cross the train tracks. Towards the city, switch to <.v bounds="9.96561,53.513309,9.975189,53.520974" lon={9.969019} lat={53.51485} dir="backward" ref="FR14" lang="de" translate="no">Ellerholzweg</.v> early on.</li>
+      <li><.v bounds="9.964756,53.514518,9.977424,53.52642" lon={9.971491} lat={53.521606} dir="forward" ref={@ref} lang="de" translate="no">Roßdamm</.v>: to the south, simply follow the road and don't cross the train tracks. Towards the city, switch to <.v bounds="9.96561,53.513309,9.975189,53.520974" lon={9.969019} lat={53.51485} dir="backward" ref={Freizeitroute14} lang="de" translate="no">Ellerholzweg</.v> early on.</li>
       <li><.v bounds="9.924622,53.476387,9.935152,53.481196" lon={9.925591} lat={53.478743} dir="forward" ref={@ref}>dock railway crossing</.v>: take detour via <.m bounds="9.91561,53.477254,9.928643,53.482938" lang="de" translate="no">Moorburger Hinterdeich</.m>, <.m bounds="9.91561,53.477254,9.928643,53.482938" lang="de" translate="no">Fürstenmoordamm</.m></li>
       <li><.v bounds="9.932011,53.470696,9.939396,53.473589" lon={9.932741} lat={53.471489} dir="forward" ref={@ref}>rail underpass</.v>: take <.m bounds="9.929661,53.470212,9.94081,53.473728" lang="de" translate="no">Bostelbeker Damm</.m>, <.m bounds="9.929661,53.470212,9.94081,53.473728" lang="de" translate="no">Moorburger Bogen</.m>, <.m bounds="9.929661,53.470212,9.94081,53.473728" lang="de" translate="no">Stader Straße</.m> instead</li>
     </ul>
@@ -149,7 +149,7 @@ defmodule Data.Article.Static.Freizeitroute14 do
 
     <h5>Vorschläge zur Umfahrung problematischer Stellen</h5>
     <ul>
-      <li><.v bounds="9.964756,53.514518,9.977424,53.52642" lon={9.971491} lat={53.521606} dir="forward" ref={@ref}>Roßdamm</.v>: Richtung Süden einfach der Straße bzw. dem Radweg weiter folgen. Stadteinwärts frühzeitig auf den <.v bounds="9.96561,53.513309,9.975189,53.520974" lon={9.969019} lat={53.51485} dir="backward" ref="FR14">Ellerholzweg</.v> abbiegen.</li>
+      <li><.v bounds="9.964756,53.514518,9.977424,53.52642" lon={9.971491} lat={53.521606} dir="forward" ref={@ref}>Roßdamm</.v>: Richtung Süden einfach der Straße bzw. dem Radweg weiter folgen. Stadteinwärts frühzeitig auf den <.v bounds="9.96561,53.513309,9.975189,53.520974" lon={9.969019} lat={53.51485} dir="backward" ref={Freizeitroute14}>Ellerholzweg</.v> abbiegen.</li>
       <li><.v bounds="9.924622,53.476387,9.935152,53.481196" lon={9.925591} lat={53.478743} dir="forward" ref={@ref}>Bahnübergang Hafenbahn</.v>: stattdessen <.m bounds="9.91561,53.477254,9.928643,53.482938">Moorburger Hinterdeich</.m> und <.m bounds="9.91561,53.477254,9.928643,53.482938">Fürstenmoordamm</.m>.</li>
       <li><.v bounds="9.932011,53.470696,9.939396,53.473589" lon={9.932741} lat={53.471489} dir="forward" ref={@ref}>Bahnunterführung</.v>: stattdessen <.m bounds="9.929661,53.470212,9.94081,53.473728">Bostelbeker Damm</.m>, <.m bounds="9.929661,53.470212,9.94081,53.473728">Moorburger Bogen</.m>, <.m bounds="9.929661,53.470212,9.94081,53.473728">Stader Straße</.m></li>
     </ul>

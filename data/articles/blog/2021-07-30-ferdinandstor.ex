@@ -38,9 +38,9 @@ defmodule Data.Article.Blog.Ferdinandstor do
     <p>Beidseitig waren <.ref>Hochbordradwege</.ref> vorhanden. Seit Sommer 2021 erneuert die Deutsche Bahn die Brücke, sodass sich die genaue Führung immer mal wieder ändert.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Auf der <.v bounds="10.000008,53.555662,10.003289,53.557319" lon={10.001107} lat={53.555802} dir="backward" ref="radroute-2">Seite der Kunsthalle</.v> wird ein 2,5m breiter Hochbordradweg neben einem 2,5m breiten Gehweg angelegt. Zum Schutz vor KFZ werden Metallbügel aufgestellt.</p>
+    <p>Auf der <.v bounds="10.000008,53.555662,10.003289,53.557319" lon={10.001107} lat={53.555802} dir="backward" ref={Radroute2}>Seite der Kunsthalle</.v> wird ein 2,5m breiter Hochbordradweg neben einem 2,5m breiten Gehweg angelegt. Zum Schutz vor KFZ werden Metallbügel aufgestellt.</p>
 
-    <p>Auf <.v bounds="10.000008,53.555662,10.003289,53.557319" lon={10.002083} lat={53.557174} dir="forward" ref="radroute-2">der Alsterseite</.v> weitet sich der schmale Hochbordradweg zu einer 4,0m breiten <.ref>Protected-Bike-Lane</.ref> unter der Brücke auf. Der Radweg verläuft rechts der Brückenpfeiler. Die <.v bounds="9.999839,53.555578,10.002548,53.55692" lon={10.000689} lat={53.556429} dir="forward" ref="radroute-2">Fahrradweiche über den KFZ-Rechtsabbieger</.v> bleibt in etwa wie heute. Der Gehweg wird hier rund 3,25m breit.</p>
+    <p>Auf <.v bounds="10.000008,53.555662,10.003289,53.557319" lon={10.002083} lat={53.557174} dir="forward" ref={Radroute2}>der Alsterseite</.v> weitet sich der schmale Hochbordradweg zu einer 4,0m breiten <.ref>Protected-Bike-Lane</.ref> unter der Brücke auf. Der Radweg verläuft rechts der Brückenpfeiler. Die <.v bounds="9.999839,53.555578,10.002548,53.55692" lon={10.000689} lat={53.556429} dir="forward" ref={Radroute2}>Fahrradweiche über den KFZ-Rechtsabbieger</.v> bleibt in etwa wie heute. Der Gehweg wird hier rund 3,25m breit.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

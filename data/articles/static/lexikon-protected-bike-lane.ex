@@ -34,7 +34,7 @@ defmodule Data.Article.Static.LexikonProtectedBikeLane do
 
   def text(assigns) do
     ~H"""
-    <p><.v bounds="9.939468,53.546688,9.960892,53.552133" lon={9.953226} lat={53.549677} dir="backward" ref="radroute-1">Videobeispiel einer Protected Bike Lane auf Radroute 1</.v></p>
+    <p><.v bounds="9.939468,53.546688,9.960892,53.552133" lon={9.953226} lat={53.549677} dir="backward" ref={Radroute1}>Videobeispiel einer Protected Bike Lane auf Radroute 1</.v></p>
 
     <p>Unter einer „Protected Bike Lane“, also einer geschützten Radspur, versteht man eine vom Autoverkehr abgetrennte Fahrradspur. Eine Trennung wird durch einen extra Bordstein, Poller oder ähnliche Absperrelementen erreicht.</p>
 

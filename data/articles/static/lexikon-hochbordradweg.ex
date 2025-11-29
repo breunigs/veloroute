@@ -15,7 +15,7 @@ defmodule Data.Article.Static.LexikonHochbordradweg do
   def text(assigns) do
     ~H"""
 
-    <p><.v bounds="9.986569,53.561244,9.991119,53.564687" lon={9.989368} lat={53.56359} dir="forward" ref="radroute-3">Videobeispiel Rothenbaumchaussee</.v>.</p>
+    <p><.v bounds="9.986569,53.561244,9.991119,53.564687" lon={9.989368} lat={53.56359} dir="forward" ref={Radroute3}>Videobeispiel Rothenbaumchaussee</.v>.</p>
 
     <p>Hochbordradwege werden auf dem gleichen Niveau wie die Fußwege geführt. Sie sind in Hamburg meist gepflastert und bei neuer Bauweise mit Noppenplatten vom Fußweg abgetrennt.</p>
     <p>Zur Breite: die roten Pflastersteine geben den Ausschlag, die Noppenplatten zählen nicht zum Radweg. Hamburg strebt eine Mindestbreite von 2,0m für diese Führungsform an, wobei diese bei „begründeten Ausnahmen“ unterschritten wird. Das ist etwa bei Bäumen oder bestehenden Häusern der Fall.</p>

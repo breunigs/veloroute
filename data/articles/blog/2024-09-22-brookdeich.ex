@@ -39,14 +39,14 @@ defmodule Data.Article.Blog.Brookdeich do
     <p>Beim Brookdeich handelt es sich um eine wenig befahrene Wohnstraße. Sie ist teilweise KFZ-Einbahnstraße. An Kreuzungen und Einmündungen ist der Brookdeich nicht bevorrechtigt.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Der Brookdeich wird zu einer Fahrradstraße. Dazu wird die Rechts-Vor-Links Regelung <.v bounds="10.228957,53.47849,10.231141,53.479808" lon={10.229472} lat={53.479076} dir="forward" ref="rsw-geesthacht">An der Pollhofsbrücke</.v>, am <.v bounds="10.231432,53.478051,10.233484,53.479313" lon={10.232204} lat={53.478775} dir="forward" ref="rsw-geesthacht">Pollhof</.v> und am <.v bounds="10.235172,53.477203,10.237632,53.478581" lon={10.235969} lat={53.477928} dir="forward" ref="rsw-geesthacht">Ellernwinkel</.v> durch Vorfahrt für den Brookdeich ersetzt.</p>
+    <p>Der Brookdeich wird zu einer Fahrradstraße. Dazu wird die Rechts-Vor-Links Regelung <.v bounds="10.228957,53.47849,10.231141,53.479808" lon={10.229472} lat={53.479076} dir="forward" ref={RSWGeesthacht}>An der Pollhofsbrücke</.v>, am <.v bounds="10.231432,53.478051,10.233484,53.479313" lon={10.232204} lat={53.478775} dir="forward" ref={RSWGeesthacht}>Pollhof</.v> und am <.v bounds="10.235172,53.477203,10.237632,53.478581" lon={10.235969} lat={53.477928} dir="forward" ref={RSWGeesthacht}>Ellernwinkel</.v> durch Vorfahrt für den Brookdeich ersetzt.</p>
 
     <p>Die KFZ sollen größtenteils wieder auf den Privatgrundstücken abgestellt werden. Es verbleiben einige Kurzzeitparkplätze um Lieferungen und Handwerk das Parken zu ermöglichen.</p>
 
     <h4>Meinung</h4>
     <p>Die Straße war bereits gut befahrbar. Nur die schlecht einsehbaren Kreuzungen bremsten aus, was mit der Umgestaltung gelöst wird. Durch die Verlagerung der Privatfahrzeuge auf Privatgrund wird der Abschnitt auch bei Gegenverkehr ohne Anhalten befahrbar.</p>
 
-    <p>Die Vorfahrtsregelung entlang des Brookdeichs <.v bounds="10.228957,53.47849,10.231141,53.479808" lon={10.229472} lat={53.479076} dir="forward" ref="rsw-geesthacht">An der Pollhofsbrücke</.v> hilft im aktuellen Ausbauzustand. Sie soll bei Weiterbau der Radroute Plus über den <.v bounds="10.228267,53.478585,10.230375,53.479642" lon={10.228409} lat={53.478951} dir="forward" ref="rsw-geesthacht" highlight="Schwarzer Weg">Schwarzen Weg</.v> nochmal überprüft werden. </p>
+    <p>Die Vorfahrtsregelung entlang des Brookdeichs <.v bounds="10.228957,53.47849,10.231141,53.479808" lon={10.229472} lat={53.479076} dir="forward" ref={RSWGeesthacht}>An der Pollhofsbrücke</.v> hilft im aktuellen Ausbauzustand. Sie soll bei Weiterbau der Radroute Plus über den <.v bounds="10.228267,53.478585,10.230375,53.479642" lon={10.228409} lat={53.478951} dir="forward" ref={RSWGeesthacht} highlight="Schwarzer Weg">Schwarzen Weg</.v> nochmal überprüft werden. </p>
 
     <p>Leider verzichtet man auf eindeutige Gestaltung nach niederländischem Vorbild. Am Brookdeich ist das noch okay. Stadtweit würde eine klarere Hervorhebung der Fahrradstraßen helfen um die Idee „Auto zu Gast“ besser zu vermitteln.</p>
 

@@ -145,7 +145,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
     <p>Es gibt einige Stellen an denen Überholen nicht möglich ist, insbesondere auf der <.v bounds="10.070821,53.511133,10.14456,53.55043" lon={10.134525} lat={53.516213} dir="forward" ref={@ref}>Nebenroute entlang des Walter-Hammer-Wegs</.v> ist dies kaum möglich. Sei exzellent zu Anderen und steige an diesen Stellen ab, bevor es eng wird. Insgesamt kommt man aber gut und weitgehend ampelfrei durch.</p>
 
     <h4>Meinung</h4>
-    <p>Die Route ist einen Ausflug wert. Der erste Streckenabschnitt um die <.v bounds="10.006037,53.548808,10.070821,53.554946" lon={10.012841} lat={53.549856} dir="forward" ref={@ref}>Norderstraße</.v> lohnt sich jedoch nicht. Es ist besser hier gleich der <.a name="alltagsroute-8">Alltagsroute <.icon link={false}>8</.icon></.a> zu folgen. Alternativ kann man auch von der Alster den <.m bounds="10.010896,53.552599,10.026937,53.561695">Grünzug Lohmühlenstraße</.m> bis zum Berliner Tor nutzen.</p>
+    <p>Die Route ist einen Ausflug wert. Der erste Streckenabschnitt um die <.v bounds="10.006037,53.548808,10.070821,53.554946" lon={10.012841} lat={53.549856} dir="forward" ref={@ref}>Norderstraße</.v> lohnt sich jedoch nicht. Es ist besser hier gleich der <.a ref={Alltagsroute8}>Alltagsroute <.icon_only>8</.icon_only></.a> zu folgen. Alternativ kann man auch von der Alster den <.m bounds="10.010896,53.552599,10.026937,53.561695">Grünzug Lohmühlenstraße</.m> bis zum Berliner Tor nutzen.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

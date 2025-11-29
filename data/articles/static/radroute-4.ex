@@ -241,13 +241,13 @@ defmodule Data.Article.Static.Radroute4 do
         <td><.v bounds="9.964431,53.42459,10.000875,53.445341" lon={9.98484} lat={53.435332} dir="forward"  ref={@ref}>Langenbek</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-tostedt" bounds="9.912692,53.372081,10.016808,53.433831" lon={9.974786} lat={53.420143}dir="forward">RSW</.icon></td>
+        <td><.icon ref={RSWTostedt} bounds="9.912692,53.372081,10.016808,53.433831" lon={9.974786} lat={53.420143}dir="forward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.962334,53.415553,9.99241,53.432378" lon={9.976682} lat={53.424286} dir="forward" ref={@ref}>Sinstorf</.v></td>
       </tr>
     </table>
 
-    <p>Radroute 4 verbindet den Nachbarort Norderstedt im Norden mit dem Stadtteil Sinstorf im Süden. Von dort soll einmal der <.a name="rsw-tostedt">Radschnellweg nach Tostedt</.a> anschließen. Im Norden soll der geplante <.a name="rsw-bad-bramstedt">Radschnellweg nach Bad Bramstedt</.a> teils parallel verlaufen – weniger Anschlüsse an die umliegenden Straßen, dafür mit weniger Kreuzungen.</p>
+    <p>Radroute 4 verbindet den Nachbarort Norderstedt im Norden mit dem Stadtteil Sinstorf im Süden. Von dort soll einmal der <.a ref={RSWTostedt}>Radschnellweg nach Tostedt</.a> anschließen. Im Norden soll der geplante <.a ref={RSWBadBramstedt}>Radschnellweg nach Bad Bramstedt</.a> teils parallel verlaufen – weniger Anschlüsse an die umliegenden Straßen, dafür mit weniger Kreuzungen.</p>
 
     <p>Die Radroute selbst verläuft in Nord-Süd-Richtung. Sie quert die Norderelbe durch den Alten Elbtunnel und die Süderelbe über die Alte Harburger Elbbrücke.</p>
 
@@ -261,9 +261,9 @@ defmodule Data.Article.Static.Radroute4 do
     <h4>Meinung</h4>
     <p>Die <.v bounds="9.991681,53.558899,10.00515,53.593009" lon={9.999808} lat={53.57179} dir="forward" ref={@ref}>Fahrradstraßen an der Alster</.v> sind das Aushängeschild der Radrouten Planung in Hamburg. Die <.v bounds="9.989903,53.592799,10.015337,53.614187" lon={9.994343} lat={53.597756} dir="forward" ref={@ref}>Bebelallee</.v> und die noch nicht ausgebaute <.v bounds="9.989903,53.592799,10.015337,53.614187" lon={9.999008} lat={53.608785} dir="forward" ref={@ref}>Rathenaustraße</.v> sind dagegen eine Zumutung.</p>
 
-    <p>Im Norden bietet die Führung über Nebenstraßen zwar gute eine Anbindung, macht längere Distanzen jedoch etwas müßig. Der <.a name="rsw-bad-bramstedt">geplante Radschnellweg</.a> stellt daher eine gute Ergänzung dar.</p>
+    <p>Im Norden bietet die Führung über Nebenstraßen zwar gute eine Anbindung, macht längere Distanzen jedoch etwas müßig. Der <.a ref={RSWBadBramstedt}>geplante Radschnellweg</.a> stellt daher eine gute Ergänzung dar.</p>
 
-    <p>Im Süden merkt man vor allem, dass die Strecke nicht Teil des alten Fahrradnetzes war – ab Wilstorf gibt es keinen ausgebauten Abschnitt. Dafür kommt mit dem <.a name="2022-01-15-zob-harburg">Umbau des Busbahnhofs Harburg</.a> aber auch endlich ein Lückenschluss.</p>
+    <p>Im Süden merkt man vor allem, dass die Strecke nicht Teil des alten Fahrradnetzes war – ab Wilstorf gibt es keinen ausgebauten Abschnitt. Dafür kommt mit dem <.a ref={ZOBHarburg}>Umbau des Busbahnhofs Harburg</.a> aber auch endlich ein Lückenschluss.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

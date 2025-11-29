@@ -31,9 +31,9 @@ defmodule Data.Article.Static.LexikonModalfilter do
 
     <h4>Videobeispiele</h4>
     <ul>
-      <li><.v bounds="9.951557,53.554391,9.958316,53.558577" lon={9.955632} lat={53.557137} dir="backward" ref="radroute-7">Durchfahrtssperre mit Mittelpollern</.v></li>
-      <li><.v bounds="9.944846,53.554877,9.948685,53.556694"  lon={9.947466} lat={53.555622} dir="backward" ref="radroute-7">Diagonaltrenner</.v></li>
-      <li><.v bounds="9.793949,53.570801,9.806231,53.57836" lon={9.801412} lat={53.572963} dir="backward" ref="radroute-1">Drängelgitter/Umlaufsperre</.v></li>
+      <li><.v bounds="9.951557,53.554391,9.958316,53.558577" lon={9.955632} lat={53.557137} dir="backward" ref={Radroute7}>Durchfahrtssperre mit Mittelpollern</.v></li>
+      <li><.v bounds="9.944846,53.554877,9.948685,53.556694"  lon={9.947466} lat={53.555622} dir="backward" ref={Radroute7}>Diagonaltrenner</.v></li>
+      <li><.v bounds="9.793949,53.570801,9.806231,53.57836" lon={9.801412} lat={53.572963} dir="backward" ref={Radroute1}>Drängelgitter/Umlaufsperre</.v></li>
     </ul>
 
     <h3>Externe Links</h3>

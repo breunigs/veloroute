@@ -35,17 +35,17 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Richtung Norden ist ein 1,0m breiter <.ref>Hochbordradweg</.ref> vorhanden. Richtung Süden muss auf einem geteilten Fuß- und Radweg gefahren werden. Die Fahrt entlang der <.a name="freizeitroute-4">Freizeitroute 4</.a> ist wegen fehlender Querungsmöglichkeit schwierig. Die Anbindung an die <.a name="8">Radroute 8</.a> erfolgt über eine einseitige Radfurt, die in beide Richtungen befahren wird.</p>
+    <p>Richtung Norden ist ein 1,0m breiter <.ref>Hochbordradweg</.ref> vorhanden. Richtung Süden muss auf einem geteilten Fuß- und Radweg gefahren werden. Die Fahrt entlang der <.a ref={Freizeitroute4}>Freizeitroute 4</.a> ist wegen fehlender Querungsmöglichkeit schwierig. Die Anbindung an die <.a ref={Alltagsroute8}>Radroute 8</.a> erfolgt über eine einseitige Radfurt, die in beide Richtungen befahren wird.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Es sind beidseitig 2,0m breite <.ref>Protected-Bike-Lanes</.ref> vorgesehen. Wegen Einfahrten und KFZ-Parkplätzen bleibt ein längeres Stück auf <.m bounds="10.018894,53.551601,10.021182,53.553052">Höhe des Einkaufszentrums</.m> ohne Trennelemente.</p>
 
-    <p>Entlang der Freizeitroute entsteht eine <.ref>Querungshilfe</.ref>, über die der Radverkehr auf dem Hochbord geführt wird. Über die Querungshilfe ist auch eine Fahrt in <.v bounds="10.017785,53.549396,10.022571,53.553519" lon={10.020141} lat={53.551482} dir="backward" ref="FR4">Richtung Innenstadt</.v> möglich.</p>
+    <p>Entlang der Freizeitroute entsteht eine <.ref>Querungshilfe</.ref>, über die der Radverkehr auf dem Hochbord geführt wird. Über die Querungshilfe ist auch eine Fahrt in <.v bounds="10.017785,53.549396,10.022571,53.553519" lon={10.020141} lat={53.551482} dir="backward" ref={Freizeitroute4}>Richtung Innenstadt</.v> möglich.</p>
 
     <p>Die Anbindung an die Radroute 8 erfolgt künftig über beidseitige Fahrradfurten. Die Fahrt ist jeweils entlang der normalen Fahrtrichtung gestattet. Alle Furten im Kreuzungsbereich werden rot eingefärbt.</p>
 
     <h4>Meinung</h4>
-    <p>Die <.v bounds="10.016267,53.5504,10.021296,53.552382" lon={10.018227} lat={53.550775} dir="forward" ref="FR4">Brecht-Schule</.v> endlich an erreichbare Radwege anzuschließen war längst überfällig. Schön zu sehen, dass man die Radwege auch gleich in einem zukunftssicheren Standard baut. Auch die Anbindung an die Radroute 8 ist jetzt klarer, die Kreuzung bleibt aber unangenehm und hässlich.</p>
+    <p>Die <.v bounds="10.016267,53.5504,10.021296,53.552382" lon={10.018227} lat={53.550775} dir="forward" ref={Freizeitroute4}>Brecht-Schule</.v> endlich an erreichbare Radwege anzuschließen war längst überfällig. Schön zu sehen, dass man die Radwege auch gleich in einem zukunftssicheren Standard baut. Auch die Anbindung an die Radroute 8 ist jetzt klarer, die Kreuzung bleibt aber unangenehm und hässlich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

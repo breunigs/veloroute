@@ -57,7 +57,7 @@ defmodule Data.Article.Blog.GrosseBahnstrasse do
 
     <p>Eine Führung auf die <.ref>benutzungspflichtigen</.ref> Radwege in der <.v bounds="9.93578,53.574,9.942002,53.57874" lon={9.938011} lat={53.57609} dir="forward" ref={@ref}>Kieler Straße</.v> bzw. den <.v bounds="9.933934,53.570968,9.939857,53.574688" lon={9.93621} lat={53.573061} dir="forward" ref={@ref}>Holstenkamp</.v> fehlt.</p>
 
-    <p>Die Anbindung an <.a name="br-eimsbuettel-sued">Eimsbüttels Bezirksrouten</.a> via dem <.v bounds="9.936682,53.575102,9.941596,53.577848" lon={9.938667} lat={53.576695} dir="backward" ref={@ref}>Paciusweg</.v> ist durch die ungünstig gelegenen Querungsmöglichkeiten mit Umwegen verbunden.</p>
+    <p>Die Anbindung an <.a ref={BrEimsbuettelSued}>Eimsbüttels Bezirksrouten</.a> via dem <.v bounds="9.936682,53.575102,9.941596,53.577848" lon={9.938667} lat={53.576695} dir="backward" ref={@ref}>Paciusweg</.v> ist durch die ungünstig gelegenen Querungsmöglichkeiten mit Umwegen verbunden.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Die Große Bahnstraße wird zu einer Fahrradstraße umgestaltet. Die <.ref>Fahrbahn</.ref> wird dazu auf 5m verschmälert. Sie erhält an den Nebenstraßen Vorrang.</p>
@@ -71,7 +71,7 @@ defmodule Data.Article.Blog.GrosseBahnstrasse do
     <p>Im Endzustand sollen die <.ref>Hochbordradwege</.ref> entlang des Holstenkamp im Kreuzungsbereich zu geradlinigen <.ref>Radfahrstreifen</.ref> werden. Von hier ist nur <.ref>indirektes Linksabbiegen</.ref> möglich. Vom Fernbahnhof kommend soll ein <.ref>ARAS</.ref> aufgemalt werden. Aus der Großen Bahnstraße ist immer nur <.ref>direktes Linksabbiegen</.ref> erlaubt.</p>
 
     <h4>Meinung</h4>
-    <p>Mit der KFZ-Einbahnstraße fällt der meiste KFZ-Schleichverkehr weg. Dennoch sollte die Stadt es sich offenhalten, nachträglich eine <.ref name="Modalfilter">Durchfahrtssperre</.ref> zu errichten. Das Schilder gerne ignoriert werden, hat man ja minütlich am Jungfernstieg gesehen.</p>
+    <p>Mit der KFZ-Einbahnstraße fällt der meiste KFZ-Schleichverkehr weg. Dennoch sollte die Stadt es sich offenhalten, nachträglich eine <.ref ref={LexikonModalfilter}>Durchfahrtssperre</.ref> zu errichten. Das Schilder gerne ignoriert werden, hat man ja minütlich am Jungfernstieg gesehen.</p>
 
     <p>Abseits der Details schafft die Stadt mit der Umplanung aber was sie möchte – den neuen Fernbahnhof gut an Eimsbüttel anbinden. Dazu tragen sowohl Große Bahnstraße als auch der Zweirichtungsradweg in der Kiele Straße gleich viel bei.</p>
 

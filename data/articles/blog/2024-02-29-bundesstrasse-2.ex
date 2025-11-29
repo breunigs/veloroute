@@ -36,7 +36,7 @@ defmodule Data.Article.Blog.Bundesstrasse2 do
     <p>An der Kreuzungen mit der <.v bounds="9.977082,53.564613,9.980906,53.567857" lon={9.979681} lat={53.565805} dir="forward" ref={@ref}>Rentzelstraße</.v> und <.v bounds="9.97249,53.567068,9.976314,53.570313" lon={9.974424} lat={53.569076} dir="forward" ref={@ref}>Beim Schlump</.v> sollen die Radfurten rot gefärbt werden. Es werden Aufstelltaschen für <.ref>indirektes Linksabbiegen</.ref> aufgemalt. Es darf auch weiterhin <.ref>direkt</.ref> abgebogen werden.</p>
 
     <h4>Meinung</h4>
-    <p>Die Radfahrstreifen sind okay, aber schmal und ohne sichere Trennung vom KFZ-Verkehr. Es ist verwunderlich, dass eine Fahrradstraße gar nicht erwägt wurde. Dabei ist dies die geplante Führungsform im <.a name="2021-10-19-bundesstrasse">östlichen Teil der Bundesstraße</.a>.</p>
+    <p>Die Radfahrstreifen sind okay, aber schmal und ohne sichere Trennung vom KFZ-Verkehr. Es ist verwunderlich, dass eine Fahrradstraße gar nicht erwägt wurde. Dabei ist dies die geplante Führungsform im <.a ref={Bundesstrasse}>östlichen Teil der Bundesstraße</.a>.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

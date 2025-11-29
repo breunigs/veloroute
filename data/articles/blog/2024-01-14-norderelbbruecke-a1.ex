@@ -36,18 +36,18 @@ defmodule Data.Article.Blog.NorderelbbrueckeA1 do
     <p>Die Autobahnbrücke aus den frühen 1960ern ist ausschließlich dem KFZ-Verkehr vorbehalten.</p>
 
     <h4>Planung</h4>
-    <p>Der Neubau sieht einen kombinierten Rad- und Gehweg mit rund 4,0m nutzbarer Breite vor. Die <.v bounds="10.054883,53.503088,10.076745,53.515747" lon={10.062375} lat={53.509757} dir="forward" ref="FR5">Freizeitroute 5</.v> („Deich“) soll während der Bauzeit meistens benutzbar bleiben.</p>
+    <p>Der Neubau sieht einen kombinierten Rad- und Gehweg mit rund 4,0m nutzbarer Breite vor. Die <.v bounds="10.054883,53.503088,10.076745,53.515747" lon={10.062375} lat={53.509757} dir="forward" ref={Freizeitroute5}>Freizeitroute 5</.v> („Deich“) soll während der Bauzeit meistens benutzbar bleiben.</p>
 
     <p>Auf Wilhelmsburg erfolgt der Anschluss an den <.m bounds="10.048226,53.503834,10.060959,53.513411">Obergeorgswerder Hauptdeich</.m>. Dort soll ein Zweirichtungsradweg mit 4,0m Breite anschließen.</p>
 
-    <p>Auf Moorfleeter Seite soll der Radweg mittels Rampe an den <.v bounds="10.058936,53.506639,10.06712,53.512435" lon={10.062389} lat={53.509931} dir="forward" ref="FR5">Kaltehofe-Hauptdeich</.v> angeschlossen werden. Eine direkte Verbindung in Richtung <.m bounds="10.064339,53.506929,10.077609,53.511799">Moorfleeter Deich</.m> ist nicht vorgesehen.</p>
+    <p>Auf Moorfleeter Seite soll der Radweg mittels Rampe an den <.v bounds="10.058936,53.506639,10.06712,53.512435" lon={10.062389} lat={53.509931} dir="forward" ref={Freizeitroute5}>Kaltehofe-Hauptdeich</.v> angeschlossen werden. Eine direkte Verbindung in Richtung <.m bounds="10.064339,53.506929,10.077609,53.511799">Moorfleeter Deich</.m> ist nicht vorgesehen.</p>
 
     <h4>Meinung</h4>
     <p>Man sieht an den lächerlichen 4,0m Breite für den nicht motorisierten Verkehr im Vergleich zu den 51,5m (12 Fahrspuren plus Standstreifen) für KFZ- und LKW-Verkehr wo die Prioritäten lagen. Der in der Visualisierung gezeigte Lärmschutz ist entsprechend völlig unzureichend und dürfte ohne Nachbesserung die Nutzungszahlen gering halten.</p>
 
     <p>Zudem ist auf Moorfleeter Seite der Anschluss nur an die Freizeitroute vorgesehen. Für Alltagsverkehr sind die 1000m Umweg – rund ein Drittel mehr – unattraktiv.</p>
 
-    <p>Immerhin wird dann eine Querung überhaupt möglich sein. Dass man die intensiv genutzte Freizeitroute entlang des Deiches bis auf einige Vollsperrungen benutzbar lassen möchte ist jedoch löblich. Beim Bau der Autobahn in der <.a name="2018-01-01-a26">Dritten Meile</.a> setzte man noch auf eine dauerhafte Vollsperrung.</p>
+    <p>Immerhin wird dann eine Querung überhaupt möglich sein. Dass man die intensiv genutzte Freizeitroute entlang des Deiches bis auf einige Vollsperrungen benutzbar lassen möchte ist jedoch löblich. Beim Bau der Autobahn in der <.a ref={A26}>Dritten Meile</.a> setzte man noch auf eine dauerhafte Vollsperrung.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

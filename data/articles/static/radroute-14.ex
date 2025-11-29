@@ -112,7 +112,7 @@ defmodule Data.Article.Static.Radroute14 do
       </tr>
     </table>
 
-    <p>Die Route verläuft diagonal (Südwest ↔ Nordost) vom <.v bounds="9.915341,53.541753,9.952843,53.547672" lon={9.9363} lat={53.546423} dir="forward" ref={@ref}>Altonaer Balkon</.v> bis zum <.v bounds="9.995769,53.565999,10.00638,53.580131" lon={9.99874} lat={53.573198} dir="forward" ref={@ref}>Alstervorland</.v>. Sie stellt damit eine Querverbindung in den zentrumsnahen, westlichen Stadtteilen her. Sie verläuft fast parallel zur <.a name="radroute-16">Radroute 16</.a>, die ein paar Blöcke weiter nördlich liegt.</p>
+    <p>Die Route verläuft diagonal (Südwest ↔ Nordost) vom <.v bounds="9.915341,53.541753,9.952843,53.547672" lon={9.9363} lat={53.546423} dir="forward" ref={@ref}>Altonaer Balkon</.v> bis zum <.v bounds="9.995769,53.565999,10.00638,53.580131" lon={9.99874} lat={53.573198} dir="forward" ref={@ref}>Alstervorland</.v>. Sie stellt damit eine Querverbindung in den zentrumsnahen, westlichen Stadtteilen her. Sie verläuft fast parallel zur <.a ref={Radroute16}>Radroute 16</.a>, die ein paar Blöcke weiter nördlich liegt.</p>
 
     <.roaddiagram src="radroute-14-wegweiser" width={115} alt="Zwischenwegweiser für Radroute 14" class="right"/>
     <h4>Auffindbarkeit</h4>

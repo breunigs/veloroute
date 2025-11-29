@@ -107,7 +107,7 @@ defmodule Data.Article.Static.Radroute23 do
       </tr>
     </table>
 
-    <p>Radroute 23 verläuft in Nord-Süd-Richtung. Sie bindet hauptsächlich die Stadtteile <.v bounds="10.007873,53.501034,10.037188,53.514853" lon={10.021894} lat={53.507857} dir="forward" ref={@ref}>Niedergeorgswerder</.v> und <.v bounds="10.000783,53.473811,10.043885,53.507167" lon={10.019212} lat={53.490129} dir="forward" ref={@ref}>Kirchdorf</.v> ans Radnetz an, stellt aber auch eine Alternative zur zentraleren <.a name="radroute-12">Radroute 12</.a> bzw. <.a name="radroute-4">Radroute 4</.a>.</p>
+    <p>Radroute 23 verläuft in Nord-Süd-Richtung. Sie bindet hauptsächlich die Stadtteile <.v bounds="10.007873,53.501034,10.037188,53.514853" lon={10.021894} lat={53.507857} dir="forward" ref={@ref}>Niedergeorgswerder</.v> und <.v bounds="10.000783,53.473811,10.043885,53.507167" lon={10.019212} lat={53.490129} dir="forward" ref={@ref}>Kirchdorf</.v> ans Radnetz an, stellt aber auch eine Alternative zur zentraleren <.a ref={Radroute12}>Radroute 12</.a> bzw. <.a ref={Radroute4}>Radroute 4</.a>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert, und daher nicht leicht auffindbar. Allerdings orientiert sie sich am großen, durchgängigen Straßenzug durch die Stadtteile. Mit ein wenig Übung findet man die Route daher auch ohne technische Hilfsmittel oder guter Ortskenntnis.</p>
@@ -118,7 +118,7 @@ defmodule Data.Article.Static.Radroute23 do
     <h4>Meinung</h4>
     <p>Abgesehen von einem kurzen Stück am <.v bounds="10.016993,53.515881,10.021541,53.521646" lon={10.019057} lat={53.519429} dir="forward" ref={@ref}>Veddeler Bogen</.v>, ist die Route gar nicht ausgebaut. Die alten Radwegreste enden häufig im Nichts – damit steht die Route im Vergleich besonders schlecht dar. Bis die Route signifikant umgebaut wird, ist sie nicht empfehlenswert.</p>
 
-    <p>Je nach Ziel und Wetter kann auch die <.v bounds="10.003043,53.488348,10.043072,53.518723" lon={10.017336} lat={53.505672} dir="forward" ref="FR11">Freizeitroute 11</.v> eine Alternative darstellen. Wer nur durch Wilhelmsburg möchte, ist auf <.a name="radroute-12">Radroute 12</.a> bzw. <.a name="radroute-4">Radroute 4</.a> deutlich besser unterwges.</p>
+    <p>Je nach Ziel und Wetter kann auch die <.v bounds="10.003043,53.488348,10.043072,53.518723" lon={10.017336} lat={53.505672} dir="forward" ref={Freizeitroute11}>Freizeitroute 11</.v> eine Alternative darstellen. Wer nur durch Wilhelmsburg möchte, ist auf <.a ref={Radroute12}>Radroute 12</.a> bzw. <.a ref={Radroute4}>Radroute 4</.a> deutlich besser unterwges.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

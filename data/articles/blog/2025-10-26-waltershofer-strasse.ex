@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.WaltershoferStrasse do
     <p>Entlang der Radroute 10 wird man provisorisch über die Gehwege geleitet. Teilweise sind eigene Radwege vorhanden, die aber nicht sinnvoll erreicht werden können.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Die noch in Arbeit befindliche Planung sieht vor die fehlenden Abschnitte in der <.v bounds="9.899262,53.470526,9.904431,53.474835" lon={9.9007} lat={53.473771} dir="backward" ref="radroute-10">Waltershofer Straße</.v> als <.ref>Protected-Bike-Lane</.ref> herzurichten. Lediglich in Richtung Norden ab etwa der Bahnbrücke bleibt es beim gemeinsamen Rad- und Gehweg.</p>
+    <p>Die noch in Arbeit befindliche Planung sieht vor die fehlenden Abschnitte in der <.v bounds="9.899262,53.470526,9.904431,53.474835" lon={9.9007} lat={53.473771} dir="backward" ref={Radroute10}>Waltershofer Straße</.v> als <.ref>Protected-Bike-Lane</.ref> herzurichten. Lediglich in Richtung Norden ab etwa der Bahnbrücke bleibt es beim gemeinsamen Rad- und Gehweg.</p>
 
     <p>Auf der Cuxhavener Straße soll der <.ref>Radfahrstreifen</.ref> nachträglich noch Protektions-Elemente erhalten.</p>
 

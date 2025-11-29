@@ -59,7 +59,7 @@ defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
     <h4>Alter Zustand</h4>
     <p>Entlang der Bramfelder Straße wird der Radverkehr auf <.ref>Hochbordradwegen</.ref> mit unterschiedlichen Breiten geführt. Sie sind stellenweise als Zweirichtungsradweg (Höhe <.v bounds="10.046257,53.583639,10.051199,53.585953" lon={10.048335} lat={53.585058} dir="backward" ref={@ref}>Steilshooper Straße</.v> und Höhe <.v bounds="10.041951,53.581009,10.047447,53.583765" lon={10.044359} lat={53.582366} dir="backward" ref={@ref}>Maurienstraße</.v>) geführt um die Erreichbarkeit aller Straßen zu ermöglichen.</p>
 
-    <p>Für die <.v bounds="10.04528,53.582986,10.050248,53.584759" lon={10.046814} lat={53.583933} dir="forward" ref="FR2">Fahrtbeziehung entlang der Freizeitroute 2</.v> besteht keine komfortable Verbindung.</p>
+    <p>Für die <.v bounds="10.04528,53.582986,10.050248,53.584759" lon={10.046814} lat={53.583933} dir="forward" ref={Freizeitroute2}>Fahrtbeziehung entlang der Freizeitroute 2</.v> besteht keine komfortable Verbindung.</p>
 
     <h4>Planung</h4>
     <p>Wo möglich, sollen 1,85m breite <.ref>Radfahrstreifen</.ref> eingerichtet werden. Da die <.v bounds="10.04601,53.583849,10.054969,53.587361" lon={10.050118} lat={53.585876} dir="backward" ref={@ref}>S-Bahn-Brücke</.v> und <.v bounds="10.045026,53.582479,10.049729,53.584789" lon={10.046865} lat={53.58386} dir="backward" ref={@ref}>Bramfelder Brücke</.v> es nicht anders zulassen, bleiben hier teilweise Hochbordradwege. Sie sollen 1,62m breit werden. Auch alle Zweirichtungsradwege bleiben Hochbordradwege; mit 2,5m Breite.</p>

@@ -1,4 +1,4 @@
-defmodule Data.Article.Static.LexikonKopenagenerLoesung do
+defmodule Data.Article.Static.LexikonKopenhagenerLoesung do
   use Article.Static
 
   def name(), do: "lexikon/kopenhagener-loesung"

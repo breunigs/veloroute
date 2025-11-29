@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.AgatheLaschUndOthmarscherKirchenweg do
     <p>Die Planung wurde auf den Park ausgeweitet und sieht dort eine Fahrradstraße vor. Der Artikel wurde angepasst.</p>
 
     <h4>Alter Zustand</h4>
-    <p>An der <.v bounds="9.897647,53.552809,9.899316,53.553774" lon={9.898682} lat={53.553483} dir="forward" ref="1">weitläufigen Kreuzung</.v> gilt rechts vor links. Sie ist schlecht einsehbar und die KFZ werden häufig zu schnell gefahren. Auf dem <.v bounds="9.896968,53.552848,9.898637,53.553813" lon={9.89778} lat={53.55341} dir="forward" ref="1">Autobahndeckel</.v> müssen sich Fuß- und Radverkehr auf dem rund 3,5m breiten Weg arrangieren.</p>
+    <p>An der <.v bounds="9.897647,53.552809,9.899316,53.553774" lon={9.898682} lat={53.553483} dir="forward" ref={Alltagsroute1}>weitläufigen Kreuzung</.v> gilt rechts vor links. Sie ist schlecht einsehbar und die KFZ werden häufig zu schnell gefahren. Auf dem <.v bounds="9.896968,53.552848,9.898637,53.553813" lon={9.89778} lat={53.55341} dir="forward" ref={Alltagsroute1}>Autobahndeckel</.v> müssen sich Fuß- und Radverkehr auf dem rund 3,5m breiten Weg arrangieren.</p>
 
     <h4>Planung</h4>
     <p>An der Kreuzung soll ein kleiner Kreisverkehr entstehen. Auf der Parkseite schließt eine 4m breite, asphaltierte Fahrradstraße an. KFZ werden nicht zugelassen. Auf deren Nordseite wird ein 2,65m breiter Gehweg gebaut, der in einem größeren Radius um den Kreisverkehr herumführt. Zum Queren sind überall Zebrastreifen geplant.</p>

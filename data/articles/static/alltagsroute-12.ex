@@ -80,7 +80,7 @@ defmodule Data.Article.Static.Alltagsroute12 do
   def text(assigns) do
     ~H"""
     <h4>Neues Radnetz ab 2025</h4>
-    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-1">Radroute 1 (via Reeperbahn)</.a> bzw. <.a name="radroute-concept-a">Route ohne Nummer (via Fischmarkt)</.a> wechseln?</p>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a ref={Radroute1}>Radroute 1 (via Reeperbahn)</.a> bzw. <.a ref={RadrouteConceptA}>Route ohne Nummer (via Fischmarkt)</.a> wechseln?</p>
 
     <h4>Alte Beschreibung</h4>
     <table class="routing">
@@ -93,38 +93,38 @@ defmodule Data.Article.Static.Alltagsroute12 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.985511,53.546587,10.000435,53.554119" lon={9.994228} lat={53.5505} dir="forward" ref="12" highlight="Rathausmarkt">Rathaus</.v></td>
+        <td><.v bounds="9.985511,53.546587,10.000435,53.554119" lon={9.994228} lat={53.5505} dir="forward" ref={Alltagsroute12} highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>1</.icon>
           <.icon>2</.icon>
         </td>
-        <td><.v bounds="9.979819,53.544806,9.994743,53.552337" lon={9.987516} lat={53.549008} dir="forward" ref="12">Rödingsmarkt</.v></td>
+        <td><.v bounds="9.979819,53.544806,9.994743,53.552337" lon={9.987516} lat={53.549008} dir="forward" ref={Alltagsroute12}>Rödingsmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>1GR</.icon>
         </td>
-        <td><.v bounds="9.964349,53.543146,9.979272,53.550677" lon={9.972639} lat={53.545563} dir="forward" ref="12">Landungsbrücken</.v></td>
+        <td><.v bounds="9.964349,53.543146,9.979272,53.550677" lon={9.972639} lat={53.545563} dir="forward" ref={Alltagsroute12}>Landungsbrücken</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR14</.icon>
           <.icon>11</.icon>
         </td>
-        <td><.v bounds="9.958412,53.54159,9.973336,53.549121" lon={9.969531} lat={53.546082} dir="forward" ref="12">Alter Elbtunnel</.v></td>
+        <td><.v bounds="9.958412,53.54159,9.973336,53.549121" lon={9.969531} lat={53.546082} dir="forward" ref={Alltagsroute12}>Alter Elbtunnel</.v></td>
       </tr>
       <tr>
         <td><.icon>FR8</.icon></td>
-        <td><.v bounds="9.946468,53.542192,9.961392,53.549723" lon={9.954723} lat={53.545729} dir="forward" ref="12">Fischmarkt</.v></td>
+        <td><.v bounds="9.946468,53.542192,9.961392,53.549723" lon={9.954723} lat={53.545729} dir="forward" ref={Alltagsroute12}>Fischmarkt</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
           <.icon>1</.icon>
         </td>
-        <td><.v bounds="9.935817,53.545325,9.950741,53.552856" lon={9.936366} lat={53.549683} dir="forward" ref="12">Altona</.v></td>
+        <td><.v bounds="9.935817,53.545325,9.950741,53.552856" lon={9.936366} lat={53.549683} dir="forward" ref={Alltagsroute12}>Altona</.v></td>
       </tr>
     </table>
 

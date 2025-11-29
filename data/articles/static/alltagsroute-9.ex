@@ -85,7 +85,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
   def text(assigns) do
     ~H"""
     <h4>Neues Radnetz ab 2025</h4>
-    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-2">Radroute 2</.a> wechseln?</p>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a ref={Radroute2}>Radroute 2</.a> wechseln?</p>
 
     <h4>Alte Beschreibung</h4>
     <table class="routing">
@@ -98,18 +98,18 @@ defmodule Data.Article.Static.Alltagsroute9 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="9" highlight="Rathausmarkt">Rathaus</.v></td>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref={Alltagsroute9} highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>7</.icon>
           <.icon>8</.icon>
         </td>
-        <td><.v bounds="10.001344,53.54857,10.012683,53.555924" lon={10.005096} lat={53.551678} dir="forward" ref="9">Hauptbahnhof</.v></td>
+        <td><.v bounds="10.001344,53.54857,10.012683,53.555924" lon={10.005096} lat={53.551678} dir="forward" ref={Alltagsroute9}>Hauptbahnhof</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.996321,53.533251,10.042449,53.55335" lon={10.025175} lat={53.539818} dir="forward" ref="9">Hammerbrook</.v></td>
+        <td><.v bounds="9.996321,53.533251,10.042449,53.55335" lon={10.025175} lat={53.539818} dir="forward" ref={Alltagsroute9}>Hammerbrook</.v></td>
       </tr>
       <tr>
         <td>
@@ -117,42 +117,42 @@ defmodule Data.Article.Static.Alltagsroute9 do
           <.icon>FR6</.icon>
           <.icon>FR11</.icon>
         </td>
-        <td><.v bounds="10.014536,53.514916,10.085184,53.54875" lon={10.031814} lat={53.533813} dir="forward" ref="9">Rothenburgsort</.v></td>
+        <td><.v bounds="10.014536,53.514916,10.085184,53.54875" lon={10.031814} lat={53.533813} dir="forward" ref={Alltagsroute9}>Rothenburgsort</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.046612,53.511643,10.115238,53.539686" lon={10.070447} lat={53.526582} dir="forward" ref="9">Billbrook</.v></td>
+        <td><.v bounds="10.046612,53.511643,10.115238,53.539686" lon={10.070447} lat={53.526582} dir="forward" ref={Alltagsroute9}>Billbrook</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.05662,53.487065,10.148226,53.53134" lon={10.093425} lat={53.514654} dir="forward" ref="9">Billwerder-Moorfleet</.v></td>
+        <td><.v bounds="10.05662,53.487065,10.148226,53.53134" lon={10.093425} lat={53.514654} dir="forward" ref={Alltagsroute9}>Billwerder-Moorfleet</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR11</.icon>
         </td>
-        <td><.v bounds="10.091461,53.482151,10.208285,53.52026" lon={10.132656} lat={53.498364} dir="forward" ref="9">Mittlerer Landweg</.v></td>
+        <td><.v bounds="10.091461,53.482151,10.208285,53.52026" lon={10.132656} lat={53.498364} dir="forward" ref={Alltagsroute9}>Mittlerer Landweg</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.129129,53.473917,10.199398,53.50286" lon={10.158331} lat={53.490722} dir="forward" ref="9">Neuallermöhe</.v></td>
+        <td><.v bounds="10.129129,53.473917,10.199398,53.50286" lon={10.158331} lat={53.490722} dir="forward" ref={Alltagsroute9}>Neuallermöhe</.v></td>
       </tr>
       <tr>
         <td>
-          <.icon name="rsw-geesthacht" bounds="10.181904,53.471171,10.25402,53.49209" lon={10.185906} lat={53.486877} dir="forward">RSW</.icon>
+          <.icon ref={RSWGeesthacht} bounds="10.181904,53.471171,10.25402,53.49209" lon={10.185906} lat={53.486877} dir="forward">RSW</.icon>
         </td>
-        <td><.v bounds="10.165734,53.47197,10.205238,53.501956" lon={10.181091} lat={53.488272} dir="forward" ref="9">Nettelnburg</.v></td>
+        <td><.v bounds="10.165734,53.47197,10.205238,53.501956" lon={10.181091} lat={53.488272} dir="forward" ref={Alltagsroute9}>Nettelnburg</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR4</.icon>
           <.icon>8</.icon>
         </td>
-        <td><.v bounds="10.192215,53.480637,10.225609,53.498853" lon={10.206561} lat={53.48894} dir="forward" ref="9">Bergedorf</.v></td>
+        <td><.v bounds="10.192215,53.480637,10.225609,53.498853" lon={10.206561} lat={53.48894} dir="forward" ref={Alltagsroute9}>Bergedorf</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td class="dir"><.v bounds="10.20543,53.47785,10.272808,53.508133" lon={10.234991} lat={53.496298} dir="forward" ref="FR4">(Wentorf)</.v></td>
+        <td class="dir"><.v bounds="10.20543,53.47785,10.272808,53.508133" lon={10.234991} lat={53.496298} dir="forward" ref={Freizeitroute4}>(Wentorf)</.v></td>
       </tr>
       <tr>
         <td></td>
@@ -160,7 +160,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
       </tr>
     </table>
 
-    <p>Die Veloroute 9 führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="9" highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>. Dies passiert zu einem großen Teil auf autofreien wegen an Industriegebieten oder Grünflächen. Letztere sind nachts nicht beleuchtet. Einen großen Teil der Strecke teilt sie sich mit der <.a name="rsw-geesthacht">Radroute Plus nach Geesthacht</.a>.</p>
+    <p>Die Veloroute 9 führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref={Alltagsroute9} highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref={Alltagsroute8}>Bergedorf</.v>. Dies passiert zu einem großen Teil auf autofreien wegen an Industriegebieten oder Grünflächen. Letztere sind nachts nicht beleuchtet. Einen großen Teil der Strecke teilt sie sich mit der <.a ref={RSWGeesthacht}>Radroute Plus nach Geesthacht</.a>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -169,7 +169,7 @@ defmodule Data.Article.Static.Alltagsroute9 do
     <p>Alle Wege sind befestigt und allwettertauglich. Sie sind meist asphaltiert.</p>
 
     <h4>Meinung</h4>
-    <p>Da die Route oft abseits dichter Bebauung verläuft kommt sie mit wenigen Ampeln aus und ermöglicht so schnelles vorankommen. Abends oder nachts ist sie durch ihre fehlende Beleuchtung allerdings wenig attraktiv. Aus Bergedorf stellt sie die schnellere Alternative zur <.a name="alltagsroute-8">Radroute 8</.a> dar.</p>
+    <p>Da die Route oft abseits dichter Bebauung verläuft kommt sie mit wenigen Ampeln aus und ermöglicht so schnelles vorankommen. Abends oder nachts ist sie durch ihre fehlende Beleuchtung allerdings wenig attraktiv. Aus Bergedorf stellt sie die schnellere Alternative zur <.a ref={Alltagsroute8}>Radroute 8</.a> dar.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

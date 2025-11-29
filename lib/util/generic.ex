@@ -216,17 +216,6 @@ defmodule Util do
   end
 
   @doc """
-  Returns true if the module implements the behaviour.
-  """
-  @spec has_behaviour?(nil | module(), module()) :: boolean()
-  def has_behaviour?(nil, _behaviour), do: false
-
-  def has_behaviour?(module, behaviour) when is_atom(module) do
-    function_exported?(module, :__info__, 1) &&
-      module.__info__(:attributes) |> Keyword.get(:behaviour, []) |> Enum.member?(behaviour)
-  end
-
-  @doc """
   Given a HEEX string, will extract all HTML links from it.
   """
   @spec extract_links_from_heex(Phoenix.LiveView.Rendered.t()) :: [binary()]

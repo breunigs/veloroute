@@ -101,7 +101,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
   def text(assigns) do
     ~H"""
     <h4>Neues Radnetz ab 2025</h4>
-    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-16">Radroute 16 (westlich der Alster)</.a> bzw. <.a name="radroute-17">Radroute 17 (östlich der Alster)</.a> wechseln?</p>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a ref={Radroute16}>Radroute 16 (westlich der Alster)</.a> bzw. <.a ref={Radroute17}>Radroute 17 (östlich der Alster)</.a> wechseln?</p>
 
     <h4>Alte Beschreibung</h4>
     <table class="routing">
@@ -118,63 +118,63 @@ defmodule Data.Article.Static.Alltagsroute13 do
           <.icon>12</.icon>
           <.icon>1</.icon>
         </td>
-        <td><.v bounds="9.908746,53.545425,9.971424,53.572528" lon={9.936885} lat={53.551477} dir="forward" ref="13">Altona</.v></td>
+        <td><.v bounds="9.908746,53.545425,9.971424,53.572528" lon={9.936885} lat={53.551477} dir="forward" ref={Alltagsroute13}>Altona</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>2</.icon>
         </td>
-        <td><.v bounds="9.922015,53.558148,9.985174,53.589129" lon={9.957934} lat={53.570483} dir="forward" ref="13">Eimsbüttel</.v></td>
+        <td><.v bounds="9.922015,53.558148,9.985174,53.589129" lon={9.957934} lat={53.570483} dir="forward" ref={Alltagsroute13}>Eimsbüttel</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR10</.icon>
           <.icon>3</.icon>
         </td>
-        <td><.v bounds="9.958302,53.570385,9.987567,53.58825" lon={9.968577} lat={53.580408} dir="forward" ref="13">Hoheluft</.v></td>
+        <td><.v bounds="9.958302,53.570385,9.987567,53.58825" lon={9.968577} lat={53.580408} dir="forward" ref={Alltagsroute13}>Hoheluft</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.973481,53.577894,10.001225,53.594674" lon={9.991695} lat={53.588725} dir="forward" ref="13">Eppendorf</.v></td>
+        <td><.v bounds="9.973481,53.577894,10.001225,53.594674" lon={9.991695} lat={53.588725} dir="forward" ref={Alltagsroute13}>Eppendorf</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR1</.icon>
           <.icon>4</.icon>
         </td>
-        <td><.v bounds="9.977983,53.576811,10.024918,53.597336" lon={9.998228} lat={53.587997} dir="forward" ref="13">Winterhude</.v></td>
+        <td><.v bounds="9.977983,53.576811,10.024918,53.597336" lon={9.998228} lat={53.587997} dir="forward" ref={Alltagsroute13}>Winterhude</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR2</.icon>
         </td>
-        <td><.v bounds="9.991957,53.576643,10.023977,53.591726" lon={10.010123} lat={53.583047} dir="forward" ref="13">Mühlenkamp</.v></td>
+        <td><.v bounds="9.991957,53.576643,10.023977,53.591726" lon={10.010123} lat={53.583047} dir="forward" ref={Alltagsroute13}>Mühlenkamp</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR3</.icon>
           <.icon>5</.icon>
         </td>
-        <td><.v bounds="10.018924,53.569386,10.049868,53.58425" lon={10.030236} lat={53.57584} dir="forward" ref="13">Barmbek-Süd</.v></td>
+        <td><.v bounds="10.018924,53.569386,10.049868,53.58425" lon={10.030236} lat={53.57584} dir="forward" ref={Alltagsroute13}>Barmbek-Süd</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>6</.icon>
         </td>
-        <td><.v bounds="10.021466,53.564426,10.053918,53.579398" lon={10.039528} lat={53.571211} dir="forward" ref="13">Auenviertel</.v></td>
+        <td><.v bounds="10.021466,53.564426,10.053918,53.579398" lon={10.039528} lat={53.571211} dir="forward" ref={Alltagsroute13}>Auenviertel</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>7</.icon>
         </td>
-        <td><.v bounds="10.034972,53.557082,10.058224,53.571732" lon={10.043822} lat={53.568031} dir="forward" ref="13">Eilbek</.v></td>
+        <td><.v bounds="10.034972,53.557082,10.058224,53.571732" lon={10.043822} lat={53.568031} dir="forward" ref={Alltagsroute13}>Eilbek</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>FR4</.icon>
           <.icon>8</.icon>
         </td>
-        <td><.v bounds="10.030417,53.549632,10.06304,53.570118" lon={10.041338} lat={53.558788} dir="forward" ref="13">Borgfelde</.v></td>
+        <td><.v bounds="10.030417,53.549632,10.06304,53.570118" lon={10.041338} lat={53.558788} dir="forward" ref={Alltagsroute13}>Borgfelde</.v></td>
       </tr>
     </table>
 
@@ -191,7 +191,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
 
     <p>Das ist auch gut so, denn die Route wird durch wild abgestellte KFZ geprägt, die die Verkehrssituation unübersichtlich machen. Gleichzeitig sind viele Ampeln nicht für den Radverkehr optimiert, sodass häufig lange gewartet werden muss. Durch das viele Abbiegen verliert man ebenfalls regelmäßig Geschwindigkeit. Zusammengenommen macht das die Route sowohl körperlich als auch geistig anstrengend.</p>
 
-    <p>Negativbeispiel ist der <.v bounds="9.998774,53.577451,10.023648,53.589693" lon={10.010992} lat={53.582084} dir="forward" ref="13">Mühlenkamp</.v>, der zwar als „ausgebaut“ gilt, aber keine sicheren Radwege bietet. Sie verlaufen in der <.ref>Dooring-Zone</.ref> und werden häufig illegal zugestellt.</p>
+    <p>Negativbeispiel ist der <.v bounds="9.998774,53.577451,10.023648,53.589693" lon={10.010992} lat={53.582084} dir="forward" ref={Alltagsroute13}>Mühlenkamp</.v>, der zwar als „ausgebaut“ gilt, aber keine sicheren Radwege bietet. Sie verlaufen in der <.ref>Dooring-Zone</.ref> und werden häufig illegal zugestellt.</p>
 
 
     <h3>Externe Links</h3>

@@ -148,7 +148,7 @@ defmodule Data.Article.Static.Radroute11 do
       </tr>
     </table>
 
-    <p>Radroute 11 stellt eine weiter westliche verlaufende Route zur <.a name="radroute-4">Radroute 4</.a> dar. Sie führt vom <.v bounds="9.966115,53.522144,9.980881,53.532432" lon={9.973314} lat={53.528108} dir="forward" ref={@ref}>Hafen („Argentinienknoten“)</.v> bzw. <.v bounds="9.966539,53.515753,9.987542,53.526346" lon={9.981142} lat={53.51967} dir="forward" ref={@ref}>Reiherstiegviertel</.v> nach Süden über die Kattwykbrücke. Dort findet sie Anschluss an die <.a name="radroute-10">Radroute 10</.a> für die weitere Fahrt in Richtung Westen.</p>
+    <p>Radroute 11 stellt eine weiter westliche verlaufende Route zur <.a ref={Radroute4}>Radroute 4</.a> dar. Sie führt vom <.v bounds="9.966115,53.522144,9.980881,53.532432" lon={9.973314} lat={53.528108} dir="forward" ref={@ref}>Hafen („Argentinienknoten“)</.v> bzw. <.v bounds="9.966539,53.515753,9.987542,53.526346" lon={9.981142} lat={53.51967} dir="forward" ref={@ref}>Reiherstiegviertel</.v> nach Süden über die Kattwykbrücke. Dort findet sie Anschluss an die <.a ref={Radroute10}>Radroute 10</.a> für die weitere Fahrt in Richtung Westen.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

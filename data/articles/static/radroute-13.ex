@@ -101,13 +101,13 @@ defmodule Data.Article.Static.Radroute13 do
         <td><.v bounds="9.984483,53.449107,9.998869,53.46112" lon={9.98856} lat={53.457071} dir="forward" ref={@ref}>Bahnhof Harburg</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-lueneburg" bounds="10.010827,53.332163,10.240882,53.458995" lon={10.023245} lat={53.432159} dir="forward">RSW</.icon></td>
+        <td><.icon ref={RSWLueneburg} bounds="10.010827,53.332163,10.240882,53.458995" lon={10.023245} lat={53.432159} dir="forward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.994353,53.406962,10.075599,53.447821" lon={10.022132} lat={53.43295} dir="forward" ref={@ref}>Meckelfeld</.v></td>
       </tr>
     </table>
 
-    <p>Radroute 13 verläuft in Ost-West Richtung und verbindet <.v bounds="9.935232,53.446383,9.976751,53.469216" lon={9.945361} lat={53.457295} dir="forward" ref={@ref}>Eißendorf</.v> mit dem <.v bounds="9.984483,53.449107,9.998869,53.46112" lon={9.98856} lat={53.457071} dir="forward" ref={@ref}>Harburger Bahnhof</.v>. Ab dort knickt sie nach Südosten ab und geht in die <.a name="rsw-lueneburg">Radroute Plus nach Lüneburg</.a> über.</p>
+    <p>Radroute 13 verläuft in Ost-West Richtung und verbindet <.v bounds="9.935232,53.446383,9.976751,53.469216" lon={9.945361} lat={53.457295} dir="forward" ref={@ref}>Eißendorf</.v> mit dem <.v bounds="9.984483,53.449107,9.998869,53.46112" lon={9.98856} lat={53.457071} dir="forward" ref={@ref}>Harburger Bahnhof</.v>. Ab dort knickt sie nach Südosten ab und geht in die <.a ref={RSWLueneburg}>Radroute Plus nach Lüneburg</.a> über.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -117,7 +117,7 @@ defmodule Data.Article.Static.Radroute13 do
     <p>Alle Wege sind befestigt und allwettertauglich.</p>
 
     <h4>Meinung</h4>
-    <p>Außer der <.v bounds="9.954613,53.454158,9.977888,53.466644" lon={9.95955} lat={53.460765} dir="forward" ref={@ref}>Denickestraße</.v> und dem <.v bounds="9.980394,53.457309,9.98886,53.461519" lon={9.982303} lat={53.460323} dir="forward" ref="radroute-13">Herbert-Wehner-Platz</.v> wurde die Route noch nicht für den Radverkehr hergerichtet. Entsprechend mäßig ist sie zu befahren.</p>
+    <p>Außer der <.v bounds="9.954613,53.454158,9.977888,53.466644" lon={9.95955} lat={53.460765} dir="forward" ref={@ref}>Denickestraße</.v> und dem <.v bounds="9.980394,53.457309,9.98886,53.461519" lon={9.982303} lat={53.460323} dir="forward" ref={Radroute13}>Herbert-Wehner-Platz</.v> wurde die Route noch nicht für den Radverkehr hergerichtet. Entsprechend mäßig ist sie zu befahren.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

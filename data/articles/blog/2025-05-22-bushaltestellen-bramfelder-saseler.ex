@@ -36,9 +36,9 @@ defmodule Data.Article.Blog.BushaltestellenBramfelderSaseler do
     <h4>Alter Zustand</h4>
     <p>Die <.ref>benutzungspflichtigen</.ref> <.ref>Hochbordradwege</.ref> führen direkt durch den Wartebereich der Bushaltestellen:</p>
     <ul>
-      <li><.v bounds="10.082511,53.625476,10.088704,53.628561" lon={10.08541} lat={53.626601} dir="forward" ref="radroute-5">Maisredder Richtung Sasel</.v></li>
-      <li><.v bounds="10.086332,53.629969,10.093868,53.634311" lon={10.08901} lat={53.631792} dir="forward" ref="radroute-5">Am Damm Richtung Sasel</.v></li>
-      <li><.v bounds="10.091534,53.637476,10.096779,53.640611" lon={10.09476} lat={53.639066} dir="backward" ref="radroute-5">Rolfinckstraße Richtung Bramfeld</.v></li>
+      <li><.v bounds="10.082511,53.625476,10.088704,53.628561" lon={10.08541} lat={53.626601} dir="forward" ref={Radroute5}>Maisredder Richtung Sasel</.v></li>
+      <li><.v bounds="10.086332,53.629969,10.093868,53.634311" lon={10.08901} lat={53.631792} dir="forward" ref={Radroute5}>Am Damm Richtung Sasel</.v></li>
+      <li><.v bounds="10.091534,53.637476,10.096779,53.640611" lon={10.09476} lat={53.639066} dir="backward" ref={Radroute5}>Rolfinckstraße Richtung Bramfeld</.v></li>
     </ul>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>

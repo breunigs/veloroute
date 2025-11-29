@@ -132,7 +132,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
   def text(assigns) do
     ~H"""
     <h4>Neues Radnetz ab 2025</h4>
-    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a name="radroute-8">Radroute 8 (äußere Stadtteile)</.a> bzw. <.a name="radroute-1">Radroute 1 (innere Stadtteile)</.a> wechseln?</p>
+    <p>Anfang 2025 hat Hamburg sein Radnetz neu aufgestellt. Die „Velorouten“ heißen jetzt „Radrouten“ und wurden neu nummeriert. Du schaust Dir gerade die <em>alte</em> Seite an. Magst Du lieber auf die neuere <.a ref={Radroute8}>Radroute 8 (äußere Stadtteile)</.a> bzw. <.a ref={Radroute1}>Radroute 1 (innere Stadtteile)</.a> wechseln?</p>
 
     <h4>Alte Beschreibung</h4>
     <table class="routing">
@@ -145,7 +145,7 @@ defmodule Data.Article.Static.Alltagsroute8 do
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref="8" highlight="Rathausmarkt">Rathaus</.v></td>
+        <td><.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.993833} lat={53.550924} dir="forward" ref={Alltagsroute8} highlight="Rathausmarkt">Rathaus</.v></td>
       </tr>
       <tr>
         <td>
@@ -153,25 +153,25 @@ defmodule Data.Article.Static.Alltagsroute8 do
           <.icon>FR4</.icon>
           <.icon>7</.icon>
           <.icon>9</.icon></td>
-        <td><.v bounds="9.999532,53.549681,10.017545,53.556575" lon={10.007068} lat={53.551788} dir="forward" ref="7">Hauptbahnhof</.v></td>
+        <td><.v bounds="9.999532,53.549681,10.017545,53.556575" lon={10.007068} lat={53.551788} dir="forward" ref={Alltagsroute7}>Hauptbahnhof</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.016678,53.546457,10.044401,53.561226" lon={10.024269} lat={53.553693} dir="forward" ref="8">Berliner Tor</.v></td>
+        <td><.v bounds="10.016678,53.546457,10.044401,53.561226" lon={10.024269} lat={53.553693} dir="forward" ref={Alltagsroute8}>Berliner Tor</.v></td>
       </tr>
       <tr>
         <td>
           <.icon>13</.icon>
         </td>
-        <td><.v bounds="10.023414,53.550082,10.044723,53.56092" lon={10.032518} lat={53.554878} dir="forward" ref="8">Borgfelde</.v></td>
+        <td><.v bounds="10.023414,53.550082,10.044723,53.56092" lon={10.032518} lat={53.554878} dir="forward" ref={Alltagsroute8}>Borgfelde</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.038368,53.545995,10.073167,53.563162" lon={10.048562} lat={53.556059} dir="forward" ref="8">Hamm</.v></td>
+        <td><.v bounds="10.038368,53.545995,10.073167,53.563162" lon={10.048562} lat={53.556059} dir="forward" ref={Alltagsroute8}>Hamm</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.066028,53.539699,10.109812,53.560557" lon={10.087253} lat={53.551596} dir="forward" ref="8">Horn</.v></td>
+        <td><.v bounds="10.066028,53.539699,10.109812,53.560557" lon={10.087253} lat={53.551596} dir="forward" ref={Alltagsroute8}>Horn</.v></td>
       </tr>
       <tr>
         <td>
@@ -179,19 +179,19 @@ defmodule Data.Article.Static.Alltagsroute8 do
           <.icon>FR11</.icon>
           <.icon>14</.icon>
         </td>
-        <td><.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref="8">Billstedt</.v></td>
+        <td><.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref={Alltagsroute8}>Billstedt</.v></td>
       </tr>
       <tr>
-        <td><.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref="8">Mümmelmannsberg</.v></td>
-        <td><.v bounds="10.147086,53.501304,10.194571,53.520251" lon={10.167513} lat={53.513643} dir="forward" ref="8">Boberg</.v></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><.v bounds="10.172045,53.489406,10.220007,53.512848" lon={10.197305} lat={53.501236} dir="forward" ref="8">Lohbrügge</.v></td>
+        <td><.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref={Alltagsroute8}>Mümmelmannsberg</.v></td>
+        <td><.v bounds="10.147086,53.501304,10.194571,53.520251" lon={10.167513} lat={53.513643} dir="forward" ref={Alltagsroute8}>Boberg</.v></td>
       </tr>
       <tr>
         <td></td>
-        <td><.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>
+        <td><.v bounds="10.172045,53.489406,10.220007,53.512848" lon={10.197305} lat={53.501236} dir="forward" ref={Alltagsroute8}>Lohbrügge</.v></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref={Alltagsroute8}>Bergedorf</.v>
           <.icon>9</.icon>
           <.icon>FR4</.icon>
         </td>
@@ -206,9 +206,9 @@ defmodule Data.Article.Static.Alltagsroute8 do
       </tr>
     </table>
 
-    <p>Die Veloroute 8 führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref="8" highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref="8">Bergedorf</.v>. In <.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref="8">Billstedt</.v> zweigt ein kurzer Ast ab, der auf direkterem Wege den <.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref="8">Mümmelmannsberg</.v> erreicht.</p>
+    <p>Die Veloroute 8 führt vom <.v bounds="9.990953,53.548317,9.998129,53.552594" lon={9.994001} lat={53.550809} dir="forward" ref={Alltagsroute8} highlight="Rathausmarkt">Rathaus</.v> in Richtung Südosten nach <.v bounds="10.195148,53.485948,10.218407,53.499701" lon={10.208244} lat={53.490393} dir="forward" ref={Alltagsroute8}>Bergedorf</.v>. In <.v bounds="10.081333,53.530255,10.121512,53.553589" lon={10.105333} lat={53.53842} dir="forward" ref={Alltagsroute8}>Billstedt</.v> zweigt ein kurzer Ast ab, der auf direkterem Wege den <.v bounds="10.119978,53.517974,10.163492,53.539083" lon={10.142293} lat={53.529748} dir="forward" ref={Alltagsroute8}>Mümmelmannsberg</.v> erreicht.</p>
 
-    <p>Die Route verläuft in etwa zu je einem Drittel entlang von <.v bounds="9.99941,53.54698,10.044909,53.562637" lon={10.009662} lat={53.551954} dir="forward" ref="8">Hauptverkehrsstraßen</.v>, durch <.v bounds="10.040469,53.544719,10.097003,53.562862" lon={10.058955} lat={53.555245} dir="forward" ref="8">Grünzüge</.v> und <.v bounds="10.155704,53.495123,10.207734,53.52261" lon={10.15957} lat={53.514657} dir="forward" ref="8">Wohnstraßen</.v>.</p>
+    <p>Die Route verläuft in etwa zu je einem Drittel entlang von <.v bounds="9.99941,53.54698,10.044909,53.562637" lon={10.009662} lat={53.551954} dir="forward" ref={Alltagsroute8}>Hauptverkehrsstraßen</.v>, durch <.v bounds="10.040469,53.544719,10.097003,53.562862" lon={10.058955} lat={53.555245} dir="forward" ref={Alltagsroute8}>Grünzüge</.v> und <.v bounds="10.155704,53.495123,10.207734,53.52261" lon={10.15957} lat={53.514657} dir="forward" ref={Alltagsroute8}>Wohnstraßen</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

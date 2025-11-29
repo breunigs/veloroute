@@ -118,7 +118,7 @@ defmodule Data.Article.Static.Radroute9 do
     <p>Alle Wege sind befestigt und allwettertauglich. Größenteils sind die Radwege asphaltiert, teils kommt Pflaster zum Einsatz. Die selten verwendeten Metallgitter dienen dem Wurzelschutz der Bäume.</p>
 
     <h4>Meinung</h4>
-    <p>Entlang der Alster sind die meisten Abschnitte fertig und hervorragend. Die <.a name="2018-10-10-5-6-hohenfelder-bucht">Hohenfelder Bucht</.a> soll 2025 fertig werden, die das größte Manko stellt. Danach bleiben noch <.v bounds="10.006427,53.573636,10.017996,53.579639" lon={10.009473} lat={53.577967} dir="forward" ref={@ref}>Sierichstraße</.v> und <.v bounds="10.011623,53.550385,10.03002,53.563578" lon={10.016843} lat={53.559143} dir="forward" ref={@ref}>Lohmühlenstraße</.v> als Ausbaulücken – schon heute befahrbar, wenn auch mit Abstrichen.</p>
+    <p>Entlang der Alster sind die meisten Abschnitte fertig und hervorragend. Die <.a ref={HohenfelderBucht}>Hohenfelder Bucht</.a> soll 2025 fertig werden, die das größte Manko stellt. Danach bleiben noch <.v bounds="10.006427,53.573636,10.017996,53.579639" lon={10.009473} lat={53.577967} dir="forward" ref={@ref}>Sierichstraße</.v> und <.v bounds="10.011623,53.550385,10.03002,53.563578" lon={10.016843} lat={53.559143} dir="forward" ref={@ref}>Lohmühlenstraße</.v> als Ausbaulücken – schon heute befahrbar, wenn auch mit Abstrichen.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref} gpx={true}/>

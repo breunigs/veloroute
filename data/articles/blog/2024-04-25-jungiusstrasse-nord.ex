@@ -85,7 +85,7 @@ defmodule Data.Article.Blog.JungiusstrasseNord do
     <p>Die <.v bounds="9.981022,53.558728,9.98421,53.560671" lon={9.98193} lat={53.559915} dir="backward" ref={@ref} highlight="Bei den Kirchhöfen">Einmündung Bei den Kirchhöfen</.v> wird umgestaltet. Es wird mehr Platz für Gehwege bzw. die Bushaltestelle vorgesehen. Der Radverkehr erhält eigene Ampeln und kann Richtung Innenstadt künftig diagonal queren.</p>
 
     <h4>Meinung</h4>
-    <p>Die Breiten der Radwege sind gut – viel mehr aber auch nicht. Der gerade mal 140m lange Hochbordradweg sollte stattdessen durchgehend asphaltiert werden. Dass das geht, zeigt die <.a name="2021-08-06-louise-schroeder-strasse">Umgestaltung Louise-Schroeder-Straße</.a>.</p>
+    <p>Die Breiten der Radwege sind gut – viel mehr aber auch nicht. Der gerade mal 140m lange Hochbordradweg sollte stattdessen durchgehend asphaltiert werden. Dass das geht, zeigt die <.a ref={LouiseSchroederStrasse}>Umgestaltung Louise-Schroeder-Straße</.a>.</p>
 
     <p>Die <.v bounds="9.981022,53.558728,9.98421,53.560671" lon={9.98193} lat={53.559915} dir="backward" ref={@ref} highlight="Bei den Kirchhöfen">Einmündung Bei den Kirchhöfen</.v> wird zwar besser, behält aber auch den viel zu schmalen Zweirichtungsradweg in der <.v bounds="9.975204,53.559021,9.984221,53.563162" lon={9.978295} lat={53.561451} dir="backward" ref={@ref}>St. Petersburger Straße</.v> bei. Man hätte diese besser mit in die Planung aufgenommen.</p>
 

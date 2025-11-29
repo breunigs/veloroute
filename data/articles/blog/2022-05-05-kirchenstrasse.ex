@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.Kirchenstrasse do
     <p>Der Radwegstummel zur Breiten Straße wird entfernt; es soll direkt auf der Fahrbahn abgebogen werden. Die Einmündung wird nicht umgebaut.</p>
 
     <h4>Meinung</h4>
-    <p>Die Kirchenstraße selbst ist bereits heute gut zu befahren, das Problem sind ihre Anschlüsse. Mit dem Umbau der <.a name="2020-12-04-koenigstrasse">Königstraße</.a> löst sich die eine Seite. Dieser Umbau verbessert auf der anderen Seite immerhin die Fahrt in Richtung Fischmarkt. Von der Breiten Straße in die Kirchenstraße zu kommen bleibt jedoch vorerst ungelöst.</p>
+    <p>Die Kirchenstraße selbst ist bereits heute gut zu befahren, das Problem sind ihre Anschlüsse. Mit dem Umbau der <.a ref={Koenigstrasse}>Königstraße</.a> löst sich die eine Seite. Dieser Umbau verbessert auf der anderen Seite immerhin die Fahrt in Richtung Fischmarkt. Von der Breiten Straße in die Kirchenstraße zu kommen bleibt jedoch vorerst ungelöst.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

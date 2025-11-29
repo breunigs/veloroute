@@ -45,7 +45,7 @@ defmodule Data.Article.Blog.HammerbrookstrasseSued do
     <h4>Meinung</h4>
     <p>Mit der Planung nach neuem Hamburger Standard erhält die Hammerbrookstraße durchgängige, eigene Radwege in beide Richtungen. Super! Auch die Lösung an der Süderstraße kann sich sehen lassen.</p>
 
-    <p>Leider lässt die Stadt auf langen Abschnitten die Trennelemente entfallen, um KFZ-Parkplätze schaffen zu können. Im nahegelegenen <.v bounds="10.011804,53.552931,10.023008,53.558501" lon={10.016347} lat={53.555581} dir="backward" ref="radroute-7">Steindamm</.v> funktioniert dieser Ansatz nur schlecht und der Radweg ist häufig nicht benutzbar. Hoffentlich klappt es hier besser.</p>
+    <p>Leider lässt die Stadt auf langen Abschnitten die Trennelemente entfallen, um KFZ-Parkplätze schaffen zu können. Im nahegelegenen <.v bounds="10.011804,53.552931,10.023008,53.558501" lon={10.016347} lat={53.555581} dir="backward" ref={Radroute7}>Steindamm</.v> funktioniert dieser Ansatz nur schlecht und der Radweg ist häufig nicht benutzbar. Hoffentlich klappt es hier besser.</p>
 
     <p>Die Planung unternimmt auch nichts, um unachtsames Rechtsabbiegen von LKW-Fahrern zu verhindern. Engere Einmündungen würden die Abbiegeschwindigkeit deutlich senken. Da es nur eine Nebenstraße ist, wäre auch die Mitbenutzung der Gegenfahrbahn zum Rechtsabbiegen für die wenigen LKW denkbar.</p>
 

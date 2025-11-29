@@ -90,7 +90,7 @@ defmodule Data.Article.Static.RadrouteConceptD do
       </tr>
     </table>
 
-    <p>Die Route deckt sich größtenteils mit der geplanten <.a name="br-eimsbuettel-nord-sued">Bezirksroute Eimsbüttel Nord-Süd</.a>. Beiden starten in <.v bounds="9.897964,53.639914,9.926738,53.654267" lon={9.909464} lat={53.648172} dir="backward" ref={@ref} highlight="Burgwedel,Schnelsen">Burgwedel (Schnelsen)</.v> und führen nach Süden. Anders als die Bezirksroute bleibt die Radroute aber weiter auf der <.v bounds="9.933455,53.619275,9.958627,53.62805" lon={9.939983} lat={53.623857} dir="backward" ref={@ref}>Friedrich-Ebert-Straße</.v> und stößt am <.v bounds="9.941728,53.614571,9.960342,53.62493" lon={9.949454} lat={53.617875} dir="backward" ref={@ref}>Niendorfer Marktplatz</.v> auf die <.a name="radroute-3">Radroute 3</.a>.</p>
+    <p>Die Route deckt sich größtenteils mit der geplanten <.a ref={BrEimsbuettelNordSued}>Bezirksroute Eimsbüttel Nord-Süd</.a>. Beiden starten in <.v bounds="9.897964,53.639914,9.926738,53.654267" lon={9.909464} lat={53.648172} dir="backward" ref={@ref} highlight="Burgwedel,Schnelsen">Burgwedel (Schnelsen)</.v> und führen nach Süden. Anders als die Bezirksroute bleibt die Radroute aber weiter auf der <.v bounds="9.933455,53.619275,9.958627,53.62805" lon={9.939983} lat={53.623857} dir="backward" ref={@ref}>Friedrich-Ebert-Straße</.v> und stößt am <.v bounds="9.941728,53.614571,9.960342,53.62493" lon={9.949454} lat={53.617875} dir="backward" ref={@ref}>Niendorfer Marktplatz</.v> auf die <.a ref={Radroute3}>Radroute 3</.a>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

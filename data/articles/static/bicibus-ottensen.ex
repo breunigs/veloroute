@@ -60,13 +60,13 @@ defmodule Data.Article.Static.BicibusOttensen do
     <h4>Fahrplan</h4>
     <p>Jeden Schul-Freitag:</p>
     <ul>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921731} lat={53.561262} dir="forward" ref="bicibus-ottensen">7:30 Uhr Max-Brauer-Schule</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.917598} lat={53.552316} dir="forward" ref="bicibus-ottensen">7:39 Uhr Gymnasium Altona</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921269} lat={53.550836} dir="forward" ref="bicibus-ottensen">7:41 Uhr Rudolf-Steiner Schule</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928535} lat={53.548529} dir="forward" ref="bicibus-ottensen">7:43 Uhr Schule Rothestraße (Ankunft)</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928598} lat={53.548592} dir="forward" ref="bicibus-ottensen">7:44 Uhr Schule Rothestraße (Abfahrt)</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928239} lat={53.558301} dir="forward" ref="bicibus-ottensen">7:53 Uhr Schule Bahrenfelder Straße</.v></li>
-      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921731} lat={53.561262} dir="forward" ref="bicibus-ottensen">7:56 Uhr Max-Brauer-Schule</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921731} lat={53.561262} dir="forward" ref={BicibusOttensen}>7:30 Uhr Max-Brauer-Schule</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.917598} lat={53.552316} dir="forward" ref={BicibusOttensen}>7:39 Uhr Gymnasium Altona</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921269} lat={53.550836} dir="forward" ref={BicibusOttensen}>7:41 Uhr Rudolf-Steiner Schule</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928535} lat={53.548529} dir="forward" ref={BicibusOttensen}>7:43 Uhr Schule Rothestraße (Ankunft)</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928598} lat={53.548592} dir="forward" ref={BicibusOttensen}>7:44 Uhr Schule Rothestraße (Abfahrt)</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.928239} lat={53.558301} dir="forward" ref={BicibusOttensen}>7:53 Uhr Schule Bahrenfelder Straße</.v></li>
+      <li><.v bounds="9.917444,53.548191317365266,9.929041748502994,53.562109" lon={9.921731} lat={53.561262} dir="forward" ref={BicibusOttensen}>7:56 Uhr Max-Brauer-Schule</.v></li>
     </ul>
 
 

@@ -124,7 +124,7 @@ defmodule Data.Article.Static.Radroute2 do
         <td><.v bounds="9.914985,53.584883,9.949393,53.601333" lon={9.932624} lat={53.595197} dir="forward" ref={@ref}>Stellingen</.v></td>
       </tr>
       <tr>
-        <td><.icon bounds="9.861396,53.57754,9.93999,53.615691" lon={9.938191} lat={53.58115} dir="forward" name="rsw-elmshorn">RSW</.icon></td>
+        <td><.icon bounds="9.861396,53.57754,9.93999,53.615691" lon={9.938191} lat={53.58115} dir="forward" ref={RSWElmshorn}>RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.919166,53.573,9.959761,53.593032" lon={9.9383} lat={53.583977} dir="forward" ref={@ref}>Langenfelde</.v></td>
       </tr>
@@ -194,7 +194,7 @@ defmodule Data.Article.Static.Radroute2 do
         <td><.v bounds="10.129129,53.473917,10.199398,53.50286" lon={10.158331} lat={53.490722} dir="forward" ref={@ref}>Neuallermöhe</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-geesthacht" bounds="10.181904,53.471171,10.25402,53.49209" lon={10.185906} lat={53.486877} dir="forward">RSW</.icon></td>
+        <td><.icon ref={RSWGeesthacht} bounds="10.181904,53.471171,10.25402,53.49209" lon={10.185906} lat={53.486877} dir="forward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="10.165734,53.47197,10.205238,53.501956" lon={10.181091} lat={53.488272} dir="forward" ref={@ref}>Nettelnburg</.v></td>
       </tr>

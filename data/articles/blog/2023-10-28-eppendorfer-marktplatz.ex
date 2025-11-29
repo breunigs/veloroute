@@ -40,14 +40,14 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
     <p>Der Radverkehr wird meist auf schmalen <.ref>Hochbordradwegen</.ref> geführt. Diese verlaufen ohne ordentliche Trennung neben ebenfalls schmalen Gehwegen. Die Querungsmöglichkeiten sind selten und teilweise unklar. Je nach Start und Ziel müssen Umwege gefahren werden, weil die Straßen entweder Einbahnstraßen sind, oder das Linksabbiegen nur von der <.ref>Fahrbahn</.ref> aus möglich ist. Nur mit tiefgehender Ortskenntnis ist der Bereich brauchbar zu befahren.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Im Planungsgebiet wird jede Straße in beide Richtungen befahrbar. Ausnahme bleibt ein Stück der <.v bounds="9.9856,53.591849,9.991747,53.595365" lon={9.988222} lat={53.593589} dir="backward" ref="br-nord-n6">Eppendorfer Landstraße</.v>, das nicht umgebaut wird. Dort ist weiterhin nur die Fahrt nach Süden erlaubt.</p>
+    <p>Im Planungsgebiet wird jede Straße in beide Richtungen befahrbar. Ausnahme bleibt ein Stück der <.v bounds="9.9856,53.591849,9.991747,53.595365" lon={9.988222} lat={53.593589} dir="backward" ref={BrNordN6}>Eppendorfer Landstraße</.v>, das nicht umgebaut wird. Dort ist weiterhin nur die Fahrt nach Süden erlaubt.</p>
 
     <p>Neue Querungsmöglichkeiten:</p>
     <ul>
-      <li>von <.v bounds="9.987277,53.591858,9.99015,53.593514" lon={9.988734} lat={53.592448} dir="backward" ref="br-nord-n6">südlich der Bushaltestelle</.v> in Richtung der nördlichen <.v bounds="9.987277,53.591858,9.99015,53.593514" lon={9.988288} lat={53.592737} dir="backward" ref="br-nord-n6">Eppendorfer Landstraße</.v></li>
-      <li>von <.v bounds="9.987987,53.592762,9.989939,53.593614" lon={9.989244} lat={53.592974} dir="backward" ref="br-nord-n2">nördlich der Bushaltestelle</.v> direkt in den nördlichen <.v bounds="9.987987,53.592762,9.989939,53.593614" lon={9.989207} lat={53.593297} dir="backward" ref="br-nord-n2">Eppendorfer Marktplatz</.v></li>
-      <li>von der <.v bounds="9.988614,53.592294,9.992432,53.593405" lon={9.991617} lat={53.592992} dir="backward" ref="br-nord-n6">Ludolfstraße</.v> in die <.m bounds="9.988763,53.592548,9.99118,53.593541">Heinickestraße</.m></li>
-      <li>über die <.m bounds="9.988763,53.592548,9.99118,53.593541">Heinickestraße</.m> um der Ludolfstraße von <.m bounds="9.989494,53.592942,9.991305,53.594249" highlight="Ludolfstraße">West</.m> nach <.v bounds="9.990284,53.59209,9.99274,53.593797" lon={9.991221} lat={53.592878} dir="forward" ref="br-nord-n6" highlight="Ludolfstraße">Ost</.v> folgen zu können</li>
+      <li>von <.v bounds="9.987277,53.591858,9.99015,53.593514" lon={9.988734} lat={53.592448} dir="backward" ref={BrNordN6}>südlich der Bushaltestelle</.v> in Richtung der nördlichen <.v bounds="9.987277,53.591858,9.99015,53.593514" lon={9.988288} lat={53.592737} dir="backward" ref={BrNordN6}>Eppendorfer Landstraße</.v></li>
+      <li>von <.v bounds="9.987987,53.592762,9.989939,53.593614" lon={9.989244} lat={53.592974} dir="backward" ref={BrNordN2}>nördlich der Bushaltestelle</.v> direkt in den nördlichen <.v bounds="9.987987,53.592762,9.989939,53.593614" lon={9.989207} lat={53.593297} dir="backward" ref={BrNordN2}>Eppendorfer Marktplatz</.v></li>
+      <li>von der <.v bounds="9.988614,53.592294,9.992432,53.593405" lon={9.991617} lat={53.592992} dir="backward" ref={BrNordN6}>Ludolfstraße</.v> in die <.m bounds="9.988763,53.592548,9.99118,53.593541">Heinickestraße</.m></li>
+      <li>über die <.m bounds="9.988763,53.592548,9.99118,53.593541">Heinickestraße</.m> um der Ludolfstraße von <.m bounds="9.989494,53.592942,9.991305,53.594249" highlight="Ludolfstraße">West</.m> nach <.v bounds="9.990284,53.59209,9.99274,53.593797" lon={9.991221} lat={53.592878} dir="forward" ref={BrNordN6} highlight="Ludolfstraße">Ost</.v> folgen zu können</li>
     </ul>
 
     <p>Die Radwege werden meist rund 2,0m breit, wobei die genaue Breite je nach Führungsform und Ort etwas anders ausfällt. Ausnahme ist der <em>neue</em> Radweg in der <.m bounds="9.987408,53.591785,9.993149,53.594934">Ludolfstraße</.m> in Richtung Winterhude – er wird nur 1,62m breit. Überwiegend werden die alten Radwege zu Fußwegen. Der nötige Platz für die Radspuren wird aus KFZ- und Busspuren gewonnen.</p>
@@ -59,7 +59,7 @@ defmodule Data.Article.Blog.EppendorferMarktplatz do
 
     <p>Leider sind die Radwege nur selten vor den KFZ geschützt, was den Parkplätzen und Ladezonen rechts des Radwegs geschuldet ist. Sofern dieser im Gegenzug nicht illegal zugeparkt wird, aber zu verschmerzen.</p>
 
-    <p>Es ist schade, dass die Planung manche Bereiche ausspart. Die knapp 100m in der <.v bounds="9.9856,53.591849,9.991747,53.595365" lon={9.988222} lat={53.593589} dir="backward" ref="br-nord-n6">Eppendorfer Landstraße</.v> hätte man auch noch herrichten können. Da die Kreuzung mit dem <.v bounds="9.986741,53.593527,9.990232,53.595284" lon={9.987963} lat={53.594374} dir="forward" ref="br-nord-n7">Lokstedter Weg</.v> nur soweit wie nötig angepasst wird, bleibt die Fahrt entlang der <.a name="br-nord-n7">Bezirksroute Nord N7</.a> auch nach diesem Umbau umständlich.</p>
+    <p>Es ist schade, dass die Planung manche Bereiche ausspart. Die knapp 100m in der <.v bounds="9.9856,53.591849,9.991747,53.595365" lon={9.988222} lat={53.593589} dir="backward" ref={BrNordN6}>Eppendorfer Landstraße</.v> hätte man auch noch herrichten können. Da die Kreuzung mit dem <.v bounds="9.986741,53.593527,9.990232,53.595284" lon={9.987963} lat={53.594374} dir="forward" ref={BrNordN7}>Lokstedter Weg</.v> nur soweit wie nötig angepasst wird, bleibt die Fahrt entlang der <.a ref={BrNordN7}>Bezirksroute Nord N7</.a> auch nach diesem Umbau umständlich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

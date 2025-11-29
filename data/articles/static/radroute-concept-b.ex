@@ -37,12 +37,12 @@ defmodule Data.Article.Static.RadrouteConceptB do
         <td></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-elmshorn">RSW</.icon><.icon>FR11</.icon></td>
+        <td><.icon ref={RSWElmshorn}>RSW</.icon><.icon>FR11</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.m bounds="9.897192,53.58043,9.934115,53.601819">Bahnhof Stellingen</.m></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-elmshorn">RSW</.icon><.icon>FR11</.icon><.icon>FR9</.icon></td>
+        <td><.icon ref={RSWElmshorn}>RSW</.icon><.icon>FR11</.icon><.icon>FR9</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.m bounds="9.895153,53.573313,9.925385,53.593845">Altonaer Volkspark</.m></td>
       </tr>
@@ -59,7 +59,7 @@ defmodule Data.Article.Static.RadrouteConceptB do
     </table>
 
 
-    <p>Die geplante Route soll einmal größtenteils auf dem Autobahndeckel Altona verlaufen. Im Süden ist via dem <.m bounds="9.873357,53.545485,9.90875,53.561809">Klein Flottbeker Weg</.m> ein Anschluss an die <.a name="radroute-18">Radroute 18</.a> angedacht. Im Norden soll eine Anbindung an den <.a name="rsw-elmshorn">Radschnellweg nach Elmshorn</.a> und den <.m bounds="9.896069,53.580297,9.931436,53.601243">Bahnhof Stellingen</.m> erfolgen.</p>
+    <p>Die geplante Route soll einmal größtenteils auf dem Autobahndeckel Altona verlaufen. Im Süden ist via dem <.m bounds="9.873357,53.545485,9.90875,53.561809">Klein Flottbeker Weg</.m> ein Anschluss an die <.a ref={Radroute18}>Radroute 18</.a> angedacht. Im Norden soll eine Anbindung an den <.a ref={RSWElmshorn}>Radschnellweg nach Elmshorn</.a> und den <.m bounds="9.896069,53.580297,9.931436,53.601243">Bahnhof Stellingen</.m> erfolgen.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Die Route ist ein reiner Konzeptstand. Sie kann bis auf winzige Abschnitte <em>nicht</em> befahren werden. Es gibt auch keine ortsnahen Alternativen.</p>

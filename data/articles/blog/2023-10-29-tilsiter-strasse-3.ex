@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.TilsiterStrasse3 do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Es gibt beidseitige <.ref>Radfahrstreifen</.ref>, die im Rahmen des Ausbaus der <.a name="6">Radroute 6</.a> hergerichtet wurden. Siehe dazu <.a name="2021-04-23-tilsiter-strasse">den alten Artikel zu dieser Planung</.a>.</p>
+    <p>Es gibt beidseitige <.ref>Radfahrstreifen</.ref>, die im Rahmen des Ausbaus der <.a ref={Alltagsroute6}>Radroute 6</.a> hergerichtet wurden. Siehe dazu <.a ref={TilsiterStrasse}>den alten Artikel zu dieser Planung</.a>.</p>
 
     <h4>Vorhaben</h4>
     <p>Es wird überlegt, den gegen die Einbahnstraße verlaufenden Radfahrstreifen zu einer <.ref>Protected Bike Lane</.ref> umzurüsten.</p>

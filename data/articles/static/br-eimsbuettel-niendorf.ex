@@ -71,7 +71,7 @@ defmodule Data.Article.Static.BrEimsbuettelNiendorf do
     ~H"""
     <h3>Bezirksroute Eimsbüttel – Niendorf <.icon>E2</.icon></h3>
 
-    <p>Die Bezirksroute „Nienstedt“ verbindet den Stadtteil mit dem <.v bounds="9.911016,53.601417,9.959618,53.625074" lon={9.930162} lat={53.613314} dir="forward" ref={@ref}>Niendorfer Gehege</.v>. Über die Velorouten <.icon>3</.icon> und <.icon>14</.icon>, sowie die <.a name="br-eimsbuettel-nord-sued">Bezirksroute Nord-Süd</.a> besteht Anschluss zum Rest der Stadt.</p>
+    <p>Die Bezirksroute „Nienstedt“ verbindet den Stadtteil mit dem <.v bounds="9.911016,53.601417,9.959618,53.625074" lon={9.930162} lat={53.613314} dir="forward" ref={@ref}>Niendorfer Gehege</.v>. Über die Velorouten <.icon>3</.icon> und <.icon>14</.icon>, sowie die <.a ref={BrEimsbuettelNordSued}>Bezirksroute Nord-Süd</.a> besteht Anschluss zum Rest der Stadt.</p>
 
     <h4>Speziell für diese Route</h4>
     <p>Das Planungsbüro schlägt vor, die meisten Abschnitte als Fahrradstraßen herzurichten. Das meint häufig Vorfahrt, aufgeräumteres KFZ-Parken, geradlinige Führung und andere kleinere Maßnahmen, die das Radfahren verbessern sollen. Die Fahrradstraßen würden KFZ weiter erlauben („KFZ frei“).</p>

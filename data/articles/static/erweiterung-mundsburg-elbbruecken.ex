@@ -93,20 +93,20 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
     <h4>Anschlüsse</h4>
     <p>Der neue Abschnitt bietet direkten Anschluss zu folgenden Routen:</p>
     <ul>
-      <li><.icon name="5"> Alltagsroute</.icon></li>
-      <li><.icon name="7"> Alltagsroute</.icon></li>
-      <li><.icon name="9"> Alltagsroute</.icon></li>
-      <li><.icon name="10"> Alltagsroute</.icon></li>
-      <li><.icon name="FR5"> Freizeitroute</.icon></li>
-      <li><.icon name="FR6"> Freizeitroute</.icon></li>
-      <li><.icon name="FR11"> 2. Grüner Ring</.icon></li>
+      <li><.icon ref={Alltagsroute5}> Alltagsroute</.icon></li>
+      <li><.icon ref={Alltagsroute7}> Alltagsroute</.icon></li>
+      <li><.icon ref={Alltagsroute9}> Alltagsroute</.icon></li>
+      <li><.icon ref={Alltagsroute10}> Alltagsroute</.icon></li>
+      <li><.icon ref={Freizeitroute5}> Freizeitroute</.icon></li>
+      <li><.icon ref={Freizeitroute6}> Freizeitroute</.icon></li>
+      <li><.icon ref={Freizeitroute11}> 2. Grüner Ring</.icon></li>
     </ul>
     <p>Die folgenden Routen verlaufen entweder über oder unter der neuen Route. Um die Höhenunterschiede auszugleichen ist daher ein kleiner Umweg notwendig:</p>
     <ul>
-      <li><.icon name="6"> Alltagsroute</.icon></li>
-      <li><.icon name="8"> Alltagsroute</.icon></li>
-      <li><.icon name="FR3"> Freizeitroute</.icon></li>
-      <li><.icon name="FR4"> Freizeitroute</.icon></li>
+      <li><.icon ref={Alltagsroute6}> Alltagsroute</.icon></li>
+      <li><.icon ref={Alltagsroute8}> Alltagsroute</.icon></li>
+      <li><.icon ref={Freizeitroute3}> Freizeitroute</.icon></li>
+      <li><.icon ref={Freizeitroute4}> Freizeitroute</.icon></li>
     </ul>
 
     <h4>Links</h4>

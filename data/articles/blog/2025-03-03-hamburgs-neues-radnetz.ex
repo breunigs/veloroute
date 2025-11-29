@@ -37,17 +37,17 @@ defmodule Data.Article.Blog.HamburgsNeuesRadnetz do
     <h4>Zugänge</h4>
     <p>Die auffälligsten Änderungen sind die geplanten neuen Routen bzw. Ergänzungen sind:</p>
     <ul class="hide-bullets">
-      <li><.icon name="radroute-1"> Reeperbahn / B1 / Ring 1</.icon></li>
-      <li><.icon name="radroute-1"> Anbindung Billstedts im Zuge des U4 Baus</.icon></li>
-      <li><.icon name="radroute-2"> Straßenzug Schäferkampsallee / An der Verbindungsbahn / Kennedybrücke</.icon></li>
-      <li><.icon name="radroute-15"> B1 / Ring 1</.icon></li>
-      <li><.icon name="radroute-17"> Anbindung des UKE</.icon></li>
-      <li><.icon name="radroute-21"> Neue Querung Norderelbe bei A1</.icon></li>
-      <li><.icon name="radroute-22"> Anbindung Vier- und Marschlande bis Zollenspieker Fähre</.icon></li>
-      <li><.icon name="radroute-concept-a"> Radroute entlang Elbchausee und HafenCity zum HBF</.icon></li>
-      <li><.icon name="radroute-concept-b"> Radroute auf dem Altonaer Autobahndeckel nach Stellingen</.icon></li>
-      <li><.icon name="radroute-concept-c"> Fernbahnhof Diebsteich zur Sternschanze (Verlängerung Radschnellweg Elmshorn)</.icon></li>
-      <li><.icon name="radroute-concept-d"> Anbindung Schnelsen in Richtung Innenstadt</.icon></li>
+      <li><.icon ref={Radroute1}> Reeperbahn / B1 / Ring 1</.icon></li>
+      <li><.icon ref={Radroute1}> Anbindung Billstedts im Zuge des U4 Baus</.icon></li>
+      <li><.icon ref={Radroute2}> Straßenzug Schäferkampsallee / An der Verbindungsbahn / Kennedybrücke</.icon></li>
+      <li><.icon ref={Radroute15}> B1 / Ring 1</.icon></li>
+      <li><.icon ref={Radroute17}> Anbindung des UKE</.icon></li>
+      <li><.icon ref={Radroute21}> Neue Querung Norderelbe bei A1</.icon></li>
+      <li><.icon ref={Radroute22}> Anbindung Vier- und Marschlande bis Zollenspieker Fähre</.icon></li>
+      <li><.icon ref={RadrouteConceptA}> Radroute entlang Elbchausee und HafenCity zum HBF</.icon></li>
+      <li><.icon ref={RadrouteConceptB}> Radroute auf dem Altonaer Autobahndeckel nach Stellingen</.icon></li>
+      <li><.icon ref={RadrouteConceptC}> Fernbahnhof Diebsteich zur Sternschanze (Verlängerung Radschnellweg Elmshorn)</.icon></li>
+      <li><.icon ref={RadrouteConceptD}> Anbindung Schnelsen in Richtung Innenstadt</.icon></li>
     </ul>
 
     <h4>Abgänge</h4>
@@ -67,9 +67,9 @@ defmodule Data.Article.Blog.HamburgsNeuesRadnetz do
     <p>Die Farbgestaltung der Routen auf veloroute.hamburg ist zur besseren Erkennbarkeit. Die Stadt verwendet ein einheitliches Dunkelrot für alle Routen und unterscheidet diese nicht.</p>
 
     <h4>Meinung</h4>
-    <p>Der Rathausmarkt als Start/Ziel der Velorouten hat noch nie Sinn ergeben. Das Konzept alle Routen durchgängig zu gestalten hat nicht nur praktischen Nutzen, sondern ist auch leichter nachvollziehbar. Wer etwa von <.v bounds="9.914379,53.576209,9.981285,53.606845" lon={9.933827} lat={53.590876} dir="forward" ref="radroute-2">Stellingen</.v> nach <.v bounds="9.973038,53.541055,10.043857,53.570845" lon={10.001341} lat={53.557232} dir="forward" ref="radroute-2">St. Georg</.v> will, bekommt nun eine annähernd gerade Strecke ohne realitätsfremden Umweg.</p>
+    <p>Der Rathausmarkt als Start/Ziel der Velorouten hat noch nie Sinn ergeben. Das Konzept alle Routen durchgängig zu gestalten hat nicht nur praktischen Nutzen, sondern ist auch leichter nachvollziehbar. Wer etwa von <.v bounds="9.914379,53.576209,9.981285,53.606845" lon={9.933827} lat={53.590876} dir="forward" ref={Radroute2}>Stellingen</.v> nach <.v bounds="9.973038,53.541055,10.043857,53.570845" lon={10.001341} lat={53.557232} dir="forward" ref={Radroute2}>St. Georg</.v> will, bekommt nun eine annähernd gerade Strecke ohne realitätsfremden Umweg.</p>
 
-    <p>Bei den hinzugekommenen Abschnitten gibt es ebenfalls nichts zu bemängeln. Sie haben realistische Führungen und ergänzen das Netz sinnvoll. Eher muss man fehlende Änderungen kritisieren. Etwa führt die <.v bounds="9.856248,53.545157,9.911438,53.567299" lon={9.878929} lat={53.558159} dir="forward" ref="radroute-1">Radroute 1</.v> im Westen weiter im Zick-Zack. Die meisten Radpendler bevorzugen die schnellere und direktere Führung via <.m bounds="9.856248,53.545157,9.911438,53.567299">Hochrad / Klein Flottbeker Weg</.m>.</p>
+    <p>Bei den hinzugekommenen Abschnitten gibt es ebenfalls nichts zu bemängeln. Sie haben realistische Führungen und ergänzen das Netz sinnvoll. Eher muss man fehlende Änderungen kritisieren. Etwa führt die <.v bounds="9.856248,53.545157,9.911438,53.567299" lon={9.878929} lat={53.558159} dir="forward" ref={Radroute1}>Radroute 1</.v> im Westen weiter im Zick-Zack. Die meisten Radpendler bevorzugen die schnellere und direktere Führung via <.m bounds="9.856248,53.545157,9.911438,53.567299">Hochrad / Klein Flottbeker Weg</.m>.</p>
 
     <p>Die fehlende <.m bounds="9.991301,53.618204,10.146311,53.679308">Verbindung Ost-West Verbindung in Hamburgs Norden</.m> irritiert. Auch die geplanten Bezirksrouten für Nord und Wandsbek stellen hier keinen Ersatz bereit. Theoretisch ist das für den <.m bounds="10.115477,53.520283,10.162387,53.544265">Mümmelmannsberg</.m> noch denkbar, weil der Bezirk Mitte noch an den Bezirksrouten arbeitet. Als äußerer Stadtteil ohne weitere Anbindung ist der Verlust für die Netzwirkung aber deutlich geringer.</p>
 

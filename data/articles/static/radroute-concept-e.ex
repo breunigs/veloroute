@@ -92,7 +92,7 @@ defmodule Data.Article.Static.RadrouteConceptE do
       </tr>
     </table>
 
-    <p>Die geplante Radroute soll vom Osdorfer Born zum Deckel Altona führen. Sie bindet damit die im Bau befindliche <.a href="https://www.sciencecity.hamburg/">Science City Hamburg Bahrenfeld</.a> ans Radnetz an. Außerdem stellt sie gerade für Radverkehr von/nach <.m bounds="9.804519,53.579021,9.871426,53.614986">Schenefeld</.m> eine direktere Alternative zur <.a name="radroute-7">Radroute 7</.a> dar.</p>
+    <p>Die geplante Radroute soll vom Osdorfer Born zum Deckel Altona führen. Sie bindet damit die im Bau befindliche <.a href="https://www.sciencecity.hamburg/">Science City Hamburg Bahrenfeld</.a> ans Radnetz an. Außerdem stellt sie gerade für Radverkehr von/nach <.m bounds="9.804519,53.579021,9.871426,53.614986">Schenefeld</.m> eine direktere Alternative zur <.a ref={Radroute7}>Radroute 7</.a> dar.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und daher nur mit Ortskenntnis oder Navi auffindbar.</p>

@@ -36,13 +36,13 @@ defmodule Data.Article.Blog.WagnerUndRitterstrasse do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Sowohl in der <.v bounds="10.033721,53.569507,10.043022,53.576491" lon={10.037461} lat={53.57369} dir="forward" ref="13" highlight="Wagnerstraße">nördlichen Wagnerstraße</.v> als auch in der <.v bounds="10.044332,53.563454,10.047625,53.567705" lon={10.044904} lat={53.566985} dir="forward" ref="13">Ritterstraße</.v> sind beidseitig schmale <.ref>Radfahrstreifen</.ref> aufgemalt, die ohne Sicherheitsabstand in der <.ref>Dooring-Zone</.ref> verlaufen.</p>
+    <p>Sowohl in der <.v bounds="10.033721,53.569507,10.043022,53.576491" lon={10.037461} lat={53.57369} dir="forward" ref={Alltagsroute13} highlight="Wagnerstraße">nördlichen Wagnerstraße</.v> als auch in der <.v bounds="10.044332,53.563454,10.047625,53.567705" lon={10.044904} lat={53.566985} dir="forward" ref={Alltagsroute13}>Ritterstraße</.v> sind beidseitig schmale <.ref>Radfahrstreifen</.ref> aufgemalt, die ohne Sicherheitsabstand in der <.ref>Dooring-Zone</.ref> verlaufen.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Der Asphalt soll erneuert werden. Die Aufteilung der Straße bleibt im Wesentlichen gleich. Lediglich in der <.v bounds="10.033721,53.569507,10.043022,53.576491" lon={10.037461} lat={53.57369} dir="forward" ref="13">Wagnerstraße</.v> soll ein <.ref>Schutzstreifen</.ref> statt einem <.ref>Radfahrstreifen</.ref> aufgemalt werden.</p>
+    <p>Der Asphalt soll erneuert werden. Die Aufteilung der Straße bleibt im Wesentlichen gleich. Lediglich in der <.v bounds="10.033721,53.569507,10.043022,53.576491" lon={10.037461} lat={53.57369} dir="forward" ref={Alltagsroute13}>Wagnerstraße</.v> soll ein <.ref>Schutzstreifen</.ref> statt einem <.ref>Radfahrstreifen</.ref> aufgemalt werden.</p>
 
     <h4>Meinung</h4>
-    <p>Diese Sanierung- bzw. Erhaltungsmaßnahme ist eine reine Förderung für den Autoverkehr. Lächerlich schmale Radwege ohne Sicherheitsabstände bei Tempo 50 – nein danke. Damit die beiden Abschnitte tatsächlich eine ordentliche Radroute werden können, ist eine vollständige Umplanung wie im <.a name="2023-05-18-wagnerstrasse">Abschnitt dazwischen</.a> notwendig.</p>
+    <p>Diese Sanierung- bzw. Erhaltungsmaßnahme ist eine reine Förderung für den Autoverkehr. Lächerlich schmale Radwege ohne Sicherheitsabstände bei Tempo 50 – nein danke. Damit die beiden Abschnitte tatsächlich eine ordentliche Radroute werden können, ist eine vollständige Umplanung wie im <.a ref={Wagnerstrasse}>Abschnitt dazwischen</.a> notwendig.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

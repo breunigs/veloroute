@@ -44,7 +44,7 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
 
     <p>Die Bushaltestellen verschieben sich jeweils hinter die Kreuzung. Der Radfahrstreifen wird für die Aufstellfläche der Busse unterbrochen. Man muss dann entweder hinter dem Bus warten, oder sich in den KFZ-Verkehr einordnen um vorbeizufahren.</p>
 
-    <p>Entlang der Bezirksroute W8 werden die Hochbordradwege jeweils kurz vor bzw. nach der Kreuzung mittels Rampe auf Fahrbahnhöhe angeglichen. Die Breite fällt mit 2,0m geringer aus und die <.v bounds="10.125098,53.580875,10.128564,53.583225" lon={10.126675} lat={53.581907} dir="backward" ref="br-wandsbek-w8">Engstelle am Baum</.v> verbleibt.</p>
+    <p>Entlang der Bezirksroute W8 werden die Hochbordradwege jeweils kurz vor bzw. nach der Kreuzung mittels Rampe auf Fahrbahnhöhe angeglichen. Die Breite fällt mit 2,0m geringer aus und die <.v bounds="10.125098,53.580875,10.128564,53.583225" lon={10.126675} lat={53.581907} dir="backward" ref={BrWandsbekW8}>Engstelle am Baum</.v> verbleibt.</p>
 
     <p>In der Kreuzung werden die Radfurten rot gefärbt. Linksabbiegen ist nur <.ref>indirekt</.ref> vorgesehen.</p>
 

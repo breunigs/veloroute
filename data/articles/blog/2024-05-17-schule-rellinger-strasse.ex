@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
       "Abschnitt vor der Schule (Spengelweg bis Grädenerstraße) wird autofrei. Dadurch wird Queren der Straße möglich und die Gefahr durch Eltern-Taxis und Durchgangsverkehr geringer."
 
   def type(), do: :planned
-  def start(), do: ~d[2024Q4]
-  def stop(), do: ~d[2025Q1]
+  def start(), do: ~d[2025-01-05]
+  def stop(), do: ~d[2025Q2]
 
   def tags(), do: ["br-eimsbuettel-sued"]
 
@@ -36,9 +36,9 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
     <p>Die Fahrgasse ist durch beidseitig geparkte KFZ teils schmaler als Feuerwehrautos. An den Straßeneinmündungen sind Querungsmöglichkeiten durch KFZ oder Büsche verdeckt, bzw. gar nicht vorhanden.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Der Abschnitt zwischen <.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.943009} lat={53.573722} dir="forward" ref="br-eimsbuettel-sued">Spengelweg</.v> und <.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.94243} lat={53.574295} dir="forward" ref="br-eimsbuettel-sued">Grädenerstraße</.v> wird autofrei. Das wird durch Poller jeweils an beiden Enden sichergestellt.</p>
+    <p>Der Abschnitt zwischen <.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.943009} lat={53.573722} dir="forward" ref={BrEimsbuettelSued}>Spengelweg</.v> und <.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.94243} lat={53.574295} dir="forward" ref={BrEimsbuettelSued}>Grädenerstraße</.v> wird autofrei. Das wird durch Poller jeweils an beiden Enden sichergestellt.</p>
 
-    <p><.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.942795} lat={53.573919} dir="forward" ref="br-eimsbuettel-sued">Vor der Grundschule</.v> wird die Fahrbahn verschwenkt und mit Rüttelstreifen versehen, um den Radverkehr auf angemessenes Tempo zu verlangsamen. Auch wird so Platz vor dem Schulausgang geschaffen.</p>
+    <p><.v bounds="9.941809,53.573188,9.943982,53.574933" lon={9.942795} lat={53.573919} dir="forward" ref={BrEimsbuettelSued}>Vor der Grundschule</.v> wird die Fahrbahn verschwenkt und mit Rüttelstreifen versehen, um den Radverkehr auf angemessenes Tempo zu verlangsamen. Auch wird so Platz vor dem Schulausgang geschaffen.</p>
 
     <h5>Hinweis</h5>
     <p>Die bisherige Planung umfasst nur die Verkehrsführung. Die Gestaltung der Gehwege bzw. Platzfläche steht noch aus.</p>

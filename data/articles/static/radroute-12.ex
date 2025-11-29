@@ -190,7 +190,7 @@ defmodule Data.Article.Static.Radroute12 do
       </tr>
     </table>
 
-    <p>Radroute 12 verläuft in Nord-Süd-Richtung und bleibt immer östlich der Alster. Beginning ab <.v bounds="10.007087,53.603238,10.039558,53.618623" lon={10.018336} lat={53.614711} dir="forward" ref={@ref}>Alsterdorf</.v> kommt sie östlich am <.v bounds="10.016438,53.580193,10.051746,53.609293" lon={10.031066} lat={53.596998} dir="forward" ref={@ref}>Stadtpark</.v> vorbei, quert dann über die <.v bounds="10.015638,53.52294,10.038338,53.538135" lon={10.026748} lat={53.533052} dir="forward" ref={@ref}>Neue Elbbrücke</.v> die Norderelbe und stößt auf <.v bounds="9.98436,53.491212,10.038521,53.525634" lon={9.998888} lat={53.508012} dir="forward" ref={@ref}>Wilhelmsburg</.v> auf die <.a name="radroute-4">Radroute 4</.a>, die weiter nach Süden führt.</p>
+    <p>Radroute 12 verläuft in Nord-Süd-Richtung und bleibt immer östlich der Alster. Beginning ab <.v bounds="10.007087,53.603238,10.039558,53.618623" lon={10.018336} lat={53.614711} dir="forward" ref={@ref}>Alsterdorf</.v> kommt sie östlich am <.v bounds="10.016438,53.580193,10.051746,53.609293" lon={10.031066} lat={53.596998} dir="forward" ref={@ref}>Stadtpark</.v> vorbei, quert dann über die <.v bounds="10.015638,53.52294,10.038338,53.538135" lon={10.026748} lat={53.533052} dir="forward" ref={@ref}>Neue Elbbrücke</.v> die Norderelbe und stößt auf <.v bounds="9.98436,53.491212,10.038521,53.525634" lon={9.998888} lat={53.508012} dir="forward" ref={@ref}>Wilhelmsburg</.v> auf die <.a ref={Radroute4}>Radroute 4</.a>, die weiter nach Süden führt.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

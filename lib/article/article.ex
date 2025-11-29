@@ -26,6 +26,8 @@ defmodule Article do
   @callback color() :: color_hex()
   @callback color_faded() :: color_hex()
   @callback name() :: binary()
+  @callback path() :: binary()
+  @callback category() :: binary()
   @callback icon() :: :nocargo | :stau | :gap | article_type()
 
   @callback created_at() :: Date.t() | nil
@@ -75,11 +77,23 @@ defmodule Article do
   end
 
   def has_category?(art, type) when type in @known_categories do
-    art |> Atom.to_string() |> String.starts_with?(Article.module_name() <> type)
+    category(art) == type
   end
 
   def category(art) do
     art |> Module.split() |> Enum.at(2)
+  end
+
+  def auto_generate_path(mod) do
+    if has_category?(mod, "Blog") do
+      quote location: :keep do
+        "/article/#{unquote(mod).name()}"
+      end
+    else
+      quote location: :keep do
+        "/#{unquote(mod).name()}"
+      end
+    end
   end
 
   def auto_generate_name(mod) do

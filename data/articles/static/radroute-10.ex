@@ -113,13 +113,13 @@ defmodule Data.Article.Static.Radroute10 do
         <td><.v bounds="9.824715,53.465913,9.866164,53.481205" lon={9.851662} lat={53.474477} dir="forward" ref={@ref}>Neugraben-Fischbek</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-stade" bounds="9.749057,53.46445,9.882779,53.505862" lon={9.799003} lat={53.473906} dir="forward">RSW</.icon></td>
+        <td><.icon ref={RSWStade} bounds="9.749057,53.46445,9.882779,53.505862" lon={9.799003} lat={53.473906} dir="forward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.771713,53.457348,9.834173,53.487252" lon={9.802201} lat={53.473866} dir="forward" ref={@ref}>Neu Wulmstorf</.v></td>
       </tr>
     </table>
 
-    <p>Die Radroute 10 führt von <.v bounds="9.934425,53.452084,10.016485,53.479857" lon={9.985618} lat={53.466457} dir="forward" ref={@ref}>Harburg</.v> nach Westen bis <.v bounds="9.771713,53.457348,9.834173,53.487252" lon={9.802201} lat={53.473866} dir="forward" ref={@ref}>Neu Wulmstorf</.v>. Dort schließt sie nahtlos an die <.a name="rsw-stade">Radroute Plus</.a> nach <.v bounds="9.678675,53.456305,9.82665,53.484185" lon={9.79988} lat={53.473821} dir="forward" ref="rsw-stade">Stade</.v> an.</p>
+    <p>Die Radroute 10 führt von <.v bounds="9.934425,53.452084,10.016485,53.479857" lon={9.985618} lat={53.466457} dir="forward" ref={@ref}>Harburg</.v> nach Westen bis <.v bounds="9.771713,53.457348,9.834173,53.487252" lon={9.802201} lat={53.473866} dir="forward" ref={@ref}>Neu Wulmstorf</.v>. Dort schließt sie nahtlos an die <.a ref={RSWStade}>Radroute Plus</.a> nach <.v bounds="9.678675,53.456305,9.82665,53.484185" lon={9.79988} lat={53.473821} dir="forward" ref={RSWStade}>Stade</.v> an.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
@@ -127,9 +127,9 @@ defmodule Data.Article.Static.Radroute10 do
     <h4>Befahrbarkeit</h4>
     <p>Bis nach <.v bounds="9.824715,53.465913,9.866164,53.481205" lon={9.851662} lat={53.474477} dir="forward" ref={@ref}>Neugraben</.v> sind die Wege befestigt und allwettertauglich. Überwiegend asphaltiert, teils gepflastert. Es gibt auch <.v bounds="9.987852,53.467916,9.999704,53.473175" lon={9.99358} lat={53.470852} dir="forward" ref={@ref}>kurze Abschnitte mit Kopfsteinpflaster</.v>. Der Abschnitt zwischen <.v bounds="9.828538,53.468798,9.861054,53.482127" lon={9.839578} lat={53.474785} dir="forward" ref={@ref}>Neugraben</.v> und <.v bounds="9.792702,53.465169,9.837359,53.482684" lon={9.800696} lat={53.473991} dir="forward" ref={@ref}>Neu Wulmstorf</.v> ist ein unbefestigter Feldweg, der bei Regen matschig wird.</p>
 
-    <p>In Harburg fehlt eine <.a name="2021-12-18-bahnquerung-hafenbahn">Querungsmöglichkeit der Hafenbahn</.a>. Diese ist zwar geplant, aber wann diese zeitlich umgesetzt wird ist noch nicht absehbar (Stand: Frühjahr 2025). Eine Umfahrung ist zwar möglich, aber umständlich.</p>
+    <p>In Harburg fehlt eine <.a ref={BahnquerungHafenbahn}>Querungsmöglichkeit der Hafenbahn</.a>. Diese ist zwar geplant, aber wann diese zeitlich umgesetzt wird ist noch nicht absehbar (Stand: Frühjahr 2025). Eine Umfahrung ist zwar möglich, aber umständlich.</p>
 
-    <p><.v bounds="9.906721,53.469337,9.928368,53.47739" lon={9.915974} lat={53.472669} dir="forward" ref={@ref}>Am Heykenaubrook</.v> ist die Querung der Bahnlinie nur durch sehr enge Drängelgitter möglich. Ein <.a name="2020-05-31-heykenaubrook">Umbau ist geplant</.a>. Bis dahin ist die Durchfahrt mit Lastenrädern oder mit Anhängern dort nicht möglich.</p>
+    <p><.v bounds="9.906721,53.469337,9.928368,53.47739" lon={9.915974} lat={53.472669} dir="forward" ref={@ref}>Am Heykenaubrook</.v> ist die Querung der Bahnlinie nur durch sehr enge Drängelgitter möglich. Ein <.a ref={Heykenaubrook}>Umbau ist geplant</.a>. Bis dahin ist die Durchfahrt mit Lastenrädern oder mit Anhängern dort nicht möglich.</p>
 
     <h4>Meinung</h4>
     <p>Die Führung an der Niederelbebahn ist angenehmer als an der lauten <.m bounds="9.809713,53.454748,9.986148,53.478863">Cuxhavener Straße</.m>. Leider ist der Weg an der Bahn nicht durchgängig, sodass häufig Umwege notwendig sind. Das weiß die Stadt auch und arbeitet daran, die Führung direkter zu gestalten – aber das zieht sich.</p>

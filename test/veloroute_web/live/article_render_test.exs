@@ -18,7 +18,7 @@ defmodule VelorouteWeb.ArticleRenderTest do
 
       for art <- arts do
         test "article #{art} can be rendered", %{conn: conn} do
-          path = Article.Decorators.path(unquote(art))
+          path = unquote(art).path()
           {:ok, _view, html} = live(conn, path)
 
           if path =~ "/article/" && !(html =~ unquote(art).title()) do

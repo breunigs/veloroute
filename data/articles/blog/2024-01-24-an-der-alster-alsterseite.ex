@@ -30,10 +30,10 @@ defmodule Data.Article.Blog.AnDerAlsterAlsterseite do
 
     <p>Da der Gehweg ebenfalls häufig überlastet oder von Pfützen überschwemmt ist, weichen zusätzlich Fußgänger auf den Radweg aus.</p>
 
-    <p>Ein kurzer <.v bounds="10.00859,53.558581,10.017368,53.562921" lon={10.013484} lat={53.561373} dir="backward" ref="5" highlight="Lohmühlenstraße">Abschnitt Höhe Lohmühlenstraße</.v> wurde im Zuge <.a name="2021-02-19-an-der-alster">einer Zwischenmaßnahme</.a> bereits umgestaltet.</p>
+    <p>Ein kurzer <.v bounds="10.00859,53.558581,10.017368,53.562921" lon={10.013484} lat={53.561373} dir="backward" ref={Alltagsroute5} highlight="Lohmühlenstraße">Abschnitt Höhe Lohmühlenstraße</.v> wurde im Zuge <.a ref={AnDerAlster}>einer Zwischenmaßnahme</.a> bereits umgestaltet.</p>
 
     <h4>Vorhaben</h4>
-    <p>Der <.abbr>LSBG</.abbr> sucht ein Planungsbüro um die alsterseitigen Wege zwischen <.v bounds="9.997805,53.55474,10.007577,53.559502" lon={10.002845} lat={53.557455} dir="backward" ref="5">Kennedybrücke</.v> und <.v bounds="10.00859,53.558581,10.017368,53.562921" lon={10.013662} lat={53.561541} dir="backward" ref="5">Lohmühlenstraße</.v> umzugestalten. Dabei sollen Fuß- und Radwege stellenweise angepasst werden, um die Situation für den Radverkehr zu verbessern. Natürlich unter Berücksichtigung der vorhandenen Grünanlage.</p>
+    <p>Der <.abbr>LSBG</.abbr> sucht ein Planungsbüro um die alsterseitigen Wege zwischen <.v bounds="9.997805,53.55474,10.007577,53.559502" lon={10.002845} lat={53.557455} dir="backward" ref={Alltagsroute5}>Kennedybrücke</.v> und <.v bounds="10.00859,53.558581,10.017368,53.562921" lon={10.013662} lat={53.561541} dir="backward" ref={Alltagsroute5}>Lohmühlenstraße</.v> umzugestalten. Dabei sollen Fuß- und Radwege stellenweise angepasst werden, um die Situation für den Radverkehr zu verbessern. Natürlich unter Berücksichtigung der vorhandenen Grünanlage.</p>
 
     <p>Angepeilter Baustart ist ab 2027.</p>
 

@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.SFriedrichsberg do
   def text(assigns) do
     ~H"""
     <h4>Stand Juli 2023</h4>
-    <p>Siehe <.a name="2021-10-08-krausestrasse">Artikel zur gesamten Krausestraße</.a> für die aktuelle Variante. Der untenstehende Artikel ist veraltet.</p>
+    <p>Siehe <.a ref={Krausestrasse}>Artikel zur gesamten Krausestraße</.a> für die aktuelle Variante. Der untenstehende Artikel ist veraltet.</p>
 
     <h4>Alter Zustand</h4>
     <p>Die Kreuzung ist für den Radverkehr verwirrend und umständlich zu benutzen – der Veloroute geradeaus folgen bedeutet regelmäßig drei rote Ampeln. Zudem reichen die Aufstellflächen bereits beim heutigen Radaufkommen nicht aus. Viele Jahre nach Änderung der StVO hat die Stadt es immerhin geschafft die Streuscheiben in den Ampeln anzupassen, damit der Radverkehr nicht mehr die für ihn unbrauchbaren Ampeln auf den KFZ-Fahrspuren beachten muss.</p>

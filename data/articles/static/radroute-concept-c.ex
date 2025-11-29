@@ -84,7 +84,7 @@ defmodule Data.Article.Static.RadrouteConceptC do
         <td></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-elmshorn">RSW</.icon><.icon>radroute-18</.icon></td>
+        <td><.icon ref={RSWElmshorn}>RSW</.icon><.icon>radroute-18</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.871573,53.587432,9.909113,53.60763" lon={9.88921} lat={53.601005} dir="forward" ref={@ref}>Lurup</.v></td>
       </tr>
@@ -99,7 +99,7 @@ defmodule Data.Article.Static.RadrouteConceptC do
         <td><.v bounds="9.89707,53.567748,9.914681,53.578658" lon={9.904405} lat={53.574358} dir="forward" ref={@ref}>Deckel Altona</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-elmshorn">RSW</.icon><.icon>FR9</.icon></td>
+        <td><.icon ref={RSWElmshorn}>RSW</.icon><.icon>FR9</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.917991,53.553536,9.979341,53.580781" lon={9.935503} lat={53.568559} dir="forward"  ref={@ref}>Fernbahnhof Diebsteich</.v></td>
       </tr>
@@ -115,7 +115,7 @@ defmodule Data.Article.Static.RadrouteConceptC do
       </tr>
     </table>
 
-    <p>Die geplante Radroute soll einmal die Elbgaustraße mit dem Neuen Pferdemarkt verbinden. Sie schafft damit eine Anbindung des <.a name="rsw-elmshorn">Radschnellwegs Elmshorn</.a> in Hamburgs Radnetz.</p>
+    <p>Die geplante Radroute soll einmal die Elbgaustraße mit dem Neuen Pferdemarkt verbinden. Sie schafft damit eine Anbindung des <.a ref={RSWElmshorn}>Radschnellwegs Elmshorn</.a> in Hamburgs Radnetz.</p>
 
     <p>Im Innenstadtbereich ist die Route momentan kaum ausgebaut und entsprechend schlecht befahrbar.</p>
 
@@ -131,7 +131,7 @@ defmodule Data.Article.Static.RadrouteConceptC do
     <ul>
       <li>Umweg bis Fertigstellung des <.v bounds="9.895102,53.568985,9.922014,53.579298" lon={9.903111} lat={53.574709} dir="forward" ref={@ref}>Autobahndeckel Altonas</.v></li>
       <li>Umfahrung des <.v bounds="9.946119,53.562096,9.957584,53.569389" lon={9.951147} lat={53.566361} dir="forward" ref={@ref}>Alsenplatz</.v> ist umständlich</li>
-      <li><.v bounds="9.959138,53.557922,9.971335,53.564589" lon={9.962637} lat={53.559827} dir="forward" ref="radroute-concept-c" highlight="Lerchenstraße">Einbahnstraße Lerchenstraße</.v> ist Richtung Innenstadt eine Schiebestrecke</li>
+      <li><.v bounds="9.959138,53.557922,9.971335,53.564589" lon={9.962637} lat={53.559827} dir="forward" ref={RadrouteConceptC} highlight="Lerchenstraße">Einbahnstraße Lerchenstraße</.v> ist Richtung Innenstadt eine Schiebestrecke</li>
       <li>die meisten Abschnitte haben (sehr unebenes) Kopfsteinpflaster</li>
     </ul>
 

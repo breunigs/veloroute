@@ -53,7 +53,7 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
     <p>Wo KFZ-Parkplätze rechts des Radwegs sind wird nur ein <.ref>Radfahrstreifen</.ref> aufgemalt.</p>
 
-    <p>In den <.v bounds="9.91395,53.544147,9.922393,53.549613" lon={9.916718} lat={53.545874} dir="forward" ref={@ref}>Hohenzollernring</.v> darf künftig auch <.ref name="abbiegen">indirekt links abgebogen</.ref> werden.</p>
+    <p>In den <.v bounds="9.91395,53.544147,9.922393,53.549613" lon={9.916718} lat={53.545874} dir="forward" ref={@ref}>Hohenzollernring</.v> darf künftig auch <.ref ref={LexikonDirektesUndIndirektesAbbiegen}>indirekt links abgebogen</.ref> werden.</p>
 
     <h4>Änderungen zum 1. Entwurf</h4>
     <p>Die Wesentlichen Kritikpunkte wurden behoben:</p>

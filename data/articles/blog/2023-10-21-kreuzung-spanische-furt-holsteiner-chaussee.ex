@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
        "https://lsbg.hamburg.de/resource/blob/784396/6a4df157837cbb9703464da793fbac7e/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-plan-data.pdf"},
       {"Bericht", "Oktober 2023",
        "https://lsbg.hamburg.de/resource/blob/784394/d2d4d0d8b4a8def4050ab5eb262e160b/veloroute-14-spanische-furt-kreuzung-holsteiner-chaussee-abgestimmte-planung-bericht-data.pdf"},
-      ~H{Siehe auch: <.a name="2020-02-01-spanische-furt-heidlohstrasse">ältere, verworfene Planungen</.a>}
+      ~H"Siehe auch: <.a ref={SpanischeFurtHeidlohstrasse}>ältere, verworfene Planungen</.a>"
     ]
   end
 
@@ -32,9 +32,9 @@ defmodule Data.Article.Blog.KreuzungSpanischeFurtHolsteinerChaussee do
     <p>Entlang der Veloroute gibt es keine eigenen Radwege, es wird im <.ref>Mischverkehr</.ref> gefahren. Entlang der Holsteiner Chaussee sind <.ref>Hochbordradwege</.ref> vorhanden.</p>
 
     <h4>Planung</h4>
-    <p>In der <.v bounds="9.906835,53.622021,9.910894,53.623961" lon={9.909415} lat={53.623045} dir="backward" ref="14" highlight="Spanische Furt">Spanischen Furt</.v> wird ein <.ref>ARAS</.ref> aufgemalt, sodass man sich vorm KFZ Verkehr an der Ampel aufstellen kann.</p>
+    <p>In der <.v bounds="9.906835,53.622021,9.910894,53.623961" lon={9.909415} lat={53.623045} dir="backward" ref={Alltagsroute14} highlight="Spanische Furt">Spanischen Furt</.v> wird ein <.ref>ARAS</.ref> aufgemalt, sodass man sich vorm KFZ Verkehr an der Ampel aufstellen kann.</p>
 
-    <p>In der <.v bounds="9.906835,53.622021,9.910894,53.623961" lon={9.909053} lat={53.622978} dir="backward" ref="14">Holsteiner Chaussee</.v> werden die Hochbordradwege vor der Ampel jeweils zur <.ref>Protected-Bike-Lane</.ref>. Beide sollen rund 2,0m breit werden. Linksabbiegen auf die Veloroute ist nur <.ref>indirekt</.ref> vorgesehen.</p>
+    <p>In der <.v bounds="9.906835,53.622021,9.910894,53.623961" lon={9.909053} lat={53.622978} dir="backward" ref={Alltagsroute14}>Holsteiner Chaussee</.v> werden die Hochbordradwege vor der Ampel jeweils zur <.ref>Protected-Bike-Lane</.ref>. Beide sollen rund 2,0m breit werden. Linksabbiegen auf die Veloroute ist nur <.ref>indirekt</.ref> vorgesehen.</p>
 
     <p>In Richtung Süden wird der Radverkehr links an wartenden Bussen vorbeigeführt. Eine Trennung vom KFZ-Verkehr gibt es hier nicht.</p>
 

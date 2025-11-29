@@ -45,10 +45,10 @@ defmodule Data.Article.Blog.LouisBraillePlatz do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Auf der Seite des Platzes stehen je nach Abschnitt ein schmaler <.ref>Radfahrstreifen</.ref> bzw. nach Einmündung <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.036655} lat={53.57447} dir="backward" ref="13">Holsteinischer Kamp</.v> ein <.ref>Hochbordradweg</.ref>. An der Einmündung wurde häufig die Vorfahrt der Radfahrenden missachtet und diese angefahren („Unfallhäufungsstelle“).</p>
+    <p>Auf der Seite des Platzes stehen je nach Abschnitt ein schmaler <.ref>Radfahrstreifen</.ref> bzw. nach Einmündung <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.036655} lat={53.57447} dir="backward" ref={Alltagsroute13}>Holsteinischer Kamp</.v> ein <.ref>Hochbordradweg</.ref>. An der Einmündung wurde häufig die Vorfahrt der Radfahrenden missachtet und diese angefahren („Unfallhäufungsstelle“).</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Der Radfahrstreifen wird etwas verbreitert. Zwischen <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.035829} lat={53.574981} dir="backward" ref="13">Hamburger Straße</.v> und <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.036655} lat={53.57447} dir="backward" ref="13">Holsteinischer Kamp</.v> wird der Hochbordradweg auf 3,5m verbreitert und für beide Fahrtrichtungen freigegeben. Durch die Platzumgestaltung grenzt der Hochbordradweg direkt an einen neu angelegten Grünstreifen, der Fußweg verläuft hinter diesem.</p>
+    <p>Der Radfahrstreifen wird etwas verbreitert. Zwischen <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.035829} lat={53.574981} dir="backward" ref={Alltagsroute13}>Hamburger Straße</.v> und <.v bounds="10.035396,53.574119,10.038574,53.575292" lon={10.036655} lat={53.57447} dir="backward" ref={Alltagsroute13}>Holsteinischer Kamp</.v> wird der Hochbordradweg auf 3,5m verbreitert und für beide Fahrtrichtungen freigegeben. Durch die Platzumgestaltung grenzt der Hochbordradweg direkt an einen neu angelegten Grünstreifen, der Fußweg verläuft hinter diesem.</p>
 
     <p>Der Holsteinische Kamp wird KFZ-Einbahnstraße Richtung Wagnerstraße, Radverkehr ist weiterhin in beide Richtungen möglich. Vor dem U-Bahnhof werden zahlreiche Radanschließmöglichkeiten ergänzt. Der Platz selbst wird begrünt, für den Fußverkehr und zum Verweilen hergerichtet. Der KFZ-Parkplatz verschiebt sich in den Holsteinischen Kamp, wo er weniger stört.</p>
 

@@ -102,10 +102,10 @@ defmodule Data.Article.Static.Radroute15 do
       </tr>
     </table>
 
-    <p>Die kurze Radroute 15 verbindet <.v bounds="9.960475,53.566068,9.969487,53.571955" lon={9.96293} lat={53.569671} dir="forward" ref={@ref}>Christuskirche</.v> mit den <.v bounds="9.964795,53.543317,9.975056,53.548143" lon={9.969326} lat={53.54625} dir="forward" ref={@ref}>Landungsbrücken</.v>. Sie schließt nahtlos an die <.a name="radroute-2">Radroute 2</.a> im Norden bzw. die <.a name="radroute-4">Radroute 4</.a> im Süden an.</p>
+    <p>Die kurze Radroute 15 verbindet <.v bounds="9.960475,53.566068,9.969487,53.571955" lon={9.96293} lat={53.569671} dir="forward" ref={@ref}>Christuskirche</.v> mit den <.v bounds="9.964795,53.543317,9.975056,53.548143" lon={9.969326} lat={53.54625} dir="forward" ref={@ref}>Landungsbrücken</.v>. Sie schließt nahtlos an die <.a ref={Radroute2}>Radroute 2</.a> im Norden bzw. die <.a ref={Radroute4}>Radroute 4</.a> im Süden an.</p>
 
     <h4>Auffindbarkeit</h4>
-    <p>Die Route ist nicht beschildert. Sie ist auch ohne weitere Hilfsmittel auffindbar, da man im Wesentlichen geradeaus den Straßen folgt. Ausnahme ist nur die Führung um den <.v bounds="9.967731,53.548696,9.973247,53.55258" lon={9.969042} lat={53.550932} dir="forward" ref="radroute-15">U-Bahnhof St. Pauli</.v>.</p>
+    <p>Die Route ist nicht beschildert. Sie ist auch ohne weitere Hilfsmittel auffindbar, da man im Wesentlichen geradeaus den Straßen folgt. Ausnahme ist nur die Führung um den <.v bounds="9.967731,53.548696,9.973247,53.55258" lon={9.969042} lat={53.550932} dir="forward" ref={Radroute15}>U-Bahnhof St. Pauli</.v>.</p>
 
     <h4>Befahrbarkeit</h4>
     <p>Alle Wege sind befestigt und allwettertauglich. Asphalt und Betonplatten halten sich in etwa die Waage.</p>

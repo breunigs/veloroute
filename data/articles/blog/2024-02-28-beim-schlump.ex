@@ -88,7 +88,7 @@ defmodule Data.Article.Blog.BeimSchlump do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Entlang des Schlump sind rund 3m breite <.ref>Radfahrstreifen</.ref> vorhanden. Sie wurden im Rahmen <.a name="2022-01-27-versuchsradweg-beim-schlump">eines Verkehrsversuches</.a> aufgemalt.</p>
+    <p>Entlang des Schlump sind rund 3m breite <.ref>Radfahrstreifen</.ref> vorhanden. Sie wurden im Rahmen <.a ref={VersuchsradwegBeimSchlump}>eines Verkehrsversuches</.a> aufgemalt.</p>
 
     <p>An der Kreuzung mit dem Schäferskamp sind <.ref>Hochbordradwege</.ref> vorhanden. Die Anschlüsse an die Radfahrstreifen sind jedoch umständlich (<.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.97023} lat={53.56741} dir="backward" ref={@ref}>Richtung Alster</.v>) bzw. nicht durchgängig (<.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.971889} lat={53.568229} dir="forward" ref={@ref}>Richtung Altona</.v>).</p>
 
@@ -101,13 +101,13 @@ defmodule Data.Article.Blog.BeimSchlump do
     <p>An Bushalten, Einmündungen und bei KFZ-Parkplätzen in der Baumreihe wird der Radweg unterbrochen bzw. als <.ref>Radfahrstreifen</.ref> oder <.ref>Schutzstreifen</.ref> ausgeführt. Wer an einem wartenden Bus vorbei möchte, muss sich in den Autoverkehr einordnen.</p>
 
     <h5>Kreuzung Schäferkampsallee</h5>
-    <p>Die <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.970821} lat={53.567822} dir="forward" ref={@ref}>Bushaltestelle U-Schlump im Beim Schlump</.v> wird in die Straßenmitte verlegt. Die Gestaltung ist dann ähnlich zum <.v bounds="9.98713,53.556208,9.990939,53.559088" lon={9.988407} lat={53.55696} dir="forward" ref="3">Bushalt Stephansplatz</.v>. Für den Radverkehr ist das Linksabbiegen in die <.v bounds="9.970073,53.567219,9.971905,53.568676" lon={9.970791} lat={53.567948} dir="forward" ref="FR10">Gustav-Falke-Straße</.v> weiterhin <.ref>indirekt</.ref> möglich. Für den KFZ-Verkehr ist nur noch die Ausfahrt aus ihr gestattet.</p>
+    <p>Die <.v bounds="9.967351,53.565876,9.972475,53.568866" lon={9.970821} lat={53.567822} dir="forward" ref={@ref}>Bushaltestelle U-Schlump im Beim Schlump</.v> wird in die Straßenmitte verlegt. Die Gestaltung ist dann ähnlich zum <.v bounds="9.98713,53.556208,9.990939,53.559088" lon={9.988407} lat={53.55696} dir="forward" ref={Alltagsroute3}>Bushalt Stephansplatz</.v>. Für den Radverkehr ist das Linksabbiegen in die <.v bounds="9.970073,53.567219,9.971905,53.568676" lon={9.970791} lat={53.567948} dir="forward" ref={Freizeitroute10}>Gustav-Falke-Straße</.v> weiterhin <.ref>indirekt</.ref> möglich. Für den KFZ-Verkehr ist nur noch die Ausfahrt aus ihr gestattet.</p>
 
     <p>Die <.v bounds="9.968397,53.566726,9.972868,53.569124" lon={9.970456} lat={53.567363} dir="backward" ref={@ref}>dreieckige Verkehrsinsel</.v> bleibt, allerdings soll eine Ampel statt eines Zebrastreifen die Vorfahrt regeln. Die S-Kurve an dieser Stelle fällt für den Radverkehr künftig weniger scharf aus. In der Kreuzung selbst sind überall asphaltierte, rot gefärbte Furten vorgesehen. Es ist nur <.ref>indirektes Linksabbiegen</.ref> geplant.</p>
 
     <p>An der <.m bounds="9.968597,53.567406,9.970196,53.568296" highlight="Schäferkampsallee">Bushaltestelle im Schäferkampsallee</.m> bleibt es bei einem Hochbordradweg. Er verläuft zwischen Gehweg und Wartefläche für Fahrgäste. Ein Trenngeländer zwischen Wartefläche und Radweg erlaubt das Queren an nur noch drei Stellen.</p>
 
-    <p>Die Anbindung der <.a name="freizeitroute-10">Freizeitroute 10</.a> aus dem <.v bounds="9.968854,53.5655,9.972792,53.569076" lon={9.970228} lat={53.566872} dir="forward" ref="FR10">Sternschanzenpark</.v> über den <.v bounds="9.96816,53.566044,9.973197,53.568522" lon={9.968829} lat={53.566972} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinen Schäferkamp</.v> soll ausgeschildert werden.</p>
+    <p>Die Anbindung der <.a ref={Freizeitroute10}>Freizeitroute 10</.a> aus dem <.v bounds="9.968854,53.5655,9.972792,53.569076" lon={9.970228} lat={53.566872} dir="forward" ref={Freizeitroute10}>Sternschanzenpark</.v> über den <.v bounds="9.96816,53.566044,9.973197,53.568522" lon={9.968829} lat={53.566972} dir="backward" ref={@ref} highlight="Kleiner Schäferkamp">Kleinen Schäferkamp</.v> soll ausgeschildert werden.</p>
 
     <h4>Meinung</h4>
     <p>Ich habe an der Planung wenig auszusetzen. Der Umbau macht die Radfahrt komfortabler und die Führung leicht ersichtlich. Durch bessere Trennung vom KFZ-Verkehr bzw. den Fahrgästen erhöht sich die Sicherheit. Sofern die Ampelschaltungen wie versprochen funktionieren, sollten die Radfurten auch meist frei bleiben – von besonders dreisten Autofahrern und Autofahrerinnen mal abgesehen.</p>

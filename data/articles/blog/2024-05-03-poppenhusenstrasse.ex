@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
     <p>Es kommen erstmals Sitzbänke und Fahrrad-Anschließmöglichkeiten hinzu. Das KFZ-Parken wird durch Parkbuchten geordnet.</p>
 
     <h4>Meinung</h4>
-    <p>An der guten Planung sind höchstens Details zu kritisieren. Etwa fehlt der <.v bounds="10.042704,53.585641,10.045656,53.587279" lon={10.044633} lat={53.586628} dir="forward" ref="5">Seite am Bahnhof</.v> eine Verkehrsinsel, die Linksabbieger daran hindert sich zu weit links aufzustellen. Radverkehr aus dem <.v bounds="10.042704,53.585641,10.045656,53.587279" lon={10.045048} lat={53.58672} dir="backward" ref="br-nord-n6">Wiesendamm</.v> könnte dann nicht mehr einbiegen.</p>
+    <p>An der guten Planung sind höchstens Details zu kritisieren. Etwa fehlt der <.v bounds="10.042704,53.585641,10.045656,53.587279" lon={10.044633} lat={53.586628} dir="forward" ref={Alltagsroute5}>Seite am Bahnhof</.v> eine Verkehrsinsel, die Linksabbieger daran hindert sich zu weit links aufzustellen. Radverkehr aus dem <.v bounds="10.042704,53.585641,10.045656,53.587279" lon={10.045048} lat={53.58672} dir="backward" ref={BrNordN6}>Wiesendamm</.v> könnte dann nicht mehr einbiegen.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

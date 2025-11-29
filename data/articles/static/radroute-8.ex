@@ -178,7 +178,7 @@ defmodule Data.Article.Static.Radroute8 do
       </tr>
     </table>
 
-    <p>Radroute 8 verläuft in südöstliche Richtung und verbindet <.v bounds="10.028259,53.57965,10.069342,53.608713" lon={10.054403} lat={53.591639} dir="forward" ref={@ref}>Barmbek-Nord</.v> mit <.v bounds="10.189093,53.475173,10.233976,53.505467" lon={10.208078} lat={53.489539} dir="forward" ref={@ref}>Bergedorf</.v>. Sie folgt dabei zunächst den großen KFZ-Trassen (Ring 2), weicht ab <.v bounds="10.101934,53.524322,10.127884,53.545248" lon={10.111625} lat={53.535509} dir="forward" ref="radroute-8">Billstedt</.v> auf weniger befahrene Strecken aus.</p>
+    <p>Radroute 8 verläuft in südöstliche Richtung und verbindet <.v bounds="10.028259,53.57965,10.069342,53.608713" lon={10.054403} lat={53.591639} dir="forward" ref={@ref}>Barmbek-Nord</.v> mit <.v bounds="10.189093,53.475173,10.233976,53.505467" lon={10.208078} lat={53.489539} dir="forward" ref={@ref}>Bergedorf</.v>. Sie folgt dabei zunächst den großen KFZ-Trassen (Ring 2), weicht ab <.v bounds="10.101934,53.524322,10.127884,53.545248" lon={10.111625} lat={53.535509} dir="forward" ref={Radroute8}>Billstedt</.v> auf weniger befahrene Strecken aus.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

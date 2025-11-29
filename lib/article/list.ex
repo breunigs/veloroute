@@ -54,7 +54,13 @@ defmodule Article.List do
 
   @spec find_exact(binary | nil | Article.t()) :: Article.t() | nil
   def find_exact(key) when is_module(key) do
-    if Util.has_behaviour?(key, Article), do: key, else: nil
+    candidates = [
+      key,
+      Module.concat(Data.Article.Static, key),
+      Module.concat(Data.Article.Blog, key)
+    ]
+
+    Enum.find(candidates, &function_exported?(&1, :__info__, 1))
   end
 
   def find_exact(key) do

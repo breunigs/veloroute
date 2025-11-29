@@ -185,7 +185,7 @@ defmodule Data.Article.Static.Radroute20 do
 
     <p>Radroute 20 führt grob in Nord-Süd Richtung von <.v bounds="10.089239,53.637039,10.136137,53.660747" lon={10.11285} lat={53.651738} dir="forward" ref={@ref}>Sasel</.v> zur <.v bounds="10.071896,53.494722,10.086499,53.504745" lon={10.07891} lat={53.500741} dir="forward" ref={@ref}>Tatenberger Schleuse</.v>. Sie bindet damit also die eher östlichen Stadtteile ins Radnetz ein.</p>
 
-    <p>Von dort besteht Anschluss an die Zollenspieker Fähre via <.a name="radroute-22">Radroute 22</.a>. Langfristig soll eine <.a name="2024-01-14-norderelbbruecke-a1">neue Autobahnbrücke</.a> auch die Fahrt in Richtung Wilhelmsburg ermöglichen.</p>
+    <p>Von dort besteht Anschluss an die Zollenspieker Fähre via <.a ref={Radroute22}>Radroute 22</.a>. Langfristig soll eine <.a ref={NorderelbbrueckeA1}>neue Autobahnbrücke</.a> auch die Fahrt in Richtung Wilhelmsburg ermöglichen.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

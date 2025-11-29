@@ -6,6 +6,13 @@ defmodule Article.Default do
       require Data.RoughDate
       import Data.RoughDate, only: [sigil_d: 2]
 
+      def category(), do: unquote(Article.category(__CALLER__.module))
+
+      @doc """
+      Returns the canonical path for a given article
+      """
+      def path(), do: unquote(Article.auto_generate_path(__CALLER__.module))
+
       def name(), do: unquote(Article.auto_generate_name(__CALLER__.module))
       def created_at, do: unquote(Macro.escape(Article.auto_generate_created_at(__CALLER__.file)))
       def updated_at, do: created_at()

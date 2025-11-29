@@ -21,7 +21,7 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def text(%{lang: "en"} = assigns) do
     ~H"""
-    <p lang="en"><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="radroute-3">Example video of “<span translate="no" lang="de">Schutzsstreifen</span>” in <span translate="no" lang="de">Stresemannallee</span></.v></p>
+    <p lang="en"><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref={Radroute3}>Example video of “<span translate="no" lang="de">Schutzsstreifen</span>” in <span translate="no" lang="de">Stresemannallee</span></.v></p>
 
     <p lang="en"><span translate="no" lang="de">Schutzsstreifen</span> are a smaller variant of <.ref>Radfahrstreifen</.ref> and worse in every regard.</p>
     <.a href="/images/schutzstreifen.webp" target="_blank"><img src="/images/schutzstreifen.webp" width="2704" height="1520" alt="Example of a Schutzstreifens." style="max-width:100%; height: auto; margin-top: .6rem;"/></.a>
@@ -39,7 +39,7 @@ defmodule Data.Article.Static.LexikonSchutzstreifen do
 
   def text(assigns) do
     ~H"""
-    <p><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref="radroute-3">Videobeispiel Schutzstreifen Stresemannallee</.v></p>
+    <p><.v bounds="9.953219,53.582767,9.959368,53.586041" lon={9.955712} lat={53.584148} dir="forward" ref={Radroute3}>Videobeispiel Schutzstreifen Stresemannallee</.v></p>
 
     <p>Schutzstreifen sind die kleinere Variante des <.ref>Radfahrstreifens</.ref> und in jeder Hinsicht schlechter gestellt.</p>
 

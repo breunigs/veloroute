@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.TilsiterStrasseEckerkoppelW16 do
     <p>Berichten zufolge soll der Verkehrsversuch nicht stattfinden.</p>
 
     <h4>Alter Zustand</h4>
-    <p>Der Radverkehr teilt sich mit KFZ die Straße im <.ref>Mischverkehr</.ref>. Erlaubt sind meist 50 km/h, um die <.v bounds="10.099576,53.595674,10.104851,53.5993" lon={10.101412} lat={53.597368} dir="forward" ref="6">Walter-Heitmann-Straße</.v> 30 km/h.</p>
+    <p>Der Radverkehr teilt sich mit KFZ die Straße im <.ref>Mischverkehr</.ref>. Erlaubt sind meist 50 km/h, um die <.v bounds="10.099576,53.595674,10.104851,53.5993" lon={10.101412} lat={53.597368} dir="forward" ref={Alltagsroute6}>Walter-Heitmann-Straße</.v> 30 km/h.</p>
 
     <h4>Vorhaben</h4>
     <p>Wegen rechtlicher Hürden soll eine Fahrradstraße als Verkehrsversuch eingerichtet werden. Dieser würde durch Markierungen und kleinere Umbauten umgesetzt und soll zwei Jahre dauern. Im Anschluss werden die Auswirkungen bewertet.</p>

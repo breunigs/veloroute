@@ -36,7 +36,7 @@ defmodule Data.Article.Blog.AmpelAltonaerStrasseBartelsstrasse do
     <p>Die Breiten der <.ref>Hochbordradwege</.ref> (1,0m) und Gehwege (1,5m) rund um die Ampel sind schmal. Wegen hohem Rad- und Fußverkehr kommt es deswegen regelmäßig zu Problemen.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Es ist vorgesehen den Radverkehr in <.v bounds="9.962136,53.564016,9.966056,53.565694" lon={9.962849} lat={53.564447} dir="forward" ref="radroute-14">Fahrtrichtung Schlump</.v> über einer 2,10m breite <.ref>Protected-Bike-Lane</.ref> zu führen. Der Anschluss an die vorhandenen Radwege erfolgt an der Einmündung <.v bounds="9.961477,53.56389,9.963483,53.564976" lon={9.962131} lat={53.56424} dir="forward" ref="radroute-14">Bartelsstraße</.v> bzw. <.v bounds="9.961477,53.56389,9.963483,53.564976" lon={9.962963} lat={53.564457} dir="forward" ref="radroute-14">direkt nach der Ampel</.v>.</p>
+    <p>Es ist vorgesehen den Radverkehr in <.v bounds="9.962136,53.564016,9.966056,53.565694" lon={9.962849} lat={53.564447} dir="forward" ref={Radroute14}>Fahrtrichtung Schlump</.v> über einer 2,10m breite <.ref>Protected-Bike-Lane</.ref> zu führen. Der Anschluss an die vorhandenen Radwege erfolgt an der Einmündung <.v bounds="9.961477,53.56389,9.963483,53.564976" lon={9.962131} lat={53.56424} dir="forward" ref={Radroute14}>Bartelsstraße</.v> bzw. <.v bounds="9.961477,53.56389,9.963483,53.564976" lon={9.962963} lat={53.564457} dir="forward" ref={Radroute14}>direkt nach der Ampel</.v>.</p>
 
     <p>Zum <.ref>indirekten Linksabbiegen</.ref> wird eine Aufstelltasche vorgesehen.</p>
 

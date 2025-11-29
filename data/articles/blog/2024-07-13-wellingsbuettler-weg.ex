@@ -49,7 +49,7 @@ defmodule Data.Article.Blog.WellingsbuettlerWeg do
     <h4>Meinung</h4>
     <p>Wegen der Straßenbreiten war absehbar, dass es nicht auf gesamter Strecke für einen eigenen Radweg reicht. Immerhin sind die Wahlmöglichkeiten „Gehweg mit Schritttempo“ oder „Fahrbahn mit KFZ“ klar erkennbar und durchgängig. Das ist besser als Stückwerk.</p>
 
-    <p>Da <.v bounds="10.035922,53.627915,10.06323,53.638454" lon={10.038281} lat={53.629592} dir="forward" ref="br-nord-n8">Stübeheide</.v>, <.v bounds="10.055512,53.632214,10.077868,53.642074" lon={10.060241} lat={53.634634} dir="forward" ref="br-wandsbek-w6">Sanderskoppel</.v> und <.v bounds="10.065491,53.634027,10.087778,53.644692" lon={10.070111} lat={53.637057} dir="forward" ref="br-wandsbek-w6">Barkenkoppel</.v> zu Fahrradstraßen aufgewertet werden sollen, besteht langfristig auch im Berufsverkehr eine Möglichkeit im Normaltempo am KFZ-Stau vorbeizukommen.</p>
+    <p>Da <.v bounds="10.035922,53.627915,10.06323,53.638454" lon={10.038281} lat={53.629592} dir="forward" ref={BrNordN8}>Stübeheide</.v>, <.v bounds="10.055512,53.632214,10.077868,53.642074" lon={10.060241} lat={53.634634} dir="forward" ref={BrWandsbekW6}>Sanderskoppel</.v> und <.v bounds="10.065491,53.634027,10.087778,53.644692" lon={10.070111} lat={53.637057} dir="forward" ref={BrWandsbekW6}>Barkenkoppel</.v> zu Fahrradstraßen aufgewertet werden sollen, besteht langfristig auch im Berufsverkehr eine Möglichkeit im Normaltempo am KFZ-Stau vorbeizukommen.</p>
 
     <p>Die geplanten KFZ-Parkplätze sollten jedoch (teilweise) durch Lieferzonen bzw. weitere Baumstandorte ersetzt werden. Auf den Privatgrundstücken ist genug Platz zum Abstellen von privaten Fahrzeugen.</p>
 

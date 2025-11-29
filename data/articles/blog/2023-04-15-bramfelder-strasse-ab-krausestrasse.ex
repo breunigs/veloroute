@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.BramfelderStrasseAbKrausestrasse do
 
     <p>KFZ-Parkplätze und Bushaltestellen befinden sich immer rechts der Radfahrstreifen, d.h. der Radweg wird regelmäßig überfahren/gequert.</p>
 
-    <p>In der <.v bounds="10.05736,53.593117,10.062079,53.595253" lon={10.05894} lat={53.594583} dir="backward" ref="br-wandsbek-w3">Fabriciusstraße</.v> wird der Radverkehr in Richtung Bramfelder Straße in den <.ref>Mischverkehr</.ref> überführt. Zum Linksabbiegen wird ein langgezogener Radfahrstreifen in Mittellage aufgemalt. Anderswo ist <.ref>indirektes Linksabbiegen</.ref> vorgesehen.</p>
+    <p>In der <.v bounds="10.05736,53.593117,10.062079,53.595253" lon={10.05894} lat={53.594583} dir="backward" ref={BrWandsbekW3}>Fabriciusstraße</.v> wird der Radverkehr in Richtung Bramfelder Straße in den <.ref>Mischverkehr</.ref> überführt. Zum Linksabbiegen wird ein langgezogener Radfahrstreifen in Mittellage aufgemalt. Anderswo ist <.ref>indirektes Linksabbiegen</.ref> vorgesehen.</p>
 
     <p>Damit KFZ-Parkplätze erhalten werden können, werden mehr Bäume gefällt als neu gepflanzt.</p>
 

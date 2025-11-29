@@ -47,10 +47,10 @@ defmodule Data.Article.Blog.KreuzungElbchausseeManteuffelSchenefelderMuehlenberg
     </ul>
 
     <h4>Alter Zustand</h4>
-    <p>Um die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref="1">Kreuzung mit der Elbchaussee</.v> zu queren muss man Richtung Blankenese über zwei Verkehrsinseln bzw. Ampeln fahren. In der Gegenrichtung ist (normalerweise) eine Fahrt geradeaus problemlos möglich. Die Ampelschaltzeiten favorisieren klar die KFZ-Hauptstraßen.</p>
+    <p>Um die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref={Alltagsroute1}>Kreuzung mit der Elbchaussee</.v> zu queren muss man Richtung Blankenese über zwei Verkehrsinseln bzw. Ampeln fahren. In der Gegenrichtung ist (normalerweise) eine Fahrt geradeaus problemlos möglich. Die Ampelschaltzeiten favorisieren klar die KFZ-Hauptstraßen.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref="1">Kreuzung mit der Elbchaussee</.v> erhält ein für Hamburg neues Konzept:</p>
+    <p>Die <.v bounds="9.822446,53.559947,9.824702,53.561281" lon={9.824048} lat={53.560619} dir="forward" ref={Alltagsroute1}>Kreuzung mit der Elbchaussee</.v> erhält ein für Hamburg neues Konzept:</p>
     <ul>
       <li><strong>Entlang der Veloroute:</strong> Die Querung der Elbchaussee erfolgt geradlinig. Die Durchfahrt zum Mühlenberg wird für KFZ gesperrt. Die Ausnahme für Busse in Manteuffelstraße bleibt bestehen.</li>
       <li><strong>Entlang der Elbchaussee:</strong> Es gibt Hochbordradwege, die zum Abbiegen bzw. Queren der Kreuzung gedacht sind. Wer nur geradeaus möchte, hat auf der Fahrbahn weiterhin die einfachste Anbindung.</li>

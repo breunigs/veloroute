@@ -37,14 +37,14 @@ defmodule Data.Article.Blog.FrohmestrasseNord do
     <h4>Alter Zustand</h4>
     <p>Es sind 1,0m bis 1,25m breite <.ref>Hochbordradwege</.ref> auf beiden Seiten vorhanden. Ihre wechselnden Oberflächen sind optisch kaum von den Gehwegen abgegrenzt. Die Gehwege sind stellenweise ebenfalls nur 1,0m breit, sodass häufig auch auf den Radwegen gegangen wird.</p>
 
-    <p>An der nördlichen <.v bounds="9.917579,53.63422,9.920134,53.636156" lon={9.918893} lat={53.635097} dir="forward" ref="br-eimsbuettel-nord-sued">Bushaltestelle „Oldesloer Straße“</.v> wird der Radverkehr durch den Einstiegsbereich geführt. An der südlicheren <.v bounds="9.919736,53.631451,9.9228,53.633532" lon={9.920929} lat={53.632613} dir="backward" ref="br-eimsbuettel-nord-sued">„Frohmestraße (Mitte)“</.v> dagegen über die Wartefläche der Busse.</p>
+    <p>An der nördlichen <.v bounds="9.917579,53.63422,9.920134,53.636156" lon={9.918893} lat={53.635097} dir="forward" ref={BrEimsbuettelNordSued}>Bushaltestelle „Oldesloer Straße“</.v> wird der Radverkehr durch den Einstiegsbereich geführt. An der südlicheren <.v bounds="9.919736,53.631451,9.9228,53.633532" lon={9.920929} lat={53.632613} dir="backward" ref={BrEimsbuettelNordSued}>„Frohmestraße (Mitte)“</.v> dagegen über die Wartefläche der Busse.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Es soll eine Tempo 20 Zone eingerichtet werden. Der Radverkehr teilt sich dort dann die insgesamt 6,5m breite Fahrbahn mit den KFZ im <.ref>Mischverkehr</.ref>. Vom <.v bounds="9.919962,53.631113,9.924376,53.633363" lon={9.922992} lat={53.631773} dir="forward" ref="br-eimsbuettel-nord-sued">Autobahndeckel kommend</.v> enden die <.ref>Schutzstreifen</.ref> nach der Ampel und die <.ref>Fahrbahn</.ref> verengt sich entsprechend.</p>
+    <p>Es soll eine Tempo 20 Zone eingerichtet werden. Der Radverkehr teilt sich dort dann die insgesamt 6,5m breite Fahrbahn mit den KFZ im <.ref>Mischverkehr</.ref>. Vom <.v bounds="9.919962,53.631113,9.924376,53.633363" lon={9.922992} lat={53.631773} dir="forward" ref={BrEimsbuettelNordSued}>Autobahndeckel kommend</.v> enden die <.ref>Schutzstreifen</.ref> nach der Ampel und die <.ref>Fahrbahn</.ref> verengt sich entsprechend.</p>
 
-    <p>Die alten Radwege werden meist zu Gehwegen. Umgestaltetes KFZ-Parken ermöglicht es neue Bäume zu pflanzen und zwei <.ref name="Mittelinsel">Querungshilfen mit Mittelinsel</.ref> anzubieten.</p>
+    <p>Die alten Radwege werden meist zu Gehwegen. Umgestaltetes KFZ-Parken ermöglicht es neue Bäume zu pflanzen und zwei <.ref ref={LexikonQuerungshilfe}>Querungshilfen mit Mittelinsel</.ref> anzubieten.</p>
 
-    <p>Der <.v bounds="9.917418,53.634006,9.920638,53.636014" lon={9.91877} lat={53.635083} dir="backward" ref="br-eimsbuettel-nord-sued">Platz „Glißmanndreieck“</.v> soll umgestaltet werden. Die vorhandenen Bäume sollen durch drei Neue ersetzt werden, die für den Standort besser geeignet sind.</p>
+    <p>Der <.v bounds="9.917418,53.634006,9.920638,53.636014" lon={9.91877} lat={53.635083} dir="backward" ref={BrEimsbuettelNordSued}>Platz „Glißmanndreieck“</.v> soll umgestaltet werden. Die vorhandenen Bäume sollen durch drei Neue ersetzt werden, die für den Standort besser geeignet sind.</p>
 
     <h4>Meinung</h4>
     <p>Mit dem Umbau kommen zumindest benutzbare Gehwege.</p>

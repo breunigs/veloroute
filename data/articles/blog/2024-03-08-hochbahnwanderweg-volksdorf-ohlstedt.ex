@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.HochbahnwanderwegVolksdorfOhlstedt do
     <p>Der Weg soll asphaltiert werden. Die Straßenquerungen bleiben unverändert.</p>
 
     <h4>Meinung</h4>
-    <p>Die Wegqualität zu verbessern ist ein guter, erster Schritt. In einem zweiten Schritt müssen aber noch einige Kreuzungen, wie etwa mit dem <.v bounds="10.137256,53.683184,10.145111,53.688347" lon={10.140453} lat={53.685031} dir="forward" ref="br-wandsbek-w7">Lottbeker Weg</.v>, umgebaut werden. Erst damit wird die Strecke wirklich alltagstauglich.</p>
+    <p>Die Wegqualität zu verbessern ist ein guter, erster Schritt. In einem zweiten Schritt müssen aber noch einige Kreuzungen, wie etwa mit dem <.v bounds="10.137256,53.683184,10.145111,53.688347" lon={10.140453} lat={53.685031} dir="forward" ref={BrWandsbekW7}>Lottbeker Weg</.v>, umgebaut werden. Erst damit wird die Strecke wirklich alltagstauglich.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

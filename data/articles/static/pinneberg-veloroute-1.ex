@@ -84,7 +84,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
 
     <p>Aus Prisdorf nach Pinneberg ist die Führung besonders absurd: wer mehr als 7 km/h fahren möchte, muss zunächst auf der KFZ-Spur fahren. Ab dem <.v bounds="9.7706,53.67201,9.774925,53.674334" lon={9.77218} lat={53.673696} dir="backward" ref={@ref}>Peiner Hag</.v> muss man den linksseitigen gemeinsamen Rad- und Fußweg nutzen. Dies erkennt man aber erst im Kreuzungsbereich, von wo man nicht sicher dorthin wechseln kann. Kurz darauf muss am <.v bounds="9.77647,53.667704,9.783289,53.671664" lon={9.779839} lat={53.670307} dir="backward" ref={@ref}>Westring</.v> wieder auf die „richtige“ Straßenseite gewechselt werden. Dazu muss drei Mal gewartet werden, weil die Ampeln nicht aufeinander abgestimmt sind. Die Stadt hat außerdem verschlafen die Ampeln der seit Jahren gültigen StVO-Regelung anzupassen – der Radverkehr müsste die KFZ-Ampeln beachten.</p>
 
-    <p>Kurzfristig müssen die Sicherheitsmängel behoben werden. Langfristig müsste die Prisdorfer komplett umgestaltet werden, um für die Radverkehr attraktiv zu sein. Je nach Fahrtziel könnte der geplante <.v bounds="9.781951,53.659294,9.79309,53.664334" lon={9.789565} lat={53.660404} dir="forward" ref="rsw-elmshorn">Radschnellweg nach Elmshorn</.v> eine Alternative sein.</p>
+    <p>Kurzfristig müssen die Sicherheitsmängel behoben werden. Langfristig müsste die Prisdorfer komplett umgestaltet werden, um für die Radverkehr attraktiv zu sein. Je nach Fahrtziel könnte der geplante <.v bounds="9.781951,53.659294,9.79309,53.664334" lon={9.789565} lat={53.660404} dir="forward" ref={RSWElmshorn}>Radschnellweg nach Elmshorn</.v> eine Alternative sein.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

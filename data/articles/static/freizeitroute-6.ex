@@ -96,7 +96,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
     <h3>Freizeitroute 6 – Elbbrücken <.icon>FR6</.icon></h3>
     <span class="updated">Länge rund 21km</span>
     <p>Beginnend am <.v bounds="9.993132,53.549269,10.01548,53.556036" dir="forward" lat={53.5516} lon={10.0056} ref={@ref}>Hauptbahnhof</.v> folgt man grob der <.v lat={53.5449} lon={10.0172} bounds="9.995601,53.536759,10.048165,53.552678" dir="forward" ref={@ref}>Amsinckstraße</.v> um über die <.v dir="forward" lat={53.5346} lon={10.0282} bounds="10.018778,53.527385,10.033289,53.536906" ref={@ref}>Elbbrücken</.v> auf die <.v bounds="10.009405,53.52204,10.032666,53.532834" lon={10.023808} lat={53.530213} dir="forward" ref={@ref}>Veddel</.v> zu gelangen.</p>
-    <p>Von dort geht es weiter auf <.v bounds="9.96971,53.47396,10.049128,53.525687" lon={9.991852} lat={53.504458} dir="forward" ref={@ref}>Wilhelmsburg</.v> und durch <.v bounds="9.972304,53.450751,9.994229,53.465226" lon={9.978722} lat={53.461352} dir="forward" ref={@ref}>Harburgs Zentrum</.v>. Der <.v bounds="9.967672,53.439201,9.983253,53.452214" lon={9.978441} lat={53.440041} dir="forward" ref="10">Engelbek</.v> folgend erreicht man schließlich die <.v bounds="9.864695,53.383146,10.003912,53.439215" lon={9.97499} lat={53.421967} dir="forward" ref={@ref}>Landesgrenze kurz vor den Harburger Bergen</.v>.</p>
+    <p>Von dort geht es weiter auf <.v bounds="9.96971,53.47396,10.049128,53.525687" lon={9.991852} lat={53.504458} dir="forward" ref={@ref}>Wilhelmsburg</.v> und durch <.v bounds="9.972304,53.450751,9.994229,53.465226" lon={9.978722} lat={53.461352} dir="forward" ref={@ref}>Harburgs Zentrum</.v>. Der <.v bounds="9.967672,53.439201,9.983253,53.452214" lon={9.978441} lat={53.440041} dir="forward" ref={Alltagsroute10}>Engelbek</.v> folgend erreicht man schließlich die <.v bounds="9.864695,53.383146,10.003912,53.439215" lon={9.97499} lat={53.421967} dir="forward" ref={@ref}>Landesgrenze kurz vor den Harburger Bergen</.v>.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und stellenweise ist die Führung nicht ersichtlich. Ein Navi ist daher empfehlenswert.</p>
@@ -108,7 +108,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
     <h4>Meinung</h4>
     <p>Die Tour hat einige schöne Stellen, gerade ab Harburgs Innenstadt ist man fast ausschließlich im Grünen unterwegs. Auf den Elbinseln und in Hamburgs Innenstadt ist die Streckenführung jedoch sehr autolastig und weniger empfehlenswert. Hier merkt man, das die Freizeitroute geplant wurde als die Alltagsrouten noch nicht brauchbar ausgebaut waren.</p>
 
-    <p>Eine ähnliche, aber ruhigere Führung ist grob: <.a name="alltagsroute-9">Alltagsroute <.icon link={false}>9</.icon></.a> bis Elbbrücken; Veddel wie gehabt; auf Wilhelmsburg stattdessen der <.a name="alltagsroute-11">Alltagsroute <.icon link={false}>11</.icon></.a> folgen; Rest wie gehabt.</p>
+    <p>Eine ähnliche, aber ruhigere Führung ist grob: <.a ref={Alltagsroute9}>Alltagsroute <.icon_only>9</.icon_only></.a> bis Elbbrücken; Veddel wie gehabt; auf Wilhelmsburg stattdessen der <.a ref={Alltagsroute11}>Alltagsroute <.icon_only>11</.icon_only></.a> folgen; Rest wie gehabt.</p>
 
     <h3>Externe Links</h3>
     <.structured_links ref={@ref} gpx={true}/>

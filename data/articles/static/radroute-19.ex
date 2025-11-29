@@ -133,7 +133,7 @@ defmodule Data.Article.Static.Radroute19 do
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Die meisten Wege sind befestigt und allwettertauglich. Ausnahme ist der <.v bounds="9.862932,53.570632,9.904986,53.624813" lon={9.900168} lat={53.622777} dir="forward" ref="14">Brookgraben</.v> und einige kurze unbefestigte Stellen an Bäumen.</p>
+    <p>Die meisten Wege sind befestigt und allwettertauglich. Ausnahme ist der <.v bounds="9.862932,53.570632,9.904986,53.624813" lon={9.900168} lat={53.622777} dir="forward" ref={Alltagsroute14}>Brookgraben</.v> und einige kurze unbefestigte Stellen an Bäumen.</p>
 
     <h4>Meinung</h4>
     <p>Die Route ist bisher (Stand: Mitte 2024) kaum ausgebaut und daher nur schlecht befahrbar. Die Radwege sind eng, holprig, fehlen ganz, enden ohne brauchbare Überleitung oder werden mit Gittern versperrt.</p>

@@ -117,7 +117,7 @@ defmodule Data.Article.Static.Radroute6 do
       <tr>
         <td><.icon>radroute-12</.icon></td>
         <td><.graph icon={:underpass} ref={@ref}/></td>
-        <td class="dim"><.v bounds="10.018792,53.562267,10.031367,53.57027" lon={10.024447} lat={53.56589} dir="forward" ref="radroute-6">Kuhmühle</.v></td>
+        <td class="dim"><.v bounds="10.018792,53.562267,10.031367,53.57027" lon={10.024447} lat={53.56589} dir="forward" ref={Radroute6}>Kuhmühle</.v></td>
       </tr>
       <tr>
         <td></td>
@@ -180,15 +180,15 @@ defmodule Data.Article.Static.Radroute6 do
         <td class="dim"><.v bounds="10.153913,53.643329,10.167805,53.650548" lon={10.159323} lat={53.64614} dir="forward" ref={@ref}>U1-Brücke</.v></td>
       </tr>
       <tr>
-        <td><.icon name="rsw-ahrensburg" bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward">RSW</.icon></td>
+        <td><.icon ref={RSWAhrensburg} bounds="10.162031,53.649846,10.273755,53.688831" lon={10.164112} lat={53.651525} dir="backward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td>
-          <.v bounds="10.162031,53.649846,10.273755,53.688831" lon={10.195135} lat={53.660762} dir="backward" ref="rsw-ahrensburg">Ahrensburg</.v>
+          <.v bounds="10.162031,53.649846,10.273755,53.688831" lon={10.195135} lat={53.660762} dir="backward" ref={RSWAhrensburg}>Ahrensburg</.v>
         </td>
       </tr>
     </table>
 
-    <p>Die Radroute 6 führt vom <.v bounds="9.988817,53.549096,10.000848,53.556219" lon={9.994663} lat={53.552023} dir="forward" ref={@ref}>Jungfernstieg</.v> nach <.v bounds="10.132608,53.628871,10.179795,53.663148" lon={10.162516} lat={53.648981} dir="forward" ref={@ref}>Volksdorf</.v>. Dort schließt nahtlos die  <.a name="rsw-ahrensburg">Radroute Plus (Radschnellweg) nach Ahrensburg</.a> an.</p>
+    <p>Die Radroute 6 führt vom <.v bounds="9.988817,53.549096,10.000848,53.556219" lon={9.994663} lat={53.552023} dir="forward" ref={@ref}>Jungfernstieg</.v> nach <.v bounds="10.132608,53.628871,10.179795,53.663148" lon={10.162516} lat={53.648981} dir="forward" ref={@ref}>Volksdorf</.v>. Dort schließt nahtlos die  <.a ref={RSWAhrensburg}>Radroute Plus (Radschnellweg) nach Ahrensburg</.a> an.</p>
 
     <p>Auf dem Weg dorthin folgt die Route zunächst der <.v bounds="9.977257,53.549596,10.031798,53.572229" lon={10.010782} lat={53.559773} dir="forward" ref={@ref} highlight="An der Alster,Ballindamm">Ostseite der Alster</.v> und dem <.v bounds="10.010748,53.562984,10.07377,53.583406" lon={10.041073} lat={53.571486} dir="forward" ref={@ref}>Eilbekkanal</.v>.</p>
 
@@ -200,8 +200,8 @@ defmodule Data.Article.Static.Radroute6 do
     <h4>Befahrbarkeit</h4>
     <p>Die Wege sind größtenteils befestigt und allwettertauglich. Es gibt zwei Stellen mit feinem Schotter (Grand), die bei Regen/Unwetter problematisch werden können:</p>
     <ul>
-      <li><.v bounds="10.021435,53.56428,10.032259,53.56829" lon={10.026001} lat={53.566387} dir="forward" ref={@ref}>Kuhmühlenteichpark</.v> – empfohlene Umfahrung via <.v bounds="10.019299,53.565626,10.027653,53.568591" lon={10.027295} lat={53.567034} dir="backward" ref={@ref}>Immenhof</.v> und <.a name="alltagsroute-5">Alltagsroute 5</.a>.</li>
-      <li><.v bounds="10.128147,53.630148,10.15831,53.644473" lon={10.142944} lat={53.638431} dir="forward" ref={@ref}>Saselheider Graben</.v> – empfohlene Umfahrung via <.v bounds="10.119964,53.627351,10.159861,53.643268" lon={10.147892} lat={53.634974} dir="forward" ref="FR2">Berner Heerweg</.v>.</li>
+      <li><.v bounds="10.021435,53.56428,10.032259,53.56829" lon={10.026001} lat={53.566387} dir="forward" ref={@ref}>Kuhmühlenteichpark</.v> – empfohlene Umfahrung via <.v bounds="10.019299,53.565626,10.027653,53.568591" lon={10.027295} lat={53.567034} dir="backward" ref={@ref}>Immenhof</.v> und <.a ref={Alltagsroute5}>Alltagsroute 5</.a>.</li>
+      <li><.v bounds="10.128147,53.630148,10.15831,53.644473" lon={10.142944} lat={53.638431} dir="forward" ref={@ref}>Saselheider Graben</.v> – empfohlene Umfahrung via <.v bounds="10.119964,53.627351,10.159861,53.643268" lon={10.147892} lat={53.634974} dir="forward" ref={Freizeitroute2}>Berner Heerweg</.v>.</li>
     </ul>
 
     <h4>Meinung</h4>
@@ -209,7 +209,7 @@ defmodule Data.Article.Static.Radroute6 do
 
     <ul>
       <li><.v bounds="10.022934,53.564165,10.036927,53.570735" lon={10.031187} lat={53.56686} dir="backward" ref={@ref} highlight="Immenhof">Wochenmarkt Immenhof</.v> – Vollsperrung der Route an Markttagen, Flohmärkten u.ä. im Immenhof. Für die <.v bounds="10.028057,53.56573,10.033558,53.56855" lon={10.031508} lat={53.566904} dir="backward" ref={@ref} highlight="Lerchenfeld">B5 Lerchenfeld</.v> würde das auch niemand ernsthaft erwägen.</li>
-      <li><.v bounds="10.111165,53.616996,10.131178,53.624544" lon={10.11935} lat={53.621553} dir="backward" ref="14">An der Berner Au</.v> ist eine Spielstraße mit Schrittgeschwindigkeit. Für den Alltagsverkehr unangebracht.</li>
+      <li><.v bounds="10.111165,53.616996,10.131178,53.624544" lon={10.11935} lat={53.621553} dir="backward" ref={Alltagsroute14}>An der Berner Au</.v> ist eine Spielstraße mit Schrittgeschwindigkeit. Für den Alltagsverkehr unangebracht.</li>
       <li>Missglückte Umgestaltung am <.v bounds="10.141889,53.64304,10.171415,53.654868" lon={10.159225} lat={53.646124} dir="forward" ref={@ref}>Eulenkrug</.v>. In beide Richtungen wird man für wenige Meter in den gefährlichen Autoverkehr geschickt, nur damit KFZ auch weiterhin links in den <.v bounds="10.156766,53.645127,10.163563,53.64786" lon={10.160348} lat={53.646917} dir="forward" ref={@ref}>Uppenhof</.v> abbiegen können.</li>
     </ul>
 

@@ -58,7 +58,7 @@ defmodule Data.Article.Blog.Eilbektal do
     <h4>Meinung</h4>
     <p>Die Planung gibt dem Rad- und Fußverkehr seit Jahrzehnten erstmals wieder eigene, benutzbare Wege. Das ist gut. Allerdings nur auf einem kurzen Abschnitt und nicht entlang des gesamten Straßenzugs.</p>
 
-    <p>Leider verzichtet man auch auf eine Vergrößerung des viel benutzten <.v bounds="10.049388,53.572512,10.060777,53.577844" lon={10.053647} lat={53.574778} dir="forward" ref="FR3">Friedrichsberger Park</.v> – es soll nur geringfügig umgebaut werden.</p>
+    <p>Leider verzichtet man auch auf eine Vergrößerung des viel benutzten <.v bounds="10.049388,53.572512,10.060777,53.577844" lon={10.053647} lat={53.574778} dir="forward" ref={Freizeitroute3}>Friedrichsberger Park</.v> – es soll nur geringfügig umgebaut werden.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

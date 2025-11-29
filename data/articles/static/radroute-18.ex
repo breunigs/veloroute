@@ -153,7 +153,7 @@ defmodule Data.Article.Static.Radroute18 do
       <tr>
         <td></td>
         <td><.graph icon={:bridge} ref={@ref}/></td>
-        <td><.v bounds="9.864228,53.486049,9.895878,53.501562" lon={9.874224} lat={53.495354} dir="forward" ref="radroute-18">Autobahn A26</.v></td>
+        <td><.v bounds="9.864228,53.486049,9.895878,53.501562" lon={9.874224} lat={53.495354} dir="forward" ref={Radroute18}>Autobahn A26</.v></td>
       </tr>
       <tr>
         <td><.icon>radroute-10</.icon></td>
@@ -172,7 +172,7 @@ defmodule Data.Article.Static.Radroute18 do
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>
 
     <h4>Befahrbarkeit</h4>
-    <p>Viele Wege sind asphaltiert oder gepflastert und allwettertauglich. Problemstelle ist der <.v bounds="9.865523,53.570893,9.87958,53.586322" lon={9.874119} lat={53.576144} dir="forward" ref={@ref}>Lise-Meitner-Park</.v> mit seinen Erd- bzw. Sandwegen. Wegen des <.a name="2022-04-15-parkstrasse">Baus der Fernwärmeleitung</.a> ist die Route in <.v bounds="9.863938,53.552675,9.900001,53.571562" lon={9.87778} lat={53.564497} dir="forward" ref={@ref}>Groß Flottbek</.v> und <.v bounds="9.868765,53.543924,9.903855,53.564236" lon={9.88141} lat={53.55637} dir="forward" ref={@ref}>Othmarschen</.v> kaum praktisch benutzbar (Stand: Frühjahr 2025).</p>
+    <p>Viele Wege sind asphaltiert oder gepflastert und allwettertauglich. Problemstelle ist der <.v bounds="9.865523,53.570893,9.87958,53.586322" lon={9.874119} lat={53.576144} dir="forward" ref={@ref}>Lise-Meitner-Park</.v> mit seinen Erd- bzw. Sandwegen. Wegen des <.a ref={Parkstrasse}>Baus der Fernwärmeleitung</.a> ist die Route in <.v bounds="9.863938,53.552675,9.900001,53.571562" lon={9.87778} lat={53.564497} dir="forward" ref={@ref}>Groß Flottbek</.v> und <.v bounds="9.868765,53.543924,9.903855,53.564236" lon={9.88141} lat={53.55637} dir="forward" ref={@ref}>Othmarschen</.v> kaum praktisch benutzbar (Stand: Frühjahr 2025).</p>
 
     <p>Für die <.v bounds="9.874075,53.516333,9.890152,53.523472" lon={9.884742} lat={53.519176} dir="forward" ref={@ref} highlight="Aue">Querung der Aue</.v> ist neue Brücke geplant. Bis zum Lückenschluss steht aber eine gut benutzbare Alternative bereit.</p>
 

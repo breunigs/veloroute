@@ -63,7 +63,7 @@ defmodule Data.Article.Static.Datenexport do
       <%= if @enable_drawing_tools do %>
         Die Zeichentools werden oben links auf der Karte angezeigt.
       <% else %>
-        <a href={Article.Decorators.path(@ref, %{enable_drawing_tools: 1})} rel="nofollow">Zeichentools zeitweise aktivieren</a> (Seite lädt neu).
+        <a href={@ref.path() <> "?enable_drawing_tools=1"} rel="nofollow">Zeichentools zeitweise aktivieren</a> (Seite lädt neu).
       <% end %>
     </p>
 

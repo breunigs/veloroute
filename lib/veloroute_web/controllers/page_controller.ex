@@ -65,7 +65,7 @@ defmodule VelorouteWeb.PageController do
     if article do
       conn
       |> put_status(301)
-      |> redirect(to: Article.Decorators.path(article))
+      |> redirect(to: article.path())
     else
       not_found_redir(conn)
     end

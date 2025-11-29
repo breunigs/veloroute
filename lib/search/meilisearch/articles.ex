@@ -76,7 +76,7 @@ defmodule Search.Meilisearch.Articles do
       _geo: geo,
       id: module_id(art),
       module: art,
-      path: Article.Decorators.path(art),
+      path: art.path(),
       summary: art.summary(),
       text: Article.Decorators.text(art),
       title: Article.Decorators.full_title(art),

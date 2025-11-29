@@ -35,9 +35,9 @@ defmodule Data.Article.Blog.Spreehafenbruecke do
     <p>Auf der Brücke gibt es keine eigenen Radwege. Die Gehwege dürfen in Schrittgeschwindigkeit mitbenutzt werden (<.ref>Fahrrad frei</.ref>), ansonsten muss im <.ref>Mischverkehr</.ref> gefahren werden.</p>
 
     <h4>Planung</h4>
-    <p>In <.v bounds="9.981947,53.523103,9.984731,53.524589" lon={9.983046} lat={53.524082} dir="forward" ref="11">Richtung Wilhelmsburg</.v> soll ein 2,25m breiter <.ref>Radfahrstreifen</.ref> entstehen. Um ihn zu erreichen soll in einer weiteren Baumaßnahme die Abfahrt vom geteilten Fuß- und Radweg verbessert werden. Der neue Radfahrstreifen verläuft neben zwei KFZ-Spuren mit je 2,75m Breite. Der Gehweg auf dieser Seite bleibt 2,5m breit.</p>
+    <p>In <.v bounds="9.981947,53.523103,9.984731,53.524589" lon={9.983046} lat={53.524082} dir="forward" ref={Alltagsroute11}>Richtung Wilhelmsburg</.v> soll ein 2,25m breiter <.ref>Radfahrstreifen</.ref> entstehen. Um ihn zu erreichen soll in einer weiteren Baumaßnahme die Abfahrt vom geteilten Fuß- und Radweg verbessert werden. Der neue Radfahrstreifen verläuft neben zwei KFZ-Spuren mit je 2,75m Breite. Der Gehweg auf dieser Seite bleibt 2,5m breit.</p>
 
-    <p>In <.v bounds="9.981947,53.523103,9.984731,53.524589" lon={9.982821} lat={53.523397} dir="backward" ref="11">Richtung Elbtunnel</.v> ist ein 2,0m breiter <.ref>Hochbordradweg</.ref> geplant, der neben dem noch 1,5m breiten Gehweg verläuft. Dazu wird die Brücke auf der Ostseite verbreitert.</p>
+    <p>In <.v bounds="9.981947,53.523103,9.984731,53.524589" lon={9.982821} lat={53.523397} dir="backward" ref={Alltagsroute11}>Richtung Elbtunnel</.v> ist ein 2,0m breiter <.ref>Hochbordradweg</.ref> geplant, der neben dem noch 1,5m breiten Gehweg verläuft. Dazu wird die Brücke auf der Ostseite verbreitert.</p>
 
     <p>Die Brücke soll während des Umbaus für Rad- und Fußverkehr weiterhin passierbar bleiben.</p>
 

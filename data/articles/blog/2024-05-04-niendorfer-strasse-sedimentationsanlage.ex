@@ -24,7 +24,7 @@ defmodule Data.Article.Blog.NiendorferStrasseSedimentationsanlage do
   def text(assigns) do
     ~H"""
     <h4>Baustelle</h4>
-    <p>Wegen Bau einer Vorreinigungsanlage für das von der Straße anfallende Regenwasser wird die Niendorfer Straße auf Höhe der Bahnbrücke teilweise gesperrt. Radverkehr nach Norden soll über den <.v bounds="9.954506,53.60422,9.963537,53.608" lon={9.955628} lat={53.605893} dir="backward" ref="3">Heckenrosenweg</.v> umgeleitet werden. Die Fahrt nach Süden soll weiter entlang der Veloroute möglich bleiben.</p>
+    <p>Wegen Bau einer Vorreinigungsanlage für das von der Straße anfallende Regenwasser wird die Niendorfer Straße auf Höhe der Bahnbrücke teilweise gesperrt. Radverkehr nach Norden soll über den <.v bounds="9.954506,53.60422,9.963537,53.608" lon={9.955628} lat={53.605893} dir="backward" ref={Alltagsroute3}>Heckenrosenweg</.v> umgeleitet werden. Die Fahrt nach Süden soll weiter entlang der Veloroute möglich bleiben.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

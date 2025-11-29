@@ -24,9 +24,9 @@ defmodule Data.Article.Blog.BlankeneseSued do
     <p>Der Artikel wurde aufgeteilt, da die ursprünglich gemeinsame Planung mittlerweile getrennt wurde.</p>
 
     <ul>
-      <li><.a name="2019-03-07-manteuffelstrasse">Manteuffelstraße und Humannstraße</.a></li>
-      <li><.a name="2019-03-07-kreuzung-elbchaussee-manteuffel-schenefelder-muehlenberg">Kreuzung Elbchaussee / Manteuffelstraße / Mühlenberg</.a></li>
-      <li><.a name="2019-03-07-godeffroystrasse-und-gaetgensstrasse">Godeffroystraße und Gätgensstrasse</.a></li>
+      <li><.a ref={Manteuffelstrasse}>Manteuffelstraße und Humannstraße</.a></li>
+      <li><.a ref={KreuzungElbchausseeManteuffelSchenefelderMuehlenberg}>Kreuzung Elbchaussee / Manteuffelstraße / Mühlenberg</.a></li>
+      <li><.a ref={GodeffroystrasseUndGaetgensstrasse}>Godeffroystraße und Gätgensstrasse</.a></li>
     </ul>
     """
   end

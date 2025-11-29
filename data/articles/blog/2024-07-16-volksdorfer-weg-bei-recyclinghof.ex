@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.VolksdorferWegBeiRecyclinghof do
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>In einer S-Kurve führt eine <.v bounds="10.128393,53.64443,10.133244,53.647314" lon={10.130206} lat={53.645733} dir="forward" ref="br-wandsbek-w6">Nebenfahrbahn des Volksdorfer Wegs</.v> wieder auf den Hauptstrang. Durch die eingeschränkte Sicht ist Linksabbiegen unangenehm.</p>
+    <p>In einer S-Kurve führt eine <.v bounds="10.128393,53.64443,10.133244,53.647314" lon={10.130206} lat={53.645733} dir="forward" ref={BrWandsbekW6}>Nebenfahrbahn des Volksdorfer Wegs</.v> wieder auf den Hauptstrang. Durch die eingeschränkte Sicht ist Linksabbiegen unangenehm.</p>
 
     <p>Weil ein Gehweg auf der Südseite fehlt, wird dort auf einem Trampelpfad gelaufen und im Kurvenbereich so gequert.</p>
 
@@ -37,7 +37,7 @@ defmodule Data.Article.Blog.VolksdorferWegBeiRecyclinghof do
     <h4>Meinung</h4>
     <p>Zum Erreichen des <.m bounds="10.129774,53.644045,10.136694,53.646479">Recyclinghofs</.m> liegt die Querungshilfe ungünstig. Außerdem muss wegen ihr die Fahrbahn stark verbreitert werden, was viele Baumfällungen zur Folge hat. Davon soll keiner ersetzt werden. Die vorgeschlagene Lösung überzeugt daher nicht.</p>
 
-    <p>Eine einseitige Gehwegnase könnte einfacher umzusetzen sein und mit weniger Baumfällungen auskommen. Leider wurde dies gar nicht untersucht, obwohl im <.a name="2024-07-16-volksdorfer-weg-saseler-weg">weiteren Verlauf des Volksdorfer Weg</.a> ebenfalls einseitige Verkehrsinseln das Rasen reduzieren sollen.</p>
+    <p>Eine einseitige Gehwegnase könnte einfacher umzusetzen sein und mit weniger Baumfällungen auskommen. Leider wurde dies gar nicht untersucht, obwohl im <.a ref={VolksdorferWegSaselerWeg}>weiteren Verlauf des Volksdorfer Weg</.a> ebenfalls einseitige Verkehrsinseln das Rasen reduzieren sollen.</p>
 
     <h4>Links</h4>
     <.structured_links ref={@ref}/>

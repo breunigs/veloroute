@@ -518,7 +518,7 @@ defmodule VelorouteWeb.FrameLive do
   defp maybe_autoplay(socket, false), do: socket
 
   defp canonical(art) do
-    if art, do: Article.Decorators.path(art), else: "/"
+    if art, do: art.path(), else: "/"
   end
 
   defp alternate(nil, _lang), do: %{}
@@ -527,7 +527,7 @@ defmodule VelorouteWeb.FrameLive do
     art.languages()
     |> List.delete(lang)
     |> Enum.into(%{}, fn lang ->
-      {lang, Article.Decorators.path(art) <> "?lang=#{lang}"}
+      {lang, art.path() <> "?lang=#{lang}"}
     end)
   end
 

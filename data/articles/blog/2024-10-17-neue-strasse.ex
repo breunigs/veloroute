@@ -33,9 +33,9 @@ defmodule Data.Article.Blog.NeueStrasse do
     <p>Die Straße ist mit klassischem Kopfsteinpflaster befestigt. Entsprechend holprig ist die Fahrt.</p>
 
     <h4>Vorhaben</h4>
-    <p>Laut Baustellenankündigung soll die <.ref>Fahrbahn</.ref> neu gepflastert werden. Dabei soll ein „glattes“ Pflaster eingebaut werden. Vermutlich ist abgeflachtes bzw. geschliffenes Pflaster gemeint, was z.B. auch auf dem <.v bounds="9.982951,53.465614,9.988446,53.467453" lon={9.985716} lat={53.466357} dir="forward" ref="FR6">Gehweg beim Kanalplatz</.v> verbaut wurde.</p>
+    <p>Laut Baustellenankündigung soll die <.ref>Fahrbahn</.ref> neu gepflastert werden. Dabei soll ein „glattes“ Pflaster eingebaut werden. Vermutlich ist abgeflachtes bzw. geschliffenes Pflaster gemeint, was z.B. auch auf dem <.v bounds="9.982951,53.465614,9.988446,53.467453" lon={9.985716} lat={53.466357} dir="forward" ref={Freizeitroute6}>Gehweg beim Kanalplatz</.v> verbaut wurde.</p>
 
-    <p>Auch das Pflaster um die <.v bounds="9.979481,53.463228,9.981618,53.464361" lon={9.980392} lat={53.463744} dir="backward" ref="10">Lämmertwiete</.v> soll vereinheitlicht werden.</p>
+    <p>Auch das Pflaster um die <.v bounds="9.979481,53.463228,9.981618,53.464361" lon={9.980392} lat={53.463744} dir="backward" ref={Alltagsroute10}>Lämmertwiete</.v> soll vereinheitlicht werden.</p>
 
     <h4>Links</h4>
     <.structured_links ref={@ref}/>

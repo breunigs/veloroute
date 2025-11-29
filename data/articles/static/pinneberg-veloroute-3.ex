@@ -83,7 +83,7 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
     <ul>
       <li>In Pinneberg führt die Strecke über eine Spielstraße, Fußwege, Hofeinfahrten und den Bahnhofsparkplatz. Keine dieser Wege ist für den Radverkehr geeignet, da dieser jeweils nur Gast ist und entsprechend langsam fahren muss.</li>
       <li>Die Bahnunterführung ist jetzt schon überlastet. Mit Anhänger oder Lastenrädern ist ein durchkommen nicht sicher.</li>
-      <li>Die gemeinsamen Fuß/Radwege entlang der Datumer Chaussee sind häufig <.v bounds="9.802147,53.635808,9.808353,53.639729" lon={9.805097} lat={53.63791} dir="forward" ref="pinneberg-3">zu schmal</.v>. Mit einem Lastenrad ist Durchkommen schwierig bis unmöglich.</li>
+      <li>Die gemeinsamen Fuß/Radwege entlang der Datumer Chaussee sind häufig <.v bounds="9.802147,53.635808,9.808353,53.639729" lon={9.805097} lat={53.63791} dir="forward" ref={PinnebergVeloroute3}>zu schmal</.v>. Mit einem Lastenrad ist Durchkommen schwierig bis unmöglich.</li>
       <li>Fehlerhafte Beschilderung an bebauten Abschnitten der Datumer Chaussee. Häufig <em>muss</em> man auf der <.ref>Fahrbahn</.ref> fahren, wird kurz darauf aber wieder auf einen gemeinsamen Fuß/Radweg gezwungen. Ohne Vorkenntnis der Strecke ist es kaum möglich sich korrekt zu verhalten.</li>
     </ul>
     <p>Als Maßnahmen sollte die Stadt die Routenführung im Innenstadtbereich überdenken und die Unterführung verbreitern. Der KFZ-Verkehr kann aus der Datumer Chaussee auf die Landstraße verlagert werden, was mit Pollern kostengünstig umgesetzt werden kann. Fuß, Rad und HVV müssen natürlich weiterhin passieren können.</p>

@@ -104,16 +104,16 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
 
     <p>An den Kreuzungen ist jeweils <.ref>indirektes Linksabbiegen</.ref> vorgesehen. Am <.v bounds="10.12915,53.570792,10.130917,53.571429" lon={10.129556} lat={53.570998} dir="forward" ref={@ref}>Denksteinweg</.v> hat man die Wahl; am <.v bounds="10.132605,53.57058,10.13532,53.571594" lon={10.133119} lat={53.571052} dir="forward" ref={@ref}>Grabkeweg</.v> muss <.ref>direkt</.ref> links abgebogen werden.</p>
 
-    <h4>Planung – Schiffbeker Weg (<.a name="br-wandsbek-w8">Bezirksroute W8</.a>)</h4>
+    <h4>Planung – Schiffbeker Weg (<.a ref={BrWandsbekW8}>Bezirksroute W8</.a>)</h4>
     <p>Es wird nur die <.m bounds="10.123928,53.570192,10.124819,53.570958">Südseite der Kreuzung</.m> umgebaut. In Fahrtrichtung Norden wird eine Protected-Bike-Lane einrichtet. In der Gegenrichtung ist jeweils nur kurz ein Stück Protected-Bike-Lane bzw. Radfahrstreifen vorgesehen, bevor der Radverkehr durch die Wartefläche der Busse geleitet wird. Wer an einem wartenden Bus vorbeifahren möchte, muss sich in den KFZ-Verkehr einordnen.</p>
 
-    <h4>Planung – Öjendorfer Damm (<.a name="14">Radroute 14</.a>)</h4>
-    <p>Folgt man der Radroute <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135622} lat={53.570497} dir="backward" ref="14">Richtung Norden</.v>, weitet sich die Fahrbahn auf und man fährt auf eine Protected-Bike-Lane. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136138} lat={53.571177} dir="backward" ref="14">Nach der Kreuzung</.v> fährt man wie bisher rechts der Bushaltestelle auf einem Hochbordradweg.</p>
+    <h4>Planung – Öjendorfer Damm (<.a ref={Alltagsroute14}>Radroute 14</.a>)</h4>
+    <p>Folgt man der Radroute <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135622} lat={53.570497} dir="backward" ref={Alltagsroute14}>Richtung Norden</.v>, weitet sich die Fahrbahn auf und man fährt auf eine Protected-Bike-Lane. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136138} lat={53.571177} dir="backward" ref={Alltagsroute14}>Nach der Kreuzung</.v> fährt man wie bisher rechts der Bushaltestelle auf einem Hochbordradweg.</p>
 
-    <p>In <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136164} lat={53.571616} dir="forward" ref="14">Fahrtrichtung Süden</.v> wird man vom Hochbordradweg auf eine Protected-Bike-Lane abgeleitet. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref="14">Nach der Kreuzung</.v> wird man durch den Wartebereich der Busse geleitet. Wer an einem wartenden Bus vorbeifahren will, muss sich in den KFZ-Verkehr einordnen. Der zur Orientierung dienende Schutzstreifen endet an der Einmündung <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135519} lat={53.570426} dir="forward" ref="14">Am Jenfelder Bach</.v>.</p>
+    <p>In <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.136164} lat={53.571616} dir="forward" ref={Alltagsroute14}>Fahrtrichtung Süden</.v> wird man vom Hochbordradweg auf eine Protected-Bike-Lane abgeleitet. <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135751} lat={53.570804} dir="forward" ref={Alltagsroute14}>Nach der Kreuzung</.v> wird man durch den Wartebereich der Busse geleitet. Wer an einem wartenden Bus vorbeifahren will, muss sich in den KFZ-Verkehr einordnen. Der zur Orientierung dienende Schutzstreifen endet an der Einmündung <.v bounds="10.134848,53.570084,10.136912,53.571907" lon={10.135519} lat={53.570426} dir="forward" ref={Alltagsroute14}>Am Jenfelder Bach</.v>.</p>
 
     <h4>Sonstiges</h4>
-    <p>Die Planung schließt nahtlos an den Abschnitt <.a name="2022-02-16-juethornstrasse-und-rodigallee">zwischen Jenfelder Allee und Bovestraße</.a> an. Der Umbau erfolgt gemeinsam bzw. koordiniert.</p>
+    <p>Die Planung schließt nahtlos an den Abschnitt <.a ref={JuethornstrasseUndRodigallee}>zwischen Jenfelder Allee und Bovestraße</.a> an. Der Umbau erfolgt gemeinsam bzw. koordiniert.</p>
 
     <h4>Meinung</h4>
     <p>Die Planung bringt gute Radwege. Größtes Manko ist die Führung an Bushaltestellen. Diese sind teilweise gut (Hochbordradweg rechts der Aufstellfläche für Fahrgäste), fehlen aber auch teilweise (Gehwegradeln, Führung durch Haltefläche der Busse).</p>

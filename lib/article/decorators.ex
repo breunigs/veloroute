@@ -43,7 +43,7 @@ defmodule Article.Decorators do
     %Search.Result{
       bounds: bounds,
       name: Article.Decorators.full_title(art),
-      url: Article.Decorators.path(art),
+      url: art.path(),
       relevance: relevance,
       type: type,
       subtext: subtext
@@ -150,19 +150,12 @@ defmodule Article.Decorators do
   @doc """
   Returns the canonical path for a given article
   """
-  @spec path(Article.t()) :: binary()
-  def path(art) do
-    if Article.has_category?(art, "Blog"),
-      do: "/article/#{art.name()}",
-      else: "/#{art.name()}"
-  end
-
   @spec path(Article.t(), nil | map()) :: binary()
   def path(art, query)
-  def path(art, nil), do: path(art)
+  def path(art, nil), do: art.path()
 
   def path(art, query) when is_map(query) do
-    path(art) <> "?" <> URI.encode_query(query)
+    art.path() <> "?" <> URI.encode_query(query)
   end
 
   @doc """
@@ -175,7 +168,7 @@ defmodule Article.Decorators do
         do: "?lang=#{lang}",
         else: ""
 
-    Settings.r(:url) <> path(art) <> query
+    Settings.r(:url) <> art.path() <> query
   end
 
   @type_names %{

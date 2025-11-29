@@ -66,7 +66,7 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
     <p>Es werden weitere Bäume gepflanzt, allerdings auch einige Alte gefällt.</p>
 
     <h4>Sonstiges</h4>
-    <p>Die Planung schließt nahtlos an den Abschnitt <.a name="2022-03-17-rodigallee-und-barsbuettler-strasse">zwischen Jenfelder Allee und Öjendorfer Damm</.a> an. Der Umbau erfolgt gemeinsam bzw. koordiniert.</p>
+    <p>Die Planung schließt nahtlos an den Abschnitt <.a ref={RodigalleeUndBarsbuettlerStrasse}>zwischen Jenfelder Allee und Öjendorfer Damm</.a> an. Der Umbau erfolgt gemeinsam bzw. koordiniert.</p>
 
     <h4>Meinung</h4>
     <p>Aus Sicht des Radverkehrs gibt es am fertigen Entwurf wenig auszusetzen. Wo möglich, wird der Radverkehr mit Bordsteinen ordentlich vom KFZ-Verkehr getrennt. Die Radwege sind breit genug damit überholt werden kann.</p>
