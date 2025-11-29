@@ -52,6 +52,8 @@ defmodule VelorouteWeb.FrameLive do
       |> maybe_run_events_from_url(params)
       |> search(params["search_query"])
 
+    VelorouteWeb.ConnectionTracker.track(socket)
+
     {:ok, socket}
   end
 
