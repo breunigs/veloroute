@@ -49,7 +49,7 @@ defmodule Basemap.Plug do
     Logger.warning("requested basemap file #{conn.request_path} not found")
 
     conn
-    |> send_resp(404, "file not found, try the homepage at #{Settings.r(:url)}} ? ")
+    |> send_resp(404, "file not found, try the homepage at #{Settings.r(:url)} ?")
     |> halt()
   end
 end
