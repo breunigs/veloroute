@@ -26,7 +26,7 @@ defmodule Basemap.Static.Plug do
           |> Plug.Conn.put_resp_content_type(content_type, nil)
           |> Plug.Conn.put_resp_header(
             "cache-control",
-            "public, max-age=#{@seconds_per_day}, immutable"
+            "public, max-age=#{@seconds_per_day}, stale-while-revalidate=#{@seconds_per_day}, immutable"
           )
           |> Plug.Conn.send_resp(200, image)
           |> Plug.Conn.halt()
