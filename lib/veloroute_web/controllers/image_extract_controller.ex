@@ -100,6 +100,8 @@ defmodule VelorouteWeb.ImageExtractController do
     source_abs = Path.join(Settings.r(:video_target_dir_abs), source)
 
     ts = min(ts, max_length + @ffmpeg_allow_seeking_past_end_s * 1000)
+    # fix off by 1 frame compared to video player
+    ts = max(0, ts - round(Video.Constants.frame_duration()))
 
     ffmpeg_args =
       List.flatten([
