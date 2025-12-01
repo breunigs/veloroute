@@ -1,5 +1,7 @@
 defmodule Components.TagHelpers do
   use Phoenix.Component
+  use VelorouteWeb, :verified_routes
+
   require Settings
   import Guards
 
@@ -549,7 +551,7 @@ defmodule Components.TagHelpers do
            class="customicon"
            {@rest}
         >
-          <img src="/images/rsw.svg" alt="Radschnellweg Symbol der StVO" loading="lazy"/>
+          <img src={~p"/images/rsw.svg"} alt="Radschnellweg Symbol der StVO" loading="lazy"/>
         </a>
         """
 

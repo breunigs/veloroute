@@ -285,8 +285,9 @@ defmodule Mix.Tasks.Deploy do
 
   defp restart(_skip) do
     Util.banner("Restarting")
-    restart_service("veloroute-phoenix1.service")
     restart_service("veloroute-phoenix2.service")
+    reload_service("caddy.service")
+    restart_service("veloroute-phoenix1.service")
   end
 
   defp restart_service(name) do
@@ -320,6 +321,21 @@ defmodule Mix.Tasks.Deploy do
       )
 
     0 = exit_status
+  end
+
+  defp reload_service(name) do
+    {_, 0} =
+      System.cmd(
+        "ssh",
+        [
+          Settings.r(:deploy_ssh_name),
+          "sudo",
+          "/bin/systemctl",
+          "reload",
+          name
+        ],
+        into: IO.stream(:stdio, :line)
+      )
   end
 
   defp preload_videos(%{skip_deploy: true}), do: nil

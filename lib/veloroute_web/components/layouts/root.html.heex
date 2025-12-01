@@ -31,7 +31,7 @@
   <%= if Settings.r(:mastodon_url) != nil do %>
     <link rel="me" href={Settings.r(:mastodon_url)}>
   <% end %>
-  <%= VelorouteWeb.CSSInline.tag(:app) %>
+  <link rel="stylesheet" href={~p"/assets/app.css"}/>
 </head>
 <body class="hideSidebar">
   <%= @inner_content %>

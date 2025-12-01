@@ -17,7 +17,7 @@ defmodule VelorouteWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images geo favicons robots.txt)
+  def static_paths, do: ~w(assets fonts images geo favicons robots.txt early_hints.txt)
 
   def router do
     quote do
