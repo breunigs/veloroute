@@ -125,7 +125,7 @@ defmodule VelorouteWeb.PageController do
 
   def js_errors(conn, _params) do
     {:ok, data, _conn_details} = Plug.Conn.read_body(conn)
-    Logger.error("A JavaScript error was reported:\n#{data}\n#{inspect(conn)}")
+    Logger.error("A JavaScript error was reported:\n#{data}")
     send_resp(conn, 204, "")
   end
 

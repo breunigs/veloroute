@@ -426,14 +426,14 @@ $videoBarProgressHeight: 0.4rem;
     // opacity: 1 !important; // toggle
 
     opacity: 0;
-    visibility: collapse;
+    visibility: collapse !important;
 
     transition: opacity 0.2s ease-in-out, visibility 0.2s;
     transition-delay: 250ms;
   }
 
   &:not(.hidden):hover > div {
-    visibility: visible;
+    visibility: visible !important;
 
     opacity: 1;
     transition-delay: 0ms;

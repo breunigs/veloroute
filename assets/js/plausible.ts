@@ -53,17 +53,3 @@ if (window.history.pushState) {
 window.addEventListener("plausible", e => window.plausible((e as CustomEvent).detail.event))
 
 page()
-
-new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    if (entry.hadRecentInput) continue
-    if (entry.value < 0.05) continue
-
-    let tags = ""
-    for (const { node } of entry.sources) {
-      tags += ` ${node.localName}#${node.id}.${node.className}`
-    }
-
-    window.plausible('layout-shift', { props: { tags: tags } })
-  }
-}).observe({ type: 'layout-shift', buffered: true });

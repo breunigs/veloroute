@@ -234,7 +234,6 @@ window.addEventListener("map:initialLoad", (e) => {
   updateVideoElement(true)
 })
 
-let canPlayThroughEvtListener = null
 let preloadedHlsJs = null
 let preloadedHlsJsPath = null
 function updateVideoElement(preloadOnly) {
@@ -242,19 +241,7 @@ function updateVideoElement(preloadOnly) {
   console.debug('trying to play video for: ', videoMeta.hash)
   if (canPlayHLS) {
     if (preloadOnly) return
-    console.debug('native hls; hacking around first frame flash')
-    if (video.readyState === 0) {
-      // only re-use video poster when it's loaded
-      outer.style.backgroundImage = `url("${videoMeta.poster}")`
-      outer.style.backgroundSize = 'cover'
-    }
-    video.style.visibility = 'hidden'
-    if (canPlayThroughEvtListener) video.removeEventListener(canPlayThroughEvtListener)
-    canPlayThroughEvtListener = video.addEventListener('canplaythrough', () => {
-      video.style.visibility = 'visible'
-      outer.style.backgroundImage = null
-      outer.style.backgroundSize = null
-    }, { once: true });
+    if (videoMeta.start > 0) preventHLSFirstFrameFlash()
   } else if (window.hls === false || typeof Promise === "undefined" || !Hls.isSupported()) {
     window.hls = false
     if (preloadOnly) return
@@ -355,6 +342,31 @@ function updateVideoElement(preloadOnly) {
   video.playbackRate = videoPlaybackRate;
   try { video.load(); } catch (e) { }
   if (autoplay && !video.paused) video.play();
+}
+
+let canPlayThroughEvtListener = null
+let canPlayThroughFallback = null
+function preventHLSFirstFrameFlash() {
+  console.debug('native hls; hacking around first frame flash')
+
+  if (video.readyState === 0) {
+    // only re-use video poster when it's loaded
+    outer.style.backgroundImage = `url("${videoMeta.poster}")`
+    outer.style.backgroundSize = 'cover'
+  }
+  video.style.visibility = 'hidden'
+  const reset = () => {
+    video.style.visibility = 'visible'
+    outer.style.backgroundImage = null
+    outer.style.backgroundSize = null
+
+    video.removeEventListener(canPlayThroughEvtListener)
+    clearTimeout(canPlayThroughFallback)
+  }
+
+  const eventType = videoMeta.start == 0 ? 'playing' : 'seeked'
+  canPlayThroughEvtListener = video.addEventListener(eventType, reset, { once: true });
+  canPlayThroughFallback = setTimeout(eventType, reset, 1000);
 }
 
 function restorePreviousQuality() {
@@ -772,6 +784,8 @@ function scrubCancel(e) {
 }
 
 function updateProgressbar() {
+  if (video.style.visibility == 'hidden') return
+
   const ms = scrubTimeInMs !== null
     ? scrubTimeInMs
     : (fixSeekForWrongVideoDuration || videoTimeInMs);
