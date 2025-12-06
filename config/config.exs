@@ -78,6 +78,9 @@ config :mime, :types, %{
   "application/x-protobuf" => ["pbf"]
 }
 
+# https://hexdocs.pm/tesla/v1-macro-migration.html
+config :tesla, disable_deprecated_builder_warning: true
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
