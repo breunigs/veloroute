@@ -19,7 +19,7 @@ defmodule Article.List do
 
   def recent(min, max, days) do
     {always, rest} =
-      sorted_blog_posts()
+      sorted_blog_posts(max)
       |> Stream.filter(&Article.released?/1)
       |> StreamSplit.take_and_drop(min)
 
@@ -33,8 +33,10 @@ defmodule Article.List do
     Stream.concat(always, extra)
   end
 
-  defmemop sorted_blog_posts() do
-    Enum.sort_by(category("Blog"), & &1.updated_at(), {:desc, Date})
+  defmemop sorted_blog_posts(max) do
+    category("Blog")
+    |> Enum.sort_by(& &1.updated_at(), {:desc, Date})
+    |> Enum.take(max)
   end
 
   @spec find_exact(t, binary | Article.t() | nil) :: Article.t() | nil
