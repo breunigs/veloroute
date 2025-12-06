@@ -26,6 +26,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
         to: "",
         parent_ref: __MODULE__,
         text: "Rothenbaumchaussee Fahrtrichtung Norden",
+        historic: %{"8b2213efc4e5cc2009cc4efc518e8f9e" => ~d[2022-01]},
         videos: [
           {"2022-01-08-rothenbaumchaussee/GX013123", "00:00:02.903", "00:00:26.393"},
           {"2022-01-08-rothenbaumchaussee/GX013124", :start, "00:00:21.321"},
@@ -40,6 +41,7 @@ defmodule Data.Article.Blog.Rothenbaumchaussee do
         to: "",
         parent_ref: __MODULE__,
         text: "Rothenbaumchaussee Fahrtrichtung Süden",
+        historic: %{"8b8637099f36f92c58c625d36b6d82bf" => ~d[2023-11]},
         videos: [
           {"2022-01-08-rothenbaumchaussee/GX013107", "00:00:14.481", "00:00:28.629"},
           {"2023-11-25-random/GX016706", "00:00:01.768", :end},

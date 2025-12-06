@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
         to: "Heilwigbrücke",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Rotherbaum“ → Heilwigbrücke",
+        historic: %{"08854bdfb57c16dd257c0db1e051e817" => ~d[2023-02]},
         videos: [
           {"2023-02-25-eimsbuettel-br2/GX015234", :start, :end},
           {"2023-02-25-eimsbuettel-br2/GX015235", :start, :end},
@@ -39,6 +40,7 @@ defmodule Data.Article.Static.BrEimsbuettelRotherbaum do
         to: "Dammtor",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Rotherbaum“ → Dammtor",
+        historic: %{"7dce534a8a5dd0e3662f1e3daa9947bc" => ~d[2023-02]},
         videos: [
           {"2023-02-25-eimsbuettel-br2/GX015236", "00:01:26.736", :end}
         ]

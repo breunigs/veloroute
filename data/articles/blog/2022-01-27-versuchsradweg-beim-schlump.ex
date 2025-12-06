@@ -24,6 +24,7 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
         to: "Bogenstraße",
         parent_ref: __MODULE__,
         text: "Beim Schlump Richtung Harvestehude",
+        historic: %{"5880d9280260e337f3a04d2fe7f5c188" => ~d[2022-01]},
         videos: [
           {"2022-01-08-rothenbaumchaussee/GX013101", "00:00:03.937", :end},
           {"2022-01-08-rothenbaumchaussee/GX013102", "00:00:02.269", "00:00:12.279"}
@@ -37,6 +38,7 @@ defmodule Data.Article.Blog.VersuchsradwegBeimSchlump do
         to: "Gustav-Falke-Straße",
         parent_ref: __MODULE__,
         text: "Beim Schlump Richtung Sternschanze",
+        historic: %{"a79b36b11f98cc24be6171e01650785e" => ~d[2022-01]},
         videos: [
           {"2022-01-08-rothenbaumchaussee/GX013131", "00:00:03.837", "00:00:29.997"}
         ]

@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN1 do
         to: "Ochsenzoll",
         parent_ref: __MODULE__,
         text: "vom Lübeckertordamm zum Ochsenzoll",
+        historic: %{"e285f14bf69e8747161875b388dd867e" => ~d[2023-10]},
         videos: [
           {"2023-10-25-brnord/GX016563", :start, :end},
           {"2023-10-25-brnord/GX016564", :start, :end},
@@ -56,6 +57,7 @@ defmodule Data.Article.Static.BrNordN1 do
         to: "Lübeckertordamm",
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll zum Lübeckertordamm",
+        historic: %{"b3abd8b636fff224d220050a1925f5cd" => ~d[2023-10]},
         videos: [
           {"2023-10-25-brnord/GX016582", "00:00:25.687", :end},
           {"2023-10-25-brnord/GX016583", :start, :end},

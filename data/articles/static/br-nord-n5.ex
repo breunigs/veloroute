@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN5 do
         to: "Eulenkamp",
         parent_ref: __MODULE__,
         text: "von der Krugkoppelbrücke zum Eulenkamp",
+        historic: %{"061499ea360b4b41a18f22212a511de5" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016418", "00:00:40.040", :end},
           {"2023-10-18-brnord/GX016419", :start, :end},
@@ -46,6 +47,7 @@ defmodule Data.Article.Static.BrNordN5 do
         to: "Krugkoppelbrücke",
         parent_ref: __MODULE__,
         text: "vom Eulenkamp zur Krugkoppelbrücke",
+        historic: %{"d9c9a07a290c8ea2e10e65f38d6f261f" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016427", "00:00:41.700", :end},
           {"2023-10-18-brnord/GX016428", :start, :end},

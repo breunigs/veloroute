@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
         to: "Lohe",
         parent_ref: __MODULE__,
         text: "Poppenbüttel nach Duvenstedt (auf dem Fußweg)",
+        historic: %{"cd3de7d29aa99c884ec7a8acdf21c1f5" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014750", "00:00:06.340", :end},
           {"2022-09-11-landstr-volksd-duvens/GX014751", :start, :end},
@@ -36,6 +37,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
         to: "Ulzburger Straße",
         parent_ref: __MODULE__,
         text: "Duvenstedt nach Poppenbüttel (auf dem Fußweg)",
+        historic: %{"8e2f39496c94167923c08f99796ee290" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014752", "00:03:33.504", :end},
           {"2022-09-11-landstr-volksd-duvens/GX014753", :start, "00:00:16.283"},
@@ -52,6 +54,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
         to: "Lohe",
         parent_ref: __MODULE__,
         text: "Poppenbüttel nach Duvenstedt (auf der Fahrbahn)",
+        historic: %{"eca0fec784d91a3e39fb555fbc82beb1" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014757", "00:00:09.007", :end},
           {"2022-09-11-landstr-volksd-duvens/GX014758", :start, "00:02:53.472"}
@@ -65,6 +68,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
         to: "Ulzburger Straße",
         parent_ref: __MODULE__,
         text: "Duvenstedt nach Poppenbüttel (auf der Fahrbahn)",
+        historic: %{"6ac2d6adbd1bda5c65590484f6ca88c3" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014759", "00:00:10.675", "00:01:49.109"},
           {"2022-09-11-landstr-volksd-duvens/GX014766", "00:02:00.988", :end},

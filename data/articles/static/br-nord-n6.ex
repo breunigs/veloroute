@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrNordN6 do
         to: "Barmbek",
         parent_ref: __MODULE__,
         text: "vom UKE nach Barmfeld",
+        historic: %{"5c3da2ece766189e2d0b4e9225e77abb" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016390", :start, :end},
           {"2023-10-18-brnord/GX016391", :start, :end},
@@ -48,6 +49,7 @@ defmodule Data.Article.Static.BrNordN6 do
         to: "UKE",
         parent_ref: __MODULE__,
         text: "von Barmfeld zum UKE",
+        historic: %{"7d959c7f6a5899dc2b92753b9fb0b498" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016402", :start, :end},
           {"2023-10-18-brnord/GX016403", :start, :end},
@@ -71,6 +73,7 @@ defmodule Data.Article.Static.BrNordN6 do
         to: "Pestalozzistraße",
         parent_ref: __MODULE__,
         text: "vom Grasweg zur Pestalozzistraße",
+        historic: %{"4a7530f5a651dc74c0ad62c44b11d67e" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016439", "00:00:09.977", "00:00:32.366"},
           {"2023-10-18-brnord/GX016439", "00:01:09.002", :end},
@@ -87,6 +90,7 @@ defmodule Data.Article.Static.BrNordN6 do
         to: "Grasweg",
         parent_ref: __MODULE__,
         text: "von der Pestalozzistraße zum Grasweg",
+        historic: %{"81c68d4715601b1dad22e9c61ad4dcad" => ~d[2023-10]},
         end_action: %{action: :play, route: __MODULE__, group: "n6-main", direction: :backward},
         videos: [
           {"2023-10-18-brnord/GX016443", :start, :end},

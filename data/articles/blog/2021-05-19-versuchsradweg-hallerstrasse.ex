@@ -25,6 +25,7 @@ defmodule Data.Article.Blog.VersuchsradwegHallerstrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Hallerstraße Richtung Osten",
+        historic: %{"f3e80ef8f3ded1dca0b0301105926867" => ~d[2021-06]},
         videos: [
           {"2021-06-19-veloroute6/GX011842", "00:00:18.852", "00:00:38.305"}
         ]

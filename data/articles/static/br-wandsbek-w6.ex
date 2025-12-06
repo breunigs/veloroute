@@ -27,6 +27,7 @@ defmodule Data.Article.Static.BrWandsbekW6 do
         to: "Volksdorf",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W6“ → Volksdorf",
+        historic: %{"190ed171e9d1ce3d59c89f883d4bd0de" => ~d[2023-04]},
         videos: [
           {"2023-04-10-br-wandsbek/GX015566", "00:00:19.286", :end},
           {"2023-04-10-br-wandsbek/GX015567", :start, :end},
@@ -42,6 +43,7 @@ defmodule Data.Article.Static.BrWandsbekW6 do
         to: "Wellingsbüttel",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W6“ → Wellingsbüttel",
+        historic: %{"ed90b9ba9c353c95e5f379f10f761037" => ~d[2023-04]},
         videos: [
           {"2023-04-10-br-wandsbek/GX015579", "00:01:50.944", :end},
           {"2023-04-10-br-wandsbek/GX015580", :start, :end},

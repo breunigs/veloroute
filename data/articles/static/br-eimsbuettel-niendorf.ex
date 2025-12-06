@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrEimsbuettelNiendorf do
         to: "König-Heinrich-Weg",
         parent_ref: __MODULE__,
         text: "Bezirksroute E2+E3 Eimsbüttel „Eidelstedt“ → „Niendorf“",
+        historic: %{"ae7d98552c3462def559108f06195117" => ~d[2023-02]},
         videos: [
           {"2023-02-25-eimsbuettel-br2/GX015253", "00:02:04.099", :end},
           {"2023-02-25-eimsbuettel-br2/GX015254", :start, :end},
@@ -43,6 +44,7 @@ defmodule Data.Article.Static.BrEimsbuettelNiendorf do
         to: "Niendorfer Gehege",
         parent_ref: __MODULE__,
         text: "Bezirksroute E2+E3 Eimsbüttel „Niendorf“ → „Eidelstedt“",
+        historic: %{"5be7d974645480afa94332a0ff630748" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015221", "00:01:24.734", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015222", :start, :end},

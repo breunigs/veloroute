@@ -24,6 +24,7 @@ defmodule Data.Article.Static.AhrensburgA10 do
         to: "Woldenhorn",
         parent_ref: __MODULE__,
         text: "Gartenholz → Woldenhorn",
+        historic: %{"0a7136ade6bd202cfc7397a1fcb15cc5" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014879", "00:00:25.692", :end},
           {"2022-10-15-ahrensburg/GX014880", :start, "00:01:03.564"},
@@ -38,6 +39,7 @@ defmodule Data.Article.Static.AhrensburgA10 do
         to: "Gartenholz",
         parent_ref: __MODULE__,
         text: "Woldenhorn → Gartenholz",
+        historic: %{"8b07f8966c7c937dc7229c65dac7e407" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014858", "00:00:14.678", :end},
           {"2022-10-15-ahrensburg/GX014859", :start, "00:00:53.153"},

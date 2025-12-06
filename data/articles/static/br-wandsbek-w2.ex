@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrWandsbekW2 do
         to: "Sasel",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W2“ → Sasel",
+        historic: %{"c76431adcf0241a7f70666aa9e6289dc" => ~d[2023-04]},
         videos: [
           {"2023-04-02-br-wandsbek/GX015411.MP4_time_lapse.mkv", "00:00:40.440", :end},
           {"2023-04-02-br-wandsbek/GX015412.MP4_time_lapse.mkv", :start, :end},
@@ -48,6 +49,7 @@ defmodule Data.Article.Static.BrWandsbekW2 do
         to: "Horn",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W2“ → Horn",
+        historic: %{"ba356a175ab621f86ae0f93c03f6e7b4" => ~d[2023-04]},
         videos: [
           {"2023-04-02-br-wandsbek/GX015403", :start, "00:03:26.673"},
           {"2023-04-02-br-wandsbek/GX015403", "00:03:33.046", :end},

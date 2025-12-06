@@ -25,6 +25,7 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
         to: "Eppendorfer Marktplatz",
         parent_ref: __MODULE__,
         text: "Lenhartzstraße → Schottmüllerstraße → Eppendorfer Marktplatz",
+        historic: %{"1f5326d6b662ad293cfcab81a344cc7c" => ~d[2023-10]},
         videos: [
           {"2023-10-29-lenhart/GX016635", :start, :end},
           {"2023-10-29-lenhart/GX016636", :start, "00:00:23.018"}
@@ -38,6 +39,7 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
         to: "Eppendorfer Baum",
         parent_ref: __MODULE__,
         text: "Eppendorfer Marktplatz → Schottmüllerstraße → Lenhartzstraße",
+        historic: %{"6ed161d40d453ffecb50dadbf9fed8e2" => ~d[2023-10]},
         videos: [
           {"2023-10-29-lenhart/GX016638", "00:00:09.007", :end},
           {"2023-10-29-lenhart/GX016639", :start, :end},

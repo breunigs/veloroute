@@ -23,6 +23,7 @@ defmodule Data.Article.Static.RSWLuebeck do
         to: "Groß Grönau",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Bad Schwartau → Groß Grönau",
+        historic: %{"32f9ff264848881262b3826e563981c8" => ~d[2022-08]},
         videos: [
           {"2022-08-30-rsw-luebeck/GX014654", :start, :end},
           {"2022-08-30-rsw-luebeck/GX014655", :start, :end},
@@ -56,6 +57,7 @@ defmodule Data.Article.Static.RSWLuebeck do
         to: "Bad Schwartau",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Groß Grönau → Bad Schwartau",
+        historic: %{"015bbbef846018e7a1710faaac9dd992" => ~d[2022-08]},
         videos: [
           {"2022-08-30-rsw-luebeck/GX014682", "00:02:52.805", :end},
           {"2022-08-30-rsw-luebeck/GX014683", :start, :end},
@@ -87,6 +89,7 @@ defmodule Data.Article.Static.RSWLuebeck do
         to: "Ratzeburger Allee",
         parent_ref: __MODULE__,
         text: "RSW Lübeck: Variante „Mönkhofer Weg“ (→ Süd)",
+        historic: %{"cf704fd0c82ae849ae8e7b08d6607234" => ~d[2022-08]},
         videos: [
           {"2022-08-30-rsw-luebeck/GX014669", "00:00:18.518", :end},
           {"2022-08-30-rsw-luebeck/GX014670", :start, "00:00:07.774"},
@@ -101,6 +104,7 @@ defmodule Data.Article.Static.RSWLuebeck do
         to: "Possehlstraße",
         parent_ref: __MODULE__,
         text: "RSW Lübeck: Variante „Mönkhofer Weg“ (→ Nord)",
+        historic: %{"4dc326903d244a3ba8d0e174436af058" => ~d[2022-08]},
         videos: [
           {"2022-08-30-rsw-luebeck/GX014689", :start, :end},
           {"2022-08-30-rsw-luebeck/GX014690", :start, :end},

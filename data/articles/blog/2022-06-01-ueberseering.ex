@@ -26,6 +26,7 @@ defmodule Data.Article.Blog.Ueberseering do
         to: "Ostarm",
         parent_ref: __MODULE__,
         text: "Überseering im Uhrzeigersinn",
+        historic: %{"d763295b172404e6733296718edd6740" => ~d[2022-08]},
         videos: [
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014414", :start, :end},
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014415", :start, :end}
@@ -39,6 +40,7 @@ defmodule Data.Article.Blog.Ueberseering do
         to: "Westarm",
         parent_ref: __MODULE__,
         text: "Überseering gegen Uhrzeigersinn",
+        historic: %{"42873d3cb992f3dc01b0951f1b88e861" => ~d[2022-08]},
         videos: [
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014417", :start, :end},
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014411", :start, :end},

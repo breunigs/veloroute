@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.KreuzungMaxBrauerAlleeHolstenstrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Max-Brauer-Allee, Sternschanze → Altona",
+        historic: %{"9eddb3330edecbc8cf3537f516c60686" => ~d[2021-04]},
         videos: [
           {"2021-04-04-freizeitroute-12-speedup-5x/GX011181", "00:00:16.000", "00:00:25.000"}
         ]

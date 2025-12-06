@@ -23,6 +23,7 @@ defmodule Data.Article.Static.AhrensburgA8 do
         to: "Schlosspark",
         parent_ref: __MODULE__,
         text: "Erlenhof → Schlosspark",
+        historic: %{"9c3b23deb8b1c842b96932dc8420ab99" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014938", "00:00:49.373", "00:01:44.404"},
           {"2022-10-16-ahrensburg2/GX014936", "00:00:02.703", "00:00:07.941"},
@@ -37,6 +38,7 @@ defmodule Data.Article.Static.AhrensburgA8 do
         to: "Erlenhof",
         parent_ref: __MODULE__,
         text: "Schlosspark → Erlenhof",
+        historic: %{"21f657d0ac00d70caad1e9b06ae0fc28" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014937", "00:00:02.636", :end},
           {"2022-10-16-ahrensburg2/GX014938", :start, "00:00:42.943"}

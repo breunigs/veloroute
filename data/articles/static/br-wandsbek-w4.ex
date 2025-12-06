@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrWandsbekW4 do
         to: "Duvenstedt",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W4“ → Duvenstedt",
+        historic: %{"5b4d14d228f27b7711ca0f2da9a74190" => ~d[2023-04]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014748", "00:00:15.679", "00:02:47.200"},
           {"2023-04-06-br-wandsbek/GX015491", "00:00:24.558", :end},
@@ -44,6 +45,7 @@ defmodule Data.Article.Static.BrWandsbekW4 do
         to: "Fuhlsbüttel",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W4“ → Fuhlsbüttel",
+        historic: %{"c51804893c36ace8b883fc8c532f1064" => ~d[2023-04]},
         videos: [
           {"2023-04-06-br-wandsbek/GX015496", "00:00:33.967", :end},
           {"2023-04-06-br-wandsbek/GX015497", :start, "00:01:16.510"},

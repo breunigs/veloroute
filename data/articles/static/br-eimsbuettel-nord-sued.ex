@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
         to: "Burgwedel",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Nord-Süd“ → Burgwedel",
+        historic: %{"444c43d53c8b4795623dc631d7fda25c" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015184", "00:00:13.981", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015186", :start, "00:00:12.980"},
@@ -53,6 +54,7 @@ defmodule Data.Article.Static.BrEimsbuettelNordSued do
         to: "Glücksburger Platz",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Nord-Süd“ → Glücksburger Platz",
+        historic: %{"e5043b170e2f9d38c2ce36294b37877f" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015202", "00:00:36.029", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015203", :start, :end},

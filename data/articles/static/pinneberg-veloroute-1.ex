@@ -23,6 +23,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
         to: "Prisdorf",
         parent_ref: __MODULE__,
         text: "vom Zentrum nach Prisdorf",
+        historic: %{"3d9ce3a6b394e6de27b11569cee72482" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013247", "00:01:36.196", "00:01:39.299"},
           {"2022-02-27-pinneberg/GX013241", "00:01:51.511", :end},
@@ -37,6 +38,7 @@ defmodule Data.Article.Static.PinnebergVeloroute1 do
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
         text: "von Prisdorf zum Zentrum",
+        historic: %{"cb9d63e8a79ca7578a4ef67b20ccc38d" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013244", "00:00:26.688", :end},
           {"2022-02-27-pinneberg/GX013245", :start, :end},

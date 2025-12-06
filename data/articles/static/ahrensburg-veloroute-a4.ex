@@ -25,6 +25,7 @@ defmodule Data.Article.Static.AhrensburgA4 do
         to: "Ahrensfelde",
         parent_ref: __MODULE__,
         text: "Rosenweg → Ahrensfelde",
+        historic: %{"f00b06cc0e394e2f74ff1921ca154a5d" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014920", "00:01:58.552", :end},
           {"2022-10-16-ahrensburg2/GX014921", :start, "00:00:22.956"},
@@ -45,6 +46,7 @@ defmodule Data.Article.Static.AhrensburgA4 do
         to: "Rosenweg",
         parent_ref: __MODULE__,
         text: "Ahrensfelde → Rosenweg",
+        historic: %{"7b66e0d6d746c9c7e944eaa907ef3fe8" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014883", "00:03:34.781", :end},
           {"2022-10-16-ahrensburg2/GX014907", :start, "00:00:47.748"},
@@ -64,6 +66,7 @@ defmodule Data.Article.Static.AhrensburgA4 do
         to: "Lilienweg",
         parent_ref: __MODULE__,
         text: "Heimgarten → Lilienweg",
+        historic: %{"461d138c816c33628c5c5524b4a372f9" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014921", "00:01:14.508", "00:01:56.883"}
         ]
@@ -76,6 +79,7 @@ defmodule Data.Article.Static.AhrensburgA4 do
         to: "Heimgarten",
         parent_ref: __MODULE__,
         text: "Lilienweg → Heimgarten",
+        historic: %{"db261d9e39d3df54e8d5b66f307090d7" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014921", "00:00:23.357", "00:01:13.140"}
         ]

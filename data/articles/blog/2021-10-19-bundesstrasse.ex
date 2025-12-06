@@ -1,8 +1,6 @@
 defmodule Data.Article.Blog.Bundesstrasse do
   use Article.Default
 
-  def created_at(), do: ~D[2021-10-19]
-
   def title(), do: "Bundesstraße (Verbindungsbahn bis Rentzelstraße)"
 
   def summary(), do: "Bundesstraße soll zur Fahrradstraße umgebaut werden."
@@ -21,6 +19,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
         to: "Eimsbütteler Brücke",
         parent_ref: __MODULE__,
         text: "Bundesstraße Richtung Eimsbüttel",
+        historic: %{"2ea2188564c085aa74bdf83d40a7da57" => ~d[2022-05]},
         videos: [
           {"2022-05-14-velo6-u-bundesstr/GX013891", :start, :end},
           {"2022-05-14-velo6-u-bundesstr/GX013892", :start, :end},
@@ -35,6 +34,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
         to: "Grindelallee",
         parent_ref: __MODULE__,
         text: "Bundesstraße Richtung Dammtor",
+        historic: %{"add77092e4a4f95b8816f17167574b43" => ~d[2022-05]},
         videos: [
           {"2022-05-14-velo6-u-bundesstr/GX013893", "00:00:36.403", "00:01:07.401"},
           {"2022-05-14-velo6-u-bundesstr/GX013851", "00:00:10.277", :end},

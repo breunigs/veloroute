@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN2 do
         to: "Papenreye",
         parent_ref: __MODULE__,
         text: "von der Hoheluftbrücke zur Papenreye",
+        historic: %{"3b14b15859e384d9ec5a3a5e2dba6410" => ~d[2023-10]},
         videos: [
           {"2023-10-17-brnord/GX016310", :start, :end},
           {"2023-10-17-brnord/GX016311", :start, :end},
@@ -46,6 +47,7 @@ defmodule Data.Article.Static.BrNordN2 do
         to: "Hoheluftbrücke",
         parent_ref: __MODULE__,
         text: "von der Papenreye zur Hoheluftbrücke",
+        historic: %{"5474bea025a08ceade5909484bcc07e8" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016378", :start, :end},
           {"2023-10-18-brnord/GX016379", :start, "00:00:38.739"},
@@ -65,6 +67,7 @@ defmodule Data.Article.Static.BrNordN2 do
         to: "Kümmellstraße",
         parent_ref: __MODULE__,
         text: "von der Heilwigbrücke zur Kümmellstraße",
+        historic: %{"02e2513fde7fb4935b5137eef2d753fd" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016387", "00:00:27.022", :end}
         ]
@@ -77,6 +80,7 @@ defmodule Data.Article.Static.BrNordN2 do
         to: "Heilwigbrücke",
         parent_ref: __MODULE__,
         text: "von der Kümmellstraße zur Heilwigbrücke",
+        historic: %{"cd86e9a45fc831843d99e01bc6570920" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016385", "00:00:01.368", :end},
           {"2023-10-18-brnord/GX016386", :start, :end},

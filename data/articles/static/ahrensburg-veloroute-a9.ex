@@ -24,6 +24,7 @@ defmodule Data.Article.Static.AhrensburgA9 do
         to: "U-Bahn Ahrensburg West",
         parent_ref: __MODULE__,
         text: "Zentrum → U-Bahn Ahrensburg West",
+        historic: %{"6b4f9f55793a34951dc5dcc3d42ecadd" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014933", "00:00:38.438", "00:01:28.155"},
           {"2022-10-16-ahrensburg2/GX014939", "00:01:11.338", "00:01:38.899"}
@@ -37,6 +38,7 @@ defmodule Data.Article.Static.AhrensburgA9 do
         to: "Zentrum",
         parent_ref: __MODULE__,
         text: "U-Bahn Ahrensburg West → Zentrum",
+        historic: %{"fbbacb61e54623e0310161a516ff37bc" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014931", "00:00:40.707", :end},
           {"2022-10-16-ahrensburg2/GX014932", :start, "00:00:11.778"}

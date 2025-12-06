@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrWandsbekW8 do
         to: "Glashütte",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W8“ → Glashütte",
+        historic: %{"e3cd414ba95588671ded574442d1c14e" => ~d[2023-04]},
         videos: [
           {"2023-03-28-w1-w5-w8sud/GX015346", :start, :end},
           {"2023-03-28-w1-w5-w8sud/GX015347", :start, :end},
@@ -57,6 +58,7 @@ defmodule Data.Article.Static.BrWandsbekW8 do
         to: "Billstedt",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W8“ → Billstedt",
+        historic: %{"6fdb7961fabfcfcf5e89cbd81ace139c" => ~d[2023-04]},
         videos: [
           {"2023-04-06-br-wandsbek/GX015484", "00:00:27.060", :end},
           {"2023-04-06-br-wandsbek/GX015485", :start, :end},

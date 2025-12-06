@@ -23,6 +23,7 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
         to: "Appen",
         parent_ref: __MODULE__,
         text: "vom Zentrum nach Appen",
+        historic: %{"aed3541d3a591b97f405126718c026bc" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX014161", "00:00:43.277", :end},
           {"2022-05-31-pinneberg/GX014162", :start, "00:00:09.109"},
@@ -41,6 +42,7 @@ defmodule Data.Article.Static.PinnebergVeloroute4 do
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
         text: "von Appen zum Zentrum",
+        historic: %{"8a982ca69cf4f57387f35ee93a8550e9" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX014167", "00:00:38.030", :end},
           {"2022-05-31-pinneberg/GX014168", :start, "00:00:01.502"},

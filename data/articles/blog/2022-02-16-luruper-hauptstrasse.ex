@@ -19,6 +19,7 @@ defmodule Data.Article.Blog.LuruperHauptstrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Luruper Hauptstraße Richtung Schenefeld",
+        historic: %{"3b069725516576f84efab436bc7e5e66" => ~d[2022-01]},
         videos: [
           {"2022-01-16-wedel/GX013142", :start, :end},
           {"2022-01-16-wedel/GX013143", :start, "00:01:04.798"}

@@ -24,6 +24,7 @@ defmodule Data.Article.Static.AhrensburgA3 do
         to: "Ahrensburger Redder",
         parent_ref: __MODULE__,
         text: "Bünningstedt → Ahrensburger Redder",
+        historic: %{"12ac2b43a1115a2703c1c778a4ee96ae" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014913", "00:01:34.795", :end},
           {"2022-10-16-ahrensburg2/GX014914", :start, :end},
@@ -39,6 +40,7 @@ defmodule Data.Article.Static.AhrensburgA3 do
         to: "Bünningstedt",
         parent_ref: __MODULE__,
         text: "Ahrensburger Redder → Bünningstedt",
+        historic: %{"e08ad007f812d160c4cf82cd4084e671" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014916", "00:01:13.726", :end},
           {"2022-10-16-ahrensburg2/GX014917", :start, "00:00:31.865"},

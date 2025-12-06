@@ -23,6 +23,7 @@ defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
         to: "Bramfelder Chaussee",
         parent_ref: __MODULE__,
         text: "Bramfelder Straße (stadtauswärts)",
+        historic: %{"bef5fb6f0cd3ce7a30ade62e6325904b" => ~d[2023-04]},
         videos: [
           {"2023-04-06-br-wandsbek/GX015467", "00:00:21.655", :end},
           {"2023-04-06-br-wandsbek/GX015468", :start, :end},
@@ -38,6 +39,7 @@ defmodule Data.Article.Blog.BramfelderStrasseBisKrausestrasse do
         to: "Barmbeker Markt",
         parent_ref: __MODULE__,
         text: "Bramfelder Straße (stadteinwärts)",
+        historic: %{"5995942c8e2bf76dd2e56339c6942566" => ~d[2023-04]},
         videos: [
           {"2023-04-06-br-wandsbek/GX015524", "00:00:53.987", :end},
           {"2023-04-06-br-wandsbek/GX015525", :start, :end}

@@ -25,6 +25,7 @@ defmodule Data.Article.Blog.Krausestrasse do
         to: "Fuhlsbütteler Straße",
         parent_ref: __MODULE__,
         text: "Krausestraße (Hammer Straße → Fuhlsbütteler Straße)",
+        historic: %{"40416d7f9a111cc8cdfcf81e425eaaed" => ~d[2023-07]},
         videos: [
           {"2023-07-28-krause/GX016272", :start, :end},
           {"2023-07-28-krause/GX016273", :start, :end},
@@ -42,6 +43,7 @@ defmodule Data.Article.Blog.Krausestrasse do
         to: "Hammer Straße",
         parent_ref: __MODULE__,
         text: "Krausestraße (Fuhlsbütteler Straße → Hammer Straße)",
+        historic: %{"eac9b654083cafe4d599b898e63b23b5" => ~d[2023-07]},
         videos: [
           {"2023-07-28-krause/GX016279", :start, :end},
           {"2023-07-28-krause/GX016280", :start, :end},

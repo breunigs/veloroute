@@ -23,6 +23,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute2 do
         to: "Harksheider Markt",
         parent_ref: __MODULE__,
         text: "vom Schmuggelstieg zum Harksheider Markt",
+        historic: %{"5c9e0ffec94a53809a58cf583c5b5141" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014068", "00:00:12.246", :end},
           {"2022-05-28-norderstedt/GX014069", :start, :end},
@@ -41,6 +42,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute2 do
         to: "Schmuggelstieg",
         parent_ref: __MODULE__,
         text: "vom Harksheider Markt zum Schmuggelstieg",
+        historic: %{"04559b1556d6bb69b84eeaa15eaa14d1" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014117", "00:00:00.868", "00:00:05.973"},
           {"2022-05-28-norderstedt/GX014118", "00:00:13.647", :end},

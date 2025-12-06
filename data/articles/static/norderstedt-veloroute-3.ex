@@ -23,6 +23,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute3 do
         to: "Glashütte",
         parent_ref: __MODULE__,
         text: "von Norderstedt-Mitte nach Glashütte",
+        historic: %{"1d7735b5c03a9412a2e32c62345ff2ea" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014095", :start, "00:00:05.772"},
           {"2022-05-28-norderstedt/GX014097", "00:00:03.971", :end},
@@ -44,6 +45,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute3 do
         to: "Norderstedt-Mitte",
         parent_ref: __MODULE__,
         text: "von Glashütte nach Norderstedt-Mitte",
+        historic: %{"fc89f6dc40f9986e16216e9b8bafe64d" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014115", :start, :end},
           {"2022-05-28-norderstedt/GX014116", :start, "00:00:20.954"},

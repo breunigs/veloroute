@@ -50,6 +50,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute1 do
         to: "Schmuggelstieg",
         parent_ref: __MODULE__,
         text: "von Meeschensee zum Schmuggelstieg",
+        historic: %{"7c40573d0595e759f4a4c9636eee2ecc" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014087", "00:00:01.034", "00:02:16.737"},
           {"2022-05-28-norderstedt/GX014084", "00:01:45.072", "00:01:59.052"},

@@ -24,6 +24,7 @@ defmodule Data.Article.Static.AhrensburgA2 do
         to: "U-Bahn Ahrensburg West",
         parent_ref: __MODULE__,
         text: "Gartenholz → U-Bahn Ahrensburg West",
+        historic: %{"dd20e3926f5d29a787973c471eeb37e2" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014935", "00:01:43.870", :end},
           {"2022-10-16-ahrensburg2/GX014936", :start, "00:00:02.703"},
@@ -39,6 +40,7 @@ defmodule Data.Article.Static.AhrensburgA2 do
         to: "Gartenholz",
         parent_ref: __MODULE__,
         text: "U-Bahn Ahrensburg West → Gartenholz",
+        historic: %{"4bae14ce9f7ab08776166d5a03db03a4" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014931", "00:00:40.707", "00:01:07.000"},
           {"2022-10-16-ahrensburg2/GX014933", "00:01:30.123", "00:01:59.186"},

@@ -24,6 +24,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
         direction: :forward,
         parent_ref: __MODULE__,
         text: "St. Benedictstraße Fahrtrichtung Osten",
+        historic: %{"87865183e535d4b77ff441f99f55abde" => ~d[2021-06]},
         videos: [
           {"2021-06-19-veloroute6/GX011843", "00:00:12.379", "00:00:26.727"}
         ]
@@ -36,6 +37,7 @@ defmodule Data.Article.Blog.StBenedictstrasse do
         direction: :backward,
         parent_ref: __MODULE__,
         text: "St. Benedictstraße Fahrtrichtung Westen",
+        historic: %{"00ac485abc0115aac3f60077b3cfcda6" => ~d[2021-04]},
         videos: [
           {"2021-04-04-freizeitroute-12-speedup-5x/GX011173", "00:01:14.141", "00:01:31.425"}
         ]

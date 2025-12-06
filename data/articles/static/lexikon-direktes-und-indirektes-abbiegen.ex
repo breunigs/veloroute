@@ -45,6 +45,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
         to: "Haubachstraße",
         parent_ref: __MODULE__,
         text: "indirektes Linksabbiegen am Holstenplatz",
+        historic: %{"f7d7af37d12d27cf3bd970bfe19fa6a6" => ~d[2024-07]},
         videos: [
           {"2024-07-05-indir-links/GX010008", "00:03:05.185", "00:03:38.885"}
         ]
@@ -57,6 +58,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
         to: "Holstenplatz",
         parent_ref: __MODULE__,
         text: "indirektes Linksabbiegen am Holstenplatz",
+        historic: %{"619e3fdade3f268ce09af3d7fa0ffbe4" => ~d[2024-07]},
         videos: [
           {"2024-07-05-indir-links/GX010011", "00:00:40.908", "00:00:51.285"},
           {"2024-07-05-indir-links/GX010011", "00:01:16.443", :end},
@@ -71,6 +73,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
         to: "Haubachstraße",
         parent_ref: __MODULE__,
         text: "direktes Linksabbiegen am Holstenplatz",
+        historic: %{"4d2dda0c05949b3339fb5d3a93d5042a" => ~d[2024-07]},
         videos: [
           {"2024-07-06-louise/GX010017_stabilized", "00:00:20.404", "00:00:56.189"}
         ]
@@ -83,6 +86,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
         to: "Rathenaustraße",
         parent_ref: __MODULE__,
         text: "indirekt aus der Bebelallee in die Rathenaustraße abbiegen",
+        historic: %{"3a4d3351a93201c707a5e20ecee265a6" => ~d[2022-01]},
         videos: [
           {"2022-01-29-rickling/GX013202", "00:00:10.511", :end},
           {"2022-01-29-rickling/GX013204", :start, :end},
@@ -97,6 +101,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
         to: "Zum Grünen Jäger",
         parent_ref: __MODULE__,
         text: "indirekt Abbiegen, Aufstellfläche vor Kreuzung",
+        historic: %{"8657e2d006585b2d19a818fd89695362" => ~d[2023-04]},
         videos: [
           {"2023-04-06-br-wandsbek/GX015542", "00:00:25.626", :end},
           {"2023-04-06-br-wandsbek/GX015543", :start, :end},

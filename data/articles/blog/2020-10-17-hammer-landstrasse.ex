@@ -19,6 +19,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Hammer Landstraße (stadteinwärts)",
+        historic: %{"8f830433d04cab2841210b8754468ac3" => ~d[2022-05]},
         videos: [
           {"2022-05-26-14im-13gg/GX014011", :start, :end},
           {"2022-05-26-14im-13gg/GX014013", :start, :end}
@@ -32,6 +33,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Hammer Landstraße (stadtauswärts)",
+        historic: %{"62b9f24016c7a56ac4c785a5884e589b" => ~d[2022-05]},
         videos: [
           {"2022-05-15-13im-14gg/GX013924", "00:00:02.536", :end},
           {"2022-05-15-13im-14gg/GX013925", :start, :end},

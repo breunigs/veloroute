@@ -23,6 +23,7 @@ defmodule Data.Article.Static.RSWStade do
         to: "Stade Am Güterbahnhof",
         parent_ref: __MODULE__,
         text: "geplante Radroute Plus Finkenwerder → Stade (via Neugraben)",
+        historic: %{"58e575d797637e69bcee322e0e26d539" => ~d[2021-09]},
         videos: [
           {"2021-09-18-rsw-stade/GX012828.MP4.time_lapse.mkv", :start, :end},
           {"2021-09-18-rsw-stade/GX012829", :start, :end},
@@ -58,6 +59,7 @@ defmodule Data.Article.Static.RSWStade do
         to: "Neu Wulmstorf",
         parent_ref: __MODULE__,
         text: "geplante Radroute Plus Stade → Finkenwerder (via Neugraben)",
+        historic: %{"568453c4036200605f13c87e051893df" => ~d[2022-08]},
         videos: [
           {"2022-08-09-stade-rev/GX014455", "00:00:20.854", "00:01:56.483"},
           {"2022-08-09-stade-rev/GX014455", "00:02:18.038", :end},
@@ -86,6 +88,7 @@ defmodule Data.Article.Static.RSWStade do
         to: "Buxtehude Bahnhof",
         parent_ref: __MODULE__,
         text: "geplante Radroute Plus Finkenwerder → Buxtehude (via Neuenfelde)",
+        historic: %{"2a5905ead43fb68ed4947dc2f507749c" => ~d[2022-08]},
         videos: [
           {"2021-08-04-fr13-fr14/GX012514", :start, "00:00:11.511"},
           {"2022-08-09-stade-rev/GX014448", "00:00:04.471", "00:01:07.434"},
@@ -108,6 +111,7 @@ defmodule Data.Article.Static.RSWStade do
         to: "Hamburg Finkenwerder",
         parent_ref: __MODULE__,
         text: "geplante Radroute Plus Buxtehude → Finkenwerder (via Neuenfelde)",
+        historic: %{"eb5be3a67ad8d6f85a2c7084177bf1c5" => ~d[2021-09]},
         videos: [
           {"2021-09-18-rsw-stade/GX012862", :start, :end},
           {"2021-09-18-rsw-stade/GX012863", :start, :end},

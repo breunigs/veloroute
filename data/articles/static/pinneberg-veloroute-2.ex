@@ -24,6 +24,7 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
         to: "Rellingen",
         parent_ref: __MODULE__,
         text: "vom Zentrum nach Rellingen",
+        historic: %{"e1d272c94e93fd036a43330ec451bd77" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX024158", "00:03:55.936", :end},
           {"2022-05-31-pinneberg/GX014159", :start, "00:00:50.707"}
@@ -37,6 +38,7 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
         text: "von Rellingen zum Zentrum",
+        historic: %{"15b5beccc795e71ea6489c7fb0f2d0eb" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX014159", "00:01:08.388", :end},
           {"2022-05-31-pinneberg/GX014160", :start, :end},
@@ -51,6 +53,7 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
         to: "Halstenbek",
         parent_ref: __MODULE__,
         text: "vom Bahnhof nach Halstenbek",
+        historic: %{"fd3ea0ba99910c3adac4c6d81ef012db" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX014171", "00:00:53.420", :end},
           {"2022-05-31-pinneberg/GX014172", :start, "00:00:48.372"}
@@ -64,6 +67,7 @@ defmodule Data.Article.Static.PinnebergVeloroute2 do
         to: "Pinneberg Bahnhof",
         parent_ref: __MODULE__,
         text: "von Halstenbek zum Bahnhof",
+        historic: %{"763c12dcea7b26040581eba93ea69056" => ~d[2022-05]},
         videos: [
           {"2022-05-31-pinneberg/GX024158", "00:00:56.712", "00:02:40.461"}
         ]

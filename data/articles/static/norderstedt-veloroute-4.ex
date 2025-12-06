@@ -23,6 +23,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute4 do
         to: "Glashütte",
         parent_ref: __MODULE__,
         text: "von Garstedt nach Glashütte",
+        historic: %{"5c5e05a46c3179fd5681cfc861ceeb7e" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014070", "00:01:58.885", "00:02:50.937"},
           {"2022-05-28-norderstedt/GX014073", "00:00:01.568", "00:00:03.403"},
@@ -41,6 +42,7 @@ defmodule Data.Article.Static.NorderstedtVeloroute4 do
         to: "Garstedt",
         parent_ref: __MODULE__,
         text: "von Glashütte nach Garstedt",
+        historic: %{"d30b60d82dacdc572208b3214a1e897c" => ~d[2022-05]},
         videos: [
           {"2022-05-28-norderstedt/GX014079", "00:00:02.736", :end},
           {"2022-05-28-norderstedt/GX014080", :start, "00:00:56.456"},

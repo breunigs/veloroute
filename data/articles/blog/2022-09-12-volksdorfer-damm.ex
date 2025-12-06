@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.VolksdorferDamm do
         to: "Bergstedt",
         parent_ref: __MODULE__,
         text: "Volksdorfer Damm nach Bergstedt",
+        historic: %{"31308c694e2a4f1b961cd960b10833e8" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014763", "00:00:37.070", :end},
           {"2022-09-11-landstr-volksd-duvens/GX014764", :start, :end},
@@ -36,6 +37,7 @@ defmodule Data.Article.Blog.VolksdorferDamm do
         to: "Volksdorf",
         parent_ref: __MODULE__,
         text: "Volksdorfer Damm nach Volksdorf",
+        historic: %{"a7d20a6c72bb8bed7390e5ce3b6d0409" => ~d[2022-09]},
         videos: [
           {"2022-09-11-landstr-volksd-duvens/GX014761", "00:01:50.978", :end},
           {"2022-09-11-landstr-volksd-duvens/GX014762", :start, :end},

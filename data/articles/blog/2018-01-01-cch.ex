@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.Cch do
         to: "",
         parent_ref: __MODULE__,
         text: "Umleitung Tiergartenstraße",
+        historic: %{"7210b7ccddec805d100c7ad56d116ba7" => ~d[2021-08]},
         videos: [
           {"2021-08-01-freizeit9-anfang/GX012481", "00:00:03.070", :end}
         ]
@@ -34,6 +35,7 @@ defmodule Data.Article.Blog.Cch do
         to: "",
         parent_ref: __MODULE__,
         text: "Umleitung Tiergartenstraße",
+        historic: %{"b439fd27ee0b407d466e13ed2053d0d0" => ~d[2021-08]},
         videos: [
           {"2021-08-01-freizeit9-anfang/GX012472", "00:00:15.949", :end},
           {"2021-08-01-freizeit9-anfang/GX012473", :start, :end},

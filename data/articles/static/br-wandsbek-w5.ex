@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrWandsbekW5 do
         to: "Rahlstedt Süd",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W5“ → Rahlstedt",
+        historic: %{"66f0dcdbfeb2488f7ff2b46dcc305adf" => ~d[2023-03]},
         videos: [
           {"2023-03-28-w1-w5-w8sud/GX015321", "00:00:10.644", :end},
           {"2023-03-28-w1-w5-w8sud/GX015322", :start, :end},
@@ -47,6 +48,7 @@ defmodule Data.Article.Static.BrWandsbekW5 do
         to: "City-Nord",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W5“ → City-Nord",
+        historic: %{"a743ac6a241767bbec99ea8bada23ef5" => ~d[2023-03]},
         videos: [
           {"2023-03-28-w1-w5-w8sud/GX015331", "00:00:01.134", :end},
           {"2023-03-28-w1-w5-w8sud/GX015332", :start, :end},

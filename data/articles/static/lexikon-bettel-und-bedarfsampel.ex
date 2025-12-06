@@ -20,6 +20,7 @@ defmodule Data.Article.Static.LexikonBettelUndBedarfsampel do
         to: "Weidenstieg",
         parent_ref: __MODULE__,
         text: "entlang des Isebekkanals zum Weidenstieg",
+        historic: %{"f20f5605d4689a7e44a8db9f60bca726" => ~d[2023-10]},
         videos: [
           {"2023-10-29-lenhart/GX016643", "00:00:11.211", :end},
           {"2023-10-29-lenhart/GX016644", :start, "00:00:36.904"}
@@ -33,6 +34,7 @@ defmodule Data.Article.Static.LexikonBettelUndBedarfsampel do
         to: "Grindelberg",
         parent_ref: __MODULE__,
         text: "entlang des Isebekkanals zum Grindelberg",
+        historic: %{"b69c1e29912bba06e75581466147bed3" => ~d[2023-10]},
         videos: [
           {"2023-10-29-lenhart/GX016630", "00:00:16.683", :end},
           {"2023-10-29-lenhart/GX016631", :start, :end},

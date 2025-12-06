@@ -21,6 +21,7 @@ defmodule Data.Article.Blog.Valentinskamp do
         to: "",
         parent_ref: __MODULE__,
         text: "Valentinskamp (Richtung Gänsemarkt)",
+        historic: %{"b5c984fa847b804808d9d199e4287211" => ~d[2022-08]},
         videos: [
           {"2022-08-14-geesthacht-rev/GX014544", "00:00:04.371", :end},
           {"2022-08-14-geesthacht-rev/GX014545", :start, :end}
@@ -34,6 +35,7 @@ defmodule Data.Article.Blog.Valentinskamp do
         to: "",
         parent_ref: __MODULE__,
         text: "Valentinskamp (Richtung Johannes-Brahms-Platz)",
+        historic: %{"c3c9ef00fb70ed773bbcf7c742842973" => ~d[2022-08]},
         videos: [
           {"2022-08-14-geesthacht-rev/GX014575", "00:00:03.737", :end}
         ]

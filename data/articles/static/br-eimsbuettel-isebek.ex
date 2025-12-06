@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
         to: "Streekbrücke",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Isebek“ → Streekbrücke",
+        historic: %{"1d7e39c97881e5effef6cb85d57c7c90" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015170", "00:01:19.646", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015171", :start, :end},
@@ -46,6 +47,7 @@ defmodule Data.Article.Static.BrEimsbuettelIsebek do
         to: "Waterloostraße",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Isebek“ → Waterloostraße",
+        historic: %{"74612245b7c0f78d5a4d0b2275005419" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015177", "00:00:53.487", "00:01:12.039"},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015177", "00:01:18.478", :end},

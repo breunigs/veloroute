@@ -29,6 +29,7 @@ defmodule Data.Article.Blog.HammerStrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Hammer Straße → Horner Kreisel",
+        historic: %{"12be5f7b012649a9c9d9208e1e2fecbf" => ~d[2022-12]},
         videos: [
           {"2022-12-27-neumarkt-krogmann/GX015085", "00:00:03.737", "00:00:22.422"}
         ]
@@ -41,6 +42,7 @@ defmodule Data.Article.Blog.HammerStrasse do
         to: "",
         parent_ref: __MODULE__,
         text: "Hammer Straße → Wandsbek",
+        historic: %{"06255af87878ed9af25ee9555b94386c" => ~d[2022-12]},
         videos: [
           {"2022-12-27-neumarkt-krogmann/GX015087", "00:00:11.278", :end},
           {"2022-12-27-neumarkt-krogmann/GX015088", :start, :end},

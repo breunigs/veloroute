@@ -25,6 +25,7 @@ defmodule Data.Article.Static.AhrensburgA7 do
         to: "Ahrensburg Gewerbegebiet Nord",
         parent_ref: __MODULE__,
         text: "Brauner Hirsch → Gewerbegebiet Nord",
+        historic: %{"8b7eb9ba6050f9ef8f2359bf8f4ed6db" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014872", :start, :end},
           {"2022-10-15-ahrensburg/GX014873", :start, :end},
@@ -42,6 +43,7 @@ defmodule Data.Article.Static.AhrensburgA7 do
         to: "Brauner Hirsch",
         parent_ref: __MODULE__,
         text: "Gewerbegebiet Nord → Brauner Hirsch",
+        historic: %{"cbe4738144ade4ad4d928638bf234dc1" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014863", "00:01:07.054", :end},
           {"2022-10-15-ahrensburg/GX014864", :start, :end},
@@ -61,6 +63,7 @@ defmodule Data.Article.Static.AhrensburgA7 do
         to: "Bahnhofsstraße",
         parent_ref: __MODULE__,
         text: "Hagener Allee → Bahnhofsstraße (via U-Ahrensburg Ost)",
+        historic: %{"e878ddb11978d379f76abd195c2cb954" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014883", "00:02:11.932", "00:02:29.883"},
           {"2022-10-15-ahrensburg/GX014883", "00:04:30.070", :end},
@@ -77,6 +80,7 @@ defmodule Data.Article.Static.AhrensburgA7 do
         to: "Hagener Allee",
         parent_ref: __MODULE__,
         text: "Bahnhofsstraße → Hagener Allee (via U-Ahrensburg Ost)",
+        historic: %{"dd7aec2ace5e936407757dd44c3ce347" => ~d[2022-10]},
         videos: [
           {"2022-10-16-ahrensburg2/GX014905", "00:00:46.079", "00:01:10.737"},
           {"2022-10-15-ahrensburg/GX014883", "00:01:02.296", "00:02:05.092"}

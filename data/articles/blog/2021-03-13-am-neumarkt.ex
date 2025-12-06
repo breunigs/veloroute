@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
         to: "Holstenhofweg",
         parent_ref: __MODULE__,
         text: "Am Neumarkt → Ziethenstraße",
+        historic: %{"0dbcfdb2924db363672646eb4ae78a60" => ~d[2022-12]},
         videos: [
           {"2022-12-27-neumarkt-krogmann/GX015095", "00:00:24.091", :end}
         ]
@@ -34,6 +35,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
         to: "Efftingestraße",
         parent_ref: __MODULE__,
         text: "Ziethenstraße → Am Neumarkt",
+        historic: %{"f425e2635aaf4fc68785ef78188452bd" => ~d[2022-12]},
         videos: [
           {"2022-12-27-neumarkt-krogmann/GX015082", "00:00:15.115", :end}
         ]

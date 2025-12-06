@@ -24,6 +24,7 @@ defmodule Data.Article.Blog.Eilbektal do
         to: "Friedrichsberger Straße",
         parent_ref: __MODULE__,
         text: "Eilbektal (stadteinwärts)",
+        historic: %{"81fc28bc766b824c1fc5ccdddda4ff61" => ~d[2024-05]},
         videos: [
           {"2024-05-09-vr6/GX017487", :start, "00:00:25.192"}
         ]

@@ -26,6 +26,7 @@ defmodule Data.Article.Blog.WellingsbuettelerLandstrasse do
         to: "Rolfinckstraße",
         parent_ref: __MODULE__,
         text: "Wellingsbütteler Landstraße/Weg",
+        historic: %{"b2199f210cbcce0b524f00c20183abf4" => ~d[2023-06]},
         videos: [
           {"2023-06-24-14im-13gg/GX016011", :start, :end}
         ]

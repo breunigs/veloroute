@@ -17,6 +17,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
         to: "Bostelbeker Hauptdeich",
         parent_ref: __MODULE__,
         text: "von der Blohmstraße zum Bostelbeker Hauptdeich",
+        historic: %{"16b838976a4bc5e4d99365d3ac533c3d" => ~d[2022-05]},
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:00:51.018", "00:01:18.946"},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013685", "00:03:14.828", "00:03:32.312"}
@@ -30,6 +31,7 @@ defmodule Data.Article.Blog.BahnquerungHafenbahn do
         to: "Blohmstraße",
         parent_ref: __MODULE__,
         text: "vom Bostelbeker Hauptdeich zur Blohmstraße",
+        historic: %{"2109ffb363916b8b6e2105a973337974" => ~d[2022-05]},
         videos: [
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013685", "00:02:57.978", "00:03:14.061"},
           {"2022-05-01-velo11-u-velo10-ab-harburg/GX013687", "00:03:00.013", "00:03:27.941"}

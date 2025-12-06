@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN8 do
         to: "Wellingsbüttel",
         parent_ref: __MODULE__,
         text: "von der Kollaustraße nach Wellingsbüttel",
+        historic: %{"2ef94fca6503da0e9aade83097ad3967" => ~d[2023-10]},
         videos: [
           {"2023-10-22-br-nord-reg/GX016466", "00:00:33.901", "00:01:26.820"},
           {"2023-10-23-brnrod/GX016492", "00:01:29.222", :end},
@@ -43,6 +44,7 @@ defmodule Data.Article.Static.BrNordN8 do
         to: "Kollaustraße",
         parent_ref: __MODULE__,
         text: "von Wellingsbüttel zur Kollaustraße",
+        historic: %{"0159e66a6e241954326fb1a7fa387a2c" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016498", :start, :end},
           {"2023-10-23-brnrod/GX016499", :start, :end},

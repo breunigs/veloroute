@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN9 do
         to: "Glashütte",
         parent_ref: __MODULE__,
         text: "vom Krohnstieg nach Glashütte",
+        historic: %{"d95ee8a529e079634e7872eaea8e5ccf" => ~d[2023-10]},
         videos: [
           {"2023-10-25-brnord/GX016590", "00:02:42.763", "00:03:24.471"},
           {"2023-10-25-brnord/GX016584", "00:01:56.350", :end},
@@ -40,6 +41,7 @@ defmodule Data.Article.Static.BrNordN9 do
         to: "Krohnstieg",
         parent_ref: __MODULE__,
         text: "von Glashütte zum Krohnstieg",
+        historic: %{"b3a365f181ca84e12c601975f04789af" => ~d[2023-10]},
         videos: [
           {"2023-10-25-brnord/GX016588", "00:00:04.337", "00:00:40.173"},
           {"2023-10-25-brnord/GX016589", "00:00:12.346", :end},

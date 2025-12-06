@@ -24,6 +24,7 @@ defmodule Data.Article.Blog.KellinghusenstrasseNord do
         to: "Sierichstraße",
         parent_ref: __MODULE__,
         text: "Kellinghusenstraße (Richtung Winterhude)",
+        historic: %{"383ab89eb972bb3d4ea261c941e4f4ff" => ~d[2022-01]},
         videos: [
           {"2022-01-29-rickling/GX013200", "00:01:01.716", :end}
         ]

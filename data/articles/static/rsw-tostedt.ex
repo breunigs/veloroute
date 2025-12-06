@@ -23,6 +23,7 @@ defmodule Data.Article.Static.RSWTostedt do
         to: "Tostedt",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Harburg Bahnhof → Tostedt",
+        historic: %{"e22fced563ad9f011e4db4ac39d15b4b" => ~d[2022-05]},
         videos: [
           {"2022-05-18-rsw-tostedt/GX013972", :start, :end},
           {"2022-05-18-rsw-tostedt/GX013973", :start, :end},
@@ -48,6 +49,7 @@ defmodule Data.Article.Static.RSWTostedt do
         to: "Harburger Berge",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Tostedt → Harburg Bahnhof",
+        historic: %{"c971e23bc5342481033ae43aa6aa4156" => ~d[2022-08]},
         end_action: %{
           action: :play,
           route: Data.Article.Static.Radroute4,

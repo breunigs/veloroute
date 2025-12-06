@@ -25,6 +25,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
         to: "Holsteiner Tor",
         parent_ref: __MODULE__,
         text: "Rodigallee Richtung Osten",
+        historic: %{"58dde4b86a39e6588f5088561dd6234e" => ~d[2022-05]},
         videos: [
           {"2022-05-07-v10-v7-u-rodigallee/GX013771", "00:00:01.301", :end},
           {"2022-05-07-v10-v7-u-rodigallee/GX013772", :start, :end},
@@ -41,6 +42,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
         to: "Bovestraße",
         parent_ref: __MODULE__,
         text: "Rodigallee Richtung Westen",
+        historic: %{"7ef9fd5a7d30729fa7645178fe2a921a" => ~d[2022-05]},
         videos: [
           {"2022-05-07-v10-v7-u-rodigallee/GX013775", "00:00:48.682", :end},
           {"2022-05-07-v10-v7-u-rodigallee/GX013776", :start, :end},

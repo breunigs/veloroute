@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN7 do
         to: "Langenfort",
         parent_ref: __MODULE__,
         text: "vom Grandweg zum Langenfort",
+        historic: %{"e742b63d05464b911ae26a1167a95503" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016367", "00:00:24.353", :end},
           {"2023-10-18-brnord/GX016368", :start, :end},
@@ -43,6 +44,7 @@ defmodule Data.Article.Static.BrNordN7 do
         to: "Grandweg",
         parent_ref: __MODULE__,
         text: "vom Langenfort zum Grandweg",
+        historic: %{"759e4696a7aaa10c5900a2b6a226610b" => ~d[2023-10]},
         videos: [
           {"2023-10-17-brnord/GX016314", "00:00:21.054", :end},
           {"2023-10-17-brnord/GX016315", :start, :end},

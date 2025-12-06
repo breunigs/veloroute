@@ -29,6 +29,7 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
         },
         parent_ref: __MODULE__,
         text: "vom Pinnebergs Zentrum nach Schenefeld",
+        historic: %{"dbf9e0434a721fae1df3ae447d96005a" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013248", "00:00:21.622", "00:01:45.238"},
           {"2022-02-27-pinneberg/GX013249", :start, :end},
@@ -44,6 +45,7 @@ defmodule Data.Article.Static.PinnebergVeloroute3 do
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
         text: "von Schenefeld zum Pinneberger Zentrum",
+        historic: %{"e0472a3a84b1fca244514aa32f7990ac" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013230", "00:02:10.530", :end},
           {"2022-02-27-pinneberg/GX023230", :start, "00:00:16.984"},

@@ -25,6 +25,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
         to: "Bad Bramstedt",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus HH-Sengelmannstraße → Bad Bramstedt",
+        historic: %{"14303e1a0804f86ccdafab6f80965f18" => ~d[2021-09]},
         videos: [
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011787", "00:00:56.423", :end},
           {"2021-06-13-veloroute-5-5a-und-13rein/GX011788", :start, :end},
@@ -66,6 +67,7 @@ defmodule Data.Article.Static.RSWBadBramstedt do
         to: "City Nord RSW",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Bad Bramstedt → HH-Sengelmannstraße",
+        historic: %{"8d1763bf8598277b3f9029db56a50827" => ~d[2022-08]},
         videos: [
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014379", "00:00:04.805", :end},
           {"2022-08-06-rsw-bad-bramstedt-rev/GX014380", :start, :end},

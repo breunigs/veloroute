@@ -45,7 +45,7 @@ defmodule Video.Track do
           parent_ref: module() | binary(),
           videos: plain(),
           renderer: pos_integer(),
-          historic: historic() | nil,
+          historic: historic(),
           end_action: end_action() | nil
         }
 

@@ -22,6 +22,7 @@ defmodule Data.Article.Static.RSWLueneburg do
         to: "Lüneburg Zeltberg",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus HH-Elbbrücken → Lüneburg",
+        historic: %{"c98e1b58ae46f4105894dfd9fb223381" => ~d[2021-08]},
         videos: [
           {"2021-07-17-gruenerring1-11whburg-haubach/GX012366", "00:00:57.491", "00:01:13.040"},
           {"2021-05-02-gruener-ring-sued-uhrzeigersinn/GX011460.MP4_time_lapse.mkv",
@@ -61,6 +62,7 @@ defmodule Data.Article.Static.RSWLueneburg do
         to: "Seevetal",
         parent_ref: __MODULE__,
         text: "künftige Radroute Plus Lüneburg → HH-Elbbrücken",
+        historic: %{"391cd5ac0d9bbcf98dbb3a7aca52bd2f" => ~d[2022-08]},
         videos: [
           {"2022-08-11-rsw-luene-rev/GX014483", "00:00:10.244", :end},
           {"2022-08-11-rsw-luene-rev/GX014484", "00:00:00.734", :end},

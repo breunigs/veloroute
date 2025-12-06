@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN3 do
         to: "Ohlsdorf",
         parent_ref: __MODULE__,
         text: "von der Lortzingstraße nach Ohlsdorf",
+        historic: %{"8e350db3f2dec69a28b7607e0736476c" => ~d[2023-10]},
         videos: [
           {"2023-10-18-brnord/GX016410", "00:00:34.361", :end},
           {"2023-10-18-brnord/GX016411", :start, "00:00:24.591"},
@@ -47,6 +48,7 @@ defmodule Data.Article.Static.BrNordN3 do
         to: "Lortzingstraße",
         parent_ref: __MODULE__,
         text: "von Ohlsdorf zur Lortzingstraße",
+        historic: %{"aaef88d412967e45832fd4e63f872da9" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016501", :start, :end},
           {"2023-10-23-brnrod/GX016502", :start, :end},
@@ -72,6 +74,7 @@ defmodule Data.Article.Static.BrNordN3 do
         to: "Steilshooper Straße",
         parent_ref: __MODULE__,
         text: "vom Eulenkamp zur Steilshooper Straße",
+        historic: %{"e10a3429f2f5fcf14e15598a308c47bc" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016529", "00:00:14.481", "00:00:17.317"},
           {"2023-10-23-brnrod/GX016529", "00:00:37.004", :end},
@@ -87,6 +90,7 @@ defmodule Data.Article.Static.BrNordN3 do
         to: "Eulenkamp",
         parent_ref: __MODULE__,
         text: "von der Steilshooper Straße zum Eulenkamp",
+        historic: %{"eceffa46c17a5f9f943acfd4c4080551" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016507", "00:00:10.744", :end},
           {"2023-10-23-brnrod/GX016508", :start, :end},

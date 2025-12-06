@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrWandsbekW3 do
         to: "Höltigbaum",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W3“ → Höltigbaum",
+        historic: %{"649c31b578a100c7623755e549fe6f24" => ~d[2023-04]},
         videos: [
           {"2023-04-02-br-wandsbek/GX015397", "00:00:14.081", :end},
           {"2023-04-02-br-wandsbek/GX015398", :start, :end},
@@ -47,6 +48,7 @@ defmodule Data.Article.Static.BrWandsbekW3 do
         to: "Barmbek",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W3“ → Barmbek",
+        historic: %{"5d21f39cd0a11bf082d941ecc73df877" => ~d[2023-04]},
         videos: [
           {"2023-04-02-br-wandsbek/GX015424", "00:00:10.511", :end},
           {"2023-04-02-br-wandsbek/GX015425", :start, "00:00:03.070"},

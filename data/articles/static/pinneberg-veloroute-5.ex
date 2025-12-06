@@ -23,6 +23,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
         to: "Kummerfeld",
         parent_ref: __MODULE__,
         text: "vom Zentrum nach Kummerfeld",
+        historic: %{"336b7fdf21b7d7c8018e4b0c3d11e4b4" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013233", "00:00:00.534", :end},
           {"2022-02-27-pinneberg/GX013234", :start, "00:02:44.831"}
@@ -36,6 +37,7 @@ defmodule Data.Article.Static.PinnebergVeloroute5 do
         to: "Pinneberg Zentrum",
         parent_ref: __MODULE__,
         text: "von Kummerfeld zum Zentrum",
+        historic: %{"793c1fc20e0eac49ab452573aebb0cde" => ~d[2022-02]},
         videos: [
           {"2022-02-27-pinneberg/GX013236", "00:01:24.117", "00:01:47.107"},
           {"2022-02-27-pinneberg/GX013236", "00:02:59.813", :end},

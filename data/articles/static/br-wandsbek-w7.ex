@@ -27,6 +27,7 @@ defmodule Data.Article.Static.BrWandsbekW7 do
         to: "Ohlstedt",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W7“ → Ohlstedt",
+        historic: %{"67790030133799a3fa67cf165ca329de" => ~d[2023-04]},
         videos: [
           {"2023-04-02-br-wandsbek/GX015427", "00:00:08.709", :end},
           {"2023-04-02-br-wandsbek/GX015428", :start, :end},
@@ -50,6 +51,7 @@ defmodule Data.Article.Static.BrWandsbekW7 do
         to: "Farmsen",
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W7“ → Farmsen",
+        historic: %{"21db20586cc50256d79176bdb195c29a" => ~d[2023-04]},
         videos: [
           {"2023-04-10-br-wandsbek/GX015570", "00:01:24.401", :end},
           {"2023-04-10-br-wandsbek/GX015571", :start, "00:02:03.624"},

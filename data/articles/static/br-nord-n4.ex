@@ -25,6 +25,7 @@ defmodule Data.Article.Static.BrNordN4 do
         to: "Eulenkamp",
         parent_ref: __MODULE__,
         text: "von der Schönen Aussicht zum Eulenkamp",
+        historic: %{"c7d4bf1c818ef5e9f970cb262aacd5fb" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016521", "00:00:16.250", :end},
           {"2023-10-23-brnrod/GX016522", :start, :end},
@@ -43,6 +44,7 @@ defmodule Data.Article.Static.BrNordN4 do
         to: "Schöne Aussicht",
         parent_ref: __MODULE__,
         text: "vom Eulenkamp zur Schönen Aussicht",
+        historic: %{"28d3a9d512804b6ad51aae77ae4cbc7b" => ~d[2023-10]},
         videos: [
           {"2023-10-23-brnrod/GX016514", :start, :end},
           {"2023-10-23-brnrod/GX016515", :start, :end},

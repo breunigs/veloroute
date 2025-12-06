@@ -22,6 +22,7 @@ defmodule Data.Article.Blog.BillwerderBilldeich do
         to: "Oberbillwerder",
         parent_ref: __MODULE__,
         text: "in Richtung Neubaugebiet",
+        historic: %{"db9cdde7c51ee492b5092100dae133a6" => ~d[2024-01]},
         videos: [
           {"2024-01-27-bergedorf/GX016742", "00:04:55.569", "00:05:10.248"}
         ]
@@ -34,6 +35,7 @@ defmodule Data.Article.Blog.BillwerderBilldeich do
         to: "Ladenbeker Furtweg",
         parent_ref: __MODULE__,
         text: "in Richtung Bergedorf",
+        historic: %{"7a0eb9a7c7a5b2b096b71dff974810cf" => ~d[2024-01]},
         videos: [
           {"2024-01-27-bergedorf/GX016743", "00:00:21.350", "00:00:33.694"}
         ]

@@ -23,6 +23,7 @@ defmodule Data.Article.Static.AhrensburgA5 do
         to: "Beimoorwald",
         parent_ref: __MODULE__,
         text: "Wulfsdorf → Beimoorwald",
+        historic: %{"ea3a6330bf742a871548d2fe9cca1fbe" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014856", "00:01:21.799", :end},
           {"2022-10-15-ahrensburg/GX014857", :start, :end},
@@ -41,6 +42,7 @@ defmodule Data.Article.Static.AhrensburgA5 do
         to: "Wulfsdorf",
         parent_ref: __MODULE__,
         text: "Beimoorwald → Wulfsdorf",
+        historic: %{"4a2e107ccdaf600313a7a64dea5588a5" => ~d[2022-10]},
         videos: [
           {"2022-10-15-ahrensburg/GX014876", "00:01:08.721", :end},
           {"2022-10-15-ahrensburg/GX014877", :start, :end},

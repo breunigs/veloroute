@@ -26,6 +26,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
         to: "Tiergartenstraße",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Süd“ → Tiergartenstraße",
+        historic: %{"41403b1d04fea93cac10cda5cf6f562e" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015169", "00:01:12.606", :end},
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015170", :start, "00:01:02.596"},
@@ -42,6 +43,7 @@ defmodule Data.Article.Static.BrEimsbuettelSued do
         to: "Langenfelder Damm",
         parent_ref: __MODULE__,
         text: "Bezirksroute Eimsbüttel „Süd“ → Langenfelder Damm",
+        historic: %{"666ea7803078ff44f63c51db31d90ed1" => ~d[2023-02]},
         videos: [
           {"2023-02-19-bezirksrouten-eimsbuettel/GX015165", :start, :end},
           {"2021-08-01-freizeit9-anfang/GX012482", :start, :end},
