@@ -78,7 +78,7 @@ defmodule Veloroute.MixProject do
       {:natural_order, "~> 0.3.0"},
       {:phoenix_bakery, "~> 0.1.2", runtime: false},
       {:phoenix_live_view, "~> 1.1"},
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.8.2"},
       {:lazy_html, ">= 0.0.0", only: :test},
       {:plug_cowboy, "~> 2.3"},
       {:polyline, "~> 1.6"},
@@ -87,7 +87,7 @@ defmodule Veloroute.MixProject do
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.7"},
       {:temp, "~> 0.4"},
-      {:tesla, "~> 1.13.0"},
+      {:tesla, "~> 1.15.3"},
       {:tqdm, runtime: is_dev, git: "https://github.com/breunigs/tqdm_elixir", branch: "updates"},
       {:tz, "~> 0.28"},
       {:ua_parser, "~> 1.8"},
@@ -95,7 +95,7 @@ defmodule Veloroute.MixProject do
       # auto video join
       {:ortex, "~> 0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
-      {:scholar, "~> 0.3.0", only: [:dev, :test]}
+      {:scholar, "~> 0.4.0", only: [:dev, :test]}
     ]
   end
 end
