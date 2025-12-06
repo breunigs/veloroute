@@ -122,6 +122,7 @@ function renderIndicator() {
       .setRotation(pos.bearing * 1)
       .setPitchAlignment("map")
       .setRotationAlignment("map")
+      .setSubpixelPositioning(true)
 
     requestAnimationFrame(() => {
       indicator.addTo(map);
@@ -140,7 +141,9 @@ function renderIndicator() {
   videoWasPlaying = videoPlaying;
 
   const shortest = closestEquivalentAngle(indicator.getRotation(), pos.bearing);
-  indicator.setRotation(shortest);
+  // save one call to _update()
+  // indicator.setRotation(shortest);
+  indicator._rotation = shortest;
   indicator.setLngLat(lngLat);
 
   // zoom in once, i.e. when user just clicks play when first visiting the site

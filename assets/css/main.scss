@@ -325,7 +325,7 @@ $videoBarProgressHeight: 0.4rem;
       // opacity: 1 !important; // toggle
 
       opacity: 0;
-      visibility: collapse;
+      visibility: hidden;
 
       position: absolute;
       // Position flush to the top of the video controls (i.e. full overlap)
@@ -379,6 +379,7 @@ $videoBarProgressHeight: 0.4rem;
     background: #000;
     background: linear-gradient(90deg, #444 var(--loaded, 0%), #000 var(--loaded, 0%));
     user-select: none;
+    pointer-events: none;
     contain: strict;
 
     &::-webkit-progress-bar {
@@ -426,7 +427,7 @@ $videoBarProgressHeight: 0.4rem;
     // opacity: 1 !important; // toggle
 
     opacity: 0;
-    visibility: collapse !important;
+    visibility: hidden !important;
 
     transition: opacity 0.2s ease-in-out, visibility 0.2s;
     transition-delay: 250ms;
@@ -717,6 +718,7 @@ $cyclistSize: 8rem;
 #videoPoster {
   width: 100%;
   height: 100%;
+  contain: size layout size;
 
   &::after, &::before {
     transition-property: opacity;
@@ -726,6 +728,7 @@ $cyclistSize: 8rem;
     content: "";
     position: absolute;
     pointer-events: none;
+    contain: strict;
   }
 
   &::before {
@@ -1239,6 +1242,7 @@ a {
 
 #indicator {
   opacity: 0;
+  contain: size layout style;
 }
 
 #indicator, #indicator-rotate {

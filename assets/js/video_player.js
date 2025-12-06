@@ -423,8 +423,23 @@ const codecTranslate = {
   },
 }
 
+let updateQualityChooserEvents = [null, null]
+let updateQualityChooserForced = false
+const passiveOnce = { once: true, ...passive }
+function updateQualityChooserDelayed() {
+  updateQualityChooserEvents = [null, null]
+  updateQualityChooserForced = true
+  updateQualityChooser()
+}
 function updateQualityChooser() {
   if (!window.hls) return hideQualityChooser();
+  // don't update if hidden
+  if (!updateQualityChooserForced && window.getComputedStyle(videoQuality).visibility !== 'visible') {
+    updateQualityChooserEvents[0] ||= videoOptions.addEventListener('touchstart', updateQualityChooserDelayed, passiveOnce);
+    updateQualityChooserEvents[1] ||= videoOptions.addEventListener('mouseenter', updateQualityChooserDelayed, passiveOnce);
+    return;
+  }
+  updateQualityChooserForced = false
 
   requestAnimationFrame(() => {
     const current = window.hls.currentLevel;
@@ -458,7 +473,7 @@ function updateQualityChooser() {
     choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
 
     videoQuality.style.display = 'block';
-    if (videoQualityOptions.innerHTML != choosers) videoQualityOptions.innerHTML = choosers;
+    videoQualityOptions.innerHTML = choosers;
   });
 }
 
@@ -491,10 +506,12 @@ function seekToTime(timeInMs) {
   updateProgressbar();
 }
 
+let prevShowSpinner = false
 function maybeShowLoadingIndicator(evt) {
   let showSpinner = !video.paused && !video.ended && video.readyState < 3
   showSpinner = showSpinner || (video.seeking && video.readyState < 3) || fixSeekForWrongVideoDuration
-  poster.classList.toggle("loading", !!showSpinner)
+  if (prevShowSpinner !== !!showSpinner) poster.classList.toggle("loading", !!showSpinner)
+  prevShowSpinner = !!showSpinner
 }
 
 function maybeUpdatePoster(changedMeta) {
@@ -706,9 +723,8 @@ function reverseVideo() {
 
 function timeFromProgressPosition(e) {
   const max = videoMeta.length_ms || Math.round(video.duration * 1000)
-  const rect = e.target.getBoundingClientRect()
-  const pageX = e.pageX || e.changedTouches[0].pageX
-  let pos = (pageX - rect.left) / e.target.offsetWidth
+  const clientX = e.clientX || e.changedTouches[0].clientX
+  let pos = (clientX - e.target.offsetLeft) / e.target.clientWidth
   // make snapping to start easier
   if (pos < 0.01) pos = 0
   const time = Math.max(0, Math.min(max, pos * max))
@@ -722,9 +738,7 @@ function seekFromProgress(e) {
 
 let progressPreviewRAF = null
 function previewProgress(e) {
-  if (progressPreviewRAF !== null) return
-
-  progressPreviewRAF = requestAnimationFrame(() => {
+  progressPreviewRAF ||= requestAnimationFrame(() => {
     const [time, pos] = timeFromProgressPosition(e)
     const { recDate, street } = metadataForTime(time)
     let text = '';
