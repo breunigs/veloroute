@@ -53,7 +53,7 @@
 		"water": {
 			"minzoom": 6,
 			"maxzoom": 14,
-			"simplify_below": 13,
+			"simplify_below": 14,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
 			"combine_polygons_below": 9,
@@ -63,7 +63,7 @@
 			"minzoom": 0,
 			"maxzoom": 14,
 			"source": "./basemap/open_street_map/water-polygons-split-4326/water_polygons.shp",
-			"simplify_below": 13,
+			"simplify_below": 14,
 			"simplify_level": 0.0001,
 			"simplify_ratio": 2,
 			"write_to": "water",
@@ -78,7 +78,7 @@
 		"landcover": {
 			"minzoom": 0,
 			"maxzoom": 14,
-			"simplify_below": 12,
+			"simplify_below": 13,
 			"simplify_level": 0.0003,
 			"simplify_ratio": 2,
 			"combine_polygons_below": 15,
