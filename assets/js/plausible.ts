@@ -27,17 +27,20 @@ window.plausible = (eventName, options) => {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload),
-    // @ts-ignore experimental feature, cmp. https://web.dev/priority-hints/#the-fetchpriority-attribute
     priority: 'low',
   })
 }
 
+const interval = 120 * 1000
 let lastPage: string
+let timer: ReturnType<typeof setInterval>
 
 function page() {
   if (lastPage === window.location.pathname) return;
   lastPage = window.location.pathname
   window.plausible('pageview')
+  clearInterval(timer)
+  timer = setInterval(() => window.plausible('pageview'), interval)
 }
 
 if (window.history.pushState) {
