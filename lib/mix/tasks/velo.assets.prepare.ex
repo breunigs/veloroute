@@ -58,7 +58,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     "/#{folder}/#{rootname}-#{digest}#{extension}?vsn=d"
   end
 
-  defp to_digested_path(other), do: other
+  defp to_digested_path(other, _type), do: other
 
   defp copy_images() do
     Logger.info("copying images")
