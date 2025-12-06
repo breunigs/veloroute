@@ -14,6 +14,17 @@
 <% end %>
 <meta property="og:image" content={@og_image} />
 
+<.live_component
+  phx-update="ignore"
+  module={VelorouteWeb.Live.Map}
+  id="map"
+  map_bounds={@map_bounds}
+  video={@video}
+  current_page={@current_page}
+  show_map_image={@show_map_image}
+  lang={@lang}
+/>
+
 <div id="videoOuter" data-state="play" class="" phx-mounted={JS.ignore_attributes(["data-state", "class", "style"])} role="region" aria-label="Videoplayer">
   <% # ignore_attributes needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-mounted={JS.ignore_attributes(["class"])}>
