@@ -65,7 +65,7 @@ defmodule Veloroute.MixProject do
       {:brotli, "~> 0.3"},
       {:cachex, "~> 4.0"},
       {:dart_sass, "~> 0.5", runtime: is_dev},
-      {:eflame, "~> 1.0", only: [:dev, :test]},
+      {:eflambe, "~> 0.3.0", only: [:dev, :test]},
       {:erlexec, "~> 2.0",
        runtime: is_dev || is_test,
        system_env: [{"LDFLAGS", "-static -static-libgcc -static-libstdc++"}]},
