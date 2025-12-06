@@ -17,6 +17,7 @@ defmodule VelorouteWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :read_cookies, [:show_map_image, :lang]
+    plug :put_root_layout, {VelorouteWeb.Layouts, :app}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug LangPlug
