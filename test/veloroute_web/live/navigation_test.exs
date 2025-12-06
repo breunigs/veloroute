@@ -130,11 +130,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "link on article in sidebar renders article and sets video pos", %{conn: conn} do
     {:ok, view, html} = live(conn, "/changes")
     assert html =~ ~s|<h3 id="lastChanges">|
-
-    html =
-      view
-      |> element("a", "Kleekamp")
-      |> render_click()
+    html = render_patch(view, "/article/2018-04-08-4-kleekamp")
 
     assert html =~ "<h3 itemprop=\"headline\">Kleekamp"
 
