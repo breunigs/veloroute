@@ -512,10 +512,14 @@ defmodule Components.TagHelpers do
     unless is_module(art),
       do: raise("Icon refs '#{id}', but no article with such a id/name/display_id")
 
-    query = Map.take(assigns, [:bounds, :lat, :lon, :dir])
-    query = if assigns[:autoplay], do: Map.put(query, :autoplay, true), else: query
-
-    href = Article.Decorators.path(art, query)
+    # query encoding is slow, so here's an over-optimized version
+    href = "#{art.path()}?"
+    href = if v = assigns[:bounds], do: href <> "bounds=#{v}&", else: href
+    href = if v = assigns[:lat], do: href <> "lat=#{v}&", else: href
+    href = if v = assigns[:lon], do: href <> "lon=#{v}&", else: href
+    href = if v = assigns[:dir], do: href <> "dir=#{v}&", else: href
+    href = if assigns[:autoplay], do: href <> "autoplay=true&", else: href
+    href = binary_slice(href, 0..-2//1)
 
     assigns =
       assign(assigns, %{

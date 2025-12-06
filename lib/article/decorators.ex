@@ -238,9 +238,9 @@ defmodule Article.Decorators do
       art.route_group() ||
         art
         |> Article.List.related()
-        |> Enum.map(& &1.route_group())
-        |> Enum.uniq()
-        |> Util.compact()
+        |> MapSet.new(& &1.route_group())
+        |> MapSet.delete(nil)
+        |> MapSet.to_list()
 
     groups = List.wrap(groups)
 
@@ -346,7 +346,6 @@ defmodule Article.Decorators do
               {:all, :tags, art.tags()}
             ]
           )
-          |> Article.List.overlap(art)
           |> Article.List.overlap(art)
           |> Enum.flat_map(& &1.tracks())
           |> Enum.uniq()

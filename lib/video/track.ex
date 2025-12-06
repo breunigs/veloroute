@@ -42,7 +42,7 @@ defmodule Video.Track do
           group: binary(),
           direction: :forward | :backward,
           text: binary(),
-          parent_ref: module() | binary(),
+          parent_ref: module(),
           videos: plain(),
           renderer: pos_integer(),
           historic: historic(),

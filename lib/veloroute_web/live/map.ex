@@ -136,12 +136,9 @@ defmodule VelorouteWeb.Live.Map do
   @push_to_frontend [:layers, :styles, :highlight]
   defp push_changes(%{assigns: assigns} = socket) do
     updates =
-      assigns
-      |> Enum.filter(fn {key, _val} ->
-        key in @push_to_frontend && updated?(socket, key)
-      end)
-      |> Enum.reduce(%{}, fn {key, val}, updates ->
-        Map.put(updates, key, val)
+      Enum.reduce(assigns, %{}, fn {key, val}, updates ->
+        updated? = key in @push_to_frontend && updated?(socket, key)
+        if updated?, do: Map.put(updates, key, val), else: updates
       end)
 
     # need to reapply the layer selection on style switch
@@ -168,7 +165,7 @@ defmodule VelorouteWeb.Live.Map do
   defp update_server_route_groups(socket) do
     # from displayed video
     track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
-    video_art = Article.List.find_exact(track && track.parent_ref)
+    video_art = track && track.parent_ref
 
     route_groups =
       [socket.assigns.current_page, video_art]

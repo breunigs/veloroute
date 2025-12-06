@@ -98,6 +98,10 @@ defmodule Article.Index do
   """
 
   @spec find(finder() | finalizer(), [index_name()], [search_term()]) :: results
+  def find(:any, _indexes, []), do: nil
+  def find(:sole, _indexes, []), do: nil
+  def find(:all, _indexes, []), do: MapSet.new()
+
   def find(finder, indexes, search_terms)
       when is_finder(finder) and is_finalizer(finder) and is_list(search_terms) do
     find(finder, {finder, indexes, search_terms})
