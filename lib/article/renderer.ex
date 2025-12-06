@@ -5,8 +5,6 @@ defmodule Article.Renderer do
 
   @spec render(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
-  attr :video_hash, :string, required: true
-  attr :video_start, :string, required: true
   attr :lang, :string, required: true
   attr :search_query, :string
   attr :search_results, :any
@@ -20,7 +18,13 @@ defmodule Article.Renderer do
     try_render(assigns, fn ->
       body = art.text(assigns)
       has_title = assigns.ref.title() != ""
-      assigns = assign(assigns, %{body: body, insert_h3: !has_header?(body) && has_title})
+
+      assigns =
+        assign(assigns, %{
+          body: body,
+          insert_h3: !has_header?(body) && has_title,
+          image_url: if(art.microdata?(), do: Article.Decorators.start_image_path(art))
+        })
 
       ~H"""
         <article {@ref.microdata(:wrapper)}>
@@ -30,7 +34,7 @@ defmodule Article.Renderer do
           <%= @body %>
           <Components.TagHelpers.construction_duration_paragraph ref={@ref} lang={@lang}/>
           <Components.TagHelpers.article_updated_at ref={@ref} lang={@lang}/>
-          <meta itemprop="image" content={"/images/thumbnails/#{@video_hash}/#{@video_start}"} :if={@ref.microdata?()}/>
+          <meta itemprop="image" content={@image_url} :if={@image_url}/>
         </article>
 
         <Components.RelatedArticlesHelper.related_articles ref={@ref} lang={@lang}/>
