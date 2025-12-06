@@ -23,6 +23,23 @@ defmodule Map.Element do
     Enum.filter(list, fn %{tags: tags} -> Enum.member?(values, tags[tag]) end)
   end
 
+  @spec group_by_tag(flexible_collection(), atom()) :: [single()]
+  def group_by_tag(map, tag) when is_map(map),
+    do: map |> Map.values() |> group_by_tag(tag)
+
+  def group_by_tag(list, tag) when is_list(list),
+    do: Enum.group_by(list, & &1.tags[tag])
+
+  @spec bbox_by_tag(flexible_collection(), atom()) :: %{(binary() | nil) => Geo.BoundingBox.t()}
+  def bbox_by_tag(map, tag) when is_map(map),
+    do: map |> Map.values() |> bbox_by_tag(tag)
+
+  def bbox_by_tag(list, tag) when is_list(list) do
+    list
+    |> Map.Element.group_by_tag(tag)
+    |> Map.new(fn {k, v} -> {k, Map.Element.bbox(v)} end)
+  end
+
   @spec find_by_tag(flexible_collection(), atom(), binary() | [binary()]) :: single() | nil
   def find_by_tag(map, tag, value) when is_map(map),
     do: map |> Map.values() |> find_by_tag(tag, value)
