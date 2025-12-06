@@ -37,6 +37,8 @@ defmodule VelorouteWeb.Router do
     get "/favicon.ico", PageController, :redir_favicon
     get "/apple-touch-icon.png", PageController, :redir_favicon
     get "/apple-touch-icon-precomposed.png", PageController, :redir_favicon
+    get "/apple-touch-icon-152x152-precomposed.png", PageController, :redir_favicon
+    get "/apple-touch-icon-152x152.png", PageController, :redir_favicon
 
     get "/export-all-gpx", PageController, :export_all_gpx
 
