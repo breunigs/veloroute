@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Mix.Task
   use Tesla
+  require Logger
 
   @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
   # do not report all Sitzungen just because they have a location with an address
@@ -88,18 +89,22 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}
 
     # Logger.debug("Searching #{district} for #{keyword} within #{de_date_range}")
-    {:ok, %{body: body}} = post(url, params)
+    with {:ok, %{body: body}} <- post(url, params) do
+      html = Floki.parse_fragment!(body)
 
-    html = Floki.parse_fragment!(body)
-
-    html
-    |> Floki.find(~s|form input[type="hidden"][name][value]|)
-    |> Enum.map(fn elem ->
-      type = hd(Floki.attribute(elem, "name"))
-      id = hd(Floki.attribute(elem, "value"))
-      desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
-      %{"district" => district, "type" => type, "id" => id, "desc" => desc}
-    end)
+      html
+      |> Floki.find(~s|form input[type="hidden"][name][value]|)
+      |> Enum.map(fn elem ->
+        type = hd(Floki.attribute(elem, "name"))
+        id = hd(Floki.attribute(elem, "value"))
+        desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
+        %{"district" => district, "type" => type, "id" => id, "desc" => desc}
+      end)
+    else
+      error ->
+        Logger.warning("failed query #{district} keyword=#{keyword}: #{inspect(error)}")
+        []
+    end
   end
 
   defp today() do
