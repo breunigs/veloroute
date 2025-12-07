@@ -128,8 +128,10 @@ const isArchive = hostname.substring(hostname.length - 11) === "archive.org";
 if (!isArchive) liveSocket.connect()
 
 window.liveSocket = liveSocket;
-// liveSocket.disableDebug()
-// liveSocket.enableLatencySim(2000)
+if (hostname === 'localhost') {
+  liveSocket.enableDebug()
+  liveSocket.enableLatencySim(50)
+}
 
 window.addEventListener("phx:impressum", (e) => alert(e.detail.text))
 
