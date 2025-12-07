@@ -65,10 +65,11 @@ Hooks.ScrollReset = {
     // console.log("scroll", "maybeRestoreScroll", scrollPositionFromPopState)
     let restore = scrollPositionFromPopState
     if (restore === null) {
-      requestAnimationFrame(() => {
-        // console.log("scroll", "maybeScrollToTop", scrollLastPage, window.location.pathname)
-        if (scrollLastPage != window.location.pathname) this.el.scrollTop = 0
-      })
+      if (scrollLastPage != window.location.pathname)
+        requestAnimationFrame(() => {
+          // console.log("scroll", "maybeScrollToTop", scrollLastPage, window.location.pathname)
+          this.el.scrollTop = 0
+        })
 
       return
     }

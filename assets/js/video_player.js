@@ -132,16 +132,15 @@ function markPlay() {
 }
 
 function markPause() {
-  window.pushEvent('video-current-time', {
-    pos: videoTimeInMs
-  })
+  sendCurrentVideoTime(null, "markPause")
   current.setAttribute("phx-update", "")
   videoMetadataEl.setAttribute("phx-update", "")
 }
 
-function sendCurrentVideoTime(eventName) {
+function sendCurrentVideoTime(eventName, from) {
   window.pushEvent(eventName || 'video-current-time', {
-    pos: videoTimeInMs
+    pos: videoTimeInMs,
+    from: from || "unknown"
   })
 }
 
@@ -185,7 +184,7 @@ function attachHlsErrorHandler(hls) {
       props.fallback = true
     } else {
       console.log('Hls encountered an error', data);
-      sendCurrentVideoTime();
+      sendCurrentVideoTime(null, "HLS error");
     }
 
     let eventName = 'video-hls-error'
@@ -495,6 +494,7 @@ function seekToTime(timeInMs) {
   if (videoMeta.start * 1 != timeInMs) {
     window.pushEvent('video-current-time', {
       pos: Math.round(timeInMs),
+      from: "iOS workaround"
     })
   }
   if (video.duration < inSeconds && video.currentTime < inSeconds) {

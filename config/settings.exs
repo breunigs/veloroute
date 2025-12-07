@@ -14,6 +14,7 @@ config :veloroute, Settings, %{
     %{
       name: "Karte",
       id: "/assets/basemap/styles/standard.json",
+      # keep in sync with map.js highlightsAppliedToStyle
       active: true
     },
     %{

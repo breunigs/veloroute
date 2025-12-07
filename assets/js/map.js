@@ -5,6 +5,10 @@ import {
 
 import "./map_image_stub"
 
+if (!window.requestIdleCallback) window.requestIdleCallback = function (callback, _options) {
+  window.setTimeout(callback, 40)
+}
+
 const video = document.getElementById('videoInner');
 const settings = window.document.currentScript.dataset;
 
@@ -44,6 +48,16 @@ const clickableSource = 'merged'
 const clickableLayers = {
   layers: routeLayers.concat(articleLayers),
   validate: false,
+  filter: [
+    ">=",
+    [
+      "coalesce",
+      ["get", "line-opacity"],
+      ["get", "fill-opacity"],
+      1
+    ],
+    0.15
+  ]
 };
 
 const genDiv = (id) => {
@@ -97,8 +111,8 @@ function disableIndicatorAnimationOnce(event) {
   }
 }
 
-function renderIndicator() {
-  const pos = getVideoPosition();
+async function renderIndicator() {
+  const pos = await getVideoPosition();
   if (!pos) return;
   if (pos.lat == prevIndicatorPos.lat &&
     pos.lon == prevIndicatorPos.lon &&
@@ -157,7 +171,8 @@ function renderIndicator() {
     return;
   }
 
-  if (!firstRender) ensureIndicatorInView(lngLat);
+  if (firstRender) return
+  ensureIndicatorInViewIdle ||= window.requestIdleCallback(ensureIndicatorInView, { timeout: 1000 });
 }
 
 const closestEquivalentAngle = (from, to) => {
@@ -167,25 +182,27 @@ const closestEquivalentAngle = (from, to) => {
 }
 
 const updateMapMovingStatus = () => {
-  const moving = map.isMoving()
+  const moving = map.isMoving() || map.isZooming()
   document.getElementById("map").classList.toggle("moving", moving)
-  if (moving) disableIndicatorAnimationOnce()
 }
 
-const ensureIndicatorInView = (lngLat) => {
+let ensureIndicatorInViewIdle = null
+const ensureIndicatorInView = async () => {
+  ensureIndicatorInViewIdle = null
   if (map.isMoving() || map.isZooming() || !indicator) {
     return;
   }
 
+  const lngLat = indicator.getLngLat();
   if (map.getBounds().contains(lngLat)) return;
 
   const center = map.getCenter();
   const distDiag = center.distanceTo(map.getBounds().getNorthEast())
   const distIndi = center.distanceTo(lngLat);
   const isClose = distIndi <= 1.5 * distDiag;
+  const indicatorPolyline = await indicatorPolylinePromise
 
   if (!isVideoPlaying() || !indicatorPolyline) {
-    disableIndicatorAnimationOnce()
     isClose
       ? map.panTo(lngLat)
       : map.flyTo({
@@ -201,10 +218,10 @@ const ensureIndicatorInView = (lngLat) => {
   const minMs = videoTimeInMs - 4 * 1000
   const maxMs = videoTimeInMs + 15 * 1000
 
-  const minIndex = indicatorIndexBounds(Math.floor(minMs / indicatorPolyline.interval));
-  const maxIndex = indicatorIndexBounds(Math.floor(maxMs / indicatorPolyline.interval));
+  const minIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(minMs / indicatorPolyline.interval));
+  const maxIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(maxMs / indicatorPolyline.interval));
 
-  for (let i = minIndex; i <= maxIndex; i++) {
+  for (let i = minIndex; i <= maxIndex; i += 10) {
     bbox.extend(indicatorPolyline.coords[i])
   }
 
@@ -233,12 +250,15 @@ window.addEventListener(`phx:map:preload:tile`, (e) => {
   if (e.detail.low_prio_url) fetch(e.detail.low_prio_url, { preloadAbortSignal, priority: 'low' })
 })
 
-const featureOpacity = (feature) => {
-  const paint = feature.layer.paint
-  if (typeof paint['line-opacity'] != "undefined") return paint['line-opacity']
-  if (typeof paint['fill-opacity'] != "undefined") return paint['fill-opacity']
-  return 1
-}
+const uniqueByProperties = (arr) => {
+  const properties = ['route_id', 'route_group', 'title', 'name']
+  const indexed = arr.map((item) => {
+    const values = properties.map((prop) => item.properties[prop])
+    return [values.join(" "), item]
+  })
+
+  return [...new Map(indexed).values()];
+};
 
 const clickLeniency = 'ontouchstart' in window ? 10 : 3;
 const itemsUnderCursor = (evt) => {
@@ -248,13 +268,12 @@ const itemsUnderCursor = (evt) => {
   const sw = [evt.point.x - clickLeniency, evt.point.y + clickLeniency];
   const ne = [evt.point.x + clickLeniency, evt.point.y - clickLeniency];
   let routes = map.queryRenderedFeatures([sw, ne], clickableLayers);
-  routes = routes.filter(r => featureOpacity(r) >= 0.15);
+  routes = uniqueByProperties(routes)
 
   // but become strict if more than one matches
   if (routes.length > 1) {
     let routesStrict = map.queryRenderedFeatures(evt.point, clickableLayers);
-    routesStrict = routes.filter(r => featureOpacity(r) >= 0.15);
-    if (routesStrict >= 1) routes = routesStrict
+    if (routesStrict >= 1) routes = uniqueByProperties(routesStrict)
   }
 
   return routes
@@ -363,7 +382,7 @@ const handleMapClick = (evt) => {
     if (r.properties.route_id && routeLayers.includes(r.layer.id)) {
       routes.push(r.properties.route_id)
     } else if (r.properties.name && (routeLayers + articleLayers).includes(r.layer.id)) {
-      article = article || r.properties.name;
+      article ||= r.properties.name;
     }
   });
 
@@ -391,13 +410,14 @@ const sendBounds = () => {
   }, 200);
 }
 
-let indicatorPolyline = null
+let indicatorPolylinePromise = Promise.resolve(null);
 
 window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
-let highlightsAppliedToStyle = ""
+// keep in sync with settings.exs map_styles
+let highlightsAppliedToStyle = "Standard"
 function styleChangedHandler() {
   // Applying the modifications on a partially loaded style might not work. We
   // don't always get an event with the style fully loaded, so retry this way.
@@ -408,55 +428,21 @@ function styleChangedHandler() {
   highlightsAppliedToStyle = currStyleName
 
   maybeToggleLayers(map, mapConfig)
-  window.dispatchEvent(new CustomEvent("map:styleSwitched"))
 }
 
 function updateIndicatorPolyline(data) {
   if (!data) return
 
-  console.debug("updating video polyline")
-  const decoded = polyline2geojson(data.polyline, data.precision);
-  indicatorPolyline = {
-    coords: decoded.geometry.coordinates,
-    interval: data.interval,
-    eps: 10 ** (-data.precision),
-  }
-
-  // videoPathDebug render
-  // const videoLayerDefaults = {
-  //   'type': 'line',
-  //   'source': 'video',
-  //   'layout': {
-  //     'line-join': 'round',
-  //     'line-cap': 'round'
-  //   },
-  // }
-  // const source = map.getSource('video');
-  // if (source) {
-  //   source.setData(decoded)
-  //   return
-  // }
-
-  // map.addSource('video', {
-  //   'type': 'geojson',
-  //   'data': decoded
-  // });
-
-  // map.addLayer(Object.assign({
-  //   'id': 'video-fg',
-  //   'paint': {
-  //     'line-color': '#000',
-  //     'line-width': 0.5,
-  //   }
-  // }, videoLayerDefaults), "road-label");
-  // map.addLayer(Object.assign({
-  //   'id': 'video-bg',
-  //   'paint': {
-  //     'line-color': '#fff',
-  //     'line-width': 2,
-  //     'line-blur': 0,
-  //   }
-  // }, videoLayerDefaults), "video-fg");
+  indicatorPolylinePromise = new Promise((resolve, _reject) => {
+    setTimeout(() => {
+      console.debug("updating video polyline")
+      resolve({
+        coords: polyline2coords(data.polyline, data.precision),
+        interval: data.interval,
+        eps: 10 ** (-data.precision),
+      })
+    }, 0)
+  })
 }
 
 function toRad(degrees) {
@@ -480,11 +466,16 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-function getVideoPosition() {
+async function getVideoPosition() {
+  const indicatorPolyline = await indicatorPolylinePromise
+
   if (!indicatorPolyline) return;
   let currMs = videoTimeInMs
 
-  const index = indicatorIndexBounds(Math.floor(currMs / indicatorPolyline.interval));
+  const index = indicatorIndexBounds(
+    indicatorPolyline,
+    Math.floor(currMs / indicatorPolyline.interval)
+  );
   let lon1;
   let lat1;
   try {
@@ -496,16 +487,22 @@ function getVideoPosition() {
 
   // Look 100ms in the future to calculate a bearing that is not too affected by
   // precision/rounding errors.
-  let next = indicatorIndexBounds(index + Math.round(100 / indicatorPolyline.interval));
+  let next = indicatorIndexBounds(
+    indicatorPolyline,
+    index + Math.round(100 / indicatorPolyline.interval)
+  );
   let [lon2, lat2] = indicatorPolyline.coords[next];
 
   // If both points are close to each other, look 1s further
-  let close = veryClose(lon1, lat1, lon2, lat2);
+  let close = veryClose(indicatorPolyline, lon1, lat1, lon2, lat2);
   if (close) {
     next += Math.round(1000 / indicatorPolyline.interval)
-    next = indicatorIndexBounds(next);
+    next = indicatorIndexBounds(
+      indicatorPolyline,
+      next
+    );
     [lon2, lat2] = indicatorPolyline.coords[next];
-    close = veryClose(lon1, lat1, lon2, lat2);
+    close = veryClose(indicatorPolyline, lon1, lat1, lon2, lat2);
   }
 
   // If they are still close, we give up and re-use the previous position
@@ -518,29 +515,30 @@ function getVideoPosition() {
   };
 }
 
-function indicatorIndexBounds(index) {
+function indicatorIndexBounds(indicatorPolyline, index) {
   if (index <= 0) return 0;
   return Math.min(index, indicatorPolyline.coords.length - 1);
 }
 
 // veryClose returns true when the two coordinates only differ in their least
 // significant digit, determined from the indicatorPolyline precision.
-function veryClose(lon1, lat1, lon2, lat2) {
+function veryClose(indicatorPolyline, lon1, lat1, lon2, lat2) {
   const close = indicatorPolyline.eps * 10;
   return Math.abs(lon1 - lon2) < close && Math.abs(lat1 - lat2) < close
 }
 
 // algorithm specification: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
-function polyline2geojson(str, precision) {
+function polyline2coords(str, precision) {
   const factor = 10 ** (precision || 6);
 
   let index = 0;
+  let coordIndex = 0;
   let lat = 0;
   let lon = 0;
-  let coordinates = [];
+  let coordinates = new Array(Math.floor(str.length / 2));
 
+  let byte;
   while (index < str.length) {
-    let byte;
     let shift = 0;
     let val = 0;
 
@@ -562,17 +560,12 @@ function polyline2geojson(str, precision) {
 
     lon += ((val & 1) ? ~(val >> 1) : (val >> 1));
 
-    coordinates.push([lon / factor, lat / factor]);
+    coordinates[coordIndex++] = [lon / factor, lat / factor];
   }
 
-  return {
-    type: 'Feature',
-    "properties": {},
-    geometry: {
-      type: 'LineString',
-      coordinates: coordinates
-    }
-  };
+  // remove any over allocated entries
+  coordinates.length = coordIndex
+  return coordinates
 }
 
 // for some reason click events don't fire on iOS and potentially other touch
