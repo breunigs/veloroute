@@ -13,14 +13,15 @@
     },
     "esri_satellite": {
       "type": "raster",
-      "tiles": ["/map/___esri_satellite?z={z}&y={y}&x={x}&r={r}"],
+      "tiles": ["/map/___esri_satellite?z={z}&y={y}&x={x}&r={ratio}"],
       "minzoom": 0,
       "maxzoom": 19,
-      "attribution": "%%ATTRIBUTION___esri_satellite%%"
+      "tileSize": 256,
+      "attribution": "%%ATTRIBUTION___esri_satellite%% | <a href=\"https://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap</a>"
     },
     "maptiler_satellite": {
       "type": "raster",
-      "tiles": ["/map/___maptiler_satellite?z={z}&y={y}&x={x}&r={r}"],
+      "tiles": ["/map/___maptiler_satellite?z={z}&y={y}&x={x}&r={ratio}"],
       "minzoom": 0,
       "maxzoom": 20,
       "tileSize": 512,
@@ -37,7 +38,7 @@
     {
       "id": "satellite",
       "type": "raster",
-      "source": "maptiler_satellite",
+      "source": "esri_satellite",
       "layout": {},
       "paint": {}
     },

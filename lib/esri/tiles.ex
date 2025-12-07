@@ -1,13 +1,13 @@
 defmodule Esri.Tiles do
   @base "https://server.arcgisonline.com"
   @maps %{
-    "___esri_hillshade" => "/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/",
+    # "___esri_hillshade" => "/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/",
     "___esri_satellite" => "/ArcGIS/rest/services/World_Imagery/MapServer/tile/"
   }
 
   @attribution [
-    {"___esri_hillshade", "https://static.arcgis.com/attribution/Elevation/World_Hillshade",
-     "https://www.arcgis.com/home/item.html?id=1b243539f4514b6ba35e7d995890db1d"},
+    # {"___esri_hillshade", "https://static.arcgis.com/attribution/Elevation/World_Hillshade",
+    #  "https://www.arcgis.com/home/item.html?id=1b243539f4514b6ba35e7d995890db1d"},
     {"___esri_satellite", "https://static.arcgis.com/attribution/World_Imagery",
      "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9"}
   ]
@@ -40,11 +40,13 @@ defmodule Esri.Tiles do
             score = Enum.max_by(covs, & &1["score"])["score"]
             minZoom = Enum.min_by(covs, & &1["zoomMin"])["zoomMin"]
             maxZoom = Enum.max_by(covs, & &1["zoomMax"])["zoomMax"]
-            %{text: text, score: score, zoom: minZoom..maxZoom}
+            text = text |> String.replace(~r/©\d\d\d\d/, "") |> String.trim()
+            %{text: text, score: score, zoom: minZoom..maxZoom, covs: covs}
           end
         end)
         |> Util.compact()
         |> Enum.sort_by(& &1.score, :desc)
+        |> Enum.uniq_by(& &1.text)
         |> Enum.map_join(", ", & &1.text)
 
       {key, ~s(<a href="#{source}">Esri, #{text}</a>)}
