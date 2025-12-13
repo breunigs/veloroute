@@ -15,7 +15,8 @@ defmodule Veloroute.MixProject do
           steps: [:assemble]
         ]
       ],
-      aliases: aliases()
+      aliases: aliases(),
+      listeners: [Phoenix.CodeReloader]
     ]
   end
 
