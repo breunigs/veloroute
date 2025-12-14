@@ -335,8 +335,6 @@ $videoBarProgressHeight: 0.4rem;
       @media (pointer: fine) {
         margin-top: -0.2rem;
       }
-      // i.e. center horizontally and move above video controls, depending on its height
-      transform: translateX(-50%) translateY(-100%);
       width: 12rem;
 
       text-overflow: ellipsis;
@@ -352,6 +350,8 @@ $videoBarProgressHeight: 0.4rem;
       pointer-events: none;
       z-index: 1;
       line-height: 1.3rem;
+
+      contain: content;
     }
 
     // for devices with mouse

@@ -724,10 +724,12 @@ function reverseVideo() {
 function timeFromProgressPosition(e) {
   const max = videoMeta.length_ms || Math.round(video.duration * 1000)
   const clientX = e.clientX || e.changedTouches[0].clientX
-  let pos = (clientX - e.target.offsetLeft) / e.target.clientWidth
+
+  let pos = (clientX - e.target.offsetLeft)
+  const ratio = pos / e.target.clientWidth
   // make snapping to start easier
-  if (pos < 0.01) pos = 0
-  const time = Math.max(0, Math.min(max, pos * max))
+  if (ratio < 0.01) pos = 0
+  const time = Math.max(0, Math.min(max, ratio * max))
   return [scrubTimeInMs || time, pos]
 }
 
@@ -746,7 +748,7 @@ function previewProgress(e) {
     if (recDate !== "") text += `${recDate}<br>`
     if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
     progressPreviewEl.innerHTML = text
-    progressPreviewEl.style.left = (pos * 100) + '%'
+    progressPreviewEl.style.transform = `translate(-50%, -100%) translateX(${pos}px)`
     progressPreviewRAF = null
   })
 }
