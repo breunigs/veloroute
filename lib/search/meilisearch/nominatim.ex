@@ -215,6 +215,7 @@ defmodule Search.Meilisearch.Nominatim do
   defp intersect(ms1, nil), do: ms1
   defp intersect(nil, ms2), do: ms2
   defp intersect(ms1, ms2), do: MapSet.intersection(ms1, ms2)
+
   defp into(into \\ %{}, ms)
   defp into(_into, nil), do: nil
   defp into(into, ms), do: Enum.into(ms, into)

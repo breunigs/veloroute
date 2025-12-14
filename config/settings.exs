@@ -61,7 +61,7 @@ config :veloroute, Settings, %{
       outline: []
     },
     %{
-      name: "Velorouten (vor 2024)",
+      name: "Velorouten (bis 2024)",
       route_group: :alltag,
       active: false,
       line: ["vr-line-off-p1", "vr-line-off-m1", "vr-line-off-none"],

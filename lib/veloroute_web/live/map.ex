@@ -242,7 +242,7 @@ defmodule VelorouteWeb.Live.Map do
 
   defp maybe_map_preview(%{assigns: assigns} = socket) do
     video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
-    cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.map_bounds)
+    cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.initial_map_bounds)
 
     assigns = %{
       video_route_id: video_route_id,

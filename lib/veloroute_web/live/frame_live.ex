@@ -12,6 +12,7 @@ defmodule VelorouteWeb.FrameLive do
     prev_page: nil,
     current_page: nil,
     map_bounds: @default_bounds,
+    initial_map_bounds: @default_bounds,
     appointments: [],
     article_original_date: nil,
     article_date: nil,
@@ -51,6 +52,7 @@ defmodule VelorouteWeb.FrameLive do
       |> assign(state)
       |> maybe_run_events_from_url(params)
       |> search(params["search_query"])
+      |> maybe_update_initial_map_bounds
 
     VelorouteWeb.ConnectionTracker.track(socket)
 
@@ -419,6 +421,7 @@ defmodule VelorouteWeb.FrameLive do
     |> push_event("bounds:adjust", bounds)
     |> push_event("map:preload:tile", %{url: preload1, low_prio_url: preload2})
     |> assign(map_bounds: bounds)
+    |> maybe_update_initial_map_bounds
   end
 
   defp update_map_bounds(socket, %{"bounds" => bounds}) do
@@ -433,6 +436,11 @@ defmodule VelorouteWeb.FrameLive do
     art = socket.assigns.current_page
     data = Data.MapImage.for_frontend(art, show, zoom)
     Phoenix.LiveView.push_event(socket, :show_map_image, data)
+  end
+
+  def maybe_update_initial_map_bounds(socket) do
+    keep = connected?(socket) && socket.assigns.initial_map_bounds
+    if keep, do: socket, else: assign(socket, initial_map_bounds: socket.assigns.map_bounds)
   end
 
   defp find_article(nil), do: nil
