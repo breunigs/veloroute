@@ -27142,6 +27142,11 @@
   <node id='-275269636' action='modify' lat='53.62589402965' lon='10.15908121526' />
   <node id='-275269637' action='modify' lat='53.62609445708' lon='10.15933334291' />
   <node id='-275269638' action='modify' lat='53.62674345364' lon='10.1579922384' />
+  <node id='-276931686' action='modify' lat='53.59078546488' lon='9.9847108072' />
+  <node id='-276931687' action='modify' lat='53.59209726955' lon='9.98680829465' />
+  <node id='-276931688' action='modify' lat='53.59229467352' lon='9.98644351423' />
+  <node id='-276931689' action='modify' lat='53.59123122832' lon='9.98472153604' />
+  <node id='-276931700' action='modify' lat='53.59096217721' lon='9.98427360982' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -76708,6 +76713,16 @@
     <nd ref='-275269638' />
     <nd ref='-275269629' />
     <tag k='name' v='2025-11-25-saseler-strasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21051675' action='modify'>
+    <nd ref='-276931686' />
+    <nd ref='-276931687' />
+    <nd ref='-276931688' />
+    <nd ref='-276931689' />
+    <nd ref='-276931700' />
+    <nd ref='-276931686' />
+    <tag k='name' v='2025-12-14-schottmuellerstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
