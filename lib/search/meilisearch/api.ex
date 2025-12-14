@@ -174,25 +174,28 @@ defmodule Search.Meilisearch.API do
     end
   end
 
-  @spec await_finish(any) :: :ok | {:error, binary()}
-  defp await_finish({:ok, %{body: %{"status" => "succeeded"}}}), do: :ok
-  defp await_finish({:ok, %{body: %{"status" => "failed"} = body}}), do: {:error, inspect(body)}
+  @spec await_finish(any, pos_integer()) :: :ok | {:error, binary()}
+  defp await_finish(any, waited \\ 1)
+  defp await_finish({:ok, %{body: %{"status" => "succeeded"}}}, _waited), do: :ok
 
-  defp await_finish({:ok, %{status: status, body: %{"taskUid" => uid}}})
+  defp await_finish({:ok, %{body: %{"status" => "failed"} = body}}, _waited),
+    do: {:error, inspect(body)}
+
+  defp await_finish({:ok, %{status: status, body: %{"taskUid" => uid}}}, waited)
        when status >= 200 and status <= 299 and is_integer(uid) do
-    await_finish(uid)
+    await_finish(uid, waited)
   end
 
-  defp await_finish({:ok, %{status: status, body: %{"uid" => uid}}})
+  defp await_finish({:ok, %{status: status, body: %{"uid" => uid}}}, waited)
        when status >= 200 and status <= 299 and is_integer(uid) do
-    await_finish(uid)
+    await_finish(uid, waited)
   end
 
-  defp await_finish(uid) when is_integer(uid) do
-    Process.sleep(100)
-    get("/tasks/#{uid}", opts: @adapter_opts_general) |> await_finish()
+  defp await_finish(uid, waited) when is_integer(uid) do
+    Process.sleep(100 * min(waited, 100))
+    get("/tasks/#{uid}", opts: @adapter_opts_general) |> await_finish(waited + 1)
   end
 
-  defp await_finish({:error, reason}), do: {:error, reason}
-  defp await_finish(other), do: {:error, inspect(other)}
+  defp await_finish({:error, reason}, _waited), do: {:error, reason}
+  defp await_finish(other, _waited), do: {:error, inspect(other)}
 end
