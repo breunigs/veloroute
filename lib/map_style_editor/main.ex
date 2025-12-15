@@ -5,11 +5,12 @@ defmodule MapStyleEditor.Main do
   def path, do: "data/cache/#{@dirname}"
 
   def build do
-    Util.Docker.build_and_run(
-      @container_ref,
-      %{command_args: ["cp", "-r", "/editor/.", "/workdir/#{@dirname}"]},
-      []
-    )
+    :ok =
+      Util.Docker.build_and_run(
+        @container_ref,
+        %{command_args: ["cp", "-r", "/editor/.", "/workdir/#{@dirname}"]},
+        []
+      )
   end
 
   def serve(style: style, port: port) when is_binary(style) do

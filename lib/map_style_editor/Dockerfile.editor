@@ -9,14 +9,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends -q2 \
 
 RUN cd /tmp \
   && wget --no-verbose https://github.com/maplibre/maputnik/archive/refs/heads/main.zip \
-  && unzip -q -d /tmp/ master.zip \
-  && mv /tmp/editor-master /maputnik/ \
-  && rm master.zip
+  && unzip -q -d /tmp/ main.zip \
+  && mv /tmp/maputnik* /maputnik/ \
+  && rm main.zip
 
 WORKDIR /maputnik
 RUN npm install -ci --no-audit
-RUN sed -i 's|--progress=profile||' package.json \
+RUN sed -i 's|--mode=production|--mode=desktop|' package.json \
   && npm run build
 
 FROM debian:${DEBIAN_VERSION}
-COPY --from=builder /maputnik/build/build/ /editor/
+COPY --from=builder /maputnik/dist/ /editor/

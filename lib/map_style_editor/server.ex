@@ -28,6 +28,10 @@ defmodule MapStyleEditor.Server do
     serve_file(conn, Enum.join(path, "/"))
   end
 
+  get "/:name.geojson" do
+    serve_file(conn, "priv/static/#{name}.geojson")
+  end
+
   put "/styles/:name" do
     path = MapStyleEditor.Tracker.style() |> Path.dirname()
     local_path = Path.join(path, name) <> ".json"
