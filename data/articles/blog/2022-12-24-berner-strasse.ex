@@ -28,6 +28,8 @@ defmodule Data.Article.Blog.BernerStrasse do
 
   def links(_assigns) do
     [
+      {"Blogpost zum Baufortschritt", ~d[2025-12],
+       "https://www.buschhueter.de/berner-strasse-verkehrsfreigabe-in-alle-richtungen-ab-donnerstagabend/"},
       {"Baustelleninfo", ~d[2024-09],
        "https://lsbg.hamburg.de/resource/blob/961996/ceee123a94f1ae729698475730970d7f/berner-strasse-fasanenweg-berner-bruecke-anliegerinformation-august-2024-data.pdf"},
       # {"Baustelleninfo", "Mai 2023",
