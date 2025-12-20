@@ -358,19 +358,27 @@ const titleForItem = (item) => {
 
 const collator = new Intl.Collator('de', { numeric: true, sensitivity: 'base' })
 
+let mapHoverRAF = null
+let mapHoverEvt = null
 const handleMapHover = (evt) => {
-  const items = itemsUnderCursor(evt);
-  const canvas = map.getCanvas()
+  mapHoverEvt = evt
 
-  const titles = items.flatMap(item => titleForItem(item)).filter(item => item)
-  if (titles.length === 0) {
-    canvas.style.cursor = '';
-    canvas.title = '';
-    return;
-  }
+  mapHoverRAF ||= requestAnimationFrame(() => {
+    mapHoverRAF = null
 
-  canvas.style.cursor = 'pointer';
-  canvas.title = [...new Set(titles)].sort(collator.compare).join("\n")
+    const items = itemsUnderCursor(mapHoverEvt);
+    const canvas = map.getCanvas()
+
+    const titles = items.flatMap(item => titleForItem(item)).filter(item => item)
+    if (titles.length === 0) {
+      canvas.style.cursor = '';
+      canvas.title = '';
+      return;
+    }
+
+    canvas.style.cursor = 'pointer';
+    canvas.title = [...new Set(titles)].sort(collator.compare).join("\n")
+  })
 }
 
 const handleMapClick = (evt) => {
