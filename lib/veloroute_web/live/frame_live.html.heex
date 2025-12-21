@@ -64,7 +64,7 @@
     <div id="videoOptions" phx-update="ignore">
       <button type="button" aria-label="Video-Einstellungen" aria-haspopup="true" aria-controls="videoOptionsMenu"></button>
       <div role="menu" aria-orientation="horizontal" id="videoOptionsMenu" style="visibility: collapse">
-        <div class="column" id="videoQuality" aria-orientation="vertical" role="group">
+        <div class="column" id="videoQuality" style="display: none" phx-mounted={JS.ignore_attributes(["class"])} aria-orientation="vertical" role="group">
           <strong><%= if @lang == "en" do %>Quality<% else %>Qualität<% end %></strong>
           <div id="videoQualityOptions"></div>
         </div>
