@@ -44,6 +44,12 @@ defmodule Data.Article.Static.BrWandsbekW6 do
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W6“ → Wellingsbüttel",
         historic: %{"ed90b9ba9c353c95e5f379f10f761037" => ~d[2023-04]},
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.BrNordN8,
+          group: "n8",
+          direction: :backward
+        },
         videos: [
           {"2023-04-10-br-wandsbek/GX015579", "00:01:50.944", :end},
           {"2023-04-10-br-wandsbek/GX015580", :start, :end},

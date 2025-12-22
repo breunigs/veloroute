@@ -2874,7 +2874,7 @@
       "source": "merged",
       "source-layer": "articles",
       "minzoom": 12,
-      "layout": {},
+      "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "hsla(0, 0%, 53%, 0.5)",
         "fill-outline-color": "#888888",
@@ -2888,6 +2888,7 @@
       "source-layer": "articles",
       "minzoom": 6,
       "maxzoom": 6,
+      "layout": {"visibility": "none"},
       "paint": {"line-color": "hsla(0, 54%, 19%, 0)", "line-opacity": 0}
     },
     {
@@ -2897,7 +2898,11 @@
       "source-layer": "articles",
       "minzoom": 6,
       "maxzoom": 6,
-      "layout": {"line-cap": "round", "line-join": "round"},
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
       "paint": {
         "line-dasharray": [2, 3],
         "line-color": "hsla(0, 0%, 53%, 0)",

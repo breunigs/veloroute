@@ -63,6 +63,12 @@ defmodule Data.Article.Static.RSWElmshorn do
         historic: %{
           "89b158bcfe2d570ac850a46441c947e6" => ~d[2022-08]
         },
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute2,
+          group: "2",
+          direction: :forward
+        },
         videos: [
           {"2022-08-13-rsw-elmshorn-rev/GX014526", :start, :end},
           {"2022-08-13-rsw-elmshorn-rev/GX014527", :start, :end},

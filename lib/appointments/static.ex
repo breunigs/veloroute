@@ -1,8 +1,8 @@
 defmodule Appointments.Static do
   @sternfahrt_title "Fahrradsternfahrt"
   @sternfahrt_url "https://fahrradsternfahrt.hamburg/fahrradsternfahrt-hamburg/routenplan/"
-  @sternfahrt_date ~U[2025-06-22 00:00:00.000Z]
-  @sternfahrt_locations "data/sternfahrt_2025_locations.json"
+  @sternfahrt_date ~U[2026-06-21 00:00:00.000Z]
+  @sternfahrt_locations "data/sternfahrt_2026_locations.json"
   @external_resource @sternfahrt_locations
 
   @sternfahrt_locations @sternfahrt_locations

@@ -56,6 +56,12 @@ defmodule Data.Article.Static.BrWandsbekW1 do
         parent_ref: __MODULE__,
         text: "Bezirksroute Wandsbek „W1“ → Eilbek",
         historic: %{"713c8da0236af26a641cb27f73b04df7" => ~d[2023-03]},
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.Radroute7,
+          group: "7",
+          direction: :backward
+        },
         videos: [
           {"2021-09-26-velo6-rsw-ahrensburg/GX012967", "00:02:47.701", "00:02:53.073"},
           {"2023-03-28-w1-w5-w8sud/GX015306", "00:03:32.546", :end},

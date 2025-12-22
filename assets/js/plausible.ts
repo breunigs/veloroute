@@ -40,7 +40,10 @@ function page() {
   lastPage = window.location.pathname
   window.plausible('pageview')
   clearInterval(timer)
-  timer = setInterval(() => window.plausible('pageview'), interval)
+  timer = setInterval(() => {
+    if (document['hidden']) return
+    window.plausible('pageview')
+  }, interval)
 }
 
 if (window.history.pushState) {

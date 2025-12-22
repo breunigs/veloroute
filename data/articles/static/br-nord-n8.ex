@@ -26,6 +26,12 @@ defmodule Data.Article.Static.BrNordN8 do
         parent_ref: __MODULE__,
         text: "von der Kollaustraße nach Wellingsbüttel",
         historic: %{"2ef94fca6503da0e9aade83097ad3967" => ~d[2023-10]},
+        end_action: %{
+          action: :play,
+          route: Data.Article.Static.BrWandsbekW6,
+          group: "w6",
+          direction: :forward
+        },
         videos: [
           {"2023-10-22-br-nord-reg/GX016466", "00:00:33.901", "00:01:26.820"},
           {"2023-10-23-brnrod/GX016492", "00:01:29.222", :end},
