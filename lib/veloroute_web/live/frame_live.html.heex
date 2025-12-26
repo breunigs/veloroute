@@ -19,7 +19,8 @@
   module={VelorouteWeb.Live.Map}
   id="map"
   initial_map_bounds={@initial_map_bounds}
-  video={@video}
+  video_parent={@video_parent}
+  video_route_id={@video_route_id}
   current_page={@current_page}
   show_map_image={@show_map_image}
   lang={@lang}
@@ -35,14 +36,14 @@
       muted
       playsinline
       preload="none"
-      poster={@video_poster}
+      poster={@video_poster_initial}
       phx-mounted={JS.ignore_attributes(["poster", "style"])}
     >
-    <%= Video.Components.alternatives(@video_hash, @video_start) %>
+      <Video.Components.alternatives hash={@video_hash} start={@video_start}/>
     </video>
   </div>
 
-  <%= VelorouteWeb.VariousHelpers.display_route(@video) %>
+  <VelorouteWeb.VariousHelpers.display_route text={@video_text} article={@video_parent}/>
 
   <div id="videoControlsBg"></div>
   <div id="videoControls" data-nosnippet="yes" role="toolbar">
@@ -116,9 +117,5 @@
 </div>
 
 <%= if @enable_drawing_tools do %>
-  <%
-  track = VelorouteWeb.Live.VideoState.current_track(@video)
-  ref = if track && is_atom(track.parent_ref), do: track.parent_ref.id()
-  %>
-  <div id="linkInfoHelper" data-video-id={ref} data-video-dir={@video.direction}></div>
+  <div id="linkInfoHelper" data-video-id={@video_route_id} data-video-dir={@video.direction}></div>
 <% end %>

@@ -105,7 +105,7 @@ function maybeExecEndAction() {
     reverseVideo()
     term = end
   } else if (typeof end === "object" && end && end.action) {
-    cacheVideoPoster()
+    queueMicrotask(cacheVideoPoster)
     window.pushEvent("video-ended", { action: end.action })
     term = end.action
   }
@@ -170,7 +170,11 @@ function attachHlsErrorHandler(hls) {
       props.codec = 'no-hls-level'
     }
 
+
     const isFatalMediaError = data.fatal && data.type == Hls.ErrorTypes.MEDIA_ERROR
+    let eventName = 'video-hls-error'
+    if (data.fatal) eventName += '-fatal'
+
     if (isFatalMediaError && !hlsJsTriedMediaRecovery) {
       hlsJsTriedMediaRecovery = true
       cacheVideoPoster()
@@ -178,7 +182,7 @@ function attachHlsErrorHandler(hls) {
     } else if (isFatalMediaError) {
       cacheVideoPoster()
       console.warn('Hls encountered a fatal error. Destroying it and letting the browser use the fallback.', data);
-      sendCurrentVideoTime('video-fatal-hls');
+      sendCurrentVideoTime(eventName);
       videoMeta.start = videoTimeInMs;
       autoplay = true
       window.hls.destroy()
@@ -187,11 +191,9 @@ function attachHlsErrorHandler(hls) {
       props.fallback = true
     } else {
       console.log('Hls encountered an error', data);
-      sendCurrentVideoTime(null, "HLS error");
+      sendCurrentVideoTime(eventName, `${data.type} ${data.details}`);
     }
 
-    let eventName = 'video-hls-error'
-    if (data.fatal) eventName += '-fatal'
     window.plausible(eventName, { props: props });
   });
 }
@@ -728,7 +730,7 @@ function togglePlayPause(e) {
 
 function reverseVideo() {
   actionIcon("reverse")
-  cacheVideoPoster()
+  queueMicrotask(cacheVideoPoster)
   window.pushEvent('video-reverse', {
     pos: Math.round(videoTimeInMs)
   })

@@ -32,26 +32,30 @@ defmodule Video.Components do
     """
   end
 
-  @spec alternatives(Video.Track.hash(), non_neg_integer()) :: Phoenix.LiveView.Rendered.t()
-  def alternatives(hash, start_in_ms) when valid_hash(hash) and is_integer(start_in_ms) do
+  attr :hash, :string, required: true
+  attr :start, :integer, required: true
+  @spec alternatives(map) :: Phoenix.LiveView.Rendered.t()
+  def alternatives(%{hash: hash, start: start} = assigns)
+      when valid_hash(hash) and is_integer(start) do
     variants = variants_timeout(hash)
+    url = "#{Settings.r(:video_serve_host)}/#{Settings.r(:video_serve_path)}"
 
-    assigns = %{
-      variants: variants,
-      main_url:
-        "#{Settings.r(:video_serve_host)}/#{Settings.r(:video_serve_path)}/#{hash}/stream.m3u8",
-      first_url: if(length(variants) > 0, do: variants |> List.first() |> elem(0)),
-      start: start_in_ms / 1000.0
-    }
+    assigns =
+      assign(assigns, %{
+        prefix: "#{url}/#{hash}/",
+        variants: variants,
+        first_stream: if(variants != [], do: variants |> List.first() |> elem(0)),
+        start: to_string(start / 1000.0)
+      })
 
     ~H"""
-    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@first_url} :if={@first_url}>
-    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={@main_url} id="hlsJsUrl">
-    <source src={"#{@main_url}#t=#{@start}"} type="application/x-mpegURL">
-    <%= for {url, codec} <- @variants do %>
-      <source src={"#{String.replace_suffix(url, ".m3u8", ".m4s")}#t=#{@start}"} type={"video/mp4; codecs=#{codec}"}>
+    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={"#{@prefix}#{@first_stream}"} :if={@first_stream}>
+    <link rel="preload" as="fetch" crossorigin="anonymous" fetchpriority="low" href={"#{@prefix}stream.m3u8"} id="hlsJsUrl">
+    <source src={"#{@prefix}stream.m3u8#t=#{@start}"} type="application/x-mpegURL">
+    <%= for {path, codec} <- @variants do %>
+      <source src={"#{@prefix}#{path}#t=#{@start}"} type={"video/mp4; codecs=#{codec}"}>
     <% end %>
-    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href={@first_url} target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
+    <p>Abspielen im Browser klappt wohl nicht. Du kannst das <a href={"#{@prefix}#{@first_stream}"} target="_blank">Video herunterladen</a> und anderweitig anschauen.</p>
     """
   end
 
@@ -84,12 +88,13 @@ defmodule Video.Components do
   use Memoize
 
   defmemo variants(hash) do
-    prefix = "#{Settings.r(:video_serve_host)}/#{Settings.r(:video_serve_path)}/#{hash}/"
-
     with path = Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
-      Enum.map(variants, fn var -> {prefix <> var.url, var.codec} end)
+      Enum.map(variants, fn var ->
+        video_file = String.replace_suffix(var.url, ".m3u8", ".m4s")
+        {video_file, var.codec}
+      end)
     else
       _ -> []
     end

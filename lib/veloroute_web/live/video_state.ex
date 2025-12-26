@@ -24,6 +24,9 @@ defmodule VelorouteWeb.Live.VideoState do
           direction: :forward | :backward
         }
 
+  @typep socket :: Phoenix.LiveView.Socket.t()
+  @typep params :: %{binary() => binary()}
+
   import Guards
 
   @doc """
@@ -46,7 +49,7 @@ defmodule VelorouteWeb.Live.VideoState do
       socket
       # finalize happens in set_position
       |> Phoenix.Component.assign(:video, state)
-      |> set_position(params, true)
+      |> set_position(params, fallback: true)
     else
       _ -> maybe_update_video(socket, article, Map.delete(params, "video"))
     end
@@ -141,10 +144,15 @@ defmodule VelorouteWeb.Live.VideoState do
 
   defp maybe_filter_tracks_by_point_of_interest(tracks, _article, _accurate), do: tracks
 
-  defp finalize(socket, assigns) do
-    socket
-    |> Phoenix.Component.assign(assigns)
-    |> push_changes()
+  defp finalize(socket, assigns, push_updates \\ true) do
+    socket =
+      socket
+      |> Phoenix.Component.assign(assigns)
+      |> Phoenix.Component.assign_new(:video_poster_initial, fn ->
+        Keyword.get(assigns, :video_poster)
+      end)
+
+    if push_updates, do: push_changes(socket), else: socket
   end
 
   defp push_changes(socket) do
@@ -248,7 +256,15 @@ defmodule VelorouteWeb.Live.VideoState do
   Set the current video position from the given time in milliseconds in the
   "pos" param.
   """
-  def set_position(%{assigns: %{video: state}} = socket, params, fallback \\ false) do
+  @spec set_position(socket(), params(), Keyword.t()) :: socket()
+  def set_position(
+        %{assigns: %{video: state}} = socket,
+        params,
+        opts \\ []
+      ) do
+    push_updates = Keyword.get(opts, :push_updates, true)
+    fallback = Keyword.get(opts, :fallback, false)
+
     point =
       cond do
         pos = position_from_time(socket, params) -> pos
@@ -260,7 +276,7 @@ defmodule VelorouteWeb.Live.VideoState do
 
     if point do
       assigns = for_frontend(%{state | start: point})
-      finalize(socket, assigns)
+      finalize(socket, assigns, push_updates)
     else
       socket
     end
@@ -358,13 +374,15 @@ defmodule VelorouteWeb.Live.VideoState do
 
     [
       video: state,
-      video_end_action: if(track, do: track.end_action),
+      video_end_action: track && track.end_action,
       video_hash: video.hash(),
       video_vanity: Video.Rendered.vanity(video),
       video_start: start_from.time_offset_ms,
       video_length_ms: video.length_ms(),
       video_polyline: video.polyline(),
-      video_route: %{id: route_id(state)},
+      video_route_id: route_id(state),
+      video_parent: track && track.parent_ref,
+      video_text: track && track.text,
       video_recording_dates: video.recording_dates(),
       video_recording_date: recording_date,
       video_street_names: video.street_names(),
@@ -384,6 +402,9 @@ defmodule VelorouteWeb.Live.VideoState do
       video_vanity: "",
       video_start: 0,
       video_poster: nil,
+      video_parent: nil,
+      video_text: nil,
+      video_route_id: nil,
       video_reversible: false
     ]
   end

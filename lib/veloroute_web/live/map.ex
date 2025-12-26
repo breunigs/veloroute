@@ -163,12 +163,8 @@ defmodule VelorouteWeb.Live.Map do
   end
 
   defp update_server_route_groups(socket) do
-    # from displayed video
-    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
-    video_art = track && track.parent_ref
-
     route_groups =
-      [socket.assigns.current_page, video_art]
+      [socket.assigns.current_page, socket.assigns.video_parent]
       |> Util.compact()
       |> Enum.uniq()
       |> Enum.flat_map(&Article.Decorators.related_route_groups(&1))
@@ -183,10 +179,8 @@ defmodule VelorouteWeb.Live.Map do
   end
 
   defp highlight_route(socket) do
-    track = VelorouteWeb.Live.VideoState.current_track(socket.assigns.video)
-
-    if track && track.parent_ref do
-      assign(socket, highlight: track.parent_ref.id())
+    if socket.assigns.video_route_id do
+      assign(socket, highlight: socket.assigns.video_route_id)
     else
       socket
     end
@@ -241,14 +235,13 @@ defmodule VelorouteWeb.Live.Map do
   defp maybe_map_preview(%{assigns: %{preview_image: _any}} = socket), do: socket
 
   defp maybe_map_preview(%{assigns: assigns} = socket) do
-    video_route_id = VelorouteWeb.Live.VideoState.route_id(assigns.video)
     cz = VelorouteWeb.VariousHelpers.to_string_center_zoom(assigns.initial_map_bounds)
 
-    assigns = %{
-      video_route_id: video_route_id,
-      cz: cz,
-      sizes: @static_map_sizes
-    }
+    assigns =
+      assign(assigns, %{
+        cz: cz,
+        sizes: @static_map_sizes
+      })
 
     preview_image = ~H"""
     <picture id="mapPreview">

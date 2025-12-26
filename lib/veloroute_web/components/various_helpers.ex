@@ -2,27 +2,27 @@ defmodule VelorouteWeb.VariousHelpers do
   use VelorouteWeb, :verified_routes
   require Logger
   import Guards
-  import Phoenix.Component
+  use Phoenix.Component
 
-  def display_route(nil), do: nil
+  attr :article, :any, required: true
+  attr :text, :string, required: true
+  attr :rest, :global
 
-  def display_route(%VelorouteWeb.Live.VideoState{} = state) do
-    %Video.Track{parent_ref: ref, text: text} = VelorouteWeb.Live.VideoState.current_track(state)
+  def display_route(%{article: nil} = _assigns), do: nil
 
-    if is_module(ref) do
-      assigns = %{
+  def display_route(%{article: ref, text: text} = assigns) do
+    assigns =
+      assign(assigns, %{
         href: ref.path(),
         title: "Du folgst: #{ref.title()} #{text}",
-        icon: route_icon(ref),
-        text: text
-      }
+        icon: route_icon(ref)
+      })
 
-      ~H"""
-      <.link patch={@href} title={@title} id="videoRoute">
-        <%= @icon %> <%= @text %>
-      </.link>
-      """
-    end
+    ~H"""
+    <.link patch={@href} title={@title} id="videoRoute">
+      <%= @icon %> <%= @text %>
+    </.link>
+    """
   end
 
   def route_icon(id) when is_binary(id) do

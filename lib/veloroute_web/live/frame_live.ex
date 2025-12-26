@@ -125,27 +125,28 @@ defmodule VelorouteWeb.FrameLive do
      |> update_url_query()}
   end
 
-  @deprecated "removed from FE, should not be used after a while"
-  def handle_event("video-pause", attr, socket) do
-    Logger.debug("video-pause #{inspect(attr)}")
-
-    {:noreply,
-     socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr)
-     |> update_url_query()}
-  end
-
   def handle_event("video-current-time", attr, socket) do
     Logger.debug("video-current-time #{inspect(attr)}")
 
+    socket =
+      socket
+      |> VelorouteWeb.Live.VideoState.set_position(attr)
+      |> update_url_query()
+
+    {:noreply, socket}
+  end
+
+  def handle_event("video-hls-error", attr, socket) do
+    Logger.debug("video-hls-error #{inspect(attr)}")
+
     {:noreply,
      socket
-     |> VelorouteWeb.Live.VideoState.set_position(attr)
+     |> VelorouteWeb.Live.VideoState.set_position(attr, push_updates: false)
      |> update_url_query()}
   end
 
-  def handle_event("video-fatal-hls", attr, socket) do
-    Logger.debug("video-fatal-hls #{inspect(attr)}")
+  def handle_event("video-hls-error-fatal", attr, socket) do
+    Logger.debug("video-hls-error-fatal #{inspect(attr)}")
 
     {:noreply,
      socket
@@ -153,6 +154,10 @@ defmodule VelorouteWeb.FrameLive do
      |> autoplay()
      |> update_url_query()}
   end
+
+  @deprecated "removed from FE, should not be used after a while"
+  def handle_event("video-fatal-hls", attr, socket),
+    do: handle_event("video-hls-error-fatal", attr, socket)
 
   def handle_event("map-click", attr, socket) do
     # if we have an article use that, but ignore the default article (i.e. the
