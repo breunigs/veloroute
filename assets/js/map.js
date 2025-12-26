@@ -627,7 +627,7 @@ function setup() {
     }
   });
 
-  const fullscreenScreenCtrl = new mlgl.FullscreenControl()
+  const fullscreenScreenCtrl = new mlgl.FullscreenControl({ container: document.getElementById('mapOuter') })
   fullscreenScreenCtrl.on('fullscreenstart', () => {
     if (isVideoPlaying()) video.pause()
     disableIndicatorAnimationOnce()

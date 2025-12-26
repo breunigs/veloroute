@@ -65,7 +65,7 @@ defmodule VelorouteWeb.Live.Map do
     assigns = assign_active_style_id(assigns)
 
     ~H"""
-    <div role="region" aria-label="Straßenkarte, die ausgewählte Radrouten anzeigt">
+    <div role="region" aria-label="Straßenkarte, die ausgewählte Radrouten anzeigt" id="mapOuter" phx-mounted={JS.ignore_attributes("class")}>
       <div phx-update="ignore" phx-mounted={JS.ignore_attributes(["class"])} id={@id} data-style={@active_style_id} data-highlight={@highlight}>
         <%= @preview_image %>
       </div>

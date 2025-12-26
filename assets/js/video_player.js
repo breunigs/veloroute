@@ -1,9 +1,14 @@
 import "./rvfc-polyfill"
 import Hls from "hls.js/dist/hls.light.min.js"
 
+const once = { once: true }
+const passive = { passive: true }
+const passiveOnce = { ...once, ...passive }
+
 let prevVideo = null;
 let previouslyPlayingCodec = null;
 let autoplay = false;
+let isSeeking = false;
 
 let wasSocketDisconnected = false
 window.liveSocket.getSocket().onClose(e => {
@@ -32,9 +37,7 @@ function initVideoElement() {
   video.addEventListener('play', markPlay);
   video.addEventListener('play', updatePlaypause);
   video.addEventListener('play', () => timeUpdate());
-  video.addEventListener('play', ensureVideoIsSet, {
-    once: true
-  });
+  video.addEventListener('play', ensureVideoIsSet, once);
   video.addEventListener('pause', markPause);
   video.addEventListener('pause', updatePlaypause);
   video.addEventListener('pause', maybeShowLoadingIndicator);
@@ -424,7 +427,6 @@ const codecTranslate = {
 
 let updateQualityChooserEvents = [null, null]
 let updateQualityChooserForced = false
-const passiveOnce = { once: true, ...passive }
 function updateQualityChooserDelayed() {
   updateQualityChooserEvents = [null, null]
   updateQualityChooserForced = true
@@ -497,13 +499,22 @@ function seekToTime(timeInMs) {
       from: "iOS workaround"
     })
   }
+  videoMeta.start = timeInMs;
+
   if (video.duration < inSeconds && video.currentTime < inSeconds) {
     fixSeekForWrongVideoDuration = timeInMs
     video.addEventListener('durationchange', () => {
       if (fixSeekForWrongVideoDuration) seekToTime(fixSeekForWrongVideoDuration)
     }, { once: true })
   }
-  updateProgressbar();
+
+  // avoid flicker due to segments loading while seeking
+  video.removeEventListener('progress', updateProgressbar);
+  video.addEventListener('seeked', () => {
+    video.addEventListener('progress', updateProgressbar);
+  }, once);
+
+  updateProgressbar(null, timeInMs);
 }
 
 let prevShowSpinner = false
@@ -550,7 +561,7 @@ function setVideo(avoidSeek) {
   }
 
   if (!avoidSeek) seekToStartTime();
-  updateProgressbar();
+  updateProgressbar(null, videoTimeInMs);
   updatePlaypause();
 }
 
@@ -570,7 +581,10 @@ function updateMetadata() {
   if (!videoMeta.recording_dates) return;
   const { recDate, street } = metadataForTime(videoTimeInMs)
   const text = street === "" ? recDate : recDate === "" ? street : `${street}, ${recDate}`
-  if (videoMetadataEl.textContent !== text) videoMetadataEl.textContent = text;
+  if (videoMetadataEl.textContent !== text) {
+    videoMetadataEl.textContent = text;
+    videoMetadataEl.setAttribute("title", text);
+  }
 }
 
 function metadataForTime(timeInMs) {
@@ -594,9 +608,7 @@ function metadataForTime(timeInMs) {
   return { recDate: recDate, street: street }
 }
 
-const passive = {
-  passive: true
-}
+
 let progress
 let progressWrapper
 let current
@@ -634,9 +646,10 @@ function initControls() {
   progressWrapper.addEventListener('mousemove', previewProgress, passive);
   progressWrapper.addEventListener('touchmove', previewProgress, passive);
   progressWrapper.addEventListener('touchstart', scrubStart, passive);
-  progressWrapper.addEventListener('touchmove', scrubMove, passive);
   progressWrapper.addEventListener('touchend', scrubEnd, passive);
   progressWrapper.addEventListener('touchcancel', scrubCancel, passive);
+  progressWrapper.addEventListener('mouseenter', () => isSeeking = true, passive);
+  progressWrapper.addEventListener('mouseout', scrubCancel, passive);
   playpause.addEventListener('click', togglePlayPause);
   poster.addEventListener('click', togglePlayPause);
 
@@ -723,101 +736,87 @@ function reverseVideo() {
 
 function timeFromProgressPosition(e) {
   const max = videoMeta.length_ms || Math.round(video.duration * 1000)
-  const clientX = e.clientX || e.changedTouches[0].clientX
+  const clientX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX)
 
-  let pos = (clientX - e.target.offsetLeft)
-  const ratio = pos / e.target.clientWidth
-  // make snapping to start easier
-  if (ratio < 0.01) pos = 0
+  // Touch users cannot easily drag to left screen, but can drag over sidebar.
+  // It's the opposite with a mouse.
+  const leftGrace = seekByTouch ? window.screen.width * 0.1 : 10
+  const rightGrace = seekByTouch ? 0 : 10
+
+  const pos = clientX - e.target.offsetLeft - leftGrace
+  const ratio = pos / (e.target.clientWidth - leftGrace - rightGrace)
+
   const time = Math.max(0, Math.min(max, ratio * max))
-  return [scrubTimeInMs || time, pos]
+  return [time, pos, time / max]
 }
 
 function seekFromProgress(e) {
-  const [time, _pos] = timeFromProgressPosition(e)
-  seekToTime(time);
+  const [time, _pos, _ratio] = timeFromProgressPosition(e)
+  seekToTime(time)
 };
 
 let progressPreviewRAF = null
 function previewProgress(e) {
+  isSeeking = true
   progressPreviewRAF ||= requestAnimationFrame(() => {
-    const [time, pos] = timeFromProgressPosition(e)
+    const [time, pos, ratio] = timeFromProgressPosition(e)
     const { recDate, street } = metadataForTime(time)
     let text = '';
     if (street !== "") text += `${street}<br>`
     if (recDate !== "") text += `${recDate}<br>`
     if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
     progressPreviewEl.innerHTML = text
-    progressPreviewEl.style.transform = `translate(-50%, -100%) translateX(${pos}px)`
+    progressPreviewEl.style.setProperty("--pos", `${pos}px`);
     progressPreviewRAF = null
+    progress.style.setProperty("--loaded", ratio * 100 + "%");
+    if (seekByTouch) updateProgressbar(null, time)
   })
 }
 
-let scrubStartTimeMs = null;
-let scrubTimeInMs = null;
-let scrubStartPos = null;
-let scrubVideoMax = null;
-let scrubSpaceRight = null;
-let scrubRAF = null;
-function scrubStart(e) {
-  scrubStartPos = e.touches[0].screenX;
-  scrubSpaceRight = window.screen.width - e.touches[0].screenX;
-  scrubStartTimeMs = fixSeekForWrongVideoDuration || videoTimeInMs;
-  scrubVideoMax = videoMeta.length_ms || Math.round(video.duration * 1000);
+let seekByTouch = false
+function scrubStart(_e) {
+  seekByTouch = true
   progressPreviewEl.classList.add("enabled")
-}
-
-function scrubMove(e) {
-  const diff = e.touches[0].screenX - scrubStartPos
-  // scale by space available to finger. Most likely, it's towards the left of
-  // the screen, hence going backwards will scrub much faster than forward.
-  const normalized = diff / (diff > 0 ? scrubSpaceRight : scrubStartPos)
-  // the scaling factors are guessed. Considering video time still allows fast
-  // scrubbing for long videos.
-  const newTime = scrubStartTimeMs + normalized * 100000 * scrubVideoMax / 100000
-  scrubTimeInMs = Math.min(scrubVideoMax, Math.max(0, newTime));
-  if (scrubRAF !== null) return
-  scrubRAF = window.requestAnimationFrame(() => {
-    scrubRAF = null
-    if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
-    updateProgressbar()
-  })
+  isSeeking = true
 }
 
 function scrubEnd(e) {
   progressPreviewEl.classList.remove("enabled")
-  if (scrubTimeInMs === null || isNaN(scrubTimeInMs)) return
-  seekToTime(scrubTimeInMs)
-  scrubTimeInMs = null
-
+  seekFromProgress(e)
+  seekByTouch = false
+  isSeeking = false
 }
 
 function scrubCancel(e) {
   progressPreviewEl.classList.remove("enabled")
-  if (scrubStartTimeMs === null || isNaN(scrubStartTimeMs)) return
-  seekToTime(scrubStartTimeMs)
-  scrubTimeInMs = null
+  updateProgressbar()
+  seekByTouch = false
+  isSeeking = false
 }
 
-function updateProgressbar() {
+let progressLoadedPercent = 0.0;
+function updateProgressbar(_event, showMilliseconds) {
   if (video.style.visibility == 'hidden') return
+  const customTime = typeof showMilliseconds !== "undefined"
 
-  const ms = scrubTimeInMs !== null
-    ? scrubTimeInMs
-    : (fixSeekForWrongVideoDuration || videoTimeInMs);
+  // ignore other events while seeking
+  if (seekByTouch && !customTime) return
+
+  const ms = customTime
+    ? showMilliseconds
+    : fixSeekForWrongVideoDuration || videoTimeInMs;
   const max = videoMeta.length_ms || Math.round(video.duration * 1000);
   if (isNaN(ms) || isNaN(max)) return
   const msText = ms2text(ms);
   const maxText = ms2text(max);
 
-  let loaded = 0;
   for (var i = 0; i < video.buffered.length; i++) {
     const start = video.buffered.start(i) * 1000;
     const end = video.buffered.end(i) * 1000;
     if (start > ms) break;
     if (end < ms) continue;
 
-    loaded = end / max * 100;
+    progressLoadedPercent = end / max * 100;
   }
   window.requestAnimationFrame(() => {
     if (current.textContent !== msText) current.textContent = msText;
@@ -825,7 +824,7 @@ function updateProgressbar() {
     progress.value = ms;
     progressWrapper.setAttribute("aria-valuenow", ms)
     if (progress.max !== max) progress.max = max;
-    progress.style.setProperty("--loaded", loaded + "%");
+    if (!isSeeking) progress.style.setProperty("--loaded", progressLoadedPercent + "%");
   });
 }
 

@@ -43,10 +43,8 @@
   </div>
 
   <%= VelorouteWeb.VariousHelpers.display_route(@video) %>
-  <span id="videoRecordingDate">
-    <%= if @video_street_name != "", do: "#{@video_street_name}, " %><%= @video_recording_date %>
-  </span>
 
+  <div id="videoControlsBg"></div>
   <div id="videoControls" data-nosnippet="yes" role="toolbar">
     <button id="playpause" type="button" title="Video starten oder pausieren"></button>
     <div id="progressWrapper" role="slider" aria-label="Suchleiste" aria-valuemin="0" aria-valuemax={@video_length_ms} aria-valuenow={@video_start} aria-describedby="progressPreview">
@@ -60,6 +58,9 @@
       </span><span id="max" title="Videolänge"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
     </div>
     <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
+    <div id="videoRecordingDate" title={"#{if @video_street_name != "", do: "#{@video_street_name}, "}#{@video_recording_date}"}>
+      <%= if @video_street_name != "", do: "#{@video_street_name}, " %><%= @video_recording_date %>
+    </div>
     <Video.Components.reverse_button lang={@lang} video_reversible={@video_reversible} />
     <div id="videoOptions" phx-update="ignore">
       <button type="button" aria-label="Video-Einstellungen" aria-haspopup="true" aria-controls="videoOptionsMenu"></button>
