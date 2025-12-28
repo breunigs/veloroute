@@ -98,92 +98,99 @@ function hidePreview(evt) {
   setTimeout(() => elem.remove(), 150);
 }
 
-let resizeTimer
-function disableIndicatorAnimationOnce(event) {
-  if (!indicator) return
-  const cls = indicator.getElement().classList;
-  cls.add("no-animation")
-  if (event !== null) {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => cls.remove("no-animation"), 100)
-  } else {
-    requestAnimationFrame(() => cls.remove("no-animation"))
-  }
+function createIndicator(targetPos) {
+  const element = document.getElementById("indicator")
+  const lngLat = new mlgl.LngLat(targetPos.lon, targetPos.lat);
+
+  indicator = new mlgl.Marker({ element: element })
+    .setLngLat(lngLat)
+    .setRotation(targetPos.bearing * 1)
+    .setPitchAlignment("map")
+    .setRotationAlignment("map")
+    .setSubpixelPositioning(true)
+
+  requestAnimationFrame(() => {
+    indicator.addTo(map)
+    requestAnimationFrame(() => element.style.filter = `opacity(1)`)
+  })
+
+  prevIndicatorPos = targetPos
 }
 
+function zoomInOnce() {
+  if (zoomedInOnce) return false;
+  if (!isVideoPlaying()) return false;
+  if (map.getZoom() > 13) return false;
+  if (map.isMoving() || map.isZooming()) return false;
+
+  zoomedInOnce = true;
+
+  map.flyTo({
+    center: indicator.getLngLat(),
+    zoom: Math.max(map.getZoom(), 14),
+    speed: flyToSpeed,
+  })
+
+  return true
+}
+
+let renderIndicatorAnimation = null;
 async function renderIndicator() {
-  const pos = await getVideoPosition();
-  if (!pos) return;
-  if (pos.lat == prevIndicatorPos.lat &&
-    pos.lon == prevIndicatorPos.lon &&
-    pos.bearing == prevIndicatorPos.bearing) {
-    return;
+  const targetPos = await getVideoPosition()
+  if (!targetPos) return
+
+  if (!indicator) return createIndicator(targetPos)
+
+  if (targetPos.lat == prevIndicatorPos.lat &&
+    targetPos.lon == prevIndicatorPos.lon &&
+    targetPos.bearing == prevIndicatorPos.bearing) {
+    return
   }
-
-  prevIndicatorPos = pos;
-
-  const lngLat = new mlgl.LngLat(pos.lon, pos.lat);
-  const firstRender = !indicator;
-
-  if (firstRender) {
-    const rotated = genDiv('indicator-rotate');
-    rotated.appendChild(genDiv('indicator-dir'));
-    rotated.appendChild(genDiv('indicator-loc'));
-    const el = genDiv('indicator');
-    el.appendChild(rotated);
-    indicator = new mlgl.Marker({ element: el })
-      .setLngLat(lngLat)
-      .setRotation(pos.bearing * 1)
-      .setPitchAlignment("map")
-      .setRotationAlignment("map")
-      .setSubpixelPositioning(true)
-
-    requestAnimationFrame(() => {
-      indicator.addTo(map);
-      el.style.opacity = 0
-      requestAnimationFrame(() => el.style.opacity = 1);
-    })
-
-    addEventListener("resize", disableIndicatorAnimationOnce)
-  }
-
-  const videoPlaying = isVideoPlaying();
-  const dist = indicator.getLngLat().distanceTo(lngLat);
-  const animate = dist < 50 && ((videoPlaying && videoWasPlaying) || dist < 10)
-
-  if (!animate) disableIndicatorAnimationOnce()
-  videoWasPlaying = videoPlaying;
-
-  const shortest = closestEquivalentAngle(indicator.getRotation(), pos.bearing);
-  // save one call to _update()
-  // indicator.setRotation(shortest);
-  indicator._rotation = shortest;
-  indicator.setLngLat(lngLat);
 
   // zoom in once, i.e. when user just clicks play when first visiting the site
-  if (!zoomedInOnce && videoPlaying && map.getZoom() <= 13 && !map.isMoving() && !map.isZooming()) {
-    zoomedInOnce = true;
-    map.flyTo({
-      center: lngLat,
-      zoom: Math.max(map.getZoom(), 14),
-      speed: flyToSpeed,
-    });
-    return;
+  if (zoomInOnce()) return
+  // otherwise show the indicator at whatever zoom level
+  ensureIndicatorInViewIdle ||= window.requestIdleCallback(ensureIndicatorInView, { timeout: 1000 });
+
+  const videoPlaying = isVideoPlaying();
+  const lngLat = new mlgl.LngLat(targetPos.lon, targetPos.lat)
+  const dist = indicator.getLngLat().distanceTo(lngLat)
+  const animate = dist < 15 || (dist < 50 && videoPlaying && videoWasPlaying)
+  videoWasPlaying = videoPlaying
+
+  const animationDuration = 150
+  const startPos = prevIndicatorPos
+  const bearingDelta = closestEquivalentAngleDelta(prevIndicatorPos, targetPos)
+
+  const startTime = document.timeline.currentTime
+  function animateIndicator(timestamp) {
+    const ratio = Math.min(1, (timestamp - startTime) / animationDuration)
+
+    const lon = startPos.lon * (1 - ratio) + targetPos.lon * ratio
+    const lat = startPos.lat * (1 - ratio) + targetPos.lat * ratio
+    const bearing = startPos.bearing + bearingDelta * ratio;
+
+    // save one call to _update()
+    // indicator.setRotation(bearing);
+    indicator._rotation = bearing;
+    indicator.setLngLat(new mlgl.LngLat(lon, lat));
+
+    prevIndicatorPos = { lat, lon, bearing }
+
+    if (ratio < 1) renderIndicatorAnimation = requestAnimationFrame(animateIndicator)
   }
 
-  if (firstRender) return
-  ensureIndicatorInViewIdle ||= window.requestIdleCallback(ensureIndicatorInView, { timeout: 1000 });
+  cancelAnimationFrame(renderIndicatorAnimation)
+  if (animate) {
+    renderIndicatorAnimation = requestAnimationFrame(animateIndicator)
+  } else {
+    animateIndicator(startTime + animationDuration)
+  }
 }
 
-const closestEquivalentAngle = (from, to) => {
-  if (to === null) return from;
-  const delta = ((((to - from) % 360) + 540) % 360) - 180;
-  return from + delta;
-}
-
-const updateMapMovingStatus = () => {
-  const moving = map.isMoving() || map.isZooming()
-  document.getElementById("map").classList.toggle("moving", moving)
+const closestEquivalentAngleDelta = (from, to) => {
+  if (to.bearing === null) return 0;
+  return ((((to.bearing - from.bearing) % 360) + 540) % 360) - 180;
 }
 
 let ensureIndicatorInViewIdle = null
@@ -194,7 +201,17 @@ const ensureIndicatorInView = async () => {
   }
 
   const lngLat = indicator.getLngLat();
-  if (map.getBounds().contains(lngLat)) return;
+  const padding = 30; // pixels
+  const point = map.project(indicator.getLngLat());
+
+  const canvas = map.getCanvas();
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+
+  const inside = point.x >= padding && point.x <= width - padding
+    && point.y >= padding && point.y <= height - padding;
+
+  if (inside) return
 
   const center = map.getCenter();
   const distDiag = center.distanceTo(map.getBounds().getNorthEast())
@@ -238,7 +255,6 @@ const isVideoPlaying = () => {
 
 window.addEventListener(`phx:bounds:adjust`, (e) => {
   console.debug("adjusting bounds to", e.detail)
-  disableIndicatorAnimationOnce()
   map.fitBounds(e.detail, fitBoundsOpt);
 })
 
@@ -630,9 +646,7 @@ function setup() {
   const fullscreenScreenCtrl = new mlgl.FullscreenControl({ container: document.getElementById('mapOuter') })
   fullscreenScreenCtrl.on('fullscreenstart', () => {
     if (isVideoPlaying()) video.pause()
-    disableIndicatorAnimationOnce()
   })
-  fullscreenScreenCtrl.on('fullscreenend', disableIndicatorAnimationOnce)
 
   map.addControl(new mlgl.NavigationControl({
     showZoom: true,
@@ -646,9 +660,6 @@ function setup() {
   map.on('mousemove', handleMapHover);
   map.on('click', handleMapClick);
   map.on('moveend', sendBounds);
-
-  map.on('movestart', updateMapMovingStatus);
-  map.on('moveend', updateMapMovingStatus);
 
   map.on('style.load', styleChangedHandler)
   map.on('styledata', styleChangedHandler)

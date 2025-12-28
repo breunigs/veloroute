@@ -103,8 +103,8 @@ $mapBgColor: #EFE9E1;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    backdrop-filter: $videoControlsBackdrop;
     -webkit-backdrop-filter: $videoControlsBackdrop;
+    backdrop-filter: $videoControlsBackdrop;
 
     background: $videoControlsBackground url("/images/play.svg?vsn=1") no-repeat 55% 52%/40%;
   }
@@ -187,7 +187,6 @@ $videoInfoOverlayPadding: 0.5rem;
   position: absolute;
   display: block;
   padding: $videoInfoOverlayPadding;
-  // padding-top: 0.7rem;
   color: #fff;
   overflow-x: hidden;
   white-space: nowrap;
@@ -196,8 +195,8 @@ $videoInfoOverlayPadding: 0.5rem;
   text-decoration: none;
 
   background: $videoControlsBackground;
-  backdrop-filter: $videoControlsBackdrop;
   -webkit-backdrop-filter: $videoControlsBackdrop;
+  backdrop-filter: $videoControlsBackdrop;
 
   span {
     margin-right: 0.2rem;
@@ -224,19 +223,18 @@ $videoInfoOverlayPadding: 0.5rem;
   bottom: 0;
   position: absolute;
   width: 100%;
+  padding-bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #videoControlsBg {
   background: $videoControlsBackground;
-  backdrop-filter: $videoControlsBackdrop;
   -webkit-backdrop-filter: $videoControlsBackdrop;
+  backdrop-filter: $videoControlsBackdrop;
 }
 
 #videoControls {
   display: flex;
-
-  padding-bottom: 0;
-  padding-bottom: env(safe-area-inset-bottom);
 
   button {
     border: 0;
@@ -517,8 +515,8 @@ $videoInfoOverlayPadding: 0.5rem;
     // 0.13px: work around rounding issues leaving a 1px gap
     bottom: calc($videoBarHeight + env(safe-area-inset-bottom) - 0.13px);
     background: $videoControlsBackground;
-    backdrop-filter: $videoControlsBackdrop;
     -webkit-backdrop-filter: $videoControlsBackdrop;
+    backdrop-filter: $videoControlsBackdrop;
     a, strong {
       text-shadow: $blackOutline;
     }
@@ -584,7 +582,7 @@ $videoInfoOverlayPadding: 0.5rem;
 
     &:hover::before {
       @media (hover: hover) {
-        filter: $redColorFilter $blackOutlineDrop;
+        filter: $redColorFilter $blackOutlineDrop !important;
       }
     }
 
@@ -606,6 +604,7 @@ $videoInfoOverlayPadding: 0.5rem;
       float: right;
       margin: 0.15rem 0;
       font-size: 0.75rem;
+      pointer-events: none;
     }
   }
 }
@@ -1321,31 +1320,25 @@ a {
 }
 
 #indicator {
-  opacity: 0;
-  contain: size layout style;
-}
-
-#indicator, #indicator-rotate {
-  height: 1.5rem;
-  width: 1.5rem;
-  pointer-events: none;
-  // workaround for iOS Safari flickering the indicator while animating
-  // depending on rotation
-  transform: translateZ(0.00001px);
-
+  contain: strict;
   // i.e. order is canvas < mapPreview < indicator
   z-index: 2;
+  pointer-events: none;
 
-  transition: linear 0.15s;
-  &.no-animation {
-    transition: none;
-  }
-}
+  $aspect: .67963610035571505020;
+  $circleMidRatio: .65872666603708250700;
+  $size: 1.6rem;
 
-#map.moving {
-  #indicator, #indicator-rotate {
-    transition: none;
-  }
+  width: $size*$aspect;
+  height: $size;
+  translate: 0 calc(-0.5*$size * (1 - $circleMidRatio));
+  transform-origin: 50% $size*$circleMidRatio;
+
+  background: url("/images/indicator.svg?vsn=1") no-repeat 50% 50%;
+
+  // using filter because maplibre already uses opacity
+  filter: opacity(0);
+  transition: filter linear .25s;
 }
 
 #ping-indicator {
@@ -1364,49 +1357,6 @@ a {
   transition-timing-function: linear;
   margin-left: 0.5em;
   margin-top: 0.5em;
-}
-
-$indicatorForeColor: #000;
-$indicatorShadowColor: #fff;
-$indicatorSize: 0.6rem;
-#indicator-loc {
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: $indicatorSize;
-  border: 0.2em solid $indicatorForeColor;
-  box-shadow: 0 0 0 calc($indicatorSize / 8) $indicatorShadowColor;
-  height: $indicatorSize;
-  width: $indicatorSize;
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#indicator-dir {
-  $size: calc($indicatorSize/1.35);
-  &:before {
-    content: " ";
-    position: absolute;
-    border-left: $size solid transparent;
-    border-right: $size solid transparent;
-    border-bottom: $size*1.4 solid $indicatorForeColor;
-    left: -1*$size;
-    top: 0.5px;
-    transform: scale(0.7);
-  }
-
-  width: 0;
-  height: 0;
-  border-left: $size solid transparent;
-  border-right: $size solid transparent;
-  border-bottom: $size*1.4 solid $indicatorShadowColor;
-
-  left: 50%;
-  top: -0.5px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 10;
 }
 
 img.roaddiagram {
