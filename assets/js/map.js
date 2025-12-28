@@ -100,10 +100,9 @@ function hidePreview(evt) {
 
 function createIndicator(targetPos) {
   const element = document.getElementById("indicator")
-  const lngLat = new mlgl.LngLat(targetPos.lon, targetPos.lat);
 
   indicator = new mlgl.Marker({ element: element })
-    .setLngLat(lngLat)
+    .setLngLat(targetPos)
     .setRotation(targetPos.bearing * 1)
     .setPitchAlignment("map")
     .setRotationAlignment("map")
@@ -121,7 +120,7 @@ function zoomInOnce() {
   if (zoomedInOnce) return false;
   if (!isVideoPlaying()) return false;
   if (map.getZoom() > 13) return false;
-  if (map.isMoving() || map.isZooming()) return false;
+  if (map.isMoving()) return false;
 
   zoomedInOnce = true;
 
@@ -196,7 +195,7 @@ const closestEquivalentAngleDelta = (from, to) => {
 let ensureIndicatorInViewIdle = null
 const ensureIndicatorInView = async () => {
   ensureIndicatorInViewIdle = null
-  if (map.isMoving() || map.isZooming() || !indicator) {
+  if (map.isMoving() || !indicator) {
     return;
   }
 
@@ -426,7 +425,7 @@ const sendBounds = () => {
   if (boundsTimeout) clearTimeout(boundsTimeout);
 
   boundsTimeout = setTimeout(() => {
-    if (map.isMoving() || map.isZooming()) return sendBounds();
+    if (map.isMoving()) return sendBounds();
 
     window.pushEvent("map-bounds", {
       bounds: map.getBounds().toArray()
