@@ -47,6 +47,7 @@ defmodule M3U8.Tokenizer do
       "#EXT-X-PLAYLIST-TYPE:VOD" -> {:ok, :playlist_type, :vod}
       "#EXT-X-PLAYLIST-TYPE:" <> rest -> {:error, :playlist_type, "unknown playlist type #{rest}"}
       "#EXT-X-STREAM-INF:" <> rest -> parse_attrs(:stream, rest)
+      "#EXT-X-I-FRAME-STREAM-INF:" <> rest -> parse_attrs(:trickplay, rest)
       "#EXT-X-MAP:" <> rest -> parse_attrs(:map, rest)
       "#EXTINF:" <> rest -> parse_extinf(rest)
       "#EXT-X-BYTERANGE:" <> rest -> parse_byte_range(rest)

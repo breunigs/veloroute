@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Steintorbruecke do
     do:
       "Neue Haltestelle auf Seite des Bahnhofgebäudes. Gestaltung ähnlich wie die Südseite mit 2,5m breitem Radweg. Kreuzungen werden vereinfacht und bieten mehr Platz für Fußverkehr."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: ["radroute-1", "radroute-2", "radroute-7", "1GR"]
 
   def start(), do: ~d[2025Q3]

@@ -30,6 +30,7 @@
   <% # ignore_attributes needed to toggle loading indicator from JS %>
   <div id="videoPoster" phx-mounted={JS.ignore_attributes(["class"])}>
     <video
+      disablePictureInPicture
       aria-description="Video zeigt Radfahrt der Route. Ohne Ton."
       aria-describedby="videoRoute"
       id="videoInner"
