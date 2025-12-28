@@ -235,11 +235,11 @@ const ensureIndicatorInView = async () => {
   const minMs = videoTimeInMs - 4 * 1000
   const maxMs = videoTimeInMs + 15 * 1000
 
-  const minIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(minMs / indicatorPolyline.interval));
-  const maxIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(maxMs / indicatorPolyline.interval));
+  const minIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(minMs / indicatorPolyline.interval) * 2);
+  const maxIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(maxMs / indicatorPolyline.interval) * 2);
 
   for (let i = minIndex; i <= maxIndex; i += 10) {
-    bbox.extend(indicatorPolyline.coords[i])
+    bbox.extend(indicatorPolyline.coords.subarray(i, i + 2))
   }
 
   map.fitBounds(bbox, {
@@ -498,12 +498,13 @@ async function getVideoPosition() {
 
   const index = indicatorIndexBounds(
     indicatorPolyline,
-    Math.floor(currMs / indicatorPolyline.interval)
+    Math.floor(currMs / indicatorPolyline.interval) * 2
   );
   let lon1;
   let lat1;
   try {
-    [lon1, lat1] = indicatorPolyline.coords[index];
+    lon1 = indicatorPolyline.coords[index]
+    lat1 = indicatorPolyline.coords[index + 1]
   } catch (e) {
     debugger;
     return;
@@ -513,19 +514,21 @@ async function getVideoPosition() {
   // precision/rounding errors.
   let next = indicatorIndexBounds(
     indicatorPolyline,
-    index + Math.round(100 / indicatorPolyline.interval)
+    index + Math.round(100 / indicatorPolyline.interval) * 2
   );
-  let [lon2, lat2] = indicatorPolyline.coords[next];
+  let lon2 = indicatorPolyline.coords[next]
+  let lat2 = indicatorPolyline.coords[next + 1]
 
   // If both points are close to each other, look 1s further
   let close = veryClose(indicatorPolyline, lon1, lat1, lon2, lat2);
   if (close) {
-    next += Math.round(1000 / indicatorPolyline.interval)
+    next += Math.round(1000 / indicatorPolyline.interval) * 2
     next = indicatorIndexBounds(
       indicatorPolyline,
       next
     );
-    [lon2, lat2] = indicatorPolyline.coords[next];
+    lon2 = indicatorPolyline.coords[next]
+    lat2 = indicatorPolyline.coords[next + 1]
     close = veryClose(indicatorPolyline, lon1, lat1, lon2, lat2);
   }
 
@@ -541,7 +544,7 @@ async function getVideoPosition() {
 
 function indicatorIndexBounds(indicatorPolyline, index) {
   if (index <= 0) return 0;
-  return Math.min(index, indicatorPolyline.coords.length - 1);
+  return Math.min(index, indicatorPolyline.coords.length - 2);
 }
 
 // veryClose returns true when the two coordinates only differ in their least
@@ -559,12 +562,12 @@ function polyline2coords(str, precision) {
   let coordIndex = 0;
   let lat = 0;
   let lon = 0;
-  let coordinates = new Array(Math.floor(str.length / 2));
+  const len = str.length
+  let coordinates = new Float32Array(Math.floor(len / 2) * 2);
 
-  let byte;
-  while (index < str.length) {
-    let shift = 0;
-    let val = 0;
+  let byte, shift, val;
+  while (index < len) {
+    shift = val = 0;
 
     do {
       byte = str.charCodeAt(index++) - 63;
@@ -584,12 +587,19 @@ function polyline2coords(str, precision) {
 
     lon += ((val & 1) ? ~(val >> 1) : (val >> 1));
 
-    coordinates[coordIndex++] = [lon / factor, lat / factor];
+    coordinates[coordIndex++] = lon / factor;
+    coordinates[coordIndex++] = lat / factor;
+
+    if (coordIndex + 1 >= coordinates.length) {
+      console.warn("had to double coord buffer")
+      const newCoords = new Float64Array(coordinates.length * 2);
+      newCoords.set(coordinates);
+      coordinates = newCoords;
+    }
   }
 
   // remove any over allocated entries
-  coordinates.length = coordIndex
-  return coordinates
+  return coordinates.subarray(0, coordIndex);
 }
 
 // for some reason click events don't fire on iOS and potentially other touch
