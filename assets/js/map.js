@@ -447,7 +447,9 @@ function styleChangedHandler() {
   // don't always get an event with the style fully loaded, so retry this way.
   if (!map.isStyleLoaded()) setTimeout(styleChangedHandler, 50)
 
-  const currStyleName = map.getStyle().name
+  // avoid a needless clone
+  // const currStyleName = map.getStyle().name
+  const currStyleName = map.style.stylesheet.name
   if (highlightsAppliedToStyle == currStyleName) return
   highlightsAppliedToStyle = currStyleName
 
