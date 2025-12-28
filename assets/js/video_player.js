@@ -63,20 +63,20 @@ window.addEventListener("phx:video_meta", e => {
 
 // allow HLS direct play only on iOS/OSX devices, because I found Android phones
 // that claim they can parse m3u8 but then fail without fallback.
-const canPlayHLS = /iPad|iPhone|iPod|like Mac OS X|Macintosh/.test(navigator.userAgent)
-  && video.canPlayType('application/vnd.apple.mpegurl')
+const probablySafari = /iPad|iPhone|iPod|like Mac OS X|Macintosh/.test(navigator.userAgent)
+const canPlayHLS = probablySafari && video.canPlayType('application/vnd.apple.mpegurl')
 
 let videoTimeInMs = 0;
 let rvfc = null
 
-function timeUpdate(_now, metadata) {
+function timeUpdate(now, metadata) {
   if (rvfc) video.cancelVideoFrameCallback(rvfc)
   rvfc = video.requestVideoFrameCallback(timeUpdate)
 
   if (!metadata) return
 
   // iOS has a bug where the video time is reported as 0.0 during loading
-  if (canPlayHLS && video.readyState <= 2 && metadata.mediaTime == 0) {
+  if (canPlayHLS && (video.readyState <= 2 || video.duration <= 0) && metadata.mediaTime == 0) {
     return;
   }
 
