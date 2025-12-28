@@ -41,6 +41,7 @@ function initVideoElement() {
   video.addEventListener('pause', markPause);
   video.addEventListener('pause', updatePlaypause);
   video.addEventListener('pause', maybeShowLoadingIndicator);
+  video.addEventListener('ratechange', rateChange);
 }
 initVideoElement()
 window.addEventListener("global:mounted", initVideoElement)
@@ -122,6 +123,12 @@ window.addEventListener(`phx:video:autoplay`, (e) => {
   autoplay = true
   setVideo();
 })
+
+function rateChange() {
+  if (video.playbackRate == videoPlaybackRate) return
+  const option = document.querySelector(`#playbackRate [data-rate^='${video.playbackRate}']`)
+  selectPlaybackRate({ target: option })
+}
 
 function markPlay() {
   window.plausible('video-play', {
@@ -687,7 +694,7 @@ document.addEventListener("visibilitychange", () => {
 
 let videoPlaybackRate = 1.0;
 function selectPlaybackRate(event) {
-  const rate = event.target.dataset.rate;
+  const rate = event.target?.dataset.rate;
   if (!rate) return;
 
   video.playbackRate = rate;
