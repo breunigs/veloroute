@@ -626,7 +626,25 @@ function setup() {
     return
   }
 
-  let style = document.getElementById('map').dataset.style
+  const mapElement = document.getElementById('map')
+
+  // iOS sometimes sets up the map as if the styles haven't loaded yet. Force a
+  // resize if this happens as soon as any container gets styled properly.
+  if (mapElement.clientHeight <= 25) {
+    const resizeObserver = new ResizeObserver((entries) => {
+      resizeObserver.disconnect()
+      map.resize()
+      map.jumpTo({
+        center: initial.slice(0, 2),
+        zoom: initial[2],
+      })
+    })
+    resizeObserver.observe(document.querySelector('body'))
+    resizeObserver.observe(document.querySelector('#mapOuter'))
+    resizeObserver.observe(mapElement)
+  }
+
+  const style = mapElement.dataset.style
   console.log("map: loading style", style)
   const initial = settings.initial.split(",")
 
@@ -674,9 +692,9 @@ function setup() {
   map.on('style.load', styleChangedHandler)
   map.on('styledata', styleChangedHandler)
 
-  map.on('idle', hidePreview);
-  map.on('move', hidePreview);
-  map.on('zoom', hidePreview);
+  map.once('idle', hidePreview)
+  map.once('move', hidePreview)
+  map.once('zoom', hidePreview)
 
   map.once('idle', () => window.dispatchEvent(new CustomEvent("map:initialLoad")))
 
