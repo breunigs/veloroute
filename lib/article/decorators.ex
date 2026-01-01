@@ -298,7 +298,7 @@ defmodule Article.Decorators do
   def start_image_path(art) do
     with [track | _rest] <- article_with_tracks(art).tracks(),
          bbox when is_map(bbox) <- bbox(art),
-         rendered <- Video.Generator.get(track) do
+         rendered when is_module(rendered) <- Video.Generator.get(track) do
       center = Geo.CheapRuler.center(bbox)
 
       %{point: %{time_offset_ms: ms}} =
