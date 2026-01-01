@@ -199,4 +199,12 @@ function keepPMTiles(
   return nextStyle
 }
 
+const layerSwitcherButton = document.querySelector("#layerSwitcher > button")!
+const layerSwitcherMenu = document.getElementById("layerSwitcherMenu")!
+const layerSwitcher = document.getElementById("layerSwitcher")!
+layerSwitcherButton.addEventListener("touchstart", () => {
+  const hide = window.getComputedStyle(layerSwitcherMenu).visibility == 'visible';
+  layerSwitcher.classList.toggle("hidden", hide)
+})
+
 export { maybeSwitchStyle, maybeToggleLayers }

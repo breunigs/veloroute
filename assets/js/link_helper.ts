@@ -60,7 +60,7 @@ function logLink() {
 
 function onAdd(that: any, map: any, title: string, icon: string, action: () => void) {
   that.map = map;
-  that.container = document.querySelector('.maplibregl-ctrl-top-left .maplibregl-ctrl-group');
+  that.container = document.querySelector('.maplibregl-ctrl-top-right .maplibregl-ctrl-group:last-child');
 
   const button = window.document.createElement('button')
   button.className = `mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw_${icon}`;
@@ -91,6 +91,6 @@ class DeleteAllButton {
   }
 }
 
-window.map.addControl(draw, 'top-left');
-window.map.addControl(new DeleteAllButton(), 'top-left')
-window.map.addControl(new CopyLinkButton(), 'top-left')
+window.map.addControl(draw, 'top-right');
+window.map.addControl(new DeleteAllButton(), 'top-right')
+window.map.addControl(new CopyLinkButton(), 'top-right')

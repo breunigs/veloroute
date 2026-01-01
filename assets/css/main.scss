@@ -6,8 +6,6 @@ $darkBg: #333;
 $red: #e30513;
 // via https://codepen.io/sosuke/pen/Pjoqqp
 $redColorFilter: brightness(0) saturate(100%) invert(17%) sepia(99%) saturate(6592%) hue-rotate(352deg) brightness(87%) contrast(105%);
-$linkColorFilterFromWhite: brightness(0) saturate(100%) invert(59%) sepia(0%) saturate(0%) hue-rotate(357deg) brightness(91%) contrast(88%);
-$darkBgHighlight: #666;
 $contentPad: 0.9rem;
 $videoBarHeight: 42px;
 $videoBarBtnMargin: 5px;
@@ -170,6 +168,10 @@ body.fullscreen #videoOuter, #videoOuter:fullscreen {
       cursor: auto;
     }
   }
+
+  #fullscreen {
+    background-image: url("/images/minscreen.svg?vsn=1");
+  }
 }
 
 
@@ -193,10 +195,6 @@ $videoInfoOverlayPadding: 0.5rem;
   box-sizing: border-box;
   text-overflow: ellipsis;
   text-decoration: none;
-
-  background: $videoControlsBackground;
-  -webkit-backdrop-filter: $videoControlsBackdrop;
-  backdrop-filter: $videoControlsBackdrop;
 
   span {
     margin-right: 0.2rem;
@@ -227,7 +225,7 @@ $videoInfoOverlayPadding: 0.5rem;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-#videoControlsBg {
+#videoControlsBg, #videoRoute, #videoOptionsMenu {
   background: $videoControlsBackground;
   -webkit-backdrop-filter: $videoControlsBackdrop;
   backdrop-filter: $videoControlsBackdrop;
@@ -514,9 +512,7 @@ $videoInfoOverlayPadding: 0.5rem;
 
     // 0.13px: work around rounding issues leaving a 1px gap
     bottom: calc($videoBarHeight + env(safe-area-inset-bottom) - 0.13px);
-    background: $videoControlsBackground;
-    -webkit-backdrop-filter: $videoControlsBackdrop;
-    backdrop-filter: $videoControlsBackdrop;
+
     a, strong {
       text-shadow: $blackOutline;
     }
@@ -618,10 +614,9 @@ $videoInfoOverlayPadding: 0.5rem;
 }
 
 // if forced-close, remove the popup immediately
-#videoOptions.hidden {
-  #videoOptionsMenu {
-    transition-delay: 0ms;
-  }
+#videoOptions.hidden #videoOptionsMenu,
+#layerSwitcher.hidden #layerSwitcherMenu {
+  transition-delay: 0ms;
 }
 
 #videoRecordingDate {
@@ -872,18 +867,31 @@ body.fullscreen video, #videoOuter:fullscreen video {
   background-position: right center;
 }
 
-$buttonSize: 1.8rem;
-$buttonOffset: 0.25rem;
+$buttonSize: 29px;
+$buttonSizeMobile: 2.1rem;
+$buttonOffset: 10px;
 $buttonBorder: 2px;
+$buttonRadius: 4px;
+
+.maplibregl-ctrl-top-right .maplibregl-ctrl-group:first-child {
+  // leave space for hacked for Phoenix-driven layer switcher
+  padding-top: $buttonSize;
+}
+
 #layerSwitcher {
   position: absolute;
   z-index: 12;
-  // match maplibregl-ctrl-bottom-left
-  left: 9.5px;
-  bottom: 9.5px;
+  right: $buttonOffset;
+  top: $buttonOffset;
 
   width: $buttonSize;
   height: $buttonSize;
+
+  &:hover {
+    > button {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
 
   > button {
     background-image: url("/images/layers.svg?vsn=1");
@@ -894,26 +902,38 @@ $buttonBorder: 2px;
     height: $buttonSize;
 
     background-color: #fff;
-    border-radius: 0.2rem;
+    border-top-left-radius: $buttonRadius;
+    border-top-right-radius: $buttonRadius;
     border: 0;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    // hack: prevent pixel rounding issues in Firefox depending on viewport
+    // width
+    will-change: transform;
   }
 
   #layerSwitcherMenu {
     position: absolute;
-    bottom: 0px;
+    top: 0;
+    right: calc($buttonSize + $buttonBorder);
 
     background: #fff;
+
+    #layerSpacer {
+      margin-top: calc($buttonOffset/2 - $buttonBorder/2);
+      margin-bottom: calc($buttonOffset/2 - $buttonBorder/2);
+      border-top: $buttonBorder solid #dedede;
+    }
 
     button {
       width: 100%;
       padding: 0 8px 0 4px;
-      height: 32px;
-      line-height: 19px;
+      height: $buttonSize;
 
       text-align: left;
       color: #000;
       white-space: nowrap;
+      font-size: 0.9rem;
 
       &:first-child {
         border-top-left-radius: 0.2rem;
@@ -925,14 +945,9 @@ $buttonBorder: 2px;
         border-bottom-right-radius: 0.2rem;
       }
 
-
-      &.layer + .style, &.style + .layer {
-        border-top: 1px solid #999;
-      }
-
       &::before {
         width: 20px;
-        padding-right: 10px;
+        padding-right: 14px;
         text-align: right;
         content: "✓";
         color: transparent;
@@ -953,6 +968,32 @@ $buttonBorder: 2px;
   }
 }
 
+@media (pointer: coarse) {
+  .maplibregl-ctrl-group, #layerSwitcher {
+    button {
+      width: $buttonSizeMobile;
+      height: $buttonSizeMobile;
+    }
+  }
+
+  #layerSwitcher {
+    width: $buttonSizeMobile;
+    height: $buttonSizeMobile;
+
+    #layerSwitcherMenu {
+      right: calc($buttonSizeMobile + $buttonBorder);
+
+      button {
+        height: $buttonSizeMobile;
+      }
+    }
+  }
+
+  .maplibregl-ctrl-top-right .maplibregl-ctrl-group:first-child {
+    // leave space for hacked for Phoenix-driven layer switcher
+    padding-top: $buttonSizeMobile;
+  }
+}
 
 $headerSize: 2rem;
 .header {
@@ -1314,9 +1355,14 @@ a {
   }
 }
 
-.maplibregl-ctrl-top-left, #indicator, #videoOuter, #map {
+body {
   -webkit-user-select: none;
   user-select: none;
+}
+
+#content {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 #indicator {

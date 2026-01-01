@@ -185,6 +185,10 @@
   filter: invert(100%);
 }
 
+.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon {
+  background-image: url("/images/minscreen.svg?vsn=1");
+}
+
 .maplibregl-ctrl button:not(:disabled):hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
