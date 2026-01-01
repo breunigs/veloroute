@@ -213,4 +213,30 @@ defmodule Util.IO do
   defp merge(mapset, [x]), do: MapSet.put(mapset, x)
   defp merge(mapset, list) when is_list(list), do: list |> MapSet.new() |> MapSet.union(mapset)
   defp merge(mapset, other), do: MapSet.union(mapset, other)
+
+  def capture(func) do
+    org_stdout = Process.group_leader()
+    org_stderr = Process.whereis(:standard_error)
+    {:ok, capture_stdout} = StringIO.open("", capture_prompt: true)
+    {:ok, capture_std_err} = StringIO.open("", capture_prompt: true)
+
+    try do
+      Process.group_leader(self(), capture_stdout)
+      Process.unregister(:standard_error)
+      Process.register(capture_std_err, :standard_error)
+
+      result = func.()
+
+      {:ok, {_, stdout}} = StringIO.close(capture_stdout)
+      {_, stderr} = StringIO.contents(capture_std_err)
+
+      {result, stdout, stderr}
+    after
+      Process.group_leader(self(), org_stdout)
+
+      Process.unregister(:standard_error)
+      StringIO.close(capture_std_err)
+      Process.register(org_stderr, :standard_error)
+    end
+  end
 end

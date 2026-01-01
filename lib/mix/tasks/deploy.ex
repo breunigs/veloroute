@@ -6,9 +6,14 @@ defmodule Mix.Tasks.Deploy do
   @shortdoc "Builds the site using docker, then uploads it"
   def run(skip) do
     skip = parse_cli_args(skip)
+    mirror = in_background(fn -> mirror_links(skip) end)
+    preload = in_background(fn -> preload_videos(skip) end)
+
     build_tar_gz(skip)
-    mirror_links(skip)
-    preload_videos(skip)
+
+    IO.puts(Task.await(preload))
+    IO.puts(Task.await(mirror))
+
     deploy_tar_gz(skip)
   end
 
@@ -76,10 +81,13 @@ defmodule Mix.Tasks.Deploy do
   defp test(%{skip_test: true}), do: nil
 
   defp test(_skip) do
+    format = Task.async(fn -> Util.Docker.mix("format --check-formatted") end)
+
     Util.banner("Unit tests")
     Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}") |> raise_on_error()
+
     Util.banner("Format Check")
-    Util.Docker.mix("format --check-formatted") |> raise_on_error()
+    format |> Task.await() |> raise_on_error()
   end
 
   defp make_release(_skip) do
@@ -194,8 +202,9 @@ defmodule Mix.Tasks.Deploy do
     end
   end
 
+  @status_check_timeout 2 * 60 * 1000
   defp report_status_200?(path, retried \\ false) do
-    case Tesla.get(get_docker_url(path)) do
+    case Tesla.get(get_docker_url(path), adapter: [recv_timeout: @status_check_timeout]) do
       {:ok, %{status: 200}} ->
         Logger.info("✓ 200 from #{path}")
         true
@@ -351,5 +360,12 @@ defmodule Mix.Tasks.Deploy do
   defp mirror_links(_skip) do
     Util.banner("Release: Mirroring External Links")
     Mix.Tasks.Velo.Links.Mirror.run(nil)
+  end
+
+  defp in_background(func) do
+    Task.async(fn ->
+      {_result, out, err} = Util.IO.capture(func)
+      out <> err
+    end)
   end
 end
