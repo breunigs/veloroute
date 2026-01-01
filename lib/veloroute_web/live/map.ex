@@ -80,6 +80,18 @@ defmodule VelorouteWeb.Live.Map do
             checked={@show_map_image}
           />
 
+          <%= for style <- @styles do %>
+            <button
+              value={style.id}
+              class={"style #{if style.active, do: "active"}"}
+              aria-checked={if style.active, do: "true", else: "false"}
+              role="menuitemradio"
+              phx-target={@myself}
+              phx-click="switch-style"><%= style.name %></button>
+          <% end %>
+
+          <div id="layerSpacer"></div>
+
           <%= for layer <- @layers do %>
             <button
               value={layer.name}
@@ -93,15 +105,7 @@ defmodule VelorouteWeb.Live.Map do
               }><%= layer.name %></button>
           <% end %>
 
-          <%= for style <- @styles do %>
-            <button
-              value={style.id}
-              class={"style #{if style.active, do: "active"}"}
-              aria-checked={if style.active, do: "true", else: "false"}
-              role="menuitemradio"
-              phx-target={@myself}
-              phx-click="switch-style"><%= style.name %></button>
-          <% end %>
+
         </div>
       </div>
     </div>
