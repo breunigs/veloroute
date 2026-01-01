@@ -70,8 +70,9 @@ defmodule Data.Article.Static.Radroute7 do
         from: "Rahlstedt",
         to: "Düpenau",
         parent_ref: __MODULE__,
-        text: "vom Rahlstedt nach Osdorfer Born",
+        text: "von Rahlstedt zum Osdorfer Born",
         historic: %{
+          "040b27b5b2679d8b3d0a84502a24a11d" => ~d[2025-12],
           "ffe07bc2fc302fa5e6907822c85ad525" => ~d[2025-02]
         },
         videos: [
@@ -90,8 +91,10 @@ defmodule Data.Article.Static.Radroute7 do
           {"2024-05-02-vr7/GX017394", :start, "00:00:07.740"},
           {"2024-05-02-vr7/GX017395", :start, "00:00:10.142"},
           {"2024-05-02-vr7/GX017396", "00:00:00.267", "00:00:08.774"},
-          {"2024-05-02-vr7/GX017397", :start, "00:00:07.207"},
-          {"2025-02-17-ost/GX018140", "00:00:01.635", :end},
+          {"2024-05-02-vr7/GX017397", :start, "00:00:01.168"},
+          {"2025-12-30-hohenfelde/GX018732", "00:00:31.832", :end},
+          {"2025-12-30-hohenfelde/GX018734", :start, "00:00:05.239"},
+          {"2025-02-17-ost/GX018140", "00:00:22.222", :end},
           {"2025-02-17-ost/GX018141", :start, :end},
           {"2024-05-06-vr9/GX017461", :start, "00:00:03.103"},
           {"2024-05-06-vr9/GX017462", :start, :end},

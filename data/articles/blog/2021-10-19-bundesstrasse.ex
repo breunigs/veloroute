@@ -6,6 +6,7 @@ defmodule Data.Article.Blog.Bundesstrasse do
   def summary(), do: "Bundesstraße soll zur Fahrradstraße umgebaut werden."
 
   def type(), do: :planned
+  def start(), do: ~d[2026Q3]
 
   def tags(), do: ["Bezirksroute B", "Eimsbüttel"]
 
@@ -46,6 +47,8 @@ defmodule Data.Article.Blog.Bundesstrasse do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel zu möglichem Bautermin", ~d[2025-12],
+       "https://www.abendblatt.de/hamburg/eimsbuettel/article410655652/eimsbuettel-2026-tanzclub-unter-der-a7-neue-radrouten-diese-projekte-sind-geplant.html#:~:text=Baustart%20soll%20im%20Sommer%2FHerbst%202026%20sein%2E"},
       {"Geplanter Bautermine", "November 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"Unterlagen des 1. Entwurfs",

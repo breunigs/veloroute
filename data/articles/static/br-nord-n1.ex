@@ -17,6 +17,7 @@ defmodule Data.Article.Static.BrNordN1 do
 
   def tracks(),
     do: [
+      # TODO: needs new videos around Hohenfelder Bucht
       %Video.Track{
         renderer: 3,
         group: "n1",
@@ -50,14 +51,17 @@ defmodule Data.Article.Static.BrNordN1 do
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "n1",
         direction: :backward,
         from: "Ochsenzoll",
         to: "Lübeckertordamm",
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll zum Lübeckertordamm",
-        historic: %{"b3abd8b636fff224d220050a1925f5cd" => ~d[2023-10]},
+        historic: %{
+          "239b4a94fc27a30f32444b3b16d384d7" => ~d[2025-12],
+          "b3abd8b636fff224d220050a1925f5cd" => ~d[2023-10]
+        },
         videos: [
           {"2023-10-25-brnord/GX016582", "00:00:25.687", :end},
           {"2023-10-25-brnord/GX016583", :start, :end},
@@ -74,12 +78,15 @@ defmodule Data.Article.Static.BrNordN1 do
           {"2023-10-25-brnord/GX016598", :start, :end},
           {"2023-10-25-brnord/GX016599", :start, :end},
           {"2023-10-25-brnord/GX016600", :start, :end},
-          {"2023-10-25-brnord/GX016601", :start, "00:00:27.461"},
-          {"2023-10-25-brnord/GX016612", "00:00:15.215", :end},
-          {"2023-10-25-brnord/GX016613", :start, :end},
-          {"2023-10-25-brnord/GX016614", :start, :end},
-          {"2023-10-25-brnord/GX016615", :start, :end},
-          {"2023-10-25-brnord/GX016616", :start, "00:00:21.350"}
+          {"2023-10-25-brnord/GX016601", :start, :end},
+          {"2025-12-30-hohenfelde/GX018719", :start, "00:00:04.822"},
+          {"2025-12-30-hohenfelde/GX018705", "00:00:02.481", "00:00:07.814"},
+          {"2025-12-30-hohenfelde/GX018708", "00:00:13.786", "00:00:17.100"},
+          {"2025-12-30-hohenfelde/GX018709", :start, "00:00:02.795"},
+          {"2025-12-30-hohenfelde/GX018710", "00:00:00.133", :end},
+          {"2025-12-30-hohenfelde/GX018711", :start, "00:00:03.675"},
+          {"2025-12-30-hohenfelde/GX018711", "00:00:05.973", "00:00:12.646"},
+          {"2023-10-25-brnord/GX016616", "00:00:06.006", :end}
         ]
       }
     ]

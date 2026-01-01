@@ -24,12 +24,14 @@ defmodule Data.Article.Static.Radroute9 do
         parent_ref: __MODULE__,
         text: "von der Krugkoppelbrücke zum Berliner Tor",
         historic: %{
+          "8005c563781e4a4e4fe716d082187bb0" => ~d[2025-12],
           "8624943fa46c1b5108d1489cc97426b4" => ~d[2025-02]
         },
         videos: [
-          {"2025-02-17-ost/GX018125", "00:00:19.980", "00:02:10.420"},
-          {"2025-02-17-ost/GX018127", "00:00:22.435", "00:00:26.287"},
-          {"2025-02-17-ost/GX018128", "00:00:00.100", "00:00:45.760"}
+          {"2025-02-17-ost/GX018125", "00:00:19.980", "00:01:35.792"},
+          {"2025-12-30-hohenfelde/GX018705", "00:01:29.618", :end},
+          {"2025-12-30-hohenfelde/GX018706", :start, "00:00:11.937"},
+          {"2025-02-17-ost/GX018128", "00:00:09.548", "00:00:45.760"}
         ]
       },
       %Video.Track{
@@ -41,12 +43,16 @@ defmodule Data.Article.Static.Radroute9 do
         parent_ref: __MODULE__,
         text: "vom Berliner Tor zur Krugkoppelbrücke",
         historic: %{
+          "1522628d4c3bdbcbb3378d26e2f02bbf" => ~d[2025-12],
           "11454f8edf9e3fa7336522582fbb0ce0" => ~d[2025-02]
         },
         videos: [
           {"2025-02-17-ost/GX018122", "00:00:26.126", :end},
-          {"2025-02-17-ost/GX018123", :start, :end},
-          {"2025-02-17-ost/GX018124", :start, :end},
+          {"2025-02-17-ost/GX018123", :start, "00:00:06.055"},
+          {"2025-12-30-hohenfelde/GX018706", "00:00:25.687", "00:00:45.527"},
+          {"2025-12-30-hohenfelde/GX018707", "00:00:00.100", "00:00:04.082"},
+          {"2025-12-30-hohenfelde/GX018705", "00:00:44.695", "00:01:12.201"},
+          {"2025-02-17-ost/GX018124", "00:00:32.290", :end},
           {"2025-02-17-ost/GX018125", :start, "00:00:16.340"}
         ]
       }

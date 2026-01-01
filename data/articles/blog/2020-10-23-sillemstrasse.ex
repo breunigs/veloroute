@@ -7,8 +7,8 @@ defmodule Data.Article.Blog.Sillemstrasse do
   def summary(),
     do: "asphaltierte Fahrradstraße (Anlieger frei) mit Kreisel an der Methfesselstraße geplant"
 
-  def start(), do: ~d[2024Q2]
-  def stop(), do: ~d[2024Q3]
+  def start(), do: ~d[2026Q2]
+  def stop(), do: ~d[2026Q3]
 
   def type(), do: :planned
 
@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.Sillemstrasse do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel zur zeitlichen Verschiebung", ~d[2025-12],
+       "https://www.abendblatt.de/hamburg/eimsbuettel/article409282193/sillemstrasse-hamburg-eimsbuettel-warum-umbau-zur-fahrradstrasse-jetzt-verschoben-wird.html"},
       {"Erläuterungsbericht und Pläne des fertigen Entwurfs", "Dezember 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008865"},
       {"Erläuterungsbericht und Pläne des ersten Entwurfs", "Mai 2021",

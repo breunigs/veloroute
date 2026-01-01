@@ -18,6 +18,13 @@ defmodule Data.Article.Blog.HohenfelderBucht do
   def construction_site_id_hh(), do: [6381]
   def tags(), do: ["radroute-9", "5", "6", "FR2", "FR3", "br-nord-n1"]
 
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"NDR Artikel zur Fertigstellung", ~d[2025-11],
@@ -43,7 +50,7 @@ defmodule Data.Article.Blog.HohenfelderBucht do
     <h4>Stand Oktober 2023</h4>
     <p>Die Planung wurde an neue Gegebenheiten angepasst, bleibt der ursprünglichen Planung von 2018 aber treu. Im Wesentlichen setzt man häufiger auf roten Asphalt oder rot eingefärbte Fahrradfurten. Außerdem wird die Baustellenampel an der <.v bounds="10.012139,53.562077,10.022896,53.566994" lon={10.017168} lat={53.565184} dir="backward" ref={Alltagsroute5} highlight="Schwanenwik,Armgartstraße">Armgartstraße über den Schwanenwik</.v> beibehalten. Dafür entfällt die direkte Querung des <.v bounds="10.014213,53.563338,10.019583,53.565025" lon={10.017772} lat={53.564161} dir="forward" ref={Alltagsroute5}>Mundsburger Damm</.v> nördlich der Kreuzung. Die Anpassungen sind für den Radverkehr positiv zu sehen.</p>
 
-    <h4>Beschreibung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}>Beschreibung</.h4_planning>
     <p>Im Vergleich zur aktuellen Situation rund um die <.m bounds="10.012989,53.560813,10.019895,53.565039">Hohenfelder Bucht</.m> verbessert die Planung an praktisch allen Wegen und Knotenpunkten die Situation für den Radverkehr. Auch wird die Aufenthaltsqualität um die Bucht durch mehr Grünflächen erhöht. Genauer umfasst die Planung die Straßen <.v bounds="10.010955,53.559175,10.019793,53.564957" lon={10.0132} lat={53.560872} dir="forward" ref={Alltagsroute5}>An der Alster</.v>, <.v bounds="10.010955,53.559175,10.019793,53.564957" lon={10.017507} lat={53.561648} dir="forward" ref={BrNordN1}>Sechslingspforte</.v>, <.v bounds="10.010955,53.559175,10.019793,53.564957" lon={10.017353} lat={53.562411} dir="forward" ref={BrNordN1}>Barcastraße</.v>, <.v bounds="10.010955,53.559175,10.019793,53.564957" lon={10.017577} lat={53.563142} dir="forward" ref={BrNordN1}>Buchtstraße</.v>, <.v bounds="10.013216,53.562013,10.019311,53.566995" lon={10.016741} lat={53.565512} dir="forward" ref={Freizeitroute3}>Schwanenwik</.v> und den <.v bounds="10.013216,53.562013,10.019311,53.566995" lon={10.01811} lat={53.564418} dir="forward" ref={Alltagsroute5}>Mundsburger Damm</.v>. Da die Planung für dieses Gebiet sehr umfangreich sind, gehe ich im Folgenden nur auf die für die Veloroute relevanten Änderungen ein. Für alle anderen Kreuzungen finden sich die Details in den PDFs.</p>
 
     <h5>Stadtauswärts, entlang der Straße:</h5>
