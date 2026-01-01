@@ -21,7 +21,56 @@ defmodule Geo.Smoother do
     coords
     |> cut_corners(3)
     |> average_in_distance(10.0)
+    |> remove_overlaps()
   end
+
+  @spec remove_overlaps([Video.TimedPoint.t()]) :: [Video.TimedPoint.t()]
+  @doc """
+  Removes any overlaps within the GPS track where there's a U-Turn within a very
+  short distance.
+
+  ## Examples
+
+      iex> Geo.Smoother.remove_overlaps([
+      ...>   %Video.TimedPoint{lat: 53.5525911, lon: 10.0125893, time_offset_ms: 20},
+      ...>   %Video.TimedPoint{lat: 53.5525899, lon: 10.0124563, time_offset_ms: 30},
+      ...>   %Video.TimedPoint{lat: 53.5526008, lon: 10.0125561, time_offset_ms: 40},
+      ...>   %Video.TimedPoint{lat: 53.5525944, lon: 10.0124142, time_offset_ms: 50},
+      ...> ])
+      [
+        %Video.TimedPoint{lat: 53.5525911, lon: 10.0125893, time_offset_ms: 20},
+        %Video.TimedPoint{lat: 53.5525899, lon: 10.0124563, time_offset_ms: 30},
+        %Video.TimedPoint{lat: 53.5525944, lon: 10.0124142, time_offset_ms: 50},
+      ]
+  """
+  @max_overlap_length_m 5
+  @min_heading_change_deg 170
+  def remove_overlaps([c1, c2 | rest] = _coords) do
+    prev_bearing = Geo.CheapRuler.bearing(c1, c2)
+    acc = {prev_bearing, [c2, c1]}
+
+    {_, coords} =
+      Enum.reduce(rest, acc, fn c3, acc ->
+        {prev_bearing, [c2, c1 | _] = coords} = acc
+        dist = Geo.CheapRuler.dist(c1, c3)
+        next_bearing = Geo.CheapRuler.bearing(c2, c3)
+        diff = Geo.CheapRuler.bearing_diff(prev_bearing, next_bearing)
+
+        nearby = dist <= @max_overlap_length_m
+        u_turn = diff >= @min_heading_change_deg
+        skip = nearby && u_turn
+
+        if skip do
+          {prev_bearing, coords}
+        else
+          {next_bearing, [c3 | coords]}
+        end
+      end)
+
+    Enum.reverse(coords)
+  end
+
+  def remove_overlaps(coords), do: coords
 
   @spec equi_time_interval([Video.TimedPoint.t()], float()) :: [Video.TimedPoint.t()]
   @doc """
