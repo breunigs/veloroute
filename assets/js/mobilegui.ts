@@ -157,6 +157,17 @@ function detectswipe(el: string) {
   addEventListener("selectstart", (_e) => { selected = true });
 }
 
+function layerSwitcherToggle() {
+  const layerSwitcherButton = document.querySelector("#layerSwitcher > button")!
+  const layerSwitcherMenu = document.getElementById("layerSwitcherMenu")!
+  const layerSwitcher = document.getElementById("layerSwitcher")!
+  layerSwitcherButton.addEventListener("touchstart", () => {
+    const hide = window.getComputedStyle(layerSwitcherMenu).visibility == 'visible';
+    layerSwitcher.classList.toggle("hidden", hide)
+  })
+}
+
+
 function init() {
   // i.e. no-reinit needed
   if (sidebar === document.getElementById("sidebar")) return
@@ -172,6 +183,8 @@ function init() {
 
   detectswipe("sidebar")
   detectswipe("switcher")
+
+  layerSwitcherToggle()
 }
 init()
 window.addEventListener("global:mounted", init)
