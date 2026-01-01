@@ -1,9 +1,10 @@
 import "./search_handler"
+import type { HooksOptions } from "phoenix_live_view";
 
-let pushEventHandle = null;
-let pushEventQueued = [];
+let pushEventHandle: ((event: string, payload?: any) => Promise<any>) | null = null;
+let pushEventQueued: Array<[string, any]> = [];
 
-function pushEvent(event, payload) {
+function pushEvent(event: string, payload: any) {
   if (!pushEventHandle) {
     // console.log("Queueing", event, "until mounted:", payload);
     pushEventQueued.push([event, payload]);
@@ -15,31 +16,22 @@ function pushEvent(event, payload) {
 }
 window.pushEvent = pushEvent;
 
-/**
- * @type {import("phoenix_live_view").HooksOptions}
- */
-let Hooks = {};
-
-/**
- * @type {import("phoenix_live_view").Hook}
- */
+let Hooks: HooksOptions = {};
 Hooks.control = {
   mounted() {
     window.dispatchEvent(new Event("global:mounted"));
     pushEventHandle = (evt, pay) => this.pushEvent(evt, pay);
 
-    if (!pushEventQueued) return;
+    if (pushEventQueued.length === 0) return;
     for (let i = 0; i < pushEventQueued.length; i++) {
       // console.log("Pushing queued event ", pushEventQueued[i]);
       this.pushEvent(pushEventQueued[i][0], pushEventQueued[i][1]);
     }
-    pushEventQueued = null;
+    pushEventQueued = [];
   }
 }
 
-/**
- * @type {import("phoenix_live_view").Hook}
- */
+
 Hooks.FocusSearchField = {
   mounted() {
     this.el.focus();
@@ -47,11 +39,9 @@ Hooks.FocusSearchField = {
   }
 }
 
-let scrollPositionFromPopState = null;
+let scrollPositionFromPopState: number | null = null;
 let scrollLastPage = window.location.pathname;
-/**
- * @type {import("phoenix_live_view").Hook}
- */
+
 Hooks.ScrollReset = {
   saveScrollPos() {
     // console.log("scroll", `saveScrollPos ${window.location.pathname}`, "=", this.el.scrollTop)
@@ -97,13 +87,11 @@ Hooks.ScrollReset = {
       scrollPositionFromPopState = event.state.sidebarScroll || 0
     });
 
-    let scrollTimer = null
-    this.el.addEventListener("scroll", _e => {
-      clearTimeout(scrollTimer)
+    let scrollTimer: ReturnType<typeof setTimeout> | null = null
+    this.el.addEventListener("scroll", () => {
+      if (scrollTimer) clearTimeout(scrollTimer)
       scrollTimer = setTimeout(() => this.saveScrollPos(), 100)
-    }, {
-      passive: true
-    })
+    }, { passive: true })
 
     this.maybeRestoreScroll()
   },
@@ -114,8 +102,8 @@ Hooks.ScrollReset = {
   }
 }
 
-let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-let liveSocket = new LiveSocket("/live", Socket, {
+let csrfToken = document.querySelector("meta[name='csrf-token']")?.getAttribute("content");
+let liveSocket = new window.LiveSocket("/live", window.Socket, {
   hooks: Hooks,
   params: {
     _csrf_token: csrfToken
@@ -133,12 +121,25 @@ if (hostname === 'localhost') {
   liveSocket.enableLatencySim(50)
 }
 
-window.addEventListener("phx:impressum", (e) => alert(e.detail.text))
+interface ImpressumDetail {
+  text: string;
+}
 
-let loadedScripts = []
-let pendingScripts = {}
+window.addEventListener("phx:impressum", (e) => {
+  const customEvent = e as CustomEvent<ImpressumDetail>
+  alert(customEvent.detail.text)
+})
+
+let loadedScripts: Array<string> = []
+let pendingScripts: Record<string, HTMLScriptElement> = {}
+
+interface JSLoadDetail {
+  url: string;
+  callback: () => void;
+}
+
 window.addEventListener("js:load", (e) => {
-  const { url, callback } = e.detail;
+  const { url, callback } = (e as CustomEvent<JSLoadDetail>).detail;
   if (url in loadedScripts) return callback()
   if (url in pendingScripts) return pendingScripts[url].addEventListener("load", callback)
 
@@ -160,7 +161,6 @@ window.addEventListener("js:load", (e) => {
   document.head.appendChild(script)
 
   pendingScripts[url] = script
-
 })
 
 import "./mobilegui"
