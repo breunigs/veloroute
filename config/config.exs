@@ -59,19 +59,19 @@ config :tesla, adapter: Tesla.Adapter.Hackney
 config :reverse_proxy_plug, :http_client, ReverseProxyPlug.HTTPClient.Adapters.Tesla
 
 config :esbuild,
-  version: "0.25.10",
+  version: "0.27.2",
   default: [
     args:
-      ~w(js/app.js js/liveview.ts js/mbgl2.ts js/map.js js/map_image.ts js/map_image_stub.ts js/video_player.js js/link_helper.ts --bundle --target=chrome116,firefox110,safari15,edge119 --outdir=../priv/static/assets --color=true),
+      ~w(js/app.js js/liveview.ts js/mbgl2.ts js/map.js js/map_image.ts js/map_image_stub.ts js/video_player.js js/link_helper.ts --bundle --target=chrome117,firefox115,safari17,edge140 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
 config :dart_sass,
-  version: "1.77.2",
+  version: "1.97.1",
   default: [
-    args: ~w(css/:../priv/static/assets/),
-    cd: Path.expand("../assets", __DIR__)
+    args: ~w(assets/css/app.scss priv/static/assets/app.css),
+    cd: Path.expand("..", __DIR__)
   ]
 
 config :mime, :types, %{
