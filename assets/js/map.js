@@ -492,6 +492,8 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
 }
 
 async function getVideoPosition() {
+  if (videoTimeInMs === null) return
+
   const indicatorPolyline = await indicatorPolylinePromise
 
   if (!indicatorPolyline) return;
@@ -707,7 +709,7 @@ function setup() {
 setup()
 window.addEventListener("global:mounted", setup)
 
-let videoTimeInMs = 0;
+let videoTimeInMs = null;
 window.addEventListener("video:timeupdate", (e) => {
   videoTimeInMs = e.detail.timeInMs;
   renderIndicator();

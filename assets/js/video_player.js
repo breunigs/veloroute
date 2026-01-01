@@ -76,9 +76,9 @@ function timeUpdate(now, metadata) {
   if (!metadata) return
 
   // iOS has a bug where the video time is reported as 0.0 during loading
-  if (canPlayHLS && (video.readyState <= 2 || video.duration <= 0) && metadata.mediaTime == 0) {
-    return;
-  }
+  if (canPlayHLS && metadata.mediaTime == 0 &&
+    (video.readyState <= 2 || video.duration <= 0 || metadata.presentedFrames === 1)
+  ) return
 
   videoTimeInMs = Math.round(metadata.mediaTime * 1000)
   window.dispatchEvent(new CustomEvent("video:timeupdate", {
