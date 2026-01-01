@@ -1,5 +1,6 @@
 import { Map as MapboxMap } from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
+import type { ExpressionSpecification } from "maplibre-gl";
 
 // toggle if MapLibre should verify the expressions we pass to it. Disable for
 // production deploy for a slight performance improvement.
@@ -13,6 +14,7 @@ type mapLayer =
     icon: string[],
     fill: string[],
     outline: string[],
+    route_group: string,
   }
 
 type mapStyle =
@@ -88,12 +90,33 @@ function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
   map.setFilter('route-highlight', ['==', ['get', 'route_id'], highlight])
 
   if (!mapDetail.layers) return
+
+  let alltagVisible = false
   for (const layer of mapDetail.layers.reverse()) {
+    const isAlltag = layer.route_group === "alltag"
+    if (isAlltag) alltagVisible ||= layer.active
+
     updateMapPrimitive(map, layer.icon, "icon", layer.active, fadeIcons(highlight));
     updateMapPrimitive(map, layer.outline, "line", layer.active);
-    updateMapPrimitive(map, layer.line, "line", layer.active, fadeLines(highlight), true);
+    updateMapPrimitive(map, layer.line, "line", layer.active, fadeLines(highlight), !isAlltag);
     updateMapPrimitive(map, layer.line.map(l => `${l}-tunnel`), "line", layer.active, fadeLines(highlight), true);
     updateMapPrimitive(map, layer.fill, "fill", layer.active);
+  }
+
+  toggleRouteCasingAlltag(map, alltagVisible)
+}
+
+const hideAlltagFilter: ExpressionSpecification = ["!=", ["get", "type"], "alltag"]
+function toggleRouteCasingAlltag(map: MapboxMap, show: boolean) {
+  for (const layerName of ["route-casing", "route-casing2"]) {
+    if (!map.getLayer(layerName)) continue
+
+    const current = map.getFilter(layerName) as ExpressionSpecification[]
+    const updated = show
+      ? current.filter(obj => obj.toString() != hideAlltagFilter.toString())
+      : current.concat([hideAlltagFilter])
+
+    map.setFilter(layerName, updated as ExpressionSpecification)
   }
 }
 

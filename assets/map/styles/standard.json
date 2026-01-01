@@ -3286,6 +3286,11 @@
       "source": "merged",
       "source-layer": "routes",
       "minzoom": 12,
+      "filter": [
+        "all",
+        ["!=", ["get", "offset"], -1],
+        ["!=", ["get", "type"], "alltag"]
+      ],
       "layout": {
         "visibility": "visible",
         "line-cap": "butt",
@@ -3849,7 +3854,7 @@
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "visibility": "visible",
+        "visibility": "none",
         "icon-anchor": "center",
         "icon-image": "sharrows",
         "icon-allow-overlap": true,

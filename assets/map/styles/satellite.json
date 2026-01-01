@@ -235,7 +235,11 @@
       "type": "line",
       "source": "merged",
       "source-layer": "routes",
-      "filter": ["match", ["get", "layer"], ["-1"], true, false],
+      "filter": ["all",
+        ["match", ["get", "layer"], ["-1"], true, false],
+        ["!=", ["get", "offset"], -1],
+        ["!=", ["get", "type"], "alltag"]
+      ],
       "layout": {
         "visibility": "visible",
         "line-cap": "square",
@@ -584,7 +588,11 @@
       "source": "merged",
       "source-layer": "routes",
       "minzoom": 8,
-      "filter": ["match", ["get", "layer"], ["-1"], false, true],
+      "filter": ["all", 
+        ["match", ["get", "layer"], ["-1"], false, true],
+        ["!=", ["get", "offset"], -1],
+        ["!=", ["get", "type"], "alltag"]
+      ],
       "layout": {
         "visibility": "visible",
         "line-cap": "butt",
@@ -1201,7 +1209,7 @@
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "map",
         "text-keep-upright": false,
-        "visibility": "visible",
+        "visibility": "none",
         "icon-anchor": "center",
         "icon-image": "sharrows",
         "icon-allow-overlap": true,
