@@ -3886,6 +3886,7 @@
       "filter": [
         "all",
         ["has", "oneway"],
+        ["!=", ["get", "status"], "concept"],
         [
           "match",
           ["get", "type"],
