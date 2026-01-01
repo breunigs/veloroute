@@ -347,7 +347,10 @@ defmodule VelorouteWeb.FrameLive do
   defp set_content(socket, _article), do: render_404(socket, "article not found")
 
   defp render_404(socket, reason) do
-    Logger.error("Non-existing site was accessed (#{reason}): #{socket.assigns.current_url}")
+    # ignore vulerability scan bots
+    if !String.ends_with?(socket.assigns.current_url, ".php") do
+      Logger.error("Non-existing site was accessed (#{reason}): #{socket.assigns.current_url}")
+    end
 
     socket
     |> put_flash(:info, 404)
