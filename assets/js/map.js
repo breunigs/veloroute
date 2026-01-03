@@ -134,8 +134,8 @@ function zoomInOnce() {
 }
 
 let renderIndicatorAnimation = null;
-async function renderIndicator() {
-  const targetPos = await getVideoPosition()
+async function renderIndicator(timeInMs) {
+  const targetPos = await getVideoPosition(timeInMs)
   if (!targetPos) return
 
   if (!indicator) return createIndicator(targetPos)
@@ -149,7 +149,9 @@ async function renderIndicator() {
   // zoom in once, i.e. when user just clicks play when first visiting the site
   if (zoomInOnce()) return
   // otherwise show the indicator at whatever zoom level
-  ensureIndicatorInViewIdle ||= window.requestIdleCallback(ensureIndicatorInView, { timeout: 1000 });
+  ensureIndicatorInViewIdle ||= window.requestIdleCallback(() => {
+    ensureIndicatorInView(timeInMs)
+  }, { timeout: 1000 });
 
   const videoPlaying = isVideoPlaying();
   const lngLat = new mlgl.LngLat(targetPos.lon, targetPos.lat)
@@ -193,7 +195,7 @@ const closestEquivalentAngleDelta = (from, to) => {
 }
 
 let ensureIndicatorInViewIdle = null
-const ensureIndicatorInView = async () => {
+const ensureIndicatorInView = async (timeInMs) => {
   ensureIndicatorInViewIdle = null
   if (map.isMoving() || !indicator) {
     return;
@@ -231,8 +233,8 @@ const ensureIndicatorInView = async () => {
 
   let bbox = new mlgl.LngLatBounds(lngLat, lngLat)
 
-  const minMs = videoTimeInMs - 4 * 1000
-  const maxMs = videoTimeInMs + 15 * 1000
+  const minMs = timeInMs - 4 * 1000
+  const maxMs = timeInMs + 15 * 1000
 
   const minIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(minMs / indicatorPolyline.interval) * 2);
   const maxIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(maxMs / indicatorPolyline.interval) * 2);
@@ -491,13 +493,13 @@ function calcBearing(fromLon, fromLat, toLon, toLat) {
   return ToDeg(bearing);
 }
 
-async function getVideoPosition() {
-  if (videoTimeInMs === null) return
+async function getVideoPosition(timeInMs) {
+  if (timeInMs === null) return
 
   const indicatorPolyline = await indicatorPolylinePromise
 
   if (!indicatorPolyline) return;
-  let currMs = videoTimeInMs
+  let currMs = timeInMs
 
   const index = indicatorIndexBounds(
     indicatorPolyline,
@@ -709,8 +711,4 @@ function setup() {
 setup()
 window.addEventListener("global:mounted", setup)
 
-let videoTimeInMs = null;
-window.addEventListener("video:timeupdate", (e) => {
-  videoTimeInMs = e.detail.timeInMs;
-  renderIndicator();
-});
+window.addEventListener("video:timeupdate", (e) => renderIndicator(e.detail.timeInMs))
