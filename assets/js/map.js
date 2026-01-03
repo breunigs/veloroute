@@ -240,7 +240,9 @@ const ensureIndicatorInView = async (timeInMs) => {
   const maxIndex = indicatorIndexBounds(indicatorPolyline, Math.floor(maxMs / indicatorPolyline.interval) * 2);
 
   for (let i = minIndex; i <= maxIndex; i += 10) {
-    bbox.extend(indicatorPolyline.coords.subarray(i, i + 2))
+    const lon = indicatorPolyline.coords[i]
+    const lat = indicatorPolyline.coords[i + 1]
+    bbox.extend(new mlgl.LngLat(lon, lat))
   }
 
   map.fitBounds(bbox, {
