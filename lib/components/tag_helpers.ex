@@ -249,6 +249,8 @@ defmodule Components.TagHelpers do
           aria-checked={if @checked, do: "true", else: "false"}
           role="menuitemradio"
           phx-click="toggle-map-image"><%= if @lang == "en" do %>exact site map<% else %>genauer Lageplan<% end %></button>
+
+        <div class="layerSpacer"></div>
       """
     else
       ~H""

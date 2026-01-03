@@ -919,7 +919,7 @@ $buttonRadius: 4px;
 
     background: #fff;
 
-    #layerSpacer {
+    .layerSpacer {
       margin-top: calc($buttonOffset/2 - $buttonBorder/2);
       margin-bottom: calc($buttonOffset/2 - $buttonBorder/2);
       border-top: $buttonBorder solid #dedede;

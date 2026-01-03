@@ -90,7 +90,7 @@ defmodule VelorouteWeb.Live.Map do
               phx-click="switch-style"><%= style.name %></button>
           <% end %>
 
-          <div id="layerSpacer"></div>
+          <div class="layerSpacer"></div>
 
           <%= for layer <- @layers do %>
             <button
