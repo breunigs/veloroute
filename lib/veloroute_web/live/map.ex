@@ -74,12 +74,6 @@ defmodule VelorouteWeb.Live.Map do
       <div id="layerSwitcher">
         <button title="Routen und Kartenhintergründe auswählen" aria-haspopup="true" aria-controls="layerSwitcherMenu"></button>
         <div class="maplibregl-ctrl-group" id="layerSwitcherMenu" role="menu" style="visibility: collapse">
-          <Components.TagHelpers.map_image_toggle_layer_switcher
-            ref={@current_page}
-            lang={@lang}
-            checked={@show_map_image}
-          />
-
           <%= for style <- @styles do %>
             <button
               value={style.id}
@@ -91,6 +85,12 @@ defmodule VelorouteWeb.Live.Map do
           <% end %>
 
           <div class="layerSpacer"></div>
+
+          <Components.TagHelpers.map_image_toggle_layer_switcher
+            ref={@current_page}
+            lang={@lang}
+            checked={@show_map_image}
+          />
 
           <%= for layer <- @layers do %>
             <button
