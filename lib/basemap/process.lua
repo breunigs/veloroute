@@ -443,7 +443,7 @@ function way_function()
 
   -- Set 'water'
   if natural=="water" or natural=="bay" or leisure=="swimming_pool" or landuse=="reservoir" or landuse=="basin" or WATER_CLASSES[waterway] then
-    if SetToYes("covered") or not isClosed then return end
+    if SetToYes("covered") or SetToYes("indoor") or not isClosed then return end
     local class="lake"; if natural=="bay" then class="ocean" elseif waterway~="" then class="river" end
     if class=="ocean" and isClosed and (AreaIntersecting("ocean")/Area() > 0.98) then return end
     Layer("water",true)
