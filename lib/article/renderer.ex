@@ -7,6 +7,8 @@ defmodule Article.Renderer do
   attr :ref, :atom, required: true
   attr :lang, :string, required: true
   attr :search_query, :string
+  attr :video_hash, :string
+  attr :video_start, :integer
   attr :search_results, :any
   attr :appointments, :any
   attr :enable_drawing_tools, :boolean, default: false

@@ -472,6 +472,18 @@ defmodule VelorouteWeb.LiveNavigationTest do
     end)
   end
 
+  test "has correct video image export link", %{conn: conn} do
+    video_hash = "f16418e88086db100b091156835d382d"
+    {:ok, _view, html} = live(conn, "/datenexport?pos_sec=1.234&video=#{video_hash}")
+
+    assert_attribute(
+      html,
+      "article a[download$=webp]",
+      "href",
+      "/images/thumbnails/#{video_hash}/1234"
+    )
+  end
+
   defp assert_attribute(html, selector, attribute, expected) do
     [actual] = Floki.parse_document!(html) |> Floki.attribute(selector, attribute)
     actual = if is_list(expected), do: actual |> String.split(",") |> Enum.sort(), else: actual
