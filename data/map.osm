@@ -27174,6 +27174,21 @@
   <node id='-281930945' action='modify' lat='53.56307681606' lon='10.01542746753' />
   <node id='-281930956' action='modify' lat='53.56373793262' lon='10.01641988486' />
   <node id='-281931015' action='modify' lat='53.56707999749' lon='10.01635014743' />
+  <node id='-283604478' action='modify' lat='53.635586631' lon='10.18708347201' />
+  <node id='-283604479' action='modify' lat='53.63530673159' lon='10.18685816646' />
+  <node id='-283604480' action='modify' lat='53.63521767229' lon='10.18754481196' />
+  <node id='-283604481' action='modify' lat='53.63504591456' lon='10.18800615191' />
+  <node id='-283604482' action='modify' lat='53.63491232472' lon='10.18829583049' />
+  <node id='-283604483' action='modify' lat='53.63487971681' lon='10.18840849265' />
+  <node id='-283604484' action='modify' lat='53.63502921028' lon='10.18860831723' />
+  <node id='-283604485' action='modify' lat='53.63499342732' lon='10.18864720926' />
+  <node id='-283604486' action='modify' lat='53.63505068005' lon='10.18876522645' />
+  <node id='-283604487' action='modify' lat='53.63514689626' lon='10.18863916263' />
+  <node id='-283604488' action='modify' lat='53.63520812465' lon='10.18849298224' />
+  <node id='-283604489' action='modify' lat='53.63647720291' lon='10.19050866097' />
+  <node id='-283604490' action='modify' lat='53.63650900887' lon='10.19037723273' />
+  <node id='-283604491' action='modify' lat='53.63526060685' lon='10.18842190236' />
+  <node id='-283604497' action='modify' lat='53.63543872507' lon='10.18780499429' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -76786,6 +76801,26 @@
     <nd ref='-281930875' />
     <nd ref='-281930866' />
     <nd ref='-281930867' />
+  </way>
+  <way id='-21082457' action='modify'>
+    <nd ref='-283604478' />
+    <nd ref='-283604479' />
+    <nd ref='-283604480' />
+    <nd ref='-283604481' />
+    <nd ref='-283604482' />
+    <nd ref='-283604483' />
+    <nd ref='-283604484' />
+    <nd ref='-283604485' />
+    <nd ref='-283604486' />
+    <nd ref='-283604487' />
+    <nd ref='-283604488' />
+    <nd ref='-283604489' />
+    <nd ref='-283604490' />
+    <nd ref='-283604491' />
+    <nd ref='-283604497' />
+    <nd ref='-283604478' />
+    <tag k='name' v='2026-01-03-bbh-meiendorfer-strasse' />
+    <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
