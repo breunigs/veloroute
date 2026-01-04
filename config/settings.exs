@@ -167,5 +167,14 @@ config :veloroute, Settings, %{
   # various video related paths
   video_dir_rel: "videos",
   video_source_dir_rel: Path.join("videos", "source"),
-  video_target_dir_rel: Path.join("videos", "rendered")
+  video_target_dir_rel: Path.join("videos", "rendered"),
+
+  # ffmpeg filter to dewarp camera input. It's using lens correction for visual
+  # approximation only, not accurracy. Correct dewarping is possible using v360,
+  # but the large resulting black borders or zoom are undesirable. Parameters
+  # are eyeballed.
+  dewarp_filters: [
+    "pad=ceil(iw*1.23/16)*16:ceil(ih*1.23/16)*16:(ow-iw)/2:(oh-ih)/2",
+    "lenscorrection=k1=-0.35:k2=0.15:i=bilinear"
+  ]
 }

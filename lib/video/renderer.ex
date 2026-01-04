@@ -9,17 +9,18 @@ defmodule Video.Renderer do
   @doc """
   Returns the commands to preview the given video(s).
   """
-  def preview_cmd(rendered, blur, burn_filenames, start_from \\ nil)
+  def preview_cmd(rendered, blur, dewarp, burn_filenames, start_from \\ nil)
       when is_nil(start_from) or valid_timestamp(start_from) do
     ensure_min_version(rendered)
     sources = Video.Track.normalize_video_tuples(rendered.sources())
 
     prefix = "scale=640:-1,"
     blurred = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
+    dewarped = if dewarp, do: dewarp(sources), else: []
     burned = if burn_filenames, do: burn_in_filename(sources), else: []
     time_lapsed = time_lapse_corrects(sources)
     cross_fades = xfades(sources, rendered)
-    filter = Enum.join(blurred ++ burned ++ time_lapsed ++ cross_fades, ";")
+    filter = Enum.join(blurred ++ dewarped ++ burned ++ time_lapsed ++ cross_fades, ";")
 
     filter =
       if start_from do
@@ -158,9 +159,10 @@ defmodule Video.Renderer do
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
     blurs = blurs(sources, "scale=1920:1080,")
+    dewarped = dewarp(sources)
     tlc = time_lapse_corrects(sources)
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
-    filter = Enum.join(blurs ++ tlc ++ xfades, ";")
+    filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
 
     Util.low_priority_cmd_prefix() ++
       ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
@@ -244,9 +246,10 @@ defmodule Video.Renderer do
   def render_cmd(rendered, tmp_dir) do
     sources = Video.Track.normalize_video_tuples(rendered.sources())
     blurs = blurs(sources, nil)
+    dewarped = dewarp(sources)
     tlc = time_lapse_corrects(sources)
     xfades = xfades(sources, rendered)
-    filter = Enum.join(blurs ++ tlc ++ xfades, ";")
+    filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
     filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
@@ -417,6 +420,21 @@ defmodule Video.Renderer do
 
       "[blur#{idx}]drawtext=fontcolor=white:x=5:y=5:shadowx=1:shadowy=1:text='#{text}'[blur#{idx}]"
     end)
+  end
+
+  defp dewarp(sources) do
+    filters = Settings.r(:dewarp_filters)
+
+    if filters && filters != [] do
+      filters = Enum.join(filters, ",")
+      max_idx = length(sources) - 1
+
+      for idx <- 0..max_idx do
+        "[blur#{idx}]#{filters}[blur#{idx}]"
+      end
+    else
+      []
+    end
   end
 
   defp vf(opts) when is_list(opts) do
