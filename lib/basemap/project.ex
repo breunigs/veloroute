@@ -12,11 +12,24 @@ defmodule Basemap.Project do
   def staleness() do
     geojson_source = Util.module_source_path(Data.GeoJSON)
     colors_source = Util.module_source_path(RouteColors)
-    articles = Path.wildcard("data/articles/**/*.ex")
+
+    article_hash_path = path(:cache, "article_tags.md5")
+
+    previous_article_hash = with {:ok, data} <- File.read(article_hash_path), do: data
+
+    current_article_hash =
+      Article.List.all()
+      |> Enum.sort()
+      |> Enum.map(&Map.Enrich.article_tags/1)
+      |> JSON.encode!()
+      |> Util.md5()
+
+    if previous_article_hash != current_article_hash,
+      do: File.write(article_hash_path, current_article_hash)
 
     Util.IO.staleness(
       target(:cache),
-      [Cache.Map.source(), __ENV__.file, geojson_source, colors_source] ++ articles
+      [Cache.Map.source(), __ENV__.file, geojson_source, colors_source, article_hash_path]
     )
   end
 

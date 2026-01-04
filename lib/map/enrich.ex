@@ -2,12 +2,25 @@ defmodule Map.Enrich do
   require Logger
   import Guards
 
+  @article_properties [:name, :title, :type, :icon]
+
+  @doc """
+  Article properties that will be made availabe on the enriched map for a given
+  article.
+  """
+  @spec article_tags(Article.t()) :: %{atom() => any()}
+  def article_tags(art) do
+    Enum.into(@article_properties, %{}, fn property ->
+      {:"article_#{property}", apply(art, property, [])}
+    end)
+  end
+
   @spec with_articles(Map.Parsed.t(), Article.List.t()) :: Map.Parsed.t()
   @doc """
-  Takes a parsed map, finds all ways that reference an article and adds all info
-  from the article into the way's tags. All of the article's properties are
-  prefixed with "article_", but otherwise have the same names as the article
-  struct.
+  Takes a parsed map, finds all ways that reference an article and adds
+  `article_tags/1` from the article into the way's tags. All of the
+  article's properties are prefixed with "article_", but otherwise have the same
+  names as the article.
 
   If an unreleased article is referenced, the way's reference to the article are
   cleaned up.
@@ -48,13 +61,7 @@ defmodule Map.Enrich do
 
   defp update_way_with_article(w, art) do
     if Article.released?(art) do
-      art_tags = %{
-        article_title: art.title(),
-        article_type: art.type(),
-        article_icon: art.icon()
-      }
-
-      Map.Element.add_new_tags(w, art_tags)
+      Map.Element.add_new_tags(w, article_tags(art))
     else
       Map.Element.remove_tags(w, [:type, :name])
     end

@@ -69,7 +69,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
         href = link |> Floki.attribute("href") |> absolute()
         text = link |> Floki.text() |> String.trim()
 
-        %{text: text, links: "(#{extra})", checksum: md5(text), source: href}
+        %{text: text, links: "(#{extra})", checksum: Util.md5(text), source: href}
       end)
       |> Enum.uniq_by(& &1.source)
     else
@@ -108,7 +108,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
         |> Enum.reject(fn str -> str == "" end)
         |> Enum.join("\n\n")
 
-      check = md5(text <> links)
+      check = Util.md5(text <> links)
       %{text: text, links: links, checksum: check, source: link}
     else
       error -> {:error, "failed to read/parse #{link}: #{inspect(error)}"}
@@ -184,9 +184,5 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
     json = JSON.encode!(status)
     File.write!(@path, json)
     status
-  end
-
-  defp md5(binary) do
-    :crypto.hash(:md5, binary) |> Base.encode16(case: :lower)
   end
 end
