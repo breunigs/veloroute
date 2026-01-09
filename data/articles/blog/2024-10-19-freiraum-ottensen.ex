@@ -84,6 +84,8 @@ defmodule Data.Article.Blog.FreiraumOttensen do
 
   def links(_assigns) do
     [
+      {"NDR Artikel zum baldigen Umbau", ~d[2026-01],
+       "https://www.ndr.de/nachrichten/hamburg/verkehrsberuhigung-in-ottensen-umbau-soll-im-fruehjahr-starten,ottensen-112.html"},
       {"fertiger Entwurf Verkehrsplanung – Bahrenfelder Straße", ~d[2024-10],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1015748"},
       {"fertiger Entwurf Verkehrsplanung – Ottenser Hauptstraße", ~d[2024-10],
