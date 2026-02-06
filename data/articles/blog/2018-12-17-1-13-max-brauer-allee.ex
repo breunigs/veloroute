@@ -41,7 +41,8 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
        "https://suche.transparenz.hamburg.de/dataset/busbeschleunigung-m20-25-massnahme-max-brauer-allee-zwischen-paul-nevermann-platz-und-eggersted"},
       {"Erläuterungsbericht mit Lageplänen 2018", "Übersicht Seite 22, Pläne ab Seite 88",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008162"},
-      {"Infoseite der Stadt", "https://web.archive.org/web/20250718012557/https://lsbg.hamburg.de/max-brauer-allee"}
+      {"Infoseite der Stadt",
+       "https://web.archive.org/web/20250718012557/https://lsbg.hamburg.de/max-brauer-allee"}
     ]
   end
 
