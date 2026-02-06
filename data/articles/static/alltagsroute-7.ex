@@ -130,7 +130,7 @@ defmodule Data.Article.Static.Alltagsroute7 do
   def links(assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426718/veloroute-7/"},
+       "https://web.archive.org/web/20240423235145/https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426718/veloroute-7/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643545"},
       ~H{Komoot Routenplaner: <.a href="https://www.komoot.com/de-de/tour/225132901" rel="nofllow">nach Rahlstedt</.a> oder <.a href="https://www.komoot.com/de-de/tour/229494159" rel="nofllow">nach Jenfeld</.a> [€]},
       {

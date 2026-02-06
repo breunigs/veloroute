@@ -7,10 +7,10 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
     do:
       "Radfahrstreifen werden verbreitert und teilweise als Protected-Bike-Lane hergerichtet. Platz an der Möllner Landstraße wird umgestaltet, bleibt durch den Erhalt der KFZ-Parkplätze aber hässlich."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def start(), do: ~d[2024-09-14]
-  def stop(), do: ~d[2026-01-15]
+  def stop(), do: ~d[2025-12-31]
   def construction_site_id_hh(), do: [1_013_172]
 
   def tags(), do: ["radroute-8", "8"]
@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.BillstedterHauptstrasse1 do
 
   def links(_assigns) do
     [
+      {"Bebilderter Artikel zur Fertigstellung", ~d[2025-12],
+       "https://hamburgize.blogspot.com/2025/12/hamburg-umgestaltung-der-billstedter.html"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-der-billstedter-hauptstrasse-vr-8-1003918"},
       {"Ausschreibung Umbau", "Mai 2024",

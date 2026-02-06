@@ -28,7 +28,7 @@ defmodule Data.Article.Blog.FrohmestrasseNord do
      [
        {"Bezirksamt Eimsbüttel – Fachamt Management des öffentlichen Raumes",
         "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/ihr-bezirksamt/fachamt-management-des-oeffentlichen-raumes-58482"},
-       {"BPR Ingenieure GmbH & Co. KG", "https://www.bpr-ingenieurbuero.de/kontakt/"}
+       {"BPR Ingenieure GmbH & Co. KG", "https://bpr-ingenieurbuero.de/kontakt/"}
      ]}
   end
 

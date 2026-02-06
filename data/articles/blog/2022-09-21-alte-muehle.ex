@@ -13,6 +13,8 @@ defmodule Data.Article.Blog.AlteMuehle do
 
   def links(_assigns) do
     [
+      {"Artikel des ADFC", ~d[2022-09],
+       "https://hamburg.adfc.de/artikel/veloroute-5-alte-muehle"},
       {"Bericht Infoveranstaltung", "Mai 2023",
        "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/17172706/alte-muehle/"},
       {"Möglicher Bauzeitraum", "Stand Oktober 2022",

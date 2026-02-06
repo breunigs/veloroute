@@ -9,8 +9,9 @@ defmodule Data.Article.Blog.OsterfeldstrasseLokstedterWeg do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2026-02]
-  def stop(), do: ~d[2026-10]
+  def start(), do: ~d[2026-02-16]
+  def stop(), do: ~d[2026-10-11]
+  def construction_site_id_hh(), do: [2_284_029]
 
   def tags(), do: []
 
@@ -35,6 +36,8 @@ defmodule Data.Article.Blog.OsterfeldstrasseLokstedterWeg do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-01],
+       "https://lsbg.hamburg.de/resource/blob/1139934/4181c183fb6bd5cd4ca17cad426caa6a/osterfeldstrasse-lokstedter-weg-anliegerinformation-januar-2026-data.pdf"},
       {"Bauvergabe", ~d[2025-10],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/91c569f0-cb9b-461a-9155-2cbc26205fe3/details"}
     ]

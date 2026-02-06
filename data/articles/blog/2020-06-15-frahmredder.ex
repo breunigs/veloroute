@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.Frahmredder do
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/frahmredder-438212"},
       {"Baustelleninfo", "Juli 2023",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/17213952/frahmredder/"},
+       "https://web.archive.org/web/20240114113252/https://www.hamburg.de/wandsbek/strassenbaustellen/17213952/frahmredder/"},
       {"Pressemitteilung des Bezirks Wandsbek",
        "https://www.hamburg.de/wandsbek/pressemitteilungen/15851134/2022-02-04-neu-und-umbau-frahmredder-planung/"},
       {"Lagepläne und Erläuterungsbericht",

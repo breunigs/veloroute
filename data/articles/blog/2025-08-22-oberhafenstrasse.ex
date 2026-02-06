@@ -9,8 +9,9 @@ defmodule Data.Article.Blog.Oberhafenstrasse do
   def type(), do: :planned
   def tags(), do: ["radroute-2"]
 
-  def start(), do: ~d[2025Q4]
-  def stop(), do: ~d[2025Q4]
+  def start(), do: ~d[2026-03-02]
+  def stop(), do: ~d[2026-08-28]
+  def construction_site_id_hh(), do: [1_463_841]
 
   def links(_assigns) do
     [

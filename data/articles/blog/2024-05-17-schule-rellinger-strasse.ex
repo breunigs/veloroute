@@ -7,9 +7,10 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
     do:
       "Abschnitt vor der Schule (Spengelweg bis Grädenerstraße) wird autofrei. Dadurch wird Queren der Straße möglich und die Gefahr durch Eltern-Taxis und Durchgangsverkehr geringer."
 
-  def type(), do: :planned
-  def start(), do: ~d[2025-01-05]
-  def stop(), do: ~d[2025Q2]
+  def type(), do: :construction
+  def start(), do: ~d[2026-01-12]
+  def stop(), do: ~d[2026-04-03]
+  def construction_site_id_hh(), do: [2_065_729]
 
   def tags(), do: ["br-eimsbuettel-sued"]
 

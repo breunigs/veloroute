@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Reventlowstrasse do
       {"Erläuterungsbericht und Lagepläne des 1. Entwurfs", "November 2019",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1009394"},
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/themen/verkehr/baustellen/reventlowstrasse-767752"}
+       "https://web.archive.org/web/20260124132811/https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/themen/verkehr/baustellen/reventlowstrasse-767752"}
     ]
   end
 

@@ -21,7 +21,7 @@ defmodule Data.Article.Blog.Holstenplatz do
       {"Pressemitteilung zum Umbau", "Februar 2023",
        "https://www.hamburg.de/bvm/medien/16960882/2023-03-03-bvm-holstenplatz/"},
       {"Baustelleninfo", "Februar 2023",
-       "https://lsbg.hamburg.de/resource/blob/784464/ab9a0637dc157568f9e79fbca79988ed/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
+       "https://web.archive.org/web/20240903101249/https://lsbg.hamburg.de/resource/blob/784464/ab9a0637dc157568f9e79fbca79988ed/holstenplatz-holstenstrasse-alsenstrasse-anliegerinformation-februar-2023-data.pdf"},
       {"Ausschreibung Umbau",
        "https://web.archive.org/web/20221226144038/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/39f6c0a7-8734-4174-ad41-3baef66b9823"},
       {"Baustellenkoordination", "September 2022",

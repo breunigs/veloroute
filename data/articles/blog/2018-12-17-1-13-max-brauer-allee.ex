@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2024-06],
-       "https://lsbg.hamburg.de/resource/blob/926470/ae2ed7290d2daa9536e21b7c7ab48fea/max-brauer-allee-goetheallee-bis-paul-nevermann-platz-anliegerinformation-juni-2024-data.pdf"},
+       "https://web.archive.org/web/20240831100545/https://lsbg.hamburg.de/resource/blob/926470/ae2ed7290d2daa9536e21b7c7ab48fea/max-brauer-allee-goetheallee-bis-paul-nevermann-platz-anliegerinformation-juni-2024-data.pdf"},
       {"Auftragsvergabe 3", "Januar 2024",
        "https://web.archive.org/web/20240105181447/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0f1380ca-62f9-4a36-bfcc-866fe2bdaa26"},
       {"Auftragsvergabe 2", "Dezember 2023",
@@ -32,7 +32,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
       {"Pressemitteilung", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16859022/2023-01-27-bvm-bussonderstreifen/"},
       {"Projektseite des LSBG",
-       "https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
+       "https://web.archive.org/web/20250810041045/https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
       {"Auftragsvergabe 1", "Dezember 2022",
        "https://web.archive.org/web/20230109172458/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/0b6ee459-7517-40a1-a3b4-6b52451b2099"},
       {"Baustellenkoordination", "September 2022",
@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.MaxBrauerAllee do
        "https://suche.transparenz.hamburg.de/dataset/busbeschleunigung-m20-25-massnahme-max-brauer-allee-zwischen-paul-nevermann-platz-und-eggersted"},
       {"Erläuterungsbericht mit Lageplänen 2018", "Übersicht Seite 22, Pläne ab Seite 88",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1008162"},
-      {"Infoseite der Stadt", "https://lsbg.hamburg.de/max-brauer-allee"}
+      {"Infoseite der Stadt", "https://web.archive.org/web/20250718012557/https://lsbg.hamburg.de/max-brauer-allee"}
     ]
   end
 

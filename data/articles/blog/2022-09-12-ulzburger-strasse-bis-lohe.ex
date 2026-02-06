@@ -80,7 +80,7 @@ defmodule Data.Article.Blog.UlzburgerStrasseBisLohe do
   def map_image do
     {name(),
      [
-       {"BPR beratende Ingenieure mbB", "https://www.bpr-ingenieurbuero.de/kontakt/"},
+       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/kontakt/"},
        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
      ]}
   end

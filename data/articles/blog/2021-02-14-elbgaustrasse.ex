@@ -22,14 +22,16 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     {name(),
      [
        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-       {"BPR beratende Ingenieure mbB", "https://www.bpr-ingenieurbuero.de/kontakt/"}
+       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/kontakt/"}
      ]}
   end
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2025-05],
-       "https://lsbg.hamburg.de/resource/blob/1056442/bc9bd35a47fd4532e08a22c073188407/elbgaustrasse-anliegerinformation-mai-2025-data.pdf"},
+      {"Baustelleninfo", ~d[2025-12],
+       "https://lsbg.hamburg.de/resource/blob/1056442/5738abccf5a15b27625678c57b5cb43a/elbgaustrasse-anliegerinformation-dezember-2025-data.pdf"},
+      # {"Baustelleninfo", ~d[2025-05],
+      #  "https://lsbg.hamburg.de/resource/blob/1056442/bc9bd35a47fd4532e08a22c073188407/elbgaustrasse-anliegerinformation-mai-2025-data.pdf"},
       {"Detailänderungen zum Baumerhalt – Lageplan", "Juni 2024",
        "https://lsbg.hamburg.de/resource/blob/906186/4468a3a4efb7d00eea19b180dd5b57a5/veloroute-14-elbgaustrasse-abgestimmte-planung-nachtrag-plaene-data.pdf"},
       {"Detailänderungen zum Baumerhalt – Bericht", "Juni 2024",

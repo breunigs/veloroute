@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.Kupferdamm1 do
 
   def updated_at(), do: ~D[2024-03-07]
 
-  # def start(), do: ~d[2025Q2]
-  # def stop(), do: ~d[2025]
+  def start(), do: ~d[2026-04]
+  def stop(), do: ~d[2027-01]
 
   def type(), do: :planned
 

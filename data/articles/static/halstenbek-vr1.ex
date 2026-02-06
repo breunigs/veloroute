@@ -55,7 +55,7 @@ defmodule Data.Article.Static.HalstenbekVR1 do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643613"},
       {"Velorouten Vorschläge ADFC", ~d[2025-02],
-       "https://www.adfc-halstenbek.de/2025/02/11/velorouten-fuer-halstenbek/"},
+       "https://www.adfc-halstenbek.de/2025/10/13/velorouten-fuer-halstenbek/"},
       {"Verkehrsentwicklungsplan Halstenbek", ~d[2021-10],
        "https://www.halstenbek.de/Redaktion/user_upload/D_211027_Projektbericht_VEP.pdf"}
     ]

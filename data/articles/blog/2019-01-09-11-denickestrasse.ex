@@ -29,9 +29,9 @@ defmodule Data.Article.Blog.Denickestrasse do
       {"Vergabe Umbau Kreuzung mit Weusthoffstraße", "Januar 2024",
        "https://web.archive.org/web/20240125171900/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/8de47908-9a0a-446c-9f06-4d5ebe977a3d"},
       {"Pressemitteilung zum Baufortschritt", "April 2023",
-       "https://www.hamburg.de/harburg/pressemeldungen/17053724/ausbau-veloroute-11-vollsperrung/"},
+       "https://web.archive.org/web/20231001150858/https://www.hamburg.de/harburg/pressemeldungen/17053724/ausbau-veloroute-11-vollsperrung/"},
       {"Pressemitteilung zum Baustart", "August 2022",
-       "https://www.hamburg.de/pressemeldungen-bezirke/16451342/ausbau-veloroute-11-denickestrasse-west/"},
+       "https://web.archive.org/web/20240221184208/https://www.hamburg.de/pressemeldungen-bezirke/16451342/ausbau-veloroute-11-denickestrasse-west/"},
       {"Bauvergabe ab Schüslerweg bis Triftstraße", "2022",
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/f4e9ef1d-0187-4a07-bef1-71f57b027716/details"},
       {"Erläuterungsbericht

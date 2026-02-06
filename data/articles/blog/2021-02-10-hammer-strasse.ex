@@ -13,9 +13,9 @@ defmodule Data.Article.Blog.HammerStrasse do
       {"Anfrage zu möglichen Umsetzungstermin", ~d[2025-05],
        "https://fragdenstaat.de/anfrage/hammer-strasse/#nachricht-1003170"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/784188/9b4af7231107376353cb073f9d6302ac/hammer-strasse-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht-data.pdf"},
+       "https://web.archive.org/web/20240901050820/https://lsbg.hamburg.de/resource/blob/784188/9b4af7231107376353cb073f9d6302ac/hammer-strasse-grenzknick-bis-juethornstrasse-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/784190/8e3d2842fab59aa614a2ddeccd66f140/hammer-strasse-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan-data.pdf"}
+       "https://web.archive.org/web/20241125015631/https://lsbg.hamburg.de/resource/blob/784190/8e3d2842fab59aa614a2ddeccd66f140/hammer-strasse-grenzknick-bis-juethornstrasse-abgestimmte-planung-plan-data.pdf"}
     ]
   end
 

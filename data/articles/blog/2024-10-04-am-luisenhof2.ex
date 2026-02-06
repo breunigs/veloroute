@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.AmLuisenhof2 do
     do:
       "Instandsetzung bringt leicht breiteren Radweg Richtung U-Farmsen. In Gegenrichtung werden Fuß- und Radverkehr mit irritierender Führung gegeneinander ausgespielt."
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["br-wandsbek-w5"]
 

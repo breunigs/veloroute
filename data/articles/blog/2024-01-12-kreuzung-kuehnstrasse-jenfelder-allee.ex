@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
   def map_image do
     {name(),
      [
-       {"SHP Ingenieure", "https://shp-ingenieure.de/"},
+       {"SHP Ingenieure", "https://shp-verkehrsplanung.de/"},
        {"Bezirksamt Wandsbek, Fachamt Management des öffentlichen Raumes",
         "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/ihr-bezirksamt/aufgaben-und-struktur/dezernat-wirtschaft-bauen-umwelt-75138"}
      ]}

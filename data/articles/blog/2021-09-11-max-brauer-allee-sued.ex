@@ -28,14 +28,14 @@ defmodule Data.Article.Blog.MaxBrauerAlleeSued do
       # {"Ausschreibung Umbau", "Oktober 2023",
       #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/24cd0ee5-0cbd-4439-9a06-f0f43b83a731"},
       {"Projektseite des LSBG",
-       "https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
+       "https://web.archive.org/web/20250810041045/https://lsbg.hamburg.de/baumassnahmen-und-planungen/max-brauer-allee"},
       {"Lageplan", "Juli 2022",
        "https://lsbg.hamburg.de/resource/blob/783616/cf8c4044e5c906fab75a410082804be6/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-plaene-data.pdf"},
       {"Erläuterungsbericht", "Juli 2022",
        "https://lsbg.hamburg.de/resource/blob/783614/766f634230037e763fddc4e67c93eef4/veloroute-12-max-brauer-allee-palmaille-bis-paul-nevermann-platz-abgestimmte-planung-bericht-data.pdf"},
       {"erster Entwurf im Transparenz Portal", "veraltet, September 2021",
        "https://suche.transparenz.hamburg.de/dataset/veloroute-12-max-brauer-allee-zwischen-palmaille-und-paul-nevermann-platz"},
-      {"Infoseite der Stadt", "https://lsbg.hamburg.de/max-brauer-allee"}
+      {"Infoseite der Stadt", "https://web.archive.org/web/20250718012557/https://lsbg.hamburg.de/max-brauer-allee"}
     ]
   end
 

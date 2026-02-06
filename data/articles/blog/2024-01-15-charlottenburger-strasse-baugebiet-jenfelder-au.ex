@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.CharlottenburgerStrasseBaugebietJenfelderAu do
   def links(_assigns) do
     [
       {"Baustelleninfo", "August 2023",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/17081818/jenfelder-au/"},
+       "https://web.archive.org/web/20240114113100/https://www.hamburg.de/wandsbek/strassenbaustellen/17081818/jenfelder-au/"},
       {"Bauplanung Neubaugebiet; S. 16ff, S. 262", "Juni 2023",
        "https://suche.transparenz.hamburg.de/dataset/jenfelder-au-tu-4-innere-erschliessung-jenfelder-au-tu-4-innere-erschliessung-strassenbau"}
     ]

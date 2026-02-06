@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.AmStadtrandMitte do
   def links(_assigns) do
     [
       {"Baustelleninfo",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/strassenbaustellen-im-bezirk-wandsbek/am-stadtrand-76724"},
+       "https://web.archive.org/web/20240828071926/https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/strassenbaustellen-im-bezirk-wandsbek/am-stadtrand-76724"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/am-stadtrand-438200"},
       {"Bauvergabe", "Juni 2024",

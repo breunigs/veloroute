@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.Gerichtsstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "September 2023",
-       "https://lsbg.hamburg.de/resource/blob/783250/1da590f5f518bdcf6bc071710a6bde81/gerichtstrasse-anliegerinformation-september-2023-data.pdf"},
+       "https://web.archive.org/web/20240723143602/https://lsbg.hamburg.de/resource/blob/783250/1da590f5f518bdcf6bc071710a6bde81/gerichtstrasse-anliegerinformation-september-2023-data.pdf"},
       {"Projektseite des LBSG", "https://lsbg.hamburg.de/gerichtstrasse"},
       {"Ausschreibung Umbau", "Januar 2023",
        "https://web.archive.org/web/20230111171218/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/9918a22d-e3c3-4540-aab6-089a981e8df3"},

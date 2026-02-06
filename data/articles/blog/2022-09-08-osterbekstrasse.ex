@@ -10,11 +10,13 @@ defmodule Data.Article.Blog.Osterbekstrasse do
   def type(), do: :planned
   def tags(), do: ["FR2", "br-nord-n5"]
 
-  def start(), do: ~d[2026-03]
-  def stop(), do: ~d[2027-07]
+  # def start(), do: ~d[2026-03]
+  # def stop(), do: ~d[2027-07]
 
   def links(_assigns) do
     [
+      {"Verschiebung wegen Parkplatz-Moratorium", ~d[2026-01],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016168"},
       {"Unterlagen 1. Entwurf", "September 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012098"}
     ]

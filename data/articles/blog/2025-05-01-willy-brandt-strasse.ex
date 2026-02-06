@@ -55,7 +55,7 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
   def map_image do
     {name(),
      [
-       {"stracon", "https://stra-con.de/impressum.html"},
+       {"stracon", "https://stra-con.de/impressum/"},
        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
      ]}
   end

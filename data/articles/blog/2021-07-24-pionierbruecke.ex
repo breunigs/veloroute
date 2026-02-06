@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Pionierbruecke do
       {"Pressemitteilung zur Fertigstellung", "April 2023",
        "https://www.hamburg.de/bergedorf/pressemitteilungen/17086040/einweihung-neue-pionierbruecke-bille-wanderweg/"},
       {"Zeitungsartikel zum Baufortschritt", "März 2022",
-       "https://www.abendblatt.de/region/stormarn/reinbek/article234723011/Neue-Pionierbruecke-ist-da-und-bleibt-weiter-gesperrt.html"},
+       "https://www.abendblatt.de/schleswig-holstein/stormarn/article401857780/neue-pionierbruecke-ist-da-und-bleibt-weiter-gesperrt.html"},
       {"Baustelleninfo", "Juni 2021",
        "https://web.archive.org/web/20210725075646/https://lsbg.hamburg.de/contentblob/15272918/9b50693c9218d8495bca494d8dbe9f5b/data/pionierbruecke-06-2021-bis-12-2021.pdf"}
     ]

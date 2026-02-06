@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.KaiserWilhelmStrasse do
       {"Baustelleninfo", ~d[2024-06],
        "https://lsbg.hamburg.de/resource/blob/783452/c417c82f48a755c3bec1f54d17eb2550/kaiser-wilhelm-strasse-anliegerinformation-juni-2024-data.pdf"},
       {"Baustelleninfo", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/783452/91e1211932f9c4cac64552e609113b50/kaiser-wilhelm-strasse-anliegerinformation-februar-2024-data.pdf"},
+       "https://web.archive.org/web/20240714205246/https://lsbg.hamburg.de/resource/blob/783452/91e1211932f9c4cac64552e609113b50/kaiser-wilhelm-strasse-anliegerinformation-februar-2024-data.pdf"},
       {"Auftragsvergabe", "Februar 2023",
        "https://web.archive.org/web/20230301184525/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/f87dc9c0-9bfb-4bee-813c-23acc461032e"},
       {"Anlieger/Baustelleninfo", "März 2022",

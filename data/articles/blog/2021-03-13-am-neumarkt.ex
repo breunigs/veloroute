@@ -45,7 +45,7 @@ defmodule Data.Article.Blog.AmNeumarkt do
   def links(_assigns) do
     [
       {"Baustelleninfo", "November 2023",
-       "https://www.hamburg.de/wandsbek/strassenbaustellen/17081880/am-neumarkt/"},
+       "https://web.archive.org/web/20230924141136/https://www.hamburg.de/wandsbek/strassenbaustellen/17081880/am-neumarkt/"},
       {"Mögliche Detailänderungen", "August 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1019262"},
       # {"Auftragsvergabe", "Februar 2023",

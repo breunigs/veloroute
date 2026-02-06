@@ -18,7 +18,7 @@ defmodule Data.Article.Static.ErweiterungMundsburgElbbruecken do
       {"Pressemitteilung BVM",
        "https://www.hamburg.de/bvm/medien/15646102/2021-11-29-bvm-radverkehr/"},
       {"Bündnis für den Fuß- und Radverkehr",
-       "https://www.skyfish.com/p/fhh/2001119/52474395/download/media"}
+       "https://public.skyfish.com/p/fhh/2001119/52474395/download/media"}
     ]
   end
 

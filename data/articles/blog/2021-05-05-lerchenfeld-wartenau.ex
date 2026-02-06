@@ -21,6 +21,8 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-01],
+       "https://lsbg.hamburg.de/resource/blob/1138838/60e7d22b3f49ca5ab1319ba66af1ce9f/lerchenfeld-anliegerinformation-januar-2026-data.pdf"},
       {"Bauvergabe", ~d[2025-10],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/d2b91f43-3c05-4e0a-8392-cede362832fe"},
       {"Erläuterungsbericht", ~d[2025-08],

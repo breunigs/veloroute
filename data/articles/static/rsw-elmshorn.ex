@@ -98,7 +98,7 @@ defmodule Data.Article.Static.RSWElmshorn do
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Elmshorn",
-       "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege/radschnellweg-elmshorn-hamburg-14414/"},
+       "https://web.archive.org/web/20260124072526/https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege/radschnellweg-elmshorn-hamburg-14414/"},
       {"Autobahndeckel Altona",
        "https://web.archive.org/web/20240223194637/https://www.hamburg.de/fernstrassen/deckel-altona/"},
       {"U-Bahn Linie 5 – Infos der Stadt",

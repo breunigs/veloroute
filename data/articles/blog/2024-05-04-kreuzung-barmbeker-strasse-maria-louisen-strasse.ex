@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.KreuzungBarmbekerStrasseMariaLouisenStrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Juli 2024",
-       "https://lsbg.hamburg.de/resource/blob/945586/2832e88d2884dc5ed3e9e3bbd8f7fd3d/barmbeker-strasse-anliegerinformation-juli-2024-data.pdf"},
+       "https://web.archive.org/web/20240902215138/https://lsbg.hamburg.de/resource/blob/945586/2832e88d2884dc5ed3e9e3bbd8f7fd3d/barmbeker-strasse-anliegerinformation-juli-2024-data.pdf"},
       {"Ausschreibung Umbau", "Mai 2024",
        "https://web.archive.org/web/20240504115053/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/006b4e40-f4d0-4535-945c-01996f0222c6"}
     ]

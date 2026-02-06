@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Hegarstrasse do
     do:
       "Asphaltierter, 3,5m breiter Zweirichtungsradweg statt Kopfsteinpflaster im Mischverkehr. Gehwege werden breiter und gepflastert."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def tags(), do: []
 
   def start(), do: ~d[2025-03-31]

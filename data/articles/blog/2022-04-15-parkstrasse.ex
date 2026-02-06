@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Parkstrasse do
   def links(_assigns) do
     [
       {"Infoseite der Energiewerke",
-       "https://unternehmen.hamburger-energiewerke.de/energiewende/energiepark-hafen/baustelleninformationen"}
+       "https://www.hamburger-energiewerke.de/energiewende/baumassnahmen/suedleitung-mit-elbquerung"}
     ]
   end
 

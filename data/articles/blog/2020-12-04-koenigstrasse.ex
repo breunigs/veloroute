@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.Koenigstrasse do
   def links(_assigns) do
     [
       {"Baustelleninfo", "Februar 2024",
-       "https://lsbg.hamburg.de/resource/blob/784476/98f07a0b558b4377095c22c676963775/koenigstrasse-anliegerinformation-2-ba-februar-2024-data.pdf"},
+       "https://web.archive.org/web/20241006015608/https://lsbg.hamburg.de/resource/blob/784476/98f07a0b558b4377095c22c676963775/koenigstrasse-anliegerinformation-2-ba-februar-2024-data.pdf"},
       {"Auftragsvergabe Abschnitt 2, Mörkenstraße bis Reeperbahn", "August 2023",
        "https://web.archive.org/web/20230826085458/https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/db27136a-ff71-428c-bc2f-7919703f2c37"},
       {"Auftragsvergabe Abschnitt 1, Max-Brauer-Allee bis Mörkenstraße", "April 2023",

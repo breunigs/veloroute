@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.Schottmuellerstrasse do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2026Q2]
-  def stop(), do: ~d[2026Q3]
+  def start(), do: ~d[2026-10]
+  def stop(), do: ~d[2026-12]
 
   def tags(), do: []
 

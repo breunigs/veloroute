@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.Krausestrasse do
     do:
       "Umbau nicht vor 2026. In der Zwischenzeit werden stellenweise Radwege angelegt/aufgemalt, die aber nicht durchgängig sind."
 
-  def type(), do: :planned
+  def type(), do: :outdated
   def start(), do: ~d[2026]
 
   def tags(), do: ["radroute-6", "FR2", "6", "br-wandsbek-w1"]

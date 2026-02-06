@@ -24,7 +24,7 @@ defmodule Data.Article.Static.Radroute4 do
         parent_ref: __MODULE__,
         text: "vom Ochsenzoll nach Sinstorf",
         historic: %{
-          "37449a5d24d05da65975f308499e830f" => ~d[2025-09],
+          "591e6c671d9fe78b25a23fb632c7a9d8" => ~d[2025-09],
           "f8afb4160450776b7c4fed1b86b8f60c" => ~d[2025-02]
         },
         end_action: %{
@@ -54,8 +54,9 @@ defmodule Data.Article.Static.Radroute4 do
           {"2024-03-17-fr14/GX016929", "00:00:06.689", :end},
           {"2024-03-17-fr14/GX016930", :start, "00:00:07.774"},
           {"2025-02-19-sued/GX018144", "00:00:39.106", :end},
-          {"2025-02-19-sued/GX018145", :start, :end},
-          {"2025-02-19-sued/GX018146", :start, :end},
+          {"2025-02-19-sued/GX018145", :start, "00:00:39.681"},
+          {"2024-05-16-vr11/GX017585", "00:00:26.647", "00:01:07.968"},
+          {"2025-02-19-sued/GX018146", "00:00:26.827", :end},
           {"2025-02-19-sued/GX018147", :start, "00:00:36.603"},
           {"2025-02-19-sued/GX018147", "00:00:39.907", :end},
           {"2025-02-19-sued/GX018148", :start, "00:02:00.821"},

@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.StGeorgZentralpark do
       {"Hinweise der Polizei zur Unfallhäufung",
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1011801"},
       {"Umbau des Zentralparks",
-       "http://root.urbanista.de/deinegeest_blog/2021/01/21/bauarbeiten-am-zentralpark-beginnen/"}
+       "https://root.urbanista.de/deinegeest_blog/2021/01/21/bauarbeiten-am-zentralpark-beginnen/"}
     ]
   end
 

@@ -17,9 +17,9 @@ defmodule Data.Article.Blog.AmRadelandWest do
   def links(_assigns) do
     [
       {"Infoseite der Stadt zum Umbau",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-veloroute-10-bostelbek-872180"},
+       "https://web.archive.org/web/20250316035536/https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-veloroute-10-bostelbek-872180"},
       {"Pressemitteilung zum Umbau",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-veloroute-10-in-bostelbek-872178"},
+       "https://web.archive.org/web/20250216033349/https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-veloroute-10-in-bostelbek-872178"},
       # {"Ausschreibung Umbau", "März 2024",
       #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/external/deeplink/subproject/99679463-915e-4505-bd83-cf90b44c71ff"},
       {"fertiger Entwurf", "August 2021",

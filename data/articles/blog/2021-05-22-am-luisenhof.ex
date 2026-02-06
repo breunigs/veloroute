@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def stop(), do: ~d[2025-10-19]
   def construction_site_id_hh(), do: [677_843]
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["br-wandsbek-w5"]
 
@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.AmLuisenhof do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-03],
-       "https://lsbg.hamburg.de/resource/blob/932490/e536534ad9a1610dc1d2e1a39c7a63aa/u-farmsen-ueberlieger-maerz-2025-data.pdf"},
+       "https://web.archive.org/web/20250326083212/https://lsbg.hamburg.de/resource/blob/932490/e536534ad9a1610dc1d2e1a39c7a63aa/u-farmsen-ueberlieger-maerz-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2025-01],
       #  "https://lsbg.hamburg.de/resource/blob/932490/6e64c98ebb6abe46f6370e04f2717590/u-farmsen-ueberlieger-januar-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2024-11],

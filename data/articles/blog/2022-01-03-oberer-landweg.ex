@@ -29,7 +29,7 @@ defmodule Data.Article.Blog.ObererLandweg do
       {"Haushaltsplan 2022 Bezirk Bergedorf (Entwurf)",
        "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1006315"},
       {"Zeitungsartikel zur Umbauplanung", "Oktober 2021",
-       "https://www.abendblatt.de/hamburg/bergedorf/article233661837/oberer-landweg-einspurig-auto-verkehr-hamburg-nettelnburg-radfahrer-fussgaenger.html"}
+       "https://www.abendblatt.de/hamburg/bergedorf/article401908333/oberer-landweg-einspurig-auto-verkehr-hamburg-nettelnburg-radfahrer-fussgaenger.html"}
     ]
   end
 

@@ -90,7 +90,7 @@ defmodule Data.Article.Static.Alltagsroute13 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426810/veloroute-13/"},
+       "https://web.archive.org/web/20240522151514/https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426810/veloroute-13/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643552"},
       {"Komoot Routenplaner: von Altona nach Borgfelde",
        "https://www.komoot.com/de-de/tour/225149264"},

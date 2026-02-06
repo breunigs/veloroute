@@ -47,9 +47,9 @@ defmodule Data.Article.Blog.BillwerderBilldeich do
       {"Lagepläne", "Januar 2024",
        "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1007805"},
       {"Abwägung Varianten", "April 2021",
-       "https://www.oberbillwerder-hamburg.de/wp-content/uploads/Oberbillwerder-Anbindung-Nordost-2021.pdf"},
+       "https://web.archive.org/web/20240630082801/https://www.oberbillwerder-hamburg.de/wp-content/uploads/Oberbillwerder-Anbindung-Nordost-2021.pdf"},
       {"Verkehrsuntersuchung Oberbillwerder", "Mai 2017",
-       "https://www.oberbillwerder-hamburg.de/wp-content/uploads/4.3_Verkehrsuntersuchung.pdf"},
+       "https://web.archive.org/web/20240116220027/https://www.oberbillwerder-hamburg.de/wp-content/uploads/4.3_Verkehrsuntersuchung.pdf"},
       {"Infoseite zum Stadtteil Oberbillwerder", "https://www.oberbillwerder-hamburg.de"}
     ]
   end
@@ -75,7 +75,7 @@ defmodule Data.Article.Blog.BillwerderBilldeich do
     <h4>Meinung</h4>
     <p>Die Radwege und der Gehweg sind zu eng – oft nur Mindestmaße und im Kreisverkehr sogar noch weniger. Man begründet dies mit Baum- und Biotoperhalt. Das wirkt wenig glaubhaft, da man dem Autoverkehr eine Fahrbahn in perfekter Breite bereitstellt.</p>
 
-    <p>Das gleiche Planungsbüro stellte bei einer <.a href="https://www.oberbillwerder-hamburg.de/wp-content/uploads/4.3_Verkehrsuntersuchung.pdf">Verkehrsuntersuchung von 2017</.a> noch fest, dass die umliegenden Straßen einen hohen Anteil an KFZ-Verkehr gar nicht aufnehmen können. Entsprechend müssten ÖPNV, Fuß- und Radverkehr möglichst attraktiv sein. Ein schmaler Radweg ohne Überholmöglichkeiten, der nah an einer Schnellstrecke für Autos verläuft ist das aber sicher nicht.</p>
+    <p>Das gleiche Planungsbüro stellte bei einer <.a href="https://web.archive.org/web/20240116220027/https://www.oberbillwerder-hamburg.de/wp-content/uploads/4.3_Verkehrsuntersuchung.pdf">Verkehrsuntersuchung von 2017</.a> noch fest, dass die umliegenden Straßen einen hohen Anteil an KFZ-Verkehr gar nicht aufnehmen können. Entsprechend müssten ÖPNV, Fuß- und Radverkehr möglichst attraktiv sein. Ein schmaler Radweg ohne Überholmöglichkeiten, der nah an einer Schnellstrecke für Autos verläuft ist das aber sicher nicht.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

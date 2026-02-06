@@ -21,9 +21,9 @@ defmodule Data.Article.Blog.HannoverscheStrasse do
   def links(_assigns) do
     [
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-velorouten-10-und-11-805262"},
+       "https://web.archive.org/web/20250209235643/https://www.hamburg.de/politik-und-verwaltung/bezirke/harburg/themen/verkehr/ausbau-velorouten-10-und-11-805262"},
       {"Baustelleninfo", ~d[2024-12],
-       "https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
+       "https://web.archive.org/web/20250118130325/https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       # {"Baustelleninfo", "Juni 2024",
       #  "https://lsbg.hamburg.de/resource/blob/784454/7352392db667dfa5879101337e3dcd4c/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       {"Pressemitteilung Umbau Kreisel", "April 2024",

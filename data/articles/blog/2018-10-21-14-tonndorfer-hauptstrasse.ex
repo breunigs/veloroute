@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.TonndorferHauptstrasse do
 
   def title(), do: "Kreuzung Am Pulverteich / Tonndorfer Hauptstraße / Auerhahnweg (Veloroute 14)"
 
-  def type(), do: :planned
+  def type(), do: :outdated
 
   def tags(), do: ["radroute-20", "14"]
 

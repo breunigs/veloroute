@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.Thadenstrasse do
       {"Erläuterungsbericht zur Umgestaltung mit Lageplan",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1010092"},
       {"Baustellen Info",
-       "https://www.hamburg.de/altona/pressemitteilung/14996744/ausbau-veloroute-1/"},
+       "https://web.archive.org/web/20230925221149/https://www.hamburg.de/altona/pressemitteilung/14996744/ausbau-veloroute-1/"},
       {"Zeitungsartikel",
        "https://www.abendblatt.de/hamburg/article234200157/stadtplanung-abendblatt-serie-altona-hamburg-stadtentwicklung-bauvorhaben-planung-ottensen.html"}
     ]

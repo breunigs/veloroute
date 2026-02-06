@@ -76,7 +76,7 @@ defmodule Data.Article.Static.Alltagsroute4 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418942/veloroute-4/"},
+       "https://web.archive.org/web/20240419115129/https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/418942/veloroute-4/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643540"},
       {"Komoot Routenplaner: zum Ochsenzoll", "https://www.komoot.com/de-de/tour/204277309"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/191882"}

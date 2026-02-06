@@ -11,8 +11,9 @@ defmodule Data.Article.Blog.BudapesterStrasse3 do
 
   def tags(), do: ["radroute-15"]
 
-  def start(), do: ~d[2026-01]
-  def stop(), do: ~d[2026-03]
+  def start(), do: ~d[2026-02-02]
+  def stop(), do: ~d[2026-04-19]
+  def construction_site_id_hh(), do: [2_206_364]
 
   def point_of_interest(), do: %{lat: 53.551083, lon: 9.969623, zoom: 17}
 

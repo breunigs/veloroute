@@ -129,7 +129,7 @@ defmodule Data.Article.Static.Alltagsroute11 do
   def links(assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426790/veloroute-11/"},
+       "https://web.archive.org/web/20240425101451/https://www.hamburg.de/verkehr/fahrradfahren-in-hamburg/426790/veloroute-11/"},
       {"Ride With GPS Routenplaner: Innenstadt ↔ Eißendorf",
        "https://ridewithgps.com/routes/52643549"},
       {"Ride With GPS Routenplaner: Veddel ↔ Bürgerhaus Wilhelmsburg",

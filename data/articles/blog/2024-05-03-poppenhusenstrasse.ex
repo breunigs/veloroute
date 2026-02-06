@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
       "Straße wird für den Radverkehr in beide Richtungen freigegeben. Fahrbahn wird etwas breiter und das Parken mit Parkbuchten und Fahrrad-Anschließbügeln neu sortiert."
 
   def type(), do: :planned
-  def start(), do: ~d[2026]
-  def stop(), do: ~d[2026]
+  # def start(), do: ~d[2026]
+  # def stop(), do: ~d[2026]
 
   def tags(), do: ["radroute-5", "5"]
 
@@ -24,6 +24,8 @@ defmodule Data.Article.Blog.Poppenhusenstrasse do
 
   def links(_assigns) do
     [
+      {"Verschiebung des Umbaus wegen Parkplatzmoratorium", ~d[2026-01],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016125"},
       {"fertiger Entwurf, Lageplan und Erläuterung", ~d[2024-10],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1014419"},
       {"1. Entwurf, Lageplan und Erläuterung", "Mai 2024",

@@ -49,10 +49,10 @@ defmodule Data.Article.Static.LexikonBettelUndBedarfsampel do
       {"Verkehrssenator Anjes Tjarks zur Reduzierung von Bettelampeln", "Mai 2022",
        "https://twitter.com/anjes_tjarks/status/1523535318988824576"},
       {"Artikel zur Historie der Bettelamplen in Hamburg", "Mai 2022",
-       "https://www.abendblatt.de/hamburg/article235294915/verkehr-hamburg-so-viele-bettelampeln-werden-bis-2025-umgeruestet.html"},
+       "https://www.abendblatt.de/hamburg/article401506276/verkehr-hamburg-so-viele-bettelampeln-werden-bis-2025-umgeruestet.html"},
       {"ADFC e.V. zu Bettelnampeln",
        "https://hamburg.adfc.de/artikel/adfc-position-ampeln#:~:text=die%20Lichtsignale%20akzeptieren.-,Bettelampeln,-Seit%202005%20gibt"},
-      {"FUSS e.V. zu Bettelampeln", "https://www.hamburg-zu-fuss.de/bettelampeln.html"}
+      {"FUSS e.V. zu Bettelampeln", "https://www.fuss-ev.de/hamburg/bettelampeln/"}
     ]
   end
 

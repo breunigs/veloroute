@@ -25,7 +25,7 @@ defmodule Data.Article.Blog.BushaltestellenBramfelderSaseler do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-07],
-       "https://lsbg.hamburg.de/resource/blob/1078440/c1c0dfba791712b5b705c996dea56c28/bramfelder-chaussee-anliegerinformation-juli-2025-data.pdf"},
+       "https://web.archive.org/web/20250810035940/https://lsbg.hamburg.de/resource/blob/1078440/c1c0dfba791712b5b705c996dea56c28/bramfelder-chaussee-anliegerinformation-juli-2025-data.pdf"},
       {"Bauvergabe", ~d[2025-05],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/1f7eaaef-f886-41ea-bc93-bdb879801810/details"}
     ]

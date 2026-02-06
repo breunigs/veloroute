@@ -23,15 +23,15 @@ defmodule Data.Article.Blog.Hoegerdamm do
       {"Pressemitteilung Baufortschritt", "Februar 2024",
        "https://web.archive.org/web/20240516083617/https://www.hamburg.de/bvm/medien/18176658/2024-02-07-bvm-hoegerdamm/"},
       {"Baustelleninfo", "Januar 2024",
-       "https://lsbg.hamburg.de/resource/blob/784458/f9d2bf37452bb538c8c7857a9264375b/hoegerdamm-anliegerinformation-januar-2024-data.pdf"},
+       "https://web.archive.org/web/20240920042533/https://lsbg.hamburg.de/resource/blob/784458/f9d2bf37452bb538c8c7857a9264375b/hoegerdamm-anliegerinformation-januar-2024-data.pdf"},
       {"Pressemitteilung zum Straßenumbau", "Oktober 2023",
        "https://www.hamburg.de/bvm/medien/17389842/2023-09-29-bvm-hoegerdamm/"},
       {"Pressemitteilung zum Umbau", "Januar 2023",
        "https://www.hamburg.de/bvm/medien/16854704/2023-01-25-bvm-hoegerdamm/"},
       {"Lageplan",
-       "https://lsbg.hamburg.de/resource/blob/784206/ce0fb9ca1c5c9ae2b1cf783200f0f3b2/hoegerdamm-abgestimmte-planung-plan-data.pdf"},
+       "https://web.archive.org/web/20240901051435/https://lsbg.hamburg.de/resource/blob/784206/ce0fb9ca1c5c9ae2b1cf783200f0f3b2/hoegerdamm-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/784204/88bc674de8ca855adfff6fb7398222b1/hoegerdamm-abgestimmte-planung-bericht-data.pdf"}
+       "https://web.archive.org/web/20241123181848/https://lsbg.hamburg.de/resource/blob/784204/88bc674de8ca855adfff6fb7398222b1/hoegerdamm-abgestimmte-planung-bericht-data.pdf"}
     ]
   end
 

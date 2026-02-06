@@ -20,7 +20,7 @@ defmodule Data.Article.Blog.NorderelbbrueckeA1 do
       {"Präsentation zur A26 Ost; Seite 17", "Januar 2024",
        "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1011433"},
       {"Pläne und Erläuterungen; Planfeststellungsverfahren zum A1 Ausbau", "2023",
-       "https://www.hamburg.de/bwi/np-aktuelle-planfeststellungsverfahren/17363612/ausbau-a1-nord/"},
+       "https://web.archive.org/web/20240118224149/https://www.hamburg.de/bwi/np-aktuelle-planfeststellungsverfahren/17363612/ausbau-a1-nord/"},
       {"Deges Infoseite zum Umbau",
        "https://www.deges.de/projekte/projekt/a-1-achtstreifiger-ausbau-ad-hh-suedost-as-hh-harburg/#faq4"},
       {"Deges Broschüre zum Entwurfswettbewerb", "Mai 2019",
