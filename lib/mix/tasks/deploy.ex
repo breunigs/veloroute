@@ -204,7 +204,7 @@ defmodule Mix.Tasks.Deploy do
 
   @status_check_timeout 2 * 60 * 1000
   defp report_status_200?(path, retried \\ false) do
-    case Tesla.get(get_docker_url(path), adapter: [recv_timeout: @status_check_timeout]) do
+    case Tesla.get(get_docker_url(path), opts: [adapter: [recv_timeout: @status_check_timeout]]) do
       {:ok, %{status: 200}} ->
         Logger.info("✓ 200 from #{path}")
         true
