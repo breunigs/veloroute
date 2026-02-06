@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Tesla
   require Logger
 
-  @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute)
+  @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute Kenntnisnahmeverschickung)
   # do not report all Sitzungen just because they have a location with an address
   @filter_keywords_sitzungen_ignore ~w(straße)
 
