@@ -11,8 +11,8 @@ defmodule Mix.Tasks.Deploy do
 
     build_tar_gz(skip)
 
-    IO.puts(Task.await(preload))
-    IO.puts(Task.await(mirror))
+    IO.puts(Task.await(preload, :infinity))
+    IO.puts(Task.await(mirror, :infinity))
 
     deploy_tar_gz(skip)
   end
