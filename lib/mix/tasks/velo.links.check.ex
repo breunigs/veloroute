@@ -75,17 +75,19 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
   @success {:ok, %{status: 200}}
 
-  # Twitter prevents checks via bot, so don't even try
+  # these prevents checks via bot, so don't even try
   defp check(%{url: "https://twitter.com/" <> _rest}), do: nil
+  defp check(%{url: "https://komoot.com/" <> _rest}), do: nil
   # ignore internal URLs
   defp check(%{url: "/" <> _rest}), do: nil
+  defp check(%{url: "mailto:" <> _email}), do: nil
 
   defp check(%{url: url} = entry) do
     case head_or_get(url) do
       {:ok, %{status: 200}} ->
         nil
 
-      {:ok, %{status: 302} = resp} ->
+      {:ok, %{status: status} = resp} when status in [302, 307] ->
         new_path = Tesla.get_header(resp, "location")
         is_fake_404 = Enum.any?(@fake_404s, &String.contains?(new_path, &1))
 
@@ -105,7 +107,7 @@ defmodule Mix.Tasks.Velo.Links.Check do
           end
         end
 
-      {:ok, %{status: 301} = resp} ->
+      {:ok, %{status: status} = resp} when status in [301, 308] ->
         Map.merge(entry, %{
           new_url: abs_location_header(resp, url),
           reason: "perma redirect"
