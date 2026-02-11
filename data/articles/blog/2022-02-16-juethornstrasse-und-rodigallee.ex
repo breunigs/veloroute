@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.JuethornstrasseUndRodigallee do
     do:
       "2,0m breite Protected-Bike-lanes, an Bushaltestellen andere Führungen. Mehr Bäume, mehr Radabstellplätze und eine Busspur stadteinwärts."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["rodigallee", "br-wandsbek-w2"]
 
   def start(), do: ~d[2025-08-27]

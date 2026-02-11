@@ -82,6 +82,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
     Disallow: /map/___static/
     Disallow: /assets/basemap/
 
+    User-Agent: Baiduspider
     User-agent: Amazonbot
     User-agent: anthropic-ai
     User-agent: Applebot-Extended

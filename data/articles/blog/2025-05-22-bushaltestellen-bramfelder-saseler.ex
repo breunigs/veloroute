@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.BushaltestellenBramfelderSaseler do
   def start(), do: ~d[2025-07-28]
   def stop(), do: ~d[2025-11-25]
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["radroute-5"]
 
