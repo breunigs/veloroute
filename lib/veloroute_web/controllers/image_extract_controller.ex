@@ -97,6 +97,7 @@ defmodule VelorouteWeb.ImageExtractController do
   @ffmpeg_allow_seeking_past_end_s 60
   defp ffmpeg_no_cache(hash, ts, max_length, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
+    source = String.replace(source, ".m4s", ".m3u8")
     source_abs = Path.join(Settings.r(:video_target_dir_abs), source)
 
     ts = min(ts, max_length + @ffmpeg_allow_seeking_past_end_s * 1000)

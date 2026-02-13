@@ -91,10 +91,7 @@ defmodule Video.Components do
     with path = Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"]),
          {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
-      Enum.map(variants, fn var ->
-        video_file = String.replace_suffix(var.url, ".m3u8", ".m4s")
-        {video_file, var.codec}
-      end)
+      Enum.map(variants, fn var -> {var.url, var.codec} end)
     else
       _ -> []
     end

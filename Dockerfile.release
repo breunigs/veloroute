@@ -3,9 +3,11 @@ FROM debian:${DEBIAN_VERSION}
 
 # keep runtime dependencies in sync with Dockerfile.maplibre-native
 RUN \
-  apt-get update \
+  echo "deb http://deb.debian.org/debian testing main" > /etc/apt/sources.list.d/testing.list \
+  && printf 'Package: *\nPin: release a=testing\nPin-Priority: 100\n' > /etc/apt/preferences.d/testing \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
-  ffmpeg \
+  -t testing ffmpeg \
   libcurl4t64 \
   libglx0 \
   libicu[0-9]+$ \

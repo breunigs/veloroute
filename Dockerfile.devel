@@ -15,11 +15,15 @@ ENV GIT_COMMIT="dockerfile dummy"
 ENV MIX_OS_DEPS_COMPILE_PARTITION_COUNT=4
 
 # RUN apk add --no-cache build-base optipng inkscape nodejs npm brotli git ffmpeg gcompat
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN \
+  echo "deb http://deb.debian.org/debian testing main" > /etc/apt/sources.list.d/testing.list \
+  && printf 'Package: *\nPin: release a=testing\nPin-Priority: 100\n' > /etc/apt/preferences.d/testing \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+  -t testing ffmpeg \
   brotli \
   build-essential \
   cargo \
-  ffmpeg \
   git \
   inkscape \
   nodejs \

@@ -169,7 +169,7 @@ defmodule Mix.Tasks.Deploy do
             /assets/app.js
             /assets/app.css
             /suche?search_query=foobar
-            /images/thumbnails/936d92c42595877d0925a822fdb40837/0
+            /images/thumbnails/c757589d001336a050264ad60ad7e906/0
             /map/___static/9.988434,53.548873,9/720x493
           ),
           &report_status_200?/1
