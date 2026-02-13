@@ -27277,6 +27277,21 @@
   <node id='-290298481' action='modify' lat='53.62260115707' lon='10.03103255689' />
   <node id='-290298482' action='modify' lat='53.62239434974' lon='10.03098964155' />
   <node id='-290298483' action='modify' lat='53.62268069809' lon='10.02613484323' />
+  <node id='-291971947' action='modify' lat='53.4881700168' lon='10.18312990397' />
+  <node id='-291971948' action='modify' lat='53.48802159931' lon='10.18308430642' />
+  <node id='-291971949' action='modify' lat='53.48753963786' lon='10.18540978163' />
+  <node id='-291971950' action='modify' lat='53.48768007753' lon='10.18546879023' />
+  <node id='-291971951' action='modify' lat='53.48803117465' lon='10.18380582064' />
+  <node id='-291971953' action='modify' lat='53.48821150977' lon='10.18076151341' />
+  <node id='-291971954' action='modify' lat='53.48849238418' lon='10.1808178398' />
+  <node id='-291971955' action='modify' lat='53.48852749335' lon='10.18030553788' />
+  <node id='-291971956' action='modify' lat='53.48857696532' lon='10.17937481135' />
+  <node id='-291971957' action='modify' lat='53.48884507044' lon='10.17660140723' />
+  <node id='-291971958' action='modify' lat='53.48913551574' lon='10.17335325211' />
+  <node id='-291971959' action='modify' lat='53.48932861289' lon='10.17190217704' />
+  <node id='-291971960' action='modify' lat='53.48909881123' lon='10.17186730832' />
+  <node id='-291971961' action='modify' lat='53.48865356695' lon='10.17595499486' />
+  <node id='-291971962' action='modify' lat='53.48836950185' lon='10.17884641618' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -77029,6 +77044,31 @@
     <nd ref='-290298483' />
     <nd ref='-290298480' />
     <tag k='name' v='2026-02-11-am-hasenberge' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21120943' action='modify'>
+    <nd ref='-291971947' />
+    <nd ref='-291971948' />
+    <nd ref='-291971949' />
+    <nd ref='-291971950' />
+    <nd ref='-291971951' />
+    <nd ref='-291971947' />
+    <tag k='name' v='2026-02-13-karl-heinz-rissmann-weg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21120948' action='modify'>
+    <nd ref='-291971953' />
+    <nd ref='-291971954' />
+    <nd ref='-291971955' />
+    <nd ref='-291971956' />
+    <nd ref='-291971957' />
+    <nd ref='-291971958' />
+    <nd ref='-291971959' />
+    <nd ref='-291971960' />
+    <nd ref='-291971961' />
+    <nd ref='-291971962' />
+    <nd ref='-291971953' />
+    <tag k='name' v='2026-02-13-karl-heinz-rissmann-weg' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

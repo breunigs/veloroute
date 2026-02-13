@@ -11,8 +11,9 @@ defmodule Data.Article.Blog.ReeperbahnVerstetigung do
 
   def tags(), do: ["radroute-1"]
 
-  def start(), do: ~d[2026-03]
-  def stop(), do: ~d[2026-04]
+  def start(), do: ~d[2026-03-02]
+  def stop(), do: ~d[2026-03-30]
+  def construction_site_id_hh(), do: [2_428_445]
 
   def map_image do
     {name(),
@@ -23,6 +24,8 @@ defmodule Data.Article.Blog.ReeperbahnVerstetigung do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-02],
+       "https://lsbg.hamburg.de/resource/blob/1145536/051eb25d4c9760dd2736118c7b97128a/reeperbahn-verstetigung-radfahrstreifen-anliegerinformation-februar-2026-data.pdf"},
       {"Erläuterungen", ~d[2025-11],
        "https://lsbg.hamburg.de/resource/blob/1119512/ccf28254f7fb8e78d7afa063c7b5ed9a/reeperbahn-stadtauswaerts-verstetigung-verkehrsversuch-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan", ~d[2025-11],
