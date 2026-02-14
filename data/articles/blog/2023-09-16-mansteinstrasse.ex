@@ -40,7 +40,7 @@ defmodule Data.Article.Blog.Mansteinstrasse do
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/aktuelles/pressemeldungen/ruhebaenke-unter-dbaeumen-als-highlight-mansteinstrasse-puenktlich-fertig-n--1086900"},
       {"fertiger Entwurf", "April 2024",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009212"},
-      {"Geplanter Bautermine", "November 20223",
+      {"Geplanter Bautermine", "November 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"2. Entwurf", "September 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1008684"},

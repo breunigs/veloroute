@@ -27292,6 +27292,35 @@
   <node id='-291971960' action='modify' lat='53.48909881123' lon='10.17186730832' />
   <node id='-291971961' action='modify' lat='53.48865356695' lon='10.17595499486' />
   <node id='-291971962' action='modify' lat='53.48836950185' lon='10.17884641618' />
+  <node id='-293645441' action='modify' lat='53.57663480612' lon='9.93824690446' />
+  <node id='-293645442' action='modify' lat='53.5769931292' lon='9.93895366654' />
+  <node id='-293645443' action='modify' lat='53.57683546742' lon='9.93912532791' />
+  <node id='-293645444' action='modify' lat='53.57774161888' lon='9.94143604696' />
+  <node id='-293645445' action='modify' lat='53.57787220467' lon='9.94122683465' />
+  <node id='-293645447' action='modify' lat='53.57813019004' lon='9.94190811574' />
+  <node id='-293645448' action='modify' lat='53.57796138497' lon='9.94206368387' />
+  <node id='-293645449' action='modify' lat='53.57834676913' lon='9.94366228044' />
+  <node id='-293645450' action='modify' lat='53.57852831252' lon='9.94346379697' />
+  <node id='-293645451' action='modify' lat='53.57862386135' lon='9.94393050134' />
+  <node id='-293645452' action='modify' lat='53.57842320855' lon='9.94405924737' />
+  <node id='-293645453' action='modify' lat='53.57861749144' lon='9.94477807939' />
+  <node id='-293645454' action='modify' lat='53.5790124244' lon='9.94530915678' />
+  <node id='-293645455' action='modify' lat='53.5793086217' lon='9.94569539487' />
+  <node id='-293645456' action='modify' lat='53.57937868958' lon='9.9455237335' />
+  <node id='-293645457' action='modify' lat='53.57897739017' lon='9.94499802053' />
+  <node id='-293645458' action='modify' lat='53.57878947883' lon='9.94460641801' />
+  <node id='-295318925' action='modify' lat='53.57370600072' lon='9.96208369195' />
+  <node id='-295318926' action='modify' lat='53.57364229411' lon='9.96240555704' />
+  <node id='-295318927' action='modify' lat='53.57428572647' lon='9.96337115228' />
+  <node id='-295318928' action='modify' lat='53.57462655054' lon='9.96375739038' />
+  <node id='-295318929' action='modify' lat='53.57525722707' lon='9.96436893404' />
+  <node id='-295318930' action='modify' lat='53.5761618174' lon='9.96523260534' />
+  <node id='-295318931' action='modify' lat='53.57521900452' lon='9.96647715032' />
+  <node id='-295318932' action='modify' lat='53.57538782053' lon='9.96681510866' />
+  <node id='-295318933' action='modify' lat='53.57655995842' lon='9.96527552068' />
+  <node id='-295318934' action='modify' lat='53.57592611615' lon='9.96472298563' />
+  <node id='-295318935' action='modify' lat='53.57483677709' lon='9.96358036458' />
+  <node id='-295318936' action='modify' lat='53.57445136094' lon='9.96317803323' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -77069,6 +77098,54 @@
     <nd ref='-291971962' />
     <nd ref='-291971953' />
     <tag k='name' v='2026-02-13-karl-heinz-rissmann-weg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21128641' action='modify'>
+    <nd ref='-293645442' />
+    <nd ref='-293645443' />
+    <nd ref='-293645444' />
+    <nd ref='-293645445' />
+    <nd ref='-293645442' />
+    <tag k='name' v='2026-02-14-methfesselstrasse-2' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21128645' action='modify'>
+    <nd ref='-293645447' />
+    <nd ref='-293645448' />
+    <nd ref='-293645449' />
+    <nd ref='-293645450' />
+    <nd ref='-293645447' />
+    <tag k='name' v='2026-02-14-methfesselstrasse-2' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21128649' action='modify'>
+    <nd ref='-293645451' />
+    <nd ref='-293645452' />
+    <nd ref='-293645453' />
+    <nd ref='-293645454' />
+    <nd ref='-293645455' />
+    <nd ref='-293645456' />
+    <nd ref='-293645457' />
+    <nd ref='-293645458' />
+    <nd ref='-293645451' />
+    <tag k='name' v='2026-02-14-methfesselstrasse-2' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21136331' action='modify'>
+    <nd ref='-295318925' />
+    <nd ref='-295318926' />
+    <nd ref='-295318927' />
+    <nd ref='-295318928' />
+    <nd ref='-295318929' />
+    <nd ref='-295318930' />
+    <nd ref='-295318931' />
+    <nd ref='-295318932' />
+    <nd ref='-295318933' />
+    <nd ref='-295318934' />
+    <nd ref='-295318935' />
+    <nd ref='-295318936' />
+    <nd ref='-295318925' />
+    <tag k='name' v='2026-02-15-tresckowstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

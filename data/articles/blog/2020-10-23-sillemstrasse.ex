@@ -14,6 +14,15 @@ defmodule Data.Article.Blog.Sillemstrasse do
 
   def tags(), do: ["radroute-2", "2"]
 
+  def map_image do
+    {name(),
+     [
+       {"Sweco GmbH", "https://www.sweco-gmbh.de/kontakt/kontakt-verkehr-und-infrastruktur/"},
+       {"Bezirksamt Eimsbüttel – Fachamt Management des öffentlichen Raumes",
+        "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/ihr-bezirksamt/fachamt-management-des-oeffentlichen-raumes-58482"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Zeitungsartikel zur zeitlichen Verschiebung", ~d[2025-12],
@@ -32,7 +41,7 @@ defmodule Data.Article.Blog.Sillemstrasse do
     <h4>Alter Zustand</h4>
     <p>Der verkehrsarme Abschnitt ist größtenteils in Kopfsteinpflaster ausgeführt. Einmündungen und Kreuzungen sind durch die großen Kurvenradien auf hohe Abbiegegeschwindigkeiten optimiert, bieten jedoch nur geringe Sicht. Im gesamten Bereich werden Autos ungeordnet und teilweise verkehrsgefährdend abgestellt, was der Übersichtlichkeit schadet.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Es soll eine asphaltierte Fahrradstraße (Anlieger frei) mit einer rund 4,0m bis 4,3m breiten Fahrgasse entstehen. Zuzüglich kommen nochmal rund 1,5m Sicherheitsabstand gegen <.ref>Dooring</.ref>. KFZ-Parken ist nur noch längst entlang der Straße vorgesehen, wodurch die Gehwege stellenweise breiter werden. Je nach Platz werden auch Fahrradanschließbügel ergänzt. </p>
 
     <p>Die meisten einmündenden Nebenstraßen sollen zu Gehwegüberfahrten werden, sodass die Radroute Vorfahrt genießen würde. Die Kurvenradien wären ebenfalls kleiner als heute. An der <.v bounds="9.942321,53.577448,9.946122,53.579493" lon={9.943909} lat={53.578391} dir="forward" ref={Alltagsroute2}>Methfesselstraße</.v> ist ein kleiner Kreisverkehr geplant. Hier sollen auch Parkbänke aufgestellt werden.</p>

@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.GrandwegSued do
     [
       {"fertiger Entwurf (Lageplan und Erläuterungsbericht)", "März 2024",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009145"},
-      {"Geplanter Bautermine", "November 20223",
+      {"Geplanter Bautermine", "November 2023",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1030471"},
       {"Infoseite der Stadt zur Stresemannallee",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/bezirksamt-eimsbuettel/themen/mobilitaet/stresemannallee-60886"},
