@@ -1,4 +1,4 @@
-FROM debian:testing-slim AS downloader
+FROM debian:trixie-20251020-slim AS downloader
 
 ARG RAV1E_VERSION=refs/tags/v0.7.1
 ARG RAV1E_REPO=xiph
@@ -60,7 +60,7 @@ RUN mkdir -p cd /downloads/pgo && \
   cd /downloads/pgo && \
   wget https://veloroute.hamburg/videos/rendered/svtav1pgo.y4m
 
-FROM debian:testing-slim AS blur
+FROM debian:trixie-20251020-slim AS blur
 WORKDIR /build/
 
 RUN apt-get update \
@@ -78,7 +78,7 @@ RUN apt-get update \
 COPY --from=downloader /downloads/blur/ /build/.
 RUN cmake . && make
 
-FROM debian:testing-slim AS rife
+FROM debian:trixie-20251020-slim AS rife
 WORKDIR /build/
 
 RUN apt-get update \
@@ -96,7 +96,7 @@ RUN apt-get update \
 COPY --from=downloader /downloads/rife/ /build/.
 RUN ./build.sh
 
-FROM debian:testing-slim AS ffmpeg-build
+FROM debian:trixie-20251020-slim AS ffmpeg-build
 
 RUN \
   apt-get update \
@@ -188,7 +188,7 @@ RUN cd /downloads/ffmpeg && \
 
 
 
-FROM debian:testing-slim AS runner
+FROM debian:trixie-20251020-slim AS runner
 RUN \
   apt-get update && \
   apt-get install -y --no-install-recommends \
