@@ -1,8 +1,5 @@
 FROM debian:trixie-20251020-slim AS downloader
 
-ARG RAV1E_VERSION=refs/tags/v0.7.1
-ARG RAV1E_REPO=xiph
-
 ARG SVTAV1_REPO=https://gitlab.com/AOMediaCodec/SVT-AV1/-
 ARG SVTAV1_VERSION=b8f0f823badf67ae7ba7563cab6fdabfbf70cca1
 # ARG SVTAV1_REPO=https://github.com/BlueSwordM/svt-av1-psyex
@@ -21,11 +18,6 @@ RUN  \
   git \
   wget \
   && rm -rf /var/lib/apt/lists/*
-
-RUN \
-  cd /downloads/ && \
-  wget https://github.com/${RAV1E_REPO}/rav1e/archive/${RAV1E_VERSION}.tar.gz -O rav1e.tar.gz && \
-  tar zxf rav1e.tar.gz && rm rav1e.tar.gz && mv rav1e* rav1e
 
 # RUN \
 #   cd /downloads/ && \
@@ -143,10 +135,6 @@ ENV PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig"
 
 COPY --from=downloader /downloads /downloads/
 
-RUN cd /downloads/rav1e && \
-  sed -i 's/cap_underflow: false,/cap_underflow: true,/' src/rate.rs && \
-  RUSTFLAGS="-C target-cpu=native" cargo cinstall --release --prefix ${PREFIX} --libdir ${PREFIX}/lib --library-type staticlib
-
 RUN cd /downloads/svtav1/Build/linux && \
   ./build.sh \
   --native \
@@ -173,7 +161,6 @@ RUN cd /downloads/ffmpeg && \
   --enable-libfontconfig \
   --enable-libfreetype \
   --enable-libharfbuzz \
-  --enable-librav1e \
   --enable-libsvtav1 \
   --enable-libwebp \
   --enable-libx264 \
