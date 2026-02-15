@@ -66441,7 +66441,7 @@
     <nd ref='-143600548' />
     <nd ref='-143600431' />
   </way>
-  <way id='-20436806'>
+  <way id='-20436806' action='modify'>
     <nd ref='-143600559' />
     <nd ref='-143600560' />
     <nd ref='-143600561' />
@@ -66471,6 +66471,7 @@
     <nd ref='-143600585' />
     <nd ref='-143600586' />
     <nd ref='-143600559' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2023-10-29-lenhartzstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -67156,7 +67157,7 @@
     <tag k='name' v='2024-02-28-beim-schlump' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20436846'>
+  <way id='-20436846' action='modify'>
     <nd ref='-143601058' />
     <nd ref='-143601059' />
     <nd ref='-143601060' />
@@ -67174,6 +67175,7 @@
     <nd ref='-143601072' />
     <nd ref='-143601073' />
     <nd ref='-143601058' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2024-02-29-bundesstrasse-2' />
     <tag k='type' v='article' />
   </way>

@@ -746,22 +746,6 @@ defmodule Video.Renderer do
   #   }
   # end
 
-  # @spec codec_av1_rav1e(map(), non_neg_integer()) :: map()
-  # defp codec_av1_rav1e(info, idx) do
-  #   tiles = Integer.floor_div(info[:height], 135)
-
-  #   %{
-  #     codec: [
-  #       "librav1e",
-  #       "-tiles:v:#{idx}",
-  #       "#{tiles}",
-  #       "-speed:v:#{idx}",
-  #       "2"
-  #     ],
-  #     tag_as: av1_codec_tag(info, tiles, 8)
-  #   }
-  # end
-
   @spec codec_av1_svt(map(), non_neg_integer()) :: map()
   defp codec_av1_svt(info, idx) do
     {tiles, cols, rows} =

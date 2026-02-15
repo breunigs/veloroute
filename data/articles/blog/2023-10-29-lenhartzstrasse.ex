@@ -18,33 +18,40 @@ defmodule Data.Article.Blog.Lenhartzstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "a",
         direction: :forward,
         from: "Eppendorfer Baum",
         to: "Eppendorfer Marktplatz",
         parent_ref: __MODULE__,
         text: "Lenhartzstraße → Schottmüllerstraße → Eppendorfer Marktplatz",
-        historic: %{"1f5326d6b662ad293cfcab81a344cc7c" => ~d[2023-10]},
+        historic: %{
+          "3434c719d638ac6a2c58489a2f0ae773" => ~d[2026-02],
+          "1f5326d6b662ad293cfcab81a344cc7c" => ~d[2023-10]
+        },
+        end_action: :reverse,
         videos: [
-          {"2023-10-29-lenhart/GX016635", :start, :end},
-          {"2023-10-29-lenhart/GX016636", :start, "00:00:23.018"}
+          {"2026-02-15-eims/GX018760", "00:00:45.193", :end},
+          {"2026-02-15-eims/GX018761", :start, "00:00:42.122"},
+          {"2026-02-15-eims/GX018762", :start, "00:00:17.442"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "a",
         direction: :backward,
         from: "Eppendorfer Marktplatz",
         to: "Eppendorfer Baum",
         parent_ref: __MODULE__,
         text: "Eppendorfer Marktplatz → Schottmüllerstraße → Lenhartzstraße",
-        historic: %{"6ed161d40d453ffecb50dadbf9fed8e2" => ~d[2023-10]},
+        historic: %{
+          "849aaf5d6ef34c2ed178007e77740eb1" => ~d[2026-02],
+          "6ed161d40d453ffecb50dadbf9fed8e2" => ~d[2023-10]
+        },
         videos: [
-          {"2023-10-29-lenhart/GX016638", "00:00:09.007", :end},
-          {"2023-10-29-lenhart/GX016639", :start, :end},
-          {"2023-10-29-lenhart/GX016640", :start, :end},
-          {"2023-10-29-lenhart/GX016641", :start, "00:00:09.341"}
+          {"2026-02-15-eims/GX018763", "00:00:00.067", :end},
+          {"2026-02-15-eims/GX018764", :start, "00:00:04.181"},
+          {"2026-02-15-eims/GX018765", :start, "00:00:26.687"}
         ]
       }
     ]

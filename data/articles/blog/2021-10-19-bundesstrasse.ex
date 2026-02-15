@@ -13,34 +13,37 @@ defmodule Data.Article.Blog.Bundesstrasse do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "Bundesstraße",
         direction: :forward,
-        from: "Grindelallee",
+        from: "An der Verbindungsbahn",
         to: "Eimsbütteler Brücke",
         parent_ref: __MODULE__,
         text: "Bundesstraße Richtung Eimsbüttel",
-        historic: %{"2ea2188564c085aa74bdf83d40a7da57" => ~d[2022-05]},
+        historic: %{
+          "09582019222d914380cd3078bf48bc27" => ~d[2026-02],
+          "2ea2188564c085aa74bdf83d40a7da57" => ~d[2022-05]
+        },
         videos: [
-          {"2022-05-14-velo6-u-bundesstr/GX013891", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013892", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013893", :start, "00:00:15.015"}
+          {"2026-02-15-eims/GX018767", "00:00:01.101", "00:00:35.041"},
+          {"2026-02-15-eims/GX018768", :start, "00:00:37.526"}
         ]
       },
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "Bundesstraße",
         direction: :backward,
         from: "Eimsbütteler Brücke",
         to: "Grindelallee",
         parent_ref: __MODULE__,
         text: "Bundesstraße Richtung Dammtor",
-        historic: %{"add77092e4a4f95b8816f17167574b43" => ~d[2022-05]},
+        historic: %{
+          "594fc686c6ee9f337226d35eb4a77cce" => ~d[2026-02],
+          "add77092e4a4f95b8816f17167574b43" => ~d[2022-05]
+        },
         videos: [
-          {"2022-05-14-velo6-u-bundesstr/GX013893", "00:00:36.403", "00:01:07.401"},
-          {"2022-05-14-velo6-u-bundesstr/GX013851", "00:00:10.277", :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013852", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013853", :start, "00:00:05.606"}
+          {"2026-02-15-eims/GX018765", "00:02:08.067", "00:02:48.922"},
+          {"2026-02-15-eims/GX018766", :start, :end}
         ]
       }
     ]
