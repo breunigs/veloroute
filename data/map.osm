@@ -27321,6 +27321,35 @@
   <node id='-295318934' action='modify' lat='53.57592611615' lon='9.96472298563' />
   <node id='-295318935' action='modify' lat='53.57483677709' lon='9.96358036458' />
   <node id='-295318936' action='modify' lat='53.57445136094' lon='9.96317803323' />
+  <node id='-296994531' action='modify' lat='53.54587300701' lon='9.90105270267' />
+  <node id='-296994532' action='modify' lat='53.5456817611' lon='9.9009454143' />
+  <node id='-296994533' action='modify' lat='53.54591125609' lon='9.89854215503' />
+  <node id='-296994534' action='modify' lat='53.5464849881' lon='9.89298461795' />
+  <node id='-296994535' action='modify' lat='53.54650411236' lon='9.89075302005' />
+  <node id='-296994536' action='modify' lat='53.54638299186' lon='9.88918660998' />
+  <node id='-296994537' action='modify' lat='53.54632561887' lon='9.88810299754' />
+  <node id='-296994538' action='modify' lat='53.54642124048' lon='9.8854422462' />
+  <node id='-296994539' action='modify' lat='53.54651686187' lon='9.88278149486' />
+  <node id='-296994540' action='modify' lat='53.54642761525' lon='9.88135455966' />
+  <node id='-296994541' action='modify' lat='53.54647861334' lon='9.88015293002' />
+  <node id='-296994542' action='modify' lat='53.54670172928' lon='9.88024680734' />
+  <node id='-296994543' action='modify' lat='53.54662044668' lon='9.88062232465' />
+  <node id='-296994544' action='modify' lat='53.54658060456' lon='9.88140016526' />
+  <node id='-296994545' action='modify' lat='53.54663797721' lon='9.88193392485' />
+  <node id='-296994546' action='modify' lat='53.54668260032' lon='9.88292097777' />
+  <node id='-296994547' action='modify' lat='53.54664435194' lon='9.88479315966' />
+  <node id='-296994548' action='modify' lat='53.54659972878' lon='9.88639712065' />
+  <node id='-296994549' action='modify' lat='53.5465535119' lon='9.88798498839' />
+  <node id='-296994550' action='modify' lat='53.54657422982' lon='9.88876282901' />
+  <node id='-296994551' action='modify' lat='53.54677025273' lon='9.88964259356' />
+  <node id='-296994552' action='modify' lat='53.54679256422' lon='9.89001273841' />
+  <node id='-296994553' action='modify' lat='53.54676547169' lon='9.89129751652' />
+  <node id='-296994554' action='modify' lat='53.54672244234' lon='9.89299803704' />
+  <node id='-296994555' action='modify' lat='53.54659494773' lon='9.89428013295' />
+  <node id='-296994556' action='modify' lat='53.54638298708' lon='9.89642053574' />
+  <node id='-296994557' action='modify' lat='53.54622521117' lon='9.89776164025' />
+  <node id='-296994558' action='modify' lat='53.54607221579' lon='9.89955603808' />
+  <node id='-296994559' action='modify' lat='53.54598615565' lon='9.90075498551' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -77148,6 +77177,40 @@
     <nd ref='-295318936' />
     <nd ref='-295318925' />
     <tag k='name' v='2026-02-15-tresckowstrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21144031' action='modify'>
+    <nd ref='-296994531' />
+    <nd ref='-296994532' />
+    <nd ref='-296994533' />
+    <nd ref='-296994534' />
+    <nd ref='-296994535' />
+    <nd ref='-296994536' />
+    <nd ref='-296994537' />
+    <nd ref='-296994538' />
+    <nd ref='-296994539' />
+    <nd ref='-296994540' />
+    <nd ref='-296994541' />
+    <nd ref='-296994542' />
+    <nd ref='-296994543' />
+    <nd ref='-296994544' />
+    <nd ref='-296994545' />
+    <nd ref='-296994546' />
+    <nd ref='-296994547' />
+    <nd ref='-296994548' />
+    <nd ref='-296994549' />
+    <nd ref='-296994550' />
+    <nd ref='-296994551' />
+    <nd ref='-296994552' />
+    <nd ref='-296994553' />
+    <nd ref='-296994554' />
+    <nd ref='-296994555' />
+    <nd ref='-296994556' />
+    <nd ref='-296994557' />
+    <nd ref='-296994558' />
+    <nd ref='-296994559' />
+    <nd ref='-296994531' />
+    <tag k='name' v='2026-02-19-elbchaussee-bis-liebermannstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

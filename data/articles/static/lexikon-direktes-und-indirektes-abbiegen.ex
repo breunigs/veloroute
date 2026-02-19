@@ -32,6 +32,7 @@ defmodule Data.Article.Static.LexikonDirektesUndIndirektesAbbiegen do
       "direkt links abbiegen",
       "indirekten abbiegen",
       "direkt linksabbiegen",
+      "direkt abgebogen",
       "direkt links abgebogen"
     ]
 
