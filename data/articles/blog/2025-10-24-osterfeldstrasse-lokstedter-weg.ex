@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.OsterfeldstrasseLokstedterWeg do
     do:
       "Radwege erhalten neue Oberflächen, bleiben sonst aber meist wie bisher. Verbesserungen vor allem punktuell."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def start(), do: ~d[2026-02-16]
   def stop(), do: ~d[2026-10-11]

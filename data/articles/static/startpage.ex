@@ -127,6 +127,15 @@ defmodule Data.Article.Static.Startpage do
           </span>
         </td>
       </tr><tr role="group">
+        <th translate="no">Hamburg-Mitte</th>
+        <td>
+          <span>
+            <.icon role="listitem" autoplay={true} ref={BrMitte02}>M2</.icon>
+          </span>
+          <span>
+          </span>
+        </td>
+      </tr><tr role="group">
         <th translate="no">Hamburg-Nord</th>
         <td>
           <span>

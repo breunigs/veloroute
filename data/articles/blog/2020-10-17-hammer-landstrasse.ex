@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.HammerLandstrasse do
 
   def title(), do: "Hammer Landstraße (ab Diagonalstraße)"
 
-  def type(), do: :planned
+  def type(), do: :outdated
 
   def tags(), do: []
 
@@ -45,6 +45,8 @@ defmodule Data.Article.Blog.HammerLandstrasse do
 
   def links(_assigns) do
     [
+      {"Umplanung ruht", ~d[2026-02],
+       "https://fragdenstaat.de/anfrage/mehrere-baumassnahmen/#nachricht-1091853"},
       {"Erläuterungsbericht",
        "https://web.archive.org/web/20241004113616/https://lsbg.hamburg.de/resource/blob/784184/56dbd1cb4fd5b4a4d2bf5f1981e53798/hammer-landstrasse-horner-landstrasse-diagonalstrasse-bis-culinstrasse-abstimmungsunterlage-bericht-data.pdf"},
       {"Pläne des ersten Entwurfs",
@@ -54,6 +56,9 @@ defmodule Data.Article.Blog.HammerLandstrasse do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand 2026</h4>
+    <p>Laut Aussage des LSBG ruht die Planung derzeit. Es ist unwahrscheinlich, dass sie zeitnah umgesetzt wird.</p>
+
     <h4>Alter Zustand</h4> <p>Die Radwege werden neben den Fußwegen als <.ref>Hochbordradweg</.ref> geführt. Überholt werden kann nicht, denn dafür ist die Breite deutlich zu gering. Auch der Asphalt oder das Pflaster ist in die Jahre gekommen und stellenweise unangenehm zu befahren.</p>
     <h4>Planung</h4> <p>Der Radverkehr soll künftig auf rund 2,0m breiten <.ref>Radfahrstreifen</.ref> geführt werden. Eine Trennung zum vierspurigen KFZ-Verkehr ist nicht vorgesehen, wenn man von dem weißen Trennstrich absieht. KFZ-Parkplätze werden rechts des Radfahrstreifens eingerichtet, wobei hier 60cm Sicherheitsabstand vorgesehen ist, um <.ref ref={LexikonDooring}>Autotür-Unfällen</.ref> vorzubeugen. Wo keine Parkplätze sind, wird der Hochbordradweg beibehalten.</p>
     <p>In den KFZ-Einbahnstraßen <.v bounds="10.065873,53.553064,10.068956,53.553989" lon={10.0672432} lat={53.5534713} dir="forward" ref={@ref}>Schurzallee-Nord</.v> und dem <.v bounds="10.0633,53.553292,10.06704,53.554414" lon={10.0647776} lat={53.5539221} dir="forward" ref={@ref}>Wichernsweg</.v> wird der gegenläufige Radverkehr durch bauliche Elemente besser getrennt. Aus letzterem kann man <.ref ref={LexikonDirektesUndIndirektesAbbiegen}>direkt Richtung Innenstadt abbiegen</.ref>. Entlang der Hammer Landstraße ist an dieser Stelle ein <.ref>Radfahrstreifen in Mittellage</.ref> vorgesehen, bei dem sich die Rad-Geradeausspur zwischen KFZ-Geradeaus und allen Rechtsabbiegern befindet.</p>

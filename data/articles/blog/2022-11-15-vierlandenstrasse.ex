@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
   def type(), do: :planned
   def tags(), do: ["br-bergedorf-a"]
 
-  def start(), do: ~d[2025Q4]
+  def start(), do: ~d[2026-07-09]
+  def stop(), do: ~d[2029-10-01]
 
   def tracks(),
     do: [
@@ -57,6 +58,8 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
 
   def links(_assigns) do
     [
+      {"Bauvergabe", ~d[2026-02],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/bc7edc63-9b02-4d6c-aac3-66d59db4e536"},
       {"Erläuterungsbericht", "November 2022",
        "https://lsbg.hamburg.de/resource/blob/784350/e330e5f33d02f024c6f3830eec583351/vierlandenstrasse-bergedorfer-strasse-bis-sander-damm-abgestimmte-planung-bericht-data.pdf"},
       {"Lageplan/Karte", "November 2022",

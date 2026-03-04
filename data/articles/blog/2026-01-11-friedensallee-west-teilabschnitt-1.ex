@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.FriedensalleeWestTeilabschnitt1 do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2026Q2]
+  def start(), do: ~d[2026-03-10]
   def stop(), do: ~d[2026Q4]
 
   def tags(), do: ["radroute-7"]
@@ -25,6 +25,8 @@ defmodule Data.Article.Blog.FriedensalleeWestTeilabschnitt1 do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel zum Umbau", ~d[2026-03],
+       "https://www.abendblatt.de/hamburg/altona/article410857888/verkehr-hamburg-verbindungsstrasse-zwischen-a7-und-ottensen-ist-marode-die-umbauplaene-03.html"},
       {"fertiger Entwurf, Erläuterungen und Karte", ~d[2026-01],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1017549"}
     ]

@@ -3,6 +3,20 @@ defmodule Data.Article.Shared do
 
   def bezirksroute(bezirk, assigns \\ %{})
 
+  def bezirksroute(:mitte, assigns) do
+    ~H"""
+    <h4>Bezirksrouten allgemein</h4>
+    <p>Bezirksrouten ergänzen die stadtweiten Radrouten. Sie sollen Lücken im Radnetz schließen und lokale Bedarfe abdecken. In Hamburg-Mitte wurden dazu Untersuchungen durchgeführt und im September 2025 ein mögliches Netz vorgestellt.</p>
+
+    <p>Es wurden verschiedene Kategorien angesetzt:</p>
+    <ul>
+      <li>Bezirksrouten zur Verbindung zwischen Stadtteilen</li>
+      <li>Stadtteilrouten für Ziele innerhalb des Kiez</li>
+      <li>Lückenschlüsse zur Anbindung weiterer Ziele und Radrouten</li>
+    </ul>
+    """
+  end
+
   def bezirksroute(:eimsbuettel, assigns) do
     ~H"""
     <h4>Bezirksrouten allgemein</h4>
