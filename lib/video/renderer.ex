@@ -819,9 +819,6 @@ defmodule Video.Renderer do
   defp variants() do
     [
       # av1, with default quality as first entry
-      # %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_rav1e/2},
-      # %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_rav1e/2},
-      # %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_rav1e/2}
       %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_svt/2},
       %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_svt/2},
       %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_svt/2},

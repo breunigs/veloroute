@@ -78,6 +78,7 @@ defmodule Data.GeoJSON do
   defp routes(map) do
     map.relations
     |> Map.values()
+    |> Enum.filter(fn rel -> Map.has_key?(rel.tags, :name) end)
     |> add_overlap_info(:alltag)
     |> add_overlap_info(:freizeit)
     |> add_overlap_info(:bezirk)
