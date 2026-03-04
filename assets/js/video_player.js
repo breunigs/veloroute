@@ -756,7 +756,7 @@ function timeFromProgressPosition(e) {
   const ratio = pos / (e.target.clientWidth - leftGrace - rightGrace)
 
   const time = Math.max(0, Math.min(max, ratio * max))
-  return [time, pos, time / max]
+  return [time, pos + leftGrace, time / max]
 }
 
 function seekFromProgress(e) {
