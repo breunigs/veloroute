@@ -227,14 +227,16 @@ function cacheVideoPoster() {
   let ctx = canvas.getContext('2d');
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  let image = canvas.toDataURL("image/jpeg");
-  if (image.length < 100) return console.log("not setting background image, as export seems broken")
-  video.setAttribute("poster", image)
+  setTimeout(() => {
+    let image = canvas.toDataURL("image/jpeg");
+    if (image.length < 100) return console.log("not setting background image, as export seems broken")
+    video.setAttribute("poster", image)
 
-  cacheVideoPosterTimeout = setTimeout(() => {
-    if (!document.startViewTransition) return cacheVideoPosterReset();
-    document.startViewTransition(cacheVideoPosterReset)
-  }, 3000)
+    cacheVideoPosterTimeout = setTimeout(() => {
+      if (!document.startViewTransition || !video.paused) return cacheVideoPosterReset();
+      document.startViewTransition(cacheVideoPosterReset)
+    }, 3000)
+  }, 0)
 }
 
 function cacheVideoPosterReset() {
