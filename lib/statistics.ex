@@ -1,4 +1,7 @@
 defmodule Statistics do
+  # 538.6 GiB / 130207.527s at 2026-03-05
+  @mib_per_second_rendered 4.235748982468579
+
   def visible_video_distance_km() do
     dist_m = all().distance_m
     round(dist_m / 1000)
@@ -7,6 +10,12 @@ defmodule Statistics do
   def visible_video_duration_h() do
     dur_ms = all().duration_ms
     round(dur_ms / (1000 * 60 * 60))
+  end
+
+  def approx_disk_rendered() do
+    dur_s = all().duration_ms / 1000
+    mib = dur_s * @mib_per_second_rendered
+    round(mib / 1024)
   end
 
   use Memoize

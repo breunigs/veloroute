@@ -10,7 +10,8 @@ defmodule Data.Article.Static.Projekt do
   defp with_stats(assigns) do
     assign(assigns, %{
       distance: Statistics.visible_video_distance_km(),
-      duration: Statistics.visible_video_duration_h()
+      duration: Statistics.visible_video_duration_h(),
+      rendered_gib: Statistics.approx_disk_rendered()
     })
   end
 
@@ -32,6 +33,8 @@ defmodule Data.Article.Static.Projekt do
 
     <h4 lang="en">Statistics</h4>
     <p lang="en">Currently the site allows you to watch approximately <%= @duration %> hours of video, covering a distance of <%= @distance %> km. This statistic is counted per direction, i.e. the same road filmed in two directions is counted twice. When multiple routes share a segment, that segment is also counted multiple times.</p>
+
+    <p lang="en">The rendered videos take up ~<%= @rendered_gib %> GiB, including historic versions where only the highest quality is kept. The source videos take up an additional space of 8x that amount. In 2025 the site used ~25 TiB/year or ~80 GiB/day of traffic.</p>
 
     <h4 lang="en">Camera</h4>
     <p lang="en">The video recordings are done with an off-the-shelf action camera attached to the handlebar. The built-in image stabilization and horizon lock are sufficient to achieve a smooth camera ride. Note that it still requires bright daylight, which is why the recordings in tunnels are so blurry. The camera should have built-in GPS. While recording GPS-tracks externally with a phone is possible, it means more effort in post processing.</p>
@@ -73,6 +76,8 @@ defmodule Data.Article.Static.Projekt do
 
     <h4>Statistiken</h4>
     <p>Die momentan auf der Seite ansehbaren Videos dauern zusammen rund <%= @duration %> Stunden und decken ca. <%= @distance %> km Strecke ab. Die Statistik zählt pro Fahrtrichtung, d.h. ein 1 km langer Radweg, der in beide Richtungen befahren wurde, geht hier als 2 km ein. Wenn mehrere Routen sich einen Abschnitt teilen, wird dieser auch mehrfach gezählt, d.h. Überlappungen werden nicht herausgerechnet.</p>
+
+    <p>Die zusammengeschnittenen Videos belegen ~<%= @rendered_gib %> GiB, inkl. alter Versionen zu Archivzwecken, die nur noch die höchste Qualität behalten. Die Originalaufnahmen benötigen zusätzlich ca. das 8x an Speicherplatz. 2025 verwendete die Seite ~25 TiB/Jahr oder ~80 GiB/Tag an Traffic.</p>
 
     <h4>Kamera</h4>
     <p>Die Videoaufnahmen werden mit einer handelsüblichen am Lenker befestigten Action-Kamera gemacht. Die in den modernen Modellen eingebaute Bildstabilisierung mit Horizontausgleich ist ausreichend um die ruhige Kamerafahrt zu erreichen. Allerdings benötigt die Technik noch Tageslicht, weswegen die Aufnahmen in Tunnels so verwackelt sind. Die Kamera sollte eingebautes GPS haben. GPS-Spuren extern mit dem Handy aufzeichnen geht zwar auch, ist aber viel mehr Aufwand in der Nachbereitung.</p>
