@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.BrookdeichOst do
 
   def type(), do: :planned
 
-  def tags(), do: ["radroute-concept-a"]
+  def tags(), do: ["rsw-geesthacht"]
 
   def tracks(), do: []
 
