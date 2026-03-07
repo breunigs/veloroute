@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.NordseiteMagdeburgerBruecke do
     ]
   end
 
+  def point_of_interest(), do: %{lon: 10.0007732, lat: 53.5412438, zoom: 17}
+
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
