@@ -28196,6 +28196,10 @@
   <node id='-302024384' action='modify' lat='53.47087987804' lon='10.26130020082' />
   <node id='-302024401' action='modify' lat='53.47035940774' lon='10.2702104938' />
   <node id='-302024413' action='modify' lat='53.47127901302' lon='10.26164888263' />
+  <node id='-303700008' action='modify' lat='53.54129720698' lon='9.99992429942' />
+  <node id='-303700009' action='modify' lat='53.54118563491' lon='9.99990552396' />
+  <node id='-303700010' action='modify' lat='53.54098958614' lon='10.00172406167' />
+  <node id='-303700011' action='modify' lat='53.541141006' lon='10.0017347905' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -79537,6 +79541,15 @@
     <nd ref='-143589981' />
     <tag k='status' v='concept' />
   </way>
+  <way id='-21177104' action='modify'>
+    <nd ref='-303700008' />
+    <nd ref='-303700009' />
+    <nd ref='-303700010' />
+    <nd ref='-303700011' />
+    <nd ref='-303700008' />
+    <tag k='name' v='2026-03-07-nordseite-magdeburger-bruecke' />
+    <tag k='type' v='article' />
+  </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
     <nd ref='99533190005505785' />
@@ -94864,7 +94877,7 @@
   <relation id='-108870' action='modify'>
     <member type='way' ref='-21154001' role='' />
     <member type='way' ref='-21153967' role='' />
-    <tag k='_name' v='br-mitte-10' />
+    <tag k='name' v='br-mitte-10' />
   </relation>
   <relation id='191882' action='modify' version='1'>
     <member type='way' ref='238754832' role='' />

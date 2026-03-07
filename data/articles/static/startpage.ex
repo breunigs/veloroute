@@ -133,6 +133,7 @@ defmodule Data.Article.Static.Startpage do
             <.icon role="listitem" autoplay={true} ref={BrMitte02}>M2</.icon>
           </span>
           <span>
+            <.icon role="listitem" autoplay={true} ref={BrMitte10}>M10</.icon>
           </span>
         </td>
       </tr><tr role="group">

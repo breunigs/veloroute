@@ -279,18 +279,28 @@ defmodule Components.TagHelpers do
   slot(:inner_block)
 
   def h4_planning(assigns) do
+    headline =
+      case {assigns.ref.type(), assigns[:lang]} do
+        {:intent, "en"} -> "Intent"
+        {:intent, _} -> "Vorhaben"
+        {_, "en"} -> "Planning"
+        _ -> "Planung"
+      end
+
+    assigns = assign(assigns, headline: headline)
+
     if assigns.ref.map_image() do
       assigns = map_toggle_title(assigns)
 
       ~H"""
       <div class="headlineForm">
-        <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
+        <h4 {@rest}><%= render_slot(@inner_block) || @headline %></h4>
         <.map_image_toggle checked={@checked} title={@title}/>
       </div>
       """
     else
       ~H"""
-      <h4 {@rest}><%= render_slot(@inner_block) || "Planung" %></h4>
+      <h4 {@rest}><%= render_slot(@inner_block) || @headline %></h4>
       """
     end
   end

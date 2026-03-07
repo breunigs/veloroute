@@ -18,8 +18,7 @@ defmodule Data.Article.Blog.BrookdeichOst do
       {"Erläuterungen und Pläne", ~d[2026-03],
        "https://fragdenstaat.de/anfrage/radroute-plus-brookdeich-curslacker-heerweg-kehre/#nachricht-1094801"},
       {"Umbaustopp durch Bezirksversammlung", ~d[2026-02],
-       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1009449"},
-      {"Infoseite der Stadt", "https://lsbg.hamburg.de/elbchaussee"}
+       "https://sitzungsdienst-bergedorf.hamburg.de/bi/vo020.asp?VOLFDNR=1009449"}
     ]
   end
 
@@ -46,7 +45,7 @@ defmodule Data.Article.Blog.BrookdeichOst do
 
     <p>Die „Dagegen“-Parteien hätten ihre Zeit sinnvoller nutzen können. Etwa indem sie mit der Nachbargemeinde reden und das Projekt dort vorantreiben.</p>
 
-    <h4>Externe Links</h4>
+    <h4>Quelle</h4>
     <.structured_links ref={@ref}/>
     """
   end
