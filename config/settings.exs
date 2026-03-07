@@ -160,9 +160,9 @@ config :veloroute, Settings, %{
   paywall_hostnames: ["abendblatt.de", "www.abendblatt.de", "komoot.com"],
 
   # Thumbnails have approximately 100 kB, so 100 thumbs are ~10 MB, 1000 are ~100MB
-  video_thumbnail_cache_entry_limit: 1000,
-  external_map_cache_entry_limit: 1000,
-  static_map_cache_entry_limit: 200,
+  video_thumbnail_cache_entry_limit: 500,
+  external_map_cache_entry_limit: 500,
+  static_map_cache_entry_limit: 100,
 
   # various video related paths
   video_dir_rel: "videos",
