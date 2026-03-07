@@ -399,13 +399,19 @@ defmodule VelorouteWeb.Live.VideoState do
       video: state,
       video_end_action: nil,
       video_hash: "",
-      video_vanity: "",
-      video_start: 0,
-      video_poster: nil,
+      video_length_ms: 0,
       video_parent: nil,
-      video_text: nil,
+      video_polyline: nil,
+      video_poster: nil,
+      video_recording_date: "",
+      video_recording_dates: [],
+      video_reversible: false,
       video_route_id: nil,
-      video_reversible: false
+      video_start: 0,
+      video_street_name: "",
+      video_street_names: [],
+      video_text: nil,
+      video_vanity: ""
     ]
   end
 

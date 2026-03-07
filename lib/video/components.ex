@@ -59,6 +59,11 @@ defmodule Video.Components do
     """
   end
 
+  def alternatives(assigns) do
+    Logger.error("#{__MODULE__}.alternatives: got invalid assigns: #{inspect(assigns)}")
+    ~H{}
+  end
+
   @variant_timeout_ms 10
   @spec variants_timeout(Video.Track.hash()) :: list()
 

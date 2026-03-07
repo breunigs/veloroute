@@ -184,11 +184,7 @@ defmodule VelorouteWeb.Live.Map do
   end
 
   defp highlight_route(socket) do
-    if socket.assigns.video_route_id do
-      assign(socket, highlight: socket.assigns.video_route_id)
-    else
-      socket
-    end
+    assign(socket, highlight: socket.assigns.video_route_id || socket.assigns[:highlight])
   end
 
   defp reset_layers_on_change(socket) do

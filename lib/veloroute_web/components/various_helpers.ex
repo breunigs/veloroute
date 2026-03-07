@@ -8,7 +8,7 @@ defmodule VelorouteWeb.VariousHelpers do
   attr :text, :string, required: true
   attr :rest, :global
 
-  def display_route(%{article: nil} = _assigns), do: nil
+  def display_route(%{article: nil} = assigns), do: ~H{}
 
   def display_route(%{article: ref, text: text} = assigns) do
     assigns =
