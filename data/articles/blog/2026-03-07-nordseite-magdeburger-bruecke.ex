@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.NordseiteMagdeburgerBruecke do
   def summary(),
     do: "1,5m schmaler Schutzstreifen soll durch 3,0m breiten Radfahrstreifen ersetzt werden."
 
-  def type(), do: :intent
+  def type(), do: :planned
 
   def tags(), do: ["radroute-3"]
 
@@ -21,13 +21,23 @@ defmodule Data.Article.Blog.NordseiteMagdeburgerBruecke do
 
   def point_of_interest(), do: %{lon: 10.0007732, lat: 53.5412438, zoom: 17}
 
+  def map_image do
+    {name(),
+     [
+       {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"},
+       {"HafenCity Hamburg GmbH", "https://www.hafencity.com/kontakt"}
+     ]}
+  end
+
   def text(assigns) do
     ~H"""
     <h4>Alter Zustand</h4>
-    <p>Auf der Brücke ist ein 1,5m breiter Schutzstreifen vorhanden. Dieser geht aus dem Radfahrstreifen in der Überseeallee hervor und wird in Richtung KFZ-Fahrstreifen verschwenkt.</p>
+    <p>Auf der Brücke ist ein 1,5m breiter <.ref>Schutzstreifen</.ref> vorhanden. Dieser geht aus dem Radfahrstreifen in der Überseeallee hervor und wird in Richtung KFZ-Fahrstreifen verschwenkt.</p>
 
     <.h4_planning ref={@ref} checked={@show_map_image}/>
-    <p>Laut Zeitungsberichten soll der Schutzstreifen durch einen 3,0m breiten Radfahrstreifen (zzgl. Markierung von 0,25m) ersetzt werden.</p>
+    <p>Der Schutzstreifen wird durch einen rot markierten, 3,0m breiten <.ref>Radfahrstreifen</.ref> ersetzt. Das Reißverschlussverfahren für den Autoverkehr erfolgt einige Meter bevor der Verschwenkung des Radfahrstreifen.</p>
+
+    <p>Auch der vorhandene Radfahrstreifen auf der Südseite der Magdeburger Brücke soll rot eingefärbt werden. Das kurze Stück Schutzstreifen nach der Brücke soll bleiben wie bisher.</p>
 
     <h4>Meinung</h4>
     <p>Endlich wird diese Gefahrenstelle entschärft. Ich sehe die Politik am Zug dafür zu sorgen, dass das nicht immer mehrere Jahre dauert. Betonschweine (<.a href="https://rebmann-beton.de/produkte/hamburger-betonschwein/" rel="nofollow">Fotos</.a>) schaffen in wenigen Tagen eine <.ref>Protected-Bike-Lane</.ref>. Dass das gut funktioniert, sieht man an Paris. Sicherheit zuerst, hübsch sobald die Verwaltung Zeit hat.</p>
