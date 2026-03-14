@@ -1,2 +1,12 @@
 rootProject.name = 'mlt-converter'
-includeBuild("/maplibre-tile-spec/java/mlt-core")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            from(files("/maplibre-tile-spec/java/gradle/libs.versions.toml"))
+        }
+    }
+}
+
+include(":mlt-core")
+project(":mlt-core").projectDir = file("/maplibre-tile-spec/java/mlt-core")

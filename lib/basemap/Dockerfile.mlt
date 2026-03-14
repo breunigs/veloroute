@@ -9,7 +9,7 @@ RUN apt-get update \
   wget \
   && rm -rf /var/lib/apt/lists/*
 
-ENV GRADLE_VERSION=9.2.1
+ENV GRADLE_VERSION=9.3.1
 ENV GRADLE_HOME=/gradle
 RUN wget --no-verbose --output-document /tmp/gradle.zip https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip \
   && mkdir ${GRADLE_HOME} \
@@ -18,7 +18,7 @@ RUN wget --no-verbose --output-document /tmp/gradle.zip https://services.gradle.
 ENV PATH=${GRADLE_HOME}/gradle-${GRADLE_VERSION}/bin:${PATH}
 ENV GRADLE_OPTS='-Dorg.gradle.daemon=false'
 
-ARG MLT_VERSION=01e16b0460cdf8689ab5a7b0113f364f18a3f19a
+ARG MLT_VERSION=82de11da8498e34071a7b253482d705ebd534256
 RUN \
   wget https://github.com/breunigs/maplibre-tile-spec/archive/${MLT_VERSION}.tar.gz -O maplibre-tile-spec.tar.gz && \
   tar zxf maplibre-tile-spec.tar.gz && rm maplibre-tile-spec.tar.gz && mv maplibre-tile-spec* /maplibre-tile-spec

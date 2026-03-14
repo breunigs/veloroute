@@ -11,8 +11,9 @@ import java.util.stream.Stream;
 import org.maplibre.mlt.converter.ConversionConfig;
 import org.maplibre.mlt.converter.FeatureTableOptimizations;
 import org.maplibre.mlt.converter.MltConverter;
+import org.maplibre.mlt.converter.mvt.ColumnMappingConfig;
 import org.maplibre.mlt.converter.mvt.MvtUtils;
-import org.maplibre.mlt.metadata.tileset.MltTilesetMetadata;
+import org.maplibre.mlt.metadata.tileset.MltMetadata;
 
 public class Converter {
   public static void main(String[] args) throws IOException {
@@ -54,7 +55,7 @@ public class Converter {
         var mvtTile = MvtUtils.decodeMvt(mvtData);
 
         var tilesetMetadata = MltConverter.createTilesetMetadata(
-            mvtTile, Map.of(), true);
+            mvtTile, new ColumnMappingConfig(), true);
 
         byte[] mltData = MltConverter.convertMvt(mvtTile, tilesetMetadata, config, null);
 

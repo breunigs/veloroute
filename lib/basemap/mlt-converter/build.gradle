@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation ':mlt-core'
+    implementation project(':mlt-core')
     implementation 'no.ecc.vectortile:java-vector-tile:1.3.22'
 }
 

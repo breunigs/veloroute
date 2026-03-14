@@ -55,7 +55,7 @@ defmodule Basemap.Tiles do
 
     # MLT converter is not production ready:
     # on vanilla: "Specified geometry type is not (yet) supported: GeometryCollection"
-    # maplibre-gl-js also complains about FastPfor not being implemented, even if disabled
+    # maplibre-gl-js also complains about "FastPFOR: invalid encodedByteLength=97 at offset=128 (encodedBytes.length=174991; expected a multiple of 4 bytes for an int32 big-endian word stream"
     # :ok =
     #   Util.Docker.build_and_run(
     #     @convert_container,
