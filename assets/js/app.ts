@@ -8,6 +8,7 @@ function pushEvent(event: string, payload: any) {
   if (!pushEventHandle) {
     // console.log("Queueing", event, "until mounted:", payload);
     pushEventQueued.push([event, payload]);
+    if (!isArchive) liveSocket.connect()
     return
   }
 
@@ -113,7 +114,7 @@ let liveSocket = new window.LiveSocket("/live", window.Socket, {
 // avoid unintentionally breaking archive.org
 const hostname = window.location.hostname;
 const isArchive = hostname.substring(hostname.length - 11) === "archive.org";
-if (!isArchive) liveSocket.connect()
+if (!isArchive) window.requestIdleCallback(() => liveSocket.connect())
 
 window.liveSocket = liveSocket;
 if (hostname === 'localhost') {

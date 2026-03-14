@@ -39,6 +39,7 @@
   <script type="text/javascript" defer src={~p"/assets/mbgl2.js"} fetchpriority="high"></script>
   <script type="text/javascript" defer
     src={~p"/assets/map.js"}
+    data-initial-highlight={@video_route_id}
     data-max-bounds={Settings.r(:bounds) |> Enum.map(&to_string/1) |> Enum.join(",")}
     data-initial={VelorouteWeb.VariousHelpers.to_string_center_zoom(@map_bounds)}
   ></script>

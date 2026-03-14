@@ -20,7 +20,7 @@ const fitBoundsOpt = {
 };
 
 
-let mapConfig = {}
+let mapConfig = { highlight: settings.initialHighlight }
 window.addEventListener("phx:map", e => {
   console.debug("updating map config", e.detail)
   Object.assign(mapConfig, e.detail)
@@ -443,8 +443,7 @@ window.addEventListener("phx:video_meta", e => {
   updateIndicatorPolyline(e.detail.polyline)
 });
 
-// keep in sync with settings.exs map_styles
-let highlightsAppliedToStyle = "Standard"
+let highlightsAppliedToStyle = null
 function styleChangedHandler() {
   // Applying the modifications on a partially loaded style might not work. We
   // don't always get an event with the style fully loaded, so retry this way.
