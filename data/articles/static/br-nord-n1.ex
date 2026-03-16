@@ -17,19 +17,23 @@ defmodule Data.Article.Static.BrNordN1 do
 
   def tracks(),
     do: [
-      # TODO: needs new videos around Hohenfelder Bucht
       %Video.Track{
-        renderer: 3,
+        renderer: 6,
         group: "n1",
         direction: :forward,
         from: "Lübeckertordamm",
         to: "Ochsenzoll",
         parent_ref: __MODULE__,
         text: "vom Lübeckertordamm zum Ochsenzoll",
-        historic: %{"e285f14bf69e8747161875b388dd867e" => ~d[2023-10]},
+        historic: %{
+          "792318d1dd0908e5c3c1052ce4575875" => ~d[2026-03],
+          "e285f14bf69e8747161875b388dd867e" => ~d[2023-10]
+        },
         videos: [
-          {"2023-10-25-brnord/GX016563", :start, :end},
-          {"2023-10-25-brnord/GX016564", :start, :end},
+          {"2025-12-30-hohenfelde/GX018713", :start, "00:00:27.194"},
+          {"2026-03-15-mitte/GX018781", "00:00:28.729", :end},
+          {"2026-03-15-mitte/GX018782", :start, "00:00:06.844"},
+          {"2023-10-25-brnord/GX016564", "00:00:13.294", :end},
           {"2023-10-25-brnord/GX016565", :start, :end},
           {"2023-10-25-brnord/GX016566", :start, :end},
           {"2023-10-25-brnord/GX016567", :start, :end},

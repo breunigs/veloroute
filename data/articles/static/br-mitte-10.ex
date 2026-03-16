@@ -17,19 +17,19 @@ defmodule Data.Article.Static.BrMitte10 do
 
   def tracks(),
     do: [
-      # TODO
-      # %Video.Track{
-      #   renderer: 6,
-      #   group: "m2",
-      #   direction: :forward,
-      #   from: "Am Inselpark",
-      #   to: "Kirchdorfer Straße",
-      #   parent_ref: __MODULE__,
-      #   text: "v",
-      #   historic: %{"" => ~d[2026-]},
-      #   videos: [
-      #   ]
-      # },
+      %Video.Track{
+        renderer: 6,
+        group: "m2",
+        direction: :forward,
+        from: "Am Inselpark",
+        to: "Kirchdorfer Straße",
+        parent_ref: __MODULE__,
+        text: "Neuenfelder Straße Richtung Kirchdorf",
+        historic: %{"2eff23f2e606349e0363268c0018ea6f" => ~d[2026-03]},
+        videos: [
+          {"2026-03-15-mitte/GX018789", :start, "00:00:58.253"}
+        ]
+      },
       %Video.Track{
         renderer: 6,
         group: "m2",
