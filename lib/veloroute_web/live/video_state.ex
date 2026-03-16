@@ -101,8 +101,11 @@ defmodule VelorouteWeb.Live.VideoState do
           Logger.debug("have new accurate position; updating #{near_dbg}")
           %{new_state | start: near}
 
-        params["autoplay"] == "true" ->
+        params["autoplay"] == "true" && new_state.forward != nil ->
           %{new_state | direction: :forward, start: nil}
+
+        params["autoplay"] == "true" ->
+          %{new_state | start: nil}
 
         article && article.tracks() != [] ->
           Logger.debug("have article with tracks, trying to start from article bbox #{near_dbg}")
