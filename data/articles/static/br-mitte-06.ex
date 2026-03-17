@@ -47,8 +47,7 @@ defmodule Data.Article.Static.BrMitte06 do
           {"2026-03-15-mitte/GX018785", "00:00:00.133", :end},
           {"2026-03-15-mitte/GX018786", :start, :end},
           {"2026-03-15-mitte/GX018787", :start, "00:01:28.187"}
-        ],
-        end_action: :reverse
+        ]
       }
     ]
 

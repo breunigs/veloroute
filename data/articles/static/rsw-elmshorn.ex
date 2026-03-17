@@ -93,6 +93,8 @@ defmodule Data.Article.Static.RSWElmshorn do
   def links(_assigns) do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643670"},
+      {"Zeitungsartikel zur Verkürzung des Schnellwegs bis Pinneberg", ~d[2026-03],
+       "https://www.shz.de/lokales/pinneberg-schenefeld/artikel/so-steht-es-um-die-fahrrad-autobahn-kreis-pinneberg-hamburg-50145844"},
       {"Probleme bei Umsetzung zwischen Halstenbek und Pinneberg", ~d[2025-05],
        "https://www.ndr.de/nachrichten/schleswig-holstein/Enttaeuschung-nach-Aus-fuer-Radschnellweg-zwischen-Elmshorn-und-Hamburg,regionnorderstedtnews2832.html"},
       {"offizielle Seite zu den Radschnellwegen",
