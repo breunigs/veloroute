@@ -9,6 +9,7 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
 
   def type(), do: :planned
   def start(), do: ~d[2026-09]
+  def stop(), do: ~d[2027-03]
 
   def tags(), do: ["radroute-concept-a", "FR8"]
 

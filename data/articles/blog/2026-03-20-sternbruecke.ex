@@ -8,6 +8,8 @@ defmodule Data.Article.Blog.Sternbruecke do
       "Verkehrsversuch nach Einhub der neuen Sternbrücke: Erstmals eigene Radwege, teilweise als Protected-Bike-Lane oder geteilte Busspur."
 
   def type(), do: :intent
+  def start(), do: ~d[2026Q3]
+  def stop(), do: ~d[2026Q3]
 
   def tags(), do: ["radroute-14"]
 

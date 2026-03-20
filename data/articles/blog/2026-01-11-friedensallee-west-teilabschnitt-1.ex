@@ -7,10 +7,10 @@ defmodule Data.Article.Blog.FriedensalleeWestTeilabschnitt1 do
     do:
       "Erstmals durchgängige Radinfra unter S-Bahrenfeld. Geplante Bezirksroute entlang der S-Bahn-Gleise erhält geradlinige Querung."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def start(), do: ~d[2026-03-10]
-  def stop(), do: ~d[2026Q4]
+  def stop(), do: ~d[2026-08-31]
 
   def tags(), do: ["radroute-7"]
 

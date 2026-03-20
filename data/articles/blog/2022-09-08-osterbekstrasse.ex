@@ -24,6 +24,9 @@ defmodule Data.Article.Blog.Osterbekstrasse do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand Januar 2026</h4>
+    <p>Der Umbau wurde wegen des „Parkplatzmoratoriums“ auf unbestimmte Zeit verschoben.</p>
+
     <h4>Alter Zustand</h4>
     <p>Die Freizeitroute führt über Kopfsteinpflaster. Gerade <.v bounds="10.018999,53.58067,10.02588,53.583537" lon={10.02042} lat={53.581521} dir="forward" ref={Freizeitroute2}>im Westteil</.v> ist durch die Falschparker die Situation unübersichtlich.</p>
 

@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
 
   def type(), do: :construction
   def start(), do: ~d[2026-01-12]
-  def stop(), do: ~d[2026-04-03]
+  def stop(), do: ~d[2026-05-15]
   def construction_site_id_hh(), do: [2_065_729]
 
   def tags(), do: ["br-eimsbuettel-sued"]

@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.EbertalleeSued do
       "Ad-Hoc Maßnahme: Die überbreite Fahrbahn soll in Radfahrstreifen und KFZ-Fahrspur aufgeteilt werden. Indirektes Linksabbiegen in den Kreuzungen."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-08]
-  def stop(), do: ~d[2026-12-31]
+  def start(), do: ~d[2026-07]
+  def stop(), do: ~d[2026-08]
 
   def tags(), do: ["radroute-7"]
 
