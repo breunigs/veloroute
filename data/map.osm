@@ -28213,6 +28213,17 @@
   <node id='-308744085' action='modify' lat='53.58727650883' lon='10.03283499599' />
   <node id='-308744086' action='modify' lat='53.58611740565' lon='10.02913354754' />
   <node id='-308744087' action='modify' lat='53.58541683337' lon='10.02678393245' />
+  <node id='-310425266' action='modify' lat='53.56171791188' lon='9.95355963171' />
+  <node id='-310425267' action='modify' lat='53.56162869731' lon='9.95354353845' />
+  <node id='-310425268' action='modify' lat='53.56095320948' lon='9.95611845911' />
+  <node id='-310425269' action='modify' lat='53.56049756773' lon='9.95831250608' />
+  <node id='-310425270' action='modify' lat='53.56044021388' lon='9.95848953187' />
+  <node id='-310425271' action='modify' lat='53.56054536255' lon='9.95856463373' />
+  <node id='-310425272' action='modify' lat='53.56092771916' lon='9.95666026533' />
+  <node id='-310425273' action='modify' lat='53.56103605291' lon='9.9567407316' />
+  <node id='-310425274' action='modify' lat='53.56129095474' lon='9.95537816942' />
+  <node id='-310425282' action='modify' lat='53.56144070886' lon='9.95393514097' />
+  <node id='-310425295' action='modify' lat='53.56151080634' lon='9.95399951398' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -79595,6 +79606,22 @@
     <nd ref='-308744087' />
     <nd ref='-308744080' />
     <tag k='name' v='2026-03-17-jarrestrasse' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21200415' action='modify'>
+    <nd ref='-310425266' />
+    <nd ref='-310425267' />
+    <nd ref='-310425295' />
+    <nd ref='-310425282' />
+    <nd ref='-310425268' />
+    <nd ref='-310425269' />
+    <nd ref='-310425270' />
+    <nd ref='-310425271' />
+    <nd ref='-310425272' />
+    <nd ref='-310425273' />
+    <nd ref='-310425274' />
+    <nd ref='-310425266' />
+    <tag k='name' v='2026-03-20-sternbruecke' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
