@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   use Tesla
   require Logger
 
-  @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute Kenntnisnahmeverschickung schutzstreifen)
+  @filter_keywords ~w(velo straße straßenbaumaßnahme radverkehr fahrrad verschickung baustelle twiete chaussee allee bezirksroute schutzstreifen)
   # do not report all Sitzungen just because they have a location with an address
   @filter_keywords_sitzungen_ignore ~w(straße)
 
@@ -18,8 +18,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   plug Tesla.Middleware.Retry,
     delay: 10_000,
-    max_retries: 3,
-    max_delay: 60_000
+    max_retries: 1,
+    max_delay: 30_000
 
   adapter(Tesla.Adapter.Hackney,
     ssl_options: [verify_fun: {fn _cert, _valid, acc -> {:valid, acc} end, []}]
@@ -76,8 +76,11 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     from = "#{date.day}.#{date.month}.#{date.year}"
     de_date_range = "#{from}-#{today()}"
 
-    Stream.flat_map(@filter_keywords, fn keyword ->
-      query(district, keyword, de_date_range)
+    # Logger.debug("checking #{district}")
+
+    Stream.flat_map([:list | @filter_keywords], fn
+      :list -> list(district)
+      keyword -> query(district, keyword, de_date_range)
     end)
     |> Stream.uniq_by(fn %{"type" => type, "id" => id} -> {type, id} end)
   end
@@ -88,18 +91,14 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
     params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}
 
-    # Logger.debug("Searching #{district} for #{keyword} within #{de_date_range}")
+    # Logger.debug("Searching #{district} within #{de_date_range} for #{keyword}")
+
     with {:ok, %{body: body}} <- post(url, params) do
       html = Floki.parse_fragment!(body)
 
       html
       |> Floki.find(~s|form input[type="hidden"][name][value]|)
-      |> Enum.map(fn elem ->
-        type = hd(Floki.attribute(elem, "name"))
-        id = hd(Floki.attribute(elem, "value"))
-        desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
-        %{"district" => district, "type" => type, "id" => id, "desc" => desc}
-      end)
+      |> Enum.map(&link_data(district, html, &1))
     else
       error ->
         Logger.warning("failed query #{district} keyword=#{keyword}: #{inspect(error)}")
@@ -107,9 +106,51 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     end
   end
 
+  defp list(district) do
+    url = "https://sitzungsdienst-#{district}.hamburg.de//bi/vo040.asp"
+
+    # Logger.debug("Listing recent #{district}")
+
+    with {:ok, %{body: body}} <- get(url) do
+      html = Floki.parse_fragment!(body)
+
+      html
+      |> Floki.find(~s|tbody form input[type="hidden"][name][value]|)
+      |> Enum.map(&link_data(district, html, &1))
+      |> Enum.filter(fn %{"desc" => desc} ->
+        desc = String.downcase(desc)
+        Enum.any?(@filter_keywords, fn keyword -> String.contains?(desc, keyword) end)
+      end)
+    else
+      error ->
+        Logger.warning("failed list #{district}: #{inspect(error)}")
+        []
+    end
+  end
+
+  defp link_data(district, html, form_elem) do
+    type = hd(Floki.attribute(form_elem, "name"))
+    id = hd(Floki.attribute(form_elem, "value"))
+    desc = Floki.find(html, ~s|a[href$="#{type}=#{id}"]|) |> Floki.text() |> String.trim()
+    desc = normalize_text(desc)
+    %{"district" => district, "type" => type, "id" => id, "desc" => desc}
+  end
+
   defp today() do
     t = Date.utc_today()
     "#{t.day}.#{t.month}.#{t.year}"
+  end
+
+  defp normalize_text(binary) do
+    binary =
+      if String.valid?(binary),
+        do: binary,
+        else: :unicode.characters_to_binary(binary, :latin1)
+
+    # fix mojibake from utf8 chars in latin1 documents
+    binary = String.replace(binary, "Â\u00A0", " ")
+
+    binary
   end
 
   @typep shown :: %{Date.t() => [binary()]}
