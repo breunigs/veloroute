@@ -99,6 +99,12 @@ defmodule Video.Metadata do
     end
   end
 
+  def length_ms(input, :nocache) do
+    with {:ok, %{duration: dur_s}} <- run(input) do
+      {:ok, round(dur_s * 1000)}
+    end
+  end
+
   @spec can_use?(binary) :: boolean()
   def can_use?(codec) do
     start()

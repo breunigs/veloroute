@@ -52,19 +52,19 @@ defmodule Video.Renderer do
     |> List.flatten()
   end
 
-  @join_surround_ms 1000
   @spec join_preview_cmds(
           [
             {video1 :: binary(), video2 :: binary(), video1_stop :: non_neg_integer(),
              video2_start :: non_neg_integer()}
           ],
+          join_surround_seconds :: float(),
           fade_duration_seconds :: float(),
           temp_dir :: binary(),
           blur :: boolean()
         ) ::
           {preview_video_fifo :: binary(), [temporary_fifos :: binary()],
            [commands_to_run_in_parallel :: binary()]}
-  def join_preview_cmds(timestamps, fade_duration, dir, blur) do
+  def join_preview_cmds(timestamps, surround_seconds, fade_duration, dir, blur) do
     {width, height, stack_filter} = stacker(length(timestamps))
 
     ffmpeg = Util.low_priority_cmd_prefix() ++ ["ffmpeg", "-hide_banner", "-loglevel", "warning"]
@@ -73,8 +73,8 @@ defmodule Video.Renderer do
       timestamps
       |> Enum.with_index()
       |> Enum.map(fn {{v1, v2, stop1, start2}, idx} ->
-        start1 = max(0, stop1 - @join_surround_ms)
-        stop2 = start2 + @join_surround_ms
+        start1 = max(0, stop1 - round(surround_seconds * 1000))
+        stop2 = start2 + round(surround_seconds * 1000)
 
         videos = [
           {v1, Video.Timestamp.from_milliseconds(start1),

@@ -69,10 +69,16 @@ defmodule Joiner.UI do
   def read_valid_input(max) do
     Owl.LiveScreen.await_render()
 
+    start = DateTime.utc_now()
+
     val =
       Owl.IO.input(optional: true, label: "Select which join to use")
       |> Kernel.||("")
       |> String.trim()
+
+    stop = DateTime.utc_now()
+    # something is fishy
+    if DateTime.diff(stop, start, :millisecond) < 1000, do: Process.sleep(2000)
 
     static = %{
       "p" => :preview,

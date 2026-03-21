@@ -13,6 +13,7 @@ defmodule Joiner.Preview do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 
+  @surround_duration_s 1.0
   @spec start_render!([Joiner.Segment.t()], Joiner.Options.t()) :: handle()
   def start_render!(segments, opts) do
     dir = Temp.mkdir!(%{prefix: "veloroute_join_preview"})
@@ -23,7 +24,7 @@ defmodule Joiner.Preview do
         {Joiner.Segment.video_path(seg, :from), Joiner.Segment.video_path(seg, :to),
          Joiner.Segment.stop_ms(seg, :from), Joiner.Segment.start_ms(seg, :to)}
       end)
-      |> Video.Renderer.join_preview_cmds(fade_s, dir, opts.preview_blur)
+      |> Video.Renderer.join_preview_cmds(@surround_duration_s, fade_s, dir, opts.preview_blur)
       |> create_fifos!()
 
     Task.Supervisor.start_child(
@@ -33,6 +34,21 @@ defmodule Joiner.Preview do
     )
 
     {out_file, dir}
+  end
+
+  def wait_until_rendered!({out_file, _dir} = handle, opts) do
+    expected_duration_s = @surround_duration_s + Joiner.Options.fade_duration_s(opts)
+    wait_until_duration_ms = 0.9 * 1000 * expected_duration_s
+
+    with {:ok, dur} <- Video.Metadata.length_ms(out_file, :nocache),
+         true <- dur > wait_until_duration_ms do
+      :ok
+    else
+      _ ->
+        Process.sleep(1000)
+        # Logger.debug("#{out_file} duration shorter than desired #{wait_until_duration_ms}")
+        wait_until_rendered!(handle, opts)
+    end
   end
 
   @spec start_player!(handle(), binary(), binary()) :: any()

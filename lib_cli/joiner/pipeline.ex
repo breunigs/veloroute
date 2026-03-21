@@ -90,6 +90,9 @@ defmodule Joiner.Pipeline do
         }
 
   defp select_candidate(candidates, preview, opts) do
+    # Logger.debug("waiting for video to render")
+    Joiner.Preview.wait_until_rendered!(preview, opts)
+
     {thead, tbody, tfoot} =
       candidates
       |> Enum.map(&Joiner.Segment.table_data(&1))
