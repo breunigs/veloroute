@@ -11,46 +11,7 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
   def start(), do: ~d[2025-08-04]
   def stop(), do: ~d[2026-04-26]
 
-  def tags(), do: ["radroute-3", "radroute-2"]
-
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 6,
-        group: "1",
-        direction: :forward,
-        from: "Rödingsmarkt",
-        to: "Deichtorplatz",
-        parent_ref: __MODULE__,
-        text: "Willy-Brandt-Straße nach Osten",
-        historic: %{
-          "bac66065e31e8f79c98c7aac8c05b583" => ~d[2024-01]
-        },
-        videos: [
-          {"2024-01-27-bergedorf/GX016739", :start, :end},
-          {"2024-01-27-bergedorf/GX016740", :start, "00:00:04.538"}
-        ]
-      },
-      %Video.Track{
-        renderer: 6,
-        group: "1",
-        direction: :backward,
-        from: "Deichtorplatz",
-        to: "Rödingsmarkt",
-        parent_ref: __MODULE__,
-        text: "Willy-Brandt-Straße nach Westen",
-        historic: %{
-          "325a9aa367f287f73dffca00f2d4d136" => ~d[2021-04]
-        },
-        videos: [
-          {"2021-04-17-freizeitrouten-6und-7/GX011314", "00:00:03.337", :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011315", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011316", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011317", :start, :end},
-          {"2021-04-17-freizeitrouten-6und-7/GX011318", :start, :end}
-        ]
-      }
-    ]
+  def tags(), do: ["br-mitte-m1", "radroute-3", "radroute-2"]
 
   def map_image do
     {name(),

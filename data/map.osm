@@ -27666,7 +27666,9 @@
   <node id='-298671217' action='modify' lat='53.55849172819' lon='9.97845589846' />
   <node id='-298671218' action='modify' lat='53.5583148785' lon='9.97814476222' />
   <node id='-298671219' action='modify' lat='53.55807748452' lon='9.97770487994' />
-  <node id='-298671220' action='modify' lat='53.55790382121' lon='9.97735619009' />
+  <node id='-298671220' action='modify' lat='53.55790382121' lon='9.97735619009'>
+    <tag k='target' v='Messehallen' />
+  </node>
   <node id='-298671221' action='modify' lat='53.5570593838' lon='9.97617333859' />
   <node id='-298671222' action='modify' lat='53.55729359693' lon='9.97647642821' />
   <node id='-298671223' action='modify' lat='53.55746248451' lon='9.97685193747' />
@@ -94806,7 +94808,7 @@
     <member type='way' ref='-21151984' role='' />
     <member type='way' ref='-21152053' role='' />
     <member type='way' ref='-21152044' role='' />
-    <tag k='_name' v='br-mitte-01' />
+    <tag k='name' v='br-mitte-01' />
   </relation>
   <relation id='-108630' action='modify'>
     <member type='way' ref='-21152618' role='forward' />
@@ -94903,7 +94905,7 @@
     <member type='way' ref='-20435225' role='forward' />
     <member type='way' ref='-20435261' role='forward' />
     <member type='way' ref='-21152896' role='forward' />
-    <tag k='_name' v='br-mitte-03' />
+    <tag k='name' v='br-mitte-03' />
   </relation>
   <relation id='-108748' action='modify'>
     <member type='way' ref='-21153221' role='' />
@@ -94935,7 +94937,7 @@
     <member type='way' ref='-20435164' role='forward' />
     <member type='way' ref='-20435841' role='forward' />
     <member type='way' ref='-20667584' role='forward' />
-    <tag k='_name' v='br-mitte-04' />
+    <tag k='name' v='br-mitte-04' />
   </relation>
   <relation id='-108769' action='modify'>
     <member type='way' ref='-21153234' role='' />

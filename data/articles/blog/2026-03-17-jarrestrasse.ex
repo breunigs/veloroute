@@ -46,6 +46,8 @@ defmodule Data.Article.Blog.Jarrestrasse do
 
   def links(_assigns) do
     [
+      {"Stellungnahme ADFC", ~d[2026-03],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016391"},
       {"Erläuterungen und Karten", ~d[2026-03],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016358"}
     ]

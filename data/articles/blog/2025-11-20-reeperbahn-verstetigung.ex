@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.ReeperbahnVerstetigung do
     do:
       "Erprobte Radfahrstreifen bleiben und werden dauerhaft so eingerichtet. Es gibt nur kleinere Anpassungen."
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def tags(), do: ["radroute-1"]
 

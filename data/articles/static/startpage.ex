@@ -130,7 +130,10 @@ defmodule Data.Article.Static.Startpage do
         <th translate="no">Hamburg-Mitte</th>
         <td>
           <span>
+            <.icon role="listitem" autoplay={true} ref={BrMitte01}>M1</.icon>
             <.icon role="listitem" autoplay={true} ref={BrMitte02}>M2</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrMitte03}>M3</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrMitte04}>M4</.icon>
             <.icon role="listitem" autoplay={true} ref={BrMitte05}>M5</.icon>
           </span>
           <span>
