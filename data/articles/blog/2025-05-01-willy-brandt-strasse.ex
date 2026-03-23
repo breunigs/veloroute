@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
   def start(), do: ~d[2025-08-04]
   def stop(), do: ~d[2026-04-26]
 
-  def tags(), do: ["br-mitte-m1", "radroute-3", "radroute-2"]
+  def tags(), do: ["br-mitte-01", "radroute-3", "radroute-2"]
 
   def map_image do
     {name(),
