@@ -28291,6 +28291,32 @@
   <node id='-313993145' action='modify' lat='53.55890278136' lon='9.99355673522' />
   <node id='-313993146' action='modify' lat='53.55900474742' lon='9.99361306161' />
   <node id='-313993147' action='modify' lat='53.5589760695' lon='9.9937900874' />
+  <node id='-315690677' action='modify' lat='53.55547881435' lon='9.93437646747' />
+  <node id='-315690678' action='modify' lat='53.55616076289' lon='9.93402241588' />
+  <node id='-315690679' action='modify' lat='53.55726970247' lon='9.93341087222' />
+  <node id='-315690680' action='modify' lat='53.55741628426' lon='9.93311046481' />
+  <node id='-315690681' action='modify' lat='53.5574417767' lon='9.93264912486' />
+  <node id='-315690682' action='modify' lat='53.55732706063' lon='9.93220924258' />
+  <node id='-315690683' action='modify' lat='53.55622449584' lon='9.92811082721' />
+  <node id='-315690684' action='modify' lat='53.5550199269' lon='9.92576121211' />
+  <node id='-315690685' action='modify' lat='53.55469487861' lon='9.92499946475' />
+  <node id='-315690686' action='modify' lat='53.55431883925' lon='9.92226361156' />
+  <node id='-315690687' action='modify' lat='53.5540638954' lon='9.91955994487' />
+  <node id='-315690688' action='modify' lat='53.55380257636' lon='9.91963504672' />
+  <node id='-315690689' action='modify' lat='53.5539555438' lon='9.92122291446' />
+  <node id='-315690690' action='modify' lat='53.55405114817' lon='9.92209195018' />
+  <node id='-315690691' action='modify' lat='53.5542678506' lon='9.92385147929' />
+  <node id='-315690692' action='modify' lat='53.55440169566' lon='9.92469905734' />
+  <node id='-315690693' action='modify' lat='53.55484784283' lon='9.92597578883' />
+  <node id='-315690694' action='modify' lat='53.55535134611' lon='9.92697357059' />
+  <node id='-315690695' action='modify' lat='53.55610977647' lon='9.92851852298' />
+  <node id='-315690696' action='modify' lat='53.55725695621' lon='9.93272422671' />
+  <node id='-315690697' action='modify' lat='53.55724420993' lon='9.93290661693' />
+  <node id='-315690698' action='modify' lat='53.55712312017' lon='9.93314265132' />
+  <node id='-315690699' action='modify' lat='53.55684907364' lon='9.93333577037' />
+  <node id='-315690700' action='modify' lat='53.55582297667' lon='9.93372200847' />
+  <node id='-315690701' action='modify' lat='53.55558716205' lon='9.93395804286' />
+  <node id='-315690702' action='modify' lat='53.5554278271' lon='9.93414043307' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -79769,6 +79795,37 @@
     <nd ref='-313993147' />
     <nd ref='-313993125' />
     <tag k='name' v='2026-03-23-alsterufer-suedende' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21225290' action='modify'>
+    <nd ref='-315690677' />
+    <nd ref='-315690678' />
+    <nd ref='-315690679' />
+    <nd ref='-315690680' />
+    <nd ref='-315690681' />
+    <nd ref='-315690682' />
+    <nd ref='-315690683' />
+    <nd ref='-315690684' />
+    <nd ref='-315690685' />
+    <nd ref='-315690686' />
+    <nd ref='-315690687' />
+    <nd ref='-315690688' />
+    <nd ref='-315690689' />
+    <nd ref='-315690690' />
+    <nd ref='-315690691' />
+    <nd ref='-315690692' />
+    <nd ref='-315690693' />
+    <nd ref='-315690694' />
+    <nd ref='-315690695' />
+    <nd ref='-315690696' />
+    <nd ref='-315690697' />
+    <nd ref='-315690698' />
+    <nd ref='-315690699' />
+    <nd ref='-315690700' />
+    <nd ref='-315690701' />
+    <nd ref='-315690702' />
+    <nd ref='-315690677' />
+    <tag k='name' v='2026-03-26-barnerstrasse-behringstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>

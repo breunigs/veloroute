@@ -26,12 +26,14 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-03],
+       "https://lsbg.hamburg.de/resource/blob/1158628/a785fc136d89a40d1e91b7129ef295cb/zob-harburg-4-ba-anliegerinformation-februar-2026-data.pdf"},
       {"Artikel der Hochbahn zum Baufortschritt", ~d[2025-11],
        "https://dialog.hochbahn.de/allgemein/zob-harburg-der-neubau-geht-in-die-naechste-runde/"},
       {"2. Entwurf, nördlicher Teil, Lagepläne und Präsentation", ~d[2025-11],
        "https://fragdenstaat.de/anfrage/doppelknoten-am-zob-harburg/#nachricht-1058297"},
-      {"Baustelleninfo", ~d[2024-12],
-       "https://web.archive.org/web/20250118130325/https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
+      # {"Baustelleninfo", ~d[2024-12],
+      #  "https://web.archive.org/web/20250118130325/https://lsbg.hamburg.de/resource/blob/784454/fda32c7599b7a6f6f5ba86c681c806bf/hannoversche-strasse-zob-harburg-anliegerinformation-juni-2024-data.pdf"},
       # {"Baustelleninfo", "Februar 2024",
       #  "https://lsbg.hamburg.de/resource/blob/784454/9cf3dba5a806f6250ceab12441ede066/hannoversche-strasse-zob-harburg-anliegerinformation-juli-2023-data.pdf"},
       {"Erläuterungsbericht", "2022",
