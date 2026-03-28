@@ -84,15 +84,20 @@ defmodule Video.Source do
 
   def timed_points_with_gpx(%__MODULE__{} = self) do
     with line when is_list(line) <- parse_gpx(self) do
-      start_time = hd(line).time
+      start_time = hd(line).gps_time
 
       Enum.map(line, fn point ->
+        time_offset_ms =
+          if point.video_time,
+            do: round(point.video_time * 1000),
+            else: NaiveDateTime.diff(point.gps_time, start_time, :millisecond)
+
         %Video.TimedPointWithGPX{
-          time_offset_ms: NaiveDateTime.diff(point.time, start_time, :millisecond),
+          time_offset_ms: time_offset_ms,
           lat: point.lat,
           lon: point.lon,
           gpx_ele: point.ele,
-          gpx_time: point.time
+          gpx_time: point.gps_time
         }
       end)
       |> assert_monotonic_increase(self)
@@ -170,7 +175,13 @@ defmodule Video.Source do
     line
   end
 
-  @typep gpx_point :: %{lat: float(), lon: float(), time: NaiveDateTime.t(), ele: float() | nil}
+  @typep gpx_point :: %{
+           lat: float(),
+           lon: float(),
+           gps_time: NaiveDateTime.t(),
+           video_time: float() | nil,
+           ele: float() | nil
+         }
   @spec parse_gpx(t()) :: [gpx_point] | {:error, binary()}
   defp parse_gpx(%__MODULE__{source: source, available_gpx: true}) do
     gpx_path = Video.Path.gpx(source)
@@ -197,6 +208,8 @@ defmodule Video.Source do
         name: ~x"./metadata/name/text()"s,
         desc: ~x"./metadata/desc/text()"s,
         speedup: ~x"./metadata/speedup/text()"s,
+        video_frame_rate: ~x"./metadata/videoFrameRate/text()"s,
+        media_create_time: ~x"./metadata/mediaCreateTime/text()"s,
         points: ~x"//trkseg/trkpt"l
       )
 
@@ -206,8 +219,9 @@ defmodule Video.Source do
         %{
           lat: trkpt |> xpath(~x"./@lat"f),
           lon: trkpt |> xpath(~x"./@lon"f),
-          time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date(),
-          ele: trkpt |> xpath(~x"./ele/text()"s) |> parse_gpx_ele()
+          gps_time: trkpt |> xpath(~x"./time/text()"s) |> parse_gpx_date(),
+          ele: trkpt |> xpath(~x"./ele/text()"s) |> parse_gpx_float(),
+          video_time: trkpt |> xpath(~x"./videoTime/text()"s) |> parse_gpx_float()
         }
       end)
       |> Enum.reduce_while([], fn
@@ -220,7 +234,7 @@ defmodule Video.Source do
           {:cont, [next]}
 
         next, [prev | _rest] = list ->
-          if NaiveDateTime.compare(next.time, prev.time) == :lt,
+          if NaiveDateTime.compare(next.gps_time, prev.gps_time) == :lt,
             do: {:halt, list},
             else: {:cont, [next | list]}
       end)
@@ -232,29 +246,29 @@ defmodule Video.Source do
       {video_dur_s, ""} = Float.parse(dur_str)
       {speedup, ""} = Integer.parse(parsed.speedup)
       head = hd(points)
-      start_time = head.time
+      start_time = head.gps_time
 
-      # make timestamps diff be in video time, instead of real time. This is
+      # make gps timestamps diff be in video time, instead of real time. This is
       # because the old extractor was in video time.
       points =
         Enum.map(points, fn point ->
-          dur_real_time = NaiveDateTime.diff(point.time, start_time, :nanosecond)
+          dur_real_time = NaiveDateTime.diff(point.gps_time, start_time, :nanosecond)
           video_time = NaiveDateTime.add(start_time, round(dur_real_time / speedup), :nanosecond)
-          %{point | time: video_time}
+          %{point | gps_time: video_time}
         end)
 
       # ExifTool parsing has an offset for some reason. The GPS duration is
       # usually longer than the video duration, and cutting off this extra time
       # at the start fixes the offset (determined experimentally.)
-      gps_start = hd(points).time
-      gps_stop = hd(points_rev).time
+      gps_start = hd(points).gps_time
+      gps_stop = hd(points_rev).gps_time
       gps_dur_s = NaiveDateTime.diff(gps_stop, gps_start, :millisecond) / 1000.0
       offset_ms = round((gps_dur_s - video_dur_s * speedup) * 1000)
 
       if offset_ms > 0 do
         new_time = NaiveDateTime.add(head.time, offset_ms, :millisecond)
-        new_head = %{head | time: new_time}
-        new_tail = Enum.drop_while(tl(points), &NaiveDateTime.before?(&1.time, new_time))
+        new_head = %{head | gps_time: new_time}
+        new_tail = Enum.drop_while(tl(points), &NaiveDateTime.before?(&1.gps_time, new_time))
         [new_head | new_tail]
       else
         points
@@ -280,8 +294,8 @@ defmodule Video.Source do
     parsed
   end
 
-  @spec parse_gpx_ele(binary()) :: float | nil
-  defp parse_gpx_ele(ele) do
+  @spec parse_gpx_float(binary()) :: float | nil
+  defp parse_gpx_float(ele) do
     case Float.parse(ele) do
       {float, ""} -> float
       _other -> nil

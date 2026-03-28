@@ -12,13 +12,16 @@
 #[HEAD]  <desc>$duration# sec runtime @ $rate# real time</desc>
 #[HEAD]  <author>$model @ $firmwareversion</author>
 #[HEAD]  <speedup>${rate#;s/[^0-9.]//g}</speedup>
+#[HEAD]  <videoFrameRate>${GoPro:VideoFrameRate; s/ /\//}</videoFrameRate>
+#[HEAD]  <mediaCreateTime>${CreateDate#;my ($ss)=/\.\d+/g;DateFmt("%Y-%m-%dT%H:%M:%SZ");s/Z/${ss}Z/ if $ss}</mediaCreateTime>
 #[HEAD]</metadata>
 #[HEAD]<trk>
 #[HEAD]<trkseg>
-#[IF] $gpslatitude $gpslongitude $gpsdatetime
+#[IF] $gpslatitude $gpslongitude $gpsdatetime ${GPSHPositioningError;$_ = defined $_ ? ($_ < 20 ? $_ : undef) : 'absent'} ${GPSMeasureMode;$_ = ($_ == 3) ? $_ : undef}
 #[BODY]<trkpt lat="$gpslatitude#" lon="$gpslongitude#">
 #[BODY]  <time>${gpsdatetime#;my ($ss)=/\.\d+/g;DateFmt("%Y-%m-%dT%H:%M:%SZ");s/Z/${ss}Z/ if $ss}</time>
 #[BODY]  <ele>$gpsaltitude#</ele>
+#[BODY]  <videoTime>${SampleTime}</videoTime>
 #[BODY]  <hdop>$GPSHPositioningError#</hdop>
 #[BODY]  <dop>$GPSDOP#</dop>
 #[BODY]  <accel z="${accelerometer;$_=(split ' ')[0]}" x="${accelerometer;$_=(split ' ')[1]}" y="${accelerometer;$_=(split ' ')[2]}"/>
