@@ -539,7 +539,7 @@ defmodule VelorouteWeb.FrameLive do
     if art, do: art.path(), else: "/"
   end
 
-  defp alternate(nil, _lang), do: %{}
+  # defp alternate(nil, _lang), do: %{}
 
   defp alternate(art, lang) when is_module(art) do
     art.languages()

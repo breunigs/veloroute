@@ -1,6 +1,5 @@
 defmodule Joiner.FfmpegMetrics do
   @type metric :: :psnr | :ssim | :xpsnr
-  require Logger
 
   @doc """
   Calculates the metric for every frame combination of the given videos. The

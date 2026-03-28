@@ -207,8 +207,8 @@ WORKDIR /workdir
 ARG RENDER_GID
 ARG GID
 ARG UID
-RUN addgroup --gid ${RENDER_GID} render && \
-  addgroup --gid ${GID} dummy && \
+RUN groupadd --gid ${RENDER_GID} render && \
+  groupadd --gid ${GID} dummy && \
   useradd -s /bin/bash -G render,video -g ${GID} -u ${UID} dummy
 USER dummy
 

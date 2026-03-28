@@ -1,4 +1,6 @@
 defmodule Search.Meilisearch.Exe do
+  require Logger
+
   os =
     case :os.type() do
       {_, :linux} -> :linux
@@ -14,7 +16,7 @@ defmodule Search.Meilisearch.Exe do
       "aarch64" <> _ -> :aarch64
     end
 
-  @version "v1.29.0"
+  @version "v1.40.0"
   filename = "meilisearch-#{os}-#{arch}"
   @url "https://github.com/meilisearch/meilisearch/releases/download/#{@version}/#{filename}"
   @exe "#{filename}-#{@version}"
@@ -25,6 +27,7 @@ defmodule Search.Meilisearch.Exe do
     if File.exists?(path) do
       :ok
     else
+      Logger.debug("Downloading Meilisearch from #{@url}")
       :ok = Util.Download.to_file(@url, path)
       :ok = File.chmod(path, 0o555)
       :ok

@@ -1,5 +1,4 @@
 defmodule Search.Meilisearch.Nominatim do
-  require Logger
   @behaviour Search.Meilisearch.Behaviour
 
   @impl true

@@ -38,13 +38,12 @@ ARG GID=1000
 ENV MIX_HOME=/mix
 RUN mkdir /mix && chmod og+rw /mix
 
-RUN addgroup --gid $GID fakeuser && \
-  adduser \
-  --disabled-password \
-  --gecos "" \
-  --ingroup fakeuser \
-  --home /build \
-  --uid $UID \
+RUN groupadd --gid $GID fakeuser && \
+  useradd \
+  -c "" \
+  -g fakeuser \
+  -d /build \
+  -u $UID \
   fakeuser
 
 USER $UID:$GID

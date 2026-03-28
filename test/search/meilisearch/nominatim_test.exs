@@ -1,5 +1,4 @@
 defmodule Search.Meilisearch.NominatimTest do
-  require Guards
   use ExUnit.Case, async: true
 
   test "merged results by wikidata number" do

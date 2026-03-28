@@ -108,7 +108,7 @@ defmodule Joiner.OpenAIClip do
            Util.Cmd2.exec(cmd, stdout: <<>>, stderr: "", slow_warn_message: false),
          {_, 0} <- {:remaining_bytes, rem(byte_size(stdout), img_bytes)} do
       stacked =
-        for <<chunk::size(img_bytes)-binary <- stdout>> do
+        for <<chunk::size(^img_bytes)-binary <- stdout>> do
           chunk
           |> Nx.from_binary(:s8)
           |> Nx.reshape(

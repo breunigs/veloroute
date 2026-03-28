@@ -1,7 +1,5 @@
 defmodule Mix.Tasks.Velo.Videos.GuessMerges do
   use Mix.Task
-  # import Guards
-  require Logger
   @requirements ["app.start"]
 
   @shortdoc "Automatically find good merge points for given videos"

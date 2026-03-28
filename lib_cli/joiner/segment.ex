@@ -9,8 +9,6 @@ defmodule Joiner.Segment do
   @enforce_keys [:from, :to, :duration_ms, :metrics]
   defstruct @enforce_keys
 
-  require Logger
-
   def new(from, to) when is_binary(from) do
     with {:ok, from} <- Joiner.Video.load(from) do
       new(from, to)

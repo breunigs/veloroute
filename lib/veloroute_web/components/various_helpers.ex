@@ -1,6 +1,5 @@
 defmodule VelorouteWeb.VariousHelpers do
   use VelorouteWeb, :verified_routes
-  require Logger
   import Guards
   use Phoenix.Component
 

@@ -95,8 +95,6 @@ defmodule Data.RoughDate do
   def short(%__MODULE__{month: m, day: d}, lang),
     do: "#{day(d, lang)} #{Enum.at(@months[{:short, lang}], m)}"
 
-  def short(other, lang), do: to_str(other, lang)
-
   def without_day(%__MODULE__{} = t, lang), do: to_str(%{t | day: nil}, lang)
 
   def compare(%__MODULE__{} = left, %__MODULE__{} = right) do

@@ -1,7 +1,6 @@
 defmodule Article.Renderer do
   use Phoenix.Component
   import Guards
-  require Logger
 
   @spec render(map()) :: Phoenix.LiveView.Rendered.t()
   attr :ref, :atom, required: true
@@ -24,12 +23,15 @@ defmodule Article.Renderer do
       assign(assigns, %{
         body: body,
         insert_h3: !has_header?(body) && has_title,
-        image_url: if(art.microdata?(), do: Article.Decorators.start_image_path(art))
+        image_url: if(art.microdata?(), do: Article.Decorators.start_image_path(art)),
+        microdata_wrapper: art.microdata(:wrapper),
+        microdata_title: art.microdata(:title),
+        title: art.title()
       })
 
     ~H"""
-      <article {@ref.microdata(:wrapper)}>
-        <h3 {@ref.microdata(:title)} :if={@insert_h3}><%= @ref.title() %></h3>
+      <article {@microdata_wrapper}>
+        <h3 {@microdata_title} :if={@insert_h3}><%= @title %></h3>
         <Components.TagHelpers.construction_duration_header ref={@ref}/>
 
         <%= @body %>

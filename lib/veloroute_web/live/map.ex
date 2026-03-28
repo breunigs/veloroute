@@ -60,7 +60,7 @@ defmodule VelorouteWeb.Live.Map do
     assign(socket, :styles, styles)
   end
 
-  @spec render(%{:styles => any, optional(any) => any}) :: Phoenix.LiveView.Rendered.t()
+  @spec render(%{:styles => any, optional(any) => any}) :: any()
   def render(assigns) do
     assigns = assign_active_style_id(assigns)
 

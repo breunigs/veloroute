@@ -47,7 +47,7 @@ defmodule Article do
   @callback tracks() :: [Video.Track.t()]
   @callback point_of_interest() :: %{lat: float(), lon: float(), zoom: non_neg_integer()} | nil
 
-  @callback text(assigns()) :: Phoenix.LiveView.Rendered.t()
+  @callback text(assigns()) :: any()
   @callback links(assigns()) :: [link()]
 
   @type attribution :: {name :: binary(), link :: binary()}

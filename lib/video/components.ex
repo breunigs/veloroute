@@ -34,7 +34,7 @@ defmodule Video.Components do
 
   attr :hash, :string, required: true
   attr :start, :integer, required: true
-  @spec alternatives(map) :: Phoenix.LiveView.Rendered.t()
+
   def alternatives(%{hash: hash, start: start} = assigns)
       when valid_hash(hash) and is_integer(start) do
     variants = variants_timeout(hash)
