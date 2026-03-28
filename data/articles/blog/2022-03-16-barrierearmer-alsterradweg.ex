@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.BarrierearmerAlsterradweg do
 
   def links(_assigns) do
     [
+      {"Zeitungsartikel Umbau Verzögerung", ~d[2026-03],
+       "https://www.abendblatt.de/hamburg/hamburg-nord/article411494354/alsterwanderweg-in-hamburg-umbau-verzoegert-sich-behoerden-kommen-sich-in-die-quere.html"},
       {"Baufortschritt", "November 2022",
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1012274"},
       {"Pressemitteilung des Bezirks Nord",

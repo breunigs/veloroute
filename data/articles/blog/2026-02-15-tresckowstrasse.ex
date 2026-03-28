@@ -13,6 +13,8 @@ defmodule Data.Article.Blog.Tresckowstrasse do
 
   def links(_assigns) do
     [
+      {"Kopfsteinpflaster soll vorerst bleiben", ~d[2026-03],
+       "https://www.ndr.de/nachrichten/hamburg/kopfsteinpflaster-in-eimsbuetteler-tresckowstrasse-bleibt,tresckowstrasse-100.html"},
       {"Präsentation zur Vorplanung", ~d[2025-07],
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/to020.asp?TOLFDNR=1036928"}
     ]
