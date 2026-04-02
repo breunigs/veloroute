@@ -9,12 +9,14 @@ defmodule Data.Article.Blog.LeeschenblickUndFabriciusstrasse do
   def start(), do: ~d[2024]
   def stop(), do: ~d[2024]
 
-  def type(), do: :planned
+  def type(), do: :outdated
   # def construction_site_id_hh(), do: [6745]
   def tags(), do: ["radroute-5", "5"]
 
   def links(_assigns) do
     [
+      {"Planung ruht", ~d[2026-04],
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1024833"},
       {"Möglicher Bautermin", "Stand 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016643"},
       {"Erläuterungsbericht zur Umgestaltung mit Lageplänen",

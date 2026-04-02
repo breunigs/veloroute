@@ -28317,6 +28317,29 @@
   <node id='-315690700' action='modify' lat='53.55582297667' lon='9.93372200847' />
   <node id='-315690701' action='modify' lat='53.55558716205' lon='9.93395804286' />
   <node id='-315690702' action='modify' lat='53.5554278271' lon='9.93414043307' />
+  <node id='-317430848' action='modify' lat='53.5994817772' lon='10.11304914683' />
+  <node id='-317430849' action='modify' lat='53.59946108518' lon='10.11328518122' />
+  <node id='-317430850' action='modify' lat='53.59969347184' lon='10.11340051621' />
+  <node id='-317430851' action='modify' lat='53.59967437161' lon='10.11367410153' />
+  <node id='-317430852' action='modify' lat='53.60043996553' lon='10.11406838626' />
+  <node id='-317430853' action='modify' lat='53.60140609022' lon='10.11465042561' />
+  <node id='-317430854' action='modify' lat='53.60197906972' lon='10.11511176556' />
+  <node id='-317430855' action='modify' lat='53.60261252133' lon='10.11581182212' />
+  <node id='-317430856' action='modify' lat='53.60334463951' lon='10.11668890446' />
+  <node id='-317430857' action='modify' lat='53.60448576362' lon='10.1181560728' />
+  <node id='-317430858' action='modify' lat='53.60518442989' lon='10.11914312303' />
+  <node id='-317430859' action='modify' lat='53.60549954139' lon='10.11946498811' />
+  <node id='-317430860' action='modify' lat='53.60561094388' lon='10.11918603837' />
+  <node id='-317430861' action='modify' lat='53.60584966251' lon='10.11933624208' />
+  <node id='-317430862' action='modify' lat='53.60591968639' lon='10.11919140279' />
+  <node id='-317430863' action='modify' lat='53.60558229755' lon='10.11887490213' />
+  <node id='-317430864' action='modify' lat='53.60488523095' lon='10.11797904432' />
+  <node id='-317430865' action='modify' lat='53.60347196471' lon='10.11607467592' />
+  <node id='-317430866' action='modify' lat='53.60287354043' lon='10.11539339483' />
+  <node id='-317430867' action='modify' lat='53.60201090327' lon='10.11452972353' />
+  <node id='-317430868' action='modify' lat='53.60117689784' lon='10.11386990011' />
+  <node id='-317430869' action='modify' lat='53.60049249176' lon='10.11348902643' />
+  <node id='-317430870' action='modify' lat='53.59988129185' lon='10.11312961042' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -79828,6 +79851,34 @@
     <tag k='name' v='2026-03-26-barnerstrasse-behringstrasse' />
     <tag k='type' v='article' />
   </way>
+  <way id='-21233216' action='modify'>
+    <nd ref='-317430848' />
+    <nd ref='-317430849' />
+    <nd ref='-317430850' />
+    <nd ref='-317430851' />
+    <nd ref='-317430852' />
+    <nd ref='-317430853' />
+    <nd ref='-317430854' />
+    <nd ref='-317430855' />
+    <nd ref='-317430856' />
+    <nd ref='-317430857' />
+    <nd ref='-317430858' />
+    <nd ref='-317430859' />
+    <nd ref='-317430860' />
+    <nd ref='-317430861' />
+    <nd ref='-317430862' />
+    <nd ref='-317430863' />
+    <nd ref='-317430864' />
+    <nd ref='-317430865' />
+    <nd ref='-317430866' />
+    <nd ref='-317430867' />
+    <nd ref='-317430868' />
+    <nd ref='-317430869' />
+    <nd ref='-317430870' />
+    <nd ref='-317430848' />
+    <tag k='name' v='2026-04-02-friedrich-ebert-damm' />
+    <tag k='type' v='article' />
+  </way>
   <way id='2956272' version='1'>
     <nd ref='99580850005506222' />
     <nd ref='99533190005505785' />
@@ -90567,6 +90618,7 @@
     <nd ref='71995000615817' />
     <nd ref='71459000614774' />
     <nd ref='71555000614443' />
+    <tag k='hide_from_map' v='yes' />
     <tag k='name' v='2018-10-25-5-leeschenblick-und-fabriciusstrasse' />
     <tag k='type' v='article' />
   </way>
@@ -95102,7 +95154,7 @@
     <member type='way' ref='-20676061' role='forward' />
     <member type='way' ref='-20659779' role='backward' />
     <member type='way' ref='-20659769' role='backward' />
-    <member type='way' ref='-21153869' role='forward' />
+    <member type='way' ref='-21153869' role='backward' />
     <member type='way' ref='-20659771' role='forward' />
     <member type='way' ref='-21153453' role='' />
     <member type='way' ref='-21153455' role='' />
@@ -95133,7 +95185,7 @@
     <member type='way' ref='-21153625' role='forward' />
     <member type='way' ref='-21153643' role='forward' />
     <member type='way' ref='-21153639' role='forward' />
-    <tag k='_name' v='br-mitte-07' />
+    <tag k='name' v='br-mitte-07' />
   </relation>
   <relation id='-108853' action='modify'>
     <member type='way' ref='-21153827' role='' />
@@ -95152,7 +95204,7 @@
     <member type='way' ref='-21153453' role='' />
     <member type='way' ref='-20659722' role='' />
     <member type='way' ref='-21153806' role='' />
-    <tag k='_name' v='br-mitte-08' />
+    <tag k='name' v='br-mitte-08' />
   </relation>
   <relation id='-108865' action='modify'>
     <member type='way' ref='-21153913' role='' />

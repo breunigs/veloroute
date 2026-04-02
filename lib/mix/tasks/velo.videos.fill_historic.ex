@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Velo.Videos.FillHistoric do
   @shortdoc "Fill in the video hash in the historic field of article tracks"
   def run(args) do
     if args == [] do
-      IO.puts(:stderr, "Usage: mix velo.fill_historic Data.Article.Static.BrMitte01")
+      IO.puts(:stderr, "Usage: mix velo.videos.fill_historic Data.Article.Static.BrMitte01")
       exit({:shutdown, 1})
     end
 

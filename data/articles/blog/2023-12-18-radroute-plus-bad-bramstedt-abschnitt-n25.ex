@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.RadroutePlusBadBramstedtAbschnittN25 do
       <li><.v bounds="10.030976,53.625842,10.035884,53.629489" lon={10.034156} lat={53.628026} dir="backward" ref={BrNordN8}>Wellingsbütteler Landstraße</.v>: Rampe hinauf zum Radweg. Keine Stützwände.</li>
       <li><.v bounds="10.019356,53.63199,10.026337,53.636389" lon={10.022893} lat={53.634184} dir="forward" ref={RSWBadBramstedt}>Hummelsbütteler Kirchenweg</.v>: Anschluss links des vorhandenen Bahnwegs. Zebrastreifen verschiebt sich Richtung Gleise. Beidseitige Stützwände an der Rampe hinab zum Radweg.</li>
       <li><.v bounds="10.013865,53.63923,10.020662,53.643797" lon={10.016995} lat={53.640944} dir="forward" ref={RSWBadBramstedt}>Kielstück</.v>: ebenerdige Zufahrt.</li>
-      <li><.v bounds="10.014927,53.646315,10.019945,53.650998" lon={10.017249} lat={53.646829} dir="forward" ref={RSWBadBramstedt}>Höpen</.v>: Rampe hinab zum Radweg. Stützwände in Richtung Höpen notwendig.</li>
+      <li><.v bounds="10.014927,53.646315,10.019945,53.650998" lon={10.017249} lat={53.646829} dir="forward" ref={RSWBadBramstedt}>Höpen</.v>: Rampe hinab zum Radweg. Stützwände in Richtung Höpen notwendig. – Vermutete Bauzeit: Januar bis Juli 2027 <!-- Bauweiser: 965184 --></li>
       <li><.v bounds="10.016989,53.661004,10.021226,53.664569" lon={10.018525} lat={53.66243} dir="forward" ref={RSWBadBramstedt}>Laukamp</.v>: Rampe hinauf zum Radweg. Stützwand zum Laukamp hin.</li>
       <li><.v bounds="10.017263,53.66736,10.022536,53.670841" lon={10.020104} lat={53.66918} dir="forward" ref={RSWBadBramstedt}>Hohe Liedt</.v>: Rampe hinauf zum Radweg. Keine Stützwände.</li>
     </ul>

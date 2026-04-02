@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.Steinstrasse do
       "Beidseitig 2m breite Hochbordradwege. Straße wird zur Allee mit deutlich schmalerer Fahrbahn. Aufenthaltsqualität nach Umbau ähnlich zur Mönckebergstraße."
 
   def type(), do: :planned
-  def start(), do: ~d[2026Q1]
-  def stop(), do: ~d[2027Q1]
+  def start(), do: ~d[2026-09]
+  def stop(), do: ~d[2027-09]
 
   def tags(), do: []
 
@@ -55,6 +55,8 @@ defmodule Data.Article.Blog.Steinstrasse do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", ~d[2026-03],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/a2242076-e801-468d-b161-3b67c764e05b"},
       {"Infoseite zum Umbau Kontorhausviertel",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/mitte/themen/planen-bauen-wohnen/verkehr/neugestaltung-kontorhausviertel-948242"},
       {"fertiger Entwurf – Erläuterungen", ~d[2024-09],

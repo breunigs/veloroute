@@ -138,6 +138,8 @@ defmodule Data.Article.Static.Startpage do
           </span>
           <span>
             <.icon role="listitem" autoplay={true} ref={BrMitte06}>M6</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrMitte07}>M7</.icon>
+            <.icon role="listitem" autoplay={true} ref={BrMitte08}>M8</.icon>
             <.icon role="listitem" autoplay={true} ref={BrMitte09}>M9</.icon>
             <.icon role="listitem" autoplay={true} ref={BrMitte10}>M10</.icon>
           </span>

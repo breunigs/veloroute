@@ -28,8 +28,10 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2025-12],
-       "https://lsbg.hamburg.de/resource/blob/1056442/5738abccf5a15b27625678c57b5cb43a/elbgaustrasse-anliegerinformation-dezember-2025-data.pdf"},
+      {"Baustelleninfo", ~d[2026-04],
+       "https://lsbg.hamburg.de/resource/blob/1056442/411d0aa5cb928e77d7cd18df4d043400/elbgaustrasse-anliegerinformation-april-2026-data.pdf"},
+      # {"Baustelleninfo", ~d[2025-12],
+      #  "https://lsbg.hamburg.de/resource/blob/1056442/5738abccf5a15b27625678c57b5cb43a/elbgaustrasse-anliegerinformation-dezember-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2025-05],
       #  "https://lsbg.hamburg.de/resource/blob/1056442/bc9bd35a47fd4532e08a22c073188407/elbgaustrasse-anliegerinformation-mai-2025-data.pdf"},
       {"Detailänderungen zum Baumerhalt – Lageplan", "Juni 2024",
