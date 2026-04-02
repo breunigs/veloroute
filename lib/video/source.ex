@@ -241,10 +241,10 @@ defmodule Video.Source do
 
     points = Enum.reverse(points_rev)
 
-    with "ExifTool" <> _rest <- parsed.creator do
-      [dur_str, _] = String.split(parsed.desc, " ", parts: 2)
-      {video_dur_s, ""} = Float.parse(dur_str)
-      {speedup, ""} = Integer.parse(parsed.speedup)
+    with "ExifTool" <> _rest <- parsed.creator,
+         [dur_str, _] <- String.split(parsed.desc, " ", parts: 2),
+         {video_dur_s, ""} <- Float.parse(dur_str),
+         {speedup, ""} <- Integer.parse(parsed.speedup) do
       head = hd(points)
       start_time = head.gps_time
 
@@ -266,7 +266,7 @@ defmodule Video.Source do
       offset_ms = round((gps_dur_s - video_dur_s * speedup) * 1000)
 
       if offset_ms > 0 do
-        new_time = NaiveDateTime.add(head.time, offset_ms, :millisecond)
+        new_time = NaiveDateTime.add(head.gps_time, offset_ms, :millisecond)
         new_head = %{head | gps_time: new_time}
         new_tail = Enum.drop_while(tl(points), &NaiveDateTime.before?(&1.gps_time, new_time))
         [new_head | new_tail]
@@ -279,6 +279,8 @@ defmodule Video.Source do
   end
 
   @spec parse_gpx_date(binary()) :: NaiveDateTime.t()
+  defp parse_gpx_date(""), do: ~N[2000-01-01 00:00:00]
+
   defp parse_gpx_date(date) do
     {:ok, parsed} = NaiveDateTime.from_iso8601(date)
 
