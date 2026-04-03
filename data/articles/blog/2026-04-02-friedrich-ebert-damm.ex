@@ -1,14 +1,14 @@
 defmodule Data.Article.Blog.FriedrichEbertDamm do
   use Article.Default
 
-  def title(), do: "Friedrich-Ebert-Damm (Radroute 7)"
+  def title(), do: "Friedrich-Ebert-Damm (Radroute 6)"
 
   def summary(),
     do:
       "Radfahrstreifen werden stellenweise mittels Borden vom KFZ-Verkehr abgetrennt („Protected-Bike-Lane“)."
 
   def type(), do: :planned
-  def tags(), do: ["radroute-7"]
+  def tags(), do: ["radroute-6"]
 
   def start(), do: ~d[2026-08]
   def stop(), do: ~d[2026-08]

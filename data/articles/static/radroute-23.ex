@@ -27,6 +27,7 @@ defmodule Data.Article.Static.Radroute23 do
           "08b7ea523d109ae2177803c2361161b8" => ~d[2024-05]
         },
         videos: [
+          # TODO: nahe Veddel/Norden Niedergeorgswerder alte Videos
           {"2024-05-18-vr10/GX017615", :start, "00:00:17.114"},
           {"2024-05-18-vr10/GX017616", :start, :end},
           {"2024-05-18-vr10/GX017617", :start, "00:00:27.990"},
@@ -42,11 +43,14 @@ defmodule Data.Article.Static.Radroute23 do
         parent_ref: __MODULE__,
         text: "von der Süderelbe zur Veddel",
         historic: %{
+          "ec2f25ab0092b5de5bd76fa2dd5033fd" => ~d[2026-03],
           "d473ba750d2dabbbed2efa16cda85a19" => ~d[2024-05]
         },
         videos: [
-          {"2024-05-18-vr10/GX017625", "00:01:38.979", :end},
-          {"2024-05-18-vr10/GX017626", :start, "00:02:38.226"}
+          {"2024-05-18-vr10/GX017625", "00:01:38.979", "00:02:16.042"},
+          {"2024-05-18-vr10/GX017626", :start, "00:02:02.753"},
+          {"2026-03-15-mitte/GX018794", "00:00:59.206", "00:01:18.997"},
+          {"2026-03-15-mitte/GX018795", "00:00:00.300", "00:00:20.420"}
         ]
       }
     ]
