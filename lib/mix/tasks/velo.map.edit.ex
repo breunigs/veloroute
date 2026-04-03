@@ -86,11 +86,16 @@ defmodule Mix.Tasks.Velo.Map.Edit do
     IO.puts("Wrote #{@route_colors_path}")
   end
 
+  @max_years_by_default 5
   defp video_layers(start_index) do
-    all_years =
-      Videos.osm_index_path("*") |> Path.absname() |> Path.wildcard() |> Enum.sort(&(&1 >= &2))
+    recent_years =
+      Videos.osm_index_path("*")
+      |> Path.absname()
+      |> Path.wildcard()
+      |> Enum.sort(&(&1 >= &2))
+      |> Enum.take(@max_years_by_default)
 
-    Enum.reduce(all_years, {"", start_index}, fn a_year, {xml, index} ->
+    Enum.reduce(recent_years, {"", start_index}, fn a_year, {xml, index} ->
       name = Path.basename(a_year)
 
       xml =
