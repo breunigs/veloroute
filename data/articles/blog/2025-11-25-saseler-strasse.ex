@@ -7,12 +7,13 @@ defmodule Data.Article.Blog.SaselerStrasse do
     do:
       "Bushaltestelle Alaskaweg wird erneuert und am Schierenberg eine Neue gebaut. Dort 2,0m breite Radfahrstreifen. Sonst werden die alten Radwege nur neu gepflastert."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 
-  def start(), do: ~d[2026-04]
-  # def stop(), do: ~d[2026-04]
+  def start(), do: ~d[2026-04-07]
+  def stop(), do: ~d[2027-03-31]
+  def construction_site_id_hh(), do: [2_821_155]
 
   def map_image do
     {name(),

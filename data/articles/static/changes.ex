@@ -19,6 +19,9 @@ defmodule Data.Article.Static.Changes do
         <li><.a href={Settings.r(:bluesky_url)}><img src="/images/bluesky.svg"> Bluesky</.a></li>
       <% end %>
       <li><.mailto subject="veloroute.hamburg Newsletter abonnieren" body={"Hallo,\n\nbitte halte mich zu neuen oder aktualisierten Artikeln auf dem Laufenden. Nimm dazu einfach diese E-Mail Adresse.\n\nDanke!"}><img src="/images/email.svg"> E-Mail Newsletter abonnieren</.mailto></li>
+      <%= if @device_os == "iOS"  do %>
+        <li><.a href="https://apps.apple.com/de/app/franzbr%C3%B6tchen-hamburg-guide/id6753984831" translate="no"><img src="/images/franzbroetchen.webp"> Franzbrötchen</.a> unter Radfahren → Radweg Planungen, oder als Widget</li>
+      <% end %>
     </ul>
 
     <h3 id="lastChanges">Letzte Änderungen</h3>
