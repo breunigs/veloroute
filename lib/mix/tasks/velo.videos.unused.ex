@@ -49,6 +49,13 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
 
       #{unreachable |> with_size |> Enum.join("\n")}
       """)
+
+      Enum.each(unreachable, fn hash ->
+        if Cli.confirm("Delete #{rel_path}/#{hash}?", false) do
+          delete_render(hash)
+          IO.puts("  Deleted.")
+        end
+      end)
     end
 
     if MapSet.size(with_link_only) > 0 do
@@ -64,6 +71,14 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
 
       #{with_link_only |> with_size |> Enum.join("\n")}
       """)
+
+      Enum.each(with_link_only, fn hash ->
+        if Cli.confirm("Delete #{hash} (video render + generated .ex)?", false) do
+          delete_render(hash)
+          delete_generated(hash)
+          IO.puts("  Deleted.")
+        end
+      end)
     end
 
     if MapSet.size(broken) > 0 do
@@ -78,6 +93,13 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
 
       #{Enum.join(broken, "\n")}
       """)
+
+      Enum.each(broken, fn hash ->
+        if Cli.confirm("Delete ./data/auto_generated/video/#{hash}.ex?", false) do
+          delete_generated(hash)
+          IO.puts("  Deleted.")
+        end
+      end)
     end
 
     historic_only =
@@ -100,10 +122,27 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
 
       #{Enum.join(historic_only, "\n")}
       """)
+
+      Enum.each(historic_only, fn hash ->
+        if Cli.confirm("Delete low quality variants for #{hash}?", false) do
+          %{update: update, delete: delete} =
+            Video.RenderedTools.keep_highest_quality_video_only_actions(hash)
+
+          Enum.each(update, fn {path, val} -> :ok = File.write(path, val) end)
+          Enum.each(delete, fn path -> :ok = File.rm(path) end)
+          IO.puts("  Cleaned up.")
+        end
+      end)
     end
 
     IO.puts("\n\n\nDone")
   end
+
+  defp delete_render(hash),
+    do: File.rm_rf!(Path.join(Settings.r(:video_target_dir_abs), hash))
+
+  defp delete_generated(hash),
+    do: File.rm(Path.join("data/auto_generated/video", "#{hash}.ex"))
 
   defp with_size(enum_with_hashes) do
     enum_with_hashes
