@@ -80,7 +80,7 @@ defmodule Data.Article.Static.Freizeitroute3 do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643597"},
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294592/radtour-city-eilbekkanal-wandse-gruenzug/"},
+       "https://web.archive.org/web/20230923204216/https://www.hamburg.de/radtour/6294592/radtour-city-eilbekkanal-wandse-gruenzug/"},
       {"Komoot Routenplaner: entlang der Wandse", "https://www.komoot.com/de-de/tour/227474867"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/14910"}
     ]

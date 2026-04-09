@@ -6,8 +6,8 @@ defmodule Data.Article.Blog.AlteMuehle do
   def summary(), do: "Wegen Denkmalschutz keine Verbesserung für den Radverkehr möglich."
 
   def type(), do: :intent
-  def start(), do: ~d[2024]
-  def stop(), do: ~d[2024]
+  # def start(), do: ~d[2024]
+  # def stop(), do: ~d[2024]
 
   def tags(), do: ["radroute-5", "5", "W08"]
 
@@ -15,8 +15,8 @@ defmodule Data.Article.Blog.AlteMuehle do
     [
       {"Artikel des ADFC", ~d[2022-09],
        "https://hamburg.adfc.de/artikel/veloroute-5-alte-muehle"},
-      {"Bericht Infoveranstaltung", "Mai 2023",
-       "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/17172706/alte-muehle/"},
+      {"Infoveranstaltung", "Mai 2023",
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018808"},
       {"Möglicher Bauzeitraum", "Stand Oktober 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017470"},
       {"Präsentation Umbauvarianten", "September 2022",

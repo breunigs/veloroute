@@ -57,7 +57,7 @@ defmodule Data.Article.Static.Freizeitroute8 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294580/radtour-city-elbufer-wittenbergen/"},
+       "https://web.archive.org/web/20230923153908/https://www.hamburg.de/radtour/6294580/radtour-city-elbufer-wittenbergen/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643604"},
       {"Komoot Routenplaner: entlang des Elbufers",
        "https://www.komoot.com/de-de/tour/227479550"},

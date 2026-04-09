@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.WoerdemannsWeg do
   def links(_assigns) do
     [
       {"Pressemitteilung Fertigstellung", "Dezember 2022",
-       "https://www.hamburg.de/eimsbuettel/pressemitteilungen/16749468/2022-12-05-eimsbuettel-woerdemannsweg/"},
+       "https://web.archive.org/web/20221227025656/https://www.hamburg.de/eimsbuettel/pressemitteilungen/16749468/2022-12-05-eimsbuettel-woerdemannsweg/"},
       {"Infoseite der Stadt zum Wördemanns Weg",
        "https://web.archive.org/web/20240619223154/https://www.hamburg.de/eimsbuettel/woerdemannsweg/"},
       {"Lageplan 1",

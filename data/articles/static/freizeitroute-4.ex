@@ -120,7 +120,7 @@ defmodule Data.Article.Static.Freizeitroute4 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294594/radtour-city-geesthang-boberger-niederung-bergedorf/"},
+       "https://web.archive.org/web/20240516201510/https://www.hamburg.de/radtour/6294594/radtour-city-geesthang-boberger-niederung-bergedorf/"},
       {"Ride With GPS Routenplaner: Hauptstrecke", "https://ridewithgps.com/routes/52643598"},
       {"Ride With GPS Routenplaner: Nebenstrecke Walter-Hammer-Weg",
        "https://ridewithgps.com/routes/52643599"},

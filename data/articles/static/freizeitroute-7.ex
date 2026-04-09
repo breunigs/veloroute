@@ -62,7 +62,7 @@ defmodule Data.Article.Static.Freizeitroute7 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294578/radtour-harburg-harburger-berge/"},
+       "https://web.archive.org/web/20230926063302/https://www.hamburg.de/radtour/6294578/radtour-harburg-harburger-berge/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643603"},
       {"Komoot Routenplaner: in die Harburger Berge",
        "https://www.komoot.com/de-de/tour/227478972"},

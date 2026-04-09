@@ -20,13 +20,13 @@ defmodule Data.Article.Blog.BernerHeerweg do
   def links(_assigns) do
     [
       {"Infoseite der Stadt",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/umbaumassnahme-berner-heerweg-76876"},
+       "https://web.archive.org/web/20260126060145/https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/umbaumassnahme-berner-heerweg-76876"},
       {"Lagepläne und Erläuterungen, 1. Entwurf der Neuplanung", "Januar 2024",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1020095"},
       {"Auswertung Infoveranstaltung", "Dezember 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1017818"},
       {"Infoseite der Stadt zum Berner Heerweg", "Oktober 2022",
-       "https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15275274/umbaumassnahme-berner-heerweg/"},
+       "https://web.archive.org/web/20240302132546/https://www.hamburg.de/wandsbek/bezirkliche-radverkehrsmassnahmen/15275274/umbaumassnahme-berner-heerweg/"},
       {"Möglicher Bautermin", "Stand 2022",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1016643"},
       {"Entscheidung zur kompletten Neuplanung", "2020",

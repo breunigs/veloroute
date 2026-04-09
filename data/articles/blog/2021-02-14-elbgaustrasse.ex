@@ -22,7 +22,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
     {name(),
      [
        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/kontakt/"}
+       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/hamburg/#kontakt"}
      ]}
   end
 

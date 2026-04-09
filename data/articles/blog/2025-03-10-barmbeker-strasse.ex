@@ -18,7 +18,7 @@ defmodule Data.Article.Blog.BarmbekerStrasse do
   def links(_assigns) do
     [
       {"Planfeststellungsverfahren",
-       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bwi/themen/planfeststellungsverfahren/u5m1000-1023488"}
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bwai/themen/planfeststellungsverfahren/u5m1000-1023488"}
     ]
   end
 

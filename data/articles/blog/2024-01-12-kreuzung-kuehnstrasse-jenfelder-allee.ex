@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
     do:
       "2,5m breite Radfahrstreifen entlang der Radroute, die an Bushalten unterbrochen sind. Entlang der Bezirksroute 2,0m breite Hochbordradwege. In der Kreuzung indirektes Linksabbiegen und Rotfärbung."
 
-  def start(), do: ~d[2025]
-  def stop(), do: ~d[2026]
+  def start(), do: ~d[2026-07]
+  def stop(), do: ~d[2027-01]
 
   def type(), do: :planned
   def tags(), do: ["radroute-7", "7", "br-wandsbek-w8"]
@@ -25,6 +25,8 @@ defmodule Data.Article.Blog.KreuzungKuehnstrasseJenfelderAllee do
 
   def links(_assigns) do
     [
+      {"Vergabe Umbau", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/6910ec95-443a-44f7-a73a-18ac2c8637c7"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/kuehnstrasse-jenfelder-allee-438216"},
       {"fertiger Entwurf; Lageplan und Erläuterung", ~d[2024-08],

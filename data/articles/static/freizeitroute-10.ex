@@ -70,7 +70,7 @@ defmodule Data.Article.Static.Freizeitroute10 do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643607"},
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294584/radtour-city-sternschanzenpark-niendorfer-gehege/"},
+       "https://web.archive.org/web/20231207000022/https://www.hamburg.de/radtour/6294584/radtour-city-sternschanzenpark-niendorfer-gehege/"},
       {"Komoot Routenplaner: entlang der Kollau", "https://www.komoot.com/de-de/tour/227481122"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/2910884"}
     ]

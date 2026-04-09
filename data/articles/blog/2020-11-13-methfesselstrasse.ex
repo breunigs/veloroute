@@ -17,7 +17,7 @@ defmodule Data.Article.Blog.Methfesselstrasse do
   def links(_assigns) do
     [
       {"Pressemitteilung zum Umbau", "September 2022",
-       "https://www.hamburg.de/eimsbuettel/pressemitteilungen/16499936/2022-09-15-eimsbuettel-methfesselstrasse/"},
+       "https://web.archive.org/web/20240525120512/https://www.hamburg.de/eimsbuettel/pressemitteilungen/16499936/2022-09-15-eimsbuettel-methfesselstrasse/"},
       {"Erläuterungsbericht und Pläne",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1006045"}
     ]

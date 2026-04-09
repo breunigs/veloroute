@@ -16,7 +16,7 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
   def map_image do
     {name(),
      [
-       {"BPR Ingenieure GmbH & Co. KG", "https://bpr-ingenieurbuero.de/kontakt/"},
+       {"BPR Ingenieure GmbH & Co. KG", "https://bpr-ingenieurbuero.de/hamburg/#kontakt"},
        {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}
      ]}
   end

@@ -84,7 +84,7 @@ defmodule Data.Article.Static.Freizeitroute6 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294576/radtour-city-wilhelmsburg-harburger-stadtpark/"},
+       "https://web.archive.org/web/20231209152712/https://www.hamburg.de/radtour/6294576/radtour-city-wilhelmsburg-harburger-stadtpark/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643602"},
       {"Komoot Routenplaner: über die Elbbrücken", "https://www.komoot.com/de-de/tour/227478472"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/8847600"}

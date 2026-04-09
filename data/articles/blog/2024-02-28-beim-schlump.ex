@@ -9,57 +9,10 @@ defmodule Data.Article.Blog.BeimSchlump do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2026]
+  def start(), do: ~d[2026-08]
   def stop(), do: ~d[2028]
 
   def tags(), do: ["radroute-3", "radroute-2", "radroute-14", "FR10"]
-
-  def tracks(),
-    do: [
-      %Video.Track{
-        renderer: 4,
-        group: "strassenzug",
-        direction: :forward,
-        from: "Alstervorland",
-        to: "Altona",
-        parent_ref: __MODULE__,
-        text: "vom Alstervorland nach Altona",
-        historic: %{
-          "dfcda87b7a07fc6c34caf51b991895a9" => ~d[2023-11]
-        },
-        videos: [
-          {"2023-11-25-random/GX016709", "00:01:09.469", :end},
-          {"2023-11-25-random/GX016710", :start, :end},
-          {"2023-11-25-random/GX016711", :start, :end},
-          {"2023-11-25-random/GX016712", :start, :end},
-          {"2023-11-25-random/GX016713", :start, :end},
-          {"2023-11-25-random/GX016714", :start, "00:00:14.214"},
-          {"2023-05-07-stadtpark/GX015622", "00:00:00.901", :end},
-          {"2023-05-07-stadtpark/GX015623", :start, "00:00:09.743"}
-        ]
-      },
-      %Video.Track{
-        renderer: 3,
-        group: "strassenzug",
-        direction: :backward,
-        from: "Altona",
-        to: "Alstervorland",
-        parent_ref: __MODULE__,
-        text: "von Altona zum Alstervorland",
-        historic: %{
-          "9fb49c3944086f7e558f5923d217cc44" => ~d[2022-05]
-        },
-        videos: [
-          {"2022-05-14-velo6-u-bundesstr/GX013847", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013848", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013849", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013850", :start, :end},
-          {"2022-05-14-velo6-u-bundesstr/GX013851", :start, "00:00:09.443"},
-          {"2022-01-08-rothenbaumchaussee/GX013102", "00:00:02.469", :end},
-          {"2022-01-08-rothenbaumchaussee/GX013103", :start, "00:00:02.336"}
-        ]
-      }
-    ]
 
   def map_image do
     {name(),
@@ -72,6 +25,8 @@ defmodule Data.Article.Blog.BeimSchlump do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau (ohne Kreuzung)", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/0f6fa4c2-71f4-412e-90e2-178bcda75e94"},
       {"fertiger Entwurf – Bericht", ~d[2024-12],
        "https://lsbg.hamburg.de/resource/blob/1004284/95ffa832ed7f3ec5194c831dc347be27/beim-schlump-abgestimmte-planung-bericht-data.pdf"},
       {"fertiger Entwurf – Lagepläne", ~d[2024-12],

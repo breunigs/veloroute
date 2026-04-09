@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.Stuebeheide do
   def map_image do
     {name(),
      [
-       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/kontakt/"},
+       {"BPR beratende Ingenieure mbB", "https://bpr-ingenieurbuero.de/hamburg/#kontakt"},
        {"Bezirksamt Nord, Fachamt Management des öffentlichen Raumes",
         "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/fachamt-management-des-oeffentlichen-raums-70286"}
      ]}

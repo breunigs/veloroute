@@ -41,7 +41,7 @@ defmodule Data.Article.Blog.BernerStrasse do
       {"Erläuterungsbericht und Lagepläne/Karten", "Januar 2023",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1018072"},
       {"Planänderungen", "Juli 2022",
-       "https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
+       "https://web.archive.org/web/20220812212026/https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
       {"Erläuterungsbericht",
        "https://lsbg.hamburg.de/resource/blob/784108/faa2ceabee11e02f39b342955a8fb5ab/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne",

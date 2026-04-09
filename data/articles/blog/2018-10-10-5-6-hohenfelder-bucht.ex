@@ -30,7 +30,7 @@ defmodule Data.Article.Blog.HohenfelderBucht do
       {"NDR Artikel zur Fertigstellung", ~d[2025-11],
        "https://www.ndr.de/nachrichten/hamburg/nach-fuenf-jahren-umgebaute-hohenfelder-bucht-ist-fertig,hohenfelder-bucht-100.html"},
       {"Baustelleninfo", ~d[2025-01],
-       "https://lsbg.hamburg.de/resource/blob/1013942/361de5945b864be79b87a9ae87773979/hohenfelder-bucht-buchtstrasse-anliegerinformation-januar-2025-data.pdf"},
+       "https://web.archive.org/web/20250326075134/https://lsbg.hamburg.de/resource/blob/1013942/361de5945b864be79b87a9ae87773979/hohenfelder-bucht-buchtstrasse-anliegerinformation-januar-2025-data.pdf"},
       {"Pressemitteilung zum Baufortschritt", ~d[2024-08],
        "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/aktuelles/pressemeldungen/alsterbruecken-sind-fertiggestellt-treppenanlage-am-ostufer-im-bau-960066"},
       # {"Baustelleninfo", "Juli 2024",

@@ -26,7 +26,7 @@ defmodule Data.Article.Blog.AlsteruferKonsulat do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-05],
-       "https://lsbg.hamburg.de/resource/blob/1053712/fd43b7aa2ae9fe11f2725ddb81d07fe5/alsterufer-anliegerinformation-april-2025-data.pdf"},
+       "https://web.archive.org/web/20260124205110/https://lsbg.hamburg.de/resource/blob/1053712/fd43b7aa2ae9fe11f2725ddb81d07fe5/alsterufer-anliegerinformation-april-2025-data.pdf"},
       {"Lageplan, fertiger Entwurf", "März 2024",
        "https://lsbg.hamburg.de/resource/blob/784080/f11ab2c8a059bb0574de9664019d0650/alsterufer-alsterfahrradachse-us-konsulat-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungen, fertiger Entwurf", "März 2024",

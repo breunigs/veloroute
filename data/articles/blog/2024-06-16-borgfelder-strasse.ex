@@ -62,7 +62,7 @@ defmodule Data.Article.Blog.BorgfelderStrasse do
       {"1. Entwurf (Karten und Erläuterung)", "August 2023",
        "https://fragdenstaat.de/anfrage/borgfelder-strasse/#nachricht-906941"},
       {"Schiene Plus – Präsentation", "April 2024",
-       "https://www.schiene-plus.hamburg/onewebmedia/Schiene_Plus.pdf"},
+       "https://web.archive.org/web/20240821151625/https://www.schiene-plus.hamburg/onewebmedia/Schiene_Plus.pdf"},
       {"Schiene Plus – Zeitungsartikel", "April 2024",
        "https://www.abendblatt.de/hamburg/politik/article242114306/Ueberraschende-Idee-Hamburg-soll-neuen-Hauptbahnhof-bauen.html"}
     ]
@@ -96,7 +96,7 @@ defmodule Data.Article.Blog.BorgfelderStrasse do
 
     <p>Leider hat man für die <.v bounds="10.032481,53.554253,10.034364,53.555209" lon={10.033491} lat={53.554722} dir="backward" ref={@ref}>Treppe zum Park</.v> keine Lösung gefunden. Weder der ursprüngliche Vorschlag (Radweg unterbrechen und als Gehweg ausschildern) noch die aktuelle Idee (Radweg durchgängig, Treppe endet direkt im Radweg) erlauben die notwendigen Sichtbeziehungen.</p>
 
-    <p>Auch städtebaulich bleibt die Trasse unattraktiv und ohne Aufenthaltscharakter. Angesichts des <.v bounds="10.022456,53.55179,10.029609,53.555869" lon={10.024973} lat={53.553725} dir="backward" ref={@ref}>Berliner Tors</.v> als wichtigen Bahnknoten eine vertane Chance. Zumal dieser das Potential hätte, den überlasteten Hauptbahnhof zu ersetzen und Skandinavien besser erreichbar zu machen (Vorschlag „<.a href="https://www.schiene-plus.hamburg/onewebmedia/Schiene_Plus.pdf">Schiene Plus</.a>“ des <.a href="https://www.vcd.org/">VCD</.a>).</p>
+    <p>Auch städtebaulich bleibt die Trasse unattraktiv und ohne Aufenthaltscharakter. Angesichts des <.v bounds="10.022456,53.55179,10.029609,53.555869" lon={10.024973} lat={53.553725} dir="backward" ref={@ref}>Berliner Tors</.v> als wichtigen Bahnknoten eine vertane Chance. Zumal dieser das Potential hätte, den überlasteten Hauptbahnhof zu ersetzen und Skandinavien besser erreichbar zu machen (Vorschlag „<.a href="https://www.schiene-plus.hamburg/">Schiene Plus</.a>“ des <.a href="https://www.vcd.org/">VCD</.a>).</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

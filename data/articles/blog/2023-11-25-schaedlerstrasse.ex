@@ -35,7 +35,7 @@ defmodule Data.Article.Blog.Schaedlerstrasse do
   def links(_assigns) do
     [
       {"Erläuterung und Pläne 1. Entwurf", "November 2023",
-       "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/schaedlerstrasse-438206"}
+       "https://web.archive.org/web/20260124184231/https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/schaedlerstrasse-438206"}
     ]
   end
 

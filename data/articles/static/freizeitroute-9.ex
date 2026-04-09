@@ -83,7 +83,7 @@ defmodule Data.Article.Static.Freizeitroute9 do
   def links(_assigns) do
     [
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6294582/radtour-city-altonaer-volkspark-kloevensteen/"},
+       "https://web.archive.org/web/20230929135659/https://www.hamburg.de/radtour/6294582/radtour-city-altonaer-volkspark-kloevensteen/"},
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643606"},
       {"Komoot Routenplaner: zum Klövensteen", "https://www.komoot.com/de-de/tour/227480208"},
       {"Route in der OpenStreetMap", "https://www.openstreetmap.org/relation/13069179"}
