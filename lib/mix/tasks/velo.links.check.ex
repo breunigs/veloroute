@@ -12,6 +12,8 @@ defmodule Mix.Tasks.Velo.Links.Check do
   # URLs that indicate a "404" but send a different status code
   @fake_404s ["fbhh-evergabe.web.hamburg.de/evergabe.bieter/ErrorMessage.aspx"]
 
+  @max_redirects 10
+
   @timeout_ms 2 * 60 * 1_000
   plug Tesla.Middleware.Timeout, timeout: @timeout_ms
   adapter(Tesla.Adapter.Hackney, recv_timeout: @timeout_ms)
@@ -77,7 +79,10 @@ defmodule Mix.Tasks.Velo.Links.Check do
 
   # these prevents checks via bot, so don't even try
   defp check(%{url: "https://twitter.com/" <> _rest}), do: nil
+  defp check(%{url: "https://www.komoot.com/" <> _rest}), do: nil
   defp check(%{url: "https://komoot.com/" <> _rest}), do: nil
+  # known to 404 quickly, and don't archive well
+  defp check(%{url: "https://fbhh-evergabe.web.hamburg.de/" <> _rest}), do: nil
   # ignore internal URLs
   defp check(%{url: "/" <> _rest}), do: nil
   defp check(%{url: "mailto:" <> _email}), do: nil
@@ -87,31 +92,34 @@ defmodule Mix.Tasks.Velo.Links.Check do
       {:ok, %{status: 200}} ->
         nil
 
-      {:ok, %{status: status} = resp} when status in [302, 307] ->
-        new_path = Tesla.get_header(resp, "location")
-        is_fake_404 = Enum.any?(@fake_404s, &String.contains?(new_path, &1))
+      {:ok, %{status: status} = resp} when status in [301, 302, 307, 308] ->
+        first_target = abs_location_header(resp, url)
+        is_permanent = status in [301, 308]
 
-        if is_fake_404 do
-          Map.merge(entry, %{
-            archive: Util.ArchiveOrg.mirror(url),
-            reason: "not found (→ #{abs_location_header(resp, url)})"
-          })
-        else
-          result = head_or_get(new_path)
+        case follow_redirects(first_target, is_permanent, 1, [url]) do
+          {:ok, _final_url, false} ->
+            # pure temporary redirect chain that resolves to 200: leave URL alone
+            nil
 
-          if !match?(@success, result) do
+          {:ok, final_url, true} ->
+            # chain contains at least one permanent redirect → treat as permanent
+            Map.merge(entry, %{
+              new_url: final_url,
+              reason: "perma redirect"
+            })
+
+          {:fake_404, offending_url} ->
             Map.merge(entry, %{
               archive: Util.ArchiveOrg.mirror(url),
-              reason: "broken redirect chain (→ #{abs_location_header(resp, url)})"
+              reason: "not found (→ #{offending_url})"
             })
-          end
-        end
 
-      {:ok, %{status: status} = resp} when status in [301, 308] ->
-        Map.merge(entry, %{
-          new_url: abs_location_header(resp, url),
-          reason: "perma redirect"
-        })
+          {:broken, detail} ->
+            Map.merge(entry, %{
+              archive: Util.ArchiveOrg.mirror(url),
+              reason: "broken redirect chain: #{detail} (→ #{first_target})"
+            })
+        end
 
       {:ok, %{status: 429}} ->
         IO.puts("got 429 on #{url}, sleeping 5")
@@ -132,6 +140,49 @@ defmodule Mix.Tasks.Velo.Links.Check do
     end
   end
 
+  # Follows redirects up to @max_redirects hops. Returns:
+  #   {:ok, final_url, has_permanent} - chain reached 200
+  #   {:fake_404, url}                - a hop target is a known fake-404 URL
+  #   {:broken, detail}               - chain failed, looped, or exceeded depth
+  defp follow_redirects(url, has_permanent, redirects_followed, visited)
+
+  defp follow_redirects(_url, _has_permanent, redirects_followed, _visited)
+       when redirects_followed >= @max_redirects do
+    {:broken, "exceeded #{@max_redirects} redirects"}
+  end
+
+  defp follow_redirects(url, has_permanent, redirects_followed, visited) do
+    cond do
+      url in visited ->
+        {:broken, "redirect loop at #{url}"}
+
+      Enum.any?(@fake_404s, &String.contains?(url, &1)) ->
+        {:fake_404, url}
+
+      true ->
+        case head_or_get(url) do
+          {:ok, %{status: 200}} ->
+            {:ok, url, has_permanent}
+
+          {:ok, %{status: status} = resp} when status in [301, 302, 307, 308] ->
+            next_url = abs_location_header(resp, url)
+            next_permanent = has_permanent or status in [301, 308]
+            follow_redirects(next_url, next_permanent, redirects_followed + 1, [url | visited])
+
+          {:ok, %{status: 429}} ->
+            IO.puts("got 429 on #{url}, sleeping 5")
+            Process.sleep(5_000)
+            follow_redirects(url, has_permanent, redirects_followed, visited)
+
+          {:ok, %{status: status}} ->
+            {:broken, "status #{status} at #{url}"}
+
+          {:error, reason} ->
+            {:broken, "error at #{url}: #{inspect(reason)}"}
+        end
+    end
+  end
+
   defmemop head_or_get(url) do
     result = head(url)
     if match?(@success, result), do: result, else: get(url)
@@ -142,7 +193,12 @@ defmodule Mix.Tasks.Velo.Links.Check do
   defp abs_location_header(response, redirect_from) do
     source = URI.parse(redirect_from)
     target = URI.parse(Tesla.get_header(response, "location"))
-    URI.merge(source, target) |> to_string()
+    merged = URI.merge(source, target)
+    # URI.merge follows RFC 3986 and always takes the fragment from the target,
+    # which drops client-side anchors across redirects. Carry them forward when
+    # the redirect target does not specify its own fragment.
+    merged = if is_nil(merged.fragment), do: %{merged | fragment: source.fragment}, else: merged
+    to_string(merged)
   end
 
   defp auto_replace_ask(entry, new_url, question) do
