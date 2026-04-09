@@ -5,37 +5,24 @@ defmodule MapStyleEditor.WebSocket do
   """
   require Logger
 
-  @behaviour :cowboy_websocket
+  @behaviour WebSock
 
-  @idle_timeout_ms 10 * 60 * 1000
-
-  @impl :cowboy_websocket
-  def init(request, state) do
-    url = "#{request.scheme}://#{request.host}:#{request.port}"
-    state = Map.put(state, :url, url)
-    {:cowboy_websocket, request, state, %{idle_timeout: @idle_timeout_ms}}
-  end
-
-  @impl :cowboy_websocket
-  def websocket_init(state) do
+  @impl WebSock
+  def init(state) do
     {:ok, watcher_pid} = FileSystem.start_link(dirs: [MapStyleEditor.Tracker.style()])
     FileSystem.subscribe(watcher_pid)
     {:ok, Map.put(state, :watcher_pid, watcher_pid)}
   end
 
-  @impl :cowboy_websocket
-
-  def websocket_handle({:ping, _any}, state), do: {:reply, {:pong, "PONG"}, state}
-  def websocket_handle(:ping, state), do: {:reply, :pong, state}
-
-  def websocket_handle(any, state) do
-    Logger.warning("received unknown websocket text message: #{inspect(any)}")
+  @impl WebSock
+  def handle_in({msg, [opcode: opcode]}, state) do
+    Logger.warning("received unknown websocket #{opcode} message: #{inspect(msg)}")
     {:ok, state}
   end
 
-  @impl :cowboy_websocket
+  @impl WebSock
   # i.e. file updated
-  def websocket_info(
+  def handle_info(
         {:file_event, pid, {path, [:modified, :closed]}},
         %{watcher_pid: pid, url: url} = state
       ) do
@@ -44,17 +31,17 @@ defmodule MapStyleEditor.WebSocket do
     if MapStyleEditor.Tracker.different?(path, content) do
       Logger.info("#{path} was updated, pushing to web editor")
       MapStyleEditor.Tracker.update(path, content)
-      {:reply, {:text, content}, state}
+      {:push, {:text, content}, state}
     else
       {:ok, state}
     end
   end
 
   # i.e other file events
-  def websocket_info({:file_event, pid, {_path, _reason}}, %{watcher_pid: pid} = state),
+  def handle_info({:file_event, pid, {_path, _reason}}, %{watcher_pid: pid} = state),
     do: {:ok, state}
 
-  def websocket_info(info, state) do
+  def handle_info(info, state) do
     Logger.warning("Unknown message received: #{inspect(info)}")
     {:ok, state}
   end

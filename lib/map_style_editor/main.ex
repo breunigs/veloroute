@@ -16,8 +16,13 @@ defmodule MapStyleEditor.Main do
   def serve(style: style, port: port) when is_binary(style) do
     build()
 
-    {:ok, _pid} = MapStyleEditor.Tracker.start_link(style)
-    {:ok, _pid} = Plug.Cowboy.http(MapStyleEditor.Server, [], port: port, dispatch: dispatch())
+    {:ok, _} = Supervisor.start_child(Veloroute.Supervisor, {MapStyleEditor.Tracker, style})
+
+    {:ok, _} =
+      Supervisor.start_child(
+        Veloroute.Supervisor,
+        {Bandit, plug: MapStyleEditor.Server, port: port}
+      )
 
     url(port)
   end
@@ -25,15 +30,5 @@ defmodule MapStyleEditor.Main do
   def url(port) do
     pos = Settings.r(:bounds) |> Geo.BoundingBox.parse() |> Geo.CheapRuler.bounds_to_center_zoom()
     "http://localhost:#{port}##{pos.zoom}/#{pos.lat}/#{pos.lon}"
-  end
-
-  defp dispatch() do
-    [
-      {:_,
-       [
-         {"/ws", MapStyleEditor.WebSocket, %{}},
-         {:_, Plug.Cowboy.Handler, {MapStyleEditor.Server, []}}
-       ]}
-    ]
   end
 end

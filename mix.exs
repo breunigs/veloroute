@@ -64,6 +64,7 @@ defmodule Veloroute.MixProject do
 
     [
       {:atomex, "~> 0.5.1"},
+      {:bandit, "~> 1.8"},
       {:brotli, "~> 0.3"},
       {:cachex, "~> 4.0"},
       {:dart_sass, "~> 0.5", runtime: is_dev},
@@ -82,10 +83,10 @@ defmodule Veloroute.MixProject do
       {:phoenix_live_view, "~> 1.1"},
       {:phoenix, "~> 1.8.2"},
       {:lazy_html, ">= 0.0.0", only: :test},
-      {:plug_cowboy, "~> 2.3"},
       {:polyline, "~> 1.6"},
+      {:recon, "~> 2.5"},
       {:reverse_proxy_plug, "~> 3.0"},
-      {:saxy, "~> 1.0"},
+      {:saxy, "~> 1.0", only: [:dev, :test]},
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.7"},
       {:temp, "~> 0.4"},

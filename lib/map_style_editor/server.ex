@@ -15,13 +15,30 @@ defmodule MapStyleEditor.Server do
   plug(:match)
   plug(:dispatch)
 
+  @websocket_idle_timeout_ms 24 * 60 * 60 * 1000
+
+  get "/ws" do
+    url = "#{conn.scheme}://#{conn.host}:#{conn.port}"
+
+    conn
+    |> WebSockAdapter.upgrade(MapStyleEditor.WebSocket, %{url: url},
+      timeout: @websocket_idle_timeout_ms
+    )
+    |> halt()
+  end
+
   get "/" do
-    send_resp(conn, 200, File.read!(Path.join(MapStyleEditor.Main.path(), "index.html")))
+    conn
+    |> put_resp_content_type("text/html")
+    |> send_resp(200, File.read!(Path.join(MapStyleEditor.Main.path(), "index.html")))
   end
 
   get "/styles" do
     files = [MapStyleEditor.Tracker.style()]
-    send_resp(conn, 200, JSON.encode!(files))
+
+    conn
+    |> put_resp_content_type("application/json", "utf-8")
+    |> send_resp(200, JSON.encode!(files))
   end
 
   get "/styles/*path" do
@@ -45,13 +62,18 @@ defmodule MapStyleEditor.Server do
       # behaviour on dev server without having to restart it.
       File.cp!(local_path, Basemap.Styles.assets_path("#{name}.json"))
       # Logger.debug("saved #{local_path} from web editor")
-      send_resp(conn, 201, "Created")
+      conn
+      |> put_resp_content_type("text/plain")
+      |> send_resp(201, "Created")
     else
       msg =
         "Tried writing style '#{name}.json', which doesn't exist.\nEnsure style id and filename are equal."
 
       Logger.error(msg)
-      send_resp(conn, 404, msg)
+
+      conn
+      |> put_resp_content_type("text/plain")
+      |> send_resp(404, msg)
     end
   end
 
@@ -76,7 +98,10 @@ defmodule MapStyleEditor.Server do
 
   defp serve_file(conn, {:error, reason}, _fallback) do
     Logger.error("invalid path given: #{reason}")
-    send_resp(conn, 500, "invalid path given: #{reason}")
+
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(500, "invalid path given: #{reason}")
   end
 
   defp serve_file(conn, path, fallback) do
@@ -123,7 +148,9 @@ defmodule MapStyleEditor.Server do
           """
         )
 
-        send_resp(conn, 404, "Not found")
+        conn
+        |> put_resp_content_type("text/plain")
+        |> send_resp(404, "Not found")
     end
   end
 

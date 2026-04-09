@@ -17,7 +17,10 @@ defmodule VelorouteWeb.Endpoint do
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [:user_agent, session: @session_options]]
+    websocket: [
+      connect_info: [:user_agent, session: @session_options],
+      compress: true
+    ]
 
   plug Video.ServePlug
   plug Esri.Tiles

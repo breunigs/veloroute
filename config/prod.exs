@@ -6,7 +6,7 @@ config :veloroute, VelorouteWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   http: [
     port: port,
-    transport_options: [socket_opts: [:inet6]]
+    ip: {0, 0, 0, 0, 0, 0, 0, 0}
   ],
   server: true,
   force_ssl: [
