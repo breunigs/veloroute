@@ -12,7 +12,8 @@ defmodule Veloroute.MixProject do
       releases: [
         prod: [
           include_executables_for: [:unix],
-          steps: [:assemble]
+          steps: [:assemble],
+          strip_beams: true
         ]
       ],
       aliases: aliases(),
