@@ -353,11 +353,10 @@ function updateVideoElement(preloadOnly) {
   console.debug('loading regular html video')
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
-  try { video.load(); } catch (e) { }
-  if (autoplay && !video.paused) video.play();
+  try { video.load(); } catch (e) { console.debug('video loading error', e) }
+  if (autoplay) video.play()
 }
 
-let canPlayThroughEvtListener = null
 let canPlayThroughFallback = null
 function preventHLSFirstFrameFlash() {
   console.debug('native hls; hacking around first frame flash')
@@ -373,13 +372,13 @@ function preventHLSFirstFrameFlash() {
     outer.style.backgroundImage = null
     outer.style.backgroundSize = null
 
-    video.removeEventListener(canPlayThroughEvtListener)
+    video.removeEventListener(eventType, reset)
     clearTimeout(canPlayThroughFallback)
   }
 
   const eventType = videoMeta.start == 0 ? 'playing' : 'seeked'
-  canPlayThroughEvtListener = video.addEventListener(eventType, reset, { once: true });
-  canPlayThroughFallback = setTimeout(eventType, reset, 1000);
+  video.addEventListener(eventType, reset, { once: true });
+  canPlayThroughFallback = setTimeout(reset, 1000);
 }
 
 function restorePreviousQuality() {
