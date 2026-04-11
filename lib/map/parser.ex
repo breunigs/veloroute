@@ -162,7 +162,7 @@ defmodule Map.Parser do
   def handle_event(:end_element, "member", state), do: {:ok, state}
 
   def handle_event(:end_element, "relation", %{active: {:relations, :deleted}} = state),
-    do: {:ok, state}
+    do: {:ok, %{state | active: nil}}
 
   def handle_event(:end_element, "relation", %{active: {:relations, rel}} = state) do
     rel =
