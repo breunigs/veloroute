@@ -301,8 +301,8 @@ defmodule Article.Decorators do
          rendered when is_module(rendered) <- Video.Generator.get(track) do
       center = Geo.CheapRuler.center(bbox)
 
-      %{point: %{time_offset_ms: ms}} =
-        Geo.CheapRuler.closest_point_on_line(rendered.coords(), center, @search_radius_m)
+      %{time_offset_ms: ms} =
+        Video.Rendered.closest_point(rendered, center, @search_radius_m)
 
       # VelorouteWeb.Router.Helpers.image_extract_path(
       #   VelorouteWeb.Endpoint,

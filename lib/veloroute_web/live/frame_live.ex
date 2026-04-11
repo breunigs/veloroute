@@ -198,8 +198,8 @@ defmodule VelorouteWeb.FrameLive do
 
     socket =
       with %{action: :play} = action <- Map.get(current_track, :end_action),
-           %{lat: lat, lon: lon} when is_module(current_rendered) <-
-             List.last(current_rendered.coords()) do
+           {_first, %{lat: lat, lon: lon}} when is_module(current_rendered) <-
+             Video.Rendered.start_end_coords(current_rendered) do
         socket
         |> VelorouteWeb.Live.VideoState.maybe_update_video(action.route, %{
           "group" => action.group,

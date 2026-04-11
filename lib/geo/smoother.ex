@@ -8,9 +8,7 @@ defmodule Geo.Smoother do
   def polyline(coords, interval_ms, precision) when is_list(coords) and precision <= 7 do
     coords
     |> auto()
-    |> equi_time_interval(interval_ms)
-    |> Enum.map(&{&1.lon, &1.lat})
-    |> Polyline.encode(precision)
+    |> Geo.Nif.nif_equi_time_interval_encode(interval_ms / 1, precision)
   end
 
   @spec auto([Geo.Point.like()]) :: [Video.TimedPoint.t()]
@@ -45,29 +43,14 @@ defmodule Geo.Smoother do
   """
   @max_overlap_length_m 5
   @min_heading_change_deg 170
-  def remove_overlaps([c1, c2 | rest] = _coords) do
-    prev_bearing = Geo.CheapRuler.bearing(c1, c2)
-    acc = {prev_bearing, [c2, c1]}
-
-    {_, coords} =
-      Enum.reduce(rest, acc, fn c3, acc ->
-        {prev_bearing, [c2, c1 | _] = coords} = acc
-        dist = Geo.CheapRuler.dist(c1, c3)
-        next_bearing = Geo.CheapRuler.bearing(c2, c3)
-        diff = Geo.CheapRuler.bearing_diff(prev_bearing, next_bearing)
-
-        nearby = dist <= @max_overlap_length_m
-        u_turn = diff >= @min_heading_change_deg
-        skip = nearby && u_turn
-
-        if skip do
-          {prev_bearing, coords}
-        else
-          {next_bearing, [c3 | coords]}
-        end
-      end)
-
-    Enum.reverse(coords)
+  def remove_overlaps(coords) when length(coords) >= 3 do
+    Geo.Nif.nif_remove_overlaps(
+      coords,
+      @max_overlap_length_m,
+      @min_heading_change_deg,
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
   end
 
   def remove_overlaps(coords), do: coords
@@ -91,29 +74,7 @@ defmodule Geo.Smoother do
       ]
   """
   def equi_time_interval(coords, interval_in_ms) when interval_in_ms > 0 do
-    equi_time_interval(coords, [], 0, interval_in_ms) |> Enum.reverse()
-  end
-
-  defp equi_time_interval([_only_one], output, _offset, _interval), do: output
-
-  defp equi_time_interval([prev, next | _rest] = input, output, offset, interval)
-       when prev.time_offset_ms == next.time_offset_ms,
-       do: equi_time_interval(tl(input), output, offset, interval)
-
-  defp equi_time_interval([prev, next | _rest] = input, output, offset, interval) do
-    t = (offset - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
-
-    cond do
-      t > 1 ->
-        equi_time_interval(tl(input), output, offset, interval)
-
-      t >= 0 ->
-        interpolated = Video.TimedPoint.interpolate(prev, next, t)
-        equi_time_interval(input, [interpolated | output], offset + interval, interval)
-
-      true ->
-        raise("algorithm error: didn't drop an input coord in an earlier iteration")
-    end
+    Geo.Nif.nif_equi_time_interval(coords, interval_in_ms / 1)
   end
 
   @spec average_in_distance([Geo.Point.like()], float) :: [Geo.Point.like()]
@@ -157,43 +118,16 @@ defmodule Geo.Smoother do
         %{lat: 53.55072684539607, lon: 9.994159412578323}
       ]
   """
-  @compile {:inline, sum_while_in_range: 4}
   def average_in_distance(coords, range_in_meters) do
-    Enum.map_reduce(coords, {[], coords}, fn
-      coord, {prev, [coord | next]} ->
-        # move the current coord from "next" to "prev".
-        prev = [coord | prev]
-
-        # find neighbors in range and smooth over them.
-        {sum_lats, sum_lons, sum_weights} =
-          {0.0, 0.0, 0.0}
-          |> sum_while_in_range(coord, prev, range_in_meters)
-          |> sum_while_in_range(coord, next, range_in_meters)
-
-        # map the smoothed coordinate
-        smoothed = %{coord | lat: sum_lats / sum_weights, lon: sum_lons / sum_weights}
-        {smoothed, {prev, next}}
-    end)
-    |> elem(0)
+    Geo.Nif.nif_average_in_distance(
+      coords,
+      range_in_meters,
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
   end
 
-  @typep sums() :: {float(), float(), float()}
-  @spec sum_while_in_range(sums(), Geo.Point.like(), [Geo.Point.like()], float()) :: sums()
-  defp sum_while_in_range(sums, from, coords, range_in_meters) do
-    Enum.reduce_while(coords, sums, fn coord, {sum_lat, sum_lon, sum_weight} ->
-      dist = Geo.CheapRuler.point2point_dist(coord, from)
-
-      if dist > range_in_meters do
-        {:halt, {sum_lat, sum_lon, sum_weight}}
-      else
-        weight = range_in_meters - dist
-        {:cont, {sum_lat + coord.lat * weight, sum_lon + coord.lon * weight, sum_weight + weight}}
-      end
-    end)
-  end
-
-  require Integer
-  @spec cut_corners([Geo.Point.like()], non_neg_integer()) :: [Geo.Point.like()]
+  @spec cut_corners([Video.TimedPoint.t()], non_neg_integer()) :: [Video.TimedPoint.t()]
   @doc """
   A single iteration replaces every point with two new ones. These points are
   placed before and after the original point along the polyline using linear
@@ -202,46 +136,21 @@ defmodule Geo.Smoother do
 
   ## Examples
 
-  iex> Geo.Smoother.cut_corners([%{lat: 1, lon: 1}, %{lat: 2, lon: 2}], 1)
-  [%{lat: 1, lon: 1}, %{lat: 1.25, lon: 1.25}, %{lat: 1.75, lon: 1.75}, %{lat: 2, lon: 2}]
-
-  iex> Geo.Smoother.cut_corners([%{lat: 1, lon: 1}, %{lat: 2, lon: 2}], 3)
+  iex> Geo.Smoother.cut_corners([
+  ...>   %Video.TimedPoint{lat: 1.0, lon: 1.0, time_offset_ms: 0},
+  ...>   %Video.TimedPoint{lat: 2.0, lon: 2.0, time_offset_ms: 100}
+  ...> ], 1)
   [
-    %{lat: 1, lon: 1},
-    %{lat: 1.015625, lon: 1.015625},
-    %{lat: 1.046875, lon: 1.046875},
-    %{lon: 1.09375, lat: 1.09375},
-    %{lon: 1.15625, lat: 1.15625},
-    %{lon: 1.234375, lat: 1.234375},
-    %{lon: 1.328125, lat: 1.328125},
-    %{lon: 1.4375, lat: 1.4375},
-    %{lon: 1.5625, lat: 1.5625},
-    %{lon: 1.671875, lat: 1.671875},
-    %{lon: 1.765625, lat: 1.765625},
-    %{lon: 1.84375, lat: 1.84375},
-    %{lon: 1.90625, lat: 1.90625},
-    %{lon: 1.953125, lat: 1.953125},
-    %{lon: 1.984375, lat: 1.984375},
-    %{lat: 2, lon: 2}
+    %Video.TimedPoint{lat: 1.0, lon: 1.0, time_offset_ms: 0},
+    %Video.TimedPoint{lat: 1.25, lon: 1.25, time_offset_ms: 25},
+    %Video.TimedPoint{lat: 1.75, lon: 1.75, time_offset_ms: 75},
+    %Video.TimedPoint{lat: 2.0, lon: 2.0, time_offset_ms: 100}
   ]
   """
   # we place new points on both sides, so the valid range is (0, 0.5]. This
   # value was experimentally chosen and gives good results.
   @cut_corner_dist 0.25
-  def cut_corners(coords, iterations),
-    do: cut_corners(coords, iterations, Integer.is_odd(iterations))
-
-  defp cut_corners(coords, 0, false), do: coords
-  defp cut_corners(coords, 0, true), do: Enum.reverse(coords)
-
-  defp cut_corners(coords, iterations, needs_reverse) when iterations > 0 do
-    {cut, last_coord} =
-      Enum.reduce(tl(coords), {[hd(coords)], hd(coords)}, fn next, {cut, prev} ->
-        p1 = Geo.Interpolate.point(prev, next, @cut_corner_dist)
-        p2 = Geo.Interpolate.point(prev, next, 1 - @cut_corner_dist)
-        {[p2, p1 | cut], next}
-      end)
-
-    cut_corners([last_coord | cut], iterations - 1, needs_reverse)
+  def cut_corners(coords, iterations) do
+    Geo.Nif.nif_cut_corners(coords, iterations, @cut_corner_dist)
   end
 end

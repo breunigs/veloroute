@@ -261,31 +261,22 @@ defmodule Video.RendererTest do
     end
 
     @polyline_interval_ms 100
-    @polyline_precision 6
+
+    @coords [
+      %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0 * @polyline_interval_ms},
+      %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 1 * @polyline_interval_ms},
+      %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 2 * @polyline_interval_ms},
+      %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 3 * @polyline_interval_ms},
+      %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 4 * @polyline_interval_ms}
+    ]
 
     @impl Video.Rendered
-    def coords(),
-      do: [
-        %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0 * @polyline_interval_ms},
-        %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 1 * @polyline_interval_ms},
-        %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 2 * @polyline_interval_ms},
-        %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 3 * @polyline_interval_ms},
-        %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 4 * @polyline_interval_ms}
-      ]
-
-    @impl Video.Rendered
-    def polyline() do
-      %{
-        polyline: Geo.Smoother.polyline(coords(), @polyline_interval_ms, @polyline_precision),
-        interval: @polyline_interval_ms,
-        precision: @polyline_precision
-      }
-    end
+    def timed_polyline(), do: Geo.Polyline.encode_timed(@coords)
 
     @impl Video.Rendered
     def rendered?(), do: true
 
     @impl Video.Rendered
-    def bbox(), do: Geo.CheapRuler.bbox(coords())
+    def bbox(), do: Geo.CheapRuler.bbox(@coords)
   end
 end

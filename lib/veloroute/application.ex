@@ -16,7 +16,6 @@ defmodule Veloroute.Application do
       Article.Index,
       Basemap.Static.Runner.cache_child_spec(),
       Basemap.Static.Runner,
-      Video.DiskPreloader,
       {Phoenix.PubSub, name: Veloroute.PubSub},
       {VelorouteWeb.ConnectionTracker, pubsub_server: Veloroute.PubSub},
       # Start the endpoint when the application starts

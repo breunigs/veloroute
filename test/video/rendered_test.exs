@@ -27,31 +27,22 @@ defmodule Video.RenderedTest do
     @impl Video.Rendered
     def street_names(), do: recording_dates()
 
-    @impl Video.Rendered
-    def coords(),
-      do: [
-        %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},
-        %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 100},
-        %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 200},
-        %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 300},
-        %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 400}
-      ]
+    @coords [
+      %Video.TimedPoint{lat: 53.507, lon: 10.044, time_offset_ms: 0},
+      %Video.TimedPoint{lat: 53.508, lon: 10.042, time_offset_ms: 100},
+      %Video.TimedPoint{lat: 53.509, lon: 10.040, time_offset_ms: 200},
+      %Video.TimedPoint{lat: 53.510, lon: 10.038, time_offset_ms: 300},
+      %Video.TimedPoint{lat: 53.511, lon: 10.036, time_offset_ms: 400}
+    ]
 
-    @precision 6
     @impl Video.Rendered
-    def polyline,
-      do: %{
-        polyline: Polyline.encode(Enum.map(coords(), &{&1.lon, &1.lat}), @precision),
-        precision: @precision,
-        # as per the time_offset_ms diffs from coords()
-        interval: 100.0
-      }
+    def timed_polyline(), do: Geo.Polyline.encode_timed(@coords)
 
     @impl Video.Rendered
     def rendered?(), do: true
 
     @impl Video.Rendered
-    def bbox(), do: Geo.CheapRuler.bbox(coords())
+    def bbox(), do: Geo.CheapRuler.bbox(@coords)
   end
 
   test "all vanity names are unique" do

@@ -26,7 +26,7 @@ defmodule Statistics do
     Enum.reduce(visible_videos, %{duration_ms: 0, distance_m: 0}, fn render, all ->
       all
       |> Map.update!(:duration_ms, &(&1 + render.length_ms()))
-      |> Map.update!(:distance_m, &(&1 + Geo.CheapRuler.line_distance(render.coords())))
+      |> Map.update!(:distance_m, &(&1 + Video.Rendered.line_distance(render)))
     end)
   end
 end

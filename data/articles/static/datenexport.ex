@@ -165,9 +165,17 @@ defmodule Data.Article.Static.Datenexport do
   end
 
   defp position(video, timestamp) do
-    Enum.find_value(video.coords(), fn %{lon: lon, lat: lat, time_offset_ms: ts} ->
-      if ts >= timestamp, do: "lat#{lat} lon#{lon}"
-    end)
+    %{lat: lat, lon: lon} =
+      Geo.Nif.nif_timed_coord_at_time(
+        video.timed_polyline(),
+        6,
+        timestamp,
+        video.length_ms(),
+        Geo.CheapRuler.kx(),
+        Geo.CheapRuler.ky()
+      )
+
+    "lat#{lat} lon#{lon}"
   end
 
   defp clean(str), do: String.replace(str, ~r/[^a-zA-ZäüößÄÜÖẞ0-9_.-]+/u, "_")

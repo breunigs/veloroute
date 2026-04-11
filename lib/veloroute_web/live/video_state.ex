@@ -373,7 +373,6 @@ defmodule VelorouteWeb.Live.VideoState do
     street_name = Video.Rendered.street_name_for(video, start_from.time_offset_ms)
 
     Logger.debug("video=#{video.hash()}, starting from #{start_from.time_offset_ms}")
-    Video.DiskPreloader.warm(video.hash(), start_from)
 
     [
       video: state,
@@ -382,7 +381,7 @@ defmodule VelorouteWeb.Live.VideoState do
       video_vanity: Video.Rendered.vanity(video),
       video_start: start_from.time_offset_ms,
       video_length_ms: video.length_ms(),
-      video_polyline: video.polyline(),
+      video_polyline: Video.Rendered.polyline(video),
       video_route_id: route_id(state),
       video_parent: track && track.parent_ref,
       video_text: track && track.text,
@@ -438,8 +437,7 @@ defmodule VelorouteWeb.Live.VideoState do
        when is_reversible(state) do
     video = current_rendered(state)
 
-    [first | tail] = video.coords()
-    last = List.last(tail)
+    {first, last} = Video.Rendered.start_end_coords(video)
 
     dist_first = Geo.CheapRuler.point2point_dist(state.start, first)
     dist_last = Geo.CheapRuler.point2point_dist(state.start, last)
@@ -496,8 +494,7 @@ defmodule VelorouteWeb.Live.VideoState do
           10_000_000
         else
           dist =
-            rendered.coords()
-            |> Geo.CheapRuler.closest_point_on_line(near_position, @search_radius_meters)
+            Video.Rendered.closest_point(rendered, near_position, @search_radius_meters)
             |> Map.fetch!(:dist)
 
           dist =

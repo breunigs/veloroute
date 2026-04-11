@@ -28,35 +28,22 @@ defmodule Geo.CheapRuler do
   @kx @m * (111.41513 * @cos1 - 0.09455 * @cos3 + 0.00012 * @cos5)
   @ky @m * (111.13209 - 0.56605 * @cos2 + 0.0012 * @cos4)
 
+  def kx, do: @kx
+  def ky, do: @ky
+
   @doc ~S"""
   Takes a list of coordinates and find their bounding box
 
   ## Examples
 
       iex> Geo.CheapRuler.bbox([
-      ...>   %{lon: 1.2, lat: 3.4}, %{lon: 4.5, lat: 7.1}, %{lon: 0, lat: 0},
+      ...>   %{lon: 1.2, lat: 3.4}, %{lon: 4.5, lat: 7.1}, %{lon: 0.0, lat: 0.0},
       ...> ])
-      %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      %Geo.BoundingBox{minLon: 0.0, minLat: 0.0, maxLon: 4.5, maxLat: 7.1}
   """
   def bbox(coords) when is_list(coords) do
-    head = hd(coords)
-
-    bbox = %Geo.BoundingBox{
-      minLon: head.lon,
-      minLat: head.lat,
-      maxLon: head.lon,
-      maxLat: head.lat
-    }
-
-    Enum.reduce(tl(coords), bbox, fn %{lon: lon, lat: lat}, bbox ->
-      %{
-        bbox
-        | minLon: min(lon, bbox.minLon),
-          minLat: min(lat, bbox.minLat),
-          maxLon: max(lon, bbox.maxLon),
-          maxLat: max(lat, bbox.maxLat)
-      }
-    end)
+    {min_lon, min_lat, max_lon, max_lat} = Geo.Nif.nif_bbox(coords)
+    %Geo.BoundingBox{minLon: min_lon, minLat: min_lat, maxLon: max_lon, maxLat: max_lat}
   end
 
   def bbox(%{lon: lon, lat: lat}) do
@@ -422,55 +409,19 @@ defmodule Geo.CheapRuler do
         }
   def closest_point_on_line(line, point, eps \\ 0.0)
 
-  def closest_point_on_line(line, %{lon: lon, lat: lat} = pt, epsilon)
+  def closest_point_on_line(line, %{lon: lon, lat: lat} = _pt, epsilon)
       when is_list(line) and is_float(lon) and is_float(lat) and epsilon >= 0.0 do
-    [head | tail] = line
-    # ensure it's a float to avoid conversions in the loop
-    eps2 = epsilon * epsilon * 1.0
+    {dist, before_idx, after_idx, t} =
+      Geo.Nif.nif_closest_point_on_line(line, lon, lat, epsilon, @kx, @ky)
 
-    dist = point2point_dist(head, pt)
-    acc = %{prev: head, dist: dist * dist, before: head, after: head, t: 0.0}
-
-    acc =
-      Enum.reduce_while(tail, acc, fn next, acc ->
-        x = acc.prev.lon
-        y = acc.prev.lat
-        dx = (next.lon - x) * @kx
-        dy = (next.lat - y) * @ky
-
-        {x, y, t} =
-          if dx == 0.0 && dy == 0.0 do
-            {x, y, 0.0}
-          else
-            (((lon - x) * @kx * dx + (lat - y) * @ky * dy) / (dx * dx + dy * dy))
-            |> case do
-              t when t > 1.0 -> {next.lon, next.lat, 1.0}
-              t when t > 0.0 -> {x + dx / @kx * t, y + dy / @ky * t, t}
-              _t -> {x, y, 0.0}
-            end
-          end
-
-        dx = (lon - x) * @kx
-        dy = (lat - y) * @ky
-        dist = dx * dx + dy * dy
-
-        next_acc = %{acc | prev: next}
-
-        if dist >= acc.dist do
-          # Stop if we have a suitable candidate and the "next" point is again
-          # outside the epsilon range
-          break = if acc.dist <= eps2 && dist > eps2, do: :halt, else: :cont
-          {break, next_acc}
-        else
-          {:cont, %{next_acc | dist: dist, t: t, before: acc.prev, after: next}}
-        end
-      end)
+    before = Enum.at(line, before_idx)
+    aft = Enum.at(line, after_idx)
 
     %{
-      dist: :math.sqrt(acc.dist),
-      before: acc.before,
-      point: Geo.Interpolate.point(acc.before, acc.after, acc.t),
-      after: acc.after
+      dist: dist,
+      before: before,
+      point: Geo.Interpolate.point(before, aft, t),
+      after: aft
     }
   end
 
@@ -512,35 +463,7 @@ defmodule Geo.CheapRuler do
     if List.first(polygon) != List.last(polygon),
       do: raise("invalid polygon: expected first and last coord to be the same")
 
-    outside = Enum.min_by(polygon, & &1.lon)
-    outside = %{outside | lon: outside.lon - 0.001}
-
-    intersections =
-      polygon
-      |> Enum.chunk_every(2, 1, :discard)
-      |> Enum.count(fn [prev, next] ->
-        o1 = orientation_euclid(coord, outside, prev)
-        o2 = orientation_euclid(coord, outside, next)
-        o3 = orientation_euclid(prev, next, coord)
-        o4 = orientation_euclid(prev, next, outside)
-
-        # intersects? (ignoring colinear edge cases)
-        o1 != o2 && o3 != o4
-      end)
-
-    Integer.is_odd(intersections)
-  end
-
-  defp orientation_euclid(coord, prev, next) do
-    area =
-      (next.lat - prev.lat) * (coord.lon - prev.lon) -
-        (coord.lat - prev.lat) * (next.lon - prev.lon)
-
-    case area do
-      a when a > 0 -> :clockwise
-      a when a < 0 -> :counter
-      _a -> :colinear
-    end
+    Geo.Nif.nif_inside_polygon_euclid(coord.lon, coord.lat, polygon)
   end
 
   @doc ~S"""
@@ -555,10 +478,9 @@ defmodule Geo.CheapRuler do
       ...> ])
       534.0011528314758
   """
-  def line_distance(line, len \\ 0)
-  def line_distance([a, b | l], len), do: line_distance([b | l], len + point2point_dist(a, b))
-  def line_distance([_], len), do: len
-  def line_distance([], len), do: len
+  def line_distance(line) when is_list(line) do
+    Geo.Nif.nif_line_distance(line, @kx, @ky)
+  end
 
   @spec point2point_dist(Geo.Point.like(), Geo.Point.like()) :: float
   @doc ~S"""
@@ -572,10 +494,14 @@ defmodule Geo.CheapRuler do
       ...> )
       273.29543042145286
   """
-  def point2point_dist(%{lon: lon1, lat: lat1}, %{lon: lon2, lat: lat2}) do
+  def point2point_dist(a, b) do
+    :math.sqrt(point2point_dist_sq(a, b))
+  end
+
+  def point2point_dist_sq(%{lon: lon1, lat: lat1}, %{lon: lon2, lat: lat2}) do
     dx = (lon1 - lon2) * @kx
     dy = (lat1 - lat2) * @ky
-    :math.sqrt(dx * dx + dy * dy)
+    dx * dx + dy * dy
   end
 
   @doc """
@@ -634,20 +560,7 @@ defmodule Geo.CheapRuler do
       ]
   """
   def max_segment_length(polyline, max_dist) do
-    polyline
-    |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.reduce([hd(polyline)], fn
-      [a, a], line ->
-        IO.warn("got duplicated point in #{inspect(polyline)}")
-        # i.e. remove duplicated point
-        line
-
-      [a, b], line ->
-        pieces = ceil(dist(a, b) / max_dist)
-        segmented = Enum.map(pieces..1//-1, fn n -> Geo.Interpolate.point(a, b, n / pieces) end)
-        segmented ++ line
-    end)
-    |> Enum.reverse()
+    Geo.Nif.nif_max_segment_length(polyline, max_dist, @kx, @ky)
   end
 
   defp to_deg(rad) do

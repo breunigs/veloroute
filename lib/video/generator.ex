@@ -195,18 +195,11 @@ defmodule Video.Generator do
     :"#{@autogen_module_name}#{hash}"
   end
 
-  @polyline_interval_ms 1000.0 / 60.0
-  @polyline_precision 6
   defp as_code(name, hash, sources, coords, recording_dates, street_names, renderer) do
     length_ms = coords |> List.last() |> Map.fetch!(:time_offset_ms)
     rendered = Video.Path.fully_rendered?(hash)
     bbox = Geo.CheapRuler.bbox(coords)
-
-    polyline = %{
-      polyline: Geo.Smoother.polyline(coords, @polyline_interval_ms, @polyline_precision),
-      interval: @polyline_interval_ms,
-      precision: @polyline_precision
-    }
+    encoded_coords = Geo.Polyline.encode_timed(coords)
 
     quote do
       defmodule unquote(module_name(hash)) do
@@ -239,9 +232,7 @@ defmodule Video.Generator do
         # names derived from OpenStreetMap data, thus ODbL https://osmfoundation.org/wiki/Licence
         def street_names(), do: unquote(Macro.escape(street_names))
         @impl Video.Rendered
-        def coords(), do: unquote(Macro.escape(coords))
-        @impl Video.Rendered
-        def polyline(), do: unquote(Macro.escape(polyline))
+        def timed_polyline(), do: unquote(encoded_coords)
       end
     end
     |> Macro.to_string()

@@ -9,13 +9,14 @@ defmodule Video.Rendered do
   @callback hash() :: binary()
   @callback length_ms() :: integer()
   @callback sources() :: Video.Track.plain()
-  @callback coords() :: [Video.TimedPoint.t()]
-  @callback polyline() :: polyline()
+  @callback timed_polyline() :: binary()
   @callback recording_dates() :: Video.Track.timed_info()
   @callback street_names() :: Video.Track.timed_info()
   @callback rendered?() :: boolean()
   @callback renderer() :: pos_integer()
   @callback bbox() :: Geo.BoundingBox.t()
+
+  @timed_precision 6
 
   @doc """
   Binary length of the abbreviated hash used for vanity names
@@ -31,6 +32,35 @@ defmodule Video.Rendered do
     [vanity, _] = String.split(rendered.name(), ":", parts: 2)
     abbrev = rendered.hash() |> String.slice(0, @vanity_id_length)
     abbrev <> "-" <> vanity
+  end
+
+  @polyline_interval_ms 1000.0 / 60.0
+  @polyline_precision 6
+  @cut_iterations 3
+  @cut_corner_dist 0.25
+  @avg_range_m 10.0
+  @max_overlap_m 5.0
+  @min_heading_deg 170.0
+
+  def polyline(rendered) do
+    %{
+      polyline:
+        Geo.Nif.nif_timed_smoother_polyline(
+          rendered.timed_polyline(),
+          @timed_precision,
+          @cut_iterations,
+          @cut_corner_dist,
+          @avg_range_m,
+          @max_overlap_m,
+          @min_heading_deg,
+          @polyline_interval_ms,
+          @polyline_precision,
+          Geo.CheapRuler.kx(),
+          Geo.CheapRuler.ky()
+        ),
+      interval: @polyline_interval_ms,
+      precision: @polyline_precision
+    }
   end
 
   @doc """
@@ -63,6 +93,60 @@ defmodule Video.Rendered do
     end)
   end
 
+  @doc """
+  Returns the total line distance in meters for this video's track.
+  """
+  @spec line_distance(t()) :: float()
+  def line_distance(rendered) do
+    Geo.Nif.nif_timed_line_distance(
+      rendered.timed_polyline(),
+      @timed_precision,
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
+    |> case do
+      {:error, reason} -> {:error, "#{rendered}: #{reason}"}
+      other -> other
+    end
+  end
+
+  @doc """
+  Returns `{start_coord, end_coord}` where each is a map with
+  `:lat`, `:lon`, `:time_offset_ms`, and `:bearing`.
+  """
+  @spec start_end_coords(t()) :: {indicator(), indicator()}
+  def start_end_coords(rendered) do
+    Geo.Nif.nif_timed_start_end_coords(
+      rendered.timed_polyline(),
+      @timed_precision,
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
+  end
+
+  @doc """
+  Finds the closest point on this video's track to the given point.
+  Returns a map with `:dist`, `:lat`, `:lon`, `:time_offset_ms`, and `:bearing`.
+  """
+  @spec closest_point(t(), Geo.Point.like(), float()) :: %{
+          dist: float(),
+          lat: float(),
+          lon: float(),
+          time_offset_ms: non_neg_integer(),
+          bearing: float()
+        }
+  def closest_point(rendered, point, epsilon \\ 0.0) do
+    Geo.Nif.nif_timed_closest_point(
+      rendered.timed_polyline(),
+      @timed_precision,
+      point.lon,
+      point.lat,
+      epsilon,
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
+  end
+
   @type indicator :: %{
           lat: float(),
           lon: float(),
@@ -81,9 +165,9 @@ defmodule Video.Rendered do
       iex> Video.Rendered.start_from(Video.RenderedTest.Example, %{lat: 53.5085, lon: 10.041})
       %{bearing: 310.0161346069299, lat: 53.5085, lon: 10.041000000000002, time_offset_ms: 150}
 
-      iex> last_coord = Video.RenderedTest.Example.coords() |> List.last()
-      iex> Video.Rendered.start_from(Video.RenderedTest.Example, last_coord)
-      %{bearing: 310.01613460713037, lat: last_coord.lat, lon: last_coord.lon, time_offset_ms: last_coord.time_offset_ms}
+      iex> {_start, last} = Video.Rendered.start_end_coords(Video.RenderedTest.Example)
+      iex> Video.Rendered.start_from(Video.RenderedTest.Example, last)
+      %{bearing: 310.0161346071303, lat: last.lat, lon: last.lon, time_offset_ms: last.time_offset_ms}
 
       iex> Video.Rendered.start_from(Video.RenderedTest.Example, 124)
       %{bearing: 310.0161346069299, lat: 53.50824, lon: 10.04152, time_offset_ms: 124}
@@ -91,46 +175,24 @@ defmodule Video.Rendered do
   def start_from(rendered, point_or_time)
 
   def start_from(rendered, nil) do
-    [a, b | _rest] = rendered.coords()
-    Map.put(a, :bearing, Geo.CheapRuler.bearing(a, b))
+    {start, _end} = start_end_coords(rendered)
+    start
   end
 
   def start_from(rendered, time) when is_integer(time) do
-    cond do
-      time <= 0 ->
-        start_from(rendered, nil)
-
-      time >= rendered.length_ms() ->
-        [a, b] = rendered.coords() |> Enum.slice(-2..-1)
-        Map.put(b, :bearing, Geo.CheapRuler.bearing(a, b))
-
-      true ->
-        rendered.coords()
-        |> Stream.chunk_every(2, 1, :discard)
-        |> Stream.filter(fn [a, b] -> time >= a.time_offset_ms && time <= b.time_offset_ms end)
-        |> Enum.find_value(fn [a, b] ->
-          t = calc_t(time, a, b)
-
-          Video.TimedPoint.interpolate(a, b, t)
-          |> Map.put(:bearing, Geo.CheapRuler.bearing(a, b))
-          |> Map.delete(:__struct__)
-        end)
-    end || start_from(rendered, nil)
+    Geo.Nif.nif_timed_coord_at_time(
+      rendered.timed_polyline(),
+      @timed_precision,
+      time,
+      rendered.length_ms(),
+      Geo.CheapRuler.kx(),
+      Geo.CheapRuler.ky()
+    )
   end
 
   @search_radius_meters 10
   def start_from(rendered, point) do
-    %{point: point, before: before, after: aft} =
-      Geo.CheapRuler.closest_point_on_line(rendered.coords(), point, @search_radius_meters)
-
-    %{
-      lon: point.lon,
-      lat: point.lat,
-      bearing: Geo.CheapRuler.bearing(before, aft),
-      time_offset_ms: point.time_offset_ms
-    }
+    result = closest_point(rendered, point, @search_radius_meters)
+    Map.delete(result, :dist)
   end
-
-  defp calc_t(interp, prev, next),
-    do: (interp - prev.time_offset_ms) / (next.time_offset_ms - prev.time_offset_ms)
 end

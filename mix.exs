@@ -86,7 +86,7 @@ defmodule Veloroute.MixProject do
       {:polyline, "~> 1.6"},
       {:recon, "~> 2.5"},
       {:reverse_proxy_plug, "~> 3.0"},
-      {:saxy, "~> 1.0", only: [:dev, :test]},
+      {:saxy, "~> 1.0"},
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.7"},
       {:temp, "~> 0.4"},
@@ -98,7 +98,8 @@ defmodule Veloroute.MixProject do
       # auto video join
       {:ortex, "~> 0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
-      {:scholar, "~> 0.4.0", only: [:dev, :test]}
+      {:scholar, "~> 0.4.0", only: [:dev, :test]},
+      {:rustler, "~> 0.37.0"}
     ]
   end
 end
