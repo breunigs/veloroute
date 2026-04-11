@@ -17,7 +17,7 @@ pub struct Coord {
     pub lon: f64,
 }
 
-#[derive(Clone, Copy, rustler::NifStruct)]
+#[derive(Clone, Copy, Debug, PartialEq, rustler::NifStruct)]
 #[module = "Video.TimedPoint"]
 pub struct TimedCoord {
     pub lat: f64,

@@ -214,15 +214,16 @@ fn nif_timed_closest_point(
     })
 }
 
+const CUT_ITERATIONS: u32 = 3;
+const CUT_DIST: f64 = 0.25;
+const AVG_RANGE_M: f64 = 10.0;
+const MAX_OVERLAP_M: f64 = 5.0;
+const MIN_HEADING_DEG: f64 = 170.0;
+
 #[rustler::nif]
 fn nif_timed_smoother_polyline(
     encoded: String,
     precision: u32,
-    cut_iterations: u32,
-    cut_dist: f64,
-    avg_range_m: f64,
-    max_overlap_m: f64,
-    min_heading_deg: f64,
     interval_ms: f64,
     output_precision: u32,
     kx: f64,
@@ -233,9 +234,9 @@ fn nif_timed_smoother_polyline(
         return Ok(String::new());
     }
 
-    let smoothed = smoother::cut_corners_vec(coords, cut_iterations, cut_dist);
-    let smoothed = smoother::average_in_distance_vec(&smoothed, avg_range_m, kx, ky);
-    let smoothed = smoother::remove_overlaps_vec(smoothed, max_overlap_m, min_heading_deg, kx, ky);
+    let smoothed = smoother::cut_corners_vec(coords, CUT_ITERATIONS, CUT_DIST);
+    let smoothed = smoother::average_in_distance_vec(&smoothed, AVG_RANGE_M, kx, ky);
+    let smoothed = smoother::remove_overlaps_vec(smoothed, MAX_OVERLAP_M, MIN_HEADING_DEG, kx, ky);
 
     let iter = polyline::EquiTimeIter::new(&smoothed, interval_ms);
     Ok(polyline::polyline_encode_coords(iter, output_precision))

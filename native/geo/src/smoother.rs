@@ -1,5 +1,4 @@
-use rustler::{Env, Term, NifResult, Encoder};
-use crate::{atoms, Coord, TimedCoord};
+use crate::TimedCoord;
 use crate::cheap_ruler::{cheap_bearing, cheap_bearing_diff};
 
 pub fn interpolate_timed_coord(a: &TimedCoord, b: &TimedCoord, t: f64) -> TimedCoord {
@@ -118,211 +117,125 @@ pub fn remove_overlaps_vec(coords: Vec<TimedCoord>, max_overlap_m: f64, min_head
     kept.into_iter().map(|i| coords[i]).collect()
 }
 
-#[rustler::nif]
-fn nif_average_in_distance<'a>(
-    env: Env<'a>,
-    coords_term: Term<'a>,
-    range_in_meters: f64,
-    kx: f64,
-    ky: f64,
-) -> NifResult<Vec<Term<'a>>> {
-    let coords = coords_term.decode::<Vec<Coord>>()?;
-    let original_maps: Vec<Term<'a>> = coords_term.decode()?;
-    let n = coords.len();
-    let range_sq = range_in_meters * range_in_meters;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    let mut result = Vec::with_capacity(n);
-
-    for i in 0..n {
-        let center = &coords[i];
-        let mut sum_lat = 0.0_f64;
-        let mut sum_lon = 0.0_f64;
-        let mut sum_weight = 0.0_f64;
-
-        for j in (0..=i).rev() {
-            let c = &coords[j];
-            let dx = (c.lon - center.lon) * kx;
-            let dy = (c.lat - center.lat) * ky;
-            let dist_sq = dx * dx + dy * dy;
-            if dist_sq > range_sq {
-                break;
-            }
-            let weight = range_in_meters - dist_sq.sqrt();
-            sum_lat += c.lat * weight;
-            sum_lon += c.lon * weight;
-            sum_weight += weight;
-        }
-
-        for j in (i + 1)..n {
-            let c = &coords[j];
-            let dx = (c.lon - center.lon) * kx;
-            let dy = (c.lat - center.lat) * ky;
-            let dist_sq = dx * dx + dy * dy;
-            if dist_sq > range_sq {
-                break;
-            }
-            let weight = range_in_meters - dist_sq.sqrt();
-            sum_lat += c.lat * weight;
-            sum_lon += c.lon * weight;
-            sum_weight += weight;
-        }
-
-        let smoothed_lat = sum_lat / sum_weight;
-        let smoothed_lon = sum_lon / sum_weight;
-
-        let mut map = original_maps[i];
-        map = map.map_put(atoms::lat().encode(env), smoothed_lat.encode(env))?;
-        map = map.map_put(atoms::lon().encode(env), smoothed_lon.encode(env))?;
-        result.push(map);
+    fn tc(lat: f64, lon: f64, time_offset_ms: i64) -> TimedCoord {
+        TimedCoord { lat, lon, time_offset_ms }
     }
 
-    Ok(result)
-}
-
-fn interpolate_timed(a: &TimedCoord, b: &TimedCoord, t: f64) -> TimedCoord {
-    interpolate_timed_coord(a, b, t)
-}
-
-#[rustler::nif]
-fn nif_equi_time_interval<'a>(
-    env: Env<'a>,
-    coords_term: Term<'a>,
-    interval_in_ms: f64,
-) -> NifResult<Vec<Term<'a>>> {
-    let coords = coords_term.decode::<Vec<TimedCoord>>()?;
-    let n = coords.len();
-    if n < 2 {
-        return Ok(Vec::new());
+    // CheapRuler kx/ky for ref_lat = 53.551 (test environment)
+    fn test_kx_ky() -> (f64, f64) {
+        let ref_lat: f64 = 53.551;
+        let cos1 = (ref_lat * std::f64::consts::PI / 180.0).cos();
+        let cos2 = 2.0 * cos1 * cos1 - 1.0;
+        let cos3 = 2.0 * cos1 * cos2 - cos1;
+        let cos4 = 2.0 * cos1 * cos3 - cos2;
+        let cos5 = 2.0 * cos1 * cos4 - cos3;
+        let kx = 1000.0 * (111.41513 * cos1 - 0.09455 * cos3 + 0.00012 * cos5);
+        let ky = 1000.0 * (111.13209 - 0.56605 * cos2 + 0.0012 * cos4);
+        (kx, ky)
     }
 
-    let mut result: Vec<Term<'a>> = Vec::new();
-    let mut offset = 0.0_f64;
-    let mut i = 0;
+    #[test]
+    fn cut_corners_two_points() {
+        let coords = vec![
+            tc(1.0, 1.0, 0),
+            tc(2.0, 2.0, 100),
+        ];
+        let result = cut_corners_vec(coords, 1, 0.25);
+        assert_eq!(result.len(), 4);
+        assert_eq!(result[0], tc(1.0, 1.0, 0));
+        assert_eq!(result[1], tc(1.25, 1.25, 25));
+        assert_eq!(result[2], tc(1.75, 1.75, 75));
+        assert_eq!(result[3], tc(2.0, 2.0, 100));
+    }
 
-    while i + 1 < n {
-        let prev = &coords[i];
-        let next = &coords[i + 1];
+    #[test]
+    fn average_in_distance_identity() {
+        let (kx, ky) = test_kx_ky();
+        let coords = vec![
+            tc(1.0, 1.0, 0),
+            tc(2.0, 2.0, 0),
+        ];
+        let result = average_in_distance_vec(&coords, 15.0, kx, ky);
+        assert_eq!(result.len(), 2);
+        assert_eq!(result[0].lat, 1.0);
+        assert_eq!(result[0].lon, 1.0);
+        assert_eq!(result[1].lat, 2.0);
+        assert_eq!(result[1].lon, 2.0);
+    }
 
-        if prev.time_offset_ms == next.time_offset_ms {
-            i += 1;
-            continue;
-        }
+    #[test]
+    fn average_in_distance_smoothing() {
+        let (kx, ky) = test_kx_ky();
+        let coords = vec![
+            tc(53.550957, 9.993817, 0), tc(53.550923, 9.993876, 1),
+            tc(53.550890, 9.993928, 2), tc(53.550856, 9.993975, 3),
+            tc(53.550826, 9.994023, 4), tc(53.550804, 9.994050, 5),
+            tc(53.550794, 9.994055, 6), tc(53.550792, 9.994056, 7),
+            tc(53.550791, 9.994055, 8), tc(53.550787, 9.994058, 9),
+            tc(53.550777, 9.994084, 10), tc(53.550755, 9.994120, 11),
+            tc(53.550728, 9.994151, 12), tc(53.550713, 9.994180, 13),
+            tc(53.550700, 9.994205, 14),
+        ];
+        let result = average_in_distance_vec(&coords, 15.0, kx, ky);
+        assert_eq!(result.len(), 15);
 
-        let t = (offset - prev.time_offset_ms as f64) / (next.time_offset_ms - prev.time_offset_ms) as f64;
+        let expected = [
+            (53.55093540218586, 9.993853659506811),
+            (53.550913319343586, 9.993889060855963),
+            (53.55087641183799, 9.993944100086669),
+            (53.55083124900453, 9.994007224526495),
+            (53.55080706000847, 9.994040496573183),
+            (53.55079534011067, 9.99405624638512),
+            (53.550791158262086, 9.994061873356419),
+            (53.55079028159536, 9.994063080640776),
+            (53.55079010151522, 9.994063321860297),
+            (53.55078816325091, 9.994066085984363),
+            (53.550780844634836, 9.994077002907744),
+            (53.55076735405408, 9.994097127443395),
+            (53.55075232901659, 9.994119545995215),
+            (53.55073993441644, 9.99413870892748),
+            (53.55072684539607, 9.994159412578323),
+        ];
 
-        if t > 1.0 {
-            i += 1;
-        } else if t >= 0.0 {
-            let interp = interpolate_timed(prev, next, t);
-            result.push(interp.encode(env));
-            offset += interval_in_ms;
-        } else {
-            break;
+        for (i, (exp_lat, exp_lon)) in expected.iter().enumerate() {
+            assert!((result[i].lat - exp_lat).abs() < 1e-10,
+                "lat[{}]: {} != {}", i, result[i].lat, exp_lat);
+            assert!((result[i].lon - exp_lon).abs() < 1e-10,
+                "lon[{}]: {} != {}", i, result[i].lon, exp_lon);
         }
     }
 
-    Ok(result)
-}
-
-#[rustler::nif]
-fn nif_cut_corners<'a>(
-    env: Env<'a>,
-    coords_term: Term<'a>,
-    iterations: u32,
-    cut_corner_dist: f64,
-) -> NifResult<Vec<Term<'a>>> {
-    let initial = coords_term.decode::<Vec<TimedCoord>>()?;
-    if initial.len() < 2 || iterations == 0 {
-        let original: Vec<Term<'a>> = coords_term.decode()?;
-        return Ok(original);
+    #[test]
+    fn remove_overlaps_basic() {
+        let (kx, ky) = test_kx_ky();
+        let coords = vec![
+            tc(53.5525911, 10.0125893, 20),
+            tc(53.5525899, 10.0124563, 30),
+            tc(53.5526008, 10.0125561, 40),
+            tc(53.5525944, 10.0124142, 50),
+        ];
+        let result = remove_overlaps_vec(coords, 5.0, 170.0, kx, ky);
+        assert_eq!(result.len(), 3);
+        assert_eq!(result[0], tc(53.5525911, 10.0125893, 20));
+        assert_eq!(result[1], tc(53.5525899, 10.0124563, 30));
+        assert_eq!(result[2], tc(53.5525944, 10.0124142, 50));
     }
 
-    let mut current = initial;
-
-    for _ in 0..iterations {
-        let n = current.len();
-        let mut next_iter = Vec::with_capacity(n * 2);
-        next_iter.push(TimedCoord {
-            lat: current[0].lat,
-            lon: current[0].lon,
-            time_offset_ms: current[0].time_offset_ms,
-        });
-
-        for j in 0..n - 1 {
-            let prev = &current[j];
-            let next = &current[j + 1];
-            next_iter.push(interpolate_timed(prev, next, cut_corner_dist));
-            next_iter.push(interpolate_timed(prev, next, 1.0 - cut_corner_dist));
-        }
-
-        let last = &current[n - 1];
-        next_iter.push(TimedCoord {
-            lat: last.lat,
-            lon: last.lon,
-            time_offset_ms: last.time_offset_ms,
-        });
-
-        current = next_iter;
+    #[test]
+    fn equi_time_interval_basic() {
+        let coords = vec![
+            tc(1.0, 1.0, 0),
+            tc(2.0, 2.0, 10),
+        ];
+        let result: Vec<(f64, f64)> = crate::polyline::EquiTimeIter::new(&coords, 5.0).collect();
+        assert_eq!(result.len(), 3);
+        // EquiTimeIter yields (lon, lat)
+        assert_eq!(result[0], (1.0, 1.0));
+        assert_eq!(result[1], (1.5, 1.5));
+        assert_eq!(result[2], (2.0, 2.0));
     }
-
-    let mut result = Vec::with_capacity(current.len());
-    for c in &current {
-        result.push(c.encode(env));
-    }
-    Ok(result)
-}
-
-#[rustler::nif]
-fn nif_remove_overlaps<'a>(
-    coords_term: Term<'a>,
-    max_overlap_length_m: f64,
-    min_heading_change_deg: f64,
-    kx: f64,
-    ky: f64,
-) -> NifResult<Vec<Term<'a>>> {
-    let coords = coords_term.decode::<Vec<Coord>>()?;
-    let original_maps: Vec<Term<'a>> = coords_term.decode()?;
-    let n = coords.len();
-    if n < 3 {
-        return Ok(original_maps);
-    }
-
-    let max_dist_sq = max_overlap_length_m * max_overlap_length_m;
-
-    // kept[i] = index into coords/original_maps
-    let mut kept: Vec<usize> = vec![0, 1];
-    let mut prev_bearing = cheap_bearing(
-        coords[0].lon, coords[0].lat,
-        coords[1].lon, coords[1].lat,
-        kx, ky,
-    );
-
-    for i in 2..n {
-        let c3 = &coords[i];
-
-        // c1 is two back in kept, c2 is one back
-        let ki1 = kept[kept.len() - 2];
-        let ki2 = kept[kept.len() - 1];
-        let c1 = &coords[ki1];
-        let c2 = &coords[ki2];
-
-        let dx = (c1.lon - c3.lon) * kx;
-        let dy = (c1.lat - c3.lat) * ky;
-        let dist_sq = dx * dx + dy * dy;
-
-        let next_bearing = cheap_bearing(c2.lon, c2.lat, c3.lon, c3.lat, kx, ky);
-        let diff = cheap_bearing_diff(prev_bearing, next_bearing);
-
-        let nearby = dist_sq <= max_dist_sq;
-        let u_turn = diff >= min_heading_change_deg;
-
-        if nearby && u_turn {
-            // skip c3 (the overlap point), keep prev_bearing unchanged
-        } else {
-            prev_bearing = next_bearing;
-            kept.push(i);
-        }
-    }
-
-    Ok(kept.into_iter().map(|i| original_maps[i]).collect())
 }

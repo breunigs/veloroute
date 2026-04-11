@@ -86,6 +86,9 @@ defmodule Mix.Tasks.Deploy do
     Util.banner("Unit tests")
     Util.Docker.mix("test --color --timeout #{5 * 60 * 1000}") |> raise_on_error()
 
+    Util.banner("Cargo tests")
+    Mix.Tasks.CargoTest.run([])
+
     Util.banner("Format Check")
     format |> Task.await() |> raise_on_error()
   end

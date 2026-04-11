@@ -34,13 +34,7 @@ defmodule Video.Rendered do
     abbrev <> "-" <> vanity
   end
 
-  @polyline_interval_ms 1000.0 / 60.0
   @polyline_precision 6
-  @cut_iterations 3
-  @cut_corner_dist 0.25
-  @avg_range_m 10.0
-  @max_overlap_m 5.0
-  @min_heading_deg 170.0
 
   def polyline(rendered) do
     %{
@@ -48,17 +42,12 @@ defmodule Video.Rendered do
         Geo.Nif.nif_timed_smoother_polyline(
           rendered.timed_polyline(),
           @timed_precision,
-          @cut_iterations,
-          @cut_corner_dist,
-          @avg_range_m,
-          @max_overlap_m,
-          @min_heading_deg,
-          @polyline_interval_ms,
+          Video.Constants.output_fps(),
           @polyline_precision,
           Geo.CheapRuler.kx(),
           Geo.CheapRuler.ky()
         ),
-      interval: @polyline_interval_ms,
+      interval: Video.Constants.output_fps(),
       precision: @polyline_precision
     }
   end
