@@ -14,6 +14,8 @@ defmodule Data.Article.Blog.NordseiteMagdeburgerBruecke do
 
   def links(_assigns) do
     [
+      {"Lageplan und polizeiliche Anordnung", ~d[2026-03],
+       "https://fragdenstaat.de/anfrage/erlaeuterungsbericht-und-lageplaene-magdeburger-bruecke-nord/#nachricht-1105974"},
       {"Zeitungsartikel", ~d[2026-03],
        "https://www.abendblatt.de/hamburg/hamburg-mitte/article411383682/nach-toedlichem-rad-unfall-vor-dem-westfield-was-sich-dort-aendert-1.html"}
     ]

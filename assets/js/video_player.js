@@ -268,7 +268,7 @@ function updateVideoElement(preloadOnly) {
     if (preloadOnly && (window.hls || preloadedHlsJsPath === path)) return
     if (window.hls && window.hls.url === path) {
       video.playbackRate = videoPlaybackRate
-      if (autoplay) video.play()
+      if (autoplay) safePlay()
       return
     }
 
@@ -354,7 +354,7 @@ function updateVideoElement(preloadOnly) {
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
   try { video.load(); } catch (e) { console.debug('video loading error', e) }
-  if (autoplay) video.play()
+  if (autoplay) safePlay()
 }
 
 let canPlayThroughFallback = null
@@ -378,6 +378,7 @@ function preventHLSFirstFrameFlash() {
 
   const eventType = videoMeta.start == 0 ? 'playing' : 'seeked'
   video.addEventListener(eventType, reset, { once: true });
+  if (canPlayThroughFallback) clearTimeout(canPlayThroughFallback)
   canPlayThroughFallback = setTimeout(reset, 1000);
 }
 
@@ -689,7 +690,7 @@ document.addEventListener("visibilitychange", () => {
     // work around iOS bug where switching tabs hangs HLS video play completely?
     if (canPlayHLS) updateVideoElement();
 
-    if (wasPlaying) video.play();
+    if (wasPlaying) safePlay();
   }
 }, false);
 
@@ -710,6 +711,15 @@ function selectPlaybackRate(event) {
   event.target.setAttribute("aria-checked", "true");
 }
 
+function safePlay() {
+  const promise = video.play()
+  if (promise) promise.catch((e) => {
+    console.debug('play() interrupted:', e.name)
+    updatePlaypause()
+    maybeShowLoadingIndicator()
+  })
+}
+
 let toggleActionIconAnimation = null;
 function actionIcon(customIcon) {
   cancelAnimationFrame(toggleActionIconAnimation);
@@ -720,7 +730,11 @@ function actionIcon(customIcon) {
   })
 }
 
+let togglePlayPauseTimeout = null;
 function togglePlayPause(e) {
+  if (togglePlayPauseTimeout) return;
+  togglePlayPauseTimeout = setTimeout(() => { togglePlayPauseTimeout = null }, 100);
+
   if (e.target === video || e.target === poster) {
     actionIcon()
   }
@@ -728,7 +742,7 @@ function togglePlayPause(e) {
   if (!properVideoIsLoaded) {
     ensureVideoIsSet();
   } else if (video.paused || video.ended) {
-    video.play();
+    safePlay();
     maybeShowLoadingIndicator();
   } else {
     video.pause();
