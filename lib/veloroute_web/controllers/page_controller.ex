@@ -116,6 +116,7 @@ defmodule VelorouteWeb.PageController do
     size =
       cond do
         String.contains?(conn.request_path, "apple-touch-icon-152x152") -> 152
+        String.contains?(conn.request_path, "apple-touch-icon-120x120") -> 120
         String.contains?(conn.request_path, "apple-touch-icon") -> 100
         true -> 16
       end
