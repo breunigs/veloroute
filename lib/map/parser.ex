@@ -23,8 +23,8 @@ defmodule Map.Parser do
       active: nil
     }
 
-    raw = File.stream!(map_path)
-    {:ok, parsed} = Saxy.parse_stream(raw, __MODULE__, state)
+    raw = File.read!(map_path)
+    {:ok, parsed} = Saxy.parse_string(raw, __MODULE__, state)
 
     parsed
   end
