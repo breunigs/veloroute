@@ -162,7 +162,6 @@ function attachHlsErrorHandler(hls) {
     let props = {
       type: data.type,
       details: data.details,
-      fallback: false,
       triedRecovery: hlsJsTriedMediaRecovery,
     }
 
@@ -195,7 +194,6 @@ function attachHlsErrorHandler(hls) {
       window.hls.destroy()
       window.hls = false
       updateVideoElement()
-      props.fallback = true
     } else {
       console.log('Hls encountered an error', data);
       sendCurrentVideoTime(eventName, `${data.type} ${data.details}`);
