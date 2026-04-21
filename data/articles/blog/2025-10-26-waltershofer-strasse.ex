@@ -6,11 +6,15 @@ defmodule Data.Article.Blog.WaltershoferStrasse do
   def summary(), do: "Provisorische Abschnitte sollen Protected-Bike-Lanes erhalten."
 
   def type(), do: :planned
+  def start(), do: ~d[2026-07-01]
+  def stop(), do: ~d[2026-08-16]
 
   def tags(), do: ["radroute-10"]
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/46ec20d8-ffbd-42a3-80c4-7cbcb15070f4/details"},
       {"Lagepläne Bezirksamt", ~d[2025-10],
        "https://fragdenstaat.de/anfrage/knoten-cuxhavener-strasse-waltershofer-strasse/#nachricht-1052952"}
     ]

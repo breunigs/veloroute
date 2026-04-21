@@ -58,6 +58,8 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/supplierportal/fhh/subproject/46ec20d8-ffbd-42a3-80c4-7cbcb15070f4/details"},
       {"Bauvergabe", ~d[2026-02],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/bc7edc63-9b02-4d6c-aac3-66d59db4e536"},
       {"Erläuterungsbericht", "November 2022",

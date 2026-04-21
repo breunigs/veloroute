@@ -23,6 +23,8 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
 
   def links(_assigns) do
     [
+      {"Bauvergabe", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/d5b34a36-6e7a-47fd-a1cd-7a317502deb6"},
       {"Lageplan und Erläuterungen", ~d[2025-04],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1016564"}
     ]

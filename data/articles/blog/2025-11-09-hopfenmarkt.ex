@@ -8,6 +8,8 @@ defmodule Data.Article.Blog.Hopfenmarkt do
       "Platz soll etwas mehr zum Verweilen einladen. Direktere Fahrtbeziehungen für den Radverkehr und breitere Radwege."
 
   def type(), do: :planned
+  def start(), do: ~d[2026Q3]
+  def stop(), do: ~d[2027Q3]
 
   def tracks(), do: Data.Article.Blog.WillyBrandtStrasse.tracks()
 

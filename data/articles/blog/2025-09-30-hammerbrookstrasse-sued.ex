@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.HammerbrookstrasseSued do
     do:
       "Durchgängige Radfahrstreifen und Protected-Bike-Lanes (2,0m–2,25m). An Bushaltestellen zwischen Gehweg und Wartefläche der Fahrgäste."
 
-  def start(), do: ~d[2026Q1]
+  def start(), do: ~d[2026Q3]
 
   def type(), do: :planned
   def tags(), do: []

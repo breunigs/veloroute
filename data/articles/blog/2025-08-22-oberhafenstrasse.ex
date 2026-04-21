@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.Oberhafenstrasse do
   def summary(),
     do: "Kreuzung wird übersichtlicher gestaltet. Privater KFZ-Verkehr wird größenteils verlegt."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["radroute-2"]
 
   def start(), do: ~d[2026-03-02]

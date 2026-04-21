@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.FreiraumOttensen do
       "Die Verkehrsplanung zum autoarmen Zentrum Ottensens wurde abgeschlossen. Freiraumplanung („Gestaltung“) nach wie vor offen."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-04]
+  def start(), do: ~d[2026-04-15]
   def stop(), do: ~d[2027-07]
 
   def tags(), do: []
@@ -84,6 +84,8 @@ defmodule Data.Article.Blog.FreiraumOttensen do
 
   def links(_assigns) do
     [
+      {"NDR Artikel zum Umbaustart", ~d[2026-04],
+       "https://www.ndr.de/nachrichten/hamburg/baustart-fuer-autoarmen-stadtteilkern-in-ottensen,freiraum-ottensen-100.html"},
       {"NDR Artikel zum baldigen Umbau", ~d[2026-01],
        "https://www.ndr.de/nachrichten/hamburg/verkehrsberuhigung-in-ottensen-umbau-soll-im-fruehjahr-starten,ottensen-112.html"},
       {"fertiger Entwurf Verkehrsplanung – Bahrenfelder Straße", ~d[2024-10],

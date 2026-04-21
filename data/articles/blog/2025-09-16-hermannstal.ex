@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Hermannstal do
   def type(), do: :planned
   def tags(), do: ["radroute-1"]
 
-  def start(), do: ~d[2026]
-  def stop(), do: ~d[2027]
+  def start(), do: ~d[2028Q3]
+  def stop(), do: ~d[2029Q3]
 
   def links(_assigns) do
     [
