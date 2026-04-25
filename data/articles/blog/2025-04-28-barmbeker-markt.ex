@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
       "Rad- und Gehwege sollen mit kleineren Maßnahmen verbessert werden. Das gelingt teilweise, behält den Charakter der Kreuzung als Autobahn aber leider bei."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-09]
-  def stop(), do: ~d[2027-09]
+  def start(), do: ~d[2026-10]
+  def stop(), do: ~d[2027-07]
 
   def tags(), do: ["radroute-5", "br-nord-n4"]
 
@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
 
   def links(_assigns) do
     [
+      {"Ausschreibung Umbau", ~d[2026-04],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/5799cd36-aa6a-40ff-bde4-cefa07e4bd65"},
       {"fertiger Entwurf: Erläuterungsbericht und Lagepläne", ~d[2025-10],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1015730"},
       {"2. Entwurf: Erläuterungsbericht", ~d[2025-09],

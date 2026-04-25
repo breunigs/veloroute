@@ -102,7 +102,7 @@ defmodule Data.Article.Static.BrBergedorfA do
 
     <p>Um die Querung der <.v bounds="10.209135,53.485012,10.211314,53.486548" lon={10.209897} lat={53.485908} dir="forward" ref={@ref}>Vierlandenstraße</.v> zu erleichtern, sind <.ref>Mittelinseln</.ref> vorgesehen. Durch sie kann man die Straße in zwei Zügen queren und muss jeweils nur eine Fahrtrichtung beachten. Dies <.a ref={Vierlandenstrasse}>könnte bald umgesetzt</.a> werden.</p>
 
-    <p>Der Entwurf schlägt vor, den <.v bounds="10.21137,53.482357,10.219622,53.485209" lon={10.214535} lat={53.48416} dir="forward" ref={@ref}>Brookdeich</.v> zu einer KFZ-Einbahnstraße zu machen. Zur besseren Erreichbarkeit könnte die <.v bounds="10.208746,53.483252,10.215246,53.486104" lon={10.212261} lat={53.484678} dir="forward" ref={@ref} highlight="Neuer Weg">Einmündung Neuer Weg</.v> zu einem Kreisverkehr umgebaut werden. An der <.v bounds="10.216998,53.480622,10.22395,53.483999" lon={10.220434} lat={53.482203} dir="forward" ref={@ref}>Brookkehre</.v> soll die Bezirskroute Vorfahrt erhalten.</p>
+    <p>Der Entwurf schlägt vor, den <.v bounds="10.21137,53.482357,10.219622,53.485209" lon={10.214535} lat={53.48416} dir="forward" ref={@ref}>Brookdeich</.v> zu einer KFZ-Einbahnstraße zu machen. Zur besseren Erreichbarkeit könnte die <.v bounds="10.208746,53.483252,10.215246,53.486104" lon={10.212261} lat={53.484678} dir="forward" ref={@ref} highlight="Neuer Weg">Einmündung Neuer Weg</.v> zu einem Kreisverkehr umgebaut werden. An der <.v bounds="10.216998,53.480622,10.22395,53.483999" lon={10.220434} lat={53.482203} dir="forward" ref={@ref}>Brookkehre</.v> soll die Bezirksroute Vorfahrt erhalten.</p>
 
     <%= Data.Article.Shared.bezirksroute(:bergedorf) %>
 

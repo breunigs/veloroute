@@ -1,17 +1,22 @@
 defmodule Data.Article.Blog.FarmsenerLandstrasse1 do
   use Article.Default
 
-  def title(), do: "Farmsener Landstraße – zwischen Saseler Weg und Halenreie (Bezirskroute W6)"
+  def title(), do: "Farmsener Landstraße – zwischen Saseler Weg und Halenreie (Bezirksroute W6)"
 
   def summary(),
     do:
       "Zweirichtungsradweg soll das Gehwegradeln reduzieren. Die Überleitungen jeweils am Ende sind mangelhaft."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["br-wandsbek-w6"]
+
+  def start(), do: ~d[2026-04-27]
+  def stop(), do: ~d[2026-06-20]
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-04],
+       "https://lsbg.hamburg.de/resource/blob/1168122/b1613c4a4f06ba5a0feaa9fa8108c57a/farmsener-landstrasse-anliegerinformation-april-2026-data.pdf"},
       {"Fertiger Entwurf – Erläuterungen", ~d[2025-02],
        "https://lsbg.hamburg.de/resource/blob/1024136/7da42b914a7249b33a815471cc4ec231/farmsener-landstrasse-zweirichtungsradweg-abgestimmte-planung-bericht-data.pdf"},
       {"Fertiger Entwurf – Karte", ~d[2025-02],
