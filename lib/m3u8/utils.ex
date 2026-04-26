@@ -9,6 +9,16 @@ defmodule M3U8.Utils do
           codec: binary()
         }
 
+  @spec peak_bandwidth_bps([M3U8.Tokenizer.valid_token()]) :: pos_integer()
+  def peak_bandwidth_bps(tokens) do
+    byte_ranges(tokens)
+    |> Enum.flat_map(fn {_url, ranges} -> ranges end)
+    |> Enum.map(fn %{byte: byte, timestamp: ts} ->
+      round((byte.last - byte.first + 1) * 8 * 1000 / (ts.last - ts.first))
+    end)
+    |> Enum.max()
+  end
+
   @spec duration_ms([M3U8.Tokenizer.valid_token()]) :: non_neg_integer()
   def duration_ms(tokens) do
     tokens
