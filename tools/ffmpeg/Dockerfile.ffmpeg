@@ -24,8 +24,8 @@ RUN  \
 #   wget https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz -O ffmpeg.tar.gz && \
 #   tar zxf ffmpeg.tar.gz && rm ffmpeg.tar.gz && mv ffmpeg-${FFMPEG_VERSION} ffmpeg
 RUN cd /downloads/ && \
-  wget https://github.com/breunigs/ffmpeg/archive/refs/heads/frei0r-mixers-svt-multipass.tar.gz && \
-  tar zxf frei0r-mixers-svt-multipass.tar.gz && rm frei0r-mixers-svt-multipass.tar.gz && mv *-frei0r-mixers-svt-multipass ffmpeg && \
+  wget https://github.com/breunigs/ffmpeg/archive/refs/heads/veloroute-patches.tar.gz && \
+  tar zxf veloroute-patches.tar.gz && rm veloroute-patches.tar.gz && mv *-veloroute-patches ffmpeg && \
   echo "force rebuild 1"
 
 
