@@ -1,13 +1,20 @@
 {
   "repository": {},
   "license": "MIT",
+  "scripts": {
+    "build:hls": "node build_hls.mjs"
+  },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "hls.js": "^1.6.15",
+    "hls.js": "^1.7.0-alpha.1",
     "maplibre-gl": "^5.22.0",
     "pmtiles": "^4.3.0"
   },
   "devDependencies": {
-    "@types/phoenix_live_view": "^1.0.0"
+    "@svta/common-media-library": "0.17.1",
+    "@types/phoenix_live_view": "^1.0.0",
+    "esbuild": "^0.27.2",
+    "eventemitter3": "5.0.4",
+    "url-toolkit": "2.2.5"
   }
 }

@@ -41,7 +41,8 @@ defmodule Veloroute.MixProject do
         "deps.get",
         "deps.compile",
         "sass.install",
-        "cmd --cd assets npm ci --progress=false --no-audit --loglevel=error"
+        "cmd --cd assets npm ci --progress=false --no-audit --loglevel=error",
+        "cmd --cd assets npm run build:hls"
       ]
     ]
   end

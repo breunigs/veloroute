@@ -1,5 +1,5 @@
 import "./rvfc-polyfill"
-import Hls from "hls.js/dist/hls.light.min.js"
+import Hls from "../vendor/hls.light-iframes.min.js"
 
 const once = { once: true }
 const passive = { passive: true }
