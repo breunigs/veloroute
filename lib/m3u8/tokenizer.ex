@@ -52,6 +52,7 @@ defmodule M3U8.Tokenizer do
       "#EXTINF:" <> rest -> parse_extinf(rest)
       "#EXT-X-BYTERANGE:" <> rest -> parse_byte_range(rest)
       "#EXT-X-INDEPENDENT-SEGMENTS" -> {:ok, :independent_segments, nil}
+      "#EXT-X-I-FRAMES-ONLY" -> {:ok, :iframes_only, nil}
       "#EXT-X-ENDLIST" -> {:ok, :endlist, nil}
       "#EXT" <> _r = all -> {:error, "Unknown tag: #{all}"}
       "#" <> rest -> {:ok, :comment, rest}
