@@ -39,11 +39,21 @@ defmodule Video.RenderedTools do
       #{best.url}
       """
 
+      hash_dir = Path.join(Settings.r(:video_target_dir_abs), hash)
+
+      thumb_files =
+        case File.ls(hash_dir) do
+          {:ok, files} -> Enum.filter(files, &String.starts_with?(&1, "thumb_"))
+          _ -> []
+        end
+        |> Enum.map(&Path.join(hash_dir, &1))
+
       to_delete =
         Enum.flat_map(variants -- [best], fn var ->
           [var.url, String.replace(var.url, ".m3u8", ".m4s")]
         end)
-        |> Enum.map(&Path.join([Settings.r(:video_target_dir_abs), hash, &1]))
+        |> Enum.map(&Path.join(hash_dir, &1))
+        |> Kernel.++(thumb_files)
 
       %{
         update: %{
