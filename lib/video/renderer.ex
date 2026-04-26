@@ -285,7 +285,7 @@ defmodule Video.Renderer do
       ["ffmpeg", "-hide_banner"],
       ["-i", source],
       ["-vf", "fps=#{fps},#{crop},scale=#{w}:#{h}"],
-      ["-vsync", "vfr"],
+      ["-fps_mode", "vfr"],
       ["-c:v", "libx264"],
       ["-x264-params", "keyint=1:min-keyint=1:scenecut=0"],
       ["-movflags", "+faststart+frag_keyframe+separate_moof+omit_tfhd_offset+empty_moov"],
