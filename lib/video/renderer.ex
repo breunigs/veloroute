@@ -211,36 +211,109 @@ defmodule Video.Renderer do
     Temp.track!()
 
     try do
-      with pbar1 = Video.Renderer.Progress.new(rendered, 1),
-           :ok <- File.mkdir_p(cache_dir),
+      with :ok <- File.mkdir_p(cache_dir),
            {:ok, tmp_path} <-
              Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
            tmp_dir <- Path.basename(tmp_path),
            {pass1, pass2} <- render_cmd(rendered, tmp_dir),
-           :ok <-
-             Util.Docker.build_and_run(
-               {"rendering video #{rendered.hash()} -- pass 1", ffmpeg_image()},
-               %{command_args: pass1, mount_videos_in_dir: "/workdir/"},
-               env: [],
-               stderr: pbar1,
-               slow_warn_message: false
-             ),
-           pbar2 = Video.Renderer.Progress.new(rendered, 2),
-           :ok <-
-             Util.Docker.build_and_run(
-               {"rendering video #{rendered.hash()} -- pass 2", ffmpeg_image()},
-               %{command_args: pass2, mount_videos_in_dir: "/workdir/"},
-               env: [],
-               stderr: pbar2,
-               slow_warn_message: false
-             ),
+           pbar1 = Video.Renderer.Progress.new(rendered, "rendering pass 1"),
+           :ok <- run_ffmpeg("#{rendered.hash()} rendering pass 1", pass1, pbar1),
+           pbar2 = Video.Renderer.Progress.new(rendered, "rendering pass 2"),
+           :ok <- run_ffmpeg("#{rendered.hash()} rendering pass 2", pass2, pbar2),
+           :ok <- render_thumbnails(rendered, tmp_dir),
            :ok <- manually_tag_missing(tmp_path),
+           :ok <- append_thumb_pragmas(tmp_path),
            :ok <- move(tmp_path, target) do
         :ok
       end
     after
       Temp.cleanup()
     end
+  end
+
+  defp run_ffmpeg(label, cmd, pbar) do
+    Util.Docker.build_and_run(
+      {label, ffmpeg_image()},
+      %{command_args: cmd, mount_videos_in_dir: "/workdir/"},
+      env: [],
+      stderr: pbar,
+      slow_warn_message: false
+    )
+  end
+
+  def variant_thumbs() do
+    [
+      %{fps: 3, crop_ratio: 0.86, width: 160, height: 90, crf: 30, tag_as: "avc1.64100A"}
+    ]
+    |> Enum.with_index()
+    |> Enum.map(fn {info, idx} -> Map.put(info, :index, idx) end)
+  end
+
+  defp thumbnail_source_stream(tmp_dir) do
+    %{index: idx} = Enum.find(variants(), & &1[:thumbnail_source])
+    "#{tmp_dir}/stream_#{idx}.m3u8"
+  end
+
+  defp render_thumbnails(rendered, tmp_dir) do
+    Enum.reduce_while(variant_thumbs(), :ok, fn thumb, :ok ->
+      label = "rendering thumbs"
+      pbar = Video.Renderer.Progress.new(rendered, label, thumb.fps)
+
+      case run_ffmpeg(label, thumbnail_cmd(tmp_dir, thumb), pbar) do
+        :ok -> {:cont, :ok}
+        err -> {:halt, err}
+      end
+    end)
+  end
+
+  defp thumbnail_cmd(tmp_dir, thumb) do
+    thumbnail_cmd(thumbnail_source_stream(tmp_dir), tmp_dir, thumb)
+  end
+
+  def thumbnail_cmd(source, out_dir, %{
+        fps: fps,
+        crop_ratio: crop_ratio,
+        width: w,
+        height: h,
+        crf: crf,
+        index: idx
+      }) do
+    crop = "crop=in_w*#{crop_ratio}:in_h*#{crop_ratio}"
+
+    List.flatten([
+      Util.low_priority_cmd_prefix(),
+      ["ffmpeg", "-hide_banner"],
+      ["-i", source],
+      ["-vf", "fps=#{fps},#{crop},scale=#{w}:#{h}"],
+      ["-vsync", "vfr"],
+      ["-c:v", "libx264"],
+      ["-x264-params", "keyint=1:min-keyint=1:scenecut=0"],
+      ["-movflags", "+faststart+frag_keyframe+separate_moof+omit_tfhd_offset+empty_moov"],
+      "-an",
+      ["-preset", "veryslow"],
+      ["-crf", "#{crf}"],
+      ["-f", "hls"],
+      ["-hls_time", 1 / fps],
+      ["-hls_segment_type", "fmp4"],
+      ["-hls_playlist_type", "vod"],
+      ["-hls_flags", "iframes_only+single_file+independent_segments"],
+      "#{out_dir}/thumb_#{idx}.m3u8"
+    ])
+  end
+
+  def append_thumb_pragmas(target_path) do
+    m3u8 = Path.join(target_path, "stream.m3u8")
+
+    pragmas =
+      Enum.map(variant_thumbs(), fn %{index: idx, width: w, height: h, tag_as: tag} ->
+        media = Path.join(target_path, "thumb_#{idx}.m3u8")
+        {:ok, tokens} = M3U8.Tokenizer.read_file(media)
+        peak_bandwidth = M3U8.Utils.peak_bandwidth_bps(tokens)
+
+        "#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=#{peak_bandwidth},RESOLUTION=#{w}x#{h},CODECS=\"#{tag}\",URI=\"thumb_#{idx}.m3u8\""
+      end)
+
+    File.write!(m3u8, Enum.join(pragmas, "\n") <> "\n", [:append])
   end
 
   def render_cmd(rendered, tmp_dir) do
@@ -821,7 +894,7 @@ defmodule Video.Renderer do
       # av1, with default quality as first entry
       %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_svt/2},
       %{width: 640, height: 360, bitrate: 3, codec: &codec_av1_svt/2},
-      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_svt/2},
+      %{width: 1920, height: 1080, bitrate: 9, codec: &codec_av1_svt/2, thumbnail_source: true},
       # legacy codec
       %{width: 640, height: 360, bitrate: 4, codec: &codec_avc/2},
       %{width: 1280, height: 720, bitrate: 6, codec: &codec_avc/2}
