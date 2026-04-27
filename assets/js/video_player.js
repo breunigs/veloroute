@@ -322,9 +322,11 @@ function updateVideoElement(preloadOnly) {
       hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
       hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
       hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
+      hls.once(Hls.Events.INIT_PTS_FOUND, () => setupThumbnailPreview(hls));
       hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
       hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
       hls.on(Hls.Events.DESTROYING, hideQualityChooser);
+      hls.on(Hls.Events.DESTROYING, hideThumbnailPreview);
       hls.loadSource(path);
     }
 
@@ -491,6 +493,22 @@ function hideQualityChooser() {
   videoQuality.style.display = 'none';
 }
 
+function setupThumbnailPreview(hls) {
+  hlsIframesOnly = null
+  if (window.matchMedia("(max-width: 768px)").matches) return hideThumbnailPreview()
+  if (!hls.iframeVariants?.length) return hideThumbnailPreview()
+
+  hlsIframesOnly = hls.createIFramePlayer()
+  if (!hlsIframesOnly) return hideThumbnailPreview()
+
+  hlsIframesOnly.attachMedia(document.getElementById("thumbnailPreview"))
+  requestAnimationFrame(() => progressPreviewEl?.classList.add("has-thumbnail"))
+}
+
+function hideThumbnailPreview() {
+  requestAnimationFrame(() => progressPreviewEl?.classList.remove("has-thumbnail"))
+}
+
 let fixSeekForWrongVideoDuration = null
 function seekToTime(timeInMs) {
   maybeSwitchToPreloadedHlsJs()
@@ -629,6 +647,8 @@ let videoOptions
 let videoQuality
 let videoQualityOptions
 let progressPreviewEl
+let progressPreviewTextEl
+let hlsIframesOnly = null
 function initControls() {
   // i.e. no re-init needed
   if (progress === document.getElementById("progress")) return
@@ -645,6 +665,7 @@ function initControls() {
   videoQuality = document.getElementById("videoQuality");
   videoQualityOptions = document.getElementById("videoQualityOptions");
   progressPreviewEl = document.getElementById("progressPreview")
+  progressPreviewTextEl = document.getElementById("progressPreviewText")
 
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
@@ -783,15 +804,14 @@ function previewProgress(e) {
   progressPreviewRAF ||= requestAnimationFrame(() => {
     const [time, pos, ratio] = timeFromProgressPosition(e)
     const { recDate, street } = metadataForTime(time)
-    let text = '';
-    if (street !== "") text += `${street}<br>`
-    if (recDate !== "") text += `${recDate}<br>`
+    let text = `${street}<br>${recDate}<br>`;
     if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
-    progressPreviewEl.innerHTML = text
+    progressPreviewTextEl.innerHTML = text
     progressPreviewEl.style.setProperty("--pos", `${pos}px`);
     progressPreviewRAF = null
     progress.style.setProperty("--loaded", ratio * 100 + "%");
     if (seekByTouch) updateProgressbar(null, time)
+    if (!isNaN(time)) hlsIframesOnly?.loadMediaAt(time / 1000.0)
   })
 }
 

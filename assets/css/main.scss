@@ -354,9 +354,13 @@ $videoInfoOverlayPadding: 0.5rem;
       }
       width: $progressPreviewWidth;
 
-      text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+
+      #progressPreviewText {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
 
       color: #fff;
       text-align: center;
@@ -369,12 +373,31 @@ $videoInfoOverlayPadding: 0.5rem;
 
       contain: content;
 
+      $videoThumbnailShadow: 0.2rem;
+      padding: $videoThumbnailShadow $videoThumbnailShadow 0 $videoThumbnailShadow;
+
+      video {
+        display: none;
+      }
+
+      &.has-thumbnail video {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0px 0px $videoThumbnailShadow black;
+        backdrop-filter: blur(0.2rem);
+        background: rgba(0, 0, 0, 0.7);
+      }
+
       transform: translateX(
         calc(
           -50% +
           min(
-            max($mainWidth, $minWidth) - $progressPreviewWidth / 4,
-            max(var(--pos), $progressPreviewWidth / 4)
+            max($mainWidth, $minWidth) - $progressPreviewWidth / 1.9,
+            max(var(--pos), $progressPreviewWidth / 1.9)
           )
         )
       );
