@@ -28340,6 +28340,19 @@
   <node id='-317430868' action='modify' lat='53.60117689784' lon='10.11386990011' />
   <node id='-317430869' action='modify' lat='53.60049249176' lon='10.11348902643' />
   <node id='-317430870' action='modify' lat='53.59988129185' lon='10.11312961042' />
+  <node id='-318378332' action='modify' lat='53.54993996213' lon='9.94195103109' />
+  <node id='-318378333' action='modify' lat='53.5498347871' lon='9.94188129365' />
+  <node id='-318378334' action='modify' lat='53.54939814856' lon='9.9442148155' />
+  <node id='-318378335' action='modify' lat='53.54932484384' lon='9.94479953706' />
+  <node id='-318378336' action='modify' lat='53.54935671547' lon='9.94603871763' />
+  <node id='-318378337' action='modify' lat='53.54936308979' lon='9.94690775335' />
+  <node id='-318378338' action='modify' lat='53.54928978501' lon='9.94720279634' />
+  <node id='-318378339' action='modify' lat='53.54941727151' lon='9.94721888959' />
+  <node id='-318378340' action='modify' lat='53.54951607328' lon='9.94690238893' />
+  <node id='-318378341' action='modify' lat='53.54951926043' lon='9.94618892133' />
+  <node id='-318378342' action='modify' lat='53.54949376322' lon='9.94530915678' />
+  <node id='-318378343' action='modify' lat='53.54951926043' lon='9.94452058733' />
+  <node id='-318378344' action='modify' lat='53.54963081053' lon='9.9437695688' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -79877,6 +79890,24 @@
     <nd ref='-317430870' />
     <nd ref='-317430848' />
     <tag k='name' v='2026-04-02-friedrich-ebert-damm' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21239070' action='modify'>
+    <nd ref='-318378332' />
+    <nd ref='-318378333' />
+    <nd ref='-318378334' />
+    <nd ref='-318378335' />
+    <nd ref='-318378336' />
+    <nd ref='-318378337' />
+    <nd ref='-318378338' />
+    <nd ref='-318378339' />
+    <nd ref='-318378340' />
+    <nd ref='-318378341' />
+    <nd ref='-318378342' />
+    <nd ref='-318378343' />
+    <nd ref='-318378344' />
+    <nd ref='-318378332' />
+    <tag k='name' v='2026-04-27-moerkenstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
