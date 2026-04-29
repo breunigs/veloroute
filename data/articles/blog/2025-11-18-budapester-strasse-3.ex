@@ -7,12 +7,12 @@ defmodule Data.Article.Blog.BudapesterStrasse3 do
     do:
       "Radweg wird verbreitert und der Gehweg erstmals durchgängig. Betonklötze weichen einer Baumreihe."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-15"]
 
-  def start(), do: ~d[2026-02-02]
-  def stop(), do: ~d[2026-04-19]
+  def start(), do: ~d[2026-04-30]
+  def stop(), do: ~d[2026-07-06]
   def construction_site_id_hh(), do: [2_206_364]
 
   def point_of_interest(), do: %{lat: 53.551083, lon: 9.969623, zoom: 17}
@@ -26,6 +26,8 @@ defmodule Data.Article.Blog.BudapesterStrasse3 do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-04],
+       "https://lsbg.hamburg.de/resource/blob/993638/5e0cce6ec0a28675d59e217e8f76e8a5/budapester-strasse-geh-und-radwege-anliegerinformation-april-2026-data.pdf"},
       {"Ausschreibung Umbau", ~d[2025-11],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/43894418-8bb3-4217-8196-47cf37d4550b"}
     ]
