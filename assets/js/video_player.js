@@ -2,13 +2,12 @@ import "./rvfc-polyfill"
 import Hls from "../vendor/hls.light-iframes.min.js"
 import { initQualityChooser } from "./video_quality_chooser"
 import { initThumbnailPreview } from "./video_thumbnail"
+import { initProgressBar } from "./video_progress_bar"
 
 const once = { once: true }
-const passive = { passive: true }
 
 let prevVideo = null;
 let autoplay = false;
-let isSeeking = false;
 
 let wasSocketDisconnected = false
 window.liveSocket.getSocket().onClose(e => {
@@ -30,8 +29,6 @@ function initVideoElement() {
   video.addEventListener('seeked', maybeShowLoadingIndicator);
   video.addEventListener('seeking', maybeShowLoadingIndicator);
   video.addEventListener('timeupdate', updateMetadata);
-  video.addEventListener('timeupdate', updateProgressbar);
-  video.addEventListener('progress', updateProgressbar);
   video.addEventListener('ended', maybeExecEndAction);
   video.addEventListener('ended', updatePlaypause);
   video.addEventListener('play', markPlay);
@@ -93,7 +90,7 @@ function maybeTimeUpdate(changedMeta) {
   timeUpdate(null, {
     mediaTime: changedMeta.start / 1000
   })
-  updateProgressbar()
+  progressBar?.update()
 }
 
 function maybeExecEndAction() {
@@ -137,13 +134,13 @@ function markPlay() {
     }
   })
   autoplay = false
-  current.setAttribute("phx-update", "ignore")
+  progressBar?.currentEl.setAttribute("phx-update", "ignore")
   videoMetadataEl.setAttribute("phx-update", "ignore")
 }
 
 function markPause() {
   sendCurrentVideoTime(null, "markPause")
-  current.setAttribute("phx-update", "")
+  progressBar?.currentEl.setAttribute("phx-update", "")
   videoMetadataEl.setAttribute("phx-update", "")
 }
 
@@ -406,13 +403,7 @@ function seekToTime(timeInMs) {
     }, { once: true })
   }
 
-  // avoid flicker due to segments loading while seeking
-  video.removeEventListener('progress', updateProgressbar);
-  video.addEventListener('seeked', () => {
-    video.addEventListener('progress', updateProgressbar);
-  }, once);
-
-  updateProgressbar(null, timeInMs);
+  progressBar?.update(timeInMs);
 }
 
 let prevShowSpinner = false
@@ -449,7 +440,7 @@ function setVideo(avoidSeek) {
     return
   }
 
-  progressWrapper.setAttribute("phx-update", "ignore");
+  progressBar?.progressWrapper.setAttribute("phx-update", "ignore");
 
   if (prevVideo !== videoMeta.hash) {
     cacheVideoPoster();
@@ -459,7 +450,7 @@ function setVideo(avoidSeek) {
   }
 
   if (!avoidSeek) seekToStartTime();
-  updateProgressbar(null, videoTimeInMs);
+  progressBar?.update(videoTimeInMs);
   updatePlaypause();
 }
 
@@ -469,7 +460,7 @@ function maybeSwitchToPreloadedHlsJs() {
   if (window.hls || window.hls === false) return
   if (!preloadedHlsJs) return
 
-  progressWrapper.setAttribute("phx-update", "ignore")
+  progressBar?.progressWrapper.setAttribute("phx-update", "ignore")
   updateVideoElement()
 }
 
@@ -513,46 +504,33 @@ const qualityChooserIDs = {
   videoID: "videoInner"
 }
 
-let progress
-let progressWrapper
-let current
-let duration
 let outer
 let controls
 let poster
-let progressPreviewEl
-let progressPreviewTextEl
 let thumbnailPreview
 let qualityChooser
+let progressBar
 function initControls() {
   // i.e. no re-init needed
-  if (progress === document.getElementById("progress")) return
+  if (outer === document.getElementById('videoOuter')) return
 
-  progress = document.getElementById("progress")
-  progressWrapper = document.getElementById("progressWrapper")
   const playpause = document.getElementById("playpause")
-  current = document.getElementById("current")
-  duration = document.getElementById("max")
   outer = document.getElementById('videoOuter')
   controls = document.getElementById('videoControls')
   poster = document.getElementById('videoPoster')
-  progressPreviewEl = document.getElementById("progressPreview")
-  progressPreviewTextEl = document.getElementById("progressPreviewText")
   thumbnailPreview = initThumbnailPreview("thumbnailPreview", "progressPreview")
   qualityChooser = initQualityChooser(qualityChooserIDs)
+  progressBar = initProgressBar("progressWrapper", "videoInner", seekToTime, {
+    thumbnailPreview,
+    getMetaText: metadataForTime,
+    getVideoTimeMs: () => fixSeekForWrongVideoDuration || videoTimeInMs,
+    getDuration: () => videoMeta.length_ms || Math.round(video.duration * 1000),
+  })
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
   document.getElementById('skipForward5').addEventListener('click', () => { actionIcon("skipForward5"); seekToTime(videoTimeInMs + 5000) })
   document.getElementById("reverse").addEventListener('click', reverseVideo);
   document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
-  progressWrapper.addEventListener('click', seekFromProgress);
-  progressWrapper.addEventListener('mousemove', previewProgress, passive);
-  progressWrapper.addEventListener('touchmove', previewProgress, passive);
-  progressWrapper.addEventListener('touchstart', scrubStart, passive);
-  progressWrapper.addEventListener('touchend', scrubEnd, passive);
-  progressWrapper.addEventListener('touchcancel', scrubCancel, passive);
-  progressWrapper.addEventListener('mouseenter', () => isSeeking = true, passive);
-  progressWrapper.addEventListener('mouseout', scrubCancel, passive);
   playpause.addEventListener('click', togglePlayPause);
   poster.addEventListener('click', togglePlayPause);
 
@@ -639,118 +617,8 @@ function reverseVideo() {
   })
 }
 
-function timeFromProgressPosition(e) {
-  const max = videoMeta.length_ms || Math.round(video.duration * 1000)
-  const clientX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX)
-
-  // Touch users cannot easily drag to left screen, but can drag over sidebar.
-  // It's the opposite with a mouse.
-  const leftGrace = seekByTouch ? window.screen.width * 0.1 : 10
-  const rightGrace = seekByTouch ? 0 : 10
-
-  const pos = clientX - e.target.offsetLeft - leftGrace
-  const ratio = pos / (e.target.clientWidth - leftGrace - rightGrace)
-
-  const time = Math.max(0, Math.min(max, ratio * max))
-  return [time, pos + leftGrace, time / max]
-}
-
-function seekFromProgress(e) {
-  const [time, _pos, _ratio] = timeFromProgressPosition(e)
-  seekToTime(time)
-};
-
-let progressPreviewRAF = null
-function previewProgress(e) {
-  isSeeking = true
-  progressPreviewRAF ||= requestAnimationFrame(() => {
-    const [time, pos, ratio] = timeFromProgressPosition(e)
-    const { recDate, street } = metadataForTime(time)
-    let text = `${street}<br>${recDate}<br>`;
-    if (!isNaN(time)) text += `<b>${ms2text(time)}</b>`
-    progressPreviewTextEl.innerHTML = text
-    progressPreviewEl.style.setProperty("--pos", `${pos}px`);
-    progressPreviewRAF = null
-    progress.style.setProperty("--loaded", ratio * 100 + "%");
-    if (seekByTouch) updateProgressbar(null, time)
-    if (!isNaN(time)) thumbnailPreview?.seekTo(time / 1000.0)
-  })
-}
-
-let seekByTouch = false
-function scrubStart(_e) {
-  seekByTouch = true
-  progressPreviewEl.classList.add("enabled")
-  isSeeking = true
-}
-
-function scrubEnd(e) {
-  progressPreviewEl.classList.remove("enabled")
-  seekFromProgress(e)
-  seekByTouch = false
-  isSeeking = false
-}
-
-function scrubCancel(e) {
-  progressPreviewEl.classList.remove("enabled")
-  updateProgressbar()
-  seekByTouch = false
-  isSeeking = false
-}
-
-let progressLoadedPercent = 0.0;
-function updateProgressbar(_event, showMilliseconds) {
-  if (video.style.visibility == 'hidden') return
-  const customTime = typeof showMilliseconds !== "undefined"
-
-  // ignore other events while seeking
-  if (seekByTouch && !customTime) return
-
-  const ms = customTime
-    ? showMilliseconds
-    : fixSeekForWrongVideoDuration || videoTimeInMs;
-  const max = videoMeta.length_ms || Math.round(video.duration * 1000);
-  if (isNaN(ms) || isNaN(max)) return
-  const msText = ms2text(ms);
-  const maxText = ms2text(max);
-
-  for (var i = 0; i < video.buffered.length; i++) {
-    const start = video.buffered.start(i) * 1000;
-    const end = video.buffered.end(i) * 1000;
-    if (start > ms) break;
-    if (end < ms) continue;
-
-    progressLoadedPercent = end / max * 100;
-  }
-  window.requestAnimationFrame(() => {
-    if (current.textContent !== msText) current.textContent = msText;
-    if (duration.textContent !== maxText) duration.textContent = maxText;
-    progress.value = ms;
-    progressWrapper.setAttribute("aria-valuenow", ms)
-    if (progress.max !== max) progress.max = max;
-    if (!isSeeking) progress.style.setProperty("--loaded", progressLoadedPercent + "%");
-  });
-}
-
 function updatePlaypause() {
   outer.setAttribute('data-state', !autoplay && (video.paused || video.ended) ? 'play' : 'pause');
-}
-
-const minuteInMs = 60 * 1000;
-const hourInMs = 60 * minuteInMs;
-
-function pad0(num) {
-  return num < 10 ? "0" + num : num;
-}
-
-function ms2text(ms) {
-  const hours = Math.floor(ms / hourInMs);
-  ms -= hours * hourInMs;
-  const minutes = Math.floor(ms / minuteInMs);
-  ms -= minutes * minuteInMs;
-  const seconds = Math.floor(ms / 1000);
-  if (hours > 0) return `${hours}:${pad0(minutes)}:${pad0(seconds)}`;
-  return `${minutes}:${pad0(seconds)}`;
 }
 
 function isTouch() {
