@@ -80,7 +80,7 @@ defmodule Veloroute.MixProject do
       {:libgraph, "~> 0.7"},
       {:memoize, "~> 1.4"},
       {:natural_order, "~> 0.3.0"},
-      {:phoenix_bakery, "~> 0.1.2", runtime: false},
+      {:phoenix_bakery, "~> 1.0.0", runtime: false},
       {:phoenix_live_view, "~> 1.1"},
       {:phoenix, "~> 1.8.2"},
       {:lazy_html, ">= 0.0.0", only: :test},
