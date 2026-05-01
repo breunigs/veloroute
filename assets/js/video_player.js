@@ -339,7 +339,8 @@ function updateVideoElement(preloadOnly) {
   video.autoplay = autoplay;
   video.playbackRate = videoPlaybackRate;
   try { video.load(); } catch (e) { console.debug('video loading error', e) }
-  if (autoplay) safePlay()
+  // safePlay() is called from seekToStartTime() after loadedmetadata/MANIFEST_PARSED fires,
+  // to avoid a race between the pending play() and any seek that happens in seekToStartTime().
 }
 
 let canPlayThroughFallback = null
@@ -370,12 +371,14 @@ function preventHLSFirstFrameFlash() {
 function seekToStartTime() {
   if (Math.abs(videoTimeInMs - videoMeta.start) < 100) {
     video.autoplay = autoplay;
+    if (autoplay) safePlay();
     return;
   }
   console.debug("seeking to", videoMeta.start, " from ", videoTimeInMs);
   if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
   video.autoplay = autoplay;
+  if (autoplay) safePlay();
 }
 
 let fixSeekForWrongVideoDuration = null
