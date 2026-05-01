@@ -1,12 +1,11 @@
 import "./rvfc-polyfill"
 import Hls from "../vendor/hls.light-iframes.min.js"
+import { initQualityChooser } from "./video_quality_chooser"
 
 const once = { once: true }
 const passive = { passive: true }
-const passiveOnce = { ...once, ...passive }
 
 let prevVideo = null;
-let previouslyPlayingCodec = null;
 let autoplay = false;
 let isSeeking = false;
 
@@ -291,15 +290,7 @@ function updateVideoElement(preloadOnly) {
         console.debug("copying over previously estimated bandwidth", bwEstimate);
       }
 
-      try {
-        if (window.hls.autoLevelEnabled) {
-          previouslyPlayingCodec = null;
-        } else {
-          previouslyPlayingCodec = JSON.stringify(window.hls.levels[window.hls.currentLevel].attrs);
-        }
-      } catch (error) {
-        console.warn(error)
-      }
+      qualityChooser?.teardown();
     }
 
     let hls
@@ -319,14 +310,10 @@ function updateVideoElement(preloadOnly) {
       console.log("creating HLS.js from scratch")
       hls = new Hls(options);
       attachHlsErrorHandler(hls)
-      hls.on(Hls.Events.MANIFEST_PARSED, restorePreviousQuality);
       hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      hls.on(Hls.Events.MANIFEST_PARSED, updateQualityChooser);
       hls.once(Hls.Events.INIT_PTS_FOUND, () => setupThumbnailPreview(hls));
-      hls.on(Hls.Events.LEVEL_SWITCHING, updateQualityChooser);
-      hls.on(Hls.Events.LEVEL_SWITCHED, updateQualityChooser);
-      hls.on(Hls.Events.DESTROYING, hideQualityChooser);
       hls.on(Hls.Events.DESTROYING, hideThumbnailPreview);
+      qualityChooser?.setup(hls)
       hls.loadSource(path);
     }
 
@@ -382,17 +369,6 @@ function preventHLSFirstFrameFlash() {
   canPlayThroughFallback = setTimeout(reset, 1000);
 }
 
-function restorePreviousQuality() {
-  if (!previouslyPlayingCodec) return;
-  for (let i = 0; i < window.hls.levels.length; i++) {
-    if (JSON.stringify(window.hls.levels[i].attrs) == previouslyPlayingCodec) {
-      window.hls.currentLevel = i;
-      console.debug("restoring previously used quality")
-      break
-    }
-  }
-}
-
 function seekToStartTime() {
   if (Math.abs(videoTimeInMs - videoMeta.start) < 100) {
     video.autoplay = autoplay;
@@ -402,95 +378,6 @@ function seekToStartTime() {
   if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
   video.autoplay = autoplay;
-}
-
-function selectVideoQuality(event) {
-  if (!window.hls) return hideQualityChooser();
-
-  const level = event.target.dataset.level;
-  if (!level) return;
-  if (video.paused || video.readyState <= 2) window.hls.currentLevel = level * 1;
-  window.hls.nextLevel = level * 1;
-  window.hls.loadLevel = level * 1;
-  updateQualityChooser();
-  window.hls.bufferController.flushBackBuffer();
-  window.plausible('videoQualityChanged')
-}
-
-const codecTranslate = {
-  avc1: {
-    name: "H.264",
-    desc: "mäßige Qualität, funktioniert praktisch überall"
-  },
-  vp09: {
-    name: "VP9",
-    desc: "mittlere Qualität, auf Handys problematisch"
-  },
-  hc1: {
-    name: "HEVC",
-    desc: "gute Qualität, nur auf Apple Geräten"
-  },
-  av01: {
-    name: "AV1",
-    desc: "gute Qualität, auf Handys problematisch"
-  },
-}
-
-let updateQualityChooserEvents = [null, null]
-let updateQualityChooserForced = false
-function updateQualityChooserDelayed() {
-  updateQualityChooserEvents = [null, null]
-  updateQualityChooserForced = true
-  updateQualityChooser()
-}
-function updateQualityChooser() {
-  if (!window.hls) return hideQualityChooser();
-  // don't update if hidden
-  if (!updateQualityChooserForced && window.getComputedStyle(videoQuality).visibility !== 'visible') {
-    updateQualityChooserEvents[0] ||= videoOptions.addEventListener('touchstart', updateQualityChooserDelayed, passiveOnce);
-    updateQualityChooserEvents[1] ||= videoOptions.addEventListener('mouseenter', updateQualityChooserDelayed, passiveOnce);
-    return;
-  }
-  updateQualityChooserForced = false
-
-  requestAnimationFrame(() => {
-    const current = window.hls.currentLevel;
-    const next = window.hls.loadLevel;
-    const auto = window.hls.autoLevelEnabled;
-
-    let choosers = "";
-    for (let i = window.hls.levels.length - 1; i >= 0; i--) {
-      let classes = "eye"
-      let checked = "false"
-      if (current == i) {
-        classes += " active";
-        checked = "true";
-      }
-      if (next == i) {
-        classes += " next";
-        checked = "mixed";
-      }
-      const mbits = window.hls.levels[i].bitrate / 1024 / 1024;
-      const codecSet = window.hls.levels[i].codecSet;
-      const codec = codecTranslate[codecSet] || {
-        name: codecSet,
-        desc: "Unbekannt"
-      };
-      let name = `${window.hls.levels[i].height}p`;
-      const title = `${name} benötigt ca. ${Math.round(mbits)} MBit/s (Codec: ${codec.name}, ${codec.desc})`
-
-      name += ` <small>${codec.name}</small>`
-      choosers += `<a data-level="${i}" class="${classes}" title="${title}" role="menuitemradio" aria-checked="${checked}">${name}</a>`
-    }
-    choosers += `<a data-level="-1" class="${auto ? "active" : ""}" title="Wählt automatisch die bestmögliche Qualität. Was aktuell angezeigt wird, ist durch das Auge markiert.">automatisch</a>`
-
-    videoQuality.style.display = 'block';
-    videoQualityOptions.innerHTML = choosers;
-  });
-}
-
-function hideQualityChooser() {
-  videoQuality.style.display = 'none';
 }
 
 function setupThumbnailPreview(hls) {
@@ -652,6 +539,12 @@ function metadataForTime(timeInMs) {
   return { recDate: recDate, street: street }
 }
 
+const qualityChooserIDs = {
+  videoQualityID: "videoQuality",
+  videoQualityOptionsID: "videoQualityOptions",
+  videoOptionsID: "videoOptions",
+  videoID: "videoInner"
+}
 
 let progress
 let progressWrapper
@@ -660,13 +553,11 @@ let duration
 let outer
 let controls
 let poster
-let videoOptions
-let videoQuality
-let videoQualityOptions
 let progressPreviewEl
 let progressPreviewTextEl
 let thumbnailPreviewEl
 let hlsIframesOnly = null
+let qualityChooser
 function initControls() {
   // i.e. no re-init needed
   if (progress === document.getElementById("progress")) return
@@ -679,13 +570,11 @@ function initControls() {
   outer = document.getElementById('videoOuter')
   controls = document.getElementById('videoControls')
   poster = document.getElementById('videoPoster')
-  videoOptions = document.getElementById("videoOptions")
-  videoQuality = document.getElementById("videoQuality");
-  videoQualityOptions = document.getElementById("videoQualityOptions");
   progressPreviewEl = document.getElementById("progressPreview")
   progressPreviewTextEl = document.getElementById("progressPreviewText")
   thumbnailPreviewEl = document.getElementById("thumbnailPreview")
 
+  qualityChooser = initQualityChooser(qualityChooserIDs)
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
   document.getElementById('skipForward5').addEventListener('click', () => { actionIcon("skipForward5"); seekToTime(videoTimeInMs + 5000) })
@@ -702,22 +591,11 @@ function initControls() {
   playpause.addEventListener('click', togglePlayPause);
   poster.addEventListener('click', togglePlayPause);
 
-  // provide a way to close the options menu by clicking the gear icon again
-  videoOptions.addEventListener('touchstart', hideVideoQualityOptions, passive);
-  videoQualityOptions.addEventListener('click', selectVideoQuality);
   document.getElementById('playbackRate').addEventListener('click', selectPlaybackRate);
 }
 
 initControls()
 window.addEventListener("global:mounted", initControls)
-
-
-
-function hideVideoQualityOptions() {
-  const hide = window.getComputedStyle(videoQualityOptions).visibility == 'visible';
-  videoOptions.classList.toggle("hidden", hide)
-}
-
 
 let wasPlaying = false;
 document.addEventListener("visibilitychange", () => {
