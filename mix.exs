@@ -91,7 +91,7 @@ defmodule Veloroute.MixProject do
       {:stream_split, "~> 0.1.0"},
       {:sweet_xml, "~> 0.7"},
       {:temp, "~> 0.4"},
-      {:tesla, "~> 1.15.3"},
+      {:tesla, "~> 1.17.0"},
       {:tqdm, runtime: is_dev, git: "https://github.com/breunigs/tqdm_elixir", branch: "updates"},
       {:tz, "~> 0.28"},
       {:ua_parser, "~> 1.8"},
