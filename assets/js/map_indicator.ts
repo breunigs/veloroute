@@ -66,7 +66,7 @@ const renderIndicator = async (timeInMs: number) => {
   // otherwise show the indicator at whatever zoom level
   ensureIndicatorInViewIdle ||= window.requestIdleCallback(() => {
     ensureIndicatorInView(timeInMs!)
-  }, { timeout: 1000 })
+  }, { timeout: 333 })
 
   const lngLat = new window.mlgl.LngLat(targetPos.lon, targetPos.lat)
   const dist = indicator.getLngLat().distanceTo(lngLat)
