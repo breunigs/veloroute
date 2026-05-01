@@ -222,9 +222,8 @@ defmodule Video.Renderer do
            :ok <- run_ffmpeg("#{rendered.hash()} rendering pass 2", pass2, pbar2),
            :ok <- render_thumbnails(rendered, tmp_dir),
            :ok <- manually_tag_missing(tmp_path),
-           :ok <- append_thumb_pragmas(tmp_path),
-           :ok <- move(tmp_path, target) do
-        :ok
+           :ok <- append_thumb_pragmas(tmp_path) do
+        move(tmp_path, target)
       end
     after
       Temp.cleanup()
@@ -383,8 +382,7 @@ defmodule Video.Renderer do
     with :ok <- File.mkdir_p(target),
          {:ok, files} <- File.ls(tmp_dir) do
       files
-      |> Enum.reject(&String.ends_with?(&1, ".log"))
-      |> Enum.reject(&String.ends_with?(&1, ".log.mbtree"))
+      |> Enum.reject(&String.ends_with?(&1, [".log", ".log.mbtree"]))
       |> Enum.map(fn file ->
         source = Path.join(tmp_dir, file)
         target = Path.join(target, file)
@@ -852,8 +850,7 @@ defmodule Video.Renderer do
         "qp-scale-compress-strength": 1,
         sharpness: 1
       }
-      |> Enum.map(fn {k, v} -> "#{k}=#{v}" end)
-      |> Enum.join(":")
+      |> Enum.map_join(":", fn {k, v} -> "#{k}=#{v}" end)
 
     %{
       codec: [

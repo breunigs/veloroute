@@ -31,8 +31,7 @@ defmodule Mix.Tasks.Velo.Map.Edit do
         ],
         ["mix", "velo.map.edit", "postprocess"]
       ]
-      |> Enum.map(&Util.cli_printer/1)
-      |> Enum.join(" && ")
+      |> Enum.map_join(" && ", &Util.cli_printer/1)
 
     # ideally we could just `exec`, but BEAM doesn't expose that without NIFs :()
     bash = "(#{commands}) &"

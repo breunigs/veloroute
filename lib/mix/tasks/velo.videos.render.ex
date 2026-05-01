@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   defp find(nil), do: Video.Generator.pending()
   defp find([]), do: Video.Generator.pending()
 
-  defp find(filters) when is_list(filters) and length(filters) >= 1 do
+  defp find(filters) when is_list(filters) and filters != [] do
     filters = filters |> Enum.flat_map(&clean/1) |> MapSet.new()
 
     Video.Generator.pending()

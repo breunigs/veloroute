@@ -138,7 +138,7 @@ defmodule Util.IO do
         {true, "target #{Path.relative_to_cwd(target)} doesn't exist"}
 
       dep_mod.newest == nil ->
-        deps = dependencies |> Enum.map(&Path.relative_to_cwd/1) |> Enum.join(", ")
+        deps = Enum.map_join(dependencies, ", ", &Path.relative_to_cwd/1)
         {false, "none of the dependencies (#{deps}) exist"}
 
       target_mod.oldest.mtime < dep_mod.newest.mtime ->

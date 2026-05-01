@@ -59,8 +59,9 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   end
 
   defp preview(["Data.Article." <> _rest = in_art, in_index | tail] = args) do
-    with mod = String.to_atom("Elixir." <> in_art),
-         {:module, art} <- Code.ensure_compiled(mod),
+    mod = String.to_atom("Elixir." <> in_art)
+
+    with {:module, art} <- Code.ensure_compiled(mod),
          {index, ""} when index >= 0 <- Integer.parse(in_index),
          track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index),
          mod when is_module(mod) <- Video.Generator.dynamic_compile(track) do

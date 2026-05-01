@@ -105,15 +105,13 @@ defmodule Basemap.MapMatcher.OSRM do
              @osrm_image_ref,
              %{command_args: ["osrm-partition", "#{container_base()}.osrm"]},
              []
-           ),
-         :ok <-
-           Util.Docker.run(
-             "mapmatching prepare step 3",
-             @osrm_image_ref,
-             %{command_args: ["osrm-customize", "#{container_base()}.osrm"]},
-             []
            ) do
-      :ok
+      Util.Docker.run(
+        "mapmatching prepare step 3",
+        @osrm_image_ref,
+        %{command_args: ["osrm-customize", "#{container_base()}.osrm"]},
+        []
+      )
     end
   end
 
@@ -174,28 +172,28 @@ defmodule Basemap.MapMatcher.OSRM do
     osm = ~s|<?xml version='1.0' encoding='UTF-8'?> <osm version='0.6' upload='never'>|
 
     acc =
-      Enum.reduce(merged, %{id: -1, name: nil, oWay: [], mWay: [], osm: osm}, fn
+      Enum.reduce(merged, %{id: -1, name: nil, o_way: [], m_way: [], osm: osm}, fn
         m, acc ->
-          oId = acc.id
-          mId = if m.match_lat && m.match_lon, do: acc.id - 1, else: nil
+          o_id = acc.id
+          m_id = if m.match_lat && m.match_lon, do: acc.id - 1, else: nil
           acc = %{acc | id: acc.id - 2}
 
           # original node
           osm =
             acc.osm <>
               """
-              <node id='#{oId}' lat='#{m.lat}' lon='#{m.lon}'/>
+              <node id='#{o_id}' lat='#{m.lat}' lon='#{m.lon}'/>
               """
 
           # matched node and way connector
           osm =
             osm <>
-              if mId,
+              if m_id,
                 do: """
-                <node id='#{mId}' lat='#{m.match_lat}' lon='#{m.match_lon}'/>
-                <way id='#{mId}'>
-                  <nd ref='#{oId}' />
-                  <nd ref='#{mId}' />
+                <node id='#{m_id}' lat='#{m.match_lat}' lon='#{m.match_lon}'/>
+                <way id='#{m_id}'>
+                  <nd ref='#{o_id}' />
+                  <nd ref='#{m_id}' />
                   <tag k='highway' v='path' />
                 </way>
                 """,
@@ -208,17 +206,17 @@ defmodule Basemap.MapMatcher.OSRM do
             acc = debug_create_ways(acc)
 
             # start new way
-            prevOWay = Enum.at(acc.oWay, 0)
-            prevMWay = Enum.at(acc.mWay, 0)
-            oWay = ["<nd ref='#{oId}' />", prevOWay]
-            mWay = if mId, do: ["<nd ref='#{mId}' />", prevMWay], else: []
-            %{acc | oWay: oWay, mWay: mWay, name: m.match_name}
+            prev_o_way = Enum.at(acc.o_way, 0)
+            prev_m_way = Enum.at(acc.m_way, 0)
+            o_way = ["<nd ref='#{o_id}' />", prev_o_way]
+            m_way = if m_id, do: ["<nd ref='#{m_id}' />", prev_m_way], else: []
+            %{acc | o_way: o_way, m_way: m_way, name: m.match_name}
           else
             # continue old way
-            oWay = ["<nd ref='#{oId}' />" | acc.oWay]
-            mWay = if mId, do: ["<nd ref='#{mId}' />" | acc.mWay], else: acc.mWay
+            o_way = ["<nd ref='#{o_id}' />" | acc.o_way]
+            m_way = if m_id, do: ["<nd ref='#{m_id}' />" | acc.m_way], else: acc.m_way
 
-            %{acc | oWay: oWay, mWay: mWay, name: m.match_name}
+            %{acc | o_way: o_way, m_way: m_way, name: m.match_name}
           end
       end)
 
@@ -233,10 +231,10 @@ defmodule Basemap.MapMatcher.OSRM do
 
     osm =
       acc.osm <>
-        if acc.oWay != [],
+        if acc.o_way != [],
           do: """
           <way id='#{acc.id - 1}'>
-            #{Enum.join(Enum.reverse(acc.oWay), "")}
+            #{Enum.join(Enum.reverse(acc.o_way), "")}
             <tag k='name' v='#{safe_name}' />
             <tag k='highway' v='#{if safe_name == "", do: :tertiary, else: :primary}' />
           </way>
@@ -245,10 +243,10 @@ defmodule Basemap.MapMatcher.OSRM do
 
     osm =
       osm <>
-        if acc.mWay != [],
+        if acc.m_way != [],
           do: """
           <way id='#{acc.id - 2}'>
-            #{Enum.join(Enum.reverse(acc.mWay), "")}
+            #{Enum.join(Enum.reverse(acc.m_way), "")}
             <tag k='name' v='#{safe_name}' />
             <tag k='highway' v='#{if safe_name == "", do: :cycleway, else: :pedestrian}' />
           </way>

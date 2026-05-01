@@ -39,15 +39,15 @@ defmodule Geo.CheapRuler do
       iex> Geo.CheapRuler.bbox([
       ...>   %{lon: 1.2, lat: 3.4}, %{lon: 4.5, lat: 7.1}, %{lon: 0.0, lat: 0.0},
       ...> ])
-      %Geo.BoundingBox{minLon: 0.0, minLat: 0.0, maxLon: 4.5, maxLat: 7.1}
+      %Geo.BoundingBox{min_lon: 0.0, min_lat: 0.0, max_lon: 4.5, max_lat: 7.1}
   """
   def bbox(coords) when is_list(coords) do
     {min_lon, min_lat, max_lon, max_lat} = Geo.Nif.nif_bbox(coords)
-    %Geo.BoundingBox{minLon: min_lon, minLat: min_lat, maxLon: max_lon, maxLat: max_lat}
+    %Geo.BoundingBox{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
   def bbox(%{lon: lon, lat: lat}) do
-    %Geo.BoundingBox{minLon: lon, minLat: lat, maxLon: lon, maxLat: lat}
+    %Geo.BoundingBox{min_lon: lon, min_lat: lat, max_lon: lon, max_lat: lat}
   end
 
   @doc ~S"""
@@ -56,20 +56,20 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.union(
-      ...>   %Geo.BoundingBox{minLon: 1, minLat: 0, maxLon: 1, maxLat: 2},
-      ...>   %Geo.BoundingBox{minLon: 0, minLat: 1, maxLon: 2, maxLat: 1}
+      ...>   %Geo.BoundingBox{min_lon: 1, min_lat: 0, max_lon: 1, max_lat: 2},
+      ...>   %Geo.BoundingBox{min_lon: 0, min_lat: 1, max_lon: 2, max_lat: 1}
       ...> )
-      %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 2, maxLat: 2}
+      %Geo.BoundingBox{min_lon: 0, min_lat: 0, max_lon: 2, max_lat: 2}
   """
   def union(nil, bbox2), do: bbox2
   def union(bbox1, nil), do: bbox1
 
   def union(bbox1, bbox2) do
-    minLon = min(bbox1.minLon, bbox2.minLon)
-    minLat = min(bbox1.minLat, bbox2.minLat)
-    maxLon = max(bbox1.maxLon, bbox2.maxLon)
-    maxLat = max(bbox1.maxLat, bbox2.maxLat)
-    %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    min_lon = min(bbox1.min_lon, bbox2.min_lon)
+    min_lat = min(bbox1.min_lat, bbox2.min_lat)
+    max_lon = max(bbox1.max_lon, bbox2.max_lon)
+    max_lat = max(bbox1.max_lat, bbox2.max_lat)
+    %Geo.BoundingBox{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
   def union([bbox1, bbox2 | rest]), do: union([union(bbox1, bbox2) | rest])
@@ -81,13 +81,13 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.center(
-      ...>   %Geo.BoundingBox{minLon: 2, minLat: 3, maxLon: 1, maxLat: 2}
+      ...>   %Geo.BoundingBox{min_lon: 2, min_lat: 3, max_lon: 1, max_lat: 2}
       ...> )
       %Geo.Point{lon: 1.5, lat: 2.5}
   """
   @spec center(Geo.BoundingBox.like()) :: Geo.Point.t()
   def center(bbox) do
-    %Geo.Point{lon: (bbox.minLon + bbox.maxLon) / 2, lat: (bbox.minLat + bbox.maxLat) / 2}
+    %Geo.Point{lon: (bbox.min_lon + bbox.max_lon) / 2, lat: (bbox.min_lat + bbox.max_lat) / 2}
   end
 
   @doc ~S"""
@@ -97,25 +97,25 @@ defmodule Geo.CheapRuler do
 
       iex> Geo.CheapRuler.inside_bbox?(
       ...>   %{lon: 1.3, lat: 4.5},
-      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...>   %Geo.BoundingBox{min_lon: 0, min_lat: 0, max_lon: 4.5, max_lat: 7.1}
       ...> )
       true
 
       iex> Geo.CheapRuler.inside_bbox?(
-      ...>   %Geo.BoundingBox{minLon: 1, minLat: 1, maxLon: 2, maxLat: 2},
-      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1}
+      ...>   %Geo.BoundingBox{min_lon: 1, min_lat: 1, max_lon: 2, max_lat: 2},
+      ...>   %Geo.BoundingBox{min_lon: 0, min_lat: 0, max_lon: 4.5, max_lat: 7.1}
       ...> )
       true
 
   """
   def inside_bbox?(
         %{lon: lon, lat: lat},
-        %Geo.BoundingBox{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+        %Geo.BoundingBox{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
       ) do
-    lon >= minLon &&
-      lon <= maxLon &&
-      lat >= minLat &&
-      lat <= maxLat
+    lon >= min_lon &&
+      lon <= max_lon &&
+      lat >= min_lat &&
+      lat <= max_lat
   end
 
   def inside_bbox?(%Geo.BoundingBox{} = inner, %Geo.BoundingBox{} = container) do
@@ -126,24 +126,35 @@ defmodule Geo.CheapRuler do
   Returns true if the two given bounding boxes overlap
   ## Examples
       iex> Geo.CheapRuler.overlap?(
-      ...>   %Geo.BoundingBox{minLon: 9.98160, minLat: 53.55331, maxLon: 9.999764, maxLat: 53.56092},
-      ...>   %Geo.BoundingBox{minLon: 9.99307, minLat: 53.55007, maxLon: 10.01124, maxLat: 53.55768}
+      ...>   %Geo.BoundingBox{min_lon: 9.98160, min_lat: 53.55331, max_lon: 9.999764, max_lat: 53.56092},
+      ...>   %Geo.BoundingBox{min_lon: 9.99307, min_lat: 53.55007, max_lon: 10.01124, max_lat: 53.55768}
       ...> )
       true
 
       iex> Geo.CheapRuler.overlap?(
-      ...>   %Geo.BoundingBox{minLon:  9.98160, minLat: 53.55331, maxLon:  9.999764, maxLat: 53.56092},
-      ...>   %Geo.BoundingBox{minLon: 10.01382, minLat: 53.54506, maxLon: 10.031987, maxLat: 53.55266}
+      ...>   %Geo.BoundingBox{min_lon:  9.98160, min_lat: 53.55331, max_lon:  9.999764, max_lat: 53.56092},
+      ...>   %Geo.BoundingBox{min_lon: 10.01382, min_lat: 53.54506, max_lon: 10.031987, max_lat: 53.55266}
       ...> )
       false
 
   """
   @spec overlap?(Geo.BoundingBox.like() | nil, Geo.BoundingBox.like() | nil) :: boolean()
   def overlap?(
-        %Geo.BoundingBox{minLon: minLonA, minLat: minLatA, maxLon: maxLonA, maxLat: maxLatA},
-        %Geo.BoundingBox{minLon: minLonB, minLat: minLatB, maxLon: maxLonB, maxLat: maxLatB}
+        %Geo.BoundingBox{
+          min_lon: min_lon_a,
+          min_lat: min_lat_a,
+          max_lon: max_lon_a,
+          max_lat: max_lat_a
+        },
+        %Geo.BoundingBox{
+          min_lon: min_lon_b,
+          min_lat: min_lat_b,
+          max_lon: max_lon_b,
+          max_lat: max_lat_b
+        }
       ) do
-    maxLonA >= minLonB && maxLonB >= minLonA && maxLatA >= minLatB && maxLatB >= minLatA
+    max_lon_a >= min_lon_b && max_lon_b >= min_lon_a && max_lat_a >= min_lat_b &&
+      max_lat_b >= min_lat_a
   end
 
   def overlap?(bbox1, bbox2) when is_nil(bbox1) or is_nil(bbox2) do
@@ -156,20 +167,20 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.buffer_bbox(
-      ...>   %Geo.BoundingBox{minLon: 0, minLat: 0, maxLon: 4.5, maxLat: 7.1},
+      ...>   %Geo.BoundingBox{min_lon: 0, min_lat: 0, max_lon: 4.5, max_lat: 7.1},
       ...>   1000
       ...> )
-      %Geo.BoundingBox{minLon: -0.015087116638538251,
-        minLat: -0.008984923104452173,
-        maxLon: 4.515087116638538,
-        maxLat: 7.108984923104452}
+      %Geo.BoundingBox{min_lon: -0.015087116638538251,
+        min_lat: -0.008984923104452173,
+        max_lon: 4.515087116638538,
+        max_lat: 7.108984923104452}
   """
   def buffer_bbox(
         %Geo.BoundingBox{
-          minLon: minLon,
-          minLat: minLat,
-          maxLon: maxLon,
-          maxLat: maxLat
+          min_lon: min_lon,
+          min_lat: min_lat,
+          max_lon: max_lon,
+          max_lat: max_lat
         },
         buffer
       )
@@ -178,10 +189,10 @@ defmodule Geo.CheapRuler do
     h = buffer / @kx
 
     %Geo.BoundingBox{
-      minLon: minLon - h,
-      minLat: minLat - v,
-      maxLon: maxLon + h,
-      maxLat: maxLat + v
+      min_lon: min_lon - h,
+      min_lat: min_lat - v,
+      max_lon: max_lon + h,
+      max_lat: max_lat + v
     }
   end
 
@@ -191,10 +202,10 @@ defmodule Geo.CheapRuler do
   def center_zoom_to_bounds(%{lon: lon, lat: lat, zoom: zoom}) do
     buffer_bbox(
       %Geo.BoundingBox{
-        minLon: lon,
-        minLat: lat,
-        maxLon: lon,
-        maxLat: lat
+        min_lon: lon,
+        min_lat: lat,
+        max_lon: lon,
+        max_lat: lat
       },
       @zoom_factor / :math.pow(2, zoom)
     )
@@ -209,12 +220,12 @@ defmodule Geo.CheapRuler do
     dist =
       max(
         Geo.CheapRuler.dist(
-          %{lat: bbox.minLat, lon: bbox.minLon},
-          %{lat: bbox.minLat, lon: bbox.maxLon}
+          %{lat: bbox.min_lat, lon: bbox.min_lon},
+          %{lat: bbox.min_lat, lon: bbox.max_lon}
         ),
         Geo.CheapRuler.dist(
-          %{lat: bbox.minLat, lon: bbox.minLon},
-          %{lat: bbox.maxLat, lon: bbox.minLon}
+          %{lat: bbox.min_lat, lon: bbox.min_lon},
+          %{lat: bbox.max_lat, lon: bbox.min_lon}
         )
       )
 
@@ -256,7 +267,7 @@ defmodule Geo.CheapRuler do
   ## Examples
 
       iex> Geo.CheapRuler.bounds_to_xyz(
-      ...>   %{maxLat: 53.715809, maxLon: 10.21779, minLat: 53.454363, minLon: 9.724553},
+      ...>   %{max_lat: 53.715809, max_lon: 10.21779, min_lat: 53.454363, min_lon: 9.724553},
       ...>   14
       ...> )
       %{x: 330, y: 540, zoom: 10, str: "10/540/330"}

@@ -260,11 +260,11 @@ defmodule Map.Parser do
   defp expand(bbox1, %{bbox: bbox2} = _way), do: Geo.CheapRuler.union(bbox1, bbox2)
 
   defp expand(bbox, %{lat: lat, lon: lon} = _node) do
-    minLon = min(bbox.minLon, lon)
-    minLat = min(bbox.minLat, lat)
-    maxLon = max(bbox.maxLon, lon)
-    maxLat = max(bbox.maxLat, lat)
-    %{bbox | minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+    min_lon = min(bbox.min_lon, lon)
+    min_lat = min(bbox.min_lat, lat)
+    max_lon = max(bbox.max_lon, lon)
+    max_lat = max(bbox.max_lat, lat)
+    %{bbox | min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
   @spec filter_typed(%{optional(binary()) => Map.Way.t() | Map.Node.t()}) ::

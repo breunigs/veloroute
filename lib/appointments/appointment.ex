@@ -143,7 +143,7 @@ defmodule Appointments.Appointment do
   end
 
   def bounding_box(%{lat: lat, lon: lon}) when is_number(lat) and is_number(lon) do
-    %Geo.BoundingBox{minLat: lat, maxLat: lat, minLon: lon, maxLon: lon}
+    %Geo.BoundingBox{min_lat: lat, max_lat: lat, min_lon: lon, max_lon: lon}
     |> Geo.CheapRuler.buffer_bbox(1000)
   end
 

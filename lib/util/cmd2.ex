@@ -35,7 +35,7 @@ defmodule Util.Cmd2 do
     {stdin, opts} = Keyword.pop(opts, :stdin, nil)
     {kill, opts} = Keyword.pop(opts, :kill, nil)
     {name, opts} = Keyword.pop(opts, :name, hd(cli))
-    if length(opts) > 0, do: raise("Unknown arguments: #{inspect(opts)}")
+    if opts != [], do: raise("Unknown arguments: #{inspect(opts)}")
 
     cli = Util.low_priority_cmd_prefix() ++ Enum.map(cli, &to_string/1)
     # run in extra thread because since Erlang/OTP 26 we receive messages from a
@@ -222,7 +222,7 @@ defmodule Util.Cmd2 do
         ospids = :exec.which_children()
         Enum.each(ospids, &:exec.stop/1)
         # allow graceful shutdowns
-        if length(ospids) > 0, do: wait_on_children()
+        if ospids != [], do: wait_on_children()
 
         :ok
       end)
@@ -237,7 +237,7 @@ defmodule Util.Cmd2 do
 
     waited_sec = :timer.now_diff(:erlang.timestamp(), started) / 1_000_000
 
-    if waited_sec < @max_wait_seconds && length(:exec.which_children()) > 0,
+    if waited_sec < @max_wait_seconds && :exec.which_children() != [],
       do: wait_on_children(started)
   end
 

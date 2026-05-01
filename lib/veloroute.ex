@@ -27,14 +27,12 @@ defmodule Veloroute do
 
     count = VelorouteWeb.ConnectionTracker.count()
 
-    cond do
-      count == 0 ->
-        Logger.info("shutdown: all connections dropped, exiting")
-        System.stop(0)
-
-      true ->
-        Logger.info("shutdown: waiting for #{count} connections to drop")
-        shutdown_on_zero_connections()
+    if count == 0 do
+      Logger.info("shutdown: all connections dropped, exiting")
+      System.stop(0)
+    else
+      Logger.info("shutdown: waiting for #{count} connections to drop")
+      shutdown_on_zero_connections()
     end
   end
 end

@@ -127,12 +127,12 @@ defmodule Overpass do
   end
 
   def station_query(operator) do
-    [minLon, minLat, maxLon, maxLat] = Settings.r(:bounds)
+    [min_lon, min_lat, max_lon, max_lat] = Settings.r(:bounds)
 
     """
     [out:json][timeout:25];
 
-    relation["operator:wikidata"="#{operator}"](#{minLat},#{minLon},#{maxLat},#{maxLon});
+    relation["operator:wikidata"="#{operator}"](#{min_lat},#{min_lon},#{max_lat},#{max_lon});
     node["railway"]["name"](r);
 
 

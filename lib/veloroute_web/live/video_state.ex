@@ -161,8 +161,11 @@ defmodule VelorouteWeb.Live.VideoState do
   defp push_changes(socket) do
     updates =
       socket.assigns
-      |> Enum.filter(fn {key, _val} -> String.starts_with?("#{key}", "video_") end)
-      |> Enum.filter(fn {key, _val} -> Phoenix.Component.changed?(socket, key) end)
+      |> Enum.filter(fn {key, _val} ->
+        video_key? = String.starts_with?("#{key}", "video_")
+        changed? = Phoenix.Component.changed?(socket, key)
+        video_key? && changed?
+      end)
       |> Enum.reduce(%{}, fn {key, val}, updates ->
         Map.put(updates, String.replace_prefix("#{key}", "video_", ""), val)
       end)

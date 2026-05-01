@@ -54,14 +54,14 @@ defmodule Geo.QuadTree do
   end
 
   def new(coords, capacity) when capacity > 0 do
-    {minLat, maxLat} = Enum.min_max_by(coords, & &1.lat)
-    {minLon, maxLon} = Enum.min_max_by(coords, & &1.lon)
+    {min_lat, max_lat} = Enum.min_max_by(coords, & &1.lat)
+    {min_lon, max_lon} = Enum.min_max_by(coords, & &1.lon)
 
     bbox = %Geo.BoundingBox{
-      minLon: minLon.lon,
-      minLat: minLat.lat,
-      maxLon: maxLon.lon,
-      maxLat: maxLat.lat
+      min_lon: min_lon.lon,
+      min_lat: min_lat.lat,
+      max_lon: max_lon.lon,
+      max_lat: max_lat.lat
     }
 
     %__MODULE__{
@@ -86,7 +86,7 @@ defmodule Geo.QuadTree do
   @doc "Inserts a point into the QuadTree"
   @spec insert(t(), Geo.Point.like()) :: t()
   def insert(%__MODULE__{points: nil, nw: nw, ne: ne, sw: sw, se: se} = qt, %{} = point) do
-    case {point.lat >= nw.bbox.minLat, point.lon >= ne.bbox.minLon} do
+    case {point.lat >= nw.bbox.min_lat, point.lon >= ne.bbox.min_lon} do
       {true, true} -> %{qt | ne: insert(ne, point)}
       {true, false} -> %{qt | nw: insert(nw, point)}
       {false, true} -> %{qt | se: insert(se, point)}
@@ -109,8 +109,8 @@ defmodule Geo.QuadTree do
   end
 
   @epsilon 10 ** -10
-  defp can_subdivide(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}) do
-    abs(maxLon - minLon) >= @epsilon && abs(maxLat - minLat) >= @epsilon
+  defp can_subdivide(%{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}) do
+    abs(max_lon - min_lon) >= @epsilon && abs(max_lat - min_lat) >= @epsilon
   end
 
   @doc """
@@ -215,18 +215,18 @@ defmodule Geo.QuadTree do
   @spec subdivide(t()) :: t()
   defp subdivide(qt) do
     # TODO: meridian?
-    midLat = (qt.bbox.minLat + qt.bbox.maxLat) / 2.0
-    midLon = (qt.bbox.minLon + qt.bbox.maxLon) / 2.0
+    mid_lat = (qt.bbox.min_lat + qt.bbox.max_lat) / 2.0
+    mid_lon = (qt.bbox.min_lon + qt.bbox.max_lon) / 2.0
 
-    nw = new(%{qt.bbox | maxLon: midLon, minLat: midLat}, qt.capacity)
-    ne = new(%{qt.bbox | minLon: midLon, minLat: midLat}, qt.capacity)
-    sw = new(%{qt.bbox | maxLon: midLon, maxLat: midLat}, qt.capacity)
-    se = new(%{qt.bbox | minLon: midLon, maxLat: midLat}, qt.capacity)
+    nw = new(%{qt.bbox | max_lon: mid_lon, min_lat: mid_lat}, qt.capacity)
+    ne = new(%{qt.bbox | min_lon: mid_lon, min_lat: mid_lat}, qt.capacity)
+    sw = new(%{qt.bbox | max_lon: mid_lon, max_lat: mid_lat}, qt.capacity)
+    se = new(%{qt.bbox | min_lon: mid_lon, max_lat: mid_lat}, qt.capacity)
 
     div = %{qt | nw: nw, ne: ne, sw: sw, se: se, points: nil}
 
     Enum.reduce(qt.points, div, fn point, div ->
-      case {point.lat >= div.nw.bbox.minLat, point.lon >= div.ne.bbox.minLon} do
+      case {point.lat >= div.nw.bbox.min_lat, point.lon >= div.ne.bbox.min_lon} do
         {true, true} ->
           %{div | ne: %{div.ne | count: div.ne.count + 1, points: [point | div.ne.points]}}
 

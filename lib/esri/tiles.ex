@@ -25,12 +25,12 @@ defmodule Esri.Tiles do
         json["contributors"]
         |> Enum.map(fn %{"attribution" => text, "coverageAreas" => covs} ->
           visible =
-            Enum.any?(covs, fn %{"bbox" => [minLat, minLon, maxLat, maxLon]} ->
+            Enum.any?(covs, fn %{"bbox" => [min_lat, min_lon, max_lat, max_lon]} ->
               bbox = %Geo.BoundingBox{
-                minLat: minLat,
-                minLon: minLon,
-                maxLat: maxLat,
-                maxLon: maxLon
+                min_lat: min_lat,
+                min_lon: min_lon,
+                max_lat: max_lat,
+                max_lon: max_lon
               }
 
               Geo.CheapRuler.overlap?(bbox, bounds)
@@ -38,10 +38,10 @@ defmodule Esri.Tiles do
 
           if visible do
             score = Enum.max_by(covs, & &1["score"])["score"]
-            minZoom = Enum.min_by(covs, & &1["zoomMin"])["zoomMin"]
-            maxZoom = Enum.max_by(covs, & &1["zoomMax"])["zoomMax"]
+            min_zoom = Enum.min_by(covs, & &1["zoomMin"])["zoomMin"]
+            max_zoom = Enum.max_by(covs, & &1["zoomMax"])["zoomMax"]
             text = text |> String.replace(~r/©\d\d\d\d/, "") |> String.trim()
-            %{text: text, score: score, zoom: minZoom..maxZoom, covs: covs}
+            %{text: text, score: score, zoom: min_zoom..max_zoom, covs: covs}
           end
         end)
         |> Util.compact()

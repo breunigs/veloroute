@@ -82,8 +82,8 @@ defmodule Basemap.Nominatim do
 
   @spec polyline_to_bbox(binary()) :: Geo.BoundingBox.t()
   def polyline_to_bbox(polyline) do
-    [{minLon, minLat}, {maxLon, maxLat}] = Polyline.decode(polyline, polyline_precision())
-    %Geo.BoundingBox{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}
+    [{min_lon, min_lat}, {max_lon, max_lat}] = Polyline.decode(polyline, polyline_precision())
+    %Geo.BoundingBox{min_lon: min_lon, max_lon: max_lon, min_lat: min_lat, max_lat: max_lat}
   end
 
   defp keys_to_atoms(map) when is_map(map) do

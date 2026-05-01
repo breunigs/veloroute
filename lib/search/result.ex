@@ -97,8 +97,8 @@ defmodule Search.Result do
   def ping(sr) do
     center =
       with %{lat: lat, lon: lon} <- sr.center,
-           %{minLat: minLat, maxLat: maxLat, minLon: minLon, maxLon: maxLon}
-           when maxLat - minLat < 0.001 and maxLon - minLon < 0.001 <- sr.bounds do
+           %{min_lat: min_lat, max_lat: max_lat, min_lon: min_lon, max_lon: max_lon}
+           when max_lat - min_lat < 0.001 and max_lon - min_lon < 0.001 <- sr.bounds do
         %{lat: lat, lon: lon}
       else
         _ -> nil

@@ -7,7 +7,7 @@ config :veloroute, Settings, %{
   # bounds: [9.95815, 53.54178, 9.97641, 53.54781],
 
   # start settings if no other map location/image is selected
-  initial: %{minLon: 9.724553, minLat: 53.454363, maxLon: 10.21779, maxLat: 53.715809},
+  initial: %{min_lon: 9.724553, min_lat: 53.454363, max_lon: 10.21779, max_lat: 53.715809},
 
   # which basemap styles to show, their display name, and if they're default or not
   map_styles: [

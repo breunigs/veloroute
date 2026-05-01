@@ -108,7 +108,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
       |> Enum.filter(fn {_hash, num} -> num && num > 1 end)
       |> Enum.map(&elem(&1, 0))
 
-    if length(historic_only) > 0 do
+    if historic_only != [] do
       IO.puts("""
 
       #####################################################################
@@ -158,8 +158,9 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
   end
 
   defp count_variants(hash) do
-    with path = Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"]),
-         {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
+    path = Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"])
+
+    with {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
          variants when is_list(variants) <- M3U8.Utils.variants(tokens) do
       length(variants)
     else

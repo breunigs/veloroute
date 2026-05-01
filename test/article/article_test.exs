@@ -64,7 +64,7 @@ defmodule ArticleTest do
 
     missing_tag =
       Article.List.all()
-      |> Enum.filter(fn art -> length(art.links(%{})) > 0 end)
+      |> Enum.filter(fn art -> art.links(%{}) != [] end)
       |> Enum.reject(fn art ->
         # don't know how to get the raw, so check the render instead
         html = Article.Decorators.html(art)
@@ -140,10 +140,13 @@ defmodule ArticleTest do
     broken =
       Article.List.all()
       |> Enum.flat_map(fn art -> Enum.map(art.tracks(), &{art, &1, Video.Generator.get(&1)}) end)
-      |> Enum.reject(fn {_art, track, _rendered} -> track.historic == nil end)
-      |> Enum.reject(fn {_art, track, rendered} ->
-        hash = rendered && rendered.hash()
-        Map.has_key?(track.historic, hash)
+      |> Enum.reject(fn
+        {_art, %{historic: nil}, _rendered} ->
+          true
+
+        {_art, track, rendered} ->
+          hash = rendered && rendered.hash()
+          Map.has_key?(track.historic, hash)
       end)
       |> Enum.map(fn {art, track, rendered} ->
         "#{art} track '#{track.text}' should contain #{rendered && rendered.hash()}"
@@ -155,9 +158,11 @@ defmodule ArticleTest do
   test "newer articles have a summary" do
     missing_summary =
       Article.List.all()
-      |> Enum.reject(fn art -> art.updated_at() == nil end)
-      |> Enum.filter(fn art -> Date.compare(art.updated_at(), ~D[2022-01-01]) == :gt end)
-      |> Enum.filter(fn art -> art.summary() == "" end)
+      |> Enum.filter(fn art ->
+        date = art.updated_at() || art.created_at()
+        is_newer = date != nil && Date.compare(date, ~D[2022-01-01]) == :gt
+        is_newer && art.summary() == ""
+      end)
 
     assert [] == missing_summary
   end

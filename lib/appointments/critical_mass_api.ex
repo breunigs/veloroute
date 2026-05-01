@@ -34,17 +34,17 @@ defmodule Appointments.CriticalMassAPI do
   end
 
   def appointments_real() do
-    [minLon, minLat, maxLon, maxLat] = Settings.r(:bounds)
+    [min_lon, min_lat, max_lon, max_lat] = Settings.r(:bounds)
 
     Logger.info("Updating CriticalMass appointments")
 
     with {:ok, %{body: list}} when is_list(list) <-
            get("/ride",
              query: [
-               bbWestLongitude: minLon,
-               bbEastLongitude: maxLon,
-               bbSouthLatitude: minLat,
-               bbNorthLatitude: maxLat,
+               bbWestLongitude: min_lon,
+               bbEastLongitude: max_lon,
+               bbSouthLatitude: min_lat,
+               bbNorthLatitude: max_lat,
                orderDirection: :desc,
                orderBy: :dateTime,
                extended: true

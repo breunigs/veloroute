@@ -56,7 +56,7 @@ defmodule Mix.Tasks.Velo.Feeds.Bauleistung do
 
   def search(term) do
     with {:ok, %{status: 200, body: body}} <- get("", query: [query: term]),
-         {:ok, html} = Floki.parse_document(body) do
+         {:ok, html} <- Floki.parse_document(body) do
       html
       |> Floki.find("a.km1-teaser__heading-link")
       |> Enum.map(fn node ->

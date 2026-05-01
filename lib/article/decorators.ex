@@ -114,7 +114,7 @@ defmodule Article.Decorators do
   def gpx_links(art, "en") when is_module(art) do
     assigns = %{name: art.name()}
 
-    if length(art.tracks()) > 0 do
+    if art.tracks() != [] do
       [
         ~H"""
         <span lang="en">
@@ -133,7 +133,7 @@ defmodule Article.Decorators do
   def gpx_links(art, _other) when is_module(art) do
     assigns = %{name: art.name()}
 
-    if length(art.tracks()) > 0 do
+    if art.tracks() != [] do
       [
         ~H"""
         Route im

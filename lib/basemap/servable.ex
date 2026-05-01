@@ -47,8 +47,9 @@ defmodule Basemap.Servable do
   def serve_path(extra) when is_list(extra), do: serve_path(Path.join(extra))
 
   def serve_path(extra) when is_binary(extra) do
-    with trimmed = String.trim_leading(extra, "/"),
-         {:ok, safe} <- Path.safe_relative(trimmed) do
+    trimmed = String.trim_leading(extra, "/")
+
+    with {:ok, safe} <- Path.safe_relative(trimmed) do
       Path.join("/assets/basemap/", safe)
     else
       :error -> {:error, "unsafe relative path given: #{extra}"}

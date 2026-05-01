@@ -176,10 +176,7 @@ defmodule Util.Docker do
   @spec build_and_run(full_ref(), docker_opts(), Util.Cmd2.exec_opts()) ::
           :ok | {:error, binary()}
   def build_and_run(full_ref, docker_opts, exec_opts) when is_full_ref(full_ref) do
-    with :ok <- build(full_ref),
-         :ok <- run(full_ref, docker_opts, exec_opts) do
-      :ok
-    end
+    with :ok <- build(full_ref), do: run(full_ref, docker_opts, exec_opts)
   end
 
   @doc """

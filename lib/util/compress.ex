@@ -10,9 +10,12 @@ defmodule Util.Compress do
     [] = opts
 
     files =
-      Path.wildcard(path_glob)
-      |> Enum.reject(&File.dir?/1)
-      |> Enum.reject(fn path -> Path.extname(path) in [".gz", ".br"] end)
+      path_glob
+      |> Path.wildcard()
+      |> Enum.reject(fn path ->
+        compressed = Path.extname(path) in [".gz", ".br"]
+        compressed || File.dir?(path)
+      end)
 
     files =
       if length(files) >= 5,

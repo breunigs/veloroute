@@ -37,8 +37,8 @@ defmodule Appointments.AppointmentTest do
   test "bounding_box/1 returns bounding box when lat/lon are present", %{base: base} do
     bbox = Appointment.bounding_box(base)
     assert %Geo.BoundingBox{} = bbox
-    assert bbox.minLat < bbox.maxLat
-    assert bbox.minLon < bbox.maxLon
+    assert bbox.min_lat < bbox.max_lat
+    assert bbox.min_lon < bbox.max_lon
   end
 
   test "bounding_box/1 returns nil when lat/lon are missing" do

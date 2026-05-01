@@ -36,12 +36,10 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   ]
   defp early_hints() do
     content =
-      @early_hint_preload
-      |> Enum.map(fn {path, type} ->
+      Enum.map_join(@early_hint_preload, "\n", fn {path, type} ->
         path = to_digested_path(path, type)
         "header +Link \"<#{path}>; rel=preload; as=#{type}\""
       end)
-      |> Enum.join("\n")
 
     :ok = File.write("priv/static/early_hints.txt", content <> "\n")
   end

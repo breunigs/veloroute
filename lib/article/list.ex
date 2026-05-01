@@ -135,8 +135,8 @@ defmodule Article.List do
   have videos.
   """
   def related?(art1, art2) when is_module(art1) and is_module(art2) do
-    has_tracks1 = length(art1.tracks()) > 0
-    has_tracks2 = length(art2.tracks()) > 0
+    has_tracks1 = art1.tracks() != []
+    has_tracks2 = art2.tracks() != []
     (!has_tracks1 || !has_tracks2) && Util.overlap?(art1.tags(), art2.tags())
   end
 

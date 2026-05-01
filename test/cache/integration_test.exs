@@ -4,12 +4,12 @@ defmodule Cache.IntegrationTest do
   test "ways are tagged decently" do
     Cache.Map.ways()
     |> Enum.each(fn {_id, w} ->
-      hasName = is_binary(w.tags[:name]) && w.tags[:name] != ""
-      isArticle = w.tags[:type] == "article"
-      isDetour = w.tags[:type] == "detour"
+      has_name = is_binary(w.tags[:name]) && w.tags[:name] != ""
+      is_article = w.tags[:type] == "article"
+      is_detour = w.tags[:type] == "detour"
 
-      if isDetour || isArticle,
-        do: assert(hasName, "Neither article nor quality tags: #{inspect(w)}")
+      if is_detour || is_article,
+        do: assert(has_name, "Neither article nor quality tags: #{inspect(w)}")
     end)
   end
 

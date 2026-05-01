@@ -36,7 +36,7 @@ defmodule Data.MapImage do
     }
 
   defp attrib_to_link(list) when is_list(list) do
-    list |> Enum.map(&attrib_to_link/1) |> Enum.join(" | ")
+    Enum.map_join(list, " | ", &attrib_to_link/1)
   end
 
   defp attrib_to_link({attr_name, attr_link}) do

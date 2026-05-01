@@ -67,13 +67,13 @@ defmodule Appointments.ADFCAPI do
   end
 
   defp search(query_params) do
-    [minLon, minLat, _maxLon, _maxLat] = Settings.r(:bounds)
+    [min_lon, min_lat, _max_lon, _max_lat] = Settings.r(:bounds)
     center = Settings.r(:bounds) |> Geo.BoundingBox.parse() |> Geo.CheapRuler.center()
 
     radius_m =
       min(
-        Geo.CheapRuler.point2point_dist(center, %{lon: minLon, lat: center.lat}),
-        Geo.CheapRuler.point2point_dist(center, %{lon: center.lon, lat: minLat})
+        Geo.CheapRuler.point2point_dist(center, %{lon: min_lon, lat: center.lat}),
+        Geo.CheapRuler.point2point_dist(center, %{lon: center.lon, lat: min_lat})
       ) * 0.8
 
     today = Settings.r(:timezone) |> DateTime.now!() |> Calendar.strftime("%Y-%m-%d")

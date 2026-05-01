@@ -63,8 +63,8 @@ defmodule Feed do
   defp maybe_add_location(entry, art) do
     case Article.Decorators.bbox(art) do
       bbox when is_map(bbox) ->
-        lat = (bbox.minLat + bbox.maxLat) / 2
-        lon = (bbox.minLon + bbox.maxLon) / 2
+        lat = (bbox.min_lat + bbox.max_lat) / 2
+        lon = (bbox.min_lon + bbox.max_lon) / 2
         Entry.add_field(entry, "georss:point", %{}, "#{lat} #{lon}")
 
       _other ->

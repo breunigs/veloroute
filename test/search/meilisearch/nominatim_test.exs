@@ -51,7 +51,7 @@ defmodule Search.Meilisearch.NominatimTest do
       %{
         "_rankingScore" => 0.3333333333333333,
         "address" => nil,
-        "bbox" => %Geo.BoundingBox{minLon: 1.0, minLat: 5.3, maxLon: 1.2, maxLat: 5.6},
+        "bbox" => %Geo.BoundingBox{min_lon: 1.0, min_lat: 5.3, max_lon: 1.2, max_lat: 5.6},
         "boost" => "SomeNameHere",
         "class" => "SomeClass",
         "extratags" => %{"wikidata" => "Q123456789"},

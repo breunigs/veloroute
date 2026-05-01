@@ -12,7 +12,7 @@ defmodule Geo.LongestLineLabel do
     # vertical positions of the scanlines
     lats =
       Enum.map(1..(@vertical_steps - 1), fn t ->
-        (bbox.minLat * t + bbox.maxLat * (@vertical_steps - t)) / @vertical_steps
+        (bbox.min_lat * t + bbox.max_lat * (@vertical_steps - t)) / @vertical_steps
       end)
 
     centroid = centroid(polyline)

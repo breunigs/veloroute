@@ -27,9 +27,8 @@ defmodule Util.Download do
         try do
           with {:ok, handle} <- File.open(tmp, [:write, :binary, :exclusive, :delayed_write]),
                :ok <- stream_body(ref, handle),
-               :ok <- File.close(handle),
-               :ok <- File.rename(tmp, file) do
-            :ok
+               :ok <- File.close(handle) do
+            File.rename(tmp, file)
           end
         after
           File.rm(tmp)

@@ -1,19 +1,19 @@
 defmodule Geo.BoundingBox do
-  @params [:minLon, :minLat, :maxLon, :maxLat]
+  @params [:min_lon, :min_lat, :max_lon, :max_lat]
   @enforce_keys @params
 
   @type t() :: %__MODULE__{
-          minLon: number(),
-          maxLon: number(),
-          minLat: number(),
-          maxLat: number()
+          min_lon: number(),
+          max_lon: number(),
+          min_lat: number(),
+          max_lat: number()
         }
   @type like() ::
           %{
-            minLon: number(),
-            maxLon: number(),
-            minLat: number(),
-            maxLat: number()
+            min_lon: number(),
+            max_lon: number(),
+            min_lat: number(),
+            max_lat: number()
           }
           | t()
 
@@ -21,37 +21,37 @@ defmodule Geo.BoundingBox do
 
   @typep numberlist :: [float() | integer(), ...]
   @spec parse(binary | numberlist | [numberlist, ...] | map | nil) :: nil | Geo.BoundingBox.t()
-  def parse(%{"maxlat" => maxLat, "maxlon" => maxLon, "minlat" => minLat, "minlon" => minLon}) do
-    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  def parse(%{"maxlat" => max_lat, "maxlon" => max_lon, "minlat" => min_lat, "minlon" => min_lon}) do
+    %__MODULE__{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
-  def parse(%{"ymax" => maxLat, "xmax" => maxLon, "ymin" => minLat, "xmin" => minLon}) do
-    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  def parse(%{"ymax" => max_lat, "xmax" => max_lon, "ymin" => min_lat, "xmin" => min_lon}) do
+    %__MODULE__{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
-  def parse(%{maxLat: maxLat, maxLon: maxLon, minLat: minLat, minLon: minLon}) do
-    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  def parse(%{max_lat: max_lat, max_lon: max_lon, min_lat: min_lat, min_lon: min_lon}) do
+    %__MODULE__{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
-  def parse([[minLon, minLat], [maxLon, maxLat]]) do
-    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  def parse([[min_lon, min_lat], [max_lon, max_lat]]) do
+    %__MODULE__{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
-  def parse([minLon, minLat, maxLon, maxLat]) do
-    %__MODULE__{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}
+  def parse([min_lon, min_lat, max_lon, max_lat]) do
+    %__MODULE__{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}
   end
 
   def parse(bounds) when is_binary(bounds) do
-    with [minLon, minLat, maxLon, maxLat] <- String.split(bounds, ~r/[-,]/),
-         {minLon, ""} <- Float.parse(minLon),
-         {minLat, ""} <- Float.parse(minLat),
-         {maxLon, ""} <- Float.parse(maxLon),
-         {maxLat, ""} <- Float.parse(maxLat) do
+    with [min_lon, min_lat, max_lon, max_lat] <- String.split(bounds, ~r/[-,]/),
+         {min_lon, ""} <- Float.parse(min_lon),
+         {min_lat, ""} <- Float.parse(min_lat),
+         {max_lon, ""} <- Float.parse(max_lon),
+         {max_lat, ""} <- Float.parse(max_lat) do
       %__MODULE__{
-        minLon: minLon,
-        minLat: minLat,
-        maxLon: maxLon,
-        maxLat: maxLat
+        min_lon: min_lon,
+        min_lat: min_lat,
+        max_lon: max_lon,
+        max_lat: max_lat
       }
     else
       _ -> nil
@@ -64,8 +64,8 @@ defmodule Geo.BoundingBox do
   Calculates approximate area of the bounding box
   """
   @spec area(t()) :: number()
-  def area(%__MODULE__{minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat}) do
-    (maxLon - minLon) * (maxLat - minLat)
+  def area(%__MODULE__{min_lon: min_lon, max_lon: max_lon, min_lat: min_lat, max_lat: max_lat}) do
+    (max_lon - min_lon) * (max_lat - min_lat)
   end
 
   def to_string_bounds(bounds, delimiter \\ "-")
@@ -78,25 +78,26 @@ defmodule Geo.BoundingBox do
     end
   end
 
-  def to_string_bounds([[minLon, minLat], [maxLon, maxLat]], delimiter),
-    do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
+  def to_string_bounds([[min_lon, min_lat], [max_lon, max_lat]], delimiter),
+    do: "#{r(min_lon)}#{delimiter}#{r(min_lat)}#{delimiter}#{r(max_lon)}#{delimiter}#{r(max_lat)}"
 
-  def to_string_bounds([minLon, minLat, maxLon, maxLat], delimiter),
-    do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
+  def to_string_bounds([min_lon, min_lat, max_lon, max_lat], delimiter),
+    do: "#{r(min_lon)}#{delimiter}#{r(min_lat)}#{delimiter}#{r(max_lon)}#{delimiter}#{r(max_lat)}"
 
   def to_string_bounds(
-        %{minLat: minLat, minLon: minLon, maxLat: maxLat, maxLon: maxLon},
+        %{min_lat: min_lat, min_lon: min_lon, max_lat: max_lat, max_lon: max_lon},
         delimiter
       ),
-      do: "#{r(minLon)}#{delimiter}#{r(minLat)}#{delimiter}#{r(maxLon)}#{delimiter}#{r(maxLat)}"
+      do:
+        "#{r(min_lon)}#{delimiter}#{r(min_lat)}#{delimiter}#{r(max_lon)}#{delimiter}#{r(max_lat)}"
 
   @precision 6
   defp r(float), do: Float.round(float, @precision)
 end
 
 defimpl String.Chars, for: Geo.BoundingBox do
-  def to_string(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}) do
-    "#{r(minLon)}-#{r(minLat)}-#{r(maxLon)}-#{r(maxLat)}"
+  def to_string(%{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}) do
+    "#{r(min_lon)}-#{r(min_lat)}-#{r(max_lon)}-#{r(max_lat)}"
   end
 
   @precision 6
@@ -104,8 +105,8 @@ defimpl String.Chars, for: Geo.BoundingBox do
 end
 
 defimpl JSON.Encoder, for: Geo.BoundingBox do
-  def encode(%{minLon: minLon, minLat: minLat, maxLon: maxLon, maxLat: maxLat}, encoder) do
-    encoder.([r(minLon), r(minLat), r(maxLon), r(maxLat)], encoder)
+  def encode(%{min_lon: min_lon, min_lat: min_lat, max_lon: max_lon, max_lat: max_lat}, encoder) do
+    encoder.([r(min_lon), r(min_lat), r(max_lon), r(max_lat)], encoder)
   end
 
   @precision 6
