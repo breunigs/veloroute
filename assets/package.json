@@ -8,12 +8,12 @@
     "@mapbox/mapbox-gl-draw": "^1.4.3",
     "hls.js": "^1.7.0-alpha.1",
     "maplibre-gl": "^5.24.0",
-    "pmtiles": "^4.3.0"
+    "pmtiles": "^4.4.1"
   },
   "devDependencies": {
-    "@svta/common-media-library": "0.17.1",
+    "@svta/common-media-library": "0.18.1",
     "@types/phoenix_live_view": "^1.0.0",
-    "esbuild": "^0.27.2",
+    "esbuild": "^0.28.0",
     "eventemitter3": "5.0.4",
     "url-toolkit": "2.2.5"
   }
