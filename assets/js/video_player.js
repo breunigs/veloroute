@@ -501,11 +501,25 @@ function setupThumbnailPreview(hls) {
   hlsIframesOnly = hls.createIFramePlayer()
   if (!hlsIframesOnly) return hideThumbnailPreview()
 
-  const thumbnailPreviewEl = document.getElementById("thumbnailPreview")
   hlsIframesOnly.attachMedia(thumbnailPreviewEl)
   thumbnailPreviewEl.addEventListener("seeked", () => {
     requestAnimationFrame(() => progressPreviewEl?.classList.add("has-thumbnail"))
   }, { once: true })
+}
+
+let iframeDesiredSeekTime
+let iframeFixQueued = false
+function ensureThumbnailGetsUpdated(time) {
+  if (time) iframeDesiredSeekTime = time
+  if (iframeFixQueued) return
+
+  thumbnailPreviewEl.addEventListener("seeked", () => {
+    iframeFixQueued = false
+    if (thumbnailPreviewEl.currentTime == iframeDesiredSeekTime) return
+    hlsIframesOnly?.loadMediaAt(iframeDesiredSeekTime)
+    ensureThumbnailGetsUpdated()
+  }, once)
+  iframeFixQueued = true
 }
 
 function hideThumbnailPreview() {
@@ -651,6 +665,7 @@ let videoQuality
 let videoQualityOptions
 let progressPreviewEl
 let progressPreviewTextEl
+let thumbnailPreviewEl
 let hlsIframesOnly = null
 function initControls() {
   // i.e. no re-init needed
@@ -669,6 +684,7 @@ function initControls() {
   videoQualityOptions = document.getElementById("videoQualityOptions");
   progressPreviewEl = document.getElementById("progressPreview")
   progressPreviewTextEl = document.getElementById("progressPreviewText")
+  thumbnailPreviewEl = document.getElementById("thumbnailPreview")
 
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
@@ -814,7 +830,10 @@ function previewProgress(e) {
     progressPreviewRAF = null
     progress.style.setProperty("--loaded", ratio * 100 + "%");
     if (seekByTouch) updateProgressbar(null, time)
-    if (!isNaN(time)) hlsIframesOnly?.loadMediaAt(time / 1000.0)
+    if (!isNaN(time) && hlsIframesOnly) {
+      hlsIframesOnly.loadMediaAt(time / 1000.0)
+      ensureThumbnailGetsUpdated(time / 1000.0)
+    }
   })
 }
 
