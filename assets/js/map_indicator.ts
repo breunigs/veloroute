@@ -192,14 +192,15 @@ const toRad = (degrees: number) => degrees * Math.PI / 180
 const toDeg = (radians: number) => radians * 180 / Math.PI
 
 const calcBearing = (fromLon: number, fromLat: number, toLon: number, toLat: number) => {
-  const fLon = toRad(fromLon)
-  const fLat = toRad(fromLat)
-  const tLon = toRad(toLon)
-  const tLat = toRad(toLat)
+  const φ1 = toRad(fromLat)
+  const φ2 = toRad(toLat)
+  const Δλ = toRad(toLon - fromLon)
 
-  const y = Math.sin(tLon - fLon) * Math.cos(tLat)
-  const x = Math.cos(fLat) * Math.sin(tLat) -
-    Math.sin(fLat) * Math.cos(tLat) * Math.cos(tLon - fLon)
+  const y = Math.sin(Δλ) * Math.cos(φ2)
+  const x =
+    Math.cos(φ1) * Math.sin(φ2) -
+    Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+
   const bearing = Math.atan2(y, x)
   return toDeg(bearing)
 }
@@ -294,13 +295,6 @@ const polyline2coords = (str: string, precision: number) => {
 
     coordinates[coordIndex++] = lon / factor
     coordinates[coordIndex++] = lat / factor
-
-    if (coordIndex + 1 >= coordinates.length) {
-      console.warn("had to double coord buffer")
-      const newCoords = new Float32Array(coordinates.length * 2)
-      newCoords.set(coordinates)
-      coordinates = newCoords
-    }
   }
 
   // remove any over allocated entries
