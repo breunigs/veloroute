@@ -3,6 +3,7 @@ import Hls from "../vendor/hls.light-iframes.min.js"
 import { initQualityChooser } from "./video_quality_chooser"
 import { initThumbnailPreview } from "./video_thumbnail"
 import { initProgressBar } from "./video_progress_bar"
+import { initFullscreen } from "./video_fullscreen"
 
 const once = { once: true }
 
@@ -510,6 +511,7 @@ let poster
 let thumbnailPreview
 let qualityChooser
 let progressBar
+let fullscreen
 function initControls() {
   // i.e. no re-init needed
   if (outer === document.getElementById('videoOuter')) return
@@ -526,11 +528,12 @@ function initControls() {
     getVideoTimeMs: () => fixSeekForWrongVideoDuration || videoTimeInMs,
     getDuration: () => videoMeta.length_ms || Math.round(video.duration * 1000),
   })
+  fullscreen = initFullscreen("videoOuter", "videoControls", "videoInner")
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
   document.getElementById('skipForward5').addEventListener('click', () => { actionIcon("skipForward5"); seekToTime(videoTimeInMs + 5000) })
   document.getElementById("reverse").addEventListener('click', reverseVideo);
-  document.getElementById("fullscreen").addEventListener('click', toggleFullscreen);
+  document.getElementById("fullscreen").addEventListener('click', fullscreen.toggle);
   playpause.addEventListener('click', togglePlayPause);
   poster.addEventListener('click', togglePlayPause);
 
@@ -619,81 +622,6 @@ function reverseVideo() {
 
 function updatePlaypause() {
   outer.setAttribute('data-state', !autoplay && (video.paused || video.ended) ? 'play' : 'pause');
-}
-
-function isTouch() {
-  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-}
-
-function toggleFullscreen() {
-  const fullscreenElement =
-    document.fullscreenElement ||
-    document.webkitFullscreenElement ||
-    (video.webkitSupportsPresentationMode && video.webkitSetPresentationMode == 'fullscreen') ||
-    document.body.classList.contains("fullscreen");
-  if (fullscreenElement) {
-    exitFullscreen();
-  } else {
-    launchIntoFullscreen(outer);
-  }
-}
-
-function launchIntoFullscreen(element) {
-  if (element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if (video.webkitSupportsPresentationMode && properVideoIsLoaded) {
-    video.webkitSetPresentationMode('fullscreen')
-  } else if (element.webkitRequestFullscreen && !isTouch()) {
-    element.webkitRequestFullscreen();
-  } else {
-    document.body.classList.add('fullscreen');
-  }
-
-  inactivityListener(true);
-}
-
-function exitFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (video.webkitSetPresentationMode) {
-    video.webkitSetPresentationMode('inline');
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }
-
-  inactivityListener(false);
-  document.body.classList.remove('fullscreen');
-}
-
-let inactivityTimeout = null;
-
-function inactivityListener(bool) {
-  if (bool) {
-    outer.addEventListener("mousemove", inactivityDelay);
-    outer.addEventListener("touchmove", inactivityDelay);
-    inactivityReset();
-  } else {
-    outer.removeEventListener("mousemove", inactivityDelay);
-    outer.removeEventListener("touchmove", inactivityDelay);
-    inactivityDelay();
-  }
-}
-
-function inactivityReset() {
-  if (inactivityTimeout) {
-    clearTimeout(inactivityTimeout);
-    inactivityTimeout = null;
-  }
-  outer.classList.remove("inactivity");
-}
-
-function inactivityDelay() {
-  inactivityReset()
-  inactivityTimeout = setTimeout(() => {
-    // don't hide the controls if the cursor is hovering them
-    if (controls.matches(':hover')) return;
-    outer.classList.add("inactivity");
-  }, 2000);
 }
 
 // keep in sync with video/constants.ex
