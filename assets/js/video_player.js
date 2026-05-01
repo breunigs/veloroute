@@ -1,6 +1,7 @@
 import "./rvfc-polyfill"
 import Hls from "../vendor/hls.light-iframes.min.js"
 import { initQualityChooser } from "./video_quality_chooser"
+import { initThumbnailPreview } from "./video_thumbnail"
 
 const once = { once: true }
 const passive = { passive: true }
@@ -311,8 +312,7 @@ function updateVideoElement(preloadOnly) {
       hls = new Hls(options);
       attachHlsErrorHandler(hls)
       hls.on(Hls.Events.MANIFEST_PARSED, seekToStartTime);
-      hls.once(Hls.Events.INIT_PTS_FOUND, () => setupThumbnailPreview(hls));
-      hls.on(Hls.Events.DESTROYING, hideThumbnailPreview);
+      thumbnailPreview?.setup(hls);
       qualityChooser?.setup(hls)
       hls.loadSource(path);
     }
@@ -378,39 +378,6 @@ function seekToStartTime() {
   if (!autoplay) video.pause();
   seekToTime(videoMeta.start);
   video.autoplay = autoplay;
-}
-
-function setupThumbnailPreview(hls) {
-  hlsIframesOnly = null
-  if (window.matchMedia("(max-width: 768px)").matches) return hideThumbnailPreview()
-  if (!hls.iframeVariants?.length) return hideThumbnailPreview()
-
-  hlsIframesOnly = hls.createIFramePlayer()
-  if (!hlsIframesOnly) return hideThumbnailPreview()
-
-  hlsIframesOnly.attachMedia(thumbnailPreviewEl)
-  thumbnailPreviewEl.addEventListener("seeked", () => {
-    requestAnimationFrame(() => progressPreviewEl?.classList.add("has-thumbnail"))
-  }, { once: true })
-}
-
-let iframeDesiredSeekTime
-let iframeFixQueued = false
-function ensureThumbnailGetsUpdated(time) {
-  if (time) iframeDesiredSeekTime = time
-  if (iframeFixQueued) return
-
-  thumbnailPreviewEl.addEventListener("seeked", () => {
-    iframeFixQueued = false
-    if (thumbnailPreviewEl.currentTime == iframeDesiredSeekTime) return
-    hlsIframesOnly?.loadMediaAt(iframeDesiredSeekTime)
-    ensureThumbnailGetsUpdated()
-  }, once)
-  iframeFixQueued = true
-}
-
-function hideThumbnailPreview() {
-  requestAnimationFrame(() => progressPreviewEl?.classList.remove("has-thumbnail"))
 }
 
 let fixSeekForWrongVideoDuration = null
@@ -555,8 +522,7 @@ let controls
 let poster
 let progressPreviewEl
 let progressPreviewTextEl
-let thumbnailPreviewEl
-let hlsIframesOnly = null
+let thumbnailPreview
 let qualityChooser
 function initControls() {
   // i.e. no re-init needed
@@ -572,8 +538,7 @@ function initControls() {
   poster = document.getElementById('videoPoster')
   progressPreviewEl = document.getElementById("progressPreview")
   progressPreviewTextEl = document.getElementById("progressPreviewText")
-  thumbnailPreviewEl = document.getElementById("thumbnailPreview")
-
+  thumbnailPreview = initThumbnailPreview("thumbnailPreview", "progressPreview")
   qualityChooser = initQualityChooser(qualityChooserIDs)
 
   document.getElementById('skipBackward5').addEventListener('click', () => { actionIcon("skipBackward5"); seekToTime(videoTimeInMs - 5000) })
@@ -708,10 +673,7 @@ function previewProgress(e) {
     progressPreviewRAF = null
     progress.style.setProperty("--loaded", ratio * 100 + "%");
     if (seekByTouch) updateProgressbar(null, time)
-    if (!isNaN(time) && hlsIframesOnly) {
-      hlsIframesOnly.loadMediaAt(time / 1000.0)
-      ensureThumbnailGetsUpdated(time / 1000.0)
-    }
+    if (!isNaN(time)) thumbnailPreview?.seekTo(time / 1000.0)
   })
 }
 
