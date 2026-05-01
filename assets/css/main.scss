@@ -339,6 +339,8 @@ $videoInfoOverlayPadding: 0.5rem;
     -webkit-tap-highlight-color: transparent;
 
     #progressPreview {
+      $fadeTime: 0.2s;
+
       // comment in to make it visible without hover
       // visibility: visible !important; // toggle
       // opacity: 1 !important; // toggle
@@ -366,7 +368,7 @@ $videoInfoOverlayPadding: 0.5rem;
       text-align: center;
       text-shadow: $blackOutline;
       -webkit-font-smoothing: antialiased;
-      transition: opacity 0.2s ease-in-out, visibility 0.2s;
+      transition: opacity $fadeTime ease-in-out, visibility $fadeTime;
       pointer-events: none;
       z-index: 1;
       line-height: 1.3rem;
@@ -377,19 +379,21 @@ $videoInfoOverlayPadding: 0.5rem;
       padding: $videoThumbnailShadow $videoThumbnailShadow 0 $videoThumbnailShadow;
 
       video {
-        display: none;
+        display: block;
+        opacity: 0;
+        transition: opacity $fadeTime ease-in-out;
       }
 
       &.has-thumbnail video {
         display: block;
+        opacity: 1;
         box-sizing: border-box;
         width: 100%;
         aspect-ratio: 16/9;
         border-radius: 0.5rem;
         margin-bottom: 0.5rem;
         box-shadow: 0px 0px $videoThumbnailShadow black;
-        backdrop-filter: blur(0.2rem);
-        background: rgba(0, 0, 0, 0.7);
+        background: #000;
       }
 
       transform: translateX(

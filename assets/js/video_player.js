@@ -501,8 +501,11 @@ function setupThumbnailPreview(hls) {
   hlsIframesOnly = hls.createIFramePlayer()
   if (!hlsIframesOnly) return hideThumbnailPreview()
 
-  hlsIframesOnly.attachMedia(document.getElementById("thumbnailPreview"))
-  requestAnimationFrame(() => progressPreviewEl?.classList.add("has-thumbnail"))
+  const thumbnailPreviewEl = document.getElementById("thumbnailPreview")
+  hlsIframesOnly.attachMedia(thumbnailPreviewEl)
+  thumbnailPreviewEl.addEventListener("seeked", () => {
+    requestAnimationFrame(() => progressPreviewEl?.classList.add("has-thumbnail"))
+  }, { once: true })
 }
 
 function hideThumbnailPreview() {
