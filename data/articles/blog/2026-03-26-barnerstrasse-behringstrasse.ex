@@ -22,6 +22,8 @@ defmodule Data.Article.Blog.BarnerstrasseBehringstrasse do
 
   def links(_assigns) do
     [
+      {"Änderungswünsche des Mobilitätsschausschuss der Bezirksversammlung", ~d[2026-05],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018179"},
       {"Präsentation", ~d[2026-03],
        "https://fragdenstaat.de/anfrage/barnerstrasse-behringstrasse/#nachricht-1101999"}
     ]

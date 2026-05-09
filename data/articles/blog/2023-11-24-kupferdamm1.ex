@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Kupferdamm1 do
   def start(), do: ~d[2026-04]
   def stop(), do: ~d[2027-01]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["br-wandsbek-w8"]
 
