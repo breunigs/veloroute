@@ -220,7 +220,7 @@ const AVG_RANGE_M: f64 = 10.0;
 const MAX_OVERLAP_M: f64 = 5.0;
 const MIN_HEADING_DEG: f64 = 170.0;
 
-#[rustler::nif]
+#[rustler::nif(schedule = "DirtyCpu")]
 fn nif_timed_smoother_polyline(
     encoded: String,
     precision: u32,

@@ -42,4 +42,11 @@ pub struct ClosestPointResult {
     pub bearing: f64,
 }
 
-rustler::init!("Elixir.Geo.Nif");
+fn on_load(_env: rustler::Env, _info: rustler::Term) -> bool {
+    rayon::ThreadPoolBuilder::new()
+        .num_threads(4)
+        .build_global()
+        .is_ok()
+}
+
+rustler::init!("Elixir.Geo.Nif", load = on_load);

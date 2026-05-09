@@ -1,12 +1,12 @@
 use crate::TimedCoord;
-use crate::cheap_ruler::{cheap_bearing, cheap_bearing_diff};
+use rayon::prelude::*;
 
 pub fn interpolate_timed_coord(a: &TimedCoord, b: &TimedCoord, t: f64) -> TimedCoord {
     let time = a.time_offset_ms as f64 + (b.time_offset_ms - a.time_offset_ms) as f64 * t;
     TimedCoord {
         lat: a.lat + (b.lat - a.lat) * t,
         lon: a.lon + (b.lon - a.lon) * t,
-        time_offset_ms: time.round() as i64,
+        time_offset_ms: (time + 0.5) as i64,
     }
 }
 
@@ -29,92 +29,98 @@ pub fn cut_corners_vec(coords: Vec<TimedCoord>, iterations: u32, cut_corner_dist
     current
 }
 
+fn smooth_point(coords: &[TimedCoord], i: usize, range_sq: f64, range_in_meters: f64, kx: f64, ky: f64) -> TimedCoord {
+    let center = &coords[i];
+    let mut sum_lat = 0.0_f64;
+    let mut sum_lon = 0.0_f64;
+    let mut sum_weight = 0.0_f64;
+
+    for j in (0..=i).rev() {
+        let c = &coords[j];
+        let dx = (c.lon - center.lon) * kx;
+        let dy = (c.lat - center.lat) * ky;
+        let dist_sq = dx * dx + dy * dy;
+        if dist_sq > range_sq { break; }
+        let weight = range_in_meters - dist_sq.sqrt();
+        sum_lat += c.lat * weight;
+        sum_lon += c.lon * weight;
+        sum_weight += weight;
+    }
+
+    for j in (i + 1)..coords.len() {
+        let c = &coords[j];
+        let dx = (c.lon - center.lon) * kx;
+        let dy = (c.lat - center.lat) * ky;
+        let dist_sq = dx * dx + dy * dy;
+        if dist_sq > range_sq { break; }
+        let weight = range_in_meters - dist_sq.sqrt();
+        sum_lat += c.lat * weight;
+        sum_lon += c.lon * weight;
+        sum_weight += weight;
+    }
+
+    TimedCoord { lat: sum_lat / sum_weight, lon: sum_lon / sum_weight, time_offset_ms: center.time_offset_ms }
+}
+
 pub fn average_in_distance_vec(coords: &[TimedCoord], range_in_meters: f64, kx: f64, ky: f64) -> Vec<TimedCoord> {
     let n = coords.len();
     let range_sq = range_in_meters * range_in_meters;
-    let mut result = Vec::with_capacity(n);
 
-    for i in 0..n {
-        let center = &coords[i];
-        let mut sum_lat = 0.0_f64;
-        let mut sum_lon = 0.0_f64;
-        let mut sum_weight = 0.0_f64;
-
-        for j in (0..=i).rev() {
-            let c = &coords[j];
-            let dx = (c.lon - center.lon) * kx;
-            let dy = (c.lat - center.lat) * ky;
-            let dist_sq = dx * dx + dy * dy;
-            if dist_sq > range_sq {
-                break;
-            }
-            let weight = range_in_meters - dist_sq.sqrt();
-            sum_lat += c.lat * weight;
-            sum_lon += c.lon * weight;
-            sum_weight += weight;
-        }
-
-        for j in (i + 1)..n {
-            let c = &coords[j];
-            let dx = (c.lon - center.lon) * kx;
-            let dy = (c.lat - center.lat) * ky;
-            let dist_sq = dx * dx + dy * dy;
-            if dist_sq > range_sq {
-                break;
-            }
-            let weight = range_in_meters - dist_sq.sqrt();
-            sum_lat += c.lat * weight;
-            sum_lon += c.lon * weight;
-            sum_weight += weight;
-        }
-
-        result.push(TimedCoord {
-            lat: sum_lat / sum_weight,
-            lon: sum_lon / sum_weight,
-            time_offset_ms: center.time_offset_ms,
-        });
-    }
-
-    result
+    (0..n).into_par_iter().map(|i| {
+        smooth_point(coords, i, range_sq, range_in_meters, kx, ky)
+    }).collect()
 }
 
-pub fn remove_overlaps_vec(coords: Vec<TimedCoord>, max_overlap_m: f64, min_heading_deg: f64, kx: f64, ky: f64) -> Vec<TimedCoord> {
+pub fn remove_overlaps_vec(mut coords: Vec<TimedCoord>, max_overlap_m: f64, min_heading_deg: f64, kx: f64, ky: f64) -> Vec<TimedCoord> {
     let n = coords.len();
     if n < 3 {
         return coords;
     }
 
+    // Two-pointer in-place filter. Invariant: write <= read, so reads never
+    // see values we've already overwritten. TimedCoord is Copy so we move
+    // values out before any write could clobber them.
     let max_dist_sq = max_overlap_m * max_overlap_m;
-    let mut kept: Vec<usize> = vec![0, 1];
-    let mut prev_bearing = cheap_bearing(
-        coords[0].lon, coords[0].lat,
-        coords[1].lon, coords[1].lat,
-        kx, ky,
-    );
+    // Replace atan2-based bearing with dot-product reversal check.
+    // angle >= min_heading_deg  ⟺  cos(angle) <= cos(min_heading_deg).
+    // cos² is used to avoid sqrt: dot² >= cos²(min) * |prev|² * |next|²,
+    // with the additional guard dot < 0 (vectors pointing backward).
+    let cos_min_sq = min_heading_deg.to_radians().cos().powi(2);
 
-    for i in 2..n {
-        let c3 = &coords[i];
-        let ki1 = kept[kept.len() - 2];
-        let ki2 = kept[kept.len() - 1];
-        let c1 = &coords[ki1];
-        let c2 = &coords[ki2];
+    let mut write = 2usize; // coords[0] and coords[1] are always kept
+    let mut prev_dx = (coords[1].lon - coords[0].lon) * kx;
+    let mut prev_dy = (coords[1].lat - coords[0].lat) * ky;
+    let mut prev_len_sq = prev_dx * prev_dx + prev_dy * prev_dy;
+
+    for read in 2..n {
+        let c3 = coords[read]; // copy before any write
+        let c1 = coords[write - 2];
+        let c2 = coords[write - 1];
 
         let dx = (c1.lon - c3.lon) * kx;
         let dy = (c1.lat - c3.lat) * ky;
         let dist_sq = dx * dx + dy * dy;
 
-        let next_bearing = cheap_bearing(c2.lon, c2.lat, c3.lon, c3.lat, kx, ky);
-        let diff = cheap_bearing_diff(prev_bearing, next_bearing);
+        let next_dx = (c3.lon - c2.lon) * kx;
+        let next_dy = (c3.lat - c2.lat) * ky;
+        let next_len_sq = next_dx * next_dx + next_dy * next_dy;
 
-        if dist_sq <= max_dist_sq && diff >= min_heading_deg {
-            // skip overlap
-        } else {
-            prev_bearing = next_bearing;
-            kept.push(i);
+        let dot = prev_dx * next_dx + prev_dy * next_dy;
+        let is_reversal = dot < 0.0
+            && prev_len_sq > 0.0
+            && dot * dot >= cos_min_sq * prev_len_sq * next_len_sq;
+
+        if dist_sq > max_dist_sq || !is_reversal {
+            prev_dx = next_dx;
+            prev_dy = next_dy;
+            prev_len_sq = next_len_sq;
+            coords[write] = c3;
+            write += 1;
         }
     }
 
-    kept.into_iter().map(|i| coords[i]).collect()
+    coords.truncate(write);
+    coords
 }
 
 #[cfg(test)]

@@ -1,6 +1,12 @@
-use geo_types::{Coord, LineString};
 use rustler::{Term, NifResult};
 use crate::TimedCoord;
+
+/// Round-half-away-from-zero without calling the C `round()` function.
+/// Avoids the libm call overhead that shows up in profiling.
+#[inline(always)]
+pub fn round_to_i64(x: f64) -> i64 {
+    if x >= 0.0 { (x + 0.5) as i64 } else { (x - 0.5) as i64 }
+}
 
 pub fn decode_timed_vec(encoded: &str, precision: u32) -> Result<Vec<TimedCoord>, String> {
     let factor = 10_f64.powi(precision as i32);
@@ -9,7 +15,7 @@ pub fn decode_timed_vec(encoded: &str, precision: u32) -> Result<Vec<TimedCoord>
     let mut lat: i64 = 0;
     let mut lon: i64 = 0;
     let mut time: i64 = 0;
-    let mut coords = Vec::new();
+    let mut coords = Vec::with_capacity(encoded.len() / 12);
 
     while pos < bytes.len() {
         let d_lat = decode_value(bytes, &mut pos).ok_or("incomplete polyline")?;
@@ -29,19 +35,30 @@ pub fn decode_timed_vec(encoded: &str, precision: u32) -> Result<Vec<TimedCoord>
 }
 
 pub fn polyline_encode_coords(coords: impl Iterator<Item = (f64, f64)>, precision: u32) -> String {
-    let line: LineString<f64> = coords
-        .map(|(lon, lat)| Coord { x: lon, y: lat })
-        .collect();
-    polyline::encode_coordinates(line, precision).expect("polyline encode failed")
+    let factor = 10_f64.powi(precision as i32);
+    let mut output: Vec<u8> = Vec::new();
+    let mut prev_lat: i64 = 0;
+    let mut prev_lon: i64 = 0;
+
+    for (lon, lat) in coords {
+        let lat_e = round_to_i64(lat * factor);
+        let lon_e = round_to_i64(lon * factor);
+        encode_value(lat_e - prev_lat, &mut output);
+        encode_value(lon_e - prev_lon, &mut output);
+        prev_lat = lat_e;
+        prev_lon = lon_e;
+    }
+    // Safety: encode_value only pushes bytes in 63..=126, which are valid ASCII.
+    unsafe { String::from_utf8_unchecked(output) }
 }
 
-fn encode_value(value: i64, output: &mut String) {
+fn encode_value(value: i64, output: &mut Vec<u8>) {
     let mut v = if value < 0 { !(value << 1) } else { value << 1 } as u64;
     while v >= 0x20 {
-        output.push(char::from(((v & 0x1f) as u8) + 63 + 0x20));
+        output.push(((v & 0x1f) as u8) + 63 + 0x20);
         v >>= 5;
     }
-    output.push(char::from((v as u8) + 63));
+    output.push((v as u8) + 63);
 }
 
 pub fn polyline_encode_timed(
@@ -49,14 +66,14 @@ pub fn polyline_encode_timed(
     precision: u32,
 ) -> String {
     let factor = 10_f64.powi(precision as i32);
-    let mut output = String::new();
+    let mut output: Vec<u8> = Vec::new();
     let mut prev_lat: i64 = 0;
     let mut prev_lon: i64 = 0;
     let mut prev_time: i64 = 0;
 
     for (lat, lon, time_offset_ms) in coords {
-        let lat_e = (lat * factor).round() as i64;
-        let lon_e = (lon * factor).round() as i64;
+        let lat_e = round_to_i64(lat * factor);
+        let lon_e = round_to_i64(lon * factor);
         encode_value(lat_e - prev_lat, &mut output);
         encode_value(lon_e - prev_lon, &mut output);
         encode_value(time_offset_ms - prev_time, &mut output);
@@ -64,7 +81,7 @@ pub fn polyline_encode_timed(
         prev_lon = lon_e;
         prev_time = time_offset_ms;
     }
-    output
+    unsafe { String::from_utf8_unchecked(output) }
 }
 
 #[rustler::nif]
@@ -140,13 +157,7 @@ fn nif_equi_time_interval_encode(
         return Ok(String::new());
     }
 
-    let iter = EquiTimeIter {
-        coords: &coords,
-        offset: 0.0,
-        seg: 0,
-        done: false,
-        interval: interval_in_ms,
-    };
+    let iter = EquiTimeIter::new(&coords, interval_in_ms);
 
     Ok(polyline_encode_coords(iter, precision))
 }
@@ -157,16 +168,57 @@ pub struct EquiTimeIter<'a> {
     seg: usize,
     done: bool,
     interval: f64,
+    // Cached per-segment values so the hot path avoids re-indexing coords
+    // and recomputing the duration on every output point.
+    seg_prev_time: f64,
+    seg_dt_inv: f64,   // 1 / segment_duration — multiply instead of divide
+    seg_prev_lon: f64,
+    seg_prev_lat: f64,
+    seg_d_lon: f64,
+    seg_d_lat: f64,
 }
 
 impl<'a> EquiTimeIter<'a> {
     pub fn new(coords: &'a [crate::TimedCoord], interval: f64) -> Self {
-        EquiTimeIter {
+        let mut iter = EquiTimeIter {
             coords,
             offset: 0.0,
             seg: 0,
-            done: false,
+            done: coords.len() < 2,
             interval,
+            seg_prev_time: 0.0,
+            seg_dt_inv: 0.0,
+            seg_prev_lon: 0.0,
+            seg_prev_lat: 0.0,
+            seg_d_lon: 0.0,
+            seg_d_lat: 0.0,
+        };
+        if !iter.done {
+            iter.load_seg();
+        }
+        iter
+    }
+
+    fn load_seg(&mut self) {
+        loop {
+            if self.seg + 1 >= self.coords.len() {
+                self.done = true;
+                return;
+            }
+            let prev = &self.coords[self.seg];
+            let next = &self.coords[self.seg + 1];
+            let dt = (next.time_offset_ms - prev.time_offset_ms) as f64;
+            if dt == 0.0 {
+                self.seg += 1;
+                continue;
+            }
+            self.seg_prev_time = prev.time_offset_ms as f64;
+            self.seg_dt_inv = 1.0 / dt;
+            self.seg_prev_lon = prev.lon;
+            self.seg_prev_lat = prev.lat;
+            self.seg_d_lon = next.lon - prev.lon;
+            self.seg_d_lat = next.lat - prev.lat;
+            return;
         }
     }
 }
@@ -180,27 +232,15 @@ impl<'a> Iterator for EquiTimeIter<'a> {
         }
 
         loop {
-            if self.seg + 1 >= self.coords.len() {
-                self.done = true;
-                return None;
-            }
-
-            let prev = &self.coords[self.seg];
-            let next = &self.coords[self.seg + 1];
-
-            if prev.time_offset_ms == next.time_offset_ms {
-                self.seg += 1;
-                continue;
-            }
-
-            let t = (self.offset - prev.time_offset_ms as f64)
-                / (next.time_offset_ms - prev.time_offset_ms) as f64;
+            let t = (self.offset - self.seg_prev_time) * self.seg_dt_inv;
 
             if t > 1.0 {
                 self.seg += 1;
+                self.load_seg();
+                if self.done { return None; }
             } else if t >= 0.0 {
-                let lon = prev.lon + (next.lon - prev.lon) * t;
-                let lat = prev.lat + (next.lat - prev.lat) * t;
+                let lon = self.seg_prev_lon + self.seg_d_lon * t;
+                let lat = self.seg_prev_lat + self.seg_d_lat * t;
                 self.offset += self.interval;
                 return Some((lon, lat));
             } else {
