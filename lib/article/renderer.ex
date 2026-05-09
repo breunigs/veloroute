@@ -18,11 +18,12 @@ defmodule Article.Renderer do
   def render(%{ref: art} = assigns) when is_module(art) do
     body = art.text(assigns)
     has_title = assigns.ref.title() != ""
+    has_header = art.detected_header() == "h3"
 
     assigns =
       assign(assigns, %{
         body: body,
-        insert_h3: !has_header?(body) && has_title,
+        insert_h3: !has_header && has_title,
         image_url: if(art.microdata?(), do: Article.Decorators.start_image_path(art)),
         microdata_wrapper: art.microdata(:wrapper),
         microdata_title: art.microdata(:title),
@@ -42,12 +43,5 @@ defmodule Article.Renderer do
 
       <Components.RelatedArticlesHelper.related_articles ref={@ref} lang={@lang}/>
     """
-  end
-
-  defp has_header?(body) do
-    start = List.first(body.static)
-
-    String.starts_with?(start, "<h3") ||
-      (String.starts_with?(start, "<!--") && String.contains?(start, "<h3"))
   end
 end

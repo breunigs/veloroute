@@ -43,36 +43,52 @@ defmodule Article.Default do
       defoverridable Article
 
       use Phoenix.Component
+      # import Phoenix.Component, except: [sigil_H: 2]
+      # import unquote(__MODULE__), only: [sigil_H: 2]
+
       import Components.TagHelpers
       import Components.RelatedArticlesHelper
 
       @before_compile unquote(__MODULE__)
+      @on_definition Util.MacroDetectHeaderInText
     end
   end
 
   defmacro __before_compile__(_env) do
+    header = Module.get_attribute(__CALLER__.module, :detected_header)
     s0 = Module.defines?(__CALLER__.module, {:summary, 0})
     s1 = Module.defines?(__CALLER__.module, {:summary, 1})
 
-    cond do
-      s0 && s1 ->
-        raise("#{__CALLER__.module} should only specify either summary/0 or summary/1")
+    detected_header_ast =
+      quote do
+        def detected_header(), do: unquote(header)
+      end
 
-      s0 && !s1 ->
-        quote do
-          def summary(_lang), do: summary()
-        end
+    summary_ast =
+      cond do
+        s0 && s1 ->
+          raise("#{__CALLER__.module} should only specify either summary/0 or summary/1")
 
-      !s0 && s1 ->
-        quote do
-          def summary(), do: summary(Settings.r(:default_language))
-        end
+        s0 && !s1 ->
+          quote do
+            def summary(_lang), do: summary()
+          end
 
-      !s0 && !s1 ->
-        quote do
-          def summary(), do: ""
-          def summary(_lang), do: ""
-        end
+        !s0 && s1 ->
+          quote do
+            def summary(), do: summary(Settings.r(:default_language))
+          end
+
+        !s0 && !s1 ->
+          quote do
+            def summary(), do: ""
+            def summary(_lang), do: ""
+          end
+      end
+
+    quote do
+      unquote(detected_header_ast)
+      unquote(summary_ast)
     end
   end
 end
