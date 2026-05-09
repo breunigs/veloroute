@@ -37,19 +37,30 @@ defmodule Video.Rendered do
   @polyline_precision 6
 
   def polyline(rendered) do
-    %{
-      polyline:
-        Geo.Nif.nif_timed_smoother_polyline(
-          rendered.timed_polyline(),
-          @timed_precision,
-          Video.Constants.output_fps(),
-          @polyline_precision,
-          Geo.CheapRuler.kx(),
-          Geo.CheapRuler.ky()
-        ),
-      interval: Video.Constants.output_fps(),
-      precision: @polyline_precision
-    }
+    key = {__MODULE__, :polyline, rendered}
+
+    case :persistent_term.get(key, nil) do
+      nil ->
+        result = %{
+          polyline:
+            Geo.Nif.nif_timed_smoother_polyline(
+              rendered.timed_polyline(),
+              @timed_precision,
+              Video.Constants.output_fps(),
+              @polyline_precision,
+              Geo.CheapRuler.kx(),
+              Geo.CheapRuler.ky()
+            ),
+          interval: Video.Constants.output_fps(),
+          precision: @polyline_precision
+        }
+
+        :persistent_term.put(key, result)
+        result
+
+      cached ->
+        cached
+    end
   end
 
   @doc """
