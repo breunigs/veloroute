@@ -18,7 +18,7 @@ defmodule VelorouteWeb.Endpoint do
 
   socket "/live", Phoenix.LiveView.Socket,
     websocket: [
-      connect_info: [:user_agent, session: @session_options],
+      connect_info: [:user_agent, :peer_data, :x_headers, session: @session_options],
       compress: true
     ]
 
