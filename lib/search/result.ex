@@ -48,11 +48,13 @@ defmodule Search.Result do
     end)
   end
 
-  defp order(%__MODULE__{type: a, relevance: x}, %__MODULE__{type: b, relevance: x}) do
-    type_to_num(a) >= type_to_num(b)
+  defp order(%__MODULE__{} = a, %__MODULE__{} = b) do
+    effective_relevance(a) >= effective_relevance(b)
   end
 
-  defp order(%__MODULE__{relevance: x}, %__MODULE__{relevance: y}), do: x >= y
+  defp effective_relevance(%__MODULE__{type: type, relevance: relevance}) do
+    relevance + type_to_num(type) * 0.02
+  end
 
   defp type_to_num(type) do
     case type do

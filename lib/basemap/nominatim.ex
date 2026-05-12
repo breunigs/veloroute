@@ -439,22 +439,16 @@ defmodule Basemap.Nominatim do
         ROUND(AVG(combo.rank_address)) AS rank_address,
         ROUND(AVG(combo.rank_search)) AS rank_search,
         combo.class,
-        combo.type,
+        t.type,
         combo.admin_level,
         combo.name,
         combo.address,
         HSTORE(STRING_AGG(NULLIF(combo.extratags::TEXT, ''), ',')) AS extratags,
         -- repeat name in boost for certain important objects
         (CASE WHEN
-          (
-            combo.class = 'place'
-            AND combo.type IN ('borough', 'city', 'county', 'hamlet', 'island', 'islet', 'municipality', 'neighbourhood', 'plot', 'quarter', 'region', 'suburb', 'town', 'village')
-          ) OR (
-            combo.class = 'boundary'
-            AND combo.type = 'administrative'
-          ) OR (
-            combo.class = 'highway'
-          )
+          (combo.class = 'place' AND t.type IN ('borough', 'city', 'county', 'hamlet', 'island', 'islet', 'municipality', 'neighbourhood', 'plot', 'quarter', 'region', 'suburb', 'town', 'village'))
+          OR (combo.class = 'boundary' AND t.type = 'administrative')
+          OR (combo.class = 'highway')
           THEN combo.name->'name'
           ELSE combo.housenumber
         END) AS boost,
@@ -464,9 +458,17 @@ defmodule Basemap.Nominatim do
         combo.parents_postcode,
         #{to_boost_search_result("combo.parents_name")} AS rank_boosted_areas
       FROM combo
+      -- merge all segments of the same named highway regardless of OSM type
+      CROSS JOIN LATERAL (SELECT CASE WHEN combo.class = 'highway' THEN NULL ELSE combo.type END) AS t(type)
+      WHERE (
+        -- keep all named entries everywhere, but drop nameless (housenumber-only)
+        -- entries outside the boost area since they are not useful for this app
+        combo.name->'name' IS NOT NULL
+        OR '#{Settings.r(:boost_search_results_within)}' = ANY(combo.parents_name)
+      )
       GROUP BY
         combo.class,
-        combo.type,
+        t.type,
         combo.admin_level,
         combo.name,
         combo.address,
@@ -508,6 +510,7 @@ defmodule Basemap.Nominatim do
         combo.name->'name' IS NOT NULL
         AND combo.class='highway'
         AND combo.osm_type='W'
+        AND '#{Settings.r(:boost_search_results_within)}' = ANY(combo.parents_name)
       GROUP BY
         combo.id,
         combo.admin_level,
@@ -574,7 +577,9 @@ defmodule Basemap.Nominatim do
         WHERE one.name->'name' < two.name->'name'
       ) AS intersections
       GROUP BY name, parents_name, cluster
-      HAVING St_Area(ST_Envelope(ST_Union(intersections.geometry))) < 0.00001
+      HAVING
+        St_Area(ST_Envelope(St_Union(intersections.geometry))) < 0.00001
+        AND '#{Settings.r(:boost_search_results_within)}' = ANY(intersections.parents_name)
     ) reduced;
     """
   end

@@ -53,14 +53,7 @@ defmodule Search.Meilisearch.Articles do
         radschnellweg: ["radroute plus", "radroute+"],
         "radroute+": ["radschnellweg", "radroute plus"],
         "radroute plus": ["radschnellweg", "radroute+"]
-      },
-      stopWords: ["straße", "Straße"],
-      localizedAttributes: [
-        %{
-          locales: ["deu"],
-          attributePatterns: ["summary", "text", "title", "streets", "type_name"]
-        }
-      ]
+      }
     }
   end
 

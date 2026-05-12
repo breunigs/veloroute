@@ -4,6 +4,7 @@ defmodule Mix.Tasks.Velo.Search.Index do
 
   @shortdoc "Updates Search Index"
   def run(_) do
+    Basemap.Nominatim.ensure()
     Search.Meilisearch.Runner.index_outdated()
   end
 end

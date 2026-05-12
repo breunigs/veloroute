@@ -105,7 +105,9 @@ defmodule Search.Meilisearch.Nominatim do
       bounds: bbox,
       center: Geo.CheapRuler.center(bbox),
       name: name,
-      relevance: f.("_rankingScore") + (30 - f.("rank_boosted_areas")) / 1000,
+      relevance:
+        f.("_rankingScore") + (30 - f.("rank_boosted_areas")) / 1000 +
+          (30 - f.("rank_search")) / 1000,
       type: if(f.("class") in ["place"], do: "poi", else: ""),
       subtext: subtext
     }
@@ -240,7 +242,6 @@ defmodule Search.Meilisearch.Nominatim do
       sortableAttributes:
         ~w(importance rank_search rank_address rank_boosted_areas _geo admin_level),
       proximityPrecision: "byAttribute",
-      stopWords: ["straße", "Straße"],
       rankingRules: ~w(words
         typo
         attribute
@@ -256,12 +257,6 @@ defmodule Search.Meilisearch.Nominatim do
       pagination: %{
         maxTotalHits: 500
       },
-      localizedAttributes: [
-        %{
-          locales: ["deu"],
-          attributePatterns: ["name", "boost", "parents_name", "extratags"]
-        }
-      ],
       typoTolerance: %{disableOnNumbers: true}
     }
   end

@@ -153,7 +153,6 @@ defmodule Search.Meilisearch.API do
           Map.merge(
             params,
             %{
-              "locales" => ["deu"],
               "showRankingScore" => true,
               "rankingScoreThreshold" => min_relevance,
               "indexUid" => index
