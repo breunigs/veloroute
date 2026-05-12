@@ -25,6 +25,8 @@ defmodule Data.Article.Blog.SaselerStrasse do
 
   def links(_assigns) do
     [
+      {"Blogpost Politikers zum Umbaustart", ~d[2026-05],
+       "https://www.buschhueter.de/strassenbauarbeiten-in-der-saseler-strasse-haben-begonnen/"},
       {"Erläuterungen und Karten, fertiger Entwurf", ~d[2025-11],
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1024150"},
       {"Blogpost Lokalpolitiker", ~d[2025-11],
