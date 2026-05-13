@@ -22,6 +22,10 @@ defmodule Data.Article.Blog.AlsteruferSuedende do
 
   def links(_assigns) do
     [
+      {"Erläuterungen", ~d[2026-05],
+       "https://lsbg.hamburg.de/resource/blob/1174658/bf4d90b3d9195758ed2d7c3ea54998fa/alsterufer-lueckenschluss-abgestimmte-planung-bericht-data.pdf"},
+      {"Lageplan", ~d[2026-05],
+       "https://lsbg.hamburg.de/resource/blob/1174660/5d5cc8dacce273f01dd7aae1eaf93d25/alsterufer-lueckenschluss-abgestimmte-planung-plan-data.pdf"},
       {"Präsentation", ~d[2026-03],
        "https://fragdenstaat.de/anfrage/massnahme-lueckenschluss-alsterufer/#nachricht-1101441"}
     ]
