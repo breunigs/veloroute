@@ -15,6 +15,8 @@ defmodule Data.Article.Blog.GodeffroystrasseUndGaetgensstrasse do
 
   def links(_assigns) do
     [
+      {"3. Entwurf, Karten und Erläuterungen", ~d[2026-05],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018244"},
       {"Bauzeiträume", "Oktober 2023",
        "https://fragdenstaat.de/anfrage/planungsstand-zu-einem-teilstueck-der-veloroute-1-a22-vr-1-blankenese-sued/"},
       {"Zweiter Entwurf (Bericht und Lagepläne)", "Oktober 2021",

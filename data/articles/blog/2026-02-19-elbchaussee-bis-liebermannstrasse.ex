@@ -10,12 +10,14 @@ defmodule Data.Article.Blog.ElbchausseeBisLiebermannstrasse do
   def type(), do: :intent
 
   def tags(), do: ["radroute-concept-a"]
-  def start(), do: ~d[2026-05]
+  def start(), do: ~d[2026-06]
 
   def tracks(), do: []
 
   def links(_assigns) do
     [
+      {"Fertiger Entwurf, Karte und Erläuterungen", ~d[2026-05],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018264"},
       {"Präsentation Umbau", ~d[2026-02],
        "https://fragdenstaat.de/anfrage/elbchaussee-parkstrasse-liebermannstrasse/#nachricht-1090730"},
       {"Infoseite der Stadt", "https://lsbg.hamburg.de/elbchaussee"}
@@ -23,7 +25,11 @@ defmodule Data.Article.Blog.ElbchausseeBisLiebermannstrasse do
   end
 
   def map_image do
-    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Inros Lackner SE", "https://www.inros-lackner.de/de"}
+     ]}
   end
 
   def text(assigns) do
@@ -39,7 +45,7 @@ defmodule Data.Article.Blog.ElbchausseeBisLiebermannstrasse do
     <p>An den größeren Einmündungen ist <.ref>indirektes Linksabbiegen</.ref> vorgesehen. Bei kleineren Nebenstraßen soll <.ref>direkt abgebogen</.ref> werden. Wer sich das nicht zutraut, kann meist eine Fußgängerampel als <.ref>Querungshilfe</.ref> nutzen.</p>
 
     <h4>Meinung</h4>
-    <p>Der (fast) durchgängige Radweg klingt erstmal gut. Leider ist die Auflösung der Präsentation zu niedrig, um die Planung genauer abschätzen zu können.</p>
+    <p>Der (fast) durchgängige und vom KFZ-Verkehr getrennte Radweg klingt gut. Die Unterbrechung an den Bushaltestellen ist zwar ärgerlich, aber besser als den Radverkehr durch den Einstiegsbereich der Fahrgäste zu führen.</p>
 
     <h4>Externe Links</h4>
     <.structured_links ref={@ref}/>

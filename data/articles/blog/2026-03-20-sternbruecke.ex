@@ -57,6 +57,8 @@ defmodule Data.Article.Blog.Sternbruecke do
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht zum Verkehrsversuch", ~d[2026-05],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018247"},
       {"Präsentation zum Verkehrsversuch", ~d[2026-03],
        "https://lsbg.hamburg.de/resource/blob/1156938/7cd70ebe2259e034d814ffb884379dd1/stresemannstrasse-provisorium-praesentation-mobilitaetsausschuss-altona-data.pdf"}
     ]
