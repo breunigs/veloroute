@@ -30,16 +30,9 @@ window.addEventListener("phx:map", e => {
 
 // TODO: move to settings.ex
 const routeLayers = [
-  'rr-line-off-none', 'rr-line-off-none-tunnel',
-  'rr-line-off-p1', 'rr-line-off-p1-tunnel',
-  'rr-line-off-m1', 'rr-line-off-m1-tunnel',
-  'rr-line-off-none-concept', 'rr-line-off-none-concept-tunnel',
-  'vr-line-off-none', 'vr-line-off-none-tunnel',
-  'vr-line-off-p1', 'vr-line-off-p1-tunnel',
-  'vr-line-off-m1', 'vr-line-off-m1-tunnel',
-  'br-line-off-none', 'br-line-off-none-concept', 'br-line-off-none-tunnel',
-  'br-line-off-p1', 'br-line-off-p1-tunnel',
-  'br-line-off-m1', 'br-line-off-m1-tunnel',
+  'rr-line', 'rr-line-tunnel',
+  'vr-line', 'vr-line-tunnel',
+  'br-line', 'br-line-tunnel',
   'fr-line', 'fr-line-tunnel',
   'extra-line'
 ];

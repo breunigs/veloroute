@@ -30,20 +30,21 @@ defmodule Basemap.Styles do
         |> String.replace(".pbf", ".pbf.gz")
       end
 
-      case write(path, "asset://", ".local", localizer) do
+      case write(path, "asset://", ".local", localizer, &Basemap.DasharrayExpander.expand/1) do
         :ok -> :ok
         {:error, reason} -> Logger.error(reason)
       end
     end)
   end
 
-  defp write(path, hardcode_url, suffix \\ "", modifier \\ & &1) do
+  defp write(path, hardcode_url, suffix \\ "", modifier \\ & &1, transformer \\ & &1) do
     with {:ok, data} <- File.read(path),
          data = Basemap.RelativePath.hardcode(data, hardcode_url),
          data = attribute(data),
          data = modifier.(data),
          {:ok, decoded} <- JSON.decode(data),
-         minified <- JSON.encode!(decoded),
+         transformed = transformer.(decoded),
+         minified <- JSON.encode!(transformed),
          target <- assets_path(Path.relative_to(path, source())),
          :ok <- File.mkdir_p(Path.dirname(target)),
          :ok <- File.write(target <> suffix, minified) do

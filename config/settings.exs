@@ -49,13 +49,7 @@ config :veloroute, Settings, %{
       name: "Radrouten (ab 2025)",
       route_group: :radroute,
       active: true,
-      line: [
-        "rr-line-off-p1",
-        "rr-line-off-m1",
-        "rr-line-off-none",
-        "rr-line-off-none-concept",
-        "rr-line-off-none-concept-tunnel"
-      ],
+      line: ["rr-line"],
       icon: ["rr-oneway", "rr-sign", "rsw-sign"],
       fill: [],
       outline: []
@@ -64,7 +58,7 @@ config :veloroute, Settings, %{
       name: "Velorouten (bis 2024)",
       route_group: :alltag,
       active: false,
-      line: ["vr-line-off-p1", "vr-line-off-m1", "vr-line-off-none"],
+      line: ["vr-line"],
       icon: ["vr-oneway", "vr-sign"],
       fill: [],
       outline: []
@@ -82,7 +76,7 @@ config :veloroute, Settings, %{
       name: "Bezirksrouten",
       route_group: :bezirk,
       active: false,
-      line: ["br-line-off-p1", "br-line-off-m1", "br-line-off-none", "br-line-off-none-concept"],
+      line: ["br-line"],
       icon: ["br-oneway", "br-sign"],
       fill: [],
       outline: []
