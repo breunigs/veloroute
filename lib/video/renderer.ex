@@ -350,9 +350,27 @@ defmodule Video.Renderer do
         ["-pix_fmt", "yuv420p"]
       ]
 
-    pass1 = List.flatten([cmd_base, ["-filter_complex", filter1], "-pass", "1", variant_flags(tmp_dir), output_none()])
+    pass1 =
+      List.flatten([
+        cmd_base,
+        ["-filter_complex", filter1],
+        "-pass",
+        "1",
+        variant_flags(tmp_dir),
+        output_none()
+      ])
+
     # thumbnail output goes before -pass 2 so it gets single-pass CRF encoding
-    pass2 = List.flatten([cmd_base, ["-filter_complex", filter2], output_thumbnail(tmp_dir), "-pass", "2", variant_flags(tmp_dir), output_hls(tmp_dir)])
+    pass2 =
+      List.flatten([
+        cmd_base,
+        ["-filter_complex", filter2],
+        output_thumbnail(tmp_dir),
+        "-pass",
+        "2",
+        variant_flags(tmp_dir),
+        output_hls(tmp_dir)
+      ])
 
     {pass1, pass2}
   end

@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.ElbchausseeBisLiebermannstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-05],
+       "https://lsbg.hamburg.de/resource/blob/1041518/8b33255c8c74ab20b0d2a2fd21ad6954/elbchaussee-baustelleninformation-baustart-abschnitt-parkstrasse-bis-liebermannstrasse-mai-2026-data.pdf"},
       {"Fertiger Entwurf, Karte und Erläuterungen", ~d[2026-05],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018264"},
       {"Präsentation Umbau", ~d[2026-02],

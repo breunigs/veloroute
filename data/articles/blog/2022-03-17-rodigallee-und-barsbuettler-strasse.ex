@@ -58,8 +58,13 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
 
   def links(_assigns) do
     [
-      {"fertiger Entwurf – Erläuterungsbericht", ~d[2024-12],
-       "https://lsbg.hamburg.de/resource/blob/999388/a7354ccf6a0eeb48c004a282e14ae9c5/rodigallee-juethornstrasse-bovestrasse-bis-holstenhofweg-abgestimmte-planung-bericht-data.pdf"},
+      {"Baustelleninfo", ~d[2026-05],
+       "https://lsbg.hamburg.de/resource/blob/1176322/b05f2de3688fb52c49bbd5bcff230ed6/rodigallee-2-ba-anliegerinformation-mai-2026-data.pdf"},
+      {
+        "fertiger Entwurf – Erläuterungsbericht",
+        ~d[2024-12],
+        "https://lsbg.hamburg.de/resource/blob/999388/a7354ccf6a0eeb48c004a282e14ae9c5/rodigallee-juethornstrasse-bovestrasse-bis-holstenhofweg-abgestimmte-planung-bericht-data.pdf"
+      },
       {"fertiger Entwurf – Karte", ~d[2024-12],
        "https://lsbg.hamburg.de/resource/blob/999390/a8130323da78f7eab806ac323e7dc7fa/rodigallee-juethornstrasse-bovestrasse-bis-holstenhofweg-abgestimmte-planung-plaene-data.pdf"},
       {"1. Entwurf – Erläuterungsbericht", ~d[2021-11],
