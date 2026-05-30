@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.SchuleRellingerStrasse do
 
   def links(_assigns) do
     [
+      {"Blogpost zur Fertigstellung", ~d[2026-05],
+       "https://hamburgize.blogspot.com/2026/05/trotz-masterplan-parken-rellinger-strae.html"},
       {"Lagepläne und Erläuterungen, 1. Entwurf", "Mai 2024",
        "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1009359"}
     ]
