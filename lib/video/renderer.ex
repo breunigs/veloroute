@@ -321,25 +321,20 @@ defmodule Video.Renderer do
     dewarped = dewarp(sources)
     tlc = time_lapse_corrects(sources)
     xfades = xfades(sources, rendered)
-    base_filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
+    filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
 
     outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
-    # pass1: split for main variants only
-    filter1 = base_filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
-    # pass2: extra split output for thumbnail, then scale+fps filter
-    filter2 =
-      base_filter <>
-        ",split=#{Enum.count(outputs) + 1}#{Enum.join(outputs)}[thumb]" <>
-        ";[thumb]fps=1,scale=320:180[thumb_out]"
+    filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
 
     fix_pts = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
 
-    cmd_base =
+    cmd =
       [
         Util.low_priority_cmd_prefix(),
         ["ffmpeg", "-hide_banner"],
         ["-err_detect", "explode"],
         inputs(sources),
+        ["-filter_complex", filter],
         ["-g", gop_size()],
         fix_pts,
         ["-color_primaries", "bt709"],
@@ -350,27 +345,8 @@ defmodule Video.Renderer do
         ["-pix_fmt", "yuv420p"]
       ]
 
-    pass1 =
-      List.flatten([
-        cmd_base,
-        ["-filter_complex", filter1],
-        "-pass",
-        "1",
-        variant_flags(tmp_dir),
-        output_none()
-      ])
-
-    # thumbnail output goes before -pass 2 so it gets single-pass CRF encoding
-    pass2 =
-      List.flatten([
-        cmd_base,
-        ["-filter_complex", filter2],
-        output_thumbnail(tmp_dir),
-        "-pass",
-        "2",
-        variant_flags(tmp_dir),
-        output_hls(tmp_dir)
-      ])
+    pass1 = List.flatten([cmd, "-pass", "1", variant_flags(tmp_dir), output_none()])
+    pass2 = List.flatten([cmd, "-pass", "2", variant_flags(tmp_dir), output_hls(tmp_dir)])
 
     {pass1, pass2}
   end
@@ -399,11 +375,6 @@ defmodule Video.Renderer do
       |> elem(0)
       |> Enum.reverse()
       |> Enum.join("\n")
-      |> String.replace(
-        "#EXTM3U",
-        "#EXTM3U\n#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=50000,RESOLUTION=320x180,CODECS=\"avc1.42E01E\",URI=\"stream_thumb.m3u8\"",
-        global: false
-      )
 
     File.write!(m3u8, contents)
   end
@@ -964,23 +935,6 @@ defmodule Video.Renderer do
       ["-hls_time", hls_time()],
       ["-var_stream_map", stream_map],
       "#{tmp_dir}/stream_%v.m3u8"
-    ]
-  end
-
-  defp output_thumbnail(tmp_dir) when is_binary(tmp_dir) do
-    [
-      ["-map", "[thumb_out]"],
-      ["-c:v", "libx264"],
-      ["-x264-params", "keyint=1:min-keyint=1:scenecut=0"],
-      ["-preset", "ultrafast"],
-      ["-crf", "23"],
-      ["-f", "hls"],
-      ["-hls_playlist_type", "vod"],
-      ["-hls_segment_type", "fmp4"],
-      ["-hls_flags", "iframes_only+single_file+independent_segments"],
-      ["-hls_list_size", "0"],
-      ["-hls_time", "1"],
-      "#{tmp_dir}/stream_thumb.m3u8"
     ]
   end
 
