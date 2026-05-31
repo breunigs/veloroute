@@ -411,7 +411,7 @@ function way_function()
   end
 
   -- Set 'waterway' and associated
-  if WATERWAY_CLASSES[waterway] and not isClosed then
+  if WATERWAY_CLASSES[waterway] and not isClosed and not SetToYes("tunnel") then
     if waterway == "river" and Holds("name") then
       Layer("waterway", false)
     else

@@ -136,25 +136,6 @@
       }
     },
     {
-      "id": "waterway_tunnel",
-      "type": "line",
-      "source": "merged",
-      "source-layer": "waterway",
-      "minzoom": 14,
-      "filter": [
-        "all",
-        ["in", "class", "river", "stream", "canal"],
-        ["==", "brunnel", "tunnel"],
-        ["==", "$type", "LineString"]
-      ],
-      "layout": {"line-cap": "round", "visibility": "none"},
-      "paint": {
-        "line-color": "#a0c8f0",
-        "line-dasharray": [2, 4],
-        "line-width": {"base": 1.3, "stops": [[13, 0.5], [20, 6]]}
-      }
-    },
-    {
       "id": "waterway-other",
       "type": "line",
       "source": "merged",
@@ -234,27 +215,6 @@
       "filter": ["all", ["!=", "brunnel", "tunnel"]],
       "layout": {"visibility": "visible"},
       "paint": {"fill-color": "#b7dbf5"}
-    },
-    {
-      "id": "tunnel-highway-area",
-      "type": "fill",
-      "source": "merged",
-      "source-layer": "transportation",
-      "minzoom": 14,
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["!in", "class", "pier", "bridge"],
-        ["==", "brunnel", "tunnel"]
-      ],
-      "layout": {"visibility": "none"},
-      "paint": {
-        "fill-antialias": true,
-        "fill-color": "rgba(216, 21, 21, 0)",
-        "fill-opacity": {"stops": [[14, 0], [15, 1]]},
-        "fill-outline-color": "#cfcdca",
-        "fill-pattern": "stripes"
-      }
     },
     {
       "id": "tunnel-highway-10-casing",
@@ -599,7 +559,7 @@
       "type": "line",
       "source": "merged",
       "source-layer": "transportation",
-      "minzoom": 0,
+      "minzoom": 4,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -1526,7 +1486,7 @@
       "type": "line",
       "source": "merged",
       "source-layer": "transportation",
-      "minzoom": 0,
+      "minzoom": 4,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -2275,54 +2235,6 @@
       }
     },
     {
-      "id": "bridge-highway-3-casing",
-      "type": "line",
-      "source": "merged",
-      "source-layer": "transportation",
-      "minzoom": 14,
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["==", "brunnel", "bridge"],
-        ["in", "class", "service"]
-      ],
-      "layout": {
-        "line-cap": "butt",
-        "line-join": "bevel",
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          10,
-          "#d6d9e6",
-          16,
-          "#92959E"
-        ],
-        "line-opacity": ["step", ["zoom"], 0, 14, 1],
-        "line-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          14,
-          0.5,
-          18,
-          2
-        ],
-        "line-gap-width": [
-          "interpolate",
-          ["exponential", 1.5],
-          ["zoom"],
-          14,
-          2,
-          18,
-          6
-        ]
-      }
-    },
-    {
       "id": "bridge-highway-1-bg",
       "type": "line",
       "source": "merged",
@@ -2462,7 +2374,7 @@
       "type": "line",
       "source": "merged",
       "source-layer": "transportation",
-      "minzoom": 0,
+      "minzoom": 4,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -3690,11 +3602,11 @@
       "filter": [
         "all",
         ["!=", ["geometry-type"], "Polygon"],
-        ["match", ["get", "brunnel"], ["tunnel"], false, true],
-        ["match", ["get", "class"], ["rail"], false, true],
+        ["!=", ["get", "brunnel"], "tunnel"],
+        ["!=", ["get", "class"], "rail"],
         [
           "any",
-          ["match", ["get", "class"], ["ferry"], false, true],
+          ["!=", ["get", "class"], "ferry"],
           ["step", ["zoom"], false, 14, true]
         ]
       ],
