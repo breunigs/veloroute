@@ -296,22 +296,25 @@ defmodule Article.Decorators do
   @spec start_image_path(Article.t()) :: binary() | nil
   @search_radius_m 50
   def start_image_path(art) do
-    with [track | _rest] <- article_with_tracks(art).tracks(),
-         bbox when is_map(bbox) <- bbox(art),
-         rendered when is_module(rendered) <- Video.Generator.get(track) do
-      center = Geo.CheapRuler.center(bbox)
+    tracks = article_with_tracks(art).tracks()
 
-      %{time_offset_ms: ms} =
-        Video.Rendered.closest_point(rendered, center, @search_radius_m)
+    center =
+      case bbox(art) do
+        %{} = bbox -> Geo.CheapRuler.center(bbox)
+        _ -> Settings.r(:start_image).position
+      end
 
-      # VelorouteWeb.Router.Helpers.image_extract_path(
-      #   VelorouteWeb.Endpoint,
-      #   :image,
-      #   rendered.hash(),
-      #   ms
-      # )
-      ~p"/images/thumbnails/#{rendered.hash()}/#{ms}"
-    else
+    tracks
+    |> Video.Generator.get()
+    |> Enum.reduce(nil, fn rendered, acc ->
+      result = Video.Rendered.closest_point(rendered, center, @search_radius_m)
+
+      if is_nil(acc) or result.dist < elem(acc, 2),
+        do: {rendered, result.time_offset_ms, result.dist},
+        else: acc
+    end)
+    |> case do
+      {rendered, ms, _} -> ~p"/images/thumbnails/#{rendered.hash()}/#{ms}"
       _ -> nil
     end
   end

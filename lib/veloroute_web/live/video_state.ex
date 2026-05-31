@@ -132,7 +132,7 @@ defmodule VelorouteWeb.Live.VideoState do
   defp maybe_filter_tracks_by_point_of_interest(tracks, article, accurate)
 
   defp maybe_filter_tracks_by_point_of_interest(tracks, article, false) when is_module(article) do
-    poi_bbox = Article.Decorators.bbox_point_of_interest(article)
+    poi_bbox = Article.Decorators.bbox(article)
 
     tracks
     |> Enum.filter(fn track ->
