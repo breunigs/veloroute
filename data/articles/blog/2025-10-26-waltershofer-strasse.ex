@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.WaltershoferStrasse do
   def summary(), do: "Provisorische Abschnitte sollen Protected-Bike-Lanes erhalten."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-07-01]
+  def start(), do: ~d[2026-07-06]
   def stop(), do: ~d[2026-08-16]
 
   def tags(), do: ["radroute-10"]

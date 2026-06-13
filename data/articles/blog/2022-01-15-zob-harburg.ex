@@ -5,7 +5,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
   def title(), do: "Busbahnhof Harburg und anliegende Kreuzungen (Radrouten 4 und 13)"
 
   def start(), do: ~d[2023-05]
-  def stop(), do: ~d[2027Q1]
+  def stop(), do: ~d[2027-09-05]
   # def construction_site_id_hh(), do: [586_843]
 
   def type(), do: :construction

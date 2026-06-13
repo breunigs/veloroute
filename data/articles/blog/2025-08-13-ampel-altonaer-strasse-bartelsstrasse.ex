@@ -10,8 +10,9 @@ defmodule Data.Article.Blog.AmpelAltonaerStrasseBartelsstrasse do
   def type(), do: :planned
   def tags(), do: ["radroute-14"]
 
-  def start(), do: ~d[2026Q3]
-  def stop(), do: ~d[2026Q3]
+  def start(), do: ~d[2026-06-26]
+  def stop(), do: ~d[2026-09-04]
+  def construction_site_id_hh(), do: [3_288_932]
 
   def links(_assigns) do
     [

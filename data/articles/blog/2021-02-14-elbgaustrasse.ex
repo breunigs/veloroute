@@ -11,8 +11,8 @@ defmodule Data.Article.Blog.Elbgaustrasse do
       "2,0m breite Hochbordradwege. An Engstellen soll auf Fahrbahn gewechselt werden; Gehwege bleiben mit Schritttempo erlaubt."
 
   def start(), do: ~d[2025-05-29]
-  def stop(), do: ~d[2027-05-09]
-  def construction_site_id_hh(), do: [1_386_246]
+  def stop(), do: ~d[2027-05-31]
+  def construction_site_id_hh(), do: [1_386_246, 3_272_753]
 
   def type(), do: :construction
 
