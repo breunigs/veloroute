@@ -326,7 +326,7 @@ defmodule Data.Article.Static.Startpage do
         <% end %>
         <li><.a href="https://brouter.de/brouter-web/#map=11/53.5816/10.0313/standard" translate="no">brouter.de</.a> – Routenplaner mit Profilen für jeden Fahrradtyp</li>
         <li><.a href="http://hamburgize.com/">hamburgize.com</.a> – Blog zu Fahrradthemen</li>
-        <li><.a href="https://www.youtube.com/@FahrradstadtHH">Fahrradstadt Hamburg</.a> – Videokanal zum Fahrradalltag</li>
+        <%!-- <li><.a href="https://www.youtube.com/@FahrradstadtHH">Fahrradstadt Hamburg</.a> – Videokanal zum Fahrradalltag</li> --%>
         <li><.a href="https://www.nahverkehrhamburg.de/">nahverkehrhamburg.de</.a> – Nachrichten zu Nahverkehrsthemen der Region</li>
       </ul>
     <% else %>
@@ -379,7 +379,7 @@ defmodule Data.Article.Static.Startpage do
         <% end %>
         <li><.a href="https://brouter.de/brouter-web/#map=11/53.5816/10.0313/standard" translate="no">brouter.de</.a> – Route planner with high customizability</li>
         <li><.a href="http://hamburgize.com/" translate="no">hamburgize.com</.a> – Blog on cycling</li>
-        <li><.a href="https://www.youtube.com/@FahrradstadtHH" translate="no">Fahrradstadt Hamburg</.a> – Video channel on daily biking</li>
+        <%!-- <li><.a href="https://www.youtube.com/@FahrradstadtHH" translate="no">Fahrradstadt Hamburg</.a> – Video channel on daily biking</li> --%>
         <li><.a href="https://www.nahverkehrhamburg.de/" translate="no">nahverkehrhamburg.de</.a> – News on short-distance traffic of the metropolitan area</li>
       </ul>
     <% end %>

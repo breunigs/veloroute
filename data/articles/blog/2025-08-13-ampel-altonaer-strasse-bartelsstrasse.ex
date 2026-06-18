@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.AmpelAltonaerStrasseBartelsstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-06],
+       "https://lsbg.hamburg.de/resource/blob/1186228/54064cb6d0d9dd9ec9842ed4e0fe7283/altonaer-strasse-baustelleinfo-flsa-juni-2026-data.pdf"},
       {"fertiger Entwurf – Karte", ~d[2025-08],
        "https://lsbg.hamburg.de/resource/blob/1090100/5c8bf63c1473d22b9ba131e57b5ae544/altonaer-str-bartelsstr-flsa-abgestimmte-planung-plan-data.pdf"},
       {"fertiger Entwurf – Erläuterungen", ~d[2025-08],

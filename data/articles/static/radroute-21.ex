@@ -102,11 +102,11 @@ defmodule Data.Article.Static.Radroute21 do
       <tr>
         <td><.icon>radroute-20</.icon><.icon>radroute-2</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
-        <td><.v bounds="10.058832,53.501174,10.105609,53.525723" lon={10.080804} lat={53.510873} dir="forward"ref={@ref}>Moorfleet</.v></td>
+        <td><.v bounds="10.058832,53.501174,10.105609,53.525723" lon={10.080804} lat={53.510873} dir="forward" ref={@ref}>Moorfleet</.v></td>
       </tr>
     </table>
 
-    <p>Radroute 21 soll einmal eine Querverbindung zwischen der <.a ref={Radroute4}>Radroute 4</.a> im <.v bounds="9.964136,53.512392,9.997787,53.532951" lon={9.982512} lat={53.522903} dir="forward" ref={@ref}>Westen auf Wilhelmsburg</.v> und der  <.a ref={Radroute20}>Radroute 20</.a> im Osten bei <.v bounds="10.058832,53.501174,10.105609,53.525723" lon={10.080804} lat={53.510873} dir="forward"ref={@ref}>Moorfleet</.v> herstellen. Momentan fehlt der wichtige Lückenschluss über die Elbe, was die Route unbrauchbar macht.</p>
+    <p>Radroute 21 soll einmal eine Querverbindung zwischen der <.a ref={Radroute4}>Radroute 4</.a> im <.v bounds="9.964136,53.512392,9.997787,53.532951" lon={9.982512} lat={53.522903} dir="forward" ref={@ref}>Westen auf Wilhelmsburg</.v> und der  <.a ref={Radroute20}>Radroute 20</.a> im Osten bei <.v bounds="10.058832,53.501174,10.105609,53.525723" lon={10.080804} lat={53.510873} dir="forward" ref={@ref}>Moorfleet</.v> herstellen. Momentan fehlt der wichtige Lückenschluss über die Elbe, was die Route unbrauchbar macht.</p>
 
     <h4>Auffindbarkeit</h4>
     <p>Die Route ist nicht beschildert und nur mit Navi oder Ortskenntnis auffindbar.</p>

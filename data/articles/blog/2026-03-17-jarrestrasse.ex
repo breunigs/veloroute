@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Jarrestrasse do
       "Die Jarrestraße soll beidseitig ca. 1,65m breite Schutzstreifen erhalten. An Einmündungen werden sie rot gefärbt, an den Bushaltestellen unterbrochen."
 
   def type(), do: :planned
-  def start(), do: ~d[2026Q2]
+  def start(), do: ~d[2026Q4]
 
   def tags(), do: []
 
@@ -46,6 +46,8 @@ defmodule Data.Article.Blog.Jarrestrasse do
 
   def links(_assigns) do
     [
+      {"Genehmigung trotz Parkplatzmoratoriums", ~d[2026-06],
+       "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016796"},
       {"Stellungnahme ADFC", ~d[2026-03],
        "https://sitzungsdienst-hamburg-nord.hamburg.de/bi/vo020.asp?VOLFDNR=1016391"},
       {"Erläuterungen und Karten", ~d[2026-03],

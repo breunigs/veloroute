@@ -242,7 +242,7 @@ defmodule Data.Article.Static.Radroute4 do
         <td><.v bounds="9.964431,53.42459,10.000875,53.445341" lon={9.98484} lat={53.435332} dir="forward"  ref={@ref}>Langenbek</.v></td>
       </tr>
       <tr>
-        <td><.icon ref={RSWTostedt} bounds="9.912692,53.372081,10.016808,53.433831" lon={9.974786} lat={53.420143}dir="forward">RSW</.icon></td>
+        <td><.icon ref={RSWTostedt} bounds="9.912692,53.372081,10.016808,53.433831" lon={9.974786} lat={53.420143} dir="forward">RSW</.icon></td>
         <td><.graph icon={:fork} ref={@ref}/></td>
         <td><.v bounds="9.962334,53.415553,9.99241,53.432378" lon={9.976682} lat={53.424286} dir="forward" ref={@ref}>Sinstorf</.v></td>
       </tr>
