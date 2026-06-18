@@ -14,6 +14,7 @@ defmodule Components.TagHelpers do
   attr :href, :string
   attr :ref, :atom
   attr :rel, :string
+  attr :target, :string
   attr :rest, :global
   slot(:inner_block, required: true)
 
