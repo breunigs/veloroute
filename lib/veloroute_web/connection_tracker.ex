@@ -5,17 +5,8 @@ defmodule VelorouteWeb.ConnectionTracker do
 
   def track(socket) do
     if Phoenix.LiveView.connected?(socket) do
-      Phoenix.Tracker.track(__MODULE__, self(), @topic, socket.id, %{ip: remote_ip(socket)})
-    end
-  end
-
-  defp remote_ip(socket) do
-    x_headers = Phoenix.LiveView.get_connect_info(socket, :x_headers) || []
-    peer = Phoenix.LiveView.get_connect_info(socket, :peer_data)
-
-    case List.keyfind(x_headers, "x-forwarded-for", 0) do
-      {_, forwarded} -> forwarded |> String.split(",") |> List.first() |> String.trim()
-      nil -> if peer, do: peer.address |> :inet.ntoa() |> to_string(), else: "unknown"
+      remote_ip = Util.LiveView.remote_ip(socket)
+      Phoenix.Tracker.track(__MODULE__, self(), @topic, socket.id, %{ip: remote_ip})
     end
   end
 

@@ -349,7 +349,12 @@ defmodule VelorouteWeb.FrameLive do
   defp render_404(socket, reason) do
     # ignore vulerability scan bots
     if !String.ends_with?(socket.assigns.current_url, ".php") do
-      Logger.error("Non-existing site was accessed (#{reason}): #{socket.assigns.current_url}")
+      ip = Util.LiveView.remote_ip(socket)
+      ua = get_connect_info(socket, :user_agent)
+
+      Logger.error(
+        "Non-existing site was accessed (#{reason}): #{socket.assigns.current_url} | ip=#{ip} ua=#{ua}"
+      )
     end
 
     socket
