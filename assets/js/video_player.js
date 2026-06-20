@@ -40,6 +40,21 @@ function initVideoElement() {
   video.addEventListener('pause', updatePlaypause);
   video.addEventListener('pause', maybeShowLoadingIndicator);
   video.addEventListener('ratechange', rateChange);
+
+  if (canPlayHLS) {
+    video.addEventListener('stalled', () => {
+      // readyState < 2 means no frame data loaded yet — this is a cold-cache initial stall,
+      // not a mid-stream buffer stall. Only recover once per video to avoid loops.
+      if (video.paused || video.readyState >= 2 || iosHlsStallRecoveryDone) return
+      iosHlsStallRecoveryDone = true
+      console.debug('iOS native HLS stall recovery: restarting video element')
+      // autoplay may have been reset to false by markPlay(); restore it so seekToStartTime
+      // doesn't pause the video when loadedmetadata fires after the reload.
+      autoplay = true
+      updateVideoElement()
+      safePlay()
+    })
+  }
 }
 initVideoElement()
 window.addEventListener("global:mounted", initVideoElement)
@@ -63,6 +78,11 @@ window.addEventListener("phx:video_meta", e => {
 // that claim they can parse m3u8 but then fail without fallback.
 const probablySafari = /iPad|iPhone|iPod|like Mac OS X|Macintosh/.test(navigator.userAgent)
 const canPlayHLS = probablySafari && video.canPlayType('application/vnd.apple.mpegurl')
+
+// iOS native HLS doesn't retry stalled segment downloads on cold cache.
+// Similar to the tab-switching bug workaround, we call updateVideoElement()
+// to restart the native HLS player. Only attempt once per video hash.
+let iosHlsStallRecoveryDone = false
 
 let videoTimeInMs = 0;
 let rvfc = null
@@ -449,6 +469,7 @@ function setVideo(avoidSeek) {
   if (prevVideo !== videoMeta.hash) {
     cacheVideoPoster();
     prevVideo = videoMeta.hash;
+    iosHlsStallRecoveryDone = false;
     updateVideoElement();
     return;
   }
