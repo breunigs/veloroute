@@ -35,31 +35,33 @@ defmodule Mix.Tasks.Velo.Links.Check do
     |> Stream.reject(&archive_org?/1)
     |> Stream.map(&check/1)
     |> Stream.reject(&is_nil/1)
-    |> iterate()
+    |> iterate(%{})
   end
 
-  defp iterate(stream) do
+  defp iterate(stream, decisions) do
     {entries, stream} = StreamSplit.take_and_drop(stream, 1)
 
     with [entry] <- entries do
       task = Task.async(fn -> StreamSplit.peek(stream, 1) end)
 
-      case entry do
-        %{new_url: new_url} ->
-          show(entry)
-          auto_replace_ask(entry, new_url, "Automatically update URL?")
+      decisions =
+        case entry do
+          %{new_url: new_url} ->
+            show(entry)
+            auto_replace_ask(entry, new_url, "Automatically update URL?", decisions)
 
-        %{archive: {:ok, archive_url}} ->
-          show(entry)
-          auto_replace_ask(entry, archive_url, "Replace with archived version?")
+          %{archive: {:ok, archive_url}} ->
+            show(entry)
+            auto_replace_ask(entry, archive_url, "Replace with archived version?", decisions)
 
-        entry ->
-          show(entry)
-          Util.IO.yes?("Continue?")
-      end
+          entry ->
+            show(entry)
+            Util.IO.yes?("Continue?")
+            decisions
+        end
 
       {_preloaded, stream} = Task.await(task, :infinity)
-      iterate(stream)
+      iterate(stream, decisions)
     end
   end
 
@@ -201,16 +203,32 @@ defmodule Mix.Tasks.Velo.Links.Check do
     to_string(merged)
   end
 
-  defp auto_replace_ask(entry, new_url, question) do
-    if Util.IO.yes?("\n" <> question) do
-      case auto_replace(entry.source, entry.url, new_url) do
-        :ok ->
-          :ok
+  defp auto_replace_ask(entry, new_url, question, decisions) do
+    original = entry.url
 
-        {:error, reason} ->
-          IO.puts("replacing failed: #{reason}")
-          Util.IO.yes?("Continue?")
-      end
+    case Map.fetch(decisions, original) do
+      {:ok, nil} ->
+        decisions
+
+      {:ok, ^new_url} ->
+        IO.puts("\nAuto-applying remembered decision: #{original} → #{new_url}")
+        auto_replace(entry.source, original, new_url)
+        decisions
+
+      _ ->
+        if Util.IO.yes?("\n" <> question) do
+          case auto_replace(entry.source, original, new_url) do
+            :ok ->
+              Map.put(decisions, original, new_url)
+
+            {:error, reason} ->
+              IO.puts("replacing failed: #{reason}")
+              Util.IO.yes?("Continue?")
+              decisions
+          end
+        else
+          Map.put(decisions, original, nil)
+        end
     end
   end
 
