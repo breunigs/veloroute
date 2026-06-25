@@ -78,7 +78,7 @@ defmodule Data.Article.Blog.FreiraumOttensen do
        {"Bezirksamt Altona – Fachamt öffentlicher Raum",
         "https://www.hamburg.de/politik-und-verwaltung/bezirke/altona/bezirksamt/dezernat-wirtschaft-bauen-umwelt-50986"},
        {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-        "https://moingenieure.de/kontakt/"}
+        "https://moingenieure.de/kontakt"}
      ]}
   end
 

@@ -54,7 +54,7 @@ defmodule Data.Article.Static.HalstenbekVR3 do
       {"Velorouten Vorschläge ADFC", ~d[2025-02],
        "https://www.adfc-halstenbek.de/2025/10/13/velorouten-fuer-halstenbek/"},
       {"Verkehrsentwicklungsplan Halstenbek", ~d[2021-10],
-       "https://www.halstenbek.de/Redaktion/user_upload/D_311037_Projektbericht_VEP.pdf"}
+       "https://www.adfc-halstenbek.de/wp-content/uploads/2021/11/D211027_Projektbericht_final.pdf"}
     ]
   end
 

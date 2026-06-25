@@ -144,7 +144,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
     [
       {"Ride With GPS Routeplanner", "https://ridewithgps.com/routes/52643679"},
       {"official site of the city",
-       "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/themen/hamburgs-gruen/gruenes-netz/wandern-im-gruenen/rad-wandern-280448"},
       {"Komoot route planner: outer ring route", "https://www.komoot.com/tour/227481906"},
       ~H{route in OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">part 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">part 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">part 3</.a>},
       {"PDF Hiking Map “Wanderkarte Abenteuer Grünes Netz”",
@@ -156,7 +156,7 @@ defmodule Data.Article.Static.Freizeitroute11 do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643679"},
       {"Detailseite der Stadt",
-       "https://www.hamburg.de/radtour/6718200/radtour-zweiter-gruener-ring/"},
+       "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/themen/hamburgs-gruen/gruenes-netz/wandern-im-gruenen/rad-wandern-280448"},
       {"Komoot Routenplaner: äußere Ringroute", "https://www.komoot.com/de-de/tour/227481906"},
       ~H{Route in der OpenStreetMap: <.a href="https://www.openstreetmap.org/relation/190774">Teil 1</.a>, <.a href="https://www.openstreetmap.org/relation/191378">Teil 2</.a>, <.a href="https://www.openstreetmap.org/relation/191510">Teil 3</.a>},
       {"PDF Wanderkarte Abenteuer Grünes Netz",

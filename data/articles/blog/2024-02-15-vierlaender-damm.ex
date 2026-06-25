@@ -57,7 +57,7 @@ defmodule Data.Article.Blog.VierlaenderDamm do
       {"Baustelleninfo – Kreuzung Vierländer Damm/Billhorner Deich", ~d[2025-06],
        "https://web.archive.org/web/20250718013741/https://lsbg.hamburg.de/resource/blob/1016102/6b04bd85f832850d47925b980933fd7e/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-juni-2025-data.pdf"},
       {"Baustelleninfo – Billhorner Röhrendamm 115 bis St. Thomas Kirche", ~d[2025-06],
-       "https://lsbg.hamburg.de/resource/blob/1073992/811a5ac343d16f22146e6a3940b6823c/billhorner-roehrendamm-hst-rothenburgsorter-marktplatz-anliegerinformation-juni-2025-data.pdf"},
+       "https://web.archive.org/web/20250625163128/https://lsbg.hamburg.de/resource/blob/1073992/811a5ac343d16f22146e6a3940b6823c/billhorner-roehrendamm-hst-rothenburgsorter-marktplatz-anliegerinformation-juni-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2025-03],
       #  "https://lsbg.hamburg.de/resource/blob/1016102/bd58dbbc8e9ec540a8111ad1b080caa0/billhorner-roehrendamm-hst-billhorner-deich-anliegerinformation-maerz-2025-data.pdf"},
       #  {"Baustelleninfo", ~d[2025-03],

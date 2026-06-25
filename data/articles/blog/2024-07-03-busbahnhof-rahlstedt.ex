@@ -19,7 +19,7 @@ defmodule Data.Article.Blog.BusbahnhofRahlstedt do
     {name(),
      [
        {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-        "https://moingenieure.de/kontakt/"}
+        "https://moingenieure.de/kontakt"}
      ]}
   end
 

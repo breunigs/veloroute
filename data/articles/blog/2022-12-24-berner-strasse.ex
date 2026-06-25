@@ -31,7 +31,7 @@ defmodule Data.Article.Blog.BernerStrasse do
       {"Blogpost zum Baufortschritt", ~d[2025-12],
        "https://www.buschhueter.de/berner-strasse-verkehrsfreigabe-in-alle-richtungen-ab-donnerstagabend/"},
       {"Baustelleninfo", ~d[2025-12],
-       "https://lsbg.hamburg.de/resource/blob/961996/040aefa214fc2cb89aeff6eecfc7fd13/berner-strasse-fasanenweg-berner-bruecke-anliegerinformation-dezember-2025-data.pdf"},
+       "https://web.archive.org/web/20260207131222/https://lsbg.hamburg.de/resource/blob/961996/040aefa214fc2cb89aeff6eecfc7fd13/berner-strasse-fasanenweg-berner-bruecke-anliegerinformation-dezember-2025-data.pdf"},
       # {"Baustelleninfo", ~d[2024-09],
       #  "https://lsbg.hamburg.de/resource/blob/961996/ceee123a94f1ae729698475730970d7f/berner-strasse-fasanenweg-berner-bruecke-anliegerinformation-august-2024-data.pdf"},
       # {"Baustelleninfo", "Mai 2023",
@@ -43,9 +43,9 @@ defmodule Data.Article.Blog.BernerStrasse do
       {"Planänderungen", "Juli 2022",
        "https://web.archive.org/web/20220812212026/https://www.buergerschaft-hh.de/parldok/dokument/80212/sanierung_des_strassenzugs_berner_strasse_fasanenweg_berner_bruecke_von_alter_zollweg_bis_kriegkamp.pdf"},
       {"Erläuterungsbericht",
-       "https://lsbg.hamburg.de/resource/blob/784108/faa2ceabee11e02f39b342955a8fb5ab/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-bericht-data.pdf"},
+       "https://web.archive.org/web/20240813013738/https://lsbg.hamburg.de/resource/blob/784108/faa2ceabee11e02f39b342955a8fb5ab/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-bericht-data.pdf"},
       {"Lagepläne",
-       "https://lsbg.hamburg.de/resource/blob/784110/bb5a9ebdcad1de39f9e4440141ecafdc/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-plaene-data.pdf"}
+       "https://web.archive.org/web/20240813164106/https://lsbg.hamburg.de/resource/blob/784110/bb5a9ebdcad1de39f9e4440141ecafdc/berner-strasse-fasanenweg-alter-zollweg-bis-kriegkamp-abgestimmte-planung-plaene-data.pdf"}
     ]
   end
 

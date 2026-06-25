@@ -23,7 +23,7 @@ defmodule Data.Article.Blog.FuhlsbuettelerStrasseNord do
        {"Bezirksamt Hamburg-Nord",
         "https://www.hamburg.de/politik-und-verwaltung/bezirke/hamburg-nord/wirtschaft-bauen-umwelt-70292"},
        {"MASUCH + OLBRISCH Ingenieurgesellschaft für das Bauwesen mbH",
-        "https://moingenieure.de/kontakt/"}
+        "https://moingenieure.de/kontakt"}
      ]}
   end
 
