@@ -104,6 +104,8 @@ defmodule Mix.Tasks.Deploy do
       ~w(mix phx.digest),
       ~w(rm -rf _build/tmp_release_build/),
       ~w(mix release --overwrite --quiet --path _build/tmp_release_build),
+      ~w(mkdir -p _build/tmp_release_build/data/auto_generated),
+      ~w(cp data/auto_generated/bv_hh_attachment_cache.json _build/tmp_release_build/data/auto_generated/bv_hh_attachment_cache.json),
       ~w(mix phx.digest.clean --all)
     ]
     |> Stream.each(fn cmd -> Util.banner("Release: #{Enum.join(cmd, " ")}") end)
