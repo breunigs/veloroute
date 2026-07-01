@@ -252,7 +252,7 @@ defmodule Data.Article.Static.Startpage do
     </table>
 
     <search role="search">
-      <form method="GET" action="/suche" onsubmit="return false" phx-submit="search">
+      <form id="search" method="GET" action="/suche" onsubmit="return false" phx-submit="search">
         <%= if @de do %>
           <h3><label for="query" lang="de">Suche 🔎</label></h3>
           <input type="search" id="query" placeholder="z.B. Feldstraße, StadtRAD, Baustelle…"  phx-change="search" phx-keyup="search" phx-debounce="250" name="search_query" />
