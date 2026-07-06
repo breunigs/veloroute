@@ -184,12 +184,13 @@ defmodule Video.Track do
   end
 
   def render(%__MODULE__{videos: videos, renderer: renderer}, opts)
-      when renderer in [3, 4, 5, 6] do
+      when renderer in [3, 4, 5, 6, 7] do
     opts = render_opts(opts)
     videos = normalize_video_tuples(videos)
 
     tsvs = tsvs(videos)
     hsh = :crypto.hash_init(:md5)
+    hsh = if renderer >= 7, do: :crypto.hash_update(hsh, "renderer #{renderer}"), else: hsh
     fade_in_ms = round(fade(renderer) * 1000)
 
     joined =
@@ -328,6 +329,7 @@ defmodule Video.Track do
   def fade(4), do: default_fade()
   def fade(5), do: default_fade()
   def fade(6), do: default_fade()
+  def fade(7), do: default_fade()
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()
   defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
