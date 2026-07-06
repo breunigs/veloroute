@@ -88,6 +88,38 @@ defmodule Video.RenderedTools do
     |> Data.RoughDate.without_day(lang)
   end
 
+  @doc """
+  Returns the variant index of the highest quality video for a given hash.
+  Falls back to 0 if the master playlist cannot be parsed.
+  """
+  @spec best_variant_index(Video.Track.hash()) :: non_neg_integer()
+  def best_variant_index(hash) when valid_hash(hash) do
+    with path <- Path.join([Settings.r(:video_target_dir_abs), hash, "stream.m3u8"]),
+         {:ok, tokens} <- M3U8.Tokenizer.read_file(path),
+         variants when is_list(variants) <- M3U8.Utils.variants(tokens),
+         best <- determine_best_video(variants),
+         [_, idx] <- Regex.run(~r/stream_(\d+)/, best.url) do
+      String.to_integer(idx)
+    else
+      _ -> 0
+    end
+  end
+
+  @doc """
+  Returns ordered list of segment file paths for a rendered v7 video at the
+  given variant index.
+  """
+  @spec segment_paths(module(), non_neg_integer()) :: [binary()]
+  def segment_paths(rendered, variant_idx)
+      when is_module(rendered) and is_integer(variant_idx) do
+    rendered
+    |> Video.Segment.segments()
+    |> Enum.map(fn seg ->
+      basename = Video.Segment.basename(seg)
+      Video.Path.segment_file(basename, variant_idx)
+    end)
+  end
+
   @codec_factors %{"" => 1, "avc1" => 1, "hvc1" => 1.2, "av01" => 1.3}
   defp determine_best_video(variants) do
     Enum.max_by(variants, fn var ->

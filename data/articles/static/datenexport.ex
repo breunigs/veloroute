@@ -82,13 +82,6 @@ defmodule Data.Article.Static.Datenexport do
   defp video_assigns(assigns, fallback_title \\ "unbekannt")
 
   defp video_assigns(%{video_hash: hash}, fallback_title) when valid_hash(hash) do
-    path = Video.RenderedTools.highest_quality_video_file(hash)
-
-    path =
-      [Settings.r(:video_serve_host), Settings.r(:video_serve_path), path]
-      |> Util.compact()
-      |> Path.join()
-
     video = Video.Generator.find_by_hash(hash)
 
     title =
@@ -100,9 +93,23 @@ defmodule Data.Article.Static.Datenexport do
       end
       |> clean()
 
+    {path, ext} =
+      if video && video.renderer() >= 7 do
+        {"/video-download/#{hash}", ".mp4"}
+      else
+        file = Video.RenderedTools.highest_quality_video_file(hash)
+
+        path =
+          [Settings.r(:video_serve_host), Settings.r(:video_serve_path), file]
+          |> Util.compact()
+          |> Path.join()
+
+        {path, ".m4s"}
+      end
+
     %{
       video_download_path: path,
-      video_download_name: "veloroute.hamburg_video_#{title}.m4s",
+      video_download_name: "veloroute.hamburg_video_#{title}#{ext}",
       video_street_names: street_names(video, title)
     }
   end

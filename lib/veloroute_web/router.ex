@@ -53,6 +53,7 @@ defmodule VelorouteWeb.Router do
     get "/erweiterte-funktionen", PageController, :old_export_link
 
     get "/images/thumbnails/:hash/:timestamp", ImageExtractController, :image
+    get "/video-download/:hash", VideoDownloadController, :download
 
     post "/js_errors", PageController, :js_errors
 
