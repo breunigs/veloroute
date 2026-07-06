@@ -14,6 +14,7 @@ defmodule Video.Path do
 
   @video_out_m3u8 "stream.m3u8"
   @video_default_m3u8 "stream_0.m3u8"
+  @segment_dir "seg"
 
   @str_digits %{
     "1" => 1,
@@ -170,6 +171,26 @@ defmodule Video.Path do
   """
   def has_extension?(path) do
     path |> Path.basename() |> String.contains?(".")
+  end
+
+  def segment_dir do
+    Path.join(Settings.r(:video_target_dir_abs), @segment_dir)
+  end
+
+  def segment_dir_rel_to_cwd do
+    Path.join(Settings.r(:video_target_dir_rel), @segment_dir)
+  end
+
+  def segment_file(basename, variant_idx) when is_binary(basename) and is_integer(variant_idx) do
+    Path.join(segment_dir(), "#{basename}_v#{variant_idx}.m4s")
+  end
+
+  def segment_m3u8(basename, variant_idx) when is_binary(basename) and is_integer(variant_idx) do
+    Path.join(segment_dir(), "#{basename}_v#{variant_idx}.m3u8")
+  end
+
+  def segment_rel_from_hash(basename, variant_idx) do
+    "../#{@segment_dir}/#{basename}_v#{variant_idx}.m4s"
   end
 
   defp file_extension(path) do
