@@ -189,6 +189,14 @@ defmodule Video.Renderer do
   def render(rendered) do
     ensure_min_version(rendered)
 
+    if rendered.renderer() >= 7 do
+      Video.SegmentedRenderer.render(rendered)
+    else
+      render_legacy(rendered)
+    end
+  end
+
+  defp render_legacy(rendered) do
     target = Video.Path.target(rendered.hash())
 
     case File.ls(target) do
@@ -887,7 +895,7 @@ defmodule Video.Renderer do
   #   %{codec: specific ++ ["-tag:v:#{idx}", "hvc1"], tag_as: "hvc1.1.4.L186.B01"}
   # end
 
-  defp variants() do
+  def variants do
     [
       # av1, with default quality as first entry
       %{width: 1280, height: 720, bitrate: 4.5, codec: &codec_av1_svt/2},
