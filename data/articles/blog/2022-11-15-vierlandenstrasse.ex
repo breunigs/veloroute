@@ -9,8 +9,9 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
   def type(), do: :planned
   def tags(), do: ["br-bergedorf-a"]
 
-  def start(), do: ~d[2026-07-09]
-  def stop(), do: ~d[2029-10-01]
+  def start(), do: ~d[2026-05-04]
+  def stop(), do: ~d[2027-11-30]
+  def construction_site_id_hh(), do: [2_946_101]
 
   def tracks(),
     do: [
