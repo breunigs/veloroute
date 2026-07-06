@@ -107,6 +107,13 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
       |> Parallel.map(&{&1, count_variants(&1)})
       |> Enum.filter(fn {_hash, num} -> num && num > 1 end)
       |> Enum.map(&elem(&1, 0))
+      # v7 segments are shared across renders, skip per-hash quality reduction
+      |> Enum.reject(fn hash ->
+        case Video.Generator.get(hash) do
+          nil -> false
+          rendered -> rendered.renderer() >= 7
+        end
+      end)
 
     if historic_only != [] do
       IO.puts("""
@@ -135,7 +142,78 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
       end)
     end
 
+    cleanup_orphan_segments()
+
     IO.puts("\n\n\nDone")
+  end
+
+  defp cleanup_orphan_segments do
+    seg_dir = Video.Path.segment_dir()
+
+    if File.dir?(seg_dir) do
+      # Collect segment files referenced by all remaining v7 renders on disk
+      referenced =
+        File.ls!(Settings.r(:video_target_dir_abs))
+        |> Enum.filter(&valid_hash/1)
+        |> Enum.flat_map(fn hash ->
+          rendered = Video.Generator.get(hash)
+
+          if rendered && rendered.renderer() >= 7 do
+            try do
+              rendered
+              |> Video.Segment.segments()
+              |> Enum.flat_map(fn seg ->
+                basename = Video.Segment.basename(seg)
+
+                Enum.flat_map(0..4, fn idx ->
+                  ["#{basename}_v#{idx}.m4s", "#{basename}_v#{idx}.m3u8"]
+                end)
+              end)
+            rescue
+              _ -> []
+            end
+          else
+            []
+          end
+        end)
+        |> MapSet.new()
+
+      all_files =
+        case File.ls(seg_dir) do
+          {:ok, files} -> files
+          _ -> []
+        end
+
+      orphans = Enum.reject(all_files, &MapSet.member?(referenced, &1))
+
+      if orphans != [] do
+        total_bytes =
+          Enum.reduce(orphans, 0, fn file, acc ->
+            case File.stat(Path.join(seg_dir, file)) do
+              {:ok, %{size: size}} -> acc + size
+              _ -> acc
+            end
+          end)
+
+        size_gb =
+          (total_bytes / 1024.0 / 1024.0 / 1024.0)
+          |> Float.round(2)
+          |> :erlang.float_to_binary(decimals: 2)
+
+        IO.puts("""
+
+        #####################################################################
+        #{length(orphans)} segment files in seg/ are not referenced by any
+        remaining v7 render (#{size_gb} GB total).
+        #####################################################################
+        """)
+
+        if Cli.confirm("Delete #{length(orphans)} orphaned segment files?", false) do
+          Enum.each(orphans, &File.rm(Path.join(seg_dir, &1)))
+          IO.puts("  Deleted orphaned segments.")
+        end
+      end
+    end
   end
 
   defp delete_render(hash),
