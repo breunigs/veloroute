@@ -161,7 +161,7 @@ defmodule Video.Segment do
     ts = format_timestamp(start_s)
     dur = format_duration(end_s - start_s)
     vf_suffix = if opts[:vf], do: "_vf#{vf_hash(opts[:vf])}", else: ""
-    "#{date}-#{stem}-#{ts}_#{dur}#{vf_suffix}"
+    "#{date}-#{stem}/#{ts}_#{dur}#{vf_suffix}"
   end
 
   def transition_basename(%{type: :transition} = t) do
@@ -169,7 +169,7 @@ defmodule Video.Segment do
     stem_b = Video.Path.stem(t.source_b)
     ts_a = format_timestamp(t.end_a_s)
     ts_b = format_timestamp(t.start_b_s)
-    "xfade-#{stem_a}@#{ts_a}+#{stem_b}@#{ts_b}"
+    "xfade7/#{stem_a}@#{ts_a}+#{stem_b}@#{ts_b}"
   end
 
   @doc """
@@ -226,8 +226,9 @@ defmodule Video.Segment do
   @spec all_variants_exist?(t()) :: boolean()
   def all_variants_exist?(segment) do
     base = basename(segment)
+    variant_count = length(Video.Renderer.variants())
 
-    Enum.all?(0..4, fn idx ->
+    Enum.all?(0..(variant_count - 1), fn idx ->
       File.exists?(Video.Path.segment_file(base, idx)) &&
         File.exists?(Video.Path.segment_m3u8(base, idx))
     end)

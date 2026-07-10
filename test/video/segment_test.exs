@@ -144,7 +144,7 @@ defmodule Video.SegmentTest do
         opts: []
       }
 
-      assert Video.Segment.basename(seg) == "2024-04-06-GX017044-00_00_13.500_6.500s"
+      assert Video.Segment.basename(seg) == "2024-04-06-GX017044/00_00_13.500_6.500s"
     end
 
     test "regular segment on exact seconds" do
@@ -156,7 +156,7 @@ defmodule Video.SegmentTest do
         opts: []
       }
 
-      assert Video.Segment.basename(seg) == "2024-04-06-GX017044-00_00_20_10s"
+      assert Video.Segment.basename(seg) == "2024-04-06-GX017044/00_00_20_10s"
     end
 
     test "regular segment with vf option" do
@@ -169,7 +169,7 @@ defmodule Video.SegmentTest do
       }
 
       basename = Video.Segment.basename(seg)
-      assert basename =~ ~r/^2024-04-06-GX017044-00_00_20_10s_vf[0-9a-f]{8}$/
+      assert basename =~ ~r|^2024-04-06-GX017044/00_00_20_10s_vf[0-9a-f]{8}$|
     end
 
     test "transition basename" do
@@ -185,7 +185,7 @@ defmodule Video.SegmentTest do
       }
 
       assert Video.Segment.basename(seg) ==
-               "xfade-GX017044@00_00_51.251+GX017046@00_00_05"
+               "xfade7/GX017044@00_00_51.251+GX017046@00_00_05"
     end
   end
 end

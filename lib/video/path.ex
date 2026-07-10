@@ -14,7 +14,7 @@ defmodule Video.Path do
 
   @video_out_m3u8 "stream.m3u8"
   @video_default_m3u8 "stream_0.m3u8"
-  @segment_dir "seg"
+  @segment_dir "seg7"
 
   @str_digits %{
     "1" => 1,

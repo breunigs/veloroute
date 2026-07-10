@@ -24,7 +24,7 @@ defmodule Video.SegmentedRenderer do
            :ok <- render_segments(rendered, segments, cache_dir),
            :ok <- File.mkdir_p(target),
            :ok <- assemble_playlists(segments, target),
-           :ok <- render_thumbnails(rendered, target),
+           :ok <- render_thumbnails(rendered, Video.Path.target_rel_to_cwd(rendered.hash())),
            :ok <- manually_tag_missing(target) do
         Video.Renderer.append_thumb_pragmas(target)
       end
@@ -32,6 +32,8 @@ defmodule Video.SegmentedRenderer do
       Temp.cleanup()
     end
   end
+
+  @parallel_segments 2
 
   defp render_segments(rendered, segments, cache_dir) do
     {regular, transitions} = Enum.split_with(segments, &(&1.type == :regular))
@@ -44,55 +46,79 @@ defmodule Video.SegmentedRenderer do
 
     if skipped > 0, do: Logger.info("Skipping #{skipped} segments that already exist")
 
-    with :ok <- render_regular_segments(rendered, regular_missing, cache_dir) do
-      render_transition_segments(rendered, transition_missing, cache_dir)
-    end
+    total = length(regular_missing) + length(transition_missing)
+    all_missing = regular_missing ++ transition_missing
+
+    render_segments_parallel(rendered, all_missing, cache_dir, total)
   end
 
-  defp render_regular_segments(_rendered, [], _cache_dir), do: :ok
+  defp render_segments_parallel(_rendered, [], _cache_dir, _total), do: :ok
 
-  defp render_regular_segments(rendered, segments, cache_dir) do
-    errors =
-      Parallel.map(2, segments, fn segment ->
-        render_regular_segment(rendered, segment, cache_dir)
+  defp render_segments_parallel(rendered, segments, cache_dir, total) do
+    alias Video.SegmentedRenderer.LiveProgress
+    LiveProgress.start_link()
+    LiveProgress.start_bar(:segments, label: "segments", total: total, absolute_values: true)
+
+    results =
+      segments
+      |> Enum.with_index()
+      |> Task.async_stream(
+        fn {segment, idx} ->
+          Process.put(:niceness, if(rem(idx, @parallel_segments) == 0, do: 5, else: 19))
+
+          case segment.type do
+            :regular -> render_regular_segment(rendered, segment, cache_dir)
+            :transition -> render_transition_segment(rendered, segment, cache_dir)
+          end
+        end,
+        max_concurrency: @parallel_segments,
+        timeout: :infinity
+      )
+      |> Enum.reduce_while(:ok, fn
+        {:ok, :ok}, :ok ->
+          LiveProgress.inc(:segments)
+          {:cont, :ok}
+
+        {:ok, err}, :ok ->
+          {:halt, err}
       end)
-      |> Enum.reject(&(&1 == :ok))
 
-    if errors == [], do: :ok, else: hd(errors)
+    LiveProgress.stop()
+    results
   end
 
-  defp render_transition_segments(_rendered, [], _cache_dir), do: :ok
-
-  defp render_transition_segments(rendered, segments, cache_dir) do
-    Enum.reduce_while(segments, :ok, fn segment, :ok ->
-      case render_transition_segment(rendered, segment, cache_dir) do
-        :ok -> {:cont, :ok}
-        err -> {:halt, err}
-      end
-    end)
-  end
-
-  defp render_regular_segment(rendered, segment, cache_dir) do
+  defp render_regular_segment(_rendered, segment, cache_dir) do
     basename = Video.Segment.basename(segment)
+    filepart = Path.basename(basename)
     %{source: source, start_s: start_s, end_s: end_s, opts: opts} = segment
 
-    with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "seg_#{basename}"}) do
+    with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "seg_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
+      meta = metadata(source)
+      frame_s = Video.Metadata.frame_duration_s(meta)
       filter = regular_filter(source, start_s, opts)
-      input = regular_input(source, start_s, end_s)
-      {pass1, pass2} = two_pass_cmd(input, filter, tmp_dir, basename)
+      pass1_input = regular_input(source, start_s, end_s + frame_s)
+      pass2_input = regular_input(source, start_s, end_s)
+      {pass1, pass2} = two_pass_cmd(pass1_input, pass2_input, filter, tmp_dir, filepart)
 
-      pbar1 = segment_progress(rendered, basename, "pass 1", start_s, end_s)
-      pbar2 = segment_progress(rendered, basename, "pass 2", start_s, end_s)
-
-      with :ok <- run_ffmpeg("#{basename} pass 1", pass1, pbar1),
-           :ok <- run_ffmpeg("#{basename} pass 2", pass2, pbar2) do
-        move_segment_outputs(tmp_path, basename)
+      with :ok <-
+             run_ffmpeg(
+               "#{basename} pass 1",
+               pass1,
+               segment_progress(basename, "pass 1", start_s, end_s, meta.pts_correction)
+             ),
+           :ok <-
+             run_ffmpeg(
+               "#{basename} pass 2",
+               pass2,
+               segment_progress(basename, "pass 2", start_s, end_s, meta.pts_correction)
+             ) do
+        move_segment_outputs(tmp_path, filepart, basename)
       end
     end
   end
 
-  defp render_transition_segment(rendered, segment, cache_dir) do
+  defp render_transition_segment(_rendered, segment, cache_dir) do
     basename = Video.Segment.basename(segment)
 
     %{
@@ -105,20 +131,18 @@ defmodule Video.SegmentedRenderer do
       opts_b: opts_b
     } = segment
 
-    with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "xfade_#{basename}"}) do
+    filepart = Path.basename(basename)
+
+    with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "xfade_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
       meta_a = metadata(source_a)
       meta_b = metadata(source_b)
       frame_s = Video.Metadata.frame_duration_s(meta_a)
 
-      # Extra frames for RIFE context
-      extra_a = 2 * frame_s
-      extra_b = 2 * frame_s
-
-      a_start = max(0, end_a_s - fade_s - extra_a)
+      a_start = max(0, end_a_s - fade_s)
       a_end = end_a_s
       b_start = start_b_s
-      b_end = start_b_s + fade_s + extra_b
+      b_end = start_b_s + fade_s
 
       transition_ctx = %{
         source_a: source_a,
@@ -135,17 +159,29 @@ defmodule Video.SegmentedRenderer do
 
       filter = transition_filter(transition_ctx)
 
-      input = transition_input(source_a, a_start, a_end, source_b, b_start, b_end)
+      pass1_input =
+        transition_input(source_a, a_start, a_end + frame_s, source_b, b_start, b_end + frame_s)
+
+      pass2_input = transition_input(source_a, a_start, a_end, source_b, b_start, b_end)
 
       fps = Video.Constants.output_fps_s()
-      {pass1, pass2} = two_pass_cmd(input, filter, tmp_dir, basename, ["-r", fps])
 
-      pbar1 = segment_progress(rendered, basename, "pass 1", 0, fade_s)
-      pbar2 = segment_progress(rendered, basename, "pass 2", 0, fade_s)
+      {pass1, pass2} =
+        two_pass_cmd(pass1_input, pass2_input, filter, tmp_dir, filepart, ["-r", fps])
 
-      with :ok <- run_ffmpeg("#{basename} pass 1", pass1, pbar1),
-           :ok <- run_ffmpeg("#{basename} pass 2", pass2, pbar2) do
-        move_segment_outputs(tmp_path, basename)
+      with :ok <-
+             run_ffmpeg(
+               "#{basename} pass 1",
+               pass1,
+               segment_progress(basename, "pass 1", 0, fade_s)
+             ),
+           :ok <-
+             run_ffmpeg(
+               "#{basename} pass 2",
+               pass2,
+               segment_progress(basename, "pass 2", 0, fade_s)
+             ) do
+        move_segment_outputs(tmp_path, filepart, basename)
       end
     end
   end
@@ -165,8 +201,9 @@ defmodule Video.SegmentedRenderer do
     meta = metadata(source)
     parts = parts ++ time_lapse_filter(meta, "[blur0]", "[blur0]")
 
-    outputs = Enum.map(0..4, &"[out#{&1}]")
-    parts ++ ["[blur0]split=5#{Enum.join(outputs)}"]
+    variant_count = length(Video.Renderer.variants())
+    outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
+    parts ++ ["[blur0]split=#{variant_count}#{Enum.join(outputs)}"]
   end
 
   defp transition_filter(ctx) do
@@ -190,7 +227,7 @@ defmodule Video.SegmentedRenderer do
     parts = parts ++ time_lapse_filter(ctx.meta_a, "[blur0]", "[blur0]")
     parts = parts ++ time_lapse_filter(ctx.meta_b, "[blur1]", "[blur1]")
 
-    fade_dur = ctx.fade_s + ctx.frame_s / 2.0
+    fade_dur = ctx.fade_s
 
     parts =
       parts ++
@@ -200,8 +237,9 @@ defmodule Video.SegmentedRenderer do
           "[a][b]frei0r=filter_name=rife_transition:filter_params=#{fade_dur}||0[joined]"
         ]
 
-    outputs = Enum.map(0..4, &"[out#{&1}]")
-    parts ++ ["[joined]split=5#{Enum.join(outputs)}"]
+    variant_count = length(Video.Renderer.variants())
+    outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
+    parts ++ ["[joined]split=#{variant_count}#{Enum.join(outputs)}"]
   end
 
   defp dewarp_filters(inp, out) do
@@ -227,7 +265,6 @@ defmodule Video.SegmentedRenderer do
     [
       "-hwaccel",
       "auto",
-      "-re",
       "-ss",
       format_ts(start_s),
       "-to",
@@ -241,7 +278,6 @@ defmodule Video.SegmentedRenderer do
     [
       "-hwaccel",
       "auto",
-      "-re",
       "-ss",
       format_ts(a_start),
       "-to",
@@ -257,13 +293,14 @@ defmodule Video.SegmentedRenderer do
     ]
   end
 
-  defp two_pass_cmd(input, filter_parts, tmp_dir, basename, extra_flags \\ []) do
+  defp two_pass_cmd(pass1_input, pass2_input, filter_parts, tmp_dir, basename, extra_flags \\ []) do
     filter = Enum.join(filter_parts, ";")
+    variant_count = length(Video.Renderer.variants())
 
-    cmd =
+    cmd_base = fn input ->
       [
-        Util.low_priority_cmd_prefix(),
-        ["ffmpeg", "-hide_banner"],
+        Util.low_priority_cmd_prefix(Process.get(:niceness, 19)),
+        ["ffmpeg", "-hide_banner", "-v", "verbose"],
         ["-err_detect", "explode"],
         input,
         ["-filter_complex", filter],
@@ -276,10 +313,12 @@ defmodule Video.SegmentedRenderer do
         ["-sc_threshold", "0"],
         ["-pix_fmt", "yuv420p"]
       ]
+    end
 
-    pass1 = List.flatten([cmd, "-pass", "1", variant_flags(tmp_dir), output_none()])
+    pass1 =
+      List.flatten([cmd_base.(pass1_input), "-pass", "1", variant_flags(tmp_dir), output_none()])
 
-    stream_map = Enum.map_join(0..4, " ", &"v:#{&1}")
+    stream_map = Enum.map_join(0..(variant_count - 1), " ", &"v:#{&1}")
 
     pass2_output = [
       ["-f", "hls"],
@@ -293,7 +332,8 @@ defmodule Video.SegmentedRenderer do
       "#{tmp_dir}/#{basename}_v%v.m3u8"
     ]
 
-    pass2 = List.flatten([cmd, "-pass", "2", variant_flags(tmp_dir), pass2_output])
+    pass2 =
+      List.flatten([cmd_base.(pass2_input), "-pass", "2", variant_flags(tmp_dir), pass2_output])
 
     {pass1, pass2}
   end
@@ -302,23 +342,27 @@ defmodule Video.SegmentedRenderer do
     Video.Renderer.variant_flags(tmp_dir)
   end
 
-  defp move_segment_outputs(tmp_path, basename) do
+  defp move_segment_outputs(tmp_path, filepart, basename) do
     seg_dir = Video.Path.segment_dir()
+    target_subdir = Path.join(seg_dir, Path.dirname(basename))
+    variant_count = length(Video.Renderer.variants())
 
-    errors =
-      for idx <- 0..4, ext <- [".m3u8", ".m4s"], reduce: [] do
-        errors ->
-          file = "#{basename}_v#{idx}#{ext}"
-          source = Path.join(tmp_path, file)
-          target = Path.join(seg_dir, file)
+    with :ok <- File.mkdir_p(target_subdir) do
+      errors =
+        for idx <- 0..(variant_count - 1), ext <- [".m3u8", ".m4s"], reduce: [] do
+          errors ->
+            src_file = "#{filepart}_v#{idx}#{ext}"
+            source = Path.join(tmp_path, src_file)
+            target = Path.join(target_subdir, src_file)
 
-          case move_file(source, target) do
-            :ok -> errors
-            {:error, err} -> ["#{file}: #{inspect(err)}" | errors]
-          end
-      end
+            case move_file(source, target) do
+              :ok -> errors
+              {:error, err} -> ["#{src_file}: #{inspect(err)}" | errors]
+            end
+        end
 
-    if errors == [], do: :ok, else: {:error, Enum.join(errors, "\n")}
+      if errors == [], do: :ok, else: {:error, Enum.join(errors, "\n")}
+    end
   end
 
   defp move_file(source, target) do
@@ -345,7 +389,9 @@ defmodule Video.SegmentedRenderer do
   end
 
   defp assemble_variant_playlists(segments, target_dir) do
-    Enum.reduce_while(0..4, :ok, fn variant_idx, :ok ->
+    variant_count = length(Video.Renderer.variants())
+
+    Enum.reduce_while(0..(variant_count - 1), :ok, fn variant_idx, :ok ->
       case assemble_variant_playlist(segments, variant_idx, target_dir) do
         :ok -> {:cont, :ok}
         err -> {:halt, err}
@@ -361,7 +407,7 @@ defmodule Video.SegmentedRenderer do
 
         case M3U8.Tokenizer.read_file(m3u8_path) do
           {:ok, tokens} ->
-            rel_path = "../seg/#{basename}_v#{variant_idx}.m4s"
+            rel_path = Video.Path.segment_rel_from_hash(basename, variant_idx)
             {map_info, extinf_entries} = extract_companion_entries(tokens)
             max_dur = extinf_entries |> Enum.map(& &1.duration) |> Enum.max(fn -> 0.0 end)
 
@@ -405,7 +451,7 @@ defmodule Video.SegmentedRenderer do
             map_line =
               "#EXT-X-MAP:URI=\"#{entry.rel_path}\",BYTERANGE=\"#{entry.map.length}@#{entry.map.offset}\""
 
-            [map_line] ++
+            ["#EXT-X-DISCONTINUITY", map_line] ++
               Enum.flat_map(entry.entries, fn e ->
                 [
                   "#EXTINF:#{format_extinf_duration(e.duration)},",
@@ -540,23 +586,22 @@ defmodule Video.SegmentedRenderer do
       %{command_args: cmd, mount_videos_in_dir: "/workdir/"},
       env: [],
       stderr: pbar,
+      stdout: "",
       slow_warn_message: false
     )
   end
 
-  defp segment_progress(rendered, basename, pass, start_s, end_s) do
+  defp segment_progress(basename, pass, start_s, end_s, pts_correction \\ 1) do
+    alias Video.SegmentedRenderer.LiveProgress
     fps = Video.Constants.output_fps()
     duration = end_s - start_s
-    total_frames = round(duration * fps)
-    desc = "#{pass} #{basename}"
+    total_frames = max(1, round(duration * pts_correction * fps))
+    label = "#{pass} #{Path.basename(basename)}"
+    id = {pass, basename, :erlang.unique_integer()}
 
-    {_taken, stream} =
-      0..(total_frames + 1)
-      |> Tqdm.tqdm(total: total_frames, description: desc, clear: false)
-      |> StreamSplit.take_and_drop(1)
+    LiveProgress.start_bar(id, label: label, total: total_frames)
 
-    _ = rendered
-    %Video.Renderer.Progress{stream: stream, taken: 0, out: []}
+    Video.SegmentedRenderer.OwlProgress.new(id, total_frames)
   end
 
   defp metadata(path) do
