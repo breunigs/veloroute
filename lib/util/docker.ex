@@ -300,7 +300,8 @@ defmodule Util.Docker do
       if(File.exists?("/dev/dri"), do: ["--device", "/dev/dri:/dev/dri"]),
       if(supports_gpu(), do: ["--gpus", "all"]),
       run_environment_to_args(opts[:environment]),
-      if(opts[:run_as_local_user] != false, do: ["--user", "#{Util.user_id()}"]),
+      if(opts[:run_as_local_user] != false, do: run_as_local_user_args()),
+      ["--security-opt", "label=disable"],
       opts[:docker_args],
       img_name,
       opts[:command_args]
@@ -580,6 +581,38 @@ defmodule Util.Docker do
 
   defp docker_kill(full_ref) when is_full_ref(full_ref) do
     "docker stop --time 2 #{names(full_ref).container}"
+  end
+
+  @spec run_as_local_user_args() :: [binary()]
+  defp run_as_local_user_args do
+    if podman?() do
+      ["--userns=keep-id"]
+    else
+      ["--user", "#{Util.user_id()}"]
+    end
+  end
+
+  @spec podman?() :: boolean()
+  defmemo podman? do
+    case System.find_executable("docker") do
+      nil -> false
+      path -> path |> resolve_symlinks() |> Path.basename() |> String.starts_with?("podman")
+    end
+  end
+
+  defp resolve_symlinks(path) do
+    case File.read_link(path) do
+      {:ok, target} ->
+        target =
+          if Path.type(target) == :relative,
+            do: Path.join(Path.dirname(path), target),
+            else: target
+
+        resolve_symlinks(target)
+
+      {:error, _} ->
+        path
+    end
   end
 
   @doc """
