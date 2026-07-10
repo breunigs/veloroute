@@ -28490,6 +28490,20 @@
   <node id='-324063689' action='modify' lat='53.42868806069' lon='9.93138312221' />
   <node id='-324063690' action='modify' lat='53.42871363062' lon='9.93157624125' />
   <node id='-324063691' action='modify' lat='53.42847471644' lon='9.93155441501' />
+  <node id='-325011153' action='modify' lat='53.53348964052' lon='10.03075092763' />
+  <node id='-325011154' action='modify' lat='53.53340196062' lon='10.0304746601' />
+  <node id='-325011155' action='modify' lat='53.53321225256' lon='10.03024667233' />
+  <node id='-325011156' action='modify' lat='53.53303051462' lon='10.03019302815' />
+  <node id='-325011157' action='modify' lat='53.53279616719' lon='10.03021448582' />
+  <node id='-325011158' action='modify' lat='53.532663848' lon='10.03037810057' />
+  <node id='-325011159' action='modify' lat='53.53257935481' lon='10.03057658404' />
+  <node id='-325011160' action='modify' lat='53.53260964484' lon='10.03077506751' />
+  <node id='-325011161' action='modify' lat='53.53277703673' lon='10.03069460124' />
+  <node id='-325011162' action='modify' lat='53.53296993514' lon='10.0305953595' />
+  <node id='-325011163' action='modify' lat='53.53315167333' lon='10.03058999509' />
+  <node id='-325011164' action='modify' lat='53.53327442588' lon='10.03082871169' />
+  <node id='-325011165' action='modify' lat='53.5333668886' lon='10.0309815976' />
+  <node id='-325011166' action='modify' lat='53.53347051038' lon='10.03104328841' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -80217,6 +80231,25 @@
     <nd ref='-324063690' />
     <nd ref='-324063691' />
     <tag k='name' v='2026-07-01-bremer-strasse-2' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21280112' action='modify'>
+    <nd ref='-325011153' />
+    <nd ref='-325011154' />
+    <nd ref='-325011155' />
+    <nd ref='-325011156' />
+    <nd ref='-325011157' />
+    <nd ref='-325011158' />
+    <nd ref='-325011159' />
+    <nd ref='-325011160' />
+    <nd ref='-325011161' />
+    <nd ref='-325011162' />
+    <nd ref='-325011163' />
+    <nd ref='-325011164' />
+    <nd ref='-325011165' />
+    <nd ref='-325011166' />
+    <nd ref='-325011153' />
+    <tag k='name' v='2026-07-10-elbpark-entenwerder' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
