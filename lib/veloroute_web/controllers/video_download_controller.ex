@@ -33,7 +33,7 @@ defmodule VelorouteWeb.VideoDownloadController do
 
   defp stream_v7(conn, hash, rendered) do
     variant_idx = Video.RenderedTools.best_variant_index(hash)
-    paths = Video.RenderedTools.segment_paths(rendered, variant_idx)
+    segments = Video.Segment.segments(rendered)
     title = download_title(rendered)
 
     conn =
@@ -46,24 +46,66 @@ defmodule VelorouteWeb.VideoDownloadController do
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
       |> send_chunked(200)
 
-    {conn, _} =
-      Enum.reduce_while(paths, {conn, true}, fn path, {conn, is_first} ->
-        case File.read(path) do
-          {:ok, data} ->
-            data = if is_first, do: data, else: skip_to_moof(data)
+    segment_infos =
+      Enum.map(segments, fn seg ->
+        basename = Video.Segment.basename(seg)
 
-            case chunk(conn, data) do
-              {:ok, conn} -> {:cont, {conn, false}}
-              {:error, _reason} -> {:halt, {conn, false}}
+        %{
+          m4s_path: Video.Path.segment_file(basename, variant_idx),
+          m3u8_path: Video.Path.segment_m3u8(basename, variant_idx)
+        }
+      end)
+
+    {conn, _seq, _base_time, _timescale} =
+      Enum.reduce_while(segment_infos, {conn, 1, 0, nil}, fn info,
+                                                             {conn, seq, base_time, timescale} ->
+        with {:ok, data} <- File.read(info.m4s_path),
+             {:ok, durations} <- extinf_durations(info.m3u8_path) do
+          {timescale, data, seq, base_time} =
+            if timescale == nil do
+              # First segment: extract timescale, keep ftyp+moov
+              {:ok, ts} = Video.FMP4.extract_timescale(data)
+              dur_units = Video.FMP4.durations_to_timescale(durations, ts)
+
+              {data, next_seq, next_base} =
+                Video.FMP4.fix_timestamps(data, seq, base_time, dur_units)
+
+              {ts, data, next_seq, next_base}
+            else
+              stripped = skip_to_moof(data)
+              dur_units = Video.FMP4.durations_to_timescale(durations, timescale)
+
+              {patched, next_seq, next_base} =
+                Video.FMP4.fix_timestamps(stripped, seq, base_time, dur_units)
+
+              {timescale, patched, next_seq, next_base}
             end
 
+          case chunk(conn, data) do
+            {:ok, conn} -> {:cont, {conn, seq, base_time, timescale}}
+            {:error, _reason} -> {:halt, {conn, seq, base_time, timescale}}
+          end
+        else
           {:error, reason} ->
-            Logger.error("Failed to read segment #{path}: #{inspect(reason)}")
-            {:halt, {conn, false}}
+            Logger.error("Failed to process segment #{info.m4s_path}: #{inspect(reason)}")
+            {:halt, {conn, seq, base_time, timescale}}
         end
       end)
 
     halt(conn)
+  end
+
+  defp extinf_durations(m3u8_path) do
+    case M3U8.Tokenizer.read_file(m3u8_path) do
+      {:ok, tokens} ->
+        durations =
+          for {:extinf, %{duration: d}} <- tokens, do: d
+
+        {:ok, durations}
+
+      {:error, _} = err ->
+        err
+    end
   end
 
   # Skips ftyp/moov boxes in a fragmented MP4 to reach the first moof box.
