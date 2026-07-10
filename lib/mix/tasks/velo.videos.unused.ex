@@ -151,6 +151,8 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
     seg_dir = Video.Path.segment_dir()
 
     if File.dir?(seg_dir) do
+      variant_count = length(Video.Renderer.variants())
+
       # Collect segment files referenced by all remaining v7 renders on disk
       referenced =
         File.ls!(Settings.r(:video_target_dir_abs))
@@ -165,7 +167,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
               |> Enum.flat_map(fn seg ->
                 basename = Video.Segment.basename(seg)
 
-                Enum.flat_map(0..4, fn idx ->
+                Enum.flat_map(0..(variant_count - 1), fn idx ->
                   ["#{basename}_v#{idx}.m4s", "#{basename}_v#{idx}.m3u8"]
                 end)
               end)
@@ -178,11 +180,7 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
         end)
         |> MapSet.new()
 
-      all_files =
-        case File.ls(seg_dir) do
-          {:ok, files} -> files
-          _ -> []
-        end
+      all_files = list_files_recursive(seg_dir, seg_dir)
 
       orphans = Enum.reject(all_files, &MapSet.member?(referenced, &1))
 
@@ -213,6 +211,22 @@ defmodule Mix.Tasks.Velo.Videos.Unused do
           IO.puts("  Deleted orphaned segments.")
         end
       end
+    end
+  end
+
+  defp list_files_recursive(dir, base_dir) do
+    case File.ls(dir) do
+      {:ok, entries} ->
+        Enum.flat_map(entries, fn entry ->
+          full = Path.join(dir, entry)
+
+          if File.dir?(full),
+            do: list_files_recursive(full, base_dir),
+            else: [Path.relative_to(full, base_dir)]
+        end)
+
+      _ ->
+        []
     end
   end
 
