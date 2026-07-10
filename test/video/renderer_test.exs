@@ -202,7 +202,6 @@ defmodule Video.RendererTest do
              "error",
              "-hwaccel",
              "auto",
-             "-re",
              "-ss",
              "00:00:58.692",
              "-to",

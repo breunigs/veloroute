@@ -435,7 +435,7 @@ defmodule Video.Renderer do
   end
 
   defp inputs(sources) when is_list(sources) do
-    ["-hwaccel", "auto", "-re"] ++
+    ["-hwaccel", "auto"] ++
       Enum.flat_map(sources, fn {path, from, to, _opts} ->
         from = if from in [:start, :seamless], do: [], else: ["-ss", from]
         to = if to == :end, do: [], else: ["-to", to]
