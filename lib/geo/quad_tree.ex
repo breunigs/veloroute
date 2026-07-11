@@ -231,13 +231,13 @@ defmodule Geo.QuadTree do
           %{div | ne: %{div.ne | count: div.ne.count + 1, points: [point | div.ne.points]}}
 
         {true, false} ->
-          %{div | nw: %{div.nw | count: div.ne.count + 1, points: [point | div.nw.points]}}
+          %{div | nw: %{div.nw | count: div.nw.count + 1, points: [point | div.nw.points]}}
 
         {false, true} ->
-          %{div | se: %{div.se | count: div.ne.count + 1, points: [point | div.se.points]}}
+          %{div | se: %{div.se | count: div.se.count + 1, points: [point | div.se.points]}}
 
         {false, false} ->
-          %{div | sw: %{div.sw | count: div.ne.count + 1, points: [point | div.sw.points]}}
+          %{div | sw: %{div.sw | count: div.sw.count + 1, points: [point | div.sw.points]}}
       end
     end)
   end

@@ -167,20 +167,18 @@ defmodule Joiner.Segment do
     Joiner.Video.at_end?(seg.from) && Joiner.Video.at_start?(seg.to)
   end
 
-  @max_assumed_speed 40.0
   @doc """
   Calculates the average speed of each video and stores their normalized diff in
-  `segment.metrics.speed_diff`. The maximum speed considered is
-  #{@max_assumed_speed} to allow for easy normalization. The values range [0.0,
-  1.0], where 1.0 would be no speed difference.
+  `segment.metrics.speed_diff`. Uses relative difference so that e.g. 5→15 km/h
+  (100% change) is penalized more than 30→40 km/h (33% change). The values
+  range [0.0, 1.0], where 1.0 would be no speed difference.
   """
   @spec set_speed_diff_metric(t()) :: t()
   def set_speed_diff_metric(seg) do
-    kmh1 = Joiner.Video.avg_speed_kmh(seg.from) |> min(@max_assumed_speed)
-    kmh2 = Joiner.Video.avg_speed_kmh(seg.to) |> min(@max_assumed_speed)
+    kmh1 = Joiner.Video.avg_speed_kmh(seg.from)
+    kmh2 = Joiner.Video.avg_speed_kmh(seg.to)
 
-    diff = abs(kmh1 - kmh2)
-    norm = 1.0 - diff / @max_assumed_speed
+    norm = 1.0 - abs(kmh1 - kmh2) / max(kmh1, max(kmh2, 1.0))
 
     set_metric(seg, :speed_diff, norm)
   end

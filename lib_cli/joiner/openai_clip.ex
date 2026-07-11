@@ -82,12 +82,9 @@ defmodule Joiner.OpenAIClip do
         "-vf",
         Enum.join(
           [
-            # scale to size while keeping aspect ratio by padding
-            # "scale=w=#{@model.width}:h=#{@model.height}:force_original_aspect_ratio=1",
-            # "pad=#{@model.width}:#{@model.height}:(ow-iw)/2:(oh-ih)/2"
-
-            # scale with distortion
-            "scale=w=#{@model.width}:h=#{@model.height}"
+            # scale keeping aspect ratio, then center-crop to match CLIP's training
+            "scale=w=#{@model.width}:h=#{@model.height}:force_original_aspect_ratio=increase",
+            "crop=#{@model.width}:#{@model.height}"
           ],
           ","
         ),

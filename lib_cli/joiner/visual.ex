@@ -141,8 +141,13 @@ defmodule Joiner.Visual do
     {{min, _, _}, {max, _, _}} = Enum.min_max_by(candidates, &elem(&1, 0))
     diff = max - min
 
-    candidates
-    |> Enum.map(fn {sum, v1offset, v2offset} -> {sum, (sum - min) / diff, v1offset, v2offset} end)
+    if diff == 0.0 do
+      Enum.map(candidates, fn {sum, v1offset, v2offset} -> {sum, 1.0, v1offset, v2offset} end)
+    else
+      Enum.map(candidates, fn {sum, v1offset, v2offset} ->
+        {sum, (sum - min) / diff, v1offset, v2offset}
+      end)
+    end
   end
 
   defp fade_frames(%{from: %{meta: %{fps: fps}}, to: %{meta: %{fps: fps}}}, opts) do

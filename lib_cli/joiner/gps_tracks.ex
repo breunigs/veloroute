@@ -148,8 +148,8 @@ defmodule Joiner.GpsTracks do
   def with_bearing(coords, eps_m \\ 10.0) do
     coords
     |> Enum.reduce({[], coords}, fn cur, {prev, next} ->
-      prev_far = prev |> Enum.reject(&within_dist?(cur, &1, eps_m)) |> List.first()
-      next_far = next |> Enum.reject(&within_dist?(cur, &1, eps_m)) |> List.first()
+      prev_far = Enum.find(prev, &(not within_dist?(cur, &1, eps_m)))
+      next_far = Enum.find(next, &(not within_dist?(cur, &1, eps_m)))
       prev_far = prev_far || List.last(prev) || cur
       next_far = next_far || List.last(next) || cur
       cur = Map.put(cur, :bearing, Geo.CheapRuler.bearing(prev_far, next_far))
