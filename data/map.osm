@@ -28504,6 +28504,33 @@
   <node id='-325011164' action='modify' lat='53.53327442588' lon='10.03082871169' />
   <node id='-325011165' action='modify' lat='53.5333668886' lon='10.0309815976' />
   <node id='-325011166' action='modify' lat='53.53347051038' lon='10.03104328841' />
+  <node id='-325958628' action='modify' lat='53.61183947022' lon='9.97394441485' />
+  <node id='-325958629' action='modify' lat='53.61173763155' lon='9.97341870189' />
+  <node id='-325958630' action='modify' lat='53.6112538945' lon='9.97376202464' />
+  <node id='-325958631' action='modify' lat='53.61074469162' lon='9.97400878787' />
+  <node id='-325958632' action='modify' lat='53.61038188082' lon='9.97416972041' />
+  <node id='-325958633' action='modify' lat='53.61028003863' lon='9.97400878787' />
+  <node id='-325958634' action='modify' lat='53.61017183104' lon='9.97408388972' />
+  <node id='-325958635' action='modify' lat='53.61009544904' lon='9.97426627994' />
+  <node id='-325958636' action='modify' lat='53.60991085864' lon='9.97444867015' />
+  <node id='-325958637' action='modify' lat='53.60904518255' lon='9.97539280772' />
+  <node id='-325958638' action='modify' lat='53.60825587418' lon='9.97658370852' />
+  <node id='-325958639' action='modify' lat='53.60730104595' lon='9.97797845721' />
+  <node id='-325958640' action='modify' lat='53.60665811293' lon='9.97943758428' />
+  <node id='-325958641' action='modify' lat='53.60605655091' lon='9.98070358694' />
+  <node id='-325958642' action='modify' lat='53.60465605585' lon='9.9837881273' />
+  <node id='-325958643' action='modify' lat='53.60496480534' lon='9.98413145006' />
+  <node id='-325958644' action='modify' lat='53.60558866341' lon='9.98277961671' />
+  <node id='-325958645' action='modify' lat='53.60638120449' lon='9.98104154527' />
+  <node id='-325958646' action='modify' lat='53.60672176979' lon='9.98021006048' />
+  <node id='-325958647' action='modify' lat='53.60740607493' lon='9.97868120134' />
+  <node id='-325958648' action='modify' lat='53.60810628267' lon='9.97766196191' />
+  <node id='-325958649' action='modify' lat='53.60889877651' lon='9.97643351018' />
+  <node id='-325958650' action='modify' lat='53.60940481902' lon='9.97566103399' />
+  <node id='-325958651' action='modify' lat='53.6103850602' lon='9.97482954919' />
+  <node id='-325958652' action='modify' lat='53.61070331543' lon='9.97469543874' />
+  <node id='-325958653' action='modify' lat='53.61112022616' lon='9.97437357366' />
+  <node id='-325958654' action='modify' lat='53.61164215439' lon='9.97402488649' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -80250,6 +80277,38 @@
     <nd ref='-325011166' />
     <nd ref='-325011153' />
     <tag k='name' v='2026-07-10-elbpark-entenwerder' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21285966' action='modify'>
+    <nd ref='-325958628' />
+    <nd ref='-325958629' />
+    <nd ref='-325958630' />
+    <nd ref='-325958631' />
+    <nd ref='-325958632' />
+    <nd ref='-325958633' />
+    <nd ref='-325958634' />
+    <nd ref='-325958635' />
+    <nd ref='-325958636' />
+    <nd ref='-325958637' />
+    <nd ref='-325958638' />
+    <nd ref='-325958639' />
+    <nd ref='-325958640' />
+    <nd ref='-325958641' />
+    <nd ref='-325958642' />
+    <nd ref='-325958643' />
+    <nd ref='-325958644' />
+    <nd ref='-325958645' />
+    <nd ref='-325958646' />
+    <nd ref='-325958647' />
+    <nd ref='-325958648' />
+    <nd ref='-325958649' />
+    <nd ref='-325958650' />
+    <nd ref='-325958651' />
+    <nd ref='-325958652' />
+    <nd ref='-325958653' />
+    <nd ref='-325958654' />
+    <nd ref='-325958628' />
+    <tag k='name' v='2026-07-11-borsteler-chaussee' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
