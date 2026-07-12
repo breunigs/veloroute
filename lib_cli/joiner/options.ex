@@ -1,5 +1,5 @@
 defmodule Joiner.Options do
-  @type metric() :: Joiner.FfmpegMetrics.metric() | :clip | :distance | :speed_diff | :weighted
+  @type metric() :: Joiner.FfmpegMetrics.metric() | :dino | :distance | :speed_diff | :weighted
   @type weights() :: %{metric() => float()}
 
   @non_metric_cols [:v1_end, :v2_start, :v1_pos, :v2_pos, :speed]
@@ -18,8 +18,9 @@ defmodule Joiner.Options do
           visual_prune_below: float(),
           visual_top_percent: float(),
           visual_max_candidates: pos_integer(),
-          openai_clip_prune_below: float(),
-          openai_clip_top_percent: float(),
+          dino_prune_below: float(),
+          dino_top_percent: float(),
+          distance_prune_below: float(),
           weights: weights(),
           user_max_candidates: pos_integer(),
           preview_blur: boolean(),
@@ -38,8 +39,9 @@ defmodule Joiner.Options do
     :visual_prune_below,
     :visual_top_percent,
     :visual_max_candidates,
-    :openai_clip_prune_below,
-    :openai_clip_top_percent,
+    :dino_prune_below,
+    :dino_top_percent,
+    :distance_prune_below,
     :weights,
     :user_max_candidates,
     :preview_blur,
@@ -95,18 +97,25 @@ defmodule Joiner.Options do
       visual_max_candidates: 20,
 
       ### visual candidate refinement
-      # Ignore all results for which OpenAI CLIP model results in a cosine
+      # Ignore all results for which DINOv3 model results in a cosine
       # similarity lower than this.
-      openai_clip_prune_below: 0.85,
+      dino_prune_below: 0.65,
       # Within a single visual refinement run, only take the top n% candidates
       # and discard the rest.
-      openai_clip_top_percent: 5.0,
+      dino_top_percent: 5.0,
+
+      ### distance pre-filter
+      # Before running expensive visual/dino processing, estimate the distance
+      # between the GPS overlap region endpoints. Skip segments where the
+      # estimated distance metric falls below this threshold. Uses the same
+      # [0.0, 1.0] scale as the distance metric (1.0 = on top of each other).
+      distance_prune_below: 0.1,
 
       ### final selections
       # to compute the order in which results are presented to the user, specify
       # the weight of various statistics.
       weights: %{
-        clip: 0.68,
+        dino: 0.68,
         xpsnr: 0.09,
         distance: 0.09,
         speed_diff: 0.14

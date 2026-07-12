@@ -42,7 +42,7 @@ defmodule Mix.Tasks.Velo.Videos.GuessMerges do
       opts = %{opts | preview_player_custom: System.get_env("VELO_PREVIEW_TOOL")}
       opts = %{opts | preview_use_host_ffmpeg: System.get_env("VELO_HOST_FFMPEG") == "1"}
 
-      Joiner.OpenAIClip.ensure_started()
+      Joiner.Dino.ensure_started()
       Joiner.Preview.prepare()
 
       Video.Dir.must_exist!(fn ->

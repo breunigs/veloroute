@@ -1,16 +1,17 @@
-defmodule Joiner.OpenAIClip do
+defmodule Joiner.Dino do
   @moduledoc """
-  Parse video using OpenAI's CLIP Model: https://github.com/openai/CLIP
+  Parse video using Meta's DINOv3 Model: https://github.com/facebookresearch/dinov3
   """
 
   require Logger
+  import Nx.Defn
 
-  @onnx_export_base_img {:remote, "nvcr.io/nvidia/pytorch", "24.11-py3"}
+  @onnx_base_url "https://huggingface.co/onnx-community/dinov3-vits16-pretrain-lvd1689m-ONNX/resolve/main/onnx"
+  @onnx_dir "data/cache/dinov3-vits16"
+  @onnx_path "#{@onnx_dir}/model.onnx"
+  @onnx_data_path "#{@onnx_dir}/model.onnx_data"
 
-  @onnx_filename "clip-vit-base-patch32.onnx"
-  @onnx_path "data/cache/#{@onnx_filename}"
-
-  @model %{name: "openai/clip-vit-base-patch32", width: 224, height: 224, channels: 3}
+  @model %{name: "facebook/dinov3-vits16-pretrain-lvd1689m", width: 224, height: 224, channels: 3}
   @batch_size 10
   @batch_timeout_ms 100
 
@@ -56,10 +57,24 @@ defmodule Joiner.OpenAIClip do
 
   @spec ensure_started() :: :ok | {:error, File.posix() | binary()}
   def ensure_started() do
+    Nx.Defn.default_options(compiler: EXLA)
+
     with :ok <- ensure_onnx(),
          :ok <- maybe_start() do
       :ok
     end
+  end
+
+  defnp normalize_frames(tensor) do
+    mean = Nx.tensor([[[[0.485]], [[0.456]], [[0.406]]]])
+    std = Nx.tensor([[[[0.229]], [[0.224]], [[0.225]]]])
+
+    tensor
+    |> Nx.as_type(:f32)
+    |> Nx.divide(255.0)
+    |> Nx.transpose(axes: [0, 3, 1, 2])
+    |> Nx.subtract(mean)
+    |> Nx.divide(std)
   end
 
   defp cos_sim(e1, e2) do
@@ -82,7 +97,7 @@ defmodule Joiner.OpenAIClip do
         "-vf",
         Enum.join(
           [
-            # scale keeping aspect ratio, then center-crop to match CLIP's training
+            # scale keeping aspect ratio, then center-crop to match model's training
             "scale=w=#{@model.width}:h=#{@model.height}:force_original_aspect_ratio=increase",
             "crop=#{@model.width}:#{@model.height}"
           ],
@@ -104,20 +119,16 @@ defmodule Joiner.OpenAIClip do
     with %{result: :ok, stdout: stdout} <-
            Util.Cmd2.exec(cmd, stdout: <<>>, stderr: "", slow_warn_message: false),
          {_, 0} <- {:remaining_bytes, rem(byte_size(stdout), img_bytes)} do
-      stacked =
-        for <<chunk::size(^img_bytes)-binary <- stdout>> do
-          chunk
-          |> Nx.from_binary(:s8)
-          |> Nx.reshape(
-            {@model.height, @model.width, @model.channels},
-            names: [:height, :width, :channels]
-          )
-          |> Nx.divide(255.0)
-          |> Nx.transpose()
-        end
-        |> Nx.Batch.stack()
+      actual_frames = div(byte_size(stdout), img_bytes)
 
-      pooled = Nx.Serving.batched_run(__MODULE__, stacked)
+      batch =
+        stdout
+        |> Nx.from_binary(:s8)
+        |> Nx.reshape({actual_frames, @model.height, @model.width, @model.channels})
+        |> normalize_frames()
+        |> then(&Nx.Batch.concatenate([&1]))
+
+      pooled = Nx.Serving.batched_run(__MODULE__, batch)
 
       # ensure our output is exactly #frames long
       {count, _model_output_size} = Nx.shape(pooled)
@@ -138,52 +149,17 @@ defmodule Joiner.OpenAIClip do
     end
   end
 
-  @export_script_path "data/cache/open_ai_clip_onnx_export.py"
-  @export_script """
-  import torch
-  from transformers import CLIPModel
-
-  print("Downloading CLIP model")
-  clip_model = CLIPModel.from_pretrained("#{@model.name}")
-  dummy_image = torch.randn(1, #{@model.channels}, #{@model.height}, #{@model.width})
-
-  print("Exporting CLIP model")
-  torch.onnx.export(
-    clip_model.vision_model,
-    dummy_image,
-    "/out/#{@onnx_filename}",
-    input_names=["image"],
-    output_names=["last_hidden_state", "pooled_output"],
-    dynamic_axes={"image": {0: "batch"}},
-  )
-  """
-
   @spec ensure_onnx() :: :ok | {:error, File.posix() | binary()}
   defp ensure_onnx() do
-    if File.exists?(@onnx_path), do: :ok, else: export_onnx()
+    if File.exists?(@onnx_path), do: :ok, else: download_onnx()
   end
 
-  defp export_onnx() do
-    with :ok <- File.mkdir_p(Path.dirname(@onnx_path)),
-         :ok <- File.write(@export_script_path, @export_script),
-         :ok <-
-           Util.Docker.run(
-             "exporting ONNX for OpenAI CLIP model",
-             @onnx_export_base_img,
-             %{
-               command_args: [
-                 "bash",
-                 "-c",
-                 "pip --no-input --no-cache-dir --disable-pip-version-check install --no-warn-script-location --progress-bar off transformers && python /export.py"
-               ],
-               mounts: %{
-                 @export_script_path => "/export.py",
-                 Path.dirname(@onnx_path) => "/out/"
-               },
-               environment: %{"HOME" => "/workspace/"}
-             },
-             []
-           ) do
+  defp download_onnx() do
+    Logger.info("Downloading DINOv3 ONNX model")
+
+    with :ok <- File.mkdir_p(@onnx_dir),
+         :ok <- Util.Download.to_file("#{@onnx_base_url}/model.onnx", @onnx_path),
+         :ok <- Util.Download.to_file("#{@onnx_base_url}/model.onnx_data", @onnx_data_path) do
       :ok
     end
   end

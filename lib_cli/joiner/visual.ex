@@ -4,7 +4,7 @@ defmodule Joiner.Visual do
   def refine(segment, opts) do
     with {:ok, fade_frames} <- fade_frames(segment, opts),
          {:ok, metrics} <- Joiner.FfmpegMetrics.calculate(segment, opts),
-         :ok <- Joiner.OpenAIClip.ensure_started() do
+         :ok <- Joiner.Dino.ensure_started() do
       results =
         metrics
         |> top_fades(fade_frames, Joiner.Segment.start_end?(segment), opts)
@@ -23,13 +23,13 @@ defmodule Joiner.Visual do
               |> Joiner.Segment.set_from_to(from, to)
               |> Joiner.Segment.set_metric(opts, candidate_metric_val)
 
-            with {:ok, clip} <- Joiner.OpenAIClip.similarity(segment, fade_frames) do
-              Joiner.Segment.set_metric(segment, :clip, clip)
+            with {:ok, dino} <- Joiner.Dino.similarity(segment, fade_frames) do
+              Joiner.Segment.set_metric(segment, :dino, dino)
             else
               {:error, reason} ->
-                msg = "Failed to calculate CLIP similarity for"
+                msg = "Failed to calculate DINOv3 similarity for"
                 Logger.warning("#{msg} #{Joiner.Segment.name_full(segment)}: #{reason}")
-                Joiner.Segment.set_metric(segment, :clip, 0.0)
+                Joiner.Segment.set_metric(segment, :dino, 0.0)
             end
           end,
           timeout: :infinity,
@@ -37,13 +37,13 @@ defmodule Joiner.Visual do
         )
         |> Stream.map(&elem(&1, 1))
         |> Stream.reject(fn seg ->
-          seg.metrics.clip < opts.openai_clip_prune_below && !Joiner.Segment.start_end?(seg)
+          seg.metrics.dino < opts.dino_prune_below && !Joiner.Segment.start_end?(seg)
         end)
-        |> Enum.sort_by(& &1.metrics.clip, :desc)
+        |> Enum.sort_by(& &1.metrics.dino, :desc)
 
-      top_ratio = 1.0 - opts.openai_clip_top_percent / 100.0
-      min_val = with [best | _] <- results, do: best.metrics.clip * top_ratio
-      results = Enum.take_while(results, &(&1.metrics.clip >= min_val))
+      top_ratio = 1.0 - opts.dino_top_percent / 100.0
+      min_val = with [best | _] <- results, do: best.metrics.dino * top_ratio
+      results = Enum.take_while(results, &(&1.metrics.dino >= min_val))
       Logger.debug("#{length(results)} remain after refinement")
 
       {:ok, results}
