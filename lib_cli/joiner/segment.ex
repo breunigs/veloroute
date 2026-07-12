@@ -200,6 +200,20 @@ defmodule Joiner.Segment do
   end
 
   @doc """
+  Estimates the distance between the two videos using the GPS overlap region's
+  start/stop endpoints. Unlike `set_distance_metric/2` (which uses the full
+  polyline's average position), this works before visual refinement trims the
+  polylines. Returns a value in [0.0, 1.0] on the same scale as the distance
+  metric.
+  """
+  @spec estimate_overlap_distance(t(), Joiner.Options.t()) :: float()
+  def estimate_overlap_distance(seg, %{geo_max_dist_m: max_dist}) do
+    d1 = Geo.CheapRuler.point2point_dist(seg.from.start, seg.to.start)
+    d2 = Geo.CheapRuler.point2point_dist(seg.from.stop, seg.to.stop)
+    1.0 - min((d1 + d2) / 2.0, max_dist) / max_dist
+  end
+
+  @doc """
   Calculates the weighted metric for this segment and stores it in the
   `segment.metrics.weighted`. Raises if a weighted metric has not been
   calculated for this segment. Assumes that the stored metrics in this segment

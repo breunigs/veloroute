@@ -269,18 +269,32 @@ defmodule Joiner.Pipeline do
     segment
     |> Joiner.GpsTracks.candidates(opts)
     |> Stream.flat_map(fn segment ->
-      Logger.debug(Joiner.Segment.debug(segment, "GPS track overlap found, matching visually…"))
+      est_distance = Joiner.Segment.estimate_overlap_distance(segment, opts)
 
-      with {:ok, segments} <- Joiner.Visual.refine(segment, opts) do
-        segments
-        |> Enum.map(&Joiner.Segment.set_speed_diff_metric/1)
-        |> Enum.map(&Joiner.Segment.set_distance_metric(&1, opts))
-        |> Enum.map(&Joiner.Segment.set_weighted_metric(&1, opts))
-        |> Enum.sort_by(& &1.metrics.weighted, :desc)
+      if est_distance < opts.distance_prune_below && !Joiner.Segment.start_end?(segment) do
+        Logger.debug(
+          Joiner.Segment.debug(
+            segment,
+            "skipping, estimated distance too low (#{Float.round(est_distance, 3)})"
+          )
+        )
+
+        []
       else
-        {:error, reason} ->
-          Logger.warning("failed refinement #{Joiner.Segment.name(segment)}: #{reason}")
-          []
+        Logger.debug(Joiner.Segment.debug(segment, "GPS track overlap found, matching visually…"))
+
+        with {:ok, segments} <- Joiner.Visual.refine(segment, opts) do
+          segments
+          |> Enum.map(&Joiner.Segment.set_speed_diff_metric/1)
+          |> Enum.map(&Joiner.Segment.set_distance_metric(&1, opts))
+          |> Enum.reject(&(&1.metrics.distance < opts.distance_prune_below))
+          |> Enum.map(&Joiner.Segment.set_weighted_metric(&1, opts))
+          |> Enum.sort_by(& &1.metrics.weighted, :desc)
+        else
+          {:error, reason} ->
+            Logger.warning("failed refinement #{Joiner.Segment.name(segment)}: #{reason}")
+            []
+        end
       end
     end)
     |> Stream.take(opts.user_max_candidates)
