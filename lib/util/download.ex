@@ -13,7 +13,7 @@ defmodule Util.Download do
   end
 
   defp to_file_raw(url, file, allowed_redirects) do
-    {:ok, code, headers, ref} =
+    {:ok, code, headers, ref_or_body} =
       :hackney.request(:get, url, [], "",
         follow_redirect: allowed_redirects >= 0,
         max_redirect: allowed_redirects,
@@ -26,7 +26,7 @@ defmodule Util.Download do
 
         try do
           with {:ok, handle} <- File.open(tmp, [:write, :binary, :exclusive, :delayed_write]),
-               :ok <- stream_body(ref, handle),
+               :ok <- write_body(ref_or_body, handle),
                :ok <- File.close(handle) do
             File.rename(tmp, file)
           end
@@ -37,6 +37,15 @@ defmodule Util.Download do
       code ->
         {:error, "unexpected status code: #{code}\nheaders: #{inspect(headers)}"}
     end
+  end
+
+  # hackney returns the body directly for small responses
+  defp write_body(body, handle) when is_binary(body) do
+    IO.binwrite(handle, body)
+  end
+
+  defp write_body(ref, handle) when is_reference(ref) do
+    stream_body(ref, handle)
   end
 
   defp stream_body(ref, handle) do
