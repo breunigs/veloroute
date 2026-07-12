@@ -97,6 +97,7 @@ defmodule Veloroute.MixProject do
       {:ua_parser, "~> 1.8"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       # auto video join
+      {:exla, "~> 0.12.0", only: [:dev, :test]},
       {:ortex, "~> 0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
       {:scholar, "~> 0.4.0", only: [:dev, :test]},
