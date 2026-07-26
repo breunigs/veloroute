@@ -7,13 +7,13 @@ defmodule Data.Article.Blog.BehelfsbrueckeNeueElbbruecken do
 
   def summary(),
     do:
-      "Westliche Behelfsbrücke für alle Verkehrsarten während der Brückensanierungen. Rad- und Fuß teilen sich auf der Westseite dann 1,5m Breite bei umständlicher Führung."
+      "Neue westliche Behelfsbrücke während der Brückensanierungen. Rad- und Fuß teilen sich dort 1,5m Breite bei umständlicher Führung."
 
   def type(), do: :planned
 
   def tags(), do: ["radroute-2", "radroute-3", "radroute-12", "br-mitte-m4", "FR6", "FR11"]
 
-  def start(), do: ~d[2026-06]
+  def start(), do: ~d[2026-12]
 
   # def map_image do
   #   {name(),
@@ -32,6 +32,8 @@ defmodule Data.Article.Blog.BehelfsbrueckeNeueElbbruecken do
        "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1020392"}
     ]
   end
+
+  def point_of_interest(), do: %{lon: 10.026607, lat: 53.532953, zoom: 15}
 
   def text(assigns) do
     ~H"""
