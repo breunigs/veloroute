@@ -6,12 +6,14 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "hls.js": "^1.7.0-beta.1",
+    "hls.js": "^1.7.0-rc.1",
     "maplibre-gl": "^5.24.0",
     "pmtiles": "^4.4.1"
   },
   "devDependencies": {
-    "@svta/common-media-library": "0.18.1",
+    "@svta/cml-cmcd": "2.4.0",
+    "@svta/cml-id3": "1.0.6",
+    "@svta/cml-utils": "1.5.0",
     "@types/phoenix_live_view": "^1.0.0",
     "esbuild": "^0.28.1",
     "eventemitter3": "5.0.4",

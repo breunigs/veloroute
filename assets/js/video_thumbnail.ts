@@ -15,8 +15,6 @@ const once = { once: true }
 let hlsIframesOnly: IframePlayer | null = null
 let thumbnailPreviewEl: HTMLVideoElement
 let progressPreviewEl: HTMLElement
-let iframeDesiredSeekTime: number = 0
-let iframeFixQueued = false
 
 function setup(hls: HlsWithIframes): void {
   hls.once(Hls.Events.INIT_PTS_FOUND, () => setupThumbnailPreview(hls))
@@ -37,19 +35,6 @@ function setupThumbnailPreview(hls: HlsWithIframes): void {
   }, once)
 }
 
-function ensureThumbnailGetsUpdated(time?: number): void {
-  if (time !== undefined) iframeDesiredSeekTime = time
-  if (iframeFixQueued) return
-
-  thumbnailPreviewEl.addEventListener("seeked", () => {
-    iframeFixQueued = false
-    if (thumbnailPreviewEl.currentTime === iframeDesiredSeekTime) return
-    hlsIframesOnly?.loadMediaAt(iframeDesiredSeekTime)
-    ensureThumbnailGetsUpdated()
-  }, once)
-  iframeFixQueued = true
-}
-
 function hideThumbnailPreview(): void {
   requestAnimationFrame(() => progressPreviewEl?.classList.remove("has-thumbnail"))
 }
@@ -57,7 +42,6 @@ function hideThumbnailPreview(): void {
 function seekTo(timeInSeconds: number): void {
   if (!hlsIframesOnly) return
   hlsIframesOnly.loadMediaAt(timeInSeconds)
-  ensureThumbnailGetsUpdated(timeInSeconds)
 }
 
 export function initThumbnailPreview(thumbnailPreviewID: string, progressPreviewID: string) {
