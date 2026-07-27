@@ -28590,6 +28590,10 @@
   <node id='-327853663' action='modify' lat='53.53699190746' lon='10.03028690279' />
   <node id='-327853669' action='modify' lat='53.53508538793' lon='10.02851127505' />
   <node id='-327853670' action='modify' lat='53.5638080263' lon='9.93508457869' />
+  <node id='-328801132' action='modify' lat='53.46821677308' lon='10.01061022013' />
+  <node id='-328801133' action='modify' lat='53.46801719326' lon='10.01063167781' />
+  <node id='-328801134' action='modify' lat='53.46805391601' lon='10.01114934415' />
+  <node id='-328801135' action='modify' lat='53.46827584853' lon='10.01107424229' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -80440,6 +80444,15 @@
     <nd ref='-327853630' />
     <nd ref='-327853615' />
     <tag k='name' v='2026-07-26-behelfsbruecke-neue-elbbruecken' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-21303550' action='modify'>
+    <nd ref='-328801132' />
+    <nd ref='-328801133' />
+    <nd ref='-328801134' />
+    <nd ref='-328801135' />
+    <nd ref='-328801132' />
+    <tag k='name' v='2026-07-26-vollsperrung-wendts-weg' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
