@@ -42,3 +42,9 @@ gdaladdo \
 echo
 echo "converting to PMTiles"
 /go-pmtiles convert output.mbtiles "/output/${outname}"
+
+echo
+echo "extracting footprint polygon"
+footprint="${outname%.pmtiles}.geojson"
+gdal_footprint -t_srs EPSG:4326 -simplify 0.0001 -of GeoJSON mosaic.vrt "/output/${footprint}" \
+  || echo "WARNING: gdal_footprint failed, no footprint extracted"

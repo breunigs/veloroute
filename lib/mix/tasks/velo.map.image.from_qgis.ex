@@ -16,6 +16,8 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          true <- maybe_modify_tifs(tifs),
          tifs = Enum.reverse(tifs),
          :ok <- to_pmtiles(tifs, name) do
+      maybe_add_map_entry(name)
+
       has_name = Article.List.find_exact(name)
       if !has_name, do: Logger.warning("no article with the name #{name} found")
       name_ref = if has_name, do: "name()", else: "#{name}"
@@ -143,6 +145,96 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
         []
     end)
     |> Util.compact()
+  end
+
+  defp maybe_add_map_entry(name) do
+    geojson_path = Path.join(@output_dir, "#{name}.geojson") |> Path.expand()
+
+    with {:ok, json} <- File.read(geojson_path) do
+      File.rm(geojson_path)
+
+      if has_map_entry?(name) do
+        Logger.info("map.osm already has an entry for '#{name}', skipping")
+      else
+        case extract_polygon(json) do
+          {:ok, coords} ->
+            add_to_map_osm(name, coords)
+            Logger.info("added article polygon with #{length(coords)} points to map.osm")
+
+          {:error, reason} ->
+            Logger.warning("failed to extract polygon: #{reason}")
+        end
+      end
+    else
+      {:error, _} ->
+        Logger.warning("no footprint found at #{geojson_path}, skipping map.osm entry")
+    end
+  end
+
+  defp extract_polygon(json) do
+    case Jason.decode(json) do
+      {:ok, %{"features" => [%{"geometry" => geometry} | _]}} ->
+        coords =
+          case geometry do
+            %{"type" => "Polygon", "coordinates" => [outer | _]} -> outer
+            %{"type" => "MultiPolygon", "coordinates" => [[outer | _] | _]} -> outer
+          end
+
+        {:ok, coords}
+
+      other ->
+        {:error, "unexpected GeoJSON: #{inspect(other)}"}
+    end
+  end
+
+  defp has_map_entry?(name) do
+    osm = File.read!(Map.Parser.default_map_path())
+    String.contains?(osm, "v='#{name}'")
+  end
+
+  defp add_to_map_osm(name, coordinates) do
+    osm_path = Map.Parser.default_map_path()
+    raw = File.read!(osm_path)
+
+    # Find minimum existing ID
+    min_id =
+      Regex.scan(~r/id='(-?\d+)'/, raw)
+      |> Enum.map(fn [_, id] -> String.to_integer(id) end)
+      |> Enum.min()
+
+    # Remove duplicate closing coordinate (GeoJSON closes the ring)
+    coords =
+      if List.first(coordinates) == List.last(coordinates),
+        do: Enum.drop(coordinates, -1),
+        else: coordinates
+
+    first_node_id = min_id - 1
+    node_ids = Enum.to_list(first_node_id..(first_node_id - length(coords) + 1)//-1)
+    nodes_and_ids = Enum.zip(coords, node_ids)
+
+    nodes_xml =
+      Enum.map_join(nodes_and_ids, fn {[lon, lat], id} ->
+        lat_s = :erlang.float_to_binary(lat / 1, decimals: 7)
+        lon_s = :erlang.float_to_binary(lon / 1, decimals: 7)
+        "  <node id='#{id}' lat='#{lat_s}' lon='#{lon_s}' />\n"
+      end)
+
+    # Close the ring by referencing first node again
+    nd_refs =
+      Enum.map_join(node_ids ++ [first_node_id], fn id ->
+        "    <nd ref='#{id}' />\n"
+      end)
+
+    way_id = List.last(node_ids) - 1
+
+    way_xml =
+      "  <way id='#{way_id}'>\n#{nd_refs}" <>
+        "    <tag k='name' v='#{name}' />\n" <>
+        "    <tag k='type' v='article' />\n" <>
+        "  </way>\n"
+
+    new_raw = String.replace(raw, "</osm>", "#{nodes_xml}#{way_xml}</osm>")
+    File.write!(osm_path, new_raw)
   end
 
   defp ending?(path, ending) do
