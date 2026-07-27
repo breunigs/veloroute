@@ -28594,6 +28594,30 @@
   <node id='-328801133' action='modify' lat='53.46801719326' lon='10.01063167781' />
   <node id='-328801134' action='modify' lat='53.46805391601' lon='10.01114934415' />
   <node id='-328801135' action='modify' lat='53.46827584853' lon='10.01107424229' />
+  <node id='-328801136' action='modify' lat='53.59734084808' lon='10.06021494974' />
+  <node id='-328801138' lat='53.5971565' lon='10.0600911' />
+  <node id='-328801139' lat='53.5956752' lon='10.0591024' />
+  <node id='-328801140' action='modify' lat='53.59497908373' lon='10.05889803558' />
+  <node id='-328801145' action='modify' lat='53.59496905345' lon='10.0592147914' />
+  <node id='-328801146' lat='53.595668' lon='10.0595029' />
+  <node id='-328801147' lat='53.5964883' lon='10.0600526' />
+  <node id='-328801149' lat='53.5966465' lon='10.0601882' />
+  <node id='-328801150' lat='53.5971279' lon='10.0604923' />
+  <node id='-329748630' action='modify' lat='53.59730588159' lon='10.06060122371' />
+  <node id='-330696105' action='modify' lat='53.61905029356' lon='10.13479113042' />
+  <node id='-330696106' action='modify' lat='53.61907574884' lon='10.13500570714' />
+  <node id='-330696107' action='modify' lat='53.61826117221' lon='10.13521491945' />
+  <node id='-330696108' action='modify' lat='53.61705837017' lon='10.13556360662' />
+  <node id='-330696109' action='modify' lat='53.61498679742' lon='10.13593375146' />
+  <node id='-330696110' action='modify' lat='53.61326836502' lon='10.13623415887' />
+  <node id='-330696111' action='modify' lat='53.61172808098' lon='10.13647555768' />
+  <node id='-330696112' action='modify' lat='53.61171216866' lon='10.13625561655' />
+  <node id='-330696113' action='modify' lat='53.61213861672' lon='10.13615905702' />
+  <node id='-330696114' action='modify' lat='53.6133161002' lon='10.13601958215' />
+  <node id='-330696115' action='modify' lat='53.61412758996' lon='10.13584255636' />
+  <node id='-330696116' action='modify' lat='53.6158109837' lon='10.13554751337' />
+  <node id='-330696117' action='modify' lat='53.61695336201' lon='10.13532220781' />
+  <node id='-330696118' action='modify' lat='53.617853878' lon='10.13508617342' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' version='1' lat='53.5412177' lon='10.000026' />
@@ -80453,6 +80477,40 @@
     <nd ref='-328801135' />
     <nd ref='-328801132' />
     <tag k='name' v='2026-07-26-vollsperrung-wendts-weg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-328801153' action='modify'>
+    <nd ref='-328801136' />
+    <nd ref='-328801138' />
+    <nd ref='-328801139' />
+    <nd ref='-328801140' />
+    <nd ref='-328801145' />
+    <nd ref='-328801146' />
+    <nd ref='-328801147' />
+    <nd ref='-328801149' />
+    <nd ref='-328801150' />
+    <nd ref='-329748630' />
+    <nd ref='-328801136' />
+    <tag k='name' v='2026-07-27-fabriciusstrasse-sued' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-329754495' action='modify'>
+    <nd ref='-330696105' />
+    <nd ref='-330696106' />
+    <nd ref='-330696107' />
+    <nd ref='-330696108' />
+    <nd ref='-330696109' />
+    <nd ref='-330696110' />
+    <nd ref='-330696111' />
+    <nd ref='-330696112' />
+    <nd ref='-330696113' />
+    <nd ref='-330696114' />
+    <nd ref='-330696115' />
+    <nd ref='-330696116' />
+    <nd ref='-330696117' />
+    <nd ref='-330696118' />
+    <nd ref='-330696105' />
+    <tag k='name' v='2026-07-27-bekassinenau-nord' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
