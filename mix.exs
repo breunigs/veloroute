@@ -100,7 +100,7 @@ defmodule Veloroute.MixProject do
       {:exla, "~> 0.12.0", only: [:dev, :test]},
       {:ortex, "~> 0.1.10", only: [:dev, :test]},
       {:owl, "~> 0.12", only: [:dev, :test]},
-      {:scholar, "~> 0.4.0", only: [:dev, :test]},
+      {:scholar, "~> 0.4.2", only: [:dev, :test]},
       {:rustler, "~> 0.38.0"}
     ]
   end
