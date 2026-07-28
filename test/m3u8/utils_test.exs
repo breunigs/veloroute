@@ -38,6 +38,56 @@ defmodule M3U8.UtilsTest do
     assert expect == M3U8.Utils.byte_range_for(media_playlist(), "00:00:01.337")
   end
 
+  test "resolves timestamp to segment in discontinuous playlist" do
+    tokens = discontinuous_playlist()
+    # 0-2002ms is in seg_0.m4s, 2002-4004ms is in seg_1.m4s
+    assert {"../seg/seg_0.m4s", 1000} == M3U8.Utils.segment_for_timestamp(tokens, 1000)
+    assert {"../seg/seg_1.m4s", 500} == M3U8.Utils.segment_for_timestamp(tokens, 2502)
+  end
+
+  test "segment_for_timestamp returns :not_found for playlist without map entries" do
+    {:ok, tokens} =
+      M3U8.Tokenizer.read("""
+      #EXTM3U
+      #EXT-X-VERSION:7
+      #EXT-X-STREAM-INF:BANDWIDTH=4400000,RESOLUTION=640x360,CODECS="avc1.64001e"
+      stream_0.m3u8
+      """)
+
+    assert :not_found == M3U8.Utils.segment_for_timestamp(tokens, 1000)
+  end
+
+  defp discontinuous_playlist() do
+    m3u8 = """
+    #EXTM3U
+    #EXT-X-VERSION:7
+    #EXT-X-TARGETDURATION:2
+    #EXT-X-MEDIA-SEQUENCE:0
+    #EXT-X-PLAYLIST-TYPE:VOD
+    #EXT-X-INDEPENDENT-SEGMENTS
+    #EXT-X-DISCONTINUITY
+    #EXT-X-MAP:URI="../seg/seg_0.m4s",BYTERANGE="912@0"
+    #EXTINF:1.001000,
+    #EXT-X-BYTERANGE:1000@912
+    ../seg/seg_0.m4s
+    #EXTINF:1.001000,
+    #EXT-X-BYTERANGE:1000@1912
+    ../seg/seg_0.m4s
+    #EXT-X-DISCONTINUITY
+    #EXT-X-MAP:URI="../seg/seg_1.m4s",BYTERANGE="912@0"
+    #EXTINF:1.001000,
+    #EXT-X-BYTERANGE:1000@912
+    ../seg/seg_1.m4s
+    #EXTINF:1.001000,
+    #EXT-X-BYTERANGE:1000@1912
+    ../seg/seg_1.m4s
+    #EXT-X-ENDLIST
+    """
+
+    {:ok, tokens} = M3U8.Tokenizer.read(m3u8)
+    tokens
+  end
+
   defp master_playlist() do
     m3u8 = """
     #EXTM3U

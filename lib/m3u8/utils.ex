@@ -112,5 +112,41 @@ defmodule M3U8.Utils do
     Map.put(items, url, have)
   end
 
+  @doc """
+  For playlists with discontinuities (segmented videos), resolves a timestamp
+  to the specific segment file and local offset within that segment.
+
+  Returns `{segment_url, local_offset_ms}` or `:not_found`.
+  For playlists without discontinuities, returns `:not_found`.
+  """
+  @spec segment_for_timestamp([M3U8.Tokenizer.valid_token()], non_neg_integer()) ::
+          {binary(), non_neg_integer()} | :not_found
+  def segment_for_timestamp(tokens, timestamp_ms) when is_integer(timestamp_ms) do
+    tokens
+    |> Enum.reduce_while({0, nil}, fn
+      {:map, %{"URI" => uri}}, {cumulative_ms, _segment_url} ->
+        {:cont, {cumulative_ms, uri}}
+
+      {:extinf, %{duration: dur}}, {cumulative_ms, segment_url} ->
+        dur_ms = to_ms(dur)
+
+        if segment_url != nil and timestamp_ms < cumulative_ms + dur_ms do
+          {:halt, {:found, segment_url, cumulative_ms}}
+        else
+          {:cont, {cumulative_ms + dur_ms, segment_url}}
+        end
+
+      _other, acc ->
+        {:cont, acc}
+    end)
+    |> case do
+      {:found, segment_url, segment_start_ms} ->
+        {segment_url, timestamp_ms - segment_start_ms}
+
+      _ ->
+        :not_found
+    end
+  end
+
   defp to_ms(in_s), do: round(in_s * 1000)
 end

@@ -97,16 +97,18 @@ defmodule VelorouteWeb.ImageExtractController do
   @ffmpeg_allow_seeking_past_end_s 60
   defp ffmpeg_no_cache(hash, ts, max_length, format) do
     source = Video.RenderedTools.highest_quality_video_file(hash)
-    source = String.replace(source, ".m4s", ".m3u8")
-    source_abs = Path.join(Settings.r(:video_target_dir_abs), source)
+    m3u8 = String.replace(source, ".m4s", ".m3u8")
+    m3u8_abs = Path.join(Settings.r(:video_target_dir_abs), m3u8)
 
     ts = min(ts, max_length + @ffmpeg_allow_seeking_past_end_s * 1000)
+
+    {source_abs, seek_ts} = resolve_source_and_timestamp(m3u8_abs, ts)
 
     ffmpeg_args =
       List.flatten([
         "-hide_banner",
         ["-loglevel", "error"],
-        ["-ss", Video.Timestamp.from_milliseconds(ts)],
+        ["-ss", Video.Timestamp.from_milliseconds(seek_ts)],
         "-noaccurate_seek",
         ["-i", source_abs],
         # allow seeking past end of video, to hide the length differences seen
@@ -131,6 +133,19 @@ defmodule VelorouteWeb.ImageExtractController do
     {:ok, timer} = :timer.send_after(@ffmpeg_timeout_ms, {:abort_ffmpeg, ospid})
 
     collect_from_port(port, timer)
+  end
+
+  # For segmented (v7) videos with discontinuities, ffmpeg's HLS demuxer can't
+  # seek correctly with pre-input -ss. Instead, resolve the timestamp to the
+  # specific segment file and seek within it directly.
+  defp resolve_source_and_timestamp(m3u8_abs, ts) do
+    with {:ok, tokens} <- M3U8.Tokenizer.read_file(m3u8_abs),
+         {segment_url, local_ts} <- M3U8.Utils.segment_for_timestamp(tokens, ts) do
+      segment_abs = Path.join(Path.dirname(m3u8_abs), segment_url)
+      {segment_abs, local_ts}
+    else
+      _ -> {m3u8_abs, ts}
+    end
   end
 
   # defp ffmpeg_format_args(:avif) do
