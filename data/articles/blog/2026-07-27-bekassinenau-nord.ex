@@ -13,6 +13,41 @@ defmodule Data.Article.Blog.BekassinenauNord do
 
   def tags(), do: []
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 7,
+        group: "bekassin",
+        direction: :forward,
+        from: "Berner Heerweg",
+        to: "Alter Zollweg",
+        parent_ref: __MODULE__,
+        text: "Bekassinenau nach Süden",
+        historic: %{
+          "12a1b1136639dfe21e831ec2274d0c01" => ~d[2026-07]
+        },
+        videos: [
+          {"2026-07-28-bekasin/GX018937", "00:01:22.866", "00:02:19.611"}
+        ]
+      },
+      %Video.Track{
+        renderer: 7,
+        group: "bekassin",
+        direction: :backward,
+        from: "Alter Zollweg",
+        to: "Berner Heerweg",
+        parent_ref: __MODULE__,
+        text: "Bekassinenau nach Norden",
+        historic: %{
+          "5485845594c5c6475789695ed1432579" => ~d[2026-07]
+        },
+        end_action: :reverse,
+        videos: [
+          {"2026-07-28-bekasin/GX018937", "00:00:28.523", "00:01:22.866"}
+        ]
+      }
+    ]
+
   def links(_assigns) do
     [
       {"1. Entwurf: Erläuterung und Lageplan", ~d[2026-07],
