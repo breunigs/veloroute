@@ -40,9 +40,14 @@ defmodule M3U8.UtilsTest do
 
   test "resolves timestamp to segment in discontinuous playlist" do
     tokens = discontinuous_playlist()
-    # 0-2002ms is in seg_0.m4s, 2002-4004ms is in seg_1.m4s
-    assert {"../seg/seg_0.m4s", 1000} == M3U8.Utils.segment_for_timestamp(tokens, 1000)
+    # seg_0 covers 0-2002ms (two 1.001s chunks), seg_1 covers 2002-4004ms
+    assert {"../seg/seg_0.m4s", 500} == M3U8.Utils.segment_for_timestamp(tokens, 500)
+    assert {"../seg/seg_0.m4s", 1500} == M3U8.Utils.segment_for_timestamp(tokens, 1500)
     assert {"../seg/seg_1.m4s", 500} == M3U8.Utils.segment_for_timestamp(tokens, 2502)
+  end
+
+  test "segment_for_timestamp returns :not_found for non-segmented playlist" do
+    assert :not_found == M3U8.Utils.segment_for_timestamp(media_playlist(), 1000)
   end
 
   test "segment_for_timestamp returns :not_found for playlist without map entries" do

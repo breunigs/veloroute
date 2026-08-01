@@ -122,18 +122,28 @@ defmodule M3U8.Utils do
   @spec segment_for_timestamp([M3U8.Tokenizer.valid_token()], non_neg_integer()) ::
           {binary(), non_neg_integer()} | :not_found
   def segment_for_timestamp(tokens, timestamp_ms) when is_integer(timestamp_ms) do
-    tokens
-    |> Enum.reduce_while({0, nil}, fn
-      {:map, %{"URI" => uri}}, {cumulative_ms, _segment_url} ->
-        {:cont, {cumulative_ms, uri}}
+    if Enum.any?(tokens, &match?({:discontinuity, _}, &1)) do
+      do_segment_for_timestamp(tokens, timestamp_ms)
+    else
+      :not_found
+    end
+  end
 
-      {:extinf, %{duration: dur}}, {cumulative_ms, segment_url} ->
+  defp do_segment_for_timestamp(tokens, timestamp_ms) do
+    # Track {cumulative_ms, segment_url, segment_start_ms} where segment_start_ms
+    # is the cumulative time when the current segment's MAP entry was seen.
+    tokens
+    |> Enum.reduce_while({0, nil, 0}, fn
+      {:map, %{"URI" => uri}}, {cumulative_ms, _segment_url, _seg_start} ->
+        {:cont, {cumulative_ms, uri, cumulative_ms}}
+
+      {:extinf, %{duration: dur}}, {cumulative_ms, segment_url, seg_start} ->
         dur_ms = to_ms(dur)
 
         if segment_url != nil and timestamp_ms < cumulative_ms + dur_ms do
-          {:halt, {:found, segment_url, cumulative_ms}}
+          {:halt, {:found, segment_url, seg_start}}
         else
-          {:cont, {cumulative_ms + dur_ms, segment_url}}
+          {:cont, {cumulative_ms + dur_ms, segment_url, seg_start}}
         end
 
       _other, acc ->
