@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.WillyBrandtStrasse do
     do:
       "Geh- und Radwege werden saniert und in der Aufteilung angepasst. Fahrt vom Deich (Radroute 2) nach Westen künftig via Deichtorplatz."
 
-  def type(), do: :construction
+  def type(), do: :finished
   def start(), do: ~d[2025-08-04]
   def stop(), do: ~d[2026-04-26]
 

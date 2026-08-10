@@ -10,7 +10,7 @@ defmodule Data.Article.Blog.FrohmestrasseNord do
 
   def type(), do: :planned
 
-  def start(), do: ~d[2025Q3]
+  # def start(), do: ~d[2025Q3]
 
   def tags(), do: ["br-eimsbuettel-nord-sued", "radroute-concept-d"]
 

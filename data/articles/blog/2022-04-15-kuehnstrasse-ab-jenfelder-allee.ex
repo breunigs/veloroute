@@ -8,16 +8,26 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
 
   def summary(),
     do:
-      "1,85m breite Radfahrstreifen. Umbau nur möglich, wenn die Kreuzung mit der Jenfelder Allee ebenfalls mit angepasst wird."
+      "1,75m breite Radfahrstreifen. Umbau nur möglich, wenn die Kreuzung mit der Jenfelder Allee ebenfalls mit angepasst wird."
 
   def type(), do: :planned
-  def start(), do: ~d[2025Q2]
-  # def stop(), do: ~d[2025]
+  def start(), do: ~d[2026-10-15]
+  def stop(), do: ~d[2027-11]
 
   def tags(), do: ["radroute-7", "7", "w25"]
 
+  def map_image do
+    {name(),
+     [
+       {"BRW Ingenieurpartnerschaft mbB", "https://brw-ip.de/"},
+       {"BVM", "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/kontakt"}
+     ]}
+  end
+
   def links(_assigns) do
     [
+      {"Bauvergabe", ~d[2026-08],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/23f67dc9-94ea-47ae-bd4b-99c0f06b52ac"},
       {"Infoseite der Stadt",
        "https://www.hamburg.de/politik-und-verwaltung/bezirke/wandsbek/themen/verkehr/bezirkliche-projekte-in-wandsbek/radverkehrsmassnahmen/kuehnstrasse-438218"},
       {"2. Entwurf, Pläne und Erläuterungen", "April 2023",
@@ -36,8 +46,8 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
     <h4>Alter Zustand</h4>
     <p>In diesem Abschnitt der Kuehnstraße gibt es keine eigenen Radwege. Der Radverkehr teilt sich im <.ref>Mischverkehr</.ref> die Fahrbahn mit den KFZ. An der Kreuzung mit der <.v bounds="10.125769,53.581522,10.12832,53.583135" lon={10.127042} lat={53.582407} dir="forward" ref={Alltagsroute7}>Jenfelder Allee</.v> gibt es noch alte <.ref>Hochbordradwege</.ref>, die je nach Richtung schwer zu erreichen bzw. zu verlassen sind. Die Kreuzung mit der <.v bounds="10.131371,53.583898,10.135139,53.585823" lon={10.132449} lat={53.584436} dir="forward" ref={Alltagsroute7}>Wilsonstraße</.v> wurde vor einigen Jahren umgebaut und bietet Radwegstummel zum <.ref>indirekten Linksabbiegen</.ref>.</p>
 
-    <h4>Planung</h4>
-    <p>Es ist vorgesehen beidseitig rund 1,85m breite <.ref>Radfahrstreifen</.ref> einzurichten. Die Einmündung <.v bounds="10.129781,53.583744,10.132448,53.584673" lon={10.131055} lat={53.584248} dir="backward" ref={Alltagsroute7}>Wöschenhof</.v> soll zu einer Gehwegüberfahrt umgebaut werden. Die Gehwege werden gepflastert. Auf der Südseite sollen dazu Grundstücke gekauft werden, um die Mindestbreiten zu erreichen. Bei Fahrradanlehnbügeln und Stellplätzen für Lastenräder setzt man niedrige Bordsteine ein.</p>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
+    <p>Es ist vorgesehen beidseitig rund 1,75m breite <.ref>Radfahrstreifen</.ref> einzurichten. Die Einmündung <.v bounds="10.129781,53.583744,10.132448,53.584673" lon={10.131055} lat={53.584248} dir="backward" ref={Alltagsroute7}>Wöschenhof</.v> soll zu einer Gehwegüberfahrt umgebaut werden. Die Gehwege werden gepflastert. Auf der Südseite sollen dazu Grundstücke gekauft werden, um die Mindestbreiten zu erreichen. Bei Fahrradanlehnbügeln und Stellplätzen für Lastenräder setzt man niedrige Bordsteine ein.</p>
 
     <h5>Anschluss Jenfelder Allee</h5>
     <p>Die Kreuzung soll zeitgleich umgebaut werden, sodass ein sicherer Anschluss der Radfahrstreifen möglich ist. Sollte das nicht klappen, sind Übergangslösungen vorgesehen. Aus der Innenstadt kommend würde der schmale <.ref>Hochbordradweg</.ref> auf den Radfahrstreifen abgeleitet. Die Fahrbahn würde sich hier von zwei auf eine Fahrspur verengen. In der Gegenrichtung würde der Radfahrstreifen in der kombinierten Geradeaus- und Rechtsabbiegerspur enden.</p>

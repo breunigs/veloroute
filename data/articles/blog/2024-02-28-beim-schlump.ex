@@ -7,9 +7,9 @@ defmodule Data.Article.Blog.BeimSchlump do
     do:
       "Protected-Bike-Lanes mit Unterbrechungen für Bushalte. Teilweise nur Radfahrstreifen um KFZ-Parkplätze zu erhalten. Bushalt an U-Schlump im Schlump wird in Straßenmitte verlegt."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
-  def start(), do: ~d[2026-08]
+  def start(), do: ~d[2026-08-24]
   def stop(), do: ~d[2028]
 
   def tags(), do: ["radroute-3", "radroute-2", "radroute-14", "FR10"]
@@ -25,6 +25,8 @@ defmodule Data.Article.Blog.BeimSchlump do
 
   def links(_assigns) do
     [
+      {"Baustelleinfo", ~d[2026-08],
+       "https://lsbg.hamburg.de/resource/blob/1206780/5f9cbc412abb09cc53960cd627710168/beim-schlump-baustelleninformation-august-2026-data.pdf"},
       {"Ausschreibung Umbau (ohne Kreuzung)", ~d[2026-04],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/0f6fa4c2-71f4-412e-90e2-178bcda75e94"},
       {"fertiger Entwurf – Bericht", ~d[2024-12],

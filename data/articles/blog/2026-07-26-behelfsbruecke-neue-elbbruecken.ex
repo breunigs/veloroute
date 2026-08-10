@@ -15,16 +15,16 @@ defmodule Data.Article.Blog.BehelfsbrueckeNeueElbbruecken do
 
   def start(), do: ~d[2026-12]
 
-  # def map_image do
-  #   {name(),
-  #    [
-  #      {"Hamburg Port Authority AöR",
-  #       "https://www.hamburg-port-authority.de/de/info-port/contact-center"},
-  #      {"ReGe Hamburg", "https://www.rege.hamburg/kontakt/"},
-  #      {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-  #      {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
-  #    ]}
-  # end
+  def map_image do
+    {name(),
+     [
+       {"Hamburg Port Authority AöR",
+        "https://www.hamburg-port-authority.de/de/info-port/contact-center"},
+       {"ReGe Hamburg", "https://www.rege.hamburg/kontakt/"},
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
+     ]}
+  end
 
   def links(_assigns) do
     [
@@ -42,7 +42,7 @@ defmodule Data.Article.Blog.BehelfsbrueckeNeueElbbruecken do
 
     <p>Die ortsnahe <.v bounds="10.016936,53.530416,10.027055,53.536585" lon={10.022518} lat={53.533663} dir="forward" ref={Radroute3}>Freihafenelbbrücke</.v> ist vollgesperrt, seit sie 2025 von einem Schiff gerammt wurde. Sie soll zwar saniert werden, muss danach aber als Behelfsbrücke für den Bahnverkehr dienen. Eine vollständige Öffnung ist nicht vor 2038 zu erwarten. Ob Rad und Fuß die Brücke vorher nutzen können wurde nicht gesagt.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <p>Auf der Westseite der vorhandenen Neuen Elbbrücken soll eine Behelfsbrücke entstehen. Sie soll den Verkehr aufnehmen, während die anderen Brücken saniert werden. Für Rad- und Fuß bleiben alle Verkehrsbeziehungen wie heute erhalten.</p>
 
     <p>Die neue Breite des gemeinsamen Fuß- und Radwegs auf der Westseite (in Fahrtrichtung Veddel/Wilhlemsburg) beträgt 1,5m. Die Querung der <.v bounds="10.027751,53.534114,10.027751,53.534114" lon={10.027751} lat={53.534114} dir="forward" ref={Radroute12}>Zweibrückenstraße</.v> erfolgt voraussichtlich <.v bounds="10.02631,53.533965,10.02631,53.533965" lon={10.02631} lat={53.533965} dir="forward" ref={Radroute3}>dort wo heute schon die Ampel</.v> für die Unterführung steht.</p>
