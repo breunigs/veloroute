@@ -11,9 +11,9 @@
     "pmtiles": "^4.4.1"
   },
   "devDependencies": {
-    "@svta/cml-cmcd": "2.4.0",
-    "@svta/cml-id3": "1.0.6",
-    "@svta/cml-utils": "1.5.0",
+    "@svta/cml-cmcd": "2.5.0",
+    "@svta/cml-id3": "1.0.8",
+    "@svta/cml-utils": "1.6.0",
     "@types/phoenix_live_view": "^1.0.0",
     "esbuild": "^0.28.1",
     "eventemitter3": "5.0.4",
