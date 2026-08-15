@@ -54,6 +54,18 @@ defmodule Article.List do
 
   def find_exact(_list, _key), do: nil
 
+  @spec resolve(binary()) :: Article.t() | nil
+  def resolve(input) when is_binary(input) do
+    try_as_module(input) || find_exact(Path.basename(input, ".ex"))
+  end
+
+  defp try_as_module(input) do
+    mod = String.to_existing_atom("Elixir." <> input)
+    find_exact(mod)
+  rescue
+    ArgumentError -> nil
+  end
+
   @spec find_exact(binary | nil | Article.t()) :: Article.t() | nil
   def find_exact(key) when is_module(key) do
     candidates = [

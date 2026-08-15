@@ -17,13 +17,16 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     Help
     ##############################################################################################
 
-    You can specify not-yet-generated videos by name and index. For example, this will preview the
-    first track of the given article:
+    You can specify not-yet-generated videos by name and index. The article can be given as a module
+    name, file path, filename, or basename. For example, these are all equivalent:
     mix velo.videos.preview Data.Article.Static.Alltagsroute12 0
+    mix velo.videos.preview data/articles/static/alltagsroute-12.ex 0
+    mix velo.videos.preview alltagsroute-12.ex 0
+    mix velo.videos.preview alltagsroute-12 0
 
     You can also preview later parts of the videos by specifying a timestamp like so:
-    mix velo.videos.preview Data.Article.Static.Alltagsroute12 0 00:05:00.000
-    mix velo.videos.preview b02ba2966179568a3307afb13cac6783     00:05:00.000
+    mix velo.videos.preview alltagsroute-12 0 00:05:00.000
+    mix velo.videos.preview b02ba2966179568a3307afb13cac6783  00:05:00.000
 
     Below any generated, but not rendered videos will be shown. If there are none, try running:
     mix velo.videos.generate new
@@ -58,10 +61,18 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end)
   end
 
-  defp preview(["Data.Article." <> _rest = in_art, in_index | tail] = args) do
-    mod = String.to_atom("Elixir." <> in_art)
+  defp preview([hash | tail]) when valid_hash(hash) do
+    rendered = Video.Generator.find_by_hash(hash)
 
-    with {:module, art} <- Code.ensure_compiled(mod),
+    if rendered == nil do
+      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
+    else
+      stream_video(rendered, tail)
+    end
+  end
+
+  defp preview([in_art, in_index | tail] = args) do
+    with art when is_module(art) <- Article.List.resolve(in_art) || :not_found,
          {index, ""} when index >= 0 <- Integer.parse(in_index),
          track when is_struct(track, Video.Track) <- Enum.at(art.tracks(), index),
          mod when is_module(mod) <- Video.Generator.dynamic_compile(track) do
@@ -77,20 +88,10 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end
   end
 
-  defp preview([hash | tail]) when valid_hash(hash) do
-    rendered = Video.Generator.find_by_hash(hash)
-
-    if rendered == nil do
-      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
-    else
-      stream_video(rendered, tail)
-    end
-  end
-
   defp preview(args) do
     IO.puts(
       :stderr,
-      "cannot find video to preview from params. Expected a [video_hash], or [module, index]. Got: #{inspect(args)}"
+      "cannot find video to preview from params. Expected a [video_hash], or [article, index]. Got: #{inspect(args)}"
     )
 
     exit({:shutdown, 1})

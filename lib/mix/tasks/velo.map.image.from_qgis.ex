@@ -55,8 +55,13 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
 
   @spec parse_args([binary()]) ::
           {:ok, proj_qgz :: binary(), article_name :: binary()} | {:error, binary()}
-  defp parse_args([proj, name]) when is_binary(name) and is_binary(proj) do
-    name = Path.basename(name, ".ex")
+  defp parse_args([proj, input]) when is_binary(input) and is_binary(proj) do
+    name =
+      case Article.List.resolve(input) do
+        nil -> Path.basename(input, ".ex")
+        mod -> mod.name()
+      end
+
     {:ok, proj, name}
   end
 

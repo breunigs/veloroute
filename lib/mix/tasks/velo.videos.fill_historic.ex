@@ -14,7 +14,16 @@ defmodule Mix.Tasks.Velo.Videos.FillHistoric do
   end
 
   defp fill_historic(arg) do
-    {:module, mod} = Code.ensure_compiled(String.to_atom("Elixir." <> arg))
+    mod =
+      case Article.List.resolve(arg) do
+        nil ->
+          Logger.error("no article found for '#{arg}'")
+          exit({:shutdown, 1})
+
+        mod ->
+          mod
+      end
+
     path = Util.module_source_path(mod)
     orig_source = source = File.read!(path)
 
