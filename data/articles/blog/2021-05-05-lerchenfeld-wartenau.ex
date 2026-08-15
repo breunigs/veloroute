@@ -11,6 +11,25 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
 
   def tags(), do: ["radroute-6", "6"]
 
+  def tracks(),
+    do: [
+      %Video.Track{
+        renderer: 7,
+        group: "1",
+        direction: :forward,
+        from: "Birkenau",
+        to: "Angerstraße",
+        parent_ref: __MODULE__,
+        text: "Wartenau nach Süden",
+        historic: %{
+          "357fee02f1ce573e153b1d9a2a80dc62" => ~d[2026-03]
+        },
+        videos: [
+          {"2026-03-15-mitte/GX018782", "00:00:36.929", :end}
+        ]
+      }
+    ]
+
   def map_image do
     {name(),
      [

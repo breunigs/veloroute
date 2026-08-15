@@ -36,6 +36,8 @@ defmodule Data.Article.Blog.OsterfeldstrasseLokstedterWeg do
 
   def links(_assigns) do
     [
+      {"Baufortschritt", ~d[2026-08],
+       "https://sitzungsdienst-eimsbuettel.hamburg.de/bi/vo020.asp?VOLFDNR=1011927"},
       {"Baustelleninfo", ~d[2026-01],
        "https://lsbg.hamburg.de/resource/blob/1139934/4181c183fb6bd5cd4ca17cad426caa6a/osterfeldstrasse-lokstedter-weg-anliegerinformation-januar-2026-data.pdf"},
       {"Bauvergabe", ~d[2025-10],

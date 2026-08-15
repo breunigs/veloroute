@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.BudapesterStrasse3 do
     do:
       "Radweg wird verbreitert und der Gehweg erstmals durchgängig. Betonklötze weichen einer Baumreihe."
 
-  def type(), do: :construction
+  def type(), do: :finished
 
   def tags(), do: ["radroute-15"]
 

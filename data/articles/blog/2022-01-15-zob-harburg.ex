@@ -6,7 +6,7 @@ defmodule Data.Article.Blog.ZOBHarburg do
 
   def start(), do: ~d[2023-05]
   def stop(), do: ~d[2027-09-05]
-  # def construction_site_id_hh(), do: [586_843]
+  def construction_site_id_hh(), do: [586_843, 2_994_597]
 
   def type(), do: :construction
 

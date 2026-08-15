@@ -9,11 +9,13 @@ defmodule Data.Article.Blog.UFarmsen do
   def type(), do: :planned
   def tags(), do: ["radroute-20", "radroute-6", "FR2", "6", "br-wandsbek-w5", "br-wandsbek-w8"]
 
-  def start(), do: ~d[2026]
-  def stop(), do: ~d[2028]
+  def start(), do: ~d[2027-03]
+  def stop(), do: ~d[2028-12]
 
   def links(_assigns) do
     [
+      {"Bauvergabe", ~d[2026-08],
+       "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/133e3493-2dd8-4afc-b188-f61f85933142"},
       {"fertiger Entwurf, Lageplan und Erläuterungsbericht", "April 2024",
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1020762"},
       {"1. Entwurf, Lageplan und Erläuterungsbericht", "Oktober 2023",
