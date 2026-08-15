@@ -15,9 +15,10 @@ defmodule Util.Download do
   defp to_file_raw(url, file, allowed_redirects) do
     {:ok, code, headers, ref_or_body} =
       :hackney.request(:get, url, [], "",
-        follow_redirect: allowed_redirects >= 0,
-        max_redirect: allowed_redirects,
-        recv_timeout: :infinity
+        follow_redirect: false,
+        pool: false,
+        recv_timeout: :infinity,
+        connect_timeout: 30_000
       )
 
     case code do
@@ -34,10 +35,28 @@ defmodule Util.Download do
           File.rm(tmp)
         end
 
+      redirect when redirect in [301, 302, 303, 307, 308] ->
+        maybe_close(ref_or_body)
+
+        if allowed_redirects <= 0 do
+          {:error, "too many redirects"}
+        else
+          location = get_location(headers)
+          to_file_raw(location, file, allowed_redirects - 1)
+        end
+
       code ->
         {:error, "unexpected status code: #{code}\nheaders: #{inspect(headers)}"}
     end
   end
+
+  defp get_location(headers) do
+    {_, location} = List.keyfind(headers, "Location", 0) || List.keyfind(headers, "location", 0)
+    location
+  end
+
+  defp maybe_close(ref) when is_reference(ref), do: :hackney.close(ref)
+  defp maybe_close(_body), do: :ok
 
   # hackney returns the body directly for small responses
   defp write_body(body, handle) when is_binary(body) do
