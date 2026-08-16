@@ -144,7 +144,7 @@ defmodule Search.Meilisearch.API do
     end
   end
 
-  @spec multi_search(%{atom() => map()}, float()) ::
+  @spec multi_search([{atom(), map()}], float()) ::
           {:ok, %{atom() => list()}} | {:error, binary()}
   def multi_search(queries, min_relevance) do
     payload = %{
@@ -164,8 +164,10 @@ defmodule Search.Meilisearch.API do
     with {:ok, %{body: %{"results" => results}}} <-
            post("/multi-search", payload, opts: @adapter_opts_general) do
       {:ok,
-       Enum.into(results, %{}, fn %{"indexUid" => index, "hits" => hits} ->
-         {String.to_existing_atom(index), hits}
+       results
+       |> Enum.group_by(fn %{"indexUid" => uid} -> String.to_existing_atom(uid) end)
+       |> Enum.into(%{}, fn {index, groups} ->
+         {index, Enum.flat_map(groups, & &1["hits"])}
        end)}
     else
       other ->

@@ -9,12 +9,13 @@ defmodule Search.Result do
           type: binary(),
           url: binary() | nil,
           subtext: binary() | nil,
-          source: binary() | nil
+          source: binary() | nil,
+          image: binary() | nil
         }
 
   @enforce_keys [:name, :bounds, :relevance, :type]
 
-  defstruct @enforce_keys ++ [:url, :subtext, :center, :source]
+  defstruct @enforce_keys ++ [:url, :subtext, :center, :source, :image]
 
   @spec sort([t()] | Enumerable.t()) :: [t()]
   def sort(a) do
@@ -68,6 +69,18 @@ defmodule Search.Result do
   Generate suitable live view links that will show the search result by
   navigating or adapting the map
   """
+  def to_html(%__MODULE__{image: image} = assigns) when is_binary(image) do
+    assigns = %{image: image, name: assigns.name, subtext: assigns.subtext}
+
+    ~H"""
+    <span class="verkehrszeichen-result">
+      <img src={@image} alt={@name} class="verkehrszeichen-preview" loading="lazy"/>
+      <span><%= @name %></span>
+      <aside :if={@subtext}><%= @subtext %></aside>
+    </span>
+    """
+  end
+
   def to_html(%__MODULE__{url: url} = assigns) when is_binary(url) do
     assigns = %{url: url, name: assigns.name, ping: ping(assigns), subtext: assigns.subtext}
 

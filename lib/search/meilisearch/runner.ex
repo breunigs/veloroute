@@ -9,7 +9,11 @@ defmodule Search.Meilisearch.Runner do
   @health_check_seconds 1
   @queue_timeout_seconds 10
 
-  @indexers [Search.Meilisearch.Articles, Search.Meilisearch.Nominatim]
+  @indexers [
+    Search.Meilisearch.Articles,
+    Search.Meilisearch.Nominatim,
+    Search.Meilisearch.Verkehrszeichen
+  ]
 
   @typep queued_task :: {:queued, non_neg_integer(), GenServer.from(), any()}
   @typep state :: %{
@@ -322,12 +326,22 @@ defmodule Search.Meilisearch.Runner do
   defp search(query, bbox) do
     %{lat: lat, lon: lon} = Geo.CheapRuler.center(bbox)
 
-    @indexers
-    |> Enum.into(%{}, fn indexer ->
-      {indexer.id(), indexer.params(query, lat, lon)}
-    end)
+    queries =
+      Enum.map(@indexers, fn indexer ->
+        {indexer.id(), indexer.params(query, lat, lon)}
+      end) ++ verkehrszeichen_split_queries(query)
+
+    queries
     |> Search.Meilisearch.API.multi_search(@min_relevance)
     |> post_process()
+  end
+
+  # Split "VZ 101 ZZ 1002" into individual searches so each sign is found
+  defp verkehrszeichen_split_queries(query) do
+    Regex.scan(~r/\b(VZ|ZZ)\s*(\d+(?:-\d+)?)\b/i, query)
+    |> Enum.map(fn [_, type, number] ->
+      {:verkehrszeichen, %{q: "#{type} #{number}", limit: 3}}
+    end)
   end
 
   defp post_process({:ok, list}) do
