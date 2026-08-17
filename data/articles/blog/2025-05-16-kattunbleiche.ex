@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Kattunbleiche do
     do:
       "Neu angelegter Radfahrstreifen soll den Radverkehr aufnehmen. Alter Hochbordradweg soll zu neuem Gehweg werden."
 
-  def type(), do: :intent
+  def type(), do: :finished
   def start(), do: ~d[2025-11-03]
   def stop(), do: ~d[2026-04-02]
   def construction_site_id_hh(), do: [1_868_001]
