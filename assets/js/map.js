@@ -380,6 +380,19 @@ function setup() {
   setupIndicator(map, flyToSpeed)
 
   window.map = map;
+
+  function lazyLoadKreuzungsskizzen() {
+    if (map.getZoom() < 16) return;
+    map.off('zoomend', lazyLoadKreuzungsskizzen);
+    map.off('moveend', lazyLoadKreuzungsskizzen);
+    map.off('idle', lazyLoadKreuzungsskizzen);
+    window.dispatchEvent(new CustomEvent("js:load", {
+      detail: { url: "/assets/kreuzungsskizzen.js", callback: () => {} }
+    }));
+  }
+  map.on('zoomend', lazyLoadKreuzungsskizzen);
+  map.on('moveend', lazyLoadKreuzungsskizzen);
+  map.on('idle', lazyLoadKreuzungsskizzen);
 }
 
 setup()

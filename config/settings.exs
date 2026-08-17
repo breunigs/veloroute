@@ -37,6 +37,15 @@ config :veloroute, Settings, %{
       outline: ["article-areas bg outline", "article-areas bg outline dash"]
     },
     %{
+      name: "Kreuzungsskizzen",
+      route_group: nil,
+      active: true,
+      line: ["kreuzungsskizzen-line"],
+      icon: [],
+      fill: [],
+      outline: []
+    },
+    %{
       name: "Termine",
       route_group: :termine,
       active: false,

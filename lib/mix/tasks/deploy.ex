@@ -94,6 +94,9 @@ defmodule Mix.Tasks.Deploy do
   end
 
   defp make_release(_skip) do
+    Util.banner("Kreuzungsskizzen")
+    Mix.Tasks.Velo.Map.Kreuzungsskizzen.run([])
+
     Util.banner("Generating Assets")
     Search.Meilisearch.Exe.purge_old_data!()
     Mix.Tasks.Velo.Assets.Prepare.run([])

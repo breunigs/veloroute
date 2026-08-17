@@ -63,7 +63,7 @@ config :esbuild,
   version: "0.27.2",
   default: [
     args:
-      ~w(js/app.ts js/liveview.ts js/mbgl2.ts js/map.js js/map_image.ts js/map_image_stub.ts js/video_player.js js/link_helper.ts --bundle --target=chrome117,firefox115,safari17,edge140 --outdir=../priv/static/assets --color=true),
+      ~w(js/app.ts js/liveview.ts js/mbgl2.ts js/map.js js/map_image.ts js/map_image_stub.ts js/kreuzungsskizzen.ts js/video_player.js js/link_helper.ts --bundle --target=chrome117,firefox115,safari17,edge140 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]

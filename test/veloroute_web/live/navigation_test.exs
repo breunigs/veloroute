@@ -342,7 +342,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # video
     assert html =~ ~s|Du folgst: Harburger Berge (FR7)|
     # layer selector
-    assert_layers(html, ~w(Artikel Freizeitrouten))
+    assert_layers(html, ~w(Artikel Kreuzungsskizzen Freizeitrouten))
 
     html =
       render_hook(view, "map-click", %{
@@ -358,19 +358,19 @@ defmodule VelorouteWeb.LiveNavigationTest do
     # video
     assert html =~ ~s|Du folgst: Radroute 10|
     # layer selector
-    assert_layers(html, ["Artikel", "Radrouten (ab 2025)"])
+    assert_layers(html, ["Artikel", "Kreuzungsskizzen", "Radrouten (ab 2025)"])
   end
 
   test "shows appointments layer on appointments page", %{conn: conn} do
     {:ok, view, html} = live(conn, "/")
-    assert_layers(html, ["Artikel", "Radrouten (ab 2025)"])
+    assert_layers(html, ["Artikel", "Kreuzungsskizzen", "Radrouten (ab 2025)"])
 
     html =
       view
       |> element("a[href^=\"/termine\"]")
       |> render_click()
 
-    assert_layers(html, ["Artikel", "Radrouten (ab 2025)", "Termine"])
+    assert_layers(html, ["Artikel", "Kreuzungsskizzen", "Radrouten (ab 2025)", "Termine"])
   end
 
   test "switches routes when new article has different route", %{conn: conn} do
@@ -413,6 +413,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
       "Artikel",
       "Bezirksrouten",
       "Freizeitrouten",
+      "Kreuzungsskizzen",
       "Radrouten (ab 2025)"
     ]
 
@@ -429,7 +430,7 @@ defmodule VelorouteWeb.LiveNavigationTest do
   test "article without route group shows :radrouten", %{conn: conn} do
     {:ok, _view, html} = live(conn, "/lexikon/kopenhagener-loesung")
 
-    assert_layers(html, ["Artikel", "Radrouten (ab 2025)"])
+    assert_layers(html, ["Artikel", "Kreuzungsskizzen", "Radrouten (ab 2025)"])
   end
 
   test "article without specific videos uses map og:image", %{conn: conn} do

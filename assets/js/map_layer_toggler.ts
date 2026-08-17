@@ -60,7 +60,7 @@ function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive:
 
   layerNames.forEach(layerName => {
     const isTunnel = layerName.indexOf("tunnel") >= 0
-    if (isTunnel && !map.style.hasLayer(layerName)) return
+    if (!map.style.hasLayer(layerName)) return
 
     const opacity = opacityRule(active, isTunnel)
     minZoomForLayer(map, layerName, minZoom)
@@ -98,8 +98,10 @@ function maybeToggleLayers(map: MapboxMap | null, mapDetail: mapEventDetail) {
 
     updateMapPrimitive(map, layer.icon, "icon", layer.active, fadeIcons(highlight));
     updateMapPrimitive(map, layer.outline, "line", layer.active);
-    updateMapPrimitive(map, layer.line, "line", layer.active, fadeLines(highlight), !isAlltag);
-    updateMapPrimitive(map, layer.line.map(l => `${l}-tunnel`), "line", layer.active, fadeLines(highlight), true);
+    const isRoute = layer.route_group != null
+    const lineHighlighter = isRoute ? fadeLines(highlight) : null;
+    updateMapPrimitive(map, layer.line, "line", layer.active, lineHighlighter, isRoute && !isAlltag);
+    updateMapPrimitive(map, layer.line.map(l => `${l}-tunnel`), "line", layer.active, lineHighlighter, isRoute);
     updateMapPrimitive(map, layer.fill, "fill", layer.active);
   }
 
@@ -185,16 +187,19 @@ function keepPMTiles(
 ): StyleSpecification {
   if (!previousStyle) return nextStyle
 
-  const pmtileLayers = previousStyle.layers.filter(layer => {
-    return layer.id.includes('pmtiles')
-  });
-  nextStyle.layers.push(...pmtileLayers)
-
   for (const [key, source] of Object.entries(previousStyle.sources)) {
-    if (source.type === 'raster' && source.url?.startsWith('pmtiles://')) {
+    if (source.url?.startsWith('pmtiles://')) {
       nextStyle.sources[key] = source
     }
   }
+
+  const pmtileSources = new Set(Object.keys(nextStyle.sources).filter(k =>
+    nextStyle.sources[k].url?.startsWith('pmtiles://')
+  ))
+  const pmtileLayers = previousStyle.layers.filter(layer => {
+    return 'source' in layer && pmtileSources.has(layer.source as string)
+  });
+  nextStyle.layers.push(...pmtileLayers)
 
   return nextStyle
 }
