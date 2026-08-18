@@ -355,12 +355,20 @@ fn best_timestamp(polizeidatum: &str, lsbgdatum: &str) -> Option<i64> {
 // ── Main cleanup ───────────────────────────────────────────────────────
 
 fn cleanup(input_path: &str, output_path: &str) -> Result<String, Box<dyn std::error::Error>> {
-    // 1. Read + decompress + parse in one pass
+    // 1. Decompress in background thread, parse in main thread via pipe
     eprintln!("Reading and parsing {}...", input_path);
-    let file = fs::File::open(input_path)?;
-    let decoder = GzDecoder::new(std::io::BufReader::new(file));
-    let reader = std::io::BufReader::with_capacity(1 << 20, decoder);
+    let (read_end, write_end) = std::io::pipe()?;
+    let input_owned = input_path.to_string();
+    let decompress_thread = std::thread::spawn(move || -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+        let file = fs::File::open(&input_owned)?;
+        let mut decoder = GzDecoder::new(std::io::BufReader::with_capacity(1 << 20, file));
+        let mut writer = BufWriter::with_capacity(1 << 20, write_end);
+        std::io::copy(&mut decoder, &mut writer)?;
+        Ok(())
+    });
+    let reader = std::io::BufReader::with_capacity(1 << 20, read_end);
     let mut geojson: GeoJson = serde_json::from_reader(reader)?;
+    decompress_thread.join().unwrap().map_err(|e| -> Box<dyn std::error::Error> { e })?;
 
     let num_features = geojson.features.len();
     eprintln!("{} features loaded", num_features);
