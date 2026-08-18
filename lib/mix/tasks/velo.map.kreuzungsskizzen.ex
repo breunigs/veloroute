@@ -14,12 +14,17 @@ defmodule Mix.Tasks.Velo.Map.Kreuzungsskizzen do
 
   @tippecanoe_ref {:dockerfile, "lib/basemap/Dockerfile.tippecanoe"}
 
+  @cleaned_gz_path Path.join(@cache_dir, "poldata_lines_cleaned.geojson.gz")
+  @nif_source Path.expand("native/geo/src/kreuzungsskizzen.rs")
+  @pmtiles_path Path.join(@output_dir, @output_filename)
+
   @shortdoc "Downloads Kreuzungsskizzen WFS data and converts to PMTiles"
   def run(_args) do
     File.mkdir_p!(@cache_dir)
     File.mkdir_p!(@output_dir)
 
     with :ok <- download_wfs(),
+         :ok <- cleanup_overlaps(),
          :ok <- convert_to_pmtiles() do
       target = Path.join(@output_dir, @output_filename)
       Logger.info("Kreuzungsskizzen PMTiles written to #{target}")
@@ -75,8 +80,35 @@ defmodule Mix.Tasks.Velo.Map.Kreuzungsskizzen do
     end
   end
 
+  defp cleanup_overlaps do
+    source = Path.expand(@geojson_gz_path)
+    target = Path.expand(@cleaned_gz_path)
+
+    if Enum.all?([source, @nif_source], &(Util.IO.newer?(target, &1) == true)) do
+      Logger.info("Using cached cleaned Kreuzungsskizzen")
+      :ok
+    else
+      Logger.info("Cleaning up overlapping Kreuzungsskizzen...")
+
+      result = Geo.Nif.nif_cleanup_kreuzungsskizzen(source, target)
+      Logger.info("Cleanup: #{result}")
+      :ok
+    end
+  rescue
+    e -> {:error, "cleanup failed: #{Exception.message(e)}"}
+  end
+
   defp convert_to_pmtiles do
-    container_gz = "/workdir/kreuzungsskizzen/poldata_lines.geojson.gz"
+    if Util.IO.newer?(@pmtiles_path, @cleaned_gz_path) == true do
+      Logger.info("Using cached #{@pmtiles_path}")
+      :ok
+    else
+      do_convert_to_pmtiles()
+    end
+  end
+
+  defp do_convert_to_pmtiles do
+    container_gz = "/workdir/kreuzungsskizzen/poldata_lines_cleaned.geojson.gz"
     container_output = "/output/#{@output_filename}"
 
     low_prio = Enum.join(Util.low_priority_cmd_prefix(), " ")
