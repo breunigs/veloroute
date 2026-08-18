@@ -48,4 +48,7 @@ defmodule Geo.Nif do
         _ky
       ),
       do: :erlang.nif_error(:nif_not_loaded)
+
+  def nif_cleanup_kreuzungsskizzen(_input_path, _output_path),
+    do: :erlang.nif_error(:nif_not_loaded)
 end
