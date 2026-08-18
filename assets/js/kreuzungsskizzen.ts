@@ -7,6 +7,7 @@ const sourceId = "kreuzungsskizzen";
 const layerId = "kreuzungsskizzen-line";
 
 if (!map.getSource(sourceId)) {
+  console.log("adding Kreuzungsskizzen source")
   map.addSource(sourceId, {
     type: "vector",
     url: "pmtiles:///assets/basemap/kreuzungsskizzen/kreuzungsskizzen.pmtiles",
@@ -15,6 +16,7 @@ if (!map.getSource(sourceId)) {
 }
 
 if (!map.getLayer(layerId)) {
+  console.log("adding Kreuzungsskizzen layer")
   map.addLayer({
     id: layerId,
     type: "line",

@@ -381,13 +381,14 @@ function setup() {
 
   window.map = map;
 
-  function lazyLoadKreuzungsskizzen() {
+  function lazyLoadKreuzungsskizzen(x) {
     if (map.getZoom() < 16) return;
     map.off('zoomend', lazyLoadKreuzungsskizzen);
     map.off('moveend', lazyLoadKreuzungsskizzen);
     map.off('idle', lazyLoadKreuzungsskizzen);
+    console.log("loading Kreuzungsskizzen")
     window.dispatchEvent(new CustomEvent("js:load", {
-      detail: { url: "/assets/kreuzungsskizzen.js", callback: () => {} }
+      detail: { url: "/assets/kreuzungsskizzen.js", callback: () => { } }
     }));
   }
   map.on('zoomend', lazyLoadKreuzungsskizzen);
