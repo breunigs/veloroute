@@ -391,6 +391,8 @@ defmodule Basemap.Nominatim do
     CREATE INDEX IF NOT EXISTS combo_geo ON combo USING gist (geometry);
     CREATE INDEX IF NOT EXISTS combo_streets ON combo USING btree (osm_type, class) WHERE class='highway' AND osm_type='W';
     VACUUM ANALYZE combo;
+
+    #{kreuzungsskizzen_sql()}
     """
   end
 
@@ -537,8 +539,14 @@ defmodule Basemap.Nominatim do
         MIN(intersections.admin_level) AS admin_level,
         intersections.name,
         NULL AS address,
-        ''::hstore AS extratags,
-        NULL AS boost,
+        CASE WHEN intersections.knotennummer IS NOT NULL
+          THEN HSTORE('knotennummer', intersections.knotennummer)
+          ELSE ''::hstore
+        END AS extratags,
+        CASE WHEN intersections.knotennummer IS NOT NULL
+          THEN 'Kreuzung ' || intersections.knotennummer || ' Knoten Knotennummer'
+          ELSE NULL
+        END AS boost,
         #{to_meili_geo("ST_UNION(intersections.geometry)")} AS _geo,
         #{to_elixir_bbox("ST_UNION(intersections.geometry)")} AS bbox,
         intersections.parents_name,
@@ -566,7 +574,8 @@ defmodule Basemap.Nominatim do
             eps := 0.0001,
             minpoints := 2)
             OVER () AS cluster,
-          ST_Intersection(one.geometry, two.geometry) AS geometry
+          ST_Intersection(one.geometry, two.geometry) AS geometry,
+          k.knotennummer
         FROM streets AS one
         INNER JOIN streets AS two
         ON ST_Intersects(one.geometry, two.geometry)
@@ -574,9 +583,15 @@ defmodule Basemap.Nominatim do
         -- but the query planner doesn't pick the geo index for looping without it.
         AND one.geometry && two.geometry
         AND one.layer = two.layer
+        LEFT JOIN LATERAL (
+          SELECT knotennummer FROM kreuzungsskizzen
+          WHERE ST_DWithin(kreuzungsskizzen.geom, ST_Centroid(ST_Intersection(one.geometry, two.geometry)), 0.00135)
+          ORDER BY ST_Distance(kreuzungsskizzen.geom, ST_Centroid(ST_Intersection(one.geometry, two.geometry)))
+          LIMIT 1
+        ) k ON true
         WHERE one.name->'name' < two.name->'name'
       ) AS intersections
-      GROUP BY name, parents_name, cluster
+      GROUP BY name, parents_name, cluster, knotennummer
       HAVING
         St_Area(ST_Envelope(St_Union(intersections.geometry))) < 0.00001
         AND '#{Settings.r(:boost_search_results_within)}' = ANY(intersections.parents_name)
@@ -616,6 +631,31 @@ defmodule Basemap.Nominatim do
       ORDER BY importance ASC, ST_Area(geometry, true) ASC
     ) areas;
     """
+  end
+
+  defp kreuzungsskizzen_sql do
+    centroids = Search.Kreuzungsskizzen.centroids()
+
+    if centroids == %{} do
+      """
+      DROP TABLE IF EXISTS kreuzungsskizzen;
+      CREATE TABLE kreuzungsskizzen (knotennummer TEXT, geom GEOMETRY(Point, 4326));
+      """
+    else
+      values =
+        Enum.map_join(centroids, ",\n    ", fn {knoten, %{lat: lat, lon: lon}} ->
+          "('#{knoten}', ST_SetSRID(ST_MakePoint(#{lon}, #{lat}), 4326))"
+        end)
+
+      """
+      DROP TABLE IF EXISTS kreuzungsskizzen;
+      CREATE TABLE kreuzungsskizzen (knotennummer TEXT, geom GEOMETRY(Point, 4326));
+      INSERT INTO kreuzungsskizzen VALUES
+          #{values};
+      CREATE INDEX ON kreuzungsskizzen USING gist (geom);
+      ANALYZE kreuzungsskizzen;
+      """
+    end
   end
 
   @spec available_memory(non_neg_integer()) :: pos_integer()

@@ -8,7 +8,12 @@ defmodule Search.Meilisearch.Nominatim do
 
   @impl true
   def updated_at() do
-    depends = [source(), Util.module_source_path(Data.OsmTagToHuman), __ENV__.file]
+    depends = [
+      source(),
+      Util.module_source_path(Data.OsmTagToHuman),
+      __ENV__.file,
+      Search.Kreuzungsskizzen.source()
+    ]
 
     with %{newest: %{mtime: posix}} <- Util.IO.modification_times(depends),
          {:ok, datetime} <- DateTime.from_unix(posix) do
@@ -83,6 +88,12 @@ defmodule Search.Meilisearch.Nominatim do
         !blank?(name) -> name
         result["type"] in ~w[office building public_building house apartment apartments] -> street
         true -> human
+      end
+
+    human =
+      case f.("extratags")["knotennummer"] do
+        nil -> human
+        nr -> "#{human} #{nr}"
       end
 
     subtext =
