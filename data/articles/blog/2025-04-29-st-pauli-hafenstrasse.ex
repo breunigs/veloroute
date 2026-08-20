@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
       "Teils breite Radfahrstreifen, teils kleinere Verbesserungen, teils gar keine Änderungen. Das Radnetz bleibt lückenhaft."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-09]
-  def stop(), do: ~d[2027-03]
+  def start(), do: ~d[2026-09-07]
+  def stop(), do: ~d[2026-12-31]
 
   def tags(), do: ["radroute-concept-a", "FR8"]
 
@@ -23,6 +23,8 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-08],
+       "https://lsbg.hamburg.de/resource/blob/1209964/cbbc60e9e059d52578f2b1386716e090/st-pauli-hafenstrasse-baustelleninfo-august-2026-data.pdf"},
       {"Bauvergabe", ~d[2026-04],
        "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/api/supplier/external/deeplink/subproject/d5b34a36-6e7a-47fd-a1cd-7a317502deb6"},
       {"Lageplan und Erläuterungen", ~d[2025-04],

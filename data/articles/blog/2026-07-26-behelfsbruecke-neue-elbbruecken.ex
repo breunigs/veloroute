@@ -15,16 +15,16 @@ defmodule Data.Article.Blog.BehelfsbrueckeNeueElbbruecken do
 
   def start(), do: ~d[2026-12]
 
-  def map_image do
-    {name(),
-     [
-       {"Hamburg Port Authority AöR",
-        "https://www.hamburg-port-authority.de/de/info-port/contact-center"},
-       {"ReGe Hamburg", "https://www.rege.hamburg/kontakt/"},
-       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
-       {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
-     ]}
-  end
+  # def map_image do
+  #   {name(),
+  #    [
+  #      {"Hamburg Port Authority AöR",
+  #       "https://www.hamburg-port-authority.de/de/info-port/contact-center"},
+  #      {"ReGe Hamburg", "https://www.rege.hamburg/kontakt/"},
+  #      {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+  #      {"ARGUS Stadt und Verkehr • Partnerschaft mbB", "https://www.argus-hh.de/kontakt-argus/"}
+  #    ]}
+  # end
 
   def links(_assigns) do
     [
