@@ -168,7 +168,8 @@ defmodule Video.Metadata do
     name = video_path |> Path.split() |> Enum.take(-2) |> Enum.join("/") |> Path.rootname()
     name = "metadata for " <> name
 
-    with %{result: :ok, stdout: out} <- Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name),
+    with %{result: :ok, stdout: out} <-
+           Util.Cmd2.exec(cli, stdout: "", stderr: "", name: name, slow_warn_message: false),
          {:ok, %{"streams" => streams, "format" => format}} <- JSON.decode(out),
          {:format, %{"duration" => duration}} <- {:format, format} do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})

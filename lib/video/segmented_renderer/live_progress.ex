@@ -24,14 +24,22 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     GenServer.call(__MODULE__, {:log, message})
   end
 
+  def log_async(message) do
+    GenServer.cast(__MODULE__, {:log, message})
+  end
+
   def stop do
     GenServer.call(__MODULE__, :stop)
   end
 
   @impl true
   def init(_opts) do
+    :logger.add_primary_filter(:live_progress, {&__MODULE__.suppress_log/2, []})
     {:ok, %{bars: %{}, order: [], rendered_lines: 0, timer: schedule_render()}}
   end
+
+  @doc false
+  def suppress_log(_event, _extra), do: :stop
 
   @impl true
   def handle_call({:start_bar, id, opts}, _from, state) do
@@ -56,6 +64,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
   def handle_call(:stop, _from, state) do
     if state.timer, do: Process.cancel_timer(state.timer)
     clear(state.rendered_lines)
+    :logger.remove_primary_filter(:live_progress)
     {:stop, :normal, :ok, %{state | rendered_lines: 0}}
   end
 
@@ -71,6 +80,12 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     end
   end
 
+  def handle_cast({:log, message}, state) do
+    clear(state.rendered_lines)
+    IO.puts(:stderr, message)
+    {:noreply, %{state | rendered_lines: 0}}
+  end
+
   def handle_cast({:complete, id}, state) do
     {:noreply, %{state | bars: Map.delete(state.bars, id), order: List.delete(state.order, id)}}
   end
@@ -84,6 +99,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
   @impl true
   def terminate(_reason, state) do
     clear(state.rendered_lines)
+    :logger.remove_primary_filter(:live_progress)
   end
 
   defp schedule_render, do: Process.send_after(self(), :render, @render_interval)
@@ -100,7 +116,8 @@ defmodule Video.SegmentedRenderer.LiveProgress do
       IO.write(:stderr, "\e[2K" <> format_bar(state.bars[id], width) <> "\n")
     end
 
-    clear_extra(prev_count - current_count)
+    # clear any stray output or leftover bars below
+    IO.write(:stderr, "\e[J")
 
     %{state | rendered_lines: current_count}
   end
@@ -113,23 +130,24 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     IO.write(:stderr, "\e[#{n}A")
   end
 
-  defp clear_extra(n) when n <= 0, do: :ok
-
-  defp clear_extra(n) do
-    IO.write(:stderr, String.duplicate("\e[2K\n", n))
-    IO.write(:stderr, "\e[#{n}A")
-  end
+  # suffix is fixed-width so bar widths and columns align across all bars
+  # layout: " " elapsed(7) " " values(7) " " eta(12)  = 30 chars
+  @suffix_width 30
 
   defp format_bar(bar, width) do
     pct = if bar.total > 0, do: bar.current / bar.total, else: 0.0
     elapsed_ms = System.monotonic_time(:millisecond) - bar.start_time
+
+    elapsed = format_time(elapsed_ms)
+    values = if bar.absolute, do: "#{bar.current}/#{bar.total}", else: "#{round(pct * 100)}%"
     eta_str = eta(elapsed_ms, pct)
 
-    values = if bar.absolute, do: "#{bar.current}/#{bar.total}", else: "#{round(pct * 100)}%"
-    suffix = " #{format_time(elapsed_ms)} #{values}#{eta_str}"
+    suffix =
+      " #{elapsed} #{String.pad_leading(values, 7)} #{String.pad_trailing(eta_str, 12)}"
+
     label = String.pad_trailing(bar.label, 35)
 
-    bar_width = max(10, width - String.length(label) - String.length(suffix) - 3)
+    bar_width = max(10, width - String.length(label) - @suffix_width - 2)
     filled = round(pct * bar_width)
     empty = bar_width - filled
 
@@ -140,7 +158,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
 
   defp eta(elapsed_ms, pct) when pct > 0.0 do
     remaining_ms = round(elapsed_ms / pct * (1.0 - pct))
-    " ETA #{format_time(remaining_ms)}"
+    "ETA #{format_time(remaining_ms)}"
   end
 
   defp format_time(ms) do
@@ -148,12 +166,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     h = div(total_s, 3600)
     m = div(rem(total_s, 3600), 60)
     s = rem(total_s, 60)
-
-    if h > 0 do
-      "#{h}:#{String.pad_leading("#{m}", 2, "0")}:#{String.pad_leading("#{s}", 2, "0")}"
-    else
-      "#{String.pad_leading("#{m}", 2, "0")}:#{String.pad_leading("#{s}", 2, "0")}"
-    end
+    "#{h}:#{String.pad_leading("#{m}", 2, "0")}:#{String.pad_leading("#{s}", 2, "0")}"
   end
 
   defp terminal_width do
