@@ -8,17 +8,19 @@ defmodule Video.StopFlag do
     :persistent_term.get(@key, false)
   end
 
-  def trap_sigusr1 do
-    spawn(fn -> sigusr1_loop() end)
-  end
+  def trap_sigusr2 do
+    ref = make_ref()
 
-  defp sigusr1_loop do
-    :os.set_signal(:sigusr1, :handle)
-
-    receive do
-      {:signal, :sigusr1} ->
+    {:ok, _} =
+      System.trap_signal(:sigusr2, ref, fn ->
         stop()
-        IO.puts(:stderr, "\nUSR1 received — will stop after current segment(s) finish.")
-    end
+        msg = "\nUSR2 received — will stop after current segment(s) finish."
+
+        if GenServer.whereis(Video.SegmentedRenderer.LiveProgress),
+          do: Video.SegmentedRenderer.LiveProgress.log_async(msg),
+          else: IO.puts(:stderr, msg)
+      end)
+
+    ref
   end
 end

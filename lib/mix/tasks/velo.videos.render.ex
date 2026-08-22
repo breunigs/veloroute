@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   @shortdoc "Renders videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
   def run(filters) do
     Video.StopFlag.reset()
-    Video.StopFlag.trap_sigusr1()
+    Video.StopFlag.trap_sigusr2()
 
     Video.Dir.must_exist!(fn ->
       filters |> find() |> Enum.sort_by(& &1.name()) |> info() |> render()
@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   defp info(videos) do
     IO.puts(:stderr, "Rendering #{length(videos)} videos:")
     Enum.each(videos, fn vid -> IO.puts(:stderr, "* #{vid.hash()} #{vid.name()}") end)
-    IO.puts(:stderr, "\nTo stop gracefully after current segment(s): kill -USR1 #{System.pid()}")
+    IO.puts(:stderr, "\nTo stop gracefully after current segment(s): kill -USR2 #{System.pid()}")
     IO.puts(:stderr, "")
     videos
   end

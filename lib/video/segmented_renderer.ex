@@ -44,10 +44,10 @@ defmodule Video.SegmentedRenderer do
     skipped =
       length(regular) - length(regular_missing) + length(transitions) - length(transition_missing)
 
-    if skipped > 0, do: Logger.info("Skipping #{skipped} segments that already exist")
-
     total = length(regular_missing) + length(transition_missing)
     all_missing = regular_missing ++ transition_missing
+
+    if skipped > 0, do: Logger.info("Skipping #{skipped} segments that already exist")
 
     render_segments_parallel(rendered, all_missing, cache_dir, total)
   end
@@ -78,18 +78,18 @@ defmodule Video.SegmentedRenderer do
         max_concurrency: @parallel_segments,
         timeout: :infinity
       )
-      |> Enum.reduce_while([], fn
+      |> Enum.reduce([], fn
         {:ok, :ok}, errors ->
           LiveProgress.inc(:segments)
-          {:cont, errors}
+          errors
 
         {:ok, :stopped}, errors ->
-          {:halt, errors}
+          errors
 
         {:ok, {:error, reason}}, errors ->
           LiveProgress.log(reason)
           LiveProgress.inc(:segments)
-          {:cont, [reason | errors]}
+          [reason | errors]
       end)
 
     LiveProgress.stop()
