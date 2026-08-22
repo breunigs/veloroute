@@ -231,6 +231,47 @@ defmodule ArticleTest do
     assert [] == broken
   end
 
+  test "tracks have no overlapping video segments" do
+    # small overlaps (<= 100ms) are intentional crossfades
+    max_crossfade_ms = 100
+
+    ts_to_ms = fn
+      :start -> 0
+      :seamless -> 0
+      :end -> :infinity
+      ts -> Video.Timestamp.in_milliseconds(ts)
+    end
+
+    overlap_ms = fn s1, e1, s2, e2 ->
+      real_e1 = if e1 == :infinity, do: 999_999_999, else: e1
+      real_e2 = if e2 == :infinity, do: 999_999_999, else: e2
+      min(real_e1, real_e2) - max(s1, s2)
+    end
+
+    overlaps =
+      Article.List.all()
+      |> Enum.flat_map(fn art ->
+        Enum.flat_map(art.tracks(), fn track ->
+          track.videos
+          |> Enum.map(fn vid -> {elem(vid, 0), ts_to_ms.(elem(vid, 1)), ts_to_ms.(elem(vid, 2))} end)
+          |> Enum.group_by(&elem(&1, 0))
+          |> Enum.flat_map(fn {source, segments} ->
+            for {_, s1, e1} <- segments,
+                {_, s2, e2} <- segments,
+                {s1, e1} != {s2, e2},
+                s1 < e2,
+                s2 < e1,
+                overlap_ms.(s1, e1, s2, e2) > max_crossfade_ms do
+              "#{art.id()} track '#{track.text}': #{source} segments overlap"
+            end
+          end)
+        end)
+      end)
+      |> Enum.uniq()
+
+    assert [] == overlaps, Enum.join(overlaps, "\n")
+  end
+
   defp list_historic_tracks do
     Article.List.all()
     |> Enum.flat_map(fn art -> Enum.map(art.tracks(), &{art, &1}) end)

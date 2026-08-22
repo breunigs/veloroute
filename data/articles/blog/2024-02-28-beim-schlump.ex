@@ -11,6 +11,7 @@ defmodule Data.Article.Blog.BeimSchlump do
 
   def start(), do: ~d[2026-08-24]
   def stop(), do: ~d[2028]
+  # def construction_site_id_hh(), do: [3782057] # 1. Bauabschnitt
 
   def tags(), do: ["radroute-3", "radroute-2", "radroute-14", "FR10"]
 

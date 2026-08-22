@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.FriedrichEbertDamm do
     do:
       "Radfahrstreifen werden stellenweise mittels Borden vom KFZ-Verkehr abgetrennt („Protected-Bike-Lane“)."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def tags(), do: ["radroute-6"]
 
   def start(), do: ~d[2026-08]

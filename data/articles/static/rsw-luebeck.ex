@@ -117,6 +117,8 @@ defmodule Data.Article.Static.RSWLuebeck do
   def links(_assigns) do
     [
       {"Ride With GPS Routenplaner", "https://ridewithgps.com/routes/52643672"},
+      {"Baumaßnahme: Ratzeburger Allee",
+       "https://www.luebeck.de/de/stadtleben/freizeit/mobilitaet/baustelleninformation-baumassnahmen/radschnellweg-ratzeburger-allee"},
       {"offizielle Seite zu den Radschnellwegen",
        "https://metropolregion.hamburg.de/was-wir-tun/mobilitaet/radschnellwege"},
       {"Detailseite zum Radschnellweg Lübeck",

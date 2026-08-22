@@ -19,7 +19,7 @@ defmodule Data.Article.Static.BrBergedorfB do
   def tracks(),
     do: [
       %Video.Track{
-        renderer: 6,
+        renderer: 7,
         group: "nordsued",
         direction: :forward,
         from: "Reinbeker Redder",
@@ -28,13 +28,12 @@ defmodule Data.Article.Static.BrBergedorfB do
         text: "Bezirksroute Bergedorf B → Süden",
         end_action: :reverse,
         historic: %{
-          "3e1d1f4b79c1e0a47b7b05e6a131b852" => ~d[2025-08]
+          "c077961c696c19243b4da740de7f17ab" => ~d[2025-08]
         },
         videos: [
           {"2025-08-16-br-berge/GX018599", "00:01:13.880", :end},
           {"2025-08-16-br-berge/GX018600", :seamless, :end},
           {"2025-08-16-br-berge/GX018601", :start, "00:00:10.534"},
-          {"2025-08-16-br-berge/GX018601", "00:00:39.100", :end},
           {"2025-08-16-br-berge/GX018601", "00:00:39.100", "00:01:23.517"},
           {"2025-08-16-br-berge/GX018601", "00:01:25.819", :end},
           {"2025-08-16-br-berge/GX018602", :start, :end},
