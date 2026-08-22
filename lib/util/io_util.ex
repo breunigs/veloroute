@@ -216,27 +216,69 @@ defmodule Util.IO do
 
   def capture(func) do
     org_stdout = Process.group_leader()
-    org_stderr = Process.whereis(:standard_error)
     {:ok, capture_stdout} = StringIO.open("", capture_prompt: true)
-    {:ok, capture_std_err} = StringIO.open("", capture_prompt: true)
+    {:ok, capture_stderr} = StringIO.open("", capture_prompt: true)
+    caller = self()
+    proxy = ensure_stderr_proxy()
+    send(proxy, {:register, caller, capture_stderr})
 
     try do
       Process.group_leader(self(), capture_stdout)
-      Process.unregister(:standard_error)
-      Process.register(capture_std_err, :standard_error)
-
       result = func.()
-
       {:ok, {_, stdout}} = StringIO.close(capture_stdout)
-      {_, stderr} = StringIO.contents(capture_std_err)
 
+      send(proxy, {:unregister, caller, self()})
+      receive do: ({:captured, ^caller} -> :ok)
+
+      {_, stderr} = StringIO.contents(capture_stderr)
+      StringIO.close(capture_stderr)
       {result, stdout, stderr}
     after
       Process.group_leader(self(), org_stdout)
+    end
+  end
 
-      Process.unregister(:standard_error)
-      StringIO.close(capture_std_err)
-      Process.register(org_stderr, :standard_error)
+  defp ensure_stderr_proxy do
+    case Process.whereis(:stderr_capture_proxy) do
+      pid when is_pid(pid) ->
+        pid
+
+      nil ->
+        :global.trans({:stderr_proxy, node()}, fn ->
+          case Process.whereis(:stderr_capture_proxy) do
+            pid when is_pid(pid) ->
+              :ok
+
+            nil ->
+              original = Process.whereis(:standard_error)
+              proxy = spawn(fn -> stderr_proxy_loop(original, %{}) end)
+              Process.unregister(:standard_error)
+              Process.register(proxy, :standard_error)
+              Process.register(proxy, :stderr_capture_proxy)
+          end
+        end)
+
+        Process.whereis(:stderr_capture_proxy)
+    end
+  end
+
+  defp stderr_proxy_loop(original, captures) do
+    receive do
+      {:register, pid, device} ->
+        stderr_proxy_loop(original, Map.put(captures, pid, device))
+
+      {:unregister, pid, reply_to} ->
+        send(reply_to, {:captured, pid})
+        stderr_proxy_loop(original, Map.delete(captures, pid))
+
+      {:io_request, from, reply_as, request} ->
+        target = Map.get(captures, from, original)
+        send(target, {:io_request, from, reply_as, request})
+        stderr_proxy_loop(original, captures)
+
+      other ->
+        send(original, other)
+        stderr_proxy_loop(original, captures)
     end
   end
 end
