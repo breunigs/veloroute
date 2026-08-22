@@ -76,6 +76,7 @@ defmodule Video.SegmentedRenderer do
           end
         end,
         max_concurrency: @parallel_segments,
+        ordered: false,
         timeout: :infinity
       )
       |> Enum.reduce([], fn
