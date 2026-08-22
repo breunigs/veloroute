@@ -64,11 +64,15 @@ defmodule Video.SegmentedRenderer do
       |> Enum.with_index()
       |> Task.async_stream(
         fn {segment, idx} ->
-          Process.put(:niceness, if(rem(idx, @parallel_segments) == 0, do: 5, else: 19))
+          if Video.StopFlag.stopped?() do
+            :stopped
+          else
+            Process.put(:niceness, if(rem(idx, @parallel_segments) == 0, do: 5, else: 19))
 
-          case segment.type do
-            :regular -> render_regular_segment(rendered, segment, cache_dir)
-            :transition -> render_transition_segment(rendered, segment, cache_dir)
+            case segment.type do
+              :regular -> render_regular_segment(rendered, segment, cache_dir)
+              :transition -> render_transition_segment(rendered, segment, cache_dir)
+            end
           end
         end,
         max_concurrency: @parallel_segments,
@@ -78,6 +82,9 @@ defmodule Video.SegmentedRenderer do
         {:ok, :ok}, :ok ->
           LiveProgress.inc(:segments)
           {:cont, :ok}
+
+        {:ok, :stopped}, :ok ->
+          {:halt, :ok}
 
         {:ok, err}, :ok ->
           {:halt, err}

@@ -4,6 +4,9 @@ defmodule Mix.Tasks.Velo.Videos.Render do
 
   @shortdoc "Renders videos that are still missing. Provide arguments to filter (e.g. hashes to render)"
   def run(filters) do
+    Video.StopFlag.reset()
+    Video.StopFlag.trap_sigusr1()
+
     Video.Dir.must_exist!(fn ->
       filters |> find() |> Enum.sort_by(& &1.name()) |> info() |> render()
     end)
@@ -12,6 +15,7 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   defp info(videos) do
     IO.puts(:stderr, "Rendering #{length(videos)} videos:")
     Enum.each(videos, fn vid -> IO.puts(:stderr, "* #{vid.hash()} #{vid.name()}") end)
+    IO.puts(:stderr, "\nTo stop gracefully after current segment(s): kill -USR1 #{System.pid()}")
     IO.puts(:stderr, "")
     videos
   end
@@ -40,22 +44,28 @@ defmodule Mix.Tasks.Velo.Videos.Render do
   end
 
   defp render(videos) do
-    Enum.each(videos, fn rendered ->
-      banner = """
+    Enum.reduce_while(videos, :ok, fn rendered, :ok ->
+      if Video.StopFlag.stopped?() do
+        IO.puts(:stderr, "\nStop requested, not starting new videos.")
+        {:halt, :ok}
+      else
+        banner = """
 
-      ###########################################################
-      # Name: #{rendered.name()}
-      # Hash: #{rendered.hash()}
-      ##########################################################
-      """
+        ###########################################################
+        # Name: #{rendered.name()}
+        # Hash: #{rendered.hash()}
+        ##########################################################
+        """
 
-      case Video.Renderer.render(rendered) do
-        :ok ->
-          :ok
+        case Video.Renderer.render(rendered) do
+          :ok ->
+            {:cont, :ok}
 
-        {:error, reason} ->
-          IO.puts(banner)
-          IO.puts("failed: #{reason}")
+          {:error, reason} ->
+            IO.puts(banner)
+            IO.puts("failed: #{reason}")
+            {:cont, :ok}
+        end
       end
     end)
   end
