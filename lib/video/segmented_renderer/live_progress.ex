@@ -20,6 +20,10 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     GenServer.cast(__MODULE__, {:complete, id})
   end
 
+  def log(message) do
+    GenServer.call(__MODULE__, {:log, message})
+  end
+
   def stop do
     GenServer.call(__MODULE__, :stop)
   end
@@ -41,6 +45,12 @@ defmodule Video.SegmentedRenderer.LiveProgress do
 
     state = %{state | bars: Map.put(state.bars, id, bar), order: state.order ++ [id]}
     {:reply, :ok, state}
+  end
+
+  def handle_call({:log, message}, _from, state) do
+    clear(state.rendered_lines)
+    IO.puts(:stderr, message)
+    {:reply, :ok, %{state | rendered_lines: 0}}
   end
 
   def handle_call(:stop, _from, state) do

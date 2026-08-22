@@ -59,7 +59,7 @@ defmodule Video.SegmentedRenderer do
     LiveProgress.start_link()
     LiveProgress.start_bar(:segments, label: "segments", total: total, absolute_values: true)
 
-    results =
+    errors =
       segments
       |> Enum.with_index()
       |> Task.async_stream(
@@ -78,20 +78,26 @@ defmodule Video.SegmentedRenderer do
         max_concurrency: @parallel_segments,
         timeout: :infinity
       )
-      |> Enum.reduce_while(:ok, fn
-        {:ok, :ok}, :ok ->
+      |> Enum.reduce_while([], fn
+        {:ok, :ok}, errors ->
           LiveProgress.inc(:segments)
-          {:cont, :ok}
+          {:cont, errors}
 
-        {:ok, :stopped}, :ok ->
-          {:halt, :ok}
+        {:ok, :stopped}, errors ->
+          {:halt, errors}
 
-        {:ok, err}, :ok ->
-          {:halt, err}
+        {:ok, {:error, reason}}, errors ->
+          LiveProgress.log(reason)
+          LiveProgress.inc(:segments)
+          {:cont, [reason | errors]}
       end)
 
     LiveProgress.stop()
-    results
+
+    case errors do
+      [] -> :ok
+      errs -> {:error, "#{length(errs)} segment(s) failed"}
+    end
   end
 
   defp render_regular_segment(_rendered, segment, cache_dir) do
