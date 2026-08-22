@@ -95,11 +95,9 @@ defmodule Video.SegmentedRenderer do
     with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "seg_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
       meta = metadata(source)
-      frame_s = Video.Metadata.frame_duration_s(meta)
       filter = regular_filter(source, start_s, opts)
-      pass1_input = regular_input(source, start_s, end_s + frame_s)
-      pass2_input = regular_input(source, start_s, end_s)
-      {pass1, pass2} = two_pass_cmd(pass1_input, pass2_input, filter, tmp_dir, filepart)
+      input = regular_input(source, start_s, end_s)
+      {pass1, pass2} = two_pass_cmd(input, input, filter, tmp_dir, filepart)
 
       with :ok <-
              run_ffmpeg(
@@ -137,7 +135,6 @@ defmodule Video.SegmentedRenderer do
       tmp_dir = Path.basename(tmp_path)
       meta_a = metadata(source_a)
       meta_b = metadata(source_b)
-      frame_s = Video.Metadata.frame_duration_s(meta_a)
 
       a_start = max(0, end_a_s - fade_s)
       a_end = end_a_s
@@ -150,7 +147,6 @@ defmodule Video.SegmentedRenderer do
         a_start: a_start,
         b_start: b_start,
         fade_s: fade_s,
-        frame_s: frame_s,
         meta_a: meta_a,
         meta_b: meta_b,
         opts_a: opts_a,
@@ -159,15 +155,12 @@ defmodule Video.SegmentedRenderer do
 
       filter = transition_filter(transition_ctx)
 
-      pass1_input =
-        transition_input(source_a, a_start, a_end + frame_s, source_b, b_start, b_end + frame_s)
-
-      pass2_input = transition_input(source_a, a_start, a_end, source_b, b_start, b_end)
+      input = transition_input(source_a, a_start, a_end, source_b, b_start, b_end)
 
       fps = Video.Constants.output_fps_s()
 
       {pass1, pass2} =
-        two_pass_cmd(pass1_input, pass2_input, filter, tmp_dir, filepart, ["-r", fps])
+        two_pass_cmd(input, input, filter, tmp_dir, filepart, ["-r", fps])
 
       with :ok <-
              run_ffmpeg(
