@@ -311,6 +311,7 @@ defmodule Video.SegmentedRenderer do
         ["-err_detect", "explode"],
         input,
         ["-filter_complex", filter],
+        ["-fps_mode", "vfr"],
         ["-g", gop_size()],
         extra_flags,
         ["-color_primaries", "bt709"],
