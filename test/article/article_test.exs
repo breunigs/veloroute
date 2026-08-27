@@ -253,7 +253,9 @@ defmodule ArticleTest do
       |> Enum.flat_map(fn art ->
         Enum.flat_map(art.tracks(), fn track ->
           track.videos
-          |> Enum.map(fn vid -> {elem(vid, 0), ts_to_ms.(elem(vid, 1)), ts_to_ms.(elem(vid, 2))} end)
+          |> Enum.map(fn vid ->
+            {elem(vid, 0), ts_to_ms.(elem(vid, 1)), ts_to_ms.(elem(vid, 2))}
+          end)
           |> Enum.group_by(&elem(&1, 0))
           |> Enum.flat_map(fn {source, segments} ->
             for {_, s1, e1} <- segments,
