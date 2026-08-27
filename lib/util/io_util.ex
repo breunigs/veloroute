@@ -239,26 +239,61 @@ defmodule Util.IO do
   end
 
   defp ensure_stderr_proxy do
-    case Process.whereis(:stderr_capture_proxy) do
+    case :persistent_term.get(:stderr_capture_proxy, nil) do
       pid when is_pid(pid) ->
         pid
 
       nil ->
-        :global.trans({:stderr_proxy, node()}, fn ->
-          case Process.whereis(:stderr_capture_proxy) do
-            pid when is_pid(pid) ->
-              :ok
+        # Use a dedicated process as a global lock to ensure exactly-once setup.
+        # We spawn a named lock process — only one caller can register it.
+        self_ref = self()
 
-            nil ->
+        lock_fn = fn ->
+          receive do
+            {:do_setup, caller} ->
               original = Process.whereis(:standard_error)
-              proxy = spawn(fn -> stderr_proxy_loop(original, %{}) end)
-              Process.unregister(:standard_error)
-              Process.register(proxy, :standard_error)
-              Process.register(proxy, :stderr_capture_proxy)
-          end
-        end)
 
-        Process.whereis(:stderr_capture_proxy)
+              proxy =
+                spawn(fn ->
+                  # First, take over the :standard_error name before entering the loop.
+                  # This must happen in the proxy process itself so it can hold both
+                  # the name and run the loop.
+                  receive do
+                    {:become_standard_error, from} ->
+                      Process.unregister(:standard_error)
+                      Process.register(self(), :standard_error)
+                      send(from, {:setup_done, self()})
+                      stderr_proxy_loop(original, %{})
+                  end
+                end)
+
+              send(proxy, {:become_standard_error, self()})
+
+              receive do
+                {:setup_done, ^proxy} ->
+                  :persistent_term.put(:stderr_capture_proxy, proxy)
+                  send(caller, {:proxy_ready, proxy})
+              end
+
+              # Keep the lock process alive so the name stays registered
+              Process.sleep(:infinity)
+          end
+        end
+
+        try do
+          lock = spawn(lock_fn)
+          Process.register(lock, :stderr_capture_proxy_lock)
+          send(lock, {:do_setup, self_ref})
+
+          receive do
+            {:proxy_ready, proxy} -> proxy
+          end
+        rescue
+          ArgumentError ->
+            # Lost the race — another process is setting up. Wait for it.
+            Process.sleep(1)
+            ensure_stderr_proxy()
+        end
     end
   end
 
