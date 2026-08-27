@@ -7,9 +7,10 @@ defmodule Data.Article.Blog.StPauliHafenstrasse do
     do:
       "Teils breite Radfahrstreifen, teils kleinere Verbesserungen, teils gar keine Änderungen. Das Radnetz bleibt lückenhaft."
 
-  def type(), do: :planned
+  def type(), do: :construction
   def start(), do: ~d[2026-09-07]
-  def stop(), do: ~d[2026-12-31]
+  def stop(), do: ~d[2026-12-18]
+  def construction_site_id_hh(), do: [3_006_915]
 
   def tags(), do: ["radroute-concept-a", "FR8"]
 

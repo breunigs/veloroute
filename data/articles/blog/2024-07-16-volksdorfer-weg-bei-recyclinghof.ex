@@ -8,6 +8,8 @@ defmodule Data.Article.Blog.VolksdorferWegBeiRecyclinghof do
       "Eine Sprunginsel in Straßenmitte soll das queren zu Fuß erleichtern. Durch sie erhält der Radverkehr auch die Möglichkeit in zwei Etappen links abzubiegen."
 
   def type(), do: :planned
+  def start(), do: ~d[2026-09]
+  def stop(), do: ~d[2027-01]
 
   def tags(), do: ["br-wandsbek-w6"]
 
@@ -18,7 +20,9 @@ defmodule Data.Article.Blog.VolksdorferWegBeiRecyclinghof do
   def links(_assigns) do
     [
       {"1. Entwurf", ~d[2024-07],
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021175"}
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021175"},
+      {"Bauzeitraum", ~d[2026-08],
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1025854"}
     ]
   end
 

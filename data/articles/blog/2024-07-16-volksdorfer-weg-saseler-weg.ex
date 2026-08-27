@@ -10,6 +10,8 @@ defmodule Data.Article.Blog.VolksdorferWegSaselerWeg do
       "Zahlreiche Fahrbahneinengungen auf eine Fahrspur sollen die Einhaltung des 30 km/h Tempolimits fördern."
 
   def type(), do: :planned
+  def start(), do: ~d[2026-09]
+  def stop(), do: ~d[2027-01]
 
   def tags(), do: ["br-wandsbek-w6"]
 
@@ -20,7 +22,9 @@ defmodule Data.Article.Blog.VolksdorferWegSaselerWeg do
   def links(_assigns) do
     [
       {"1. Entwurf", ~d[2024-07],
-       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021175"}
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1021175"},
+      {"Bauzeitraum", ~d[2026-08],
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1025854"}
     ]
   end
 

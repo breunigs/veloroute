@@ -7,11 +7,15 @@ defmodule Data.Article.Blog.BremerStrasse2 do
     do:
       "Im Stadtbereich meist 1,62m breite Hochbordradwege. Außerorts entfallen die ungesicherten KFZ-Rechtsabbieger an den sanierten Kreuzungen. Erneuert wird der Radweg außerorts nicht."
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: []
 
   def tracks(), do: Data.Article.Blog.BremerStrasse1.tracks()
+
+  def start(), do: ~d[2026-08-30]
+  def stop(), do: ~d[2026-12-20]
+  def construction_site_id_hh(), do: [3_804_594]
 
   def map_image do
     {name(),

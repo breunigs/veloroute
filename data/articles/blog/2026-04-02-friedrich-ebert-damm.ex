@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.FriedrichEbertDamm do
   def type(), do: :construction
   def tags(), do: ["radroute-6"]
 
-  def start(), do: ~d[2026-08]
-  def stop(), do: ~d[2026-08]
+  def start(), do: ~d[2026-09-01]
+  def stop(), do: ~d[2026-09-15]
 
   def map_image do
     {name(),

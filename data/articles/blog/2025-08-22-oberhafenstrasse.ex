@@ -6,15 +6,17 @@ defmodule Data.Article.Blog.Oberhafenstrasse do
   def summary(),
     do: "Kreuzung wird übersichtlicher gestaltet. Privater KFZ-Verkehr wird größenteils verlegt."
 
-  def type(), do: :construction
+  def type(), do: :planned
   def tags(), do: ["radroute-2"]
 
-  def start(), do: ~d[2026-03-02]
-  def stop(), do: ~d[2026-08-28]
-  def construction_site_id_hh(), do: [1_463_841]
+  # def start(), do: ~d[2026-03-02]
+  # def stop(), do: ~d[2026-08-28]
+  # def construction_site_id_hh(), do: [1_463_841]
 
   def links(_assigns) do
     [
+      {"Umbau pausiert", ~d[2026-08],
+       "https://sitzungsdienst-hamburg-mitte.hamburg.de/bi/vo020.asp?VOLFDNR=1020463"},
       {"fertiger Entwurf – Bericht und Karten", ~d[2024-11],
        "https://fragdenstaat.de/anfrage/oberhafenbruecke-oberhafenstrasse/#nachricht-1029576"}
     ]
