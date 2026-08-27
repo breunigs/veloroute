@@ -458,7 +458,8 @@ defmodule Basemap.Nominatim do
         #{to_elixir_bbox("ST_UNION(combo.geometry)")} AS bbox,
         combo.parents_name,
         combo.parents_postcode,
-        #{to_boost_search_result("combo.parents_name")} AS rank_boosted_areas
+        #{to_boost_search_result("combo.parents_name")} AS rank_boosted_areas,
+        (combo.name->'name' IS NULL AND combo.housenumber IS NOT NULL) AS housenumber_only
       FROM combo
       -- merge all segments of the same named highway regardless of OSM type
       CROSS JOIN LATERAL (SELECT CASE WHEN combo.class = 'highway' THEN NULL ELSE combo.type END) AS t(type)
@@ -505,7 +506,8 @@ defmodule Basemap.Nominatim do
         #{to_elixir_bbox("interpol.centroid")} AS bbox,
         combo.parents_name,
         combo.parents_postcode,
-        #{to_boost_search_result("combo.parents_name")}
+        #{to_boost_search_result("combo.parents_name")},
+        TRUE AS housenumber_only
       FROM combo
       INNER JOIN interpol ON interpol.parent_place_id = combo.place_id
       WHERE
@@ -551,7 +553,8 @@ defmodule Basemap.Nominatim do
         #{to_elixir_bbox("ST_UNION(intersections.geometry)")} AS bbox,
         intersections.parents_name,
         MIN(intersections.parents_postcode) AS parents_postcode,
-        #{to_boost_search_result("intersections.parents_name")}
+        #{to_boost_search_result("intersections.parents_name")},
+        FALSE AS housenumber_only
       FROM (
         SELECT
           CONCAT(one.id, '_', two.id) AS id,

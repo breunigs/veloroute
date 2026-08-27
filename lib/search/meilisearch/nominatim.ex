@@ -37,11 +37,17 @@ defmodule Search.Meilisearch.Nominatim do
 
   @impl true
   def params(query, lat, lon) do
-    %{
+    params = %{
       q: query,
       limit: 10,
       sort: ["_geoPoint(#{lat}, #{lon}):asc"]
     }
+
+    if Regex.match?(~r/\d/, query) do
+      params
+    else
+      Map.put(params, :filter, "housenumber_only = false")
+    end
   end
 
   @impl true
@@ -246,7 +252,8 @@ defmodule Search.Meilisearch.Nominatim do
   def config() do
     %{
       displayedAttributes:
-        ~w(id class type name address parents_name parents_postcode extratags bbox boost rank_boosted_areas rank_search rank_address importance),
+        ~w(id class type name address parents_name parents_postcode extratags bbox boost rank_boosted_areas rank_search rank_address importance housenumber_only),
+      filterableAttributes: ~w(housenumber_only),
       # order is from most important to least important
       searchableAttributes:
         ~w(name boost address type parents_name parents_postcode type extratags),
