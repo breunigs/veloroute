@@ -461,8 +461,9 @@ defmodule Basemap.Nominatim do
         #{to_boost_search_result("combo.parents_name")} AS rank_boosted_areas,
         (combo.name->'name' IS NULL AND combo.housenumber IS NOT NULL) AS housenumber_only
       FROM combo
-      -- merge all segments of the same named highway regardless of OSM type
-      CROSS JOIN LATERAL (SELECT CASE WHEN combo.class = 'highway' THEN NULL ELSE combo.type END) AS t(type)
+      -- merge all segments of the same named highway regardless of OSM type,
+      -- but keep type for POI-like highway entries (e.g. bus stops)
+      CROSS JOIN LATERAL (SELECT CASE WHEN combo.class = 'highway' AND combo.type NOT IN ('bus_stop', 'platform') THEN NULL ELSE combo.type END) AS t(type)
       WHERE (
         -- keep all named entries everywhere, but drop nameless (housenumber-only)
         -- entries outside the boost area since they are not useful for this app
