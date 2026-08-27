@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
   @shortdoc "Checks for updates in Hamburg's LSBG"
   def run(_) do
     status = load_status()
-    linked = already_linked_from_articles()
+    linked = already_linked_from_articles() |> MapSet.new(&normalize_lsbg_url/1)
 
     list_projects()
     |> Stream.concat(list_pdfs(@shorts_page, "Anliegerinfo"))
@@ -33,8 +33,8 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
     end)
     # already seen and no changes
     |> Stream.reject(fn detail -> status[detail.source] == detail.checksum end)
-    # already linked
-    |> Stream.reject(fn detail -> Enum.member?(linked, detail.source) end)
+    # already linked (ignoring hash changes in resource/blob URLs)
+    |> Stream.reject(fn detail -> normalize_lsbg_url(detail.source) in linked end)
     |> Enum.reduce({status, nil}, fn detail, {status, task} ->
       status = write_status_put(status, task)
       task = Task.async(fn -> show(detail) end)
@@ -113,6 +113,10 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
     else
       error -> {:error, "failed to read/parse #{link}: #{inspect(error)}"}
     end
+  end
+
+  defp normalize_lsbg_url(url) do
+    String.replace(url, ~r|/resource/blob/(\d+)/[0-9a-f]+/|, "/resource/blob/\\1/")
   end
 
   @spec absolute(binary() | [binary()]) :: binary()
