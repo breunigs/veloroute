@@ -112,8 +112,13 @@ defmodule Video.SegmentedRenderer.LiveProgress do
 
     if prev_count > 0, do: IO.write(:stderr, "\e[#{prev_count}A")
 
+    label_width =
+      active
+      |> Enum.map(&String.length(state.bars[&1].label))
+      |> Enum.max(fn -> 0 end)
+
     for id <- active do
-      IO.write(:stderr, "\e[2K" <> format_bar(state.bars[id], width) <> "\n")
+      IO.write(:stderr, "\e[2K" <> format_bar(state.bars[id], width, label_width) <> "\n")
     end
 
     # clear any stray output or leftover bars below
@@ -134,7 +139,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
   # layout: " " elapsed(7) " " values(7) " " eta(12)  = 30 chars
   @suffix_width 30
 
-  defp format_bar(bar, width) do
+  defp format_bar(bar, width, label_width) do
     pct = if bar.total > 0, do: bar.current / bar.total, else: 0.0
     elapsed_ms = System.monotonic_time(:millisecond) - bar.start_time
 
@@ -145,7 +150,7 @@ defmodule Video.SegmentedRenderer.LiveProgress do
     suffix =
       " #{elapsed} #{String.pad_leading(values, 7)} #{String.pad_trailing(eta_str, 12)}"
 
-    label = String.pad_trailing(bar.label, 35)
+    label = String.pad_trailing(bar.label, label_width + 1)
 
     bar_width = max(10, width - String.length(label) - @suffix_width - 2)
     filled = round(pct * bar_width)

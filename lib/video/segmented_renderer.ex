@@ -604,7 +604,7 @@ defmodule Video.SegmentedRenderer do
     fps = Video.Constants.output_fps()
     duration = end_s - start_s
     total_frames = max(1, round(duration * pts_correction * fps))
-    label = "#{pass} #{Path.basename(basename)}"
+    label = "#{pass} #{basename}"
     id = {pass, basename, :erlang.unique_integer()}
 
     LiveProgress.start_bar(id, label: label, total: total_frames)
