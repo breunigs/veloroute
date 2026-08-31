@@ -59,19 +59,25 @@ defmodule Video.SegmentedRenderer do
     LiveProgress.start_link()
     LiveProgress.start_bar(:segments, label: "segments", total: total, absolute_values: true)
 
+    {:ok, throttle} = Video.SegmentedRenderer.CpuThrottle.start_link()
+
     errors =
       segments
-      |> Enum.with_index()
       |> Task.async_stream(
-        fn {segment, idx} ->
+        fn segment ->
           if Video.StopFlag.stopped?() do
             :stopped
           else
-            Process.put(:niceness, if(rem(idx, @parallel_segments) == 0, do: 5, else: 19))
+            try do
+              Video.SegmentedRenderer.CpuThrottle.wait(throttle)
+              Process.put(:niceness, 19)
 
-            case segment.type do
-              :regular -> render_regular_segment(rendered, segment, cache_dir)
-              :transition -> render_transition_segment(rendered, segment, cache_dir)
+              case segment.type do
+                :regular -> render_regular_segment(rendered, segment, cache_dir)
+                :transition -> render_transition_segment(rendered, segment, cache_dir)
+              end
+            after
+              Video.SegmentedRenderer.CpuThrottle.done(throttle)
             end
           end
         end,
@@ -92,6 +98,8 @@ defmodule Video.SegmentedRenderer do
           LiveProgress.inc(:segments)
           [reason | errors]
       end)
+
+    Video.SegmentedRenderer.CpuThrottle.stop(throttle)
 
     LiveProgress.stop()
 
