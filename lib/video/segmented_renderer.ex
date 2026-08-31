@@ -231,6 +231,20 @@ defmodule Video.SegmentedRenderer do
 
     parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
     parts = parts ++ dewarp_filters("[blur1]", "[blur1]")
+
+    # Scale both inputs to the minimum of their dimensions in case source videos
+    # differ in resolution (e.g. 3840x2160 vs 2704x1520), since rife_transition
+    # requires matching input dimensions. Uses two scale2ref passes so we only
+    # ever scale down, never up.
+    min_wh = "w='min(iw,main_w)':h='min(ih,main_h)'"
+
+    parts =
+      parts ++
+        [
+          "[blur0][blur1]scale2ref=#{min_wh}[_s0][_ref1]",
+          "[_ref1][_s0]scale2ref=#{min_wh}[blur1][blur0]"
+        ]
+
     parts = parts ++ time_lapse_filter(ctx.meta_a, "[blur0]", "[blur0]")
     parts = parts ++ time_lapse_filter(ctx.meta_b, "[blur1]", "[blur1]")
 
