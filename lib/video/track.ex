@@ -142,6 +142,7 @@ defmodule Video.Track do
   # it's necessary even though we use the video length to determine where to
   # start the next coordinates from.
   @video_concat_bump_ms 85
+  @fade_frames 8
   def render(%__MODULE__{videos: videos, renderer: renderer} = t, opts) when renderer <= 2 do
     opts = render_opts(opts)
     tsvs = tsvs(videos)
@@ -193,21 +194,27 @@ defmodule Video.Track do
     hsh = if renderer >= 7, do: :crypto.hash_update(hsh, "renderer #{renderer}"), else: hsh
     fade_in_ms = round(fade(renderer) * 1000)
 
+    nexts = tl(videos) ++ [nil]
+    videos_with_next = Enum.zip(videos, nexts)
+
     joined =
-      Enum.reduce(videos, {0, [], [], hsh}, fn
+      Enum.reduce(videos_with_next, {0, [], [], hsh}, fn
         _any, {:error, reason} ->
           {:error, reason}
 
-        {file, from, to, opts}, acc ->
+        {{file, from, to, opts}, next}, acc ->
+          next_from = if next, do: elem(next, 1)
+
           with %Video.TrimmedSource{} = tsv <- tsvs[file],
-               {:ok, segment} <- render_segment(fade_in_ms, tsv, from, to, opts, acc) do
+               {:ok, segment} <-
+                 render_segment(fade_in_ms, tsv, from, to, opts, next_from, acc) do
             segment
           else
             {:error, reason} -> {:error, reason}
             nil -> {:error, "Could not find a TrimmedSourceVideo for #{file}."}
           end
 
-        other, _acc ->
+        {other, _next}, _acc ->
           {:error,
            """
            Unexpected video segment definition. Expected a triple of
@@ -264,10 +271,25 @@ defmodule Video.Track do
     end)
   end
 
-  defp render_segment(fade_in_ms, tsv, from, to, opts, {dur, rev_coords, recording_dates, hsh}) do
+  defp render_segment(
+         fade_in_ms,
+         tsv,
+         from,
+         to,
+         opts,
+         next_from,
+         {dur, rev_coords, recording_dates, hsh}
+       ) do
+    is_first = rev_coords == []
+    has_transition_before = !is_first && from != :seamless
+    has_transition_after = next_from != nil && next_from != :seamless
+
+    # rife_transition produces @fade_frames + 1 frames (includes both endpoints)
+    transition_ms = round((@fade_frames + 1) / Video.Constants.output_fps() * 1000)
+
     {dur, rev_coords, hsh} =
       cond do
-        rev_coords == [] ->
+        is_first ->
           {dur, rev_coords, hsh}
 
         from == :seamless ->
@@ -278,8 +300,8 @@ defmodule Video.Track do
 
         true ->
           {
-            dur - fade_in_ms,
-            Enum.drop_while(rev_coords, &(&1.time_offset_ms >= dur - fade_in_ms)),
+            dur - transition_ms,
+            Enum.drop_while(rev_coords, &(&1.time_offset_ms >= dur - transition_ms)),
             :crypto.hash_update(hsh, "fade #{fade_in_ms}")
           }
       end
@@ -292,24 +314,76 @@ defmodule Video.Track do
          {:ok, meta} <- Video.Metadata.for(tsv) do
       from_ms = tsv.coord_from.time_offset_ms
       to_ms = tsv.coord_to.time_offset_ms
+      clip_ms = to_ms - from_ms
+
+      # Compute effective range matching segment.ex's process_source exactly:
+      # use article timestamps resolved to seconds with Float.round(..., 3)
+      fade_s = default_fade()
+      start_s = resolve_start(from)
+      end_s = resolve_end(to, tsv.source)
+
+      effective_start_s =
+        if has_transition_before,
+          do: Float.round(start_s + fade_s, 3),
+          else: Float.round(start_s, 3)
+
+      effective_end_s =
+        if has_transition_after,
+          do: Float.round(end_s - fade_s, 3),
+          else: Float.round(end_s, 3)
+
+      regular_ms = grid_split_duration_ms(tsv.source, effective_start_s, effective_end_s, meta)
+
+      output_ms =
+        regular_ms +
+          if(has_transition_before, do: transition_ms, else: 0) +
+          if(has_transition_after, do: transition_ms, else: 0)
 
       rev_coords =
         Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
-          offset = round((new.time_offset_ms - from_ms) * meta.pts_correction)
+          offset = round((new.time_offset_ms - from_ms) / clip_ms * output_ms)
           new = Map.put(new, :time_offset_ms, dur + offset)
           [new | rev_coords]
         end)
 
       recording_dates = [%{timestamp: dur, text: tsv_date(tsv)} | recording_dates]
 
-      dur = dur + round((to_ms - from_ms) * meta.pts_correction)
+      dur = dur + output_ms
       segment = {dur, rev_coords, recording_dates, :crypto.hash_update(hsh, tsv.hash_ident)}
 
       {:ok, segment}
     end
   end
 
-  @fade_frames 8
+  # Compute the actual video duration by simulating the grid-split frame counting
+  # that the segmented renderer uses. Each grid segment independently rounds to a
+  # whole number of frames, which makes the total video slightly longer than the
+  # raw millisecond duration would suggest.
+  defp grid_split_duration_ms(source, from_s, to_s, meta) do
+    effective_fps =
+      if meta.pts_correction == 1,
+        do: meta.fps,
+        else: Video.Constants.output_fps()
+
+    Video.Segment.grid_split(source, from_s, to_s, [])
+    |> Enum.reduce(0, fn seg, acc ->
+      seg_dur = (seg.end_s - seg.start_s) * meta.pts_correction
+      frames = ceil(seg_dur * effective_fps)
+      acc + round(frames / effective_fps * 1000.0)
+    end)
+  end
+
+  defp resolve_start(:start), do: 0.0
+  defp resolve_start(:seamless), do: 0.0
+  defp resolve_start(timestamp), do: Video.Timestamp.in_seconds(timestamp)
+
+  defp resolve_end(:end, source) do
+    {:ok, meta} = Video.Metadata.for(%{source: source})
+    meta.duration
+  end
+
+  defp resolve_end(timestamp, _source), do: Video.Timestamp.in_seconds(timestamp)
+
   @spec default_fade :: float
   @doc """
   Returns the fade duration in seconds
