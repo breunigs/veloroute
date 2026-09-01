@@ -1,3 +1,15 @@
+# Fake module for Video.Segment.segments/1 with explicit timestamps
+defmodule FakeRenderedTwoClipsExplicit do
+  def renderer(), do: 7
+
+  def sources() do
+    [
+      {"test/fixtures/1.MP4", :start, "00:00:50.000", []},
+      {"test/fixtures/2.MP4", :start, "00:00:45.000", []}
+    ]
+  end
+end
+
 defmodule Video.TrackRenderV7Test do
   use ExUnit.Case, async: true
 
@@ -177,17 +189,5 @@ defmodule Video.TrackRenderV7Test do
       assert expected == 45000 + 2 * 300
       assert expected == 45600
     end
-  end
-end
-
-# Fake module for Video.Segment.segments/1 with explicit timestamps
-defmodule FakeRenderedTwoClipsExplicit do
-  def renderer(), do: 7
-
-  def sources() do
-    [
-      {"test/fixtures/1.MP4", :start, "00:00:50.000", []},
-      {"test/fixtures/2.MP4", :start, "00:00:45.000", []}
-    ]
   end
 end
