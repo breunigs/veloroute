@@ -6,16 +6,16 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "hls.js": "^1.7.0",
+    "hls.js": "^1.7.1",
     "maplibre-gl": "^5.24.0",
-    "pmtiles": "^4.4.1"
+    "pmtiles": "^4.5.0"
   },
   "devDependencies": {
-    "@svta/cml-cmcd": "2.4.0",
-    "@svta/cml-id3": "1.0.6",
-    "@svta/cml-utils": "1.5.0",
+    "@svta/cml-cmcd": "2.5.0",
+    "@svta/cml-id3": "1.0.8",
+    "@svta/cml-utils": "1.6.0",
     "@types/phoenix_live_view": "^1.0.0",
-    "esbuild": "^0.28.1",
+    "esbuild": "^0.28.2",
     "eventemitter3": "5.0.4",
     "url-toolkit": "2.2.5"
   }
