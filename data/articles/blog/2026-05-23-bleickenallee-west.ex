@@ -7,7 +7,8 @@ defmodule Data.Article.Blog.BleickenalleeWest do
     do:
       "…werden zur Fahrradstraße. Bleickenallee erhält glatteres Pflaster (nördliche Fahrbahn) bzw. wird asphaltiert (südlich). KFZ-Parken im Kirchenweg wird aufgeräumt."
 
-  def start(), do: ~d[2027Q2]
+  def start(), do: ~d[2027-05]
+  def stop(), do: ~d[2028-04]
 
   def type(), do: :planned
 
@@ -24,6 +25,8 @@ defmodule Data.Article.Blog.BleickenalleeWest do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"1. Entwurf, Karte und Erläuterung", ~d[2026-05],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018260"}
     ]

@@ -8,7 +8,8 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   # def start(), do: ~d[2021-02-15]
   # def stop(), do: ~d[2022-10-30]
-  def start(), do: ~d[2027Q3]
+  def start(), do: ~d[2027-09]
+  def stop(), do: ~d[2028-06]
 
   def type(), do: :planned
   # def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]
@@ -18,6 +19,8 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
       {"Pressemitteilung zur Vollendung des 1. Abschnitts",
        "https://web.archive.org/web/20240305083212/https://www.hamburg.de/harburg/pressemeldungen/15684754/fertigstellung-teilabschnitt-veloroute-10-binnenhafen/"},
       {"Erläuterungsbericht zur Umgestaltung mit vorläufigem Lageplan",

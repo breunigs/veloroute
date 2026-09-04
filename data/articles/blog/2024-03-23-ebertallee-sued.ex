@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.EbertalleeSued do
       "Ad-Hoc Maßnahme: Die überbreite Fahrbahn soll in Radfahrstreifen und KFZ-Fahrspur aufgeteilt werden. Indirektes Linksabbiegen in den Kreuzungen."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-07]
-  def stop(), do: ~d[2026-08]
+  def start(), do: ~d[2027-03-18]
+  def stop(), do: ~d[2027-07-07]
 
   def tags(), do: ["radroute-7"]
 
@@ -60,6 +60,8 @@ defmodule Data.Article.Blog.EbertalleeSued do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"Lageplan, fertiger Entwurf", "März 2024",
        "https://lsbg.hamburg.de/resource/blob/784144/611305f5d4fdeef958fd938094e2fdc5/ebertallee-adhoc-radfahrstreifen-abgestimmte-planung-plan-data.pdf"},
       {"Erläuterungen, fertiger Entwurf", "März 2024",

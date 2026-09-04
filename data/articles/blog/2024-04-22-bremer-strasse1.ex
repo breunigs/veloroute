@@ -9,9 +9,8 @@ defmodule Data.Article.Blog.BremerStrasse1 do
       "Meist 2,0m breite Radfahrstreifen mit 1,6m breiten Engstellen. Stadteinwärts teilweise 3,5m breite Fahrradstraße als Nebenfahrbahn. Problemstelle vorm Neuen Friedhof Harburg wird nicht umgebaut."
 
   def type(), do: :planned
-  # zurückgestellt wegen ZOB-Harburg
-  # def start(), do: ~d[2025-10]
-  # def stop(), do: ~d[2027Q2]
+  def start(), do: ~d[2027-09]
+  def stop(), do: ~d[2029-09]
 
   def tags(), do: []
 
@@ -69,6 +68,8 @@ defmodule Data.Article.Blog.BremerStrasse1 do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
       {"Detailänderungen des fertigen Entwurfs", ~d[2024-10],
        "https://lsbg.hamburg.de/resource/blob/972270/6f29a61b304bf6e8b8fe0bc9f7fbc62d/bremer-strasse-aenderung-zur-schlussverschickung-bericht-data.pdf"},
       {"Lagepläne mit den Detailänderungen", ~d[2024-10],

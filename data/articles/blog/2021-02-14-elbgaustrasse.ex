@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
       "2,0m breite Hochbordradwege. An Engstellen soll auf Fahrbahn gewechselt werden; Gehwege bleiben mit Schritttempo erlaubt."
 
   def start(), do: ~d[2025-05-29]
-  def stop(), do: ~d[2027-05-31]
+  def stop(), do: ~d[2027-05-09]
   def construction_site_id_hh(), do: [1_386_246, 3_272_753]
 
   def type(), do: :construction
@@ -28,6 +28,8 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"Baustelleninfo", ~d[2026-07],
        "https://lsbg.hamburg.de/resource/blob/1056442/849ad3014f8bba35261b269bfe0c8c03/elbgaustrasse-anliegerinformation-juli-2026-data.pdf"},
       # {"Baustelleninfo", ~d[2026-04],

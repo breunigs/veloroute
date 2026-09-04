@@ -9,8 +9,8 @@ defmodule Data.Article.Blog.HoheStrasse do
       "Beidseitige, durchgängige Einrichtungs-Radwege entlang der Hauptstrecke. Querung der Straßenseite bleibt schwierig bis unmöglich."
 
   def type(), do: :planned
-  def start(), do: ~d[2025-10]
-  def stop(), do: ~d[2027Q2]
+  def start(), do: ~d[2027-09]
+  def stop(), do: ~d[2029-09]
 
   def tags(), do: []
 
@@ -57,6 +57,8 @@ defmodule Data.Article.Blog.HoheStrasse do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
       {"Detailänderungen des fertigen Entwurfs", ~d[2024-10],
        "https://lsbg.hamburg.de/resource/blob/972270/6f29a61b304bf6e8b8fe0bc9f7fbc62d/bremer-strasse-aenderung-zur-schlussverschickung-bericht-data.pdf"},
       {"Lagepläne mit den Detailänderungen", ~d[2024-10],

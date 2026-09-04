@@ -9,7 +9,7 @@ defmodule Data.Article.Blog.FreiraumOttensen do
 
   def type(), do: :planned
   def start(), do: ~d[2026-04-15]
-  def stop(), do: ~d[2027-07]
+  def stop(), do: ~d[2027-12]
 
   def tags(), do: []
 

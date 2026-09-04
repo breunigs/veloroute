@@ -7,9 +7,11 @@ defmodule Data.Article.Blog.Krausestrasse2 do
     do:
       "Nach Süden 1,6m breiter Radfahrstreifen. Nach Norden nur vor der Schule, sonst nur 1,3m breiter Schutzstreifen."
 
-  def type(), do: :planned
-  def start(), do: ~d[2026-09]
-  def stop(), do: ~d[2026-10]
+  def type(), do: :construction
+
+  def start(), do: ~d[2026-09-14]
+  def stop(), do: ~d[2026-11-06]
+  def construction_site_id_hh(), do: [3_679_968]
 
   def tags(), do: ["N4", "N5"]
 

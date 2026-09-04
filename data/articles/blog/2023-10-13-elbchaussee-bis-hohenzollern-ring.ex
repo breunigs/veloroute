@@ -11,7 +11,7 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
   def type(), do: :construction
 
   def tags(), do: ["radroute-concept-a"]
-  def start(), do: ~d[2025-04]
+  def start(), do: ~d[2025-03-31]
   def stop(), do: ~d[2030-03]
 
   # Vorarbeiten HH Wasser
@@ -21,6 +21,8 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"Baustelleninfo", ~d[2026-02],
        "https://web.archive.org/web/20260306211304/https://lsbg.hamburg.de/resource/blob/1144768/498a0c631b5a836add1b3fe7c084b52c/elbchaussee-anliegerinformation-erweiterte-vollsperrung-hohenzollernring-ab-16-02-26-data.pdf"},
       # {"Baustelleninfo", ~d[2025-06],

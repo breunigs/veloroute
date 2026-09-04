@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.Bernadottestrasse1 do
       "Der vorhandene Radfahrstreifen Richtung Altona wird auf 1,95m verbreitert. Der Hochbordradweg Richtung Klein Flottbek entfällt ersatzlos."
 
   def type(), do: :planned
-  def start(), do: ~d[2027Q3]
+  def start(), do: ~d[2028-03]
+  def stop(), do: ~d[2028-12-31]
 
   def tags(), do: []
 
@@ -58,6 +59,8 @@ defmodule Data.Article.Blog.Bernadottestrasse1 do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"Erläuterungen und Lageplan, fertiger Entwurf", "April 2024",
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1015149"}
     ]

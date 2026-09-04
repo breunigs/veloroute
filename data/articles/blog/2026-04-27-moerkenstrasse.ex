@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Moerkenstrasse do
   def type(), do: :planned
   def tags(), do: ["radroute-1"]
 
-  def start(), do: ~d[2027Q2]
-  def stop(), do: ~d[2027Q2]
+  def start(), do: ~d[2027-03]
+  def stop(), do: ~d[2027-10]
 
   def map_image do
     {name(),
@@ -23,6 +23,8 @@ defmodule Data.Article.Blog.Moerkenstrasse do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-09],
+       "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
       {"erster Entwurf, Pläne und Erläuterungen", ~d[2026-04],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018127"}
     ]
