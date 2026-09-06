@@ -46,94 +46,28 @@ defmodule VelorouteWeb.VideoDownloadController do
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
       |> send_chunked(200)
 
-    segment_infos =
-      Enum.map(segments, fn seg ->
-        basename = Video.Segment.basename(seg)
+    segment_infos = Video.FMP4.Stream.segment_infos(segments, variant_idx)
 
-        %{
-          m4s_path: Video.Path.segment_file(basename, variant_idx),
-          m3u8_path: Video.Path.segment_m3u8(basename, variant_idx)
-        }
-      end)
+    # Use a mutable ref to thread conn through the streaming callback
+    conn_ref = :erlang.make_ref()
+    Process.put(conn_ref, conn)
 
-    {conn, _seq, _base_time, _timescale} =
-      Enum.reduce_while(segment_infos, {conn, 1, 0, nil}, fn info,
-                                                             {conn, seq, base_time, timescale} ->
-        with {:ok, data} <- File.read(info.m4s_path),
-             {:ok, durations} <- extinf_durations(info.m3u8_path) do
-          {timescale, data, seq, base_time} =
-            if timescale == nil do
-              # First segment: extract timescale, keep ftyp+moov
-              {:ok, ts} = Video.FMP4.extract_timescale(data)
-              dur_units = Video.FMP4.durations_to_timescale(durations, ts)
+    Video.FMP4.Stream.stream_segments(segment_infos, fn data ->
+      conn = Process.get(conn_ref)
 
-              {data, next_seq, next_base} =
-                Video.FMP4.fix_timestamps(data, seq, base_time, dur_units)
+      case chunk(conn, data) do
+        {:ok, conn} ->
+          Process.put(conn_ref, conn)
+          :ok
 
-              {ts, data, next_seq, next_base}
-            else
-              stripped = skip_to_moof(data)
-              dur_units = Video.FMP4.durations_to_timescale(durations, timescale)
+        {:error, reason} ->
+          {:error, reason}
+      end
+    end)
 
-              {patched, next_seq, next_base} =
-                Video.FMP4.fix_timestamps(stripped, seq, base_time, dur_units)
-
-              {timescale, patched, next_seq, next_base}
-            end
-
-          case chunk(conn, data) do
-            {:ok, conn} -> {:cont, {conn, seq, base_time, timescale}}
-            {:error, _reason} -> {:halt, {conn, seq, base_time, timescale}}
-          end
-        else
-          {:error, reason} ->
-            Logger.error("Failed to process segment #{info.m4s_path}: #{inspect(reason)}")
-            {:halt, {conn, seq, base_time, timescale}}
-        end
-      end)
-
+    conn = Process.get(conn_ref)
     halt(conn)
   end
-
-  defp extinf_durations(m3u8_path) do
-    case M3U8.Tokenizer.read_file(m3u8_path) do
-      {:ok, tokens} ->
-        durations =
-          for {:extinf, %{duration: d}} <- tokens, do: d
-
-        {:ok, durations}
-
-      {:error, _} = err ->
-        err
-    end
-  end
-
-  # Skips ftyp/moov boxes in a fragmented MP4 to reach the first moof box.
-  # Used when concatenating segments: only the first segment should include
-  # the init section (ftyp+moov), subsequent segments start at moof.
-  defp skip_to_moof(binary), do: skip_to_moof(binary, 0)
-
-  defp skip_to_moof(binary, offset) when offset + 8 <= byte_size(binary) do
-    <<_::binary-size(^offset), size::32-big, type::binary-size(4), _::binary>> = binary
-
-    cond do
-      type == "moof" ->
-        binary_part(binary, offset, byte_size(binary) - offset)
-
-      # Extended size: when size == 1, the next 8 bytes contain the real 64-bit size
-      size == 1 and offset + 16 <= byte_size(binary) ->
-        <<_::binary-size(^offset), _::64, extended_size::64-big, _::binary>> = binary
-        skip_to_moof(binary, offset + extended_size)
-
-      size > 0 ->
-        skip_to_moof(binary, offset + size)
-
-      true ->
-        binary
-    end
-  end
-
-  defp skip_to_moof(binary, _offset), do: binary
 
   defp download_title(rendered) do
     date = Video.RenderedTools.most_recent_recording_month(rendered, "de")

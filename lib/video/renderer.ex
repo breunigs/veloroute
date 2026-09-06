@@ -1,56 +1,6 @@
 defmodule Video.Renderer do
-  @min_renderer_version 5
-
-  import Guards
-
   @spec ffmpeg_image() :: Util.Docker.image_ref()
   def ffmpeg_image(), do: {:dockerfile, "tools/ffmpeg/Dockerfile.ffmpeg"}
-
-  @doc """
-  Returns the commands to preview the given video(s).
-  """
-  def preview_cmd(rendered, blur, dewarp, burn_filenames, start_from \\ nil)
-      when is_nil(start_from) or valid_timestamp(start_from) do
-    ensure_min_version(rendered)
-    sources = Video.Track.normalize_video_tuples(rendered.sources())
-
-    prefix = "scale=640:-1,"
-    blurred = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
-    dewarped = if dewarp, do: dewarp(sources), else: []
-    burned = if burn_filenames, do: burn_in_filename(sources), else: []
-    time_lapsed = time_lapse_corrects(sources)
-    cross_fades = xfades(sources, rendered)
-    filter = Enum.join(blurred ++ dewarped ++ burned ++ time_lapsed ++ cross_fades, ";")
-
-    filter =
-      if start_from do
-        start_from = "#{Video.Timestamp.in_milliseconds(start_from)}ms"
-        filter <> "[trim];[trim]trim=start=#{start_from},setpts=PTS-STARTPTS"
-      else
-        filter
-      end
-
-    rife_fps_fix = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
-
-    [
-      Util.low_priority_cmd_prefix(15),
-      "ffmpeg",
-      "-hide_banner",
-      ["-loglevel", "error"],
-      inputs(sources),
-      ["-filter_complex", filter],
-      ["-pix_fmt", "yuv420p"],
-      ["-c:v", "libx264"],
-      ["-preset", "ultrafast"],
-      ["-qp", "17"],
-      ["-tune", "zerolatency"],
-      "-an",
-      rife_fps_fix,
-      ["-f", "matroska"],
-      "-"
-    ]
-    |> List.flatten()
-  end
 
   @spec join_preview_cmds(
           [
@@ -187,65 +137,7 @@ defmodule Video.Renderer do
 
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.Cmd2.exec_result()
   def render(rendered) do
-    ensure_min_version(rendered)
-
-    if rendered.renderer() >= 7 do
-      Video.SegmentedRenderer.render(rendered)
-    else
-      render_legacy(rendered)
-    end
-  end
-
-  defp render_legacy(rendered) do
-    target = Video.Path.target(rendered.hash())
-
-    case File.ls(target) do
-      {:ok, []} -> render_run(rendered, target)
-      {:error, :enoent} -> render_run(rendered, target)
-      _ -> {:error, "#{target} already exists, refusing to overwrite"}
-    end
-  end
-
-  defp ensure_min_version(rendered) do
-    if rendered.renderer() < @min_renderer_version,
-      do:
-        raise(
-          "cannot render #{rendered.name()} (#{rendered.hash()}) since it specifies an old renderer version. Need at least version #{@min_renderer_version}."
-        )
-  end
-
-  defp render_run(rendered, target) do
-    cache_dir = Path.join([File.cwd!(), "data", "cache"])
-    Temp.track!()
-
-    try do
-      with :ok <- File.mkdir_p(cache_dir),
-           {:ok, tmp_path} <-
-             Temp.mkdir(%{basedir: cache_dir, prefix: "render_#{rendered.hash()}"}),
-           tmp_dir <- Path.basename(tmp_path),
-           {pass1, pass2} <- render_cmd(rendered, tmp_dir),
-           pbar1 = Video.Renderer.Progress.new(rendered, "rendering pass 1"),
-           :ok <- run_ffmpeg("#{rendered.hash()} rendering pass 1", pass1, pbar1),
-           pbar2 = Video.Renderer.Progress.new(rendered, "rendering pass 2"),
-           :ok <- run_ffmpeg("#{rendered.hash()} rendering pass 2", pass2, pbar2),
-           :ok <- render_thumbnails(rendered, tmp_dir),
-           :ok <- manually_tag_missing(tmp_path),
-           :ok <- append_thumb_pragmas(tmp_path) do
-        move(tmp_path, target)
-      end
-    after
-      Temp.cleanup()
-    end
-  end
-
-  defp run_ffmpeg(label, cmd, pbar) do
-    Util.Docker.build_and_run(
-      {label, ffmpeg_image()},
-      %{command_args: cmd, mount_videos_in_dir: "/workdir/"},
-      env: [],
-      stderr: pbar,
-      slow_warn_message: false
-    )
+    Video.SegmentedRenderer.render(rendered)
   end
 
   def variant_thumbs() do
@@ -254,27 +146,6 @@ defmodule Video.Renderer do
     ]
     |> Enum.with_index()
     |> Enum.map(fn {info, idx} -> Map.put(info, :index, idx) end)
-  end
-
-  defp thumbnail_source_stream(tmp_dir) do
-    %{index: idx} = Enum.find(variants(), & &1[:thumbnail_source])
-    "#{tmp_dir}/stream_#{idx}.m3u8"
-  end
-
-  defp render_thumbnails(rendered, tmp_dir) do
-    Enum.reduce_while(variant_thumbs(), :ok, fn thumb, :ok ->
-      label = "rendering thumbs"
-      pbar = Video.Renderer.Progress.new(rendered, label, thumb.fps)
-
-      case run_ffmpeg(label, thumbnail_cmd(tmp_dir, thumb), pbar) do
-        :ok -> {:cont, :ok}
-        err -> {:halt, err}
-      end
-    end)
-  end
-
-  defp thumbnail_cmd(tmp_dir, thumb) do
-    thumbnail_cmd(thumbnail_source_stream(tmp_dir), tmp_dir, thumb)
   end
 
   def thumbnail_cmd(source, out_dir, %{
@@ -323,117 +194,6 @@ defmodule Video.Renderer do
     File.write!(m3u8, Enum.join(pragmas, "\n") <> "\n", [:append])
   end
 
-  def render_cmd(rendered, tmp_dir) do
-    sources = Video.Track.normalize_video_tuples(rendered.sources())
-    blurs = blurs(sources, nil)
-    dewarped = dewarp(sources)
-    tlc = time_lapse_corrects(sources)
-    xfades = xfades(sources, rendered)
-    filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
-
-    outputs = Enum.map(variants(), fn %{index: idx} -> "[out#{idx}]" end)
-    filter = filter <> ",split=#{Enum.count(outputs)}#{Enum.join(outputs)}"
-
-    fix_pts = if rife?(rendered), do: ["-r", Video.Constants.output_fps_s()], else: []
-
-    cmd =
-      [
-        Util.low_priority_cmd_prefix(),
-        ["ffmpeg", "-hide_banner"],
-        ["-err_detect", "explode"],
-        inputs(sources),
-        ["-filter_complex", filter],
-        ["-g", gop_size()],
-        fix_pts,
-        ["-color_primaries", "bt709"],
-        ["-color_trc", "bt709"],
-        ["-colorspace", "bt709"],
-        "-an",
-        ["-sc_threshold", "0"],
-        ["-pix_fmt", "yuv420p"]
-      ]
-
-    pass1 = List.flatten([cmd, "-pass", "1", variant_flags(tmp_dir), output_none()])
-    pass2 = List.flatten([cmd, "-pass", "2", variant_flags(tmp_dir), output_hls(tmp_dir)])
-
-    {pass1, pass2}
-  end
-
-  defp manually_tag_missing(tmp_dir) do
-    m3u8 = Path.join(tmp_dir, "stream.m3u8")
-
-    contents =
-      File.read!(m3u8)
-      |> String.split("\n")
-      |> Enum.reduce({[], variants()}, fn line, {mapped, variants} ->
-        cond do
-          !String.starts_with?(line, "#EXT-X-STREAM-INF:") ->
-            {[line | mapped], variants}
-
-          String.contains?(line, "CODECS=") ->
-            {[line | mapped], tl(variants)}
-
-          hd(variants)[:tag_as] ->
-            {[line <> ",CODECS=\"#{hd(variants)[:tag_as]}\"" | mapped], tl(variants)}
-
-          true ->
-            {[line | mapped], tl(variants)}
-        end
-      end)
-      |> elem(0)
-      |> Enum.reverse()
-      |> Enum.join("\n")
-
-    File.write!(m3u8, contents)
-  end
-
-  defp move(tmp_dir, target) do
-    with :ok <- File.mkdir_p(target),
-         {:ok, files} <- File.ls(tmp_dir) do
-      files
-      |> Enum.reject(&String.ends_with?(&1, [".log", ".log.mbtree"]))
-      |> Enum.map(fn file ->
-        source = Path.join(tmp_dir, file)
-        target = Path.join(target, file)
-        move_file(source, target)
-      end)
-    end
-    |> collect_errors()
-  end
-
-  defp move_file(source, target) do
-    case File.rename(source, target) do
-      :ok ->
-        :ok
-
-      {:error, :exdev} ->
-        with {:ok, _copied} <- File.copy(source, target) do
-          File.rm(source)
-        end
-
-      {:error, err} ->
-        {:error, err}
-    end
-  end
-
-  defp collect_errors(list) do
-    errors =
-      Enum.reduce(list, [], fn item, errors ->
-        case item do
-          :ok -> errors
-          %{result: :ok} -> errors
-          %{result: {:error, err}} -> ["#{err}" | errors]
-          {:error, err} -> ["#{err}" | errors]
-        end
-      end)
-
-    if errors == [] do
-      :ok
-    else
-      {:error, Enum.join(errors, "\n\n")}
-    end
-  end
-
   defp inputs(sources) when is_list(sources) do
     ["-hwaccel", "auto"] ++
       Enum.flat_map(sources, fn {path, from, to, _opts} ->
@@ -465,18 +225,6 @@ defmodule Video.Renderer do
     from_in_s = from / 1000.0
     meta = metadata(path)
     frame_no = round(meta.fps * from_in_s)
-    # The timestamps displayed in the GUIs are usually up to milliseconds, e.g.
-    # 00:00:36.904. This is also the variant specified when creating video
-    # tracks within the project. Depending on container formats, this timestamp
-    # might be stored more accurately, e.g. 00:00:36.903533. The accuracy is
-    # given by the time base.
-    #
-    # This creates an off-by-one when the more accurate value is lower than the
-    # variant shown to the user. ffmpeg will not pick the "closest" timestamp,
-    # but rather the one that satisfies ">=". Thus if we detect that the
-    # presentation timestamp (PTS) in time base accuracy for our calculated
-    # frame is less than what we specified originally, we need to pick the next
-    # frame to match ffmpeg behaviour.
     frame_pts = round(frame_no / meta.fps / meta.time_base) * meta.time_base
     if frame_pts < from_in_s, do: frame_no + 1, else: frame_no
   end
@@ -489,16 +237,6 @@ defmodule Video.Renderer do
     |> Enum.with_index()
     |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
       "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB,setsar=1:1[blur#{idx}]"
-    end)
-  end
-
-  defp burn_in_filename(sources) do
-    sources
-    |> Enum.with_index()
-    |> Enum.map(fn {{path, _from, _to, _opts}, idx} ->
-      text = String.replace(path, ~r{[^A-Za-z0-9_./-]}, "")
-
-      "[blur#{idx}]drawtext=fontcolor=white:x=5:y=5:shadowx=1:shadowy=1:text='#{text}'[blur#{idx}]"
     end)
   end
 
@@ -539,61 +277,13 @@ defmodule Video.Renderer do
     |> Util.compact()
   end
 
-  # xfades reads the blurred videos (e.g. [blur0]) and cross fades or contacts
-  # ("seamless") them as needed. It outputs a single, unnamed video at the end
-  # of the filter graph.
-  @spec xfades(Video.Track.plain(), module()) :: [binary()]
-  defp xfades(sources, _rendered) when length(sources) == 1 do
+  @spec xfades(Video.Track.plain(), float(), binary()) :: [binary()]
+  defp xfades(sources, _fade, _hash) when length(sources) == 1 do
     ["[blur0]copy"]
   end
 
-  defp xfades(sources, rendered) when is_list(sources) and is_module(rendered) do
-    fade = Video.Track.fade(rendered.renderer())
-
-    if rife?(rendered),
-      do: rife(sources, fade, rendered.hash()),
-      else: crossfade(sources, fade, rendered.hash())
-  end
-
-  @spec xfades(Video.Track.plain(), float(), binary()) :: [binary()]
-  defp xfades(sources, fade, hash) do
-    if length(sources) == 1, do: ["[blur0]copy"], else: rife(sources, fade, hash)
-  end
-
-  defp rife?(rendered), do: rendered.renderer() >= 6
-
-  @spec crossfade(Video.Track.plain(), float(), binary()) :: [binary()]
-  defp crossfade(sources, fade, hash) when length(sources) >= 2 do
-    count = length(sources)
-
-    sources
-    |> with_durations(fade, hash)
-    |> Enum.reduce({0, []}, fn
-      %{duration: dur, index: idx, fade_prev: fprev, fade_next: fnext}, {total, filter_graph} ->
-        new_duration = total + dur - fnext
-
-        prev = if idx == 1, do: "[blur0]", else: "[fade#{idx - 1}]"
-        next = "[blur#{idx}]"
-
-        xfade =
-          cond do
-            idx == 0 -> nil
-            fprev == 0 -> "#{prev}#{next}concat=n=2:v=1:a=0"
-            true -> "#{prev}#{next}xfade=transition=fade:duration=#{fade}:offset=#{total}"
-          end
-
-        xfade =
-          cond do
-            xfade == nil -> nil
-            idx == count - 1 -> xfade
-            true -> "#{xfade}[fade#{idx}]"
-          end
-
-        filter_graph = if xfade, do: [xfade | filter_graph], else: filter_graph
-        {new_duration, filter_graph}
-    end)
-    |> elem(1)
-    |> Enum.reverse()
+  defp xfades(sources, fade, hash) when is_list(sources) do
+    rife(sources, fade, hash)
   end
 
   @spec rife(Video.Track.plain(), float(), binary()) :: [binary()]
@@ -740,15 +430,6 @@ defmodule Video.Renderer do
     end
   end
 
-  # length of a single segment in seconds. Quality usually switches between
-  # segments. https://ffmpeg.org/ffmpeg-formats.html#hls-2
-  defp hls_time, do: 1
-
-  # GOP=group of pictures, essentially when to insert a keyframe. The script
-  # sets the max for this, i.e. there will be a keyframe at most every GOP_SIZE.
-  # Ideally HLS_TIME * FPS = GOP_SIZE. https://video.stackexchange.com/a/24684
-  defp gop_size, do: round(hls_time() * Video.Constants.output_fps())
-
   # The average bitrate is given in the variants above. This defined
   # how much the maximum bitrate may deviate from that (as a ratio)
   defp max_bitrate(input), do: 1.3 * input
@@ -801,30 +482,6 @@ defmodule Video.Renderer do
 
     "av01.0.#{ll}M.#{bit_depth}"
   end
-
-  # @spec codec_av1_aom(map(), non_neg_integer()) :: map()
-  # defp codec_av1_aom(info, idx) do
-  #   tiles_c = Integer.floor_div(info[:height], 1000)
-  #   tiles_r = max(1, tiles_c - 1)
-  #   tiles = 2 ** tiles_c * 2 ** tiles_r
-
-  #   %{
-  #     codec: [
-  #       "libaom-av1",
-  #       "-tile-columns:#{idx}",
-  #       "#{tiles_c}",
-  #       "-tile-rows:#{idx}",
-  #       "#{tiles_r}",
-  #       "-cpu-used:#{idx}",
-  #       "4",
-  #       "-lag-in-frames:#{idx}",
-  #       "48",
-  #       "-aom-params:#{idx}",
-  #       "enable-qm=1:sb-size=64:enable-keyframe-filtering=0:arnr-strength=1:aq-mode=1:deltaq-mode=1:sharpness=1:enable-chroma-deltaq=1:quant-b-adapt=1"
-  #     ],
-  #     tag_as: av1_codec_tag(info, tiles, 8)
-  #   }
-  # end
 
   @spec codec_av1_svt(map(), non_neg_integer()) :: map()
   defp codec_av1_svt(info, idx) do
@@ -886,23 +543,6 @@ defmodule Video.Renderer do
       ]
     }
 
-  # hevc tag: ISO/IEC 14496-15 (€). If ffmpeg is modern enough, it will create
-  # the tag. The one given here is a fallback.
-  #
-  # For some reason ffmpeg creates files that are not actually playable on the
-  # only devices which support hevc (iOS). This is true even for old encodes, so
-  # potentially something in iOS itself changed. Ran out of the debugging
-  # timebox for this one.
-  # defp codec_hevc(info, idx) do
-  #   specific =
-  #     if Video.Metadata.can_use?("hevc_nvenc"),
-  #       do:
-  #         ["hevc_nvenc", "-preset", "slow", "-tier:v:#{idx}", "high", "-level:v:#{idx}", "6.2", "-nonref_p", "1", "-spatial_aq", "1", "hvc1", "-refs:v:#{idx}", "0"],
-  #       else: ["libx265", "-x265-params", "log-level=error"]
-  #
-  #   %{codec: specific ++ ["-tag:v:#{idx}", "hvc1"], tag_as: "hvc1.1.4.L186.B01"}
-  # end
-
   def variants do
     [
       # av1, with default quality as first entry
@@ -936,25 +576,5 @@ defmodule Video.Renderer do
         ["-passlogfile:#{idx}", "#{tmp_dir}/pass1_idx#{idx}.log"]
       ]
     end)
-  end
-
-  defp output_hls(tmp_dir) when is_binary(tmp_dir) do
-    stream_map = Enum.map_join(variants(), " ", &"v:#{&1[:index]}")
-
-    [
-      ["-f", "hls"],
-      ["-hls_playlist_type", "vod"],
-      ["-hls_segment_type", "fmp4"],
-      ["-master_pl_name", "stream.m3u8"],
-      ["-hls_flags", "single_file+independent_segments"],
-      ["-hls_list_size", "0"],
-      ["-hls_time", hls_time()],
-      ["-var_stream_map", stream_map],
-      "#{tmp_dir}/stream_%v.m3u8"
-    ]
-  end
-
-  defp output_none() do
-    ~w[-f null /dev/null]
   end
 end

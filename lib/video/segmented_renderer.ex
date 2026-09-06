@@ -1,6 +1,18 @@
 defmodule Video.SegmentedRenderer do
   require Logger
 
+  @spec render_missing_segments(Video.Rendered.t(), [Video.Segment.t()]) ::
+          :ok | {:error, binary()}
+  def render_missing_segments(rendered, segments) do
+    missing = Enum.reject(segments, &Video.Segment.all_variants_exist?/1)
+
+    if missing == [],
+      do: :ok,
+      else: render_segments_parallel(rendered, missing, cache_dir(), length(missing))
+  end
+
+  defp cache_dir, do: Path.join([File.cwd!(), "data", "cache"])
+
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary()}
   def render(rendered) do
     target = Video.Path.target(rendered.hash())
@@ -13,15 +25,14 @@ defmodule Video.SegmentedRenderer do
   end
 
   defp render_run(rendered, target) do
-    cache_dir = Path.join([File.cwd!(), "data", "cache"])
     Temp.track!()
 
     try do
       segments = Video.Segment.segments(rendered)
 
       with :ok <- File.mkdir_p(Video.Path.segment_dir()),
-           :ok <- File.mkdir_p(cache_dir),
-           :ok <- render_segments(rendered, segments, cache_dir),
+           :ok <- File.mkdir_p(cache_dir()),
+           :ok <- render_segments(rendered, segments),
            :ok <- File.mkdir_p(target),
            :ok <- assemble_playlists(segments, target),
            :ok <- render_thumbnails(rendered, Video.Path.target_rel_to_cwd(rendered.hash())),
@@ -35,7 +46,7 @@ defmodule Video.SegmentedRenderer do
 
   @parallel_segments 2
 
-  defp render_segments(rendered, segments, cache_dir) do
+  defp render_segments(rendered, segments) do
     {regular, transitions} = Enum.split_with(segments, &(&1.type == :regular))
 
     regular_missing = Enum.reject(regular, &Video.Segment.all_variants_exist?/1)
@@ -49,7 +60,7 @@ defmodule Video.SegmentedRenderer do
 
     if skipped > 0, do: Logger.info("Skipping #{skipped} segments that already exist")
 
-    render_segments_parallel(rendered, all_missing, cache_dir, total)
+    render_segments_parallel(rendered, all_missing, cache_dir(), total)
   end
 
   defp render_segments_parallel(_rendered, [], _cache_dir, _total), do: :ok
@@ -675,4 +686,157 @@ defmodule Video.SegmentedRenderer do
   defp gop_size, do: round(hls_time() * Video.Constants.output_fps())
 
   defp output_none, do: ~w[-f null /dev/null]
+
+  # --- Preview Rendering (quick, throwaway) ---
+
+  @preview_scale "scale=640:360"
+
+  @spec preview_render_segment(Video.Segment.t()) ::
+          {:ok, %{m4s_path: binary(), m3u8_path: binary()}} | {:error, term()}
+  def preview_render_segment(segment) do
+    with :ok <- File.mkdir_p(cache_dir()),
+         {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir(), prefix: "pv_"}) do
+      tmp_dir = Path.basename(tmp_path)
+
+      result =
+        case segment.type do
+          :regular -> preview_render_regular(segment, tmp_dir)
+          :transition -> preview_render_transition(segment, tmp_dir)
+        end
+
+      case result do
+        :ok ->
+          {:ok,
+           %{
+             m4s_path: Path.join(tmp_path, "pv.m4s"),
+             m3u8_path: Path.join(tmp_path, "pv.m3u8")
+           }}
+
+        err ->
+          err
+      end
+    end
+  end
+
+  defp preview_render_regular(segment, tmp_dir) do
+    %{source: source, start_s: start_s, end_s: end_s, opts: opts} = segment
+    input = regular_input(source, start_s, end_s)
+    filter = preview_regular_filter(source, start_s, opts)
+    preview_encode(input, filter, tmp_dir)
+  end
+
+  defp preview_render_transition(segment, tmp_dir) do
+    %{
+      source_a: source_a,
+      source_b: source_b,
+      end_a_s: end_a_s,
+      start_b_s: start_b_s,
+      fade_s: fade_s,
+      opts_a: opts_a,
+      opts_b: opts_b
+    } = segment
+
+    a_start = max(0, end_a_s - fade_s)
+    input = transition_input(source_a, a_start, end_a_s, source_b, start_b_s, start_b_s + fade_s)
+
+    ctx = %{
+      source_a: source_a,
+      source_b: source_b,
+      a_start: a_start,
+      b_start: start_b_s,
+      fade_s: fade_s,
+      meta_a: metadata(source_a),
+      meta_b: metadata(source_b),
+      opts_a: opts_a,
+      opts_b: opts_b
+    }
+
+    filter = preview_transition_filter(ctx)
+    preview_encode(input, filter, tmp_dir, ["-r", Video.Constants.output_fps_s()])
+  end
+
+  defp preview_regular_filter(source, start_s, opts) do
+    detections = Video.Path.detections_rel_to_cwd(source)
+    from_ms = round(start_s * 1000)
+    blur_skip = blur_frame_skip(source, from_ms)
+    vf_part = if opts[:vf], do: opts[:vf] <> ",", else: ""
+
+    parts = [
+      "[0]frei0r=jsonblur:#{detections}|#{blur_skip},#{vf_part}settb=AVTB,setsar=1:1[blur0]"
+    ]
+
+    parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
+    meta = metadata(source)
+    parts = parts ++ time_lapse_filter(meta, "[blur0]", "[blur0]")
+    parts ++ ["[blur0]#{@preview_scale}"]
+  end
+
+  defp preview_transition_filter(ctx) do
+    det_a = Video.Path.detections_rel_to_cwd(ctx.source_a)
+    det_b = Video.Path.detections_rel_to_cwd(ctx.source_b)
+    skip_a = blur_frame_skip(ctx.source_a, round(ctx.a_start * 1000))
+    skip_b = blur_frame_skip(ctx.source_b, round(ctx.b_start * 1000))
+
+    vf_a = if ctx.opts_a[:vf], do: ctx.opts_a[:vf] <> ",", else: ""
+    vf_b = if ctx.opts_b[:vf], do: ctx.opts_b[:vf] <> ",", else: ""
+
+    fps_s = Video.Constants.output_fps_s()
+
+    parts = [
+      "[0]frei0r=jsonblur:#{det_a}|#{skip_a},#{vf_a}settb=AVTB,setsar=1:1[blur0]",
+      "[1]frei0r=jsonblur:#{det_b}|#{skip_b},#{vf_b}settb=AVTB,setsar=1:1[blur1]"
+    ]
+
+    parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
+    parts = parts ++ dewarp_filters("[blur1]", "[blur1]")
+
+    min_wh = "w='min(iw,main_w)':h='min(ih,main_h)'"
+
+    parts =
+      parts ++
+        [
+          "[blur0][blur1]scale2ref=#{min_wh}[_s0][_ref1]",
+          "[_ref1][_s0]scale2ref=#{min_wh}[blur1][blur0]"
+        ]
+
+    parts = parts ++ time_lapse_filter(ctx.meta_a, "[blur0]", "[blur0]")
+    parts = parts ++ time_lapse_filter(ctx.meta_b, "[blur1]", "[blur1]")
+
+    parts ++
+      [
+        "[blur0]setpts=N/(#{fps_s})/TB[a]",
+        "[blur1]setpts=N/(#{fps_s})/TB[b]",
+        "[a][b]frei0r=filter_name=rife_transition:filter_params=#{ctx.fade_s}||0[joined]",
+        "[joined]#{@preview_scale}"
+      ]
+  end
+
+  defp preview_encode(input, filter_parts, tmp_dir, extra_flags \\ []) do
+    filter = Enum.join(filter_parts, ";")
+
+    cmd =
+      List.flatten([
+        Util.low_priority_cmd_prefix(),
+        ["ffmpeg", "-hide_banner"],
+        input,
+        ["-filter_complex", filter],
+        if("-r" in extra_flags, do: [], else: ["-fps_mode", "vfr"]),
+        ["-g", gop_size()],
+        extra_flags,
+        ["-pix_fmt", "yuv420p"],
+        ["-c:v", "libx264"],
+        ["-preset", "ultrafast"],
+        ["-qp", "17"],
+        "-an",
+        ["-f", "hls"],
+        ["-hls_playlist_type", "vod"],
+        ["-hls_segment_type", "fmp4"],
+        ["-hls_flags", "single_file+independent_segments"],
+        ["-hls_list_size", "0"],
+        ["-hls_time", hls_time()],
+        "#{tmp_dir}/pv.m3u8"
+      ])
+
+    run_ffmpeg("preview", cmd, "")
+  end
 end

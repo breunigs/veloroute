@@ -35,12 +35,6 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     Options (environment variables)
     ##############################################################################################
 
-    VELO_BLUR=1                 also preview the detected blurs. Recommended off, since it is slow.
-    VELO_DEWARP=0               Turn off fisheye lense dewarp for faster preview. Default on.
-    VELO_BURN=0                 burn in filename of segment. Default on.
-    VELO_HOST_FFMPEG=1          use ffmpeg executable from host. This is faster than running
-                                ffmpeg in docker, but might fail depending on your ffmpeg build.
-                                Recommended on if it works for you.
     VELO_PREVIEW_TOOL=<shell>   By default "mpv" is used. You can specify any shell command here
                                 that can handle the video stream being piped to it. To save the
                                 video into a file, use VELO_PREVIEW_TOOL="cat > somefile"
@@ -65,7 +59,10 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     rendered = Video.Generator.find_by_hash(hash)
 
     if rendered == nil do
-      IO.puts(:stderr, "No video with ”#{hash}“ found. Maybe try “mix velo.videos.generate”?")
+      IO.puts(
+        :stderr,
+        "No video with \u201c#{hash}\u201d found. Maybe try \u201cmix velo.videos.generate\u201d?"
+      )
     else
       stream_video(rendered, tail)
     end
@@ -98,47 +95,125 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
   end
 
   defp stream_video(rendered, args) when is_module(rendered) do
-    blur = System.get_env("VELO_BLUR", nil) == "1"
-    dewarp = System.get_env("VELO_DEWARP", "1") == "1"
-    burn = System.get_env("VELO_BURN", "1") == "1"
     start_from = List.first(args)
     start_from_text = start_from || "the start"
     info = "previewing #{rendered.hash()} – #{rendered.name()} from #{start_from_text}"
     IO.puts(:stderr, info)
-    cmd = Video.Renderer.preview_cmd(rendered, blur, dewarp, burn, start_from)
 
-    if System.get_env("VELO_HOST_FFMPEG") == "1" do
-      exec_pipe(cmd, info)
-    else
-      full_ref = {"preview video", Video.Renderer.ffmpeg_image()}
+    segments = Video.Segment.segments(rendered)
 
-      with :ok <- Util.Docker.build(full_ref) do
-        try do
-          full_ref
-          |> Util.Docker.run_docker_cli(%{
-            mount_videos_in_dir: "/workdir",
-            command_args: cmd,
-            docker_args: ["--attach=STDERR", "--attach=STDOUT"]
-          })
-          |> exec_pipe(info)
-        after
-          Util.Docker.stop(full_ref)
-        end
+    segments =
+      if start_from do
+        skip_s = Video.Timestamp.in_seconds(start_from)
+        skip_segments(segments, skip_s)
       else
-        {:error, reason} -> IO.puts(:stderr, reason)
+        segments
       end
+
+    if segments == [] do
+      IO.puts(:stderr, "No segments to preview (timestamp may be past end of video)")
+      exit({:shutdown, 1})
+    end
+
+    Temp.track!()
+
+    try do
+      {segment_infos, quick_count} = prepare_segment_infos(segments)
+
+      if quick_count > 0 do
+        IO.puts(:stderr, "Quick-rendered #{quick_count} missing segment(s)")
+      end
+
+      stream_to_player(segment_infos, info)
+    after
+      Temp.cleanup()
     end
   end
 
-  @spec exec_pipe([binary()], binary()) :: any
-  defp exec_pipe(cmd, info) do
+  # Use AVC 360p variant for cached segments to match quick-rendered codec/resolution
+  defp preview_variant_idx do
+    Enum.find_index(Video.Renderer.variants(), fn v ->
+      v.width == 640 and v.height == 360 and hd(v.codec) == "libx264"
+    end) || 0
+  end
+
+  defp prepare_segment_infos(segments) do
+    variant_idx = preview_variant_idx()
+
+    Enum.map_reduce(segments, 0, fn seg, quick_count ->
+      if Video.Segment.all_variants_exist?(seg) do
+        basename = Video.Segment.basename(seg)
+
+        info = %{
+          m4s_path: Video.Path.segment_file(basename, variant_idx),
+          m3u8_path: Video.Path.segment_m3u8(basename, variant_idx)
+        }
+
+        {info, quick_count}
+      else
+        IO.puts(:stderr, "Quick-rendering segment #{Video.Segment.basename(seg)}...")
+
+        case Video.SegmentedRenderer.preview_render_segment(seg) do
+          {:ok, info} ->
+            {info, quick_count + 1}
+
+          {:error, reason} ->
+            IO.puts(:stderr, "Failed to render segment: #{inspect(reason)}")
+            exit({:shutdown, 1})
+        end
+      end
+    end)
+  end
+
+  defp stream_to_player(segment_infos, info) do
     default_player = Util.default_player_cmd(info) |> Util.cli_printer()
     player = System.get_env("VELO_PREVIEW_TOOL", default_player)
 
-    Util.Cmd2.exec(["sh", "-c", "#{Util.cli_printer(cmd)} | #{player}"],
-      slow_warn_message: false,
-      stdout: :passthrough,
-      stderr: :passthrough
-    )
+    port =
+      Port.open({:spawn, player}, [
+        :binary,
+        :exit_status,
+        :use_stdio,
+        :stream
+      ])
+
+    result =
+      Video.FMP4.Stream.stream_segments(segment_infos, fn data ->
+        try do
+          Port.command(port, data)
+          :ok
+        rescue
+          ArgumentError -> {:error, :port_closed}
+        end
+      end)
+
+    try do
+      Port.close(port)
+    rescue
+      ArgumentError -> :ok
+    end
+
+    case result do
+      :ok -> :ok
+      {:error, reason} -> IO.puts(:stderr, "Streaming ended: #{inspect(reason)}")
+    end
   end
+
+  defp skip_segments(segments, skip_s) do
+    {_, remaining} =
+      Enum.reduce(segments, {0.0, segments}, fn seg, {elapsed, remaining} ->
+        dur = segment_duration(seg)
+
+        if elapsed + dur <= skip_s do
+          {elapsed + dur, tl(remaining)}
+        else
+          {elapsed + dur, remaining}
+        end
+      end)
+
+    remaining
+  end
+
+  defp segment_duration(%{type: :regular} = seg), do: seg.end_s - seg.start_s
+  defp segment_duration(%{type: :transition} = seg), do: seg.fade_s
 end

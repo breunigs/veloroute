@@ -404,6 +404,7 @@ defmodule Video.Track do
   def fade(5), do: default_fade()
   def fade(6), do: default_fade()
   def fade(7), do: default_fade()
+  def fade(v) when v >= 7, do: default_fade()
 
   @spec calc_hash([Video.TrimmedSource.t()], float()) :: hash()
   defp calc_hash(tsv_list, fade) when is_list(tsv_list) and valid_fade(fade) do
