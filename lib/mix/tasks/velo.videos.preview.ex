@@ -118,13 +118,8 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     Temp.track!()
 
     try do
-      {segment_infos, quick_count} = prepare_segment_infos(segments)
-
-      if quick_count > 0 do
-        IO.puts(:stderr, "Quick-rendered #{quick_count} missing segment(s)")
-      end
-
-      stream_to_player(segment_infos, info)
+      segment_stream = resolve_segments_lazily(segments)
+      stream_to_player(segment_stream, info)
     after
       Temp.cleanup()
     end
@@ -137,25 +132,25 @@ defmodule Mix.Tasks.Velo.Videos.Preview do
     end) || 0
   end
 
-  defp prepare_segment_infos(segments) do
+  # Returns a lazy stream that resolves each segment on demand:
+  # cached segments return immediately, missing ones are quick-rendered just-in-time.
+  defp resolve_segments_lazily(segments) do
     variant_idx = preview_variant_idx()
 
-    Enum.map_reduce(segments, 0, fn seg, quick_count ->
+    Stream.map(segments, fn seg ->
       if Video.Segment.all_variants_exist?(seg) do
         basename = Video.Segment.basename(seg)
 
-        info = %{
+        %{
           m4s_path: Video.Path.segment_file(basename, variant_idx),
           m3u8_path: Video.Path.segment_m3u8(basename, variant_idx)
         }
-
-        {info, quick_count}
       else
-        IO.puts(:stderr, "Quick-rendering segment #{Video.Segment.basename(seg)}...")
+        IO.puts(:stderr, "Quick-rendering #{Video.Segment.basename(seg)}...")
 
         case Video.SegmentedRenderer.preview_render_segment(seg) do
           {:ok, info} ->
-            {info, quick_count + 1}
+            info
 
           {:error, reason} ->
             IO.puts(:stderr, "Failed to render segment: #{inspect(reason)}")
