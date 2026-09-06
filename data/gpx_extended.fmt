@@ -17,7 +17,7 @@
 #[HEAD]</metadata>
 #[HEAD]<trk>
 #[HEAD]<trkseg>
-#[IF] $gpslatitude $gpslongitude $gpsdatetime ${GPSHPositioningError;$_ = defined $_ ? ($_ < 20 ? $_ : undef) : 'absent'} ${GPSMeasureMode;$_ = ($_ == 3) ? $_ : undef}
+#[IF] $gpslatitude $gpslongitude $gpsdatetime ${GPSMeasureMode;$_ = ($_ == 3) ? $_ : undef} ${GPSDOP;my $hpe = $self->GetValue('GPSHPositioningError','ValueConv'); if (defined $hpe) { $_ = $hpe < 20 ? $hpe : undef } elsif (defined $_) { $_ = $_ < 20 ? $_ : undef } else { $_ = 'absent' }}
 #[BODY]<trkpt lat="$gpslatitude#" lon="$gpslongitude#">
 #[BODY]  <time>${gpsdatetime#;my ($ss)=/\.\d+/g;DateFmt("%Y-%m-%dT%H:%M:%SZ");s/Z/${ss}Z/ if $ss}</time>
 #[BODY]  <ele>$gpsaltitude#</ele>
