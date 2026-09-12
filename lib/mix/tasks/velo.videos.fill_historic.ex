@@ -4,26 +4,43 @@ defmodule Mix.Tasks.Velo.Videos.FillHistoric do
   @requirements ["app.start"]
 
   @shortdoc "Fill in the video hash in the historic field of article tracks"
-  def run(args) do
-    if args == [] do
-      IO.puts(:stderr, "Usage: mix velo.videos.fill_historic Data.Article.Static.BrMitte01")
-      exit({:shutdown, 1})
-    end
+  def run([]), do: fill_all_empty()
+  def run(args), do: Enum.each(args, &fill_historic/1)
 
-    Enum.each(args, &fill_historic/1)
+  defp fill_all_empty() do
+    Article.List.all()
+    |> Enum.filter(fn mod ->
+      mod.tracks()
+      |> Enum.any?(fn track ->
+        track.historic |> Map.keys() |> Enum.any?(&(&1 == ""))
+      end)
+    end)
+    |> case do
+      [] ->
+        Logger.info("No articles with empty historic hashes found")
+
+      mods ->
+        Enum.each(mods, fn mod ->
+          Logger.info("Processing #{inspect(mod)}")
+          fill_historic(mod)
+        end)
+    end
   end
 
-  defp fill_historic(arg) do
-    mod =
-      case Article.List.resolve(arg) do
-        nil ->
-          Logger.error("no article found for '#{arg}'")
-          exit({:shutdown, 1})
+  defp fill_historic(arg) when is_atom(arg), do: do_fill_historic(arg)
 
-        mod ->
-          mod
-      end
+  defp fill_historic(arg) when is_binary(arg) do
+    case Article.List.resolve(arg) do
+      nil ->
+        Logger.error("no article found for '#{arg}'")
+        exit({:shutdown, 1})
 
+      mod ->
+        do_fill_historic(mod)
+    end
+  end
+
+  defp do_fill_historic(mod) do
     path = Util.module_source_path(mod)
     orig_source = source = File.read!(path)
 
