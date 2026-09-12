@@ -19,38 +19,111 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
   def run(_) do
     now = :os.system_time(:second)
 
-    Article.List.all()
-    |> Stream.reject(fn art ->
-      last_edit =
-        art.__info__(:compile)
-        |> Keyword.get(:source)
-        |> File.stat!(time: :posix)
-        |> Map.fetch!(:mtime)
+    articles =
+      Article.List.all()
+      |> Stream.reject(fn art ->
+        last_edit =
+          art.__info__(:compile)
+          |> Keyword.get(:source)
+          |> File.stat!(time: :posix)
+          |> Map.fetch!(:mtime)
 
-      edited_days_ago = (now - last_edit) / 60 / 60 / 24
-      edited_days_ago > 14
+        edited_days_ago = (now - last_edit) / 60 / 60 / 24
+        edited_days_ago > 14
+      end)
+      |> Task.async_stream(&{&1, already_mirrored(&1)}, timeout: :infinity, ordered: false)
+      |> Stream.map(&elem(&1, 1))
+      |> Enum.to_list()
+
+    # Collect all entries across all articles, tagged with their target file paths.
+    # Each entry: {method, canonical_file, url, extra_files}
+    # where extra_files are additional article folders that need the same file (for symlinks).
+    all_entries =
+      articles
+      |> Enum.flat_map(fn {art, seen} ->
+        links = Article.Decorators.apply_with_assigns(art, :links)
+
+        construction =
+          Enum.map(
+            art.construction_site_id_hh(),
+            &{"#{@bauweiser_prefix}#{&1}", Mix.Tasks.Velo.Feeds.Bauweiser.url_for_id(&1)}
+          )
+
+        Stream.concat(links, construction)
+        |> Stream.reject(&seen?(&1, seen))
+        |> Stream.flat_map(&extract/1)
+        |> Stream.reject(&seen?(&1, seen))
+        |> Stream.map(&absolute_path(&1, art))
+        |> Stream.reject(fn {_, file, _} -> File.exists?(file) end)
+        |> Enum.to_list()
+      end)
+
+    # Deduplicate by URL md5: grab each URL once, symlink into other article folders
+    deduped =
+      all_entries
+      |> Enum.group_by(fn {_method, _file, url} -> Util.md5(url) end)
+      |> Enum.map(fn {_md5, entries} ->
+        [{method, canonical_file, url} | rest] = entries
+        extra_files = Enum.map(rest, fn {_m, file, _u} -> file end)
+        {method, canonical_file, url, extra_files}
+      end)
+
+    Enum.each(deduped, fn {_method, file, _url, extra_files} ->
+      ensure_target_folder_exists({nil, file, nil})
+      Enum.each(extra_files, &ensure_target_folder_exists({nil, &1, nil}))
     end)
-    |> Task.async_stream(&{&1, already_mirrored(&1)}, timeout: :infinity, ordered: false)
-    |> Stream.map(&elem(&1, 1))
-    |> Stream.flat_map(fn {art, seen} ->
-      links = Article.Decorators.apply_with_assigns(art, :links)
 
-      construction =
-        Enum.map(
-          art.construction_site_id_hh(),
-          &{"#{@bauweiser_prefix}#{&1}", Mix.Tasks.Velo.Feeds.Bauweiser.url_for_id(&1)}
-        )
+    # Grab phase: parallelize by host domain (polite — one request at a time per host)
+    host_groups =
+      deduped
+      |> Enum.group_by(fn {_method, _file, url, _extra} -> URI.parse(url).host end)
+      |> Enum.map(fn {_host, entries} -> entries end)
 
-      Stream.concat(links, construction)
-      |> Stream.reject(&seen?(&1, seen))
-      |> Stream.flat_map(&extract/1)
-      |> Stream.reject(&seen?(&1, seen))
-      |> Stream.map(&absolute_path(&1, art))
-      |> Stream.reject(fn {_, file, _} -> File.exists?(file) end)
-      |> Stream.each(&ensure_target_folder_exists(&1))
-    end)
-    |> Tqdm.tqdm(description: "mirroring", total: 0)
-    |> Enum.map(&grab_and_archive(&1))
+    grabbed =
+      host_groups
+      |> Task.async_stream(
+        fn entries ->
+          Enum.map(entries, fn {method, file, url, extra_files} ->
+            entry = grab({method, file, url})
+            symlink_to_extras(file, extra_files)
+            entry
+          end)
+        end,
+        max_concurrency: 4,
+        timeout: :infinity,
+        ordered: false
+      )
+      |> Enum.flat_map(fn {:ok, entries} -> entries end)
+
+    IO.puts("Grabbed #{length(grabbed)} unique URLs, submitting to Wayback Machine...")
+
+    # Wayback phase: sequential (already rate-limited by 10s sleep)
+    grabbed
+    |> Tqdm.tqdm(description: "wayback", total: length(grabbed))
+    |> Enum.each(&wayback/1)
+  end
+
+  defp symlink_to_extras(_canonical_file, []), do: :ok
+
+  defp symlink_to_extras(canonical_file, extra_files) do
+    # For each capture method suffix (.pdf, .html, .png), create symlinks
+    suffixes =
+      Path.wildcard("#{canonical_file}*")
+      |> Enum.map(&String.replace_leading(&1, canonical_file, ""))
+
+    # Also handle the case where the canonical file itself exists (for :download)
+    suffixes = if File.exists?(canonical_file), do: ["" | suffixes], else: suffixes
+    suffixes = Enum.uniq(suffixes)
+
+    for extra_file <- extra_files, suffix <- suffixes do
+      source = "#{canonical_file}#{suffix}"
+      target = "#{extra_file}#{suffix}"
+
+      unless File.exists?(target) do
+        relative = Path.relative_to(source, Path.dirname(target))
+        File.ln_s(relative, target)
+      end
+    end
   end
 
   @spec already_mirrored(atom()) :: [binary()]
@@ -354,37 +427,9 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     entry
   end
 
-  defp grab({:capture, _file, "https://twitter.com" <> _} = entry, _retries) do
+  defp grab({:capture, _file, _url} = entry, _retries) do
     entry
     |> chrome_pdf()
-    |> singlefile()
-    |> screenshot()
-  end
-
-  defp grab({:capture, _f, "https://fbhh-evergabe.web.hamburg.de" <> _} = entry, _retries) do
-    entry
-    |> chrome_pdf()
-    |> singlefile()
-    |> screenshot()
-  end
-
-  defp grab({:capture, file, url} = entry, _retries) do
-    log(file, "#{Path.basename(file)}.pdf")
-
-    {out, exit_code} =
-      System.cmd("timeout", [
-        "120s",
-        "cutycapt",
-        "--url=#{url}",
-        "--out=#{file}.pdf",
-        "--delay=1000",
-        "--print-backgrounds=on"
-      ])
-
-    if exit_code != 0,
-      do: log(file, "page capture failed:\n#{out}\n\n\n")
-
-    entry
     |> singlefile()
     |> screenshot()
   end
@@ -398,7 +443,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
         "chromium",
         [
           "--temp-profile",
-          "--headless",
+          "--headless=new",
           "--disable-gpu",
           "--run-all-compositor-stages-before-draw",
           "--print-to-pdf-no-header",
@@ -423,7 +468,7 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
         "chromium",
         [
           "--temp-profile",
-          "--headless",
+          "--headless=new",
           "--disable-gpu",
           "--run-all-compositor-stages-before-draw",
           "--virtual-time-budget=15000",
@@ -472,11 +517,6 @@ defmodule Mix.Tasks.Velo.Links.Mirror do
     end
 
     entry
-  end
-
-  @spec grab_and_archive(entry()) :: entry()
-  defp grab_and_archive(entry) do
-    entry |> grab() |> wayback()
   end
 
   defp log(file, text) do
