@@ -8,8 +8,9 @@ defmodule Data.Article.Blog.HammerbrookstrasseNord do
       "Beidseitig 2,0m breite Protected-Bike-Lanes. Anbindung an Radroute 8 wird klarer. Freizeitroute 4 dank Querungshilfe leichter befahrbar."
 
   def start(), do: ~d[2024-12-02]
+  def stop(), do: ~d[2026-12-17]
   # def stop(), do: ~d[2025-09-19]
-  # def construction_site_id_hh(), do: [1_463_930]
+  def construction_site_id_hh(), do: [1_463_930, 3_866_706]
 
   def type(), do: :construction
   def tags(), do: ["radroute-1", "8", "FR4"]

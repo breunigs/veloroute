@@ -4,12 +4,12 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
   def created_at(), do: ~D[2021-12-16]
   def title(), do: "Bushalt Spaldingstraße (Freizeitroute 6)"
 
-  def type(), do: :construction
+  def type(), do: :planned
   def tags(), do: ["FR6"]
 
-  def start(), do: ~d[2025-10-01]
-  def stop(), do: ~d[2026-05-31]
-  def construction_site_id_hh(), do: [1_735_023]
+  # def start(), do: ~d[2025-10-01]
+  # def stop(), do: ~d[2026-05-31]
+  # def construction_site_id_hh(), do: [1_735_023]
 
   def links(_assigns) do
     [
@@ -50,6 +50,9 @@ defmodule Data.Article.Blog.BushaltSpaldingstrasse do
       <li>siehe auch: <.a ref={Hoegerdamm}>Umplanung Recha-Lübke-Damm</.a></li>
     </ul>
     <p>In der Gegenrichtung, also stadteinwärts entlang der Freizeitroute, gibt es nur eine Änderung: Vor der Nordkanalbrücke wird der Hochbordradweg zu einer <.ref>Protected-Bike-Lane</.ref>. Nach der Einmündung der <.m bounds="10.011977,53.547751,10.013664,53.548365">Spaldingstraße</.m> wird man aber wieder auf den alten Hochbordradweg geleitet. Der Radweg soll hier rund 2,0m breit werden, mit einer 1,80m Engstelle am Brückenpfeiler.</p>
+
+    <h4>Stand Herbst 2026</h4>
+    <p>Der Umbau der Nebenstraße und des Recha-Lübke-Damm ist abgeschlossen. Wann die Spaldingstraße selbst umgebaut wird ist, ist noch nicht bekannt.</p>
 
     <h4>Meinung</h4>
     <p>Der Radweg durch die Bushaltestelle in der Amsinckstraße ist unglücklich. Andererseits ist die Strecke durch den Recha-Lübke-Damm nach dem Umbau für den Radverkehr viel attraktiver, sodass hier wenig Betrieb herrschen sollte. </p>

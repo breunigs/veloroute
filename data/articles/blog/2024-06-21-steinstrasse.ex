@@ -9,7 +9,8 @@ defmodule Data.Article.Blog.Steinstrasse do
 
   def type(), do: :construction
   def start(), do: ~d[2026-08-31]
-  def stop(), do: ~d[2028Q3]
+  def stop(), do: ~d[2028-05-31]
+  def construction_site_id_hh(), do: [3_752_806]
 
   def tags(), do: []
 

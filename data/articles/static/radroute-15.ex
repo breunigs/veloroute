@@ -40,7 +40,7 @@ defmodule Data.Article.Static.Radroute15 do
         ]
       },
       %Video.Track{
-        renderer: 6,
+        renderer: 7,
         group: "15",
         direction: :backward,
         from: "Landungsbrücken",
@@ -48,13 +48,16 @@ defmodule Data.Article.Static.Radroute15 do
         parent_ref: __MODULE__,
         text: "von den Landungsbrücken zur Christuskirche (U2)",
         historic: %{
+          "1164d5c9804e48ac36f30cb8c0d4ad72" => ~d[2028-08],
           "d82acc4829cd016e8195a096902f367e" => ~d[2025-02]
         },
         videos: [
           {"2025-02-16-mitte/GX018061", "00:00:01.134", :end},
           {"2025-02-16-mitte/GX018062", :start, :end},
           {"2025-02-16-mitte/GX018063", :start, :end},
-          {"2025-02-16-mitte/GX018064", :start, "00:01:07.287"},
+          {"2025-02-16-mitte/GX018064", :start, "00:00:01.134"},
+          {"2026-08-23-kloevensteen/GX010083", "00:00:51.785", "00:01:03.397"},
+          {"2025-02-16-mitte/GX018064", "00:00:12.179", "00:01:07.287"},
           {"2025-02-16-mitte/GX018065", "00:00:00.100", :end},
           {"2025-02-16-mitte/GX018066", "00:00:00.133", "00:00:05.720"}
         ]

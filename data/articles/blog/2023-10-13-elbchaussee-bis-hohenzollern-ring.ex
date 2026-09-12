@@ -12,10 +12,8 @@ defmodule Data.Article.Blog.ElbchausseeBisHohenzollernRing do
 
   def tags(), do: ["radroute-concept-a"]
   def start(), do: ~d[2025-03-31]
-  def stop(), do: ~d[2030-03]
-
-  # Vorarbeiten HH Wasser
-  # def construction_site_id_hh(), do: [1374090]
+  def stop(), do: ~d[2030-03-31]
+  def construction_site_id_hh(), do: [1_374_090]
 
   def tracks(), do: []
 

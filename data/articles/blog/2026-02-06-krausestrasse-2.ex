@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.Krausestrasse2 do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-09],
+       "https://lsbg.hamburg.de/resource/blob/1216300/dab2786e01b55f80136b7a977ebedc42/krausestrasse-baustelleninforamtion-september-2026-data.pdf"},
       {"Bericht – fertiger Entwurf", ~d[2026-02],
        "https://lsbg.hamburg.de/resource/blob/1143472/005f7a118eee63a719c9a89fd863798b/krausestrasse-radverkehrsmassnahme-abgestimmte-planung-bericht-data.pdf"},
       {"Pläne – fertiger Entwurf", ~d[2026-02],
