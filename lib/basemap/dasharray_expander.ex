@@ -50,10 +50,10 @@ defmodule Basemap.DasharrayExpander do
         known = conditions_to_known_values(conditions)
 
         layer
-        |> append_all_filters(conditions)
         |> set_dasharray(static_dasharray)
         |> resolve_dynamic_layout(known)
         |> simplify_layer_filter(known)
+        |> append_all_filters(conditions)
         |> suffix_id(conditions_to_suffix(conditions))
       end)
     end
