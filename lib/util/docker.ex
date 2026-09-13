@@ -448,7 +448,7 @@ defmodule Util.Docker do
         with {:ok, utc, 0} <- DateTime.from_iso8601(String.trim(out)) do
           {:ok, DateTime.to_unix(utc)}
         else
-          err -> {:error, "failed to parse docker timestamp: #{out} (inspect #{err})"}
+          err -> {:error, "failed to parse docker timestamp: #{out} (inspect #{inspect(err)})"}
         end
 
       {err, code} ->

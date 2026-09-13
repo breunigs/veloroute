@@ -71,13 +71,7 @@ defmodule Util.Download do
     case :hackney.stream_body(ref) do
       {:ok, data} ->
         IO.binwrite(handle, data)
-        |> case do
-          :ok ->
-            stream_body(ref, handle)
-
-          {:error, reason} ->
-            {:error, "writing to file stream failed: #{reason}"}
-        end
+        stream_body(ref, handle)
 
       :done ->
         :hackney.close(ref)

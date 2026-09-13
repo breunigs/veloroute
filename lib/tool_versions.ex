@@ -1,6 +1,6 @@
 defmodule ToolVersions do
   @tool_path Path.join([__DIR__, "..", ".tool-versions"])
-  @extra_versions %{debian: "trixie-20260316-slim"}
+  @extra_versions %{debian: "trixie-20260824-slim"}
 
   @self_path __ENV__.file
   def path, do: @self_path

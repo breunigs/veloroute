@@ -80,13 +80,13 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
     Stream.flat_map([:list | @filter_keywords], fn
       :list -> list(district)
-      keyword -> query(district, keyword, de_date_range)
+      keyword -> search_district(district, keyword, de_date_range)
     end)
     |> Stream.uniq_by(fn %{"type" => type, "id" => id} -> {type, id} end)
   end
 
-  @spec query(binary(), binary(), binary()) :: [result()]
-  defp query(district, keyword, de_date_range) do
+  @spec search_district(binary(), binary(), binary()) :: [result()]
+  defp search_district(district, keyword, de_date_range) do
     sitzungen = !(keyword in @filter_keywords_sitzungen_ignore)
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
     params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}

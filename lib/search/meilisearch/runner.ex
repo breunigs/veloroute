@@ -369,8 +369,6 @@ defmodule Search.Meilisearch.Runner do
   defp post_process({:error, reason}), do: {:error, reason}
 
   @spec index(state()) :: state()
-  defp index(%{indexers: []} = state), do: state
-
   defp index(%{indexers: indexers} = state) do
     no_indexing_in_prod!()
 
