@@ -7,6 +7,7 @@ function process_way(profile, way, result)
   if name
   and way:get_value_by_key("fee") ~= "yes"
   and way:get_value_by_key("amenity") ~= "parking"
+  and way:get_value_by_key("route") ~= "ferry"
   and (
     way:get_value_by_key("bicycle") ~= "no"
     or
