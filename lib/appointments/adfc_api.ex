@@ -107,7 +107,7 @@ defmodule Appointments.ADFCAPI do
 
   defp to_appointment(entry) do
     with {:ok, date_time, 0} <- DateTime.from_iso8601(entry["beginning"]),
-         date_time = DateTime.shift_zone!(date_time, Settings.r(:timezone)),
+         {:ok, date_time} <- in_local_timezone(date_time),
          "Published" <- entry["cStatus"],
          false <- entry["isCancelled"],
          true <- beginner_friendly?(entry),
@@ -127,6 +127,17 @@ defmodule Appointments.ADFCAPI do
     else
       _ -> nil
     end
+  end
+
+  # Events without a known start time are reported as midnight UTC. Keep those
+  # at midnight locally, so they are rendered without a time. Shifting the zone
+  # would turn them into 01:00/02:00 events.
+  defp in_local_timezone(%DateTime{hour: 0, minute: 0, second: 0} = date_time) do
+    DateTime.new(DateTime.to_date(date_time), ~T[00:00:00], Settings.r(:timezone))
+  end
+
+  defp in_local_timezone(date_time) do
+    {:ok, DateTime.shift_zone!(date_time, Settings.r(:timezone))}
   end
 
   defp title(%{"eventType" => "Termin"} = entry), do: entry["title"]
