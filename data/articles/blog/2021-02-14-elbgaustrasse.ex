@@ -28,10 +28,12 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-09],
+       "https://lsbg.hamburg.de/resource/blob/1056442/d281bb8ff7acfb7f10ba4f37858219cd/elbgaustrasse-anliegerinformation-september-2026-data.pdf"},
       {"Bauzeitraum", ~d[2026-09],
        "https://sitzungsdienst-altona.hamburg.de/bi/vo020.asp?VOLFDNR=1018539"},
-      {"Baustelleninfo", ~d[2026-07],
-       "https://lsbg.hamburg.de/resource/blob/1056442/849ad3014f8bba35261b269bfe0c8c03/elbgaustrasse-anliegerinformation-juli-2026-data.pdf"},
+      # {"Baustelleninfo", ~d[2026-07],
+      #  "https://lsbg.hamburg.de/resource/blob/1056442/849ad3014f8bba35261b269bfe0c8c03/elbgaustrasse-anliegerinformation-juli-2026-data.pdf"},
       # {"Baustelleninfo", ~d[2026-04],
       #  "https://lsbg.hamburg.de/resource/blob/1056442/411d0aa5cb928e77d7cd18df4d043400/elbgaustrasse-anliegerinformation-april-2026-data.pdf"},
       # {"Baustelleninfo", ~d[2025-12],

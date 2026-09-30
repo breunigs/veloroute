@@ -19,6 +19,8 @@ defmodule Data.Article.Blog.Eckerkoppel do
 
   def links(_assigns) do
     [
+      {"Erläuterungsbericht und Pläne für Zwischenstufe und Endausbau", ~d[2026-09],
+       "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1026013"},
       {"Vorentwurf, Präsentation", ~d[2026-06],
        "https://sitzungsdienst-wandsbek.hamburg.de/bi/vo020.asp?VOLFDNR=1025500"}
     ]

@@ -21,7 +21,9 @@ defmodule Data.Article.Blog.SaarlandstrasseNord do
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2025-06],
-       "https://lsbg.hamburg.de/resource/blob/1073500/c7762c84ab0918da0d283590a613ad04/saarlandstrasse-anliegerinformation-juni-2025-data.pdf"},
+       "https://lsbg.hamburg.de/resource/blob/1073500/7d31a8232ae9a0a00bcab2c3b1748572/saarlandstrasse-anliegerinformation-september-2026-data.pdf"},
+      # {"Baustelleninfo", ~d[2025-06],
+      #  "https://lsbg.hamburg.de/resource/blob/1073500/c7762c84ab0918da0d283590a613ad04/saarlandstrasse-anliegerinformation-juni-2025-data.pdf"},
       {"fertiger Entwurf: Lageplan", "April 2024",
        "https://lsbg.hamburg.de/resource/blob/849998/0ea51745d993b76a305e4fb77838b460/saarlandstrasse-jahnring-bis-u-saarlandstrasse-abgestimmte-planung-plan-data.pdf"},
       {"fertiger Entwurf: Erläuterungsbericht", "April 2024",

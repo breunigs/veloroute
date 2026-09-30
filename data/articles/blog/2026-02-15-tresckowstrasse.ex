@@ -3,7 +3,7 @@ defmodule Data.Article.Blog.Tresckowstrasse do
 
   def title(), do: "Tresckowstraße und Goebenstraße"
 
-  def type(), do: :intent
+  def type(), do: :outdated
 
   def tags(), do: []
 

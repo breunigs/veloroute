@@ -7,9 +7,10 @@ defmodule Data.Article.Blog.BarmbekerMarkt do
     do:
       "Rad- und Gehwege sollen mit kleineren Maßnahmen verbessert werden. Das gelingt teilweise, behält den Charakter der Kreuzung als Autobahn aber leider bei."
 
-  def type(), do: :planned
-  def start(), do: ~d[2026-10]
-  def stop(), do: ~d[2027-07]
+  def type(), do: :construction
+  def start(), do: ~d[2026-10-05]
+  def stop(), do: ~d[2027-07-04]
+  def construction_site_id_hh(), do: [3_181_217, 3_681_402]
 
   def tags(), do: ["radroute-5", "br-nord-n4"]
 
