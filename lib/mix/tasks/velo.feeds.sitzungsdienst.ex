@@ -26,14 +26,35 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
   )
 
   @shown_by_date "shown_by_date"
+  @failed_key :failed_districts
 
   @shortdoc "Checks for updates in Hamburg's Bezirksversammlungen"
   def run(_) do
     status = load_status() |> show_all_districts()
 
-    Enum.reduce(Allris.districts(), status, &Map.put(&2, &1, today()))
+    Allris.districts()
+    |> Enum.reject(&district_failed?/1)
+    |> Enum.reduce(status, &Map.put(&2, &1, today()))
     |> write_status()
   end
+
+  @spec mark_district_failed(binary()) :: :ok
+  defp mark_district_failed(district) do
+    failed = failed_districts()
+
+    unless MapSet.member?(failed, district) do
+      Logger.warning("skipping remaining queries for #{district} in this run")
+      Process.put(@failed_key, MapSet.put(failed, district))
+    end
+
+    :ok
+  end
+
+  @spec district_failed?(binary()) :: boolean()
+  defp district_failed?(district), do: MapSet.member?(failed_districts(), district)
+
+  @spec failed_districts() :: MapSet.t(binary())
+  defp failed_districts, do: Process.get(@failed_key, MapSet.new())
 
   @spec show_all_districts(status()) :: status()
   defp show_all_districts(status) do
@@ -78,9 +99,12 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
     # Logger.debug("checking #{district}")
 
-    Stream.flat_map([:list | @filter_keywords], fn
-      :list -> list(district)
-      keyword -> search_district(district, keyword, de_date_range)
+    Stream.flat_map([:list | @filter_keywords], fn query ->
+      cond do
+        district_failed?(district) -> []
+        query == :list -> list(district)
+        true -> search_district(district, query, de_date_range)
+      end
     end)
     |> Stream.uniq_by(fn %{"type" => type, "id" => id} -> {type, id} end)
   end
@@ -102,6 +126,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     else
       error ->
         Logger.warning("failed query #{district} keyword=#{keyword}: #{inspect(error)}")
+        mark_district_failed(district)
         []
     end
   end
@@ -124,6 +149,7 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     else
       error ->
         Logger.warning("failed list #{district}: #{inspect(error)}")
+        mark_district_failed(district)
         []
     end
   end
