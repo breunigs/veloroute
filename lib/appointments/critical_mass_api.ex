@@ -47,7 +47,10 @@ defmodule Appointments.CriticalMassAPI do
                bbNorthLatitude: max_lat,
                orderDirection: :desc,
                orderBy: :dateTime,
-               extended: true
+               extended: true,
+               # the API defaults to 10 results per page, which no longer covers
+               # the next few weeks now that many cities schedule far ahead
+               size: 200
              ],
              opts: @adapter_opts_general
            ) do
