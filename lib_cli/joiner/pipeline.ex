@@ -70,11 +70,12 @@ defmodule Joiner.Pipeline do
       :stop ->
         Enum.reverse(selections)
 
-      [{:no_candidates, from, to}] ->
+      [{:no_candidates, segment}] ->
+        {from, to} = no_candidates(segment, opts)
         selector(opts, [to, from | selections])
 
-      {candidates, preview} when is_list(candidates) and length(candidates) > 0 ->
-        {from, to} = select_candidate(candidates, preview, opts)
+      {candidates, preview, segment} when is_list(candidates) and length(candidates) > 0 ->
+        {from, to} = select_candidate(candidates, preview, segment, opts)
         selections = [to, from | selections]
         selector(opts, selections)
 
@@ -84,12 +85,167 @@ defmodule Joiner.Pipeline do
     end
   end
 
-  @spec select_candidate([Joiner.Segment.t()], Joiner.Preview.handle(), Joiner.Options.t()) :: {
-          %{ident: binary(), stop: Video.Timestamp.t() | :end | :FIXME},
-          %{ident: binary(), start: Video.Timestamp.t() | :start | :FIXME}
+  @typep selection :: {
+           %{ident: binary(), stop: Video.Timestamp.t() | :end | :FIXME},
+           %{ident: binary(), start: Video.Timestamp.t() | :start | :FIXME}
+         }
+
+  @spec no_candidates(Joiner.Segment.t(), Joiner.Options.t()) :: selection()
+  defp no_candidates(segment, opts) do
+    data = [
+      "\n",
+      Owl.Data.tag("no join found for #{Joiner.Segment.name(segment)}", :bright),
+      "\n",
+      [Owl.Data.tag("enter", :red), ": select the join manually in two mpv players\n"],
+      [Owl.Data.tag("s", :red), ": skip, leave this join for later\n"]
+    ]
+
+    Owl.LiveScreen.update(:selector, data)
+
+    val =
+      Joiner.UI.read_valid_input(0, %{"" => :manual, "s" => :skip, "skip" => :skip})
+
+    Owl.LiveScreen.update(:selector, "")
+
+    case val do
+      :manual -> manual_loop(segment, opts)
+      :skip -> fixme(segment)
+    end
+  end
+
+  @spec select_candidate(
+          [Joiner.Segment.t()],
+          Joiner.Preview.handle(),
+          Joiner.Segment.t(),
+          Joiner.Options.t()
+        ) :: selection()
+  defp select_candidate(candidates, preview, segment, opts) do
+    ui = %{
+      help: [[Owl.Data.tag("m", :red), ": none of these / select manually\n"]],
+      keys: %{}
+    }
+
+    case present(candidates, preview, opts, ui) do
+      :none -> manual_loop(segment, opts)
+      val -> result_for(Enum.at(candidates, val - 1))
+    end
+  end
+
+  # Offers the user the manually selected join candidates, with the option to
+  # try again if the chosen spot wasn't right after all.
+  @spec manual_loop(Joiner.Segment.t(), Joiner.Options.t()) :: selection()
+  defp manual_loop(segment, opts) do
+    case Joiner.Manual.candidates(segment, opts) do
+      :abort ->
+        fixme(segment)
+
+      {:error, reason, rough} ->
+        Logger.warning("manual join for #{Joiner.Segment.name(segment)} failed: #{reason}")
+        unrefined(segment, reason, rough, opts)
+
+      {:ok, candidates, rough} ->
+        preview = Joiner.Preview.start_render!(candidates, opts)
+
+        ui = %{
+          help: [
+            [Owl.Data.tag("r", :red), ": pick different positions in mpv again\n"],
+            [Owl.Data.tag("u", :red), ": use my mpv positions as-is, without refinement\n"],
+            [Owl.Data.tag("m", :red), ": give up, leave this join for later\n"]
+          ],
+          keys: %{"r" => :retry, "retry" => :retry, "u" => :use_rough}
         }
 
-  defp select_candidate(candidates, preview, opts) do
+        case present(candidates, preview, opts, ui) do
+          :none -> fixme(segment)
+          :retry -> manual_loop(segment, opts)
+          :use_rough -> result_for(rough)
+          val -> result_for(Enum.at(candidates, val - 1))
+        end
+    end
+  end
+
+  # The refinement can be unavailable, most notably for videos with differing
+  # FPS. Offer the unrefined selection with a preview, so the user can still see
+  # and accept the join they pointed at.
+  @spec unrefined(
+          Joiner.Segment.t(),
+          binary(),
+          Joiner.Segment.t() | nil,
+          Joiner.Options.t()
+        ) :: selection()
+  defp unrefined(segment, reason, nil, opts) do
+    data = [
+      "\n",
+      Owl.Data.tag("manual join for #{Joiner.Segment.name(segment)} failed", :bright),
+      "\n",
+      reason,
+      "\n",
+      [Owl.Data.tag("enter", :red), ": try again with different positions\n"],
+      [Owl.Data.tag("s", :red), ": skip, leave this join for later\n"]
+    ]
+
+    Owl.LiveScreen.update(:selector, data)
+    val = Joiner.UI.read_valid_input(0, %{"" => :retry, "s" => :skip, "skip" => :skip})
+    Owl.LiveScreen.update(:selector, "")
+
+    case val do
+      :retry -> manual_loop(segment, opts)
+      :skip -> fixme(segment)
+    end
+  end
+
+  defp unrefined(segment, reason, rough, opts) do
+    preview = Joiner.Preview.start_render!([rough], opts)
+
+    ui = %{
+      notice: [
+        Owl.Data.tag("could not fine tune your selection: #{reason}", :yellow),
+        "\n",
+        "Showing your unrefined selection as candidate 1 instead.\n"
+      ],
+      help: [
+        [Owl.Data.tag("r", :red), ": pick different positions in mpv again\n"],
+        [Owl.Data.tag("m", :red), ": give up, leave this join for later\n"]
+      ],
+      keys: %{"r" => :retry, "retry" => :retry}
+    }
+
+    case present([rough], preview, opts, ui) do
+      :none -> fixme(segment)
+      :retry -> manual_loop(segment, opts)
+      _val -> result_for(rough)
+    end
+  end
+
+  # Even if the candidates are not all the same video idents, provide at least
+  # some readable reference
+  @spec fixme(Joiner.Segment.t()) :: selection()
+  defp fixme(segment) do
+    {
+      %{ident: segment.from.ident, stop: :FIXME},
+      %{ident: segment.to.ident, start: :FIXME}
+    }
+  end
+
+  @spec result_for(Joiner.Segment.t()) :: selection()
+  defp result_for(seg) do
+    {
+      %{ident: seg.from.ident, stop: Joiner.Segment.stop_human(seg, :from)},
+      %{ident: seg.to.ident, start: Joiner.Segment.start_human(seg, :to)}
+    }
+  end
+
+  @spec present(
+          [Joiner.Segment.t()],
+          Joiner.Preview.handle(),
+          Joiner.Options.t(),
+          %{
+            optional(:notice) => Owl.Data.t(),
+            help: [Owl.Data.t()],
+            keys: %{binary() => atom()}
+          }
+        ) :: pos_integer() | :none | atom()
+  defp present(candidates, preview, opts, ui) do
     # Logger.debug("waiting for video to render")
     Joiner.Preview.wait_until_rendered!(preview, opts)
 
@@ -105,8 +261,9 @@ defmodule Joiner.Pipeline do
       "\n",
       Owl.Data.tag(title, :bright),
       "\n",
+      Map.get(ui, :notice, []),
       [Owl.Data.tag("?", :red), ": preview (default)\n"],
-      [Owl.Data.tag("m", :red), ": none of these / manually enter later\n"],
+      ui.help,
       Enum.flat_map(thead, &["   ", &1, "\n"]),
       Joiner.UI.prefix_index(tbody),
       ["   ", tfoot, "\n"]
@@ -123,7 +280,8 @@ defmodule Joiner.Pipeline do
           preview,
           opts,
           video_player_title,
-          opts.preview_player_custom
+          opts.preview_player_custom,
+          ui.keys
         )
       after
         Joiner.Preview.stop()
@@ -136,20 +294,7 @@ defmodule Joiner.Pipeline do
     |> Owl.Data.to_chardata()
     |> Logger.info()
 
-    {seg, stop1, start2} =
-      if val == :none do
-        # Even if the candidates are not all the same video idents, provide at
-        # least some readable reference
-        {hd(candidates), :FIXME, :FIXME}
-      else
-        seg = Enum.at(candidates, val - 1)
-        {seg, Joiner.Segment.stop_human(seg, :from), Joiner.Segment.start_human(seg, :to)}
-      end
-
-    {
-      %{ident: seg.from.ident, stop: stop1},
-      %{ident: seg.to.ident, start: start2}
-    }
+    val
   end
 
   @spec segments_title([Joiner.Segment.t()]) :: binary()
@@ -260,7 +405,8 @@ defmodule Joiner.Pipeline do
   end
 
   @spec find_candidates_pair([Joiner.Video.t()], Joiner.Options.t()) ::
-          [Joiner.Segment.t()] | [tuple()]
+          [{:no_candidates, Joiner.Segment.t()}]
+          | {[Joiner.Segment.t()], Joiner.Preview.handle(), Joiner.Segment.t()}
   def find_candidates_pair([v1, v2], opts) do
     # with preloaded videos, this should not fail
     {:ok, segment} = Joiner.Segment.new(v1, v2)
@@ -302,39 +448,14 @@ defmodule Joiner.Pipeline do
     # possible. However, if the first segment didn't yield enough candidates the
     # next segment is looked at. We therefore need to sort again.
     |> Enum.sort_by(& &1.metrics.weighted, :desc)
-    |> remove_overlapping_segments()
-    |> with_preview(opts)
-    |> maybe_set_fallback(segment)
+    |> Joiner.Segment.remove_overlapping()
+    |> case do
+      [] -> [{:no_candidates, segment}]
+      candidates -> {candidates, Joiner.Preview.start_render!(candidates, opts), segment}
+    end
   end
-
-  defp with_preview([], _opts), do: []
-
-  defp with_preview(candidates, opts),
-    do: {candidates, Joiner.Preview.start_render!(candidates, opts)}
-
-  defp maybe_set_fallback([], segment) do
-    [
-      {
-        :no_candidates,
-        %{ident: segment.from.ident, stop: :FIXME},
-        %{ident: segment.to.ident, start: :FIXME}
-      }
-    ]
-  end
-
-  defp maybe_set_fallback(candidates, _seg), do: candidates
 
   defp inc_pbar_each(stream, id) do
     Stream.each(stream, fn _v -> Owl.ProgressBar.inc(id: id) end)
-  end
-
-  # this function assumes that the first entries are the most desirable
-  defp remove_overlapping_segments(segments) do
-    Enum.reduce(segments, [], fn
-      candidate, segments ->
-        overlap = Enum.any?(segments, &Joiner.Segment.overlap?(&1, candidate))
-        if overlap, do: segments, else: [candidate | segments]
-    end)
-    |> Enum.reverse()
   end
 end

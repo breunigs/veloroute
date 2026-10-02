@@ -23,6 +23,7 @@ defmodule Joiner.Options do
           distance_prune_below: float(),
           weights: weights(),
           user_max_candidates: pos_integer(),
+          manual_window_ms: pos_integer(),
           preview_blur: boolean(),
           preview_player_custom: binary() | nil,
           preview_use_host_ffmpeg: boolean()
@@ -44,6 +45,7 @@ defmodule Joiner.Options do
     :distance_prune_below,
     :weights,
     :user_max_candidates,
+    :manual_window_ms,
     :preview_blur,
     :preview_player_custom,
     :preview_use_host_ffmpeg
@@ -122,6 +124,13 @@ defmodule Joiner.Options do
       },
       # assuming there's more results, how many to present to the user
       user_max_candidates: 5,
+
+      ### manual selection
+      # When auto-detection fails (or the user rejects all candidates), two mpv
+      # players are opened to pick rough join timestamps. This is how far around
+      # each of those timestamps the visual refinement looks. Note that the
+      # refinement cost grows quadratically with this value.
+      manual_window_ms: 1_500,
 
       ### miscellaneous options
       preview_blur: false,

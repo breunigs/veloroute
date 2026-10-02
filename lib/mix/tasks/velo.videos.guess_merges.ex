@@ -22,7 +22,20 @@ defmodule Mix.Tasks.Velo.Videos.GuessMerges do
     * a fully qualified timestamp like 01:02:03.456 (HH:MM:SS.mmm format)
     * a duration like 1m30s or 90s or 1h90s32ms
 
+    If no join can be found automatically, or if you reject all candidates by answering "m", two
+    mpv players are opened. Seek both to roughly the same place, then press enter: the exact join
+    point is determined by running the usual refinement around your selection and you get a
+    preview as usual.
+
     The final output is suitable for use in Video.Track.videos.
+
+    Environment variables:
+    * VELO_BLUR=1                blur the preview video instead of scaling it
+    * VELO_PREVIEW_TOOL=<shell>  pipe the preview into this command instead of mpv
+    * VELO_HOST_FFMPEG=1         render previews with the host ffmpeg instead of docker
+    * VELO_MANUAL_WINDOW_MS=<ms> how far around a manually selected timestamp to look for the
+                                 exact join point (default 1500). Processing time grows
+                                 quadratically with this value.
 
     Example:
 
@@ -42,8 +55,15 @@ defmodule Mix.Tasks.Velo.Videos.GuessMerges do
       opts = %{opts | preview_player_custom: System.get_env("VELO_PREVIEW_TOOL")}
       opts = %{opts | preview_use_host_ffmpeg: System.get_env("VELO_HOST_FFMPEG") == "1"}
 
+      opts =
+        case System.get_env("VELO_MANUAL_WINDOW_MS") do
+          nil -> opts
+          val -> %{opts | manual_window_ms: String.to_integer(val)}
+        end
+
       Joiner.Dino.ensure_started()
       Joiner.Preview.prepare()
+      Joiner.Mpv.prepare()
 
       Video.Dir.must_exist!(fn ->
         Joiner.Pipeline.run(args, opts)

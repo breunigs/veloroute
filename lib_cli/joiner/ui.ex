@@ -50,14 +50,15 @@ defmodule Joiner.UI do
           any(),
           Joiner.Options.t(),
           binary() | nil,
-          binary() | nil
+          binary() | nil,
+          %{binary() => atom()}
         ) ::
-          pos_integer() | :none
-  def input_with_preview(segments, preview, opts, title, custom_player) do
-    case read_valid_input(length(segments)) do
+          pos_integer() | :none | atom()
+  def input_with_preview(segments, preview, opts, title, custom_player, extra \\ %{}) do
+    case read_valid_input(length(segments), extra) do
       :preview ->
         Joiner.Preview.start_player!(preview, title, custom_player)
-        input_with_preview(segments, preview, opts, title, custom_player)
+        input_with_preview(segments, preview, opts, title, custom_player, extra)
 
       other ->
         Joiner.Preview.stop(preview)
@@ -65,8 +66,14 @@ defmodule Joiner.UI do
     end
   end
 
-  @spec read_valid_input(pos_integer()) :: pos_integer() | :none | :preview
-  def read_valid_input(max) do
+  @doc """
+  Asks the user to pick a number in `[1, max]` or one of the named options.
+  `extra` is merged over the built-in names, so e.g. `%{"" => :ready}` can
+  replace the default meaning of just pressing enter.
+  """
+  @spec read_valid_input(non_neg_integer(), %{binary() => atom()}) ::
+          pos_integer() | :none | :preview | atom()
+  def read_valid_input(max, extra \\ %{}) do
     Owl.LiveScreen.await_render()
 
     start = DateTime.utc_now()
@@ -91,18 +98,18 @@ defmodule Joiner.UI do
       "none" => :none
     }
 
-    static[val] ||
+    Map.merge(static, extra)[val] ||
       case Integer.parse(val) do
         {idx, ""} when idx >= 1 and idx <= max ->
           idx
 
         {_idx, ""} ->
           Owl.IO.puts(Owl.Data.tag("Integer out of range [1-#{max}]", :red))
-          read_valid_input(max)
+          read_valid_input(max, extra)
 
         _ ->
           Owl.IO.puts(Owl.Data.tag("not a valid integer nor other option", :red))
-          read_valid_input(max)
+          read_valid_input(max, extra)
       end
   end
 

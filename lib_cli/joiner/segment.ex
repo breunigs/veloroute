@@ -52,6 +52,18 @@ defmodule Joiner.Segment do
     Joiner.Video.overlap?(seg1.from, seg2.from) && Joiner.Video.overlap?(seg1.to, seg2.to)
   end
 
+  @doc """
+  Drops all segments that overlap an earlier one. Assumes that the first entries
+  are the most desirable.
+  """
+  @spec remove_overlapping([t()]) :: [t()]
+  def remove_overlapping(segments) do
+    Enum.reduce(segments, [], fn candidate, kept ->
+      if Enum.any?(kept, &overlap?(&1, candidate)), do: kept, else: [candidate | kept]
+    end)
+    |> Enum.reverse()
+  end
+
   @spec maybe_merge(t(), t()) :: {:ok, t()} | {:error, :no_overlap}
   def maybe_merge(seg1, seg2) do
     if overlap?(seg1, seg2) do
