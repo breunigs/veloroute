@@ -71,6 +71,15 @@ defmodule Basemap.OpenStreetMap do
   defp osm_source_name, do: "osm_source_#{Util.md5(Settings.r(:osm_data_source))}.osm.pbf"
   defp bbox_extract_name, do: "osm_data_source.#{Enum.join(Settings.r(:bounds), ",")}.osm.pbf"
 
+  @doc """
+  Marks the downloaded OSM source as outdated, so the next render downloads it
+  again and re-renders everything derived from it.
+  """
+  def expire_osm_source() do
+    path = path(:cache, osm_source_name())
+    if File.exists?(path), do: File.touch!(path, 0), else: :ok
+  end
+
   def target_extract(:cache), do: path(:cache, bbox_extract_name())
   def target_extract(:container), do: path(:container, bbox_extract_name())
 

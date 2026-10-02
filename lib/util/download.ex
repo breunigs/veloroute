@@ -12,9 +12,14 @@ defmodule Util.Download do
     end)
   end
 
+  # some servers (e.g. geofabrik) stall or send redirect loops to clients that
+  # do not identify themselves
+  defp request_headers,
+    do: [{"user-agent", "#{Settings.r(:email)} -- basemap/asset downloader"}]
+
   defp to_file_raw(url, file, allowed_redirects) do
     {:ok, code, headers, ref_or_body} =
-      :hackney.request(:get, url, [], "",
+      :hackney.request(:get, url, request_headers(), "",
         follow_redirect: false,
         pool: false,
         recv_timeout: :infinity,
