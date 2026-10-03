@@ -101,6 +101,7 @@ defmodule Mix.Tasks.Deploy do
     Search.Meilisearch.Exe.purge_old_data!()
     Mix.Tasks.Velo.Assets.Prepare.run([])
     Mix.Tasks.Velo.Search.Index.run([])
+    Supervisor.terminate_child(Veloroute.Supervisor, Search.Meilisearch.Runner)
 
     [
       ~w(mix setup),
