@@ -65,11 +65,17 @@ defmodule Basemap.Tiles do
     #   |> print_error()
 
     :ok = rewrite_metadata_json()
+
+    # compress before swapping the directories, so already compressed tiles that
+    # didn't change can be reused instead of compressing them again
+    Util.Compress.file_glob(path(:cache, "**/*.{pbf,mlt}"), "basemap tiles",
+      reuse_from: {target(:cache), assets_path()}
+    )
+
+    Util.Compress.file_glob(path(:cache, "**/*.json"), "basemap tile metadata", keep_source: true)
+
     File.rm_rf!(assets_path())
     File.rename!(target(:cache), assets_path())
-
-    Util.Compress.file_glob(assets_path("**/*.{pbf,mlt}"), "basemap tiles")
-    Util.Compress.file_glob(assets_path("**/*.json"), "basemap tile metadata", keep_source: true)
 
     :ok
   end

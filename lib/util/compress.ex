@@ -1,11 +1,17 @@
 defmodule Util.Compress do
-  @spec file_glob(Path.t(), binary(), keep_source: boolean(), keep_large_compressed: boolean()) ::
-          :ok
+  require Logger
+
+  @spec file_glob(Path.t(), binary(),
+          keep_source: boolean(),
+          keep_large_compressed: boolean(),
+          reuse_from: {new_root :: Path.t(), old_root :: Path.t()}
+        ) :: :ok
   def file_glob(path_glob, desc \\ "", opts \\ []) do
     desc = String.trim("Compressing #{desc}")
 
     {keep_source, opts} = Keyword.pop(opts, :keep_source, false)
     {keep_big, opts} = Keyword.pop(opts, :keep_large_compressed, false)
+    {reuse_from, opts} = Keyword.pop(opts, :reuse_from, nil)
     writer = if keep_big, do: &write_always/3, else: &write_if_smaller/3
     [] = opts
 
@@ -17,17 +23,67 @@ defmodule Util.Compress do
         compressed || File.dir?(path)
       end)
 
-    files =
+    tracked =
       if length(files) >= 5,
         do: Tqdm.tqdm(files, total: length(files), description: desc, clear: false),
         else: files
 
-    Parallel.each(files, fn path ->
-      data = File.read!(path)
-      w1 = writer.(path <> ".gz", data, gzip(data))
-      w2 = writer.(path <> ".br", data, brotli(data))
-      if !keep_source && w1 && w2, do: File.rm(path)
-    end)
+    reused =
+      Parallel.map(tracked, fn path ->
+        data = File.read!(path)
+
+        if reuse(reuse_from, path, data) do
+          if !keep_source, do: File.rm(path)
+          true
+        else
+          w1 = writer.(path <> ".gz", data, gzip(data))
+          w2 = writer.(path <> ".br", data, brotli(data))
+          if !keep_source && w1 && w2, do: File.rm(path)
+          false
+        end
+      end)
+      |> Enum.count(& &1)
+
+    if reused > 0,
+      do: Logger.info("#{desc}: reused #{reused} of #{length(files)} already compressed files")
+
+    :ok
+  end
+
+  # Reuses the previously compressed artifacts when the uncompressed content is
+  # unchanged, which is much cheaper than compressing again. We only reuse when
+  # both artifacts exist, so the "is compressing even worth it?" decision of the
+  # previous run stays reproducible.
+  defp reuse(nil, _path, _data), do: false
+
+  defp reuse({new_root, old_root}, path, data) do
+    old = Path.join(old_root, Path.relative_to(path, new_root))
+
+    with true <- File.exists?(old <> ".br"),
+         {:ok, gz} <- File.read(old <> ".gz"),
+         {:ok, ^data} <- safe_gunzip(gz) do
+      link(old <> ".gz", path <> ".gz")
+      link(old <> ".br", path <> ".br")
+      true
+    else
+      _ -> false
+    end
+  end
+
+  defp safe_gunzip(data) do
+    {:ok, gunzip(data)}
+  rescue
+    _ -> :error
+  end
+
+  defp link(from, to) do
+    with {:error, _reason} <- File.ln(from, to) do
+      File.cp!(from, to)
+    end
+
+    # Hard links share the inode's mtime, so refresh it to keep staleness checks
+    # that look at the oldest file in a tree (see Util.IO.staleness/2) happy.
+    File.touch!(to)
   end
 
   defp write_if_smaller(path, source, compressed) do
