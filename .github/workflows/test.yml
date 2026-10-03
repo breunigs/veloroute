@@ -44,6 +44,9 @@ jobs:
 
       - run: mkdir -p /home/runner/work/veloroute/videos
 
+      - run: npm ci --progress=false --no-audit --loglevel=error
+        working-directory: assets
+
       - run: mix compile
       - run: mix format --check-formatted
       - run: mix velo.setup ci
