@@ -47,7 +47,7 @@ defmodule Data.Article.Static.Radroute6 do
         ]
       },
       %Video.Track{
-        renderer: 6,
+        renderer: 7,
         group: "6",
         direction: :backward,
         from: "Wulfsdorf",
@@ -55,8 +55,7 @@ defmodule Data.Article.Static.Radroute6 do
         parent_ref: __MODULE__,
         text: "aus Richtung Ahrensburg zum Jungfernstieg",
         historic: %{
-          "db87aeef378727a4f7ca95bc6151a324" => ~d[2025-12],
-          "cbbf449ce9d6c1c6bdf661a7e8bcf7ac" => ~d[2025-09],
+          "48074a361695cbd4ebc5417e006e28f9" => ~d[2025-12],
           "dffe3495c553a4a2eb0e1349dc2e4f20" => ~d[2024-05]
         },
         videos: [
@@ -71,9 +70,10 @@ defmodule Data.Article.Static.Radroute6 do
           {"2024-05-09-vr6/GX017487", :start, "00:00:02.902"},
           {"2024-05-09-vr6/GX017492", "00:00:03.837", "00:00:47.681"},
           {"2025-09-20-random/GX018642", "00:01:15.275", :end},
-          {"2025-09-20-random/GX018643", :start, "00:00:06.154"},
-          {"2024-05-09-vr6/GX017494", "00:00:05.171", "00:00:28.290"},
-          {"2024-05-09-vr6/GX017495", "00:00:00.267", "00:00:06.940"},
+          {"2025-09-20-random/GX018643", :start, "00:00:09.645"},
+          {"2025-02-22-nordost/GX018238", "00:00:08.811", "00:00:13.544"},
+          {"2025-02-22-nordost/GX018239", :start, "00:00:13.344"},
+          {"2024-05-09-vr6/GX017495", "00:00:00.801", "00:00:06.940"},
           {"2025-12-30-hohenfelde/GX018705", "00:00:00.801", "00:00:28.221"},
           {"2025-02-25-nordost/GX018329", "00:00:53.434", :end},
           {"2025-02-25-nordost/GX018330", :start, :end},

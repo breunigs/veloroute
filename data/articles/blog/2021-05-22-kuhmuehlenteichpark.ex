@@ -8,7 +8,7 @@ defmodule Data.Article.Blog.Kuhmuehlenteichpark do
   # def start(), do: ~d[2025-07]
   # def stop(), do: ~d[2026-02]
 
-  def type(), do: :planned
+  def type(), do: :outdated
 
   def tags(), do: ["radroute-6", "6", "N16"]
 
