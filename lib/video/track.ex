@@ -284,8 +284,7 @@ defmodule Video.Track do
     has_transition_before = !is_first && from != :seamless
     has_transition_after = next_from != nil && next_from != :seamless
 
-    # rife_transition produces @fade_frames + 1 frames (includes both endpoints)
-    transition_ms = round((@fade_frames + 1) / Video.Constants.output_fps() * 1000)
+    transition_ms = round(transition_frames() / Video.Constants.output_fps() * 1000)
 
     {dur, rev_coords, hsh} =
       cond do
@@ -311,37 +310,49 @@ defmodule Video.Track do
 
     with %Video.TrimmedSource{} = tsv <-
            Video.TrimmedSource.extract(tsv, from, to, extrapolate_end: true),
-         {:ok, meta} <- Video.Metadata.for(tsv) do
+         {:ok, _meta} <- Video.Metadata.for(tsv) do
       from_ms = tsv.coord_from.time_offset_ms
       to_ms = tsv.coord_to.time_offset_ms
-      clip_ms = to_ms - from_ms
 
       # Compute effective range matching segment.ex's process_source exactly:
       # use article timestamps resolved to seconds with Float.round(..., 3)
       fade_s = default_fade()
       start_s = resolve_start(from)
       end_s = resolve_end(to, tsv.source)
+      {:ok, warp} = Video.Speedup.for(Video.Path.source(tsv.source))
 
       effective_start_s =
         if has_transition_before,
-          do: Float.round(start_s + fade_s, 3),
+          do: Video.Speedup.fade_after(warp, start_s, fade_s),
           else: Float.round(start_s, 3)
 
       effective_end_s =
         if has_transition_after,
-          do: Float.round(end_s - fade_s, 3),
+          do: Video.Speedup.fade_before(warp, end_s, fade_s),
           else: Float.round(end_s, 3)
 
-      regular_ms = grid_split_duration_ms(tsv.source, effective_start_s, effective_end_s, meta)
+      regular_ms =
+        grid_split_duration_ms(tsv.source, effective_start_s, effective_end_s, warp)
 
       output_ms =
         regular_ms +
           if(has_transition_before, do: transition_ms, else: 0) +
           if(has_transition_after, do: transition_ms, else: 0)
 
+      # Coordinates are placed by the warp, not by a single linear stretch across
+      # the clip: under a varying slope the two diverge and the map drifts out of
+      # sync with the video. Scaled to the frame-rounded output_ms the renderer
+      # actually produces, and evaluated on the same timeline tsv.coords_cut
+      # uses — which is why Video.Speedup builds its profile from
+      # Video.Source.video_timeline_points/1.
+      warped_from = Video.Speedup.output_s(warp, from_ms / 1000.0)
+      warped_ms = Video.Speedup.output_s(warp, to_ms / 1000.0) * 1000.0 - warped_from * 1000.0
+      scale = if warped_ms > 0, do: output_ms / warped_ms, else: 1.0
+
       rev_coords =
         Enum.reduce(tsv.coords_cut, rev_coords, fn new, rev_coords ->
-          offset = round((new.time_offset_ms - from_ms) / clip_ms * output_ms)
+          warped = Video.Speedup.output_s(warp, new.time_offset_ms / 1000.0) * 1000.0
+          offset = round((warped - warped_from * 1000.0) * scale)
           new = Map.put(new, :time_offset_ms, dur + offset)
           [new | rev_coords]
         end)
@@ -359,17 +370,18 @@ defmodule Video.Track do
   # that the segmented renderer uses. Each grid segment independently rounds to a
   # whole number of frames, which makes the total video slightly longer than the
   # raw millisecond duration would suggest.
-  defp grid_split_duration_ms(source, from_s, to_s, meta) do
-    effective_fps =
-      if meta.pts_correction == 1,
-        do: meta.fps,
-        else: Video.Constants.output_fps()
+  defp grid_split_duration_ms(source, from_s, to_s, warp) do
+    # the renderer always emits output_fps, so that is the rate each grid
+    # segment's frame count rounds against
+    fps = Video.Constants.output_fps()
 
     Video.Segment.grid_split(source, from_s, to_s, [])
     |> Enum.reduce(0, fn seg, acc ->
-      seg_dur = (seg.end_s - seg.start_s) * meta.pts_correction
-      frames = ceil(seg_dur * effective_fps)
-      acc + round(frames / effective_fps * 1000.0)
+      seg_dur =
+        Video.Speedup.output_s(warp, seg.end_s) - Video.Speedup.output_s(warp, seg.start_s)
+
+      frames = ceil(seg_dur * fps)
+      acc + round(frames / fps * 1000.0)
     end)
   end
 
@@ -383,6 +395,19 @@ defmodule Video.Track do
   end
 
   defp resolve_end(timestamp, _source), do: Video.Timestamp.in_seconds(timestamp)
+
+  @doc """
+  How many frames a transition produces: `rife_transition` includes both
+  endpoints, so it is one more than the fade itself.
+
+  The renderer forces both sides of a transition to exactly this many frames.
+  Without that, a mixed-fps transition can end up a frame longer — each side is
+  warped, millisecond-rounded and quantised independently — and `vf_frei0r`
+  syncs with `after=EXT_INFINITY`, so it pads the shorter side rather than
+  complaining, leaving this accounting silently wrong.
+  """
+  @spec transition_frames() :: pos_integer()
+  def transition_frames, do: @fade_frames + 1
 
   @spec default_fade :: float
   @doc """

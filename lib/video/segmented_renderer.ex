@@ -127,22 +127,22 @@ defmodule Video.SegmentedRenderer do
 
     with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "seg_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
-      meta = metadata(source)
-      filter = regular_filter(source, start_s, opts)
+      filter = regular_filter(source, start_s, end_s, opts, tmp_path)
       input = regular_input(source, start_s, end_s)
       {pass1, pass2} = two_pass_cmd(input, input, filter, tmp_dir, filepart)
+      out_s = warp_output_s(source, start_s, end_s)
 
       with :ok <-
              run_ffmpeg(
                "#{basename} pass 1",
                pass1,
-               segment_progress(basename, "pass 1", start_s, end_s, meta.pts_correction)
+               segment_progress(basename, "pass 1", out_s)
              ),
            :ok <-
              run_ffmpeg(
                "#{basename} pass 2",
                pass2,
-               segment_progress(basename, "pass 2", start_s, end_s, meta.pts_correction)
+               segment_progress(basename, "pass 2", out_s)
              ) do
         move_segment_outputs(tmp_path, filepart, basename)
       end
@@ -169,16 +169,24 @@ defmodule Video.SegmentedRenderer do
       meta_a = metadata(source_a)
       meta_b = metadata(source_b)
 
-      a_start = max(0, end_a_s - fade_s)
+      # fade_s is output time; converting it through each side's own warp is
+      # what makes a mixed-fps transition feed both sides the same amount of
+      # output time. Shared with Video.Segment and Video.Track so all four
+      # fade sites agree bit-for-bit.
+      a_start = max(0, Video.Speedup.fade_before(warp(source_a), end_a_s, fade_s))
       a_end = end_a_s
       b_start = start_b_s
-      b_end = start_b_s + fade_s
+      b_end = Video.Speedup.fade_after(warp(source_b), start_b_s, fade_s)
 
       transition_ctx = %{
         source_a: source_a,
         source_b: source_b,
         a_start: a_start,
+        a_end: a_end,
         b_start: b_start,
+        b_end: b_end,
+        ratios_dir: tmp_path,
+        generate: true,
         fade_s: fade_s,
         meta_a: meta_a,
         meta_b: meta_b,
@@ -199,20 +207,20 @@ defmodule Video.SegmentedRenderer do
              run_ffmpeg(
                "#{basename} pass 1",
                pass1,
-               segment_progress(basename, "pass 1", 0, fade_s)
+               segment_progress(basename, "pass 1", fade_s)
              ),
            :ok <-
              run_ffmpeg(
                "#{basename} pass 2",
                pass2,
-               segment_progress(basename, "pass 2", 0, fade_s)
+               segment_progress(basename, "pass 2", fade_s)
              ) do
         move_segment_outputs(tmp_path, filepart, basename)
       end
     end
   end
 
-  defp regular_filter(source, start_s, opts) do
+  defp regular_filter(source, start_s, end_s, opts, ratios_dir) do
     detections = Video.Path.detections_rel_to_cwd(source)
     from_ms = round(start_s * 1000)
     blur_skip = blur_frame_skip(source, from_ms)
@@ -225,7 +233,10 @@ defmodule Video.SegmentedRenderer do
 
     parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
     meta = metadata(source)
-    parts = parts ++ time_lapse_filter(meta, "[blur0]", "[blur0]")
+
+    parts =
+      parts ++
+        warp_filter(source, meta, start_s, end_s, "[blur0]", ratios_dir: ratios_dir)
 
     variant_count = length(Video.Renderer.variants())
     outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
@@ -264,16 +275,28 @@ defmodule Video.SegmentedRenderer do
           "[_ref1][_s0]scale2ref=#{min_wh}[blur1][blur0]"
         ]
 
-    parts = parts ++ time_lapse_filter(ctx.meta_a, "[blur0]", "[blur0]")
-    parts = parts ++ time_lapse_filter(ctx.meta_b, "[blur1]", "[blur1]")
+    # each side has its own warp and its own source range, so each gets its own
+    # normalisation; the [blur0]/[blur1] labels keep the internal ones apart
+    opts = [ratios_dir: ctx.ratios_dir, generate: ctx.generate]
+
+    parts =
+      parts ++
+        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]", opts) ++
+        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]", opts)
 
     fade_dur = ctx.fade_s
+
+    # Both sides must be exactly this long or rife_transition silently produces
+    # a longer result: vf_frei0r syncs with after=EXT_INFINITY, so the shorter
+    # input's last frame is repeated and the output runs to the longer one —
+    # while Video.Track's duration accounting assumes exactly this many frames.
+    n = Video.Track.transition_frames()
 
     parts =
       parts ++
         [
-          "[blur0]setpts=N/(#{fps_s})/TB[a]",
-          "[blur1]setpts=N/(#{fps_s})/TB[b]",
+          "[blur0]setpts=N/(#{fps_s})/TB,trim=end_frame=#{n}[a]",
+          "[blur1]setpts=N/(#{fps_s})/TB,trim=end_frame=#{n}[b]",
           "[a][b]frei0r=filter_name=rife_transition:filter_params=#{fade_dur}||0[joined]"
         ]
 
@@ -292,13 +315,24 @@ defmodule Video.SegmentedRenderer do
     end
   end
 
-  defp time_lapse_filter(meta, inp, out) do
-    if meta.pts_correction != 1 do
-      fps = Video.Constants.output_fps()
-      ["#{inp}setpts=#{meta.pts_correction}*PTS,fps=#{fps},settb=AVTB#{out}"]
-    else
-      []
-    end
+  # Normalises one source range onto the output frame rate: the warp's setpts,
+  # the resample, and — where the speed cap needs more frames than the source
+  # has — the RIFE interpolation stage. Emits nothing at all for a source the
+  # rework does not change, which is both the fast path for the existing corpus
+  # and what the segment cache key gates on.
+  defp warp_filter(source, meta, from_s, to_s, label, opts) do
+    {:ok, warp} = Video.Speedup.for(source)
+    Video.Speedup.filter_parts(warp, meta, from_s, to_s, label, opts)
+  end
+
+  defp warp(source) do
+    {:ok, warp} = Video.Speedup.for(source)
+    warp
+  end
+
+  defp warp_output_s(source, from_s, to_s) do
+    w = warp(source)
+    Video.Speedup.output_s(w, to_s) - Video.Speedup.output_s(w, from_s)
   end
 
   defp regular_input(source, start_s, end_s) do
@@ -632,11 +666,10 @@ defmodule Video.SegmentedRenderer do
     )
   end
 
-  defp segment_progress(basename, pass, start_s, end_s, pts_correction \\ 1) do
+  defp segment_progress(basename, pass, out_s) do
     alias Video.SegmentedRenderer.LiveProgress
     fps = Video.Constants.output_fps()
-    duration = end_s - start_s
-    total_frames = max(1, round(duration * pts_correction * fps))
+    total_frames = max(1, round(out_s * fps))
     label = "#{pass} #{basename}"
     id = {pass, basename, :erlang.unique_integer()}
 
@@ -721,7 +754,7 @@ defmodule Video.SegmentedRenderer do
   defp preview_render_regular(segment, tmp_dir) do
     %{source: source, start_s: start_s, end_s: end_s, opts: opts} = segment
     input = regular_input(source, start_s, end_s)
-    filter = preview_regular_filter(source, start_s, opts)
+    filter = preview_regular_filter(source, start_s, end_s, opts)
     preview_encode(input, filter, tmp_dir)
   end
 
@@ -736,15 +769,22 @@ defmodule Video.SegmentedRenderer do
       opts_b: opts_b
     } = segment
 
-    a_start = max(0, end_a_s - fade_s)
-    input = transition_input(source_a, a_start, end_a_s, source_b, start_b_s, start_b_s + fade_s)
+    # the fourth fade site. Without the same conversion the join preview would
+    # show a different cut point than the final render, which is its only job.
+    a_start = max(0, Video.Speedup.fade_before(warp(source_a), end_a_s, fade_s))
+    b_end = Video.Speedup.fade_after(warp(source_b), start_b_s, fade_s)
+    input = transition_input(source_a, a_start, end_a_s, source_b, start_b_s, b_end)
 
     ctx = %{
       source_a: source_a,
       source_b: source_b,
       a_start: a_start,
+      a_end: end_a_s,
       b_start: start_b_s,
+      b_end: b_end,
       fade_s: fade_s,
+      ratios_dir: tmp_dir,
+      generate: false,
       meta_a: metadata(source_a),
       meta_b: metadata(source_b),
       opts_a: opts_a,
@@ -755,7 +795,7 @@ defmodule Video.SegmentedRenderer do
     preview_encode(input, filter, tmp_dir, ["-r", Video.Constants.output_fps_s()])
   end
 
-  defp preview_regular_filter(source, start_s, opts) do
+  defp preview_regular_filter(source, start_s, end_s, opts) do
     detections = Video.Path.detections_rel_to_cwd(source)
     from_ms = round(start_s * 1000)
     blur_skip = blur_frame_skip(source, from_ms)
@@ -767,7 +807,13 @@ defmodule Video.SegmentedRenderer do
 
     parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
     meta = metadata(source)
-    parts = parts ++ time_lapse_filter(meta, "[blur0]", "[blur0]")
+
+    # previews never generate frames: the timing still matches the final render
+    # because the warp is identical, only the frame content differs, and RIFE
+    # latency has no place in an interactive path
+    parts =
+      parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]", generate: false)
+
     parts ++ ["[blur0]#{@preview_scale}"]
   end
 
@@ -799,8 +845,12 @@ defmodule Video.SegmentedRenderer do
           "[_ref1][_s0]scale2ref=#{min_wh}[blur1][blur0]"
         ]
 
-    parts = parts ++ time_lapse_filter(ctx.meta_a, "[blur0]", "[blur0]")
-    parts = parts ++ time_lapse_filter(ctx.meta_b, "[blur1]", "[blur1]")
+    opts = [generate: false]
+
+    parts =
+      parts ++
+        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]", opts) ++
+        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]", opts)
 
     parts ++
       [

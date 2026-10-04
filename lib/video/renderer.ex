@@ -37,7 +37,7 @@ defmodule Video.Renderer do
 
         prefix = "scale=#{width}:#{height},"
         scaled = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
-        tlc = time_lapse_corrects(sources)
+        tlc = time_lapse_corrects(sources, generate: false)
         xfades = xfades(sources, fade_duration, "join-preview")
 
         # draw number after RIFE to avoid artifacts
@@ -110,7 +110,8 @@ defmodule Video.Renderer do
     sources = Video.Track.normalize_video_tuples(sources)
     blurs = blurs(sources, "scale=1920:1080,")
     dewarped = dewarp(sources)
-    tlc = time_lapse_corrects(sources)
+    ratios_dir = Temp.mkdir!(%{prefix: "veloroute_adhoc_ratios"})
+    tlc = time_lapse_corrects(sources, ratios_dir: ratios_dir)
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
     filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
 
@@ -262,19 +263,22 @@ defmodule Video.Renderer do
 
   defp vf({_path, _from, _to}), do: nil
 
-  defp time_lapse_corrects(sources) when is_list(sources) do
-    fps = Video.Constants.output_fps()
-
+  # One normalisation per source, so the [blur<idx>] labels keep the internal
+  # ones apart on their own. `generate: false` for the join preview: it only has
+  # to show where the cut lands, and RIFE has no place in an interactive path.
+  defp time_lapse_corrects(sources, opts) when is_list(sources) do
     sources
     |> Enum.with_index()
-    |> Parallel.map(4, fn {{path, _from, _to, _opts}, idx} ->
+    |> Parallel.map(4, fn {{path, from, to, _opts}, idx} ->
+      source = Video.Path.source(path)
       meta = metadata(path)
+      {:ok, warp} = Video.Speedup.for(source)
+      from_s = if from in [:start, :seamless], do: 0.0, else: Video.Timestamp.in_seconds(from)
+      to_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
 
-      if meta.pts_correction != 1 do
-        "[blur#{idx}]setpts=#{meta.pts_correction}*PTS,fps=#{fps},settb=AVTB[blur#{idx}]"
-      end
+      Video.Speedup.filter_parts(warp, meta, from_s, to_s, "[blur#{idx}]", opts)
     end)
-    |> Util.compact()
+    |> List.flatten()
   end
 
   @spec xfades(Video.Track.plain(), float(), binary()) :: [binary()]
@@ -396,7 +400,13 @@ defmodule Video.Renderer do
     start_in_s = if from in [:start, :seamless], do: 0, else: Video.Timestamp.in_seconds(from)
     to_in_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
     segment_fade = if from == :seamless || idx == 0, do: 0, else: fade
-    segment_duration = Float.round((to_in_s - start_in_s) * meta.pts_correction, 3)
+    {:ok, warp} = Video.Speedup.for(Video.Path.source(path))
+
+    segment_duration =
+      Float.round(
+        Video.Speedup.output_s(warp, to_in_s) - Video.Speedup.output_s(warp, start_in_s),
+        3
+      )
 
     if segment_fade >= segment_duration,
       do:

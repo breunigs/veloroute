@@ -1,18 +1,18 @@
 defmodule Video.Metadata do
   use Agent
+  require Logger
 
   @type t :: %Video.Metadata{
           duration: float(),
           fps: float(),
           time_base: float(),
-          time_lapse: pos_integer() | nil,
-          pts_correction: float()
+          time_lapse: pos_integer() | nil
         }
 
   @typep state :: %{optional(binary) => {:ok, t()} | {:error, binary()} | boolean()}
 
   @derive JSON.Encoder
-  @enforce_keys [:duration, :fps, :time_base, :time_lapse, :pts_correction]
+  @enforce_keys [:duration, :fps, :time_base, :time_lapse]
   defstruct @enforce_keys
 
   def start() do
@@ -75,6 +75,34 @@ defmodule Video.Metadata do
     floor(fps * (stop_lim - start_lim))
   end
 
+  @doc """
+  How many **output** frames each second of source time yields, given the local
+  warp slope. `sample_fps > meta.fps` means output frames outnumber the source
+  frames available, i.e. frames have to be generated.
+  """
+  @spec sample_fps(t(), float()) :: float()
+  def sample_fps(%{}, slope), do: Video.Constants.output_fps() * slope
+
+  @doc """
+  Duration of `frame_count` output frames, expressed in source milliseconds.
+  """
+  @spec output_frame_duration_ms(t(), float(), non_neg_integer()) :: non_neg_integer()
+  def output_frame_duration_ms(meta, slope, frame_count \\ 1) do
+    round(frame_count / sample_fps(meta, slope) * 1000.0)
+  end
+
+  @doc """
+  Like `frame_count_between/3`, but counts output frames rather than source
+  frames.
+  """
+  @spec output_frame_count_between(t(), float(), float(), float()) :: non_neg_integer()
+  def output_frame_count_between(%{duration: dur, fps: fps} = meta, slope, start_ts, stop_ts)
+      when is_float(start_ts) and is_float(stop_ts) and start_ts < stop_ts do
+    start_lim = max(start_ts, 0.0)
+    stop_lim = min(stop_ts, dur - 1.0 / fps)
+    floor(sample_fps(meta, slope) * (stop_lim - start_lim))
+  end
+
   def approx_frame_count(%{duration: dur, fps: fps}), do: round(dur - 1.0 / fps)
 
   @doc """
@@ -111,13 +139,17 @@ defmodule Video.Metadata do
     Agent.get_and_update(__MODULE__, &codec_info(&1, codec), :infinity)
   end
 
+  # Note these need no Video.Speedup counterpart: none of the fixture paths
+  # carries a date, so Video.Speedup.for/1 falls through to the legacy constant
+  # of time_lapse/desired_time_lapse = 1.0 without touching the filesystem.
+  # Seeding it from here would also make Video.Metadata call Video.Speedup,
+  # which Video.SpeedupTest forbids.
   def fake() do
     default_meta = %__MODULE__{
       duration: 60.0,
       fps: 30_000 / 1001,
       time_base: 1 / 90_000,
-      time_lapse: 5,
-      pts_correction: 1.0
+      time_lapse: 5
     }
 
     start()
@@ -133,7 +165,18 @@ defmodule Video.Metadata do
       raise "can only use fake for testing"
     end
 
-    Agent.update(__MODULE__, fn state -> Map.put(state, path, {:ok, val}) end, :infinity)
+    # Under both the key as given and the canonically resolved one: callers
+    # reach for/1 either with a bare relative path or through
+    # Video.Path.source/1, and the fixtures have no file on disk to fall back to.
+    Agent.update(
+      __MODULE__,
+      fn state ->
+        state
+        |> Map.put(path, {:ok, val})
+        |> Map.put(Video.Path.source_rel_to_cwd(path), {:ok, val})
+      end,
+      :infinity
+    )
   end
 
   @spec codec_info(state(), binary()) :: {boolean(), state()}
@@ -175,25 +218,20 @@ defmodule Video.Metadata do
       indexed = Enum.into(streams, %{}, &{Map.fetch!(&1, "codec_tag_string"), &1})
       video = indexed["hvc1"] || indexed["FFV1"] || indexed["av01"] || hd(streams)
 
-      time_lapse =
+      fps = Util.fraction_to_float(video["r_frame_rate"])
+      duration = String.to_float(duration)
+
+      from_gpmd =
         with %{"duration_ts" => dur_ts, "duration" => dur} <- indexed["gpmd"] do
           round(dur_ts / (String.to_float(dur) * 1000))
-        end || Video.Constants.assumed_time_lapse_when_no_metadata()
-
-      fps = Util.fraction_to_float(video["r_frame_rate"])
-
-      desired = Video.Constants.desired_time_lapse()
-      fps_change = fps / Video.Constants.output_fps()
-      time_lapse_change = time_lapse / desired
+        end
 
       {:ok,
        %__MODULE__{
          fps: fps,
          time_base: Util.fraction_to_float(video["time_base"]),
-         duration: String.to_float(duration),
-         time_lapse: time_lapse,
-         # due to FPS differences, we might need to speed up the video more/less
-         pts_correction: time_lapse_change / fps_change
+         duration: duration,
+         time_lapse: time_lapse(video_path, duration, from_gpmd)
        }}
     else
       %{result: result} -> result
@@ -201,6 +239,64 @@ defmodule Video.Metadata do
       {:error, reason} -> {:error, reason}
       {:ok, decode} -> {:error, "Unexpected ffprobe JSON: #{inspect(decode)} @ #{video_path}"}
     end
+  end
+
+  # How much faster than real time the video plays. The gpmd stream states it
+  # directly, but derived variants (.mkv, _stabilized.MP4) carry no gpmd, and
+  # blindly assuming the default there renders them at the wrong speed: the
+  # _stabilized files under 2024-10-19-ottensen and 2024-07-06-louise are
+  # realtime footage that would be taken for 5x. So measure it from the GPX
+  # instead, and only fall back to the assumed value with no GPX at all.
+  @spec time_lapse(binary(), float(), pos_integer() | nil) :: pos_integer()
+  defp time_lapse(video_path, duration, from_gpmd) do
+    measured = measure_time_lapse(video_path, duration)
+
+    case {from_gpmd, measured} do
+      {nil, nil} ->
+        Video.Constants.assumed_time_lapse_when_no_metadata()
+
+      {nil, measured} ->
+        measured
+
+      {from_gpmd, nil} ->
+        from_gpmd
+
+      {same, same} ->
+        same
+
+      {from_gpmd, measured} ->
+        Logger.warning(
+          "#{video_path}: gpmd says time lapse #{from_gpmd}x but the GPX measures " <>
+            "#{measured}x. Using the gpmd value."
+        )
+
+        from_gpmd
+    end
+  end
+
+  @spec measure_time_lapse(binary(), float()) :: pos_integer() | nil
+  defp measure_time_lapse(_video_path, duration) when duration <= 0.0, do: nil
+
+  defp measure_time_lapse(video_path, duration) do
+    # run/1 receives a cwd relative path, but Video.Path.abs_path/1 only passes
+    # through absolute ones and would otherwise prepend the source dir twice
+    with %Video.Source{} = source <- Video.Source.new_from_path(Path.expand(video_path)),
+         {:ok, span_s} <- Video.Source.gpx_real_span_s(source),
+         lapse when lapse >= 1 <- round(span_s / duration),
+         true <- plausible_measurement?(span_s / duration, lapse) do
+      lapse
+    else
+      _ -> nil
+    end
+  end
+
+  # A genuine time lapse makes the GPX span a whole multiple of the video
+  # duration: the realtime _stabilized files land within 0.2% of 1x and 4x. A
+  # GPX that merely overruns its video does not — the one .mkv that still has
+  # its GPX measures 6.16x against an assumed 5x — and trusting that would both
+  # re-render it and add generated frames for nothing.
+  defp plausible_measurement?(ratio, rounded) do
+    abs(ratio - rounded) / rounded <= Video.Constants.time_lapse_measure_tolerance()
   end
 
   parameters =

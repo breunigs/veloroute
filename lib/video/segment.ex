@@ -50,14 +50,24 @@ defmodule Video.Segment do
 
     next_from = if next, do: elem(next, 1)
 
+    # fade_s is output time, so it has to go through the warp to become source
+    # time. Identical arithmetic at a slope of 1.0, and shared with Video.Track
+    # and Video.SegmentedRenderer because all of them have to agree bit-for-bit:
+    # this sets the preceding segment's end_s and hence its segment_basename,
+    # while the renderer's copy sets -ss and the ratio list. Resolved lazily, so
+    # a track without transitions needs no metadata at all.
+    fade_before = !is_first && from != :seamless
+    fade_after = next != nil && next_from != :seamless
+    warp = if fade_before || fade_after, do: warp(path)
+
     effective_start =
-      if !is_first && from != :seamless,
-        do: Float.round(start_s + fade_s, @rounding),
+      if fade_before,
+        do: Video.Speedup.fade_after(warp, start_s, fade_s),
         else: Float.round(start_s, @rounding)
 
     effective_end =
-      if next != nil && next_from != :seamless,
-        do: Float.round(end_s - fade_s, @rounding),
+      if fade_after,
+        do: Video.Speedup.fade_before(warp, end_s, fade_s),
         else: Float.round(end_s, @rounding)
 
     if effective_start >= effective_end do
@@ -90,6 +100,11 @@ defmodule Video.Segment do
       end
 
     regular ++ transition
+  end
+
+  defp warp(path) do
+    {:ok, warp} = Video.Speedup.for(Video.Path.source(path))
+    warp
   end
 
   defp resolve_start(:start), do: 0.0
@@ -161,7 +176,7 @@ defmodule Video.Segment do
     ts = format_timestamp(start_s)
     dur = format_duration(end_s - start_s)
     vf_suffix = if opts[:vf], do: "_vf#{vf_hash(opts[:vf])}", else: ""
-    "#{date}-#{stem}/#{ts}_#{dur}#{vf_suffix}"
+    "#{date}-#{stem}/#{ts}_#{dur}#{vf_suffix}#{warp_suffix(source)}"
   end
 
   def transition_basename(%{type: :transition} = t) do
@@ -169,7 +184,25 @@ defmodule Video.Segment do
     stem_b = Video.Path.stem(t.source_b)
     ts_a = format_timestamp(t.end_a_s)
     ts_b = format_timestamp(t.start_b_s)
-    "xfade7/#{stem_a}@#{ts_a}+#{stem_b}@#{ts_b}"
+    warp = "#{warp_suffix(t.source_a)}#{warp_suffix(t.source_b)}"
+    "xfade7/#{stem_a}@#{ts_a}+#{stem_b}@#{ts_b}#{warp}"
+  end
+
+  # Keyed on whether the warp emits anything rather than on any formula: if the
+  # filter emitted nothing before and emits nothing now, the content cannot have
+  # changed. A value test would miss a legacy source whose fps differs from the
+  # output — it keeps a constant warp while rendering different content, and
+  # would silently reuse its stale segments. For a transition this also covers
+  # the fade conversion, which is only a no-op at a slope of 1.0.
+  defp warp_suffix(source) do
+    path = Video.Path.source(source)
+
+    with {:ok, meta} <- Video.Metadata.for(path),
+         {:ok, warp} <- Video.Speedup.for(path) do
+      if Video.Speedup.identity?(warp, meta), do: "", else: "_w#{warp.hash}"
+    else
+      _ -> ""
+    end
   end
 
   @doc """
