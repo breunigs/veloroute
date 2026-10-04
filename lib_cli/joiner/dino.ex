@@ -52,7 +52,17 @@ defmodule Joiner.Dino do
     start1 = Joiner.Segment.start_s(segment, :from)
     start2 = Joiner.Segment.start_s(segment, :to)
 
-    similarity({path1, start1}, {path2, start2}, frame_count)
+    # frame_count is in output frames, so each side has to be sampled at the
+    # rate that yields one frame per output frame — otherwise the two cover
+    # different real durations whenever their frame rates differ.
+    rate1 = Video.Metadata.sample_fps(segment.from.meta, Joiner.Segment.slope(segment, :from))
+    rate2 = Video.Metadata.sample_fps(segment.to.meta, Joiner.Segment.slope(segment, :to))
+
+    with :ok <- ensure_started(),
+         {:ok, embeds1} <- frame_embeddings(path1, start1, frame_count, rate1),
+         {:ok, embeds2} <- frame_embeddings(path2, start2, frame_count, rate2) do
+      {:ok, cos_sim(embeds1, embeds2)}
+    end
   end
 
   @spec ensure_started() :: :ok | {:error, File.posix() | binary()}
@@ -81,9 +91,9 @@ defmodule Joiner.Dino do
     1.0 - (Scholar.Metrics.Distance.cosine(e1, e2) |> Nx.to_number())
   end
 
-  @spec frame_embeddings(binary(), float(), pos_integer()) ::
+  @spec frame_embeddings(binary(), float(), pos_integer(), float() | nil) ::
           {:error, binary()} | {:ok, Nx.Tensor.t()}
-  defp frame_embeddings(file, start_ts, frames)
+  defp frame_embeddings(file, start_ts, frames, sample_fps \\ nil)
        when is_float(start_ts) and is_integer(frames) and frames > 0 do
     cmd =
       [
@@ -96,11 +106,12 @@ defmodule Joiner.Dino do
         file,
         "-vf",
         Enum.join(
-          [
+          Util.compact([
+            if(sample_fps, do: "fps=#{sample_fps}"),
             # scale keeping aspect ratio, then center-crop to match model's training
             "scale=w=#{@model.width}:h=#{@model.height}:force_original_aspect_ratio=increase",
             "crop=#{@model.width}:#{@model.height}"
-          ],
+          ]),
           ","
         ),
         "-frames:v",

@@ -23,8 +23,16 @@ defmodule Video.Renderer do
       timestamps
       |> Enum.with_index()
       |> Enum.map(fn {{v1, v2, stop1, start2}, idx} ->
-        start1 = max(0, stop1 - round(surround_seconds * 1000))
-        stop2 = start2 + round(surround_seconds * 1000)
+        # surround_seconds is output time: converting it through each side's own
+        # warp is what makes both halves of a preview cover the same amount of
+        # output time when the two sources differ in speed
+        w1 = warp_for(v1)
+        w2 = warp_for(v2)
+
+        start1 =
+          max(0, round(Video.Speedup.fade_before(w1, stop1 / 1000, surround_seconds) * 1000))
+
+        stop2 = round(Video.Speedup.fade_after(w2, start2 / 1000, surround_seconds) * 1000)
 
         videos = [
           {v1, Video.Timestamp.from_milliseconds(start1),
@@ -86,6 +94,11 @@ defmodule Video.Renderer do
       ])
 
     {out, outs, [stacker | cmds]}
+  end
+
+  defp warp_for(path) do
+    {:ok, warp} = Video.Speedup.for(Video.Path.source(path))
+    warp
   end
 
   defp stacker(1), do: {1920, 1080, nil}

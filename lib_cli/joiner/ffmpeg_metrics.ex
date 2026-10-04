@@ -24,10 +24,13 @@ defmodule Joiner.FfmpegMetrics do
     frames1 = Joiner.Segment.frame_count_between(segment, :from)
     frames2 = Joiner.Segment.frame_count_between(segment, :to)
 
-    ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts)
+    slope1 = Joiner.Segment.slope(segment, :from)
+    slope2 = Joiner.Segment.slope(segment, :to)
+
+    ffmpeg({path1, start1, frames1, slope1}, {path2, start2, frames2, slope2}, opts)
   end
 
-  defp ffmpeg({path1, start1, frames1}, {path2, start2, frames2}, opts)
+  defp ffmpeg({path1, start1, frames1, slope1}, {path2, start2, frames2, slope2}, opts)
        when frames1 > 0 and frames2 > 0 do
     {mf, extra_frames} = metric_filters(opts)
 
@@ -44,8 +47,14 @@ defmodule Joiner.FfmpegMetrics do
         "-filter_complex",
         Enum.join(
           [
-            "[0:v]scale=-1:#{opts.visual_image_height},settb=1/30,setpts=N*#{frames2},fps=30#{mf}[v1]",
-            "[1:v]scale=-1:#{opts.visual_image_height},settb=1/30,loop=loop=#{frames1 - 1}:size=#{frames2},setpts=N,fps=30#{mf}[v2]",
+            # Each input is first put through the renderer's own normalisation,
+            # so the frames compared here are the frames that get rendered — and
+            # so one step of the diagonal search below is one frame for both
+            # videos even at different recorded frame rates. The synthetic
+            # settb=1/30/fps=30 grid after it is just the vehicle that produces
+            # all frames1 × frames2 pairs.
+            "[0:v]#{normalise(slope1)}scale=-1:#{opts.visual_image_height},settb=1/30,setpts=N*#{frames2},fps=30#{mf}[v1]",
+            "[1:v]#{normalise(slope2)}scale=-1:#{opts.visual_image_height},settb=1/30,loop=loop=#{frames1 - 1}:size=#{frames2},setpts=N,fps=30#{mf}[v2]",
             "[v1][v2]#{opts.visual_compare_metric}=stats_file=-:shortest=1"
             # debug (remove metric calc above):
             # "[v1][v2]vstack"
@@ -85,6 +94,10 @@ defmodule Joiner.FfmpegMetrics do
         {:error,
          "unexpected ffmpeg output:\nCLI: #{Util.cli_printer(cmd)}\noutput #{inspect(output)}"}
     end
+  end
+
+  defp normalise(slope) do
+    "setpts=#{slope}*PTS,fps=#{Video.Constants.output_fps()},"
   end
 
   # XPSNR hack: XPSNR uses a temporal high pass filter that looks at the

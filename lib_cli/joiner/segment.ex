@@ -270,12 +270,21 @@ defmodule Joiner.Segment do
 
   @spec frame_count_between(t(), sel()) :: non_neg_integer()
   def frame_count_between(seg, video) when sel(video) do
-    Video.Metadata.frame_count_between(
-      Map.fetch!(seg, video).meta,
+    vid = Map.fetch!(seg, video)
+
+    Video.Metadata.output_frame_count_between(
+      vid.meta,
+      Joiner.Video.slope(vid),
       start_s(seg, video),
       stop_s(seg, video)
     )
   end
+
+  @doc """
+  The warp slope for one side, which the metric filters need to normalise it.
+  """
+  @spec slope(t(), sel()) :: float()
+  def slope(seg, video) when sel(video), do: Joiner.Video.slope(Map.fetch!(seg, video))
 
   defp rnd(val, decimals \\ 1) do
     :erlang.float_to_binary(val, decimals: decimals)

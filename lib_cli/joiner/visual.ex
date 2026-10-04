@@ -53,8 +53,8 @@ defmodule Joiner.Visual do
   @spec cut_video(Joiner.Video.t(), non_neg_integer(), non_neg_integer()) :: Joiner.Video.t()
   defp cut_video(video, offset, fade_frames) do
     video
-    |> Joiner.Video.advance_start(offset, :frames)
-    |> Joiner.Video.set_duration(fade_frames, :frames)
+    |> Joiner.Video.advance_start(offset, :output_frames)
+    |> Joiner.Video.set_duration(fade_frames, :output_frames)
   end
 
   @spec top_fades(
@@ -150,19 +150,18 @@ defmodule Joiner.Visual do
     end
   end
 
-  defp fade_frames(%{from: %{meta: %{fps: fps}}, to: %{meta: %{fps: fps}}}, opts) do
+  # Counted in *output* frames, so it is one value for both videos no matter
+  # what frame rates they were recorded at. The sub-frame guard stays: a
+  # misconfigured fade_duration_ms below ~17ms still cannot produce a fade.
+  defp fade_frames(_segment, opts) do
+    fps = Video.Constants.output_fps()
     fade = round(opts.fade_duration_ms * fps / 1000.0)
 
     if fade < 1 do
       {:error,
-       "fade duration of #{opts.fade_duration_ms}ms with #{fps} fps results in a 0 frame fade transition"}
+       "fade duration of #{opts.fade_duration_ms}ms at #{fps} fps results in a 0 frame fade transition"}
     else
       {:ok, fade}
     end
-  end
-
-  defp fade_frames(%{from: %{meta: %{fps: fps1}}, to: %{meta: %{fps: fps2}}}, _opts) do
-    {:error,
-     "video with different FPS (#{fps1} vs #{fps2}) not implemented, need to port renderer hack"}
   end
 end

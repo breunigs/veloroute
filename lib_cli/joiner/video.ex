@@ -106,14 +106,6 @@ defmodule Joiner.Video do
     start1 <= stop2 && start2 <= stop1
   end
 
-  @spec offset_start_timestamp(t(), number(), atom()) :: Video.Timestamp.t()
-  def offset_start_timestamp(video, value, unit)
-
-  def offset_start_timestamp(video, frames, :frames) do
-    ms = Video.Metadata.frame_duration_ms(video.meta, frames)
-    Video.Timestamp.from_milliseconds(video.start.time_offset_ms + ms)
-  end
-
   @spec at_start?(t()) :: boolean()
   def at_start?(video) do
     video.start.time_offset_ms == 0
@@ -141,6 +133,10 @@ defmodule Joiner.Video do
     advance_start(video, ms, :milliseconds)
   end
 
+  def advance_start(video, frames, :output_frames) when is_integer(frames) and frames > 0 do
+    advance_start(video, output_frame_duration_ms(video, frames), :milliseconds)
+  end
+
   def advance_start(video, ms, :milliseconds) do
     target_ms = video.start.time_offset_ms + ms
 
@@ -162,6 +158,30 @@ defmodule Joiner.Video do
   end
 
   @doc """
+  How long `count` *output* frames last, in source milliseconds.
+
+  The joiner compares and cuts in output frame space so that one step is one
+  frame for both videos regardless of their recorded frame rates. The local
+  warp slope is enough: a joiner window is a few hundred milliseconds, well
+  inside one warp interval.
+  """
+  @spec output_frame_duration_ms(t(), non_neg_integer()) :: non_neg_integer()
+  def output_frame_duration_ms(video, count \\ 1) do
+    Video.Metadata.output_frame_duration_ms(video.meta, slope(video), count)
+  end
+
+  @doc """
+  The warp slope in effect where this video is currently trimmed to.
+  """
+  @spec slope(t()) :: float()
+  def slope(video) do
+    case Video.Speedup.for(video.source.source) do
+      {:ok, warp} -> Video.Speedup.slope_at(warp, video.start.time_offset_ms / 1000.0)
+      _ -> 1.0
+    end
+  end
+
+  @doc """
   Move the "stop" point to match the duration from the start point. It shortens
   the polyline as needed.
   """
@@ -173,6 +193,10 @@ defmodule Joiner.Video do
   def set_duration(video, frames, :frames) do
     ms = Video.Metadata.frame_duration_ms(video.meta, frames)
     set_duration(video, ms, :milliseconds)
+  end
+
+  def set_duration(video, frames, :output_frames) do
+    set_duration(video, output_frame_duration_ms(video, frames), :milliseconds)
   end
 
   def set_duration(video, ms, :milliseconds) do
