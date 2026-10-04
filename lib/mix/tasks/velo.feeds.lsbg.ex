@@ -59,7 +59,7 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
 
   @typep detail :: %{text: binary(), links: binary(), checksum: binary(), source: binary()}
 
-  @spec list_pdfs(binary(), binary()) :: [detail()] | {:error, binary()}
+  @spec list_pdfs(binary(), binary()) :: [detail() | {:error, binary()}]
   defp list_pdfs(page, extra) do
     with {:ok, %{body: body}} <- get(page),
          {:ok, document} <- Floki.parse_fragment(body) do
@@ -73,11 +73,11 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
       end)
       |> Enum.uniq_by(& &1.source)
     else
-      error -> {:error, "failed to read shorts: #{inspect(error)}"}
+      error -> [{:error, "failed to read #{page}: #{inspect(error)}"}]
     end
   end
 
-  @spec list_projects() :: Enumerable.t() | {:error, binary()}
+  @spec list_projects() :: Enumerable.t()
   defp list_projects() do
     with {:ok, %{body: body}} <- get(@projects_page),
          {:ok, document} <- Floki.parse_fragment(body) do
@@ -87,6 +87,8 @@ defmodule Mix.Tasks.Velo.Feeds.Lsbg do
       |> Enum.map(&absolute/1)
       |> Enum.uniq()
       |> Stream.map(&resolve_project/1)
+    else
+      error -> [{:error, "failed to read #{@projects_page}: #{inspect(error)}"}]
     end
   end
 
