@@ -13,7 +13,7 @@ defmodule Video.Constants do
   # Apparent speed (real speed × speedup) is held at or below this. Footage
   # slower than this renders at its baseline speedup instead; nothing is ever
   # sped up past its baseline to reach the target.
-  def target_apparent_speed_kmh, do: 115.0
+  def target_apparent_speed_kmh, do: 100.0
 
   # How much source time the speed average covers. In *source/video* seconds,
   # i.e. the timeline the warp is defined on, which at a 5x recording is 150s of

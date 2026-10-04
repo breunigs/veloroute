@@ -280,7 +280,7 @@ defmodule Video.Speedup do
       {5.0, :baseline}
 
       iex> Video.Speedup.speedup(30.0, 5, 30000/1001)
-      {3.8333333333333335, :target}
+      {3.3333333333333335, :target}
 
       iex> Video.Speedup.speedup(0.0, 1, 30000/1001)
       {5.0, :baseline}
