@@ -1,6 +1,6 @@
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
-import { default as maplibregl } from "maplibre-gl";
+import type * as maplibregl from "maplibre-gl";
 
 declare global {
   const Hls: typeof import("hls.js").default;

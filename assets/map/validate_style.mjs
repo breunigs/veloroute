@@ -43,7 +43,7 @@ for (const layer of style.layers) {
     const propSpec = paintSpec[prop];
     if (!propSpec) continue;
 
-    const result = createPropertyExpression(val, propSpec);
+    const result = createPropertyExpression(val, prop, propSpec);
     if (result.result === 'error') {
       for (const err of result.value) {
         console.error(`${layer.id} -> ${prop}: ${err.message}`);

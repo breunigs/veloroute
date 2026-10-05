@@ -7,16 +7,6 @@ MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
 MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
 MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
 
-// MapLibre GL doesn't support expression-based line-dasharray,
-// so we override the default draw theme to remove it.
-const defaultStyles = MapboxDraw.lib.theme;
-const styles = defaultStyles.map((style: any) => {
-  if (style.id === 'gl-draw-lines') {
-    return { ...style, paint: { ...style.paint, 'line-dasharray': [0.2, 2] } };
-  }
-  return style;
-});
-
 const draw = new MapboxDraw({
   controls: {
     combine_features: false,
@@ -24,7 +14,6 @@ const draw = new MapboxDraw({
     line_string: true,
     trash: false,
   },
-  styles,
 });
 
 function round(num: number) {

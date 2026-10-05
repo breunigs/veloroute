@@ -1,6 +1,7 @@
 import { Map as MapboxMap } from "maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import type { ExpressionSpecification } from "maplibre-gl";
+import type { DataDrivenPropertyValueSpecification } from "maplibre-gl";
 
 // toggle if MapLibre should verify the expressions we pass to it. Disable for
 // production deploy for a slight performance improvement.
@@ -34,7 +35,7 @@ type highlighterFunction = null | ((map: MapboxMap, layerName: string) => void);
 
 const hiddenMinZoom = 11;
 
-function opacityRule(active: boolean, tunnel: boolean) {
+function opacityRule(active: boolean, tunnel: boolean): DataDrivenPropertyValueSpecification<number> {
   const opacity = tunnel ? 0.5 : 1
   if (active) return opacity
 
@@ -55,7 +56,7 @@ function minZoomForLayer(map: MapboxMap, layerName: string, minZoom: number): vo
   map.setLayerZoomRange(layerName, minZoom, 24);
 }
 
-function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive: string, active: boolean, highlighter: highlighterFunction = null, showOnHighZoom: boolean = false): void {
+function updateMapPrimitive(map: MapboxMap, layerNames: string[], drawPrimitive: "icon" | "line" | "fill", active: boolean, highlighter: highlighterFunction = null, showOnHighZoom: boolean = false): void {
   const minZoom = active ? 1 : hiddenMinZoom;
 
   layerNames.forEach(layerName => {
@@ -144,7 +145,8 @@ function fadeIcons(highlight: string): highlighterFunction {
     // heuristic to see if there icons are auto-colored. Needs to be cached
     // since it'll be overwritten with our more complicated logic.
     if (fadeIconLayers[layerName] === undefined) {
-      fadeIconLayers[layerName] = map.getLayoutProperty(layerName, "icon-image").includes("{color}")
+      const iconImage = map.getLayoutProperty(layerName, "icon-image")
+      fadeIconLayers[layerName] = typeof iconImage === "string" && iconImage.includes("{color}")
     }
     if (fadeIconLayers[layerName] === false) return
 

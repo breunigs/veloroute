@@ -36,7 +36,10 @@
 <body class="hideSidebar">
   <%= @inner_content %>
 
-  <script type="text/javascript" defer src={~p"/assets/mbgl2.js"} fetchpriority="high"></script>
+  <script type="text/javascript" defer
+    src={~p"/assets/mbgl2.js"}
+    data-worker-url={~p"/assets/mbgl2_worker.js"}
+    fetchpriority="high"></script>
   <script type="text/javascript" defer
     src={~p"/assets/map.js"}
     data-initial-highlight={@video_route_id}

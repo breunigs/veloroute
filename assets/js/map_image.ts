@@ -1,4 +1,6 @@
 import { Protocol } from "pmtiles";
+import type * as maplibregl from "maplibre-gl";
+import type { ExpressionSpecification } from "maplibre-gl";
 const protocol = new Protocol({ metadata: true });
 window.mlgl.addProtocol('pmtiles', protocol.tile);
 
@@ -13,7 +15,7 @@ const originalMaxZoom = map.getMaxZoom()
 const minZoom = 14
 const maxZoomMap = Math.max(originalMaxZoom, 20)
 const maxZoomOnShow = minZoom + 3
-const fadeInRule = ["interpolate", ["linear"], ["zoom"], minZoom, 0, maxZoomOnShow, 1]
+const fadeInRule: ExpressionSpecification = ["interpolate", ["linear"], ["zoom"], minZoom, 0, maxZoomOnShow, 1]
 const layerName = "mapimage-pmtiles";
 let imageData: ShowMapImageEventDetail | null = null;
 let worker: ReturnType<typeof setTimeout> | null = null;

@@ -27,6 +27,7 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   @early_hint_preload [
     {"#{@digest_prefix}/assets/app.css", :style},
     {"#{@digest_prefix}/assets/mbgl2.js", :script},
+    {"#{@digest_prefix}/assets/mbgl2_worker.js", :worker},
     {"#{@digest_prefix}/images/header.svg", :image},
     {"/images/layers.svg?vsn=1", :image},
     {"/images/play.svg?vsn=1", :image},
