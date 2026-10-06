@@ -121,7 +121,7 @@ defmodule Video.Renderer do
   @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
   def adhoc_cmd(sources) when is_list(sources) do
     sources = Video.Track.normalize_video_tuples(sources)
-    blurs = blurs(sources, "scale=1920:1080,")
+    blurs = blurs(sources, "scale=1920:1080:flags=lanczos,")
     dewarped = dewarp(sources)
     ratios_dir = Temp.mkdir!(%{prefix: "veloroute_adhoc_ratios"})
     tlc = time_lapse_corrects(sources, ratios_dir: ratios_dir)
@@ -176,7 +176,7 @@ defmodule Video.Renderer do
       Util.low_priority_cmd_prefix(),
       ["ffmpeg", "-hide_banner"],
       ["-i", source],
-      ["-vf", "fps=#{fps},#{crop},scale=#{w}:#{h}"],
+      ["-vf", "fps=#{fps},#{crop},scale=#{w}:#{h}:flags=lanczos"],
       ["-fps_mode", "vfr"],
       ["-c:v", "libx264"],
       ["-x264-params", "keyint=1:min-keyint=1:scenecut=0"],

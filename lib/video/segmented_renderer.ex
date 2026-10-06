@@ -266,7 +266,7 @@ defmodule Video.SegmentedRenderer do
     # differ in resolution (e.g. 3840x2160 vs 2704x1520), since rife_transition
     # requires matching input dimensions. Uses two scale2ref passes so we only
     # ever scale down, never up.
-    min_wh = "w='min(iw,main_w)':h='min(ih,main_h)'"
+    min_wh = "w='min(iw,main_w)':h='min(ih,main_h)':flags=lanczos"
 
     parts =
       parts ++
@@ -376,6 +376,9 @@ defmodule Video.SegmentedRenderer do
         Util.low_priority_cmd_prefix(Process.get(:niceness, 19)),
         ["ffmpeg", "-hide_banner", "-v", "verbose"],
         ["-err_detect", "explode"],
+        # the per-variant -s downscale is an ffmpeg-inserted scaler, so its
+        # interpolation comes from here rather than from the filtergraph
+        ["-sws_flags", "lanczos"],
         input,
         ["-filter_complex", filter],
         if("-r" in extra_flags, do: [], else: ["-fps_mode", "vfr"]),
