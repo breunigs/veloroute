@@ -222,26 +222,6 @@ defmodule Video.Speedup do
   def round_ms(seconds), do: Float.round(seconds, 3)
 
   @doc """
-  How far past `from_s` the first decoded frame sits, in seconds.
-
-  `-ss` does not land on a frame boundary, so the first frame ffmpeg hands us is
-  anywhere up to one source frame interval later. Everything downstream — the
-  `vf_fps` grid anchor and every interpolation ratio — is offset by this, so it
-  has to be computed from the millisecond-rounded `-ss` value rather than from a
-  raw warp inversion.
-
-      iex> Video.Speedup.phase(1.0, 25.0)
-      0.0
-
-      iex> Float.round(Video.Speedup.phase(1.01, 25.0), 4)
-      0.03
-  """
-  @spec phase(float(), float()) :: float()
-  def phase(from_s, src_fps) do
-    ceil(from_s * src_fps) / src_fps - from_s
-  end
-
-  @doc """
   Build a constant warp directly. Used for the legacy path and from tests.
   """
   @spec constant(binary(), float()) :: t()
@@ -279,8 +259,14 @@ defmodule Video.Speedup do
       iex> Video.Speedup.speedup(10.0, 5, 30000/1001)
       {5.0, :baseline}
 
-      iex> Video.Speedup.speedup(30.0, 5, 30000/1001)
-      {3.3333333333333335, :target}
+      iex> Video.Speedup.speedup(25.0, 5, 30000/1001)
+      {4.0, :target}
+
+  Above ~30 km/h the 20fps floor binds before the target does:
+
+      iex> {speedup, reason} = Video.Speedup.speedup(30.0, 5, 30000/1001)
+      iex> {Float.round(speedup, 4), reason}
+      {3.3367, :min_fps}
 
       iex> Video.Speedup.speedup(0.0, 1, 30000/1001)
       {5.0, :baseline}
@@ -290,10 +276,10 @@ defmodule Video.Speedup do
 
       iex> {speedup, reason} = Video.Speedup.speedup(200.0, 5, 25.0)
       iex> {Float.round(speedup, 3), reason}
-      {2.997, :density}
+      {4.0, :min_fps}
   """
   @spec speedup(float() | nil, pos_integer(), float()) ::
-          {float(), :baseline | :target | :density}
+          {float(), :baseline | :target | :min_fps}
   def speedup(real_kmh, time_lapse, src_fps) do
     natural = natural(time_lapse, src_fps)
     baseline = baseline(time_lapse, src_fps)
@@ -307,7 +293,7 @@ defmodule Video.Speedup do
       end
 
     cond do
-      wanted < floor_speedup -> {floor_speedup, :density}
+      wanted < floor_speedup -> {floor_speedup, :min_fps}
       wanted >= baseline -> {baseline, :baseline}
       true -> {wanted, :target}
     end
@@ -358,78 +344,6 @@ defmodule Video.Speedup do
   def density(slope, src_fps), do: Video.Constants.output_fps() * slope / src_fps
 
   @doc """
-  The interpolation ratio for every output frame of a source range.
-
-  Built by forward simulating what `vf_fps` actually does, rather than by
-  inverting the warp: `vf_fps` quantises each input frame's PTS onto the output
-  lattice *before* deciding which frame fills which slot, so deriving the
-  bracketing frame from `floor(W⁻¹(t) · src_fps)` would disagree with the filter
-  by a whole frame at slot boundaries and pair the wrong frames with the ratio.
-
-  `0.0` means "use the earlier real frame", `1.0` the later one; anything between
-  is a RIFE timestep. A real frame is preferred whenever rounding would have
-  picked it anyway, which makes every ratio `0.0`/`1.0` as soon as frames are
-  being dropped rather than generated.
-
-  Indexed by **absolute** output slot, with the leading entries up to the
-  `vf_fps` grid anchor padded, because the plugin derives its index from the
-  frame timestamp.
-  """
-  @spec frame_ratios(t(), Video.Metadata.t(), float(), float()) :: [float()]
-  def frame_ratios(%__MODULE__{} = warp, %{fps: src_fps}, from_s, to_s) do
-    out_fps = Video.Constants.output_fps()
-    base_out = output_s(warp, from_s)
-    rel_out = fn t -> output_s(warp, from_s + t) - base_out end
-    rel_src = fn o -> source_s(warp, base_out + o) - from_s end
-
-    phase = phase(from_s, src_fps)
-    rel_dur = max(to_s - from_s, 0.0)
-    frames = max(floor((rel_dur - phase) * src_fps) + 1, 1)
-
-    # ceil, matching fps=…:round=up below. Flooring would place a frame in a
-    # slot *before* its own timestamp, so the frame held at slot k could be
-    # ahead of k and every frac would come out negative.
-    slots = Enum.map(0..(frames - 1), &ceil(rel_out.(phase + &1 / src_fps) * out_fps))
-    k0 = hd(slots)
-    k_last = max(floor(rel_out.(rel_dur) * out_fps), k0)
-
-    {ratios, _} =
-      Enum.map_reduce(k0..k_last, {slots, -1}, fn k, acc ->
-        {rest, i} = consume_slots(acc, k)
-
-        ratio =
-          if k == k0 do
-            # the delayed branch has no frame to pair with yet
-            0.0
-          else
-            at_rel = rel_src.(k / out_fps)
-            frac = (at_rel - phase) * src_fps - i
-            d = density(slope_at(warp, from_s + at_rel), src_fps)
-            snap = min(0.5, 0.5 / d)
-
-            cond do
-              frac <= snap -> 0.0
-              frac >= 1.0 - snap -> 1.0
-              true -> min(max(frac, 0.0), 1.0)
-            end
-          end
-
-        {ratio, {rest, i}}
-      end)
-
-    List.duplicate(0.0, k0) ++ ratios
-  end
-
-  defp consume_slots({[slot | rest], i}, k) when slot <= k, do: consume_slots({rest, i + 1}, k)
-  defp consume_slots(acc, _k), do: acc
-
-  @doc """
-  Whether any frame in this ratio list has to be generated.
-  """
-  @spec needs_rife?([float()]) :: boolean()
-  def needs_rife?(ratios), do: Enum.any?(ratios, &(&1 > 0.0 && &1 < 1.0))
-
-  @doc """
   The `setpts` expression that maps this source range onto output time.
 
   A constant warp keeps the exact shape the pre-rework code emitted. A varying
@@ -468,81 +382,38 @@ defmodule Video.Speedup do
       else: :erlang.float_to_binary(rounded, decimals: 6)
   end
 
-  @doc """
-  The filter chain that normalises one source range onto the output frame rate,
-  taking and leaving the stream at `label`.
-
-  Returns `[]` when there is nothing to do, which is both the fast path for the
-  pre-existing corpus and the condition the segment cache key gates on.
-
-  Options:
-
-    * `:generate` — set to `false` to skip RIFE even where frames are missing,
-      used by the preview paths where exact frame content does not matter and
-      RIFE latency would hurt. Timing still matches the final render.
-    * `:ratios_dir` — where to write the ratio list. Required when generating.
-  """
-  @spec filter_parts(t(), Video.Metadata.t(), float(), float(), binary(), keyword()) :: [binary()]
-  def filter_parts(%__MODULE__{} = warp, meta, from_s, to_s, label, opts \\ []) do
-    cond do
-      identity?(warp, meta) ->
-        []
-
-      !Keyword.get(opts, :generate, true) ->
-        [resample(warp, from_s, to_s, label)]
-
-      true ->
-        ratios = frame_ratios(warp, meta, from_s, to_s)
-
-        if needs_rife?(ratios) do
-          generating_parts(warp, meta, from_s, to_s, label, ratios, opts)
-        else
-          [resample(warp, from_s, to_s, label)]
-        end
+  @spec filter_parts(t(), Video.Metadata.t(), float(), float(), binary()) :: [binary()]
+  def filter_parts(%__MODULE__{} = warp, meta, from_s, to_s, label) do
+    if identity?(warp, meta) do
+      []
+    else
+      [
+        "#{label}setpts=#{setpts_expr(warp, from_s, to_s)},#{rate_cap()},settb=AVTB#{label}"
+      ]
     end
   end
 
-  defp resample(warp, from_s, to_s, label) do
-    "#{label}setpts=#{setpts_expr(warp, from_s, to_s)}," <>
-      "fps=#{Video.Constants.output_fps()},settb=AVTB#{label}"
+  @doc """
+  How long a source range lasts in output time. The one expression every
+  consumer of a segment duration has to agree on.
+  """
+  @spec warped_span_s(t(), float(), float()) :: float()
+  def warped_span_s(%__MODULE__{} = warp, from_s, to_s) do
+    output_s(warp, to_s) - output_s(warp, from_s)
   end
 
-  # The output grid is built once, at the final rate, so the plugin is invoked
-  # exactly once per frame that actually ships. Delaying one branch by exactly
-  # one *source* frame — before the warp, where the interval is still constant —
-  # makes [b] carry frame i+1 wherever [a] carries frame i, so the pair always
-  # brackets the output timestamp even under a varying warp.
-  #
-  # round=up, not down: vf_fps quantises each input PTS onto the output lattice
-  # before picking, and rounding up is what makes "the last frame whose
-  # quantised PTS <= k" mean "the last frame at or before slot k's timestamp".
-  # Rounding down lets the held frame sit *after* the slot, which puts the
-  # interpolation timestep outside [0, 1).
-  defp generating_parts(warp, meta, from_s, to_s, label, ratios, opts) do
-    inner = label |> String.trim_leading("[") |> String.trim_trailing("]")
-    {x, y, a, b} = {"[#{inner}x]", "[#{inner}y]", "[#{inner}a]", "[#{inner}b]"}
+  @doc """
+  Caps the frame rate at the output rate without ever duplicating a frame.
 
-    dir = Keyword.fetch!(opts, :ratios_dir)
-    path = write_ratios!(dir, inner, ratios)
-    expr = setpts_expr(warp, from_s, to_s)
-    fps = Video.Constants.output_fps_s()
-    delay = fmt(1.0 / meta.fps)
-
-    [
-      "#{label}split#{x}#{y}",
-      "#{x}setpts=#{expr},fps=#{fps}:round=up#{a}",
-      "#{y}setpts=PTS-#{delay}/TB,setpts=#{expr},fps=#{fps}:round=up#{b}",
-      "#{a}#{b}frei0r=filter_name=rife_transition:" <>
-        "filter_params=0||0|0|#{path}|#{Video.Constants.output_fps()},settb=AVTB#{label}"
-    ]
-  end
-
-  # a file rather than an inline list: the inline form is comma separated, and
-  # commas separate filters inside a filtergraph
-  defp write_ratios!(dir, name, ratios) do
-    path = Path.join(dir, "ratios_#{name}.txt")
-    File.write!(path, Enum.map_join(ratios, "\n", &fmt(&1)) <> "\n")
-    path
+  `fps=` would pad a slowed stretch with duplicates, which is the whole thing we
+  are avoiding, so instead keep a frame only once enough output time has passed
+  since the last one kept. Where the warp compresses (any speed-up) that drops
+  down to the output rate as before; where it stretches, every real frame is kept
+  and the rate simply falls to `src_fps / slope`.
+  """
+  @spec rate_cap() :: binary()
+  def rate_cap do
+    "select='isnan(prev_selected_t)+gte(t-prev_selected_t,1/(#{Video.Constants.output_fps_s()}))'"
   end
 
   @spec build(binary()) :: {:ok, t()} | {:error, binary()}
@@ -663,19 +534,24 @@ defmodule Video.Speedup do
       )
     end
 
-    clamped = Enum.count(sampled, fn {_at, _slope, reason} -> reason == :density end)
+    clamped = Enum.count(sampled, fn {_at, _slope, reason} -> reason == :min_fps end)
 
     if clamped > 0 do
       Logger.warning(
-        "#{path}: #{clamped}/#{length(sampled)} samples hit the interpolation density " <>
-          "clamp, so their apparent speed exceeds " <>
+        "#{path}: #{clamped}/#{length(sampled)} samples hit the " <>
+          "#{Video.Constants.min_output_fps()}fps floor, so their apparent speed exceeds " <>
           "#{Video.Constants.target_apparent_speed_kmh()} km/h"
       )
     end
   end
 
+  # The mode marker matters: switching from RIFE interpolation to a lower frame
+  # rate leaves the slopes untouched, so without it every already rendered
+  # speed-targeted segment would be silently reused.
+  @slowdown_mode "vfr1"
+
   defp hash(slopes) do
-    :crypto.hash(:md5, Enum.join(slopes, ","))
+    :crypto.hash(:md5, @slowdown_mode <> Enum.join(slopes, ","))
     |> Base.encode16(case: :lower)
     |> String.slice(0, 8)
   end

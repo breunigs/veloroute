@@ -370,18 +370,15 @@ defmodule Video.Track do
   # that the segmented renderer uses. Each grid segment independently rounds to a
   # whole number of frames, which makes the total video slightly longer than the
   # raw millisecond duration would suggest.
+  # The renderer emits variable frame rate, so a segment's duration is driven by
+  # its warped PTS rather than by a whole number of frames at a fixed rate. The
+  # playlist is corrected to match this per file (see
+  # Video.SegmentedRenderer.correct_final_durations/2), so this stays the single
+  # source of truth for both the GPS offsets and the declared durations.
   defp grid_split_duration_ms(source, from_s, to_s, warp) do
-    # the renderer always emits output_fps, so that is the rate each grid
-    # segment's frame count rounds against
-    fps = Video.Constants.output_fps()
-
     Video.Segment.grid_split(source, from_s, to_s, [])
     |> Enum.reduce(0, fn seg, acc ->
-      seg_dur =
-        Video.Speedup.output_s(warp, seg.end_s) - Video.Speedup.output_s(warp, seg.start_s)
-
-      frames = ceil(seg_dur * fps)
-      acc + round(frames / fps * 1000.0)
+      acc + round(Video.Speedup.warped_span_s(warp, seg.start_s, seg.end_s) * 1000.0)
     end)
   end
 

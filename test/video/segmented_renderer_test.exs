@@ -69,6 +69,80 @@ defmodule Video.SegmentedRendererTest do
 
   # -- Segment Coverage Tests ------------------------------------------------
 
+  describe "final #EXTINF correction" do
+    # Under variable frame rate the muxer does not know the last frame's display
+    # duration, so each file's final #EXTINF comes out short — measured at 0.26s
+    # against a 12.5s span on a real 25fps segment — while the interior ones match
+    # the keyframe deltas exactly. No ffmpeg flag fixes it (-t, trim, tpad and
+    # -fps_mode passthrough were all tried), so the playlist, which this module
+    # writes itself, is corrected instead. It matters because the playlist marks a
+    # discontinuity between files, so a player positions each file from the
+    # declared durations: a per-file deficit lands straight in currentTime while
+    # the GPS polyline follows the warped span.
+    setup do
+      Video.Metadata.fake()
+      :ok
+    end
+
+    defp entries(durations), do: Enum.map(durations, &%{duration: &1, offset: 0, length: 1})
+
+    defp seg(start_s, end_s),
+      do: %{
+        type: :regular,
+        source: "test/fixtures/1.MP4",
+        start_s: start_s,
+        end_s: end_s,
+        opts: []
+      }
+
+    test "the whole correction lands on the last entry" do
+      # fixtures resolve to a constant slope of 1.0, so the span is 10.0s
+      segment = seg(0.0, 10.0)
+
+      # six exact keyframe deltas plus a short final entry, as measured
+      corrected =
+        Video.SegmentedRenderer.correct_final_duration(
+          entries([1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 0.86]),
+          segment
+        )
+
+      assert Enum.map(corrected, & &1.duration) == [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.0]
+      assert_in_delta Enum.sum(Enum.map(corrected, & &1.duration)), 10.0, 1.0e-9
+    end
+
+    test "an already exact file is left alone" do
+      segment = seg(0.0, 10.0)
+      exact = entries([2.0, 2.0, 2.0, 2.0, 2.0])
+      assert Video.SegmentedRenderer.correct_final_duration(exact, segment) == exact
+    end
+
+    test "byte ranges are untouched" do
+      segment = seg(0.0, 10.0)
+
+      given = [
+        %{duration: 9.0, offset: 48, length: 100},
+        %{duration: 0.8, offset: 148, length: 60}
+      ]
+
+      corrected = Video.SegmentedRenderer.correct_final_duration(given, segment)
+
+      assert Enum.map(corrected, &{&1.offset, &1.length}) == [{48, 100}, {148, 60}]
+    end
+
+    test "a correction larger than the final frame deficit raises" do
+      # the deficit is one partial segment; this claims 4s where the warp says 10s
+      segment = seg(0.0, 10.0)
+
+      assert_raise RuntimeError, ~r/exceeds/, fn ->
+        Video.SegmentedRenderer.correct_final_duration(entries([2.0, 2.0]), segment)
+      end
+    end
+
+    test "an empty file is handled" do
+      assert Video.SegmentedRenderer.correct_final_duration([], seg(0.0, 10.0)) == []
+    end
+  end
+
   describe "segment coverage" do
     setup do
       Video.Metadata.fake()

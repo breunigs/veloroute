@@ -127,10 +127,16 @@ defmodule Video.SegmentedRenderer do
 
     with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "seg_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
-      filter = regular_filter(source, start_s, end_s, opts, tmp_path)
+      filter = regular_filter(source, start_s, end_s, opts)
       input = regular_input(source, start_s, end_s)
-      {pass1, pass2} = two_pass_cmd(input, input, filter, tmp_dir, filepart)
       out_s = warp_output_s(source, start_s, end_s)
+
+      {pass1, pass2} =
+        two_pass_cmd(input, input, filter, tmp_dir, filepart, [
+          # gop_size/0 is a frame count, so at a lower frame rate a fixed count
+          # spans proportionally more time and the HLS segments stretch with it
+          ["-g", gop_frames(source, start_s, end_s)]
+        ])
 
       with :ok <-
              run_ffmpeg(
@@ -185,8 +191,6 @@ defmodule Video.SegmentedRenderer do
         a_end: a_end,
         b_start: b_start,
         b_end: b_end,
-        ratios_dir: tmp_path,
-        generate: true,
         fade_s: fade_s,
         meta_a: meta_a,
         meta_b: meta_b,
@@ -220,7 +224,7 @@ defmodule Video.SegmentedRenderer do
     end
   end
 
-  defp regular_filter(source, start_s, end_s, opts, ratios_dir) do
+  defp regular_filter(source, start_s, end_s, opts) do
     detections = Video.Path.detections_rel_to_cwd(source)
     from_ms = round(start_s * 1000)
     blur_skip = blur_frame_skip(source, from_ms)
@@ -234,9 +238,7 @@ defmodule Video.SegmentedRenderer do
     parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
     meta = metadata(source)
 
-    parts =
-      parts ++
-        warp_filter(source, meta, start_s, end_s, "[blur0]", ratios_dir: ratios_dir)
+    parts = parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]")
 
     variant_count = length(Video.Renderer.variants())
     outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
@@ -277,12 +279,10 @@ defmodule Video.SegmentedRenderer do
 
     # each side has its own warp and its own source range, so each gets its own
     # normalisation; the [blur0]/[blur1] labels keep the internal ones apart
-    opts = [ratios_dir: ctx.ratios_dir, generate: ctx.generate]
-
     parts =
       parts ++
-        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]", opts) ++
-        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]", opts)
+        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]") ++
+        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]")
 
     fade_dur = ctx.fade_s
 
@@ -305,6 +305,56 @@ defmodule Video.SegmentedRenderer do
     parts ++ ["[joined]split=#{variant_count}#{Enum.join(outputs)}"]
   end
 
+  @doc """
+  Makes a rendered file's declared durations add up to its warped span.
+
+  Under variable frame rate the muxer does not know the final frame's display
+  duration, so the last `#EXTINF` of every file comes out 120-160ms short, while
+  the interior ones match the keyframe deltas exactly. No ffmpeg flag fixes this
+  — `-t`, `trim`, `tpad` and `-fps_mode passthrough` were all measured and none
+  helped — but the playlist is ours to write, so correct it here.
+
+  It matters because each file is rendered separately and the playlist marks a
+  `#EXT-X-DISCONTINUITY` between them: a player cannot chain media timestamps
+  across that, so it places each file from the declared durations. A deficit per
+  file therefore accumulates straight into `currentTime`, while the GPS polyline
+  is indexed by `Video.Track`'s warped span. It would also reach the download
+  path, where `Video.Fmp4Stream` writes these durations into the fMP4 boxes.
+  """
+  def correct_final_duration([], _segment), do: []
+
+  def correct_final_duration(entries, segment) do
+    span = warped_span(segment)
+    {leading, [last]} = Enum.split(entries, -1)
+    corrected = span - Enum.sum(Enum.map(leading, & &1.duration))
+    drift = corrected - last.duration
+
+    # The miscomputed value is the file's last, partial HLS segment, so a
+    # legitimate correction cannot exceed roughly one segment's duration.
+    # Measured on a real 25fps segment: 0.26s against a 12.5s span. The guard is
+    # not here to catch that, but the warp and the render disagreeing about the
+    # segment itself, which shows up at whole-segment scale.
+    tolerance = hls_time() + 1.0 / Video.Constants.min_output_fps()
+
+    if corrected <= 0.0 or abs(drift) > tolerance do
+      raise """
+      #{Video.Segment.basename(segment)}: correcting the final segment duration by       #{Float.round(drift, 4)}s, which exceeds #{Float.round(tolerance, 4)}s. The       warped span (#{Float.round(span, 4)}s) and what was rendered       (#{Float.round(Enum.sum(Enum.map(entries, & &1.duration)), 4)}s) disagree by       more than the final frame.
+      """
+    end
+
+    leading ++ [%{last | duration: corrected}]
+  end
+
+  defp warped_span(%{type: :regular} = segment) do
+    Video.Speedup.warped_span_s(warp(segment.source), segment.start_s, segment.end_s)
+  end
+
+  defp warped_span(%{type: :transition}) do
+    # transitions stay at the output frame rate, so their duration is already a
+    # whole number of frames and needs no correction
+    Video.Track.transition_frames() / Video.Constants.output_fps()
+  end
+
   defp dewarp_filters(inp, out) do
     filters = Settings.r(:dewarp_filters)
 
@@ -320,9 +370,9 @@ defmodule Video.SegmentedRenderer do
   # has — the RIFE interpolation stage. Emits nothing at all for a source the
   # rework does not change, which is both the fast path for the existing corpus
   # and what the segment cache key gates on.
-  defp warp_filter(source, meta, from_s, to_s, label, opts) do
+  defp warp_filter(source, meta, from_s, to_s, label) do
     {:ok, warp} = Video.Speedup.for(source)
-    Video.Speedup.filter_parts(warp, meta, from_s, to_s, label, opts)
+    Video.Speedup.filter_parts(warp, meta, from_s, to_s, label)
   end
 
   defp warp(source) do
@@ -367,7 +417,7 @@ defmodule Video.SegmentedRenderer do
     ]
   end
 
-  defp two_pass_cmd(pass1_input, pass2_input, filter_parts, tmp_dir, basename, extra_flags \\ []) do
+  defp two_pass_cmd(pass1_input, pass2_input, filter_parts, tmp_dir, basename, extra_flags) do
     filter = Enum.join(filter_parts, ";")
     variant_count = length(Video.Renderer.variants())
 
@@ -382,7 +432,7 @@ defmodule Video.SegmentedRenderer do
         input,
         ["-filter_complex", filter],
         if("-r" in extra_flags, do: [], else: ["-fps_mode", "vfr"]),
-        ["-g", gop_size()],
+        if(Enum.any?(extra_flags, &("-g" in List.wrap(&1))), do: [], else: ["-g", gop_size()]),
         extra_flags,
         ["-color_primaries", "bt709"],
         ["-color_trc", "bt709"],
@@ -487,6 +537,7 @@ defmodule Video.SegmentedRenderer do
           {:ok, tokens} ->
             rel_path = Video.Path.segment_rel_from_hash(basename, variant_idx)
             {map_info, extinf_entries} = extract_companion_entries(tokens)
+            extinf_entries = correct_final_duration(extinf_entries, segment)
             max_dur = extinf_entries |> Enum.map(& &1.duration) |> Enum.max(fn -> 0.0 end)
 
             entry = %{
@@ -721,6 +772,20 @@ defmodule Video.SegmentedRenderer do
 
   defp gop_size, do: round(hls_time() * Video.Constants.output_fps())
 
+  # Keeps HLS segments near hls_time/0 regardless of the segment's own frame
+  # rate: at ~19fps a 30 frame GOP would span 1.56s rather than the intended 1s,
+  # coarsening seek granularity.
+  defp gop_frames(source, from_s, to_s) do
+    span = warp_output_s(source, from_s, to_s)
+    frames = Video.Metadata.output_frame_count_between(metadata(source), 1.0, from_s, to_s)
+
+    if span > 0 and frames > 0 do
+      max(1, round(hls_time() * frames / span))
+    else
+      gop_size()
+    end
+  end
+
   defp output_none, do: ~w[-f null /dev/null]
 
   # --- Preview Rendering (quick, throwaway) ---
@@ -786,8 +851,6 @@ defmodule Video.SegmentedRenderer do
       b_start: start_b_s,
       b_end: b_end,
       fade_s: fade_s,
-      ratios_dir: tmp_dir,
-      generate: false,
       meta_a: metadata(source_a),
       meta_b: metadata(source_b),
       opts_a: opts_a,
@@ -814,8 +877,7 @@ defmodule Video.SegmentedRenderer do
     # previews never generate frames: the timing still matches the final render
     # because the warp is identical, only the frame content differs, and RIFE
     # latency has no place in an interactive path
-    parts =
-      parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]", generate: false)
+    parts = parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]")
 
     parts ++ ["[blur0]#{@preview_scale}"]
   end
@@ -848,12 +910,10 @@ defmodule Video.SegmentedRenderer do
           "[_ref1][_s0]scale2ref=#{min_wh}[blur1][blur0]"
         ]
 
-    opts = [generate: false]
-
     parts =
       parts ++
-        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]", opts) ++
-        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]", opts)
+        warp_filter(ctx.source_a, ctx.meta_a, ctx.a_start, ctx.a_end, "[blur0]") ++
+        warp_filter(ctx.source_b, ctx.meta_b, ctx.b_start, ctx.b_end, "[blur1]")
 
     parts ++
       [
@@ -874,7 +934,7 @@ defmodule Video.SegmentedRenderer do
         input,
         ["-filter_complex", filter],
         if("-r" in extra_flags, do: [], else: ["-fps_mode", "vfr"]),
-        ["-g", gop_size()],
+        if(Enum.any?(extra_flags, &("-g" in List.wrap(&1))), do: [], else: ["-g", gop_size()]),
         extra_flags,
         ["-pix_fmt", "yuv420p"],
         ["-c:v", "libx264"],

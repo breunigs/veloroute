@@ -27,11 +27,15 @@ defmodule Video.Constants do
   # Sources dated before this keep a constant speedup of desired_time_lapse.
   def speed_target_from_date, do: ~D[2026-09-01]
 
-  # At most this many output frames per source frame, i.e. at most one generated
-  # frame per real frame at 2.0. This is the one place apparent speed may exceed
-  # target_apparent_speed_kmh. A value of 1.0 would forbid frame generation
-  # entirely.
-  def max_interpolation_density, do: 2.0
+  # Slowing footage down lowers its frame rate rather than interpolating, so the
+  # floor on the rate is the ceiling on how far anything may be slowed. This is
+  # the one place apparent speed may exceed target_apparent_speed_kmh.
+  def min_output_fps, do: 20.0
+
+  # The same clamp seen from the other side: output frames per source frame.
+  # Frames are dropped below 1.0 and would have to be invented above it, which
+  # is why the slowdown instead shows up as a lower frame rate.
+  def max_interpolation_density, do: output_fps() / min_output_fps()
 
   # Below this real speed the baseline speedup is used directly, rather than
   # dividing by a speed that may be zero.

@@ -45,7 +45,7 @@ defmodule Video.Renderer do
 
         prefix = "scale=#{width}:#{height},"
         scaled = if blur, do: blurs(sources, prefix), else: settb(sources, prefix)
-        tlc = time_lapse_corrects(sources, generate: false)
+        tlc = time_lapse_corrects(sources)
         xfades = xfades(sources, fade_duration, "join-preview")
 
         # draw number after RIFE to avoid artifacts
@@ -123,8 +123,7 @@ defmodule Video.Renderer do
     sources = Video.Track.normalize_video_tuples(sources)
     blurs = blurs(sources, "scale=1920:1080:flags=lanczos,")
     dewarped = dewarp(sources)
-    ratios_dir = Temp.mkdir!(%{prefix: "veloroute_adhoc_ratios"})
-    tlc = time_lapse_corrects(sources, ratios_dir: ratios_dir)
+    tlc = time_lapse_corrects(sources)
     xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
     filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
 
@@ -277,9 +276,8 @@ defmodule Video.Renderer do
   defp vf({_path, _from, _to}), do: nil
 
   # One normalisation per source, so the [blur<idx>] labels keep the internal
-  # ones apart on their own. `generate: false` for the join preview: it only has
-  # to show where the cut lands, and RIFE has no place in an interactive path.
-  defp time_lapse_corrects(sources, opts) when is_list(sources) do
+  # ones apart on their own.
+  defp time_lapse_corrects(sources) when is_list(sources) do
     sources
     |> Enum.with_index()
     |> Parallel.map(4, fn {{path, from, to, _opts}, idx} ->
@@ -289,7 +287,7 @@ defmodule Video.Renderer do
       from_s = if from in [:start, :seamless], do: 0.0, else: Video.Timestamp.in_seconds(from)
       to_s = if to == :end, do: meta.duration, else: Video.Timestamp.in_seconds(to)
 
-      Video.Speedup.filter_parts(warp, meta, from_s, to_s, "[blur#{idx}]", opts)
+      Video.Speedup.filter_parts(warp, meta, from_s, to_s, "[blur#{idx}]")
     end)
     |> List.flatten()
   end

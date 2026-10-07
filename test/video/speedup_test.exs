@@ -56,40 +56,72 @@ defmodule Video.SpeedupTest do
     end
 
     test "above the threshold apparent speed is pinned to the target" do
-      for real <- [25.0, 30.0, 35.0] do
+      # a narrow band: below ~20 km/h the baseline wins, above ~30 the fps floor
+      for real <- [21.0, 25.0, 29.0] do
         {speedup, reason} = Speedup.speedup(real, 5, @out)
         assert reason == :target
         assert_in_delta real * speedup, Constants.target_apparent_speed_kmh(), 0.001
       end
     end
 
-    test "the density clamp bounds generation, at the cost of exceeding the target" do
+    test "the frame rate floor bounds the slowdown, at the cost of exceeding the target" do
       floor_speedup = Speedup.natural(5, 25.0) / Constants.max_interpolation_density()
 
       for real <- [50.0, 200.0] do
         {speedup, reason} = Speedup.speedup(real, 5, 25.0)
-        assert reason == :density
+        assert reason == :min_fps
         assert_in_delta speedup, floor_speedup, 1.0e-9
 
-        # exactly at the budget, and knowingly above the target
-        assert_in_delta Speedup.density(5 / speedup, 25.0),
-                        Constants.max_interpolation_density(),
-                        1.0e-9
-
+        # exactly at the floor, and knowingly above the target
+        assert_in_delta effective_fps(5 / speedup, 25.0), Constants.min_output_fps(), 1.0e-9
         assert real * speedup > Constants.target_apparent_speed_kmh()
       end
     end
 
-    test "density never exceeds the budget for any plausible speed" do
+    test "the frame rate never drops below the floor for any plausible speed" do
       for real <- [0.0, 1.0, 5.0, 20.0, 40.0, 80.0, 500.0],
           tl <- [1, 2, 5],
           fps <- [@out, 25.0] do
         {speedup, _} = Speedup.speedup(real, tl, fps)
 
-        assert Speedup.density(tl / speedup, fps) <=
-                 Constants.max_interpolation_density() + 1.0e-9,
+        assert effective_fps(tl / speedup, fps) >= Constants.min_output_fps() - 1.0e-9,
                "real=#{real} tl=#{tl} fps=#{fps}"
       end
+    end
+
+    # the rate a slope renders at: output_fps / density. Note this can exceed the
+    # output rate when the warp compresses — the filter's rate cap is what holds
+    # the delivered rate down, see the filter tests below.
+    defp effective_fps(slope, src_fps), do: @out / Speedup.density(slope, src_fps)
+  end
+
+  describe "filter_parts" do
+    @meta_25 %Video.Metadata{duration: 100.0, fps: 25.0, time_base: 1 / 1000, time_lapse: 5}
+
+    test "a changed source lowers the frame rate instead of interpolating" do
+      warp = Speedup.testing_warp([0.0, 5.0], [0.9, 1.3])
+      [filter] = Speedup.filter_parts(warp, @meta_25, 0.0, 10.0, "[blur0]")
+
+      # the warp, then a cap that drops but never duplicates
+      assert filter =~ "setpts='("
+      assert filter =~ "prev_selected_t"
+      assert String.ends_with?(filter, "settb=AVTB[blur0]")
+
+      # and emphatically no frame generation
+      refute filter =~ "rife"
+      refute filter =~ "split"
+      refute filter =~ "fps="
+    end
+
+    test "the cap is the output frame rate, so the delivered rate never exceeds it" do
+      assert Speedup.rate_cap() =~ "1/(#{Video.Constants.output_fps_s()})"
+    end
+
+    test "an unchanged source still emits nothing" do
+      at_output_fps = %Video.Metadata{@meta_25 | fps: @out}
+
+      assert Speedup.filter_parts(Speedup.constant("x", 1.0), at_output_fps, 0.0, 10.0, "[b]") ==
+               []
     end
   end
 
