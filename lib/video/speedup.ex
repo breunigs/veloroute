@@ -427,7 +427,7 @@ defmodule Video.Speedup do
         %Video.Source{date: %Date{} = date} = source ->
           if Date.before?(date, Video.Constants.speed_target_from_date()),
             do: {:ok, constant(path, legacy)},
-            else: {:ok, speed_targeted(source, meta, legacy)}
+            else: {:ok, speed_targeted(source, meta)}
 
         _ ->
           # not a source path, or no date in it: keep the legacy behaviour
@@ -440,8 +440,8 @@ defmodule Video.Speedup do
     time_lapse / Video.Constants.desired_time_lapse()
   end
 
-  @spec speed_targeted(Video.Source.t(), Video.Metadata.t(), float()) :: t()
-  defp speed_targeted(source, meta, legacy) do
+  @spec speed_targeted(Video.Source.t(), Video.Metadata.t()) :: t()
+  defp speed_targeted(source, meta) do
     window = Video.Constants.speed_average_window_source_s()
     step = Video.Constants.warp_breakpoint_s()
 
