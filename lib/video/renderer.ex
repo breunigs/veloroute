@@ -141,12 +141,21 @@ defmodule Video.Renderer do
         "medium",
         "-qp",
         "17",
-        "-an",
-        "-r",
-        Video.Constants.output_fps_s(),
-        "adhoc.mp4"
-      ]
+        "-an"
+      ] ++ adhoc_rate_flags(sources) ++ ["adhoc.mp4"]
   end
+
+  # A single source keeps its warped timestamps, so the slowed stretches really
+  # do come out at a lower frame rate — which is the only way this command can
+  # preview that. With two or more sources the rife/3 chain renumbers every frame
+  # onto a uniform grid (see fix_pts there, which works around PTS rounding
+  # errors in the transition filters), so the timing is already flattened and
+  # forcing the rate costs nothing.
+  # see Video.Speedup.enc_time_base/0 for why the encoder timebase has to be
+  # pinned here
+  defp adhoc_rate_flags([_single]), do: ["-fps_mode", "vfr"] ++ Video.Speedup.enc_time_base()
+
+  defp adhoc_rate_flags(_sources), do: ["-r", Video.Constants.output_fps_s()]
 
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.Cmd2.exec_result()
   def render(rendered) do

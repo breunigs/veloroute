@@ -131,11 +131,20 @@ defmodule Video.SegmentedRenderer do
       input = regular_input(source, start_s, end_s)
       out_s = warp_output_s(source, start_s, end_s)
 
+      # Only for sources this rework actually changes: pinning the timebase for an
+      # unchanged source would alter its timestamps without changing its segment
+      # name, leaving the corpus half rendered each way.
+      enc_tb =
+        if Video.Speedup.identity?(warp(source), metadata(source)),
+          do: [],
+          else: Video.Speedup.enc_time_base()
+
       {pass1, pass2} =
         two_pass_cmd(input, input, filter, tmp_dir, filepart, [
           # gop_size/0 is a frame count, so at a lower frame rate a fixed count
           # spans proportionally more time and the HLS segments stretch with it
-          ["-g", gop_frames(source, start_s, end_s)]
+          ["-g", gop_frames(source, start_s, end_s)],
+          enc_tb
         ])
 
       with :ok <-
