@@ -15,11 +15,16 @@ defmodule Video.Constants do
   # sped up past its baseline to reach the target.
   def target_apparent_speed_kmh, do: 100.0
 
-  # How much source time the speed average covers. In *source/video* seconds,
-  # i.e. the timeline the warp is defined on, which at a 5x recording is 150s of
-  # real riding. That is deliberately the playback smoothness scale: a 30s real
-  # window would be ~6s of video and make the speed pump during playback.
-  def speed_average_window_source_s, do: 30.0
+  # How much source time the speed average covers, in *source/video* seconds —
+  # the timeline the warp is defined on, so at a 5x recording this is ~40s of
+  # real riding.
+  #
+  # Long enough to average out pedal strokes and traffic lights, short enough to
+  # follow terrain. 30s smoothed so heavily that a 26 km/h descent read as 22
+  # km/h once the slower approach to it was averaged in, and barely slowed at
+  # all; shorter than this and the slope starts changing substantially every few
+  # seconds of playback, which reads as the speed pumping.
+  def speed_average_window_source_s, do: 8.0
 
   # How often the speed is sampled, i.e. the spacing of the warp's breakpoints.
   def warp_breakpoint_s, do: 1.0
