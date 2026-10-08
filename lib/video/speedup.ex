@@ -59,17 +59,29 @@ defmodule Video.Speedup do
   """
   @spec for(binary()) :: {:ok, t()} | {:error, binary()}
   def for(path) when is_binary(path) do
-    key = {__MODULE__, path}
+    key = {__MODULE__, resolve(path)}
 
     case :persistent_term.get(key, nil) do
       nil ->
-        result = build(path)
+        result = build(resolve(path))
         :persistent_term.put(key, result)
         result
 
       cached ->
         cached
     end
+  end
+
+  # Callers hand us all three shapes a source path comes in: an article ident
+  # like "2024-01-27-foo/GX01", a cwd relative path under videos/source, and an
+  # absolute one. Video.Path.source/1 only resolves the first — it would prepend
+  # the source dir a second time to the others — so pick per shape, once, here,
+  # rather than leaving every call site to get it right.
+  @spec resolve(binary()) :: binary()
+  defp resolve("/" <> _rest = absolute), do: absolute
+
+  defp resolve(path) do
+    if File.exists?(path), do: Path.expand(path), else: Video.Path.source(path)
   end
 
   # breakpoints, cumulative and slopes are always the same length. Entry i
@@ -441,9 +453,7 @@ defmodule Video.Speedup do
     with {:ok, meta} <- Video.Metadata.for(path) do
       legacy = legacy_slope(meta)
 
-      # callers hand us whatever they handed Video.Metadata, which may be cwd
-      # relative; Video.Path.abs_path/1 would prepend the source dir again
-      case Video.Source.new_from_path(Path.expand(path)) do
+      case Video.Source.new_from_path(path) do
         %Video.Source{date: %Date{} = date} = source ->
           if Date.before?(date, Video.Constants.speed_target_from_date()),
             do: {:ok, constant(path, legacy)},

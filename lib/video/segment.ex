@@ -24,15 +24,23 @@ defmodule Video.Segment do
   @type t :: regular() | transition()
 
   @spec segments(module()) :: [t()]
-  def segments(rendered) do
-    sources = rendered.sources() |> Video.Track.normalize_video_tuples()
+  def segments(rendered), do: segments(rendered.sources(), rendered.renderer())
+
+  @doc """
+  Same as `segments/1`, but for a bare source list — so callers that have no
+  `Video.Rendered` module, such as `mix velo.videos.adhoc`, get exactly the same
+  segmentation the real render uses.
+  """
+  @spec segments([tuple()], pos_integer()) :: [t()]
+  def segments(sources, renderer) do
+    sources = Video.Track.normalize_video_tuples(sources)
 
     case sources do
       [] ->
         []
 
       _ ->
-        fade_s = Video.Track.fade(rendered.renderer())
+        fade_s = Video.Track.fade(renderer)
         nexts = tl(sources) ++ [nil]
 
         sources

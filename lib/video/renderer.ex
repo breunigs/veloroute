@@ -118,44 +118,114 @@ defmodule Video.Renderer do
   defp stacker(8), do: {640, 360, "xstack=inputs=8:layout=#{@row01_w3}|0_h0+h1|w0_h0+h1"}
   defp stacker(9), do: {640, 360, "xstack=inputs=9:layout=#{@row01_w3}|#{@row2_w3}"}
 
-  @spec adhoc_cmd(Video.Track.plain()) :: [binary()]
-  def adhoc_cmd(sources) when is_list(sources) do
-    sources = Video.Track.normalize_video_tuples(sources)
-    blurs = blurs(sources, "scale=1920:1080:flags=lanczos,")
-    dewarped = dewarp(sources)
-    tlc = time_lapse_corrects(sources)
-    xfades = xfades(sources, Video.Track.default_fade(), "ad-hoc")
-    filter = Enum.join(blurs ++ dewarped ++ tlc ++ xfades, ";")
+  @adhoc_dir "adhoc_segments"
+  @adhoc_out "adhoc.mp4"
+  # the renderer version the segmentation and fade length come from
+  @adhoc_renderer 7
 
-    Util.low_priority_cmd_prefix() ++
-      ["ffmpeg", "-hide_banner", "-loglevel", "error"] ++
-      inputs(sources) ++
-      [
-        "-filter_complex",
-        filter,
-        "-pix_fmt",
-        "yuv420p",
-        "-c:v",
-        "libx264",
-        "-preset",
-        "medium",
-        "-qp",
-        "17",
-        "-an"
-      ] ++ adhoc_rate_flags(sources) ++ ["adhoc.mp4"]
+  @doc """
+  One ffmpeg command per segment, plus the concat that joins them.
+
+  Deliberately built from `Video.Segment.segments/2` and the production filters,
+  so what you preview is what gets rendered — same warp, same frame rate, same
+  transitions. The previous single-command form could not show either: a
+  transition needs `rife/3`, whose `fix_pts` renumbers every frame onto a uniform
+  grid, so the variable frame rate was flattened before the encoder saw it.
+
+  Returns `{dir, out, steps}` where each step is `{label, out_file, cmd}`.
+  """
+  @spec adhoc_cmds(Video.Track.plain()) ::
+          {binary(), binary(), [{binary(), binary(), [binary()]}]}
+  def adhoc_cmds(sources) when is_list(sources) do
+    segments = Video.Segment.segments(sources, @adhoc_renderer)
+
+    steps =
+      segments
+      |> Enum.with_index(1)
+      |> Enum.map(fn {segment, idx} ->
+        out = Path.join(@adhoc_dir, "#{String.pad_leading("#{idx}", 3, "0")}.mkv")
+        {adhoc_label(segment), out, adhoc_segment_cmd(segment, out)}
+      end)
+
+    {@adhoc_dir, @adhoc_out, steps}
   end
 
-  # A single source keeps its warped timestamps, so the slowed stretches really
-  # do come out at a lower frame rate — which is the only way this command can
-  # preview that. With two or more sources the rife/3 chain renumbers every frame
-  # onto a uniform grid (see fix_pts there, which works around PTS rounding
-  # errors in the transition filters), so the timing is already flattened and
-  # forcing the rate costs nothing.
-  # see Video.Speedup.enc_time_base/0 for why the encoder timebase has to be
-  # pinned here
-  defp adhoc_rate_flags([_single]), do: ["-fps_mode", "vfr"] ++ Video.Speedup.enc_time_base()
+  defp adhoc_label(%{type: :regular} = seg) do
+    "#{Video.Path.stem(seg.source)} #{fmt_s(seg.start_s)}-#{fmt_s(seg.end_s)}"
+  end
 
-  defp adhoc_rate_flags(_sources), do: ["-r", Video.Constants.output_fps_s()]
+  defp adhoc_label(%{type: :transition} = seg) do
+    "transition #{Video.Path.stem(seg.source_a)}@#{fmt_s(seg.end_a_s)}" <>
+      " -> #{Video.Path.stem(seg.source_b)}@#{fmt_s(seg.start_b_s)}"
+  end
+
+  defp fmt_s(seconds), do: "#{Float.round(seconds * 1.0, 2)}s"
+
+  defp adhoc_segment_cmd(%{type: :regular} = seg, out) do
+    %{source: source, start_s: start_s, end_s: end_s, opts: opts} = seg
+
+    {parts, label} =
+      Video.SegmentedRenderer.regular_filter_body(source, start_s, end_s, opts)
+
+    # Regular segments carry the warped timestamps, so they stay variable rate
+    # and need the encoder timebase pinned; see Video.Speedup.enc_time_base/0.
+    rate =
+      if Video.Speedup.identity?(
+           Video.SegmentedRenderer.warp(source),
+           Video.SegmentedRenderer.metadata(source)
+         ),
+         do: ["-fps_mode", "vfr"],
+         else: ["-fps_mode", "vfr"] ++ Video.Speedup.enc_time_base()
+
+    adhoc_encode(
+      Video.SegmentedRenderer.regular_input(source, start_s, end_s),
+      parts,
+      label,
+      rate,
+      out
+    )
+  end
+
+  defp adhoc_segment_cmd(%{type: :transition} = seg, out) do
+    ctx = Video.SegmentedRenderer.transition_ctx(seg)
+    {parts, label} = Video.SegmentedRenderer.transition_filter_body(ctx)
+
+    input =
+      Video.SegmentedRenderer.transition_input(
+        ctx.source_a,
+        ctx.a_start,
+        ctx.a_end,
+        ctx.source_b,
+        ctx.b_start,
+        ctx.b_end
+      )
+
+    # transitions are already on a uniform grid, exactly as in production
+    adhoc_encode(input, parts, label, ["-r", Video.Constants.output_fps_s()], out)
+  end
+
+  # A common size is forced here rather than per variant as production does,
+  # because the segments are concatenated with -c copy and so have to agree on
+  # resolution — transitions scale2ref to the smaller of their two inputs.
+  defp adhoc_encode(input, parts, label, rate_flags, out) do
+    filter = Enum.join(parts ++ ["#{label}scale=1920:1080[out]"], ";")
+
+    List.flatten([
+      Util.low_priority_cmd_prefix(),
+      ["ffmpeg", "-hide_banner", "-loglevel", "error"],
+      input,
+      ["-filter_complex", filter],
+      ["-map", "[out]"],
+      rate_flags,
+      ["-pix_fmt", "yuv420p"],
+      ["-c:v", "libx264"],
+      ["-preset", "medium"],
+      ["-qp", "17"],
+      "-an",
+      "-y",
+      out
+    ])
+  end
 
   @spec render(Video.Rendered.t()) :: :ok | {:error, binary} | Util.Cmd2.exec_result()
   def render(rendered) do
@@ -260,21 +330,6 @@ defmodule Video.Renderer do
     |> Enum.map(fn {{_path, _from, _to, opts}, idx} ->
       "[#{idx}]#{prefix}#{vf(opts)}settb=AVTB,setsar=1:1[blur#{idx}]"
     end)
-  end
-
-  defp dewarp(sources) do
-    filters = Settings.r(:dewarp_filters)
-
-    if filters && filters != [] do
-      filters = Enum.join(filters, ",")
-      max_idx = length(sources) - 1
-
-      for idx <- 0..max_idx do
-        "[blur#{idx}]#{filters}[blur#{idx}]"
-      end
-    else
-      []
-    end
   end
 
   defp vf(opts) when is_list(opts) do

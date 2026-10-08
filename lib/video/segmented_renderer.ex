@@ -181,31 +181,9 @@ defmodule Video.SegmentedRenderer do
 
     with {:ok, tmp_path} <- Temp.mkdir(%{basedir: cache_dir, prefix: "xfade_#{filepart}"}) do
       tmp_dir = Path.basename(tmp_path)
-      meta_a = metadata(source_a)
-      meta_b = metadata(source_b)
-
-      # fade_s is output time; converting it through each side's own warp is
-      # what makes a mixed-fps transition feed both sides the same amount of
-      # output time. Shared with Video.Segment and Video.Track so all four
-      # fade sites agree bit-for-bit.
-      a_start = max(0, Video.Speedup.fade_before(warp(source_a), end_a_s, fade_s))
-      a_end = end_a_s
-      b_start = start_b_s
-      b_end = Video.Speedup.fade_after(warp(source_b), start_b_s, fade_s)
-
-      transition_ctx = %{
-        source_a: source_a,
-        source_b: source_b,
-        a_start: a_start,
-        a_end: a_end,
-        b_start: b_start,
-        b_end: b_end,
-        fade_s: fade_s,
-        meta_a: meta_a,
-        meta_b: meta_b,
-        opts_a: opts_a,
-        opts_b: opts_b
-      }
+      transition_ctx = transition_ctx(segment)
+      %{a_start: a_start, a_end: a_end, b_start: b_start, b_end: b_end} = transition_ctx
+      _ = {source_a, source_b, end_a_s, start_b_s, opts_a, opts_b}
 
       filter = transition_filter(transition_ctx)
 
@@ -234,6 +212,16 @@ defmodule Video.SegmentedRenderer do
   end
 
   defp regular_filter(source, start_s, end_s, opts) do
+    {parts, label} = regular_filter_body(source, start_s, end_s, opts)
+    parts ++ [variant_split(label)]
+  end
+
+  @doc """
+  Everything a regular segment needs up to, but not including, the per variant
+  split — so `mix velo.videos.adhoc` can render exactly what production renders
+  and then put its own single output on the end.
+  """
+  def regular_filter_body(source, start_s, end_s, opts) do
     detections = Video.Path.detections_rel_to_cwd(source)
     from_ms = round(start_s * 1000)
     blur_skip = blur_frame_skip(source, from_ms)
@@ -247,14 +235,58 @@ defmodule Video.SegmentedRenderer do
     parts = parts ++ dewarp_filters("[blur0]", "[blur0]")
     meta = metadata(source)
 
-    parts = parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]")
+    {parts ++ warp_filter(source, meta, start_s, end_s, "[blur0]"), "[blur0]"}
+  end
 
+  defp variant_split(label) do
     variant_count = length(Video.Renderer.variants())
     outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
-    parts ++ ["[blur0]split=#{variant_count}#{Enum.join(outputs)}"]
+    "#{label}split=#{variant_count}#{Enum.join(outputs)}"
+  end
+
+  @doc """
+  Everything `transition_filter_body/1` needs, derived from a transition segment.
+
+  `fade_s` is output time, so converting it through each side's own warp is what
+  makes a mixed-fps transition feed both sides the same amount of output time.
+  Shared with `Video.Segment` and `Video.Track` so all four fade sites agree
+  bit-for-bit.
+  """
+  def transition_ctx(segment) do
+    %{
+      source_a: source_a,
+      source_b: source_b,
+      end_a_s: end_a_s,
+      start_b_s: start_b_s,
+      fade_s: fade_s,
+      opts_a: opts_a,
+      opts_b: opts_b
+    } = segment
+
+    %{
+      source_a: source_a,
+      source_b: source_b,
+      a_start: max(0, Video.Speedup.fade_before(warp(source_a), end_a_s, fade_s)),
+      a_end: end_a_s,
+      b_start: start_b_s,
+      b_end: Video.Speedup.fade_after(warp(source_b), start_b_s, fade_s),
+      fade_s: fade_s,
+      meta_a: metadata(source_a),
+      meta_b: metadata(source_b),
+      opts_a: opts_a,
+      opts_b: opts_b
+    }
   end
 
   defp transition_filter(ctx) do
+    {parts, label} = transition_filter_body(ctx)
+    parts ++ [variant_split(label)]
+  end
+
+  @doc """
+  The transition counterpart of `regular_filter_body/4`.
+  """
+  def transition_filter_body(ctx) do
     det_a = Video.Path.detections_rel_to_cwd(ctx.source_a)
     det_b = Video.Path.detections_rel_to_cwd(ctx.source_b)
     skip_a = blur_frame_skip(ctx.source_a, round(ctx.a_start * 1000))
@@ -309,9 +341,7 @@ defmodule Video.SegmentedRenderer do
           "[a][b]frei0r=filter_name=rife_transition:filter_params=#{fade_dur}||0[joined]"
         ]
 
-    variant_count = length(Video.Renderer.variants())
-    outputs = Enum.map(0..(variant_count - 1), &"[out#{&1}]")
-    parts ++ ["[joined]split=#{variant_count}#{Enum.join(outputs)}"]
+    {parts, "[joined]"}
   end
 
   @doc """
@@ -384,7 +414,8 @@ defmodule Video.SegmentedRenderer do
     Video.Speedup.filter_parts(warp, meta, from_s, to_s, label)
   end
 
-  defp warp(source) do
+  @doc false
+  def warp(source) do
     {:ok, warp} = Video.Speedup.for(source)
     warp
   end
@@ -394,7 +425,8 @@ defmodule Video.SegmentedRenderer do
     Video.Speedup.output_s(w, to_s) - Video.Speedup.output_s(w, from_s)
   end
 
-  defp regular_input(source, start_s, end_s) do
+  @doc false
+  def regular_input(source, start_s, end_s) do
     [
       "-hwaccel",
       "auto",
@@ -407,7 +439,8 @@ defmodule Video.SegmentedRenderer do
     ]
   end
 
-  defp transition_input(source_a, a_start, a_end, source_b, b_start, b_end) do
+  @doc false
+  def transition_input(source_a, a_start, a_end, source_b, b_start, b_end) do
     [
       "-hwaccel",
       "auto",
@@ -741,7 +774,8 @@ defmodule Video.SegmentedRenderer do
     Video.SegmentedRenderer.OwlProgress.new(id, total_frames)
   end
 
-  defp metadata(path) do
+  @doc false
+  def metadata(path) do
     path
     |> Video.Path.source()
     |> Video.Metadata.for()
