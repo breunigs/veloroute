@@ -174,6 +174,36 @@ defmodule Video.SpeedupTest do
     end
   end
 
+  describe "the no-GPS fallback" do
+    @describetag :requires_mount
+
+    # A source without a GPX cannot have a speed profile, so it falls back to a
+    # constant warp. That fallback has to be a *slope*, not the baseline speedup
+    # it is derived from: passing the speedup renders the clip baseline squared
+    # times too long at a handful of fps. The 360 test clips have no GPX and are
+    # the ones that caught it.
+    test "falls back to a slope, not to the speedup it came from" do
+      p = Video.Path.source("2026-09-04-360test/GS018946.MP4")
+      {:ok, meta} = Video.Metadata.for(p)
+      {:ok, warp} = Speedup.for(p)
+
+      assert warp.constant, "a source with no GPX should get a constant warp"
+
+      # the fallback is the zero-generation point, so it never slows anything
+      assert_in_delta Speedup.density(warp.constant, meta.fps), 1.0, 0.001
+
+      assert_in_delta warp.constant,
+                      meta.time_lapse / Speedup.baseline(meta.time_lapse, meta.fps),
+                      1.0e-9
+
+      # and the output stays the length the speedup implies, not baseline² of it
+      assert_in_delta Speedup.output_s(warp, meta.duration),
+                      meta.duration * meta.time_lapse /
+                        Speedup.baseline(meta.time_lapse, meta.fps),
+                      0.001
+    end
+  end
+
   describe "the existing corpus must not re-render" do
     @describetag :requires_mount
 

@@ -450,12 +450,16 @@ defmodule Video.Speedup do
         from_profile(source.source, profile, meta)
 
       other ->
+        # the baseline speedup converted to a slope — passing the speedup itself
+        # here renders the clip baseline² times too long, at a few fps
+        slope = meta.time_lapse / baseline(meta.time_lapse, meta.fps)
+
         Logger.warning(
           "#{source.source}: no usable GPS speed (#{inspect(other)}), " <>
-            "falling back to a constant #{Float.round(legacy, 4)} slope"
+            "falling back to a constant #{Float.round(slope, 4)} slope"
         )
 
-        constant(source.source, Video.Speedup.baseline(meta.time_lapse, meta.fps))
+        constant(source.source, slope)
     end
   end
 
