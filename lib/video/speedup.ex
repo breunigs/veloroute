@@ -394,6 +394,19 @@ defmodule Video.Speedup do
   end
 
   @doc """
+  Flags pinning the encoder timebase, needed wherever warped timestamps are
+  encoded.
+
+  Left to itself ffmpeg derives the encoder timebase from the input frame rate,
+  which snaps every warped timestamp back onto the source frame grid: a steady
+  23fps ramp came out as alternating 25fps and 12.5fps gaps, i.e. half the frames
+  held twice as long. `-video_track_timescale` does not help, because the
+  rounding happens before the muxer.
+  """
+  @spec enc_time_base() :: [binary()]
+  def enc_time_base, do: ["-enc_time_base", "1/90000"]
+
+  @doc """
   How long a source range lasts in output time. The one expression every
   consumer of a segment duration has to agree on.
   """
@@ -413,7 +426,14 @@ defmodule Video.Speedup do
   """
   @spec rate_cap() :: binary()
   def rate_cap do
-    "select='isnan(prev_selected_t)+gte(t-prev_selected_t,1/(#{Video.Constants.output_fps_s()}))'"
+    fps = "(#{Video.Constants.output_fps_s()})"
+
+    # Keyed on which output slot a frame falls into rather than on the gap since
+    # the last kept frame. The gap form had to compare against exactly
+    # 1/output_fps, which is precisely the spacing at the baseline slope, so it
+    # sat on a float boundary; it also under-sampled dense streams, keeping 20
+    # frames where 24 slots were available.
+    "select='isnan(prev_selected_t)+gt(floor(t*#{fps}),floor(prev_selected_t*#{fps}))'"
   end
 
   @spec build(binary()) :: {:ok, t()} | {:error, binary()}

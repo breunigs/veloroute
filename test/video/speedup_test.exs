@@ -113,8 +113,15 @@ defmodule Video.SpeedupTest do
       refute filter =~ "fps="
     end
 
-    test "the cap is the output frame rate, so the delivered rate never exceeds it" do
-      assert Speedup.rate_cap() =~ "1/(#{Video.Constants.output_fps_s()})"
+    test "the cap keys on output slots, so it never duplicates nor under-samples" do
+      cap = Speedup.rate_cap()
+
+      # one frame per output slot: at most the output rate, and at the baseline
+      # slope — where spacing equals the slot width exactly — every real frame
+      # still lands in its own slot rather than on a float boundary
+      assert cap =~ "floor(t*(#{Video.Constants.output_fps_s()}))"
+      assert cap =~ "prev_selected_t"
+      refute cap =~ "gte(t-prev_selected_t"
     end
 
     test "an unchanged source still emits nothing" do
