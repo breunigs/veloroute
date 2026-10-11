@@ -4,7 +4,7 @@ defmodule Data.Article.Blog.LerchenfeldWartenau do
   def title(), do: "Lerchenfeld und Wartenau (Radroute 6)"
 
   def start(), do: ~d[2025-03-17]
-  def stop(), do: ~d[2027-03-31]
+  def stop(), do: ~d[2027-05-31]
   def construction_site_id_hh(), do: [1_617_362, 2_730_987]
 
   def type(), do: :construction

@@ -16,6 +16,8 @@ defmodule Data.Article.Blog.WellingsbuettlerWeg do
 
   def links(_assigns) do
     [
+      {"Baustelleninfo", ~d[2026-10],
+       "https://lsbg.hamburg.de/resource/blob/1049614/c391b86224f78e7b5e29646ff7662415/wellingsbuetteler-landstrasse-wellingsbuettler-weg-baustart-2-ba-oktober-2026-data.pdf"},
       {"fertiger Entwurf – Erläuterungen", ~d[2025-12],
        "https://lsbg.hamburg.de/resource/blob/1129448/844f426bb685f027e17dfe98820b52ab/wellingsbuettler-weg-abgestimmte-planung-bericht-data.pdf"},
       {"fertiger Entwurf – Karte", ~d[2025-12],
