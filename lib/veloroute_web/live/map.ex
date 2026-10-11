@@ -18,12 +18,19 @@ defmodule VelorouteWeb.Live.Map do
   }
 
   @static_map_sizes [
-    {1600, 1200},
-    {1300, 1000},
-    {1100, 900},
-    {900, 700},
+    {500, 250},
+    {340, 480},
+    {700, 350},
+    {500, 500},
+    {900, 350},
+    {1100, 450},
     {700, 700},
-    {500, 500}
+    {1300, 500},
+    {900, 700},
+    {1600, 600},
+    {1100, 900},
+    {1300, 1000},
+    {1600, 1200}
   ]
 
   def static_map_sizes, do: @static_map_sizes
@@ -248,10 +255,10 @@ defmodule VelorouteWeb.Live.Map do
     <picture id="mapPreview">
       <%= for {w, h} <- @sizes do %>
         <source
-          media={"(min-width: #{w+300}px), (min-height: #{h*1.5}px)"}
+          media={"(max-width: #{div(3*w, 2)}px) and (max-height: #{2*h}px)"}
           srcset={"/map/___static/#{@cz}/#{w}x#{h}?highlightRoute=#{@video_route_id}"}>
       <% end %>
-      <img src={"/map/___static/#{@cz}/500x500?highlightRoute=#{@video_route_id}"} fetchpriority="high">
+      <img src={"/map/___static/#{@cz}/1600x1200?highlightRoute=#{@video_route_id}"} fetchpriority="high">
     </picture>
     """
 
