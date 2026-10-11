@@ -21,6 +21,7 @@ if File.exists?(creds_path),
 config :veloroute, VelorouteWeb.Endpoint,
   adapter: Bandit.PhoenixAdapter,
   url: [host: "localhost"],
+  http: [http_options: [compress: false]],
   secret_key_base: PhoenixCredentials.secret_key_base(),
   render_errors: [
     formats: [html: VelorouteWeb.ErrorHTML],
