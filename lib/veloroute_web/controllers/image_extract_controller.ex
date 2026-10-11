@@ -11,7 +11,7 @@ defmodule VelorouteWeb.ImageExtractController do
          {format, header} <- image_support(conn),
          {:ok, img} <- extract(hash, ts_in_ms, ren.length_ms(), format) do
       conn
-      |> put_resp_content_type(header)
+      |> put_resp_content_type(header, nil)
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")
       |> send_resp(200, img)
       |> halt

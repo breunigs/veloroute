@@ -37,7 +37,7 @@ defmodule Basemap.Plug do
 
     if Path.extname(conn.request_path) == ".pbf" && pbf_fallback do
       conn
-      |> put_resp_content_type("application/x-protobuf")
+      |> put_resp_content_type("application/x-protobuf", nil)
       |> send_resp(200, pbf_fallback)
       |> halt()
     else

@@ -76,7 +76,7 @@ defmodule Basemap.Static.Plug do
   @empty_gif <<71, 73, 70, 56, 57, 97, 1, 0, 1, 0, 0, 0, 0, 44, 0, 0, 0, 0, 1, 0, 1, 0, 0>>
   defp fallback(conn, code) do
     conn
-    |> Plug.Conn.put_resp_content_type("image/gif")
+    |> Plug.Conn.put_resp_content_type("image/gif", nil)
     |> Plug.Conn.send_resp(code, @empty_gif)
     |> Plug.Conn.halt()
   end

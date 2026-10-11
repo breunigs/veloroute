@@ -38,7 +38,7 @@ defmodule VelorouteWeb.VideoDownloadController do
 
     conn =
       conn
-      |> put_resp_content_type("video/mp4")
+      |> put_resp_content_type("video/mp4", nil)
       |> put_resp_header(
         "content-disposition",
         ~s(attachment; filename="veloroute.hamburg_video_#{title}.mp4")

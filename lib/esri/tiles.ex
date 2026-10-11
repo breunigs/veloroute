@@ -86,7 +86,7 @@ defmodule Esri.Tiles do
 
       with {:ok, %{status: 200, body: body}} <- Tesla.get(client, url) do
         conn
-        |> Plug.Conn.put_resp_content_type("image/jpeg")
+        |> Plug.Conn.put_resp_content_type("image/jpeg", nil)
         |> Plug.Conn.put_resp_header("cache-control", "public, max-age=31536000, immutable")
         |> Plug.Conn.send_resp(200, body)
         |> Plug.Conn.halt()
@@ -114,7 +114,7 @@ defmodule Esri.Tiles do
   @empty_gif <<71, 73, 70, 56, 57, 97, 1, 0, 1, 0, 0, 0, 0, 44, 0, 0, 0, 0, 1, 0, 1, 0, 0>>
   defp fallback(conn, code) do
     conn
-    |> Plug.Conn.put_resp_content_type("image/gif")
+    |> Plug.Conn.put_resp_content_type("image/gif", nil)
     |> Plug.Conn.send_resp(code, @empty_gif)
     |> Plug.Conn.halt()
   end
