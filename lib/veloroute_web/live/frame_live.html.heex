@@ -56,13 +56,13 @@
       </div>
       <progress id="progress" value={@video_start} min="0" max={@video_length_ms} aria-describedby="progressPreview"></progress>
     </div>
-    <button style="display: none" id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
+    <button id="skipBackward5" type="button" title="5 Sekunden zurückspulen"></button>
     <div id="duration">
       <span id="current" title="Videoposition"><%= Video.Timestamp.as_html(@video_start) %></span><span>
       /
       </span><span id="max" title="Videolänge"><%= Video.Timestamp.as_html(@video_length_ms) %></span>
     </div>
-    <button style="display: none" id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
+    <button id="skipForward5" type="button" title="5 Sekunden vorspulen"></button>
     <div id="videoRecordingDate" title={"#{if @video_street_name != "", do: "#{@video_street_name}, "}#{@video_recording_date}"}>
       <%= if @video_street_name != "", do: "#{@video_street_name}, " %><%= @video_recording_date %>
     </div>

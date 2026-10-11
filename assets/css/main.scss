@@ -53,6 +53,8 @@ body {
 
 #videoOuter {
   view-transition-name: match-element;
+  // lets descendants react to the panel width instead of the viewport width
+  container: videoPanel / inline-size;
 }
 
 $mapBgColor: #EFE9E1;
@@ -60,7 +62,7 @@ $mapBgColor: #EFE9E1;
 #mapOuter {
   top: 0;
   z-index: 1;
-  overflow: hidden;
+  overflow: clip;
   background-color: $mapBgColor;
 }
 
@@ -84,7 +86,7 @@ $mapBgColor: #EFE9E1;
 
 #videoOuter {
   top: 50%;
-  overflow: hidden;
+  overflow: clip;
   background: #333 url('/images/video_poster.svg?vsn=1') 50% 50% / contain no-repeat;
 
   &::before {
@@ -248,7 +250,6 @@ $videoInfoOverlayPadding: 0.5rem;
     text-align: center;
     cursor: pointer;
     position: relative;
-    -webkit-user-select: none;
     user-select: none;
 
     &.disabled {
@@ -294,6 +295,11 @@ $videoInfoOverlayPadding: 0.5rem;
     font-weight: 400;
   }
 
+  // shown again once the panel is wide enough, see @container further down
+  #skipBackward5, #skipForward5 {
+    display: none;
+  }
+
   #skipBackward5 {
     background: url("/images/skip_backward_5.svg?vsn=1") no-repeat center center;
     background-size: calc($videoBarHeight / 2.2);
@@ -329,7 +335,6 @@ $videoInfoOverlayPadding: 0.5rem;
     bottom: calc($videoBarHeight + env(safe-area-inset-bottom));
     width: 100%;
     cursor: pointer;
-    -webkit-user-select: none;
     user-select: none;
     // put it above buttons, but below menus
     z-index: 2;
@@ -342,11 +347,11 @@ $videoInfoOverlayPadding: 0.5rem;
       $fadeTime: 0.2s;
 
       // comment in to make it visible without hover
-      // visibility: visible !important; // toggle
+      // display: block !important; // toggle
       // opacity: 1 !important; // toggle
 
       opacity: 0;
-      visibility: hidden;
+      display: none;
 
       position: absolute;
 
@@ -356,7 +361,7 @@ $videoInfoOverlayPadding: 0.5rem;
       }
       width: $progressPreviewWidth;
 
-      overflow: hidden;
+      overflow: clip;
       white-space: nowrap;
 
       #progressPreviewText {
@@ -368,7 +373,9 @@ $videoInfoOverlayPadding: 0.5rem;
       text-align: center;
       text-shadow: $blackOutline;
       -webkit-font-smoothing: antialiased;
-      transition: opacity $fadeTime ease-in-out, visibility $fadeTime;
+      transition: opacity $fadeTime ease-in-out, display $fadeTime;
+      // i.e. keep it displayed for the whole fade-out
+      transition-behavior: allow-discrete;
       pointer-events: none;
       z-index: 1;
       line-height: 1.3rem;
@@ -396,12 +403,14 @@ $videoInfoOverlayPadding: 0.5rem;
         background: #000;
       }
 
+      // 100cqw is the width of #videoOuter, i.e. it also covers fullscreen
       transform: translateX(
         calc(
           -50% +
-          min(
-            max($mainWidth, $minWidth) - $progressPreviewWidth / 1.9,
-            max(var(--pos), $progressPreviewWidth / 1.9)
+          clamp(
+            $progressPreviewWidth / 1.9,
+            var(--pos),
+            100cqw - $progressPreviewWidth / 1.9
           )
         )
       );
@@ -410,14 +419,22 @@ $videoInfoOverlayPadding: 0.5rem;
     // for devices with mouse
     @media(hover: hover) {
       &:hover #progressPreview {
-        visibility: visible;
+        display: block;
         opacity: 1;
+
+        @starting-style {
+          opacity: 0;
+        }
       }
     }
     // for mobile, via JS
     #progressPreview.enabled {
-      visibility: visible;
+      display: block;
       opacity: 1;
+
+      @starting-style {
+        opacity: 0;
+      }
     }
 
     &:hover progress {
@@ -443,7 +460,6 @@ $videoInfoOverlayPadding: 0.5rem;
 
     border: none;
     color: $red;
-    background: rgba(0,0,0,0.5);
     background: linear-gradient(90deg, rgba(68,68,68,0.5) var(--loaded, 0%), rgba(0,0,0,0.5) var(--loaded, 0%));
     user-select: none;
     pointer-events: none;
@@ -460,32 +476,6 @@ $videoInfoOverlayPadding: 0.5rem;
     &::-webkit-progress-value {
       background-color: $red;
     }
-  }
-}
-
-#videoOuter:fullscreen {
-  #progressPreview {
-    transform: translateX(
-      calc(
-        -50% +
-        min(
-          100vw - $progressPreviewWidth / 4,
-          max(var(--pos), $progressPreviewWidth / 4)
-        )
-      )
-    ) !important;
-  }
-}
-
-@media (min-width: calc(2*$minWidth)) {
-  #reverse:not(.disabled) {
-    background-position: left center !important;
-    text-indent: 1.3rem !important;
-    width: auto !important;
-  }
-
-  #videoRecordingDate {
-    visibility: visible !important;
   }
 }
 
@@ -568,7 +558,7 @@ $videoInfoOverlayPadding: 0.5rem;
   strong, a {
     display: block;
     height: 4*$videoBarBtnMargin;
-    overflow-y: hidden;
+    overflow-y: clip;
   }
 
   $iconWidth: 1rem;
@@ -656,6 +646,36 @@ $videoInfoOverlayPadding: 0.5rem;
   visibility: hidden;
 }
 
+// How much room the video controls have depends on the width of the video
+// panel, not of the viewport — which also makes these work in fullscreen.
+// The panel is $mainWidth, so these match the 2*$minWidth and 3*$minWidth
+// viewport breakpoints used for the sidebar layout.
+$videoPanelMedium: 440px;
+$videoPanelWide: 660px;
+
+@container videoPanel (min-width: #{$videoPanelMedium}) {
+  #videoControls #reverse:not(.disabled) {
+    background-position: left center;
+    text-indent: 1.3rem;
+    width: auto;
+  }
+
+  #videoRecordingDate {
+    visibility: visible;
+  }
+}
+
+@container videoPanel (min-width: #{$videoPanelWide}) {
+  #videoRoute {
+    max-width: 48%;
+  }
+
+  #videoControls #skipBackward5,
+  #videoControls #skipForward5 {
+    display: block;
+  }
+}
+
 .noMobile {
   display: none;
 }
@@ -700,14 +720,6 @@ $sidebarBoxShadowNormal: 0.1em 0 0.3em 0.1em rgba(0,0,0,0.3);
     display: none !important;
   }
 
-  #videoRoute {
-    max-width: 48%;
-  }
-
-  #skipBackward5, #skipForward5 {
-    display: block !important;
-  }
-
   .hideSidebar #sidebar {
     cursor: auto !important;
   }
@@ -724,10 +736,7 @@ $sidebarAnimationDuration: 0.3s;
 body::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   box-shadow: inset -3em 0 2em -2em rgba(0,0,0,0.7);
   pointer-events: none;
   z-index: 4;
@@ -762,7 +771,6 @@ body.showSidebar::before {
   overflow-y: auto;
   overflow-x: hidden;
 
-  -webkit-hyphens: auto;
   hyphens: auto;
   hyphenate-limit-chars: 8 4 4;
 
@@ -806,7 +814,7 @@ $cyclistSize: 8rem;
 #videoPoster {
   width: 100%;
   height: 100%;
-  contain: size layout size;
+  contain: size layout;
 
   &::after, &::before {
     transition-property: opacity;
@@ -882,7 +890,6 @@ body.fullscreen video, #videoOuter:fullscreen video {
   background-size: 200% 100%;
 
   touch-action: pan-x;
-  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1032,11 +1039,9 @@ $headerSize: 2rem;
   font-weight: bold;
   font-size: $headerSize*0.7;
   text-decoration: none !important;
-  text-align: center;
 
   &.back {
-    background: url("/images/home.svg?vsn=1") calc($headerSize/2) center / 0 no-repeat $darkBg;
-    background-size: $headerSize;
+    background: url("/images/home.svg?vsn=1") calc($headerSize/2) center / $headerSize no-repeat $darkBg;
   }
 
   img {
@@ -1058,7 +1063,6 @@ $iconBorder: 0.13em;
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
-  border: $iconBorder solid white;
 
   &.freizeit {
     border-radius: 0.2rem;
@@ -1082,7 +1086,6 @@ h3 .icon {
   float: right;
   margin-top: -0.2rem;
   pointer-events: none;
-  cursor: normal;
 }
 
 .icon, .fricon {
@@ -1188,7 +1191,6 @@ ol.route-list {
       margin-bottom: 0.5rem;
     }
 
-    clear: all;
     break-inside: avoid-column;
   }
 
@@ -1379,12 +1381,10 @@ a {
 }
 
 body {
-  -webkit-user-select: none;
   user-select: none;
 }
 
 #content {
-  -webkit-user-select: text;
   user-select: text;
 }
 
