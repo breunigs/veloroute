@@ -259,7 +259,7 @@ defmodule VelorouteWeb.Live.Map do
           media={"(max-width: #{div(3*w, 2)}px) and (max-height: #{2*h}px)"}
           srcset={"/map/___static/#{@cz}/#{w}x#{h}?highlightRoute=#{@video_route_id}"}>
       <% end %>
-      <img src={"/map/___static/#{@cz}/1920x960?highlightRoute=#{@video_route_id}"} fetchpriority="high">
+      <img src={"/map/___static/#{@cz}/500x250?highlightRoute=#{@video_route_id}"} fetchpriority="high">
     </picture>
     """
 
