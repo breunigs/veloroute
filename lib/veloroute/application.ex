@@ -22,6 +22,8 @@ defmodule Veloroute.Application do
       VelorouteWeb.Endpoint,
       TeslaCache.child_spec(),
       VelorouteWeb.ImageExtractController.cache_child_spec(),
+      VelorouteWeb.VerifyCrawler.Rdns.cache_child_spec(),
+      VelorouteWeb.VerifyCrawler.IpRanges.cache_child_spec(),
       Appointments.Updater,
       Appointments.Updater.cache_child_spec()
     ]

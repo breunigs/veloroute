@@ -11,6 +11,7 @@ defmodule VelorouteWeb.Endpoint do
   ]
 
   plug Plug.RequestId
+  plug VelorouteWeb.VerifyCrawler
 
   socket "/socket", VelorouteWeb.UserSocket,
     websocket: true,

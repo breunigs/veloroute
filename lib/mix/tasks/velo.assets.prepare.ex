@@ -66,56 +66,9 @@ defmodule Mix.Tasks.Velo.Assets.Prepare do
   end
 
   defp robots_txt() do
-    File.write("priv/static/robots.txt", """
-    sitemap: #{Settings.r(:url)}/sitemap.xml
-
-    User-agent: *
-    Allow: /
-
-    User-agent: AhrefsBot
-    Crawl-Delay: 600
-
-    User-agent: AhrefsBot
-    Disallow: /live/websocket
-    Disallow: /images/thumbnails/
-    Disallow: /map/___static/
-    Disallow: /assets/basemap/
-
-    User-Agent: Baiduspider
-    User-agent: Amazonbot
-    User-agent: anthropic-ai
-    User-agent: Applebot-Extended
-    User-agent: barkrowler
-    User-agent: BLEXBot
-    User-agent: Claude-Web
-    User-agent: ClaudeBot
-    User-agent: DataForSeoBot
-    User-agent: dotbot
-    User-agent: Google-Extended
-    User-agent: GPTBot
-    User-Agent: ImagesiftBot
-    User-agent: meta-externalagent
-    User-agent: meta-webindexer
-    User-agent: MJ12bot
-    User-agent: PerplexityBot
-    User-agent: SemrushBot
-    User-Agent: SemrushBot
-    User-agent: SemrushBot-BA
-    User-agent: SemrushBot-FT
-    User-agent: SemrushBot-OCOB
-    User-agent: SemrushBot-SI
-    User-agent: SemrushBot-SWA
-    User-Agent: Seobility
-    User-agent: SiteAuditBot
-    User-agent: SplitSignalBot
-    User-agent: turnitinbot
-    User-Agent: VelenPublicWebCrawler
-    User-agent: Yandex
-    User-agent: Twitterbot
-    Disallow: /
-
-    User-agent: GPTBot-User
-    Allow: /
-    """)
+    File.write(
+      "priv/static/robots.txt",
+      VelorouteWeb.Crawlers.robots_txt("#{Settings.r(:url)}/sitemap.xml")
+    )
   end
 end
