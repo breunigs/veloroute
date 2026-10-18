@@ -22,7 +22,11 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
     max_delay: 30_000
 
   adapter(Tesla.Adapter.Hackney,
-    ssl_options: [verify_fun: {fn _cert, _valid, acc -> {:valid, acc} end, []}]
+    # some sitzungsdienst hosts abort the handshake when offered TLS 1.3
+    ssl_options: [
+      versions: [:"tlsv1.2"],
+      verify_fun: {fn _cert, _valid, acc -> {:valid, acc} end, []}
+    ]
   )
 
   @shown_by_date "shown_by_date"
