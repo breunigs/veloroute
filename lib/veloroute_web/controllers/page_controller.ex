@@ -112,13 +112,13 @@ defmodule VelorouteWeb.PageController do
     end
   end
 
-  def redir_favicon(conn, _params) do
+  @favicon_sizes [16, 32, 36, 48, 57, 72, 96, 100, 120, 144, 152, 167, 180, 192]
+
+  def redir_favicon(conn, params) do
     size =
-      cond do
-        String.contains?(conn.request_path, "apple-touch-icon-152x152") -> 152
-        String.contains?(conn.request_path, "apple-touch-icon-120x120") -> 120
-        String.contains?(conn.request_path, "apple-touch-icon") -> 100
-        true -> 16
+      case Integer.parse(params["variant"] || "") do
+        {wanted, _rest} -> Enum.min_by(@favicon_sizes, &abs(&1 - wanted))
+        :error -> if String.ends_with?(conn.request_path, ".ico"), do: 16, else: 100
       end
 
     conn |> put_status(301) |> redirect(to: "/favicons/#{size}.png")
