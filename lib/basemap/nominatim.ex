@@ -280,6 +280,28 @@ defmodule Basemap.Nominatim do
     |> String.replace("\n", " ")
   end
 
+  # OSM objects (mostly suburbs) sometimes carry several postcodes separated by
+  # semicolons, which then get inherited by everything below them.
+  defp to_single_postcode(codes, near) do
+    """
+    CASE WHEN #{codes} LIKE '%;%'
+      THEN pick_postcode(#{codes}, #{near})
+      ELSE #{codes}
+    END
+    """
+    |> String.replace("\n", " ")
+  end
+
+  defp to_single_postcode_address(address, near) do
+    """
+    CASE WHEN #{address}->'postcode' LIKE '%;%'
+      THEN #{address} || HSTORE('postcode', pick_postcode(#{address}->'postcode', #{near}))
+      ELSE #{address}
+    END
+    """
+    |> String.replace("\n", " ")
+  end
+
   defp to_boost_search_result(name) do
     """
     CASE
@@ -307,6 +329,20 @@ defmodule Basemap.Nominatim do
     ;
     $body$
     LANGUAGE 'sql' IMMUTABLE STRICT;
+
+    -- picks the most plausible postcode out of a semicolon separated list: the
+    -- one whose postcode centroid is closest to the given geometry. Falls back
+    -- to the smallest postcode if none of them are known.
+    CREATE OR REPLACE FUNCTION pick_postcode(codes TEXT, near GEOMETRY) RETURNS TEXT AS
+    $body$
+    SELECT candidate
+    FROM REGEXP_SPLIT_TO_TABLE(codes, '\\s*;\\s*') AS input(candidate)
+    LEFT JOIN location_postcode AS pc ON pc.postcode = candidate
+    ORDER BY ST_Distance(pc.geometry::geography, near::geography) ASC NULLS LAST, candidate ASC
+    LIMIT 1
+    ;
+    $body$
+    LANGUAGE 'sql' STABLE;
 
 
     -- combo is basically "placex", joined with extra information from linked
@@ -444,7 +480,7 @@ defmodule Basemap.Nominatim do
         t.type,
         combo.admin_level,
         combo.name,
-        combo.address,
+        #{to_single_postcode_address("combo.address", "ST_UNION(combo.centroid)")} AS address,
         HSTORE(STRING_AGG(NULLIF(combo.extratags::TEXT, ''), ',')) AS extratags,
         -- repeat name in boost for certain important objects
         (CASE WHEN
@@ -457,7 +493,7 @@ defmodule Basemap.Nominatim do
         #{to_meili_geo("ST_UNION(combo.centroid)")} AS _geo,
         #{to_elixir_bbox("ST_UNION(combo.geometry)")} AS bbox,
         combo.parents_name,
-        combo.parents_postcode,
+        #{to_single_postcode("combo.parents_postcode", "ST_UNION(combo.centroid)")} AS parents_postcode,
         #{to_boost_search_result("combo.parents_name")} AS rank_boosted_areas,
         (combo.name->'name' IS NULL AND combo.housenumber IS NOT NULL) AS housenumber_only
       FROM combo
@@ -506,7 +542,7 @@ defmodule Basemap.Nominatim do
         #{to_meili_geo("interpol.centroid")} AS _geo,
         #{to_elixir_bbox("interpol.centroid")} AS bbox,
         combo.parents_name,
-        combo.parents_postcode,
+        #{to_single_postcode("combo.parents_postcode", "interpol.centroid")} AS parents_postcode,
         #{to_boost_search_result("combo.parents_name")},
         TRUE AS housenumber_only
       FROM combo
@@ -553,7 +589,7 @@ defmodule Basemap.Nominatim do
         #{to_meili_geo("ST_UNION(intersections.geometry)")} AS _geo,
         #{to_elixir_bbox("ST_UNION(intersections.geometry)")} AS bbox,
         intersections.parents_name,
-        MIN(intersections.parents_postcode) AS parents_postcode,
+        #{to_single_postcode("MIN(intersections.parents_postcode)", "ST_CENTROID(ST_UNION(intersections.geometry))")} AS parents_postcode,
         #{to_boost_search_result("intersections.parents_name")},
         FALSE AS housenumber_only
       FROM (
