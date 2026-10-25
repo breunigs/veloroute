@@ -4,6 +4,15 @@ set -eu
 
 export GDAL_NUM_THREADS=ALL_CPUS
 
+# The puzzle-joiner export writes a footprint beside each TIF. It covers the
+# map only. gdal_footprint cannot tell a legend from the map, and it reads the
+# whole raster, which takes minutes. Skip it when the export supplied one.
+footprint=1
+if [ "$1" = "--no-footprint" ]; then
+  footprint=0
+  shift
+fi
+
 outname=$1
 shift
 
@@ -43,8 +52,10 @@ echo
 echo "converting to PMTiles"
 /go-pmtiles convert output.mbtiles "/output/${outname}"
 
-echo
-echo "extracting footprint polygon"
-footprint="${outname%.pmtiles}.geojson"
-gdal_footprint -t_srs EPSG:4326 -simplify 0.0001 -of GeoJSON mosaic.vrt "/output/${footprint}" \
-  || echo "WARNING: gdal_footprint failed, no footprint extracted"
+if [ "$footprint" = "1" ]; then
+  echo
+  echo "extracting footprint polygon"
+  out="${outname%.pmtiles}.geojson"
+  gdal_footprint -t_srs EPSG:4326 -simplify 0.0001 -of GeoJSON mosaic.vrt "/output/${out}" \
+    || echo "WARNING: gdal_footprint failed, no footprint extracted"
+fi

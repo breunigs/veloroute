@@ -117,11 +117,17 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
       @image_ref,
       %{
         docker_args: ["-t"],
-        command_args: [out_name(name) | imgs_in],
+        command_args: skip_footprint(imgs_out) ++ [out_name(name) | imgs_in],
         mounts: mounts
       },
       slow_warn_message: false
     )
+  end
+
+  # gdal_footprint reads the whole raster, which takes minutes. The export
+  # already answered the question, so do not ask it again.
+  defp skip_footprint(tifs) do
+    if export_footprints?(tifs), do: ["--no-footprint"], else: []
   end
 
   defp out_name(name), do: "#{name}.pmtiles"
@@ -181,16 +187,20 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
     end
   end
 
-  # The export writes a footprint beside the TIF. It covers the map only.
+  # The export writes a footprint beside each TIF. It covers the map only.
   # gdal_footprint writes the fallback. It cannot tell a legend from the map.
   defp footprint_paths(name, tifs) do
-    from_export = Enum.map(tifs, &(Path.rootname(&1) <> ".geojson"))
-    derived = Path.join(@output_dir, "#{name}.geojson") |> Path.expand()
+    if export_footprints?(tifs),
+      do: {export_footprints(tifs), true},
+      else: {[Path.join(@output_dir, "#{name}.geojson") |> Path.expand()], false}
+  end
 
-    case Enum.filter(from_export, &File.exists?/1) do
-      [] -> {[derived], false}
-      paths -> {paths, true}
-    end
+  defp export_footprints(tifs), do: Enum.map(tifs, &(Path.rootname(&1) <> ".geojson"))
+
+  # All of them, or none. One missing file leaves a hole in the area.
+  defp export_footprints?(tifs) do
+    paths = export_footprints(tifs)
+    paths != [] and Enum.all?(paths, &File.exists?/1)
   end
 
   # An article has one closed way. Keep a single ring as it is. Join several
