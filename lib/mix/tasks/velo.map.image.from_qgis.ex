@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          true <- maybe_modify_tifs(tifs),
          tifs = Enum.reverse(tifs),
          :ok <- to_pmtiles(tifs, name) do
-      maybe_add_map_entry(name)
+      maybe_add_map_entry(name, tifs)
 
       has_name = Article.List.find_exact(name)
       if !has_name, do: Logger.warning("no article with the name #{name} found")
@@ -152,16 +152,33 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
     |> Util.compact()
   end
 
-  defp maybe_add_map_entry(name) do
-    geojson_path = Path.join(@output_dir, "#{name}.geojson") |> Path.expand()
+  defp maybe_add_map_entry(name, tifs) do
+    {paths, from_export} = footprint_paths(name, tifs)
 
-    with {:ok, json} <- File.read(geojson_path) do
-      File.rm(geojson_path)
+    jsons =
+      Enum.flat_map(paths, fn path ->
+        case File.read(path) do
+          {:ok, json} -> [json]
+          {:error, _} -> []
+        end
+      end)
 
-      if has_map_entry?(name) do
+    # gdal_footprint writes this file. The task does not need it later.
+    File.rm(Path.join(@output_dir, "#{name}.geojson") |> Path.expand())
+
+    cond do
+      jsons == [] ->
+        Logger.warning("no footprint found, skipping map.osm entry")
+
+      has_map_entry?(name) ->
         Logger.info("map.osm already has an entry for '#{name}', skipping")
-      else
-        case extract_polygon(json) do
+
+      true ->
+        # Legends cover ground outside the map.
+        if !from_export,
+          do: Logger.warning("no footprint from the export. The area can be too large.")
+
+        case extract_polygon(jsons) do
           {:ok, coords} ->
             add_to_map_osm(name, coords)
             Logger.info("added article polygon with #{length(coords)} points to map.osm")
@@ -169,28 +186,73 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
           {:error, reason} ->
             Logger.warning("failed to extract polygon: #{reason}")
         end
-      end
-    else
-      {:error, _} ->
-        Logger.warning("no footprint found at #{geojson_path}, skipping map.osm entry")
     end
   end
 
-  defp extract_polygon(json) do
+  # The export writes a footprint beside the TIF. It covers the map only.
+  # gdal_footprint writes the fallback. It cannot tell a legend from the map.
+  defp footprint_paths(name, tifs) do
+    from_export = Enum.map(tifs, &(Path.rootname(&1) <> ".geojson"))
+    derived = Path.join(@output_dir, "#{name}.geojson") |> Path.expand()
+
+    case Enum.filter(from_export, &File.exists?/1) do
+      [] -> {[derived], false}
+      paths -> {paths, true}
+    end
+  end
+
+  # An article has one closed way. Keep a single ring as it is. Join several
+  # rings into their hull, because one way cannot hold a hole or a gap.
+  defp extract_polygon(jsons) do
+    case Enum.flat_map(jsons, &outer_rings/1) do
+      [] -> {:error, "GeoJSON contains no polygons"}
+      [ring] -> {:ok, ring}
+      rings -> {:ok, rings |> Enum.concat() |> convex_hull()}
+    end
+  end
+
+  defp outer_rings(json) do
     case Jason.decode(json) do
-      {:ok, %{"features" => [%{"geometry" => geometry} | _]}} ->
-        coords =
-          case geometry do
-            %{"type" => "Polygon", "coordinates" => [outer | _]} -> outer
-            %{"type" => "MultiPolygon", "coordinates" => [[outer | _] | _]} -> outer
-          end
+      {:ok, %{"features" => features}} when is_list(features) ->
+        Enum.flat_map(features, fn
+          %{"geometry" => %{"type" => "Polygon", "coordinates" => [outer | _]}} ->
+            [outer]
 
-        {:ok, coords}
+          %{"geometry" => %{"type" => "MultiPolygon", "coordinates" => polygons}} ->
+            Enum.flat_map(polygons, fn
+              [outer | _] -> [outer]
+              _empty -> []
+            end)
 
-      other ->
-        {:error, "unexpected GeoJSON: #{inspect(other)}"}
+          _other ->
+            []
+        end)
+
+      _other ->
+        []
     end
   end
+
+  # Andrew monotone chain.
+  defp convex_hull(points) do
+    sorted = points |> Enum.uniq() |> Enum.sort()
+    Enum.drop(half_hull(sorted), -1) ++ Enum.drop(half_hull(Enum.reverse(sorted)), -1)
+  end
+
+  defp half_hull(points) do
+    points |> Enum.reduce([], &add_to_hull/2) |> Enum.reverse()
+  end
+
+  defp add_to_hull(point, [second, first | rest]) do
+    if cross(first, second, point) <= 0,
+      do: add_to_hull(point, [first | rest]),
+      else: [point, second, first | rest]
+  end
+
+  defp add_to_hull(point, hull), do: [point | hull]
+
+  defp cross([ox, oy], [ax, ay], [bx, by]),
+    do: (ax - ox) * (by - oy) - (ay - oy) * (bx - ox)
 
   defp has_map_entry?(name) do
     osm = File.read!(Map.Parser.default_map_path())
