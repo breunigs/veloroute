@@ -8,7 +8,8 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
 
   @shortdoc "Reads overlays from QGIS Project file and converts them to PMTiles"
   def run(args) do
-    with {:ok, proj, name} <- parse_args(args),
+    with {:ok, given, name} <- parse_args(args),
+         {:ok, proj} <- find_project_file(given),
          out_path = out_path(name),
          true <- !File.exists?(out_path) || confirm_overwrite(out_path),
          {:ok, data} <- read_project_file(proj),
@@ -65,6 +66,33 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          mix velo.map.image.from_qgis <qgis_project.qgz> <article name>
        got these arguments: #{inspect(other)})
        """}
+
+  # Accept any file of an export, e.g. a TIF, and look for the project beside
+  # it. The project name is a prefix of the exported file names.
+  @spec find_project_file(binary()) :: {:ok, binary()} | {:error, binary()}
+  defp find_project_file(path) do
+    if ending?(path, ".qgz") || ending?(path, ".qgs") do
+      {:ok, path}
+    else
+      case project_candidates(path) do
+        [] -> {:error, "found no .qgz/.qgs project matching #{path}"}
+        [found | _rest] -> {:ok, log_project(found)}
+      end
+    end
+  end
+
+  defp project_candidates(path) do
+    rootname = Path.rootname(path)
+
+    Path.wildcard(Path.dirname(path) <> "/*.{qgz,qgs,QGZ,QGS}")
+    |> Enum.filter(&String.starts_with?(rootname, Path.rootname(&1)))
+    |> Enum.sort_by(&(-String.length(&1)))
+  end
+
+  defp log_project(path) do
+    Logger.info("using project file #{path}")
+    path
+  end
 
   @spec read_project_file(binary()) :: {:ok, binary()} | {:error, binary() | File.posix()}
   defp read_project_file(path) do
