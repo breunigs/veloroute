@@ -13,7 +13,6 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
          true <- !File.exists?(out_path) || confirm_overwrite(out_path),
          {:ok, data} <- read_project_file(proj),
          {:ok, tifs} <- find_tifs(data, Path.dirname(proj)),
-         true <- maybe_modify_tifs(tifs),
          tifs = Enum.reverse(tifs),
          :ok <- to_pmtiles(tifs, name) do
       maybe_add_map_entry(name, tifs)
@@ -36,13 +35,6 @@ defmodule Mix.Tasks.Velo.Map.Image.FromQgis do
     else
       {:error, reason} -> IO.puts("failed to convert:\n#{reason}")
     end
-  end
-
-  defp maybe_modify_tifs(tifs) do
-    IO.puts("There are #{length(tifs)} usable images – please remove any unneccessary borders")
-    Enum.each(tifs, fn tif -> IO.puts("  gimp '#{tif}'") end)
-
-    Cli.confirm("Continue?")
   end
 
   defp confirm_overwrite(path) do
